@@ -11,7 +11,11 @@
 > (id 6e71ddc6-b58c-49f4-b6f5-207f3778133f,表 `hits`,与 baipiaoji-hits 同构)。
 > 两条线分开读、绝不混算:`ev=''` = js/main.js 的 /api/ev beacon(JS 真跑了,
 > 真人线);`ev='bot'` = functions/_middleware.js 服务端记的已知 AI 爬虫
-> (ref 列存爬虫名)。crawl-check 自测带 `x-probe` 头被过滤,不入账;
+> (ref 列存爬虫名);`ev='affiliate_click'` = 联盟链接点击(营收事件,ref 列存
+> 目标域名;2026-08-19 前它在任何系统里都没被记录过)。owner 2026-08-19 决定
+> 暂不配 GA4 API key,D1 为主读数通道;tds-traffic.yml 每日把 14 天聚合回写
+> `content/d1-snapshot.json`,无 MCP 的会话从 git 读它(ev='' 行 = 真人线)。
+> crawl-check 自测带 `x-probe` 头被过滤,不入账;
 > 绑定在 wrangler.toml,随每次 pages deploy 应用。GA4 照旧保留在页面上。
 
 # CLAUDE.md

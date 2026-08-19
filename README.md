@@ -27,10 +27,12 @@ See `CLAUDE.md`.
 1. Cloudflare dashboard → Workers `agiscorecard` → disconnect the old git
    integration to `f-tiger/agiscorecard` (that repo is archived; a stray push
    there would roll the site back). Until then: simply never push there.
-2. Extra repo secrets to unlock the three still-commented schedules:
-   - `tds-crawl-log.yml` / `tds-traffic.yml`: `CLOUDFLARE_API_TOKEN_ZONE`,
-     `CF_API_TOKEN`, `GA4_PROPERTY_ID_TDS`, `GA4_SERVICE_ACCOUNT_JSON`
+2. `CLOUDFLARE_API_TOKEN_ZONE` configured 2026-08-19 — `tds-traffic` and
+   `tds-crawl-log` schedules are live. Still open, optional (owner deferred
+   GA4 on 2026-08-19; D1 is the primary channel):
    - `bpj-growth-loop.yml`: `GA4_PROPERTY_ID_BPJ`, `GA4_SERVICE_ACCOUNT_JSON`
+   - GA4 steps inside `tds-traffic.yml`: `GA4_PROPERTY_ID_TDS`,
+     `GA4_SERVICE_ACCOUNT_JSON` (they no-op gracefully until then)
    - optional senders: `TELEGRAM_BOT_TOKEN`/`TELEGRAM_CHAT_ID` (tds grow notify),
      `RESEND_API_KEY`/`SUPABASE_SERVICE_KEY` (eco heat-alert real sends),
      `MCP_REGISTRY_PRIVATE_KEY` (tds registry proof)
