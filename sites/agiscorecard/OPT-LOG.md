@@ -2162,3 +2162,12 @@ search-index 重生成、feed 重生成、share/future-survey.png 重烤为 2047
 且句子作为「公开预测分布中心」的松散说法尚可辩护）——列为后续证据核查候选，改前
 先定一手口径。②gen_forecaster_leaderboard.py 与线上页已漂移（生成器仍是 07-20 版
 文案+已废除的 weekly briefing 订阅语），**不可再直接重跑该生成器**，改前必须先对齐。
+
+## 2026-08-19 · 赢家订阅位复制(owner「执行」指令)
+- 依据:当日 sub_ok 来自 post_scorecard 位(28 天 sub_ok=2,漏斗 open3→submit2→ok2)。
+- 改动:what-is-agi、ai-orders-of-magnitude-explained 两个高引用页在活数字胶囊后
+  增加 mid 订阅块(location: deep_whatisagi_mid / deep_oom_mid),承诺仍是唯一可兑现
+  的那句「verdict flip 当天一封邮件」。其余三个高引用页已有 mid 位,未重复触碰。
+- 同日负面判定:index_click{*_live} 两周 0 次(3 次 index_click 全来自首页),
+  该通道按规则定性为品牌资产,停止扩展 *_live 钩子。
+- 判定线:28 天后 sub_ok ≥3/28d。

@@ -1426,6 +1426,10 @@ function toolPage(tool) {
       ${tool.limits.wall ? `<p class="limits-wall">${strong(tool.limits.wall)}</p>` : ''}
       <p class="limits-src">${UI('limits_src', '依据：{source}，{checked} 核实。额度政策变动频繁，以官方页面为准。')
         .replace('{source}', srcLink(tool.limits.source || '')).replace('{checked}', esc(tool.limits.checked || ''))}</p>
+      <p class="limits-watch"><a href="${BASE}/watch.html?pick=${esc(tool.slug)}"
+        onclick="try{if(window.bpjEv)bpjEv('calc','/calc/watch-hook/${esc(tool.slug)}')}catch(e){}">${LOCALE.code === 'zh'
+        ? `这个数字一变就通知我（webhook，免费盯 3 个）→`
+        : `Ping me the day this number changes (webhook, 3 tools free) →`}</a></p>
       ${upgradeOk(tool) ? `<p class="coverage"><a href="${BASE}/upgrade/${esc(tool.slug)}.html"><b>${LOCALE.code === 'zh' ? '免费额度不够用了？该买哪档、值不值，按用量算 →' : 'Outgrowing the free tier? Which paid tier is worth it →'}</b></a></p>` : ''}
     </section>
     ${(() => {
@@ -4796,6 +4800,17 @@ if (CODQ && CHATQ) {
   var FREE=3;
   var url=document.getElementById('whUrl'), key=document.getElementById('whKey'),
       go=document.getElementById('whGo'), out=document.getElementById('whOut');
+  // Deep-link pre-selection: /watch.html?pick=kimi-suno checks those tools, so the
+  // contextual hook on a tool page lands the reader one field away from done
+  // (same lesson as the passive-link-is-not-a-funnel rule).
+  try{
+    var pick=(new URLSearchParams(location.search).get('pick')||'').split('-').filter(Boolean);
+    if(pick.length){
+      var hit=0;
+      pick.forEach(function(s){var b=document.querySelector('.wh-on[data-s="'+s+'"]');if(b){b.checked=true;hit++;}});
+      if(hit && url) url.focus();
+    }
+  }catch(e){}
   function EV(n,p){try{if(window.bpjEv)window.bpjEv(n,p)}catch(e){}}
   var MSG={https_only:ZH?'只收 https 地址。':'HTTPS only.',
     not_a_url:ZH?'这不是一个合法 URL。':'Not a valid URL.',

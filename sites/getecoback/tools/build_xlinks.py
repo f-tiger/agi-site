@@ -169,5 +169,86 @@ def main():
     print(f"xref blocks injected/updated on {xrefs} pages")
 
 
+
+
+# --- Season bridge (2026-08-19): the affiliate winners are summer SCENARIO pages
+# (kippfenster/wohnmobil/italy/tilt-turn...), which sit outside the X-qm series
+# and its built-in cross-season links. When Germany cools in September this
+# funnel dries up on its own; the bridge hands the same reader the autumn
+# problem set (storing the AC, damp/mould, heating cost) while they are still
+# here. List-driven and idempotent like XREF; targets are validated to exist.
+SEASON_DE = [
+    "klimaanlage-wohnmobil.html",
+    "klimaanlage-kippfenster.html",
+    "split-klimaanlage-ohne-kernbohrung.html",
+    "mobile-klimaanlage-zu-laut.html",
+    "guenstige-klimaanlage-unter-300-euro.html",
+    "homeoffice-buero-kuehlen.html",
+    "turmventilator-vs-standventilator.html",
+    "ventilator-mit-eis.html",
+]
+SEASON_DE_LINKS = [
+    ("/guide/mobile-klimaanlage-ueberwintern.html", "Mobile Klimaanlage überwintern: in 6 Schritten richtig lagern"),
+    ("/guide/luftentfeuchter-gegen-schimmel.html", "Herbstfeuchte: Hilft ein Luftentfeuchter wirklich gegen Schimmel?"),
+    ("/guide/heizkosten-vergleich-rechner.html", "Heizkosten-Vergleich: Heizlüfter, Infrarot oder Klima mit Heizfunktion?"),
+]
+SEASON_EN = [
+    "best-portable-air-conditioner-italy.html",
+    "best-portable-air-conditioner-spain.html",
+    "best-portable-air-conditioner-europe-heatwave.html",
+    "portable-ac-tilt-and-turn-windows.html",
+    "portable-ac-rented-apartment.html",
+]
+SEASON_EN_LINKS = [
+    ("/en/guide/how-to-clean-portable-air-conditioner.html", "Before you store it: clean the portable AC so it doesn't smell in spring"),
+    ("/en/guide/dehumidifier-drying-clothes-cost.html", "Drying laundry indoors this autumn: what a dehumidifier actually costs"),
+]
+
+
+def season_block(links, title):
+    inner = "".join(
+        f'<a href="{href}" style="display:block;margin:5px 0;color:#0f6ba8;'
+        f'text-decoration:none;font-size:14px;">{text} →</a>' for href, text in links)
+    return ('<!--EB_SEASON--><section style="max-width:1000px;margin:18px auto 0;padding:0 20px;">'
+            '<div style="background:#fff;border:1px solid #e4ebf0;border-radius:12px;padding:16px 18px;">'
+            f'<strong style="font-size:14.5px;display:block;margin-bottom:6px;">{title}</strong>'
+            + inner + '</div></section><!--/EB_SEASON-->\n')
+
+
+def inject_season(path, blk):
+    html = open(path, encoding="utf-8").read()
+    if "<!--EB_SEASON-->" in html:
+        new = re.sub(r"<!--EB_SEASON-->.*?<!--/EB_SEASON-->\n?", blk, html, flags=re.S)
+    elif "<!--EB_XREF-->" in html:
+        new = html.replace("<!--EB_XREF-->", blk + "<!--EB_XREF-->", 1)
+    elif "<!--EB_FOOTER-->" in html:
+        new = html.replace("<!--EB_FOOTER-->", blk + "<!--EB_FOOTER-->", 1)
+    else:
+        return False
+    if new != html:
+        open(path, "w", encoding="utf-8").write(new)
+        return True
+    return False
+
+
+def season_main():
+    for links, base in ((SEASON_DE_LINKS, GUIDE), (SEASON_EN_LINKS, os.path.join(ROOT, "site"))):
+        for href, _ in links:
+            tgt = os.path.join(ROOT, "site", href.lstrip("/"))
+            if not os.path.exists(tgt):
+                raise SystemExit(f"season bridge target does not exist: {href}")
+    n = 0
+    for fn in SEASON_DE:
+        p = os.path.join(GUIDE, fn)
+        if os.path.exists(p) and inject_season(p, season_block(SEASON_DE_LINKS, "Nach der Kühl-Saison: was jetzt ansteht")):
+            n += 1
+    for fn in SEASON_EN:
+        p = os.path.join(ROOT, "site", "en", "guide", fn)
+        if os.path.exists(p) and inject_season(p, season_block(SEASON_EN_LINKS, "After the cooling season")):
+            n += 1
+    print(f"season bridge injected/updated on {n} pages")
+
+
 if __name__ == "__main__":
     main()
+    season_main()
