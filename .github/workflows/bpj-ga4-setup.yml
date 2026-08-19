@@ -37,7 +37,7 @@ jobs:
       - name: Run GA4 setup
         id: run
         env:
-          GA4_PROPERTY_ID: ${{ secrets.GA4_PROPERTY_ID }}
+          GA4_PROPERTY_ID: ${{ secrets.GA4_PROPERTY_ID_BPJ }}
           GA4_SERVICE_ACCOUNT_JSON: ${{ secrets.GA4_SERVICE_ACCOUNT_JSON }}
         # 报错也要把输出留给下一步展示，所以先落盘再决定退出码
         run: |

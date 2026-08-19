@@ -29,8 +29,8 @@ See `CLAUDE.md`.
    there would roll the site back). Until then: simply never push there.
 2. Extra repo secrets to unlock the three still-commented schedules:
    - `tds-crawl-log.yml` / `tds-traffic.yml`: `CLOUDFLARE_API_TOKEN_ZONE`,
-     `CF_API_TOKEN`, `GA4_PROPERTY_ID`, `GA4_SERVICE_ACCOUNT_JSON`
-   - `bpj-growth-loop.yml`: `GA4_PROPERTY_ID`, `GA4_SERVICE_ACCOUNT_JSON`
+     `CF_API_TOKEN`, `GA4_PROPERTY_ID_TDS`, `GA4_SERVICE_ACCOUNT_JSON`
+   - `bpj-growth-loop.yml`: `GA4_PROPERTY_ID_BPJ`, `GA4_SERVICE_ACCOUNT_JSON`
    - optional senders: `TELEGRAM_BOT_TOKEN`/`TELEGRAM_CHAT_ID` (tds grow notify),
      `RESEND_API_KEY`/`SUPABASE_SERVICE_KEY` (eco heat-alert real sends),
      `MCP_REGISTRY_PRIVATE_KEY` (tds registry proof)

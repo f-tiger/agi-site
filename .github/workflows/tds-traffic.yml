@@ -51,7 +51,7 @@ jobs:
       # job summary itself becomes the reminder of what remains.
       - name: Pull GA4 via the Data API
         env:
-          GA4_PROPERTY_ID: ${{ secrets.GA4_PROPERTY_ID }}
+          GA4_PROPERTY_ID: ${{ secrets.GA4_PROPERTY_ID_TDS }}
           GA4_SERVICE_ACCOUNT_JSON: ${{ secrets.GA4_SERVICE_ACCOUNT_JSON }}
         run: |
           node scripts/ga4-report.mjs | tee ga4-report.md

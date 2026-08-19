@@ -9,7 +9,7 @@ name: Growth loop
 
 
 on:
-  # 需先在 agi-site 配置 secrets(GA4_PROPERTY_ID / GA4_SERVICE_ACCOUNT_JSON)再解除注释:
+  # 需先在 agi-site 配置 secrets(GA4_PROPERTY_ID_BPJ / GA4_SERVICE_ACCOUNT_JSON)再解除注释:
   # schedule:
   #   - cron: '0 1 */2 * *' # 每两天，北京时间 09:00
   workflow_dispatch:
@@ -35,7 +35,7 @@ jobs:
 
       - name: Analyse and auto-optimise
         env:
-          GA4_PROPERTY_ID: ${{ secrets.GA4_PROPERTY_ID }}
+          GA4_PROPERTY_ID: ${{ secrets.GA4_PROPERTY_ID_BPJ }}
           GA4_SERVICE_ACCOUNT_JSON: ${{ secrets.GA4_SERVICE_ACCOUNT_JSON }}
         run: node scripts/growth-loop.mjs
 
