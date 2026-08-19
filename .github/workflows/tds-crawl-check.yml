@@ -24,7 +24,6 @@ jobs:
         working-directory: sites/thedollscout
     steps:
       - uses: actions/checkout@v4
-        with:
 
       # urls.txt is generated alongside sitemap.xml, so the check always covers
       # exactly what we publish rather than a list someone maintains by hand.

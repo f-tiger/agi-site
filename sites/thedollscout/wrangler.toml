@@ -1,0 +1,15 @@
+# Pages config for the dollscout project. Introduced 2026-08-19 to carry the
+# D1 binding for first-party analytics — the fleet-wide lesson (bpj 08-11,
+# agi 08-05): AI crawlers do not execute JavaScript, so a client-only beacon
+# (or GA4 alone) records none of them, and on a site whose growth channel is
+# AI-assistant citation that is the traffic most worth counting.
+# Bindings declared here are applied on every `wrangler pages deploy` and
+# take precedence over dashboard-configured bindings.
+name = "dollscout"
+pages_build_output_dir = "dist"
+compatibility_date = "2026-08-01"
+
+[[d1_databases]]
+binding = "HITS"
+database_name = "dollscout-events"
+database_id = "6e71ddc6-b58c-49f4-b6f5-207f3778133f"

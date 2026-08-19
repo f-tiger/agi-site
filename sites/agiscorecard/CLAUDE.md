@@ -340,7 +340,7 @@ strategy doc the same run. New strategy-relevant milestones to watch in D1:
    compare the pilot fleet when repos are attached — agi D1 `agiscorecard-events`
    (f84f9d29) · bpj D1 `baipiaoji-hits` (1ee08cb8-a174-4ec3-8dbc-89ef5d28aa05) ·
    getecoback D1 `ecoback-events` (75e45e05-44b5-4c56-9a3b-dd504b5c53f1，表 `ev`) ·
-   thedollscout（无 D1，读 sexweb 仓 `content/traffic.json`/`crawl-log.json`）。
+   thedollscout（D1 `dollscout-events` 6e71ddc6-b58c-49f4-b6f5-207f3778133f，表 `hits` 同 bpj 口径，2026-08-19 起；更早只有 agi-site 仓 sites/thedollscout/content/traffic.json）。
    每站四行：真人 PV（JS 口径）、AI 引用/爬虫态势、离钱最近的转化事件
    （agi=sub_ok · bpj=go/sub_view · eco=affiliate_click · tds=affiliate_click GA4）、
    本周移植了谁的什么模式。记 analytics-notes.md，并 port whichever side's working

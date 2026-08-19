@@ -58,7 +58,6 @@ jobs:
               || fromJSON(format('["{0}"]', inputs.vendor || 'yourdoll')) }}
     steps:
       - uses: actions/checkout@v4
-        with:
 
       - name: Install Playwright browser
         run: |

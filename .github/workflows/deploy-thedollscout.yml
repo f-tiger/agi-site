@@ -149,3 +149,15 @@ jobs:
       - name: Ping IndexNow with the published URL list
         continue-on-error: true
         run: node scripts/indexnow.mjs
+
+      # First-party analytics self-test (D1 chain added 2026-08-19): one POST
+      # to /api/ev must come back 204. The /__ci path is excluded from all
+      # reader-count queries by convention (same as bpj's /__selftest).
+      - name: Self-test the /api/ev beacon endpoint
+        continue-on-error: true
+        run: |
+          sleep 20
+          code=$(curl -s -o /dev/null -w "%{http_code}" -X POST https://thedollscout.com/api/ev \
+            -H 'Content-Type: text/plain' -d '{"p":"/__ci","r":""}' --max-time 15)
+          echo "beacon self-test HTTP $code"
+          [ "$code" = "204" ] || echo "::warning::beacon endpoint returned $code (expected 204) — D1 binding may be missing"

@@ -7,6 +7,12 @@
 > content/lastmod-baseline.json(自旧仓真实历史采集;仅对导入后未改过的文件
 > 生效,改过的文件仍用真实 git 日期)。旧私有仓 f-tiger/sexweb 是历史档案,
 > 不再推送。公开仓红线见仓库根 CLAUDE.md。
+> **D1 第一方埋点(2026-08-19 起)**:库 `dollscout-events`
+> (id 6e71ddc6-b58c-49f4-b6f5-207f3778133f,表 `hits`,与 baipiaoji-hits 同构)。
+> 两条线分开读、绝不混算:`ev=''` = js/main.js 的 /api/ev beacon(JS 真跑了,
+> 真人线);`ev='bot'` = functions/_middleware.js 服务端记的已知 AI 爬虫
+> (ref 列存爬虫名)。crawl-check 自测带 `x-probe` 头被过滤,不入账;
+> 绑定在 wrangler.toml,随每次 pages deploy 应用。GA4 照旧保留在页面上。
 
 # CLAUDE.md
 

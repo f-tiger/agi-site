@@ -60,7 +60,12 @@ async function get(url, agent) {
   const started = Date.now();
   try {
     const res = await fetch(url, {
-      headers: { "User-Agent": AGENTS[agent], Accept: "text/html,application/xhtml+xml,*/*" },
+      /* x-probe marks this as our own self-test so the edge analytics
+         middleware skips it — otherwise every weekly run would hand the
+         "did the AI engines crawl us" table dozens of fake bot rows (the
+         self-test-as-growth trap both sibling sites fell into once). Real
+         crawlers never send this header, so simulation fidelity is intact. */
+      headers: { "User-Agent": AGENTS[agent], Accept: "text/html,application/xhtml+xml,*/*", "x-probe": "1" },
       redirect: "follow",
     });
     const body = await res.text();

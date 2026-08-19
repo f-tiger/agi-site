@@ -35,7 +35,6 @@ jobs:
         working-directory: sites/thedollscout
     steps:
       - uses: actions/checkout@v4
-        with:
 
       - name: Is this configured at all?
         id: gate

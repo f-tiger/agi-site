@@ -231,3 +231,16 @@
     if (y) y.textContent = new Date().getFullYear();
   });
 })();
+
+/* First-party pageview beacon (2026-08-19). One POST per pageview to /api/ev
+   (D1 `dollscout-events`): the real-reader line, since crawlers never run JS.
+   GA4 stays alongside — two independent channels, either failing leaves the
+   other recording. No cookies, no IDs; referrer is reduced to its host at
+   the edge. Fail-silent: analytics must never break a page. */
+(function () {
+  try {
+    var payload = JSON.stringify({ p: location.pathname, r: document.referrer || "" });
+    if (navigator.sendBeacon) navigator.sendBeacon("/api/ev", payload);
+    else fetch("/api/ev", { method: "POST", body: payload, keepalive: true }).catch(function () {});
+  } catch (e) {}
+})();
