@@ -1,0 +1,209 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Will AI Take My Job? A 60-Second Exposure Check (2026)</title>
+<meta name="description" content="Answer 6 questions about your job and get your AI exposure tier — grounded in real 2026 evidence (~83% GDPval, ~80% SWE-Bench) and the autonomy gap. No sign-up.">
+<link rel="canonical" href="https://agiscorecard.com/ai-job-risk-check">
+<link rel="alternate" hreflang="en" href="https://agiscorecard.com/ai-job-risk-check">
+<link rel="alternate" hreflang="zh-Hans" href="https://agiscorecard.com/zh/ai-job-risk-check">
+<link rel="alternate" hreflang="x-default" href="https://agiscorecard.com/ai-job-risk-check">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://agiscorecard.com/ai-job-risk-check">
+<meta property="og:title" content="Will AI take YOUR job? Check your exposure in 60 seconds">
+<meta property="og:description" content="6 questions, an honest exposure tier, and the one thing that decides when exposure becomes replacement — the autonomy gap.">
+<meta property="og:image" content="https://agiscorecard.com/scorecard-summary.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Will AI take YOUR job? 60-second exposure check">
+<meta name="twitter:image" content="https://agiscorecard.com/scorecard-summary.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AGI Scorecard","item":"https://agiscorecard.com/"},{"@type":"ListItem","position":2,"name":"AGI questions, answered","item":"https://agiscorecard.com/agi-questions"},{"@type":"ListItem","position":3,"name":"Will AI take my job? Exposure check","item":"https://agiscorecard.com/ai-job-risk-check"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How does the AI job exposure check work?","acceptedAnswer":{"@type":"Answer","text":"Six questions score the parts of work that 2026 evidence says matter: how screen-based and structured your tasks are (AI already reaches ~83% on GDPval knowledge-work tasks and ~80% on SWE-Bench Pro agentic coding), versus the shields — physical presence, human trust, and unsupervised end-to-end judgment, which no system has reliably crossed. You get an exposure tier, not an invented percentage."}},{"@type":"Question","name":"What is the autonomy gap?","acceptedAnswer":{"@type":"Answer","text":"The gap between scoring well on benchmarks and reliably owning a whole job end-to-end without supervision. As of mid-2026 no AI system has crossed it — it is the single line that decides when task exposure becomes actual job replacement, and it is what the AGI Scorecard tracks."}},{"@type":"Question","name":"Is this based on real data?","acceptedAnswer":{"@type":"Answer","text":"The rubric is transparent and grounded in documented evidence tracked on this site: ~83% on GDPval-style knowledge work, ~80% on SWE-Bench Pro, and the undemonstrated autonomy milestone (AGI-2027 Thesis Tracker at 62.5/100). It returns a tier based on your own answers — it does not invent per-job statistics."}}]}</script>
+<style>
+:root{--bg:#0e0e14;--bg2:#16151f;--bg3:#1e1c28;--border:#26232f;--text:#f4f4f8;--muted:#a8a4c4;--accent:#7c6af5;--accent2:#4fc3a1;--warn:#e8a040;--no:#e0605e}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:radial-gradient(900px 520px at 30% -5%,#1a1830,#0e0e14);color:var(--text);font:16px/1.65 -apple-system,'Segoe UI',Roboto,sans-serif;min-height:100vh}
+.wrap{max-width:680px;margin:0 auto;padding:26px 20px 64px}
+a{color:var(--accent)}
+header{display:flex;justify-content:space-between;align-items:center;font-size:14px;margin-bottom:30px}
+header .brand{font-weight:700;color:var(--text);text-decoration:none}
+.kicker{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+h1{font-size:33px;line-height:1.15;margin:10px 0 8px;letter-spacing:-.01em}
+h2{font-size:22px;margin:34px 0 12px}
+.lead{color:var(--muted);margin-bottom:24px}
+.progress{font-size:13px;color:var(--muted);margin-bottom:10px}
+.bar{height:6px;background:var(--bg3);border-radius:4px;overflow:hidden;margin-bottom:22px}
+.bar > i{display:block;height:100%;background:var(--accent);width:0;transition:width .25s}
+.game{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:26px 22px;min-height:250px}
+.qnum{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.qtext{font-size:21px;font-weight:700;line-height:1.3;margin:10px 0 4px}
+.qwhy{font-size:13px;color:var(--muted);margin-bottom:16px}
+.opts button{display:block;width:100%;text-align:left;margin:8px 0;padding:13px 15px;border-radius:11px;border:1px solid var(--border);background:var(--bg3);color:var(--text);font:inherit;font-size:15px;cursor:pointer;transition:.12s}
+.opts button:hover{border-color:var(--accent)}
+#result{display:none}
+.reveal{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:22px;text-align:center}
+.reveal .k{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.reveal .name{font-size:28px;font-weight:800;margin:6px 0}
+.reveal .line{color:var(--muted);font-size:15px}
+.factors{text-align:left;background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:16px 18px;margin:16px 0;font-size:14px}
+.factors b{color:var(--text)}
+.btn{display:inline-block;background:var(--accent);color:#fff;padding:11px 22px;border-radius:8px;font-weight:600;text-decoration:none;border:0;cursor:pointer;font-family:inherit;font-size:15px}
+.btn.sec{background:var(--bg3)}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0;justify-content:center}
+.cta{background:linear-gradient(135deg,rgba(124,106,245,.14),rgba(79,195,161,.08));border:1px solid rgba(124,106,245,.3);border-radius:12px;padding:18px 20px;margin:18px 0;text-align:center}
+.cta p{margin:0 0 12px;font-weight:600}
+.types{border:1px solid var(--border);border-radius:12px;overflow:hidden;margin:14px 0}
+.types div{padding:12px 16px;border-bottom:1px solid var(--border);font-size:14px}
+.types div:last-child{border-bottom:0}
+.types b{color:var(--text)}
+#copied{display:none;font-size:13px;color:var(--accent2);margin-left:8px}
+.embedbox{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:16px 18px;margin:14px 0}
+.embedbox textarea{width:100%;height:74px;background:var(--bg);color:var(--muted);border:1px solid var(--border);border-radius:8px;padding:10px;font:12px/1.5 monospace;resize:vertical;margin:8px 0}
+#embedcopied{display:none;font-size:13px;color:var(--accent2);margin-left:8px}
+.embed-brand{display:none;text-align:center;margin:16px 0 2px;font-size:13px}
+.embed-brand a{font-weight:600}
+body.embed{background:#0e0e14}
+body.embed .wrap{padding:16px 16px 22px}
+body.embed header,body.embed .lead,body.embed .marketing,body.embed footer{display:none}
+body.embed h1{font-size:26px}
+body.embed .embed-brand{display:block}
+footer{margin-top:40px;font-size:12px;color:var(--muted);text-align:center}
+footer a{color:var(--muted)}
+</style><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"AI Job Risk Check","url":"https://agiscorecard.com/ai-job-risk-check","description":"Six questions about your work, scored into an AI exposure tier grounded in 2026 benchmark evidence and the autonomy gap.","applicationCategory":"EducationalApplication","operatingSystem":"Any (web browser)","browserRequirements":"Requires JavaScript","isAccessibleForFree":true,"inLanguage":"en","featureList":["6-question rubric","Four exposure tiers","No invented per-job percentages","Embeddable via ?embed=1"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"AGI Scorecard","url":"https://agiscorecard.com/"},"isPartOf":{"@type":"CollectionPage","name":"Free AI & AGI tools","url":"https://agiscorecard.com/ai-tools"}}</script>
+</head>
+<body>
+<script>if(location.search.indexOf('embed')>-1||location.hash.indexOf('embed')>-1){document.body.classList.add('embed');}</script>
+<div class="wrap">
+<header><a class="brand" href="/">◆ AGI Scorecard</a><span class="kicker"><a href="/zh/ai-job-risk-check" style="color:var(--muted)">中文</a></span></header>
+<div class="kicker">Will AI take my job?</div>
+<h1>Check your <em>AI exposure</em> in 60 seconds</h1>
+<p class="lead">Six questions about how you actually work. You get an honest exposure tier — grounded in what 2026 systems really do (~83% on knowledge work, ~80% on agentic coding) and the one line they haven't crossed: the <b>autonomy gap</b>. No sign-up, no invented percentages.</p>
+
+<div id="play">
+  <div class="progress" id="prog">Question 1 of 6</div>
+  <div class="bar"><i id="barfill"></i></div>
+  <div class="game">
+    <div class="qnum" id="qnum"></div>
+    <div class="qtext" id="qtext"></div>
+    <div class="qwhy" id="qwhy"></div>
+    <div class="opts" id="opts"></div>
+  </div>
+</div>
+
+<div id="result">
+  <div class="reveal">
+    <div class="k">Your AI exposure tier</div>
+    <div class="name" id="r-name"></div>
+    <div class="line" id="r-line"></div>
+  </div>
+  <div class="factors" id="r-factors"></div>
+  <div class="row">
+    <button class="btn" onclick="shareX()">Share my tier on 𝕏</button>
+    <button class="btn sec" onclick="copyShare()">Copy result</button>
+    <span id="copied">✓ Copied</span>
+  </div>
+  <div class="cta">
+    <p>Your exposure becomes replacement only when AI crosses the autonomy gap — and we track that line, live.</p>
+    <a class="btn" href="https://agiscorecard.beehiiv.com/subscribe?utm_source=agiscorecard&amp;utm_medium=job_check" target="_blank" rel="noopener" onclick="gtag('event','subscribe_click',{location:'job_check'});">Get told when the line moves →</a>
+  </div>
+  <div class="row">
+    <a class="btn sec" href="/what-jobs-are-safe-from-ai">🛡️ What jobs are safe from AI →</a>
+    <a class="btn sec" href="/progress-index" onclick="gtag('event','index_click',{location:'job_check'});">📈 The live autonomy tracker →</a>
+    <button class="btn sec" onclick="restart()">↺ Retake</button>
+  </div>
+</div>
+
+<div class="embed-brand">📋 <b>AI Job Risk Check</b> · <a href="https://agiscorecard.com/ai-job-risk-check?utm_source=game_embed&amp;utm_medium=iframe" target="_blank" rel="noopener" onclick="gtag('event','embed_brand_click',{location:'job_check_embed'});">See how the tiers are scored on AGI Scorecard →</a></div>
+<div class="marketing">
+<h2>How the tiers work</h2>
+<div class="types">
+  <div>🟢 <b>Sheltered (for now)</b> — your work sits behind the strongest shields: physical presence, human trust, and end-to-end accountability.</div>
+  <div>🟡 <b>Task-exposed</b> — parts of your job overlap what AI already does well, but the core still needs a human in the loop.</div>
+  <div>🟠 <b>Benchmark-adjacent</b> — much of your work looks like what's measured on GDPval (~83%) and SWE-Bench Pro (~80%). The autonomy gap is your main shield.</div>
+  <div>🔴 <b>In the crosshairs</b> — screen-based, structured, reviewable work with little trust or judgment moat. Exposure is already here; replacement waits on the autonomy gap.</div>
+</div>
+<p style="color:var(--muted);font-size:14px">The rubric is transparent: each question maps to evidence tracked on this scorecard — benchmark performance, the robotics lag, the human-trust moat, and the undemonstrated autonomy milestone (<a href="/progress-index">AGI-2027 Thesis Tracker: 62.5/100</a>). It scores <em>your answers</em>; it doesn't invent per-job statistics. Deeper reads: <a href="/can-ai-replace-knowledge-workers">can AI replace knowledge workers?</a> · <a href="/will-ai-replace-programmers">will AI replace programmers?</a> · <a href="/will-ai-cause-mass-unemployment">mass unemployment?</a></p>
+
+<h2>FAQ</h2>
+<div class="types">
+  <div><b>How does the AI job exposure check work?</b><br><span style="color:var(--muted)">Six questions score the parts of work that 2026 evidence says matter: how screen-based and structured your tasks are (AI already reaches ~83% on GDPval knowledge-work tasks and ~80% on SWE-Bench Pro agentic coding), versus the shields — physical presence, human trust, and unsupervised end-to-end judgment, which no system has reliably crossed. You get an exposure tier, not an invented percentage.</span></div>
+  <div><b>What is the autonomy gap?</b><br><span style="color:var(--muted)">The gap between scoring well on benchmarks and reliably owning a whole job end-to-end without supervision. As of mid-2026 no AI system has crossed it — it is the single line that decides when task exposure becomes actual job replacement, and it is what the AGI Scorecard tracks.</span></div>
+  <div><b>Is this based on real data?</b><br><span style="color:var(--muted)">The rubric is transparent and grounded in documented evidence tracked on this site: ~83% on GDPval-style knowledge work, ~80% on SWE-Bench Pro, and the undemonstrated autonomy milestone (AGI-2027 Thesis Tracker at 62.5/100). It returns a tier based on your own answers — it does not invent per-job statistics.</span></div>
+</div>
+
+<h2>Put this check on your site</h2>
+<p style="color:var(--muted);font-size:14px">Free to embed on any blog, newsletter or careers page. It keeps the six questions and the tier result, drops the site chrome, and carries one link back. More tools at <a href="/ai-tools">/ai-tools</a>.</p>
+<div class="embedbox">
+  <textarea id="embedcode" readonly>&lt;iframe src="https://agiscorecard.com/ai-job-risk-check?embed=1" width="100%" height="680" style="border:1px solid #26232f;border-radius:12px;max-width:680px" title="Will AI take my job? — a 60-second exposure check" loading="lazy"&gt;&lt;/iframe&gt;</textarea>
+  <button class="btn sec" onclick="copyEmbed()">Copy embed code</button><span id="embedcopied">✓ Copied</span>
+</div>
+</div>
+
+<footer>By the AGI Scorecard team · <a href="/about">methodology</a> · <a href="/agi-questions">all AGI questions</a> · <a href="/">agiscorecard.com</a><br>
+Grades the falsifiable predictions in Aschenbrenner's <em>Situational Awareness</em>. Not affiliated with any lab.</footer>
+</div>
+<script>
+// Each question maps to a documented evidence dimension. Higher pts = more exposed.
+var QS=[
+ {q:'How much of your job happens at a screen?',why:'Screen-based knowledge work is where AI already performs near skilled-human level (~83% GDPval).',
+  opts:[['Almost none — mostly physical or in-person',0],['Some, but the core is offline',1],['Most or all of it',2]]},
+ {q:'Does your work need physical presence or hands-on skill?',why:'Robotics lags software — physical work is a documented shield.',
+  opts:[['Yes, constantly',0],['Sometimes',1],['Rarely or never',2]]},
+ {q:'Do clients, patients or stakeholders specifically need a HUMAN to trust?',why:'The human-trust moat: accountability people won’t delegate to software.',
+  opts:[['Yes — trust in me personally is the job',0],['Somewhat',1],['Not really — they care about the output',2]]},
+ {q:'How structured and repeatable are your core tasks?',why:'Structured, well-specified tasks are exactly what benchmarks measure.',
+  opts:[['Every day is different, loosely defined',0],['A mix',1],['Mostly defined, repeatable processes',2]]},
+ {q:'Could someone review your work purely as output (text, code, analysis, designs)?',why:'Reviewable-output work overlaps agentic coding (~80% SWE-Bench Pro) and writing.',
+  opts:[['No — my value is live, in the room',0],['Partly',1],['Yes, my work ships as output',2]]},
+ {q:'Does your role carry unsupervised, end-to-end judgment and accountability?',why:'The autonomy gap: no 2026 system reliably owns a whole job unsupervised.',
+  opts:[['Yes — the buck stops with me',0],['Shared with others',1],['Mostly I execute well-scoped pieces',2]]}
+];
+var TIERS=[
+ {min:10,emoji:'🔴',name:'In the crosshairs',line:'Screen-based, structured, reviewable work with little trust or judgment moat. Exposure is already here — replacement waits only on the autonomy gap.'},
+ {min:7,emoji:'🟠',name:'Benchmark-adjacent',line:'Much of your work looks like what GDPval (~83%) and SWE-Bench Pro (~80%) measure. The autonomy gap is your main shield — watch it.'},
+ {min:4,emoji:'🟡',name:'Task-exposed',line:'Parts of your job overlap what AI already does well, but the core still needs a human in the loop.'},
+ {min:0,emoji:'🟢',name:'Sheltered (for now)',line:'Your work sits behind the strongest documented shields: physical presence, human trust, end-to-end accountability.'}
+];
+var i=0, pts=[], myTier=null;
+function render(){
+  var c=QS[i];
+  document.getElementById('prog').textContent='Question '+(i+1)+' of '+QS.length;
+  document.getElementById('barfill').style.width=(i/QS.length*100)+'%';
+  document.getElementById('qnum').textContent='Question '+(i+1);
+  document.getElementById('qtext').textContent=c.q;
+  document.getElementById('qwhy').textContent=c.why;
+  var o=document.getElementById('opts'); o.innerHTML='';
+  c.opts.forEach(function(pair){
+    var b=document.createElement('button'); b.textContent=pair[0];
+    b.onclick=function(){pts.push(pair[1]); i++; if(i<QS.length){render();} else {finish();}};
+    o.appendChild(b);
+  });
+}
+function finish(){
+  var total=pts.reduce(function(a,b){return a+b;},0);
+  for(var k=0;k<TIERS.length;k++){ if(total>=TIERS[k].min){myTier=TIERS[k];break;} }
+  document.getElementById('play').style.display='none';
+  document.getElementById('r-name').textContent=myTier.emoji+' '+myTier.name;
+  document.getElementById('r-line').textContent=myTier.line;
+  // top exposure drivers & shields from actual answers
+  var dims=['screen-based work','little physical-presence shield','weak human-trust moat','structured tasks','reviewable output','limited autonomy moat'];
+  var shields=['offline/physical core','physical presence','human trust','unstructured work','live in-the-room value','end-to-end accountability'];
+  var drivers=[],guards=[];
+  pts.forEach(function(p,idx){ if(p===2)drivers.push(dims[idx]); if(p===0)guards.push(shields[idx]); });
+  document.getElementById('r-factors').innerHTML=
+    '<b>What raised your exposure:</b> '+(drivers.length?drivers.join(', '):'nothing scored fully exposed')+'.<br>'+
+    '<b>What shields you:</b> '+(guards.length?guards.join(', '):'no full shields — your protection is mainly the autonomy gap')+'.<br>'+
+    '<span style="color:var(--muted)">Context: AI reaches ~83% on knowledge-work tasks and ~80% on agentic coding, but no system reliably owns a job end-to-end unsupervised — that line is tracked live at 62.5/100.</span>';
+  document.getElementById('result').style.display='block';
+  document.getElementById('result').scrollIntoView({behavior:'smooth'});
+  gtag('event','vote_cast',{label:'job_check_'+myTier.name.replace(/[^A-Za-z]+/g,'_')});
+}
+function restart(){i=0;pts=[];myTier=null;document.getElementById('result').style.display='none';document.getElementById('play').style.display='block';render();window.scrollTo({top:0,behavior:'smooth'});}
+function sUrl(){return 'https://agiscorecard.com/ai-job-risk-check';}
+function sText(){return 'I checked my AI exposure: '+(myTier?myTier.emoji+' '+myTier.name:'')+'. The autonomy gap is the line that decides — will AI take YOUR job?';}
+function shareX(){gtag('event','x_share',{label:'job_check'});window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(sText()+' 👇')+'&url='+encodeURIComponent(sUrl()),'_blank');}
+function copyShare(){navigator.clipboard.writeText(sText()+'\n'+sUrl()).then(function(){var c=document.getElementById('copied');c.style.display='inline';setTimeout(function(){c.style.display='none'},2000)});}
+function copyEmbed(){var t=document.getElementById('embedcode');navigator.clipboard.writeText(t.value).then(function(){var c=document.getElementById('embedcopied');c.style.display='inline';setTimeout(function(){c.style.display='none'},2000)});gtag('event','embed_copy',{location:'job_check'});}
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
+render();
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FZXLMBB5QB"></script>
+<script>gtag('js',new Date());gtag('config','G-FZXLMBB5QB')</script>
+</body></html>

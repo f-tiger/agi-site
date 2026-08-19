@@ -1,0 +1,1540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FZXLMBB5QB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-FZXLMBB5QB');
+</script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a0a0b'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%234fc3a1'/%3E%3C/svg%3E">
+<title>The AGI Scorecard — Was Aschenbrenner Right?</title>
+<meta name="description" content="The only scorecard grading Aschenbrenner's 'AGI by 2027' predictions against reality — distilled into one auditable Thesis Tracker score (62.5/100).">
+<link rel="canonical" href="https://agiscorecard.com/">
+<meta property="og:site_name" content="The AGI Scorecard">
+<meta property="og:title" content="The AGI Scorecard — Was Aschenbrenner right?">
+<meta property="og:description" content="Every Situational Awareness prediction graded against reality, distilled into one auditable Thesis Tracker score (62.5/100). AGI by 2027: on track?">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://agiscorecard.com/">
+<meta property="og:image" content="https://agiscorecard.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The AGI Scorecard — Was Aschenbrenner right?">
+<meta name="twitter:description" content="Every Situational Awareness prediction graded against reality. Cast your own AGI vote.">
+<meta name="twitter:image" content="https://agiscorecard.com/og-image.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "name": "The AGI Scorecard",
+      "url": "https://agiscorecard.com/",
+      "description": "Live scorecard grading every prediction from Leopold Aschenbrenner's Situational Awareness against reality."
+    },
+    {
+      "@type": "Organization",
+      "name": "The AGI Scorecard",
+      "url": "https://agiscorecard.com/",
+      "logo": "https://agiscorecard.com/og-image.png",
+      "description": "Independent tracker grading the predictions in Leopold Aschenbrenner's Situational Awareness against real-world AI progress."
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Was Aschenbrenner right about AGI by 2027?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Partially on track as of mid-2026. Compute scaling has roughly held, AI investment has exceeded his projections, and frontier models now perform at or above the level he predicted for 2025/26. However, full AGI — models doing the work of an AI researcher — remains unconfirmed, and his prediction that open-source models would fade has been clearly wrong."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is Situational Awareness by Leopold Aschenbrenner?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A 165-page essay published in June 2024 by former OpenAI researcher Leopold Aschenbrenner, predicting AGI by 2027, an intelligence explosion to superintelligence by the end of the decade, trillion-dollar compute clusters, and a US-China race over AI. He later founded Situational Awareness LP, a hedge fund managing over $5 billion."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How far behind are Chinese AI labs?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "As of 2026, open-weight Chinese models like DeepSeek V4 and Qwen 3.7 Max trail the proprietary frontier by an estimated 3 to 6 months — a much smaller gap than Aschenbrenner's framework assumed, driven by aggressive open-weight releases and low pricing."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+<style>
+  :root {
+    --bg: #0a0a0b;
+    --bg2: #111114;
+    --bg3: #18181d;
+    --border: rgba(255,255,255,0.07);
+    --border2: rgba(255,255,255,0.12);
+    --text: #e8e8ec;
+    --muted: #8888a0;
+    --accent: #7c6af5;
+    --accent2: #4fc3a1;
+    --warn: #e8a040;
+    --danger: #e05555;
+    --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --mono: 'JetBrains Mono', 'Fira Code', monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font);
+    font-size: 15px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { opacity: 0.8; }
+
+  /* HEADER */
+  header {
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+    position: sticky;
+    top: 0;
+    background: rgba(10,10,11,0.92);
+    backdrop-filter: blur(12px);
+    z-index: 100;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: -0.01em;
+    color: var(--text);
+  }
+  .logo-dot {
+    width: 8px; height: 8px;
+    background: var(--accent2);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.3); }
+  }
+  nav { display: flex; flex-wrap: wrap; gap: 1.1rem 1.5rem; justify-content: center; }
+  nav a { color: var(--muted); font-size: 13px; font-weight: 500; transition: color 0.15s; }
+  nav a:hover { color: var(--text); opacity: 1; }
+  .subscribe-btn {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    padding: 6px 16px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: opacity 0.15s;
+  }
+  .subscribe-btn:hover { opacity: 0.85; }
+
+  .vote-btn {
+    background: var(--bg3);
+    border: 1px solid var(--border2);
+    color: var(--text);
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    font-family: var(--font);
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .vote-btn:hover { border-color: var(--accent); background: rgba(124,106,245,0.1); }
+  .vote-btn.selected { border-color: var(--accent); background: rgba(124,106,245,0.18); color: var(--accent); }
+
+  /* READ-NEXT recirculation cards */
+  .readnext {
+    max-width: 720px; margin: 1.5rem auto 0; padding: 0 1.5rem;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
+  }
+  .readnext a {
+    display: flex; flex-direction: column; justify-content: space-between; gap: 10px;
+    background: var(--bg2); border: 1px solid var(--border); border-radius: 12px;
+    padding: 14px 15px; text-decoration: none; color: var(--text);
+    transition: border-color 0.15s, transform 0.15s, background 0.15s;
+  }
+  .readnext a:hover { border-color: var(--accent); transform: translateY(-2px); background: var(--bg3); }
+  .readnext .rn-q { font-size: 14px; font-weight: 600; line-height: 1.35; }
+  .readnext .rn-go { font-size: 12px; color: var(--accent); font-weight: 600; }
+  .readnext .rn-tag { font-size: 11px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+  @media (max-width: 640px) { .readnext { grid-template-columns: 1fr; } }
+
+  /* VOTE SPECTRUM */
+  .spectrum-wrap { margin: 0 0 1.1rem; }
+  .spectrum {
+    position: relative; height: 3px; background: linear-gradient(90deg, var(--danger), var(--warn), var(--accent2), var(--accent));
+    border-radius: 3px; margin: 46px 6px 40px;
+  }
+  .spec-mark { position: absolute; top: 50%; transform: translate(-50%, -50%); text-align: center; }
+  .spec-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--muted); margin: 0 auto; border: 2px solid var(--bg); }
+  .spec-lab { position: absolute; left: 50%; transform: translateX(-50%); white-space: nowrap; font-size: 10.5px; color: var(--muted); line-height: 1.25; }
+  .spec-lab.above { bottom: 12px; } .spec-lab.below { top: 12px; }
+  .spec-mark.you { z-index: 3; }
+  .spec-mark.you .spec-dot { background: var(--accent); width: 13px; height: 13px; box-shadow: 0 0 0 4px rgba(124,106,245,0.25); }
+  .spec-mark.you .spec-lab {
+    bottom: 26px; color: #fff; font-weight: 700; font-size: 11.5px;
+    background: var(--accent); padding: 2px 8px; border-radius: 6px;
+  }
+  .spec-mark.you .spec-lab::after {
+    content: ""; position: absolute; left: 50%; top: 100%; transform: translateX(-50%);
+    width: 1px; height: 16px; background: var(--accent);
+  }
+
+  /* EXPANDABLE SCORECARD ROWS */
+  .pred-row { cursor: pointer; }
+  .pred-row:hover td { background: rgba(124,106,245,0.05); }
+  .pred-row .expand-ind { color: var(--muted); font-size: 10px; margin-left: 6px; display: inline-block; transition: transform .15s; }
+  .pred-row.open .expand-ind { transform: rotate(90deg); color: var(--accent); }
+  .pred-detail { display: none; }
+  .pred-detail.open { display: table-row; }
+  .pred-detail td {
+    background: var(--bg3); font-size: 12.5px; color: var(--text);
+    padding: 12px 14px; line-height: 1.6; border-bottom: 1px solid var(--border);
+  }
+  .pred-detail .pd-label { color: var(--accent); font-weight: 700; font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase; margin-right: 6px; }
+  .pred-detail .pd-act { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+  .pred-detail .pd-btn { display: inline-block; background: #6350d9; color: #fff; padding: 7px 14px; border-radius: 8px; font-size: 12.5px; font-weight: 600; text-decoration: none; }
+  .pred-detail .pd-btn.ghost { background: var(--bg3); color: var(--text); border: 1px solid var(--border2); }
+  .pred-detail p { margin: 0 0 6px; }
+  .pred-detail p:last-child { margin: 0; }
+
+  /* HERO */
+  .hero {
+    padding: 5rem 2rem 3rem;
+    text-align: center;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(124,106,245,0.12);
+    border: 1px solid rgba(124,106,245,0.25);
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 12px;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.02em;
+  }
+  .hero h1 {
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #e8e8ec 30%, #9090b8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero p {
+    font-size: 1.05rem;
+    color: var(--muted);
+    max-width: 600px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.7;
+  }
+
+  /* MAIN CLOCK */
+  .clock-section {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2.5rem;
+    max-width: 900px;
+    margin: 0 auto 3rem;
+  }
+  .clock-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.75rem;
+  }
+  .clock-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 1.5rem;
+  }
+  .countdown-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  .countdown-unit {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.2rem 0.5rem;
+    text-align: center;
+  }
+  .countdown-num {
+    font-family: var(--mono);
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .countdown-unit-label {
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .milestones-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    max-width: 900px;
+    margin: 0 auto 3rem;
+  }
+  .milestone-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .milestone-card:hover { border-color: var(--border2); }
+  .milestone-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+  }
+  .milestone-card.past::before { background: var(--accent2); }
+  .milestone-card.near::before { background: var(--accent); }
+  .milestone-card.far::before { background: var(--muted); }
+  .milestone-year {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .milestone-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+  .milestone-desc {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  .milestone-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-top: 10px;
+  }
+  .status-done { background: rgba(79,195,161,0.12); color: var(--accent2); }
+  .status-near { background: rgba(124,106,245,0.12); color: var(--accent); }
+  .status-future { background: rgba(136,136,160,0.1); color: var(--muted); }
+
+  /* OOM TRACKER */
+  .section {
+    max-width: 900px;
+    margin: 0 auto 3rem;
+  }
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 1.25rem;
+  }
+  .section-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .section-sub {
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .oom-bar-container {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+  }
+  .oom-row {
+    display: grid;
+    grid-template-columns: 140px 1fr 60px;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.1rem;
+  }
+  .oom-row:last-child { margin-bottom: 0; }
+  .oom-label { font-size: 13px; color: var(--muted); }
+  .oom-track {
+    background: var(--bg3);
+    border-radius: 4px;
+    height: 8px;
+    overflow: hidden;
+  }
+  .oom-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 1.5s cubic-bezier(0.16,1,0.3,1);
+  }
+  .oom-val {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text);
+    text-align: right;
+  }
+
+  /* LABS TABLE */
+  .labs-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  .lab-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem;
+    transition: border-color 0.2s;
+  }
+  .lab-card:hover { border-color: var(--border2); }
+  .lab-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+  .lab-name {
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .lab-flag {
+    font-size: 11px;
+    color: var(--muted);
+    background: var(--bg3);
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+  .lab-stat {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 12px;
+  }
+  .lab-stat:last-child { border-bottom: none; }
+  .lab-stat-label { color: var(--muted); }
+  .lab-stat-val { font-weight: 500; font-family: var(--mono); font-size: 12px; }
+
+  /* PREDICTIONS TABLE */
+  .pred-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  .pred-table th {
+    text-align: left;
+    padding: 10px 12px;
+    color: var(--muted);
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--border);
+  }
+  .pred-table td {
+    padding: 11px 12px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  .pred-table tr:last-child td { border-bottom: none; }
+  .pred-table tr:hover td { background: rgba(255,255,255,0.02); }
+  .pred-year { font-family: var(--mono); font-weight: 600; color: var(--accent); }
+  .conf-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 500;
+  }
+  .conf-high { background: rgba(79,195,161,0.12); color: var(--accent2); }
+  .conf-med { background: rgba(232,160,64,0.12); color: var(--warn); }
+  .conf-low { background: rgba(136,136,160,0.1); color: var(--muted); }
+
+  /* NEWSLETTER */
+  .newsletter {
+    background: linear-gradient(135deg, rgba(124,106,245,0.08) 0%, rgba(79,195,161,0.06) 100%);
+    border: 1px solid rgba(124,106,245,0.2);
+    border-radius: 16px;
+    padding: 2.5rem;
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto 4rem;
+  }
+  .newsletter h2 { font-size: 1.4rem; font-weight: 600; margin-bottom: 0.5rem; }
+  .newsletter p { color: var(--muted); font-size: 14px; margin-bottom: 1.5rem; }
+  .email-form {
+    display: flex;
+    gap: 8px;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+  .email-input {
+    flex: 1;
+    background: var(--bg);
+    border: 1px solid var(--border2);
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 14px;
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.15s;
+    font-family: var(--font);
+  }
+  .email-input:focus { border-color: var(--accent); }
+  .email-input::placeholder { color: var(--muted); }
+  .email-submit {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: opacity 0.15s;
+    font-family: var(--font);
+  }
+  .email-submit:hover { opacity: 0.85; }
+
+  /* QUOTE */
+  .quote-block {
+    background: var(--bg2);
+    border-left: 2px solid var(--accent);
+    border-radius: 0 10px 10px 0;
+    padding: 1.25rem 1.5rem;
+    margin: 2rem 0;
+    font-size: 14px;
+    font-style: italic;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+  .quote-source {
+    margin-top: 8px;
+    font-style: normal;
+    font-size: 12px;
+    color: rgba(136,136,160,0.7);
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem;
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  footer a { color: var(--muted); }
+  footer a:hover { color: var(--text); opacity: 1; }
+
+  /* RESPONSIVE */
+  @media (max-width: 700px) {
+    header { padding: 0 1rem; }
+    nav { display: none; }
+    .hero { padding: 3rem 1rem 2rem; }
+    .clock-section, .section, .newsletter { margin-left: 1rem; margin-right: 1rem; }
+    .milestones-grid { grid-template-columns: 1fr; margin-left: 1rem; margin-right: 1rem; }
+    .countdown-grid { grid-template-columns: repeat(2, 1fr); }
+    .labs-grid { grid-template-columns: 1fr; }
+    .email-form { flex-direction: column; }
+  }
+@media(max-width:640px){table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;white-space:nowrap}table td,table th{white-space:normal;min-width:92px}}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="https://www.googletagmanager.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Dataset", "name": "AGI Scorecard — Situational Awareness predictions, graded", "description": "Live verdicts on all 8 major predictions from Situational Awareness (2024), graded against public evidence with pre-registered flip conditions. Machine-readable JSON.", "url": "https://agiscorecard.com/", "license": "https://creativecommons.org/licenses/by/4.0/", "creator": {"@type": "Organization", "name": "The AGI Scorecard", "url": "https://agiscorecard.com/"}, "dateModified": "2026-08-17", "distribution": [{"@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "https://agiscorecard.com/data.json"}]}</script>
+<link rel="alternate" type="application/atom+xml" title="The AGI Scorecard" href="/feed.xml">
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-dot"></div>
+    AGI Scorecard
+  </div>
+  <nav>
+    <a href="#predictions">Scorecard</a>
+    <a href="/ai-tools" onclick="gtag('event','tool_click',{location:'nav'});">🎮 Play</a>
+    <a href="/invest" onclick="gtag('event','invest_tool_click',{location:'nav'});">💰 Invest</a>
+    <a href="https://compass.agiscorecard.com/en" onclick="gtag('event','invest_tool_click',{location:'nav_compass'});">🧭 13F Compass</a>
+    <a href="/search" title="Search · 站内搜索">🔍</a>
+    <a href="two-year-scorecard.html" onclick="gtag('event','analysis_click',{location:'nav'});">Analysis</a>
+    <a href="/cn">中文</a>
+    <a href="/advertise">Advertise</a>
+  </nav>
+  <a class="subscribe-btn" href="https://agiscorecard.beehiiv.com/subscribe?utm_source=agiscorecard&utm_medium=header" target="_blank" rel="noopener" onclick="gtag('event','subscribe_click',{location:'header'});" style="text-decoration:none; display:inline-block;">Subscribe free</a>
+</header>
+
+<main>
+  <a href="/aschenbrenner-fund-collapse" onclick="gtag('event','hot_topic_click',{location:'home_banner'});" style="display:flex; align-items:center; justify-content:center; gap:12px; max-width:860px; margin:14px auto 0; padding:11px 20px; background:linear-gradient(90deg,rgba(224,85,85,.14),rgba(232,160,64,.10)); border:1px solid rgba(224,85,85,.4); border-radius:12px; text-decoration:none; flex-wrap:wrap;">
+    <span style="font-size:12px; font-weight:800; letter-spacing:.08em; color:var(--danger); white-space:nowrap;">🔥 HOT · JULY 2026</span>
+    <span style="font-size:14px; color:var(--text); font-weight:600; text-align:center;">The AGI-2027 fund blew up — 439% YTD to −67% in one month. Did the thesis?</span>
+    <span style="font-size:13px; color:var(--danger); font-weight:700; white-space:nowrap;">Zero verdicts moved. See why →</span>
+  </a>
+  <div class="hero">
+    <div class="hero-badge">
+      <span>●</span> Live scorecard · Graded June 2026
+    </div>
+    <h1>Was Aschenbrenner<br>Right?</h1>
+    <p>In June 2024, Situational Awareness predicted AGI by 2027. Two years in, we grade every prediction against reality — what's on track, what's wrong, and what's still open.</p>
+    <a href="/progress-index" onclick="gtag('event','index_click',{location:'hero'});" style="display:inline-flex; align-items:center; gap:12px; margin-bottom:1.25rem; padding:10px 18px; background:var(--bg2); border:1px solid rgba(124,106,245,.28); border-radius:12px; text-decoration:none;">
+      <span style="font-size:1.9rem; font-weight:700; color:var(--accent); line-height:1;">62.5</span>
+      <span style="text-align:left; line-height:1.25;"><span style="display:block; font-size:13px; font-weight:600; color:var(--text);">AGI-2027 Thesis Tracker</span><span style="display:block; font-size:11.5px; color:var(--muted);">One auditable score for the whole bet · /100 →</span></span>
+    </a>
+    <a href="#predictions" style="display:inline-flex; gap:10px; flex-wrap:wrap; justify-content:center; text-decoration:none;">
+      <span style="background:rgba(79,195,161,0.12); border:1px solid rgba(79,195,161,0.3); color:var(--accent2); padding:6px 14px; border-radius:8px; font-size:13px; font-weight:600;">3 on track</span>
+      <span style="background:rgba(224,85,85,0.12); border:1px solid rgba(224,85,85,0.3); color:var(--danger); padding:6px 14px; border-radius:8px; font-size:13px; font-weight:600;">1 wrong</span>
+      <span style="background:rgba(124,106,245,0.12); border:1px solid rgba(124,106,245,0.3); color:var(--accent); padding:6px 14px; border-radius:8px; font-size:13px; font-weight:600;">2 open</span>
+      <span style="background:rgba(136,136,160,0.1); border:1px solid var(--border2); color:var(--muted); padding:6px 14px; border-radius:8px; font-size:13px; font-weight:600;">2 pending</span>
+    </a>
+  </div>
+
+  <!-- START-HERE 目录(owner 2026-08-16:「用户过来应该是看指导投资的,不是纯粹为了
+       看AI未来」——投资列排第一且视觉最重;三列 = Invest / Research / Play) -->
+  <div style="max-width:980px; margin:0 auto 1.4rem; padding:0 1rem;">
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:12px;">
+      <div style="background:var(--bg2); border:1.5px solid var(--accent2); border-radius:14px; padding:16px 18px;">
+        <div style="font-weight:800; font-size:14.5px; margin-bottom:8px;">💰 Follow the money</div>
+        <div style="display:flex; flex-direction:column; gap:6px; font-size:13.5px;">
+          <a href="/ai-stock-exposure" onclick="gtag('event','invest_tool_click',{location:'starthere_exposure'});"><b>Score your AI basket</b> vs the 8 predictions</a>
+          <a href="https://compass.agiscorecard.com/en" onclick="gtag('event','invest_tool_click',{location:'starthere_compass'});">🧭 Legendary investors&#39; 13F moves</a>
+          <a href="https://invest.agiscorecard.com/en" onclick="gtag('event','invest_tool_click',{location:'starthere_sunwatch'});">📡 Market calls with a public ledger</a>
+          <a href="/invest" onclick="gtag('event','invest_tool_click',{location:'starthere_hub'});" style="color:var(--muted);">All investing pages →</a>
+        </div>
+      </div>
+      <div style="background:var(--bg2); border:1px solid var(--border); border-radius:14px; padding:16px 18px;">
+        <div style="font-weight:700; font-size:14px; margin-bottom:8px;">📊 Check the evidence</div>
+        <div style="display:flex; flex-direction:column; gap:6px; font-size:13px;">
+          <a href="/progress-index" onclick="gtag('event','index_click',{location:'starthere'});">The 62.5/100 Thesis Tracker</a>
+          <a href="#predictions">All 8 verdicts, graded below ↓</a>
+          <a href="/agi-questions" style="color:var(--muted);">Every AGI question answered →</a>
+        </div>
+      </div>
+      <div style="background:var(--bg2); border:1px solid var(--border); border-radius:14px; padding:16px 18px;">
+        <div style="font-weight:700; font-size:14px; margin-bottom:8px;">🎮 Test yourself</div>
+        <div style="display:flex; flex-direction:column; gap:6px; font-size:13px;">
+          <a href="/agi-test" onclick="gtag('event','agi_test_click',{location:'starthere'});">What&#39;s your AGI type? (2 min)</a>
+          <a href="/your-agi-timeline">Your year vs 9 real forecasts</a>
+          <a href="/ai-tools" style="color:var(--muted);">All free tools →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GAME CTA (interactive front door — funnel the homepage's traffic into the game) -->
+  <a href="/future-bet" onclick="gtag('event','agi_test_click',{location:'home_hero'});" style="display:flex; align-items:center; gap:16px; max-width:760px; margin:0 auto 1.5rem; padding:15px 22px; background:linear-gradient(135deg,rgba(124,106,245,.16),rgba(79,195,161,.10)); border:1px solid rgba(124,106,245,.35); border-radius:14px; text-decoration:none;">
+    <span style="font-size:2.1rem; line-height:1;">🎲</span>
+    <span style="text-align:left; line-height:1.3;">
+      <span style="display:block; font-weight:700; color:var(--text); font-size:15px;">The Future Bet — which forecaster are you?</span>
+      <span style="display:block; font-size:13px; color:var(--muted);">Bet YES/NO on 12 bold predictions (AGI, Mars, fusion, alien life…) and see if your bets make you Elon Musk or a skeptic. Play the 60-second game →</span>
+    </span>
+  </a>
+
+  <!-- READ NEXT (curiosity-gap recirculation) -->
+  <nav class="readnext" aria-label="Start here">
+    <a href="/did-open-source-ai-fade" onclick="gtag('event','readnext_click',{label:'wrong'});">
+      <span class="rn-tag" style="color:var(--danger);">❌ The one he got wrong</span>
+      <span class="rn-q">Which prediction is already wrong?</span>
+      <span class="rn-go">See the verdict →</span>
+    </a>
+    <a href="/will-agi-arrive-2027" onclick="gtag('event','readnext_click',{label:'2027'});">
+      <span class="rn-tag" style="color:var(--accent);">⏱ The big open question</span>
+      <span class="rn-q">Will AGI really arrive by 2027?</span>
+      <span class="rn-go">Track it live →</span>
+    </a>
+    <a href="/will-china-beat-us-to-agi" onclick="gtag('event','readnext_click',{label:'china'});">
+      <span class="rn-tag" style="color:var(--accent2);">🌐 The race that decides it</span>
+      <span class="rn-q">Is China beating the US to AGI?</span>
+      <span class="rn-go">See the gap →</span>
+    </a>
+  </nav>
+
+  <!-- SITE SEARCH (queries are first-party demand signal → D1 site_search) -->
+  <div style="max-width:960px; margin:0 auto 1rem; padding:0 1rem;">
+    <form onsubmit="var q=this.q.value.trim();if(q){gtag('event','site_search',{location:'home',label:q.slice(0,80)});location='/search?q='+encodeURIComponent(q);}return false;"
+      style="display:flex; gap:8px;">
+      <input name="q" type="search" autocomplete="off" placeholder="🔍 Search predictions, tools, investing… · 站内搜索"
+        style="flex:1; background:var(--bg2); border:1px solid var(--border2); border-radius:10px; padding:11px 14px; color:var(--text); font-size:14.5px; outline:none; font-family:inherit;">
+      <button type="submit" style="background:var(--accent); color:#fff; border:0; border-radius:10px; padding:0 18px; font-size:14px; font-weight:600; cursor:pointer; font-family:inherit;">Search</button>
+    </form>
+    <div style="display:flex; flex-wrap:wrap; gap:6px; margin-top:8px; font-size:12px;">
+      <span style="color:var(--muted);">Try:</span>
+      <a href="/search?q=AGI%202027" onclick="gtag('event','site_search',{location:'home_suggest',label:'AGI 2027'});" style="color:var(--muted); background:var(--bg2); border:1px solid var(--border); border-radius:99px; padding:2px 10px;">AGI 2027</a>
+      <a href="/search?q=stock" onclick="gtag('event','site_search',{location:'home_suggest',label:'stock'});" style="color:var(--muted); background:var(--bg2); border:1px solid var(--border); border-radius:99px; padding:2px 10px;">AI stocks</a>
+      <a href="/search?q=job" onclick="gtag('event','site_search',{location:'home_suggest',label:'job'});" style="color:var(--muted); background:var(--bg2); border:1px solid var(--border); border-radius:99px; padding:2px 10px;">job risk</a>
+      <a href="/search?q=%E5%B7%B4%E8%8F%B2%E7%89%B9" onclick="gtag('event','site_search',{location:'home_suggest',label:'巴菲特'});" style="color:var(--muted); background:var(--bg2); border:1px solid var(--border); border-radius:99px; padding:2px 10px;">巴菲特持仓</a>
+      <a href="/search?q=red%20team" onclick="gtag('event','site_search',{location:'home_suggest',label:'red team'});" style="color:var(--muted); background:var(--bg2); border:1px solid var(--border); border-radius:99px; padding:2px 10px;">red team</a>
+    </div>
+  </div>
+
+  <!-- MONEY TOOL (owner 2026-08-16「这个赚钱工具应该是在首页凸显」): the one tool
+       whose output is a dollar amount, so it gets a real block, not a directory row. -->
+  <div style="max-width:960px; margin:0 auto 1.6rem; padding:0 1rem;">
+    <a href="https://compass.agiscorecard.com/en/track-record" target="_blank" rel="noopener"
+       onclick="gtag('event','invest_tool_click',{location:'home_trackrecord'});"
+       style="display:block; background:var(--bg2); border:1px solid var(--border2); border-left:3px solid var(--accent); border-radius:0 14px 14px 0; padding:16px 20px; text-decoration:none;">
+      <div style="font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted);">🏆 Free tool · no signup</div>
+      <div style="font-weight:700; font-size:19px; margin:6px 0 4px; color:var(--text);">If you had copied a legend&rsquo;s AI holdings, how much would you have today?</div>
+      <div style="font-size:14px; color:var(--muted); margin-bottom:10px;">Pick the investors, pick the filing date you would have started at, enter a stake &mdash; it computes in your browser. Bought at each 13F&rsquo;s <em>filing-date</em> close, because a 13F is public ~45 days late and the quarter-end price is one nobody could have traded.</div>
+      <div style="display:flex; flex-wrap:wrap; gap:14px; align-items:baseline; font-variant-numeric:tabular-nums;">
+        <span style="font-size:26px; font-weight:800; color:var(--long);">+187.2%</span>
+        <span style="font-size:13px; color:var(--muted);">Druckenmiller&rsquo;s AI sleeve, 8 rebalances since Aug&nbsp;2024 &middot; QQQ +59.6% &middot; Buffett&rsquo;s <span style="color:var(--danger);">+37.3%</span>, behind the index</span>
+      </div>
+      <div style="margin-top:11px; font-size:14px; font-weight:600; color:var(--accent);">Run the numbers &rarr;</div>
+    </a>
+  </div>
+
+  <!-- SITE DIRECTORY (IA: 3 sections + zh — so nobody gets lost) -->
+  <div id="directory" style="max-width:960px; margin:0 auto 2rem; padding:0 1rem;">
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:12px;">
+      <div style="background:var(--bg2); border:1px solid var(--border); border-radius:12px; padding:14px 16px;">
+        <div style="font-weight:700; font-size:14px; margin-bottom:8px;">📊 Research</div>
+        <div style="display:flex; flex-direction:column; gap:5px; font-size:13px;">
+          <a href="/progress-index" onclick="gtag('event','index_click',{location:'directory'});">Thesis Tracker · 62.5/100</a>
+          <a href="#predictions">The full scorecard</a>
+          <a href="/agi-questions">All AGI questions</a>
+          <a href="/prediction-receipts">📅 Prediction receipts</a>
+          <a href="/calibration">🎯 Calibration report card</a>
+          <a href="/experiments">🧪 Revenue experiment log</a>
+        </div>
+      </div>
+      <div style="background:var(--bg2); border:1px solid var(--border); border-radius:12px; padding:14px 16px;">
+        <div style="font-weight:700; font-size:14px; margin-bottom:8px;">🎮 Play</div>
+        <div style="display:flex; flex-direction:column; gap:5px; font-size:13px;">
+          <a href="/future-bet" onclick="gtag('event','agi_test_click',{location:'directory'});">🎲 The Future Bet</a>
+          <a href="/agi-test">🎯 What's your AGI type?</a>
+          <a href="/ai-job-risk-check">📋 Will AI take my job?</a>
+          <a href="/forecaster-leaderboard">🏆 Forecaster leaderboard</a>
+          <a href="/matrix-odds" onclick="gtag('event','tool_click',{location:'directory',label:'matrix'});">🕶 Matrix odds calculator</a>
+          <a href="/ai-stock-exposure" onclick="gtag('event','invest_tool_click',{location:'directory'});">📈 AI stock exposure check</a>
+          <a href="/ai-tools" onclick="gtag('event','tool_click',{location:'directory'});"><b>🧰 All free tools →</b></a>
+        </div>
+      </div>
+      <div style="background:var(--bg2); border:1px solid var(--border); border-radius:12px; padding:14px 16px;">
+        <div style="font-weight:700; font-size:14px; margin-bottom:8px;">💰 Invest</div>
+        <div style="display:flex; flex-direction:column; gap:5px; font-size:13px;">
+          <a href="/invest" onclick="gtag('event','invest_tool_click',{location:'directory'});">AI Investing Hub</a>
+          <a href="https://invest.agiscorecard.com/en" onclick="gtag('event','invest_tool_click',{location:'directory_sunwatch'});">📡 SunWatch: live market triggers</a>
+          <a href="https://compass.agiscorecard.com/en/track-record" onclick="gtag('event','invest_tool_click',{location:'directory_trackrecord'});"><b>🏆 Did copying them actually pay?</b></a>
+          <a href="https://compass.agiscorecard.com/en" onclick="gtag('event','invest_tool_click',{location:'directory_compass'});">🧭 Compass: legendary investors&#39; 13F moves</a>
+          <a href="/aschenbrenner-fund-collapse">🧨 The fund collapse, graded</a>
+          <a href="/cn">持仓收据 · The receipts (中文)</a>
+          <a href="/is-the-ai-capex-a-bubble">Is AI capex a bubble?</a>
+          <a href="/advertise">Sponsor this site</a>
+        </div>
+      </div>
+      <div style="background:var(--bg2); border:1px solid var(--border); border-radius:12px; padding:14px 16px;">
+        <div style="font-weight:700; font-size:14px; margin-bottom:8px;">🇨🇳 中文</div>
+        <div style="display:flex; flex-direction:column; gap:5px; font-size:13px;">
+          <a href="/cn">中文主页 · 预言 vs 持仓</a>
+          <a href="/zh/future-bet">🎲 押注未来</a>
+          <a href="/zh/invest">💰 AI 投资板块</a>
+          <a href="/zh/agi-test">🎯 AGI 类型测试</a>
+          <a href="/zh/ai-tools">🧰 免费工具合集</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN COUNTDOWN -->
+  <div class="clock-section" id="milestones">
+    <div class="clock-label">Primary Target</div>
+    <div class="clock-title">Estimated time to AGI (2027 baseline)</div>
+    <div class="countdown-grid">
+      <div class="countdown-unit">
+        <div class="countdown-num" id="cd-days">—</div>
+        <div class="countdown-unit-label">Days</div>
+      </div>
+      <div class="countdown-unit">
+        <div class="countdown-num" id="cd-hours">—</div>
+        <div class="countdown-unit-label">Hours</div>
+      </div>
+      <div class="countdown-unit">
+        <div class="countdown-num" id="cd-min">—</div>
+        <div class="countdown-unit-label">Minutes</div>
+      </div>
+      <div class="countdown-unit">
+        <div class="countdown-num" id="cd-sec">—</div>
+        <div class="countdown-unit-label">Seconds</div>
+      </div>
+    </div>
+    <p style="font-size:12px; color: var(--muted);">Target: January 1, 2027 · Based on Aschenbrenner's "Counting the OOMs" analysis · <em>Not a precise prediction — a focal point for tracking</em></p>
+    <p id="live-ticker" style="font-size:12px; color: var(--accent2); margin-top:8px; font-family: var(--mono);"></p>
+    <details style="margin-top:12px; text-align:left; max-width:560px; margin-left:auto; margin-right:auto;">
+      <summary style="font-size:12px; color:var(--accent); cursor:pointer; text-align:center;">&lt;/&gt; Embed this countdown on your site (free)</summary>
+      <div style="background:var(--bg3); border:1px solid var(--border); border-radius:8px; padding:10px 12px; margin-top:8px;">
+        <code id="embed-code" style="font-size:11px; color:var(--muted); word-break:break-all; font-family:var(--mono);">&lt;iframe src="https://agiscorecard.com/widget" width="360" height="200" style="border:0;border-radius:12px;overflow:hidden" title="AGI Countdown — The AGI Scorecard" loading="lazy"&gt;&lt;/iframe&gt;</code>
+        <button class="email-submit" style="margin-top:8px; font-size:12px; padding:6px 14px;" onclick="navigator.clipboard.writeText(document.getElementById('embed-code').textContent).then(()=>{this.textContent='✓ Copied';gtag('event','embed_copy');setTimeout(()=>this.textContent='Copy embed code',1500)})">Copy embed code</button>
+      </div>
+    </details>
+  </div>
+
+  <!-- VOTE WIDGET -->
+  <div class="clock-section" id="vote" style="margin-top:-1.5rem;">
+    <div class="clock-label">The AGI Test 🎯</div>
+    <div class="clock-title">What's your <em>AGI type</em>?</div>
+    <div style="font-size:13px; color:var(--muted); margin:-0.4rem auto 1rem; max-width:520px;">When do you think AGI arrives? Pick one — get your archetype and see where you land vs Musk, Aschenbrenner &amp; Metaculus.</div>
+    <div id="locked-banner" style="display:none; background:var(--bg2); border:1px solid rgba(124,106,245,.3); border-radius:10px; padding:10px 14px; margin:0 auto 1rem; max-width:520px; font-size:13.5px;"></div>
+    <div id="vote-options" style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:1rem;">
+      <button class="vote-btn" onclick="castVote('2025–26')">2025–26</button>
+      <button class="vote-btn" onclick="castVote('2027')">2027</button>
+      <button class="vote-btn" onclick="castVote('2028–30')">2028–30</button>
+      <button class="vote-btn" onclick="castVote('2030s')">2030s</button>
+      <button class="vote-btn" onclick="castVote('Never / 2040+')">Never / 2040+</button>
+    </div>
+    <div id="vote-result" style="display:none;">
+      <div class="spectrum-wrap">
+        <div style="font-size:12px; color:var(--muted); margin-bottom:2px;">Where you land vs. the forecasters</div>
+        <div class="spectrum" id="vote-spectrum"></div>
+      </div>
+      <p id="vote-verdict" style="font-size:15px; margin-bottom:1rem;"></p>
+      <button class="email-submit" id="share-challenge" onclick="challengeFriend()">🔥 Challenge a friend</button>
+      <button class="email-submit" style="background:var(--bg3); margin-left:8px;" onclick="shareToX()">Share on 𝕏</button>
+      <button class="email-submit" style="background:var(--bg3); margin-left:8px;" onclick="copyShare()">Copy link</button>
+      <button class="email-submit" id="lock-btn" style="background:var(--bg3); margin-left:8px;" onclick="lockPrediction()">🔒 Lock it in</button>
+      <span id="copied-msg" style="display:none; font-size:13px; color:var(--accent2); margin-left:10px;">✓ Copied</span>
+      <div style="margin-top:1.1rem; padding:0.9rem 1.1rem; background:var(--bg2); border:1px solid rgba(124,106,245,.22); border-radius:10px; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:10px;">
+        <span style="font-size:13.5px; color:var(--text);">Want to know if your call was right? We track it — score now <strong style="color:var(--accent);">62.5/100</strong>.</span>
+        <a href="https://agiscorecard.beehiiv.com/subscribe?utm_source=agiscorecard&utm_medium=post_vote" target="_blank" rel="noopener" onclick="gtag('event','subscribe_click',{location:'post_vote'});" style="display:inline-block; background:var(--accent); color:#fff; padding:8px 18px; border-radius:7px; font-size:13px; font-weight:500; text-decoration:none; white-space:nowrap;">Subscribe free →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- MILESTONE CARDS -->
+  <div class="milestones-grid">
+    <div class="milestone-card past">
+      <div class="milestone-year">2019</div>
+      <div class="milestone-title">GPT-2 — Preschooler level</div>
+      <div class="milestone-desc">Could barely string together coherent paragraphs. The baseline that showed language models had potential.</div>
+      <div class="milestone-status status-done">✓ Reached</div>
+    </div>
+    <div class="milestone-card past">
+      <div class="milestone-year">2023</div>
+      <div class="milestone-title">GPT-4 — Smart high schooler</div>
+      <div class="milestone-desc">Aces AP exams, writes sophisticated code, reasons through competition math. Benchmarks rapidly saturated.</div>
+      <div class="milestone-status status-done">✓ Reached</div>
+    </div>
+    <div class="milestone-card past">
+      <div class="milestone-year">2024</div>
+      <div class="milestone-title">PhD-level benchmarks cracked</div>
+      <div class="milestone-desc">GPQA (expert PhD questions) being approached. Claude 3 Opus at ~60% vs 80% for in-domain PhDs.</div>
+      <div class="milestone-status status-done">✓ In progress</div>
+    </div>
+    <div class="milestone-card near">
+      <div class="milestone-year">2025–26</div>
+      <div class="milestone-title">Outpace college graduates</div>
+      <div class="milestone-desc">Models able to perform at the level of a skilled recent grad across most professional tasks. Agent capabilities mature.</div>
+      <div class="milestone-status status-near">⟳ Approaching</div>
+    </div>
+    <div class="milestone-card near">
+      <div class="milestone-year">2027</div>
+      <div class="milestone-title">AGI — AI researcher level</div>
+      <div class="milestone-desc">Models capable of doing the work of an AI researcher/engineer. Could automate AI research itself, triggering intelligence explosion.</div>
+      <div class="milestone-status status-near">⟳ Forecast</div>
+    </div>
+    <div class="milestone-card far">
+      <div class="milestone-year">2027–29</div>
+      <div class="milestone-title">The Project begins</div>
+      <div class="milestone-desc">USG/national security involvement. Government AGI project launches. No startup handles superintelligence alone.</div>
+      <div class="milestone-status status-future">◌ Future</div>
+    </div>
+    <div class="milestone-card far">
+      <div class="milestone-year">2029–30</div>
+      <div class="milestone-title">Intelligence explosion</div>
+      <div class="milestone-desc">Hundreds of millions of AGIs automating AI research. A decade of progress compressed into 1 year.</div>
+      <div class="milestone-status status-future">◌ Forecast</div>
+    </div>
+    <div class="milestone-card far">
+      <div class="milestone-year">2030s</div>
+      <div class="milestone-title">Superintelligence</div>
+      <div class="milestone-desc">Vastly superhuman AI systems. Decisive economic and military advantage. The free world's survival at stake.</div>
+      <div class="milestone-status status-future">◌ Forecast</div>
+    </div>
+    <div class="milestone-card far">
+      <div class="milestone-year">2030s</div>
+      <div class="milestone-title">Trillion-dollar clusters</div>
+      <div class="milestone-desc">US electricity production grows tens of percent. Hundreds of millions of GPUs. Industrial mobilization unlike anything since WWII.</div>
+      <div class="milestone-status status-future">◌ Forecast</div>
+    </div>
+  </div>
+
+  <!-- OOM TRACKER -->
+  <div class="section" id="oom">
+    <div class="section-header">
+      <div class="section-title">OOM Tracker — Effective Compute Scaleup</div>
+      <div class="section-sub">Orders of magnitude vs GPT-2 baseline</div>
+    </div>
+    <div class="quote-block">
+      "With each OOM of effective compute, models predictably, reliably get better. If we can count the OOMs, we can extrapolate capability improvements."
+      <div class="quote-source">— Leopold Aschenbrenner, Situational Awareness (2024)</div>
+    </div>
+    <div class="oom-bar-container">
+      <div class="oom-row">
+        <div class="oom-label">Raw compute</div>
+        <div class="oom-track"><div class="oom-fill" style="width: 62%; background: var(--accent);"></div></div>
+        <div class="oom-val">~2 OOMs/yr</div>
+      </div>
+      <div class="oom-row">
+        <div class="oom-label">Algorithmic efficiency</div>
+        <div class="oom-track"><div class="oom-fill" style="width: 50%; background: var(--accent2);"></div></div>
+        <div class="oom-val">~0.5 OOMs/yr</div>
+      </div>
+      <div class="oom-row">
+        <div class="oom-label">Unhobbling gains</div>
+        <div class="oom-track"><div class="oom-fill" style="width: 38%; background: var(--warn);"></div></div>
+        <div class="oom-val">~1 OOM total</div>
+      </div>
+      <div class="oom-row">
+        <div class="oom-label">GPT-2 → GPT-4 total</div>
+        <div class="oom-track"><div class="oom-fill" style="width: 75%; background: linear-gradient(90deg, var(--accent), var(--accent2));"></div></div>
+        <div class="oom-val">~5 OOMs</div>
+      </div>
+      <div class="oom-row">
+        <div class="oom-label">GPT-4 → 2027 (proj.)</div>
+        <div class="oom-track"><div class="oom-fill" style="width: 45%; background: rgba(124,106,245,0.4); border: 1px dashed var(--accent);"></div></div>
+        <div class="oom-val">+5 OOMs</div>
+      </div>
+    </div>
+    <p style="font-size:12px; color: var(--muted); margin-top: 10px; padding: 0 4px;">Source: Epoch AI public estimates + Aschenbrenner analysis. Dashed bar = projection.</p>
+  </div>
+
+  <!-- LABS -->
+  <div class="section" id="labs">
+    <div class="section-header">
+      <div class="section-title">Frontier Labs — Status Overview</div>
+      <div class="section-sub">Best available public data · Updated June 2026</div>
+    </div>
+    <div class="labs-grid">
+      <div class="lab-card">
+        <div class="lab-header">
+          <div class="lab-name">OpenAI</div>
+          <div class="lab-flag">🇺🇸 USA</div>
+        </div>
+        <div class="lab-stat"><span class="lab-stat-label">Flagship model</span><span class="lab-stat-val">GPT-5.5 / 5.5 Pro</span></div>
+        <div class="lab-stat"><span class="lab-stat-label">Annualized revenue</span><span class="lab-stat-val">$25B+ (est.)</span></div>
+        <div class="lab-stat"><span class="lab-stat-label">Notable</span><span class="lab-stat-val">Leads FrontierMath T4</span></div>
+        <div class="lab-stat"><span class="lab-stat-label">Release cadence</span><span class="lab-stat-val">~6 weeks/flagship</span></div>
+      </div>
+      <div class="lab-card">
+        <div class="lab-header">
+          <div class="lab-name">Anthropic</div>
+          <div class="lab-flag">🇺🇸 USA</div>
+        </div>
+        <div class="lab-stat"><span class="lab-stat-label">Flagship model</span><span class="lab-stat-val">Claude Fable 5 (Mythos)</span></div>
+        <div class="lab-stat"><span class="lab-stat-label">Annualized revenue</span><span class="lab-stat-val">~$19B (est.)</span></div>
+        <div class="lab-stat"><span class="lab-stat-label">Notable</span><span class="lab-stat-val">New tier above Opus</span></div>
+        <div class="lab-stat"><span class="lab-stat-label">Stance</span><span class="lab-stat-val">Safeguarded frontier</span></div>
+      </div>
+      <div class="lab-card">
+        <div class="lab-header">
+          <div class="lab-name">Google DeepMind</div>
+          <div class="lab-flag">🇺🇸 USA</div>
+        </div>
+        <div class="lab-stat"><span class="lab-stat-label">Flagship model</span><span class="lab-stat-val">Gemini 3.1 Pro / 3.5</span></div>
+        <div class="lab-stat"><span class="lab-stat-label">Notable</span><span class="lab-stat-val">Gemini Spark agent</span></div>
+        <div class="lab-stat"><span class="lab-stat-label">Advantage</span><span class="lab-stat-val">TPU + multimodal lead</span></div>
+        <div class="lab-stat"><span class="lab-stat-label">Context window</span><span class="lab-stat-val">2M tokens native</span></div>
+      </div>
+      <div class="lab-card">
+        <div class="lab-header">
+          <div class="lab-name">Chinese Labs (est.)</div>
+          <div class="lab-flag">🇨🇳 China</div>
+        </div>
+        <div class="lab-stat"><span class="lab-stat-label">Key players</span><span class="lab-stat-val">DeepSeek, Qwen, MiniMax</span></div>
+        <div class="lab-stat"><span class="lab-stat-label">Flagship models</span><span class="lab-stat-val">DeepSeek V4, Qwen 3.7 Max</span></div>
+        <div class="lab-stat"><span class="lab-stat-label">Strategy</span><span class="lab-stat-val">Open-weight + low cost</span></div>
+        <div class="lab-stat"><span class="lab-stat-label">Gap vs frontier</span><span class="lab-stat-val">~3–6 months (est.)</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PREDICTIONS TABLE -->
+  <div class="section" id="predictions">
+    <div class="section-header">
+      <h2 class="section-title" style="font-size:1rem;">The Scorecard — Every Prediction vs Reality</h2>
+      <div class="section-sub">Source: Situational Awareness (June 2024) · Graded June 2026 · <span style="color:var(--accent2);">Last updated: August 17, 2026</span> · <span style="color:var(--accent);">Tap any row for evidence &amp; flip conditions</span></div>
+    </div>
+    <div style="background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; overflow: hidden;">
+      <table class="pred-table">
+        <thead>
+          <tr>
+            <th>Target</th>
+            <th>Prediction</th>
+            <th>Reality check (2026)</th>
+            <th>Verdict</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="pred-row" onclick="togglePred(this)">
+            <td class="pred-year">2025/26</td>
+            <td>Models outpace college graduates across knowledge work</td>
+            <td style="color:var(--muted); font-size:12px;">Frontier models at ~83% on knowledge-work benchmarks; agent products in production</td>
+            <td><span class="conf-badge conf-high">✓ On track</span><span class="expand-ind">▶</span></td></tr>
+          <tr class="pred-detail"><td colspan="4"><p><span class='pd-label'>Evidence</span> ~83% on GDPval-style knowledge work and ~80% on SWE-Bench Pro; agent products in production. Drop-in reliability without supervision still lags the benchmarks.</p><p><span class='pd-label'>Flips if</span> Capability plateaus below skilled-graduate level, or production agent adoption stalls on reliability.</p><p><span class='pd-label'>Sources</span> <a href='https://openai.com/index/gdpval/' target='_blank' rel='noopener'>GDPval (OpenAI)</a> · <a href='https://www.swebench.com' target='_blank' rel='noopener'>SWE-bench</a></p><p><a href='/can-ai-replace-knowledge-workers'>Full verdict: Can AI replace knowledge workers? →</a></p></td></tr>
+          <tr class="pred-row" onclick="togglePred(this)">
+            <td class="pred-year">~0.5 OOM/yr</td>
+            <td>Compute + algorithmic scaling continues at trend</td>
+            <td style="color:var(--muted); font-size:12px;">One-year retrospectives find the pace roughly supported by evidence</td>
+            <td><span class="conf-badge conf-high">✓ Holding</span><span class="expand-ind">▶</span></td></tr>
+          <tr class="pred-detail"><td colspan="4"><p><span class='pd-label'>Evidence</span> Effective compute has roughly held the ~0.5 OOM/yr pace; gains increasingly come from reasoning, tools and agents (unhobbling), not just raw scale.</p><p><span class='pd-label'>Flips if</span> A sustained multi-year drop below ~0.5 OOM/yr — most plausibly via a capex pullback.</p><p><span class='pd-label'>Sources</span> <a href='https://epoch.ai/trends' target='_blank' rel='noopener'>Epoch AI — Trends in AI</a></p><p><a href='/is-ai-compute-still-scaling'>Full verdict: Is AI compute still scaling? →</a></p></td></tr>
+          <tr class="pred-row" onclick="togglePred(this)">
+            <td class="pred-year">$500B/yr</td>
+            <td>Massive AI capex acceleration</td>
+            <td style="color:var(--muted); font-size:12px;">Investment exceeding projections; accelerating faster than forecast</td>
+            <td><span class="conf-badge conf-high">✓ Exceeded</span><span class="expand-ind">▶</span></td></tr>
+          <tr class="pred-detail"><td colspan="4"><p><span class='pd-label'>Evidence</span> Investment exceeded the essay's projections — his most vindicated call. The caveat: revenue lags the spend, which is the bear case to watch.</p><p><span class='pd-label'>Watch</span> The revenue-vs-capex gap — a funding pullback would slow the compute trend for financial reasons.</p><p><span class='pd-label'>Sources</span> <a href='https://epoch.ai/topics/finances' target='_blank' rel='noopener'>Epoch AI — Finances of AI</a></p><p><a href='/ai-capex-trillion-dollar'>Full verdict: Did AI capex hit trillion-dollar scale? →</a></p></td></tr>
+          <tr class="pred-row" onclick="togglePred(this)">
+            <td class="pred-year">—</td>
+            <td>Open-source fades; proprietary algorithms create a durable US moat</td>
+            <td style="color:var(--muted); font-size:12px;">DeepSeek V4 / Qwen open-weight models within 3–6 months of frontier</td>
+            <td><span class="conf-badge" style="background:rgba(224,85,85,0.12); color:var(--danger);">✗ Wrong</span><span class="expand-ind">▶</span></td></tr>
+          <tr class="pred-detail"><td colspan="4"><p><span class='pd-label'>Evidence</span> DeepSeek and Qwen open-weight models sit within ~3–6 months of the frontier at a fraction of the cost — the opposite of fading.</p><p><span class='pd-label'>Flips back if</span> The frontier pulls a multi-year lead via advances that don't diffuse. No sign of that yet.</p><p><span class='pd-label'>Sources</span> <a href='https://epoch.ai' target='_blank' rel='noopener'>Epoch AI</a></p><p><a href='/did-open-source-ai-fade'>Full verdict: Did open-source AI fade? →</a></p></td></tr>
+          <tr class="pred-row" onclick="togglePred(this)">
+            <td class="pred-year">2027</td>
+            <td>AGI: models do the work of an AI researcher/engineer</td>
+            <td style="color:var(--muted); font-size:12px;">Agentic coding strong (~80% SWE-Bench Pro) but autonomous research unconfirmed</td>
+            <td><span class="conf-badge conf-med">⟳ Open</span><span class="expand-ind">▶</span></td></tr>
+          <tr class="pred-detail"><td colspan="4"><p><span class='pd-label'>Evidence</span> Agentic coding is strong (~80% SWE-Bench Pro) but no system has autonomously conducted AI research end-to-end — the bar that defines this claim.</p><p><span class='pd-label'>Resolves</span> By January 1, 2028. Fulfilled if autonomous AI research is demonstrated; Wrong if the deadline passes without it.</p><p><a href='/will-agi-arrive-2027'>Full verdict: Will AGI arrive by 2027? →</a></p></td></tr>
+          <tr class="pred-row" onclick="togglePred(this)">
+            <td class="pred-year">2027/28</td>
+            <td>US government launches formal AGI project</td>
+            <td style="color:var(--muted); font-size:12px;">National-security involvement growing; no formal Project announced</td>
+            <td><span class="conf-badge conf-med">⟳ Open</span><span class="expand-ind">▶</span></td></tr>
+          <tr class="pred-detail"><td colspan="4"><p><span class='pd-label'>Evidence</span> National-security involvement is growing (export controls, lab security requirements, defense interest) but no centralized, Manhattan-Project-style effort exists.</p><p><span class='pd-label'>Resolves</span> By 2027/28. The open-source verdict weakens its premise: diffused capability undercuts the case for a single Project.</p><p><a href='/will-the-us-government-build-agi'>Full verdict: Will the US government build AGI? →</a></p></td></tr>
+          <tr class="pred-row" onclick="togglePred(this)">
+            <td class="pred-year">2027–29</td>
+            <td>Intelligence explosion: decade of progress in 1 year</td>
+            <td style="color:var(--muted); font-size:12px;">Too early to grade</td>
+            <td><span class="conf-badge conf-low">◌ Pending</span><span class="expand-ind">▶</span></td></tr>
+          <tr class="pred-detail"><td colspan="4"><p><span class='pd-label'>Why pending</span> Its trigger — AI autonomously doing AI research — hasn't been demonstrated, and the 2027–29 window hasn't arrived. Not enough evidence to grade either way.</p><p><a href='/intelligence-explosion-2027'>Full analysis: Will there be an intelligence explosion? →</a></p></td></tr>
+          <tr class="pred-row" onclick="togglePred(this)">
+            <td class="pred-year">2030s</td>
+            <td>Superintelligence; decisive geopolitical advantage</td>
+            <td style="color:var(--muted); font-size:12px;">Too early to grade</td>
+            <td><span class="conf-badge conf-low">◌ Pending</span><span class="expand-ind">▶</span></td></tr>
+          <tr class="pred-detail"><td colspan="4"><p><span class='pd-label'>Why pending</span> Downstream of AGI and an intelligence explosion, neither of which has occurred. The furthest-out claim on the scorecard.</p><p><a href='/will-there-be-superintelligence'>Full analysis: Will there be superintelligence? →</a></p></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="display:flex; align-items:center; gap:12px; margin-top:12px;">
+      <button class="email-submit" onclick="shareScorecard()">Share the scorecard on 𝕏 →</button>
+      <p style="font-size:12px; color: var(--muted); margin:0;">
+        Source: <a href="https://situational-awareness.ai" target="_blank">situational-awareness.ai</a> · Verdicts based on public retrospectives & benchmarks
+      </p>
+    </div>
+    <div style="margin-top:20px; background:linear-gradient(135deg,rgba(124,106,245,.1),rgba(79,195,161,.07)); border:1px solid rgba(124,106,245,.22); border-radius:12px; padding:1.25rem 1.4rem; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px;">
+      <div style="max-width:420px;">
+        <p style="margin:0; font-weight:600; font-size:15px;">The 2027 clock is ticking.</p>
+        <p style="margin:4px 0 0; font-size:13px; color:var(--muted);">Get each verdict change the week it happens — free, no hype, just signal.</p>
+      </div>
+      <a href="https://agiscorecard.beehiiv.com/subscribe?utm_source=agiscorecard&utm_medium=post_scorecard" target="_blank" rel="noopener" onclick="gtag('event','subscribe_click',{location:'post_scorecard'});" style="display:inline-block; background:var(--accent); color:#fff; padding:11px 24px; border-radius:8px; font-size:14px; font-weight:500; text-decoration:none; white-space:nowrap;">Subscribe free →</a>
+    </div>
+  </div>
+
+  <!-- COMPARISON -->
+  <div class="section" id="compare">
+    <div class="section-header">
+      <h2 class="section-title" style="font-size:1rem;">His 2027 vs everyone else</h2>
+      <div class="section-sub">Public AGI timelines · Mid-2026</div>
+    </div>
+    <div style="background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; overflow: hidden;">
+      <table class="pred-table">
+        <thead>
+          <tr>
+            <th>Forecaster</th>
+            <th>AGI timeline</th>
+            <th>Camp</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="font-weight:500;">Elon Musk <span style="color:var(--muted); font-size:11px;">(xAI)</span></td>
+            <td class="pred-year">By end of 2026</td>
+            <td style="color:var(--muted); font-size:12px;">Most aggressive</td>
+          </tr>
+          <tr style="background: rgba(124,106,245,0.08);">
+            <td style="font-weight:600; color:var(--accent);">Leopold Aschenbrenner</td>
+            <td class="pred-year">2027 "strikingly plausible"</td>
+            <td style="color:var(--accent); font-size:12px; font-weight:500;">This scorecard</td>
+          </tr>
+          <tr>
+            <td style="font-weight:500;">Demis Hassabis <span style="color:var(--muted); font-size:11px;">(DeepMind)</span></td>
+            <td class="pred-year">~50% by 2030</td>
+            <td style="color:var(--muted); font-size:12px;">Lab leader, cautious</td>
+          </tr>
+          <tr>
+            <td style="font-weight:500;">Samotsvety <span style="color:var(--muted); font-size:11px;">(pro forecasters)</span></td>
+            <td class="pred-year">~28% by 2030</td>
+            <td style="color:var(--muted); font-size:12px;">Best track record</td>
+          </tr>
+          <tr>
+            <td style="font-weight:500;">Metaculus community <span style="color:var(--muted); font-size:11px;">(~2,000 forecasters)</span></td>
+            <td class="pred-year">25% by 2029 · 50% by 2033</td>
+            <td style="color:var(--muted); font-size:12px;">Crowd consensus</td>
+          </tr>
+          <tr>
+            <td style="font-weight:500;">Andrej Karpathy <span style="color:var(--muted); font-size:11px;">(ex-OpenAI)</span></td>
+            <td class="pred-year">~A decade out</td>
+            <td style="color:var(--muted); font-size:12px;">Architecture skeptic</td>
+          </tr>
+          <tr>
+            <td style="font-weight:500;">AI researcher survey <span style="color:var(--muted); font-size:11px;">(2,778 respondents)</span></td>
+            <td class="pred-year">50% by 2047</td>
+            <td style="color:var(--muted); font-size:12px;">Academic median</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:12px; color: var(--muted); margin-top: 10px; padding: 0 4px;">Definitions of "AGI" vary by forecaster — direct comparison is approximate. Notably, expert medians have compressed from ~2060 to ~2033 in six years.</p>
+  </div>
+
+  <!-- CHANGELOG -->
+  <div class="section" id="changelog">
+    <div class="section-header">
+      <h2 class="section-title" style="font-size:1rem;">Changelog — proof this scorecard is alive</h2>
+      <div class="section-sub">Every update to verdicts, evidence, or framing gets logged here.</div>
+    </div>
+    <div style="background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem 1.5rem;">
+      <div style="display:flex; gap:14px; padding:10px 0; border-bottom:1px solid var(--border);">
+        <span style="font-size:12px; color:var(--accent2); white-space:nowrap; font-weight:600; min-width:86px;">Jun 12, 2026</span>
+        <p style="font-size:13px; color:var(--muted); line-height:1.6; margin:0;">Logged Anthropic's reversal of Fable 5's silent restrictions on frontier-LLM development — flagged requests now visibly fall back to Opus 4.8 with notification. Recorded as evidence context under the open-source / moat verdict (capability gating proved hard to sustain even for one release cycle). No grade change.</p>
+      </div>
+      <div style="display:flex; gap:14px; padding:10px 0; border-bottom:1px solid var(--border);">
+        <span style="font-size:12px; color:var(--accent2); white-space:nowrap; font-weight:600; min-width:86px;">Jun 11, 2026</span>
+        <p style="font-size:13px; color:var(--muted); line-height:1.6; margin:0;">Published the full two-year analysis with pre-registered flip conditions. Revenue framing expanded to cite both Harris's evaluation (~$60B most generous) and spring-2026 lab reporting (OpenAI ~$25B+, Anthropic ~$19–20B annualized) following EA Forum discussion.</p>
+      </div>
+      <div style="display:flex; gap:14px; padding:10px 0;">
+        <span style="font-size:12px; color:var(--accent2); white-space:nowrap; font-weight:600; min-width:86px;">Jun 10, 2026</span>
+        <p style="font-size:13px; color:var(--muted); line-height:1.6; margin:0;">Scorecard launched at the essay's two-year mark: 3 on track, 1 wrong, 2 open, 2 pending.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="section" id="faq">
+    <div class="section-header">
+      <h2 class="section-title" style="font-size:1rem;">Frequently asked questions</h2>
+    </div>
+    <div style="background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem;">
+      <h3 style="font-size:14px; font-weight:600; margin-bottom:6px;">Was Aschenbrenner right about AGI by 2027?</h3>
+      <p style="font-size:13px; color:var(--muted); margin-bottom:1.25rem; line-height:1.7;">Partially on track as of mid-2026. Compute scaling has roughly held, AI investment has exceeded his projections, and frontier models perform at or above the level he predicted for 2025/26. But full AGI — models autonomously doing AI research — remains unconfirmed, and his call that open-source would fade has been clearly wrong. <a href="/was-aschenbrenner-right">See the full verdict →</a></p>
+      <h3 style="font-size:14px; font-weight:600; margin-bottom:6px;">What is Situational Awareness?</h3>
+      <p style="font-size:13px; color:var(--muted); margin-bottom:1.25rem; line-height:1.7;">A 165-page essay published in June 2024 by former OpenAI researcher Leopold Aschenbrenner, predicting AGI by 2027, an intelligence explosion to superintelligence by decade's end, trillion-dollar compute clusters, and a US-China race over AI. Aschenbrenner went on to found Situational Awareness LP, a hedge fund now managing over $5 billion. <a href="/situational-awareness-predictions">Track every prediction →</a></p>
+      <h3 style="font-size:14px; font-weight:600; margin-bottom:6px;">How far behind are Chinese AI labs?</h3>
+      <p style="font-size:13px; color:var(--muted); line-height:1.7;">As of 2026, open-weight models like DeepSeek V4 and Qwen 3.7 Max trail the proprietary frontier by an estimated 3–6 months — much closer than Aschenbrenner's framework assumed, driven by aggressive open-weight releases and dramatically lower pricing. <a href="/did-open-source-ai-fade">Why this is his clearest miss →</a></p>
+    </div>
+    <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:14px;">
+      <a href="/agi-questions" style="font-size:12px; color:#fff; background:var(--accent); border:1px solid var(--accent); border-radius:6px; padding:6px 12px; font-weight:600;">📋 All AGI questions, answered →</a>
+      <a href="/was-aschenbrenner-right" style="font-size:12px; color:var(--accent); border:1px solid var(--border2); border-radius:6px; padding:6px 12px;">Was Aschenbrenner right?</a>
+      <a href="/will-agi-arrive-2027" style="font-size:12px; color:var(--accent); border:1px solid var(--border2); border-radius:6px; padding:6px 12px;">Will AGI arrive by 2027?</a>
+      <a href="/did-open-source-ai-fade" style="font-size:12px; color:var(--accent); border:1px solid var(--border2); border-radius:6px; padding:6px 12px;">Did open source fade?</a>
+      <a href="/aschenbrenner-vs-metaculus" style="font-size:12px; color:var(--accent); border:1px solid var(--border2); border-radius:6px; padding:6px 12px;">Aschenbrenner vs Metaculus</a>
+      <a href="/situational-awareness-predictions" style="font-size:12px; color:var(--accent); border:1px solid var(--border2); border-radius:6px; padding:6px 12px;">All predictions tracked</a>
+      <a href="/when-will-agi-arrive" style="font-size:12px; color:var(--accent); border:1px solid var(--border2); border-radius:6px; padding:6px 12px;">When will AGI arrive?</a>
+      <a href="/who-is-leopold-aschenbrenner" style="font-size:12px; color:var(--accent); border:1px solid var(--border2); border-radius:6px; padding:6px 12px;">Who is Aschenbrenner?</a>
+      <a href="/situational-awareness-summary" style="font-size:12px; color:var(--accent); border:1px solid var(--border2); border-radius:6px; padding:6px 12px;">Situational Awareness summary</a>
+      <a href="/aschenbrenner-vs-hassabis" style="font-size:12px; color:var(--accent); border:1px solid var(--border2); border-radius:6px; padding:6px 12px;">Aschenbrenner vs Hassabis</a>
+      <a href="/will-the-us-government-build-agi" style="font-size:12px; color:var(--accent); border:1px solid var(--border2); border-radius:6px; padding:6px 12px;">Will the US govt build AGI?</a>
+      <a href="/intelligence-explosion-2027" style="font-size:12px; color:var(--accent); border:1px solid var(--border2); border-radius:6px; padding:6px 12px;">Intelligence explosion 2027?</a>
+      <a href="/will-there-be-superintelligence" style="font-size:12px; color:var(--accent); border:1px solid var(--border2); border-radius:6px; padding:6px 12px;">Superintelligence in the 2030s?</a>
+      <a href="/is-ai-compute-still-scaling" style="font-size:12px; color:var(--accent); border:1px solid var(--border2); border-radius:6px; padding:6px 12px;">Is AI compute still scaling?</a>
+      <a href="/ai-capex-trillion-dollar" style="font-size:12px; color:var(--accent); border:1px solid var(--border2); border-radius:6px; padding:6px 12px;">Trillion-dollar AI capex?</a>
+      <a href="/can-ai-replace-knowledge-workers" style="font-size:12px; color:var(--accent); border:1px solid var(--border2); border-radius:6px; padding:6px 12px;">Can AI replace knowledge workers?</a>
+      <a href="/will-ai-cause-mass-unemployment" style="font-size:12px; color:var(--accent); border:1px solid var(--border2); border-radius:6px; padding:6px 12px;">Will AI cause mass unemployment?</a>
+      <a href="/what-jobs-are-safe-from-ai" style="font-size:12px; color:var(--accent); border:1px solid var(--border2); border-radius:6px; padding:6px 12px;">What jobs are safe from AI?</a>
+      <a href="/will-ai-take-over" style="font-size:12px; color:var(--accent); border:1px solid var(--border2); border-radius:6px; padding:6px 12px;">Will AI take over?</a>
+      <a href="/is-agi-inevitable" style="font-size:12px; color:var(--accent); border:1px solid var(--border2); border-radius:6px; padding:6px 12px;">Is AGI inevitable?</a>
+      <a href="/aschenbrenner-vs-musk" style="font-size:12px; color:var(--accent); border:1px solid var(--border2); border-radius:6px; padding:6px 12px;">Aschenbrenner vs Musk</a>
+      <a href="/will-china-beat-us-to-agi" style="font-size:12px; color:var(--accent); border:1px solid var(--border2); border-radius:6px; padding:6px 12px;">Is China beating the US to AGI?</a>
+      <a href="/situational-awareness-vs-ai-2027" style="font-size:12px; color:var(--accent); border:1px solid var(--border2); border-radius:6px; padding:6px 12px;">Situational Awareness vs AI 2027</a>
+      <a href="/is-agi-just-hype" style="font-size:12px; color:var(--accent); border:1px solid var(--border2); border-radius:6px; padding:6px 12px;">Is AGI just hype?</a>
+      <a href="/will-ai-replace-programmers" style="font-size:12px; color:var(--accent); border:1px solid var(--border2); border-radius:6px; padding:6px 12px;">Will AI replace programmers?</a>
+      <a href="/demis-hassabis-agi-prediction" style="font-size:12px; color:var(--accent); border:1px solid var(--border2); border-radius:6px; padding:6px 12px;">Hassabis's AGI prediction</a>
+      <a href="/elon-musk-agi-prediction" style="font-size:12px; color:var(--accent); border:1px solid var(--border2); border-radius:6px; padding:6px 12px;">Musk's AGI prediction</a>
+      <a href="/is-the-ai-capex-a-bubble" style="font-size:12px; color:var(--accent); border:1px solid var(--border2); border-radius:6px; padding:6px 12px;">Is the AI capex a bubble?</a>
+      <a href="/what-is-superintelligence" style="font-size:12px; color:var(--accent); border:1px solid var(--border2); border-radius:6px; padding:6px 12px;">What is superintelligence?</a>
+      <a href="/ai-orders-of-magnitude-explained" style="font-size:12px; color:var(--accent); border:1px solid var(--border2); border-radius:6px; padding:6px 12px;">AI orders of magnitude</a>
+      <a href="/what-is-unhobbling-ai" style="font-size:12px; color:var(--accent); border:1px solid var(--border2); border-radius:6px; padding:6px 12px;">What is unhobbling?</a>
+      <a href="/how-close-is-agi" style="font-size:12px; color:var(--accent); border:1px solid var(--border2); border-radius:6px; padding:6px 12px;">How close are we to AGI?</a>
+      <a href="/deepseek-vs-openai-gap" style="font-size:12px; color:var(--accent); border:1px solid var(--border2); border-radius:6px; padding:6px 12px;">DeepSeek vs OpenAI</a>
+      <a href="/ai-2027-scenario-explained" style="font-size:12px; color:var(--accent); border:1px solid var(--border2); border-radius:6px; padding:6px 12px;">What is AI 2027?</a>
+      <a href="/us-china-ai-arms-race" style="font-size:12px; color:var(--accent); border:1px solid var(--border2); border-radius:6px; padding:6px 12px;">US–China AI arms race</a>
+      <a href="/gdpval-explained" style="font-size:12px; color:var(--accent); border:1px solid var(--border2); border-radius:6px; padding:6px 12px;">What is GDPval?</a>
+      <a href="/karpathy-agi-prediction" style="font-size:12px; color:var(--accent); border:1px solid var(--border2); border-radius:6px; padding:6px 12px;">Karpathy's AGI prediction</a>
+      <a href="/forecaster-leaderboard" style="font-size:12px; color:#fff; background:var(--accent); border:1px solid var(--accent); border-radius:6px; padding:6px 12px; font-weight:600;">🏆 Who's winning the AGI bet?</a>
+      <a href="/prediction-receipts" style="font-size:12px; color:var(--accent); border:1px solid var(--border2); border-radius:6px; padding:6px 12px;">📅 AI prediction receipts</a>
+      <a href="/ai-job-risk-check" style="font-size:12px; color:#fff; background:var(--accent); border:1px solid var(--accent); border-radius:6px; padding:6px 12px; font-weight:600;">📋 Will AI take my job? 60-sec check</a>
+      <a href="/invest" style="font-size:12px; color:#fff; background:var(--accent2); border:1px solid var(--accent2); border-radius:6px; padding:6px 12px; font-weight:600;">💰 AI Investing Hub: who's betting what</a>
+      <a href="/future-bet" style="font-size:12px; color:#fff; background:var(--accent); border:1px solid var(--accent); border-radius:6px; padding:6px 12px; font-weight:600;">🎲 The Future Bet: what do you bet happens?</a>
+      <a href="/swe-bench-explained" style="font-size:12px; color:var(--accent); border:1px solid var(--border2); border-radius:6px; padding:6px 12px;">What is SWE-Bench?</a>
+      <a href="/ai-progress-2026-so-far" style="font-size:12px; color:var(--accent); border:1px solid var(--border2); border-radius:6px; padding:6px 12px;">AI progress in 2026 so far</a>
+      <a href="/are-ai-scaling-laws-dead" style="font-size:12px; color:var(--accent); border:1px solid var(--border2); border-radius:6px; padding:6px 12px;">Are scaling laws dead?</a>
+      <a href="/what-is-agi" style="font-size:12px; color:var(--accent); border:1px solid var(--border2); border-radius:6px; padding:6px 12px;">What is AGI?</a>
+      <a href="/is-chatgpt-agi" style="font-size:12px; color:var(--accent); border:1px solid var(--border2); border-radius:6px; padding:6px 12px;">Is ChatGPT AGI?</a>
+      <a href="/ai-vs-human-intelligence" style="font-size:12px; color:var(--accent); border:1px solid var(--border2); border-radius:6px; padding:6px 12px;">AI vs human intelligence</a>
+      <a href="/how-fast-is-ai-improving" style="font-size:12px; color:var(--accent); border:1px solid var(--border2); border-radius:6px; padding:6px 12px;">How fast is AI improving?</a>
+      <a href="/narrow-vs-general-ai" style="font-size:12px; color:var(--accent); border:1px solid var(--border2); border-radius:6px; padding:6px 12px;">Narrow vs general AI</a>
+      <a href="/how-will-we-know-agi-arrived" style="font-size:12px; color:var(--accent); border:1px solid var(--border2); border-radius:6px; padding:6px 12px;">How will we know AGI arrived?</a>
+      <a href="/what-is-the-singularity" style="font-size:12px; color:var(--accent); border:1px solid var(--border2); border-radius:6px; padding:6px 12px;">What is the singularity?</a>
+      <a href="/sam-altman-agi-prediction" style="font-size:12px; color:var(--accent); border:1px solid var(--border2); border-radius:6px; padding:6px 12px;">Altman's AGI prediction</a>
+      <a href="/dario-amodei-agi-prediction" style="font-size:12px; color:var(--accent); border:1px solid var(--border2); border-radius:6px; padding:6px 12px;">Amodei's AGI prediction</a>
+      <a href="/agi-vs-superintelligence" style="font-size:12px; color:var(--accent); border:1px solid var(--border2); border-radius:6px; padding:6px 12px;">AGI vs superintelligence</a>
+      <a href="/aschenbrenner-timeline" style="font-size:12px; color:var(--accent); border:1px solid var(--border2); border-radius:6px; padding:6px 12px;">The full timeline, graded</a>
+      <a href="/altman-vs-musk-agi" style="font-size:12px; color:var(--accent); border:1px solid var(--border2); border-radius:6px; padding:6px 12px;">Altman vs Musk on AGI</a>
+      <a href="/altman-vs-amodei-agi" style="font-size:12px; color:var(--accent); border:1px solid var(--border2); border-radius:6px; padding:6px 12px;">Altman vs Amodei</a>
+      <a href="/musk-vs-hassabis-agi" style="font-size:12px; color:var(--accent); border:1px solid var(--border2); border-radius:6px; padding:6px 12px;">Musk vs Hassabis</a>
+      <a href="/karpathy-vs-altman-agi" style="font-size:12px; color:var(--accent); border:1px solid var(--border2); border-radius:6px; padding:6px 12px;">Karpathy vs Altman</a>
+      <a href="/for-agents" style="font-size:12px; color:var(--accent); border:1px solid var(--border2); border-radius:6px; padding:6px 12px;">Data for AI agents</a>
+    </div>
+  </div>
+
+  <!-- EXPLORE THE AI-AGENT STACK (internal-link hub → subdomain tools: passes authority + funnels the AI-curious) -->
+  <div class="section" id="explore">
+    <div class="section-header">
+      <h2 class="section-title" style="font-size:1rem;">Explore the AI-agent stack</h2>
+    </div>
+    <p style="font-size:13px; color:var(--muted); margin:-6px 0 14px; max-width:640px;">Plain-English references and free tools we build for the AI-agent era.</p>
+    <div style="display:flex; flex-wrap:wrap; gap:8px;">
+      <a href="https://glossary.agiscorecard.com/?ref=home" onclick="gtag('event','explore_click',{label:'glossary'});" style="font-size:12px; color:var(--accent); border:1px solid var(--border2); border-radius:6px; padding:6px 12px;">📖 Agent Glossary — 25 AI &amp; agent definitions</a>
+      <a href="https://tools.agiscorecard.com/?ref=home" onclick="gtag('event','explore_click',{label:'tools'});" style="font-size:12px; color:var(--accent); border:1px solid var(--border2); border-radius:6px; padding:6px 12px;">🛠 Free tools — schema, robots.txt, sitemap, MCP config</a>
+      <a href="https://mcppulse.agiscorecard.com/?ref=home" onclick="gtag('event','explore_click',{label:'mcppulse'});" style="font-size:12px; color:var(--accent); border:1px solid var(--border2); border-radius:6px; padding:6px 12px;">⚡ MCP Pulse — health-check an MCP server</a>
+      <a href="https://agentready.agiscorecard.com/?ref=home" onclick="gtag('event','explore_click',{label:'agentready'});" style="font-size:12px; color:var(--accent); border:1px solid var(--border2); border-radius:6px; padding:6px 12px;">🛒 AgentReady — is your store visible to AI shoppers?</a>
+    </div>
+  </div>
+
+  <!-- NEWSLETTER -->
+  <div class="newsletter" id="newsletter">
+    <h2>Be first to know when the score moves</h2>
+    <p>One email when a verdict flips or the AGI-2027 Thesis Tracker moves — the single auditable score no other tracker has. No hype, just signal.</p>
+    <a href="https://agiscorecard.beehiiv.com/subscribe?utm_source=agiscorecard&utm_medium=footer_cta" target="_blank" rel="noopener" onclick="gtag('event','subscribe_click',{location:'footer_cta'});" style="display:inline-block; background:var(--accent); color:#fff; padding:12px 28px; border-radius:8px; font-size:15px; font-weight:500; text-decoration:none;">Subscribe free →</a>
+  </div>
+</main>
+
+<footer>
+  <p style="margin-bottom: 8px;">
+    AGI Scorecard is an independent tracker inspired by
+    <a href="https://situational-awareness.ai" target="_blank">Situational Awareness</a> by Leopold Aschenbrenner.
+    Not affiliated with any AI lab. Grading discussed openly on the
+    <a href="https://forum.effectivealtruism.org/posts/awAbNh3AnDwKjQtXR/situational-awareness-a-two-year-scorecard" target="_blank">EA Forum</a>.
+  </p>
+  <p>Predictions shown are third-party forecasts. Nothing here is investment advice. · <a href="/about">About</a> · <a href="/privacy">Privacy</a> · <a href="/advertise">Advertise</a></p>
+</footer>
+
+<!-- Scroll-triggered subscribe slide-in (once per visitor, dismissible, non-blocking) -->
+<div id="sub-slidein" role="complementary" aria-label="Subscribe" style="position:fixed; right:16px; bottom:16px; max-width:330px; background:var(--bg2,#16151f); border:1px solid rgba(124,106,245,.38); border-radius:14px; padding:16px 18px; box-shadow:0 10px 34px rgba(0,0,0,.45); z-index:9999; display:none; transform:translateY(18px); opacity:0; transition:transform .3s ease, opacity .3s ease;">
+  <button onclick="dismissSlidein()" aria-label="Close" style="position:absolute; top:6px; right:10px; background:none; border:0; color:var(--muted,#a8a4c4); font-size:20px; cursor:pointer; line-height:1;">&times;</button>
+  <p style="margin:0 0 4px; font-weight:700; font-size:15px;">🎲 Which forecaster are you?</p>
+  <p style="margin:0 0 12px; font-size:12.5px; color:var(--muted,#a8a4c4);">Bet on 12 bold futures in 60 seconds — AGI, Mars, fusion. Then subscribe to see if you're right.</p>
+  <a href="/future-bet" onclick="gtag('event','agi_test_click',{location:'slidein'});" style="display:inline-block; background:var(--accent,#7c6af5); color:#fff; padding:9px 18px; border-radius:8px; font-size:13px; font-weight:600; text-decoration:none;">Play The Future Bet →</a>
+  <a href="https://agiscorecard.beehiiv.com/subscribe?utm_source=agiscorecard&utm_medium=slidein" target="_blank" rel="noopener" onclick="gtag('event','subscribe_click',{location:'slidein'});" style="display:block; margin-top:9px; font-size:12px; color:var(--muted,#a8a4c4); text-decoration:underline;">or just subscribe to the briefing →</a>
+</div>
+
+<script>
+let myVote = null, myArchetype = null;
+function castVote(choice) {
+  myVote = choice;
+  document.querySelectorAll('.vote-btn').forEach(b => {
+    b.classList.toggle('selected', b.textContent === choice);
+  });
+  const archetypes = {
+    '2025–26': {slug:'accelerationist', name:'The Accelerationist', emoji:'🚀', line:'AGI by 2026 — <strong>bolder than Elon Musk</strong> and ahead of Aschenbrenner\'s 2027 baseline. Buckle up.'},
+    '2027': {slug:'true-believer', name:'The True Believer', emoji:'⏱', line:'<strong>Exactly on Aschenbrenner\'s 2027 line</strong> — counting the OOMs with Situational Awareness.'},
+    '2028–30': {slug:'realist', name:'The Realist', emoji:'📊', line:'<strong>With Demis Hassabis (~2030)</strong> — still inside the decade, just past the 2027 focal point.'},
+    '2030s': {slug:'skeptic', name:'The Skeptic', emoji:'🤔', line:'<strong>Near Metaculus (2033)</strong> — more conservative than most frontier-lab insiders.'},
+    'Never / 2040+': {slug:'contrarian', name:'The Contrarian', emoji:'🛡', line:'<strong>With the academic survey (2040+)</strong> — betting against 15 OOMs of trend.'}
+  };
+  const a = archetypes[choice] || {name:'',emoji:'',line:''};
+  myArchetype = a;
+  document.getElementById('vote-verdict').innerHTML =
+    '<div style="font-size:12px;color:var(--muted);margin-bottom:2px;text-transform:uppercase;letter-spacing:.05em;">Your AGI type</div>' +
+    '<div style="font-size:21px;font-weight:700;margin-bottom:6px;">' + a.emoji + ' ' + a.name + '</div>' +
+    '<div>' + a.line + '</div>';
+  renderSpectrum(choice);
+  document.getElementById('vote-result').style.display = 'block';
+  gtag('event','vote_cast',{label:choice});
+}
+
+function renderSpectrum(choice) {
+  const YEAR_MIN = 2025, YEAR_MAX = 2041;
+  const pct = y => Math.max(3, Math.min(97, (y - YEAR_MIN) / (YEAR_MAX - YEAR_MIN) * 100));
+  const forecasters = [
+    {y: 2026, name: "Musk '26"},
+    {y: 2027, name: "Aschenbrenner '27"},
+    {y: 2030, name: "Hassabis '30"},
+    {y: 2033, name: "Metaculus '33"},
+    {y: 2047, name: "Survey '47"},
+  ];
+  const youYear = {'2025–26': 2025.7, '2027': 2027, '2028–30': 2029, '2030s': 2034, 'Never / 2040+': 2041}[choice] ?? 2029;
+  let html = '';
+  forecasters.forEach((f, i) => {
+    const side = i % 2 === 0 ? 'below' : 'above';
+    html += `<div class="spec-mark" style="left:${pct(f.y)}%"><div class="spec-dot"></div><div class="spec-lab ${side}">${f.name}</div></div>`;
+  });
+  html += `<div class="spec-mark you" style="left:${pct(youYear)}%"><div class="spec-dot"></div><div class="spec-lab above">◆ YOU</div></div>`;
+  document.getElementById('vote-spectrum').innerHTML = html;
+}
+// Per-prediction actions, injected the first time a row is expanded.
+//
+// Expanding a prediction is the ONLY interaction the analytics has ever recorded
+// people performing on this site — across 29 JS-confirmed pageviews there were three
+// pred_expand events and zero clicks on any tool link, banner or slide-in. So the
+// conversion belongs inside the thing they already do, not in another entry point
+// they scroll past. The row already ends on "Flips if …", which is the most valuable
+// sentence on the page and precisely what the briefing exists to deliver.
+//
+// Keyed off each detail row's own verdict link, so no markup changes and no second
+// list to keep in sync.
+const PRED_ACT = {
+  '/can-ai-replace-knowledge-workers': ['knowledge-work',        'PLTR-TEM-MSFT'],
+  '/is-ai-compute-still-scaling':      ['compute-scaling',       'NVDA-TSM-MU'],
+  '/ai-capex-trillion-dollar':         ['capex',                 'CRWV-VRT-CEG'],
+  '/did-open-source-ai-fade':          ['open-source-fades',     'META-BABA'],
+  '/will-agi-arrive-2027':             ['agi-2027',              'TSLA'],
+  '/will-the-us-government-build-agi': ['the-project',           'PLTR'],
+  // No basket for these two on purpose: no listed ticker's AI valuation actually
+  // rests on them, and inventing one to fill the row is the exact fabrication the
+  // Invest section cannot survive. They still get the flip alert.
+  '/intelligence-explosion-2027':      ['intelligence-explosion', null],
+  '/will-there-be-superintelligence':  ['superintelligence',      null],
+};
+function predActions(detail) {
+  if (detail.dataset.acts) return;
+  const link = detail.querySelector('a[href^="/"]');
+  const spec = link && PRED_ACT[link.getAttribute('href')];
+  if (!spec) return;
+  const [id, basket] = spec;
+  const p = document.createElement('p');
+  p.className = 'pd-act';
+  p.innerHTML =
+    '<a class="pd-btn" href="https://agiscorecard.beehiiv.com/subscribe?utm_source=agiscorecard&utm_medium=pred_' + id +
+    '" target="_blank" rel="noopener" onclick="gtag(\'event\',\'subscribe_click\',{location:\'pred_flip\',label:\'' + id +
+    '\'});">🔔 Tell me if this one flips</a>' +
+    (basket ? '<a class="pd-btn ghost" href="/ai-stock-exposure?b=' + basket +
+      '" onclick="gtag(\'event\',\'tool_click\',{location:\'pred_exposure\',label:\'' + id +
+      '\'});">📈 Who is priced on it</a>' : '');
+  link.parentNode.after(p);
+  detail.dataset.acts = '1';
+}
+function togglePred(row) {
+  const detail = row.nextElementSibling;
+  const open = detail.classList.toggle('open');
+  row.classList.toggle('open', open);
+  if (open) { predActions(detail); gtag('event','pred_expand',{label:row.cells[1].textContent.slice(0,40)}); }
+}
+function shareScorecard() {
+  const text = encodeURIComponent(`Two years after "Situational Awareness" predicted AGI by 2027:\n\n✅ 3 predictions on track\n❌ 1 clearly wrong (open-source didn't fade)\n⏳ 2 still open\n\nThe full scorecard:`);
+  const url = encodeURIComponent(window.location.href);
+  window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank');
+}
+
+function agiShareUrl() {
+  const a = myArchetype || {slug:''};
+  return a.slug ? `https://agiscorecard.com/agi-type/${a.slug}` : 'https://agiscorecard.com/#vote';
+}
+function agiShareText() {
+  const a = myArchetype || {name:'',emoji:''};
+  return `I'm "${a.name}" ${a.emoji} on AGI — I put it at ${myVote}. Think you can out-predict me? What's your AGI type?`;
+}
+// Native share sheet (WhatsApp/WeChat/iMessage/…) on mobile — the real fission
+// channel — with an X-intent fallback on desktop.
+function challengeFriend() {
+  const text = agiShareText(), url = agiShareUrl();
+  gtag('event','challenge_share',{label:(myArchetype||{}).slug||''});
+  if (navigator.share) {
+    navigator.share({title:"What's your AGI type?", text, url}).catch(()=>{});
+  } else {
+    window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text+' 👇')}&url=${encodeURIComponent(url)}`, '_blank');
+  }
+}
+function shareToX() {
+  const text = encodeURIComponent(agiShareText()+' 👇');
+  const url = encodeURIComponent(agiShareUrl());
+  gtag('event','x_share',{label:(myArchetype||{}).slug||''});
+  window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank');
+}
+function copyShare() {
+  const a = myArchetype || {slug:''};
+  const link = a.slug ? `https://agiscorecard.com/agi-type/${a.slug}` : window.location.href;
+  navigator.clipboard.writeText(link).then(() => {
+    document.getElementById('copied-msg').style.display = 'inline';
+    setTimeout(() => document.getElementById('copied-msg').style.display = 'none', 2000);
+  });
+}
+function lockPrediction() {
+  const a = myArchetype;
+  if (!a || !a.slug) return;
+  const d = new Date().toISOString().slice(0, 10);
+  try { localStorage.setItem('agiLock', JSON.stringify({ slug: a.slug, name: a.name, emoji: a.emoji, date: d })); } catch (e) {}
+  gtag('event', 'prediction_lock', { label: a.slug });
+  const b = document.getElementById('lock-btn');
+  b.textContent = '🔒 Locked in — ' + d; b.disabled = true; b.style.opacity = .65;
+  renderLocked();
+}
+function renderLocked() {
+  let raw; try { raw = localStorage.getItem('agiLock'); } catch (e) {}
+  if (!raw) return;
+  let l; try { l = JSON.parse(raw); } catch (e) { return; }
+  if (!l || !l.name) return;
+  const el = document.getElementById('locked-banner');
+  if (!el) return;
+  el.innerHTML = '🔒 You locked <strong>' + l.emoji + ' ' + l.name + '</strong> on ' + l.date +
+    '. <a href="https://agiscorecard.beehiiv.com/subscribe?utm_source=agiscorecard&utm_medium=post_vote_lock" target="_blank" rel="noopener" style="color:var(--accent);" onclick="gtag(\'event\',\'subscribe_click\',{location:\'post_vote_lock\'});">Get told if you\'re proven right &rarr;</a>';
+  el.style.display = 'block';
+}
+try { renderLocked(); } catch (e) {}
+
+const pageOpenTime = Date.now();
+function updateTicker() {
+  const el = document.getElementById('live-ticker');
+  if (!el) return;
+  const secs = Math.floor((Date.now() - pageOpenTime) / 1000);
+  const flops = (secs * 4.2).toFixed(0);
+  el.textContent = `Since you opened this page: ~${Number(flops).toLocaleString()} exaFLOPs of AI training compute burned worldwide (rough est.)`;
+}
+setInterval(updateTicker, 1000);
+
+function updateCountdown() {
+  const target = new Date('2027-01-01T00:00:00Z');
+  const now = new Date();
+  const diff = target - now;
+  if (diff <= 0) {
+    document.getElementById('cd-days').textContent = '0';
+    document.getElementById('cd-hours').textContent = '0';
+    document.getElementById('cd-min').textContent = '0';
+    document.getElementById('cd-sec').textContent = '0';
+    return;
+  }
+  const days = Math.floor(diff / 86400000);
+  const hours = Math.floor((diff % 86400000) / 3600000);
+  const mins = Math.floor((diff % 3600000) / 60000);
+  const secs = Math.floor((diff % 60000) / 1000);
+  document.getElementById('cd-days').textContent = days.toLocaleString();
+  document.getElementById('cd-hours').textContent = String(hours).padStart(2,'0');
+  document.getElementById('cd-min').textContent = String(mins).padStart(2,'0');
+  document.getElementById('cd-sec').textContent = String(secs).padStart(2,'0');
+}
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+// Scroll-triggered subscribe slide-in — squeeze more subscribe clicks from small traffic
+function dismissSlidein(){
+  var el=document.getElementById('sub-slidein');
+  if(el){ el.style.transform='translateY(18px)'; el.style.opacity='0'; setTimeout(function(){el.style.display='none';},300); }
+  // Timestamp, not a flag: dismissal now cools down for 7 days instead of forever.
+  // A reader who said "not now" once is not a reader who said "never".
+  try{ localStorage.setItem('subDismissed',String(Date.now())); }catch(e){}
+  gtag('event','slidein_dismiss');
+}
+(function(){
+  // Trigger redesign 2026-08-17 (owner 2026-08-06: "下拉到最下面弹窗才出来" — the
+  // backlog `slidein-coverage` item). Show on a READING signal, whichever comes first:
+  //   scroll — 1.5 screens (viewport-relative, page-length-proof) or 40% of the
+  //           document (was 55% ≈ seven screens on this 12,495px page);
+  //   timer  — 20s of VISIBLE dwell (paused while the tab is hidden, so an idle
+  //           background tab never triggers it; readers whose answer sits above the
+  //           fold give no scroll signal at all).
+  // slidein_show carries which one fired, and the subscribe anchor's location becomes
+  // slidein_scroll / slidein_timer, so sub_open can say WHICH timing converts.
+  // At most one show per session; a dismissal within the last 7 days suppresses it
+  // (legacy '1' converts to a timestamp = one more quiet week, then back in the pool).
+  try{
+    var v=localStorage.getItem('subDismissed');
+    if(v==='1'){ localStorage.setItem('subDismissed',String(Date.now())); return; }
+    if(v && Date.now()-parseInt(v,10) < 604800000) return;
+  }catch(e){}
+  try{ if(sessionStorage.getItem('slideinShown')==='1') return; }catch(e){}
+  var shown=false;
+  function show(trg){
+    if(shown) return;
+    shown=true;
+    try{ sessionStorage.setItem('slideinShown','1'); }catch(e){}
+    var el=document.getElementById('sub-slidein');
+    if(el){
+      try{
+        var a=el.querySelector('a[href*="beehiiv.com/subscribe"]');
+        if(a) a.setAttribute('onclick',"gtag('event','subscribe_click',{location:'slidein_"+trg+"'});");
+      }catch(e){}
+      el.style.display='block';
+      requestAnimationFrame(function(){ el.style.transform='translateY(0)'; el.style.opacity='1'; });
+      gtag('event','slidein_show',{location:trg});
+    }
+    window.removeEventListener('scroll',maybeShow);
+  }
+  function maybeShow(){
+    if(shown) return;
+    var frac=(window.scrollY+window.innerHeight)/Math.max(document.body.scrollHeight,1);
+    if(window.scrollY > 1.5*window.innerHeight || frac>0.4) show('scroll');
+  }
+  window.addEventListener('scroll',maybeShow,{passive:true});
+  var left=20000, last=Date.now();
+  var iv=setInterval(function(){
+    var now=Date.now();
+    if(!document.hidden) left-=now-last;
+    last=now;
+    if(shown){ clearInterval(iv); return; }
+    if(left<=0){ clearInterval(iv); show('timer'); }
+  },1000);
+})();
+
+</script>
+</body>
+</html>

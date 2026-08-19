@@ -1,0 +1,215 @@
+# The AGI Scorecard
+
+> An independent, continuously-updated scorecard that grades every major prediction from Leopold Aschenbrenner's 2024 essay *Situational Awareness* against real-world AI progress. As of mid-2026: 3 predictions on track, 1 wrong, 2 open, 2 too early. The headline "AGI by 2027" claim resolves by January 1, 2028.
+
+Each verdict is one of: On track, Wrong, Open, or Pending, and carries a pre-registered condition that would flip it. Data is recombined across pages from the same verified evidence base. Not affiliated with any AI lab.
+
+## Data
+- [Revenue experiment log (public, pre-registered)](https://agiscorecard.com/experiments): Ten attempts to monetise a ~200-user site, each with success AND kill thresholds published before the result; machine-readable at /experiments.json (CC BY 4.0). Includes a negative control arm and a registered self-falsification condition. Revenue to date: $0.
+
+- [Atom feed (newest pages & updates)](https://agiscorecard.com/feed.xml): Subscribe for every new verdict page and update.
+- [Machine-readable verdicts (JSON, CC BY 4.0)](https://agiscorecard.com/data.json): All 8 predictions with verdicts, evidence, primary-source links, forecaster timelines, and the Thesis Tracker score — free to cite with attribution.
+- [AGI-2027 Thesis Tracker](https://agiscorecard.com/progress-index): A single auditable 0–100 score (currently 62.5) of how much of Aschenbrenner's thesis is holding up, computed from the 8 verdicts; score history at /index-history.json.
+- [Free AI & AGI tools (hub)](https://agiscorecard.com/ai-tools): All nine free, no-sign-up interactive tools in one place — Your AGI Timeline, AGI Type Test, AI Job Risk Check, The Future Bet, Thesis Tracker, Prediction Receipts, Forecaster Leaderboard, AI Stock Exposure Check, Matrix Odds Calculator. Five are embeddable via ?embed=1; copy-paste iframe code on the page.
+- [Your AGI Timeline (one-slider tool)](https://agiscorecard.com/your-agi-timeline): Pick the year you think AGI arrives; the tool places it against nine real published forecasts (Musk end-2026 → survey median 2047, quoted verbatim from /data.json) and labels it bull/base/bear. Shareable, embeddable via ?embed=1.
+- [What's your AGI type? (30-second test)](https://agiscorecard.com/agi-test): Interactive test that maps you onto the forecaster spectrum (Musk/Aschenbrenner/Hassabis/Metaculus) and returns an archetype.
+- [The Future Bet (60-second game)](https://agiscorecard.com/future-bet): Bet YES/NO on 12 bold predictions (AGI, humanoid robots, Mars, anti-aging, fusion, alien life) and get a Futurist type + shareable grid; embeddable on other sites via iframe. Bridges to the AGI Tracker.
+- [Will AI take my job? (60-second exposure check)](https://agiscorecard.com/ai-job-risk-check): 6-question self-assessment returning an honest exposure tier grounded in tracked evidence (~83% GDPval, ~80% SWE-Bench Pro, the autonomy gap). No invented per-job statistics.
+- [AI prediction receipts](https://agiscorecard.com/prediction-receipts): Live countdowns to every dated public AGI call — Musk end-2026 (first to come due), Amodei 2026–27, Aschenbrenner 2027, Hassabis 2030, Metaculus 2033, survey 2047. Receipts stay when dates pass.
+- [AGI forecaster leaderboard](https://agiscorecard.com/forecaster-leaderboard): Every public AGI forecaster ranked by how soon they called it — Musk (end 2026), Aschenbrenner (2027), Amodei (2026–27), Hassabis/Samotsvety (~2030), Metaculus (2033), Karpathy (~2035), researcher survey (2047). Nobody has resolved yet; the Thesis Tracker reads 62.5/100.
+- [Data for AI agents](https://agiscorecard.com/for-agents): How to plug the scorecard's JSON, Atom feed, and llms.txt into any AI agent or digest tool.
+- [MCP server](https://agiscorecard.com/mcp): Native Model Context Protocol endpoint (Streamable HTTP, no auth, free) — tools: get_thesis_tracker, get_verdicts, search_site, get_sunwatch_track_record. `claude mcp add --transport http agiscorecard https://agiscorecard.com/mcp`
+- [Dataset mirror on GitHub](https://github.com/f-tiger/agiscorecard-mcp): The verdicts dataset and full Thesis Tracker history in git, rebuilt from this site nightly. Because it only changes when a verdict changes, its commit history is a timestamped record of when each grade moved.
+- [SunWatch invest console](https://invest.agiscorecard.com/en): AI-cycle market calls written as falsifiable price triggers, logged in public before the outcome — hits and misses side by side, misses never deleted. Machine-readable ledger: https://invest.agiscorecard.com/api/track-record · pricing: https://invest.agiscorecard.com/pricing.md · own llms.txt: https://invest.agiscorecard.com/llms.txt
+- [AGI-2027 resolution page](https://agiscorecard.com/agi-2027-resolution): Pre-registered resolution criteria for the "AGI by 2027" claim, live countdown to Jan 1 2028, and the current evidence state. The permanent resolution record.
+- [Odds vs evidence (running series)](https://agiscorecard.com/agi-odds-vs-evidence): Prediction-market AGI odds (dated snapshots) set against the graded capability evidence — why an announcement contract and a capability verdict measure different things.
+- [Changelog](https://agiscorecard.com/changelog): Dated record of every real change — verdict moves, score history, new tools. No backfilling.
+- [Calibration page](https://agiscorecard.com/calibration): The network's own report card — every probability-shaped claim inventoried (8 verdicts, 8-call market ledger at 62.5% with n stated, red-team odds), Brier score pre-committed at n≥20.
+- [Installable agent skill](https://agiscorecard.com/skill): One-command skill (SKILL.md at /skill.md) that teaches Claude Code or any compatible agent to answer AGI questions from live data and alert on verdict flips.
+- [README verdict badges](https://agiscorecard.com/badge): One-line markdown badges showing the live "AGI by 2027" verdict and scorecard tally; auto-update on verdict changes.
+
+- [Warren Buffett's AI stocks](https://agiscorecard.com/invest/warren-buffett): Q1 2026 13F — Amazon fully exited, Alphabet +225%, Apple untouched at ~22%; book cut from 40 names to 26.
+- [Cathie Wood's AI portfolio](https://agiscorecard.com/invest/cathie-wood): ARK Q1 2026 13F — ~$12.9B across 181 positions, Tesla 8.2% #1, AMD added to #2 (4.3%); CoreWeave, Tempus, Amazon added.
+- [Matrix Odds Calculator](https://agiscorecard.com/matrix-odds): Free tool. Decomposes "AI ends in something like The Matrix" into five preconditions that must all hold, shows this site's graded verdict and primary source for four of them (AGI-2027 Open; intelligence explosion Pending, precondition undemonstrated; AI capex Exceeded and compute scaling On track; superintelligence Pending), and multiplies user-supplied conditional probabilities in the browser. The finding the tool exists to make: the fifth link — that a superintelligence would keep humans alive inside a simulation, the step that makes it The Matrix rather than any other bad ending — has NO falsifiable evidence in either direction, here or anywhere, while the strongest evidence in the whole chain sits on the least-argued link (the physical buildout, already Exceeded). The site publishes no probability of its own for any link; every displayed figure is user-entered. Results are permalinked (?p=90-60-80-40-5) and the page is embeddable (?embed=1). Chinese version: https://agiscorecard.com/zh/matrix-odds
+- [AI Stock Exposure Check](https://agiscorecard.com/ai-stock-exposure): Free tool. Maps 17 AI tickers to the eight graded Situational Awareness predictions and scores a basket on the same 0-100 scale as the AGI-2027 Thesis Tracker (62.5 as of 2026-07-12). Key finding: a standard AI infrastructure basket scores ~99 while roughly 2% of its weight rides on whether AGI actually arrives — listed AI equities are overwhelmingly a bet on the buildout (capex, compute), not on the 2027 date. A basket is encoded in the URL (?b=NVDA-AMD-TSM), so results are permalinked and shareable with no account; the result is also named as an archetype (Capex Landlord / Tail Holder / Thesis Owner / Anti-Thesis). Ticker-to-prediction mapping is editorial; holdings are public Q1 2026 13F. Not investment advice. Chinese version: https://agiscorecard.com/zh/ai-stock-exposure
+- [AI Investing Hub](https://agiscorecard.com/invest): How capital is positioned on AI — the rise and July-2026 blow-up of Aschenbrenner's fund (439% YTD through June, then ~-67% in July; most public holdings transferred to Citadel per CNBC/Bloomberg; ~$10B remains incl. Anthropic) and 8 investing legends' Q1 2026 13F stances. Education only, public filings and reporting only.
+
+## Index
+
+- [AGI questions, answered (full index)](https://agiscorecard.com/agi-questions): One-page index of every question the scorecard answers.
+
+## Core pages
+
+- [Live scorecard (home)](https://agiscorecard.com/): The current verdict on all 8 predictions.
+- [Was Aschenbrenner right about AGI?](https://agiscorecard.com/was-aschenbrenner-right): Verdict tracker — 3 on track, 1 wrong, 2 open.
+- [Two-year scorecard (full analysis)](https://agiscorecard.com/two-year-scorecard.html): Grading reasoning, evidence, and pre-registered flip conditions for each prediction.
+- [Situational Awareness predictions, tracked](https://agiscorecard.com/situational-awareness-predictions): Every prediction with its current verdict and evidence.
+- [Situational Awareness, summarized](https://agiscorecard.com/situational-awareness-summary): What the essay argues and how each prediction is holding up.
+
+## Key questions
+
+- [What is AGI?](https://agiscorecard.com/what-is-agi): AI that can do essentially any cognitive task a skilled human can; the three working definitions and where each stands in 2026.
+- [Is ChatGPT AGI?](https://agiscorecard.com/is-chatgpt-agi): No — near skilled-human on scoped tasks (~83% GDPval) but missing reliable autonomous work, and far from superintelligence.
+- [AI vs human intelligence](https://agiscorecard.com/ai-vs-human-intelligence): Superhuman on recall/speed/scoped tasks, below human on reliable autonomous judgment — a jagged frontier, not one scale.
+- [Narrow vs general AI](https://agiscorecard.com/narrow-vs-general-ai): The ANI → AGI → ASI ladder; everything in 2026 is still (very wide) narrow AI — reliable unsupervised autonomy is the line to general.
+- [How will we know when AGI has arrived?](https://agiscorecard.com/how-will-we-know-agi-arrived): The real test is reliable unsupervised autonomy (an AI researcher's job end-to-end), not a benchmark score.
+- [Who is building AGI?](https://agiscorecard.com/who-is-building-agi): OpenAI, DeepMind, Anthropic, xAI lead, with open-weight pressure from DeepSeek/Qwen; none has crossed the autonomy bar.
+- [Will AGI arrive by 2027?](https://agiscorecard.com/will-agi-arrive-2027): Open. Agentic coding is strong (~80% SWE-Bench Pro) but autonomous AI research is undemonstrated; resolves by January 1, 2028.
+- [When will AGI arrive? (all forecasts)](https://agiscorecard.com/when-will-agi-arrive): Public forecasts range from 2026 (Musk) to 2047 (academic survey median); expert medians compressed from ~2060 to ~2033 in six years.
+- [Did open-source AI fade?](https://agiscorecard.com/did-open-source-ai-fade): No — graded Wrong. DeepSeek V4 and Qwen 3.7 Max trail the frontier by only ~3–6 months.
+- [Will the US government build AGI? (The Project)](https://agiscorecard.com/will-the-us-government-build-agi): Open. National-security involvement is growing but no formal government AGI project exists.
+- [Will there be an intelligence explosion in 2027?](https://agiscorecard.com/intelligence-explosion-2027): Pending. The precondition (autonomous AI research) is undemonstrated.
+
+## Verdict deep-dives
+
+- [Can AI replace knowledge workers?](https://agiscorecard.com/can-ai-replace-knowledge-workers): On track. ~83% GDPval, ~80% SWE-Bench Pro; drop-in reliability still lags benchmarks.
+- [Will AI cause mass unemployment?](https://agiscorecard.com/will-ai-cause-mass-unemployment): Not the overnight cliff — capability crossed thresholds but reliable unsupervised job replacement is undemonstrated; task automation, not a sudden jobs cliff.
+- [What jobs are safe from AI?](https://agiscorecard.com/what-jobs-are-safe-from-ai): The safest work needs reliable unsupervised judgment, physical action, or human trust — where the autonomy gap bites hardest.
+- [Will AI take over?](https://agiscorecard.com/will-ai-take-over): Every takeover scenario presupposes reliable autonomous agency, which is undemonstrated — AI is a powerful assistant, not an autonomous agent.
+- [Is AI compute still scaling?](https://agiscorecard.com/is-ai-compute-still-scaling): On track. The ~0.5 OOM/yr pace has roughly held.
+- [Did AI capex hit trillion-dollar scale?](https://agiscorecard.com/ai-capex-trillion-dollar): Exceeded — his most vindicated call; revenue, however, lags the spend.
+- [Will there be superintelligence in the 2030s?](https://agiscorecard.com/will-there-be-superintelligence): Pending. Depends on AGI and an intelligence explosion that haven't occurred.
+
+## Analysis
+- [Did the fund collapse prove Aschenbrenner wrong about AGI?](https://agiscorecard.com/aschenbrenner-fund-collapse): July 2026 — Situational Awareness lost ~67% in a month and sold most public holdings to Citadel (per CNBC/Bloomberg); none of the 8 graded predictions moved, Tracker stays 62.5/100. Explains why P&L and prediction grades are separate, with sources.
+
+- [Is AGI inevitable?](https://agiscorecard.com/is-agi-inevitable): Strongly trending, not guaranteed — depends on one unproven step (autonomous work) and the input trends holding.
+- [Is AGI just hype?](https://agiscorecard.com/is-agi-just-hype): Neither pure hype nor imminent — a scorecard-based read: trends on track, one big claim already wrong, "AGI by 2027" still open.
+- [Will AI replace programmers?](https://agiscorecard.com/will-ai-replace-programmers): Partly and unevenly — ~80% SWE-Bench Pro and agents in production, but no unsupervised end-to-end replacement.
+- [Demis Hassabis's AGI prediction](https://agiscorecard.com/demis-hassabis-agi-prediction): ~50% by 2030 — cautious frontier-builder view.
+- [Elon Musk's AGI prediction](https://agiscorecard.com/elon-musk-agi-prediction): By end of 2026 — the most aggressive public call.
+- [Andrej Karpathy's AGI prediction](https://agiscorecard.com/karpathy-agi-prediction): About a decade out — the most conservative frontier-insider call.
+- [Sam Altman's AGI prediction](https://agiscorecard.com/sam-altman-agi-prediction): Confident and near-term — superintelligence "a few thousand days" away, no hard date.
+- [Dario Amodei's AGI prediction](https://agiscorecard.com/dario-amodei-agi-prediction): "Powerful AI" — a country of geniuses in a datacenter — possibly as early as 2026–27.
+- [AGI vs superintelligence](https://agiscorecard.com/agi-vs-superintelligence): The definitions, the chain between them, and where each stands.
+- [The Situational Awareness timeline](https://agiscorecard.com/aschenbrenner-timeline): All five predicted stages with live verdicts.
+- [Is the AI capex a bubble?](https://agiscorecard.com/is-the-ai-capex-a-bubble): Spend exceeded projections but revenue lags — the gap is the risk.
+- [What is superintelligence?](https://agiscorecard.com/what-is-superintelligence)
+- [What is the singularity?](https://agiscorecard.com/what-is-the-singularity): The point where AI improving AI triggers runaway progress (the intelligence explosion); precondition undemonstrated, graded Pending.: AI far beyond humans; predicted early 2030s via an intelligence explosion; Pending.
+- [AI orders of magnitude (OOMs), explained](https://agiscorecard.com/ai-orders-of-magnitude-explained): The ~0.5 OOM/yr effective-compute bet behind the 2027 forecast.
+- [What is unhobbling in AI?](https://agiscorecard.com/what-is-unhobbling-ai): Gains from reasoning/tools/agents, not raw scale — one of three drivers.
+- [What is GDPval?](https://agiscorecard.com/gdpval-explained): The knowledge-work benchmark (~83%) behind the On-track "AI outpaces knowledge workers" verdict.
+- [What is SWE-Bench?](https://agiscorecard.com/swe-bench-explained): The agentic-coding benchmark (~80% on Pro) behind the AI-coding verdicts.
+- [AI progress in 2026 so far](https://agiscorecard.com/ai-progress-2026-so-far)
+- [How fast is AI improving?](https://agiscorecard.com/how-fast-is-ai-improving): Fast on inputs (~0.5 OOM/yr, benchmarks into the 80s%), slow on the autonomy that defines AGI — two speeds.: Mid-year synthesis — 3 on track, 1 wrong, 2 open, 2 pending.
+- [Are AI scaling laws dead?](https://agiscorecard.com/are-ai-scaling-laws-dead): No — ~0.5 OOM/yr roughly held; gains shifted toward reasoning/tools/agents.
+- [How close are we to AGI?](https://agiscorecard.com/how-close-is-agi): Close on capability (~83% GDPval, ~80% SWE-Bench Pro), not on autonomy.
+- [DeepSeek vs OpenAI: how far behind is China?](https://agiscorecard.com/deepseek-vs-openai-gap): ~3–6 months, at a fraction of the cost, with real innovation.
+- [What is the AI 2027 scenario?](https://agiscorecard.com/ai-2027-scenario-explained): A 2025 month-by-month takeoff scenario sharing 2027 timing with Situational Awareness.
+- [The US–China AI arms race](https://agiscorecard.com/us-china-ai-arms-race): "The Project" is Open, but its durable-moat premise is already weakening.
+
+## Comparisons
+
+- [Aschenbrenner vs Metaculus](https://agiscorecard.com/aschenbrenner-vs-metaculus): 2027 vs the community median of 50% by 2033.
+- [Aschenbrenner vs Hassabis](https://agiscorecard.com/aschenbrenner-vs-hassabis): 2027 vs ~50% by 2030.
+- [Altman vs Musk on AGI](https://agiscorecard.com/altman-vs-musk-agi): The two most-watched positions — a dated bet vs an unfalsifiable one.
+- [Altman vs Amodei on AGI](https://agiscorecard.com/altman-vs-amodei-agi): Similar timelines, opposite definitional discipline.
+- [Musk vs Hassabis on AGI](https://agiscorecard.com/musk-vs-hassabis-agi): Boldest date (2026) vs builder's caution (~50% by 2030).
+- [Karpathy vs Altman on AGI](https://agiscorecard.com/karpathy-vs-altman-agi): Same OpenAI roots, reads a decade apart.
+- [Aschenbrenner vs Musk](https://agiscorecard.com/aschenbrenner-vs-musk): 2027 vs Musk's end-of-2026 — the two most aggressive public forecasts.
+- [Situational Awareness vs AI 2027](https://agiscorecard.com/situational-awareness-vs-ai-2027): Two 2027 AGI forecasts compared — a trend essay vs a narrative scenario.
+
+## Geopolitics
+
+- [Is China beating the US to AGI?](https://agiscorecard.com/will-china-beat-us-to-agi): Not yet — the US frontier leads, but the gap is months, not years, undercutting the durable-moat thesis.
+
+## People
+
+- [Who is Leopold Aschenbrenner?](https://agiscorecard.com/who-is-leopold-aschenbrenner): Former OpenAI researcher, author of Situational Awareness, founder of Situational Awareness LP.
+
+## 中文 (Chinese)
+
+- [什么是 AGI](https://agiscorecard.com/zh/what-is-agi)
+- [阿申布伦纳预测准吗](https://agiscorecard.com/zh/was-aschenbrenner-right)
+- [AGI 会在 2027 年到来吗](https://agiscorecard.com/zh/will-agi-arrive-2027)
+- [开源 AI 衰落了吗](https://agiscorecard.com/zh/did-open-source-ai-fade)
+- [中国会在 AGI 上超过美国吗](https://agiscorecard.com/zh/will-china-beat-us-to-agi)
+- [AGI 什么时候到来](https://agiscorecard.com/zh/when-will-agi-arrive)
+- [莱奥波德·阿申布伦纳是谁](https://agiscorecard.com/zh/who-is-leopold-aschenbrenner)
+- [奥特曼的 AGI 预测](https://agiscorecard.com/zh/sam-altman-agi-prediction)
+- [马斯克的 AGI 预测](https://agiscorecard.com/zh/elon-musk-agi-prediction)
+- [AGI 还有多远](https://agiscorecard.com/zh/how-close-is-agi)
+- [AGI 是炒作吗](https://agiscorecard.com/zh/is-agi-just-hype)
+- [DeepSeek 和 OpenAI 的差距](https://agiscorecard.com/zh/deepseek-vs-openai-gap)
+- [AI 会取代程序员吗](https://agiscorecard.com/zh/will-ai-replace-programmers)
+- [什么是超级智能](https://agiscorecard.com/zh/what-is-superintelligence)
+- [中美 AI 竞赛](https://agiscorecard.com/zh/us-china-ai-arms-race)
+- [AGI 和超级智能的区别](https://agiscorecard.com/zh/agi-vs-superintelligence)
+- [AGI-2027 命题追踪指数](https://agiscorecard.com/zh/progress-index)
+- [AI 会取代我的工作吗？60 秒暴露度自查（中文）](https://agiscorecard.com/zh/ai-job-risk-check): 6 道题算出岗位 AI 暴露层级，规则公开，锚定 GDPval 约 83%、SWE-Bench Pro 约 80% 与尚未跨过的自主性缺口；不编造分岗位百分比。支持 ?embed=1 嵌入。
+- [免费 AI 工具合集（中文）](https://agiscorecard.com/zh/ai-tools): 8 个免费免注册的互动工具中文入口：AGI 类型测试、岗位暴露度自查、押注未来、追踪指数、投资板块、预言收据、AI 持仓敞口自查、黑客帝国概率计算器；其中 5 个支持 ?embed=1 嵌入。
+- [AGI 类型测试：你是哪种？](https://agiscorecard.com/zh/agi-test): 30 秒互动测试，测出你的 AGI 立场原型，与主要预测者对比。
+- [ChatGPT 算 AGI 吗](https://agiscorecard.com/zh/is-chatgpt-agi)
+- [AI 会造成大规模失业吗](https://agiscorecard.com/zh/will-ai-cause-mass-unemployment)
+- [我们怎么知道 AGI 到来了](https://agiscorecard.com/zh/how-will-we-know-agi-arrived)
+- [谁在造 AGI](https://agiscorecard.com/zh/who-is-building-agi)
+- [什么是奇点](https://agiscorecard.com/zh/what-is-the-singularity)
+- [哪些工作不会被 AI 取代](https://agiscorecard.com/zh/what-jobs-are-safe-from-ai)
+- [AI 和人类智能对比](https://agiscorecard.com/zh/ai-vs-human-intelligence)
+- [AI 进步有多快](https://agiscorecard.com/zh/how-fast-is-ai-improving)
+- [窄 AI vs 通用 AI](https://agiscorecard.com/zh/narrow-vs-general-ai)
+- [AI 会接管世界吗](https://agiscorecard.com/zh/will-ai-take-over)
+- [AGI 是必然的吗](https://agiscorecard.com/zh/is-agi-inevitable)
+
+## Español (Spanish)
+
+- [¿Acertó Aschenbrenner sobre la AGI?](https://agiscorecard.com/es/was-aschenbrenner-right)
+- [¿Llegará la AGI en 2027?](https://agiscorecard.com/es/will-agi-arrive-2027)
+- [¿Se desvaneció la IA de código abierto?](https://agiscorecard.com/es/did-open-source-ai-fade)
+- [¿Superará China a EE. UU. en la AGI?](https://agiscorecard.com/es/will-china-beat-us-to-agi)
+- [¿Cuándo llegará la AGI?](https://agiscorecard.com/es/when-will-agi-arrive)
+- [¿Quién es Leopold Aschenbrenner?](https://agiscorecard.com/es/who-is-leopold-aschenbrenner)
+
+## 日本語 (Japanese)
+
+- [アッシェンブレナーの予測は当たったか](https://agiscorecard.com/ja/was-aschenbrenner-right)
+- [AGIは2027年に来るか](https://agiscorecard.com/ja/will-agi-arrive-2027)
+- [オープンソースAIは衰退したか](https://agiscorecard.com/ja/did-open-source-ai-fade)
+- [中国はAGIで米国を追い抜くか](https://agiscorecard.com/ja/will-china-beat-us-to-agi)
+- [AGIはいつ来るか](https://agiscorecard.com/ja/when-will-agi-arrive)
+- [レオポルド・アッシェンブレナーとは誰か](https://agiscorecard.com/ja/who-is-leopold-aschenbrenner)
+
+## Português (Portuguese)
+
+- [Aschenbrenner acertou sobre a AGI?](https://agiscorecard.com/pt/was-aschenbrenner-right)
+- [A AGI vai chegar em 2027?](https://agiscorecard.com/pt/will-agi-arrive-2027)
+- [A IA de código aberto desapareceu?](https://agiscorecard.com/pt/did-open-source-ai-fade)
+- [A China vai superar os EUA na AGI?](https://agiscorecard.com/pt/will-china-beat-us-to-agi)
+- [Quando a AGI vai chegar?](https://agiscorecard.com/pt/when-will-agi-arrive)
+- [Quem é Leopold Aschenbrenner?](https://agiscorecard.com/pt/who-is-leopold-aschenbrenner)
+
+## Deutsch (German)
+
+- [Hatte Aschenbrenner mit AGI recht?](https://agiscorecard.com/de/was-aschenbrenner-right)
+- [Kommt AGI bis 2027?](https://agiscorecard.com/de/will-agi-arrive-2027)
+- [Ist Open-Source-KI verschwunden?](https://agiscorecard.com/de/did-open-source-ai-fade)
+- [Überholt China die USA bei AGI?](https://agiscorecard.com/de/will-china-beat-us-to-agi)
+- [Wann kommt AGI?](https://agiscorecard.com/de/when-will-agi-arrive)
+- [Wer ist Leopold Aschenbrenner?](https://agiscorecard.com/de/who-is-leopold-aschenbrenner)
+
+## Français (French)
+
+- [Aschenbrenner avait-il raison sur l'AGI ?](https://agiscorecard.com/fr/was-aschenbrenner-right)
+- [L'AGI arrivera-t-elle d'ici 2027 ?](https://agiscorecard.com/fr/will-agi-arrive-2027)
+- [L'IA open source a-t-elle décliné ?](https://agiscorecard.com/fr/did-open-source-ai-fade)
+- [La Chine devancera-t-elle les États-Unis sur l'AGI ?](https://agiscorecard.com/fr/will-china-beat-us-to-agi)
+- [Quand l'AGI arrivera-t-elle ?](https://agiscorecard.com/fr/when-will-agi-arrive)
+- [Qui est Leopold Aschenbrenner ?](https://agiscorecard.com/fr/who-is-leopold-aschenbrenner)
+
+## 한국어 (Korean)
+
+- [아셴브레너의 예측은 맞았나](https://agiscorecard.com/ko/was-aschenbrenner-right)
+- [AGI는 2027년에 올까](https://agiscorecard.com/ko/will-agi-arrive-2027)
+- [오픈소스 AI는 쇠퇴했나](https://agiscorecard.com/ko/did-open-source-ai-fade)
+- [중국이 AGI에서 미국을 앞설까](https://agiscorecard.com/ko/will-china-beat-us-to-agi)
+- [AGI는 언제 올까](https://agiscorecard.com/ko/when-will-agi-arrive)
+- [레오폴드 아셴브레너는 누구인가](https://agiscorecard.com/ko/who-is-leopold-aschenbrenner)
+
+## Italiano (Italian)
+
+- [Aschenbrenner aveva ragione sull'AGI?](https://agiscorecard.com/it/was-aschenbrenner-right)
+- [L'AGI arriverà entro il 2027?](https://agiscorecard.com/it/will-agi-arrive-2027)
+- [L'IA open source è svanita?](https://agiscorecard.com/it/did-open-source-ai-fade)
+- [La Cina batterà gli USA sull'AGI?](https://agiscorecard.com/it/will-china-beat-us-to-agi)
+- [Quando arriverà l'AGI?](https://agiscorecard.com/it/when-will-agi-arrive)
+- [Chi è Leopold Aschenbrenner?](https://agiscorecard.com/it/who-is-leopold-aschenbrenner)

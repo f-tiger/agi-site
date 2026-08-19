@@ -1,0 +1,151 @@
+<!doctype html><html lang="zh"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AGI 类型测试：你是哪种？| AGI 记分牌</title>
+<meta name="description" content="30 秒测出你的 AGI 立场：你是加速主义者、坚定信徒、现实派、怀疑者还是逆势者？看你与马斯克、Aschenbrenner、Hassabis、Metaculus 谁更接近，并分享给朋友挑战。">
+<link rel="canonical" href="https://agiscorecard.com/zh/agi-test">
+<link rel="alternate" hreflang="zh-Hans" href="https://agiscorecard.com/zh/agi-test">
+<link rel="alternate" hreflang="en" href="https://agiscorecard.com/agi-test">
+<link rel="alternate" hreflang="x-default" href="https://agiscorecard.com/agi-test">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://agiscorecard.com/zh/agi-test">
+<meta property="og:title" content="你是哪种 AGI 类型？30 秒测一测">
+<meta property="og:description" content="看你与马斯克、Aschenbrenner、Metaculus 谁更接近。">
+<meta property="og:image" content="https://agiscorecard.com/share/zh-agi-test.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="你是哪种 AGI 类型？">
+<meta name="twitter:image" content="https://agiscorecard.com/share/zh-agi-test.png">
+<style>
+:root{--bg:#ffffff;--bg2:#f7f7f8;--bg3:#eeeef1;--border:rgba(0,0,0,0.12);--text:#0a0a0b;--muted:#63636e;--accent:#002FA7;--accent2:#0f7a52}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#ffffff;color:var(--text);font:16px/1.65 -apple-system,'Segoe UI','Noto Sans CJK SC',Roboto,sans-serif;min-height:100vh}
+.wrap{max-width:680px;margin:0 auto;padding:26px 20px 64px}
+a{color:var(--accent)}
+header{display:flex;justify-content:space-between;align-items:center;font-size:14px;margin-bottom:30px}
+header .brand{font-weight:700;color:var(--text);text-decoration:none}
+.kicker{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+h1{font-size:34px;line-height:1.15;margin:10px 0 8px;letter-spacing:-.01em}
+.lead{color:var(--muted);margin-bottom:24px}
+.q{font-weight:600;margin-bottom:12px}
+.opts{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+.vote-btn{background:var(--bg3);border:1px solid var(--border);color:var(--text);padding:10px 16px;border-radius:8px;cursor:pointer;font:inherit;font-size:15px}
+.vote-btn:hover{border-color:var(--accent)}
+.vote-btn.selected{background:var(--accent);border-color:var(--accent);color:#fff}
+#result{display:none;margin-top:22px}
+.reveal{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:20px}
+.reveal .k{font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.reveal .name{font-size:26px;font-weight:800;margin:4px 0 8px}
+.card{width:100%;border-radius:12px;border:1px solid var(--border);margin:18px 0;display:block}
+.btn{display:inline-block;background:var(--accent);color:#fff;padding:11px 22px;border-radius:8px;font-weight:600;text-decoration:none;border:0;cursor:pointer;font-family:inherit;font-size:15px}
+.btn.sec{background:var(--bg3)}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+.cta{background:linear-gradient(135deg,rgba(0,47,167,.06),rgba(15,122,82,.06));border:1px solid rgba(0,47,167,.25);border-radius:12px;padding:18px 20px;margin:18px 0;text-align:center}
+.cta p{margin:0 0 12px;font-weight:600}
+#copied{display:none;font-size:13px;color:var(--accent2);margin-left:8px}
+.embedbox{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin:12px 0}
+.embedbox textarea{width:100%;height:78px;background:#fff;color:var(--muted);border:1px solid var(--border);border-radius:8px;padding:10px;font:12px/1.5 ui-monospace,monospace;resize:vertical;margin:8px 0}
+#embedcopied{display:none;font-size:13px;color:var(--accent2);margin-left:8px}
+.embed-brand{display:none;text-align:center;margin:16px 0 2px;font-size:13px}
+.embed-brand a{font-weight:600}
+body.embed{background:#fff}
+body.embed .wrap{padding:16px 16px 22px}
+body.embed header,body.embed .lead,body.embed .marketing,body.embed footer{display:none}
+body.embed h1{font-size:26px}
+body.embed .embed-brand{display:block}
+footer{margin-top:40px;font-size:12px;color:var(--muted);text-align:center}
+footer a{color:var(--muted)}
+@media(max-width:640px){table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;white-space:nowrap}table td,table th{white-space:normal;min-width:92px}}
+</style><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"AGI 类型测试","url":"https://agiscorecard.com/zh/agi-test","description":"30 秒测出你的 AGI 立场原型，并把你放到马斯克、阿申布伦纳、哈萨比斯、Metaculus 的真实坐标上。","applicationCategory":"EducationalApplication","operatingSystem":"Any (web browser)","browserRequirements":"Requires JavaScript","isAccessibleForFree":true,"inLanguage":"zh-Hans","featureList":["30 秒测试","5 种原型，锚定真实预言者","可分享结果卡","支持 ?embed=1 嵌入"],"offers":{"@type":"Offer","price":"0","priceCurrency":"CNY"},"publisher":{"@type":"Organization","name":"AGI 记分牌","url":"https://agiscorecard.com/"},"isPartOf":{"@type":"CollectionPage","name":"免费 AI 工具合集","url":"https://agiscorecard.com/zh/ai-tools"}}</script>
+</head>
+<body>
+<script>if(location.search.indexOf('embed')>-1||location.hash.indexOf('embed')>-1){document.body.classList.add('embed');}</script>
+<div class="wrap">
+<header><a class="brand" href="/">◆ AGI 记分牌</a><span class="kicker"><a href="/agi-test" style="color:var(--muted)">English</a></span></header>
+<div class="kicker">AGI 类型测试 🎯</div>
+<h1>你是哪种 <em>AGI 类型</em>？</h1>
+<p class="lead">你觉得 AGI 什么时候到来？选一个——测出你的原型，看你与马斯克、Aschenbrenner、Hassabis、Metaculus 谁更接近。</p>
+<div class="q">你认为 AGI 何时到来？</div>
+<div class="opts" id="opts">
+  <button class="vote-btn" onclick="castVote('accelerationist')">2025–26</button>
+  <button class="vote-btn" onclick="castVote('true-believer')">2027</button>
+  <button class="vote-btn" onclick="castVote('realist')">2028–30</button>
+  <button class="vote-btn" onclick="castVote('skeptic')">2030 年代</button>
+  <button class="vote-btn" onclick="castVote('contrarian')">永不 / 2040+</button>
+</div>
+<div id="result">
+  <div class="reveal">
+    <div class="k">你的 AGI 类型</div>
+    <div class="name" id="r-name"></div>
+    <div id="r-line" style="color:var(--muted)"></div>
+  </div>
+  <img class="card" id="r-card" src="" width="1200" height="630" alt="AGI 类型分享卡">
+  <div class="row">
+    <button class="btn" onclick="challengeFriend()">🔥 挑战朋友</button>
+    <button class="btn sec" onclick="shareToX()">分享到 𝕏</button>
+    <button class="btn sec" onclick="copyShare()">复制链接</button>
+    <span id="copied">✓ 已复制</span>
+  </div>
+  <div class="cta">
+    <p>想知道你判断得对不对？我们在追踪——AGI-2027 命题追踪指数只在真实证据出现时移动。</p>
+    <a class="btn" href="https://agiscorecard.beehiiv.com/subscribe?utm_source=agiscorecard&amp;utm_medium=zh_agi_test" target="_blank" rel="noopener" onclick="gtag('event','subscribe_click',{location:'zh_agi_test'});">订阅，第一时间知道分数变动 →</a>
+  </div>
+  <p style="text-align:center"><a id="r-detail" href="#">查看你这一类型的完整解读 →</a></p>
+</div>
+<div class="embed-brand">🎯 <b>AGI 类型测试</b> · <a href="https://agiscorecard.com/zh/agi-test?utm_source=game_embed&amp;utm_medium=iframe" target="_blank" rel="noopener" onclick="gtag('event','embed_brand_click',{location:'zh_agi_test_embed'});">到 AGI 记分牌看实时 AGI-2027 追踪指数 →</a></div>
+<div class="marketing">
+<h2 style="font-size:20px;margin:34px 0 10px">把这个测试放到你自己的页面</h2>
+<p style="color:var(--muted);font-size:14px">免费嵌入，博客、newsletter、论坛都可以。保留完整互动、去掉站点外壳，并带一条回链。更多工具见 <a href="/zh/ai-tools">/zh/ai-tools</a>。</p>
+<div class="embedbox">
+  <textarea id="embedcode" readonly>&lt;iframe src="https://agiscorecard.com/zh/agi-test?embed=1" width="100%" height="620" style="border:1px solid #e5e5e8;border-radius:12px;max-width:680px" title="你的 AGI 类型 — 30 秒测试" loading="lazy"&gt;&lt;/iframe&gt;</textarea>
+  <button class="btn sec" onclick="copyEmbed()">复制嵌入代码</button><span id="embedcopied">✓ 已复制</span>
+</div>
+</div>
+<footer>AGI 记分牌团队 · <a href="/cn.html">中文首页</a> · <a href="/zh/was-aschenbrenner-right.html">完整记分牌</a> · <a href="/progress-index">实时分数</a> · <a href="/about">方法论</a><br>
+为 Aschenbrenner《态势感知》中的可证伪预测评分。与任何实验室无关联。</footer>
+</div>
+<script>
+var ARCH = {
+  'accelerationist':{name:'加速主义者',emoji:'🚀',line:'AGI 2026 年前到来——比马斯克还激进，领先 Aschenbrenner 的 2027 基线。'},
+  'true-believer':{name:'坚定信徒',emoji:'⏱️',line:'正好落在 Aschenbrenner《态势感知》的 2027 线上。'},
+  'realist':{name:'现实派',emoji:'📊',line:'与 Demis Hassabis（约 2030）一致——仍在这个十年内。'},
+  'skeptic':{name:'怀疑者',emoji:'🤔',line:'接近 Metaculus（2033）——比多数实验室内部人更谨慎。'},
+  'contrarian':{name:'逆势者',emoji:'🛡️',line:'与学界调查（2040+）一致——押注趋势会中断。'}
+};
+var mySlug=null;
+function castVote(slug){
+  mySlug=slug;
+  var a=ARCH[slug];
+  document.querySelectorAll('.vote-btn').forEach(function(b){b.classList.remove('selected')});
+  event.target.classList.add('selected');
+  document.getElementById('r-name').innerHTML=a.emoji+' '+a.name;
+  document.getElementById('r-line').textContent=a.line;
+  document.getElementById('r-card').src='/share/zh-'+slug+'.png';
+  document.getElementById('r-detail').href='/zh/agi-type/'+slug;
+  document.getElementById('result').style.display='block';
+  gtag('event','vote_cast',{label:slug});
+}
+function zUrl(){return mySlug?'https://agiscorecard.com/zh/agi-type/'+mySlug:'https://agiscorecard.com/zh/agi-test';}
+function zText(){var a=ARCH[mySlug]||{name:'',emoji:''};return '我是'+a.name+a.emoji+'。你能比我预测得更准吗？你是哪种 AGI 类型？';}
+function challengeFriend(){
+  gtag('event','challenge_share',{label:mySlug||''});
+  if(navigator.share){navigator.share({title:'你是哪种 AGI 类型？',text:zText(),url:zUrl()}).catch(function(){});}
+  else{window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(zText()+' 👇')+'&url='+encodeURIComponent(zUrl()),'_blank');}
+}
+function shareToX(){gtag('event','x_share',{label:mySlug||''});window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(zText()+' 👇')+'&url='+encodeURIComponent(zUrl()),'_blank');}
+function copyShare(){navigator.clipboard.writeText(zUrl()).then(function(){var c=document.getElementById('copied');c.style.display='inline';setTimeout(function(){c.style.display='none'},2000)});}
+function copyEmbed(){var t=document.getElementById('embedcode');navigator.clipboard.writeText(t.value).then(function(){var c=document.getElementById('embedcopied');c.style.display='inline';setTimeout(function(){c.style.display='none'},2000)});gtag('event','embed_copy',{location:'zh_agi_test'});}
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
+// Deep-link: /agi-test?pick=<slug> auto-reveals that answer (article opinion hooks land here).
+try{
+  var m=(location.search+location.hash).match(/pick=([a-z-]+)/);
+  if(m && ARCH[m[1]]){
+    var btns=document.querySelectorAll('.vote-btn');
+    var order=['accelerationist','true-believer','realist','skeptic','contrarian'];
+    var idx=order.indexOf(m[1]);
+    if(idx>-1 && btns[idx]){ btns[idx].click(); gtag('event','deeplink_pick',{label:m[1]}); }
+  }
+}catch(e){}
+
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FZXLMBB5QB"></script>
+<script>gtag('js',new Date());gtag('config','G-FZXLMBB5QB')</script>
+</body></html>

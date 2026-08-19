@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FZXLMBB5QB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-FZXLMBB5QB');
+</script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a0a0b'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%234fc3a1'/%3E%3C/svg%3E">
+<title>AGI Odds vs Evidence: Markets Price Announcements</title>
+<meta name="description" content="Polymarket's AGI-by-2027 contract vs the evidence: the market prices an announcement, the scorecard grades capability (62.5/100). Issue #1 of a running comparison.">
+<link rel="canonical" href="https://agiscorecard.com/agi-odds-vs-evidence">
+<meta property="og:site_name" content="The AGI Scorecard">
+<meta property="og:title" content="Odds vs evidence — what prediction markets and the scorecard each measure">
+<meta property="og:description" content="Polymarket's AGI-by-2027 contract vs the evidence: the market prices an announcement, the scorecard grades capability (62.5/100). Issue #1 of a running comparison.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://agiscorecard.com/agi-odds-vs-evidence">
+<meta property="og:image" content="https://agiscorecard.com/scorecard-summary.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://agiscorecard.com/scorecard-summary.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Odds vs evidence — what prediction markets and the scorecard each measure", "datePublished": "2026-08-08", "dateModified": "2026-08-17", "author": {"@type": "Organization", "name": "The AGI Scorecard"}, "publisher": {"@type": "Organization", "name": "The AGI Scorecard", "url": "https://agiscorecard.com/"}, "description": "Polymarket's AGI-by-2027 contract vs the evidence: the market prices an announcement, the scorecard grades capability (62.5/100). Issue #1 of a running comparison."}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is the Thesis Tracker score a probability of AGI?", "acceptedAnswer": {"@type": "Answer", "text": "No. 62.5/100 is the mean of 8 graded verdict weights — an auditable evidence composite, not a forecast. Prediction-market prices are crowd probabilities of specific contract wordings. The two answer different questions."}}, {"@type": "Question", "name": "Why compare them at all?", "acceptedAnswer": {"@type": "Answer", "text": "Because the gap is informative. An announcement-priced market and a capability-graded ledger diverging tells you the crowd expects labeling to run ahead of substance (or behind it). Traders need pre-registered resolution criteria; that is exactly what this site publishes."}}, {"@type": "Question", "name": "How current are the odds shown?", "acceptedAnswer": {"@type": "Answer", "text": "Each issue quotes a dated snapshot with a link to the live market — never a 'current' price. Since 2026-08-17 the odds are fetched automatically once a week and carry an exact UTC timestamp and the market's traded volume, so a reading can no longer drift into being quoted as if it were live. The series is reviewed weekly but only publishes a new issue when one side actually moves; every review, including the quiet ones, is logged on the page."}}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="https://www.googletagmanager.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#0a0a0b;--bg2:#111114;--bg3:#18181d;--border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.12);--text:#e8e8ec;--muted:#8888a0;--accent:#7c6af5;--accent2:#4fc3a1;--warn:#e8a040;--danger:#e05555;--font:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;--mono:'JetBrains Mono',monospace;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:16px;line-height:1.75;}
+  a{color:var(--accent);text-decoration:none;}a:hover{opacity:.8;}
+  header{border-bottom:1px solid var(--border);padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:56px;position:sticky;top:0;background:rgba(10,10,11,.92);backdrop-filter:blur(12px);z-index:100;}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px;color:var(--text);}
+  .logo-dot{width:8px;height:8px;background:var(--accent2);border-radius:50%;}
+  .back-link{font-size:13px;color:var(--muted);}.back-link:hover{color:var(--text);opacity:1;}
+  article{max-width:720px;margin:0 auto;padding:2.5rem 1.5rem 4rem;}
+  .eyebrow{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem;}
+  h1{font-size:clamp(1.7rem,4vw,2.4rem);font-weight:700;letter-spacing:-.02em;line-height:1.18;margin-bottom:1.25rem;}
+  .capsule{background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent2);border-radius:0 10px 10px 0;padding:1.15rem 1.4rem;font-size:16px;margin-bottom:1.75rem;}
+  .capsule .verdict{font-weight:700;}
+  .v-ok{color:var(--accent2);}.v-wrong{color:var(--danger);}.v-open{color:var(--accent);}.v-pending{color:var(--muted);}
+  h2{font-size:1.25rem;font-weight:600;margin:2.25rem 0 .9rem;letter-spacing:-.01em;}
+  h3{font-size:1.05rem;font-weight:600;margin:1.5rem 0 .6rem;}
+  p{margin-bottom:1rem;}
+  ul{margin:0 0 1rem 1.3rem;}li{margin-bottom:.45rem;}
+  strong{color:#fff;}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;margin:1rem 0 1.4rem;background:var(--bg2);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+  th{text-align:left;padding:10px 12px;color:var(--muted);font-weight:500;font-size:11px;letter-spacing:.05em;text-transform:uppercase;border-bottom:1px solid var(--border);}
+  td{padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:top;}
+  tr:last-child td{border-bottom:none;}
+  .nowrap{white-space:nowrap;font-weight:600;}
+  .faq-q{font-weight:600;margin:1.3rem 0 .4rem;}
+  .related{margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--border);}
+  .related h2{margin-top:0;}
+  .related a{display:block;padding:6px 0;font-size:14px;}
+  .src{font-size:12px;color:var(--muted);margin-top:.5rem;}
+  .updated{font-size:12px;color:var(--muted);margin-bottom:1.5rem;}
+  .cta{margin-top:2rem;background:linear-gradient(135deg,rgba(124,106,245,.08),rgba(79,195,161,.06));border:1px solid rgba(124,106,245,.2);border-radius:14px;padding:1.5rem;text-align:center;}
+  .cta a{display:inline-block;background:var(--accent);color:#fff;padding:10px 22px;border-radius:8px;font-size:14px;font-weight:500;margin-top:.6rem;}
+  footer{border-top:1px solid var(--border);padding:24px 0;font-size:12px;color:var(--muted);text-align:center;}
+</style>
+</head>
+<body>
+<header>
+  <a href="/" class="logo"><span class="logo-dot"></span>AGI Scorecard</a>
+  <a href="/" class="back-link">← Live scorecard</a>
+</header>
+<article>
+  <div class="eyebrow">Odds vs evidence · Issue #1 · reviewed 2026-08-17</div>
+  <h1>AGI odds vs evidence: the market prices announcements, we grade capability</h1>
+  <div class="updated">Last updated: August 17, 2026 · Updated as verdicts change</div>
+  <div class="capsule"><span class="verdict">Prediction markets and this scorecard are measuring different things — and the difference is the insight.</span> Polymarket prices an <em>announcement</em> event; the scorecard grades a <em>capability</em> claim against pre-registered criteria. Issue #1 of a running comparison: the market's AGI-by-2027 contract vs the Thesis Tracker's 62.5/100 evidence read.</div>
+<h2>Issue #1 — 2026-08-08</h2>
+<table><thead><tr><th></th><th>Prediction market</th><th>Evidence layer (this site)</th></tr></thead><tbody>
+<tr><td><strong>Instrument</strong></td><td><a href="https://polymarket.com/event/openai-announces-it-has-achieved-agi-before-2027" rel="nofollow">"OpenAI announces it has achieved AGI before 2027?"</a> (Polymarket)</td><td><a href="/will-agi-arrive-2027">AGI-2027 verdict</a> + <a href="/progress-index">Thesis Tracker</a></td></tr>
+<tr><td><strong>Question actually asked</strong></td><td>Will OpenAI <em>announce</em> it has achieved AGI before 2027?</td><td>Do models <em>do the work of an AI researcher</em> by end-2027 (Aschenbrenner's own bar)?</td></tr>
+<tr><td><strong>Reading</strong></td><td>91% No / 9% Yes — machine-verified snapshot, 2026-08-17 04:06:09 UTC · $94,555 volume · market open</td><td>Verdict <strong class="v-open">Open</strong>; thesis at <strong>62.5/100</strong> (not a probability — a mean of 8 graded verdicts)</td></tr>
+<tr><td><strong>Resolves on</strong></td><td>An announcement (with or without the capability)</td><td>Pre-registered capability criteria, deadline 2028-01-01 (<a href="/agi-2027-resolution">resolution page</a>)</td></tr>
+</tbody></table>
+<h2>Why the two numbers must not be conflated</h2>
+<p>A lab could announce "AGI" for a system that cannot do autonomous research — the market contract could pay out while the capability verdict stays Open or resolves Wrong. The reverse is also possible: genuine research autonomy demonstrated without anyone using the word AGI. <strong>Markets are excellent at pricing events and incentives; a graded evidence ledger is what tells you whether the substance happened.</strong> Traders on these markets are, in effect, this site's target reader: the resolution criteria they need are the ones we pre-registered.</p>
+<h2>Review log</h2>
+<table><thead><tr><th>Date</th><th>Market side</th><th>Evidence side</th><th>Issue published?</th></tr></thead><tbody>
+<tr><td class="nowrap">2026-08-17</td><td><strong>First machine-verified reading</strong>: 91% No / 9% Yes, $94,555 volume. Issue #1 recorded «≈11% Yes» from a hand-copied snapshot with no exact timestamp, so the ~2pt drift toward No is <em>indicative, not a measured move</em> — the baseline was not precise enough to claim one.</td><td>No verdict change; tracker held at 62.5/100</td><td><strong>No</strong> — a drift inside the noise of a vague prior baseline is not news. What changed is the <em>method</em>: odds are now fetched weekly on a runner and carry an ISO timestamp, so the next comparison will be measured rather than indicative.</td></tr>
+<tr><td class="nowrap">2026-08-10</td><td>No further movement found beyond the issue #1 snapshot (~11% Yes)</td><td>No verdict change; tracker held at 62.5/100</td><td><strong>No</strong> — nothing moved, so there was nothing to say</td></tr>
+<tr><td class="nowrap">2026-08-08</td><td>Issue #1 snapshot recorded</td><td>Verdict Open; tracker 62.5/100</td><td>Yes — issue #1</td></tr>
+</tbody></table>
+<p><strong>This series updates when something moves, not on a calendar.</strong> A weekly slot that must be filled produces filler; an evidence layer that publishes noise to look busy is worth less than one that publishes nothing and says so. Reviews happen weekly and are logged above either way — including the weeks the answer is "neither side moved". When a verdict actually flips, subscribers hear the same day, <em>before</em> they would read it in the odds.</p>
+<p style="font-size:13px;color:var(--muted);">Odds snapshots are third-party market data quoted with their as-of date; this site takes no positions and this is not trading advice.</p>
+  <h2>Frequently asked questions</h2>
+  <div class="faq-q">Is the Thesis Tracker score a probability of AGI?</div><p>No. 62.5/100 is the mean of 8 graded verdict weights — an auditable evidence composite, not a forecast. Prediction-market prices are crowd probabilities of specific contract wordings. The two answer different questions.</p><div class="faq-q">Why compare them at all?</div><p>Because the gap is informative. An announcement-priced market and a capability-graded ledger diverging tells you the crowd expects labeling to run ahead of substance (or behind it). Traders need pre-registered resolution criteria; that is exactly what this site publishes.</p><div class="faq-q">How current are the odds shown?</div><p>Each issue quotes a dated snapshot with a link to the live market — never a 'current' price. Since 2026-08-17 the odds are fetched automatically once a week and carry an exact UTC timestamp and the market's traded volume, so a reading can no longer drift into being quoted as if it were live. The series is reviewed weekly but only publishes a new issue when one side actually moves; every review, including the quiet ones, is logged on the page.</p>
+  <div class="related">
+    <h2>Related</h2>
+    <a href="/agi-2027-resolution">AGI-2027 resolution criteria & countdown →</a><a href="/progress-index">AGI-2027 Thesis Tracker →</a><a href="/prediction-receipts">Every dated AGI call, on the clock →</a><a href="/calibration">How we score our own predictions →</a>
+    <a href="/two-year-scorecard.html">Full two-year scorecard with all 8 predictions →</a>
+  </div>
+  <div class="cta">
+    <p style="margin:0;font-weight:600;">The live scorecard updates as models ship and verdicts change.</p>
+    <a href="/">View the live scorecard →</a>
+  </div>
+</article>
+<footer>AGI Scorecard · Independent tracker of <a href="https://situational-awareness.ai" style="color:var(--muted);">Situational Awareness</a> · Not affiliated with any lab</footer>
+</body>
+</html>

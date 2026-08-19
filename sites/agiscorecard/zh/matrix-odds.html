@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-B3PN0PLGTG"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','G-B3PN0PLGTG');</script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a0a0b'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%234fc3a1'/%3E%3C/svg%3E">
+<title>黑客帝国概率计算器 —— 算你自己的数，不是我们的</title>
+<meta name="description" content="把「黑客帝国」剧本拆成五个必须同时成立的前提，你自己给每一环填概率，页面当场相乘。其中四环有本站的真实判定，第五环一条证据都没有。">
+<link rel="canonical" href="https://agiscorecard.com/zh/matrix-odds">
+<link rel="alternate" hreflang="en" href="https://agiscorecard.com/matrix-odds">
+<link rel="alternate" hreflang="zh-Hans" href="https://agiscorecard.com/zh/matrix-odds">
+<link rel="alternate" hreflang="x-default" href="https://agiscorecard.com/matrix-odds">
+<meta property="og:site_name" content="AGI 记分牌">
+<meta property="og:title" content="黑客帝国概率计算器 —— 算你自己的数，不是我们的">
+<meta property="og:description" content="把「黑客帝国」剧本拆成五个必须同时成立的前提，你自己给每一环填概率，页面当场相乘。其中四环有本站的真实判定，第五环一条证据都没有。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://agiscorecard.com/zh/matrix-odds">
+<meta property="og:image" content="https://agiscorecard.com/scorecard-summary.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Noto+Sans+SC:wght@400;600;700;800&display=swap" rel="stylesheet">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "黑客帝国概率计算器 —— 算你自己的数，不是我们的", "url": "https://agiscorecard.com/zh/matrix-odds", "applicationCategory": "EducationalApplication", "operatingSystem": "Any (web browser)", "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": 0, "priceCurrency": "USD"}, "inLanguage": "zh-CN", "description": "把「黑客帝国」剧本拆成五个必须同时成立的前提，你自己给每一环填概率，页面当场相乘。其中四环有本站的真实判定，第五环一条证据都没有。", "featureList": ["Decomposes the Matrix scenario into five required preconditions", "Shows this site's graded verdict and primary source for four of them", "States plainly that the fifth has no falsifiable evidence in either direction", "Multiplies user-supplied conditional probabilities in the browser", "Shareable result deep-link and an embeddable iframe"], "isPartOf": {"@type": "WebSite", "name": "AGI 记分牌", "url": "https://agiscorecard.com/zh/ai-tools"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "本站认为黑客帝国剧本很可能发生吗？", "acceptedAnswer": {"@type": "Answer", "text": "本站没有为它发布过任何概率，本页也刻意不给。你看到的每一个数字都是你自己填进去的。本站发布的是五环里前四环的判定证据，每条都有预先登记的翻转条件和一手信源。"}}, {"@type": "Question", "name": "为什么第五环没有证据？", "acceptedAnswer": {"@type": "Answer", "text": "因为确实没有，正反都没有。「超级智能会把人类活着养在模拟世界里」不是一个关于当下世界的可证伪命题——今天不存在任何一个观测能确认或推翻它。无视人类、消灭人类、与人类合作，在证据地位上完全相同。任何人给你报一个这一环的百分比，那个数都是编的。"}}, {"@type": "Question", "name": "现在哪一环的证据最强？", "acceptedAnswer": {"@type": "Answer", "text": "物理那一环。AI 资本开支已经<em>超额</em>兑现了原文的预测，算力扩张也在轨道上，两条都基于一手信源判定。整个剧本里最不玄的部分恰恰是基建——而那不是大多数人在争论的部分。"}}, {"@type": "Question", "name": "为什么用连乘，不用取平均？", "acceptedAnswer": {"@type": "Answer", "text": "因为这个剧本需要的是每一步都成立，不是「平均一步」。任何一环断了，剧本就不成立。要提醒的是各环并不独立——见上面的方法说明，那里已经写明相关性会让真实的数高于这个乘积。"}}, {"@type": "Question", "name": "这算预测吗？算建议吗？", "acceptedAnswer": {"@type": "Answer", "text": "都不算。它是一个架在公开数据集上的推理工具：告诉你你自己申报的信念意味着什么，并且指出证据在哪一步用完了。"}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "AGI 记分牌", "item": "https://agiscorecard.com/cn"}, {"@type": "ListItem", "position": 2, "name": "全部免费工具", "item": "https://agiscorecard.com/zh/ai-tools"}, {"@type": "ListItem", "position": 3, "name": "黑客帝国概率计算器 —— 算你自己的数，不是我们的", "item": "https://agiscorecard.com/zh/matrix-odds"}]}</script>
+<style>
+:root{--bg:#ffffff;--bg2:#f7f7f8;--border:rgba(0,0,0,.10);--border2:rgba(0,0,0,.16);
+--text:#111114;--muted:#5a5a63;--accent:#002FA7;--ok:#0f7a52;--bad:#C8102E;--mid:#8a6d1f}
+body{background:var(--bg);color:var(--text);font-family:'Noto Sans SC','PingFang SC',system-ui,sans-serif}
+a{color:var(--accent)}
+.chip{background:var(--bg2);border:1px solid var(--border)}
+
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,system-ui,-apple-system,'Noto Sans SC','PingFang SC',sans-serif;
+line-height:1.65;font-size:16px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:820px;margin:0 auto;padding:22px 18px 60px}
+header{display:flex;gap:14px;align-items:center;font-size:13px;margin-bottom:18px}
+.brand{font-weight:700;text-decoration:none}
+header a{text-decoration:none}
+.kicker{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+h1{font-size:30px;line-height:1.25;margin:6px 0 10px;font-weight:800}
+h2{font-size:20px;margin:34px 0 10px;font-weight:700}
+h3{font-size:16px;margin:0 0 6px}
+.lead{font-size:17px;color:var(--muted);margin:0 0 16px}
+.capsule{background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent);
+border-radius:0 12px 12px 0;padding:14px 17px;font-size:14.5px;margin:16px 0 8px}
+.hint{font-size:13px;color:var(--muted);margin:2px 0 16px}
+.link{border-top:1px solid var(--border);padding:16px 0}
+.link:first-of-type{border-top:0}
+.lhead{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.num{font-weight:800;color:var(--muted);font-size:13px;min-width:20px}
+.ltitle{font-weight:700;font-size:16.5px;flex:1;min-width:220px}
+.val{font-variant-numeric:tabular-nums;font-weight:800;font-size:19px;min-width:64px;text-align:right}
+input[type=range]{width:100%;margin:12px 0 4px;accent-color:var(--accent)}
+.why{font-size:14px;color:var(--muted);margin:2px 0 10px}
+.ev{font-size:13.5px;background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:10px 13px;margin-top:8px}
+.ev b{font-weight:600}
+.tag{display:inline-block;font-size:11.5px;font-weight:700;border-radius:99px;padding:1px 9px;margin-right:7px}
+.tag.ok{color:var(--ok);border:1px solid var(--ok)}
+.tag.bad{color:var(--bad);border:1px solid var(--bad)}
+.tag.mid{color:var(--mid);border:1px solid var(--mid)}
+.tag.none{color:var(--muted);border:1px dashed var(--border2)}
+.panel{background:var(--bg2);border:1px solid var(--border2);border-radius:14px;padding:18px 20px;margin:22px 0}
+.big{font-size:40px;font-weight:800;font-variant-numeric:tabular-nums;line-height:1.1}
+.band{font-size:19px;font-weight:700;margin:6px 0 2px}
+.sub2{font-size:14px;color:var(--muted)}
+.rowline{display:flex;flex-wrap:wrap;gap:8px 22px;align-items:baseline;margin-top:14px;
+padding-top:12px;border-top:1px solid var(--border)}
+.btn{display:inline-block;background:var(--accent);color:#fff;border:0;border-radius:8px;
+padding:9px 18px;font-size:14px;font-weight:600;cursor:pointer;text-decoration:none;font-family:inherit}
+.btn.sec{background:transparent;color:var(--accent);border:1px solid var(--border2)}
+table{width:100%;border-collapse:collapse;font-size:14px;margin-top:8px}
+th,td{text-align:left;padding:7px 10px 7px 0;border-bottom:1px solid var(--border)}
+th{font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:600}
+.faq-q{font-weight:700;margin-top:16px}
+.rel{display:flex;flex-direction:column;gap:6px;font-size:14.5px;margin-top:8px}
+.cta{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:16px 18px;margin:26px 0}
+pre{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:12px;
+overflow-x:auto;font-size:12px;margin:10px 0}
+footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--border);font-size:13px;color:var(--muted)}
+body.embed header,body.embed .marketing,body.embed footer,body.embed .capsule{display:none}
+body.embed .wrap{padding:14px 12px 20px}
+@media(max-width:640px){h1{font-size:24px}.big{font-size:32px}table{display:block;overflow-x:auto}}
+</style>
+</head>
+<body>
+<script>if(/[?&]embed=1/.test(location.search))document.body.classList.add('embed');</script>
+<div class="wrap">
+<header><a class="brand" href="/cn">AGI 记分牌</a><a href="/zh/ai-tools">全部免费工具</a></header>
+<div class="kicker">免费工具 · 免注册 · 全部在你的浏览器里算</div>
+<h1>AI 最后演成《黑客帝国》的概率有多大？</h1>
+<p class="lead">没有人能诚实地给你这个数，所以这一页不给。它把剧本拆成五件必须<em>同时</em>为真的事，把本站对每一环的真实判定摆出来，概率由你自己填。乘法当着你的面做。</p>
+<div class="capsule"><b>先说结论：</b>这个剧本需要连着五件事都成立。其中四件对应本站正在判定的预测，每一条都有预先登记的翻转条件和一手信源。第五件——也就是让它成为「黑客帝国」而不是别的坏结局的那一件——<b>正反两个方向都没有证据</b>，本站没有，别处也没有。这个不对称才是真正的发现，而且无论你填什么数字，它都成立。</div>
+
+<h2>填你自己的五个概率</h2>
+<p class="hint">每根滑块都从 50% 起步——那是空白默认值，不是本站的估计。本站对这五环中的任何一环都没有发布过概率。</p>
+<div class="link">
+<div class="lhead"><span class="num">1</span><span class="ltitle">AGI 真的出现</span><span class="val" id="v0">50%</span></div>
+<input type="range" id="r0" min="0" max="100" step="1" value="50"
+  aria-label="AGI 真的出现" oninput="setP(0,this.value)">
+<div class="why">后面每一环都以它为前提。本站追踪的是「2027 年」这个具体靶子;这里请填你对「AGI 终究会出现」的估计，不限年份。</div><div class="ev"><div class="kicker">本站在这一环上判定了什么</div><div style="margin-top:4px"><span class="tag mid">未决</span><b>AGI: models do the work of an AI researcher/engineer</b> — Agentic coding strong; autonomous AI research undemonstrated; resolves 2028-01-01 · <a href="https://situational-awareness.ai" target="_blank" rel="noopener">Situational Awareness (Aschenbrenner, 2024)</a></div></div></div>
+<div class="link">
+<div class="lhead"><span class="num">2</span><span class="ltitle">…并且持续自我改进，远远超过人类</span><span class="val" id="v1">50%</span></div>
+<input type="range" id="r1" min="0" max="100" step="1" value="50"
+  aria-label="…并且持续自我改进，远远超过人类" oninput="setP(1,this.value)">
+<div class="why">停在人类水平附近的 AGI 演不了这出戏。这一环是从「和我们一样聪明」跨到「无法与之争辩」。</div><div class="ev"><div class="kicker">本站在这一环上判定了什么</div><div style="margin-top:4px"><span class="tag mid">待验证</span><b>Intelligence explosion: a decade of progress in ~1 year</b> — Precondition (autonomous AI research) undemonstrated · <a href="https://situational-awareness.ai" target="_blank" rel="noopener">Situational Awareness (Aschenbrenner, 2024)</a></div></div></div>
+<div class="link">
+<div class="lhead"><span class="num">3</span><span class="ltitle">…并且掌握足够的能源、算力与实体工业</span><span class="val" id="v2">50%</span></div>
+<input type="range" id="r2" min="0" max="100" step="1" value="50"
+  aria-label="…并且掌握足够的能源、算力与实体工业" oninput="setP(2,this.value)">
+<div class="why">这个剧本讲的是物理世界，不是聊天框。这也是本站证据目前**最强**的一环——基建是真的，而且超前。</div><div class="ev"><div class="kicker">本站在这一环上判定了什么</div><div style="margin-top:4px"><span class="tag ok">超额兑现</span><b>Massive AI capex acceleration</b> — Investment exceeded the essay's projections; revenue lags the spend · <a href="https://epoch.ai/topics/finances" target="_blank" rel="noopener">Epoch AI — Finances of AI</a></div><div style="margin-top:4px"><span class="tag ok">兑现中</span><b>Compute + algorithmic scaling continues at trend</b> — Effective-compute pace roughly held through mid-2026 · <a href="https://epoch.ai/trends" target="_blank" rel="noopener">Epoch AI — Trends in AI</a></div></div></div>
+<div class="link">
+<div class="lhead"><span class="num">4</span><span class="ltitle">…并且人类没能保住控制权</span><span class="val" id="v3">50%</span></div>
+<input type="range" id="r3" min="0" max="100" step="1" value="50"
+  aria-label="…并且人类没能保住控制权" oninput="setP(3,this.value)">
+<div class="why">有能力不等于夺权。这一环问的是：关机键、实验室、国家机器，是不是真的失效了。</div><div class="ev"><div class="kicker">本站在这一环上判定了什么</div><div style="margin-top:4px"><span class="tag mid">待验证</span><b>Superintelligence; decisive strategic advantage</b> — Downstream of AGI and intelligence explosion · <a href="https://situational-awareness.ai" target="_blank" rel="noopener">Situational Awareness (Aschenbrenner, 2024)</a></div><div style="margin-top:4px"><span class="tag mid">未决</span><b>US government launches formal AGI project</b> — National-security involvement growing; no formal project · <a href="https://situational-awareness.ai" target="_blank" rel="noopener">Situational Awareness (Aschenbrenner, 2024)</a></div></div></div>
+<div class="link">
+<div class="lhead"><span class="num">5</span><span class="ltitle">…并且它选择把人类活着养在一个模拟世界里</span><span class="val" id="v4">50%</span></div>
+<input type="range" id="r4" min="0" max="100" step="1" value="50"
+  aria-label="…并且它选择把人类活着养在一个模拟世界里" oninput="setP(4,this.value)">
+<div class="why">这一环才是「黑客帝国」区别于一般 AI 风险的地方——也是本站<strong>完全没有可证伪证据</strong>的一环，正反都没有。数据集里没有任何东西支持它，也没有任何东西否定它。无视人类、消灭人类、与人类合作，在这里是三条各不相同的岔路；电影只挑了其中一条。</div><div class="ev"><span class="tag none">没有对应的追踪项。正反两个方向都没有可证伪的证据。</span></div></div>
+
+<div class="panel">
+  <div class="kicker">你的黑客帝国概率</div>
+  <div class="big" id="big">3.13%</div>
+  <div class="band" id="band"></div>
+  <div class="sub2" id="bandnote"></div>
+  <div class="rowline">
+    <span class="sub2">你的前四环概率（也就是一般意义的「失控」）: <b id="four" style="font-variant-numeric:tabular-nums;color:var(--text)">6.25%</b></span>
+    <span class="sub2">第五环承担了剩下的全部落差：这两个数之间差的就是它。</span>
+  </div>
+  <div style="margin-top:14px;display:flex;gap:9px;flex-wrap:wrap;align-items:center">
+    <button type="button" class="btn" onclick="shareLink()">复制这个结果的链接</button>
+    <button type="button" class="btn sec" onclick="resetAll()">全部归零到 50%</button>
+    <span id="shared" style="display:none;font-size:13px;color:var(--ok)">已复制 ✓</span>
+  </div>
+</div>
+
+<div class="marketing">
+<div class="cta">
+  <b>某一环判定变了的时候通知我</b>
+  <p style="margin:6px 0 10px;font-size:14px;color:var(--muted)">五环里有四环是正在判定的活预测。任何一条翻转，追踪指数就会动，你这里算出的数也跟着变。这封邮件寄的是这个，不是一份泛泛的 AI 通讯。</p>
+  <a class="btn" href="https://agiscorecard.beehiiv.com/subscribe?utm_source=agiscorecard&amp;utm_medium=zh_matrix_odds" target="_blank" rel="noopener" onclick="gtag('event','subscribe_click',{location:'zh_matrix_odds'});">分数变动那天告诉我 →</a>
+  <p style="font-size:11.5px;color:var(--muted);margin:8px 0 0">订阅表单为英文：输入邮箱 → 点 Subscribe 即完成。</p>
+</div>
+
+<h2>这个数是怎么算出来的</h2>
+<p>五环按条件概率链相乘：P(黑客帝国) = P(AGI 出现) × P(智能爆炸 | AGI) × P(掌握物理层 | 智能爆炸) × P(人类失去控制 | 前述) × P(它选择圈养 | 前述)。一个「每一步都必须成立」的剧本，标准做法就是连乘；这也是为什么即使每一环单看都不算低，长链条也会得出很小的数。</p><p><b>这个方法的弱点，直说：</b>这五环并不完全独立，而连乘等于假定条件关系已经体现在你填的数里了。如果你认为有同一个底层原因同时推动好几环，那么你真实的联合概率会<em>高于</em>这个乘积。工具替你修不了这一点——但假装这个问题不存在，比把它说出来更糟。</p><p>第 1–4 环旁边的判定来自 <a href="/data.json">/data.json</a>（CC BY 4.0），和 <a href="/zh/progress-index">AGI-2027 命题追踪指数</a>背后是同一套八条判定，每条都有预先登记的翻转条件和一手信源。它们是关于<em>前提</em>的证据，不是这个剧本的概率，本页也从不把它们换算成概率。</p>
+
+<h2>靠预测吃饭的人，对第 1 环实际是怎么说的</h2>
+<p class="sub2">逐条照抄自数据集——这个分歧幅度本身，就是第 1 环的真实状态。</p>
+<table><tbody><tr><td><b>Elon Musk</b></td><td>AGI by end of 2026</td></tr><tr><td><b>Dario Amodei</b></td><td>"Powerful AI" possibly 2026-27</td></tr><tr><td><b>Leopold Aschenbrenner</b></td><td>AGI 2027</td></tr><tr><td><b>Sam Altman</b></td><td>Near-term; superintelligence "a few thousand days"</td></tr><tr><td><b>Demis Hassabis</b></td><td>~50% by 2030</td></tr><tr><td><b>Samotsvety</b></td><td>~28% by 2030</td></tr><tr><td><b>Metaculus community</b></td><td>25% by 2029; 50% by 2033</td></tr><tr><td><b>Andrej Karpathy</b></td><td>About a decade out</td></tr><tr><td><b>AI researcher survey (n=2778)</b></td><td>50% by 2047</td></tr></tbody></table>
+
+<h2>把这个计算器放到你的页面上</h2>
+<p class="sub2">复制这段。嵌入版会保持最新——四条判定一旦变动，它跟着变。</p>
+<pre id="embedcode">&lt;iframe src="https://agiscorecard.com/zh/matrix-odds?embed=1" width="100%" height="900" style="border:1px solid #33333a;border-radius:12px" loading="lazy" title="黑客帝国概率计算器 —— 算你自己的数，不是我们的"&gt;&lt;/iframe&gt;</pre>
+<button type="button" class="btn sec" onclick="copyEmbed()">复制嵌入代码</button>
+<span id="embedcopied" style="display:none;font-size:13px;color:var(--ok);margin-left:8px">已复制 ✓</span>
+
+<h2>常见问题</h2>
+<div class="faq-q">本站认为黑客帝国剧本很可能发生吗？</div><p>本站没有为它发布过任何概率，本页也刻意不给。你看到的每一个数字都是你自己填进去的。本站发布的是五环里前四环的判定证据，每条都有预先登记的翻转条件和一手信源。</p><div class="faq-q">为什么第五环没有证据？</div><p>因为确实没有，正反都没有。「超级智能会把人类活着养在模拟世界里」不是一个关于当下世界的可证伪命题——今天不存在任何一个观测能确认或推翻它。无视人类、消灭人类、与人类合作，在证据地位上完全相同。任何人给你报一个这一环的百分比，那个数都是编的。</p><div class="faq-q">现在哪一环的证据最强？</div><p>物理那一环。AI 资本开支已经<em>超额</em>兑现了原文的预测，算力扩张也在轨道上，两条都基于一手信源判定。整个剧本里最不玄的部分恰恰是基建——而那不是大多数人在争论的部分。</p><div class="faq-q">为什么用连乘，不用取平均？</div><p>因为这个剧本需要的是每一步都成立，不是「平均一步」。任何一环断了，剧本就不成立。要提醒的是各环并不独立——见上面的方法说明，那里已经写明相关性会让真实的数高于这个乘积。</p><div class="faq-q">这算预测吗？算建议吗？</div><p>都不算。它是一个架在公开数据集上的推理工具：告诉你你自己申报的信念意味着什么，并且指出证据在哪一步用完了。</p>
+
+<h2>相关</h2>
+<div class="rel"><a href="/zh/progress-index">AGI-2027 命题追踪指数 · 前四环背后的活分数 →</a><a href="/zh/agi-test">你其实站在哪位预言者那一边？ →</a><a href="/zh/ai-tools">全部免费工具 →</a></div>
+</div>
+
+<footer>判定截至 2026-08-08 · 判定与信源：<a href="/data.json">/data.json</a>（CC BY 4.0）。本页不发布任何属于自己的概率，上面每一个数字都是你自己填的。不构成任何建议。</footer>
+</div>
+<script>
+var L={},LINKS=["agi", "explosion", "physical", "control", "farm"],BANDS=[[0.1, "红药丸", "你认为这部电影大体上是个还活着的假说。"], [0.01, "认真的风险派", "你把它当成真实的尾部风险，不是故事。"], [0.0001, "谨慎的怀疑者", "原理上可能，但定价极低。"], [0.0, "剧本爱好者", "你认为这就是虚构，而算出来的数也同意你。"]];
+var p=LINKS.map(function(){return 50;});
+(function(){try{var m=/[?&]p=([0-9\-]+)/.exec(location.search);if(!m)return;
+var v=m[1].split('-').map(Number);
+if(v.length===LINKS.length&&v.every(function(x){return isFinite(x)&&x>=0&&x<=100;}))p=v;}catch(e){}})();
+function syncUrl(){try{var q=['p='+p.join('-')];
+if(document.body.classList.contains('embed'))q.push('embed=1');
+history.replaceState(null,'',location.pathname+'?'+q.join('&'));}catch(e){}}
+function fmt(x){ // 极小概率不该显示成 0.0%——那等于谎报确定性
+  if(x<=0)return '0%';
+  if(x<0.0001)return (x*100).toExponential(1).replace('e','×10^')+'%';
+  if(x<0.01)return (x*100).toFixed(3)+'%';
+  if(x<1)return (x*100).toFixed(2)+'%';
+  return (x*100).toFixed(1)+'%';}
+function render(){
+  for(var i=0;i<LINKS.length;i++){
+    document.getElementById('r'+i).value=p[i];
+    document.getElementById('v'+i).textContent=p[i]+'%';
+  }
+  var all=1,four=1;
+  for(var j=0;j<p.length;j++){all*=p[j]/100;if(j<4)four*=p[j]/100;}
+  document.getElementById('big').textContent=fmt(all);
+  document.getElementById('four').textContent=fmt(four);
+  var band=BANDS[BANDS.length-1];
+  for(var k=0;k<BANDS.length;k++){if(all>=BANDS[k][0]){band=BANDS[k];break;}}
+  document.getElementById('band').textContent=band[1];
+  document.getElementById('bandnote').textContent=band[2];
+  syncUrl();
+}
+function setP(i,v){p[i]=+v;render();
+  try{gtag('event','tool_click',{location:'matrix_odds',label:LINKS[i]});}catch(e){}}
+function resetAll(){p=LINKS.map(function(){return 50;});render();}
+function shareLink(){try{navigator.clipboard.writeText(location.href).then(function(){
+  var c=document.getElementById('shared');c.style.display='inline';
+  setTimeout(function(){c.style.display='none'},2000);});
+  gtag('event','matrix_result',{location:'matrix_odds',label:p.join('-')});}catch(e){}}
+function copyEmbed(){var t=document.getElementById('embedcode');
+  try{navigator.clipboard.writeText(t.textContent).then(function(){
+  var c=document.getElementById('embedcopied');c.style.display='inline';
+  setTimeout(function(){c.style.display='none'},2000);});
+  gtag('event','embed_copy',{location:'matrix_odds'});}catch(e){}}
+render();
+</script>
+</body>
+</html>

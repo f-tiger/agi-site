@@ -1,0 +1,227 @@
+<!doctype html><html lang="zh"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>押注未来 — 60 秒预测小游戏 | AGI 记分牌</title>
+<meta name="description" content="对 12 个大胆预言投 YES/NO——AGI、机器人、火星、核聚变、外星生命——看你的押注最像哪位真实预测者。可分享结果，无需注册。">
+<link rel="canonical" href="https://agiscorecard.com/zh/future-bet">
+<link rel="alternate" hreflang="en" href="https://agiscorecard.com/future-bet">
+<link rel="alternate" hreflang="zh-Hans" href="https://agiscorecard.com/zh/future-bet">
+<link rel="alternate" hreflang="x-default" href="https://agiscorecard.com/future-bet">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://agiscorecard.com/zh/future-bet">
+<meta property="og:title" content="押注未来——你的预测最像马斯克还是怀疑派？">
+<meta property="og:description" content="对 12 个大胆的未来预言投 YES/NO——AGI、火星、机器人、核聚变——60 秒测出你最像哪位预测者。无需注册。">
+<meta property="og:image" content="https://agiscorecard.com/share/future-bet.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="押注未来——你敢押几个成真？">
+<meta name="twitter:image" content="https://agiscorecard.com/share/future-bet.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AGI 记分牌","item":"https://agiscorecard.com/"},{"@type":"ListItem","position":2,"name":"中文主页","item":"https://agiscorecard.com/cn"},{"@type":"ListItem","position":3,"name":"押注未来","item":"https://agiscorecard.com/zh/future-bet"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"「押注未来」是什么游戏？","acceptedAnswer":{"@type":"Answer","text":"一个免费的 60 秒小游戏：对 12 个关于近未来的大胆预言投 YES 或 NO——AGI、人形机器人、载人火星、抗衰老药、脑机接口、可控核聚变等。游戏会把你匹配到押注风格最接近的真实公开预测者，并生成可分享的结果网格。无需注册。"}},{"@type":"Question","name":"游戏基于真实数据吗？","acceptedAnswer":{"@type":"Answer","text":"押注本身是对未来的开放预测，你的答案是观点而非事实。但在有真实专家预测的领域——最具体的是 AGI——游戏会展示真实数据：公开预测从马斯克（约 2026）、Aschenbrenner（2027）到 Metaculus（约 2033）、学术调查（约 2047），AGI 记分牌以 62.5/100 追踪实际证据。绝无编造数据。"}},{"@type":"Question","name":"我会被匹配到哪位预测者？","acceptedAnswer":{"@type":"Answer","text":"取决于你押 YES 的数量，映射到真实预测者区间：10-12 个最像马斯克（AGI 2026）、8-9 个像 Aschenbrenner（2027）、6-7 个像 Hassabis（约 2030）、4-5 个像 Metaculus 社区（约 2033）、0-3 个像学术调查（约 2047）。"}}]}</script>
+<style>
+:root{--bg:#ffffff;--bg2:#f7f7f8;--bg3:#eeeef1;--border:rgba(0,0,0,0.12);--text:#0a0a0b;--muted:#63636e;--accent:#002FA7;--accent2:#0f7a52;--no:#C8102E}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#ffffff;color:var(--text);font:16px/1.65 -apple-system,'Segoe UI','PingFang SC','Microsoft YaHei',Roboto,sans-serif;min-height:100vh}
+.wrap{max-width:680px;margin:0 auto;padding:26px 20px 64px}
+a{color:var(--accent)}
+header{display:flex;justify-content:space-between;align-items:center;font-size:14px;margin-bottom:30px}
+header .brand{font-weight:700;color:var(--text);text-decoration:none}
+.kicker{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+h1{font-size:32px;line-height:1.2;margin:10px 0 8px;letter-spacing:-.01em}
+h2{font-size:22px;margin:34px 0 12px}
+.lead{color:var(--muted);margin-bottom:24px}
+.progress{font-size:13px;color:var(--muted);margin-bottom:10px}
+.bar{height:6px;background:var(--bg3);border-radius:4px;overflow:hidden;margin-bottom:22px}
+.bar > i{display:block;height:100%;background:var(--accent);width:0;transition:width .25s}
+.game{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:26px 22px;min-height:230px}
+.cardnum{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.claim{font-size:22px;font-weight:700;line-height:1.35;margin:10px 0 6px}
+.byyear{color:var(--accent2);font-weight:700}
+.choices{display:flex;gap:12px;margin-top:22px}
+.choices button{flex:1;padding:16px 10px;border-radius:12px;border:1.5px solid var(--border2);background:#fff;color:var(--text);font:inherit;font-size:17px;font-weight:700;cursor:pointer;transition:.12s}
+.choices .yes{border-color:rgba(15,122,82,.45);color:#0f7a52}
+.choices .no{border-color:rgba(200,16,46,.4);color:#C8102E}
+.choices .yes:hover{border-color:#0f7a52;background:rgba(15,122,82,.08)}
+.choices .no:hover{border-color:#C8102E;background:rgba(200,16,46,.06)}
+.hint{font-size:13px;color:var(--muted);margin-top:14px;min-height:20px}
+#result{display:none}
+.reveal{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:22px;text-align:center}
+.reveal .k{font-size:12px;letter-spacing:.06em;color:var(--muted)}
+.reveal .name{font-size:28px;font-weight:800;margin:6px 0;color:var(--text)}
+.reveal .line{color:var(--muted)}
+.grid{font-size:26px;letter-spacing:3px;margin:16px 0 4px;word-break:break-word}
+.btn{display:inline-block;background:var(--accent);color:#fff;padding:11px 22px;border-radius:8px;font-weight:600;text-decoration:none;border:0;cursor:pointer;font-family:inherit;font-size:15px}
+.btn.sec{background:var(--bg3)}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0;justify-content:center}
+.cta{background:linear-gradient(135deg,rgba(0,47,167,.06),rgba(15,122,82,.06));border:1px solid rgba(0,47,167,.25);border-radius:12px;padding:18px 20px;margin:18px 0;text-align:center}
+.cta p{margin:0 0 12px;font-weight:600}
+.agibox{background:var(--bg2);border:1px solid rgba(0,47,167,.22);border-radius:12px;padding:16px 18px;margin:18px 0;font-size:14.5px}
+.agibox b{color:var(--text)}
+.types{border:1px solid var(--border);border-radius:12px;overflow:hidden;margin:14px 0}
+.types div{padding:12px 16px;border-bottom:1px solid var(--border);font-size:14px}
+.types div:last-child{border-bottom:0}
+.types b{color:var(--text)}
+#copied{display:none;font-size:13px;color:var(--accent2);margin-left:8px}
+footer{margin-top:40px;font-size:12px;color:var(--muted);text-align:center}
+footer a{color:var(--muted)}
+.embed-brand{display:none;text-align:center;margin:16px 0 2px;font-size:13px}
+.embed-brand a{font-weight:600}
+body.embed{background:#ffffff}
+body.embed .wrap{padding:16px 16px 22px}
+body.embed header,body.embed .lead,body.embed .marketing{display:none}
+body.embed h1{font-size:25px}
+body.embed .embed-brand{display:block}
+@media(max-width:640px){table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;white-space:nowrap}table td,table th{white-space:normal;min-width:92px}}
+</style></head>
+<body>
+<script>if(location.search.indexOf('embed')>-1||location.hash.indexOf('embed')>-1){document.body.classList.add('embed');}</script>
+<div class="wrap">
+<header><a class="brand" href="/cn">◆ AGI 记分牌</a><span class="kicker"><a href="/future-bet" style="color:var(--muted)">EN</a></span></header>
+<div class="kicker">押注未来 🎲</div>
+<h1>你敢押几个<em>成真</em>？</h1>
+<p class="lead">关于未来 15 年的 12 个大胆预言——AI、机器人、火星、抗衰老、核聚变。你赌它按时实现就点 <b style="color:var(--accent2)">YES</b>，不信就点 <b style="color:var(--no)">NO</b>。测完告诉你最像哪位真实预测者——马斯克还是怀疑派？60 秒，无需注册。</p>
+
+<div id="play">
+  <div class="progress" id="prog">第 1 / 12 注</div>
+  <div class="bar"><i id="barfill"></i></div>
+  <div class="game">
+    <div class="cardnum" id="cnum"></div>
+    <div class="claim" id="claim"></div>
+    <div class="choices">
+      <button class="yes" onclick="bet(1)">✅ 会成真</button>
+      <button class="no" onclick="bet(0)">❌ 不会</button>
+    </div>
+    <div class="hint" id="hint"></div>
+  </div>
+</div>
+
+<div id="result">
+  <div class="reveal">
+    <div class="k">你的预测者匹配</div>
+    <div class="name" id="r-name"></div>
+    <div class="line" id="r-line"></div>
+    <div class="grid" id="r-grid"></div>
+    <div style="font-size:13px;color:var(--muted)" id="r-score"></div>
+  </div>
+  <div class="row">
+    <button class="btn" onclick="copyShare()">📋 复制结果发给朋友</button>
+    <button class="btn sec" onclick="challengeFriend()">🔥 挑战朋友</button>
+    <span id="copied">✓ 已复制</span>
+  </div>
+  <div class="agibox" id="agibox"></div>
+  <div class="cta">
+    <p>你刚做了 12 个预测。想知道哪些会成真？最大的那个我们在实时追踪——AGI-2027 命题追踪指数只在真实证据出现时移动。</p>
+    <a class="btn" href="https://agiscorecard.beehiiv.com/subscribe?utm_source=agiscorecard&amp;utm_medium=zh_future_bet" target="_blank" rel="noopener" onclick="gtag('event','subscribe_click',{location:'zh_future_bet'});">免费订阅，见证结果 →</a>
+    <div style="font-size:11.5px;color:var(--muted);margin-top:8px">订阅表单为英文：输入邮箱 → 点 Subscribe 即完成</div>
+  </div>
+  <div class="row"><button class="btn sec" onclick="restart()">↺ 再玩一次</button>
+    <a class="btn sec" href="/zh/agi-test" onclick="gtag('event','agi_test_click',{location:'zh_future_bet'});">🎯 再测：你是哪种 AGI 类型？</a></div>
+</div>
+
+<div class="embed-brand">🎲 <b>押注未来</b> · <a href="https://agiscorecard.com/zh/future-bet?utm_source=game_embed&amp;utm_medium=iframe" target="_blank" rel="noopener" onclick="gtag('event','embed_brand_click',{location:'zh_future_bet_embed'});">到 AGI 记分牌玩完整版 →</a></div>
+
+<div class="marketing">
+<h2>你最接近哪位预测者？</h2>
+<p style="color:var(--muted);font-size:14px">你的押注分数会映射到真实的公开 AGI 预测者光谱——从最激进到最保守，每个立场都有据可查。</p>
+<div class="types">
+  <div>🚀 <b>马斯克</b>（押 10–12 个）——AGI 2026 年底，全场最激进的公开预测。</div>
+  <div>⏱️ <b>Leopold Aschenbrenner</b>（8–9）——AGI 2027，《态势感知》的核心命题。</div>
+  <div>📊 <b>Demis Hassabis</b>（6–7）——2030 年前约 50%，DeepMind 的谨慎看多。</div>
+  <div>🤔 <b>Metaculus 社区</b>（4–5）——2033 年前约 50%，预测者共识。</div>
+  <div>🛡️ <b>学术调查</b>（0–3）——2047 年前 50%，赌趋势线先断。</div>
+</div>
+
+<h2>游戏背后的真实预测</h2>
+<p>游戏里的押注是开放预测，你的答案是观点。但 AGI 这一题我们是认真打分的。以下是截至 2026 年中的真实公开预测，按最早到最晚排列：</p>
+<table style="width:100%;border-collapse:collapse"><thead><tr><th style="text-align:left;padding:8px 10px;color:var(--muted);font-size:12px">预测者</th><th style="text-align:left;padding:8px 10px;color:var(--muted);font-size:12px">AGI 预测</th><th style="text-align:left;padding:8px 10px;color:var(--muted);font-size:12px">详情</th></tr></thead><tbody>
+<tr><td style="padding:8px 10px;border-top:1px solid var(--border)">马斯克（xAI）</td><td style="padding:8px 10px;border-top:1px solid var(--border)" class="byyear">2026 年底前</td><td style="padding:8px 10px;border-top:1px solid var(--border)"><a href="/zh/elon-musk-agi-prediction">详情 →</a></td></tr>
+<tr><td style="padding:8px 10px;border-top:1px solid var(--border)">Dario Amodei（Anthropic）</td><td style="padding:8px 10px;border-top:1px solid var(--border)" class="byyear">「强 AI」2026–27</td><td style="padding:8px 10px;border-top:1px solid var(--border)"><a href="/zh/when-will-agi-arrive">详情 →</a></td></tr>
+<tr><td style="padding:8px 10px;border-top:1px solid var(--border)">Leopold Aschenbrenner</td><td style="padding:8px 10px;border-top:1px solid var(--border)" class="byyear">AGI 2027</td><td style="padding:8px 10px;border-top:1px solid var(--border)"><a href="/zh/who-is-leopold-aschenbrenner">详情 →</a></td></tr>
+<tr><td style="padding:8px 10px;border-top:1px solid var(--border)">Sam Altman（OpenAI）</td><td style="padding:8px 10px;border-top:1px solid var(--border)" class="byyear">近期；超级智能「几千天」</td><td style="padding:8px 10px;border-top:1px solid var(--border)"><a href="/zh/sam-altman-agi-prediction">详情 →</a></td></tr>
+<tr><td style="padding:8px 10px;border-top:1px solid var(--border)">Demis Hassabis（DeepMind）</td><td style="padding:8px 10px;border-top:1px solid var(--border)" class="byyear">2030 前约 50%</td><td style="padding:8px 10px;border-top:1px solid var(--border)"><a href="/zh/when-will-agi-arrive">详情 →</a></td></tr>
+<tr><td style="padding:8px 10px;border-top:1px solid var(--border)">Metaculus 社区</td><td style="padding:8px 10px;border-top:1px solid var(--border)" class="byyear">2033 前 50%</td><td style="padding:8px 10px;border-top:1px solid var(--border)"><a href="/zh/when-will-agi-arrive">详情 →</a></td></tr>
+<tr><td style="padding:8px 10px;border-top:1px solid var(--border)">Andrej Karpathy</td><td style="padding:8px 10px;border-top:1px solid var(--border)" class="byyear">约十年后（~2035）</td><td style="padding:8px 10px;border-top:1px solid var(--border)"><a href="/zh/when-will-agi-arrive">详情 →</a></td></tr>
+<tr><td style="padding:8px 10px;border-top:1px solid var(--border)">AI 研究者调查（n=2,778）</td><td style="padding:8px 10px;border-top:1px solid var(--border)" class="byyear">2047 前 50%</td><td style="padding:8px 10px;border-top:1px solid var(--border)"><a href="/zh/when-will-agi-arrive">详情 →</a></td></tr>
+</tbody></table>
+<p style="color:var(--muted);font-size:13px">以上均为公开表述的立场，各页附一手来源。<a href="/zh/progress-index">AGI-2027 命题追踪指数</a>以 <b>62.5/100</b> 追踪实际证据。绝无编造数据。</p>
+
+<h2>常见问题</h2>
+<div class="types">
+  <div><b>「押注未来」是什么游戏？</b><br><span style="color:var(--muted)">一个免费的 60 秒小游戏：对 12 个关于近未来的大胆预言投 YES 或 NO——AGI、人形机器人、载人火星、抗衰老药、脑机接口、可控核聚变等——游戏把你匹配到押注风格最接近的真实公开预测者，并生成可分享的结果网格。无需注册。</span></div>
+  <div><b>游戏基于真实数据吗？</b><br><span style="color:var(--muted)">押注本身是开放预测，你的答案是观点。但在有真实专家预测的领域——最具体的是 AGI——游戏展示真实数据（马斯克约 2026 到学术调查约 2047；追踪指数 62.5/100）。绝无编造数据。</span></div>
+  <div><b>我会被匹配到哪位预测者？</b><br><span style="color:var(--muted)">取决于你押 YES 的数量：10–12 个最像马斯克（2026）、8–9 个像 Aschenbrenner（2027）、6–7 个像 Hassabis（约 2030）、4–5 个像 Metaculus（约 2033）、0–3 个像学术调查（约 2047）。</span></div>
+</div>
+
+<div style="border:1px dashed var(--border);border-radius:12px;padding:14px 16px;margin:18px 0;text-align:center">
+  <div style="font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:6px">赞助位 · 招商中</div>
+  <p style="margin:0 0 6px;font-size:14px;font-weight:600">让你的品牌出现在押注 AI 未来的玩家面前</p>
+  <a href="/advertise" style="font-weight:600;font-size:14px" onclick="gtag('event','advertise_click',{location:'zh_future_bet'});">查看赞助方案 →</a>
+</div>
+
+<footer>AGI 记分牌出品 · <a href="/about">方法论</a> · <a href="/cn">中文主页</a> · <a href="/">agiscorecard.com</a><br>
+独立追踪《态势感知》中可证伪的预测 · 与任何实验室无关联</footer>
+</div>
+</div>
+<script>
+var CARDS=[
+ {e:'🤖',t:'一个 AI 能胜任几乎所有熟练人类的工作',y:2030,agi:true},
+ {e:'🏠',t:'人形机器人替你做家务',y:2032},
+ {e:'🚗',t:'自动驾驶在大城市成为常态',y:2030},
+ {e:'🚀',t:'人类登上火星',y:2035},
+ {e:'🧬',t:'能明确延缓衰老的药物被广泛使用',y:2035},
+ {e:'🧠',t:'消费级设备让你「用意念打字」',y:2033},
+ {e:'🎬',t:'AI 制作的电影成为全球爆款',y:2030},
+ {e:'🤝',t:'数百万人把 AI 当作最好的朋友',y:2028},
+ {e:'⚡',t:'可控核聚变真正并网发电',y:2040},
+ {e:'🎮',t:'VR 逼真到与现实无法区分',y:2040},
+ {e:'🛸',t:'我们找到地外生命的可信证据',y:2040},
+ {e:'🪙',t:'有国家任命 AI 参与管理经济',y:2035}
+];
+var PERSONAS=[
+ {min:10,name:'马斯克',emoji:'🚀',line:'全场最激进的公开预测者——他说 AGI 2026 年底就到。你的押注比谁都大胆。'},
+ {min:8, name:'Aschenbrenner',emoji:'⏱️',line:'《态势感知》作者——AGI 2027，「数数量级」。你站在最前沿。'},
+ {min:6, name:'Hassabis',emoji:'📊',line:'DeepMind CEO——2030 年前约 50%。看多，但克制。'},
+ {min:4, name:'Metaculus 社区',emoji:'🤔',line:'预测者社区——2033 年前约 50%。你押的是基准概率。'},
+ {min:0, name:'学术调查',emoji:'🛡️',line:'2,778 位 AI 研究者——2047 年前 50%。你赌趋势线先断。'}
+];
+var i=0, ans=[], myType=null;
+function render(){
+  var c=CARDS[i];
+  document.getElementById('prog').textContent='第 '+(i+1)+' / '+CARDS.length+' 注';
+  document.getElementById('barfill').style.width=(i/CARDS.length*100)+'%';
+  document.getElementById('cnum').textContent=c.e+'  预言 '+(i+1);
+  document.getElementById('claim').innerHTML=c.t+' <span class="byyear">——'+c.y+' 年前？</span>';
+  document.getElementById('hint').textContent='';
+}
+function bet(v){
+  var c=CARDS[i];
+  ans.push(v);
+  if(c.agi){document.getElementById('hint').innerHTML=v?'大胆——比多数专家激进。真实预测：马斯克约 2026、Aschenbrenner 2027、Metaculus 约 2033。':'谨慎——接近 Metaculus（约 2033）和学术调查（约 2047）。';}
+  i++;
+  if(i<CARDS.length){ if(c.agi){setTimeout(render,650);} else {render();} }
+  else{ setTimeout(finish,c.agi?650:0); }
+}
+function grid(){return ans.map(function(v){return v?'✅':'⬜';}).join('');}
+function finish(){
+  var yes=ans.reduce(function(a,b){return a+b;},0);
+  for(var k=0;k<PERSONAS.length;k++){ if(yes>=PERSONAS[k].min){myType=PERSONAS[k];break;} }
+  document.getElementById('play').style.display='none';
+  document.getElementById('r-name').innerHTML=myType.emoji+' 你最像 <span style="white-space:nowrap">'+myType.name+'</span>';
+  document.getElementById('r-line').textContent=myType.line;
+  document.getElementById('r-grid').textContent=grid();
+  document.getElementById('r-score').textContent='你押了 '+yes+'/12 个预言按时成真——这就是你在真实预测者光谱上的位置。';
+  var agiYes=ans[0]===1;
+  document.getElementById('agibox').innerHTML='🤖 <b>你的 AGI 押注：</b>你认为 AGI '+(agiYes?'<b>会</b>':'<b>不会</b>')+'在 2030 年前到来。真实预测者在这题上分歧巨大——马斯克约 2026、Aschenbrenner 2027、Hassabis 约 2030、Metaculus 约 2033、学术调查约 2047——而这一注我们在实时打分：<a href="/zh/progress-index" onclick="gtag(\'event\',\'index_click\',{location:\'zh_future_bet\'});">命题追踪指数当前 62.5/100 →</a>';
+  document.getElementById('result').style.display='block';
+  document.getElementById('result').scrollIntoView({behavior:'smooth'});
+  gtag('event','vote_cast',{label:'zh_future_bet_'+yes});
+}
+function restart(){i=0;ans=[];myType=null;document.getElementById('result').style.display='none';document.getElementById('play').style.display='block';render();window.scrollTo({top:0,behavior:'smooth'});}
+function sUrl(){return 'https://agiscorecard.com/zh/future-bet';}
+function sText(){var y=ans.reduce(function(a,b){return a+b;},0);return '我的未来押注最像 '+(myType?myType.emoji+' '+myType.name:'')+'（'+y+'/12）。\n'+grid()+'\n马斯克还是怀疑派——你敢押几个成真？';}
+function challengeFriend(){gtag('event','challenge_share',{label:'zh_'+(myType?myType.name:'')});if(navigator.share){navigator.share({title:'押注未来',text:sText(),url:sUrl()}).catch(function(){});}else{copyShare();}}
+function copyShare(){gtag('event','x_share',{label:'zh_copy'});navigator.clipboard.writeText(sText()+'\n'+sUrl()).then(function(){var c=document.getElementById('copied');c.style.display='inline';setTimeout(function(){c.style.display='none'},2000)});}
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
+render();
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FZXLMBB5QB"></script>
+<script>gtag('js',new Date());gtag('config','G-FZXLMBB5QB')</script>
+</body></html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FZXLMBB5QB"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-FZXLMBB5QB');</script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a0a0b'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%234fc3a1'/%3E%3C/svg%3E">
+<title>Les « ordres de grandeur » (OOM) en IA, expliqués</title>
+<meta name="description" content="Un OOM vaut un facteur 10. Toute la thèse AGI-2027 d'Aschenbrenner est une addition d'OOM de calcul effectif à ~0,5 OOM/an. Où en est ce rythme.">
+<link rel="canonical" href="https://agiscorecard.com/fr/ai-orders-of-magnitude-explained">
+<link rel="alternate" hreflang="en" href="https://agiscorecard.com/ai-orders-of-magnitude-explained">
+<link rel="alternate" hreflang="zh-Hans" href="https://agiscorecard.com/zh/ai-orders-of-magnitude-explained">
+<link rel="alternate" hreflang="es" href="https://agiscorecard.com/es/ai-orders-of-magnitude-explained">
+<link rel="alternate" hreflang="fr" href="https://agiscorecard.com/fr/ai-orders-of-magnitude-explained">
+<link rel="alternate" hreflang="de" href="https://agiscorecard.com/de/ai-orders-of-magnitude-explained">
+<link rel="alternate" hreflang="pt" href="https://agiscorecard.com/pt/ai-orders-of-magnitude-explained">
+<link rel="alternate" hreflang="it" href="https://agiscorecard.com/it/ai-orders-of-magnitude-explained">
+<link rel="alternate" hreflang="ja" href="https://agiscorecard.com/ja/ai-orders-of-magnitude-explained">
+<link rel="alternate" hreflang="ko" href="https://agiscorecard.com/ko/ai-orders-of-magnitude-explained">
+<link rel="alternate" hreflang="x-default" href="https://agiscorecard.com/ai-orders-of-magnitude-explained">
+<meta property="og:site_name" content="The AGI Scorecard">
+<meta property="og:title" content="Les « ordres de grandeur » (OOM) de l'IA, expliqués">
+<meta property="og:description" content="Un OOM vaut un facteur 10. Toute la thèse AGI-2027 d'Aschenbrenner est une addition d'OOM de calcul effectif à ~0,5 OOM/an. Où en est ce rythme.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://agiscorecard.com/fr/ai-orders-of-magnitude-explained">
+<meta property="og:image" content="https://agiscorecard.com/scorecard-summary.png">
+<meta property="og:locale" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://agiscorecard.com/scorecard-summary.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Les « ordres de grandeur » (OOM) de l'IA, expliqués", "datePublished": "2026-07-16", "dateModified": "2026-07-16", "inLanguage": "fr", "author": {"@type": "Organization", "name": "The AGI Scorecard"}, "publisher": {"@type": "Organization", "name": "The AGI Scorecard", "url": "https://agiscorecard.com/"}, "description": "Un OOM vaut un facteur 10. Toute la thèse AGI-2027 d'Aschenbrenner est une addition d'OOM de calcul effectif à ~0,5 OOM/an. Où en est ce rythme."}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "inLanguage": "fr", "mainEntity": [{"@type": "Question", "name": "Que sont les ordres de grandeur en IA ?", "acceptedAnswer": {"@type": "Answer", "text": "Un ordre de grandeur (OOM) vaut un facteur 10. Aschenbrenner compte les OOM de « calcul effectif » — calcul brut, plus efficacité algorithmique, plus unhobbling — parce que le progrès de l'IA est exponentiel et plus simple à suivre en « 10× par an »."}}, {"@type": "Question", "name": "Combien d'OOM par an Aschenbrenner a-t-il prédit ?", "acceptedAnswer": {"@type": "Answer", "text": "Environ 0,5 ordre de grandeur de calcul effectif par an, soutenu sur la décennie. À la mi-2026, le rythme a globalement tenu."}}, {"@type": "Question", "name": "Pourquoi les OOM comptent-ils pour l'AGI ?", "acceptedAnswer": {"@type": "Answer", "text": "Parce que sa prévision d'AGI est pour l'essentiel une addition : empilez assez d'OOM de calcul effectif et vous franchissez le seuil. Si les OOM cessent de s'empiler, le calendrier 2027 glisse."}}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="https://www.googletagmanager.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#0a0a0b;--bg2:#111114;--bg3:#18181d;--border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.12);--text:#e8e8ec;--muted:#8888a0;--accent:#7c6af5;--accent2:#4fc3a1;--warn:#e8a040;--danger:#e05555;--font:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;--mono:'JetBrains Mono',monospace;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:16px;line-height:1.75;}
+  a{color:var(--accent);text-decoration:none;}a:hover{opacity:.8;}
+  header{border-bottom:1px solid var(--border);padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:56px;position:sticky;top:0;background:rgba(10,10,11,.92);backdrop-filter:blur(12px);z-index:100;}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px;color:var(--text);}
+  .logo-dot{width:8px;height:8px;background:var(--accent2);border-radius:50%;}
+  .back-link{font-size:13px;color:var(--muted);}.back-link:hover{color:var(--text);opacity:1;}
+  article{max-width:720px;margin:0 auto;padding:2.5rem 1.5rem 4rem;}
+  .eyebrow{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem;}
+  h1{font-size:clamp(1.7rem,4vw,2.4rem);font-weight:700;letter-spacing:-.02em;line-height:1.18;margin-bottom:1.25rem;}
+  .capsule{background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent2);border-radius:0 10px 10px 0;padding:1.15rem 1.4rem;font-size:16px;margin-bottom:1.75rem;}
+  .capsule .verdict{font-weight:700;}
+  .v-ok{color:var(--accent2);}.v-wrong{color:var(--danger);}.v-open{color:var(--accent);}.v-pending{color:var(--muted);}
+  h2{font-size:1.25rem;font-weight:600;margin:2.25rem 0 .9rem;letter-spacing:-.01em;}
+  p{margin-bottom:1rem;}
+  strong{color:#fff;}
+  .faq-q{font-weight:600;margin:1.3rem 0 .4rem;}
+  .related{margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--border);}
+  .related h2{margin-top:0;}.related a{display:block;padding:6px 0;font-size:14px;}
+  .updated{font-size:12px;color:var(--muted);margin-bottom:1.5rem;}
+  .cta{margin-top:2rem;background:linear-gradient(135deg,rgba(124,106,245,.08),rgba(79,195,161,.06));border:1px solid rgba(124,106,245,.2);border-radius:14px;padding:1.5rem;text-align:center;}
+  .cta a{display:inline-block;background:var(--accent);color:#fff;padding:10px 22px;border-radius:8px;font-size:14px;font-weight:500;margin-top:.6rem;}
+  footer{border-top:1px solid var(--border);padding:24px 0;font-size:12px;color:var(--muted);text-align:center;}
+</style>
+</head>
+<body>
+<header>
+  <a href="/" class="logo"><span class="logo-dot"></span>AGI Scorecard</a>
+  <a href="/ai-orders-of-magnitude-explained" class="back-link">EN ↗</a>
+</header>
+<article>
+  <div class="eyebrow">Méthode</div>
+  <h1>Les « ordres de grandeur » (OOM) de l'IA, expliqués</h1>
+  <div class="updated">Dernière mise à jour: 2026-07-16</div>
+  <nav class="langbar" aria-label="Language" style="display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;font-size:12px;margin:-0.5rem 0 1.5rem;padding-bottom:1rem;border-bottom:1px solid var(--border);"><a href="/ai-orders-of-magnitude-explained" style="color:var(--muted);">EN</a> <span style="color:var(--border2);">·</span> <a href="/zh/ai-orders-of-magnitude-explained" style="color:var(--muted);">中文</a> <span style="color:var(--border2);">·</span> <a href="/es/ai-orders-of-magnitude-explained" style="color:var(--muted);">ES</a> <span style="color:var(--border2);">·</span> <span style="color:var(--text);font-weight:600;">FR</span> <span style="color:var(--border2);">·</span> <a href="/de/ai-orders-of-magnitude-explained" style="color:var(--muted);">DE</a> <span style="color:var(--border2);">·</span> <a href="/pt/ai-orders-of-magnitude-explained" style="color:var(--muted);">PT</a> <span style="color:var(--border2);">·</span> <a href="/it/ai-orders-of-magnitude-explained" style="color:var(--muted);">IT</a> <span style="color:var(--border2);">·</span> <a href="/ja/ai-orders-of-magnitude-explained" style="color:var(--muted);">日本語</a> <span style="color:var(--border2);">·</span> <a href="/ko/ai-orders-of-magnitude-explained" style="color:var(--muted);">한국어</a></nav>
+  <div class="capsule"><span class="verdict">La méthode de comptage derrière la prévision 2027.</span> Un ordre de grandeur (OOM) vaut un facteur 10. Tout l'argumentaire AGI d'Aschenbrenner repose sur le comptage d'OOM de <strong>calcul effectif</strong> — calcul brut + efficacité algorithmique + « unhobbling » — en pariant qu'ils s'accumulent à ~<strong>0,5 OOM/an</strong> jusqu'à l'AGI en 2027. Deux ans plus tard, le rythme <strong>a globalement tenu</strong>.</div>
+<h2>Ce qu'est un OOM</h2>
+<p>Un ordre de grandeur = 10×. Deux OOM = 100×. Aschenbrenner raisonne en OOM parce que le progrès de l'IA est exponentiel : il est plus simple de suivre « combien de 10× par an » que des valeurs absolues. Sa prévision est pour l'essentiel une addition — empilez assez d'OOM de calcul effectif et vous franchissez le seuil de l'AGI.</p>
+<h2>Les trois sources d'OOM</h2>
+<p><ul><li><strong>Calcul brut</strong> — des entraînements plus vastes</li><li><strong>Efficacité algorithmique</strong> — plus de capacité par FLOP</li><li><strong>Unhobbling</strong> — libérer la capacité latente (raisonnement, outils, agents)</li></ul></p>
+<h2>Le pari, et où il en est</h2>
+<p>Il tablait sur environ <strong>0,5 OOM/an</strong> de calcul effectif, de façon soutenue. À la mi-2026, un audit indépendant qualifie le rythme de « globalement conforme », les lancements se répartissant à environ ±0,5 OOM de la tendance. Ce moteur d'OOM est ce qui sous-tend chaque affirmation en aval : capacité, calendrier de l'AGI, explosion d'intelligence. Si les OOM cessent de s'empiler, tout le dossier 2027 glisse.</p>
+  <h2>Questions fréquentes</h2>
+  <div class="faq-q">Que sont les ordres de grandeur en IA ?</div><p>Un ordre de grandeur (OOM) vaut un facteur 10. Aschenbrenner compte les OOM de « calcul effectif » — calcul brut, plus efficacité algorithmique, plus unhobbling — parce que le progrès de l'IA est exponentiel et plus simple à suivre en « 10× par an ».</p><div class="faq-q">Combien d'OOM par an Aschenbrenner a-t-il prédit ?</div><p>Environ 0,5 ordre de grandeur de calcul effectif par an, soutenu sur la décennie. À la mi-2026, le rythme a globalement tenu.</p><div class="faq-q">Pourquoi les OOM comptent-ils pour l'AGI ?</div><p>Parce que sa prévision d'AGI est pour l'essentiel une addition : empilez assez d'OOM de calcul effectif et vous franchissez le seuil. Si les OOM cessent de s'empiler, le calendrier 2027 glisse.</p>
+  <div class="related">
+    <h2>À lire aussi</h2>
+    <a href="/fr/when-will-agi-arrive">Quand arrivera l'AGI ? →</a><a href="/agi-test">Quel est votre type d'AGI ? Faites le test de 30 secondes →</a><a href="/two-year-scorecard.html">Le scorecard complet sur deux ans →</a>
+  </div>
+  <div class="cta" style="background:var(--bg2);border:1px solid var(--border);">
+    <p style="margin:0;font-weight:600;">Recevez le point hebdomadaire sur l'AGI</p>
+    <p style="margin:6px 0 0;font-size:13px;color:var(--muted);">Changements de verdict et jalons, et ce qu'ils signifient pour l'échéance 2027. Gratuit, sans bruit.</p>
+    <a href="https://agiscorecard.beehiiv.com/subscribe?utm_source=agiscorecard&amp;utm_medium=intl_deep_page" target="_blank" rel="noopener" onclick="gtag('event','subscribe_click',{location:'intl_deep_page'});">S'abonner gratuitement →</a>
+  </div>
+  <div class="cta">
+    <p style="margin:0;font-weight:600;">Le scorecard en direct se met à jour au fil des modèles et des verdicts.</p>
+    <a href="/">Voir le scorecard en direct →</a>
+  </div>
+</article>
+<footer>AGI Scorecard · Suivi indépendant de <a href="https://situational-awareness.ai" style="color:var(--muted);">Situational Awareness</a> · Sans affiliation à un laboratoire</footer>
+</body>
+</html>

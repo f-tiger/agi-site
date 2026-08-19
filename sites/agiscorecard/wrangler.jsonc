@@ -1,0 +1,33 @@
+{
+  // Deploy config for agiscorecard.com — static site + first-party event collector.
+  //
+  // Two settings here are load-bearing and easy to get wrong:
+  //
+  // 1. "run_worker_first": true — Workers serve static assets BEFORE the script by
+  //    default, which would mean the analytics beacon (injected via HTMLRewriter) never
+  //    runs on any HTML page. The worker must see the request first. Every non-/api/e
+  //    request is handed straight back to the ASSETS binding, so serving behaviour is
+  //    unchanged.
+  //
+  // 2. "not_found_handling": "404-page" — preserves the existing custom 404.html.
+  //    Workers make this explicit rather than inferring it the way Pages did.
+  //
+  // See also .assetsignore: Workers do NOT auto-exclude .git the way Pages did, so it
+  // is excluded explicitly. Without it the whole repo history ships as public assets.
+  "name": "agiscorecard",
+  "main": "tools/analytics-worker/index.js",
+  "compatibility_date": "2026-08-01",
+  "assets": {
+    "directory": "./",
+    "binding": "ASSETS",
+    "run_worker_first": true,
+    "not_found_handling": "404-page"
+  },
+  "d1_databases": [
+    {
+      "binding": "EVENTS",
+      "database_name": "agiscorecard-events",
+      "database_id": "f84f9d29-3ad9-4b37-b28e-3a78027d2f22"
+    }
+  ]
+}

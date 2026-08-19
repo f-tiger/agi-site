@@ -1,0 +1,197 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What's Your AGI Type? A 30-Second Test | AGI Scorecard</title>
+<meta name="description" content="Take the 30-second AGI test: pick when you think AGI arrives and get your archetype — Accelerationist, True Believer, Realist, Skeptic or Contrarian — placed against Musk, Aschenbrenner, Hassabis and Metaculus.">
+<link rel="canonical" href="https://agiscorecard.com/agi-test">
+<link rel="alternate" hreflang="en" href="https://agiscorecard.com/agi-test">
+<link rel="alternate" hreflang="zh-Hans" href="https://agiscorecard.com/zh/agi-test">
+<link rel="alternate" hreflang="x-default" href="https://agiscorecard.com/agi-test">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://agiscorecard.com/agi-test">
+<meta property="og:title" content="What's your AGI type? Take the 30-second test">
+<meta property="og:description" content="Get your AGI archetype and see where you land vs Musk, Aschenbrenner, Hassabis & Metaculus.">
+<meta property="og:image" content="https://agiscorecard.com/share/agi-test.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="What's your AGI type?">
+<meta name="twitter:image" content="https://agiscorecard.com/share/agi-test.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AGI Scorecard","item":"https://agiscorecard.com/"},{"@type":"ListItem","position":2,"name":"AGI questions, answered","item":"https://agiscorecard.com/agi-questions"},{"@type":"ListItem","position":3,"name":"What's your AGI type?","item":"https://agiscorecard.com/agi-test"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is the AGI type test?","acceptedAnswer":{"@type":"Answer","text":"A 30-second test: you pick when you think AGI will arrive, and it maps you onto the real forecaster spectrum (Musk ~2026, Aschenbrenner 2027, Hassabis ~2030, Metaculus ~2033, academic survey ~2047) and gives you an archetype — Accelerationist, True Believer, Realist, Skeptic or Contrarian — with the case and the risk for your position."}},{"@type":"Question","name":"Are the AGI types based on real data?","acceptedAnswer":{"@type":"Answer","text":"Yes. Each archetype is anchored to a public forecaster position and to benchmark evidence tracked on the AGI Scorecard (compute scaling, SWE-Bench, GDPval). No invented statistics."}},{"@type":"Question","name":"When does the AGI-by-2027 prediction resolve?","acceptedAnswer":{"@type":"Answer","text":"The headline claim from Aschenbrenner's Situational Awareness resolves January 1, 2028. The AGI Scorecard grades it and the other predictions against public evidence with pre-registered flip conditions."}}]}</script>
+<style>
+:root{--bg:#0e0e14;--bg2:#16151f;--bg3:#1e1c28;--border:#26232f;--text:#f4f4f8;--muted:#a8a4c4;--accent:#7c6af5;--accent2:#4fc3a1}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:radial-gradient(900px 520px at 30% -5%,#1a1830,#0e0e14);color:var(--text);font:16px/1.65 -apple-system,'Segoe UI',Roboto,sans-serif;min-height:100vh}
+.wrap{max-width:680px;margin:0 auto;padding:26px 20px 64px}
+a{color:var(--accent)}
+header{display:flex;justify-content:space-between;align-items:center;font-size:14px;margin-bottom:30px}
+header .brand{font-weight:700;color:var(--text);text-decoration:none}
+.kicker{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+h1{font-size:34px;line-height:1.15;margin:10px 0 8px;letter-spacing:-.01em}
+h2{font-size:22px;margin:34px 0 12px}
+.lead{color:var(--muted);margin-bottom:24px}
+.q{font-weight:600;margin-bottom:12px}
+.opts{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+.vote-btn{background:var(--bg3);border:1px solid var(--border);color:var(--text);padding:10px 16px;border-radius:8px;cursor:pointer;font:inherit;font-size:15px}
+.vote-btn:hover{border-color:var(--accent)}
+.vote-btn.selected{background:var(--accent);border-color:var(--accent);color:#fff}
+#result{display:none;margin-top:22px}
+.reveal{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:20px}
+.reveal .k{font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.reveal .name{font-size:26px;font-weight:800;margin:4px 0 8px}
+.card{width:100%;border-radius:12px;border:1px solid var(--border);margin:18px 0;display:block}
+.btn{display:inline-block;background:var(--accent);color:#fff;padding:11px 22px;border-radius:8px;font-weight:600;text-decoration:none;border:0;cursor:pointer;font-family:inherit;font-size:15px}
+.btn.sec{background:var(--bg3)}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+.cta{background:linear-gradient(135deg,rgba(124,106,245,.14),rgba(79,195,161,.08));border:1px solid rgba(124,106,245,.3);border-radius:12px;padding:18px 20px;margin:18px 0;text-align:center}
+.cta p{margin:0 0 12px;font-weight:600}
+.types{border:1px solid var(--border);border-radius:12px;overflow:hidden;margin:14px 0}
+.types div{padding:12px 16px;border-bottom:1px solid var(--border);font-size:14px}
+.types div:last-child{border-bottom:0}
+.types b{color:var(--text)}
+#copied{display:none;font-size:13px;color:var(--accent2);margin-left:8px}
+.embedbox{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:16px 18px;margin:14px 0}
+.embedbox textarea{width:100%;height:74px;background:var(--bg);color:var(--muted);border:1px solid var(--border);border-radius:8px;padding:10px;font:12px/1.5 monospace;resize:vertical;margin:8px 0}
+#embedcopied{display:none;font-size:13px;color:var(--accent2);margin-left:8px}
+.embed-brand{display:none;text-align:center;margin:16px 0 2px;font-size:13px}
+.embed-brand a{font-weight:600}
+body.embed{background:#0e0e14}
+body.embed .wrap{padding:16px 16px 22px}
+body.embed header,body.embed .lead,body.embed .marketing,body.embed footer{display:none}
+body.embed h1{font-size:26px}
+body.embed .embed-brand{display:block}
+footer{margin-top:40px;font-size:12px;color:var(--muted);text-align:center}
+footer a{color:var(--muted)}
+</style><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"AGI Type Test","url":"https://agiscorecard.com/agi-test","description":"Pick when you think AGI arrives and get your archetype, placed against Musk, Aschenbrenner, Hassabis and Metaculus.","applicationCategory":"EducationalApplication","operatingSystem":"Any (web browser)","browserRequirements":"Requires JavaScript","isAccessibleForFree":true,"inLanguage":"en","featureList":["30-second quiz","Five archetypes anchored to real forecasters","Shareable result card","Embeddable via ?embed=1"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"AGI Scorecard","url":"https://agiscorecard.com/"},"isPartOf":{"@type":"CollectionPage","name":"Free AI & AGI tools","url":"https://agiscorecard.com/ai-tools"}}</script>
+</head>
+<body>
+<script>if(location.search.indexOf('embed')>-1||location.hash.indexOf('embed')>-1){document.body.classList.add('embed');}</script>
+<div class="wrap">
+<header><a class="brand" href="/">◆ AGI Scorecard</a><span class="kicker"><a href="/zh/agi-test" style="color:var(--muted)">中文</a></span></header>
+<div class="kicker">The AGI Test 🎯</div>
+<h1>What's your <em>AGI type</em>?</h1>
+<p class="lead">When do you think AGI arrives? Pick one — get your archetype and see exactly where you land versus Musk, Aschenbrenner, Hassabis and Metaculus. Takes 30 seconds.</p>
+<div id="locked-banner" style="display:none;background:var(--bg2);border:1px solid rgba(124,106,245,.3);border-radius:10px;padding:12px 16px;margin-bottom:20px;font-size:14px"></div>
+<div class="q">When do you think AGI arrives?</div>
+<div class="opts" id="opts">
+  <button class="vote-btn" onclick="castVote('accelerationist')">2025–26</button>
+  <button class="vote-btn" onclick="castVote('true-believer')">2027</button>
+  <button class="vote-btn" onclick="castVote('realist')">2028–30</button>
+  <button class="vote-btn" onclick="castVote('skeptic')">2030s</button>
+  <button class="vote-btn" onclick="castVote('contrarian')">Never / 2040+</button>
+</div>
+<div id="result">
+  <div class="reveal">
+    <div class="k">Your AGI type</div>
+    <div class="name" id="r-name"></div>
+    <div id="r-line" style="color:var(--muted)"></div>
+  </div>
+  <img class="card" id="r-card" src="" width="1200" height="630" alt="Your AGI type share card">
+  <div class="row">
+    <button class="btn" onclick="challengeFriend()">🔥 Challenge a friend</button>
+    <button class="btn sec" onclick="shareToX()">Share on 𝕏</button>
+    <button class="btn sec" onclick="copyShare()">Copy link</button>
+    <span id="copied">✓ Copied</span>
+  </div>
+  <div style="text-align:center;margin:4px 0 2px">
+    <button class="btn sec" id="lock-btn" onclick="lockPrediction()">🔒 Lock in my prediction</button>
+    <p style="font-size:12px;color:var(--muted);margin:8px 0 0">Lock it and we'll tell you if the Tracker proves you right.</p>
+  </div>
+  <div class="cta">
+    <p>Want to know if your call was right? We track it — the live AGI-2027 Thesis Tracker moves only when real evidence lands.</p>
+    <a class="btn" href="https://agiscorecard.beehiiv.com/subscribe?utm_source=agiscorecard&amp;utm_medium=agi_test" target="_blank" rel="noopener" onclick="gtag('event','subscribe_click',{location:'agi_test'});">Get the next move →</a>
+  </div>
+  <p style="text-align:center"><a id="r-detail" href="#">See the full read on your type →</a></p>
+</div>
+<div class="embed-brand">🎯 <b>The AGI Test</b> · <a href="https://agiscorecard.com/agi-test?utm_source=game_embed&amp;utm_medium=iframe" target="_blank" rel="noopener" onclick="gtag('event','embed_brand_click',{location:'agi_test_embed'});">See the live AGI-2027 Tracker on AGI Scorecard →</a></div>
+<div class="marketing">
+<h2>The five AGI types</h2>
+<div class="types">
+  <div>🚀 <b>The Accelerationist</b> (AGI by 2026) — bolder than Elon Musk; betting compute scaling and agentic capability close the gap fast.</div>
+  <div>⏱️ <b>The True Believer</b> (2027) — exactly on Aschenbrenner's <em>Situational Awareness</em> line; "counting the OOMs."</div>
+  <div>📊 <b>The Realist</b> (2028–30) — with Demis Hassabis; this decade, but past the 2027 focal point.</div>
+  <div>🤔 <b>The Skeptic</b> (2030s) — near the Metaculus community forecast; benchmarks overstate real-world generality.</div>
+  <div>🛡️ <b>The Contrarian</b> (2040+ / never) — with the broad academic survey; betting the trendlines break first.</div>
+</div>
+<p style="color:var(--muted);font-size:14px">Every archetype is anchored to a public forecaster position and to the evidence graded on the <a href="/">AGI Scorecard</a> — the independent tracker of the falsifiable predictions in Aschenbrenner's <em>Situational Awareness</em>. The headline AGI-by-2027 claim resolves January 1, 2028. <a href="/progress-index">See the live score →</a></p>
+<h2>FAQ</h2>
+<div class="types">
+  <div><b>What is the AGI type test?</b><br><span style="color:var(--muted)">A 30-second test: you pick when you think AGI will arrive, and it maps you onto the real forecaster spectrum (Musk ~2026, Aschenbrenner 2027, Hassabis ~2030, Metaculus ~2033, academic survey ~2047) and gives you an archetype — Accelerationist, True Believer, Realist, Skeptic or Contrarian — with the case and the risk for your position.</span></div>
+  <div><b>Are the AGI types based on real data?</b><br><span style="color:var(--muted)">Yes. Each archetype is anchored to a public forecaster position and to benchmark evidence tracked on the AGI Scorecard (compute scaling, SWE-Bench, GDPval). No invented statistics.</span></div>
+  <div><b>When does the AGI-by-2027 prediction resolve?</b><br><span style="color:var(--muted)">The headline claim from Aschenbrenner's Situational Awareness resolves January 1, 2028. The AGI Scorecard grades it and the other predictions against public evidence with pre-registered flip conditions.</span></div>
+</div>
+<h2>Put this test on your site</h2>
+<p style="color:var(--muted);font-size:14px">Free to embed anywhere — blog, newsletter, forum, course page. It keeps the full interaction, drops the site chrome, and carries one link back to AGI Scorecard. More tools at <a href="/ai-tools">/ai-tools</a>.</p>
+<div class="embedbox">
+  <textarea id="embedcode" readonly>&lt;iframe src="https://agiscorecard.com/agi-test?embed=1" width="100%" height="620" style="border:1px solid #26232f;border-radius:12px;max-width:680px" title="What's your AGI type? — a 30-second test" loading="lazy"&gt;&lt;/iframe&gt;</textarea>
+  <button class="btn sec" onclick="copyEmbed()">Copy embed code</button><span id="embedcopied">✓ Copied</span>
+</div>
+</div>
+<footer>By the AGI Scorecard team · <a href="/about">methodology</a> · <a href="/agi-questions">all AGI questions</a> · <a href="/">agiscorecard.com</a><br>
+Grades the falsifiable predictions in Aschenbrenner's <em>Situational Awareness</em>. Not affiliated with any lab.</footer>
+</div>
+<script>
+var ARCH = {
+  'accelerationist':{name:'The Accelerationist',emoji:'🚀',line:'AGI by 2026 — bolder than Elon Musk, ahead of Aschenbrenner’s 2027 baseline.'},
+  'true-believer':{name:'The True Believer',emoji:'⏱️',line:'Exactly on Aschenbrenner’s Situational Awareness line — AGI in 2027.'},
+  'realist':{name:'The Realist',emoji:'📊',line:'With Demis Hassabis (~2030) — still inside the decade.'},
+  'skeptic':{name:'The Skeptic',emoji:'🤔',line:'Near Metaculus (2033) — more cautious than most lab insiders.'},
+  'contrarian':{name:'The Contrarian',emoji:'🛡️',line:'With the academic survey (2040+) — betting against the trend.'}
+};
+var mySlug=null;
+function castVote(slug){
+  mySlug=slug;
+  var a=ARCH[slug];
+  document.querySelectorAll('.vote-btn').forEach(function(b){b.classList.remove('selected')});
+  event.target.classList.add('selected');
+  document.getElementById('r-name').innerHTML=a.emoji+' '+a.name;
+  document.getElementById('r-line').textContent=a.line;
+  document.getElementById('r-card').src='/share/'+slug+'.png';
+  document.getElementById('r-detail').href='/agi-type/'+slug;
+  document.getElementById('result').style.display='block';
+  gtag('event','vote_cast',{label:slug});
+}
+function sUrl(){return mySlug?'https://agiscorecard.com/agi-type/'+mySlug:'https://agiscorecard.com/agi-test';}
+function sText(){var a=ARCH[mySlug]||{name:'',emoji:''};return 'I’m '+a.name+' '+a.emoji+' on AGI. Think you can out-predict me? What’s your AGI type?';}
+function challengeFriend(){
+  gtag('event','challenge_share',{label:mySlug||''});
+  if(navigator.share){navigator.share({title:"What's your AGI type?",text:sText(),url:sUrl()}).catch(function(){});}
+  else{window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(sText()+' 👇')+'&url='+encodeURIComponent(sUrl()),'_blank');}
+}
+function shareToX(){gtag('event','x_share',{label:mySlug||''});window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(sText()+' 👇')+'&url='+encodeURIComponent(sUrl()),'_blank');}
+function copyEmbed(){var t=document.getElementById('embedcode');navigator.clipboard.writeText(t.value).then(function(){var c=document.getElementById('embedcopied');c.style.display='inline';setTimeout(function(){c.style.display='none'},2000)});gtag('event','embed_copy',{location:'agi_test'});}
+function copyShare(){navigator.clipboard.writeText(sUrl()).then(function(){var c=document.getElementById('copied');c.style.display='inline';setTimeout(function(){c.style.display='none'},2000)});}
+function lockPrediction(){
+  if(!mySlug) return;
+  var d=new Date().toISOString().slice(0,10);
+  try{localStorage.setItem('agiLock',JSON.stringify({slug:mySlug,date:d}));}catch(e){}
+  gtag('event','prediction_lock',{label:mySlug});
+  var b=document.getElementById('lock-btn');
+  b.textContent='🔒 Locked in — '+d; b.disabled=true; b.style.opacity=.65; b.style.cursor='default';
+  renderLocked();
+}
+function renderLocked(){
+  var raw; try{raw=localStorage.getItem('agiLock');}catch(e){}
+  if(!raw) return;
+  var l; try{l=JSON.parse(raw);}catch(e){return;}
+  var a=ARCH[l.slug]; if(!a) return;
+  var el=document.getElementById('locked-banner');
+  el.innerHTML='🔒 You locked <b>'+a.emoji+' '+a.name+'</b> on '+l.date+'. '+
+    '<a href="https://agiscorecard.beehiiv.com/subscribe?utm_source=agiscorecard&utm_medium=agi_test_lock" target="_blank" rel="noopener" onclick="gtag(\'event\',\'subscribe_click\',{location:\'agi_test_lock\'});">Get told if you\'re proven right →</a>';
+  el.style.display='block';
+}
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
+try{renderLocked();}catch(e){}
+// Deep-link: /agi-test?pick=<slug> auto-reveals that answer (article opinion hooks land here).
+try{
+  var m=(location.search+location.hash).match(/pick=([a-z-]+)/);
+  if(m && ARCH[m[1]]){
+    var btns=document.querySelectorAll('.vote-btn');
+    var order=['accelerationist','true-believer','realist','skeptic','contrarian'];
+    var idx=order.indexOf(m[1]);
+    if(idx>-1 && btns[idx]){ btns[idx].click(); gtag('event','deeplink_pick',{label:m[1]}); }
+  }
+}catch(e){}
+
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FZXLMBB5QB"></script>
+<script>gtag('js',new Date());gtag('config','G-FZXLMBB5QB')</script>
+</body></html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FZXLMBB5QB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-FZXLMBB5QB');
+</script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a0a0b'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%234fc3a1'/%3E%3C/svg%3E">
+<title>AGI-2027 命题追踪指数：一个分数看懂 2027 赌局</title>
+<meta name="description" content="用一个可审计的 0-100 分数（当前 62.5）追踪阿申布伦纳《态势感知》命题的成立程度，由 8 项判定算出。CC BY 4.0。">
+<link rel="canonical" href="https://agiscorecard.com/zh/progress-index">
+<link rel="alternate" hreflang="en" href="https://agiscorecard.com/progress-index">
+<link rel="alternate" hreflang="zh-Hans" href="https://agiscorecard.com/zh/progress-index">
+<link rel="alternate" hreflang="x-default" href="https://agiscorecard.com/progress-index">
+<meta property="og:site_name" content="The AGI Scorecard">
+<meta property="og:title" content="AGI-2027 命题追踪指数">
+<meta property="og:description" content="一个可审计的 0-100 分数，追踪《态势感知》命题的成立程度。当前 62.5/100。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://agiscorecard.com/zh/progress-index">
+<meta property="og:image" content="https://agiscorecard.com/scorecard-summary.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "AGI-2027 命题追踪指数", "datePublished": "2026-07-12", "dateModified": "2026-08-08", "inLanguage": "zh-Hans", "author": {"@type": "Organization", "name": "The AGI Scorecard"}, "publisher": {"@type": "Organization", "name": "The AGI Scorecard", "url": "https://agiscorecard.com/"}, "description": "用一个可审计的 0-100 分数（当前 62.5）追踪阿申布伦纳《态势感知》命题的成立程度，由 8 项判定透明算出。CC BY 4.0。"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "什么是 AGI-2027 命题追踪指数？", "acceptedAnswer": {"@type": "Answer", "text": "一个 0-100 的单一分数，衡量阿申布伦纳《态势感知》命题当前的成立程度，由 8 项判定的权重取平均算出。截至 2026-08-08 为 62.5/100。它是已发布判定的编辑性合成，不是 AGI 发生的概率。"}}, {"@type": "Question", "name": "分数怎么计算？", "acceptedAnswer": {"@type": "Answer", "text": "8 项预测各按判定贡献分数：支持性（符合进度/超出/维持）=1.0，未决（悬而未决/待定）=0.5，被证伪（落空）=0.0。取平均再乘 100 即为分数。完整拆解与机器可读数据公开。"}}, {"@type": "Question", "name": "分数什么时候会变？", "acceptedAnswer": {"@type": "Answer", "text": "只有当某项判定变化时才变，且每项判定都带预先登记的翻转条件。头条的“2027 年 AGI”将于 2028 年 1 月 1 日前见分晓，是最可能的近期变量。"}}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#0a0a0b;--bg2:#111114;--bg3:#18181d;--border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.12);--text:#e8e8ec;--muted:#8888a0;--accent:#7c6af5;--accent2:#4fc3a1;--warn:#e8a040;--danger:#e05555;--font:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;--mono:'JetBrains Mono',monospace;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:16px;line-height:1.75;}
+  a{color:var(--accent);text-decoration:none;}a:hover{opacity:.8;}
+  header{border-bottom:1px solid var(--border);padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:56px;position:sticky;top:0;background:rgba(10,10,11,.92);backdrop-filter:blur(12px);z-index:100;}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px;color:var(--text);}
+  .logo-dot{width:8px;height:8px;background:var(--accent2);border-radius:50%;}
+  .back-link{font-size:13px;color:var(--muted);}.back-link:hover{color:var(--text);opacity:1;}
+  article{max-width:720px;margin:0 auto;padding:2.5rem 1.5rem 4rem;}
+  .eyebrow{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem;}
+  h1{font-size:clamp(1.7rem,4vw,2.4rem);font-weight:700;letter-spacing:-.02em;line-height:1.18;margin-bottom:1.25rem;}
+  .capsule{background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent2);border-radius:0 10px 10px 0;padding:1.15rem 1.4rem;font-size:16px;margin-bottom:1.75rem;}
+  .capsule .verdict{font-weight:700;}
+  .v-ok{color:var(--accent2);}.v-wrong{color:var(--danger);}.v-open{color:var(--accent);}.v-pending{color:var(--muted);}
+  h2{font-size:1.25rem;font-weight:600;margin:2.25rem 0 .9rem;letter-spacing:-.01em;}
+  h3{font-size:1.05rem;font-weight:600;margin:1.5rem 0 .6rem;}
+  p{margin-bottom:1rem;}
+  ul{margin:0 0 1rem 1.3rem;}li{margin-bottom:.45rem;}
+  strong{color:#fff;}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;margin:1rem 0 1.4rem;background:var(--bg2);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+  th{text-align:left;padding:10px 12px;color:var(--muted);font-weight:500;font-size:11px;letter-spacing:.05em;text-transform:uppercase;border-bottom:1px solid var(--border);}
+  td{padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:top;}
+  tr:last-child td{border-bottom:none;}
+  .nowrap{white-space:nowrap;font-weight:600;}
+  .faq-q{font-weight:600;margin:1.3rem 0 .4rem;}
+  .related{margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--border);}
+  .related h2{margin-top:0;}
+  .related a{display:block;padding:6px 0;font-size:14px;}
+  .src{font-size:12px;color:var(--muted);margin-top:.5rem;}
+  .updated{font-size:12px;color:var(--muted);margin-bottom:1.5rem;}
+  .cta{margin-top:2rem;background:linear-gradient(135deg,rgba(124,106,245,.08),rgba(79,195,161,.06));border:1px solid rgba(124,106,245,.2);border-radius:14px;padding:1.5rem;text-align:center;}
+  .cta a{display:inline-block;background:var(--accent);color:#fff;padding:10px 22px;border-radius:8px;font-size:14px;font-weight:500;margin-top:.6rem;}
+  footer{border-top:1px solid var(--border);padding:24px 0;font-size:12px;color:var(--muted);text-align:center;}
+</style>
+</head>
+<body>
+<header>
+  <a href="/cn" class="logo"><span class="logo-dot"></span>AGI 记分牌</a>
+  <a href="/progress-index" class="back-link">EN ↗</a>
+</header>
+<article>
+  <div class="eyebrow">原创指数</div>
+  <h1>AGI-2027 命题追踪指数：一个分数看懂整场赌局</h1>
+  <div class="updated">最后更新：2026年7月12日 · 随判定变化更新</div>
+  <div class="capsule"><span class="verdict">当前，AGI-2027 命题的追踪分数为 <strong>62.5/100</strong>。</span> 这个指数用一个数字表示阿申布伦纳《态势感知》当前的成立程度——8 项判定权重的透明平均值。它只在某项判定变化时移动，且每项判定都带预先登记的翻转条件。不声称任何概率；它是可逐行审计的编辑性合成。</div>
+<h2>此刻的分数：62.5/100</h2>
+<svg viewBox="0 0 300 40" width="100%" height="60" preserveAspectRatio="none" style="margin:.5rem 0;overflow:visible;"><polyline points="0.0,40.0 150.0,40.0 300.0,40.0" fill="none" stroke="#7c6af5" stroke-width="2"/></svg>
+<p>8 项预测各按判定贡献分数：<strong class="v-ok">支持性</strong>判定（符合进度/超出/维持）加 1.0，<strong class="v-open">未决</strong>判定（悬而未决/待定）加 0.5，<strong class="v-wrong">被证伪</strong>判定（落空）加 0.0。取平均再乘 100 即为分数。</p>
+<table><thead><tr><th>预测</th><th>判定</th><th>权重</th></tr></thead><tbody>
+<tr><td>Models outpace college graduates across knowledge work</td><td class="nowrap"><span class="v-ok">On track</span></td><td class="nowrap">+1.0</td></tr>
+<tr><td>Compute + algorithmic scaling continues at trend</td><td class="nowrap"><span class="v-ok">On track</span></td><td class="nowrap">+1.0</td></tr>
+<tr><td>Massive AI capex acceleration</td><td class="nowrap"><span class="v-ok">Exceeded</span></td><td class="nowrap">+1.0</td></tr>
+<tr><td>Open source fades; proprietary algorithms create a durable US moat</td><td class="nowrap"><span class="v-wrong">Wrong</span></td><td class="nowrap">0.0</td></tr>
+<tr><td>AGI: models do the work of an AI researcher/engineer</td><td class="nowrap"><span class="v-open">Open</span></td><td class="nowrap">+0.5</td></tr>
+<tr><td>US government launches formal AGI project</td><td class="nowrap"><span class="v-open">Open</span></td><td class="nowrap">+0.5</td></tr>
+<tr><td>Intelligence explosion: a decade of progress in ~1 year</td><td class="nowrap"><span class="v-open">Pending</span></td><td class="nowrap">+0.5</td></tr>
+<tr><td>Superintelligence; decisive strategic advantage</td><td class="nowrap"><span class="v-open">Pending</span></td><td class="nowrap">+0.5</td></tr>
+</tbody></table>
+<p>合计 = 5.0，共 8 项 → <strong>62.5/100</strong>。这一切都刻意保持简单和公开：<a href="/data.json">机器可读数据集</a>与<a href="/index-history.json">分数历史</a>让任何人都能重算或绘图。</p>
+<div class="capsule" id="flip-poll" style="margin-top:1.5rem;"><p style="margin:0 0 .5rem;font-weight:700;">你的判断：四条未决预测，哪条先翻转？</p><p style="margin:0 0 .8rem;font-size:13px;color:var(--muted);">一键表态，无需账号。四条都带上表中预先登记的翻转条件。</p><div style="display:flex;flex-wrap:wrap;gap:8px;"><button class="flip-opt" data-id="agi-2027" data-name="2027 年 AGI" onclick="flipPick(this)" style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 14px;color:var(--text);cursor:pointer;font-size:13.5px;font-family:inherit;">2027 年 AGI <span style="color:var(--muted);font-size:11px;">悬而未决</span></button><button class="flip-opt" data-id="the-project" data-name="美国政府 AGI 工程" onclick="flipPick(this)" style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 14px;color:var(--text);cursor:pointer;font-size:13.5px;font-family:inherit;">美国政府 AGI 工程 <span style="color:var(--muted);font-size:11px;">悬而未决</span></button><button class="flip-opt" data-id="intelligence-explosion" data-name="智能爆炸" onclick="flipPick(this)" style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 14px;color:var(--text);cursor:pointer;font-size:13.5px;font-family:inherit;">智能爆炸 <span style="color:var(--muted);font-size:11px;">待定</span></button><button class="flip-opt" data-id="superintelligence" data-name="超级智能" onclick="flipPick(this)" style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 14px;color:var(--text);cursor:pointer;font-size:13.5px;font-family:inherit;">超级智能 <span style="color:var(--muted);font-size:11px;">待定</span></button></div><div id="flip-result" style="display:none;margin-top:.9rem;font-size:14px;"></div></div><script>function flipPick(b){var id=b.getAttribute("data-id"),nm=b.getAttribute("data-name");try{localStorage.setItem("flip_pick",id)}catch(e){}gtag('event','vote_cast',{location:'progress_index_flip',label:id});var x=document.getElementById("flip-result");x.innerHTML='你押的是 <b>'+nm+'</b>。它的翻转条件已预先登记——真发生那天没有争辩空间。'+'<a href="https://agiscorecard.beehiiv.com/subscribe?utm_source=agiscorecard&utm_medium=zh_progress_index_flip" target="_blank" rel="noopener" onclick="gtag(\'event\',\'subscribe_click\',{location:\'pred_flip\',label:\''+id+'\'})">它翻转当天，给我发一封邮件 →</a>';x.style.display="block";document.querySelectorAll(".flip-opt").forEach(function(o){o.style.opacity=o===b?"1":"0.45";o.style.borderColor=o===b?"var(--accent)":"var(--border)"});}</script>
+<h2>为什么用一个数字？</h2>
+<p>别的 AGI 追踪要么给你一种感觉，要么给你一堆观点。命题追踪指数给你一个可审计的数字，只在证据变化时移动，每一次移动背后都有预先登记的条件。它不是“2027 年 AGI 的概率”，而是阿申布伦纳那些具体、可证伪断言当前评级的运行分数。头条断言将于 <strong>2028 年 1 月 1 日</strong>前见分晓。</p>
+<h2>分数历史</h2>
+<table><thead><tr><th>日期</th><th>分数</th></tr></thead><tbody><tr><td>2026-08-08</td><td class="nowrap">62.5/100</td></tr><tr><td>2026-07-12</td><td class="nowrap">62.5/100</td></tr><tr><td>2026-06-30</td><td class="nowrap">62.5/100</td></tr></tbody></table>
+  <h2>常见问题</h2>
+  <div class="faq-q">什么是 AGI-2027 命题追踪指数？</div><p>一个 0-100 的单一分数，衡量阿申布伦纳《态势感知》命题当前的成立程度，由 8 项判定的权重取平均算出。截至 2026-08-08 为 62.5/100。它是已发布判定的编辑性合成，不是 AGI 发生的概率。</p><div class="faq-q">分数怎么计算？</div><p>8 项预测各按判定贡献分数：支持性（符合进度/超出/维持）=1.0，未决（悬而未决/待定）=0.5，被证伪（落空）=0.0。取平均再乘 100 即为分数。完整拆解与机器可读数据公开。</p><div class="faq-q">分数什么时候会变？</div><p>只有当某项判定变化时才变，且每项判定都带预先登记的翻转条件。头条的“2027 年 AGI”将于 2028 年 1 月 1 日前见分晓，是最可能的近期变量。</p>
+  <div class="related">
+    <h2>相关</h2>
+    <a href="/zh/will-agi-arrive-2027">AGI 会在 2027 年到来吗？ →</a><a href="/zh/how-close-is-agi">AGI 还有多远？ →</a><a href="/cn">查看完整中文记分牌 →</a>
+  </div>
+  <div class="cta">
+    <p style="margin:0;font-weight:600;">分数变动时第一时间通知你</p>
+    <p style="margin:6px 0 0;font-size:13px;color:var(--muted);">指数只在真实证据出现时移动。订阅即可在判定翻转的那一刻收到提醒——免费、无炒作。</p>
+    <a href="https://agiscorecard.beehiiv.com/subscribe?utm_source=agiscorecard&utm_medium=zh_progress_index" target="_blank" rel="noopener" onclick="gtag('event','subscribe_click',{location:'zh_progress_index'});">免费订阅 →</a>
+  </div>
+</article>
+<footer>AGI 记分牌 · 独立追踪 <a href="https://situational-awareness.ai" style="color:var(--muted);">《态势感知》</a> · 不隶属于任何 AI 实验室 · <a href="/about" style="color:var(--muted);">About</a> · <a href="/privacy" style="color:var(--muted);">Privacy</a></footer>
+</body>
+</html>

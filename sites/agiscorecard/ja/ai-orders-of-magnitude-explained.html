@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FZXLMBB5QB"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-FZXLMBB5QB');</script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a0a0b'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%234fc3a1'/%3E%3C/svg%3E">
+<title>AIの「桁（OOM）」とは何か</title>
+<meta name="description" content="1 OOM は 10 倍。アッシェンブレナーの2027年AGI論は、実効計算量の桁を年0.5 OOMで足し上げる計算にすぎない。その進み具合を検証する。">
+<link rel="canonical" href="https://agiscorecard.com/ja/ai-orders-of-magnitude-explained">
+<link rel="alternate" hreflang="en" href="https://agiscorecard.com/ai-orders-of-magnitude-explained">
+<link rel="alternate" hreflang="zh-Hans" href="https://agiscorecard.com/zh/ai-orders-of-magnitude-explained">
+<link rel="alternate" hreflang="es" href="https://agiscorecard.com/es/ai-orders-of-magnitude-explained">
+<link rel="alternate" hreflang="fr" href="https://agiscorecard.com/fr/ai-orders-of-magnitude-explained">
+<link rel="alternate" hreflang="de" href="https://agiscorecard.com/de/ai-orders-of-magnitude-explained">
+<link rel="alternate" hreflang="pt" href="https://agiscorecard.com/pt/ai-orders-of-magnitude-explained">
+<link rel="alternate" hreflang="it" href="https://agiscorecard.com/it/ai-orders-of-magnitude-explained">
+<link rel="alternate" hreflang="ja" href="https://agiscorecard.com/ja/ai-orders-of-magnitude-explained">
+<link rel="alternate" hreflang="ko" href="https://agiscorecard.com/ko/ai-orders-of-magnitude-explained">
+<link rel="alternate" hreflang="x-default" href="https://agiscorecard.com/ai-orders-of-magnitude-explained">
+<meta property="og:site_name" content="The AGI Scorecard">
+<meta property="og:title" content="AIの「桁（OOM）」を解説する">
+<meta property="og:description" content="1 OOM は 10 倍。アッシェンブレナーの2027年AGI論は、実効計算量の桁を年0.5 OOMで足し上げる計算にすぎない。その進み具合を検証する。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://agiscorecard.com/ja/ai-orders-of-magnitude-explained">
+<meta property="og:image" content="https://agiscorecard.com/scorecard-summary.png">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://agiscorecard.com/scorecard-summary.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "AIの「桁（OOM）」を解説する", "datePublished": "2026-07-16", "dateModified": "2026-07-16", "inLanguage": "ja", "author": {"@type": "Organization", "name": "The AGI Scorecard"}, "publisher": {"@type": "Organization", "name": "The AGI Scorecard", "url": "https://agiscorecard.com/"}, "description": "1 OOM は 10 倍。アッシェンブレナーの2027年AGI論は、実効計算量の桁を年0.5 OOMで足し上げる計算にすぎない。その進み具合を検証する。"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "inLanguage": "ja", "mainEntity": [{"@type": "Question", "name": "AIにおける「桁（OOM）」とは何ですか？", "acceptedAnswer": {"@type": "Answer", "text": "1桁（OOM）とは10倍のことです。アッシェンブレナーは「実効計算量」の桁——生の計算量、アルゴリズム効率、アンホブリングの合計——を数えます。AIの進歩は指数的であり、「年に何回の10倍か」として追うほうが扱いやすいからです。"}}, {"@type": "Question", "name": "アッシェンブレナーは年に何OOMと予測しましたか？", "acceptedAnswer": {"@type": "Answer", "text": "実効計算量で年およそ0.5桁、これを10年にわたり持続すると予測しました。2026年半ば時点で、このペースはおおむね保たれています。"}}, {"@type": "Question", "name": "なぜ桁がAGIにとって重要なのですか？", "acceptedAnswer": {"@type": "Answer", "text": "彼のAGI予測が本質的に足し算の問題だからです。実効計算量の桁を十分に積み上げれば閾値を超えます。桁が積み上がらなくなれば、2027年の日程は後ろにずれます。"}}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="https://www.googletagmanager.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#0a0a0b;--bg2:#111114;--bg3:#18181d;--border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.12);--text:#e8e8ec;--muted:#8888a0;--accent:#7c6af5;--accent2:#4fc3a1;--warn:#e8a040;--danger:#e05555;--font:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;--mono:'JetBrains Mono',monospace;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:16px;line-height:1.75;}
+  a{color:var(--accent);text-decoration:none;}a:hover{opacity:.8;}
+  header{border-bottom:1px solid var(--border);padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:56px;position:sticky;top:0;background:rgba(10,10,11,.92);backdrop-filter:blur(12px);z-index:100;}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px;color:var(--text);}
+  .logo-dot{width:8px;height:8px;background:var(--accent2);border-radius:50%;}
+  .back-link{font-size:13px;color:var(--muted);}.back-link:hover{color:var(--text);opacity:1;}
+  article{max-width:720px;margin:0 auto;padding:2.5rem 1.5rem 4rem;}
+  .eyebrow{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem;}
+  h1{font-size:clamp(1.7rem,4vw,2.4rem);font-weight:700;letter-spacing:-.02em;line-height:1.18;margin-bottom:1.25rem;}
+  .capsule{background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent2);border-radius:0 10px 10px 0;padding:1.15rem 1.4rem;font-size:16px;margin-bottom:1.75rem;}
+  .capsule .verdict{font-weight:700;}
+  .v-ok{color:var(--accent2);}.v-wrong{color:var(--danger);}.v-open{color:var(--accent);}.v-pending{color:var(--muted);}
+  h2{font-size:1.25rem;font-weight:600;margin:2.25rem 0 .9rem;letter-spacing:-.01em;}
+  p{margin-bottom:1rem;}
+  strong{color:#fff;}
+  .faq-q{font-weight:600;margin:1.3rem 0 .4rem;}
+  .related{margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--border);}
+  .related h2{margin-top:0;}.related a{display:block;padding:6px 0;font-size:14px;}
+  .updated{font-size:12px;color:var(--muted);margin-bottom:1.5rem;}
+  .cta{margin-top:2rem;background:linear-gradient(135deg,rgba(124,106,245,.08),rgba(79,195,161,.06));border:1px solid rgba(124,106,245,.2);border-radius:14px;padding:1.5rem;text-align:center;}
+  .cta a{display:inline-block;background:var(--accent);color:#fff;padding:10px 22px;border-radius:8px;font-size:14px;font-weight:500;margin-top:.6rem;}
+  footer{border-top:1px solid var(--border);padding:24px 0;font-size:12px;color:var(--muted);text-align:center;}
+</style>
+</head>
+<body>
+<header>
+  <a href="/" class="logo"><span class="logo-dot"></span>AGI Scorecard</a>
+  <a href="/ai-orders-of-magnitude-explained" class="back-link">EN ↗</a>
+</header>
+<article>
+  <div class="eyebrow">方法</div>
+  <h1>AIの「桁（OOM）」を解説する</h1>
+  <div class="updated">最終更新: 2026-07-16</div>
+  <nav class="langbar" aria-label="Language" style="display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;font-size:12px;margin:-0.5rem 0 1.5rem;padding-bottom:1rem;border-bottom:1px solid var(--border);"><a href="/ai-orders-of-magnitude-explained" style="color:var(--muted);">EN</a> <span style="color:var(--border2);">·</span> <a href="/zh/ai-orders-of-magnitude-explained" style="color:var(--muted);">中文</a> <span style="color:var(--border2);">·</span> <a href="/es/ai-orders-of-magnitude-explained" style="color:var(--muted);">ES</a> <span style="color:var(--border2);">·</span> <a href="/fr/ai-orders-of-magnitude-explained" style="color:var(--muted);">FR</a> <span style="color:var(--border2);">·</span> <a href="/de/ai-orders-of-magnitude-explained" style="color:var(--muted);">DE</a> <span style="color:var(--border2);">·</span> <a href="/pt/ai-orders-of-magnitude-explained" style="color:var(--muted);">PT</a> <span style="color:var(--border2);">·</span> <a href="/it/ai-orders-of-magnitude-explained" style="color:var(--muted);">IT</a> <span style="color:var(--border2);">·</span> <span style="color:var(--text);font-weight:600;">日本語</span> <span style="color:var(--border2);">·</span> <a href="/ko/ai-orders-of-magnitude-explained" style="color:var(--muted);">한국어</a></nav>
+  <div class="capsule"><span class="verdict">2027年予測の背後にある数え方。</span>1桁（OOM）とは10倍を指す。アッシェンブレナーのAGI論は、<strong>実効計算量</strong>——生の計算量＋アルゴリズム効率＋「アンホブリング」——の桁を数え、それが年<strong>約0.5 OOM</strong>ずつ積み上がって2027年のAGIに至る、という賭けの上に成り立っている。2年後、そのペースは<strong>おおむね保たれている</strong>。</div>
+<h2>OOMとは何か</h2>
+<p>1桁＝10倍。2桁＝100倍。アッシェンブレナーが桁で考えるのは、AIの進歩が指数的だからだ。絶対値を追うより「年に何回の10倍か」を追うほうが扱いやすい。彼の予測は本質的に足し算の問題である——実効計算量の桁を十分に積み上げれば、AGIの閾値を超える。</p>
+<h2>桁を生む3つの源</h2>
+<p><ul><li><strong>生の計算量</strong>——より大規模な学習</li><li><strong>アルゴリズム効率</strong>——FLOPあたりの能力向上</li><li><strong>アンホブリング</strong>——潜在能力の解放（推論、ツール、エージェント）</li></ul></p>
+<h2>賭けの現在地</h2>
+<p>彼は実効計算量を年<strong>約0.5 OOM</strong>、持続的に伸びると見込んだ。2026年半ば時点で、独立した検証はこのペースを「おおむね支持される」と評価しており、各リリースはトレンドから概ね±0.5 OOMの範囲に散らばっている。この桁の積み上げエンジンこそが、その先のあらゆる主張——能力、AGIの時期、知能爆発——の土台にある。桁が積み上がらなくなれば、2027年論全体が後ろにずれる。</p>
+  <h2>よくある質問</h2>
+  <div class="faq-q">AIにおける「桁（OOM）」とは何ですか？</div><p>1桁（OOM）とは10倍のことです。アッシェンブレナーは「実効計算量」の桁——生の計算量、アルゴリズム効率、アンホブリングの合計——を数えます。AIの進歩は指数的であり、「年に何回の10倍か」として追うほうが扱いやすいからです。</p><div class="faq-q">アッシェンブレナーは年に何OOMと予測しましたか？</div><p>実効計算量で年およそ0.5桁、これを10年にわたり持続すると予測しました。2026年半ば時点で、このペースはおおむね保たれています。</p><div class="faq-q">なぜ桁がAGIにとって重要なのですか？</div><p>彼のAGI予測が本質的に足し算の問題だからです。実効計算量の桁を十分に積み上げれば閾値を超えます。桁が積み上がらなくなれば、2027年の日程は後ろにずれます。</p>
+  <div class="related">
+    <h2>関連ページ</h2>
+    <a href="/ja/when-will-agi-arrive">AGIはいつ来る？ →</a><a href="/agi-test">あなたのAGIタイプは？30秒テストを受ける →</a><a href="/two-year-scorecard.html">2年間の全スコアカード →</a>
+  </div>
+  <div class="cta" style="background:var(--bg2);border:1px solid var(--border);">
+    <p style="margin:0;font-weight:600;">AGI進捗の週次ブリーフィングを受け取る</p>
+    <p style="margin:6px 0 0;font-size:13px;color:var(--muted);">判定の変化とマイルストーン、そして2027年の時計への意味。無料・誇張なし。</p>
+    <a href="https://agiscorecard.beehiiv.com/subscribe?utm_source=agiscorecard&amp;utm_medium=intl_deep_page" target="_blank" rel="noopener" onclick="gtag('event','subscribe_click',{location:'intl_deep_page'});">無料で購読 →</a>
+  </div>
+  <div class="cta">
+    <p style="margin:0;font-weight:600;">ライブ・スコアカードはモデルのリリースと判定の変化に合わせて更新されます。</p>
+    <a href="/">ライブ・スコアカードを見る →</a>
+  </div>
+</article>
+<footer>AGI Scorecard · 独立系トラッカー： <a href="https://situational-awareness.ai" style="color:var(--muted);">Situational Awareness</a> · いかなる研究所とも無関係</footer>
+</body>
+</html>

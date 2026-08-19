@@ -1,0 +1,48 @@
+User-agent: *
+Allow: /
+
+# AI search & assistant crawlers — explicitly welcome (citations are traffic)
+User-agent: GPTBot
+Allow: /
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: Claude-SearchBot
+Allow: /
+User-agent: Claude-User
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: Perplexity-User
+Allow: /
+User-agent: Google-Extended
+Allow: /
+User-agent: Bingbot
+Allow: /
+
+User-agent: *
+Disallow: /content-backlog.md
+Disallow: /OPT-LOG.md
+Disallow: /analytics-notes.md
+Disallow: /outbound-kit.md
+Disallow: /beehiiv-setup.md
+Disallow: /distribution-kit.md
+Disallow: /tools/
+Disallow: /CLAUDE.md
+Disallow: /.claude/
+Disallow: /bing-setup.md
+Disallow: /backlink-kit.md
+Disallow: /NEXT-ACTIONS.md
+Disallow: /strategy-2027.md
+Disallow: /game-launch-kit.md
+Disallow: /future-bet-sponsor.json
+Disallow: /directory-kit.md
+Disallow: /adsense-setup.md
+Disallow: /revenue-experiments.md
+Disallow: /analytics-setup.md
+Disallow: /invest-prd-2026-08.md
+
+Sitemap: https://agiscorecard.com/sitemap.xml

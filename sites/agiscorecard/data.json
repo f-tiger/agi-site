@@ -1,0 +1,260 @@
+{
+  "name": "AGI Scorecard — Situational Awareness predictions, graded",
+  "description": "Live verdicts on every major prediction from Leopold Aschenbrenner's Situational Awareness (June 2024), graded against public evidence with pre-registered flip conditions.",
+  "url": "https://agiscorecard.com/",
+  "dataUrl": "https://agiscorecard.com/data.json",
+  "license": "CC BY 4.0 — reuse freely with attribution and a link to https://agiscorecard.com",
+  "dateModified": "2026-08-17",
+  "summary": {
+    "on_track": 3,
+    "wrong": 1,
+    "open": 2,
+    "pending": 2
+  },
+  "predictions": [
+    {
+      "id": "knowledge-work",
+      "target": "2025/26",
+      "prediction": "Models outpace college graduates across knowledge work",
+      "verdict": "On track",
+      "evidence": "~83% on GDPval-style knowledge work; ~80% SWE-Bench Pro; agent products in production",
+      "sources": [
+        {
+          "name": "OpenAI GDPval",
+          "url": "https://openai.com/index/gdpval/"
+        },
+        {
+          "name": "SWE-bench",
+          "url": "https://www.swebench.com"
+        }
+      ],
+      "detail": "https://agiscorecard.com/can-ai-replace-knowledge-workers"
+    },
+    {
+      "id": "compute-scaling",
+      "target": "~0.5 OOM/yr",
+      "prediction": "Compute + algorithmic scaling continues at trend",
+      "verdict": "On track",
+      "evidence": "Effective-compute pace roughly held through mid-2026",
+      "sources": [
+        {
+          "name": "Epoch AI — Trends in AI",
+          "url": "https://epoch.ai/trends"
+        }
+      ],
+      "detail": "https://agiscorecard.com/is-ai-compute-still-scaling"
+    },
+    {
+      "id": "capex",
+      "target": "$500B/yr era",
+      "prediction": "Massive AI capex acceleration",
+      "verdict": "Exceeded",
+      "evidence": "Investment exceeded the essay's projections; revenue lags the spend",
+      "sources": [
+        {
+          "name": "Epoch AI — Finances of AI",
+          "url": "https://epoch.ai/topics/finances"
+        }
+      ],
+      "detail": "https://agiscorecard.com/ai-capex-trillion-dollar"
+    },
+    {
+      "id": "open-source-fades",
+      "target": "—",
+      "prediction": "Open source fades; proprietary algorithms create a durable US moat",
+      "verdict": "Wrong",
+      "evidence": "DeepSeek/Qwen open-weight models within ~3-6 months of frontier",
+      "sources": [
+        {
+          "name": "Epoch AI",
+          "url": "https://epoch.ai"
+        }
+      ],
+      "detail": "https://agiscorecard.com/did-open-source-ai-fade"
+    },
+    {
+      "id": "agi-2027",
+      "target": "2027",
+      "prediction": "AGI: models do the work of an AI researcher/engineer",
+      "verdict": "Open",
+      "evidence": "Agentic coding strong; autonomous AI research undemonstrated; resolves 2028-01-01",
+      "sources": [
+        {
+          "name": "Situational Awareness (Aschenbrenner, 2024)",
+          "url": "https://situational-awareness.ai"
+        }
+      ],
+      "detail": "https://agiscorecard.com/will-agi-arrive-2027"
+    },
+    {
+      "id": "the-project",
+      "target": "2027/28",
+      "prediction": "US government launches formal AGI project",
+      "verdict": "Open",
+      "evidence": "National-security involvement growing; no formal project",
+      "sources": [
+        {
+          "name": "Situational Awareness (Aschenbrenner, 2024)",
+          "url": "https://situational-awareness.ai"
+        }
+      ],
+      "detail": "https://agiscorecard.com/will-the-us-government-build-agi"
+    },
+    {
+      "id": "intelligence-explosion",
+      "target": "2027-29",
+      "prediction": "Intelligence explosion: a decade of progress in ~1 year",
+      "verdict": "Pending",
+      "evidence": "Precondition (autonomous AI research) undemonstrated",
+      "sources": [
+        {
+          "name": "Situational Awareness (Aschenbrenner, 2024)",
+          "url": "https://situational-awareness.ai"
+        }
+      ],
+      "detail": "https://agiscorecard.com/intelligence-explosion-2027"
+    },
+    {
+      "id": "superintelligence",
+      "target": "2030s",
+      "prediction": "Superintelligence; decisive strategic advantage",
+      "verdict": "Pending",
+      "evidence": "Downstream of AGI and intelligence explosion",
+      "sources": [
+        {
+          "name": "Situational Awareness (Aschenbrenner, 2024)",
+          "url": "https://situational-awareness.ai"
+        }
+      ],
+      "detail": "https://agiscorecard.com/will-there-be-superintelligence"
+    }
+  ],
+  "forecaster_timelines": [
+    {
+      "name": "Elon Musk",
+      "position": "AGI by end of 2026",
+      "status": "Open",
+      "deadline": "2026-12-31",
+      "verdict_note": "Open, 136 days to deadline as of 2026-08-17. The 'probably next year' (2025) half of his April 2024 statement has already lapsed with no AGI announced; the end-of-2026 half is the boldest live deadline on this board.",
+      "source": {
+        "title": "X Spaces interview with Nicolai Tangen (Norges Bank CEO), quoted: “If you define AGI as smarter than the smartest human, I think it's probably next year, within two years”",
+        "url": "https://www.scmp.com/tech/tech-trends/article/3258309/teslas-musk-predicts-ai-will-be-smarter-smartest-human-next-year",
+        "date": "2024-04-08"
+      },
+      "checked": "2026-08-17"
+    },
+    {
+      "name": "Dario Amodei",
+      "position": "\"Powerful AI\" possibly 2026-27",
+      "status": "No hard deadline",
+      "deadline": null,
+      "verdict_note": "Not resolvable as stated: 'could come as early as 2026' is a floor with explicit uncertainty, not a dated bet. As of 2026-08-17 neither confirmed nor falsified.",
+      "source": {
+        "title": "Machines of Loving Grace (his own essay: powerful AI “could come as early as 2026”)",
+        "url": "https://darioamodei.com/essay/machines-of-loving-grace",
+        "date": "2024-10"
+      },
+      "checked": "2026-08-17"
+    },
+    {
+      "name": "Leopold Aschenbrenner",
+      "position": "AGI 2027",
+      "status": "Open",
+      "deadline": "2028-01-01",
+      "verdict_note": "Open — the prediction this site grades line by line. Thesis Tracker 62.5/100, unchanged from 2026-06-30 through 2026-08-17; the defining milestone (AI autonomously doing AI research) is undemonstrated.",
+      "source": {
+        "title": "Situational Awareness (June 2024)",
+        "url": "https://situational-awareness.ai",
+        "date": "2024-06"
+      },
+      "checked": "2026-08-17"
+    },
+    {
+      "name": "Sam Altman",
+      "position": "Near-term; superintelligence \"a few thousand days\"",
+      "status": "No hard deadline",
+      "deadline": null,
+      "verdict_note": "Not falsifiable before roughly 2030: 'a few thousand days' (Sep 2024) spans ≈ 2030–2035 depending on reading, and he attached no date to AGI itself.",
+      "source": {
+        "title": "The Intelligence Age (“It is possible that we will have superintelligence in a few thousand days”)",
+        "url": "https://ia.samaltman.com/",
+        "date": "2024-09-23"
+      },
+      "checked": "2026-08-17"
+    },
+    {
+      "name": "Demis Hassabis",
+      "position": "~50% by 2030",
+      "status": "Not yet due",
+      "deadline": "2030-12-31",
+      "verdict_note": "Not yet due; probabilistic (~50%), so 2031 without AGI would not strictly falsify it. As of mid-2026 the evidence (strong task capability, unproven autonomy) sits inside his window.",
+      "source": {
+        "title": "Lex Fridman Podcast conversation (“Timeline for AGI: 2030 with 50% chance”)",
+        "url": "https://www.youtube.com/watch?v=T9Knc3Mdcec",
+        "date": "2025"
+      },
+      "checked": "2026-08-17"
+    },
+    {
+      "name": "Samotsvety",
+      "position": "~28% by 2030",
+      "status": "Not yet due",
+      "deadline": "2030-12-31",
+      "verdict_note": "Not yet due; at ~28% it is closer to a bearish call — no AGI by 2030 would be their majority outcome. January 2026 update; their earlier 2023 aggregate was ~25% by 2029.",
+      "source": {
+        "title": "Samotsvety Forecasting — AGI timelines updates (January 2026 aggregate, eight forecasters)",
+        "url": "https://samotsvety.org/blog/",
+        "date": "2026-01"
+      },
+      "checked": "2026-08-17"
+    },
+    {
+      "name": "Metaculus community",
+      "position": "25% by 2029; 50% by 2033",
+      "status": "Not yet due",
+      "deadline": null,
+      "verdict_note": "A live-updating community aggregate, not a fixed bet; mid-2026 readings on the general-AI question sit near late 2032–2033. Recorded here as the 2026 snapshot.",
+      "source": {
+        "title": "Metaculus: When will the first general AI system be devised, tested, and publicly announced?",
+        "url": "https://www.metaculus.com/questions/5121/date-of-artificial-general-intelligence/",
+        "date": "live"
+      },
+      "checked": "2026-08-17"
+    },
+    {
+      "name": "Andrej Karpathy",
+      "position": "About a decade out",
+      "status": "Not yet due",
+      "deadline": null,
+      "verdict_note": "Not yet due; 'a decade away' said October 2025 implies roughly 2035 — the farthest-out personal call on this board.",
+      "source": {
+        "title": "Dwarkesh Podcast: “AGI is still a decade away”",
+        "url": "https://www.dwarkesh.com/p/andrej-karpathy",
+        "date": "2025-10-17"
+      },
+      "checked": "2026-08-17"
+    },
+    {
+      "name": "AI researcher survey (n=2778)",
+      "position": "50% by 2047 (HLMI)",
+      "status": "Not yet due",
+      "deadline": null,
+      "verdict_note": "Not yet due; the aggregate 2023 forecast gives a 50% chance of high-level machine intelligence by 2047, down 13 years from 2060 in the 2022 survey. Correction on record 2026-08-17: this dataset previously listed 2040; the paper's aggregate is 2047.",
+      "source": {
+        "title": "Grace et al., Thousands of AI Authors on the Future of AI (2,778 respondents, fielded Oct 2023)",
+        "url": "https://arxiv.org/abs/2401.02843",
+        "date": "2024-01"
+      },
+      "checked": "2026-08-17"
+    }
+  ],
+  "thesisTracker": {
+    "name": "AGI-2027 Thesis Tracker",
+    "score": 62.5,
+    "of": 100,
+    "asOf": "2026-08-08",
+    "method": "Mean of the 8 verdict weights (supportive=1, unresolved/open/pending=0.5, refuted=0) x100. An editorial composite of the published verdicts, not a probability.",
+    "historyUrl": "https://agiscorecard.com/index-history.json",
+    "pageUrl": "https://agiscorecard.com/progress-index"
+  }
+}

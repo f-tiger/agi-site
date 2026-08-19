@@ -1,0 +1,130 @@
+{
+  "note": "Real, dated site changes only — the changelog generator refuses invented entries. Newest first. Maintained by the daily run; every entry must correspond to a shipped commit.",
+  "entries": [
+    {
+      "date": "2026-08-16",
+      "title": "The dataset now lives in git too",
+      "note": "Every verdict and every Thesis Tracker reading is mirrored to a public GitHub repository, rebuilt nightly. It only changes when a grade changes — so its commit history is an independent, timestamped record of when we changed our mind."
+    },
+    {
+      "date": "2026-08-15",
+      "title": "Listed on the official MCP Registry",
+      "note": "com.agiscorecard/agi-scorecard is now on registry.modelcontextprotocol.io — AI agents can discover and call the Thesis Tracker, verdicts, market ledger and site search natively, no auth."
+    },
+    {
+      "date": "2026-08-15",
+      "title": "First on-site subscriber",
+      "note": "The inline form converted its first reader end-to-end (homepage footer, Aug 14). The address is stored first-party; it syncs to the newsletter the moment the beehiiv key is configured."
+    },
+    {
+      "date": "2026-08-14",
+      "title": "A dated status line on the most-read page",
+      "note": "\"When will AGI arrive?\" now opens with the two numbers that actually move: 504 days until the nearest forecast is settled, and 45 days with the Thesis Tracker stuck at 62.5 — the disagreement is moving, the evidence is not."
+    },
+    {
+      "date": "2026-08-13",
+      "title": "English stock coverage completed",
+      "note": "Every US-listed name SunWatch tracks now has an English page — 18 of 18 — plus a new /en/stocks index. The names that are still Chinese-only are listed and labelled as such rather than quietly left out."
+    },
+    {
+      "date": "2026-08-13",
+      "title": "The exposure tool now points at the one paid product",
+      "note": "/ai-stock-exposure is the most-used tool on the site and had no path to SunWatch, the only subscription on this domain with a real price. It has one now — with the public hit-and-miss ledger linked, not a claim."
+    },
+    {
+      "date": "2026-08-13",
+      "title": "New tool: Your AGI Timeline",
+      "note": "One slider places the year you expect AGI against nine real published forecasts — bull, base case or bear — with a shareable result. Free, embeddable."
+    },
+    {
+      "date": "2026-08-13",
+      "title": "Holdings-update promise made accurate",
+      "note": "The invest pages no longer promise a same-day rewrite of every 13F. Holdings change only after a filing is read line by line — and subscribers hear the day the page changes."
+    },
+    {
+      "date": "2026-08-12",
+      "title": "Opinion hook on the Altman page",
+      "note": "The second-most-cited page now asks where you land versus Altman's \"few thousand days\" — one tap onto the forecaster spectrum."
+    },
+    {
+      "date": "2026-08-11",
+      "title": "More English stock pages",
+      "note": "Rocket Lab and SK hynix ADR added to the English invest pages (five now), with a fix so Chinese-named tickers render properly in English."
+    },
+    {
+      "date": "2026-08-10",
+      "title": "Traffic reporting corrected",
+      "note": "Server-side \"human\" pageviews turned out to include an unrecognised crawler fleet; real-reader counts now come from JS-executed pageviews, and a UA audit records who is actually knocking."
+    },
+    {
+      "date": "2026-08-09",
+      "title": "English stock pages on the invest console",
+      "note": "SunWatch's per-ticker analysis now has English pages (SanDisk, Micron, SpaceX to start), with reciprocal hreflang. More each run."
+    },
+    {
+      "date": "2026-08-08",
+      "title": "MCP server live at /mcp",
+      "note": "AI agents can now call get_thesis_tracker, get_verdicts and search_site natively over Model Context Protocol — free, no auth."
+    },
+    {
+      "date": "2026-08-08",
+      "title": "Calibration page published",
+      "note": "Every probability-shaped claim inventoried; Brier score pre-committed at n≥20. Misses stay published."
+    },
+    {
+      "date": "2026-08-08",
+      "title": "AGI-2027 resolution page + odds-vs-evidence series",
+      "note": "Resolution criteria locked 17 months before the deadline; issue #1 comparing prediction-market odds with the evidence read."
+    },
+    {
+      "date": "2026-08-08",
+      "title": "Site search with demand logging",
+      "note": "Full-site search (EN+中文) at /search; queries and zero-result gaps now drive what gets built next."
+    },
+    {
+      "date": "2026-08-08",
+      "title": "Red-team desk on the invest console",
+      "note": "Survival odds (52–65%) for every open market call, strongest counter-case included; space-top confidence cut 60%→52% same day."
+    },
+    {
+      "date": "2026-08-08",
+      "title": "Investing sub-sites merged under one domain",
+      "note": "SunWatch → invest.agiscorecard.com, AI Investing Compass → compass.agiscorecard.com; English landing + language negotiation added."
+    },
+    {
+      "date": "2026-08-08",
+      "title": "One-tap flip poll on the Thesis Tracker",
+      "note": "Pick which open prediction flips first; per-prediction email alert stores your pick as the topic."
+    },
+    {
+      "date": "2026-08-06",
+      "title": "On-site signup, no redirect",
+      "note": "All subscribe CTAs now open an inline form; addresses stored first-party before forwarding, per-context promises (e.g. 'one email, only if this verdict flips')."
+    },
+    {
+      "date": "2026-08-05",
+      "title": "First-party analytics + shareable baskets",
+      "note": "Server-side pageviews (counts AI crawlers ad blockers miss); /ai-stock-exposure baskets permalinked via ?b=NVDA-AMD-TSM."
+    },
+    {
+      "date": "2026-07-26",
+      "title": "/ai-tools hub",
+      "note": "All free tools in one place; four embeddable via iframe."
+    },
+    {
+      "date": "2026-07-25",
+      "title": "Site restructured: Research · Play · Invest",
+      "note": "Three-section navigation and directory; Chinese pages moved to a unified light design system."
+    },
+    {
+      "date": "2026-07-12",
+      "title": "AGI-2027 Thesis Tracker launched",
+      "note": "One auditable 0–100 score recomputed from the 8 verdicts; history at /index-history.json. The AGI type test (/agi-test) shipped the same day."
+    },
+    {
+      "date": "2026-06-30",
+      "title": "Scorecard launched",
+      "note": "8 Situational Awareness predictions graded with pre-registered flip conditions; machine-readable at /data.json (CC BY 4.0)."
+    }
+  ]
+}

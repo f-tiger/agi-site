@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FZXLMBB5QB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-FZXLMBB5QB');
+</script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a0a0b'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%234fc3a1'/%3E%3C/svg%3E">
+<title>Can a 200-Visitor Site Make Money? A Public Log</title>
+<meta name="description" content="Ten revenue experiments with kill thresholds published before results. Real numbers: 211 users, $0 earned, nothing hidden. Started August 2026.">
+<link rel="canonical" href="https://agiscorecard.com/experiments">
+<meta property="og:site_name" content="The AGI Scorecard">
+<meta property="og:title" content="Can a 200-visitor site make money? A public, pre-registered log">
+<meta property="og:description" content="Ten experiments. Kill thresholds published before results. 211 users, $0 revenue, and every number stays public whether it works or not.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://agiscorecard.com/experiments">
+<meta property="og:image" content="https://agiscorecard.com/scorecard-summary.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://agiscorecard.com/scorecard-summary.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Can a 200-visitor site make money? A public, pre-registered log","datePublished":"2026-08-05","dateModified":"2026-08-05","inLanguage":"en","author":{"@type":"Organization","name":"The AGI Scorecard","url":"https://agiscorecard.com/about"},"publisher":{"@type":"Organization","name":"The AGI Scorecard","url":"https://agiscorecard.com/"},"description":"Ten revenue experiments run on a 200-visitor site, each with a success threshold and a kill threshold published before the result."}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AGI Scorecard","item":"https://agiscorecard.com/"},{"@type":"ListItem","position":2,"name":"About","item":"https://agiscorecard.com/about"},{"@type":"ListItem","position":3,"name":"Revenue experiment log","item":"https://agiscorecard.com/experiments"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"AGI Scorecard — Revenue Experiment Log","description":"Pre-registered revenue experiments with success and kill thresholds, published before results.","url":"https://agiscorecard.com/experiments","license":"https://creativecommons.org/licenses/by/4.0/","creator":{"@type":"Organization","name":"The AGI Scorecard","url":"https://agiscorecard.com/"},"dateModified":"2026-08-05","distribution":[{"@type":"DataDownload","encodingFormat":"application/json","contentUrl":"https://agiscorecard.com/experiments.json"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why publish revenue experiments that are mostly failing?","acceptedAnswer":{"@type":"Answer","text":"Because this site grades other people's dated predictions against pre-registered conditions, and it would be incoherent to hold public forecasters to a standard we do not apply to ourselves. The log publishes each experiment's kill threshold before the result exists, so nobody — including us — can reinterpret a failure as a partial success afterwards."}},{"@type":"Question","name":"How much has the site earned so far?","acceptedAnswer":{"@type":"Answer","text":"Zero dollars. Total traffic was 211 active users over the 28 days to 2026-08-02. Those are the real numbers, and they are the starting line the experiments are measured from."}},{"@type":"Question","name":"Why not just run ads?","acceptedAnswer":{"@type":"Answer","text":"Because the arithmetic does not work at this size. At roughly 200 users a month, display ads at a typical tech RPM yield about $1.60 a month, and most ad networks will not accept a site below 10,000 monthly visitors at all. Ads are still included in the portfolio, but as a negative control that calibrates what traffic-dependent revenue actually looks like — not as a plan."}},{"@type":"Question","name":"What would prove this whole approach wrong?","acceptedAnswer":{"@type":"Answer","text":"The portfolio bets that at low traffic only value-per-user models are worth running. If the AdSense control arm out-earns the combined value-per-user arms over the same window, that thesis is wrong and the portfolio gets rebuilt. That condition is registered in experiments.json before the result is known."}}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="https://www.googletagmanager.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#0a0a0b;--bg2:#111114;--bg3:#18181d;--border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.12);--text:#e8e8ec;--muted:#8888a0;--accent:#7c6af5;--accent2:#4fc3a1;--warn:#e8a040;--danger:#e05555;--font:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;--mono:'JetBrains Mono',monospace;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:16px;line-height:1.75;}
+  a{color:var(--accent);text-decoration:none;}a:hover{opacity:.8;}
+  header{border-bottom:1px solid var(--border);padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:56px;position:sticky;top:0;background:rgba(10,10,11,.92);backdrop-filter:blur(12px);z-index:100;}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px;color:var(--text);}
+  .logo-dot{width:8px;height:8px;background:var(--accent2);border-radius:50%;}
+  .back-link{font-size:13px;color:var(--muted);}.back-link:hover{color:var(--text);opacity:1;}
+  article{max-width:760px;margin:0 auto;padding:2.5rem 1.5rem 4rem;}
+  .eyebrow{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem;}
+  h1{font-size:clamp(1.7rem,4vw,2.4rem);font-weight:700;letter-spacing:-.02em;line-height:1.18;margin-bottom:1.25rem;}
+  .capsule{background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent2);border-radius:0 10px 10px 0;padding:1.15rem 1.4rem;font-size:16px;margin-bottom:1.75rem;}
+  .capsule .verdict{font-weight:700;}
+  .v-ok{color:var(--accent2);}.v-wrong{color:var(--danger);}.v-open{color:var(--accent);}.v-pending{color:var(--muted);}
+  h2{font-size:1.25rem;font-weight:600;margin:2.25rem 0 .9rem;letter-spacing:-.01em;}
+  p{margin-bottom:1rem;}
+  ul{margin:0 0 1rem 1.3rem;}li{margin-bottom:.45rem;}
+  strong{color:#fff;}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;margin:1rem 0 1.4rem;background:var(--bg2);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+  th{text-align:left;padding:10px 12px;color:var(--muted);font-weight:500;font-size:11px;letter-spacing:.05em;text-transform:uppercase;border-bottom:1px solid var(--border);}
+  td{padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:top;}
+  tr:last-child td{border-bottom:none;}
+  .nowrap{white-space:nowrap;font-weight:600;}
+  .num{font-family:var(--mono);font-variant-numeric:tabular-nums;}
+  .stat{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:1.2rem 0 1.6rem;}
+  .stat div{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:14px 16px;}
+  .stat b{display:block;font-family:var(--mono);font-size:1.7rem;font-weight:700;line-height:1;letter-spacing:-.02em;}
+  .stat span{display:block;font-size:12px;color:var(--muted);margin-top:7px;}
+  .faq-q{font-weight:600;margin:1.3rem 0 .4rem;}
+  .related{margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--border);}
+  .related h2{margin-top:0;}
+  .related a{display:block;padding:6px 0;font-size:14px;}
+  .src{font-size:12px;color:var(--muted);margin-top:.5rem;}
+  .updated{font-size:12px;color:var(--muted);margin-bottom:1.5rem;}
+  .cta{margin-top:2rem;background:linear-gradient(135deg,rgba(124,106,245,.08),rgba(79,195,161,.06));border:1px solid rgba(124,106,245,.2);border-radius:14px;padding:1.5rem;text-align:center;}
+  .cta a{display:inline-block;background:#6350d9;color:#fff;padding:10px 22px;border-radius:8px;font-size:14px;font-weight:600;margin-top:.6rem;}
+  footer{border-top:1px solid var(--border);padding:24px 0;font-size:12px;color:var(--muted);text-align:center;}
+@media(max-width:640px){table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;white-space:nowrap}table td,table th{white-space:normal;min-width:92px}}
+</style>
+</head>
+<body>
+<header>
+  <a href="/" class="logo"><span class="logo-dot"></span>AGI Scorecard</a>
+  <a href="/" class="back-link">← Live scorecard</a>
+</header>
+<article>
+  <div class="eyebrow">Open log · Started August 2026</div>
+  <h1>Can a 200-visitor site make money?</h1>
+  <div class="updated">Started: August 5, 2026 · Updated as experiments resolve</div>
+
+  <div class="capsule"><span class="verdict">So far: no. Revenue to date is <strong>$0</strong>.</span> This site grades other people's dated predictions against conditions registered <em>before</em> the fact. It would be incoherent to hold public forecasters to that standard and not apply it to ourselves — so here are ten attempts to make this site earn money, each with a success threshold <strong>and a kill threshold published before the result exists</strong>. Machine-readable at <a href="/experiments.json">/experiments.json</a>.</div>
+
+<h2>The starting line</h2>
+<p>Every number below is real and dated. None of them are impressive, which is the point — a log that starts after the good part has already happened teaches nothing.</p>
+<div class="stat">
+  <div><b>211</b><span>active users, 28 days to Aug 2</span></div>
+  <div><b class="v-ok">13</b><span>from organic search</span></div>
+  <div><b class="v-wrong">$0</b><span>revenue, all time</span></div>
+  <div><b>182</b><span>pages published</span></div>
+</div>
+<p class="src">Source: the site's own GA4, last complete pull 2026-08-02. <strong>Disclosure:</strong> the analytics subscription lapsed on that date, so figures after it are currently unverifiable. That gap is disclosed rather than filled with an estimate — the same rule this site applies to prediction evidence.</p>
+
+<h2>The rules</h2>
+<p>These are borrowed wholesale from how the eight AGI predictions are graded, because the failure mode is identical: without a condition fixed in advance, any outcome can be narrated as progress.</p>
+<ul>
+<li><strong>Thresholds are published before results.</strong> Both the success number and the number at which the experiment dies.</li>
+<li><strong>A kill threshold that is hit ends the experiment.</strong> No extensions, no reinterpretation.</li>
+<li><strong>Every experiment names a control.</strong> Without one it isn't an experiment, it's an anecdote.</li>
+<li><strong>Where the sample is too small to be significant, that gets said</strong> — instead of reporting the number as if it meant something. At this traffic that applies to most of the portfolio, and pretending otherwise would be the easiest way to fool ourselves.</li>
+<li><strong>Results get published either way.</strong></li>
+</ul>
+
+<h2>What the arithmetic already rules out</h2>
+<p>Before designing anything, the obvious options were costed at actual current traffic. Most of them are dead on arrival, and it is worth being blunt about why:</p>
+<table><thead><tr><th>Model</th><th>Expected at ~200 users/month</th><th>Verdict</th></tr></thead><tbody>
+<tr><td>Display ads (tech RPM ≈ $8)</td><td class="num">≈ $1.60 / month</td><td class="nowrap v-wrong">Dead</td></tr>
+<tr><td>Generic affiliate (2% CTR × 3% conv.)</td><td class="num">≈ 0.1 clicks / month</td><td class="nowrap v-wrong">Dead</td></tr>
+<tr><td>Ad networks</td><td>Most gate at 10,000 monthly visitors</td><td class="nowrap v-wrong">Ineligible</td></tr>
+<tr><td>Subscriptions ($10/mo at 2%)</td><td class="num">≈ $40 / month</td><td class="nowrap v-open">Marginal</td></tr>
+<tr><td>B2B / data ($200–2,000 per deal)</td><td class="num">1 deal = $200–2,000</td><td class="nowrap v-ok">Viable</td></tr>
+</tbody></table>
+<p>The conclusion that follows is uncomfortable but clean: <strong>at this size, anything whose revenue scales with pageviews is not a strategy, it's a rounding error.</strong> Only value-per-user models can clear the noise floor. That is the thesis the whole portfolio is betting on — and the last row of the table below is the condition that would prove it wrong.</p>
+
+<h2>The ten experiments</h2>
+<table><thead><tr><th>#</th><th>Experiment</th><th>Dies if…</th><th>Status</th></tr></thead><tbody>
+<tr><td class="num">E1</td><td><strong>This log.</strong> Publishing the attempt reaches an audience the site gets zero traffic from today.</td><td>0 external links and 0 discussion after 30 days</td><td class="nowrap v-open">Running</td></tr>
+<tr><td class="num">E2</td><td>Paid AI job-exposure report</td><td>≤1 buyer in the first 100 completed checks</td><td class="nowrap v-pending">Blocked</td></tr>
+<tr><td class="num">E3</td><td>Prediction-market evidence layer</td><td>60 days, no links or referrals from that audience</td><td class="nowrap v-pending">Held</td></tr>
+<tr><td class="num">E4</td><td>13F / AI positioning subscription</td><td>≤2 subscribers 30 days after the Q2 filing</td><td class="nowrap v-pending">Blocked</td></tr>
+<tr><td class="num">E5</td><td>B2B timeline briefing</td><td>90 days with zero enquiries</td><td class="nowrap v-open">Running</td></tr>
+<tr><td class="num">E6</td><td>White-label tool embeds</td><td>Embed copies still at 0 after 90 days</td><td class="nowrap v-pending">Blocked</td></tr>
+<tr><td class="num">E7</td><td><strong>Method transfer:</strong> a second scorecard in a different field</td><td>It performs no better than this site did at the same age</td><td class="nowrap v-pending">Proposed</td></tr>
+<tr><td class="num">E8</td><td>Scored prediction league (points, no money)</td><td>&lt;30 locked predictions in 60 days</td><td class="nowrap v-pending">Proposed</td></tr>
+<tr><td class="num">E9</td><td>Paid data / agent API</td><td>—</td><td class="nowrap v-wrong">Not started</td></tr>
+<tr><td class="num">E10</td><td><strong>Ads — as the negative control</strong></td><td>—</td><td class="nowrap v-pending">Blocked</td></tr>
+</tbody></table>
+
+<p>Three of those entries are worth explaining, because they are where the design does actual work rather than listing ideas.</p>
+
+<p><strong>E9 is not started on purpose.</strong> The obvious move for a site with a machine-readable dataset is to sell access to it. But the dataset is eight predictions and two history points. That is not a product, and shipping it as one would trade the site's only real asset — being right about what it does and doesn't know — for a few dollars. It gets re-evaluated in six months, once the archive has depth.</p>
+
+<p><strong>E10 exists to be unimpressive.</strong> Ads are in the portfolio as a control arm, not a plan. Running them produces the exact figure that traffic-dependent revenue yields at this size, which is what every other arm gets compared against. An experiment portfolio with no negative control cannot tell success from drift.</p>
+
+<p><strong>E7 is the one that could invalidate the site's whole premise.</strong> If the compounding asset really is the <em>method</em> — pre-registered conditions plus receipts — rather than the AGI subject matter, then the same method in a different field should outperform. Same operator, same engine, different field: a controlled comparison against this site's own curve at the same age. If the second scorecard does no better, the bottleneck is distribution rather than subject, and no further field-switching is justified. That answer is worth more than the revenue.</p>
+
+<h2>What would prove the whole thing wrong</h2>
+<p>The portfolio bets that at low traffic only value-per-user models are worth running. The registered falsification condition: <strong>if the ads control arm out-earns the combined value-per-user arms over the same window, the thesis is wrong</strong> and the portfolio gets rebuilt from scratch. That condition is in <a href="/experiments.json">experiments.json</a> now, before the result is known, so it cannot be quietly moved later.</p>
+
+<h2>Why publish this at all</h2>
+<p>Partly discipline: a threshold written down in public is much harder to walk back than one held privately. Partly because most build-in-public writing appears after the revenue chart turns up, which makes it a story about a company that already worked. The interesting window is this one — small numbers, no proof, decisions still reversible.</p>
+<p>And partly because it is the same product. This site exists to grade dated public claims against conditions fixed in advance. <strong>Running its own business that way isn't a marketing angle; it's the only version that isn't hypocritical.</strong></p>
+
+  <div class="cta">
+    <p style="margin:0;font-weight:600;">Every experiment resolves in public — including the ones that die.</p>
+    <p style="margin:6px 0 0;font-size:13px;color:var(--muted);">Results, kill decisions, and the numbers behind them. Free, no hype, no course.</p>
+    <a href="https://agiscorecard.beehiiv.com/subscribe?utm_source=agiscorecard&amp;utm_medium=experiments_log" target="_blank" rel="noopener" onclick="gtag('event','subscribe_click',{location:'experiments_log'});">Follow the log &rarr;</a>
+  </div>
+
+  <h2>Frequently asked questions</h2>
+  <div class="faq-q">Why publish revenue experiments that are mostly failing?</div><p>Because this site grades other people's dated predictions against pre-registered conditions, and it would be incoherent to hold public forecasters to a standard we do not apply to ourselves. The log publishes each experiment's kill threshold before the result exists, so nobody — including us — can reinterpret a failure as a partial success afterwards.</p>
+  <div class="faq-q">How much has the site earned so far?</div><p>Zero dollars. Total traffic was 211 active users over the 28 days to 2026-08-02. Those are the real numbers, and they are the starting line the experiments are measured from.</p>
+  <div class="faq-q">Why not just run ads?</div><p>Because the arithmetic does not work at this size. At roughly 200 users a month, display ads at a typical tech RPM yield about $1.60 a month, and most ad networks will not accept a site below 10,000 monthly visitors at all. Ads are still included in the portfolio, but as a negative control that calibrates what traffic-dependent revenue actually looks like — not as a plan.</p>
+  <div class="faq-q">What would prove this whole approach wrong?</div><p>The portfolio bets that at low traffic only value-per-user models are worth running. If the AdSense control arm out-earns the combined value-per-user arms over the same window, that thesis is wrong and the portfolio gets rebuilt. That condition is registered in experiments.json before the result is known.</p>
+
+  <div class="related">
+    <h2>Related</h2>
+    <a href="/progress-index">The AGI-2027 Thesis Tracker — the same method, applied to predictions →</a>
+    <a href="/about">How this site grades things, and who runs it →</a>
+    <a href="/aschenbrenner-fund-collapse">When a $45B fund blew up, zero verdicts moved. Why →</a>
+    <a href="/ai-tools">The free tools these experiments are built on →</a>
+    <a href="/experiments.json">Machine-readable log (CC BY 4.0) →</a>
+  </div>
+</article>
+<footer>By the <a href="/about" style="color:var(--muted);">AGI Scorecard team</a> · Independent tracker of <a href="https://situational-awareness.ai" style="color:var(--muted);">Situational Awareness</a> · Not affiliated with any lab or fund · <a href="/privacy" style="color:var(--muted);">Privacy</a></footer>
+</body>
+</html>

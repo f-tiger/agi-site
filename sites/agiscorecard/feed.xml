@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>The AGI Scorecard</title>
+  <subtitle>Live verdicts on Aschenbrenner's Situational Awareness predictions — AGI timelines, graded against reality.</subtitle>
+  <link href="https://agiscorecard.com/"/>
+  <link rel="self" href="https://agiscorecard.com/feed.xml"/>
+  <link rel="hub" href="https://pubsubhubbub.appspot.com/"/>
+  <link rel="hub" href="https://pubsubhubbub.superfeedr.com/"/>
+  <id>https://agiscorecard.com/</id>
+  <updated>2026-08-18T00:00:00Z</updated>
+  <author><name>The AGI Scorecard</name></author>
+  <rights>CC BY 4.0 — reuse with attribution and a link to https://agiscorecard.com</rights>
+  <entry>
+    <title>When Will AGI Arrive? Every Major Forecast Compared (2026)</title>
+    <link href="https://agiscorecard.com/when-will-agi-arrive"/>
+    <id>https://agiscorecard.com/when-will-agi-arrive</id>
+    <updated>2026-08-18T00:00:00Z</updated>
+    <summary>Public AGI forecasts now cluster between 2026 and 2047: Musk 2026, Aschenbrenner 2027, Hassabis ~2030, Metaculus 2033, academic surveys 2047.</summary>
+  </entry>
+  <entry>
+    <title>How Close Are We to AGI? A Capability Check (2026)</title>
+    <link href="https://agiscorecard.com/how-close-is-agi"/>
+    <id>https://agiscorecard.com/how-close-is-agi</id>
+    <updated>2026-08-18T00:00:00Z</updated>
+    <summary>Closer than skeptics say, further than optimists claim. Mid-2026: frontier AI clears many knowledge-work bars (~83% GDPval.</summary>
+  </entry>
+  <entry>
+    <title>AGI Scorecard Data for AI Agents: JSON, Feed, llms.txt</title>
+    <link href="https://agiscorecard.com/for-agents"/>
+    <id>https://agiscorecard.com/for-agents</id>
+    <updated>2026-08-17T00:00:00Z</updated>
+    <summary>Free, machine-readable AGI verdict data: /data.json (CC BY 4.0), an Atom feed, and llms.txt. Copy-paste prompt to add verdict-change alerts to any AI agent.</summary>
+  </entry>
+  <entry>
+    <title>Did the Fund Collapse Prove Aschenbrenner Wrong About AGI?</title>
+    <link href="https://agiscorecard.com/aschenbrenner-fund-collapse"/>
+    <id>https://agiscorecard.com/aschenbrenner-fund-collapse</id>
+    <updated>2026-08-17T00:00:00Z</updated>
+    <summary>Situational Awareness lost ~67% in July 2026 and sold most stocks to Citadel. What that changes about AGI-2027 — and what doesn&#x27;t. Sourced, with receipts.</summary>
+  </entry>
+  <entry>
+    <title>AGI Odds vs Evidence: Markets Price Announcements</title>
+    <link href="https://agiscorecard.com/agi-odds-vs-evidence"/>
+    <id>https://agiscorecard.com/agi-odds-vs-evidence</id>
+    <updated>2026-08-17T00:00:00Z</updated>
+    <summary>Polymarket&#x27;s AGI-by-2027 contract vs the evidence: the market prices an announcement, the scorecard grades capability (62.5/100). Issue #1 of a running comparison.</summary>
+  </entry>
+  <entry>
+    <title>Situational Awareness Summary (Aschenbrenner, 2024)</title>
+    <link href="https://agiscorecard.com/situational-awareness-summary"/>
+    <id>https://agiscorecard.com/situational-awareness-summary</id>
+    <updated>2026-08-16T00:00:00Z</updated>
+    <summary>A summary of Aschenbrenner&#x27;s Situational Awareness essay — AGI by 2027, intelligence explosion, the Project.</summary>
+  </entry>
+  <entry>
+    <title>AI &#x27;Orders of Magnitude&#x27; (OOMs), Explained (2026)</title>
+    <link href="https://agiscorecard.com/ai-orders-of-magnitude-explained"/>
+    <id>https://agiscorecard.com/ai-orders-of-magnitude-explained</id>
+    <updated>2026-08-16T00:00:00Z</updated>
+    <summary>Aschenbrenner&#x27;s AGI case is built on counting OOMs — factors of 10 — in effective compute: raw compute + algorithmic efficiency + unhobbling.</summary>
+  </entry>
+  <entry>
+    <title>What Is AGI? Definition, Timelines &amp; Current Status</title>
+    <link href="https://agiscorecard.com/what-is-agi"/>
+    <id>https://agiscorecard.com/what-is-agi</id>
+    <updated>2026-08-16T00:00:00Z</updated>
+    <summary>AGI is AI that can do essentially any cognitive task a skilled human can. What the term means, why definitions split the timelines, and where 2026 stands.</summary>
+  </entry>
+  <entry>
+    <title>Changelog — What Changed on the AGI Scorecard</title>
+    <link href="https://agiscorecard.com/changelog"/>
+    <id>https://agiscorecard.com/changelog</id>
+    <updated>2026-08-16T00:00:00Z</updated>
+    <summary>Dated record of every real change on the evidence layer: verdict moves, Thesis Tracker score history, new tools and datasets. No backfilling.</summary>
+  </entry>
+  <entry>
+    <title>Matrix Odds Calculator — your own probability, not ours</title>
+    <link href="https://agiscorecard.com/matrix-odds"/>
+    <id>https://agiscorecard.com/matrix-odds</id>
+    <updated>2026-08-16T00:00:00Z</updated>
+    <summary>Break the Matrix scenario into five preconditions that must all hold, set your own probability for each, and see the joint number. Four links carry real graded evidence; one carries none.</summary>
+  </entry>
+  <entry>
+    <title>Did Open-Source AI Fade? Grading Aschenbrenner&amp;#x27;s Moat</title>
+    <link href="https://agiscorecard.com/did-open-source-ai-fade"/>
+    <id>https://agiscorecard.com/did-open-source-ai-fade</id>
+    <updated>2026-08-15T00:00:00Z</updated>
+    <summary>Aschenbrenner predicted open-source AI would fade behind a proprietary moat. Graded Wrong: DeepSeek V4 and Qwen 3.7 trail the frontier by only ~3–6 months.</summary>
+  </entry>
+  <entry>
+    <title>Free AI &amp;amp; AGI Tools: 6 Interactive Checks</title>
+    <link href="https://agiscorecard.com/ai-tools"/>
+    <id>https://agiscorecard.com/ai-tools</id>
+    <updated>2026-08-14T00:00:00Z</updated>
+    <summary>Eight free AI tools, no sign-up: find your AGI type, check your job&#x27;s AI exposure, score your AI stock basket against the 2027 thesis, and read the live 0-100 score.</summary>
+  </entry>
+  <entry>
+    <title>Your AGI Timeline: Pick a Year, See Who Agrees</title>
+    <link href="https://agiscorecard.com/your-agi-timeline"/>
+    <id>https://agiscorecard.com/your-agi-timeline</id>
+    <updated>2026-08-14T00:00:00Z</updated>
+    <summary>Slide to the year you think AGI arrives. See instantly where you land against Musk, Aschenbrenner, Hassabis, Metaculus and 2,778 researchers — plus the auditable 62.5/100 tracker.</summary>
+  </entry>
+  <entry>
+    <title>AI Investing Hub — Who&#x27;s Betting What on AI (2026)</title>
+    <link href="https://agiscorecard.com/invest"/>
+    <id>https://agiscorecard.com/invest</id>
+    <updated>2026-08-13T00:00:00Z</updated>
+    <summary>From AGI predictions to AI investing: Aschenbrenner&#x27;s blown-up bet (July 2026: -67%, portfolio to Citadel), how Buffett, Cathie Wood and 6 more legends stand on AI.</summary>
+  </entry>
+  <entry>
+    <title>Sam Altman&#x27;s AGI Prediction: What He&#x27;s Actually Said</title>
+    <link href="https://agiscorecard.com/sam-altman-agi-prediction"/>
+    <id>https://agiscorecard.com/sam-altman-agi-prediction</id>
+    <updated>2026-08-12T00:00:00Z</updated>
+    <summary>Sam Altman says OpenAI is confident it knows how to build AGI, with superintelligence &#x27;a few thousand days&#x27; away. His position vs the other forecasts.</summary>
+  </entry>
+  <entry>
+    <title>AGI-2027 Thesis Tracker: One Score for the 2027 Bet</title>
+    <link href="https://agiscorecard.com/progress-index"/>
+    <id>https://agiscorecard.com/progress-index</id>
+    <updated>2026-08-08T00:00:00Z</updated>
+    <summary>A single auditable 0-100 score of how much of Aschenbrenner&#x27;s Situational Awareness thesis is holding up. Currently 62.5/100, from 8 graded verdicts. CC BY 4.0.</summary>
+  </entry>
+  <entry>
+    <title>AGI-2027 Resolution: Criteria, Countdown, Evidence</title>
+    <link href="https://agiscorecard.com/agi-2027-resolution"/>
+    <id>https://agiscorecard.com/agi-2027-resolution</id>
+    <updated>2026-08-08T00:00:00Z</updated>
+    <summary>How the &#x27;AGI by 2027&#x27; claim gets graded: pre-registered resolution criteria, live countdown to Jan 1 2028, and where the evidence stands (62.5/100 on the Thesis Tracker).</summary>
+  </entry>
+  <entry>
+    <title>Calibration: We Score Our Own Predictions in Public</title>
+    <link href="https://agiscorecard.com/calibration"/>
+    <id>https://agiscorecard.com/calibration</id>
+    <updated>2026-08-08T00:00:00Z</updated>
+    <summary>Every probability the AGI Scorecard network states, inventoried: 8 graded verdicts, an 8-call market ledger (5 hits, n small), red-team odds. Brier score published at n≥20.</summary>
+  </entry>
+  <entry>
+    <title>Can a 200-Visitor Site Make Money? A Public Log</title>
+    <link href="https://agiscorecard.com/experiments"/>
+    <id>https://agiscorecard.com/experiments</id>
+    <updated>2026-08-05T00:00:00Z</updated>
+    <summary>Ten revenue experiments with kill thresholds published before results. Real numbers: 211 users, $0 earned, nothing hidden. Started August 2026.</summary>
+  </entry>
+  <entry>
+    <title>AI Stock Exposure Check — Score Your AI Basket</title>
+    <link href="https://agiscorecard.com/ai-stock-exposure"/>
+    <id>https://agiscorecard.com/ai-stock-exposure</id>
+    <updated>2026-08-05T00:00:00Z</updated>
+    <summary>Pick the AI stocks you hold and get one auditable 0-100 score: how much of your basket rides on AGI predictions that are actually holding up.</summary>
+  </entry>
+</feed>

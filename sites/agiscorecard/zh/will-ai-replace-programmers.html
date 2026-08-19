@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FZXLMBB5QB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-FZXLMBB5QB');
+</script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23ffffff'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%234fc3a1'/%3E%3C/svg%3E">
+<title>AI 会取代程序员吗？基准测试的真实答案</title>
+<meta name="description" content="部分会——而且并不均匀。2026 年年中：前沿模型在 SWE-Bench Pro 约 80%、智能体已写生产代码，但还没有系统能在无人复核下端到端负责软件工程。">
+<link rel="canonical" href="https://agiscorecard.com/zh/will-ai-replace-programmers">
+<link rel="alternate" hreflang="en" href="https://agiscorecard.com/will-ai-replace-programmers">
+<link rel="alternate" hreflang="zh-Hans" href="https://agiscorecard.com/zh/will-ai-replace-programmers">
+<link rel="alternate" hreflang="x-default" href="https://agiscorecard.com/will-ai-replace-programmers">
+<meta property="og:site_name" content="The AGI Scorecard">
+<meta property="og:title" content="AI 会取代程序员吗？">
+<meta property="og:description" content="部分会——而且并不均匀。2026 年年中：前沿模型在 SWE-Bench Pro 约 80%、智能体已写生产代码，但还没有系统能在无人复核下端到端负责软件工程。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://agiscorecard.com/zh/will-ai-replace-programmers">
+<meta property="og:image" content="https://agiscorecard.com/scorecard-summary.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "AI 会取代程序员吗？基准测试的真实答案", "datePublished": "2026-07-11", "dateModified": "2026-07-11", "inLanguage": "zh-Hans", "author": {"@type": "Organization", "name": "The AGI Scorecard"}, "publisher": {"@type": "Organization", "name": "The AGI Scorecard", "url": "https://agiscorecard.com/"}, "description": "部分会——而且并不均匀。2026 年年中：前沿模型在 SWE-Bench Pro 约 80%、智能体已写生产代码，但还没有系统能在无人复核下端到端负责软件工程。"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "AI 会取代程序员吗？", "acceptedAnswer": {"@type": "Answer", "text": "部分会，而且并不均匀。截至 2026 年年中，智能体编程很强（SWE-Bench Pro 约 80%）、自动化了部分工作，但没有系统能在无人复核下可靠地端到端负责软件工程。它是在增强程序员，而非取代。"}}, {"@type": "Question", "name": "2026 年 AI 编程水平有多强？", "acceptedAnswer": {"@type": "Answer", "text": "前沿模型在 SWE-Bench Pro 上约 80%，并在边界清晰的任务上向生产环境交付真实代码——大致就是阿申布伦纳预测 2025/26 年达到的水平，评为符合进度。"}}, {"@type": "Question", "name": "是什么挡住了 AI 完全取代工程师？", "acceptedAnswer": {"@type": "Answer", "text": "基准分数与真实代码库中可靠、可问责、端到端负责之间的差距。截至 2026 年年中，无人善后的自主软件工程仍未被证明。"}}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="https://www.googletagmanager.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#ffffff;--bg2:#f7f7f8;--bg3:#eeeef1;--border:rgba(0,0,0,0.10);--border2:rgba(0,0,0,0.18);--text:#0a0a0b;--muted:#63636e;--accent:#002FA7;--accent2:#0f7a52;--warn:#8a5a00;--danger:#C8102E;--font:'Noto Sans SC','PingFang SC','Microsoft YaHei',-apple-system,Helvetica Neue,sans-serif;--mono:'JetBrains Mono',monospace;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-variant-numeric:tabular-nums;background:var(--bg);color:var(--text);font-family:var(--font);font-size:16px;line-height:1.75;}
+  a{color:var(--accent);text-decoration:none;}a:hover{opacity:.8;}
+  header{border-bottom:1px solid var(--border);padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:56px;position:sticky;top:0;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);z-index:100;}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px;color:var(--text);}
+  .logo-dot{width:8px;height:8px;background:var(--accent2);border-radius:50%;}
+  .back-link{font-size:13px;color:var(--muted);}.back-link:hover{color:var(--text);opacity:1;}
+  article{max-width:720px;margin:0 auto;padding:2.5rem 1.5rem 4rem;}
+  .eyebrow{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem;}
+  h1{font-size:clamp(1.7rem,4vw,2.4rem);font-weight:700;letter-spacing:-.02em;line-height:1.18;margin-bottom:1.25rem;}
+  .capsule{background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent2);border-radius:0 10px 10px 0;padding:1.15rem 1.4rem;font-size:16px;margin-bottom:1.75rem;}
+  .capsule .verdict{font-weight:700;}
+  .v-ok{color:var(--accent2);}.v-wrong{color:var(--danger);}.v-open{color:var(--accent);}.v-pending{color:var(--muted);}
+  h2{font-size:1.25rem;font-weight:600;margin:2.25rem 0 .9rem;letter-spacing:-.01em;}
+  h3{font-size:1.05rem;font-weight:600;margin:1.5rem 0 .6rem;}
+  p{margin-bottom:1rem;}
+  ul{margin:0 0 1rem 1.3rem;}li{margin-bottom:.45rem;}
+  strong{color:#000;font-weight:700;}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;margin:1rem 0 1.4rem;background:var(--bg2);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+  th{text-align:left;padding:10px 12px;color:var(--muted);font-weight:500;font-size:11px;letter-spacing:.05em;text-transform:uppercase;border-bottom:1px solid var(--border);}
+  td{padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:top;}
+  tr:last-child td{border-bottom:none;}
+  .nowrap{white-space:nowrap;font-weight:600;}
+  .faq-q{font-weight:600;margin:1.3rem 0 .4rem;}
+  .related{margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--border);}
+  .related h2{margin-top:0;}
+  .related a{display:block;padding:6px 0;font-size:14px;}
+  .src{font-size:12px;color:var(--muted);margin-top:.5rem;}
+  .updated{font-size:12px;color:var(--muted);margin-bottom:1.5rem;}
+  .cta{margin-top:2rem;background:linear-gradient(135deg,rgba(0,47,167,.05),rgba(15,122,82,.05));border:1px solid rgba(0,47,167,.18);border-radius:14px;padding:1.5rem;text-align:center;}
+  .cta a{display:inline-block;background:var(--accent);color:#fff;padding:10px 22px;border-radius:8px;font-size:14px;font-weight:500;margin-top:.6rem;}
+  footer{border-top:1px solid var(--border);padding:24px 0;font-size:12px;color:var(--muted);text-align:center;}
+@media(max-width:640px){table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;white-space:nowrap}table td,table th{white-space:normal;min-width:92px}}
+</style>
+</head>
+<body>
+<header>
+  <a href="/cn" class="logo"><span class="logo-dot"></span>AGI 记分牌</a>
+  <a href="/will-ai-replace-programmers" class="back-link">EN ↗</a>
+</header>
+<article>
+  <div class="eyebrow">分析</div>
+  <h1>AI 会取代程序员吗？基准测试到底说了什么</h1>
+  <div class="updated">最后更新：2026年7月11日 · 随判定变化更新</div>
+  <div class="capsule"><span class="verdict v-ok">部分会——而且并不均匀。</span> 智能体编程确实很强：前沿模型在 <strong>SWE-Bench Pro 上约 80%</strong>，编程智能体已在生产环境交付真实代码。但“取代”言过其实——还没有任何系统能在无人复核下自主负责端到端的软件工程。在能力曲线上，这正对应阿申布伦纳“超越大学毕业生”的断言：<strong class="v-ok">符合进度</strong>，但不是完全替代。</div>
+  <div style="display:flex; gap:8px; flex-wrap:wrap; margin:1.5rem 0; padding:12px 14px; background:var(--bg2); border:1px solid var(--border); border-radius:12px; font-size:13px; align-items:center;">
+    <span style="color:var(--muted); font-weight:600;">🎮 顺手玩玩：</span>
+    <a href="/zh/future-bet" onclick="gtag('event','agi_test_click',{location:'zh_toolstrip'});">🎲 押注未来</a>
+    <a href="/zh/agi-test">🎯 AGI 类型测试</a>
+    <a href="/zh/invest" onclick="gtag('event','invest_tool_click',{location:'zh_toolstrip'});">💰 投资板块</a>
+    <a href="/zh/progress-index" onclick="gtag('event','index_click',{location:'zh_toolstrip'});">📈 追踪指数 62.5</a>
+  </div>
+<h2>AI 已经能做什么</h2>
+<p>可测量的进展是真实的。前沿模型能处理复杂的多步编程任务——SWE-Bench Pro 约 80%——编程智能体已部署在真实生产工作流中，而不只是演示。就原始能力而言，在许多边界清晰的任务上，AI 已跨过一名强力初级工程师的门槛。这与记分牌上<a href="/can-ai-replace-knowledge-workers">“超越大学毕业生”符合进度</a>判定背后是同一批证据。</p>
+<h2>它还差在哪里</h2>
+<p>基准分数不等于自主性。在编程测试上拿 80% 与可靠地端到端负责一个功能——需求拆解、集成、在混乱的真实代码库里调试、并在无人善后的情况下为结果负责——之间的差距，正是“取代”一词失效的地方。阿申布伦纳定义的决定性 AGI 门槛——能自主开展 AI 研究（最难的一种编程）的系统——仍然<a href="/zh/will-agi-arrive-2027">未被证明</a>。</p>
+<h2>诚实的判定</h2>
+<table><thead><tr><th>问题</th><th>答案（2026 年年中）</th></tr></thead><tbody>
+<tr><td>AI 能写生产代码吗？</td><td class="nowrap v-ok">能，需复核</td></tr>
+<tr><td>它自动化了部分工作吗？</td><td class="nowrap v-ok">是</td></tr>
+<tr><td>它能无监督地取代一名工程师吗？</td><td class="nowrap v-open">还不能</td></tr>
+</tbody></table>
+<p>所以：AI 正在自动化编程工作的切片、放大每位工程师的产出，但截至 2026 年年中，它还不是软件工程师的即插即用替代品。能力上符合进度；接下来要盯的是可靠性与责任归属这道缺口。</p>
+  <h2>常见问题</h2>
+  <div class="faq-q">AI 会取代程序员吗？</div><p>部分会，而且并不均匀。截至 2026 年年中，智能体编程很强（SWE-Bench Pro 约 80%）、自动化了部分工作，但没有系统能在无人复核下可靠地端到端负责软件工程。它是在增强程序员，而非取代。</p><div class="faq-q">2026 年 AI 编程水平有多强？</div><p>前沿模型在 SWE-Bench Pro 上约 80%，并在边界清晰的任务上向生产环境交付真实代码——大致就是阿申布伦纳预测 2025/26 年达到的水平，评为符合进度。</p><div class="faq-q">是什么挡住了 AI 完全取代工程师？</div><p>基准分数与真实代码库中可靠、可问责、端到端负责之间的差距。截至 2026 年年中，无人善后的自主软件工程仍未被证明。</p>
+  <div class="related">
+    <h2>相关</h2>
+    <a href="/can-ai-replace-knowledge-workers">AI 能取代知识工作者吗？（英文） →</a><a href="/zh/will-agi-arrive-2027">AGI 会在 2027 年到来吗？ →</a><a href="/zh/is-agi-just-hype">AGI 是炒作吗？ →</a>
+    <a href="/cn">查看完整中文记分牌 →</a>
+  </div>
+<div class="cta" style="margin-top:1rem; background:var(--bg2); border:1px solid var(--border);">
+    <p style="margin:0;font-weight:600;">判定变动时第一时间通知你</p>
+    <p style="margin:6px 0 0;font-size:13px;color:var(--muted);">订阅八条判定里任何一条翻转、追踪指数动了，我发一封给你——不是每周硬发的新闻信，分数不动就没有邮件。免费。</p>
+    <a href="https://agiscorecard.beehiiv.com/subscribe?utm_source=agiscorecard&utm_medium=zh_deep_page" target="_blank" rel="noopener" onclick="gtag('event','subscribe_click',{location:'zh_deep_page'});">免费订阅 &rarr;</a>
+    <div style="font-size:11.5px;color:var(--muted,#a8a4c4);margin-top:6px">订阅表单为英文：输入邮箱 → 点 Subscribe 即完成</div>
+  </div>
+  <div class="cta">
+    <p style="margin:0;font-weight:600;">记分牌随模型发布与判定变化实时更新。</p>
+    <a href="/cn">查看实时记分牌 →</a>
+  </div>
+</article>
+<footer>AGI 记分牌 · 独立追踪 <a href="https://situational-awareness.ai" style="color:var(--muted);">《态势感知》</a> · 不隶属于任何 AI 实验室 · <a href="/about" style="color:var(--muted);">About</a> · <a href="/privacy" style="color:var(--muted);">Privacy</a></footer>
+</body>
+</html>

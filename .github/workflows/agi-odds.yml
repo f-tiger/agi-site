@@ -1,0 +1,32 @@
+name: agiscorecard prediction-market odds (weekly)
+
+# 迁自私有仓 f-tiger/agiscorecard(2026-08-19)。「赔率 vs 证据」周更的取数端:
+# 沙箱够不到 gamma-api.polymarket.com,只有 runner 能取;取不到就红,绝不编数。
+# 快照落在 sites/agiscorecard/odds-snapshot.json,gen_odds.py 原路径消费。
+on:
+  schedule:
+    - cron: '25 3 * * 1'   # 每周一 03:25 UTC,早于 04:00 的每日运行
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: agi-odds
+  cancel-in-progress: true
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - working-directory: sites/agiscorecard
+        run: node tools/fetch_odds.mjs
+      - name: Commit snapshot if changed
+        run: |
+          git config user.name 'Claude'
+          git config user.email 'noreply@anthropic.com'
+          git add sites/agiscorecard/odds-snapshot.json
+          git diff --cached --quiet || { git commit -m "chore(odds): 预测市场赔率快照(runner 取,带 fetched 时间戳)"; git push; }

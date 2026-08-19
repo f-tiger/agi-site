@@ -1,0 +1,21 @@
+name: agiscorecard IndexNow submit (weekly)
+
+# 迁自私有仓 f-tiger/agiscorecard(2026-08-19):公开仓分钟免费,且额度枯竭期间
+# 也照常运行。外部副作用只挂 schedule,绝不挂 push(舰队 CI 纪律第 3 条)。
+on:
+  schedule:
+    - cron: '17 3 * * 1'   # 每周一 03:17 UTC
+  workflow_dispatch:
+
+concurrency:
+  group: agi-indexnow
+  cancel-in-progress: true
+
+jobs:
+  submit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: node sites/agiscorecard/tools/indexnow.mjs

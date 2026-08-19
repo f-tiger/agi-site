@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FZXLMBB5QB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-FZXLMBB5QB');
+</script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a0a0b'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%234fc3a1'/%3E%3C/svg%3E">
+<title>AI 持仓敞口自查 — 你押的是哪条 AGI 命题</title>
+<meta name="description" content="选出你持有的 AI 标的，得到一个 0-100 的可审计分数：你的组合有多少押在「目前仍然成立」的 AGI 预测上。">
+<link rel="canonical" href="https://agiscorecard.com/zh/ai-stock-exposure">
+<link rel="alternate" hreflang="en" href="https://agiscorecard.com/ai-stock-exposure">
+<link rel="alternate" hreflang="zh-Hans" href="https://agiscorecard.com/zh/ai-stock-exposure">
+<link rel="alternate" hreflang="x-default" href="https://agiscorecard.com/ai-stock-exposure">
+<meta property="og:site_name" content="AGI 记分牌">
+<meta property="og:title" content="AI 持仓敞口自查 — 你押的是哪条 AGI 命题">
+<meta property="og:description" content="选出你持有的 AI 标的，得到一个 0-100 的可审计分数：你的组合有多少押在「目前仍然成立」的 AGI 预测上。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://agiscorecard.com/zh/ai-stock-exposure">
+<meta property="og:image" content="https://agiscorecard.com/scorecard-summary.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"AI 持仓敞口自查","url":"https://agiscorecard.com/zh/ai-stock-exposure","description":"选出你持有的 AI 标的，得到一个 0-100 的可审计分数：你的组合有多少押在「目前仍然成立」的 AGI 预测上。","applicationCategory":"FinanceApplication","operatingSystem":"Any (web browser)","browserRequirements":"Requires JavaScript","isAccessibleForFree":true,"inLanguage":"zh-Hans","featureList":["17 AI tickers mapped to eight graded AGI predictions","Basket score on the same 0-100 scale as the AGI-2027 Thesis Tracker","Public Q2 2026 13F holdings for Berkshire and ARK","Embeddable via ?embed=1"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"AGI Scorecard","url":"https://agiscorecard.com/"},"isPartOf":{"@type":"CollectionPage","name":"Free AI & AGI tools","url":"https://agiscorecard.com/zh/ai-tools"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","inLanguage":"zh-Hans","mainEntity":[{"@type":"Question","name":"这算投资建议吗？","acceptedAnswer":{"@type":"Answer","text":"不算。整个工具里没有价格、没有目标价、没有买卖建议，也没有任何收益率主张。它只衡量一件很窄的事：一个组合的故事，有多少依赖于目前仍然成立的 AGI 预测——判定全部公开在 /data.json。至于你据此做什么，是你自己的决定，行动前请咨询有牌照的专业人士。"}},{"@type":"Question","name":"持仓数据是哪来的？","acceptedAnswer":{"@type":"Answer","text":"来自 2026 年 Q2 的公开 SEC 13F 文件——持仓截至 2026 年 6 月 30 日，申报于 2026 年 8 月 14 日，已经审入本站的投资者档案页。本站只有伯克希尔与 ARK 有逐笔持仓；/zh/invest 上跟踪的另外 6 位只有定性立场，因此不进持仓表，而不是拿定性描述当持仓用。"}},{"@type":"Question","name":"为什么我的基建组合分数比命题本身还高？","acceptedAnswer":{"@type":"Answer","text":"因为这些公司依赖的两条预测——算力按趋势推进、AI 资本开支——目前都判定成立，其中资本开支还判定为「超出」。更靠后的能力类预测，包括「2027 年 AGI」本身，都还未决，计 0.5 分。分数高意味着你的组合杠杆压在已经跑通的那部分上，不意味着它安全。"}},{"@type":"Question","name":"判定变了，分数会怎样？","acceptedAnswer":{"@type":"Answer","text":"所有组合都会动。本页从 /data.json 重新生成，因此一条判定翻转会在同一次提交里同时传导到这个工具、追踪指数和首页。唯一一条已判定落空的预测——「开源会退场」——正是 Meta、阿里这类反向仓位分数如此的原因。"}},{"@type":"Question","name":"能保存或分享我的组合吗？","acceptedAnswer":{"@type":"Answer","text":"可以，而且不需要账号。你每选一次，组合就写进页面网址——复制链接，它会原样打开，对你自己和对你发给的人都一样。整个过程没有 cookie、没有登录、不要邮箱。把这个链接存下来，也正是未来那个提醒有用的原因：判定一变，同一个网址会给你一个不同的分数。"}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AGI 记分牌","item":"https://agiscorecard.com/cn"},{"@type":"ListItem","position":2,"name":"Invest","item":"https://agiscorecard.com/zh/invest"},{"@type":"ListItem","position":3,"name":"AI 持仓敞口自查","item":"https://agiscorecard.com/zh/ai-stock-exposure"}]}</script>
+<style>
+:root{--bg:#ffffff;--bg2:#f7f7f8;--bg3:#eeeef1;--border:rgba(0,0,0,0.10);--border2:rgba(0,0,0,0.18);--text:#0a0a0b;--muted:#63636e;--accent:#002FA7;--accent2:#0f7a52;--warn:#8a5a00;--danger:#C8102E}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-variant-numeric:tabular-nums;font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',-apple-system,sans-serif;font-size:16px;line-height:1.75}
+.wrap{max-width:760px;margin:0 auto;padding:26px 20px 64px}
+a{color:var(--accent);text-decoration:none}a:hover{opacity:.8}
+header{display:flex;justify-content:space-between;align-items:center;font-size:14px;padding-bottom:14px;border-bottom:1px solid var(--border);margin-bottom:24px}
+header .brand{font-weight:700;color:var(--text)}
+.kicker{font-size:12px;letter-spacing:.1em;color:var(--muted)}
+h1{font-size:31px;line-height:1.25;margin:8px 0 12px;letter-spacing:-.01em}
+h2{font-size:20px;margin:34px 0 10px}
+h3{font-size:15.5px;margin:22px 0 6px}
+p{margin:0 0 12px}
+.lead{color:var(--muted);font-size:16px}
+.capsule{background:var(--bg2);border-left:3px solid var(--accent);padding:13px 16px;margin:18px 0}
+.panel{border:1px solid var(--border);border-radius:2px;padding:18px;background:var(--bg2)}
+.chip{background:#fff;border:1px solid var(--border2);color:var(--text)}
+.chip.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.chip.on span{opacity:.85}
+.tbl th{color:var(--muted);border-bottom:1px solid var(--border2)}
+.tbl td{border-bottom:1px solid var(--border)}
+.bar{background:var(--bg3)}
+.bar i{background:var(--accent)}
+.bar u{background:var(--text)}
+.cmp,.fine,.hint{color:var(--muted)}
+.sens>div{background:var(--bg2);border:1px solid var(--border)}
+.sens span{color:var(--muted)}
+.v2{color:var(--accent2)}
+.v1{color:var(--muted)}
+.v0{color:var(--danger)}
+.inv{background:var(--bg3);color:var(--warn)}
+.h-add{color:var(--accent2)}
+.h-hold{color:var(--muted)}
+.h-exit{color:var(--danger)}
+.warn{background:var(--bg2);border:1px solid var(--border2);color:var(--warn)}
+.k-own{background:var(--bg2);border-left:3px solid var(--accent);border-radius:0}
+.k-mixed{background:var(--bg2);border-left:3px solid var(--accent2);border-radius:0}
+.k-capex{background:var(--bg2);border-left:3px solid var(--warn);border-radius:0}
+.broken{background:var(--bg2);border:1px solid var(--border);color:var(--muted)}
+.btn{display:inline-block;background:var(--accent);color:#fff;border:0;border-radius:2px;padding:11px 18px;font:inherit;font-size:15px;font-weight:600;cursor:pointer}
+.btn.sec{background:#fff;color:var(--text);border:1px solid var(--border2)}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}
+.cta{border:1px solid var(--border2);padding:18px;margin:26px 0;background:var(--bg2)}
+.pro{border:1px dashed var(--border2);padding:18px;margin:22px 0}
+.pro ul{margin:8px 0 10px 1.1rem}.pro li{margin-bottom:5px;font-size:14.5px}
+.embedbox textarea{width:100%;height:70px;background:#fff;color:var(--muted);border:1px solid var(--border);border-radius:2px;padding:10px;font:12px/1.5 monospace;resize:vertical;margin:8px 0}
+.faq b{display:block;margin:16px 0 4px}
+footer{border-top:1px solid var(--border);margin-top:36px;padding-top:18px;font-size:12.5px;color:var(--muted)}
+.embed-brand{display:none;text-align:center;margin:16px 0 2px;font-size:13px}
+body.embed header,body.embed .lead,body.embed .marketing{display:none}
+body.embed h1{font-size:24px}
+body.embed .embed-brand{display:block}
+#embedcopied{display:none;color:var(--accent2);font-size:13px;margin-left:8px}
+
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 6px}
+.chip{cursor:pointer;border-radius:10px;padding:8px 11px;font:inherit;font-size:13px;line-height:1.25;text-align:left;display:flex;flex-direction:column;gap:1px}
+.chip b{font-size:14px;letter-spacing:.02em}
+.chip span{font-size:11px;opacity:.72}
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.tbl{width:100%;border-collapse:collapse;font-size:14px;margin:10px 0 4px}
+.tbl th{text-align:left;font-size:11px;letter-spacing:.06em;text-transform:uppercase;padding:8px 10px}
+.tbl td{padding:9px 10px;vertical-align:top}
+.tbl .num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.stats{display:flex;gap:16px;flex-wrap:wrap}
+.stat{flex:1 1 210px;min-width:0}
+.stat>span{display:block;font-size:11px;letter-spacing:.07em;text-transform:uppercase;margin-bottom:4px}
+.big{font-size:46px;font-weight:800;line-height:1;font-variant-numeric:tabular-nums}
+.big i{font-size:18px;font-weight:600;opacity:.55;margin-left:3px;font-style:normal}
+.kind{font-size:15px;margin:16px 0 0;padding:11px 13px;border-radius:9px}
+.kind b{font-weight:800}
+.share{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 0;align-items:center}
+.share .btn{font-size:14px;padding:9px 15px}
+#linkcopied{display:none;font-size:13px}
+.resultcta{margin:16px 0 0}
+.resultcta b{font-size:15.5px}
+.bar{position:relative;height:9px;border-radius:99px;margin:14px 0 8px;overflow:visible}
+.bar i{display:block;height:100%;border-radius:99px}
+.bar u{position:absolute;top:-5px;width:2px;height:19px;text-decoration:none}
+.cmp{font-size:14px}
+.sens{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0 4px}
+.sens>div{flex:1 1 150px;border-radius:10px;padding:11px 13px}
+.sens span{display:block;font-size:12px;margin-bottom:3px}
+.sens b{font-size:26px;font-variant-numeric:tabular-nums}
+.h{display:inline-block;font-size:12px;padding:2px 7px;border-radius:6px;margin:1px 3px 1px 0;white-space:nowrap}
+.fine{font-size:12.5px;margin:8px 0}
+.hint{font-size:14px;padding:16px 0}
+.warn,.broken{font-size:13.5px;border-radius:9px;padding:10px 12px;margin:12px 0}
+.inv{font-size:11px;padding:1px 5px;border-radius:5px}
+.v{font-size:12px;padding:2px 7px;border-radius:6px;white-space:nowrap}
+@media(max-width:520px){.big{font-size:42px}}
+</style>
+</head>
+<body>
+<script>if(location.search.indexOf('embed')>-1||location.hash.indexOf('embed')>-1){document.body.classList.add('embed');}</script>
+<div class="wrap">
+<header><a class="brand" href="/cn">AGI 记分牌</a><a href="/cn">← 返回记分牌</a></header>
+<div class="kicker">AGI 记分牌 · 投资</div>
+<h1>AI 持仓敞口自查</h1>
+<p class="lead">选出你手上的 AI 标的，得到一个分数——和我们的 AGI-2027 追踪指数<strong>同一把尺子</strong>，可以直接和它定价所依赖的那条命题对读。</p>
+<div class="capsule"><strong>你大概率买不到 AGI-2027 这条命题。</strong>它今天的分数是 <strong>62.5/100</strong>。一个标准的 AI 基建组合对照它能打到 <strong>99</strong> 分——但其中只有约 <strong>2%</strong> 的权重真正压在「AGI 会不会到来」上，另外 98% 压的是基建：资本开支、算力，以及已经在出货的知识工作能力。分数很高，赌的却是另一件事。这个工具告诉你，你手上的是哪一个。</div>
+
+<h2>选出你持有的</h2>
+<div class="row"><button type="button" class="btn sec" onclick='preset(["NVDA", "AMD", "TSM", "AVGO", "MU"])'>基建组合</button><button type="button" class="btn sec" onclick='preset(["MSFT", "GOOGL", "AMZN", "AAPL", "META"])'>大盘 AI</button><button type="button" class="btn sec" onclick='preset(["TSLA", "AMD", "PLTR", "AMZN", "CRWV", "TEM"])'>木头姐的 AI 持仓（13F）</button><button type="button" class="btn sec" onclick='preset(["AAPL", "GOOGL"])'>伯克希尔的 AI 敞口（13F）</button><button type="button" class="btn sec" onclick="clearAll()">清空</button></div>
+<div class="chips" id="chips"></div>
+<div class="panel" id="out"></div>
+
+<div class="cta marketing">
+  <b>分数变动时通知你</b>
+  <p style="margin:6px 0 10px">只有判定真的变化，分数才会动——所以这是一封低频邮件，不是每周硬发的新闻信。免费。（订阅页为英文表单，填邮箱即可）</p>
+  <a class="btn" href="https://agiscorecard.beehiiv.com/subscribe?utm_source=agiscorecard&amp;utm_medium=exposure_zh" target="_blank" rel="noopener" onclick="gtag('event','subscribe_click',{location:'exposure_zh'});">免费订阅 &rarr;</a>
+</div>
+
+<div class="marketing">
+<h2>分数怎么算出来的</h2>
+<p>每条预测的权重与<a href="/zh/progress-index">追踪指数</a>完全一致：成立&nbsp;=&nbsp;1，未决或待定&nbsp;=&nbsp;0.5，落空&nbsp;=&nbsp;0。单个标的的分数，是它的 AI 估值所依赖的那些预测的加权平均；组合分数是各标的的平均。反向仓位按 <code>1&nbsp;&minus;&nbsp;权重</code> 计分，因为它们是在预测失败时获利。</p><p>这套算术和追踪指数<strong>刻意保持一致</strong>——所以 <strong>62.5</strong> 是一条有意义的对照线，而不是随便找来的基准。判定来自 <a href="/data.json">/data.json</a>（CC BY 4.0），任何一条判定变动，本页都会重新生成。</p><p><strong>该被质疑的部分：</strong>每个标的映射到哪几条预测，是编辑判断，不是文件事实——它是一个关于「这家公司的 AI 估值到底依赖什么」的论证。持仓不是：那部分直接来自公开 13F，没有任何超出文件的推断。这里没有价格，也没有任何收益率主张：它衡量的是组合<em>暴露在什么上</em>，不是它值多少钱。</p>
+
+<div class="pro">
+<h3 style="margin-top:0">如果做成付费版，会多什么</h3>
+<p>这个工具免费，而且会一直免费。真正可以订阅的是另一件东西，目前<strong>还没做</strong>：</p><ul><li>判定翻转当天的提醒——那一天，本页所有组合分数都会变。</li><li>按季度把新 13F 与你保存的那个链接里的组合做差分，截止日后几天内出。</li><li>完整标的映射，而不是这里的 17 个。</li></ul><p>没有等待名单表单，也没有预售。要发布的话会发在下面这份简报里，而且定价之前会先问订阅者应该定多少。</p>
+<a class="btn sec" href="https://agiscorecard.beehiiv.com/subscribe?utm_source=agiscorecard&amp;utm_medium=exposure_zh_pro" target="_blank" rel="noopener" onclick="gtag('event','subscribe_click',{location:'exposure_zh_pro'});">免费订阅 &rarr;</a>
+</div>
+
+<div class="pro">
+<h3 style="margin-top:0">本域名下唯一一个真的在收费的产品</h3>
+<p>和这个页面分开，本域名下确实跑着一个可以订阅的付费产品，而且它<strong>刻意</strong>不是同一件事。<a href="https://invest.agiscorecard.com/" target="_blank" rel="noopener" onclick="gtag('event','invest_tool_click',{location:'exposure_zh_sunwatch'});">SunWatch</a> 把市场判断写成可证伪的价格触发条件，用机器跨美股 / 港股 / A 股三个时段盯盘，每一条都公开建档——<a href="https://invest.agiscorecard.com/track-record" target="_blank" rel="noopener" onclick="gtag('event','invest_tool_click',{location:'exposure_zh_sunwatch_record'});">命中与失误同等展示</a>，失误从不删除。免费档是每日一条 Telegram 预告；Pro 是 &yen;199/月（USDT 支付，无需注册、不留卡号），解锁具体买卖价位、止损线和实时触发报警。</p><p>它不算组合分数，也给不了你这个页面给你的东西。想要暴露度地图，就留在这里——免费，而且会一直免费。想要的是<em>本周</em>对这类标的一条有日期、可回查的仓位判断，那在那边。</p>
+<a class="btn sec" href="https://invest.agiscorecard.com/" target="_blank" rel="noopener" onclick="gtag('event','invest_tool_click',{location:'exposure_zh_sunwatch_btn'});">去看公开战绩 &rarr;</a>
+</div>
+
+<h2>嵌入这个工具</h2>
+<p>可自由嵌入任何网站，会带一条回链。</p>
+<div class="embedbox">
+  <textarea id="embedcode" readonly>&lt;iframe src="https://agiscorecard.com/zh/ai-stock-exposure?embed=1" width="100%" height="900" style="border:1px solid #26232f;border-radius:12px;max-width:720px" title="AI 持仓敞口自查 — 你押的是哪条 AGI 命题" loading="lazy"&gt;&lt;/iframe&gt;</textarea>
+  <button class="btn sec" onclick="copyEmbed()">复制嵌入代码</button><span id="embedcopied">&#10003;</span>
+</div>
+
+<h2>常见问题</h2>
+<div class="faq"><b>这算投资建议吗？</b><p>不算。整个工具里没有价格、没有目标价、没有买卖建议，也没有任何收益率主张。它只衡量一件很窄的事：一个组合的故事，有多少依赖于目前仍然成立的 AGI 预测——判定全部公开在 /data.json。至于你据此做什么，是你自己的决定，行动前请咨询有牌照的专业人士。</p><b>持仓数据是哪来的？</b><p>来自 2026 年 Q2 的公开 SEC 13F 文件——持仓截至 2026 年 6 月 30 日，申报于 2026 年 8 月 14 日，已经审入本站的投资者档案页。本站只有伯克希尔与 ARK 有逐笔持仓；/zh/invest 上跟踪的另外 6 位只有定性立场，因此不进持仓表，而不是拿定性描述当持仓用。</p><b>为什么我的基建组合分数比命题本身还高？</b><p>因为这些公司依赖的两条预测——算力按趋势推进、AI 资本开支——目前都判定成立，其中资本开支还判定为「超出」。更靠后的能力类预测，包括「2027 年 AGI」本身，都还未决，计 0.5 分。分数高意味着你的组合杠杆压在已经跑通的那部分上，不意味着它安全。</p><b>判定变了，分数会怎样？</b><p>所有组合都会动。本页从 /data.json 重新生成，因此一条判定翻转会在同一次提交里同时传导到这个工具、追踪指数和首页。唯一一条已判定落空的预测——「开源会退场」——正是 Meta、阿里这类反向仓位分数如此的原因。</p><b>能保存或分享我的组合吗？</b><p>可以，而且不需要账号。你每选一次，组合就写进页面网址——复制链接，它会原样打开，对你自己和对你发给的人都一样。整个过程没有 cookie、没有登录、不要邮箱。把这个链接存下来，也正是未来那个提醒有用的原因：判定一变，同一个网址会给你一个不同的分数。</p></div>
+
+<h2>相关</h2>
+<p><a href="/zh/invest">AI 投资板块 — 8 位传奇的真实仓位</a> · <a href="/zh/progress-index">AGI-2027 追踪指数 — 本页对照的那条线</a> · <a href="/zh/is-agi-just-hype">AGI 是不是炒作？</a> · <a href="/cn">中文主页</a> · <a href="/zh/ai-tools">全部免费工具</a></p>
+</div>
+
+<div class="embed-brand">📈 <b>AI 持仓敞口自查</b> · <a href="https://agiscorecard.com/zh/ai-stock-exposure?utm_source=tool_embed&amp;utm_medium=iframe" target="_blank" rel="noopener" onclick="gtag('event','embed_brand_click',{location:'exposure_zh'});">在 AGI 记分牌上使用完整版 →</a></div>
+
+<footer><p>每条判定都在 <a href="/cn">agiscorecard.com</a> 附信源公开。数据集：<a href="/data.json">/data.json</a>（CC BY 4.0）。</p><p style="margin-top:8px">非投资建议。无价格、无目标价、无收益率主张。持仓来自截至 2026-06-30 的公开 13F，可能已过时；预测映射为编辑判断。请自行研究。</p></footer>
+</div>
+<script>
+var D={"preds":[{"id":"knowledge-work","label":"模型胜过大学毕业生","verdict":"On track","w":1.0,"detail":"https://agiscorecard.com/can-ai-replace-knowledge-workers"},{"id":"compute-scaling","label":"算力与算法按趋势推进","verdict":"On track","w":1.0,"detail":"https://agiscorecard.com/is-ai-compute-still-scaling"},{"id":"capex","label":"AI 资本开支狂潮","verdict":"Exceeded","w":1.0,"detail":"https://agiscorecard.com/ai-capex-trillion-dollar"},{"id":"open-source-fades","label":"开源退场、闭源护城河","verdict":"Wrong","w":0.0,"detail":"https://agiscorecard.com/did-open-source-ai-fade"},{"id":"agi-2027","label":"2027 年 AGI","verdict":"Open","w":0.5,"detail":"https://agiscorecard.com/will-agi-arrive-2027"},{"id":"the-project","label":"美国政府 AGI 计划","verdict":"Open","w":0.5,"detail":"https://agiscorecard.com/will-the-us-government-build-agi"},{"id":"intelligence-explosion","label":"智能爆炸","verdict":"Pending","w":0.5,"detail":"https://agiscorecard.com/intelligence-explosion-2027"},{"id":"superintelligence","label":"超级智能","verdict":"Pending","w":0.5,"detail":"https://agiscorecard.com/will-there-be-superintelligence"}],"tickers":[{"t":"NVDA","n":"Nvidia","cov":"high","note":"同时卖铲子给「算力按趋势推进」和「资本开支狂潮」——这是目前判定成立的三项里，两项的最纯上市代理。","inv":false,"links":[{"p":"compute-scaling","w":0.45,"d":1},{"p":"capex","w":0.45,"d":1},{"p":"intelligence-explosion","w":0.1,"d":1}]},{"t":"AMD","n":"AMD","cov":"high","note":"第二供应商的加速卡押注：它更依赖开支继续，而不是某个具体的能力里程碑。","inv":false,"links":[{"p":"compute-scaling","w":0.4,"d":1},{"p":"capex","w":0.6,"d":1}]},{"t":"TSM","n":"TSMC","cov":"high","note":"上面所有芯片都在这里制造。敞口落在物理层的扩张曲线上，比「谁家 logo」低一层。","inv":false,"links":[{"p":"compute-scaling","w":0.5,"d":1},{"p":"capex","w":0.5,"d":1}]},{"t":"AVGO","n":"Broadcom","cov":"high","note":"定制加速卡与它们之间的网络——更像资本开支周期的仓位，而不是前沿能力的仓位。","inv":false,"links":[{"p":"capex","w":0.6,"d":1},{"p":"compute-scaling","w":0.4,"d":1}]},{"t":"MSFT","n":"Microsoft","cov":"high","note":"一边出钱建基建，一边在上面卖知识工作产品。钱和能力两头都有敞口。","inv":false,"links":[{"p":"capex","w":0.5,"d":1},{"p":"knowledge-work","w":0.5,"d":1}]},{"t":"GOOGL","n":"Alphabet","cov":"high","note":"全栈——自家模型、自家 TPU、自家分发。伯克希尔 2026 Q1 加仓 225%、Q2 再度加仓，是其最明确的 AI 表态。","inv":false,"links":[{"p":"knowledge-work","w":0.4,"d":1},{"p":"compute-scaling","w":0.3,"d":1},{"p":"capex","w":0.3,"d":1}]},{"t":"AMZN","n":"Amazon","cov":"high","note":"云的资本开支，加上跑在上面的智能体产品。伯克希尔清仓的同一季度，木头姐在加仓。","inv":false,"links":[{"p":"capex","w":0.5,"d":1},{"p":"knowledge-work","w":0.5,"d":1}]},{"t":"META","n":"Meta","cov":"medium","note":"这张表上唯一一个「预测失败才赚钱」的仓位。Meta 的 AI 路线是开放权重——阿申布伦纳说护城河会守住的地方，正是它获利的地方。而那一条已经判定为「落空」。","inv":true,"links":[{"p":"open-source-fades","w":1.0,"d":-1}]},{"t":"BABA","n":"Alibaba","cov":"medium","note":"通义千问是开放权重、且逼近前沿。和 Meta 一样，它做多的是「护城河预测落空」——而这一条记分牌已经判了。","inv":true,"links":[{"p":"open-source-fades","w":1.0,"d":-1}]},{"t":"PLTR","n":"Palantir","cov":"medium","note":"已落地的政府与企业 AI。是「美国政府 AGI 计划」最接近的上市代理——但承包商不等于国家级计划。","inv":false,"links":[{"p":"knowledge-work","w":0.7,"d":1},{"p":"the-project","w":0.3,"d":1}]},{"t":"CRWV","n":"CoreWeave","cov":"high","note":"纯资本开支 beta。开支一旦放缓，它没有第二个故事——这也正是它对那一条预测读数最干净的原因。","inv":false,"links":[{"p":"capex","w":1.0,"d":1}]},{"t":"MU","n":"Micron","cov":"high","note":"内存是扩张曲线反复撞上的瓶颈。它的周期性是软件类标的没有的。","inv":false,"links":[{"p":"compute-scaling","w":0.5,"d":1},{"p":"capex","w":0.5,"d":1}]},{"t":"VRT","n":"Vertiv","cov":"medium","note":"为基建提供供电与散热。它的敞口是「装了多少机柜」，不是「模型能做什么」。","inv":false,"links":[{"p":"capex","w":1.0,"d":1}]},{"t":"CEG","n":"Constellation Energy","cov":"low","note":"算力需求向下游表现为电力需求。链路真实，但公用事业公司有一大块业务与这一切无关。","inv":false,"links":[{"p":"capex","w":1.0,"d":1}]},{"t":"TSLA","n":"Tesla","cov":"low","note":"Robotaxi 与具身智能不在这 8 条预测里。诚实地说链路很薄——而它是 ARK 的第一大持仓（7.5%）。","inv":false,"links":[{"p":"knowledge-work","w":0.5,"d":1},{"p":"agi-2027","w":0.5,"d":1}]},{"t":"TEM","n":"Tempus AI","cov":"low","note":"把 AI 用在医疗数据上。搭的是能力那一条，但要穿过一个有自己节奏的强监管市场。","inv":false,"links":[{"p":"knowledge-work","w":1.0,"d":1}]},{"t":"AAPL","n":"Apple","cov":"low","note":"全表链路最弱的一个，故意留着：它是伯克希尔第一大持仓（22%），而一个装满它的组合，其实几乎不是 AGI 押注。","inv":false,"links":[{"p":"knowledge-work","w":1.0,"d":1}]}],"holdings":{"Berkshire (Buffett)":{"AAPL":"hold","GOOGL":"add","AMZN":"exit"},"ARK (Cathie Wood)":{"TSLA":"hold","AMD":"hold","PLTR":"hold","AMZN":"hold","CRWV":"hold","TEM":"hold","NVDA":"hold"}}},L={"empty":"在上面选一个或多个标的。数据不会离开你的浏览器——全部计算都在本地完成。","vs":"AGI-2027 命题本身是 <b>{b}</b> 分。你的组合相对它 <b>{d}</b>。","h_break":"你的组合实际押在什么上","prediction":"预测","share":"占比","verdict":"判定","inverse":"反向","h_sens":"如果 2027 判定落地","if_yes":"2027 年 AGI = 成立","if_no":"2027 年 AGI = 落空","sensnote":"区间 {r} 分。这个区间才是你组合里真正押「2027 这个日期」的部分；区间之外押的是已经拿到钱的基建。","broken":"你的组合有 {p}% 押在唯一一条已判定<b>落空</b>的预测上（开源退场）。","brokengood":"你站在它赢的那一边。","brokenbad":"你站在它输的那一边。","nobroken":"你的组合完全没有押在唯一一条已判定落空的预测上（开源退场）——正反两个方向都没有。也就是说，命题一旦破裂，这里没有任何东西会赚钱。","h_who":"还有谁持有这些","investor":"投资者","position":"仓位（2026 Q2 13F）","act":{"add":"加仓","hold":"持有","exit":"清仓"},"holdnote":"来自 2026 年 Q2 公开 13F 文件——持仓截至 2026-06-30，申报于 2026-08-14。本站只有伯克希尔与 ARK 有逐笔持仓；<a href=\"/zh/invest\">/zh/invest</a> 上另外 6 位只有定性描述，因此这里不列出，而不是靠猜。","nohold":"本站有逐笔 13F 的两位投资者都不持有这些标的。另有 6 位在 <a href=\"/zh/invest\">/zh/invest</a> 以定性方式跟踪。","covwarn":"你选的大多数标的<b>链路较弱</b>：这 8 条预测只能覆盖它们故事的一小部分。上面的分数说的是那一部分，不是整只股票。","loc":"exposure_zh","sensnone":"完全没有区间。这个组合里没有任何东西是在 2027 这个日期上结算的——判定无论转向哪边，这些仓位都不直接站在它的对面。","score_label":"命题一致度","far_label":"押在 AGI 本身","farnote":"剩下的部分押的是基建——资本开支、算力，以及已经在出货的知识工作能力。","kinds":{"own":"这个组合是真的在押 2027。有四分之一以上压在尚未落地的预测上——判定一旦转向不利，亏损就出在这里。","mixed":"以基建为主，但对 AGI 本身留了一条真实的尾巴。2027 判定落地时你会有感觉，只是它不会是仓位的全部。","capex":"这是一个披着 AGI 外衣的资本开支仓位。它几乎完全没有押 AGI 会不会来——它押的是开支继续，那是另一场赌局，出错的方式也完全不同。","anti":"这个组合大部分是在命题<strong>失败</strong>时获利，而不是成立时。这是一个自洽而且少见的仓位——而且它目前站在唯一一条已经落地的判定的赢面上。"},"names":{"own":"命题持有者","mixed":"留了尾巴的人","capex":"基建包租公","anti":"反向押注者"},"namesep":"。","sharetext":"我的 AI 组合是「{n}」——对照 AGI-2027 命题打 {s}/100 分，但真正押在「AGI 会不会到来」上的只有 {f}%。测测你的：","copybtn":"复制我的组合链接","xbtn":"分享到 X","sharenote":"链接里只有你的组合，没有别的——不需要账号、不写 cookie、不要邮箱。存下来，判定一变，同一个链接会告诉你变了什么。","ctahead":"你的组合：{s}/100，其中 {f}% 押在 AGI 本身。","ctabody":"这个数只有在判定真的变化时才会动。它变的那天我们告诉你——那天也是上面每一个仓位重新计分的那天。","ctabtn":"分数变动时通知我 &rarr;","utm":"exposure_zh","tgbtn":"用 Telegram 盯住它 &rarr;","tgnote":"一次点击，不用邮箱、不用注册。bot 会把标的原样念回来确认，然后发每日免费预告，以及追踪指数分数变动那天的一条消息——那一天这个组合会重新计分。","tglong":"标的选到 10 个以内才能用 Telegram 盯住：承载它的链接有长度上限，而盯一个被截断的组合是错的。"},BASE=62.5,CANON="https://agiscorecard.com/zh/ai-stock-exposure";
+// The four predictions that have not resolved. Exposure to these is the only
+// part of a basket that is genuinely a bet on AGI rather than on the buildout.
+var FAR=['agi-2027','the-project','intelligence-explosion','superintelligence'];
+var sel={},W={};
+D.preds.forEach(function(p){W[p.id]=p.w;});
+
+// The basket lives in the URL. That single decision does four jobs: the result
+// becomes linkable, a reader can bookmark their own basket, content pages can
+// deep-link a relevant preset, and "your saved basket" — which the paid tier is
+// built on — becomes a real object instead of a promise.
+var VALID={};D.tickers.forEach(function(t){VALID[t.t]=1;});
+(function(){try{
+  var m=/[?&]b=([A-Za-z0-9\-]+)/.exec(location.search);
+  if(!m)return;
+  m[1].toUpperCase().split('-').forEach(function(k){if(VALID[k])sel[k]=1;});
+}catch(e){}})();
+function syncUrl(){try{
+  var ks=Object.keys(sel),q=[];
+  if(ks.length)q.push('b='+ks.join('-'));
+  if(document.body.classList.contains('embed'))q.push('embed=1');
+  history.replaceState(null,'',location.pathname+(q.length?'?'+q.join('&'):''));
+}catch(e){}}
+function shareUrl(){var ks=Object.keys(sel);
+  return CANON+(ks.length?'?b='+ks.join('-'):'');}
+function pw(o){return o;}
+function tScore(t,w){var s=0;t.links.forEach(function(l){var v=w[l.p];s+=l.w*(l.d>0?v:1-v);});return s;}
+function basket(w){var ks=Object.keys(sel);if(!ks.length)return null;var s=0;
+  ks.forEach(function(k){s+=tScore(byT(k),w);});return s/ks.length;}
+function byT(k){for(var i=0;i<D.tickers.length;i++){if(D.tickers[i].t===k)return D.tickers[i];}return null;}
+function alt(id,v){var w={};for(var k in W)w[k]=W[k];w[id]=v;return w;}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'})[c];});}
+function fmt(n){return (Math.round(n*10)/10).toFixed(1);}
+
+function chips(){
+  var h='';
+  D.tickers.forEach(function(t){
+    h+='<button type="button" class="chip'+(sel[t.t]?' on':'')+'" data-t="'+t.t+'">'
+      +'<b>'+t.t+'</b><span>'+esc(t.n)+'</span></button>';
+  });
+  document.getElementById('chips').innerHTML=h;
+  Array.prototype.forEach.call(document.querySelectorAll('.chip'),function(b){
+    b.onclick=function(){var k=b.getAttribute('data-t');
+      if(sel[k])delete sel[k];else sel[k]=1;render();};
+  });
+}
+
+function render(){
+  chips();
+  var out=document.getElementById('out'),ks=Object.keys(sel);
+  if(!ks.length){out.innerHTML='<p class="hint">'+L.empty+'</p>';return;}
+  var b=basket(W),score=b*100,diff=score-BASE;
+
+  // Which predictions the basket actually rides on, and in which direction.
+  var expo={},cov={high:0,medium:0,low:0};
+  ks.forEach(function(k){var t=byT(k);cov[t.cov]++;
+    t.links.forEach(function(l){var e=expo[l.p]||(expo[l.p]={w:0,d:l.d});e.w+=l.w/ks.length;});});
+  var rows=D.preds.filter(function(p){return expo[p.id];})
+    .sort(function(a,c){return expo[c.id].w-expo[a.id].w;})
+    .map(function(p){var e=expo[p.id];
+      return '<tr><td><a href="'+p.detail+'">'+esc(p.label)+'</a>'
+        +(e.d<0?' <span class="inv">'+L.inverse+'</span>':'')+'</td>'
+        +'<td class="num">'+Math.round(e.w*100)+'%</td>'
+        +'<td><span class="v v'+Math.round(p.w*2)+'">'+esc(p.verdict)+'</span></td></tr>';}).join('');
+
+  // Sensitivity: the 2027 verdict is the one that actually resolves, so it is
+  // the only one worth modelling. Anything else would be inventing scenarios.
+  var yes=basket(alt('agi-2027',1))*100,no=basket(alt('agi-2027',0))*100;
+  var broken=expo['open-source-fades'];
+
+  var who='';
+  for(var inv in D.holdings){
+    var hits=ks.filter(function(k){return D.holdings[inv][k];});
+    if(!hits.length)continue;
+    who+='<tr><td>'+esc(inv)+'</td><td>'+hits.map(function(k){
+      var a=D.holdings[inv][k];return '<span class="h h-'+a+'">'+k+' '+L.act[a]+'</span>';}).join(' ')+'</td></tr>';
+  }
+  who=who?'<table class="tbl"><thead><tr><th>'+L.investor+'</th><th>'+L.position+'</th></tr></thead><tbody>'+who+'</tbody></table>'
+       +'<p class="fine">'+L.holdnote+'</p>'
+     :'<p class="fine">'+L.nohold+'</p>';
+
+  var covWarn=(cov.low>=ks.length/2)?'<p class="warn">'+L.covwarn+'</p>':'';
+
+  // The alignment score alone sits near 100 for almost any basket, because
+  // listed AI equities ride the three predictions already graded supportive.
+  // That is the finding, not a bug — so the share riding on the four unresolved
+  // predictions is shown next to it, and it is the number that discriminates.
+  var far=0;
+  ks.forEach(function(k){byT(k).links.forEach(function(l){
+    if(FAR.indexOf(l.p)>-1)far+=l.w/ks.length;});});
+  far*=100;
+  // Inverse exposure is checked first: a basket that is mostly long the failure
+  // of the moat prediction is a different animal from one that simply owns the
+  // buildout, and collapsing the two would lose the most interesting reader.
+  var invw=0;
+  ks.forEach(function(k){byT(k).links.forEach(function(l){if(l.d<0)invw+=l.w/ks.length;});});
+  var kind=invw>=.5?'anti':(far>=25?'own':(far>=8?'mixed':'capex'));
+
+  // One-tap bind, no email. The site's email form has converted 0 of 246 pageviews,
+  // and a confirmation mail cannot even be sent today (no BEEHIIV key), so Telegram is
+  // the only identity channel here that can actually deliver what it promises. The
+  // payload is the basket itself; Telegram caps `start` at 64 chars, so an oversized
+  // basket hides the button rather than silently watching a truncated one.
+  var tgp='b_'+ks.join('-');
+  var tgBtn=(tgp.length<=64)
+    ?'<a class="btn sec" style="margin-left:8px" href="https://t.me/sunwatchBot?start='+tgp
+      +'" target="_blank" rel="noopener" onclick="gtag(\'event\',\'invest_tool_click\',{location:\''
+      +L.loc+'_tg_watch\',label:\''+ks.join('-')+'\'});">'+L.tgbtn+'</a>'
+      +'<p class="fine" style="margin:8px 0 0">'+L.tgnote+'</p>'
+    :'<p class="fine" style="margin:8px 0 0">'+L.tglong+'</p>';
+
+  out.innerHTML=
+    '<div class="stats"><div class="stat"><span>'+L.score_label+'</span>'
+    +'<div class="big">'+fmt(score)+'<i>/100</i></div>'
+    +'<div class="bar"><i style="width:'+Math.max(2,Math.min(100,score))+'%"></i>'
+    +'<u style="left:'+BASE+'%"></u></div>'
+    +'<div class="cmp">'+L.vs.replace('{b}',BASE).replace('{d}',(diff>=0?'+':'')+fmt(diff))+'</div></div>'
+    +'<div class="stat"><span>'+L.far_label+'</span>'
+    +'<div class="big">'+Math.round(far)+'<i>%</i></div>'
+    +'<div class="cmp">'+L.farnote+'</div></div></div>'
+    +'<p class="kind k-'+kind+'"><b>'+L.names[kind]+L.namesep+'</b>'+L.kinds[kind]+'</p>'
+    +'<div class="share"><button type="button" class="btn sec" onclick="copyLink()">'+L.copybtn
+      +'</button><span id="linkcopied">&#10003;</span>'
+      +'<a class="btn sec" id="xshare" target="_blank" rel="noopener">'+L.xbtn+'</a></div>'
+    +'<p class="fine">'+L.sharenote+'</p>'
+    +'<div class="cta resultcta"><b>'+L.ctahead
+        .replace('{s}',fmt(score)).replace('{f}',Math.round(far))+'</b>'
+      +'<p style="margin:6px 0 10px;font-size:14px">'+L.ctabody+'</p>'
+      +'<a class="btn" href="https://agiscorecard.beehiiv.com/subscribe?utm_source=agiscorecard&amp;utm_medium='
+      +L.utm+'_result" target="_blank" rel="noopener" '
+      +'onclick="gtag(\'event\',\'subscribe_click\',{location:\''+L.loc+'_result\'});">'+L.ctabtn+'</a>'+tgBtn+'</div>'
+    +covWarn
+    +'<h3>'+L.h_break+'</h3>'
+    +'<div class="scroll"><table class="tbl"><thead><tr><th>'+L.prediction+'</th><th class="num">'+L.share+'</th><th>'+L.verdict+'</th></tr></thead><tbody>'+rows+'</tbody></table></div>'
+    +'<h3>'+L.h_sens+'</h3>'
+    +'<div class="sens"><div><span>'+L.if_yes+'</span><b>'+fmt(yes)+'</b></div>'
+    +'<div><span>'+L.if_no+'</span><b>'+fmt(no)+'</b></div></div>'
+    +'<p class="fine">'+(Math.abs(yes-no)<0.05?L.sensnone
+        :L.sensnote.replace('{r}',fmt(Math.abs(yes-no))))+'</p>'
+    +(broken?'<p class="broken">'+L.broken.replace('{p}',Math.round(broken.w*100))
+        +(broken.d<0?' '+L.brokengood:' '+L.brokenbad)+'</p>':'<p class="broken">'+L.nobroken+'</p>')
+    +'<h3>'+L.h_who+'</h3>'+who;
+
+  syncUrl();
+  var u=shareUrl(),txt=L.sharetext.replace('{n}',L.names[kind])
+    .replace('{s}',fmt(score)).replace('{f}',Math.round(far));
+  var x=document.getElementById('xshare');
+  if(x)x.href='https://twitter.com/intent/tweet?text='+encodeURIComponent(txt)+'&url='+encodeURIComponent(u);
+  var e=document.getElementById('embedcode');
+  if(e)e.value=e.value.replace(/src="[^"]*"/,'src="'+u+(u.indexOf('?')>-1?'&':'?')+'embed=1"');
+  if(window.gtag)gtag('event','exposure_score',{location:L.loc,label:String(ks.length)});
+}
+
+function copyLink(){var u=shareUrl();
+  navigator.clipboard.writeText(u).then(function(){
+    var c=document.getElementById('linkcopied');if(!c)return;
+    c.style.display='inline';setTimeout(function(){c.style.display='none'},2000);});
+  if(window.gtag)gtag('event','challenge_share',{location:L.loc,label:'copy_link'});}
+
+function preset(list){sel={};list.forEach(function(k){sel[k]=1;});render();
+  if(window.gtag)gtag('event','tool_click',{location:L.loc,label:'preset'});}
+function clearAll(){sel={};render();}
+document.addEventListener('click',function(ev){
+  var a=ev.target.closest?ev.target.closest('#xshare'):null;
+  if(a&&window.gtag)gtag('event','x_share',{location:L.loc});},true);
+render();
+
+function copyEmbed(){var t=document.getElementById('embedcode');navigator.clipboard.writeText(t.value).then(function(){var c=document.getElementById('embedcopied');c.style.display='inline';setTimeout(function(){c.style.display='none'},2000)});gtag('event','embed_copy',{location:'exposure_zh'});}
+</script>
+</body>
+</html>

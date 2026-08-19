@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FZXLMBB5QB"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-FZXLMBB5QB');</script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a0a0b'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%234fc3a1'/%3E%3C/svg%3E">
+<title>AGI란? 정의·시점·현재 도달점</title>
+<meta name="description" content="AGI는 숙련된 인간의 인지 작업을 사실상 모두 해낼 수 있는 AI. 용어의 의미, 정의가 시점 예측을 가르는 이유, 그리고 2026년의 도달점을 정리한다.">
+<link rel="canonical" href="https://agiscorecard.com/ko/what-is-agi">
+<link rel="alternate" hreflang="en" href="https://agiscorecard.com/what-is-agi">
+<link rel="alternate" hreflang="zh-Hans" href="https://agiscorecard.com/zh/what-is-agi">
+<link rel="alternate" hreflang="es" href="https://agiscorecard.com/es/what-is-agi">
+<link rel="alternate" hreflang="fr" href="https://agiscorecard.com/fr/what-is-agi">
+<link rel="alternate" hreflang="de" href="https://agiscorecard.com/de/what-is-agi">
+<link rel="alternate" hreflang="pt" href="https://agiscorecard.com/pt/what-is-agi">
+<link rel="alternate" hreflang="it" href="https://agiscorecard.com/it/what-is-agi">
+<link rel="alternate" hreflang="ja" href="https://agiscorecard.com/ja/what-is-agi">
+<link rel="alternate" hreflang="ko" href="https://agiscorecard.com/ko/what-is-agi">
+<link rel="alternate" hreflang="x-default" href="https://agiscorecard.com/what-is-agi">
+<meta property="og:site_name" content="The AGI Scorecard">
+<meta property="og:title" content="AGI란? 시점 논쟁의 핵심에 있는 '정의'">
+<meta property="og:description" content="AGI는 숙련된 인간의 인지 작업을 사실상 모두 해낼 수 있는 AI. 용어의 의미, 정의가 시점 예측을 가르는 이유, 그리고 2026년의 도달점을 정리한다.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://agiscorecard.com/ko/what-is-agi">
+<meta property="og:image" content="https://agiscorecard.com/scorecard-summary.png">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://agiscorecard.com/scorecard-summary.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "AGI란? 시점 논쟁의 핵심에 있는 '정의'", "datePublished": "2026-07-16", "dateModified": "2026-07-16", "inLanguage": "ko", "author": {"@type": "Organization", "name": "The AGI Scorecard"}, "publisher": {"@type": "Organization", "name": "The AGI Scorecard", "url": "https://agiscorecard.com/"}, "description": "AGI는 숙련된 인간의 인지 작업을 사실상 모두 해낼 수 있는 AI. 용어의 의미, 정의가 시점 예측을 가르는 이유, 그리고 2026년의 도달점을 정리한다."}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "inLanguage": "ko", "mainEntity": [{"@type": "Question", "name": "AGI를 쉽게 말하면?", "acceptedAnswer": {"@type": "Answer", "text": "특정 작업 하나만이 아니라, 숙련된 인간 전문가가 하는 인지 작업을 본질적으로 무엇이든 해내는 AI. 의견이 갈리는 건 그 기준을 얼마나 높게 두느냐다."}}, {"@type": "Question", "name": "2026년에 AGI가 이미 존재하나?", "acceptedAnswer": {"@type": "Answer", "text": "아니다. 프런티어 AI는 매우 유능한 조수지만(GDPval 약 83%, SWE-Bench Pro 약 80%), AI 연구를 처음부터 끝까지 자율로 수행하는 시스템은 없다 — 대다수가 결정적이라 보는 기준이다."}}, {"@type": "Question", "name": "왜 정의가 시점을 바꾸나?", "acceptedAnswer": {"@type": "Answer", "text": "'대체 가능한 원격 근로자'와 '자율적 AI 연구자'는 매우 다른 목표이기 때문이다. 기준이 높을수록 시점은 늦어진다 — 그래서 예측이 2026년부터 2047년까지 벌어진다."}}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="https://www.googletagmanager.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#0a0a0b;--bg2:#111114;--bg3:#18181d;--border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.12);--text:#e8e8ec;--muted:#8888a0;--accent:#7c6af5;--accent2:#4fc3a1;--warn:#e8a040;--danger:#e05555;--font:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;--mono:'JetBrains Mono',monospace;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:16px;line-height:1.75;}
+  a{color:var(--accent);text-decoration:none;}a:hover{opacity:.8;}
+  header{border-bottom:1px solid var(--border);padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:56px;position:sticky;top:0;background:rgba(10,10,11,.92);backdrop-filter:blur(12px);z-index:100;}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px;color:var(--text);}
+  .logo-dot{width:8px;height:8px;background:var(--accent2);border-radius:50%;}
+  .back-link{font-size:13px;color:var(--muted);}.back-link:hover{color:var(--text);opacity:1;}
+  article{max-width:720px;margin:0 auto;padding:2.5rem 1.5rem 4rem;}
+  .eyebrow{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem;}
+  h1{font-size:clamp(1.7rem,4vw,2.4rem);font-weight:700;letter-spacing:-.02em;line-height:1.18;margin-bottom:1.25rem;}
+  .capsule{background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent2);border-radius:0 10px 10px 0;padding:1.15rem 1.4rem;font-size:16px;margin-bottom:1.75rem;}
+  .capsule .verdict{font-weight:700;}
+  .v-ok{color:var(--accent2);}.v-wrong{color:var(--danger);}.v-open{color:var(--accent);}.v-pending{color:var(--muted);}
+  h2{font-size:1.25rem;font-weight:600;margin:2.25rem 0 .9rem;letter-spacing:-.01em;}
+  p{margin-bottom:1rem;}
+  strong{color:#fff;}
+  .faq-q{font-weight:600;margin:1.3rem 0 .4rem;}
+  .related{margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--border);}
+  .related h2{margin-top:0;}.related a{display:block;padding:6px 0;font-size:14px;}
+  .updated{font-size:12px;color:var(--muted);margin-bottom:1.5rem;}
+  .cta{margin-top:2rem;background:linear-gradient(135deg,rgba(124,106,245,.08),rgba(79,195,161,.06));border:1px solid rgba(124,106,245,.2);border-radius:14px;padding:1.5rem;text-align:center;}
+  .cta a{display:inline-block;background:var(--accent);color:#fff;padding:10px 22px;border-radius:8px;font-size:14px;font-weight:500;margin-top:.6rem;}
+  footer{border-top:1px solid var(--border);padding:24px 0;font-size:12px;color:var(--muted);text-align:center;}
+</style>
+</head>
+<body>
+<header>
+  <a href="/" class="logo"><span class="logo-dot"></span>AGI Scorecard</a>
+  <a href="/what-is-agi" class="back-link">EN ↗</a>
+</header>
+<article>
+  <div class="eyebrow">정의</div>
+  <h1>AGI란? 시점 논쟁의 핵심에 있는 '정의'</h1>
+  <div class="updated">마지막 업데이트: 2026-07-16</div>
+  <nav class="langbar" aria-label="Language" style="display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;font-size:12px;margin:-0.5rem 0 1.5rem;padding-bottom:1rem;border-bottom:1px solid var(--border);"><a href="/what-is-agi" style="color:var(--muted);">EN</a> <span style="color:var(--border2);">·</span> <a href="/zh/what-is-agi" style="color:var(--muted);">中文</a> <span style="color:var(--border2);">·</span> <a href="/es/what-is-agi" style="color:var(--muted);">ES</a> <span style="color:var(--border2);">·</span> <a href="/fr/what-is-agi" style="color:var(--muted);">FR</a> <span style="color:var(--border2);">·</span> <a href="/de/what-is-agi" style="color:var(--muted);">DE</a> <span style="color:var(--border2);">·</span> <a href="/pt/what-is-agi" style="color:var(--muted);">PT</a> <span style="color:var(--border2);">·</span> <a href="/it/what-is-agi" style="color:var(--muted);">IT</a> <span style="color:var(--border2);">·</span> <a href="/ja/what-is-agi" style="color:var(--muted);">日本語</a> <span style="color:var(--border2);">·</span> <span style="color:var(--text);font-weight:600;">한국어</span></nav>
+  <div class="capsule"><span class="verdict">숙련된 인간의 인지적 업무를 해낼 수 있는 AI — 그리고 정의가 논쟁의 절반이다.</span> AGI(범용 인공지능)는 보통 인간 전문가가 할 수 있는 인지 작업을 사실상 모두 수행하는 AI를 뜻한다. 하지만 예측자마다 기준이 크게 달라 — '대체 가능한 원격 근로자'부터 '자율적 AI 연구자'까지 — 이 격차가 공개된 시점 예측이 2026년부터 2047년까지 벌어지는 이유의 대부분을 설명한다.</div>
+<h2>중요한 두 가지 정의</h2>
+<p>논쟁을 지배하는 기준은 둘이다. <strong>'대체 가능한 원격 근로자'</strong> — 유능한 인간만큼 모든 지식 노동을 원격으로 해내는 AI. 그리고 <strong>'자율적 AI 연구자'</strong> — AI 연구를 처음부터 끝까지 스스로 수행하는 시스템. 두 번째 기준이 훨씬 높으며, 아셴브레너의 2027년 같은 가장 공격적인 시점을 낳는 것이 바로 이것이다.</p>
+<h2>AGI가 '아닌' 것</h2>
+<p>답을 잘하는 챗봇도, 시험에 합격하는 모델도 아니다. 기준은 <strong>범용성</strong> — 전용 재학습 없이 새로운 작업을 해내는 것이다. 2026년 중반, 프런티어 AI는 많은 지식 노동 시험을 통과하지만(GDPval 약 83%, SWE-Bench Pro 약 80%), AI 연구를 자율적으로 수행하는 선은 아직 넘지 못했다.</p>
+  <h2>자주 묻는 질문</h2>
+  <div class="faq-q">AGI를 쉽게 말하면?</div><p>특정 작업 하나만이 아니라, 숙련된 인간 전문가가 하는 인지 작업을 본질적으로 무엇이든 해내는 AI. 의견이 갈리는 건 그 기준을 얼마나 높게 두느냐다.</p><div class="faq-q">2026년에 AGI가 이미 존재하나?</div><p>아니다. 프런티어 AI는 매우 유능한 조수지만(GDPval 약 83%, SWE-Bench Pro 약 80%), AI 연구를 처음부터 끝까지 자율로 수행하는 시스템은 없다 — 대다수가 결정적이라 보는 기준이다.</p><div class="faq-q">왜 정의가 시점을 바꾸나?</div><p>'대체 가능한 원격 근로자'와 '자율적 AI 연구자'는 매우 다른 목표이기 때문이다. 기준이 높을수록 시점은 늦어진다 — 그래서 예측이 2026년부터 2047년까지 벌어진다.</p>
+  <div class="related">
+    <h2>관련 글</h2>
+    <a href="/ko/when-will-agi-arrive">AGI는 언제 오나? →</a><a href="/agi-test">당신의 AGI 유형은? 30초 테스트 하기 →</a><a href="/two-year-scorecard.html">2년 전체 스코어카드 →</a>
+  </div>
+  <div class="cta" style="background:var(--bg2);border:1px solid var(--border);">
+    <p style="margin:0;font-weight:600;">주간 AGI 브리핑 받기</p>
+    <p style="margin:6px 0 0;font-size:13px;color:var(--muted);">판정 변화와 이정표, 그리고 2027 시계에 대한 의미. 무료, 과장 없음.</p>
+    <a href="https://agiscorecard.beehiiv.com/subscribe?utm_source=agiscorecard&amp;utm_medium=intl_deep_page" target="_blank" rel="noopener" onclick="gtag('event','subscribe_click',{location:'intl_deep_page'});">무료 구독 →</a>
+  </div>
+  <div class="cta">
+    <p style="margin:0;font-weight:600;">실시간 스코어카드는 모델 출시와 판정 변화에 따라 업데이트됩니다.</p>
+    <a href="/">실시간 스코어카드 보기 →</a>
+  </div>
+</article>
+<footer>AGI Scorecard · 독립 추적: <a href="https://situational-awareness.ai" style="color:var(--muted);">Situational Awareness</a> · 어떤 연구소와도 무관</footer>
+</body>
+</html>

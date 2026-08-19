@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FZXLMBB5QB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-FZXLMBB5QB');
+</script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23ffffff'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%234fc3a1'/%3E%3C/svg%3E">
+<title>我们怎么知道 AGI 到来了？真正的检验</title>
+<meta name="description" content="不是某个基准分数，而是可靠的自主性。当一个系统能无监督地端到端完成 AI 研究员的工作时，我们才知道 AGI 到了。值得盯的信号，逐一评级。">
+<link rel="canonical" href="https://agiscorecard.com/zh/how-will-we-know-agi-arrived">
+<link rel="alternate" hreflang="en" href="https://agiscorecard.com/how-will-we-know-agi-arrived">
+<link rel="alternate" hreflang="zh-Hans" href="https://agiscorecard.com/zh/how-will-we-know-agi-arrived">
+<link rel="alternate" hreflang="x-default" href="https://agiscorecard.com/how-will-we-know-agi-arrived">
+<meta property="og:site_name" content="The AGI Scorecard">
+<meta property="og:title" content="我们怎么知道 AGI 到来了？">
+<meta property="og:description" content="不是某个基准分数，而是可靠的自主性。当一个系统能无监督地端到端完成 AI 研究员的工作时，我们才知道 AGI 到了。值得盯的信号，逐一评级。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://agiscorecard.com/zh/how-will-we-know-agi-arrived">
+<meta property="og:image" content="https://agiscorecard.com/scorecard-summary.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "我们怎么知道 AGI 到来了？真正的检验", "datePublished": "2026-07-11", "dateModified": "2026-07-11", "inLanguage": "zh-Hans", "author": {"@type": "Organization", "name": "The AGI Scorecard"}, "publisher": {"@type": "Organization", "name": "The AGI Scorecard", "url": "https://agiscorecard.com/"}, "description": "不是某个基准分数，而是可靠的自主性。当一个系统能无监督地端到端完成 AI 研究员的工作时，我们才知道 AGI 到了。值得盯的信号，逐一评级。"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "我们怎么知道 AGI 到来了？", "acceptedAnswer": {"@type": "Answer", "text": "当一个系统能无监督地端到端可靠完成 AI 研究员或工程师的工作时——而不是再刷过一个基准。截至 2026 年中这道自主性门槛未达，这正是“2027 年 AGI”判定为悬而未决的原因。"}}, {"@type": "Question", "name": "AGI 有检验标准吗？", "acceptedAnswer": {"@type": "Answer", "text": "严肃的检验不是单个基准，而是可靠、可问责、长程的自主性：无需人类善后地端到端负责一整份工作，并最终能开展 AI 研究。基准分数（GDPval 约 83%、SWE-Bench 约 80%）是必要但不充分条件。"}}, {"@type": "Question", "name": "为什么高基准分数不意味着 AGI 已到来？", "acceptedAnswer": {"@type": "Answer", "text": "因为在限定任务上得高分，不等于在无监督下可靠地负责整个岗位。基准能力与可问责自主性之间的差距，正是今天的模型与 AGI 之间的距离。"}}, {"@type": "Question", "name": "我们什么时候会知道“2027 年 AGI”对不对？", "acceptedAnswer": {"@type": "Answer", "text": "2028 年 1 月 1 日前。若届时证明了自主 AI 研究，预测即兑现；若期限过去仍未证明，则为落空。判定一变，命题追踪指数就会移动。"}}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="https://www.googletagmanager.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#ffffff;--bg2:#f7f7f8;--bg3:#eeeef1;--border:rgba(0,0,0,0.10);--border2:rgba(0,0,0,0.18);--text:#0a0a0b;--muted:#63636e;--accent:#002FA7;--accent2:#0f7a52;--warn:#8a5a00;--danger:#C8102E;--font:'Noto Sans SC','PingFang SC','Microsoft YaHei',-apple-system,Helvetica Neue,sans-serif;--mono:'JetBrains Mono',monospace;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-variant-numeric:tabular-nums;background:var(--bg);color:var(--text);font-family:var(--font);font-size:16px;line-height:1.75;}
+  a{color:var(--accent);text-decoration:none;}a:hover{opacity:.8;}
+  header{border-bottom:1px solid var(--border);padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:56px;position:sticky;top:0;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);z-index:100;}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px;color:var(--text);}
+  .logo-dot{width:8px;height:8px;background:var(--accent2);border-radius:50%;}
+  .back-link{font-size:13px;color:var(--muted);}.back-link:hover{color:var(--text);opacity:1;}
+  article{max-width:720px;margin:0 auto;padding:2.5rem 1.5rem 4rem;}
+  .eyebrow{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem;}
+  h1{font-size:clamp(1.7rem,4vw,2.4rem);font-weight:700;letter-spacing:-.02em;line-height:1.18;margin-bottom:1.25rem;}
+  .capsule{background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent2);border-radius:0 10px 10px 0;padding:1.15rem 1.4rem;font-size:16px;margin-bottom:1.75rem;}
+  .capsule .verdict{font-weight:700;}
+  .v-ok{color:var(--accent2);}.v-wrong{color:var(--danger);}.v-open{color:var(--accent);}.v-pending{color:var(--muted);}
+  h2{font-size:1.25rem;font-weight:600;margin:2.25rem 0 .9rem;letter-spacing:-.01em;}
+  h3{font-size:1.05rem;font-weight:600;margin:1.5rem 0 .6rem;}
+  p{margin-bottom:1rem;}
+  ul{margin:0 0 1rem 1.3rem;}li{margin-bottom:.45rem;}
+  strong{color:#000;font-weight:700;}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;margin:1rem 0 1.4rem;background:var(--bg2);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+  th{text-align:left;padding:10px 12px;color:var(--muted);font-weight:500;font-size:11px;letter-spacing:.05em;text-transform:uppercase;border-bottom:1px solid var(--border);}
+  td{padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:top;}
+  tr:last-child td{border-bottom:none;}
+  .nowrap{white-space:nowrap;font-weight:600;}
+  .faq-q{font-weight:600;margin:1.3rem 0 .4rem;}
+  .related{margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--border);}
+  .related h2{margin-top:0;}
+  .related a{display:block;padding:6px 0;font-size:14px;}
+  .src{font-size:12px;color:var(--muted);margin-top:.5rem;}
+  .updated{font-size:12px;color:var(--muted);margin-bottom:1.5rem;}
+  .cta{margin-top:2rem;background:linear-gradient(135deg,rgba(0,47,167,.05),rgba(15,122,82,.05));border:1px solid rgba(0,47,167,.18);border-radius:14px;padding:1.5rem;text-align:center;}
+  .cta a{display:inline-block;background:var(--accent);color:#fff;padding:10px 22px;border-radius:8px;font-size:14px;font-weight:500;margin-top:.6rem;}
+  footer{border-top:1px solid var(--border);padding:24px 0;font-size:12px;color:var(--muted);text-align:center;}
+@media(max-width:640px){table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;white-space:nowrap}table td,table th{white-space:normal;min-width:92px}}
+</style>
+</head>
+<body>
+<header>
+  <a href="/cn" class="logo"><span class="logo-dot"></span>AGI 记分牌</a>
+  <a href="/how-will-we-know-agi-arrived" class="back-link">EN ↗</a>
+</header>
+<article>
+  <div class="eyebrow">概念解读</div>
+  <h1>我们怎么知道 AGI 到来了？</h1>
+  <div class="updated">最后更新：2026年7月11日 · 随判定变化更新</div>
+  <div class="capsule"><span class="verdict">检验不是基准分数，而是可靠的自主性。</span> 当一个系统能<strong>无监督地端到端完成 AI 研究员/工程师的工作</strong>时——而不是再刷过一个评测——我们才知道 AGI 到了。正是这道门槛，让“2027 年 AGI”在 GDPval 约 83%、SWE-Bench Pro 约 80% 的情况下仍被评为<strong class="v-open">悬而未决</strong>：能力到了，自主性没到。</div>
+  <div style="display:flex; gap:8px; flex-wrap:wrap; margin:1.5rem 0; padding:12px 14px; background:var(--bg2); border:1px solid var(--border); border-radius:12px; font-size:13px; align-items:center;">
+    <span style="color:var(--muted); font-weight:600;">🎮 顺手玩玩：</span>
+    <a href="/zh/future-bet" onclick="gtag('event','agi_test_click',{location:'zh_toolstrip'});">🎲 押注未来</a>
+    <a href="/zh/agi-test">🎯 AGI 类型测试</a>
+    <a href="/zh/invest" onclick="gtag('event','invest_tool_click',{location:'zh_toolstrip'});">💰 投资板块</a>
+    <a href="/zh/progress-index" onclick="gtag('event','index_click',{location:'zh_toolstrip'});">📈 追踪指数 62.5</a>
+  </div>
+<h2>三种被提出的检验——哪一个才算数</h2>
+<table><thead><tr><th>被提出的检验</th><th>问题 / 状态</th></tr></thead><tbody>
+<tr><td>击败某个基准（GDPval、SWE-Bench…）</td><td class="nowrap v-ok">大体通过——但分数 ≠ 自主性</td></tr>
+<tr><td>通过“即插即用远程员工”</td><td class="nowrap v-open">真正的门槛——未达：可靠性落后</td></tr>
+<tr><td>自主开展 AI 研究</td><td class="nowrap v-open">最严格的门槛——未被证明</td></tr>
+</tbody></table>
+<p>第一种是不断被刷过、世界却没怎么变的移动靶。严肃的检验是后两种：系统能否<strong>可靠地端到端负责一整份工作</strong>，并最终<strong>改进 AI 本身</strong>？这些是可观察、可证伪的事件，而不是感觉。</p>
+<h2>值得盯的具体信号</h2>
+<ul>
+<li>一个模型在无监督下跑完一个真实的、持续数周的项目，并对结果<em>负责</em>——而不只是辅助一个负责善后的人。</li>
+<li>前沿实验室报告 AI 在实质性地自动化它们自己的研究工程（<a href="/zh/will-agi-arrive-2027">智能爆炸</a>的扳机）。</li>
+<li>采用从“辅助”转向“替代”整个岗位而非任务——正是<a href="/zh/will-ai-cause-mass-unemployment">就业问题</a>背后的信号。</li>
+</ul>
+<h2>为什么我们用一个数字来追踪它</h2>
+<p>因为“AGI 到来了吗”会分解成八个具体、有日期的断言，诚实的观察方式是一张记分牌，再蒸馏成一个可审计的数字。<a href="/zh/progress-index">AGI-2027 命题追踪指数</a>只在其中某项判定变化时移动——所以自主性门槛真正被跨过的那天，数字会动，你不必从炒作里去辨认。头条断言将于 <strong>2028 年 1 月 1 日</strong>前见分晓。</p>
+  <h2>常见问题</h2>
+  <div class="faq-q">我们怎么知道 AGI 到来了？</div><p>当一个系统能无监督地端到端可靠完成 AI 研究员或工程师的工作时——而不是再刷过一个基准。截至 2026 年中这道自主性门槛未达，这正是“2027 年 AGI”判定为悬而未决的原因。</p><div class="faq-q">AGI 有检验标准吗？</div><p>严肃的检验不是单个基准，而是可靠、可问责、长程的自主性：无需人类善后地端到端负责一整份工作，并最终能开展 AI 研究。基准分数（GDPval 约 83%、SWE-Bench 约 80%）是必要但不充分条件。</p><div class="faq-q">为什么高基准分数不意味着 AGI 已到来？</div><p>因为在限定任务上得高分，不等于在无监督下可靠地负责整个岗位。基准能力与可问责自主性之间的差距，正是今天的模型与 AGI 之间的距离。</p><div class="faq-q">我们什么时候会知道“2027 年 AGI”对不对？</div><p>2028 年 1 月 1 日前。若届时证明了自主 AI 研究，预测即兑现；若期限过去仍未证明，则为落空。判定一变，命题追踪指数就会移动。</p>
+  <div class="related">
+    <h2>相关</h2>
+    <a href="/zh/what-is-agi">什么是 AGI？ →</a><a href="/zh/how-close-is-agi">AGI 还有多远？ →</a><a href="/zh/will-agi-arrive-2027">AGI 会在 2027 年到来吗？ →</a>
+    <a href="/cn">查看完整中文记分牌 →</a>
+  </div>
+<div class="cta" style="margin-top:1rem; background:var(--bg2); border:1px solid var(--border);">
+    <p style="margin:0;font-weight:600;">判定变动时第一时间通知你</p>
+    <p style="margin:6px 0 0;font-size:13px;color:var(--muted);">订阅八条判定里任何一条翻转、追踪指数动了，我发一封给你——不是每周硬发的新闻信，分数不动就没有邮件。免费。</p>
+    <a href="https://agiscorecard.beehiiv.com/subscribe?utm_source=agiscorecard&utm_medium=zh_deep_page" target="_blank" rel="noopener" onclick="gtag('event','subscribe_click',{location:'zh_deep_page'});">免费订阅 &rarr;</a>
+    <div style="font-size:11.5px;color:var(--muted,#a8a4c4);margin-top:6px">订阅表单为英文：输入邮箱 → 点 Subscribe 即完成</div>
+  </div>
+  <div class="cta">
+    <p style="margin:0;font-weight:600;">记分牌随模型发布与判定变化实时更新。</p>
+    <a href="/cn">查看实时记分牌 →</a>
+  </div>
+</article>
+<footer>AGI 记分牌 · 独立追踪 <a href="https://situational-awareness.ai" style="color:var(--muted);">《态势感知》</a> · 不隶属于任何 AI 实验室 · <a href="/about" style="color:var(--muted);">About</a> · <a href="/privacy" style="color:var(--muted);">Privacy</a></footer>
+</body>
+</html>

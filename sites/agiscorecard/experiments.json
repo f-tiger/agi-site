@@ -1,0 +1,157 @@
+{
+  "name": "AGI Scorecard — Revenue Experiment Log",
+  "description": "A public, pre-registered log of every attempt to make this site earn money. Success AND kill thresholds are published before results, on the same discipline this site uses to grade AGI predictions. Machine-readable so the claims stay auditable.",
+  "url": "https://agiscorecard.com/experiments",
+  "dataUrl": "https://agiscorecard.com/experiments.json",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "started": "2026-08-05",
+  "dateModified": "2026-08-05",
+  "disclosure": "Revenue to date is $0. Nothing on this page is a projection, a course, or a pitch. It is a log.",
+  "baseline": {
+    "asOf": "2026-08-02",
+    "note": "Last complete GA4 pull before the analytics subscription lapsed on 2026-08-02. Figures are 28-day active users unless stated.",
+    "activeUsers28d": 211,
+    "organicSearch28d": 13,
+    "aiAssistant28d": 3,
+    "direct28d": 173,
+    "referral28d": 11,
+    "subscribeClicks28d": 1,
+    "revenueUSDToDate": 0,
+    "pagesPublished": 182,
+    "measurementGap": "GA4 access lapsed 2026-08-02; results after that date are unverifiable until the channel is restored. Disclosed rather than estimated."
+  },
+  "rules": [
+    "Every experiment publishes a hypothesis, a success threshold and a kill threshold BEFORE it runs.",
+    "A kill threshold that is hit ends the experiment. No extensions, no retroactive reinterpretation.",
+    "Every experiment names a control. Without a control it is not an experiment.",
+    "Where the current sample size cannot produce a significant result, that is stated instead of reporting the number as if it meant something.",
+    "Results are published whether they are good or bad."
+  ],
+  "selfFalsification": {
+    "thesis": "At roughly 200 monthly users, traffic-dependent revenue (ads, generic affiliate) is arithmetically dead, so only value-per-user models are worth running.",
+    "wouldDisproveIt": "If the AdSense control arm (E10) out-earns the combined value-per-user arms over the same window, this thesis is wrong and the portfolio gets rebuilt.",
+    "status": "open"
+  },
+  "experiments": [
+    {
+      "id": "E1",
+      "name": "Public revenue experiment log",
+      "mechanism": "product-is-the-channel",
+      "hypothesis": "Publishing the attempt itself — including the failures — reaches the build-in-public audience that this site currently gets zero traffic from.",
+      "successThreshold": "3+ external domains linking /experiments within 30 days, OR a single HN/Reddit post above 50 points.",
+      "killThreshold": "Zero external links and zero discussion after 30 days.",
+      "control": "The natural external-link rate of GEO deep pages published in the same window.",
+      "status": "running",
+      "started": "2026-08-05",
+      "decisionDue": "2026-09-04",
+      "result": null
+    },
+    {
+      "id": "E2",
+      "name": "Paid AI job-exposure report",
+      "mechanism": "value-per-user",
+      "hypothesis": "The job-risk checker covers the highest commercial-intent need on the site; a paid personalised report converts at 3%+.",
+      "successThreshold": "3+ paying users out of the first 100 completed checks.",
+      "killThreshold": "1 or fewer out of the first 100.",
+      "control": "The free version's subscribe conversion over the same window, to test whether paying merely displaces subscribing.",
+      "status": "blocked",
+      "blockedBy": "Needs a payment processor, and needs E1 traffic first — 100 completions is months away at current volume.",
+      "result": null
+    },
+    {
+      "id": "E3",
+      "name": "Prediction-market evidence layer",
+      "mechanism": "value-per-user",
+      "hypothesis": "Pre-registered flip conditions are genuinely useful to prediction-market traders.",
+      "successThreshold": "Organic inbound links or referrals from prediction-market communities within 60 days.",
+      "killThreshold": "60 days with no organic links and no referral traffic from that audience.",
+      "control": "Referral traffic from the same communities before the experiment (currently zero).",
+      "status": "held",
+      "heldBecause": "Commission-based referral would contradict the published /for-agents commitment to take no fees from any market. Evidence-layer-only variant is the one under consideration.",
+      "result": null
+    },
+    {
+      "id": "E4",
+      "name": "13F / AI positioning subscription",
+      "mechanism": "value-per-user",
+      "hypothesis": "Quarterly public 13F data on AI-exposed funds is a compounding asset — the archive gets more valuable each quarter.",
+      "successThreshold": "10+ paying subscribers within 30 days of the Q2 13F release.",
+      "killThreshold": "2 or fewer.",
+      "control": "Free-briefing subscriber growth over the same window.",
+      "status": "blocked",
+      "blockedBy": "Needs a payment processor. Q2 13F lands mid-August 2026.",
+      "result": null
+    },
+    {
+      "id": "E5",
+      "name": "B2B timeline briefing",
+      "mechanism": "value-per-user",
+      "hypothesis": "Strategy teams will pay for an auditable AI-timeline assessment with pre-registered conditions.",
+      "successThreshold": "1+ genuine inbound enquiry within 90 days.",
+      "killThreshold": "90 days with zero enquiries while /advertise also stays at zero.",
+      "control": "/advertise — live for months with zero enquiries. This is an existing negative control.",
+      "status": "running",
+      "started": "2026-08-05",
+      "decisionDue": "2026-11-03",
+      "result": null
+    },
+    {
+      "id": "E6",
+      "name": "White-label tool embeds",
+      "mechanism": "value-per-user",
+      "hypothesis": "Sites that embed the free tools will pay to remove the attribution link.",
+      "successThreshold": "1+ paid white-label request.",
+      "killThreshold": "embed_copy still at zero after 90 days — which would put the whole embed strategy under review.",
+      "control": "Free embed uptake, currently zero.",
+      "status": "blocked",
+      "blockedBy": "Requires real embeds to exist first. embed_copy is currently 0.",
+      "result": null
+    },
+    {
+      "id": "E7",
+      "name": "Method transfer: a second scorecard",
+      "mechanism": "product-is-the-channel",
+      "hypothesis": "The compounding asset is the method — pre-registered conditions plus receipts — not the AGI topic. It should transfer to any field where people make dated public claims that nobody scores.",
+      "successThreshold": "A second scorecard reaches 2x agiscorecard's organic users at the same age within 90 days.",
+      "killThreshold": "Equal or worse than agiscorecard at the same age — which would mean the bottleneck is distribution, not the field, and no further field-switching is justified.",
+      "control": "agiscorecard.com's own organic curve at the equivalent age. Same method, same operator, different field — a controlled comparison.",
+      "status": "proposed",
+      "result": null
+    },
+    {
+      "id": "E8",
+      "name": "Scored prediction league",
+      "mechanism": "product-is-the-channel",
+      "hypothesis": "Locking a prediction and being scored against reality creates retention that a one-off quiz cannot. No money is wagered — reputation points only.",
+      "successThreshold": "30+ locked predictions within 60 days.",
+      "killThreshold": "Fewer than 30.",
+      "control": "Current unlocked quiz completion rate.",
+      "status": "proposed",
+      "result": null
+    },
+    {
+      "id": "E9",
+      "name": "Paid data / agent API tier",
+      "mechanism": "value-per-user",
+      "hypothesis": "Machine-readable graded predictions are worth paying for.",
+      "successThreshold": "n/a — not started.",
+      "killThreshold": "n/a",
+      "control": "n/a",
+      "status": "not-started",
+      "notStartedBecause": "The dataset is 8 predictions and 2 history points. That is not enough to sell, and shipping it anyway would damage the only asset this site has. Re-evaluate in 6 months once the archive has depth.",
+      "result": null
+    },
+    {
+      "id": "E10",
+      "name": "AdSense",
+      "mechanism": "traffic-dependent",
+      "hypothesis": "Included as a NEGATIVE CONTROL, not as a revenue plan. Expected yield at ~200 users/month is roughly $1-2/month.",
+      "successThreshold": "None. The point is calibration, not income.",
+      "killThreshold": "n/a — it runs as the baseline other arms are measured against.",
+      "control": "This IS the control arm.",
+      "status": "blocked",
+      "blockedBy": "Needs the owner's AdSense publisher ID.",
+      "result": null
+    }
+  ]
+}

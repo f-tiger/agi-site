@@ -1,0 +1,75 @@
+name: Deploy agiscorecard.com
+
+# agi-site 是公开 monorepo(owner 决定 2026-08-19):公开仓 Actions 免费,
+# 2000 分钟/月的私有仓额度问题就此解除。原私有仓 f-tiger/agiscorecard 保留作
+# 历史档案,site 内容自本仓 sites/agiscorecard/ 部署。
+#
+# path 过滤:只有本站点目录变了才部署;其他站点的提交不会触发这里。
+on:
+  push:
+    branches: [main]
+    paths:
+      - "sites/agiscorecard/**"
+      - ".github/workflows/deploy-agiscorecard.yml"
+  workflow_dispatch: {}
+
+concurrency:
+  group: deploy-agiscorecard
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate site (zero-fabrication gates must print OK)
+        working-directory: sites/agiscorecard
+        run: python3 tools/validate.py
+
+      - name: Guard - owner privacy files must never exist in this public repo
+        run: |
+          bad=$(find sites -name "owner-identity*" -o -name "owner-trajectory*" | wc -l)
+          if [ "$bad" != "0" ]; then
+            echo "::error::owner privacy files found in public repo — refusing to deploy"
+            exit 1
+          fi
+
+      - name: Deploy to Cloudflare Workers
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          wranglerVersion: "4"
+          workingDirectory: sites/agiscorecard
+          command: deploy
+
+      - name: Post-deploy smoke (live site serves key surfaces)
+        run: |
+          sleep 10
+          fail=0
+          check() {
+            url="$1"; must="$2"
+            for i in 1 2 3; do
+              body=$(curl -sL --max-time 20 -w "\n%{http_code}" "$url" || echo -e "\n000")
+              code=$(echo "$body" | tail -1)
+              [ "$code" = "200" ] && break
+              sleep 5
+            done
+            if [ "$code" != "200" ]; then echo "::error::$url HTTP $code"; fail=1
+            elif [ -n "$must" ] && ! echo "$body" | grep -q "$must"; then
+              echo "::error::$url missing: $must"; fail=1
+            else echo "OK $url"; fi
+          }
+          check "https://agiscorecard.com/" "Thesis Tracker"
+          check "https://agiscorecard.com/progress-index" ""
+          check "https://agiscorecard.com/data.json" "predictions"
+          check "https://agiscorecard.com/sitemap.xml" "<loc>"
+          check "https://agiscorecard.com/cn" ""
+          # D1 read path: /api/trends serves live rows; broken binding = broken JSON here.
+          t=$(curl -s --max-time 20 "https://agiscorecard.com/api/trends" || echo "")
+          case "$t" in
+            *'"'*) echo "OK /api/trends" ;;
+            *) echo "::error::/api/trends broken: ${t:0:120}"; fail=1 ;;
+          esac
+          exit $fail

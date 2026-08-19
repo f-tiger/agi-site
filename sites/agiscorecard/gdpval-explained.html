@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FZXLMBB5QB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-FZXLMBB5QB');
+</script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a0a0b'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%234fc3a1'/%3E%3C/svg%3E">
+<title>What Is GDPval? The AI Knowledge-Work Benchmark, Explained</title>
+<meta name="description" content="GDPval is a benchmark that scores AI on real, economically valuable knowledge-work tasks across many occupations. Top models now reach ~83% — the evidence behind the On-track 'AI outpaces knowledge workers' verdict.">
+<link rel="canonical" href="https://agiscorecard.com/gdpval-explained">
+<meta property="og:site_name" content="The AGI Scorecard">
+<meta property="og:title" content="What is GDPval?">
+<meta property="og:description" content="GDPval is a benchmark that scores AI on real, economically valuable knowledge-work tasks across many occupations. Top models now reach ~83% — the evidence behind the On-track 'AI outpaces knowledge workers' verdict.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://agiscorecard.com/gdpval-explained">
+<meta property="og:image" content="https://agiscorecard.com/scorecard-summary.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://agiscorecard.com/scorecard-summary.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "AGI Scorecard", "item": "https://agiscorecard.com/"}, {"@type": "ListItem", "position": 2, "name": "AGI questions, answered", "item": "https://agiscorecard.com/agi-questions"}, {"@type": "ListItem", "position": 3, "name": "What is GDPval?", "item": "https://agiscorecard.com/gdpval-explained"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "What is GDPval?", "datePublished": "2026-07-09", "dateModified": "2026-07-19", "author": {"@type": "Organization", "name": "The AGI Scorecard"}, "publisher": {"@type": "Organization", "name": "The AGI Scorecard", "url": "https://agiscorecard.com/"}, "description": "GDPval is a benchmark that scores AI on real, economically valuable knowledge-work tasks across many occupations. Top models now reach ~83% — the evidence behind the On-track 'AI outpaces knowledge workers' verdict."}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is GDPval?", "acceptedAnswer": {"@type": "Answer", "text": "GDPval is a benchmark that scores AI models on real, economically valuable knowledge-work tasks drawn from many occupations, comparing their output against expert-produced reference deliverables. It's designed to measure job-like work, not abstract test questions."}}, {"@type": "Question", "name": "What do AI models score on GDPval?", "acceptedAnswer": {"@type": "Answer", "text": "On this scorecard, top models reach roughly 83% on GDPval-style knowledge work — strong enough that the 'AI outpaces college-grad knowledge workers' prediction is graded On track."}}, {"@type": "Question", "name": "Does a high GDPval score mean AI can replace knowledge workers?", "acceptedAnswer": {"@type": "Answer", "text": "Not on its own. A ~83% score shows strong task capability, but it doesn't prove reliable, unsupervised performance. Drop-in reliability still lags the benchmark, which is why full autonomy remains an open question."}}, {"@type": "Question", "name": "How does GDPval relate to SWE-Bench?", "acceptedAnswer": {"@type": "Answer", "text": "GDPval measures general knowledge work; SWE-Bench Pro (~80%) measures agentic software engineering. Both show strong task capability but a remaining gap on unsupervised autonomy."}}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="https://www.googletagmanager.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#0a0a0b;--bg2:#111114;--bg3:#18181d;--border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.12);--text:#e8e8ec;--muted:#8888a0;--accent:#7c6af5;--accent2:#4fc3a1;--warn:#e8a040;--danger:#e05555;--font:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;--mono:'JetBrains Mono',monospace;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:16px;line-height:1.75;}
+  a{color:var(--accent);text-decoration:none;}a:hover{opacity:.8;}
+  header{border-bottom:1px solid var(--border);padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:56px;position:sticky;top:0;background:rgba(10,10,11,.92);backdrop-filter:blur(12px);z-index:100;}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px;color:var(--text);}
+  .logo-dot{width:8px;height:8px;background:var(--accent2);border-radius:50%;}
+  .back-link{font-size:13px;color:var(--muted);}.back-link:hover{color:var(--text);opacity:1;}
+  article{max-width:720px;margin:0 auto;padding:2.5rem 1.5rem 4rem;}
+  .eyebrow{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem;}
+  h1{font-size:clamp(1.7rem,4vw,2.4rem);font-weight:700;letter-spacing:-.02em;line-height:1.18;margin-bottom:1.25rem;}
+  .capsule{background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent2);border-radius:0 10px 10px 0;padding:1.15rem 1.4rem;font-size:16px;margin-bottom:1.75rem;}
+  .capsule .verdict{font-weight:700;}
+  .v-ok{color:var(--accent2);}.v-wrong{color:var(--danger);}.v-open{color:var(--accent);}.v-pending{color:var(--muted);}
+  h2{font-size:1.25rem;font-weight:600;margin:2.25rem 0 .9rem;letter-spacing:-.01em;}
+  h3{font-size:1.05rem;font-weight:600;margin:1.5rem 0 .6rem;}
+  p{margin-bottom:1rem;}
+  ul{margin:0 0 1rem 1.3rem;}li{margin-bottom:.45rem;}
+  strong{color:#fff;}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;margin:1rem 0 1.4rem;background:var(--bg2);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+  th{text-align:left;padding:10px 12px;color:var(--muted);font-weight:500;font-size:11px;letter-spacing:.05em;text-transform:uppercase;border-bottom:1px solid var(--border);}
+  td{padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:top;}
+  tr:last-child td{border-bottom:none;}
+  .nowrap{white-space:nowrap;font-weight:600;}
+  .faq-q{font-weight:600;margin:1.3rem 0 .4rem;}
+  .related{margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--border);}
+  .related h2{margin-top:0;}
+  .related a{display:block;padding:6px 0;font-size:14px;}
+  .src{font-size:12px;color:var(--muted);margin-top:.5rem;}
+  .updated{font-size:12px;color:var(--muted);margin-bottom:1.5rem;}
+  .cta{margin-top:2rem;background:linear-gradient(135deg,rgba(124,106,245,.08),rgba(79,195,161,.06));border:1px solid rgba(124,106,245,.2);border-radius:14px;padding:1.5rem;text-align:center;}
+  .cta a{display:inline-block;background:var(--accent);color:#fff;padding:10px 22px;border-radius:8px;font-size:14px;font-weight:500;margin-top:.6rem;}
+  footer{border-top:1px solid var(--border);padding:24px 0;font-size:12px;color:var(--muted);text-align:center;}
+@media(max-width:640px){table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;white-space:nowrap}table td,table th{white-space:normal;min-width:92px}}
+</style>
+</head>
+<body>
+<header>
+  <a href="/" class="logo"><span class="logo-dot"></span>AGI Scorecard</a>
+  <a href="/" class="back-link">← Live scorecard</a>
+</header>
+<article>
+  <div class="eyebrow">Explainer</div>
+  <h1>What is GDPval? The knowledge-work benchmark, explained</h1>
+  <div class="updated">Last updated: July 19, 2026 · Updated as verdicts change</div>
+  <div class="byline" style="font-size:12px;color:var(--muted);margin:-0.9rem 0 1.5rem;">By the AGI Scorecard team · <a href="/about">methodology &amp; independence</a></div>
+  <div class="capsule"><span class="verdict">A benchmark for real, economically valuable knowledge work.</span> GDPval scores AI models on deliverables drawn from actual occupations — the kind of tasks people are paid to do — against expert-produced reference work. On this scorecard, top models reach roughly <strong>83%</strong>, the key evidence behind the <strong class="v-ok">On track</strong> verdict that AI is beginning to outpace college-grad knowledge workers.</div>
+<h2>What GDPval measures</h2>
+<p>GDPval is a benchmark built to test something narrower and more useful than trivia or puzzle-solving: can a model produce the deliverables of real, economically valuable knowledge work? Instead of abstract exam questions, it draws tasks from a spread of occupations — the reports, analyses, and documents that people are actually paid to create — and scores a model's output against expert-produced reference work. The name is a nod to GDP: the point is work that has economic value, not just benchmark points.</p>
+<h2>Why it matters for the AGI question</h2>
+<p>Aschenbrenner's <em>Situational Awareness</em> predicted that models would reach the level of a smart college graduate on knowledge work well before 2027. GDPval is one of the cleanest ways to test that claim, because it targets output that resembles a real job rather than a synthetic test. On this scorecard, top models reach roughly <strong>83%</strong> on GDPval-style knowledge work — which is why the "AI outpaces knowledge workers" prediction grades <strong class="v-ok">On track</strong>.</p>
+<h2>What the ~83% does and doesn't tell you</h2>
+<table><thead><tr><th>Signal</th><th>Reading</th></tr></thead><tbody>
+<tr><td>Raw capability on knowledge tasks</td><td class="nowrap v-ok">Strong (~83%)</td></tr>
+<tr><td>Trend vs. the 2027 prediction</td><td class="nowrap v-ok">On track</td></tr>
+<tr><td>Drop-in reliability (unsupervised)</td><td class="nowrap v-open">Still lags</td></tr>
+</tbody></table>
+<p>A high GDPval score means a model can produce work comparable to a skilled human on a large fraction of tasks. It does <strong>not</strong> mean the model is a reliable, unsupervised drop-in worker — the gap between scoring well on a benchmark and being trusted to run a task end-to-end without review is exactly where the remaining AGI uncertainty lives. That distinction is why capability is graded On track while full autonomy is not.</p>
+<h2>How it fits the other benchmarks</h2>
+<p>GDPval is the knowledge-work counterpart to <a href="/will-ai-replace-programmers">SWE-Bench Pro</a> (~80%), which measures agentic software engineering. Together they paint a consistent picture: on task capability, models are already near the top of the human range in several white-collar domains; on autonomy and reliability, they still trail. That is the core tension the <a href="/can-ai-replace-knowledge-workers">"can AI replace knowledge workers?"</a> verdict tracks.</p>
+  <div class="cta" style="margin-top:1rem;">
+    <p style="margin:0;font-weight:600;">One benchmark is a data point. The Tracker is the whole picture.</p>
+    <p style="margin:6px 0 0;font-size:13px;color:var(--muted);">GDPval feeds just one of eight verdicts. Our auditable AGI-2027 Thesis Tracker rolls them all into a single 0–100 score — currently <strong>62.5/100</strong>. Subscribe to hear when it moves.</p>
+    <a href="/progress-index" onclick="gtag('event','index_click',{location:'gdpval'});">See the live Thesis Tracker &rarr;</a>
+  </div>
+  <h2>Frequently asked questions</h2>
+  <div class="faq-q">What is GDPval?</div><p>GDPval is a benchmark that scores AI models on real, economically valuable knowledge-work tasks drawn from many occupations, comparing their output against expert-produced reference deliverables. It's designed to measure job-like work, not abstract test questions.</p><div class="faq-q">What do AI models score on GDPval?</div><p>On this scorecard, top models reach roughly 83% on GDPval-style knowledge work — strong enough that the 'AI outpaces college-grad knowledge workers' prediction is graded On track.</p><div class="faq-q">Does a high GDPval score mean AI can replace knowledge workers?</div><p>Not on its own. A ~83% score shows strong task capability, but it doesn't prove reliable, unsupervised performance. Drop-in reliability still lags the benchmark, which is why full autonomy remains an open question.</p><div class="faq-q">How does GDPval relate to SWE-Bench?</div><p>GDPval measures general knowledge work; SWE-Bench Pro (~80%) measures agentic software engineering. Both show strong task capability but a remaining gap on unsupervised autonomy.</p>
+  <div class="related">
+    <h2>Related</h2>
+    <a href="/agi-test" onclick="gtag('event','agi_test_click',{location:'deep_page'});" style="font-weight:600;color:var(--accent);">🎯 What's your AGI type? Take the 30-second test &rarr;</a>
+    <a href="/can-ai-replace-knowledge-workers">Can AI replace knowledge workers? →</a><a href="/will-ai-replace-programmers">Will AI replace programmers? →</a><a href="/how-close-is-agi">How close are we to AGI? →</a>
+    <a href="/two-year-scorecard.html">Full two-year scorecard with all 8 predictions →</a>
+    <a href="/agi-questions">Browse all AGI questions, answered →</a>
+  </div>
+  <div class="cta">
+    <p style="margin:0;font-weight:600;">The live scorecard updates as models ship and verdicts change.</p>
+    <a href="/">View the live scorecard →</a>
+  </div>
+  <div class="cta" style="margin-top:1rem; background:var(--bg2); border:1px solid var(--border);">
+    <p style="margin:0;font-weight:600;">Be first to know when a verdict flips</p>
+    <p style="margin:6px 0 0;font-size:13px;color:var(--muted);">One email when one of the eight verdicts changes and the AGI-2027 Thesis Tracker moves — the single auditable score no other tracker has. Not a weekly newsletter; nothing arrives until the score actually moves.</p>
+    <a href="https://agiscorecard.beehiiv.com/subscribe?utm_source=agiscorecard&utm_medium=deep_page" target="_blank" rel="noopener" onclick="gtag('event','subscribe_click',{location:'deep_page'});">Subscribe free &rarr;</a>
+  </div>
+</article>
+<footer>AGI Scorecard · Independent tracker of <a href="https://situational-awareness.ai" style="color:var(--muted);">Situational Awareness</a> · Not affiliated with any lab · <a href="/about" style="color:var(--muted);">About</a> · <a href="/privacy" style="color:var(--muted);">Privacy</a> · <a href="/advertise" style="color:var(--muted);">Advertise</a></footer>
+</body>
+</html>

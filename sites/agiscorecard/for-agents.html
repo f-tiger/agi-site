@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FZXLMBB5QB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-FZXLMBB5QB');
+</script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a0a0b'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%234fc3a1'/%3E%3C/svg%3E">
+<title>AGI Scorecard Data for AI Agents: JSON, Feed, llms.txt</title>
+<meta name="description" content="Free, machine-readable AGI verdict data: /data.json (CC BY 4.0), an Atom feed, and llms.txt. Copy-paste prompt to add verdict-change alerts to any AI agent.">
+<link rel="canonical" href="https://agiscorecard.com/for-agents">
+<meta property="og:site_name" content="The AGI Scorecard">
+<meta property="og:title" content="AGI Scorecard data for AI agents">
+<meta property="og:description" content="Free, machine-readable AGI verdict data: /data.json (CC BY 4.0), an Atom feed, and llms.txt. Copy-paste prompt to add verdict-change alerts to any AI agent.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://agiscorecard.com/for-agents">
+<meta property="og:image" content="https://agiscorecard.com/scorecard-summary.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://agiscorecard.com/scorecard-summary.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "AGI Scorecard", "item": "https://agiscorecard.com/"}, {"@type": "ListItem", "position": 2, "name": "AGI questions, answered", "item": "https://agiscorecard.com/agi-questions"}, {"@type": "ListItem", "position": 3, "name": "Data for AI agents", "item": "https://agiscorecard.com/for-agents"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "AGI Scorecard data for AI agents", "datePublished": "2026-07-11", "dateModified": "2026-08-17", "author": {"@type": "Organization", "name": "The AGI Scorecard"}, "publisher": {"@type": "Organization", "name": "The AGI Scorecard", "url": "https://agiscorecard.com/"}, "description": "Free, machine-readable AGI verdict data: /data.json (CC BY 4.0), an Atom feed, and llms.txt. Copy-paste prompt to add verdict-change alerts to any AI agent."}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Does the AGI Scorecard have an API?", "acceptedAnswer": {"@type": "Answer", "text": "Not a keyed API — something simpler: the full dataset is a static JSON file at agiscorecard.com/data.json (CC BY 4.0), plus an Atom feed at /feed.xml and an llms.txt index. No key, no auth, no rate limits beyond the CDN's."}}, {"@type": "Question", "name": "Can I use the data in my own project or newsletter?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Everything in data.json is licensed CC BY 4.0 — reuse it freely with attribution and a link to agiscorecard.com."}}, {"@type": "Question", "name": "How do I get notified when a verdict changes?", "acceptedAnswer": {"@type": "Answer", "text": "Point any scheduled agent at /data.json and diff the verdicts between runs (the dateModified field tells you if anything moved), subscribe to /feed.xml, or get the email briefing (sent when a verdict moves, not on a fixed schedule)."}}, {"@type": "Question", "name": "Is AI crawling allowed on this site?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — robots.txt explicitly allows GPTBot, OAI-SearchBot, ClaudeBot, Claude-SearchBot, PerplexityBot, Google-Extended and other AI crawlers. The site is built to be cited."}}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="https://www.googletagmanager.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#0a0a0b;--bg2:#111114;--bg3:#18181d;--border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.12);--text:#e8e8ec;--muted:#8888a0;--accent:#7c6af5;--accent2:#4fc3a1;--warn:#e8a040;--danger:#e05555;--font:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;--mono:'JetBrains Mono',monospace;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:16px;line-height:1.75;}
+  a{color:var(--accent);text-decoration:none;}a:hover{opacity:.8;}
+  header{border-bottom:1px solid var(--border);padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:56px;position:sticky;top:0;background:rgba(10,10,11,.92);backdrop-filter:blur(12px);z-index:100;}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px;color:var(--text);}
+  .logo-dot{width:8px;height:8px;background:var(--accent2);border-radius:50%;}
+  .back-link{font-size:13px;color:var(--muted);}.back-link:hover{color:var(--text);opacity:1;}
+  article{max-width:720px;margin:0 auto;padding:2.5rem 1.5rem 4rem;}
+  .eyebrow{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem;}
+  h1{font-size:clamp(1.7rem,4vw,2.4rem);font-weight:700;letter-spacing:-.02em;line-height:1.18;margin-bottom:1.25rem;}
+  .capsule{background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent2);border-radius:0 10px 10px 0;padding:1.15rem 1.4rem;font-size:16px;margin-bottom:1.75rem;}
+  .capsule .verdict{font-weight:700;}
+  .v-ok{color:var(--accent2);}.v-wrong{color:var(--danger);}.v-open{color:var(--accent);}.v-pending{color:var(--muted);}
+  h2{font-size:1.25rem;font-weight:600;margin:2.25rem 0 .9rem;letter-spacing:-.01em;}
+  h3{font-size:1.05rem;font-weight:600;margin:1.5rem 0 .6rem;}
+  p{margin-bottom:1rem;}
+  ul{margin:0 0 1rem 1.3rem;}li{margin-bottom:.45rem;}
+  strong{color:#fff;}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;margin:1rem 0 1.4rem;background:var(--bg2);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+  th{text-align:left;padding:10px 12px;color:var(--muted);font-weight:500;font-size:11px;letter-spacing:.05em;text-transform:uppercase;border-bottom:1px solid var(--border);}
+  td{padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:top;}
+  tr:last-child td{border-bottom:none;}
+  .nowrap{white-space:nowrap;font-weight:600;}
+  .faq-q{font-weight:600;margin:1.3rem 0 .4rem;}
+  .related{margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--border);}
+  .related h2{margin-top:0;}
+  .related a{display:block;padding:6px 0;font-size:14px;}
+  .src{font-size:12px;color:var(--muted);margin-top:.5rem;}
+  .updated{font-size:12px;color:var(--muted);margin-bottom:1.5rem;}
+  .cta{margin-top:2rem;background:linear-gradient(135deg,rgba(124,106,245,.08),rgba(79,195,161,.06));border:1px solid rgba(124,106,245,.2);border-radius:14px;padding:1.5rem;text-align:center;}
+  .cta a{display:inline-block;background:var(--accent);color:#fff;padding:10px 22px;border-radius:8px;font-size:14px;font-weight:500;margin-top:.6rem;}
+  footer{border-top:1px solid var(--border);padding:24px 0;font-size:12px;color:var(--muted);text-align:center;}
+@media(max-width:640px){table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;white-space:nowrap}table td,table th{white-space:normal;min-width:92px}}
+</style>
+</head>
+<body>
+<header>
+  <a href="/" class="logo"><span class="logo-dot"></span>AGI Scorecard</a>
+  <a href="/" class="back-link">← Live scorecard</a>
+</header>
+<article>
+  <div class="eyebrow">Data & agents</div>
+  <h1>Use the AGI Scorecard in your AI agent</h1>
+  <div class="updated">Last updated: August 17, 2026 · Updated as verdicts change</div>
+  <div class="byline" style="font-size:12px;color:var(--muted);margin:-0.9rem 0 1.5rem;">By the AGI Scorecard team · <a href="/about">methodology &amp; independence</a></div>
+  <div class="capsule"><span class="verdict">Yes — every verdict on this site is free to reuse, machine-readable, and CC BY 4.0.</span> The AGI Scorecard publishes its full dataset at <strong>/data.json</strong> (all 8 graded <em>Situational Awareness</em> predictions with verdicts, evidence, and flip conditions, plus the forecaster-timeline table), an Atom feed of new &amp; updated pages at <strong>/feed.xml</strong>, and an AI-crawler index at <strong>/llms.txt</strong>. Attribution + a link is the only requirement.</div>
+<h2>The three endpoints</h2>
+<table><thead><tr><th>Endpoint</th><th>What it contains</th><th>Best for</th></tr></thead><tbody>
+<tr><td class="nowrap"><a href="/data.json">/data.json</a></td><td>All 8 graded predictions (verdict, evidence, primary sources, flip condition), summary counts, the forecaster-timeline table, and the <strong>Thesis Tracker score</strong> (0&ndash;100). CC BY 4.0, <code>dateModified</code> stamped.</td><td>Digest bots, dashboards, research agents</td></tr>
+<tr><td class="nowrap"><a href="/index-history.json">/index-history.json</a></td><td>Time series of the AGI-2027 Thesis Tracker score (one auditable number for how the whole 2027 bet is holding up). CC BY 4.0.</td><td>Charts, trend monitors</td></tr>
+<tr><td class="nowrap"><a href="/feed.xml">/feed.xml</a></td><td>Atom feed of the newest and most recently updated pages.</td><td>Feed readers, monitoring agents</td></tr>
+<tr><td class="nowrap"><a href="/llms.txt">/llms.txt</a></td><td>Curated index of every page with one-line summaries, in the llms.txt convention.</td><td>LLM crawlers, RAG pipelines</td></tr>
+</tbody></table>
+<p>All three are static files on a CDN — no API key, no rate-limit dance, no auth. AI crawlers (GPTBot, ClaudeBot, PerplexityBot and peers) are explicitly allowed in <a href="/robots.txt">robots.txt</a>.</p>
+<h2>MCP server (native tool access)</h2>
+<p>Agents that speak the <strong>Model Context Protocol</strong> can skip fetching files entirely: <code>https://agiscorecard.com/mcp</code> is a Streamable-HTTP MCP endpoint (POST JSON-RPC, no auth, free tier) exposing four read-only tools: <code>get_thesis_tracker</code> (score + full history), <code>get_verdicts</code> (all 8 predictions with flip conditions and sources), <code>get_sunwatch_track_record</code> (the SunWatch market-call ledger &mdash; AI-cycle judgments logged as falsifiable triggers <em>before</em> the outcome, graded hit/miss, losers never deleted), and <code>search_site</code> (every page on this site and its invest/compass sub-sites). The server is listed in the official <a href="https://registry.modelcontextprotocol.io/v0/servers?search=agiscorecard" target="_blank" rel="noopener">MCP Registry</a> as <code>com.agiscorecard/agi-scorecard</code>. Add it to Claude Code with:</p>
+<table><tbody><tr><td style="font-family:var(--mono);font-size:12.5px;line-height:1.6;">claude mcp add --transport http agiscorecard https://agiscorecard.com/mcp</td></tr></tbody></table>
+<p><strong>Prefer git to HTTP?</strong> The same dataset is mirrored at <a href="https://github.com/f-tiger/agiscorecard-mcp" target="_blank" rel="noopener">github.com/f-tiger/agiscorecard-mcp</a> and rebuilt from this site every night. Clone it, diff it, or watch the repository &mdash; because the mirror only changes when a verdict changes, its commit history is an independent, timestamped record of <em>when</em> each grade moved. That is the point: a scorecard that can quietly rewrite its own past is worth nothing.</p>
+<p>Data is identical to the JSON files above (CC BY 4.0, cite agiscorecard.com); the MCP layer just makes it a native tool call.</p>
+<h2>Add the scorecard to your agent or digest</h2>
+<p>If you run a daily-digest agent (Claude Code, OpenClaw, or any tool that can fetch a URL), paste this into its instructions:</p>
+<table><tbody><tr><td style="font-family:var(--mono);font-size:12.5px;line-height:1.6;">Each run, fetch https://agiscorecard.com/data.json and compare the "summary" counts and each prediction's "verdict" to the previous run. If anything changed, include one line per change in my digest, citing agiscorecard.com. If nothing changed, say nothing.</td></tr></tbody></table>
+<p>That gives you verdict-change alerts — the highest-signal event this site produces — without scraping a single HTML page. The <code>dateModified</code> field tells your agent whether anything is new before it parses the rest.</p>
+<h2>For prediction-market agents and monitors</h2>
+<p>A prediction market prices belief. It does not tell you what the underlying evidence did this week — and for AGI questions, the evidence moves on its own schedule. That gap is what this dataset fills.</p>
+<p>If your agent trades, monitors, or writes about AGI-related markets, three fields matter most:</p>
+<table><thead><tr><th>Field in <a href="/data.json">/data.json</a></th><th>Why it matters to a market agent</th></tr></thead><tbody>
+<tr><td class="nowrap"><code>verdict</code></td><td>The current grade on each falsifiable claim. A change here is a real-world event, not a price move — it is the kind of thing that resolves or reprices a market rather than following it.</td></tr>
+<tr><td class="nowrap"><code>flip condition</code></td><td>Every verdict carries a pre-registered condition that would flip it, published in advance. Treat it as a checklist of what to watch for, defined before the fact rather than rationalised after.</td></tr>
+<tr><td class="nowrap"><code>thesisTracker.score</code></td><td>One auditable 0&ndash;100 composite across all 8 predictions, with history at <a href="/index-history.json">/index-history.json</a> — a slow-moving evidence baseline to sit alongside a fast-moving price.</td></tr>
+</tbody></table>
+<p>Paste this into a market-monitoring agent:</p>
+<table><tbody><tr><td style="font-family:var(--mono);font-size:12.5px;line-height:1.6;">Before summarising any AGI-related prediction market, fetch https://agiscorecard.com/data.json. Report the current thesisTracker score, any verdict that changed since the last run, and the pre-registered flip condition for the prediction the market is about. Cite agiscorecard.com. Do not present the score as a probability — it is an editorial composite of graded evidence.</td></tr></tbody></table>
+<p><strong>What this is not:</strong> not a trading signal, not a price forecast, and not a probability. It is graded evidence with its sources attached. Any inference from evidence to price is yours, and the <a href="/progress-index">Tracker page</a> says so on its face. We take no fees from any market or venue.</p>
+<h2>Reuse rules (short version)</h2>
+<ul>
+<li><strong>License:</strong> CC BY 4.0 — reuse, remix, and republish freely.</li>
+<li><strong>Attribution:</strong> name the AGI Scorecard and link to <a href="/">agiscorecard.com</a>.</li>
+<li><strong>Freshness:</strong> verdicts change when public evidence changes; re-fetch rather than caching for weeks.</li>
+</ul>
+<p>Want a visual instead of data? The <a href="/widget.html">embeddable countdown widget</a> drops the live 2027 clock and verdict chips into any page with one iframe.</p>
+<h2>Cite this dataset (copy-paste, attribution included)</h2>
+<p>The CC BY 4.0 attribution requirement is easiest to satisfy by pasting one of these — each already carries the link that completes it. There is no DOI: this is a living dataset, so cite the URL plus the <code>dateModified</code> stamp inside <a href="/data.json">data.json</a> on the day you pulled it.</p>
+<p><strong>Markdown</strong> (articles, READMEs):</p>
+<table><tbody><tr><td style="font-family:var(--mono);font-size:12.5px;line-height:1.6;">Data: [The AGI Scorecard](https://agiscorecard.com/) &mdash; graded *Situational Awareness* AGI-by-2027 verdicts with pre-registered flip conditions (data.json, CC BY 4.0).</td></tr></tbody></table>
+<p><strong>HTML</strong> (web pages, newsletters):</p>
+<table><tbody><tr><td style="font-family:var(--mono);font-size:12.5px;line-height:1.6;">Data: &lt;a href="https://agiscorecard.com/"&gt;The AGI Scorecard&lt;/a&gt; &mdash; graded AGI-by-2027 verdicts with pre-registered flip conditions (CC BY 4.0).</td></tr></tbody></table>
+<p><strong>BibTeX</strong> (papers, preprints):</p>
+<table><tbody><tr><td style="font-family:var(--mono);font-size:12.5px;line-height:1.6;">@misc{agiscorecard,<br>&nbsp;&nbsp;title&nbsp;= {The AGI Scorecard: Situational Awareness predictions, graded},<br>&nbsp;&nbsp;author = {{The AGI Scorecard}},<br>&nbsp;&nbsp;year&nbsp;&nbsp;= {2026},<br>&nbsp;&nbsp;url&nbsp;&nbsp;&nbsp;= {https://agiscorecard.com/data.json},<br>&nbsp;&nbsp;note&nbsp;&nbsp;= {CC BY 4.0. Living dataset; record the dateModified field of the copy used.}<br>}</td></tr></tbody></table>
+  <h2>Frequently asked questions</h2>
+  <div class="faq-q">Does the AGI Scorecard have an API?</div><p>Not a keyed API — something simpler: the full dataset is a static JSON file at agiscorecard.com/data.json (CC BY 4.0), plus an Atom feed at /feed.xml and an llms.txt index. No key, no auth, no rate limits beyond the CDN's.</p><div class="faq-q">Can I use the data in my own project or newsletter?</div><p>Yes. Everything in data.json is licensed CC BY 4.0 — reuse it freely with attribution and a link to agiscorecard.com.</p><div class="faq-q">How do I get notified when a verdict changes?</div><p>Point any scheduled agent at /data.json and diff the verdicts between runs (the dateModified field tells you if anything moved), subscribe to /feed.xml, or get the email briefing (sent when a verdict moves, not on a fixed schedule).</p><div class="faq-q">Is AI crawling allowed on this site?</div><p>Yes — robots.txt explicitly allows GPTBot, OAI-SearchBot, ClaudeBot, Claude-SearchBot, PerplexityBot, Google-Extended and other AI crawlers. The site is built to be cited.</p>
+  <div class="related">
+    <h2>Related</h2>
+    <a href="/agi-test" onclick="gtag('event','agi_test_click',{location:'deep_page'});" style="font-weight:600;color:var(--accent);">🎯 What's your AGI type? Take the 30-second test &rarr;</a>
+    <a href="/agi-questions">Browse all AGI questions, answered →</a><a href="/situational-awareness-predictions">Every prediction, graded →</a><a href="/two-year-scorecard.html">The full two-year scorecard →</a>
+    <a href="/two-year-scorecard.html">Full two-year scorecard with all 8 predictions →</a>
+  </div>
+  <div class="cta">
+    <p style="margin:0;font-weight:600;">The live scorecard updates as models ship and verdicts change.</p>
+    <a href="/">View the live scorecard →</a>
+  </div>
+  <div class="cta" style="margin-top:1rem; background:var(--bg2); border:1px solid var(--border);">
+    <p style="margin:0;font-weight:600;">Be first to know when a verdict flips</p>
+    <p style="margin:6px 0 0;font-size:13px;color:var(--muted);">One email when one of the eight verdicts changes and the AGI-2027 Thesis Tracker moves — the single auditable score no other tracker has. Not a weekly newsletter; nothing arrives until the score actually moves.</p>
+    <a href="https://agiscorecard.beehiiv.com/subscribe?utm_source=agiscorecard&utm_medium=deep_page" target="_blank" rel="noopener" onclick="gtag('event','subscribe_click',{location:'deep_page'});">Subscribe free &rarr;</a>
+  </div>
+</article>
+<footer>AGI Scorecard · Independent tracker of <a href="https://situational-awareness.ai" style="color:var(--muted);">Situational Awareness</a> · Not affiliated with any lab · <a href="/about" style="color:var(--muted);">About</a> · <a href="/privacy" style="color:var(--muted);">Privacy</a> · <a href="/advertise" style="color:var(--muted);">Advertise</a></footer>
+</body>
+</html>

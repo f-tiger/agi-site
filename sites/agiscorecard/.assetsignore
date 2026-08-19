@@ -1,0 +1,22 @@
+# Workers static assets do NOT auto-exclude these the way Pages did.
+# Without this file the entire git history would be uploaded and served publicly.
+**/.git
+**/.git/**
+**/.github
+**/node_modules
+**/.DS_Store
+
+# Agent config and skills — not site content.
+.claude
+.claude/**
+
+# Generators, the analytics worker source, and internal data.
+# tools/ is already robots-disallowed; this makes it actually unreachable.
+tools
+tools/**
+
+# Owner personal archive (digital identity / trajectory) — lives in git + D1,
+# deliberately NOT served on the public site. Do not remove.
+owner-identity.md
+owner-identity.json
+owner-trajectory.md

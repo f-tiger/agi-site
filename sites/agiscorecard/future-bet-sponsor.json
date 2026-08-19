@@ -1,0 +1,11 @@
+{
+  "_comment": "Sponsor slot for The Future Bet game. To sell it: set active=true and fill sponsor fields, then run `python3 tools/gen_future_results.py`. Placements are ALWAYS clearly labeled and NEVER affect verdicts (CLAUDE.md rule). While active=false, the slot shows a clearly-labeled house ad inviting sponsors to /advertise.",
+  "active": false,
+  "sponsor": {
+    "name": "",
+    "headline": "",
+    "body": "",
+    "cta": "",
+    "url": ""
+  }
+}

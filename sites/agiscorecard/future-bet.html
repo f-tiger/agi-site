@@ -1,0 +1,239 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Future Bet — A 60-Second Future Predictions Game</title>
+<meta name="description" content="Bet YES/NO on 12 bold predictions — AGI, robots, Mars, fusion, alien life — and see which real forecaster your bets match. Shareable grid, no sign-up.">
+<link rel="canonical" href="https://agiscorecard.com/future-bet">
+<link rel="alternate" hreflang="en" href="https://agiscorecard.com/future-bet">
+<link rel="alternate" hreflang="zh-Hans" href="https://agiscorecard.com/zh/future-bet">
+<link rel="alternate" hreflang="x-default" href="https://agiscorecard.com/future-bet">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://agiscorecard.com/future-bet">
+<meta property="og:title" content="The Future Bet — which forecaster are you?">
+<meta property="og:description" content="Bet YES/NO on 12 bold futures — AGI, Mars, robots, fusion — and see if your bets make you Elon Musk or a skeptic. 60 seconds, no sign-up.">
+<meta property="og:image" content="https://agiscorecard.com/share/future-bet.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Future Bet — what do you bet happens?">
+<meta name="twitter:image" content="https://agiscorecard.com/share/future-bet.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AGI Scorecard","item":"https://agiscorecard.com/"},{"@type":"ListItem","position":2,"name":"AGI questions, answered","item":"https://agiscorecard.com/agi-questions"},{"@type":"ListItem","position":3,"name":"The Future Bet","item":"https://agiscorecard.com/future-bet"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is The Future Bet game?","acceptedAnswer":{"@type":"Answer","text":"A free 60-second game: you bet YES or NO on 12 bold predictions about the near future — AGI, humanoid robots, a human on Mars, anti-aging drugs, brain-computer interfaces, fusion power and more. It matches you to the real public forecaster your bets are closest to and gives you a shareable results grid. No sign-up required."}},{"@type":"Question","name":"Is The Future Bet based on real data?","acceptedAnswer":{"@type":"Answer","text":"The bets are open predictions about the future, so your answers are opinions, not facts. Where real expert forecasts exist — most concretely for AGI — the game shows them: public forecasts range from Musk (~2026) and Aschenbrenner (2027) to Metaculus (~2033) and academic surveys (~2047), and the AGI Scorecard tracks the evidence at 62.5/100. No invented statistics."}},{"@type":"Question","name":"Which forecaster will I be matched with?","acceptedAnswer":{"@type":"Answer","text":"It depends on how many of the 12 futures you bet will happen on time, mapped onto the real forecaster spectrum: 10-12 makes you closest to Elon Musk (AGI by 2026), 8-9 to Leopold Aschenbrenner (2027), 6-7 to Demis Hassabis (~2030), 4-5 to the Metaculus community (~2033), and 0-3 to the academic survey (~2047)."}}]}</script>
+<style>
+:root{--bg:#0e0e14;--bg2:#16151f;--bg3:#1e1c28;--border:#26232f;--text:#f4f4f8;--muted:#a8a4c4;--accent:#7c6af5;--accent2:#4fc3a1;--no:#e0605e}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:radial-gradient(900px 520px at 30% -5%,#1a1830,#0e0e14);color:var(--text);font:16px/1.65 -apple-system,'Segoe UI',Roboto,sans-serif;min-height:100vh}
+.wrap{max-width:680px;margin:0 auto;padding:26px 20px 64px}
+a{color:var(--accent)}
+header{display:flex;justify-content:space-between;align-items:center;font-size:14px;margin-bottom:30px}
+header .brand{font-weight:700;color:var(--text);text-decoration:none}
+.kicker{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+h1{font-size:34px;line-height:1.15;margin:10px 0 8px;letter-spacing:-.01em}
+h2{font-size:22px;margin:34px 0 12px}
+.lead{color:var(--muted);margin-bottom:24px}
+.progress{font-size:13px;color:var(--muted);margin-bottom:10px;letter-spacing:.03em}
+.bar{height:6px;background:var(--bg3);border-radius:4px;overflow:hidden;margin-bottom:22px}
+.bar > i{display:block;height:100%;background:var(--accent);width:0;transition:width .25s}
+.game{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:26px 22px;min-height:230px}
+.cardnum{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.claim{font-size:23px;font-weight:700;line-height:1.28;margin:10px 0 6px}
+.byyear{color:var(--accent2);font-weight:700}
+.choices{display:flex;gap:12px;margin-top:22px}
+.choices button{flex:1;padding:16px 10px;border-radius:12px;border:1px solid var(--border);background:var(--bg3);color:var(--text);font:inherit;font-size:17px;font-weight:700;cursor:pointer;transition:.12s}
+.choices .yes:hover{border-color:var(--accent2);background:rgba(79,195,161,.14)}
+.choices .no:hover{border-color:var(--no);background:rgba(224,96,94,.12)}
+.hint{font-size:13px;color:var(--muted);margin-top:14px;min-height:20px}
+#result{display:none}
+.reveal{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:22px;text-align:center}
+.reveal .k{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.reveal .name{font-size:30px;font-weight:800;margin:6px 0}
+.reveal .line{color:var(--muted)}
+.grid{font-size:26px;letter-spacing:3px;margin:16px 0 4px;word-break:break-word}
+.btn{display:inline-block;background:var(--accent);color:#fff;padding:11px 22px;border-radius:8px;font-weight:600;text-decoration:none;border:0;cursor:pointer;font-family:inherit;font-size:15px}
+.btn.sec{background:var(--bg3)}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0;justify-content:center}
+.cta{background:linear-gradient(135deg,rgba(124,106,245,.14),rgba(79,195,161,.08));border:1px solid rgba(124,106,245,.3);border-radius:12px;padding:18px 20px;margin:18px 0;text-align:center}
+.cta p{margin:0 0 12px;font-weight:600}
+.agibox{background:var(--bg2);border:1px solid rgba(124,106,245,.28);border-radius:12px;padding:16px 18px;margin:18px 0;font-size:14.5px}
+.agibox b{color:var(--text)}
+.types{border:1px solid var(--border);border-radius:12px;overflow:hidden;margin:14px 0}
+.types div{padding:12px 16px;border-bottom:1px solid var(--border);font-size:14px}
+.types div:last-child{border-bottom:0}
+.types b{color:var(--text)}
+#copied{display:none;font-size:13px;color:var(--accent2);margin-left:8px}
+footer{margin-top:40px;font-size:12px;color:var(--muted);text-align:center}
+footer a{color:var(--muted)}
+.embedbox{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:16px 18px;margin:14px 0}
+.embedbox textarea{width:100%;height:70px;background:var(--bg);color:var(--muted);border:1px solid var(--border);border-radius:8px;padding:10px;font:12px/1.5 monospace;resize:vertical;margin:8px 0}
+.embed-brand{display:none;text-align:center;margin:16px 0 2px;font-size:13px}
+.embed-brand a{font-weight:600}
+body.embed{background:#0e0e14}
+body.embed .wrap{padding:16px 16px 22px}
+body.embed header,body.embed .lead,body.embed .marketing{display:none}
+body.embed h1{font-size:26px}
+body.embed .embed-brand{display:block}
+#embedcopied{display:none;font-size:13px;color:var(--accent2);margin-left:8px}
+@media(max-width:640px){table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;white-space:nowrap}table td,table th{white-space:normal;min-width:92px}}
+</style><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"The Future Bet","url":"https://agiscorecard.com/future-bet","description":"Bet YES/NO on 12 bold predictions across AGI, robotaxis, Mars, fusion and alien life, and see which real forecaster your grid matches.","applicationCategory":"GameApplication","operatingSystem":"Any (web browser)","browserRequirements":"Requires JavaScript","isAccessibleForFree":true,"inLanguage":"en","featureList":["12 cross-domain predictions","Matched to a real forecaster","Shareable grid","Embeddable via ?embed=1"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"AGI Scorecard","url":"https://agiscorecard.com/"},"isPartOf":{"@type":"CollectionPage","name":"Free AI & AGI tools","url":"https://agiscorecard.com/ai-tools"}}</script>
+</head>
+<body>
+<script>if(location.search.indexOf('embed')>-1||location.hash.indexOf('embed')>-1){document.body.classList.add('embed');}</script>
+<div class="wrap">
+<header><a class="brand" href="/">◆ AGI Scorecard</a><span class="kicker"><a href="/zh/future-bet" style="color:var(--muted)">中文</a></span></header>
+<div class="kicker">The Future Bet 🎲</div>
+<h1>What do you bet <em>actually happens</em>?</h1>
+<p class="lead">Twelve bold predictions about the next 15 years — AI, robots, Mars, aging, fusion. Tap <b style="color:var(--accent2)">YES</b> if you bet it happens on time, <b style="color:var(--no)">NO</b> if you don't. See which real forecaster you match — Elon Musk or a skeptic. 60 seconds, no sign-up.</p>
+
+<div id="play">
+  <div class="progress" id="prog">Bet 1 of 12</div>
+  <div class="bar"><i id="barfill"></i></div>
+  <div class="game">
+    <div class="cardnum" id="cnum"></div>
+    <div class="claim" id="claim"></div>
+    <div class="choices">
+      <button class="yes" onclick="bet(1)">✅ YES</button>
+      <button class="no" onclick="bet(0)">❌ NO</button>
+    </div>
+    <div class="hint" id="hint"></div>
+  </div>
+</div>
+
+<div id="result">
+  <div class="reveal">
+    <div class="k">Your forecaster match</div>
+    <div class="name" id="r-name"></div>
+    <div class="line" id="r-line"></div>
+    <div class="grid" id="r-grid"></div>
+    <div style="font-size:13px;color:var(--muted)" id="r-score"></div>
+  </div>
+  <div class="row">
+    <button class="btn" onclick="challengeFriend()">🔥 Challenge a friend</button>
+    <button class="btn sec" onclick="shareToX()">Share on 𝕏</button>
+    <button class="btn sec" onclick="copyShare()">Copy result</button>
+    <span id="copied">✓ Copied</span>
+  </div>
+  <div class="agibox" id="agibox"></div>
+  <div class="cta">
+    <p>You just made 12 predictions. Want to know which ones come true? We actually track the biggest one — the live AGI‑2027 Thesis Tracker moves only when real evidence lands.</p>
+    <a class="btn" href="https://agiscorecard.beehiiv.com/subscribe?utm_source=agiscorecard&amp;utm_medium=future_bet" target="_blank" rel="noopener" onclick="gtag('event','subscribe_click',{location:'future_bet'});">Track the future with us →</a>
+  </div>
+  <div class="row"><button class="btn sec" onclick="restart()">↺ Play again</button>
+    <a class="btn sec" href="/agi-test" onclick="gtag('event','agi_test_click',{location:'future_bet'});">🎯 Now: what's your AGI type?</a></div>
+</div>
+
+<div class="embed-brand">🎲 <b>The Future Bet</b> · <a href="https://agiscorecard.com/future-bet?utm_source=game_embed&amp;utm_medium=iframe" target="_blank" rel="noopener" onclick="gtag('event','embed_brand_click',{location:'future_bet_embed'});">Play the full game on AGI Scorecard →</a></div>
+
+<div class="marketing">
+<h2>Which forecaster are you closest to?</h2>
+<p style="color:var(--muted);font-size:14px">Your Future Bet score maps you onto the real spectrum of public AGI forecasters — from the boldest call to the most cautious. Every position is on the record.</p>
+<div class="types">
+  <div>🚀 <b>Elon Musk</b> (10–12 yes) — AGI by end of 2026, the most aggressive public call.</div>
+  <div>⏱️ <b>Leopold Aschenbrenner</b> (8–9) — AGI by 2027, the <em>Situational Awareness</em> thesis.</div>
+  <div>📊 <b>Demis Hassabis</b> (6–7) — ~50% by 2030, DeepMind’s measured-bull view.</div>
+  <div>🤔 <b>Metaculus crowd</b> (4–5) — ~50% by 2033, the forecaster consensus.</div>
+  <div>🛡️ <b>Academic survey</b> (0–3) — 50% by 2047, betting the trends break first.</div>
+</div>
+
+<h2>The real forecasts behind the game</h2>
+<p>The bets in this game are open predictions, so your answers are opinions. But the AGI question is one we grade for real. Here is where the public forecasts actually stand, as of mid-2026 — every call on the record, ranked from soonest to latest:</p>
+<table><thead><tr><th>Forecaster</th><th>AGI call</th><th>Profile</th></tr></thead><tbody>
+<tr><td>Elon Musk (xAI)</td><td class="byyear">By end of 2026</td><td><a href="/elon-musk-agi-prediction">details →</a></td></tr>
+<tr><td>Dario Amodei (Anthropic)</td><td class="byyear">“Powerful AI” 2026–27</td><td><a href="/dario-amodei-agi-prediction">details →</a></td></tr>
+<tr><td>Leopold Aschenbrenner</td><td class="byyear">AGI by 2027</td><td><a href="/who-is-leopold-aschenbrenner">details →</a></td></tr>
+<tr><td>Sam Altman (OpenAI)</td><td class="byyear">Near-term; ASI “a few thousand days”</td><td><a href="/sam-altman-agi-prediction">details →</a></td></tr>
+<tr><td>Demis Hassabis (DeepMind)</td><td class="byyear">~50% by 2030</td><td><a href="/demis-hassabis-agi-prediction">details →</a></td></tr>
+<tr><td>Metaculus community</td><td class="byyear">50% by 2033</td><td><a href="/when-will-agi-arrive">details →</a></td></tr>
+<tr><td>Andrej Karpathy</td><td class="byyear">~A decade out (~2035)</td><td><a href="/karpathy-agi-prediction">details →</a></td></tr>
+<tr><td>AI researcher survey (n=2,778)</td><td class="byyear">50% by 2047</td><td><a href="/when-will-agi-arrive">details →</a></td></tr>
+</tbody></table>
+<p style="color:var(--muted);font-size:13px">Positions as publicly stated; each links to its full profile with primary sources. The <a href="/progress-index">AGI‑2027 Thesis Tracker</a> grades the live evidence at <b>62.5/100</b>. No invented statistics.</p>
+
+<h2>FAQ</h2>
+<div class="types">
+  <div><b>What is The Future Bet game?</b><br><span style="color:var(--muted)">A free 60-second game: you bet YES or NO on 12 bold predictions about the near future — AGI, humanoid robots, a human on Mars, anti-aging drugs, brain–computer interfaces, fusion power and more — and it matches you to the real public forecaster your bets are closest to, plus a shareable grid. No sign-up.</span></div>
+  <div><b>Is it based on real data?</b><br><span style="color:var(--muted)">The bets are open predictions, so your answers are opinions. Where real expert forecasts exist — most concretely for AGI — the game shows them (Musk ~2026 to survey ~2047; Tracker at 62.5/100). No invented statistics.</span></div>
+  <div><b>Which forecaster will I be matched with?</b><br><span style="color:var(--muted)">By how many of the 12 futures you bet happen on time, mapped onto the real spectrum: 10–12 Elon Musk (2026), 8–9 Aschenbrenner (2027), 6–7 Hassabis (~2030), 4–5 Metaculus (~2033), 0–3 the academic survey (~2047).</span></div>
+</div>
+
+<div style="border:1px dashed var(--border);border-radius:12px;padding:14px 16px;margin:18px 0;text-align:center">
+  <div style="font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:6px">Sponsor slot · available</div>
+  <p style="margin:0 0 6px;font-size:14px;font-weight:600">Reach people actively betting on the future of AI.</p>
+  <a href="/advertise" style="font-weight:600;font-size:14px" onclick="gtag('event','advertise_click',{location:'future_bet_game'});">Sponsor The Future Bet &rarr;</a>
+</div>
+
+<h2>📋 Put this game on your site</h2>
+<p style="color:var(--muted);font-size:14px">Free to embed anywhere — blog, newsletter, forum. It carries a link back to AGI Scorecard, and it works on any site with one line of HTML.</p>
+<div class="embedbox">
+  <textarea id="embedcode" readonly>&lt;iframe src="https://agiscorecard.com/future-bet?embed=1" width="100%" height="640" style="border:1px solid #26232f;border-radius:12px;max-width:680px" title="The Future Bet — a 60-second prediction game" loading="lazy"&gt;&lt;/iframe&gt;</textarea>
+  <button class="btn sec" onclick="copyEmbed()">Copy embed code</button><span id="embedcopied">✓ Copied</span>
+</div>
+
+<footer>By the AGI Scorecard team · <a href="/about">methodology</a> · <a href="/agi-questions">all AGI questions</a> · <a href="/">agiscorecard.com</a><br>
+Grades the falsifiable predictions in Aschenbrenner's <em>Situational Awareness</em>. Not affiliated with any lab.</footer>
+</div>
+</div>
+<script>
+var CARDS=[
+ {e:'🤖',t:'A single AI can do essentially any job a skilled human can',y:2030,agi:true},
+ {e:'🏠',t:'A humanoid robot does your household chores',y:2032},
+ {e:'🚗',t:'Self‑driving cars are normal in major cities',y:2030},
+ {e:'🚀',t:'A human walks on Mars',y:2035},
+ {e:'🧬',t:'A drug that measurably slows human aging is widely prescribed',y:2035},
+ {e:'🧠',t:'A consumer device lets you type just by thinking',y:2033},
+ {e:'🎬',t:'An AI‑made movie becomes a global blockbuster',y:2030},
+ {e:'🤝',t:'Millions of people call an AI their best friend',y:2028},
+ {e:'⚡',t:'Fusion delivers real power to an electric grid',y:2040},
+ {e:'🎮',t:'VR becomes impossible to tell from reality',y:2040},
+ {e:'🛸',t:'We find credible evidence of life beyond Earth',y:2040},
+ {e:'🪙',t:'A country appoints an AI to help run its economy',y:2035}
+];
+// Personas mapped to REAL public forecaster positions (from data.json). No invented data.
+var PERSONAS=[
+ {min:10,slug:'musk',name:'Elon Musk',emoji:'🚀',line:'The most aggressive public forecaster — he’s said AGI by the end of 2026. Your bets are the boldest of all.'},
+ {min:8, slug:'aschenbrenner',name:'Leopold Aschenbrenner',emoji:'⏱️',line:'Author of Situational Awareness — AGI by 2027, “counting the OOMs.” You’re out on the leading edge.'},
+ {min:6, slug:'hassabis',name:'Demis Hassabis',emoji:'📊',line:'DeepMind’s CEO — roughly 50% odds on AGI by 2030. Bullish, but measured.'},
+ {min:4, slug:'metaculus',name:'the Metaculus crowd',emoji:'🤔',line:'The forecaster community — about 50% by 2033. You bet the base rate.'},
+ {min:0, slug:'survey',name:'the academic survey',emoji:'🛡️',line:'2,778 AI researchers — 50% by 2047. You bet the trend lines break first.'}
+];
+var i=0, ans=[], myType=null;
+function render(){
+  var c=CARDS[i];
+  document.getElementById('prog').textContent='Bet '+(i+1)+' of '+CARDS.length;
+  document.getElementById('barfill').style.width=(i/CARDS.length*100)+'%';
+  document.getElementById('cnum').textContent=c.e+'  Prediction '+(i+1);
+  document.getElementById('claim').innerHTML=c.t+' <span class="byyear">— by '+c.y+'?</span>';
+  document.getElementById('hint').textContent='';
+}
+function bet(v){
+  var c=CARDS[i];
+  ans.push(v);
+  if(c.agi){document.getElementById('hint').innerHTML=v?'Bold — that’s ahead of most. Real forecasts: Musk ~2026, Aschenbrenner 2027, Metaculus ~2033.':'Cautious — near Metaculus (~2033) and the academic survey (~2047).';}
+  i++;
+  if(i<CARDS.length){ if(c.agi){setTimeout(render,650);} else {render();} }
+  else{ setTimeout(finish,c.agi?650:0); }
+}
+function grid(){return ans.map(function(v){return v?'✅':'⬜';}).join('');}
+function finish(){
+  var yes=ans.reduce(function(a,b){return a+b;},0);
+  for(var k=0;k<PERSONAS.length;k++){ if(yes>=PERSONAS[k].min){myType=PERSONAS[k];break;} }
+  document.getElementById('play').style.display='none';
+  document.getElementById('r-name').innerHTML=myType.emoji+' You’re closest to <span style="white-space:nowrap">'+myType.name+'</span>';
+  document.getElementById('r-line').textContent=myType.line;
+  document.getElementById('r-grid').textContent=grid();
+  document.getElementById('r-score').textContent='You bet '+yes+' of 12 bold futures happen on time — that’s where you land on the real forecaster spectrum.';
+  var agiYes=ans[0]===1;
+  document.getElementById('agibox').innerHTML='🤖 <b>Your AGI bet:</b> you said AGI '+(agiYes?'<b>does</b>':'does <b>not</b>')+' arrive by 2030. Real forecasters split hard on this — Musk ~2026, Aschenbrenner 2027, Hassabis ~2030, Metaculus ~2033, academic survey ~2047 — and it’s the one bet we grade live: <a href="/progress-index" onclick="gtag(\'event\',\'index_click\',{location:\'future_bet\'});">the Thesis Tracker reads 62.5/100 →</a>';
+  document.getElementById('result').style.display='block';
+  document.getElementById('result').scrollIntoView({behavior:'smooth'});
+  gtag('event','vote_cast',{label:'future_bet_'+myType.name.replace(/\s/g,'_')});
+}
+function restart(){i=0;ans=[];myType=null;document.getElementById('result').style.display='none';document.getElementById('play').style.display='block';render();window.scrollTo({top:0,behavior:'smooth'});}
+function sUrl(){return (myType&&myType.slug)?'https://agiscorecard.com/future-bet/'+myType.slug:'https://agiscorecard.com/future-bet';}
+function sText(){var y=ans.reduce(function(a,b){return a+b;},0);return 'My future bets put me closest to '+(myType?myType.emoji+' '+myType.name:'')+' ('+y+'/12).\n'+grid()+'\nMusk or skeptic — what’s your Future Bet?';}
+function challengeFriend(){gtag('event','challenge_share',{label:myType?myType.name:''});if(navigator.share){navigator.share({title:'The Future Bet',text:sText(),url:sUrl()}).catch(function(){});}else{window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(sText()+' 👇')+'&url='+encodeURIComponent(sUrl()),'_blank');}}
+function shareToX(){gtag('event','x_share',{label:myType?myType.name:''});window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(sText()+' 👇')+'&url='+encodeURIComponent(sUrl()),'_blank');}
+function copyShare(){navigator.clipboard.writeText(sText()+'\n'+sUrl()).then(function(){var c=document.getElementById('copied');c.style.display='inline';setTimeout(function(){c.style.display='none'},2000)});}
+function copyEmbed(){var t=document.getElementById('embedcode');navigator.clipboard.writeText(t.value).then(function(){var c=document.getElementById('embedcopied');c.style.display='inline';setTimeout(function(){c.style.display='none'},2000)});gtag('event','embed_copy',{location:'future_bet'});}
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
+render();
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FZXLMBB5QB"></script>
+<script>gtag('js',new Date());gtag('config','G-FZXLMBB5QB')</script>
+</body></html>

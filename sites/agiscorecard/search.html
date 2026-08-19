@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FZXLMBB5QB"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-FZXLMBB5QB');</script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a0a0b'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%234fc3a1'/%3E%3C/svg%3E">
+<title>Search — The AGI Scorecard</title>
+<meta name="description" content="Search all pages, tools and datasets on the AGI Scorecard — predictions, verdicts, investing tools, 中文页面.">
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="https://agiscorecard.com/search">
+<style>
+:root{--bg:#0a0a0b;--bg2:#111114;--border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.12);--text:#e8e8ec;--muted:#8888a0;--accent:#7c6af5;--accent2:#4fc3a1}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,sans-serif;font-size:16px;line-height:1.7}
+a{color:var(--accent);text-decoration:none}a:hover{opacity:.85}
+header{border-bottom:1px solid var(--border);padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:56px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px;color:var(--text)}
+.logo-dot{width:8px;height:8px;background:var(--accent2);border-radius:50%}
+main{max-width:720px;margin:0 auto;padding:2.2rem 1.5rem 4rem}
+h1{font-size:1.6rem;margin-bottom:.4rem}
+.sub{color:var(--muted);font-size:13.5px;margin-bottom:1.2rem}
+#q{width:100%;background:var(--bg2);border:1px solid var(--border2);border-radius:10px;padding:13px 16px;color:var(--text);font-size:16px;outline:none}
+#q:focus{border-color:var(--accent)}
+.hit{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:12px 16px;margin-top:10px}
+.hit a{font-weight:600;font-size:15px}
+.hit .d{font-size:13px;color:var(--muted);margin-top:3px}
+.hit .u{font-size:11.5px;color:var(--muted);opacity:.7;margin-top:2px}
+.zh-tag{display:inline-block;font-size:10.5px;padding:0 6px;border-radius:99px;background:rgba(124,106,245,.15);color:var(--accent);margin-left:6px;vertical-align:1px}
+#none{display:none;margin-top:14px;background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:0 10px 10px 0;padding:14px 18px;font-size:14px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:1rem}
+.chips a{font-size:12.5px;background:var(--bg2);border:1px solid var(--border);border-radius:99px;padding:5px 12px;color:var(--muted)}
+footer{border-top:1px solid var(--border);padding:22px;font-size:12px;color:var(--muted);text-align:center}
+</style>
+</head>
+<body>
+<header>
+  <a href="/" class="logo"><span class="logo-dot"></span>AGI Scorecard</a>
+  <a href="/" style="font-size:13px;color:var(--muted)">← Home</a>
+</header>
+<main>
+  <h1>🔍 Search · 站内搜索</h1>
+  <p class="sub">Every page, tool and dataset — predictions, verdicts, investing tools, 中文页面全部可搜。</p>
+  <input id="q" type="search" autofocus autocomplete="off"
+    placeholder="Try: AGI 2027 · job risk · 巴菲特 · stock exposure · red team…">
+  <div id="hits"></div>
+  <div id="none">
+    <b>No results · 没有找到</b>
+    <div style="margin-top:5px;color:var(--muted);font-size:13px">We log every search to learn what's missing — this one just became a signal. 想让我们做这个内容/工具?订阅后第一时间收到:
+    <a href="https://agiscorecard.beehiiv.com/subscribe?utm_source=agiscorecard&utm_medium=search_no_result" target="_blank" rel="noopener" onclick="gtag('event','subscribe_click',{location:'search_no_result'});">Subscribe →</a></div>
+  </div>
+  <div id="hot">
+    <!-- 推荐搜索词:一键填入并检索。当前为策展种子;D1 攒够 site_search 样本后,
+         每日运行应把这里换成真实高频词(规则见 CLAUDE.md 搜索章节)。 -->
+    <div class="chips" id="sugg" style="margin-top:1.1rem;">
+      <span style="color:var(--muted);font-size:12.5px;align-self:center;">推荐搜索 · Popular:</span>
+    </div>
+    <div class="chips">
+      <a href="/progress-index">📊 Thesis Tracker 62.5/100</a>
+      <a href="/agi-test">🎯 AGI type test</a>
+      <a href="/ai-stock-exposure">📈 AI stock exposure</a>
+      <a href="https://invest.agiscorecard.com/">📡 SunWatch 行情台</a>
+      <a href="/cn">🇨🇳 中文主页</a>
+    </div>
+  </div>
+</main>
+<footer>The AGI Scorecard · <a href="/about" style="color:var(--muted)">About</a> · <a href="/privacy" style="color:var(--muted)">Privacy</a></footer>
+<script>
+(function(){
+  var idx=null,box=document.getElementById('q'),hits=document.getElementById('hits'),
+      none=document.getElementById('none'),hot=document.getElementById('hot'),logT=null,lastLogged='';
+  // 推荐搜索词(策展种子;后续由每日运行以 D1 真实高频词替换)
+  var SUGG=['AGI 2027','when will AGI arrive','巴菲特 持仓','AI stock exposure','job risk','存储 周期','red team','open source','中国 AGI','Thesis Tracker'];
+  var sg=document.getElementById('sugg');
+  SUGG.forEach(function(w){var a=document.createElement('a');a.href='#';a.textContent=w;
+    a.onclick=function(ev){ev.preventDefault();box.value=w;lastLogged=w.slice(0,80);gtag('event','site_search',{location:'search_suggest',label:w});run();box.focus();};
+    sg.appendChild(a);});
+  fetch('/search-index.json').then(function(r){return r.json()}).then(function(d){idx=d;run()});
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+  function score(e,q,toks){
+    var t=e.t.toLowerCase(),d=(e.d||'').toLowerCase(),h=(e.h||'').toLowerCase(),s=0;
+    if(t.indexOf(q)>-1)s+=8;if(h.indexOf(q)>-1)s+=5;if(d.indexOf(q)>-1)s+=3;
+    for(var i=0;i<toks.length;i++){var w=toks[i];if(!w)continue;
+      if(t.indexOf(w)>-1)s+=3;else if(h.indexOf(w)>-1)s+=2;else if(d.indexOf(w)>-1)s+=1;}
+    return s;
+  }
+  function run(){
+    if(!idx)return;
+    var q=box.value.trim().toLowerCase();
+    if(!q){hits.innerHTML='';none.style.display='none';hot.style.display='flex';return}
+    hot.style.display='none';
+    var toks=q.split(/[\s,，、]+/);
+    var res=idx.map(function(e){return[score(e,q,toks),e]}).filter(function(x){return x[0]>0});
+    res.sort(function(a,b){return b[0]-a[0]});res=res.slice(0,12);
+    hits.innerHTML=res.map(function(x){var e=x[1];
+      return '<div class="hit"><a href="'+esc(e.u)+'" onclick="gtag(\'event\',\'search_click\',{location:\'search_page\',label:\''+esc(e.u).replace(/'/g,'')+'\'});">'+esc(e.t)+
+        (/^zh/.test(e.l)?'<span class="zh-tag">中文</span>':'')+'</a>'+
+        (e.d?'<div class="d">'+esc(e.d)+'</div>':'')+'<div class="u">'+esc(e.u)+'</div></div>'}).join('');
+    none.style.display=res.length?'none':'block';
+    // 需求信号:停顿 900ms 后记一次(去重),零结果单独记——这是选题与产品缺口的第一手数据
+    clearTimeout(logT);
+    logT=setTimeout(function(){
+      var key=q.slice(0,80);
+      if(key===lastLogged)return;lastLogged=key;
+      gtag('event','site_search',{location:'search_page',label:key});
+      if(!res.length)gtag('event','search_no_result',{location:'search_page',label:key});
+    },900);
+  }
+  box.addEventListener('input',run);
+  var pre=new URLSearchParams(location.search).get('q');
+  if(pre){box.value=pre;var t=setInterval(function(){if(idx){clearInterval(t);run()}},80)}
+})();
+</script>
+</body>
+</html>
