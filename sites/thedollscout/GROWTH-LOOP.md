@@ -9,6 +9,26 @@ buried in a scheduler.
 
 ---
 
+## STRATEGY PIVOT (2026-08-19, owner-authorized: "站点的内容、形式、定位都可以变化,目标是营收")
+
+Deep-research verdict (105-agent verified run, fleet doc `docs/fleet-deep-dive-2026-08.md`
+in the repo root): at 24 days this site is BEHIND its same-age sibling on human traffic
+(≈0/day vs 79/day) — that is a shape problem, not an age problem. The pivot:
+
+**From "content site waiting for traffic" to "high-ticket affiliate decision pages
+fed by AI citations."** The pages AI engines already cite daily (scam-check,
+height-weight, the datasets) must carry the purchase decision on the first screen:
+comparison table, vendor verdicts with affiliate deep links, and the scam-check
+tool — because an AI-referred visitor converts at 2–23x an organic one (Ahrefs
+first-party data) and this niche's order value is hundreds to thousands of dollars.
+Waiting for generic traffic is the one strategy the data rules out.
+
+What this changes for each run: prioritize conversion-hook work on CITED pages over
+new search-surface pages. What it does NOT change: every guardrail in section 4
+(sourcing, no fabricated social proof, 18+ gate, childlike-appearance refusal,
+affiliate disclosure) and the D1 two-line measurement discipline. First checkpoint:
+D1 `affiliate_click` ≥1 within 28 days of the first hooked page shipping.
+
 ## 1. The target ladder
 
 "Get a sale" is not actionable. This is:
