@@ -37,7 +37,9 @@
 
 set -euo pipefail
 
-BRANCH="${BRANCH:-claude/adult-product-distribution-site-q1bzbh}"
+# Monorepo (2026-08-19): source of truth is agi-site main. The old site-repo
+# branch name lives on only as the Pages project's production-branch label.
+BRANCH="${BRANCH:-main}"
 
 BOT="${1:?bot name required}"
 MESSAGE="${2:?commit message required}"
