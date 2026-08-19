@@ -10,11 +10,15 @@ export async function onRequestPost(ctx) {
     if (!path.startsWith('/') || !ctx.env.HITS) return new Response(null, { status: 204 });
     let ref = '';
     try { ref = body.r ? new URL(body.r).hostname.slice(0, 60) : ''; } catch (e) {}
+    // Unknown event names are dropped, not stored — an open-name endpoint is
+    // write-anything storage, and the table stays honest by refusing it.
+    const ALLOWED = new Set(['', 'affiliate_click']);
+    const ev = ALLOWED.has(body.e) ? body.e : '';
     const d = new Date().toISOString().slice(0, 10);
     const country = (ctx.request.headers.get('cf-ipcountry') || '').slice(0, 2);
     ctx.waitUntil(
       ctx.env.HITS.prepare('INSERT INTO hits (d, path, lang, country, ref, ev) VALUES (?,?,?,?,?,?)')
-        .bind(d, path, 'en', country, ref, '')
+        .bind(d, path, 'en', country, ref, ev)
         .run().catch(() => {})
     );
   } catch (e) { /* fail silent by design */ }

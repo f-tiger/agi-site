@@ -232,15 +232,25 @@
   });
 })();
 
-/* First-party pageview beacon (2026-08-19). One POST per pageview to /api/ev
-   (D1 `dollscout-events`): the real-reader line, since crawlers never run JS.
-   GA4 stays alongside — two independent channels, either failing leaves the
-   other recording. No cookies, no IDs; referrer is reduced to its host at
-   the edge. Fail-silent: analytics must never break a page. */
+/* First-party beacons (2026-08-19). D1 `dollscout-events`, endpoint /api/ev.
+   Two things and only two: a pageview (the real-reader line — crawlers never
+   run JS) and affiliate_click (the revenue event; until today it was recorded
+   NOWHERE — GA4 has no event wiring on this site). No cookies, no IDs;
+   referrers/targets are reduced to a hostname at the edge. Fail-silent:
+   analytics must never break a page or a click. */
 (function () {
-  try {
-    var payload = JSON.stringify({ p: location.pathname, r: document.referrer || "" });
-    if (navigator.sendBeacon) navigator.sendBeacon("/api/ev", payload);
-    else fetch("/api/ev", { method: "POST", body: payload, keepalive: true }).catch(function () {});
-  } catch (e) {}
+  function send(ev, ref) {
+    try {
+      var payload = JSON.stringify({ p: location.pathname, r: ref || "", e: ev || "" });
+      if (navigator.sendBeacon) navigator.sendBeacon("/api/ev", payload);
+      else fetch("/api/ev", { method: "POST", body: payload, keepalive: true }).catch(function () {});
+    } catch (e) {}
+  }
+  send("", document.referrer);
+  /* Delegated, so links wired later (photos, hot picks) are covered too.
+     sendBeacon survives the navigation the click is about to cause. */
+  document.addEventListener("click", function (evt) {
+    var a = evt.target && evt.target.closest && evt.target.closest("a[rel~='sponsored']");
+    if (a && a.href) send("affiliate_click", a.href);
+  }, true);
 })();

@@ -14,8 +14,8 @@ on:
   # measurement — it was the entire site until 2026-08-14 and should fall to
   # zero as each crawler re-crawls — and a convergence cannot be read from a
   # snapshot somebody remembers to take.
-#  schedule:
-#    - cron: '20 6 * * *'
+  schedule:
+    - cron: '20 6 * * *'
   workflow_dispatch:
     inputs:
       days:
