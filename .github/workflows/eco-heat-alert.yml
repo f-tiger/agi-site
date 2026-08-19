@@ -1,0 +1,55 @@
+name: Hitze-Radar alert
+# ── 迁入公开 monorepo f-tiger/agi-site(2026-08-19,owner 决定)──
+# 原仓 .github 为历史档案。公开仓 Actions 分钟免费。
+# 本 workflow 的 run 步骤默认 working-directory: sites/getecoback/。
+
+
+# Runs every day and decides for itself whether a heatwave is coming. Without the
+# mail secrets it rehearses instead of sending, so the forecast call, the
+# threshold and the message are exercised daily and any breakage shows up long
+# before the first real alert. Adding RESEND_API_KEY and SUPABASE_SERVICE_KEY to
+# the repository secrets is the only step that turns rehearsal into delivery.
+on:
+  schedule:
+     - cron: "0 6 * * *"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Rehearse only, never send"
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+
+jobs:
+  alert:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: sites/getecoback
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Decide and (if configured) send
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+        run: |
+          if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
+            python3 tools/heat_alert.py --dry-run
+          else
+            python3 tools/heat_alert.py
+          fi
+
+      - name: Record that an alert went out
+        run: |
+          if ! git diff --quiet -- docs/heat-alert-state.json; then
+            git config user.name "Claude"
+            git config user.email "noreply@anthropic.com"
+            git add docs/heat-alert-state.json
+            git commit -m "chore: record heat alert sent"
+            git push
+          else
+            echo "no alert sent, nothing to record"
+          fi

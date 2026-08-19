@@ -1,0 +1,299 @@
+{
+  "name": "Adult doll import rules and charges by country",
+  "description": "Legal status, duty and customs treatment for importing adult-form dolls, by destination. Each row keeps its own sources.",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "publisher": "https://thedollscout.com/",
+  "documentation": "https://thedollscout.com/importing/",
+  "countryCount": 11,
+  "notLegalAdvice": "This is a reading of published rules, not legal advice. Import law changes, enforcement varies, and a summary cannot cover your circumstances. Verify with the destination's customs authority before ordering.",
+  "universalProhibition": "Childlike dolls are prohibited in every jurisdiction covered here and carry serious criminal penalties. This site covers adult-form products only and will not help anyone import otherwise.",
+  "countries": [
+    {
+      "slug": "australia",
+      "country": "Australia",
+      "adultFormLegalToImport": true,
+      "summary": "Adult-form dolls legal to import. Childlike dolls carry up to 15 years — enforcement is active and aggressive.",
+      "status": "Adult-form dolls are legal for an adult to import into Australia. There is no Commonwealth ban on adult dolls as a category, and every enforcement action we could find concerned childlike dolls, not adult ones. The prohibition is defined by the apparent age of the figure, not by the product type.",
+      "duty": "GST is 10%. The low-value threshold is AUD 1,000 per consignment, measured on customs value excluding shipping and insurance. At or below that, registered overseas sellers charge GST at checkout; above it, the Australian Border Force assesses GST — and any duty — at the border before the goods are released. Most full-size dolls sit above AUD 1,000, so expect border assessment rather than checkout GST. The threshold is not a tax-free allowance, it only decides who collects. We could not confirm the specific tariff classification for dolls, so treat any single duty percentage you are quoted as unverified until you check the ABF tariff.",
+      "customs": "The ABF runs intelligence-led targeting for childlike dolls across sea, air and mail cargo, and its published enforcement pattern is worth understanding before you order: an interception is frequently followed by a search warrant at the buyer's home and seizure of phones and computers, which can produce further charges. In other words, the downside of a wrong purchase here is not a lost parcel. Adult-form dolls are not treated as objectionable goods as a class, and we found no enforcement action against one.",
+      "childlikeDollsProhibited": "Criminal, and prosecuted. Possession of a childlike doll is an offence under section 273A.1 of the Criminal Code, inserted by the Combatting Child Sexual Exploitation Legislation Amendment Act 2019 and applying from 21 September 2019, carrying a maximum of 15 years. Importation is charged under the Customs Act 1901, carrying up to 10 years plus a substantial fine. South Australia has its own separate offence. The test is whether a reasonable person would consider the object resembles a person under 18 — a question about appearance, decided by a court.",
+      "sources": [
+        {
+          "label": "Criminal Code amendment (Act No. 72 of 2019)",
+          "url": "https://www.legislation.gov.au/Details/C2019A00072"
+        },
+        {
+          "label": "ABF — childlike doll import crackdown",
+          "url": "https://www.abf.gov.au/newsroom-subsite/Pages/Crackdown-on-child-like-sex-doll-imports-across-NSW-results-in-multiple-arrests.aspx"
+        },
+        {
+          "label": "CDPP — doll importation prosecutions",
+          "url": "https://www.cdpp.gov.au/case-reports/cdpp-prosecutes-child-sex-doll-importation-crimes"
+        },
+        {
+          "label": "ATO — GST on low value imported goods",
+          "url": "https://www.ato.gov.au/businesses-and-organisations/international-tax-for-business/gst-for-non-resident-businesses/gst-on-low-value-imported-goods"
+        }
+      ],
+      "page": "https://thedollscout.com/importing/australia.html"
+    },
+    {
+      "slug": "new-zealand",
+      "country": "New Zealand",
+      "adultFormLegalToImport": true,
+      "summary": "Lawful in principle, but the seizure standard is broader and vaguer than Australia's — read before ordering.",
+      "status": "Adult-form dolls are lawful in principle, but New Zealand's framing deserves more caution than Australia's. There is no doll-specific statute. Instead, section 95 of the Customs and Excise Act 2018 prohibits importing objectionable publications and other indecent or obscene articles, and New Zealand Customs' own public guidance warns that bringing in \"sex toys or dolls that are considered to be indecent or obscene\" can result in seizure and prosecution. That wording is not limited to childlike dolls, and the assessment sits with Customs. Every documented seizure we found involved childlike features, and we found no confirmed case of a genuinely adult-form doll being seized — but the guidance permits it, so do not treat the position as settled.",
+      "duty": "GST is 15%. The low-value threshold is NZD 1,000 per consignment, measured on the price paid excluding transport, insurance, GST and duty. Since 1 December 2019, Customs does not collect GST or duty at the border on consignments at or below that value; instead, offshore suppliers exceeding NZD 60,000 in annual New Zealand consumer sales must register and charge 15% at checkout. Above NZD 1,000 — or where Customs lacks evidence GST was paid — Customs collects at the border and issues a demand notice before release. From 1 April 2026 a per-consignment Goods Management Levy also applies, including to low-value imports, at roughly NZD 2.21 by air or NZD 2.09 by sea plus GST.",
+      "customs": "New Zealand seizes fewer dolls than Australia, and Customs has publicly said this is because its powers are narrower — it is limited to full-unit dolls where Australia and the UK also seize parts, and it has lobbied for stronger law. Reported figures put the total at roughly seven border seizures and four post-border seizures of full-unit dolls since 2017. Penalty exposure is serious: importing objectionable publications carries up to 14 years, and possession of an item classified objectionable carries up to 10 years.",
+      "childlikeDollsProhibited": "Prohibited, by an indirect route. Customs seizes the item under the Customs and Excise Act 2018, the Classification Office then classifies it as objectionable under the Films, Videos, and Publications Classification Act 1993, and possession of a classified objectionable item becomes an offence carrying up to 10 years. A 2019 Timaru case followed exactly this sequence and produced an 18-month sentence.",
+      "sources": [
+        {
+          "label": "NZ Customs — objectionable material guidance",
+          "url": "https://www.customs.govt.nz/personal/prohibited-and-restricted-items/objectionable-material/"
+        },
+        {
+          "label": "Inland Revenue — GST on low value imported goods",
+          "url": "https://www.ird.govt.nz/gst/gst-for-overseas-businesses/gst-on-low-value-imported-goods/when-to-charge-gst-on-low-value-imported-goods"
+        },
+        {
+          "label": "NZ Customs — 2026 goods levy changes",
+          "url": "https://www.customs.govt.nz/customs-information-and-legislation/goods-levies/goods-levies-2026-changes"
+        },
+        {
+          "label": "NZ Herald — Customs seeks stronger seizure powers",
+          "url": "https://www.nzherald.co.nz/nz/customs-wants-stronger-law-to-seize-childlike-sex-dolls-favoured-by-paedophiles/EYWIOLX5HRGFNB3REENZVRDVQU/"
+        }
+      ],
+      "page": "https://thedollscout.com/importing/new-zealand.html"
+    },
+    {
+      "slug": "united-states",
+      "country": "United States",
+      "adultFormLegalToImport": true,
+      "summary": "No federal ban on adult-form dolls — but the $800 duty-free allowance every other guide still quotes was abolished in August 2025.",
+      "status": "There is no federal statute prohibiting the import, sale or possession of an adult-form doll. Admissibility at the border runs through 19 U.S.C. § 1305, which bars importing articles that are “obscene or immoral” — an obscenity judgement made in the first instance by a CBP officer at the port, not a product-category rule. The honest framing is therefore “not prohibited” rather than “expressly permitted”: ordinary adult-form dolls are admitted in practice, but there is no statutory safe harbour. That Congress has repeatedly tried and failed since 2017 to ban even the childlike subset is itself evidence that no general federal ban exists.",
+      "duty": "<strong>This is where almost every other buyer guide is now wrong.</strong> The $800 de minimis allowance is gone. Executive Order 14324 suspended duty-free de minimis treatment for all countries effective 29 August 2025; interim final rules published 24 June 2026 indefinitely suspended it for merchandise arriving by every mode other than the international postal network; and the One Big Beautiful Bill Act statutorily terminates it from 1 July 2027. In practice, a doll shipped to a US buyer today is dutiable regardless of value, requires a customs entry, and will usually attract a carrier brokerage fee on top. We deliberately do not quote a duty percentage: the tariff classification for full-size adult dolls is unsettled — CBP has classified vibrating devices under heading 9019 and a non-vibrating plastic article under 3926, and we found no ruling covering a full-size doll. Anyone importing as a business should seek a binding ruling.",
+      "customs": "CBP may open an international parcel without a warrant. Where § 1305 is invoked the machinery is administrative and fast: the article is seized and referred to the US Attorney, who must institute forfeiture proceedings within 14 days. We found no CBP directive addressing adult dolls specifically and no published interception statistics, so treat any claim about how often these parcels get opened as speculation. The documented risk vectors are misclassification, undervaluation, and the childlike-appearance judgement.",
+      "childlikeDollsProhibited": "There is no federal child-sex-doll statute. The CREEPER Act passed the House in June 2018 and died in the Senate; CREEPER 2.0 has been reintroduced in three consecutive Congresses and remains in committee. Federal exposure therefore runs through the general obscenity and customs statutes. State law is where the felonies are: Arizona, Florida, Hawaii, Kentucky, Louisiana, South Dakota and Tennessee have enacted statutes, and the Arizona, Hawaii, Kentucky and Louisiana provisions expressly reach <em>importing</em> — so a package crossing into those states creates state exposure independent of federal law.",
+      "sources": [
+        {
+          "label": "19 U.S.C. § 1305 — immoral articles",
+          "url": "https://uscode.house.gov/view.xhtml?req=(title:19+section:1305+edition:prelim)"
+        },
+        {
+          "label": "EO 14324 implementation notice (Federal Register)",
+          "url": "https://www.federalregister.gov/documents/2025/09/02/2025-16802/notice-of-implementation-of-the-presidents-executive-order-14324-suspending-duty-free-de-minimis"
+        },
+        {
+          "label": "Indefinite suspension of de minimis (June 2026 rules)",
+          "url": "https://www.federalregister.gov/documents/2026/06/24/2026-12670/indefinite-suspension-of-the-de-minimis-exemption-for-merchandise-arriving-through-all-modes-other"
+        },
+        {
+          "label": "CREEPER Act (H.R. 4655, 115th Congress)",
+          "url": "https://www.congress.gov/bill/115th-congress/house-bill/4655"
+        },
+        {
+          "label": "Tennessee Code § 39-17-910",
+          "url": "https://law.justia.com/codes/tennessee/title-39/chapter-17/part-9/section-39-17-910/"
+        }
+      ],
+      "page": "https://thedollscout.com/importing/united-states.html"
+    },
+    {
+      "slug": "canada",
+      "country": "Canada",
+      "adultFormLegalToImport": true,
+      "summary": "Legal unless classified as obscene under Tariff Item 9899.00.00 — and the CAD 20 threshold that guides routinely miss means China-origin shipments are always taxable.",
+      "status": "Adult-form dolls are not a prohibited category. Importation is lawful for a private adult unless the goods fall within Tariff Item 9899.00.00, which bars obscene material and child pornography. CBSA Memorandum D9-1-1 sets out how that classification is made, and notably defines “sex” for these purposes to include illustrations and animation — which is the doctrinal route by which a three-dimensional object can be brought within the item at all.",
+      "duty": "The threshold that matters is not the one usually quoted. Under CUSMA, courier shipments <em>from the US or Mexico</em> are duty-free below CAD 150 and tax-free below CAD 40. For courier shipments from anywhere else — including China, where nearly every doll ships from — the threshold is <strong>CAD 20 for both duty and tax</strong>, which in practice means everything is assessable. CBSA also does not permit splitting an order across shipments to stay under a threshold, so a doll plus accessories counts as one value. Shipments above CAD 3,300 fall outside the simplified Low Value Shipment programme and need a standard commercial entry, which several premium dolls will exceed.",
+      "customs": "CBSA can detain and seize goods it believes fall under 9899.00.00, with the determination procedure — and the redetermination route — set out in Memorandum D9-1-17. One genuinely useful mechanism almost no other guide mentions: where admissibility is genuinely uncertain, an importer can submit a sample in advance to CBSA’s Prohibited Importations Unit. Retailers and practitioners report that officers assess appearance discretionarily on height, proportions and facial features; that is consistent with the published framework but it is not itself a CBSA statement, so we flag it as reported rather than official.",
+      "childlikeDollsProhibited": "Prohibited via Tariff Item 9899.00.00 and Criminal Code s. 163.1. The leading matter is <em>R. v. Harrisson</em> in the Newfoundland and Labrador Provincial Court, believed to be Canada’s first trial on child-pornography charges involving a doll: the doll was intercepted by CBSA at the border, the judge found that it <em>was</em> child pornography, but acquitted in June 2019 because the Crown had not proved the accused intended to buy a doll resembling a child. That is a trial-level decision on knowledge and intent; we found no appellate authority, so the point should be treated as unsettled above the trial level rather than as decided law.",
+      "sources": [
+        {
+          "label": "Customs Tariff s. 136 (prohibited importations)",
+          "url": "https://laws-lois.justice.gc.ca/eng/acts/C-54.011/section-136.html"
+        },
+        {
+          "label": "CBSA Memorandum D9-1-1 (obscene material)",
+          "url": "https://www.cbsa-asfc.gc.ca/publications/dm-md/d9/d9-1-1-eng.html"
+        },
+        {
+          "label": "CBSA — CUSMA low value shipment thresholds",
+          "url": "https://www.cbsa-asfc.gc.ca/services/cusma-aceum/lvs-efv-eng.html"
+        },
+        {
+          "label": "CBC — R. v. Harrisson verdict",
+          "url": "https://www.cbc.ca/news/canada/newfoundland-labrador/kenneth-harrisson-not-guilty-1.5146259"
+        }
+      ],
+      "page": "https://thedollscout.com/importing/canada.html"
+    },
+    {
+      "slug": "united-kingdom",
+      "country": "United Kingdom",
+      "adultFormLegalToImport": true,
+      "summary": "No prohibition identified on adult-form dolls. Importing a childlike doll is prosecuted — though simple possession is still not an offence.",
+      "status": "We found no UK provision restricting adult-form dolls, and CPS guidance is framed entirely around childlike ones. Treat that as “no prohibition identified” rather than as affirmative permission — the border route runs through obscenity law, not a product list.",
+      "duty": "We were not able to verify current UK import VAT mechanics, thresholds or the commodity code for this category to the standard this page requires, so we are not publishing figures. Check the current position on gov.uk before ordering. What we can say is that the German equivalent changed materially in July 2026, so any figure you find in an older guide deserves suspicion.",
+      "customs": "Border Force has referred roughly 230 suspected childlike dolls to police since September 2016. Reported prosecutions share a pattern worth understanding: a parcel from Hong Kong or China is intercepted at an airport, frequently declared as a “mannequin”, and the doll charge is then paired with indecent-images offences after devices are examined. Sentences have ranged from suspended terms to two years eight months.",
+      "childlikeDollsProhibited": "There is no offence of simple possession in England and Wales. Importation is charged as knowingly acquiring possession of goods subject to a prohibition on importing indecent or obscene articles, under s. 42 of the Customs Consolidation Act 1876 together with s. 170(1)(a) of the Customs and Excise Management Act 1979. The CPS test asks whether the doll was created for sexual use and has sufficient characteristics of a child that it is plainly to be looked at and used for that childlike appearance. <strong>One open thread:</strong> a Child-like Sexual Abuse Dolls (Offences) Bill exists before Parliament and we could not establish its current status, so a dedicated possession offence may now exist or be imminent. Check before relying on the possession position.",
+      "sources": [
+        {
+          "label": "CPS prosecution guidance — childlike sex dolls",
+          "url": "https://www.cps.gov.uk/prosecution-guidance/sex-dolls-childlike"
+        },
+        {
+          "label": "Child-like Sexual Abuse Dolls (Offences) Bill",
+          "url": "https://bills.parliament.uk/bills/4176"
+        }
+      ],
+      "page": "https://thedollscout.com/importing/united-kingdom.html"
+    },
+    {
+      "slug": "germany",
+      "country": "Germany",
+      "adultFormLegalToImport": true,
+      "summary": "Adult-form dolls fine. Childlike dolls are criminal to merely possess — and the €150 duty-free threshold was abolished on 1 July 2026.",
+      "status": "Adult-form dolls are lawful to import for private use. Germany is, however, one of the strictest jurisdictions on the childlike variant, and that prohibition was confirmed as constitutional in May 2026, so it is now settled law rather than a contested provision.",
+      "duty": "<strong>This changed very recently.</strong> The €150 customs duty-free threshold was abolished with effect from 1 July 2026. Consignments up to €150 now attract a flat €3 customs charge per tariff position on the declaration, and import VAT at 19% applies on top, calculated on customs value plus duty plus freight and insurance. Dolls almost always sit well above €150, so they fall outside the flat-rate band entirely and clear under the normal tariff — full third-country duty plus 19% import VAT. The carrier normally advances the charges and bills you.",
+      "customs": "The documented sequence for a doll with childlike features is: parcel inspected and seized by Zoll at import, referral to the public prosecutor, who must investigate on its own motion, and confiscation and destruction of the item on conviction. How Zoll draws the adult/child line in practice — on height, proportions or facial morphology — is not published, and that ambiguity is the real risk for a lawful buyer of a petite adult doll.",
+      "childlikeDollsProhibited": "Criminal, including simple possession. Section 184l of the Criminal Code, in force since 1 July 2021, punishes acquisition, possession and bringing such a doll into or through Germany with up to three years, and commercial manufacture, trade or import with up to five. It expressly covers replicas of a child’s body part, so torsos are in scope, not only whole dolls. In May 2026 the Federal Constitutional Court rejected challenges to the provision, holding the interference justified.",
+      "sources": [
+        {
+          "label": "StGB § 184l (childlike sex dolls)",
+          "url": "https://www.gesetze-im-internet.de/stgb/__184l.html"
+        },
+        {
+          "label": "Bundesverfassungsgericht — 21 May 2026 decision",
+          "url": "https://www.bundesverfassungsgericht.de/SharedDocs/Pressemitteilungen/DE/2026/bvg26-038.html"
+        },
+        {
+          "label": "Zoll — abolition of the €150 threshold",
+          "url": "https://www.zoll.de/DE/Fachthemen/Zoelle/Wegfall-der-150-Euro-Zollfreigrenze/wegfall-der-150-euro-zollfreigrenze_node.html"
+        }
+      ],
+      "page": "https://thedollscout.com/importing/germany.html"
+    },
+    {
+      "slug": "japan",
+      "country": "Japan",
+      "adultFormLegalToImport": true,
+      "summary": "Legal, and the home of the industry's premium manufacturers — but Japan is the one country where childlike dolls are also legal, which is a trap for foreign buyers.",
+      "status": "Legal for a private adult. Japan is the world’s largest producer of high-end adult dolls and they are manufactured and retailed openly domestically. Customs Act Article 69-11 bars importing articles that may harm public safety or morals, and Penal Code Article 175 criminalises distributing, selling or publicly displaying obscene objects — but not private possession or private use.",
+      "duty": "Consumption tax is 10%. Goods with a total customs value at or below ¥10,000 are exempt from both duty and consumption tax, but a doll will comfortably exceed that, so expect 10% plus any applicable duty. Note that the low-value exemption is slated for withdrawal, with overseas suppliers required to register and collect Japanese consumption tax from April 2028 — which matters little for this category, but does date any guide written before then.",
+      "customs": "We found no enforcement case against an adult-form doll and no source establishing that Japan Customs has ever detained one on grounds of anatomical realism. Given that such dolls are openly made and sold inside Japan, the practical risk to a private importer appears very low — but that is an observation about practice, not a legal guarantee.",
+      "childlikeDollsProhibited": "<strong>Japan is the major international outlier: childlike dolls are legal to manufacture, sell and possess there.</strong> Japan’s 2014 ban on possession of child sexual abuse material covers photographic depictions of real children and does not extend to manga, anime or dolls. Legislative attempts to ban childlike dolls have repeatedly failed.",
+      "sources": [
+        {
+          "label": "Japan Customs — prohibited imports",
+          "url": "https://www.customs.go.jp/english/summary/prohibit.htm"
+        },
+        {
+          "label": "Japan Customs FAQ — low value consignments",
+          "url": "https://www.customs.go.jp/english/c-answer_e/kinseihin/2001_e.htm"
+        },
+        {
+          "label": "Act on child prostitution and child pornography (translation)",
+          "url": "https://www.japaneselawtranslation.go.jp/en/laws/view/2895/en"
+        }
+      ],
+      "page": "https://thedollscout.com/importing/japan.html"
+    },
+    {
+      "slug": "south-korea",
+      "country": "South Korea",
+      "adultFormLegalToImport": true,
+      "summary": "Legal since the customs guideline of December 2022, reaffirmed by the Supreme Court in April 2026 — after years of seizures and litigation.",
+      "status": "Legal for adult-form dolls. Getting here took seven years of litigation. Korea Customs formerly suspended clearance of full-body dolls under Customs Act Article 234(1) as goods harming public morals. The Supreme Court ruled against that position in June 2019, holding that a realistic adult doll is not such an item, but customs continued suspending shipments and importers kept suing — and mostly winning — with more than a thousand dolls reportedly held at one point. Korea Customs formally lifted the ban on 26 December 2022 with revised Real Doll Import Clearance Guidelines, and the Supreme Court reaffirmed the position in April 2026.",
+      "duty": "VAT is 10% on imports. The personal-use de minimis is USD 150, or USD 200 for goods of US origin under the Korea–US agreement. A doll exceeds both, so expect duty plus 10% VAT on the full value. Personal imports also require a Personal Customs Clearance Code, which you must obtain before ordering.",
+      "customs": "Clearance is now the norm for a standard adult doll, but three things still get shipments stopped. Youthful styling is assessed on overall appearance including height, weight, face and voice, so petite or young-faced models are the practical danger zone. Dolls made to resemble a specific identifiable person are expressly barred. And dolls with built-in electrical functions such as heating, voice or massage trigger a separate safety-certification requirement. The April 2026 ruling was explicit that customs cannot refuse clearance on external appearance alone — it must examine the purpose of import, the user, and the environment and manner of use.",
+      "childlikeDollsProhibited": "Prohibited. The Supreme Court held in November 2021 that a device realistically modelled on the physical appearance of a female minor treats children as sexual objects and is therefore goods harming public morals under Article 234. The 2022 customs guideline codified this, barring minor-form dolls assessed on height, weight, face and voice.",
+      "sources": [
+        {
+          "label": "Korea Customs — revised import clearance guidelines (Dec 2022)",
+          "url": "https://www.korea.kr/briefing/pressReleaseView.do?newsId=156544509"
+        },
+        {
+          "label": "CBS News — Korea formally ends import ban",
+          "url": "https://www.cbsnews.com/news/south-korea-formally-ends-ban-on-imported-sex-dolls-after-lawsuits-over-customs-seizures"
+        },
+        {
+          "label": "Korea Herald — Supreme Court bars childlike dolls (2021)",
+          "url": "https://m.koreaherald.com/article/2732051"
+        }
+      ],
+      "page": "https://thedollscout.com/importing/south-korea.html"
+    },
+    {
+      "slug": "singapore",
+      "country": "Singapore",
+      "adultFormLegalToImport": true,
+      "summary": "Not on any prohibited list and no statute bans it — but an officer can still classify it as an obscene article. A grey zone, not a safe harbour.",
+      "status": "A plain adult doll imported for genuine personal use is most likely not prohibited, but this is a grey zone rather than a safe harbour. Penal Code section 292 criminalises importing an obscene object for the purposes of sale, hire, distribution, public exhibition or circulation — personal use sits outside that purpose element. Singapore Customs’ prohibited list enumerates obscene articles, publications, videotapes, videodiscs and software, and does not separately name dolls. What remains is officer discretion at inspection. That adult products are sold openly in Singapore retail suggests the discretion is not exercised aggressively, but it exists.",
+      "duty": "GST is 9%, raised from 8% on 1 January 2024. Singapore levies customs duty on only four categories — liquor, tobacco, motor vehicles and petroleum — so a doll attracts no duty. The low-value goods threshold is S$400 CIF for goods arriving by air or post. A common misstatement is that the S$400 relief was simply removed in 2023; what actually happened is narrower. From 1 January 2023 the Overseas Vendor Registration regime was extended to low-value goods, so a GST-registered overseas vendor charges 9% at checkout, while import GST relief at the border still applies below S$400 where the supplier is not so registered. Goods above S$400 have always been assessed at the border. A full-size doll exceeds S$400, so the practical rule is 9% GST at the border and no duty.",
+      "customs": "We found no enforcement case against an adult-form doll. The exposure is officer discretion rather than a listed prohibition, which puts the risk somewhere between low and moderate.",
+      "childlikeDollsProhibited": "Prohibited. Law firm sources cite a Penal Code provision introduced by the Criminal Law Reform Act 2019 prohibiting possession, sale and importation of child sex dolls, defined as anatomically accurate dolls resembling a person under 16 and designed for sexual purposes. We could not open the statute to confirm the section number, so we cite the prohibition rather than a number.",
+      "sources": [
+        {
+          "label": "Singapore Customs — controlled and prohibited goods",
+          "url": "https://customs.gov.sg/businesses/importing-goods/controlled-and-prohibited-goods-for-import/"
+        },
+        {
+          "label": "IRAS — GST on imported low value goods",
+          "url": "https://www.iras.gov.sg/taxes/goods-services-tax-(gst)/consumers/gst-on-imported-low-value-goods"
+        },
+        {
+          "label": "Penal Code 1871",
+          "url": "https://sso.agc.gov.sg/Act/PC1871"
+        }
+      ],
+      "page": "https://thedollscout.com/importing/singapore.html"
+    },
+    {
+      "slug": "malaysia",
+      "country": "Malaysia",
+      "adultFormLegalToImport": false,
+      "summary": "Treat as prohibited. Enforcement is active and seizures are routine — our advice is not to attempt import.",
+      "status": "High legal risk; treat as effectively prohibited. Penal Code section 292 covers sale, hire, distribution, public exhibition, circulation and importation of obscene objects, and Malaysian authorities routinely classify adult products under it. The Customs Act 1967 empowers prohibition orders whose schedules list indecent and obscene articles, and the Printing Presses and Publications Act is also used as an enforcement hook. “Obscene” is not statutorily defined, which cuts both ways: there is no bright-line ban on dolls specifically, but there is also no safe harbour for an importer. A full-size doll is conspicuous and hard to characterise as anything else.",
+      "duty": "Largely academic given the legal position. For completeness: a 10% sales tax applies to low-value goods at or below RM500 sold online and imported by land, sea or air, effective 1 January 2024, with sellers registering above an annual sales threshold; goods above RM500 attract normal import duty and sales tax at the border.",
+      "customs": "High seizure risk, and this is not theoretical. The Home Ministry seized 2,295 units of adult products worth roughly RM70,000 in raids across Johor, Sarawak, Penang and Perak between mid-January and early February 2024, investigated under the publications legislation and Penal Code section 292. Selangor Customs seized contraband worth over RM700,000 including adult products in June 2024.",
+      "childlikeDollsProhibited": "Prohibited, as everywhere else on this site. Given that adult products themselves are treated as obscene objects here, a childlike doll compounds an already serious position.",
+      "sources": [
+        {
+          "label": "Malay Mail — Home Ministry seizure, February 2024",
+          "url": "https://www.malaymail.com/news/malaysia/2024/02/15/home-ministry-seizes-rm70000-worth-of-sex-toys-nationwide-johor-tops-the-list/118148"
+        },
+        {
+          "label": "Malay Mail — Selangor Customs seizure, June 2024",
+          "url": "https://www.malaymail.com/news/malaysia/2024/06/27/selangor-customs-seize-contraband-goods-worth-over-rm700000-including-sex-toys/141834"
+        },
+        {
+          "label": "Ministry of Finance — sales tax on low value goods",
+          "url": "https://www.mof.gov.my/portal/en/news/press-release/sales-tax-on-imported-low-value-goods"
+        }
+      ],
+      "page": "https://thedollscout.com/importing/malaysia.html"
+    },
+    {
+      "slug": "thailand",
+      "country": "Thailand",
+      "adultFormLegalToImport": false,
+      "summary": "Illegal to import, with real criminal exposure. Open sale in local markets gives a false sense of safety — the border is the chokepoint.",
+      "status": "Illegal. Criminal Code section 287 covers making, producing, possessing for trade, importing, distributing and trading in obscene objects, carrying up to three years’ imprisonment and a fine, and adult products are interpreted as obscene objects under it. Such goods are prohibited imports under the Customs Act. Reform has been proposed by more than one political party but, as far as we could establish, has not passed.",
+      "duty": "VAT is 7%. The former THB 1,500 de minimis was first narrowed by a temporary VAT measure from July 2024 and then, according to secondary reporting, abolished from 1 January 2026, making all imported parcels assessable regardless of value. We could not confirm that final step against the Customs Department directly, so verify it if the figure matters to you — though for this category the legal position makes the tax question moot.",
+      "customs": "Very high seizure risk. Confiscation at the border is the reported norm, and travellers have been warned of imprisonment and fines for bringing in even small personal devices.",
+      "childlikeDollsProhibited": "Prohibited, and compounding an already illegal import.",
+      "sources": [
+        {
+          "label": "Bangkok Post — proposal to legalise adult products",
+          "url": "https://www.bangkokpost.com/thailand/politics/2833146/move-forward-seeks-to-legalise-porn-sex-toys-in-thailand"
+        },
+        {
+          "label": "Nation Thailand — end of duty-free treatment for low-value imports",
+          "url": "https://www.nationthailand.com/business/trade/40060170"
+        }
+      ],
+      "page": "https://thedollscout.com/importing/thailand.html"
+    }
+  ]
+}

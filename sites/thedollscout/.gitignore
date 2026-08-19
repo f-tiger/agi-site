@@ -1,0 +1,9 @@
+node_modules/
+dist/
+
+# This is a zero-build static site — it has no package.json of its own.
+# These appear only when a script installs Playwright temporarily to run the
+# SEO audit or a scrape, and committing them would imply a build step that
+# does not exist.
+package.json
+package-lock.json

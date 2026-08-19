@@ -1,0 +1,63 @@
+name: Can crawlers actually fetch the site?
+# ── 迁入公开 monorepo f-tiger/agi-site(2026-08-19,owner 决定)──
+# 原仓 .github 为历史档案。公开仓 Actions 分钟免费。
+# 本 workflow 的 run 步骤默认 working-directory: sites/thedollscout/。
+
+
+# The editing sandbox has no outbound network, so every claim this project has
+# made about being indexable has been an assumption. A runner has egress and
+# can check it from the outside, which is the only place the answer lives.
+#
+# Runs weekly and on demand. It writes nothing and publishes nothing; it only
+# reports whether the pages we keep optimising can be fetched at all.
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 6 * * 1"
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: sites/thedollscout
+    steps:
+      - uses: actions/checkout@v4
+        with:
+
+      # urls.txt is generated alongside sitemap.xml, so the check always covers
+      # exactly what we publish rather than a list someone maintains by hand.
+      - name: Regenerate the URL list
+        run: node scripts/build-sitemap.mjs
+
+      - name: Fetch every page as each crawler
+        run: node scripts/crawl-check.mjs 2>&1 | tee crawl.log
+
+      # Cloudflare Pages 308s /x.html to /x. Publishing the .html form made every
+      # sitemap entry a redirect and every canonical point at a URL that bounced
+      # — 35 of 40, measured here. That is a self-contradicting signal on almost
+      # the whole site and it is consistent with being crawled daily and indexed
+      # never, so it is checked on every run rather than once.
+      - name: Do published URLs agree with what the host serves?
+        if: always()
+        run: node scripts/url-canonical-check.mjs 2>&1 | tee -a crawl.log
+
+      # The unit tests import callTool and read the datasets off local disk, so
+      # they have never touched the deployed endpoint. Whether the Pages
+      # Function is actually deployed, whether env.ASSETS.fetch can reach the
+      # published JSON from inside the Worker, whether CORS lets a browser-based
+      # assistant call it — all unverified, and all silent when broken.
+      - name: Call the live MCP endpoint as a client would
+        if: always()
+        run: node scripts/mcp-live-check.mjs 2>&1 | tee -a crawl.log
+
+      - name: Report
+        if: always()
+        run: |
+          {
+            echo '## Crawler reachability'
+            echo '```'
+            cat crawl.log
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"

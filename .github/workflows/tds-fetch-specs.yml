@@ -1,0 +1,114 @@
+name: Collect doll height/weight specs
+# ── 迁入公开 monorepo f-tiger/agi-site(2026-08-19,owner 决定)──
+# 原仓 .github 为历史档案。公开仓 Actions 分钟免费。
+# 本 workflow 的 run 步骤默认 working-directory: sites/thedollscout/。
+
+
+# Weekly and on demand. Weight is the most reported source of buyer regret and almost no
+# shop shows it next to the photo, so a height-to-weight reference table would
+# be genuinely useful — but only with real numbers. This finds out whether the
+# data is obtainable. It writes content/doll-specs.json and publishes nothing;
+# a human decides afterwards whether the sample is honest enough to represent.
+
+on:
+  # Weekly, both distributors. A single scrape is a snapshot; a series is
+  # evidence. Two consecutive days showed ~96% of listings carrying a "sale"
+  # price with not one price moving — which is exactly what an ordinary sale
+  # also looks like over 24 hours. Only a run of dated observations can tell
+  # a genuine promotion from a reference price nobody is ever charged, and
+  # that question is worth a page if the answer holds.
+  schedule:
+    - cron: "23 4 * * 2"
+  workflow_dispatch:
+    inputs:
+      vendor:
+        description: >-
+          Distributor id from scripts/vendors.mjs. Only enabled vendors run; a
+          vendor stays disabled until a run proves its selectors, because a
+          half-working scraper produces confident wrong prices.
+        required: false
+        default: yourdoll
+      dry_run:
+        description: >-
+          Probe only: run the vendor (even a disabled one), print what the
+          selectors found, and write nothing. This is how a new distributor
+          gets proven before it is allowed to contribute a single price.
+        type: boolean
+        required: false
+        default: false
+
+permissions:
+  contents: write
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: sites/thedollscout
+    strategy:
+      # One at a time: each job commits and pushes, and parallel runs would
+      # race on the branch.
+      max-parallel: 1
+      fail-fast: false
+      matrix:
+        vendor: >-
+          ${{ github.event_name == 'schedule'
+              && fromJSON('["yourdoll","perfectlovedolls"]')
+              || fromJSON(format('["{0}"]', inputs.vendor || 'yourdoll')) }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+
+      - name: Install Playwright browser
+        run: |
+          npm init -y > /dev/null
+          npm install playwright@1 > /dev/null 2>&1
+          npx playwright install --with-deps chromium 2>&1 | tail -1
+
+      # Gate, not a formality. A probe once reported prices reading "Regular
+      # price $1,499.00" and still summarised them as rows that "parsed
+      # cleanly" — and the same defect would have reported a discounted rival's
+      # compare-at price as its price. The fixtures pin both storefront engines
+      # on sale and off; if they fail, no prices get collected at all.
+      - name: Test the parser against fixture markup
+        run: node scripts/test-parse-product.mjs
+
+      - name: Read specs from vendor product pages
+        env:
+          VENDOR: ${{ matrix.vendor }}
+          DRY_RUN: ${{ inputs.dry_run && '1' || '0' }}
+        run: node scripts/fetch-specs.mjs 2>&1 | tee specs.log
+
+      - name: Summarise for review
+        run: |
+          {
+            echo '## Spec collection'
+            echo '```'
+            tail -30 specs.log
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+          rm -f specs.log
+
+      - name: Commit the collected data
+        if: ${{ !inputs.dry_run }}
+        run: |
+          # `git diff` is blind to untracked files, so the very first run
+          # wrote the data and then reported "no change". Stage first.
+          #
+          # The glob matters: a non-default vendor writes
+          # content/doll-specs-<vendor>.json, and staging only the base
+          # filename would have silently discarded every second-distributor
+          # run — the same shape of bug as the untracked-file one above,
+          # which is why both are spelled out here.
+          # Fourth instance of this same bug class, so it is spelled out
+          # again: the path pattern has to cover everything the script
+          # writes. Dated snapshots live under content/snapshots/ and would
+          # not have matched content/doll-specs*.json — the archive would
+          # have been created on the runner and thrown away with it.
+          bash scripts/commit-generated.sh specs-bot \
+            "chore: collect doll height/weight specs" \
+            'content/doll-specs*.json' content/snapshots
+
+      # content/ is excluded from the published site — this is input data for an
+      # editorial decision, not a page.

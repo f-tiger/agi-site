@@ -1,0 +1,2106 @@
+{
+ "note": "金标准：由 gpt-tokenizer(MIT) 的参考实现生成，用于回归检验 assets/tokenizer.js 自研的 BPE 合并算法。生成于 2026-08-14，语料含中日韩、ZWJ emoji、重音、空白边界与 400 条确定性随机串。",
+ "generated": "2026-08-14",
+ "cases": [
+  {
+   "t": "",
+   "cl": 0,
+   "o2": 0
+  },
+  {
+   "t": "a",
+   "cl": 1,
+   "o2": 1
+  },
+  {
+   "t": "Hello, world!",
+   "cl": 4,
+   "o2": 4
+  },
+  {
+   "t": "  leading spaces",
+   "cl": 3,
+   "o2": 3
+  },
+  {
+   "t": "trailing   ",
+   "cl": 3,
+   "o2": 3
+  },
+  {
+   "t": "It's a test, isn't it? I'd say so — 100% sure.",
+   "cl": 19,
+   "o2": 16
+  },
+  {
+   "t": "免费额度到底有多少？这是一个中文句子，包含标点。",
+   "cl": 26,
+   "o2": 16
+  },
+  {
+   "t": "Free-tier limits for 218 AI tools, 121 verified.",
+   "cl": 13,
+   "o2": 13
+  },
+  {
+   "t": "https://baipiaoji.com/en/audio-quota-board.html?x=1&y=2",
+   "cl": 21,
+   "o2": 21
+  },
+  {
+   "t": "```js\nconst a = [1,2,3].map(x => x*2);\n```",
+   "cl": 21,
+   "o2": 21
+  },
+  {
+   "t": "ARIA nbsp and — em-dash and ​ zero-width",
+   "cl": 13,
+   "o2": 11
+  },
+  {
+   "t": "🎧🎙️ emoji test 🚀 with ZWJ 👩‍💻 family 👨‍👩‍👧‍👦",
+   "cl": 40,
+   "o2": 30
+  },
+  {
+   "t": "Ünïcödé äccènts, ß, İstanbul, ĳ",
+   "cl": 20,
+   "o2": 17
+  },
+  {
+   "t": "ロシア語とにほんご、한국어 텍스트도 함께",
+   "cl": 24,
+   "o2": 16
+  },
+  {
+   "t": "Numbers 1234567890 and 999 and 1,000,000",
+   "cl": 16,
+   "o2": 16
+  },
+  {
+   "t": "\n\n\nmultiple\n\nnewlines\n\n",
+   "cl": 6,
+   "o2": 6
+  },
+  {
+   "t": "\t\ttabs\tand\tspaces  mixed",
+   "cl": 8,
+   "o2": 8
+  },
+  {
+   "t": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+   "cl": 63,
+   "o2": 63
+  },
+  {
+   "t": "The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. ",
+   "cl": 201,
+   "o2": 201
+  },
+  {
+   "t": "秘塔 AI 搜索的免费额度：官方用户协议写明普通用户每日可获得一定额度的「刷新积分」。",
+   "cl": 46,
+   "o2": 26
+  },
+  {
+   "t": ",\udfb5\n中\n,dagIé\n\"KHc\ud83c符字2H字a中ß文cJ'aH,中H,",
+   "cl": 31,
+   "o2": 30
+  },
+  {
+   "t": "!",
+   "cl": 1,
+   "o2": 1
+  },
+  {
+   "t": "'\n符字g字1\udfb5d符I 3 d\udfb5gJ?\t!文??bHb\ud83cég字g1b",
+   "cl": 30,
+   "o2": 28
+  },
+  {
+   "t": "dK",
+   "cl": 2,
+   "o2": 2
+  },
+  {
+   "t": "é10K'1 中1字e\",中'31g J.Ié字?cß!?cc字\"",
+   "cl": 25,
+   "o2": 25
+  },
+  {
+   "t": "中'符Jd2b\ud83cJ\n,bb.2ß ß\udfb5??,2,ggbJ",
+   "cl": 24,
+   "o2": 25
+  },
+  {
+   "t": "'g\nI\n\ud83cHb.中'g中ßeage2g中HafJa字 符b\nf中J0.1\n\t\"1I?文\udfb50ab\ud83c.!\ud83c字字符a00a3",
+   "cl": 51,
+   "o2": 49
+  },
+  {
+   "t": "?字\"\" 字!Iee e\nbe\"de d符\tK0\"0'字\"1 aaK,e\t\n0cH",
+   "cl": 28,
+   "o2": 29
+  },
+  {
+   "t": "\te'符2\ud83cc\ncé,\tI!\nßbb.IKf?eH!",
+   "cl": 20,
+   "o2": 20
+  },
+  {
+   "t": "g22c'\t字a符符\t\"0c\ud83c?éH\"1ß字?a'ß",
+   "cl": 24,
+   "o2": 23
+  },
+  {
+   "t": "d'b",
+   "cl": 2,
+   "o2": 2
+  },
+  {
+   "t": "H\".\".ff'!?\t\t\udfb5ßd\udfb5eéd符0H I.\udfb5JKI1Ia1H\t中\ud83cfIHg符eHßH0符'K!ßg\"d中",
+   "cl": 46,
+   "o2": 46
+  },
+  {
+   "t": " 字ce字\ud83ccéJ'?JK2d\udfb5文a!Jf\tJ'中符'\udfb5é3\ud83ceaJJ",
+   "cl": 27,
+   "o2": 27
+  },
+  {
+   "t": "b中3符符文\ud83c Jß文I\ud83c221 '\n0\"中符c",
+   "cl": 19,
+   "o2": 19
+  },
+  {
+   "t": "!符Ib\udfb5ß字\"cKJ\udfb5\udfb5ß\"JgJc?\té0a\ud83c",
+   "cl": 23,
+   "o2": 23
+  },
+  {
+   "t": "Jé符!1,eeßI1I\udfb5ß\n?1,符Kf2b21deKIgcf字 g\udfb51字2中中H\udfb5字中.',",
+   "cl": 40,
+   "o2": 40
+  },
+  {
+   "t": "中符字HeHe\udfb5\udfb5e. 2f\"符中\naeb\ud83c中0\udfb5符!K\ud83c 符中中字,3?\n'中ß中文\udfb5字f'Kß.ébKß",
+   "cl": 49,
+   "o2": 47
+  },
+  {
+   "t": "' f符1ß?g2H3文d1fd字??\ud83c",
+   "cl": 17,
+   "o2": 17
+  },
+  {
+   "t": "\ud83ccd\"中中.,!!文K?\t1KI\t3Hf3b2ce\n\udfb52ß 中.",
+   "cl": 27,
+   "o2": 27
+  },
+  {
+   "t": "1文J,\ud83c0,\n!\t,eeéd\n2",
+   "cl": 14,
+   "o2": 14
+  },
+  {
+   "t": "\"bKd.,\ud83c2H, '文g字g字\udfb5IH\"ßba\"aa'  .Jc3é\t2字文3H\t3céedb?",
+   "cl": 40,
+   "o2": 40
+  },
+  {
+   "t": "g字J.🎵éd\nH2 \n3\ud83c中H?1\udfb52c0f\udfb5éKß",
+   "cl": 27,
+   "o2": 26
+  },
+  {
+   "t": "符eJßeKc中3?\nd中\ud83cebc1,!中J\udfb5afb,0?",
+   "cl": 23,
+   "o2": 23
+  },
+  {
+   "t": "2",
+   "cl": 1,
+   "o2": 1
+  },
+  {
+   "t": "I",
+   "cl": 1,
+   "o2": 1
+  },
+  {
+   "t": "中J符,\tJc文f0K b3ébbc\ud83c文\t0\n字",
+   "cl": 20,
+   "o2": 20
+  },
+  {
+   "t": "中字e符a\n文\udfb5I",
+   "cl": 9,
+   "o2": 8
+  },
+  {
+   "t": "中0ß\udfb5'3!0'?文Ic符Ieg,符\n,e 1文c\udfb5cf\"1 0é \tcK\udfb5中.\udfb53a3中文ß",
+   "cl": 42,
+   "o2": 41
+  },
+  {
+   "t": "ßßc文JßßKH 中?\udfb5b1e3🎵文\ud83c.?e\ud83cß字.ß字\"é中b文,c",
+   "cl": 34,
+   "o2": 32
+  },
+  {
+   "t": "\ud83c\"\n1gH\udfb5'e中faIgH0d H.符",
+   "cl": 18,
+   "o2": 17
+  },
+  {
+   "t": "dc",
+   "cl": 1,
+   "o2": 1
+  },
+  {
+   "t": ",H1fHß3K",
+   "cl": 7,
+   "o2": 7
+  },
+  {
+   "t": "bfdc2eßc",
+   "cl": 6,
+   "o2": 6
+  },
+  {
+   "t": "bIgIJa\"'gJ\ud83c.d1a'b符éI\tb文符c,b3字f 中\udfb5\udfb5Ieg",
+   "cl": 29,
+   "o2": 28
+  },
+  {
+   "t": "fc文3f\nKßdß!\ud83cH",
+   "cl": 12,
+   "o2": 12
+  },
+  {
+   "t": "字f符中HK\t,bß中ad!ab2aH!文2",
+   "cl": 18,
+   "o2": 18
+  },
+  {
+   "t": "H!I13,Hg,é?H!!ea\tfI.bßgK?é\t\n符 db'bKd",
+   "cl": 25,
+   "o2": 25
+  },
+  {
+   "t": "b\t'?\n\n'J2c.a0fe!c符\udfb53é32文é?字gK1b中e''.K文d文2gI1中11.文bß!2g\ud83cd'字d3",
+   "cl": 52,
+   "o2": 51
+  },
+  {
+   "t": "\" fK\tc文文,文2\n1aI\ud83cJ文文.b0'df文 2?f\ncg,. \ud83c1",
+   "cl": 30,
+   "o2": 31
+  },
+  {
+   "t": "H文HJ,文Jßgf\"bKJ0\t\"b中字ée1中é\"符'fb20 d!Ja'IHßge3",
+   "cl": 36,
+   "o2": 34
+  },
+  {
+   "t": "2Iß字ß符e\tag字\ud83c\"d2f?fß?符é'符b字Jf\"ß  13.0\n2文e 文",
+   "cl": 38,
+   "o2": 39
+  },
+  {
+   "t": "符H\"IbcI3KdI2é\ud83c2中!e.d'中f\udfb5Hga\n ßJgc0d !\n字字\"fac0\udfb5",
+   "cl": 37,
+   "o2": 36
+  },
+  {
+   "t": "0J1 !a?'gßé字字中fc.H''K符2文字Hc\nIJcaf符\udfb5JgJc",
+   "cl": 30,
+   "o2": 30
+  },
+  {
+   "t": "2\"f1'\ng?I\tegI\"fdedb字\n3文符aeg",
+   "cl": 20,
+   "o2": 22
+  },
+  {
+   "t": "文e?2J\nJed1\"2fKJ\udfb5符J符ß!g\t中'\ud83c\"中符!\"eaéf,\ud83c0 3b 20Ib.中\udfb5.中' 333, H",
+   "cl": 52,
+   "o2": 49
+  },
+  {
+   "t": "K'a.符.字J中I1K\nf3'ß3\"IK",
+   "cl": 19,
+   "o2": 19
+  },
+  {
+   "t": "中H.?b符c é符f!!符Héba中fe1 \n字\nJ\ud83c字cI中中Kg.\"\t2eßH0",
+   "cl": 36,
+   "o2": 35
+  },
+  {
+   "t": "字 I2符字'符I1f符g字?字éK字'd\nHg中c30c0JH'\n",
+   "cl": 30,
+   "o2": 29
+  },
+  {
+   "t": "文Jf!fßK!?é 0é3b",
+   "cl": 14,
+   "o2": 14
+  },
+  {
+   "t": "aéI\t文字字db'KH中c \nI.K.\udfb50,中,2?J\n\nc字I符32",
+   "cl": 28,
+   "o2": 29
+  },
+  {
+   "t": "eféIg\nb文HK1\ud83c\n2字0.H,字H\ud83c\tH",
+   "cl": 20,
+   "o2": 18
+  },
+  {
+   "t": "Ib\udfb5?d.I'",
+   "cl": 7,
+   "o2": 5
+  },
+  {
+   "t": "!字符bK'.cea字3b0bHc! .\udfb50\"J2\"\ud83c\"feßeJ3\"e字J文",
+   "cl": 32,
+   "o2": 32
+  },
+  {
+   "t": "Je文字",
+   "cl": 2,
+   "o2": 2
+  },
+  {
+   "t": "HI.\udfb5\t\ud83c\nK\udfb5!\"I2f符2a2'g!\nI符\t文dH\t,ebga1g\t \ud83cg !',",
+   "cl": 35,
+   "o2": 34
+  },
+  {
+   "t": "ßb2K字!0\t20g符Ifß,H001Kc?dgg0ae\udfb5H符ß\tK符\t'J",
+   "cl": 31,
+   "o2": 31
+  },
+  {
+   "t": "符!efHd'Kdßg中13b中?g1K!文e.?dg.e3'a!H1écc\t3\udfb5féd字J\udfb5\udfb5!aI符\n1ee",
+   "cl": 46,
+   "o2": 44
+  },
+  {
+   "t": "ß.Jab Kb,\udfb5中e.gK3\t中a\udfb5!g aé符c",
+   "cl": 21,
+   "o2": 21
+  },
+  {
+   "t": "\"K\udfb53\udfb5g中\ud83c2e2'中3gI1\t.Hc\ud83cHb0\t\n文g?\t2 31c3g\"符 中?a!b !b,Kc\udfb5\ng",
+   "cl": 48,
+   "o2": 45
+  },
+  {
+   "t": "ßc\n符b3\"a\udfb5d \nK2d.'2egH符a\tK字e.d\ud83c字é文I2f\n,Hß2",
+   "cl": 34,
+   "o2": 33
+  },
+  {
+   "t": "中 ",
+   "cl": 2,
+   "o2": 2
+  },
+  {
+   "t": "I文符b符J0\udfb53.d023K3\ud83c0!文符éb,gdbI,\ndHé0a2d.HK.3b\udfb5?3IJa\ud83c'K",
+   "cl": 44,
+   "o2": 42
+  },
+  {
+   "t": "0K?\"文0?d0ß,'!a!\n\ud83cß\n\ngcf\udfb5fß文Ie\udfb5\té\udfb5\udfb5\udfb5c\n文HIc2'\t23\ud83c\ud83c\"文bg\"é",
+   "cl": 43,
+   "o2": 42
+  },
+  {
+   "t": "\t\"d?中é\udfb5! 符é\ud83c文字.IfH中IfßI字\"b?\"a符 Ja\udfb5é,bcKßc 1'",
+   "cl": 35,
+   "o2": 36
+  },
+  {
+   "t": "1d文.!3\ud83c0f,.'d,dg",
+   "cl": 13,
+   "o2": 13
+  },
+  {
+   "t": "2fbc\n\"\t!d!fH1中Jdße0",
+   "cl": 17,
+   "o2": 17
+  },
+  {
+   "t": "c,d\ud83c?.ßda0b字JH'\t文符3?f符ß字\n\tc c0e1.f符\udfb5文\t文\tJ中\"3\ud83cß文'JHbH\tagJ字\udfb5'",
+   "cl": 50,
+   "o2": 50
+  },
+  {
+   "t": "01eHH符字g?'éH文\ud83cH2",
+   "cl": 13,
+   "o2": 13
+  },
+  {
+   "t": "?2",
+   "cl": 2,
+   "o2": 2
+  },
+  {
+   "t": "I2\"JI g2KadJK2文f 🎵f\udfb51\n中e,'符\ud83cß!éd文dé",
+   "cl": 30,
+   "o2": 27
+  },
+  {
+   "t": "\t中2cK'1cb\t字.中?字\udfb5bf字中0字eHé\t0 3\udfb5\ud83c符bKJ.\"中\ud83c332be.IHg3中?d b.\ud83c'\udfb52",
+   "cl": 49,
+   "o2": 49
+  },
+  {
+   "t": " f'3!df \udfb5g'' 字0'10\" ",
+   "cl": 14,
+   "o2": 14
+  },
+  {
+   "t": "! 文\",?符I字é .cK0\udfb5\"KH\n中?f中",
+   "cl": 19,
+   "o2": 20
+  },
+  {
+   "t": "I?,.!'e2\udfb5Kc10IbeII\" \udfb5d!2.. J字,f符2,g!ßb\"\"字\udfb5fHé3aß字3g1?31! \"",
+   "cl": 45,
+   "o2": 45
+  },
+  {
+   "t": "J\n,\udfb5符,b\t字",
+   "cl": 8,
+   "o2": 8
+  },
+  {
+   "t": "I\udfb5\n1agg1",
+   "cl": 6,
+   "o2": 5
+  },
+  {
+   "t": "0d\ud83cßI3d\tcKéd文\"'字文If\udfb5\ud83cd\t\udfb5!e.0.g12,é\t\n0,Iéb\t2e'\udfb5\ud83cf2",
+   "cl": 39,
+   "o2": 38
+  },
+  {
+   "t": "f\"HcIHa",
+   "cl": 5,
+   "o2": 5
+  },
+  {
+   "t": "文Ja''",
+   "cl": 3,
+   "o2": 3
+  },
+  {
+   "t": "bfI1a'\"f字,\t中cé中字Hé\nK'文I?f1!文J中 !é中I12cKJf",
+   "cl": 35,
+   "o2": 35
+  },
+  {
+   "t": "'é.?b ! 符11f字ß",
+   "cl": 10,
+   "o2": 11
+  },
+  {
+   "t": "2中,?0!a\udfb5,é文K1ß0JK\tb1\t'Icg",
+   "cl": 21,
+   "o2": 21
+  },
+  {
+   "t": " c.",
+   "cl": 2,
+   "o2": 2
+  },
+  {
+   "t": "cHH文e",
+   "cl": 4,
+   "o2": 4
+  },
+  {
+   "t": "K0da3",
+   "cl": 4,
+   "o2": 4
+  },
+  {
+   "t": "0符.1dcd符3符!!ß?'a中JKéße?0\n\"\t文\"1\nJ!a",
+   "cl": 29,
+   "o2": 29
+  },
+  {
+   "t": "a3ß1\n2K'egb\"3e\ud83c2e 11I3\"fbI''e00?字2\udfb5fc I",
+   "cl": 32,
+   "o2": 32
+  },
+  {
+   "t": "?é2e文\ne1\n?I中.\udfb5J'\udfb5e中d.g",
+   "cl": 20,
+   "o2": 21
+  },
+  {
+   "t": "cca?ce字g0a\n\n文ßa3.KcJ\ud83c.'?\n H\"bf bJcJ1gdJ\udfb53!f?H .符!字",
+   "cl": 38,
+   "o2": 38
+  },
+  {
+   "t": "'e\"ß\t字?0\ud83ccfeI\udfb50文\n文 f\t3ca字aIH\udfb5c\t\udfb5中符ßIg,.",
+   "cl": 33,
+   "o2": 32
+  },
+  {
+   "t": "ßbébb!,中 cg\"J!d\udfb53\"字é,中中文\neg,中ß,\n K\" a1e2符?!0Ja3ß\udfb502 ,1",
+   "cl": 41,
+   "o2": 40
+  },
+  {
+   "t": "I,'232bJ\udfb5eß0Ige.\udfb5cd?cH1\nd \ud83ccb3é\ud83c!d3中a\udfb5'c\udfb5I文d字'",
+   "cl": 38,
+   "o2": 39
+  },
+  {
+   "t": "éd\t中bK.文\udfb5 ",
+   "cl": 9,
+   "o2": 9
+  },
+  {
+   "t": "符cI'ff.e\n fb!\td?\n\t3",
+   "cl": 13,
+   "o2": 13
+  },
+  {
+   "t": "3 中2K3gHe'\ud83cH字\né\"cgHI.f!g文02文H符!b\ud83cd?字\udfb5g",
+   "cl": 32,
+   "o2": 31
+  },
+  {
+   "t": "e3\tdßcJ\ud83cc? 2?\ud83c0!\ngK",
+   "cl": 17,
+   "o2": 16
+  },
+  {
+   "t": "d\na.\n",
+   "cl": 4,
+   "o2": 4
+  },
+  {
+   "t": "中?\"文fJK\",03ß中 dffHa.'2",
+   "cl": 14,
+   "o2": 14
+  },
+  {
+   "t": "\nK1g\t字eI中\ud83c符ß中符e",
+   "cl": 15,
+   "o2": 15
+  },
+  {
+   "t": "1 中0?a\ud83c\ud83cc\té2a.\n,\"\",,中gI\"?e符文中ß\ud83c1!0I'K中f0K0\ud83cK\ud83c2c?g\udfb5\neb101",
+   "cl": 46,
+   "o2": 45
+  },
+  {
+   "t": "\t2J\tJK3字ßa I\td1\ud83c3J\ud83c字ß ß中gb\nb, g1!0\"K 0\tcgb中符eKé字e0",
+   "cl": 43,
+   "o2": 42
+  },
+  {
+   "t": "3 eß!ff2符\ud83cc,!\n\"bß\ud83cdg H\t1dg\t \tg0b01\n\ud83cI",
+   "cl": 28,
+   "o2": 28
+  },
+  {
+   "t": "cd符!\ud83c符\"dJ\t\tdH0字ß?K?I. H文H,c3?ß,Ka!",
+   "cl": 28,
+   "o2": 28
+  },
+  {
+   "t": "3\tfß02J符e?aIe符H !",
+   "cl": 13,
+   "o2": 12
+  },
+  {
+   "t": "符H\"字 é!K中1字gJJ\ud83cbe\tßc!fßJg''H0!'! 符gf\"2\n3中ß字ce1符Kd\tg\tK,\tJ\nI",
+   "cl": 48,
+   "o2": 48
+  },
+  {
+   "t": "H3ß中\ud83cc3é",
+   "cl": 8,
+   "o2": 8
+  },
+  {
+   "t": "b0IfbéIK\udfb5de\udfb5a字ß\udfb5é?f0é'K2d\"3e字?\udfb5\udfb5.KH,,I\"gJ'fdf中!a!dHfIK1'd",
+   "cl": 44,
+   "o2": 45
+  },
+  {
+   "t": "dKIgd !I?K文",
+   "cl": 8,
+   "o2": 8
+  },
+  {
+   "t": "ßcf\nb字0b\udfb5文文.'?33",
+   "cl": 13,
+   "o2": 13
+  },
+  {
+   "t": "f符a\nbdg\ud83c,\née'\t文',0\"ad3\udfb5?'符f1eJ文\ud83cf\"?",
+   "cl": 28,
+   "o2": 28
+  },
+  {
+   "t": "01\ud83c?'cK\udfb5?字11\"\t,2K?'3文",
+   "cl": 17,
+   "o2": 16
+  },
+  {
+   "t": "J3\ud83c2b中'!b30,\udfb5,\ncd,符I\ud83cg\"\tH3H?e,字I!.caI\tK,é\udfb5fg\ud83c2?c.符\udfb5文\nK,中",
+   "cl": 48,
+   "o2": 48
+  },
+  {
+   "t": "ß符aé\ud83cf?g,c",
+   "cl": 9,
+   "o2": 9
+  },
+  {
+   "t": "符\nf!\n!\"'.,中b,0HßJf符\t30c?fI文H中J中cK\ud83c2ßK,\"1.1中",
+   "cl": 37,
+   "o2": 38
+  },
+  {
+   "t": " ,dHfc\"\udfb5eK中féß\ud83c1.ß字中3,0,中",
+   "cl": 22,
+   "o2": 22
+  },
+  {
+   "t": "ßK'0字aK2agf.符2c符03é.c,,II文'\té'ß2'文2中文\t",
+   "cl": 33,
+   "o2": 32
+  },
+  {
+   "t": "''\tß1\té1d\udfb5e\udfb5符fé\"!\n!f\ud83c,,文,\ta文\n,\"\udfb5.K\udfb5\udfb5 a\"?3c,f\né!0\udfb51!21文0\"2g符0",
+   "cl": 49,
+   "o2": 49
+  },
+  {
+   "t": "字符 eb\udfb5213éIéc中2中'Jd符\tab0'3",
+   "cl": 19,
+   "o2": 19
+  },
+  {
+   "t": "Ié.\ud83c2字!2",
+   "cl": 7,
+   "o2": 8
+  },
+  {
+   "t": "2,符d文H\ud83cb\t.字1aJ\"éI符\n.ß\téfI\n1\tK!文b\" JcK1J.,a",
+   "cl": 39,
+   "o2": 38
+  },
+  {
+   "t": "🎵I符?.,2?e1'e字'2J🎵\udfb5gd2c0cHdKHI",
+   "cl": 29,
+   "o2": 26
+  },
+  {
+   "t": "eK,\"'KgßJß符J'文bé\"\udfb5符'文文0?bé?é?'字IK文1",
+   "cl": 30,
+   "o2": 29
+  },
+  {
+   "t": "字IKgJ符cg 0\nd3\nH.3 文céc符H'a\"HfH\t文\ud83c \nK2!符3.f\"中aaceK'文b\udfb5\udfb5'é符1f",
+   "cl": 48,
+   "o2": 48
+  },
+  {
+   "t": "'符dea\"字3 \udfb5éfcae\ta\ud83c符db!.g?KI文\udfb5éf3ßf0\nII?Hßd2cß,'cI. écß文g",
+   "cl": 43,
+   "o2": 42
+  },
+  {
+   "t": "3符Je11\ud83c?中字ge0\udfb5a e\n?中a'Ja文I e\ud83cc中.eKK\"\"\td,字Kc'e\ud83c符HafI0d?2ßg\nI",
+   "cl": 47,
+   "o2": 44
+  },
+  {
+   "t": "2beg\ta.符\udfb5é\udfb5?g字!2符\ud83cé?J\ud83c\"e\ud83cß\naKß.e0字\"\ud83cH'2II2J",
+   "cl": 38,
+   "o2": 37
+  },
+  {
+   "t": "\udfb5.b\udfb5Id'H \tß字\"H1\udfb5\ud83cc\udfb5\t\n\"HfIa'",
+   "cl": 21,
+   "o2": 20
+  },
+  {
+   "t": "中'\"Jfdc0'2.. 11符\ud83cgb1,,'ag  IJ2\ud83c,2🎵\udfb5e\n",
+   "cl": 30,
+   "o2": 29
+  },
+  {
+   "t": "文'中 , 符bc",
+   "cl": 7,
+   "o2": 8
+  },
+  {
+   "t": "'J1J1符ßKfa ß\udfb5é3I1é .\udfb5\tß\udfb5\ud83cIgeé\udfb51I,0\"\n字acJc\ta文fg",
+   "cl": 38,
+   "o2": 38
+  },
+  {
+   "t": ".!Ic!,\udfb5Kg0'K1\udfb5bd?\t3\",\"?字a字,\"\ud83c中I.",
+   "cl": 26,
+   "o2": 24
+  },
+  {
+   "t": " 2\udfb52!KK\n\nd\t2\udfb5Jd'文.édébKc2g?\ud83c' Hcßd中符KgHe\n\t!\"\ud83cc字",
+   "cl": 41,
+   "o2": 38
+  },
+  {
+   "t": " 0c2ß字\"?3é\ud83c\ud83cI字ß I符e",
+   "cl": 16,
+   "o2": 16
+  },
+  {
+   "t": "Kbé!文Ibf,,I0 ",
+   "cl": 10,
+   "o2": 10
+  },
+  {
+   "t": "ß\n0,cI,\t1I.fHJag2\ud83cK2cé2\tc,'I? a\t!0'文ßIHKß字c0f符ee字30.\udfb5\ta,K中.",
+   "cl": 46,
+   "o2": 46
+  },
+  {
+   "t": "ß\udfb5!.2?ßa中.\t字I?1ß0b\ud83c\ud83cf,\udfb5\udfb5中\ud83c字 \t1?0\ud83ca",
+   "cl": 31,
+   "o2": 30
+  },
+  {
+   "t": "ß.",
+   "cl": 2,
+   "o2": 2
+  },
+  {
+   "t": "\ud83caéH'0e\udfb5\ta文ß字\",字\ta,,",
+   "cl": 16,
+   "o2": 15
+  },
+  {
+   "t": ".a.\nI中e",
+   "cl": 5,
+   "o2": 5
+  },
+  {
+   "t": ".cJ0H!ß\t文?0b!",
+   "cl": 12,
+   "o2": 12
+  },
+  {
+   "t": "K\t\"d中3符 0J1c\t\n字\"\" H0gaJ\"2ß g!!!!字HéIc\ncJ?\n1g\n,1H0é?f!c3K?,",
+   "cl": 46,
+   "o2": 46
+  },
+  {
+   "t": "\t文字a.ßgßc,\nK,",
+   "cl": 11,
+   "o2": 11
+  },
+  {
+   "t": "H,\n符2文?eK\"中fa31Ja,é\ud83c,eda\n\ud83cI符? éb\"aé\ud83c\n0\udfb5c",
+   "cl": 32,
+   "o2": 31
+  },
+  {
+   "t": "H 符bdcg中中J文f2中\n文1I2\udfb5 ?I?HJ符3\udfb5H\t\"J0文c1a,fHHa3é\"H\"1g ",
+   "cl": 46,
+   "o2": 45
+  },
+  {
+   "t": "JJ中!\t字!文?\nd2\"d\ud83c3\"\udfb5中1aI dbé,ßdga3",
+   "cl": 26,
+   "o2": 26
+  },
+  {
+   "t": "中字J 文J\t字\"ee?é K符🎵0'\"\tßJ字,2文aJ",
+   "cl": 27,
+   "o2": 25
+  },
+  {
+   "t": "0,fH中 ,\ud83c",
+   "cl": 6,
+   "o2": 6
+  },
+  {
+   "t": "ß",
+   "cl": 1,
+   "o2": 1
+  },
+  {
+   "t": "bc'fH2字字 \ud83caf'K22\n\"\udfb5?\ud83cJg!\n?b\t符fd?g\ud83c",
+   "cl": 28,
+   "o2": 26
+  },
+  {
+   "t": "!0'b!d'g,fe\t'\ud83cß?adc\udfb5e\udfb5?a?gß2中g0\"!\"Jb3\ud83c符ß'K文\"字,0J文文'ge?",
+   "cl": 48,
+   "o2": 46
+  },
+  {
+   "t": "文K\n '\ud83c字é文aH\n\udfb5ß?g\"e\udfb5a\t bb\t文Kgc,2eef 0JI?\udfb5I.éaH!IHdéc",
+   "cl": 43,
+   "o2": 40
+  },
+  {
+   "t": "0.符e\"H符2J\n1\"\ud83c符ea ?f0dag\nd符I\néKé中符2I1ß,d符ee\n\t.K2ß0中c\udfb5g符'éa",
+   "cl": 48,
+   "o2": 48
+  },
+  {
+   "t": "\"HI.1\udfb5a2H.é!IH字é文cJb \udfb5\"符H\"cK\tßI中中K0c?HJeK",
+   "cl": 36,
+   "o2": 36
+  },
+  {
+   "t": "\ud83c文f中?b2\udfb5JH\n033,JKé2éb\"d\udfb5文 g?ebßßg文é3cc中3\n'",
+   "cl": 35,
+   "o2": 34
+  },
+  {
+   "t": "J?1'Hadß2符,bKJ.,b\ud83c0 22a,.? 字Hß",
+   "cl": 23,
+   "o2": 23
+  },
+  {
+   "t": ",aééaJ符H\t.gge\nKKß1I.",
+   "cl": 16,
+   "o2": 16
+  },
+  {
+   "t": "b\taI文符bc\ndegb",
+   "cl": 9,
+   "o2": 9
+  },
+  {
+   "t": "K1\tß!ßgfK\n ß,gHa.3 Iédé\t\",b.e中c",
+   "cl": 24,
+   "o2": 23
+  },
+  {
+   "t": "cea' c'bJ符fcß1中.3aK符Kßa文JK'\te\"2\udfb53\udfb5",
+   "cl": 27,
+   "o2": 27
+  },
+  {
+   "t": "HJ?bc字é?\n.g中中文gJJé3eK\udfb5333?2?中I!ß0\udfb5ga\"?\t!\n He??\t!écg0 符",
+   "cl": 41,
+   "o2": 40
+  },
+  {
+   "t": "Ig,.中3.符ß2 JJ.\nbI.\ud83c'If 1eK 2Kbf中1K文b?d字ag!f\udfb5\nI字I2'H2d",
+   "cl": 44,
+   "o2": 43
+  },
+  {
+   "t": "字!中,\ud83c.K3eé\udfb5b0d符ß\udfb5符0!2HKßf32ß\ud83cJ\n字J\ud83c文0\udfb5字I3文31\nc\udfb5e.\udfb5é!gbcfc",
+   "cl": 50,
+   "o2": 51
+  },
+  {
+   "t": "HHß中é\n'\ud83c,HK.aH\n\n.0'f.é中\udfb50'0c H\ud83cf2文文3.\ud83c\"g文.,d'ßfIe",
+   "cl": 42,
+   "o2": 41
+  },
+  {
+   "t": "\"\udfb50?.\ng1中\t3K'ß符f0J \t'中2!Iéé\udfb5字ß字J3符Kfb\ud83c中0g3eK中3\t,\udfb5\"0bfHJ文",
+   "cl": 52,
+   "o2": 51
+  },
+  {
+   "t": ".JJéd符\udfb5KH\t\tIH",
+   "cl": 9,
+   "o2": 9
+  },
+  {
+   "t": "\ud83cbßId\nß?",
+   "cl": 7,
+   "o2": 7
+  },
+  {
+   "t": "'\ud83c\t",
+   "cl": 3,
+   "o2": 3
+  },
+  {
+   "t": "文éab,中eßb3!\t. \ud83c字2\udfb52 I 2H2g a!2符符?c符!IIg e'",
+   "cl": 36,
+   "o2": 36
+  },
+  {
+   "t": "中d3\ud83cI\ud83c0\n. \udfb5f\udfb5Hb中中\ud83c' 字\udfb5bßae?ß中é!e gcbgcf",
+   "cl": 33,
+   "o2": 32
+  },
+  {
+   "t": "\nd字\udfb5gbcg\nßb,符HaIe1\nId字\ud83c 符3 fI\ud83c?g J ßf\teé'g\tßß中\udfb5aßdé,ßgKK3",
+   "cl": 50,
+   "o2": 45
+  },
+  {
+   "t": "文e?gKKfI符ß20e文\t",
+   "cl": 13,
+   "o2": 13
+  },
+  {
+   "t": "b字1 ,I?中\tdfH!a\udfb5,?符c 中\ncf,中\nK \udfb5HK",
+   "cl": 25,
+   "o2": 25
+  },
+  {
+   "t": ",\tH\"e\udfb5 g!e.\n0",
+   "cl": 10,
+   "o2": 10
+  },
+  {
+   "t": "\"I符ß2g\ud83c ",
+   "cl": 7,
+   "o2": 7
+  },
+  {
+   "t": "J?c符cd1ß",
+   "cl": 7,
+   "o2": 7
+  },
+  {
+   "t": "\ud83cIHJ\tg\"0\udfb5'2",
+   "cl": 9,
+   "o2": 9
+  },
+  {
+   "t": "é!\udfb5字ßdb.J2中eé文字符",
+   "cl": 13,
+   "o2": 13
+  },
+  {
+   "t": "c\udfb5符\"0b1\n符é03'",
+   "cl": 12,
+   "o2": 12
+  },
+  {
+   "t": "\udfb5\"\udfb5\"中 \udfb5 文\n2d.ß\"a!I\n字d2?2 é符?中HJa1c中\nKé'e",
+   "cl": 33,
+   "o2": 34
+  },
+  {
+   "t": "\n3'K文",
+   "cl": 5,
+   "o2": 5
+  },
+  {
+   "t": "1dßK字?\udfb53é文,eK3.\udfb5,a2.Icßdé,If\nd2\tK\"ga",
+   "cl": 30,
+   "o2": 29
+  },
+  {
+   "t": "3 'ßéf.be\udfb5\"IKécde.文d,J,中J字字Jßdf0g\n\ud83cbIfdbcJ1g\"K字d\ud83cJ!  !g",
+   "cl": 43,
+   "o2": 41
+  },
+  {
+   "t": "Kb2KHH\t.3\udfb5K文字bf',2K'.,0H\ud83c20?字é中11gJßH\udfb5H12中é0\ud83ca\udfb5f \ud83c,H文a\ud83c \n",
+   "cl": 47,
+   "o2": 45
+  },
+  {
+   "t": "\t中I\n'",
+   "cl": 5,
+   "o2": 5
+  },
+  {
+   "t": "'JHß符Hfd3字fab文c符'ß\n'\udfb5ß,\t!'0J.\t20g,K3.字I'\ud83c符\ud83c0e2eg!符",
+   "cl": 43,
+   "o2": 43
+  },
+  {
+   "t": "b?符cgJg文!\t文b文\"\"!J\t3g字é\tK中e\tc\n?'a!符eé\né0符\td\" cgH",
+   "cl": 39,
+   "o2": 39
+  },
+  {
+   "t": "! 1.\tK2\udfb5I\t",
+   "cl": 9,
+   "o2": 9
+  },
+  {
+   "t": "字符\n.3中!e3",
+   "cl": 8,
+   "o2": 8
+  },
+  {
+   "t": "Jéé'a.ad\tc中IJd符\tbß.J中.\udfb5f",
+   "cl": 16,
+   "o2": 17
+  },
+  {
+   "t": "JHbIbd.J2K",
+   "cl": 8,
+   "o2": 7
+  },
+  {
+   "t": "e字\"\"K\udfb5\"中Kf\ud83c23\tf30 JII!'\n ?c0Jß2H? ",
+   "cl": 25,
+   "o2": 25
+  },
+  {
+   "t": "ca1bK",
+   "cl": 4,
+   "o2": 4
+  },
+  {
+   "t": "cKJcH1 cd3\ud83cK13d0c'?g2?c\udfb5g'符H中Haféb\tJgIbg2fK",
+   "cl": 36,
+   "o2": 35
+  },
+  {
+   "t": "\"ß字符中g\"2b1I'c\".J2eI H3a1e符'字'a30符aK\ud83c'ß\t\"!!eI",
+   "cl": 38,
+   "o2": 38
+  },
+  {
+   "t": " f\ud83c.\t文Ke, g1\ud83c",
+   "cl": 10,
+   "o2": 10
+  },
+  {
+   "t": "ad\ud83cg\ud83c0g01\ud83c字3文\",! c\udfb5?ßd'",
+   "cl": 19,
+   "o2": 18
+  },
+  {
+   "t": "d2''2fa\udfb5ßé符b字 cI!K1\n'符文\udfb5eß符'\nea\nb\"\" 3",
+   "cl": 31,
+   "o2": 31
+  },
+  {
+   "t": "J\udfb5\ud83cc?, 字Kg,文\"é\n3文\tgJ\nea3字bHIa,f,Hfa0\"\tdH,ag.\udfb5",
+   "cl": 33,
+   "o2": 33
+  },
+  {
+   "t": "1.中\ud83c2!ßaéc符f\tKeK!2ddfJ3\"",
+   "cl": 20,
+   "o2": 21
+  },
+  {
+   "t": "g\n3ed0g1é",
+   "cl": 8,
+   "o2": 8
+  },
+  {
+   "t": "\"cJ",
+   "cl": 2,
+   "o2": 3
+  },
+  {
+   "t": "I!bI字?\ud83c\tfHH,字K中Jb f.1文",
+   "cl": 19,
+   "o2": 18
+  },
+  {
+   "t": "0J符  文'文",
+   "cl": 7,
+   "o2": 7
+  },
+  {
+   "t": ".bfé3H'dH'符'K字ß0H, b03d1J\n符\"dd\"IJ\nHI中字dH\t.0fd0字gf!\"",
+   "cl": 40,
+   "o2": 39
+  },
+  {
+   "t": "文Kaa'0IgKHH\nK\ud83cbII1!g30d2I字ß1\"\ud83c?\nJ字!中?符\t,a.'\ud83c1中a文",
+   "cl": 41,
+   "o2": 40
+  },
+  {
+   "t": "éd'文2d,,2I3符c🎵d?aß?c1!b符.fßßf文符中\t\"021H01g2HJ?a'1a2文c.ef\nH ",
+   "cl": 50,
+   "o2": 49
+  },
+  {
+   "t": "JI\udfb5é0a?2a中\udfb5 21\ud83c\"3a2.中字 .,2文H\"K\ud83c符g.b2.\"\udfb5\nd.dad.文KJ",
+   "cl": 42,
+   "o2": 38
+  },
+  {
+   "t": "ß é2Kd\udfb5?Hc字é文02,符f\udfb51Haé2\tß\udfb5中gI文I符2文!符H. fc'文2字K3éfcH0gg,b1",
+   "cl": 50,
+   "o2": 48
+  },
+  {
+   "t": "ßßK2,",
+   "cl": 5,
+   "o2": 5
+  },
+  {
+   "t": "字\udfb5.dd,I,.1J3中,eJf.g\udfb5Jcg \"  b3é0.J\ud83c1Ke文?é1I\t,b\tKfée!",
+   "cl": 38,
+   "o2": 38
+  },
+  {
+   "t": "中!b'dK3?ed字中ß!e\"",
+   "cl": 14,
+   "o2": 14
+  },
+  {
+   "t": "d2f1\udfb5f!!g1K",
+   "cl": 10,
+   "o2": 10
+  },
+  {
+   "t": "dbaI",
+   "cl": 2,
+   "o2": 3
+  },
+  {
+   "t": "\ud83c文!?K\nß\n符'g 3 符,\ud83c,,f\"\udfb5文J!f1文Ie0?1,a字a0H中b文",
+   "cl": 39,
+   "o2": 38
+  },
+  {
+   "t": "f中\n?Ié\ud83c!.文f1! K中ßIHI符!\ud83c符égI字\"中b\ud83c31J1d!f!\udfb5\"ggg字ßf文",
+   "cl": 43,
+   "o2": 43
+  },
+  {
+   "t": "字f1Je\udfb5\udfb5e符c\"'3文\"K1ßJK文1K 中",
+   "cl": 20,
+   "o2": 19
+  },
+  {
+   "t": "!'g2c?1文2d中a中符1\t\udfb5字ag2K\"'\nKKßf ß',中0文0\n0d?d",
+   "cl": 36,
+   "o2": 37
+  },
+  {
+   "t": "0cJ,!'\ud83c\n2'2\udfb51,1 ?1'2文.de3中fH\t\"3g字12.I,0字\"文ag中\n'.?gß!f",
+   "cl": 45,
+   "o2": 44
+  },
+  {
+   "t": "\udfb5",
+   "cl": 1,
+   "o2": 1
+  },
+  {
+   "t": ",2H\"KK.21,2\t符éé\udfb5,0ß''aß.bJ!f\tc字?\nIßß\"01!中字?",
+   "cl": 36,
+   "o2": 35
+  },
+  {
+   "t": "!é.eI\n\néd?2fc\t字é, \ud83cß符\nKa a\ud83ce!2中ßg,Jé2ed\"字ß.!I1中'",
+   "cl": 38,
+   "o2": 38
+  },
+  {
+   "t": "a1!f\udfb5gH!d\tf,\udfb5!gc\"\"gHH\n 2ß中g\t\"JI1符3\t'.é 字\t",
+   "cl": 34,
+   "o2": 34
+  },
+  {
+   "t": " 0a符中Jb\t0.文文'\n1 \tcf\"3中!3eé字éJé32",
+   "cl": 28,
+   "o2": 29
+  },
+  {
+   "t": "\"\t0字ßgß\n,\tJ",
+   "cl": 10,
+   "o2": 10
+  },
+  {
+   "t": "Ig符,'!e中c文文H2K中H字I文éIee\ud83c文文g",
+   "cl": 25,
+   "o2": 24
+  },
+  {
+   "t": "bK3ab!2ß文Hß I\"é3",
+   "cl": 14,
+   "o2": 14
+  },
+  {
+   "t": "bK符符Kß\ud83cßK,\"字3ff\n符\udfb5I1' \"I?字f字fcKJgJI文.\néH文!?b?I2I\td中'",
+   "cl": 44,
+   "o2": 44
+  },
+  {
+   "t": "ßHa符é?文2\tg!\udfb5,\udfb5a\ud83c符?0If符文éKé中0aIf.0a\"\udfb5\"文\t3符\udfb5f\ud83cJ.e\nJ'",
+   "cl": 45,
+   "o2": 45
+  },
+  {
+   "t": "中\nf\ud83cggg.\udfb5!I23fbHbaé字文JJ\"'110I3a,符f,é\nß\ud83caH\ud83c字\ud83c\t ",
+   "cl": 36,
+   "o2": 36
+  },
+  {
+   "t": ".gcbd,aß文?3a\n\tbH?e3f,é30",
+   "cl": 18,
+   "o2": 18
+  },
+  {
+   "t": "fJé!  é\n?10f3Jb中a!Ke",
+   "cl": 17,
+   "o2": 17
+  },
+  {
+   "t": "a中 I中.2c\udfb5中ßg",
+   "cl": 11,
+   "o2": 11
+  },
+  {
+   "t": "1字H ?f字fa中\n!符3\udfb5a0",
+   "cl": 15,
+   "o2": 14
+  },
+  {
+   "t": "\t K符gd\udfb5ébH中!!g2' .13\ud83c符é\ud83cé?cc?",
+   "cl": 23,
+   "o2": 22
+  },
+  {
+   "t": "e3dfc?a\ud83cé!c\" 1'a,\t中中'\udfb5!文c!\t字2\ud83c0e",
+   "cl": 29,
+   "o2": 29
+  },
+  {
+   "t": "字1\ud83ca1,eeé \ud83c,!中Keaa3Iéf\n2'1K",
+   "cl": 22,
+   "o2": 20
+  },
+  {
+   "t": "dgK中KK符?文",
+   "cl": 7,
+   "o2": 7
+  },
+  {
+   "t": "\na字'2bJ3\n'ßJ\ud83c?1中文fß\tßf\",d符\n3!'2Ic字.K'符H\udfb53é\ud83cd1b字KJ中3bK",
+   "cl": 50,
+   "o2": 46
+  },
+  {
+   "t": "éf!é!?',eJ\udfb5\udfb50,2!中,\udfb5J,,KgIHé ",
+   "cl": 23,
+   "o2": 21
+  },
+  {
+   "t": "H\t3130.\udfb5\ne0\udfb5\ud83c符H\t \t3 I中,J!3\udfb5g\udfb53\tg!H\tbc!d\"e \ud83c符?éJ?\ud83c\nJ,文JKeécg中",
+   "cl": 48,
+   "o2": 47
+  },
+  {
+   "t": "d\tI2éH.K",
+   "cl": 6,
+   "o2": 6
+  },
+  {
+   "t": "3b\"é\"e!字g\n!,'g\ud83c,'K文中d",
+   "cl": 19,
+   "o2": 19
+  },
+  {
+   "t": "中字eb220Ka1é.\"中e\ud83c字é1db1g2é.ae'\ud83c\"\nK?\"d0\"中dad\ud83c中a2g",
+   "cl": 36,
+   "o2": 35
+  },
+  {
+   "t": " 中'0\t.!g\udfb5  \n符\udfb5ca\ud83c符J0字文,d.符b字Hé文200d\"ß\téé!\nge332",
+   "cl": 35,
+   "o2": 35
+  },
+  {
+   "t": "é\nK? dK\nf\tébéé3?\udfb5H'.\ud83c e2\tß字.\naéfd?? !\ud83c1 c  I\tH字 b\nédI中文\t",
+   "cl": 43,
+   "o2": 41
+  },
+  {
+   "t": "ßHI",
+   "cl": 2,
+   "o2": 2
+  },
+  {
+   "t": "f字e字3I \n\nJ0e.b",
+   "cl": 11,
+   "o2": 11
+  },
+  {
+   "t": "c\udfb5中fb符dK3",
+   "cl": 8,
+   "o2": 8
+  },
+  {
+   "t": "1J1033J字I字\ud83c2g !\udfb5Hé文1ga",
+   "cl": 18,
+   "o2": 18
+  },
+  {
+   "t": "\udfb5\udfb5!?1,3JK",
+   "cl": 6,
+   "o2": 6
+  },
+  {
+   "t": "1符字?,.'\udfb5字éa1cgH文Kc符ß\"2fb, H符0c éf0g字ßI2\"f",
+   "cl": 34,
+   "o2": 35
+  },
+  {
+   "t": " .aJ\ud83c文,ß文ß3c c\nKKfbge2Hé31\udfb5Jß,!'da1",
+   "cl": 27,
+   "o2": 27
+  },
+  {
+   "t": "! é1",
+   "cl": 3,
+   "o2": 3
+  },
+  {
+   "t": "\t\"文中e\ud83ca\ud83ca\neHd",
+   "cl": 13,
+   "o2": 10
+  },
+  {
+   "t": "Hd\ud83c文1acH.\nfJg字?I\ud83c文1IJ\t\"?H符.fe0a\ud83ca中 1文 字3H2 \t字,b 0'c文 ?éd",
+   "cl": 46,
+   "o2": 44
+  },
+  {
+   "t": "\t1\t0\ud83c\n文d. I1Ic? \t0'!d\ndH3.aHKe 2'ß20é\n\udfb5'\"0符\udfb5dd\ud83céIKcf?0,Jß字中J",
+   "cl": 51,
+   "o2": 49
+  },
+  {
+   "t": "2aI \udfb5? c.\"\udfb5éJ.?",
+   "cl": 11,
+   "o2": 11
+  },
+  {
+   "t": "dJHKé!é文ßH\nß,\tJcde.中HKéf\n1g中\tf\ud83cb3\t\ud83c符0ebK1éJ",
+   "cl": 37,
+   "o2": 36
+  },
+  {
+   "t": "2cfe2e2符?gI\ud83c,H'中J'符e\udfb5ßc2中g\ud83c,dK'g\n\ud83c.\"\ud83c\ud83cf ",
+   "cl": 37,
+   "o2": 36
+  },
+  {
+   "t": "字cIK\t文符JKKd210I2b0 'e33é2e21\t2,3I\"",
+   "cl": 27,
+   "o2": 27
+  },
+  {
+   "t": "?文3c\n\udfb5文2\udfb5ga\udfb5 !",
+   "cl": 12,
+   "o2": 12
+  },
+  {
+   "t": "文\t0g\ud83c!文0\t ,cf2文 b.符1中,I\" \té?Ißé",
+   "cl": 27,
+   "o2": 27
+  },
+  {
+   "t": "a0fßH符é g\téc\ud83cg32\na\"d\udfb5e符'2gc é.1,IH中中文 ?g 中中dag\n3\n\ud83c2\udfb5\ud83ce",
+   "cl": 42,
+   "o2": 41
+  },
+  {
+   "t": "HH.符0e.\udfb5Jb!?\tH3éI字af.Iß文1\ud83cIJ文\ud83céeK\ud83cef中f",
+   "cl": 29,
+   "o2": 30
+  },
+  {
+   "t": " 字ßeJb!30faI\"\n?ef字cg\"1KeJ?\"Hßß中ß!dJ!符文b\t",
+   "cl": 31,
+   "o2": 31
+  },
+  {
+   "t": "é He!?\udfb5a字'字!éIK\ud83cJ\t \"\udfb5b符\nKe.2K.\t文",
+   "cl": 26,
+   "o2": 26
+  },
+  {
+   "t": "ßf中I\n,c文é3,\"符b\t文\"b3.f\n文! 字 \"ßb'0b\"c0ß",
+   "cl": 31,
+   "o2": 32
+  },
+  {
+   "t": "J",
+   "cl": 1,
+   "o2": 1
+  },
+  {
+   "t": "!字\ud83cK3字.é'bIß\udfb5a",
+   "cl": 13,
+   "o2": 12
+  },
+  {
+   "t": "文, \ud83c?fJ字HI0H",
+   "cl": 10,
+   "o2": 10
+  },
+  {
+   "t": ",é\"!字",
+   "cl": 5,
+   "o2": 4
+  },
+  {
+   "t": "'fa\ud83c'\"1 0f3Ka0g文\t?",
+   "cl": 15,
+   "o2": 15
+  },
+  {
+   "t": "?.dfß\"\udfb5\nHe3J!\udfb53符中!文.\t,",
+   "cl": 19,
+   "o2": 18
+  },
+  {
+   "t": "d3é\"文2'文 \n0d文2c??!符 gI文",
+   "cl": 20,
+   "o2": 20
+  },
+  {
+   "t": "a1e\n!ßeß?2H符文,\tK符dHH'符ße文bbc符 ecf2\ud83c K0IK字文K\"d3",
+   "cl": 35,
+   "o2": 35
+  },
+  {
+   "t": "\"e  \t中字字 \t\n\t\"符13J0HJ?\ud83cc!? c\" d3字é字",
+   "cl": 27,
+   "o2": 24
+  },
+  {
+   "t": "cfßa文字\t\ud83cage,2ß \n2 e \ncI3??a3中f\ud83c3?.\t\"cbdf",
+   "cl": 29,
+   "o2": 29
+  },
+  {
+   "t": "d1\t\udfb5.J,.10fé'bbe\ud83cfK !g3cJ 2",
+   "cl": 21,
+   "o2": 21
+  },
+  {
+   "t": "符,e文é'KH.é 符ß3f符文ßaf文\n, \udfb5.dß\te符中K\udfb5Hd'中''!中!2字\n?dH3符中?I'eK2符文",
+   "cl": 53,
+   "o2": 53
+  },
+  {
+   "t": "12g\udfb5\udfb5\n!aé0Kf,\ud83cf'a,0!\tJ\nJJK0e,\udfb5c\nf'é\"\udfb5',d字",
+   "cl": 34,
+   "o2": 34
+  },
+  {
+   "t": "c.d \ud83cc,a\udfb5??字\nJ!符03\udfb5\"中ß?\t11b\udfb50\udfb503\tg.文H",
+   "cl": 29,
+   "o2": 29
+  },
+  {
+   "t": "gJI.g,?Kb文?字",
+   "cl": 10,
+   "o2": 9
+  },
+  {
+   "t": "!HJ\ud83c1",
+   "cl": 5,
+   "o2": 4
+  },
+  {
+   "t": "符'.符符3 0ec符Ka1é.H\udfb5\udfb5c \udfb5éf \udfb5e1符\udfb5.字?\"!K KcbK,文d2e \"d\udfb5'?",
+   "cl": 40,
+   "o2": 39
+  },
+  {
+   "t": ",,!\" \ud83c'g1gd J1bé\udfb5.3é\ud83cI f\t3\"2g0aaKß ß",
+   "cl": 28,
+   "o2": 28
+  },
+  {
+   "t": ".0I中fHI2符!a\udfb5\ud83c2Kc0f字符2中ß!3\t?\ud83cIIg?32J3é?符\ud83cé字符gJ!Hae\n",
+   "cl": 43,
+   "o2": 42
+  },
+  {
+   "t": "H\"中0aßK\udfb52fJ02\nI符'\udfb52,Hé符文ceJ\udfb5 \"'.I字Kad'?c中',\nKc符",
+   "cl": 37,
+   "o2": 37
+  },
+  {
+   "t": "\ud83cJfeHß2é!",
+   "cl": 8,
+   "o2": 8
+  },
+  {
+   "t": " 文?Id?",
+   "cl": 4,
+   "o2": 4
+  },
+  {
+   "t": "2b'cJ,b符Jß0'gg 符f2!b\tc.文ac\udfb5\ud83c2Kc字a\t\t",
+   "cl": 29,
+   "o2": 30
+  },
+  {
+   "t": "c符 K\udfb5f 03\"符cb0中3ce\udfb51g'\udfb52中\t?Ib!H文中符2.字?e\"文字?\udfb5c",
+   "cl": 40,
+   "o2": 38
+  },
+  {
+   "t": "中符JI \"g字中2J'f2",
+   "cl": 12,
+   "o2": 11
+  },
+  {
+   "t": "\n3.d字d文aßg\tc,",
+   "cl": 11,
+   "o2": 11
+  },
+  {
+   "t": "文0!.\udfb52I,中2!!?\t字\t\n字01céeg?fcc\t",
+   "cl": 21,
+   "o2": 21
+  },
+  {
+   "t": "Ieegfb字ß\"?K\"d?3文\tIé,文3字\udfb51.\néJ.aa符?cé符g\nff!Kß\tI.a?",
+   "cl": 38,
+   "o2": 37
+  },
+  {
+   "t": "3\udfb5b2中 3fgß\t232I符\n2.中?J33,d\"g",
+   "cl": 22,
+   "o2": 23
+  },
+  {
+   "t": "1\"\t!中符Id符1文gH\udfb5文中!0éJ\"?fJKge\n字中eß0g\ud83c!J\udfb5符dH0 中33\"\n\ud83c\"aIß字22eß.",
+   "cl": 51,
+   "o2": 51
+  },
+  {
+   "t": "1!\t!3a?文0f!b0f \udfb5gH\udfb5\tdé0ea'0\"Hfe,d\tg\"H1K0bJ03",
+   "cl": 35,
+   "o2": 35
+  },
+  {
+   "t": "K2\nJ.c\tJ\t?JéI符3céd\n中I\udfb5dId31a字1\"03,符\udfb5\"中K'3I3d!eIe2dJ",
+   "cl": 45,
+   "o2": 43
+  },
+  {
+   "t": "!aeé0\ud83c'2é字b0",
+   "cl": 11,
+   "o2": 11
+  },
+  {
+   "t": "gfg\n,\ud83c2\" fd\"中 dK\ud83c 3g,0g\"文Keb中d03.中\t文c2g\ud83c.3c\t2be 0\n",
+   "cl": 43,
+   "o2": 43
+  },
+  {
+   "t": "H!3\ud83c字c",
+   "cl": 6,
+   "o2": 6
+  },
+  {
+   "t": "字!\ud83c3IbfgI文\"g\t00 符a.!éI1文1",
+   "cl": 21,
+   "o2": 22
+  },
+  {
+   "t": "\t \"f,d\ud83cH\nb\ud83cb.\t\t符Jgße",
+   "cl": 17,
+   "o2": 17
+  },
+  {
+   "t": "00a\nIe\"\"ß0aK",
+   "cl": 10,
+   "o2": 9
+  },
+  {
+   "t": "2Jad',dJßc\"中\".gI文0gé?K?字中ß,\"字dgé\"?33",
+   "cl": 29,
+   "o2": 28
+  },
+  {
+   "t": "\"g1Jg",
+   "cl": 4,
+   "o2": 5
+  },
+  {
+   "t": "béI?",
+   "cl": 3,
+   "o2": 3
+  },
+  {
+   "t": "c2\"g\ud83c文,中\"?e中\tß0'\"H,2ßH?\ud83c",
+   "cl": 21,
+   "o2": 21
+  },
+  {
+   "t": " faf\ud83cKß0Kba\udfb5aI字 .edH1",
+   "cl": 16,
+   "o2": 14
+  },
+  {
+   "t": "\udfb5a文字eJ  b32a2ge字\udfb5d文!\ud83c''2\"I'f\udfb5'.符0a .\n,2Jb3IcdI1c字",
+   "cl": 39,
+   "o2": 36
+  },
+  {
+   "t": "\ud83c\"?.JK\udfb5符\udfb5c文\t3字中字!g0 K 中!符K3K2éH!!2H",
+   "cl": 30,
+   "o2": 29
+  },
+  {
+   "t": "J ?0符\"文ßK0,ß中Kf\n符字gß\udfb5I0.3 b.\ud83cJ\udfb5ßfKf1\udfb5\udfb50f?!\udfb5!J",
+   "cl": 40,
+   "o2": 41
+  },
+  {
+   "t": "\udfb5 K1\ud83cfIße,\ud83c",
+   "cl": 9,
+   "o2": 9
+  },
+  {
+   "t": "ßI\t",
+   "cl": 3,
+   "o2": 3
+  },
+  {
+   "t": "e",
+   "cl": 1,
+   "o2": 1
+  },
+  {
+   "t": "ß\ndI'.\"' é 字cJ\"2符!éc0e'ß中\udfb5\udfb5J \t\",d3ß字é",
+   "cl": 30,
+   "o2": 30
+  },
+  {
+   "t": "3?\".!3eH0é符\ud83c\"d3a\"é.Ia? J 字c符中a0ga12I \t",
+   "cl": 31,
+   "o2": 30
+  },
+  {
+   "t": "Jß1eé,é1I!",
+   "cl": 10,
+   "o2": 10
+  },
+  {
+   "t": "01中字K中c,J符1Jfa字eg\"3!e1J,",
+   "cl": 20,
+   "o2": 19
+  },
+  {
+   "t": "g\udfb5I\t,ßJ\"符 文fé,字",
+   "cl": 13,
+   "o2": 13
+  },
+  {
+   "t": "文\n字g中g!éf\tI\ud83cJI符!3cJ32?I\"a,中🎵符K\"If,d0!符H!字'!!ae0'中中\tJ",
+   "cl": 44,
+   "o2": 42
+  },
+  {
+   "t": "ßd文",
+   "cl": 3,
+   "o2": 3
+  },
+  {
+   "t": "\t字\ud83cß中?2ßbg\"\t字e2",
+   "cl": 14,
+   "o2": 14
+  },
+  {
+   "t": "eß'中d\n \udfb5中?g1I\udfb5\ud83c符.'\udfb5",
+   "cl": 16,
+   "o2": 16
+  },
+  {
+   "t": "2\"e,?1g2bH bg\t?.b\"c\t2中\"0符1dcß'f,g文\n\udfb5c\udfb5g2Ke",
+   "cl": 35,
+   "o2": 35
+  },
+  {
+   "t": "dgIHIf符,.1\"J'文 \"a.0f",
+   "cl": 15,
+   "o2": 15
+  },
+  {
+   "t": "gb'Ic ?\tH字字文\nd0!\"2K.aJH1\"字ggßIß3gfcd?KeH2",
+   "cl": 31,
+   "o2": 31
+  },
+  {
+   "t": "fIß ?ßé ",
+   "cl": 7,
+   "o2": 7
+  },
+  {
+   "t": "gbIe字c字 f符'\"\"!,,, !K\udfb5",
+   "cl": 15,
+   "o2": 14
+  },
+  {
+   "t": "字字文3!文字I'JJß中gß文J1\udfb51!.d ,HKd3éa",
+   "cl": 26,
+   "o2": 26
+  },
+  {
+   "t": "符H!cßJ\t\ngcI\ud83c\tf0 J!b\t, gß0\té\ud83cß符e中HK\tc0e2",
+   "cl": 32,
+   "o2": 32
+  },
+  {
+   "t": "字éé字 II.aK\"符文cK中g\tcI!ge符.",
+   "cl": 20,
+   "o2": 20
+  },
+  {
+   "t": "文?dfHé2?\ud83cdßJ1J\udfb5fß!\t3b3符中bdég ",
+   "cl": 26,
+   "o2": 25
+  },
+  {
+   "t": "字d\"!I字30é符gK!ßßß33.effJJ Kd1ßaßg?b!bé10符b",
+   "cl": 33,
+   "o2": 32
+  },
+  {
+   "t": "a符gHß符H3Jé符g!,\udfb5\"中,d符1?e文3\na?gH",
+   "cl": 28,
+   "o2": 28
+  },
+  {
+   "t": ",g!\n33é2d\nßI.\tcfH\ud83ce字1éI符\udfb5 \"字.字\"gf!\n\ud83cf\ud83cß",
+   "cl": 31,
+   "o2": 32
+  },
+  {
+   "t": " 130I\udfb5\"2J1,ßc",
+   "cl": 11,
+   "o2": 11
+  },
+  {
+   "t": ",a字3,.aa\n文符 文 a\n\"文",
+   "cl": 13,
+   "o2": 13
+  },
+  {
+   "t": "f文.I\t1符0?eIc!K\nfb0中.é符文字 c\ud83c字f3.3bß文1?da",
+   "cl": 34,
+   "o2": 33
+  },
+  {
+   "t": "\udfb5H\tßb字d\n符JJ.,字!H文文!g2\ud83cd?字Jb.e\udfb5b0g中Kc\udfb5IeH220JéK2\"?!c\"1!Kßd\"g",
+   "cl": 52,
+   "o2": 51
+  },
+  {
+   "t": "3a..gß\t符\"ae3cé!f02\n符'文符2\"",
+   "cl": 21,
+   "o2": 21
+  },
+  {
+   "t": "\"1a\ud83cf1KKH3字g\n'eddK2 1HJ,1b\tJ中ß\t文gd中 .符\udfb5\"KJ\ud83c'f10f符'a",
+   "cl": 43,
+   "o2": 42
+  },
+  {
+   "t": "\udfb5!' 21.aK\nc符\"c!..IIa字b!中\n'f1fa\"e?f.K.Kg13,c",
+   "cl": 31,
+   "o2": 31
+  },
+  {
+   "t": "b",
+   "cl": 1,
+   "o2": 1
+  },
+  {
+   "t": ".\ud83cßf2?fß1?H?\"\udfb5ß\tb 文aKfJ\t!Jc ",
+   "cl": 23,
+   "o2": 25
+  },
+  {
+   "t": "\n,,ß JJ'\ud83c符g!' \udfb5符,文d中文中a\t!符符I\n字c33?2符中f",
+   "cl": 32,
+   "o2": 31
+  },
+  {
+   "t": "文c ?IH,\" fd \t a中\t,文!\tgß3ee\udfb5\ud83cf2字符\ud83cJ!1g IécKJ\ud83c!KK!Jgé符bcH中1a",
+   "cl": 43,
+   "o2": 42
+  },
+  {
+   "t": "ß0",
+   "cl": 2,
+   "o2": 2
+  },
+  {
+   "t": "文fI\neI.\t\ud83cHß!\" \t0eg中0 H0?e",
+   "cl": 22,
+   "o2": 22
+  },
+  {
+   "t": "?符中d!c0H1I ",
+   "cl": 11,
+   "o2": 11
+  },
+  {
+   "t": "\udfb5\n3dII\"0ß中aH,0\ud83c字\n?gJ,\ud83c\ud83c I\ncJac'J\"bd\t\"\ud83c1符1e字\t'\"ff字J \t符.K\n",
+   "cl": 47,
+   "o2": 46
+  },
+  {
+   "t": "e字3\te文字K中'符HH中1符1dH'3H!\"1H字 !,,I b3 .!b字,\"é3,",
+   "cl": 36,
+   "o2": 36
+  },
+  {
+   "t": "H符'\udfb5ßa中aa符\"b\"\neße\"cKI1!H\n'3eI0\tI1\t\ud83c\"a0\"a\n字2aefJ?",
+   "cl": 40,
+   "o2": 41
+  },
+  {
+   "t": "e",
+   "cl": 1,
+   "o2": 1
+  },
+  {
+   "t": "\"H\"fJK字2déd \ng\n ß0\t.b!字\ud83c'Idd3K字?e字\ud83c'ß",
+   "cl": 30,
+   "o2": 31
+  },
+  {
+   "t": " 符符文J.b符,Hb1.c 中\ud83cK文c\t\t文符3ébKd\"\ud83c?\té\n.é\"J\"\ud83cd",
+   "cl": 38,
+   "o2": 36
+  },
+  {
+   "t": "3\ud83caf'?ßad符?e\t\"c\n中,c\ud83c'aI\t",
+   "cl": 19,
+   "o2": 20
+  },
+  {
+   "t": "c0c,字0\udfb5\n2ce\ud83c!éJ3\"d文文字3bfJ.a\n",
+   "cl": 23,
+   "o2": 22
+  },
+  {
+   "t": ",0f中'IK0'fe",
+   "cl": 9,
+   "o2": 9
+  },
+  {
+   "t": "\t'\na!\tK'字 0中2Haa\"0a\udfb5\udfb5ßaf符c中,'  g0f\nf\n",
+   "cl": 30,
+   "o2": 30
+  },
+  {
+   "t": "\n'?K,ßJ\n中a0'I3字e!,文dadI2?2文文.文'e\"符.fg3J\udfb5J0文é2ß\ud83c字\n符I",
+   "cl": 44,
+   "o2": 44
+  },
+  {
+   "t": "K字d!,1f?g!3\udfb5!.é",
+   "cl": 13,
+   "o2": 13
+  },
+  {
+   "t": "a\nßé2'gf3 ceéJß3ee\"\"K3J3'e?1.é\udfb50🎵JJ\t,中3中\udfb5符J",
+   "cl": 38,
+   "o2": 37
+  },
+  {
+   "t": "JI2!\udfb5,\ud83c\tcbdKbcß1I",
+   "cl": 13,
+   "o2": 13
+  },
+  {
+   "t": "符文符中g',2.!符0a\ud83ca.d\"\ud83cg.1ff,\nHIb",
+   "cl": 23,
+   "o2": 22
+  },
+  {
+   "t": "1cé2f文3,ß2Hd符H 'g\"HJHKaféH0éb",
+   "cl": 24,
+   "o2": 21
+  },
+  {
+   "t": "'",
+   "cl": 1,
+   "o2": 1
+  },
+  {
+   "t": ".'a??,ßgf2ea2ß3\"\"\t中cg,'文dK\n?符d?g'中1?bK0符0\t\t'H!a 符2I 3",
+   "cl": 45,
+   "o2": 46
+  },
+  {
+   "t": "3e符I0ß éc,e文Hß1c0!\ud83cb'\ud83c\n'H\ud83c?\"eJH1",
+   "cl": 27,
+   "o2": 26
+  },
+  {
+   "t": "e字1Hß,.'H中2\"ßßH?符\udfb513I🎵JI中!0文IJ.ß20K13?0,K!",
+   "cl": 37,
+   "o2": 36
+  },
+  {
+   "t": "3\udfb5bd中J3I\ud83cd.\n中é ?f?I3'文\udfb50.\téa\"'\tc",
+   "cl": 27,
+   "o2": 26
+  },
+  {
+   "t": "f'f!.符\udfb5dH符e\ud83cH2bc.\udfb5b.Ia' é字éf",
+   "cl": 23,
+   "o2": 21
+  },
+  {
+   "t": "c,1",
+   "cl": 3,
+   "o2": 3
+  },
+  {
+   "t": "gad\nd0\t \udfb5f.f",
+   "cl": 9,
+   "o2": 8
+  },
+  {
+   "t": "\nbK符符\ud83c, b\ud83c字文.3\udfb5文3 a1I0c",
+   "cl": 21,
+   "o2": 21
+  },
+  {
+   "t": "eeJ3.d ?',c,中2\nc🎵.b2é中\téabb\"! a\t\udfb5ge \"f字f符\udfb5字Ié文13K!K,J,a3 ",
+   "cl": 46,
+   "o2": 44
+  },
+  {
+   "t": "f2f文déK\udfb5g \t\udfb5 eK?Ké1e002.,!I\n\udfb5文文符文'égc\udfb5,aé\ud83céKdb.!\udfb5K?g0?符!ß\udfb5 ",
+   "cl": 52,
+   "o2": 51
+  },
+  {
+   "t": "bb1\udfb5文\"I",
+   "cl": 5,
+   "o2": 5
+  },
+  {
+   "t": "b1gIa\t1\nb0.'éß\n,' I32!\nH符?,d dfdJé 3ß\"ß",
+   "cl": 31,
+   "o2": 30
+  },
+  {
+   "t": "0é\ud83cß中Ie.\udfb5g Ifddécagß,\"\udfb5\n中2?",
+   "cl": 20,
+   "o2": 19
+  },
+  {
+   "t": "字?f\n.Hcé中0é.2b\tHbß,.ß0字c中字J,!ac字中0éf3",
+   "cl": 30,
+   "o2": 29
+  },
+  {
+   "t": "0J文\"3\n1g0f字?.?中符\"0aIc3f2J\"0\tb 中'符g中é",
+   "cl": 33,
+   "o2": 32
+  },
+  {
+   "t": "eJH\ud83cH",
+   "cl": 5,
+   "o2": 5
+  },
+  {
+   "t": "I\udfb5a'\n1bé符\"\udfb5\"\t文文22g.dée2",
+   "cl": 18,
+   "o2": 17
+  },
+  {
+   "t": "!3d.\ud83cJ2H'K中gaIe3f",
+   "cl": 15,
+   "o2": 15
+  },
+  {
+   "t": "\nJé\".0H",
+   "cl": 6,
+   "o2": 6
+  },
+  {
+   "t": "J\"gfge\ud83c\"b0.J字字\"J!?",
+   "cl": 14,
+   "o2": 14
+  },
+  {
+   "t": "eHJHI?fH\n文cJ\ud83c,é\udfb5\tfH文aßKß1ßdb",
+   "cl": 24,
+   "o2": 24
+  },
+  {
+   "t": "文.符字\t 0df\tdf\t'é13f000\ud83cd13\ud83c字\n\udfb5中2 0中é,cßc\ngß\t\t0c字!\udfb5d\udfb5'字a2f\n\n2",
+   "cl": 49,
+   "o2": 48
+  },
+  {
+   "t": "aéd.dHf文🎵文\udfb50符3K符é!1fb.符d\t''a2I 1 0!\t!eß.g",
+   "cl": 38,
+   "o2": 37
+  },
+  {
+   "t": "\udfb5d\udfb5 文\udfb5,00\" 符字0",
+   "cl": 12,
+   "o2": 12
+  },
+  {
+   "t": "3\udfb5a符文中J3?\na a'a字,\"JJ  \ud83c??f 文ß符 a符H\udfb5\udfb5'.I符2!!\n\"e中\n\t1",
+   "cl": 37,
+   "o2": 36
+  },
+  {
+   "t": ",\t符HI02'I2 f文a\udfb5字'符JI",
+   "cl": 15,
+   "o2": 15
+  },
+  {
+   "t": "文H符If?b?Jé",
+   "cl": 9,
+   "o2": 9
+  },
+  {
+   "t": "a3文文?.ß\udfb5?中!1!\n\"a\n\ud83cfd220I1ß文2d",
+   "cl": 23,
+   "o2": 22
+  },
+  {
+   "t": "!01d字\"Hg2!2文\n\udfb52ß文e3 .字f\udfb5J!\t\ud83c,K.\"é.中.'2gH\n 符0féad?3,?.",
+   "cl": 45,
+   "o2": 46
+  },
+  {
+   "t": "\ud83c符\n 3a\ud83c字3KIb2'\ud83c\ud83c\ngb!\nae? fé\ud83c,?'c 符I",
+   "cl": 27,
+   "o2": 28
+  },
+  {
+   "t": "\t3Igad2Ia字bde\t\n.符!符01\n文e中中2H\ud83c文ca\"a ?3文Jc2\udfb5I2'f字féc文",
+   "cl": 43,
+   "o2": 40
+  },
+  {
+   "t": "J\udfb5HK\n文bé\ndéJ1'a符\t\udfb5'.,",
+   "cl": 17,
+   "o2": 16
+  }
+ ]
+}

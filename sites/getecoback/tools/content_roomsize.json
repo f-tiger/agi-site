@@ -1,0 +1,76 @@
+{
+ "category": "Klimaanlage nach Raumgröße",
+ "note": "Programmatische Kategorie: eine Seite je Raumgröße. Neue Größe = neuer Eintrag hier, dann `python tools/gen_roomsize.py`.",
+ "entries": [
+  {
+   "qm": 10,
+   "btu": "5.000–7.000",
+   "watt": 700,
+   "rolle": "Kompakt & günstig",
+   "modell": "Comfee MPPH-09CRN7",
+   "suchbegriff": "Comfee+MPPH-09CRN7",
+   "raumtyp": "kleines Schlaf- oder Arbeitszimmer",
+   "hinweis": "Bei nur 10 m² reicht ein kompaktes Einsteigergerät. Mehr BTU bringt hier nur mehr Lärm und Stromkosten."
+  },
+  {
+   "qm": 15,
+   "btu": "7.000–9.000",
+   "watt": 900,
+   "rolle": "Preis-Leistung",
+   "modell": "Comfee MPPH-09CRN7",
+   "suchbegriff": "Comfee+MPPH-09CRN7",
+   "raumtyp": "Schlafzimmer oder kleines Büro",
+   "hinweis": "9.000 BTU sind der Sweet Spot für die meisten deutschen Schlafzimmer bis 15 m²."
+  },
+  {
+   "qm": 20,
+   "btu": "9.000–10.000",
+   "watt": 1000,
+   "rolle": "Allrounder",
+   "modell": "De'Longhi Pinguino PAC EX105",
+   "suchbegriff": "De%27Longhi+Pinguino+PAC+EX105",
+   "raumtyp": "größeres Schlafzimmer oder Wohn-/Arbeitsbereich",
+   "hinweis": "Ab 20 m² lohnt ein kräftigerer Allrounder mit ~10.000 BTU, besonders bei Südfenstern."
+  },
+  {
+   "qm": 25,
+   "btu": "10.000–12.000",
+   "watt": 1200,
+   "rolle": "Kräftig",
+   "modell": "De'Longhi Pinguino PAC EX105",
+   "suchbegriff": "De%27Longhi+Pinguino+PAC+EX105",
+   "raumtyp": "Wohnzimmer oder großes Schlafzimmer",
+   "hinweis": "25 m² brauchen 10.000–12.000 BTU. Prüfe zusätzlich Deckenhöhe und Sonneneinstrahlung."
+  },
+  {
+   "qm": 30,
+   "btu": "12.000–13.000",
+   "watt": 1300,
+   "rolle": "Große Räume",
+   "modell": "Klarstein mobile Klimaanlage 12000 BTU",
+   "suchbegriff": "Klarstein+mobile+Klimaanlage+12000+BTU",
+   "raumtyp": "Wohnzimmer oder offener Wohnbereich",
+   "hinweis": "Ab 30 m² wird es für kleine Monoblocks eng — plane 12.000+ BTU oder ein Split-Gerät ein."
+  },
+  {
+   "qm": 40,
+   "btu": "14.000+",
+   "watt": 1500,
+   "rolle": "Sehr große / offene Räume",
+   "modell": "Klarstein mobile Klimaanlage 14000 BTU",
+   "suchbegriff": "mobile+klimaanlage+14000+btu",
+   "raumtyp": "offener Grundriss oder sehr großes Wohnzimmer",
+   "hinweis": "Bei 40 m² oder offenem Grundriss ist ein starkes Monoblock (14.000+ BTU) oder eine Split-Klimaanlage die realistische Wahl."
+  },
+  {
+   "qm": 50,
+   "btu": "16.000+ (oder zwei Zonen)",
+   "watt": 2000,
+   "rolle": "Offene Wohnbereiche / Loft",
+   "modell": "Midea PortaSplit",
+   "suchbegriff": "Midea+PortaSplit",
+   "raumtyp": "offener Wohn-/Essbereich oder Loft",
+   "hinweis": "50 m² sind die realistische Obergrenze für mobile Geräte: entweder ein sehr starkes Monoblock (16.000+ BTU), besser ein Split-ähnliches Gerät wie der Midea PortaSplit — oder zwei Geräte für zwei Zonen."
+  }
+ ]
+}

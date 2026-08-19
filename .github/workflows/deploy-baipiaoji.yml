@@ -1,0 +1,458 @@
+# 全自动流水线：每日巡检数据 → 提交更新 → 构建 → 部署 Cloudflare Pages
+# 依赖仓库 Secret：CLOUDFLARE_API_TOKEN（需 Pages 编辑权限）。全程无需人工介入。
+name: Daily update & deploy
+# ── 迁入公开 monorepo f-tiger/agi-site(2026-08-19,owner 决定)──
+# 原仓 .github 为历史档案。公开仓 Actions 分钟免费。
+# 本 workflow 的 run 步骤默认 working-directory: sites/baipiaoji/。
+
+
+on:
+  schedule:
+    # 每天一次。cron 设在北京时间 08:30，但 GitHub 的定时任务在高峰期会排队——
+    # 实测 07-27 / 07-28 两次分别延迟到 12:22 和 11:46 才跑。所以对外文案只说「每天一次」，不承诺时刻。
+    - cron: '30 0 * * *'
+  push:
+    branches: [main]
+    paths:
+      - "sites/baipiaoji/**"
+      - ".github/workflows/deploy-baipiaoji.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: deploy-baipiaoji
+  # 2026-08-16:账号 Actions 额度 15 天用掉 90%(1803/2000),本仓是最大消耗源
+  # (342 次运行 × 均 3.5 分)。根因不是定时任务,是会话开发期连续 push——默认分支
+  # 就是 claude/**,每推一次都跑一次完整构建部署。改成取消被顶替的运行:一串连续
+  # push 只有最后一次真正部署,结果完全一样,前面几次的分钟数省下来。
+  # 定时任务不受影响(它们各自独立触发,不会被 push 顶掉)。
+  cancel-in-progress: true
+
+jobs:
+  update-build-deploy:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: sites/baipiaoji
+    # 2026-08-18：账号 2000 分钟当月用满（本仓 $7.82/$15.64，最大消耗源），
+    # 08-18 01:42 与 01:58 两次运行都在 2 秒内无 runner 失败——那是额度耗尽的签名，
+    # 不是代码坏了。实测当前速率其实已经健康（push 0.76 分/次、schedule 5.0 分/次，
+    # 34 小时共 21.5 分钟 ≈ 455 分钟/月），超额是 08-16 修复之前的旧速率欠下的。
+    #
+    # 但「每 commit 一次部署」这条仍然靠自觉——CLAUDE.md 写了「合并推送」，
+    # 34 小时里还是跑了 22 次 push 运行（只有 12 次成功，其余在互相取消）。
+    # 与 limits-edit.mjs 同一个教训：规矩靠自觉执行不了，就改成程序强制。
+    #
+    # 从今往后 push 默认**不部署**，提交信息里显式写 [deploy] 才部署。
+    # 不会因此漏发布：每日 schedule 仍然照跑，最坏情况是晚一天上线。
+    if: >-
+      github.event_name != 'push' ||
+      contains(github.event.head_commit.message, '[deploy]')
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Verify tool links & refresh dates (scheduled runs only)
+        if: github.event_name != 'push'
+        run: node scripts/verify.mjs
+
+      # 新工具自动发现：从 HN 公开 API 拉候选进 data/backlog.json（只排队，不上站）。
+      # 发现自动化、核实不自动化——收录判断仍走人工/会话按硬规则执行。
+      # 放在数据提交步骤之前，产出随下面那步一并入库。
+      - name: Discover new tool candidates (scheduled runs only)
+        if: github.event_name != 'push'
+        run: node scripts/discover-tools.mjs
+        continue-on-error: true
+
+      - name: Commit refreshed data (scheduled runs only)
+        if: github.event_name != 'push'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/
+          git diff --cached --quiet || git commit -m "chore: daily data verification $(date -u +%F)"
+          git push
+
+      # 复核队列：把「该重新核实谁」变成每日可见输出（不自动改写数字）
+      - name: Recheck queue (limits freshness)
+        run: node scripts/recheck-queue.mjs
+        continue-on-error: true
+
+      # 回归护栏：防止复核时覆盖式写入丢掉已核实事实（见 scripts/guard-regression.mjs）
+      - name: Guard against fact regression
+        run: node scripts/guard-regression.mjs
+        continue-on-error: true
+
+      # 额度变更记录：必须在 build 之前跑，否则当天的变更进不了当天生成的页面与 RSS。
+      # 这是站上唯一不需要邮箱、也不需要邮件服务商就能成立的回访通道。
+      - name: Record limits changes
+        run: node scripts/limits-history.mjs
+
+      # 趋势雷达：五路站内信号 → 排序后的行动队列（data/agenda.json）。
+      # 每日会话与人从这里取活，而不是每次从零判断该干什么。只排队，不写事实。
+      - name: Trend radar (signals to action queue)
+        run: node scripts/trend-radar.mjs
+        continue-on-error: true
+
+      # 结构化「零新增事实」：quotas 文件里的每个数字都必须能在已核实散文里找到。
+      # 结构化时顺手把「约 7 分钟」写成「7.5 分钟」不会被任何其他门禁拦住——
+      # 那种数字长得跟真的一模一样，而它正好打在本站唯一护城河上。
+      - name: Quota facts check (no invented numbers)
+        run: node scripts/quota-facts-check.mjs
+
+      # 自研分词器的回归检验：420 例金标准 × 两套词表 = 840 次逐例比对。
+      # 写自己的实现就得自己证明它对，否则只是把「让用户猜」换成「让我们猜」。
+      - name: Tokenizer regression (840 golden cases)
+        run: node scripts/tokenizer-test.mjs
+
+      - name: Build site
+        run: node scripts/build.mjs
+
+      # 2026-08-17 挂入：九道出厂门禁（断链/JSON-LD/中文残留/占位符/裸MD/矛盾/EN缺项/
+      # 写死计数/空壳页）此前只在会话手动跑——CI 里从未把过关。放在 build 之后、deploy
+      # 之前：不过关就不部署。
+      - name: Verify dist (出厂门禁)
+        run: node scripts/verify-dist.mjs
+
+      # 2026-08-16 删除「Ensure Pages project exists」:项目早就存在,这一步每次都
+      # 静默失败后 `|| true`——却要为此完整下载一次 wrangler。等于每次运行白花几十秒
+      # 做一件确定无效的事。项目若真被删,下面的 deploy 会报错,那时手动建一次即可。
+      - name: Deploy to Cloudflare Pages
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: npx wrangler@4 pages deploy dist --project-name=aiyangmao --branch=main --commit-dirty=true
+
+      # 每日流量快照：把 D1 里的第一方打点聚合后写回仓库（data/traffic-snapshot.json），
+      # 任何会话（含无 MCP 的自动循环轮次）都能从 git 读到最新流量。token 若无 D1 权限则静默跳过。
+      - name: Export traffic snapshot from D1
+        if: github.event_name != 'push'
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          npx wrangler@4 d1 execute baipiaoji-hits --remote --json --command \
+            "SELECT d, path, lang, country, ref, COUNT(*) AS n FROM hits WHERE d >= date('now','-14 days') AND path != '/__selftest' GROUP BY d, path, lang, country, ref ORDER BY d DESC, n DESC LIMIT 500" \
+            > data/traffic-snapshot.json 2>/dev/null \
+            && echo "snapshot exported" || { echo "snapshot skipped (no D1 access)"; rm -f data/traffic-snapshot.json; }
+        continue-on-error: true
+
+      - name: Commit traffic snapshot
+        if: github.event_name != 'push'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/traffic-snapshot.json 2>/dev/null || true
+          git diff --cached --quiet || { git commit -m "chore: traffic snapshot $(date -u +%F)"; git pull --rebase -q; git push; }
+        continue-on-error: true
+
+      # 部署后自测第一方打点：CI 网络可达生产域，打一发 /__selftest，
+      # D1 里能查到即证明 Function+绑定+信标链路全通
+      - name: Self-test first-party beacon
+        run: |
+          code=$(curl -s -o /dev/null -w "%{http_code}" -X POST https://baipiaoji.com/api/hit \
+            -H 'Content-Type: application/json' -d '{"p":"/__selftest","l":"ci","r":""}' --max-time 15)
+          echo "beacon self-test HTTP $code"
+        continue-on-error: true
+
+      # 订阅链路自测：Function + D1 绑定 + 表结构，任一环断了都必须当天暴露。
+      # 之前只在本地用 mock 测过前端，真接口一次都没跑过——mock 通过不代表线上通。
+      # 固定用一个 CI 专用邮箱，重复运行只会命中同一行，不会污染名单。
+      - name: Self-test subscribe & unsubscribe endpoints
+        id: st_sub
+        run: |
+          api() { curl -s -o /tmp/r.json -w "%{http_code}" -X POST "https://baipiaoji.com/api/$1" \
+            -H 'Content-Type: application/json' -d "$2" --max-time 20; }
+          c1=$(api subscribe '{"email":"ci-selftest@baipiaoji.com","lang":"ci","src":"/__ci","tools":"kimi"}')
+          b1=$(cat /tmp/r.json)
+          c2=$(api subscribe '{"email":"ci-selftest@baipiaoji.com","lang":"ci","src":"/__ci","tools":"deepseek"}')
+          b2=$(cat /tmp/r.json)
+          c3=$(api subscribe '{"email":"not-an-email"}')
+          b3=$(cat /tmp/r.json)
+          c4=$(api unsubscribe '{"email":"ci-selftest@baipiaoji.com"}')
+          b4=$(cat /tmp/r.json)
+          echo "subscribe(new)   HTTP $c1  $b1"
+          echo "subscribe(dup)   HTTP $c2  $b2"
+          echo "subscribe(bad)   HTTP $c3  $b3"
+          echo "unsubscribe      HTTP $c4  $b4"
+          # 只要有一环不是预期结果就让这一步显式失败——静默通过等于没测
+          [ "$c1" = "200" ] && [ "$c2" = "200" ] && [ "$c3" = "400" ] && [ "$c4" = "200" ] \
+            || { echo "::error::订阅链路自测未通过"; exit 1; }
+          echo "$b2" | grep -q already || { echo "::error::重复订阅未返回 already"; exit 1; }
+          echo "✅ 订阅链路自测通过（新订阅 / 重复合并 / 非法邮箱拒绝 / 退订）"
+        continue-on-error: true
+
+      # 提交链路自测：固定 URL，首次插入返回 ok、此后返回 already——两条路径都测到。
+      # 非法 URL 必须 400。与订阅自测同一原则：静默通过等于没测。
+      - name: Self-test submit endpoint
+        id: st_submit
+        run: |
+          api() { curl -s -o /tmp/r.json -w "%{http_code}" -X POST "https://baipiaoji.com/api/submit" \
+            -H 'Content-Type: application/json' -d "$1" --max-time 20; }
+          c1=$(api '{"name":"__ci-selftest","url":"https://baipiaoji.com/__ci-submit-selftest","note":"CI"}')
+          b1=$(cat /tmp/r.json)
+          c2=$(api '{"name":"x","url":"not a url"}')
+          b2=$(cat /tmp/r.json)
+          echo "submit(ok/dup)  HTTP $c1  $b1"
+          echo "submit(badurl)  HTTP $c2  $b2"
+          [ "$c1" = "200" ] && [ "$c2" = "400" ] || { echo "::error::提交链路自测未通过"; exit 1; }
+          echo "$b1" | grep -Eq 'ok|already' || { echo "::error::提交返回码异常"; exit 1; }
+          echo "✅ 提交链路自测通过"
+        continue-on-error: true
+
+      # Agent API 自测：slug 命中、404 语义、CORS 头——agent 依赖的契约每天验一遍
+      - name: Self-test agent API
+        id: st_agent
+        run: |
+          r=$(curl -s -m 20 'https://baipiaoji.com/api/limits?slug=kimi')
+          echo "$r" | head -c 200; echo
+          echo "$r" | grep -q '"slug":"kimi"' || { echo "::error::agent API slug 查询失败"; exit 1; }
+          c404=$(curl -s -o /dev/null -w "%{http_code}" -m 20 'https://baipiaoji.com/api/limits?slug=no-such-tool-xyz')
+          [ "$c404" = "404" ] || { echo "::error::未知 slug 应 404，实得 $c404"; exit 1; }
+          cors=$(curl -s -I -m 20 'https://baipiaoji.com/api/limits' | tr -d '\r' | grep -i '^access-control-allow-origin' || true)
+          echo "$cors" | grep -q '\*' || { echo "::error::CORS 头缺失"; exit 1; }
+          rt=$(curl -s -m 20 'https://baipiaoji.com/api/tools?category=video&free=1')
+          echo "$rt" | grep -q '"ok":true' || { echo "::error::/api/tools 过滤查询失败"; exit 1; }
+          ren=$(curl -s -m 20 'https://baipiaoji.com/api/limits?slug=kimi&lang=en')
+          echo "$ren" | grep -q '"lang":"en"' || { echo "::error::lang=en 未生效"; exit 1; }
+          echo "$ren" | grep -qi 'free' || { echo "::error::EN 数据疑似仍是中文"; exit 1; }
+          m=$(curl -s -m 20 -X POST 'https://baipiaoji.com/api/mcp' -H 'Content-Type: application/json' \
+            -d '{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"get_free_tier_limit","arguments":{"tool":"kimi"}}}')
+          echo "$m" | head -c 160; echo
+          # 工具结果嵌在 content[0].text 里是转义 JSON（\"checked\"），按未转义形态 grep 永远失败——2026-08-08 踩坑
+          echo "$m" | grep -q 'checked' || { echo "::error::MCP tools/call 失败"; exit 1; }
+          # MCP 三类能力都要有断言：工具、资源、提示词。少测一类，那一类挂了没人知道
+          mc=$(curl -s -m 20 -X POST 'https://baipiaoji.com/api/mcp' -H 'Content-Type: application/json' \
+            -d '{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"compare_free_tiers","arguments":{"category":"chat"}}}')
+          echo "$mc" | grep -q 'wall_type' || { echo "::error::compare_free_tiers 未返回结构化对照数据"; exit 1; }
+          mr=$(curl -s -m 20 -X POST 'https://baipiaoji.com/api/mcp' -H 'Content-Type: application/json' \
+            -d '{"jsonrpc":"2.0","id":3,"method":"resources/read","params":{"uri":"baipiaoji://quotas"}}')
+          echo "$mr" | grep -q 'categories' || { echo "::error::resources/read 取不到 quotas 数据集"; exit 1; }
+          # watch 工具是订阅转化面，必须始终在 tools/list 里可发现
+          ml=$(curl -s -m 20 -X POST 'https://baipiaoji.com/api/mcp' -H 'Content-Type: application/json' \
+            -d '{"jsonrpc":"2.0","id":9,"method":"tools/list"}')
+          echo "$ml" | grep -q 'watch_free_tier_changes' || { echo "::error::watch_free_tier_changes 不在 tools/list"; exit 1; }
+          mp=$(curl -s -m 20 -X POST 'https://baipiaoji.com/api/mcp' -H 'Content-Type: application/json' \
+            -d '{"jsonrpc":"2.0","id":4,"method":"prompts/get","params":{"name":"pick-a-free-tier","arguments":{"task":"ci selftest"}}}')
+          echo "$mp" | grep -q 'ci selftest' || { echo "::error::prompts/get 未把参数嵌进提示词"; exit 1; }
+          # 计算型工具单独断言：它不是查询而是除法，静默算错比返回空更危险
+          mf=$(curl -s -m 20 -X POST 'https://baipiaoji.com/api/mcp' -H 'Content-Type: application/json' \
+            -d '{"jsonrpc":"2.0","id":5,"method":"tools/call","params":{"name":"check_api_quota_fit","arguments":{"requests_per_day":200,"tokens_per_call":2000}}}')
+          echo "$mf" | grep -q 'within_limits' || { echo "::error::check_api_quota_fit 未返回测算结果"; exit 1; }
+          mw=$(curl -s -m 20 -X POST 'https://baipiaoji.com/api/mcp' -H 'Content-Type: application/json' \
+            -d '{"jsonrpc":"2.0","id":6,"method":"tools/call","params":{"name":"build_free_workflow","arguments":{"task":"presentation"}}}')
+          echo "$mw" | grep -q 'steps' || { echo "::error::build_free_workflow 未返回成套步骤"; exit 1; }
+          ma=$(curl -s -m 20 -X POST 'https://baipiaoji.com/api/mcp' -H 'Content-Type: application/json' \
+            -d '{"jsonrpc":"2.0","id":7,"method":"tools/call","params":{"name":"audit_ai_stack","arguments":{"tools":["cursor","runway"]}}}')
+          echo "$ma" | grep -q 'vendor_publishes_figure' || { echo "::error::audit_ai_stack 未返回三态判定"; exit 1; }
+          mb=$(curl -s -m 20 -X POST 'https://baipiaoji.com/api/mcp' -H 'Content-Type: application/json' \
+            -d '{"jsonrpc":"2.0","id":8,"method":"tools/call","params":{"name":"get_category_playbook","arguments":{"category":"video"}}}')
+          echo "$mb" | grep -q 'ask_first' || { echo "::error::get_category_playbook 未返回类目规律"; exit 1; }
+          for a in quotas myths workflows changes no-source labeling insights; do
+            code=$(curl -s -o /dev/null -w "%{http_code}" -m 15 "https://baipiaoji.com/en/$a.json")
+            [ "$code" = "200" ] || { echo "::error::机器可读资产缺失 $a=$code"; exit 1; }
+          done
+          wk=$(curl -s -o /dev/null -w "%{http_code}" -m 15 'https://baipiaoji.com/.well-known/mcp.json')
+          oa=$(curl -s -o /dev/null -w "%{http_code}" -m 15 'https://baipiaoji.com/openapi.json')
+          lf=$(curl -s -o /dev/null -w "%{http_code}" -m 15 'https://baipiaoji.com/llms-full.txt')
+          [ "$wk" = "200" ] && [ "$oa" = "200" ] && [ "$lf" = "200" ] || { echo "::error::发现面缺失 well-known=$wk openapi=$oa llms-full=$lf"; exit 1; }
+          echo "✅ Agent API 自测通过（limits + tools + lang=en + MCP + 发现面）"
+        continue-on-error: true
+
+      # MCP 发现面体检：注册表收录状态 + 自有发现面可达性，写回仓库供雷达排行动项。
+      # 发现不是一次性动作——注册表可能下架、发现面可能被改坏，每天验一遍才算「在」。
+      # 变更分发：部署完成后触发一次。端点幂等且不信任调用方——它自己从同源拉
+      # changes.json 并按每个 watch 的 last_sent 去重，重复触发不重发。
+      - name: Dispatch verified changes to watch webhooks
+        if: github.event_name != 'push'
+        run: |
+          r=$(curl -s -m 30 -X POST 'https://baipiaoji.com/api/dispatch-changes')
+          echo "$r"
+          echo "$r" | grep -q '"ok":true' || { echo "::error::dispatch-changes 未返回 ok"; exit 1; }
+
+      # watch API 自测：只测校验路径，不写库（坏 URL 与超限都应被拒）
+      # 增量端点自测：契约的三件事（version / stable 路径 / since 过滤）任一断了都必须当天暴露。
+      # 它是为「被写死进别人代码」设计的——契约一旦被引用方 vendored，静默改坏比返回 500 更伤。
+      - name: Self-test incremental changes endpoint
+        id: st_changes
+        run: |
+          # 断言一律用「键: 值」的空白容忍写法。2026-08-16 踩坑：这个端点用
+          # JSON.stringify(obj, null, 1) 输出，实际是 '"ok": true'（带空格），
+          # 而断言按想象写成了 '"ok":true'，于是端点明明正常却报失败——
+          # 与 2026-08-08 MCP 转义 JSON 是同一类错误：断言没对着真实输出核过。
+          full=$(curl -s -m 20 'https://baipiaoji.com/api/changes')
+          printf '%s' "$full" | head -c 220 || true; echo
+          echo "$full" | grep -Eq '"ok":[[:space:]]*true' || { echo "::error::/api/changes 未返回 ok"; exit 1; }
+          echo "$full" | grep -q '"version"' || { echo "::error::缺 version 字段（契约）"; exit 1; }
+          echo "$full" | grep -q '"incremental"' || { echo "::error::缺 stable 路径承诺"; exit 1; }
+          # since 必须真的过滤：远期日期应把结果裁到 0
+          fu=$(curl -s -m 20 'https://baipiaoji.com/api/changes?since=2099-01-01')
+          echo "$fu" | grep -Eq '"count":[[:space:]]*0' || { echo "::error::since 过滤未生效"; exit 1; }
+          bad=$(curl -s -o /dev/null -w "%{http_code}" -m 20 'https://baipiaoji.com/api/changes?since=notadate')
+          [ "$bad" = "400" ] || { echo "::error::非法 since 应 400，实得 $bad"; exit 1; }
+          cors=$(curl -s -I -m 20 'https://baipiaoji.com/api/changes' | tr -d '\r' | grep -i '^access-control-allow-origin' || true)
+          echo "$cors" | grep -q '\*' || { echo "::error::CORS 头缺失（agent 侧不可用）"; exit 1; }
+          echo "✅ 增量端点自测通过（ok / version / stable / since 过滤 / 非法 since 400 / CORS）"
+        continue-on-error: true
+
+      - name: Self-test watch endpoint
+        id: st_watch
+        run: |
+          bad=$(curl -s -m 20 -X POST 'https://baipiaoji.com/api/watch' -H 'content-type: application/json' \
+            -d '{"hook":"http://insecure.example.com/x","slugs":["kimi"]}')
+          echo "$bad" | grep -q 'https_only' || { echo "::error::http 地址未被拒"; exit 1; }
+          lim=$(curl -s -m 20 -X POST 'https://baipiaoji.com/api/watch' -H 'content-type: application/json' \
+            -d '{"hook":"https://hooks.example.com/x","slugs":["kimi","suno","cursor","felo"]}')
+          echo "$lim" | grep -q 'free_limit' || { echo "::error::免费档 3 个上限未生效"; exit 1; }
+          unk=$(curl -s -m 20 -X POST 'https://baipiaoji.com/api/watch' -H 'content-type: application/json' \
+            -d '{"hook":"https://hooks.example.com/x","slugs":["no-such-slug-xyz"]}')
+          echo "$unk" | grep -q 'unknown_slugs' || { echo "::error::未知 slug 未被拒"; exit 1; }
+
+      - name: MCP discovery surface check
+        run: |
+          listed=false
+          reg=$(curl -s -m 20 'https://registry.modelcontextprotocol.io/v0/servers?search=verified-ai-free-tiers' || echo '')
+          echo "$reg" | grep -q 'f-tiger/verified-ai-free-tiers' && listed=true
+          wk=$(curl -s -o /dev/null -w "%{http_code}" -m 15 'https://baipiaoji.com/.well-known/mcp.json')
+          # -L：Cloudflare Pages 对 .html 路径做 308 规范化重定向（→ /mcp），要问的是「最终可达吗」而不是「首跳是什么」
+          mh=$(curl -sL -o /dev/null -w "%{http_code}" -m 15 'https://baipiaoji.com/mcp.html')
+          printf '{"checked":"%s","registry_listed":%s,"well_known":%s,"mcp_html":%s}\n' \
+            "$(date -u +%F)" "$listed" "$wk" "$mh" > data/mcp-status.json
+          cat data/mcp-status.json
+        continue-on-error: true
+
+      # AI 检索爬虫可达性探测：robots.txt 放行 ≠ 网络层放行。
+      # Cloudflare 的 Bot Fight / "Block AI Scrapers" 在 robots 之上生效，开了就是 403，
+      # 而站点自己完全看不出来——第一方打点只记录跑 JS 的真人，爬虫根本不会出现在 D1 里。
+      # CI 的出口网络能到生产域，所以在这里按爬虫 UA 实测，把结果写回仓库供任何会话读取。
+      - name: Probe AI crawler reachability
+        if: github.event_name != 'push'
+        run: node scripts/ai-crawler-probe.mjs
+        continue-on-error: true
+
+      # _middleware.js 拦住了**每一个**请求。它要是抛错或吞掉响应，
+      # 整站会一起下线——所以它上线后必须有一条独立断言：页面照常 200、
+      # 内容照常返回、API 不受影响。探针步骤只证明「爬虫进得来」，不覆盖这一条。
+      - name: Self-test edge middleware (all traffic passes through it)
+        id: st_mw
+        run: |
+          h=$(curl -s -o /tmp/p.html -w "%{http_code}" -m 20 -A 'GPTBot/1.0' 'https://baipiaoji.com/en/')
+          grep -q '</html>' /tmp/p.html || { echo "::error::中间件下页面内容不完整"; exit 1; }
+          n=$(curl -s -o /dev/null -w "%{http_code}" -m 20 'https://baipiaoji.com/')
+          a=$(curl -s -o /dev/null -w "%{http_code}" -m 20 'https://baipiaoji.com/api/limits?slug=kimi')
+          l=$(curl -s -o /dev/null -w "%{http_code}" -m 20 -A 'ClaudeBot/1.0' 'https://baipiaoji.com/llms.txt')
+          echo "bot-page=$h human-page=$n api=$a bot-llms=$l"
+          [ "$h" = "200" ] && [ "$n" = "200" ] && [ "$a" = "200" ] && [ "$l" = "200" ] \
+            || { echo "::error::边缘中间件破坏了正常流量 bot=$h human=$n api=$a llms=$l"; exit 1; }
+          echo "✅ 边缘中间件自测通过（爬虫页 / 真人页 / API / llms.txt 均 200）"
+
+      - name: Commit AI crawler probe result
+        if: github.event_name != 'push'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/ai-crawler-probe.json 2>/dev/null || true
+          git diff --cached --quiet || { git commit -m "chore: AI crawler probe $(date -u +%F)"; git pull --rebase -q; git push; }
+        continue-on-error: true
+
+      # 日常只推「近两天有实质变更」的 URL（协议本意）。
+      # 发现面回填不在这里做——它被拆成独立的 indexnow-backfill.yml：
+      # 走这条流水线回填要付一次完整巡检+构建+部署（实测 >10 分钟），
+      # 而回填本身只需要几十秒。一件事只留一个入口，避免两处分叉。
+      - name: Ping IndexNow (Bing/Yandex/Naver instant indexing)
+        if: github.event_name != 'push'
+        run: node scripts/indexnow.mjs || true
+
+      # Wayback Machine 快照：无需账号的外部索引面——存档页可被搜索与 AI 检索抓取且永久回链本站。
+      # 按价值排序取前 N 个（方法论 → 拒绝清单 → 流言核查 → 首页 → 类目 → 对比页），见 scripts/wayback.mjs
+      - name: Archive key pages to Wayback Machine
+        if: github.event_name != 'push'
+        run: node scripts/wayback.mjs
+        continue-on-error: true
+
+      # 变更清单必须回写仓库：它是「哪些页真的变了」的唯一记忆，
+      # 丢了就等于每天从零开始，sitemap lastmod 和 IndexNow 又会退回「每天全站都变了」。
+      - name: Commit page change manifest
+        if: github.event_name != 'push'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/page-lastmod.json data/limits-history.json data/agenda.json data/mcp-status.json 2>/dev/null || true
+          git diff --cached --quiet || { git commit -m "chore: page change manifest $(date -u +%F)"; git pull --rebase -q; git push; }
+        continue-on-error: true
+
+      # RSS ping：无需账号的聚合器分发——通知 Ping-O-Matic 站点 feed 有更新
+      - name: Ping RSS aggregators
+        if: github.event_name != 'push'
+        run: |
+          curl -s -m 20 "http://rpc.pingomatic.com/" -H 'Content-Type: text/xml' \
+            -d '<?xml version="1.0"?><methodCall><methodName>weblogUpdates.extendedPing</methodName><params><param><value>白嫖计</value></param><param><value>https://baipiaoji.com/</value></param><param><value>https://baipiaoji.com/feed.xml</value></param></params></methodCall>' \
+            -o /dev/null && echo pinged || echo skipped
+        continue-on-error: true
+
+      - name: Ensure custom domain bound (baipiaoji.com)
+        if: github.event_name != 'push'
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          ACCOUNT_ID=$(curl -s -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+            "https://api.cloudflare.com/client/v4/accounts" | jq -r '.result[0].id // empty')
+          if [ -z "$ACCOUNT_ID" ]; then
+            echo "::warning::无法获取 account id，请在 Pages 控制台手动绑定 baipiaoji.com"
+            exit 0
+          fi
+          for domain in baipiaoji.com www.baipiaoji.com; do
+            curl -s -X POST "https://api.cloudflare.com/client/v4/accounts/$ACCOUNT_ID/pages/projects/aiyangmao/domains" \
+              -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" -H "Content-Type: application/json" \
+              --data "{\"name\":\"$domain\"}" \
+              | jq -c --arg d "$domain" '{domain: $d, success, errors: [.errors[]?.message]}'
+          done
+
+      - name: Ensure DNS records point at Pages
+        if: github.event_name != 'push'
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN_ZONE }}
+        run: |
+          auth=(-H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" -H "Content-Type: application/json")
+          ZONE_ID=$(curl -s "${auth[@]}" "https://api.cloudflare.com/client/v4/zones?name=baipiaoji.com" | jq -r '.result[0].id // empty')
+          if [ -z "$ZONE_ID" ]; then
+            echo "::warning::Token 无法访问 baipiaoji.com 的 Zone（需 Zone.DNS 编辑权限），请在 DNS 面板手动添加 CNAME -> aiyangmao.pages.dev"
+            exit 0
+          fi
+          for name in baipiaoji.com www.baipiaoji.com; do
+            existing=$(curl -s "${auth[@]}" "https://api.cloudflare.com/client/v4/zones/$ZONE_ID/dns_records?name=$name" | jq -r '.result | length')
+            if [ "$existing" = "0" ]; then
+              curl -s -X POST "${auth[@]}" "https://api.cloudflare.com/client/v4/zones/$ZONE_ID/dns_records" \
+                --data "{\"type\":\"CNAME\",\"name\":\"$name\",\"content\":\"aiyangmao.pages.dev\",\"proxied\":true}" \
+                | jq -c --arg n "$name" '{record: $n, success, errors: [.errors[]?.message]}'
+            else
+              echo "{\"record\":\"$name\",\"exists\":true}"
+            fi
+          done
+
+      # 链路自测的总闸（2026-08-16 补）。
+      # 此前每个步骤都带 continue-on-error: true，包括五个链路自测——
+      # 结果是「CI 绿」从来只表示「跑完了」，不表示「链路通」：订阅接口真断了，
+      # 日志里会有一行 ::error::，而运行状态依然是成功，没有人会去看那一行。
+      # 修法不是把 continue-on-error 一个个去掉（那会在第一个失败处中断，
+      # 后面的 IndexNow / Wayback / 提交清单全被跳过），而是让所有步骤照常跑完，
+      # 最后用这一步按 outcome 汇总——该红的红，该做的也都做了。
+      - name: Gate on chain self-tests
+        if: always()
+        run: |
+          fail=0
+          check() {
+            [ "$2" = "success" ] || [ "$2" = "skipped" ] || {
+              echo "::error::$1 自测未通过（outcome=$2）"; fail=1; }
+          }
+          check "订阅/退订链路" "${{ steps.st_sub.outcome }}"
+          check "工具提交链路" "${{ steps.st_submit.outcome }}"
+          check "Agent API 与发现面" "${{ steps.st_agent.outcome }}"
+          check "watch 校验路径" "${{ steps.st_watch.outcome }}"
+          check "增量变更端点" "${{ steps.st_changes.outcome }}"
+          check "边缘中间件" "${{ steps.st_mw.outcome }}"
+          [ "$fail" = "0" ] || exit 1
+          echo "✅ 五条链路自测全通过"

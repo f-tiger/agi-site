@@ -1,0 +1,30 @@
+{
+  "recorded": "2026-08-11",
+  "heightsWithPage": [
+    {
+      "heightCm": 150,
+      "n": 30
+    },
+    {
+      "heightCm": 160,
+      "n": 15
+    }
+  ],
+  "heightsWaiting": [
+    {
+      "heightCm": 140,
+      "n": 4,
+      "needs": 6
+    },
+    {
+      "heightCm": 165,
+      "n": 1,
+      "needs": 9
+    }
+  ],
+  "blockedOnOwner": [
+    "search-console-submission",
+    "brand-collision-decision",
+    "human-outreach"
+  ]
+}

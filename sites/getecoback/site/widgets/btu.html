@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>BTU-Rechner Widget</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:#fff;color:#1a2733;padding:14px;font-size:14px;line-height:1.5}
+label{display:block;font-weight:700;font-size:12.5px;margin:8px 0 3px}input,select{width:100%;padding:8px 10px;border:1px solid #cfd9e2;border-radius:7px;font-size:14px;background:#fff}
+button{display:block;width:100%;margin-top:10px;background:#0f6ba8;color:#fff;border:none;padding:10px;border-radius:7px;font-weight:800;font-size:14px;cursor:pointer}
+.res{display:none;margin-top:10px;border-top:1px solid #e4ebf0;padding-top:8px}.res.on{display:block}
+.v{font-weight:800;font-size:17px;color:#0a4d7a}.s{color:#5b6b78;font-size:12px}
+.src{margin-top:10px;font-size:11.5px;color:#5b6b78}.src a{color:#0f6ba8}
+</style>
+</head>
+<body>
+<strong style="font-size:15px;">🧮 BTU-Rechner: Welche Kühlleistung?</strong>
+<label for="qm">Raumgröße (m²)</label><input id="qm" type="number" value="20" min="5" max="100">
+<label for="lage">Lage</label>
+<select id="lage"><option value="1">Normal</option><option value="1.2">Dachgeschoss / große Fenster</option><option value="0.9">Erdgeschoss / verschattet</option></select>
+<button id="go" type="button">Berechnen</button>
+<div class="res" id="res"><div class="v" id="v"></div><div class="s" id="s"></div></div>
+<p class="src">Kostenloses Widget von <a href="https://getecoback.com/guide/btu-rechner.html?utm_source=widget&utm_medium=embed" target="_blank" rel="noopener">getecoback.com — BTU-Rechner &amp; Kaufberatung</a></p>
+<script>
+(function(){var $=function(i){return document.getElementById(i);};
+$("go").addEventListener("click",function(){
+var qm=parseFloat($("qm").value),f=parseFloat($("lage").value);
+if(isNaN(qm)||qm<5)return;
+var btu=Math.round(qm*340*f/100)*100;
+$("v").textContent="≈ "+btu.toLocaleString("de-DE")+" BTU ("+(btu/3412).toFixed(1)+" kW)";
+$("s").textContent="Faustwert 340 BTU/m², Lagefaktor "+f.toFixed(1)+" — Details und Geräteempfehlungen auf getecoback.com";
+$("res").className="res on";});})();
+</script>
+<script>(function(){try{var b=JSON.stringify({n:"widget_view",p:location.pathname,r:document.referrer,m:{host:(document.referrer?new URL(document.referrer).hostname:"direct")}});if(navigator.sendBeacon){navigator.sendBeacon("https://getecoback.com/api/ev",new Blob([b],{type:"text/plain"}));}}catch(e){}})();</script>
+<script>
+(function(){
+  // Self-serve configuration: an embedding site can set an accent colour and
+  // point the result at its own contact page. Values are validated here —
+  // colour must be a hex triplet, the CTA must be http(s) — so a crafted URL
+  // cannot inject script or a javascript: target.
+  try{
+    var q=new URLSearchParams(location.search);
+    var c=q.get("c")||"";
+    if(/^[0-9a-fA-F]{6}$/.test(c)){
+      var s=document.createElement("style");
+      s.textContent="button{background:#"+c+" !important}.src a{color:#"+c+" !important}.ebcta{background:#"+c+" !important}";
+      document.head.appendChild(s);
+    }
+    var cta=q.get("cta")||"", lab=(q.get("ctal")||"Jetzt Beratung anfragen").slice(0,60);
+    if(cta){
+      var u=null; try{u=new URL(cta);}catch(e){u=null;}
+      if(u&&(u.protocol==="https:"||u.protocol==="http:")){
+        var a=document.createElement("a");
+        a.className="ebcta"; a.href=u.href; a.target="_top"; a.rel="noopener";
+        a.textContent=lab;
+        a.style.cssText="display:block;text-align:center;margin-top:10px;padding:10px;border-radius:7px;background:#0f6ba8;color:#fff;font-weight:800;text-decoration:none;font-size:14px";
+        var res=document.getElementById("res");
+        if(res)res.appendChild(a);
+      }
+    }
+  }catch(e){}
+})();
+</script>
+</body>
+</html>

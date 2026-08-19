@@ -1,0 +1,68 @@
+{
+  "note": "结构化自 tools.json 中 chat 类的已核实 limits 散文——同一批事实的机器可读形态，不新增任何数字。本类与 api/video/coding 三类最大的不同：10 家里 8 家**根本不公布条数**，所以结构化的主轴不是「给多少」而是 wall_type「撞的是哪种墙」：none_on_text（官方称文本对话无上限）/ context_ceiling（上下文塞满即止）/ rolling_window（滚动时间窗口）/ compute_points（按算力积分）/ daily_boosts（每日加速额度，仅特定功能）/ unstated（官方未公布，墙的位置只能撞到才知道）。publishes_count 字段如实记录「官方到底给没给数字」——这是本类最该被引用的一条元事实。",
+  "derived": "2026-08-12",
+  "entries": [
+    { "slug": "chatgpt", "wall_type": "none_on_text", "publishes_count": false, "reset": "n/a",
+      "headline_zh": "文本对话官方称无上限（2026-08-06 起），墙搬到了别处",
+      "headline_en": "Text chat is officially uncapped (from 2026-08-06) — the wall moved elsewhere",
+      "caveat_zh": "「无限」有两条官方边界：仅限文本（文件上传、图片与工具调用的额度照旧且同样不公布数字），且受滥用防护约束。官方原文的时序也要看清：默认模型换 Luna 是「本周」，无限文本与 Think 按钮是「下周起」——未必已到你账号",
+      "caveat_en": "Two official boundaries qualify \"unlimited\": text only (file uploads, images and tool calls keep their limits, none of which are published either), and it remains subject to abuse guardrails. The timing in the announcement matters too — Luna became the default \"this week\" while unlimited text and the Think button start \"next week\", so it may not have reached your account" },
+
+    { "slug": "claude", "wall_type": "rolling_window", "publishes_count": false, "reset": "5h_rolling",
+      "headline_zh": "滚动 5 小时窗口，可发条数官方明说会浮动",
+      "headline_en": "A rolling five-hour window; the message count officially fluctuates",
+      "caveat_zh": "官方明说条数随需求量浮动，并受对话长度与复杂度、所用功能、模型与推理强度影响，因此不公布固定数字。界面会先提示「Approaching 5-hour limit」再触顶。实用推论：长对话比短对话更耗额度，开新会话往往比在超长上下文里追问划算",
+      "caveat_en": "Anthropic states outright that the count moves with demand and depends on conversation length and complexity, the features used, the model and the reasoning effort — hence no published figure. The UI warns \"Approaching 5-hour limit\" before it stops. A practical corollary: long threads burn more than short ones, so starting a fresh conversation often beats pushing on inside a huge context" },
+
+    { "slug": "gemini", "wall_type": "rolling_window", "publishes_count": false, "reset": "5h_rolling+weekly",
+      "headline_zh": "按算力用量计，每 5 小时刷新、另有周度上限",
+      "headline_en": "Metered by compute, refreshing every five hours under a weekly ceiling",
+      "caveat_zh": "官方明示用量取决于提示词长度与复杂度、上传文件的数量与大小、对话长度、所用模型与功能——不是条数。官方社区里「Pro 用量从 100 掉到 25」这类反馈也印证额度是浮动的，所以任何写死的条数都靠不住",
+      "caveat_en": "Google states usage depends on prompt length and complexity, the number and size of uploaded files, conversation length, and the models and features used — not a message count. Community reports of Pro allowances dropping from 100 to 25 corroborate that it floats, which is why any hard number is unreliable" },
+
+    { "slug": "kimi", "wall_type": "context_ceiling", "publishes_count": false, "reset": "n/a",
+      "context_tokens": 128000,
+      "headline_zh": "主力模型对话免费不消耗额度，墙是 128K 上下文",
+      "headline_en": "The flagship chat model is free and unmetered — the wall is the 128K context",
+      "caveat_zh": "免费档官方名为 Adagio（慢板），K2.6 在会话入口对所有人免费且不吃会员额度。会员额度是另一套且**所有高级功能共享同一个池**（Agent、深度研究、PPT、文档、表格、Kimi Code、Kimi Work、Kimi Claw），用哪个都在花同一份；余额可在设置→订阅自查（百分比 + 刷新时间 + 最近 1000 条明细）",
+      "caveat_en": "The free tier is officially named Adagio, and K2.6 in the chat entry point is free for everyone without touching membership quota. Membership quota is separate and **shared across every advanced feature** (Agent, deep research, PPT, documents, spreadsheets, Kimi Code, Kimi Work, Kimi Claw) — using any of them spends the same pool; the balance is self-checkable under Settings → Subscription (percentage, refresh time and your last 1,000 usage records)" },
+
+    { "slug": "poe", "wall_type": "compute_points", "publishes_count": false, "reset": "daily",
+      "headline_zh": "每日发放算力积分，官方确认机制但不给数额",
+      "headline_en": "Daily compute points — the mechanism is official, the amount is not",
+      "caveat_zh": "不同模型扣分差异很大，所以「每天能聊几条」取决于你用哪个模型。第三方口径从 300 到 3000 互相打架，一概不采信；付费低档 $9.99/月起、每日 10,000 积分",
+      "caveat_en": "Different models burn points at wildly different rates, so \"how many messages a day\" depends on which model you pick. Third-party figures range from 300 to 3,000 and contradict each other, so none are repeated here; the entry paid tier starts at $9.99/month with 10,000 points a day" },
+
+    { "slug": "ms-copilot", "wall_type": "daily_boosts", "publishes_count": true, "reset": "daily",
+      "boosts_per_day": 15,
+      "headline_zh": "每天 15 个 boosts，但只管出图——对话本身没有公布上限",
+      "headline_en": "15 boosts a day, but only for images — chat itself has no published cap",
+      "caveat_zh": "这是本类唯一一个公布了数字的，代价是它只覆盖图片生成：boosts 用尽后仍能出图、只是变慢。付费通道已变更——Copilot Pro 停售、支持于 2026-08-01 终止，继任者是 Microsoft 365 Premium（$19.99/月），而 Premium 的每日 boosts 数字官方并未公布",
+      "caveat_en": "This is the only row in the category with a published number, and the price of that clarity is narrow scope: it covers image generation only, and when boosts run out images still generate, just slower. The upgrade path changed — Copilot Pro is no longer sold and its support ended on 2026-08-01, succeeded by Microsoft 365 Premium at $19.99/month, whose own daily boost figure is not published" },
+
+    { "slug": "deepseek", "wall_type": "unstated", "publishes_count": false, "reset": "unknown",
+      "headline_zh": "对话免费、条数未公布；真正值钱的是异常宽松的使用权",
+      "headline_en": "Free chat with no published cap — the unusually permissive usage rights are the real story",
+      "caveat_zh": "官方协议明确输入与输出可用于个人使用、学术研究、衍生产品开发乃至训练其他模型，这在免费对话产品里相当罕见。免费额度以「产品页面与平台网站公示为准」；开放平台 API 是预充值付费，与网页免费档是两条线",
+      "caveat_en": "The official terms allow inputs and outputs to be used for personal use, academic research, derivative product development and even training other models — rare for a free chat product. The free allowance defers to \"whatever the product and platform pages state\"; the open-platform API is prepaid and a separate track from the free web tier" },
+
+    { "slug": "grok", "wall_type": "unstated", "publishes_count": false, "reset": "weekly_paid_pool",
+      "headline_zh": "免费档条数不公布，但额度的「结构」写得很清楚",
+      "headline_en": "No published free-tier count, but the structure of the allowance is spelled out",
+      "caveat_zh": "官方 FAQ 明写的一条几乎无人提及：免费档额度与付费周额度是两套独立的池——付费周额度用尽时付费功能暂停，但你仍保有 Chat 与 Voice 的免费额度且按自己的周期重置。撞上周额度也不是硬停（可买 Extra Usage Credits、升档或开 Auto Top Up）。另需避开一个张冠李戴：xAI 文档里的 RPS/TPM 是 API 团队配额，不是网页版免费额度",
+      "caveat_en": "One officially-stated point almost nobody repeats: the free allowance and the paid weekly pool are independent — when the paid weekly pool runs dry the paid features pause, but you keep your free Chat and Voice allowance, which resets on its own cycle. Hitting the weekly pool isn't a hard stop either (buy extra usage credits, move up a tier, or enable auto top-up). Also avoid a common mix-up: the RPS/TPM figures in xAI's docs are API team quotas, not the web app's free tier" },
+
+    { "slug": "doubao", "wall_type": "unstated", "publishes_count": false, "reset": "unknown",
+      "headline_zh": "对话条数未公布，可见的墙在云存储而不在对话",
+      "headline_en": "No published message cap; the visible wall is cloud storage, not chat",
+      "caveat_zh": "登录即可免费用对话、写作、翻译、编程，并可免费用 Seedance 2.0 视频生成。官方区分普通账号与会员账号：云盘（AI 空间）给普通账号一定额度的免费存储、数额未明示。值得警惕的一条：付费扩容到期未续或降档时云存储空间会相应减少——存了重要文件的要留意",
+      "caveat_en": "Signing in gets you free chat, writing, translation and coding, plus free Seedance 2.0 video generation. Microsoft-style tiering applies to storage rather than chat: the AI-space cloud drive grants ordinary accounts some free storage with no stated figure. Worth watching: if paid expansion lapses or you downgrade, that cloud storage shrinks accordingly — a real risk if you keep important files there" },
+
+    { "slug": "tongyi", "wall_type": "unstated", "publishes_count": false, "reset": "unknown",
+      "api_free_tokens_per_model": 1000000,
+      "headline_zh": "对话端限制未公布；开发者侧倒是明码——每款模型 100 万 tokens",
+      "headline_en": "Chat-side limits unpublished; the developer side is explicit at 1M tokens per model",
+      "caveat_zh": "两条线要分开看：阿里云百炼对千问系列每款模型赠送 100 万免费 tokens（有效期以官方公告页为准），对话端网页/App 免费但具体限制官方未在文档中明示。开发者社区文章提到的高峰排队、文件大小、绘图张数属社区口径，不是官方文档，本站不采信",
+      "caveat_en": "Two separate tracks: Alibaba Cloud Model Studio grants 1M free tokens per Qwen model (validity per the official notice page), while the consumer chat app is free with no officially documented limits. The queueing, file-size and image-count figures circulating in developer-community posts are community claims rather than official docs, so they are not repeated here" }
+  ]
+}

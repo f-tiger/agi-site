@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Stromkosten-Rechner Widget</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:#fff;color:#1a2733;padding:14px;font-size:14px;line-height:1.5}
+label{display:block;font-weight:700;font-size:12.5px;margin:8px 0 3px}input,select{width:100%;padding:8px 10px;border:1px solid #cfd9e2;border-radius:7px;font-size:14px;font-family:inherit;background:#fff;color:#1a2733}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+button{display:block;width:100%;margin-top:10px;background:#0f6ba8;color:#fff;border:none;padding:10px;border-radius:7px;font-weight:800;font-size:14px;cursor:pointer}
+.res{display:none;margin-top:10px;border-top:1px solid #e4ebf0;padding-top:8px}.res.on{display:block}
+.v{font-weight:800;font-size:19px;color:#0a4d7a}.s{color:#5b6b78;font-size:12px}
+table{width:100%;border-collapse:collapse;margin-top:7px;font-size:13px}td{padding:3px 0;border-bottom:1px solid #eef2f5}td:last-child{text-align:right;font-weight:700}
+.src{margin-top:10px;font-size:11.5px;color:#5b6b78}.src a{color:#0f6ba8}
+</style>
+</head>
+<body>
+<strong style="font-size:15px;">⚡ Stromkosten-Rechner</strong>
+<div class="row">
+  <div><label for="w">Leistung (Watt)</label><input id="w" type="number" value="1000" min="5" max="4000" inputmode="numeric"></div>
+  <div><label for="h">Stunden pro Tag</label><input id="h" type="number" value="8" min="0.5" max="24" step="0.5" inputmode="decimal"></div>
+</div>
+<div class="row">
+  <div><label for="p">Preis €/kWh</label><input id="p" type="number" value="0.30" min="0.05" max="1" step="0.01" inputmode="decimal"></div>
+  <div><label for="d">Tage</label><input id="d" type="number" value="30" min="1" max="365" inputmode="numeric"></div>
+</div>
+<label for="du">Auslastung</label>
+<select id="du">
+  <option value="1">100 % (Dauerbetrieb)</option>
+  <option value="0.65" selected>~65 % (Klimagerät taktet)</option>
+  <option value="0.4">~40 % (mit Thermostat)</option>
+</select>
+<button id="go" type="button">Stromkosten berechnen</button>
+<div class="res" id="res"><div class="v" id="v"></div><div class="s" id="s"></div><table id="t"></table></div>
+<p class="src">Kostenloses Widget von <a href="https://getecoback.com/guide/stromkosten-rechner.html?utm_source=widget&utm_medium=embed" target="_blank" rel="noopener">getecoback.com — Stromkosten berechnen</a></p>
+<script>
+(function(){var $=function(i){return document.getElementById(i);};
+function eur(x){return x.toLocaleString('de-DE',{minimumFractionDigits:2,maximumFractionDigits:2})+" €";}
+function cl(x,lo,hi,dflt){x=parseFloat(x);return isNaN(x)?dflt:Math.max(lo,Math.min(hi,x));}
+$("go").addEventListener("click",function(){
+// Same formula as the full calculator on getecoback.com, so the embedded widget
+// and the source page never disagree.
+var w=cl($("w").value,5,4000,1000),h=cl($("h").value,0.5,24,8),
+    p=cl($("p").value,0.05,1,0.30),d=cl($("d").value,1,365,30),du=parseFloat($("du").value);
+var perH=w/1000*p*du,perD=perH*h,perP=perD*d;
+$("v").textContent=eur(perP);
+$("s").textContent="für "+d+" Tage bei ~"+Math.round(w)+" W, "+h+" Std./Tag (Auslastung berücksichtigt)";
+$("t").innerHTML="<tr><td>Pro Stunde</td><td>"+eur(perH)+"</td></tr>"+
+  "<tr><td>Pro Tag ("+h+" Std.)</td><td>"+eur(perD)+"</td></tr>"+
+  "<tr><td>Für "+d+" Tage</td><td>"+eur(perP)+"</td></tr>";
+$("res").className="res on";});})();
+</script>
+<script>(function(){try{var b=JSON.stringify({n:"widget_view",p:location.pathname,r:document.referrer,m:{host:(document.referrer?new URL(document.referrer).hostname:"direct")}});if(navigator.sendBeacon){navigator.sendBeacon("https://getecoback.com/api/ev",new Blob([b],{type:"text/plain"}));}}catch(e){}})();</script>
+<script>
+(function(){
+  // Self-serve configuration: an embedding site can set an accent colour and
+  // point the result at its own contact page. Values are validated here —
+  // colour must be a hex triplet, the CTA must be http(s) — so a crafted URL
+  // cannot inject script or a javascript: target.
+  try{
+    var q=new URLSearchParams(location.search);
+    var c=q.get("c")||"";
+    if(/^[0-9a-fA-F]{6}$/.test(c)){
+      var s=document.createElement("style");
+      s.textContent="button{background:#"+c+" !important}.src a{color:#"+c+" !important}.v{color:#"+c+" !important}.ebcta{background:#"+c+" !important}";
+      document.head.appendChild(s);
+    }
+    var cta=q.get("cta")||"", lab=(q.get("ctal")||"Jetzt Beratung anfragen").slice(0,60);
+    if(cta){
+      var u=null; try{u=new URL(cta);}catch(e){u=null;}
+      if(u&&(u.protocol==="https:"||u.protocol==="http:")){
+        var a=document.createElement("a");
+        a.className="ebcta"; a.href=u.href; a.target="_top"; a.rel="noopener";
+        a.textContent=lab;
+        a.style.cssText="display:block;text-align:center;margin-top:10px;padding:10px;border-radius:7px;background:#0f6ba8;color:#fff;font-weight:800;text-decoration:none;font-size:14px";
+        var res=document.getElementById("res");
+        if(res)res.appendChild(a);
+      }
+    }
+  }catch(e){}
+})();
+</script>
+</body>
+</html>

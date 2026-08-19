@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Analytics self-check — DollScout</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🩺</text></svg>">
+<style>
+:root { color-scheme: dark; }
+body {
+  margin: 0; padding: 28px 20px 60px; background: #14110d; color: #e8e2d8;
+  font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+}
+.wrap { max-width: 640px; margin: 0 auto; }
+h1 { font-size: 1.35rem; margin: 0 0 6px; }
+.sub { color: #9b9285; font-size: .9rem; margin: 0 0 26px; }
+.check {
+  display: flex; gap: 12px; align-items: flex-start;
+  border: 1px solid #2e281f; border-radius: 12px; padding: 14px 16px; margin-bottom: 12px;
+  background: #1b1712;
+}
+.check .icon { font-size: 1.2rem; line-height: 1.4; flex: 0 0 auto; }
+.check .body { flex: 1; min-width: 0; }
+.check .name { font-weight: 600; }
+.check .detail { color: #9b9285; font-size: .88rem; margin-top: 3px; word-break: break-word; }
+.check.pass { border-color: #2f5d3a; }
+.check.fail { border-color: #7a3030; }
+.check.wait { opacity: .6; }
+#verdict {
+  border-radius: 12px; padding: 18px 20px; margin: 24px 0 0;
+  border: 1px solid #2e281f; background: #1b1712; display: none;
+}
+#verdict h2 { font-size: 1.05rem; margin: 0 0 8px; }
+#verdict p { margin: 0 0 10px; color: #cfc6b8; font-size: .95rem; }
+#verdict p:last-child { margin-bottom: 0; }
+#verdict.bad { border-color: #7a3030; }
+#verdict.good { border-color: #2f5d3a; }
+code { background: #241f18; padding: 1px 6px; border-radius: 5px; font-size: .85em; }
+a { color: #d8a657; }
+.foot { margin-top: 30px; font-size: .82rem; color: #6f6759; }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="wrap">
+  <h1>Analytics self-check</h1>
+  <p class="sub">Private diagnostic page. Not linked, not indexed. It reports from
+  <em>your</em> network, which is the part the server cannot see.</p>
+
+  <div id="checks"></div>
+  <div id="verdict"></div>
+
+  <p class="foot">If everything passes, a hit was just sent. Open GA4 → Reports →
+  Realtime; it should appear within seconds. This page sets no cookies and sends
+  nothing anywhere except the Google endpoints it is testing.</p>
+</div>
+
+<script src="/js/config.js"></script>
+<script>
+(function () {
+  "use strict";
+  var box = document.getElementById("checks");
+  var results = {};
+
+  function row(key, name) {
+    var el = document.createElement("div");
+    el.className = "check wait";
+    el.innerHTML = '<span class="icon">…</span><span class="body">' +
+      '<span class="name"></span><div class="detail">testing…</div></span>';
+    el.querySelector(".name").textContent = name;
+    box.appendChild(el);
+    return {
+      set: function (ok, detail) {
+        results[key] = ok;
+        el.className = "check " + (ok ? "pass" : "fail");
+        el.querySelector(".icon").textContent = ok ? "✓" : "✗";
+        el.querySelector(".detail").textContent = detail;
+      }
+    };
+  }
+
+  var r1 = row("id", "Measurement ID configured");
+  var r2 = row("gate", "18+ gate passed in this browser");
+  var r3 = row("tag", "Google Tag Manager reachable");
+  var r4 = row("collect", "Analytics collection endpoint reachable");
+  var r5 = row("hit", "Test hit sent");
+
+  /* 1 — is the site configured at all? */
+  var id = (window.DS_CONFIG && window.DS_CONFIG.ga4Id) || "";
+  r1.set(!!id, id ? id : "js/config.js has no ga4Id — nothing will ever be sent");
+
+  /* 2 — analytics deliberately stays silent until the age gate is passed, so a
+     visitor who never clicked through is invisible by design. Worth knowing
+     before blaming the tag. */
+  var gated = false;
+  try { gated = localStorage.getItem("ds_age_ok") === "1"; } catch (e) {}
+  r2.set(gated, gated
+    ? "yes — analytics is allowed to run"
+    : "NOT passed. Nothing is sent until you click “I am 18 or older” on the site. Visit the home page, accept, then reload this page.");
+
+  /* 3 — the script itself. This is the check that catches network-level
+     blocking: a national firewall, a corporate proxy, an ad blocker or a
+     privacy browser will all fail here while everything else looks fine. */
+  function testTag(next) {
+    if (!id) { r3.set(false, "skipped — no measurement ID"); return next(); }
+    var done = false;
+    var s = document.createElement("script");
+    var timer = setTimeout(function () {
+      if (done) return; done = true;
+      r3.set(false, "timed out after 8s — the request is being blocked or dropped, not refused");
+      next();
+    }, 8000);
+    s.onload = function () {
+      if (done) return; done = true; clearTimeout(timer);
+      r3.set(true, "googletagmanager.com loaded");
+      next();
+    };
+    s.onerror = function () {
+      if (done) return; done = true; clearTimeout(timer);
+      r3.set(false, "googletagmanager.com could not be loaded from this network");
+      next();
+    };
+    s.async = true;
+    s.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(id);
+    document.head.appendChild(s);
+  }
+
+  /* 4 — the collection endpoint is a different host from the tag, and some
+     networks block one and not the other. no-cors gives an opaque response we
+     cannot read, but reaching it at all is the signal we need. */
+  function testCollect(next) {
+    var ctl = typeof AbortController === "function" ? new AbortController() : null;
+    var t = setTimeout(function () { if (ctl) ctl.abort(); }, 8000);
+    fetch("https://www.google-analytics.com/g/collect", {
+      method: "POST", mode: "no-cors", cache: "no-store",
+      signal: ctl ? ctl.signal : undefined
+    }).then(function () {
+      clearTimeout(t);
+      r4.set(true, "google-analytics.com reachable");
+      next();
+    }).catch(function (e) {
+      clearTimeout(t);
+      r4.set(false, "google-analytics.com unreachable (" + (e && e.name || "error") + ")");
+      next();
+    });
+  }
+
+  /* 5 — only meaningful if 1–4 passed. */
+  function sendHit() {
+    if (!id || !results.tag) {
+      r5.set(false, "skipped — the tag could not load, so no hit could be sent");
+      return verdict();
+    }
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { window.dataLayer.push(arguments); };
+    window.gtag("js", new Date());
+    window.gtag("consent", "default", {
+      ad_storage: "denied", ad_user_data: "denied",
+      ad_personalization: "denied", analytics_storage: "granted"
+    });
+    window.gtag("config", id, { client_storage: "none", anonymize_ip: true });
+    window.gtag("event", "self_check", { page_path: "/ga-check.html" });
+    r5.set(true, "a page_view and a self_check event were sent to " + id);
+    verdict();
+  }
+
+  function verdict() {
+    var v = document.getElementById("verdict");
+    v.style.display = "block";
+    var blocked = results.tag === false || results.collect === false;
+
+    if (!results.id) {
+      v.className = "bad";
+      v.innerHTML = "<h2>Not configured</h2><p>There is no measurement ID in " +
+        "<code>js/config.js</code>. Nothing has ever been sent.</p>";
+      return;
+    }
+    if (blocked) {
+      v.className = "bad";
+      v.innerHTML = "<h2>Google is blocked on this network</h2>" +
+        "<p>The site and the tag are configured correctly, but the requests " +
+        "cannot leave this network. Google's analytics domains are unreachable " +
+        "from mainland China without a VPN, and are also blocked by ad blockers, " +
+        "Brave, and some corporate networks.</p>" +
+        "<p><strong>Your own visits will never appear in GA4 from here.</strong> " +
+        "That says nothing about real visitors — the audience for this site is " +
+        "mostly in the US, where these domains are reachable.</p>" +
+        "<p>To confirm the tag works: load this page again over a VPN, or from a " +
+        "phone on a different network, and check GA4 Realtime.</p>";
+      return;
+    }
+    if (!results.gate) {
+      v.className = "bad";
+      v.innerHTML = "<h2>Age gate not passed</h2><p>Network and configuration are " +
+        "fine. Analytics is silent until a visitor accepts the 18+ gate, which is " +
+        "deliberate. Open the <a href=\"/\">home page</a>, click " +
+        "“I am 18 or older”, then reload this page.</p>";
+      return;
+    }
+    v.className = "good";
+    v.innerHTML = "<h2>Everything works</h2>" +
+      "<p>A hit has just been sent. Open GA4 → Reports → Realtime — it " +
+      "should show one active user within a few seconds.</p>" +
+      "<p>If Realtime is still empty a minute from now, the problem is in the GA4 " +
+      "property itself rather than the site: check that the data stream's " +
+      "measurement ID really is <code>" + id + "</code>.</p>";
+  }
+
+  testTag(function () { testCollect(sendHit); });
+})();
+</script>
+</body>
+</html>

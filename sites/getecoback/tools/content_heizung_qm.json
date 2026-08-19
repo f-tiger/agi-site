@@ -1,0 +1,62 @@
+{
+ "category": "Heizleistung nach Raumgröße",
+ "note": "Programmatische Kategorie #2: eine Seite je Raumgröße für Heizleistung (Watt). Neue Größe = Eintrag hier + `python tools/gen_heizung_qm.py`.",
+ "entries": [
+  {
+   "qm": 10,
+   "watt": "600–800",
+   "wref": 700,
+   "raumtyp": "kleines Büro oder Badezimmer",
+   "suchbegriff": "infrarotheizung+600+watt",
+   "hinweis": "Für 10 m² reichen meist 600–800 W. In gut gedämmten Räumen eher weniger, im Altbau mehr."
+  },
+  {
+   "qm": 15,
+   "watt": "900–1.200",
+   "wref": 1050,
+   "raumtyp": "Arbeitszimmer oder kleines Wohnzimmer",
+   "suchbegriff": "infrarotheizung+1000+watt",
+   "hinweis": "15 m² brauchen rund 900–1.200 W — je nach Dämmung ein größeres Panel oder zwei kleine."
+  },
+  {
+   "qm": 20,
+   "watt": "1.200–1.600",
+   "wref": 1400,
+   "raumtyp": "Wohnzimmer oder Schlafzimmer",
+   "suchbegriff": "infrarotheizung+1500+watt",
+   "hinweis": "Ab 20 m² sind 1.200–1.600 W sinnvoll. Zwei Panels verteilen die Wärme oft besser als eines."
+  },
+  {
+   "qm": 25,
+   "watt": "1.500–2.000",
+   "wref": 1750,
+   "raumtyp": "größeres Wohnzimmer",
+   "suchbegriff": "infrarotheizung+2000+watt",
+   "hinweis": "25 m² benötigen 1.500–2.000 W. Bei hohen Decken oder Altbau am oberen Ende planen."
+  },
+  {
+   "qm": 30,
+   "watt": "1.800–2.400",
+   "wref": 2100,
+   "raumtyp": "offener Wohnbereich",
+   "suchbegriff": "infrarotheizung+2000+watt",
+   "hinweis": "Für 30 m² plane 1.800–2.400 W, meist auf mehrere Heizpanels verteilt."
+  },
+  {
+   "qm": 40,
+   "watt": "2.400–3.200",
+   "wref": 2800,
+   "raumtyp": "sehr großer oder offener Raum",
+   "suchbegriff": "infrarotheizung+set",
+   "hinweis": "40 m² sinnvoll nur mit mehreren Panels (2.400–3.200 W gesamt) — als alleinige Heizung im tiefen Winter grenzwertig."
+  },
+  {
+   "qm": 50,
+   "watt": "3.000–4.000",
+   "wref": 3500,
+   "raumtyp": "sehr großer offener Bereich",
+   "suchbegriff": "infrarotheizung+set",
+   "hinweis": "50 m² heizt du elektrisch nur mit mehreren Panels (3.000–4.000 W gesamt) — als Dauerlösung ist hier eine Wärmepumpe wirtschaftlicher; Infrarot bleibt Zonen-/Zusatzheizung."
+  }
+ ]
+}

@@ -1,0 +1,53 @@
+name: Retrieve primary sources
+# ── 迁入公开 monorepo f-tiger/agi-site(2026-08-19,owner 决定)──
+# 原仓 .github 为历史档案。公开仓 Actions 分钟免费。
+# 本 workflow 的 run 步骤默认 working-directory: sites/thedollscout/。
+
+
+# Verification infrastructure, not content. The editing sandbox cannot reach any
+# external host — CONNECT is rejected at the proxy for every domain — so claims
+# there can only ever rest on search-engine snippets. That is precisely how an
+# unverified statement about the law ends up published as fact.
+#
+# Runners have egress. This fetches the queued sources with a real browser and
+# commits their text, so a claim can be checked against what its source says.
+#
+# Nothing here publishes anything: content/ is excluded from the deployed site.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: sites/thedollscout
+    steps:
+      - uses: actions/checkout@v4
+        with:
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Playwright
+        run: |
+          npm init -y >/dev/null 2>&1 || true
+          npm i -D playwright@1.47.0
+          npx playwright install --with-deps chromium
+
+      - name: Retrieve the queued sources
+        run: |
+          node scripts/fetch-sources.mjs | tee sources-report.md
+          cat sources-report.md >> "$GITHUB_STEP_SUMMARY"
+          rm -f sources-report.md
+
+      - name: Commit what came back
+        run: |
+          bash scripts/commit-generated.sh source-bot \
+            "chore: retrieve primary sources for verification" \
+            content/sources

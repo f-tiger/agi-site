@@ -1,0 +1,249 @@
+{
+  "name": "First-year ownership cost model for adult dolls",
+  "description": "What a doll costs in its first year beyond the sticker price: import charges, care supplies, storage and a repair reserve, by material and destination. Published so the totals can be read without running the calculator that produces them.",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "publisher": "https://thedollscout.com/",
+  "documentation": "https://thedollscout.com/cost-calculator.html",
+  "currency": "USD",
+  "caveats": [
+    "Conservative editorial estimates, not vendor quotes. Your invoice will differ.",
+    "The US duty RATE is not modelled at all — de minimis ended in 2025, but the tariff classification for full-size dolls is unsettled and we will not invent a figure.",
+    "EU/UK import VAT is modelled at a flat 20%; actual rates vary by member state and a courier handling fee is not included.",
+    "'Elsewhere' is modelled as zero import cost because we cannot estimate it, not because it is zero.",
+    "Care costs are first-year only. TPE is higher because it needs re-oiling; silicone does not.",
+    "Shipping is assumed included in the sticker price, which is normal at the vendors we have checked but is not universal."
+  ],
+  "model": {
+    "materials": [
+      {
+        "id": "tpe",
+        "label": "TPE",
+        "firstYearCareUsd": 140,
+        "repairReserveUsd": 40,
+        "note": "cleaner, powder and mineral oil; TPE needs re-oiling and is the higher-upkeep material"
+      },
+      {
+        "id": "silicone",
+        "label": "Silicone",
+        "firstYearCareUsd": 60,
+        "repairReserveUsd": 0,
+        "note": "cleaner and powder; silicone is non-porous and needs no oiling"
+      },
+      {
+        "id": "torso",
+        "label": "Torso / compact",
+        "firstYearCareUsd": 45,
+        "repairReserveUsd": 0,
+        "note": "less surface area, so less of everything"
+      }
+    ],
+    "regions": [
+      {
+        "id": "us",
+        "label": "United States",
+        "chargeLabel": "Customs entry / brokerage fee (est.)",
+        "flatFeeUsd": 40,
+        "rateOfPrice": 0,
+        "note": "De minimis ended in 2025, so an entry is required at any value. The duty RATE is not modelled: the tariff classification for full-size dolls is unsettled, and we will not invent a percentage. Ask the vendor whether the price is DDP or DDU."
+      },
+      {
+        "id": "eu",
+        "label": "EU / UK",
+        "chargeLabel": "Import VAT (est. 20%)",
+        "flatFeeUsd": 0,
+        "rateOfPrice": 0.2,
+        "note": "Import VAT is collected at import, typically by the courier, along with a handling fee this model does not include."
+      },
+      {
+        "id": "other",
+        "label": "Elsewhere",
+        "chargeLabel": "Import duty",
+        "flatFeeUsd": 0,
+        "rateOfPrice": 0,
+        "note": "Modelled as zero because we cannot estimate it, NOT because it is zero. Check your country's rules — and check legality first."
+      }
+    ]
+  },
+  "workedExamples": [
+    {
+      "name": "Torso, first purchase, US",
+      "inputs": {
+        "name": "Torso, first purchase, US",
+        "price": 299,
+        "material": "torso",
+        "region": "us",
+        "addons": 0,
+        "storage": 0
+      },
+      "lineItems": [
+        {
+          "label": "Doll + factory add-ons",
+          "amount": 299
+        },
+        {
+          "label": "Customs entry / brokerage fee (est.)",
+          "amount": 40
+        },
+        {
+          "label": "First-year care supplies",
+          "amount": 45
+        },
+        {
+          "label": "Storage solution",
+          "amount": 0
+        },
+        {
+          "label": "Repair reserve",
+          "amount": 0
+        }
+      ],
+      "firstYearTotalUsd": 384,
+      "beyondStickerUsd": 85,
+      "beyondStickerPct": 28
+    },
+    {
+      "name": "Median full-size TPE doll, US",
+      "inputs": {
+        "name": "Median full-size TPE doll, US",
+        "price": 1749,
+        "material": "tpe",
+        "region": "us",
+        "addons": 150,
+        "storage": 120
+      },
+      "lineItems": [
+        {
+          "label": "Doll + factory add-ons",
+          "amount": 1899
+        },
+        {
+          "label": "Customs entry / brokerage fee (est.)",
+          "amount": 40
+        },
+        {
+          "label": "First-year care supplies",
+          "amount": 140
+        },
+        {
+          "label": "Storage solution",
+          "amount": 120
+        },
+        {
+          "label": "TPE repair kit (tears happen)",
+          "amount": 40
+        }
+      ],
+      "firstYearTotalUsd": 2239,
+      "beyondStickerUsd": 490,
+      "beyondStickerPct": 28
+    },
+    {
+      "name": "Median full-size TPE doll, EU/UK",
+      "inputs": {
+        "name": "Median full-size TPE doll, EU/UK",
+        "price": 1749,
+        "material": "tpe",
+        "region": "eu",
+        "addons": 150,
+        "storage": 120
+      },
+      "lineItems": [
+        {
+          "label": "Doll + factory add-ons",
+          "amount": 1899
+        },
+        {
+          "label": "Import VAT (est. 20%)",
+          "amount": 350
+        },
+        {
+          "label": "First-year care supplies",
+          "amount": 140
+        },
+        {
+          "label": "Storage solution",
+          "amount": 120
+        },
+        {
+          "label": "TPE repair kit (tears happen)",
+          "amount": 40
+        }
+      ],
+      "firstYearTotalUsd": 2549,
+      "beyondStickerUsd": 800,
+      "beyondStickerPct": 46
+    },
+    {
+      "name": "Silicone, loaded options, EU/UK",
+      "inputs": {
+        "name": "Silicone, loaded options, EU/UK",
+        "price": 2400,
+        "material": "silicone",
+        "region": "eu",
+        "addons": 400,
+        "storage": 120
+      },
+      "lineItems": [
+        {
+          "label": "Doll + factory add-ons",
+          "amount": 2800
+        },
+        {
+          "label": "Import VAT (est. 20%)",
+          "amount": 480
+        },
+        {
+          "label": "First-year care supplies",
+          "amount": 60
+        },
+        {
+          "label": "Storage solution",
+          "amount": 120
+        },
+        {
+          "label": "Repair reserve",
+          "amount": 0
+        }
+      ],
+      "firstYearTotalUsd": 3460,
+      "beyondStickerUsd": 1060,
+      "beyondStickerPct": 44
+    },
+    {
+      "name": "Full-size TPE, flight case, US",
+      "inputs": {
+        "name": "Full-size TPE, flight case, US",
+        "price": 1749,
+        "material": "tpe",
+        "region": "us",
+        "addons": 150,
+        "storage": 700
+      },
+      "lineItems": [
+        {
+          "label": "Doll + factory add-ons",
+          "amount": 1899
+        },
+        {
+          "label": "Customs entry / brokerage fee (est.)",
+          "amount": 40
+        },
+        {
+          "label": "First-year care supplies",
+          "amount": 140
+        },
+        {
+          "label": "Storage solution",
+          "amount": 700
+        },
+        {
+          "label": "TPE repair kit (tears happen)",
+          "amount": 40
+        }
+      ],
+      "firstYearTotalUsd": 2819,
+      "beyondStickerUsd": 1070,
+      "beyondStickerPct": 61
+    }
+  ]
+}

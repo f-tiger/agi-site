@@ -1,0 +1,50 @@
+name: Add DNS TXT record
+# ── 迁入公开 monorepo f-tiger/agi-site(2026-08-19,owner 决定)──
+# 原仓 .github 为历史档案。公开仓 Actions 分钟免费。
+# 本 workflow 的 run 步骤默认 working-directory: sites/thedollscout/。
+
+
+# Search Console, Bing Webmaster Tools and email providers all verify ownership
+# with a TXT record. Paste the value they give you and run this workflow —
+# no dashboard clicking required.
+
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'Record name — use @ for the domain itself, or a subdomain label'
+        required: true
+        default: '@'
+      value:
+        description: 'TXT value provided by Google / Bing / your email provider'
+        required: true
+
+jobs:
+  add:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: sites/thedollscout
+    env:
+      CF_ZONE_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN_ZONE }}
+      DOMAIN: thedollscout.com
+    steps:
+      - name: Create the TXT record
+        run: |
+          api() { curl -s -X "$1" "https://api.cloudflare.com/client/v4$2" \
+                    -H "Authorization: Bearer $CF_ZONE_TOKEN" \
+                    -H "Content-Type: application/json" ${3:+--data "$3"}; }
+
+          ZONE=$(api GET "/zones?name=$DOMAIN" | jq -r '.result[0].id // empty')
+          if [ -z "$ZONE" ]; then echo "::error::zone $DOMAIN not visible to the zone token"; exit 1; fi
+
+          NAME='${{ inputs.name }}'
+          [ "$NAME" = "@" ] && NAME="$DOMAIN"
+          case "$NAME" in *"$DOMAIN") ;; *) NAME="$NAME.$DOMAIN" ;; esac
+
+          RESP=$(api POST "/zones/$ZONE/dns_records" \
+            "$(jq -nc --arg n "$NAME" --arg c '${{ inputs.value }}' \
+               '{type:"TXT",name:$n,content:$c,ttl:300}')")
+          echo "$RESP" | jq -c '{success, errors: [.errors[]?.message]}'
+          [ "$(echo "$RESP" | jq -r .success)" = "true" ] || exit 1
+          echo "TXT record added for $NAME — verification usually passes within a few minutes."

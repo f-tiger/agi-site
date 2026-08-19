@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>方向 C · Unigrid 时刻表 — 白嫖计</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}img{max-width:100%}a{color:inherit;text-decoration:none}
+
+:root{--ink:#111;--paper:#fff;--grey:#767676;--hair:#D6D6D6;
+      --c-work:#D8232A;--c-plan:#005EB8;--c-tool:#007A53}
+body{background:var(--paper);color:var(--ink);font:400 14px/1.55 "Helvetica Neue",Helvetica,Arial,"PingFang SC","Microsoft YaHei",sans-serif;-webkit-font-smoothing:antialiased}
+.shell{display:grid;grid-template-columns:196px 1fr;min-height:100vh}
+.side{border-right:2px solid var(--ink);padding:22px 18px;position:sticky;top:0;align-self:start;height:100vh}
+.side .mark{font-weight:700;font-size:19px;letter-spacing:-.4px;padding-bottom:14px;border-bottom:2px solid var(--ink)}
+.side .mark i{display:block;font-style:normal;font-weight:400;font-size:10.5px;letter-spacing:1.5px;color:var(--grey);margin-top:5px}
+.side ol{list-style:none;margin-top:16px}
+.side li{display:flex;gap:9px;padding:6px 0;font-size:13px;border-bottom:1px solid var(--hair)}
+.side li b{color:var(--grey);font-weight:400;font-variant-numeric:tabular-nums;min-width:16px}
+.side li:hover{color:var(--c-plan)}
+.side .key{margin-top:18px;font-size:10.5px;line-height:2;color:var(--grey)}
+.side .key span{display:flex;align-items:center;gap:7px}
+.side .key i{width:11px;height:11px;display:block}
+
+.main{padding:0 0 60px}
+.masthead{border-bottom:2px solid var(--ink);padding:26px 30px 22px;display:grid;grid-template-columns:1fr 300px;gap:36px;align-items:end}
+.masthead h1{font-weight:700;font-size:34px;line-height:1.18;letter-spacing:-1px}
+.masthead h1 span{color:var(--c-work)}
+.masthead p{font-size:13px;color:var(--grey);line-height:1.8;margin-top:10px;max-width:52ch}
+.stat{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--hair);border:1px solid var(--hair)}
+.stat div{background:#fff;padding:8px 10px}
+.stat dt{font-size:10px;color:var(--grey);letter-spacing:.5px}
+.stat dd{font-size:22px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.2}
+
+h2{font-size:11px;font-weight:700;letter-spacing:2px;padding:26px 30px 9px;display:flex;align-items:center;gap:9px}
+h2 i{width:13px;height:13px;display:block}
+h2 em{font-style:normal;font-weight:400;color:var(--grey);letter-spacing:0;margin-left:auto;font-size:11px}
+
+/* 时刻表：一条一行，事实靠右对齐 */
+table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+thead th{font-size:10px;font-weight:400;color:var(--grey);text-align:left;letter-spacing:.5px;
+  border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);padding:5px 30px}
+thead th+th{padding-left:0}
+tbody td{border-bottom:1px solid var(--hair);padding:11px 12px 11px 0;vertical-align:top}
+tbody td:first-child{padding-left:30px;width:34px;color:var(--grey);font-size:12px}
+tbody tr:hover td{background:#F6F6F6}
+.t-title{font-weight:700;font-size:15px;line-height:1.35}
+.t-sub{color:var(--grey);font-size:12px;line-height:1.7;margin-top:3px;max-width:46ch}
+.t-fail{font-size:12px;line-height:1.7;max-width:38ch}
+.t-fail b{color:var(--c-work);font-weight:400;display:block;font-size:10px;letter-spacing:.5px;margin-bottom:2px}
+td.num{text-align:right;padding-right:30px;white-space:nowrap;font-size:12.5px}
+td.num b{font-size:15px;font-weight:700;display:block}
+td.num span{color:var(--grey);font-size:11px}
+.chip{display:inline-block;font-size:10px;padding:1px 6px;color:#fff;letter-spacing:.5px}
+.grid-tools{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--ink)}
+.gt{border-right:1px solid var(--hair);border-bottom:1px solid var(--hair);padding:12px 14px}
+.gt:nth-child(4n){border-right:0}
+.gt b{font-size:14px;display:block}
+.gt span{font-size:11.5px;color:var(--grey);line-height:1.65;display:block;margin-top:3px}
+.gt time{font-size:10.5px;color:var(--c-tool);margin-top:6px;display:block;font-variant-numeric:tabular-nums}
+.foot{padding:20px 30px;border-top:2px solid var(--ink);margin-top:26px;font-size:11px;color:var(--grey);display:flex;gap:24px;flex-wrap:wrap}
+</style></head><body><div class="shell">
+<aside class="side">
+  <div class="mark">白嫖计<i>BAIPIAOJI.COM</i></div>
+  <ol>
+    <li><b>01</b>赚钱作业</li><li><b>02</b>0 元方案</li><li><b>03</b>免费工具</li>
+    <li><b>04</b>对话助手</li><li><b>05</b>编程开发</li><li><b>06</b>图像设计</li>
+    <li><b>07</b>视频创作</li><li><b>08</b>办公效率</li><li><b>09</b>开发者 API</li>
+  </ol>
+  <div class="key">
+    <span><i style="background:var(--c-work)"></i>作业 · 怎么挣</span>
+    <span><i style="background:var(--c-plan)"></i>方案 · 怎么做</span>
+    <span><i style="background:var(--c-tool)"></i>工具 · 用什么</span>
+  </div>
+</aside>
+<main class="main">
+  <div class="masthead">
+    <div>
+      <h1>别人卖你「月入过万」的课，<br><span>我们免费给你作业。</span></h1>
+      <p>并且明说大多数人为什么失败。不卖课、不承诺任何收入数字、只用已核实免费额度的工具，全程 ¥0。</p>
+    </div>
+    <dl class="stat">
+      <div><dt>作业</dt><dd>6</dd></div>
+      <div><dt>方案</dt><dd>20</dd></div>
+      <div><dt>工具</dt><dd>152</dd></div>
+      <div><dt>起步</dt><dd>¥0</dd></div>
+    </dl>
+  </div>
+
+  <h2><i style="background:var(--c-work)"></i>01 赚钱作业<em>每份都写明怎么失败 · 核实于 2026-07-28</em></h2>
+  <table>
+    <thead><tr><th></th><th>路径 / 适合谁</th><th>多数人为什么没做成</th><th style="text-align:right;padding-right:30px">步数 / 成本</th></tr></thead>
+    <tbody><tr>
+      <td>01</td>
+      <td><div class="t-title">做一个 AI 工具测评账号</div><div class="t-sub">每天能挤出 1 小时、愿意出镜或至少愿意录屏配音的人。不需要懂技术。</div></td>
+      <td><div class="t-fail"><b>失败原因</b>多数人死在第 2 周：发了七八条没水花就停更了。</div></td>
+      <td class="num"><b>4 步</b><span>¥0</span></td>
+    </tr><tr>
+      <td>02</td>
+      <td><div class="t-title">帮小商家写商品描述和详情页</div><div class="t-sub">文字还过得去、能忍受和人反复沟通的人。不需要懂设计，也不需要懂运营。</div></td>
+      <td><div class="t-fail"><b>失败原因</b>多数人卡在开口报价。</div></td>
+      <td class="num"><b>4 步</b><span>¥0</span></td>
+    </tr><tr>
+      <td>03</td>
+      <td><div class="t-title">给本地小生意搭一个 AI 客服</div><div class="t-sub">愿意折腾工具、能跟老板讲清楚人话的人。不需要写代码。</div></td>
+      <td><div class="t-fail"><b>失败原因</b>多数人卡在「找不到第一个客户」。</div></td>
+      <td class="num"><b>4 步</b><span>¥0</span></td>
+    </tr><tr>
+      <td>04</td>
+      <td><div class="t-title">教不会用 AI 的人用 AI</div><div class="t-sub">有耐心、讲得清楚的人。你只要比对方多懂一点点就够了。</div></td>
+      <td><div class="t-fail"><b>失败原因</b>多数人高估了「要懂多少才能教」。</div></td>
+      <td class="num"><b>4 步</b><span>¥0</span></td>
+    </tr><tr>
+      <td>05</td>
+      <td><div class="t-title">做一个垂直内容账号 + 接广告</div><div class="t-sub">对某个领域真感兴趣、能持续输出的人。兴趣是这条路唯一撑得住的燃料。</div></td>
+      <td><div class="t-fail"><b>失败原因</b>这条路最慢，也最容易半途而废。</div></td>
+      <td class="num"><b>4 步</b><span>¥0</span></td>
+    </tr><tr>
+      <td>06</td>
+      <td><div class="t-title">接 AI 辅助的设计小单</div><div class="t-sub">有点审美、愿意学基础工具的人。不需要科班出身。</div></td>
+      <td><div class="t-fail"><b>失败原因</b>多数人栽在「无限改稿」上。</div></td>
+      <td class="num"><b>4 步</b><span>¥0</span></td>
+    </tr></tbody>
+  </table>
+
+  <h2><i style="background:var(--c-plan)"></i>02 0 元方案<em>作业的执行零件</em></h2>
+  <table>
+    <thead><tr><th></th><th>痛点</th><th>场景</th><th style="text-align:right;padding-right:30px">省 / 步数</th></tr></thead>
+    <tbody><tr>
+      <td>01</td>
+      <td><div class="t-title">要交 PPT，但不想买会员</div></td>
+      <td><div class="t-sub">临时要做汇报 / 答辩 / 提案，模板网站个个要开会员，设计又不是强项。</div></td>
+      <td class="num"><b>¥30–100/月</b><span>4 步</span></td>
+    </tr><tr>
+      <td>02</td>
+      <td><div class="t-title">想剪视频，但不会剪也不想付费</div></td>
+      <td><div class="t-sub">手里一堆素材要发短视频，专业软件学不会，在线工具处处收费还带水印。</div></td>
+      <td class="num"><b>¥20–60/月</b><span>4 步</span></td>
+    </tr><tr>
+      <td>03</td>
+      <td><div class="t-title">写论文、查文献，工具都要订阅</div></td>
+      <td><div class="t-sub">开题或写综述，要查大量文献、读英文论文、还得润色语言，正版工具一年好几百。</div></td>
+      <td class="num"><b>$10–20/月</b><span>5 步</span></td>
+    </tr><tr>
+      <td>04</td>
+      <td><div class="t-title">想做 AI 应用，但调 API 太烧钱</div></td>
+      <td><div class="t-sub">个人开发者或学生，想做点 AI 小项目，一看 API 计价就不敢动手。</div></td>
+      <td class="num"><b>$10–50/月</b><span>5 步</span></td>
+    </tr><tr>
+      <td>05</td>
+      <td><div class="t-title">写公众号、小红书文案，憋不出来</div></td>
+      <td><div class="t-sub">要日更内容，选题、标题、正文、配图全都得自己扛，写到怀疑人生。</div></td>
+      <td class="num"><b>¥20–50/月</b><span>5 步</span></td>
+    </tr><tr>
+      <td>06</td>
+      <td><div class="t-title">开完会要整理纪要，录音听到吐</div></td>
+      <td><div class="t-sub">每周好几场会，录音一两个小时，逐字听写整理要花大半天。</div></td>
+      <td class="num"><b>¥30–80/月</b><span>4 步</span></td>
+    </tr></tbody>
+  </table>
+
+  <h2><i style="background:var(--c-tool)"></i>03 免费工具<em>共 152 个 · 完全免费 46 个 · 链接每日巡检</em></h2>
+  <div class="grid-tools"><div class="gt"><b>DeepSeek</b><span>国产顶级推理模型，网页与 App 完全免费</span><time>已核实 2026-07-28</time></div><div class="gt"><b>GitHub Copilot Free</b><span>官方免费档：每月 2000 次补全 + 50 次对话</span><time>已核实 2026-07-28</time></div><div class="gt"><b>即梦 AI</b><span>字节旗下图像/视频生成，每日送积分</span><time>已核实 2026-07-28</time></div><div class="gt"><b>可灵 AI（快手）</b><span>国产顶级视频生成，每日送灵感值</span><time>已核实 2026-07-28</time></div><div class="gt"><b>Gamma</b><span>AI 一键生成 PPT / 网页，注册送积分</span><time>已核实 2026-07-28</time></div><div class="gt"><b>Google AI Studio</b><span>Gemini API 免费档，个人开发首选</span><time>已核实 2026-07-28</time></div><div class="gt"><b>硅基流动 SiliconFlow</b><span>注册送 2000 万 Token，国产模型 API 超市</span><time>已核实 2026-07-28</time></div><div class="gt"><b>豆包（字节跳动）</b><span>基础对话完全免费不限次数</span><time>已核实 2026-07-28</time></div></div>
+
+  <div class="foot"><span>白嫖计 · 不花冤枉钱，用上最好的 AI</span><span>颜色只用于分类编码，不作装饰</span><span>核实于 2026-07-28</span></div>
+</main>
+</div></body></html>

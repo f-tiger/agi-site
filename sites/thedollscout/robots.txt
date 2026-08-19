@@ -1,0 +1,86 @@
+# DollScout — thedollscout.com
+#
+# AI crawlers are welcome here, deliberately. Most sites in adjacent categories
+# block them; we do the opposite. Paid search and paid social are closed to this
+# category, and "is this shop legitimate?" is a question people increasingly ask
+# an assistant rather than a search box. Being the source those answers cite is
+# a channel our competitors cannot buy either — and getting cited requires being
+# readable. See /llms.txt for a structured index.
+#
+# /legal/ is deliberately NOT disallowed here, and that is the opposite of what
+# this file said until 2026-08-16. Those three pages carry
+# <meta name="robots" content="noindex, follow"> and are excluded from
+# sitemap.xml, which is the correct way to keep boilerplate out of the index.
+#
+# Disallowing them as well was actively harmful. A crawler forbidden from
+# FETCHING a page never sees the noindex on it — so it kept the URLs, which it
+# found from the site-wide footer link on all 43 pages, and indexed them
+# URL-only. Bing Webmaster Tools showed exactly three indexed URLs for this
+# domain, against three files in /legal/, and listed "legal" as the only
+# subfolder it knew. The only pages Bing had indexed were the three we had told
+# it not to.
+#
+# The methodology and the money — the things that actually matter for trust —
+# are published openly at /trust.
+
+User-agent: *
+Allow: /
+
+# Named explicitly so the intent is unambiguous rather than inherited from *.
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# 2026 roster additions — the assistants people actually ask "is this shop
+# legit". Same policy as the rest: everything except boilerplate.
+User-agent: meta-externalagent
+Allow: /
+
+User-agent: Meta-ExternalFetcher
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: MistralAI-User
+Allow: /
+
+User-agent: DuckAssistBot
+Allow: /
+
+User-agent: LinerBot
+Allow: /
+
+User-agent: YouBot
+Allow: /
+
+Sitemap: https://thedollscout.com/sitemap.xml

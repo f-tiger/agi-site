@@ -1,0 +1,80 @@
+{
+  "note": "结构化自 tools.json 中 writing 类的已核实 limits 散文——同一批事实的机器可读形态，不新增任何数字。本类与前八类的根本不同：写作翻译类最容易被忽略的墙不是「你用得多快」，是**你一次能贴多长**——QuillBot 改写单次 125 词、Wordvice 单次 500 词，这类墙跟你一个月用几次毫无关系，长文一律要手工分段。第二条只有本类才明显的形态：用完之后不一定停，沉浸式翻译会**降级**回基础引擎（翻译照常、质量档位下降），墙是软的。第三条：有道是**余额制**（50 元体验金）而不是月度额度——不会自动刷新，用完就是用完；彩云是一次性 100 万字符且**到期自动清零**，两者都不是「每月还有」。gate 分五型：per_input（单次限长是主要墙）/ monthly（按月额度）/ one_time（一次性发放，含到期清零）/ balance（余额制不刷新）/ degrade（用完降级不停）。kind 同名。",
+  "derived": "2026-08-17",
+  "axis_zh": "限的是一次能贴多长，还是总共能用多少；以及用完之后是停还是降级",
+  "axis_en": "Whether the cap is on how much you can paste at once or how much you get in total — and whether running out stops you or just downgrades you",
+  "entries": [
+    {
+      "slug": "deepl",
+      "kind": "monthly",
+      "meter": "characters",
+      "chars_per_month": 500000,
+      "gate": "monthly",
+      "caveat_zh": "开发者 API Free 档每月 500,000 字符，无每日限制、用完当月即停（官方文档明示），次月重置。网页免费版另有一条单次翻译字符上限，但官方未公布具体数字——所以本站不写那个数，只提醒超长文本需分段。两条墙形态不同：API 那条是月度总量，网页那条是单次长度。",
+      "caveat_en": "The developer API Free tier gives 500,000 characters a month with no daily cap; it stops for the rest of the month once spent and resets the following month (stated in the official docs). The free web version has a separate per-translation character ceiling, but the vendor publishes no figure for it — so none is recorded here, only the warning that long text must be split. The two walls are different in kind: the API one is a monthly total, the web one is a per-input length."
+    },
+    {
+      "slug": "caiyun",
+      "kind": "one_time",
+      "meter": "characters",
+      "chars_total": 1000000,
+      "valid_months": 1,
+      "expires_to_zero": true,
+      "gate": "one_time",
+      "caveat_zh": "开放平台注册即送 100 万字符翻译额度，有效期 1 个月、到期自动清零（按原文字符计、含空格标点）。注意这是一次性发放加到期清零，不是每月都有 100 万——一个月内没用完，剩下的不会留到下个月。用尽或到期后按量付费，官方文档两处超额单价口径不一（39 元与 20 元/百万字符并存），以当期计费页为准。网页与文本翻译的基础功能免费使用。",
+      "caveat_en": "Signing up for the open platform grants 1M characters of free translation valid for 1 month, auto-resetting to zero on expiry (counted on source characters, spaces and punctuation included). Note this is a one-off grant with an expiry, not a monthly allowance — whatever you do not use inside that month does not carry over. After the free characters are spent or expire, usage is metered, and the vendor's own docs state two conflicting overage prices (¥39 vs ¥20 per million characters), so the current billing page governs. Basic web and text translation stay free."
+    },
+    {
+      "slug": "quillbot",
+      "kind": "per_input",
+      "meter": "words",
+      "words_per_input": 125,
+      "summarizer_words_per_input": 1200,
+      "gate": "per_input",
+      "caveat_zh": "免费版限的是单次输入长度，不是用量：改写器单次最多 125 词，摘要器单次最多 1,200 词（均为官方帮助中心明码）。这条墙跟你一个月用几次无关——长文一律要手工分段贴入，这是实际使用中最先撞上的限制。改写模式也仅开放基础两种，解锁不限词数与全部模式需订阅 Premium。",
+      "caveat_en": "The free tier caps how much you can paste at once, not how much you use: 125 words per paraphrase and 1,200 words per summary (both published in the official help centre). This wall has nothing to do with how often you use it — any long document has to be split and pasted in pieces, and in practice that is the limit you hit first. Only two of the rewrite modes are open; unlimited length and the full mode set need Premium."
+    },
+    {
+      "slug": "grammarly",
+      "kind": "monthly",
+      "meter": "prompts",
+      "prompts_per_month": 100,
+      "gate": "monthly",
+      "caveat_zh": "免费档每月 100 次生成式 AI prompts（官方支持中心明码；Premium 1,000 次/月，Pro 与教育版 2,000 次）。要分清两件事：基础语法与拼写检查**不占**这份额度，不受影响；被限的只有改写与生成类 AI 功能。当月用尽后界面会显示距下次刷新的天数，只能等刷新或升级。",
+      "caveat_en": "The free tier carries 100 generative-AI prompts a month (published in the official support centre; Premium 1,000, Pro and education 2,000). Two things worth separating: basic grammar and spelling checks do not draw on this allowance and keep working; only the rewrite and generate features are capped. Once spent, the interface shows the days remaining until the reset, and waiting or upgrading are the only options."
+    },
+    {
+      "slug": "immersive-translate",
+      "kind": "degrade",
+      "meter": "tokens",
+      "tokens_total": 50000,
+      "byo_key_supported": true,
+      "gate": "degrade",
+      "caveat_zh": "本类里唯一一堵软墙：基础翻译引擎（微软/谷歌等）免费不限次，登录后另可领取 5 万 AI 高级模型 tokens（官方入门页口径），用于 ChatGPT/DeepL/Gemini 等 20+ 引擎的高级翻译。高级 tokens 用尽后**不会停**，而是回落到基础引擎——翻译照常，只是质量档位下降。也可自带各家 API Key 走自己的额度。所以「用完了怎么办」在这里的答案跟别家不一样：什么都不用做也能继续用。",
+      "caveat_en": "The only soft wall in this category: the basic engines (Microsoft, Google and others) are free and uncapped, and signing in adds 50,000 tokens of premium-model translation (per the vendor's getting-started page) across 20+ engines including ChatGPT, DeepL and Gemini. When those premium tokens run out nothing stops — it falls back to the basic engines, so translation continues at a lower quality tier. You can also bring your own API key and spend your own allowance instead. So \"what happens when it runs out\" has a different answer here: you can keep going without doing anything."
+    },
+    {
+      "slug": "youdao",
+      "kind": "balance",
+      "meter": "credit",
+      "credit_cny": 50,
+      "storage_gb": 3,
+      "refills": false,
+      "gate": "balance",
+      "caveat_zh": "开发者侧（有道智云）是余额制不是额度制：新注册账号系统赠送 50 元体验金，先扣体验金、用尽后按接口调用量计费。这条要特别看清——**余额不会自动刷新**，用完就是用完，跟「每月还有多少」是两回事。云笔记侧另提供 3GB 免费存储空间。网页版翻译与云笔记 AI 助手的免费使用上限官方未公布，本站不写数字。",
+      "caveat_en": "The developer side (Youdao Zhiyun) runs on a balance rather than an allowance: new accounts receive ¥50 of trial credit, which is drawn down first and then billed per API call. This is the part to read twice — the balance does not refresh, so spent means spent, which is a different thing from \"how much do I get this month\". The notes product separately offers 3GB of free storage. No figure is published for the free ceilings on web translation or the notes AI assistant, so none is recorded here."
+    },
+    {
+      "slug": "wordvice",
+      "kind": "per_input",
+      "meter": "words",
+      "words_per_input": 500,
+      "translate_chars_per_input": 500,
+      "words_total": 5000,
+      "total_period_unstated": true,
+      "gate": "per_input",
+      "caveat_zh": "免费 Basic 档（需注册）有两层墙：单次限长——改写单次最多 500 词、AI 翻译单次最多 500 字符；总量——各修订工具合计可处理 5,000 词文本（均为官方 plans 页口径）。要留意的是官方**未明示 5,000 词的刷新周期**，所以本站不写周期，也不猜是每月还是一次性。超出单次限长需分段；解锁全部 5 种改写模式与百万词/月额度需 Premium（$19.95/月）。",
+      "caveat_en": "The free Basic tier (registration required) has two layers: a per-input cap — 500 words per rewrite and 500 characters per AI translation — and a total, with the revision tools together processing 5,000 words (all from the vendor's own plans page). Worth noting that the vendor does not state the refresh period for those 5,000 words, so none is recorded here and none is guessed, monthly or one-off. Longer input has to be split; the full set of five rewrite modes and a million words a month need Premium at $19.95/month."
+    }
+  ]
+}

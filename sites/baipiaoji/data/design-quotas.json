@@ -1,0 +1,52 @@
+{
+  "note": "结构化自 tools.json 中 design 类的已核实 limits 散文——同一批事实的机器可读形态，不新增任何数字。本类与前六类的根本不同：设计工具的墙不在「能做多少」，在「做出来的归谁、离开时能不能带走」。五家里只有 Figma 一家同时明示「免费档可商用」与「作品权利归你」；Framer 明示免费档不面向商业使用；稿定的素材是租不是买（会员到期即失效）；即时设计对你自己作品的权属未表态；妙多已停运——退出问题从假设变成了实例。commercial 分六型：yes（明示免费档可商用且作品归你）/ no（明示免费档不面向商用）/ assets_only（官方只承诺素材可商用，你自己作品的权属未表态）/ member_bound（商用授权只在会员期内成立）/ not_applicable（已停运）。kind 分五型：file_caps（按文件/页数设顶）/ unlimited（官方自述不限）/ feature_split（免费按功能而非用量分界）/ unstated（官方未公布数额）/ discontinued（已停运）。",
+  "derived": "2026-08-14",
+  "axis_zh": "做出来的归谁，离开时能不能带走",
+  "axis_en": "Who owns what you make, and whether you can leave with it",
+  "entries": [
+    {
+      "slug": "figma",
+      "kind": "file_caps",
+      "teams": 1,
+      "projects": 1,
+      "team_files": 3,
+      "pages_per_file": 3,
+      "drafts_unlimited": true,
+      "commercial": "yes",
+      "caveat_zh": "个人草稿（Drafts）文件数不限，协作者/编辑者人数不限；团队文件触顶可把新文件放进草稿区继续做（草稿不支持团队项目组织）。授权维度是设计类里最宽松的：官方明确 Starter 免费档可用于商业项目，且服务协议写明你拥有在 Figma 中创作的作品的全部权利——付费买的是进阶功能，不是商用资格。Figma 社区素材另有自己的授权规则，与你自己作品的归属是两回事。",
+      "caveat_en": "Personal drafts are unlimited in number, as are collaborators and editors; when team files hit the cap you can keep working in drafts (which lack team-project organisation). The licence side is the most permissive in this category: the vendor states plainly that the free Starter tier may be used for commercial projects and that you own full rights to what you create — paying buys advanced features, not the right to work commercially. Figma Community assets carry their own licence rules, separate from ownership of your own work."
+    },
+    {
+      "slug": "jsdesign",
+      "kind": "unlimited",
+      "commercial": "assets_only",
+      "caveat_zh": "官方自述基础版永久免费且文件数、图层数、资源库容量、云端字体、协作者、团队数均不限——免费档本身几乎不设墙，分档按对象走（企业要的是私有化部署）。但授权维度必须拆成两件事，官方只回答了其中一件：内置设计资源官方明确可免费使用并支持商用；你自己创作的设计稿的权利归属与商用范围未在可核实的官方条款引文中出现，本站不下结论。素材库允许商用，不等于平台已就你的作品权属作出承诺——用于客户交付前建议直接向官方确认。",
+      "caveat_en": "The vendor's own pages say the base tier is permanently free with no limits on files, layers, library storage, cloud fonts, collaborators or teams — the free tier itself has almost no wall, and the paid split targets enterprises (private deployment). But the licence question splits in two, and the vendor answers only one half: built-in design assets are officially free to use commercially; the rights to designs you create yourself appear nowhere in any verifiable official terms, so this site draws no conclusion. An asset library cleared for commercial use is not a promise about who owns your work — confirm directly with the vendor before client delivery."
+    },
+    {
+      "slug": "framer",
+      "kind": "file_caps",
+      "cms_collections": 10,
+      "pages": 1000,
+      "upload_mb": 5,
+      "locales": 1,
+      "commercial": "no",
+      "caveat_zh": "站点发布在 framer.website 免费域名下并强制显示 Made in Framer 标识；绑自定义域名必须升级付费。带宽按月计量但官方未公布免费档数额——超量第一个月只发邮件提醒，连续第二个月才要求升级，不是当场断流。授权维度：官方定价页把免费档定位为「适合非商业用途」，把站点用于生意需升级。另需分清你自己做的站与从社区市场取用的素材：社区素材的许可是有限、不可转让且可撤销的，免费创作者素材可商用但你不得主张对素材本身的所有权。",
+      "caveat_en": "Sites publish on the free framer.website domain with a mandatory Made in Framer badge; a custom domain requires a paid plan. Bandwidth is metered monthly with no published free allowance — the first month over you only get an email, and only a second consecutive month forces an upgrade, so no instant cut-off. On licence: the official pricing page positions the free tier as suited to non-commercial use, so running a business on it means upgrading. Keep your own site separate from marketplace assets: the community licence is limited, non-transferable and revocable, and free creator assets may be used commercially though you may claim no ownership of the assets themselves."
+    },
+    {
+      "slug": "gaoding",
+      "kind": "unstated",
+      "commercial": "member_bound",
+      "caveat_zh": "在线设计与编辑功能免费可用，模板与素材分免费与会员两类（会员分三档）；免费档具体下载额度官方未在可核实页面明示，不写数字。比额度重要得多的一条：会员期内下载的素材，会员到期后不能继续使用——想再编辑、下载或使用需重新付费，商用授权同样只在会员有效期内成立。素材是「租」不是「买」：成品若含会员素材，退会员后再改动会有授权问题。",
+      "caveat_en": "Design and editing are free to use, with templates and assets split into free and member-only tiers (three membership levels); the free tier's download allowance is stated nowhere verifiable, so no number is recorded. What matters far more than any allowance: assets downloaded during a membership stop being usable once it lapses — editing, re-downloading or using them again requires paying again, and the commercial licence likewise holds only while the membership does. Assets are rented, not bought: if a finished piece contains member assets, touching it after cancelling raises licence problems."
+    },
+    {
+      "slug": "motiff",
+      "kind": "discontinued",
+      "commercial": "not_applicable",
+      "caveat_zh": "已停止服务，本条仅作存档与迁移指引。官方两处关停日期不一致——英文帮助页写 2026-06-23，中文关停说明写 2026-07-31，本站两个都列、不替厂商选；无论按哪个，均已过期。2026-05-13 起关闭新注册与续订，付费按官方口径自动退款。现在唯一有意义的动作是导出：官方批量导出支持 Figma 格式，另有 Sketch、PDF 与多种图片格式。它把本类的主轴从假设变成了实例：设计工具真正的风险是退出，而退出的质量取决于导出——这正是选型时该先看的东西。",
+      "caveat_en": "The service has shut down; this entry remains as an archive and migration pointer. The vendor's own pages disagree on the date — the English help page says 2026-06-23, the Chinese notice 2026-07-31; this site lists both and picks neither, and either way it has passed. Registrations and renewals closed on 2026-05-13, with paid plans auto-refunded per the official notice. The only action that still matters is export: the official bulk export produces Figma format, plus Sketch, PDF and several image formats. Motiff turned this category's axis from a hypothesis into a case study: the real risk in a design tool is the exit, and the quality of the exit is the quality of the export — which is exactly what to check before choosing one."
+    }
+  ]
+}

@@ -1,3 +1,13 @@
+<!-- MONOREPO 迁移说明(2026-08-19,owner 决定) -->
+> **本站已迁入公开 monorepo `f-tiger/agi-site`,路径 `sites/agiscorecard/`。**
+> 部署 = push agi-site 的 `main`(deploy-agiscorecard.yml,path 过滤 + wrangler);
+> 旧私有仓 f-tiger/agiscorecard 是历史档案(且其 main 仍连着 Cloudflare 构建,
+> **再往旧仓推送会把线上回滚**,一律禁止)。本文档中的 Ship procedure 分支操作
+> 相应替换为:在 agi-site 根目录 `git push origin main`。**公开仓红线**:
+> owner-identity*/owner-trajectory* 只存私有仓+D1,永不入本仓;订阅者邮箱等
+> 个人信息一律脱敏(详见仓库根 CLAUDE.md)。odds-snapshot.json 与 IndexNow
+> 周任务已由本仓根 workflows(agi-odds.yml / agi-indexnow.yml)接管。
+
 # agiscorecard.com — operating manual for automated sessions
 
 Static site (no build step) tracking Leopold Aschenbrenner's *Situational

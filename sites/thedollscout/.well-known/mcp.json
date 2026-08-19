@@ -1,0 +1,37 @@
+{
+  "name": "dollscout",
+  "description": "Recorded adult-doll specification data, UK payment-recourse rules and a first-year ownership cost model, exposed as callable tools. Every answer is read from the site's published datasets at request time and carries their recording date and stated limitations.",
+  "version": "1.0.0",
+  "endpoint": "https://thedollscout.com/mcp",
+  "transport": "streamable-http",
+  "authentication": "none",
+  "documentation": "https://thedollscout.com/mcp",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "contentRating": "adult",
+  "tools": [
+    {
+      "name": "doll_weight_by_height",
+      "description": "What adult dolls of a given height actually weigh, from recorded live listings. Listings routinely omit weight, which is why this data was collected. Returns the measured range, median and sample size, or states that no listing at that height was recorded."
+    },
+    {
+      "name": "payment_recourse",
+      "description": "What buyer recourse survives after payment for a consumer purchase: whether a UK Consumer Credit Act section 75 claim appears to apply, and whether a card chargeback is available. Derived from the statute and Financial Ombudsman Service guidance. Not legal advice."
+    },
+    {
+      "name": "first_year_cost",
+      "description": "Realistic first-year cost of owning an adult doll beyond the sticker price: import charge, care supplies, storage and a repair reserve. Conservative editorial estimates, not vendor quotes. The US duty RATE is deliberately not modelled because the tariff classification is unsettled."
+    },
+    {
+      "name": "scam_check_signals",
+      "description": "The ten checks to run against an unfamiliar doll shop before entering a card number, built from documented complaint threads, chargeback cases and counterfeit reports. Passing all ten is not a guarantee — it means no known pattern fired."
+    },
+    {
+      "name": "import_rules",
+      "description": "Legal status, duty and customs treatment for importing an adult-form doll into a given country, with the sources for that country. A reading of published rules, not legal advice. Childlike dolls are prohibited everywhere covered and carry serious criminal penalties."
+    },
+    {
+      "name": "doll_price_bands",
+      "description": "Recorded price distribution for adult dolls: floor, median, top, and how many listings fall under $1,000. Useful for judging whether an advertised price is plausible — prices far below the recorded floor are a counterfeit signal rather than a bargain."
+    }
+  ]
+}

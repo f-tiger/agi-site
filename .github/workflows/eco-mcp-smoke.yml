@@ -1,0 +1,35 @@
+# Verifies the live MCP server end to end: initialize, tools/list, and one real
+# call per tool with expected values. The deploy workflow only asserts that
+# /mcp responds; this asserts the answers are right. Runs on demand, after
+# every deploy of the worker, and daily — a directory listing points third
+# parties at this endpoint, so silent breakage is worse than a red build.
+name: MCP production smoke test
+# ── 迁入公开 monorepo f-tiger/agi-site(2026-08-19,owner 决定)──
+# 原仓 .github 为历史档案。公开仓 Actions 分钟免费。
+# 本 workflow 的 run 步骤默认 working-directory: sites/getecoback/。
+
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["sites/getecoback/src/worker.js", "sites/getecoback/tools/mcp_smoke.mjs", ".github/workflows/eco-mcp-smoke.yml"]
+  schedule:
+     - cron: "17 6 * * *"
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: sites/getecoback
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Wait for deploy to settle
+        if: github.event_name == 'push'
+        run: sleep 45
+      - name: Call every tool on the live server
+        run: node tools/mcp_smoke.mjs

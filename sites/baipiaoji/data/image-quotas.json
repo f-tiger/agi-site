@@ -1,0 +1,73 @@
+{
+  "note": "结构化自 tools.json 中 image 类的已核实 limits 散文——同一批事实的机器可读形态，不新增任何数字。本类与前四类的不同：图像是唯一一类**官方经常给出「几积分一张」折算**的类目，所以主轴是「每天能出几张图」。images_per_day / images_per_week 只在官方自己给了折算或举例时才填，官方没给的一律 null 并在 caveat 里说明不代算。kind 分七型：daily（按日发放）/ weekly（按周发放）/ one_time（一次性）/ task_based（做任务赚额度）/ unlimited_slow（不限量但降速或排队）/ unlimited_local（本地跑，无额度概念）/ unstated（官方未公布数额）。",
+  "derived": "2026-08-12",
+  "entries": [
+    { "slug": "jimeng", "kind": "daily", "unit": "credits", "per_day": 150, "credits_per_image": 3, "images_per_day": 50,
+      "caveat_zh": "每天最多可获得 150 积分，官方举例图像类操作约 3 积分一次——折算约 50 次生成/天即由此而来；图像扩展另有每天最多 50 张的单独上限",
+      "caveat_en": "Up to 150 credits a day, and the official examples put an image operation at about 3 credits — which is where the ≈50 generations a day comes from; image expansion carries its own separate cap of 50 a day" },
+
+    { "slug": "liblib", "kind": "daily", "unit": "credits", "per_day": 20, "images_per_day": 40,
+      "caveat_zh": "每日登录赠送 20 积分，官方会员页口径约可生成 40 张图或 2 个视频；可用平台上百个图像/视频模型，另含 3GB 云存储",
+      "caveat_en": "20 credits land on login each day, which the official membership page puts at roughly 40 images or 2 videos; hundreds of community image and video models are usable, plus 3GB of cloud storage" },
+
+    { "slug": "recraft", "kind": "daily", "unit": "credits", "per_day_contradiction": [30, 50], "credits_per_image": 1, "credits_per_vector": 2, "carryover": false,
+      "caveat_zh": "官方页面同时出现 30/天与 50/天两种口径——本站如实记矛盾，以账户内实际到账为准；栅格图 1 积分/张、矢量图 2 积分/张，日积分不结转",
+      "caveat_en": "Official pages state both 30/day and 50/day — we record the contradiction rather than picking one; raster images cost 1 credit, vectors 2, and daily credits do not carry over" },
+
+    { "slug": "leonardo", "kind": "daily", "unit": "tokens", "per_day": 150, "carryover": false,
+      "caveat_zh": "每天 150 个快速 tokens、每 24 小时重置，当天没用完不结转；单张图消耗多少 tokens 随模型与尺寸变化，官方未给统一折算，因此不代算张数",
+      "caveat_en": "150 fast tokens a day, resetting every 24 hours with no carryover; how many tokens an image costs varies by model and size and no single official conversion exists, so we do not derive an image count" },
+
+    { "slug": "ideogram", "kind": "weekly", "unit": "credits", "per_week": 10, "images_per_week": 40, "resets": "Saturday 00:00 UTC",
+      "caveat_zh": "每周 10 个慢速积分——最多 10 次生成、约 40 张图，每周六 00:00 UTC 重置；慢速队列逐个排队，等待时长看平台负载",
+      "caveat_en": "10 slow credits a week — up to 10 generations, roughly 40 images, resetting Saturday 00:00 UTC; the slow queue processes one at a time and the wait depends on platform load" },
+
+    { "slug": "bing-image", "kind": "unlimited_slow", "unit": "boosts", "per_day": 15,
+      "caveat_zh": "每天 15 次「快速生成」免费，用完后快速生成需消耗 Microsoft Rewards 积分（约 10 分一次）；**标准速度生成始终不限量且免费**——这条最实用，不赶时间就不必在意那 15 次",
+      "caveat_en": "15 fast generations a day are free, after which fast mode costs Microsoft Rewards points (around 10 per generation); **standard-speed generation is always unlimited and free** — the most useful fact here, since if you are not in a hurry the 15 never matters" },
+
+    { "slug": "playground-ai", "kind": "daily", "unit": "operations", "edits_per_3h": 10, "downloads_per_day": 10, "premium_per_month": 3,
+      "caveat_zh": "官方明码三条：自家模型每 3 小时 10 次图像编辑（滚动窗口，随时间逐步回血、不是每日一刀切）；接入的第三方高级模型每月仅 3 次；下载每天 10 张——真正卡住产出的是下载数而不是生成数",
+      "caveat_en": "Three published figures: 10 edits per 3 hours on their own models (a rolling window that refills gradually rather than resetting once a day), just 3 uses a month of the third-party premium models, and 10 downloads a day — it is the download cap, not the generation cap, that actually limits what you take home" },
+
+    { "slug": "wujie", "kind": "daily", "unit": "creations", "per_day": 15,
+      "caveat_zh": "新用户 AI 魔法体验卡每日 0 点补足 15 次免费创作；积分获取官方另有明码：注册 +50、实名认证 +100、绑卡 +150、邀请注册 +20/人（实名 +30）",
+      "caveat_en": "The new-user magic card tops up to 15 free creations at midnight daily, and credit grants are published separately: +50 on signup, +100 for ID verification, +150 for adding a card, +20 per invited signup (+30 if they verify)" },
+
+    { "slug": "civitai", "kind": "task_based", "unit": "Buzz", "ads_per_hour_cap": 100, "ads_per_day_cap": 400, "tasks_per_day_cap": 225,
+      "caveat_zh": "免费拿 Buzz 的三条官方路径：每日登录打开生成器即送；浏览带广告页面被动攒蓝 Buzz（0.25/条广告，上限 100/小时、400/天）；每日任务最多再赚 225/天。能出几张图取决于所选模型的消耗档位",
+      "caveat_en": "Three official routes to free Buzz: a daily grant just for opening the generator, passive blue Buzz from ad-supported pages (0.25 per ad, capped at 100/hour and 400/day), and up to 225/day from daily tasks. How many images that buys depends on the model tier you pick" },
+
+    { "slug": "removebg", "kind": "unlimited_slow", "unit": "previews", "api_previews_per_month": 50,
+      "caveat_zh": "网页版抠图预览分辨率（最高 0.25 兆像素，约 625×400）不限次免费下载——低清但真不限量；注册送 1 个积分可测一次高清导出；API 与桌面/插件端每月另有 50 次免费预览调用",
+      "caveat_en": "Preview-resolution cutouts on the web (up to 0.25 megapixels, about 625×400) are unlimited and free to download — low resolution, but genuinely uncapped; one signup credit buys a single full-resolution test, and the API, desktop and plugin routes add 50 free preview calls a month" },
+
+    { "slug": "pixlr", "kind": "one_time", "unit": "credits", "total": 20, "images_per_grant": 20,
+      "caveat_zh": "基础在线修图免费使用（带广告）；新用户赠送 20 个 AI 积分、约生成 20 张图。免费档另有保存次数限制——机制官方明示但具体数字未公布，不采信第三方口径",
+      "caveat_en": "Basic online editing is free with ads, and new users get 20 AI credits worth roughly 20 images. The free tier also limits how many saves you get — the mechanism is official but the figure is not published, and third-party numbers are not repeated here" },
+
+    { "slug": "upscayl", "kind": "unlimited_local",
+      "caveat_zh": "后端 AGPLv3 开源、完全免费、无额度概念：张量计算全部通过 Vulkan 在本机 GPU 上跑，不联网也不上传，所以既不限张数也没有隐私顾虑。最高可放大 16 倍",
+      "caveat_en": "The backend is AGPLv3 open source, entirely free and has no quota at all: the tensor work runs on your own GPU through Vulkan, with nothing uploaded and no network involved — so neither an image cap nor a privacy question arises. Upscales up to 16×" },
+
+    { "slug": "canva", "kind": "one_time", "unit": "uses", "magic_write_lifetime": 50,
+      "caveat_zh": "设计基础功能免费不限；AI 功能是两套额度：Magic Write 免费档共 50 次——**是终身总量不是每月**，这条最容易误读；其余 AI 工具走按月发放的 AI 用量池，免费档具体数额官方未公布",
+      "caveat_en": "Core design features are free and unlimited; the AI features run on two separate allowances — Magic Write gives the free tier 50 uses **in total, not per month**, which is the easiest thing here to misread, while the other AI tools draw on a monthly pool whose free-tier size is not published" },
+
+    { "slug": "tongyi-wanxiang", "kind": "one_time", "unit": "images", "days_valid": 90,
+      "caveat_zh": "走阿里云百炼开通时自动发放新人免费额度，额度按「成功生成的输出图片数量」计、有效期 90 天；具体张数官方未在可核实引文中给出，不猜测。网页版每日赠送次数官方同样未公布",
+      "caveat_en": "Activating through Alibaba Cloud Model Studio grants new-user credits counted in successfully generated images and valid for 90 days; the actual number is not stated in any verifiable official quote, so none is guessed. The consumer web app's daily grant is likewise unpublished" },
+
+    { "slug": "yige", "kind": "task_based", "unit": "power",
+      "caveat_zh": "电量通过任务免费领取：首次登录、每日签到、分享任务等——机制官方明确，但单次任务给多少电量官方未公布，第三方数字不采信",
+      "caveat_en": "Power is earned through tasks — first login, daily check-in, sharing and so on. The mechanism is official, but how much each task grants is not published, and third-party figures are not repeated" },
+
+    { "slug": "krea", "kind": "unstated", "unit": "compute",
+      "caveat_zh": "免费档为每日补充的算力额度（用完等次日刷新），可用图像/视频/3D/口型的基础模型——机制为官方定价页明示，但具体数额官方未公布，第三方数字不采信",
+      "caveat_en": "The free tier is a daily-refilling compute allowance covering the base image, video, 3D and lip-sync models — the mechanism is on the official pricing page, but the amount is not published and third-party figures are not repeated" },
+
+    { "slug": "tusiart", "kind": "unstated", "unit": "compute",
+      "caveat_zh": "社区端可免费在线出图（支持 SD 1.5 / SDXL / 混元 DiT 等底模与 LoRA、ComfyUI 工作流），但每日免费算力的具体数额官方未在可核实页面公布，因此不写数字",
+      "caveat_en": "The community site generates images free in the browser (SD 1.5, SDXL, Hunyuan DiT base models plus LoRAs and ComfyUI workflows), but the daily free compute allowance is not published on any verifiable official page, so no figure is stated" }
+  ]
+}

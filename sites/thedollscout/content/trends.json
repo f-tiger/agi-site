@@ -1,0 +1,36 @@
+{
+  "generated": null,
+  "minCoverage": 80,
+  "selfImproving": [
+    {
+      "signal": "catalogue-movement",
+      "observations": 2,
+      "summary": "perfectlovedolls: 4 listing(s) appeared, 3 disappeared since 2026-08-07",
+      "handled": "The dataset, the entity pages and the search index all regenerate from this automatically."
+    },
+    {
+      "signal": "catalogue-movement",
+      "observations": 2,
+      "summary": "yourdoll: 2 listing(s) appeared, 5 disappeared since 2026-08-07",
+      "handled": "The dataset, the entity pages and the search index all regenerate from this automatically."
+    }
+  ],
+  "ownerActions": [
+    {
+      "signal": "blocked-on-owner",
+      "observations": null,
+      "confidence": "n/a",
+      "summary": "Three things the pipeline cannot do for you",
+      "detail": [
+        "Search Console: until it is connected the site grows toward what we can prove, not toward what people search for",
+        "Brand collision with dollscout.com — a rename is not ours to make",
+        "Outreach — we never post to communities"
+      ],
+      "action": "These are the only real limits left. Everything else regenerates itself weekly."
+    }
+  ],
+  "notComparable": [
+    "perfectlovedolls 2026-08-06: coverage unrecorded — excluded, because a change measured against a partial crawl is an artefact of what got through, not a movement",
+    "yourdoll 2026-07-27: coverage unrecorded — excluded, because a change measured against a partial crawl is an artefact of what got through, not a movement"
+  ]
+}

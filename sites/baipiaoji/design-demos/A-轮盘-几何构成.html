@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>方向 A · 几何构成 — 白嫖计</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}img{max-width:100%}a{color:inherit;text-decoration:none}
+
+:root{--ink:#141414;--paper:#EFECE6;--red:#E5502E;--blue:#1B4DE4;--line:#141414}
+body{background:var(--paper);color:var(--ink);font:400 16px/1.6 system-ui,"PingFang SC","Microsoft YaHei",sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1320px;margin:0 auto;padding:0 40px}
+.top{display:flex;align-items:baseline;gap:28px;padding:26px 0;border-bottom:3px solid var(--ink)}
+.logo{font-weight:900;font-size:26px;letter-spacing:-1px}
+.top nav{display:flex;gap:22px;font-weight:700;font-size:14px;margin-left:auto}
+.top nav a:hover{color:var(--red)}
+
+/* 不对称全幅网格：7 列文字 / 5 列几何构成 */
+.hero{display:grid;grid-template-columns:7fr 5fr;gap:56px;padding:64px 0 52px;border-bottom:3px solid var(--ink)}
+.hero h1{font-weight:900;font-size:clamp(40px,5.2vw,68px);line-height:1.04;letter-spacing:-2.5px;text-wrap:balance}
+.hero h1 em{font-style:normal;color:var(--red)}
+.hero p{margin-top:22px;font-size:17px;line-height:1.8;max-width:34ch}
+.hero p b{background:var(--ink);color:var(--paper);padding:1px 7px;font-weight:700}
+.vow{margin-top:26px;display:inline-block;border:3px solid var(--ink);padding:9px 16px;font-weight:800;font-size:14px}
+
+/* 几何构成：六份作业 × 步数，直接画成条 */
+.plot{display:flex;flex-direction:column;justify-content:flex-end;gap:14px}
+.bar{display:flex;align-items:center;gap:7px}
+.bar i{display:block;height:22px;background:var(--ink)}
+.bar i:nth-child(2){background:var(--red)}
+.bar span{font-size:11px;font-weight:700;margin-left:6px;opacity:.55;white-space:nowrap}
+.plot .cap{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;opacity:.5;margin-bottom:4px}
+
+.band{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:3px solid var(--ink)}
+.band div{padding:20px 0}
+.band div+div{border-left:1px solid var(--ink);padding-left:20px}
+.band dt{font-size:12px;font-weight:700;opacity:.55}
+.band dd{font-size:36px;font-weight:900;letter-spacing:-1.5px;font-variant-numeric:tabular-nums}
+.band div:first-child dd{color:var(--red)}
+
+h2.sec{font-weight:900;font-size:13px;letter-spacing:2px;padding:36px 0 16px;text-transform:uppercase}
+/* 错位卡片：奇偶行下沉，打破规整 */
+.works{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--ink);border-left:1px solid var(--ink)}
+.work{border-right:1px solid var(--ink);border-bottom:1px solid var(--ink);padding:22px 22px 20px;position:relative;background:var(--paper);transition:background .15s}
+.work:nth-child(even){background:#E7E3DA}
+.work:hover{background:var(--ink);color:var(--paper)}
+.work:hover .glyph i{background:var(--paper)}
+.work:hover .fail{border-color:var(--paper)}
+.glyph{display:flex;gap:5px;margin-bottom:14px}
+.glyph i{width:26px;height:8px;background:var(--ink);display:block}
+.glyph i:first-child{background:var(--red);width:38px}
+.work h3{font-weight:900;font-size:20px;line-height:1.3;letter-spacing:-.5px}
+.work .who{font-size:12.5px;line-height:1.7;margin-top:8px;opacity:.7}
+.fail{margin-top:14px;border-top:2px solid var(--ink);padding-top:10px;font-size:12.5px;line-height:1.7}
+.fail b{display:block;font-size:10px;letter-spacing:1px;font-weight:800;color:var(--red);margin-bottom:3px}
+.work:hover .fail b{color:#FF8C6B}
+
+.recipes{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--ink);border:1px solid var(--ink)}
+.rec{background:var(--paper);padding:18px 20px;display:flex;flex-direction:column;gap:8px}
+.rec .pain{font-weight:800;font-size:16px;line-height:1.4}
+.rec .save{font-size:11px;font-weight:800;color:var(--blue);letter-spacing:.5px}
+.rec .steps{margin-top:auto;display:flex;gap:4px;align-items:center}
+.rec .steps i{width:16px;height:5px;background:var(--ink)}
+.rec .steps span{font-size:11px;font-weight:700;opacity:.5;margin-left:6px}
+
+.tools{display:flex;flex-wrap:wrap;gap:0;border-top:1px solid var(--ink)}
+.tool{flex:1 1 240px;border-right:1px solid var(--ink);border-bottom:1px solid var(--ink);padding:14px 18px;display:flex;flex-direction:column;gap:4px}
+.tool b{font-size:15px;font-weight:800}
+.tool span{font-size:12px;opacity:.65;line-height:1.6}
+.tool time{font-size:10.5px;font-weight:800;color:var(--blue);letter-spacing:.5px;font-variant-numeric:tabular-nums}
+footer{border-top:3px solid var(--ink);margin-top:40px;padding:24px 0 60px;font-size:12.5px;display:flex;gap:20px;flex-wrap:wrap}
+</style></head><body><div class="wrap">
+<header class="top"><span class="logo">白嫖计</span><nav><a>赚钱作业</a><a>0 元方案</a><a>免费工具</a><a>English</a></nav></header>
+<section class="hero">
+  <div>
+    <h1>别人卖你<em>月入过万</em>的课<br>我们免费给你作业</h1>
+    <p>并且明说：<b>大多数人为什么失败</b>。6 份可以照抄的赚钱作业、20 套 0 元方案、152 个真有免费额度的工具。</p>
+    <span class="vow">不卖课 · 不承诺收入 · 全程 ¥0</span>
+  </div>
+  <div class="plot"><div class="cap">六条路 / 各几步</div><div class="bar"><i style="width:44px"></i><i style="width:26px"></i><i style="width:26px"></i><i style="width:26px"></i><span>做一个 AI 工具</span></div><div class="bar"><i style="width:44px"></i><i style="width:31px"></i><i style="width:31px"></i><i style="width:31px"></i><span>帮小商家写商品描述</span></div><div class="bar"><i style="width:44px"></i><i style="width:36px"></i><i style="width:36px"></i><i style="width:36px"></i><span>给本地小生意搭一个</span></div><div class="bar"><i style="width:44px"></i><i style="width:41px"></i><i style="width:41px"></i><i style="width:41px"></i><span>教不会用 AI 的</span></div><div class="bar"><i style="width:44px"></i><i style="width:28px"></i><i style="width:28px"></i><i style="width:28px"></i><span>做一个垂直内容账号</span></div><div class="bar"><i style="width:44px"></i><i style="width:33px"></i><i style="width:33px"></i><i style="width:33px"></i><span>接 AI 辅助的设</span></div></div>
+</section>
+<dl class="band">
+  <div><dt>赚钱作业</dt><dd>6</dd></div>
+  <div><dt>0 元方案</dt><dd>20</dd></div>
+  <div><dt>免费工具</dt><dd>152</dd></div>
+  <div><dt>完全免费</dt><dd>46</dd></div>
+</dl>
+<h2 class="sec">赚钱作业 / 每份都写明怎么失败</h2>
+<div class="works"><article class="work">
+  <div class="glyph"><i></i><i></i><i></i><i></i></div>
+  <h3>做一个 AI 工具测评账号</h3>
+  <p class="who">每天能挤出 1 小时、愿意出镜或至少愿意录屏配音的人。不需要懂技术。</p>
+  <p class="fail"><b>多数人为什么没做成</b>多数人死在第 2 周：发了七八条没水花就停更了。</p>
+</article><article class="work">
+  <div class="glyph"><i></i><i></i><i></i><i></i></div>
+  <h3>帮小商家写商品描述和详情页</h3>
+  <p class="who">文字还过得去、能忍受和人反复沟通的人。不需要懂设计，也不需要懂运营。</p>
+  <p class="fail"><b>多数人为什么没做成</b>多数人卡在开口报价。</p>
+</article><article class="work">
+  <div class="glyph"><i></i><i></i><i></i><i></i></div>
+  <h3>给本地小生意搭一个 AI 客服</h3>
+  <p class="who">愿意折腾工具、能跟老板讲清楚人话的人。不需要写代码。</p>
+  <p class="fail"><b>多数人为什么没做成</b>多数人卡在「找不到第一个客户」。</p>
+</article><article class="work">
+  <div class="glyph"><i></i><i></i><i></i><i></i></div>
+  <h3>教不会用 AI 的人用 AI</h3>
+  <p class="who">有耐心、讲得清楚的人。你只要比对方多懂一点点就够了。</p>
+  <p class="fail"><b>多数人为什么没做成</b>多数人高估了「要懂多少才能教」。</p>
+</article><article class="work">
+  <div class="glyph"><i></i><i></i><i></i><i></i></div>
+  <h3>做一个垂直内容账号 + 接广告</h3>
+  <p class="who">对某个领域真感兴趣、能持续输出的人。兴趣是这条路唯一撑得住的燃料。</p>
+  <p class="fail"><b>多数人为什么没做成</b>这条路最慢，也最容易半途而废。</p>
+</article><article class="work">
+  <div class="glyph"><i></i><i></i><i></i><i></i></div>
+  <h3>接 AI 辅助的设计小单</h3>
+  <p class="who">有点审美、愿意学基础工具的人。不需要科班出身。</p>
+  <p class="fail"><b>多数人为什么没做成</b>多数人栽在「无限改稿」上。</p>
+</article></div>
+<h2 class="sec">0 元方案 / 作业的执行零件</h2>
+<div class="recipes"><div class="rec">
+  <span class="save">省 ¥30–100/月</span>
+  <span class="pain">要交 PPT，但不想买会员</span>
+  <span class="steps"><i></i><i></i><i></i><i></i><span>4 步 · ¥0</span></span>
+</div><div class="rec">
+  <span class="save">省 ¥20–60/月</span>
+  <span class="pain">想剪视频，但不会剪也不想付费</span>
+  <span class="steps"><i></i><i></i><i></i><i></i><span>4 步 · ¥0</span></span>
+</div><div class="rec">
+  <span class="save">省 $10–20/月</span>
+  <span class="pain">写论文、查文献，工具都要订阅</span>
+  <span class="steps"><i></i><i></i><i></i><i></i><i></i><span>5 步 · ¥0</span></span>
+</div><div class="rec">
+  <span class="save">省 $10–50/月</span>
+  <span class="pain">想做 AI 应用，但调 API 太烧钱</span>
+  <span class="steps"><i></i><i></i><i></i><i></i><i></i><span>5 步 · ¥0</span></span>
+</div><div class="rec">
+  <span class="save">省 ¥20–50/月</span>
+  <span class="pain">写公众号、小红书文案，憋不出来</span>
+  <span class="steps"><i></i><i></i><i></i><i></i><i></i><span>5 步 · ¥0</span></span>
+</div><div class="rec">
+  <span class="save">省 ¥30–80/月</span>
+  <span class="pain">开完会要整理纪要，录音听到吐</span>
+  <span class="steps"><i></i><i></i><i></i><i></i><span>4 步 · ¥0</span></span>
+</div></div>
+<h2 class="sec">免费工具 / 每条标核实日期</h2>
+<div class="tools"><div class="tool"><b>DeepSeek</b><span>国产顶级推理模型，网页与 App 完全免费</span><time>已核实 2026-07-28</time></div><div class="tool"><b>GitHub Copilot Free</b><span>官方免费档：每月 2000 次补全 + 50 次对话</span><time>已核实 2026-07-28</time></div><div class="tool"><b>即梦 AI</b><span>字节旗下图像/视频生成，每日送积分</span><time>已核实 2026-07-28</time></div><div class="tool"><b>可灵 AI（快手）</b><span>国产顶级视频生成，每日送灵感值</span><time>已核实 2026-07-28</time></div><div class="tool"><b>Gamma</b><span>AI 一键生成 PPT / 网页，注册送积分</span><time>已核实 2026-07-28</time></div><div class="tool"><b>Google AI Studio</b><span>Gemini API 免费档，个人开发首选</span><time>已核实 2026-07-28</time></div><div class="tool"><b>硅基流动 SiliconFlow</b><span>注册送 2000 万 Token，国产模型 API 超市</span><time>已核实 2026-07-28</time></div><div class="tool"><b>豆包（字节跳动）</b><span>基础对话完全免费不限次数</span><time>已核实 2026-07-28</time></div></div>
+<footer><span>白嫖计 · 不花冤枉钱，用上最好的 AI</span><span>链接每日自动巡检</span><span>核实于 2026-07-28</span></footer>
+</div></body></html>

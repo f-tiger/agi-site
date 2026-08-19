@@ -1,0 +1,639 @@
+{
+  "runway": {
+    "verdict": "yes",
+    "scope_zh": "免费档（所有档位一致）",
+    "scope_en": "Free tier (same on all plans)",
+    "obligations_zh": [
+      "产出带 Runway 水印，去水印需 Standard 及以上——但水印不影响商用权"
+    ],
+    "obligations_en": [
+      "Output carries a Runway watermark; removing it needs Standard or above — the watermark does not affect commercial rights"
+    ],
+    "liability_zh": "官方逐条列举适用场景：YouTube 变现与非变现、Reels/TikTok、社交发布、电影节参赛、产品广告",
+    "liability_en": "Runway enumerates the covered cases: monetised and non-monetised YouTube, Reels/TikTok, social posts, film-festival entries, product advertising",
+    "checked": "2026-08-06"
+  },
+  "ideogram": {
+    "verdict": "yes",
+    "scope_zh": "免费档（所有档位一致）",
+    "scope_en": "Free tier (same on all plans)",
+    "obligations_zh": [
+      "须遵守可接受使用政策",
+      "须自行判断是否需要第三方额外授权",
+      "不得用产出训练与 Ideogram 竞争的模型"
+    ],
+    "obligations_en": [
+      "Follow the Acceptable Use Policy",
+      "Decide for yourself what third-party permissions you need",
+      "Do not use output to train models competing with Ideogram"
+    ],
+    "liability_zh": "Ideogram 不主张对输入与产出的所有权",
+    "liability_en": "Ideogram claims no ownership of your input or output",
+    "checked": "2026-08-06"
+  },
+  "figma": {
+    "verdict": "yes",
+    "scope_zh": "Starter 免费档",
+    "scope_en": "Starter (free) plan",
+    "obligations_zh": [
+      "Figma 社区素材另有版权与授权规则，与你自己作品的归属是两回事"
+    ],
+    "obligations_en": [
+      "Figma Community assets carry their own copyright rules — a separate question from owning your own work"
+    ],
+    "liability_zh": "服务协议写明你拥有在 Figma 中创作作品的全部权利、所有权与利益",
+    "liability_en": "The Software Services Agreement states you own all right, title and interest in what you create in Figma",
+    "checked": "2026-08-06"
+  },
+  "ttsmaker": {
+    "verdict": "yes",
+    "scope_zh": "免费档",
+    "scope_en": "Free tier",
+    "obligations_zh": [
+      "建议保存官方商用许可条款页的当期版本作为凭证"
+    ],
+    "obligations_en": [
+      "Keep a dated copy of the official commercial-licence page as your record"
+    ],
+    "liability_zh": "官方设有专门的商用许可条款页，明确免费生成的音频可商用、无需额外授权",
+    "liability_en": "A dedicated official commercial-licence page states free-tier audio may be used commercially with no extra permission",
+    "checked": "2026-08-06"
+  },
+  "canva": {
+    "verdict": "yes",
+    "scope_zh": "免费档",
+    "scope_en": "Free tier",
+    "obligations_zh": [
+      "产出是否适合商用由你自负，包括画面中的艺术作品、照片、商标、标识是否需另行取得许可"
+    ],
+    "obligations_en": [
+      "It is on you to judge whether a design is fit for commercial use, including whether depicted artworks, photos, trademarks or logos need separate permission"
+    ],
+    "liability_zh": "可商用但**不享有排他权**：多个法域不对纯 AI 产出提供著作权保护，你未必能阻止别人使用同样的产出",
+    "liability_en": "Commercial use is allowed but **without exclusivity**: many jurisdictions grant no copyright to purely AI-created works, so you may be unable to stop others using the same output",
+    "checked": "2026-08-06"
+  },
+  "bing-image": {
+    "verdict": "yes",
+    "scope_zh": "免费档",
+    "scope_en": "Free tier",
+    "obligations_zh": [
+      "不得生成侵犯他人权利的内容"
+    ],
+    "obligations_en": [
+      "Do not generate content that infringes others' rights"
+    ],
+    "liability_zh": "**不保证不侵权、也不保证唯一**：产出若与既有版权角色、商标或真实人物相似，责任由你承担，条款不为你挡第三方索赔",
+    "liability_en": "**No warranty against infringement and no uniqueness**: if output resembles an existing copyrighted character, trademark or real person, liability is yours and the terms will not shield you",
+    "checked": "2026-08-06"
+  },
+  "pixlr": {
+    "verdict": "yes",
+    "scope_zh": "免费档",
+    "scope_en": "Free tier",
+    "obligations_zh": [
+      "上传或发布到 Pixlr 平台，即授予其不可撤销、非排他、免版税、全球范围的复制/展示/分发/演绎与再授权许可"
+    ],
+    "obligations_en": [
+      "Uploading or publishing on Pixlr grants it an irrevocable, non-exclusive, royalty-free worldwide licence to reproduce, display, distribute, adapt and sublicense"
+    ],
+    "liability_zh": "**无人担保**：Pixlr 不主张版权，但也明说无法向你授予或许可产出的使用权；且**免费用户不适用其责任与法律保护条款**",
+    "liability_en": "**Nobody underwrites it**: Pixlr claims no copyright yet states it cannot license or grant usage rights in the output; and **its liability and legal-protection clauses do not apply to free users**",
+    "checked": "2026-08-06"
+  },
+  "udio": {
+    "verdict": "yes",
+    "scope_zh": "免费档",
+    "scope_en": "Free tier",
+    "obligations_zh": [
+      "**若创作时不是订阅者，即使日后订阅，仍必须显著标明「由 Udio 生成」**——义务绑定创作那一刻的档位"
+    ],
+    "obligations_en": [
+      "**If you were not a subscriber when you created it, you must still label it as generated with Udio even after subscribing** — the duty attaches to the plan you were on at creation"
+    ],
+    "liability_zh": "前提是内容不含你并不拥有、也未获明确许可的受版权保护素材",
+    "liability_en": "Conditional on the content not containing copyrighted material you neither own nor have permission to use",
+    "checked": "2026-08-06",
+    "condition": {
+      "type": "attribution",
+      "gate_zh": "免费档创作须显著标明「由 Udio 生成」，**日后订阅也不解除**——义务绑定创作那一刻的档位",
+      "gate_en": "Free-tier creations must visibly credit Udio, and **subscribing later does not lift it** — the duty binds to the tier you were on when you created"
+    }
+  },
+  "yige": {
+    "verdict": "conditional",
+    "scope_zh": "免费档，过审后",
+    "scope_en": "Free tier, once the image passes review",
+    "obligations_zh": [
+      "产出仍须在合法合规范围内使用，官方审核通过不等于内容本身无版权风险"
+    ],
+    "obligations_en": [
+      "Use must still stay within the law — passing review is not a clearance of copyright risk in the content itself"
+    ],
+    "liability_zh": "官方称经审核后允许个人使用及合法合规范围内的商用；开发者侧 API 另有服务协议，是两条线",
+    "liability_en": "Officially, once reviewed it may be used personally or commercially within what the law permits; the developer API is a separate track with its own agreement",
+    "checked": "2026-08-06",
+    "condition": {
+      "type": "review",
+      "gate_zh": "**门是审核不是付费**：图片须先通过官方审核才支持下载，没过审就拿不到文件",
+      "gate_en": "**The gate is review, not payment**: an image must pass official review before it can be downloaded"
+    }
+  },
+  "kling": {
+    "verdict": "no",
+    "scope_zh": "免费档",
+    "scope_en": "Free tier",
+    "obligations_zh": [
+      "**即使产出没有品牌标记，使用时仍须显著标明「由 Kling AI 生成」**"
+    ],
+    "obligations_en": [
+      "**Even when output carries no brand mark, you must still label it as generated by \"Kling AI\"**"
+    ],
+    "liability_zh": "未经书面许可不得为任何商业目的使用/复制/分发/修改/创作衍生作品；商用权随 Pro/Premier/Ultra 付费档",
+    "liability_en": "Without written permission you may not use, reproduce, distribute, modify or create derivatives for any commercial purpose; commercial rights come with Pro/Premier/Ultra",
+    "checked": "2026-08-06",
+    "condition": {
+      "type": "tier",
+      "gate_zh": "开通 Pro / Premier / Ultra 付费档后才获得商用权",
+      "gate_en": "Commercial rights arrive with the paid Pro / Premier / Ultra tiers"
+    }
+  },
+  "heygen": {
+    "verdict": "no",
+    "scope_zh": "免费档",
+    "scope_en": "Free tier",
+    "obligations_zh": [],
+    "obligations_en": [],
+    "liability_zh": "逐项禁止：出售、再授权、再分发、变现、商业活动、广告、**客户委托**、创收产品或任何其他服务",
+    "liability_en": "Itemised prohibitions: selling, sublicensing, redistributing, monetising, commercial activity, advertising, **client work**, revenue-generating products or any other service",
+    "checked": "2026-08-06"
+  },
+  "d-id": {
+    "verdict": "no",
+    "scope_zh": "免费试用档",
+    "scope_en": "Free trial",
+    "obligations_zh": [
+      "产出可分享到社交媒体，但不得用于商业用途"
+    ],
+    "obligations_en": [
+      "Output may be shared on social media but not used commercially"
+    ],
+    "liability_zh": "EULA 把试用者定义为「访客用户」，自注册起两周内以受限功能仅作非商业使用",
+    "liability_en": "The EULA classes trial users as \"Guest Users\", limited-feature and non-commercial only for two weeks from registration",
+    "checked": "2026-08-06"
+  },
+  "vidu": {
+    "verdict": "no",
+    "scope_zh": "免费档（视频/图片/音效均适用）",
+    "scope_en": "Free tier (video, images and sound effects alike)",
+    "obligations_zh": [
+      "错峰模式只省积分，不改变授权档位"
+    ],
+    "obligations_en": [
+      "Off-Peak mode only saves credits; it does not change your licence tier"
+    ],
+    "liability_zh": "不能用于变现的 YouTube 投稿、付费广告投放或客户交付，仅授权个人非商业使用",
+    "liability_en": "No monetised YouTube uploads, paid ad placements or client deliverables — personal non-commercial use only",
+    "checked": "2026-08-06",
+    "condition": {
+      "type": "tier",
+      "gate_zh": "付费用户才可在其服务条款与商业授权指引范围内商用",
+      "gate_en": "Only paying users may use output commercially, within its terms and commercial-licence guide"
+    }
+  },
+  "krea": {
+    "verdict": "no",
+    "scope_zh": "免费档",
+    "scope_en": "Free tier",
+    "obligations_zh": [
+      "生成图、编辑图、放大增强图**全部**不含商用授权"
+    ],
+    "obligations_en": [
+      "Images generated, edited and enhanced on the free plan are **all** excluded from commercial licensing"
+    ],
+    "liability_zh": "订阅任一付费档即获商用授权；开源自部署与企业版另有各自口径，共四条线",
+    "liability_en": "Any paid plan licenses commercial use; self-hosted open source and enterprise have their own terms — four separate routes",
+    "checked": "2026-08-06",
+    "condition": {
+      "type": "tier",
+      "gate_zh": "订阅任一付费档即获商用授权，不必挑最贵的那档",
+      "gate_en": "Subscribing to any paid tier grants commercial rights — it need not be the top one"
+    }
+  },
+  "playground-ai": {
+    "verdict": "no",
+    "scope_zh": "免费档",
+    "scope_en": "Free tier",
+    "obligations_zh": [],
+    "obligations_en": [],
+    "liability_zh": "官方限制说明明确标注免费档「仅限个人使用」；完整商用许可随付费档（Pro 起）生效",
+    "liability_en": "The official limits article marks the free plan personal-use-only; the full commercial licence attaches from Pro upward",
+    "checked": "2026-08-06",
+    "condition": {
+      "type": "tier",
+      "gate_zh": "完整商用许可自付费档（Pro 起）生效",
+      "gate_en": "The full commercial licence begins at the paid Pro tier"
+    }
+  },
+  "removebg": {
+    "verdict": "no",
+    "scope_zh": "免费档",
+    "scope_en": "Free tier",
+    "obligations_zh": [
+      "官方举例：当护照照片是个人用途，放到自己网站上卖货就是商业用途"
+    ],
+    "obligations_en": [
+      "Official example: a passport photo is personal use; putting processed images on your site to sell products is commercial"
+    ],
+    "liability_zh": "免费档「100% 免费」限定于低分辨率 + 个人用途；买积分买到的不只是分辨率，还有商用许可",
+    "liability_en": "The \"100% free\" tier is scoped to low resolution and personal use; buying credits buys the licence as well as the resolution",
+    "checked": "2026-08-06",
+    "condition": {
+      "type": "purchase",
+      "gate_zh": "买积分买到的不只是分辨率，商用许可是一起给的",
+      "gate_en": "Buying credits buys more than resolution — the commercial licence comes with them"
+    }
+  },
+  "haiper": {
+    "verdict": "no",
+    "scope_zh": "免费档",
+    "scope_en": "Free tier",
+    "obligations_zh": [],
+    "obligations_en": [],
+    "liability_zh": "EULA 只授予「非商业用途」许可；**反向条款**：你接收产出即等于免费无限制授权 Haiper 把你的产出用于其对外营销",
+    "liability_en": "The EULA grants a non-business licence only; **reverse clause**: receiving output grants Haiper a free, unrestricted licence to use your output in its own marketing",
+    "checked": "2026-08-06"
+  },
+  "opusclip": {
+    "verdict": "no",
+    "scope_zh": "免费档",
+    "scope_en": "Free tier",
+    "obligations_zh": [
+      "**不得代表第三方或为第三方利益使用**——接单剪辑者尤其注意"
+    ],
+    "obligations_en": [
+      "**Not on behalf of or for the benefit of any third party** — critical for anyone clipping for clients"
+    ],
+    "liability_zh": "你对上传素材的所有权不受影响；OpusClip 取得的只是运行服务所需的许可",
+    "liability_en": "Your ownership of uploads is unaffected; OpusClip takes only the licence needed to operate the service",
+    "checked": "2026-08-06"
+  },
+  "pika": {
+    "verdict": "no",
+    "scope_zh": "免费档",
+    "scope_en": "Free tier",
+    "obligations_zh": [
+      "除非另行约定，输入/产出/交互**可被用于训练其模型**"
+    ],
+    "obligations_en": [
+      "Unless otherwise agreed, inputs, outputs and interactions **may be used to train its models**"
+    ],
+    "liability_zh": "**所有权 ≠ 使用权**：条款把产出全部权利转让给你，同时禁止在无商用订阅期间变现或用于任何商业目的",
+    "liability_en": "**Ownership is not permission**: the terms assign you all rights in the output, then forbid monetising or any commercial use without a subscription permitting it",
+    "checked": "2026-08-06",
+    "condition": {
+      "type": "tier",
+      "gate_zh": "须在商用订阅有效期间才可变现",
+      "gate_en": "Monetisation requires an active commercial subscription"
+    }
+  },
+  "recraft": {
+    "verdict": "no",
+    "scope_zh": "免费档",
+    "scope_en": "Free tier",
+    "obligations_zh": [
+      "免费档产出**公开显示在社区画廊**",
+      "禁止用产出训练 AI 模型或类似系统"
+    ],
+    "obligations_en": [
+      "Free-tier output is **publicly visible in the community gallery**",
+      "Output may not be used to train AI models or similar systems"
+    ],
+    "liability_zh": "**产出归 Recraft 所有**，你只有有限非排他的个人用途许可，不得出售/授权/转让；因此通常无法上架图库平台",
+    "liability_en": "**Recraft owns free-tier assets**; you hold only a limited non-exclusive personal licence and may not sell, license or transfer them — so they generally cannot be listed on stock platforms",
+    "checked": "2026-08-06"
+  },
+  "suno": {
+    "verdict": "no",
+    "scope_zh": "免费档",
+    "scope_en": "Free tier",
+    "obligations_zh": [],
+    "obligations_en": [],
+    "liability_zh": "免费档作品仅限个人非商业用途、不能变现；付费商用权**只覆盖订阅期内生成的歌**",
+    "liability_en": "Free-plan songs are personal and non-commercial and may not be monetised; paid commercial rights **cover only songs generated while subscribed**",
+    "checked": "2026-08-06",
+    "condition": {
+      "type": "tier",
+      "gate_zh": "付费商用权**只覆盖订阅期内生成的歌**——退订后已生成的不受影响，但不再新增",
+      "gate_en": "Paid commercial rights cover **only songs generated while subscribed** — earlier ones keep their status, no new ones accrue"
+    }
+  },
+  "elevenlabs": {
+    "verdict": "no",
+    "scope_zh": "免费档",
+    "scope_en": "Free tier",
+    "obligations_zh": [
+      "公开发布必须注明 ElevenLabs 出处"
+    ],
+    "obligations_en": [
+      "Public use requires attributing ElevenLabs"
+    ],
+    "liability_zh": "免费档没有商用权，不能用于变现内容",
+    "liability_en": "The free tier carries no commercial rights and may not be used in monetised content",
+    "checked": "2026-08-06",
+    "condition": {
+      "type": "tier",
+      "gate_zh": "变现内容须付费档；免费档另有注明出处的义务",
+      "gate_en": "Monetised content requires a paid tier; the free tier also carries an attribution duty"
+    }
+  },
+  "fish-audio": {
+    "verdict": "no",
+    "scope_zh": "免费档",
+    "scope_en": "Free tier",
+    "obligations_zh": [
+      "模型本身开源，可走本地部署以彻底可控"
+    ],
+    "obligations_en": [
+      "The model is open source; self-hosting gives full control"
+    ],
+    "liability_zh": "免费档仅限个人用途；YouTube/播客等变现需付费档取得商用权",
+    "liability_en": "The free tier is personal-use only; monetised YouTube or podcast use needs a paid plan's commercial rights",
+    "checked": "2026-08-06",
+    "condition": {
+      "type": "tier",
+      "gate_zh": "YouTube／播客一类变现用途须付费档取得商用权",
+      "gate_en": "Monetised uses such as YouTube or podcasts need a paid tier for commercial rights"
+    }
+  },
+  "luma": {
+    "verdict": "no",
+    "scope_zh": "免费档",
+    "scope_en": "Free tier",
+    "obligations_zh": [
+      "免费档无法去水印"
+    ],
+    "obligations_en": [
+      "The watermark cannot be removed on the free tier"
+    ],
+    "liability_zh": "免费档产出仅限个人非商业用途；付费档另含更高分辨率与商用权",
+    "liability_en": "Free-tier output is personal and non-commercial; paid plans add higher resolution and commercial rights",
+    "checked": "2026-08-06",
+    "condition": {
+      "type": "tier",
+      "gate_zh": "付费档同时给更高分辨率与商用权，两者绑在一起",
+      "gate_en": "Paid tiers bundle higher resolution and commercial rights together"
+    }
+  },
+  "pixverse": {
+    "verdict": "no",
+    "scope_zh": "免费档",
+    "scope_en": "Free tier",
+    "obligations_zh": [],
+    "obligations_en": [],
+    "liability_zh": "免费档产出仅限个人非商业用途",
+    "liability_en": "Free-tier output is personal and non-commercial only",
+    "checked": "2026-08-06"
+  },
+  "leonardo": {
+    "verdict": "no",
+    "scope_zh": "免费档",
+    "scope_en": "Free tier",
+    "obligations_zh": [],
+    "obligations_en": [],
+    "liability_zh": "商用相关权益需订阅付费档",
+    "liability_en": "Commercial entitlements require a paid subscription",
+    "checked": "2026-08-06",
+    "condition": {
+      "type": "tier",
+      "gate_zh": "商用相关权益随付费订阅发放",
+      "gate_en": "Commercial entitlements come with a paid subscription"
+    }
+  },
+  "framer": {
+    "verdict": "no",
+    "scope_zh": "免费档",
+    "scope_en": "Free plan",
+    "obligations_zh": [
+      "社区市场素材另有规则：许可有限、非排他、不可转让、**可撤销**；免费创作者素材可商用，但不得主张所有权或声称原创"
+    ],
+    "obligations_en": [
+      "Community marketplace assets follow separate rules: a limited, non-exclusive, non-transferable and **revocable** licence; free creator content may be used commercially but you may not claim ownership or originality"
+    ],
+    "liability_zh": "官方定价页把免费档定位为「适合非商业用途」；用于生意需升级付费档",
+    "liability_en": "The pricing page positions the Free plan as suited to non-commercial use; business sites need a paid plan",
+    "checked": "2026-08-06",
+    "condition": {
+      "type": "tier",
+      "gate_zh": "官方定价页把免费档定位为非商业用途，用于生意需升付费档",
+      "gate_en": "The pricing page positions the free tier as non-commercial; business use needs a paid plan"
+    }
+  },
+  "gaoding": {
+    "verdict": "no",
+    "scope_zh": "免费档 / 会员到期后",
+    "scope_en": "Free tier / after membership lapses",
+    "obligations_zh": [
+      "**素材是租不是买**：会员期内下载的素材，会员到期后不能继续使用"
+    ],
+    "obligations_en": [
+      "**Assets are rented, not bought**: material downloaded during a membership may not be used once it lapses"
+    ],
+    "liability_zh": "商用授权只在会员有效期内成立；成品若含会员素材，退会员后再改动会有授权问题",
+    "liability_en": "Commercial rights hold only while the membership is active; editing finished work containing member assets after lapsing raises licence issues",
+    "checked": "2026-08-06",
+    "condition": {
+      "type": "tier",
+      "gate_zh": "商用授权只在会员有效期内成立，会员到期即失效——是租不是买",
+      "gate_en": "The commercial licence holds only while the membership runs — it is rented, not bought"
+    }
+  },
+  "hailuo": {
+    "verdict": "unstated",
+    "scope_zh": "免费档视频",
+    "scope_en": "Free-tier video",
+    "obligations_zh": [
+      "公开发布后，其他用户能看到你的**提示词**并直接拿去生成"
+    ],
+    "obligations_en": [
+      "Once published publicly, others can see **your prompt** and generate from it"
+    ],
+    "liability_zh": "协议未就免费档视频商用作出表述；音频侧只有标注商用授权的订阅档才可商用",
+    "liability_en": "The agreement makes no statement on commercial use of free-tier video; on the audio side only subscriptions marked as carrying a commercial licence qualify",
+    "checked": "2026-08-06"
+  },
+  "qingying": {
+    "verdict": "unstated",
+    "scope_zh": "清影免费档",
+    "scope_en": "Ying free tier",
+    "obligations_zh": [
+      "**别把开放平台的口径搬过来**：CogVideoX 文档所称「支持商业应用场景」属开发者 API 线，与清影是两条线"
+    ],
+    "obligations_en": [
+      "**Do not borrow the open-platform wording**: the CogVideoX docs' \"supports commercial scenarios\" belongs to the developer API line, separate from Ying"
+    ],
+    "liability_zh": "官方未在可核实引文中就清影免费档商用作出表述",
+    "liability_en": "No verifiable official text addresses commercial use of Ying's free tier",
+    "checked": "2026-08-06"
+  },
+  "tongyi-wanxiang": {
+    "verdict": "unstated",
+    "scope_zh": "免费额度",
+    "scope_en": "Free allowance",
+    "obligations_zh": [
+      "中国市场特有的一层：把生成能力做进应用对外提供，需满足**算法备案**等监管要求"
+    ],
+    "obligations_en": [
+      "A China-specific layer: shipping generation features to the public requires **algorithm filing** and related regulatory compliance"
+    ],
+    "liability_zh": "官方未就免费额度产出的商用权作出表述；网页版与百炼 API 是两条线，条款不能互搬",
+    "liability_en": "No official statement on commercial rights for free-allowance output; the web app and the Model Studio API are separate tracks",
+    "checked": "2026-08-06"
+  },
+  "jimeng": {
+    "verdict": "unstated",
+    "scope_zh": "免费档",
+    "scope_en": "Free tier",
+    "obligations_zh": [
+      "输入内容须为你原创或已获合法授权",
+      "若产出含平台自有知识产权（训练数据、模型素材），相关权利仍归平台"
+    ],
+    "obligations_en": [
+      "Your input must be original or properly licensed",
+      "Where output contains the platform's own IP (training data, model assets), those rights stay with the platform"
+    ],
+    "liability_zh": "**产权给你、结论没给**：协议写明产权归你，却既未禁止商用也未明示你享有完整商用权",
+    "liability_en": "**Rights granted, question unanswered**: the agreement vests ownership in you yet neither forbids commercial use nor confirms you hold full commercial rights",
+    "checked": "2026-08-06"
+  },
+  "tusiart": {
+    "verdict": "unstated",
+    "scope_zh": "免费档",
+    "scope_en": "Free tier",
+    "obligations_zh": [
+      "**须逐一确认你实际用到的底模与各 LoRA 的许可**——同型平台均把商用权交给模型授权决定（此为判断方向，非吐司官方口径）"
+    ],
+    "obligations_en": [
+      "**Check the licence of each base model and LoRA you actually used** — comparable platforms leave commercial rights to the model licence (a pointer, not Tusiart's official position)"
+    ],
+    "liability_zh": "官方商用条款与用户协议未在可核实引文中出现",
+    "liability_en": "No commercial terms or user agreement appear in verifiable official quotes",
+    "checked": "2026-08-06"
+  },
+  "jsdesign": {
+    "verdict": "unstated",
+    "scope_zh": "你自己创作的设计稿",
+    "scope_en": "Designs you create yourself",
+    "obligations_zh": [
+      "**内置素材另有结论**：官方称站内设计资源可免费使用并支持商用"
+    ],
+    "obligations_en": [
+      "**The built-in assets are answered separately**: official pages state in-app design resources are free to use, including commercially"
+    ],
+    "liability_zh": "你自己作品的权利归属与商用范围未在可核实的服务条款引文中出现",
+    "liability_en": "Ownership and commercial scope of your own work do not appear in verifiable quotes from the terms of service",
+    "checked": "2026-08-06"
+  },
+  "liblib": {
+    "verdict": "depends",
+    "scope_zh": "取决于所用模型组合",
+    "scope_en": "Depends on the model stack you used",
+    "obligations_zh": [
+      "**短板规则**：底模与多个 LoRA 组合时，任一组件禁止商用，整张图即不可商用",
+      "模型本身若侵权，用其产出商用可能构成侵权使用",
+      "故意输入侵权关键词所生成的图不可商用"
+    ],
+    "obligations_en": [
+      "**Weakest-link rule**: with a base model plus LoRAs, if any one component forbids commercial use the whole image is non-commercial",
+      "If the model itself infringes, commercial use of its output may constitute infringement",
+      "Images from prompts deliberately targeting third-party IP may not be used commercially"
+    ],
+    "liability_zh": "产权归用户，但商用与否由所用模型的授权范围决定，不由平台决定",
+    "liability_en": "Ownership vests in the user, but commercial permission is set by the model's licence, not by the platform",
+    "checked": "2026-08-06",
+    "condition": {
+      "type": "model",
+      "gate_zh": "由底模与所有 LoRA 的许可共同决定，取最严的一个",
+      "gate_en": "Decided jointly by the base model and every LoRA licence — the strictest component wins"
+    }
+  },
+  "civitai": {
+    "verdict": "depends",
+    "scope_zh": "取决于所用模型，且逐个不同",
+    "scope_en": "Depends on the model — and differs for each one",
+    "obligations_zh": [
+      "上传者逐项开关：可否售卖生成图 / 可否用站内生成器 / 可否让其他服务提供该模型 / 可否售卖模型",
+      "**模型页的许可标记属 honor system，是请求而非正式授权**，Civitai 不代任何人追责"
+    ],
+    "obligations_en": [
+      "Uploaders toggle each permission: selling generated images, using the on-site generator, letting other services offer the model, selling the model",
+      "**The badges are an honour system — requests, not a formal licence**; Civitai will not pursue claims on anyone's behalf"
+    ],
+    "liability_zh": "可执行的授权取决于底层模型是否采用 CreativeML Open RAIL-M 等正式协议",
+    "liability_en": "Enforceable rights depend on whether the base model carries a formal licence such as CreativeML Open RAIL-M",
+    "checked": "2026-08-06",
+    "condition": {
+      "type": "model",
+      "gate_zh": "由上传者在模型页设定的四个开关决定，且属 honor system 而非正式授权",
+      "gate_en": "Decided by the uploader's four toggles on the model page — an honour system, not a formal licence"
+    }
+  },
+  "upscayl": {
+    "verdict": "depends",
+    "scope_zh": "取决于你选用的那个模型",
+    "scope_en": "Depends on the model you selected",
+    "obligations_zh": [
+      "**软件许可 ≠ 模型许可**：软件为 AGPL-3.0 允许商用，但官方自认部分内置模型不适合商用"
+    ],
+    "obligations_en": [
+      "**Software licence is not model licence**: the app is AGPL-3.0 and permits commercial use, yet the maintainers acknowledge some bundled models are unfit for it"
+    ],
+    "liability_zh": "要商用须落到你实际选用模型的许可上；Upscayl Cloud 提供明确可商用的模型",
+    "liability_en": "Commercial use turns on the licence of the model you actually chose; Upscayl Cloud offers models cleared for it",
+    "checked": "2026-08-06",
+    "condition": {
+      "type": "model",
+      "gate_zh": "由你实际选用的那个模型的许可决定；Upscayl Cloud 提供明确可商用的模型",
+      "gate_en": "Decided by the licence of the model you actually picked; Upscayl Cloud offers models cleared for commercial use"
+    }
+  },
+  "wujie": {
+    "verdict": "depends",
+    "scope_zh": "取决于你购买的授权类型",
+    "scope_en": "Depends on the licence type you buy",
+    "obligations_zh": [
+      "**分档授权**：标准授权 / 扩展授权 / 商品类授权，按需取得；另有单独的《所有权购买协议》",
+      "上传素材须无版权瑕疵",
+      "不得用于诽谤、色情或其他非法用途"
+    ],
+    "obligations_en": [
+      "**Tiered licences**: standard, extended and merchandise, acquired as needed, plus a separate ownership-purchase agreement",
+      "Uploaded source material must be free of copyright defects",
+      "No defamatory, pornographic or otherwise unlawful use"
+    ],
+    "liability_zh": "作者版权属创作人，但你授予无界全球、不可撤销、非独家许可，官方有权在营销中使用你的作品；侵权责任全部由用户承担",
+    "liability_en": "Copyright vests in the creator, yet you grant Wujie an irrevocable, non-exclusive worldwide licence to use your work in its marketing; all infringement liability sits with the user",
+    "checked": "2026-08-06",
+    "condition": {
+      "type": "purchase",
+      "gate_zh": "按用途分别购买标准／扩展／商品类授权，或另签《所有权购买协议》",
+      "gate_en": "Buy the standard, extended or merchandise licence to match your use, or sign the separate ownership agreement"
+    }
+  },
+  "motiff": {
+    "verdict": "discontinued",
+    "scope_zh": "服务已停止",
+    "scope_en": "Service discontinued",
+    "obligations_zh": [
+      "官方中英两处停运日期不一致：英文帮助页 2026-06-23、中文关停说明 2026-07-31",
+      "唯一还有意义的动作是导出为 Figma / Sketch / PDF"
+    ],
+    "obligations_en": [
+      "The two official pages disagree on the date: 2026-06-23 (English help page) vs 2026-07-31 (Chinese notice)",
+      "The only action still meaningful is exporting to Figma / Sketch / PDF"
+    ],
+    "liability_zh": "服务停运后不存在「免费档能否商用」的问题；已导出文件按原条款下既有权利处理",
+    "liability_en": "With the service gone the free-tier question is moot; exported files are governed by the rights you already held",
+    "checked": "2026-08-06"
+  }
+}

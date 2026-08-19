@@ -1,0 +1,98 @@
+name: Grow the site from whatever data now exists
+# ── 迁入公开 monorepo f-tiger/agi-site(2026-08-19,owner 决定)──
+# 原仓 .github 为历史档案。公开仓 Actions 分钟免费。
+# 本 workflow 的 run 步骤默认 working-directory: sites/thedollscout/。
+
+
+# The site expands on its own, within its gates, without anyone running a
+# command. Every regeneration step already existed; nobody ran them together,
+# and two of them — build-compare and price-history, the scripts closest to
+# the actual differentiator — were in no workflow at all.
+#
+# Runs after the weekly scrape has had time to land, and on demand. It commits
+# only when every gate passes, and its normal outcome is "nothing new
+# qualifies" plus the reason. That is the point: automatic expansion without
+# gates is how a site becomes the programmatic spam this one argues against.
+#
+# What it cannot do: grow toward what people actually search for. That needs
+# Search Console, which needs the owner's Google account. It grows toward what
+# we can prove instead, and the report says so on every run.
+
+on:
+  schedule:
+    # Daily. The SCRAPE stays weekly — hitting a vendor's catalogue every day
+    # is not politeness we can justify — but regeneration and the gates run
+    # every 24h, so drifted data or a claim about to break is caught in a day
+    # instead of a week. On Tuesdays this lands three hours after the scrape.
+    - cron: "41 7 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  grow:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: sites/thedollscout
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # build-sitemap reads each file's last commit for its lastmod; a
+          # shallow clone collapses them all onto one date.
+          fetch-depth: 0
+
+      - name: Regenerate, gate, report, and notify
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: node scripts/grow.mjs 2>&1 | tee grow.log
+
+      - name: Report
+        if: always()
+        run: |
+          {
+            echo '## What the site grew into'
+            echo '```'
+            cat grow.log
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      # Only reached when every generator AND every gate passed — the step
+      # above exits non-zero otherwise, so a failed gate can never publish.
+      - name: Commit anything newly generated
+        run: |
+          rm -f grow.log
+          # Everything the generators can touch. Spelled out rather than
+          # `git add -A` so a stray file from a future script cannot ride
+          # along unnoticed into a deploy.
+          # Category directories are created by the qualifier, so they are
+          # staged by name from the registry rather than listed here — a new
+          # category that appears on its own must be committable on its own.
+          # Only directories that exist: `git add` fails on a pathspec that
+          # matches nothing and then stages NOTHING AT ALL, so listing a
+          # category that has not qualified yet would have broken the commit
+          # for everything else — including the first category ever to qualify.
+          # Category directories are named from the registry rather than listed
+          # here, so a category that qualifies on its own is committable on its
+          # own. commit-generated.sh drops the ones that do not exist yet.
+          #
+          # content/crawl-tuning.json is written by detect-trends ONLY when the
+          # pacing actually changes, so on most runs it is absent — and naming
+          # an absent path in a bare `git add` aborted the entire call. That is
+          # why grow-bot had never committed anything since this workflow was
+          # created: every generated page, dataset and trend file was staged
+          # alongside it and dropped with it.
+          CATDIRS=$(node -e "import('./scripts/categories.mjs').then(m=>console.log(m.DIMENSIONS.map(d=>d.dir).join(' ')))" 2>/dev/null || echo weight)
+          bash scripts/commit-generated.sh grow-bot \
+            "chore: regrow site from current data" \
+            $CATDIRS data sitemap.xml llms.txt llms-full.txt feed.xml \
+            search-index.json .well-known functions mcp.html server.json \
+            scripts/urls.txt payment-protection.html cost-calculator.html \
+            importing guides content/grow-status.json \
+            _headers index.html picks.html quiz.html checklist.html faq.html \
+            for-creators.html after-you-order.html scam-check.html trust.html \
+            vendors legal \
+            content/model-matches.json content/trends.json \
+            content/crawl-tuning.json

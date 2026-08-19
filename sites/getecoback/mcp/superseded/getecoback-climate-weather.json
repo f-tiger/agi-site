@@ -1,0 +1,14 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-07-09/server.schema.json",
+  "name": "io.github.f-tiger/getecoback-climate-weather",
+  "description": "Superseded by io.github.f-tiger/hvac-btu-heat-klimaanlage — same server, same URL.",
+  "status": "active",
+  "websiteUrl": "https://getecoback.com/mcp.html",
+  "version": "1.0.2",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://getecoback.com/mcp/"
+    }
+  ]
+}

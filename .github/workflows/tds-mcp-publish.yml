@@ -1,0 +1,77 @@
+name: List the MCP server in the official registry
+# ── 迁入公开 monorepo f-tiger/agi-site(2026-08-19,owner 决定)──
+# 原仓 .github 为历史档案。公开仓 Actions 分钟免费。
+# 本 workflow 的 run 步骤默认 working-directory: sites/thedollscout/。
+
+
+# Registry listing IS automatable — an earlier note in this repo was wrong
+# about that. The registry proves domain ownership by fetching a public key
+# from https://thedollscout.com/.well-known/mcp-registry-auth and verifying a
+# signature made with the matching private key. We control the domain and the
+# deploy, so both halves are ours.
+#
+# The one thing that is NOT automated is the decision. Listing publishes this
+# server publicly, under the owner's domain, in an adult category that some
+# registries decline. So the workflow does nothing at all until
+# MCP_REGISTRY_PRIVATE_KEY exists — and adding that secret IS the go-ahead.
+# There is no other switch, and no default that publishes by accident.
+#
+# Runs after a deploy so the proof is already live when the registry fetches
+# it; publishing before the proof is served just fails verification.
+
+on:
+  workflow_run:
+    workflows: ["Deploy thedollscout.com"]
+    types: [completed]
+  workflow_dispatch:
+
+jobs:
+  publish:
+    # Never chase a failed deploy: the proof it needs may not be live.
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: sites/thedollscout
+    steps:
+      - uses: actions/checkout@v4
+        with:
+
+      - name: Is this configured at all?
+        id: gate
+        env:
+          KEY: ${{ secrets.MCP_REGISTRY_PRIVATE_KEY }}
+        run: |
+          if [ -z "$KEY" ]; then
+            echo "configured=no" >> "$GITHUB_OUTPUT"
+            echo "MCP_REGISTRY_PRIVATE_KEY is not set, so nothing is published."
+            echo "Adding that secret is the go-ahead; see scripts/build-mcp-registry-auth.mjs for the two steps."
+          else
+            echo "configured=yes" >> "$GITHUB_OUTPUT"
+          fi
+
+      # The registry fetches this from the LIVE site, so a failure here means
+      # the deploy has not carried it yet — worth failing loudly rather than
+      # letting the publish fail with a confusing signature error.
+      - name: The domain proof must already be live
+        if: steps.gate.outputs.configured == 'yes'
+        run: |
+          URL="https://thedollscout.com/.well-known/mcp-registry-auth"
+          BODY=$(curl -fsS "$URL") || { echo "::error::$URL is not reachable — deploy it before publishing."; exit 1; }
+          echo "$BODY" | grep -q '^v=MCPv1; k=ed25519; p=[0-9a-f]\{64\}$' \
+            || { echo "::error::$URL exists but is not a valid proof: $BODY"; exit 1; }
+          echo "Proof is live and well-formed."
+
+      - name: Publish to the registry
+        if: steps.gate.outputs.configured == 'yes'
+        env:
+          MCP_REGISTRY_PRIVATE_KEY: ${{ secrets.MCP_REGISTRY_PRIVATE_KEY }}
+        run: |
+          curl -fsSL "https://github.com/modelcontextprotocol/registry/releases/latest/download/mcp-publisher_linux_amd64.tar.gz" \
+            | tar -xz mcp-publisher
+          chmod +x mcp-publisher
+          # HTTP domain verification: the key that signs this is the key the
+          # live proof advertises, because the proof is derived from it.
+          ./mcp-publisher login http --domain thedollscout.com --private-key "$MCP_REGISTRY_PRIVATE_KEY"
+          ./mcp-publisher publish
+          echo "Listed. It is public now — removing a listing is a separate, slower process than adding one."

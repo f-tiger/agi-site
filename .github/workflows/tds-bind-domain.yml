@@ -1,0 +1,58 @@
+name: Bind custom domain to Pages
+# ── 迁入公开 monorepo f-tiger/agi-site(2026-08-19,owner 决定)──
+# 原仓 .github 为历史档案。公开仓 Actions 分钟免费。
+# 本 workflow 的 run 步骤默认 working-directory: sites/thedollscout/。
+
+
+on: workflow_dispatch
+
+jobs:
+  bind:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: sites/thedollscout
+    env:
+      CF_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CF_ZONE_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN_ZONE }}
+      DOMAIN: thedollscout.com
+      PROJECT: dollscout
+    steps:
+      - name: Attach domain to Pages project and create DNS records
+        run: |
+          api() { curl -s -X "$1" "https://api.cloudflare.com/client/v4$2" \
+                    -H "Authorization: Bearer $CF_API_TOKEN" \
+                    -H "Content-Type: application/json" ${3:+--data "$3"}; }
+          apiz() { curl -s -X "$1" "https://api.cloudflare.com/client/v4$2" \
+                    -H "Authorization: Bearer $CF_ZONE_TOKEN" \
+                    -H "Content-Type: application/json" ${3:+--data "$3"}; }
+
+          ACC=$(api GET /accounts | jq -r '.result[0].id // empty')
+          if [ -z "$ACC" ]; then echo "::error::token cannot list accounts (missing Account read permission)"; api GET /accounts | jq '.errors'; exit 1; fi
+          echo "account: $ACC"
+
+          for d in "$DOMAIN" "www.$DOMAIN"; do
+            echo "--- attach $d to Pages project (already-attached error is fine)"
+            api POST "/accounts/$ACC/pages/projects/$PROJECT/domains" "{\"name\":\"$d\"}" | jq -c '{success, errors: [.errors[]?.message]}'
+          done
+
+          ZONE=$(apiz GET "/zones?name=$DOMAIN" | jq -r '.result[0].id // empty')
+          if [ -z "$ZONE" ]; then echo "::error::zone $DOMAIN not visible to zone token"; apiz GET "/zones?name=$DOMAIN" | jq '.errors'; exit 1; fi
+          echo "zone: $ZONE"
+
+          FAIL=0
+          for rec in "$DOMAIN" "www.$DOMAIN"; do
+            echo "--- CNAME $rec -> $PROJECT.pages.dev"
+            EXISTING=$(apiz GET "/zones/$ZONE/dns_records?name=$rec" | jq -r '.result[0].id // empty')
+            if [ -n "$EXISTING" ]; then
+              RESP=$(apiz PUT "/zones/$ZONE/dns_records/$EXISTING" "{\"type\":\"CNAME\",\"name\":\"$rec\",\"content\":\"$PROJECT.pages.dev\",\"proxied\":true}")
+            else
+              RESP=$(apiz POST "/zones/$ZONE/dns_records" "{\"type\":\"CNAME\",\"name\":\"$rec\",\"content\":\"$PROJECT.pages.dev\",\"proxied\":true}")
+            fi
+            echo "$RESP" | jq -c '{success, errors: [.errors[]?.message]}'
+            [ "$(echo "$RESP" | jq -r '.success')" = "true" ] || FAIL=1
+          done
+
+          echo "--- final domain status"
+          api GET "/accounts/$ACC/pages/projects/$PROJECT/domains" | jq -c '.result[] | {name, status}'
+          exit $FAIL

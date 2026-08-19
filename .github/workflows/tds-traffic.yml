@@ -1,0 +1,83 @@
+name: Record edge traffic
+# ── 迁入公开 monorepo f-tiger/agi-site(2026-08-19,owner 决定)──
+# 原仓 .github 为历史档案。公开仓 Actions 分钟免费。
+# 本 workflow 的 run 步骤默认 working-directory: sites/thedollscout/。
+
+
+# Cloudflare counts requests at the edge, so this number survives ad blockers,
+# privacy browsers and network-level blocking of Google — all of which produce
+# an empty GA4 property that looks exactly like "nobody came". It answers one
+# question GA4 currently cannot answer for this owner: did anyone arrive.
+#
+# The result is committed to content/traffic.json so the two-day growth loop can
+# read real traffic without any credentials of its own, and printed to the job
+# summary so it can be read from the GitHub UI.
+
+on:
+  workflow_dispatch:
+#  schedule:
+#    - cron: '0 6 * * *'  # daily, after Cloudflare has closed out yesterday
+
+permissions:
+  contents: write
+
+jobs:
+  record:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: sites/thedollscout
+    steps:
+      - uses: actions/checkout@v4
+        with:
+
+      - name: Pull traffic from the Cloudflare Analytics API
+        # Every token secret is passed, and the script tries each in turn. It
+        # used to prefer one: the owner rotated the other, and the re-run failed
+        # with the byte-identical error from the stale token — a false negative
+        # that read as "the permission still isn't set".
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_API_TOKEN_ZONE: ${{ secrets.CLOUDFLARE_API_TOKEN_ZONE }}
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+        run: |
+          node scripts/cf-analytics.mjs | tee traffic-report.md
+          cat traffic-report.md >> "$GITHUB_STEP_SUMMARY"
+          rm -f traffic-report.md
+
+      # GA4 and Search Console ride the same daily job. Both scripts exit 0
+      # when their credentials are absent, printing what is missing — so this
+      # is safe to ship before the owner finishes the console setup, and the
+      # job summary itself becomes the reminder of what remains.
+      - name: Pull GA4 via the Data API
+        env:
+          GA4_PROPERTY_ID: ${{ secrets.GA4_PROPERTY_ID }}
+          GA4_SERVICE_ACCOUNT_JSON: ${{ secrets.GA4_SERVICE_ACCOUNT_JSON }}
+        run: |
+          node scripts/ga4-report.mjs | tee ga4-report.md
+          cat ga4-report.md >> "$GITHUB_STEP_SUMMARY"
+          rm -f ga4-report.md
+
+      - name: Pull Search Console via the API
+        env:
+          GSC_SITE: sc-domain:thedollscout.com
+          GA4_SERVICE_ACCOUNT_JSON: ${{ secrets.GA4_SERVICE_ACCOUNT_JSON }}
+        run: |
+          node scripts/gsc-report.mjs | tee gsc-report.md
+          cat gsc-report.md >> "$GITHUB_STEP_SUMMARY"
+          rm -f gsc-report.md
+
+      # content/ga4.json and content/gsc.json only exist once the Google
+      # credentials are configured, which they are not. Listing them in a bare
+      # `git add` aborted the whole call, so content/traffic.json was staged
+      # too — this job ran green every night from 2026-08-01 and committed
+      # nothing, discarding eleven days of edge traffic. commit-generated.sh
+      # filters to what exists and warns about what does not.
+      - name: Commit the day's numbers
+        run: |
+          bash scripts/commit-generated.sh traffic-bot \
+            "chore: record daily metrics (edge / GA4 / GSC)" \
+            content/traffic.json content/ga4.json content/gsc.json
+
+      # content/ is excluded from the published site, so there is nothing to
+      # deploy here — the file exists for the growth loop, not for visitors.

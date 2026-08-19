@@ -1,0 +1,180 @@
+{
+  "generated": "2026-08-17",
+  "note": "由 scripts/trend-radar.mjs 每日聚合五路站内信号生成。只排队不写事实；核实动作按硬规则执行。分数是领先指标的相对排序，不是预测。",
+  "counts": {
+    "candidate": 15,
+    "category_hot": 5,
+    "stale": 0,
+    "demand": 0
+  },
+  "strategy": {
+    "g1_structured": 99,
+    "g1_total": 128,
+    "structured_cats": [
+      "api",
+      "video",
+      "coding",
+      "chat",
+      "image",
+      "audio",
+      "design",
+      "office",
+      "writing"
+    ],
+    "next_structuring": "search"
+  },
+  "items": [
+    {
+      "id": "candidate:cactuscompute.com",
+      "type": "verify_candidate",
+      "title": "核实候选：Needle2: 14MB agentic LLM for phones, wearables, smart home and robots",
+      "why": "HN 191 分 / 82 评论（2026-08-11 发现）——外部热度已验证，站内尚未收录",
+      "action": "按收录标准核实 https://cactuscompute.com/needle；合格则中英同步入库，limits 走 limits-edit.mjs",
+      "refs": [
+        "https://cactuscompute.com/needle",
+        "https://news.ycombinator.com/item?id=49246804"
+      ],
+      "score": 60
+    },
+    {
+      "id": "candidate:whodunnitai.com",
+      "type": "verify_candidate",
+      "title": "核实候选：Voice driven murder mystery, Interview AI suspects with your voice",
+      "why": "HN 190 分 / 81 评论（2026-08-11 发现）——外部热度已验证，站内尚未收录",
+      "action": "按收录标准核实 https://www.whodunnitai.com/；合格则中英同步入库，limits 走 limits-edit.mjs",
+      "refs": [
+        "https://www.whodunnitai.com/",
+        "https://news.ycombinator.com/item?id=49238851"
+      ],
+      "score": 60
+    },
+    {
+      "id": "candidate:github.com",
+      "type": "verify_candidate",
+      "title": "核实候选：Fine-tune an 8B model on a 4 GB laptop GPU",
+      "why": "HN 137 分 / 28 评论（2026-08-09 发现）——外部热度已验证，站内尚未收录",
+      "action": "按收录标准核实 https://github.com/MakazhanAlpamys/Soup；合格则中英同步入库，limits 走 limits-edit.mjs",
+      "refs": [
+        "https://github.com/MakazhanAlpamys/Soup",
+        "https://news.ycombinator.com/item?id=49166984"
+      ],
+      "score": 52
+    },
+    {
+      "id": "candidate:github.com",
+      "type": "verify_candidate",
+      "title": "核实候选：Nightcrawler – A local AI pentesting agent running on a smartphone",
+      "why": "HN 119 分 / 35 评论（2026-08-09 发现）——外部热度已验证，站内尚未收录",
+      "action": "按收录标准核实 https://github.com/garagehq/nightcrawler/；合格则中英同步入库，limits 走 limits-edit.mjs",
+      "refs": [
+        "https://github.com/garagehq/nightcrawler/",
+        "https://news.ycombinator.com/item?id=49154127"
+      ],
+      "score": 47
+    },
+    {
+      "id": "factory:search",
+      "type": "factory",
+      "title": "工厂推进：结构化 search 类 limits 数值（10 条）",
+      "why": "PRD-own-tools v2 G1 进度 99/128——每结构化一类，自动长出一族数据驱动工具",
+      "action": "产出 data/search-quotas.json（只从已核实散文提取官方数字，无官方折算明说不代算）→ 按 llm-api-calculator 模式复制该类工具页 → 真机验证上线",
+      "refs": [
+        "metaso",
+        "perplexity",
+        "notebooklm",
+        "felo",
+        "consensus",
+        "quark-ai",
+        "ai360",
+        "zhihu-zhida",
+        "phind",
+        "exa"
+      ],
+      "score": 45
+    },
+    {
+      "id": "candidate:github.com",
+      "type": "verify_candidate",
+      "title": "核实候选：The Channels SDK – Bring Any Agent to Any Channel (Slack, MS Teams)",
+      "why": "HN 118 分 / 24 评论（2026-08-09 发现）——外部热度已验证，站内尚未收录",
+      "action": "按收录标准核实 https://github.com/CopilotKit/channels-sdk；合格则中英同步入库，limits 走 limits-edit.mjs",
+      "refs": [
+        "https://github.com/CopilotKit/channels-sdk",
+        "https://news.ycombinator.com/item?id=49198583"
+      ],
+      "score": 44
+    },
+    {
+      "id": "candidate:sprocket-demo.spikonado.com",
+      "type": "verify_candidate",
+      "title": "核实候选：Sprocket – The Best AI Agent for Hardware and Software Development",
+      "why": "HN 124 分 / 14 评论（2026-08-09 发现）——外部热度已验证，站内尚未收录",
+      "action": "按收录标准核实 https://sprocket-demo.spikonado.com；合格则中英同步入库，limits 走 limits-edit.mjs",
+      "refs": [
+        "https://sprocket-demo.spikonado.com",
+        "https://news.ycombinator.com/item?id=49145934"
+      ],
+      "score": 44
+    },
+    {
+      "id": "candidate:wildstatic.com",
+      "type": "verify_candidate",
+      "title": "核实候选：A public AI whose memory is shared across all users",
+      "why": "HN 69 分 / 62 评论（2026-08-17 发现）——外部热度已验证，站内尚未收录",
+      "action": "按收录标准核实 https://wildstatic.com/；合格则中英同步入库，limits 走 limits-edit.mjs",
+      "refs": [
+        "https://wildstatic.com/",
+        "https://news.ycombinator.com/item?id=49319814"
+      ],
+      "score": 35
+    },
+    {
+      "id": "candidate:stoaexchange.com",
+      "type": "verify_candidate",
+      "title": "核实候选：Launch HN: Stoa Markets (YC S26) – A Marketplace for GPUs and AI Servers",
+      "why": "HN 66 分 / 40 评论（2026-08-11 发现）——外部热度已验证，站内尚未收录",
+      "action": "按收录标准核实 https://www.stoaexchange.com；合格则中英同步入库，limits 走 limits-edit.mjs",
+      "refs": [
+        "https://www.stoaexchange.com",
+        "https://news.ycombinator.com/item?id=49246057"
+      ],
+      "score": 30
+    },
+    {
+      "id": "candidate:github.com",
+      "type": "verify_candidate",
+      "title": "核实候选：MCP Memory – Fast Agent Memory Using Google's OKF and SQLite FTS5",
+      "why": "HN 56 分 / 35 评论（2026-08-14 发现）——外部热度已验证，站内尚未收录",
+      "action": "按收录标准核实 https://github.com/fellowgeek/mcp-memory；合格则中英同步入库，limits 走 limits-edit.mjs",
+      "refs": [
+        "https://github.com/fellowgeek/mcp-memory",
+        "https://news.ycombinator.com/item?id=49286073"
+      ],
+      "score": 26
+    },
+    {
+      "id": "candidate:hcker.news",
+      "type": "verify_candidate",
+      "title": "核实候选：Hacker News with AI stories filtered out",
+      "why": "HN 52 分 / 11 评论（2026-08-09 发现）——外部热度已验证，站内尚未收录",
+      "action": "按收录标准核实 https://hcker.news/?view=frontpage&ai=exclude；合格则中英同步入库，limits 走 limits-edit.mjs",
+      "refs": [
+        "https://hcker.news/?view=frontpage&ai=exclude",
+        "https://news.ycombinator.com/item?id=49159018"
+      ],
+      "score": 19
+    },
+    {
+      "id": "candidate:app.deltix.ai",
+      "type": "verify_candidate",
+      "title": "核实候选：Deltix – AI Driven Testing",
+      "why": "HN 48 分 / 11 评论（2026-08-15 发现）——外部热度已验证，站内尚未收录",
+      "action": "按收录标准核实 https://app.deltix.ai；合格则中英同步入库，limits 走 limits-edit.mjs",
+      "refs": [
+        "https://app.deltix.ai",
+        "https://news.ycombinator.com/item?id=49307099"
+      ],
+      "score": 18
+    }
+  ]
+}

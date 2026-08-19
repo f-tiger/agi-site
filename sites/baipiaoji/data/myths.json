@@ -1,0 +1,149 @@
+[
+  {
+    "tool": "deepl",
+    "myth": "「DeepL 网页版单次翻译上限 5000 字符」——几乎每篇攻略都这么写",
+    "myth_en": "\"DeepL's web translator caps each translation at 5,000 characters\" — nearly every guide says so",
+    "official": "官方页面从未公布过网页版的具体字符数。官方文档明示的是另一件事：API Free 档每月 500,000 字符、无日限。网页版确有上限，但那个「5000」没有任何官方出处。",
+    "official_en": "No official page has ever published a figure for the web translator. What the official docs do state: the API Free tier covers 500,000 characters per month with no daily cap. A web limit exists — but that \"5,000\" has no official source anywhere."
+  },
+  {
+    "tool": "kling",
+    "myth": "「可灵每月送 66 积分」——英文博客普遍写成每月",
+    "myth_en": "\"Kling grants 66 credits per month\" — English blogs widely say monthly",
+    "official": "官方会员方案的口径是**每日**登录赠送 66 灵感值（约够 6 个 5 秒标准视频），多家独立媒体交叉一致。每月与每日差 30 倍。",
+    "official_en": "The official membership plan says 66 credits per **day** on login (roughly 6 standard 5-second videos), cross-confirmed by multiple independent outlets. Monthly vs daily is a 30× difference."
+  },
+  {
+    "tool": "vidu",
+    "myth": "「Vidu 免费档每月 40 积分」/「每月 80 积分」——两种说法都有人言之凿凿",
+    "myth_en": "\"Vidu's free tier grants 40 credits a month\" / \"80 a month\" — both stated with full confidence",
+    "official": "两个数字都出现在 Vidu 自家官方页面上——官方口径互相打架。我们拒绝替它选一个。能核实的是机制：错峰模式（Off-Peak）不消耗积分即可生成。",
+    "official_en": "Both numbers appear on Vidu's own official pages — the official figures contradict each other. We refuse to pick one. What is verifiable is the mechanism: Off-Peak mode generates without spending credits."
+  },
+  {
+    "tool": "poe",
+    "myth": "「Poe 免费用户每天 300 积分」「1000 积分」「3000 积分」——第三方数字从 300 传到 3000",
+    "myth_en": "\"Poe gives free users 300 daily points\" / \"1,000\" / \"3,000\" — third-party figures run from 300 to 3,000",
+    "official": "官方帮助中心确认「每日发放计算积分、每 24 小时重置」这套机制，但**从未公布数额**。300 到 3000 全部是转述，没有一个能落到官方页面。",
+    "official_en": "The official help center confirms the mechanism — daily compute points, 24-hour reset — but has **never published the amount**. Every figure from 300 to 3,000 is hearsay; none lands on an official page."
+  },
+  {
+    "tool": "luma",
+    "myth": "「Luma Dream Machine 免费每天 5 次生成」",
+    "myth_en": "\"Luma Dream Machine allows 5 free generations a day\"",
+    "official": "官方定价页与帮助中心都查不到这个数。官方口径：免费档为按月发放的限量试用积分，具体数额未公布；带水印、限个人非商用。",
+    "official_en": "The number appears nowhere on Luma's official pricing page or help center. Official position: the free tier is a limited monthly trial-credit grant with no published figure; watermarked, personal non-commercial use only."
+  },
+  {
+    "tool": "qingying",
+    "myth": "「智谱清影完全免费、无限制」——2026 年仍有高赞帖这么写",
+    "myth_en": "\"Zhipu Qingying is completely free and unlimited\" — highly-upvoted posts still say so in 2026",
+    "official": "现况是：免费开放但需排队，单次约 5 秒、1440×960、带水印；会员 19 元/月才有优先生成与去水印。「免费」属实，「无限制」早已不是。",
+    "official_en": "Current reality: free and open, but queued — about 5 seconds per clip at 1440×960, watermarked; membership at ¥19/month adds priority and watermark removal. \"Free\" holds; \"unlimited\" hasn't for a while."
+  },
+  {
+    "tool": "pixverse",
+    "myth": "「PixVerse 每天固定送 60 积分」——多家攻略给出同一个精确数",
+    "myth_en": "\"PixVerse grants exactly 60 credits daily\" — multiple guides quote the same precise number",
+    "official": "官方博客的口径是每天 30–60 积分、以应用内显示为准——官方自己都不写死的数，攻略替它写死了。免费产出带水印且限个人非商用。",
+    "official_en": "The official blog says 30–60 credits a day, with the in-app dashboard as the authority — guides pinned down a number the vendor itself keeps as a range. Free output is watermarked, personal non-commercial only."
+  },
+  {
+    "tool": "qoder",
+    "myth": "「Qoder / CodeBuddy 个人版免费使用」——大量导航站至今仍这么标注",
+    "myth_en": "\"Qoder / CodeBuddy are free for personal use\" — plenty of directories still label them so",
+    "official": "两者已于 2025 年 9 月转订阅制（官方定价+多方报道印证）：新用户免费试用两周，试用后免费档功能有限。「个人版免费」是过时信息。",
+    "official_en": "Both moved to subscriptions in September 2025 (official pricing, corroborated by multiple reports): new users get a two-week trial, after which the free tier is limited. \"Free for personal use\" is stale information."
+  },
+  {
+    "tool": "google-ai-studio",
+    "myth": "「Gemini API 免费层每天 250 次」——大量攻略和工具站仍在引用这张旧表",
+    "myth_en": "\"Gemini's API free tier gives 250 requests a day\" — countless guides still quote the old table",
+    "official": "官方开发者论坛多帖证实：2025 年 12 月免费层大幅缩水，Flash 由 250 次/天降至 20 次/天。官方文档同时明示限额随账户层级动态变化，唯一可信的是官方 rate-limits 页的实时表——任何写死的数字都在过期路上。",
+    "official_en": "Multiple threads on the official developer forum confirm the free tier was slashed in December 2025 — Flash dropped from 250 to 20 requests/day. Official docs also state limits shift with account tier; the only trustworthy source is the live table on the official rate-limits page — any hard-coded number is already expiring."
+  },
+  {
+    "tool": "bailian",
+    "myth": "「阿里云百炼注册送 5000 万+ tokens」——领取攻略只报总数，越大越好看",
+    "myth_en": "\"Alibaba's Bailian gives 50M+ free tokens on sign-up\" — claim guides quote only the headline total",
+    "official": "官方 FAQ 的实际口径：每款模型各 100 万 tokens、额度互相独立不互通；攻略普遍略掉的关键是**有效期只有 90 天，过期作废、不补发不延期**。而「总数」连官方文章自己都口径不一（超 5,000 万与超 7,000 万并存）——所以总数本身就不该被引用。",
+    "official_en": "The official FAQ's actual terms: 1M tokens per model, quotas independent and non-poolable; what guides routinely omit is the 90-day validity — unused quota expires with no reissue or extension. As for the headline total, official articles themselves disagree (both \"50M+\" and \"70M+\" appear) — which is exactly why no total should be quoted."
+  },
+  {
+    "tool": "deepinfra",
+    "myth": "「DeepInfra 注册就送额度，直接白嫖」——包括本站此前的描述也这么写",
+    "myth_en": "\"DeepInfra gives you credits just for signing up\" — a claim this site itself used to repeat",
+    "official": "官方页面的实际口径是：直接注册使用需要绑卡或预付才能调用，官方并未公布「注册即送」的具体数额。真正存在的免费路径是另外两条：通过 Hugging Face Inference Provider 接入时有一份小额月配额，以及 DeepStart 创业计划可申请最高 10 亿 tokens——后者需要申请审核。这条我们改正了自己。",
+    "official_en": "What official pages actually say: signing up directly requires a card or pre-payment before you can call the API, and no \"free on signup\" figure is published. The two real free paths are different: a small monthly quota when accessed via the Hugging Face Inference Provider, and up to 1B tokens through the DeepStart programme, by application. We corrected our own page on this one."
+  },
+  {
+    "tool": "fastgpt",
+    "myth": "「FastGPT 云端免费版够用，知识库放着就行」",
+    "myth_en": "\"FastGPT's free cloud tier is fine — just leave your knowledge base there\"",
+    "official": "官方文档里最该被注意的不是额度，是数据条款：免费版三十天不登录会清空知识库。另外索引超限后无法新增或更新内容，付费套餐到期会自动回落免费版并清空 AI 积分。要长期留存数据，官方给的路是自部署（开源版功能完整且无额度）。",
+    "official_en": "The clause that matters in the official docs isn't a quota, it's data: on the free tier, knowledge bases are wiped after 30 days without login. Exceeding the index limit also blocks new or updated content, and when a paid plan lapses it reverts to free and clears AI credits. For data that must persist, the official answer is self-hosting — the open-source edition is fully featured with no quota."
+  },
+  {
+    "tool": "tongyi-wanxiang",
+    "myth": "「生成失败也会扣免费额度，所以不敢多试」",
+    "myth_en": "\"Failed generations still burn your free quota, so don't experiment\"",
+    "official": "官方计费说明写得很清楚：只对成功生成的输出图片计费，调用失败或处理错误既不产生费用，也不消耗新人免费额度。所以调提示词该试就试。需要留意的反而是有效期——新人免费额度按成功生成的图片数量计，有效期 90 天。",
+    "official_en": "The official billing docs are explicit: only successfully generated images are charged. Failed or errored calls cost nothing and don't consume the new-user free allowance — so iterate on prompts freely. The thing to actually watch is the clock: the allowance is counted in successfully generated images and expires after 90 days."
+  },
+  {
+    "tool": "ollama",
+    "myth": "「本地跑模型是免费的，所以随便什么电脑都能白嫖大模型」",
+    "myth_en": "\"Running models locally is free, so any computer can run a big model\"",
+    "official": "免费这部分是真的：MIT 许可开源、不限次数不限 token、数据不出本机。但墙换了一种形式——官方 README 的推荐门槛是 7B 模型至少 8GB 内存、13B 至少 16GB、70B 至少 64GB。硬件不够时的表现不是「额度用完」，而是模型直接加载失败报内存不足。",
+    "official_en": "The free part is true: MIT-licensed, unlimited calls and tokens, nothing leaves your machine. But the wall just changes shape — the official README recommends at least 8GB RAM for 7B models, 16GB for 13B and 64GB for 70B. Short on hardware, you don't \"run out of credits\": the model simply fails to load with an out-of-memory error."
+  },
+  {
+    "tool": "chatgpt",
+    "myth": "「ChatGPT 免费版每 X 小时只能发 Y 条」——这个数字满天飞，版本还各不相同",
+    "myth_en": "\"ChatGPT free gives you Y messages every X hours\" — the number is everywhere, and never the same twice",
+    "official": "OpenAI 官方帮助中心的口径是：免费档模型用量有限制，但**不公布具体条数**；达到上限时界面会提示上限与重置时间。官方还明确说明「默认模型与可用额度会随时间变化」。所以任何写死的条数都没有官方出处——包括那些看起来很权威的。我们因此只写机制，不写数字。",
+    "official_en": "OpenAI's Help Center says free-tier model usage is limited but does not publish a message count; when you hit the cap the interface shows the limit and its reset time. It also states that the default model and available limits change over time. So every hard number out there lacks an official source — however authoritative it looks. We publish the mechanism instead."
+  },
+  {
+    "tool": "bing-image",
+    "myth": "「Bing 图像创建器每天只能生成 15 张」",
+    "myth_en": "\"Bing Image Creator only gives you 15 images a day\"",
+    "official": "15 次只是**快速生成**的免费额度。官方帮助页同时写明：**标准速度生成始终不限量且免费**——所以不赶时间的话根本没有额度概念，攻略里那句「每天 15 张」漏掉了最有用的一半。另注意微软已把 Designer 与 Bing 图像生成拆成两套体系，Designer 侧是按月刷新的额度，别把两边数字混看。",
+    "official_en": "The 15 applies only to **fast** generations. The official help page also states that **standard-speed generations are always unlimited and free** — so if you're not in a hurry there's no quota at all. The \"15 a day\" line drops the more useful half. Note too that Microsoft has split Designer from Bing image generation; Designer runs its own monthly credits."
+  },
+  {
+    "tool": "aider",
+    "myth": "「装个开源编程助手 + 免费模型，就能白嫖 Cursor 的体验」",
+    "myth_en": "\"Install an open-source coding agent plus a free model and you get Cursor for free\"",
+    "official": "工具确实免费（Aider、Cline、Continue 均为开源，站内三条都已核实），成本也确实只在模型侧。但 Aider 官方文档写了一句要紧的话：**与能力较弱的模型配合效果不佳**。所以「免费小模型 + 开源工具」有下限，多文件架构级修改跑不动是常态。免费能省的是订阅费，省不掉对模型能力的要求。",
+    "official_en": "The tools really are free (Aider, Cline and Continue are all open source and all verified here), and the cost really does sit on the model side. But Aider's own docs add a crucial caveat: **it may not work well with less capable models**. So the free-small-model route has a floor — multi-file, architecture-level edits routinely fail. Free saves you the subscription, not the model-quality requirement."
+  },
+  {
+    "tool": "perplexity",
+    "myth": "「Perplexity 免费版每天 5 次 Pro Search」——包括本站昨天也这么写",
+    "myth_en": "\"Perplexity free gives you 5 Pro Searches a day\" — this site said so yesterday too",
+    "official": "2026-08-03 核实时这个数字尚能对上；2026-08-04 复核时，官方帮助中心与定价页只写「limited」而不给具体次数，另有页面改用按月表述。**数字无法复现，我们就把它撤下了**，页面改为只写机制（基础搜索不限、Pro Search 有限、用完回落）。这条留在这里是为了说明：核实日期不是装饰，过期的数字该撤就撤——包括我们自己写过的。",
+    "official_en": "The figure checked out on 2026-08-03. On a re-check on 2026-08-04, the official help centre and pricing page said only \"limited\" with no count, and another page framed it monthly. **We could not reproduce the number, so we withdrew it**, leaving only the mechanism (basic search unlimited, Pro Search limited, fall back when spent). This entry stays as a reminder that check dates aren't decoration — a figure that can't be re-confirmed comes down, including one we published ourselves."
+  },
+  {
+    "tool": "cerebras",
+    "myth": "「Cerebras 每天送 100 万 tokens，永久免费」——推理速度榜出圈后，这句被大量转载",
+    "myth_en": "\"Cerebras gives you 1 million free tokens every day, forever\" — repeated everywhere after its inference-speed benchmarks went viral",
+    "official": "这个数字出自上线期的公告，不是现行政策。现在官方定价与文档页写的是：绑定并验证支付方式后得 $5 免费额度、自发放起 30 天到期，且明确声明「目前不提供会自动续期的免费档，也没有任何模型的永久免费额度」。免费档上下文 8,192 tokens。同一个厂商，两年前的公告和今天的文档不是一回事。",
+    "official_en": "That figure comes from launch-era announcements, not current policy. The pricing and inference docs now state: $5 in free credits once a payment method is added and verified, expiring 30 days after they are granted — and say plainly that there is no automatically renewing no-cost tier and no always-free per-model allowance. Free-tier context is 8,192 tokens. Same vendor, but a launch announcement and today's docs are not the same thing."
+  },
+  {
+    "tool": "gemini-cli",
+    "myth": "「Gemini CLI 每天免费 1000 次」——几乎所有介绍文都这么写，读者自然理解成每天能提 1000 次问",
+    "myth_en": "\"Gemini CLI gives you 1,000 free uses a day\" — nearly every write-up says so, and readers naturally hear it as 1,000 prompts",
+    "official": "数字本身没错，是官方口径：每天 1,000 次**模型请求**、Flash 上限 60 次/分钟。但官方文档专门澄清了两点：这 1,000 次是 Pro 与 Flash 混合计的，不等于每天 1,000 次 Gemini 2.5 Pro；而且一次提问可能触发几十次模型请求——所以「1000 次」根本不是 1000 轮对话。官方 issue 里大量用户十几轮就被限流，原因就在这里。",
+    "official_en": "The number itself is right and official: 1,000 model requests a day, up to 60 a minute on Flash. But the docs specifically clarify two things — those 1,000 are a blend of Pro and Flash, not 1,000 Gemini 2.5 Pro calls, and a single prompt can trigger dozens of model requests. So \"1,000\" is nowhere near 1,000 conversations. That is exactly why the official issue tracker is full of users hitting the limit after a dozen or so turns."
+  },
+  {
+    "tool": "runway",
+    "myth": "「带水印 = 不能商用，去了水印才敢发」——两件事被普遍当成一件",
+    "myth_en": "\"Watermarked means I can't use it commercially; strip the watermark and I'm safe\" — two different things, routinely treated as one",
+    "official": "同一天核实的两家官方条款正好指向相反方向：Runway 官方专页写明**所有档位（含免费档）用户都保留内容所有权并享有商用权**，逐条列举了 YouTube 变现、Reels/TikTok、社交发布、电影节参赛、产品广告等场景——免费档确实带水印，但商用权早就给了；而可灵官方条款写明**免费档产出不可商用**，商用权随付费档才来，且即使产出没带品牌标记，使用时仍必须自行标明「由 Kling AI 生成」。所以水印是外观、授权是权利，两者既不等价、也不同向——只能逐家看条款。",
+    "official_en": "Two sets of official terms verified on the same day point in opposite directions. Runway states that users on **every plan, free included, retain ownership and hold commercial rights**, listing monetised YouTube, Reels/TikTok, social posts, film-festival entries and product advertising by name — free output is watermarked, yet the commercial rights were granted all along. Kling states the opposite: **free-tier output is not for commercial use**, those rights arrive only with a paid plan, and even an output carrying no brand mark must still be labelled as generated by \"Kling AI\". The watermark is an appearance; the licence is a right. They are neither equivalent nor even correlated — you have to read each vendor's terms."
+  }
+]

@@ -1,0 +1,88 @@
+{
+  "lede": "这一页列的是我们**查不到官方来源、因此拒绝填写数字**的工具。别的站会给你一个数——我们给你一个提醒：关于这些工具的免费额度，你在网上看到的任何具体数字，目前都找不到官方出处。缺席本身就是信息。",
+  "lede_en": "This page lists the tools whose free-tier numbers we **refused to publish because no official source could be found**. Other sites hand you a figure; we hand you a warning: for these tools, any specific number you see online currently has no traceable official origin. The absence is the information.",
+  "note": "拒绝不是终点：只要官方页面日后给出可核实的口径，每日循环会把它转正——PixVerse 就是这样从「拒绝」变成「已核实」的。",
+  "note_en": "A refusal isn't permanent: the moment an official page states something verifiable, our daily cycle promotes it — PixVerse went from refused to verified exactly this way.",
+  "items": [
+    {
+      "slug": "qwen-chat",
+      "reason": "官方明确说明权益经常调整、以 App 内当期展示为准，未公布任何固定数字。",
+      "reason_en": "Officially stated to change often, with the in-app display as the authority; no fixed figure is published."
+    },
+    {
+      "slug": "yuanbao",
+      "reason": "官网与腾讯云文档均未取得免费档限制的可核实引文。",
+      "reason_en": "Neither the official site nor Tencent Cloud docs yielded verifiable wording on free-tier limits."
+    },
+    {
+      "slug": "codegeex",
+      "reason": "官方站点未明示个人版的免费或收费口径（企业版与校园版另有文档）。",
+      "reason_en": "The official site doesn't state whether the personal edition is free or paid (enterprise and campus editions have separate docs)."
+    },
+    {
+      "slug": "miaobi",
+      "reason": "官方站点与帮助页依赖 JS 渲染、在检索索引中取不到可核实的免费额度表述。",
+      "reason_en": "The official site and help pages are JS-rendered; no verifiable statement of the free allowance is retrievable from the search index."
+    },
+    {
+      "slug": "boardmix",
+      "reason": "官网与定价页只表述「个人免费版」，未见文件数或功能上限的可核实口径。",
+      "reason_en": "The official site and pricing page describe a personal free version but state no verifiable file or feature ceiling."
+    },
+    {
+      "slug": "tencent-docs-ai",
+      "reason": "官网与会员中心未见 AI 功能免费次数的可核实表述（会员权益页只列档位不列 AI 额度）。",
+      "reason_en": "Neither the official site nor the membership pages state a verifiable free allowance for the AI features (membership pages list tiers without AI quotas)."
+    },
+    {
+      "slug": "connectedpapers",
+      "reason": "官方定价页在检索索引中取不到具体额度表述（页面主体为动态渲染）。",
+      "reason_en": "The official pricing page yields no retrievable statement of the free allowance (the page body is dynamically rendered)."
+    },
+    {
+      "slug": "readpaper",
+      "reason": "官网自述为免费学术社区，但未见免费额度或会员权益的可核实分档表述。",
+      "reason_en": "The official site describes itself as a free academic community but states no verifiable free-allowance or membership tiering."
+    },
+    {
+      "slug": "wanzhi",
+      "reason": "官网与开放平台未见免费额度或使用上限的可核实表述（万知已转向企业侧一站式平台）。",
+      "reason_en": "Neither the official site nor the open platform states a verifiable free allowance or usage ceiling (Wanzhi has shifted toward an enterprise platform)."
+    },
+    {
+      "slug": "zhiying",
+      "reason": "官网与帮助文档未见免费版时长或导出上限的可核实表述（部分功能标注需 VIP，但无量化口径）。",
+      "reason_en": "Neither the official site nor the help docs state a verifiable free-tier duration or export ceiling (some features are marked VIP-only without quantified limits)."
+    },
+    {
+      "slug": "chuangkit",
+      "reason": "官网只表述「免费版适合个人体验学习」，未见下载次数或商用授权的可核实分档口径。",
+      "reason_en": "The official site says only that the free version suits personal learning use, with no verifiable statement of download counts or commercial-licence tiering."
+    },
+    {
+      "slug": "lechat",
+      "reason": "Mistral 官方帮助中心称免费档的消息数与网页搜索次数「有限」，并说 Pro 档在图片生成、代码解释、文档上传上有更高的每日上限——但两处都没有给出免费档的具体数字。另注：该产品官方已更名为 Mistral Vibe。",
+      "reason_en": "Mistral's official help centre says the free plan has \"limited\" messages and web searches, and that Pro raises the daily limits on image generation, code interpretation and document uploads — yet neither page states a figure for the free tier itself. Note: the product has officially been renamed Mistral Vibe."
+    },
+    {
+      "slug": "zhipu-qingyan",
+      "reason": "网上把「2000 万免费 Tokens 资源包」算作智谱清言的免费额度，但那是智谱开放平台（bigmodel.cn）的 API 资源包，本站已单独收录为「智谱开放平台」条目。智谱清言是 chatglm.cn 的对话产品，官方页面没有给出它自己的对话条数或频率上限。一个厂商两条产品线，额度不能互相搬运。",
+      "reason_en": "The \"20 million free tokens\" figure circulating online belongs to the Zhipu Open Platform (bigmodel.cn) API package — listed separately on this site — not to Zhipu Qingyan, the chat product at chatglm.cn, whose own official pages state no message or rate limit. One vendor, two product lines: an allowance from one cannot be carried over to the other."
+    },
+    {
+      "slug": "hunyuan",
+      "reason": "腾讯云文档里能查到混元大模型的免费资源包规则（首次开通发放一次性资源包、有效期 1 年、结算时优先扣减、耗尽后不自动转后付费），但那是面向开发者的 API 服务，且官方明确说具体额度需登录控制台查看、不同模型不同。本站收录的 hunyuan 是 hunyuan.tencent.com 的对话产品，官方未公布它的免费使用上限——两者不是同一条产品线。",
+      "reason_en": "Tencent Cloud's docs do describe a free resource package for the Hunyuan models (granted once on activation, valid one year, deducted first at settlement, no automatic switch to pay-as-you-go when exhausted) — but that is the developer API service, and the docs state the actual amount must be read from the console and varies by model. The entry listed here is the chat product at hunyuan.tencent.com, for which no free-usage ceiling is published. They are not the same product line."
+    },
+    {
+      "slug": "chatpdf",
+      "reason": "官方定价页（chatpdf.com/pricing）被检索索引取不到原文，第三方转述互相矛盾——免费档每日提问数有 20 与 50 两种口径，Plus 价格有 $5、$9.99、$19.99 三种口径。互相矛盾的转述不构成可核实出处，本站一个数都不写。",
+      "reason_en": "The official pricing page (chatpdf.com/pricing) yields no retrievable original wording in the search index, and third-party retellings contradict each other — the free tier's daily question cap appears as both 20 and 50, and the Plus price as $5, $9.99 and $19.99. Contradictory retellings are not a verifiable source, so we publish no figure at all."
+    },
+    {
+      "slug": "together",
+      "reason": "官方文档只说速率限制是「动态」的——按实际用量增长、按模型而非按账号档位计算，并未给出任何免费额度或免费调用次数。定价页列的是按 token 计费、批量推理半价、预留容量与专用端点，同样没有免费档。有限制而无数字，本站不替它编一个。",
+      "reason_en": "Together's docs describe rate limits only as \"dynamic\" — growing with actual usage and applied per model rather than per account tier — and state no free allowance or free call count anywhere. The pricing page lists per-token billing, half-price batch inference, reserved capacity and dedicated endpoints, with no free tier among them. A limit exists but no number is published, and we will not invent one."
+    }
+  ]
+}

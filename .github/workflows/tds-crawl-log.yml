@@ -1,0 +1,54 @@
+name: What did the crawlers actually fetch?
+# ── 迁入公开 monorepo f-tiger/agi-site(2026-08-19,owner 决定)──
+# 原仓 .github 为历史档案。公开仓 Actions 分钟免费。
+# 本 workflow 的 run 步骤默认 working-directory: sites/thedollscout/。
+
+
+# Answers, from data we already own, the question that otherwise needs Search
+# Console: which URLs is Googlebot requesting, and what status does it get?
+# httpRequests1dGroups (the daily traffic job) has no path or user-agent
+# dimension; httpRequestsAdaptiveGroups does.
+
+on:
+  # Daily, just after the traffic job. The redirect share is a convergence
+  # measurement — it was the entire site until 2026-08-14 and should fall to
+  # zero as each crawler re-crawls — and a convergence cannot be read from a
+  # snapshot somebody remembers to take.
+#  schedule:
+#    - cron: '20 6 * * *'
+  workflow_dispatch:
+    inputs:
+      days:
+        description: 'Days to look back (adaptive retention is short on lower plans)'
+        required: false
+        default: '3'
+
+permissions:
+  contents: write
+
+jobs:
+  log:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: sites/thedollscout
+    steps:
+      - uses: actions/checkout@v4
+        with:
+
+      - name: Pull the crawler fetch log from Cloudflare
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_API_TOKEN_ZONE: ${{ secrets.CLOUDFLARE_API_TOKEN_ZONE }}
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CRAWL_DAYS: ${{ inputs.days }}
+        run: |
+          node scripts/cf-crawl-log.mjs | tee crawl-log.md
+          cat crawl-log.md >> "$GITHUB_STEP_SUMMARY"
+          rm -f crawl-log.md
+
+      - name: Commit the day's crawl log
+        run: |
+          bash scripts/commit-generated.sh crawl-bot \
+            "chore: record what the crawlers fetched" \
+            content/crawl-log.json

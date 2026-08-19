@@ -1,0 +1,77 @@
+{
+  "why": "URLs whose text must be read first-hand before any claim resting on them is published. Queued from the 2026-07-29 research pass, in which the sandbox's egress block meant 21 of 25 candidate claims were killed for being unretrievable rather than for being wrong. Retrieval happens on a GitHub Actions runner, which has egress; see scripts/fetch-sources.mjs.",
+  "urls": [
+    {
+      "url": "https://www.legislation.gov.uk/ukpga/1974/39/section/75",
+      "note": "PRIMARY. The whole payment-recourse finding rests on s.75 and the s.75(3)(b) cash-price thresholds. Nothing about UK card recourse gets published until this section is read verbatim."
+    },
+    {
+      "url": "https://www.financial-ombudsman.org.uk/consumers/complaints-can-help/credit-borrowing-money/goods-services-bought-credit",
+      "note": "Source of the 'it is the cash price, not what you put on the card' wording — the part that makes a deposit on a made-to-order doll covered. Quoted only from a search snippet so far."
+    },
+    {
+      "url": "https://www.moneyhelper.org.uk/en/everyday-money/types-of-credit/section-75-of-the-consumer-credit-act",
+      "note": "Statutory body. Wanted for the deposit / part-payment worked example, which is the exact shape of a doll pre-order."
+    },
+    {
+      "url": "https://www.gov.uk/government/collections/consumer-credit-act-reform",
+      "note": "Checks the claim that s.75 thresholds are unchanged and connected-lender reform was deferred. If wrong, the finding is time-expired rather than false. [run 1: the phase-2 publication URL 404d; switched to the collection page]"
+    },
+    {
+      "url": "https://commonslibrary.parliament.uk/research-briefings/cbp-10328/",
+      "note": "Second, independent read on the state of CCA reform."
+    },
+    {
+      "url": "https://www.legislation.gov.uk/ukpga/1979/2/section/170",
+      "note": "s.170 CEMA 1979, cited as the route by which UK legal risk in this category runs through import rather than possession. Relevant to what we tell readers about importing; must not be paraphrased unread."
+    },
+    {
+      "url": "https://www.cps.gov.uk/legal-guidance/obscene-publications",
+      "note": "CPS guidance. Needed to state UK legal exposure accurately, and specifically to check whether any height or appearance 'safe harbour' test for adult-form dolls exists. The research found NO such threshold — vendor and forum claims of the form 'over X cm is legal' are unconfirmed and must not be repeated."
+    },
+    {
+      "url": "https://link.springer.com/article/10.1007/s43591-023-00068-0",
+      "note": "Phthalates measured in sex toys above CPSC children's-toy limits, and the absence of any risk-assessment regime for the category. Would be a materially stronger finding than anything published; killed only for lack of retrieval."
+    },
+    {
+      "url": "https://sti.bmj.com/content/90/7/529",
+      "note": "HPV DNA persisting on a toy surface after cleaning with a commercial cleaner, and the authors' statement that no evidence-based cleaning protocol exists. Bears directly on our care-and-cleaning page, which currently gives advice this may undercut."
+    },
+    {
+      "url": "https://digitalcommons.calpoly.edu/theses/1937/",
+      "note": "The most-cited empirical dataset on who owns these products. Wanted to check (a) what it actually found and (b) whether the widely-repeated '~37% report guilt or shame' figure appears in it at all — the research could not find it in the thesis, only in later work citing it."
+    },
+    {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=TITLE%3A%22sex%20toys%22%20AND%20TITLE%3A%22papillomavirus%22&format=json&resultType=core&pageSize=5",
+      "note": "ALTERNATE ROUTE for the HPV-on-toys paper. sti.bmj.com 403s a browser. Europe PMC is an API returning JSON, so no bot wall and no paywall on the abstract. Highest priority in this queue: if it holds, our own care-cleaning page is giving advice the evidence does not support."
+    },
+    {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1007%2Fs43591-023-00068-0%22&format=json&resultType=core",
+      "note": "ALTERNATE ROUTE for the phthalates-in-sex-toys paper. link.springer.com returned 200 with 83 characters, i.e. a shell."
+    },
+    {
+      "url": "https://www.citizensadvice.org.uk/consumer/somethings-gone-wrong-with-a-purchase/getting-your-money-back-if-you-paid-by-card-or-paypal/",
+      "note": "REPLACES the MoneyHelper URL, which 403s. Citizens Advice is an equally citable consumer body and covers the same ground: card vs PayPal recourse. Wanted specifically for whether an intermediary breaks the Section 75 chain — currently labelled unconfirmed on our page."
+    },
+    {
+      "url": "https://www.dollvendoraudit.com/",
+      "note": "COMPETITOR STRUCTURE. Direct competitor, same positioning. Fetch to learn their page inventory, scoring criteria and monetisation pattern — for differentiation, never for copying text."
+    },
+    {
+      "url": "https://www.dollvendoraudit.com/sitemap.xml",
+      "note": "COMPETITOR STRUCTURE. Their full page list — the fastest map of what they cover that we do not."
+    },
+    {
+      "url": "https://www.innerbody.com/best-sex-dolls",
+      "note": "FORMAT STUDY. High-authority mainstream reviewer ranking for the head term. Fetch to study structure only: methodology block, freshness signals, cross-vendor price tables. Their claims are theirs; we cite nothing from it."
+    },
+    {
+      "url": "https://whichsexdoll.com/sex-doll-scams/",
+      "note": "COMPETITOR STRUCTURE. Ranks for scam queries; study which scam patterns they cover vs our Scam-Check."
+    },
+    {
+      "url": "https://rockymountaintoyreview.com/tpe-vs-silicone-sex-dolls-whats-the-difference/",
+      "note": "OUTREACH PREP. Read before the owner contacts them (outreach-kit tier 2) so the message can reference their actual article accurately."
+    }
+  ]
+}

@@ -1,0 +1,162 @@
+{
+  "lede": "旅行费用的第一个问题不是「去哪玩」，是「我这种人能不能免票」。这一页按人群整理：每条景区规则都来自站内已核实的官方条目，每条政策背景都注明是「建议」还是「规定」。查不到官方口径的，宁可不写。",
+  "lede_en": "The first question about travel money isn't where to go — it's whether someone like you gets in free. This page is organised by who you are. Every venue rule comes from an officially verified entry on this site; every policy note says plainly whether it's a recommendation or a rule. Anything we can't trace to an official source simply isn't written.",
+  "groups": [
+    {
+      "who": "未成年人 / 带娃家庭",
+      "who_en": "Under-18s and families",
+      "rules": [
+        {
+          "place": "故宫博物院（北京）",
+          "rule": "未满 18 周岁的中国公民（含港澳台居民及获得永久居留权的外国人）免大门票，但须预约占号。",
+          "place_en": "Palace Museum (Beijing)",
+          "rule_en": "Chinese citizens under 18 (including Hong Kong, Macau, Taiwan residents and permanent residents) enter free, but must still book a slot."
+        },
+        {
+          "place": "秦始皇帝陵博物院（西安）",
+          "rule": "16 周岁以下未成年人（中国居民、需父母陪同）免票；免票同样须实名预约。",
+          "place_en": "Emperor Qinshihuang's Mausoleum Museum (Xi'an)",
+          "rule_en": "Under-16s (Chinese residents, accompanied by a parent) enter free — free entry still requires a real-name booking."
+        },
+        {
+          "place": "卢浮宫（巴黎）",
+          "rule": "18 岁以下免费参观常设与特展；官方建议在票务网选「免费入场」订时段票。",
+          "place_en": "Louvre (Paris)",
+          "rule_en": "Under-18s are free for both the collection and temporary exhibitions; officially you should still book a timed \"free admission\" slot."
+        },
+        {
+          "place": "梵高博物馆 / Rijksmuseum（阿姆斯特丹）",
+          "rule": "18 岁以下免费，但仍需在线预约带时段的门票。",
+          "place_en": "Van Gogh Museum / Rijksmuseum (Amsterdam)",
+          "rule_en": "Under-18s free, but a timed online ticket is still required."
+        }
+      ],
+      "note": "中国景区儿童票长期存在「看身高还是看年龄」之争：多数景区按 1.2 米以下免票、1.2–1.4 米半票，部分主题乐园按年龄或身高二选一，曾出现「穿鞋超 1.4 米、脱鞋不足 1.4 米」被拒售儿童票的纠纷。国家发改委等部门提出过「6 周岁（含）以下**或**身高 1.2 米（含）以下免票、6–18 岁半票」的双轨制建议——注意这是**建议**，不是全国强制标准，具体以目的地当年公告为准。",
+      "note_en": "In China, children's tickets have long been caught between height and age: most venues waive tickets under 1.2 m and half-price 1.2–1.4 m, while some theme parks let you qualify by either age or height — disputes have arisen over children measuring over 1.4 m with shoes on and under it with shoes off. National authorities have proposed a dual-track standard (free for age 6 and under **or** height 1.2 m and under; half price for 6–18) — note this is a recommendation, not a nationwide mandate. Go by the venue's current notice.",
+      "source": "站内已核实条目（dpm.org.cn / bmy.com.cn / louvre.fr / vangoghmuseum.nl / rijksmuseum.nl）＋ 儿童票标准之争的权威媒体报道（新华网、中新网、光明网等交叉一致）",
+      "source_en": "Verified entries on this site (dpm.org.cn / bmy.com.cn / louvre.fr / vangoghmuseum.nl / rijksmuseum.nl), plus authoritative media reporting on the children's-ticket standard debate (Xinhua, China News Service, Guangming Daily, cross-confirmed)"
+    },
+    {
+      "who": "老年人 / 银发出行",
+      "who_en": "Seniors",
+      "rules": [
+        {
+          "place": "秦始皇帝陵博物院（西安）",
+          "rule": "65 周岁以上老人免票（仍须实名预约）。",
+          "place_en": "Emperor Qinshihuang's Mausoleum Museum (Xi'an)",
+          "rule_en": "Visitors aged 65+ enter free (real-name booking still required)."
+        },
+        {
+          "place": "故宫博物院（北京）",
+          "rule": "60 周岁以上凭有效身份证原件享门票半价（旺季 30 元 / 淡季 20 元）——是半价，不是免票。",
+          "place_en": "Palace Museum (Beijing)",
+          "rule_en": "Visitors aged 60+ pay half price with original ID (¥30 peak / ¥20 off-peak) — half price, not free."
+        }
+      ],
+      "note": "最常见的误解是「满 60 岁 = 全国景区免票」。实际上全国没有统一标准：门票优待由省级条例、景区自身定价权、预约限流三层叠加，60/65/70 三种门槛并存，有的按周岁有的按虚岁，有的只减免首道门票、不含园内项目。据媒体调查，大多数景区的免票线是 65 岁，仅部分省份为 60 岁。**出发前按目的地当年政策逐个确认**，本站只写已核实到官方来源的具体景区条目。",
+      "note_en": "The most common misconception is that turning 60 means free entry across China. There is no national standard: senior concessions stack provincial rules, each venue's own pricing power and booking caps, so 60/70 and 65 thresholds coexist — some count full years, some count the traditional reckoning, and some waive only the main gate ticket, not on-site attractions. Media surveys find most venues set the free line at 65, with only some provinces at 60. Check the destination's current policy before you travel; this site publishes only venue-level rules traced to official sources.",
+      "source": "站内已核实条目（bmy.com.cn / dpm.org.cn）＋ 老年优待政策现状的权威媒体报道（央广网等）",
+      "source_en": "Verified entries on this site (bmy.com.cn / dpm.org.cn), plus authoritative media reporting on the current state of senior concessions (CNR and others)"
+    },
+    {
+      "who": "学生",
+      "who_en": "Students",
+      "rules": [
+        {
+          "place": "故宫博物院（北京）",
+          "rule": "18 周岁以上、本科及以下学历学生凭证件 20 元（淡旺季同价）。",
+          "place_en": "Palace Museum (Beijing)",
+          "rule_en": "Students aged 18+ at undergraduate level or below pay ¥20 with valid ID (same year-round)."
+        },
+        {
+          "place": "秦始皇帝陵博物院（西安）",
+          "rule": "本科及以下全日制学生凭有效学生证半价 60 元。",
+          "place_en": "Emperor Qinshihuang's Mausoleum Museum (Xi'an)",
+          "rule_en": "Full-time students at undergraduate level or below pay half price, ¥60, with a valid student card."
+        },
+        {
+          "place": "梵高博物馆（阿姆斯特丹）",
+          "rule": "€16 学生票：需持有效国际学生证，或欧盟/欧洲经济区院校在读证明。",
+          "place_en": "Van Gogh Museum (Amsterdam)",
+          "rule_en": "€16 student ticket: requires a valid international student card or proof of enrolment at an EU/EEA institution."
+        }
+      ],
+      "note": "学生优惠在国内外的认定口径不同：国内多按「本科及以下全日制」，研究生常被排除；境外场馆则常要求国际学生证（ISIC）或欧盟/欧洲经济区院校证明，本国校园卡未必被认。出发前确认「认哪张证」，比确认价格更重要。",
+      "note_en": "Student concessions are defined differently at home and abroad: Chinese venues typically limit them to full-time students at undergraduate level or below (postgraduates often excluded), while overseas venues frequently want an international student card or proof of EU/EEA enrolment — your home campus card may not count. Confirming which card is accepted matters more than confirming the price.",
+      "source": "站内已核实条目（dpm.org.cn / bmy.com.cn / vangoghmuseum.nl）",
+      "source_en": "Verified entries on this site (dpm.org.cn / bmy.com.cn / vangoghmuseum.nl)"
+    },
+    {
+      "who": "所有人（时间窗与开放日）",
+      "who_en": "Everyone (time windows and free days)",
+      "rules": [
+        {
+          "place": "普拉多博物馆（马德里）",
+          "rule": "周一至周六闭馆前两小时（18:00–20:00）免费入场，门票本身已含临时特展。",
+          "place_en": "Museo del Prado (Madrid)",
+          "rule_en": "Free admission during the last two hours before closing, Monday to Saturday (18:00–20:00); tickets already include temporary exhibitions."
+        },
+        {
+          "place": "卢浮宫（巴黎）",
+          "rule": "每月第一个周五 18:00 后全员免费（7 月、8 月除外）。",
+          "place_en": "Louvre (Paris)",
+          "rule_en": "Free for everyone on the first Friday of the month after 18:00 (except July and August)."
+        },
+        {
+          "place": "斗兽场·罗马考古公园",
+          "rule": "每月第一个周日为免费开放日；当天预售的开放日期票不适用。",
+          "place_en": "Colosseum / Parco archeologico del Colosseo",
+          "rule_en": "The first Sunday of each month is a free-admission day; pre-purchased open-date tickets don't apply that day."
+        },
+        {
+          "place": "大英博物馆 / 国家美术馆（伦敦）",
+          "rule": "常设展常年免费，官网可领免费票走优先入场；特展另行收费。",
+          "place_en": "British Museum / National Gallery (London)",
+          "rule_en": "Permanent collections are free year-round, with free tickets online for priority entry; special exhibitions are ticketed."
+        },
+        {
+          "place": "中国国家博物馆（北京）",
+          "rule": "常设展免费，须实名预约，每日 17:00 放票；特展另行购票。",
+          "place_en": "National Museum of China (Beijing)",
+          "rule_en": "The permanent collection is free with real-name booking; tickets drop daily at 17:00. Special exhibitions are ticketed separately."
+        },
+        {
+          "place": "首都博物馆（北京）",
+          "rule": "免费且免预约，带有效身份证件即可登记入馆。",
+          "place_en": "Capital Museum (Beijing)",
+          "rule_en": "Free and no booking needed — register at the door with valid ID."
+        }
+      ],
+      "note": "已停办的免费政策同样要记：柏林「博物馆星期日」（每月第一个周日全城约 60 馆免费）官方信息显示 2024 年 12 月 1 日为最后一次举办，全网攻略仍在推荐——按它排行程会扑空。",
+      "note_en": "Discontinued free schemes matter just as much: Berlin's Museum Sunday (free entry to about 60 museums on the first Sunday of the month) ran for the last time on 1 December 2024 according to official information, yet guides still recommend it — an itinerary built on it comes up empty.",
+      "source": "站内已核实条目（museodelprado.es / louvre.fr / colosseo.it / britishmuseum.org / nationalgallery.org.uk / chnmuseum.cn / capitalmuseum.org.cn / berlin.de）",
+      "source_en": "Verified entries on this site (museodelprado.es / louvre.fr / colosseo.it / britishmuseum.org / nationalgallery.org.uk / chnmuseum.cn / capitalmuseum.org.cn / berlin.de)"
+    }
+  ],
+  "myths": [
+    {
+      "myth": "「满 60 岁全国景区都免票」",
+      "truth": "没有全国统一标准。省条例、景区定价权、预约限流三层叠加，60/65/70 并存；多数景区的免票线是 65 岁。故宫 60 岁以上是半价而非免票。",
+      "myth_en": "\"Turning 60 means free entry anywhere in China\"",
+      "truth_en": "There is no national standard. Provincial rules, each venue's pricing power and booking caps stack up, so 60/65/70 all exist; most venues set the free line at 65. At the Palace Museum, 60+ is half price, not free."
+    },
+    {
+      "myth": "「免票就不用预约了」",
+      "truth": "恰恰相反。国博、故宫未成年人、兵马俑免票人群、卢浮宫 18 岁以下、梵高与 Rijksmuseum——全部要求免票者照样预约或订时段票。不约就进不去。",
+      "myth_en": "\"Free entry means no booking needed\"",
+      "truth_en": "The opposite. The National Museum of China, under-18s at the Palace Museum, free-entry groups at the Terracotta Army, under-18s at the Louvre, the Van Gogh Museum and the Rijksmuseum all require a booking or timed ticket even when entry is free. No booking, no entry."
+    },
+    {
+      "myth": "「学生证全球通用」",
+      "truth": "境外场馆常要求国际学生证（ISIC）或欧盟/欧洲经济区院校在读证明，本国校园卡未必被认；国内则多限「本科及以下全日制」，研究生常被排除。",
+      "myth_en": "\"A student card works everywhere\"",
+      "truth_en": "Overseas venues often want an international student card or proof of EU/EEA enrolment — a home campus card may not qualify. In China, concessions usually stop at full-time undergraduate level, excluding postgraduates."
+    },
+    {
+      "myth": "「儿童按身高 1.2 米一刀切」",
+      "truth": "标准并不统一：多数景区按身高，部分主题乐园按年龄或身高二选一，曾出现穿鞋量身高引发的纠纷。国家层面提出过「6 周岁以下或 1.2 米以下免票」的双轨制建议，但那是建议不是强制。",
+      "myth_en": "\"Kids are free under 1.2 m, universally\"",
+      "truth_en": "Standards differ: most venues measure height, some theme parks let you qualify by age or height, and disputes have arisen over measuring with shoes on. A national dual-track standard (free under age 6 or under 1.2 m) has been proposed — as a recommendation, not a mandate."
+    }
+  ]
+}

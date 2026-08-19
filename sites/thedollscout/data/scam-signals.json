@@ -1,0 +1,65 @@
+{
+  "name": "Doll shop scam-check signals",
+  "description": "The ten checks to run against an unfamiliar shop before entering a card number. Built from documented complaint threads, chargeback cases and counterfeit reports — the recurring patterns in them.",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "publisher": "https://thedollscout.com/",
+  "documentation": "https://thedollscout.com/scam-check.html",
+  "signalCount": 10,
+  "limitations": [
+    "Passing all ten is not a guarantee. It means none of the known patterns fired, not that the shop is safe.",
+    "Failing one is not proof of fraud either — it is a reason to look harder before paying.",
+    "These describe patterns in reported complaints, not a count of shops."
+  ],
+  "signals": [
+    {
+      "order": 1,
+      "name": "Check the pricing",
+      "whatToCheck": "Factories set minimum pricing and legitimate vendors sit roughly 10-15% below list. A discount of 50% or more is a counterfeit signal, not a bargain."
+    },
+    {
+      "order": 2,
+      "name": "Verify brand authorization",
+      "whatToCheck": "The shop should name the factory (WM, Irontech, Zelex, Starpery). Confirm with that factory that the shop is an authorized reseller."
+    },
+    {
+      "order": 3,
+      "name": "Require a factory-photo policy in writing",
+      "whatToCheck": "The vendor must send photos of your actual doll before dispatch and ship only after you approve."
+    },
+    {
+      "order": 4,
+      "name": "Confirm buyer-protected payment",
+      "whatToCheck": "PayPal or a credit card must be accepted. Wire transfer, crypto or gift cards only means walk away."
+    },
+    {
+      "order": 5,
+      "name": "Read the review pattern",
+      "whatToCheck": "Organic reviews mention specifics and include resolved complaints. Walls of invited five-star reviews do not count."
+    },
+    {
+      "order": 6,
+      "name": "Find a real contact surface",
+      "whatToCheck": "A physical address and a responsive human who answers clearly about lead times and customs."
+    },
+    {
+      "order": 7,
+      "name": "Sanity-check lead times",
+      "whatToCheck": "Made-to-order dolls take 2-8 weeks. Everything in stock at factory prices is drop-shipping fiction."
+    },
+    {
+      "order": 8,
+      "name": "Reverse-image-search the photos",
+      "whatToCheck": "Product photos should match the official factory catalogue and not appear across unrelated shops."
+    },
+    {
+      "order": 9,
+      "name": "Read the written policies",
+      "whatToCheck": "Shipping, customs, cancellation and defect policies must be published before checkout."
+    },
+    {
+      "order": 10,
+      "name": "Check the domain age",
+      "whatToCheck": "Use any WHOIS lookup. Scam shops churn new domains constantly."
+    }
+  ]
+}

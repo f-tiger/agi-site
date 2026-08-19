@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 420" role="img" aria-label="Abstract illustration">
+  <defs>
+    <linearGradient id="bg4" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#242018"/><stop offset="1" stop-color="#141210"/>
+    </linearGradient>
+    <radialGradient id="glow4" cx="0.5" cy="0.4" r="0.7">
+      <stop offset="0" stop-color="#7fb069" stop-opacity="0.12"/><stop offset="1" stop-color="#7fb069" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="640" height="420" fill="url(#bg4)"/>
+  <rect width="640" height="420" fill="url(#glow4)"/>
+  <g fill="none" stroke="#d4a95c" stroke-width="2.5" stroke-linejoin="round" opacity="0.9">
+    <path d="M320 110 L 396 140 L 396 232 C 396 290, 362 322, 320 340 C 278 322, 244 290, 244 232 L 244 140 Z"/>
+  </g>
+  <path d="M288 232 L 312 258 L 356 202" fill="none" stroke="#7fb069" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
+  <g fill="#d4a95c" opacity="0.5">
+    <circle cx="180" cy="160" r="3"/><circle cx="464" cy="180" r="4"/><circle cx="196" cy="320" r="4"/>
+  </g>
+  <rect x="250" y="378" width="140" height="3" rx="1.5" fill="#d4a95c" opacity="0.55"/>
+</svg>

@@ -1,0 +1,91 @@
+{
+  "note": "结构化自 tools.json 中 audio 类的已核实 limits 散文——同一批事实的机器可读形态，不新增任何数字。本类与前五类的根本不同：音频是唯一一类**五家全部在官方条款里明确写了免费档产出能不能商用**的类目，而且 5 家里 3 家禁止或仅限个人。所以本类的主轴不是「能做多少」，而是「做完能不能用」——额度是次要的墙，授权才是主要的墙。commercial 分五型：no（免费档明确不可商用）/ personal_only（仅限个人用途）/ yes（明确可商用）/ yes_with_attribution（可商用但必须标注）/ unstated（官方未写）。kind 分三型：daily / monthly / weekly，按官方发放周期。conversion 只在官方自己给了折算时才填，官方没给的一律 null 并在 caveat 里说明不代算。",
+  "derived": "2026-08-13",
+  "axis_zh": "免费档做出来的音频，能不能拿去用",
+  "axis_en": "Whether you may actually use what the free tier produces",
+  "entries": [
+    {
+      "slug": "suno",
+      "kind": "daily",
+      "meter": "credits",
+      "per_day": 50,
+      "carryover": null,
+      "conversion": [
+        {
+          "cost": 50,
+          "makes_zh": "约 10 首短曲（官方口径）",
+          "makes_en": "about 10 short songs (the vendor's own wording)",
+          "songs": 10
+        }
+      ],
+      "commercial": "no",
+      "caveat_zh": "音频上传上限 1 分钟；作品可设为仅链接可见或发布到个人页。免费档作品仅限个人非商业用途、不能变现——官方帮助页专门有一页讲免费档权利，这条比每天 50 积分重要得多。另一条同样容易踩：付费订阅带来的商用权只覆盖订阅期内生成的歌，订阅期外生成的不因付过费而获得商用权。",
+      "caveat_en": "Audio uploads are capped at 1 minute; a track can be link-only or published to your profile. Free-tier output is for personal, non-commercial use and may not be monetised — the vendor devotes a whole help page to free-tier rights, and that matters far more than the 50 credits a day. A second trap: the commercial rights a subscription grants cover only songs generated while subscribed, so anything made outside that window stays non-commercial however much you later pay."
+    },
+    {
+      "slug": "elevenlabs",
+      "kind": "monthly",
+      "meter": "credits",
+      "per_month": 10000,
+      "carryover": null,
+      "conversion": [
+        {
+          "cost": 10000,
+          "makes_zh": "约 10 分钟 Multilingual v2 高质量语音合成",
+          "makes_en": "about 10 minutes of high-quality Multilingual v2 speech",
+          "minutes": 10
+        }
+      ],
+      "commercial": "no",
+      "caveat_zh": "Flash/Turbo 系按 0.5–1 credit/字符折算，能换更多分钟数。免费档没有商用权：公开发布必须注明 ElevenLabs 出处，且不能用于变现内容——这条比额度更容易踩坑。用完等下月刷新或付费升级。",
+      "caveat_en": "The Flash/Turbo models are billed at 0.5–1 credit per character, which buys more minutes. The free tier carries no commercial rights: anything published must credit ElevenLabs, and it may not be used in monetised content — an easier trap than the allowance itself. When it runs out you wait for next month or upgrade."
+    },
+    {
+      "slug": "fish-audio",
+      "kind": "monthly",
+      "meter": "credits",
+      "per_month": 8000,
+      "carryover": null,
+      "conversion": [
+        {
+          "cost": 8000,
+          "makes_zh": "约 7 分钟 S1 高质量音频（官方定价页明码每分钟约 600–625 积分）",
+          "makes_en": "about 7 minutes of high-quality S1 audio (the official pricing page puts a minute at roughly 600–625 credits)",
+          "minutes": 7
+        }
+      ],
+      "commercial": "personal_only",
+      "caveat_zh": "每月重置。另有官方博客宣布的 S2.1 Pro 免费 TTS API（合理使用范围内不限量）。与 ElevenLabs/Suno 同款陷阱：免费档仅限个人用途，YouTube/播客等商用变现需付费档拿商用权；模型本身开源，彻底可控可走本地部署。",
+      "caveat_en": "Resets monthly. The vendor's blog also announced a free S2.1 Pro TTS API, unmetered within reasonable use. Same trap as ElevenLabs and Suno: the free tier is personal-use only, and monetising on YouTube or in a podcast needs a paid plan for the commercial rights. The model itself is open source, so self-hosting is a real escape hatch."
+    },
+    {
+      "slug": "udio",
+      "kind": "daily",
+      "meter": "credits",
+      "per_day": 10,
+      "per_month_pool": 100,
+      "carryover": false,
+      "conversion": [
+        {
+          "cost": 1,
+          "makes_zh": "约 30 秒音轨；每次生成同时出 2 条，即一次耗 2 积分",
+          "makes_en": "about 30 seconds of audio; each run produces 2 tracks and therefore costs 2 credits"
+        }
+      ],
+      "commercial": "yes_with_attribution",
+      "caveat_zh": "日额度用完后可从每月 100 积分的补充池扣（官方帮助中心明码）；积分一律不结转。授权维度可商用——官方写明 Udio 不主张对你生成内容的所有权，前提是内容不含你并不拥有、也未获明确许可的受版权保护素材。真正的坑在时点：如果你创作这首歌时不是订阅者（即用免费档做的），哪怕今天已经订阅，仍必须显著标明该内容由 Udio 生成。标注义务绑定的是创作那一刻的档位，事后补订阅并不能消除它。",
+      "caveat_en": "Once the daily allowance is gone you can draw on a monthly pool of 100 credits (stated in the official help centre); credits never roll over. Commercially it is permissive — Udio states it claims no ownership of what you generate, provided the material contains no copyrighted work you neither own nor have clear permission to use. The trap is timing: if you were not a subscriber when you made the track (i.e. you made it on the free tier), you must still visibly state that the content was generated with Udio, even if you subscribe later. The attribution duty attaches to the tier you were on at creation, and subscribing afterwards does not remove it."
+    },
+    {
+      "slug": "ttsmaker",
+      "kind": "weekly",
+      "meter": "characters",
+      "per_week": 20000,
+      "carryover": null,
+      "conversion": null,
+      "commercial": "yes",
+      "caveat_zh": "部分标注「不限量」的音色不计入周额度、可无限使用。官方设有专门的商用许可条款页，明确免费生成的音频可商用、无需额外授权——本类五家里唯一一家这样写的。普通音色达到每周字符上限后需等待重置或升级 Pro；商用前建议保存官方商用许可条款页的当期版本作为凭证。",
+      "caveat_en": "Voices marked \"unlimited\" do not count against the weekly allowance and can be used without limit. The vendor maintains a dedicated commercial-licence page stating that audio generated for free may be used commercially with no further permission — the only one of these five to say so. Ordinary voices stop at the weekly character cap until it resets, or you upgrade to Pro; before relying on it commercially, keep a copy of the licence page as it stands on the day."
+    }
+  ]
+}

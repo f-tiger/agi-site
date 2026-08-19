@@ -1,0 +1,60 @@
+name: Archive key pages
+# ── 迁入公开 monorepo f-tiger/agi-site(2026-08-19,owner 决定)──
+# 原仓 .github 为历史档案。公开仓 Actions 分钟免费。
+# 本 workflow 的 run 步骤默认 working-directory: sites/thedollscout/。
+
+
+# Asks the Internet Archive's Save Page Now to snapshot the pages whose claims
+# carry dates. Two purposes, both real:
+#
+# 1. Provenance. This site's flagship assets are dated corrections ("recorded
+#    2026-07-27", "the $800 rule died in Aug 2025"). A third-party timestamp is
+#    the difference between claiming we published something first and proving
+#    it — which matters the day a bigger site lifts a finding without credit.
+# 2. Discovery surface. Archive snapshots are crawled and linked from a
+#    high-authority domain that requires nobody's permission.
+#
+# Weekly, low volume, 15s between requests — polite by SPN's published limits.
+# Failures are tolerated per-URL: SPN rate-limits opportunistically and a
+# missed week costs nothing.
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '30 7 * * 1'   # Mondays, after the weekend's content settles
+
+permissions:
+  contents: read
+
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: sites/thedollscout
+    steps:
+      - uses: actions/checkout@v4
+        with:
+
+      - name: Request snapshots
+        run: |
+          # The dated/data pages first — the ones whose "as of" claims benefit
+          # from an external timestamp. Then the tools.
+          for path in \
+            "/guides/height-weight.html" \
+            "/guides/what-a-doll-costs.html" \
+            "/guides/import-costs-2026.html" \
+            "/guides/care-cleaning.html" \
+            "/vendors/yourdoll.html" \
+            "/payment-protection.html" \
+            "/scam-check.html" \
+            "/" \
+            "/llms.txt" \
+          ; do
+            url="https://thedollscout.com${path}"
+            code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 60 \
+              "https://web.archive.org/save/${url}" || echo "err")
+            echo "SPN ${code}  ${url}"
+            sleep 15
+          done
+          echo "Done. Snapshots appear at web.archive.org/web/*/thedollscout.com"

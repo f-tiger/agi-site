@@ -1,0 +1,49 @@
+# 发布 MCP server 到官方注册表（registry.modelcontextprotocol.io）。
+# 关键解锁：io.github.f-tiger 命名空间可由本仓库的 Actions OIDC 直接认证——
+# 无需任何 owner 密钥，id-token: write 就是全部所需权限。
+# 触发：server.json 变更自动发布（版本号变了才有意义），或手动 dispatch。
+# 已知不确定点（首跑会给出答案，失败会在这里显式红灯，不静默）：
+#   remotes-only 服务器在 io.github.* 命名空间下的校验细则——若被拒，
+#   错误原文会出现在本 workflow 日志里，届时按提示补字段即可。
+name: Publish MCP server to official registry
+# ── 迁入公开 monorepo f-tiger/agi-site(2026-08-19,owner 决定)──
+# 原仓 .github 为历史档案。公开仓 Actions 分钟免费。
+# 本 workflow 的 run 步骤默认 working-directory: sites/baipiaoji/。
+
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['sites/baipiaoji/server.json', '.github/workflows/bpj-mcp-publish.yml']
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: sites/baipiaoji
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install mcp-publisher
+        run: |
+          OS=$(uname -s | tr '[:upper:]' '[:lower:]')
+          ARCH=$(uname -m); [ "$ARCH" = "x86_64" ] && ARCH=amd64; [ "$ARCH" = "aarch64" ] && ARCH=arm64
+          curl -sL "https://github.com/modelcontextprotocol/registry/releases/latest/download/mcp-publisher_${OS}_${ARCH}.tar.gz" | tar xz mcp-publisher
+          ./mcp-publisher --version
+
+      - name: Login via GitHub OIDC
+        run: ./mcp-publisher login github-oidc
+
+      - name: Publish server.json
+        run: ./mcp-publisher publish
+
+      - name: Verify listing
+        run: |
+          sleep 5
+          curl -s "https://registry.modelcontextprotocol.io/v0/servers?search=verified-ai-free-tiers" | head -c 400; echo

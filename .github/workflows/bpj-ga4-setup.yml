@@ -1,0 +1,64 @@
+# GA4 配置与体检：手动触发，在 Actions 页点一下就能验收。
+#
+# 为什么要有这个 workflow：配 GA4 的所有报错都发生在网络层（凭据、权限、API 未启用），
+# 本地跑一遍再猜一遍很浪费时间。这里直接用仓库 Secret 跑，报错原文和修法一次打印清楚。
+#
+# 用法：Actions → GA4 setup → Run workflow
+#   mode = check  只体检，不改动（默认，安全）
+#   mode = apply  自动补齐缺失的自定义维度（服务账号需要 GA4「编辑者」角色）
+name: GA4 setup
+# ── 迁入公开 monorepo f-tiger/agi-site(2026-08-19,owner 决定)──
+# 原仓 .github 为历史档案。公开仓 Actions 分钟免费。
+# 本 workflow 的 run 步骤默认 working-directory: sites/baipiaoji/。
+
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'check = 只体检；apply = 自动创建缺失的自定义维度'
+        required: true
+        default: check
+        type: choice
+        options: [check, apply]
+
+jobs:
+  ga4:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: sites/baipiaoji
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Run GA4 setup
+        id: run
+        env:
+          GA4_PROPERTY_ID: ${{ secrets.GA4_PROPERTY_ID }}
+          GA4_SERVICE_ACCOUNT_JSON: ${{ secrets.GA4_SERVICE_ACCOUNT_JSON }}
+        # 报错也要把输出留给下一步展示，所以先落盘再决定退出码
+        run: |
+          set +e
+          if [ "${{ inputs.mode }}" = "apply" ]; then
+            node scripts/ga4-setup.mjs 2>&1 | tee ga4-report.txt
+          else
+            node scripts/ga4-setup.mjs --check 2>&1 | tee ga4-report.txt
+          fi
+          echo "code=${PIPESTATUS[0]}" >> "$GITHUB_OUTPUT"
+
+      - name: Show the report
+        run: |
+          {
+            echo "## GA4 ${{ inputs.mode }} · $(date -u +%F)"
+            echo ''
+            echo '```'
+            cat ga4-report.txt
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Fail if the check failed
+        if: steps.run.outputs.code != '0'
+        run: exit 1

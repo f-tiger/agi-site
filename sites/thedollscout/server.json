@@ -1,0 +1,13 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "com.thedollscout/dollscout",
+  "description": "Recorded adult-doll specification data, UK payment-recourse rules and a first-year ownership cost model as callable tools. Answers are read from published datasets at request time and carry their recording date and stated limitations. 18+ / adult category.",
+  "version": "1.0.0",
+  "websiteUrl": "https://thedollscout.com/mcp",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://thedollscout.com/mcp"
+    }
+  ]
+}

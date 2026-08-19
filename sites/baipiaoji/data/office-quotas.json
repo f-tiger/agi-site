@@ -1,0 +1,102 @@
+{
+  "note": "结构化自 tools.json 中 office 类的已核实 limits 散文——同一批事实的机器可读形态，不新增任何数字。本类与前七类的根本不同：办公工具的墙形态最杂，10 家里几乎每家都不一样，而真正拦住人的往往不是「能用多少」，是**做完的东西能不能带走**（导出）与**额度是不是一次性的**（用完不再生）。三条只有这一类才有的形态：ProcessOn 不删你的文件、只把旧文件变只读（不是不给存，是不给改）；Gamma 的 400 credits 是一次性发放、不按月刷新，用完只能邀友或付费；腾讯 ima 的免费扩容要把知识库公开到广场——用隐私换空间。gate 分五型：export（能不能导出源文件是主要墙）/ one_time（一次性额度用完不再生）/ edit_lock（旧文件转只读）/ watermark（产出带水印）/ quota（就是普通用量墙）。kind 分四型：daily / monthly / one_time / unstated。",
+  "derived": "2026-08-15",
+  "axis_zh": "做完的东西能不能带走，额度是不是一次性的",
+  "axis_en": "Whether you can take your work out, and whether the allowance ever comes back",
+  "entries": [
+    {
+      "slug": "gamma",
+      "kind": "one_time",
+      "meter": "credits",
+      "total": 400,
+      "refills": false,
+      "gate": "one_time",
+      "referral_bonus": 200,
+      "caveat_zh": "注册即得 400 credits，一次性发放、不按月刷新。官方给的消耗量级：10 页卡片 + 5 张基础模型配图约 20–60 credits；20 页卡片 + 15 张高级模型配图约 320–1,070 credits——所以「够做几份演示」只在用基础模型时成立。用完 AI 功能锁死，靠邀请好友（官方口径每邀一人 +200 credits）或付费；已生成内容仍可编辑、演示、导出。",
+      "caveat_en": "You get 400 credits on signup — granted once, never refreshed monthly. The vendor's own consumption guide: a 10-card deck with 5 basic-model images runs about 20–60 credits, while 20 cards with 15 premium-model images runs about 320–1,070. So \"enough for a few decks\" only holds on the basic models. When they run out the AI features lock; you either invite friends (the vendor states +200 credits each) or pay. Anything already generated stays editable, presentable and exportable."
+    },
+    {
+      "slug": "wps-ai",
+      "kind": "daily",
+      "meter": "uses",
+      "per_day_approx": 10,
+      "gate": "quota",
+      "caveat_zh": "免费版每日约 10 次 AI 额度（官方文章口径「10 次左右」，故记为约数而非确数），覆盖写作、改写、总结、生成 PPT 等基础场景。当日用完即停；高级功能与更大用量需会员或 AI 权益包。官方注明额度会随版本调整，以客户端当前展示为准。",
+      "caveat_en": "The free tier carries roughly 10 AI uses a day — the vendor's own wording is \"about 10\", so it is recorded as approximate rather than exact — covering writing, rewriting, summarising and deck generation. When the day's allowance is gone it stops; advanced features and higher volume need a WPS membership or an AI pack. The vendor notes the allowance changes between versions, with the client's current display governing."
+    },
+    {
+      "slug": "feishu-miaoji",
+      "kind": "monthly",
+      "meter": "minutes",
+      "per_month": 300,
+      "gate": "quota",
+      "caveat_zh": "基础版每个自然月、每位用户可累计 300 分钟语音转文字（覆盖会议录制、录音、本地文件上传、云文件导入四个场景），每月 1 号恢复。会中字幕不占这份额度。用完后会议录制仍可继续，只是新生成的妙记不再提供文字记录——功能不断，少的是转写。商业版/企业版转写不限额，但受企业存储空间约束。",
+      "caveat_en": "The base tier gives each user 300 minutes of speech-to-text per calendar month across four scenarios — meeting recording, audio recording, local file upload and cloud file import — resetting on the 1st. Live captions during a meeting do not draw on it. Once spent, recording still works; what stops is the transcript on newly created notes. Business and enterprise tiers transcribe without a cap, bounded instead by the organisation's storage."
+    },
+    {
+      "slug": "aippt",
+      "kind": "monthly",
+      "meter": "mixed",
+      "storage_mb": 600,
+      "images_per_month": 150,
+      "assistant_per_day": 1000,
+      "gate": "export",
+      "caveat_zh": "免费档三条官方明码：600MB 文件存储、每月 150 次 AI 生图、每天 1000 次 AI 助手调用。但两道墙比额度更容易挡住人：免费档不支持直接下载 .ppt/.pptx 源文件（需在编辑器内导出，官方称通常 2 分钟内完成）；官方另声明生成 PPT、AI 生图、创意助手与模板下载时可能遇到频率限制——频率限制没有公开数值，实际能跑多快只能自己试。",
+      "caveat_en": "Three published figures on the free tier: 600MB of file storage, 150 AI image generations a month and 1,000 AI-assistant calls a day. But two walls stop people sooner than any allowance: the free tier cannot download .ppt/.pptx source files directly (you export from inside the editor, which the vendor says usually takes under two minutes), and the vendor separately warns that deck generation, image generation, the creative assistant and template downloads may hit rate limits — limits with no published number, so how fast you can actually work is something you discover by trying."
+    },
+    {
+      "slug": "notion-ai",
+      "kind": "unstated",
+      "meter": "responses",
+      "gate": "quota",
+      "retry_counts_as_use": true,
+      "caveat_zh": "免费与 Plus 工作区可获一份「体验用」AI 回复额度（官方帮助中心专页），但具体条数官方未在当前页面公布——网上流传的「每人 20 次」出自 2023 年已结束的活动，不采信。计数方式要留意：每次 AI 动作（生成、改写、AI 区块、自动填充属性、提问等）算一次，点「重试」也另算一次——所以体验额度比想象中消耗得快。用完即需加购（官方 $10/人/月，年付约 8 折）。",
+      "caveat_en": "Free and Plus workspaces get a complimentary allowance of AI responses (the vendor has a help-centre page for it), but the current page publishes no count — the \"20 per person\" figure circulating online comes from a 2023 promotion that has ended and is not accepted here. Watch how it counts: every AI action (generate, rewrite, AI block, autofill property, ask a question) is one response, and hitting retry counts as another — so a trial allowance drains faster than expected. After that it is a paid add-on at $10 per member per month, about 20% less annually."
+    },
+    {
+      "slug": "processon",
+      "kind": "unstated",
+      "meter": "files",
+      "editable_files": 9,
+      "gate": "edit_lock",
+      "caveat_zh": "免费账号可编辑的文件数为 9 个（按最近使用计）；超出的旧文件仍可查看与下载，但不能继续编辑。墙的形态在本类里最特别：不是不给你存，是不给你改——文件不会被删，只是老文件变成只读。想继续编辑要么升级会员，要么把不用的文件导出后清理，让它退出「最近 9 个」。",
+      "caveat_en": "A free account can edit 9 files, counted by most-recently-used; older files beyond that stay viewable and downloadable but can no longer be edited. The shape of this wall is unusual: nothing is deleted, it is edits that stop — old files simply go read-only. To keep editing you either upgrade or export and clear what you no longer need so it drops out of the most-recent nine."
+    },
+    {
+      "slug": "napkin",
+      "kind": "unstated",
+      "meter": "credits",
+      "gate": "watermark",
+      "caveat_zh": "免费档面向个人与小团队：核心功能可用，AI 生成积分有限（官方未公布具体数额，第三方数字不采信），导出选项为基础档。真正的墙是水印：免费用户生成的图示带水印，升级任一付费档即全部去除；积分与自定义上限也随付费档提升。年付较月付省 25%。",
+      "caveat_en": "The free tier targets individuals and small teams: core features work, AI generation credits are limited (the vendor publishes no number and third-party figures are not accepted), and export options are basic. The real wall is the watermark: visuals generated on the free tier carry one, and any paid tier removes it, while credits and customisation ceilings rise with the plan. Annual billing saves 25% over monthly."
+    },
+    {
+      "slug": "gezhe",
+      "kind": "unstated",
+      "meter": "uses",
+      "gate": "export",
+      "export_source_free": true,
+      "caveat_zh": "官方公告口径：永久免费生成 PPT，且可免费下载 PPTX 源文件——这一条正是 AiPPT 免费档做不到的（后者只能导 PDF 或在编辑器内导出）。功能含任意话题一键生成、导入资料转 PPT、PPT 智能翻译。官方未公布免费档的次数或频率上限，因此不写数字；会员版覆盖各能力的更高档位，差异以官网当期展示为准。",
+      "caveat_en": "Per the vendor's own announcement, deck generation is free permanently and the PPTX source file can be downloaded for free — precisely what AiPPT's free tier cannot do (there you get PDF or an in-editor export). Features include one-click generation from any topic, converting source material into a deck, and deck translation. No count or rate cap is published for the free tier, so no number is recorded here; the paid tier raises the ceilings, with the current site governing."
+    },
+    {
+      "slug": "ima",
+      "kind": "unstated",
+      "meter": "storage",
+      "storage_gb": 1,
+      "referral_max_gb": 100,
+      "gate": "quota",
+      "caveat_zh": "免费提供 1GB 个人云存储（官方口径约可存 200 份标准论文）。三条免费扩容路径：把知识库发布到「知识库广场」共享可获免费无限扩容且不占个人空间；广场里别人的内容同样不占你的空间；通过邀请新用户与活动 CDkey 累计最高可得 100GB。个人私有空间的 1GB 是硬上限，想突破基本要走公开共享这条路——也就是用隐私换空间。另 ima 正在商业化探索，已推出算力付费与知识库付费加入机制，免费权益可能随之调整。",
+      "caveat_en": "1GB of personal cloud storage is free — the vendor puts that at roughly 200 standard papers. Three routes expand it without paying: publishing a knowledge base to the public square grants unlimited free expansion that does not count against your personal space; other people's content in the square likewise costs you nothing; and invites plus event CD-keys can accumulate up to 100GB. The 1GB of private space is a hard ceiling, and the main way past it is publishing — trading privacy for space. Note too that ima is actively commercialising, with paid compute and paid knowledge-base access already launched, so free entitlements may shift."
+    },
+    {
+      "slug": "xinghuo",
+      "kind": "unstated",
+      "meter": "unstated",
+      "gate": "quota",
+      "vendor_reserves_change": true,
+      "caveat_zh": "开发者侧默认免费版含一定免费资源、可按需升级，但官方用户协议明确写着：免费套餐的规则、可免费使用的产品与配置会随业务需求随时调整，不同时期的用户可能拿到不同规格，部分产品限量领取。因此本站不写具体数额——不是查不到，是官方明说它会变。另有一条要留意的条款：对恶意刷抢免费资源（如创建多账号）的用户，平台有权收回免费套餐使用资格。对话端网页/App 免费使用，具体限制官方文档未明示。",
+      "caveat_en": "On the developer side the default free plan carries some free resources and can be upgraded, but the vendor's own user agreement states plainly that the rules, the products included and their configurations are adjusted at any time as the business requires, that users onboarded at different times may receive different specifications, and that some products are limited-quantity. So no figure is recorded here — not because none could be found, but because the vendor says outright that it changes. One clause is worth knowing: the platform reserves the right to withdraw free-plan eligibility from users who abuse free resources, such as by creating multiple accounts. The consumer chat app is free, with limits unstated in official documentation."
+    }
+  ]
+}

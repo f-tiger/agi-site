@@ -1,0 +1,52 @@
+# IndexNow 发现面回填——手动触发，独立于每日流水线。
+#
+# 为什么单独开一个 workflow（CLAUDE.md 要求新增前先算账）：
+#   起因是 Bing Site Explorer 显示它只知道本站 1474 个 URL 里的 160 个。
+#   回填开关原本挂在 daily-update.yml 的 workflow_dispatch 上，但那条流水线一跑
+#   就是整条：逐个巡检 218 个工具链接、发现新工具、构建、部署、十几项自检——
+#   实测卡在链接巡检那一步就超过 10 分钟。为了推一次 IndexNow 付这个代价，
+#   与「不为确定无效的步骤付费」是同一类浪费。
+#
+# 算账：本工作流只 checkout + setup-node + 跑一个脚本，**无构建、无部署、无巡检**，
+#   预计 <30 秒/次；且**只有 workflow_dispatch，没有 schedule**，不触发即零成本。
+#   对比：走 daily-update 回填一次 ≈ 10 分钟。省约 20 倍。
+#
+# 2026-08-17 更正：初版注释写「sitemap 取自线上、不需要构建」——那是我没核实的
+# 假设，实际 indexnow.mjs 读的是本地 dist/sitemap.xml，首跑直接 ENOENT。
+# 已补构建步骤：构建本身约 1 秒，daily-update 慢的是逐个巡检 218 个工具链接，
+# 不是构建——所以拆出来省钱这件事仍然成立，只是不能省掉 build。
+name: IndexNow backfill (manual)
+# ── 迁入公开 monorepo f-tiger/agi-site(2026-08-19,owner 决定)──
+# 原仓 .github 为历史档案。公开仓 Actions 分钟免费。
+# 本 workflow 的 run 步骤默认 working-directory: sites/baipiaoji/。
+
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: indexnow-backfill
+  cancel-in-progress: true
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: sites/baipiaoji
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      # indexnow.mjs 的 URL 清单来自 dist/sitemap.xml，所以必须先构建。
+      # 只构建、不部署、不巡检、不自检——这才是与 daily-update 的差别所在。
+      - name: Build (sitemap only — no deploy, no link checks)
+        run: node scripts/build.mjs
+
+      - name: Submit every URL to IndexNow
+        run: node scripts/indexnow.mjs --all

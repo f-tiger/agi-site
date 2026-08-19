@@ -1,0 +1,93 @@
+{
+  "note": "结构化自 tools.json 中 coding 类的已核实 limits 散文——同一批事实的机器可读形态，不新增任何数字。每条 slug 指回工具条目，来源与核实日期以该条目为准。kind 分六型：monthly（按月刷新）/ daily（按日刷新，可能另有月封顶）/ trial（限时试用后降档）/ byo_model（工具本身免费无额度，成本在模型侧）/ rate_tiered（按模型分档限流）/ unstated（官方未公布数额）。meter 说明「扣的是什么」——补全次数、对话/Agent 请求、Credits 还是 tokens，这是选编程助手时真正决定体验的维度。",
+  "derived": "2026-08-11",
+  "entries": [
+    { "slug": "github-copilot", "kind": "monthly", "meter": "mixed",
+      "completions_per_month": 2000, "chat_per_month": 50, "carryover": false,
+      "caveat_zh": "补全与对话分开计量：2,000 次补全 + 50 次对话请求（含 Edits，按高级请求计）；月初重置、不结转。学生与知名开源维护者可免费拿 Pro",
+      "caveat_en": "Completions and chat are metered separately: 2,000 completions + 50 chat requests (Edits count as premium requests); resets monthly, no carryover. Students and notable OSS maintainers get Pro free" },
+
+    { "slug": "tongyi-lingma", "kind": "monthly", "meter": "credits",
+      "credits_per_month": 2000, "carryover": false, "free_floor_zh": "基础补全与问答不计费", "free_floor_en": "Basic completion and Q&A are never metered",
+      "caveat_zh": "2026-05-20 更名 Qoder CN。社区版免费且基础补全问答明确不计费——Credits 只在 Repowiki/Quest/Subagent/多文件生成等高级能力上消耗；个人专业版免费试用已于 2026 年 5 月结束，存量用户自动转社区版",
+      "caveat_en": "Renamed Qoder CN on 2026-05-20. The community edition is free and its basic completion and Q&A are explicitly unmetered — credits burn only on advanced features (Repowiki, Quest, Subagent, multi-file generation); the personal-pro free trial ended in May 2026 and existing users rolled back to community" },
+
+    { "slug": "trae", "kind": "monthly", "meter": "completions",
+      "completions_per_month": 5000, "concurrent_tasks": 2,
+      "caveat_zh": "数字仅适用于国际版（trae.ai）：每月 5,000 次补全 + 最多 2 个并发云任务；国内版（trae.com.cn）是独立 SKU，本条不适用",
+      "caveat_en": "These figures cover the international build (trae.ai) only: 5,000 completions/month plus at most 2 concurrent cloud tasks; the mainland build (trae.com.cn) is a separate SKU this row does not describe" },
+
+    { "slug": "windsurf", "kind": "monthly", "meter": "credits",
+      "credits_per_month": 25, "free_floor_zh": "Tab 补全免费使用", "free_floor_en": "Tab completion stays free",
+      "caveat_zh": "每月 25 个 prompt credits 只管 Cascade/Agent 类功能，Tab 补全不受影响；已并入 Cognition（Devin）体系，官方页面现以 Devin 品牌展示；可按 $10/250 credits 加购",
+      "caveat_en": "The 25 monthly prompt credits gate Cascade/Agent features only — Tab completion is unaffected; now part of Cognition (Devin), so official pages carry Devin branding; top-ups run $10 per 250 credits" },
+
+    { "slug": "gemini-cli", "kind": "daily", "meter": "requests",
+      "requests_per_day": 1000, "requests_per_min": 60,
+      "caveat_zh": "两个极易误读的官方口径：这 1,000 次是 Pro 与 Flash 混合计的，不等于 1,000 次 Pro 请求；且一次提问可能触发几十次模型请求——「1,000 次」不是 1,000 轮对话。改用 API Key 认证适用另一套额度，两者不能换算",
+      "caveat_en": "Two officially-stated points that are widely misread: the 1,000 covers Pro and Flash combined, so it is not 1,000 Pro requests; and a single question can fire dozens of model requests — 1,000 is not 1,000 conversation turns. API-key auth follows a different quota that cannot be converted to this one" },
+
+    { "slug": "bolt", "kind": "daily", "meter": "tokens",
+      "tokens_per_day": 300000, "tokens_per_month": 1000000,
+      "caveat_zh": "双重上限，两道墙谁先到算谁：每天 30 万 tokens、每月 100 万 tokens；网上流传的「每天 15 万」是旧口径。生成中断时项目仍保留可手动续做",
+      "caveat_en": "Two ceilings, whichever hits first: 300K tokens/day and 1M tokens/month; the widely-quoted \"150K/day\" is stale. If a generation is cut off the project is preserved and can be continued by hand" },
+
+    { "slug": "lovable", "kind": "daily", "meter": "credits",
+      "credits_per_day": 5, "credits_per_month": 30,
+      "caveat_zh": "攻略普遍漏掉的机制：每天发 5 个 build credits，但每自然月封顶 30 个——实际等于每月只有前 6 天有发放，之后当月归零；另送 4 个应用内 AI 功能试用 credits",
+      "caveat_en": "The mechanic most guides miss: 5 build credits land daily but the natural month caps at 30 — in practice only the first six days of each month grant anything, then it's dry until the next month; 4 in-app AI trial credits come on top" },
+
+    { "slug": "github-models", "kind": "rate_tiered", "meter": "requests",
+      "requests_per_day_low": 150, "requests_per_day_high": 50,
+      "caveat_zh": "按模型分档限流，四个维度同时管（RPM/RPD/单次 tokens/并发）：常被引用的典型档位是低档模型约 150 次/天、高档约 50 次/天，各模型实时限额以官方 rate limits 表为准。定位是原型试验，不是生产额度",
+      "caveat_en": "Rate limits are per model tier across four dimensions at once (RPM/RPD/tokens per call/concurrency): the widely-cited tiers are ≈150 requests/day for lower-tier models and ≈50/day for higher-tier ones, with the official rate-limits table authoritative per model. It is positioned for prototyping, not production" },
+
+    { "slug": "qoder", "kind": "trial", "meter": "credits",
+      "trial_days": 14, "trial_credits": 1000,
+      "caveat_zh": "两周试用含 1000 Credits、不限量补全、Next Edits、Quest 与 Repo Wiki；试用结束后的正式免费档额度官方未公布，本站不写没锚点的数",
+      "caveat_en": "The two-week trial bundles 1,000 credits, unlimited completions, Next Edits, Quest and Repo Wiki; what the standing free tier grants after the trial is not published officially, so we state no figure" },
+
+    { "slug": "codebuddy", "kind": "trial", "meter": "credits",
+      "trial_days": 14, "trial_credits": 500, "trial_credits_per_day": 50,
+      "caveat_zh": "两周 Pro 试用：500 Credits + 每日 50 Credits（零点重置）；试用后的正式免费档额度官方未公布数字",
+      "caveat_en": "A two-week Pro trial: 500 credits plus 50 credits a day (resetting at midnight); the standing free tier's allowance after the trial is not published officially" },
+
+    { "slug": "cline", "kind": "byo_model",
+      "caveat_zh": "扩展开源、对个人开发者完全免费，无订阅无速率限制、对推理不加价，代码在本机跑、用你自己的 Key；新用户另有一份免费额度（官方称无需绑卡，数额未在可核实引文中给出）。花费全在模型侧——配上站内 api 类的免费额度（如 Groq、Cloudflare Workers AI）整条链路可以 0 元",
+      "caveat_en": "The extension is open source and free for individual developers — no subscription, no rate limit, no inference markup, running locally on your own key; new users also get a free credit grant (officially no card required, amount not stated in verifiable quotes). All cost sits on the model side, so pairing it with a verified free API from our api category (Groq, Cloudflare Workers AI) keeps the whole chain at zero" },
+
+    { "slug": "continue", "kind": "byo_model",
+      "caveat_zh": "Apache 2.0 开源（仓库 LICENSE 可查），插件与 CLI 全免费、无额度概念，可接任意模型供应商或自托管开源模型。2026-08-04 复核新增：官方资源页提到 Continue 已于 2026 年 6 月被 Cursor 收购——不改变今天的开源与免费性，但影响「值不值得长期依赖」的判断",
+      "caveat_en": "Apache 2.0 (checkable in the repo LICENSE); the extensions and CLI are entirely free with no quota concept, and work against any provider or a self-hosted open model. Added at the 2026-08-04 recheck: the official resources page notes Cursor acquired Continue in June 2026 — which changes nothing about today's licence or price, but does bear on whether to depend on it long-term" },
+
+    { "slug": "aider", "kind": "byo_model",
+      "caveat_zh": "Apache 2.0 开源、PyPI 分发，工具本身无额度；BYO-LLM：自带 Key 或指向本地 Ollama / LM Studio / 任意 OpenAI 兼容端点，跑本地模型时零成本。官方文档有一条重要提醒：aider 与能力较弱的模型配合效果不佳——「用免费小模型白嫖」这条路有下限",
+      "caveat_en": "Apache 2.0, distributed on PyPI, with no quota in the tool itself; BYO-LLM against your own key or a local Ollama / LM Studio / any OpenAI-compatible endpoint, which costs nothing when the model is local. One official caveat matters: aider works poorly with weaker models — so \"just use a free small model\" has a floor" },
+
+    { "slug": "marscode", "kind": "merged",
+      "merged_into": "trae",
+      "caveat_zh": "产品线已合并：豆包 MarsCode 编程助手于 2025 年升级为「Trae 插件」，原网站并入 Trae 入口、账号互通（字节官方公告）；独立权益不再单独演进，额度以 Trae 条目为准",
+      "caveat_en": "The product line was folded in: the Doubao MarsCode assistant became the \"Trae plugin\" in 2025, its site now routes to Trae and accounts are shared (per ByteDance's official notice); it no longer evolves separately, so the Trae row governs the allowance" },
+
+    { "slug": "cursor", "kind": "unstated", "meter": "mixed",
+      "caveat_zh": "Hobby 免费档存在且无需绑卡（Agent、Chat、Tab 补全均可用，Auto 模型），但官方口径只说「有限的 Agent 请求与补全」、现行页面不公布数字；流传的「2,000 补全 + 50 次请求」出自旧版定价结构，已过时不予采信。余量以账户设置页显示为准",
+      "caveat_en": "The Hobby free tier exists and needs no card (Agent, Chat and Tab completion on the Auto model), but the official wording is only \"limited agent requests and completions\" and current pages publish no figure; the circulating \"2,000 completions + 50 requests\" comes from an older pricing structure and is rejected as stale. Your account settings page is the live source of truth" },
+
+    { "slug": "comate", "kind": "unstated", "meter": "credits",
+      "degrades_not_stops": true,
+      "caveat_zh": "墙是「降级」不是「断供」：轻量模型不限量，智能体请求按 token 计额度、用尽后自动切回轻量模型继续可用；个人免费版的智能体额度数值官方未在可核实页面明示，因此不写数字",
+      "caveat_en": "The wall downgrades rather than cuts you off: the lightweight model is unmetered, agent requests burn a token-based allowance, and when it runs out you fall back to the lightweight model and keep working; the personal free tier's agent allowance is not stated on any verifiable official page, so we publish no figure" },
+
+    { "slug": "replit", "kind": "unstated", "meter": "credits",
+      "caveat_zh": "Starter 免费档的 Agent 用量为每日发放、月度封顶（官方明示机制、数额未公布，第三方口径不采信）。最大的坑不是额度：免费发布的应用 30 天后链接自动下线——拿它做长期在线的作品集或客户 demo 会翻车",
+      "caveat_en": "The Starter tier's agent usage is granted daily under a monthly cap (the mechanism is official; the figures are not, and third-party numbers are rejected). The real trap isn't the allowance: apps published for free go offline after 30 days — which breaks any portfolio or client demo meant to stay up" },
+
+    { "slug": "devv", "kind": "unstated", "meter": "credits",
+      "caveat_zh": "免费档按月发放积分（官方确认月度额度与积分制，具体数额未在可核实引文中明示，不猜测）；积分主要被编程智能体消耗，订阅内月度积分当期未用完会过期，一次性加购的积分包则不过期",
+      "caveat_en": "The free tier grants credits monthly (the monthly-quota mechanism is official; the amount is not stated in verifiable quotes and we don't guess); coding agents are what burn them, subscription credits expire at period end, while one-off credit packs do not" },
+
+    { "slug": "v0", "kind": "unstated", "meter": "tokens",
+      "caveat_zh": "计量方式已改：现按 tokens 折算 credits（官方博客明示新定价，并称新制下免费档可用量比旧制更多）；旧口径「每天 7 条消息」已被取代，攻略再引用即过时。免费 credits 具体数额以账户页实时显示为准",
+      "caveat_en": "The meter changed: usage now converts tokens into credits (the official blog states the new pricing and says the free tier stretches further under it); the old \"7 messages a day\" line has been superseded and any guide still quoting it is stale. The live free-credit figure lives on your account page" }
+  ]
+}

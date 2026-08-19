@@ -1,0 +1,109 @@
+{
+  "note": "流水线只定义『环节与候选工具』，不放任何数字——所有额度与换算一律从 data/*-quotas.json 读取（PRD-video-pipeline 第六节的硬规矩）。这样做的理由：数字在这里重抄一遍，就等于绕开了 quota-facts 门禁的检查范围。",
+  "derived": "2026-08-18",
+  "video": {
+    "title_zh": "零成本短视频流水线",
+    "title_en": "The zero-cost short-video pipeline",
+    "claim_zh": "一条全免费短视频流水线的月产能，不取决于最强的那个工具，取决于最稀缺的那一环。",
+    "claim_en": "The monthly output of an all-free short-video pipeline is not set by the best tool in it — it is set by the scarcest link.",
+    "stages": [
+      {
+        "key": "script",
+        "from": "chat",
+        "unit": "none",
+        "zh": "脚本",
+        "en": "Script",
+        "role_zh": "把选题写成分镜脚本。这一环几乎不设量的墙——对话类十家里绝大多数根本不公布条数上限，墙在别处（上下文长度、滚动窗口）。所以它基本不会是你的瓶颈。",
+        "role_en": "Turn the idea into a shot-by-shot script. This link is almost never metered by volume — most of the ten chat vendors publish no message cap at all, and their walls sit elsewhere (context length, rolling windows). It will rarely be your bottleneck.",
+        "tools": [
+          "deepseek",
+          "kimi",
+          "doubao",
+          "chatgpt",
+          "claude",
+          "gemini",
+          "tongyi"
+        ]
+      },
+      {
+        "key": "still",
+        "from": "image",
+        "unit": "images",
+        "zh": "分镜图",
+        "en": "Storyboard stills",
+        "role_zh": "先出静帧再去图生视频，比直接文生视频稳得多——而且静帧这一环额度最松，是整条链路里最不该省的地方。",
+        "role_en": "Generate stills first and animate them, rather than going straight from text to video: it is far more controllable, and this is the loosest link in the chain, so it is the last place worth economising.",
+        "tools": [
+          "jimeng",
+          "liblib",
+          "ideogram",
+          "wujie",
+          "recraft",
+          "leonardo"
+        ]
+      },
+      {
+        "key": "gen",
+        "from": "video",
+        "unit": "clips",
+        "zh": "生视频",
+        "en": "Video generation",
+        "role_zh": "把静帧变成会动的片段。这一环是全行业最不让你算的一环——多数厂商只给积分不给换算，或只给换算不给总量。",
+        "role_en": "Turn stills into moving clips. This is the link the industry is least willing to let you compute: most vendors give credits without a conversion rate, or a rate without a total.",
+        "tools": [
+          "kling",
+          "hailuo",
+          "pixverse",
+          "google-flow",
+          "runway",
+          "haiper",
+          "vidu",
+          "qingying",
+          "luma",
+          "pika",
+          "heygen"
+        ]
+      },
+      {
+        "key": "voice",
+        "from": "audio",
+        "unit": "minutes",
+        "zh": "配音",
+        "en": "Voiceover",
+        "role_zh": "配音额度按分钟或字符发放，算起来最干脆。也正因为算得出来，它常常才是真正卡住整条线的那一环——这跟「瓶颈一定在生视频」的直觉相反。",
+        "role_en": "Voice allowances come in minutes or characters, which makes this the easiest link to compute — and precisely because it can be computed, it often turns out to be the one that actually caps the line, against the intuition that video generation must be the bottleneck.",
+        "tools": [
+          "elevenlabs",
+          "fish-audio",
+          "ttsmaker"
+        ]
+      },
+      {
+        "key": "post",
+        "from": "video",
+        "unit": "minutes",
+        "zh": "剪辑与字幕",
+        "en": "Editing and captions",
+        "role_zh": "自动剪辑与加字幕。这一环按「处理时长」计费，跟你出多少条无关，跟你的片子多长有关。",
+        "role_en": "Automatic cutting and captioning. This link is metered by minutes of footage processed, so it scales with how long your videos are, not how many you make.",
+        "tools": [
+          "opusclip",
+          "d-id"
+        ]
+      },
+      {
+        "key": "music",
+        "from": "audio",
+        "unit": "songs",
+        "zh": "配乐（可选）",
+        "en": "Music (optional)",
+        "role_zh": "背景音乐。可选环——用免费素材库也行；但要注意 Suno 免费档不可商用，这条墙比额度硬。",
+        "role_en": "Background music. Optional — a free stock library also works. Note that Suno's free tier is not licensed for commercial use, a wall harder than any quota.",
+        "tools": [
+          "suno",
+          "udio"
+        ]
+      }
+    ]
+  }
+}

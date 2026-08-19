@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MCP Endpoint: Call These Tools From Your AI Assistant</title>
+<meta name="description" content="Four tools an AI assistant can call directly: recorded doll weights by height, UK Section 75 and chargeback recourse, first-year cost, and price bands. Every answer read from the published data.">
+<link rel="canonical" href="https://thedollscout.com/mcp">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DollScout">
+<meta property="og:url" content="https://thedollscout.com/mcp">
+<meta property="og:title" content="Call our tools from your AI assistant">
+<meta property="og:description" content="An MCP endpoint over the same published data — weights, payment recourse, first-year cost. Answers carry their recording date and limitations.">
+<link rel="stylesheet" href="/css/main.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {"@type": "Organization", "@id": "https://thedollscout.com/#org", "name": "DollScout", "url": "https://thedollscout.com/"},
+    {
+      "@type": "WebAPI",
+      "name": "DollScout MCP endpoint",
+      "description": "Model Context Protocol server exposing recorded doll specification data, UK payment-recourse rules and a first-year cost model as callable tools. Every answer is read from the published datasets at request time and carries their recording date and limitations.",
+      "documentation": "https://thedollscout.com/mcp",
+      "endpointUrl": "https://thedollscout.com/mcp",
+      "provider": {"@id": "https://thedollscout.com/#org"},
+      "termsOfService": "https://thedollscout.com/trust"
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="notice-bar">🛡️ <b>Evidence-standard buyer's guide.</b> Every number sourced — or marked unverified. We sell nothing ourselves. 18+ only.</div>
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="/">Doll<b>Scout</b></a>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+    <nav class="nav">
+      <a href="/quiz">60-Sec Finder</a>
+      <a href="/scam-check">Scam-Check</a>
+      <a href="/cost-calculator">True Cost</a>
+      <a href="/after-you-order">After You Order</a>
+      <a href="/weight/">Weight</a>
+      <a href="/importing/">Importing</a>
+      <a href="/guides/">Guides</a>
+      <a href="/picks">Vetted Picks</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+<section>
+<div class="wrap prose">
+
+<h1>Call these tools from your AI assistant</h1>
+
+<p class="lede">We already publish the data and the rules. This makes them
+callable: an assistant can ask with your numbers and get the same answer this
+site would give, including the parts we could not verify.</p>
+
+<p><strong>Endpoint:</strong> <code>https://thedollscout.com/mcp</code> —
+Model Context Protocol over streamable HTTP. No key, no account, no rate limit
+worth documenting. <a href="/mcp">Open it in a browser</a> to see the tool list.</p>
+
+<h2>The six tools</h2>
+
+<table>
+  <thead><tr><th>Tool</th><th>Answers</th></tr></thead>
+  <tbody>
+    <tr><th scope="row"><code>doll_weight_by_height</code></th><td>What dolls of a given height actually weigh, from recorded listings — the specification listings routinely omit.</td></tr>
+    <tr><th scope="row"><code>payment_recourse</code></th><td>Whether UK Section 75 appears to apply and whether a chargeback is available, by payment method and price.</td></tr>
+    <tr><th scope="row"><code>first_year_cost</code></th><td>What a doll costs in year one beyond the sticker: import charge, care, storage, repair reserve.</td></tr>
+    <tr><th scope="row"><code>doll_price_bands</code></th><td>Recorded floor, median and top — for judging whether an advertised price is plausible.</td></tr>
+    <tr><th scope="row"><code>scam_check_signals</code></th><td>The ten checks to run against an unfamiliar shop before entering a card number.</td></tr>
+    <tr><th scope="row"><code>import_rules</code></th><td>Legal status, duty and customs for importing into a given country, with that country's sources.</td></tr>
+  </tbody>
+</table>
+
+<h2>What makes this different from an API over a spreadsheet</h2>
+
+<p><strong>No rule is reimplemented in the endpoint.</strong> Every answer is
+read from the published JSON at request time — the same files behind
+<a href="/data/">the dataset</a>, <a href="/payment-protection">the
+recourse matrix</a> and <a href="/cost-calculator">the cost model</a>. If
+those change, the endpoint changes with them, or it stops answering. It cannot
+quietly disagree with the pages, because there is no second copy of the rules
+to drift.</p>
+
+<p><strong>Every answer carries its caveats.</strong> The recording date, the
+dataset's stated limitations, the open questions. A tool that returns a bare
+number strips exactly the context a careful page spent paragraphs
+establishing, and the caller has no way to know what was dropped.</p>
+
+<p><strong>It refuses.</strong> Ask about a height we have no listings for and
+it says so and lists the heights it does have. Ask about Section 75 outside
+the UK and it returns "not verified" — never a clean "no", because that would
+be a claim about your country's law that we have not checked.</p>
+
+<h2>Adding it to a client</h2>
+
+<pre><code>{
+  "mcpServers": {
+    "dollscout": {
+      "type": "http",
+      "url": "https://thedollscout.com/mcp"
+    }
+  }
+}</code></pre>
+
+<p class="meta">This site earns affiliate commissions from vetted vendors, which
+is disclosed on every page that carries such a link. <strong>The MCP endpoint
+contains no affiliate links and no vendor ranking</strong> — it returns
+measurements and rules. Data is CC BY 4.0; the
+<a href="/trust">methodology</a> explains how it was collected and what it
+does not cover.</p>
+
+</div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p class="disclosure">
+      <strong>18+ only.</strong> Adult products for adults; we exclusively feature products depicting adults.
+      <strong>Affiliate disclosure:</strong> DollScout earns disclosed referral commissions from vetted vendors linked on this site. Commissions never change rankings or the data above.
+      · <a href="/trust">Methodology</a> · <a href="/legal/affiliate-disclosure">Disclosure</a> · <a href="/legal/privacy">Privacy</a> · © <span id="year"></span> DollScout
+    </p>
+  </div>
+</footer>
+
+<script src="/js/config.js"></script>
+<script src="/js/analytics.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js" defer></script>
+</body>
+</html>

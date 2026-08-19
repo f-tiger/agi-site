@@ -1,0 +1,58 @@
+name: Site health check & weekly re-index
+# ── 迁入公开 monorepo f-tiger/agi-site(2026-08-19,owner 决定)──
+# 原仓 .github 为历史档案。公开仓 Actions 分钟免费。
+# 本 workflow 的 run 步骤默认 working-directory: sites/getecoback/。
+
+
+on:
+  schedule:
+     # 每天 05:00 UTC 健康检查（欧洲清晨，流量低谷）
+     - cron: "0 5 * * *"
+  workflow_dispatch: {}
+
+jobs:
+  healthcheck:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: sites/getecoback
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check key pages return 200 and contain affiliate tag
+        run: |
+          set -e
+          fail=0
+          check() {
+            url="$1"; must_contain="$2"
+            body=$(curl -sL --max-time 20 -w "\n%{http_code}" "$url" || echo -e "\n000")
+            code=$(echo "$body" | tail -1)
+            if [ "$code" != "200" ]; then
+              echo "::error::$url returned HTTP $code"
+              fail=1
+            elif [ -n "$must_contain" ] && ! echo "$body" | grep -q "$must_contain"; then
+              echo "::error::$url is 200 but missing expected content: $must_contain"
+              fail=1
+            else
+              echo "OK $url ($code)"
+            fi
+          }
+          check "https://getecoback.com/" "tag=getecoback-21"
+          check "https://getecoback.com/sitemap.xml" "<urlset"
+          check "https://getecoback.com/guide/beste-tragbare-klimaanlage-hitzewelle.html" "tag=getecoback-21"
+          check "https://getecoback.com/en/" "tag=getecoback-21"
+          check "https://getecoback.com/dc2860e32f47689a11c7bc07a21f6ffb.txt" "dc2860e32f47689a11c7bc07a21f6ffb"
+          exit $fail
+
+      - name: Weekly IndexNow re-ping (Mondays only)
+        if: always()
+        run: |
+          if [ "$(date -u +%u)" != "1" ]; then
+            echo "Not Monday — skipping weekly re-ping."
+            exit 0
+          fi
+          URLS=$(grep -o '<loc>[^<]*</loc>' site/sitemap.xml | sed 's|</\?loc>||g' | python3 -c "import sys,json; print(json.dumps([l.strip() for l in sys.stdin if l.strip()]))")
+          curl -s -X POST "https://api.indexnow.org/indexnow" \
+            -H "Content-Type: application/json; charset=utf-8" \
+            -d "{\"host\":\"getecoback.com\",\"key\":\"dc2860e32f47689a11c7bc07a21f6ffb\",\"keyLocation\":\"https://getecoback.com/dc2860e32f47689a11c7bc07a21f6ffb.txt\",\"urlList\":${URLS}}" \
+            -w "\nIndexNow HTTP status: %{http_code}\n" || true

@@ -1,0 +1,11 @@
+{
+  "name": "EcoBack – Kühlen, Heizen & Energie sparen",
+  "short_name": "EcoBack",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#f7fafc",
+  "theme_color": "#0a4d7a",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}

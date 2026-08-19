@@ -1,0 +1,10 @@
+# Cloudflare Pages 配置：CI 从仓库根目录执行 `wrangler pages deploy dist`，
+# 本文件为部署挂上 D1 绑定，functions/ 目录随之生效（文件路由，静态站不受影响）。
+name = "aiyangmao"
+pages_build_output_dir = "dist"
+
+# 第一方访问统计（零外部账号）：functions/api/hit.js 写入，会话内经 MCP 直接查询。
+[[d1_databases]]
+binding = "HITS"
+database_name = "baipiaoji-hits"
+database_id = "1ee08cb8-a174-4ec3-8dbc-89ef5d28aa05"

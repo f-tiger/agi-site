@@ -1,0 +1,334 @@
+name: Deploy getecoback.com
+
+# ── 迁入公开 monorepo f-tiger/agi-site(2026-08-19,owner 决定)──
+# 原仓 rearchfuture 为历史档案。公开仓 Actions 分钟免费,每日定时(季节轮换)
+# 随迁移即刻恢复,不再等 9/1 额度重置。run 步骤默认 working-directory。
+
+on:
+  push:
+    # main only. Every change here is merged to main in the same step, so the
+    # working branch also being a trigger just deployed the identical commit a
+    # second time — twice the runs, twice the noise, and twice the exposure to a
+    # transient GitHub Actions outage (which is exactly what turned run 290 red
+    # while run 291 deployed the same commit successfully).
+    branches:
+      - main
+    paths:
+      - "sites/getecoback/site/**"
+      - "sites/getecoback/tools/**"
+      - "sites/getecoback/src/**"
+      - "sites/getecoback/wrangler.jsonc"
+      - ".github/workflows/deploy-getecoback.yml"
+  workflow_dispatch: {}
+  # Daily self-deploy: the season rotator, freshness badges and structure
+  # injectors only run at deploy time, so without this the site could not turn
+  # autumn on September 1st unless someone happened to push that day. The
+  # injectors are idempotent — on a quiet day this rebuilds byte-identical
+  # output, deploys the same assets, and the IndexNow step sees zero changed
+  # URLs and stays silent.
+  schedule:
+    - cron: "17 3 * * *"
+
+permissions:
+  # The scheduled run writes docs/trend-radar.md back to the repo — the
+  # condensation layer of the trend loop. docs/ is outside the trigger paths,
+  # so this can never recurse into another deploy.
+  contents: write
+
+concurrency:
+  group: deploy-getecoback
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: sites/getecoback
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Full history: the IndexNow step diffs against the previous commit to
+          # find what changed, and the default shallow clone makes that ref
+          # unresolvable — which silently produced an empty change list.
+          fetch-depth: 0
+
+      - name: Rotate homepage to current season (year-round positioning; idempotent)
+        run: python3 tools/build_season.py
+
+      - name: Inject site chrome (nav/footer/radar; idempotent, covers new pages)
+        run: python3 tools/build_structure.py
+
+      - name: Inject on-page layer (TOC + updated badge; idempotent)
+        run: python3 tools/build_onpage.py
+
+      - name: Inject room-size cross-links (idempotent)
+        run: python3 tools/build_xlinks.py
+
+      - name: Normalize + validate hreflang pairs (idempotent gate; non-zero exit blocks deploy)
+        run: python3 tools/build_hreflang.py
+
+      - name: Rebuild sitemap from filesystem (auto-sync new pages before deploy)
+        run: python3 tools/build_sitemap.py
+
+      - name: Rebuild RSS feed (auto-sync new guides before deploy)
+        run: python3 tools/build_feed.py
+
+      - name: Rebuild llms.txt (AI-search index, auto-sync before deploy)
+        run: python3 tools/build_llmstxt.py
+
+      - name: Rebuild site-search index (auto-sync new pages before deploy)
+        run: python3 tools/build_search.py
+
+      - name: Check every fired event is accepted by /api/ev
+        run: python3 tools/check_events.py
+
+      - name: Deploy to Cloudflare Workers
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          wranglerVersion: "4"
+          workingDirectory: sites/getecoback
+          command: deploy
+
+      - name: Post-deploy health check (live site serves key pages)
+        run: |
+          sleep 15
+          fail=0
+          check() {
+            url="$1"; must_contain="$2"
+            for attempt in 1 2 3; do
+              body=$(curl -sL --max-time 20 -w "\n%{http_code}" "$url" || echo -e "\n000")
+              code=$(echo "$body" | tail -1)
+              [ "$code" = "200" ] && break
+              sleep 3
+            done
+            if [ "$code" != "200" ]; then
+              echo "::error::$url returned HTTP $code"
+              fail=1
+            elif [ -n "$must_contain" ] && ! echo "$body" | grep -q "$must_contain"; then
+              echo "::error::$url is 200 but missing expected content: $must_contain"
+              fail=1
+            else
+              echo "OK $url ($code)"
+            fi
+          }
+          check "https://getecoback.com/" "tag=getecoback-21"
+          check "https://getecoback.com/sitemap.xml" "<urlset"
+          check "https://getecoback.com/feed.xml" "<rss"
+          check "https://getecoback.com/guide/dachgeschoss-kuehlen.html" "tag=getecoback-21"
+          check "https://getecoback.com/impressum.html" "Impressum"
+          check "https://getecoback.com/datenschutz.html" "DSGVO"
+          check "https://getecoback.com/en/" "tag=getecoback-21"
+
+          # Canonical-URL middleware: every legacy variant must 301 to
+          # https://getecoback.com/...*.html (matches canonical tags + sitemap)
+          check_301() {
+            url="$1"; expect="$2"
+            for attempt in 1 2 3; do
+              out=$(curl -s -o /dev/null --max-time 20 -w "%{http_code} %{redirect_url}" "$url" || echo "000")
+              code="${out%% *}"; loc="${out#* }"
+              [ "$code" = "301" ] && break
+              sleep 3
+            done
+            if [ "$code" != "301" ] || [ "$loc" != "$expect" ]; then
+              echo "::error::$url expected 301 -> $expect, got $code -> $loc"
+              fail=1
+            else
+              echo "OK 301 $url -> $loc"
+            fi
+          }
+          check_301 "https://www.getecoback.com/" "https://getecoback.com/"
+          check_301 "https://www.getecoback.com/guide/klimaanlage-kippfenster" "https://getecoback.com/guide/klimaanlage-kippfenster.html"
+          check_301 "https://getecoback.com/guide/klimaanlage-kippfenster" "https://getecoback.com/guide/klimaanlage-kippfenster.html"
+          check_301 "https://getecoback.com/en/guide/best-portable-air-conditioner-europe-heatwave" "https://getecoback.com/en/guide/best-portable-air-conditioner-europe-heatwave.html"
+          check_301 "https://getecoback.com/en" "https://getecoback.com/en/"
+
+          # First-party event pipeline: the endpoint must accept a whitelisted
+          # event and confirm the D1 write. Without this the funnel goes blind
+          # silently (a missing binding only shows up as {"ok":false}).
+          ev=$(curl -s --max-time 20 -X POST "https://getecoback.com/api/ev" \
+                 -H "Content-Type: text/plain" \
+                 -d '{"n":"page_view","p":"/__ci_healthcheck","r":"","m":{"ci":1}}' || echo "")
+          echo "event endpoint said: $ev"
+          case "$ev" in
+            *'"ok":true'*) echo "OK event pipeline (D1 write confirmed)" ;;
+            *) echo "::error::event pipeline broken: $ev"; fail=1 ;;
+          esac
+          # The live heat band drives the weather-reactive layer; a silent outage
+          # would simply mean the site says nothing on the days that matter most.
+          heat=""
+          for attempt in 1 2 3; do
+            heat=$(curl -s --max-time 20 "https://getecoback.com/api/heat" || echo "")
+            case "$heat" in *'"level"'*) break ;; esac
+            sleep 5
+          done
+          echo "heat endpoint said: $heat"
+          case "$heat" in
+            *'"level"'*) echo "OK heat endpoint" ;;
+            *) echo "::error::heat endpoint broken after 3 tries: '$heat'"; fail=1 ;;
+          esac
+          # Exchange prices for the Strompreis-Radar. Served from the edge so
+          # the reader's browser never calls aWATTar or SMARD itself; if this
+          # breaks, the site's flagship energy tool shows nothing, quietly.
+          strom=""
+          for attempt in 1 2 3; do
+            strom=$(curl -s --max-time 20 "https://getecoback.com/api/strom" || echo "")
+            case "$strom" in *'"ok"'*) break ;; esac
+            sleep 5
+          done
+          echo "strom endpoint said: ${strom:0:120}"
+          case "$strom" in
+            *'"ok"'*) echo "OK strom endpoint" ;;
+            *) echo "::error::strom endpoint broken after 3 tries: '${strom:0:200}'"; fail=1 ;;
+          esac
+          # Markdown content negotiation: AI crawlers outnumber human visitors
+          # here, so a silent regression to HTML would be invisible and costly.
+          # Assert both directions — Markdown when asked, HTML when not.
+          md=$(curl -s --max-time 20 -A "getecoback-ci" -H "Accept: text/markdown" "https://getecoback.com/guide/btu-rechner.html" || echo "")
+          case "$md" in
+            '# '*) echo "OK markdown negotiation" ;;
+            *) echo "::error::markdown negotiation broken: '${md:0:120}'"; fail=1 ;;
+          esac
+          plain=$(curl -s --max-time 20 -H "Accept: text/html" "https://getecoback.com/guide/btu-rechner.html" || echo "")
+          case "$plain" in
+            *'<!DOCTYPE'*|*'<!doctype'*) echo "OK html still html" ;;
+            *) echo "::error::browsers no longer get HTML: '${plain:0:120}'"; fail=1 ;;
+          esac
+          # Trend condensation feed: the daily radar reads this.
+          trend=""
+          for attempt in 1 2 3; do
+            trend=$(curl -s --max-time 20 "https://getecoback.com/api/trend" || echo "")
+            case "$trend" in *'"events"'*) break ;; esac
+            sleep 5
+          done
+          echo "trend endpoint said: ${trend:0:150}"
+          case "$trend" in
+            *'"events"'*) echo "OK trend endpoint" ;;
+            *) echo "::error::trend endpoint broken after 3 tries: '$trend'"; fail=1 ;;
+          esac
+          # MCP server: the agent-facing tool layer. initialize must round-trip.
+          mcp=$(curl -s --max-time 20 -X POST "https://getecoback.com/mcp" \
+                 -H "Content-Type: application/json" \
+                 -d '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-03-26","capabilities":{},"clientInfo":{"name":"ci","version":"0"}}}' || echo "")
+          echo "mcp said: ${mcp:0:150}"
+          case "$mcp" in
+            *'"getecoback-raumklima"'*) echo "OK mcp endpoint" ;;
+            *) echo "::error::mcp endpoint broken: '$mcp'"; fail=1 ;;
+          esac
+          # The URL the official registry listing actually points at. A pointer
+          # nobody checks is how you end up advertising a dead server.
+          mcpv1=$(curl -s --max-time 20 -X POST "https://getecoback.com/mcp/v1" \
+                 -H "Content-Type: application/json" \
+                 -d '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-03-26","capabilities":{},"clientInfo":{"name":"ci","version":"0"}}}' || echo "")
+          echo "mcp/v1 said: ${mcpv1:0:150}"
+          case "$mcpv1" in
+            *'"getecoback-raumklima"'*) echo "OK mcp/v1 (registry pointer)" ;;
+            *) echo "::error::registry remote URL /mcp/v1 broken: '$mcpv1'"; fail=1 ;;
+          esac
+          # Live popular ranking: drives the homepage's self-refreshing block.
+          top=""
+          for attempt in 1 2 3; do
+            top=$(curl -s --max-time 20 "https://getecoback.com/api/top" || echo "")
+            case "$top" in *'"pages"'*) break ;; esac
+            sleep 5
+          done
+          echo "top endpoint said: ${top:0:200}"
+          case "$top" in
+            *'"pages"'*) echo "OK top endpoint" ;;
+            *) echo "::error::top endpoint broken after 3 tries: '$top'"; fail=1 ;;
+          esac
+          exit $fail
+
+      # Rule 2 guard: the registry listing is a discovery asset — if the entry
+      # ever disappears (purge, policy change), that must be a red run, not a
+      # silent fade. Scheduled runs only: this asserts an external system, and
+      # a registry outage should not block a content deploy.
+      - name: Assert the MCP registry still lists this server (scheduled + manual)
+        if: github.event_name != 'push'
+        run: |
+          entry=""
+          for attempt in 1 2 3; do
+            entry=$(curl -s --max-time 20 "https://registry.modelcontextprotocol.io/v0.1/servers?search=getecoback" || echo "")
+            case "$entry" in *"getecoback-climate-weather"*) break ;; esac
+            sleep 10
+          done
+          case "$entry" in
+            *"getecoback-climate-weather"*) echo "OK registry listing present" ;;
+            *) echo "::error::MCP registry no longer lists getecoback-climate-weather: ${entry:0:200}"; exit 1 ;;
+          esac
+
+      # The condensation layer of the trend loop: pull the live aggregates,
+      # write the radar, commit it back. Scheduled runs only — on push events
+      # a concurrent commit would race the human/agent work that triggered the
+      # deploy. docs/ is outside this workflow's trigger paths, so the commit
+      # cannot recurse.
+      - name: Write the daily trend radar (scheduled + manual runs)
+        if: github.event_name != 'push'
+        run: |
+          python3 tools/trend_radar.py
+          if ! git diff --quiet docs/trend-radar.md 2>/dev/null; then
+            git config user.name "Claude"
+            git config user.email "noreply@anthropic.com"
+            git add docs/trend-radar.md
+            git commit -m "chore: daily trend radar"
+            # The injectors rewrote site files earlier in this same job, so the
+            # tree is never clean here — autostash rebases around them instead of
+            # refusing, and leaves them in place for the IndexNow diff below.
+            git pull --rebase --autostash origin main
+            git push
+          else
+            echo "radar substance unchanged — no commit"
+          fi
+
+      # IndexNow is this site's fastest discovery channel, and its own FAQ asks for
+      # URLs that actually changed — resubmitting the whole inventory every deploy
+      # reads as spam and devalues the site's future submissions. So: pages changed
+      # by this push, plus pages the injectors rewrote during this run, intersected
+      # with the sitemap so noindex pages never get submitted. The sitemap stays the
+      # complete inventory; IndexNow carries only the delta.
+      - name: Ping IndexNow with the pages that actually changed
+        run: |
+          sleep 20
+          BEFORE="${{ github.event.before }}"
+          # On a scheduled run nothing was pushed — diffing against HEAD~1 would
+          # resubmit the last commit's URLs every single day. Diff HEAD against
+          # itself instead, so only files the injectors rewrote in this run
+          # (e.g. the season flip) get submitted.
+          if [ "${{ github.event_name }}" = "schedule" ]; then BEFORE="HEAD"; fi
+          case "$BEFORE" in ""|0000000000000000000000000000000000000000) BEFORE="HEAD~1" ;; esac
+          if ! git cat-file -e "${BEFORE}^{commit}" 2>/dev/null; then
+            echo "::warning::previous commit $BEFORE not available, falling back to HEAD~1"
+            BEFORE="HEAD~1"
+          fi
+          git cat-file -e "${BEFORE}^{commit}" || { echo "::error::cannot determine what changed"; exit 1; }
+          { git diff --name-only "$BEFORE" "${{ github.sha }}" -- 'site/*.html' 'site/**/*.html'
+            git status --porcelain site | awk '{print $NF}' | grep '\.html$' || true
+          } | sed 's|^sites/getecoback/||' | sort -u > /tmp/changed.txt
+          echo "changed html files:"; cat /tmp/changed.txt
+          python3 - <<'PY'
+          import json, re
+          sitemap = set(re.findall(r'<loc>([^<]+)</loc>', open('site/sitemap.xml', encoding='utf-8').read()))
+          out = []
+          for line in open('/tmp/changed.txt', encoding='utf-8'):
+              p = line.strip()
+              if not p.startswith('site/') or not p.endswith('.html'):
+                  continue
+              url = 'https://getecoback.com/' + p[len('site/'):]
+              if url in sitemap and url not in out:
+                  out.append(url)
+          open('/tmp/idx_urls.json', 'w').write(json.dumps(out))
+          open('/tmp/idx_count', 'w').write(str(len(out)))
+          PY
+          COUNT=$(cat /tmp/idx_count)
+          echo "submitting $COUNT changed URL(s) to IndexNow"
+          if [ "$COUNT" = "0" ]; then
+            echo "nothing changed — skipping the ping (a meaningless ping costs trust)"
+            exit 0
+          fi
+          URLS=$(cat /tmp/idx_urls.json)
+          curl -s -X POST "https://api.indexnow.org/indexnow" \
+            -H "Content-Type: application/json; charset=utf-8" \
+            -d "{\"host\":\"getecoback.com\",\"key\":\"dc2860e32f47689a11c7bc07a21f6ffb\",\"keyLocation\":\"https://getecoback.com/dc2860e32f47689a11c7bc07a21f6ffb.txt\",\"urlList\":${URLS}}" \
+            -w "\nIndexNow HTTP status: %{http_code}\n" || true

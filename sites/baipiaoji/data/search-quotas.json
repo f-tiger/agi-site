@@ -1,0 +1,109 @@
+{
+  "note": "结构化自 tools.json 中 search 类的已核实 limits 散文——同一批事实的机器可读形态，不新增任何数字。本类与前九类的根本不同不在墙的形态，而在**有没有墙这件事本身官方就不说**：已核实的 10 家里有 7 家在自有页面上找不到任何免费档数字（秘塔、Perplexity、Felo、夸克、360、知乎直答、Phind），其中多家连「额度用完会怎样」都没写过。这一类的价值因此不是「谁给得多」，是把「官方没写」这件事本身如实标出来——缺席即信息。只有 3 家给了可核实的数字：NotebookLM（四组明码）、Consensus（月度条数）、Exa（额度券金额）。gate 分四型：undisclosed（官方未公布任何数字）/ daily（按日重置）/ monthly（按月重置）/ credit（额度券或余额，用完直接被拦住）。kind 同名。",
+  "derived": "2026-08-17",
+  "axis_zh": "官方到底有没有公布数字——七成没有；以及用完之后会怎样，多数连这个都没写",
+  "axis_en": "Whether the vendor publishes any figure at all — seven in ten do not — and what happens at the wall, which most never state either",
+  "entries": [
+    {
+      "slug": "notebooklm",
+      "kind": "daily",
+      "meter": "mixed",
+      "notebooks_max": 100,
+      "sources_per_notebook": 50,
+      "words_per_source": 500000,
+      "upload_mb_max": 200,
+      "chats_per_day": 50,
+      "audio_overviews_per_day": 3,
+      "gate": "daily",
+      "caveat_zh": "本类里唯一一家把免费档写成明码的：最多 100 个笔记本、每本最多 50 个来源（单源上限 50 万词、本地上传单文件最大 200MB）、每天 50 次对话提问、每天 3 次音频概览。两种墙要分开看——对话与音频概览是**按日额度**，当天用完就停、次日重置；笔记本总数与单本来源数是**硬容量上限**，触顶只能删旧的或升级。另注意产品已官方更名为 Gemini Notebook。",
+      "caveat_en": "The only vendor in this category that publishes its free tier in full: up to 100 notebooks, 50 sources each (500,000 words per source, 200MB per local upload), 50 chat questions a day and 3 audio overviews a day. Two different walls sit inside that — chats and audio overviews are daily allowances that stop for the day and reset tomorrow, while the notebook count and per-notebook sources are hard capacity ceilings where the only ways past are deleting or upgrading. Note also that the product has been officially renamed Gemini Notebook."
+    },
+    {
+      "slug": "consensus",
+      "kind": "monthly",
+      "meter": "messages",
+      "pro_messages_per_month": 15,
+      "papers_per_pro_message": 20,
+      "deep_reviews_per_month": 3,
+      "papers_per_deep_review": 50,
+      "deep_also_consumes_pro": true,
+      "gate": "monthly",
+      "caveat_zh": "免费档每月 15 条 Pro message（单次最多汇总 20 篇论文）+ 每月最多 3 次 Deep review（单次最多 50 篇论文）。有一条官方特别说明容易被忽略：免费用户每跑一次 Deep，**同时也会扣掉一条 Pro message 额度**——所以这两份额度不是各自独立的，用 Deep 会把 Pro 那份一起消耗掉。额度用完只能等下月自动重置（重置日期可在账号设置里查看）或升级。",
+      "caveat_en": "The free tier gives 15 Pro messages a month (each synthesising up to 20 papers) plus up to 3 Deep reviews (up to 50 papers each). One official note is easy to miss: for free users each Deep review also consumes a Pro message — so the two allowances are not independent, and using Deep draws down the Pro budget at the same time. Once spent, the only options are next month's automatic reset (the date is visible in account settings) or upgrading."
+    },
+    {
+      "slug": "exa",
+      "kind": "credit",
+      "meter": "usd_credit",
+      "signup_credit_usd": 20,
+      "monthly_credit_usd": 10,
+      "websets_credits": 1000,
+      "blocks_at_zero": true,
+      "gate": "credit",
+      "caveat_zh": "发的是「额度券」不是请求数：新账号注册赠送 $20 免费额度（官方括注约合 2,800 次搜索，与其 Search $7/1k 的单价吻合），之后免费档每月再补 $10 额度；Websets 侧另含 1,000 credits。用完之后的表现在本类里最干脆——**不降级也不限速，直接拦住**：官方计费文档写明余额归零后 API 请求会被阻断，必须自行充值或开启 auto-recharge 才能继续。",
+      "caveat_en": "What you get is a credit balance rather than a request count: new accounts receive $20 of free credit (the vendor's own parenthetical puts that at roughly 2,800 searches, consistent with its $7 per 1,000 Search price), and the free tier then tops up $10 a month; the Websets side separately includes 1,000 credits. What happens at the wall is the bluntest in this category — no downgrade and no throttle, just a stop: the official billing docs state that requests are blocked once the balance reaches zero, and you must top up or enable auto-recharge to continue."
+    },
+    {
+      "slug": "metaso",
+      "kind": "undisclosed",
+      "meter": "credits",
+      "credits_per_answer": 1,
+      "credits_per_deepseek_answer": 3,
+      "daily_amount_undisclosed": true,
+      "gate": "undisclosed",
+      "caveat_zh": "计费机制官方写得很细，唯独不写数额：用户协议确认免费用户每日可领「刷新积分」，但明写「具体数额以服务页面显示为准」——任何可检索到的厂商页面都没有那个数字。已公布的只有单价：普通模型回答 1 积分、DeepSeek 模型回答 3 积分，第一次工具调用不消耗、从第二次起每次 1 积分。另一条要说清的是**官方从未说过「不限次数」**——协议写的是按积分计费。每日刷新积分当日有效，用不完不累计、次日清零。",
+      "caveat_en": "The vendor documents the metering in detail but never the amount: its user agreement confirms that free users receive refreshing credits each day, while stating that the actual figure is whatever the service page displays — and no retrievable vendor page carries that figure. What is published is only the unit price: 1 credit per standard-model answer, 3 per DeepSeek-model answer, with the first tool call free and 1 credit for each call after that. Worth stating plainly: the vendor has never claimed unlimited use — the agreement describes credit-based metering. Daily credits are valid that day only, do not accumulate, and reset to zero overnight."
+    },
+    {
+      "slug": "perplexity",
+      "kind": "undisclosed",
+      "meter": "weekly",
+      "self_contradictory_pages": true,
+      "gate": "undisclosed",
+      "caveat_zh": "官方页面互相矛盾，且都不给数字。现行帮助中心写「免费档可使用顶级 AI 模型，但每周用量有限」，另一处写「可以用 Best 和有限次数的 Pro Search，但不能手动选择高级搜索模型」——两处都承认「有限」、都不给数额，计量单位是「每周」；另有一篇旧版帮助文仍写着每日次数，与现行口径冲突。更要紧的是**额度用尽后会怎样官方完全没写**：是降级回基础搜索、直接不可用、还是等待重置，一个字都没有。",
+      "caveat_en": "The vendor's own pages contradict each other and none of them gives a number. The current help centre says the free tier can use top models with limited weekly usage, and elsewhere that it can use Best and a limited number of Pro Searches without manually selecting advanced models — both admit a limit, neither states it, and the unit is weekly; an older help article still lists a daily figure that conflicts with the current wording. More consequential: what happens when the allowance runs out is never stated at all — downgrade to basic search, hard stop, or wait for a reset, the pages say nothing."
+    },
+    {
+      "slug": "felo",
+      "kind": "undisclosed",
+      "meter": "credits",
+      "gate": "undisclosed",
+      "conflicting_sources": true,
+      "caveat_zh": "本站暂不给出免费档数字，因为官方自己的两篇博客直接冲突：一篇写「高速搜索不限次数 + 专业搜索每天 5 次」，另一篇宣布个人订阅改为统一积分制、所有功能共用同一积分池——「不限次」与「共用积分池」不可能同时成立，说明旧表述至少已部分失效。官方明确写了的只有付费侧兜底：Pro 用户在计划积分与加油包全部耗尽后，每天仍可用 300 次专业搜索或 Playground。积分每天自动刷新、午夜清零不结转。",
+      "caveat_en": "No free-tier figure is recorded here because the vendor's own two blog posts contradict each other: one says quick search is unlimited with 5 pro searches a day, while the other announces a move to a unified credit system where every feature draws on one pool — \"unlimited\" and \"one shared pool\" cannot both hold, so the older wording is at least partly stale. The only thing stated unambiguously is the paid-side floor: once a Pro user exhausts plan credits and top-up packs, 300 pro searches or Playground runs remain available each day. Credits refresh daily and are zeroed at midnight without carryover."
+    },
+    {
+      "slug": "quark-ai",
+      "kind": "undisclosed",
+      "meter": "unstated",
+      "gate": "undisclosed",
+      "caveat_zh": "官方未公布任何具体数字。夸克官网与各 AI 产品页（AI 搜索、写作、PPT、生图、深度思考）只用「免费」「免费生成」这类措辞，从未写出每日/每月次数、条数、积分余额，也没写额度按什么周期重置；付费会员页只罗列付费能享受什么，不写免费档到哪为止。触顶后是降级、排队、停用还是等次日重置，同样没有任何说法。官方公开划出的免费/付费分界只落在**功能层面**（会员权益列的是「AI 创作工具套组、文档处理、语音转录与专业翻译」），不在次数层面。",
+      "caveat_en": "No figure is published anywhere. Quark's site and its individual AI product pages (search, writing, decks, image generation, deep thinking) use only words like \"free\" and \"generate for free\", never a daily or monthly count, a credit balance, or a reset period; the membership page lists what paying gets you without ever saying where the free tier ends. What happens at the ceiling — downgrade, queue, stop, or wait for tomorrow — is equally unstated. The only boundary the vendor draws publicly is by feature, not by volume: membership benefits are listed as the AI creation suite, document processing, transcription and professional translation."
+    },
+    {
+      "slug": "ai360",
+      "kind": "undisclosed",
+      "meter": "unstated",
+      "gate": "undisclosed",
+      "caveat_zh": "官方未公布任何具体数字。基础搜索与问答可免费使用，但在 360 自有域名上找不到任何写明免费用户每天／每月能用多少次的页面：官网、帮助中心、协议页均无次数、条数或额度公示，也不存在列出免费档与付费档对比的官方定价页。免费额度耗尽后的后果与重置周期同样未公布。可核实的官方口径只有付费侧——纳米AI会员服务协议把「不限次数的 AI 分析（视频、音频、pdf、word 等文件总结、重点提取、翻译）」列为会员权益，并写明权益内容以实际购买为准。",
+      "caveat_en": "No figure is published anywhere. Basic search and Q&A are free to use, but nothing on 360's own domains states how many times a free user may use them per day or month: the site, help centre and agreements carry no counts, quotas or allowances, and there is no official pricing page comparing free against paid. What happens when the free allowance runs out, and on what cycle it resets, are equally unpublished. The only verifiable official wording sits on the paid side — the Nano AI membership agreement lists unlimited AI analysis (summarising, extracting and translating video, audio, PDF and Word files) as a member benefit, noting that entitlements follow what was actually purchased."
+    },
+    {
+      "slug": "zhihu-zhida",
+      "kind": "undisclosed",
+      "meter": "unstated",
+      "gate": "undisclosed",
+      "caveat_zh": "官方未公布免费档的任何额度数字，而且缺得更彻底：知乎从未为「知乎直答」发布过定价页、额度页或帮助中心条目，官网引文通篇只讲产品能力（AI 搜索、内容溯源、知识库），没有提问次数、对话轮数、每日或每月上限。官方也从未出现「不限次数／无限使用」的表述——**「到底有没有限制」这件事本身，官方都没写过**。额度用完会发生什么同样没有说明，直答自己也没有公开的付费升级档位或价格。",
+      "caveat_en": "No free-tier figure is published, and here the absence goes further: Zhihu has never issued a pricing page, an allowance page or a help-centre entry for Zhida at all. The site's own text describes only capabilities — AI search, source attribution, knowledge bases — with no question count, no conversation limit, and no daily or monthly ceiling. Nor has the vendor ever claimed unlimited use: whether a limit exists at all is itself unstated. What happens when an allowance runs out is likewise unaddressed, and Zhida publishes no paid tier or price of its own."
+    },
+    {
+      "slug": "phind",
+      "kind": "undisclosed",
+      "meter": "unstated",
+      "gate": "undisclosed",
+      "third_party_figures_rejected": true,
+      "caveat_zh": "官方未公布，本站因此不填数字。网上流传的「每天 5 次 / 10 次 / 500 次 Phind-405B / 1000 次 research / Phind Instant 无限」等说法**全部出自第三方站点、彼此矛盾**，其中多项实为 Pro 付费档限额而非免费档——这正是本站拒绝第三方口径的典型场景。额度用尽后的表现、重置周期、升级价格同样追不到任何 phind.com 自有页面。另需单独提示：多家第三方来源（HN 上转述的创始人公告、X 贴文、工具目录站）称 Phind 已于 2026 年停止运营，此说本站未能在厂商自有页面核实，故只作提示不作结论。",
+      "caveat_en": "Nothing is published by the vendor, so no figure is recorded. The numbers circulating online — 5 a day, 10 a day, 500 Phind-405B calls, 1,000 research runs, unlimited Phind Instant — all come from third-party sites, contradict one another, and several describe Pro paid limits rather than the free tier. This is exactly the situation in which third-party wording is rejected here. What happens at the wall, the reset period and the upgrade price are equally absent from any phind.com page. One thing to flag separately: several third-party sources (a founder announcement relayed on Hacker News, posts on X, and directory sites) say Phind shut down in 2026; that could not be verified on the vendor's own pages, so it is passed on as a flag rather than a conclusion."
+    }
+  ]
+}

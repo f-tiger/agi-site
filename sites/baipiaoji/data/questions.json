@@ -1,0 +1,93 @@
+{
+  "note": "问题页（PRD-own-tools 路线图 #20）。形态对标 agiscorecard 的 what-is-agi/how-close-is-agi——URL 即问题。依据：Bing AI Performance 实测显示 Copilot 引用是针对具体问题给的，对方 564 次引用里 72% 集中在三个问题页，而我们 1347 个词条页只拿到 5 次。选题硬规则：只出我们已核实数据能答的问题；answer 段必须能被直接抄进 AI 答案且自身站得住；凡新增的一手事实（非 tools.json 派生）必须带 source 与 checked。",
+  "derived": "2026-08-16",
+  "questions": [
+    {
+      "slug": "why-did-my-ai-free-tier-stop-working",
+      "kind": "hub_wall",
+      "q_zh": "AI 工具的免费额度为什么突然不能用了？",
+      "q_en": "Why did my AI tool's free tier suddenly stop working?",
+      "title_zh": "免费额度突然不能用了？先分清是哪一种墙",
+      "title_en": "Free tier suddenly stopped working? First tell which wall you hit",
+      "answer_zh": "报错通常只说「超了」，不说新上限是多少。已核实的情况里，拦住人的墙至少有六种形态：按日重置、按月重置、一次性发放用完不再生、限的是速率而非总量、试用期到期、以及工具免费但模型要你自己付费。厂商改额度往往不发公告——Google 在 2025 年 12 月削减 Gemini API 免费额度就没有发邮件，开发者是在应用里收到 429 才发现的。",
+      "answer_en": "The error usually says only that you exceeded something — never what the new ceiling is. Across verified cases the wall takes at least six shapes: resets daily, resets monthly, a one-off grant that never refills, a rate limit rather than a volume cap, a trial that expired, or a tool that is free while you pay for the model. Vendors often do not announce cuts — Google reduced the Gemini API free tier in December 2025 without an email, and developers found out from a 429 in their own app.",
+      "facts": [
+        {
+          "claim_zh": "Google 于 2025 年 12 月无预告下调 Gemini Developer API 免费额度，未发邮件通知，开发者在应用里收到 429 才发现。",
+          "claim_en": "Google reduced the Gemini Developer API free tier in December 2025 with no advance notice and no email; developers discovered it from 429 errors in their own applications.",
+          "checked": "2026-08-16",
+          "source_zh": "quasa.io 等独立报道 + Google AI Developers Forum 投诉帖（对抗核实通过）",
+          "source_en": "Independent reports incl. quasa.io, plus complaint threads on the Google AI Developers Forum (passed adversarial verification)"
+        }
+      ]
+    },
+    {
+      "slug": "which-ai-coding-tool-has-the-biggest-free-tier",
+      "kind": "rank_coding",
+      "q_zh": "AI 编程工具里，哪个免费额度最大？",
+      "q_en": "Which AI coding tool has the biggest free tier?",
+      "title_zh": "AI 编程工具免费额度对比：哪个能撑最久（附官方出处）",
+      "title_en": "AI coding tools compared: whose free tier lasts longest (with official sources)",
+      "answer_zh": "没有一个「最大」的答案，因为这一类的额度单位互不相同——有的按次、有的按天、有的按月、有的干脆不公布数字。真正该比的是墙的形态：按日重置的今天用完明天还有，一次性发放的用完就没了，而「工具免费、模型自付」的那几家其实没有额度上限，只有你自己的账单上限。下表每条都带官方出处与核实日期。",
+      "answer_en": "There is no single biggest, because the units do not compare — some meter runs, some days, some months, and some publish no figure at all. What actually matters is the shape of the wall: a daily reset gives you more tomorrow, a one-off grant does not, and the bring-your-own-model tools have no allowance ceiling at all, only whatever ceiling your own bill has. Every row below carries its official source and check date."
+    },
+    {
+      "slug": "do-ai-vendors-cut-free-tiers-quietly",
+      "kind": "changes",
+      "q_zh": "AI 厂商会悄悄砍掉免费额度吗？",
+      "q_en": "Do AI vendors cut their free tiers quietly?",
+      "title_zh": "AI 厂商会不会悄悄砍免费额度：我们记录到的每一次变动",
+      "title_en": "Do AI vendors quietly cut free tiers? Every move we have logged",
+      "answer_zh": "会，而且这是常态而非例外。本站每天对官方页面复核一次，把每次变动逐条记进公开日志——变的是哪一家、哪个字段、哪一天。已核实的静默变更包括：Google 在 2025 年 12 月下调 Gemini API 免费额度未发邮件；Oracle 在 2026 年 6 月 15 日把 Always Free 的 ARM 配额从 4 OCPU/24GB 砍到 2 OCPU/12GB，同样没有公告，8 月 18 日起强制执行。",
+      "answer_en": "Yes, and it is the norm rather than the exception. This site re-checks official pages daily and logs every move line by line — which vendor, which field, which date. Verified silent changes include Google reducing the Gemini API free tier in December 2025 with no email, and Oracle halving Always Free ARM from 4 OCPU/24GB to 2 OCPU/12GB on 15 June 2026 with no announcement, enforced from 18 August.",
+      "facts": [
+        {
+          "claim_zh": "Oracle 于 2026-06-15 将 Always Free 的 Ampere A1 配额从 4 OCPU/24GB 下调为 2 OCPU/12GB，未发公开公告，自 2026-08-18 起强制执行，超出部分自动终止。",
+          "claim_en": "Oracle reduced the Always Free Ampere A1 allowance from 4 OCPU/24GB to 2 OCPU/12GB on 15 June 2026 without a public announcement, enforcing it from 18 August 2026, after which excess instances are terminated automatically.",
+          "checked": "2026-08-16",
+          "source_zh": "infoq.com/news/2026/07/oracle-cloud-free-tier-limits 与 linuxiac.com/oracle-quietly-cuts-free-tier-ampere-a1-resources-in-half",
+          "source_en": "infoq.com/news/2026/07/oracle-cloud-free-tier-limits and linuxiac.com/oracle-quietly-cuts-free-tier-ampere-a1-resources-in-half"
+        }
+      ]
+    },
+    {
+      "slug": "did-anthropic-file-to-go-public",
+      "kind": "entity_event",
+      "q_zh": "Claude 的母公司 Anthropic 上市了吗？对免费额度意味着什么？",
+      "q_en": "Has Anthropic, the company behind Claude, gone public — and what does it mean for free tiers?",
+      "title_zh": "Anthropic（Claude 母公司）上市了吗：已核实的进展，以及对免费额度的实际影响",
+      "title_en": "Has Anthropic gone public? The verified status, and what it actually means for free tiers",
+      "answer_zh": "还没有上市。已核实的进展是：Anthropic 于 2026 年 6 月 1 日向美国证券交易委员会保密递交了 S-1 草案，公司在官方公告里明确说尚未确定发行价、股数与上市日期，是否完成发行取决于市场条件。所以任何写着「Anthropic 已上市」的说法目前都不成立。至于对 Claude 免费额度的影响：递交 S-1 本身不改变任何额度，本站按官方页面逐日复核，变动会记进公开变更日志。",
+      "answer_en": "Not yet. The verified status is that Anthropic confidentially submitted a draft S-1 to the U.S. Securities and Exchange Commission on 1 June 2026, and states in its own announcement that no price, share count or listing date has been set, with completion depending on market conditions. So any claim that Anthropic has already gone public is currently false. As for what it means for Claude's free tier: filing an S-1 changes no allowance by itself; this site re-checks the official pages daily and logs any move.",
+      "facts": [
+        {
+          "claim_zh": "Anthropic 于 2026-06-01 向 SEC 保密递交 S-1 草案，官方公告写明未确定发行价、股数与上市日期，完成与否取决于市场条件。",
+          "claim_en": "Anthropic confidentially submitted a draft Form S-1 to the SEC on 1 June 2026; its own announcement states that no price, share count or listing date has been set and that completion depends on market conditions.",
+          "checked": "2026-08-16",
+          "source_zh": "anthropic.com/news/confidential-draft-s1-sec（一手：公司官方公告）",
+          "source_en": "anthropic.com/news/confidential-draft-s1-sec (first-party: the company's own announcement)"
+        }
+      ]
+    },
+    {
+      "slug": "which-ai-tools-are-completely-free",
+      "kind": "rank_free",
+      "q_zh": "哪些 AI 工具是完全免费的（没有额度墙）？",
+      "q_en": "Which AI tools are completely free, with no allowance wall?",
+      "title_zh": "完全免费、没有额度墙的 AI 工具：已核实清单",
+      "title_en": "AI tools that are completely free with no allowance wall: the verified list",
+      "answer_zh": "「完全免费」在本站是一个有门槛的标签：只给那些没有用量墙的工具，而不是「有免费档」的工具。这两者常被混为一谈——有免费档意味着你迟早会撞墙，完全免费意味着墙不存在。下表是当前被标为完全免费的全部工具，每条可点进去看它的官方出处与核实日期。",
+      "answer_en": "\"Completely free\" is a label with a threshold here: it goes only to tools with no usage wall, not to tools that merely have a free tier. The two get conflated constantly — a free tier means you will hit a wall eventually; completely free means the wall does not exist. Below is every tool currently carrying that label, each linking to its official source and check date."
+    },
+    {
+      "slug": "is-there-a-free-alternative-to-cursor",
+      "kind": "alt_coding",
+      "q_zh": "Cursor 有免费替代品吗？",
+      "q_en": "Is there a free alternative to Cursor?",
+      "title_zh": "Cursor 的免费替代：已核实额度对照（含官方出处）",
+      "title_en": "Free alternatives to Cursor: verified allowances with official sources",
+      "answer_zh": "有，但要先分清你要替代的是哪一半。Cursor 免费档官方口径只说「有限的 Agent 请求与补全」、不公布数字，网上流传的「2,000 补全 + 50 次请求」出自旧版定价结构，已过时。所以「比 Cursor 给得多」这句话无法用官方数字直接验证——能验证的是替代品各自公布了什么。下表列出同类里有官方出处的选项，包括几个「工具免费、模型自付」的，那类没有额度墙，只有你自己的账单。",
+      "answer_en": "Yes, but first decide which half you are replacing. Cursor's own wording for the free tier is only \"limited agent requests and completions\", with no published figure; the \"2,000 completions + 50 requests\" figure circulating online comes from an older pricing structure and is stale. So \"more generous than Cursor\" cannot be verified against an official number — what can be verified is what each alternative publishes. Below are the peers with official sources, including the bring-your-own-model ones, which have no allowance wall at all, only your own bill."
+    }
+  ]
+}

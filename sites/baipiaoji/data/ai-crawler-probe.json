@@ -1,0 +1,198 @@
+{
+  "checked": "2026-08-17",
+  "origin": "https://baipiaoji.com",
+  "valid": true,
+  "blocked": [],
+  "results": [
+    {
+      "agent": "GPTBot",
+      "who": "OpenAI 训练与检索",
+      "blocked": false,
+      "byPath": {
+        "/": {
+          "status": 200,
+          "ms": 218
+        },
+        "/llms.txt": {
+          "status": 200,
+          "ms": 242
+        },
+        "/en/c/coding.html": {
+          "status": 200,
+          "ms": 151
+        }
+      }
+    },
+    {
+      "agent": "OAI-SearchBot",
+      "who": "ChatGPT 搜索引用",
+      "blocked": false,
+      "byPath": {
+        "/": {
+          "status": 200,
+          "ms": 94
+        },
+        "/llms.txt": {
+          "status": 200,
+          "ms": 54
+        },
+        "/en/c/coding.html": {
+          "status": 200,
+          "ms": 99
+        }
+      }
+    },
+    {
+      "agent": "ChatGPT-User",
+      "who": "ChatGPT 用户即时取页",
+      "blocked": false,
+      "byPath": {
+        "/": {
+          "status": 200,
+          "ms": 106
+        },
+        "/llms.txt": {
+          "status": 200,
+          "ms": 49
+        },
+        "/en/c/coding.html": {
+          "status": 200,
+          "ms": 96
+        }
+      }
+    },
+    {
+      "agent": "PerplexityBot",
+      "who": "Perplexity 索引",
+      "blocked": false,
+      "byPath": {
+        "/": {
+          "status": 200,
+          "ms": 76
+        },
+        "/llms.txt": {
+          "status": 200,
+          "ms": 76
+        },
+        "/en/c/coding.html": {
+          "status": 200,
+          "ms": 96
+        }
+      }
+    },
+    {
+      "agent": "Perplexity-User",
+      "who": "Perplexity 用户即时取页",
+      "blocked": false,
+      "byPath": {
+        "/": {
+          "status": 200,
+          "ms": 87
+        },
+        "/llms.txt": {
+          "status": 200,
+          "ms": 49
+        },
+        "/en/c/coding.html": {
+          "status": 200,
+          "ms": 114
+        }
+      }
+    },
+    {
+      "agent": "ClaudeBot",
+      "who": "Anthropic 抓取",
+      "blocked": false,
+      "byPath": {
+        "/": {
+          "status": 200,
+          "ms": 349
+        },
+        "/llms.txt": {
+          "status": 200,
+          "ms": 51
+        },
+        "/en/c/coding.html": {
+          "status": 200,
+          "ms": 107
+        }
+      }
+    },
+    {
+      "agent": "Claude-User",
+      "who": "Claude 用户即时取页",
+      "blocked": false,
+      "byPath": {
+        "/": {
+          "status": 200,
+          "ms": 103
+        },
+        "/llms.txt": {
+          "status": 200,
+          "ms": 64
+        },
+        "/en/c/coding.html": {
+          "status": 200,
+          "ms": 117
+        }
+      }
+    },
+    {
+      "agent": "Google-Extended",
+      "who": "Google AI 概览（沿用 Googlebot UA）",
+      "blocked": false,
+      "byPath": {
+        "/": {
+          "status": 200,
+          "ms": 94
+        },
+        "/llms.txt": {
+          "status": 200,
+          "ms": 52
+        },
+        "/en/c/coding.html": {
+          "status": 200,
+          "ms": 103
+        }
+      }
+    },
+    {
+      "agent": "Bingbot",
+      "who": "Bing / Copilot",
+      "blocked": false,
+      "byPath": {
+        "/": {
+          "status": 200,
+          "ms": 106
+        },
+        "/llms.txt": {
+          "status": 200,
+          "ms": 55
+        },
+        "/en/c/coding.html": {
+          "status": 200,
+          "ms": 127
+        }
+      }
+    },
+    {
+      "agent": "(baseline browser)",
+      "who": "对照组：普通浏览器",
+      "blocked": false,
+      "byPath": {
+        "/": {
+          "status": 200,
+          "ms": 88
+        },
+        "/llms.txt": {
+          "status": 200,
+          "ms": 50
+        },
+        "/en/c/coding.html": {
+          "status": 200,
+          "ms": 111
+        }
+      }
+    }
+  ]
+}

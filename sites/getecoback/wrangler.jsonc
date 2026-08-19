@@ -1,0 +1,23 @@
+{
+	"name": "ecoback",
+	"main": "src/worker.js",
+	"compatibility_date": "2026-07-01",
+	"routes": [
+		{ "pattern": "getecoback.com/*", "zone_name": "getecoback.com" },
+		{ "pattern": "www.getecoback.com/*", "zone_name": "getecoback.com" }
+	],
+	"d1_databases": [
+		{
+			"binding": "EVENTS",
+			"database_name": "ecoback-events",
+			"database_id": "75e45e05-44b5-4c56-9a3b-dd504b5c53f1"
+		}
+	],
+	"assets": {
+		"directory": "./site",
+		"binding": "ASSETS",
+		"html_handling": "none",
+		"not_found_handling": "404-page",
+		"run_worker_first": true
+	}
+}

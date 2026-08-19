@@ -1,0 +1,54 @@
+name: Fetch vendor product photos
+# ── 迁入公开 monorepo f-tiger/agi-site(2026-08-19,owner 决定)──
+# 原仓 .github 为历史档案。公开仓 Actions 分钟免费。
+# 本 workflow 的 run 步骤默认 working-directory: sites/thedollscout/。
+
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 3 * * 1'  # weekly, Monday 03:00 UTC
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: sites/thedollscout
+    steps:
+      - uses: actions/checkout@v4
+        with:
+
+      - name: Install Playwright browser
+        run: |
+          npm init -y > /dev/null
+          npm install playwright@1 > /dev/null 2>&1
+          npx playwright install --with-deps chromium 2>&1 | tail -1
+
+      - name: Scrape product image URLs
+        run: node scripts/fetch-photos.mjs
+
+      - name: Commit refreshed photo links
+        run: |
+          bash scripts/commit-generated.sh photo-refresh-bot \
+            "chore: refresh vendor product photo links" \
+            js/photos.js scripts/photos.json
+
+      # Pushes made with GITHUB_TOKEN don't trigger the deploy workflow,
+      # so deploy directly here.
+      - name: Deploy to Cloudflare Pages
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CF_ACCOUNT_ID_SECRET: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          if [ -n "$CF_ACCOUNT_ID_SECRET" ]; then
+            export CLOUDFLARE_ACCOUNT_ID="$CF_ACCOUNT_ID_SECRET"
+          fi
+          bash scripts/assemble-dist.sh
+          npx wrangler@4 pages deploy dist \
+            --project-name dollscout \
+            --branch claude/adult-product-distribution-site-q1bzbh \
+            --commit-dirty=true

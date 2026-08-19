@@ -1,0 +1,509 @@
+{
+  "name": "DollScout adult doll specification dataset",
+  "description": "Height, weight and listed price for every adult doll and torso reachable at one vetted vendor on the recording date. Published so the findings on thedollscout.com can be checked against the underlying rows.",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "publisher": "https://thedollscout.com/",
+  "documentation": "https://thedollscout.com/data/",
+  "recorded": "2026-08-11",
+  "rowCount": 53,
+  "source": {
+    "vendor": "yourdoll.com",
+    "method": "Headless-browser scrape of popularity-sorted listings across height bands, then each product page's specification block. 110 product pages visited."
+  },
+  "limitations": [
+    "Figures are vendor-stated, not independently weighed or measured.",
+    "One vendor only. It is a sample of that catalogue, not of the market.",
+    "Prices are as displayed on the recording date, including any sale price, and drift.",
+    "Material is NOT included: the scraper could not distinguish TPE from silicone reliably on these listings, so publishing a material column would be a guess. The omission is deliberate.",
+    "Products whose stated height is under 140 cm are excluded unless the listing is explicitly a partial body — an editorial safety rule, not a data-quality one.",
+    "Accessory listings are excluded: their pages carry the spec table of the doll they fit, which once produced a spurious full-size row at accessory pricing."
+  ],
+  "fields": {
+    "title": "Vendor's product title, verbatim",
+    "url": "Product page URL (no referral parameters)",
+    "heightCm": "Vendor-stated height in centimetres",
+    "weightKg": "Vendor-stated weight in kilograms",
+    "weightLb": "Vendor-stated weight in pounds",
+    "priceUsd": "Listed price in USD on the recording date",
+    "isPartialBody": "True for torsos and other partial bodies"
+  },
+  "rows": [
+    {
+      "title": "150cm (4ft11) F-Cup TPE Sex Doll, Head #225, in US Stock",
+      "url": "https://www.yourdoll.com/product/sex-doll-abd131-3/",
+      "heightCm": 150,
+      "weightKg": 33,
+      "weightLb": 73,
+      "priceUsd": 899,
+      "isPartialBody": false
+    },
+    {
+      "title": "150cm (4ft11) F-Cup TPE Sex Doll, Head #228, in USA Stock",
+      "url": "https://www.yourdoll.com/product/sex-doll-abd130-1/",
+      "heightCm": 150,
+      "weightKg": 33,
+      "weightLb": 73,
+      "priceUsd": 899,
+      "isPartialBody": false
+    },
+    {
+      "title": "150cm (4ft11) F-Cup TPE Sex Doll, Head #228, in EU Stock",
+      "url": "https://www.yourdoll.com/product/sex-doll-abd130-2/",
+      "heightCm": 150,
+      "weightKg": 33,
+      "weightLb": 73,
+      "priceUsd": 1099,
+      "isPartialBody": false
+    },
+    {
+      "title": "150cm (4ft11) F-Cup TPE Sex Doll, Head #225, in EU Stock",
+      "url": "https://www.yourdoll.com/product/sex-doll-abd131-2/",
+      "heightCm": 150,
+      "weightKg": 33,
+      "weightLb": 73,
+      "priceUsd": 1099,
+      "isPartialBody": false
+    },
+    {
+      "title": "150cm (4ft11) TPE Sex Doll Richelle, Ready to Ship from USA, Flash Sale",
+      "url": "https://www.yourdoll.com/product/sex-doll-itd020-1/",
+      "heightCm": 150,
+      "weightKg": 27,
+      "weightLb": 60,
+      "priceUsd": 1199,
+      "isPartialBody": false
+    },
+    {
+      "title": "150cm (4ft11) S-TPE Elf Sex Doll Elsa, In EU Stock",
+      "url": "https://www.yourdoll.com/product/sex-doll-sed065-2/",
+      "heightCm": 150,
+      "weightKg": 27,
+      "weightLb": 60,
+      "priceUsd": 1231.65,
+      "isPartialBody": false
+    },
+    {
+      "title": "160cm (5ft2) C-Cup S-TPE Sex Doll Tracy.B, Head #L76, in USA Stock",
+      "url": "https://www.yourdoll.com/product/sex-doll-sed333-3/",
+      "heightCm": 160,
+      "weightKg": 38.6,
+      "weightLb": 85,
+      "priceUsd": 1231.65,
+      "isPartialBody": false
+    },
+    {
+      "title": "160cm (5ft2) C-Cup STPE Sex Doll Hazel.E, Head #127, in EU Stock",
+      "url": "https://www.yourdoll.com/product/sex-doll-sed335-2/",
+      "heightCm": 160,
+      "weightKg": 38.6,
+      "weightLb": 85,
+      "priceUsd": 1231.65,
+      "isPartialBody": false
+    },
+    {
+      "title": "150cm (4ft11) B-Cup Cosplay Sex Doll XiXi, ROS Available",
+      "url": "https://www.yourdoll.com/product/sex-doll-she456/",
+      "heightCm": 150,
+      "weightKg": 36,
+      "weightLb": 79,
+      "priceUsd": 1299,
+      "isPartialBody": false
+    },
+    {
+      "title": "160cm (5ft3) C-Cup Hybrid Love Doll Trijntje, Silicone Head S10, In USA Stock",
+      "url": "https://www.yourdoll.com/product/sex-doll-syd062-5/",
+      "heightCm": 160,
+      "weightKg": 36,
+      "weightLb": 79,
+      "priceUsd": 1299,
+      "isPartialBody": false
+    },
+    {
+      "title": "150cm (4ft11) D-cup Sex Doll Rhiannon, Head N7, in US Stock",
+      "url": "https://www.yourdoll.com/product/sex-doll-6yd059-2/",
+      "heightCm": 150,
+      "weightKg": 26.8,
+      "weightLb": 59,
+      "priceUsd": 1349,
+      "isPartialBody": false
+    },
+    {
+      "title": "150cm (4ft11) B-cup Sex Doll Salomea, Head N20, in USA Stock",
+      "url": "https://www.yourdoll.com/product/sex-doll-6yd139-2/",
+      "heightCm": 150,
+      "weightKg": 26,
+      "weightLb": 57,
+      "priceUsd": 1349,
+      "isPartialBody": false
+    },
+    {
+      "title": "150cm (4ft11) S-TPE Sex Doll Nova",
+      "url": "https://www.yourdoll.com/product/sex-doll-ikd272/",
+      "heightCm": 150,
+      "weightKg": 35,
+      "weightLb": 77,
+      "priceUsd": 1485,
+      "isPartialBody": false
+    },
+    {
+      "title": "150cm (4ft11) S-TPE Sex Doll Sora",
+      "url": "https://www.yourdoll.com/product/sex-doll-ikd273/",
+      "heightCm": 150,
+      "weightKg": 35,
+      "weightLb": 77,
+      "priceUsd": 1485,
+      "isPartialBody": false
+    },
+    {
+      "title": "150cm (4ft11) S-TPE Sex Doll Misaki",
+      "url": "https://www.yourdoll.com/product/sex-doll-ikd261/",
+      "heightCm": 150,
+      "weightKg": 35,
+      "weightLb": 77,
+      "priceUsd": 1485,
+      "isPartialBody": false
+    },
+    {
+      "title": "150cm (4ft11) S-TPE Sex Doll Hiiro",
+      "url": "https://www.yourdoll.com/product/sex-doll-ikd246/",
+      "heightCm": 150,
+      "weightKg": 35,
+      "weightLb": 77,
+      "priceUsd": 1485,
+      "isPartialBody": false
+    },
+    {
+      "title": "160cm (5ft3) Furry Snake All In One Silicone Sex Doll",
+      "url": "https://www.yourdoll.com/product/sex-doll-dcd221/",
+      "heightCm": 160,
+      "weightKg": 37,
+      "weightLb": 82,
+      "priceUsd": 1499,
+      "isPartialBody": false
+    },
+    {
+      "title": "Big Breast N-cup Merna",
+      "url": "https://www.yourdoll.com/product/sex-doll-yld016/",
+      "heightCm": 140,
+      "weightKg": 28,
+      "weightLb": 62,
+      "priceUsd": 1549,
+      "isPartialBody": true
+    },
+    {
+      "title": "140cm (4ft7) Silicone Doll Torso BR-4, ROS Head, #Y39 Eva, in EU Stock",
+      "url": "https://www.yourdoll.com/product/sex-doll-yed040-1/",
+      "heightCm": 140,
+      "weightKg": 29.5,
+      "weightLb": 65,
+      "priceUsd": 1599,
+      "isPartialBody": true
+    },
+    {
+      "title": "160cm (5ft2) C-Cup Sex Doll Yuuka.H, Head #079",
+      "url": "https://www.yourdoll.com/product/sex-doll-sed337/",
+      "heightCm": 160,
+      "weightKg": 38.6,
+      "weightLb": 85,
+      "priceUsd": 1599,
+      "isPartialBody": false
+    },
+    {
+      "title": "160cm (5ft2) C-Cup Sex Doll Hazel.E, Head #127",
+      "url": "https://www.yourdoll.com/product/sex-doll-sed335/",
+      "heightCm": 160,
+      "weightKg": 38.6,
+      "weightLb": 85,
+      "priceUsd": 1599,
+      "isPartialBody": false
+    },
+    {
+      "title": "140cm (4ft7) F-Cup Silicone Sex Doll Torso BR-4, ROS Head, #Y39 Eva",
+      "url": "https://www.yourdoll.com/product/sex-doll-yed040/",
+      "heightCm": 140,
+      "weightKg": 29.5,
+      "weightLb": 65,
+      "priceUsd": 1599.9,
+      "isPartialBody": true
+    },
+    {
+      "title": "140cm (4ft7) Furry Fox Silicone Sex Doll Renamon, Head SZ20",
+      "url": "https://www.yourdoll.com/product/sex-doll-dcd222/",
+      "heightCm": 140,
+      "weightKg": 38,
+      "weightLb": 84,
+      "priceUsd": 1799,
+      "isPartialBody": false
+    },
+    {
+      "title": "160cm (5ft3) G4 TPE Sex Doll, Head #422",
+      "url": "https://www.yourdoll.com/product/sex-doll-wmd967/",
+      "heightCm": 160,
+      "weightKg": 38,
+      "weightLb": 84,
+      "priceUsd": 1799,
+      "isPartialBody": false
+    },
+    {
+      "title": "160cm (5ft3) G4 Elf TPE Sex Doll, Head #172",
+      "url": "https://www.yourdoll.com/product/sex-doll-wmd966/",
+      "heightCm": 160,
+      "weightKg": 38,
+      "weightLb": 84,
+      "priceUsd": 1799,
+      "isPartialBody": false
+    },
+    {
+      "title": "150cm (4ft11) F-Cup Silicone Sex Doll Clara, ROS Head #AB27",
+      "url": "https://www.yourdoll.com/product/sex-doll-abs135/",
+      "heightCm": 150,
+      "weightKg": 29,
+      "weightLb": 64,
+      "priceUsd": 1799.1,
+      "isPartialBody": false
+    },
+    {
+      "title": "150cm (4ft11) A-Cup Silicone Sex Doll, Head S22",
+      "url": "https://www.yourdoll.com/product/sex-doll-rst029/",
+      "heightCm": 150,
+      "weightKg": 29,
+      "weightLb": 64,
+      "priceUsd": 1899,
+      "isPartialBody": false
+    },
+    {
+      "title": "140cm (4ft7) R-Cup Furry OX Silicone Sex Doll Bovinia, Head SZ22",
+      "url": "https://www.yourdoll.com/product/sex-doll-dcd225/",
+      "heightCm": 140,
+      "weightKg": 47,
+      "weightLb": 104,
+      "priceUsd": 1999,
+      "isPartialBody": false
+    },
+    {
+      "title": "140cm (4ft7) Furry Wolf Silicone Sex Doll Krystal, Head SZ21",
+      "url": "https://www.yourdoll.com/product/sex-doll-dcd224/",
+      "heightCm": 140,
+      "weightKg": 42,
+      "weightLb": 93,
+      "priceUsd": 1999,
+      "isPartialBody": false
+    },
+    {
+      "title": "140cm (4ft7) Furry Wolf Silicone Sex Doll Velkara, Head SZ18",
+      "url": "https://www.yourdoll.com/product/sex-doll-dcd216/",
+      "heightCm": 140,
+      "weightKg": 38,
+      "weightLb": 84,
+      "priceUsd": 1999,
+      "isPartialBody": false
+    },
+    {
+      "title": "160cm (5ft3) Silicone Sex Doll Celine, Head S13, ROS Max Head, in US Stock",
+      "url": "https://www.yourdoll.com/product/sex-doll-itd894-1/",
+      "heightCm": 160,
+      "weightKg": 42.8,
+      "weightLb": 94,
+      "priceUsd": 2180,
+      "isPartialBody": false
+    },
+    {
+      "title": "165cm (5ft5) – 165T Silicone Sex Doll Glow Suki, Head S20, ROS Max Head, in US S",
+      "url": "https://www.yourdoll.com/product/sex-doll-itd895-1/",
+      "heightCm": 165,
+      "weightKg": 36,
+      "weightLb": 79,
+      "priceUsd": 2180,
+      "isPartialBody": false
+    },
+    {
+      "title": "160cm (5ft3) D-Cup Christmas Silicone Sex Doll MeiXiao, ROS Head Only",
+      "url": "https://www.yourdoll.com/product/sex-doll-sen215/",
+      "heightCm": 160,
+      "weightKg": 38,
+      "weightLb": 84,
+      "priceUsd": 2222.1,
+      "isPartialBody": false
+    },
+    {
+      "title": "160cm (5ft3) D-Cup Christmas Silicone Sex Doll Aoi, ROS Head Only",
+      "url": "https://www.yourdoll.com/product/sex-doll-sen212/",
+      "heightCm": 160,
+      "weightKg": 38,
+      "weightLb": 84,
+      "priceUsd": 2222.1,
+      "isPartialBody": false
+    },
+    {
+      "title": "160cm (5ft3) Silicone Sex Doll Celine, Head S13, ROS Max Available",
+      "url": "https://www.yourdoll.com/product/sex-doll-itd894/",
+      "heightCm": 160,
+      "weightKg": 42.8,
+      "weightLb": 94,
+      "priceUsd": 2250,
+      "isPartialBody": false
+    },
+    {
+      "title": "150cm (4ft11) E-Cup Silicone Sex Doll Amelia, Head #M8",
+      "url": "https://www.yourdoll.com/product/sex-doll-mdd012/",
+      "heightCm": 150,
+      "weightKg": 27,
+      "weightLb": 60,
+      "priceUsd": 2499,
+      "isPartialBody": false
+    },
+    {
+      "title": "150cm (4ft11) E-Cup Silicone Sex Doll Theresa, Head #M6",
+      "url": "https://www.yourdoll.com/product/sex-doll-mdd011/",
+      "heightCm": 150,
+      "weightKg": 27,
+      "weightLb": 60,
+      "priceUsd": 2499,
+      "isPartialBody": false
+    },
+    {
+      "title": "150cm (4ft11) E-Cup Silicone Sex Doll Lily, Head #M21, ROS Available",
+      "url": "https://www.yourdoll.com/product/sex-doll-mdd009/",
+      "heightCm": 150,
+      "weightKg": 27,
+      "weightLb": 60,
+      "priceUsd": 2499,
+      "isPartialBody": false
+    },
+    {
+      "title": "150cm (4ft11) E-Cup Silicone Sex Doll Lily, Head #M21, ROS Available",
+      "url": "https://www.yourdoll.com/product/sex-doll-mdd008/",
+      "heightCm": 150,
+      "weightKg": 27,
+      "weightLb": 60,
+      "priceUsd": 2499,
+      "isPartialBody": false
+    },
+    {
+      "title": "150cm (4ft11) E-Cup Silicone Sex Doll Angela, Head #M2",
+      "url": "https://www.yourdoll.com/product/sex-doll-mdd007/",
+      "heightCm": 150,
+      "weightKg": 27,
+      "weightLb": 60,
+      "priceUsd": 2499,
+      "isPartialBody": false
+    },
+    {
+      "title": "150cm (4ft11) E-Cup Silicone Sex Doll Poppy, Head #M14",
+      "url": "https://www.yourdoll.com/product/sex-doll-mdd005/",
+      "heightCm": 150,
+      "weightKg": 27,
+      "weightLb": 60,
+      "priceUsd": 2499,
+      "isPartialBody": false
+    },
+    {
+      "title": "150cm (4ft11) E-Cup Silicone Sex Doll Mabel, Head #M10",
+      "url": "https://www.yourdoll.com/product/sex-doll-mdd004/",
+      "heightCm": 150,
+      "weightKg": 27,
+      "weightLb": 60,
+      "priceUsd": 2499,
+      "isPartialBody": false
+    },
+    {
+      "title": "150cm (4ft11) E-Cup Silicone Sex Doll Mabel, Head #M10",
+      "url": "https://www.yourdoll.com/product/sex-doll-mdd003/",
+      "heightCm": 150,
+      "weightKg": 27,
+      "weightLb": 60,
+      "priceUsd": 2499,
+      "isPartialBody": false
+    },
+    {
+      "title": "150cm (4ft11) E-Cup Silicone Sex Doll Letitia, Head #M9",
+      "url": "https://www.yourdoll.com/product/sex-doll-mdd013/",
+      "heightCm": 150,
+      "weightKg": 27,
+      "weightLb": 60,
+      "priceUsd": 2499,
+      "isPartialBody": false
+    },
+    {
+      "title": "150cm (4ft11) E-Cup Silicone Sex Doll Tina, Head #M5, ROS Available",
+      "url": "https://www.yourdoll.com/product/sex-doll-mdd010/",
+      "heightCm": 150,
+      "weightKg": 27,
+      "weightLb": 60,
+      "priceUsd": 2499,
+      "isPartialBody": false
+    },
+    {
+      "title": "150cm (4ft11) E-Cup Silicone Sex Doll Celine, Head #M15, ROS Available",
+      "url": "https://www.yourdoll.com/product/sex-doll-mdd006/",
+      "heightCm": 150,
+      "weightKg": 27,
+      "weightLb": 60,
+      "priceUsd": 2499,
+      "isPartialBody": false
+    },
+    {
+      "title": "150cm (4ft11) E-Cup Elf Silicone Sex Doll Sophia, Head #M24, ROS Available",
+      "url": "https://www.yourdoll.com/product/sex-doll-mdd002/",
+      "heightCm": 150,
+      "weightKg": 27,
+      "weightLb": 60,
+      "priceUsd": 2499,
+      "isPartialBody": false
+    },
+    {
+      "title": "160cm (5ft3)  C-Cup Full Silicone Sex Doll, Movable Jaw Head, Sorelle",
+      "url": "https://www.yourdoll.com/product/sex-doll-mvd010/",
+      "heightCm": 160,
+      "weightKg": 38.5,
+      "weightLb": 85,
+      "priceUsd": 2699,
+      "isPartialBody": false
+    },
+    {
+      "title": "160cm (5ft3)  C-Cup Full Silicone Sex Doll, Movable Jaw Head, Sorelle#-1",
+      "url": "https://www.yourdoll.com/product/sex-doll-mvd009/",
+      "heightCm": 160,
+      "weightKg": 38.5,
+      "weightLb": 85,
+      "priceUsd": 2699,
+      "isPartialBody": false
+    },
+    {
+      "title": "160cm (5ft3)  C-Cup Full Silicone Sex Doll, Movable Jaw Head, Sorelle",
+      "url": "https://www.yourdoll.com/product/sex-doll-mvd008/",
+      "heightCm": 160,
+      "weightKg": 38.5,
+      "weightLb": 85,
+      "priceUsd": 2699,
+      "isPartialBody": false
+    },
+    {
+      "title": "150cm (4ft11) Silicone Sex Doll Alara, ROS Max Head R11",
+      "url": "https://www.yourdoll.com/product/sex-doll-rld091/",
+      "heightCm": 150,
+      "weightKg": 27.6,
+      "weightLb": 61,
+      "priceUsd": 2866,
+      "isPartialBody": false
+    },
+    {
+      "title": "150cm (4ft11) Silicone Sex Doll Viki, ROS Max Head R10",
+      "url": "https://www.yourdoll.com/product/sex-doll-rld075/",
+      "heightCm": 150,
+      "weightKg": 27.6,
+      "weightLb": 61,
+      "priceUsd": 2866,
+      "isPartialBody": false
+    },
+    {
+      "title": "150cm (4ft11) Silicone Sex Doll Alara, ROS Max Head R11",
+      "url": "https://www.yourdoll.com/product/sex-doll-rld065/",
+      "heightCm": 150,
+      "weightKg": 27.6,
+      "weightLb": 61,
+      "priceUsd": 2866,
+      "isPartialBody": false
+    }
+  ]
+}

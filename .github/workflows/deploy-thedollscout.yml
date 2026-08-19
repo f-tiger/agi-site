@@ -1,0 +1,151 @@
+name: Deploy thedollscout.com
+# ── 迁入公开 monorepo f-tiger/agi-site(2026-08-19,owner 决定)──
+# 原仓 .github 为历史档案。公开仓 Actions 分钟免费。
+# 本 workflow 的 run 步骤默认 working-directory: sites/thedollscout/。
+
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "sites/thedollscout/**"
+      - ".github/workflows/deploy-thedollscout.yml"
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: sites/thedollscout
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Full history: build-sitemap derives each URL's lastmod from that
+          # file's last commit. A shallow clone gives every file the same single
+          # commit, which puts all 40 URLs back on one uniform date — the exact
+          # bug this replaced, and invisible in the output.
+          fetch-depth: 0
+
+      - name: Regenerate content-driven pages
+        run: node scripts/build-pages.mjs
+
+      # Entity pages, generated from the dataset. Must run BEFORE the sitemap
+      # so new heights are discoverable the day the data supports them.
+      - name: Rebuild the per-height weight pages
+        run: node scripts/build-weight-pages.mjs
+
+      - name: Generate any category that now qualifies
+        run: node scripts/build-category-pages.mjs
+
+      - name: Rebuild sitemap from the pages that actually exist
+        run: node scripts/build-sitemap.mjs
+
+      - name: Rebuild the llms.txt index for AI crawlers
+        run: node scripts/build-llms.mjs
+
+      - name: Rebuild the public dataset
+        run: node scripts/build-dataset.mjs
+
+      # The scam checklist and the country rules become datasets so they can
+      # be cited on their own AND called through /mcp, from one source.
+      - name: Rebuild the tool datasets
+        run: node scripts/build-tool-datasets.mjs
+
+      # An answer engine cannot run a calculator, so the recourse tool's
+      # conclusions are regenerated into the page as a table and into
+      # data/payment-recourse.json on every deploy. Generated, never
+      # hand-written, so the published table cannot go stale on its own.
+      # Drift between the table and the tool's own JavaScript is caught
+      # separately by .github/workflows/verify.yml.
+      - name: Rebuild the payment-recourse matrix
+        run: node scripts/build-recourse-matrix.mjs
+
+      - name: Rebuild the first-year cost examples
+        run: node scripts/build-cost-examples.mjs
+
+      # The pricing guide and /data/ state figures in prose — row counts, the
+      # recording date, the price bands. Those were written by hand and drifted
+      # onto a different scrape than the dataset published beside them: /data/
+      # said "54 rows, recorded 7 August" above a file with 53 rows recorded on
+      # the 11th. The numbers are generated now, and each anchor fails loudly
+      # rather than silently skipping.
+      - name: Rewrite the published figures from the dataset
+        run: node scripts/build-data-page.mjs
+
+      # Cloudflare Pages 308s /x.html to /x, so publishing the .html form made
+      # every sitemap entry a redirect and every canonical point at a URL that
+      # bounced. Measured against the live host: 35 of 40 URLs. Runs after the
+      # page generators, so a template nobody remembered to update cannot
+      # reintroduce a redirecting canonical.
+      - name: Normalise every published URL to the form the host serves
+        run: node scripts/normalize-urls.mjs
+
+      # Every <a data-yd>/<a data-amzn> anchor used to ship as href="#" and
+      # wait for js/main.js to inject the affiliate URL — so no-JS visitors
+      # got a dead link and crawlers (including the AI engines we court) never
+      # saw the links or their rel="sponsored" disclosure. This bakes the
+      # final URL + rel + target into the HTML itself, mirroring main.js's
+      # construction exactly. Runs after every page generator so regenerated
+      # pages get their links back, and fails loudly if any anchor is left
+      # unbaked.
+      - name: Bake the affiliate links into the static HTML
+        run: node scripts/bake-affiliate-links.mjs
+
+      # Applies the SafeSearch labelling and rebuilds _headers. Runs after every
+      # generator that writes a page head, or a later one re-labels its own
+      # output. The 18+ age gate is separate and untouched — js/main.js injects
+      # it on every page, and the test below refuses to pass if any page is
+      # missing it.
+      - name: Apply the adult-content labelling
+        run: |
+          node scripts/build-adult-labels.mjs
+          node scripts/test-adult-labels.mjs
+
+      # After the sitemap, so the index covers every page that exists.
+      - name: Rebuild the search index
+        run: node scripts/build-search-index.mjs
+
+      # Generated from the endpoint's own tool list, so a discovery document
+      # cannot describe tools the server does not have.
+      - name: Rebuild the MCP discovery files
+        run: node scripts/build-mcp-discovery.mjs
+
+      # The registry fetches this from the live site to prove we own the
+      # domain. The PUBLIC half is derived from the secret at build time, so
+      # the served proof cannot drift from the key that signs. No secret, no
+      # file, no failure — a site that has not opted into a registry is fine.
+      - name: Publish the MCP registry domain proof
+        env:
+          MCP_REGISTRY_PRIVATE_KEY: ${{ secrets.MCP_REGISTRY_PRIVATE_KEY }}
+        run: node scripts/build-mcp-registry-auth.mjs
+
+      - name: Rebuild the Atom feed
+        run: node scripts/build-feed.mjs
+
+      - name: Assemble static site into dist/
+        run: bash scripts/assemble-dist.sh
+
+      - name: Deploy to Cloudflare Pages
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CF_ACCOUNT_ID_SECRET: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          if [ -z "$CLOUDFLARE_API_TOKEN" ]; then
+            echo "::error::CLOUDFLARE_API_TOKEN repo secret is not set"; exit 1
+          fi
+          if [ -n "$CF_ACCOUNT_ID_SECRET" ]; then
+            export CLOUDFLARE_ACCOUNT_ID="$CF_ACCOUNT_ID_SECRET"
+          fi
+          # First run: create the project (no-op failure if it already exists)
+          npx wrangler@4 pages project create dollscout \
+            --production-branch claude/adult-product-distribution-site-q1bzbh || true
+          npx wrangler@4 pages deploy dist \
+            --project-name dollscout \
+            --branch claude/adult-product-distribution-site-q1bzbh
+
+      # Bing/Yandex/Seznam/Naver pick this up within minutes. Google is not an
+      # IndexNow consumer — it discovers these URLs via sitemap + Search Console.
+      - name: Ping IndexNow with the published URL list
+        continue-on-error: true
+        run: node scripts/indexnow.mjs

@@ -1,0 +1,73 @@
+name: Publish MCP server to the official registry
+# ── 迁入公开 monorepo f-tiger/agi-site(2026-08-19,owner 决定)──
+# 原仓 .github 为历史档案。公开仓 Actions 分钟免费。
+# 本 workflow 的 run 步骤默认 working-directory: sites/getecoback/。
+
+
+# Active discovery instead of passive waiting: the official MCP Registry is the
+# feed most clients and community directories sync from, so one publish here
+# cascades. GitHub OIDC authenticates this repo's Actions as the io.github.f-tiger
+# namespace — no stored token, nothing for the owner to paste.
+on:
+  push:
+    branches: [main]
+    paths: ["sites/getecoback/mcp/**", ".github/workflows/eco-publish-mcp.yml"]
+  workflow_dispatch: {}
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: sites/getecoback
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install mcp-publisher
+        run: |
+          # Release assets carry the version in their name, so resolve the
+          # linux/amd64 asset from the latest-release API instead of guessing.
+          url=$(curl -s https://api.github.com/repos/modelcontextprotocol/registry/releases/latest \
+                | python3 -c "import json,sys; a=[x['browser_download_url'] for x in json.load(sys.stdin)['assets'] if 'linux' in x['name'] and ('amd64' in x['name'] or 'x86_64' in x['name']) and x['name'].endswith('.tar.gz')]; print(a[0])")
+          echo "downloading $url"
+          curl -sL "$url" -o pub.tgz
+          tar -xzf pub.tgz
+          ./mcp-publisher --version || { echo "::error::mcp-publisher binary not found in asset"; exit 1; }
+
+      - name: Verify the live endpoint before publishing a pointer to it
+        run: |
+          resp=$(curl -s --max-time 20 -X POST "https://getecoback.com/mcp" \
+            -H "Content-Type: application/json" \
+            -d '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-03-26","capabilities":{},"clientInfo":{"name":"publish-check","version":"0"}}}')
+          echo "$resp" | grep -q "getecoback-raumklima" || { echo "::error::live MCP endpoint not healthy — refusing to publish"; exit 1; }
+
+      - name: Login (GitHub OIDC) and publish
+        run: |
+          ./mcp-publisher login github-oidc
+          # The registry refuses to overwrite an existing name+version pair, so a
+          # re-run with an unchanged file is "already published" — success, not
+          # failure. Anything else must stay loud.
+          pub() {
+            out=$(./mcp-publisher publish "$1" 2>&1) && { echo "$out"; return 0; }
+            echo "$out"
+            case "$out" in
+              *"cannot publish duplicate version"*) echo "already published — ok (idempotent)"; return 0 ;;
+              *) return 1 ;;
+            esac
+          }
+          # Superseded names. There is no way to deprecate or delete an entry:
+          # the registry keeps status in server-managed _meta and silently
+          # ignores the "status" field a publish sends, so the deprecations this
+          # step used to publish were a no-op that only refreshed the stale
+          # entries' timestamps. What a publish *can* change is the description,
+          # so each old name now carries a one-line "superseded by" notice —
+          # honest to a human browsing the registry, and the old URLs keep
+          # working for anyone who already installed them.
+          for f in mcp/superseded/*.json; do
+            [ -e "$f" ] && pub "$f"
+          done
+          pub mcp/server.json

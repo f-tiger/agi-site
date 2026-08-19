@@ -1,0 +1,12 @@
+{
+  "category": "Luftentfeuchter nach Raumgröße",
+  "note": "Programmatische Kategorie #3: Entfeuchter-Kapazität (Liter/Tag) je Raumgröße. Neue Größe = Eintrag + `python tools/gen_entfeuchter_qm.py`.",
+  "entries": [
+    {"qm": 10, "liter": "10–12", "lref": 10, "raumtyp": "Bad oder kleiner Raum", "suchbegriff": "luftentfeuchter+10+liter", "hinweis": "Für 10 m² reicht meist ein 10–12-Liter-Gerät. Bei starker Feuchte (Bad, Keller) eher mehr."},
+    {"qm": 15, "liter": "12–16", "lref": 14, "raumtyp": "Schlaf- oder Arbeitszimmer", "suchbegriff": "luftentfeuchter+12+liter", "hinweis": "15 m² brauchen ca. 12–16 Liter/Tag Entfeuchtungsleistung."},
+    {"qm": 20, "liter": "16–20", "lref": 18, "raumtyp": "Wohnzimmer oder Schlafzimmer", "suchbegriff": "luftentfeuchter+20+liter", "hinweis": "Ab 20 m² sind 16–20 Liter/Tag sinnvoll, besonders in Erdgeschoss- oder Altbauwohnungen."},
+    {"qm": 25, "liter": "20", "lref": 20, "raumtyp": "größeres Wohnzimmer", "suchbegriff": "luftentfeuchter+20+liter", "hinweis": "25 m² sind mit einem 20-Liter-Gerät gut bedient."},
+    {"qm": 30, "liter": "20–25", "lref": 22, "raumtyp": "offener Wohnbereich", "suchbegriff": "luftentfeuchter+25+liter", "hinweis": "Für 30 m² plane 20–25 Liter/Tag ein, bei sehr feuchten Räumen mehr."},
+    {"qm": 40, "liter": "25–30", "lref": 28, "raumtyp": "Keller oder sehr großer Raum", "suchbegriff": "luftentfeuchter+30+liter", "hinweis": "40 m² oder feuchte Keller brauchen 25–30 Liter/Tag — hier lohnt ein kräftiges Gerät."}
+  ]
+}

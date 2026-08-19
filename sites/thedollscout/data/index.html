@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Open Data: 53 Doll Listings, Priced and Weighed</title>
+<meta name="description" content="Download the raw dataset behind our findings: height, weight and price for 53 adult doll listings, as JSON and CSV, CC BY 4.0, with its limitations stated.">
+<link rel="canonical" href="https://thedollscout.com/data/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DollScout">
+<meta property="og:url" content="https://thedollscout.com/data/">
+<meta property="og:title" content="We published the dataset, not just the conclusions.">
+<meta property="og:description" content="53 doll listings — height, weight, price — as JSON and CSV under CC BY 4.0, with every limitation stated. Nobody else in this category publishes their data.">
+<meta property="og:image" content="https://thedollscout.com/img/og/og-home.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="We published the dataset, not just the conclusions.">
+<meta name="twitter:description" content="53 doll listings as JSON and CSV, CC BY 4.0, limitations included.">
+<meta name="twitter:image" content="https://thedollscout.com/img/og/og-home.png">
+<link rel="stylesheet" href="/css/main.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://thedollscout.com/#org",
+      "name": "DollScout",
+      "url": "https://thedollscout.com/",
+      "description": "Evidence-standard buying guide for adult dolls: recorded price and weight data, sourced scam checks, statute-read payment rights. Every claim sourced or marked unverified."
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thedollscout.com/"},
+        {"@type": "ListItem", "position": 2, "name": "Open data", "item": "https://thedollscout.com/data/"}
+      ]
+    },
+    {
+      "@type": "Dataset",
+      "@id": "https://thedollscout.com/data/#dataset",
+      "name": "DollScout adult doll specification dataset",
+      "description": "Height, weight and listed price for 53 adult doll and torso listings recorded at one vetted vendor on 2026-08-11. Published so that the findings on thedollscout.com can be checked against the underlying rows. Vendor-stated figures; limitations documented.",
+      "url": "https://thedollscout.com/data/",
+      "license": "https://creativecommons.org/licenses/by/4.0/",
+      "isAccessibleForFree": true,
+      "creator": {"@id": "https://thedollscout.com/#org"},
+      "publisher": {"@id": "https://thedollscout.com/#org"},
+      "datePublished": "2026-08-02",
+      "dateModified": "2026-08-11",
+      "temporalCoverage": "2026-08-11",
+      "measurementTechnique": "Headless-browser collection of vendor-published specification blocks from popularity-sorted product listings across height bands.",
+      "variableMeasured": [
+        {"@type": "PropertyValue", "name": "heightCm", "description": "Vendor-stated height in centimetres"},
+        {"@type": "PropertyValue", "name": "weightKg", "description": "Vendor-stated weight in kilograms"},
+        {"@type": "PropertyValue", "name": "weightLb", "description": "Vendor-stated weight in pounds"},
+        {"@type": "PropertyValue", "name": "priceUsd", "description": "Listed price in USD on the recording date"},
+        {"@type": "PropertyValue", "name": "isPartialBody", "description": "True for torsos and other partial bodies"}
+      ],
+      "distribution": [
+        {"@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "https://thedollscout.com/data/doll-specs.json"},
+        {"@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": "https://thedollscout.com/data/doll-specs.csv"}
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://thedollscout.com/data/#faq",
+      "mainEntity": [
+        {"@type": "Question", "name": "Can I use this doll price and weight data?",
+         "acceptedAnswer": {"@type": "Answer", "text": "Yes. The dataset is published under CC BY 4.0 as JSON and CSV, free to use including commercially, with attribution to thedollscout.com. No signup, no API key, no request form."}},
+        {"@type": "Question", "name": "Why does the dataset have no material column?",
+         "acceptedAnswer": {"@type": "Answer", "text": "Because the collection could not distinguish TPE from silicone reliably on these listings. Publishing a material column would have been a guess presented as data, so the column is omitted and the omission is stated. That decision is the point of the dataset."}},
+        {"@type": "Question", "name": "How reliable are these figures?",
+         "acceptedAnswer": {"@type": "Answer", "text": "They are vendor-stated, not independently weighed or measured, and they come from a single vendor's catalogue on one date. Repeated models returned identical figures across separate listings, which is consistent with real specification data rather than randomly generated numbers, but the dataset is a sample of one catalogue and should be read as such."}}
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="notice-bar">🛡️ <b>Evidence-standard buyer's guide.</b> Every number sourced — or marked unverified. We sell nothing ourselves. 18+ only.</div>
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="/">Doll<b>Scout</b></a>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+    <nav class="nav">
+      <a href="/quiz">60-Sec Finder</a>
+      <a href="/scam-check">Scam-Check</a>
+      <a href="/cost-calculator">True Cost</a>
+      <a href="/after-you-order">After You Order</a>
+      <a href="/weight/">Weight</a>
+      <a href="/importing/">Importing</a>
+      <a href="/guides/">Guides</a>
+      <a href="/picks">Vetted Picks</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+<section>
+<div class="wrap prose">
+
+<p class="breadcrumb"><a href="/">Home</a> / Open data</p>
+
+<h1>The dataset, not just the conclusions</h1>
+
+<p class="meta"><strong>Recorded 11 August 2026 · 53 rows · CC BY 4.0</strong></p>
+
+<p class="lede">Every guide in this category tells you what dolls cost and how
+much they weigh. None of them show you the rows. Here are ours — the same 53
+listings our price and weight findings are computed from, as JSON and CSV, free
+to download, check, disagree with, or reuse commercially.</p>
+
+<div class="callout">
+  <strong>Why this page exists.</strong> This site claims every number is
+  sourced or marked unverified. A claim like that is worth nothing if the
+  numbers only exist inside our own prose. Publishing the dataset is how the
+  claim becomes checkable — including by anyone who wants to prove us wrong.
+</div>
+
+<h2>Download</h2>
+
+<ul>
+  <li><a href="/data/doll-specs.json"><strong>doll-specs.json</strong></a> — full dataset with embedded documentation, field definitions and limitations</li>
+  <li><a href="/data/doll-specs.csv"><strong>doll-specs.csv</strong></a> — the same rows, spreadsheet-ready</li>
+</ul>
+
+<p><strong>Licence: <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener" target="_blank">CC BY 4.0</a>.</strong>
+Use it commercially, quote it, rebuild our charts, publish a correction to them.
+Attribution to thedollscout.com is all we ask, and no permission is needed.</p>
+
+<h2>What is in it</h2>
+
+<table>
+  <thead><tr><th>Field</th><th>Meaning</th></tr></thead>
+  <tbody>
+    <tr><td><code>title</code></td><td>Vendor's product title, verbatim</td></tr>
+    <tr><td><code>url</code></td><td>Product page — no referral parameters on these</td></tr>
+    <tr><td><code>heightCm</code></td><td>Vendor-stated height, centimetres</td></tr>
+    <tr><td><code>weightKg</code> / <code>weightLb</code></td><td>Vendor-stated weight</td></tr>
+    <tr><td><code>priceUsd</code></td><td>Listed price on the recording date, including any sale price</td></tr>
+    <tr><td><code>isPartialBody</code></td><td>True for torsos and other partial bodies</td></tr>
+  </tbody>
+</table>
+
+<p>50 rows are full-size dolls, 3 are partial bodies. Prices span $899 to $2,866.
+What we concluded from them: <a href="/guides/what-a-doll-costs">the price
+bands and what changed between scrapes</a>, and
+<a href="/guides/height-weight">why height barely predicts weight</a>.</p>
+
+<h2>What is wrong with it</h2>
+
+<p>Stated here rather than buried, because a dataset that hides its weaknesses
+is marketing:</p>
+
+<ul>
+  <li><strong>Vendor-stated, not independently measured.</strong> We did not weigh anything. Repeated models returned identical figures across separate listings, which is what real specification data looks like — but it is still the vendor's number.</li>
+  <li><strong>One vendor.</strong> This is a sample of one catalogue, not of the market. Treat cross-vendor generalisations as unsupported.</li>
+  <li><strong>Prices drift.</strong> Sale prices are included as displayed. The bands are durable; the exact figures are a snapshot.</li>
+  <li><strong>No material column, deliberately.</strong> The collection could not reliably tell TPE from silicone on these listings. A material column would have been a guess wearing a data label, so there isn't one. This is the omission we are most often asked about.</li>
+  <li><strong>Editorial exclusions.</strong> Listings under 140&nbsp;cm are excluded unless explicitly a partial body — a safety rule, not a data-quality one. Accessory listings are excluded because their pages carry the spec table of the doll they fit, which once produced a spurious full-size row at accessory pricing.</li>
+</ul>
+
+<h2>If you find an error</h2>
+
+<p><a href="/trust">Tell us</a>. We have already corrected one of our own
+published numbers in public — our torso weight range was wrong, the data said
+so, and the guide now says we corrected it. That is the standard this dataset
+is published under.</p>
+
+<p class="meta">Collection method and code: <code>scripts/fetch-specs.mjs</code>
+in the site repository. Assistants and agents: this dataset is also indexed in
+<a href="/llms.txt">llms.txt</a>.</p>
+
+<div class="share" data-share data-share-text="A doll buying guide published its raw dataset — 53 listings with prices and weights, CC BY 4.0, limitations included." data-share-url="/data/" data-share-note="Share the data, not a sales pitch."></div>
+
+</div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p class="disclosure">
+      <strong>18+ only.</strong> Adult products for adults; we exclusively feature products depicting adults.
+      <strong>Affiliate disclosure:</strong> DollScout earns disclosed referral commissions from vetted vendors linked elsewhere on this site. This page and the dataset carry no referral parameters.
+      · <a href="/trust">Methodology</a> · <a href="/legal/affiliate-disclosure">Disclosure</a> · <a href="/legal/privacy">Privacy</a> · © <span id="year"></span> DollScout
+    </p>
+  </div>
+</footer>
+
+<script src="/js/config.js"></script>
+<script src="/js/analytics.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js" defer></script>
+<script src="/js/share.js"></script>
+</body>
+</html>

@@ -1,0 +1,161 @@
+{
+  "note": "结构化自 tools.json 中 video 类的已核实 limits 散文——同一批事实的机器可读形态，不新增任何数字。每条 slug 指回工具条目，来源与核实日期以该条目为准。kind 分五型：daily（每日刷新）/ monthly（每月刷新）/ one_time（一次性额度）/ unlimited_queued（官方口径不限量、以排队限流）/ unstated（官方未公布数额）。conversion 只收录官方明示的折算（几积分换几秒视频），官方没给的不代算。",
+  "derived": "2026-08-08",
+  "entries": [
+    {
+      "slug": "kling",
+      "kind": "daily",
+      "unit": "credits",
+      "per_day": 66,
+      "carryover": false,
+      "conversion": [
+        {
+          "cost": 66,
+          "makes_zh": "约 6 个标准模式视频（每个 5 秒）",
+          "makes_en": "≈6 standard-mode videos (5s each)",
+          "clips": 6,
+          "seconds_each": 5
+        }
+      ],
+      "caveat_zh": "灵感值当日不用不结转；官方条款明确免费档产出不可商用，且须显著标注「由 Kling AI 生成」",
+      "caveat_en": "Daily credits don't carry over; the official terms bar commercial use of free-tier output and require a visible \"generated with Kling AI\" attribution",
+      "alt_rate": {
+        "credits_per_clip": 20,
+        "seconds_each": 5,
+        "why_zh": "官方付费单价页：5 秒标准 720p（2.1 模型）20 灵感值；官方自陈「每日免费 66 灵感值≈6 条」是旧模型口径，按 2.x 模型只够约 3 条",
+        "why_en": "The vendor's own paid unit-price page: 20 credits for a 5s standard 720p clip on the 2.x model; the vendor itself notes that the 66≈6-clip figure is the older model's wording"
+      },
+      "_src_extra": [
+        "paid.unit_cost"
+      ]
+    },
+    {
+      "slug": "hailuo",
+      "kind": "unstated",
+      "unit": "credits",
+      "conversion": [
+        {
+          "cost": 25,
+          "makes_zh": "768p 6 秒",
+          "makes_en": "768p, 6s"
+        },
+        {
+          "cost": 50,
+          "makes_zh": "768p 10 秒或 1080p 6 秒",
+          "makes_en": "768p 10s or 1080p 6s"
+        }
+      ],
+      "caveat_zh": "每日免费积分数额随活动变动、官方不写死，所以不写数字；新用户一次性欢迎积分包 3 天到期；免费档同时最多排 3 个任务、并行跑 1 个",
+      "caveat_en": "The daily free-credit amount shifts with promotions and is never fixed officially, so no figure here; the one-off welcome pack expires in 3 days; free accounts queue 3 tasks, run 1"
+    },
+    {
+      "slug": "runway",
+      "kind": "one_time",
+      "unit": "credits",
+      "total": 125,
+      "expires": false,
+      "caveat_zh": "一次性 125 积分，不过期但永不续发（不是每月 125）；免费档带水印，但商用权免费档就有——水印与授权是两回事",
+      "caveat_en": "A one-off 125 credits — never expiring, never renewed (not 125/month); free output carries a watermark, yet commercial rights come with the free tier — watermark and licence are separate things"
+    },
+    {
+      "slug": "vidu",
+      "kind": "monthly",
+      "unit": "credits",
+      "per_month_contradiction": [
+        40,
+        80
+      ],
+      "caveat_zh": "官方页面同时出现 40 与 80 两种口径——本站如实记矛盾，以站内到账为准；错峰模式（Off-Peak）不耗积分即可生成，但不改变「免费档不可商用」的授权档位",
+      "caveat_en": "Official pages state both 40 and 80 — we record the contradiction as-is; Off-Peak mode generates without credits but does not change the no-commercial-use licence tier"
+    },
+    {
+      "slug": "pixverse",
+      "kind": "daily",
+      "unit": "credits",
+      "per_day_range": [
+        30,
+        60
+      ],
+      "caveat_zh": "官方博客口径为每天 30–60 积分、具体以应用内为准；产出带水印、仅限个人非商业用途",
+      "caveat_en": "The official blog states 30–60 credits/day, exact amount per the app; output is watermarked and personal, non-commercial only"
+    },
+    {
+      "slug": "qingying",
+      "kind": "unlimited_queued",
+      "caveat_zh": "发布时官方口径「免费不限量」，代价是排队；单次约 5 秒、1440×960、带水印；免费档能否商用官方未明示，本站不下结论",
+      "caveat_en": "Officially \"free and unlimited\" at launch — the price is the queue; ~5s per generation at 1440×960 with a watermark; commercial use of the free tier is not stated officially, so we draw no conclusion"
+    },
+    {
+      "slug": "luma",
+      "kind": "monthly",
+      "unit": "credits",
+      "caveat_zh": "按月发放限量试用积分，官方未公布具体数额（流传的「每天 5 次」查无官方出处，不采信）；带水印、仅限个人非商业用途",
+      "caveat_en": "Monthly trial credits with no official figure published (the circulating \"5/day\" has no official source and is rejected); watermarked, personal non-commercial only"
+    },
+    {
+      "slug": "google-flow",
+      "kind": "daily",
+      "unit": "credits",
+      "per_day": 50,
+      "carryover": false,
+      "caveat_zh": "无订阅账号每天 50 积分、当日不结转，仅可用于 Veo 3.1 的 Lite/Fast/Quality 三档；每档单条消耗官方未在可核实引文中列数；一旦升级付费档，免费余额立即失效",
+      "caveat_en": "50 credits/day without a subscription, no carryover, usable only on Veo 3.1 Lite/Fast/Quality; per-tier costs per generation aren't listed in verifiable official quotes; upgrading immediately voids the free balance"
+    },
+    {
+      "slug": "pika",
+      "kind": "unstated",
+      "caveat_zh": "免费档的边界是 480p 分辨率与功能范围而非明码积分（官方未公布数额，流传数字不采信）；产出所有权归你，但无商用订阅期间不得变现",
+      "caveat_en": "The free tier's boundary is 480p and feature scope, not a stated credit figure (none published; circulating numbers rejected); you own the output but may not monetise it without a commercial-tier subscription"
+    },
+    {
+      "slug": "haiper",
+      "kind": "unstated",
+      "unit": "credits",
+      "conversion": [
+        {
+          "cost": 50,
+          "makes_zh": "5 秒视频",
+          "makes_en": "a 5-second video"
+        }
+      ],
+      "caveat_zh": "免费试用量官方未明示，且官方自述定价结构正在调整——任何流传数字都可能已失效；免费档带水印且仅限非商业用途",
+      "caveat_en": "The free amount is not stated officially and Haiper itself says pricing is being reworked — any circulating figure may already be void; free output is watermarked and non-commercial only"
+    },
+    {
+      "slug": "opusclip",
+      "kind": "monthly",
+      "unit": "minutes",
+      "per_month": 60,
+      "caveat_zh": "每月 60 分钟视频处理时长（free-forever），新用户另有 7 天 Pro 试用约 90 分钟；条款限自身个人非商业用途、不得为第三方利益使用——接单剪辑注意",
+      "caveat_en": "60 processing minutes/month (free-forever), plus a 7-day Pro trial of ≈90 minutes for new users; terms restrict use to your own personal, non-commercial purposes — no use for a third party's benefit, which matters if you edit for clients",
+      "minutes_per_month": 60
+    },
+    {
+      "slug": "heygen",
+      "kind": "monthly",
+      "unit": "videos",
+      "per_month": 3,
+      "caveat_zh": "每月 3 条、1080p、带水印；单条时长官方口径不一（1 分钟 vs 3 分钟），本站不写这个数字；免费档产出禁止售卖/变现/客户委托",
+      "caveat_en": "3 videos/month at 1080p, watermarked; per-video length is stated inconsistently by official pages (1 vs 3 minutes) so we don't publish it; free-tier output may not be sold, monetised or delivered to clients",
+      "clips_per_month": 3
+    },
+    {
+      "slug": "d-id",
+      "kind": "one_time",
+      "unit": "credits",
+      "total": 12,
+      "days_valid": 14,
+      "conversion": [
+        {
+          "cost": 1,
+          "makes_zh": "最多 15 秒视频（12 积分合计约 3 分钟）",
+          "makes_en": "up to 15s of video (12 credits ≈3 minutes total)",
+          "seconds_each": 15
+        }
+      ],
+      "caveat_zh": "14 天试用、12 积分不累积；试用档水印为全屏覆盖（官方明示），产出仅限个人使用、不得商用",
+      "caveat_en": "A 14-day trial with 12 non-accumulating credits; the trial watermark covers the whole frame (stated officially), and output is personal-use only, no commercial use",
+      "minutes_total": 3
+    }
+  ]
+}

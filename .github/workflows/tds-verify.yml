@@ -1,0 +1,128 @@
+name: Verify the things that would fail silently
+# ── 迁入公开 monorepo f-tiger/agi-site(2026-08-19,owner 决定)──
+# 原仓 .github 为历史档案。公开仓 Actions 分钟免费。
+# 本 workflow 的 run 步骤默认 working-directory: sites/thedollscout/。
+
+
+# Two checks that share a shape: both guard a claim the site makes in public,
+# and both would go wrong without anything looking broken.
+#
+#   parse-product  — a mis-parsed price reads as a normal number. The version
+#                    this replaced would have reported a rival distributor's
+#                    compare-at price as its price on 14 of 14 discounted rows.
+#   recourse       — the published decision table is quotable by an AI answer,
+#                    which means a table that stops matching the tool beneath
+#                    it gets repeated somewhere we cannot correct.
+#
+# Deploy stays fast and does not wait on these; they run on push, so drift is
+# visible on the commit that caused it.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "sites/thedollscout/**"
+      - ".github/workflows/tds-verify.yml"
+  workflow_dispatch:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: sites/thedollscout
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Playwright browser
+        run: |
+          npm init -y > /dev/null
+          npm install playwright@1 > /dev/null 2>&1
+          npx playwright install --with-deps chromium 2>&1 | tail -1
+
+      # The safety classifier first: a false "partial body" lets a sub-140cm
+      # whole doll past the height guard.
+      - name: Safety classifier
+        run: node scripts/test-classify.mjs
+
+      # Fifth occurrence of one bug: `git add existing missing` stages NOTHING,
+      # so a single absent path silently discarded everything the run produced
+      # while the job stayed green. It cost eleven days of edge traffic and
+      # every commit grow-bot was ever meant to make. Cheap to test, invisible
+      # when it breaks, so it is a gate.
+      - name: Generated files actually get committed
+        run: bash scripts/test-commit-generated.sh
+
+      # The 18+ gate is what makes this site lawful to run, and it is injected
+      # by JavaScript — a page shipped without js/main.js has no gate and looks
+      # completely normal. Also guards the other direction: the SafeSearch label
+      # must not drift back onto /*, which would re-declare the dataset,
+      # llms.txt, the sitemap and /mcp as adult in a single line.
+      - name: Age gate is site-wide and the adult labels have not drifted
+        run: node scripts/test-adult-labels.mjs
+
+      # Structured data is read by machines and shown to people somewhere we do
+      # not control. If the markup and the page disagree, the version that gets
+      # quoted is the one we cannot correct.
+      - name: Generated FAQ markup only says what the page says
+        run: |
+          node scripts/build-faq-schema.mjs
+          node scripts/test-faq-schema.mjs
+
+      # robots.txt Disallow and a page's noindex cancel each other out: a crawler
+      # that may not fetch the page never sees the instruction on it.
+      - name: No page is both Disallowed and noindex
+        run: node scripts/test-robots.mjs
+
+      # "Every number sourced, or marked unverified" is the whole offer, so an
+      # unsourced number of ours is worse than a competitor's. Regenerate the
+      # country pages first — several claims live in content/importing.json.
+      - name: No unsourced quantitative claims
+        run: |
+          node scripts/build-pages.mjs
+          node scripts/build-dataset.mjs
+          node scripts/build-weight-pages.mjs
+          node scripts/audit-claims.mjs
+
+      # Decides unsupervised whether a new family of pages may exist, so both
+      # directions — qualifies and refuses — are pinned.
+      - name: Category qualifier
+        run: node scripts/test-categories.mjs
+
+      - name: Model matcher (no browser needed)
+        run: node scripts/test-match-models.mjs
+
+      # Prose does not regenerate itself the way a table does, so a re-scrape
+      # silently turns the most confident page on the site into the least
+      # accurate one. Needs the dataset rebuilt first.
+      - name: Published claims still match the dataset
+        run: |
+          node scripts/build-dataset.mjs
+          node scripts/test-published-claims.mjs
+
+      - name: Product parser against fixture markup
+        run: node scripts/test-parse-product.mjs
+
+      # Regenerate first: the test compares the tool against the table as it
+      # would ship, not against whatever is committed.
+      - name: Published recourse table matches the live checker
+        run: |
+          node scripts/build-recourse-matrix.mjs
+          node scripts/test-recourse-parity.mjs
+
+      # A search box that silently returns nothing is worse than none, and the
+      # results list is a custom combobox — keyboard use only works if checked.
+      # The MCP endpoint must never disagree with the published data, because
+      # an assistant repeats its answer as fact.
+      - name: MCP endpoint answers match the published datasets
+        run: node scripts/test-mcp.mjs
+
+      - name: Site search works, including by keyboard
+        run: |
+          node scripts/build-search-index.mjs
+          node scripts/test-search.mjs
+
+      - name: Published cost examples match the live calculator
+        run: |
+          node scripts/build-cost-examples.mjs
+          node scripts/test-cost-parity.mjs
