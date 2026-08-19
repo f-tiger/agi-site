@@ -6499,6 +6499,42 @@ curl -s 'https://baipiaoji.com/api/limits?slug=kimi'              # ${zh ? '这�
       ? '数据 CC BY 4.0：允许转载与商用，条件是注明「白嫖计 baipiaoji.com」并回链工具页。每条带 source（官方出处）与 checked（核实日期）；查不到官方数字的工具不在数据里——缺席是有意的，我们不发布无来源数字。免鉴权、CORS 全开、缓存一小时；请自觉控制频率。'
       : 'Data is CC BY 4.0: reuse and commercial use allowed with attribution to "Baipiaoji (baipiaoji.com)" and a link back to the tool page. Every entry carries source (official page) and checked (verification date); tools without an officially verifiable number are absent by design — we publish no unsourced figures. No auth, open CORS, one-hour cache; please rate-limit yourself.'}</p>
   </section>
+  <section class="limits-table">
+    <h2 class="group-title">${zh ? '商用 / 白标接入（评估中）' : 'Commercial / white-label access (evaluating)'}<span>β</span></h2>
+    <p class="money-lede">${zh
+      ? '公开 API 免费且会一直免费（CC BY 4.0，注明出处即可商用）。若你的比价站、工具目录、媒体或 agent 产品需要更高频率、SLA、去归属白标或历史时间序列——这类接入我们正在评估要不要做、按什么价做。真实需求是唯一依据：写两句你的用途，落进本站数据库（不是发邮件，能被看见、会被回复）。'
+      : 'The public API is free and stays free (CC BY 4.0, commercial use with attribution). If your comparison site, directory, media property or agent product needs higher rate limits, an SLA, attribution-free white-label or historical time series — we are evaluating whether and how to price that tier. Real demand is the only input: describe your use case in two lines. It lands in our database (not a dead mailto) and gets a reply.'}</p>
+    <div class="pc-form">
+      <label><span>${zh ? '你的站点 / 产品 URL' : 'Your site / product URL'}</span>
+        <input type="url" id="bizUrl" placeholder="https://…" autocomplete="off" spellcheck="false"></label>
+      <label><span>${zh ? '用途与需要的能力' : 'Use case & what you need'}</span>
+        <input type="text" id="bizNote" maxlength="400" placeholder="${zh ? '例：德语比价站,需要白标 limits 数据,日调用约 5k' : 'e.g. price-comparison site, white-label limits data, ~5k calls/day'}"></label>
+      <label><span>${zh ? '回复邮箱' : 'Reply email'}</span>
+        <input type="email" id="bizMail" placeholder="you@company.com" autocomplete="off"></label>
+    </div>
+    <div class="ask-hint" style="margin-top:12px"><button type="button" id="bizGo">${zh ? '提交询价' : 'Send inquiry'}</button></div>
+    <p id="bizOut" class="sub-note" aria-live="polite"></p>
+  </section>
+  <script>
+  (function(){
+    var go=document.getElementById('bizGo'); if(!go) return;
+    var ZH=document.documentElement.lang.indexOf('zh')===0;
+    go.addEventListener('click',function(){
+      var u=document.getElementById('bizUrl').value.trim(),
+          n=document.getElementById('bizNote').value.trim(),
+          m=document.getElementById('bizMail').value.trim(),
+          out=document.getElementById('bizOut');
+      try{if(window.bpjEv)bpjEv('calc','/calc/api-inquiry')}catch(e){}
+      if(!u||!n){out.textContent=ZH?'URL 和用途都要填。':'URL and use case are both required.';return;}
+      out.textContent=ZH?'提交中…':'Sending…';
+      fetch('/api/submit',{method:'POST',headers:{'content-type':'application/json'},
+        body:JSON.stringify({name:'[api-inquiry] '+u.replace(/^https?:\/\//,'').slice(0,60),url:u,note:'[api-inquiry] '+n,email:m})})
+        .then(function(r){return r.json()})
+        .then(function(j){out.textContent=j.ok?(ZH?'✅ 已收到。我们会按留下的邮箱回复。':'✅ Received. We reply to the email you left.'):(ZH?'提交失败：':'Failed: ')+(j.code||'');})
+        .catch(function(){out.textContent=ZH?'网络错误，稍后再试。':'Network error, try again.';});
+    });
+  })();
+  </script>
   ${subInlineOf({
     seed: tools.filter((t) => t.limits).map((t) => t.slug).slice(0, 40),
     title: zh ? '在拿这批数据做东西？变更第一时间告诉你' : 'Building on this data? Hear about changes first',
