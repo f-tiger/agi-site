@@ -26,6 +26,13 @@ tool — because an AI-referred visitor converts at 2–23x an organic one (Ahre
 first-party data) and this niche's order value is hundreds to thousands of dollars.
 Waiting for generic traffic is the one strategy the data rules out.
 
+Site-owned trigger (2026-08-20): fleet-trends.yml commits
+content/trends-us.json daily (US trending searches x niche keyword map). Read
+it each run; a niche term trending = demand spike = prioritize freshness +
+conversion hooks on the matching cited page that day. ok:false three days
+running goes in the report. Most days it matches nothing — that is the trigger
+working, not failing.
+
 What this changes for each run: prioritize conversion-hook work on CITED pages over
 new search-surface pages. What it does NOT change: every guardrail in section 4
 (sourcing, no fabricated social proof, 18+ gate, childlike-appearance refusal,

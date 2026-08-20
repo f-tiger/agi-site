@@ -1921,7 +1921,8 @@ def cb_link(platform, query):
 HEATNOW = ('<!--EB_HEATNOW--><div id="eb-heatnow"></div>\n<script>(function(){'
            'var h=document.getElementById("eb-heatnow");if(!h)return;'
            'fetch("/api/heat").then(function(r){return r.json();}).then(function(d){'
-           'if(!d||!d.level||!d.temp)return;'
+           'if(!d)return;'
+           'if(!d.level||!d.temp){if(d.cold&&d.cold.level&&d.cold.temp!==null){renderCold(d.cold);}return;}'
            'var hot=d.level>=2;'
            'var when="";try{if(d.day){var dt=new Date(d.day+"T12:00:00");'
            'when=" am "+["So","Mo","Di","Mi","Do","Fr","Sa"][dt.getDay()]+".";}}catch(e){}'
@@ -1952,7 +1953,32 @@ HEATNOW = ('<!--EB_HEATNOW--><div id="eb-heatnow"></div>\n<script>(function(){'
            'if(window.gtag)gtag("event","heat_now",{level:d.level,region:d.region});'
            'h.querySelectorAll("[data-eb-h]").forEach(function(a){a.addEventListener("click",function(){'
            'if(window.gtag)gtag("event","heat_now",{click:a.getAttribute("data-eb-h"),level:d.level});});});'
-           '}).catch(function(){});})();</script><!--/EB_HEATNOW-->\n')
+           '}).catch(function(){});'
+           # 冷触发(2026-08-20):同一反应带的冬季档。/api/heat 的 cold 字段由 worker
+           # 计算(3 城 7 天最低温,0°C/-6°C 两档)。蓝色系,链去供暖成本对比与省电
+           # Heizlüfter 指南——两页都带联盟卡,触发即接交易。埋点 cold_now(已入白名单)。
+           'function renderCold(c){'
+           'var frosty=c.level>=2;'
+           'var when="";try{if(c.day){var dt=new Date(c.day+"T12:00:00");'
+           'when=" am "+["So","Mo","Di","Mi","Do","Fr","Sa"][dt.getDay()]+".";}}catch(e){}'
+           'var head=frosty?("🥶 Strenger Frost im Anmarsch: bis "+Math.round(c.temp)+" °C in "+c.region+when)'
+           ':("❄️ Erste Frostnächte: bis "+Math.round(c.temp)+" °C in "+c.region+when);'
+           'var sub=frosty?"Jetzt zählt jede Kilowattstunde — vergleiche, was dein Raum wirklich braucht."'
+           ':"Die ruhige Zeit zum Vergleichen ist jetzt — nicht in der ersten kalten Nacht.";'
+           'h.innerHTML=\'<div style="background:#eef4fb;border-bottom:1px solid #c9dcf0;">\'+'
+           '\'<div style="max-width:1000px;margin:0 auto;padding:10px 20px;display:flex;gap:8px 14px;'
+           'align-items:center;flex-wrap:wrap;font-size:13.5px;">\'+'
+           '\'<strong style="color:#0a4d7a;">\'+head+\'</strong>\'+'
+           '\'<span style="color:#41546a;">\'+sub+\'</span>\'+'
+           '\'<a href="/guide/heizkosten-vergleich-rechner.html" data-eb-c="tool" style="color:#0f6ba8;font-weight:700;text-decoration:none;">Heizkosten vergleichen →</a>\'+'
+           '\'<a href="/guide/heizluefter-stromsparend.html" data-eb-c="guide" '
+           'style="color:#0f6ba8;font-weight:700;text-decoration:none;">Sparsame Heizlüfter →</a>\'+'
+           '\'</div></div>\';'
+           'if(window.gtag)gtag("event","cold_now",{level:c.level,region:c.region});'
+           'h.querySelectorAll("[data-eb-c]").forEach(function(a){a.addEventListener("click",function(){'
+           'if(window.gtag)gtag("event","cold_now",{click:a.getAttribute("data-eb-c"),level:c.level});});});'
+           '}'
+           '})();</script><!--/EB_HEATNOW-->\n')
 
 
 # Nothing on this site was ever forwardable. The one moment a Raumklima page is

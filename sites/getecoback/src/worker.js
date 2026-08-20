@@ -237,7 +237,7 @@ async function serveAsset(request, env, pathname) {
 // header Cloudflare already provides. That is aggregate, non-personal data, so
 // no consent banner is required and nothing here identifies a visitor.
 const EV_NAMES = new Set([
-  "page_view", "affiliate_click", "b2b_intent", "lead_intent", "outbound_choice",
+  "page_view", "affiliate_click", "b2b_intent", "lead_intent", "outbound_choice", "cold_now",
   "embed_copy", "share", "video_play", "btu_calc", "hitze_check", "heat_check",
   "strom_check", "bkw_calc", "heizkosten_calc", "taupunkt_check",
   "standort_check", "strompreis_api", "widget_view",
@@ -303,6 +303,47 @@ async function heatReading() {
   return best;
 }
 
+// Cold counterpart (2026-08-20, owner: winter trigger). Same three cities,
+// 7-day minimum instead of 3-day maximum — a heating purchase has a longer
+// decision runway than a fan. Thresholds: 0 °C = level 1 (Frost), -6 °C =
+// level 2 (strenger Frost). Same defensive contract: failure degrades to
+// level 0, never to a broken response.
+async function cityMin(name, lat, lon) {
+  try {
+    const r = await fetch(
+      `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}` +
+      `&daily=temperature_2m_min&forecast_days=7&timezone=Europe%2FBerlin`,
+      { signal: AbortSignal.timeout(6000) });
+    if (!r.ok) return null;
+    const d = await r.json();
+    const temps = (d && d.daily && d.daily.temperature_2m_min) || [];
+    const days = (d && d.daily && d.daily.time) || [];
+    let low = null;
+    temps.forEach((t, i) => {
+      if (typeof t === "number" && (low === null || t < low.temp)) {
+        low = { region: name, temp: t, day: days[i] || "" };
+      }
+    });
+    return low;
+  } catch (e) {
+    return null;
+  }
+}
+
+async function coldReading() {
+  let worst = { level: 0, region: "", temp: null, day: "" };
+  try {
+    const results = await Promise.all(HEAT_CITIES.map(([n, la, lo]) => cityMin(n, la, lo)));
+    for (const c of results) {
+      if (c && (worst.temp === null || c.temp < worst.temp)) worst = { level: 0, ...c };
+    }
+    if (worst.temp !== null) worst.level = worst.temp <= -6 ? 2 : worst.temp <= 0 ? 1 : 0;
+  } catch (e) {
+    worst = { level: 0, region: "", temp: null, day: "" };
+  }
+  return worst;
+}
+
 async function handleHeat() {
   const cacheKey = new Request("https://getecoback.com/__heat");
   let cache = null;
@@ -314,12 +355,13 @@ async function handleHeat() {
     cache = null;
   }
 
-  const best = await heatReading();
+  const [best, cold] = await Promise.all([heatReading(), coldReading()]);
+  const payload = { ...best, cold };
 
-  const resp = json(best, 200, { "cache-control": "public, max-age=3600" });
+  const resp = json(payload, 200, { "cache-control": "public, max-age=3600" });
   // Only cache a real reading; caching a failure would freeze the site silent
   // for an hour on a day that might actually be hot.
-  if (cache && best.temp !== null) {
+  if (cache && (best.temp !== null || cold.temp !== null)) {
     try { await cache.put(cacheKey, resp.clone()); } catch (e) { /* cache is optional */ }
   }
   return resp;

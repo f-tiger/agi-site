@@ -322,6 +322,12 @@ strategy doc the same run. New strategy-relevant milestones to watch in D1:
    loop igniting — `challenge_share` ≥ 10/28d, `/agi-test` (or `/zh/agi-test`)
    entering the top-5 landing pages, or `x.com`/`reddit` appearing in referral
    sources (means the seed posts / organic shares are spreading).
+6a. **站点自有触发器(2026-08-20)**:fleet-trends.yml 每日 04:20 UTC 提交本目录
+   trends-us.json(美国区热搜 × AGI 实体词表;文件公开服务,本身是机器可读资产)。
+   每日运行必读:命中即当日优先——①命中实体对应的判定页做时效行刷新(带日期,
+   硬内容规则不放松)②若是 Aschenbrenner/Altman 类人物实体热搜,那是引用需求
+   峰值,检查对应高引用页的订阅钩子在位。同词 7 天冷却;ok:false ≥3 天报 owner。
+
 6. **每日顺手(2026-08-20 已达标,降频为每周一)**: glama-status.json 三个 server
    (verified-ai-free-tiers / agiscorecard-mcp / getecoback-mcp)已全部 scored=true;
    awesome-mcp-servers 四个 PR(#12240 / #12245 / #12513 / #12084)已全部挂

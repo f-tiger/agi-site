@@ -169,6 +169,12 @@ jobs:
             *'"level"'*) echo "OK heat endpoint" ;;
             *) echo "::error::heat endpoint broken after 3 tries: '$heat'"; fail=1 ;;
           esac
+          # Winter counterpart (2026-08-20): the same payload must carry the cold
+          # reading, or the reactive band silently loses its winter gear.
+          case "$heat" in
+            *'"cold"'*) echo "OK cold field present" ;;
+            *) echo "::error::/api/heat payload missing cold field: '$heat'"; fail=1 ;;
+          esac
           # Exchange prices for the Strompreis-Radar. Served from the edge so
           # the reader's browser never calls aWATTar or SMARD itself; if this
           # breaks, the site's flagship energy tool shows nothing, quietly.

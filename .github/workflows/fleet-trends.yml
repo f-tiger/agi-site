@@ -1,0 +1,31 @@
+name: Fleet US trends trigger (daily)
+
+# 舰队触发器(2026-08-20):一次抓取 Google Trends US,三张站点词表分发
+# (bpj AI 工具名 / agi AGI 实体 / tds niche 词)。04:20 UTC,赶在各站每日
+# 循环之前。外部副作用挂 schedule 不挂 push;一次外部抓取服务三站 = 最省礼貌。
+on:
+  schedule:
+    - cron: '20 4 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fleet-trends
+  cancel-in-progress: true
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: node tools/fleet_trends.mjs
+      - name: Commit snapshots if changed
+        run: |
+          git config user.name 'Claude'
+          git config user.email 'noreply@anthropic.com'
+          git add sites/baipiaoji/data/trends-us.json sites/agiscorecard/trends-us.json sites/thedollscout/content/trends-us.json
+          git diff --cached --quiet || { git commit -m "chore(trends): 美国区触发器快照 $(date -u +%F)"; git pull --rebase origin main; git push origin main; }
