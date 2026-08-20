@@ -249,6 +249,62 @@ def season_main():
     print(f"season bridge injected/updated on {n} pages")
 
 
+
+
+# --- Lead-intent probe (2026-08-20, research-driven; worker already whitelists
+# `lead_intent`). German home-energy lead marketplaces pay EUR 8-120 per
+# installer inquiry — two orders of magnitude above an Amazon commission.
+# Before wiring any pipeline we measure honest demand: a button that states
+# plainly the service is being evaluated. Decision line: >=10 clicks/28d ->
+# owner wires a lead buyer; fewer -> archived as refuted, zero sunk cost.
+LEAD_PAGES = [f"heizung-{q}-qm.html" for q in (10, 15, 20, 25, 30, 40, 50)] + [
+    "infrarotheizung-ratgeber.html",
+    "infrarotheizung-watt-rechner.html",
+    "heizkosten-vergleich-rechner.html",
+]
+
+
+def lead_block():
+    return ('<!--EB_LEADPROBE--><section style="max-width:1000px;margin:18px auto 0;padding:0 20px;">'
+            '<div style="background:#f4f9f4;border:1px solid #d7e8d7;border-radius:12px;padding:16px 18px;">'
+            '<strong style="font-size:14.5px;display:block;margin-bottom:4px;">Feste Heizungsinstallation geplant?</strong>'
+            '<p style="margin:0 0 10px;font-size:13.5px;color:#4a5a67;">Wir pr\u00fcfen gerade, ob wir kostenlose '
+            'Angebots-Vermittlung an gepr\u00fcfte Betriebe anbieten. Noch gibt es sie nicht \u2014 mit einem Klick '
+            'zeigst du unverbindlich Interesse und hilfst uns zu entscheiden, ob wir sie bauen.</p>'
+            '<button type="button" onclick="if(window.gtag)gtag(\'event\',\'lead_intent\',{page:location.pathname});'
+            'this.disabled=true;this.textContent=\'Danke \u2014 Interesse notiert (nichts wird gesendet)\';" '
+            'style="background:#2e7d32;color:#fff;border:none;font-weight:700;padding:9px 16px;border-radius:8px;'
+            'font-size:13.5px;cursor:pointer;">Ja, Angebote w\u00fcrden mich interessieren</button>'
+            '</div></section><!--/EB_LEADPROBE-->\n')
+
+
+def inject_lead(path):
+    html = open(path, encoding="utf-8").read()
+    blk = lead_block()
+    if "<!--EB_LEADPROBE-->" in html:
+        new = re.sub(r"<!--EB_LEADPROBE-->.*?<!--/EB_LEADPROBE-->\n?", blk, html, flags=re.S)
+    elif "<!--EB_XREF-->" in html:
+        new = html.replace("<!--EB_XREF-->", blk + "<!--EB_XREF-->", 1)
+    elif "<!--EB_FOOTER-->" in html:
+        new = html.replace("<!--EB_FOOTER-->", blk + "<!--EB_FOOTER-->", 1)
+    else:
+        return False
+    if new != html:
+        open(path, "w", encoding="utf-8").write(new)
+        return True
+    return False
+
+
+def lead_main():
+    n = 0
+    for fn in LEAD_PAGES:
+        p = os.path.join(GUIDE, fn)
+        if os.path.exists(p) and inject_lead(p):
+            n += 1
+    print(f"lead-intent probe injected/updated on {n} pages")
+
+
 if __name__ == "__main__":
     main()
     season_main()
+    lead_main()

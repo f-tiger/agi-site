@@ -1098,8 +1098,36 @@ ${hustles.map((h) => `        <a href="${BASE}/money/${esc(h.slug)}.html">${Arra
         gap: null,
       },
     ];
-    return `<section class="dirs" id="dirs">
-    <h2 class="group-title">${zh ? '两个主攻方向' : 'Two directions we go deep on'}<span>2</span></h2>
+    // 变更脉搏(2026-08-20,调研执行):AI 引擎抓本站最多的是两个首页(28 天
+    // /en/ 93 次、/ 41 次、各 5 家引擎)——被引面必须带「聊天答案装不下的活数字」
+    // + 转化钩子(agi 站同一铁律)。全部数字来自构建时的真实数据:HISTORY.log
+    // 的 30 天窗口计数 + 最近一条变更 + 已核实条目数。零编造。
+    const pulse = (() => {
+      const withLimits = tools.filter((x) => x.limits).length;
+      const cut = new Date(Date.now() - 30 * 864e5).toISOString().slice(0, 10);
+      const recent = (HISTORY && HISTORY.log ? HISTORY.log : []).filter((e) => String(e.d) >= cut);
+      const last = recent[0];
+      const lastTool = last && bySlug.get(last.slug);
+      const lastBit = lastTool
+        ? (zh ? `最近一条:${lastTool.name} · ${last.d}` : `latest: ${lastTool.name} · ${last.d}`)
+        : (zh ? `记录自 ${HISTORY ? HISTORY.seeded : ''} 起累积` : `log accumulates since ${HISTORY ? HISTORY.seeded : ''}`);
+      return `<section class="dirs" id="pulse" style="margin-bottom:14px">
+    <div style="border:1px solid #e2e6ea;border-radius:12px;padding:14px 18px;">
+      <div style="font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#6a7683;">${zh ? '聊天答案会过时的部分' : 'The part a chat answer goes stale on'}</div>
+      <div style="display:flex;flex-wrap:wrap;gap:10px 14px;align-items:baseline;margin-top:6px;">
+        <a href="${BASE}/changes.html" style="font-size:26px;font-weight:800;font-variant-numeric:tabular-nums;text-decoration:none;">${recent.length}</a>
+        <span style="font-size:14px;color:#5b6672;">${zh ? `条已核实的免费额度变更(近 30 天,全库 ${withLimits} 条逐条带官方出处与核实日期);${lastBit}` : `verified free-tier changes in the last 30 days (across ${withLimits} entries, each with official source and check date); ${lastBit}`}</span>
+      </div>
+      <div style="margin-top:8px;font-size:14px;">
+        <a href="${BASE}/changes.html" style="font-weight:600;">${zh ? '逐条看变了什么 →' : 'See what moved, line by line →'}</a>
+        <a href="${BASE}/watch.html" style="font-weight:600;margin-left:14px;" onclick="try{if(window.bpjEv)bpjEv('calc','/calc/home-pulse')}catch(e){}">${zh ? '你的工具一变就通知你(webhook) →' : 'Get pinged the day yours moves (webhook) →'}</a>
+      </div>
+    </div>
+  </section>
+  <section class="dirs" id="dirs">
+    <h2 class="group-title">${zh ? '两个主攻方向' : 'Two directions we go deep on'}<span>2</span></h2>`;
+    })();
+    return pulse + `
     <p class="money-lede">${zh
       ? '全站 14 类工具都已核实，但真正做深的是这两块——因为它们各自卡住人的地方完全不同：编程卡在「各家扣的不是同一样东西」，视频卡在「一条链上最稀缺的那一环」。'
       : 'All fourteen categories are verified, but these two are the ones taken deep, because what stops people differs completely: in coding, no two vendors meter the same thing; in video, one link in the chain caps the whole line.'}</p>
