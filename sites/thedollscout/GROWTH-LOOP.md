@@ -12,8 +12,11 @@ buried in a scheduler.
 ## STRATEGY PIVOT (2026-08-19, owner-authorized: "站点的内容、形式、定位都可以变化,目标是营收")
 
 Deep-research verdict (105-agent verified run, fleet doc `docs/fleet-deep-dive-2026-08.md`
-in the repo root): at 24 days this site is BEHIND its same-age sibling on human traffic
-(≈0/day vs 79/day) — that is a shape problem, not an age problem. The pivot:
+in the repo root; sibling-traffic comparison corrected 2026-08-20 — the whole fleet
+sits on the same 5-17 humans/day infant curve, so age-peers prove little either way).
+What stands is the economics: this niche's order value is hundreds to thousands of
+dollars and AI engines already cite the site daily, so conversion per visitor — not
+traffic — is the lever. The pivot:
 
 **From "content site waiting for traffic" to "high-ticket affiliate decision pages
 fed by AI citations."** The pages AI engines already cite daily (scam-check,
