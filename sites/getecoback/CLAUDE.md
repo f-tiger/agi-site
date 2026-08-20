@@ -4,6 +4,25 @@
 > schedule(03:17 UTC)已随迁移恢复,不再等 9/1。旧私有仓 f-tiger/rearchfuture
 > 是历史档案,不再推送。公开仓红线见仓库根 CLAUDE.md。
 
+## 执行令(2026-08-20,基于两轮深度调研,详见根仓 docs/fleet-deep-dive-2026-08.md)
+
+1. **P0 悬置项:PartnerNet 佣金归属未确认。** 全站 tag=getecoback-21 指向 amazon.de,
+   但 owner 后台目前只见美国站 ecoback0d-20(US 报表 $0 属正常,流量没去美国站)。
+   **在 owner 确认 partnernet.amazon.de 存在账号且 tracking ID getecoback-21 归属其
+   名下之前,不再新增以 Amazon 联盟为唯一出口的页面**——已有页面保持,别拆。
+   确认归属后此条自动解除;若确认「该 tag 从未注册」:第一优先改动 = 全站换成
+   owner 真实注册的 DE tag(build_structure.py 与页面统一替换,一次提交)。
+2. 季节悬崖应对(判定线:10 月 aff_click ≥ 8 月的 50%):EB_SEASON 季节桥已上线
+   (13 个夏季赢家页);每轮优化优先投秋冬场景页与秋冬工具入口,夏季页只做
+   不伤基线的维护。
+3. lead-gen 意图探针(调研强 fit,德国家装/能源 CPL €8-120):在 heizung/infrarot
+   系列页加「获取安装报价」纯埋点按钮(文案如实写「我们正在评估这项服务」,
+   不接表单、不做虚假承诺;事件 lead_intent)。判定线:28 天点击 ≥10 → 报 owner
+   接管道;<10 → 判负归档。
+4. 渠道事实(28d 一手):真人引荐 DDG 69 > Bing 45 > Ecosia 26,Google≈0,
+   AI 引荐 16(chatgpt 12 + copilot 4)——本站活在 Bing 系+AI 面上;GEO/llms.txt/
+   MCP 面的维护优先级高于 Google 专项优化。
+
 # 工作规则
 
 ## 规则一：先完善 Prompt，再执行任务（用户强制要求，适用于所有任务）

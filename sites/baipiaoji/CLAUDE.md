@@ -5,6 +5,22 @@
 > schedule(北京 08:30)已随迁移恢复。旧私有仓 f-tiger/aitools 是历史档案,
 > 不再推送。公开仓红线见仓库根 CLAUDE.md。
 
+## 执行令(2026-08-20,基于两轮深度调研,详见根仓 docs/fleet-deep-dive-2026-08.md)
+
+1. **风险画像:本站是舰队里唯一的 Google 单依赖站**(真人引荐 Google 77 绝对主导)。
+   HouseFresh/Retro Dodo 案例:单一 Google 依赖可在一个算法周期毁 90%。每轮的
+   分发动作**优先非 Google 面**:Bing Webmaster 收录、AI 引用面(llms.txt/MCP/
+   机器可读资产)、目录收录——趁流量在涨时分散,不要等跌了再补。
+2. **两个新转化 KPI 进每日三线度量**(2026-08-19 上线):
+   a) watch 漏斗:工具页钩子 /calc/watch-hook/<slug> → watch 页注册 /calc/watch/<tier>。
+      判定线:28 天首个真实 webhook 注册 ≥1。
+   b) B2B 询价探针:developers 页 /calc/api-inquiry 事件 + submissions 表 [api-inquiry]
+      前缀行。判定线:28 天点击 ≥5 且真实询盘 ≥1 → 立项混合定价(月费保底+用量);
+      0 询盘 → 降级。发现真实询盘时**当轮最高优先**处理并通知 owner。
+3. 变现探针的优先级高于新工具页(站龄判定:24 天 79 真人/日 = 流量显著超前,
+   缺的是变现层,不是更多面)。ChatGPT-User 59 次/28d = AI 答案真人点击,
+   是本站第二增长通道,EN 判定型内容继续加深。
+
 # CLAUDE.md
 
 ## 工作方式要求（必须遵守）
