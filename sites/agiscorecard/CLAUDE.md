@@ -322,11 +322,14 @@ strategy doc the same run. New strategy-relevant milestones to watch in D1:
    loop igniting — `challenge_share` ≥ 10/28d, `/agi-test` (or `/zh/agi-test`)
    entering the top-5 landing pages, or `x.com`/`reddit` appearing in referral
    sources (means the seed posts / organic shares are spreading).
-6. **每日顺手**: 读 `raw.githubusercontent.com/f-tiger/agiscorecard-mcp/main/glama-status.json`
-   —— 会话沙箱够不到 glama.ai(出网 403),该文件由那个公开仓的 runner 每晚探测后
-   提交回来。任一 server 的 `scored` 由 false 翻 true = Glama 审核通过,此时:
-   ①提醒 owner 去 awesome-mcp-servers PR #12240 回一句收尾;②给 agiscorecard
-   条目开第二个 PR(此前因主仓私有被撤下,现有公开镜像仓可用)。
+6. **每日顺手(2026-08-20 已达标,降频为每周一)**: glama-status.json 三个 server
+   (verified-ai-free-tiers / agiscorecard-mcp / getecoback-mcp)已全部 scored=true;
+   awesome-mcp-servers 四个 PR(#12240 / #12245 / #12513 / #12084)已全部挂
+   has-glama+valid-name,纯等维护者合并。周一顺手:①WebFetch 查四个 PR 状态,
+   合并了记里程碑,被要求改动就当轮改(fork 分支在会话可推);②glama-status 若
+   某 server 翻回 false(掉榜)当天报 owner。**待 owner 一次点击:关闭 #12084
+   ——它是 #12240 的重复(同一 server 另一分类,8-13 旧提交),重复 PR 伤维护者
+   观感,保留标题干净、走完机器人流程的 #12240。**
 7. **每月 1-3 日**: 向 owner 要一次 **Bing Webmaster → AI Performance** 的两张明细
    （Grounding Queries + Pages，右上角 Download all）。会话沙箱进不去 Bing，这是唯一
    拿到引用数据的路径，而 CITATION AMPLIFICATION 队列的补货完全依赖它。拿到后：
