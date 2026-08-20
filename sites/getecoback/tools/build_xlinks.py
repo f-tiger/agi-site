@@ -261,6 +261,7 @@ LEAD_PAGES = [f"heizung-{q}-qm.html" for q in (10, 15, 20, 25, 30, 40, 50)] + [
     "infrarotheizung-ratgeber.html",
     "infrarotheizung-watt-rechner.html",
     "heizkosten-vergleich-rechner.html",
+    "heizung-tauschen-oder-warten-gmodg.html",
 ]
 
 
@@ -275,6 +276,8 @@ def lead_block():
             'this.disabled=true;this.textContent=\'Danke \u2014 Interesse notiert (nichts wird gesendet)\';" '
             'style="background:#2e7d32;color:#fff;border:none;font-weight:700;padding:9px 16px;border-radius:8px;'
             'font-size:13.5px;cursor:pointer;">Ja, Angebote w\u00fcrden mich interessieren</button>'
+            '<p style="margin:8px 0 0;font-size:12.5px;color:#6b7a87;">Keine Weitergabe an Callcenter: der Klick '
+            'sendet ein anonymes Z\u00e4hlsignal, keine Kontaktdaten \u2014 wir haben keine.</p>'
             '</div></section><!--/EB_LEADPROBE-->\n')
 
 
