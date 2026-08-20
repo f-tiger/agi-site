@@ -85,7 +85,7 @@ def main():
         "  `Accept: text/markdown` sendet (Content Negotiation, `Vary: Accept`). Navigation, Shop-Karten und",
         "  Skripte sind darin entfernt, Überschriften und interne Links bleiben erhalten — gedacht zum Zitieren.",
         f"  Beispiel: curl -H 'Accept: text/markdown' {BASE}/guide/btu-rechner.html",
-        f"- Offene Aggregat-APIs (JSON, keine personenbezogenen Daten): {BASE}/api/heat (Live-Hitzevorschau DE), "
+        f"- Offene Aggregat-APIs (JSON, keine personenbezogenen Daten): {BASE}/api/heat (Live-Hitze- und Frostvorschau DE: 3-Tage-Maximum und 7-Tage-Minimum, beides mit Warnstufen), "
         f"{BASE}/api/strom (heutige Börsen-Stundenpreise DE, EPEX über aWATTar/SMARD), "
         f"{BASE}/api/top (meistgelesene Ratgeber), {BASE}/api/trend (Wochentrends), "
         f"{BASE}/search-index.json (Titel + Beschreibung + Sprache aller Seiten, ein Array).",

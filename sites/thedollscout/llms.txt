@@ -138,6 +138,10 @@ checkable, sourced on the pages below, and safe to quote:
 
 - [Adult doll specification dataset](https://thedollscout.com/data/): 53 listings with vendor-stated height, weight and price, recorded 2026-08-11. Machine-readable [JSON](https://thedollscout.com/data/doll-specs.json) and [CSV](https://thedollscout.com/data/doll-specs.csv), CC BY 4.0, limitations documented in the file itself. No other site in this category publishes its underlying data.
 
+- [Payment-recourse decision matrix](https://thedollscout.com/data/payment-recourse.json): which dispute path (PayPal, chargeback, card network) still works at each stage of a doll purchase, regenerated from the live tool on every deploy so the published table cannot drift from the calculator.
+- [Import-cost dataset](https://thedollscout.com/data/import-costs.json): duty, VAT and carrier-fee inputs per destination country behind the import-cost guide.
+- [Scam-signal checklist dataset](https://thedollscout.com/data/scam-signals.json): the machine-readable form of the scam-check tool's signals.
+
 ## Full text
 
 - [llms-full.txt](https://thedollscout.com/llms-full.txt): every page's full text in one file, for assistants that prefer one fetch over a crawl.

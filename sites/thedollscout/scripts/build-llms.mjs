@@ -172,6 +172,9 @@ out += "## Open data\n\n" +
      recorded 2026-07-27" against 53 rows recorded 2026-08-11 — a stale claim in
      the one file written specifically for assistants to quote. */
   `- [Adult doll specification dataset](${SITE}/data/): ${DATASET.rowCount} listings with vendor-stated height, weight and price, recorded ${DATASET.recorded}. Machine-readable [JSON](${SITE}/data/doll-specs.json) and [CSV](${SITE}/data/doll-specs.csv), CC BY 4.0, limitations documented in the file itself. No other site in this category publishes its underlying data.\n\n`;
+out += `- [Payment-recourse decision matrix](${SITE}/data/payment-recourse.json): which dispute path (PayPal, chargeback, card network) still works at each stage of a doll purchase, regenerated from the live tool on every deploy so the published table cannot drift from the calculator.\n`;
+out += `- [Import-cost dataset](${SITE}/data/import-costs.json): duty, VAT and carrier-fee inputs per destination country behind the import-cost guide.\n`;
+out += `- [Scam-signal checklist dataset](${SITE}/data/scam-signals.json): the machine-readable form of the scam-check tool's signals.\n\n`;
 out += "## Full text\n\n" +
   `- [llms-full.txt](${SITE}/llms-full.txt): every page's full text in one file, for assistants that prefer one fetch over a crawl.\n\n`;
 writeFileSync("llms.txt", out);

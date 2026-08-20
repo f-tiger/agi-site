@@ -25,7 +25,7 @@ Volltext aller Ratgeber: https://getecoback.com/llms-full.txt
   `Accept: text/markdown` sendet (Content Negotiation, `Vary: Accept`). Navigation, Shop-Karten und
   Skripte sind darin entfernt, Überschriften und interne Links bleiben erhalten — gedacht zum Zitieren.
   Beispiel: curl -H 'Accept: text/markdown' https://getecoback.com/guide/btu-rechner.html
-- Offene Aggregat-APIs (JSON, keine personenbezogenen Daten): https://getecoback.com/api/heat (Live-Hitzevorschau DE), https://getecoback.com/api/strom (heutige Börsen-Stundenpreise DE, EPEX über aWATTar/SMARD), https://getecoback.com/api/top (meistgelesene Ratgeber), https://getecoback.com/api/trend (Wochentrends), https://getecoback.com/search-index.json (Titel + Beschreibung + Sprache aller Seiten, ein Array).
+- Offene Aggregat-APIs (JSON, keine personenbezogenen Daten): https://getecoback.com/api/heat (Live-Hitze- und Frostvorschau DE: 3-Tage-Maximum und 7-Tage-Minimum, beides mit Warnstufen), https://getecoback.com/api/strom (heutige Börsen-Stundenpreise DE, EPEX über aWATTar/SMARD), https://getecoback.com/api/top (meistgelesene Ratgeber), https://getecoback.com/api/trend (Wochentrends), https://getecoback.com/search-index.json (Titel + Beschreibung + Sprache aller Seiten, ein Array).
 
 ## Ratgeber (Deutsch)
 
