@@ -1,6 +1,26 @@
 {
   "items": [
     {
+      "name": "Sokoban AI Solver",
+      "url": "https://mkornreich.me/projects/sokoban/",
+      "host": "mkornreich.me",
+      "src": "https://news.ycombinator.com/item?id=49330215",
+      "points": 71,
+      "comments": 42,
+      "found": "2026-08-20",
+      "status": "candidate"
+    },
+    {
+      "name": "Launch HN: Speko (YC S26) – OpenRouter for Voice AI",
+      "url": "https://speko.ai/",
+      "host": "speko.ai",
+      "src": "https://news.ycombinator.com/item?id=49332751",
+      "points": 117,
+      "comments": 67,
+      "found": "2026-08-20",
+      "status": "candidate"
+    },
+    {
       "name": "A public AI whose memory is shared across all users",
       "url": "https://wildstatic.com/",
       "host": "wildstatic.com",
@@ -151,5 +171,5 @@
       "status": "candidate"
     }
   ],
-  "updated": "2026-08-17"
+  "updated": "2026-08-20"
 }
