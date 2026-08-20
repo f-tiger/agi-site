@@ -1,9 +1,9 @@
 {
   "zone": "thedollscout.com",
-  "updated": "2026-08-17",
+  "updated": "2026-08-20",
   "window": {
-    "since": "2026-08-14T07:27:05.487Z",
-    "until": "2026-08-17T07:27:05.487Z"
+    "since": "2026-08-17T07:10:58.142Z",
+    "until": "2026-08-20T07:10:58.142Z"
   },
   "days": {
     "2026-08-16": {
@@ -85,120 +85,142 @@
           "(unclassified)": 85
         }
       }
+    },
+    "2026-08-20": {
+      "Googlebot": {
+        "total": 494,
+        "redirectShare": 6,
+        "verified": {
+          "Search Engine Crawler": 167,
+          "(unclassified)": 327
+        }
+      },
+      "Bingbot": {
+        "total": 55,
+        "redirectShare": 11,
+        "verified": {
+          "Search Engine Crawler": 49,
+          "(unclassified)": 6
+        }
+      },
+      "GPTBot": {
+        "total": 11,
+        "redirectShare": 0,
+        "verified": {
+          "AI Crawler": 7,
+          "(unclassified)": 4
+        }
+      },
+      "ClaudeBot": {
+        "total": 20,
+        "redirectShare": 10,
+        "verified": {
+          "(unclassified)": 20
+        }
+      },
+      "PerplexityBot": {
+        "total": 22,
+        "redirectShare": 36,
+        "verified": {
+          "(unclassified)": 22
+        }
+      }
     }
   },
   "latest": {
     "Googlebot": {
-      "total": 620,
+      "total": 494,
       "byStatus": {
-        "200": 489,
-        "308": 131
+        "200": 462,
+        "301": 10,
+        "308": 20,
+        "404": 2
       },
       "verified": {
-        "(unclassified)": 605,
-        "Search Engine Crawler": 15
+        "Search Engine Crawler": 167,
+        "(unclassified)": 327
       },
-      "redirectShare": 21,
+      "redirectShare": 6,
       "paths": [
         {
-          "path": "/",
+          "path": "/robots.txt",
           "status": 200,
-          "count": 26
+          "count": 35
         },
         {
-          "path": "/weight/160cm",
-          "status": 200,
-          "count": 22
-        },
-        {
-          "path": "/server.json",
+          "path": "/guides/glossary",
           "status": 200,
           "count": 22
         },
         {
-          "path": "/importing/",
-          "status": 200,
-          "count": 20
-        },
-        {
-          "path": "/importing/malaysia.html",
-          "status": 308,
-          "count": 20
-        },
-        {
-          "path": "/quiz",
-          "status": 200,
-          "count": 19
-        },
-        {
-          "path": "/payment-protection",
-          "status": 200,
-          "count": 18
-        },
-        {
-          "path": "/guides/tpe-vs-silicone",
-          "status": 200,
-          "count": 18
-        },
-        {
-          "path": "/for-creators",
+          "path": "/importing/australia",
           "status": 200,
           "count": 17
         },
         {
-          "path": "/importing/germany",
+          "path": "/importing/",
+          "status": 200,
+          "count": 17
+        },
+        {
+          "path": "/guides/care-cleaning",
           "status": 200,
           "count": 17
         },
         {
           "path": "/scam-check",
           "status": 200,
-          "count": 15
+          "count": 13
         },
         {
-          "path": "/guides/care-cleaning",
+          "path": "/mcp",
           "status": 200,
-          "count": 15
+          "count": 12
         },
         {
           "path": "/vendors/yourdoll",
           "status": 200,
-          "count": 14
-        },
-        {
-          "path": "/guides/first-time-buyer",
-          "status": 200,
-          "count": 14
-        },
-        {
-          "path": "/guides/tpe-vs-silicone.html",
-          "status": 308,
-          "count": 14
+          "count": 12
         },
         {
           "path": "/guides/discreet-shipping",
           "status": 200,
-          "count": 13
+          "count": 12
         },
         {
-          "path": "/guides/what-a-doll-costs",
-          "status": 200,
-          "count": 13
-        },
-        {
-          "path": "/importing/australia",
+          "path": "/",
           "status": 200,
           "count": 11
+        },
+        {
+          "path": "/quiz.html",
+          "status": 308,
+          "count": 10
+        },
+        {
+          "path": "/picks",
+          "status": 200,
+          "count": 10
+        },
+        {
+          "path": "/importing/germany",
+          "status": 200,
+          "count": 10
+        },
+        {
+          "path": "/quiz",
+          "status": 200,
+          "count": 10
         },
         {
           "path": "/weight/",
           "status": 200,
-          "count": 11
+          "count": 10
         },
         {
-          "path": "/importing/united-kingdom",
+          "path": "/guides/what-a-doll-costs",
           "status": 200,
-          "count": 11
+          "count": 10
         },
         {
           "path": "/guides/factory-photos",
@@ -206,39 +228,24 @@
           "count": 10
         },
         {
-          "path": "/guides/",
+          "path": "/weight/160cm",
           "status": 200,
           "count": 10
         },
         {
-          "path": "/importing/japan",
-          "status": 200,
-          "count": 10
-        },
-        {
-          "path": "/data/first-year-cost.json",
-          "status": 200,
-          "count": 10
-        },
-        {
-          "path": "/picks.html",
-          "status": 308,
-          "count": 10
-        },
-        {
-          "path": "/guides/torso-vs-full-size",
+          "path": "/faq",
           "status": 200,
           "count": 9
         },
         {
-          "path": "/guides/glossary",
+          "path": "/for-creators",
           "status": 200,
           "count": 9
         },
         {
-          "path": "/importing/singapore",
+          "path": "/server.json",
           "status": 200,
-          "count": 8
+          "count": 9
         },
         {
           "path": "/weight/150cm",
@@ -246,109 +253,59 @@
           "count": 8
         },
         {
-          "path": "/data/",
-          "status": 200,
-          "count": 8
-        },
-        {
-          "path": "/feed.xml",
-          "status": 200,
-          "count": 8
-        },
-        {
-          "path": "/llms-full.txt",
-          "status": 200,
-          "count": 8
-        },
-        {
-          "path": "/cost-calculator",
-          "status": 200,
-          "count": 8
-        },
-        {
           "path": "/guides/height-weight",
           "status": 200,
-          "count": 8
+          "count": 7
         },
         {
-          "path": "/importing/thailand.html",
-          "status": 308,
-          "count": 8
-        },
-        {
-          "path": "/guides/care-cleaning.html",
-          "status": 308,
-          "count": 8
-        },
-        {
-          "path": "/for-creators.html",
-          "status": 308,
-          "count": 8
-        },
-        {
-          "path": "/data/doll-specs.json",
-          "status": 200,
-          "count": 8
-        },
-        {
-          "path": "/importing/australia.html",
-          "status": 308,
-          "count": 8
-        },
-        {
-          "path": "/guides/first-time-buyer.html",
-          "status": 308,
-          "count": 8
-        },
-        {
-          "path": "/faq",
+          "path": "/payment-protection",
           "status": 200,
           "count": 7
         },
         {
-          "path": "/payment-protection.html",
-          "status": 308,
+          "path": "/data/",
+          "status": 200,
           "count": 7
         },
         {
-          "path": "/picks",
+          "path": "/data/first-year-cost.json",
           "status": 200,
           "count": 6
         },
         {
-          "path": "/robots.txt",
+          "path": "/importing/south-korea",
           "status": 200,
           "count": 6
         },
         {
-          "path": "/robots.txt",
+          "path": "/guides/import-costs-2026",
           "status": 200,
           "count": 6
         },
         {
-          "path": "/cost-calculator.html",
-          "status": 308,
+          "path": "/",
+          "status": 301,
           "count": 6
         },
         {
-          "path": "/scam-check.html",
-          "status": 308,
-          "count": 6
-        },
-        {
-          "path": "/guides/discreet-shipping.html",
-          "status": 308,
-          "count": 6
-        },
-        {
-          "path": "/guides/glossary.html",
-          "status": 308,
-          "count": 6
-        },
-        {
-          "path": "/importing/malaysia",
+          "path": "/img/card-silicone.svg",
           "status": 200,
           "count": 6
+        },
+        {
+          "path": "/guides/torso-vs-full-size",
+          "status": 200,
+          "count": 6
+        },
+        {
+          "path": "/importing/thailand",
+          "status": 200,
+          "count": 5
+        },
+        {
+          "path": "/",
+          "status": 200,
+          "count": 5
         },
         {
           "path": "/guides/disposal",
@@ -356,113 +313,49 @@
           "count": 5
         },
         {
-          "path": "/mcp",
+          "path": "/css/main.css",
           "status": 200,
           "count": 5
         },
         {
-          "path": "/trust",
+          "path": "/img/card-care.svg",
           "status": 200,
           "count": 5
         },
         {
-          "path": "/importing/united-states",
-          "status": 200,
-          "count": 4
-        },
-        {
-          "path": "/importing/canada",
-          "status": 200,
-          "count": 4
-        },
-        {
-          "path": "/importing/united-states.html",
-          "status": 308,
-          "count": 4
-        },
-        {
-          "path": "/importing/thailand",
-          "status": 200,
-          "count": 3
-        },
-        {
-          "path": "/importing/south-korea",
-          "status": 200,
-          "count": 3
-        },
-        {
-          "path": "/faq.html",
-          "status": 308,
-          "count": 3
-        },
-        {
-          "path": "/quiz.html",
-          "status": 308,
-          "count": 2
-        }
-      ]
-    },
-    "Bingbot": {
-      "total": 103,
-      "byStatus": {
-        "200": 70,
-        "308": 33
-      },
-      "verified": {
-        "(unclassified)": 14,
-        "Search Engine Crawler": 89
-      },
-      "redirectShare": 32,
-      "paths": [
-        {
-          "path": "/guides/height-weight.html",
-          "status": 308,
-          "count": 6
-        },
-        {
-          "path": "/",
+          "path": "/js/photos.js",
           "status": 200,
           "count": 5
+        },
+        {
+          "path": "/picks.html",
+          "status": 308,
+          "count": 4
+        },
+        {
+          "path": "/js/config.js",
+          "status": 200,
+          "count": 4
+        },
+        {
+          "path": "/js/analytics.js",
+          "status": 200,
+          "count": 4
         },
         {
           "path": "/robots.txt",
+          "status": 301,
+          "count": 4
+        },
+        {
+          "path": "/img/card-brand.svg",
           "status": 200,
           "count": 4
         },
         {
-          "path": "/guides/import-costs-2026",
+          "path": "/img/card-torso.svg",
           "status": 200,
           "count": 4
-        },
-        {
-          "path": "/guides/height-weight",
-          "status": 200,
-          "count": 4
-        },
-        {
-          "path": "/scam-check.html",
-          "status": 308,
-          "count": 3
-        },
-        {
-          "path": "/scam-check",
-          "status": 200,
-          "count": 3
-        },
-        {
-          "path": "/checklist",
-          "status": 200,
-          "count": 3
-        },
-        {
-          "path": "/guides/care-cleaning",
-          "status": 200,
-          "count": 3
-        },
-        {
-          "path": "/mcp",
-          "status": 200,
-          "count": 3
         },
         {
           "path": "/cost-calculator",
@@ -470,27 +363,67 @@
           "count": 3
         },
         {
-          "path": "/guides/discreet-shipping",
+          "path": "/data/payment-recourse.json",
           "status": 200,
           "count": 3
         },
         {
-          "path": "/",
+          "path": "/js/share.js",
+          "status": 200,
+          "count": 3
+        },
+        {
+          "path": "/guides/",
+          "status": 200,
+          "count": 3
+        },
+        {
+          "path": "/guides/factory-photos",
+          "status": 200,
+          "count": 3
+        },
+        {
+          "path": "/picks",
+          "status": 200,
+          "count": 3
+        },
+        {
+          "path": "/img/card-tpe.svg",
+          "status": 200,
+          "count": 3
+        },
+        {
+          "path": "/importing/singapore",
+          "status": 200,
+          "count": 3
+        },
+        {
+          "path": "/guides/first-time-buyer",
+          "status": 200,
+          "count": 3
+        },
+        {
+          "path": "/data/doll-specs.json",
           "status": 200,
           "count": 2
         },
         {
-          "path": "/importing/australia.html",
-          "status": 308,
+          "path": "/after-you-order",
+          "status": 200,
           "count": 2
         },
         {
-          "path": "/trust.html",
-          "status": 308,
+          "path": "/importing/united-kingdom",
+          "status": 200,
           "count": 2
         },
         {
-          "path": "/importing/australia",
+          "path": "/importing/canada",
+          "status": 200,
+          "count": 2
+        },
+        {
+          "path": "/scam-check",
           "status": 200,
           "count": 2
         },
@@ -500,8 +433,72 @@
           "count": 2
         },
         {
-          "path": "/guides/import-costs-2026.html",
-          "status": 308,
+          "path": "/importing/japan",
+          "status": 200,
+          "count": 2
+        },
+        {
+          "path": "/checklist",
+          "status": 200,
+          "count": 2
+        }
+      ]
+    },
+    "Bingbot": {
+      "total": 55,
+      "byStatus": {
+        "200": 49,
+        "308": 6
+      },
+      "verified": {
+        "Search Engine Crawler": 49,
+        "(unclassified)": 6
+      },
+      "redirectShare": 11,
+      "paths": [
+        {
+          "path": "/trust",
+          "status": 200,
+          "count": 5
+        },
+        {
+          "path": "/mcp",
+          "status": 200,
+          "count": 4
+        },
+        {
+          "path": "/sitemap.xml",
+          "status": 200,
+          "count": 3
+        },
+        {
+          "path": "/importing/",
+          "status": 200,
+          "count": 3
+        },
+        {
+          "path": "/",
+          "status": 200,
+          "count": 3
+        },
+        {
+          "path": "/importing/australia",
+          "status": 200,
+          "count": 3
+        },
+        {
+          "path": "/importing/singapore",
+          "status": 200,
+          "count": 3
+        },
+        {
+          "path": "/robots.txt",
+          "status": 200,
+          "count": 3
+        },
+        {
+          "path": "/guides/height-weight",
+          "status": 200,
           "count": 2
         },
         {
@@ -510,18 +507,58 @@
           "count": 2
         },
         {
-          "path": "/guides/",
+          "path": "/checklist",
           "status": 200,
-          "count": 1
+          "count": 2
         },
         {
-          "path": "/importing/germany.html",
+          "path": "/guides/discreet-shipping",
+          "status": 200,
+          "count": 2
+        },
+        {
+          "path": "/guides/care-cleaning",
+          "status": 200,
+          "count": 2
+        },
+        {
+          "path": "/guides/import-costs-2026",
+          "status": 200,
+          "count": 2
+        },
+        {
+          "path": "/quiz",
+          "status": 200,
+          "count": 2
+        },
+        {
+          "path": "/guides/",
+          "status": 200,
+          "count": 2
+        },
+        {
+          "path": "/cost-calculator",
+          "status": 200,
+          "count": 2
+        },
+        {
+          "path": "/",
+          "status": 200,
+          "count": 2
+        },
+        {
+          "path": "/importing/south-korea.html",
           "status": 308,
           "count": 1
         },
         {
-          "path": "/importing/",
-          "status": 200,
+          "path": "/trust.html",
+          "status": 308,
+          "count": 1
+        },
+        {
+          "path": "/vendors/yourdoll.html",
+          "status": 308,
           "count": 1
         },
         {
@@ -535,127 +572,12 @@
           "count": 1
         },
         {
-          "path": "/importing/germany",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/js/main.js",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/js/photos.js",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/js/config.js",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/js/search.js",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/js/share.js",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/js/analytics.js",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/css/main.css",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/importing/japan",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/llms.txt",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/importing/singapore.html",
+          "path": "/legal/terms.html",
           "status": 308,
           "count": 1
         },
         {
-          "path": "/guides/disposal",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/importing/thailand.html",
-          "status": 308,
-          "count": 1
-        },
-        {
-          "path": "/cost-calculator.html",
-          "status": 308,
-          "count": 1
-        },
-        {
-          "path": "/feed.xml",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/guides/first-time-buyer",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/importing/malaysia.html",
-          "status": 308,
-          "count": 1
-        },
-        {
-          "path": "/importing/japan.html",
-          "status": 308,
-          "count": 1
-        },
-        {
-          "path": "/data/import-costs.json",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/importing/singapore",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/sitemap.xml",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/guides/torso-vs-full-size",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/checklist.html",
-          "status": 308,
-          "count": 1
-        },
-        {
-          "path": "/guides/torso-vs-full-size.html",
-          "status": 308,
-          "count": 1
-        },
-        {
-          "path": "/importing/thailand",
+          "path": "/legal/terms",
           "status": 200,
           "count": 1
         },
@@ -663,259 +585,67 @@
           "path": "/mcp.html",
           "status": 308,
           "count": 1
-        },
-        {
-          "path": "/guides/tpe-vs-silicone.html",
-          "status": 308,
-          "count": 1
-        },
-        {
-          "path": "/guides/discreet-shipping.html",
-          "status": 308,
-          "count": 1
-        },
-        {
-          "path": "/importing/south-korea.html",
-          "status": 308,
-          "count": 1
-        },
-        {
-          "path": "/importing/united-kingdom.html",
-          "status": 308,
-          "count": 1
-        },
-        {
-          "path": "/importing/south-korea",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/guides/tpe-vs-silicone",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/guides/first-time-buyer.html",
-          "status": 308,
-          "count": 1
-        },
-        {
-          "path": "/importing/malaysia",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/picks",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/guides/disposal.html",
-          "status": 308,
-          "count": 1
         }
       ]
     },
     "GPTBot": {
-      "total": 100,
+      "total": 11,
       "byStatus": {
-        "200": 38,
-        "404": 62
+        "200": 11
       },
       "verified": {
-        "(unclassified)": 75,
-        "AI Crawler": 25
+        "AI Crawler": 7,
+        "(unclassified)": 4
       },
       "redirectShare": 0,
       "paths": [
-        {
-          "path": "/@fs/home/ubuntu/.anthropic/config.json",
-          "status": 404,
-          "count": 10
-        },
-        {
-          "path": "/api/url",
-          "status": 404,
-          "count": 8
-        },
-        {
-          "path": "/.env.bak",
-          "status": 404,
-          "count": 8
-        },
-        {
-          "path": "/url",
-          "status": 404,
-          "count": 8
-        },
-        {
-          "path": "/apps/frontend/.env",
-          "status": 404,
-          "count": 6
-        },
-        {
-          "path": "/home/ubuntu/.aws/credentials",
-          "status": 404,
-          "count": 6
-        },
-        {
-          "path": "/proc/self/environ",
-          "status": 404,
-          "count": 6
-        },
-        {
-          "path": "/",
-          "status": 200,
-          "count": 6
-        },
-        {
-          "path": "/scam-check",
-          "status": 200,
-          "count": 4
-        },
-        {
-          "path": "/guides/height-weight",
-          "status": 200,
-          "count": 3
-        },
         {
           "path": "/sitemap.xml",
           "status": 200,
           "count": 3
         },
         {
+          "path": "/guides/height-weight",
+          "status": 200,
+          "count": 2
+        },
+        {
+          "path": "/scam-check",
+          "status": 200,
+          "count": 2
+        },
+        {
+          "path": "/legal/privacy",
+          "status": 200,
+          "count": 1
+        },
+        {
           "path": "/",
           "status": 200,
-          "count": 2
-        },
-        {
-          "path": "/wordpress/.env",
-          "status": 404,
-          "count": 2
-        },
-        {
-          "path": "/api/fetch",
-          "status": 404,
-          "count": 2
-        },
-        {
-          "path": "/request",
-          "status": 404,
-          "count": 2
-        },
-        {
-          "path": "/checklist",
-          "status": 200,
-          "count": 2
-        },
-        {
-          "path": "/payment-protection",
-          "status": 200,
-          "count": 2
-        },
-        {
-          "path": "/guides/care-cleaning",
-          "status": 200,
-          "count": 2
-        },
-        {
-          "path": "/guides/tpe-vs-silicone",
-          "status": 200,
-          "count": 2
-        },
-        {
-          "path": "/@fs/home/ubuntu/.aws/credentials",
-          "status": 404,
           "count": 1
         },
         {
-          "path": "/@fs/.env",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/@fs/app/.env.production",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/@fs/home/node/.aws/credentials",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/faq",
+          "path": "/legal/affiliate-disclosure",
           "status": 200,
           "count": 1
         },
         {
-          "path": "/guides/first-time-buyer",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/feed.xml",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/data/",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/js/config.js",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/quiz",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/guides/",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/guides/discreet-shipping",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/data/payment-recourse.json",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/css/main.css",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/js/main.js",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/cost-calculator",
+          "path": "/legal/terms",
           "status": 200,
           "count": 1
         }
       ]
     },
     "ClaudeBot": {
-      "total": 69,
+      "total": 20,
       "byStatus": {
-        "200": 23,
-        "308": 10,
-        "404": 36
+        "200": 18,
+        "308": 2
       },
       "verified": {
-        "(unclassified)": 69
+        "(unclassified)": 20
       },
-      "redirectShare": 14,
+      "redirectShare": 10,
       "paths": [
         {
           "path": "/",
@@ -923,31 +653,6 @@
           "count": 10
         },
         {
-          "path": "/guides/height-weight.html",
-          "status": 308,
-          "count": 8
-        },
-        {
-          "path": "/localhost.key",
-          "status": 404,
-          "count": 8
-        },
-        {
-          "path": "/.env.save",
-          "status": 404,
-          "count": 6
-        },
-        {
-          "path": "/config/anthropic.json",
-          "status": 404,
-          "count": 6
-        },
-        {
-          "path": "/_next/static/../.env",
-          "status": 404,
-          "count": 6
-        },
-        {
           "path": "/data/",
           "status": 200,
           "count": 6
@@ -955,141 +660,50 @@
         {
           "path": "/guides/height-weight",
           "status": 200,
-          "count": 5
-        },
-        {
-          "path": "/home/ec2-user/.aws/credentials",
-          "status": 404,
-          "count": 4
+          "count": 2
         },
         {
           "path": "/scam-check.html",
           "status": 308,
           "count": 2
-        },
-        {
-          "path": "/home/ubuntu/.config/gcloud/application_default_credentials.json",
-          "status": 404,
-          "count": 2
-        },
-        {
-          "path": "/cgi-bin/fetch",
-          "status": 404,
-          "count": 2
-        },
-        {
-          "path": "/app/.env.staging",
-          "status": 404,
-          "count": 2
-        },
-        {
-          "path": "/scam-check",
-          "status": 200,
-          "count": 2
         }
       ]
     },
     "PerplexityBot": {
-      "total": 85,
+      "total": 22,
       "byStatus": {
-        "200": 22,
-        "308": 6,
-        "404": 57
+        "200": 14,
+        "308": 8
       },
       "verified": {
-        "(unclassified)": 85
+        "(unclassified)": 22
       },
-      "redirectShare": 7,
+      "redirectShare": 36,
       "paths": [
         {
-          "path": "/@fs/root/.config/openai/config.json",
-          "status": 404,
-          "count": 8
-        },
-        {
-          "path": "/@fs/app/gcp-credentials.json",
-          "status": 404,
-          "count": 8
-        },
-        {
-          "path": "/@fs/home/node/.config/gcloud/application_default_credentials.json",
-          "status": 404,
-          "count": 8
-        },
-        {
-          "path": "/config/.env.local",
-          "status": 404,
-          "count": 8
-        },
-        {
-          "path": "/api/system",
-          "status": 404,
-          "count": 8
-        },
-        {
-          "path": "/data/",
-          "status": 200,
-          "count": 6
-        },
-        {
-          "path": "/guides/height-weight",
-          "status": 200,
-          "count": 6
-        },
-        {
-          "path": "/@fs/home/ubuntu/.config/anthropic/credentials/default.json",
-          "status": 404,
-          "count": 6
-        },
-        {
-          "path": "/.env.swp",
-          "status": 404,
-          "count": 6
-        },
-        {
-          "path": "/guides/height-weight.html",
+          "path": "/scam-check.html",
           "status": 308,
-          "count": 6
-        },
-        {
-          "path": "/scam-check",
-          "status": 200,
-          "count": 5
-        },
-        {
-          "path": "/amplifyconfiguration.json",
-          "status": 404,
-          "count": 3
-        },
-        {
-          "path": "/service/.env",
-          "status": 404,
-          "count": 2
-        },
-        {
-          "path": "/img/og/og-guides.png",
-          "status": 200,
-          "count": 1
+          "count": 8
         },
         {
           "path": "/",
           "status": 200,
-          "count": 1
+          "count": 6
         },
         {
-          "path": "/importing/south-korea",
+          "path": "/data/",
           "status": 200,
-          "count": 1
+          "count": 4
         },
         {
-          "path": "/img/og/og-home.png",
+          "path": "/guides/height-weight",
           "status": 200,
-          "count": 1
+          "count": 2
         },
         {
-          "path": "/robots.txt",
+          "path": "/scam-check",
           "status": 200,
-          "count": 1
+          "count": 2
         }
       ]
     }
