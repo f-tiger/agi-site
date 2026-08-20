@@ -156,6 +156,17 @@ jobs:
             *'"ok":true'*) echo "OK event pipeline (D1 write confirmed)" ;;
             *) echo "::error::event pipeline broken: $ev"; fail=1 ;;
           esac
+          # 漏斗事件验收(2026-08-20 触发器体检):lead_intent 与 cold_now 是两条
+          # 新营收链路的唯一度量,白名单掉一个就整条链静默失明——每次部署验收。
+          for evn in lead_intent cold_now; do
+            r=$(curl -s --max-time 20 -X POST "https://getecoback.com/api/ev" \
+                 -H "Content-Type: text/plain" \
+                 -d '{"n":"'$evn'","p":"/__ci_healthcheck","r":"","m":{"ci":1}}' || echo "")
+            case "$r" in
+              *'"ok":true'*) echo "OK funnel event accepted: $evn" ;;
+              *) echo "::error::funnel event $evn rejected: $r"; fail=1 ;;
+            esac
+          done
           # The live heat band drives the weather-reactive layer; a silent outage
           # would simply mean the site says nothing on the days that matter most.
           heat=""

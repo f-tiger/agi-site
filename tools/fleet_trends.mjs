@@ -19,7 +19,7 @@ const MAPS = {
   'sites/thedollscout/content/trends-us.json': ['sex doll', 'love doll', 'tpe doll',
     'silicone doll', 'realdoll'],
 };
-const SHORT = new Set(['agi', 'gpt', 'veo']); // 词边界匹配,防 magic/egpt 误配
+const SHORT = new Set(['agi', 'gpt', 'veo', 'sora', 'kimi', 'suno', 'grok', 'qwen']); // 词边界匹配,防 magic/sorana/kimi-antonelli 误配
 
 const today = new Date().toISOString().slice(0, 10);
 const url = 'https://trends.google.com/trending/rss?geo=US';
@@ -43,13 +43,24 @@ const hit = (title, kw) => SHORT.has(kw)
   ? new RegExp(`(^|[^a-z0-9])${kw}([^a-z0-9]|$)`, 'i').test(title)
   : title.toLowerCase().includes(kw);
 
+// history = 冷却状态。「同词 7 天冷却」需要记忆;只留 14 天,文件永不膨胀。
+import { readFileSync, existsSync } from 'node:fs';
+const cutoff = new Date(Date.now() - 14 * 864e5).toISOString().slice(0, 10);
+
 for (const [out, kws] of Object.entries(MAPS)) {
   mkdirSync(out.replace(/\/[^/]+$/, ''), { recursive: true });
+  let history = [];
+  try {
+    if (existsSync(out)) history = JSON.parse(readFileSync(out, 'utf8')).history || [];
+  } catch (e) { /* 坏文件不阻塞今天 */ }
+  history = history.filter((h) => h.d >= cutoff && h.d !== today);
   const payload = items
     ? { ok: true, fetched: today, geo: 'US',
         matched: items.filter((i) => kws.some((k) => hit(i.title, k))),
         top: items.slice(0, 25) }
     : { ok: false, fetched: today, geo: 'US', reason };
+  if (payload.ok) history.push({ d: today, matched: payload.matched.map((m) => m.title) });
+  payload.history = history;
   writeFileSync(out, JSON.stringify(payload, null, 1) + '\n');
   console.log(`${out}: ${payload.ok ? `命中 ${payload.matched.length}` : `失败 ${reason}`}`);
 }

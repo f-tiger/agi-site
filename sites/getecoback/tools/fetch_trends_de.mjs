@@ -24,10 +24,15 @@ const NICHE = [
 
 const url = 'https://trends.google.com/trending/rss?geo=DE';
 const out = 'data/trends-de.json';
-const { writeFileSync, mkdirSync } = await import('node:fs');
+const { writeFileSync, mkdirSync, readFileSync, existsSync } = await import('node:fs');
 // data/ 只有这一个文件,git 不提交空目录——首跑时目录不存在,必须先建。
 mkdirSync('data', { recursive: true });
 const today = new Date().toISOString().slice(0, 10);
+// history = 冷却状态(执行令的「同词 14 天冷却」需要记忆),只留 14 天。
+const cutoff = new Date(Date.now() - 14 * 864e5).toISOString().slice(0, 10);
+let history = [];
+try { if (existsSync(out)) history = JSON.parse(readFileSync(out, 'utf8')).history || []; } catch (e) {}
+history = history.filter((h) => h.d >= cutoff && h.d !== today);
 
 let payload;
 try {
@@ -47,11 +52,12 @@ try {
     const t = i.title.toLowerCase();
     return NICHE.some((k) => t.includes(k));
   });
-  payload = { ok: true, fetched: today, source: url, matched, top: items.slice(0, 25) };
+  history.push({ d: today, matched: matched.map((m) => m.title) });
+  payload = { ok: true, fetched: today, source: url, matched, top: items.slice(0, 25), history };
   console.log(`✅ ${items.length} 条德国热搜,niche 命中 ${matched.length} 条` +
     (matched.length ? `:${matched.map((m) => m.title).join(' | ')}` : ''));
 } catch (e) {
-  payload = { ok: false, fetched: today, source: url, reason: String(e.message || e).slice(0, 120) };
+  payload = { ok: false, fetched: today, source: url, reason: String(e.message || e).slice(0, 120), history };
   console.log(`❌ 抓取失败:${payload.reason}(写入 ok:false,不复用旧数据)`);
 }
 writeFileSync(out, JSON.stringify(payload, null, 1) + '\n');
