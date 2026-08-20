@@ -2171,3 +2171,14 @@ search-index 重生成、feed 重生成、share/future-survey.png 重烤为 2047
 - 同日负面判定:index_click{*_live} 两周 0 次(3 次 index_click 全来自首页),
   该通道按规则定性为品牌资产,停止扩展 *_live 钩子。
 - 判定线:28 天后 sub_ok ≥3/28d。
+
+## 2026-08-20 · 每日运行(monorepo 首个完整日)
+- 监控(三道筛口径):漏斗 28d open3→submit2→ok2;订户 2(stored 正常);
+  **AI 引擎引荐周曲线 0→0→5→7,通道两周前点燃、周环比 +40%**(未到翻倍,如实记);
+  EA Forum 7d 引荐 5 次;api.microsoft.ai 首次出现在引荐源。
+- 引用放大队列:已清空(sa-summary-i18n/ooms-i18n 完成,entity-derisk 查重关闭),
+  按规矩不塞猜测选题,回到 ①。trends-us.json 触发器 matched=[],正确跳过。
+- ①转化赛马:昨日新铺 6 个 mid 位 <24h 均 0,不动;高价值着陆页体检发现
+  /prediction-receipts(EA 社区型引荐 2 次/14d)只有页脚 CTA → 首个 h2 前加
+  mid 位(deep_receipts_mid,文案钩在「收据当天寄给你」)。本轮唯一改页。
+- 防翻炒核对:该页非近 5 轮触碰对象 ✓。
