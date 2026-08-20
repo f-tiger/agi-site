@@ -1,0 +1,35 @@
+name: getecoback DE trends trigger (daily)
+
+# 触发器数据面(2026-08-20,owner 指令「Google Trends 应成为站点的触发器」):
+# runner 每日抓德国热搜 → niche 过滤 → 提交 data/trends-de.json,05:00 UTC 的
+# 每日循环把它当输入。04:30 跑,赶在循环之前。公开仓分钟免费;外部副作用
+# (抓 Google)挂 schedule 不挂 push——舰队 CI 纪律第 3 条。
+on:
+  schedule:
+    - cron: '30 4 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: eco-trends
+  cancel-in-progress: true
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: sites/getecoback
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: node tools/fetch_trends_de.mjs
+      - name: Commit snapshot if changed
+        run: |
+          git config user.name 'Claude'
+          git config user.email 'noreply@anthropic.com'
+          git add data/trends-de.json
+          git diff --cached --quiet || { git commit -m "chore(trends): 德国热搜触发器快照 $(date -u +%F)"; git pull --rebase origin main; git push origin main; }

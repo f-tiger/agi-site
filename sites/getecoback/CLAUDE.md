@@ -23,6 +23,38 @@
    AI 引荐 16(chatgpt 12 + copilot 4)——本站活在 Bing 系+AI 面上;GEO/llms.txt/
    MCP 面的维护优先级高于 Google 专项优化。
 
+## 触发器循环(2026-08-20,owner:「欧洲 Google Trends/天气/能源价格应成为站点的
+## 触发器,否则没有触发进化的支点」;按 marketing-loops 九要素设计)
+
+**已有的触发器先认账,别重建**:天气面已建(/api/heat 热浪带 + build_season.py
+每日季节轮换 + heat-alert 每日彩排);能源价格面已建(/api/strom 交易所电价 +
+Strompreis-Radar)。本循环补的是**外部需求信号**(Google Trends DE)与**冬季冷触发**。
+
+- **数据面(已上线)**:eco-trends.yml 每日 04:30 UTC 由 runner 抓
+  trends.google.com/trending/rss?geo=DE → niche 词表过滤 → 提交
+  data/trends-de.json(ok:false = 当日抓取失败,绝不复用旧数据)。
+- **查看节奏**:每日循环 Step 1 必读 data/trends-de.json。
+- **行动条件(acts-when,三条全过才动)**:①matched 非空 ②对应词过 KGR 门
+  (SERP 构成判定,老规矩)③目标页不在近 5 轮改动名单。多数日子的正确结果是
+  「看过,无命中,跳过」——这是循环健康而非失灵。
+- **自检**:命中词必须与站内既有簇能对上(heiz/klima/strom/schimmel…);
+  纯人名/娱乐热搜即使含关键词子串也不算(如人名含 gas)。
+- **动作(按命中类型)**:天气事件词(Kältewelle/Sturm/Hochwasser)→ 刷新对应
+  场景页的时效行(带日期)+ 确认设备推荐卡在位;价格/政策词(strompreis/
+  heizungsgesetz)→ Strompreis-Radar 与相关指南的「本周语境」行;设备词 →
+  KGR 过门才新建页,否则深化既有页。**每次动作的转化钩子(联盟卡/lead 探针/
+  radar 工具)必须同屏**——触发的意义是接住交易,不是蹭热点。
+- **状态/幂等**:trends-de.json 按日覆盖;动作记 OPT 日志;同一词 14 天冷却,
+  不重复触发。
+- **停止条件**:ok:false 连续 ≥3 天 → 在简报中报「触发器断供」并查 runner 日志;
+  连续 30 天 0 命中 → 把词表贴进简报请 owner 审(词表可能偏了),不自行扩表。
+- **待建(下一轮循环自建,按本站惯例)**:冬季冷触发——heat_alert.py 的反向档
+  (未来 7 天最低温 < 阈值 → 首页反应带切「Kältewelle」语境 + Heizlüfter/
+  Heizung 推荐),复用现成 open-meteo 链路与彩排机制。
+- **金融/战争类信号的立场(诚实边界)**:对本站唯一诚实的传导链是**能源价格**
+  (gaspreis/strompreis/energiekrise 已在词表);不做战争新闻内容——离 niche
+  的 E-E-A-T 一步都不迈。
+
 # 工作规则
 
 ## 规则一：先完善 Prompt，再执行任务（用户强制要求，适用于所有任务）
