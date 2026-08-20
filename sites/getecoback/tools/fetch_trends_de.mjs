@@ -24,7 +24,9 @@ const NICHE = [
 
 const url = 'https://trends.google.com/trending/rss?geo=DE';
 const out = 'data/trends-de.json';
-const { writeFileSync } = await import('node:fs');
+const { writeFileSync, mkdirSync } = await import('node:fs');
+// data/ 只有这一个文件,git 不提交空目录——首跑时目录不存在,必须先建。
+mkdirSync('data', { recursive: true });
 const today = new Date().toISOString().slice(0, 10);
 
 let payload;
