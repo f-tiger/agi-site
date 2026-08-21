@@ -32,14 +32,15 @@
    +变更历史」,不是工具外壳——agent 直接调 API 不看 UI,外壳可被一周抄走。
    工具 UI = 数据的展示层与转化钩子;售卖形状 = watch Pro / 白标 API 混合定价,
    一切定价等两个探针的判定线数据,不预设。
-6. **下一个内容动作已立项:Gemini 免费额度沉降时间线(EN+zh 判定页)。**
-   完整规格、已核实证据与判定线见 `docs/PRD-gemini-timeline.md`——三门已过,
-   每日循环按 PRD 直接动工,不必重新调研。硬规则重申:当前额度数值只能来自
-   本站巡检实测,博客只能引作历史事件来源;凑不齐证据的时间格宁缺毋滥。
-7. **再下一个(严格排在第 6 条之后):llms.txt 一手证据判定页**,规格见
+6. ~~Gemini 免费额度沉降时间线~~ **已上线 2026-08-21**(`how-much-has-gemini-
+   free-tier-been-cut`,zh+en,questions.json kind=entity_timeline)。判定线
+   2026-09-18:首个 AI 引用,或 JS pv ≥30 且 watch 钩子 ≥5 → 扩 OpenAI/
+   Anthropic/DeepSeek 同构系列;否则该页随巡检自动更新、不再投人工。
+   时间线新增格子的硬规则不变:现值只用站内实测,博客只作历史事件源。
+7. **下一个内容动作:llms.txt 一手证据判定页**,规格见
    `docs/PRD-llmstxt-evidence.md`。核心资产是本站自己的日志(llms.txt 181 次/24h
    =#1 被爬路径 vs agent 真实调用≈0),结论必须保持「被读≠被用」两段式。
-   一轮只建一页,别把 6、7 挤进同一轮。
+   一轮只建一页。
 
 # CLAUDE.md
 

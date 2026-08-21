@@ -33,11 +33,11 @@ conversion hooks on the matching cited page that day. ok:false three days
 running goes in the report. Most days it matches nothing — that is the trigger
 working, not failing.
 
-Next queued build (2026-08-20): the factory-photo verification checklist —
-full spec, verified evidence, and its 60-day decision line are in
-`content/prd-factory-photo-checklist.md`. The three gates are already passed;
-build it from the spec, do not re-research. It counts as trust-cluster
-deepening, not a new search-surface bet.
+Factory-photo spec: RESOLVED 2026-08-21 by upgrading the existing
+`guides/factory-photos.html` in place (four-photo request list + copy-paste
+message) — a new page would have been a near-duplicate. Decision line (60 days,
+≥10 AI crawls or top-5 landing) now attaches to that page; details in
+`content/prd-factory-photo-checklist.md`.
 
 What this changes for each run: prioritize conversion-hook work on CITED pages over
 new search-surface pages. What it does NOT change: every guardrail in section 4

@@ -88,6 +88,50 @@
       "title_en": "Free alternatives to Cursor: verified allowances with official sources",
       "answer_zh": "有，但要先分清你要替代的是哪一半。Cursor 免费档官方口径只说「有限的 Agent 请求与补全」、不公布数字，网上流传的「2,000 补全 + 50 次请求」出自旧版定价结构，已过时。所以「比 Cursor 给得多」这句话无法用官方数字直接验证——能验证的是替代品各自公布了什么。下表列出同类里有官方出处的选项，包括几个「工具免费、模型自付」的，那类没有额度墙，只有你自己的账单。",
       "answer_en": "Yes, but first decide which half you are replacing. Cursor's own wording for the free tier is only \"limited agent requests and completions\", with no published figure; the \"2,000 completions + 50 requests\" figure circulating online comes from an older pricing structure and is stale. So \"more generous than Cursor\" cannot be verified against an official number — what can be verified is what each alternative publishes. Below are the peers with official sources, including the bring-your-own-model ones, which have no allowance wall at all, only your own bill."
+    },
+    {
+      "slug": "how-much-has-gemini-free-tier-been-cut",
+      "kind": "entity_timeline",
+      "slugs": [
+        "gemini",
+        "gemini-cli"
+      ],
+      "q_zh": "Gemini 的免费额度被砍了多少？",
+      "q_en": "How much has Gemini's free tier been cut?",
+      "title_zh": "Gemini 免费额度沉降时间线：每次削减带日期与出处",
+      "title_en": "Gemini free-tier timeline: every cut, dated and sourced",
+      "answer_zh": "方向只有一个：收紧。已核实的节点：2025 年 12 月，Google 无预告削减 Gemini Developer API 免费额度——没有邮件通知，开发者靠应用里的 429 报错才发现，多家独立记录的前后数值显示不同模型约砍 50–80%；2026 年 4 月 1 日，Gemini 2.5 Pro 退出 API 免费层。今天的应用端免费档已不按条数、改按「算力用量」计量（5 小时窗口 + 周上限），官方不公布固定条数——所以本页只列本站逐条核实的现值（下表带官方出处与核实日期），并每天复核；时间线出现新的一格时，变更会记入公开日志。",
+      "answer_en": "The direction has only ever been one way: tighter. The verified timeline: in December 2025 Google cut the Gemini Developer API free tier with no announcement — no email, developers found out from 429 errors, and independent before/after records show cuts of roughly 50–80% depending on the model; on April 1, 2026, Gemini 2.5 Pro left the free API tier. Today's consumer free tier is no longer metered in messages at all but in compute usage (a 5-hour window plus a weekly cap) with no fixed number published — so this page lists only the current values this site has verified line by line (table below, with official source and check date), re-checked daily; when the timeline grows a new entry, the change lands in the public log.",
+      "facts": [
+        {
+          "claim_zh": "2025 年 12 月：Google 无预告下调 Gemini Developer API 免费额度，未发邮件通知，开发者在应用里收到 429 才发现；多家独立记录的前后数值显示，不同模型的削减幅度约为 50–80%。",
+          "claim_en": "December 2025: Google reduced the Gemini Developer API free tier with no advance notice and no email; developers discovered it from 429 errors. Independent before/after records show cuts of roughly 50–80% depending on the model.",
+          "checked": "2026-08-21",
+          "source_zh": "quasa.io 等独立报道 + Google AI Developers Forum 投诉帖（2026-08-16 对抗核实通过）；削减幅度另经 aifreeapi 与 apiyi 两家独立记录交叉对照（2026-08-21）",
+          "source_en": "Independent reports incl. quasa.io plus Google AI Developers Forum threads (adversarially verified 2026-08-16); cut magnitudes cross-checked against two independent records, aifreeapi and apiyi (2026-08-21)"
+        },
+        {
+          "claim_zh": "2026 年 4 月 1 日：Gemini 2.5 Pro 退出 Gemini API 免费层——免费层不再包含 Pro 模型调用。",
+          "claim_en": "April 1, 2026: Gemini 2.5 Pro left the Gemini API free tier — Pro-model calls are no longer part of the free tier.",
+          "checked": "2026-08-21",
+          "source_zh": "多家独立第三方记录交叉对照（含 apiyi 等 API 观测博客，2026-08-21）",
+          "source_en": "Cross-checked against multiple independent third-party records incl. API-tracking blogs such as apiyi (2026-08-21)"
+        },
+        {
+          "claim_zh": "旁证——这不是 Google 一家的动作：2026 年 4 月 15 日，阿里 Qwen 停止 OAuth 免费通道（decrypt.co 报道）。大额免费层退潮是行业级趋势。",
+          "claim_en": "Corroboration that this is not Google alone: on April 15, 2026, Alibaba's Qwen shut its free OAuth channel (reported by decrypt.co). The retreat of generous free tiers is an industry-wide trend.",
+          "checked": "2026-08-21",
+          "source_zh": "decrypt.co 报道（2026-08-21 核实）",
+          "source_en": "decrypt.co report (checked 2026-08-21)"
+        },
+        {
+          "claim_zh": "绑卡陷阱是这条时间线的隐性一格：Google AI 开发者论坛与 Reddit 上至少 6 条独立线程报告「为提高额度绑卡后被静默计费」。绑卡前先读计费页——免费层与按量计费是两套开关。",
+          "claim_en": "The billing trap is the timeline's hidden entry: at least six independent threads on the Google AI Developers Forum and Reddit report surprise charges after linking a card to raise limits. Read the billing page before linking a card — the free tier and pay-as-you-go are separate switches.",
+          "checked": "2026-08-21",
+          "source_zh": "Google AI Developers Forum 与 Reddit 独立线程汇总（2026-08-21 核实，仅陈述用户报告，不构成对厂商的指控）",
+          "source_en": "Aggregated independent threads on the Google AI Developers Forum and Reddit (checked 2026-08-21; user reports stated as reports, not as an accusation)"
+        }
+      ]
     }
   ]
 }

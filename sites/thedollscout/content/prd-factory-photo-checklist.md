@@ -1,10 +1,17 @@
 # PRD: Factory-photo verification checklist (next content build)
 
-Status: queued for this site's own loop (written 2026-08-20; source: the
-16-agent fleet-biz-pain-sweep workflow in the monorepo root, evidence
-adversarially verified). This is the site's next page build — it outranks
-new search-surface pages because it deepens the already-cited trust cluster
-(scam-check / payment-protection / checklist).
+Status: **RESOLVED 2026-08-21 — by upgrade, not a new page.** The spec's own
+honesty rule fired on our own site: `guides/factory-photos.html` (published
+2026-08-17) already covered the 5-check table, order-number-in-frame, reverse
+image search, and refusal handling. Publishing this spec as a new page would
+have been a near-duplicate. What the spec added that was genuinely missing was
+merged into that page instead: the four-photo request list (tape-measure spec
+cross-check wired to /guides/height-weight, daylight skin-tone shot, named
+non-catalog pose as the stock-photo/articulation test) plus the copy-paste
+request message, one new FAQ (visible + JSON-LD in sync), dateModified and
+sitemap bumped. **The 60-day decision line below now attaches to
+/guides/factory-photos** (baseline: its crawl count as of 2026-08-21 in
+crawl-log.json). Original spec kept below for the evidence and killed list.
 
 ## One line
 

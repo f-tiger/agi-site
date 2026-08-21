@@ -1,7 +1,10 @@
 # PRD:Gemini 免费额度沉降时间线(判定型双语页)
 
-状态:待每日循环执行(写于 2026-08-20,来源:根仓 16-agent fleet-biz-pain-sweep
-工作流,证据已经对抗验证)。**这是本站下一个内容动作,优先级在执行令第 6 条。**
+状态:**已上线(2026-08-21,owner /goal 持续升级令下由主会话直接执行)。**
+slug `how-much-has-gemini-free-tier-been-cut`(zh+en),形态 = questions.json 新
+kind `entity_timeline`(facts=带日期历史节点、表格=tools.json 站内实测现值、
+变更日志过滤到 gemini/gemini-cli、页尾 watch 钩子 /calc/watch-hook/gemini)。
+判定线到期日:2026-09-18(28 天,见下文)。原 PRD 全文保留于下。
 
 ## 一句话
 

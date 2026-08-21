@@ -2931,8 +2931,15 @@ function questionPage(qd) {
     rows = self && okTool(self) ? [self, ...peers] : peers;
   } else if (qd.kind === 'entity_event') {
     rows = tools.filter((t) => ['claude', 'github-copilot', 'cursor'].includes(t.slug) && okTool(t));
+  } else if (qd.kind === 'entity_timeline') {
+    // 时间线页：facts = 带日期的历史节点（博客只可作历史事件源），表格 = 今天的
+    // 已核实现值——现值只能来自 tools.json 的站内巡检字段，这条硬规则写在
+    // docs/PRD-gemini-timeline.md，改这里前先读它。
+    rows = tools.filter((t) => (qd.slugs || []).includes(t.slug) && okTool(t));
   }
-  const moves = (QUESTIONS && qd.kind === 'changes' && HISTORY) ? (HISTORY.log || []).slice(-12).reverse() : [];
+  const moves = (QUESTIONS && HISTORY && (qd.kind === 'changes' || qd.kind === 'entity_timeline'))
+    ? (HISTORY.log || []).filter((e) => qd.kind === 'changes' || (qd.slugs || []).includes(e.slug)).slice(-12).reverse()
+    : [];
 
   const faq = [{ q, a: plain(answer) }];
   if (rows.length) faq.push({
@@ -2990,6 +2997,13 @@ function questionPage(qd) {
     <h2 class="group-title">${zh ? '最近记录到的变动' : 'Recently logged moves'}<span>${moves.length}</span></h2>
     ${movesBlock}
     <p class="coverage"><a href="${BASE}/changes.html">${zh ? '全部变更记录 →' : 'The full change log →'}</a>　<a href="${site.base_url}/api/changes?since=${esc(TODAY)}">${zh ? '增量端点（给脚本用）' : 'Incremental endpoint (for scripts)'}</a></p>
+  </section>` : ''}
+
+  ${qd.kind === 'entity_timeline' && (qd.slugs || []).length ? `<section class="limits-table">
+    <p class="limits-watch"><a href="${BASE}/watch.html?pick=${esc(qd.slugs[0])}"
+      onclick="try{if(window.bpjEv)bpjEv('calc','/calc/watch-hook/${esc(qd.slugs[0])}')}catch(e){}">${zh
+      ? '这条时间线还会长——下一格出现的当天通知我（webhook，免费盯 3 个）→'
+      : 'This timeline will grow — ping me the day the next entry lands (webhook, 3 tools free) →'}</a></p>
   </section>` : ''}
 
   <section class="faq">
