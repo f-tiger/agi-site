@@ -1,0 +1,11 @@
+{
+  // fleet-x-poster:每日 13:30 UTC(美东晨/欧洲午后,X 高互动窗)从队列发一条。
+  // 密钥不在此文件——由 deploy-x-poster.yml 从 GitHub Secrets 注入 wrangler secret。
+  "name": "fleet-x-poster",
+  "main": "worker.js",
+  "compatibility_date": "2026-08-01",
+  "triggers": { "crons": ["30 13 * * *"] },
+  "kv_namespaces": [
+    { "binding": "STATE", "id": "a1c40e98ec7a44298d74d94d4a6084d1" }
+  ]
+}

@@ -1,0 +1,77 @@
+name: Deploy fleet-x-poster
+
+# X 自动发帖器(营销铁律修订 2026-08-21,owner 授权:机器代发仅限 X 官方 API +
+# owner 本人账号)。成本核算(仓库规矩):path 过滤到 tools/x-poster/**,每周
+# 分发循环追加队列时跑一次 ≈0.5 分钟 × ~5 次/月 ≈ 2.5 分钟/月;公开仓免费。
+#
+# 密钥:owner 在 repo Settings → Secrets and variables → Actions 添加
+#   X_API_KEY / X_API_SECRET / X_ACCESS_TOKEN / X_ACCESS_SECRET
+# (developer.x.com 免费档,App permissions = Read and write,User authentication
+# 生成 Access Token & Secret)。没配齐 = worker 部署但休眠,绝不报错。
+on:
+  push:
+    branches: [main]
+    paths:
+      - "tools/x-poster/**"
+      - ".github/workflows/deploy-x-poster.yml"
+  workflow_dispatch: {}
+
+concurrency:
+  group: deploy-x-poster
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Syntax gate
+        working-directory: tools/x-poster
+        run: node --check worker.js && node --check queue.js
+
+      - name: Queue gate — every part ≤280 chars, ids unique
+        working-directory: tools/x-poster
+        run: |
+          node -e '
+            import("./queue.js").then(function(m){
+              var q=m.default, ids=new Set();
+              for (var it of q){
+                if(ids.has(it.id)){console.error("dup id: "+it.id);process.exit(1);}
+                ids.add(it.id);
+                var parts=it.thread||[it.text];
+                for (var t of parts){
+                  if(!t||t.length>280){console.error("part >280 or empty in "+it.id);process.exit(1);}
+                }
+              }
+              console.log("queue OK: "+q.length+" item(s)");
+            });'
+
+      - name: Deploy worker
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          wranglerVersion: "4"
+          workingDirectory: tools/x-poster
+          command: deploy
+
+      - name: Push X secrets to worker (skips silently until owner adds them)
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          XK: ${{ secrets.X_API_KEY }}
+          XS: ${{ secrets.X_API_SECRET }}
+          XT: ${{ secrets.X_ACCESS_TOKEN }}
+          XTS: ${{ secrets.X_ACCESS_SECRET }}
+        working-directory: tools/x-poster
+        run: |
+          if [ -z "$XK" ] || [ -z "$XS" ] || [ -z "$XT" ] || [ -z "$XTS" ]; then
+            echo "X secrets not configured yet — worker stays dormant (this is fine)"
+            exit 0
+          fi
+          npx wrangler@4 secret put X_API_KEY <<< "$XK"
+          npx wrangler@4 secret put X_API_SECRET <<< "$XS"
+          npx wrangler@4 secret put X_ACCESS_TOKEN <<< "$XT"
+          npx wrangler@4 secret put X_ACCESS_SECRET <<< "$XTS"
+          echo "x-poster ARMED"
