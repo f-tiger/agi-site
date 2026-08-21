@@ -2999,11 +2999,11 @@ function questionPage(qd) {
     <p class="coverage"><a href="${BASE}/changes.html">${zh ? '全部变更记录 →' : 'The full change log →'}</a>　<a href="${site.base_url}/api/changes?since=${esc(TODAY)}">${zh ? '增量端点（给脚本用）' : 'Incremental endpoint (for scripts)'}</a></p>
   </section>` : ''}
 
-  ${qd.kind === 'entity_timeline' && (qd.slugs || []).length ? `<section class="limits-table">
-    <p class="limits-watch"><a href="${BASE}/watch.html?pick=${esc(qd.slugs[0])}"
-      onclick="try{if(window.bpjEv)bpjEv('calc','/calc/watch-hook/${esc(qd.slugs[0])}')}catch(e){}">${zh
-      ? '这条时间线还会长——下一格出现的当天通知我（webhook，免费盯 3 个）→'
-      : 'This timeline will grow — ping me the day the next entry lands (webhook, 3 tools free) →'}</a></p>
+  ${((qd.kind === 'entity_timeline' && (qd.slugs || []).length) || qd.watch_slug) ? `<section class="limits-table">
+    <p class="limits-watch"><a href="${BASE}/watch.html?pick=${esc(qd.watch_slug || qd.slugs[0])}"
+      onclick="try{if(window.bpjEv)bpjEv('calc','/calc/watch-hook/${esc(qd.watch_slug || qd.slugs[0])}')}catch(e){}">${zh
+      ? (qd.watch_zh || '这条时间线还会长——下一格出现的当天通知我（webhook，免费盯 3 个）→')
+      : (qd.watch_en || 'This timeline will grow — ping me the day the next entry lands (webhook, 3 tools free) →')}</a></p>
   </section>` : ''}
 
   <section class="faq">

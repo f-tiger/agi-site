@@ -132,6 +132,49 @@
           "source_en": "Aggregated independent threads on the Google AI Developers Forum and Reddit (checked 2026-08-21; user reports stated as reports, not as an accusation)"
         }
       ]
+    },
+    {
+      "slug": "does-llms-txt-actually-work",
+      "kind": "firstparty",
+      "watch_slug": "chatgpt",
+      "watch_zh": "AI 生态一变（爬虫、额度、接口）就通知我——本站每天核实（webhook，免费盯 3 个）→",
+      "watch_en": "Ping me when the AI ecosystem moves (crawlers, tiers, APIs) — we verify daily (webhook, 3 tools free) →",
+      "q_zh": "llms.txt 到底有没有用？",
+      "q_en": "Does llms.txt actually do anything?",
+      "title_zh": "llms.txt 有用吗？一手服务器日志给出的判定",
+      "title_en": "Does llms.txt work? First-party server-log evidence",
+      "answer_zh": "分两半回答，两半都有本站自己的日志作证。它确实被读：llms.txt 是本站被 AI 爬虫抓取最多的单一路径（2026-08-16 实测 24 小时 181 次），抓取方正是决定引用的那批——OpenAI、Google、Anthropic、Perplexity，而本站每日探测显示七大 AI 爬虫对它全部可达。但没有证据它被「用」出转化：同期服务端日志里，真实 AI agent 的工具调用约等于零（我们剔除了自家 CI 自测——这是很多站把自测误报成 agent 增长的坑）。所以诚实的结论是：llms.txt 是给机器读的索引，能让 AI 引擎更高效地读你的站，但它本身不是流量或收入按钮；把它当成本极低的基础设施来做，别当增长神器来吹。",
+      "answer_en": "Two halves, both backed by this site's own logs. It IS read: llms.txt is the single most-crawled path on this site by AI crawlers (measured 2026-08-16: 181 fetches in 24 hours), and the crawlers fetching it are exactly the cohort that decides citations — OpenAI, Google, Anthropic, Perplexity; our daily probe shows all seven major AI crawlers can reach it. But there is no evidence it gets USED into conversions: over the same period, real AI-agent tool calls in our server-side logs were approximately zero (after excluding our own CI smoke tests — the trap that makes many sites misreport self-tests as agent growth). The honest verdict: llms.txt is an index for machines to read — it helps AI engines read your site efficiently, but it is not a traffic or revenue button. Treat it as near-zero-cost infrastructure, not a growth hack.",
+      "facts": [
+        {
+          "claim_zh": "2026-08-16 实测（Cloudflare AI Crawl Control 面板）：llms.txt 为本站被 AI 爬虫抓取最多的单一路径，24 小时 181 次；抓取方以 OpenAI、Google、Anthropic、Perplexity 为主——正是产生 AI 引用的那批爬虫。",
+          "claim_en": "Measured 2026-08-16 (Cloudflare AI Crawl Control): llms.txt was this site's single most-crawled path by AI crawlers, 181 fetches in 24 hours, led by OpenAI, Google, Anthropic and Perplexity — exactly the cohort that produces AI citations.",
+          "checked": "2026-08-16",
+          "source_zh": "本站 Cloudflare 面板一手读数（第一方数据，非转述）",
+          "source_en": "First-party reading from this site's own Cloudflare dashboard (not a restatement)"
+        },
+        {
+          "claim_zh": "同期服务端日志：真实 AI agent 工具调用约等于零——已剔除本站自己的 CI 冒烟测试（参数逐字重复、与 CI 时间重合的请求不算 agent）。「被读」与「被用」是两件事。",
+          "claim_en": "Same-period server-side logs: real AI-agent tool calls were approximately zero — after excluding this site's own CI smoke tests (verbatim-repeated parameters coinciding with CI runs do not count as agents). Being read and being used are different things.",
+          "checked": "2026-08-21",
+          "source_zh": "本站 D1 服务端事件日志（第一方数据）",
+          "source_en": "This site's D1 server-side event log (first-party)"
+        },
+        {
+          "claim_zh": "本站每日自动探测：GPTBot、OAI-SearchBot、ChatGPT-User、PerplexityBot 等七个主要 AI 爬虫对 /llms.txt 的抓取全部返回 200，无一被拦。",
+          "claim_en": "This site's daily automated probe: all seven major AI crawlers (GPTBot, OAI-SearchBot, ChatGPT-User, PerplexityBot and peers) fetch /llms.txt with HTTP 200 — none blocked.",
+          "checked": "2026-08-21",
+          "source_zh": "data/ai-crawler-probe.json（每日构建时自动探测，随仓库公开）",
+          "source_en": "data/ai-crawler-probe.json (probed automatically at each daily build, public in the repo)"
+        },
+        {
+          "claim_zh": "需求侧旁证：Ahrefs 2026 年数据显示 “ai search tracking” 搜索量 +184%、“ai rank tracking” +175%——llms.txt 所在的「AI 可见性」问题族在上升。",
+          "claim_en": "Demand-side corroboration: Ahrefs 2026 data shows the query \"ai search tracking\" up 184% and \"ai rank tracking\" up 175% — the AI-visibility question family that llms.txt belongs to is rising.",
+          "checked": "2026-08-21",
+          "source_zh": "Ahrefs 博客《AI Search Trends 2026》（转述已注明；具体涨幅以其原文为准）",
+          "source_en": "Ahrefs blog, AI Search Trends 2026 (restated with attribution; the exact figures are Ahrefs's)"
+        }
+      ]
     }
   ]
 }

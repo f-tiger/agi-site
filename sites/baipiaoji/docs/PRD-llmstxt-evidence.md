@@ -1,7 +1,10 @@
 # PRD:llms.txt 有用吗?一手证据判定页(排在 Gemini 时间线之后)
 
-状态:排队(写于 2026-08-21,来源:根仓 startup-trend-sweep 三路调研)。
-**顺序铁律:先建 PRD-gemini-timeline,再建本页。** 每日循环一轮只动一个。
+状态:**已上线(2026-08-21,owner /goal 持续升级令下由主会话执行;与 Gemini
+时间线同日但分两次独立构建与推送)。** slug `does-llms-txt-actually-work`
+(zh+en,kind=firstparty + 通用 watch_slug 字段)。三条一手事实(181 次/24h
+面板读数 2026-08-16、agent 调用≈0 的 D1 口径、每日探测七爬虫全 200)+ Ahrefs
+需求旁证。判定线到期日 2026-09-18(同下文)。原 PRD 保留于下。
 
 ## 一句话
 
