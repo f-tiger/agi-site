@@ -2182,3 +2182,15 @@ search-index 重生成、feed 重生成、share/future-survey.png 重烤为 2047
   /prediction-receipts(EA 社区型引荐 2 次/14d)只有页脚 CTA → 首个 h2 前加
   mid 位(deep_receipts_mid,文案钩在「收据当天寄给你」)。本轮唯一改页。
 - 防翻炒核对:该页非近 5 轮触碰对象 ✓。
+
+## 2026-08-21 · owner 专项:创业趋势扫描落地(非每日运行)
+- 三路调研(YC/融资 · 独立营收实证 · 需求缺口)+ 法律日期聚焦复核 → 根仓
+  docs/startup-trend-sweep-2026-08.md。
+- 新页 ×2(均过三门+六件套):/eu-ai-act-what-applies-now(台账旗舰,修正全网三处
+  普遍错误:50(2) 分裂式缓期/Omnibus=生效法 2026:1744/Code of Practice 已定稿;
+  埋点 eu_ai_act_live)、/which-agent-protocols-are-actually-used(采用记分板,
+  x402 -92% 负判定 + 一手日志段;埋点 agent_protocols_live)。
+- 接线:sitemap(193 URL)/llms.txt/agi-questions hub/首页 Research 组/feed/search。
+- backlog 种子 ×2(datacenter-grid-cost-tracker、eu-ai-act-de,均带动工前置)。
+- 防翻炒核对:两页均为新建,agi-questions/index/llms.txt 属接线义务 ✓。
+- 判定线:两页 28 天首个 AI 引用或(旗舰)站内 TOP10 / (记分板)胶囊点击 ≥5。

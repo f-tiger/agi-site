@@ -7,9 +7,30 @@
   <link rel="hub" href="https://pubsubhubbub.appspot.com/"/>
   <link rel="hub" href="https://pubsubhubbub.superfeedr.com/"/>
   <id>https://agiscorecard.com/</id>
-  <updated>2026-08-18T00:00:00Z</updated>
+  <updated>2026-08-21T00:00:00Z</updated>
   <author><name>The AGI Scorecard</name></author>
   <rights>CC BY 4.0 — reuse with attribution and a link to https://agiscorecard.com</rights>
+  <entry>
+    <title>EU AI Act: What Applies Now vs. What Got Deferred (2026)</title>
+    <link href="https://agiscorecard.com/eu-ai-act-what-applies-now"/>
+    <id>https://agiscorecard.com/eu-ai-act-what-applies-now</id>
+    <updated>2026-08-21T00:00:00Z</updated>
+    <summary>As of Aug 2026: chatbot disclosure applies (no grace period); the Digital Omnibus deferred high-risk duties to Dec 2027/Aug 2028. The dated ledger.</summary>
+  </entry>
+  <entry>
+    <title>Which AI Agent Protocols Are Actually Used? (2026)</title>
+    <link href="https://agiscorecard.com/which-agent-protocols-are-actually-used"/>
+    <id>https://agiscorecard.com/which-agent-protocols-are-actually-used</id>
+    <updated>2026-08-21T00:00:00Z</updated>
+    <summary>MCP has verifiable production adoption. A2A is backed but thin. The agent-payments layer — x402, ACP, AP2 — is a standards war ahead of its market.</summary>
+  </entry>
+  <entry>
+    <title>Did the Fund Collapse Prove Aschenbrenner Wrong About AGI?</title>
+    <link href="https://agiscorecard.com/aschenbrenner-fund-collapse"/>
+    <id>https://agiscorecard.com/aschenbrenner-fund-collapse</id>
+    <updated>2026-08-20T00:00:00Z</updated>
+    <summary>Situational Awareness lost ~67% in July 2026 and sold most stocks to Citadel. What that changes about AGI-2027 — and what doesn&#x27;t. Sourced, with receipts.</summary>
+  </entry>
   <entry>
     <title>When Will AGI Arrive? Every Major Forecast Compared (2026)</title>
     <link href="https://agiscorecard.com/when-will-agi-arrive"/>
@@ -30,13 +51,6 @@
     <id>https://agiscorecard.com/for-agents</id>
     <updated>2026-08-17T00:00:00Z</updated>
     <summary>Free, machine-readable AGI verdict data: /data.json (CC BY 4.0), an Atom feed, and llms.txt. Copy-paste prompt to add verdict-change alerts to any AI agent.</summary>
-  </entry>
-  <entry>
-    <title>Did the Fund Collapse Prove Aschenbrenner Wrong About AGI?</title>
-    <link href="https://agiscorecard.com/aschenbrenner-fund-collapse"/>
-    <id>https://agiscorecard.com/aschenbrenner-fund-collapse</id>
-    <updated>2026-08-17T00:00:00Z</updated>
-    <summary>Situational Awareness lost ~67% in July 2026 and sold most stocks to Citadel. What that changes about AGI-2027 — and what doesn&#x27;t. Sourced, with receipts.</summary>
   </entry>
   <entry>
     <title>AGI Odds vs Evidence: Markets Price Announcements</title>
@@ -135,19 +149,5 @@
     <id>https://agiscorecard.com/calibration</id>
     <updated>2026-08-08T00:00:00Z</updated>
     <summary>Every probability the AGI Scorecard network states, inventoried: 8 graded verdicts, an 8-call market ledger (5 hits, n small), red-team odds. Brier score published at n≥20.</summary>
-  </entry>
-  <entry>
-    <title>Can a 200-Visitor Site Make Money? A Public Log</title>
-    <link href="https://agiscorecard.com/experiments"/>
-    <id>https://agiscorecard.com/experiments</id>
-    <updated>2026-08-05T00:00:00Z</updated>
-    <summary>Ten revenue experiments with kill thresholds published before results. Real numbers: 211 users, $0 earned, nothing hidden. Started August 2026.</summary>
-  </entry>
-  <entry>
-    <title>AI Stock Exposure Check — Score Your AI Basket</title>
-    <link href="https://agiscorecard.com/ai-stock-exposure"/>
-    <id>https://agiscorecard.com/ai-stock-exposure</id>
-    <updated>2026-08-05T00:00:00Z</updated>
-    <summary>Pick the AI stocks you hold and get one auditable 0-100 score: how much of your basket rides on AGI predictions that are actually holding up.</summary>
   </entry>
 </feed>
