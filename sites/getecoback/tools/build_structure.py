@@ -52,6 +52,7 @@ CAT_OF = {
     "luftreiniger-ratgeber": "luftqualitaet",
     "klimaanlage-reinigen": "luftqualitaet",
     "klimaanlage-stromkosten": "energie-sparen",
+    "treiben-rechenzentren-die-strompreise": "energie-sparen",
     "strom-sparen-haushalt": "energie-sparen",
     "thermovorhang-ratgeber": "energie-sparen",
     "hitzeschutz-fenster": "energie-sparen",
