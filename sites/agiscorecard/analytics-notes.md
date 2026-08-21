@@ -701,3 +701,26 @@ what-jobs-are-safe-from-ai。已同步，并把 sitemap 的 21 条 lastmod 对�
 **真正的修复是校验**：validate.py 新增「可见日期必须等于 dateModified」全站检查，
 已做反向自测（把首页可见日期改成 7-01 → 立刻 FAIL，恢复 → OK）。这类漂移不报错、
 没人会注意，只能靠校验拦。
+
+## 2026-08-21 · 每日运行日结(与 owner 专项同日,ship 额度=专项两页,本轮零改页)
+- **里程碑 ×2(首次,worker owner-alerts 会自动推 TG,此处记档)**:
+  ① **史上前两个真实订阅者**(sub_ok 累计 2/2 存 D1,status=stored 正常):
+  08-14 AU/footer_cta;08-19 CN 经 google.com.hk 落 / 首页 post_scorecard,
+  zh-CN 用户——中文订阅假设首次有正样本。距 09-30 证伪线(累计 <5 判死)还差 3。
+  ② **首个外部 MCP 调用**(08-18,site_search{mcp} ×2):调用方自标识
+  mcp-reputation-scanner-canary,是 MCP 生态信誉扫描器验证服务器(tools/call
+  真实打到 sunwatch_ledger),**不是真实 agent 用户,也已排除 CI 自测**(生产
+  worker 埋点,标签不在任何 workflow 里)。定性:注册表信誉管线在动,好事但
+  不算「首个 agent 用户」。
+- 转化层 14d:subscribe_click 4 → sub_open 3 → sub_submit 2 → sub_ok 2,漏斗
+  下半段 100% 转化,瓶颈仍在曝光量。赛马:post_scorecard 与 footer_cta 各出
+  1 单,样本太小不判胜者。index_click{*_live} 引用页活数字钩子仍 0(hero/
+  directory 各有点击不算),两周判定窗到 08-30。
+- 流量层 7d:JS page_view 30–53/日,稳中有升。搜索引荐 14d:**duckduckgo 28
+  首次超过 google 16**,bing 8;社区面 EA Forum 7 + LessWrong 5 持续。
+  AI 引擎引荐 14d 合计 7(claude.ai 3 / perplexity 2 / copilot 2),未达
+  周环比翻倍口径,如实记。
+- 需求层:site_search 仅上述 2 条 MCP 探针,站内搜索仍无人类样本,按 08-17
+  降级令不例行读。引用放大队列:今日新种 2 项均带动工前置(Bing 9 月明细 /
+  英文版判定线),按规矩不提前动工。战略清单:周一项不适用;13F 下窗口 ~11 月;
+  x402 复查 ~11 月。
