@@ -1,6 +1,26 @@
 {
   "items": [
     {
+      "name": "Huzzah – a novel approach to coding with AI",
+      "url": "https://www.danielvaughn.dev/posts/huzzah/",
+      "host": "danielvaughn.dev",
+      "src": "https://news.ycombinator.com/item?id=49378768",
+      "points": 225,
+      "comments": 131,
+      "found": "2026-08-21",
+      "status": "candidate"
+    },
+    {
+      "name": "I trained a 125M model to autocomplete piano on-device",
+      "url": "https://simedw.com/2026/08/20/midi-autocomplete/",
+      "host": "simedw.com",
+      "src": "https://news.ycombinator.com/item?id=49373456",
+      "points": 507,
+      "comments": 106,
+      "found": "2026-08-21",
+      "status": "candidate"
+    },
+    {
       "name": "Sokoban AI Solver",
       "url": "https://mkornreich.me/projects/sokoban/",
       "host": "mkornreich.me",
@@ -171,5 +191,5 @@
       "status": "candidate"
     }
   ],
-  "updated": "2026-08-20"
+  "updated": "2026-08-21"
 }
