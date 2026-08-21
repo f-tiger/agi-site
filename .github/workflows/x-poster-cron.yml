@@ -4,9 +4,10 @@ name: X poster daily trigger
 # 由 Actions schedule 代行——符合 CI 铁律第 3 条(外部副作用只挂 schedule)。
 # 成本核算:~10 秒/天 ≈ 5 分钟/月,公开仓免费。
 # X_RUN_KEY 未配置时静默跳过(worker 未 armed,poke 无意义)。
+# 2026-08-21 owner 决定:X 无免费档(2026-02-06 起新开发者仅按量付费,带链接
+# 帖 $0.20/条 ≈ $7.4/月),零粉丝存在层渠道不值这个固定支出 → 管道休眠。
+# schedule 已摘除;若将来充值/恢复免费档,把 schedule 两行加回来即可。
 on:
-  schedule:
-    - cron: "30 13 * * *"
   workflow_dispatch: {}
 
 concurrency:
