@@ -64,14 +64,16 @@ jobs:
           XS: ${{ secrets.X_API_SECRET }}
           XT: ${{ secrets.X_ACCESS_TOKEN }}
           XTS: ${{ secrets.X_ACCESS_SECRET }}
+          XRK: ${{ secrets.X_RUN_KEY }}
         working-directory: tools/x-poster
         run: |
-          if [ -z "$XK" ] || [ -z "$XS" ] || [ -z "$XT" ] || [ -z "$XTS" ]; then
-            echo "X secrets not configured yet — worker stays dormant (this is fine)"
+          if [ -z "$XK" ] || [ -z "$XS" ] || [ -z "$XT" ] || [ -z "$XTS" ] || [ -z "$XRK" ]; then
+            echo "X secrets not fully configured (need 5 incl. X_RUN_KEY) — worker stays dormant (this is fine)"
             exit 0
           fi
           npx wrangler@4 secret put X_API_KEY <<< "$XK"
           npx wrangler@4 secret put X_API_SECRET <<< "$XS"
           npx wrangler@4 secret put X_ACCESS_TOKEN <<< "$XT"
           npx wrangler@4 secret put X_ACCESS_SECRET <<< "$XTS"
+          npx wrangler@4 secret put X_RUN_KEY <<< "$XRK"
           echo "x-poster ARMED"

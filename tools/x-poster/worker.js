@@ -51,59 +51,65 @@ async function postTweet(env, text, replyTo) {
   return j.data && j.data.id;
 }
 
+async function runOnce(env) {
+  if (!(env.X_API_KEY && env.X_API_SECRET && env.X_ACCESS_TOKEN && env.X_ACCESS_SECRET)) {
+    return { ok: false, note: 'no X credentials — dormant (owner: paste keys into GitHub repo secrets to arm)' };
+  }
+  const today = new Date().toISOString().slice(0, 10);
+  if ((await env.STATE.get('last_run_day')) === today) return { ok: true, note: 'already ran today' };
+
+  let item = null;
+  for (const q of QUEUE) {
+    if (await env.STATE.get('posted:' + q.id)) continue;
+    const fails = parseInt((await env.STATE.get('fails:' + q.id)) || '0', 10);
+    if (fails >= 3) { await env.STATE.put('posted:' + q.id, 'skipped_after_3_fails'); continue; }
+    item = q; break;
+  }
+  if (!item) return { ok: true, note: 'queue drained' };
+
+  const parts = item.thread || [item.text];
+  if (parts.some((t) => !t || t.length > 280)) {
+    await env.STATE.put('posted:' + item.id, 'skipped_over_280');
+    return { ok: false, note: 'item ' + item.id + ' has a part over 280 chars, skipped' };
+  }
+  try {
+    let prev = null;
+    const ids = [];
+    for (const t of parts) {
+      prev = await postTweet(env, t, prev);
+      ids.push(prev);
+      if (parts.length > 1) await new Promise((res) => setTimeout(res, 1500));
+    }
+    await env.STATE.put('posted:' + item.id, JSON.stringify({ day: today, tweet_ids: ids }));
+    await env.STATE.put('last_run_day', today);
+    return { ok: true, posted: item.id, tweets: ids.length };
+  } catch (e) {
+    const k = 'fails:' + item.id;
+    const fails = parseInt((await env.STATE.get(k)) || '0', 10) + 1;
+    await env.STATE.put(k, String(fails));
+    return { ok: false, note: 'post failed (' + fails + '/3) for ' + item.id + ': ' + (e && e.message) };
+  }
+}
+
 export default {
-  async scheduled(event, env, ctx) {
-    if (!(env.X_API_KEY && env.X_API_SECRET && env.X_ACCESS_TOKEN && env.X_ACCESS_SECRET)) {
-      console.log('x-poster: no credentials, sleeping (owner: paste 4 X keys into GitHub repo secrets to arm)');
-      return;
-    }
-    const today = new Date().toISOString().slice(0, 10);
-    if ((await env.STATE.get('last_run_day')) === today) { console.log('x-poster: already ran today'); return; }
-
-    let item = null;
-    for (const q of QUEUE) {
-      if (await env.STATE.get('posted:' + q.id)) continue;
-      const fails = parseInt((await env.STATE.get('fails:' + q.id)) || '0', 10);
-      if (fails >= 3) { await env.STATE.put('posted:' + q.id, 'skipped_after_3_fails'); continue; }
-      item = q; break;
-    }
-    if (!item) { console.log('x-poster: queue drained'); return; }
-
-    const parts = item.thread || [item.text];
-    if (parts.some((t) => !t || t.length > 280)) {
-      await env.STATE.put('posted:' + item.id, 'skipped_over_280');
-      console.log('x-poster: item ' + item.id + ' has a part over 280 chars, skipped');
-      return;
-    }
-    try {
-      let prev = null;
-      const ids = [];
-      for (const t of parts) {
-        prev = await postTweet(env, t, prev);
-        ids.push(prev);
-        if (parts.length > 1) await new Promise((res) => setTimeout(res, 1500));
-      }
-      await env.STATE.put('posted:' + item.id, JSON.stringify({ day: today, tweet_ids: ids }));
-      await env.STATE.put('last_run_day', today);
-      console.log('x-poster: posted ' + item.id + ' (' + ids.length + ' tweet(s))');
-    } catch (e) {
-      const k = 'fails:' + item.id;
-      const fails = parseInt((await env.STATE.get(k)) || '0', 10) + 1;
-      await env.STATE.put(k, String(fails));
-      console.log('x-poster: post failed (' + fails + '/3) for ' + item.id + ': ' + (e && e.message));
-    }
-  },
-
-  // 手动触发与体检:GET /status 返回队列与发送状态(无密钥也可看),不暴露任何 secret。
+  // 账号免费版 5 个 CF cron 已满(code 10072),故不用 scheduled;调度方是
+  // GitHub Actions schedule(x-poster-cron.yml)每日 POST /run。
   async fetch(request, env) {
     const url = new URL(request.url);
+    if (url.pathname === '/run' && request.method === 'POST') {
+      if (!env.X_RUN_KEY) return new Response(JSON.stringify({ ok: false, note: 'X_RUN_KEY not set — not armed' }), { status: 503, headers: { 'content-type': 'application/json' } });
+      if (request.headers.get('x-run-key') !== env.X_RUN_KEY) return new Response('forbidden', { status: 403 });
+      const r = await runOnce(env);
+      return new Response(JSON.stringify(r), { status: r.ok ? 200 : 500, headers: { 'content-type': 'application/json' } });
+    }
+    // 体检:GET /status 返回队列与发送状态(无密钥也可看),不暴露任何 secret。
     if (url.pathname === '/status') {
-      const out = { armed: !!(env.X_API_KEY && env.X_ACCESS_TOKEN), queue: [] };
+      const out = { armed: !!(env.X_API_KEY && env.X_ACCESS_TOKEN && env.X_RUN_KEY), queue: [] };
       for (const q of QUEUE) {
         out.queue.push({ id: q.id, parts: (q.thread || [q.text]).length, state: (await env.STATE.get('posted:' + q.id)) || 'pending' });
       }
       return new Response(JSON.stringify(out, null, 1), { headers: { 'content-type': 'application/json' } });
     }
-    return new Response('fleet-x-poster: cron-driven; see /status', { status: 200 });
+    return new Response('fleet-x-poster: POST /run (keyed) or GET /status', { status: 200 });
   },
 };

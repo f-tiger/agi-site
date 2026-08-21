@@ -1,0 +1,30 @@
+name: X poster daily trigger
+
+# fleet-x-poster 的调度器。CF 免费版 5 个 cron 已满(2026-08-21 code 10072),
+# 由 Actions schedule 代行——符合 CI 铁律第 3 条(外部副作用只挂 schedule)。
+# 成本核算:~10 秒/天 ≈ 5 分钟/月,公开仓免费。
+# X_RUN_KEY 未配置时静默跳过(worker 未 armed,poke 无意义)。
+on:
+  schedule:
+    - cron: "30 13 * * *"
+  workflow_dispatch: {}
+
+concurrency:
+  group: x-poster-cron
+  cancel-in-progress: true
+
+jobs:
+  poke:
+    runs-on: ubuntu-latest
+    steps:
+      - name: POST /run
+        env:
+          XRK: ${{ secrets.X_RUN_KEY }}
+        run: |
+          if [ -z "$XRK" ]; then
+            echo "X_RUN_KEY not configured — poster dormant, skipping"
+            exit 0
+          fi
+          out=$(curl -sf -X POST "https://fleet-x-poster.tuoqiantu.workers.dev/run" -H "x-run-key: $XRK" || echo '{"ok":false,"note":"curl failed"}')
+          echo "$out"
+          echo "$out" | grep -q '"ok":true' || { echo "::warning::x-poster run not ok (will retry tomorrow; 3 fails on one item auto-skips it)"; }
