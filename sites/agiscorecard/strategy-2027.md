@@ -149,7 +149,7 @@ AI 时代的赢家算法不是流量算法,是:**原始数据资产 × 可审计
       每周复核并把结果(含"两边都没动")记进页面的复核日志,只有真动了才发新一期。
       为凑周更而发的一期就是 filler,那会毁掉这个格式本身的可信度。
 **Phase 2(9 月)**
-- [ ] 用户预测入 D1 + leaderboard v0 + streak
+- [ ] 用户预测入 D1 + leaderboard v0 + streak(实施规格已备:docs-picks-leaderboard-spec.md,2026-08-21;执行时按规格,worker 改动单独一轮)
 - [x] public /changelog(2026-08-08 提前完成):changelog.json(仅真实已发布变更)
       + 生成器;分数历史自动附带
 - [ ] x402 试点:选一个深度数据集挂 Gateway(若 waitlist 通过)
