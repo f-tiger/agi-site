@@ -25,6 +25,8 @@ jobs:
             echo "X_RUN_KEY not configured — poster dormant, skipping"
             exit 0
           fi
-          out=$(curl -sf -X POST "https://fleet-x-poster.tuoqiantu.workers.dev/run" -H "x-run-key: $XRK" || echo '{"ok":false,"note":"curl failed"}')
+          out=$(curl -sS -m 30 -w "\nHTTP:%{http_code}" -X POST "https://fleet-x-poster.tuoqiantu.workers.dev/run" -H "x-run-key: $XRK" || echo 'HTTP:000 curl transport error')
           echo "$out"
+          status_line=$(curl -sS -m 20 "https://fleet-x-poster.tuoqiantu.workers.dev/status" || echo 'status probe failed')
+          echo "STATUS: $status_line"
           echo "$out" | grep -q '"ok":true' || { echo "::warning::x-poster run not ok (will retry tomorrow; 3 fails on one item auto-skips it)"; }
