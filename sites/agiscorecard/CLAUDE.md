@@ -447,7 +447,13 @@ surface; add new ones there first before scattering outbound links across pages.
   og:description) and widget.html (score line) in the same commit. Also regenerate the AGI-type
   share assets (`NODE_PATH=/opt/node22/lib/node_modules node tools/gen_share_cards.cjs && python3
   tools/gen_agi_types.py`) — both read the score from data.json, so re-running re-bakes it into
-  share/*.png + agi-type/*.html. The Tracker is the site's flagship
+  share/*.png + agi-type/*.html. **Flip-day addition (2026-08-21): also refresh
+  the reader-picks ledger** — pull `pick_ledger` rows from D1 (recipe in
+  tools/gen_leaderboard.py docstring), score each pid's flipfirst call against
+  the prediction that actually flipped, write picks-agg.json, rerun
+  `python3 tools/gen_leaderboard.py`. A flip with unscored reader calls breaks
+  the "your call is scored the day a verdict flips" promise on
+  /forecaster-leaderboard. The Tracker is the site's flagship
   differentiator — one auditable index of the 2027 bet no competitor has;
   "subscribe to hear when it moves" is a primary conversion hook. Homepage countdown section carries the copy-paste embed code
   (gtag event: embed_copy).

@@ -2194,3 +2194,16 @@ search-index 重生成、feed 重生成、share/future-survey.png 重烤为 2047
 - backlog 种子 ×2(datacenter-grid-cost-tracker、eu-ai-act-de,均带动工前置)。
 - 防翻炒核对:两页均为新建,agi-questions/index/llms.txt 属接线义务 ✓。
 - 判定线:两页 28 天首个 AI 引用或(旗舰)站内 TOP10 / (记分板)胶囊点击 ≥5。
+
+
+## 2026-08-21 · /goal 追加轮:leaderboard v0 提前上线(strategy-2027 九月项)
+- pick_ledger 事件白名单入 worker(数据级一行,node --check 过);progress-index
+  双语 flipPick 加匿名 pid(localStorage agi_pid,try/catch 全包)+ 台账事件,
+  既有 vote_cast 聚合口径不动。
+- /forecaster-leaderboard 新增 READER_BOARD 区(gen_leaderboard.py 幂等渲染,
+  空态诚实:0 picks 就说 0),picks-agg.json 公开可审计;订阅钩子
+  subscribe_click{leaderboard_streak} 与 index_click{leaderboard_pick_cta}。
+- 游戏化项按站规豁免防蚕食(不动爬取面);validate 211 页 OK。
+- 判定线(28 天,规格):去重 pid ≥20 且 7 日回访 ≥3 → 做 streak 分享图;
+  不足 → 保留不加码。flip 日义务:刷新 picks-agg + 重跑 gen_leaderboard
+  (已并入翻转日流程,见 CLAUDE.md 待补一行)。

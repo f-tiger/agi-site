@@ -25,6 +25,9 @@
 const ALLOWED_EVENTS = new Set([
   'page_view', 'subscribe_click', 'tool_click', 'agi_test_click', 'index_click',
   'deeplink_pick', 'vote_cast', 'challenge_share', 'x_share', 'embed_copy',
+  // 读者预测台账(2026-08-21,strategy-2027 九月项 v0):location='p_'+匿名8位id,
+  // label='flipfirst:<prediction-id>'。与 vote_cast 分流,保住既有聚合口径。
+  'pick_ledger',
   'embed_brand_click', 'hot_topic_click', 'viz_switch', 'viz_capture_show',
   'prediction_lock', 'invest_tool_click', 'market_odds_load', 'calc_use',
   'pred_expand', 'readnext_click', 'analysis_click', 'advertise_click', 'sponsor_click',
