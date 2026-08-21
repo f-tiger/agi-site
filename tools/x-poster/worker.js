@@ -84,10 +84,17 @@ async function runOnce(env) {
     await env.STATE.put('last_run_day', today);
     return { ok: true, posted: item.id, tweets: ids.length };
   } catch (e) {
+    const msg = (e && e.message) || '';
+    // 402 credits depleted / 429 限流是账户级状态,不是这条内容有毒——不消耗
+    // 条目失败配额(否则积分未充期间队列会被逐条误跳过),还顺手清掉历史误计。
+    if (/x_api_402|x_api_429|credits.depleted/i.test(msg)) {
+      await env.STATE.delete('fails:' + item.id);
+      return { ok: false, note: 'account-level block, item untouched: ' + msg };
+    }
     const k = 'fails:' + item.id;
     const fails = parseInt((await env.STATE.get(k)) || '0', 10) + 1;
     await env.STATE.put(k, String(fails));
-    return { ok: false, note: 'post failed (' + fails + '/3) for ' + item.id + ': ' + (e && e.message) };
+    return { ok: false, note: 'post failed (' + fails + '/3) for ' + item.id + ': ' + msg };
   }
 }
 
