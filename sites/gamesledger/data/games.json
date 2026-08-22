@@ -1,0 +1,21 @@
+{
+  "note": "Curated 'is X dead' first batch. Selection basis: recurring Steam-forum/is-dead query demand documented in docs/games-subsite-prd-2026-08.md research (2026-08-22). appids are validated at fetch time — a non-ok API response excludes the game from page generation entirely (zero-fabrication rule). caveat = the honesty line the fabricated-count competitors omit.",
+  "games": [
+    {"appid": 440, "slug": "team-fortress-2", "name": "Team Fortress 2", "released": 2007, "genre": "class-based shooter", "caveat": "Steam is TF2's only platform for the living population, so this number is the whole picture."},
+    {"appid": 2073850, "slug": "the-finals", "name": "THE FINALS", "released": 2023, "genre": "destruction-based arena shooter", "caveat": "Also on PS5/Xbox with crossplay — console players are NOT in this number and Embark publishes no console figures. Steam trend is the best public proxy, not the total."},
+    {"appid": 381210, "slug": "dead-by-daylight", "name": "Dead by Daylight", "released": 2016, "genre": "asymmetric horror", "caveat": "Large console and Epic populations are not in this number; Behaviour reports 50M+ lifetime players but no live splits. Steam is a lower bound."},
+    {"appid": 1151340, "slug": "fallout-76", "name": "Fallout 76", "released": 2018, "genre": "online survival RPG", "caveat": "Xbox/Microsoft Store and PlayStation populations are not visible here. Steam trend only."},
+    {"appid": 2357570, "slug": "overwatch-2", "name": "Overwatch 2", "released": 2022, "genre": "hero shooter", "caveat": "Most PC players use Battle.net, which publishes no numbers — the Steam count is a small minority slice and materially undercounts the game. Treat it as a trend signal only."},
+    {"appid": 553850, "slug": "helldivers-2", "name": "HELLDIVERS 2", "released": 2024, "genre": "co-op shooter", "caveat": "PS5 population not included; Steam has historically been the larger half but Sony publishes no split."},
+    {"appid": 1085660, "slug": "destiny-2", "name": "Destiny 2", "released": 2017, "genre": "looter shooter MMO", "caveat": "Console populations (historically the majority) are not in this number. Steam trend only."},
+    {"appid": 1172470, "slug": "apex-legends", "name": "Apex Legends", "released": 2019, "genre": "battle royale", "caveat": "Console players and EA-app PC players are not in this number. Steam is a minority-but-consistent sample."},
+    {"appid": 1172620, "slug": "sea-of-thieves", "name": "Sea of Thieves", "released": 2018, "genre": "pirate sandbox", "caveat": "Xbox/Game Pass population (historically large) is invisible here. Steam trend only."},
+    {"appid": 1063730, "slug": "new-world", "name": "New World: Aeternum", "released": 2021, "genre": "MMO", "caveat": "Console version launched Oct 2024; console players are not in this number."},
+    {"appid": 1517290, "slug": "battlefield-2042", "name": "Battlefield 2042", "released": 2021, "genre": "large-scale FPS", "caveat": "Console and EA-app populations not included. Steam trend only."},
+    {"appid": 1272080, "slug": "payday-3", "name": "PAYDAY 3", "released": 2023, "genre": "co-op heist FPS", "caveat": "Console players not included; PC is the historical core of the franchise."},
+    {"appid": 252490, "slug": "rust", "name": "Rust", "released": 2013, "genre": "survival", "caveat": "Console Rust is a separate product (different codebase); this number is the real PC population."},
+    {"appid": 275850, "slug": "no-mans-sky", "name": "No Man's Sky", "released": 2016, "genre": "space exploration", "caveat": "Console, Game Pass and GOG players not included. Steam trend only."},
+    {"appid": 230410, "slug": "warframe", "name": "Warframe", "released": 2013, "genre": "looter shooter", "caveat": "Console players and standalone-launcher players are not in this number. Steam is the largest visible slice."},
+    {"appid": 1938090, "slug": "call-of-duty", "name": "Call of Duty (HQ)", "released": 2022, "genre": "FPS (MW2/MW3/BO6 hub)", "caveat": "Battle.net and all console populations are invisible — for CoD the Steam number is a small slice of a very large multi-platform population."}
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  // Games Ledger(第五站,工作名)。静态资产 Worker,与 agi 同模式。
+  // 域名待 owner 购买后在 CF dashboard 挂 custom domain;SITE_URL 在 gen_site.py 同步改。
+  "name": "gamesledger",
+  "compatibility_date": "2026-08-01",
+  "assets": { "directory": "site" }
+}

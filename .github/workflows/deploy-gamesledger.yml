@@ -1,0 +1,61 @@
+name: Deploy gamesledger
+
+# 第五站(游戏证据层,PRD: docs/games-subsite-prd-2026-08.md)。
+# 成本核算:push 路径 ~0.7 分/次;schedule 每日一次取数+部署 ~1 分 ≈ 30 分/月,公开仓免费。
+# schedule 同时承担「站点自有触发器」职责:每日取 Valve 官方并发数 → 重建 → 部署。
+on:
+  push:
+    branches: [main]
+    paths: ["sites/gamesledger/**", ".github/workflows/deploy-gamesledger.yml"]
+  schedule:
+    - cron: "10 6 * * *"
+  workflow_dispatch: {}
+
+concurrency:
+  group: deploy-gamesledger
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch official Steam data (schedule/dispatch only)
+        if: github.event_name != 'push'
+        working-directory: sites/gamesledger
+        run: python3 tools/fetch_steam.py
+      - name: Commit refreshed data (schedule/dispatch only)
+        if: github.event_name != 'push'
+        run: |
+          git config user.name "gamesledger-bot"
+          git config user.email "noreply@anthropic.com"
+          git add sites/gamesledger/data/concurrents.json
+          git diff --cached --quiet || { git pull --rebase origin main; git commit -m "chore(gamesledger): daily official Steam samples $(date -u +%F)"; git push origin HEAD:main; }
+      - name: Build
+        working-directory: sites/gamesledger
+        run: |
+          if [ ! -f data/concurrents.json ]; then echo '{"samples":{}}' > data/concurrents.json; fi
+          python3 tools/gen_site.py
+      - name: Gate — pages parse & no empty site
+        working-directory: sites/gamesledger
+        run: |
+          python3 - <<'PY'
+          import json,re,glob,sys
+          pages=glob.glob('site/*.html')
+          assert len(pages)>=2, "site nearly empty"
+          for p in pages:
+              s=open(p,encoding='utf-8').read()
+              for m in re.findall(r'<script type="application/ld\+json">(.*?)</script>', s, re.S):
+                  json.loads(m)
+          print(f"gate ok: {len(pages)} pages, all JSON-LD parses")
+          PY
+      - name: Deploy worker
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          workingDirectory: sites/gamesledger
+          command: deploy
