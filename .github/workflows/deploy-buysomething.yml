@@ -1,54 +1,55 @@
-name: Deploy buysomething (cross-session request)
+name: Deploy buysomething
 
-# buysomething 会话的协作请求(2026-08-22,owner 授意):把 f-tiger/buySomething
-# 指定分支的纯静态站部署到既有 worker `buysomething`。只做部署,不改其仓库代码;
-# wrangler 配置与入口 worker 运行时生成。workflow_dispatch only,无排程,零固定成本。
+# SourceRadar(buysomething)—— 2026-08-22 并入舰队 monorepo(sites/buysomething/)。
+# 域名:source.agiscorecard.com(wrangler custom_domain 自动挂载)。
+# 成本核算:push ~0.7 分/次;schedule 每日 trends 刷新 ~2 分 ≈ 60 分/月,公开仓免费。
+# trendspy 管线沿用原仓设计(≥30s 间隔、429 退避、keep-last-good,零编造友好)。
 on:
+  push:
+    branches: [main]
+    paths: ["sites/buysomething/**", ".github/workflows/deploy-buysomething.yml"]
+  schedule:
+    - cron: "20 5 * * *"
   workflow_dispatch: {}
 
 concurrency:
   group: deploy-buysomething
   cancel-in-progress: true
 
+permissions:
+  contents: write
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout buySomething branch
-        uses: actions/checkout@v4
-        with:
-          repository: f-tiger/buySomething
-          ref: claude/china-bestseller-recommendation-site-fcx9gj
-          path: src
-      - name: Verify expected static site
+      - uses: actions/checkout@v4
+      - name: Refresh Google Trends data (schedule/dispatch only)
+        if: github.event_name != 'push'
+        working-directory: sites/buysomething
         run: |
-          cd src
-          for f in index.html styles.css app.js data.js; do
-            [ -f "$f" ] || { echo "::error::missing $f — not the expected static site, aborting"; exit 1; }
+          pip install -q trendspy
+          python3 tools/fetch_trends.py || echo "::warning::trends refresh failed — site keeps last good data (by design)"
+      - name: Commit refreshed trends (schedule/dispatch only)
+        if: github.event_name != 'push'
+        run: |
+          git config user.name "buysomething-bot"
+          git config user.email "noreply@anthropic.com"
+          git add sites/buysomething/site/trends.json 2>/dev/null || true
+          git diff --cached --quiet || { git commit -m "chore(buysomething): daily trends refresh $(date -u +%F)"; git pull --rebase origin main; git push origin HEAD:main; }
+      - name: Gate — expected files present
+        working-directory: sites/buysomething
+        run: |
+          for f in site/index.html site/styles.css site/app.js site/data.js; do
+            [ -f "$f" ] || { echo "::error::missing $f"; exit 1; }
           done
-          echo "site files present:"; ls -la *.html *.css *.js *.json 2>/dev/null || true
-      - name: Assemble worker package
-        run: |
-          mkdir -p pkg/site
-          cp -r src/* pkg/site/
-          rm -rf pkg/site/.git pkg/site/.github
-          cat > pkg/worker.js <<'EOF'
-          export default { async fetch(req, env) { return env.ASSETS.fetch(req); } };
-          EOF
-          cat > pkg/wrangler.jsonc <<'EOF'
-          {
-            "name": "buysomething",
-            "main": "worker.js",
-            "compatibility_date": "2026-08-01",
-            "workers_dev": true,
-            "assets": { "directory": "site", "binding": "ASSETS" }
-          }
-          EOF
-      - name: Deploy
+          node --check worker.js
+          echo "gate ok"
+      - name: Deploy worker
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           wranglerVersion: "4"
-          workingDirectory: pkg
+          workingDirectory: sites/buysomething
           command: deploy

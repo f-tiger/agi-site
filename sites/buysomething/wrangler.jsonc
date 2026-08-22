@@ -1,0 +1,9 @@
+{
+  // SourceRadar(buysomething)——2026-08-22 并入舰队 monorepo,域名 owner 指定走
+  // agiscorecard 伞域子域(同 invest./compass./games. 模式)。
+  "name": "buysomething",
+  "main": "worker.js",
+  "compatibility_date": "2026-08-01",
+  "assets": { "directory": "site", "binding": "ASSETS" },
+  "routes": [{ "pattern": "source.agiscorecard.com", "custom_domain": true }]
+}
