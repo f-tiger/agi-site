@@ -33,7 +33,7 @@ jobs:
           git config user.name "gamesledger-bot"
           git config user.email "noreply@anthropic.com"
           git add sites/gamesledger/data/concurrents.json
-          git diff --cached --quiet || { git pull --rebase origin main; git commit -m "chore(gamesledger): daily official Steam samples $(date -u +%F)"; git push origin HEAD:main; }
+          git diff --cached --quiet || { git commit -m "chore(gamesledger): daily official Steam samples $(date -u +%F)"; git pull --rebase origin main; git push origin HEAD:main; }
       - name: Build
         working-directory: sites/gamesledger
         run: |
