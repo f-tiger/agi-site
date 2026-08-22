@@ -78,3 +78,23 @@ Routine。若那天它没跑成，手动执行上面的 resume 命令即可。
 - 联盟链接已烘焙进静态 HTML（scripts/bake-affiliate-links.mjs，挂在 deploy.yml
   normalize-urls 之后）：无 JS 访客可点、爬虫可见 rel=sponsored。新增页面带 data-yd /
   data-amzn 锚点即可，CI 自动烘焙；本仓是私有仓，Actions 计费，避免一天多次 push。
+
+## 安全楔子策略（2026-08-22 舰队对比诊断的结论，每日 Routine 从此按这个打）
+
+**诊断（全一手数据）**：Googlebot 每天爬 600-815 次、GPTBot/ClaudeBot/PerplexityBot
+各 70-120 次——爬取是全舰队最重的；但 D1 实测真人 JS 浏览仅 ~10 次/天（edge 口径的
+131/天里大部分是未识别爬虫 + `/__ci` 自测），**3 天里 Google 只送来 1 次点击**（落在
+/data/），affiliate_click 自埋点上线起为 0。GEO 机器无缺件（llms.txt + MCP 可调用工具
++ Dataset JSON-LD 全舰队最先进）——**瓶颈是结构性的**：①SafeSearch 对产品查询默认
+过滤 ②AI 助手对成人产品推荐类问题拒答（引用杠杆对本站大半关闭）③域龄 <1 月 vs
+竞对多年权威。给 tds 抄 agi 的作业解决不了这三条。
+
+**可赢楔子 = 非产品的消费者保护信息层**：进口关税/清关（importing/*）、防骗核验
+（scam-check）、付款保障（payment-protection）、规格数据（/data/，唯一拿到 Google
+点击的页面）。这些查询不触发 SafeSearch 过滤，AI 助手也愿意回答（伤害减免/消费者
+保护性质）。每日一改动只投这个楔子：楔子页的 CTR 标题、答案胶囊、内链、数据集扩充；
+**产品评测/导购页在判定线前不再新增**——排不上的页面写十篇也是零。
+
+**判定线（2026-10-01）**：楔子页 28 天自然点击（D1 ref 含 google/bing）≥10 → 楔子
+成立，继续深化并从楔子往联盟页导流；<10 → tds 降为每周最低维护（数据日志照跑），
+把每日额度让给有增长证据的站。红线不变：18+ 门、披露、未成年外观拒绝、不代发。
