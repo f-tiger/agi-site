@@ -20,7 +20,7 @@ buysomething 会话孵化;owner 2026-08-22 指示并入舰队)。战略与调研
 
 ## 队列(并舰待办,一轮一项)
 
-1. canonical/OG/sitemap/robots/llms.txt 补齐(静态站目前裸奔,GEO 四件套缺失)
+1. ~~canonical/OG/sitemap/robots/llms.txt 补齐~~(2026-08-22 完成)
 2. D1 埋点(舰队模式:服务端 pageview + 转化事件白名单)
 3. 转化钩(联盟链接?订阅?按 docs/STRATEGY.md 的营收设计定,不自行发明)
 4. 周分发循环自动覆盖(monorepo git log 扫描即含本站)
