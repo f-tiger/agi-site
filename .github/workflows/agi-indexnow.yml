@@ -19,3 +19,5 @@ jobs:
       - uses: actions/setup-node@v4
         with: { node-version: 22 }
       - run: node sites/agiscorecard/tools/indexnow.mjs
+      - name: Submit new subdomains (play. / source.) — added 2026-08-22
+        run: node tools/indexnow-subdomains.mjs
