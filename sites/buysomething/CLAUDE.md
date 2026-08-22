@@ -25,6 +25,21 @@ buysomething 会话孵化;owner 2026-08-22 指示并入舰队)。战略与调研
 3. ~~转化钩~~(2026-08-22 完成:STRATEGY.md V1 订阅漏斗——POST /subscribe → D1 `subs` 表,NO-API 模式地址先落库,文案只承诺「下一批选品落地时发一封」;`sub_ok{sourceradar}` 计入舰队订阅证伪线)
 4. 周分发循环自动覆盖(monorepo git log 扫描即含本站)
 
+## 自动进化(owner 2026-08-22「新加进来的2个站点也要具备自动扩展，自动进化能力」)
+
+每日进化 Routine(05:40 UTC,自绑舰队会话,与 sellSomething 合用一个 Routine)
+每轮做且只做一项,顺序:
+1. **读信号**:D1 `sourceradar-events`(f92b6207)——pv 增长、`pick_open`/
+   `out_click`/`search_use` 分布、`subs` 表新订阅;CI 的 trends.json 当日热词。
+2. **队列有未打勾项** → 做它。
+3. **队列空** → 按信号自续 1-3 项,**每项必须挂一个真实信号**(某选品被点开
+   最多 → 深化它;某搜索词无结果 → 补它;trends 热词与选品库有交集 → 上新
+   一条策展)。没有信号就不硬凑——报告「队列空、信号不足」,只 bump 新鲜度。
+4. **零编造红线**:选品数据只来自 data.js 人工策展 + trendspy 一手数据;
+   合规红线(docs/research/07-legal.md)不因自动化放松。
+5. 判定线到期(~10-21)由 Routine 自动结算:达标加码,不达标降为最低维护
+   并在报告里宣布。
+
 ## 判定线
 
 并舰起 60 天:首个真实转化事件或 JS pv ≥100/28d → 加码;否则维持每日 trends
