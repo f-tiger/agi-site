@@ -11,7 +11,7 @@ import json, os, html, datetime
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = os.path.join(ROOT, "site")
-SITE_URL = "https://gamesledger.tuoqiantu.workers.dev"  # ← swap once when domain lands
+SITE_URL = "https://games.agiscorecard.com"  # owner 2026-08-22: agiscorecard 子域,不买新域
 SITE_NAME = "Games Ledger"
 TODAY = datetime.datetime.utcnow().strftime("%Y-%m-%d")
 

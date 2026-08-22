@@ -1,8 +1,9 @@
 {
   // Games Ledger(第五站,工作名)。静态资产 Worker,与 agi 同模式。
-  // 域名待 owner 购买后在 CF dashboard 挂 custom domain;SITE_URL 在 gen_site.py 同步改。
+  // 域名决定(owner 2026-08-22):不买新域,挂 games.agiscorecard.com(同 invest./compass. 子域模式)。
   "name": "gamesledger",
   "main": "worker.js",
   "compatibility_date": "2026-08-01",
-  "assets": { "directory": "site", "binding": "ASSETS" }
+  "assets": { "directory": "site", "binding": "ASSETS" },
+  "routes": [{ "pattern": "games.agiscorecard.com", "custom_domain": true }]
 }
