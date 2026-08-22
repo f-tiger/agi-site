@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>Balance — Daily Sun &amp; Moon Logic Puzzle, No Guessing</title>
+<meta name="description" content="A free daily binary logic puzzle: fill the 6×6 grid with suns and moons — three of each per row and column, never three in a row. One provably unique solution.">
+<link rel="canonical" href="https://play.agiscorecard.com/balance">
+<link rel="stylesheet" href="style.css">
+<link rel="alternate" hreflang="zh" href="https://play.agiscorecard.com/zh/balance">
+<link rel="alternate" hreflang="en" href="https://play.agiscorecard.com/balance">
+<meta property="og:title" content="Balance — Daily Sun &amp; Moon Logic Puzzle">
+<meta property="og:description" content="Three suns, three moons per row and column — never three in a row. One provably unique solution a day. Free, no account.">
+<meta property="og:url" content="https://play.agiscorecard.com/balance">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌙</text></svg>">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Balance by Gridlings","url":"https://play.agiscorecard.com/balance","applicationCategory":"GameApplication","operatingSystem":"Any (browser)","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["New puzzle every day with a provably unique solution","Solvable by pure deduction — no guessing required","Unlimited free-play mode in three difficulties","Streak tracking and spoiler-free result sharing","No account, no download, works on any device"],"inLanguage":["en","zh"],"isPartOf":{"@type":"WebSite","name":"Gridlings","url":"https://play.agiscorecard.com/"}}
+</script>
+<script>
+window.BALANCE_LANG={daily:"Daily",free:"Free play",streak:"Streak",hints_used:"Hints",no_hints:"No hints 🧠",share:"Share result",copied:"Copied!"};
+</script>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1><a href="/balance">Balance</a></h1>
+  <span style="color:var(--mut);font-size:.85rem">by <a href="/" style="color:var(--acc)">Gridlings</a></span>
+</header>
+
+<div class="meta"><span id="pnum">Daily</span><span id="timer">0:00</span></div>
+
+<div id="grid" aria-label="puzzle grid"></div>
+
+<div class="bar">
+  <button class="btn" id="hintbtn">💡 Hint</button>
+  <button class="btn" id="sharebtn">Share result</button>
+</div>
+
+<div id="win" hidden>
+  <h2>Balanced! 🎉</h2>
+  <p>⏱ <span id="wtime"></span> · <span id="whints"></span></p>
+  <p id="wstreak"></p>
+  <div class="bar">
+    <button class="btn pri" onclick="document.getElementById('sharebtn').click()">Share result</button>
+    <button class="btn" id="again">Play another</button>
+  </div>
+  <p class="subline"><a id="subcta" href="https://agiscorecard.beehiiv.com/subscribe?utm_source=gridlings&amp;utm_medium=balance_win" rel="noopener">Get one email when we ship a new puzzle mode →</a></p>
+</div>
+
+<p class="modes">Free play: <a href="?p=easy-0" id="d-easy">Easy</a> · <a href="?p=medium-0" id="d-medium">Medium</a> · <a href="?p=hard-0" id="d-hard">Hard</a> · <a href="/">Play Gridlings →</a></p>
+
+<div class="rules">
+  <h2>How to play</h2>
+  <ul>
+    <li>Tap a cell to cycle: empty → ☀️ → 🌙 → empty.</li>
+    <li>Every <strong>row and column</strong> ends with exactly three suns and three moons.</li>
+    <li>Never <strong>three of the same symbol</strong> in a row — horizontally or vertically.</li>
+    <li>Every board has exactly <strong>one solution</strong>, machine-verified to be reachable by pure deduction before it's published. You never have to guess.</li>
+  </ul>
+  <p style="margin-top:8px">If you enjoy daily logic games like LinkedIn's Tango or classic Binairo, this is the same pure-deduction habit — new puzzle at 00:00 UTC, unlimited free play any time. Sister puzzle: <a href="/">Gridlings</a>, a double-constraint grid that runs on the same no-guessing guarantee.</p>
+</div>
+
+<footer>
+  <p>Free forever, no account. Built by <a href="https://agiscorecard.com/about">AGI Scorecard</a>. Not affiliated with LinkedIn or The New York Times.</p>
+  <p class="subline">Embed this game: add <code>?embed=1</code> to the URL in an iframe.</p>
+</footer>
+</div>
+<script src="app-balance.js"></script>
+</body>
+</html>

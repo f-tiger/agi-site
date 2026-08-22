@@ -24,21 +24,22 @@ jobs:
       - name: Gate — files present, JSON valid, puzzles cover today+300d
         working-directory: sites/gridlings
         run: |
-          for f in site/index.html site/zh.html site/app.js site/style.css site/puzzles-daily.json site/puzzles-pool.json site/robots.txt site/sitemap.xml site/llms.txt; do
+          for f in site/index.html site/zh.html site/app.js site/style.css site/puzzles-daily.json site/puzzles-pool.json site/balance.html site/balance-zh.html site/app-balance.js site/balance-daily.json site/balance-pool.json site/archive.html site/robots.txt site/sitemap.xml site/llms.txt; do
             [ -f "$f" ] || { echo "::error::missing $f"; exit 1; }
           done
           node --check worker.js
           python3 - << 'EOF'
           import json, datetime, sys
-          d = json.load(open("site/puzzles-daily.json"))
-          epoch = datetime.date.fromisoformat(d["epoch"])
-          today = max(datetime.date.today(), epoch)  # pre-launch: client serves the earliest board
-          horizon = today + datetime.timedelta(days=300)
-          missing = [x for x in (today, horizon) if x.isoformat() not in d["puzzles"]]
-          if missing: sys.exit(f"daily puzzles missing for {missing} — regenerate gen_puzzles.py")
-          p = json.load(open("site/puzzles-pool.json"))
-          assert all(len(v) > 50 for v in p.values()), "pool too small"
-          print(f"gate ok: {len(d['puzzles'])} dailies, pools {[len(v) for v in p.values()]}")
+          for name in ("puzzles", "balance"):
+              d = json.load(open(f"site/{name}-daily.json"))
+              epoch = datetime.date.fromisoformat(d["epoch"])
+              today = max(datetime.date.today(), epoch)  # pre-launch: client serves the earliest board
+              horizon = today + datetime.timedelta(days=300)
+              missing = [x for x in (today, horizon) if x.isoformat() not in d["puzzles"]]
+              if missing: sys.exit(f"{name}: dailies missing for {missing} — regenerate the generator")
+              p = json.load(open(f"site/{name}-pool.json"))
+              assert all(len(v) > 50 for v in p.values()), f"{name}: pool too small"
+              print(f"gate ok [{name}]: {len(d['puzzles'])} dailies, pools {[len(v) for v in p.values()]}")
           EOF
       - name: Deploy worker
         uses: cloudflare/wrangler-action@v3

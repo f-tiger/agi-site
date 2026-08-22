@@ -47,6 +47,10 @@ export default {
       assetReq = new Request(new URL("/zh.html", url).toString(), request);
     } else if (url.pathname === "/archive" || url.pathname === "/archive/") {
       assetReq = new Request(new URL("/archive.html", url).toString(), request);
+    } else if (url.pathname === "/balance" || url.pathname === "/balance/") {
+      assetReq = new Request(new URL("/balance.html", url).toString(), request);
+    } else if (url.pathname === "/zh/balance" || url.pathname === "/zh/balance/") {
+      assetReq = new Request(new URL("/balance-zh.html", url).toString(), request);
     }
     const res = await env.ASSETS.fetch(assetReq);
 

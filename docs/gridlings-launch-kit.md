@@ -60,7 +60,11 @@
 ## ③ 门户投稿（第 2 周，需要你注册开发者账号，各约 10 分钟）
 
 - CrazyGames: developer.crazygames.com 注册 → 提交 URL 即可（iframe 友好已就绪）。
-  审核 2-4 周。**投稿文案（按需增删）：**
+  审核 2-4 周。**两款一起投（组合过审率更高，互相导流）：Gridlings + Balance
+  （`https://play.agiscorecard.com/balance?embed=1`，Category: Puzzle/Logic，
+  短描述：Fill the grid with suns and moons — three of each per row and column,
+  never three in a row. One provably unique solution, pure deduction.）**
+  Gridlings 投稿文案：
   - Game URL: `https://play.agiscorecard.com/?embed=1`
   - Name: Gridlings
   - Category: Puzzle / Logic

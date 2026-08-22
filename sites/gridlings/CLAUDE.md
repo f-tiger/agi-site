@@ -17,6 +17,14 @@
 4. 无广告、无账号、无 lives 系统。变现 = 门户分成 + 订阅钩(win modal
    `sub_click{gridlings_win}` → beehiiv utm_source=gridlings)。
 
+## 第二规则集:Balance(/balance + /zh/balance,2026-08-22,owner「重点拓展游戏方向」)
+
+Brennerd 组合模式落地:同一站壳、第二个约束规则集(6×6 二元平衡,Binairo/Tango 族
+——LinkedIn 第二受欢迎规则集,克隆架比 Queens 薄)。生成器 `tools/gen_balance.py`
+(含 validate 子命令),450 天每日 + 440 畅玩,同一条唯一解承诺。命名红线同上:
+产品名 Balance,绝不用 Tango。两游戏互相导流(modes 行交叉链接);事件同库同白名单,
+label 前缀 `bal:` 区分。CrazyGames 投稿以双游戏组合提交(launch-kit ③)。
+
 ## 机器结构
 
 - `tools/gen_puzzles.py` → `site/puzzles-daily.json`(450 天)+
