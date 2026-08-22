@@ -7,11 +7,16 @@
   var COLORS = ["#FFD166", "#06D6A0", "#79ADDC", "#EF7674", "#CDB4DB"];
   var COLOR_NAMES = L.colors || ["amber", "green", "blue", "red", "purple"];
   var EMBED = /(^|[?&])embed=1/.test(location.search);
+  // clean mode: license/portal delivery (Coolmath et al. require no external
+  // links, no ads, no stats phoning home). Implies embed chrome, kills the
+  // beacon entirely, and strips the URL from share text.
+  var CLEAN = window.GL_CLEAN === true || /(^|[?&])clean=1/.test(location.search);
 
   var state = null; // {n, sol_a, sol_c, given, fill, mode, key, num, start, hints, done}
   var $ = function (id) { return document.getElementById(id); };
 
   function gev(n, l, v) {
+    if (CLEAN) return;
     try {
       var b = JSON.stringify({ n: n, l: (l || "").slice(0, 80), v: v || 0, p: location.pathname + (EMBED ? "?embed" : "") });
       navigator.sendBeacon ? navigator.sendBeacon("/e", b)
@@ -202,7 +207,7 @@
     gev("solve", state.mode + ":" + state.key + (state.hints ? ":h" + state.hints : ":clean"), secs);
     window._share = "Gridlings " + state.num + " ⏱ " + t +
       (state.hints ? " (" + state.hints + " 💡)" : " 🧠") +
-      (streak > 1 ? " 🔥" + streak : "") + "\nhttps://play.agiscorecard.com";
+      (streak > 1 ? " 🔥" + streak : "") + (CLEAN ? "" : "\nhttps://play.agiscorecard.com");
   }
 
   function hint() {
@@ -234,7 +239,7 @@
   }
 
   document.addEventListener("DOMContentLoaded", function () {
-    if (EMBED) document.documentElement.classList.add("embed");
+    if (EMBED || CLEAN) document.documentElement.classList.add("embed");
     $("hintbtn").onclick = hint;
     $("sharebtn").onclick = share;
     $("again").onclick = function () {
