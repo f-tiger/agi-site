@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>Gridlings Archive — Play Every Past Daily Puzzle</title>
+<meta name="description" content="Every past Gridlings daily logic puzzle, free and unlimited. Replay any date, track which boards you've solved — each has a provably unique solution.">
+<link rel="canonical" href="https://play.agiscorecard.com/archive">
+<link rel="stylesheet" href="style.css">
+<meta property="og:title" content="Gridlings Archive — every past daily puzzle">
+<meta property="og:description" content="Replay any past Gridlings daily. Free, no account, pure-deduction boards.">
+<meta property="og:url" content="https://play.agiscorecard.com/archive">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐸</text></svg>">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"CollectionPage","name":"Gridlings Archive","url":"https://play.agiscorecard.com/archive","description":"Archive of every past Gridlings daily logic puzzle, each machine-verified to have a unique pure-deduction solution.","isPartOf":{"@type":"WebSite","name":"Gridlings","url":"https://play.agiscorecard.com/"}}
+</script>
+<style>
+#list{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin-top:14px}
+.day{border:1px solid var(--line);border-radius:10px;padding:10px 12px;text-decoration:none;color:var(--ink);background:var(--bg2);display:flex;justify-content:space-between;align-items:center;font-variant-numeric:tabular-nums}
+.day:hover{outline:2px solid var(--acc)}
+.day .ok{color:#0f7a52;font-weight:700}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1><a href="/">Gridlings</a></h1>
+  <span style="color:var(--mut);font-size:.85rem">archive</span>
+</header>
+
+<p style="margin:10px 0;color:var(--mut)">Every past daily, free to replay. ✓ marks boards you've solved on this device. Replays don't extend your streak — only today's board does.</p>
+
+<div id="list">Loading…</div>
+
+<p class="modes" style="margin-top:16px"><a href="/">← Today's puzzle</a> · Free play: <a href="/?p=easy-0">Easy</a> · <a href="/?p=medium-0">Medium</a> · <a href="/?p=hard-0">Hard</a></p>
+
+<footer>
+  <p>Free forever, no account. Built by <a href="https://agiscorecard.com/about">AGI Scorecard</a>. Not affiliated with LinkedIn or The New York Times.</p>
+</footer>
+</div>
+<script>
+(function () {
+  "use strict";
+  function utcToday() { return new Date().toISOString().slice(0, 10); }
+  fetch("puzzles-daily.json").then(function (r) { return r.json(); }).then(function (d) {
+    var list = document.getElementById("list");
+    var epoch = Date.parse(d.epoch);
+    var keys = Object.keys(d.puzzles).filter(function (k) { return k <= utcToday(); }).sort().reverse();
+    if (!keys.length) { list.textContent = "The first daily lands " + d.epoch + " (00:00 UTC). Come back then — or hit free play above."; return; }
+    list.innerHTML = "";
+    keys.forEach(function (iso) {
+      var n = Math.round((Date.parse(iso) - epoch) / 864e5) + 1;
+      var done = null;
+      try { done = localStorage.getItem("gl_done_" + iso); } catch (e) {}
+      var a = document.createElement("a");
+      a.className = "day";
+      a.href = "/?d=" + iso;
+      a.innerHTML = "<span>#" + n + " · " + iso.slice(5) + "</span>" + (done ? "<span class='ok'>✓</span>" : "<span style='color:var(--mut)'>—</span>");
+      list.appendChild(a);
+    });
+  }).catch(function () { document.getElementById("list").textContent = "Couldn't load the archive — refresh?"; });
+})();
+</script>
+</body>
+</html>

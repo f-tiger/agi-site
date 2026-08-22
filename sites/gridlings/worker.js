@@ -45,6 +45,8 @@ export default {
     let assetReq = request;
     if (url.pathname === "/zh" || url.pathname === "/zh/") {
       assetReq = new Request(new URL("/zh.html", url).toString(), request);
+    } else if (url.pathname === "/archive" || url.pathname === "/archive/") {
+      assetReq = new Request(new URL("/archive.html", url).toString(), request);
     }
     const res = await env.ASSETS.fetch(assetReq);
 

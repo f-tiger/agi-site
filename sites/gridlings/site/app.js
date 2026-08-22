@@ -36,8 +36,11 @@
       });
       return;
     }
+    var dm = location.search.match(/[?&]d=(\d{4}-\d{2}-\d{2})/);
     fetch("puzzles-daily.json").then(function (r) { return r.json(); }).then(function (d) {
       var iso = utcToday();
+      // archive deep link: only dates that have already been published
+      if (dm && d.puzzles[dm[1]] && dm[1] <= utcToday()) iso = dm[1];
       var p = d.puzzles[iso];
       if (!p) { // pre-launch or past horizon: latest available
         var keys = Object.keys(d.puzzles).sort();
@@ -182,6 +185,10 @@
     $("wtime").textContent = t;
     var streak = 0;
     if (state.mode === "daily") {
+      try { localStorage.setItem("gl_done_" + state.key, String(secs)); } catch (e) {}
+    }
+    if (state.mode === "daily" && state.key === utcToday()) {
+      // archive replays record a solve but never extend today's streak
       try {
         var st = JSON.parse(localStorage.getItem("gl_streak") || "{}");
         var y = new Date(Date.now() - 864e5).toISOString().slice(0, 10);
@@ -189,7 +196,7 @@
         localStorage.setItem("gl_streak", JSON.stringify({ last: utcToday(), n: streak }));
       } catch (e) { streak = 1; }
     }
-    $("wstreak").textContent = state.mode === "daily" ? (L.streak || "Streak") + ": " + streak + "🔥" : "";
+    $("wstreak").textContent = streak > 0 ? (L.streak || "Streak") + ": " + streak + "🔥" : "";
     $("whints").textContent = state.hints ? (L.hints_used || "Hints") + ": " + state.hints : (L.no_hints || "No hints 🧠");
     $("win").hidden = false;
     gev("solve", state.mode + ":" + state.key + (state.hints ? ":h" + state.hints : ":clean"), secs);
