@@ -23,8 +23,9 @@ PRD 与调研依据:仓库根 `docs/games-subsite-prd-2026-08.md`(三门证据�
 - `tools/fetch_steam.py` 每日 06:10 UTC(deploy-gamesledger.yml schedule);
   `tools/fetch_ai_disclosures.py` 每周一同 run 加跑;沙箱到不了 Steam,
   一切取数只能在 CI,本地调试用合成数据且**绝不提交**。
-- `tools/gen_site.py` 纯静态生成;`SITE_URL` 是域名切换的唯一改点
-  (owner 买域名 → CF dashboard 挂 custom domain → 改这一行 → push)。
+- `tools/gen_site.py` 纯静态生成;域名 = **games.agiscorecard.com**(owner
+  2026-08-22 决定不买新域;wrangler routes custom_domain 自动挂载成功)。
+  若 60 天判定线打响后 owner 要独立品牌域:改 SITE_URL 一行 + routes + 老域 301。
 - wrangler:worker.js 纯资产转发(将来 D1 埋点在此扩展);wranglerVersion 必须
   钉 "4"(action 默认 3.90 不识 jsonc,2026-08-22 踩过)。
 
