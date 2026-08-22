@@ -51,7 +51,20 @@ EN 侧全是抢注垃圾站;双语能力是结构性优势。按「be-first」�
 - **商业门**:三条钱路——key 联盟(即时)、朋友分成(day-one 客户)、
   25K PV 后广告;外加数据集授权期权(Steam AI 披露数据被媒体引用即有 B2B 面)。✅
 
-## 四、执行计划(v0 = 两周内,全部走既有机器)
+## 四、执行计划 —— **v0 已于 2026-08-22 提前上线**(原计划两周)
+
+**已上线**:https://gamesledger.tuoqiantu.workers.dev(占位域名,owner 域名到手后
+CF 挂 custom domain + gen_site.py 改一行 SITE_URL 即切换)。内容:16 个
+"Is X dead?" 判定页(TF2/THE FINALS/Apex/Rust/OW2/CoD 等)+ 索引 + 方法论页,
+全部来自 **Valve 官方并发 API 的真实首采**(Apex 103,154 / Rust 77,254 /
+New World 411——判定分布即差异化);每日 06:10 UTC 自动取数→重建→部署
+(站点自有触发器,~30 Actions 分/月,公开仓免费)。零编造门禁:API 非 ok 的游戏
+整页排除,不估算;每页带平台覆盖诚实声明(OW2/CoD 的 Steam 少数派口径写明)。
+机器可读面:/concurrents.json(CC BY 4.0)+ llms.txt + sitemap。
+**未上线(按序排队)**:Steam AI 披露追踪器(需自建采样管线)、key 联盟、
+朋友供给线、D1 埋点、每日 Routine。原计划保留于下。
+
+### 原计划(2026-08-22 写)
 
 1. **Week 0(owner 两个动作)**:①买域名(~$10/年,候选:gamescoreboard.gg /
    isitdeadyet.gg / gameledger.io 之类,你拍板)②问朋友三个问题:哪些游戏已上
