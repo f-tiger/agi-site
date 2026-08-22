@@ -240,3 +240,15 @@ owner 指令:「你用各种办法,不限用户调研,谷歌趋势,创业网站,
   已引用页转化钩子。
 - **killed**:Trustpilot 式厂商认证徽章(利益冲突:联盟佣金来自被认证方);任何
   未经商家一手页当轮复核的佣金数字。
+
+## 舰队扩编(2026-08-22,owner 指令「并进舰队」)
+
+舰队从四站扩为 **4 + 2 + 1 站群**:
+- **第五站 gamesledger**(games.agiscorecard.com,本 monorepo):游戏证据层,当日从零建成,七循环全自动。
+- **第六站 buysomething / SourceRadar**(source.agiscorecard.com,本 monorepo sites/buysomething/):
+  欧美买家的中国爆款选品情报,trendspy 每日管线,原仓 f-tiger/buySomething 为孵化档案。
+- **sellSomething 站群**(f-tiger/sellSomething,公开仓,**治理并舰不物理搬迁**):七个
+  agentic-commerce 工具站已在伞域(agentready/selltoagents/closecalc/agentfront/mcppulse/
+  glossary/x402.agiscorecard.com),自带 CI(公开仓免费)与 MCP 服务器。物理并入=纯翻炒,
+  判定:不搬。舰队义务对它生效:周分发循环扫描、周一记分板、互链、零编造与烧号红线。
+- 伞域 agiscorecard.com 现挂 **10+ 子域产品**,正式成为舰队母港。
