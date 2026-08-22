@@ -11,6 +11,20 @@
 
   const searchInput = document.getElementById("searchInput");
   const sortSelect = document.getElementById("sortSelect");
+  // Self-evolution loop (no AI in it): CI bakes 28d of real reader clicks from
+  // D1 into popularity.json; when the sample is big enough the default order
+  // switches from editorial trendScore to what readers actually open.
+  let POP = null;
+  fetch("popularity.json").then(r => r.ok ? r.json() : null).then(j => {
+    if (!j || !j.picks) return;
+    const total = Object.values(j.picks).reduce((a, v) => a + (v.o || 0), 0);
+    POP = j.picks;
+    const opt = document.createElement("option");
+    opt.value = "readers"; opt.textContent = "Reader heat (28d)";
+    sortSelect.appendChild(opt);
+    if (total >= 20 && sortSelect.value === "trend") { sortSelect.value = "readers"; renderGrid(); }
+  }).catch(() => {});
+  const heat = (p) => { const v = POP && POP[p.id]; return v ? (v.x || 0) * 3 + (v.o || 0) : 0; };
   const hideSaturated = document.getElementById("hideSaturated");
   const emptyState = document.getElementById("emptyState");
   const backdrop = document.getElementById("modalBackdrop");
@@ -102,7 +116,8 @@
       return hay.includes(q);
     });
     const sort = sortSelect.value;
-    if (sort === "trend") list.sort((a, b) => b.trendScore - a.trendScore);
+    if (sort === "readers" && POP) list.sort((a, b) => heat(b) - heat(a) || b.trendScore - a.trendScore);
+    else if (sort === "trend") list.sort((a, b) => b.trendScore - a.trendScore);
     else if (sort === "spread") list.sort((a, b) => spread(b) - spread(a));
     else if (sort === "priceAsc") list.sort((a, b) => mid(a.price1688) - mid(b.price1688));
     else if (sort === "moq") list.sort((a, b) => a.moq - b.moq);
@@ -148,7 +163,7 @@
   }
 
   function openModal(p) {
-    sr("pick_open", p && (p.slug || p.name) || "");
+    sr("pick_open", p && (p.id || p.name) || "");
     const lc = LIFECYCLE_LABELS[p.lifecycle];
     const tier = TIER_LABELS[p.tier];
     const certList = (arr) => arr.length ? arr.map((c) => `<span class="badge">${c}</span>`).join(" ") : '<span class="badge">Not targeted</span>';
@@ -261,7 +276,7 @@
       document.getElementById("rTotal").textContent = money(landedFull * qty);
     };
     let srCalc = false;
-    modalBody.querySelectorAll(".calc input").forEach((inp) => inp.addEventListener("input", () => { if (!srCalc) { srCalc = true; sr("calc_use", p && (p.slug || p.name) || ""); } recalc(); }));
+    modalBody.querySelectorAll(".calc input").forEach((inp) => inp.addEventListener("input", () => { if (!srCalc) { srCalc = true; sr("calc_use", p && (p.id || p.name) || ""); } recalc(); }));
     recalc();
 
     modalBody.querySelectorAll(".copy-btn").forEach((btn) => {

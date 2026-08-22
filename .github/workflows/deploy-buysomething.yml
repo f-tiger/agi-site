@@ -30,13 +30,21 @@ jobs:
         run: |
           pip install -q trendspy
           python3 tools/fetch_trends.py || echo "::warning::trends refresh failed — site keeps last good data (by design)"
-      - name: Commit refreshed trends (schedule/dispatch only)
+      - name: Bake reader popularity from D1 (schedule/dispatch only)
+        if: github.event_name != 'push'
+        working-directory: sites/buysomething
+        env:
+          CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CF_ACCT: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          python3 tools/bake_popularity.py || echo "::warning::popularity bake failed — keeping last good file"
+      - name: Commit refreshed data (schedule/dispatch only)
         if: github.event_name != 'push'
         run: |
           git config user.name "buysomething-bot"
           git config user.email "noreply@anthropic.com"
-          git add sites/buysomething/site/trends.json 2>/dev/null || true
-          git diff --cached --quiet || { git commit -m "chore(buysomething): daily trends refresh $(date -u +%F)"; git pull --rebase origin main; git push origin HEAD:main; }
+          git add sites/buysomething/site/trends.json sites/buysomething/site/popularity.json 2>/dev/null || true
+          git diff --cached --quiet || { git commit -m "chore(buysomething): daily trends + reader-popularity refresh $(date -u +%F)"; git pull --rebase origin main; git push origin HEAD:main; }
       - name: Gate — expected files present
         working-directory: sites/buysomething
         run: |
