@@ -7,7 +7,7 @@ data/concurrents.json (Valve official API, written by CI) + data/games.json
 excluded, never estimated. SITE_URL is the single point to change when the
 owner attaches the real domain.
 """
-import json, os, html, datetime
+import json, os, html, datetime, urllib.parse
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = os.path.join(ROOT, "site")
@@ -109,6 +109,8 @@ def game_page(g, rec):
         {"@type": "FAQPage", "mainEntity": [
             {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faq]},
     ]}
+    share_x = ("https://twitter.com/intent/tweet?text=" + urllib.parse.quote(
+        f"Is {name} dead? Official Steam number today: {s['now']:,} in-game. {SITE_URL}/is-{slug}-dead"))
     rows = "".join(f"<tr><td>{h['d']}</td><td class='num'>{h['n']:,}</td></tr>" for h in rec["history"][-14:][::-1])
     faq_html = "".join(f"<div class='faq-q'>{html.escape(q)}</div><p>{html.escape(a)}</p>" for q, a in faq)
     return head(title, desc, f"/is-{slug}-dead", ld) + f"""
@@ -118,6 +120,8 @@ def game_page(g, rec):
 <span class="big">{s['now']:,}</span> <span class="muted">players in-game on Steam · official Valve API · {s['t']} UTC</span><br>
 <span class="muted">7-day sampled average {s['d7_avg']:,} (range {s['d7_min']:,}–{s['d7_max']:,}) · band: <strong>{label}</strong></span></div>
 <div class="warn"><strong>What this number does not cover:</strong> {html.escape(g['caveat'])}</div>
+<p style="margin:.2rem 0 1rem"><a href="{share_x}" rel="noopener" target="_blank" style="font-size:13px;border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:6px 12px;">Share the number →</a>
+<a href="/dead-or-alive" style="font-size:13px;border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:6px 12px;margin-left:6px;">🎮 Play: guess 10 games dead-or-alive →</a></p>
 <h2>Recent official samples</h2>
 <table><thead><tr><th>Date (UTC)</th><th class="num">Concurrent players</th></tr></thead><tbody>{rows}</tbody></table>
 <p class="muted">Source: Valve, ISteamUserStats/GetNumberOfCurrentPlayers (public API), sampled once daily by this site's
@@ -145,7 +149,32 @@ def index_page(entries):
 <p>Most player-count sites publish invented estimates. This ledger publishes one thing: <strong>Valve's official
 concurrent-player API</strong>, sampled daily, with a graded verdict and a pre-registered flip rule per game — and an
 explicit note on what each number does <em>not</em> cover (consoles, other launchers).</p>
-<div class="capsule">Updated <strong>{TODAY}</strong> · {len(entries)} games tracked · <a href="/methodology">methodology & bands</a> · raw data: <a href="/concurrents.json">concurrents.json</a> (CC BY 4.0)</div>
+<h2 style="margin-top:0">Check any game — live</h2>
+<div class="capsule">
+<input id="q" placeholder="Type a game name… (top-100 most played + tracked games)" style="width:100%;background:#0b0c0e;border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:10px 12px;color:#e8e9ec;font-size:15px" autocomplete="off">
+<div id="hits" style="margin-top:6px"></div><div id="live" style="margin-top:10px"></div>
+</div>
+<script>
+(function(){{
+var POOL=[];fetch('/pool.json').then(r=>r.json()).then(p=>{{POOL=p;var m=/[?&]app=(\d+)/.exec(location.search);if(m)pick(+m[1]);}});
+function band(n){{return n>=100000?'Emphatically alive':n>=20000?'Alive and healthy':n>=2000?'Alive, mid-size':n>=300?'Small but active':n>=50?'Niche':'Nearly empty on Steam';}}
+var q=document.getElementById('q'),hits=document.getElementById('hits'),live=document.getElementById('live');
+q.addEventListener('input',function(){{var v=q.value.trim().toLowerCase();hits.innerHTML='';if(v.length<2)return;
+POOL.filter(g=>g.n.toLowerCase().includes(v)).slice(0,6).forEach(function(g){{var b=document.createElement('button');b.textContent=g.n;b.style.cssText='margin:3px 4px 0 0;background:#1a1d22;border:1px solid rgba(255,255,255,.15);border-radius:7px;padding:5px 10px;color:#e8e9ec;cursor:pointer;font-size:13px';b.onclick=function(){{pick(g.a,g.n);}};hits.appendChild(b);}});}});
+function pick(a,nm){{live.innerHTML='<span class="muted">checking Valve\u2019s official API\u2026</span>';
+fetch('/api/live?app='+a).then(r=>r.json()).then(function(d){{
+if(!d.ok){{live.innerHTML='<span class="muted">Valve publishes no number for this app.</span>';return;}}
+var g=POOL.find(x=>x.a===a);var name=nm||(g&&g.n)||('app '+a);
+history.replaceState(null,'','?app='+a);
+live.innerHTML='<div style="font-size:30px;font-weight:800">'+d.n.toLocaleString()+'</div>'
++'<div class="muted">'+name+' \u00b7 in-game on Steam right now \u00b7 official Valve API \u00b7 '+d.t+'</div>'
++'<div style="margin-top:4px"><strong>'+band(d.n)+'</strong></div>'
++'<div style="margin-top:8px"><a target="_blank" rel="noopener" style="font-size:13px;border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:5px 10px" href="https://twitter.com/intent/tweet?text='+encodeURIComponent(name+' right now on Steam: '+d.n.toLocaleString()+' in-game (official). '+location.origin+'/?app='+a)+'">Share \u2192</a>'
++' <button onclick="navigator.clipboard.writeText(location.origin+\'/?app='+a+'\');this.textContent=\'copied\'" style="font-size:13px;background:none;border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:5px 10px;color:#e8e9ec;cursor:pointer">Copy link</button></div>';}})
+.catch(function(){{live.innerHTML='<span class="muted">API unreachable, try again.</span>';}});}}
+}})();
+</script>
+<div class="capsule">Updated <strong>{TODAY}</strong> · {len(entries)} games tracked · <a href="/dead-or-alive">🎮 dead-or-alive quiz</a> · <a href="/methodology">methodology & bands</a> · raw data: <a href="/concurrents.json">concurrents.json</a> (CC BY 4.0)</div>
 <table><thead><tr><th>Game</th><th class="num">Now</th><th class="num">7-day avg</th><th>Verdict band</th></tr></thead><tbody>{rows}</tbody></table>
 <p class="muted">"Now" = latest daily sample, not a live socket. Console/other-launcher populations are explicitly out of
 scope per game — see each page's coverage note.</p>""" + FOOT
@@ -231,6 +260,48 @@ directly; sample size ≈{latest['classified']}/week, so single-week numbers are
 <h2>More from the ledger</h2><p><a href="/">Is-it-dead verdicts, official numbers only →</a></p>""" + FOOT
 
 
+def quiz_page():
+    desc = "Guess which Steam games still pull a crowd — 10 rounds against real, official Valve numbers sampled today. Share your score."
+    ld = {"@context": "https://schema.org", "@type": "WebApplication", "name": "Dead or Alive — the Steam reality check",
+          "url": SITE_URL + "/dead-or-alive", "applicationCategory": "GameApplication",
+          "isAccessibleForFree": True, "offers": {"@type": "Offer", "price": "0"},
+          "featureList": "10-round guessing game against official Valve concurrent-player numbers, shareable score",
+          "description": desc}
+    return head("Dead or Alive? The Steam Reality-Check Quiz", desc, "/dead-or-alive", ld) + """
+<h1>Dead or alive? Call it, then see the real number.</h1>
+<p class="muted" style="margin-bottom:1rem">10 games. For each: is it pulling <strong>&ge;2,000</strong> concurrent players on Steam right now?
+Answers are Valve's official numbers sampled today — no estimates, no vibes.</p>
+<div class="capsule" id="game"><button id="start" style="background:#41d18f;color:#0b0c0e;font-weight:700;border:none;border-radius:9px;padding:10px 18px;font-size:15px;cursor:pointer">Start →</button></div>
+<p class="muted">Numbers are the day's sample from Valve's public API (chart games: official Most Played chart). The 2,000 line matches this site's published verdict bands. <a href="/methodology">Methodology</a>.</p>
+<script>
+(function(){
+var P=[],i=0,score=0,cur=null,order=[];
+fetch('/quiz-pool.json').then(r=>r.json()).then(function(d){P=d.items;});
+var box=document.getElementById('game');
+document.getElementById('start').onclick=go;
+function shuffle(a){for(var j=a.length-1;j>0;j--){var k=Math.floor(Math.random()*(j+1));var t=a[j];a[j]=a[k];a[k]=t;}return a;}
+function go(){var hi=shuffle(P.filter(g=>g.n>=2000)).slice(0,5),lo=shuffle(P.filter(g=>g.n<2000)).slice(0,5);order=shuffle(hi.concat(lo));i=0;score=0;next();}
+function next(){if(i>=order.length){return fin();}cur=order[i];
+box.innerHTML='<div class="muted">Round '+(i+1)+'/'+order.length+' · score '+score+'</div>'
++'<div style="font-size:22px;font-weight:700;margin:6px 0 10px">'+cur.name+'</div>'
++'<button onclick="window._ans(true)" style="background:#41d18f;color:#0b0c0e;font-weight:700;border:none;border-radius:9px;padding:9px 14px;margin-right:8px;cursor:pointer">Alive (&ge;2k in-game)</button>'
++'<button onclick="window._ans(false)" style="background:#1a1d22;color:#e8e9ec;border:1px solid rgba(255,255,255,.25);border-radius:9px;padding:9px 14px;cursor:pointer">Quiet (&lt;2k)</button>';}
+window._ans=function(g){var truth=cur.n>=2000;var ok=(g===truth);if(ok)score++;
+box.innerHTML='<div style="font-size:16px;font-weight:700;margin-bottom:4px">'+(ok?'✅ Called it.':'❌ Nope.')+'</div>'
++'<div><strong>'+cur.name+'</strong>: <span style="font-size:24px;font-weight:800">'+cur.n.toLocaleString()+'</span> <span class="muted">in-game · sampled '+cur.d+' · official Valve number</span></div>'
++'<button onclick="window._nx()" style="margin-top:10px;background:#41d18f;color:#0b0c0e;font-weight:700;border:none;border-radius:9px;padding:9px 16px;cursor:pointer">Next →</button>';i++;};
+window._nx=next;
+function fin(){var txt='I scored '+score+'/'+order.length+' guessing which Steam games are still alive — against real Valve numbers. Try it: '+location.origin+'/dead-or-alive';
+box.innerHTML='<div style="font-size:26px;font-weight:800">'+score+'/'+order.length+'</div>'
++'<div class="muted" style="margin:4px 0 10px">'+(score>=8?'You know the graveyard.':score>=5?'Respectable read of the charts.':'The charts are weirder than they look.')+'</div>'
++'<a target="_blank" rel="noopener" style="border:1px solid rgba(255,255,255,.25);border-radius:9px;padding:8px 13px;font-size:14px" href="https://twitter.com/intent/tweet?text='+encodeURIComponent(txt)+'">Share score →</a> '
++'<button onclick="navigator.clipboard.writeText(window._txt);this.textContent=\\'copied\\'" style="border:1px solid rgba(255,255,255,.25);border-radius:9px;padding:8px 13px;font-size:14px;background:none;color:#e8e9ec;cursor:pointer">Copy</button> '
++'<button onclick="window._go()" style="border:none;border-radius:9px;padding:8px 13px;font-size:14px;background:#41d18f;color:#0b0c0e;font-weight:700;cursor:pointer">Play again</button>';
+window._txt=txt;window._go=go;}
+})();
+</script>""" + FOOT
+
+
 def main():
     games = json.load(open(os.path.join(ROOT, "data", "games.json"), encoding="utf-8"))["games"]
     store = json.load(open(os.path.join(ROOT, "data", "concurrents.json"), encoding="utf-8"))
@@ -257,9 +328,24 @@ def main():
             ('<a href="/steam-ai-disclosure-tracker">AI-disclosure tracker</a> · ' if has_tracker else '')
             + '<a href="/methodology">methodology & bands</a>'))
     open(os.path.join(SITE, "methodology.html"), "w", encoding="utf-8").write(methodology_page())
+    open(os.path.join(SITE, "dead-or-alive.html"), "w", encoding="utf-8").write(quiz_page())
+    # 搜索池 + 小游戏池:top100 官方榜 + 策展台账,按 appid 去重
+    top_path = os.path.join(ROOT, "data", "top100.json")
+    top = json.load(open(top_path, encoding="utf-8")) if os.path.exists(top_path) else {"d": TODAY, "games": []}
+    pool, seen, quiz_items = [], set(), []
+    for t in top["games"]:
+        if t["appid"] in seen: continue
+        seen.add(t["appid"]); pool.append({"a": t["appid"], "n": t["name"]})
+        quiz_items.append({"name": t["name"], "n": t["n"], "d": top.get("d", TODAY)})
+    for e in entries:
+        if e["appid"] in seen: continue
+        seen.add(e["appid"]); pool.append({"a": e["appid"], "n": e["name"]})
+        quiz_items.append({"name": e["name"], "n": e["d7_avg"], "d": TODAY})
+    json.dump(pool, open(os.path.join(SITE, "pool.json"), "w", encoding="utf-8"), ensure_ascii=False)
+    json.dump({"d": TODAY, "items": quiz_items}, open(os.path.join(SITE, "quiz-pool.json"), "w", encoding="utf-8"), ensure_ascii=False)
     # machine-readable surfaces
     json.dump(store, open(os.path.join(SITE, "concurrents.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
-    urls = ["/", "/methodology"] + (["/steam-ai-disclosure-tracker"] if has_tracker else []) + [f"/is-{e['slug']}-dead" for e in entries]
+    urls = ["/", "/methodology", "/dead-or-alive"] + (["/steam-ai-disclosure-tracker"] if has_tracker else []) + [f"/is-{e['slug']}-dead" for e in entries]
     open(os.path.join(SITE, "sitemap.xml"), "w", encoding="utf-8").write(
         '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
         + "".join(f"  <url><loc>{SITE_URL}{u}</loc><lastmod>{TODAY}</lastmod></url>\n" for u in urls) + "</urlset>\n")

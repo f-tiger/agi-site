@@ -26,7 +26,9 @@ jobs:
       - name: Fetch official Steam data (schedule/dispatch only)
         if: github.event_name != 'push'
         working-directory: sites/gamesledger
-        run: python3 tools/fetch_steam.py
+        run: |
+          python3 tools/fetch_steam.py
+          python3 tools/fetch_top100.py || echo "::warning::top100 chart fetch failed (search pool keeps last good data)"
       - name: Weekly AI-disclosure sample (Mondays / dispatch)
         if: github.event_name != 'push'
         working-directory: sites/gamesledger
