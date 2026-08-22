@@ -748,3 +748,21 @@ what-jobs-are-safe-from-ai。已同步，并把 sitemap 的 21 条 lastmod 对�
   JS 信标通道一直正常)。尚无 solve;订阅漏斗 subs=0。
 - 教训入档:新站拷贝 worker 模式时,wrangler 的 assets 配置必须整块继承
   (agi 手册 8-05 已有此坑记载,今日三站重蹈——说明该检查应做进建站清单)。
+
+## 2026-08-22（owner 贴 GA4 周对比,8/15-21 vs 8/8-14）— 周流量翻倍,invest 漏斗点亮
+
+- **总事件 1,425(+104%),page_view 413(+103%),first_visit 372 ≈ session_start 385**
+  ——几乎全新访客;首页 -13% 而深页全线上涨 = 搜索/AI 引用驱动的健康 GEO 形态。
+- **第一大页换人:/when-will-agi-arrive 61 次(+90%)**——Bing 37.5% 引用份额那道题,
+  引用→点击在兑现。页面核查:活数字胶囊/五键意见钩/时间线钩齐全且本周有真实点击
+  (tool_click opinion_when),8-18 新鲜度——**不动它**(防折腾)。
+- **invest 线拿到第一批真实使用**:exposure 页 16 次(+1500%),exposure_score 14 次
+  (真的有人在打分篮子),invest_tool_click 8(nav 3/nav_compass 3/cn_more 1/
+  starthere 1——全是导航流入,**Pro 桥 0 点击,0/14**)。PRD 判定线(11-15 前桥点击
+  ≥5)当前 0;样本 14 太小,不据此改版,继续观察。
+- 本周订阅链路完整走通一次:sub_open 2 → sub_submit 1 → sub_ok 1(现有 2 订阅中
+  1 个来自本周)。slidein_show 35(+192%)在干活。
+- Forecaster Leaderboard +700%(8 次)、AI 2027 Scenario +250%、What Is AGI 新入榜
+  +12——新资产被发现中。
+- 行动:仅记档。所有 riser 页转化装备已齐,唯一缺口(Pro 桥 0 转化)样本不足,
+  不折腾。下一读数点:周一记分板。
