@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>Gridlings 格灵 — 每日逻辑方阵，纯推理可解</title>
+<meta name="description" content="免费每日逻辑谜题：让每行每列的动物与颜色都不重复、同一动物互不相邻。每题唯一解、无需瞎猜，免注册免下载。">
+<link rel="canonical" href="https://play.agiscorecard.com/zh">
+<link rel="stylesheet" href="style.css">
+<link rel="alternate" hreflang="en" href="https://play.agiscorecard.com/">
+<link rel="alternate" hreflang="zh" href="https://play.agiscorecard.com/zh">
+<meta property="og:title" content="Gridlings 格灵 — 每日逻辑方阵">
+<meta property="og:description" content="每行每列不重复、同一动物不相邻。每天一题、唯一解、纯推理。免费无账号。">
+<meta property="og:url" content="https://play.agiscorecard.com/zh">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐸</text></svg>">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Gridlings 格灵","url":"https://play.agiscorecard.com/zh","applicationCategory":"GameApplication","operatingSystem":"Any (browser)","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["每天一题，机器验证唯一解","纯推理可解，永不需要瞎猜","三档难度无限畅玩","连胜记录与无剧透战绩分享","免注册、免下载、任何设备可玩"],"inLanguage":["zh","en"],"isPartOf":{"@type":"WebSite","name":"AGI Scorecard","url":"https://agiscorecard.com/"}}
+</script>
+<script>
+window.GRIDLINGS_LANG={daily:"每日",free:"畅玩",streak:"连胜",hints_used:"提示",no_hints:"零提示 🧠",share:"分享战绩",copied:"已复制！",empty:"空格",colors:["琥珀","绿","蓝","红","紫"]};
+</script>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1><a href="/zh">Gridlings 格灵</a></h1>
+  <span style="color:var(--mut);font-size:.85rem">每日逻辑方阵</span>
+</header>
+
+<div class="meta"><span id="pnum">每日</span><span id="timer">0:00</span></div>
+
+<div id="grid" aria-label="谜题棋盘"></div>
+<div id="palette" aria-label="动物与颜色选择板"></div>
+
+<div class="bar">
+  <button class="btn" id="hintbtn">💡 提示</button>
+  <button class="btn" id="sharebtn">分享战绩</button>
+</div>
+
+<div id="win" hidden>
+  <h2>解开了！🎉</h2>
+  <p>⏱ <span id="wtime"></span> · <span id="whints"></span></p>
+  <p id="wstreak"></p>
+  <div class="bar">
+    <button class="btn pri" onclick="document.getElementById('sharebtn').click()">分享战绩</button>
+    <button class="btn" id="again">再来一局</button>
+  </div>
+  <p class="subline"><a id="subcta" href="https://agiscorecard.beehiiv.com/subscribe?utm_source=gridlings&amp;utm_medium=win_modal_zh" rel="noopener">新模式上线时收一封邮件（英文表单）→</a></p>
+</div>
+
+<p class="modes">畅玩：<a href="?p=easy-0" id="d-easy">入门</a> · <a href="?p=medium-0" id="d-medium">进阶</a> · <a href="?p=hard-0" id="d-hard">困难</a> <span style="opacity:.7">（越简单初始提示格越多）</span></p>
+
+<div class="rules">
+  <h2>玩法</h2>
+  <ul>
+    <li>让每一<strong>行、每一列</strong>都恰好出现每种动物一次、每种颜色一次。</li>
+    <li>整盘中每个<strong>动物–颜色组合</strong>只出现一次。</li>
+    <li>同一种动物<strong>永不相邻</strong>——斜角也不行。</li>
+    <li>每一题都有且只有<strong>一个解</strong>，且永远存在可以被证明的下一格——无需任何猜测。这一点在谜题发布前由机器逐题验证。</li>
+  </ul>
+  <p style="margin-top:8px">如果你喜欢 LinkedIn 的 Queens、Tango 这类每日逻辑游戏，这是同一种纯推理的日常习惯——但双重约束让每一盘都更紧。每天 UTC 00:00 更新。</p>
+</div>
+
+<footer>
+  <p>永久免费、无账号。出品：<a href="https://agiscorecard.com/cn">AGI Scorecard</a>——我们用做谜题的同一条规矩追踪 AI 预测：每个论断都必须可查证。与 LinkedIn、纽约时报无关联。</p>
+  <p class="subline">嵌入本游戏：在 iframe 的 URL 后加 <code>?embed=1</code>。</p>
+</footer>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

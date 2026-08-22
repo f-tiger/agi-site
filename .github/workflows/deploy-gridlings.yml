@@ -1,0 +1,50 @@
+name: Deploy gridlings
+
+# Gridlings(第七站)—— 自研每日约束谜题,play.agiscorecard.com。
+# 成本核算:仅 push 触发,~0.7 分/次;无 schedule(450 天每日谜题已预烘焙进仓库,
+# 无需任何定时任务——这是刻意的零维护设计)。
+on:
+  push:
+    branches: [main]
+    paths: ["sites/gridlings/**", ".github/workflows/deploy-gridlings.yml"]
+  workflow_dispatch: {}
+
+concurrency:
+  group: deploy-gridlings
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Gate — files present, JSON valid, puzzles cover today+300d
+        working-directory: sites/gridlings
+        run: |
+          for f in site/index.html site/zh.html site/app.js site/style.css site/puzzles-daily.json site/puzzles-pool.json site/robots.txt site/sitemap.xml site/llms.txt; do
+            [ -f "$f" ] || { echo "::error::missing $f"; exit 1; }
+          done
+          node --check worker.js
+          python3 - << 'EOF'
+          import json, datetime, sys
+          d = json.load(open("site/puzzles-daily.json"))
+          epoch = datetime.date.fromisoformat(d["epoch"])
+          today = max(datetime.date.today(), epoch)  # pre-launch: client serves the earliest board
+          horizon = today + datetime.timedelta(days=300)
+          missing = [x for x in (today, horizon) if x.isoformat() not in d["puzzles"]]
+          if missing: sys.exit(f"daily puzzles missing for {missing} — regenerate gen_puzzles.py")
+          p = json.load(open("site/puzzles-pool.json"))
+          assert all(len(v) > 50 for v in p.values()), "pool too small"
+          print(f"gate ok: {len(d['puzzles'])} dailies, pools {[len(v) for v in p.values()]}")
+          EOF
+      - name: Deploy worker
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          wranglerVersion: "4"
+          workingDirectory: sites/gridlings
+          command: deploy

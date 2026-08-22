@@ -1,0 +1,10 @@
+{
+  // Gridlings(第七站):自研每日约束谜题(web-first,海外)。依据 docs/puzzle-game-prd-2026-08.md。
+  // 域名:play.agiscorecard.com(伞域子域模式,custom_domain 自动挂 DNS+证书)。
+  "name": "gridlings",
+  "main": "worker.js",
+  "compatibility_date": "2026-08-01",
+  "assets": { "directory": "site", "binding": "ASSETS" },
+  "routes": [{ "pattern": "play.agiscorecard.com", "custom_domain": true }],
+  "d1_databases": [{ "binding": "EV", "database_name": "gridlings-events", "database_id": "bd3b1ca9-e9cb-4b71-9834-df3d67b39504" }]
+}
