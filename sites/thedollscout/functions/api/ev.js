@@ -12,7 +12,7 @@ export async function onRequestPost(ctx) {
     try { ref = body.r ? new URL(body.r).hostname.slice(0, 60) : ''; } catch (e) {}
     // Unknown event names are dropped, not stored — an open-name endpoint is
     // write-anything storage, and the table stays honest by refusing it.
-    const ALLOWED = new Set(['', 'affiliate_click']);
+    const ALLOWED = new Set(['', 'affiliate_click', 'price_check']);
     const ev = ALLOWED.has(body.e) ? body.e : '';
     const d = new Date().toISOString().slice(0, 10);
     const country = (ctx.request.headers.get('cf-ipcountry') || '').slice(0, 2);

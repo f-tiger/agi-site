@@ -12,6 +12,7 @@ The tools on this site can be CALLED, not only read. An MCP endpoint answers
 with the visitor's own numbers, from the same published datasets these pages
 are built from — no rule is reimplemented, so it cannot disagree with them.
 
+- On-page tool: https://thedollscout.com/price-check — instant check of any quoted price against the 53-listing verified dataset (below-band = the #1 counterfeit signal, with stated limitations)
 - Endpoint: https://thedollscout.com/mcp (streamable HTTP, no auth)
 - Discovery: https://thedollscout.com/.well-known/mcp.json
 - Documentation: https://thedollscout.com/mcp
