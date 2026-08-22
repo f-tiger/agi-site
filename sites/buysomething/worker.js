@@ -42,6 +42,28 @@ export default {
       return new Response("ok", { headers: { "access-control-allow-origin": "*" } });
     }
 
+    if (url.pathname === "/subscribe" && request.method === "POST") {
+      // V1 newsletter funnel per docs/STRATEGY.md. NO-API mode (fleet-wide):
+      // the address lands in D1 first; there is no mail-sending capability, so
+      // the on-page promise must stay "one send when the next radar lands",
+      // pasted manually by the owner. status='stored' is the NORMAL state.
+      try {
+        const b = await request.json();
+        const email = String(b.email || "").trim().toLowerCase().slice(0, 120);
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+          return new Response(JSON.stringify({ ok: false }), { status: 400, headers: { "content-type": "application/json" } });
+        }
+        if (env.EV) {
+          await env.EV.prepare("INSERT OR IGNORE INTO subs (email, day, ref) VALUES (?, date('now'), ?)")
+            .bind(email, (request.headers.get("referer") || "").slice(0, 120)).run();
+        }
+        await logRow(env, ctx, { name: "sub_ok", label: "sourceradar", value: 0, path: "/subscribe", ref: "", ua_class: "human", country: request.cf && request.cf.country || "" });
+        return new Response(JSON.stringify({ ok: true }), { headers: { "content-type": "application/json" } });
+      } catch (e) {
+        return new Response(JSON.stringify({ ok: false }), { status: 400, headers: { "content-type": "application/json" } });
+      }
+    }
+
     const res = await env.ASSETS.fetch(request);
     const accept = request.headers.get("accept") || "";
     if (request.method === "GET" && accept.includes("text/html") && res.status === 200) {

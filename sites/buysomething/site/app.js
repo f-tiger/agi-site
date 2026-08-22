@@ -298,4 +298,15 @@
     if (a && !a.href.includes(location.hostname)) sr("out_click", a.hostname);
   }, true);
 
+  const subForm = document.getElementById("subForm");
+  if (subForm) subForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const email = document.getElementById("subEmail").value.trim();
+    const msg = document.getElementById("subMsg");
+    fetch("/subscribe", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ email }) })
+      .then((r) => r.json())
+      .then((d) => { msg.hidden = false; msg.textContent = d.ok ? "You're on the list — next drop only, no filler." : "That email didn't look right — try again?"; if (d.ok) subForm.querySelector("button").disabled = true; })
+      .catch(() => { msg.hidden = false; msg.textContent = "Something hiccuped — try once more."; });
+  });
+
 })();
