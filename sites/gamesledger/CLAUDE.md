@@ -36,7 +36,7 @@ PRD 与调研依据:仓库根 `docs/games-subsite-prd-2026-08.md`(三门证据�
 3. key 店联盟(Fanatical 12%/Humble 10%——**需 owner 申请账号**;批下来前
    判定页不放任何购买链接,绝不放未生效的联盟链接)
 4. 朋友供给线(等 owner 与朋友的三问答案;形状见 PRD「Poki 直达流量套利」)
-5. D1 埋点(建库 + worker 扩展,复用 agi 模式;在此之前流量只看 CF dashboard)
+5. ~~D1 埋点~~(2026-08-22 完成:库 `gamesledger-events` 2bebbaef-aa46-4b75-89ca-77920ad4f863,表 `ev`;服务端 page_view + 信标白名单 quiz_start/quiz_done/live_check/subscribe_click/embed_copy/share_click;订阅钩三处——game_page/quiz_end/live_result,全部走同一个 beehiiv,**游戏站订户计入舰队 5 单证伪线**)
 6. 游戏扩容(新增游戏必须先验证真实 is-dead 查询需求,不为凑数加游戏)
 
 ## 商业模型(owner 问「差异化和如何创造营收」,2026-08-22 答定)

@@ -66,7 +66,7 @@ def head(title, desc, path, ld):
 <meta property="og:url" content="{SITE_URL}{path}">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230b0c0e'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%2341d18f'/%3E%3C/svg%3E">
 <script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>
-<style>{STYLE}</style></head><body>
+<style>{STYLE}</style><script>function gev(n,l,b){{try{{navigator.sendBeacon('/e',JSON.stringify({{n:n,l:l,b:b}}))}}catch(e){{}}}}</script></head><body>
 <header><span class="dot"></span><a href="/" style="color:#e8e9ec;font-weight:600">{SITE_NAME}</a>
 <span class="muted">· official numbers or no numbers</span></header><main>"""
 
@@ -120,6 +120,9 @@ def game_page(g, rec):
 <span class="big">{s['now']:,}</span> <span class="muted">players in-game on Steam · official Valve API · {s['t']} UTC</span><br>
 <span class="muted">7-day sampled average {s['d7_avg']:,} (range {s['d7_min']:,}–{s['d7_max']:,}) · band: <strong>{label}</strong></span></div>
 <div class="warn"><strong>What this number does not cover:</strong> {html.escape(g['caveat'])}</div>
+<div class="capsule" style="border-left-color:#6ea8fe;margin:.6rem 0 1rem"><strong>🔔 Verdict-flip alert</strong><br>
+<span class="muted">One email if {name} crosses a band on this ledger — nothing else, no newsletter noise.</span><br>
+<a href="https://agiscorecard.beehiiv.com/subscribe?utm_source=gamesledger&amp;utm_medium=game_page" target="_blank" rel="noopener" onclick="gev('subscribe_click','game_page','{slug}')" style="display:inline-block;margin-top:6px;background:#41d18f;color:#0b0c0e;font-weight:700;border-radius:8px;padding:7px 14px;font-size:13.5px">Get the flip alert →</a></div>
 <p style="margin:.2rem 0 1rem"><a href="{share_x}" rel="noopener" target="_blank" style="font-size:13px;border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:6px 12px;">Share the number →</a>
 <a href="/dead-or-alive" style="font-size:13px;border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:6px 12px;margin-left:6px;">🎮 Play: guess 10 games dead-or-alive →</a></p>
 <h2>Recent official samples</h2>
@@ -162,7 +165,10 @@ def index_page(entries, trends=None):
 <p>Most player-count sites publish invented estimates. This ledger publishes one thing: <strong>Valve's official
 concurrent-player API</strong>, sampled daily, with a graded verdict and a pre-registered flip rule per game — and an
 explicit note on what each number does <em>not</em> cover (consoles, other launchers).</p>
-{trending_strip}<h2 style="margin-top:0">Check any game — live</h2>
+{trending_strip}<div class="capsule" style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap">
+<div><strong>🎮 Dead or Alive</strong> <span class="muted">— call 10 games against today's real numbers, share your score</span></div>
+<a href="/dead-or-alive" style="background:#41d18f;color:#0b0c0e;font-weight:700;border-radius:9px;padding:8px 16px;font-size:14px">Play →</a></div>
+<h2 style="margin-top:0">Check any game — live</h2>
 <div class="capsule">
 <input id="q" placeholder="Type a game name… (top-100 most played + tracked games)" style="width:100%;background:#0b0c0e;border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:10px 12px;color:#e8e9ec;font-size:15px" autocomplete="off">
 <div id="hits" style="margin-top:6px"></div><div id="live" style="margin-top:10px"></div>
@@ -183,7 +189,8 @@ live.innerHTML='<div style="font-size:30px;font-weight:800">'+d.n.toLocaleString
 +'<div class="muted">'+name+' \u00b7 in-game on Steam right now \u00b7 official Valve API \u00b7 '+d.t+'</div>'
 +'<div style="margin-top:4px"><strong>'+band(d.n)+'</strong></div>'
 +'<div style="margin-top:8px"><a target="_blank" rel="noopener" style="font-size:13px;border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:5px 10px" href="https://twitter.com/intent/tweet?text='+encodeURIComponent(name+' right now on Steam: '+d.n.toLocaleString()+' in-game (official). '+location.origin+'/?app='+a)+'">Share \u2192</a>'
-+' <button onclick="navigator.clipboard.writeText(location.origin+\'/?app='+a+'\');this.textContent=\'copied\'" style="font-size:13px;background:none;border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:5px 10px;color:#e8e9ec;cursor:pointer">Copy link</button></div>';}})
++' <button onclick="navigator.clipboard.writeText(location.origin+\'/?app='+a+'\');this.textContent=\'copied\'" style="font-size:13px;background:none;border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:5px 10px;color:#e8e9ec;cursor:pointer">Copy link</button></div>'
++'<div style="margin-top:8px;font-size:12.5px" class="muted"><a target="_blank" rel="noopener" onclick="gev(\'subscribe_click\',\'live_result\')" href="https://agiscorecard.beehiiv.com/subscribe?utm_source=gamesledger&utm_medium=live_result">🔔 One email if this game\'s verdict ever flips →</a></div>';}})
 .catch(function(){{live.innerHTML='<span class="muted">API unreachable, try again.</span>';}});}}
 }})();
 </script>
@@ -291,7 +298,7 @@ Answers are Valve's official numbers sampled today — no estimates, no vibes.</
 var P=[],i=0,score=0,cur=null,order=[];
 fetch('/quiz-pool.json').then(r=>r.json()).then(function(d){P=d.items;});
 var box=document.getElementById('game');
-document.getElementById('start').onclick=go;
+document.getElementById('start').onclick=function(){gev('quiz_start','quiz');go();};
 function shuffle(a){for(var j=a.length-1;j>0;j--){var k=Math.floor(Math.random()*(j+1));var t=a[j];a[j]=a[k];a[k]=t;}return a;}
 function go(){var hi=shuffle(P.filter(g=>g.n>=2000)).slice(0,5),lo=shuffle(P.filter(g=>g.n<2000)).slice(0,5);order=shuffle(hi.concat(lo));i=0;score=0;next();}
 function next(){if(i>=order.length){return fin();}cur=order[i];
@@ -304,12 +311,13 @@ box.innerHTML='<div style="font-size:16px;font-weight:700;margin-bottom:4px">'+(
 +'<div><strong>'+cur.name+'</strong>: <span style="font-size:24px;font-weight:800">'+cur.n.toLocaleString()+'</span> <span class="muted">in-game · sampled '+cur.d+' · official Valve number</span></div>'
 +'<button onclick="window._nx()" style="margin-top:10px;background:#41d18f;color:#0b0c0e;font-weight:700;border:none;border-radius:9px;padding:9px 16px;cursor:pointer">Next →</button>';i++;};
 window._nx=next;
-function fin(){var txt='I scored '+score+'/'+order.length+' guessing which Steam games are still alive — against real Valve numbers. Try it: '+location.origin+'/dead-or-alive';
+function fin(){gev('quiz_done','quiz',String(score));var txt='I scored '+score+'/'+order.length+' guessing which Steam games are still alive — against real Valve numbers. Try it: '+location.origin+'/dead-or-alive';
 box.innerHTML='<div style="font-size:26px;font-weight:800">'+score+'/'+order.length+'</div>'
 +'<div class="muted" style="margin:4px 0 10px">'+(score>=8?'You know the graveyard.':score>=5?'Respectable read of the charts.':'The charts are weirder than they look.')+'</div>'
 +'<a target="_blank" rel="noopener" style="border:1px solid rgba(255,255,255,.25);border-radius:9px;padding:8px 13px;font-size:14px" href="https://twitter.com/intent/tweet?text='+encodeURIComponent(txt)+'">Share score →</a> '
 +'<button onclick="navigator.clipboard.writeText(window._txt);this.textContent=\\'copied\\'" style="border:1px solid rgba(255,255,255,.25);border-radius:9px;padding:8px 13px;font-size:14px;background:none;color:#e8e9ec;cursor:pointer">Copy</button> '
-+'<button onclick="window._go()" style="border:none;border-radius:9px;padding:8px 13px;font-size:14px;background:#41d18f;color:#0b0c0e;font-weight:700;cursor:pointer">Play again</button>';
++'<button onclick="window._go()" style="border:none;border-radius:9px;padding:8px 13px;font-size:14px;background:#41d18f;color:#0b0c0e;font-weight:700;cursor:pointer">Play again</button>'
++'<div style="margin-top:12px;font-size:13px" class="muted">Want the day a big game\'s verdict flips? <a target="_blank" rel="noopener" onclick="gev(\'subscribe_click\',\'quiz_end\')" href="https://agiscorecard.beehiiv.com/subscribe?utm_source=gamesledger&utm_medium=quiz_end">One email per flip, nothing else →</a></div>';
 window._txt=txt;window._go=go;}
 })();
 </script>""" + FOOT
