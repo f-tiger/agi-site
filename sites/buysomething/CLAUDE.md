@@ -21,7 +21,7 @@ buysomething 会话孵化;owner 2026-08-22 指示并入舰队)。战略与调研
 ## 队列(并舰待办,一轮一项)
 
 1. ~~canonical/OG/sitemap/robots/llms.txt 补齐~~(2026-08-22 完成)
-2. D1 埋点(舰队模式:服务端 pageview + 转化事件白名单)
+2. ~~D1 埋点~~(2026-08-22 完成:D1 `sourceradar-events` f92b6207-90bf-46f6-97c7-cc88195b2ec7 表 `ev`;服务端 page_view + 白名单 pick_open/calc_use/out_click/search_use)
 3. 转化钩(联盟链接?订阅?按 docs/STRATEGY.md 的营收设计定,不自行发明)
 4. 周分发循环自动覆盖(monorepo git log 扫描即含本站)
 

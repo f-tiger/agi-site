@@ -2,6 +2,13 @@
 (function () {
   const grid = document.getElementById("productGrid");
   const chipsWrap = document.getElementById("trackChips");
+  function sr(n, l, v) {
+    try {
+      var b = JSON.stringify({ n: n, l: (l || "").slice(0, 80), v: v || 0, p: location.pathname });
+      navigator.sendBeacon ? navigator.sendBeacon("/e", b) : fetch("/e", { method: "POST", body: b, keepalive: true });
+    } catch (e) { /* analytics must never break the site */ }
+  }
+
   const searchInput = document.getElementById("searchInput");
   const sortSelect = document.getElementById("sortSelect");
   const hideSaturated = document.getElementById("hideSaturated");
@@ -141,6 +148,7 @@
   }
 
   function openModal(p) {
+    sr("pick_open", p && (p.slug || p.name) || "");
     const lc = LIFECYCLE_LABELS[p.lifecycle];
     const tier = TIER_LABELS[p.tier];
     const certList = (arr) => arr.length ? arr.map((c) => `<span class="badge">${c}</span>`).join(" ") : '<span class="badge">Not targeted</span>';
@@ -252,7 +260,8 @@
       mEl.className = "r-value " + (margin >= 0.6 ? "good" : margin >= 0.4 ? "" : "bad");
       document.getElementById("rTotal").textContent = money(landedFull * qty);
     };
-    modalBody.querySelectorAll(".calc input").forEach((inp) => inp.addEventListener("input", recalc));
+    let srCalc = false;
+    modalBody.querySelectorAll(".calc input").forEach((inp) => inp.addEventListener("input", () => { if (!srCalc) { srCalc = true; sr("calc_use", p && (p.slug || p.name) || ""); } recalc(); }));
     recalc();
 
     modalBody.querySelectorAll(".copy-btn").forEach((btn) => {
@@ -277,10 +286,16 @@
   backdrop.addEventListener("click", (e) => { if (e.target === backdrop) closeModal(); });
   document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !backdrop.hidden) closeModal(); });
 
-  searchInput.addEventListener("input", renderGrid);
+  let srSearched = false;
+  searchInput.addEventListener("input", () => { if (!srSearched && searchInput.value.trim().length > 2) { srSearched = true; sr("search_use"); } renderGrid(); });
   sortSelect.addEventListener("change", renderGrid);
   hideSaturated.addEventListener("change", renderGrid);
 
   renderChips();
   renderGrid();
+  document.addEventListener("click", (e) => {
+    const a = e.target && e.target.closest ? e.target.closest("a[href^='http']") : null;
+    if (a && !a.href.includes(location.hostname)) sr("out_click", a.hostname);
+  }, true);
+
 })();
