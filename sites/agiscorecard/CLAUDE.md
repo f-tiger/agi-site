@@ -349,9 +349,13 @@ strategy doc the same run. New strategy-relevant milestones to watch in D1:
    compare the pilot fleet when repos are attached — agi D1 `agiscorecard-events`
    (f84f9d29) · bpj D1 `baipiaoji-hits` (1ee08cb8-a174-4ec3-8dbc-89ef5d28aa05) ·
    getecoback D1 `ecoback-events` (75e45e05-44b5-4c56-9a3b-dd504b5c53f1，表 `ev`) ·
-   thedollscout（D1 `dollscout-events` 6e71ddc6-b58c-49f4-b6f5-207f3778133f，表 `hits` 同 bpj 口径，2026-08-19 起；更早只有 agi-site 仓 sites/thedollscout/content/traffic.json）。
+   thedollscout（D1 `dollscout-events` 6e71ddc6-b58c-49f4-b6f5-207f3778133f，表 `hits` 同 bpj 口径，2026-08-19 起；更早只有 agi-site 仓 sites/thedollscout/content/traffic.json）
+   · **gamesledger D1 `gamesledger-events`（2bebbaef-aa46-4b75-89ca-77920ad4f863，表 `ev`，2026-08-22 起）**
+   · **gridlings D1 `gridlings-events`（bd3b1ca9-e9cb-4b71-9834-df3d67b39504，表 `ev`，2026-08-22 起）**
+   · buysomething（暂无 D1，队列中）· sellSomething 站群（KV SUBSCRIBERS 增量，只读）。
    每站四行：真人 PV（JS 口径）、AI 引用/爬虫态势、离钱最近的转化事件
-   （agi=sub_ok · bpj=go/sub_view · eco=affiliate_click · tds=affiliate_click GA4）、
+   （agi=sub_ok · bpj=go/sub_view · eco=affiliate_click · tds=affiliate_click GA4
+   · gamesledger=tool_click/embed_copy · gridlings=solve/sub_click{gridlings_win}）、
    本周移植了谁的什么模式。记 analytics-notes.md，并 port whichever side's working
    pattern the others lack。**已知陷阱（两站各自踩过一次）：CI 自测会伪装成增长**——
    eco 的 mcp_call/md_serve 在 08-16 出现 110/94 次全是冒烟测试（参数逐字重复），

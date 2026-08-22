@@ -60,7 +60,23 @@
 ## ③ 门户投稿（第 2 周，需要你注册开发者账号，各约 10 分钟）
 
 - CrazyGames: developer.crazygames.com 注册 → 提交 URL 即可（iframe 友好已就绪）。
-  审核 2-4 周。描述文案我到时按其字段要求出。
+  审核 2-4 周。**投稿文案（按需增删）：**
+  - Game URL: `https://play.agiscorecard.com/?embed=1`
+  - Name: Gridlings
+  - Category: Puzzle / Logic
+  - Short description (≤ ~140 chars):
+    > Daily logic grid: every animal in every color, no repeats, no touching.
+    > One provably unique solution — pure deduction, never guessing.
+  - Long description:
+    > Fill the 5×5 grid so every row and column contains each animal once and
+    > each color once, every animal-color pair appears exactly once, and the
+    > same animal never touches itself — even diagonally. Every board is
+    > machine-verified before publishing to have exactly one solution
+    > reachable by logic alone: if you're stuck, there is always a provable
+    > next cell. One daily puzzle plus unlimited free play in three
+    > difficulties. Tracks your streak, share your solve time spoiler-free.
+  - Controls: Tap/click a cell, then tap an animal-color pair from the palette.
+  - Tags: logic, puzzle, daily, grid, brain, deduction
 - GamePix: partners.gamepix.com/developers 同上。
 - Poki: 先不投——等自有域有 4 周留存数据后我出 pitch。
 
