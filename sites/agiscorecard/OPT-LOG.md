@@ -1,3 +1,14 @@
+## 2026-08-22（补录）— 第七站 Gridlings 上线 + 首页 Play 区新入口
+
+触发:owner 朋友同类游戏(海外平台)$20/天×<2 月,完整调研过三门
+(docs/puzzle-game-research-2026-08.md + puzzle-game-prd-2026-08.md)。
+上线 play.agiscorecard.com:450 天每日题 + 440 畅玩题,每题发布前求解器
+逐题证明唯一解纯推理可达(这是差异化承诺,不许为速度削弱)。本站改动仅一处:
+首页 #directory Play 区 +1 行 Gridlings 入口(tool_click{gridlings})。
+发现并记录:4×4 双拉丁方 + 斜角不相邻在数学上无解(4 阶仅两个互不相邻排列),
+easy 档 = 5×5 多提示格。推广走 launch-kit(r/WebGames→Show HN→CrazyGames),
+机器不代发。判定线 60 天:play_start ≥500/28d 或门户过审或首笔分成。
+
 ## 2026-08-18（每日运行）— 新鲜度信号对账 + 日期一致性校验
 
 **监控空档(如实记)**:Cloudflare MCP 令牌过期,D1 本轮读不到。没有拿昨天的数字充今天。
