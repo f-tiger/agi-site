@@ -737,3 +737,14 @@ what-jobs-are-safe-from-ai。已同步，并把 sitemap 的 21 条 lastmod 对�
   而非怠工。战略清单:周六无到期项。
 - 舰队面:第五站 gamesledger 昨夜上线(16 判定页 + AI 披露追踪器,独家首采
   35.0%),PRD/手册/判定线齐;分发包 W34 新增 1️⃣B(35% 数据,HN 首选)。
+
+## 2026-08-22（当日补记）— run_worker_first 修复实证 + Gridlings 首玩家
+
+- 全舰队静默计数 bug:gamesledger/gridlings/buysomething 三新站 wrangler 均缺
+  `run_worker_first: true`,HTML 请求绕过 worker,服务端 page_view 从未记录
+  (gamesledger 仅有的 11 条 pv 全是扫描器打非资产路径)。e8873ba 统一修复,
+  **07:03 起 sourceradar 记录到首批真实 pv(US×3+JP×1)= 修复实证生效**。
+- Gridlings 上线 12 分钟即有第一位真人玩家(IN,06:39 play_start daily:2026-08-24,
+  JS 信标通道一直正常)。尚无 solve;订阅漏斗 subs=0。
+- 教训入档:新站拷贝 worker 模式时,wrangler 的 assets 配置必须整块继承
+  (agi 手册 8-05 已有此坑记载,今日三站重蹈——说明该检查应做进建站清单)。
