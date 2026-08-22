@@ -29,6 +29,7 @@ jobs:
         run: |
           python3 tools/fetch_steam.py
           python3 tools/fetch_top100.py || echo "::warning::top100 chart fetch failed (search pool keeps last good data)"
+          python3 tools/fetch_trends_games.py || echo "::warning::trends fetch failed (trigger keeps last state)"
       - name: Weekly AI-disclosure sample (Mondays / dispatch)
         if: github.event_name != 'push'
         working-directory: sites/gamesledger

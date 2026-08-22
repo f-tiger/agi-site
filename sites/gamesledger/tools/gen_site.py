@@ -140,7 +140,15 @@ editorial discretion involved.</p>
 <h2>More verdicts</h2><p><a href="/">All games on the ledger →</a></p>""" + FOOT
 
 
-def index_page(entries):
+def index_page(entries, trends=None):
+    tr = trends or {"hits": [], "discovered": []}
+    tr_games = ([(h["appid"], h["name"]) for h in tr.get("hits", [])]
+                + [(d["appid"], d["name"]) for d in tr.get("discovered", [])])[:6]
+    trending_strip = ""
+    if tr_games:
+        btns = "".join(f'<button onclick="window._pick&&window._pick({a})" style="margin:3px 6px 0 0;background:#1a1d22;border:1px solid #41d18f;border-radius:8px;padding:6px 12px;color:#e8e9ec;cursor:pointer;font-size:13px">🔥 {html.escape(n)}</button>' for a, n in tr_games)
+        trending_strip = (f'<div class="capsule" style="border-left-color:#e8a040"><strong>Trending in search today</strong> '
+                          f'<span class="muted">(Google Trends US, matched to real Steam games — tap for the live number)</span><br>{btns}</div>')
     rows = "".join(
         f"<tr><td><a href='/is-{e['slug']}-dead'><b>{html.escape(e['name'])}</b></a></td>"
         f"<td class='num'>{e['now']:,}</td><td class='num'>{e['d7_avg']:,}</td><td>{html.escape(e['label'])}</td></tr>"
@@ -154,7 +162,7 @@ def index_page(entries):
 <p>Most player-count sites publish invented estimates. This ledger publishes one thing: <strong>Valve's official
 concurrent-player API</strong>, sampled daily, with a graded verdict and a pre-registered flip rule per game — and an
 explicit note on what each number does <em>not</em> cover (consoles, other launchers).</p>
-<h2 style="margin-top:0">Check any game — live</h2>
+{trending_strip}<h2 style="margin-top:0">Check any game — live</h2>
 <div class="capsule">
 <input id="q" placeholder="Type a game name… (top-100 most played + tracked games)" style="width:100%;background:#0b0c0e;border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:10px 12px;color:#e8e9ec;font-size:15px" autocomplete="off">
 <div id="hits" style="margin-top:6px"></div><div id="live" style="margin-top:10px"></div>
@@ -166,7 +174,7 @@ function band(n){{return n>=100000?'Emphatically alive':n>=20000?'Alive and heal
 var q=document.getElementById('q'),hits=document.getElementById('hits'),live=document.getElementById('live');
 q.addEventListener('input',function(){{var v=q.value.trim().toLowerCase();hits.innerHTML='';if(v.length<2)return;
 POOL.filter(g=>g.n.toLowerCase().includes(v)).slice(0,6).forEach(function(g){{var b=document.createElement('button');b.textContent=g.n;b.style.cssText='margin:3px 4px 0 0;background:#1a1d22;border:1px solid rgba(255,255,255,.15);border-radius:7px;padding:5px 10px;color:#e8e9ec;cursor:pointer;font-size:13px';b.onclick=function(){{pick(g.a,g.n);}};hits.appendChild(b);}});}});
-function pick(a,nm){{live.innerHTML='<span class="muted">checking Valve\u2019s official API\u2026</span>';
+window._pick=pick;function pick(a,nm){{live.innerHTML='<span class="muted">checking Valve\u2019s official API\u2026</span>';
 fetch('/api/live?app='+a).then(r=>r.json()).then(function(d){{
 if(!d.ok){{live.innerHTML='<span class="muted">Valve publishes no number for this app.</span>';return;}}
 var g=POOL.find(x=>x.a===a);var name=nm||(g&&g.n)||('app '+a);
@@ -322,6 +330,8 @@ def main():
         label, _ = band_of(s["d7_avg"])
         entries.append({**g, **s, "label": label})
         open(os.path.join(SITE, f"is-{g['slug']}-dead.html"), "w", encoding="utf-8").write(game_page(g, rec))
+    tr_path = os.path.join(ROOT, "data", "trends-games.json")
+    trends = json.load(open(tr_path, encoding="utf-8")) if os.path.exists(tr_path) else {"hits": [], "watch": []}
     ai_path = os.path.join(ROOT, "data", "ai-disclosures.json")
     ai = json.load(open(ai_path, encoding="utf-8")) if os.path.exists(ai_path) else None
     has_tracker = bool(ai and ai.get("samples"))
@@ -329,7 +339,7 @@ def main():
         open(os.path.join(SITE, "steam-ai-disclosure-tracker.html"), "w", encoding="utf-8").write(tracker_page(ai))
         json.dump(ai, open(os.path.join(SITE, "ai-disclosures.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     open(os.path.join(SITE, "index.html"), "w", encoding="utf-8").write(
-        index_page(entries).replace('<a href="/methodology">methodology & bands</a>',
+        index_page(entries, trends).replace('<a href="/methodology">methodology & bands</a>',
             ('<a href="/steam-ai-disclosure-tracker">AI-disclosure tracker</a> · ' if has_tracker else '')
             + '<a href="/methodology">methodology & bands</a>'))
     open(os.path.join(SITE, "methodology.html"), "w", encoding="utf-8").write(methodology_page())
@@ -346,6 +356,9 @@ def main():
         if e["appid"] in seen: continue
         seen.add(e["appid"]); pool.append({"a": e["appid"], "n": e["name"]})
         quiz_items.append({"name": e["name"], "n": e["d7_avg"], "d": TODAY})
+    for w in trends.get("watch", []):
+        if w["appid"] in seen: continue
+        seen.add(w["appid"]); pool.append({"a": w["appid"], "n": w["name"]})
     json.dump(pool, open(os.path.join(SITE, "pool.json"), "w", encoding="utf-8"), ensure_ascii=False)
     json.dump({"d": TODAY, "items": quiz_items}, open(os.path.join(SITE, "quiz-pool.json"), "w", encoding="utf-8"), ensure_ascii=False)
     # machine-readable surfaces
