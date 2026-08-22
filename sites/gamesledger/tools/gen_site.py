@@ -175,6 +175,62 @@ the banding are arguments about the rule — which is exactly where such argumen
 <p class="muted">Data: <a href="/concurrents.json">concurrents.json</a>, CC BY 4.0 with attribution to {SITE_NAME}.</p>""" + FOOT
 
 
+
+def tracker_page(ai):
+    latest = ai["samples"][-1]
+    hist_rows = "".join(
+        f"<tr><td>{x['d']}</td><td class='num'>{x['disclosed']}/{x['classified']}</td>"
+        f"<td class='num'>{x['share_pct']}%</td></tr>" for x in ai["samples"][::-1][:26])
+    names = ", ".join(html.escape(n) for n in latest.get("disclosed_names", [])[:12]) or "—"
+    title = "What % of New Steam Games Disclose AI? Live Tracker"
+    desc = (f"Own weekly sample ({latest['d']}): {latest['share_pct']}% of the {latest['classified']} newest Steam releases "
+            f"carry a generative-AI content disclosure. Published studies: 10.9% (2024) → 19.9% (2025) → 30.8% (2026).")[:155]
+    faq = [
+        ("What percentage of new Steam games disclose generative AI?",
+         f"In this site's own sample of {latest['classified']} of the newest Steam releases on {latest['d']}, "
+         f"{latest['disclosed']} ({latest['share_pct']}%) carried Valve's AI Generated Content Disclosure. "
+         "Across full years, published studies report 10.9% of 2024 releases, 19.9% of 2025, and 30.8% of 2026 releases "
+         "to date (Sulka Haro, 'Three years of AI on Steam', 2026; Engadget reported ~20% of June 2026 Next Fest demos)."),
+        ("Where does this data come from?",
+         "Two layers, kept separate: our own weekly sample reads Valve's storefront directly (newest releases, "
+         "store-page disclosure section; unclassifiable pages are excluded, never guessed), and the yearly trajectory "
+         "cites published third-party studies with dates. The raw sample data is public at /ai-disclosures.json."),
+        ("Does disclosing AI content hurt a game's sales?",
+         "Unknown from this tracker. A July 2026 Cinevva study ('1 in 3 new games discloses AI, revenue tells a harder "
+         "story') examined revenue correlations; this page tracks the disclosure share only and does not infer causation."),
+    ]
+    ld = {"@context": "https://schema.org", "@graph": [
+        {"@type": "Dataset", "name": "Steam generative-AI disclosure share — weekly samples",
+         "description": desc, "url": SITE_URL + "/steam-ai-disclosure-tracker",
+         "license": "https://creativecommons.org/licenses/by/4.0/", "dateModified": TODAY,
+         "creator": {"@type": "Organization", "name": SITE_NAME}},
+        {"@type": "FAQPage", "mainEntity": [
+            {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faq]},
+    ]}
+    faq_html = "".join(f"<div class='faq-q'>{html.escape(q)}</div><p>{html.escape(a)}</p>" for q, a in faq)
+    return head(title, desc, "/steam-ai-disclosure-tracker", ld) + f"""
+<h1>What share of new Steam games discloses generative AI?</h1>
+<div class="muted" style="margin-bottom:1rem">Updated {latest['d']} · own weekly storefront sample + published yearly studies, kept separate</div>
+<div class="capsule"><span class="big">{latest['share_pct']}%</span>
+<span class="muted">of the {latest['classified']} newest Steam releases sampled on {latest['d']} carry Valve's AI Generated Content Disclosure
+({latest['disclosed']} games; {latest['unknown_excluded']} unclassifiable pages excluded, not guessed)</span></div>
+<h2>The trajectory (published studies, dated)</h2>
+<table><thead><tr><th>Release year</th><th class="num">Share with AI disclosure</th><th>Source</th></tr></thead><tbody>
+<tr><td>2024</td><td class="num">10.9%</td><td rowspan="3"><a href="https://fragwyz.substack.com/p/three-years-of-ai-on-steam" rel="noopener">Sulka Haro, "Three years of AI on Steam" (2026)</a>; corroborated by <a href="https://www.engadget.com/2195840/around-a-fifth-of-steam-next-fest-demos-have-a-generative-ai-disclosure/" rel="noopener">Engadget</a> (~20% of June 2026 Next Fest demos)</td></tr>
+<tr><td>2025</td><td class="num">19.9%</td></tr>
+<tr><td>2026 (to date)</td><td class="num">30.8%</td></tr>
+</tbody></table>
+<h2>Our own weekly samples</h2>
+<table><thead><tr><th>Sample date</th><th class="num">Disclosed / classified</th><th class="num">Share</th></tr></thead><tbody>{hist_rows}</tbody></table>
+<p class="muted">Method: newest storefront releases (games only, DLC excluded), store-page disclosure section detected
+directly; sample size ≈{latest['classified']}/week, so single-week numbers are noisy — the trend is the signal. Raw data:
+<a href="/ai-disclosures.json">/ai-disclosures.json</a> (CC BY 4.0).</p>
+<h2>Recently sampled games that disclose AI</h2>
+<p class="muted">{names}</p>
+<h2>Frequently asked questions</h2>{faq_html}
+<h2>More from the ledger</h2><p><a href="/">Is-it-dead verdicts, official numbers only →</a></p>""" + FOOT
+
+
 def main():
     games = json.load(open(os.path.join(ROOT, "data", "games.json"), encoding="utf-8"))["games"]
     store = json.load(open(os.path.join(ROOT, "data", "concurrents.json"), encoding="utf-8"))
@@ -190,11 +246,20 @@ def main():
         label, _ = band_of(s["d7_avg"])
         entries.append({**g, **s, "label": label})
         open(os.path.join(SITE, f"is-{g['slug']}-dead.html"), "w", encoding="utf-8").write(game_page(g, rec))
-    open(os.path.join(SITE, "index.html"), "w", encoding="utf-8").write(index_page(entries))
+    ai_path = os.path.join(ROOT, "data", "ai-disclosures.json")
+    ai = json.load(open(ai_path, encoding="utf-8")) if os.path.exists(ai_path) else None
+    has_tracker = bool(ai and ai.get("samples"))
+    if has_tracker:
+        open(os.path.join(SITE, "steam-ai-disclosure-tracker.html"), "w", encoding="utf-8").write(tracker_page(ai))
+        json.dump(ai, open(os.path.join(SITE, "ai-disclosures.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    open(os.path.join(SITE, "index.html"), "w", encoding="utf-8").write(
+        index_page(entries).replace('<a href="/methodology">methodology & bands</a>',
+            ('<a href="/steam-ai-disclosure-tracker">AI-disclosure tracker</a> · ' if has_tracker else '')
+            + '<a href="/methodology">methodology & bands</a>'))
     open(os.path.join(SITE, "methodology.html"), "w", encoding="utf-8").write(methodology_page())
     # machine-readable surfaces
     json.dump(store, open(os.path.join(SITE, "concurrents.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
-    urls = ["/", "/methodology"] + [f"/is-{e['slug']}-dead" for e in entries]
+    urls = ["/", "/methodology"] + (["/steam-ai-disclosure-tracker"] if has_tracker else []) + [f"/is-{e['slug']}-dead" for e in entries]
     open(os.path.join(SITE, "sitemap.xml"), "w", encoding="utf-8").write(
         '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
         + "".join(f"  <url><loc>{SITE_URL}{u}</loc><lastmod>{TODAY}</lastmod></url>\n" for u in urls) + "</urlset>\n")

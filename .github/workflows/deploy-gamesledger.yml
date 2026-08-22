@@ -27,13 +27,22 @@ jobs:
         if: github.event_name != 'push'
         working-directory: sites/gamesledger
         run: python3 tools/fetch_steam.py
+      - name: Weekly AI-disclosure sample (Mondays / dispatch)
+        if: github.event_name != 'push'
+        working-directory: sites/gamesledger
+        run: |
+          if [ "$(date -u +%u)" = "1" ] || [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            python3 tools/fetch_ai_disclosures.py || echo "::warning::AI-disclosure sample failed this week (page keeps last good data)"
+          else
+            echo "not Monday — skipping weekly AI sample"
+          fi
       - name: Commit refreshed data (schedule/dispatch only)
         if: github.event_name != 'push'
         run: |
           git config user.name "gamesledger-bot"
           git config user.email "noreply@anthropic.com"
-          git add sites/gamesledger/data/concurrents.json
-          git diff --cached --quiet || { git commit -m "chore(gamesledger): daily official Steam samples $(date -u +%F)"; git pull --rebase origin main; git push origin HEAD:main; }
+          git add sites/gamesledger/data/
+          git diff --cached --quiet || { git commit -m "chore(gamesledger): official Steam samples $(date -u +%F)"; git pull --rebase origin main; git push origin HEAD:main; }
       - name: Build
         working-directory: sites/gamesledger
         run: |
