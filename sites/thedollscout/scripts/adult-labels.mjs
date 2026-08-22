@@ -56,6 +56,7 @@ export const NON_EXPLICIT = [
   { page: "payment-protection.html", because: "UK Consumer Credit Act s.75, chargeback rights and the Financial Ombudsman route" },
   { page: "cost-calculator.html", because: "an arithmetic tool for first-year ownership cost" },
   { page: "scam-check.html", because: "a consumer-fraud checklist; the signals are generic to any overseas purchase" },
+  { page: "price-check.html", because: "a price-vs-dataset arithmetic tool; consumer-fraud protection, no explicit content" },
   { page: "trust.html", because: "our methodology, funding and correction policy" },
   { page: "data/index.html", because: "documentation for a CC BY 4.0 dataset of heights, weights and prices" },
   { page: "mcp.html", because: "API documentation for the callable endpoint" },
