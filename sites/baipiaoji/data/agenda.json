@@ -1,5 +1,5 @@
 {
-  "generated": "2026-08-21",
+  "generated": "2026-08-22",
   "note": "由 scripts/trend-radar.mjs 每日聚合五路站内信号生成。只排队不写事实；核实动作按硬规则执行。分数是领先指标的相对排序，不是预测。",
   "counts": {
     "candidate": 19,
@@ -25,6 +25,17 @@
     "next_structuring": "study"
   },
   "items": [
+    {
+      "id": "cathot:chat",
+      "type": "category_hot",
+      "title": "类目异动：chat（14 天内 8 个工具实质变更）",
+      "why": "DeepSeek、通义千问、豆包（字节跳动）、Poe、Claude、Kimi（月之暗面）、微软 Copilot、Grok（xAI）接连变动——同类厂商通常跟进换档，等 30 天复核阈值会慢半拍",
+      "action": "提前复核 chat 类尚未跟进的 1 条已核实额度（上次核实落后异动 3 天以上（早于 2026-08-11）），重点看定价页与帮助中心",
+      "refs": [
+        "chatgpt"
+      ],
+      "score": 140
+    },
     {
       "id": "candidate:danielvaughn.dev",
       "type": "verify_candidate",
@@ -157,18 +168,6 @@
         "https://news.ycombinator.com/item?id=49319814"
       ],
       "score": 35
-    },
-    {
-      "id": "candidate:mkornreich.me",
-      "type": "verify_candidate",
-      "title": "核实候选：Sokoban AI Solver",
-      "why": "HN 71 分 / 42 评论（2026-08-20 发现）——外部热度已验证，站内尚未收录",
-      "action": "按收录标准核实 https://mkornreich.me/projects/sokoban/；合格则中英同步入库，limits 走 limits-edit.mjs",
-      "refs": [
-        "https://mkornreich.me/projects/sokoban/",
-        "https://news.ycombinator.com/item?id=49330215"
-      ],
-      "score": 32
     }
   ]
 }
