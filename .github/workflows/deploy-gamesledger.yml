@@ -63,6 +63,23 @@ jobs:
                   json.loads(m)
           print(f"gate ok: {len(pages)} pages, all JSON-LD parses")
           PY
+      - name: IndexNow ping (schedule/dispatch only)
+        if: github.event_name != 'push'
+        working-directory: sites/gamesledger
+        run: |
+          KEY=$(basename static/*.txt .txt)
+          python3 - <<PYEOF
+          import json, urllib.request, re
+          urls = re.findall(r'<loc>([^<]+)</loc>', open('site/sitemap.xml').read())
+          body = json.dumps({"host": "games.agiscorecard.com", "key": "$KEY",
+                             "keyLocation": "https://games.agiscorecard.com/$KEY.txt", "urlList": urls}).encode()
+          req = urllib.request.Request("https://api.indexnow.org/indexnow", data=body,
+                                       headers={"Content-Type": "application/json"})
+          try:
+              print("indexnow:", urllib.request.urlopen(req, timeout=15).status, len(urls), "urls")
+          except Exception as e:
+              print("::warning::indexnow ping failed:", e)
+          PYEOF
       - name: Deploy worker
         uses: cloudflare/wrangler-action@v3
         with:

@@ -33,6 +33,33 @@ export default {
           { status: 502, headers: { "content-type": "application/json" } });
       }
     }
+
+    const bm = url.pathname.match(/^\/badge\/(\d{1,8})\.svg$/);
+    if (bm) {
+      const app = bm[1];
+      const cache = caches.default;
+      const key = new Request(url.origin + "/badge/" + app + ".svg");
+      let res = await cache.match(key);
+      if (res) return res;
+      let label = "no official number";
+      try {
+        const r = await fetch(STEAM + app, { headers: { "User-Agent": "gamesledger-badge/1.0" } });
+        const d = await r.json();
+        if (d && d.response && d.response.result === 1) label = d.response.player_count.toLocaleString("en-US") + " in-game";
+      } catch (e) {}
+      const text = label + " · Steam official";
+      const w = 120 + text.length * 7;
+      const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="26" role="img" aria-label="${text}">` +
+        `<title>live via games.agiscorecard.com</title>` +
+        `<rect width="${w}" height="26" rx="5" fill="#0b0c0e"/>` +
+        `<circle cx="14" cy="13" r="4" fill="#41d18f"/>` +
+        `<text x="26" y="17" font-family="Verdana,sans-serif" font-size="12" fill="#e8e9ec">${text}</text>` +
+        `<text x="${w - 8}" y="17" text-anchor="end" font-family="Verdana,sans-serif" font-size="9" fill="#9aa1ad">games ledger</text></svg>`;
+      res = new Response(svg, { headers: { "content-type": "image/svg+xml",
+        "cache-control": "public, max-age=600" } });
+      ctx.waitUntil(cache.put(key, res.clone()));
+      return res;
+    }
     return env.ASSETS.fetch(request);
   },
 };

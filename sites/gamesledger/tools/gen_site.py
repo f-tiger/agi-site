@@ -132,6 +132,11 @@ pipeline. History depth grows daily; {s['days']} sample day(s) on record so far.
 {html.escape(g['genre'].capitalize())}, released {g['released']}. A verdict change shows up here the day it happens — no
 editorial discretion involved.</p>
 <h2>Frequently asked questions</h2>{faq_html}
+<h2>Embed the live number</h2>
+<p class="muted">A live badge for your forum, Discord, wiki or README — updates every 10 minutes, always Valve's official number:</p>
+<div style="margin:.4rem 0"><img src="/badge/{g['appid']}.svg" alt="{html.escape(name)} live player badge"></div>
+<pre style="background:#121418;border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:10px;font-size:12px;overflow-x:auto">&lt;a href="{SITE_URL}/is-{slug}-dead?utm_source=badge"&gt;&lt;img src="{SITE_URL}/badge/{g['appid']}.svg" alt="{html.escape(name)} players right now"&gt;&lt;/a&gt;</pre>
+<pre style="background:#121418;border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:10px;font-size:12px;overflow-x:auto">[![{html.escape(name)} players right now]({SITE_URL}/badge/{g['appid']}.svg)]({SITE_URL}/is-{slug}-dead?utm_source=badge)</pre>
 <h2>More verdicts</h2><p><a href="/">All games on the ledger →</a></p>""" + FOOT
 
 
@@ -349,6 +354,10 @@ def main():
     open(os.path.join(SITE, "sitemap.xml"), "w", encoding="utf-8").write(
         '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
         + "".join(f"  <url><loc>{SITE_URL}{u}</loc><lastmod>{TODAY}</lastmod></url>\n" for u in urls) + "</urlset>\n")
+    # IndexNow key 文件(公开验证文件,自动收录机器的一部分)
+    import shutil, glob as _g
+    for kf in _g.glob(os.path.join(ROOT, "static", "*.txt")):
+        shutil.copy(kf, SITE)
     open(os.path.join(SITE, "robots.txt"), "w", encoding="utf-8").write(
         f"User-agent: *\nAllow: /\nSitemap: {SITE_URL}/sitemap.xml\n")
     open(os.path.join(SITE, "llms.txt"), "w", encoding="utf-8").write(
