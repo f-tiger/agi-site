@@ -4,7 +4,7 @@
   "name": "gridlings",
   "main": "worker.js",
   "compatibility_date": "2026-08-01",
-  "assets": { "directory": "site", "binding": "ASSETS" },
+  "assets": { "directory": "site", "binding": "ASSETS", "run_worker_first": true },
   "routes": [{ "pattern": "play.agiscorecard.com", "custom_domain": true }],
   "d1_databases": [{ "binding": "EV", "database_name": "gridlings-events", "database_id": "bd3b1ca9-e9cb-4b71-9834-df3d67b39504" }]
 }
