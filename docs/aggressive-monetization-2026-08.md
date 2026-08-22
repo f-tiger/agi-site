@@ -51,5 +51,5 @@ P1 原项,x402 复核后仍然值得占位**(Q4 GA,Cloudflare 同时在修买方
 - [x] clean 构建模式上线(两款游戏,`?clean=1` / `GL_CLEAN`)
 - [x] 授权弹药包成稿(报价卡/条款/渠道顺序/论坛帖)
 - [ ] owner:授权渠道 4 账号 + Apify 账号 + Monetization Gateway waitlist + TollBit
-- [ ] bpj 联盟映射(下一机器轮次:逐工具查联盟计划,按 bpj 站规落地)
+- [x] bpj 联盟映射(2026-08-22 完成:31 工具逐一核实,8 个现金计划,执行文档 sites/baipiaoji/docs/affiliate-map-2026-08.md;落地等 owner 拿到专属链接)
 - [ ] 微型出售:等 owner 表态,机器只备不动
