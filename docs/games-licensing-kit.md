@@ -5,9 +5,9 @@
 (Agarwal, Substack);$300-800/份非独占价格带被 Playgama 2026-04、Genieee 2025、
 htmlgames 挂牌价($1,000 站锁)、开发者论坛($400-600 要价)四方互证。
 
-## 资产(2026-08-23 扩至 10 款)
+## 资产(2026-08-23 扩至 11 款)
 
-十款成品(纯 vanilla JS、零后端、零依赖、iframe 即插即用、EN+zh、每款 450 天
+十一款成品(纯 vanilla JS、零后端、零依赖、iframe 即插即用、EN+zh、每款 450 天
 每日题 + ~320-440 畅玩、全部机器验证唯一解):
 - **Gridlings** — 5×5 双拉丁方 + 不相邻约束(旗舰)
 - **Balance** — 6×6 二元平衡(Binairo 族)
@@ -15,6 +15,7 @@ htmlgames 挂牌价($1,000 站锁)、开发者论坛($400-600 要价)四方互�
 - **Trail** — 一笔画路径(Zip 族,需求最大的规则集)
 - **Futoshiki** — 不等号 · **Towers** — 摩天楼 · **Mini Sudoku** — 6×6 数独
 - **Kropki** — 圆点逻辑(负约束) · **Sandwich** — 夹心求和 · **Thermometers** — 温度计填充
+- **Nonogram** — 数织(验收=纯线推理完备,业界唯一给「永不猜格」保证的每日数织)
 
 **清洁版已内建(2026-08-22,全 10 款生效)**:`?clean=1` 或页内
 `window.GL_CLEAN=true` → 无任何统计回传(含 gtag)、无外链框架、分享文案不带
@@ -27,11 +28,11 @@ URL、订阅表单与跨游戏导航条整体隐藏——正对 Coolmath「无�
 |---|---|---|
 | 单款站锁非独占 | 一个域名部署权,可改品牌/加自家广告,不得转售 | **$400** |
 | 任选 3 款打包 | 同上 | **$900** |
-| 全 10 款站锁 | 同上,一个「每日谜题频道」整包 | **$2,500** |
-| 白标源码(全 10 款) | 源码 + 换皮权 + 全部生成器脚本,不得上架源码市场转售 | **$4,000–5,000** |
+| 全 11 款站锁 | 同上,一个「每日谜题频道」整包 | **$2,500** |
+| 白标源码(全 11 款) | 源码 + 换皮权 + 全部生成器脚本,不得上架源码市场转售 | **$4,000–5,000** |
 | 独家(单款) | 面谈 | $5,000 起(Playgama 带:$5k-25k+) |
 
-新闻站点日更包(对标 Amuse Labs/Arkadium 的 quote-only B2B):10 款日更 iframe
+新闻站点日更包(对标 Amuse Labs/Arkadium 的 quote-only B2B):11 款日更 iframe
 轮换 + 我方托管,$100-200/月/站——小型/区域/中文（非大陆）媒体是买家盲区。
 单价锚不变($300-800 带),涨的是组合面:一次采购填满一个门户的整个逻辑分区。
 
@@ -68,15 +69,16 @@ URL、订阅表单与跨游戏导航条整体隐藏——正对 Coolmath「无�
 
 ## 论坛帖成稿(owner 粘贴用)
 
-> **[FOR LICENSE] Ten polished daily logic puzzles — vanilla JS, zero deps, EN+zh**
+> **[FOR LICENSE] Eleven polished daily logic puzzles — vanilla JS, zero deps, EN+zh**
 >
-> Licensing ten finished HTML5 logic puzzles, non-exclusive sitelock:
+> Licensing eleven finished HTML5 logic puzzles, non-exclusive sitelock:
 > Graeco-Latin grid, binary balance, two-star Star Battle, one-line path,
-> Futoshiki, Towers, 6×6 mini sudoku, Kropki, sandwich sums, thermometers.
+> Futoshiki, Towers, 6×6 mini sudoku, Kropki, sandwich sums, thermometers,
+> and a nonogram whose boards are provably solvable by line logic alone.
 > Each ships 450 pre-generated dailies + 320-440 free-play boards, every
 > board machine-verified to have a unique pure-deduction solution. Pure
 > vanilla JS, no backend, no dependencies, iframe-ready, English + Chinese,
 > mobile-first, ~100KB per game.
 > Play before you buy: https://play.agiscorecard.com (all ten linked)
-> $400/game sitelock, $900 any three, $2,500 all ten; white-label source
+> $400/game sitelock, $900 any three, $2,500 all eleven; white-label source
 > with reskin rights available. PayPal/wire. DM or reply.

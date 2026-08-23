@@ -36,9 +36,9 @@ label 前缀 `bal:` 区分。CrazyGames 投稿以双游戏组合提交(launch-ki
 命名注意:页面绝不用 Starstruck/Queens 作品牌;「Star Battle」为通用类型名
 (书架与克隆站均通用使用,风险最低)。
 
-## 规则集 4–10(2026-08-23,owner「继续扩展游戏」「游戏扩展到至少10款」)
+## 规则集 4–11(2026-08-23,owner「继续扩展游戏」「游戏扩展到至少10款」「继续深度扩展」)
 
-一夜从 3 款扩到 10 款,全部同壳同契约(450 每日 + ~320 畅玩、唯一解机器验证、
+一夜从 3 款扩到 11 款,全部同壳同契约(450 每日 + ~320 畅玩、唯一解机器验证、
 挑战链接 ct=、clean/embed、双语、/e 信标):
 - **Trail**(/trail,🐾,gen_trail.py,信标前缀 tr:):Zip 族一笔画。6×6 需
   9–12 个途经点才稳定唯一解——k 调低会非唯一,别动。命名红线:绝不用 Zip
@@ -55,6 +55,12 @@ label 前缀 `bal:` 区分。CrazyGames 投稿以双游戏组合提交(launch-ki
   线索全显示(经典呈现),只最小化已知数。
 - **Thermometers**(/thermo,🌡,gen_thermo.py,th:):温度计填充,后缀界剪枝
   求解器。客户端点格=填到该格,点水银顶端=回退。
+- **Nonogram**(/nonogram,▦,gen_nonogram.py,ng:):数织。**验收判据是线推理完备**
+  (行列约束交集迭代到不动点必须解满全盘)——比唯一解计数更强,直接兑现「永不
+  瞎猜」承诺,这恰是随机数织玩家的头号抱怨(2026-08 调研:每日站架 5+ 家但都不
+  给这个保证)。命名:Nonogram 为通用词(几十家站点公开用),**Picross(任天堂)/
+  Griddlers/Pic-a-Pix 绝不使用**;zh 用「数织」。archive 已扩为全 11 款通用档案
+  馆(?g=<slug> 深链,done 标记按各游戏前缀读)。
 - ms/kr/sa 共用 `site/app-latin.js`(页面注入 `window.LATIN_GAME` 配置);
   thermo 独立 `app-thermo.js`。**zh 页面在 /zh/<slug> 下用相对路径引资源,
   worker 里有一条 /zh/*.ext → 根资源的回退重写——删掉它 zh 页全裂。**
