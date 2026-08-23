@@ -27,9 +27,13 @@ jobs:
       - uses: actions/setup-node@v4
         with: { node-version: 22 }
       - run: node tools/fetch_trends_de.mjs
+      - name: Rising related queries (fast-capture signal)
+        run: |
+          pip install -q trendspy
+          python3 tools/fetch_trends_rising.py || echo "::warning::rising fetch failed — keep last good"
       - name: Commit snapshot if changed
         run: |
           git config user.name 'Claude'
           git config user.email 'noreply@anthropic.com'
-          git add data/trends-de.json
+          git add data/trends-de.json data/trends-rising.json
           git diff --cached --quiet || { git commit -m "chore(trends): 德国热搜触发器快照 $(date -u +%F)"; git pull --rebase origin main; git push origin main; }

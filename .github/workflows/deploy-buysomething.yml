@@ -43,7 +43,7 @@ jobs:
         run: |
           git config user.name "buysomething-bot"
           git config user.email "noreply@anthropic.com"
-          git add sites/buysomething/site/trends.json sites/buysomething/site/popularity.json 2>/dev/null || true
+          git add sites/buysomething/site/trends.json sites/buysomething/site/popularity.json sites/buysomething/site/rising.json 2>/dev/null || true
           git diff --cached --quiet || { git commit -m "chore(buysomething): daily trends + reader-popularity refresh $(date -u +%F)"; git pull --rebase origin main; git push origin HEAD:main; }
       - name: Gate — expected files present
         working-directory: sites/buysomething
