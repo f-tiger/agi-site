@@ -30,6 +30,7 @@ window.BALANCE_LANG={daily:"Daily",free:"Free play",streak:"Streak",hints_used:"
 
 <div class="meta"><span id="pnum">Daily</span><span id="timer">0:00</span></div>
 
+<div id="chbanner" hidden style="margin:.6rem 0;padding:.55rem .9rem;background:var(--bg2);border:1px solid var(--border2, var(--border,#26262a));border-radius:10px;font-size:14px;font-weight:600;"></div>
 <div id="grid" aria-label="puzzle grid"></div>
 
 <div class="bar">
@@ -41,8 +42,10 @@ window.BALANCE_LANG={daily:"Daily",free:"Free play",streak:"Streak",hints_used:"
   <h2>Balanced! 🎉</h2>
   <p>⏱ <span id="wtime"></span> · <span id="whints"></span></p>
   <p id="wstreak"></p>
+  <p id="chresult" hidden style="font-weight:700;"></p>
   <div class="bar">
     <button class="btn pri" onclick="document.getElementById('sharebtn').click()">Share result</button>
+    <button class="btn" id="chbtn">⚔️ Challenge a friend</button>
     <button class="btn" id="again">Play another</button>
   </div>
   <p class="subline"><a id="subcta" href="https://agiscorecard.beehiiv.com/subscribe?utm_source=gridlings&amp;utm_medium=balance_win" rel="noopener">Get one email when we ship a new puzzle mode →</a></p>

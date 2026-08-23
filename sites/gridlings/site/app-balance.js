@@ -10,6 +10,13 @@
   // links, no ads, no stats phoning home). Implies embed chrome, kills the
   // beacon entirely, and strips the URL from share text.
   var CLEAN = window.GL_CLEAN === true || /(^|[?&])clean=1/.test(location.search);
+  // Async challenge link (2026-08-23): ?ct=<seconds> — evidence-top viral
+  // mechanic (async beats live for small sites). No prizes ever; times are
+  // friendly-competition trust + a sanity floor server-side someday.
+  var CH = (function () {
+    var m = location.search.match(/[?&]ct=(\d{1,5})/);
+    return m ? parseInt(m[1], 10) : 0;
+  })();
   var state = null;
   var $ = function (id) { return document.getElementById(id); };
 
@@ -71,6 +78,15 @@
     $("pnum").textContent = (o.mode === "daily" ? (L.daily || "Daily") : (L.free || "Free play")) + " " + o.label;
     $("timer").textContent = "0:00";
     $("win").hidden = true;
+    if (CH && !CLEAN) {
+      var ban = $("chbanner");
+      if (ban) {
+        ban.hidden = false;
+        ban.textContent = "\u2694\uFE0F " + (L.ch_banner || "Someone solved this puzzle in") + " " +
+          Math.floor(CH / 60) + ":" + ("0" + CH % 60).slice(-2) + " \u2014 " + (L.ch_beat || "beat them!");
+        gev("challenge_open", String(CH));
+      }
+    }
     render();
     gev("play_start", o.mode === "daily" ? "bal-daily:" + o.key : "pool:" + o.key);
   }
@@ -151,6 +167,20 @@
     $("whints").textContent = state.hints ? (L.hints_used || "Hints") + ": " + state.hints : (L.no_hints || "No hints 🧠");
     $("win").hidden = false;
     gev("solve", "bal:" + state.key + (state.hints ? ":h" + state.hints : ":clean"), secs);
+    if (CH && !CLEAN) {
+      var beat = secs < CH;
+      var cb = $("chresult");
+      if (cb) {
+        cb.hidden = false;
+        cb.textContent = beat ? (L.ch_won || "\uD83C\uDFC6 You beat their time!") : (L.ch_lost || "They were faster \u2014 rematch?");
+      }
+      gev("challenge_result", beat ? "win" : "lose");
+    }
+    try {
+      var cu = location.origin + location.pathname + (location.search ? location.search.replace(/[?&]ct=\d+/, "") : "");
+      cu += (cu.indexOf("?") > -1 ? "&" : "?") + "ct=" + secs;
+      window._challenge = cu;
+    } catch (e) {}
     window._share = "Balance " + state.num + " ⏱ " + t +
       (state.hints ? " (" + state.hints + " 💡)" : " 🧠") +
       (streak > 1 ? " 🔥" + streak : "") + (CLEAN ? "" : "\nhttps://play.agiscorecard.com/balance");
@@ -187,6 +217,16 @@
     if (EMBED || CLEAN) document.documentElement.classList.add("embed");
     $("hintbtn").onclick = hint;
     $("sharebtn").onclick = share;
+    var chb = $("chbtn");
+    if (chb) chb.onclick = function () {
+      var u = window._challenge || (location.origin + location.pathname);
+      var txt = (L.ch_text || "I solved this puzzle \u2014 can you beat my time?") + "\n" + u;
+      (navigator.clipboard ? navigator.clipboard.writeText(txt) : Promise.reject()).then(function () {
+        chb.textContent = L.copied || "Copied!";
+        setTimeout(function () { chb.textContent = L.ch_btn || "\u2694\uFE0F Challenge a friend"; }, 1600);
+      }).catch(function () { prompt("Copy:", txt); });
+      gev("challenge_copy", state ? state.key : "");
+    };
     $("again").onclick = function () {
       var diff = state && state.mode === "pool" ? state.key.split("-")[1] : "medium";
       gev("play_again", "bal:" + diff);
