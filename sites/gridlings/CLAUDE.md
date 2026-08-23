@@ -36,6 +36,31 @@ label 前缀 `bal:` 区分。CrazyGames 投稿以双游戏组合提交(launch-ki
 命名注意:页面绝不用 Starstruck/Queens 作品牌;「Star Battle」为通用类型名
 (书架与克隆站均通用使用,风险最低)。
 
+## 规则集 4–10(2026-08-23,owner「继续扩展游戏」「游戏扩展到至少10款」)
+
+一夜从 3 款扩到 10 款,全部同壳同契约(450 每日 + ~320 畅玩、唯一解机器验证、
+挑战链接 ct=、clean/embed、双语、/e 信标):
+- **Trail**(/trail,🐾,gen_trail.py,信标前缀 tr:):Zip 族一笔画。6×6 需
+  9–12 个途经点才稳定唯一解——k 调低会非唯一,别动。命名红线:绝不用 Zip
+  (LinkedIn 2025-02 已申请商标)。
+- **Futoshiki**(/futoshiki,≶,gen_futoshiki.py,ft:):不等号。生成教训:
+  稀疏随机起步永不唯一,必须「满边起步再最小化」。
+- **Towers**(/towers,🏙,gen_towers.py,tw:):摩天楼。保留全部边线索
+  (经典呈现),只最小化已知数——线索最小化有病态种子会跑几分钟。
+- **Mini Sudoku**(/minisudoku,🔢,gen_minisudoku.py,ms:):6×6、2×3 宫。
+- **Kropki**(/kropki,⚫,gen_kropki.py,kr:):白点差 1/黑点翻倍/无点=都不是
+  (负约束是规则的一半,客户端也校验);1-2 对按惯例记黑点。序列化只存 W/B,
+  缺席即 N。多数每日 0 已知数。
+- **Sandwich**(/sandwich,🥪,gen_sandwich.py,sa:):1 与 n 之间求和,2n 条
+  线索全显示(经典呈现),只最小化已知数。
+- **Thermometers**(/thermo,🌡,gen_thermo.py,th:):温度计填充,后缀界剪枝
+  求解器。客户端点格=填到该格,点水银顶端=回退。
+- ms/kr/sa 共用 `site/app-latin.js`(页面注入 `window.LATIN_GAME` 配置);
+  thermo 独立 `app-thermo.js`。**zh 页面在 /zh/<slug> 下用相对路径引资源,
+  worker 里有一条 /zh/*.ext → 根资源的回退重写——删掉它 zh 页全裂。**
+- 新规则集入列清单:生成器+两页+worker 路由×2+sitemap×2+llms.txt+
+  gamesnav(全部页面)+CI 门(文件清单+gate 循环)+本节一行。
+
 ## 机器结构
 
 - `tools/gen_puzzles.py` → `site/puzzles-daily.json`(450 天)+

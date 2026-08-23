@@ -3,28 +3,29 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-<title>Futoshiki — Daily Inequality Puzzle, No Guessing</title>
-<meta name="description" content="A free daily Futoshiki: fill the grid so no row or column repeats a number and every inequality sign holds. One machine-verified solution per board. Unlimited free play.">
-<link rel="canonical" href="https://play.agiscorecard.com/futoshiki">
+<title>Mini Sudoku 6×6 — Free Daily Puzzle, No Guessing</title>
+<meta name="description" content="A free daily 6×6 mini sudoku with 2×3 boxes: every row, column and box holds 1–6 exactly once. One machine-verified solution per board. Unlimited free play.">
+<link rel="canonical" href="https://play.agiscorecard.com/minisudoku">
 <link rel="stylesheet" href="style.css">
-<link rel="alternate" hreflang="zh" href="https://play.agiscorecard.com/zh/futoshiki">
-<link rel="alternate" hreflang="en" href="https://play.agiscorecard.com/futoshiki">
-<meta property="og:title" content="Futoshiki — Daily Inequality Puzzle">
-<meta property="og:description" content="No repeats in any row or column; every &lt; and &gt; must hold. One provably unique solution a day. Free.">
-<meta property="og:url" content="https://play.agiscorecard.com/futoshiki">
+<link rel="alternate" hreflang="zh" href="https://play.agiscorecard.com/zh/minisudoku">
+<link rel="alternate" hreflang="en" href="https://play.agiscorecard.com/minisudoku">
+<meta property="og:title" content="Mini Sudoku 6×6 — Daily Puzzle">
+<meta property="og:description" content="Rows, columns and 2×3 boxes each hold 1–6 once. One provably unique solution a day. Free.">
+<meta property="og:url" content="https://play.agiscorecard.com/minisudoku">
 <meta property="og:type" content="website">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>≶</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔢</text></svg>">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebApplication","name":"Futoshiki by Gridlings","url":"https://play.agiscorecard.com/futoshiki","applicationCategory":"GameApplication","operatingSystem":"Any (browser)","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["New puzzle every day with a provably unique solution","Solvable by pure deduction — no guessing required","Unlimited free-play mode in three difficulties","Streak tracking and spoiler-free result sharing","No account, no download, works on any device"],"inLanguage":["en","zh"],"isPartOf":{"@type":"WebSite","name":"Gridlings","url":"https://play.agiscorecard.com/"}}
+{"@context":"https://schema.org","@type":"WebApplication","name":"Mini Sudoku by Gridlings","url":"https://play.agiscorecard.com/minisudoku","applicationCategory":"GameApplication","operatingSystem":"Any (browser)","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["New puzzle every day with a provably unique solution","Solvable by pure deduction — no guessing required","Unlimited free-play mode in three difficulties","Streak tracking and spoiler-free result sharing","No account, no download, works on any device"],"inLanguage":["en","zh"],"isPartOf":{"@type":"WebSite","name":"Gridlings","url":"https://play.agiscorecard.com/"}}
 </script>
 <script>
-window.FUTOSHIKI_LANG={daily:"Daily",free:"Free play",streak:"Streak",hints_used:"Hints",no_hints:"No hints 🧠",share:"Share result",copied:"Copied!"};
+window.MINISUDOKU_LANG={daily:"Daily",free:"Free play",streak:"Streak",hints_used:"Hints",no_hints:"No hints 🧠",share:"Share result",copied:"Copied!"};
+window.LATIN_GAME={type:"minisudoku",path:"/minisudoku",file:"minisudoku",name:"Mini Sudoku",langVar:"MINISUDOKU_LANG"};
 </script>
 </head>
 <body>
 <div class="wrap">
 <header>
-  <h1><a href="/futoshiki">Futoshiki</a></h1>
+  <h1><a href="/minisudoku">Mini Sudoku</a></h1>
   <span style="color:var(--mut);font-size:.85rem">by <a href="/" style="color:var(--acc)">Gridlings</a></span>
 </header>
 
@@ -48,7 +49,7 @@ window.FUTOSHIKI_LANG={daily:"Daily",free:"Free play",streak:"Streak",hints_used
     <button class="btn" id="chbtn">⚔️ Challenge a friend</button>
     <button class="btn" id="again">Play another</button>
   </div>
-  <p class="subline"><a id="subcta" href="https://agiscorecard.beehiiv.com/subscribe?utm_source=gridlings&amp;utm_medium=futoshiki_win" rel="noopener">Get one email when we ship a new puzzle mode →</a></p>
+  <p class="subline"><a id="subcta" href="https://agiscorecard.beehiiv.com/subscribe?utm_source=gridlings&amp;utm_medium=minisudoku_win" rel="noopener">Get one email when we ship a new puzzle mode →</a></p>
 </div>
 
 <p class="modes">Free play: <a href="?p=easy-0" id="d-easy">Easy</a> · <a href="?p=medium-0" id="d-medium">Medium</a> · <a href="?p=hard-0" id="d-hard">Hard</a></p>
@@ -57,12 +58,12 @@ window.FUTOSHIKI_LANG={daily:"Daily",free:"Free play",streak:"Streak",hints_used
 <div class="rules">
   <h2>How to play</h2>
   <ul>
-    <li>Tap a cell to cycle through the numbers (1–n) and back to empty.</li>
+    <li>Tap a cell to cycle through the numbers (1–6) and back to empty.</li>
     <li>Every <strong>row and column</strong> contains each number exactly once.</li>
-    <li>Every <strong>inequality sign</strong> between two cells must hold (‹ › ∧ ∨ point at the smaller number).</li>
+    <li>Every outlined <strong>2×3 box</strong> also contains each number exactly once.</li>
     <li>Every board has exactly <strong>one solution</strong>, machine-verified before publication.</li>
   </ul>
-  <p style="margin-top:8px">A classic Japanese pencil puzzle in daily form. Sister puzzles: <a href="/">Gridlings</a>.</p>
+  <p style="margin-top:8px">The quick-coffee version of sudoku — same logic, five minutes. Sister puzzles: <a href="/">Gridlings</a>.</p>
 </div>
 
 <footer>
@@ -70,6 +71,6 @@ window.FUTOSHIKI_LANG={daily:"Daily",free:"Free play",streak:"Streak",hints_used
   <p class="subline">Embed this game: add <code>?embed=1</code> to the URL in an iframe.</p>
 </footer>
 </div>
-<script src="app-futoshiki.js"></script>
+<script src="app-latin.js"></script>
 </body>
 </html>

@@ -3,28 +3,29 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-<title>不等号谜题 Futoshiki — 每日数字逻辑，纯推理可解</title>
-<meta name="description" content="免费每日不等号谜题（Futoshiki）：每行每列数字不重复，所有大于小于号必须成立。每题机器验证唯一解，另有无限畅玩。">
-<link rel="canonical" href="https://play.agiscorecard.com/zh/futoshiki">
+<title>三明治谜题 — 每日夹心求和逻辑，纯推理可解</title>
+<meta name="description" content="免费每日三明治谜题：填满拉丁方阵，行列外侧数字 = 该行列中 1 与最大数之间所有数字之和。每题机器验证唯一解。">
+<link rel="canonical" href="https://play.agiscorecard.com/zh/sandwich">
 <link rel="stylesheet" href="style.css">
-<link rel="alternate" hreflang="en" href="https://play.agiscorecard.com/futoshiki">
-<link rel="alternate" hreflang="zh" href="https://play.agiscorecard.com/zh/futoshiki">
-<meta property="og:title" content="不等号谜题 Futoshiki — 每日数字逻辑">
-<meta property="og:description" content="每行每列不重复、所有不等号成立。每天一题、唯一解。免费无账号。">
-<meta property="og:url" content="https://play.agiscorecard.com/zh/futoshiki">
+<link rel="alternate" hreflang="en" href="https://play.agiscorecard.com/sandwich">
+<link rel="alternate" hreflang="zh" href="https://play.agiscorecard.com/zh/sandwich">
+<meta property="og:title" content="三明治谜题 — 每日夹心求和">
+<meta property="og:description" content="外侧线索 = 夹在 1 和最大数之间的数字之和。每天一题、唯一解。免费无账号。">
+<meta property="og:url" content="https://play.agiscorecard.com/zh/sandwich">
 <meta property="og:type" content="website">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>≶</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🥪</text></svg>">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebApplication","name":"不等号谜题 Futoshiki","url":"https://play.agiscorecard.com/zh/futoshiki","applicationCategory":"GameApplication","operatingSystem":"Any (browser)","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["每天一题，机器验证唯一解","纯推理可解，永不需要瞎猜","三档难度无限畅玩","连胜记录与无剧透战绩分享","免注册、免下载、任何设备可玩"],"inLanguage":["zh","en"],"isPartOf":{"@type":"WebSite","name":"Gridlings","url":"https://play.agiscorecard.com/"}}
+{"@context":"https://schema.org","@type":"WebApplication","name":"三明治谜题 Sandwich","url":"https://play.agiscorecard.com/zh/sandwich","applicationCategory":"GameApplication","operatingSystem":"Any (browser)","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["每天一题，机器验证唯一解","纯推理可解，永不需要瞎猜","三档难度无限畅玩","连胜记录与无剧透战绩分享","免注册、免下载、任何设备可玩"],"inLanguage":["zh","en"],"isPartOf":{"@type":"WebSite","name":"Gridlings","url":"https://play.agiscorecard.com/"}}
 </script>
 <script>
-window.FUTOSHIKI_LANG={daily:"每日",free:"畅玩",streak:"连胜",hints_used:"提示",no_hints:"零提示 🧠",share:"分享战绩",copied:"已复制！",ch_banner:"有人用时",ch_beat:"超过 TA！",ch_won:"🏆 你更快！",ch_lost:"TA 更快——再战？",ch_text:"我解开了这道谜题——你能比我快吗？",ch_btn:"⚔️ 挑战好友"};
+window.SANDWICH_LANG={daily:"每日",free:"畅玩",streak:"连胜",hints_used:"提示",no_hints:"零提示 🧠",share:"分享战绩",copied:"已复制！",ch_banner:"有人用时",ch_beat:"超过 TA！",ch_won:"🏆 你更快！",ch_lost:"TA 更快——再战？",ch_text:"我解开了这道谜题——你能比我快吗？",ch_btn:"⚔️ 挑战好友"};
+window.LATIN_GAME={type:"sandwich",path:"/zh/sandwich",file:"/sandwich",name:"三明治谜题",langVar:"SANDWICH_LANG"};
 </script>
 </head>
 <body>
 <div class="wrap">
 <header>
-  <h1><a href="/zh/futoshiki">不等号</a></h1>
+  <h1><a href="/zh/sandwich">三明治</a></h1>
   <span style="color:var(--mut);font-size:.85rem">出品 <a href="/zh" style="color:var(--acc)">Gridlings</a></span>
 </header>
 
@@ -48,7 +49,7 @@ window.FUTOSHIKI_LANG={daily:"每日",free:"畅玩",streak:"连胜",hints_used:"
     <button class="btn" id="chbtn">⚔️ 挑战好友</button>
     <button class="btn" id="again">再来一局</button>
   </div>
-  <p class="subline"><a id="subcta" href="https://agiscorecard.beehiiv.com/subscribe?utm_source=gridlings&amp;utm_medium=futoshiki_win_zh" rel="noopener">新模式上线时收一封邮件（英文表单）→</a></p>
+  <p class="subline"><a id="subcta" href="https://agiscorecard.beehiiv.com/subscribe?utm_source=gridlings&amp;utm_medium=sandwich_win_zh" rel="noopener">新模式上线时收一封邮件（英文表单）→</a></p>
 </div>
 
 <p class="modes">畅玩：<a href="?p=easy-0" id="d-easy">入门</a> · <a href="?p=medium-0" id="d-medium">进阶</a> · <a href="?p=hard-0" id="d-hard">困难</a></p>
@@ -59,10 +60,10 @@ window.FUTOSHIKI_LANG={daily:"每日",free:"畅玩",streak:"连胜",hints_used:"
   <ul>
     <li>点击格子循环填入数字（1–n），再点回到空。</li>
     <li>每一<strong>行、每一列</strong>数字不重复。</li>
-    <li>所有<strong>不等号</strong>必须成立（尖端指向较小的数）。</li>
+    <li>外侧线索 = 该行/列中<strong>夹在 1 与最大数之间</strong>的所有数字之和（「三明治夹心」）。</li>
     <li>每一题都有且只有<strong>一个解</strong>，发布前由机器验证。</li>
   </ul>
-  <p style="margin-top:8px">经典日式纸笔谜题的每日版。姊妹作：<a href="/zh">Gridlings</a>。</p>
+  <p style="margin-top:8px">三明治数独的精华，浓缩成五分钟的每日一题。 姊妹作：<a href="/zh">Gridlings</a>。</p>
 </div>
 
 <footer>
@@ -70,6 +71,6 @@ window.FUTOSHIKI_LANG={daily:"每日",free:"畅玩",streak:"连胜",hints_used:"
   <p class="subline">嵌入本游戏：在 iframe 的 URL 后加 <code>?embed=1</code>。</p>
 </footer>
 </div>
-<script src="app-futoshiki.js"></script>
+<script src="/app-latin.js"></script>
 </body>
 </html>

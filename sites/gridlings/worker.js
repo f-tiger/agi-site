@@ -67,6 +67,26 @@ export default {
       assetReq = new Request(new URL("/towers.html", url).toString(), request);
     } else if (url.pathname === "/zh/towers" || url.pathname === "/zh/towers/") {
       assetReq = new Request(new URL("/towers-zh.html", url).toString(), request);
+    } else if (url.pathname === "/minisudoku" || url.pathname === "/minisudoku/") {
+      assetReq = new Request(new URL("/minisudoku.html", url).toString(), request);
+    } else if (url.pathname === "/zh/minisudoku" || url.pathname === "/zh/minisudoku/") {
+      assetReq = new Request(new URL("/minisudoku-zh.html", url).toString(), request);
+    } else if (url.pathname === "/kropki" || url.pathname === "/kropki/") {
+      assetReq = new Request(new URL("/kropki.html", url).toString(), request);
+    } else if (url.pathname === "/zh/kropki" || url.pathname === "/zh/kropki/") {
+      assetReq = new Request(new URL("/kropki-zh.html", url).toString(), request);
+    } else if (url.pathname === "/sandwich" || url.pathname === "/sandwich/") {
+      assetReq = new Request(new URL("/sandwich.html", url).toString(), request);
+    } else if (url.pathname === "/zh/sandwich" || url.pathname === "/zh/sandwich/") {
+      assetReq = new Request(new URL("/sandwich-zh.html", url).toString(), request);
+    } else if (url.pathname === "/thermo" || url.pathname === "/thermo/") {
+      assetReq = new Request(new URL("/thermo.html", url).toString(), request);
+    } else if (url.pathname === "/zh/thermo" || url.pathname === "/zh/thermo/") {
+      assetReq = new Request(new URL("/thermo-zh.html", url).toString(), request);
+    } else if (url.pathname.startsWith("/zh/") && /\.(js|css|json|png|svg|txt|ico|webmanifest)$/.test(url.pathname)) {
+      // zh pages are served at /zh/<game> but reference assets relatively,
+      // which the browser resolves under /zh/ — fall back to the root asset
+      assetReq = new Request(new URL(url.pathname.slice(3), url).toString(), request);
     }
     const res = await env.ASSETS.fetch(assetReq);
 
