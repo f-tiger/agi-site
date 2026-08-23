@@ -5,28 +5,35 @@
 (Agarwal, Substack);$300-800/份非独占价格带被 Playgama 2026-04、Genieee 2025、
 htmlgames 挂牌价($1,000 站锁)、开发者论坛($400-600 要价)四方互证。
 
-## 资产
+## 资产(2026-08-23 扩至 10 款)
 
-两款成品(纯 vanilla JS、零后端、零依赖、iframe 即插即用、EN+zh、每日题机器验证
-唯一解):
-- **Gridlings** — 5×5 双拉丁方+不相邻约束,450 天每日 + 440 畅玩
-- **Balance** — 6×6 二元平衡(Binairo 族),450 天每日 + 440 畅玩
+十款成品(纯 vanilla JS、零后端、零依赖、iframe 即插即用、EN+zh、每款 450 天
+每日题 + ~320-440 畅玩、全部机器验证唯一解):
+- **Gridlings** — 5×5 双拉丁方 + 不相邻约束(旗舰)
+- **Balance** — 6×6 二元平衡(Binairo 族)
+- **Star Battle** — 10×10 双星(克隆站普遍只做单星)
+- **Trail** — 一笔画路径(Zip 族,需求最大的规则集)
+- **Futoshiki** — 不等号 · **Towers** — 摩天楼 · **Mini Sudoku** — 6×6 数独
+- **Kropki** — 圆点逻辑(负约束) · **Sandwich** — 夹心求和 · **Thermometers** — 温度计填充
 
-**清洁版已内建(2026-08-22)**:`?clean=1` 或页内 `window.GL_CLEAN=true` →
-无任何统计回传(含 gtag)、无外链框架、分享文案不带 URL——正对 Coolmath
-「无广告、无外链、无统计计数器」三条收稿红线。
+**清洁版已内建(2026-08-22,全 10 款生效)**:`?clean=1` 或页内
+`window.GL_CLEAN=true` → 无任何统计回传(含 gtag)、无外链框架、分享文案不带
+URL、订阅表单与跨游戏导航条整体隐藏——正对 Coolmath「无广告、无外链、无统计
+计数器」三条收稿红线。
 
 ## 报价卡(锚定 $500 成交价 + $300-800 带)
 
 | 层级 | 内容 | 价格 |
 |---|---|---|
 | 单款站锁非独占 | 一个域名部署权,可改品牌/加自家广告,不得转售 | **$400** |
-| 双款打包站锁 | 同上,两款 | **$700** |
-| 白标源码(双款) | 源码 + 换皮权 + 生成器脚本,不得上架源码市场转售 | **$1,500–2,000** |
+| 任选 3 款打包 | 同上 | **$900** |
+| 全 10 款站锁 | 同上,一个「每日谜题频道」整包 | **$2,500** |
+| 白标源码(全 10 款) | 源码 + 换皮权 + 全部生成器脚本,不得上架源码市场转售 | **$4,000–5,000** |
 | 独家(单款) | 面谈 | $5,000 起(Playgama 带:$5k-25k+) |
 
-新闻站点日更包(对标 Amuse Labs/Arkadium 的 quote-only B2B):两款日更 iframe
-+ 我方托管,$50-100/月/站——小型/区域/中文（非大陆）媒体是买家盲区。
+新闻站点日更包(对标 Amuse Labs/Arkadium 的 quote-only B2B):10 款日更 iframe
+轮换 + 我方托管,$100-200/月/站——小型/区域/中文（非大陆）媒体是买家盲区。
+单价锚不变($300-800 带),涨的是组合面:一次采购填满一个门户的整个逻辑分区。
 
 ## 授权条款一页(成交时发)
 
@@ -53,23 +60,23 @@ htmlgames 挂牌价($1,000 站锁)、开发者论坛($400-600 要价)四方互�
 
 ## Owner 动作清单(全部 ≤15 分钟/个)
 
-- [ ] Coolmath developers 账号 + 提交两款(用现网 URL)
+- [ ] Coolmath developers 账号 + 提交(先 3 款:Gridlings/Star Battle/Trail,用现网 URL)
 - [ ] HTML5GameDevs 论坛账号 + 发 Marketplace 帖(帖子成稿见下)
 - [ ] Envato 作者账号(CodeCanyon 上架物料我方已备)
-- [ ] itch.io 账号 + 免费挂两款
+- [ ] itch.io 账号 + 免费挂 3 款(同上)
 - [ ] 收款方式确认:PayPal 可用?否则 wire/USDT(条款一页已写)
 
 ## 论坛帖成稿(owner 粘贴用)
 
-> **[FOR LICENSE] Two polished daily logic puzzles — vanilla JS, zero deps, EN+zh**
+> **[FOR LICENSE] Ten polished daily logic puzzles — vanilla JS, zero deps, EN+zh**
 >
-> Licensing two finished HTML5 logic puzzles, non-exclusive sitelock:
-> **Gridlings** (5×5 double-Latin constraint grid) and **Balance** (6×6
-> Binairo-family). Each ships 450 pre-generated dailies + 440 free-play
-> boards, every board machine-verified to have a unique pure-deduction
-> solution. Pure vanilla JS, no backend, no dependencies, iframe-ready,
-> English + Chinese, mobile-first, ~100KB total per game.
-> Play before you buy: https://play.agiscorecard.com and
-> https://play.agiscorecard.com/balance
-> $400/game sitelock, $700 both; white-label source with reskin rights
-> available. PayPal/wire. DM or reply.
+> Licensing ten finished HTML5 logic puzzles, non-exclusive sitelock:
+> Graeco-Latin grid, binary balance, two-star Star Battle, one-line path,
+> Futoshiki, Towers, 6×6 mini sudoku, Kropki, sandwich sums, thermometers.
+> Each ships 450 pre-generated dailies + 320-440 free-play boards, every
+> board machine-verified to have a unique pure-deduction solution. Pure
+> vanilla JS, no backend, no dependencies, iframe-ready, English + Chinese,
+> mobile-first, ~100KB per game.
+> Play before you buy: https://play.agiscorecard.com (all ten linked)
+> $400/game sitelock, $900 any three, $2,500 all ten; white-label source
+> with reskin rights available. PayPal/wire. DM or reply.

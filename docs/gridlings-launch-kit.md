@@ -1,28 +1,32 @@
 # Gridlings 首发弹药包（owner 手动发布，机器绝不代发）
 
-生成日 2026-08-22。发布前自查：游戏已可玩（play.agiscorecard.com 打开、当日谜题
-正常）、分享按钮复制正常。两个帖子**不要同一天发**——先 r/WebGames（低风险热身、
-收集反馈），2-3 天后 Show HN（把 r/WebGames 学到的问题修掉再上）。
+生成日 2026-08-22；**2026-08-23 全面改版：组合已从 2 款扩到 10 款**（Gridlings /
+Balance / Star Battle / Trail / Futoshiki / Towers / Mini Sudoku / Kropki /
+Sandwich / Thermometers，全部 450 天每日 + 三档畅玩 + 机器验证唯一解 + EN/zh +
+挑战链接）。发布前自查：play.agiscorecard.com 打开、导航条 10 款都能进、当日谜题
+正常、胜利画面内联订阅表单出现。两个帖子**不要同一天发**——先 r/WebGames（低风险
+热身、收集反馈），2-3 天后 Show HN（把学到的问题修掉再上）。
 
 ## ① r/WebGames（先发）
 
 发帖前花一分钟重读该版当前版规（沙箱够不着 Reddit，我没法替你核实最新规则）。
 
 **标题：**
-> Gridlings — a daily logic grid where you never have to guess (free, no account)
+> I built 10 daily logic puzzles where you never have to guess (free, no account)
 
 **正文：**
-> I built a daily constraint puzzle: fill the grid so every row and column has
-> each animal once and each color once, every animal+color pair appears exactly
-> once, and the same animal never touches itself — even diagonally.
+> Every board across all ten games is machine-verified before publishing to
+> have exactly one solution reachable by pure deduction — if you're stuck,
+> there is always a provable next cell. No bifurcation, no guessing, ever.
 >
-> The part I care most about: every board is machine-verified before publishing
-> to have exactly one solution reachable by pure deduction. If you're ever
-> stuck, there is always a provable next cell — no bifurcation, no guessing.
+> The set: a Graeco-Latin grid (Gridlings), binary balance, two-star Star
+> Battle (10×10 — most sites only do one-star), a draw-one-line path puzzle,
+> Futoshiki, Towers/Skyscrapers, 6×6 mini sudoku, Kropki (the missing dot is
+> a clue too), sandwich sums, and thermometers.
 >
-> Daily puzzle + unlimited free play in three difficulties. No account, no ads,
-> works on phones. Feedback very welcome — especially whether the difficulty
-> ramp feels right.
+> Each has a daily + unlimited free play in three difficulties, streaks, and
+> a "beat my time" challenge link. No account, no ads, works on phones.
+> Feedback very welcome — especially which rulesets deserve bigger boards.
 >
 > https://play.agiscorecard.com
 
@@ -31,61 +35,60 @@
 ## ② Show HN（2-3 天后）
 
 **标题（HN 规范：朴素、无营销腔）：**
-> Show HN: A daily logic puzzle that's provably solvable without guessing
+> Show HN: Ten daily logic puzzles, each board machine-proven to be unique
 
 **正文（首条评论用，HN 惯例是正文留空、URL 直达游戏，作者第一时间在评论区补背景）：**
 > I like daily logic grids (Queens/Tango-style) but hate the moment where you
-> can't tell if you're stuck or the puzzle wants a guess. So the generator here
-> enforces a stronger contract: every published board has exactly one solution
-> AND a full solver run proves it's reachable by deduction alone.
+> can't tell if you're stuck or the puzzle wants a guess. So every generator
+> here enforces the same contract: a published board has exactly one solution,
+> proven by exhaustive solver run before it ships. 450 days of dailies per
+> game are pre-baked into static JSON — no backend at all.
 >
-> Rules: N×N grid, each row/column has each animal once and each color once
-> (double Latin square), every animal-color pair appears exactly once
-> (Graeco-Latin orthogonality), and the same animal never touches itself,
-> even diagonally. The adjacency rule on top of orthogonality is what makes
-> boards feel tight — and it quietly kills most board sizes: a full 4×4 is
-> already impossible (order 4 has only two non-touching permutations), and
-> 6×6 falls to Euler's 36 officers problem. 5×5 is the sweet spot, so that's
-> the board.
+> Writing ten generators taught me more than the games themselves:
+> a 4×4 Graeco-Latin grid with a no-touch rule is mathematically impossible
+> (order 4 has only two non-touching permutations), and 6×6 falls to Euler's
+> 36 officers problem — so that game is 5×5. Futoshiki almost never verifies
+> unique from sparse random clues; you have to start from ALL inequality
+> edges and minimize down. Kropki's negative constraint (no dot = neither
+> relation) carries half the puzzle. And Star Battle region "growth" produces
+> disconnected regions unless you carve a corridor between star seeds first —
+> the uniqueness validator caught that as a real bug before launch.
 >
-> Stack is deliberately boring: a Python generator bakes 450 pre-verified
-> dailies + ~440 free-play boards into static JSON; the client is vanilla JS
-> on Cloudflare Workers. No backend, no ads, no account.
+> Stack is deliberately boring: Python generators, vanilla JS clients,
+> static JSON on Cloudflare Workers. No ads, no account.
 >
-> Happy to answer anything about the generator or the uniqueness prover.
+> Happy to answer anything about the generators or the uniqueness provers.
 
 **守则**：全程真人回复评论；不请任何人点赞；如果没上首页，就当收集了一轮免费
 评审——不重发（HN 允许隔一段时间换角度重投一次，那是几周后的事）。
 
 ## ③ 门户投稿（第 2 周，需要你注册开发者账号，各约 10 分钟）
 
-- CrazyGames: developer.crazygames.com 注册 → 提交 URL 即可（iframe 友好已就绪）。
-  审核 2-4 周。**两款一起投（组合过审率更高，互相导流）：Gridlings + Balance
-  （`https://play.agiscorecard.com/balance?embed=1`，Category: Puzzle/Logic，
-  短描述：Fill the grid with suns and moons — three of each per row and column,
-  never three in a row. One provably unique solution, pure deduction.）**
-  Gridlings 投稿文案：
-  - Game URL: `https://play.agiscorecard.com/?embed=1`
-  - Name: Gridlings
-  - Category: Puzzle / Logic
-  - Short description (≤ ~140 chars):
+**首批投 3 款**（新账号一次挂 10 款容易被当刷量；先用最有辨识度的三款过审建立
+账号信誉，2 周后补投其余）：Gridlings、Star Battle（2★ 是差异点）、Trail（Zip
+需求最大）。全部 `?embed=1` iframe 就绪。
+
+- CrazyGames: developer.crazygames.com 注册 → 提交 URL。审核 2-4 周。
+  - Gridlings — URL `https://play.agiscorecard.com/?embed=1`，Category
+    Puzzle/Logic，短描述：
     > Daily logic grid: every animal in every color, no repeats, no touching.
     > One provably unique solution — pure deduction, never guessing.
-  - Long description:
-    > Fill the 5×5 grid so every row and column contains each animal once and
-    > each color once, every animal-color pair appears exactly once, and the
-    > same animal never touches itself — even diagonally. Every board is
-    > machine-verified before publishing to have exactly one solution
-    > reachable by logic alone: if you're stuck, there is always a provable
-    > next cell. One daily puzzle plus unlimited free play in three
-    > difficulties. Tracks your streak, share your solve time spoiler-free.
-  - Controls: Tap/click a cell, then tap an animal-color pair from the palette.
-  - Tags: logic, puzzle, daily, grid, brain, deduction
-- GamePix: partners.gamepix.com/developers 同上。
+  - Star Battle — URL `https://play.agiscorecard.com/starbattle?embed=1`：
+    > Daily 10×10 two-star Star Battle. Place stars, no two touching —
+    > every board machine-verified to have one unique solution.
+  - Trail — URL `https://play.agiscorecard.com/trail?embed=1`：
+    > Draw one line through every cell, hitting the numbers in order.
+    > A new hand-checked board every day. Pure deduction, no guessing.
+  - Controls 通用：Tap/click。Tags: logic, puzzle, daily, grid, brain, deduction
+- GamePix: partners.gamepix.com/developers 同上（同 3 款）。
+- 第 2 批（过审后）：Balance / Futoshiki / Towers / Mini Sudoku / Kropki /
+  Sandwich / Thermometers，文案我届时按首批反馈出。
 - Poki: 先不投——等自有域有 4 周留存数据后我出 pitch。
 
 ## ④ 我方自动侧（无需你动手）
 
 - 分享战绩文案、embed 模式、hreflang zh 版、llms.txt、结构化数据:已内建
-- D1 埋点看板:play_start / solve / share_copy / sub_click,周一记分板纳入
-- IndexNow:gridlings 站点无每日内容变更,暂不挂(避免空 ping)
+- 胜利画面内联订阅（D1 存储优先，beehiiv 降级）:2026-08-23 上线，漏斗
+  sub_submit/sub_ok/sub_fail
+- D1 埋点看板:play_start / solve / share_copy / challenge_* / sub_*,周一记分板纳入
+- IndexNow:已随周一 03:17 UTC 例行任务覆盖 play. 子域
