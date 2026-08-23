@@ -2,13 +2,24 @@
  "ok": true,
  "fetched": "2026-08-23",
  "source": "https://trends.google.com/trending/rss?geo=DE",
- "matched": [
-  {
-   "title": "bodenfrost",
-   "traffic": "500+"
-  }
- ],
+ "matched": [],
  "top": [
+  {
+   "title": "fc köln",
+   "traffic": "500+"
+  },
+  {
+   "title": "stefan effenberg",
+   "traffic": "1000+"
+  },
+  {
+   "title": "oscar piastri",
+   "traffic": "100+"
+  },
+  {
+   "title": "the walking dead: dead city s3e5",
+   "traffic": "100+"
+  },
   {
    "title": "atlético madrid vs villarreal",
    "traffic": "200+"
@@ -23,30 +34,14 @@
   },
   {
    "title": "nico schlotterbeck",
-   "traffic": "200+"
-  },
-  {
-   "title": "dua lipa",
-   "traffic": "200+"
+   "traffic": "500+"
   },
   {
    "title": "vfb 1921 krieschow",
    "traffic": "200+"
   },
   {
-   "title": "premier league spiele",
-   "traffic": "200+"
-  },
-  {
-   "title": "wiek emerytalny",
-   "traffic": "100+"
-  },
-  {
-   "title": "bodenfrost",
-   "traffic": "500+"
-  },
-  {
-   "title": "detektiv conan",
+   "title": "dua lipa",
    "traffic": "200+"
   }
  ],
@@ -71,9 +66,7 @@
   },
   {
    "d": "2026-08-23",
-   "matched": [
-    "bodenfrost"
-   ]
+   "matched": []
   }
  ]
 }
