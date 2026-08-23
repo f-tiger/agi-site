@@ -17,7 +17,8 @@ SEEDS = ["luftentfeuchter", "heizlüfter", "balkonkraftwerk",
          "klimaanlage", "schimmel entfernen", "infrarotheizung"]
 GEO = "DE"
 TIMEFRAME = "today 3-m"
-GAP_S = 30
+GAP_S = 60
+SEEDS_PER_RUN = 2  # 配额极严:每日轮换 2 个,3 天全覆盖
 
 
 def normalize(rq):
@@ -48,6 +49,28 @@ def normalize(rq):
     return out[:10]
 
 
+def fetch_rising_rows(tr, seed, geo, timeframe):
+    """related_queries with the referer fix trendspy itself suggests, one
+    120s retry on quota errors, and graceful fallback if the installed
+    trendspy version does not accept a headers kwarg."""
+    for attempt in range(2):
+        if attempt:
+            time.sleep(120)
+        try:
+            try:
+                rq = tr.related_queries(seed, geo=geo, timeframe=timeframe,
+                                        headers={"referer": "https://www.google.com/"})
+            except TypeError:
+                rq = tr.related_queries(seed, geo=geo, timeframe=timeframe)
+            return normalize_rising(rq) if "normalize_rising" in globals() else normalize(rq)
+        except Exception as e:  # noqa: BLE001
+            msg = str(e)
+            print(f"  rising error {seed!r}: {msg[:120]}", file=sys.stderr)
+            if "quota" not in msg.lower():
+                return []
+    return []
+
+
 def main():
     from trendspy import Trends
     os.makedirs(os.path.join(ROOT, "data"), exist_ok=True)
@@ -59,25 +82,22 @@ def main():
             previous = {}
     tr = Trends()
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
-    result = {}
-    for i, seed in enumerate(SEEDS):
+    result = dict(previous)  # 未轮到的种子保留上次数据
+    off = datetime.now(timezone.utc).toordinal() % len(SEEDS)
+    todays = [SEEDS[(off + k) % len(SEEDS)] for k in range(SEEDS_PER_RUN)]
+    print(f"today's rotation: {todays}")
+    for i, seed in enumerate(todays):
         if i:
             time.sleep(GAP_S)
-        rows = []
-        try:
-            rows = normalize(tr.related_queries(seed, geo=GEO, timeframe=TIMEFRAME))
-        except Exception as e:  # noqa: BLE001
-            print(f"rising error {seed!r}: {e}", file=sys.stderr)
+        rows = fetch_rising_rows(tr, seed, GEO, TIMEFRAME)
         if rows:
             result[seed] = {"rising": rows, "fetched": today}
-        elif seed in previous:
-            result[seed] = previous[seed]
     if result:
         json.dump({"fetched": today, "geo": GEO, "seeds": result},
                   open(OUT, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
         print(f"OK: {len(result)} seeds → trends-rising.json")
     else:
-        print("all seeds failed — previous file untouched", file=sys.stderr)
+        print("no data at all (fresh repo + quota) — nothing written", file=sys.stderr)
         sys.exit(1)
 
 

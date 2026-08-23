@@ -35,5 +35,6 @@ jobs:
         run: |
           git config user.name 'Claude'
           git config user.email 'noreply@anthropic.com'
-          git add data/trends-de.json data/trends-rising.json
+          git add data/trends-de.json
+          git add data/trends-rising.json 2>/dev/null || true
           git diff --cached --quiet || { git commit -m "chore(trends): 德国热搜触发器快照 $(date -u +%F)"; git pull --rebase origin main; git push origin main; }

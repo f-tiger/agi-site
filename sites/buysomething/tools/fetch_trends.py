@@ -90,7 +90,7 @@ def fetch_series(tr, query, geo):
 
 
 RISING_OUT = os.path.join(ROOT, "site", "rising.json")
-RISING_SEEDS_MAX = 6
+RISING_SEEDS_MAX = 2  # 配额极严:每日轮换 2 个种子
 
 
 def normalize_rising(rq):
@@ -127,6 +127,28 @@ def normalize_rising(rq):
     return out[:10]
 
 
+def fetch_rising_rows(tr, seed, geo, timeframe):
+    """related_queries with the referer fix trendspy itself suggests, one
+    120s retry on quota errors, and graceful fallback if the installed
+    trendspy version does not accept a headers kwarg."""
+    for attempt in range(2):
+        if attempt:
+            time.sleep(120)
+        try:
+            try:
+                rq = tr.related_queries(seed, geo=geo, timeframe=timeframe,
+                                        headers={"referer": "https://www.google.com/"})
+            except TypeError:
+                rq = tr.related_queries(seed, geo=geo, timeframe=timeframe)
+            return normalize_rising(rq) if "normalize_rising" in globals() else normalize(rq)
+        except Exception as e:  # noqa: BLE001
+            msg = str(e)
+            print(f"  rising error {seed!r}: {msg[:120]}", file=sys.stderr)
+            if "quota" not in msg.lower():
+                return []
+    return []
+
+
 def harvest_rising(tr, queries):
     """Fast-capture signal: rising related queries per seed category term.
     Keep-last-good per seed; the whole phase failing leaves the old file."""
@@ -136,25 +158,20 @@ def harvest_rising(tr, queries):
             previous = json.load(open(RISING_OUT, encoding="utf-8")).get("seeds", {})
         except Exception:
             previous = {}
-    seeds = []
+    all_seeds = []
     for pid, q in queries.items():
-        if q not in seeds:
-            seeds.append(q)
-        if len(seeds) >= RISING_SEEDS_MAX:
-            break
-    result = {}
-    for seed in seeds:
-        time.sleep(REQUEST_GAP_S)
-        rows = []
-        try:
-            rq = tr.related_queries(seed, geo=DEFAULT_GEO, timeframe=TIMEFRAME)
-            rows = normalize_rising(rq)
-        except Exception as e:  # noqa: BLE001
-            print(f"  rising fetch error for {seed!r}: {e}", file=sys.stderr)
+        if q not in all_seeds:
+            all_seeds.append(q)
+    off = datetime.now(timezone.utc).toordinal() % max(1, len(all_seeds))
+    seeds = [all_seeds[(off + k) % len(all_seeds)] for k in range(min(RISING_SEEDS_MAX, len(all_seeds)))]
+    print(f"rising rotation: {seeds}")
+    result = dict(previous)  # non-rotated seeds keep last good
+    for i, seed in enumerate(seeds):
+        if i:
+            time.sleep(60)
+        rows = fetch_rising_rows(tr, seed, DEFAULT_GEO, TIMEFRAME)
         if rows:
             result[seed] = {"rising": rows, "fetched": datetime.now(timezone.utc).strftime("%Y-%m-%d")}
-        elif seed in previous:
-            result[seed] = previous[seed]  # keep last good
     if result:
         json.dump({"fetched": datetime.now(timezone.utc).strftime("%Y-%m-%d"), "seeds": result},
                   open(RISING_OUT, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
