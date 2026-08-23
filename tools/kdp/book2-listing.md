@@ -1,4 +1,8 @@
-# KDP Book #2（主打）— 《The Justin Sun Playbook: An Unauthorized Audit》上架包
+# 【已搁置 2026-08-23】KDP Book #2 上架包（owner:「不要卖书，应该把理念转换为商业模式」）
+
+两书均不上架。书稿保留为方法论凭证;理念产品化 → agiscorecard.com/audits
+(Evidence Audits 服务线,E13,见 sites/agiscorecard/revenue-experiments.md)。
+以下内容存档备查。
 
 owner 2026-08-23 指令：「KDP的书还不如孙的成功模式总结，在不侵权基础上」。
 本书为主打；数织书（book1）降为副线（已建成、零成本保留）。

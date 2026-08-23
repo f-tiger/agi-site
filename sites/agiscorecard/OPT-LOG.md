@@ -1,3 +1,10 @@
+## 2026-08-23（补录三）— Evidence Audits 服务线上线（owner「理念转换为钱」）
+
+不卖书(两本 KDP 搁置,市场证据:同类孙传记 Goodreads 零评论=流水线卖不动)。
+方法直接产品化:/audits + /zh/audits 两 SKU($299/$499,市场锚 $1.5k-15k),
+表单 topic=audit_* 捕单,worker 加 audit 专用表单文案 + audit-inq 高优告警,
+E13 预注册 45 天判定线。首单即舰队首笔已验证营收。
+
 ## 2026-08-23（补录二）— B.AI 审计页 EN+zh（owner 直接指令）
 
 owner:「孙宇晨在做b.ai，从中学习参考」。出厂 /what-is-b-ai + /zh/what-is-b-ai:

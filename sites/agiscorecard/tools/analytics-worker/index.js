@@ -364,6 +364,15 @@ export default {
           action: 'agent 分发已开张 —— Monetization Gateway waitlist 报名从"待办"升为"紧急"，x402 按次收费就等它。' });
         if (fails && fails.n > 0) A.push({ k: 'subfail-' + (fails.n >= 5 ? 'many' : 'few'), sev: 'high',
           title: '订阅提交失败 ' + fails.n + ' 次（近 48h）', action: '漏斗在漏 —— 优先于当日一切优化，先查 /api/sub。' });
+        // Evidence Audits orders (2026-08-23): an inquiry is a revenue event with a
+        // 48-hour reply promise on the page — alert per new count, count-encoded key.
+        try {
+          const aud = await env.EVENTS.prepare(
+            "SELECT COUNT(*) n FROM subscribers WHERE topic LIKE 'audit%'").first();
+          if (aud && aud.n > 0) A.push({ k: 'audit-inq-' + aud.n, sev: 'high',
+            title: '证据审计询单累计 ' + aud.n + ' 单（页面承诺 48h 内回范围）',
+            action: '让会话按 /audits 报价拟范围+账单草稿（USDT 地址走 SunWatch 现有轨道），你只需转发。首单即首笔已验证营收。' });
+        } catch (e) {}
         const rd = (readers && readers.n) || 0;
         [500, 2000, 10000].forEach((m) => {
           if (rd >= m) A.push({ k: 'readers-' + m, sev: 'med', title: '真人读者（JS 确认）28 天达 ' + rd,
@@ -725,6 +734,11 @@ const SUBFORM = '<script>(function(){' +
         '"\\u4f60\\u521a\\u8bfb\\u5b8c\\u4ec0\\u4e48\\u4f1a\\u8ba9\\u6211\\u4eec\\u6539\\u53d8\\u5bf9<b>"+PREDZH[topic]+"</b>\\u7684\\u5224\\u65ad\\u3002\\u5b83\\u771f\\u7684\\u53d1\\u751f\\u90a3\\u5929\\u6211\\u4eec\\u5199\\u4fe1\\u7ed9\\u4f60\\uff0c\\u5176\\u4f59\\u65f6\\u5019\\u4e0d\\u5199\\u3002"]' +
         ':["One email, only if this verdict flips",' +
         '"You just read what would change our mind on <b>"+PRED[topic]+"</b>. We will write to you the day it happens \\u2014 and not otherwise."];' +
+    'if(/audit/.test(loc))' +
+      'return ZH?["\\u7559\\u90ae\\u7bb1\\uff0c48\\u5c0f\\u65f6\\u5185\\u56de\\u5ba1\\u8ba1\\u8303\\u56f4",' +
+        '"\\u5728\\u90ae\\u7bb1\\u540e\\u9762\\u6ce8\\u660e\\u5ba1\\u8ba1\\u5bf9\\u8c61/\\u7ad9\\u70b9\\u3002\\u6211\\u4eec\\u56de\\u590d\\u7cbe\\u786e\\u8303\\u56f4\\u4e0e\\u8d26\\u5355\\uff08USDT \\u6216\\u53d1\\u7968\\uff09\\uff0c\\u786e\\u8ba4\\u8303\\u56f4\\u540e\\u624d\\u4ed8\\u6b3e\\u3002"]' +
+        ':["Leave your email \\u2014 scope reply within 48h",' +
+        '"Note the audit subject/site after your address. We reply with exact scope and an invoice (USDT or standard); you pay only after approving the scope."];' +
     'if(/exposure/.test(loc))' +
       'return ZH?["\\u7ec4\\u5408\\u91cd\\u65b0\\u8ba1\\u5206\\u90a3\\u5929\\u901a\\u77e5\\u6211",' +
         '"\\u4f60\\u7684\\u7ec4\\u5408\\u5c31\\u662f\\u4e00\\u6761\\u53ef\\u4ee5\\u5b58\\u4e0b\\u6765\\u7684\\u94fe\\u63a5\\u3002\\u5b83\\u80cc\\u540e\\u7684\\u5206\\u6570\\u53ea\\u5728\\u5224\\u5b9a\\u771f\\u7684\\u53d8\\u5316\\u65f6\\u624d\\u52a8\\u3002"]' +
