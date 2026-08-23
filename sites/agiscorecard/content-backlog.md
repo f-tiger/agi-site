@@ -191,6 +191,13 @@ specs above at any time to resume net-new page creation.
   (页面数字必须与实际一致)优先于防翻炒——但等 8/24 daily run 一并做,不单独提交。
 
 ## Queue — CITATION AMPLIFICATION（2026-08-16 自种，依据 Bing AI Performance 的 Pages/Queries 明细，**不是猜的搜索需求，是已发生的引用**）
+- [ ] (CITATION AMPLIFICATION·invest·快反) do-ai-trading-agents-work + /zh/what-is-pandaai
+  ——owner 2026-08-23「PandaAI等新创业AI机会点分析」;新闻周期 8-17 起仅一周(PandaAI
+  两月三轮融资/李不白 IP/A2A 叙事,信源:新浪科技/投资界/36kr;同期 agent 赛道 12 天
+  $633M)。EN 页判定型:「AI 交易智能体真的赚钱吗」—— 一手基率(BIS 散户亏损、回测
+  过拟合)+ 两栏账(厂商宣称 vs 可验证)+ SunWatch track-record 作为「可证伪的对照组」
+  双桥变现;zh 页定义型蹭周期,自述数字全标「据其官宣」。依据 docs/ai-startup-signals-
+  2026-08.md;28 天判定线见该文档反面预登记。
 - [x] (CITATION AMPLIFICATION·invest) what-is-b-ai(2026-08-23 出厂:/what-is-b-ai + /zh/what-is-b-ai)——owner 直接指令「孙宇晨在做b.ai，从中学习参考」;定义型问题 × 已挣得的 Sun 实体 × invest 集群导流(SunWatch/2013审计/范式台账);六件套齐,自述数字全部标注「据其本人陈述」,厂商转售条款写为开放问题(诽谤安全)
 - [x] (CITATION AMPLIFICATION·invest) how-verifiable-is-justin-sun-2013-bitcoin-story(2026-08-23 出厂:/justin-sun-2013-bitcoin-story + /zh/justin-sun-2013) + zh——判定型双栏审计页(一手调研已完成 2026-08-23,docs/paradigm-bet-framework-2026-08.md §一;六件套+SunWatch 桥;B栏逐条标「据其本人陈述」,SEC 部分只引文件事实——诽谤安全)
 
