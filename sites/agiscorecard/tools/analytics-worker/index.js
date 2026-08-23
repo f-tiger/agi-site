@@ -373,6 +373,18 @@ export default {
           A.push({ k: 'airef-' + ai.cur, sev: 'med', title: 'AI 引擎引荐周环比翻倍：' + (ai.prev || 0) + ' → ' + ai.cur,
             action: 'GEO 正在回报 —— 保持每日 freshness 循环，别改动正在被引用的页面。' });
 
+        // Session-queued majors (table owner_alert_queue): sessions hold judgment the
+        // live-state rules above can't see (e.g. a shipped milestone with an owner
+        // action attached); this endpoint only relays. Same dedup/ack ledger applies,
+        // so a queued k is announced exactly once, delivery-retried until acked.
+        try {
+          const q = await env.EVENTS.prepare(
+            'SELECT k, sev, title, action FROM owner_alert_queue').all();
+          for (const r of (q.results || [])) {
+            A.push({ k: r.k, sev: r.sev || 'med', title: r.title, action: r.action || '' });
+          }
+        } catch (e) { /* queue table absent = feature unused */ }
+
         // Pending means "not yet DELIVERED", not "not yet seen" — an alert the caller
         // fetched but failed to send must keep coming back until it acks, otherwise a
         // single failed Telegram call would silently swallow the news forever.

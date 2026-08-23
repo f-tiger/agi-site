@@ -670,6 +670,11 @@ Telegram must be sent from that worker** — this repo's sessions cannot reach a
   action line: tracker score moved (+ who is owed a flip mail, counts only), subscriber
   milestones 1/10/50/100/500, first agent MCP call, subscribe-funnel failures, reader
   milestones, AI-referral doubling. `&ack=1` marks them delivered.
+- **会话队列通道(2026-08-23)**:`owner_alert_queue` 表(k/sev/title/action)——
+  端点现算规则看不见的重大事件(如「某里程碑已上线+owner 动作」)由会话写进该表,
+  端点转发,与现算告警共用同一套去重/ack 台账(k 只播一次,投递失败自动重试)。
+  **直接往 `owner_alerts` 手工插行是无效的**——那只是投递台账,不是消息源(2026-08-23
+  实测踩坑后加此通道)。频道纪律不变:重大信息 only。
 - **Two guards, both learned here**: first-run baseline (empty `owner_alerts` table records
   every currently-true state as delivered and sends nothing, so a deploy never fires a burst
   of stale "news"), and the alert key encodes its triggering state, so a standing condition
