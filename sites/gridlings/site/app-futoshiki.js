@@ -85,6 +85,7 @@
       }
     }
     render();
+    buildPad();
     gev("play_start", o.mode === "daily" ? "fu-daily:" + o.key : "pool:" + o.key);
   }
 
@@ -242,6 +243,35 @@
     gev("share_copy", "fu:" + (state ? state.key : "none"));
   }
 
+
+
+  function buildPad() {
+    var old = document.getElementById("numpad");
+    if (old) old.remove();
+    var n = state.n;
+    var pad = document.createElement("div");
+    pad.id = "numpad";
+    pad.style.cssText = "display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin:10px auto 0;max-width:440px";
+    function mk(label, v) {
+      var b = document.createElement("button");
+      b.className = "btn";
+      b.textContent = label;
+      b.style.cssText = "min-width:42px;padding:10px 0;font-size:17px;font-variant-numeric:tabular-nums";
+      b.onclick = function () {
+        if (!state || state.done) return;
+        if (state.sel < 0) {
+          for (var i = 0; i < n * n; i++) { if (!state.given[i] && !state.fill[i]) { state.sel = i; break; } }
+          if (state.sel < 0) return;
+        }
+        setCell(state.sel, v);
+      };
+      return b;
+    }
+    for (var v = 1; v <= n; v++) pad.appendChild(mk(String(v), v));
+    pad.appendChild(mk("\u232b", 0));
+    var g = document.getElementById("grid");
+    g.parentNode.insertBefore(pad, g.nextSibling);
+  }
 
   function setCell(i, v) {
     if (!state || state.done || state.given[i]) return;

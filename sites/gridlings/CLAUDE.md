@@ -64,6 +64,14 @@ label 前缀 `bal:` 区分。CrazyGames 投稿以双游戏组合提交(launch-ki
 - ms/kr/sa 共用 `site/app-latin.js`(页面注入 `window.LATIN_GAME` 配置);
   thermo 独立 `app-thermo.js`。**zh 页面在 /zh/<slug> 下用相对路径引资源,
   worker 里有一条 /zh/*.ext → 根资源的回退重写——删掉它 zh 页全裂。**
+- **Daily Sweep 元游戏层(2026-08-23,owner「游戏强化」)**:首页(/ 与 /zh)
+  卡片区读各游戏 localStorage(<pre>_done_<date>/<pre>_streak)显示今日✓与🔥连胜,
+  顶部「今日清扫 X/11」,11/11 出分享按钮(事件 sweep_share)。只读不写,各游戏
+  的存储契约(前缀表见 archive 一节)因此成为**跨文件 API——改前缀必须同步
+  archive.html 与两首页的 GAMES 表**。
+- **移动端数字键盘(同日)**:app-latin/app-futoshiki/app-towers 在 #grid 下注入
+  numpad(1..n + ⌫),走键盘补丁的 setCell/sel;点格循环行为保持不变(向后兼容),
+  numpad 是 O(1) 直填与纠错通道。
 - 新规则集入列清单:生成器+两页+worker 路由×2+sitemap×2+llms.txt+
   gamesnav(全部页面)+CI 门(文件清单+gate 循环)+本节一行。
 - **浏览器冒烟测试 `tools/browser-smoke.js`(2026-08-23)**:本地起
