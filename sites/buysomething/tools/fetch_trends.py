@@ -170,14 +170,41 @@ def harvest_rising(tr, queries):
         if i:
             time.sleep(60)
         rows = fetch_rising_rows(tr, seed, DEFAULT_GEO, TIMEFRAME)
+        if not rows:
+            try:
+                terms = autocomplete_terms(seed, "en", "US")
+                pv = previous.get(seed, {}) if isinstance(previous, dict) else {}
+                prev_terms = set(pv.get("auto", []))
+                new = [t for t in terms if t not in prev_terms and t.strip().lower() != seed.strip().lower()]
+                if terms:
+                    result[seed] = {"auto": terms, "rising": [{"q": t, "v": "new"} for t in new],
+                                    "source": "autocomplete-diff",
+                                    "fetched": datetime.now(timezone.utc).strftime("%Y-%m-%d")}
+                    print(f"  autocomplete fallback {seed!r}: {len(terms)} terms, {len(new)} new")
+                    continue
+            except Exception as e:  # noqa: BLE001
+                print(f"  autocomplete error {seed!r}: {e}", file=sys.stderr)
         if rows:
-            result[seed] = {"rising": rows, "fetched": datetime.now(timezone.utc).strftime("%Y-%m-%d")}
+            result[seed] = {"rising": rows, "source": "related-queries", "fetched": datetime.now(timezone.utc).strftime("%Y-%m-%d")}
     if result:
         json.dump({"fetched": datetime.now(timezone.utc).strftime("%Y-%m-%d"), "seeds": result},
                   open(RISING_OUT, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
         print(f"rising.json: {len(result)} seeds")
     else:
         print("rising harvest empty — previous file left untouched", file=sys.stderr)
+
+
+
+
+def autocomplete_terms(seed, hl, gl):
+    """Quota-free fallback signal: Google autocomplete for the seed. A term
+    APPEARING vs yesterday's snapshot is our rising proxy (v='new')."""
+    import urllib.parse, urllib.request
+    url = ("https://suggestqueries.google.com/complete/search?client=firefox"
+           f"&hl={hl}&gl={gl}&q=" + urllib.parse.quote(seed))
+    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+    data = json.loads(urllib.request.urlopen(req, timeout=15).read().decode("utf-8", "replace"))
+    return [str(t)[:80] for t in (data[1] if len(data) > 1 else [])][:10]
 
 
 def main():

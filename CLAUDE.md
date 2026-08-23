@@ -16,6 +16,19 @@
   Cloudflare 构建,往那儿推会把线上回滚到旧内容。
 - 新站点照同样模式并入:`sites/<domain>/` + 一个 path 过滤的 deploy workflow。
 
+## 子域/板块开设铁律(2026-08-23,owner 问「是否要建新子域/独立板块」后定)
+
+现有管理面已宽:主域 agiscorecard.com + 四个伞域子域(invest./compass./source./
+play.)+ 三个外部站(baipiaoji/getecoback/thedollscout)。实测教训:引用份额
+(33-37.5%)全部长在**主域**的判定页上;新子域从零权威起步。因此:
+- **默认动作 = 并入最近的现有域/板块**。判定型内容一律进主域集群(invest/
+  Research);工具优先挂现有站。
+- **开新子域必须三条全满足**:①独立 Worker/技术形态确需隔离 ②受众与品牌和
+  现有站完全不同 ③自带独立变现闭环。先例 play.(游戏,三条全中)是标尺;
+  差一条都不开。
+- 主域内新「板块」的门槛 = 该方向出现**首个真实转化**(如 /audits 首询单)后
+  才提权为一级导航,此前只以页面/chip 存在。
+
 ## 公开仓隐私红线(每次提交前自查,违者先撤后查)
 
 1. **owner 个人数字人档案永不入本仓**:owner-identity.md / owner-identity.json /

@@ -71,6 +71,19 @@ def fetch_rising_rows(tr, seed, geo, timeframe):
     return []
 
 
+
+
+def autocomplete_terms(seed, hl, gl):
+    """Quota-free fallback signal: Google autocomplete for the seed. A term
+    APPEARING vs yesterday's snapshot is our rising proxy (v='new')."""
+    import urllib.parse, urllib.request
+    url = ("https://suggestqueries.google.com/complete/search?client=firefox"
+           f"&hl={hl}&gl={gl}&q=" + urllib.parse.quote(seed))
+    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+    data = json.loads(urllib.request.urlopen(req, timeout=15).read().decode("utf-8", "replace"))
+    return [str(t)[:80] for t in (data[1] if len(data) > 1 else [])][:10]
+
+
 def main():
     from trendspy import Trends
     os.makedirs(os.path.join(ROOT, "data"), exist_ok=True)
@@ -90,8 +103,22 @@ def main():
         if i:
             time.sleep(GAP_S)
         rows = fetch_rising_rows(tr, seed, GEO, TIMEFRAME)
+        if not rows:
+            try:
+                terms = autocomplete_terms(seed, "de", "DE")
+                pv = previous.get(seed, {}) if isinstance(previous, dict) else {}
+                prev_terms = set(pv.get("auto", []))
+                new = [t for t in terms if t not in prev_terms and t.strip().lower() != seed.strip().lower()]
+                if terms:
+                    result[seed] = {"auto": terms, "rising": [{"q": t, "v": "new"} for t in new],
+                                    "source": "autocomplete-diff",
+                                    "fetched": datetime.now(timezone.utc).strftime("%Y-%m-%d")}
+                    print(f"  autocomplete fallback {seed!r}: {len(terms)} terms, {len(new)} new")
+                    continue
+            except Exception as e:  # noqa: BLE001
+                print(f"  autocomplete error {seed!r}: {e}", file=sys.stderr)
         if rows:
-            result[seed] = {"rising": rows, "fetched": today}
+            result[seed] = {"rising": rows, "source": "related-queries", "fetched": today}
     if result:
         json.dump({"fetched": today, "geo": GEO, "seeds": result},
                   open(OUT, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
