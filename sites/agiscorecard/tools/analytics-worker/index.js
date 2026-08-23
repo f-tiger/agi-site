@@ -288,6 +288,23 @@ export default {
     //      true is announced exactly once, never re-announced on the next poll.
     // Counts only — never an email address, so the feed can be read by another worker
     // without moving PII between them.
+    // Public read-only view of the paradigm-experiment ledger (2026-08-23,
+    // owner: ledger deep-optimization). Whitelisted columns only — size_note and
+    // price_note may later hold personal figures and are never served. The public
+    // page renders from this endpoint so page and ledger cannot drift apart.
+    if (url.pathname === '/api/experiment') {
+      try {
+        const rows = await env.EVENTS.prepare(
+          "SELECT day, action, asset, thesis, falsifier, status FROM experiment_ledger " +
+          "WHERE asset != '__design__' ORDER BY id").all();
+        return new Response(JSON.stringify({ ok: true, updated: new Date().toISOString().slice(0, 10), rows: rows.results || [] }), {
+          headers: { 'content-type': 'application/json; charset=utf-8',
+                     'access-control-allow-origin': '*',
+                     'cache-control': 'public, max-age=300' }
+        });
+      } catch (e) { return jsonRes({ ok: false }, 500); }
+    }
+
     if (url.pathname === '/api/owner-alerts') {
       try {
         const want = (await env.EVENTS.prepare(

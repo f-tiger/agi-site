@@ -68,6 +68,12 @@
   <div class="eyebrow">进行中的实验 · 预登记、可审计</div>
   <h1>范式赌注：「2013年的比特币」能被诚实复现吗？</h1>
   <div class="updated">开账：2026-08-23 · 每月5日审计 · 任何变更必附日期与理由</div>
+  <div id="exp-vitals" style="display:flex;gap:18px;flex-wrap:wrap;margin:1.1rem 0;font-variant-numeric:tabular-nums;">
+    <div><span style="font-size:24px;font-weight:800;color:var(--accent);" id="ev-days">–</span><br><span style="font-size:12px;color:var(--muted);">开账天数</span></div>
+    <div><span style="font-size:24px;font-weight:800;" id="ev-entries">3</span><br><span style="font-size:12px;color:var(--muted);">预登记条目</span></div>
+    <div><span style="font-size:24px;font-weight:800;" id="ev-kills">0</span><br><span style="font-size:12px;color:var(--muted);">已触发杀死条件</span></div>
+    <div><span style="font-size:24px;font-weight:800;">9月5日</span><br><span style="font-size:12px;color:var(--muted);">下次审计</span></div>
+  </div>
 
   <div class="capsule"><span class="verdict">这一页是一台「反事后诸葛亮」装置。</span>
   所有「我当年早就买了」的传奇都是事后写的——包括最有名的那个，
@@ -78,12 +84,12 @@
   <strong>本页不构成任何投资建议。</strong></div>
 
   <h2>预登记台账</h2>
-  <table>
+  <table id="exp-table">
     <thead><tr><th>候选</th><th>论点（2026-08-23备案）</th><th>杀死条件（入场前备案）</th><th>状态</th></tr></thead>
     <tbody>
-      <tr><td>Bittensor（TAO）</td><td>唯一同时通过「范式直接」与「仍被嘲笑」两道筛的流动资产：2100万固定量、2025-12首次减半、子网一年32→128。诚实的不对称性：10-30倍量级，不是100倍。</td><td>排放/外部收入比（备案时约20:1）在下个减半周期前未实质压缩→「补贴剧场」论胜，离场；量/关注/开发活动持续衰减亦离场。</td><td class="nowrap v-open">持有中</td></tr>
-      <tr><td>x402 代理支付轨道</td><td>最纯的2013质感：Visa/万事达/Stripe在基金会内建设，媒体嘲讽「需求不存在」（真实日商业量约$2.8万）。但当下没有诚实捕获轨道价值的工具。</td><td>只观察不建仓。真实商业量涨10-100倍或出现费用捕获资产→再评估。基础情形：价值归于稳定币轨、无币可投→永不入场。</td><td class="nowrap v-ok">观察单</td></tr>
-      <tr><td>在岸人形机器人ETF</td><td>大陆居民唯一全合法的范式暴露；中国是制造震中。明知这是反模式时点入场（8000倍超募的IPO是「被忽视」的反面）。</td><td>狂热退潮不补仓；按死亡信号纪律而非回撤评判。定位：合法暴露，不是彩票。</td><td class="nowrap v-open">持有中</td></tr>
+      <tr><td>Bittensor（TAO）</td><td>唯一同时通过「范式直接」与「仍被嘲笑」两道筛的流动资产：2100万固定量、2025-12首次减半、子网一年32→128。诚实的不对称性：10-30倍量级，不是100倍。</td><td>数字化（2026-08-23入场前收紧）：2027-06-30 检查点比值仍 &gt;15:1 → 离场；2027-12-31 未 &lt;10:1 → 无条件离场；交易量或开发活跃度较峰值持续衰减 &gt;50% 且连续两季 → 离场。</td><td class="nowrap v-open">持有中</td></tr>
+      <tr><td>x402 代理支付轨道</td><td>最纯的2013质感：Visa/万事达/Stripe在基金会内建设，媒体嘲讽「需求不存在」（真实日商业量约$2.8万）。但当下没有诚实捕获轨道价值的工具。</td><td>只观察。再评估当且仅当：真实结算量 ≥$28万/日持续30天（基线10倍），或出现市值 &lt;$10亿且可验证年化捕获 ≥$100万轨道费用的资产。基础情形成立→永不入场；2027-06-30 前无触发→降为季度检查。</td><td class="nowrap v-ok">观察单</td></tr>
+      <tr><td>在岸人形机器人ETF</td><td>大陆居民唯一全合法的范式暴露；中国是制造震中。明知这是反模式时点入场（8000倍超募的IPO是「被忽视」的反面）。</td><td>狂热退潮不补仓；死亡信号 = ETF规模较峰值 −60% 或核心成分退市；2027-08-19（IPO一周年）定位复核。定位：合法β暴露——不适用10倍幻想。</td><td class="nowrap v-open">持有中</td></tr>
     </tbody>
   </table>
 
@@ -93,6 +99,10 @@
   （量/关注/开发活动衰减），绝不按回撤卖；<strong>④</strong>视界5-10年——历史赢家到100倍用了4.3-11年；
   <strong>⑤</strong>本页任何变更必附日期与理由。筛选背后的完整调研：<a href="/zh/justin-sun-2013">双栏审计</a>。</p>
 
+  <h2>审计轨迹</h2>
+  <p style="font-size:13.5px;color:var(--muted);">台账的每次变更，带日期、永久保留——包括对规则本身的修改。由每月审计写入的同一个数据库实时渲染。</p>
+  <ul id="exp-trail" style="font-size:14px;"><li><strong>2026-08-23</strong> · 开账；三条预登记。同日将证伪线由定性收紧为数字阈值+检查点日期——收紧只允许发生在入场前；入场后条款冻结，只能执行不能修改。</li></ul>
+
   <div style="margin:1.5rem 0;background:var(--bg2);border:1px solid var(--border2);border-radius:14px;padding:1.1rem 1.3rem;">
     <p style="margin:0 0 .7rem;font-weight:700;">跟踪每月审计</p>
     <p style="margin:0 0 .8rem;font-size:14px;color:var(--muted);">审计笔记落在本页。只有杀死条件触发或条目变更时发一封邮件——没有别的。</p>
@@ -101,6 +111,39 @@
   <p style="font-size:13px;color:var(--muted);">同族方法：<a href="/progress-index">论点追踪器</a> ·
   <a href="https://compass.agiscorecard.com/zh/track-record" onclick="gtag('event','invest_tool_click',{location:'zh_paradigm_trackrecord'});">抄作业成绩单</a> ·
   <a href="/zh/invest">投资中枢</a>。本页为透明起见记录一场个人实验；不是推荐；大陆对加密资产的法律约束真实存在，调研中如实记录。<a href="/cn">← 中文首页</a></p>
+<script>
+(function () {
+  try {
+    var d = Math.floor((Date.now() - Date.parse("2026-08-23")) / 864e5);
+    document.getElementById("ev-days").textContent = d < 0 ? 0 : d;
+  } catch (e) {}
+  /* Live render from the ledger API — the page cannot drift from the ledger.
+     On any failure the baked table (a dated snapshot) stays as-is. */
+  fetch("/api/experiment").then(function (r) { return r.json(); }).then(function (d) {
+    if (!d.ok || !d.rows || !d.rows.length) return;
+    var pre = d.rows.filter(function (r) { return r.action === "preregister"; });
+    var reviews = d.rows.filter(function (r) { return r.action === "review" || r.action === "falsifier_check"; });
+    var kills = d.rows.filter(function (r) { return r.status === "killed" || r.status === "exited"; });
+    document.getElementById("ev-entries").textContent = pre.length;
+    document.getElementById("ev-kills").textContent = kills.length;
+    var tb = document.querySelector("#exp-table tbody");
+    if (tb && pre.length) {
+      tb.innerHTML = pre.map(function (r) {
+        var st = r.status === "open" ? '<span class="v-open">' + (document.documentElement.lang === "zh" ? "持有中" : "Open") + "</span>"
+               : r.status === "watch" ? '<span class="v-ok">' + (document.documentElement.lang === "zh" ? "观察单" : "Watchlist") + "</span>"
+               : '<span class="v-wrong">' + r.status + "</span>";
+        return "<tr><td>" + r.asset + "</td><td>" + r.thesis + "</td><td>" + r.falsifier + "</td><td class='nowrap'>" + st + "</td></tr>";
+      }).join("");
+    }
+    var tr = document.getElementById("exp-trail");
+    if (tr && reviews.length) {
+      tr.innerHTML = reviews.map(function (r) {
+        return "<li><strong>" + r.day + "</strong> · " + (r.thesis || r.falsifier || r.action) + "</li>";
+      }).join("");
+    }
+  }).catch(function () {});
+})();
+</script>
 </main>
 <footer>AGI 记分牌 · 独立追踪 <a href="https://situational-awareness.ai" style="color:var(--muted);">《态势感知》</a> · 不隶属于任何 AI 实验室 · <a href="/about" style="color:var(--muted);">About</a> · <a href="/privacy" style="color:var(--muted);">Privacy</a></footer>
 </body>

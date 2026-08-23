@@ -68,6 +68,12 @@
   <div class="eyebrow">Live experiment · Pre-registered, auditable</div>
   <h1>The Paradigm Bet: Can "2013 Bitcoin" Be Repeated Honestly?</h1>
   <div class="updated">Opened: August 23, 2026 · Audited monthly (5th) · Entries only change with a dated note</div>
+  <div id="exp-vitals" style="display:flex;gap:18px;flex-wrap:wrap;margin:1.1rem 0;font-variant-numeric:tabular-nums;">
+    <div><span style="font-size:24px;font-weight:800;" id="ev-days">–</span><br><span style="font-size:12px;color:var(--muted);">days running</span></div>
+    <div><span style="font-size:24px;font-weight:800;" id="ev-entries">3</span><br><span style="font-size:12px;color:var(--muted);">pre-registered</span></div>
+    <div><span style="font-size:24px;font-weight:800;" id="ev-kills">0</span><br><span style="font-size:12px;color:var(--muted);">kill conditions fired</span></div>
+    <div><span style="font-size:24px;font-weight:800;">Sep 5</span><br><span style="font-size:12px;color:var(--muted);">next audit</span></div>
+  </div>
 
   <div class="capsule"><span class="verdict">This page is an anti-hindsight device.</span>
   Every "I bought early" legend is written after the fact — including the most famous one, which
@@ -79,12 +85,12 @@
   <strong>Nothing here is investment advice.</strong></div>
 
   <h2>The pre-registered ledger</h2>
-  <table>
+  <table id="exp-table">
     <thead><tr><th>Candidate</th><th>Thesis (filed 2026-08-23)</th><th>Kill condition (filed before entry)</th><th>Status</th></tr></thead>
     <tbody>
-      <tr><td>Bittensor (TAO)</td><td>Only liquid asset passing both "paradigm-direct" and "still mocked" screens: fixed 21M supply, first halving Dec 2025, subnets 32&rarr;128 in a year. Honest asymmetry: 10&ndash;30x class, not 100x.</td><td>If the emissions-to-external-revenue ratio (~20:1 at filing) has not compressed materially by the next halving cycle, the "subsidized theater" reading wins — exit. Also exit on sustained decay of volume/attention/developer activity.</td><td class="nowrap v-open">Open</td></tr>
-      <tr><td>x402 agent-payment rail</td><td>Purest 2013 texture: Visa/Mastercard/Stripe building inside the foundation while press dismisses it (~$28K/day real commerce). But no honest instrument captures rail value today.</td><td>Watch only — no position. Re-evaluate if real commerce volume grows 10&ndash;100x or a fee-capturing asset emerges. Base case: value accrues to stablecoin rails with no investable token — then never enter.</td><td class="nowrap v-ok">Watchlist</td></tr>
-      <tr><td>Onshore humanoid-robotics ETF</td><td>The only fully-legal paradigm exposure for a mainland-China allocator; China is the manufacturing epicenter. Entered knowing it is the anti-pattern moment (an 8,000x-oversubscribed IPO is the opposite of neglect).</td><td>No averaging down into euphoria unwinds; position graded on the death-signal discipline, not drawdown. Role: legal exposure, not a lottery ticket.</td><td class="nowrap v-open">Open</td></tr>
+      <tr><td>Bittensor (TAO)</td><td>Only liquid asset passing both "paradigm-direct" and "still mocked" screens: fixed 21M supply, first halving Dec 2025, subnets 32&rarr;128 in a year. Honest asymmetry: 10&ndash;30x class, not 100x.</td><td>Numeric (tightened 2026-08-23, pre-entry): exit if the flagship-subnet emissions/external-revenue ratio is still &gt;15:1 at 2027-06-30 (baseline ~20:1), and unconditionally if not &lt;10:1 by 2027-12-31; exit on &gt;50% sustained decay of volume or dev activity for two consecutive quarters.</td><td class="nowrap v-open">Open</td></tr>
+      <tr><td>x402 agent-payment rail</td><td>Purest 2013 texture: Visa/Mastercard/Stripe building inside the foundation while press dismisses it (~$28K/day real commerce). But no honest instrument captures rail value today.</td><td>Watch only. Re-evaluate iff real settlement &ge;$280K/day sustained 30 days (10x baseline), or a &lt;$1B-cap asset verifiably captures &ge;$1M/yr of rail fees. Base case (no investable token): never enter. No trigger by 2027-06-30 &rarr; drop to quarterly checks.</td><td class="nowrap v-ok">Watchlist</td></tr>
+      <tr><td>Onshore humanoid-robotics ETF</td><td>The only fully-legal paradigm exposure for a mainland-China allocator; China is the manufacturing epicenter. Entered knowing it is the anti-pattern moment (an 8,000x-oversubscribed IPO is the opposite of neglect).</td><td>No averaging down into euphoria unwinds; death signal = ETF assets −60% from peak or core holdings delisted; positioning review 2027-08-19 (IPO anniversary). Role: legal beta exposure — no 10x fantasy applies.</td><td class="nowrap v-open">Open</td></tr>
     </tbody>
   </table>
 
@@ -97,6 +103,10 @@
   Sources and the full research behind the screens: <a href="/justin-sun-2013-bitcoin-story">the two-ledger audit</a> ·
   <a href="/prediction-receipts">how we pre-register claims</a>.</p>
 
+  <h2>Audit trail</h2>
+  <p style="font-size:13.5px;color:var(--muted);">Every change to this ledger, dated, permanent — including changes to the rules themselves. Rendered live from the same database the monthly audit writes to.</p>
+  <ul id="exp-trail" style="font-size:14px;"><li><strong>2026-08-23</strong> · Ledger opened; three entries pre-registered. Falsifiers tightened same day from qualitative to numeric thresholds with checkpoint dates — tightening is allowed only before entry; after entry the terms freeze and can only be executed, not edited.</li></ul>
+
   <div style="margin:1.5rem 0;background:var(--bg2,#141416);border:1px solid var(--border,#26262a);border-radius:14px;padding:1.1rem 1.3rem;">
     <p style="margin:0 0 .7rem;font-weight:700;">Follow the audits</p>
     <p style="margin:0 0 .8rem;font-size:14px;color:var(--muted);">Monthly audit notes land on this page. One email when a kill condition triggers or an entry changes — nothing else.</p>
@@ -106,6 +116,39 @@
   <a href="https://compass.agiscorecard.com/en/track-record" onclick="gtag('event','invest_tool_click',{location:'paradigm_trackrecord'});">copy-homework record</a> ·
   <a href="/invest">Invest hub</a>. This page documents a personal experiment for transparency; it is not a recommendation,
   and mainland-China legal constraints on crypto are real and documented in the research.</p>
+<script>
+(function () {
+  try {
+    var d = Math.floor((Date.now() - Date.parse("2026-08-23")) / 864e5);
+    document.getElementById("ev-days").textContent = d < 0 ? 0 : d;
+  } catch (e) {}
+  /* Live render from the ledger API — the page cannot drift from the ledger.
+     On any failure the baked table (a dated snapshot) stays as-is. */
+  fetch("/api/experiment").then(function (r) { return r.json(); }).then(function (d) {
+    if (!d.ok || !d.rows || !d.rows.length) return;
+    var pre = d.rows.filter(function (r) { return r.action === "preregister"; });
+    var reviews = d.rows.filter(function (r) { return r.action === "review" || r.action === "falsifier_check"; });
+    var kills = d.rows.filter(function (r) { return r.status === "killed" || r.status === "exited"; });
+    document.getElementById("ev-entries").textContent = pre.length;
+    document.getElementById("ev-kills").textContent = kills.length;
+    var tb = document.querySelector("#exp-table tbody");
+    if (tb && pre.length) {
+      tb.innerHTML = pre.map(function (r) {
+        var st = r.status === "open" ? '<span class="v-open">' + (document.documentElement.lang === "zh" ? "持有中" : "Open") + "</span>"
+               : r.status === "watch" ? '<span class="v-ok">' + (document.documentElement.lang === "zh" ? "观察单" : "Watchlist") + "</span>"
+               : '<span class="v-wrong">' + r.status + "</span>";
+        return "<tr><td>" + r.asset + "</td><td>" + r.thesis + "</td><td>" + r.falsifier + "</td><td class='nowrap'>" + st + "</td></tr>";
+      }).join("");
+    }
+    var tr = document.getElementById("exp-trail");
+    if (tr && reviews.length) {
+      tr.innerHTML = reviews.map(function (r) {
+        return "<li><strong>" + r.day + "</strong> · " + (r.thesis || r.falsifier || r.action) + "</li>";
+      }).join("");
+    }
+  }).catch(function () {});
+})();
+</script>
 </main>
 <footer>By the <a href="/about" style="color:var(--muted);">AGI Scorecard team</a> · Independent tracker of <a href="https://situational-awareness.ai" style="color:var(--muted);">Situational Awareness</a> · Not affiliated with any lab or fund · <a href="/privacy" style="color:var(--muted);">Privacy</a> · <a href="/advertise" style="color:var(--muted);">Advertise</a></footer>
 </body>
