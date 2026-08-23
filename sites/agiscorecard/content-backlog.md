@@ -191,6 +191,7 @@ specs above at any time to resume net-new page creation.
   (页面数字必须与实际一致)优先于防翻炒——但等 8/24 daily run 一并做,不单独提交。
 
 ## Queue — CITATION AMPLIFICATION（2026-08-16 自种，依据 Bing AI Performance 的 Pages/Queries 明细，**不是猜的搜索需求，是已发生的引用**）
+- [x] (CITATION AMPLIFICATION·invest) what-is-b-ai(2026-08-23 出厂:/what-is-b-ai + /zh/what-is-b-ai)——owner 直接指令「孙宇晨在做b.ai，从中学习参考」;定义型问题 × 已挣得的 Sun 实体 × invest 集群导流(SunWatch/2013审计/范式台账);六件套齐,自述数字全部标注「据其本人陈述」,厂商转售条款写为开放问题(诽谤安全)
 - [x] (CITATION AMPLIFICATION·invest) how-verifiable-is-justin-sun-2013-bitcoin-story(2026-08-23 出厂:/justin-sun-2013-bitcoin-story + /zh/justin-sun-2013) + zh——判定型双栏审计页(一手调研已完成 2026-08-23,docs/paradigm-bet-framework-2026-08.md §一;六件套+SunWatch 桥;B栏逐条标「据其本人陈述」,SEC 部分只引文件事实——诽谤安全)
 
 选题依据一律写在条目里。这一批的共同逻辑：**引用份额不依赖流量**——本站在

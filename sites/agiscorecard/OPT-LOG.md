@@ -1,3 +1,12 @@
+## 2026-08-23（补录二）— B.AI 审计页 EN+zh（owner 直接指令）
+
+owner:「孙宇晨在做b.ai，从中学习参考」。出厂 /what-is-b-ai + /zh/what-is-b-ai:
+定义型判定页,已证实 vs 自述双栏(170万用户等全部标「据其本人陈述」),模式提取
+2013买资产→2026修收费站,x402 信号一节与范式台账互链,SunWatch 双 CTA。事实与
+指令已入 D1 owner_identity(directive-2026-08-23-bai / framework-sunyuchen-2026-bai)。
+同日游戏线:规则集 7-11 + 档案馆 + 键盘 + Gridlings-Bench + KDP 书一制作包
+(git 历史为准)。
+
 ## 2026-08-23（每日运行）— 监控日结 + zh 审计页补活数字钩
 
 本会话今日已出厂 4 页（孙宇晨审计 EN/zh + 范式实验台账 EN/zh，见前两条提交），

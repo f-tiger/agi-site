@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FZXLMBB5QB"></script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a0a0b'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%234fc3a1'/%3E%3C/svg%3E">
+<title>What Is B.AI? Justin Sun's AI Relay Station, Audited</title>
+<meta name="description" content="B.AI resells Claude, GPT and Gemini access behind one crypto-settled API key, with x402 agent payments built in. What's verified, what's self-reported, and what it signals — dated sources.">
+<link rel="canonical" href="https://agiscorecard.com/what-is-b-ai">
+<link rel="alternate" hreflang="en" href="https://agiscorecard.com/what-is-b-ai">
+<link rel="alternate" hreflang="zh" href="https://agiscorecard.com/zh/what-is-b-ai">
+<meta property="og:title" content="What Is B.AI? Justin Sun's AI Relay Station, Audited">
+<meta property="og:description" content="A verified-vs-claimed audit of B.AI: model aggregation, wallet login, x402 agent payments, subsidy economics, and the 2013→2026 pattern. Not investment advice.">
+<meta property="og:url" content="https://agiscorecard.com/what-is-b-ai">
+<meta property="og:type" content="article">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"What is B.AI? Justin Sun's AI relay station, audited","datePublished":"2026-08-23","dateModified":"2026-08-23","inLanguage":"en","author":{"@type":"Organization","name":"The AGI Scorecard","url":"https://agiscorecard.com/about"},"publisher":{"@type":"Organization","name":"The AGI Scorecard","url":"https://agiscorecard.com/"},"description":"An audit of B.AI, the crypto-settled AI model relay launched by Justin Sun in April 2026: what is verified, what is self-reported, and what it signals about agent payments."}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AGI Scorecard","item":"https://agiscorecard.com/"},{"@type":"ListItem","position":2,"name":"AGI questions, answered","item":"https://agiscorecard.com/agi-questions"},{"@type":"ListItem","position":3,"name":"What is B.AI?","item":"https://agiscorecard.com/what-is-b-ai"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is B.AI?", "acceptedAnswer": {"@type": "Answer", "text": "B.AI is an AI relay station launched by Justin Sun on April 12, 2026: one API key and one balance that resell access to Claude, GPT, Gemini and leading Chinese models (MiniMax, Kimi, GLM, DeepSeek), with wallet-based login, card or crypto payment, and agent-payment plumbing (x402, ERC-8004) built in."}}, {"@type": "Question", "name": "Is B.AI an official partner of OpenAI, Anthropic or Google?", "acceptedAnswer": {"@type": "Answer", "text": "No partnership has been announced by any of the model providers as of August 2026. B.AI presents itself as a relay/aggregator; how its access arrangements sit with each provider's resale terms is publicly undocumented — treat that as an open question, not a verdict either way."}}, {"@type": "Question", "name": "How many users does B.AI have?", "acceptedAnswer": {"@type": "Answer", "text": "Sun stated 1.7 million registered users (his own announcement; not independently audited). Heavy incentives — 50,000-point starter credits, 1:1 recharge matching, a stated daily $10,000 subsidy pool — mean registered users and paying demand are different numbers."}}, {"@type": "Question", "name": "What does B.AI signal about the agent economy?", "acceptedAnswer": {"@type": "Answer", "text": "It is the largest named commitment yet to x402-style agent payments: real subsidy money now sits behind the rail. It does not yet prove demand — Chainalysis counted 100M+ x402 transactions by spring 2026 but roughly half looked like testing, and CoinDesk reported in March 2026 that organic demand wasn't there yet. Watch paying usage, not registrations."}}]}</script>
+<style>
+  :root{--bg:#0a0a0b;--bg2:#111114;--bg3:#18181d;--border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.12);--text:#e8e8ec;--muted:#8888a0;--accent:#7c6af5;--accent2:#4fc3a1;--warn:#e8a040;--danger:#e05555;--font:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;--mono:'JetBrains Mono',monospace;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:16px;line-height:1.75;}
+  a{color:var(--accent);text-decoration:none;}a:hover{opacity:.8;}
+  header{border-bottom:1px solid var(--border);padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:56px;position:sticky;top:0;background:rgba(10,10,11,.92);backdrop-filter:blur(12px);z-index:100;}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px;color:var(--text);}
+  .logo-dot{width:8px;height:8px;background:var(--accent2);border-radius:50%;}
+  .back-link{font-size:13px;color:var(--muted);}.back-link:hover{color:var(--text);opacity:1;}
+  article{max-width:720px;margin:0 auto;padding:2.5rem 1.5rem 4rem;}
+  .eyebrow{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem;}
+  h1{font-size:clamp(1.7rem,4vw,2.4rem);font-weight:700;letter-spacing:-.02em;line-height:1.18;margin-bottom:1.25rem;}
+  .capsule{background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent2);border-radius:0 10px 10px 0;padding:1.15rem 1.4rem;font-size:16px;margin-bottom:1.75rem;}
+  .capsule .verdict{font-weight:700;}
+  .v-ok{color:var(--accent2);}.v-wrong{color:var(--danger);}.v-open{color:var(--accent);}.v-pending{color:var(--muted);}
+  h2{font-size:1.25rem;font-weight:600;margin:2.25rem 0 .9rem;letter-spacing:-.01em;}
+  p{margin-bottom:1rem;}
+  ul{margin:0 0 1rem 1.3rem;}li{margin-bottom:.45rem;}
+  strong{color:#fff;}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;margin:1rem 0 1.4rem;background:var(--bg2);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+  th{text-align:left;padding:10px 12px;color:var(--muted);font-weight:500;font-size:11px;letter-spacing:.05em;text-transform:uppercase;border-bottom:1px solid var(--border);}
+  td{padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:top;}
+  tr:last-child td{border-bottom:none;}
+  .nowrap{white-space:nowrap;font-weight:600;}
+  .faq-q{font-weight:600;margin:1.3rem 0 .4rem;}
+  .related{margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--border);}
+  .related h2{margin-top:0;}
+  .related a{display:block;padding:6px 0;font-size:14px;}
+  .src{font-size:12px;color:var(--muted);margin-top:.5rem;}
+  .updated{font-size:12px;color:var(--muted);margin-bottom:1.5rem;}
+  .cta{margin-top:2rem;background:linear-gradient(135deg,rgba(124,106,245,.08),rgba(79,195,161,.06));border:1px solid rgba(124,106,245,.2);border-radius:14px;padding:1.5rem;text-align:center;}
+  .cta a{display:inline-block;background:var(--accent);color:#fff;padding:10px 22px;border-radius:8px;font-size:14px;font-weight:500;margin-top:.6rem;}
+  footer{border-top:1px solid var(--border);padding:24px 0;font-size:12px;color:var(--muted);text-align:center;}
+@media(max-width:640px){table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;white-space:nowrap}table td,table th{white-space:normal;min-width:92px}}
+</style>
+</head>
+<body>
+<header>
+  <a href="/" class="logo"><span class="logo-dot"></span>AGI Scorecard</a>
+  <a href="/" class="back-link">← Live scorecard</a>
+</header>
+<main>
+  <article>
+  <div class="eyebrow">Evidence audit · The agent economy</div>
+  <h1>What Is B.AI? Justin Sun's AI Relay Station, Audited</h1>
+  <div class="updated">Last updated: August 23, 2026 · Verified vs. self-reported, sources dated · Not investment advice</div>
+
+  <div class="capsule"><span class="verdict">Real product, unaudited numbers, and the clearest tell yet of where Sun thinks the next rail is.</span>
+  B.AI, launched April 12, 2026, resells access to Claude, GPT, Gemini and China's leading models behind
+  <strong>one API key and one crypto-settled balance</strong>, with wallet login and agent-payment protocols
+  (x402, ERC-8004) built in. The product claims are user-checkable; the growth numbers — 1.7M registered users,
+  a daily $10,000 subsidy pool, a "tens-of-billions token subsidy" — trace to Sun's own announcements. The
+  strategic read: in his 2013 story he says he <em>bought the asset</em>; in 2026 he is verifiably
+  <em>building the toll booth</em> between wallets and every frontier model at once.</div>
+
+  <div style="margin:1.2rem 0;padding:1rem 1.2rem;background:var(--bg2,#141416);border:1px solid var(--border,#26262a);border-radius:12px;">
+    <span style="font-size:13px;color:var(--muted);">We keep our own ledger the same way we audit his — pre-registered, auditable conditions:</span><br>
+    <a href="/progress-index" onclick="gtag('event','index_click',{location:'whatisbai_live'});" style="font-size:28px;font-weight:800;font-variant-numeric:tabular-nums;text-decoration:none;">62.5<span style="font-size:16px;color:var(--muted);">/100</span></a>
+    <span style="font-size:13px;color:var(--muted);">— the AGI-2027 Thesis Tracker, eight verdicts, each with a flip condition.</span>
+  </div>
+
+  <h2>Verified vs. self-reported</h2>
+  <table>
+    <thead><tr><th>Claim</th><th>Status</th><th>What the record shows</th></tr></thead>
+    <tbody>
+      <tr><td>Launched April 12, 2026 (Hong Kong announcement)</td><td class="nowrap v-ok">Reported</td><td>Covered by ChainCatcher, Bitrue and crypto press at the time</td></tr>
+      <tr><td>One API key aggregating Claude, GPT, Gemini, MiniMax, Kimi, GLM, DeepSeek</td><td class="nowrap v-ok">Product claim</td><td>Directly checkable by any user of the service</td></tr>
+      <tr><td>Wallet login; card, Apple&nbsp;Pay or crypto settlement; "official zero-markup pricing"</td><td class="nowrap v-ok">Product claim</td><td>Checkable; pricing parity is marketed, worth verifying per model</td></tr>
+      <tr><td>x402 + ERC-8004 agent-payment integration</td><td class="nowrap v-open">Announced</td><td>Stated at launch; Solana cross-chain support added late May 2026</td></tr>
+      <tr><td>Subsidies: 50k starter points · 1:1 recharge match · up to $100/user · $10k daily pool · "tens-of-billions token subsidy"</td><td class="nowrap v-open">Announced</td><td>All from Sun's own channels; scale and duration unaudited</td></tr>
+      <tr><td>1.7M registered users</td><td class="nowrap v-open">Self-reported</td><td>His announcement; registrations under heavy incentives ≠ paying demand</td></tr>
+      <tr><td>Model providers' consent to resale</td><td class="nowrap v-pending">Open question</td><td>No provider has publicly announced a partnership; no public record either way</td></tr>
+      <tr><td>"Sun-ge Model 1.0" personal AI persona</td><td class="nowrap v-pending">Announced plan</td><td>Knowledge-distilled digital avatar; not shipped as of this audit</td></tr>
+    </tbody>
+  </table>
+
+  <h2>The 2013 → 2026 pattern</h2>
+  <p>Our <a href="/justin-sun-2013-bitcoin-story">audit of the 2013 Bitcoin story</a> found the investment tale unverifiable
+  but the <em>positioning</em> playbook thoroughly real: get inside the era's biggest paradigm shift early, and treat attention
+  as a compounding asset. B.AI is that same playbook executed with 2026 resources — instead of claiming to buy the rail's asset,
+  he is building the metering point where <strong>every</strong> model's traffic can be charged, subsidizing adoption the way
+  exchanges once subsidized trading, and switching his own public AI usage to it ("I've moved all my AI to B.AI") as manufactured
+  proof. Whether B.AI wins or not, the capital allocation is the signal: the biggest self-promoter in crypto has decided the
+  agent-payment rail is the thing worth owning next.</p>
+
+  <h2>What it does — and doesn't — prove about agent payments</h2>
+  <p>B.AI is the largest named commitment to x402-style payments so far. It still doesn't prove organic demand:
+  <a href="https://www.chainalysis.com/blog/x402-agentic-payments-adoption/" rel="noopener">Chainalysis</a> counted 100M+ x402
+  transactions by spring 2026 with roughly half resembling test traffic, and
+  <a href="https://www.coindesk.com/markets/2026/03/11/coinbase-backed-ai-payments-protocol-wants-to-fix-micropayment-but-demand-is-just-not-there-yet" rel="noopener">CoinDesk</a>
+  reported in March 2026 that micropayment demand "is just not there yet." Our own position is on record in the
+  <a href="/paradigm-experiment">paradigm-experiment ledger</a>: we watch this rail quarterly with pre-registered conditions,
+  and a subsidized land grab is exactly the moment to keep the distinction between <em>registrations</em> and
+  <em>paying usage</em> sharp.</p>
+
+  <div style="margin:1.5rem 0;background:var(--bg2,#141416);border:1px solid var(--border,#26262a);border-radius:14px;padding:1.1rem 1.3rem;">
+    <p style="margin:0 0 .7rem;font-weight:700;">Track the operator, not the narrative</p>
+    <p style="margin:0 0 .8rem;font-size:14px;color:var(--muted);">SunWatch logs Justin Sun's market calls as falsifiable triggers before outcomes, graded hit/miss with misses never deleted — and follows his disclosed positions daily.</p>
+    <a href="https://invest.agiscorecard.com" onclick="gtag('event','invest_tool_click',{location:'whatisbai_sunwatch'});" style="display:inline-block;background:#6350d9;color:#fff;padding:9px 20px;border-radius:8px;font-size:14px;font-weight:600;margin-right:8px;">SunWatch daily brief &rarr;</a>
+    <a href="/justin-sun-2013-bitcoin-story" onclick="gtag('event','readnext_click',{location:'whatisbai_sun2013'});" style="display:inline-block;background:var(--bg3,#1c1c20);border:1px solid var(--border,#26262a);color:var(--text,#eee);padding:9px 20px;border-radius:8px;font-size:14px;font-weight:600;">The 2013 story, audited &rarr;</a>
+  </div>
+
+  <h2>FAQ</h2>
+  <h3>What is B.AI?</h3>
+  <p>B.AI is an AI relay station launched by Justin Sun on April 12, 2026: one API key and one balance that resell access to Claude, GPT, Gemini and leading Chinese models (MiniMax, Kimi, GLM, DeepSeek), with wallet-based login, card or crypto payment, and agent-payment plumbing (x402, ERC-8004) built in.</p>
+  <h3>Is B.AI an official partner of OpenAI, Anthropic or Google?</h3>
+  <p>No partnership has been announced by any of the model providers as of August 2026. B.AI presents itself as a relay/aggregator; how its access arrangements sit with each provider's resale terms is publicly undocumented — treat that as an open question, not a verdict either way.</p>
+  <h3>How many users does B.AI have?</h3>
+  <p>Sun stated 1.7 million registered users (his own announcement; not independently audited). Heavy incentives — 50,000-point starter credits, 1:1 recharge matching, a stated daily $10,000 subsidy pool — mean registered users and paying demand are different numbers.</p>
+  <h3>What does B.AI signal about the agent economy?</h3>
+  <p>It is the largest named commitment yet to x402-style agent payments: real subsidy money now sits behind the rail. It does not yet prove demand — Chainalysis counted 100M+ x402 transactions by spring 2026 but roughly half looked like testing, and CoinDesk reported in March 2026 that organic demand wasn't there yet. Watch paying usage, not registrations.</p>
+
+  <div style="margin:1.6rem 0;">
+    <a href="https://agiscorecard.beehiiv.com/subscribe?utm_source=agiscorecard&amp;utm_medium=deep_whatisbai" target="_blank" rel="noopener" onclick="gtag('event','subscribe_click',{location:'deep_whatisbai'});" style="display:inline-block;background:#6350d9;color:#fff;padding:9px 20px;border-radius:8px;font-size:14px;font-weight:600;">One email when a verdict flips &rarr;</a>
+  </div>
+  <p style="font-size:13px;color:var(--muted);">Browse all <a href="/agi-questions">AGI questions</a> · Method: only dated, named sources; claims traceable solely to the subject are labeled self-reported. Nothing here is investment advice.</p>
+  </article>
+</main>
+<footer>By the <a href="/about" style="color:var(--muted);">AGI Scorecard team</a> · Independent tracker of <a href="https://situational-awareness.ai" style="color:var(--muted);">Situational Awareness</a> · Not affiliated with any lab or fund · <a href="/privacy" style="color:var(--muted);">Privacy</a> · <a href="/advertise" style="color:var(--muted);">Advertise</a></footer>
+</body>
+</html>

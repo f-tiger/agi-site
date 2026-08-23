@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FZXLMBB5QB"></script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a0a0b'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%234fc3a1'/%3E%3C/svg%3E">
+<title>B.AI 是什么？孙宇晨的 AI 中转站，逐项核实</title>
+<meta name="description" content="B.AI 用一个加密结算的 API key 转售 Claude/GPT/Gemini，内置 x402 代理支付。哪些已证实、哪些是自述、它揭示了什么——带日期信源，不构成投资建议。">
+<link rel="canonical" href="https://agiscorecard.com/zh/what-is-b-ai">
+<link rel="alternate" hreflang="en" href="https://agiscorecard.com/what-is-b-ai">
+<link rel="alternate" hreflang="zh" href="https://agiscorecard.com/zh/what-is-b-ai">
+<meta property="og:title" content="B.AI 是什么？孙宇晨的 AI 中转站，逐项核实">
+<meta property="og:description" content="已证实 vs 自述的逐项审计：模型聚合、钱包登录、x402 代理支付、补贴经济学，以及 2013→2026 的模式。">
+<meta property="og:url" content="https://agiscorecard.com/zh/what-is-b-ai">
+<meta property="og:type" content="article">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"B.AI 是什么？孙宇晨的 AI 中转站，逐项核实","datePublished":"2026-08-23","dateModified":"2026-08-23","inLanguage":"zh","author":{"@type":"Organization","name":"AGI 记分牌","url":"https://agiscorecard.com/about"},"publisher":{"@type":"Organization","name":"AGI 记分牌","url":"https://agiscorecard.com/"},"description":"对孙宇晨2026年4月上线的加密结算 AI 模型中转站 B.AI 的审计：哪些已证实、哪些是自述、它对代理支付意味着什么。"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AGI 记分牌","item":"https://agiscorecard.com/cn"},{"@type":"ListItem","position":2,"name":"中文内容","item":"https://agiscorecard.com/cn"},{"@type":"ListItem","position":3,"name":"B.AI 是什么","item":"https://agiscorecard.com/zh/what-is-b-ai"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "B.AI 是什么？", "acceptedAnswer": {"@type": "Answer", "text": "孙宇晨2026年4月12日上线的 AI 中转站：一个 API key、一个余额，转售 Claude、GPT、Gemini 与 MiniMax/Kimi/GLM/DeepSeek 等国产模型的调用，支持钱包登录、银行卡或加密货币支付，并内置 x402、ERC-8004 等代理支付协议。"}}, {"@type": "Question", "name": "B.AI 是 OpenAI/Anthropic/Google 的官方合作方吗？", "acceptedAnswer": {"@type": "Answer", "text": "截至2026年8月，没有任何模型厂商宣布过合作。B.AI 以中转/聚合形态出现；其接入方式与各厂商转售条款的关系没有公开记录——这是一个开放问题，不应向任何一个方向下结论。"}}, {"@type": "Question", "name": "B.AI 有多少用户？", "acceptedAnswer": {"@type": "Answer", "text": "孙宇晨宣称注册用户170万（据其本人陈述，无独立审计）。考虑到5万积分注册赠送、1:1充值配比、宣称的每日1万美元补贴池等重激励，注册数与付费需求是两个不同的数字。"}}, {"@type": "Question", "name": "B.AI 对代理经济意味着什么？", "acceptedAnswer": {"@type": "Answer", "text": "这是迄今为止对 x402 类代理支付最大的具名投入：真金白银的补贴压在了这条轨道上。但它还不能证明需求——Chainalysis 统计2026年春 x402 累计交易超1亿笔，其中约一半疑似测试流量；CoinDesk 2026年3月报道称自然需求尚未到来。要看的是付费使用量，不是注册数。"}}]}</script>
+<style>
+  :root{--bg:#ffffff;--bg2:#f7f7f8;--bg3:#eeeef1;--border:rgba(0,0,0,0.10);--border2:rgba(0,0,0,0.18);--text:#0a0a0b;--muted:#63636e;--accent:#002FA7;--accent2:#0f7a52;--warn:#8a5a00;--danger:#C8102E;--font:'Noto Sans SC','PingFang SC','Microsoft YaHei',-apple-system,Helvetica Neue,sans-serif;--mono:'JetBrains Mono',monospace;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-variant-numeric:tabular-nums;background:var(--bg);color:var(--text);font-family:var(--font);font-size:16px;line-height:1.75;}
+  a{color:var(--accent);text-decoration:none;}a:hover{opacity:.8;}
+  header{border-bottom:1px solid var(--border);padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:56px;position:sticky;top:0;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);z-index:100;}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px;color:var(--text);}
+  .logo-dot{width:8px;height:8px;background:var(--accent2);border-radius:50%;}
+  .back-link{font-size:13px;color:var(--muted);}.back-link:hover{color:var(--text);opacity:1;}
+  article{max-width:720px;margin:0 auto;padding:2.5rem 1.5rem 4rem;}
+  .eyebrow{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem;}
+  h1{font-size:clamp(1.7rem,4vw,2.4rem);font-weight:700;letter-spacing:-.02em;line-height:1.18;margin-bottom:1.25rem;}
+  .capsule{background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent2);border-radius:0 10px 10px 0;padding:1.15rem 1.4rem;font-size:16px;margin-bottom:1.75rem;}
+  .capsule .verdict{font-weight:700;}
+  .v-ok{color:var(--accent2);}.v-wrong{color:var(--danger);}.v-open{color:var(--accent);}.v-pending{color:var(--muted);}
+  h2{font-size:1.25rem;font-weight:600;margin:2.25rem 0 .9rem;letter-spacing:-.01em;}
+  h3{font-size:1.05rem;font-weight:600;margin:1.5rem 0 .6rem;}
+  p{margin-bottom:1rem;}
+  ul{margin:0 0 1rem 1.3rem;}li{margin-bottom:.45rem;}
+  strong{color:#000;font-weight:700;}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;margin:1rem 0 1.4rem;background:var(--bg2);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+  th{text-align:left;padding:10px 12px;color:var(--muted);font-weight:500;font-size:11px;letter-spacing:.05em;text-transform:uppercase;border-bottom:1px solid var(--border);}
+  td{padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:top;}
+  tr:last-child td{border-bottom:none;}
+  .nowrap{white-space:nowrap;font-weight:600;}
+  .faq-q{font-weight:600;margin:1.3rem 0 .4rem;}
+  .related{margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--border);}
+  .related h2{margin-top:0;}
+  .related a{display:block;padding:6px 0;font-size:14px;}
+  .src{font-size:12px;color:var(--muted);margin-top:.5rem;}
+  .updated{font-size:12px;color:var(--muted);margin-bottom:1.5rem;}
+  .cta{margin-top:2rem;background:linear-gradient(135deg,rgba(0,47,167,.05),rgba(15,122,82,.05));border:1px solid rgba(0,47,167,.18);border-radius:14px;padding:1.5rem;text-align:center;}
+  .cta a{display:inline-block;background:var(--accent);color:#fff;padding:10px 22px;border-radius:8px;font-size:14px;font-weight:500;margin-top:.6rem;}
+  footer{border-top:1px solid var(--border);padding:24px 0;font-size:12px;color:var(--muted);text-align:center;}
+@media(max-width:640px){table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;white-space:nowrap}table td,table th{white-space:normal;min-width:92px}}
+</style>
+</head>
+<body>
+<header>
+  <a href="/cn" class="logo"><span class="logo-dot"></span>AGI 记分牌</a>
+  <a href="/cn" class="back-link">← 中文首页</a>
+</header>
+<main>
+  <article>
+  <div class="eyebrow">证据审计 · 代理经济</div>
+  <h1>B.AI 是什么？孙宇晨的 AI 中转站，逐项核实</h1>
+  <div class="updated">最后更新：2026年8月23日 · 已证实 vs 自述，信源带日期 · 不构成投资建议</div>
+
+  <div class="capsule"><span class="verdict">产品是真的，数字未经审计，而资本配置本身就是他对「下一条轨道在哪」的最清晰表态。</span>
+  B.AI 于2026年4月12日上线：<strong>一个 API key、一个加密结算的余额</strong>，转售 Claude、GPT、Gemini
+  与国产头部模型的调用，内置钱包登录与代理支付协议（x402、ERC-8004）。产品能力任何用户可自行验证；
+  增长数字——170万注册用户、每日1万美元补贴池、「百亿代币补贴」——全部溯源到他本人的宣布。
+  策略上的读法：2013年的故事里他说自己<em>买了资产</em>；2026年他在可验证地<em>修收费站</em>——
+  卡在钱包与所有前沿模型之间的那一个计费点。</div>
+
+  <div style="margin:1.2rem 0;padding:1rem 1.2rem;background:var(--bg2);border:1px solid var(--border);border-radius:12px;">
+    <span style="font-size:13px;color:var(--muted);">我们用审计他的同一标准记自己的账——预登记、可核对的翻转条件：</span><br>
+    <a href="/progress-index" onclick="gtag('event','index_click',{location:'zh_whatisbai_live'});" style="font-size:28px;font-weight:800;font-variant-numeric:tabular-nums;text-decoration:none;">62.5<span style="font-size:16px;color:var(--muted);">/100</span></a>
+    <span style="font-size:13px;color:var(--muted);">—— AGI-2027 追踪指数，八条判定，每条都有翻转条件。</span>
+  </div>
+
+  <h2>已证实 vs 自述</h2>
+  <table>
+    <thead><tr><th>说法</th><th>状态</th><th>记录显示</th></tr></thead>
+    <tbody>
+      <tr><td>2026年4月12日香港发布上线</td><td class="nowrap v-ok">有报道</td><td>ChainCatcher、Bitrue 等当时报道</td></tr>
+      <tr><td>一个 API key 聚合 Claude/GPT/Gemini/MiniMax/Kimi/GLM/DeepSeek</td><td class="nowrap v-ok">产品声明</td><td>任何用户可直接验证</td></tr>
+      <tr><td>钱包登录；银行卡/Apple&nbsp;Pay/加密结算；「对标官方零加价」</td><td class="nowrap v-ok">产品声明</td><td>可验证；价格对标是营销说法，逐模型核对为宜</td></tr>
+      <tr><td>x402 + ERC-8004 代理支付集成</td><td class="nowrap v-open">已宣布</td><td>发布时声明；5月下旬增加 Solana 跨链</td></tr>
+      <tr><td>补贴：注册送5万积分 · 充值1:1配比 · 单用户最高$100 · 每日$1万池 · 「百亿代币补贴」</td><td class="nowrap v-open">已宣布</td><td>全部出自其本人渠道；规模与持续时间未经审计</td></tr>
+      <tr><td>注册用户170万</td><td class="nowrap v-open">据其本人陈述</td><td>重激励下的注册数 ≠ 付费需求</td></tr>
+      <tr><td>模型厂商对转售的态度</td><td class="nowrap v-pending">开放问题</td><td>没有任何厂商宣布合作；也没有公开记录显示相反</td></tr>
+      <tr><td>「孙哥模型1.0」个人 AI 分身</td><td class="nowrap v-pending">已宣布计划</td><td>个人数据知识蒸馏的数字分身；截至本审计未上线</td></tr>
+    </tbody>
+  </table>
+
+  <h2>2013 → 2026 的同一套打法</h2>
+  <p>我们对<a href="/zh/justin-sun-2013">2013年比特币故事的审计</a>发现：投资故事无法证实，但<em>站位</em>打法全部属实——
+  尽早卡进时代最大的范式转移，把注意力当复利资产。B.AI 是同一打法的2026年资源版：不再宣称买入轨道上的资产，
+  而是修建<strong>所有</strong>模型流量都要经过的计费点；用交易所大战式的补贴换使用习惯；再把「我已把自己的 AI
+  全部切到 B.AI」当作制造出来的信任状。无论 B.AI 成败，资本配置本身就是信号：加密世界最强的自我营销者，
+  已经把「代理支付轨道」选为下一个值得拥有的东西。</p>
+
+  <h2>它能、以及不能证明什么</h2>
+  <p>B.AI 是迄今对 x402 类支付最大的具名投入，但仍不能证明自然需求：Chainalysis 统计2026年春 x402 累计交易超1亿笔、
+  约一半疑似测试流量；CoinDesk 2026年3月报道微支付需求「还没有到来」。我们自己的立场在
+  <a href="/zh/paradigm-experiment">范式实验台账</a>上有预登记的条件、按季度复查——补贴驱动的圈地时刻，
+  恰恰最需要把<em>注册数</em>与<em>付费使用</em>分开看。</p>
+
+  <div style="margin:1.5rem 0;background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:1.1rem 1.3rem;">
+    <p style="margin:0 0 .7rem;font-weight:700;">跟踪操盘者，而不是叙事</p>
+    <p style="margin:0 0 .8rem;font-size:14px;color:var(--muted);">SunWatch 把孙宇晨的每次市场判断在结果出来前登记为可证伪触发条件，命中/落空全记录、落空永不删除，并每日跟踪其公开持仓。</p>
+    <a href="https://invest.agiscorecard.com" onclick="gtag('event','invest_tool_click',{location:'zh_whatisbai_sunwatch'});" style="display:inline-block;background:var(--accent);color:#fff;padding:9px 20px;border-radius:8px;font-size:14px;font-weight:600;margin-right:8px;">SunWatch 每日简报 &rarr;</a>
+    <a href="/zh/justin-sun-2013" onclick="gtag('event','readnext_click',{location:'zh_whatisbai_sun2013'});" style="display:inline-block;background:var(--bg3);border:1px solid var(--border);color:var(--text);padding:9px 20px;border-radius:8px;font-size:14px;font-weight:600;">2013年故事审计 &rarr;</a>
+  </div>
+
+  <h2>常见问题</h2>
+  <h3>B.AI 是什么？</h3>
+  <p>孙宇晨2026年4月12日上线的 AI 中转站：一个 API key、一个余额，转售 Claude、GPT、Gemini 与 MiniMax/Kimi/GLM/DeepSeek 等国产模型的调用，支持钱包登录、银行卡或加密货币支付，并内置 x402、ERC-8004 等代理支付协议。</p>
+  <h3>B.AI 是 OpenAI/Anthropic/Google 的官方合作方吗？</h3>
+  <p>截至2026年8月，没有任何模型厂商宣布过合作。B.AI 以中转/聚合形态出现；其接入方式与各厂商转售条款的关系没有公开记录——这是一个开放问题，不应向任何一个方向下结论。</p>
+  <h3>B.AI 有多少用户？</h3>
+  <p>孙宇晨宣称注册用户170万（据其本人陈述，无独立审计）。考虑到5万积分注册赠送、1:1充值配比、宣称的每日1万美元补贴池等重激励，注册数与付费需求是两个不同的数字。</p>
+  <h3>B.AI 对代理经济意味着什么？</h3>
+  <p>这是迄今为止对 x402 类代理支付最大的具名投入：真金白银的补贴压在了这条轨道上。但它还不能证明需求——Chainalysis 统计2026年春 x402 累计交易超1亿笔，其中约一半疑似测试流量；CoinDesk 2026年3月报道称自然需求尚未到来。要看的是付费使用量，不是注册数。</p>
+
+  <div style="margin:1.6rem 0;">
+    <a href="https://agiscorecard.beehiiv.com/subscribe?utm_source=agiscorecard&amp;utm_medium=zh_deep_whatisbai" target="_blank" rel="noopener" onclick="gtag('event','subscribe_click',{location:'zh_deep_page'});" style="display:inline-block;background:var(--accent);color:#fff;padding:9px 20px;border-radius:8px;font-size:14px;font-weight:600;">判定翻转时收一封邮件（英文表单）&rarr;</a>
+  </div>
+  <p style="font-size:13px;color:var(--muted);">全部<a href="/agi-questions">判定型问题</a> · 方法：只用带日期的具名信源；仅能溯源到当事人本人的说法一律标注「据其本人陈述」。本页不构成投资建议。</p>
+  </article>
+</main>
+<footer>出品：<a href="/about" style="color:var(--muted);">AGI 记分牌</a> · 独立追踪 <a href="https://situational-awareness.ai" style="color:var(--muted);">Situational Awareness</a> · 与任何实验室或基金无关联 · <a href="/privacy" style="color:var(--muted);">隐私</a></footer>
+</body>
+</html>
