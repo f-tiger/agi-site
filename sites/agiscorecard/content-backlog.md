@@ -185,6 +185,11 @@ specs above at any time to resume net-new page creation.
 - [ ] `owner-action:monetization-gateway` — 提醒 owner 报名 Cloudflare Monetization Gateway waitlist（~3 分钟，x402 agent 付费前置条件）。E3 引擎。
 
 
+- [ ] `games-refs-10` —(2026-08-23 种,顺手项)站内 3 处 Gridlings 引用仍是单款措辞:
+  index.html:772(directory chip)、ai-tools.html:82、zh/ai-tools.html:123。改为
+  「10 款每日逻辑谜题(全部机器验证唯一解)/10 daily logic puzzles」;数字诚实规则
+  (页面数字必须与实际一致)优先于防翻炒——但等 8/24 daily run 一并做,不单独提交。
+
 ## Queue — CITATION AMPLIFICATION（2026-08-16 自种，依据 Bing AI Performance 的 Pages/Queries 明细，**不是猜的搜索需求，是已发生的引用**）
 - [x] (CITATION AMPLIFICATION·invest) how-verifiable-is-justin-sun-2013-bitcoin-story(2026-08-23 出厂:/justin-sun-2013-bitcoin-story + /zh/justin-sun-2013) + zh——判定型双栏审计页(一手调研已完成 2026-08-23,docs/paradigm-bet-framework-2026-08.md §一;六件套+SunWatch 桥;B栏逐条标「据其本人陈述」,SEC 部分只引文件事实——诽谤安全)
 
