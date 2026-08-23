@@ -469,6 +469,7 @@ Consistent product photos. Photos match the official factory catalog; no waterma
 Clear policies. Written shipping, customs, cancellation and defect policies — before checkout, not after.
 Domain history. The domain is more than a year old (check any WHOIS lookup). Scam shops churn new domains constantly.
 Verdict: tick the boxes above to score this shop.
+Check #1 in ten seconds: run the quoted price against 53 verified listings — below the recorded band is the strongest single signal on this list.
 Half of what a shop tells you cannot be checked from outside it. Which listing words carry information and which are decoration — “medical grade” is not a grade.
 Which warning signs mean you should leave immediately?
 Only bank wire, Western Union, crypto or gift cards. No legitimate doll vendor refuses buyer-protected payment.
@@ -2105,6 +2106,40 @@ contains no affiliate links and no vendor ranking — it returns
 measurements and rules. Data is CC BY 4.0; the
 methodology explains how it was collected and what it
 does not cover.
+
+## Doll Price Reality Check: Too Cheap to Be Real? (Free)
+URL: https://thedollscout.com/price-check
+
+Price Reality Check
+The single strongest counterfeit signal is a price no real vendor can match.
+This tool quantifies it: your quoted price against 53 verified listings
+(height, weight and price recorded from a vetted vendor on 2026-08-11, published as an open
+dataset). Ten seconds, no account.
+Quoted price (USD)
+What is it?
+Full-size doll, 141–155 cm
+Full-size doll, 156–165 cm
+Small full-body, 101–140 cm
+Torso
+Check this price
+What this can and cannot tell you — read before trusting any verdict:
+The bands come from one vetted vendor's catalog on one date (53 rows,
+recorded 2026-08-11, TPE-heavy). They are a reference floor , not a market census.
+A normal price does not make a shop legitimate — counterfeiters copy real
+prices too. A passing price only means price isn't the tell; run the
+10-point Scam-Check regardless.
+A below-band price is not 100% proof of fraud — clearances exist. It means
+the burden of proof flips: verify factory authorization and pay only with
+recourse-protected methods .
+The bands, from the dataset
+Category Listings Lowest verified Median Highest
+Full-size 141–155 cm 30 $899 $2,199 $2,866
+Full-size 156–165 cm 16 $1,232 $1,990 $2,699
+Small full-body 101–140 cm 4 $1,799 $1,999 $1,999
+Torso 3 $1,549 $1,599 $1,600
+Raw rows: CSV · JSON ·
+dataset documentation (CC BY 4.0). Small-sample categories (torso, 101–140 cm)
+carry wider uncertainty — the row counts are printed so you can judge.
 
 ## Sex Doll Weight by Height: Real Listings, Sample Sizes Stated
 URL: https://thedollscout.com/weight/
