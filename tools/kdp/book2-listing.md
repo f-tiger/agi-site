@@ -36,11 +36,31 @@ owner 2026-08-23 指令：「KDP的书还不如孙的成功模式总结，在不
   risk...》**(Mark E. Lambert 著,"BIOGRAPHY OF ICONS" 系列,ASIN B0F9VLZXKB)
 
 两本都是第三方作者、姓名直接入主标题、KDP 渠道在售——**平台接受此格式的直接证据**。
-更大的行业先例:「未经授权传记」是大出版社的成熟品类(如企鹅系的《Justin Bieber:
-The Unauthorized Biography》,与我们完全同构:真名 + Unauthorized 标注)。
-竞争面观察:现存两本孙传记从冗长副标题看是低质流水线产物——这反而是利好:
-①证明格式无碍;②我们的审计式差异化(两栏账、具名信源、判例级合规)正好对打
-这类无信源内容。
+
+### 他们卖得怎样(owner 追问,2026-08-23 查证)——基本卖不动,这就是关键数据
+
+证据:两本在 Goodreads **零条目零评论**(有真实读者的书必有);全网无任何第三方
+讨论;listing 特征(堆词副标题+系列壳)= KDP 流水线,批量蹭实体长尾、单本预期
+0-5 本。**市场判读**:「Justin Sun」实体搜索量存在(所以流水线盯上了),但
+**纯 Amazon 搜索的买书需求很小**——想看孙的人先被免费网页满足。
+
+对照组(这个品类真正卖动的):《Number Go Up》《Going Infinite》、CZ 回忆录——
+赢在**可信作者+叙事+独家事实**,全在可信度金字塔顶端成交,不在长尾。
+
+### 由此修正(放大差异,不自嗨)
+
+1. **获客通路反转**:不指望 Amazon 搜索自卖。本书定位 = 站点引用流量的变现出口
+   + 权威凭证:两张审计页(2013/B.AI)已在吃 AI 引用,书是它们的「成书版」;
+   AI 引擎引用审计页时,书随实体出现。渠道是引用→书,不是搜索→书。
+2. **判定线改双轨**(替换原 60 天线):主 KPI = 站内漏斗 `readnext_click{sunbook}`
+   (上架挂 ASIN 后 28 天 ≥20 次点击)+ Amazon 自然销量降为副 KPI(60 天 ≥10 本);
+   两线全空 → 书转免费 lead magnet(送书换订阅),不再追销量。
+3. **对打差异要写进 listing 首行**:描述开头即区隔——非流水线、每个事实可在
+   活页面复核("Every factual claim in this book links to a public, dated,
+   checkable audit — nothing here asks for your trust.")。已体现,保持。
+4. **我们唯一该学流水线的东西**:长尾覆盖的成本结构。书 2 的模板(审计页→书)
+   边际成本极低,但**只在已有对应审计资产时复制**(下一候选:B.AI 半年后的
+   成败复盘)。绝不做无信源流水线——那正是我们对打的东西。
 
 ## 文件
 - `book2.epub` — Kindle 电子书上传件（EPUB3，KDP 直接接受）
@@ -81,8 +101,9 @@ case study · crypto founder biography
 **Categories**: Biography & Memoir → Business; Business & Money → Marketing
 **定价**: 电子书 $3.49（70% 版税档 → 每本净 ≈ $2.40）；KDP Select 首发可做
 5 天免费推广换 review 基数（不买 review、不刷单）
-**判定线（60 天）**: 自然销量 ≥25 本或 review ≥5 → 扩写 40+ 页上纸书 + 出 zh
-版本渠道调研；未达 → 保留为长尾资产 + 站内 lead magnet 化（送书换订阅）再利用。
+**判定线（双轨,2026-08-23 按市场实况修正）**: 主 = 站内 `readnext_click{sunbook}`
+≥20/28d;副 = Amazon 自然销量 ≥10/60d。达一 → 扩写 40+ 页上纸书;全空 →
+转免费 lead magnet(送书换订阅)。
 
 ## 与站点的联动（写进书里的，反向也要成立）
 书内三处指向 agiscorecard.com（2013 审计页 / B.AI 审计页 / progress-index）。
