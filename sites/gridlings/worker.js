@@ -1,6 +1,6 @@
 // Gridlings worker: static assets + /e beacon + server-side pageview log.
 // All D1 writes are try/catch + waitUntil — analytics must never 500 the game.
-const ALLOWED = new Set(["play_start", "solve", "share_copy", "hint_used", "play_again", "sub_click", "challenge_copy", "challenge_open", "challenge_result", "sub_submit", "sub_ok", "sub_fail"]);
+const ALLOWED = new Set(["play_start", "solve", "share_copy", "hint_used", "play_again", "sub_click", "challenge_copy", "challenge_open", "challenge_result", "hub_click", "sub_submit", "sub_ok", "sub_fail"]);
 
 function uaClass(ua) {
   if (!ua) return "none";
