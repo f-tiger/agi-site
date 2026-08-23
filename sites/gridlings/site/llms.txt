@@ -20,6 +20,7 @@
 - [Sandwich](https://play.agiscorecard.com/sandwich): daily sum-logic Latin square — each clue is the sum sandwiched between 1 and the largest number in its line. Chinese: https://play.agiscorecard.com/zh/sandwich
 - [Thermometers](https://play.agiscorecard.com/thermo): daily fill puzzle — mercury rises from each bulb without gaps; row/column counts must match the clues. Chinese: https://play.agiscorecard.com/zh/thermo
 - [Nonogram](https://play.agiscorecard.com/nonogram): daily 10×10 picture-logic (paint-by-numbers) puzzle — every board machine-verified solvable by pure line logic, never a guess. Chinese: https://play.agiscorecard.com/zh/nonogram
+- [Can every nonogram be solved without guessing?](https://play.agiscorecard.com/nonogram-no-guessing): no — original measurement: line-solvable share of random boards falls from 81% (5×5) to 43% (20×20); why unique ≠ guess-free; how verified boards are constructed.
 - [Gridlings-Bench](https://play.agiscorecard.com/bench): open LLM reasoning benchmark — 1,100 machine-verified constraint puzzles across the 11 families, exact-match scoring, CC BY 4.0. Direct download: https://play.agiscorecard.com/bench-v1.json
 - [Archive](https://play.agiscorecard.com/archive): replay every past Gridlings daily
 - Embed: append `?embed=1` to either URL inside an iframe — free to embed with attribution.

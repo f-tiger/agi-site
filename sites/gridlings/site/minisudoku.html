@@ -7,6 +7,8 @@
 <meta name="description" content="A free daily 6×6 mini sudoku with 2×3 boxes: every row, column and box holds 1–6 exactly once. One machine-verified solution per board. Unlimited free play.">
 <link rel="canonical" href="https://play.agiscorecard.com/minisudoku">
 <link rel="stylesheet" href="style.css">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#002FA7">
 <link rel="alternate" hreflang="zh" href="https://play.agiscorecard.com/zh/minisudoku">
 <link rel="alternate" hreflang="en" href="https://play.agiscorecard.com/minisudoku">
 <meta property="og:title" content="Mini Sudoku 6×6 — Daily Puzzle">
@@ -21,6 +23,7 @@
 window.MINISUDOKU_LANG={daily:"Daily",free:"Free play",streak:"Streak",hints_used:"Hints",no_hints:"No hints 🧠",share:"Share result",copied:"Copied!"};
 window.LATIN_GAME={type:"minisudoku",path:"/minisudoku",file:"minisudoku",name:"Mini Sudoku",langVar:"MINISUDOKU_LANG"};
 </script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How do you play Mini Sudoku?", "acceptedAnswer": {"@type": "Answer", "text": "Fill the 6×6 grid so every row, every column and every outlined 2×3 box contains the numbers 1 to 6 exactly once. Tap a cell to cycle numbers, use the number pad, or type with your keyboard."}}, {"@type": "Question", "name": "Is there a new Mini Sudoku puzzle every day?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — a new daily board goes live at 00:00 UTC, the same board for every player worldwide, with streak tracking. Unlimited free play in three difficulties and a full archive of past dailies are also free, with no account and no ads."}}, {"@type": "Question", "name": "Can Mini Sudoku be solved without guessing?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Every published board is machine-verified before release: a solver proves exactly one solution exists and is reachable by logical deduction, so there is always a provable next step."}}]}</script>
 </head>
 <body>
 <div class="wrap">
@@ -66,6 +69,17 @@ window.LATIN_GAME={type:"minisudoku",path:"/minisudoku",file:"minisudoku",name:"
   <p style="margin-top:8px">The quick-coffee version of sudoku — same logic, five minutes. Sister puzzles: <a href="/">Gridlings</a>.</p>
 </div>
 
+
+<div class="rules">
+  <h2>FAQ</h2>
+  <h3 style="font-size:.98rem;margin:10px 0 2px">How do you play Mini Sudoku?</h3>
+  <p style="margin:0 0 6px">Fill the 6×6 grid so every row, every column and every outlined 2×3 box contains the numbers 1 to 6 exactly once. Tap a cell to cycle numbers, use the number pad, or type with your keyboard.</p>
+  <h3 style="font-size:.98rem;margin:10px 0 2px">Is there a new Mini Sudoku puzzle every day?</h3>
+  <p style="margin:0 0 6px">Yes — a new daily board goes live at 00:00 UTC, the same board for every player worldwide, with streak tracking. Unlimited free play in three difficulties and a full archive of past dailies are also free, with no account and no ads.</p>
+  <h3 style="font-size:.98rem;margin:10px 0 2px">Can Mini Sudoku be solved without guessing?</h3>
+  <p style="margin:0 0 6px">Yes. Every published board is machine-verified before release: a solver proves exactly one solution exists and is reachable by logical deduction, so there is always a provable next step.</p>
+</div>
+
 <footer>
   <p>Free forever, no account. Built by <a href="https://agiscorecard.com/about">AGI Scorecard</a>. Not affiliated with LinkedIn or The New York Times.</p>
   <p class="subline">Embed this game: add <code>?embed=1</code> to the URL in an iframe.</p>
@@ -73,5 +87,6 @@ window.LATIN_GAME={type:"minisudoku",path:"/minisudoku",file:"minisudoku",name:"
 </div>
 <script src="app-latin.js"></script>
 <script src="/sub.js" defer></script>
+<script>if("serviceWorker" in navigator&&!/(^|[?&])(clean|embed)=1/.test(location.search)){addEventListener("load",function(){navigator.serviceWorker.register("/sw.js").catch(function(){})})}</script>
 </body>
 </html>

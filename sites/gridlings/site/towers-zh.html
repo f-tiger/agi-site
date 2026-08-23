@@ -7,6 +7,8 @@
 <meta name="description" content="免费每日摩天楼谜题：填入楼高，边缘数字=从那侧能看见的楼数（高楼挡矮楼）。每题机器验证唯一解，另有无限畅玩。">
 <link rel="canonical" href="https://play.agiscorecard.com/zh/towers">
 <link rel="stylesheet" href="style.css">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#002FA7">
 <link rel="alternate" hreflang="en" href="https://play.agiscorecard.com/towers">
 <link rel="alternate" hreflang="zh" href="https://play.agiscorecard.com/zh/towers">
 <meta property="og:title" content="摩天楼 Towers — 每日高楼谜题">
@@ -20,6 +22,7 @@
 <script>
 window.TOWERS_LANG={daily:"每日",free:"畅玩",streak:"连胜",hints_used:"提示",no_hints:"零提示 🧠",share:"分享战绩",copied:"已复制！",ch_banner:"有人用时",ch_beat:"超过 TA！",ch_won:"🏆 你更快！",ch_lost:"TA 更快——再战？",ch_text:"我解开了这道谜题——你能比我快吗？",ch_btn:"⚔️ 挑战好友"};
 </script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "摩天楼怎么玩？", "acceptedAnswer": {"@type": "Answer", "text": "每行每列楼高不重复；外侧线索=从该方向能看见的楼数（高楼挡住矮楼）。点击循环或用数字键盘输入。"}}, {"@type": "Question", "name": "摩天楼每天有新题吗？", "acceptedAnswer": {"@type": "Answer", "text": "有——每天 00:00 UTC 上线一道新题，全球玩家同一棋盘，带连胜记录；另有三档难度无限畅玩与往期档案馆，全部免费、无账号、无广告。"}}, {"@type": "Question", "name": "摩天楼可以不用猜吗？", "acceptedAnswer": {"@type": "Answer", "text": "可以。每题发布前经机器验证：求解器证明恰好一个解且纯推理可达，任何时刻都存在可证明的下一步。"}}]}</script>
 </head>
 <body>
 <div class="wrap">
@@ -64,6 +67,17 @@ window.TOWERS_LANG={daily:"每日",free:"畅玩",streak:"连胜",hints_used:"提
   <p style="margin-top:8px">经典摩天楼谜题的每日版。姊妹作：<a href="/zh">Gridlings</a>。</p>
 </div>
 
+
+<div class="rules">
+  <h2>常见问题</h2>
+  <h3 style="font-size:.98rem;margin:10px 0 2px">摩天楼怎么玩？</h3>
+  <p style="margin:0 0 6px">每行每列楼高不重复；外侧线索=从该方向能看见的楼数（高楼挡住矮楼）。点击循环或用数字键盘输入。</p>
+  <h3 style="font-size:.98rem;margin:10px 0 2px">摩天楼每天有新题吗？</h3>
+  <p style="margin:0 0 6px">有——每天 00:00 UTC 上线一道新题，全球玩家同一棋盘，带连胜记录；另有三档难度无限畅玩与往期档案馆，全部免费、无账号、无广告。</p>
+  <h3 style="font-size:.98rem;margin:10px 0 2px">摩天楼可以不用猜吗？</h3>
+  <p style="margin:0 0 6px">可以。每题发布前经机器验证：求解器证明恰好一个解且纯推理可达，任何时刻都存在可证明的下一步。</p>
+</div>
+
 <footer>
   <p>永久免费、无账号。出品：<a href="https://agiscorecard.com/cn">AGI Scorecard</a>。与 LinkedIn、纽约时报无关联。</p>
   <p class="subline">嵌入本游戏：在 iframe 的 URL 后加 <code>?embed=1</code>。</p>
@@ -71,5 +85,6 @@ window.TOWERS_LANG={daily:"每日",free:"畅玩",streak:"连胜",hints_used:"提
 </div>
 <script src="app-towers.js"></script>
 <script src="/sub.js" defer></script>
+<script>if("serviceWorker" in navigator&&!/(^|[?&])(clean|embed)=1/.test(location.search)){addEventListener("load",function(){navigator.serviceWorker.register("/sw.js").catch(function(){})})}</script>
 </body>
 </html>

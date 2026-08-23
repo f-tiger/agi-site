@@ -7,6 +7,8 @@
 <meta name="description" content="A free daily logic puzzle: place every animal in every color so no row, column, or pair repeats — and no animal touches itself. Unique solution, no guessing.">
 <link rel="canonical" href="https://play.agiscorecard.com/">
 <link rel="stylesheet" href="style.css">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#002FA7">
 <link rel="alternate" hreflang="zh" href="https://play.agiscorecard.com/zh">
 <link rel="alternate" hreflang="en" href="https://play.agiscorecard.com/">
 <meta property="og:title" content="Gridlings — Daily Logic Grid Puzzle">
@@ -20,6 +22,7 @@
 <script>
 window.GRIDLINGS_LANG={daily:"Daily",free:"Free play",streak:"Streak",hints_used:"Hints",no_hints:"No hints 🧠",share:"Share result",copied:"Copied!",empty:"empty",colors:["amber","green","blue","red","purple"]};
 </script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How do you play Gridlings?", "acceptedAnswer": {"@type": "Answer", "text": "Fill the grid so every row and column contains each animal once and each color once, every animal-color pair appears exactly once, and the same animal never touches itself, even diagonally. Tap a cell, then pick an animal-color pair from the palette."}}, {"@type": "Question", "name": "Is there a new Gridlings puzzle every day?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — a new daily board goes live at 00:00 UTC, the same board for every player worldwide, with streak tracking. Unlimited free play in three difficulties and a full archive of past dailies are also free, with no account and no ads."}}, {"@type": "Question", "name": "Can Gridlings be solved without guessing?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Every published board is machine-verified before release: a solver proves exactly one solution exists and is reachable by logical deduction, so there is always a provable next step."}}]}</script>
 </head>
 <body>
 <div class="wrap">
@@ -86,6 +89,17 @@ window.GRIDLINGS_LANG={daily:"Daily",free:"Free play",streak:"Streak",hints_used
   </div>
 </div>
 
+
+<div class="rules">
+  <h2>FAQ</h2>
+  <h3 style="font-size:.98rem;margin:10px 0 2px">How do you play Gridlings?</h3>
+  <p style="margin:0 0 6px">Fill the grid so every row and column contains each animal once and each color once, every animal-color pair appears exactly once, and the same animal never touches itself, even diagonally. Tap a cell, then pick an animal-color pair from the palette.</p>
+  <h3 style="font-size:.98rem;margin:10px 0 2px">Is there a new Gridlings puzzle every day?</h3>
+  <p style="margin:0 0 6px">Yes — a new daily board goes live at 00:00 UTC, the same board for every player worldwide, with streak tracking. Unlimited free play in three difficulties and a full archive of past dailies are also free, with no account and no ads.</p>
+  <h3 style="font-size:.98rem;margin:10px 0 2px">Can Gridlings be solved without guessing?</h3>
+  <p style="margin:0 0 6px">Yes. Every published board is machine-verified before release: a solver proves exactly one solution exists and is reachable by logical deduction, so there is always a provable next step.</p>
+</div>
+
 <footer>
   <p>Free forever, no account. Built by <a href="https://agiscorecard.com/about">AGI Scorecard</a> — we track AI predictions with the same rule we build puzzles: every claim must be checkable. Not affiliated with LinkedIn or The New York Times.</p>
   <p class="subline">Embed this game: add <code>?embed=1</code> to the URL in an iframe.</p>
@@ -140,5 +154,6 @@ window.GRIDLINGS_LANG={daily:"Daily",free:"Free play",streak:"Streak",hints_used
   }
 })();
 </script>
+<script>if("serviceWorker" in navigator&&!/(^|[?&])(clean|embed)=1/.test(location.search)){addEventListener("load",function(){navigator.serviceWorker.register("/sw.js").catch(function(){})})}</script>
 </body>
 </html>

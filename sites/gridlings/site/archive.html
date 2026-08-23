@@ -7,6 +7,8 @@
 <meta name="description" content="Every past daily board from all 11 Gridlings logic puzzles — nonogram, star battle, futoshiki, sudoku and more. Replay any date free; each board has a provably unique solution.">
 <link rel="canonical" href="https://play.agiscorecard.com/archive">
 <link rel="stylesheet" href="style.css">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#002FA7">
 <meta property="og:title" content="Puzzle Archive — every past daily, all 11 games">
 <meta property="og:description" content="Replay any past Gridlings daily. Free, no account, pure-deduction boards.">
 <meta property="og:url" content="https://play.agiscorecard.com/archive">
@@ -103,5 +105,6 @@
   load(init);
 })();
 </script>
+<script>if("serviceWorker" in navigator&&!/(^|[?&])(clean|embed)=1/.test(location.search)){addEventListener("load",function(){navigator.serviceWorker.register("/sw.js").catch(function(){})})}</script>
 </body>
 </html>

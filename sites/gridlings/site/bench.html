@@ -7,6 +7,8 @@
 <meta name="description" content="An open LLM reasoning benchmark: 1,100 constraint-logic puzzles across 11 rule families, every board machine-verified to have exactly one solution. CC BY 4.0, single JSON file.">
 <link rel="canonical" href="https://play.agiscorecard.com/bench">
 <link rel="stylesheet" href="style.css">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#002FA7">
 <meta property="og:title" content="Gridlings-Bench — verified logic puzzles for LLM evaluation">
 <meta property="og:description" content="11 constraint families × 100 boards, each with a machine-verified unique solution. Exact-match scoring, no judge model needed. CC BY 4.0.">
 <meta property="og:url" content="https://play.agiscorecard.com/bench">
@@ -76,5 +78,6 @@
   <p>Built by <a href="https://agiscorecard.com/about">AGI Scorecard</a> — the evidence layer for the AI era. Not affiliated with LinkedIn or The New York Times.</p>
 </footer>
 </div>
+<script>if("serviceWorker" in navigator&&!/(^|[?&])(clean|embed)=1/.test(location.search)){addEventListener("load",function(){navigator.serviceWorker.register("/sw.js").catch(function(){})})}</script>
 </body>
 </html>

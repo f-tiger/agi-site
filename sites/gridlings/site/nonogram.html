@@ -7,6 +7,8 @@
 <meta name="description" content="A free daily 10×10 nonogram: fill cells so every row and column matches its run-length clues. Every board machine-verified solvable by pure line logic — no guessing.">
 <link rel="canonical" href="https://play.agiscorecard.com/nonogram">
 <link rel="stylesheet" href="style.css">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#002FA7">
 <link rel="alternate" hreflang="zh" href="https://play.agiscorecard.com/zh/nonogram">
 <link rel="alternate" hreflang="en" href="https://play.agiscorecard.com/nonogram">
 <meta property="og:title" content="Nonogram — Daily Picture Logic Puzzle">
@@ -21,6 +23,7 @@
 window.NONOGRAM_LANG={name:"Nonogram",daily:"Daily",free:"Free play",streak:"Streak",hints_used:"Hints",no_hints:"No hints 🧠",share:"Share result",copied:"Copied!"};
 window.NONOGRAM_PATH="/nonogram";
 </script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How do you play Nonogram?", "acceptedAnswer": {"@type": "Answer", "text": "Fill cells so every row and column matches its clue — the ordered lengths of the filled runs, with at least one gap between runs. Tap to cycle fill, X-mark, empty; a clue dims when its line matches exactly."}}, {"@type": "Question", "name": "Is there a new Nonogram puzzle every day?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — a new daily board goes live at 00:00 UTC, the same board for every player worldwide, with streak tracking. Unlimited free play in three difficulties and a full archive of past dailies are also free, with no account and no ads."}}, {"@type": "Question", "name": "Can Nonogram be solved without guessing?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Every published board is machine-verified before release: a solver proves exactly one solution exists and is reachable by logical deduction, so there is always a provable next step. Line-solvability is checked directly — see <a href=\"/nonogram-no-guessing\">our measured data on guess-free nonograms</a>."}}]}</script>
 </head>
 <body>
 <div class="wrap">
@@ -63,7 +66,18 @@ window.NONOGRAM_PATH="/nonogram";
     <li>A clue dims when its line matches exactly; it turns red if the line holds too many fills.</li>
     <li>Every board is machine-verified <strong>solvable by pure line logic</strong> — the no-guessing complaint about random nonograms cannot happen here.</li>
   </ul>
-  <p style="margin-top:8px">Also known as picture-logic or paint-by-numbers puzzles. Sister puzzles: <a href="/">Gridlings</a>.</p>
+  <p style="margin-top:8px">Also known as picture-logic or paint-by-numbers puzzles. Why most sites can't promise no-guessing: <a href="/nonogram-no-guessing">we measured it</a>. Sister puzzles: <a href="/">Gridlings</a>.</p>
+</div>
+
+
+<div class="rules">
+  <h2>FAQ</h2>
+  <h3 style="font-size:.98rem;margin:10px 0 2px">How do you play Nonogram?</h3>
+  <p style="margin:0 0 6px">Fill cells so every row and column matches its clue — the ordered lengths of the filled runs, with at least one gap between runs. Tap to cycle fill, X-mark, empty; a clue dims when its line matches exactly.</p>
+  <h3 style="font-size:.98rem;margin:10px 0 2px">Is there a new Nonogram puzzle every day?</h3>
+  <p style="margin:0 0 6px">Yes — a new daily board goes live at 00:00 UTC, the same board for every player worldwide, with streak tracking. Unlimited free play in three difficulties and a full archive of past dailies are also free, with no account and no ads.</p>
+  <h3 style="font-size:.98rem;margin:10px 0 2px">Can Nonogram be solved without guessing?</h3>
+  <p style="margin:0 0 6px">Yes. Every published board is machine-verified before release: a solver proves exactly one solution exists and is reachable by logical deduction, so there is always a provable next step. Line-solvability is checked directly — see <a href="/nonogram-no-guessing">our measured data on guess-free nonograms</a>.</p>
 </div>
 
 <footer>
@@ -73,5 +87,6 @@ window.NONOGRAM_PATH="/nonogram";
 </div>
 <script src="app-nonogram.js"></script>
 <script src="/sub.js" defer></script>
+<script>if("serviceWorker" in navigator&&!/(^|[?&])(clean|embed)=1/.test(location.search)){addEventListener("load",function(){navigator.serviceWorker.register("/sw.js").catch(function(){})})}</script>
 </body>
 </html>

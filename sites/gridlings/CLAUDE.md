@@ -111,6 +111,20 @@ JSON-LD + 评测协议。商业路径:引用/权威 → 实验室私有 held-out
 MCP/付费轨道(x402 季度复查通过后)。KPI:bench_download(hub_click 标签)+
 外部引用。**每次新增规则集或改题库,同 run 重跑 gen_bench.py。**
 
+## PWA + GEO 层(2026-08-23,owner「要适配移动端…强化geo」)
+
+- **移动端实测结论**:375/390px 双视口全站零横向滚动、触控目标 ≥24px(审计脚本
+  见会话记录)——响应式层达标,「不只网页端」的交付是 PWA。
+- **PWA**:manifest.webmanifest + sw.js(HTML network-first;静态与题库 JSON
+  stale-while-revalidate,每日题预烘焙所以昨日缓存已含今日棋盘;/e 与 /sub 不缓存;
+  改破坏性资产时**必须 bump sw.js 的 VERSION**)。全部页面挂注册(clean/embed
+  模式不注册)。离线可玩已 Playwright 实测。图标 icon-192/512.png。
+- **GEO**:22 张游戏页全部带可见 FAQ + 逐条一致的 FAQPage JSON-LD(怎么玩/每日
+  节奏/永不猜格三问)。旗舰判定页 `/nonogram-no-guessing`:**原创实测数据**
+  (随机数织线推理可解率 81%→43% 随尺寸下降,400 板/档,种子可复现)+ NP 完备
+  背景(Ueda & Nagao 1996)+「唯一解≠免猜」的行业误区拆解。该数据别家给不出,
+  是谜题垂类的引用磁铁;重测脚本内联于会话,generator 开源可复现。
+
 ## 机器结构
 
 - `tools/gen_puzzles.py` → `site/puzzles-daily.json`(450 天)+
