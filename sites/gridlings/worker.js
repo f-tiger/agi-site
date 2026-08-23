@@ -1,6 +1,6 @@
 // Gridlings worker: static assets + /e beacon + server-side pageview log.
 // All D1 writes are try/catch + waitUntil — analytics must never 500 the game.
-const ALLOWED = new Set(["play_start", "solve", "share_copy", "hint_used", "play_again", "sub_click", "challenge_copy", "challenge_open", "challenge_result"]);
+const ALLOWED = new Set(["play_start", "solve", "share_copy", "hint_used", "play_again", "sub_click", "challenge_copy", "challenge_open", "challenge_result", "sub_submit", "sub_ok", "sub_fail"]);
 
 function uaClass(ua) {
   if (!ua) return "none";
@@ -40,6 +40,26 @@ export default {
         }
       } catch (e) { /* ignore malformed */ }
       return new Response("ok", { headers: { "access-control-allow-origin": "*" } });
+    }
+
+    // Inline subscribe: store-first (same lesson as the main site — an
+    // address must land in D1 before anything else). NOT waitUntil: a failed
+    // store must surface so the client falls back to the beehiiv page.
+    if (url.pathname === "/sub" && request.method === "POST") {
+      const headers = { "content-type": "application/json", "access-control-allow-origin": "*" };
+      try {
+        const b = await request.json();
+        const email = String(b.email || "").trim().toLowerCase().slice(0, 120);
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email) || !env.EV) {
+          return new Response('{"ok":false}', { status: 400, headers });
+        }
+        await env.EV.prepare(
+          "INSERT OR IGNORE INTO subs (ts, email, topic, lang, status) VALUES (datetime('now'), ?, ?, ?, 'stored')"
+        ).bind(email, String(b.topic || "").slice(0, 80), String(b.lang || "").slice(0, 8)).run();
+        return new Response('{"ok":true}', { headers });
+      } catch (e) {
+        return new Response('{"ok":false}', { status: 500, headers });
+      }
     }
 
     let assetReq = request;

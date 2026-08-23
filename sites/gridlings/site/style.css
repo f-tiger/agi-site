@@ -30,7 +30,7 @@ header h1 a{color:inherit;text-decoration:none}
 footer{border-top:1px solid var(--line);margin-top:26px;padding-top:12px;font-size:.85rem;color:var(--mut)}
 footer a{color:var(--acc)}
 .subline{margin-top:8px}
-.embed header,.embed .rules,.embed footer,.embed .modes,.embed .subline{display:none}
+.embed header,.embed .rules,.embed footer,.embed .modes,.embed .subline,.embed .gamesnav{display:none}
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){--bg:#101216;--bg2:#1a1d23;--ink:#e8eaf0;--mut:#9aa1b0;--line:rgba(255,255,255,.14);--acc:#7aa2ff}
   .cell.given{border-color:rgba(255,255,255,.4)}

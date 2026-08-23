@@ -61,6 +61,18 @@ label 前缀 `bal:` 区分。CrazyGames 投稿以双游戏组合提交(launch-ki
 - 新规则集入列清单:生成器+两页+worker 路由×2+sitemap×2+llms.txt+
   gamesnav(全部页面)+CI 门(文件清单+gate 循环)+本节一行。
 
+## 站内订阅 = 内联存储优先(2026-08-23)+ 一条必须兑现的承诺
+
+胜利画面的订阅不再是外链:`site/sub.js` 把 #subcta 增强为内联邮箱表单,POST
+`/sub` 存 D1 `subs` 表(email UNIQUE,status='stored'),beehiiv 链接保留为
+降级路径。依据 = 主站实测:外链 beehiiv 表单 0/246,仅有的真实订阅全部来自
+内联存储表单。漏斗事件 `sub_submit/sub_ok/sub_fail` 已入 /e 白名单;clean/
+embed 模式下 sub.js 整体不执行(授权红线)。
+**承诺文案是「新玩法上线时发一封邮件」——因此任何新增规则集/新模式的 run,
+报告里必须带邮件包:`SELECT COUNT(*) FROM subs` 的人数 + 一封可直接粘贴的
+通知草稿(EN),owner 唯一手动步骤是粘贴发送。** 没有兑现装置的承诺不许上页面
+(主站 flip-mail 同款义务)。邮箱只存 D1、只报计数,永不入仓。
+
 ## 机器结构
 
 - `tools/gen_puzzles.py` → `site/puzzles-daily.json`(450 天)+
