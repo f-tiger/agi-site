@@ -4,6 +4,27 @@
 > schedule(03:17 UTC)已随迁移恢复,不再等 9/1。旧私有仓 f-tiger/rearchfuture
 > 是历史档案,不再推送。公开仓红线见仓库根 CLAUDE.md。
 
+## 流量诊断 2026-08-23(owner:「Eco站点没有流量了」——实查结论,别再误读)
+
+D1 实查(28 天):**不是归零**——服务端 pv 从 8 月上旬 ~34/天回落到近 5 天 ~20/天
+(约 -40%),当日仍有 affiliate_click。逐项归因:
+1. **对比基线被污染**:8/16-17 的 pv=57 高点大半是 CI 自测;mcp_call 每天稳定
+   18-27 次经参数逐字节比对确认 100% 是 eco-mcp-smoke(每日 06:17 cron)——
+   **已修**:smoke 现自报 UA `getecoback-ci`,worker 对 CI 不再计 mcp_call,
+   全部三条 INSERT 补写 `ua_class` 列(D1 已 ALTER)。此后人/爬虫/CI 可分。
+2. **结构性事实**:14 天 Google 引荐 = **0**(本站从未有过 Google 自然流量);
+   Bing ~20/周,微降。所谓下滑主体是 direct/other(疑为爬虫波动,修表前不可分)。
+3. **季节性主因(研判)**:本站主打移动空调/热浪场景,8 月末欧洲热季收尾,
+   需求自然回落——这不是故障,是产品线的季节到期。
+4. **真金信号(全舰队最强)**:affiliate_click **85 次/28 天**,页面与商品高度
+   多样(意/欧/德,inline+toppick)= 真人,漏斗本身在转化。
+
+**队列新增(顺着真金信号做,过三门)**:秋冬产品线切换——除湿机(欧洲秋季霉潮,
+承接同一批「窗户/居住舒适」读者)、Heizlüfter/取暖(strom 工具已在)、
+Balkonkraftwerk 补贴(balkonspeicher_foerderung 工具已在,萨克森等州补贴是
+现成判定题材)。每篇必须复用已验证的 toppick+inline 双钩模式。判定线:
+新线首篇上线 28 天内 affiliate_click ≥5 → 续做;否则冬季只保新鲜度。
+
 ## 执行令(2026-08-20,基于两轮深度调研,详见根仓 docs/fleet-deep-dive-2026-08.md)
 
 1. **P0 悬置项:PartnerNet 佣金归属未确认。** 全站 tag=getecoback-21 指向 amazon.de,

@@ -10,6 +10,8 @@ const BASE = process.env.MCP_URL || "https://getecoback.com/mcp/v1";
 const HEADERS = {
   "content-type": "application/json",
   accept: "application/json, text/event-stream",
+  // self-identify so the worker's telemetry can exclude CI from adoption
+  "user-agent": "getecoback-ci/1.0",
 };
 
 let id = 0;

@@ -12,6 +12,15 @@
 //      binding — just an outbound fetch — so this adds zero deploy risk. The
 //      anon-insert path (RLS + email-normalising trigger) is verified.
 
+
+function evUaClass(ua) {
+  if (!ua) return "none";
+  if (/^getecoback-ci\b/i.test(ua) || /^curl\//i.test(ua) || /^Wget\//i.test(ua)) return "ci";
+  if (/bot|crawl|spider|slurp|gptbot|oai-search|claude|perplexity|bingpreview|headless|python|node-fetch|axios|go-http/i.test(ua)) return "bot";
+  if (/mozilla/i.test(ua)) return "human";
+  return "other";
+}
+
 const SUPABASE_URL = "https://uoijvtfrwlgixuogkyrz.supabase.co";
 // Legacy anon JWT — accepted by PostgREST (/rest/v1) under the RLS policy.
 const SUPABASE_ANON_KEY =
@@ -201,9 +210,9 @@ async function serveMarkdown(request, env, pathname, assetPath) {
     const isCi = /^getecoback-ci\b/i.test(ua) || /^curl\//i.test(ua) || /^Wget\//i.test(ua);
     if (env.EVENTS && !isCi) {
       await env.EVENTS.prepare(
-        "INSERT INTO ev (day, name, page, ref, meta, country) VALUES (date('now'), 'md_serve', ?, '', ?, ?)"
+        "INSERT INTO ev (day, name, page, ref, meta, country, ua_class) VALUES (date('now'), 'md_serve', ?, '', ?, ?, ?)"
       ).bind(pathname.slice(0, 120), JSON.stringify({ ua: ua.slice(0, 80) }),
-        request.headers.get("cf-ipcountry") || "").run();
+        request.headers.get("cf-ipcountry") || "", evUaClass(ua)).run();
     }
   } catch (e) { /* telemetry must never cost a response */ }
   return new Response(md, {
@@ -479,8 +488,9 @@ async function handleEvent(request, env) {
 
   try {
     await env.EVENTS.prepare(
-      "INSERT INTO ev (day, name, page, ref, meta, country) VALUES (?, ?, ?, ?, ?, ?)"
-    ).bind(day, name, page, ref, meta, country).run();
+      "INSERT INTO ev (day, name, page, ref, meta, country, ua_class) VALUES (?, ?, ?, ?, ?, ?, ?)"
+    ).bind(day, name, page, ref, meta, country,
+      evUaClass(request.headers.get("user-agent") || "")).run();
   } catch (e) {
     return json({ ok: false }, 200, cors);
   }
@@ -1033,9 +1043,12 @@ async function handleMcp(request, env) {
       // listing's liveness stays visible without polluting the adoption metric.
       const known = MCP_TOOLS.some((t) => t.name === name);
       try {
-        if (env.EVENTS) {
+        // The daily eco-mcp-smoke workflow calls every tool with canned args;
+        // it now identifies itself (getecoback-ci UA) and is not adoption.
+        const mcpUa = request.headers.get("user-agent") || "";
+        if (env.EVENTS && evUaClass(mcpUa) !== "ci") {
           await env.EVENTS.prepare(
-            "INSERT INTO ev (day, name, page, ref, meta, country) VALUES (date('now'), ?, '/mcp', '', ?, '')"
+            "INSERT INTO ev (day, name, page, ref, meta, country, ua_class) VALUES (date('now'), ?, '/mcp', '', ?, '', ?)"
           ).bind(
             known && !result.isError ? "mcp_call" : "mcp_probe",
             // The arguments are what tells adoption from automation. A crawler
@@ -1047,7 +1060,8 @@ async function handleMcp(request, env) {
             JSON.stringify({
               tool: known ? name : "unknown",
               args: JSON.stringify(args || {}).slice(0, 160),
-            })
+            }),
+            evUaClass(mcpUa)
           ).run();
         }
       } catch (e) { /* telemetry must never break the tool */ }

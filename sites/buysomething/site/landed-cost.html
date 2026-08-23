@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📡</text></svg>">
+  <link rel="stylesheet" href="styles.css">
+  <title>China to US Landed Cost 2026: What You'll Actually Pay</title>
+  <meta name="description" content="De minimis is gone. Estimate your real landed cost from China in 2026: postal flat duties ($80–200/item), the courier 54%-or-$100 rule, and formal-entry stacking — with dated sources and a calculator.">
+  <link rel="canonical" href="https://source.agiscorecard.com/landed-cost">
+  <meta property="og:title" content="China to US landed cost in 2026 — calculator and duty stack">
+  <meta property="og:description" content="The $800 exemption is gone. Estimate postal vs courier vs formal-entry landed costs with August-2026 reported rates.">
+  <meta property="og:url" content="https://source.agiscorecard.com/landed-cost">
+  <meta property="og:type" content="article">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"China to US landed cost in 2026: what you'll actually pay","datePublished":"2026-08-23","dateModified":"2026-08-23","inLanguage":"en","author":{"@type":"Organization","name":"SourceRadar (AGI Scorecard)","url":"https://agiscorecard.com/about"},"publisher":{"@type":"Organization","name":"SourceRadar","url":"https://source.agiscorecard.com/"},"description":"Duty-stack explainer and calculator for importing from China to the US after the end of de minimis, with dated sources."}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How much is the tariff on packages from China to the US in 2026?", "acceptedAnswer": {"@type": "Answer", "text": "As reported in 2026 trade guides, small shipments from China that once entered duty-free under the $800 de minimis rule now face roughly a 54% ad-valorem duty or a $100 flat fee per shipment on courier routes, while postal-network parcels carry flat duties reported between $80 and $200 per item depending on origin. Formal entries stack the product's base tariff with Section 301 and 2025-26 additions."}}, {"@type": "Question", "name": "Is the $800 de minimis exemption still available?", "acceptedAnswer": {"@type": "Answer", "text": "No. De minimis treatment was suspended for China and Hong Kong in May 2025 and extended to all origins in February 2026, so there is no longer a value threshold under which imports enter the US duty-free."}}, {"@type": "Question", "name": "What is the cheapest way to import small quantities from China now?", "acceptedAnswer": {"@type": "Answer", "text": "For most products, consolidating into fewer, larger shipments and entering formally with a customs broker now beats many small parcels, because flat per-item duties punish low-value packages hardest. Comparing the courier ad-valorem route against postal flat duties for your specific order value \u2014 which the calculator above does \u2014 is the first check."}}, {"@type": "Question", "name": "Are these numbers official rates?", "acceptedAnswer": {"@type": "Answer", "text": "They are the figures reported by the 2026 trade and logistics guides cited on this page, current as of August 2026. Tariff policy has changed repeatedly since early 2025; always confirm the live rate with a licensed customs broker or CBP before wiring money."}}]}</script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="/">
+        <span class="brand-mark">📡</span>
+        <span class="brand-text">Source<em>Radar</em></span>
+      </a>
+      <nav class="main-nav">
+        <a href="/#picks">Radar Picks</a>
+        <a href="/landed-cost">Landed Cost</a>
+        <a href="/is-alibaba-legit">Alibaba Risk</a>
+      </nav>
+    </div>
+  </header>
+  <section class="hero">
+    <div class="container">
+      <h1>China → US Landed Cost in 2026:<br><span class="accent">what you'll actually pay</span></h1>
+      <p class="hero-sub"><strong>The $800 duty-free door is closed.</strong> De minimis was suspended for China in
+      May 2025 and for all origins in February 2026. As reported by 2026 trade guides, the small-parcel reality is now:
+      postal-network parcels carry <strong>flat duties of $80–$200 per item</strong>; courier shipments up to $800 face
+      <strong>≈54% ad valorem or a $100 flat fee</strong>; larger orders enter formally with the product's full tariff
+      stack. Estimate your order below — then sanity-check the sourcing decision itself on our
+      <a href="/#picks">radar picks</a>.</p>
+    </div>
+  </section>
+
+  <section class="container" style="padding:1.5rem 0 0">
+    <div class="calc">
+      <h2>Landed-cost estimator</h2>
+      <div class="calc-grid">
+        <label class="calc-field">Goods value (USD)<input id="lcVal" type="number" min="1" value="400"></label>
+        <label class="calc-field">Items / parcels<input id="lcItems" type="number" min="1" value="1"></label>
+        <label class="calc-field">Shipping + insurance (USD)<input id="lcShip" type="number" min="0" value="60"></label>
+        <label class="calc-field">Formal tariff rate % (MFN + §301 + 2025-26 additions, if known)<input id="lcRate" type="number" min="0" max="200" value="45"></label>
+      </div>
+      <div class="calc-results">
+        <div class="calc-result"><strong>Postal route</strong> (flat $80–200 / item, as reported): <span id="lcPost">—</span></div>
+        <div class="calc-result"><strong>Courier ≤$800</strong> (54% of value vs $100 flat, whichever your carrier applies): <span id="lcCourier">—</span></div>
+        <div class="calc-result"><strong>Formal entry</strong> (your rate % + MPF ≈0.3464%, min ≈$33): <span id="lcFormal">—</span></div>
+      </div>
+      <p class="calc-note">Estimates from rates reported by trade guides as of <strong>August 2026</strong> — sources below.
+      Tariff policy has changed repeatedly since 2025; <strong>confirm with a licensed customs broker or CBP before
+      committing money</strong>. This is not customs, legal or tax advice.</p>
+    </div>
+  </section>
+
+  <section class="container" style="padding:1.5rem 0">
+    <h2>The 2026 duty stack, in one table</h2>
+    <table style="width:100%;border-collapse:collapse">
+      <thead><tr><th style="text-align:left;padding:8px">Route</th><th style="text-align:left;padding:8px">What applies (as reported, Aug 2026)</th><th style="text-align:left;padding:8px">Hurts most when…</th></tr></thead>
+      <tbody>
+        <tr><td style="padding:8px"><strong>Postal network</strong></td><td style="padding:8px">Flat duty $80–$200 per item, origin-dependent</td><td style="padding:8px">Low-value items — a $30 gadget can carry a $100+ duty</td></tr>
+        <tr><td style="padding:8px"><strong>Courier ≤ $800</strong></td><td style="padding:8px">≈54% of value or $100 flat per shipment</td><td style="padding:8px">Mid-value parcels that used to ride de minimis</td></tr>
+        <tr><td style="padding:8px"><strong>Formal entry</strong></td><td style="padding:8px">Base MFN + Section 301 + 2025-26 additions + MPF/HMF</td><td style="padding:8px">Nothing extra — often the <em>cheapest per unit</em> at volume now</td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top:10px">Sources: <a href="https://www.tariffstool.com/guides/de-minimis-exemption-ended-2026" rel="noopener">TariffsTool (2026)</a> ·
+    <a href="https://smartasset.com/taxes/de-minimis-trump" rel="noopener">SmartAsset (2026)</a> ·
+    <a href="https://www.newbuyingagent.com/resources/de-minimis-rule-changes-2026-what-the-end-of-the-800-threshold-means-for-your-china-imports" rel="noopener">NewBuyingAgent (2026)</a> ·
+    <a href="https://carraglobe.com/us-de-minimis-exemption-suspended-2026/" rel="noopener">CarraGlobe (2026)</a>.</p>
+
+    <h2 style="margin-top:1.5rem">FAQ</h2>
+    <h3>How much is the tariff on packages from China to the US in 2026?</h3>
+    <p>As reported in 2026 trade guides, small shipments from China that once entered duty-free under the $800 de minimis rule now face roughly a 54% ad-valorem duty or a $100 flat fee per shipment on courier routes, while postal-network parcels carry flat duties reported between $80 and $200 per item depending on origin. Formal entries stack the product's base tariff with Section 301 and 2025-26 additions.</p>
+    <h3>Is the $800 de minimis exemption still available?</h3>
+    <p>No. De minimis treatment was suspended for China and Hong Kong in May 2025 and extended to all origins in February 2026, so there is no longer a value threshold under which imports enter the US duty-free.</p>
+    <h3>What is the cheapest way to import small quantities from China now?</h3>
+    <p>For most products, consolidating into fewer, larger shipments and entering formally with a customs broker now beats many small parcels, because flat per-item duties punish low-value packages hardest. Comparing the courier ad-valorem route against postal flat duties for your specific order value — which the calculator above does — is the first check.</p>
+    <h3>Are these numbers official rates?</h3>
+    <p>They are the figures reported by the 2026 trade and logistics guides cited on this page, current as of August 2026. Tariff policy has changed repeatedly since early 2025; always confirm the live rate with a licensed customs broker or CBP before wiring money.</p>
+    <p style="margin-top:1rem"><a href="/is-alibaba-legit">Next: is your Alibaba supplier even real? →</a></p>
+  </section>
+  <script>function srv(n,l){try{navigator.sendBeacon("/e",JSON.stringify({n:n,l:(l||"").slice(0,80),p:location.pathname}))}catch(e){}}</script>
+  <script>
+  (function () {
+    var $ = function (id) { return document.getElementById(id); };
+    var fired = false;
+    function fmt(x) { return "$" + Math.round(x).toLocaleString(); }
+    function calc() {
+      var v = +$("lcVal").value || 0, n = Math.max(1, +$("lcItems").value || 1), sh = +$("lcShip").value || 0, r = (+$("lcRate").value || 0) / 100;
+      $("lcPost").textContent = fmt(v + sh + 80 * n) + " – " + fmt(v + sh + 200 * n);
+      var adval = 0.54 * v, flat = 100 * n;
+      $("lcCourier").textContent = fmt(v + sh + Math.min(adval, flat)) + " – " + fmt(v + sh + Math.max(adval, flat));
+      var mpf = Math.max(0.003464 * v, 33);
+      $("lcFormal").textContent = fmt(v + sh + r * v + mpf);
+      if (!fired) { fired = true; srv("calc_use", "landed_cost"); }
+    }
+    ["lcVal", "lcItems", "lcShip", "lcRate"].forEach(function (id) { $(id).addEventListener("input", calc); });
+    calc(); fired = false;
+  })();
+  </script>
+</body>
+</html>
