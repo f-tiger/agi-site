@@ -1,9 +1,9 @@
 {
   "zone": "thedollscout.com",
-  "updated": "2026-08-22",
+  "updated": "2026-08-23",
   "window": {
-    "since": "2026-08-19T07:04:51.173Z",
-    "until": "2026-08-22T07:04:51.173Z"
+    "since": "2026-08-20T07:06:31.432Z",
+    "until": "2026-08-23T07:06:31.432Z"
   },
   "days": {
     "2026-08-16": {
@@ -205,116 +205,62 @@
           "(unclassified)": 96
         }
       }
+    },
+    "2026-08-23": {
+      "Googlebot": {
+        "total": 78,
+        "redirectShare": 6,
+        "verified": {
+          "Search Engine Crawler": 78
+        }
+      },
+      "Bingbot": {
+        "total": 56,
+        "redirectShare": 32,
+        "verified": {
+          "Search Engine Crawler": 56
+        }
+      },
+      "GPTBot": {
+        "total": 86,
+        "redirectShare": 0,
+        "verified": {
+          "(unclassified)": 83,
+          "AI Crawler": 3
+        }
+      },
+      "ClaudeBot": {
+        "total": 94,
+        "redirectShare": 0,
+        "verified": {
+          "(unclassified)": 94
+        }
+      },
+      "PerplexityBot": {
+        "total": 82,
+        "redirectShare": 0,
+        "verified": {
+          "(unclassified)": 82
+        }
+      }
     }
   },
   "latest": {
     "Googlebot": {
-      "total": 264,
+      "total": 78,
       "byStatus": {
-        "200": 247,
-        "301": 1,
-        "308": 16
+        "200": 73,
+        "308": 5
       },
       "verified": {
-        "Search Engine Crawler": 100,
-        "(unclassified)": 164
+        "Search Engine Crawler": 78
       },
       "redirectShare": 6,
       "paths": [
         {
           "path": "/robots.txt",
           "status": 200,
-          "count": 34
-        },
-        {
-          "path": "/guides/glossary",
-          "status": 200,
-          "count": 17
-        },
-        {
-          "path": "/mcp",
-          "status": 200,
-          "count": 12
-        },
-        {
-          "path": "/importing/australia",
-          "status": 200,
-          "count": 10
-        },
-        {
-          "path": "/quiz.html",
-          "status": 308,
-          "count": 8
-        },
-        {
-          "path": "/guides/height-weight",
-          "status": 200,
-          "count": 7
-        },
-        {
-          "path": "/picks",
-          "status": 200,
-          "count": 6
-        },
-        {
-          "path": "/data/first-year-cost.json",
-          "status": 200,
-          "count": 6
-        },
-        {
-          "path": "/importing/germany",
-          "status": 200,
-          "count": 6
-        },
-        {
-          "path": "/faq",
-          "status": 200,
-          "count": 6
-        },
-        {
-          "path": "/importing/south-korea",
-          "status": 200,
-          "count": 6
-        },
-        {
-          "path": "/guides/import-costs-2026",
-          "status": 200,
-          "count": 6
-        },
-        {
-          "path": "/weight/150cm",
-          "status": 200,
-          "count": 6
-        },
-        {
-          "path": "/importing/",
-          "status": 200,
-          "count": 6
-        },
-        {
-          "path": "/payment-protection",
-          "status": 200,
-          "count": 5
-        },
-        {
-          "path": "/importing/thailand",
-          "status": 200,
-          "count": 5
-        },
-        {
-          "path": "/",
-          "status": 200,
-          "count": 5
-        },
-        {
-          "path": "/guides/care-cleaning",
-          "status": 200,
-          "count": 5
-        },
-        {
-          "path": "/data/",
-          "status": 200,
-          "count": 5
+          "count": 23
         },
         {
           "path": "/css/main.css",
@@ -322,52 +268,22 @@
           "count": 4
         },
         {
-          "path": "/guides/disposal",
-          "status": 200,
-          "count": 4
-        },
-        {
-          "path": "/quiz",
-          "status": 200,
-          "count": 4
-        },
-        {
-          "path": "/weight/",
-          "status": 200,
-          "count": 4
-        },
-        {
-          "path": "/vendors/yourdoll",
-          "status": 200,
-          "count": 4
-        },
-        {
-          "path": "/js/analytics.js",
+          "path": "/js/search.js",
           "status": 200,
           "count": 3
         },
         {
-          "path": "/cost-calculator",
+          "path": "/js/main.js",
           "status": 200,
           "count": 3
         },
         {
-          "path": "/data/payment-recourse.json",
+          "path": "/payment-protection",
           "status": 200,
           "count": 3
         },
         {
-          "path": "/data/doll-specs.csv",
-          "status": 200,
-          "count": 2
-        },
-        {
-          "path": "/guides/disposal",
-          "status": 200,
-          "count": 2
-        },
-        {
-          "path": "/vendors/yourdoll",
+          "path": "/",
           "status": 200,
           "count": 2
         },
@@ -377,54 +293,79 @@
           "count": 2
         },
         {
-          "path": "/guides/height-weight.html",
-          "status": 308,
-          "count": 2
-        },
-        {
           "path": "/guides/height-weight",
           "status": 200,
           "count": 2
         },
         {
-          "path": "/guides/care-cleaning",
+          "path": "/img/card-care.svg",
           "status": 200,
           "count": 2
         },
         {
-          "path": "/importing/south-korea",
+          "path": "/js/analytics.js",
           "status": 200,
           "count": 2
         },
         {
-          "path": "/picks.html",
+          "path": "/importing/new-zealand",
+          "status": 200,
+          "count": 1
+        },
+        {
+          "path": "/img/card-tpe.svg",
+          "status": 200,
+          "count": 1
+        },
+        {
+          "path": "/js/photos.js",
+          "status": 200,
+          "count": 1
+        },
+        {
+          "path": "/js/config.js",
+          "status": 200,
+          "count": 1
+        },
+        {
+          "path": "/for-creators",
+          "status": 200,
+          "count": 1
+        },
+        {
+          "path": "/img/card-torso.svg",
+          "status": 200,
+          "count": 1
+        },
+        {
+          "path": "/data/",
+          "status": 200,
+          "count": 1
+        },
+        {
+          "path": "/img/card-brand.svg",
+          "status": 200,
+          "count": 1
+        },
+        {
+          "path": "/guides/discreet-shipping",
+          "status": 200,
+          "count": 1
+        },
+        {
+          "path": "/importing/new-zealand.html",
           "status": 308,
-          "count": 2
-        },
-        {
-          "path": "/data/doll-specs.json",
-          "status": 200,
-          "count": 2
-        },
-        {
-          "path": "/after-you-order",
-          "status": 200,
-          "count": 2
-        },
-        {
-          "path": "/guides/what-a-doll-costs",
-          "status": 200,
-          "count": 2
+          "count": 1
         },
         {
           "path": "/importing/united-kingdom",
           "status": 200,
-          "count": 2
+          "count": 1
         },
         {
-          "path": "/importing/canada",
+          "path": "/data/doll-specs.csv",
           "status": 200,
-          "count": 2
+          "count": 1
         },
         {
           "path": "/guides/tpe-vs-silicone",
@@ -452,6 +393,11 @@
           "count": 1
         },
         {
+          "path": "/guides/disposal",
+          "status": 200,
+          "count": 1
+        },
+        {
           "path": "/vendors/yourdoll.html",
           "status": 308,
           "count": 1
@@ -467,12 +413,7 @@
           "count": 1
         },
         {
-          "path": "/",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/legal/affiliate-disclosure",
+          "path": "/vendors/yourdoll",
           "status": 200,
           "count": 1
         },
@@ -482,12 +423,12 @@
           "count": 1
         },
         {
-          "path": "/img/card-care.svg",
-          "status": 200,
+          "path": "/guides/height-weight.html",
+          "status": 308,
           "count": 1
         },
         {
-          "path": "/js/main.js",
+          "path": "/guides/care-cleaning",
           "status": 200,
           "count": 1
         },
@@ -502,7 +443,17 @@
           "count": 1
         },
         {
+          "path": "/legal/affiliate-disclosure",
+          "status": 200,
+          "count": 1
+        },
+        {
           "path": "/importing/thailand",
+          "status": 200,
+          "count": 1
+        },
+        {
+          "path": "/importing/south-korea",
           "status": 200,
           "count": 1
         },
@@ -515,33 +466,32 @@
           "path": "/guides/import-costs-2026",
           "status": 200,
           "count": 1
-        },
-        {
-          "path": "/payment-protection",
-          "status": 200,
-          "count": 1
         }
       ]
     },
     "Bingbot": {
-      "total": 60,
+      "total": 56,
       "byStatus": {
-        "200": 42,
+        "200": 38,
         "308": 18
       },
       "verified": {
-        "Search Engine Crawler": 56,
-        "(unclassified)": 4
+        "Search Engine Crawler": 56
       },
-      "redirectShare": 30,
+      "redirectShare": 32,
       "paths": [
         {
-          "path": "/trust",
+          "path": "/importing/australia",
           "status": 200,
           "count": 5
         },
         {
-          "path": "/sitemap.xml",
+          "path": "/importing/australia.html",
+          "status": 308,
+          "count": 4
+        },
+        {
+          "path": "/trust",
           "status": 200,
           "count": 4
         },
@@ -551,39 +501,24 @@
           "count": 4
         },
         {
-          "path": "/importing/germany.html",
-          "status": 308,
-          "count": 3
-        },
-        {
-          "path": "/importing/",
-          "status": 200,
-          "count": 3
-        },
-        {
           "path": "/quiz",
           "status": 200,
-          "count": 3
-        },
-        {
-          "path": "/importing/australia.html",
-          "status": 308,
-          "count": 3
-        },
-        {
-          "path": "/guides/",
-          "status": 200,
-          "count": 2
-        },
-        {
-          "path": "/trust.html",
-          "status": 308,
-          "count": 2
+          "count": 4
         },
         {
           "path": "/importing/singapore",
           "status": 200,
-          "count": 2
+          "count": 3
+        },
+        {
+          "path": "/sitemap.xml",
+          "status": 200,
+          "count": 3
+        },
+        {
+          "path": "/importing/germany.html",
+          "status": 308,
+          "count": 3
         },
         {
           "path": "/",
@@ -591,18 +526,8 @@
           "count": 2
         },
         {
-          "path": "/robots.txt",
-          "status": 200,
-          "count": 2
-        },
-        {
-          "path": "/importing/germany",
-          "status": 200,
-          "count": 2
-        },
-        {
-          "path": "/importing/australia",
-          "status": 200,
+          "path": "/mcp.html",
+          "status": 308,
           "count": 2
         },
         {
@@ -621,14 +546,39 @@
           "count": 2
         },
         {
-          "path": "/guides/height-weight",
+          "path": "/guides/import-costs-2026.html",
+          "status": 308,
+          "count": 2
+        },
+        {
+          "path": "/guides/",
           "status": 200,
           "count": 2
         },
         {
-          "path": "/scam-check",
+          "path": "/importing/",
           "status": 200,
           "count": 2
+        },
+        {
+          "path": "/robots.txt",
+          "status": 200,
+          "count": 2
+        },
+        {
+          "path": "/importing/germany",
+          "status": 200,
+          "count": 2
+        },
+        {
+          "path": "/guides/care-cleaning",
+          "status": 200,
+          "count": 1
+        },
+        {
+          "path": "/trust.html",
+          "status": 308,
+          "count": 1
         },
         {
           "path": "/faq.html",
@@ -646,43 +596,8 @@
           "count": 1
         },
         {
-          "path": "/mcp.html",
-          "status": 308,
-          "count": 1
-        },
-        {
           "path": "/guides/first-time-buyer.html",
           "status": 308,
-          "count": 1
-        },
-        {
-          "path": "/guides/import-costs-2026.html",
-          "status": 308,
-          "count": 1
-        },
-        {
-          "path": "/importing/south-korea.html",
-          "status": 308,
-          "count": 1
-        },
-        {
-          "path": "/vendors/yourdoll.html",
-          "status": 308,
-          "count": 1
-        },
-        {
-          "path": "/checklist",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/guides/discreet-shipping",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/guides/care-cleaning",
-          "status": 200,
           "count": 1
         }
       ]
@@ -836,7 +751,7 @@
           "count": 1
         },
         {
-          "path": "/.travis.yml",
+          "path": "/@fs/etc/passwd",
           "status": 404,
           "count": 1
         },
@@ -861,7 +776,7 @@
           "count": 1
         },
         {
-          "path": "/@fs/etc/passwd",
+          "path": "/.travis.yml",
           "status": 404,
           "count": 1
         },
@@ -921,7 +836,7 @@
           "count": 1
         },
         {
-          "path": "/backend/.env.production",
+          "path": "/api/v1/settings",
           "status": 404,
           "count": 1
         },
@@ -956,7 +871,7 @@
           "count": 1
         },
         {
-          "path": "/api/v1/settings",
+          "path": "/backend/.env.production",
           "status": 404,
           "count": 1
         },
@@ -1003,13 +918,12 @@
       ]
     },
     "ClaudeBot": {
-      "total": 100,
+      "total": 94,
       "byStatus": {
-        "200": 6,
         "404": 94
       },
       "verified": {
-        "(unclassified)": 100
+        "(unclassified)": 94
       },
       "redirectShare": 0,
       "paths": [
@@ -1017,11 +931,6 @@
           "path": "/proxy",
           "status": 404,
           "count": 7
-        },
-        {
-          "path": "/data/",
-          "status": 200,
-          "count": 6
         },
         {
           "path": "/fetch",
@@ -1312,33 +1221,26 @@
           "path": "/.github/secrets.env",
           "status": 404,
           "count": 1
+        },
+        {
+          "path": "/api/account",
+          "status": 404,
+          "count": 1
         }
       ]
     },
     "PerplexityBot": {
-      "total": 96,
+      "total": 82,
       "byStatus": {
-        "200": 6,
-        "308": 8,
         "403": 1,
         "404": 80,
         "405": 1
       },
       "verified": {
-        "(unclassified)": 96
+        "(unclassified)": 82
       },
-      "redirectShare": 8,
+      "redirectShare": 0,
       "paths": [
-        {
-          "path": "/scam-check.html",
-          "status": 308,
-          "count": 8
-        },
-        {
-          "path": "/",
-          "status": 200,
-          "count": 6
-        },
         {
           "path": "/fetch",
           "status": 404,
@@ -1535,12 +1437,12 @@
           "count": 1
         },
         {
-          "path": "/appsettings.json",
+          "path": "/.env.ci",
           "status": 404,
           "count": 1
         },
         {
-          "path": "/.env.ci",
+          "path": "/appsettings.json",
           "status": 404,
           "count": 1
         },
@@ -1585,12 +1487,12 @@
           "count": 1
         },
         {
-          "path": "/static../.aws/credentials",
+          "path": "/google-credentials.json",
           "status": 404,
           "count": 1
         },
         {
-          "path": "/google-credentials.json",
+          "path": "/static../.aws/credentials",
           "status": 404,
           "count": 1
         },
@@ -1626,6 +1528,16 @@
         },
         {
           "path": "/hidden/.aws/credentials",
+          "status": 404,
+          "count": 1
+        },
+        {
+          "path": "/jenkins/Jenkinsfile",
+          "status": 404,
+          "count": 1
+        },
+        {
+          "path": "/backend/.aws/credentials",
           "status": 404,
           "count": 1
         }
