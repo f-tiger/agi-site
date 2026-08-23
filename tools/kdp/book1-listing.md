@@ -1,4 +1,8 @@
-# KDP Book #1 — 上架包（owner 唯一动作：注册 KDP + 上传，~15 分钟）
+# KDP Book #1（副线）— 数织书上架包
+
+**优先级调整（owner 2026-08-23）**：「KDP的书还不如孙的成功模式总结」——主打书
+改为 book2《The Justin Sun Playbook》（见 book2-listing.md），本书降为副线：
+已建成零成本，随主打书同账号顺手上架即可，不单独占用 owner 时间。
 
 依据：games-expansion PRD §KDP（有条件 GO）+ owner 2026-08-23「突破性创新的商业方向」。
 内容与网站免费题库**零重叠**（专属种子 kdp-book1-ng-*，120 题全部机器验证线推理可解）。
