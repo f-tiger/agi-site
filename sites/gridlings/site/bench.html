@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>Gridlings-Bench — 1,100 Verified Logic Puzzles for LLM Evaluation</title>
+<meta name="description" content="An open LLM reasoning benchmark: 1,100 constraint-logic puzzles across 11 rule families, every board machine-verified to have exactly one solution. CC BY 4.0, single JSON file.">
+<link rel="canonical" href="https://play.agiscorecard.com/bench">
+<link rel="stylesheet" href="style.css">
+<meta property="og:title" content="Gridlings-Bench — verified logic puzzles for LLM evaluation">
+<meta property="og:description" content="11 constraint families × 100 boards, each with a machine-verified unique solution. Exact-match scoring, no judge model needed. CC BY 4.0.">
+<meta property="og:url" content="https://play.agiscorecard.com/bench">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>▦</text></svg>">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Dataset","name":"Gridlings-Bench","version":"1.0","url":"https://play.agiscorecard.com/bench","description":"1,100 constraint-logic puzzles across 11 distinct rule families (Graeco-Latin grids, binary balance, star battle, Hamiltonian path, futoshiki, skyscrapers, mini sudoku, kropki, sandwich, thermometers, nonogram), every board machine-verified to have exactly one solution; nonograms are further verified solvable by pure line propagation. Solutions included; exact-match scoring.","license":"https://creativecommons.org/licenses/by/4.0/","isAccessibleForFree":true,"creator":{"@type":"Organization","name":"AGI Scorecard","url":"https://agiscorecard.com/"},"distribution":[{"@type":"DataDownload","encodingFormat":"application/json","contentUrl":"https://play.agiscorecard.com/bench-v1.json"}],"keywords":["LLM reasoning benchmark","constraint satisfaction","logic puzzles","nonogram","star battle","futoshiki","evaluation dataset"],"datePublished":"2026-08-23"}
+</script>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1><a href="/bench">Gridlings-Bench</a></h1>
+  <span style="color:var(--mut);font-size:.85rem">by <a href="/" style="color:var(--acc)">Gridlings</a></span>
+</header>
+
+<div class="rules" style="border-top:0;margin-top:8px;padding-top:4px">
+  <p style="font-size:1.02rem"><strong>1,100 constraint-logic puzzles across 11 rule families, every board
+  machine-verified to have exactly one solution.</strong> Free, one JSON file, CC BY 4.0.
+  Built for evaluating LLM reasoning: answers are exact-match scored against the verified
+  solution, so no judge model, no rubric, and no partial-credit ambiguity.</p>
+
+  <p><a class="btn pri" href="/bench-v1.json" style="display:inline-block;text-decoration:none"
+     onclick="try{navigator.sendBeacon('/e',JSON.stringify({n:'hub_click',l:'bench_download',p:'/bench'}))}catch(e){}">⬇ bench-v1.json (250 KB)</a></p>
+
+  <h2>Why another puzzle benchmark</h2>
+  <ul>
+    <li><strong>Verified, not scraped.</strong> Every board was generated with an exhaustive
+      solver in the loop: exactly one solution exists. Nonogram boards pass a stronger bar —
+      solvable by row/column constraint propagation alone, no search required.</li>
+    <li><strong>11 families, one metric.</strong> Sudoku-style benchmarks measure one rule
+      system; Gridlings-Bench spans Graeco-Latin grids with adjacency constraints, binary
+      balance, two-star placement, Hamiltonian paths with ordered waypoints, inequality and
+      visibility Latin squares, dot-constraint and sum-constraint variants, fill puzzles and
+      picture logic. Aggregate accuracy is hard to reach by overfitting one trick.</li>
+    <li><strong>Unlimited fresh boards.</strong> The <a href="https://github.com/f-tiger/agi-site/tree/main/sites/gridlings/tools">open generators</a>
+      produce arbitrarily many new verified boards from seeds — contamination is a
+      regeneration away from being fixed. This set is drawn from the site's public free-play
+      pools; the daily boards are excluded.</li>
+    <li><strong>Difficulty tags.</strong> 30 easy / 40 medium / 30 hard per family, using
+      each game's own size and clue-count ramp.</li>
+  </ul>
+
+  <h2>Format</h2>
+  <p>One JSON object. <code>families</code> maps each family to its rules text and answer
+  format; <code>puzzles</code> is a flat list of
+  <code>{id, family, difficulty, puzzle, solution}</code>. Present the family rules plus the
+  <code>puzzle</code> object to the model; compare its answer to <code>solution</code>
+  (exact match). Report per-family and overall accuracy.</p>
+
+  <h2>FAQ</h2>
+  <p><strong>Is it free for commercial use?</strong> Yes — CC BY 4.0. Attribute
+  "Gridlings-Bench, play.agiscorecard.com/bench".</p>
+  <p><strong>How do I know the solutions are right?</strong> Each generator ships a
+  <code>validate</code> mode that re-checks every published board against its own solver;
+  the boards here are the same objects served to human players daily.</p>
+  <p><strong>Can I get more/harder boards?</strong> Run the generators with your own seeds,
+  or open an issue — generating a private held-out set for a lab is cheap.
+  Contact: reply address on <a href="https://agiscorecard.com/about">agiscorecard.com/about</a>.</p>
+
+  <p style="margin-top:10px">Humans can play every family daily:
+  <a href="/">Gridlings</a> · <a href="/nonogram">Nonogram</a> · <a href="/starbattle">Star Battle</a> ·
+  <a href="/archive">full archive</a>.</p>
+</div>
+
+<footer>
+  <p>Built by <a href="https://agiscorecard.com/about">AGI Scorecard</a> — the evidence layer for the AI era. Not affiliated with LinkedIn or The New York Times.</p>
+</footer>
+</div>
+</body>
+</html>

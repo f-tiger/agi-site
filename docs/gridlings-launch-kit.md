@@ -66,6 +66,13 @@ Sandwich / Thermometers / Nonogram，全部 450 天每日 + 三档畅玩 + 机�
 **守则**：全程真人回复评论；不请任何人点赞；如果没上首页，就当收集了一轮免费
 评审——不重发（HN 允许隔一段时间换角度重投一次，那是几周后的事）。
 
+## ②½ 可选第三帖(r/LocalLLaMA 或 HN,与 Show HN 隔开 ≥1 周)
+
+Gridlings-Bench 本身就是一个帖子:**"I turned my 11 daily puzzle generators into
+an LLM reasoning benchmark — 1,100 machine-verified boards, exact-match scoring"**。
+钩子是「验证解 + 不可能靠猜 + 生成器开源、污染可再生解决」。发帖前先跑一次
+GPT/Claude 实测拿到几个真实分数放进帖子(没有分数的 benchmark 帖会被要求拿数据)。
+
 ## ③ 门户投稿（第 2 周，需要你注册开发者账号，各约 10 分钟）
 
 **首批投 3 款**（新账号一次挂 10 款容易被当刷量；先用最有辨识度的三款过审建立

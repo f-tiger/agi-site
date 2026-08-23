@@ -107,6 +107,8 @@ export default {
       assetReq = new Request(new URL("/nonogram.html", url).toString(), request);
     } else if (url.pathname === "/zh/nonogram" || url.pathname === "/zh/nonogram/") {
       assetReq = new Request(new URL("/nonogram-zh.html", url).toString(), request);
+    } else if (url.pathname === "/bench" || url.pathname === "/bench/") {
+      assetReq = new Request(new URL("/bench.html", url).toString(), request);
     } else if (url.pathname.startsWith("/zh/") && /\.(js|css|json|png|svg|txt|ico|webmanifest)$/.test(url.pathname)) {
       // zh pages are served at /zh/<game> but reference assets relatively,
       // which the browser resolves under /zh/ — fall back to the root asset

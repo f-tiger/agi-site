@@ -91,6 +91,18 @@ embed 模式下 sub.js 整体不执行(授权红线)。
 通知草稿(EN),owner 唯一手动步骤是粘贴发送。** 没有兑现装置的承诺不许上页面
 (主站 flip-mail 同款义务)。邮箱只存 D1、只报计数,永不入仓。
 
+## Gridlings-Bench(/bench,2026-08-23,owner「突破性创新的商业方向」执行件)
+
+**资产再包装:同一批验证棋盘,第二个买家群体。** 玩家吃每日题,研究者/实验室吃
+评测集——Sakana Sudoku-Bench 只有 100 题、前沿模型近 0 分、多篇论文跟进,证明
+「带验证解的约束谜题」是研究侧的真实需求;我们 11 个家族 × 100 题 + 唯一解保证
+(数织再加线推理完备)是差异化。`tools/gen_bench.py` 从**畅玩题库**抽样(绝不
+用每日题,避免剧透),重跑即再生;bench-v1.json CC BY 4.0,页面带 Dataset
+JSON-LD + 评测协议。商业路径:引用/权威 → 实验室私有 held-out 集定制(页面已
+挂钩子「generating a private held-out set for a lab is cheap」)→ agent 侧
+MCP/付费轨道(x402 季度复查通过后)。KPI:bench_download(hub_click 标签)+
+外部引用。**每次新增规则集或改题库,同 run 重跑 gen_bench.py。**
+
 ## 机器结构
 
 - `tools/gen_puzzles.py` → `site/puzzles-daily.json`(450 天)+
