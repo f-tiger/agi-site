@@ -111,7 +111,9 @@ export default {
     const res = await env.ASSETS.fetch(assetReq);
 
     const accept = request.headers.get("accept") || "";
-    if (request.method === "GET" && accept.includes("text/html") && res.status === 200) {
+    // some crawlers send text/html Accept on asset fetches — keep pv page-only
+    const isAsset = /\.(js|css|json|png|svg|txt|ico|xml|webmanifest|map)$/.test(url.pathname);
+    if (request.method === "GET" && accept.includes("text/html") && res.status === 200 && !isAsset) {
       await logRow(env, ctx, {
         name: "page_view",
         label: "",
