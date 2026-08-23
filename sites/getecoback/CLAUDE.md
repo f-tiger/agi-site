@@ -17,6 +17,20 @@ niche 且可挂联盟钩 → **当天**出一页(答案胶囊+表格+FAQ/LD+topp
 28 天内该页 affiliate_click ≥3 或进站内 pv TOP10 → 机制有效,继续;连续 5 页
 全空 → 快反判据回炉。
 
+## 快反首单记录(2026-08-23,owner「执行一次测试」——端到端实弹)
+
+信号:trends-rising.json 首次实抓成功(related-queries 在 referer+轮换减量后通过;
+autocomplete-diff 兜底同 run 上线)。当日 rising:**epicooler v=42000**(+test/
+erfahrungen 变体,购前调研意图)。核实:病毒式投放的「无排气管空调」,SERP 被
+卖家自建假测评域污染(自称 Stiftung Warentest 测试冠军),tomorrow-focus 已发
+WARNUNG。**当日出页**:/guide/epicooler-erfahrungen.html——两栏账式 Faktencheck
+(厂商宣称 vs 物理,压缩机制冷必须排热;卖家域「测评」= 警示信号清单;第三方
+问题报告引具名信源;诚实备注「未实测」),ehrliche Alternative 双钩(Comfee/
+De'Longhi = D1 实证最能转化的两个品)+ BTU 工具。已入 sitemap(152 URL)+
+ohne-abluftschlauch 页互链。**冷却:epicooler 词 14 天内不再出页**。
+判定线(快反规则标准):28 天内该页 affiliate_click ≥3 或进站内 pv TOP10。
+未触发词:lidl 促销簇(v≤10650,促销页保质期短,放弃)、schimmel 长尾(v≤300
+未过线)。
 ## 流量诊断 2026-08-23(owner:「Eco站点没有流量了」——实查结论,别再误读)
 
 D1 实查(28 天):**不是归零**——服务端 pv 从 8 月上旬 ~34/天回落到近 5 天 ~20/天
