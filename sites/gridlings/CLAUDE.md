@@ -73,6 +73,11 @@ label 前缀 `bal:` 区分。CrazyGames 投稿以双游戏组合提交(launch-ki
   是 http.server 不支持 /e 信标,已过滤,不是站点 bug。**新规则集上线前必跑**
   (首次运行就抓到 nonogram 测试的句柄失效;客户端每次点击重渲染,句柄要重查)。
   刻意不进 CI(CI 无 playwright,保持 push 路径 <1 分钟)。
+  跑完杀服务器用 `kill $(lsof -ti:8777)`——**绝不用 pkill -f**(会匹配到自己
+  这条命令的 bash 包装并自杀,本会话已实测踩坑两次,exit 144)。
+- **桌面键盘输入(2026-08-23,HN/Reddit 受众为桌面用户)**:app-latin/
+  app-futoshiki/app-towers 支持方向键选格(.sel 高亮)+ 数字直填 + 0/退格清除;
+  表单输入框聚焦时不劫持按键。已用 Playwright 键盘真实通关验证。
 
 ## 站内订阅 = 内联存储优先(2026-08-23)+ 一条必须兑现的承诺
 

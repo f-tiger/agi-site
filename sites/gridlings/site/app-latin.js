@@ -69,7 +69,7 @@
       given: p.g.split("").map(Number),
       fill: p.g.split("").map(Number),
       mode: o.mode, key: o.key, num: o.label,
-      startT: 0, ticker: null, hints: 0, done: false
+      startT: 0, ticker: null, hints: 0, done: false, sel: -1
     };
     if (CFG.type === "kropki") {
       state.dots = {};
@@ -238,7 +238,7 @@
   function addCell(g, i, cf, boxBorders) {
     var n = state.n;
     var d = document.createElement("button");
-    d.className = "cell" + (state.given[i] ? " given" : "") + (cf.cells[i] ? " bad" : "");
+    d.className = "cell" + (state.given[i] ? " given" : "") + (cf.cells[i] ? " bad" : "") + (state.sel === i ? " sel" : "");
     d.textContent = state.fill[i] ? String(state.fill[i]) : "";
     if (boxBorders) {
       var br = state.p.br, bc = state.p.bc;
@@ -253,7 +253,9 @@
   }
 
   function tap(i) {
-    if (state.done || state.given[i]) return;
+    if (state.done) return;
+    state.sel = i;
+    if (state.given[i]) { render(); return; }
     if (!state.startT) { state.startT = Date.now(); state.ticker = setInterval(tick, 1000); }
     state.fill[i] = (state.fill[i] + 1) % (state.n + 1);
     render();
@@ -331,6 +333,42 @@
     }).catch(function () { prompt("Copy:", txt); });
     gev("share_copy", PRE + ":" + (state ? state.key : "none"));
   }
+
+
+  function setCell(i, v) {
+    if (!state || state.done || state.given[i]) return;
+    if (!state.startT) { state.startT = Date.now(); state.ticker = setInterval(tick, 1000); }
+    state.fill[i] = v;
+    render();
+    check();
+  }
+
+  // Desktop keyboard: arrows select, 1-9 set, 0/Backspace clears
+  document.addEventListener("keydown", function (e) {
+    if (!state || state.done) return;
+    if (e.target && /INPUT|TEXTAREA|SELECT/.test(e.target.tagName)) return;
+    var n = state.n, k = e.key;
+    if (k === "ArrowUp" || k === "ArrowDown" || k === "ArrowLeft" || k === "ArrowRight") {
+      e.preventDefault();
+      if (state.sel < 0) { state.sel = 0; render(); return; }
+      var r = Math.floor(state.sel / n), c = state.sel % n;
+      if (k === "ArrowUp") r = (r + n - 1) % n;
+      if (k === "ArrowDown") r = (r + 1) % n;
+      if (k === "ArrowLeft") c = (c + n - 1) % n;
+      if (k === "ArrowRight") c = (c + 1) % n;
+      state.sel = r * n + c;
+      render();
+      return;
+    }
+    if (state.sel < 0) return;
+    if (/^[1-9]$/.test(k)) {
+      var v = parseInt(k, 10);
+      if (v <= n) setCell(state.sel, v);
+    } else if (k === "0" || k === "Backspace" || k === "Delete") {
+      e.preventDefault();
+      setCell(state.sel, 0);
+    }
+  });
 
   document.addEventListener("DOMContentLoaded", function () {
     if (EMBED || CLEAN) document.documentElement.classList.add("embed");
