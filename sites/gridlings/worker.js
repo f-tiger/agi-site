@@ -55,6 +55,10 @@ export default {
       assetReq = new Request(new URL("/starbattle.html", url).toString(), request);
     } else if (url.pathname === "/zh/starbattle" || url.pathname === "/zh/starbattle/") {
       assetReq = new Request(new URL("/starbattle-zh.html", url).toString(), request);
+    } else if (url.pathname === "/trail" || url.pathname === "/trail/") {
+      assetReq = new Request(new URL("/trail.html", url).toString(), request);
+    } else if (url.pathname === "/zh/trail" || url.pathname === "/zh/trail/") {
+      assetReq = new Request(new URL("/trail-zh.html", url).toString(), request);
     }
     const res = await env.ASSETS.fetch(assetReq);
 
