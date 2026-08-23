@@ -1,6 +1,16 @@
 {
   "items": [
     {
+      "name": "Proliferate- open-source, self-hostable Codex for any coding agent",
+      "url": "https://github.com/proliferate-ai/proliferate",
+      "host": "github.com",
+      "src": "https://news.ycombinator.com/item?id=49390739",
+      "points": 44,
+      "comments": 15,
+      "found": "2026-08-23",
+      "status": "candidate"
+    },
+    {
       "name": "Huzzah – a novel approach to coding with AI",
       "url": "https://www.danielvaughn.dev/posts/huzzah/",
       "host": "danielvaughn.dev",
@@ -191,5 +201,5 @@
       "status": "candidate"
     }
   ],
-  "updated": "2026-08-22"
+  "updated": "2026-08-23"
 }
