@@ -51,6 +51,10 @@ export default {
       assetReq = new Request(new URL("/balance.html", url).toString(), request);
     } else if (url.pathname === "/zh/balance" || url.pathname === "/zh/balance/") {
       assetReq = new Request(new URL("/balance-zh.html", url).toString(), request);
+    } else if (url.pathname === "/starbattle" || url.pathname === "/starbattle/") {
+      assetReq = new Request(new URL("/starbattle.html", url).toString(), request);
+    } else if (url.pathname === "/zh/starbattle" || url.pathname === "/zh/starbattle/") {
+      assetReq = new Request(new URL("/starbattle-zh.html", url).toString(), request);
     }
     const res = await env.ASSETS.fetch(assetReq);
 

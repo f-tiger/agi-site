@@ -25,6 +25,17 @@ Brennerd 组合模式落地:同一站壳、第二个约束规则集(6×6 二元�
 产品名 Balance,绝不用 Tango。两游戏互相导流(modes 行交叉链接);事件同库同白名单,
 label 前缀 `bal:` 区分。CrazyGames 投稿以双游戏组合提交(launch-kit ③)。
 
+## 第三规则集:Star Battle(/starbattle + /zh/starbattle,2026-08-23)
+
+选型依据 = 规则集需求实证地图(docs/games-expansion-prd-2026-08.md):Netflix 2026
+每日 Starstruck + LinkedIn Queens 相邻效应双锚,伴生架 ~2 站,zh 供给为零,
+2★ 10×10 与满架 1★ Queens 克隆区隔。生成器 `tools/gen_starbattle.py`
+(星放置→区域生长→唯一解校验;8×8 1★ 接受率 0.2% 但单试便宜,max_tries=50000
+是刻意的,别调小)。450 每日(10×10 2★)+ 320 畅玩(easy 8×8 1★/medium/hard)。
+挑战链接、clean/embed、双语、信标(sb: 前缀)与前两款同构。
+命名注意:页面绝不用 Starstruck/Queens 作品牌;「Star Battle」为通用类型名
+(书架与克隆站均通用使用,风险最低)。
+
 ## 机器结构
 
 - `tools/gen_puzzles.py` → `site/puzzles-daily.json`(450 天)+
