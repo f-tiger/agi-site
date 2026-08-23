@@ -186,7 +186,7 @@ specs above at any time to resume net-new page creation.
 
 
 ## Queue — CITATION AMPLIFICATION（2026-08-16 自种，依据 Bing AI Performance 的 Pages/Queries 明细，**不是猜的搜索需求，是已发生的引用**）
-- [ ] (CITATION AMPLIFICATION·invest) how-verifiable-is-justin-sun-2013-bitcoin-story + zh——判定型双栏审计页(一手调研已完成 2026-08-23,docs/paradigm-bet-framework-2026-08.md §一;六件套+SunWatch 桥;B栏逐条标「据其本人陈述」,SEC 部分只引文件事实——诽谤安全)
+- [x] (CITATION AMPLIFICATION·invest) how-verifiable-is-justin-sun-2013-bitcoin-story(2026-08-23 出厂:/justin-sun-2013-bitcoin-story + /zh/justin-sun-2013) + zh——判定型双栏审计页(一手调研已完成 2026-08-23,docs/paradigm-bet-framework-2026-08.md §一;六件套+SunWatch 桥;B栏逐条标「据其本人陈述」,SEC 部分只引文件事实——诽谤安全)
 
 选题依据一律写在条目里。这一批的共同逻辑：**引用份额不依赖流量**——本站在
 "are we close to agi" 上拿到 **37.5%** 引用份额，而同期真实读者只有约 17 人/日。
