@@ -59,6 +59,14 @@ export default {
       assetReq = new Request(new URL("/trail.html", url).toString(), request);
     } else if (url.pathname === "/zh/trail" || url.pathname === "/zh/trail/") {
       assetReq = new Request(new URL("/trail-zh.html", url).toString(), request);
+    } else if (url.pathname === "/futoshiki" || url.pathname === "/futoshiki/") {
+      assetReq = new Request(new URL("/futoshiki.html", url).toString(), request);
+    } else if (url.pathname === "/zh/futoshiki" || url.pathname === "/zh/futoshiki/") {
+      assetReq = new Request(new URL("/futoshiki-zh.html", url).toString(), request);
+    } else if (url.pathname === "/towers" || url.pathname === "/towers/") {
+      assetReq = new Request(new URL("/towers.html", url).toString(), request);
+    } else if (url.pathname === "/zh/towers" || url.pathname === "/zh/towers/") {
+      assetReq = new Request(new URL("/towers-zh.html", url).toString(), request);
     }
     const res = await env.ASSETS.fetch(assetReq);
 
