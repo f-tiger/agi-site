@@ -28,6 +28,20 @@ owner 2026-08-23 指令：「KDP的书还不如孙的成功模式总结，在不
   《The Toll Booth Playbook》，副标题保留 "An unauthorized audit of Justin Sun's
   success machine"。**默认推荐仍是姓名入主标题**——实体搜索量就是本书获客渠道。
 
+## 同名先例（owner 问「是否有类似书名引用了他的名字、非原作者」——有，就在 Amazon 在售）
+
+- **《Justin Sun biography: An In-Depth Exploration of His Early Life, Achievements,
+  Controversial Moments, and Legacy...》**(Wilbur I. Boyd 著,ASIN B0DPFC88J3)
+- **《The Inspiring Story of Justin Sun: A deep dive into cultural pressure, calculated
+  risk...》**(Mark E. Lambert 著,"BIOGRAPHY OF ICONS" 系列,ASIN B0F9VLZXKB)
+
+两本都是第三方作者、姓名直接入主标题、KDP 渠道在售——**平台接受此格式的直接证据**。
+更大的行业先例:「未经授权传记」是大出版社的成熟品类(如企鹅系的《Justin Bieber:
+The Unauthorized Biography》,与我们完全同构:真名 + Unauthorized 标注)。
+竞争面观察:现存两本孙传记从冗长副标题看是低质流水线产物——这反而是利好:
+①证明格式无碍;②我们的审计式差异化(两栏账、具名信源、判例级合规)正好对打
+这类无信源内容。
+
 ## 文件
 - `book2.epub` — Kindle 电子书上传件（EPUB3，KDP 直接接受）
 - `book2-interior.pdf` — 20 页 6×9 印刷版（**纸书暂不上**：低于 KDP 24 页下限，
