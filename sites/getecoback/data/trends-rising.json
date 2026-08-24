@@ -1,5 +1,5 @@
 {
- "fetched": "2026-08-23",
+ "fetched": "2026-08-24",
  "geo": "DE",
  "seeds": {
   "klimaanlage": {
@@ -52,35 +52,93 @@
    "rising": [
     {
      "q": "schimmel im keller entfernen",
-     "v": 300
+     "v": 108750
     },
     {
-     "q": "schimmel entfernen badezimmer",
-     "v": 110
+     "q": "schimmel im badezimmer entfernen",
+     "v": 78800
     },
     {
-     "q": "stockflecken entfernen",
-     "v": 80
+     "q": "schimmel auf leder entfernen",
+     "v": 35350
     },
     {
-     "q": "schimmel farbe",
-     "v": 60
+     "q": "schimmel keller entfernen",
+     "v": 1100
     },
     {
-     "q": "schimmel entfernen dusche",
-     "v": 50
+     "q": "schimmel aus stoff entfernen",
+     "v": 150
+    },
+    {
+     "q": "schimmel aus kleidung entfernen",
+     "v": 140
+    },
+    {
+     "q": "schimmel auf silikonfugen entfernen",
+     "v": 140
+    },
+    {
+     "q": "schimmel kleidung entfernen",
+     "v": 100
     },
     {
      "q": "schimmel entfernen bad fugen",
-     "v": 40
+     "v": 90
     },
     {
-     "q": "schwarzen schimmel entfernen",
-     "v": 40
+     "q": "schimmel in der dusche entfernen",
+     "v": 70
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-08-23"
+   "fetched": "2026-08-24"
+  },
+  "infrarotheizung": {
+   "rising": [
+    {
+     "q": "knebel infrarotheizung",
+     "v": 73600
+    },
+    {
+     "q": "infrarotheizung 100 watt",
+     "v": 49750
+    },
+    {
+     "q": "infrarotheizung gegen schimmel",
+     "v": 28950
+    },
+    {
+     "q": "infrarotheizung für garage",
+     "v": 20700
+    },
+    {
+     "q": "heizung elektrisch",
+     "v": 20200
+    },
+    {
+     "q": "infrarotheizung standgerät testsieger",
+     "v": 19450
+    },
+    {
+     "q": "infrarotheizung kosten 100 qm",
+     "v": 19100
+    },
+    {
+     "q": "idealo",
+     "v": 4700
+    },
+    {
+     "q": "infrarotheizung 1500 watt",
+     "v": 3850
+    },
+    {
+     "q": "infrarotheizung für bad",
+     "v": 190
+    }
+   ],
+   "source": "related-queries",
+   "fetched": "2026-08-24"
   }
  }
 }
