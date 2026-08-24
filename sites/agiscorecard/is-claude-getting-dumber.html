@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FZXLMBB5QB"></script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a0a0b'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%234fc3a1'/%3E%3C/svg%3E">
+<title>Is Claude Getting Dumber? What the Record Actually Shows</title>
+<meta name="description" content="Users were right once: Anthropic's 2025 postmortem confirmed three real bugs behind 'Claude got worse'. The 2026 complaint cycle, audited — dated sources.">
+<link rel="canonical" href="https://agiscorecard.com/is-claude-getting-dumber">
+<meta property="og:title" content="Is Claude Getting Dumber? What the Record Actually Shows">
+<meta property="og:description" content="One complaint cycle was officially confirmed real (three infrastructure bugs, 16% of requests at peak). The current cycle is an open question. The two-ledger audit, with a written flip condition.">
+<meta property="og:url" content="https://agiscorecard.com/is-claude-getting-dumber">
+<meta property="og:type" content="article">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Is Claude getting dumber? What the record actually shows","datePublished":"2026-08-24","dateModified":"2026-08-24","inLanguage":"en","author":{"@type":"Organization","name":"The AGI Scorecard","url":"https://agiscorecard.com/about"},"publisher":{"@type":"Organization","name":"The AGI Scorecard","url":"https://agiscorecard.com/"},"description":"A dated-source audit of the recurring 'Claude got worse' complaint: the 2025 cycle Anthropic's own postmortem confirmed real, the open 2026 cycle, four mundane causes that mimic degradation, and what evidence would settle it."}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AGI Scorecard","item":"https://agiscorecard.com/"},{"@type":"ListItem","position":2,"name":"AGI questions, answered","item":"https://agiscorecard.com/agi-questions"},{"@type":"ListItem","position":3,"name":"Is Claude getting dumber?","item":"https://agiscorecard.com/is-claude-getting-dumber"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is Claude getting dumber?", "acceptedAnswer": {"@type": "Answer", "text": "Not as a policy, but the complaint has been right before. Anthropic's September 2025 postmortem confirmed three infrastructure bugs degraded Claude's output from August to early September 2025 — at the worst hour, 16% of Sonnet 4 requests were affected — while also stating it never intentionally lowers model quality for demand or load reasons. The August 2026 complaint cycle (a reported effort-level A/B test in Claude Code) received an official explanation of a display bug rather than a stealth cut, and remains unresolved by any independent benchmark."}}, {"@type": "Question", "name": "Has Anthropic ever admitted Claude quality was degraded?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, once, in detail. The September 17, 2025 engineering postmortem documented three overlapping bugs: short-context requests misrouted to servers configured for the 1M-token context window (0.8% of Sonnet 4 requests at first, 16% at the August 31 peak), a TPU corruption issue that injected stray characters such as Thai text into English answers, and a compiler bug that returned wrong tokens. Detection took weeks partly because Claude often recovered from isolated mistakes and privacy controls limited debugging access."}}, {"@type": "Question", "name": "Why does Claude feel worse even when nothing changed server-side?", "acceptedAnswer": {"@type": "Answer", "text": "At least four mundane causes produce the identical feeling: a different thinking/effort mode than you had before, long-conversation context degradation, shared usage pressure hitting limits at busy hours, and routing differences between surfaces (app, API, Claude Code). None of these is the model being retrained downward, but all of them read as 'it got dumber' from the user's chair — which is why anecdotes alone can never settle the question."}}, {"@type": "Question", "name": "What evidence would actually settle it?", "acceptedAnswer": {"@type": "Answer", "text": "Repeated runs of a fixed public benchmark against the same model version over time. A reproducible regression on an unchanged benchmark, or an official admission of intentional degradation, flips this page's verdict to yes. Vibes, screenshots, and isolated failures do not — the 2025 episode showed both that user reports can be right and that only instrumentation made the case provable."}}]}</script>
+<style>
+  :root{--bg:#0a0a0b;--bg2:#111114;--bg3:#18181d;--border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.12);--text:#e8e8ec;--muted:#8888a0;--accent:#7c6af5;--accent2:#4fc3a1;--warn:#e8a040;--danger:#e05555;--font:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;--mono:'JetBrains Mono',monospace;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:16px;line-height:1.75;}
+  a{color:var(--accent);text-decoration:none;}a:hover{opacity:.8;}
+  header{border-bottom:1px solid var(--border);padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:56px;position:sticky;top:0;background:rgba(10,10,11,.92);backdrop-filter:blur(12px);z-index:100;}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px;color:var(--text);}
+  .logo-dot{width:8px;height:8px;background:var(--accent2);border-radius:50%;}
+  .back-link{font-size:13px;color:var(--muted);}.back-link:hover{color:var(--text);opacity:1;}
+  article{max-width:720px;margin:0 auto;padding:2.5rem 1.5rem 4rem;}
+  .eyebrow{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem;}
+  h1{font-size:clamp(1.7rem,4vw,2.4rem);font-weight:700;letter-spacing:-.02em;line-height:1.18;margin-bottom:1.25rem;}
+  .capsule{background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent2);border-radius:0 10px 10px 0;padding:1.15rem 1.4rem;font-size:16px;margin-bottom:1.75rem;}
+  .capsule .verdict{font-weight:700;}
+  .v-ok{color:var(--accent2);}.v-wrong{color:var(--danger);}.v-open{color:var(--accent);}.v-pending{color:var(--muted);}
+  h2{font-size:1.25rem;font-weight:600;margin:2.25rem 0 .9rem;letter-spacing:-.01em;}
+  h3{font-size:1.05rem;font-weight:600;margin:1.5rem 0 .6rem;}
+  p{margin-bottom:1rem;}
+  ul{margin:0 0 1rem 1.3rem;}li{margin-bottom:.45rem;}
+  strong{color:#fff;}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;margin:1rem 0 1.4rem;background:var(--bg2);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+  th{text-align:left;padding:10px 12px;color:var(--muted);font-weight:500;font-size:11px;letter-spacing:.05em;text-transform:uppercase;border-bottom:1px solid var(--border);}
+  td{padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:top;}
+  tr:last-child td{border-bottom:none;}
+  .nowrap{white-space:nowrap;font-weight:600;}
+  .updated{font-size:12px;color:var(--muted);margin-bottom:1.5rem;}
+  footer{border-top:1px solid var(--border);padding:24px 0;font-size:12px;color:var(--muted);text-align:center;}
+@media(max-width:640px){table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;white-space:nowrap}table td,table th{white-space:normal;min-width:92px}}
+</style>
+</head>
+<body>
+<header>
+  <a href="/" class="logo"><span class="logo-dot"></span>AGI Scorecard</a>
+  <a href="/" class="back-link">← Live scorecard</a>
+</header>
+<main>
+  <article>
+  <div class="eyebrow">Evidence audit · Model capability</div>
+  <h1>Is Claude Getting Dumber? What the Record Actually Shows</h1>
+  <div class="updated">Last updated: August 24, 2026 · Two complaint cycles, dated sources, written flip condition</div>
+
+  <div class="capsule"><span class="verdict">Not as a policy — but this exact complaint has been officially confirmed real once, which is why it deserves an audit instead of an eye-roll.</span>
+  Anthropic's September 2025 postmortem admitted <strong>three infrastructure bugs</strong> degraded Claude's
+  output for weeks — 16% of Sonnet 4 requests affected at the worst hour — while stating it never intentionally
+  lowers quality for load or demand reasons. The August 2026 cycle (a reported effort-level A/B test in Claude
+  Code) got an official "display bug" explanation and no independent benchmark has settled it. Between those two
+  poles sit four mundane causes that feel identical from the user's chair. The ledger below separates them.</div>
+
+  <div style="margin:1.2rem 0;padding:1rem 1.2rem;background:var(--bg2);border:1px solid var(--border);border-radius:12px;">
+    <span style="font-size:13px;color:var(--muted);">Feelings don't settle capability questions — pre-registered conditions do. Our own ledger works that way:</span><br>
+    <a href="/progress-index" onclick="gtag('event','index_click',{location:'claudedumber_live'});" style="font-size:28px;font-weight:800;font-variant-numeric:tabular-nums;text-decoration:none;">62.5<span style="font-size:16px;color:var(--muted);">/100</span></a>
+    <span style="font-size:13px;color:var(--muted);">— the AGI-2027 Thesis Tracker, eight verdicts, each with a flip condition.</span>
+  </div>
+
+  <h2>The cycle users won: August–September 2025</h2>
+  <p>Users reported degraded, inconsistent output through August 2025 and were widely dismissed as imagining it.
+  On September 17, 2025, Anthropic published a detailed
+  <a href="https://www.anthropic.com/engineering/a-postmortem-of-three-recent-issues" rel="noopener">engineering postmortem</a>
+  confirming three overlapping bugs:</p>
+  <table>
+    <thead><tr><th>Bug</th><th>Effect</th><th>Scale (per the postmortem)</th></tr></thead>
+    <tbody>
+      <tr><td>Routing error</td><td>Short-context requests sent to servers configured for the 1M-token context window</td><td>0.8% of Sonnet 4 requests at first; <strong>16% at the Aug 31 peak hour</strong></td></tr>
+      <tr><td>TPU output corruption</td><td>Stray characters — e.g. Thai text — injected into English answers</td><td>Affected multiple models; duration in postmortem</td></tr>
+      <tr><td>Compiler miscompilation</td><td>Token-selection error returned wrong tokens</td><td>Fixed after rollback; detailed in postmortem</td></tr>
+    </tbody>
+  </table>
+  <p>Two things are simultaneously on record from that document: <strong>the users were right</strong> — the
+  degradation was real, measurable and weeks-long — and Anthropic's stated policy is that it
+  <strong>never intentionally reduces model quality</strong> due to demand, time of day, or server load. Detection
+  took weeks partly because Claude often recovered from isolated mistakes and privacy controls limited debugging
+  access (coverage: <a href="https://www.infoq.com/news/2025/10/anthropic-infrastructure-bugs/" rel="noopener">InfoQ</a>,
+  <a href="https://simonwillison.net/2025/Sep/17/anthropic-postmortem/" rel="noopener">Simon Willison</a>).</p>
+
+  <h2>The open cycle: August 2026</h2>
+  <p>The current round started with a Hacker News report that
+  <a href="https://news.ycombinator.com/item?id=49401549" rel="noopener">Anthropic appeared to be A/B testing reduced effort levels in Claude Code</a>.
+  Anthropic's engineering response characterized the observed server-side test as a
+  <a href="https://www.anthropic.com/engineering/april-23-postmortem" rel="noopener">display bug rather than a stealth cut</a>.
+  That is where the verified record currently ends: a user observation, an official explanation, and — as of this
+  audit — no reproducible benchmark regression published either way. We state that as an open question, not a verdict.</p>
+
+  <h2>Four mundane causes that feel identical</h2>
+  <p>An honest audit has to name the confounders. At least four non-degradation causes produce the exact
+  "it got dumber" experience (we group these as an analysis framework, not measured findings): a different
+  <strong>thinking/effort mode</strong> than your earlier sessions; <strong>long-conversation context</strong>
+  drift; <strong>shared usage pressure</strong> at peak hours; and <strong>routing differences between
+  surfaces</strong> (app vs API vs Claude Code). None of these is the model being made worse, and every one of
+  them reads that way from the chair. This is precisely why anecdotes cannot settle the question in either
+  direction — the 2025 episode proved user reports <em>can</em> be right, and also that only instrumentation
+  made the case provable.</p>
+
+  <h2>The flip condition — what would settle it</h2>
+  <p>This page flips to "yes" the day either of two things is published: <strong>a reproducible regression on a
+  fixed public benchmark</strong> against the same model version over time, or <strong>an official admission of
+  intentional quality reduction</strong>. It flips to "no, cycle closed" when a fixed benchmark shows no
+  regression across the complaint window. Screenshots and vibes move neither needle. That is the same discipline
+  we apply to our own <a href="/progress-index">eight tracked verdicts</a> — conditions written before outcomes.</p>
+
+  <h2>FAQ</h2>
+  <h3>Is Claude getting dumber?</h3>
+  <p>Not as a policy, but the complaint has been right before. Anthropic's September 2025 postmortem confirmed three infrastructure bugs degraded Claude's output from August to early September 2025 — at the worst hour, 16% of Sonnet 4 requests were affected — while also stating it never intentionally lowers model quality for demand or load reasons. The August 2026 complaint cycle (a reported effort-level A/B test in Claude Code) received an official explanation of a display bug rather than a stealth cut, and remains unresolved by any independent benchmark.</p>
+  <h3>Has Anthropic ever admitted Claude quality was degraded?</h3>
+  <p>Yes, once, in detail. The September 17, 2025 engineering postmortem documented three overlapping bugs: short-context requests misrouted to servers configured for the 1M-token context window (0.8% of Sonnet 4 requests at first, 16% at the August 31 peak), a TPU corruption issue that injected stray characters such as Thai text into English answers, and a compiler bug that returned wrong tokens. Detection took weeks partly because Claude often recovered from isolated mistakes and privacy controls limited debugging access.</p>
+  <h3>Why does Claude feel worse even when nothing changed server-side?</h3>
+  <p>At least four mundane causes produce the identical feeling: a different thinking/effort mode than you had before, long-conversation context degradation, shared usage pressure hitting limits at busy hours, and routing differences between surfaces (app, API, Claude Code). None of these is the model being retrained downward, but all of them read as "it got dumber" from the user's chair — which is why anecdotes alone can never settle the question.</p>
+  <h3>What evidence would actually settle it?</h3>
+  <p>Repeated runs of a fixed public benchmark against the same model version over time. A reproducible regression on an unchanged benchmark, or an official admission of intentional degradation, flips this page's verdict to yes. Vibes, screenshots, and isolated failures do not — the 2025 episode showed both that user reports can be right and that only instrumentation made the case provable.</p>
+
+  <div style="margin:1.6rem 0;">
+    <a href="https://agiscorecard.beehiiv.com/subscribe?utm_source=agiscorecard&amp;utm_medium=deep_claudedumber" target="_blank" rel="noopener" onclick="gtag('event','subscribe_click',{location:'deep_claudedumber'});" style="display:inline-block;background:#6350d9;color:#fff;padding:9px 20px;border-radius:8px;font-size:14px;font-weight:600;">One email when a verdict flips &rarr;</a>
+  </div>
+  <p style="font-size:13px;color:var(--muted);">Browse all <a href="/agi-questions">AGI questions</a> · Method: only dated, named sources; analysis frameworks are labeled as such. Related: <a href="/ai-orders-of-magnitude-explained">the OOM argument, explained</a>.</p>
+  </article>
+</main>
+<footer>By the <a href="/about" style="color:var(--muted);">AGI Scorecard team</a> · Independent tracker of <a href="https://situational-awareness.ai" style="color:var(--muted);">Situational Awareness</a> · Not affiliated with any lab or fund · <a href="/privacy" style="color:var(--muted);">Privacy</a> · <a href="/advertise" style="color:var(--muted);">Advertise</a></footer>
+</body>
+</html>
