@@ -102,7 +102,7 @@ def strict_page(html_src):
     s = re.sub(r'<a\b[^>]*href="https?://[^"]*"[^>]*>(.*?)</a>', r"\1", s, flags=re.S)
     # engines: window.GL_CLEAN === true kills the beacon, the challenge UI and
     # the share-text site URL — built for exactly this delivery
-    s = s.replace('<script src="copy.js">', '<script>window.GL_CLEAN=true</script><script src="copy.js">', 1)
+    s = s.replace('<script src="copy.js">', '<script>window.GL_CLEAN=true</script><script src="portal.js"></script><script src="copy.js">', 1)
     s = s.replace("</title>", " (portal build)</title>", 1)
     return s
 
@@ -167,6 +167,7 @@ def main():
             zf.writestr(g["js"], js_body)
             zf.writestr("firstrun.js", open(os.path.join(SITE, "firstrun.js")).read())
             zf.writestr("copy.js", open(os.path.join(SITE, "copy.js")).read())
+            zf.writestr("portal.js", open(os.path.join(SITE, "portal.js")).read())
             for f in g["data"]:
                 zf.writestr(f, open(os.path.join(SITE, f)).read())
             cov = os.path.join(SITE, "covers", f"{slug}.png")

@@ -184,6 +184,16 @@ js + daily/pool json + style + README,剥离 manifest/SW/sub.js(深路径托管�
 病毒环:firstrun.js 在 coarse-pointer 设备上给 #sharebtn/#chbtn 追加原生
 share sheet(捕获层、不 stopPropagation,引擎剪贴板+埋点照常)。
 
+## CG 精品化层(2026-08-24,owner「CG提交内容必须精品,打磨完提交」)
+
+严格包新增 `portal.js`(**只进 strict 构建,主站与 itch 标准包不含**):
+①首访冷启动改 easy 小盘(replaceState 注入 ?p=easy-0,引擎原样读;任何 *_done_*
+键存在即视为老玩家走正常每日)——CG QA 判前 30 秒,拿 10×10 2★ 冷启动必劝退;
+②30 秒未赢给 Hint 按钮一次 5 秒脉冲(.nudge,style.css @glnudge)。
+style.css 另加全局点按手感(:active scale .92)。端到端实测(沙箱 iframe):
+easy 64 格冷启动 ✓ 脉冲 ✓ 真实胜利 ✓ 零回连 ✓ 零报错。
+**CG 提交用 /downloads/strict/<game>.zip,首选 starbattle;标准包勿投 CG。**
+
 ## itch.io 已上架(2026-08-24 15:01 UTC 数据实证)
 
 owner 发布 https://gridlings.itch.io/gridlings-11-daily-logic-puzzles
