@@ -154,3 +154,14 @@ MCP/付费轨道(x402 季度复查通过后)。KPI:bench_download(hub_click 标�
 
 JS 真人 play_start ≥500/28d 或任一门户过审上架或首笔门户分成入账 → 加码
 (Brennerd 组合模式:同一引擎加规则集);三者皆无 → 降为零维护静态存在。
+
+## 嵌入即反链引擎(2026-08-24,owner「自动化营销推广,导流」指令下补齐)
+
+22 张游戏页的嵌入说明升级为复制即用代码块:`embed.js`(共享,渐进增强)给
+`#embedcopy` 按钮接线——生成 iframe(?embed=1)+ 带 `utm_source=widget` 的品牌
+回链,复制成功打 `embed_copy` 事件(worker ALLOWED 已含)。这是舰队唯一被验证
+的零人力反链渠道;静态一句话是无 JS 回退。主站导流入口四处:/ai-tools 两表、
+index.html #directory、cn.html 🎮玩法块(2026-08-24 补)。play 子域 sitemap 自
+2026-08-22 起每周一随 agi-indexnow.yml 提交(indexnow-subdomains.mjs)。
+判定线:embed_copy 28 天 ≥3 或外域 utm_source=widget 引荐出现 = 渠道活;
+60 天全零则把按钮降回一句话,不再投入。

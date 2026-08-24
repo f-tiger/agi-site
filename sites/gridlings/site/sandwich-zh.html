@@ -82,11 +82,12 @@ window.LATIN_GAME={type:"sandwich",path:"/zh/sandwich",file:"/sandwich",name:"�
 
 <footer>
   <p>永久免费、无账号。出品：<a href="https://agiscorecard.com/cn">AGI Scorecard</a>。与 LinkedIn、纽约时报无关联。</p>
-  <p class="subline">嵌入本游戏：在 iframe 的 URL 后加 <code>?embed=1</code>。</p>
+  <p class="subline">嵌入本游戏：<code>?embed=1</code> <button class="btn" id="embedcopy" type="button">复制 iframe 代码</button></p>
 </footer>
 </div>
 <script src="/app-latin.js"></script>
 <script src="/sub.js" defer></script>
+<script src="/embed.js" defer></script>
 <script>if("serviceWorker" in navigator&&!/(^|[?&])(clean|embed)=1/.test(location.search)){addEventListener("load",function(){navigator.serviceWorker.register("/sw.js").catch(function(){})})}</script>
 </body>
 </html>

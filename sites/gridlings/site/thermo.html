@@ -82,11 +82,12 @@ window.THERMO_PATH="/thermo";
 
 <footer>
   <p>Free forever, no account. Built by <a href="https://agiscorecard.com/about">AGI Scorecard</a>. Not affiliated with LinkedIn or The New York Times.</p>
-  <p class="subline">Embed this game: add <code>?embed=1</code> to the URL in an iframe.</p>
+  <p class="subline">Embed this game: <code>?embed=1</code> <button class="btn" id="embedcopy" type="button">Copy iframe code</button></p>
 </footer>
 </div>
 <script src="app-thermo.js"></script>
 <script src="/sub.js" defer></script>
+<script src="/embed.js" defer></script>
 <script>if("serviceWorker" in navigator&&!/(^|[?&])(clean|embed)=1/.test(location.search)){addEventListener("load",function(){navigator.serviceWorker.register("/sw.js").catch(function(){})})}</script>
 </body>
 </html>
