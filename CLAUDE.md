@@ -22,7 +22,9 @@
 (28 天窗),按站列:订阅(agi subscribers + bpj subs 真实行,CI/unsub 行剔除,
 bpj 的 src=/__ci 是已知自测)、eco affiliate_click、bpj go(出站联盟点击)、
 SR pick_open/out_click/calc_use、gridlings play/solve/subs、audits 询单、
-invest_tool_click。**联盟归属现况**(变现的前提,悬置项必须每次带出):
+invest_tool_click、tds affiliate_click(D1 hits 表 ev 列;链路 2026-08-19 上线,
+08-24 复核通过:ev='' 的 JS 真人 pv 每日落库证明管道活着,affiliate_click=0 是
+真没人点、不是测不到——别再把它记成盲区)。**联盟归属现况**(变现的前提,悬置项必须每次带出):
 - amazon.de tag=**getecoback-21**(eco 全站+SR 新页,1,875 处)——**P0 悬置:
   PartnerNet 账号归属未经 owner 确认**,未确认前所有点击分文不进;
 - amazon.com tag=**ecoback0d-20**(tds,美国站格式)——归属同样待 owner 确认。
