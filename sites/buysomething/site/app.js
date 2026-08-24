@@ -11,11 +11,11 @@
 
   const searchInput = document.getElementById("searchInput");
   const sortSelect = document.getElementById("sortSelect");
-  // Self-evolution loop (no AI in it): CI bakes 28d of real reader clicks from
-  // D1 into popularity.json; when the sample is big enough the default order
-  // switches from editorial trendScore to what readers actually open.
+  // Self-evolution loop (no AI in it): the worker serves 28d of real reader
+  // clicks straight from D1 at /api/pop (cached 1h); when the sample is big
+  // enough the default order switches from editorial trendScore to reader heat.
   let POP = null;
-  fetch("popularity.json").then(r => r.ok ? r.json() : null).then(j => {
+  fetch("/api/pop").then(r => r.ok ? r.json() : null).then(j => {
     if (!j || !j.picks) return;
     const total = Object.values(j.picks).reduce((a, v) => a + (v.o || 0), 0);
     POP = j.picks;

@@ -64,6 +64,25 @@ export default {
       }
     }
 
+    // Reader-heat feed for the self-evolution sort (replaces the CI bake,
+    // which needed a D1-read token the deploy credential does not have).
+    // Worker reads its own EV binding — zero external credentials involved.
+    if (url.pathname === "/api/pop" && request.method === "GET") {
+      const headers = { "content-type": "application/json", "cache-control": "public, max-age=3600" };
+      try {
+        const q = await env.EV.prepare(
+          "SELECT label, SUM(name='pick_open') o, SUM(name='out_click') x FROM ev " +
+          "WHERE name IN ('pick_open','out_click') AND ts > datetime('now','-28 days') " +
+          "AND label != '' GROUP BY label"
+        ).all();
+        const picks = {};
+        for (const r of q.results) picks[r.label] = { o: r.o | 0, x: r.x | 0 };
+        return new Response(JSON.stringify({ days: 28, picks }), { headers });
+      } catch (e) {
+        return new Response('{"days":28,"picks":{}}', { headers });
+      }
+    }
+
     const res = await env.ASSETS.fetch(request);
     const accept = request.headers.get("accept") || "";
     if (request.method === "GET" && accept.includes("text/html") && res.status === 200) {

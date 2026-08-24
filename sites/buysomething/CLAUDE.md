@@ -30,8 +30,9 @@ buysomething 会话孵化;owner 2026-08-22 指示并入舰队)。战略与调研
 
 **第①层:站点自进化(零 AI 依赖,纯 CI 反馈回路)**
 - 每日 05:20 CI:trendspy 刷新 trends.json(需求侧信号,keep-last-good)。
-- 同一 run:`tools/bake_popularity.py` 查 D1 REST API 取 28 天真实读者行为
-  (pick_open/out_click)→ 烤进 site/popularity.json(失败不碰旧文件)。
+- 读者热度不再走 CI 烤制(2026-08-24 拆除:bake_popularity 需要 D1 读令牌,
+  部署凭证没有,天天 403)。改由 **worker `/api/pop` 直读 EV 绑定**(缓存 1h,
+  零外部凭证),app.js 消费同一形状 {picks:{id:{o,x}}}。
 - 前端:样本 ≥20 次点开后,**默认排序自动从编辑 trendScore 切到真实读者热度**
   (out_click×3 + pick_open)——读者用点击投票,首页自己重排,全程无 AI。
   埋点标签自 2026-08-22 起用 product id(此前 0 行,无历史损失)。
