@@ -44,6 +44,22 @@ jobs:
       - name: Build standalone game packages (deployed as assets, never committed)
         working-directory: sites/gridlings
         run: python3 tools/build_packages.py
+      - name: Push package to itch.io via butler (auto-update the listing)
+        working-directory: sites/gridlings
+        env:
+          BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
+        # butler diffs against the previous build — only changed files upload.
+        # Skips silently when the secret is absent (fork/PR contexts).
+        run: |
+          [ -n "$BUTLER_API_KEY" ] || { echo "no BUTLER_API_KEY — skip itch push"; exit 0; }
+          curl -sL -o /tmp/butler.zip https://broth.itch.zone/butler/linux-amd64/LATEST/archive/default
+          unzip -q -o /tmp/butler.zip -d /tmp/butler && chmod +x /tmp/butler/butler
+          rm -rf /tmp/itchbuild && mkdir -p /tmp/itchbuild
+          python3 - << 'PYEOF'
+          import zipfile
+          zipfile.ZipFile("site/downloads/gridlings-all-11.zip").extractall("/tmp/itchbuild")
+          PYEOF
+          /tmp/butler/butler push /tmp/itchbuild gridlings/gridlings-11-daily-logic-puzzles:html --userversion "$(date -u +%F)" || echo "::warning::butler push failed — itch listing keeps previous build"
       - name: Deploy worker
         uses: cloudflare/wrangler-action@v3
         with:
