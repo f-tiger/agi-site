@@ -1,8 +1,8 @@
 {
-  "generated": "2026-08-23",
+  "generated": "2026-08-24",
   "note": "由 scripts/trend-radar.mjs 每日聚合五路站内信号生成。只排队不写事实；核实动作按硬规则执行。分数是领先指标的相对排序，不是预测。",
   "counts": {
-    "candidate": 20,
+    "candidate": 21,
     "category_hot": 5,
     "stale": 0,
     "demand": 0
