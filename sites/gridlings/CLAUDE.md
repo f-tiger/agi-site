@@ -174,6 +174,17 @@ js + daily/pool json + style + README,剥离 manifest/SW/sub.js(深路径托管�
 上传物**;owner 开 itch 号后存 `BUTLER_API_KEY` secret 即可让 CI 自动推送更新
 (见 docs/games-marketplace-kit.md 自动化边界节)。改包结构先改脚本再跑,别手改。
 
+## 爆款审计补齐(2026-08-24,owner「评分是否可以形成爆款…有差距改造」)
+
+对标 Queens/Wordle 惯例已齐平:hint/undo/计时/连胜/挑战对决/emoji 战报全 11 款
+在位。本日补三缺口:① **firstrun.js**(22 张游戏页共享,相对路径引用,zip 也带):
+首访规则浮层(克隆页面自己的 .rules 块——永不与真实规则漂移,语言随页面),
+storage 键 fr_<path>;标题旁 ? 按钮可重开;胜利动效走 #win 的 MutationObserver,
+零引擎改动。**冒烟套件已配套改**(每次 goto 后 dismissIntro),动它先跑
+tools/browser-smoke.js。② 封面包:site/covers/*.png(630×500,已入库;重生成
+用 playwright 本地跑,CI 无浏览器)随 zip 附带 cover.png。③ 商店文案
+docs/games-store-listing.md(批量上传复制即用)。v2 候选(未做):音效、教学关。
+
 ## 判定线(60 天,≈2026-10-21)
 
 JS 真人 play_start ≥500/28d 或任一门户过审上架或首笔门户分成入账 → 加码

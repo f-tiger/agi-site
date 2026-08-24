@@ -27,6 +27,12 @@ function firstBoard(file) {
   const browser = await chromium.launch({ executablePath: "/opt/pw-browsers/chromium-1194/chrome-linux/chrome" });
   const failures = [];
 
+  async function dismissIntro(page) {
+    try {
+      const ov = await page.$("#frov");
+      if (ov) { await page.click("#frov button.btn.pri"); await page.waitForSelector("#frov", { state: "detached", timeout: 2000 }); }
+    } catch (e) {}
+  }
   async function fresh() {
     const ctx = await browser.newContext();
     const page = await ctx.newPage();
@@ -40,7 +46,7 @@ function firstBoard(file) {
   for (const f of PAGES) {
     const { ctx, page, errs } = await fresh();
     try {
-      await page.goto(BASE + "/" + f, { waitUntil: "networkidle" });
+      await page.goto(BASE + "/" + f, { waitUntil: "networkidle" }); await dismissIntro(page);
       if (f === "archive.html") {
         await page.waitForFunction(() => document.querySelectorAll("#list a.day, #tabs button").length > 5, null, { timeout: 8000 });
       } else {
@@ -64,7 +70,7 @@ function firstBoard(file) {
     const { ctx, page, errs } = await fresh();
     try {
       const p = firstBoard("nonogram-daily.json");
-      await page.goto(BASE + "/nonogram.html", { waitUntil: "networkidle" });
+      await page.goto(BASE + "/nonogram.html", { waitUntil: "networkidle" }); await dismissIntro(page);
       await page.waitForSelector("#grid .cell");
       const cells = await page.$$("#grid button.cell");
       if (cells.length !== p.n * p.n) throw new Error(`cell count ${cells.length} != ${p.n * p.n}`);
@@ -85,7 +91,7 @@ function firstBoard(file) {
     const { ctx, page } = await fresh();
     try {
       const p = firstBoard("minisudoku-daily.json");
-      await page.goto(BASE + "/minisudoku.html", { waitUntil: "networkidle" });
+      await page.goto(BASE + "/minisudoku.html", { waitUntil: "networkidle" }); await dismissIntro(page);
       await page.waitForSelector("#grid .cell");
       const cells = await page.$$("#grid button.cell");
       if (cells.length !== p.n * p.n) throw new Error(`cell count ${cells.length} != ${p.n * p.n}`);
@@ -109,7 +115,7 @@ function firstBoard(file) {
     const { ctx, page } = await fresh();
     try {
       const p = firstBoard("thermo-daily.json");
-      await page.goto(BASE + "/thermo.html", { waitUntil: "networkidle" });
+      await page.goto(BASE + "/thermo.html", { waitUntil: "networkidle" }); await dismissIntro(page);
       await page.waitForSelector("#grid .cell");
       const thermos = p.t.split(";").map((seg) => {
         const t = []; for (let i = 0; i < seg.length; i += 2) t.push([+seg[i], +seg[i + 1]]); return t;

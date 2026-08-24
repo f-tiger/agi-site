@@ -46,6 +46,10 @@ won't work (browsers block JSON fetches from file://).
 Upload it: this zip is a ready HTML5 build for itch.io or similar portals
 (entry file index.html, relative paths, no backend required).
 
+Store listing: cover.png in this zip is a ready 630x500 cover image; titles,
+descriptions and tags for bulk uploads are in store-listing.md at
+https://github.com/f-tiger/agi-site/blob/main/docs/games-store-listing.md
+
 License: free for personal, educational, and portal use with attribution —
 link to https://play.agiscorecard.com (the live version, with all 11 games,
 daily streaks, bilingual play, and an open 1,100-puzzle research benchmark).
@@ -73,6 +77,10 @@ def main():
             zf.writestr("index.html", page)
             zf.writestr("style.css", open(os.path.join(SITE, "style.css")).read())
             zf.writestr(g["js"], open(os.path.join(SITE, g["js"])).read())
+            zf.writestr("firstrun.js", open(os.path.join(SITE, "firstrun.js")).read())
+            cov = os.path.join(SITE, "covers", (slug if slug != "gridlings" else "gridlings") + ".png")
+            if os.path.exists(cov):
+                zf.writestr("cover.png", open(cov, "rb").read())
             for f in g["data"]:
                 zf.writestr(f, open(os.path.join(SITE, f)).read())
             zf.writestr("README.txt", readme)
@@ -83,6 +91,7 @@ def main():
         all_zf.writestr(f"{slug}/index.html", page)
         all_zf.writestr(f"{slug}/style.css", open(os.path.join(SITE, "style.css")).read())
         all_zf.writestr(f"{slug}/{g['js']}", open(os.path.join(SITE, g["js"])).read())
+        all_zf.writestr(f"{slug}/firstrun.js", open(os.path.join(SITE, "firstrun.js")).read())
         for f in g["data"]:
             all_zf.writestr(f"{slug}/{f}", open(os.path.join(SITE, f)).read())
         all_zf.writestr(f"{slug}/README.txt", readme)
