@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>Nonogram Rules for Beginners: Reading the Number Clues</title>
+<meta name="description" content="Nonogram rules: each clue lists the lengths of filled runs in that row or column, in order, with at least one gap between runs. Core techniques: overlap, edge anchoring, and × marks.">
+<link rel="canonical" href="https://play.agiscorecard.com/nonogram-rules">
+<link rel="stylesheet" href="style.css">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#002FA7">
+<meta property="og:title" content="Nonogram Rules for Beginners: Reading the Number Clues">
+<meta property="og:description" content="Nonogram rules: each clue lists the lengths of filled runs in that row or column, in order, with at least one gap between runs. Core techniques: overlap, edge anchoring, and × marks.">
+<meta property="og:url" content="https://play.agiscorecard.com/nonogram-rules">
+<meta property="og:type" content="article">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>▦</text></svg>">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Nonogram Rules for Beginners: Reading the Number Clues", "datePublished": "2026-08-24", "dateModified": "2026-08-24", "inLanguage": "en", "author": {"@type": "Organization", "name": "Gridlings (AGI Scorecard)", "url": "https://agiscorecard.com/about"}, "publisher": {"@type": "Organization", "name": "Gridlings", "url": "https://play.agiscorecard.com/"}, "description": "Nonogram rules: each clue lists the lengths of filled runs in that row or column, in order, with at least one gap between runs. Core techniques: overlap, edge anchoring, and × marks."}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How do you read nonogram clues?", "acceptedAnswer": {"@type": "Answer", "text": "Each number is the length of a consecutive filled run in that row or column. Multiple numbers appear in order, separated by at least one empty cell. '3 1' means a run of three, a gap of one or more, then a single filled cell."}}, {"@type": "Question", "name": "Do nonogram runs have to be in order?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — the clue order matches the order of the runs in the line, reading left-to-right for rows and top-to-bottom for columns. Only the gap sizes are unknown."}}, {"@type": "Question", "name": "What is the overlap technique in nonograms?", "acceptedAnswer": {"@type": "Answer", "text": "Slide a run to its leftmost and rightmost legal positions; any cells filled in both extremes are filled in every solution. It is the single most productive nonogram deduction and the standard way to open a board."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Gridlings", "item": "https://play.agiscorecard.com/"}, {"@type": "ListItem", "position": 2, "name": "Nonogram Rules — What the Numbers Actually Say", "item": "https://play.agiscorecard.com/nonogram-rules"}]}</script>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1 style="font-size:1.3rem"><a href="/nonogram-rules">Nonogram Rules — What the Numbers Actually Say</a></h1>
+</header>
+
+<div class="rules" style="border-top:0;padding-top:6px">
+  <p style="font-size:1.02rem"><strong>Each clue describes runs, in order.</strong> A row clue of <strong>3 1</strong> means: somewhere in this row there is a run of 3 filled cells, then — after at least one empty cell — a run of 1, in that order. Solve by intersecting what the row clues and the column clues both allow. Filled cells reveal a picture; a well-made board never needs a guess.</p>
+  <p id="live" style="border:1px solid var(--line);border-radius:10px;background:var(--bg2);padding:10px 12px;font-size:.95rem">Today's verified daily is live — <a href="/nonogram">play it now</a>.</p>
+<script>fetch("/nonogram-daily.json").then(r=>r.json()).then(d=>{var e=new Date(d.epoch+"T00:00:00Z"),n=Math.floor((Date.now()-e)/864e5)+1;if(n>0)document.getElementById("live").innerHTML='Daily board <strong>#'+n+'</strong> is live now (a new one at 00:00 UTC) — <a href="/nonogram">play it</a>, or browse the <a href="/archive">archive</a>.';}).catch(()=>{});</script>
+  <h2>The rules</h2>
+  <table style="width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums">
+    <thead><tr><th style="text-align:left;padding:6px 8px;border-bottom:1px solid var(--line)">Rule</th><th style="text-align:left;padding:6px 8px;border-bottom:1px solid var(--line)">What it means</th></tr></thead>
+    <tbody><tr><td style="padding:6px 8px;white-space:nowrap"><strong>Run lengths</strong></td><td style="padding:6px 8px">Each clue lists the lengths of the filled runs in its row or column, left-to-right or top-to-bottom.</td></tr><tr><td style="padding:6px 8px;white-space:nowrap"><strong>Gaps</strong></td><td style="padding:6px 8px">Between two runs there is at least one empty cell; before the first and after the last there may be any number.</td></tr><tr><td style="padding:6px 8px;white-space:nowrap"><strong>× marks</strong></td><td style="padding:6px 8px">Marking a cell × ('definitely empty') is bookkeeping for you — it is how the overlap logic becomes visible.</td></tr></tbody>
+  </table>
+  <h2>Overlap (the workhorse)</h2><p>If a run is longer than half its free space, its middle cells are filled in every legal position. A 7-clue in a 10-wide row fills cells 4–7 immediately — start every board this way.</p><h2>Anchor the edges</h2><p>A filled cell touching the border pins its whole run: clue 4 with a filled corner cell fills four cells and ×-es the fifth.</p><h2>Punctuate with ×</h2><p>Completed runs get × on both ends. Those × cells shrink the free space for every crossing column clue — the cascade is where nonograms are actually solved.</p>
+  <h2>Verified, not promised</h2>
+  <p>Every daily board here passes a stronger check than unique-solution: <a href="/nonogram-no-guessing">line-solvability</a> — iterating row/column constraint intersection to a fixpoint must complete the whole grid. In our published measurement, only 43% of random 20×20 boards pass that bar, which is why unverified nonograms so often force guessing. 450 daily 10×10 boards (from 2026-08-24), all verified.</p>
+</div>
+
+<div class="rules">
+  <h2>FAQ</h2>
+  <h3 style="font-size:.98rem;margin:10px 0 2px">How do you read nonogram clues?</h3><p style="margin:0 0 6px">Each number is the length of a consecutive filled run in that row or column. Multiple numbers appear in order, separated by at least one empty cell. &#x27;3 1&#x27; means a run of three, a gap of one or more, then a single filled cell.</p><h3 style="font-size:.98rem;margin:10px 0 2px">Do nonogram runs have to be in order?</h3><p style="margin:0 0 6px">Yes — the clue order matches the order of the runs in the line, reading left-to-right for rows and top-to-bottom for columns. Only the gap sizes are unknown.</p><h3 style="font-size:.98rem;margin:10px 0 2px">What is the overlap technique in nonograms?</h3><p style="margin:0 0 6px">Slide a run to its leftmost and rightmost legal positions; any cells filled in both extremes are filled in every solution. It is the single most productive nonogram deduction and the standard way to open a board.</p>
+</div>
+
+<div class="rules" style="font-size:.9rem;color:var(--mut)">
+  <p>More rules guides: <a href="/futoshiki-rules">≶ futoshiki rules</a> · <a href="/kropki-sudoku-rules">⚫ kropki sudoku rules</a> · <a href="/sandwich-sudoku-rules">🥪 sandwich sudoku rules</a> · <a href="/skyscraper-puzzle-rules">🏙 skyscraper puzzle rules</a> · <a href="/star-battle-rules">⭐ star battle rules</a> · <a href="/thermometer-puzzle-rules">🌡 thermometer puzzle rules</a> · <a href="/6x6-sudoku-rules">🔢 6x6 sudoku rules</a> · <a href="/binary-puzzle-rules">🌙 binary puzzle rules</a> · <a href="/games-like-linkedin-queens">🧩 games like linkedin queens</a></p>
+  <p>By the team behind <a href="https://agiscorecard.com/about">AGI Scorecard</a> · <a href="/nonogram">Play</a> · <a href="/archive">Archive</a> · <a href="/bench">Research benchmark</a></p>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>Binary Puzzle Rules: Balance, Never Three in a Row</title>
+<meta name="description" content="Binary puzzle (Binairo/Tango family) rules: equal counts of the two symbols per row and column, and never three identical symbols adjacent. Techniques and a verified daily.">
+<link rel="canonical" href="https://play.agiscorecard.com/binary-puzzle-rules">
+<link rel="stylesheet" href="style.css">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#002FA7">
+<meta property="og:title" content="Binary Puzzle Rules: Balance, Never Three in a Row">
+<meta property="og:description" content="Binary puzzle (Binairo/Tango family) rules: equal counts of the two symbols per row and column, and never three identical symbols adjacent. Techniques and a verified daily.">
+<meta property="og:url" content="https://play.agiscorecard.com/binary-puzzle-rules">
+<meta property="og:type" content="article">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌙</text></svg>">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Binary Puzzle Rules: Balance, Never Three in a Row", "datePublished": "2026-08-24", "dateModified": "2026-08-24", "inLanguage": "en", "author": {"@type": "Organization", "name": "Gridlings (AGI Scorecard)", "url": "https://agiscorecard.com/about"}, "publisher": {"@type": "Organization", "name": "Gridlings", "url": "https://play.agiscorecard.com/"}, "description": "Binary puzzle (Binairo/Tango family) rules: equal counts of the two symbols per row and column, and never three identical symbols adjacent. Techniques and a verified daily."}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What are the rules of a binary puzzle?", "acceptedAnswer": {"@type": "Answer", "text": "Fill the grid with two symbols so that each row and column contains an equal number of both, and no three identical symbols are adjacent horizontally or vertically. Some versions also forbid duplicate rows; this site's boards are uniquely solvable from the two core rules and the givens."}}, {"@type": "Question", "name": "Is this the same as Tango or Binairo?", "acceptedAnswer": {"@type": "Answer", "text": "Same family. Binairo/Takuzu use 0s and 1s, LinkedIn's Tango uses suns and moons with extra = and × edge hints. The two core constraints — balanced counts and no three in a row — are shared across all of them."}}, {"@type": "Question", "name": "What is the fastest deduction in binary puzzles?", "acceptedAnswer": {"@type": "Answer", "text": "Cap every adjacent pair: two identical symbols in a row force the opposite symbol on both ends. Together with filling the middle of an X_X gap, these two moves solve most of a 6×6 before counting is even needed."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Gridlings", "item": "https://play.agiscorecard.com/"}, {"@type": "ListItem", "position": 2, "name": "Binary Puzzle Rules — Two Symbols, Two Constraints", "item": "https://play.agiscorecard.com/binary-puzzle-rules"}]}</script>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1 style="font-size:1.3rem"><a href="/binary-puzzle-rules">Binary Puzzle Rules — Two Symbols, Two Constraints</a></h1>
+</header>
+
+<div class="rules" style="border-top:0;padding-top:6px">
+  <p style="font-size:1.02rem"><strong>Two symbols, two rules.</strong> Fill the 6×6 grid with suns and moons so that every row and every column ends with exactly <strong>three of each</strong>, and <strong>never three of the same symbol in a row</strong> — horizontally or vertically. This is the classic binary-puzzle family (also seen as Binairo, Takuzu, or LinkedIn's Tango): trivially stated, surprisingly deep.</p>
+  <p id="live" style="border:1px solid var(--line);border-radius:10px;background:var(--bg2);padding:10px 12px;font-size:.95rem">Today's verified daily is live — <a href="/balance">play it now</a>.</p>
+<script>fetch("/balance-daily.json").then(r=>r.json()).then(d=>{var e=new Date(d.epoch+"T00:00:00Z"),n=Math.floor((Date.now()-e)/864e5)+1;if(n>0)document.getElementById("live").innerHTML='Daily board <strong>#'+n+'</strong> is live now (a new one at 00:00 UTC) — <a href="/balance">play it</a>, or browse the <a href="/archive">archive</a>.';}).catch(()=>{});</script>
+  <h2>The rules</h2>
+  <table style="width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums">
+    <thead><tr><th style="text-align:left;padding:6px 8px;border-bottom:1px solid var(--line)">Rule</th><th style="text-align:left;padding:6px 8px;border-bottom:1px solid var(--line)">What it means</th></tr></thead>
+    <tbody><tr><td style="padding:6px 8px;white-space:nowrap"><strong>Equal counts</strong></td><td style="padding:6px 8px">Every row and every column contains exactly three suns and three moons (on 6×6).</td></tr><tr><td style="padding:6px 8px;white-space:nowrap"><strong>No triples</strong></td><td style="padding:6px 8px">Three identical symbols never sit consecutively, in any row or column.</td></tr><tr><td style="padding:6px 8px;white-space:nowrap"><strong>Unique solution</strong></td><td style="padding:6px 8px">Each published board is machine-verified: one solution, reachable by deduction alone.</td></tr></tbody>
+  </table>
+  <h2>Split the pairs</h2><p>Two identical symbols side by side must be capped on both ends by the opposite symbol — ☀☀ forces 🌙☀☀🌙. This is the fastest-firing rule in the family.</p><h2>Fill the middle of X_X</h2><p>A gap between two identical symbols must hold the opposite one: ☀_☀ forces a moon in the middle, or three-in-a-row appears.</p><h2>Count to three</h2><p>The moment a row holds its third sun, every empty cell in it is a moon. Combine with the no-triples check to finish lines in one sweep.</p>
+  <h2>Verified, not promised</h2>
+  <p>450 daily 6×6 boards (from 2026-08-24) plus 440 free-play boards in three difficulties, all with the same verification contract as every game on this site: exactly one solution, provably reachable without guessing, checked by machine before publication.</p>
+</div>
+
+<div class="rules">
+  <h2>FAQ</h2>
+  <h3 style="font-size:.98rem;margin:10px 0 2px">What are the rules of a binary puzzle?</h3><p style="margin:0 0 6px">Fill the grid with two symbols so that each row and column contains an equal number of both, and no three identical symbols are adjacent horizontally or vertically. Some versions also forbid duplicate rows; this site&#x27;s boards are uniquely solvable from the two core rules and the givens.</p><h3 style="font-size:.98rem;margin:10px 0 2px">Is this the same as Tango or Binairo?</h3><p style="margin:0 0 6px">Same family. Binairo/Takuzu use 0s and 1s, LinkedIn&#x27;s Tango uses suns and moons with extra = and × edge hints. The two core constraints — balanced counts and no three in a row — are shared across all of them.</p><h3 style="font-size:.98rem;margin:10px 0 2px">What is the fastest deduction in binary puzzles?</h3><p style="margin:0 0 6px">Cap every adjacent pair: two identical symbols in a row force the opposite symbol on both ends. Together with filling the middle of an X_X gap, these two moves solve most of a 6×6 before counting is even needed.</p>
+</div>
+
+<div class="rules" style="font-size:.9rem;color:var(--mut)">
+  <p>More rules guides: <a href="/futoshiki-rules">≶ futoshiki rules</a> · <a href="/kropki-sudoku-rules">⚫ kropki sudoku rules</a> · <a href="/sandwich-sudoku-rules">🥪 sandwich sudoku rules</a> · <a href="/skyscraper-puzzle-rules">🏙 skyscraper puzzle rules</a> · <a href="/star-battle-rules">⭐ star battle rules</a> · <a href="/thermometer-puzzle-rules">🌡 thermometer puzzle rules</a> · <a href="/nonogram-rules">▦ nonogram rules</a> · <a href="/6x6-sudoku-rules">🔢 6x6 sudoku rules</a> · <a href="/games-like-linkedin-queens">🧩 games like linkedin queens</a></p>
+  <p>By the team behind <a href="https://agiscorecard.com/about">AGI Scorecard</a> · <a href="/balance">Play</a> · <a href="/archive">Archive</a> · <a href="/bench">Research benchmark</a></p>
+</div>
+</div>
+</body>
+</html>

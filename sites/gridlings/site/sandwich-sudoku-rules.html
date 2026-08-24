@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>Sandwich Sudoku Rules: How the Outside Sums Work</title>
+<meta name="description" content="Sandwich rules: each outside clue is the sum of the numbers between 1 and the largest number in that row or column. A 0 means 1 and the max are adjacent. Techniques and a verified daily.">
+<link rel="canonical" href="https://play.agiscorecard.com/sandwich-sudoku-rules">
+<link rel="stylesheet" href="style.css">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#002FA7">
+<meta property="og:title" content="Sandwich Sudoku Rules: How the Outside Sums Work">
+<meta property="og:description" content="Sandwich rules: each outside clue is the sum of the numbers between 1 and the largest number in that row or column. A 0 means 1 and the max are adjacent. Techniques and a verified daily.">
+<meta property="og:url" content="https://play.agiscorecard.com/sandwich-sudoku-rules">
+<meta property="og:type" content="article">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🥪</text></svg>">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Sandwich Sudoku Rules: How the Outside Sums Work", "datePublished": "2026-08-24", "dateModified": "2026-08-24", "inLanguage": "en", "author": {"@type": "Organization", "name": "Gridlings (AGI Scorecard)", "url": "https://agiscorecard.com/about"}, "publisher": {"@type": "Organization", "name": "Gridlings", "url": "https://play.agiscorecard.com/"}, "description": "Sandwich rules: each outside clue is the sum of the numbers between 1 and the largest number in that row or column. A 0 means 1 and the max are adjacent. Techniques and a verified daily."}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How do sandwich sudoku clues work?", "acceptedAnswer": {"@type": "Answer", "text": "Each clue outside the grid is the sum of the numbers that sit strictly between 1 and the largest number in that row or column. The 1 and the maximum are the 'bread'; the clue sums the filling."}}, {"@type": "Question", "name": "What does a 0 clue mean in sandwich sudoku?", "acceptedAnswer": {"@type": "Answer", "text": "A 0 means there is nothing between 1 and the largest number — they are adjacent in that row or column. It is one of the strongest clues in the puzzle."}}, {"@type": "Question", "name": "Is sandwich sudoku harder than regular sudoku?", "acceptedAnswer": {"@type": "Answer", "text": "It trades box constraints for arithmetic on positions, so it feels harder at first: the information is indirect. On a verified board the difficulty is bounded — every daily here is machine-checked to need no guessing."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Gridlings", "item": "https://play.agiscorecard.com/"}, {"@type": "ListItem", "position": 2, "name": "Sandwich Rules — What the Outside Numbers Mean", "item": "https://play.agiscorecard.com/sandwich-sudoku-rules"}]}</script>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1 style="font-size:1.3rem"><a href="/sandwich-sudoku-rules">Sandwich Rules — What the Outside Numbers Mean</a></h1>
+</header>
+
+<div class="rules" style="border-top:0;padding-top:6px">
+  <p style="font-size:1.02rem"><strong>Each outside clue sums the 'filling'.</strong> In every row and column, find where 1 and the largest number (5 on a 5×5) sit — the clue on the outside is the sum of everything strictly between them. A clue of <strong>0</strong> means 1 and 5 are adjacent; the maximum clue (2+3+4 = 9 on a 5×5) means they sit at opposite ends. Rows and columns still contain each number exactly once.</p>
+  <p id="live" style="border:1px solid var(--line);border-radius:10px;background:var(--bg2);padding:10px 12px;font-size:.95rem">Today's verified daily is live — <a href="/sandwich">play it now</a>.</p>
+<script>fetch("/sandwich-daily.json").then(r=>r.json()).then(d=>{var e=new Date(d.epoch+"T00:00:00Z"),n=Math.floor((Date.now()-e)/864e5)+1;if(n>0)document.getElementById("live").innerHTML='Daily board <strong>#'+n+'</strong> is live now (a new one at 00:00 UTC) — <a href="/sandwich">play it</a>, or browse the <a href="/archive">archive</a>.';}).catch(()=>{});</script>
+  <h2>The rules</h2>
+  <table style="width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums">
+    <thead><tr><th style="text-align:left;padding:6px 8px;border-bottom:1px solid var(--line)">Rule</th><th style="text-align:left;padding:6px 8px;border-bottom:1px solid var(--line)">What it means</th></tr></thead>
+    <tbody><tr><td style="padding:6px 8px;white-space:nowrap"><strong>Latin square</strong></td><td style="padding:6px 8px">Every row and every column contains each number exactly once.</td></tr><tr><td style="padding:6px 8px;white-space:nowrap"><strong>Sandwich sum</strong></td><td style="padding:6px 8px">The outside clue equals the sum of the numbers strictly between 1 and the largest number in that line.</td></tr><tr><td style="padding:6px 8px;white-space:nowrap"><strong>All clues shown</strong></td><td style="padding:6px 8px">This site shows all 2n clues (classic presentation) and minimizes the given digits instead.</td></tr></tbody>
+  </table>
+  <h2>Read the extremes first</h2><p>0 ⇒ 1 and 5 are adjacent somewhere in the line. 9 (on 5×5) ⇒ they are the two ends. Both cases cut the possible 1/5 positions to a handful.</p><h2>Count the filling size</h2><p>A sum of 2 can only be the single cell {2}; a sum of 5 can be {5}? No — 5 is the bread. It must be {2,3}. Each sum value maps to very few multisets; list them.</p><h2>Cross the crusts</h2><p>Once 1 or 5 lands in one line, it constrains the crossing line's sandwich too — the crusts are shared between row and column reads.</p>
+  <h2>Verified, not promised</h2>
+  <p>450 daily 5×5 boards (from 2026-08-24) plus 320 free-play boards. The generator keeps every sandwich clue visible and minimizes given digits only, re-verifying at each removal that exactly one solution remains reachable by deduction.</p>
+</div>
+
+<div class="rules">
+  <h2>FAQ</h2>
+  <h3 style="font-size:.98rem;margin:10px 0 2px">How do sandwich sudoku clues work?</h3><p style="margin:0 0 6px">Each clue outside the grid is the sum of the numbers that sit strictly between 1 and the largest number in that row or column. The 1 and the maximum are the &#x27;bread&#x27;; the clue sums the filling.</p><h3 style="font-size:.98rem;margin:10px 0 2px">What does a 0 clue mean in sandwich sudoku?</h3><p style="margin:0 0 6px">A 0 means there is nothing between 1 and the largest number — they are adjacent in that row or column. It is one of the strongest clues in the puzzle.</p><h3 style="font-size:.98rem;margin:10px 0 2px">Is sandwich sudoku harder than regular sudoku?</h3><p style="margin:0 0 6px">It trades box constraints for arithmetic on positions, so it feels harder at first: the information is indirect. On a verified board the difficulty is bounded — every daily here is machine-checked to need no guessing.</p>
+</div>
+
+<div class="rules" style="font-size:.9rem;color:var(--mut)">
+  <p>More rules guides: <a href="/futoshiki-rules">≶ futoshiki rules</a> · <a href="/kropki-sudoku-rules">⚫ kropki sudoku rules</a> · <a href="/skyscraper-puzzle-rules">🏙 skyscraper puzzle rules</a> · <a href="/star-battle-rules">⭐ star battle rules</a> · <a href="/thermometer-puzzle-rules">🌡 thermometer puzzle rules</a> · <a href="/nonogram-rules">▦ nonogram rules</a> · <a href="/6x6-sudoku-rules">🔢 6x6 sudoku rules</a> · <a href="/binary-puzzle-rules">🌙 binary puzzle rules</a> · <a href="/games-like-linkedin-queens">🧩 games like linkedin queens</a></p>
+  <p>By the team behind <a href="https://agiscorecard.com/about">AGI Scorecard</a> · <a href="/sandwich">Play</a> · <a href="/archive">Archive</a> · <a href="/bench">Research benchmark</a></p>
+</div>
+</div>
+</body>
+</html>

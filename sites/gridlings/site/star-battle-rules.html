@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>Star Battle Rules: How to Play the Two-Star Puzzle</title>
+<meta name="description" content="Star battle rules: place stars so every row, column, and colored region holds exactly the star count (2 on a 10×10), and no two stars touch, even diagonally. Techniques included.">
+<link rel="canonical" href="https://play.agiscorecard.com/star-battle-rules">
+<link rel="stylesheet" href="style.css">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#002FA7">
+<meta property="og:title" content="Star Battle Rules: How to Play the Two-Star Puzzle">
+<meta property="og:description" content="Star battle rules: place stars so every row, column, and colored region holds exactly the star count (2 on a 10×10), and no two stars touch, even diagonally. Techniques included.">
+<meta property="og:url" content="https://play.agiscorecard.com/star-battle-rules">
+<meta property="og:type" content="article">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⭐</text></svg>">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Star Battle Rules: How to Play the Two-Star Puzzle", "datePublished": "2026-08-24", "dateModified": "2026-08-24", "inLanguage": "en", "author": {"@type": "Organization", "name": "Gridlings (AGI Scorecard)", "url": "https://agiscorecard.com/about"}, "publisher": {"@type": "Organization", "name": "Gridlings", "url": "https://play.agiscorecard.com/"}, "description": "Star battle rules: place stars so every row, column, and colored region holds exactly the star count (2 on a 10×10), and no two stars touch, even diagonally. Techniques included."}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What are the rules of star battle?", "acceptedAnswer": {"@type": "Answer", "text": "Place stars so every row, every column, and every colored region contains exactly the required number of stars (two on a standard 10×10), and no two stars touch each other, not even diagonally."}}, {"@type": "Question", "name": "How many stars go in each row in star battle?", "acceptedAnswer": {"@type": "Answer", "text": "On the daily 10×10 puzzle here: exactly two per row, two per column, and two per region. Easy 8×8 boards use one star. The count is always printed with the puzzle."}}, {"@type": "Question", "name": "Is star battle the same as the LinkedIn Queens game?", "acceptedAnswer": {"@type": "Answer", "text": "They are the same puzzle family — Queens is a one-star star battle with crown symbols. The classic name for the type, used by puzzle books and championships, is star battle; this site's daily is the harder two-star form."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Gridlings", "item": "https://play.agiscorecard.com/"}, {"@type": "ListItem", "position": 2, "name": "Star Battle Rules — Two Stars Everywhere, None Touching", "item": "https://play.agiscorecard.com/star-battle-rules"}]}</script>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1 style="font-size:1.3rem"><a href="/star-battle-rules">Star Battle Rules — Two Stars Everywhere, None Touching</a></h1>
+</header>
+
+<div class="rules" style="border-top:0;padding-top:6px">
+  <p style="font-size:1.02rem"><strong>Three 'exactly' constraints and one 'never'.</strong> Place stars so that every row, every column, and every colored region ends with exactly the required number of stars — <strong>2★ on the daily 10×10</strong>, 1★ on easy 8×8 boards — and no two stars ever touch, not even diagonally. No arithmetic, no numbers: pure placement logic.</p>
+  <p id="live" style="border:1px solid var(--line);border-radius:10px;background:var(--bg2);padding:10px 12px;font-size:.95rem">Today's verified daily is live — <a href="/starbattle">play it now</a>.</p>
+<script>fetch("/starbattle-daily.json").then(r=>r.json()).then(d=>{var e=new Date(d.epoch+"T00:00:00Z"),n=Math.floor((Date.now()-e)/864e5)+1;if(n>0)document.getElementById("live").innerHTML='Daily board <strong>#'+n+'</strong> is live now (a new one at 00:00 UTC) — <a href="/starbattle">play it</a>, or browse the <a href="/archive">archive</a>.';}).catch(()=>{});</script>
+  <h2>The rules</h2>
+  <table style="width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums">
+    <thead><tr><th style="text-align:left;padding:6px 8px;border-bottom:1px solid var(--line)">Rule</th><th style="text-align:left;padding:6px 8px;border-bottom:1px solid var(--line)">What it means</th></tr></thead>
+    <tbody><tr><td style="padding:6px 8px;white-space:nowrap"><strong>Rows & columns</strong></td><td style="padding:6px 8px">Every row and every column contains exactly the required number of stars (2 on the daily).</td></tr><tr><td style="padding:6px 8px;white-space:nowrap"><strong>Regions</strong></td><td style="padding:6px 8px">Every colored region also contains exactly that many stars.</td></tr><tr><td style="padding:6px 8px;white-space:nowrap"><strong>No touching</strong></td><td style="padding:6px 8px">No two stars are adjacent — horizontally, vertically, or diagonally.</td></tr><tr><td style="padding:6px 8px;white-space:nowrap"><strong>Notes</strong></td><td style="padding:6px 8px">The × mark is a player note for 'no star here'; the client uses it for bookkeeping only.</td></tr></tbody>
+  </table>
+  <h2>Count regions against rows</h2><p>If k regions fit entirely inside m rows and k×stars = m×stars, those regions own all of those rows' stars — every cell of other regions in those rows is ×.</p><h2>Squeeze small regions</h2><p>A 2-cell or 3-cell region with 2★... cannot exist; a small region often has only one legal star layout once adjacency is applied. Solve tight regions first.</p><h2>Ring the placed star</h2><p>Every placed star immediately ×-es its eight neighbors, and a completed row/column/region ×-es all its remaining cells — cascade these before searching anything.</p>
+  <h2>Verified, not promised</h2>
+  <p>The generator works placement-first: stars are placed, regions are grown around them, then the board is accepted only if a solver proves the solution unique. Acceptance is brutal — about 0.2% of candidate 8×8 1★ boards survive — which is why every one of the 450 daily 10×10 2★ boards (from 2026-08-24) needs no guessing.</p>
+</div>
+
+<div class="rules">
+  <h2>FAQ</h2>
+  <h3 style="font-size:.98rem;margin:10px 0 2px">What are the rules of star battle?</h3><p style="margin:0 0 6px">Place stars so every row, every column, and every colored region contains exactly the required number of stars (two on a standard 10×10), and no two stars touch each other, not even diagonally.</p><h3 style="font-size:.98rem;margin:10px 0 2px">How many stars go in each row in star battle?</h3><p style="margin:0 0 6px">On the daily 10×10 puzzle here: exactly two per row, two per column, and two per region. Easy 8×8 boards use one star. The count is always printed with the puzzle.</p><h3 style="font-size:.98rem;margin:10px 0 2px">Is star battle the same as the LinkedIn Queens game?</h3><p style="margin:0 0 6px">They are the same puzzle family — Queens is a one-star star battle with crown symbols. The classic name for the type, used by puzzle books and championships, is star battle; this site&#x27;s daily is the harder two-star form.</p>
+</div>
+
+<div class="rules" style="font-size:.9rem;color:var(--mut)">
+  <p>More rules guides: <a href="/futoshiki-rules">≶ futoshiki rules</a> · <a href="/kropki-sudoku-rules">⚫ kropki sudoku rules</a> · <a href="/sandwich-sudoku-rules">🥪 sandwich sudoku rules</a> · <a href="/skyscraper-puzzle-rules">🏙 skyscraper puzzle rules</a> · <a href="/thermometer-puzzle-rules">🌡 thermometer puzzle rules</a> · <a href="/nonogram-rules">▦ nonogram rules</a> · <a href="/6x6-sudoku-rules">🔢 6x6 sudoku rules</a> · <a href="/binary-puzzle-rules">🌙 binary puzzle rules</a> · <a href="/games-like-linkedin-queens">🧩 games like linkedin queens</a></p>
+  <p>By the team behind <a href="https://agiscorecard.com/about">AGI Scorecard</a> · <a href="/starbattle">Play</a> · <a href="/archive">Archive</a> · <a href="/bench">Research benchmark</a></p>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>Thermometer Puzzle Rules: How the Mercury Fills</title>
+<meta name="description" content="Thermometer puzzle rules: mercury fills each thermometer from the bulb along the tube with no gaps; edge clues count filled cells per row and column. With solving techniques.">
+<link rel="canonical" href="https://play.agiscorecard.com/thermometer-puzzle-rules">
+<link rel="stylesheet" href="style.css">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#002FA7">
+<meta property="og:title" content="Thermometer Puzzle Rules: How the Mercury Fills">
+<meta property="og:description" content="Thermometer puzzle rules: mercury fills each thermometer from the bulb along the tube with no gaps; edge clues count filled cells per row and column. With solving techniques.">
+<meta property="og:url" content="https://play.agiscorecard.com/thermometer-puzzle-rules">
+<meta property="og:type" content="article">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌡</text></svg>">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Thermometer Puzzle Rules: How the Mercury Fills", "datePublished": "2026-08-24", "dateModified": "2026-08-24", "inLanguage": "en", "author": {"@type": "Organization", "name": "Gridlings (AGI Scorecard)", "url": "https://agiscorecard.com/about"}, "publisher": {"@type": "Organization", "name": "Gridlings", "url": "https://play.agiscorecard.com/"}, "description": "Thermometer puzzle rules: mercury fills each thermometer from the bulb along the tube with no gaps; edge clues count filled cells per row and column. With solving techniques."}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What are the rules of a thermometer puzzle?", "acceptedAnswer": {"@type": "Answer", "text": "Fill thermometers with mercury starting from the bulb, continuously along the tube with no gaps. Numbers outside the grid tell how many cells are filled in each row and column."}}, {"@type": "Question", "name": "Can part of a thermometer be filled?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — a thermometer can be empty, partly filled, or full, as long as the filled part starts at the bulb and is contiguous. What it cannot have is a gap."}}, {"@type": "Question", "name": "What is the best way to start a thermometer puzzle?", "acceptedAnswer": {"@type": "Answer", "text": "Do the extremes: any row or column whose clue equals its total thermometer cells is fully filled; any 0 line is fully empty. Both propagate along bent tubes into other lines and usually unlock the middle of the board."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Gridlings", "item": "https://play.agiscorecard.com/"}, {"@type": "ListItem", "position": 2, "name": "Thermometer Puzzle Rules — Fill From the Bulb", "item": "https://play.agiscorecard.com/thermometer-puzzle-rules"}]}</script>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1 style="font-size:1.3rem"><a href="/thermometer-puzzle-rules">Thermometer Puzzle Rules — Fill From the Bulb</a></h1>
+</header>
+
+<div class="rules" style="border-top:0;padding-top:6px">
+  <p style="font-size:1.02rem"><strong>Two rules, one physical metaphor.</strong> Every thermometer fills from its bulb (●) along the tube — a cell can be filled only if everything between it and the bulb is filled, never with gaps. The clues outside the grid say how many cells in that row or column end up filled. That's it: no numbers inside the grid at all.</p>
+  <p id="live" style="border:1px solid var(--line);border-radius:10px;background:var(--bg2);padding:10px 12px;font-size:.95rem">Today's verified daily is live — <a href="/thermo">play it now</a>.</p>
+<script>fetch("/thermo-daily.json").then(r=>r.json()).then(d=>{var e=new Date(d.epoch+"T00:00:00Z"),n=Math.floor((Date.now()-e)/864e5)+1;if(n>0)document.getElementById("live").innerHTML='Daily board <strong>#'+n+'</strong> is live now (a new one at 00:00 UTC) — <a href="/thermo">play it</a>, or browse the <a href="/archive">archive</a>.';}).catch(()=>{});</script>
+  <h2>The rules</h2>
+  <table style="width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums">
+    <thead><tr><th style="text-align:left;padding:6px 8px;border-bottom:1px solid var(--line)">Rule</th><th style="text-align:left;padding:6px 8px;border-bottom:1px solid var(--line)">What it means</th></tr></thead>
+    <tbody><tr><td style="padding:6px 8px;white-space:nowrap"><strong>Mercury</strong></td><td style="padding:6px 8px">Each thermometer fills from the bulb along its tube — contiguously, possibly not at all, possibly fully.</td></tr><tr><td style="padding:6px 8px;white-space:nowrap"><strong>Row/column counts</strong></td><td style="padding:6px 8px">Each outside clue equals the number of filled cells in that row or column.</td></tr><tr><td style="padding:6px 8px;white-space:nowrap"><strong>Interaction</strong></td><td style="padding:6px 8px">Thermometers bend across rows and columns, so one fill decision feeds several counts.</td></tr></tbody>
+  </table>
+  <h2>Extremes first</h2><p>A clue equal to the number of thermometer cells in that line fills them all; a 0 empties them all. Both cascade along tubes into neighboring lines.</p><h2>Min-max each tube</h2><p>For every thermometer, ask: how few cells CAN it contribute to this line, how many at most? If the minimum already meets the clue, everything optional is empty — and vice versa.</p><h2>Follow the bends</h2><p>Filling one cell fills everything bulb-ward on the same tube — including cells in other rows. Always propagate along the tube before reading the next clue.</p>
+  <h2>Verified, not promised</h2>
+  <p>450 daily 6×6 boards (from 2026-08-24) plus 320 free-play boards. The solver uses suffix-bound pruning to prove each published board has exactly one solution reachable by deduction — the same check as every other game on this site.</p>
+</div>
+
+<div class="rules">
+  <h2>FAQ</h2>
+  <h3 style="font-size:.98rem;margin:10px 0 2px">What are the rules of a thermometer puzzle?</h3><p style="margin:0 0 6px">Fill thermometers with mercury starting from the bulb, continuously along the tube with no gaps. Numbers outside the grid tell how many cells are filled in each row and column.</p><h3 style="font-size:.98rem;margin:10px 0 2px">Can part of a thermometer be filled?</h3><p style="margin:0 0 6px">Yes — a thermometer can be empty, partly filled, or full, as long as the filled part starts at the bulb and is contiguous. What it cannot have is a gap.</p><h3 style="font-size:.98rem;margin:10px 0 2px">What is the best way to start a thermometer puzzle?</h3><p style="margin:0 0 6px">Do the extremes: any row or column whose clue equals its total thermometer cells is fully filled; any 0 line is fully empty. Both propagate along bent tubes into other lines and usually unlock the middle of the board.</p>
+</div>
+
+<div class="rules" style="font-size:.9rem;color:var(--mut)">
+  <p>More rules guides: <a href="/futoshiki-rules">≶ futoshiki rules</a> · <a href="/kropki-sudoku-rules">⚫ kropki sudoku rules</a> · <a href="/sandwich-sudoku-rules">🥪 sandwich sudoku rules</a> · <a href="/skyscraper-puzzle-rules">🏙 skyscraper puzzle rules</a> · <a href="/star-battle-rules">⭐ star battle rules</a> · <a href="/nonogram-rules">▦ nonogram rules</a> · <a href="/6x6-sudoku-rules">🔢 6x6 sudoku rules</a> · <a href="/binary-puzzle-rules">🌙 binary puzzle rules</a> · <a href="/games-like-linkedin-queens">🧩 games like linkedin queens</a></p>
+  <p>By the team behind <a href="https://agiscorecard.com/about">AGI Scorecard</a> · <a href="/thermo">Play</a> · <a href="/archive">Archive</a> · <a href="/bench">Research benchmark</a></p>
+</div>
+</div>
+</body>
+</html>

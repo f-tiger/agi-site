@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>Kropki Sudoku Rules: What Black and White Dots Mean</title>
+<meta name="description" content="Kropki rules: white dot = the two cells differ by exactly 1; black dot = one is double the other; no dot = neither relation holds. The absence of a dot is half the puzzle.">
+<link rel="canonical" href="https://play.agiscorecard.com/kropki-sudoku-rules">
+<link rel="stylesheet" href="style.css">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#002FA7">
+<meta property="og:title" content="Kropki Sudoku Rules: What Black and White Dots Mean">
+<meta property="og:description" content="Kropki rules: white dot = the two cells differ by exactly 1; black dot = one is double the other; no dot = neither relation holds. The absence of a dot is half the puzzle.">
+<meta property="og:url" content="https://play.agiscorecard.com/kropki-sudoku-rules">
+<meta property="og:type" content="article">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚫</text></svg>">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Kropki Sudoku Rules: What Black and White Dots Mean", "datePublished": "2026-08-24", "dateModified": "2026-08-24", "inLanguage": "en", "author": {"@type": "Organization", "name": "Gridlings (AGI Scorecard)", "url": "https://agiscorecard.com/about"}, "publisher": {"@type": "Organization", "name": "Gridlings", "url": "https://play.agiscorecard.com/"}, "description": "Kropki rules: white dot = the two cells differ by exactly 1; black dot = one is double the other; no dot = neither relation holds. The absence of a dot is half the puzzle."}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What do the dots mean in kropki sudoku?", "acceptedAnswer": {"@type": "Answer", "text": "A white dot between two cells means the numbers differ by exactly 1. A black dot means one number is exactly double the other. If there is no dot, neither relation holds — that negative constraint is a full part of the rules."}}, {"@type": "Question", "name": "What about 1 and 2 in kropki — black or white dot?", "acceptedAnswer": {"@type": "Answer", "text": "1 and 2 satisfy both relations (they differ by 1, and 2 is double 1). The standard convention, used here, is to mark a 1-2 pair with a black dot."}}, {"@type": "Question", "name": "Can a kropki puzzle have no given numbers at all?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The dot and no-dot pattern can force a unique solution on its own — most daily boards on this site start completely empty and are machine-verified to be solvable by pure deduction."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Gridlings", "item": "https://play.agiscorecard.com/"}, {"@type": "ListItem", "position": 2, "name": "Kropki Rules — Black Dots, White Dots, and the Missing Dot", "item": "https://play.agiscorecard.com/kropki-sudoku-rules"}]}</script>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1 style="font-size:1.3rem"><a href="/kropki-sudoku-rules">Kropki Rules — Black Dots, White Dots, and the Missing Dot</a></h1>
+</header>
+
+<div class="rules" style="border-top:0;padding-top:6px">
+  <p style="font-size:1.02rem"><strong>Kropki has exactly three signals.</strong> A <strong>white dot</strong> between two cells means they differ by exactly 1 (like 3·4). A <strong>black dot</strong> means one is double the other (like 2·4). And <strong>no dot means neither relation holds</strong> — the missing dot is a real constraint, not an absence of information. A 1-2 pair satisfies both relations; by convention it is marked with a black dot. Rows and columns still contain each number once, like any Latin square.</p>
+  <p id="live" style="border:1px solid var(--line);border-radius:10px;background:var(--bg2);padding:10px 12px;font-size:.95rem">Today's verified daily is live — <a href="/kropki">play it now</a>.</p>
+<script>fetch("/kropki-daily.json").then(r=>r.json()).then(d=>{var e=new Date(d.epoch+"T00:00:00Z"),n=Math.floor((Date.now()-e)/864e5)+1;if(n>0)document.getElementById("live").innerHTML='Daily board <strong>#'+n+'</strong> is live now (a new one at 00:00 UTC) — <a href="/kropki">play it</a>, or browse the <a href="/archive">archive</a>.';}).catch(()=>{});</script>
+  <h2>The rules</h2>
+  <table style="width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums">
+    <thead><tr><th style="text-align:left;padding:6px 8px;border-bottom:1px solid var(--line)">Rule</th><th style="text-align:left;padding:6px 8px;border-bottom:1px solid var(--line)">What it means</th></tr></thead>
+    <tbody><tr><td style="padding:6px 8px;white-space:nowrap"><strong>Latin square</strong></td><td style="padding:6px 8px">Every row and every column contains each number exactly once.</td></tr><tr><td style="padding:6px 8px;white-space:nowrap"><strong>White dot</strong></td><td style="padding:6px 8px">The two cells differ by exactly 1 — consecutive numbers in either order.</td></tr><tr><td style="padding:6px 8px;white-space:nowrap"><strong>Black dot</strong></td><td style="padding:6px 8px">One cell is exactly double the other (1·2, 2·4 on a 5×5).</td></tr><tr><td style="padding:6px 8px;white-space:nowrap"><strong>No dot</strong></td><td style="padding:6px 8px">Neither relation holds — this negative constraint eliminates as many candidates as the dots do.</td></tr><tr><td style="padding:6px 8px;white-space:nowrap"><strong>1-2 convention</strong></td><td style="padding:6px 8px">1 and 2 both differ by one and double — the pair is marked black by convention.</td></tr></tbody>
+  </table>
+  <h2>Start from the black dots</h2><p>On a 5×5 only 1·2 and 2·4 can sit under a black dot, so every black dot forces a 2 into one of its two cells. A chain of two black dots is even stronger: it must be 1-2-4.</p><h2>Use the silence</h2><p>A cell next to a 3 with no dot between them cannot be 2, 4, or 6. On boards with few or zero givens — most dailies here start empty — the dotless edges do most of the work.</p><h2>Parity walks</h2><p>White-dot chains alternate odd/even. Trace a chain from any placed number and half the candidates disappear along the whole chain.</p>
+  <h2>Verified, not promised</h2>
+  <p>Most daily kropki boards here start with zero given digits — the dot pattern alone determines a unique solution, and the client enforces the negative constraint too (many sites don't). 450 daily 5×5 boards plus 320 free-play boards, each machine-verified for a unique deduction-reachable solution before publication.</p>
+</div>
+
+<div class="rules">
+  <h2>FAQ</h2>
+  <h3 style="font-size:.98rem;margin:10px 0 2px">What do the dots mean in kropki sudoku?</h3><p style="margin:0 0 6px">A white dot between two cells means the numbers differ by exactly 1. A black dot means one number is exactly double the other. If there is no dot, neither relation holds — that negative constraint is a full part of the rules.</p><h3 style="font-size:.98rem;margin:10px 0 2px">What about 1 and 2 in kropki — black or white dot?</h3><p style="margin:0 0 6px">1 and 2 satisfy both relations (they differ by 1, and 2 is double 1). The standard convention, used here, is to mark a 1-2 pair with a black dot.</p><h3 style="font-size:.98rem;margin:10px 0 2px">Can a kropki puzzle have no given numbers at all?</h3><p style="margin:0 0 6px">Yes. The dot and no-dot pattern can force a unique solution on its own — most daily boards on this site start completely empty and are machine-verified to be solvable by pure deduction.</p>
+</div>
+
+<div class="rules" style="font-size:.9rem;color:var(--mut)">
+  <p>More rules guides: <a href="/futoshiki-rules">≶ futoshiki rules</a> · <a href="/sandwich-sudoku-rules">🥪 sandwich sudoku rules</a> · <a href="/skyscraper-puzzle-rules">🏙 skyscraper puzzle rules</a> · <a href="/star-battle-rules">⭐ star battle rules</a> · <a href="/thermometer-puzzle-rules">🌡 thermometer puzzle rules</a> · <a href="/nonogram-rules">▦ nonogram rules</a> · <a href="/6x6-sudoku-rules">🔢 6x6 sudoku rules</a> · <a href="/binary-puzzle-rules">🌙 binary puzzle rules</a> · <a href="/games-like-linkedin-queens">🧩 games like linkedin queens</a></p>
+  <p>By the team behind <a href="https://agiscorecard.com/about">AGI Scorecard</a> · <a href="/kropki">Play</a> · <a href="/archive">Archive</a> · <a href="/bench">Research benchmark</a></p>
+</div>
+</div>
+</body>
+</html>
