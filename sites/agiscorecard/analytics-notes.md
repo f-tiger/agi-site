@@ -796,3 +796,24 @@ SafeSearch 过滤产品查询、AI 助手拒答成人推荐(引用杠杆关闭)�
 - 订阅 2(均 stored 未同步);sub_ok 28d=2;`index_click{*_live}` 7 天 0(判定日 8/30)
 - `site_search{mcp}` 2 次=扫描器金丝雀(同秒+label 自认),非 agent 采用;注册表条目已被扫描器发现
 - 今日出厂(本会话早间):孙宇晨双栏审计 EN/zh + 范式实验台账 EN/zh;215 页 validate OK
+
+## 2026-08-24(周一)— 四站对抗记分板(D1 现查,7 天窗,提前于 04:00 Routine 完成)
+
+| 站 | 真人 PV(JS) | 爬虫/AI 态势 | 离钱转化 | 本周移植 |
+|---|---|---|---|---|
+| agi | 197 | 服务端非人 1,196(约 6:1) | sub_ok 1;invest_tool_click 3(Pro 桥累计仍 <5) | 输出:快反模式→全舰队雷达 |
+| bpj | 184(已剔 /__selftest) | bot 255 | **sub_ok 1 = 舰队首个真实订阅**;go 5 | 输入:无 → 输出:slide-exit 模式→eco;自身补移动端触发 |
+| eco | 146 | ⚠️ mcp_call「非CI」133 不可信——ua_class 列 08-24 才上线,历史行全 NULL;下周一才有首个干净周 | affiliate_click 14/7d(约 2/日,稳);sub2 0(Alarm 今日刚上线) | 输入:bpj slide-exit → Faktencheck-Alarm |
+| tds | 48 | bot 89 | affiliate_click 0(链路 08-24 复核健康,是真没人点) | 输入:D1 测量口径(已完成) |
+
+结论:①bpj 是本周唯一产出真实订阅的站,其 slide 模式已双向放大(eco 移植 + 自身移动端);
+②eco 联盟点击是全舰队最稳的钱线信号(2/日),但 P0(PartnerNet 归属)不解除就分文不进;
+③已知陷阱第 4 次出现(eco mcp「增长」),口径规则再次生效——凡「agent 采用」结论必查
+ua_class 与参数重复。
+
+**创业雷达首日判读**(data/startup-radar.json,PH 30 + HN 32 条,niche_hits agi×10、
+gridlings×1):多数命中是泛词(claude/gpt 撞名)。一条值得过需求门的种子:HN 热帖
+「Anthropic appears to be A/B testing reduced effort levels in Claude Code」——对应
+"is claude getting dumber / claude nerfed" 这一**长期反复出现的真实查询**,判定型两栏
+账形状(用户宣称 vs 厂商声明+可复跑基准)与本站方法完全同构。已种入 backlog 待
+04:00 run 按三门正式裁定。PH 无命中站点位需求,不硬凑——首日空产出是正常态。

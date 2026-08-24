@@ -191,6 +191,12 @@ specs above at any time to resume net-new page creation.
   (页面数字必须与实际一致)优先于防翻炒——但等 8/24 daily run 一并做,不单独提交。
 
 ## Queue — CITATION AMPLIFICATION（2026-08-16 自种，依据 Bing AI Performance 的 Pages/Queries 明细，**不是猜的搜索需求，是已发生的引用**）
+- [ ] (CITATION AMPLIFICATION·快反·雷达种子) is-claude-getting-dumber —— 2026-08-24 创业
+  雷达首日命中(HN 热帖「Anthropic A/B testing reduced effort levels in Claude Code」);
+  对应长期真实查询 "claude nerfed / is claude getting dumber"(发布前需 GSC/自证核实
+  一次)。形状:判定型两栏账(用户宣称的退化 vs 厂商公开声明 + 可复跑基准数据),
+  零编造约束下只引用可具名来源(Anthropic 官方声明、公开基准复跑),不采信匿名帖的
+  数字。反面预登记:28 天 pv<20 且引用 0 → 雷达种子假设记一次失败。
 - [x] (CITATION AMPLIFICATION·invest·快反) do-ai-trading-agents-work + /zh/what-is-pandaai(2026-08-24 出厂:判定页六件套 + 基率五源表 + 成文翻转条件;zh 定义页三档表;双桥 SunWatch/track-record/exposure)
   ——owner 2026-08-23「PandaAI等新创业AI机会点分析」;新闻周期 8-17 起仅一周(PandaAI
   两月三轮融资/李不白 IP/A2A 叙事,信源:新浪科技/投资界/36kr;同期 agent 赛道 12 天
