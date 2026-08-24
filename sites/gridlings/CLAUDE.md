@@ -174,6 +174,16 @@ js + daily/pool json + style + README,剥离 manifest/SW/sub.js(深路径托管�
 上传物**;owner 开 itch 号后存 `BUTLER_API_KEY` secret 即可让 CI 自动推送更新
 (见 docs/games-marketplace-kit.md 自动化边界节)。改包结构先改脚本再跑,别手改。
 
+## 深检门(2026-08-24,owner「再深度检查整个游戏包」)
+
+**两道浏览器实测门,动游戏代码必须双跑**:①源码站 `tools/browser-smoke.js`
+(23 页零报错 + **11/11 胜利路径**,共享驱动 `tools/win-drivers.js`);
+②产物门 `tools/package-smoke.js <解压目录> <端口>`(对 gridlings-all-11.zip
+逐款驱动到赢 + 校验 win 弹窗回流 CTA)。驱动要点:gridlings 核心 pairTap 后
+**自动选中下一空格**,驱动先查 .sel 再决定是否点格(点已选格=取消选择)。
+病毒环:firstrun.js 在 coarse-pointer 设备上给 #sharebtn/#chbtn 追加原生
+share sheet(捕获层、不 stopPropagation,引擎剪贴板+埋点照常)。
+
 ## 包内漏斗(2026-08-24,owner「被站点做流量倾斜的优化没有落地到几个游戏里面」)
 
 四个离站语境缺口已在 build_packages 后处理层修掉(**只改 zip 产物,线上零改动**):

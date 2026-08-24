@@ -47,6 +47,21 @@
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", addHelp); else addHelp();
 
+  // Mobile: open the native share sheet alongside the clipboard copy.
+  // Clipboard-only sharing is where portal virality dies on phones — the
+  // engine handler still runs (copy + its analytics event); this adds the
+  // OS sheet when a coarse pointer + Web Share API are present.
+  document.addEventListener("click", function (e) {
+    var t = e.target && e.target.closest && e.target.closest("#sharebtn, #chbtn");
+    if (!t || !navigator.share) return;
+    try { if (!matchMedia("(pointer: coarse)").matches) return; } catch (err) { return; }
+    var txt = t.id === "chbtn"
+      ? ((window._challenge ? (zh ? "敢来挑战吗?" : "I solved this puzzle — can you beat my time?") + "\n" + window._challenge : null))
+      : window._share;
+    if (!txt) return;
+    navigator.share({ text: txt }).catch(function () {});
+  }, true);
+
   // win confetti: fires when #win loses [hidden]
   var win = null;
   function burst() {
