@@ -174,6 +174,17 @@ js + daily/pool json + style + README,剥离 manifest/SW/sub.js(深路径托管�
 上传物**;owner 开 itch 号后存 `BUTLER_API_KEY` secret 即可让 CI 自动推送更新
 (见 docs/games-marketplace-kit.md 自动化边界节)。改包结构先改脚本再跑,别手改。
 
+## 包内漏斗(2026-08-24,owner「被站点做流量倾斜的优化没有落地到几个游戏里面」)
+
+四个离站语境缺口已在 build_packages 后处理层修掉(**只改 zip 产物,线上零改动**):
+①根绝对链接(15 处/页)在门户深路径全断 → 改写为带
+`utm_source=package&utm_medium=<slug>` 的绝对站链,D1 UTM 通道直接归因门户流量;
+②信标 "/e" 在门户 404 → 改写为绝对 https://play.agiscorecard.com/e(/e 带
+CORS *,门户局次进 D1,ref=门户域名);③挑战链接 location.origin 把病毒环送给
+门户 → 改写为本站规范页;④胜利时刻注入「11 daily games → 全集」CTA(转化最高点)。
+包内胜利路径已浏览器实测(minisudoku 全局驱动到赢,CTA 在位,零报错)。
+**改这四条契约先改 portal_js/strip_page,零售产物别手改。**
+
 ## 爆款审计补齐(2026-08-24,owner「评分是否可以形成爆款…有差距改造」)
 
 对标 Queens/Wordle 惯例已齐平:hint/undo/计时/连胜/挑战对决/emoji 战报全 11 款

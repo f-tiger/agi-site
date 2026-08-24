@@ -56,12 +56,37 @@ daily streaks, bilingual play, and an open 1,100-puzzle research benchmark).
 Not affiliated with LinkedIn or The New York Times.
 """
 
-def strip_page(html_src):
+SITE_URL = "https://play.agiscorecard.com"
+
+def strip_page(html_src, slug):
+    """Portal-context rewrites (zip copies only — the live site is untouched):
+    root-absolute links break on a deep portal path AND waste the funnel, so
+    they become absolute site links with per-package UTM; the win modal gains
+    the one CTA that matters at the moment of victory."""
     s = html_src
     s = re.sub(r'<link rel="manifest"[^>]*>\n?', "", s)
     s = re.sub(r'<script>if\("serviceWorker".*?</script>\n?', "", s, flags=re.S)
     s = re.sub(r'<script src="/sub\.js" defer></script>\n?', "", s)
+    utm = f"?utm_source=package&utm_medium={slug}"
+    s = re.sub(r'href="/(?!/)([a-z0-9-]*)"',
+               lambda m: f'href="{SITE_URL}/{m.group(1)}{utm}" target="_blank" rel="noopener"', s)
+    cta = (f'<p style="margin:6px 0 0"><a href="{SITE_URL}/{utm}" target="_blank" rel="noopener">'
+           f'\U0001F9E9 11 daily logic games \u2014 play the full collection \u2192</a></p>')
+    s = re.sub(r'(<div id="win"[^>]*>)', r"\1" + cta.replace("\\", "\\\\"), s, count=1) if False else s
+    # inject the CTA right before the win modal closes (after the subline row)
+    m = re.search(r'(<p class="subline">.*?</p>)', s, flags=re.S)
+    if m:
+        s = s.replace(m.group(1), cta + m.group(1), 1)
     return s
+
+def portal_js(js_src, page_path):
+    """Zip copy of the engine: beacon goes to the site (CORS * on /e, so
+    portal plays are measured, with the portal as referrer), and challenge
+    links point at the canonical site page instead of the portal copy."""
+    j = js_src.replace('"/e"', f'"{SITE_URL}/e"')
+    j = j.replace("location.origin + location.pathname",
+                  f'"{SITE_URL}{page_path}"')
+    return j
 
 def main():
     os.makedirs(OUT, exist_ok=True)
@@ -70,13 +95,15 @@ def main():
     all_zf = zipfile.ZipFile(all_zip, "w", zipfile.ZIP_DEFLATED)
     for slug, g in GAMES.items():
         d = json.load(open(os.path.join(SITE, g["data"][0])))
-        page = strip_page(open(os.path.join(SITE, g["page"])).read())
+        page = strip_page(open(os.path.join(SITE, g["page"])).read(), slug)
+        play_path = "/" if slug == "gridlings" else "/" + slug
+        js_body = portal_js(open(os.path.join(SITE, g["js"])).read(), play_path)
         readme = README.format(name=slug.capitalize(), days=len(d["puzzles"]), epoch=d["epoch"])
         buf = io.BytesIO()
         with zipfile.ZipFile(buf, "w", zipfile.ZIP_DEFLATED) as zf:
             zf.writestr("index.html", page)
             zf.writestr("style.css", open(os.path.join(SITE, "style.css")).read())
-            zf.writestr(g["js"], open(os.path.join(SITE, g["js"])).read())
+            zf.writestr(g["js"], js_body)
             zf.writestr("firstrun.js", open(os.path.join(SITE, "firstrun.js")).read())
             cov = os.path.join(SITE, "covers", (slug if slug != "gridlings" else "gridlings") + ".png")
             if os.path.exists(cov):
@@ -90,7 +117,7 @@ def main():
         # the all-in-one nests each game in its own folder
         all_zf.writestr(f"{slug}/index.html", page)
         all_zf.writestr(f"{slug}/style.css", open(os.path.join(SITE, "style.css")).read())
-        all_zf.writestr(f"{slug}/{g['js']}", open(os.path.join(SITE, g["js"])).read())
+        all_zf.writestr(f"{slug}/{g['js']}", js_body)
         all_zf.writestr(f"{slug}/firstrun.js", open(os.path.join(SITE, "firstrun.js")).read())
         for f in g["data"]:
             all_zf.writestr(f"{slug}/{f}", open(os.path.join(SITE, f)).read())
