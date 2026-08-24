@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>Download the Games: Self-Host 11 Daily Logic Puzzles</title>
+<meta name="description" content="Download any of the 11 Gridlings games as a standalone HTML5 package — self-host offline, or upload to itch.io-style portals. Free with attribution; every board machine-verified.">
+<link rel="canonical" href="https://play.agiscorecard.com/download">
+<link rel="stylesheet" href="style.css">
+<meta name="theme-color" content="#002FA7">
+<meta property="og:title" content="Download 11 daily logic puzzles — standalone HTML5 builds">
+<meta property="og:description" content="Self-host any Gridlings game: single-folder HTML5 packages, 450 verified dailies each, no backend, free with attribution.">
+<meta property="og:url" content="https://play.agiscorecard.com/download">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📦</text></svg>">
+</head>
+<body>
+<div class="wrap">
+<header><h1 style="font-size:1.3rem"><a href="/download">Download the Games</a></h1></header>
+
+<div class="rules" style="border-top:0;padding-top:6px">
+  <p style="font-size:1.02rem"><strong>Every game on this site is downloadable as a standalone HTML5 package.</strong>
+  One folder, no backend, no build step: 450 machine-verified daily boards plus the free-play pools, playable
+  from any static file server. The zips are also portal-ready builds (entry file <code>index.html</code>, relative
+  paths) — the exact artifact itch.io-style sites ask for.</p>
+
+  <h2>Packages</h2>
+  <table style="width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums">
+    <thead><tr><th style="text-align:left;padding:6px 8px;border-bottom:1px solid var(--line)">Package</th><th style="text-align:left;padding:6px 8px;border-bottom:1px solid var(--line)">Game</th></tr></thead>
+    <tbody>
+      <tr><td style="padding:6px 8px"><a href="/downloads/gridlings-all-11.zip">gridlings-all-11.zip</a></td><td style="padding:6px 8px"><strong>All 11 games</strong>, one folder each</td></tr>
+      <tr><td style="padding:6px 8px"><a href="/downloads/gridlings.zip">gridlings.zip</a></td><td style="padding:6px 8px">🦊 Gridlings — animals × colors × adjacency</td></tr>
+      <tr><td style="padding:6px 8px"><a href="/downloads/balance.zip">balance.zip</a></td><td style="padding:6px 8px">🌙 Balance — <a href="/binary-puzzle-rules">binary puzzle</a></td></tr>
+      <tr><td style="padding:6px 8px"><a href="/downloads/starbattle.zip">starbattle.zip</a></td><td style="padding:6px 8px">⭐ <a href="/star-battle-rules">Star Battle</a> 2★ 10×10</td></tr>
+      <tr><td style="padding:6px 8px"><a href="/downloads/trail.zip">trail.zip</a></td><td style="padding:6px 8px">🐾 Trail — one-line path</td></tr>
+      <tr><td style="padding:6px 8px"><a href="/downloads/futoshiki.zip">futoshiki.zip</a></td><td style="padding:6px 8px">≶ <a href="/futoshiki-rules">Futoshiki</a></td></tr>
+      <tr><td style="padding:6px 8px"><a href="/downloads/towers.zip">towers.zip</a></td><td style="padding:6px 8px">🏙 <a href="/skyscraper-puzzle-rules">Skyscrapers</a></td></tr>
+      <tr><td style="padding:6px 8px"><a href="/downloads/minisudoku.zip">minisudoku.zip</a></td><td style="padding:6px 8px">🔢 <a href="/6x6-sudoku-rules">6×6 Sudoku</a></td></tr>
+      <tr><td style="padding:6px 8px"><a href="/downloads/kropki.zip">kropki.zip</a></td><td style="padding:6px 8px">⚫ <a href="/kropki-sudoku-rules">Kropki</a></td></tr>
+      <tr><td style="padding:6px 8px"><a href="/downloads/sandwich.zip">sandwich.zip</a></td><td style="padding:6px 8px">🥪 <a href="/sandwich-sudoku-rules">Sandwich Sudoku</a></td></tr>
+      <tr><td style="padding:6px 8px"><a href="/downloads/thermo.zip">thermo.zip</a></td><td style="padding:6px 8px">🌡 <a href="/thermometer-puzzle-rules">Thermometers</a></td></tr>
+      <tr><td style="padding:6px 8px"><a href="/downloads/nonogram.zip">nonogram.zip</a></td><td style="padding:6px 8px">▦ <a href="/nonogram-rules">Nonogram</a> (line-solvable, <a href="/nonogram-no-guessing">measured</a>)</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Self-host in 30 seconds</h2>
+  <p>Unzip, then serve the folder with any static server — e.g. <code>python3 -m http.server 8000</code> — and open
+  <code>http://localhost:8000/</code>. (Opening <code>index.html</code> straight from disk won't load the puzzle data:
+  browsers block JSON fetches from <code>file://</code>.) Each package's README repeats these steps.</p>
+
+  <h2>License</h2>
+  <p>Free for personal, educational, and portal use <strong>with attribution</strong>: link to
+  <a href="https://play.agiscorecard.com">play.agiscorecard.com</a> wherever the game is rehosted. The live site keeps
+  the extras the packages can't carry: daily streaks, the 11-game Daily Sweep, bilingual play, the
+  <a href="/archive">archive</a>, and the <a href="/bench">open research benchmark</a>. Prefer a one-line integration?
+  Every game also <a href="/#embed">embeds in an iframe</a>. Not affiliated with LinkedIn or The New York Times.</p>
+</div>
+
+<div class="rules" style="font-size:.9rem;color:var(--mut)">
+  <p><a href="/">Play the dailies</a> · <a href="/archive">Archive</a> · <a href="/bench">Benchmark</a> · <a href="/games-like-linkedin-queens">All 11 games by family</a></p>
+</div>
+</div>
+</body>
+</html>

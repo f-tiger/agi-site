@@ -164,6 +164,16 @@ docs/games-marketplace-kit.md(itch→CrazyGames→Poki;GameDistribution 因广�
 SDK 与无广告承诺冲突不做)。**判定线 2026-09-21(28 天)**:规则页簇 pv ≥50 或
 任一页进 Bing/GSC 前 20 → 追加 zh 版与更多查询;全簇 <10 pv → 停止扩张。
 
+## 独立包发布层(2026-08-24,owner「游戏打包发布…自动化完成」)
+
+`tools/build_packages.py` 在 CI 部署前跑,产出 `site/downloads/` 12 个 zip
+(每款一个 + all-11;**gitignore,只由 CI 生成**),每个包 = index.html + 该款
+js + daily/pool json + style + README,剥离 manifest/SW/sub.js(深路径托管会
+坏),/e 信标保留(异域 404 静默)。包已浏览器实测(棋盘渲染零报错)。发布页
+/download(worker 显式路由 → downloads.html)。**这些 zip 同时是 itch/门户标准
+上传物**;owner 开 itch 号后存 `BUTLER_API_KEY` secret 即可让 CI 自动推送更新
+(见 docs/games-marketplace-kit.md 自动化边界节)。改包结构先改脚本再跑,别手改。
+
 ## 判定线(60 天,≈2026-10-21)
 
 JS 真人 play_start ≥500/28d 或任一门户过审上架或首笔门户分成入账 → 加码

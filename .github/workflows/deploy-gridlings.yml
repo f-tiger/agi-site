@@ -41,6 +41,9 @@ jobs:
               assert all(len(v) > 50 for v in p.values()), f"{name}: pool too small"
               print(f"gate ok [{name}]: {len(d['puzzles'])} dailies, pools {[len(v) for v in p.values()]}")
           EOF
+      - name: Build standalone game packages (deployed as assets, never committed)
+        working-directory: sites/gridlings
+        run: python3 tools/build_packages.py
       - name: Deploy worker
         uses: cloudflare/wrangler-action@v3
         with:

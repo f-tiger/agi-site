@@ -113,6 +113,8 @@ export default {
       assetReq = new Request(new URL("/bench.html", url).toString(), request);
     } else if (url.pathname === "/nonogram-no-guessing" || url.pathname === "/nonogram-no-guessing/") {
       assetReq = new Request(new URL("/nonogram-no-guessing.html", url).toString(), request);
+    } else if (url.pathname === "/download" || url.pathname === "/download/") {
+      assetReq = new Request(new URL("/downloads.html", url).toString(), request);
     } else if (GEO.has(url.pathname.replace(/\/$/, ""))) {
       assetReq = new Request(new URL(url.pathname.replace(/\/$/, "") + ".html", url).toString(), request);
     } else if (url.pathname.startsWith("/zh/") && /\.(js|css|json|png|svg|txt|ico|webmanifest)$/.test(url.pathname)) {
