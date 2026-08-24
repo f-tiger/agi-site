@@ -32,6 +32,8 @@ GAMES = {
     "nonogram":   dict(page="nonogram.html",   js="app-nonogram.js",   data=["nonogram-daily.json", "nonogram-pool.json"]),
 }
 
+ICONS = {"gridlings":"\U0001F98A","balance":"\U0001F319","starbattle":"\u2B50","trail":"\U0001F43E","futoshiki":"\u2276","towers":"\U0001F3D9","minisudoku":"\U0001F522","kropki":"\u26AB","sandwich":"\U0001F96A","thermo":"\U0001F321","nonogram":"\u25A6"}
+
 README = """{name} — a Gridlings daily logic puzzle (standalone build)
 
 Every board is machine-verified before publication: exactly one solution,
@@ -153,6 +155,19 @@ def main():
             zf.writestr("README.txt", README.format(name=slug.capitalize() + " (portal build, no external links)", days=450, epoch="2026-08-24"))
         open(os.path.join(sdir, f"{slug}.zip"), "wb").write(buf.getvalue())
     print(f"strict portal builds: {len(GAMES)} zips in downloads/strict/")
+    hub_rows = "".join(
+        f'<a href="{sl}/index.html" style="border:1px solid rgba(128,128,128,.4);border-radius:12px;padding:14px 16px;text-decoration:none;color:inherit;background:rgba(128,128,128,.07);font-size:16px;display:block">{ICONS[sl]} <strong>{sl.capitalize()}</strong></a>'
+        for sl in GAMES)
+    all_zf.writestr("index.html", f"""<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Gridlings — 11 Daily Logic Puzzles</title>
+<style>body{{font-family:system-ui,sans-serif;margin:0;padding:24px;max-width:640px;margin:auto}}h1{{font-size:1.4rem}}p{{color:#666;font-size:14px}}.g{{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px}}</style>
+</head><body>
+<h1>Gridlings — 11 daily logic puzzles</h1>
+<p>Every board machine-verified: exactly one solution, reachable by pure deduction. Pick a game:</p>
+<div class="g">{hub_rows}</div>
+<p style="margin-top:18px">Live version with streaks, archive &amp; 中文: play.agiscorecard.com</p>
+</body></html>""")
     all_zf.writestr("README.txt", README.format(name="Gridlings — all 11 games", days=450, epoch="2026-08-24"))
     all_zf.close()
     open(os.path.join(OUT, "gridlings-all-11.zip"), "wb").write(all_zip.getvalue())
