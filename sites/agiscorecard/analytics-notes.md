@@ -839,3 +839,11 @@ gridlings×1):多数命中是泛词(claude/gpt 撞名)。一条值得过需求�
 - gridlings 首发日 04:12 UTC 读数:0 事件(欧洲清晨,基线内);eco Faktencheck-Alarm
   第 1 天 subs 0(正常)。舰队台账:订阅 3/5、已验证营收 0;P0 PartnerNet 悬置
   (Telegram 提醒已于 01:30 送达 owner)。
+
+## 2026-08-24 04:25 更正(台账不删失误)
+
+上一条「agi-odds/agi-indexnow 周一 schedule 未自触发」**诊断有误**:两者的
+`event=schedule` 运行分别于 04:08 / 04:12 UTC 成功——只是比 cron(03:17/03:25)
+晚约 50 分钟,属 GitHub 调度器常见延迟,不是注册失灵。教训:**判定 schedule 失灵
+至少等 2 小时再下结论**;我的 04:03 手动 dispatch 因此成了无害重复(odds 快照同日
+重取,幂等)。「下周一复核」项撤销,无需任何修复。
