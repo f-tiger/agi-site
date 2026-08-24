@@ -31,6 +31,19 @@ invest_tool_click、tds affiliate_click(D1 hits 表 ev 列;链路 2026-08-19 上
 里程碑口径:舰队订阅计数 = agi 真实 subscribers + bpj 真实 subs(2026-08-23 起;
 当日 bpj 首个真实订阅 kon***@gmail.com 经脱敏核验,舰队 3/5)。
 
+## 每日输入层:创业产品雷达(2026-08-24,owner:「不能只依赖Google trends」)
+
+owner 原话:「你的每天自动化任务也要把创业网站如producthunt等内容进行输入,不能
+只依赖Google trends」。实现:`tools/startup_radar.mjs` 搭载 fleet-trends.yml
+(04:20 UTC,不新增 schedule,增量 ~0.3 分/月),每日提交 **`data/startup-radar.json`**
+——Product Hunt 公开 Atom feed(当日 featured)+ HN Algolia(show_hn 36h 热榜 +
+AI 相关 story),免鉴权零密钥。会话沙箱对这三个源均 403(2026-08-24 实测),
+**只有 runner 能抓**;每源抓不到写 ok:false+原因,绝不静默复用旧数据。
+**用法(每日 run 与选题)**:读 `niche_hits`(五站词表命中便签)+ `history`
+(14 天,同一产品连续多日出现 = 真热度);它是**选题输入,不是选题依据**——
+任何由它引出的页面仍要过三门(尤其需求门:PH 上有产品 ≠ 有人在搜它),PandaAI
+式快反的反面预登记照写。中文创业信源(36kr 等)runner 可达性未测,首轮跑通后再评估。
+
 ## 子域/板块开设铁律(2026-08-23,owner 问「是否要建新子域/独立板块」后定)
 
 现有管理面已宽:主域 agiscorecard.com + 四个伞域子域(invest./compass./source./

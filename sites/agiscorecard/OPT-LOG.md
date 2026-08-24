@@ -1,3 +1,13 @@
+## 2026-08-24 — 快反两页提前出厂:AI 交易智能体判定 + PandaAI 定义(队列 TOP 项)
+
+新闻周期 8-17 起算仅一周,提前于例行 run 发布(站规允许预审项提前)。
+/do-ai-trading-agents-work:判定型六件套,基率五源表(巴西97%/台湾<1%/ESMA 74-89%/
+衰减26·58%/AMS 过拟合),融资潮=铲子生意 vs 用户收益两分,成文翻转条件(厂商公布
+可证伪实盘台账即改判)。/zh/what-is-pandaai:定义型三档表(已证实/有报道/自述),
+金额一律「据其官宣」。双桥 SunWatch/track-record/exposure;接线七处(sitemap/llms/
+hub/chips/cn/feed)。顺手项 games-refs 三处 1→11 款同步。判定线:28 天两页合计
+pv<20 且引用 0 → 「蹭融资周期」假设记一次失败(预登记于 docs/ai-startup-signals)。
+
 ## 2026-08-23（补录三）— Evidence Audits 服务线上线（owner「理念转换为钱」）
 
 不卖书(两本 KDP 搁置,市场证据:同类孙传记 Goodreads 零评论=流水线卖不动)。

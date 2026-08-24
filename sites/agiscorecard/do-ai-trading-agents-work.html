@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FZXLMBB5QB"></script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a0a0b'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%234fc3a1'/%3E%3C/svg%3E">
+<title>Do AI Trading Agents Actually Make Money? The Evidence</title>
+<meta name="description" content="AI trading agents, audited: day-trading base rates, backtest overfitting, funding hype vs verifiable returns. Dated sources; not investment advice.">
+<link rel="canonical" href="https://agiscorecard.com/do-ai-trading-agents-work">
+<meta property="og:title" content="Do AI Trading Agents Actually Make Money? The Evidence">
+<meta property="og:description" content="The base rates are brutal, the backtests are inflatable, and no vendor publishes an audited live track record. What would change this verdict — spelled out.">
+<meta property="og:url" content="https://agiscorecard.com/do-ai-trading-agents-work">
+<meta property="og:type" content="article">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Do AI trading agents actually make money? The evidence","datePublished":"2026-08-24","dateModified":"2026-08-24","inLanguage":"en","author":{"@type":"Organization","name":"The AGI Scorecard","url":"https://agiscorecard.com/about"},"publisher":{"@type":"Organization","name":"The AGI Scorecard","url":"https://agiscorecard.com/"},"description":"A dated-source audit of AI trading agents: retail trading base rates, backtest overfitting, the 2026 funding wave, and the one piece of evidence no vendor has published."}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AGI Scorecard","item":"https://agiscorecard.com/"},{"@type":"ListItem","position":2,"name":"AGI questions, answered","item":"https://agiscorecard.com/agi-questions"},{"@type":"ListItem","position":3,"name":"Do AI trading agents work?","item":"https://agiscorecard.com/do-ai-trading-agents-work"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Do AI trading agents actually make money for their users?", "acceptedAnswer": {"@type": "Answer", "text": "There is no audited public evidence that they do. As of August 2026 no retail AI-trading-agent vendor publishes an independently verifiable live track record of user returns. What is documented instead: active retail traders overwhelmingly lose (97% of Brazilian futures day traders active 300+ days lost money; fewer than 1% of Taiwan day traders were persistently profitable), and backtests — the industry's main sales exhibit — are systematically inflatable."}}, {"@type": "Question", "name": "Why are backtests not proof that a trading strategy works?", "acceptedAnswer": {"@type": "Answer", "text": "Because trying enough strategy variants on the same history will always produce a spectacular in-sample result by chance — Bailey, Borwein, López de Prado and Zhu formalized this as backtest overfitting (Notices of the AMS, 2014). The pattern shows up in live data too: McLean and Pontiff (Journal of Finance, 2016) found published strategy returns decay roughly 26% out-of-sample and 58% post-publication."}}, {"@type": "Question", "name": "Why is so much money being invested in AI trading agents in 2026?", "acceptedAnswer": {"@type": "Answer", "text": "The funding wave is real: Chinese press (Sina Tech, PEdaily, 36Kr) reported on August 17, 2026 that PandaAI closed three rounds in two months, and agent-sector startups reportedly raised about $633M across 12 days in early August. Funding proves investor appetite for the picks-and-shovels business — selling tools to would-be traders — not that the tools' users make money. Those are different businesses."}}, {"@type": "Question", "name": "What evidence would change this verdict?", "acceptedAnswer": {"@type": "Answer", "text": "A vendor publishing a falsifiable live ledger: positions or signals timestamped before outcomes, all results graded including losses, misses never deleted, methodology fixed in advance — the shape of record we maintain ourselves in the SunWatch track record. If an AI trading agent vendor publishes that and it shows net user-level outperformance after costs, this page's verdict flips. None has, as of August 2026."}}]}</script>
+<style>
+  :root{--bg:#0a0a0b;--bg2:#111114;--bg3:#18181d;--border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.12);--text:#e8e8ec;--muted:#8888a0;--accent:#7c6af5;--accent2:#4fc3a1;--warn:#e8a040;--danger:#e05555;--font:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;--mono:'JetBrains Mono',monospace;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:16px;line-height:1.75;}
+  a{color:var(--accent);text-decoration:none;}a:hover{opacity:.8;}
+  header{border-bottom:1px solid var(--border);padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:56px;position:sticky;top:0;background:rgba(10,10,11,.92);backdrop-filter:blur(12px);z-index:100;}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px;color:var(--text);}
+  .logo-dot{width:8px;height:8px;background:var(--accent2);border-radius:50%;}
+  .back-link{font-size:13px;color:var(--muted);}.back-link:hover{color:var(--text);opacity:1;}
+  article{max-width:720px;margin:0 auto;padding:2.5rem 1.5rem 4rem;}
+  .eyebrow{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem;}
+  h1{font-size:clamp(1.7rem,4vw,2.4rem);font-weight:700;letter-spacing:-.02em;line-height:1.18;margin-bottom:1.25rem;}
+  .capsule{background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent2);border-radius:0 10px 10px 0;padding:1.15rem 1.4rem;font-size:16px;margin-bottom:1.75rem;}
+  .capsule .verdict{font-weight:700;}
+  .v-ok{color:var(--accent2);}.v-wrong{color:var(--danger);}.v-open{color:var(--accent);}.v-pending{color:var(--muted);}
+  h2{font-size:1.25rem;font-weight:600;margin:2.25rem 0 .9rem;letter-spacing:-.01em;}
+  h3{font-size:1.05rem;font-weight:600;margin:1.5rem 0 .6rem;}
+  p{margin-bottom:1rem;}
+  ul{margin:0 0 1rem 1.3rem;}li{margin-bottom:.45rem;}
+  strong{color:#fff;}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;margin:1rem 0 1.4rem;background:var(--bg2);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+  th{text-align:left;padding:10px 12px;color:var(--muted);font-weight:500;font-size:11px;letter-spacing:.05em;text-transform:uppercase;border-bottom:1px solid var(--border);}
+  td{padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:top;}
+  tr:last-child td{border-bottom:none;}
+  .nowrap{white-space:nowrap;font-weight:600;}
+  .updated{font-size:12px;color:var(--muted);margin-bottom:1.5rem;}
+  footer{border-top:1px solid var(--border);padding:24px 0;font-size:12px;color:var(--muted);text-align:center;}
+@media(max-width:640px){table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;white-space:nowrap}table td,table th{white-space:normal;min-width:92px}}
+</style>
+</head>
+<body>
+<header>
+  <a href="/" class="logo"><span class="logo-dot"></span>AGI Scorecard</a>
+  <a href="/" class="back-link">← Live scorecard</a>
+</header>
+<main>
+  <article>
+  <div class="eyebrow">Evidence audit · The agent economy</div>
+  <h1>Do AI Trading Agents Actually Make Money? The Evidence</h1>
+  <div class="updated">Last updated: August 24, 2026 · Base rates, dated sources, and a written flip condition · Not investment advice</div>
+
+  <div class="capsule"><span class="verdict">No audited public evidence that they do — and every documented base rate puts the burden of proof on the vendor.</span>
+  2026's funding wave into "natural language → strategy → backtest → execution" platforms is real. But as of
+  August 2026 <strong>no retail AI-trading-agent vendor publishes an independently verifiable live track record of
+  user returns</strong>. What the literature documents instead: active retail traders overwhelmingly lose money,
+  published strategies decay once known, and backtests — the industry's main sales exhibit — can be manufactured
+  by trying enough variants. This page states exactly what evidence would flip that verdict.</div>
+
+  <div style="margin:1.2rem 0;padding:1rem 1.2rem;background:var(--bg2);border:1px solid var(--border);border-radius:12px;">
+    <span style="font-size:13px;color:var(--muted);">The standard we hold vendors to is the one we hold ourselves to — a pre-registered, auditable ledger:</span><br>
+    <a href="/progress-index" onclick="gtag('event','index_click',{location:'doaitrading_live'});" style="font-size:28px;font-weight:800;font-variant-numeric:tabular-nums;text-decoration:none;">62.5<span style="font-size:16px;color:var(--muted);">/100</span></a>
+    <span style="font-size:13px;color:var(--muted);">— the AGI-2027 Thesis Tracker, eight verdicts, each with a flip condition.</span>
+  </div>
+
+  <h2>The base rates a trading agent has to beat</h2>
+  <table>
+    <thead><tr><th>Finding</th><th>Number</th><th>Source (dated)</th></tr></thead>
+    <tbody>
+      <tr><td>Brazilian futures day traders active 300+ days who lost money</td><td class="nowrap v-wrong">97%</td><td>Chague, De-Losso &amp; Giovannetti, <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3423101" rel="noopener">"Day Trading for a Living?"</a> (2020); 1.1% earned more than minimum wage</td></tr>
+      <tr><td>Taiwan day traders with persistent skill across 15 years of complete market data</td><td class="nowrap v-wrong">&lt;1%</td><td>Barber, Lee, Liu &amp; Odean, "The cross-section of speculator skill" (J. Financial Markets, 2014)</td></tr>
+      <tr><td>Retail CFD accounts losing money, per the disclosures EU regulators forced brokers to print</td><td class="nowrap v-wrong">74–89%</td><td>ESMA product-intervention measures, 2018 onward</td></tr>
+      <tr><td>Decay of published strategy returns once the strategy is known</td><td class="nowrap v-wrong">−26% / −58%</td><td>McLean &amp; Pontiff, <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2156623" rel="noopener">"Does Academic Research Destroy Stock Return Predictability?"</a> (J. Finance, 2016): out-of-sample / post-publication</td></tr>
+      <tr><td>Probability that enough backtest variants produce a spectacular in-sample result by chance</td><td class="nowrap v-wrong">→ 1</td><td>Bailey, Borwein, López de Prado &amp; Zhu, <a href="https://www.ams.org/notices/201405/rnoti-p458.pdf" rel="noopener">"Pseudo-Mathematics and Financial Charlatanism"</a> (Notices of the AMS, 2014)</td></tr>
+    </tbody>
+  </table>
+  <p>None of these studies is about AI. That is the point: they are about <strong>the game the AI agent is being
+  sold to play</strong>. A tool that makes strategy construction faster does not change the arithmetic of who is on
+  the other side of the trade — and the overfitting result says making backtests <em>easier to run at scale</em>
+  makes the headline numbers <em>less</em> trustworthy, not more.</p>
+
+  <h2>What the money is doing (and what that proves)</h2>
+  <p>The funding is real and recent. Chinese tech press (Sina Tech, PEdaily, 36Kr) reported on <strong>August 17,
+  2026</strong> that PandaAI — a Chongqing AI-trading-infrastructure startup founded 2024, built on the
+  quant-education IP "量化技能李不白" — closed <strong>three rounds in two months</strong> (seed plus two angel
+  rounds, tens of millions of yuan cumulative, L2F leading). The same month's agent-sector tallies reported about
+  <strong>$633M across 12 days</strong> (HappyRobot's $150M Series C and Zenity's $125M among them). Our
+  <a href="/zh/what-is-pandaai">definition page on PandaAI</a> lists what is verified versus self-reported.</p>
+  <p>Funding proves investor appetite for the <em>picks-and-shovels business</em> — selling tools to would-be
+  traders, a revenue stream that arrives whether or not users profit. It is not evidence about user returns.
+  Exchanges, brokerages and signal-sellers have always made money on activity; "the tooling vendor prospers" and
+  "the tool's users beat the market" are different claims, and only the first one is currently documented.</p>
+
+  <h2>Vendor claims vs. what is verifiable</h2>
+  <table>
+    <thead><tr><th>Claim type</th><th>Status</th><th>What the record shows</th></tr></thead>
+    <tbody>
+      <tr><td>"Natural language → factor → backtest → execution" pipelines exist and run</td><td class="nowrap v-ok">Product claim</td><td>Checkable by any user; the software genuinely works as software</td></tr>
+      <tr><td>Funding rounds, valuations, user counts</td><td class="nowrap v-open">Reported / self-reported</td><td>Rounds covered by named press; user counts trace to the vendors themselves</td></tr>
+      <tr><td>Backtested strategy performance shown in marketing</td><td class="nowrap v-open">Unverifiable as stated</td><td>In-sample results; overfitting risk grows with the number of variants tried (AMS 2014)</td></tr>
+      <tr><td>Users of the platform make money net of costs</td><td class="nowrap v-pending">No audited evidence</td><td>No vendor publishes an independently verifiable live ledger of user returns, as of August 2026</td></tr>
+    </tbody>
+  </table>
+
+  <h2>The flip condition — what would change this verdict</h2>
+  <p>This page is falsifiable, in writing: the verdict flips the day a vendor publishes a <strong>live ledger with
+  the same discipline we apply to our own claims</strong> — signals or positions timestamped <em>before</em>
+  outcomes, every result graded including losses, misses never deleted, methodology fixed in advance, net of
+  costs. That standard exists and is cheap to meet; we run one ourselves on Justin Sun's market calls
+  (<a href="https://compass.agiscorecard.com/en/track-record" onclick="gtag('event','invest_tool_click',{location:'doaitrading_record'});">the SunWatch track record</a>) and another on
+  copying 13F filings at filing-day prices. A vendor that meets it and shows user-level outperformance earns a
+  rewritten page. A vendor that shows only backtests has told you which business they are actually in.</p>
+
+  <div style="margin:1.5rem 0;background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:1.1rem 1.3rem;">
+    <p style="margin:0 0 .7rem;font-weight:700;">See what a falsifiable ledger looks like</p>
+    <p style="margin:0 0 .8rem;font-size:14px;color:var(--muted);">SunWatch logs market calls as pre-registered triggers graded hit/miss with misses never deleted, and follows disclosed positions daily — the control group for every "our AI trades better" pitch.</p>
+    <a href="https://invest.agiscorecard.com" onclick="gtag('event','invest_tool_click',{location:'doaitrading_sunwatch'});" style="display:inline-block;background:#6350d9;color:#fff;padding:9px 20px;border-radius:8px;font-size:14px;font-weight:600;margin-right:8px;">SunWatch daily brief &rarr;</a>
+    <a href="/ai-stock-exposure" onclick="gtag('event','invest_tool_click',{location:'doaitrading_exposure'});" style="display:inline-block;background:var(--bg3);border:1px solid var(--border);color:var(--text);padding:9px 20px;border-radius:8px;font-size:14px;font-weight:600;">Score your AI basket &rarr;</a>
+  </div>
+
+  <h2>FAQ</h2>
+  <h3>Do AI trading agents actually make money for their users?</h3>
+  <p>There is no audited public evidence that they do. As of August 2026 no retail AI-trading-agent vendor publishes an independently verifiable live track record of user returns. What is documented instead: active retail traders overwhelmingly lose (97% of Brazilian futures day traders active 300+ days lost money; fewer than 1% of Taiwan day traders were persistently profitable), and backtests — the industry's main sales exhibit — are systematically inflatable.</p>
+  <h3>Why are backtests not proof that a trading strategy works?</h3>
+  <p>Because trying enough strategy variants on the same history will always produce a spectacular in-sample result by chance — Bailey, Borwein, López de Prado and Zhu formalized this as backtest overfitting (Notices of the AMS, 2014). The pattern shows up in live data too: McLean and Pontiff (Journal of Finance, 2016) found published strategy returns decay roughly 26% out-of-sample and 58% post-publication.</p>
+  <h3>Why is so much money being invested in AI trading agents in 2026?</h3>
+  <p>The funding wave is real: Chinese press (Sina Tech, PEdaily, 36Kr) reported on August 17, 2026 that PandaAI closed three rounds in two months, and agent-sector startups reportedly raised about $633M across 12 days in early August. Funding proves investor appetite for the picks-and-shovels business — selling tools to would-be traders — not that the tools' users make money. Those are different businesses.</p>
+  <h3>What evidence would change this verdict?</h3>
+  <p>A vendor publishing a falsifiable live ledger: positions or signals timestamped before outcomes, all results graded including losses, misses never deleted, methodology fixed in advance — the shape of record we maintain ourselves in the SunWatch track record. If an AI trading agent vendor publishes that and it shows net user-level outperformance after costs, this page's verdict flips. None has, as of August 2026.</p>
+
+  <div style="margin:1.6rem 0;">
+    <a href="https://agiscorecard.beehiiv.com/subscribe?utm_source=agiscorecard&amp;utm_medium=deep_doaitrading" target="_blank" rel="noopener" onclick="gtag('event','subscribe_click',{location:'deep_doaitrading'});" style="display:inline-block;background:#6350d9;color:#fff;padding:9px 20px;border-radius:8px;font-size:14px;font-weight:600;">One email when a verdict flips &rarr;</a>
+  </div>
+  <p style="font-size:13px;color:var(--muted);">Browse all <a href="/agi-questions">AGI questions</a> · Method: only dated, named sources; claims traceable solely to a vendor are labeled self-reported. Nothing here is investment advice.</p>
+  </article>
+</main>
+<footer>By the <a href="/about" style="color:var(--muted);">AGI Scorecard team</a> · Independent tracker of <a href="https://situational-awareness.ai" style="color:var(--muted);">Situational Awareness</a> · Not affiliated with any lab or fund · <a href="/privacy" style="color:var(--muted);">Privacy</a> · <a href="/advertise" style="color:var(--muted);">Advertise</a></footer>
+</body>
+</html>

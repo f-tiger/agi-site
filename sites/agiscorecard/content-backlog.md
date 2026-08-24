@@ -185,13 +185,13 @@ specs above at any time to resume net-new page creation.
 - [ ] `owner-action:monetization-gateway` — 提醒 owner 报名 Cloudflare Monetization Gateway waitlist（~3 分钟，x402 agent 付费前置条件）。E3 引擎。
 
 
-- [ ] `games-refs-10` —(2026-08-23 种,顺手项)站内 3 处 Gridlings 引用仍是单款措辞:
+- [x] `games-refs-10` —(2026-08-24 完成,三处已改为「11 款/11 daily」)(2026-08-23 种,顺手项)站内 3 处 Gridlings 引用仍是单款措辞:
   index.html:772(directory chip)、ai-tools.html:82、zh/ai-tools.html:123。改为
   「10 款每日逻辑谜题(全部机器验证唯一解)/10 daily logic puzzles」;数字诚实规则
   (页面数字必须与实际一致)优先于防翻炒——但等 8/24 daily run 一并做,不单独提交。
 
 ## Queue — CITATION AMPLIFICATION（2026-08-16 自种，依据 Bing AI Performance 的 Pages/Queries 明细，**不是猜的搜索需求，是已发生的引用**）
-- [ ] (CITATION AMPLIFICATION·invest·快反) do-ai-trading-agents-work + /zh/what-is-pandaai
+- [x] (CITATION AMPLIFICATION·invest·快反) do-ai-trading-agents-work + /zh/what-is-pandaai(2026-08-24 出厂:判定页六件套 + 基率五源表 + 成文翻转条件;zh 定义页三档表;双桥 SunWatch/track-record/exposure)
   ——owner 2026-08-23「PandaAI等新创业AI机会点分析」;新闻周期 8-17 起仅一周(PandaAI
   两月三轮融资/李不白 IP/A2A 叙事,信源:新浪科技/投资界/36kr;同期 agent 赛道 12 天
   $633M)。EN 页判定型:「AI 交易智能体真的赚钱吗」—— 一手基率(BIS 散户亏损、回测
