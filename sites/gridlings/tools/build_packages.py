@@ -79,6 +79,14 @@ def strip_page(html_src, slug):
         s = s.replace(m.group(1), cta + m.group(1), 1)
     return s
 
+def strict_page(html_src):
+    """CrazyGames-class portals reject games carrying external links. Drop every
+    <a href="http..."> (keep inner text), win-CTA included; plain-text
+    attribution stays. Applied on top of strip_page output."""
+    s = re.sub(r'<a href="https?://[^"]*"[^>]*>(.*?)</a>', r"\1", html_src, flags=re.S)
+    s = s.replace("</title>", " (portal build)</title>", 1)
+    return s
+
 def portal_js(js_src, page_path):
     """Zip copy of the engine: beacon goes to the site (CORS * on /e, so
     portal plays are measured, with the portal as referrer), and challenge
@@ -105,6 +113,7 @@ def main():
             zf.writestr("style.css", open(os.path.join(SITE, "style.css")).read())
             zf.writestr(g["js"], js_body)
             zf.writestr("firstrun.js", open(os.path.join(SITE, "firstrun.js")).read())
+            zf.writestr("copy.js", open(os.path.join(SITE, "copy.js")).read())
             cov = os.path.join(SITE, "covers", (slug if slug != "gridlings" else "gridlings") + ".png")
             if os.path.exists(cov):
                 zf.writestr("cover.png", open(cov, "rb").read())
@@ -119,11 +128,31 @@ def main():
         all_zf.writestr(f"{slug}/style.css", open(os.path.join(SITE, "style.css")).read())
         all_zf.writestr(f"{slug}/{g['js']}", js_body)
         all_zf.writestr(f"{slug}/firstrun.js", open(os.path.join(SITE, "firstrun.js")).read())
+        all_zf.writestr(f"{slug}/copy.js", open(os.path.join(SITE, "copy.js")).read())
         for f in g["data"]:
             all_zf.writestr(f"{slug}/{f}", open(os.path.join(SITE, f)).read())
         all_zf.writestr(f"{slug}/README.txt", readme)
         index_rows.append((slug, len(data)))
         print(f"packed {name}: {len(data)//1024} KB")
+    # strict variants (no external links) for CrazyGames-class portals
+    sdir = os.path.join(OUT, "strict")
+    os.makedirs(sdir, exist_ok=True)
+    for slug, g in GAMES.items():
+        page = strict_page(strip_page(open(os.path.join(SITE, g["page"])).read(), slug))
+        play_path = "/" if slug == "gridlings" else "/" + slug
+        js_body = portal_js(open(os.path.join(SITE, g["js"])).read(), play_path)
+        buf = io.BytesIO()
+        with zipfile.ZipFile(buf, "w", zipfile.ZIP_DEFLATED) as zf:
+            zf.writestr("index.html", page)
+            zf.writestr("style.css", open(os.path.join(SITE, "style.css")).read())
+            zf.writestr(g["js"], js_body)
+            zf.writestr("firstrun.js", open(os.path.join(SITE, "firstrun.js")).read())
+            zf.writestr("copy.js", open(os.path.join(SITE, "copy.js")).read())
+            for f in g["data"]:
+                zf.writestr(f, open(os.path.join(SITE, f)).read())
+            zf.writestr("README.txt", README.format(name=slug.capitalize() + " (portal build, no external links)", days=450, epoch="2026-08-24"))
+        open(os.path.join(sdir, f"{slug}.zip"), "wb").write(buf.getvalue())
+    print(f"strict portal builds: {len(GAMES)} zips in downloads/strict/")
     all_zf.writestr("README.txt", README.format(name="Gridlings — all 11 games", days=450, epoch="2026-08-24"))
     all_zf.close()
     open(os.path.join(OUT, "gridlings-all-11.zip"), "wb").write(all_zip.getvalue())

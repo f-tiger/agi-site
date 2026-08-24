@@ -184,6 +184,18 @@ js + daily/pool json + style + README,剥离 manifest/SW/sub.js(深路径托管�
 病毒环:firstrun.js 在 coarse-pointer 设备上给 #sharebtn/#chbtn 追加原生
 share sheet(捕获层、不 stopPropagation,引擎剪贴板+埋点照常)。
 
+## copy.js 复制契约(2026-08-24,owner「病毒式传播…保障体验…按平台规则优化」)
+
+九引擎的分享/挑战复制统一走 `copy.js` 的 `glCopy(txt)`(原生分享面板[移动]→
+异步剪贴板→execCommand→可见选择框 `glCopyShow`),**prompt() 已全站废除**——
+门户沙箱 iframe 会静默屏蔽它,旧兜底等于把病毒环做成无声空操作。所有游戏页以
+**相对路径** `<script src="copy.js">` 引入(zh 靠 worker 回退,zip 天然可用);
+打包器把 copy.js 一并入包。**新引擎接入时禁止再写裸 clipboard/prompt。**
+门户严格包:`build_packages.py` 的 `strict_page()` 产出 `/downloads/strict/*.zip`
+(零外链,CrazyGames 类 QA 合规),标准包与严格包同源同数据,只差链接层。
+已在 sandbox iframe 内驱动真实胜利实测:分享 Copied!、挑战正常、零异常;
+全站冒烟 11/11 win 路径通过。
+
 ## 包内漏斗(2026-08-24,owner「被站点做流量倾斜的优化没有落地到几个游戏里面」)
 
 四个离站语境缺口已在 build_packages 后处理层修掉(**只改 zip 产物,线上零改动**):

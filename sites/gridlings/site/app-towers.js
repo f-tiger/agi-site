@@ -245,10 +245,10 @@
 
   function share() {
     var txt = window._share || ("Towers — a daily skyscrapers puzzle\nhttps://play.agiscorecard.com/towers");
-    (navigator.clipboard ? navigator.clipboard.writeText(txt) : Promise.reject()).then(function () {
+    window.glCopy(txt).then(function () {
       $("sharebtn").textContent = L.copied || "Copied!";
       setTimeout(function () { $("sharebtn").textContent = L.share || "Share result"; }, 1600);
-    }).catch(function () { prompt("Copy:", txt); });
+    }).catch(function () { window.glCopyShow(txt); });
     gev("share_copy", "to:" + (state ? state.key : "none"));
   }
 
@@ -325,10 +325,10 @@
     if (chb) chb.onclick = function () {
       var u = window._challenge || (location.origin + location.pathname);
       var txt = (L.ch_text || "I solved this puzzle — can you beat my time?") + "\n" + u;
-      (navigator.clipboard ? navigator.clipboard.writeText(txt) : Promise.reject()).then(function () {
+      window.glCopy(txt).then(function () {
         chb.textContent = L.copied || "Copied!";
         setTimeout(function () { chb.textContent = L.ch_btn || "⚔️ Challenge a friend"; }, 1600);
-      }).catch(function () { prompt("Copy:", txt); });
+      }).catch(function () { window.glCopyShow(txt); });
       gev("challenge_copy", state ? state.key : "");
     };
     $("again").onclick = function () {

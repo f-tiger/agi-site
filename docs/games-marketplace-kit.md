@@ -29,3 +29,23 @@
 gridlings-all-11.zip(或逐款)→ 生成 API key 存进 agi-site repo secret
 `BUTLER_API_KEY` → 之后每次游戏更新由 CI 用 butler 自动推送,owner 终身不再动手。
 CrazyGames/Poki 无上传 API,每次都要人。
+
+## 平台规则适配(2026-08-24,owner「按照平台规则优化好」)
+
+**两套构建,按平台选**:
+- `/downloads/*.zip`(标准包):含回流链接与胜利 CTA——**itch.io / Newgrounds 用**
+  (允许外链)。
+- `/downloads/strict/*.zip`(门户严格包):**零外链**(CrazyGames 类门户 QA 会因
+  外链拒稿),纯文本署名保留,挑战/分享复制的是站点 URL 文本(剪贴板文本不是
+  链接元素,合规)。标题带 "(portal build)" 便于区分。
+
+**itch.io 上传参数(每款相同)**:Kind = HTML;Viewport **700 × 1000**;
+☑ Mobile friendly(四向)☑ Fullscreen button ☐ Click to launch(留默认自动加载);
+标签:puzzle, daily, logic, minimalist + 各款家族词(nonogram/sudoku/binary 等);
+描述与截图文案:store-assets 节的每款三行卖点直接粘贴。
+
+**病毒环在门户沙箱内已实测存活(2026-08-24)**:跨域 iframe 中
+clipboard.writeText 常被拒、prompt() 被沙箱静默屏蔽——旧兜底在门户上等于把
+分享做成无声空操作。现为四级链:原生分享面板(移动)→ 异步剪贴板 → execCommand
+→ 可见选择框(copy.js,九引擎共用)。在 sandbox="allow-scripts allow-same-origin"
+的 iframe 内驱动真实胜利验证:分享显示 Copied!、挑战复制正常、零异常。

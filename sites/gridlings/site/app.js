@@ -261,10 +261,10 @@
 
   function share() {
     var txt = window._share || ("Gridlings — a daily logic grid puzzle\nhttps://play.agiscorecard.com");
-    (navigator.clipboard ? navigator.clipboard.writeText(txt) : Promise.reject()).then(function () {
+    window.glCopy(txt).then(function () {
       $("sharebtn").textContent = L.copied || "Copied!";
       setTimeout(function () { $("sharebtn").textContent = L.share || "Share result"; }, 1600);
-    }).catch(function () { prompt("Copy:", txt); });
+    }).catch(function () { window.glCopyShow(txt); });
     gev("share_copy", state ? state.mode + ":" + state.key : "none");
   }
 
@@ -276,10 +276,10 @@
     if (chb) chb.onclick = function () {
       var u = window._challenge || (location.origin + location.pathname);
       var txt = (L.ch_text || "I solved this puzzle \u2014 can you beat my time?") + "\n" + u;
-      (navigator.clipboard ? navigator.clipboard.writeText(txt) : Promise.reject()).then(function () {
+      window.glCopy(txt).then(function () {
         chb.textContent = L.copied || "Copied!";
         setTimeout(function () { chb.textContent = L.ch_btn || "\u2694\uFE0F Challenge a friend"; }, 1600);
-      }).catch(function () { prompt("Copy:", txt); });
+      }).catch(function () { window.glCopyShow(txt); });
       gev("challenge_copy", state ? state.key : "");
     };
     $("again").onclick = function () {
