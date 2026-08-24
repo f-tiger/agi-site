@@ -150,6 +150,20 @@ MCP/付费轨道(x402 季度复查通过后)。KPI:bench_download(hub_click 标�
 5. 无限期搁置:iOS/Android/Apple Ads/微信(owner 2026-08-22 确认朋友的游戏
    在海外平台,微信线彻底关闭)
 
+## GEO 规则页层(2026-08-24,owner「快速geo扩展或者加入游戏市场」)
+
+10 张 EN 规则/答案页由 `tools/gen_geo_pages.py` 生成(改文案改生成器再重跑,别
+手改产物):futoshiki-rules · kropki-sudoku-rules · sandwich-sudoku-rules ·
+skyscraper-puzzle-rules · star-battle-rules · thermometer-puzzle-rules ·
+nonogram-rules · 6x6-sudoku-rules · binary-puzzle-rules · games-like-linkedin-queens
+(旗舰对比页;Queens 比较性用词允许,**Zip 一词全站禁用**)。每页:问题即标题、
+答案胶囊、规则表、真实技巧、一手生成器数据、FAQ 与 JSON-LD 逐条一致、每日 #N
+活数字(fetch 各 daily.json 由 epoch 现算)。worker 用 GEO Set 统一路由;九张
+游戏页 modes 行带「Rules & techniques」回链;sitemap 35 URL。市场提交包
+docs/games-marketplace-kit.md(itch→CrazyGames→Poki;GameDistribution 因广告
+SDK 与无广告承诺冲突不做)。**判定线 2026-09-21(28 天)**:规则页簇 pv ≥50 或
+任一页进 Bing/GSC 前 20 → 追加 zh 版与更多查询;全簇 <10 pv → 停止扩张。
+
 ## 判定线(60 天,≈2026-10-21)
 
 JS 真人 play_start ≥500/28d 或任一门户过审上架或首笔门户分成入账 → 加码
