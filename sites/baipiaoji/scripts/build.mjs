@@ -952,6 +952,25 @@ const subJs = () => `<script>
       slideIn('exit');
     });
   }
+  // 触发三（2026-08-24，docs/PRD-mobile-slide.md）：移动端上滑离开意图。
+  // 「宁缺」的原始决策成立于滑入卡还没有任何转化证据的时候；08-23 全舰队第一个
+  // 真实订阅正来自 /slide/exit，而移动端读者此前永远没有触发资格。深读（滚动深度
+  // 曾达 60% 页高）之后 600ms 内累计上滑 ≥220px ≈ 移动端最接近「要走了」的信号。
+  // 仍然不做全屏 modal、不做定时弹出；同一张小卡，规矩全部经 slideOK 复用。
+  // 测量分流：sub_view 落 /sub_view/slide-up、订阅行 src=/slide/up，判定线 09-21。
+  if(window.matchMedia&&matchMedia('(pointer:coarse)').matches){
+    var deepRead=false,upAcc=0,lastY=0,lastT=0;
+    window.addEventListener('scroll',function(){
+      var y=window.scrollY||0,t=Date.now();
+      var h=document.documentElement.scrollHeight||1;
+      if((y+window.innerHeight)/h>=0.6)deepRead=true;
+      if(y<lastY){
+        upAcc=(t-lastT<600?upAcc:0)+(lastY-y);
+        if(deepRead&&upAcc>=220)slideIn('up');
+      }else{upAcc=0}
+      lastY=y;lastT=t;
+    },{passive:true});
+  }
 })();
 </script>`;
 
