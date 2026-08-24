@@ -817,3 +817,25 @@ gridlings×1):多数命中是泛词(claude/gpt 撞名)。一条值得过需求�
 "is claude getting dumber / claude nerfed" 这一**长期反复出现的真实查询**,判定型两栏
 账形状(用户宣称 vs 厂商声明+可复跑基准)与本站方法完全同构。已种入 backlog 待
 04:00 run 按三门正式裁定。PH 无命中站点位需求,不硬凑——首日空产出是正常态。
+
+## 2026-08-24 日结(daily run,04:00 Routine;当日大部分工作已由通宵会话提前完成)
+
+- **`index_click{*_live}` 假设判据(截止 08-30)**:引用页活数字钩子上线第 8 天仍 **0 点击**;
+  28 天仅有的 3 次 index_click 全部来自首页(directory 2 + hero 1)。距两周判定线还有 6 天,
+  趋势偏向「纯品牌资产」结论,08-30 如实裁定,期间不再加钩子。
+- 订阅漏斗 28d:subscribe_click 4(footer_cta 2 / post_scorecard 2)→ sub_open 3 →
+  sub_submit 2 → sub_ok 2(两位置各 1)。**赛马无赢家**,样本太小,不复制。
+- stored 积压 = 2(全部无 topic,generic 行),无翻转邮件义务。E13 audits 询单 0。
+- **AI 引擎引荐(7d)**:claude.ai 1 + copilot.microsoft.com 1 + api.microsoft.ai 1 = 3 次
+  真人引荐——GEO 回报仍在流,量级未变。
+- **首次社区引荐簇**:forum.effectivealtruism.org ×2(08-18/19)+ www.lesswrong.com ×1
+  (08-20),全部真人、全部落首页——有人在 EA/LW 讨论里链接了本站。深审计结论:落点是
+  首页而非深页,现有首页信息架构(header nav + directory)承接正确,无需改动;若该簇
+  持续,考虑在首页给「引用本站」提供一句可复制的引用格式(先不做,等复现)。
+- 周一战略项:「赔率 vs 证据」已换用 **04:04 UTC 机器核实快照**(Polymarket AGI-2027
+  公告合约 No 92% / Yes 8%)重生成;**发现并修复:agi-odds.yml 与 agi-indexnow.yml 的
+  周一 schedule 今晨未自触发(两 workflow 迁移后各只有 1 次运行),已手动 dispatch 补跑
+  双双成功——下周一 03:17/03:25 再核一次,若仍不自触发则查 schedule 注册问题。**
+- gridlings 首发日 04:12 UTC 读数:0 事件(欧洲清晨,基线内);eco Faktencheck-Alarm
+  第 1 天 subs 0(正常)。舰队台账:订阅 3/5、已验证营收 0;P0 PartnerNet 悬置
+  (Telegram 提醒已于 01:30 送达 owner)。

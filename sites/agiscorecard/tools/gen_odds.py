@@ -82,5 +82,9 @@ html = g.build(
 )
 html = html.replace('"datePublished": "2026-06-30", "dateModified": "2026-06-30"',
                     f'"datePublished": "{DATE}", "dateModified": "{REVIEW_DATE}"')
+# 可见日期必须与 JSON-LD dateModified 同步换,否则 validate 的一致性检查会拦
+import datetime as _dt
+_visible = _dt.date.fromisoformat(REVIEW_DATE).strftime("%B %-d, %Y")
+html = html.replace("Last updated: June 30, 2026", f"Last updated: {_visible}")
 open(os.path.join(ROOT, "agi-odds-vs-evidence.html"), "w").write(html)
 print("agi-odds-vs-evidence.html written")

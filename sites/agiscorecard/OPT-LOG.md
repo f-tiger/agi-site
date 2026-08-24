@@ -1,3 +1,10 @@
+## 2026-08-24(daily run 04:00)— 周一战略项:赔率 vs 证据换新快照 + 定时器修复
+
+odds-snapshot 08-24 04:04 机器核实(No 92%/Yes 8%),gen_odds 重生成,sitemap bump。
+发现 agi-odds/agi-indexnow 两个周一 schedule 未自触发(迁移后首个周一),手动补跑成功,
+下周一复核。内容额度已于凌晨用满(3 页),本 run 零新页。index_click{*_live} 第 8 天
+仍 0,08-30 判定线临近。
+
 ## 2026-08-24(02:30 UTC)— 雷达首日种子出厂:/is-claude-getting-dumber
 
 雷达→档案→出页全链路首次跑通(命中 02:00,取证 01:40,出页 02:30,同日 HN 周期内)。
