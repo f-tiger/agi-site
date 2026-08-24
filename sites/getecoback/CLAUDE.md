@@ -17,6 +17,18 @@ niche 且可挂联盟钩 → **当天**出一页(答案胶囊+表格+FAQ/LD+topp
 28 天内该页 affiliate_click ≥3 或进站内 pv TOP10 → 机制有效,继续;连续 5 页
 全空 → 快反判据回炉。
 
+## 第二层订阅捕获「Faktencheck-Alarm」(2026-08-23,bpj 胜出模式移植)
+
+依据:bpj 退出弹层当日转化舰队第 3 个真实订阅;eco 指南页(流量所在)此前零邮件
+捕获,既有 Supabase 首页表单有史以来 0 次 subscribe 事件(popup 归联盟商品用,
+118 曝光/6 点击,不动它)。新层:worker 边缘注入,只在德语 /guide/* 页、且
+**商品弹层已用完机会后**(eb_pu_seen 存在)出现;承诺事件驱动且可兑现——
+「病毒式产品在 Faktencheck 翻车时(如 EpiCooler)发恰好一封邮件」,NO-API 模式
+(D1 `subs` 表存储优先,GDPR 勾选+consent_text 入库,翻车日会话出邮件包 owner
+粘贴)。事件:subscribe{source:factcheck-alert} + popup_view{trigger:s2}。
+判定线:28 天 ≥1 个真实订阅 → 保留;0 → 撤层(别让弹层叠罗汉)。
+**义务**:未来任何 Faktencheck 翻车页发布的 run,必须查此表并出邮件包。
+
 ## 快反首单记录(2026-08-23,owner「执行一次测试」——端到端实弹)
 
 信号:trends-rising.json 首次实抓成功(related-queries 在 referer+轮换减量后通过;

@@ -100,6 +100,48 @@ async function handleSubscribe(request) {
   return json({ error: "store_failed", status: resp.status, detail: detail.slice(0, 300) }, 502, cors);
 }
 
+
+// Fact-check alert capture (2026-08-23): the guide pages carry the traffic but
+// had zero email capture; the exit popup is (rightly) occupied by affiliate
+// rows. This second layer shows only AFTER the popup has had its shot
+// (eb_pu_seen present). Store-first into our own D1 (the Supabase funnel has
+// zero recorded conversions and cannot be probed from CI); Supabase stays a
+// best-effort mirror via the existing endpoint contract. The promise is
+// event-driven and keepable in NO-API mode: one mail when a viral device
+// fails our fact-check — drafted by the session, pasted by the owner.
+async function handleSub2(request, env, ctx) {
+  const cors = {
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "POST, OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type",
+  };
+  if (request.method === "OPTIONS") return new Response(null, { status: 204, headers: cors });
+  if (request.method !== "POST") return json({ error: "method_not_allowed" }, 405, cors);
+  let body;
+  try { body = await request.json(); } catch { return json({ error: "bad_json" }, 400, cors); }
+  const email = String(body.email || "").trim().toLowerCase().slice(0, 120);
+  if (!EMAIL_RE.test(email)) return json({ error: "invalid_email" }, 400, cors);
+  if (!body.consent) return json({ error: "consent_required" }, 400, cors);
+  let stored = false;
+  try {
+    if (env.EVENTS) {
+      await env.EVENTS.prepare(
+        "INSERT OR IGNORE INTO subs (email, page, country, consent_text) VALUES (?,?,?,?)"
+      ).bind(email, String(body.page || "").slice(0, 120),
+        request.headers.get("cf-ipcountry") || "",
+        String(body.consent_text || "").slice(0, 300)).run();
+      stored = true;
+      ctx.waitUntil(env.EVENTS.prepare(
+        "INSERT INTO ev (day, name, page, ref, meta, country, ua_class) VALUES (date('now'), 'subscribe', ?, '', ?, ?, 'human')"
+      ).bind(String(body.page || "").slice(0, 120), '{"source":"factcheck-alert"}',
+        request.headers.get("cf-ipcountry") || "").run().catch(() => {}));
+    }
+  } catch (e) { /* fall through */ }
+  return json({ ok: stored }, stored ? 200 : 502, cors);
+}
+
+const SUB2_SNIPPET = `<div id="eb-s2" style="display:none;position:fixed;left:0;right:0;bottom:0;z-index:205;padding:0 10px 10px;pointer-events:none;"><div style="max-width:520px;margin:0 auto;background:#fff;border:1px solid #cfe0ea;border-radius:14px 14px 12px 12px;box-shadow:0 -6px 28px rgba(10,45,70,.22);padding:14px 16px 12px;pointer-events:auto;"><div style="display:flex;align-items:flex-start;gap:10px;"><strong style="flex:1;font-size:15px;line-height:1.35;">\u26a0\ufe0f Alarm statt Newsletter</strong><button type="button" id="eb-s2-x" aria-label="Schlie\u00dfen" style="background:none;border:none;font-size:20px;line-height:1;color:#8a99a6;cursor:pointer;padding:0 2px;">\u00d7</button></div><p style="margin:4px 0 9px;font-size:13px;color:#4a5a67;">Wenn ein virales Ger\u00e4t in unserem Faktencheck durchf\u00e4llt (wie der EpiCooler), schicken wir genau <strong>eine</strong> Mail. Sonst nichts.</p><form id="eb-s2-f" style="display:flex;gap:7px;flex-wrap:wrap;"><input id="eb-s2-e" type="email" required placeholder="deine@mail.de" style="flex:1 1 180px;min-width:0;padding:9px 11px;border:1px solid #cfe0ea;border-radius:8px;font-size:14px;"><button type="submit" style="background:#0f6ba8;color:#fff;border:none;border-radius:8px;padding:9px 16px;font-size:14px;font-weight:700;cursor:pointer;">Eintragen</button><label style="flex:1 1 100%;font-size:11px;color:#8a99a6;display:flex;gap:6px;align-items:flex-start;"><input id="eb-s2-c" type="checkbox" required style="margin-top:2px;">Einverstanden, diese Hinweis-Mails zu erhalten. Jederzeit abmeldbar. <a href="/datenschutz.html" target="_blank" rel="noopener" style="color:#8a99a6;">Datenschutz</a></label></form><p id="eb-s2-ok" style="display:none;margin:6px 0 0;font-size:13.5px;font-weight:700;color:#0f7a52;">\u2713 Eingetragen \u2014 du h\u00f6rst nur von uns, wenn es ernst ist.</p></div></div><script>(function(){var K2="eb_s2_seen";try{if(localStorage.getItem(K2))return;if(!localStorage.getItem("eb_pu_seen"))return;}catch(e){return;}var box=document.getElementById("eb-s2");if(!box)return;var shown=false,start=Date.now();function ev(n,m){try{if(window.gtag)gtag("event",n,m||{});}catch(e){}}function hide(){box.style.display="none";try{localStorage.setItem(K2,String(Date.now()));}catch(e){}}function show(){if(shown)return;shown=true;box.style.display="block";ev("popup_view",{trigger:"s2"});}document.getElementById("eb-s2-x").addEventListener("click",hide);window.addEventListener("scroll",function(){var d=document.documentElement;if((window.scrollY+window.innerHeight)/Math.max(1,d.scrollHeight)>0.6&&(Date.now()-start)>20000)show();},{passive:true});document.getElementById("eb-s2-f").addEventListener("submit",function(e){e.preventDefault();var em=document.getElementById("eb-s2-e").value;var c=document.getElementById("eb-s2-c").checked;if(!em||!c)return;fetch("/api/sub2",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email:em,consent:true,consent_text:"Faktencheck-Alarm DE v1 2026-08",page:location.pathname})}).then(function(r){return r.json();}).then(function(d){if(d&&d.ok){document.getElementById("eb-s2-f").style.display="none";document.getElementById("eb-s2-ok").style.display="block";try{localStorage.setItem(K2,String(Date.now()+31536000000));}catch(e){}}});});})();</script>`;
+
 const ONE_YEAR = 31536000;
 
 // Cache-Control by asset type. The Worker runs in front of ASSETS (run_worker_first)
@@ -231,11 +273,22 @@ async function serveAsset(request, env, pathname) {
   if (!response.ok) return response;
   const headers = new Headers(response.headers);
   headers.set("cache-control", cacheControlFor(pathname));
-  return new Response(response.body, {
+  const out = new Response(response.body, {
     status: response.status,
     statusText: response.statusText,
     headers,
   });
+  // Second-layer capture only on German guide pages (the traffic), never on
+  // legal pages or the EN mirror; edge-injected so no page rebuild is needed.
+  const isGuide = /^\/guide\//.test(pathname) &&
+    (headers.get("content-type") || "").includes("text/html") &&
+    !/impressum|datenschutz|kontakt/.test(pathname);
+  if (isGuide) {
+    return new HTMLRewriter().on("body", {
+      element(el) { el.append(SUB2_SNIPPET, { html: true }); },
+    }).transform(out);
+  }
+  return out;
 }
 
 // First-party, cookieless event collection (own D1). Replaces the dependency on
@@ -1075,7 +1128,7 @@ async function handleMcp(request, env) {
 }
 
 export default {
-  async fetch(request, env) {
+  async fetch(request, env, ctx) {
     const url = new URL(request.url);
 
     // API routes run before the canonical-URL rewriting (which would otherwise
@@ -1091,6 +1144,9 @@ export default {
     }
     if (url.pathname === "/api/subscribe") {
       return handleSubscribe(request);
+    }
+    if (url.pathname === "/api/sub2") {
+      return handleSub2(request, env, ctx);
     }
     if (url.pathname === "/api/top") {
       return handleTop(env);
