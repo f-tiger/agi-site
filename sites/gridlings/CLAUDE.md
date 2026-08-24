@@ -184,6 +184,15 @@ js + daily/pool json + style + README,剥离 manifest/SW/sub.js(深路径托管�
 病毒环:firstrun.js 在 coarse-pointer 设备上给 #sharebtn/#chbtn 追加原生
 share sheet(捕获层、不 stopPropagation,引擎剪贴板+埋点照常)。
 
+## itch.io 已上架(2026-08-24 15:01 UTC 数据实证)
+
+owner 发布 https://gridlings.itch.io/gridlings-11-daily-logic-puzzles
+(项目号 18941224)。**首个 play_start 已从 html-classic.itch.zone 落进 D1**——
+包内回流测量在生产环境验证成功。门户局次的识别特征:path 以 /html/ 开头、
+ref=itch.zone;周一记分板从此把「itch 局次」单列。主站三处已回链(itch 算法
+看重外部流量)。**后续更新包:重打 zip 后需在 itch 项目页替换文件**,或 owner
+存 BUTLER_API_KEY secret 后由 CI butler 自动推送(kit 有步骤)。
+
 ## 逐包穷尽审计结论(2026-08-24,12 代理工作流,11 款 × 双构建全驱动)
 
 五类系统性缺陷全部修复于 build_packages.py,**修后断言进构建自检**:
