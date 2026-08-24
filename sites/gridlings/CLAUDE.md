@@ -184,6 +184,19 @@ js + daily/pool json + style + README,剥离 manifest/SW/sub.js(深路径托管�
 病毒环:firstrun.js 在 coarse-pointer 设备上给 #sharebtn/#chbtn 追加原生
 share sheet(捕获层、不 stopPropagation,引擎剪贴板+埋点照常)。
 
+## 逐包穷尽审计结论(2026-08-24,12 代理工作流,11 款 × 双构建全驱动)
+
+五类系统性缺陷全部修复于 build_packages.py,**修后断言进构建自检**:
+①严格包外链残留(旧正则要求 href 是首属性,`<a id="subcta" href=...>` 全部 11 包
+逃逸)→ 属性序无关正则 + subcta/CTA 整段移除;②两种包均带 `/embed.js` 幽灵引用
+(未打包,门户上 404 或执行门户自己的同名文件)→ 打包时剥离 script 标签与
+"Copy iframe code" 死 UI;③严格包信标照旧回连本站 → 注入 `window.GL_CLEAN=true`
+(引擎自带 Coolmath 级 CLEAN 模式:灭信标/藏挑战/分享文本去 URL),已实测
+**零回连请求**且可正常赢;④严格包 README 声称有 cover.png 而无 → 与标准包同源
+打入;⑤gridlings 首页 11 个内联 hub 卡信标用根绝对 /e → 改绝对域名。
+标准包漏斗(UTM/CTA/subcta 外链)回归通过。**教训:一切「零 X」断言必须用属性
+序无关的语义匹配,literal grep 通过≠合规。**
+
 ## copy.js 复制契约(2026-08-24,owner「病毒式传播…保障体验…按平台规则优化」)
 
 九引擎的分享/挑战复制统一走 `copy.js` 的 `glCopy(txt)`(原生分享面板[移动]→

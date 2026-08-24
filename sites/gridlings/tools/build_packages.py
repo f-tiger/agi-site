@@ -69,6 +69,13 @@ def strip_page(html_src, slug):
     s = re.sub(r'<link rel="manifest"[^>]*>\n?', "", s)
     s = re.sub(r'<script>if\("serviceWorker".*?</script>\n?', "", s, flags=re.S)
     s = re.sub(r'<script src="/sub\.js" defer></script>\n?', "", s)
+    # embed.js is a live-site asset (never bundled): drop its tag and the
+    # "Copy iframe code" line whose handler lives in it — dead UI in a package.
+    s = re.sub(r'<script src="/embed\.js" defer></script>\n?', "", s)
+    s = re.sub(r'<p class="subline">Embed this game:.*?</p>\n?', "", s, flags=re.S)
+    # inline hub-card beacons (gridlings index): root-absolute /e posts to the
+    # portal origin and every hub_click is lost — same rewrite as the engine js
+    s = s.replace("sendBeacon('/e'", "sendBeacon('https://play.agiscorecard.com/e'")
     utm = f"?utm_source=package&utm_medium={slug}"
     s = re.sub(r'href="/(?!/)([a-z0-9-]*)"',
                lambda m: f'href="{SITE_URL}/{m.group(1)}{utm}" target="_blank" rel="noopener"', s)
@@ -85,7 +92,17 @@ def strict_page(html_src):
     """CrazyGames-class portals reject games carrying external links. Drop every
     <a href="http..."> (keep inner text), win-CTA included; plain-text
     attribution stays. Applied on top of strip_page output."""
-    s = re.sub(r'<a href="https?://[^"]*"[^>]*>(.*?)</a>', r"\1", html_src, flags=re.S)
+    s = html_src
+    # whole dead paragraphs go first (anchor-stripping would leave orphan text):
+    # the injected full-collection CTA and the subscribe line
+    s = re.sub(r'<p style="margin:6px 0 0"><a href="https://play\.agiscorecard\.com[^>]*>.*?</a></p>\n?', "", s, flags=re.S)
+    s = re.sub(r'<p class="subline"><a id="subcta".*?</p>\n?', "", s, flags=re.S)
+    # attribute-order-proof: the old pattern required href to be the FIRST
+    # attribute and let <a id="subcta" href="http..."> ship in all 11 zips
+    s = re.sub(r'<a\b[^>]*href="https?://[^"]*"[^>]*>(.*?)</a>', r"\1", s, flags=re.S)
+    # engines: window.GL_CLEAN === true kills the beacon, the challenge UI and
+    # the share-text site URL — built for exactly this delivery
+    s = s.replace('<script src="copy.js">', '<script>window.GL_CLEAN=true</script><script src="copy.js">', 1)
     s = s.replace("</title>", " (portal build)</title>", 1)
     return s
 
@@ -152,6 +169,9 @@ def main():
             zf.writestr("copy.js", open(os.path.join(SITE, "copy.js")).read())
             for f in g["data"]:
                 zf.writestr(f, open(os.path.join(SITE, f)).read())
+            cov = os.path.join(SITE, "covers", f"{slug}.png")
+            if os.path.exists(cov):
+                zf.writestr("cover.png", open(cov, "rb").read())
             zf.writestr("README.txt", README.format(name=slug.capitalize() + " (portal build, no external links)", days=450, epoch="2026-08-24"))
         open(os.path.join(sdir, f"{slug}.zip"), "wb").write(buf.getvalue())
     print(f"strict portal builds: {len(GAMES)} zips in downloads/strict/")
