@@ -16,6 +16,19 @@
   Cloudflare 构建,往那儿推会把线上回滚到旧内容。
 - 新站点照同样模式并入:`sites/<domain>/` + 一个 path 过滤的 deploy workflow。
 
+## 台账口径(2026-08-23,owner:「台账带上联盟点击等关键订阅或者营收数据」)
+
+每次报告的诚实台账从「订阅 X/5、营收 0」升级为**钱线仪表盘**,数据一律 D1 现查
+(28 天窗),按站列:订阅(agi subscribers + bpj subs 真实行,CI/unsub 行剔除,
+bpj 的 src=/__ci 是已知自测)、eco affiliate_click、bpj go(出站联盟点击)、
+SR pick_open/out_click/calc_use、gridlings play/solve/subs、audits 询单、
+invest_tool_click。**联盟归属现况**(变现的前提,悬置项必须每次带出):
+- amazon.de tag=**getecoback-21**(eco 全站+SR 新页,1,875 处)——**P0 悬置:
+  PartnerNet 账号归属未经 owner 确认**,未确认前所有点击分文不进;
+- amazon.com tag=**ecoback0d-20**(tds,美国站格式)——归属同样待 owner 确认。
+里程碑口径:舰队订阅计数 = agi 真实 subscribers + bpj 真实 subs(2026-08-23 起;
+当日 bpj 首个真实订阅 kon***@gmail.com 经脱敏核验,舰队 3/5)。
+
 ## 子域/板块开设铁律(2026-08-23,owner 问「是否要建新子域/独立板块」后定)
 
 现有管理面已宽:主域 agiscorecard.com + 四个伞域子域(invest./compass./source./
