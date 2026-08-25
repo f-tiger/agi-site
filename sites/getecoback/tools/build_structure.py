@@ -341,7 +341,7 @@ def collect_articles():
         cat = (CAT_OF.get(slug)
                or ("heizen" if slug.startswith(("heizung-", "heizluefter-", "infrarotheizung-", "heizkosten-")) else None)
             or ("energie-sparen" if slug.startswith(("balkonkraftwerk-", "balkonspeicher-", "growatt-", "zendure-", "strompreis-", "stromvergleich-")) else None)
-               or ("luftqualitaet" if slug.startswith(("luftentfeuchter-", "luftbefeuchter-", "keller-")) else None)
+               or ("luftqualitaet" if slug.startswith(("luftentfeuchter-", "luftbefeuchter-", "keller-", "schimmel-")) else None)
                or "klimaanlagen")
         arts[cat].append({
             "slug": slug, "url": canonical(html) or f"https://getecoback.com/guide/{slug}.html",
@@ -441,7 +441,7 @@ def cat_of(slug):
     return (CAT_OF.get(slug)
             or ("heizen" if slug.startswith(("heizung-", "heizluefter-", "infrarotheizung-", "heizkosten-")) else None)
             or ("energie-sparen" if slug.startswith(("balkonkraftwerk-", "balkonspeicher-", "growatt-", "zendure-", "strompreis-", "stromvergleich-")) else None)
-            or ("luftqualitaet" if slug.startswith(("luftentfeuchter-", "luftbefeuchter-", "keller-")) else None)
+            or ("luftqualitaet" if slug.startswith(("luftentfeuchter-", "luftbefeuchter-", "keller-", "schimmel-")) else None)
             or "klimaanlagen")
 
 
@@ -808,6 +808,15 @@ CONTEXT_MODELS = {
    ("Energiekostenmessgerät", "Erst messen, dann rechnen", "Steckdosen-Messgerät zeigt, was dein Gerät wirklich zieht — glaub keiner Rechnung (auch unserer nicht), bevor du deinen eigenen Wert kennst.", "ab ca. 15 €", "energiekostenmessger%C3%A4t+steckdose", "purifier"),
    ("Ventilator", "Läuft wirklich mit 800 W", "Ein Ventilator zieht 30–60 W statt 1.000 — das ist der Verbraucher, den ein Balkonkraftwerk tatsächlich den ganzen Tag trägt.", "ab ca. 70 €", "ventilator+leise+standventilator", "fan"),
  ],
+ # Fast-strike 2026-08-25 (rising: "schimmel im keller entfernen" v=108.750).
+ # Every product type below is named in the article body itself; the third item
+ # is the page's core judgement (removal without dehumidifying = subscription
+ # to mold), funneling into the keller money cluster.
+ "schimmel-im-keller-entfernen": [
+   ("Schimmelentferner (chlorfrei)", "Für den Keller erste Wahl", "Wasserstoffperoxid-Basis — wirkt gegen den Belag, ohne Chlordämpfe im schlecht belüfteten Keller.", "Preis vor Ort prüfen", "schimmelentferner+chlorfrei", "purifier"),
+   ("Hygrometer", "Erst messen, dann schrubben", "Ob der Keller überhaupt im kritischen Feuchtebereich liegt, entscheidet der Messwert — nicht die Nase.", "Preis vor Ort prüfen", "hygrometer+innen", "purifier"),
+   ("Luftentfeuchter mit Schlauchanschluss", "Damit er nicht wiederkommt", "Entfernen ohne Entfeuchten ist ein Abo auf Schimmel — Dauerablauf in den Bodenablauf, fertig.", "Preis vor Ort prüfen", "luftentfeuchter+mit+schlauch", "dehum"),
+ ],
  "mobile-klimaanlage-stinkt-schimmel": [
    ("Klimaanlagen-Reiniger (Schaum)", "An die Quelle", "Der Geruch sitzt im Biofilm auf dem Verdampfer — Sprühschaum kommt dorthin, wo Wischen nicht hinreicht.", "ab ca. 10 €", "klimaanlagen+reiniger+schaum+verdampfer", "ac"),
    ("Ersatz-Filter", "Wenn der Geruch bleibt", "Ein Filter, der nach dem Waschen und Trocknen weiter riecht, ist durch — dann hilft nur Tauschen.", "ab ca. 12 €", "klimaanlage+ersatzfilter+universal", "purifier"),
@@ -924,6 +933,8 @@ CONTEXT_SUB = {
  "klimaanlage-balkonkraftwerk": ("Passend zur Rechnung oben, nicht dagegen: Ein Monoblock sprengt die 800 W "
                                 "meistens — deshalb stehen hier Speicher, Messgerät und der Verbraucher, der "
                                 "wirklich mit Solarstrom läuft. Nicht selbst getestet. Symbolbilder."),
+ "schimmel-im-keller-entfernen": ("Entfernen ist der kleinere Teil der Arbeit — deshalb stehen hier Mittel, "
+                                  "Messgerät und das Gerät gegen die Ursache. Nicht selbst getestet. Symbolbilder."),
  "mobile-klimaanlage-stinkt-schimmel": ("Der Geruch ist ein Reinigungsproblem, kein Kaufgrund — deshalb "
                                         "stehen hier Mittel gegen die Ursache statt neuer Geräte. Produkttypen, "
                                         "nicht selbst getestet, Preise vor Ort prüfen. Symbolbilder."),

@@ -847,3 +847,21 @@ owner 指令"用户重点关注配件,扩展丰富配件产品"。**先盘点类
   JSON-LD 逐条同步(6=6),dateModified/可见日期/sitemap lastmod 同步 08-25。
   **强化路径(顺 4,20% 转化的真金信号)**:秋冬线快反出页现已解锁,rising 每日补货;
   epicooler 页判定线照旧;转化率不是瓶颈,合格点击量才是——继续投秋冬买家意图页。
+
+- 2026-08-25(下午,owner:「深度优化eco站,提升点击量和转化率」)**CRO 深度轮,全部由 D1 28d 一手数据驱动**。
+  **证据**:真人 guide pv 集中在夏季簇(EN 斜开窗 36 / 房车 33 / 免钻孔 24 / Kippfenster 23),秋冬钱页流量≈0;
+  点击引擎=具体型号链接(De'Longhi PAC EX105 全站被点最多;italy 10pv→12c、30-qm 8pv→11c);
+  midea-ausverkauft 修复已生效(toppick Clima Butler ×2,不再动);kuehlt-nicht 修后仍 0 点击
+  → 按 08-16 预登记判定线,问题页读者不买,停止在该页型加转化组件(此判定执行,非跳过)。
+  **动作 ①(点击量,主投)**:快反新页 `/guide/schimmel-im-keller-entfernen`(rising v=108.750,
+  秋冬簇新入口):UBA 0,5 m² 自理线表格、四类药剂诚实对比(含「Essig 在钙质基面适得其反」)、
+  核心判定「不除湿=订阅下一块霉」直通 keller 钱簇;CONTEXT_MODELS 三面(氯free清除剂/湿度计/
+  带管除湿机)+ cat_of schimmel- 前缀→Luftqualität;3 页入链(gegen-schimmel/keller-lueften/
+  stinkt-schimmel)。全链构建绿:sitemap 153、hreflang 门过、FAQ 4=4。
+  **判定线(标准快反线)**:28d 内该页 affiliate_click ≥3 或进站内 pv TOP10;schimmel 词 14 天冷却。
+  **动作 ②(点击量,九月过渡)**:EN 四大流量页(tilt-and-turn 36pv / europe-heatwave 20 /
+  italy 14 / spain 14)related 区注入「As the cooling season winds down」秋季桥 →
+  musty-smell(存放前清洁)+ dehumidifier-drying-clothes-cost(EN 唯一秋冬页)。
+  **判定线**:28d 内两个 EN 秋冬目标页出现首批来自桥的 pv(ref 含来源页)→ 桥有效,扩到 EN 全簇;
+  0 → 撤桥。**转化率侧结论**:4,20% 不是瓶颈;具体型号链接模式已被 CONTEXT_MODELS 全覆盖,
+  本轮不再加面——增长杠杆在合格点击量(秋冬入口 + 桥)。
