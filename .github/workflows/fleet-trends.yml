@@ -7,6 +7,11 @@ on:
   schedule:
     - cron: '20 4 * * *'
   workflow_dispatch:
+    inputs:
+      full:
+        description: 'Bootstrap: fetch ALL rising seeds this run (RISING_ALL), not the 2/run rotation'
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -31,6 +36,8 @@ jobs:
       # 才是需求面。一次服务三站,全池 2 种子/次(配额纪律),搭载本 schedule 不新增
       # cron;pip + 2 种子×60s ≈ +2 分/次 ≈ +60 分/月(公开仓免费)。
       - name: Fleet rising related queries (fast-capture signal)
+        env:
+          RISING_ALL: ${{ inputs.full }}
         run: |
           pip install -q trendspy
           python3 tools/fleet_trends_rising.py || echo "::warning::fleet rising fetch failed — keep last good"
