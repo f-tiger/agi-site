@@ -847,3 +847,10 @@ gridlings×1):多数命中是泛词(claude/gpt 撞名)。一条值得过需求�
 晚约 50 分钟,属 GitHub 调度器常见延迟,不是注册失灵。教训:**判定 schedule 失灵
 至少等 2 小时再下结论**;我的 04:03 手动 dispatch 因此成了无害重复(odds 快照同日
 重取,幂等)。「下周一复核」项撤销,无需任何修复。
+
+## 2026-08-25 日结(daily run)
+- 漏斗 28d:subscribers 2(stored)、sub_ok 0、subscribe_click 0、index_click{*_live} 0。
+  activity 低位,滞后正常,不 churn。舰队订阅 3/5、已验证营收 0。
+- itch 首发次日回流(经包内信标):play_start 13 + solve 1,全美,`:clean` 精品版确认。
+  管线端到端通,量级待 CG/Show HN。
+- ship:capex 页 rung⑤ 内链刷新(spoke↔spoke + tracker),最陈旧页从 06-30 更新。

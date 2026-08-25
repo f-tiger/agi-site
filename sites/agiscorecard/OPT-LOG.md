@@ -1,3 +1,12 @@
+## 2026-08-25(daily run 04:00)— GEO 底盘刷新(rung⑤,单项)
+
+监控:subscribers 2(全 stored)、sub_ok 0/28d、subscribe_click 0/28d、index_click{*_live} **0**
+(08-30 判定线临近,趋势仍指向纯品牌资产)、mcp_call 2(历史 CI)。CITATION 队列两项均
+startup-sweep 猜测种子,非 Bing 引用证据,不为凑数做。**itch 首发次日**:html-classic.itch.zone
+回流 13 play_start+1 solve(`:clean` 证实精品版),已入记分板。本 run:最陈旧页
+ai-capex-trillion-dollar(2026-06-30,8 周)加两条上下文内链(→/is-the-ai-capex-a-bubble
+spoke↔spoke 缺口 + →/progress-index 追踪器),bump dateModified/可见日期/sitemap。零编造。
+
 ## 2026-08-24(daily run 04:00)— 周一战略项:赔率 vs 证据换新快照 + 定时器修复
 
 odds-snapshot 08-24 04:04 机器核实(No 92%/Yes 8%),gen_odds 重生成,sitemap bump。
