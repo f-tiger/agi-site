@@ -24,10 +24,18 @@
    并剔除 /__selftest 与「无引荐+单页集中+单国家」形状的行。** Google
    2.7 引荐/日是最大真实来源;ChatGPT-User 59 次/28d(服务端)是第二通道,
    EN 判定型内容继续加深——引用吃内容,不吃工具 UI。
-4. **站点自有触发器(2026-08-20)**:fleet-trends.yml 每日 04:20 UTC 提交
-   data/trends-us.json(美国区热搜 × AI 工具名词表)。每日循环 Step 1 必读:
-   命中的工具当轮优先复核其 limits(热搜=需求峰值=数据必须是对的),并检查
-   该工具页的 watch 钩子在位。ok:false 连续 ≥3 天报 owner。同词 7 天冷却。
+4. **站点自有触发器(2026-08-20;2026-08-25 补 rising 面)**:fleet-trends.yml
+   每日 04:20 UTC 提交两个信号,每日循环 Step 1 必读**两个都读**:
+   a) `data/trends-us.json`(美国区当日热搜 × AI 工具名词表)。命中的工具当轮
+      优先复核其 limits(热搜=需求峰值=数据必须是对的),并检查该工具页的 watch
+      钩子在位。ok:false 连续 ≥3 天报 owner。同词 7 天冷却。
+   b) `data/trends-rising.json`(工具名 rising 关联查询,舰队级 tools/fleet_trends_rising.py)
+      ——**2026-08-25 新增**,起因:当日热搜 RSS 对 AI 工具名连续 6 天 matched:[],
+      热搜面被体育/明星占满,结构上打不到工具需求。rising 才是需求面
+      (deepseek → "deepseek free"/"pricing"/"alternative")。读法:高 v 的 rising
+      查询 = 真实上升需求,先复核对应工具页 limits 是否对、watch 钩子是否在位;
+      **它是选题输入不是选题依据**,任何由它引出的页面仍过三门(尤其需求门)+
+      硬内容规则,rising 词里的编造/幻名(如虚构工具名)一律不落页。
 5. 定位钉死(owner 2026-08-20 审计确认):本站的可售资产是「每日核实的活数据
    +变更历史」,不是工具外壳——agent 直接调 API 不看 UI,外壳可被一周抄走。
    工具 UI = 数据的展示层与转化钩子;售卖形状 = watch Pro / 白标 API 混合定价,

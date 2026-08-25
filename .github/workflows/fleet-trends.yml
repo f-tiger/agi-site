@@ -26,10 +26,19 @@ jobs:
       # 创业产品雷达(2026-08-24 owner 指令:输入层不能只依赖 Google Trends)。
       # PH 公开 Atom + HN Algolia,免鉴权;搭载本 schedule,增量 ~10s/天 ≈ 0.3 分/月。
       - run: node tools/startup_radar.mjs
+      # 舰队 rising 关联查询(2026-08-25 owner:「bpj 按谷歌趋势优化」+「其他站点也要
+      # 检查」)。当日热搜 RSS 对 bpj/agi/tds 三站 niche 词连续 6 天 matched:[],rising
+      # 才是需求面。一次服务三站,全池 2 种子/次(配额纪律),搭载本 schedule 不新增
+      # cron;pip + 2 种子×60s ≈ +2 分/次 ≈ +60 分/月(公开仓免费)。
+      - name: Fleet rising related queries (fast-capture signal)
+        run: |
+          pip install -q trendspy
+          python3 tools/fleet_trends_rising.py || echo "::warning::fleet rising fetch failed — keep last good"
       - name: Commit snapshots if changed
         run: |
           git config user.name 'Claude'
           git config user.email 'noreply@anthropic.com'
           git add sites/baipiaoji/data/trends-us.json sites/agiscorecard/trends-us.json sites/thedollscout/content/trends-us.json
+          git add sites/baipiaoji/data/trends-rising.json sites/agiscorecard/trends-rising.json sites/thedollscout/content/trends-rising.json 2>/dev/null || true
           git add data/startup-radar.json 2>/dev/null || true
           git diff --cached --quiet || { git commit -m "chore(trends): 美国区触发器+创业雷达快照 $(date -u +%F)"; git pull --rebase origin main; git push origin main; }
