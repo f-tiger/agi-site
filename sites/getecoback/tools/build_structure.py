@@ -788,6 +788,21 @@ CONTEXT_MODELS = {
    ("Ersatz-Filter", "Sauber einlagern", "Mit frischem Filter einlagern heißt: im Frühjahr einschalten statt erst putzen.", "Preis vor Ort prüfen", "klimaanlage+ersatzfilter+universal", "purifier"),
    ("Reinigungs-Schaum für den Verdampfer", "Vor dem Einlagern", "Feuchter Verdampfer + Monate Stillstand = Schimmelgeruch im Frühjahr.", "Preis vor Ort prüfen", "klimaanlagen+reiniger+schaum+verdampfer", "ac"),
  ],
+ # Category-strategy round 2026-08-25 (owner: research fees/conversion, pick
+ # categories, then build). Decision memo: docs/amazon-category-strategy-2026-08.md.
+ # The autumn dehumidifier cluster leads the matrix; these two device hub pages
+ # had NO purchase surface at all. "Meistgesucht" is a first-party demand signal
+ # (trends-rising.json, dated), explicitly NOT a test verdict.
+ "luftentfeuchter-ratgeber": [
+   ("Pro Breeze Luftentfeuchter 20 L", "Meistgesucht diese Woche", "Das aktuell meistgesuchte Einzelmodell in unserer täglichen Google-Trends-Abfrage (Stand 25.08.). Nachfrage-Signal, kein Testurteil — nicht selbst getestet.", "Preis vor Ort prüfen", "pro+breeze+luftentfeuchter+20l", "dehum"),
+   ("Comfee MDDF-20DEN7", "Der Keller-Favorit", "In mehreren Fachvergleichen der Keller-Favorit — 20 L/Tag, Hygrostat, Dauerablauf-Anschluss.", "Preis vor Ort prüfen", "Comfee+MDDF-20DEN7+Luftentfeuchter", "dehum"),
+   ("Hygrometer", "Erst messen", "Ob und wie stark du entfeuchten musst, entscheidet der Messwert — über 60 % wird es kritisch.", "Preis vor Ort prüfen", "hygrometer+innen", "purifier"),
+ ],
+ "luftentfeuchter-gegen-schimmel": [
+   ("Luftentfeuchter mit Hygrostat", "Das eigentliche Werkzeug", "Hält die Luftfeuchte automatisch unter der Schimmelschwelle — genau das, was dieser Ratgeber erklärt.", "Preis vor Ort prüfen", "luftentfeuchter+mit+hygrostat", "dehum"),
+   ("Pro Breeze Luftentfeuchter 20 L", "Meistgesucht diese Woche", "Das aktuell meistgesuchte Einzelmodell in unserer täglichen Google-Trends-Abfrage (Stand 25.08.). Nachfrage-Signal, kein Testurteil — nicht selbst getestet.", "Preis vor Ort prüfen", "pro+breeze+luftentfeuchter+20l", "dehum"),
+   ("Hygrometer", "Kontrolle statt Hoffnung", "Nach der Entfernung zeigt nur der Messwert, ob die Ursache wirklich weg ist.", "Preis vor Ort prüfen", "hygrometer+luftfeuchtigkeit+innen", "purifier"),
+ ],
  "luftentfeuchter-granulat-oder-elektrisch": [
    ("Granulat-Nachfüllpacks", "Der laufende Posten", "Die Nachfüllpacks sind der eigentliche Kostenfaktor — Granulatgeräte selbst kosten fast nichts.", "Preis vor Ort prüfen", "luftentfeuchter+granulat+nachf%C3%BCll", "dehum"),
    ("Raumentfeuchter (Granulat)", "Für Schrank & Bad", "Ohne Strom, ohne Geräusch — für kleine geschlossene Räume die einfachste Lösung.", "Preis vor Ort prüfen", "raumentfeuchter+granulat", "dehum"),
@@ -935,6 +950,10 @@ CONTEXT_SUB = {
                                 "wirklich mit Solarstrom läuft. Nicht selbst getestet. Symbolbilder."),
  "schimmel-im-keller-entfernen": ("Entfernen ist der kleinere Teil der Arbeit — deshalb stehen hier Mittel, "
                                   "Messgerät und das Gerät gegen die Ursache. Nicht selbst getestet. Symbolbilder."),
+ "luftentfeuchter-ratgeber": ("„Meistgesucht“ ist ein Nachfrage-Signal aus unserer täglichen Google-Trends-"
+                              "Abfrage, kein Testurteil. Nicht selbst getestet. Symbolbilder."),
+ "luftentfeuchter-gegen-schimmel": ("Das Werkzeug gegen die Ursache zuerst — „meistgesucht“ ist ein Nachfrage-"
+                                    "Signal, kein Testurteil. Nicht selbst getestet. Symbolbilder."),
  "mobile-klimaanlage-stinkt-schimmel": ("Der Geruch ist ein Reinigungsproblem, kein Kaufgrund — deshalb "
                                         "stehen hier Mittel gegen die Ursache statt neuer Geräte. Produkttypen, "
                                         "nicht selbst getestet, Preise vor Ort prüfen. Symbolbilder."),

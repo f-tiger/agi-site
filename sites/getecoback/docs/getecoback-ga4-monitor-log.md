@@ -865,3 +865,15 @@ owner 指令"用户重点关注配件,扩展丰富配件产品"。**先盘点类
   **判定线**:28d 内两个 EN 秋冬目标页出现首批来自桥的 pv(ref 含来源页)→ 桥有效,扩到 EN 全簇;
   0 → 撤桥。**转化率侧结论**:4,20% 不是瓶颈;具体型号链接模式已被 CONTEXT_MODELS 全覆盖,
   本轮不再加面——增长杠杆在合格点击量(秋冬入口 + 桥)。
+
+- 2026-08-25(晚,owner:「调研佣金率/成交概率/转化率,定方向与成交品类,再做网站」)
+  **品类策略轮**,全文见 docs/amazon-category-strategy-2026-08.md。要点:A 级自家实测
+  (转化 4,20%、混合费率 4,11%、单笔核对 4,98%、0 退货、具体型号链接跑赢泛搜索)+
+  B 级 live 检索(2025-06 起 Baumarkt/Küche/Elektro-Handwerkzeug 直接成交 6%,电子 ~3%,
+  家具 3%)。**方向判定:秋冬「除湿+取暖」双主攻,杠铃 = 低价耐用品保单量 + 中客单设备
+  博佣金;储能为博单腿(€30+/单但费率待核、高退货险),不主攻**。落地:ratgeber 与
+  gegen-schimmel 两设备枢纽页零购买面 → 补 CONTEXT_MODELS(Pro Breeze 20L「Meistgesucht
+  diese Woche」chip,依据自家 rising v=38.750,文案明示需求信号非测评);明日快反 =
+  infrarotheizung-garage(v=44.050 × 6% × 页面缺口)。判定线 09-22:两页合计
+  affiliate_click ≥3;Pro Breeze chip 点击占比超泛搜索 → 模式推广到取暖簇。
+  **C 级费率(大家电等)待 owner 后台 Rate Plan 一张截图转实——已在报告中请求。**
