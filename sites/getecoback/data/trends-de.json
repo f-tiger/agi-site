@@ -1,48 +1,53 @@
 {
  "ok": true,
- "fetched": "2026-08-24",
+ "fetched": "2026-08-25",
  "source": "https://trends.google.com/trending/rss?geo=DE",
- "matched": [],
+ "matched": [
+  {
+   "title": "wetter stuttgart",
+   "traffic": "200+"
+  }
+ ],
  "top": [
   {
-   "title": "2000er",
-   "traffic": "100+"
-  },
-  {
-   "title": "kuwait",
-   "traffic": "200+"
-  },
-  {
-   "title": "kritik tatort heute",
-   "traffic": "20000+"
-  },
-  {
-   "title": "rain",
+   "title": "rockstar gta 6 leaks",
    "traffic": "1000+"
   },
   {
-   "title": "bvg",
+   "title": "tiempo",
    "traffic": "200+"
   },
   {
-   "title": "jacob elordi",
+   "title": "mopo horoskop",
+   "traffic": "200+"
+  },
+  {
+   "title": "kanzlers weide",
    "traffic": "100+"
   },
   {
-   "title": "rentenreform",
+   "title": "wetter stuttgart",
+   "traffic": "200+"
+  },
+  {
+   "title": "mychajlo fedorow",
+   "traffic": "100+"
+  },
+  {
+   "title": "die verräter – vertraue niemandem!",
+   "traffic": "10000+"
+  },
+  {
+   "title": "obdachlosigkeit",
+   "traffic": "100+"
+  },
+  {
+   "title": "death valley",
+   "traffic": "100+"
+  },
+  {
+   "title": "film sieben tote hat die woche",
    "traffic": "500+"
-  },
-  {
-   "title": "bz berlin",
-   "traffic": "100+"
-  },
-  {
-   "title": "distelrasen",
-   "traffic": "1000+"
-  },
-  {
-   "title": "mick schumacher",
-   "traffic": "200+"
   }
  ],
  "history": [
@@ -71,6 +76,12 @@
   {
    "d": "2026-08-24",
    "matched": []
+  },
+  {
+   "d": "2026-08-25",
+   "matched": [
+    "wetter stuttgart"
+   ]
   }
  ]
 }

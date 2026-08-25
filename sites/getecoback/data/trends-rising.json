@@ -1,5 +1,5 @@
 {
- "fetched": "2026-08-24",
+ "fetched": "2026-08-25",
  "geo": "DE",
  "seeds": {
   "klimaanlage": {
@@ -97,48 +97,94 @@
   "infrarotheizung": {
    "rising": [
     {
-     "q": "knebel infrarotheizung",
-     "v": 73600
-    },
-    {
-     "q": "infrarotheizung 100 watt",
-     "v": 49750
-    },
-    {
-     "q": "infrarotheizung gegen schimmel",
-     "v": 28950
+     "q": "schmidbauer infrarotheizung",
+     "v": 62950
     },
     {
      "q": "infrarotheizung für garage",
-     "v": 20700
+     "v": 44050
     },
     {
-     "q": "heizung elektrisch",
-     "v": 20200
-    },
-    {
-     "q": "infrarotheizung standgerät testsieger",
-     "v": 19450
-    },
-    {
-     "q": "infrarotheizung kosten 100 qm",
-     "v": 19100
-    },
-    {
-     "q": "idealo",
-     "v": 4700
-    },
-    {
-     "q": "infrarotheizung 1500 watt",
-     "v": 3850
+     "q": "radiator heizung",
+     "v": 1950
     },
     {
      "q": "infrarotheizung für bad",
-     "v": 190
+     "v": 200
+    },
+    {
+     "q": "redwell infrarotheizung",
+     "v": 180
+    },
+    {
+     "q": "klarstein",
+     "v": 110
+    },
+    {
+     "q": "infrarotheizung decke licht",
+     "v": 80
+    },
+    {
+     "q": "klarstein infrarotheizung",
+     "v": 70
+    },
+    {
+     "q": "infrarotheizung bad",
+     "v": 60
+    },
+    {
+     "q": "infrarotheizung mit licht",
+     "v": 60
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-08-24"
+   "fetched": "2026-08-25"
+  },
+  "luftentfeuchter": {
+   "rising": [
+    {
+     "q": "luftentfeuchter bei hitze",
+     "v": 164700
+    },
+    {
+     "q": "luftentfeuchter keller testsieger",
+     "v": 48850
+    },
+    {
+     "q": "split klimaanlage",
+     "v": 42900
+    },
+    {
+     "q": "pro breeze luftentfeuchter 20l",
+     "v": 38750
+    },
+    {
+     "q": "luftentfeuchter wandmontage",
+     "v": 29000
+    },
+    {
+     "q": "klarstein mobile klimaanlage mit abluftschlauch, 4-in-1 klimagerät mit ventilato",
+     "v": 28400
+    },
+    {
+     "q": "luftentfeuchter testsieger stiftung warentest",
+     "v": 22800
+    },
+    {
+     "q": "dyson luftreiniger",
+     "v": 21750
+    },
+    {
+     "q": "easy home luftentfeuchter bedienungsanleitung aldi",
+     "v": 21200
+    },
+    {
+     "q": "emerio luftentfeuchter",
+     "v": 17050
+    }
+   ],
+   "source": "related-queries",
+   "fetched": "2026-08-25"
   }
  }
 }
