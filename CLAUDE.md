@@ -25,9 +25,18 @@ SR pick_open/out_click/calc_use、gridlings play/solve/subs、audits 询单、
 invest_tool_click、tds affiliate_click(D1 hits 表 ev 列;链路 2026-08-19 上线,
 08-24 复核通过:ev='' 的 JS 真人 pv 每日落库证明管道活着,affiliate_click=0 是
 真没人点、不是测不到——别再把它记成盲区)。**联盟归属现况**(变现的前提,悬置项必须每次带出):
-- amazon.de tag=**getecoback-21**(eco 全站+SR 新页,1,875 处)——**P0 悬置:
-  PartnerNet 账号归属未经 owner 确认**,未确认前所有点击分文不进;
-- amazon.com tag=**ecoback0d-20**(tds,美国站格式)——归属同样待 owner 确认。
+- amazon.de tag=**getecoback-21**(eco 全站+SR 新页,1,875 处)——**归属已确认
+  (2026-08-25)**:owner 出示 partnernet.amazon.de 后台截图,该 StoreID 归其账号;
+  P0 悬置解除,eco 恢复出联盟页。
+  **🏁 舰队首笔已验证营收(2026-08-25 里程碑,Commissions 明细截图)**:30 天窗
+  (07-26→08-24)佣金 **€9,96**,119 点击 → 5 单,转化 **4,20%**,下单额 €463,14,
+  0 退货;单笔可核对:08-05 下单 €13,44 → 08-07 发货 → €0,67 佣金。台账口径从此
+  「营收 0」改为「eco 联盟 €9,96/30d(未到账)」。每次报告引用 PartnerNet 数字须带
+  数据窗日期,过期数字待 owner 下一张截图刷新——沙箱进不去 PartnerNet。
+  唯一剩余待办属**付款侧**(不挡出页):后台红条提示付款/税务信息未填完,佣金累计中
+  但需 owner 补完才实际到账(~2 分钟)——**营收已真实发生,这一步是它到手的全部距离**;
+- amazon.com tag=**ecoback0d-20**(tds,美国站格式)——**仍待确认**:08-25 的 DE 截图
+  未含美国站,其归属需 owner 单独确认后方可解除 tds 侧同款悬置。
 里程碑口径:舰队订阅计数 = agi 真实 subscribers + bpj 真实 subs(2026-08-23 起;
 当日 bpj 首个真实订阅 kon***@gmail.com 经脱敏核验,舰队 3/5)。
 

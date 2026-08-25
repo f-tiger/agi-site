@@ -260,3 +260,14 @@ specs above at any time to resume net-new page creation.
 2. **工具页同样不吃引用。** 前十引用页里没有任何一个工具。答案引擎引用的是可
    摘录的文本，不是计算器。所以工具的 KPI 是点击与绑定，不是引用；内容拿引用 →
    工具接住点击，这个分工要固定下来。
+
+## Queue — trend-evidenced seed (2026-08-25, source: trends-rising.json bootstrap)
+
+- [ ] `agi-examples` — "artificial general intelligence examples" — 2026-08-25 Google
+  autocomplete (geo=US) 实时联想词,而 `/what-is-agi` 全文 0 次出现 "example"。角度:
+  「AGI 的例子今天并不存在」本身就是判定型答案——现有系统(含前沿 LLM)按站内已核
+  的三档口径(benchmark 级 ~83% GDPval / drop-in worker / 自动化 AI 研究者)逐档不过,
+  最接近的"例子"只能是假想系统与里程碑。只用站内已核数据,不发明新统计。**先查重**:
+  若与 `/what-is-agi` 蚕食,则改为在 what-is-agi 冷却期(5 轮)结束后加 FAQ 一条 +
+  JSON-LD 同步,不新建页。同批联想词 "artificial general intelligence stocks/companies"
+  已由 `/ai-stock-exposure` + invest PRD 队列覆盖,勿重复立项。

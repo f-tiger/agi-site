@@ -2278,3 +2278,14 @@ search-index 重生成、feed 重生成、share/future-survey.png 重烤为 2047
 - 判定线(28 天,规格):去重 pid ≥20 且 7 日回访 ≥3 → 做 streak 分享图;
   不足 → 保留不加码。flip 日义务:刷新 picks-agg + 重跑 gen_leaderboard
   (已并入翻转日流程,见 CLAUDE.md 待补一行)。
+
+## 2026-08-25 (trend-driven round)
+rising 信号面上线(舰队级 fleet_trends_rising.py,bootstrap 全池已抓):US autocomplete
+实测 "agi timeline prediction market / polymarket / metaculus" 为活跃联想词。动作:
+① gen_odds.py 重titled agi-odds-vs-evidence:"AGI Odds vs Evidence: Markets Price
+Announcements" → **"AGI Timeline: Prediction Markets vs Evidence"**(44 字符,补上
+timeline + prediction market 两个需求词;经生成器改,周更不回退),页面已重生成。
+② "artificial general intelligence examples" 需求(what-is-agi 全文 0 次 example)
+记入 content-backlog 趋势种子,**不动 what-is-agi 本体**(近 5 轮冷却:08-16 活数字
+胶囊轮刚触)。"agi stocks/companies" 需求已被 /ai-stock-exposure + invest PRD 覆盖,
+不重复立项。validate 222 页 OK。

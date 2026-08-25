@@ -1,4 +1,21 @@
 {
-  "items": [],
-  "updated": "2026-08-17"
+  "items": [
+    {
+      "id": "add-midjourney-entry",
+      "kind": "tool-entry",
+      "category": "image",
+      "evidence": "trends-rising 2026-08-25 (Google autocomplete, geo=US): 'midjourney free' + 'midjourney pricing' 均为实时联想词——免费额度/价格是搜索者的第一问,而 219 工具库 image 类(24 个)没有 midjourney 条目。判定型答案本身就有价值:若实测确认无免费层,条目就写'无免费层+已验证的免费替代'。",
+      "gate": "上线前必须 runner 实测 midjourney 当前定价页(会话沙箱出网 403 不可验证);零编造——不实测不入库。",
+      "added": "2026-08-25"
+    },
+    {
+      "id": "add-sora-entry",
+      "kind": "tool-entry",
+      "category": "video",
+      "evidence": "trends-rising 2026-08-25 (Google autocomplete, geo=US): 'sora 2' + 'sora ai app' 为实时联想词;video 类(20 个)无 sora 条目。同 midjourney:免费层现状本身即判定型内容。",
+      "gate": "同上:runner 实测 OpenAI sora 当前免费/订阅门槛后方可入库;注意与同名歧义词(kingdom hearts/fortnite)无关,条目只写工具本身。",
+      "added": "2026-08-25"
+    }
+  ],
+  "updated": "2026-08-25"
 }

@@ -835,3 +835,15 @@ owner 指令"用户重点关注配件,扩展丰富配件产品"。**先盘点类
 昨天 3 组),差点误报「探针开张」。真人 lead_intent 截至今日 = 0。
 同理:/mcp 的 mcp_call 若在 ≤3 秒内全工具遍历、参数呈默认值形状 = mcp_smoke CI,
 不是 agent 采用。
+
+- 2026-08-25 🏁 **首笔已验证营收 + P0 解除 + 趋势深化**。owner 出示 PartnerNet 两张截图:
+  ①归属确认(StoreID getecoback-21 = owner 账号,amazon.de)→ 执行令 P0「不新增联盟页」
+  悬置解除;②Commissions 明细(07-26→08-24):**€9,96 佣金 / 119 点击 / 5 单 / 转化 4,20%**
+  / 下单额 €463,14 / 0 退货——舰队第一笔真实联盟营收。剩余 owner 待办:付款/税务信息
+  (红条,~2 分钟),不填不到账。**本轮动作(rising 趋势驱动)**:trends-rising 强信号
+  (luftentfeuchter bei hitze=164700 / keller testsieger=48850)→ 深化 luftentfeuchter-keller
+  (秋冬钱簇):+2 条 FAQ(「Hilft ein Luftentfeuchter bei Hitze?」直接接住 164700 需求词;
+  「Testsieger?」诚实拆假测评并回链 epicooler Faktencheck + wie-wir-empfehlen),可见与
+  JSON-LD 逐条同步(6=6),dateModified/可见日期/sitemap lastmod 同步 08-25。
+  **强化路径(顺 4,20% 转化的真金信号)**:秋冬线快反出页现已解锁,rising 每日补货;
+  epicooler 页判定线照旧;转化率不是瓶颈,合格点击量才是——继续投秋冬买家意图页。

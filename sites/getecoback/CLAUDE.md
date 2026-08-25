@@ -66,12 +66,15 @@ Balkonkraftwerk 补贴(balkonspeicher_foerderung 工具已在,萨克森等州补
 
 ## 执行令(2026-08-20,基于两轮深度调研,详见根仓 docs/fleet-deep-dive-2026-08.md)
 
-1. **P0 悬置项:PartnerNet 佣金归属未确认。** 全站 tag=getecoback-21 指向 amazon.de,
-   但 owner 后台目前只见美国站 ecoback0d-20(US 报表 $0 属正常,流量没去美国站)。
-   **在 owner 确认 partnernet.amazon.de 存在账号且 tracking ID getecoback-21 归属其
-   名下之前,不再新增以 Amazon 联盟为唯一出口的页面**——已有页面保持,别拆。
-   确认归属后此条自动解除;若确认「该 tag 从未注册」:第一优先改动 = 全站换成
-   owner 真实注册的 DE tag(build_structure.py 与页面统一替换,一次提交)。
+1. **P0 归属已确认解除(2026-08-25)。** owner 出示 partnernet.amazon.de 后台截图:
+   StoreID **getecoback-21** 归属 owner 账号(amazon.de/DE 站),且本月已有真实佣金
+   **€9,96 / 103 clicks / 4,85% 转化 / 5 单**(截图「Summary for This Month」)——
+   证明该 tag 已注册、归属正确、正在计佣。**「不新增 Amazon 联盟页」的悬置就此解除**,
+   eco 恢复按快反规则出/深化联盟页。仍有一项**付款侧**待办(非归属、不挡出页):后台
+   红条「Submit payment information / finish onboarding」——付款/税务信息未填完,佣金
+   在累计但需 owner 补完才能实际到账(~2 分钟 owner 动作,已在 owner 待办)。
+   注:此截图确认的是 **DE 的 getecoback-21**;tds 用的 **amazon.com ecoback0d-20(US)**
+   未在本截图出现,其归属仍待 owner 单独确认(见根仓 CLAUDE.md 台账)。
 2. 季节悬崖应对(判定线:10 月 aff_click ≥ 8 月的 50%):EB_SEASON 季节桥已上线
    (13 个夏季赢家页);每轮优化优先投秋冬场景页与秋冬工具入口,夏季页只做
    不伤基线的维护。

@@ -73,7 +73,11 @@ related = [("/agi-2027-resolution", "AGI-2027 resolution criteria & countdown"),
 
 html = g.build(
     slug="agi-odds-vs-evidence",
-    title="AGI Odds vs Evidence: Markets Price Announcements",
+    # 2026-08-25 retitle on trend evidence (trends-rising bootstrap): live US
+    # autocomplete carries "agi timeline prediction market / polymarket / metaculus";
+    # the old title ("AGI Odds vs Evidence: Markets Price Announcements") had neither
+    # "timeline" nor "prediction market" phrasing. 44 chars, ≤60 rule holds.
+    title="AGI Timeline: Prediction Markets vs Evidence",
     desc=f"Polymarket's AGI-by-2027 contract vs the evidence: the market prices an announcement, the scorecard grades capability ({score}/100). Issue #1 of a running comparison.",
     og_title="Odds vs evidence — what prediction markets and the scorecard each measure",
     eyebrow=f"Odds vs evidence · Issue #1 · reviewed {REVIEW_DATE}",
