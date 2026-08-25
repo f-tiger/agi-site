@@ -29,13 +29,84 @@
    "fetched": "2026-08-25"
   },
   "realdoll": {
+   "auto": [
+    "realdoll youtube",
+    "realdoll documentary",
+    "real dollar"
+   ],
    "rising": [
     {
-     "q": "realbotix",
-     "v": 60
+     "q": "realdoll youtube",
+     "v": "new"
+    },
+    {
+     "q": "realdoll documentary",
+     "v": "new"
+    },
+    {
+     "q": "real dollar",
+     "v": "new"
     }
    ],
-   "source": "related-queries",
+   "source": "autocomplete-diff",
+   "fetched": "2026-08-25"
+  },
+  "silicone doll": {
+   "auto": [
+    "silicone dolls",
+    "silicone dolls for sale",
+    "silicone doll babies",
+    "silicone dolls on amazon",
+    "silicone doll molds",
+    "silicone dolls full body",
+    "silicone doll kits",
+    "silicone doll girl",
+    "silicone dollar general",
+    "silicone dolls reborn"
+   ],
+   "rising": [
+    {
+     "q": "silicone dolls",
+     "v": "new"
+    },
+    {
+     "q": "silicone dolls for sale",
+     "v": "new"
+    },
+    {
+     "q": "silicone doll babies",
+     "v": "new"
+    },
+    {
+     "q": "silicone dolls on amazon",
+     "v": "new"
+    },
+    {
+     "q": "silicone doll molds",
+     "v": "new"
+    },
+    {
+     "q": "silicone dolls full body",
+     "v": "new"
+    },
+    {
+     "q": "silicone doll kits",
+     "v": "new"
+    },
+    {
+     "q": "silicone doll girl",
+     "v": "new"
+    },
+    {
+     "q": "silicone dollar general",
+     "v": "new"
+    },
+    {
+     "q": "silicone dolls reborn",
+     "v": "new"
+    }
+   ],
+   "source": "autocomplete-diff",
    "fetched": "2026-08-25"
   }
  }
