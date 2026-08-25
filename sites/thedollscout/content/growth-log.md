@@ -1698,3 +1698,32 @@ Judgement (28d): the page earns any of — a search/assistant referral, an
 affiliate_click, or an AI-crawler fetch streak ≥ scam-check's — → template a
 second vendor from the complaint-heavy list. Zero everything → vendor pages
 don't earn their keep; stop at one.
+
+## 2026-08-25 (homepage/tools/GEO round) — owner: 痛点关键词+工具强化+yourdoll爆品挂首页+GEO
+
+Audit-first result: most of the directive was already built and healthy —
+hot-picks strip live on the homepage (weekly scrape of the vendor's own
+popularity-sorted listing, refreshed 08-24, affiliate ref applied at render,
+honest "their ranking not ours" copy), and all three tools already carry
+WebApplication JSON-LD. The real gaps found and fixed:
+
+1. **Hot picks were JS-only — invisible to every crawler, AI engine and
+   no-JS visitor** (same defect class bake-affiliate-links fixed for plain
+   anchors). New `scripts/bake-hot-picks.mjs` bakes the 8 vendor products
+   into index.html statically (markers, idempotent; price strings sanitised
+   of WooCommerce "Original price was:" artifacts; refs baked identically to
+   the JS path); js/main.js now no-ops when the strip is server-baked.
+   Wired into deploy after bake-affiliate-links.
+2. Tool LD completeness per fleet convention: quiz +isAccessibleForFree
+   +featureList; cost-calculator +featureList (price-check already full).
+3. Pain-keyword state: wedge titles already carry query phrasing
+   (scam-check/height-weight are the AI-crawl magnets as-is). The one
+   genuinely uncovered pain query family — "doll arrived, doesn't match the
+   photos, 72-hour action plan" (SNAD) — stays the TOP queued content seed;
+   not shipped today (fourth tds change of the day would be churn).
+4. GEO push: IndexNow delta dispatched after deploy so Bing/Yandex/Naver see
+   today's 16 changed pages promptly.
+
+Judgement (28d): baked strip = crawlers can now cite actual products; watch
+whether vendor-product queries ever appear in AI-crawler fetches. Tools:
+watch quiz/cost-calculator fetch counts vs before.

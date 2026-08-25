@@ -91,6 +91,8 @@ jobs:
       # unbaked.
       - name: Bake the affiliate links into the static HTML
         run: node scripts/bake-affiliate-links.mjs
+      - name: Bake the vendor hot-picks strip static (crawler/no-JS visible)
+        run: node scripts/bake-hot-picks.mjs
 
       # Applies the SafeSearch labelling and rebuilds _headers. Runs after every
       # generator that writes a page head, or a later one re-labels its own

@@ -149,6 +149,7 @@
   function wireHotPicks() {
     var box = document.getElementById("hot-picks");
     if (!box) return;
+    if (box.childElementCount) return; // server-baked by bake-hot-picks.mjs — refs already applied
     var picks = (window.DS_CONFIG.hotPicks || []).slice(0, 8);
     if (!picks.length) {
       var section = box.closest("section");
