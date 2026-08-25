@@ -2289,3 +2289,12 @@ timeline + prediction market 两个需求词;经生成器改,周更不回退),�
 记入 content-backlog 趋势种子,**不动 what-is-agi 本体**(近 5 轮冷却:08-16 活数字
 胶囊轮刚触)。"agi stocks/companies" 需求已被 /ai-stock-exposure + invest PRD 覆盖,
 不重复立项。validate 222 页 OK。
+
+## 2026-08-25 (US-tag reading list)
+owner 确认 amazon.com tag ecoback0d-20 归属 → agi 首个联盟面上线:
+who-is-leopold-aschenbrenner(73% 引用所在实体页,上次触 07-21,冷却期已过)加
+「Further reading」:SA 免费原文置顶(一手源优先),三本真实书目(Bostrom/Christian/
+Suleyman)walk amazon.com search 链接 + Associate 披露句 + 「佣金不影响判定」声明,
+gtag affiliate_click{book_*}。dateModified/可见日期/sitemap 同步 08-25,validate 222 OK。
+判定线(28d):affiliate_click{book_*} ≥3 → 阅读清单模式扩到 SA-summary(下轮冷却期出);
+0 → 不扩,保留单页不churn。

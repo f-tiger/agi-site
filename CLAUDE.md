@@ -35,8 +35,12 @@ invest_tool_click、tds affiliate_click(D1 hits 表 ev 列;链路 2026-08-19 上
   数据窗日期,过期数字待 owner 下一张截图刷新——沙箱进不去 PartnerNet。
   唯一剩余待办属**付款侧**(不挡出页):后台红条提示付款/税务信息未填完,佣金累计中
   但需 owner 补完才实际到账(~2 分钟)——**营收已真实发生,这一步是它到手的全部距离**;
-- amazon.com tag=**ecoback0d-20**(tds,美国站格式)——**仍待确认**:08-25 的 DE 截图
-  未含美国站,其归属需 owner 单独确认后方可解除 tds 侧同款悬置。
+- amazon.com tag=**ecoback0d-20**(tds + agi 阅读清单,美国站)——**归属已确认
+  (2026-08-25,owner 原话「ecoback0d-20是我的」)**:tds 侧悬置解除,its config.js 早已
+  配好该 tag、picks/care-cleaning 的 data-amzn 锚已烘焙,即刻生效零代码;agi 侧
+  who-is-leopold-aschenbrenner 阅读清单(3 本书,search 链接)同日上线。
+  **owner 待办(1 分钟,保佣金有效性)**:US Associates 后台的站点列表需包含
+  thedollscout.com 与 agiscorecard.com——Amazon 条款要求列出投放站点,未列可致佣金作废。
 里程碑口径:舰队订阅计数 = agi 真实 subscribers + bpj 真实 subs(2026-08-23 起;
 当日 bpj 首个真实订阅 kon***@gmail.com 经脱敏核验,舰队 3/5)。
 
