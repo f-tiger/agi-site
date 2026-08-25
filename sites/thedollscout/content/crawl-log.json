@@ -1,9 +1,9 @@
 {
   "zone": "thedollscout.com",
-  "updated": "2026-08-24",
+  "updated": "2026-08-25",
   "window": {
-    "since": "2026-08-21T07:32:41.399Z",
-    "until": "2026-08-24T07:32:41.399Z"
+    "since": "2026-08-22T07:13:07.192Z",
+    "until": "2026-08-25T07:13:07.192Z"
   },
   "days": {
     "2026-08-16": {
@@ -281,19 +281,60 @@
           "(unclassified)": 55
         }
       }
+    },
+    "2026-08-25": {
+      "Googlebot": {
+        "total": 243,
+        "redirectShare": 3,
+        "verified": {
+          "Search Engine Crawler": 62,
+          "(unclassified)": 181
+        }
+      },
+      "Bingbot": {
+        "total": 46,
+        "redirectShare": 30,
+        "verified": {
+          "Search Engine Crawler": 46
+        }
+      },
+      "GPTBot": {
+        "total": 4,
+        "redirectShare": 0,
+        "verified": {
+          "AI Crawler": 3,
+          "(unclassified)": 1
+        }
+      },
+      "ClaudeBot": {
+        "total": 5,
+        "redirectShare": 0,
+        "verified": {
+          "(unclassified)": 5
+        }
+      },
+      "PerplexityBot": {
+        "total": 5,
+        "redirectShare": 0,
+        "verified": {
+          "(unclassified)": 5
+        }
+      }
     }
   },
   "latest": {
     "Googlebot": {
-      "total": 68,
+      "total": 243,
       "byStatus": {
-        "200": 62,
-        "308": 6
+        "200": 236,
+        "301": 2,
+        "308": 5
       },
       "verified": {
-        "Search Engine Crawler": 68
+        "Search Engine Crawler": 62,
+        "(unclassified)": 181
       },
-      "redirectShare": 9,
+      "redirectShare": 3,
       "paths": [
         {
           "path": "/robots.txt",
@@ -301,12 +342,122 @@
           "count": 18
         },
         {
+          "path": "/guides/factory-photos",
+          "status": 200,
+          "count": 16
+        },
+        {
+          "path": "/mcp",
+          "status": 200,
+          "count": 16
+        },
+        {
+          "path": "/importing/",
+          "status": 200,
+          "count": 11
+        },
+        {
+          "path": "/importing/thailand",
+          "status": 200,
+          "count": 10
+        },
+        {
+          "path": "/weight/160cm",
+          "status": 200,
+          "count": 10
+        },
+        {
+          "path": "/guides/tpe-vs-silicone",
+          "status": 200,
+          "count": 10
+        },
+        {
+          "path": "/data/",
+          "status": 200,
+          "count": 10
+        },
+        {
+          "path": "/llms.txt",
+          "status": 200,
+          "count": 8
+        },
+        {
+          "path": "/guides/height-weight",
+          "status": 200,
+          "count": 8
+        },
+        {
+          "path": "/importing/australia",
+          "status": 200,
+          "count": 6
+        },
+        {
+          "path": "/picks",
+          "status": 200,
+          "count": 6
+        },
+        {
+          "path": "/guides/first-time-buyer",
+          "status": 200,
+          "count": 6
+        },
+        {
+          "path": "/search-index.json",
+          "status": 200,
+          "count": 6
+        },
+        {
+          "path": "/after-you-order",
+          "status": 200,
+          "count": 6
+        },
+        {
+          "path": "/server.json",
+          "status": 200,
+          "count": 6
+        },
+        {
           "path": "/payment-protection",
+          "status": 200,
+          "count": 6
+        },
+        {
+          "path": "/quiz",
+          "status": 200,
+          "count": 5
+        },
+        {
+          "path": "/guides/torso-vs-full-size",
+          "status": 200,
+          "count": 4
+        },
+        {
+          "path": "/guides/import-costs-2026",
           "status": 200,
           "count": 4
         },
         {
           "path": "/guides/height-weight",
+          "status": 200,
+          "count": 4
+        },
+        {
+          "path": "/weight/",
+          "status": 200,
+          "count": 3
+        },
+        {
+          "path": "/",
+          "status": 200,
+          "count": 3
+        },
+        {
+          "path": "/vendors/yourdoll",
+          "status": 200,
+          "count": 3
+        },
+        {
+          "path": "/importing/singapore",
           "status": 200,
           "count": 3
         },
@@ -316,18 +467,78 @@
           "count": 3
         },
         {
-          "path": "/data/doll-specs.csv",
+          "path": "/weight/150cm",
           "status": 200,
           "count": 2
         },
         {
-          "path": "/js/config.js",
+          "path": "/robots.txt",
+          "status": 200,
+          "count": 2
+        },
+        {
+          "path": "/data/scam-signals.json",
+          "status": 200,
+          "count": 2
+        },
+        {
+          "path": "/payment-protection",
+          "status": 200,
+          "count": 2
+        },
+        {
+          "path": "/guides/disposal",
+          "status": 200,
+          "count": 2
+        },
+        {
+          "path": "/guides/glossary",
+          "status": 200,
+          "count": 2
+        },
+        {
+          "path": "/guides/care-cleaning",
+          "status": 200,
+          "count": 2
+        },
+        {
+          "path": "/importing/malaysia",
+          "status": 200,
+          "count": 2
+        },
+        {
+          "path": "/robots.txt",
+          "status": 301,
+          "count": 2
+        },
+        {
+          "path": "/guides/discreet-shipping",
+          "status": 200,
+          "count": 2
+        },
+        {
+          "path": "/data/",
+          "status": 200,
+          "count": 2
+        },
+        {
+          "path": "/js/share.js",
           "status": 200,
           "count": 2
         },
         {
           "path": "/guides/height-weight.html",
           "status": 308,
+          "count": 2
+        },
+        {
+          "path": "/payment-protection.html",
+          "status": 308,
+          "count": 2
+        },
+        {
+          "path": "/js/config.js",
+          "status": 200,
           "count": 2
         },
         {
@@ -341,23 +552,38 @@
           "count": 2
         },
         {
-          "path": "/",
+          "path": "/weight/",
           "status": 200,
-          "count": 2
+          "count": 1
         },
         {
-          "path": "/js/share.js",
+          "path": "/trust",
           "status": 200,
-          "count": 2
+          "count": 1
         },
         {
-          "path": "/img/card-care.svg",
+          "path": "/sitemap.xml",
           "status": 200,
-          "count": 2
+          "count": 1
         },
         {
-          "path": "/payment-protection.html",
-          "status": 308,
+          "path": "/importing/united-kingdom",
+          "status": 200,
+          "count": 1
+        },
+        {
+          "path": "/trust",
+          "status": 200,
+          "count": 1
+        },
+        {
+          "path": "/cost-calculator",
+          "status": 200,
+          "count": 1
+        },
+        {
+          "path": "/data/doll-specs.csv",
+          "status": 200,
           "count": 1
         },
         {
@@ -381,12 +607,12 @@
           "count": 1
         },
         {
-          "path": "/img/card-torso.svg",
+          "path": "/",
           "status": 200,
           "count": 1
         },
         {
-          "path": "/data/",
+          "path": "/img/card-torso.svg",
           "status": 200,
           "count": 1
         },
@@ -406,108 +632,28 @@
           "count": 1
         },
         {
-          "path": "/importing/united-kingdom",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/guides/tpe-vs-silicone",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/data/doll-specs.json",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/guides/what-a-doll-costs",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/guides/torso-vs-full-size",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/guides/glossary",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/guides/disposal",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/vendors/yourdoll.html",
-          "status": 308,
-          "count": 1
-        },
-        {
-          "path": "/guides/first-time-buyer",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/weight/160cm.html",
-          "status": 308,
-          "count": 1
-        },
-        {
-          "path": "/vendors/yourdoll",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/weight/160cm",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/js/analytics.js",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/guides/care-cleaning",
+          "path": "/img/card-care.svg",
           "status": 200,
           "count": 1
         }
       ]
     },
     "Bingbot": {
-      "total": 51,
+      "total": 46,
       "byStatus": {
-        "200": 37,
-        "304": 1,
-        "308": 13
+        "200": 32,
+        "304": 2,
+        "308": 12
       },
       "verified": {
-        "Search Engine Crawler": 51
+        "Search Engine Crawler": 46
       },
-      "redirectShare": 27,
+      "redirectShare": 30,
       "paths": [
-        {
-          "path": "/mcp",
-          "status": 200,
-          "count": 4
-        },
         {
           "path": "/importing/australia",
           "status": 200,
-          "count": 4
-        },
-        {
-          "path": "/trust",
-          "status": 200,
-          "count": 4
-        },
-        {
-          "path": "/importing/germany.html",
-          "status": 308,
-          "count": 3
+          "count": 5
         },
         {
           "path": "/importing/singapore",
@@ -515,17 +661,42 @@
           "count": 3
         },
         {
+          "path": "/guides/import-costs-2026.html",
+          "status": 308,
+          "count": 3
+        },
+        {
+          "path": "/mcp",
+          "status": 200,
+          "count": 3
+        },
+        {
+          "path": "/importing/australia.html",
+          "status": 308,
+          "count": 2
+        },
+        {
           "path": "/guides/",
           "status": 200,
           "count": 2
         },
         {
-          "path": "/trust.html",
-          "status": 308,
+          "path": "/importing/",
+          "status": 200,
           "count": 2
         },
         {
-          "path": "/importing/",
+          "path": "/sitemap.xml",
+          "status": 304,
+          "count": 2
+        },
+        {
+          "path": "/feed.xml",
+          "status": 200,
+          "count": 2
+        },
+        {
+          "path": "/trust",
           "status": 200,
           "count": 2
         },
@@ -545,52 +716,32 @@
           "count": 2
         },
         {
-          "path": "/robots.txt",
-          "status": 200,
-          "count": 2
-        },
-        {
           "path": "/guides/import-costs-2026",
           "status": 200,
           "count": 2
         },
         {
-          "path": "/guides/import-costs-2026.html",
+          "path": "/guides/disposal.html",
           "status": 308,
-          "count": 2
+          "count": 1
         },
         {
-          "path": "/importing/germany",
+          "path": "/cost-calculator",
           "status": 200,
-          "count": 2
+          "count": 1
         },
         {
-          "path": "/sitemap.xml",
-          "status": 200,
-          "count": 2
+          "path": "/trust.html",
+          "status": 308,
+          "count": 1
         },
         {
-          "path": "/",
-          "status": 200,
-          "count": 2
-        },
-        {
-          "path": "/quiz",
-          "status": 200,
-          "count": 2
+          "path": "/importing/germany.html",
+          "status": 308,
+          "count": 1
         },
         {
           "path": "/data/first-year-cost.json",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/sitemap.xml",
-          "status": 304,
-          "count": 1
-        },
-        {
-          "path": "/feed.xml",
           "status": 200,
           "count": 1
         },
@@ -600,8 +751,23 @@
           "count": 1
         },
         {
-          "path": "/importing/australia.html",
-          "status": 308,
+          "path": "/robots.txt",
+          "status": 200,
+          "count": 1
+        },
+        {
+          "path": "/importing/germany",
+          "status": 200,
+          "count": 1
+        },
+        {
+          "path": "/sitemap.xml",
+          "status": 200,
+          "count": 1
+        },
+        {
+          "path": "/",
+          "status": 200,
           "count": 1
         },
         {
@@ -610,22 +776,20 @@
           "count": 1
         },
         {
-          "path": "/faq.html",
-          "status": 308,
+          "path": "/quiz",
+          "status": 200,
           "count": 1
         }
       ]
     },
     "GPTBot": {
-      "total": 45,
+      "total": 4,
       "byStatus": {
-        "200": 3,
-        "404": 41,
-        "405": 1
+        "200": 4
       },
       "verified": {
         "AI Crawler": 3,
-        "(unclassified)": 42
+        "(unclassified)": 1
       },
       "redirectShare": 0,
       "paths": [
@@ -635,440 +799,42 @@
           "count": 3
         },
         {
-          "path": "/redirect",
-          "status": 404,
-          "count": 2
-        },
-        {
-          "path": "/database.sql",
-          "status": 404,
-          "count": 2
-        },
-        {
-          "path": "/preview",
-          "status": 404,
-          "count": 2
-        },
-        {
-          "path": "/@fs/root/.aws/config",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/login",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/log/production.log",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/config/application.yml",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/config/.env.php",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/development/.env",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/settings.py",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/secrets.json",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/read",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/.env",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/.travis.yml",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/login/..;/actuator/env",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/azure-pipelines.yml",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/static/..;/.env",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/.env.yaml",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/@fs/etc/passwd",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/api/v1/aws/credentials",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/@fs/home/node/.aws/credentials",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/ssl/server.key",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/actuator/env",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/.jenkins/config.xml",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/docker-compose.yaml",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/serviceAccountKey.json",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/@fs/root/.env",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/webhook",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/.ssh/id_dsa",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/.aws/credentials.old",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/backend/.env.production",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/appsettings.Development.json",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/v1/.env",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/api/v1/fetch",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/debug/pprof/",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/v1/graphql",
-          "status": 405,
-          "count": 1
-        },
-        {
-          "path": "/.netlify/.env",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/api/v1/settings",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/runtime-config.js",
-          "status": 404,
+          "path": "/guides/height-weight",
+          "status": 200,
           "count": 1
         }
       ]
     },
     "ClaudeBot": {
-      "total": 42,
+      "total": 5,
       "byStatus": {
-        "404": 42
+        "200": 5
       },
       "verified": {
-        "(unclassified)": 42
+        "(unclassified)": 5
       },
       "redirectShare": 0,
       "paths": [
         {
-          "path": "/prod/.env",
-          "status": 404,
-          "count": 2
-        },
-        {
-          "path": "/.github/workflows/test.yml",
-          "status": 404,
-          "count": 2
-        },
-        {
-          "path": "/debug/vars",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/ecs/task-credentials.json",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/@fs/etc/passwd",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/settings.local.py",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/__env.js",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/db.sql",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/proxy",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/admin",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/config/application.properties",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/@fs/app/.aws/credentials",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/frontend/.env.local",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/jenkins/secrets/master.key",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/.env.php.bak",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/configuration.js",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/admin/.env",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/storage/logs/lumen.log",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/fetch",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/v2/.env",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/environment.js",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/.env.bak",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/test.php",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/_next/static/../.env",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/s3-credentials.json",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/api/download",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/gcp-key.json",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/config.json",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/ssl/localhost.key",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/docker-compose.prod.yml",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/.env.docker",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/aws/ecs/task-credentials",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/storage/logs/laravel.log",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/.vscode/launch.json",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/.vercel/.env",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/backend/aws.json",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/credentials",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/var/www/.env",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/api/..;/actuator/env",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/vault.yml",
-          "status": 404,
-          "count": 1
+          "path": "/",
+          "status": 200,
+          "count": 5
         }
       ]
     },
     "PerplexityBot": {
-      "total": 55,
+      "total": 5,
       "byStatus": {
-        "200": 3,
-        "403": 1,
-        "404": 50,
-        "405": 1
+        "200": 5
       },
       "verified": {
-        "(unclassified)": 55
+        "(unclassified)": 5
       },
       "redirectShare": 0,
       "paths": [
         {
-          "path": "/fetch",
-          "status": 404,
-          "count": 4
-        },
-        {
-          "path": "/proxy",
-          "status": 404,
-          "count": 3
-        },
-        {
-          "path": "/phpinfo.php",
-          "status": 404,
+          "path": "/scam-check",
+          "status": 200,
           "count": 2
         },
         {
@@ -1084,221 +850,6 @@
         {
           "path": "/guides/care-cleaning",
           "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/aws-exports.js",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/.env.dev",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/.supabase/.env",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/download",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/.github/workflows/docker.yml",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/database.yml",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/s3/.aws/credentials",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/.aws/config",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/api/graphql",
-          "status": 405,
-          "count": 1
-        },
-        {
-          "path": "/wp-config.php~",
-          "status": 403,
-          "count": 1
-        },
-        {
-          "path": "/sendgrid/.env.php",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/services/.env",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/..;/..;/.aws/credentials",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/internal/aws/credentials",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/root/.config/gcloud/application_default_credentials.json",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/actuator/httptrace",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/.gitlab-ci.yml",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/pms",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/.ssh/id_rsa",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/core/.env",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/config/.env.local",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/host.key",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/.s3cfg",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/pi.php",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/.env.ci",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/appsettings.json",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/actuator/logfile",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/app.log",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/bootstrap.properties",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/aws_credentials.txt",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/.azure/accessTokens.json",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/aws/iam/credentials.json",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/image",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/.env.example",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/static../.aws/credentials",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/google-credentials.json",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/.env.sample",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/.env.backup",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/api/.env",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/.anthropic/config.json",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/app-config.json",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/id_rsa",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/hidden/.aws/credentials",
-          "status": 404,
           "count": 1
         }
       ]
