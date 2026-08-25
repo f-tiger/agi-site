@@ -1672,3 +1672,29 @@ Judgement (28d, 09-22): Bing/Yandex referred humans in D1 (ref contains
 bing/yandex/naver) — today's count is 0 bing / 0 yandex. ANY nonzero = the
 lane opened; still zero after two weekly delta pushes → IndexNow stays (free)
 but stop expecting discovery wins from it and say so.
+
+## 2026-08-25 (competitor-strengths round) — port what the winners do RIGHT
+
+Owner: "其他方案呢？另外站点产品参考其他同类型网站学习优势". Fresh WebSearch on
+top of the 08-17 gap table, this time cataloguing STRENGTHS to port:
+- dollvendoraudit: per-vendor systematic audits, measurable criteria, explicit
+  affiliate-independence statement → ported as our vendor-check page template.
+- scamadviser/scam-detector (generic, rank freely for "is X legit"): the
+  query family is NOT SafeSearch-choked and IS assistant-answerable — but the
+  generic players have zero vertical knowledge. That intersection is ours.
+- Trustpilot: freshness via dated citations (we cite, we don't host reviews).
+
+Shipped pilot: **/vendors/lovedollshops-check** ("Is Lovedollshops legit?") —
+public-record-only table (Scam Detector 52.5 "Questionable", Scamadviser
+legit-with-caveats + hidden WHOIS, mixed review pattern), every line sourced
+and dated, "unverified by us" stated where true, corrections invitation,
+self-verify funnel (scam-check → factory-photos → payment-protection), vetted-
+vendor block. FAQ 4=4 visible==LD. Inbound from scam-check (the AI-crawl
+magnet). **Excluded kaydora deliberately**: search shows it sells reborn
+baby-form dolls — childlike-appearance red line, we do not cover it even
+negatively.
+
+Judgement (28d): the page earns any of — a search/assistant referral, an
+affiliate_click, or an AI-crawler fetch streak ≥ scam-check's — → template a
+second vendor from the complaint-heavy list. Zero everything → vendor pages
+don't earn their keep; stop at one.
