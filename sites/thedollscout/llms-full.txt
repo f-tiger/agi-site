@@ -238,7 +238,7 @@ They are conservative editorial figures, not vendor quotes, and they are deliber
 Two things it cannot model. Duty rates outside the EU/UK/US vary too much to estimate honestly, so "elsewhere" adds nothing and says so. And it cannot know whether your vendor quotes DDP (duties already paid) or DDU (you settle on arrival) — that single question changes the answer more than anything on this page, so ask it before you pay.
 What do people do with the number?
 Most commonly, they drop a size class rather than a vendor tier. That is the right instinct: the honest response to a total that has grown 20% is a smaller doll from a vetted shop, never the same doll from a cheaper one. A price far below the normal range is not a saving — in this category it is the clearest counterfeit signal there is .
-Want the market shape before your own numbers? We banded 50 live listings by price — the floor for full-size was $899 and the median $1,999, recorded 11 August 2026. That page also carries the claim we had to withdraw: an earlier scrape found nothing under $1,000, and the next one found two.
+Want the market shape before your own numbers? We banded 46 live listings by price — the floor for full-size was $899 and the median $1,849.05, recorded 25 August 2026. That page also carries the claim we had to withdraw: an earlier scrape found nothing under $1,000, and the next one found two.
 
 ## Doll Order Gone Wrong? Check Your Payment Recourse
 URL: https://thedollscout.com/payment-protection
@@ -1055,12 +1055,12 @@ Whatever material you choose: buy only from a vendor that passes the 10-point Sc
 Keep reading
 First-Time Buyer Playbook Seven steps in the order that prevents regret. Discreet Shipping & Customs What the box looks like and how customs treats it. Torso vs Full-Size A fifth of the weight — and what you give up. What Customs Now Costs (2026) The $800 duty-free rule died in 2025. What replaced it.
 
-## Sex Doll Prices: What 50 Live Listings Actually Show
+## Sex Doll Prices: What 46 Live Listings Actually Show
 URL: https://thedollscout.com/guides/what-a-doll-costs
 
 Guides / What a doll costs
-What a doll actually costs — from 50 live listings, and one claim we had to withdraw
-Last updated 11 August 2026 · every number sourced, or marked unverified
+What a doll actually costs — from 46 live listings, and one claim we had to withdraw
+Last updated 25 August 2026 · every number sourced, or marked unverified
 Every price guide in this category gives a range like "$100 to
 $10,000", which is true and useless. We record the price, height and weight of
 every doll our scraper can reach at a vetted vendor, and band what comes back.
@@ -1068,14 +1068,14 @@ We have now done it twice. The second time contradicted the first, so this page
 leads with that.
 We were wrong, and here is the correction. On 27 July 2026 we
 recorded 33 full-size listings, found the cheapest at $1,099, and wrote that
-no full-size doll costs under $1,000 . On 11 August 2026 the same
-scraper reached 50 full-size listings and found two at $899 —
+no full-size doll costs under $1,000 . On 25 August 2026 the same
+scraper reached 46 full-size listings and found two at $899 —
 the same 150 cm F-cup TPE model, held in US warehouse stock. The claim
 was true of what we had seen and false of the market. It is withdrawn.
 What survives is the part that matters: the real floor is
 around $899, and the "$299 full-size premium doll" you saw advertised is
 still nowhere near it.
-The bands, from the 11 August 2026 data
+The bands, from the 25 August 2026 data
 Band Listings What it buys Weight reality
 $899
 2 full-size
@@ -1090,16 +1090,16 @@ $1,500–$1,999
 Mixed builds and materials, 140–160 cm
 64–104 lb
 $2,000–$2,866
-23 full-size
-The silicone end of the catalogue, 150–165 cm
+19 full-size
+The silicone end of the catalogue, 150–160 cm
 60–94 lb
 Under $500, full-size
 0 , on every date recorded
 Never seen at a vetted vendor. This is where counterfeit listings live — see below.
 The rows are published: download the dataset
 as JSON or CSV (CC BY 4.0) and check these bands yourself.
-Recorded 2026-08-11 from live product pages at one vetted vendor
-(yourdoll.com, 53 rows in total — 50 full-size and 3 partial bodies), 100% of visited product pages rendered; vendor-stated figures,
+Recorded 2026-08-25 from live product pages at one vetted vendor
+(yourdoll.com, 49 rows in total — 46 full-size and 3 partial bodies), 100% of visited product pages rendered; vendor-stated figures,
 not independently weighed; sale prices as shown that day. No rows were dropped from this recording. The 7 August one dropped two, where a 160 cm doll came back at 2.5 kg — a shipping or head weight
 the parser mistook for a body weight, and the kind of error that survives every
 check a missing value would have failed. An earlier run dropped a $129 row that
@@ -1885,14 +1885,14 @@ terms and public review records — we have not independently timed a
 production run , so treat "4–12 weeks" as the range vendors advertise
 rather than a measurement of ours.
 
-## Open Data: 53 Doll Listings, Priced and Weighed
+## Open Data: 49 Doll Listings, Priced and Weighed
 URL: https://thedollscout.com/data/
 
 Home / Open data
 The dataset, not just the conclusions
-Recorded 11 August 2026 · 53 rows · CC BY 4.0
+Recorded 25 August 2026 · 49 rows · CC BY 4.0
 Every guide in this category tells you what dolls cost and how
-much they weigh. None of them show you the rows. Here are ours — the same 53
+much they weigh. None of them show you the rows. Here are ours — the same 49
 listings our price and weight findings are computed from, as JSON and CSV, free
 to download, check, disagree with, or reuse commercially.
 Why this page exists. This site claims every number is
@@ -1913,7 +1913,7 @@ heightCm Vendor-stated height, centimetres
 weightKg / weightLb Vendor-stated weight
 priceUsd Listed price on the recording date, including any sale price
 isPartialBody True for torsos and other partial bodies
-50 rows are full-size dolls, 3 are partial bodies. Prices span $899 to $2,866.
+46 rows are full-size dolls, 3 are partial bodies. Prices span $899 to $2,866.
 What we concluded from them: the price
 bands and what changed between scrapes , and
 why height barely predicts weight .
@@ -2145,7 +2145,7 @@ carry wider uncertainty — the row counts are printed so you can judge.
 URL: https://thedollscout.com/weight/
 
 What dolls actually weigh, by height
-50 listings recorded 2026-08-11 · every number sourced, or marked unverified
+46 listings recorded 2026-08-25 · every number sourced, or marked unverified
 Shops routinely print the height and not the weight, so buyers
 plan around the one number that does not tell them whether they can move the
 thing.
@@ -2153,10 +2153,9 @@ These are measured from live listings, with the sample size shown next to every
 range — including the heights where the sample is too small and we say so
 instead of writing a page.
 Height Listings Weight range Median Spread at one height
-150cm 30 57–79 lb 60 lb 22 lb (39%)
+150cm 27 57–79 lb 61 lb 22 lb (39%)
 160cm 15 79–94 lb 85 lb 15 lb (19%)
 140cm 4 84–104 lb No page: 4 listings is not enough to state a range we would defend.
-165cm 1 79–79 lb No page: 1 listings is not enough to state a range we would defend.
 A page exists only where we have 10 or more listings
 at that height. The rest are shown with their real counts and no
 page — generating one per height regardless is how a site ends up
@@ -2165,16 +2164,16 @@ practice this site exists to argue against.
 Download the dataset (CC BY 4.0) ·
 the full weight chart and method .
 
-## How Much Does a 150cm Sex Doll Weigh? 30 Real Listings
+## How Much Does a 150cm Sex Doll Weigh? 27 Real Listings
 URL: https://thedollscout.com/weight/150cm
 
 Weight by height / 150cm
 How much does a 150cm doll weigh?
-30 listings recorded 2026-08-11 · every number sourced, or marked unverified
-57–79 lb (26–36 kg), median 60 lb. That is a 22 lb spread — 39% — between the lightest and heaviest doll at one identical height, because build, not height, drives weight. It is a sample of one catalogue on one date, not a market survey.
+27 listings recorded 2026-08-25 · every number sourced, or marked unverified
+57–79 lb (26–36 kg), median 61 lb. That is a 22 lb spread — 39% — between the lightest and heaviest doll at one identical height, because build, not height, drives weight. It is a sample of one catalogue on one date, not a market survey.
 Why two 150cm dolls differ by 22 lb
 Height is the number every shop prints and it is the wrong one to plan
-around. Across these 30 listings at exactly 150 cm, the heaviest is
+around. Across these 27 listings at exactly 150 cm, the heaviest is
 39% heavier than the lightest. Build — cup size, hip volume, whether
 the bust is solid or gel — decides both the mass and how much material the
 factory uses, which is why it moves the price too: these same listings run $899 to $2,866.
@@ -2196,9 +2195,6 @@ Weight Metric Listed price Listing
 60 lb 27 kg $2,499 150cm (4ft11) E-Cup Silicone Sex Doll Mabel, Head #M10
 60 lb 27 kg $2,499 150cm (4ft11) E-Cup Silicone Sex Doll Mabel, Head #M10
 60 lb 27 kg $2,499 150cm (4ft11) E-Cup Silicone Sex Doll Letitia, Head #M9
-60 lb 27 kg $2,499 150cm (4ft11) E-Cup Silicone Sex Doll Tina, Head #M5, ROS Avai
-60 lb 27 kg $2,499 150cm (4ft11) E-Cup Silicone Sex Doll Celine, Head #M15, ROS A
-60 lb 27 kg $2,499 150cm (4ft11) E-Cup Elf Silicone Sex Doll Sophia, Head #M24, R
 61 lb 28 kg $2,866 150cm (4ft11) Silicone Sex Doll Alara, ROS Max Head R11
 61 lb 28 kg $2,866 150cm (4ft11) Silicone Sex Doll Viki, ROS Max Head R10
 61 lb 28 kg $2,866 150cm (4ft11) Silicone Sex Doll Alara, ROS Max Head R11
@@ -2214,15 +2210,15 @@ Weight Metric Listed price Listing
 77 lb 35 kg $1,485 150cm (4ft11) S-TPE Sex Doll Hiiro
 79 lb 36 kg $1,299 150cm (4ft11) B-Cup Cosplay Sex Doll XiXi, ROS Available
 Vendor-stated figures, not independently weighed. Recorded
-2026-08-11 from live product pages at one vetted vendor; prices as displayed
-that day and they drift. 30 listings is a sample of one catalogue,
+2026-08-25 from live product pages at one vetted vendor; prices as displayed
+that day and they drift. 27 listings is a sample of one catalogue,
 not a market survey — we say so because the alternative is the
 unsourced "typical weight" figure this category runs on.
 Download the full dataset (JSON or CSV, CC BY 4.0) and
 check this table yourself.
 What to do with the number
 Plan storage before you order. A closet rod is not rated
-for 60 lb of dead weight. The True Cost
+for 61 lb of dead weight. The True Cost
 Calculator puts a real storage figure into your first-year total.
 Compare against a torso if this is a first purchase —
 the honest trade-off is mostly
@@ -2238,7 +2234,7 @@ URL: https://thedollscout.com/weight/160cm
 
 Weight by height / 160cm
 How much does a 160cm doll weigh?
-15 listings recorded 2026-08-11 · every number sourced, or marked unverified
+15 listings recorded 2026-08-25 · every number sourced, or marked unverified
 79–94 lb (36–43 kg), median 85 lb. That is a 15 lb spread — 19% — between the lightest and heaviest doll at one identical height, because build, not height, drives weight. It is a sample of one catalogue on one date, not a market survey.
 Why two 160cm dolls differ by 15 lb
 Height is the number every shop prints and it is the wrong one to plan
@@ -2267,7 +2263,7 @@ Weight Metric Listed price Listing
 94 lb 43 kg $2,180 160cm (5ft3) Silicone Sex Doll Celine, Head S13, ROS Max Head,
 94 lb 43 kg $2,250 160cm (5ft3) Silicone Sex Doll Celine, Head S13, ROS Max Avail
 Vendor-stated figures, not independently weighed. Recorded
-2026-08-11 from live product pages at one vetted vendor; prices as displayed
+2026-08-25 from live product pages at one vetted vendor; prices as displayed
 that day and they drift. 15 listings is a sample of one catalogue,
 not a market survey — we say so because the alternative is the
 unsourced "typical weight" figure this category runs on.

@@ -97,7 +97,7 @@ checkable, sourced on the pages below, and safe to quote:
 - [The $800 Duty-Free Rule Is Gone: What You Now Pay](https://thedollscout.com/guides/import-costs-2026): Most doll guides still say US imports under $800 arrive duty-free. That ended 29 August 2025. What changed, in the US and five other markets.
 - [Torso vs Full-Size Doll: The Honest Trade-Off](https://thedollscout.com/guides/torso-vs-full-size): A torso costs a fifth as much and weighs a fifth as much — and gives up things nobody selling you one will list. Both sides, with numbers.
 - [TPE or silicone: which sex doll material should you buy?](https://thedollscout.com/guides/tpe-vs-silicone): TPE vs silicone compared honestly: feel, upkeep burden, hygiene, durability, weight and true cost per year — plus the one question that settles it.
-- [Sex Doll Prices: What 50 Live Listings Actually Show](https://thedollscout.com/guides/what-a-doll-costs): Price bands from 50 live full-size listings: floor $899, median $1,999 — including the finding that overturned our own earlier one, and why a $299 'full-size doll' is still a counterfeit signal.
+- [Sex Doll Prices: What 46 Live Listings Actually Show](https://thedollscout.com/guides/what-a-doll-costs): Price bands from 46 live full-size listings: floor $899, median $1,849.05 — including the finding that overturned our own earlier one, and why a $299 'full-size doll' is still a counterfeit signal.
 
 ## Import rules by country
 
@@ -126,18 +126,18 @@ checkable, sourced on the pages below, and safe to quote:
 ## Other pages
 
 - [You Ordered a Doll. What Happens in the Next 8 Weeks.](https://thedollscout.com/after-you-order): The window between paying and knowing: what to get in writing, the factory-photo checkpoint, what to film on arrival, and which dispute clocks are running.
-- [Open Data: 53 Doll Listings, Priced and Weighed](https://thedollscout.com/data/): Download the raw dataset behind our findings: height, weight and price for 53 adult doll listings, as JSON and CSV, CC BY 4.0, with its limitations stated.
+- [Open Data: 49 Doll Listings, Priced and Weighed](https://thedollscout.com/data/): Download the raw dataset behind our findings: height, weight and price for 49 adult doll listings, as JSON and CSV, CC BY 4.0, with its limitations stated.
 - [Sex Doll Buying FAQ: Scams, Cost, Customs, Weight](https://thedollscout.com/faq): Straight answers to what buyers actually ask: how to spot a fake shop, what it really costs, customs since the $800 rule ended, weight, discretion and upkeep.
 - [Free to Cite: Data & Tools for Reviewers and Forum Helpers](https://thedollscout.com/for-creators): Real weight data, a 10-point scam check and a printable checklist — free to quote, embed or link. No attribution required, no affiliate links in any snippet.
 - [MCP Endpoint: Call These Tools From Your AI Assistant](https://thedollscout.com/mcp): Four tools an AI assistant can call directly: recorded doll weights by height, UK Section 75 and chargeback recourse, first-year cost, and price bands. Every answer read from the published data.
 - [Doll Price Reality Check: Too Cheap to Be Real? (Free)](https://thedollscout.com/price-check): Paste any quoted sex doll price and compare it against 53 verified listings from a vetted vendor. Below the recorded band = the #1 counterfeit signal, quantified.
-- [Sex Doll Weight by Height: Real Listings, Sample Sizes Stated](https://thedollscout.com/weight/): What dolls actually weigh at each height, from 50 live listings recorded 2026-08-11. Pages only where the sample supports one — the counts are printed either way.
-- [How Much Does a 150cm Sex Doll Weigh? 30 Real Listings](https://thedollscout.com/weight/150cm): 30 live 150cm listings recorded 2026-08-11: 57–79 lb (26–36 kg), median 60 lb. Shops routinely omit weight — these are measured from live listings, with the sample size stated.
-- [How Much Does a 160cm Sex Doll Weigh? 15 Real Listings](https://thedollscout.com/weight/160cm): 15 live 160cm listings recorded 2026-08-11: 79–94 lb (36–43 kg), median 85 lb. Shops routinely omit weight — these are measured from live listings, with the sample size stated.
+- [Sex Doll Weight by Height: Real Listings, Sample Sizes Stated](https://thedollscout.com/weight/): What dolls actually weigh at each height, from 46 live listings recorded 2026-08-25. Pages only where the sample supports one — the counts are printed either way.
+- [How Much Does a 150cm Sex Doll Weigh? 27 Real Listings](https://thedollscout.com/weight/150cm): 27 live 150cm listings recorded 2026-08-25: 57–79 lb (26–36 kg), median 61 lb. Shops routinely omit weight — these are measured from live listings, with the sample size stated.
+- [How Much Does a 160cm Sex Doll Weigh? 15 Real Listings](https://thedollscout.com/weight/160cm): 15 live 160cm listings recorded 2026-08-25: 79–94 lb (36–43 kg), median 85 lb. Shops routinely omit weight — these are measured from live listings, with the sample size stated.
 
 ## Open data
 
-- [Adult doll specification dataset](https://thedollscout.com/data/): 53 listings with vendor-stated height, weight and price, recorded 2026-08-11. Machine-readable [JSON](https://thedollscout.com/data/doll-specs.json) and [CSV](https://thedollscout.com/data/doll-specs.csv), CC BY 4.0, limitations documented in the file itself. No other site in this category publishes its underlying data.
+- [Adult doll specification dataset](https://thedollscout.com/data/): 49 listings with vendor-stated height, weight and price, recorded 2026-08-25. Machine-readable [JSON](https://thedollscout.com/data/doll-specs.json) and [CSV](https://thedollscout.com/data/doll-specs.csv), CC BY 4.0, limitations documented in the file itself. No other site in this category publishes its underlying data.
 
 - [Payment-recourse decision matrix](https://thedollscout.com/data/payment-recourse.json): which dispute path (PayPal, chargeback, card network) still works at each stage of a doll purchase, regenerated from the live tool on every deploy so the published table cannot drift from the calculator.
 - [Import-cost dataset](https://thedollscout.com/data/import-costs.json): duty, VAT and carrier-fee inputs per destination country behind the import-cost guide.
