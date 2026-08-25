@@ -1,5 +1,5 @@
 {
-  "checked": "2026-08-24",
+  "checked": "2026-08-25",
   "origin": "https://baipiaoji.com",
   "valid": true,
   "blocked": [],
@@ -11,154 +11,21 @@
       "byPath": {
         "/": {
           "status": 200,
-          "ms": 174
+          "ms": 139
         },
         "/llms.txt": {
           "status": 200,
-          "ms": 198
+          "ms": 83
         },
         "/en/c/coding.html": {
           "status": 200,
-          "ms": 251
+          "ms": 92
         }
       }
     },
     {
       "agent": "OAI-SearchBot",
       "who": "ChatGPT 搜索引用",
-      "blocked": false,
-      "byPath": {
-        "/": {
-          "status": 200,
-          "ms": 61
-        },
-        "/llms.txt": {
-          "status": 200,
-          "ms": 29
-        },
-        "/en/c/coding.html": {
-          "status": 200,
-          "ms": 64
-        }
-      }
-    },
-    {
-      "agent": "ChatGPT-User",
-      "who": "ChatGPT 用户即时取页",
-      "blocked": false,
-      "byPath": {
-        "/": {
-          "status": 200,
-          "ms": 72
-        },
-        "/llms.txt": {
-          "status": 200,
-          "ms": 25
-        },
-        "/en/c/coding.html": {
-          "status": 200,
-          "ms": 55
-        }
-      }
-    },
-    {
-      "agent": "PerplexityBot",
-      "who": "Perplexity 索引",
-      "blocked": false,
-      "byPath": {
-        "/": {
-          "status": 200,
-          "ms": 55
-        },
-        "/llms.txt": {
-          "status": 200,
-          "ms": 33
-        },
-        "/en/c/coding.html": {
-          "status": 200,
-          "ms": 53
-        }
-      }
-    },
-    {
-      "agent": "Perplexity-User",
-      "who": "Perplexity 用户即时取页",
-      "blocked": false,
-      "byPath": {
-        "/": {
-          "status": 200,
-          "ms": 54
-        },
-        "/llms.txt": {
-          "status": 200,
-          "ms": 24
-        },
-        "/en/c/coding.html": {
-          "status": 200,
-          "ms": 57
-        }
-      }
-    },
-    {
-      "agent": "ClaudeBot",
-      "who": "Anthropic 抓取",
-      "blocked": false,
-      "byPath": {
-        "/": {
-          "status": 200,
-          "ms": 57
-        },
-        "/llms.txt": {
-          "status": 200,
-          "ms": 23
-        },
-        "/en/c/coding.html": {
-          "status": 200,
-          "ms": 65
-        }
-      }
-    },
-    {
-      "agent": "Claude-User",
-      "who": "Claude 用户即时取页",
-      "blocked": false,
-      "byPath": {
-        "/": {
-          "status": 200,
-          "ms": 58
-        },
-        "/llms.txt": {
-          "status": 200,
-          "ms": 28
-        },
-        "/en/c/coding.html": {
-          "status": 200,
-          "ms": 70
-        }
-      }
-    },
-    {
-      "agent": "Google-Extended",
-      "who": "Google AI 概览（沿用 Googlebot UA）",
-      "blocked": false,
-      "byPath": {
-        "/": {
-          "status": 200,
-          "ms": 59
-        },
-        "/llms.txt": {
-          "status": 200,
-          "ms": 27
-        },
-        "/en/c/coding.html": {
-          "status": 200,
-          "ms": 58
-        }
-      }
-    },
-    {
-      "agent": "Bingbot",
-      "who": "Bing / Copilot",
       "blocked": false,
       "byPath": {
         "/": {
@@ -171,7 +38,140 @@
         },
         "/en/c/coding.html": {
           "status": 200,
-          "ms": 63
+          "ms": 53
+        }
+      }
+    },
+    {
+      "agent": "ChatGPT-User",
+      "who": "ChatGPT 用户即时取页",
+      "blocked": false,
+      "byPath": {
+        "/": {
+          "status": 200,
+          "ms": 70
+        },
+        "/llms.txt": {
+          "status": 200,
+          "ms": 30
+        },
+        "/en/c/coding.html": {
+          "status": 200,
+          "ms": 56
+        }
+      }
+    },
+    {
+      "agent": "PerplexityBot",
+      "who": "Perplexity 索引",
+      "blocked": false,
+      "byPath": {
+        "/": {
+          "status": 200,
+          "ms": 59
+        },
+        "/llms.txt": {
+          "status": 200,
+          "ms": 26
+        },
+        "/en/c/coding.html": {
+          "status": 200,
+          "ms": 58
+        }
+      }
+    },
+    {
+      "agent": "Perplexity-User",
+      "who": "Perplexity 用户即时取页",
+      "blocked": false,
+      "byPath": {
+        "/": {
+          "status": 200,
+          "ms": 53
+        },
+        "/llms.txt": {
+          "status": 200,
+          "ms": 25
+        },
+        "/en/c/coding.html": {
+          "status": 200,
+          "ms": 53
+        }
+      }
+    },
+    {
+      "agent": "ClaudeBot",
+      "who": "Anthropic 抓取",
+      "blocked": false,
+      "byPath": {
+        "/": {
+          "status": 200,
+          "ms": 55
+        },
+        "/llms.txt": {
+          "status": 200,
+          "ms": 26
+        },
+        "/en/c/coding.html": {
+          "status": 200,
+          "ms": 54
+        }
+      }
+    },
+    {
+      "agent": "Claude-User",
+      "who": "Claude 用户即时取页",
+      "blocked": false,
+      "byPath": {
+        "/": {
+          "status": 200,
+          "ms": 57
+        },
+        "/llms.txt": {
+          "status": 200,
+          "ms": 24
+        },
+        "/en/c/coding.html": {
+          "status": 200,
+          "ms": 53
+        }
+      }
+    },
+    {
+      "agent": "Google-Extended",
+      "who": "Google AI 概览（沿用 Googlebot UA）",
+      "blocked": false,
+      "byPath": {
+        "/": {
+          "status": 200,
+          "ms": 51
+        },
+        "/llms.txt": {
+          "status": 200,
+          "ms": 27
+        },
+        "/en/c/coding.html": {
+          "status": 200,
+          "ms": 54
+        }
+      }
+    },
+    {
+      "agent": "Bingbot",
+      "who": "Bing / Copilot",
+      "blocked": false,
+      "byPath": {
+        "/": {
+          "status": 200,
+          "ms": 56
+        },
+        "/llms.txt": {
+          "status": 200,
+          "ms": 27
+        },
+        "/en/c/coding.html": {
+          "status": 200,
+          "ms": 61
         }
       }
     },
@@ -182,15 +182,15 @@
       "byPath": {
         "/": {
           "status": 200,
-          "ms": 64
+          "ms": 52
         },
         "/llms.txt": {
           "status": 200,
-          "ms": 35
+          "ms": 27
         },
         "/en/c/coding.html": {
           "status": 200,
-          "ms": 60
+          "ms": 48
         }
       }
     }
