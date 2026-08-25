@@ -39,6 +39,10 @@ jobs:
           git config user.name 'Claude'
           git config user.email 'noreply@anthropic.com'
           git add sites/baipiaoji/data/trends-us.json sites/agiscorecard/trends-us.json sites/thedollscout/content/trends-us.json
-          git add sites/baipiaoji/data/trends-rising.json sites/agiscorecard/trends-rising.json sites/thedollscout/content/trends-rising.json 2>/dev/null || true
+          # rising 文件按站分开 add:任一站本次未轮到就不存在,合并 add 会让 git 整条
+          # 128 拒绝(什么都不 stage)——必须逐个 add,缺的那个 || true 跳过不连累别的。
+          git add sites/baipiaoji/data/trends-rising.json 2>/dev/null || true
+          git add sites/agiscorecard/trends-rising.json 2>/dev/null || true
+          git add sites/thedollscout/content/trends-rising.json 2>/dev/null || true
           git add data/startup-radar.json 2>/dev/null || true
           git diff --cached --quiet || { git commit -m "chore(trends): 美国区触发器+创业雷达快照 $(date -u +%F)"; git pull --rebase origin main; git push origin main; }

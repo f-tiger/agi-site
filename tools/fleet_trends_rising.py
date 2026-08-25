@@ -115,8 +115,10 @@ def main():
     from trendspy import Trends
     tr = Trends()
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
-    # 全池按 ordinal 偏移轮换,本次取 SEEDS_PER_RUN 个 (site,seed)。
-    off = datetime.now(timezone.utc).toordinal() % len(POOL)
+    # 全池按 ordinal 轮换,每天前进 SEEDS_PER_RUN 个(不是 1)——否则相邻两天窗口
+    # 重叠、每天只添 1 个新种子,11 种子要 11 天才首次填满 agi/tds。步进 = 每次取的
+    # 数量,则无重叠,~6 天覆盖一轮,agi/tds 首次数据也在 6 天内到。
+    off = (datetime.now(timezone.utc).toordinal() * SEEDS_PER_RUN) % len(POOL)
     todays = [POOL[(off + k) % len(POOL)] for k in range(SEEDS_PER_RUN)]
     print(f"today's rotation: {[(FLEET[i]['site'], s) for i, s in todays]}")
 
