@@ -1621,3 +1621,31 @@ message is a silent loss. Formatting does not justify a dropped alert.
 
 Notification runs **after** the gates, never before. Asking someone to act on
 numbers we just refused to publish would be worse than staying quiet.
+
+## 2026-08-25 — The eco lesson, applied: wedge pages had no purchase surface
+
+Fleet cross-learning round (owner: "tds站点学习eco并提升转化"). eco's most
+expensive CRO discovery this month was pages whose own text argues for a
+purchase carrying zero purchase surface (the fensterabdichtung case). Audit
+here found the same defect class at larger scale: **payment-protection and all
+12 importing/* pages — the safety wedge itself — had zero affiliate anchors.**
+The D1 truth (28d, ev='' human line): the wedge is where real readers land
+(scam-check 3 / payment-protection 3 / importing cluster 6 / data 1), and
+affiliate_click has been 0 since instrumentation. Traffic can't click what
+isn't there.
+
+Shipped: the scam-check house pattern (context-matched reason + data-yd baked
+anchor + "run the checklist on us too" caveat) on 14 pages — 12 importing/*
+("the vendor is half your customs outcome"), payment-protection ("start from a
+vendor that keeps your dispute route open" — reuses the page's own credit-
+card/PayPal advice), /data/ ("comparing specs to buy?"). Every claim in the
+blocks is already established on-site (brand authorization / factory-photo
+policy / buyer-protected payment); nothing new asserted. bake-affiliate-links
+verified 55 anchors, 0 rewritten (byte-exact to house pattern).
+
+**Judgement line (2026-09-22, 28d):** first `ev='affiliate_click'` row from
+any hooked wedge page → the wedge→vendor handoff works, keep. Zero clicks
+while wedge pv grows → the handoff copy is wrong, rework ONCE; zero clicks
+because wedge pv stays ~0 → not a conversion problem, defer to the 10-01
+wedge line. Compliance unchanged: 18+ gate, disclosure in every block,
+rel="sponsored nofollow noopener", adult-form-only pledge untouched.
