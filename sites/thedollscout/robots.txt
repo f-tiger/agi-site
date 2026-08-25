@@ -83,4 +83,13 @@ Allow: /
 User-agent: YouBot
 Allow: /
 
+# 2026-08-25: Grok is the one mainstream assistant that answers adult-product
+# questions without a category refusal — for this site that makes xAI's
+# crawler the single most valuable reader on this list.
+User-agent: GrokBot
+Allow: /
+
+User-agent: xAI-Bot
+Allow: /
+
 Sitemap: https://thedollscout.com/sitemap.xml

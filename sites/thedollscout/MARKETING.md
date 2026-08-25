@@ -102,3 +102,38 @@
 | 第 9–12 周 | 邮件列表冷启动；按转化数据优化 CTA | 首笔佣金 + 自有流量池 |
 
 **不要做的事**：买假评论、买外链、隐藏联盟关系、自动化社区发帖。本站唯一的护城河是可信度，这些做法会一次性摧毁它。
+
+## Vendor-backlink outreach kit (2026-08-25 — the one channel that fixes domain age)
+
+**Why**: of the three structural blocks (SafeSearch / AI refusal / domain age),
+only domain age has a shortcut: a link from the highest-authority domain in the
+niche. YourDoll answers customs questions from buyers every day — our
+importing/* guides answer them better than a support macro can. A resource link
+from their FAQ/blog is worth more than months of waiting, and asking for it is
+a legitimate affiliate-partner request. **Owner sends (10 min); we never send
+on the owner's behalf.**
+
+Draft (to the YourDoll affiliate manager, from the owner's affiliate email):
+
+> Subject: Free customs/import resource for your buyer FAQ — from your affiliate
+>
+> Hi — I run DollScout (thedollscout.com), one of your affiliates (ref:
+> Edison Thomas). We maintain country-by-country import & customs guides
+> (US, CA, UK, DE, JP, AU, NZ, SG, KR, TH, MY) with primary legal sources,
+> duty thresholds and what customs actually does with these shipments:
+> https://thedollscout.com/importing/
+>
+> Buyers ask you these questions constantly. Feel free to link any of these
+> pages from your FAQ, order emails, or blog — they're neutral, sourced, kept
+> current, and they reduce your "will this clear customs?" support volume.
+> No conditions attached. If you'd like a country we haven't covered, tell me
+> and we'll research it.
+
+**判定线**: if a yourdoll.com (or any vendor) backlink appears → repeat the
+play with the next vendor on the vetted list. Log the send date here when the
+owner confirms.
+
+**Community lane (owner-only, red line 不代发)**: TheDollForum threads asking
+about customs/scams are frequent; a real-person account sharing the relevant
+importing/* page where it genuinely answers the thread is the only
+SafeSearch-immune, AI-refusal-immune traffic channel this niche has. 10 min/wk.

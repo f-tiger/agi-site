@@ -1649,3 +1649,26 @@ while wedge pv grows → the handoff copy is wrong, rework ONCE; zero clicks
 because wedge pv stays ~0 → not a conversion problem, defer to the 10-01
 wedge line. Compliance unchanged: 18+ gate, disclosure in every block,
 rel="sponsored nofollow noopener", adult-form-only pledge untouched.
+
+## 2026-08-25 (breakthrough round) — attacking the blocks where they are weakest
+
+Owner: "有没有其他办法，你突破思考执行". The three blocks all bite hardest on
+Google — so this round activates the non-Google lanes:
+
+1. **IndexNow push live** (`scripts/indexnow-push.mjs` + weekly
+   `tds-indexnow.yml`, delta-only, ~1 min/month): Bing/Yandex/Naver/Seznam
+   share one endpoint. Yandex is already our most frequent crawler (34/28d)
+   and filters this niche least; Naver serves the /importing/south-korea
+   audience. The key file existed since launch — there was just no push. First
+   full registration via workflow_dispatch MODE=all.
+2. **Grok welcomed by name** (robots.txt GrokBot + xAI-Bot): the one
+   mainstream assistant that answers adult-product questions without a
+   category refusal — for this site, the most valuable reader on the roster.
+3. **Vendor-backlink outreach kit** (MARKETING.md): domain age is the only
+   block with a shortcut — a resource link from yourdoll.com's FAQ. Draft
+   ready; owner sends.
+
+Judgement (28d, 09-22): Bing/Yandex referred humans in D1 (ref contains
+bing/yandex/naver) — today's count is 0 bing / 0 yandex. ANY nonzero = the
+lane opened; still zero after two weekly delta pushes → IndexNow stays (free)
+but stop expecting discovery wins from it and say so.
