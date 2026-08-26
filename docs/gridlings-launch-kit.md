@@ -102,9 +102,14 @@ GPT/Claude 实测拿到几个真实分数放进帖子(没有分数的 benchmark 
   hover 提亮。⑥ **封面重制**:covers/starbattle.png 换 1920×1080(真题真解渲染,
   金星深蓝主视觉)+ 新增 starbattle-512.png 方形图标——旧封面只有 630×500,
   本身就是「low quality」信号。
-  **重提交提交物(owner ~3 分钟)**:Game Versions 里游戏 URL 用
-  `https://play.agiscorecard.com/starbattle?cg=1` → 上传新封面 1920×1080 +
-  512 方图 → Submit for review。
+  **✅ 已重新提交(2026-08-26,owner 确认)**:新提交走 Externally hosted (iframe),
+  URL `https://play.agiscorecard.com/starbattle?cg=1`;QA 预览实测游戏加载正常、
+  SDK "Gameplay Start" 绿灯(生命周期上报被 CG 工具检测到)、Load time 4.7s。
+  素材:横版 1920×1080 + 竖版 800×1200(去 LinkedIn 字样)+ 方形 800×800 +
+  横竖两个 12 秒真实玩法录屏(playwright 驱动真题真解,H.264)。存档申报选
+  "No"(localStorage 不属于其 Data Module/后端两类);勾选 mobile + SDK muteAudio。
+  审核期观察:D1 里 crazygames referrer 的 play_start;结果出来按过/拒分支执行
+  (过→门户适配+更多规则集提审;拒→GameDistribution/GameMonetize 低门槛通道)。
   - Gridlings — URL `https://play.agiscorecard.com/?embed=1`，Category
     Puzzle/Logic，短描述：
     > Daily logic grid: every animal in every color, no repeats, no touching.
