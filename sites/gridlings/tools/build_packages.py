@@ -193,6 +193,13 @@ def main():
             '<script src="cg.js">',
             '<script>window.GL_CG=true;document.documentElement.classList.add("cg")</script><script src="cg.js">', 1)
         page = page.replace(" (portal build)</title>", " (CrazyGames build)</title>", 1)
+        # Unlike the licensing-grade strict flavor, the CG build KEEPS first-party
+        # analytics (owner 2026-08-26: monitoring matters): GL_CLEAN off means the
+        # /e beacon (rewritten absolute by portal_js) lands CG plays in D1 with
+        # the portal as referrer. Analytics requests are not "external links" —
+        # CG's bar is navigation that pulls players off-platform, which stays
+        # stripped. External requests are exactly two: their SDK + our beacon.
+        page = page.replace('<script>window.GL_CLEAN=true</script>', '', 1)
         play_path = "/" + slug
         js_body = portal_js(open(os.path.join(SITE, g["js"])).read(), play_path)
         buf = io.BytesIO()
