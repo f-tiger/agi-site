@@ -776,8 +776,12 @@ verified-ai-free-tiers、agiscorecard-mcp 公开 → 免费）。
 
 ## Facts that gate automation (learned the hard way)
 
-- Fresh headless sessions (create_new_session_on_fire) CANNOT push to this
-  repo and lack GitHub/Supermetrics MCPs — always use self-bind triggers.
+- ~~Fresh headless sessions CANNOT push — always use self-bind~~ **已过时
+  (2026-08-25 体检更正)**:那是私有仓时代的教训。公开 monorepo 时代,fresh session
+  经 add_repo(f-tiger/agi-site, push) 可完整工作——tds growth loop(新会话模式,
+  每轮 14 分钟真实运行并推送成功)是活证据。self-bind 的新问题反而是:绑定的持久
+  会话失效后 Routine 会 15-19 秒空转且状态显示 SUCCEEDED(eco v4 / bpj v3 踩过,
+  08-25 已重建为新会话模式)。判断标准:看 last_run 时长,不看状态。
 - The egress proxy blocks the live site, IndexNow, and most external hosts
   (403) — don't waste time on them; Cloudflare Crawler Hints (enabled) and
   GSC (sitemap submitted) handle discovery.
