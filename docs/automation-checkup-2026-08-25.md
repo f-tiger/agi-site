@@ -53,3 +53,38 @@ trends-us/rising 数据。已前移至 **03:45**。现在全链次序:03:45 flee
   排队,可接受;若未来出现漏跑,同样迁新会话模式。
 - 9/1 检查点 Routine 的任务清单仍有效,其中「Routine 心跳检查」从本轮起应按
   **时长口径**核查。
+
+## 五、合并/取消终表(owner 追加指令:「所有自动化任务都体检一次,看哪些需要合并或者取消」)
+
+**已取消(5 项)**:
+| 项 | 类型 | 理由 |
+|---|---|---|
+| getecoback daily v4 | Routine | 绑定会话失效,连日 19 秒空转 → 已重建为 v5(新会话模式,明日 05:00 首跑) |
+| 白嫖计增长循环 v3 | Routine | 同上(15 秒空转)+ prompt 指向已归档旧仓分支 → 已重建为 v4(今晚 22:00 首跑) |
+| tds-add-dns-txt.yml | workflow | 一次性 DNS 设置,使命已完成 |
+| tds-bind-domain.yml | workflow | 一次性域名绑定,使命已完成 |
+| bpj-growth-loop.yml | workflow | schedule 已注释停用,职能由 Routine v4 承担,留着只会造成混淆 |
+
+**已合并/收窄(1 项)**:
+- 「新站每日进化(SR+sellSomething)」→「sourceradar 每日进化」:sellSomething 的每日
+  健康检查与其周循环 Routine + 其仓库自带 monitor sweep 三重重叠,每日份已移出。
+
+**评估后决定不合并(2 组,理由在案)**:
+- paid-weekly ⊄ bpj v4:任务类型不同(14 工具付费档位逐一核价 vs 增长循环),两者
+  近期运行均健康(12 分钟真实工作);把稳定流程塞进另一个流程只增加失败面,不省
+  任何实际成本(公开仓分钟免费)。
+- eco 三个轻量日检(health/heat-alert/mcp-smoke)不合并为一:单次均 <20 秒,合并
+  零收益,分开反而故障隔离清晰(哪个红了一眼可辨)。
+
+**顺手修掉的浪费(3 处)**:
+- tds 簿记提交(crawl-log/traffic/d1-snapshot/growth-log)不再触发部署——此前每天
+  2-3 次完整部署 + IndexNow ping,发布产物字节不变(content/ 被 assemble-dist 排除);
+- tds deploy 里每次都跑的 `wrangler pages project create || true` 移除(账号规矩
+  点名的「为确定无效步骤付费」反模式);
+- fleet-trends 04:20→03:45(agi daily 04:00 此前每天读的是昨日趋势)。
+
+**保留并确认健康(其余全部)**:agi daily(自绑定,当日有真实 ship)、tds growth
+loop(14 分钟)、sellSomething 周循环(8 分钟)、分发暂存(11 分钟,W35 零产出
+一次,列入观察)、paid-weekly(12 分钟)、10万实验月度、9/1 检查点(prompt 已同步
+新 Routine 名单+时长判定标准)、AI 周报(owner 个人简报,3 分钟;若 owner 不再阅读
+可随时取消——这是唯一一个与营收无关的任务,去留请 owner 定)。

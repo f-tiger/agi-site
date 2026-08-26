@@ -8,7 +8,16 @@ on:
   push:
     branches: [main]
     paths:
+      # 体检 2026-08-25:纯簿记文件(content/ 被 assemble-dist 排除,不发布)的每日
+      # 提交曾各触发一次完整部署 + IndexNow ping(URL 零变化)——每天 2-3 次纯浪费。
+      # 用否定模式排除;注意 content/*.json 里的数据文件(doll-specs/importing 等)
+      # **仍要**触发部署,因为页面生成器在部署链里跑。
       - "sites/thedollscout/**"
+      - "!sites/thedollscout/content/crawl-log.json"
+      - "!sites/thedollscout/content/traffic.json"
+      - "!sites/thedollscout/content/d1-snapshot.json"
+      - "!sites/thedollscout/content/grow-status.json"
+      - "!sites/thedollscout/content/growth-log.md"
       - ".github/workflows/deploy-thedollscout.yml"
   workflow_dispatch:
 
@@ -139,9 +148,8 @@ jobs:
           if [ -n "$CF_ACCOUNT_ID_SECRET" ]; then
             export CLOUDFLARE_ACCOUNT_ID="$CF_ACCOUNT_ID_SECRET"
           fi
-          # First run: create the project (no-op failure if it already exists)
-          npx wrangler@4 pages project create dollscout \
-            --production-branch claude/adult-product-distribution-site-q1bzbh || true
+          # (体检 2026-08-25:移除每次都跑的 "pages project create || true"——项目
+          # 早已存在,这是账号规矩点名的「为确定无效的步骤付费」反模式。)
           npx wrangler@4 pages deploy dist \
             --project-name dollscout \
             --branch claude/adult-product-distribution-site-q1bzbh
