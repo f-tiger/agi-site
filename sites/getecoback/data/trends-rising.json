@@ -1,5 +1,5 @@
 {
- "fetched": "2026-08-25",
+ "fetched": "2026-08-26",
  "geo": "DE",
  "seeds": {
   "klimaanlage": {
@@ -143,48 +143,94 @@
   "luftentfeuchter": {
    "rising": [
     {
-     "q": "luftentfeuchter bei hitze",
-     "v": 164700
+     "q": "klarstein mobile klimaanlage mit abluftschlauch, 4-in-1 klimagerät mit ventilato",
+     "v": 43450
     },
     {
-     "q": "luftentfeuchter keller testsieger",
-     "v": 48850
+     "q": "klimaanlage mobil",
+     "v": 42600
+    },
+    {
+     "q": "kühlt ein luftentfeuchter",
+     "v": 41950
     },
     {
      "q": "split klimaanlage",
-     "v": 42900
+     "v": 40850
     },
     {
-     "q": "pro breeze luftentfeuchter 20l",
-     "v": 38750
+     "q": "meaco dry arete one 25l",
+     "v": 40050
     },
     {
-     "q": "luftentfeuchter wandmontage",
-     "v": 29000
+     "q": "meaco arete one 20l",
+     "v": 36350
     },
     {
-     "q": "klarstein mobile klimaanlage mit abluftschlauch, 4-in-1 klimagerät mit ventilato",
-     "v": 28400
+     "q": "luftentfeuchter keller ohne strom",
+     "v": 28500
+    },
+    {
+     "q": "klimaanlage ohne abluftschlauch",
+     "v": 27300
     },
     {
      "q": "luftentfeuchter testsieger stiftung warentest",
-     "v": 22800
+     "v": 27300
     },
     {
-     "q": "dyson luftreiniger",
-     "v": 21750
-    },
-    {
-     "q": "easy home luftentfeuchter bedienungsanleitung aldi",
-     "v": 21200
-    },
-    {
-     "q": "emerio luftentfeuchter",
-     "v": 17050
+     "q": "de longhi luftentfeuchter",
+     "v": 20750
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-08-25"
+   "fetched": "2026-08-26"
+  },
+  "heizlüfter": {
+   "rising": [
+    {
+     "q": "midea heizlüfter",
+     "v": 106900
+    },
+    {
+     "q": "dyson ventilator und heizlüfter",
+     "v": 63900
+    },
+    {
+     "q": "energiesparender heizlüfter",
+     "v": 54650
+    },
+    {
+     "q": "dreo atom one",
+     "v": 39050
+    },
+    {
+     "q": "mini heizlüfter steckdose",
+     "v": 7400
+    },
+    {
+     "q": "heizlüfter mit wenig stromverbrauch",
+     "v": 4600
+    },
+    {
+     "q": "heizlüfter mit frostwächter",
+     "v": 2900
+    },
+    {
+     "q": "ventilator",
+     "v": 850
+    },
+    {
+     "q": "klimaanlage",
+     "v": 300
+    },
+    {
+     "q": "heizlüfter mit fernbedienung",
+     "v": 200
+    }
+   ],
+   "source": "related-queries",
+   "fetched": "2026-08-26"
   }
  }
 }
