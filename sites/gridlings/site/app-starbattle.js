@@ -69,12 +69,23 @@
       sol: p.sol.split("").map(Number),
       fill: [], // 0 empty, 1 star, 2 mark
       mode: o.mode, key: o.key, num: o.label,
-      startT: 0, ticker: null, hints: 0, done: false
+      startT: 0, ticker: null, hints: 0, done: false,
+      hist: [], lastTap: -1, savedElapsed: 0
     };
     for (var i = 0; i < p.n * p.n; i++) state.fill.push(0);
+    // resume an unfinished board (quality pass 2026-08-26): fill + elapsed
+    // are saved per-puzzle on every move and cleared on solve.
+    try {
+      var sv = JSON.parse(localStorage.getItem("sb_prog_" + state.key) || "null");
+      if (sv && sv.f && sv.f.length === p.n * p.n) {
+        state.fill = sv.f.split("").map(Number);
+        state.savedElapsed = sv.e || 0;
+      }
+    } catch (e) {}
     $("pnum").textContent = (o.mode === "daily" ? (L.daily || "Daily") : (L.free || "Free play")) + " " + o.label +
       " · " + p.s + "★";
-    $("timer").textContent = "0:00";
+    var se = state.savedElapsed;
+    $("timer").textContent = Math.floor(se / 60) + ":" + ("0" + se % 60).slice(-2);
     $("win").hidden = true;
     if (CH && !CLEAN) {
       var ban = $("chbanner");
@@ -142,17 +153,53 @@
       d.style.borderBottom = bs[2]; d.style.borderLeft = bs[3];
       d.textContent = state.fill[i] === 1 ? "★" : (state.fill[i] === 2 ? "×" : "");
       if (state.fill[i] === 2) d.style.opacity = "0.75";
+      if (i === state.lastTap && state.fill[i] === 1) d.classList.add("pop");
       (function (idx) { d.onclick = function () { tap(idx); }; })(i);
       g.appendChild(d);
     }
+    state.lastTap = -1;
+  }
+
+  function sfx(k) { try { window.glSfx && window.glSfx(k); } catch (e) {} }
+
+  function saveProg() {
+    try {
+      if (state.done) { localStorage.removeItem("sb_prog_" + state.key); return; }
+      var e = state.startT ? Math.floor((Date.now() - state.startT) / 1000) : state.savedElapsed;
+      localStorage.setItem("sb_prog_" + state.key, JSON.stringify({ f: state.fill.join(""), e: e }));
+    } catch (e) {}
+  }
+
+  function startClock() {
+    if (state.startT) return;
+    state.startT = Date.now() - state.savedElapsed * 1000;
+    state.ticker = setInterval(tick, 1000);
   }
 
   function tap(i) {
     if (state.done) return;
-    if (!state.startT) { state.startT = Date.now(); state.ticker = setInterval(tick, 1000); }
+    startClock();
+    var before = Object.keys(conflicts()).length;
+    state.hist.push({ i: i, v: state.fill[i] });
+    if (state.hist.length > 400) state.hist.shift();
     state.fill[i] = (state.fill[i] + 1) % 3;
+    state.lastTap = i;
+    var after = Object.keys(conflicts()).length;
+    sfx(after > before ? "err" : (state.fill[i] === 1 ? "place" : (state.fill[i] === 2 ? "tap" : "clear")));
+    saveProg();
     render();
     check();
+  }
+
+  function undo() {
+    if (!state || state.done || !state.hist.length) return;
+    var m = state.hist.pop();
+    state.fill[m.i] = m.v;
+    state.lastTap = -1;
+    sfx("clear");
+    saveProg();
+    render();
+    gev("undo", "sb:" + state.key);
   }
 
   function check() {
@@ -170,6 +217,7 @@
     for (var k = 0; k < n; k++) if (rows[k] !== S || cols[k] !== S || regs[k] !== S) return;
     state.done = true;
     clearInterval(state.ticker);
+    saveProg();
     var secs = state.startT ? Math.floor((Date.now() - state.startT) / 1000) : 0;
     var t = Math.floor(secs / 60) + ":" + ("0" + secs % 60).slice(-2);
     $("wtime").textContent = t;
@@ -215,13 +263,19 @@
       if (state.fill[i] === 1 && !state.sol[i]) wrong.push(i);
       if (state.fill[i] !== 1 && state.sol[i]) missing.push(i);
     }
-    if (!state.startT) { state.startT = Date.now(); state.ticker = setInterval(tick, 1000); }
+    startClock();
     if (wrong.length) {
+      state.hist.push({ i: wrong[0], v: state.fill[wrong[0]] });
       state.fill[wrong[0]] = 0;
     } else if (missing.length) {
-      state.fill[missing[Math.floor(Math.random() * missing.length)]] = 1;
+      var mi = missing[Math.floor(Math.random() * missing.length)];
+      state.hist.push({ i: mi, v: state.fill[mi] });
+      state.fill[mi] = 1;
+      state.lastTap = mi;
     } else return;
     state.hints++;
+    sfx("place");
+    saveProg();
     render();
     gev("hint_used", "sb:" + state.key, state.hints);
     check();
@@ -239,6 +293,8 @@
   document.addEventListener("DOMContentLoaded", function () {
     if (EMBED || CLEAN) document.documentElement.classList.add("embed");
     $("hintbtn").onclick = hint;
+    var ub = $("undobtn");
+    if (ub) ub.onclick = undo;
     $("sharebtn").onclick = share;
     var chb = $("chbtn");
     if (chb) chb.onclick = function () {

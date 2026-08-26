@@ -80,6 +80,17 @@ GPT/Claude 实测拿到几个真实分数放进帖子(没有分数的 benchmark 
 需求最大）。全部 `?embed=1` iframe 就绪。
 
 - CrazyGames: developer.crazygames.com 注册 → 提交 URL。审核 2-4 周。
+  **08-25 提交被拒(08-26 通知)**:拒因模板化「overall quality does not yet meet
+  expectations」。对照官方 docs(requirements/gameplay + quality)定位三缺口并已修
+  (commit 见 08-26):①首访规则弹窗挡玩法(CG 明文:立即进入玩法、引导做在玩法内
+  可跳过)→ 改为格上一条可关引导条,弹窗只在 "?"/完整规则后开;②零音效 → firstrun.js
+  内置 WebAudio 合成音效(落子/标记/冲突/过关)+ 持久化静音键,过关音效经 #win 钩子
+  **11 款全体生效**;③无撤销/无进度续玩/落子无反馈 → Star Battle 加 undo(事件已入
+  白名单)、逐步自动存档续玩、落子 pop 动画。embed 模式下音效/帮助键挂 .meta(header
+  被隐藏)。**重提交 = owner 动作**:developer.crazygames.com → Star Battle → Game
+  Versions → 更新版本再送审;建议顺手换张更精致的封面图(评审吃第一印象)。若再拒,
+  下一档分发走 GameDistribution / GameMonetize(门槛低于 CG/Poki),itch 已在架继续养。
+  仍欠(后续 run):其余 10 款的落子音效逐款接线(win 音效已全体生效)。
   - Gridlings — URL `https://play.agiscorecard.com/?embed=1`，Category
     Puzzle/Logic，短描述：
     > Daily logic grid: every animal in every color, no repeats, no touching.

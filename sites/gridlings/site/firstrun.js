@@ -1,9 +1,13 @@
-/* Shared first-run onboarding + win juice (2026-08-24, pre-portal audit).
-   Zero engine edits: the overlay clones the page's own .rules block (so it is
-   always in the page's language and never drifts from the real rules), and the
-   confetti hooks #win via MutationObserver. Storage key is per-path, so each
-   game and language shows its intro once. Relative asset — works from the
-   live site, /zh/ pages (worker fallback), and the standalone zips alike. */
+/* Shared onboarding + juice (v2, 2026-08-26 — CrazyGames quality pass).
+   v1 auto-opened a rules MODAL on first visit; CG's gameplay doc says the
+   opposite: "land new users in gameplay immediately … implement the
+   onboarding in gameplay, make it skippable". So v2 never blocks the board:
+   first visit shows a slim dismissible coach bar above the grid (first rule
+   line + full-rules link), gone forever once dismissed or once the player
+   wins. The full-rules modal stays available behind "?" and the bar's link.
+   Also adds a shared WebAudio SFX engine (window.glSfx) with a persisted
+   mute toggle, and plays the win sound from the same #win hook as the
+   confetti — every game gets win audio with zero engine edits. */
 (function () {
   var KEY = "fr_" + location.pathname.replace(/[^a-z0-9]/gi, "_");
   function seen() { try { return localStorage.getItem(KEY); } catch (e) { return 1; } }
@@ -11,6 +15,61 @@
   var rules = document.querySelector(".rules");
   var zh = (document.documentElement.lang || "").indexOf("zh") === 0;
 
+  /* ---------- SFX engine (shared, lazy AudioContext) ---------- */
+  var MUTEKEY = "gl_mute";
+  function muted() { try { return localStorage.getItem(MUTEKEY) === "1"; } catch (e) { return false; } }
+  var actx = null;
+  function ctx() {
+    if (actx) return actx;
+    try { actx = new (window.AudioContext || window.webkitAudioContext)(); } catch (e) { return null; }
+    return actx;
+  }
+  function tone(freq, t0, dur, type, gain) {
+    var c = ctx(); if (!c) return;
+    var o = c.createOscillator(), g = c.createGain();
+    o.type = type || "sine"; o.frequency.value = freq;
+    g.gain.setValueAtTime(0.0001, c.currentTime + t0);
+    g.gain.exponentialRampToValueAtTime(gain || 0.1, c.currentTime + t0 + 0.012);
+    g.gain.exponentialRampToValueAtTime(0.0001, c.currentTime + t0 + dur);
+    o.connect(g); g.connect(c.destination);
+    o.start(c.currentTime + t0); o.stop(c.currentTime + t0 + dur + 0.02);
+  }
+  window.glSfx = function (kind) {
+    if (muted()) return;
+    var c = ctx(); if (!c) return;
+    if (c.state === "suspended") { try { c.resume(); } catch (e) {} }
+    if (kind === "tap") tone(380, 0, 0.05, "triangle", 0.06);
+    else if (kind === "place") { tone(523, 0, 0.07, "sine", 0.09); tone(784, 0.055, 0.09, "sine", 0.08); }
+    else if (kind === "clear") tone(300, 0, 0.05, "triangle", 0.05);
+    else if (kind === "err") { tone(170, 0, 0.1, "sawtooth", 0.05); tone(140, 0.07, 0.12, "sawtooth", 0.04); }
+    else if (kind === "win") [523, 659, 784, 1047].forEach(function (f, i) { tone(f, i * 0.09, 0.16, "sine", 0.09); });
+  };
+  // In embed/clean mode (portal iframes) the header is display:none — the
+  // sound toggle and "?" must stay reachable, so they mount on .meta there.
+  function mountPoint() {
+    // check the URL, not the .embed class — this runs (deferred) before the
+    // game script's DOMContentLoaded handler stamps the class on <html>.
+    var em = /(^|[?&])(embed|clean)=1/.test(location.search) || window.GL_CLEAN === true;
+    return (em && document.querySelector(".meta")) || document.querySelector("header h1") || document.querySelector(".meta");
+  }
+  function addMute() {
+    var h = mountPoint();
+    if (!h || document.getElementById("frmute")) return;
+    var b = document.createElement("button");
+    b.id = "frmute";
+    b.textContent = muted() ? "🔇" : "🔊";
+    b.setAttribute("aria-label", zh ? "音效开关" : "Toggle sound");
+    b.style.cssText = "margin-left:8px;border:1px solid var(--line,#ccc);background:var(--bg2,#f5f5f5);border-radius:50%;width:26px;height:26px;font-size:12px;cursor:pointer;vertical-align:middle;line-height:1;padding:0";
+    b.onclick = function () {
+      var m = !muted();
+      try { localStorage.setItem(MUTEKEY, m ? "1" : "0"); } catch (e) {}
+      b.textContent = m ? "🔇" : "🔊";
+      if (!m) window.glSfx("place");
+    };
+    h.appendChild(b);
+  }
+
+  /* ---------- full-rules modal (opt-in only: "?" or the coach bar link) ---------- */
   function showIntro() {
     if (!rules || document.getElementById("frov")) return;
     var ov = document.createElement("div");
@@ -23,20 +82,45 @@
     btn.className = "btn pri";
     btn.style.cssText = "margin-top:12px;width:100%";
     btn.textContent = zh ? "明白了,开始 →" : "Got it — play →";
-    btn.onclick = function () { mark(); ov.remove(); };
+    btn.onclick = function () { ov.remove(); };
     card.appendChild(btn);
     ov.appendChild(card);
-    ov.addEventListener("click", function (e) { if (e.target === ov) { mark(); ov.remove(); } });
+    ov.addEventListener("click", function (e) { if (e.target === ov) ov.remove(); });
     document.body.appendChild(ov);
   }
 
-  if (!seen()) {
-    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", showIntro);
-    else showIntro();
+  /* ---------- first-visit coach bar: onboarding IN gameplay, skippable ---------- */
+  function coachBar() {
+    var grid = document.getElementById("grid");
+    var li = rules && rules.querySelector("ul li");
+    if (!grid || !li || document.getElementById("frcoach")) return;
+    var bar = document.createElement("div");
+    bar.id = "frcoach";
+    bar.style.cssText = "display:flex;align-items:center;gap:8px;margin:.55rem 0;padding:.5rem .7rem;background:var(--bg2,#f5f5f5);border:1px solid var(--line,#ddd);border-radius:10px;font-size:13.5px;line-height:1.4";
+    var txt = document.createElement("span");
+    txt.style.cssText = "flex:1";
+    txt.textContent = "👋 " + li.textContent;
+    var more = document.createElement("a");
+    more.href = "javascript:void(0)";
+    more.textContent = zh ? "完整规则" : "Full rules";
+    more.style.cssText = "white-space:nowrap;font-weight:600";
+    more.onclick = showIntro;
+    var x = document.createElement("button");
+    x.textContent = "×";
+    x.setAttribute("aria-label", zh ? "关闭" : "Dismiss");
+    x.style.cssText = "border:none;background:transparent;color:var(--mut,#666);font-size:18px;cursor:pointer;line-height:1;padding:0 2px";
+    x.onclick = function () { mark(); bar.remove(); };
+    bar.appendChild(txt); bar.appendChild(more); bar.appendChild(x);
+    grid.parentNode.insertBefore(bar, grid);
   }
+  function dropCoach() {
+    var bar = document.getElementById("frcoach");
+    if (bar) { mark(); bar.remove(); }
+  }
+
   // "?" reopen affordance next to the H1
   function addHelp() {
-    var h = document.querySelector("header h1");
+    var h = mountPoint();
     if (!h || !rules || document.getElementById("frhelp")) return;
     var q = document.createElement("button");
     q.id = "frhelp"; q.textContent = "?";
@@ -45,10 +129,14 @@
     q.onclick = showIntro;
     h.appendChild(q);
   }
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", addHelp); else addHelp();
+  function boot() {
+    addHelp();
+    addMute();
+    if (!seen()) coachBar();
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot); else boot();
 
-  // Mobile: open the native share sheet alongside the clipboard copy.
-  // Clipboard-only sharing is where portal virality dies on phones — the
+  // Mobile: open the native share sheet alongside the clipboard copy. The
   // engine handler still runs (copy + its analytics event); this adds the
   // OS sheet when a coarse pointer + Web Share API are present.
   document.addEventListener("click", function (e) {
@@ -62,9 +150,11 @@
     navigator.share({ text: txt }).catch(function () {});
   }, true);
 
-  // win confetti: fires when #win loses [hidden]
+  // win confetti + win sound: fires when #win loses [hidden]
   var win = null;
   function burst() {
+    window.glSfx("win");
+    dropCoach();
     var EM = ["🎉", "✨", "⭐", "🎊"];
     for (var i = 0; i < 18; i++) {
       var s = document.createElement("span");
