@@ -1,0 +1,27 @@
+name: Diagnostic curl (temporary)
+# 一次性诊断(2026-08-26):CG iframe 里 play.agiscorecard.com 重定向死循环,
+# 沙箱出网被代理挡住,只有 runner 能看到真实的 Location 链。用完即删。
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: 'URL to probe'
+        required: true
+        type: string
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Redirect chain (plain)
+        run: |
+          curl -sIL --max-redirs 8 "${{ inputs.url }}" | grep -iE "^(HTTP|location|cf-|server|set-cookie|x-frame|content-security)" || true
+      - name: Redirect chain (browser-like UA + CG referer)
+        run: |
+          curl -sIL --max-redirs 8 \
+            -A "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127 Safari/537.36" \
+            -H "Referer: https://www.crazygames.com/" \
+            -H "Accept-Language: zh-CN,zh;q=0.9" \
+            "${{ inputs.url }}" | grep -iE "^(HTTP|location|cf-|server|set-cookie|x-frame|content-security)" || true
+      - name: Body head
+        run: |
+          curl -sL --max-redirs 3 "${{ inputs.url }}" | head -c 400 || true
