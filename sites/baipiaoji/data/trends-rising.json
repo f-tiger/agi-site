@@ -1,60 +1,52 @@
 {
- "fetched": "2026-08-25",
+ "fetched": "2026-08-26",
  "geo": "US",
  "seeds": {
   "deepseek": {
-   "auto": [
-    "deepseek",
-    "deepseek harness desktop",
-    "deepseek ai",
-    "deepseek api",
-    "deepseek v4",
-    "deepseek v4 flash",
-    "deepseek chat",
-    "deepseek v4 pro",
-    "deepseek harness github",
-    "deepseek platform"
-   ],
    "rising": [
     {
+     "q": "deepseek 0731",
+     "v": 72950
+    },
+    {
+     "q": "deepseek v4 flash 0731",
+     "v": 63300
+    },
+    {
+     "q": "dspark deepseek",
+     "v": 40750
+    },
+    {
+     "q": "deepseek 正式 版",
+     "v": 28500
+    },
+    {
+     "q": "dsh",
+     "v": 15850
+    },
+    {
+     "q": "dsh deepseek",
+     "v": 15150
+    },
+    {
+     "q": "deepseek v4 pro 0813",
+     "v": 14400
+    },
+    {
      "q": "deepseek harness desktop",
-     "v": "new"
+     "v": 13500
     },
     {
-     "q": "deepseek ai",
-     "v": "new"
+     "q": "qwen 3.8",
+     "v": 12000
     },
     {
-     "q": "deepseek api",
-     "v": "new"
-    },
-    {
-     "q": "deepseek v4",
-     "v": "new"
-    },
-    {
-     "q": "deepseek v4 flash",
-     "v": "new"
-    },
-    {
-     "q": "deepseek chat",
-     "v": "new"
-    },
-    {
-     "q": "deepseek v4 pro",
-     "v": "new"
-    },
-    {
-     "q": "deepseek harness github",
-     "v": "new"
-    },
-    {
-     "q": "deepseek platform",
-     "v": "new"
+     "q": "glm 5.2",
+     "v": 11100
     }
    ],
-   "source": "autocomplete-diff",
-   "fetched": "2026-08-25"
+   "source": "related-queries",
+   "fetched": "2026-08-26"
   },
   "midjourney": {
    "auto": [
