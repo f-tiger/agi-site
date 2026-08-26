@@ -43,3 +43,8 @@ footer a{color:var(--acc)}
 .cell.pop{animation:glpop .2s ease}
 @keyframes glpop{0%{transform:scale(.6)}60%{transform:scale(1.22)}100%{transform:scale(1)}}
 @media (prefers-reduced-motion: reduce){.cell.pop{animation:none}}
+
+#grid.sb .cell.st{color:#ffd84d;text-shadow:0 0 8px rgba(255,216,77,.45),0 1px 2px rgba(0,0,0,.5)}
+#grid.sb .cell.mk{color:rgba(255,255,255,.72);font-size:.72em}
+@media(hover:hover){#grid.sb .cell:hover{filter:brightness(1.18)}}
+.cg #chbtn,.cg .subline{display:none!important}

@@ -49,7 +49,7 @@
   function mountPoint() {
     // check the URL, not the .embed class — this runs (deferred) before the
     // game script's DOMContentLoaded handler stamps the class on <html>.
-    var em = /(^|[?&])(embed|clean)=1/.test(location.search) || window.GL_CLEAN === true;
+    var em = /(^|[?&])(embed|clean|cg)=1/.test(location.search) || window.GL_CLEAN === true || window.GL_CG === true;
     return (em && document.querySelector(".meta")) || document.querySelector("header h1") || document.querySelector(".meta");
   }
   function addMute() {
@@ -110,7 +110,17 @@
     x.setAttribute("aria-label", zh ? "关闭" : "Dismiss");
     x.style.cssText = "border:none;background:transparent;color:var(--mut,#666);font-size:18px;cursor:pointer;line-height:1;padding:0 2px";
     x.onclick = function () { mark(); bar.remove(); };
+    var ez = document.getElementById("d-easy");
+    if (ez) {
+      var easy = document.createElement("a");
+      easy.href = "javascript:void(0)";
+      easy.textContent = zh ? "新手?先来简单盘 →" : "New? Try an easy board →";
+      easy.style.cssText = "white-space:nowrap;font-weight:600";
+      easy.onclick = function () { ez.click(); };
+      bar.appendChild(easy);
+    }
     bar.appendChild(txt); bar.appendChild(more); bar.appendChild(x);
+    bar.insertBefore(txt, bar.firstChild);
     grid.parentNode.insertBefore(bar, grid);
   }
   function dropCoach() {

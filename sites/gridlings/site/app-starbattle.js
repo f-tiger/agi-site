@@ -3,7 +3,7 @@
 (function () {
   "use strict";
   var L = window.STARBATTLE_LANG || {};
-  var EMBED = /(^|[?&])embed=1/.test(location.search);
+  var EMBED = /(^|[?&])embed=1/.test(location.search) || window.GL_CG === true;
   var CLEAN = window.GL_CLEAN === true || /(^|[?&])clean=1/.test(location.search);
   var CH = (function () {
     var m = location.search.match(/[?&]ct=(\d{1,5})/);
@@ -152,9 +152,14 @@
       d.style.borderTop = bs[0]; d.style.borderRight = bs[1];
       d.style.borderBottom = bs[2]; d.style.borderLeft = bs[3];
       d.textContent = state.fill[i] === 1 ? "★" : (state.fill[i] === 2 ? "×" : "");
-      if (state.fill[i] === 2) d.style.opacity = "0.75";
+      if (state.fill[i] === 1) d.classList.add("st");
+      if (state.fill[i] === 2) d.classList.add("mk");
       if (i === state.lastTap && state.fill[i] === 1) d.classList.add("pop");
-      (function (idx) { d.onclick = function () { tap(idx); }; })(i);
+      (function (idx) {
+        d.onclick = function () { tap(idx); };
+        // desktop QoL: right-click toggles the × note directly
+        d.oncontextmenu = function (ev) { ev.preventDefault(); mark(idx); };
+      })(i);
       g.appendChild(d);
     }
     state.lastTap = -1;
@@ -174,6 +179,7 @@
     if (state.startT) return;
     state.startT = Date.now() - state.savedElapsed * 1000;
     state.ticker = setInterval(tick, 1000);
+    try { window.glCg && window.glCg("start"); } catch (e) {}
   }
 
   function tap(i) {
@@ -189,6 +195,17 @@
     saveProg();
     render();
     check();
+  }
+
+  function mark(i) {
+    if (state.done || state.fill[i] === 1) return;
+    startClock();
+    state.hist.push({ i: i, v: state.fill[i] });
+    if (state.hist.length > 400) state.hist.shift();
+    state.fill[i] = state.fill[i] === 2 ? 0 : 2;
+    sfx(state.fill[i] === 2 ? "tap" : "clear");
+    saveProg();
+    render();
   }
 
   function undo() {
@@ -218,6 +235,7 @@
     state.done = true;
     clearInterval(state.ticker);
     saveProg();
+    try { window.glCg && (window.glCg("stop"), window.glCg("happy")); } catch (e) {}
     var secs = state.startT ? Math.floor((Date.now() - state.startT) / 1000) : 0;
     var t = Math.floor(secs / 60) + ":" + ("0" + secs % 60).slice(-2);
     $("wtime").textContent = t;
@@ -253,7 +271,7 @@
     gev("solve", "sb:" + state.key + (state.hints ? ":h" + state.hints : ":clean"), secs);
     window._share = "Star Battle " + state.num + " ★ ⏱ " + t +
       (state.hints ? " (" + state.hints + " 💡)" : " 🧠") +
-      (streak > 1 ? " 🔥" + streak : "") + (CLEAN ? "" : "\nhttps://play.agiscorecard.com/starbattle");
+      (streak > 1 ? " 🔥" + streak : "") + (CLEAN || EMBED ? "" : "\nhttps://play.agiscorecard.com/starbattle");
   }
 
   function hint() {
@@ -290,8 +308,36 @@
     gev("share_copy", "sb:" + (state ? state.key : "none"));
   }
 
+  function goDaily() {
+    var keep = location.search.replace(/[?&](p|d|ct)=[^&]*/g, "").replace(/^&/, "?");
+    history.replaceState(null, "", location.pathname + keep);
+    loadPuzzle(function (p, mode, key, label) { start({ p: p, mode: mode, key: key, label: label }); });
+  }
+
+  function embedModeRow() {
+    if (document.getElementById("emrow")) return;
+    var bar = document.querySelector(".bar");
+    if (!bar) return;
+    var row = document.createElement("div");
+    row.id = "emrow";
+    row.className = "bar";
+    row.style.marginTop = ".35rem";
+    var mk = function (label, fn) {
+      var b = document.createElement("button");
+      b.className = "btn"; b.textContent = label; b.onclick = fn;
+      row.appendChild(b);
+    };
+    var zh = (document.documentElement.lang || "").indexOf("zh") === 0;
+    mk(zh ? "📅 每日" : "📅 Daily", goDaily);
+    mk(zh ? "新手 8×8" : "Easy 8×8", function () { randomPool("easy"); });
+    mk("Medium", function () { randomPool("medium"); });
+    mk("Hard", function () { randomPool("hard"); });
+    bar.parentNode.insertBefore(row, bar.nextSibling);
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
     if (EMBED || CLEAN) document.documentElement.classList.add("embed");
+    if (EMBED) embedModeRow();
     $("hintbtn").onclick = hint;
     var ub = $("undobtn");
     if (ub) ub.onclick = undo;

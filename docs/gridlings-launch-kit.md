@@ -91,6 +91,20 @@ GPT/Claude 实测拿到几个真实分数放进帖子(没有分数的 benchmark 
   Versions → 更新版本再送审;建议顺手换张更精致的封面图(评审吃第一印象)。若再拒,
   下一档分发走 GameDistribution / GameMonetize(门槛低于 CG/Poki),itch 已在架继续养。
   仍欠(后续 run):其余 10 款的落子音效逐款接线(win 音效已全体生效)。
+  **08-26 二轮深度加固(owner:「深度优化下,保障一次通过」),全部无头实测通过:**
+  ① **CG SDK v3 已接**(cg.js,仅 ?cg=1 或 crazygames referrer 时激活,公开站零加载):
+  init → loadingStart/loadingStop(棋盘渲染完成)→ gameplayStart(首步)→
+  gameplayStop+happytime(过关);SDK 拉取失败全程静默降级,游戏不受影响。
+  ② **CG 模式站外零链接**(CG 红线):挑战按钮与订阅行隐藏(.cg 类),分享文案在
+  embed/cg 下不带本站 URL。③ **首触难度曲线**:embed/cg 下棋盘下方出现
+  每日/新手8×8/Medium/Hard 行内切换(纯 JS 无跳转),引导条加「新手?先来简单盘」。
+  ④ **桌面右键直接标 ×**(不动 ★),入撤销历史。⑤ **视觉**:金星+辉光、× 弱化、
+  hover 提亮。⑥ **封面重制**:covers/starbattle.png 换 1920×1080(真题真解渲染,
+  金星深蓝主视觉)+ 新增 starbattle-512.png 方形图标——旧封面只有 630×500,
+  本身就是「low quality」信号。
+  **重提交提交物(owner ~3 分钟)**:Game Versions 里游戏 URL 用
+  `https://play.agiscorecard.com/starbattle?cg=1` → 上传新封面 1920×1080 +
+  512 方图 → Submit for review。
   - Gridlings — URL `https://play.agiscorecard.com/?embed=1`，Category
     Puzzle/Logic，短描述：
     > Daily logic grid: every animal in every color, no repeats, no touching.
