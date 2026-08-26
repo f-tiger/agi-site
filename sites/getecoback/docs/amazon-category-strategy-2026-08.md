@@ -31,7 +31,7 @@
 ## 三、今日已落地(做网站部分)
 
 1. `luftentfeuchter-ratgeber` 与 `luftentfeuchter-gegen-schimmel` 两个设备枢纽页**此前零购买面**——补 CONTEXT_MODELS 三面,含 **Pro Breeze 20L「Meistgesucht diese Woche」**具体型号 chip(依据 = 自家 trends-rising 一手数据,文案明示「需求信号,非测评结论,未自测」)。
-2. 快反队列(每日 1 页,防翻炒):**明日 = `infrarotheizung-garage`**(v=44.050,品类 6%,页面缺口);后日候选 = `luftentfeuchter-wandmontage`(v=29.000,先查重 vs 既有 qm 系列)。schmidbauer(62.950)是品牌词,先核 SERP 构成再定。
+2. 快反队列(每日 1 页,防翻炒):~~明日 = `infrarotheizung-garage`~~ **✅ 08-26 已上线**(三目标判定页:工位点热/防冻/整库,CONTEXT_MODELS 三 chip 即三答案,判定线并入 09-2x 取暖簇窗口:28d affiliate_click ≥1 或进 pv TOP20);下一位 = `luftentfeuchter-wandmontage`(v=29.000,先查重 vs 既有 qm 系列)。schmidbauer(62.950)是品牌词,先核 SERP 构成再定。
 3. 判定线(28d,09-22):两个补面页合计 affiliate_click ≥3 → 补面有效;Pro Breeze chip 的点击占比 > 泛搜索链接 → 「具体型号+需求标注」模式推广到取暖簇。
 
 ## 四、明确不做

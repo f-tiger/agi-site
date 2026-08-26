@@ -308,6 +308,8 @@ const EV_NAMES = new Set([
   "hose_fit", "panel_fit", "popup_view", "popup_click", "popup_close", "site_search",
   "mcp_call", "mcp_probe", "mcp_install_click", "tariff_click", "foerder_check",
   "storage_home",
+  // Autumn home block + self-updating rising rail (2026-08-25/26).
+  "herbst_home", "rising_guide",
   // Written server-side by serveMarkdown (crawlers run no JS), listed here so
   // the event vocabulary stays in one place.
   "md_serve",

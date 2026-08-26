@@ -797,6 +797,14 @@ CONTEXT_MODELS = {
  # Schmidbauer chip = demand signal from our own trends data (v=62.950), labeled
  # as such; the thermostat search is the exact term that already earned a click
  # on heizung-40-qm (D1). Nothing here is a test verdict.
+ # Fast-strike 2026-08-26 (rising "infrarotheizung für garage" v=44.050): the
+ # page's own verdict is spot-heat yes / frost guard cheaper / whole-room no —
+ # the three chips ARE those three answers, nothing beyond the article's claims.
+ "infrarotheizung-garage": [
+   ("Infrarot-Heizstrahler (Wand/Decke)", "Punktwärme am Arbeitsplatz", "Wärmt dich und die Werkbank direkt statt der Garagenluft — der Einsatzfall, für den Infrarot in der ungedämmten Garage gebaut ist.", "Preis vor Ort prüfen", "infrarot+heizstrahler+werkstatt+wandmontage", "heater"),
+   ("Frostwächter mit Thermostat", "Nur frostfrei halten", "Springt erst unterhalb der eingestellten Temperatur an — für reinen Frostschutz die sparsamere Lösung als ein Panel im Dauerbetrieb.", "Preis vor Ort prüfen", "frostw%C3%A4chter+thermostat", "heater"),
+   ("Steckdosen-Thermostat", "Abschaltung nachrüsten", "Schaltet einen vorhandenen Strahler temperaturgesteuert — Dauerbetrieb ist laut der Rechnung auf dieser Seite der teuerste Fehler.", "Preis vor Ort prüfen", "steckdosen+thermostat+heizung", "heater"),
+ ],
  "infrarotheizung-ratgeber": [
    ("Schmidbauer Infrarotheizung", "Meistgesucht diese Woche", "Die aktuell meistgesuchte Marke in unserer täglichen Google-Trends-Abfrage (Stand 25.08.). Nachfrage-Signal, kein Testurteil — nicht selbst getestet.", "Preis vor Ort prüfen", "Schmidbauer+Infrarotheizung", "heater"),
    ("Infrarotheizung mit Thermostat", "Die sinnvolle Grundausstattung", "Ohne Thermostat läuft die Paneele durch — mit schaltet sie nur, wenn der Raum es braucht.", "Preis vor Ort prüfen", "infrarotheizung+mit+thermostat", "heater"),
