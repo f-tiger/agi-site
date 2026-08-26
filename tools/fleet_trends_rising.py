@@ -41,8 +41,10 @@ FLEET = [
     # 站点,只验需求——探针过线(v≥1.000 或连续两轮购买/求证意图)才进 KGR/建面流程。
     {"site": "probe-us", "geo": "US", "out": "data/probes-rising.json",
      "seeds": ["mattress fiberglass", "furniture scam", "counterfeit makeup"]},
+    # probe-de 2026-08-26 更正(owner:载体=eco 自有域):撤手表种子(EcoBack 家居品牌
+    # 装不下打假手表),换 eco-Faktencheck 直接可承接的家具/床垫消保意图。
     {"site": "probe-de", "geo": "DE", "out": "data/probes-de-rising.json",
-     "seeds": ["uhr fälschung erkennen", "chrono24 seriös"]},
+     "seeds": ["matratze fiberglas", "möbel online shop seriös"]},
 ]
 # (site_index, seed) 扁平池,供全局轮换。
 POOL = [(i, s) for i, cfg in enumerate(FLEET) for s in cfg["seeds"]]

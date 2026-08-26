@@ -32,3 +32,23 @@
 - 探针过线前:不买域名、不建页、不改任何站点导航——「先研究清楚再下结论」从此机器化。
 - 一旦某候选过线开建:走三门薄 PRD、判定线预登记、并入 tds 同款合规纪律(全部消保楔子
   都要「更正通道 + 具名来源 + unverified 如实标注」)。
+
+
+---
+
+## 四、载体更正(2026-08-26,owner 原话:「eco站点啊,它有域名,我不是让你挂agi」)
+
+**全批次载体 = getecoback.com(板块或其子域),不用 agi 伞域。** 这个更正让匹配度更好
+而不是更差:eco 的已验证差异化就是「家居产品的诚实核查」(EpiCooler Faktencheck、
+Testsieger 打假 FAQ、「wie wir empfehlen」方法公开)——消保楔子是它的品牌延伸,且
+DE 侧直接用已确认计佣的 getecoback-21。据此重排:
+
+| 排序 | 候选 | 载体 | 状态 |
+|---|---|---|---|
+| **①** | **Matratzen(DE Möbel 5%,€12-30/单)** | eco 主站,睡眠簇+潮湿簇交点(matratze fiberglas 议题在德语区同样存在) | `matratze` 种子已在 eco DE 管线;probe-de 本轮增意图变体 |
+| **②** | **Möbel-Online-Shop-Check(DE 5%)** | eco 主站新板块(Faktencheck DNA 直接复用:dropship 骗局/货不对板核查) | probe-de 本轮接入 |
+| ③ | US Furniture 8%($24-120/单) | 远期:eco 的 /en/ 簇(**前提**:EN 区现约定「一贯 amazon.de」,US 内容需按页切 ecoback0d-20——载体成立但契约要先改,探针过线后出薄 PRD 再动) | probe-us 保留 |
+| ↓ | 手表商核查(DE 6,5%) | **降级搁置**:EcoBack 家居/能源品牌装不下手表打假——载体既然定为 eco,品牌不搭就不硬塞(记录在案,除非另立独立域再议) | probe-de 撤出 uhren 种子 |
+| — | 美妆真伪(US 10%) | 同品牌不搭理由观察;probe-us 数据留作参考 | 保留探针不建面 |
+
+探针判定线不变(09-10 首读,v≥1.000 或连续两轮意图变体 → KGR → 薄 PRD)。

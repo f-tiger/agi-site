@@ -251,3 +251,12 @@ Strompreis-Radar)。本循环补的是**外部需求信号**(Google Trends DE)�
   首页保留一行降级链接。**不再新增能源页**;2027 春(太阳能季)复评是否回升。
 - 判定线(09-22):home-herbst 28d affiliate_click 对比 home-storage 历史基线(2/28d)
   ——新块 ≥5 即证明版位换对了;<2 则版位本身(而非板块)是问题,再诊断。
+
+## 高价值品类扩展 = 本站承载(2026-08-26,owner:「eco站点啊,它有域名,我不是让你挂agi」)
+
+高费率品类批次(docs/highvalue-expansion-2026-08.md)的载体定为 **getecoback.com 自身**
+(板块或本域子域):①Matratzen(DE Möbel 5%)= 睡眠簇×潮湿簇交点,`matratze` 种子已在
+本站 rising 管线;②Möbel-Shop-Check = EpiCooler-Faktencheck DNA 的板块化;③US Furniture
+8% 走 /en/ 为远期(需先改「EN 区一贯 amazon.de」契约,按页切 ecoback0d-20,探针过线出薄
+PRD 再动)。手表/美妆因品牌不搭**不进本站**。纪律:探针(probes-de-rising.json)过线 →
+KGR → 薄 PRD → 快反规则建面;板块提权为一级导航仍按舰队规则等首个真实转化。
