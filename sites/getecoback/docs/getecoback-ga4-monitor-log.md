@@ -877,3 +877,20 @@ owner 指令"用户重点关注配件,扩展丰富配件产品"。**先盘点类
   infrarotheizung-garage(v=44.050 × 6% × 页面缺口)。判定线 09-22:两页合计
   affiliate_click ≥3;Pro Breeze chip 点击占比超泛搜索 → 模式推广到取暖簇。
   **C 级费率(大家电等)待 owner 后台 Rate Plan 一张截图转实——已在报告中请求。**
+
+- 2026-08-25(夜,owner:「eco的爆品方向需要增加,扩大联盟点击」)**爆品面扩容轮**。
+  今日快反页额度已用(schimmel 页),故全部为**转化面**扩容、零新页:
+  ① **首页「Meistgesucht diese Woche」自更新爆品轨**(tools/build_rising_rail.py,
+  挂 deploy 链 build_season 之后)——首页是全站流量第一(53pv/28d)却只有 2 次联盟
+  点击的最大漏水面。数据源=每日 rising 一手数据(其每日提交本身就触发 deploy →
+  轨道每天自动换新,无人工选品)。今日 8 chips:4 购买(bei hitze 164k/schmidbauer
+  63k/garage 44k/split 43k)+ 4 诚实文章链(schimmel keller→今日新页、testsieger→
+  keller FAQ、epicooler→Faktencheck)。**红线规则已固化在脚本里**:命中本站 Faktencheck
+  主题的查询链文章不链购买(一边警告 EpiCooler 一边挂购买链=自打脸);lidl/促销词
+  直接丢弃;浴室霉查询不硬导地下室页(诚实映射经一轮修正)。埋点
+  affiliate_click{source:home-rising} + rising_guide。
+  ② **取暖簇购买面**:infrarotheizung-ratgeber + heizluefter-stromsparend 此前零
+  CONTEXT_MODELS → 补齐(Schmidbauer 需求 chip 标注 Nachfrage-Signal;thermostat 搜索
+  词=heizung-40-qm 已实证出过点击的原词)。hreflang 门通过。
+  **判定线(09-22)**:home-rising 28d affiliate_click ≥5 → 轨道成立,考虑移植 EN 首页;
+  <2 → 降位到 #directory 之后;rising_guide 点击同时记录(文章链也是转化,转到钱簇)。

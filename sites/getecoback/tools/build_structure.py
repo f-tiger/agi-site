@@ -793,6 +793,20 @@ CONTEXT_MODELS = {
  # The autumn dehumidifier cluster leads the matrix; these two device hub pages
  # had NO purchase surface at all. "Meistgesucht" is a first-party demand signal
  # (trends-rising.json, dated), explicitly NOT a test verdict.
+ # Heating cluster surfaces (2026-08-25, owner: expand hot-product directions).
+ # Schmidbauer chip = demand signal from our own trends data (v=62.950), labeled
+ # as such; the thermostat search is the exact term that already earned a click
+ # on heizung-40-qm (D1). Nothing here is a test verdict.
+ "infrarotheizung-ratgeber": [
+   ("Schmidbauer Infrarotheizung", "Meistgesucht diese Woche", "Die aktuell meistgesuchte Marke in unserer täglichen Google-Trends-Abfrage (Stand 25.08.). Nachfrage-Signal, kein Testurteil — nicht selbst getestet.", "Preis vor Ort prüfen", "Schmidbauer+Infrarotheizung", "heater"),
+   ("Infrarotheizung mit Thermostat", "Die sinnvolle Grundausstattung", "Ohne Thermostat läuft die Paneele durch — mit schaltet sie nur, wenn der Raum es braucht.", "Preis vor Ort prüfen", "infrarotheizung+mit+thermostat", "heater"),
+   ("Energiekostenmessgerät", "Erst messen, dann glauben", "Steckdosen-Messgerät zeigt, was die Heizung wirklich zieht — glaub keiner Rechnung, auch unserer nicht.", "Preis vor Ort prüfen", "energiekostenmessger%C3%A4t+steckdose", "purifier"),
+ ],
+ "heizluefter-stromsparend": [
+   ("Heizlüfter mit Thermostat & Timer", "Das Sparmerkmal", "Der Stromspar-Hebel ist nicht das Gerät, sondern die Abschaltung — Thermostat und Timer machen den Unterschied.", "Preis vor Ort prüfen", "heizl%C3%BCfter+thermostat+timer", "heater"),
+   ("Energiekostenmessgerät", "Erst messen", "Zeigt, was der Heizlüfter wirklich kostet — die Rechnung dazu steht auf dieser Seite.", "Preis vor Ort prüfen", "energiekostenmessger%C3%A4t+steckdose", "purifier"),
+   ("Infrarotheizung", "Die Alternative für längere Laufzeiten", "Wer täglich stundenlang heizt, fährt mit Strahlungswärme oft besser — der Vergleich steht im Ratgeber.", "Preis vor Ort prüfen", "infrarotheizung+mit+thermostat", "heater"),
+ ],
  "luftentfeuchter-ratgeber": [
    ("Pro Breeze Luftentfeuchter 20 L", "Meistgesucht diese Woche", "Das aktuell meistgesuchte Einzelmodell in unserer täglichen Google-Trends-Abfrage (Stand 25.08.). Nachfrage-Signal, kein Testurteil — nicht selbst getestet.", "Preis vor Ort prüfen", "pro+breeze+luftentfeuchter+20l", "dehum"),
    ("Comfee MDDF-20DEN7", "Der Keller-Favorit", "In mehreren Fachvergleichen der Keller-Favorit — 20 L/Tag, Hygrostat, Dauerablauf-Anschluss.", "Preis vor Ort prüfen", "Comfee+MDDF-20DEN7+Luftentfeuchter", "dehum"),
@@ -950,6 +964,10 @@ CONTEXT_SUB = {
                                 "wirklich mit Solarstrom läuft. Nicht selbst getestet. Symbolbilder."),
  "schimmel-im-keller-entfernen": ("Entfernen ist der kleinere Teil der Arbeit — deshalb stehen hier Mittel, "
                                   "Messgerät und das Gerät gegen die Ursache. Nicht selbst getestet. Symbolbilder."),
+ "infrarotheizung-ratgeber": ("„Meistgesucht“ ist ein Nachfrage-Signal aus unserer Trends-Abfrage, kein "
+                              "Testurteil. Nicht selbst getestet. Symbolbilder."),
+ "heizluefter-stromsparend": ("Das Sparmerkmal ist die Abschaltung, nicht die Marke — deshalb stehen hier "
+                              "Merkmale und Messgerät. Nicht selbst getestet. Symbolbilder."),
  "luftentfeuchter-ratgeber": ("„Meistgesucht“ ist ein Nachfrage-Signal aus unserer täglichen Google-Trends-"
                               "Abfrage, kein Testurteil. Nicht selbst getestet. Symbolbilder."),
  "luftentfeuchter-gegen-schimmel": ("Das Werkzeug gegen die Ursache zuerst — „meistgesucht“ ist ein Nachfrage-"

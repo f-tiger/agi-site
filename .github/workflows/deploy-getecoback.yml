@@ -55,6 +55,8 @@ jobs:
 
       - name: Rotate homepage to current season (year-round positioning; idempotent)
         run: python3 tools/build_season.py
+      - name: Refresh the homepage rising-demand rail (idempotent, honest-map)
+        run: python3 tools/build_rising_rail.py
 
       - name: Inject site chrome (nav/footer/radar; idempotent, covers new pages)
         run: python3 tools/build_structure.py
