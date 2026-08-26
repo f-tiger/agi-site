@@ -894,3 +894,10 @@ owner 指令"用户重点关注配件,扩展丰富配件产品"。**先盘点类
   词=heizung-40-qm 已实证出过点击的原词)。hreflang 门通过。
   **判定线(09-22)**:home-rising 28d affiliate_click ≥5 → 轨道成立,考虑移植 EN 首页;
   <2 → 降位到 #directory 之后;rising_guide 点击同时记录(文章链也是转化,转到钱簇)。
+
+- 2026-08-26(owner:「去掉能源板块,看看有没有更合适板块」)**能源降级 + Herbst 接班**。
+  首页 EB_HOMESTORAGE(28d 仅 2 点击)→ EB_HERBST(除湿/除霉/取暖:3 工具 chip +
+  Comfee/Pro Breeze/Infrarot-Thermostat/Hygrometer 四卡,全部既有已核声明);导航页脚
+  秋冬序全站刷新(顺带修 inject_chrome 的 insert-only 缺陷);EB_TRACK 归因映射同步
+  home-herbst。能源 17 页保留、降季度维护、不再新增。「更合适板块」结论:不引外部
+  新 niche(三门不过),接班者=矩阵第一的秋冬潮湿+取暖簇。判定线 09-22 见 CLAUDE.md。

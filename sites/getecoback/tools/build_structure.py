@@ -62,18 +62,18 @@ CAT_OF = {
 NAV = ("<!--EB_NAV--><nav class=\"eb-nav\"><div class=\"eb-nav-in\">"
        "<a class=\"eb-logo\" href=\"/\">❄️ EcoBack</a>"
        "<div class=\"eb-links\">"
-       "<a href=\"/kategorie/klimaanlagen.html\">Klimaanlagen</a>"
        "<a href=\"/kategorie/heizen.html\">Heizen</a>"
        "<a href=\"/kategorie/luftqualitaet.html\">Luftqualität</a>"
+       "<a href=\"/kategorie/klimaanlagen.html\">Klimaanlagen</a>"
        "<a href=\"/kategorie/energie-sparen.html\">Energie sparen</a>"
        "<a class=\"eb-nav-tools\" href=\"/tools.html\">🧮 Tools</a>"
        "</div></div></nav><!--/EB_NAV-->\n")
 
 FOOTER = ("<!--EB_FOOTER--><footer class=\"eb-footer\"><div class=\"eb-footer-in\">"
           "<div><strong>Kategorien</strong>"
-          "<a href=\"/kategorie/klimaanlagen.html\">Klimaanlagen &amp; Kühlen</a>"
           "<a href=\"/kategorie/heizen.html\">Heizen</a>"
           "<a href=\"/kategorie/luftqualitaet.html\">Luftqualität</a>"
+          "<a href=\"/kategorie/klimaanlagen.html\">Klimaanlagen &amp; Kühlen</a>"
           "<a href=\"/kategorie/energie-sparen.html\">Energie sparen</a></div>"
           "<div><strong>EcoBack</strong>"
           "<a href=\"/tools.html\">🧮 Alle Rechner &amp; Checks</a>"
@@ -2089,63 +2089,98 @@ def inject_profile(html):
 # next to cooling without displacing the seasonal hero: it sits below the
 # cooling grid, so summer traffic still lands on what converts today.
 def home_storage_block():
-    cards = "".join(model_card(e) for e in DEVICE_MODELS["storage"])
+    """2026-08-26 owner decision (「eco站点去掉能源板块」): the homepage energy
+    pillar is DEMOTED — replaced by the autumn Feuchte/Schimmel/Heizen block,
+    the section the category matrix (docs/amazon-category-strategy-2026-08.md)
+    ranks first on demand x fee x returns. Energy pages stay live (quarterly
+    maintenance, one demoted link line below); every claim in the cards is
+    established on-site. Function name kept so call sites stay untouched."""
+    drip = ('<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">'
+            '<rect x="18" y="12" width="28" height="40" rx="4" fill="#fff" stroke="#0f6ba8" stroke-width="2.5"/>'
+            '<path d="M23 19h12" stroke="#9cc3dd" stroke-width="2" stroke-linecap="round"/>'
+            '<path class="eb-drip" d="M32 30c-4 5-6 8-6 11a6 6 0 0012 0c0-3-2-6-6-11z" fill="#bfe3f5" stroke="#0f6ba8" stroke-width="2"/></svg>')
+    heat = ('<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">'
+            '<rect x="14" y="16" width="36" height="32" rx="4" fill="#fff" stroke="#c2410c" stroke-width="2.5"/>'
+            '<path d="M22 22v20M32 22v20M42 22v20" stroke="#fdba74" stroke-width="3" stroke-linecap="round"/>'
+            '<path d="M20 54h24" stroke="#c2410c" stroke-width="2.5" stroke-linecap="round"/></svg>')
+    hyg = ('<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">'
+           '<rect x="20" y="10" width="24" height="44" rx="6" fill="#fff" stroke="#0f6ba8" stroke-width="2.5"/>'
+           '<circle cx="32" cy="34" r="8" fill="none" stroke="#2ea86b" stroke-width="2.5"/>'
+           '<path d="M32 30v8M28 34h8" stroke="#2ea86b" stroke-width="2" stroke-linecap="round"/></svg>')
+    def card(badge, bg, svg, title, desc, pros, cons, term):
+        return ('<div class="eb-shop-card"><div class="th" style="background:' + bg + ';"><span class="rl">' + badge + '</span>' + svg + '</div>'
+                '<div class="bd"><h3>' + title + '</h3><p class="ds">' + desc + '</p>'
+                '<p class="ds" style="margin:0 0 9px;"><span style="color:#177245;">✓ ' + pros + '</span><br>'
+                '<span style="color:#9a3412;">✕ ' + cons + '</span></p>'
+                '<div class="pr">Preis vor Ort prüfen</div>'
+                '<a class="go" href="https://www.amazon.de/s?k=' + term + '&tag=getecoback-21" target="_blank" rel="sponsored noopener">Preis auf Amazon prüfen →</a></div></div>')
+    cards = (
+        card('Der Keller-Favorit', 'linear-gradient(135deg,#eaf6ff,#cfe6f7)', drip, 'Comfee MDDF-20DEN7',
+             'In mehreren Fachvergleichen der Keller-Favorit — 20 L/Tag, Hygrostat, Dauerablauf-Anschluss.',
+             'Hygrostat &amp; Schlauchanschluss an Bord', 'Kompressor verliert unter ca. 10–15 °C Leistung',
+             'Comfee+MDDF-20DEN7+Luftentfeuchter')
+        + card('Meistgesucht diese Woche', 'linear-gradient(135deg,#eaf6ff,#cfe6f7)', drip, 'Pro Breeze Luftentfeuchter 20 L',
+               'Das aktuell meistgesuchte Einzelmodell in unserer täglichen Google-Trends-Abfrage. Nachfrage-Signal, kein Testurteil.',
+               'Starke reale Nachfrage', 'Nicht selbst getestet',
+               'pro+breeze+luftentfeuchter+20l')
+        + card('Heizen ohne Dauerlauf', 'linear-gradient(135deg,#fff7ed,#fed7aa)', heat, 'Infrarotheizung mit Thermostat',
+               'Strahlungswärme für Bad, Büro oder Garage — mit Thermostat schaltet sie nur, wenn der Raum es braucht.',
+               'Thermostat = der eigentliche Spar-Hebel', 'Watt-Bedarf vorher rechnen (Rechner oben)',
+               'infrarotheizung+mit+thermostat')
+        + card('Vor jedem Kauf', 'linear-gradient(135deg,#eefaf3,#cdeede)', hyg, 'Hygrometer',
+               'Ob Keller, Bad oder Schlafzimmer zu feucht sind, entscheidet der Messwert — nicht die Nase.',
+               'Wenige Euro, beantwortet die erste Frage', 'Ersetzt keine Ursachen-Behebung',
+               'hygrometer+innen'))
     tools = [
-        ("🧮", "Balkonspeicher-Rechner: Was bringt er dir?", "/guide/balkonspeicher-rechner.html"),
-        ("💶", "Förder-Check: Wer zahlt in deinem Bundesland dazu?", "/guide/balkonspeicher-foerderung.html"),
-        ("☀️", "Balkon-Check: Lohnt sich Solar an deinem Balkon?", "/guide/balkonkraftwerk-standort-check.html"),
-        ("🔧", "Befestigen ohne ein einziges Loch", "/guide/balkonkraftwerk-ohne-bohren.html"),
+        ('💧', 'Taupunkt-Check: Lüften — hilft es gerade oder schadet es?', '/guide/keller-lueften-sommer.html'),
+        ('🔥', 'Heizkosten-Vergleich: Was kostet welche Heizart?', '/guide/heizkosten-vergleich-rechner.html'),
+        ('📐', 'Infrarot-Watt-Rechner: Wie viel Watt braucht dein Raum?', '/guide/infrarotheizung-watt-rechner.html'),
     ]
     toolrow = "".join(
-        f'<a href="{href}" data-eb-st="tool" style="display:inline-flex;align-items:center;gap:7px;'
-        'background:#fff;border:1px solid #d4ecd9;border-radius:10px;padding:9px 14px;margin:0 8px 8px 0;'
-        f'text-decoration:none;color:#1a2733;font-weight:700;font-size:13.5px;">{icon} {label}</a>'
+        '<a href="' + href + '" data-eb-hb="tool" style="display:inline-flex;align-items:center;gap:7px;'
+        'background:#fff;border:1px solid #f3ddc0;border-radius:10px;padding:9px 14px;margin:0 8px 8px 0;'
+        'text-decoration:none;color:#1a2733;font-weight:700;font-size:13.5px;">' + icon + ' ' + label + '</a>'
         for icon, label, href in tools)
     return (
-        '<!--EB_HOMESTORAGE--><section id="eb-speicher" style="background:#f4faf6;border-top:1px solid #d4ecd9;border-bottom:1px solid #d4ecd9;">'
+        '<!--EB_HERBST--><section id="eb-herbst" style="background:#fbf7f0;border-top:1px solid #f3ddc0;border-bottom:1px solid #f3ddc0;">'
         '<div style="max-width:1000px;margin:0 auto;padding:30px 20px;">'
-        '<h2 style="margin:0 0 6px;">Strom speichern statt verschenken — Balkonspeicher 2026</h2>'
-        '<p style="margin:0 0 4px;max-width:70ch;">Die zweite Säule dieser Website: Balkonkraftwerk-Speicher verschieben '
-        'Sonnenstrom oder billige Nachtstunden in den teuren Abend. Sie wachsen gerade so schnell, weil sie zur '
-        'Mietwohnung passen — aufstellen statt installieren, kein Elektriker, kein Eingriff in die Bausubstanz.</p>'
-        '<p style="margin:0 0 14px;font-size:13.5px;background:#fff7ed;border:1px solid #fed7aa;border-radius:8px;'
-        'padding:10px 12px;color:#7c2d12;max-width:70ch;"><strong>Vor dem Kauf:</strong> Viele Kommunen zahlen '
-        '100–500 € dazu — aber fast immer nur, wenn der Antrag <strong>vor</strong> dem Kauf gestellt wird. '
-        '<a href="/guide/balkonspeicher-foerderung.html" data-eb-st="foerder" style="color:#9a3412;font-weight:700;">Förder-Check →</a></p>'
-        f'<div style="margin-bottom:16px;">{toolrow}</div>'
-        '<div class="eb-shop-h" style="margin-bottom:2px;">Speicher-Modelle aus öffentlichen Vergleichen 2026</div>'
-        # Public 2026 comparisons sort by €/kWh; we deliberately do not — the
-        # cheapest kilowatt-hour comes in a 5-kWh box, and our own calculator
-        # says an 800-W balcony plant stops paying for capacity above ~2,7 kWh.
-        '<p class="eb-shop-sub">Sortiert nach der Kapazität, die sich an einem Balkonkraftwerk wirklich rechnet '
-        '(1,6–2,7 kWh) — nicht nach dem billigsten Preis pro kWh, denn den gibt es nur in doppelt so großen Boxen. '
-        'Nicht selbst getestet, Preise schwanken wöchentlich — aktuellen Preis vor Ort prüfen. Symbolbilder, Affiliate-Links.</p>'
-        f'<div class="eb-shop-grid">{cards}</div>'
+        '<h2 style="margin:0 0 6px;">Feuchte, Schimmel &amp; Heizen — der Herbst-Schwerpunkt</h2>'
+        '<p style="margin:0 0 14px;max-width:74ch;">Wenn die Kühl-Saison endet, beginnen die beiden Themen, die deutsche '
+        'Wohnungen im Herbst wirklich beschäftigen: Kondenswasser an kühlen Wänden (und der Schimmel, der daraus wird) — '
+        'und die Frage, womit sich einzelne Räume effizient heizen lassen. Erst messen und rechnen, dann kaufen.</p>'
+        '<div style="margin-bottom:16px;">' + toolrow + '</div>'
+        '<div class="eb-shop-h" style="margin-bottom:2px;">Was jetzt wirklich hilft</div>'
+        '<p class="eb-shop-sub">„Meistgesucht“ ist ein Nachfrage-Signal aus unserer täglichen Google-Trends-Abfrage, '
+        'kein Testurteil. Nicht selbst getestet, Preise vor Ort prüfen. Symbolbilder, Affiliate-Links.</p>'
+        '<div class="eb-shop-grid">' + cards + '</div>'
         '<p style="margin:14px 0 0;font-size:13.5px;">📖 Mehr dazu: '
-        '<a href="/guide/balkonkraftwerk-speicher-nachruesten.html">Speicher nachrüsten</a> · '
-        '<a href="/guide/balkonspeicher-winter-frost.html">Frost &amp; Überwintern</a> · '
-        '<a href="/guide/klimaanlage-balkonkraftwerk.html">Klimaanlage mit Balkonstrom betreiben</a> · '
-        '<a href="/kategorie/energie-sparen.html">Alles zu Energie sparen</a></p>'
+        '<a href="/guide/schimmel-im-keller-entfernen.html">Schimmel im Keller entfernen</a> · '
+        '<a href="/guide/luftentfeuchter-keller.html">Luftentfeuchter für den Keller</a> · '
+        '<a href="/guide/heizluefter-stromsparend.html">Heizlüfter stromsparend</a> · '
+        '<a href="/kategorie/luftqualitaet.html">Alles zu Luftqualität</a></p>'
+        '<p style="margin:10px 0 0;font-size:13px;color:#5b6b78;">🔋 Balkonspeicher &amp; Solar (Sommerhalbjahr-Schwerpunkt): '
+        '<a href="/kategorie/energie-sparen.html">alle Ratgeber &amp; Modelle →</a></p>'
         '</div></section>'
-        '<script>(function(){var s=document.getElementById("eb-speicher");if(!s)return;'
-        's.querySelectorAll("[data-eb-st]").forEach(function(a){a.addEventListener("click",function(){'
-        'if(window.gtag)gtag("event","storage_home",{target:a.getAttribute("data-eb-st")});});});'
+        '<script>(function(){var s=document.getElementById("eb-herbst");if(!s)return;'
         's.querySelectorAll(\'a[href*="amazon."]\').forEach(function(a){a.addEventListener("click",function(){'
-        'if(window.gtag)gtag("event","affiliate_click",{source:"home-storage",link_url:a.href});});});})();</script>'
-        '<!--/EB_HOMESTORAGE-->')
+        'if(window.gtag)gtag("event","affiliate_click",{source:"home-herbst",link_url:a.href});});});'
+        's.querySelectorAll("[data-eb-hb]").forEach(function(a){a.addEventListener("click",function(){'
+        'if(window.gtag)gtag("event","herbst_home",{target:a.getAttribute("href")});});});})();</script>'
+        '<!--/EB_HERBST-->')
 
 
 def inject_home_storage(html):
-    """Idempotently place the storage pillar above the persona section."""
+    """Idempotently place the autumn Herbst pillar above the persona section.
+    Legacy EB_HOMESTORAGE blocks (pre-2026-08-26 energy pillar) are removed."""
     blk = home_storage_block()
-    if "<!--EB_HOMESTORAGE-->" in html:
-        return re.sub(r'<!--EB_HOMESTORAGE-->.*?<!--/EB_HOMESTORAGE-->',
+    html = re.sub(r'<!--EB_HOMESTORAGE-->.*?<!--/EB_HOMESTORAGE-->\n?', '', html, flags=re.S)
+    if "<!--EB_HERBST-->" in html:
+        return re.sub(r'<!--EB_HERBST-->.*?<!--/EB_HERBST-->',
                       lambda m: blk, html, flags=re.S)
     anchor = "Findest du dich wieder?"
     i = html.find(anchor)
     if i < 0:
         return html
-    # Back up to the opening tag of the section that heading lives in.
     j = html.rfind("<section", 0, i)
     if j < 0:
         return html
@@ -2646,7 +2681,7 @@ TRACK = ('<!--EB_TRACK--><script>(function(){'
          'document.addEventListener("click",function(e){'
          'var a=e.target&&e.target.closest&&e.target.closest(\'a[href*="amazon."]\');'
          'if(!a){surf="";return;}'
-         'surf=a.closest("#eb-speicher")?"home-storage":'
+         'surf=a.closest("#eb-herbst")?"home-herbst":'
          'a.hasAttribute("data-eb-tp")?"toppick":'
          'a.closest("#eb-models")?"models":'
          'a.closest("#eb-ac-finder")?"ac-finder":'
@@ -2696,7 +2731,11 @@ def inject_chrome(html, nav=NAV, footer=FOOTER):
         html = html.replace("</head>", FEED_LINK + "</head>", 1)
     if "<!--eb-perf-->" not in html:
         html = html.replace("</head>", PERF_HINTS + "</head>", 1)
-    if "<!--EB_NAV-->" not in html:
+    if "<!--EB_NAV-->" in html:
+        # 2026-08-26: refresh existing navs too (they were insert-only before,
+        # so reorders never reached已 chromed pages).
+        html = re.sub(r'<!--EB_NAV-->.*?<!--/EB_NAV-->\n?', lambda m: nav, html, count=1, flags=re.S)
+    else:
         html = re.sub(r'(<body[^>]*>)', r'\1\n' + nav, html, count=1)
     if "<!--EB_FOOTER-->" in html:
         html = re.sub(r'<!--EB_FOOTER-->.*?<!--/EB_FOOTER-->', lambda m: footer, html, flags=re.S)

@@ -103,6 +103,8 @@ def main():
 
     if "<!--EB_RISING_RAIL-->" in html:
         html = re.sub(r"<!--EB_RISING_RAIL-->[\s\S]*?<!--/EB_RISING_RAIL-->", lambda m: block, html, count=1)
+    elif "<!--EB_HERBST-->" in html:
+        html = html.replace("<!--EB_HERBST-->", block + "\n<!--EB_HERBST-->", 1)
     elif "<!--EB_HOMESTORAGE-->" in html:
         html = html.replace("<!--EB_HOMESTORAGE-->", block + "\n<!--EB_HOMESTORAGE-->", 1)
     else:
