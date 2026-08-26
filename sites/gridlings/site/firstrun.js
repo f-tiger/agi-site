@@ -17,7 +17,10 @@
 
   /* ---------- SFX engine (shared, lazy AudioContext) ---------- */
   var MUTEKEY = "gl_mute";
-  function muted() { try { return localStorage.getItem(MUTEKEY) === "1"; } catch (e) { return false; } }
+  function muted() {
+    if (window.GL_SDK_MUTE === true) return true;  // platform override (CG SDK)
+    try { return localStorage.getItem(MUTEKEY) === "1"; } catch (e) { return false; }
+  }
   var actx = null;
   function ctx() {
     if (actx) return actx;

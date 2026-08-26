@@ -32,6 +32,19 @@
     } catch (e) {}
   };
 
+  // SDK muteAudio is a MASTER override (their docs: the in-game toggle must
+  // not re-enable audio while the platform has muted it). glSfx checks
+  // window.GL_SDK_MUTE before the player's own preference.
+  function applySettings(st) {
+    try {
+      if (!st || typeof st.muteAudio !== "boolean") return;
+      window.GL_SDK_MUTE = st.muteAudio;
+      var b = document.getElementById("frmute");
+      if (b && st.muteAudio) b.textContent = "\uD83D\uDD07";
+    } catch (e) {}
+  }
+  if (/[?&]muteAudio=true/.test(location.search)) window.GL_SDK_MUTE = true;
+
   var s = document.createElement("script");
   s.src = "https://sdk.crazygames.com/crazygames-sdk-v3.js";
   s.async = true;
@@ -40,6 +53,8 @@
       window.CrazyGames.SDK.init().then(function () {
         var g = game();
         if (!g) return;
+        try { applySettings(g.settings); } catch (e) {}
+        try { g.addSettingsChangeListener(applySettings); } catch (e) {}
         try { g.loadingStart(); } catch (e) {}
         var iv = setInterval(function () {
           if (document.querySelector("#grid .cell")) {
