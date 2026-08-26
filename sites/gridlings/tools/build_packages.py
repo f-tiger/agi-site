@@ -132,6 +132,7 @@ def main():
             zf.writestr("style.css", open(os.path.join(SITE, "style.css")).read())
             zf.writestr(g["js"], js_body)
             zf.writestr("firstrun.js", open(os.path.join(SITE, "firstrun.js")).read())
+            zf.writestr("cg.js", open(os.path.join(SITE, "cg.js")).read())
             zf.writestr("copy.js", open(os.path.join(SITE, "copy.js")).read())
             cov = os.path.join(SITE, "covers", (slug if slug != "gridlings" else "gridlings") + ".png")
             if os.path.exists(cov):
@@ -147,6 +148,7 @@ def main():
         all_zf.writestr(f"{slug}/style.css", open(os.path.join(SITE, "style.css")).read())
         all_zf.writestr(f"{slug}/{g['js']}", js_body)
         all_zf.writestr(f"{slug}/firstrun.js", open(os.path.join(SITE, "firstrun.js")).read())
+        all_zf.writestr(f"{slug}/cg.js", open(os.path.join(SITE, "cg.js")).read())
         all_zf.writestr(f"{slug}/copy.js", open(os.path.join(SITE, "copy.js")).read())
         for f in g["data"]:
             all_zf.writestr(f"{slug}/{f}", open(os.path.join(SITE, f)).read())
@@ -166,6 +168,7 @@ def main():
             zf.writestr("style.css", open(os.path.join(SITE, "style.css")).read())
             zf.writestr(g["js"], js_body)
             zf.writestr("firstrun.js", open(os.path.join(SITE, "firstrun.js")).read())
+            zf.writestr("cg.js", open(os.path.join(SITE, "cg.js")).read())
             zf.writestr("copy.js", open(os.path.join(SITE, "copy.js")).read())
             zf.writestr("portal.js", open(os.path.join(SITE, "portal.js")).read())
             for f in g["data"]:
@@ -176,6 +179,39 @@ def main():
             zf.writestr("README.txt", README.format(name=slug.capitalize() + " (portal build, no external links)", days=450, epoch="2026-08-24"))
         open(os.path.join(sdir, f"{slug}.zip"), "wb").write(buf.getvalue())
     print(f"strict portal builds: {len(GAMES)} zips in downloads/strict/")
+    # CrazyGames upload flavor (2026-08-26 resubmission): strict base + the SDK
+    # force-on. Upload builds carry no query string, so window.GL_CG=true is
+    # injected BEFORE cg.js (loads SDK v3, reports loading/gameplay lifecycle)
+    # and the .cg class hides the challenge button. Star Battle only — that is
+    # the game under review; add slugs here when submitting more.
+    cgdir = os.path.join(OUT, "cg")
+    os.makedirs(cgdir, exist_ok=True)
+    for slug in ["starbattle"]:
+        g = GAMES[slug]
+        page = strict_page(strip_page(open(os.path.join(SITE, g["page"])).read(), slug))
+        page = page.replace(
+            '<script src="cg.js">',
+            '<script>window.GL_CG=true;document.documentElement.classList.add("cg")</script><script src="cg.js">', 1)
+        page = page.replace(" (portal build)</title>", " (CrazyGames build)</title>", 1)
+        play_path = "/" + slug
+        js_body = portal_js(open(os.path.join(SITE, g["js"])).read(), play_path)
+        buf = io.BytesIO()
+        with zipfile.ZipFile(buf, "w", zipfile.ZIP_DEFLATED) as zf:
+            zf.writestr("index.html", page)
+            zf.writestr("style.css", open(os.path.join(SITE, "style.css")).read())
+            zf.writestr(g["js"], js_body)
+            zf.writestr("firstrun.js", open(os.path.join(SITE, "firstrun.js")).read())
+            zf.writestr("cg.js", open(os.path.join(SITE, "cg.js")).read())
+            zf.writestr("copy.js", open(os.path.join(SITE, "copy.js")).read())
+            zf.writestr("portal.js", open(os.path.join(SITE, "portal.js")).read())
+            for f in g["data"]:
+                zf.writestr(f, open(os.path.join(SITE, f)).read())
+            cov = os.path.join(SITE, "covers", f"{slug}.png")
+            if os.path.exists(cov):
+                zf.writestr("cover.png", open(cov, "rb").read())
+            zf.writestr("README.txt", README.format(name=slug.capitalize() + " (CrazyGames build: SDK on, no external links)", days=450, epoch="2026-08-24"))
+        open(os.path.join(cgdir, f"{slug}.zip"), "wb").write(buf.getvalue())
+        print(f"CG build: downloads/cg/{slug}.zip")
     hub_rows = "".join(
         f'<a href="{sl}/index.html" style="border:1px solid rgba(128,128,128,.4);border-radius:12px;padding:14px 16px;text-decoration:none;color:inherit;background:rgba(128,128,128,.07);font-size:16px;display:block">{ICONS[sl]} <strong>{sl.capitalize()}</strong></a>'
         for sl in GAMES)

@@ -8,7 +8,9 @@
    Every SDK touch is try/catch-guarded: if the CDN script fails (offline,
    blocked), the game must keep working untouched. */
 (function () {
-  var on = /(^|[?&])cg=1/.test(location.search);
+  // upload builds pre-set window.GL_CG=true (no query string exists there);
+  // the URL param covers the iframe/link delivery; referrer is the backstop.
+  var on = window.GL_CG === true || /(^|[?&])cg=1/.test(location.search);
   if (!on) { try { on = /crazygames\./.test(document.referrer); } catch (e) {} }
   window.GL_CG = on;
   window.glCg = function () {};
