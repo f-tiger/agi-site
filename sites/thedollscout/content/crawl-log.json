@@ -1,9 +1,9 @@
 {
   "zone": "thedollscout.com",
-  "updated": "2026-08-25",
+  "updated": "2026-08-26",
   "window": {
-    "since": "2026-08-22T07:13:07.192Z",
-    "until": "2026-08-25T07:13:07.192Z"
+    "since": "2026-08-23T07:13:14.152Z",
+    "until": "2026-08-26T07:13:14.152Z"
   },
   "days": {
     "2026-08-16": {
@@ -320,27 +320,63 @@
           "(unclassified)": 5
         }
       }
+    },
+    "2026-08-26": {
+      "Googlebot": {
+        "total": 234,
+        "redirectShare": 9,
+        "verified": {
+          "(unclassified)": 197,
+          "Search Engine Crawler": 37
+        }
+      },
+      "Bingbot": {
+        "total": 70,
+        "redirectShare": 40,
+        "verified": {
+          "(unclassified)": 7,
+          "Search Engine Crawler": 63
+        }
+      },
+      "GPTBot": {
+        "total": 18,
+        "redirectShare": 61,
+        "verified": {
+          "AI Crawler": 3,
+          "(unclassified)": 15
+        }
+      },
+      "ClaudeBot": {
+        "total": 12,
+        "redirectShare": 50,
+        "verified": {
+          "(unclassified)": 12
+        }
+      },
+      "PerplexityBot": {
+        "total": 12,
+        "redirectShare": 33,
+        "verified": {
+          "(unclassified)": 12
+        }
+      }
     }
   },
   "latest": {
     "Googlebot": {
-      "total": 243,
+      "total": 234,
       "byStatus": {
-        "200": 236,
-        "301": 2,
-        "308": 5
+        "200": 211,
+        "301": 17,
+        "308": 4,
+        "404": 2
       },
       "verified": {
-        "Search Engine Crawler": 62,
-        "(unclassified)": 181
+        "(unclassified)": 197,
+        "Search Engine Crawler": 37
       },
-      "redirectShare": 3,
+      "redirectShare": 9,
       "paths": [
-        {
-          "path": "/robots.txt",
-          "status": 200,
-          "count": 18
-        },
         {
           "path": "/guides/factory-photos",
           "status": 200,
@@ -350,6 +386,11 @@
           "path": "/mcp",
           "status": 200,
           "count": 16
+        },
+        {
+          "path": "/robots.txt",
+          "status": 200,
+          "count": 15
         },
         {
           "path": "/importing/",
@@ -417,14 +458,19 @@
           "count": 6
         },
         {
-          "path": "/payment-protection",
-          "status": 200,
-          "count": 6
-        },
-        {
           "path": "/quiz",
           "status": 200,
           "count": 5
+        },
+        {
+          "path": "/env.json",
+          "status": 301,
+          "count": 4
+        },
+        {
+          "path": "/robots.txt",
+          "status": 301,
+          "count": 4
         },
         {
           "path": "/guides/torso-vs-full-size",
@@ -437,7 +483,7 @@
           "count": 4
         },
         {
-          "path": "/guides/height-weight",
+          "path": "/payment-protection",
           "status": 200,
           "count": 4
         },
@@ -462,9 +508,14 @@
           "count": 3
         },
         {
-          "path": "/js/search.js",
+          "path": "/guides/height-weight",
           "status": 200,
           "count": 3
+        },
+        {
+          "path": "/wp/.env",
+          "status": 301,
+          "count": 2
         },
         {
           "path": "/weight/150cm",
@@ -507,22 +558,7 @@
           "count": 2
         },
         {
-          "path": "/robots.txt",
-          "status": 301,
-          "count": 2
-        },
-        {
           "path": "/guides/discreet-shipping",
-          "status": 200,
-          "count": 2
-        },
-        {
-          "path": "/data/",
-          "status": 200,
-          "count": 2
-        },
-        {
-          "path": "/js/share.js",
           "status": 200,
           "count": 2
         },
@@ -537,19 +573,64 @@
           "count": 2
         },
         {
-          "path": "/js/config.js",
-          "status": 200,
-          "count": 2
+          "path": "/faq",
+          "status": 301,
+          "count": 1
         },
         {
-          "path": "/js/main.js",
+          "path": "/faq",
           "status": 200,
-          "count": 2
+          "count": 1
         },
         {
-          "path": "/css/main.css",
+          "path": "/web.config",
+          "status": 301,
+          "count": 1
+        },
+        {
+          "path": "/awsconfiguration.json",
+          "status": 301,
+          "count": 1
+        },
+        {
+          "path": "/actuator/configprops",
+          "status": 301,
+          "count": 1
+        },
+        {
+          "path": "/.env.prod",
+          "status": 301,
+          "count": 1
+        },
+        {
+          "path": "/.well-known/security.txt",
+          "status": 301,
+          "count": 1
+        },
+        {
+          "path": "/.well-known/security.txt",
+          "status": 404,
+          "count": 1
+        },
+        {
+          "path": "/graphql",
+          "status": 404,
+          "count": 1
+        },
+        {
+          "path": "/graphql",
+          "status": 301,
+          "count": 1
+        },
+        {
+          "path": "/data/",
           "status": 200,
-          "count": 2
+          "count": 1
+        },
+        {
+          "path": "/js/share.js",
+          "status": 200,
+          "count": 1
         },
         {
           "path": "/weight/",
@@ -587,76 +668,53 @@
           "count": 1
         },
         {
-          "path": "/importing/new-zealand",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/img/card-tpe.svg",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/js/photos.js",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/for-creators",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/img/card-torso.svg",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/img/card-brand.svg",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/guides/discreet-shipping",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/importing/new-zealand.html",
-          "status": 308,
-          "count": 1
-        },
-        {
-          "path": "/img/card-care.svg",
+          "path": "/js/config.js",
           "status": 200,
           "count": 1
         }
       ]
     },
     "Bingbot": {
-      "total": 46,
+      "total": 70,
       "byStatus": {
-        "200": 32,
-        "304": 2,
-        "308": 12
+        "200": 42,
+        "301": 9,
+        "304": 4,
+        "308": 15
       },
       "verified": {
-        "Search Engine Crawler": 46
+        "(unclassified)": 7,
+        "Search Engine Crawler": 63
       },
-      "redirectShare": 30,
+      "redirectShare": 40,
       "paths": [
         {
-          "path": "/importing/australia",
-          "status": 200,
-          "count": 5
+          "path": "/config.yml",
+          "status": 301,
+          "count": 4
         },
         {
-          "path": "/importing/singapore",
+          "path": "/mcp",
+          "status": 200,
+          "count": 4
+        },
+        {
+          "path": "/sitemap.xml",
+          "status": 304,
+          "count": 4
+        },
+        {
+          "path": "/robots.txt",
+          "status": 200,
+          "count": 3
+        },
+        {
+          "path": "/weight/",
+          "status": 200,
+          "count": 3
+        },
+        {
+          "path": "/importing/",
           "status": 200,
           "count": 3
         },
@@ -666,37 +724,22 @@
           "count": 3
         },
         {
-          "path": "/mcp",
-          "status": 200,
-          "count": 3
-        },
-        {
-          "path": "/importing/australia.html",
-          "status": 308,
-          "count": 2
-        },
-        {
-          "path": "/guides/",
+          "path": "/",
           "status": 200,
           "count": 2
         },
         {
-          "path": "/importing/",
+          "path": "/guides/care-cleaning",
           "status": 200,
           "count": 2
         },
         {
-          "path": "/sitemap.xml",
-          "status": 304,
-          "count": 2
-        },
-        {
-          "path": "/feed.xml",
+          "path": "/guides/discreet-shipping",
           "status": 200,
           "count": 2
         },
         {
-          "path": "/trust",
+          "path": "/checklist",
           "status": 200,
           "count": 2
         },
@@ -711,6 +754,11 @@
           "count": 2
         },
         {
+          "path": "/trust",
+          "status": 200,
+          "count": 2
+        },
+        {
           "path": "/importing/canada",
           "status": 200,
           "count": 2
@@ -719,6 +767,96 @@
           "path": "/guides/import-costs-2026",
           "status": 200,
           "count": 2
+        },
+        {
+          "path": "/data/first-year-cost.json",
+          "status": 200,
+          "count": 2
+        },
+        {
+          "path": "/importing/germany.html",
+          "status": 308,
+          "count": 2
+        },
+        {
+          "path": "/importing/germany",
+          "status": 200,
+          "count": 2
+        },
+        {
+          "path": "/guides/",
+          "status": 200,
+          "count": 2
+        },
+        {
+          "path": "/feed.xml",
+          "status": 200,
+          "count": 2
+        },
+        {
+          "path": "/importing/australia",
+          "status": 200,
+          "count": 2
+        },
+        {
+          "path": "/importing/singapore",
+          "status": 200,
+          "count": 2
+        },
+        {
+          "path": "/robots.txt",
+          "status": 301,
+          "count": 1
+        },
+        {
+          "path": "/amplifyconfiguration.json",
+          "status": 301,
+          "count": 1
+        },
+        {
+          "path": "/guides/torso-vs-full-size.html",
+          "status": 308,
+          "count": 1
+        },
+        {
+          "path": "/guides/discreet-shipping.html",
+          "status": 308,
+          "count": 1
+        },
+        {
+          "path": "/data/",
+          "status": 200,
+          "count": 1
+        },
+        {
+          "path": "/checklist.html",
+          "status": 308,
+          "count": 1
+        },
+        {
+          "path": "/",
+          "status": 301,
+          "count": 1
+        },
+        {
+          "path": "/importing/japan",
+          "status": 200,
+          "count": 1
+        },
+        {
+          "path": "/env.js",
+          "status": 301,
+          "count": 1
+        },
+        {
+          "path": "/actuator/env",
+          "status": 301,
+          "count": 1
+        },
+        {
+          "path": "/importing/australia.html",
+          "status": 308,
+          "count": 1
         },
         {
           "path": "/guides/disposal.html",
@@ -734,69 +872,91 @@
           "path": "/trust.html",
           "status": 308,
           "count": 1
-        },
-        {
-          "path": "/importing/germany.html",
-          "status": 308,
-          "count": 1
-        },
-        {
-          "path": "/data/first-year-cost.json",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/weight/",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/robots.txt",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/importing/germany",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/sitemap.xml",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/guides/care-cleaning",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/quiz",
-          "status": 200,
-          "count": 1
         }
       ]
     },
     "GPTBot": {
-      "total": 4,
+      "total": 18,
       "byStatus": {
-        "200": 4
+        "200": 7,
+        "301": 10,
+        "308": 1
       },
       "verified": {
         "AI Crawler": 3,
-        "(unclassified)": 1
+        "(unclassified)": 15
       },
-      "redirectShare": 0,
+      "redirectShare": 61,
       "paths": [
         {
           "path": "/sitemap.xml",
           "status": 200,
           "count": 3
+        },
+        {
+          "path": "/config.js",
+          "status": 301,
+          "count": 2
+        },
+        {
+          "path": "/trust",
+          "status": 200,
+          "count": 1
+        },
+        {
+          "path": "/keys.json",
+          "status": 301,
+          "count": 1
+        },
+        {
+          "path": "/guides",
+          "status": 301,
+          "count": 1
+        },
+        {
+          "path": "/after-you-order",
+          "status": 200,
+          "count": 1
+        },
+        {
+          "path": "/trust",
+          "status": 301,
+          "count": 1
+        },
+        {
+          "path": "/public/.env",
+          "status": 301,
+          "count": 1
+        },
+        {
+          "path": "/api/config",
+          "status": 301,
+          "count": 1
+        },
+        {
+          "path": "/settings.json",
+          "status": 301,
+          "count": 1
+        },
+        {
+          "path": "/after-you-order",
+          "status": 301,
+          "count": 1
+        },
+        {
+          "path": "/.env.bak",
+          "status": 301,
+          "count": 1
+        },
+        {
+          "path": "/guides/",
+          "status": 200,
+          "count": 1
+        },
+        {
+          "path": "/guides",
+          "status": 308,
+          "count": 1
         },
         {
           "path": "/guides/height-weight",
@@ -806,36 +966,93 @@
       ]
     },
     "ClaudeBot": {
-      "total": 5,
+      "total": 12,
       "byStatus": {
-        "200": 5
+        "200": 6,
+        "301": 6
       },
       "verified": {
-        "(unclassified)": 5
+        "(unclassified)": 12
       },
-      "redirectShare": 0,
+      "redirectShare": 50,
       "paths": [
         {
           "path": "/",
           "status": 200,
           "count": 5
+        },
+        {
+          "path": "/.env.test",
+          "status": 301,
+          "count": 2
+        },
+        {
+          "path": "/backend/.env",
+          "status": 301,
+          "count": 2
+        },
+        {
+          "path": "/guides/discreet-shipping",
+          "status": 301,
+          "count": 1
+        },
+        {
+          "path": "/key.json",
+          "status": 301,
+          "count": 1
+        },
+        {
+          "path": "/guides/discreet-shipping",
+          "status": 200,
+          "count": 1
         }
       ]
     },
     "PerplexityBot": {
-      "total": 5,
+      "total": 12,
       "byStatus": {
-        "200": 5
+        "200": 8,
+        "301": 4
       },
       "verified": {
-        "(unclassified)": 5
+        "(unclassified)": 12
       },
-      "redirectShare": 0,
+      "redirectShare": 33,
       "paths": [
+        {
+          "path": "/js/analytics.js",
+          "status": 301,
+          "count": 2
+        },
         {
           "path": "/scam-check",
           "status": 200,
           "count": 2
+        },
+        {
+          "path": "/js/analytics.js",
+          "status": 200,
+          "count": 1
+        },
+        {
+          "path": "/js/main.js",
+          "status": 200,
+          "count": 1
+        },
+        {
+          "path": "/app/.env",
+          "status": 301,
+          "count": 1
+        },
+        {
+          "path": "/feed.xml",
+          "status": 301,
+          "count": 1
+        },
+        {
+          "path": "/feed.xml",
+          "status": 200,
+          "count": 1
         },
         {
           "path": "/",
