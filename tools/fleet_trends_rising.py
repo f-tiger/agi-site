@@ -37,6 +37,12 @@ FLEET = [
      "seeds": ["artificial general intelligence", "agi timeline"]},
     {"site": "tds", "geo": "US", "out": "sites/thedollscout/content/trends-rising.json",
      "seeds": ["sex doll", "realdoll", "silicone doll"]},
+    # 高费率品类扩展探针(2026-08-26,docs/highvalue-expansion-2026-08.md):不属于任何
+    # 站点,只验需求——探针过线(v≥1.000 或连续两轮购买/求证意图)才进 KGR/建面流程。
+    {"site": "probe-us", "geo": "US", "out": "data/probes-rising.json",
+     "seeds": ["mattress fiberglass", "furniture scam", "counterfeit makeup"]},
+    {"site": "probe-de", "geo": "DE", "out": "data/probes-de-rising.json",
+     "seeds": ["uhr fälschung erkennen", "chrono24 seriös"]},
 ]
 # (site_index, seed) 扁平池,供全局轮换。
 POOL = [(i, s) for i, cfg in enumerate(FLEET) for s in cfg["seeds"]]
