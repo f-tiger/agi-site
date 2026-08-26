@@ -4,7 +4,12 @@
   "name": "gridlings",
   "main": "worker.js",
   "compatibility_date": "2026-08-01",
-  "assets": { "directory": "site", "binding": "ASSETS", "run_worker_first": true },
+  "assets": { "directory": "site", "binding": "ASSETS", "run_worker_first": true, "html_handling": "none" },
+  // html_handling MUST stay "none" (2026-08-26 outage fix): the worker rewrites
+  // extensionless paths to .html, and the default auto-trailing-slash mode
+  // 307s .html back to extensionless — an infinite redirect loop that killed
+  // every EN game page, /bench, /download and all GEO pages. With "none" the
+  // worker's rewrites are the single source of routing truth.
   "routes": [{ "pattern": "play.agiscorecard.com", "custom_domain": true }],
   "d1_databases": [{ "binding": "EV", "database_name": "gridlings-events", "database_id": "bd3b1ca9-e9cb-4b71-9834-df3d67b39504" }]
 }

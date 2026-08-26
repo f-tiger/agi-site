@@ -65,7 +65,10 @@ export default {
     }
 
     let assetReq = request;
-    if (url.pathname === "/zh" || url.pathname === "/zh/") {
+    if (url.pathname === "/") {
+      // html_handling is "none": nothing is implicit any more, index included
+      assetReq = new Request(new URL("/index.html", url).toString(), request);
+    } else if (url.pathname === "/zh" || url.pathname === "/zh/") {
       assetReq = new Request(new URL("/zh.html", url).toString(), request);
     } else if (url.pathname === "/archive" || url.pathname === "/archive/") {
       assetReq = new Request(new URL("/archive.html", url).toString(), request);
@@ -121,6 +124,11 @@ export default {
       // zh pages are served at /zh/<game> but reference assets relatively,
       // which the browser resolves under /zh/ — fall back to the root asset
       assetReq = new Request(new URL(url.pathname.slice(3), url).toString(), request);
+    } else if (!/\.[a-z0-9]+$/i.test(url.pathname)) {
+      // generic extensionless → .html (html_handling "none" resolves nothing
+      // by itself); also catches legacy canonicalized URLs like /starbattle-zh
+      // that the old redirect loop minted into crawlers and history
+      assetReq = new Request(new URL(url.pathname.replace(/\/+$/, "") + ".html", url).toString(), request);
     }
     const res = await env.ASSETS.fetch(assetReq);
 
