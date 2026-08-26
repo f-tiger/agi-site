@@ -263,7 +263,7 @@ specs above at any time to resume net-new page creation.
 
 ## Queue — trend-evidenced seed (2026-08-25, source: trends-rising.json bootstrap)
 
-- [ ] `agi-examples` — "artificial general intelligence examples" — 2026-08-25 Google
+- [x] `agi-examples`(2026-08-26 完成:按种子预案走 FAQ 路线——what-is-agi 冷却期已过(08-16 后 9 轮),加「What are examples of AGI today?」可见+JSON-LD 逐字同步,不新建页避免蚕食。)— "artificial general intelligence examples" — 2026-08-25 Google
   autocomplete (geo=US) 实时联想词,而 `/what-is-agi` 全文 0 次出现 "example"。角度:
   「AGI 的例子今天并不存在」本身就是判定型答案——现有系统(含前沿 LLM)按站内已核
   的三档口径(benchmark 级 ~83% GDPval / drop-in worker / 自动化 AI 研究者)逐档不过,

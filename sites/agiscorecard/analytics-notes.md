@@ -854,3 +854,11 @@ gridlings×1):多数命中是泛词(claude/gpt 撞名)。一条值得过需求�
 - itch 首发次日回流(经包内信标):play_start 13 + solve 1,全美,`:clean` 精品版确认。
   管线端到端通,量级待 CG/Show HN。
 - ship:capex 页 rung⑤ 内链刷新(spoke↔spoke + tracker),最陈旧页从 06-30 更新。
+
+## 2026-08-26 日结(D1,28d 窗)
+JS 真人 page_view **742/28d(≈26/日,月中 ~15/日 → 明显上行)**;服务端 pageviews 近 2 日 567(上界口径)。
+订阅漏斗 sub_open 3 → sub_submit 2 → **sub_ok 2**;subscribers 累计 2(均 stored,NO-API 正常态)。
+**证伪线 09-30 读数:sub_ok 累计 2/5。** index_click(活数字钩子,08-16 上线)= **3/28d,非零**
+——通道活着但弱,按预登记规则继续观察,不加新钩。工具面:tool_click 18、exposure_score 16、
+invest_tool_click 9、vote_cast 8;site_search 2(无 mcp location,agent 首调里程碑未触发)。
+引用放大队列:空(依赖 9 月 1-3 日 Bing AI Performance 明细补货——owner 届时给两张 Download all)。

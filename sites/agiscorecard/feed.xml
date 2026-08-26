@@ -7,9 +7,37 @@
   <link rel="hub" href="https://pubsubhubbub.appspot.com/"/>
   <link rel="hub" href="https://pubsubhubbub.superfeedr.com/"/>
   <id>https://agiscorecard.com/</id>
-  <updated>2026-08-24T00:00:00Z</updated>
+  <updated>2026-08-26T00:00:00Z</updated>
   <author><name>The AGI Scorecard</name></author>
   <rights>CC BY 4.0 — reuse with attribution and a link to https://agiscorecard.com</rights>
+  <entry>
+    <title>What Is AGI? Definition, Timelines &amp; Current Status</title>
+    <link href="https://agiscorecard.com/what-is-agi"/>
+    <id>https://agiscorecard.com/what-is-agi</id>
+    <updated>2026-08-26T00:00:00Z</updated>
+    <summary>AGI is AI that can do essentially any cognitive task a skilled human can. What the term means, why definitions split the timelines, and where 2026 stands.</summary>
+  </entry>
+  <entry>
+    <title>Who Is Leopold Aschenbrenner? Predictions &amp; Track Record</title>
+    <link href="https://agiscorecard.com/who-is-leopold-aschenbrenner"/>
+    <id>https://agiscorecard.com/who-is-leopold-aschenbrenner</id>
+    <updated>2026-08-25T00:00:00Z</updated>
+    <summary>Leopold Aschenbrenner is the former OpenAI researcher who predicted AGI by 2027 in Situational Awareness (2024).</summary>
+  </entry>
+  <entry>
+    <title>Did AI Capex Hit Trillion-Dollar Scale, as Predicted?</title>
+    <link href="https://agiscorecard.com/ai-capex-trillion-dollar"/>
+    <id>https://agiscorecard.com/ai-capex-trillion-dollar</id>
+    <updated>2026-08-25T00:00:00Z</updated>
+    <summary>Aschenbrenner&#x27;s most clearly vindicated call: AI infrastructure capex has run ahead of even his aggressive trillion-dollar projections.</summary>
+  </entry>
+  <entry>
+    <title>AGI Timeline: Prediction Markets vs Evidence</title>
+    <link href="https://agiscorecard.com/agi-odds-vs-evidence"/>
+    <id>https://agiscorecard.com/agi-odds-vs-evidence</id>
+    <updated>2026-08-25T00:00:00Z</updated>
+    <summary>Polymarket&#x27;s AGI-by-2027 contract vs the evidence: the market prices an announcement, the scorecard grades capability (62.5/100). Issue #1 of a running comparison.</summary>
+  </entry>
   <entry>
     <title>Do AI Trading Agents Actually Make Money? The Evidence</title>
     <link href="https://agiscorecard.com/do-ai-trading-agents-work"/>
@@ -95,13 +123,6 @@
     <summary>Free, machine-readable AGI verdict data: /data.json (CC BY 4.0), an Atom feed, and llms.txt. Copy-paste prompt to add verdict-change alerts to any AI agent.</summary>
   </entry>
   <entry>
-    <title>AGI Odds vs Evidence: Markets Price Announcements</title>
-    <link href="https://agiscorecard.com/agi-odds-vs-evidence"/>
-    <id>https://agiscorecard.com/agi-odds-vs-evidence</id>
-    <updated>2026-08-17T00:00:00Z</updated>
-    <summary>Polymarket&#x27;s AGI-by-2027 contract vs the evidence: the market prices an announcement, the scorecard grades capability (62.5/100). Issue #1 of a running comparison.</summary>
-  </entry>
-  <entry>
     <title>Situational Awareness Summary (Aschenbrenner, 2024)</title>
     <link href="https://agiscorecard.com/situational-awareness-summary"/>
     <id>https://agiscorecard.com/situational-awareness-summary</id>
@@ -116,13 +137,6 @@
     <summary>Aschenbrenner&#x27;s AGI case is built on counting OOMs — factors of 10 — in effective compute: raw compute + algorithmic efficiency + unhobbling.</summary>
   </entry>
   <entry>
-    <title>What Is AGI? Definition, Timelines &amp; Current Status</title>
-    <link href="https://agiscorecard.com/what-is-agi"/>
-    <id>https://agiscorecard.com/what-is-agi</id>
-    <updated>2026-08-16T00:00:00Z</updated>
-    <summary>AGI is AI that can do essentially any cognitive task a skilled human can. What the term means, why definitions split the timelines, and where 2026 stands.</summary>
-  </entry>
-  <entry>
     <title>Changelog — What Changed on the AGI Scorecard</title>
     <link href="https://agiscorecard.com/changelog"/>
     <id>https://agiscorecard.com/changelog</id>
@@ -135,19 +149,5 @@
     <id>https://agiscorecard.com/matrix-odds</id>
     <updated>2026-08-16T00:00:00Z</updated>
     <summary>Break the Matrix scenario into five preconditions that must all hold, set your own probability for each, and see the joint number. Four links carry real graded evidence; one carries none.</summary>
-  </entry>
-  <entry>
-    <title>Did Open-Source AI Fade? Grading Aschenbrenner&amp;#x27;s Moat</title>
-    <link href="https://agiscorecard.com/did-open-source-ai-fade"/>
-    <id>https://agiscorecard.com/did-open-source-ai-fade</id>
-    <updated>2026-08-15T00:00:00Z</updated>
-    <summary>Aschenbrenner predicted open-source AI would fade behind a proprietary moat. Graded Wrong: DeepSeek V4 and Qwen 3.7 trail the frontier by only ~3–6 months.</summary>
-  </entry>
-  <entry>
-    <title>Free AI &amp;amp; AGI Tools: 6 Interactive Checks</title>
-    <link href="https://agiscorecard.com/ai-tools"/>
-    <id>https://agiscorecard.com/ai-tools</id>
-    <updated>2026-08-14T00:00:00Z</updated>
-    <summary>Eight free AI tools, no sign-up: find your AGI type, check your job&#x27;s AI exposure, score your AI stock basket against the 2027 thesis, and read the live 0-100 score.</summary>
   </entry>
 </feed>

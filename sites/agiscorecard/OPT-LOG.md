@@ -2298,3 +2298,9 @@ Suleyman)walk amazon.com search 链接 + Associate 披露句 + 「佣金不影�
 gtag affiliate_click{book_*}。dateModified/可见日期/sitemap 同步 08-25,validate 222 OK。
 判定线(28d):affiliate_click{book_*} ≥3 → 阅读清单模式扩到 SA-summary(下轮冷却期出);
 0 → 不扩,保留单页不churn。
+
+## 2026-08-26 (daily run)
+ship:what-is-agi 加第 5 条 FAQ「What are examples of AGI today?」(趋势种子 agi-examples
+按预案落地:冷却期已过 9 轮,FAQ 路线避免蚕食;可见与 JSON-LD 逐字一致 5=5,答案只用
+站内已核数据 ~83% GDPval + 62.5/100,dateModified/可见日期/sitemap/feed 同步 08-26)。
+validate 222 页 OK。种子在 content-backlog 打勾。
