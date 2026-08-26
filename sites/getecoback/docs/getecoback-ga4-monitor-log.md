@@ -901,3 +901,12 @@ owner 指令"用户重点关注配件,扩展丰富配件产品"。**先盘点类
   秋冬序全站刷新(顺带修 inject_chrome 的 insert-only 缺陷);EB_TRACK 归因映射同步
   home-herbst。能源 17 页保留、降季度维护、不再新增。「更合适板块」结论:不引外部
   新 niche(三门不过),接班者=矩阵第一的秋冬潮湿+取暖簇。判定线 09-22 见 CLAUDE.md。
+
+- 2026-08-26(owner 批评:「没把所有亚马逊高价值品类研究清楚就下结论」——成立)
+  **品类全表补研 v2**(memo 同名文档 v2 节):费率全表落定(Uhren 6,5/Beauty 6/
+  Haushalt·Küche 6/Möbel 5/Sport 4/Garten 3/大家电 2,5)。三个修正:①大家电与
+  割草机器人被费率判死(2,5%/3%)②真钻石在自家 6% 带——Kaffeevollautomat
+  €18-72/单、Akku-Staubsauger €12-36、高端空净除湿 €12-24 ③Möbel 5% 的床垫=
+  睡眠簇自然延伸(€12-30/单)。落地:rising SEEDS 6→9(+kaffeevollautomat/
+  akku staubsauger/matratze),需求验证自动化,4,5 天出首批数据,过快反判据+KGR
+  才建页;工具导流与 GEO 判定页设计已入 memo,按 rising 结果排产。

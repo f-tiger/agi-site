@@ -13,8 +13,12 @@ from datetime import datetime, timezone
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "data", "trends-rising.json")
+# 2026-08-26 v2 品类补研(docs/amazon-category-strategy-2026-08.md):+3 个 6%/5% 带
+# 高客单候选(kaffeevollautomat €18-72/单、akku staubsauger €12-36、matratze €12-30)。
+# 9 seeds × 2/日 ≈ 4,5 天全覆盖;rising 数据先证需求,快反规则再决定建页。
 SEEDS = ["luftentfeuchter", "heizlüfter", "balkonkraftwerk",
-         "klimaanlage", "schimmel entfernen", "infrarotheizung"]
+         "klimaanlage", "schimmel entfernen", "infrarotheizung",
+         "kaffeevollautomat", "akku staubsauger", "matratze"]
 GEO = "DE"
 TIMEFRAME = "today 3-m"
 GAP_S = 60

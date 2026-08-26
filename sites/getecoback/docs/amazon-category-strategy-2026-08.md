@@ -39,3 +39,54 @@
 - 不为佣金改判定/排序(费率只决定**投入顺序**,不决定推荐结论);
 - 不引用任何未核实费率做页面文案;
 - 不在淡季投 AC 新面;不做时尚/奢侈高费率品类(与站定位无关 = 零信任转化)。
+
+
+---
+
+# v2 全品类补研(2026-08-26,owner 批评:「没有把所有亚马逊高价值品类研究清楚就下结论」——成立,本节修正)
+
+## 一、Amazon.de 费率全表(2025-06-23 调整后;B 级=多源检索交叉,来源:ABAKUS 论坛全表贴、
+## selbstaendig-im-netz、AAWP 指南;官方 Vergütungskatalog 沙箱不可达,owner 的 Rate Plan 截图仍是 A 级升级路径)
+
+| 类目 | 费率 | 典型客单 | **€/单** | eco 信任面+工具可达 |
+|---|---|---|---|---|
+| Amazon Games | 20% | 数字低价 | 低 | ✗ |
+| Amazon Fashion/Accessoires | 8% | €40-80 | €3-6 | ✗ |
+| **Uhren** | **6,5%** | €100-500 | €7-33 | ✗(零信任面,不做) |
+| Beauty/Kosmetik & Körperpflege | 6% | €20-50 | €1-3 | ✗ |
+| **Haushalt · Küche & Esszimmer** | **6%** | €50-1.200 | **€3-72** | ✅ **本站主场** |
+| Baumarkt · Elektro-/Handwerkzeug | 6%(直接) | €30-300 | €2-18 | ✅ 相邻 |
+| Schmuck | 5,5% | €50-200 | €3-11 | ✗ |
+| **Möbel(床垫在此带)** | **5%** | €200-800 | **€10-40** | ◐ 睡眠簇可达 |
+| Sport & Freizeit | 4%(自 7% 降) | €30-150 | €1-6 | ✗ |
+| Terrasse/Rasen/**Garten** | **3%** | €50-800 | €1,5-24 | ◐ 可达但费率差 |
+| Elektronik/Computer | ~3% | 高 | 中 | ✗ |
+| **Elektro-Großgeräte(大家电)** | **2,5%** | €400-1.000 | €10-25 | ◐ 费率洼地+退货险 |
+| Spielkonsolen | 1% | — | — | ✗ |
+
+## 二、被数据修正的结论(v1 哪里错了)
+
+1. **v1 没研究的两个方向,费率数据直接判死**:割草机器人(Garten 3%)、热泵干衣机/大家电
+   (2,5%——全表最低带之一,还叠加高退货险)。v1 的「储能博单腿」也要下调:储能若归
+   Elektronik/大电带(~2,5-3%),€1.000×2,5%=€25/单,不如想象中肥。
+2. **v1 漏掉的真钻石在自家 6% 带里**:Haushalt/Küche 类目覆盖高客单小家电——
+   **Kaffeevollautomat €300-1.200 → €18-72/单**(全表 eco 可达区的最高单值!)、
+   **Akku-Staubsauger €200-600 → €12-36/单**、高端空净/除湿 €200-400 → €12-24/单。
+   费率与我们的低价耐用品相同,客单 10-30 倍,退货低于大家电。
+3. **Möbel 5% 的床垫是唯一值得开的「半新」方向**:€12-30/单,且 eco 已有睡眠簇
+   (bei-hitze-schlafen 等)——「Matratze schwitzen/zu warm」是簇的自然延伸,非跳 niche。
+
+## 三、落地(owner 模型:高价值品 → 工具导流 qualify → 联盟;GEO 判定页吃引用喂工具)
+
+- **需求验证自动化(本轮已上线)**:eco rising SEEDS 扩容 +3——`kaffeevollautomat`、
+  `akku staubsauger`、`matratze`(9 seeds,2/日轮换,~4,5 天全覆盖)。**先让 rising 数据
+  证明需求,再按快反规则建页**——这就是「研究清楚再下结论」的机器化版本。
+- **工具导流设计(按 rising 结果排产,过 KGR/三门才建)**:
+  ① Kaffeevollautomat-Kosten-Rechner(每杯真实成本 vs Kapsel vs Siebträger,电费+豆价
+    全公式可复算——eco 计算器 DNA 的直接复用)→ 型号卡(公开测评口径);
+  ② Akku-Staubsauger:接现有 Stromkosten 面 + 「Watt ≠ Saugkraft」判定页;
+  ③ Matratze:睡眠簇入口(bei-hitze-schlafen 已有流量史)→「zu warm schlafen」判定页。
+- **GEO 放大**:每个新品类先出**判定型问题页**(答案胶囊+表格+FAQ/LD,吃 AI 引用)再挂
+  工具——bpj/agi 已验证「内容吃引用、工具吃点击」分工。
+- 判定纪律不变:每方向首页 28d affiliate_click ≥3 或进 pv TOP10 才续做;KGR 过门才建页;
+  1 页/日;零编造(咖啡机每杯成本只用页内公式+明示假设,不引不可核的外部均价)。
