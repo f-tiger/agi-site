@@ -130,7 +130,16 @@ export default {
       // that the old redirect loop minted into crawlers and history
       assetReq = new Request(new URL(url.pathname.replace(/\/+$/, "") + ".html", url).toString(), request);
     }
-    const res = await env.ASSETS.fetch(assetReq);
+    let res = await env.ASSETS.fetch(assetReq);
+    // Belt and braces for the 2026-08-26 loop: if the asset layer is (still)
+    // in a canonicalizing mode on some edge and bounces our .html rewrite
+    // back with a 307/308, absorb it server-side by serving the other URL
+    // form — the client must never see the redirect, whatever the config
+    // propagation state of the colo handling this request.
+    if ((res.status === 307 || res.status === 308) && assetReq !== request) {
+      const alt = await env.ASSETS.fetch(request);
+      if (alt.status === 200) res = alt;
+    }
 
     const accept = request.headers.get("accept") || "";
     // some crawlers send text/html Accept on asset fetches — keep pv page-only
