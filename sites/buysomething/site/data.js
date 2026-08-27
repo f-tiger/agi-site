@@ -301,7 +301,7 @@ const PRODUCTS = [
     trendScore: 86,
     lifecycle: "growth",
     chinaSignal: "The Zhejiang drinkware cluster that built the Stanley wave has already retooled for flip-straw dual-lid formats as Western social feeds rotate.",
-    signals: ["Stanley quencher trend declared dead (searches peaked Nov 2025)", "Owala FreeSip has taken over TikTok/Instagram", "Water-bottle category still grew +21% — the product died, the category didn't"],
+    signals: ["Stanley quencher trend declared dead (searches peaked Nov 2025)", "Owala FreeSip has taken over TikTok/Instagram", "Water-bottle category still grew +21% — the product died, the category didn't", "Our own rising-query pull (trendspy, 26 Aug 2026) says the demand is brand-anchored, not format-anchored: hydroflask 127,400 · brumate era flip 250 · brumate 250 · bink water bottle 190 — the generic format term surfaces almost no rising volume of its own"],
     compliance: {
       us: ["FDA food contact", "Prop 65 lead-free seal documentation"],
       eu: ["LFGB (Germany)", "GPSR responsible person"],
@@ -313,7 +313,7 @@ const PRODUCTS = [
     freightMode: "Sea freight · dense and durable",
     season: "Year-round; Jan hydration + back-to-school peaks",
     orderBy: "Any month",
-    risks: "Riding a successor trend means timing risk both ways — differentiate on silhouette and colorway drops, never clone the incumbent's look (trade-dress exposure).",
+    risks: "Riding a successor trend means timing risk both ways — differentiate on silhouette and colorway drops, never clone the incumbent's look (trade-dress exposure). The rising-query mix adds a second caution: shoppers search brands here, so an unbranded generic inherits no search demand from the format itself — budget for the channel (creator/marketplace placement) rather than assuming the trend carries the listing.",
     whyHot: "The proven drinkware margin machine, pointed at the format that replaced the dead quencher trend.",
     buyerTip: "Leak-proof flip-lock is the review battleground; 24–32oz with a carry loop is the sweet spot."
   },
