@@ -106,7 +106,7 @@ jobs:
             # edge propagation can lag the wrangler deploy by a beat — retry briefly
             for try in 1 2 3 4 5; do
               res=$(curl -s -o /dev/null -w '%{http_code} %{num_redirects}' -L --max-redirs 5 \
-                    -A 'Mozilla/5.0 (compatible; gridlings-deploy-smoke)' \
+                    -A 'gridlings-deploy-smoke-bot (+ci; classified as bot by design)' \
                     -H 'Accept: text/html' "$url" || echo '000 0')
               code=${res%% *}; redirs=${res##* }
               if [ "$code" = "200" ] && [ "$redirs" = "0" ]; then ok=1; break; fi
