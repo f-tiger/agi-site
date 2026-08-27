@@ -1,9 +1,9 @@
 {
   "zone": "thedollscout.com",
-  "updated": "2026-08-26",
+  "updated": "2026-08-27",
   "window": {
-    "since": "2026-08-23T07:13:14.152Z",
-    "until": "2026-08-26T07:13:14.152Z"
+    "since": "2026-08-24T17:41:43.654Z",
+    "until": "2026-08-27T17:41:43.654Z"
   },
   "days": {
     "2026-08-16": {
@@ -360,107 +360,87 @@
           "(unclassified)": 12
         }
       }
+    },
+    "2026-08-27": {
+      "Googlebot": {
+        "total": 74,
+        "redirectShare": 30,
+        "verified": {
+          "Search Engine Crawler": 58,
+          "(unclassified)": 16
+        }
+      },
+      "Bingbot": {
+        "total": 69,
+        "redirectShare": 39,
+        "verified": {
+          "(unclassified)": 7,
+          "Search Engine Crawler": 62
+        }
+      },
+      "GPTBot": {
+        "total": 17,
+        "redirectShare": 65,
+        "verified": {
+          "AI Crawler": 3,
+          "(unclassified)": 14
+        }
+      },
+      "ClaudeBot": {
+        "total": 7,
+        "redirectShare": 86,
+        "verified": {
+          "(unclassified)": 7
+        }
+      },
+      "PerplexityBot": {
+        "total": 7,
+        "redirectShare": 57,
+        "verified": {
+          "(unclassified)": 7
+        }
+      }
     }
   },
   "latest": {
     "Googlebot": {
-      "total": 234,
+      "total": 74,
       "byStatus": {
-        "200": 211,
-        "301": 17,
-        "308": 4,
-        "404": 2
+        "200": 49,
+        "301": 20,
+        "308": 2,
+        "404": 3
       },
       "verified": {
-        "(unclassified)": 197,
-        "Search Engine Crawler": 37
+        "Search Engine Crawler": 58,
+        "(unclassified)": 16
       },
-      "redirectShare": 9,
+      "redirectShare": 30,
       "paths": [
-        {
-          "path": "/guides/factory-photos",
-          "status": 200,
-          "count": 16
-        },
-        {
-          "path": "/mcp",
-          "status": 200,
-          "count": 16
-        },
         {
           "path": "/robots.txt",
           "status": 200,
-          "count": 15
+          "count": 19
         },
         {
-          "path": "/importing/",
-          "status": 200,
-          "count": 11
+          "path": "/robots.txt",
+          "status": 301,
+          "count": 7
         },
         {
-          "path": "/importing/thailand",
+          "path": "/payment-protection",
           "status": 200,
-          "count": 10
-        },
-        {
-          "path": "/weight/160cm",
-          "status": 200,
-          "count": 10
-        },
-        {
-          "path": "/guides/tpe-vs-silicone",
-          "status": 200,
-          "count": 10
+          "count": 4
         },
         {
           "path": "/data/",
           "status": 200,
-          "count": 10
-        },
-        {
-          "path": "/llms.txt",
-          "status": 200,
-          "count": 8
+          "count": 4
         },
         {
           "path": "/guides/height-weight",
           "status": 200,
-          "count": 8
-        },
-        {
-          "path": "/importing/australia",
-          "status": 200,
-          "count": 6
-        },
-        {
-          "path": "/picks",
-          "status": 200,
-          "count": 6
-        },
-        {
-          "path": "/guides/first-time-buyer",
-          "status": 200,
-          "count": 6
-        },
-        {
-          "path": "/search-index.json",
-          "status": 200,
-          "count": 6
-        },
-        {
-          "path": "/after-you-order",
-          "status": 200,
-          "count": 6
-        },
-        {
-          "path": "/server.json",
-          "status": 200,
-          "count": 6
-        },
-        {
-          "path": "/quiz",
-          "status": 200,
-          "count": 5
+          "count": 4
         },
         {
           "path": "/env.json",
@@ -468,97 +448,32 @@
           "count": 4
         },
         {
-          "path": "/robots.txt",
-          "status": 301,
-          "count": 4
-        },
-        {
-          "path": "/guides/torso-vs-full-size",
-          "status": 200,
-          "count": 4
-        },
-        {
-          "path": "/guides/import-costs-2026",
-          "status": 200,
-          "count": 4
-        },
-        {
-          "path": "/payment-protection",
-          "status": 200,
-          "count": 4
-        },
-        {
-          "path": "/weight/",
+          "path": "/js/analytics.js",
           "status": 200,
           "count": 3
+        },
+        {
+          "path": "/img/card-tpe.svg",
+          "status": 200,
+          "count": 2
+        },
+        {
+          "path": "/js/photos.js",
+          "status": 200,
+          "count": 2
+        },
+        {
+          "path": "/img/card-silicone.svg",
+          "status": 200,
+          "count": 2
         },
         {
           "path": "/",
           "status": 200,
-          "count": 3
-        },
-        {
-          "path": "/vendors/yourdoll",
-          "status": 200,
-          "count": 3
-        },
-        {
-          "path": "/importing/singapore",
-          "status": 200,
-          "count": 3
-        },
-        {
-          "path": "/guides/height-weight",
-          "status": 200,
-          "count": 3
-        },
-        {
-          "path": "/wp/.env",
-          "status": 301,
           "count": 2
         },
         {
-          "path": "/weight/150cm",
-          "status": 200,
-          "count": 2
-        },
-        {
-          "path": "/robots.txt",
-          "status": 200,
-          "count": 2
-        },
-        {
-          "path": "/data/scam-signals.json",
-          "status": 200,
-          "count": 2
-        },
-        {
-          "path": "/payment-protection",
-          "status": 200,
-          "count": 2
-        },
-        {
-          "path": "/guides/disposal",
-          "status": 200,
-          "count": 2
-        },
-        {
-          "path": "/guides/glossary",
-          "status": 200,
-          "count": 2
-        },
-        {
-          "path": "/guides/care-cleaning",
-          "status": 200,
-          "count": 2
-        },
-        {
-          "path": "/importing/malaysia",
-          "status": 200,
-          "count": 2
-        },
-        {
-          "path": "/guides/discreet-shipping",
+          "path": "/js/share.js",
           "status": 200,
           "count": 2
         },
@@ -568,9 +483,19 @@
           "count": 2
         },
         {
-          "path": "/payment-protection.html",
-          "status": 308,
+          "path": "/wp/.env",
+          "status": 301,
           "count": 2
+        },
+        {
+          "path": "/js/config.js",
+          "status": 200,
+          "count": 1
+        },
+        {
+          "path": "/favicon.ico",
+          "status": 404,
+          "count": 1
         },
         {
           "path": "/faq",
@@ -613,6 +538,11 @@
           "count": 1
         },
         {
+          "path": "/importing/south-korea",
+          "status": 200,
+          "count": 1
+        },
+        {
           "path": "/graphql",
           "status": 404,
           "count": 1
@@ -623,22 +553,7 @@
           "count": 1
         },
         {
-          "path": "/data/",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/js/share.js",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/weight/",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/trust",
+          "path": "/after-you-order",
           "status": 200,
           "count": 1
         },
@@ -646,47 +561,22 @@
           "path": "/sitemap.xml",
           "status": 200,
           "count": 1
-        },
-        {
-          "path": "/importing/united-kingdom",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/trust",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/cost-calculator",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/data/doll-specs.csv",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/js/config.js",
-          "status": 200,
-          "count": 1
         }
       ]
     },
     "Bingbot": {
-      "total": 70,
+      "total": 69,
       "byStatus": {
         "200": 42,
         "301": 9,
-        "304": 4,
+        "304": 3,
         "308": 15
       },
       "verified": {
         "(unclassified)": 7,
-        "Search Engine Crawler": 63
+        "Search Engine Crawler": 62
       },
-      "redirectShare": 40,
+      "redirectShare": 39,
       "paths": [
         {
           "path": "/config.yml",
@@ -694,27 +584,22 @@
           "count": 4
         },
         {
-          "path": "/mcp",
+          "path": "/cost-calculator",
           "status": 200,
-          "count": 4
+          "count": 3
         },
         {
           "path": "/sitemap.xml",
           "status": 304,
-          "count": 4
+          "count": 3
         },
         {
-          "path": "/robots.txt",
+          "path": "/checklist",
           "status": 200,
           "count": 3
         },
         {
-          "path": "/weight/",
-          "status": 200,
-          "count": 3
-        },
-        {
-          "path": "/importing/",
+          "path": "/guides/discreet-shipping",
           "status": 200,
           "count": 3
         },
@@ -724,77 +609,7 @@
           "count": 3
         },
         {
-          "path": "/",
-          "status": 200,
-          "count": 2
-        },
-        {
-          "path": "/guides/care-cleaning",
-          "status": 200,
-          "count": 2
-        },
-        {
-          "path": "/guides/discreet-shipping",
-          "status": 200,
-          "count": 2
-        },
-        {
-          "path": "/checklist",
-          "status": 200,
-          "count": 2
-        },
-        {
-          "path": "/mcp.html",
-          "status": 308,
-          "count": 2
-        },
-        {
-          "path": "/importing/canada.html",
-          "status": 308,
-          "count": 2
-        },
-        {
-          "path": "/trust",
-          "status": 200,
-          "count": 2
-        },
-        {
-          "path": "/importing/canada",
-          "status": 200,
-          "count": 2
-        },
-        {
-          "path": "/guides/import-costs-2026",
-          "status": 200,
-          "count": 2
-        },
-        {
-          "path": "/data/first-year-cost.json",
-          "status": 200,
-          "count": 2
-        },
-        {
-          "path": "/importing/germany.html",
-          "status": 308,
-          "count": 2
-        },
-        {
-          "path": "/importing/germany",
-          "status": 200,
-          "count": 2
-        },
-        {
           "path": "/guides/",
-          "status": 200,
-          "count": 2
-        },
-        {
-          "path": "/feed.xml",
-          "status": 200,
-          "count": 2
-        },
-        {
-          "path": "/importing/australia",
           "status": 200,
           "count": 2
         },
@@ -804,8 +619,98 @@
           "count": 2
         },
         {
+          "path": "/data/",
+          "status": 200,
+          "count": 2
+        },
+        {
+          "path": "/",
+          "status": 200,
+          "count": 2
+        },
+        {
+          "path": "/legal/terms",
+          "status": 200,
+          "count": 2
+        },
+        {
+          "path": "/guides/import-costs-2026",
+          "status": 200,
+          "count": 2
+        },
+        {
+          "path": "/robots.txt",
+          "status": 200,
+          "count": 2
+        },
+        {
+          "path": "/importing/canada",
+          "status": 200,
+          "count": 2
+        },
+        {
+          "path": "/weight/",
+          "status": 200,
+          "count": 2
+        },
+        {
+          "path": "/importing/",
+          "status": 200,
+          "count": 2
+        },
+        {
+          "path": "/mcp",
+          "status": 200,
+          "count": 2
+        },
+        {
+          "path": "/guides/care-cleaning",
+          "status": 200,
+          "count": 2
+        },
+        {
+          "path": "/importing/australia.html",
+          "status": 308,
+          "count": 1
+        },
+        {
+          "path": "/importing/japan.html",
+          "status": 308,
+          "count": 1
+        },
+        {
+          "path": "/importing/australia",
+          "status": 200,
+          "count": 1
+        },
+        {
+          "path": "/faq",
+          "status": 200,
+          "count": 1
+        },
+        {
+          "path": "/payment-protection.html",
+          "status": 308,
+          "count": 1
+        },
+        {
+          "path": "/quiz",
+          "status": 200,
+          "count": 1
+        },
+        {
           "path": "/robots.txt",
           "status": 301,
+          "count": 1
+        },
+        {
+          "path": "/scam-check.html",
+          "status": 308,
+          "count": 1
+        },
+        {
+          "path": "/guides/torso-vs-full-size.html",
+          "status": 308,
           "count": 1
         },
         {
@@ -814,7 +719,12 @@
           "count": 1
         },
         {
-          "path": "/guides/torso-vs-full-size.html",
+          "path": "/checklist.html",
+          "status": 308,
+          "count": 1
+        },
+        {
+          "path": "/mcp.html",
           "status": 308,
           "count": 1
         },
@@ -824,18 +734,8 @@
           "count": 1
         },
         {
-          "path": "/data/",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/checklist.html",
+          "path": "/importing/canada.html",
           "status": 308,
-          "count": 1
-        },
-        {
-          "path": "/",
-          "status": 301,
           "count": 1
         },
         {
@@ -844,8 +744,18 @@
           "count": 1
         },
         {
+          "path": "/",
+          "status": 301,
+          "count": 1
+        },
+        {
           "path": "/env.js",
           "status": 301,
+          "count": 1
+        },
+        {
+          "path": "/legal/terms.html",
+          "status": 308,
           "count": 1
         },
         {
@@ -854,8 +764,8 @@
           "count": 1
         },
         {
-          "path": "/importing/australia.html",
-          "status": 308,
+          "path": "/scam-check",
+          "status": 200,
           "count": 1
         },
         {
@@ -864,29 +774,44 @@
           "count": 1
         },
         {
-          "path": "/cost-calculator",
+          "path": "/importing/germany.html",
+          "status": 308,
+          "count": 1
+        },
+        {
+          "path": "/data/first-year-cost.json",
           "status": 200,
           "count": 1
         },
         {
-          "path": "/trust.html",
-          "status": 308,
+          "path": "/feed.xml",
+          "status": 200,
+          "count": 1
+        },
+        {
+          "path": "/trust",
+          "status": 200,
+          "count": 1
+        },
+        {
+          "path": "/importing/germany",
+          "status": 200,
           "count": 1
         }
       ]
     },
     "GPTBot": {
-      "total": 18,
+      "total": 17,
       "byStatus": {
-        "200": 7,
+        "200": 6,
         "301": 10,
         "308": 1
       },
       "verified": {
         "AI Crawler": 3,
-        "(unclassified)": 15
+        "(unclassified)": 14
       },
-      "redirectShare": 61,
+      "redirectShare": 65,
       "paths": [
         {
           "path": "/sitemap.xml",
@@ -957,30 +882,20 @@
           "path": "/guides",
           "status": 308,
           "count": 1
-        },
-        {
-          "path": "/guides/height-weight",
-          "status": 200,
-          "count": 1
         }
       ]
     },
     "ClaudeBot": {
-      "total": 12,
+      "total": 7,
       "byStatus": {
-        "200": 6,
+        "200": 1,
         "301": 6
       },
       "verified": {
-        "(unclassified)": 12
+        "(unclassified)": 7
       },
-      "redirectShare": 50,
+      "redirectShare": 86,
       "paths": [
-        {
-          "path": "/",
-          "status": 200,
-          "count": 5
-        },
         {
           "path": "/.env.test",
           "status": 301,
@@ -1009,24 +924,19 @@
       ]
     },
     "PerplexityBot": {
-      "total": 12,
+      "total": 7,
       "byStatus": {
-        "200": 8,
+        "200": 3,
         "301": 4
       },
       "verified": {
-        "(unclassified)": 12
+        "(unclassified)": 7
       },
-      "redirectShare": 33,
+      "redirectShare": 57,
       "paths": [
         {
           "path": "/js/analytics.js",
           "status": 301,
-          "count": 2
-        },
-        {
-          "path": "/scam-check",
-          "status": 200,
           "count": 2
         },
         {
@@ -1051,21 +961,6 @@
         },
         {
           "path": "/feed.xml",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/robots.txt",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/guides/care-cleaning",
           "status": 200,
           "count": 1
         }
