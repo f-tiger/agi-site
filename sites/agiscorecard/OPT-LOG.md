@@ -1,3 +1,22 @@
+## 2026-08-27(daily run 04:00)— rung⑤ 最陈旧页刷新 + 两处记账纠错
+
+- **纠错(最重要产出)**:①`index_click{*_live}` 实为 **0**,08-26 日结误把 3 次首页
+  (directory/hero,path='/')点击当成深页活数字钩子——08-30 预登记判定必须以 0 为准;
+  ②`site_search{location='mcp'}` 的 2 条是 MCP 信誉扫描器(bot、间隔 133ms、标签带
+  canary),不是首个 agent 调用,已固定四条件判据防止每日重复误报。详见 analytics-notes。
+- **ship(rung⑤)**:`/intelligence-explosion-2027`——最陈旧页里读者最多的一页
+  (7 pv/28d,停在 06-30 已 58 天)。加了一段**带日期的一手现状行**(照抄 data.json
+  08-17 版的判定与证据原文:仍 Pending、前置条件未兑现;并点明**不是**瓶颈的那一项——
+  compute-scaling 为 On track),补两条 spoke↔spoke 内链(/ai-2027-scenario-explained
+  这个 20 pv 的近邻热页此前竟未互链、/is-ai-compute-still-scaling 前置页),
+  Last updated / JSON-LD dateModified / sitemap lastmod 三处同步,changelog 追加真实条目。
+- **克制记录**:/when-will-agi-arrive 以 133 pv/28d 高居深页第一且缺第⑥件套(活数字),
+  但 08-24 预登记明写「判定期内不再加钩子」——**今天没加**,留待 08-30 裁定后再议。
+- 阶梯上游为何全空:⓪ 三项卡 owner waitlist;⓪+ 队列两项动工前置均未满足
+  (datacenter 等 9 月 Bing;eu-ai-act-de 的英文版今日核实未进 TOP10);①样本不足;
+  ②无种子;③13F 已 08-16 刷新。
+- validate OK(222 页 / 204 URL)。
+
 ## 2026-08-25(daily run 04:00)— GEO 底盘刷新(rung⑤,单项)
 
 监控:subscribers 2(全 stored)、sub_ok 0/28d、subscribe_click 0/28d、index_click{*_live} **0**

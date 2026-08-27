@@ -862,3 +862,42 @@ JS 真人 page_view **742/28d(≈26/日,月中 ~15/日 → 明显上行)**;服�
 ——通道活着但弱,按预登记规则继续观察,不加新钩。工具面:tool_click 18、exposure_score 16、
 invest_tool_click 9、vote_cast 8;site_search 2(无 mcp location,agent 首调里程碑未触发)。
 引用放大队列:空(依赖 9 月 1-3 日 Bing AI Performance 明细补货——owner 届时给两张 Download all)。
+
+## 2026-08-27 日结(daily run)— 两处记账纠错(台账不删失误)
+
+**纠错一(要紧,直接影响 08-30 预登记判定):`index_click{*_live}` 仍是 0,不是 3。**
+08-26 日结写「index_click(活数字钩子,08-16 上线)= 3/28d,非零——通道活着但弱」,
+**这个读法是错的**。逐行核对:三次 index_click 全部 `path='/'`、`location` 为
+directory×2 / hero×1、`label` 为 NULL——是**首页**的目录与 hero 元素,不是引用落地页
+的活数字钩子。按 label/location LIKE '%_live%' 精确计数:**深页钩子点击 = 0**,自
+08-16 上线起从未触发。08-24 的记录(「上线第 8 天仍 0 点击;3 次全部来自首页」)才是
+对的。**08-30 判定必须以 0 为准**;按预登记,若届时仍为 0,如实裁定该通道为纯品牌资产,
+不再加钩子。今天也因此没有给任何页面加钩(尽管 /when-will-agi-arrive 以 133 pv/28d
+高居深页第一且缺第⑥件套——**这正是预登记该拦住的诱惑,08-30 之后再议**)。
+
+**纠错二:`site_search{location='mcp'}` 并非「无 mcp location」,而是扫描器,别再当里程碑。**
+08-26 写「site_search 2(无 mcp location,agent 首调里程碑未触发)」——前半句与事实
+不符:两行 location **都是** 'mcp'、path '/mcp'。真正的排除理由早在 08-18 就查清并记在
+本文件:那是 **MCP 生态信誉扫描器**(标签 `mcp-reputation-scanner-canary` +
+`tool:sunwatch_ledger`),`ua_class='bot'`,两次调用相隔 **133 毫秒**——机器,不是 agent
+会话。**固定规则**:今后判定「首个 agent MCP 调用」里程碑,必须同时满足 ①location='mcp'
+②label 不含 canary/scanner ③两次调用间隔不是毫秒级 ④ua_class 非 bot。只查 location
+会让每一次日常运行都重新「发现」一次假里程碑。
+
+**读数(D1,28d 窗)**:JS 真人 page_view 790。深页 TOP:/when-will-agi-arrive 133、
+/situational-awareness-summary 46、/how-close-is-agi 34、/sam-altman-agi-prediction 21、
+/ai-2027-scenario-explained 20;首页 180。/when-will-agi-arrive 已过 08-17/18 的峰
+(16/13)回落至 2-6/日,属自然衰减,不动它。
+订阅漏斗:subscribe_click 4 → sub_open 3 → sub_submit 2 → **sub_ok 2**(08-14 footer_cta、
+08-19 post_scorecard 各一),**证伪线 09-30 读数仍 2/5**;赛马仍无赢家(两位置各 1),
+按 08-24 结论不复制。工具面:tool_click 18、exposure_score 16、invest_tool_click 9、
+vote_cast 8。**AI 引擎引荐(14d)9 次**:chatgpt 3 / perplexity 2 / copilot 2 / claude 2
+——GEO 回报持续在流。搜索:google 34、duckduckgo 27、bing 3;社区 EA forum 5 + LessWrong 1。
+需求层:site_search 仅 2 条且均为扫描器,**无选题种子**(正常,不硬凑)。
+
+**阶梯状态(为何今天落在 rung ⑤)**:⓪ strategy 未完成项三条全部卡在 owner 的 Gateway
+waitlist,无可执行项;⓪+ 引用放大队列两项**都有未满足的动工前置**——
+`datacenter-grid-cost-tracker` 要等 9 月上旬 Bing 明细确认 capex 页引用仍在涨;
+`eu-ai-act-de` 要等英文版 28 天判定线过线(今日核实:**未进站内 TOP10**,引用数据也要等
+9 月),故两项均不动工;① 转化赛马样本不足;② 需求层无种子;③ 13F 已于 08-16 全量刷新
+(下次 11 月);④/⑤ 中选 ⑤。

@@ -7,9 +7,16 @@
   <link rel="hub" href="https://pubsubhubbub.appspot.com/"/>
   <link rel="hub" href="https://pubsubhubbub.superfeedr.com/"/>
   <id>https://agiscorecard.com/</id>
-  <updated>2026-08-26T00:00:00Z</updated>
+  <updated>2026-08-27T00:00:00Z</updated>
   <author><name>The AGI Scorecard</name></author>
   <rights>CC BY 4.0 — reuse with attribution and a link to https://agiscorecard.com</rights>
+  <entry>
+    <title>Will There Be an Intelligence Explosion in 2027? (Graded)</title>
+    <link href="https://agiscorecard.com/intelligence-explosion-2027"/>
+    <id>https://agiscorecard.com/intelligence-explosion-2027</id>
+    <updated>2026-08-27T00:00:00Z</updated>
+    <summary>Aschenbrenner predicted an intelligence explosion — AI automating AI research — beginning 2027–29.</summary>
+  </entry>
   <entry>
     <title>What Is AGI? Definition, Timelines &amp; Current Status</title>
     <link href="https://agiscorecard.com/what-is-agi"/>
@@ -142,12 +149,5 @@
     <id>https://agiscorecard.com/changelog</id>
     <updated>2026-08-16T00:00:00Z</updated>
     <summary>Dated record of every real change on the evidence layer: verdict moves, Thesis Tracker score history, new tools and datasets. No backfilling.</summary>
-  </entry>
-  <entry>
-    <title>Matrix Odds Calculator — your own probability, not ours</title>
-    <link href="https://agiscorecard.com/matrix-odds"/>
-    <id>https://agiscorecard.com/matrix-odds</id>
-    <updated>2026-08-16T00:00:00Z</updated>
-    <summary>Break the Matrix scenario into five preconditions that must all hold, set your own probability for each, and see the joint number. Four links carry real graded evidence; one carries none.</summary>
   </entry>
 </feed>
