@@ -89,3 +89,34 @@ jobs:
           wranglerVersion: "4"
           workingDirectory: sites/gridlings
           command: deploy
+
+      # 部署后自检(2026-08-27 补,owner CI 铁律要求「部署路径上要有部署后自检」)。
+      # 这个站此前一个探测都没有——2026-08-26 的全站 307 死循环因此潜伏三天,
+      # 全部英文游戏页/GEO 页对外不可达,最后是被 CrazyGames 审核的 iframe 撞出来的。
+      # 断言就是那次事故的形状:worker 改写过的每一类路径都必须 200 且**零重定向**。
+      # 每类路径各取一个代表:根 / 英文游戏页 / 中文分支 / GEO 集合 / 一次性改写
+      # (archive、download→downloads.html)/ 静态资源。任何一条不满足即让部署变红。
+      - name: Post-deploy smoke — every rewritten path must be 200 with no redirect
+        run: |
+          set -u
+          fail=0
+          for p in / /starbattle /zh/starbattle /star-battle-rules /archive /download /app-starbattle.js; do
+            url="https://play.agiscorecard.com$p"
+            ok=0; code=000; redirs=0
+            # edge propagation can lag the wrangler deploy by a beat — retry briefly
+            for try in 1 2 3 4 5; do
+              res=$(curl -s -o /dev/null -w '%{http_code} %{num_redirects}' -L --max-redirs 5 \
+                    -A 'Mozilla/5.0 (compatible; gridlings-deploy-smoke)' \
+                    -H 'Accept: text/html' "$url" || echo '000 0')
+              code=${res%% *}; redirs=${res##* }
+              if [ "$code" = "200" ] && [ "$redirs" = "0" ]; then ok=1; break; fi
+              sleep 5
+            done
+            if [ "$ok" = "1" ]; then
+              echo "OK    $p -> 200, no redirect"
+            else
+              echo "::error::$p -> HTTP $code after $redirs redirect(s) — this deploy published a broken routing state"
+              fail=1
+            fi
+          done
+          [ "$fail" = "0" ] || exit 1
