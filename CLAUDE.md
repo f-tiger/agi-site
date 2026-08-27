@@ -114,6 +114,15 @@ play.)+ 三个外部站(baipiaoji/getecoback/thedollscout)。实测教训:引用
   只放 正确性校验 + 构建 + 部署 + 部署后自检。
 - 公开仓特有注意:仓库 60 天无 push 时 GitHub 会自动停用 schedule。舰队日常
   节奏远高于此;若将来长期暂停,恢复时去 Actions 页手动 re-enable。
+- **防回滚守卫:全部 8 条 deploy workflow 在 checkout 之后的第一步,永不删除**
+  (2026-08-26 事故):GitHub 会乱序补发数小时前的 push 事件,每个旧事件按自己
+  那个历史提交部署——当天把 gridlings 的重定向修复连滚两次,CG 审核正好撞上
+  白屏页。守卫在 push 事件下比对 HEAD 与 origin/main:落后就 `git reset --hard`
+  到 tip 再部署(这些站点的部署都是「按当前源码重建并发布」,发 tip 永远是对的,
+  且幂等)。三条实现约束:①用 reset 不用 checkout——有 4 条流水线会 git push 回仓,
+  detached HEAD 会让那步失败;②fetch 失败/tip 解析不出时 **fail-open 直接放行**,
+  网络抖动绝不能阻断部署;③只在 `github.event_name == 'push'` 生效,dispatch 与
+  schedule 本来就跑在 tip 上。**新增站点的 deploy workflow 必须照抄这一步。**
 
 ## 会话工作方式
 

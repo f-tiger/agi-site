@@ -23,6 +23,27 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # 防回滚守卫(2026-08-26 事故):GitHub 曾乱序补发数小时前的 push 事件,
+      # 每个旧事件都按自己那个历史提交部署,把线上反复滚回旧代码——gridlings 的
+      # 重定向修复当天被这样滚掉两次,CG 审核正好撞上白屏。这些站点的部署都是
+      # 「按当前源码重建并发布」,所以旧事件的正确动作不是发布旧快照,而是发布
+      # main 的当前 tip(幂等、绝不倒退)。用 reset --hard 而非 checkout:有 4 条
+      # 流水线会 git push 回仓,detached HEAD 会让那一步失败。
+      - name: Guard — a replayed/stale push deploys main's tip, never rolls back
+        if: github.event_name == 'push'
+        run: |
+          # Fail-open by design: a network hiccup must never block a deploy —
+          # without a resolvable tip we simply keep the pushed commit, which is
+          # exactly the pre-guard behaviour.
+          git fetch origin main -q || { echo "::warning::fetch failed — stale-run guard skipped"; exit 0; }
+          TIP=$(git rev-parse origin/main 2>/dev/null || true)
+          case "$TIP" in
+            "" | *[!0-9a-f]* ) echo "::warning::main tip unresolvable — stale-run guard skipped"; exit 0 ;;
+          esac
+          if [ "$(git rev-parse HEAD)" != "$TIP" ]; then
+            echo "::warning::stale run — HEAD $(git rev-parse --short HEAD) is behind main tip $(git rev-parse --short "$TIP"); deploying the tip instead of rolling production back"
+            git reset --hard "$TIP"
+          fi
       - name: Validate site (zero-fabrication gates must print OK)
         working-directory: sites/agiscorecard
         run: python3 tools/validate.py
