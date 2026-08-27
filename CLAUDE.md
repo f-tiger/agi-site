@@ -123,6 +123,12 @@ play.)+ 三个外部站(baipiaoji/getecoback/thedollscout)。实测教训:引用
   detached HEAD 会让那步失败;②fetch 失败/tip 解析不出时 **fail-open 直接放行**,
   网络抖动绝不能阻断部署;③只在 `github.event_name == 'push'` 生效,dispatch 与
   schedule 本来就跑在 tip 上。**新增站点的 deploy workflow 必须照抄这一步。**
+- **部署后自检覆盖率(2026-08-27 审计)**:agi(200+内容+D1 读路径)、eco、tds、bpj
+  已有真自检;**gridlings 当天补上**(7 条改写路径各断言 200 且零重定向——那次死循环
+  能潜伏三天,唯一原因就是这个站一个线上探测都没有)。**仍缺**:buysomething、
+  gamesledger、x-poster(风险较低,未在事故路径上;哪天动它们时顺手补,别单独churn)。
+  自检要断言的是**事故的形状**,不是「有个 200 就行」:死循环场景下 `curl -L` 超限
+  会返回 000,所以 200 断言其实够用,但 gridlings 额外断言零重定向更早暴露问题。
 
 ## 会话工作方式
 
