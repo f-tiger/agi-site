@@ -448,10 +448,26 @@ def cat_of(slug):
 # Mobile-only sticky purchase bar: JS wires the CTA to the first Amazon link
 # already on the page (always correct, never a fabricated target) and only shows
 # it after the reader scrolls past the fold. Dismissible. GA4 affiliate_click.
-def sticky_bar(label, cta):
+# Werbekennzeichnung. The toppick strip has carried this since it moved above
+# the article's own disclosure, on the reasoning written there: "the label
+# belongs at the ad, not 600 px further down the page." That reasoning applies
+# to every block that carries an affiliate link, and an audit on 2026-08-27
+# found it had only ever been applied to the toppick: the sticky bar (139
+# pages), the model grid (90), the exit popup (131), the BTU result panel (54)
+# and the homepage autumn block all carried Amazon links with no ad label at
+# all. Some of them said "Affiliate-Links" in body text, which is a disclosure
+# but not a Werbekennzeichnung, and the sticky bar and popup are exactly the
+# floating/teaser surfaces where an in-article label does not reach.
+AD_LABEL = {False: "Anzeige · Affiliate-Links — für dich derselbe Preis",
+            True: "Ad · affiliate links — same price for you"}
+AD_SHORT = {False: "Anzeige", True: "Ad"}
+
+
+def sticky_bar(label, cta, en=False):
     return (
         "<!--EB_STICKY--><div class=\"eb-sticky\" id=\"eb-sticky\">"
         f"<strong>🔥 {label}</strong>"
+        f"<span style=\"font-size:10.5px;color:#8a99a6;letter-spacing:.3px;\">{AD_SHORT[en]}</span>"
         "<a class=\"eb-sticky-cta\" id=\"eb-sticky-cta\" href=\"#\" target=\"_blank\" rel=\"sponsored noopener\">"
         f"{cta}</a>"
         "<button type=\"button\" id=\"eb-sticky-x\" aria-label=\"schließen\">×</button></div>"
@@ -465,7 +481,7 @@ def sticky_bar(label, cta):
         "window.addEventListener('scroll',k,{passive:true});k();})();</script><!--/EB_STICKY-->\n")
 
 STICKY = sticky_bar("Passendes Gerät finden", "Preis auf Amazon prüfen →")
-EN_STICKY = sticky_bar("Find the right unit", "Check price on Amazon →")
+EN_STICKY = sticky_bar("Find the right unit", "Check price on Amazon →", en=True)
 
 
 def crumb_trust(cat_key, title, en=False):
@@ -1181,7 +1197,10 @@ def models_block(device, en=False, slug=None):
         head, sub = "Was hier wirklich hilft", CONTEXT_SUB[slug]
     # Heading is a styled <div>, not <h2>, so build_onpage's TOC (which slugs
     # every <h2> in <article>) leaves it alone — keeps the two injectors idempotent.
-    return (f'<!--EB_MODELS--><section class="eb-shop eb-models" id="eb-models"><div class="eb-shop-h">{head}</div>'
+    return (f'<!--EB_MODELS--><section class="eb-shop eb-models" id="eb-models">'
+            f'<div class="eb-shop-h">{head}</div>'
+            f'<p class="eb-shop-sub" style="margin-bottom:6px;"><span style="font-size:11px;color:#8a99a6;">'
+            f'{AD_LABEL[en]}</span></p>'
             f'<p class="eb-shop-sub">{sub}</p>'
             f'<div class="eb-shop-grid">{cards}</div></section><!--/EB_MODELS-->\n')
 
@@ -1277,8 +1296,7 @@ def toppick_block(device, en=False, slug=None):
     # The strip now sits above the article's own disclosure, so it carries its
     # own Werbekennzeichnung. That is the stricter reading anyway: the label
     # belongs at the ad, not 600 px further down the page.
-    ad = ("Ad · affiliate links — same price for you"
-          if en else "Anzeige · Affiliate-Links — für dich derselbe Preis")
+    ad = AD_LABEL[en]
     return ('<!--EB_TOPPICK--><section style="max-width:1000px;margin:0 auto 4px;padding:0 20px;">'
             '<div style="background:#f7fafc;border:1px solid #e4ebf0;border-radius:12px;padding:12px 15px;">'
             '<div style="display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin-bottom:8px;">'
@@ -1412,7 +1430,7 @@ def popup_block(device, en=False, slug=None):
             f'{rows}'
             + (f'<a href="{calc_href}" data-eb-pu="calc" style="display:block;text-align:center;font-size:13px;'
                f'color:#0f6ba8;font-weight:700;text-decoration:none;margin-top:2px;">{calc}</a>' if calc else "") +
-            f'<p style="margin:8px 0 0;font-size:11px;color:#8a99a6;">{sub}</p>'
+            f'<p style="margin:8px 0 0;font-size:11px;color:#8a99a6;">{AD_LABEL[en]}<br>{sub}</p>'
             '</div></div>\n<script>(function(){'
             'var K="eb_pu_seen",box=document.getElementById("eb-pu");if(!box)return;'
             'try{var t=parseInt(localStorage.getItem(K)||"0",10);'
@@ -2162,6 +2180,8 @@ def home_storage_block():
         'und die Frage, womit sich einzelne Räume effizient heizen lassen. Erst messen und rechnen, dann kaufen.</p>'
         '<div style="margin-bottom:16px;">' + toolrow + '</div>'
         '<div class="eb-shop-h" style="margin-bottom:2px;">Was jetzt wirklich hilft</div>'
+        '<p class="eb-shop-sub" style="margin-bottom:4px;"><span style="font-size:11px;color:#8a99a6;">'
+        + AD_LABEL[False] + '</span></p>'
         '<p class="eb-shop-sub">„Meistgesucht“ ist ein Nachfrage-Signal aus unserer täglichen Google-Trends-Abfrage, '
         'kein Testurteil. Nicht selbst getestet, Preise vor Ort prüfen. Symbolbilder, Affiliate-Links.</p>'
         '<div class="eb-shop-grid">' + cards + '</div>'
@@ -2773,8 +2793,15 @@ def inject_crumb_trust(html, cat_key, title, url, en=False):
 
 
 def inject_sticky(html, sticky=STICKY):
+    """Replace in place, not insert-only.
+
+    This was insert-only, so every later change to the sticky bar silently
+    never reached the 139 pages that already had one — the same failure the
+    nav injector had (fixed 2026-08-26). It was found by an ad-labelling audit
+    whose new Werbekennzeichnung reached 0 of 139 pages for this reason.
+    """
     if "<!--EB_STICKY-->" in html:
-        return html
+        return re.sub(r'<!--EB_STICKY-->.*?<!--/EB_STICKY-->\n?', lambda m: sticky, html, flags=re.S)
     return html.replace("</body>", sticky + "</body>", 1)
 
 # --- The site owns a dozen calculators and almost nobody uses them: 28 days of
@@ -2802,8 +2829,8 @@ SIZER_TXT = {
         "go": "Berechnen", "for": "Empfohlene Kühlleistung für", "cls": "Passende Geräteklasse",
         "amz": "Preis auf Amazon prüfen →", "grid": "Alle Empfehlungen auf dieser Seite ↓",
         "area": "Alle Empfehlungen für %d m² →", "full": "Decke, Personen, Küche einrechnen →",
-        "note": ("Richtwert nach 340 BTU/m². Modelle nicht selbst getestet — Auswahl nach öffentlichen "
-                 "Tests, Links sind Affiliate-Links."),
+        "note": ("Anzeige · Richtwert nach 340 BTU/m². Modelle nicht selbst getestet — Auswahl nach "
+                 "öffentlichen Tests, Links sind Affiliate-Links."),
         "mcp": ('Dieselbe Rechnung kann auch dein KI-Assistent direkt aufrufen — '
                 '<a href="/mcp.html" style="color:#0f6ba8;">MCP-Server einrichten →</a>'),
         "bands": [(9000, "bis ca. 9.000 BTU"), (11000, "9.000–11.000 BTU"),
@@ -2827,8 +2854,8 @@ SIZER_TXT = {
         "go": "Calculate", "for": "Recommended cooling capacity for", "cls": "Matching class",
         "amz": "Check the price on Amazon →", "grid": "All picks on this page ↓",
         "area": "All picks for %d m² →", "full": "Add ceiling height, people, kitchen →",
-        "note": ("Rule of thumb: 340 BTU/m². Models not tested by us — compiled from public tests, "
-                 "links are affiliate links."),
+        "note": ("Ad · Rule of thumb: 340 BTU/m². Models not tested by us — compiled from public "
+                 "tests, links are affiliate links."),
         "mcp": ('Your AI assistant can call this same calculation — '
                 '<a href="/mcp.html" style="color:#0f6ba8;">set up the MCP server →</a>'),
         "bands": [(9000, "up to approx. 9,000 BTU"), (11000, "9,000–11,000 BTU"),

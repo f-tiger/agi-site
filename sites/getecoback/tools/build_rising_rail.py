@@ -45,7 +45,15 @@ def main():
         print("rising rail: no trends-rising.json — leaving page untouched")
         return
     data = json.load(open(SRC, encoding="utf-8"))
-    stand = data.get("fetched", "")
+    # The visible "Stand" must be the date of the OLDEST data on display, not the
+    # date the file was last written. Seeds rotate (2/day, full cover every 3),
+    # so the top-level stamp said 2026-08-27 while the klimaanlage chips came
+    # from an 08-23 fetch — the rail's own honesty rules forbid exactly that.
+    # Minimum across seeds is the conservative choice: it can understate
+    # freshness, never overstate it.
+    seed_dates = [str(v.get("fetched", "")) for v in data.get("seeds", {}).values()
+                  if v.get("fetched")]
+    stand = min(seed_dates) if seed_dates else data.get("fetched", "")
     rows = []
     for seed, v in data.get("seeds", {}).items():
         for r in v.get("rising", []):
@@ -92,7 +100,7 @@ def main():
             f'<p style="margin:0 0 12px;font-size:13.5px;color:#5b6b78;max-width:74ch;">Nachfrage-Signale aus unserer '
             f'täglichen Google-Trends-Abfrage (Stand {stand_de}) — keine Testurteile, nicht selbst getestet. '
             'Wo wir zu einem Suchbegriff einen Faktencheck haben, verlinken wir den statt eines Kauf-Links. '
-            'Kauf-Links sind Affiliate-Links — für dich derselbe Preis.</p>'
+            'Anzeige · Kauf-Links sind Affiliate-Links — für dich derselbe Preis.</p>'
             '<div>' + "".join(chips) + '</div></div></section>'
             '<script>(function(){var s=document.getElementById("eb-rising");if(!s)return;'
             's.querySelectorAll(\'a[href*="amazon."]\').forEach(function(a){a.addEventListener("click",function(){'
