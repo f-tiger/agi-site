@@ -1125,7 +1125,11 @@ def model_card(entry, en=False):
             f'<span class="rl">{role}</span>{SVG[svg_key]}</div>'
             f'<div class="bd"><h3>{name}</h3><p class="ds">{why}</p>{pcline}'
             f'<div class="pr">{price}</div>'
-            f'<a class="go" href="{url}" target="_blank" rel="sponsored noopener">Preis auf Amazon prüfen →</a>'
+            # The card takes `en` for its pro/con text but the button was hard-coded
+            # German, so every English guide page shipped a German call to action —
+            # on the pages that produce 36% of this site's affiliate clicks.
+            f'<a class="go" href="{url}" target="_blank" rel="sponsored noopener">'
+            f'{"Check the price on Amazon →" if en else "Preis auf Amazon prüfen →"}</a>'
             '</div></div>')
 
 
@@ -2802,7 +2806,18 @@ SIZER_TXT = {
                  "Tests, Links sind Affiliate-Links."),
         "mcp": ('Dieselbe Rechnung kann auch dein KI-Assistent direkt aufrufen — '
                 '<a href="/mcp.html" style="color:#0f6ba8;">MCP-Server einrichten →</a>'),
-        "bands": [(9000, "bis ca. 9.000 BTU"), (11000, "9.000–11.000 BTU"), (0, "ab 12.000 BTU")],
+        "bands": [(9000, "bis ca. 9.000 BTU"), (11000, "9.000–11.000 BTU"),
+                  (13500, "12.000–13.500 BTU"), (0, "über 13.500 BTU")],
+        # Over ~13,500 BTU we name no model, because we have none to name: the
+        # largest portable in DEVICE_MODELS["ac"] is the 12K Klarstein. Handing a
+        # reader who just computed 20,500 BTU a 12,000 BTU unit is the calculator
+        # contradicting its own arithmetic — seven of the 39 calculations recorded
+        # in D1 landed above this line and every one of them got that unit.
+        "big": ("Bei dieser Raumgröße ist ein mobiler Monoblock am Limit — wir haben hier "
+                "kein Gerät, das wir guten Gewissens empfehlen könnten. Realistisch sind ein "
+                "fest installiertes Split-Gerät oder zwei kleinere Geräte."),
+        "bigcta": ("/guide/split-klimaanlage-ohne-kernbohrung.html",
+                   "Split ohne Kernbohrung: was wirklich geht →"),
     },
     True: {
         "h": "Is the cooling capacity right for your room?",
@@ -2816,7 +2831,13 @@ SIZER_TXT = {
                  "links are affiliate links."),
         "mcp": ('Your AI assistant can call this same calculation — '
                 '<a href="/mcp.html" style="color:#0f6ba8;">set up the MCP server →</a>'),
-        "bands": [(9000, "up to approx. 9,000 BTU"), (11000, "9,000–11,000 BTU"), (0, "12,000 BTU and up")],
+        "bands": [(9000, "up to approx. 9,000 BTU"), (11000, "9,000–11,000 BTU"),
+                  (13500, "12,000–13,500 BTU"), (0, "over 13,500 BTU")],
+        "big": ("At this room size a portable monoblock is at its limit — we have no unit "
+                "here we could honestly recommend for it. A fitted split system or two "
+                "smaller units are the realistic options."),
+        # No EN split guide exists yet, so the EN result routes nowhere and says so.
+        "bigcta": None,
     },
 }
 
@@ -2827,7 +2848,13 @@ def sizer_block(en=False, prefill=20):
                    for v, lbl in t["opts"])
     full = "/en/guide/how-many-btu-do-i-need.html" if en else "/guide/btu-rechner.html"
     loc = "en-GB" if en else "de-DE"
-    b0, b1, b2 = t["bands"][0][1], t["bands"][1][1], t["bands"][2][1]
+    b0, b1, b2, b3 = [x[1] for x in t["bands"]]
+    # "ca." is German; the EN panel had been printing it since the sizer shipped.
+    APPROX = repr("approx. " if en else "ca. ")
+    _bc = t.get("bigcta")
+    BIGCTA_HTML = (f'<a href="{_bc[0]}" style="background:#0f6ba8;color:#fff;font-weight:800;'
+                   f'padding:9px 15px;border-radius:8px;text-decoration:none;font-size:13.5px;">'
+                   f'{_bc[1]}</a>') if _bc else ""
     return ('<!--EB_SIZER--><section style="max-width:1000px;margin:18px auto 0;padding:0 20px;">'
             '<div style="background:#f7fafc;border:1px solid #cfe0ea;border-radius:12px;padding:16px 18px;">'
             f'<strong style="font-size:16.5px;display:block;margin-bottom:2px;">{t["h"]}</strong>'
@@ -2855,12 +2882,15 @@ def sizer_block(en=False, prefill=20):
             'function calc(user){'
             'var qm=Math.max(4,Math.min(120,parseFloat(q.value)||20)),sun=parseFloat(s.value)||1;'
             # identical to /guide/btu-rechner.html at its own defaults
-            'var btu=Math.round(qm*340*sun/500)*500,model,term,label;'
+            'var btu=Math.round(qm*340*sun/500)*500,model,term,label,big=false;'
             'if(btu<=9000){model="Comfee MPPH-09CRN7";term="Comfee+MPPH-09CRN7";label=' + repr(b0) + ';}'
             'else if(btu<=11000){model="De\'Longhi Pinguino PAC EX105";term="De%27Longhi+Pinguino+PAC+EX105";'
             'label=' + repr(b1) + ';}'
-            'else{model="Klarstein Kraftwerk Smart 12K";term="Klarstein+Kraftwerk+Smart+12K";'
-            'label=' + repr(b2) + ';}'
+            'else if(btu<=13500){model="Klarstein Kraftwerk Smart 12K";'
+            'term="Klarstein+Kraftwerk+Smart+12K";label=' + repr(b2) + ';}'
+            # Above the ladder we sell nothing. term="" switches the result panel
+            # from an Amazon button to the honest sentence (+ a route, where one exists).
+            'else{model="";term="";big=true;label=' + repr(b3) + ';}'
             'var qp=qm<=12?10:qm<=17?15:qm<=22?20:qm<=27?25:qm<=35?30:40;'
             'var grid=document.getElementById("eb-models");'
             'var second=grid?\'<a href="#eb-models" style="background:#fff;color:#0a4d7a;border:1px solid '
@@ -2871,12 +2901,15 @@ def sizer_block(en=False, prefill=20):
              'border:1px solid #cfe0ea;font-weight:700;padding:9px 14px;border-radius:8px;'
              'text-decoration:none;font-size:13.5px;">\'+' + repr(t["area"]) + '.replace("%d",qp)+\'</a>\'') + ';'
             'r.innerHTML=\'<div style="font-size:13px;color:#4a5a67;">\'+' + repr(t["for"]) + '+\' \'+qm+\' m²</div>\''
-            f'+\'<div style="font-size:26px;font-weight:800;color:#0a4d7a;line-height:1.2;">ca. \'+btu.toLocaleString("{loc}")+\' BTU</div>\''
-            '+\'<div style="margin:7px 0 0;font-size:14px;">\'+' + repr(t["cls"]) + '+\' (\'+label+\'): <strong>\'+model+\'</strong></div>\''
+            '+\'<div style="font-size:26px;font-weight:800;color:#0a4d7a;line-height:1.2;">\'+' + APPROX
+            + f'+btu.toLocaleString("{loc}")+\' BTU</div>\''
+            '+(big?(\'<div style="margin:7px 0 0;font-size:14px;">\'+' + repr(t["cls"]) + '+\' (\'+label+\')</div>\''
+            '+\'<p style="margin:7px 0 0;font-size:13.5px;color:#3d4d5a;">\'+' + repr(t["big"]) + '+\'</p>\')'
+            ':(\'<div style="margin:7px 0 0;font-size:14px;">\'+' + repr(t["cls"]) + '+\' (\'+label+\'): <strong>\'+model+\'</strong></div>\'))'
             '+\'<div style="margin:11px 0 0;display:flex;gap:8px;flex-wrap:wrap;">\''
-            '+\'<a href="https://www.amazon.de/s?k=\'+term+\'&tag=getecoback-21" target="_blank" '
+            '+(big?' + repr(BIGCTA_HTML) + ':\'<a href="https://www.amazon.de/s?k=\'+term+\'&tag=getecoback-21" target="_blank" '
             'rel="sponsored noopener" style="background:#f59e0b;color:#1a2733;font-weight:800;padding:9px 15px;'
-            'border-radius:8px;text-decoration:none;font-size:13.5px;">\'+' + repr(t["amz"]) + '+\'</a>\''
+            'border-radius:8px;text-decoration:none;font-size:13.5px;">\'+' + repr(t["amz"]) + '+\'</a>\')'
             '+second'
             f'+\'<a href="{full}" style="background:#fff;color:#0a4d7a;border:1px solid #cfe0ea;font-weight:700;'
             'padding:9px 14px;border-radius:8px;text-decoration:none;font-size:13.5px;">\'+' + repr(t["full"]) + '+\'</a></div>\''

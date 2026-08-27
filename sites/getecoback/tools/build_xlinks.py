@@ -177,7 +177,13 @@ def main():
 # funnel dries up on its own; the bridge hands the same reader the autumn
 # problem set (storing the AC, damp/mould, heating cost) while they are still
 # here. List-driven and idempotent like XREF; targets are validated to exist.
+# Carriers, re-selected 2026-08-27 from D1 rather than from the hand-pick that
+# created this list: traffic has moved since, and the site's single most-read
+# page (midea-portasplit-ausverkauft-alternativen, 23 human pv in 08-16→08-27)
+# was not on it. Rule for future edits: a page belongs here if it is a
+# cooling-season page with measured human pageviews in the current clean window.
 SEASON_DE = [
+    # original eight
     "klimaanlage-wohnmobil.html",
     "klimaanlage-kippfenster.html",
     "split-klimaanlage-ohne-kernbohrung.html",
@@ -186,18 +192,45 @@ SEASON_DE = [
     "homeoffice-buero-kuehlen.html",
     "turmventilator-vs-standventilator.html",
     "ventilator-mit-eis.html",
+    # added on measured traffic (human pv, D1, 2026-08-16→08-27)
+    "midea-portasplit-ausverkauft-alternativen.html",   # 23
+    "was-bedeutet-btu.html",                            # 9
+    "ventilator-stromverbrauch.html",                   # 9
+    "klimaanlage-15-qm.html",                           # 6
+    "klimaanlage-reinigen.html",                        # 5
+    "klimaanlage-25-qm.html",                           # 4
+    "mobile-klimaanlage-kuehlt-nicht.html",             # 4
+    "mobile-klimaanlage-stinkt-schimmel.html",          # 4
 ]
+# Targets, re-selected 2026-08-27 on first-party evidence. The previous three
+# had a combined record of 0 affiliate clicks on 12 pageviews — and one of them,
+# luftentfeuchter-gegen-schimmel, has NEVER been viewed (no row in D1 at all).
+# These two have 4 clicks on 9 pageviews between them. The slot is the same; only
+# where it points changed.
 SEASON_DE_LINKS = [
-    ("/guide/mobile-klimaanlage-ueberwintern.html", "Mobile Klimaanlage überwintern: in 6 Schritten richtig lagern"),
-    ("/guide/luftentfeuchter-gegen-schimmel.html", "Herbstfeuchte: Hilft ein Luftentfeuchter wirklich gegen Schimmel?"),
-    ("/guide/heizkosten-vergleich-rechner.html", "Heizkosten-Vergleich: Heizlüfter, Infrarot oder Klima mit Heizfunktion?"),
+    ("/guide/luftentfeuchter-40-qm.html", "Feuchte Wohnung im Herbst: welcher Entfeuchter für deinen Raum"),          # 4 pv / 3 aff
+    ("/guide/klimaanlage-mit-heizfunktion.html", "Kann dein Klimagerät auch heizen? Was die Heizfunktion kostet"),    # 5 pv / 1 aff
+    ("/guide/mobile-klimaanlage-ueberwintern.html", "Mobile Klimaanlage überwintern: in 6 Schritten richtig lagern"), # 11 pv / 0 aff
 ]
+# The one sentence the block was missing: a REASON to click. Taken verbatim from
+# the site's own luftentfeuchter-ratgeber, which answers the largest rising query
+# sitting on the summer→autumn seam ("kühlt ein luftentfeuchter", v=41,950 in
+# data/trends-rising.json). No date stamp: build_xlinks runs on every deploy, so a
+# build date would churn the diff daily and say nothing true about the content.
+SEASON_DE_LEAD = ("Ein Entfeuchter kühlt die Luft nicht — die Abwärme erwärmt den Raum sogar leicht. "
+                  "Wenn dein Problem im Herbst nicht mehr Hitze, sondern Feuchte ist, ist es ein anderes Gerät.")
+SEASON_EN_LEAD = ("Autumn swaps the problem: not heat any more, but damp. That is a different "
+                  "device, and a portable AC put away dirty is what smells in spring.")
 SEASON_EN = [
     "best-portable-air-conditioner-italy.html",
     "best-portable-air-conditioner-spain.html",
     "best-portable-air-conditioner-europe-heatwave.html",
     "portable-ac-tilt-and-turn-windows.html",
     "portable-ac-rented-apartment.html",
+    # added on measured traffic (human pv, D1, 2026-08-16→08-27)
+    "portable-ac-leaking-water.html",        # 5
+    "vent-portable-ac-without-window.html",  # 4
+    "portable-ac-running-cost.html",         # 2
 ]
 SEASON_EN_LINKS = [
     ("/en/guide/how-to-clean-portable-air-conditioner.html", "Before you store it: clean the portable AC so it doesn't smell in spring"),
@@ -205,14 +238,28 @@ SEASON_EN_LINKS = [
 ]
 
 
-def season_block(links, title):
+def season_block(links, title, lead=""):
+    """The bridge, instrumented. Until now it fired no event at all, so the only
+    readable proxy for "does anyone cross the seasons here?" was pageviews on the
+    targets — and those were 0 for all five targets across 28 days on the 13
+    pages carrying most of the site's revenue. An inert component and a working
+    component that nobody clicks look identical without this event."""
     inner = "".join(
-        f'<a href="{href}" style="display:block;margin:5px 0;color:#0f6ba8;'
+        f'<a href="{href}" data-eb-sb="1" style="display:block;margin:5px 0;color:#0f6ba8;'
         f'text-decoration:none;font-size:14px;">{text} →</a>' for href, text in links)
+    lead_html = (f'<p style="margin:0 0 8px;font-size:13.5px;color:#4a5a67;">{lead}</p>' if lead else "")
+    # One delegated listener per block instead of one per anchor: fewer bytes and
+    # it survives any future link edit. season_bridge is whitelisted in
+    # src/worker.js — tools/check_events.py fails the build if that ever drifts.
+    js = ('<script>(function(){var s=document.currentScript&&document.currentScript.previousElementSibling;'
+          'if(!s)return;s.addEventListener("click",function(e){'
+          'var a=e.target&&e.target.closest&&e.target.closest("a[data-eb-sb]");if(!a)return;'
+          'if(window.gtag)gtag("event","season_bridge",{target:a.getAttribute("href"),'
+          'page:location.pathname});});})();</script>')
     return ('<!--EB_SEASON--><section style="max-width:1000px;margin:18px auto 0;padding:0 20px;">'
             '<div style="background:#fff;border:1px solid #e4ebf0;border-radius:12px;padding:16px 18px;">'
             f'<strong style="font-size:14.5px;display:block;margin-bottom:6px;">{title}</strong>'
-            + inner + '</div></section><!--/EB_SEASON-->\n')
+            + lead_html + inner + '</div></section>' + js + '<!--/EB_SEASON-->\n')
 
 
 def inject_season(path, blk):
@@ -240,11 +287,11 @@ def season_main():
     n = 0
     for fn in SEASON_DE:
         p = os.path.join(GUIDE, fn)
-        if os.path.exists(p) and inject_season(p, season_block(SEASON_DE_LINKS, "Nach der Kühl-Saison: was jetzt ansteht")):
+        if os.path.exists(p) and inject_season(p, season_block(SEASON_DE_LINKS, "Nach der Kühl-Saison: was jetzt ansteht", SEASON_DE_LEAD)):
             n += 1
     for fn in SEASON_EN:
         p = os.path.join(ROOT, "site", "en", "guide", fn)
-        if os.path.exists(p) and inject_season(p, season_block(SEASON_EN_LINKS, "After the cooling season")):
+        if os.path.exists(p) and inject_season(p, season_block(SEASON_EN_LINKS, "After the cooling season", SEASON_EN_LEAD)):
             n += 1
     print(f"season bridge injected/updated on {n} pages")
 

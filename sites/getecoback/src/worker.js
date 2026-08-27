@@ -310,6 +310,10 @@ const EV_NAMES = new Set([
   "storage_home",
   // Autumn home block + self-updating rising rail (2026-08-25/26).
   "herbst_home", "rising_guide",
+  // Season bridge, instrumented 2026-08-27: the block existed on 13 pages and
+  // fired nothing, so "nobody crosses the seasons" and "the component is inert"
+  // were indistinguishable. check_events.py fails the build if this drifts.
+  "season_bridge",
   // Written server-side by serveMarkdown (crawlers run no JS), listed here so
   // the event vocabulary stays in one place.
   "md_serve",
