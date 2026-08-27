@@ -10,8 +10,14 @@
     return m ? parseInt(m[1], 10) : 0;
   })();
   // region palette: 10 muted hues that keep the star glyph readable
-  var RCOLORS = ["#3d4f6b", "#5b3d6b", "#6b3d4a", "#6b5a3d", "#4a6b3d",
-                 "#3d6b62", "#3d5a6b", "#553d6b", "#6b473d", "#44506b"];
+  // Region palette, re-spaced 2026-08-27. The old ten sat within an L* spread of
+  // 11.6 and contained two pairs at dE76 2.16 / 2.42 — below the just-noticeable
+  // difference — and 345 of the 450 baked dailies placed such a pair side by
+  // side. These ten are evenly spaced in hue with alternating lightness:
+  // minimum pairwise dE76 23.7, L* 31.9-48.1, and every fill still clears
+  // 3.4:1 against the gold star and 4.8:1 against the white mark.
+  var RCOLORS = ["#6d3e43", "#9b654b", "#584a28", "#647947", "#28543f",
+                 "#007f7f", "#045266", "#4975a4", "#504668", "#986084"];
   var state = null;
   var $ = function (id) { return document.getElementById(id); };
 
@@ -142,15 +148,20 @@
       var d = document.createElement("button");
       d.className = "cell" + (bad[i] ? " bad" : "");
       d.style.background = RCOLORS[state.reg[i] % RCOLORS.length];
-      // region borders: thicker edge where neighbor region differs
+      // Region outlines. Borders cannot do this: with gap:0 a 3px border on one
+      // side and 1px on another shrinks the content box unevenly and the grid
+      // stops lining up. Inset shadows paint inside the box and cost no layout.
+      // Each internal edge is drawn ONCE — by the cell below/right of it — so a
+      // region boundary is one crisp line rather than two stacked halves; the
+      // board's own outer edge comes from #grid.sb's shadow.
       var r = Math.floor(i / n), c = i % n;
-      var bs = [];
-      bs.push(r === 0 || state.reg[i - n] !== state.reg[i] ? "2px solid rgba(255,255,255,.55)" : "1px solid rgba(0,0,0,.25)");
-      bs.push(c === n - 1 || state.reg[i + 1] !== state.reg[i] ? "2px solid rgba(255,255,255,.55)" : "1px solid rgba(0,0,0,.25)");
-      bs.push(r === n - 1 || state.reg[i + n] !== state.reg[i] ? "2px solid rgba(255,255,255,.55)" : "1px solid rgba(0,0,0,.25)");
-      bs.push(c === 0 || state.reg[i - 1] !== state.reg[i] ? "2px solid rgba(255,255,255,.55)" : "1px solid rgba(0,0,0,.25)");
-      d.style.borderTop = bs[0]; d.style.borderRight = bs[1];
-      d.style.borderBottom = bs[2]; d.style.borderLeft = bs[3];
+      var EDGE = "rgba(255,255,255,.92)", IN = "rgba(255,255,255,.14)";
+      var sh = [];
+      sh.push(r === 0 ? null
+        : (state.reg[i - n] !== state.reg[i] ? "inset 0 3px 0 0 " + EDGE : "inset 0 1px 0 0 " + IN));
+      sh.push(c === 0 ? null
+        : (state.reg[i - 1] !== state.reg[i] ? "inset 3px 0 0 0 " + EDGE : "inset 1px 0 0 0 " + IN));
+      d.style.boxShadow = sh.filter(Boolean).join(",");
       d.textContent = state.fill[i] === 1 ? "★" : (state.fill[i] === 2 ? "×" : "");
       if (state.fill[i] === 1) d.classList.add("st");
       if (state.fill[i] === 2) d.classList.add("mk");

@@ -44,7 +44,23 @@ footer a{color:var(--acc)}
 @keyframes glpop{0%{transform:scale(.6)}60%{transform:scale(1.22)}100%{transform:scale(1)}}
 @media (prefers-reduced-motion: reduce){.cell.pop{animation:none}}
 
+/* Star Battle regions must actually be OUTLINED (2026-08-27).
+   The shared grid style — gap:6px + border-radius:10px — renders the board as
+   100 detached lozenges, so the per-cell region rims never join into a line and
+   region identity fell entirely to fill colour. Two palette pairs sat at
+   dE76 2.16 and 2.42 (below the just-noticeable difference), and 345 of the 450
+   baked dailies — today's included — put such a pair physically adjacent. On a
+   board where "two stars per region" IS the rule, that made 77% of dailies
+   unreadable: verified by rendering the live board. The itch.io cohort is the
+   only source of real players this site has, and this is the board they meet.
+   Scoped to #grid.sb: the other ten games have no coloured regions. */
+#grid.sb{gap:0;max-width:460px;border-radius:12px;overflow:hidden;box-shadow:0 0 0 2px rgba(0,0,0,.30)}
+#grid.sb .cell{border:0;border-radius:0}
+/* .bad ships as an inset box-shadow, and the engine now writes box-shadow
+   inline to draw the region lines — an outline cannot be overwritten by it. */
+#grid.sb .cell.bad{outline:3px solid #C8102E;outline-offset:-3px}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) #grid.sb{box-shadow:0 0 0 2px rgba(255,255,255,.28)}}
 #grid.sb .cell.st{color:#ffd84d;text-shadow:0 0 8px rgba(255,216,77,.45),0 1px 2px rgba(0,0,0,.5)}
-#grid.sb .cell.mk{color:rgba(255,255,255,.72);font-size:.72em}
+#grid.sb .cell.mk{color:rgba(255,255,255,.9);font-size:.8em;text-shadow:0 1px 2px rgba(0,0,0,.45)}
 @media(hover:hover){#grid.sb .cell:hover{filter:brightness(1.18)}}
 .cg #chbtn,.cg .subline{display:none!important}
