@@ -163,11 +163,98 @@
     navigator.share({ text: txt }).catch(function () {});
   }, true);
 
+  /* ---------- the next puzzle, on the live win screen (2026-08-27) ----------
+     Evidence, not taste. D1 08-24..08-27: every real play this site has ever
+     had came in through the itch.io package — 46 play_start / 7 solve with
+     ref=html-classic.itch.zone, while 116 direct pageviews on the owned domain
+     produced ZERO play_start. Four of six itch sessions then crossed to this
+     domain and played 5-6 DIFFERENT games in one sitting. Catalogue-hopping is
+     the strongest behaviour we have observed, and the live win screen had no
+     affordance for it: the PACKAGED builds do (build_packages.strip_page
+     injects a "full collection" CTA — the very link those players followed),
+     the live pages did not. So this adds it where the itch crossover lands.
+     Guards: never in portal/strict builds (GL_CLEAN / GL_CG must stay
+     zero-external-link), never when the packaged CTA is already there (no
+     double CTA), and the beacon only fires on our own origin so a package copy
+     can never post to a portal's origin. */
+  var GL_GAMES = [
+    ["", "🐸 Gridlings", "🐸 格灵"],
+    ["balance", "🌙 Balance", "🌙 日月"],
+    ["starbattle", "⭐ Star Battle", "⭐ 星战"],
+    ["trail", "🐾 Trail", "🐾 一笔画"],
+    ["futoshiki", "≶ Futoshiki", "≶ 不等号"],
+    ["towers", "🏙 Towers", "🏙 摩天楼"],
+    ["minisudoku", "🔢 Mini Sudoku", "🔢 迷你数独"],
+    ["kropki", "⚫ Kropki", "⚫ 点点"],
+    ["sandwich", "🥪 Sandwich", "🥪 三明治"],
+    ["thermo", "🌡 Thermometers", "🌡 温度计"],
+    ["nonogram", "▦ Nonogram", "▦ 数织"]
+  ];
+  function ownOrigin() {
+    try { return /(^|\.)agiscorecard\.com$/.test(location.hostname); } catch (e) { return false; }
+  }
+  function beacon(label) {
+    if (!ownOrigin()) return;
+    try {
+      navigator.sendBeacon("/e", JSON.stringify({ n: "hub_click", l: label, p: location.pathname }));
+    } catch (e) {}
+  }
+  function curSlug() {
+    var p = location.pathname.replace(/\/index\.html$/, "").replace(/\.html$/, "");
+    p = p.replace(/^\/zh(\/|$)/, "/");
+    var m = p.match(/([a-z0-9-]+)$/);
+    var s = m ? m[1].replace(/-zh$/, "") : "";
+    if (s === "zh" || s === "gridlings" || s === "index") s = "";
+    return s;
+  }
+  function href(slug) {
+    if (zh) return "/zh" + (slug ? "/" + slug : "");
+    return "/" + slug;
+  }
+  function nextGame() {
+    var cur = curSlug(), i = 0, k;
+    for (k = 0; k < GL_GAMES.length; k++) if (GL_GAMES[k][0] === cur) { i = k; break; }
+    var seen = 0;
+    try { seen = parseInt(sessionStorage.getItem("gl_next") || "0", 10) || 0; } catch (e) {}
+    try { sessionStorage.setItem("gl_next", String(seen + 1)); } catch (e) {}
+    return GL_GAMES[(i + 1 + seen) % GL_GAMES.length];
+  }
+  function nextRow() {
+    if (window.GL_CLEAN === true || window.GL_CG === true) return;   // portal builds: zero external links
+    var w = document.getElementById("win");
+    if (!w || document.getElementById("glnext")) return;
+    if (w.querySelector('a[href*="utm_source=package"]')) return;     // packaged CTA already present
+    var g = nextGame();
+    var row = document.createElement("p");
+    row.id = "glnext";
+    row.style.cssText = "margin:10px 0 2px;font-size:14.5px";
+    var a = document.createElement("a");
+    a.href = href(g[0]);
+    a.style.cssText = "font-weight:700";
+    a.textContent = (zh ? "下一题：" : "Next puzzle: ") + (zh ? g[2] : g[1]) + " →";
+    a.onclick = function () { beacon("win_next:" + (g[0] || "gridlings")); };
+    var all = document.createElement("a");
+    all.href = zh ? "/zh" : "/";
+    all.style.cssText = "margin-left:12px;color:var(--mut,#666)";
+    all.textContent = zh ? "全部 11 款 →" : "all 11 →";
+    all.onclick = function () { beacon("win_all"); };
+    row.appendChild(a); row.appendChild(all);
+    var sub = w.querySelector(".subline");
+    if (sub) w.insertBefore(row, sub); else w.appendChild(row);
+  }
+  // the games nav has carried real crossover traffic while firing no beacon at
+  // all — the behaviour we most depend on was invisible in D1 until now.
+  document.addEventListener("click", function (e) {
+    var a = e.target && e.target.closest && e.target.closest(".gamesnav a");
+    if (a) beacon("nav:" + (a.getAttribute("href") || ""));
+  }, true);
+
   // win confetti + win sound: fires when #win loses [hidden]
   var win = null;
   function burst() {
     window.glSfx("win");
     dropCoach();
+    nextRow();
     var EM = ["🎉", "✨", "⭐", "🎊"];
     for (var i = 0; i < 18; i++) {
       var s = document.createElement("span");

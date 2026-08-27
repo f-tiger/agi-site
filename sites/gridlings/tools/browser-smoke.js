@@ -18,8 +18,16 @@ const PAGES = [
 ];
 
 function firstBoard(file) {
+  // The engines load TODAY's UTC daily (app.js utcToday), so the driver has to
+  // solve today's board — taking puzzles[0] made every win-path test pass on
+  // the epoch day (2026-08-24) and time-bomb the day after, which is exactly
+  // what happened: on 2026-08-27 all 11 win drivers timed out on a harness
+  // bug, not a game bug (real players solved 2026-08-27 boards in D1 the same
+  // day). Fall back to the earliest board the way app.js falls back.
   const d = JSON.parse(fs.readFileSync(path.join(SITE, file), "utf8"));
-  const iso = Object.keys(d.puzzles).sort()[0];
+  const keys = Object.keys(d.puzzles).sort();
+  const today = new Date().toISOString().slice(0, 10);
+  const iso = d.puzzles[today] ? today : keys[0];
   return d.puzzles[iso];
 }
 

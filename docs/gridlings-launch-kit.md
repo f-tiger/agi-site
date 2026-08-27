@@ -141,3 +141,35 @@ GPT/Claude 实测拿到几个真实分数放进帖子(没有分数的 benchmark 
   sub_submit/sub_ok/sub_fail
 - D1 埋点看板:play_start / solve / share_copy / challenge_* / sub_*,周一记分板纳入
 - IndexNow:已随周一 03:17 UTC 例行任务覆盖 play. 子域
+
+## CrazyGames 结案(2026-08-27):停止投入,渠道改押 itch.io
+
+第二次被拒(提交日 08-26,通知 08-27),**拒因与第一次逐字相同**的模板句
+「The overall quality of the game does not yet meet the expectations of our
+platform」。两次的区别是决定性的:第一次可以解释——评审当时看到的是白屏(那三天
+play.agiscorecard.com 全站 EN 路径陷在 307 无限重定向里);第二次是在 owner 亲自
+在 CG 的 QA 预览里确认**棋盘正常加载、SDK 面板 Gameplay Start 绿灯、Load time 4.7s**
+之后收到的。**所以第二次是审美/品类判断,不是可修的缺陷。**
+
+模板拒信不含任何可迭代的信息:没有指出哪一项不达标,没有分数,没有复审通道。
+在没有诊断回路的情况下继续提交,是拿不可观测的赌注换确定的时间成本——**停止**。
+
+同期 D1 给出的对照(08-24→08-27,human):CrazyGames referrer 带来 **10 次浏览、
+0 次开局**;itch.io 带来 **27 次开局、6 次通关**,并且 4 段会话跨到本域连玩 5–6 款。
+**结论:把门户预算全部转给不设人工审美闸门的渠道。**
+
+- **不再做**:CG 第三次提交;为 CG 单独维护 cg/ 严格包之外的任何适配工作。
+  (`cg.js` 与 `downloads/cg/` 保留不动——已经写好、零维护成本,万一 CG 将来
+  开放自助上架可直接复用。)
+- **改做**:itch.io 深化。owner 侧只剩两个动作,做完永久自动化:
+  1. itch 账号 → Settings → API keys → 生成 key → 存进 **agi-site** 仓库 secret
+     `BUTLER_API_KEY`(约 5 分钟)。之后 CI 每次部署自动用 butler 推新包,itch 的
+     New&Popular 吃「近期活跃度」,这一步等于把 recency 永久自动化。
+  2. 逐款独立立项(11 个项目页,每个约 3 分钟)。理由:itch 的发现是**按项目、
+     按标签**的,一个合集只在标签流里占 1 个位,11 款独立 = 11 次机会;且浏览器
+     可玩的项目玩率约 37%(下载制约 6%),我们全部是浏览器可玩。
+     文案与参数(Kind=HTML、Viewport 700×1000、四向 mobile friendly、标签)见
+     `docs/games-marketplace-kit.md`,每款三行卖点直接粘贴。
+- **判定线 2026-09-24**:itch 渠道累计 `play_start ≥150` 且 `solve ≥25` 才继续投入
+  游戏线,否则游戏降为「只维护、不新增」。写在 sites/gridlings/CLAUDE.md,判定当天
+  必须出结果。

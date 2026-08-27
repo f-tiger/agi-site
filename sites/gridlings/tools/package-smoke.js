@@ -23,8 +23,11 @@ const BASE = "http://127.0.0.1:" + PORT;
     page.on("pageerror", e => errs.push(String(e)));
     try {
       const d = JSON.parse(fs.readFileSync(path.join(DIR, slug, g.json), "utf8"));
-      const iso = Object.keys(d.puzzles).sort()[0];
-      const p = d.puzzles[iso]; p.n = +p.n;
+      // same time-bomb as browser-smoke.firstBoard: the engine loads TODAY's
+      // UTC daily, so driving puzzles[0] only worked on the epoch day.
+      const keys = Object.keys(d.puzzles).sort();
+      const today = new Date().toISOString().slice(0, 10);
+      const p = d.puzzles[d.puzzles[today] ? today : keys[0]]; p.n = +p.n;
       await page.goto(`${BASE}/${slug}/`, { waitUntil: "networkidle" });
       await dismissIntro(page);
       await page.waitForFunction(() => document.querySelectorAll("#grid .cell, #grid button").length > 8, null, { timeout: 8000 });
