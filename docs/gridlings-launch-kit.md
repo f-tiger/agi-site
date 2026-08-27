@@ -102,6 +102,14 @@ GPT/Claude 实测拿到几个真实分数放进帖子(没有分数的 benchmark 
   hover 提亮。⑥ **封面重制**:covers/starbattle.png 换 1920×1080(真题真解渲染,
   金星深蓝主视觉)+ 新增 starbattle-512.png 方形图标——旧封面只有 630×500,
   本身就是「low quality」信号。
+  **僵尸 run #36 结案(2026-08-27 13:40 UTC)**:deploy-gridlings run 32985901351
+  (旧 sha 6e8769e)自 08-26 15:42 创建起 **22 小时始终卡在 queued、从未执行**,
+  GitHub 全程拒绝 cancel(409「尚未入队」)。判为 GitHub 侧死件,**风险解除,监控停止**。
+  同期上线的两道结构性防护让这类事故不再依赖人盯:①全部 8 条 deploy workflow 的
+  防回滚守卫(旧 push 事件被补发时自动 reset 到 main tip 再部署,commit 8465760);
+  ②gridlings 部署后自检(7 条改写路径断言 200 且零重定向,commit 566b6f3)。
+  即便 #36 哪天诈尸,它部署完也会被下一次任意 push 自动纠正。
+
   **✅ 已重新提交(2026-08-26,owner 确认)**:新提交走 Externally hosted (iframe),
   URL `https://play.agiscorecard.com/starbattle?cg=1`;QA 预览实测游戏加载正常、
   SDK "Gameplay Start" 绿灯(生命周期上报被 CG 工具检测到)、Load time 4.7s。
