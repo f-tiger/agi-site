@@ -1,6 +1,16 @@
 {
   "items": [
     {
+      "name": "How much of Hacker News is about AI?",
+      "url": "https://hnstats.com",
+      "host": "hnstats.com",
+      "src": "https://news.ycombinator.com/item?id=49449648",
+      "points": 70,
+      "comments": 46,
+      "found": "2026-08-27",
+      "status": "candidate"
+    },
+    {
       "name": "I made a Raspberry with Qwen my local car AI",
       "url": "https://github.com/ThinkOffApp/CarWatch",
       "host": "github.com",
@@ -221,5 +231,5 @@
       "status": "candidate"
     }
   ],
-  "updated": "2026-08-26"
+  "updated": "2026-08-27"
 }
