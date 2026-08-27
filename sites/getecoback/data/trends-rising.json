@@ -1,5 +1,5 @@
 {
- "fetched": "2026-08-26",
+ "fetched": "2026-08-27",
  "geo": "DE",
  "seeds": {
   "klimaanlage": {
@@ -190,47 +190,93 @@
    "rising": [
     {
      "q": "midea heizlüfter",
-     "v": 106900
+     "v": 71400
     },
     {
-     "q": "dyson ventilator und heizlüfter",
-     "v": 63900
+     "q": "sparsamer heizlüfter",
+     "v": 32000
+    },
+    {
+     "q": "heizlüfter fürs bad",
+     "v": 26250
     },
     {
      "q": "energiesparender heizlüfter",
-     "v": 54650
+     "v": 13750
     },
     {
-     "q": "dreo atom one",
-     "v": 39050
-    },
-    {
-     "q": "mini heizlüfter steckdose",
-     "v": 7400
-    },
-    {
-     "q": "heizlüfter mit wenig stromverbrauch",
-     "v": 4600
-    },
-    {
-     "q": "heizlüfter mit frostwächter",
-     "v": 2900
+     "q": "heizlüfter für badezimmer",
+     "v": 8850
     },
     {
      "q": "ventilator",
      "v": 850
     },
     {
-     "q": "klimaanlage",
-     "v": 300
+     "q": "dyson ventilator",
+     "v": 700
     },
     {
-     "q": "heizlüfter mit fernbedienung",
-     "v": 200
+     "q": "silvercrest heizlüfter",
+     "v": 600
+    },
+    {
+     "q": "dyson hot cool",
+     "v": 120
+    },
+    {
+     "q": "beste heizlüfter",
+     "v": 120
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-08-26"
+   "fetched": "2026-08-27"
+  },
+  "balkonkraftwerk": {
+   "rising": [
+    {
+     "q": "anker solix solarbank 4 e5000 pro,meter gen 2 ,5xbp5000 balkonkraftwerk",
+     "v": 6450
+    },
+    {
+     "q": "anker solix solarbank 4 e5000 pro",
+     "v": 3300
+    },
+    {
+     "q": "anker solix 4 pro",
+     "v": 600
+    },
+    {
+     "q": "split klimaanlage",
+     "v": 600
+    },
+    {
+     "q": "anker solarbank 4 pro",
+     "v": 550
+    },
+    {
+     "q": "anker solix 4",
+     "v": 450
+    },
+    {
+     "q": "balkonkraftwerk nicht angemeldet strafe",
+     "v": 80
+    },
+    {
+     "q": "balkonkraftwerk registrieren",
+     "v": 70
+    },
+    {
+     "q": "marktstammregister balkonkraftwerk",
+     "v": 60
+    },
+    {
+     "q": "bundesnetzagentur balkonkraftwerk anmelden",
+     "v": 60
+    }
+   ],
+   "source": "related-queries",
+   "fetched": "2026-08-27"
   }
  }
 }
