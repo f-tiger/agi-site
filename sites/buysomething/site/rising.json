@@ -1,5 +1,5 @@
 {
- "fetched": "2026-08-26",
+ "fetched": "2026-08-27",
  "seeds": {
   "electric spin scrubber": {
    "auto": [
@@ -76,39 +76,41 @@
    "rising": [
     {
      "q": "hydroflask",
-     "v": 127400
-    },
-    {
-     "q": "brumate era flip",
-     "v": 250
-    },
-    {
-     "q": "brumate",
-     "v": 250
-    },
-    {
-     "q": "bink water bottle",
-     "v": 190
+     "v": 350
     },
     {
      "q": "brumate water bottle",
-     "v": 70
+     "v": 120
+    },
+    {
+     "q": "target",
+     "v": 110
     },
     {
      "q": "yeti water bottle",
-     "v": 60
-    },
-    {
-     "q": "hydrojug",
-     "v": 50
-    },
-    {
-     "q": "hydro flask",
-     "v": 40
+     "v": 80
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-08-26"
+   "fetched": "2026-08-27"
+  },
+  "heatless curls": {
+   "rising": [
+    {
+     "q": "heartless curls",
+     "v": 21350
+    },
+    {
+     "q": "kitsch xl heatless curls",
+     "v": 19950
+    },
+    {
+     "q": "do heatless curls work on curly hair",
+     "v": 10200
+    }
+   ],
+   "source": "related-queries",
+   "fetched": "2026-08-27"
   }
  }
 }
