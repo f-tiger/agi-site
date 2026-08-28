@@ -224,6 +224,20 @@ SEASON_DE_LINKS = [
 # sitting on the summer→autumn seam ("kühlt ein luftentfeuchter", v=41,950 in
 # data/trends-rising.json). No date stamp: build_xlinks runs on every deploy, so a
 # build date would churn the diff daily and say nothing true about the content.
+# Page-aware override (2026-08-28). The bridge is otherwise one global list, and
+# on klimaanlage-wohnmobil.html — the single highest-traffic page on this site
+# (36 pv / 8 affiliate clicks) — the generic list answered the wrong question:
+# it sent someone whose vehicle is about to stand unheated and often unpowered
+# for months to a room-sizing page for a heated flat, where the compressor device
+# it recommends barely works. The autumn question for that reader is a different
+# one, and it now has its own page.
+SEASON_DE_LINKS_BY_PAGE = {
+    "klimaanlage-wohnmobil.html": [
+        ("/guide/wohnmobil-feuchtigkeit-winter.html", "Feuchtigkeit im Wohnmobil über den Winter: Kompressor, Adsorption oder Granulat?"),
+        ("/guide/luftentfeuchter-granulat-oder-elektrisch.html", "Granulat oder elektrisch: was die beiden Bauarten wirklich unterscheidet"),
+        ("/guide/klimaanlage-mit-heizfunktion.html", "Kann dein Klimagerät auch heizen? Was die Heizfunktion kostet"),
+    ],
+}
 SEASON_DE_LEAD = ("Ein Entfeuchter kühlt die Luft nicht — die Abwärme erwärmt den Raum sogar leicht. "
                   "Wenn dein Problem im Herbst nicht mehr Hitze, sondern Feuchte ist, ist es ein anderes Gerät.")
 SEASON_EN_LEAD = ("Autumn swaps the problem: not heat any more, but damp. That is a different "
@@ -294,7 +308,9 @@ def season_main():
     n = 0
     for fn in SEASON_DE:
         p = os.path.join(GUIDE, fn)
-        if os.path.exists(p) and inject_season(p, season_block(SEASON_DE_LINKS, "Nach der Kühl-Saison: was jetzt ansteht", SEASON_DE_LEAD)):
+        if os.path.exists(p) and inject_season(p, season_block(
+                SEASON_DE_LINKS_BY_PAGE.get(fn, SEASON_DE_LINKS),
+                "Nach der Kühl-Saison: was jetzt ansteht", SEASON_DE_LEAD)):
             n += 1
     for fn in SEASON_EN:
         p = os.path.join(ROOT, "site", "en", "guide", fn)

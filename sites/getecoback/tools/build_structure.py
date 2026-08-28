@@ -48,6 +48,7 @@ CAT_OF = {
     "heizluefter-stromsparend": "heizen",
     "infrarotheizung-ratgeber": "heizen",
     "luftentfeuchter-ratgeber": "luftqualitaet",
+    "wohnmobil-feuchtigkeit-winter": "luftqualitaet",
     "fenster-beschlagen-innen": "luftqualitaet",
     "luftreiniger-ratgeber": "luftqualitaet",
     "klimaanlage-reinigen": "luftqualitaet",
@@ -688,6 +689,10 @@ def device_of(slug):
         return "fan"
     if ("luftentfeuchter" in s or "waesche-trocknen" in s or s.startswith("keller-")
             or "beschlagen" in s or "taupunkt" in s
+            # The RV winter-damp page is a humidity page whose slug carries none of
+            # the usual tokens; without this it would fall through to "ac" and get
+            # the cooling components on a page about a parked, unheated vehicle.
+            or "feuchtigkeit-winter" in s
             # Humidifier pages live in the humidity family too: routing them to
             # "dehum" keeps every ac-only component (sizer, heat-energy box,
             # climate box) off the page; the card grid itself is overridden by
@@ -745,6 +750,19 @@ SKIP_MODELS = {"btu-rechner", "stromkosten-rechner", "infrarotheizung-watt-rechn
 # trade-off we can't back — generic category cards, exactly as the dehumidifier
 # and shade sets already do. ---
 CONTEXT_MODELS = {
+ # Wohnmobil × Winterfeuchte (2026-08-28). The device decision on this page is
+ # bauart-first (adsorption works cold, compressor does not, granulate needs no
+ # power), so the three cards ARE the three answers — not three brands of the
+ # same thing. Deliberately no named model: we have verified no public test that
+ # ranks RV-specific dehumidifiers, and naming one would be invention. Category
+ # searches are the honest form here, and they are all low-price durables — the
+ # band this site's own PartnerNet data shows converting with zero returns.
+ "wohnmobil-feuchtigkeit-winter": [
+   ("Adsorptionstrockner", "Wenn Strom anliegt", "Arbeitet im Gegensatz zum Kompressor-Gerät auch bei niedrigen Temperaturen — die übliche Empfehlung für den Standwinter.", "€€ · Preis vor Ort prüfen", "adsorptionstrockner+luftentfeuchter", "dehum"),
+   ("Granulat-Entfeuchter", "Ohne Strom", "Passiv, temperaturunabhängig — die einzige Bauart, die am Stellplatz ohne Anschluss überhaupt wirkt. Aufnahme ist begrenzt, lieber mehrere kleine verteilen.", "€ · ab ca. 10 €", "luftentfeuchter+granulat+wohnmobil", "dehum"),
+   ("Hygrometer", "Damit du es merkst", "Zeigt beim nächsten Besuch, ob die Maßnahme reicht. Zielbereich 50–60 % relative Luftfeuchte.", "€ · ab ca. 10 €", "hygrometer+innen+wohnmobil", "dehum"),
+ ],
+
  # A page whose entire job is "the bestseller is sold out, what else?" — the
  # strongest purchase intent on the site — was offering three unrelated monoblocs
  # while its own text names two specific alternatives and a fallback. 11 views,
