@@ -285,6 +285,28 @@ llms-full.txt 的导语),以及 FAQ 问题名本身(「Was berichten **unabhäng
 且提供的代码是纯 iframe、来源链接在 noindex 框内,**即使有人嵌入也不产生反链**。
 结论:**判负,不投入,代码留着别动**(零维护成本),不要再写「优化 widget 转化」这类任务。
 
+## 国家×品类操作矩阵(2026-08-28,owner:「重点 by 国家进行深化并推广」;D1 28 天实测)
+
+| 国家 | pv/aff | 现状判定 | 品类动作 |
+|---|---|---|---|
+| **DE**(+AT/CH/LU/NL) | 305/45(+AT 31/2、CH 31/4、LU 11/6) | amazon.de 主场,链路正确 | 秋冬品类当日已补齐(dehum/heater 具名型号);照常 |
+| **US** | 174/17,**且拆开看:EN 47/16、DE 区 110/1** | 北美桥此前只在 EN 页 = 第二大国家×区块格子按 ~0% 变现 | **本轮已做**:桥铺到 114 个德语页(仍仅 America/* 时区渲染);US_MODELS 补秋冬两族——除湿 **Midea Cube 50-Pint**(Wirecutter+CR 第一)、**Frigidaire FFAP5034W1**(RTINGS 地下室带泵首选);取暖 **Vornado VH200**、**Lasko FH500**;`us_term` 学会认德语 slug(luftentfeuchter→dehumidifier 等),否则德语除湿页会被错映射到空调 |
+| **GB** | 19/8(EN 制冷 7 pv 产 **8 次点击**,全站意图最高) | **结构性不可变现**:getecoback-21 在 .co.uk 不计佣,US tag 对英国买家无用 | **诚实算术:8 次点击/28 天 ≈ 即便变现也只是 ~€1-2/月,不值得 owner 为此加入 Amazon UK Associates**;不做,数字留档,GB 流量涨 10 倍再议 |
+| **IT/ES** | 意 11/3、西 3/2 | 地中海制冷季更长,EN 页→amazon.de 正确且在转化 | 不动;夏页常年在线(季节轮换只动首页) |
+| **FR** | 15/0 | amazon.fr 是独立计划,本站无账号;10+ pv 零点击 | 不做(量级不支持 owner 开法国账号);留档 |
+| **CA** | 7/2 | America/* 时区 → 北美桥已覆盖,amazon.com 对加拿大买家次优但可用 | 随 US 桥,不单独做 |
+
+**本轮技术改动**:①`inject_usmarket` 进入 DE guide 循环(114 页,Chromium 实测德语除湿页
+US 访客见 Midea Cube/Frigidaire、取暖页见 Vornado/Lasko、柏林时区零渲染、AC 分支无回归);
+②修掉一个会静默杀整块的 bug——注入脚本的 JS 单引号字符串遇文案撇号即终止
+(「RTINGS' basement pick」曾让全部除湿页的桥空白),`usmarket_html` 现程序化转义,
+**文案永远不需要知道引号规则**。
+
+**判定线(2026-09-25,并入 us-market 那条)**:`affiliate_click{source:"us-market"}` 总量 ≥5
+(现在覆盖面从 27 页扩到 141 页、品类从 1 族扩到 3 族,阈值不变、更难找借口);
+分表看 DE 页来源的 us-market 点击 ≥2 → 德语页铺桥成立;0 → 那 110 pv 是低意图流量
+(研究型/代理型),把 DE 页的桥撤掉,EN 保留。
+
 ## 品牌黑名单:EcoFlow(2026-08-28,owner:「不推荐ecoflow产品」)
 
 **全站规则,任何轮次不得回流**:不推荐任何 EcoFlow 产品。已清除三处:

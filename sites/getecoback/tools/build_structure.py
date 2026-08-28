@@ -2187,6 +2187,27 @@ US_TAG = "ecoback0d-20"
 # the US market keep the honest category link — an empty ladder is better than a
 # guessed one, and that is exactly why the EU models are not reused here.
 US_MODELS = {
+    # Autumn/winter families added 2026-08-28 (owner: deepen categories BY
+    # COUNTRY). The US bridge launched with named models only for portable ACs —
+    # the season that is ending. Dehumidifiers are a far larger US category
+    # (basement culture) and the coming season's demand. Only cross-verified
+    # picks are named: Midea Cube 50-Pint (Wirecutter + Consumer Reports #1),
+    # Frigidaire FFAP5034W1 (RTINGS basement pick, built-in pump); heaters:
+    # Vornado VH200 (Wirecutter small-room pick, passes safety tests),
+    # Lasko FH500 (multi-outlet tested top tower). Two named per family plus the
+    # category link — an empty slot beats a guessed one.
+    "dehumidifier": [
+        ("Midea Cube 50-Pint", "the overall pick",
+         "The recurring #1 across US tests — pulls rooms from damp to dry faster than the field, and the cube folds for storage."),
+        ("Frigidaire FFAP5034W1", "for basements",
+         "RTINGS' basement pick: 50-pint with a built-in pump, so it drains uphill to a sink without bucket duty."),
+    ],
+    "space heater": [
+        ("Vornado VH200", "small rooms",
+         "The common small-room pick in US tests — circulates heat through the whole room instead of roasting one spot, and passes tip-over safety testing."),
+        ("Lasko FH500", "tower + summer fan",
+         "Tested top among towers; doubles as a tower fan in summer, which is rare honesty in this category."),
+    ],
     "portable air conditioner": [
         ("Midea Duo MAP14HS1TBL", "the dual-hose one",
          "Dual-hose inverter — it takes its exhaust air from outside instead of from your room, which is the flaw single-hose units have. Repeatedly the overall pick in US tests."),
@@ -2200,11 +2221,16 @@ US_MODELS = {
 
 def us_term(slug):
     s = slug.lower()
-    if any(k in s for k in ("dehumidif", "damp", "musty", "mold", "mould", "drying-clothes", "humid")):
+    # German slug tokens included since 2026-08-28: US visitors read the German
+    # section too (110 pv / 1 click in 28 days — the second-largest country x
+    # section cell, monetised at ~0%), so the bridge now runs there as well and
+    # must not map a Luftentfeuchter page to air conditioners.
+    if any(k in s for k in ("dehumidif", "damp", "musty", "mold", "mould", "drying-clothes", "humid",
+                            "luftentfeuchter", "waesche-trocknen", "schimmel", "taupunkt", "beschlagen", "keller")):
         return "dehumidifier", "dehumidifiers"
-    if "fan" in s:
+    if "fan" in s or "ventilator" in s:
         return "tower fan", "tower fans"
-    if any(k in s for k in ("heater", "heating", "radiator")):
+    if any(k in s for k in ("heater", "heating", "radiator", "heiz", "infrarot")):
         return "space heater", "space heaters"
     return "portable air conditioner", "portable air conditioners"
 
@@ -2214,11 +2240,17 @@ def usmarket_html(slug):
     url = f"https://www.amazon.com/s?k={term.replace(' ', '+')}&tag={US_TAG}"
     picks = US_MODELS.get(term) or []
     if picks:
+        # The rows are embedded inside a single-quoted JS string in the injected
+        # script; a bare apostrophe in any name/role/note terminates that string
+        # and silently kills the whole block (found 2026-08-28: "RTINGS' basement
+        # pick" blanked the bridge on every dehumidifier page, DE and EN).
+        # Escape programmatically — copy must never have to know about quoting.
+        j = lambda t: t.replace("\\", "\\\\").replace("'", "\\'")
         rows = "".join(
             '+\'<li style="margin:0 0 7px;"><a href="https://www.amazon.com/s?k='
             + urllib.parse.quote_plus(name) + '&tag=' + US_TAG + '" target="_blank" '
-            'rel="sponsored noopener" style="font-weight:700;">' + name + '</a> '
-            '<span style="color:#4a5a67;">— <em>' + role + '</em>. ' + note + '</span></li>\''
+            'rel="sponsored noopener" style="font-weight:700;">' + j(name) + '</a> '
+            '<span style="color:#4a5a67;">— <em>' + j(role) + '</em>. ' + j(note) + '</span></li>\''
             for name, role, note in picks)
         body = (
             '+\'<p style="margin:0 0 8px;font-size:13.5px;color:#4a5a67;line-height:1.5;">'
@@ -3226,6 +3258,7 @@ def main():
             title = h1(new) or slug
             url = canonical(new) or f"https://getecoback.com/guide/{slug}.html"
             new = inject_crumb_trust(new, cat_of(slug), title, url)
+            new = inject_usmarket(new, slug)
             new = inject_models(new, slug)
             new = inject_sizer(new, slug)
             new = inject_toppick(new, slug)
