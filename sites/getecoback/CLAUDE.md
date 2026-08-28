@@ -64,6 +64,36 @@ Balkonkraftwerk 补贴(balkonspeicher_foerderung 工具已在,萨克森等州补
 现成判定题材)。每篇必须复用已验证的 toppick+inline 双钩模式。判定线:
 新线首篇上线 28 天内 affiliate_click ≥5 → 续做;否则冬季只保新鲜度。
 
+## 上量执行队列(2026-08-28,owner「调研互联网快速上量,规模化模式,实现 eco 升级」)
+
+调研结论(五路排名,来源在根仓 revenue-strategy 文档与会话报告)按「量级×自动化
+×出信号速度」排序,**每日轮从上往下取,一天 1-2 项,做完打勾**:
+
+- [ ] **①意大利语试点(最高优先)**:把最强转化页(italy 集群)译成**意大利语原生页**
+  (10 页试点,gen_i18n 思路+互挂 hreflang+判定页六件套)。依据:Profound 32.5 亿
+  引用研究——查询语言重写整个引用图(德语查询→80% 引用德语页;ChatGPT 是唯一落后者),
+  而本站第一转化页是一张**用错语言**的意大利页。亚马逊链接**沿用 amazon.de**
+  (该页已用 .de 链接转化过,欧盟配送)——**不要用 OneLink**(Geniuslink 实测 57%
+  点击漏到搜索页);per-marketplace 直链等 owner 在 PartnerNet 核实能否挂 .it/.fr/.es
+  tracking ID(UNVERIFIED,别自行假设)。判死线:试点 60 天 0 Bing 曝光且 0 AI 引荐
+  且 0 联盟点击 → 停在试点,不全站翻译。
+- [ ] **②秋季 pSEO 补英文面**:qm 系列(entfeuchter/heizung)已有德语,Bing 的
+  字面匹配偏好正是 qm 页的结构红利;补 EN 版(单模板),硬门:每页 ≥3 个独立数据点
+  (post-HCU 生存线)。判死线:新批次 45 天 Bing 收录率 <30% → 停止加系列,先修收录。
+- [ ] **③AI 引荐页六件套改造**:D1 里 AI 引荐落地 TOP3 页(tilt-and-turn/
+  kippfenster/balkonkraftwerk-ohne-bohren)补判定页六件套。判死线:连续两次月度
+  Bing AI Performance 拉取该页类 0 引用 → 记反面发现停投。
+- [ ] **④Pinterest DE 管道(需 owner 一次开户)**:家居是 Pinterest 2026 第一品类,
+  **官方 API 自动化明确合规**(≤25 pin/天,30-60 分钟间隔;禁浏览器机器人)。
+  90 天 ≥300 pin 后 <10k 曝光或 <100 出站点击 → 杀;收到任何账号警告立即停。
+- [ ] **⑤Flipboard RSS 自助提交**(约 30 分钟一次性,可能需 owner 开户):零维护
+  期权,D1 28 天 ≥10 引荐才追加投入。
+
+**判死的别再提**:无人出镜自动视频(YouTube inauthentic 政策 2026-01 一次封 16 频道
+35M 订阅,且与本站「不自测」规则双重冲突)、Bing PubHub(已关闭新申请)、纯模板
+pSEO(无独立数据点)、naive OneLink、idealo 当流量渠道(它是 €0.14/clickout 的
+出站变现件,可作次级变现线另议)。
+
 ## 三层营收架构(2026-08-28,owner「调研商业营收方向」+「AI 时代…突破性方案」)
 
 **执行文档 = 根仓 `docs/revenue-strategy-2026-08-28.md`,本节只放本站义务。**
