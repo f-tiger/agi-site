@@ -2,10 +2,10 @@
   "source": "Cloudflare GraphQL Analytics API (edge-measured)",
   "note": "Counted at the edge, so unaffected by ad blockers, privacy browsers or network-level blocking of Google. Includes bot and crawler traffic, which on a new site is most of it — read it as a floor, not as humans.",
   "zone": "thedollscout.com",
-  "updated": "2026-08-27",
+  "updated": "2026-08-28",
   "window": {
     "since": "2026-07-26",
-    "until": "2026-08-26"
+    "until": "2026-08-27"
   },
   "days": {
     "2026-07-26": {
@@ -1592,6 +1592,57 @@
         "HK": 7,
         "NL": 6,
         "SG": 6
+      }
+    },
+    "2026-08-27": {
+      "date": "2026-08-27",
+      "requests": 1237,
+      "pageViews": 156,
+      "uniques": 150,
+      "byIpType": {
+        "noRecord": 1102,
+        "unknown": 87,
+        "searchEngine": 48
+      },
+      "byBrowser": {
+        "Unknown": 71,
+        "Chrome": 32,
+        "MobileSafari": 29,
+        "BingBot": 13,
+        "GoogleBot": 5,
+        "Edge": 4,
+        "Safari": 1,
+        "Curl": 1
+      },
+      "byContentType": {
+        "html": 1132,
+        "js": 44,
+        "txt": 23,
+        "svg": 14,
+        "empty": 13,
+        "json": 6,
+        "css": 3,
+        "xml": 2
+      },
+      "byStatus": {
+        "200": 243,
+        "204": 7,
+        "301": 66,
+        "304": 2,
+        "308": 8,
+        "403": 8,
+        "404": 902,
+        "405": 1
+      },
+      "topCountries": {
+        "JP": 861,
+        "US": 218,
+        "DE": 54,
+        "CA": 23,
+        "SG": 18,
+        "CN": 15,
+        "EC": 9,
+        "GB": 7
       }
     }
   }
