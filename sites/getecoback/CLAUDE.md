@@ -102,9 +102,17 @@ Balkonkraftwerk 补贴(balkonspeicher_foerderung 工具已在,萨克森等州补
   (当日实测,git checkout 挽回;JSON note 已记);②device_of 补 "dehumidifier"/
   "electric-heater-" EN token 时,顺带修出一个存量缺陷——EN drying-clothes 页一直被
   归为 ac,页顶挂着 AC toppick+BTU 制冷 sizer,本轮起改为除湿机组件。
-- [ ] **③AI 引荐页六件套改造**:D1 里 AI 引荐落地 TOP3 页(tilt-and-turn/
+- [x] **③AI 引荐页六件套改造(✅ 2026-08-28 上线)**:D1 里 AI 引荐落地 TOP3 页(tilt-and-turn/
   kippfenster/balkonkraftwerk-ohne-bohren)补判定页六件套。判死线:连续两次月度
   Bing AI Performance 拉取该页类 0 引用 → 记反面发现停投。
+  **执行记录(2026-08-28)**:D1 复核确认 chatgpt 引荐确实落 tilt-and-turn(6)+
+  kippfenster(5);三页六件套审计显示只缺第⑥件(首屏活数字)——kippfenster 早有
+  DE 天气带,缺口是 EN 侧与 storage 侧。补:①`HEATNOW_EN`(EN 版天气带,同
+  /api/heat,同 heat_now/cold_now 埋点,冷分支链当日新上的 electric-heater/
+  dehumidifier qm 梯)注入全部 EN ac 页;②`STROMNOW`(EPEX 当日 Ø+当前小时价,
+  标注「不含税费」,ok:false 不渲染零编造,埋点 strom_now 新入白名单)注入全部
+  storage 页(balkonkraftwerk-ohne-bohren、growatt-probleme 等 AI 引荐落地页
+  全覆盖)。Playwright 三分支(EN 热/EN 冷/strom)实测渲染零 JS 错误。
 - [ ] **④Pinterest DE 管道(需 owner 一次开户)**:家居是 Pinterest 2026 第一品类,
   **官方 API 自动化明确合规**(≤25 pin/天,30-60 分钟间隔;禁浏览器机器人)。
   90 天 ≥300 pin 后 <10k 曝光或 <100 出站点击 → 杀;收到任何账号警告立即停。

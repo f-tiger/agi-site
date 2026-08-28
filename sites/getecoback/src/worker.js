@@ -299,7 +299,7 @@ async function serveAsset(request, env, pathname) {
 // header Cloudflare already provides. That is aggregate, non-personal data, so
 // no consent banner is required and nothing here identifies a visitor.
 const EV_NAMES = new Set([
-  "page_view", "affiliate_click", "b2b_intent", "lead_intent", "outbound_choice", "cold_now",
+  "page_view", "affiliate_click", "b2b_intent", "lead_intent", "outbound_choice", "cold_now", "strom_now",
   "embed_copy", "share", "video_play", "btu_calc", "hitze_check", "heat_check",
   "strom_check", "bkw_calc", "heizkosten_calc", "taupunkt_check",
   "standort_check", "strompreis_api", "widget_view",

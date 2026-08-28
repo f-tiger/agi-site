@@ -2180,6 +2180,102 @@ HEATNOW = ('<!--EB_HEATNOW--><div id="eb-heatnow"></div>\n<script>(function(){'
            '})();</script><!--/EB_HEATNOW-->\n')
 
 
+# EN twin of the weather band (上量队列③ 2026-08-28): the AI-referral TOP
+# landing pages are EN (tilt-and-turn is the single biggest chatgpt.com landing
+# in D1), and the six-piece rule says a cited page needs a live number above the
+# fold — the DE pages have had one since the band shipped, the EN pages never
+# did. Same /api/heat, same heat_now/cold_now events; cold links point to the
+# EN qm ladder that shipped the same day (electric-heater / dehumidifier).
+HEATNOW_EN = ('<!--EB_HEATNOW--><div id="eb-heatnow"></div>\n<script>(function(){'
+              'var h=document.getElementById("eb-heatnow");if(!h)return;'
+              'fetch("/api/heat").then(function(r){return r.json();}).then(function(d){'
+              'if(!d)return;'
+              'if(!d.level||!d.temp){if(d.cold&&d.cold.level&&d.cold.temp!==null){renderCold(d.cold);}return;}'
+              'var hot=d.level>=2;'
+              'var when="";try{if(d.day){var dt=new Date(d.day+"T12:00:00");'
+              'when=" on "+["Sun","Mon","Tue","Wed","Thu","Fri","Sat"][dt.getDay()]+".";}}catch(e){}'
+              'var head=hot?("🔥 Heatwave incoming: up to "+Math.round(d.temp)+" °C in "+d.region+when)'
+              ':("🌡️ Getting hot: up to "+Math.round(d.temp)+" °C in "+d.region+when);'
+              'var sub=hot?"Portable AC units typically sell out within days once it hits."'
+              ':"The quiet window to compare units is now — not at 35 °C.";'
+              'h.innerHTML=\'<div style="background:\'+(hot?"#fdece7":"#fff8ec")+\';border-bottom:1px solid \'+(hot?"#f3c4b4":"#f3ddc0")+\';">\'+'
+              '\'<div style="max-width:1000px;margin:0 auto;padding:10px 20px;display:flex;gap:8px 14px;'
+              'align-items:center;flex-wrap:wrap;font-size:13.5px;">\'+'
+              '\'<strong style="color:\'+(hot?"#b23c17":"#8a6410")+\';">\'+head+\'</strong>\'+'
+              '\'<span style="color:#5a5340;">\'+sub+\'</span>\'+'
+              '\'<a href="/en/guide/how-many-btu-do-i-need.html" data-eb-h="tool" style="color:#0f6ba8;font-weight:700;text-decoration:none;">Which size do I need? →</a>\'+'
+              '\'<a href="/en/guide/best-portable-air-conditioner-europe-heatwave.html" data-eb-h="guide" '
+              'style="color:#0f6ba8;font-weight:700;text-decoration:none;">Current picks →</a>\'+'
+              '\'<button type="button" id="eb-hn-share" style="background:none;border:1px solid \'+(hot?"#e0a690":"#e3c99a")+\';'
+              'color:\'+(hot?"#b23c17":"#8a6410")+\';border-radius:20px;padding:4px 12px;font-size:12.5px;font-weight:700;'
+              'cursor:pointer;font-family:inherit;">↗ Share</button>\'+'
+              '\'</div></div>\';'
+              'var sh=document.getElementById("eb-hn-share");'
+              'if(sh)sh.addEventListener("click",function(){'
+              'if(!window.ebShare){return;}'
+              'window.ebShare({title:"Heatwave: what actually helps",'
+              'text:head+" — what actually helps (start without an AC):",'
+              'url:location.origin+"/en/guide/best-portable-air-conditioner-europe-heatwave.html",src:"heatnow-en",'
+              'done:function(m){sh.textContent=m==="copy"?"✓ Link copied":"✓ Shared";}});'
+              'if(window.gtag)gtag("event","heat_now",{click:"share",level:d.level});});'
+              'if(window.gtag)gtag("event","heat_now",{level:d.level,region:d.region});'
+              'h.querySelectorAll("[data-eb-h]").forEach(function(a){a.addEventListener("click",function(){'
+              'if(window.gtag)gtag("event","heat_now",{click:a.getAttribute("data-eb-h"),level:d.level});});});'
+              '}).catch(function(){});'
+              'function renderCold(c){'
+              'var frosty=c.level>=2;'
+              'var when="";try{if(c.day){var dt=new Date(c.day+"T12:00:00");'
+              'when=" on "+["Sun","Mon","Tue","Wed","Thu","Fri","Sat"][dt.getDay()]+".";}}catch(e){}'
+              'var head=frosty?("🥶 Hard frost incoming: down to "+Math.round(c.temp)+" °C in "+c.region+when)'
+              ':("❄️ First frost nights: down to "+Math.round(c.temp)+" °C in "+c.region+when);'
+              'var sub=frosty?"Every kilowatt-hour counts now — check what your room actually needs."'
+              ':"The quiet time to compare is now — not in the first cold night.";'
+              'h.innerHTML=\'<div style="background:#eef4fb;border-bottom:1px solid #c9dcf0;">\'+'
+              '\'<div style="max-width:1000px;margin:0 auto;padding:10px 20px;display:flex;gap:8px 14px;'
+              'align-items:center;flex-wrap:wrap;font-size:13.5px;">\'+'
+              '\'<strong style="color:#0a4d7a;">\'+head+\'</strong>\'+'
+              '\'<span style="color:#41546a;">\'+sub+\'</span>\'+'
+              '\'<a href="/en/guide/electric-heater-20-sqm.html" data-eb-c="tool" style="color:#0f6ba8;font-weight:700;text-decoration:none;">What wattage for your room? →</a>\'+'
+              '\'<a href="/en/guide/dehumidifier-20-sqm.html" data-eb-c="guide" style="color:#0f6ba8;font-weight:700;text-decoration:none;">Damp room this autumn? →</a>\'+'
+              '\'</div></div>\';'
+              'if(window.gtag)gtag("event","cold_now",{level:c.level,region:c.region});'
+              'h.querySelectorAll("[data-eb-c]").forEach(function(a){a.addEventListener("click",function(){'
+              'if(window.gtag)gtag("event","cold_now",{click:a.getAttribute("data-eb-c"),level:c.level});});});}'
+              '})();</script><!--/EB_HEATNOW-->\n')
+
+
+# Live exchange-price band for the storage family (上量队列③ 2026-08-28).
+# The weather band is the wrong live number for a balcony-PV page — the number
+# that IS the page's economics is the electricity price a self-generated kWh
+# replaces. /api/strom already serves today's EPEX hourly prices edge-cached;
+# this renders the day average + the current hour above the fold, labelled
+# honestly as the exchange price without taxes and levies. Renders nothing if
+# the feed is down (ok:false) — no fabricated numbers, no layout shift.
+STROMNOW = ('<!--EB_STROMNOW--><div id="eb-stromnow"></div>\n<script>(function(){'
+            'var h=document.getElementById("eb-stromnow");if(!h)return;'
+            'fetch("/api/strom").then(function(r){return r.json();}).then(function(d){'
+            'if(!d||!d.ok||!d.hours||d.hours.length<6)return;'
+            'var sum=0;for(var i=0;i<d.hours.length;i++){sum+=d.hours[i].ct;}'
+            'var avg=sum/d.hours.length;'
+            'var nowH=new Date().getUTCHours(),cur=null;'
+            'for(var k=0;k<d.hours.length;k++){if(d.hours[k].h===nowH){cur=d.hours[k].ct;break;}}'
+            'function f(x){return (Math.round(x*10)/10).toLocaleString("de-DE",{minimumFractionDigits:1,maximumFractionDigits:1});}'
+            'var head="⚡ Börsenstrom heute: Ø "+f(avg)+" ct/kWh"+(cur===null?"":" · jetzt "+f(cur)+" ct/kWh");'
+            'h.innerHTML=\'<div style="background:#fff8ec;border-bottom:1px solid #f3ddc0;">\'+'
+            '\'<div style="max-width:1000px;margin:0 auto;padding:10px 20px;display:flex;gap:8px 14px;'
+            'align-items:center;flex-wrap:wrap;font-size:13.5px;">\'+'
+            '\'<strong style="color:#8a6410;">\'+head+\'</strong>\'+'
+            '\'<span style="color:#5a5340;">Börsenpreis ohne Steuern und Abgaben (EPEX). Jede selbst erzeugte Kilowattstunde ersetzt Netzstrom.</span>\'+'
+            '\'<a href="/guide/balkonkraftwerk-lohnt-sich-rechner.html" data-eb-s="rechner" style="color:#0f6ba8;font-weight:700;text-decoration:none;">Lohnt sich deins? Rechner →</a>\'+'
+            '\'<a href="/guide/balkonspeicher-foerderung.html" data-eb-s="foerder" style="color:#0f6ba8;font-weight:700;text-decoration:none;">Förderung im Bundesland →</a>\'+'
+            '\'</div></div>\';'
+            'if(window.gtag)gtag("event","strom_now",{avg:Math.round(avg*10)/10});'
+            'h.querySelectorAll("[data-eb-s]").forEach(function(a){a.addEventListener("click",function(){'
+            'if(window.gtag)gtag("event","strom_now",{click:a.getAttribute("data-eb-s")});});});'
+            '}).catch(function(){});'
+            '})();</script><!--/EB_STROMNOW-->\n')
+
+
 # Nothing on this site was ever forwardable. The one moment a Raumklima page is
 # worth passing on is the moment it is genuinely hot — someone in a flat at 34 °C
 # sending "what actually helps" into a family chat is the only kind of spread this
@@ -2363,6 +2459,24 @@ def inject_heatnow(html, slug=None):
         return re.sub(r'<!--EB_HEATNOW-->.*?<!--/EB_HEATNOW-->\n?', lambda m: HEATNOW, html, flags=re.S)
     if "<!--/EB_PROFILE-->" in html:
         return html.replace("<!--/EB_PROFILE-->", "<!--/EB_PROFILE-->\n" + HEATNOW, 1)
+    return html
+
+
+def inject_heatnow_en(html):
+    """EN twin of inject_heatnow — same marker, EN copy and EN link targets."""
+    if "<!--EB_HEATNOW-->" in html:
+        return re.sub(r'<!--EB_HEATNOW-->.*?<!--/EB_HEATNOW-->\n?', lambda m: HEATNOW_EN, html, flags=re.S)
+    if "<!--/EB_PROFILE-->" in html:
+        return html.replace("<!--/EB_PROFILE-->", "<!--/EB_PROFILE-->\n" + HEATNOW_EN, 1)
+    return html
+
+
+def inject_stromnow(html):
+    """Idempotently add the live exchange-price band on storage-family pages."""
+    if "<!--EB_STROMNOW-->" in html:
+        return re.sub(r'<!--EB_STROMNOW-->.*?<!--/EB_STROMNOW-->\n?', lambda m: STROMNOW, html, flags=re.S)
+    if "<!--/EB_PROFILE-->" in html:
+        return html.replace("<!--/EB_PROFILE-->", "<!--/EB_PROFILE-->\n" + STROMNOW, 1)
     return html
 
 
@@ -3317,6 +3431,8 @@ def main():
             new = inject_video(new, slug)
             if device_of(slug) == "ac":
                 new = inject_heatnow(new, slug)
+            if device_of(slug) == "storage":
+                new = inject_stromnow(new)
             new = inject_sealfit(new, slug)
             new = inject_hosefit(new, slug)
             new = inject_quickpick(new, slug)
@@ -3346,6 +3462,8 @@ def main():
             title = h1(new) or slug
             url = canonical(new) or f"https://getecoback.com/en/guide/{slug}.html"
             new = inject_crumb_trust(new, "klimaanlagen", title, url, en=True)
+            if device_of(slug) == "ac":
+                new = inject_heatnow_en(new)
             new = inject_usmarket(new, slug)
             new = inject_models(new, slug, en=True)
             new = inject_sizer(new, slug, en=True)
