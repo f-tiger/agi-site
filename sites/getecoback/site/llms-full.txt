@@ -2023,7 +2023,7 @@ Abluftschlauch verlängern: die 2-m-Regel →
 URL: https://getecoback.com/guide/growatt-noah-2000-probleme.html
 
 Direkt zur EmpfehlungAnzeige · Affiliate-Links — für dich derselbe Preis
-Sweet Spot 1,9 kWhZendure SolarFlow 800 Pro→Obergrenze der EmpfehlungAnker Solarbank 3 E2700 Pro→Alles integriertEcoFlow STREAM→Alle Modelle mit Begründung ↓
+Erst messenEnergiemessgerät (Steckdose)→App-unabhängig loggenWLAN-Messsteckdose→Wenn tauschen statt reparierenAnker Solarbank 2 E1600 Pro→Alle Modelle mit Begründung ↓
 
 🗓 Aktualisiert am 25. Juli 2026 · EcoBack Redaktion
 
@@ -2062,6 +2062,8 @@ Das mit Abstand meistdiskutierte Thema. Typische Symptome laut Nutzerberichten: 
 - Serverstörung ausschließen: Ist der Speicher per Bluetooth lokal erreichbar, arbeitet aber laut App „offline", liegt es nach Nutzerberichten gelegentlich an den Growatt-Cloud-Servern. Dann hilft kein Reset — nur Geduld. Der Speicher lädt und entlädt währenddessen normal weiter.
 
 ## Firmware & Ausgangsleistung
+
+Bevor du der Firmware die Schuld gibst: erst messen. Ein einfaches Energiemessgerät zwischen NOAH und Steckdose zeigt, was das Gerät tatsächlich einspeist — unabhängig davon, was die App behauptet. Erst wenn Messwert und App-Anzeige auseinanderliegen, weißt du, ob das Problem die Leistung oder die Anzeige ist.
 
 Der zweite große Themenblock: das Zusammenspiel von Firmware und abgegebener Leistung. Nutzer berichten über Phasen, in denen der Speicher trotz voller Ladung keine oder deutlich reduzierte Leistung abgab, über eine träge reagierende Leistungsregelung und vereinzelt über verändertes Verhalten unmittelbar nach einem Firmware-Update. Growatt liefert relativ häufig Updates aus — was zwei Seiten hat: Einzelne Updates haben laut Foren-Berichten neue Eigenheiten mitgebracht, die meisten haben aber zuvor gemeldete Probleme behoben.
 

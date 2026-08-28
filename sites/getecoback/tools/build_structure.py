@@ -755,6 +755,21 @@ SKIP_MODELS = {"btu-rechner", "stromkosten-rechner", "infrarotheizung-watt-rechn
 # trade-off we can't back — generic category cards, exactly as the dehumidifier
 # and shade sets already do. ---
 CONTEXT_MODELS = {
+ # growatt-noah-2000-probleme (2026-08-28). Live gap: the site's hottest current
+ # page (11 pv in the last 4 days) showed 0 affiliate clicks — because its top
+ # pitch was three €1.000 REPLACEMENT batteries aimed at a reader who is
+ # TROUBLESHOOTING the battery they already own. Category-corrected to the
+ # diagnostic tools the page's own sections imply (Ausgangsleistung → measure at
+ # the socket; App/WLAN → an app-independent meter), which are the 6%-band cheap
+ # durables this site's A-grade data shows converting. One switch-instead-of-fix
+ # chip stays, honestly labelled, because the page has an explicit
+ # "Alternativen im Blick" section.
+ "growatt-noah-2000-probleme": [
+   ("Energiemessgerät (Steckdose)", "Erst messen", "Zeigt, was der NOAH wirklich liefert — die Grundlage für jede Ausgangsleistungs-Diagnose, unabhängig von der App.", "€ · ca. 10–20 €", "energiekostenmessger%C3%A4t+steckdose", "battery"),
+   ("WLAN-Messsteckdose", "App-unabhängig loggen", "Protokolliert die Einspeisung auch dann, wenn die Growatt-App gerade streikt — mit eigener Verlaufskurve.", "€ · ca. 15–30 €", "wlan+steckdose+strommessung", "battery"),
+   ("Anker Solarbank 2 E1600 Pro", "Wenn tauschen statt reparieren", "Die kleinste sinnvolle Alternative, falls du das Kapitel NOAH beendest — Details im Abschnitt „Alternativen im Blick“.", "1,6 kWh · Preis vor Ort prüfen", "Anker+Solix+Solarbank+2+E1600+Pro", "battery"),
+ ],
+
  # Mieter-Winterlinie (2026-08-28). The site's audience is 79 % renter-leaning by
  # landing-page intent (money line 19:1), and until today every one of its 33
  # tenant-facing pages was about cooling. These four are the reversible measures a
