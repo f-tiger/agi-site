@@ -98,6 +98,15 @@ def inject(path, blk):
 # while having almost no internal support. Anchors are descriptive on purpose —
 # a generic "read more" carries no relevance.
 XREF = {
+    # The summer tenant-permission page is the natural parent of the winter one:
+    # same rule ("reversibel = deine Entscheidung"), other season. Added when the
+    # winter twin shipped, 2026-08-28.
+    "guide/klimaanlage-mietwohnung.html": [
+        ("/guide/heizkosten-senken-als-mieter.html", "Heizkosten senken als Mieter: was erlaubt ist und was sich rechnet"),
+    ],
+    "guide/split-klimaanlage-ohne-kernbohrung.html": [
+        ("/guide/heizkosten-senken-als-mieter.html", "Heizkosten senken als Mieter: was erlaubt ist und was sich rechnet"),
+    ],
     "guide/balkonspeicher-rechner.html": [
         ("/guide/growatt-noah-2000-probleme.html", "Growatt NOAH 2000: bekannte Probleme und Abhilfe"),
         ("/guide/balkonspeicher-winter-frost.html", "Balkonspeicher im Winter: Frostschutz richtig einstellen"),

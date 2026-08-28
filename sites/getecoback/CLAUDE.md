@@ -285,6 +285,36 @@ llms-full.txt 的导语),以及 FAQ 问题名本身(「Was berichten **unabhäng
 且提供的代码是纯 iframe、来源链接在 noindex 框内,**即使有人嵌入也不产生反链**。
 结论:**判负,不投入,代码留着别动**(零维护成本),不要再写「优化 widget 转化」这类任务。
 
+## 租客线:补上缺失的那半年(2026-08-28,owner:「重点扩展租客」)
+
+**依据**:v3 调研实测受众 **79% 偏租客、钱线 19:1**。据此查站内覆盖,发现一个结构性缺口:
+**33 个面向租客的页全部是夏季制冷**(Klimaanlage/Fensterabdichtung/Hitzeschutz/Ventilator/
+Balkon),而租客在冬天能做的可逆措施——`Reflektorfolie` **0 页**、`Türdichtung` **0 页**、
+`Isolierfolie` **0 页**、`Thermostatkopf` 0 页。**本站的租客身份只有夏季版本。**
+
+**新页 `/guide/heizkosten-senken-als-mieter.html`** = `klimaanlage-mietwohnung`(夏季
+「租房能装吗」)的**冬季孪生页**,同一条规则(可逆 = 你自己决定)、另一个季节。两页互链。
+
+**可引用的硬事实(先核实再落页)**:①换恒温器头**不属于改变建筑实体**,通常无需房东
+许可(promietrecht / mietrecht.org / mietrechtslexikon / mieterengel 一致表述),实操规则是
+**留旧件、退租装回**;②反射膜:**ZVSHK 称最多约 4%,且仅限保温差的建筑**,实际常被引用
+为该房间 1-3%(ÖKO-TEST / MVV / heizsparer)。**法律边界照旧:不做法律意见,争议指向
+Mieterverein。**
+
+**差异化在于把两个 SERP 缝起来**:Mietrecht 网站回答「允不允许」但不算账不选品;
+Utopia/ÖKO-TEST 算效果但不谈租客权限。**没人同时做「你能做什么 × 什么真的回本」。**
+(注:2026-08-05 曾以红海否掉**通用**恒温器页——那次判定成立,租客角度是另一个 SERP。)
+
+**商品面 = 四件可逆件,顺序即诚实排序、不由佣金决定**:程控恒温器头(最大杠杆,但省的是
+**降温时段**不是设备)→ 门封/挡风条(有风才装)→ 窗用隔热膜(**仅单层玻璃**)→ 反射膜
+(**放最后**,卡片里直接写上 ~4% 上限)。**把反射膜吹大能多赚几分钱,代价是本站唯一真正
+拥有的东西。**
+
+**判定线(2026-09-25,28 天)**:新页 affiliate_click ≥3 或进站内 pv TOP20 → 租客冬季线成立,
+按同法补第二页(候选:`schimmel-mietwohnung-was-tun`——Mietrecht 角度需求大,但法律风险
+更高,须先定边界;或 `fenster-abdichten-mieter`);**0 → 租客流量不随季节迁移到取暖意图**,
+记录并停止扩这条线,别因为「受众对」就默认「什么都能卖给他们」。
+
 ## 品类调研 v3:变现层本身是候选(2026-08-28,owner:「应该扩展品类调研」)
 
 完整矩阵见 `docs/category-research-v3-2026-08-28.md`。三条必须记住的:

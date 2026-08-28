@@ -46,6 +46,7 @@ CAT_WIKI = {"klimaanlagen": "https://de.wikipedia.org/wiki/Klimaanlage",
 CAT_OF = {
     "klimaanlage-mit-heizfunktion": "heizen",
     "heizluefter-stromsparend": "heizen",
+    "heizkosten-senken-als-mieter": "heizen",
     "infrarotheizung-ratgeber": "heizen",
     "luftentfeuchter-ratgeber": "luftqualitaet",
     "wohnmobil-feuchtigkeit-winter": "luftqualitaet",
@@ -712,6 +713,10 @@ def device_of(slug):
     # the AC set on purpose: there it is a buying comparison, and naming cooler
     # models we have not seen endorsed anywhere would be invention.
     if ("infrarotheizung" in s or "heizluefter" in s or s.startswith(("heizung-", "heizkosten-"))
+            # Tenant winter page: reversible measures, not a device page. It must
+            # land in "heater" so the cooling components stay off it; its own
+            # CONTEXT_MODELS overrides the card grid with the renter product set.
+            or "senken-als-mieter" in s
             or "heizfunktion" in s or "heizdecke" in s or "heizkissen" in s):
         return "heater"
     if "thermovorhang" in s or "hitzeschutz" in s or "beschatten" in s:
@@ -750,6 +755,21 @@ SKIP_MODELS = {"btu-rechner", "stromkosten-rechner", "infrarotheizung-watt-rechn
 # trade-off we can't back — generic category cards, exactly as the dehumidifier
 # and shade sets already do. ---
 CONTEXT_MODELS = {
+ # Mieter-Winterlinie (2026-08-28). The site's audience is 79 % renter-leaning by
+ # landing-page intent (money line 19:1), and until today every one of its 33
+ # tenant-facing pages was about cooling. These four are the reversible measures a
+ # renter may fit without permission, and the ORDER IS THE PAGE'S HONEST RANKING,
+ # not the commission: the thermostat head first because the schedule is the real
+ # lever, the reflector foil last with its own ceiling written into the card
+ # (ZVSHK: max ~4 %, only in poorly insulated buildings). A card that oversold the
+ # foil would earn the same few cents and cost the thing this site actually has.
+ "heizkosten-senken-als-mieter": [
+   ("Programmierbarer Thermostatkopf", "Der größte Hebel", "Spart über die Absenkung, nicht über das Gerät — nur sinnvoll, wenn du sie wirklich einstellst. Alten Kopf aufheben und beim Auszug wieder anschrauben.", "€ · ca. 20–80 €", "heizk%C3%B6rperthermostat+programmierbar", "heater"),
+   ("Türdichtung / Zugluftstopper", "Wirkt sofort", "Für Türen, an denen du den Luftzug spürst. Billigste Maßnahme mit sofort spürbarem Effekt.", "€ · ab ca. 10 €", "t%C3%BCrdichtung+zugluftstopper", "heater"),
+   ("Fenster-Isolierfolie", "Nur bei Einfachglas", "Deutlich nur auf echter Einfachverglasung. Auf Doppel-/Dreifachverglasung bringt sie wenig — vorher prüfen.", "€ · ca. 15–30 €", "fenster+isolierfolie+w%C3%A4rme", "shade"),
+   ("Reflektorfolie", "Zuletzt, nicht zuerst", "Laut Branchenverband max. ~4 % und nur in schlecht gedämmten Gebäuden; praktisch 1–3 % im Raum. Altbau mit alten Rippenheizkörpern: ja. Neubau: kaum messbar.", "€ · ab ca. 10 €", "heizk%C3%B6rper+reflektorfolie", "heater"),
+ ],
+
  # Wohnmobil × Winterfeuchte (2026-08-28). The device decision on this page is
  # bauart-first (adsorption works cold, compressor does not, granulate needs no
  # power), so the three cards ARE the three answers — not three brands of the
