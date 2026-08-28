@@ -40,20 +40,16 @@ BUILD = __file__.rsplit("/", 1)[0] + "/build_structure.py"
 
 # (model name exactly as in MODEL_ASIN, candidate ASIN, required title tokens,
 #  forbidden title tokens)  — token match is case-insensitive substring.
-CANDIDATES = [
-    # amazon.de listing found via six-marketplace family; the .de title in
-    # search results showed "PACEX93" — expected to FAIL here. Kept as a
-    # candidate so the live page, not a search snippet, makes the call.
-    ("De'Longhi Pinguino PAC EX105", "B0BZWP26GD", ["ex105"], ["ex93"]),
-    # amazon.de promo page carried redirectAsin=B07KJYD1ZP for this model
-    ("Comfee MPPH-09CRN7", "B07KJYD1ZP", ["mpph-09crn7"], []),
-    # amazon.de direct listing
-    ("De'Longhi PAC N90 ECO Silent", "B07NC5CP6F", ["n90"], []),
-    # amazon.de direct listing (Anthracite, 12000BTU/h)
-    ("Klarstein Kraftwerk Smart 12K", "B08VWSP8FW", ["kraftwerk", "12000"], []),
-    # amazon.de direct listing; -WF is the WiFi sibling, a different product
-    ("Comfee MDDF-20DEN7", "B07KJX6RDK", ["mddf-20den7"], ["-wf", "20den7-wf"]),
-]
+# RESOLVED 2026-08-28 by cross-source verification instead (owner: 「链接你用
+# 其他手段验证」). Amazon bot-walls both the sandbox and GitHub runner IPs, so
+# the working method is: WebSearch the bare ASIN, require >=2 independent
+# domains tying it to the exact model with zero conflicts; a
+# de.camelcamelcamel.com hit counts double (it mirrors the amazon.de listing
+# title verbatim). Four ASINs shipped into MODEL_ASIN (provenance inline
+# there); EX105 failed (DE marketplace shows the EX93 variant) and stays a
+# search link. Add future candidates here and prefer fetching
+# de.camelcamelcamel.com/product/<ASIN> on the runner over amazon.de itself.
+CANDIDATES = []
 
 UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/126.0 Safari/537.36")

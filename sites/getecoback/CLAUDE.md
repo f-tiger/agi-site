@@ -64,6 +64,49 @@ Balkonkraftwerk 补贴(balkonspeicher_foerderung 工具已在,萨克森等州补
 现成判定题材)。每篇必须复用已验证的 toppick+inline 双钩模式。判定线:
 新线首篇上线 28 天内 affiliate_click ≥5 → 续做;否则冬季只保新鲜度。
 
+## 上量执行队列(2026-08-28,owner「调研互联网快速上量,规模化模式,实现 eco 升级」)
+
+调研结论(五路排名,来源在根仓 revenue-strategy 文档与会话报告)按「量级×自动化
+×出信号速度」排序,**每日轮从上往下取,一天 1-2 项,做完打勾**:
+
+- [ ] **①意大利语试点(最高优先)**:把最强转化页(italy 集群)译成**意大利语原生页**
+  (10 页试点,gen_i18n 思路+互挂 hreflang+判定页六件套)。依据:Profound 32.5 亿
+  引用研究——查询语言重写整个引用图(德语查询→80% 引用德语页;ChatGPT 是唯一落后者),
+  而本站第一转化页是一张**用错语言**的意大利页。亚马逊链接**沿用 amazon.de**
+  (该页已用 .de 链接转化过,欧盟配送)——**不要用 OneLink**(Geniuslink 实测 57%
+  点击漏到搜索页);per-marketplace 直链等 owner 在 PartnerNet 核实能否挂 .it/.fr/.es
+  tracking ID(UNVERIFIED,别自行假设)。判死线:试点 60 天 0 Bing 曝光且 0 AI 引荐
+  且 0 联盟点击 → 停在试点,不全站翻译。
+- [ ] **②秋季 pSEO 补英文面**:qm 系列(entfeuchter/heizung)已有德语,Bing 的
+  字面匹配偏好正是 qm 页的结构红利;补 EN 版(单模板),硬门:每页 ≥3 个独立数据点
+  (post-HCU 生存线)。判死线:新批次 45 天 Bing 收录率 <30% → 停止加系列,先修收录。
+- [ ] **③AI 引荐页六件套改造**:D1 里 AI 引荐落地 TOP3 页(tilt-and-turn/
+  kippfenster/balkonkraftwerk-ohne-bohren)补判定页六件套。判死线:连续两次月度
+  Bing AI Performance 拉取该页类 0 引用 → 记反面发现停投。
+- [ ] **④Pinterest DE 管道(需 owner 一次开户)**:家居是 Pinterest 2026 第一品类,
+  **官方 API 自动化明确合规**(≤25 pin/天,30-60 分钟间隔;禁浏览器机器人)。
+  90 天 ≥300 pin 后 <10k 曝光或 <100 出站点击 → 杀;收到任何账号警告立即停。
+- [ ] **⑤Flipboard RSS 自助提交**(约 30 分钟一次性,可能需 owner 开户):零维护
+  期权,D1 28 天 ≥10 引荐才追加投入。
+
+**判死的别再提**:无人出镜自动视频(YouTube inauthentic 政策 2026-01 一次封 16 频道
+35M 订阅,且与本站「不自测」规则双重冲突)、Bing PubHub(已关闭新申请)、纯模板
+pSEO(无独立数据点)、naive OneLink、idealo 当流量渠道(它是 €0.14/clickout 的
+出站变现件,可作次级变现线另议)。
+
+## 三层营收架构(2026-08-28,owner「调研商业营收方向」+「AI 时代…突破性方案」)
+
+**执行文档 = 根仓 `docs/revenue-strategy-2026-08-28.md`,本节只放本站义务。**
+本站被定为舰队营收旗舰:①Amazon 商品联盟(现有,ASIN 直链等 owner 3 分钟)
+②能源/供暖 lead-gen(Check24 €16.50-20/lead 级,**挂既有页,不新建能源页**,
+阻塞项=owner 注册联盟账号)③Bodenpflege 新垂直(经空气质量桥接入,**动工前置=
+rising 种子出需求数据且 v≥200**,saugwischer 种子 08-28 已补,首轮全量 ~09-02)。
+分发假设:AI 引用第一(第一方证据:25 次 AI 助手引荐全落在高转化问题页)、
+Bing/DDG 第二、Google 最后。**合规红线:Associates 链接永不进 MCP/API/AI 输出面。**
+**保险丝:引用队列爬虫任何时候不设价不屏蔽。**
+判定线:GEO×联盟扩页 2026-11-30;lead CTA+60 天首条 lead;Bodenpflege 入口页
++28 天;Matratzen 利基已判死(只留睡眠气候长尾作普通选题);Kaffee 2026-11 复议。
+
 ## 联盟点击诊断(2026-08-27,owner「eco增加联盟点击」)——**瓶颈是流量,不是转化**
 
 先把分母修对,再谈优化。ua_class 列从 08-23 才有,之前的行是 NULL;`/__ci_healthcheck`
@@ -127,6 +170,12 @@ yahoo 3 · chatgpt 2 · ecosia 1。**Google 依旧为 0**。所以秋冬的活�
 - `.github/workflows/eco-verify-asins.yml`:仅 workflow_dispatch(外部副作用不进
   push 路径),验证通过才 commit 回 main → 正常 eco 部署把该型号所有卡/pill/弹层
   从搜索链接换成 `/dp/<ASIN>?tag=getecoback-21`。
+- **结果(2026-08-28,两跑)**:run#1 空标题 → 查明是 gzip 未解压(urllib 不自动解压),
+  修复;run#2 标题解析正常但五页全部返回 `Amazon.de`——**亚马逊对 GitHub runner 的
+  数据中心 IP 出机器人拦截页**。按预先承诺停止迭代(继续换 UA = 对抗反爬,不做)。
+  **管线保留**:任何一个核验过的 ASIN 进 `MODEL_ASIN` 即全站传播;核验降级为 owner
+  的 3 分钟(五个 /dp/ 链接逐个点开确认型号,清单在会话报告里),或 owner 开 PA-API
+  (5 单已达解锁线)后永久自动化。**别再空跑这个 workflow**——每跑一次都是已知结局。
 - **实证教训(候选收集时撞到的)**:EX105 的六国通用 ASIN `B0BZWP26GD` 在
   amazon.de 标题显示的是 **PAC EX93**——程序化取 ASIN 不核验 = 把读者送错产品,
   这就是核验为什么必须在 .de 上做。

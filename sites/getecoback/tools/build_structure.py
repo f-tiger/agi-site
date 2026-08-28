@@ -44,6 +44,10 @@ CAT_WIKI = {"klimaanlagen": "https://de.wikipedia.org/wiki/Klimaanlage",
 
 # explicit assignments; everything else in /guide → klimaanlagen
 CAT_OF = {
+    # Bodenpflege pages file under Luftqualität until the family is big enough
+    # for its own category (>=4 pages): floor dust IS indoor air quality, and
+    # that bridge is why the vertical lives on this domain at all.
+    "tineco-saugt-nicht-mehr": "luftqualitaet",
     "klimaanlage-mit-heizfunktion": "heizen",
     "heizluefter-stromsparend": "heizen",
     "heizkosten-senken-als-mieter": "heizen",
@@ -541,16 +545,35 @@ def jstr(s):
 # site is never broken and nothing is ever fabricated: an empty string means
 # "we don't know it", and the code falls back rather than guessing.
 # How to fill it in: docs/amazon-asin-howto.md
+# Filled 2026-08-28 by cross-source verification (owner: 「链接你用其他手段验证」
+# — direct amazon.de fetches are bot-walled for both the sandbox and GitHub
+# runners, two runs on record). Acceptance rule, pre-registered: an ASIN ships
+# only when >=2 independent domains tie it to the exact model with ZERO
+# conflicts; a camelcamelcamel.de hit counts double-weight because it mirrors
+# the amazon.de listing title verbatim. Full evidence in the 2026-08-28 session
+# report; per-row provenance below.
 MODEL_ASIN = {
+    # FAILED verification, deliberately empty: B0BZWP26GD is EX105 on ES/BE/
+    # NL/IT/FR but the amazon.de listing titles itself "PACEX93" (8900 BTU,
+    # filed under "Musical Instruments & DJ" — a dirty variant listing). No
+    # DE-specific EX105 ASIN found. Search link is the honest state.
     "De'Longhi Pinguino PAC EX105": "",
-    "De'Longhi PAC N90 ECO Silent": "",
-    "Comfee MPPH-09CRN7": "",
+    # amazon.de direct listing + .nl/.es/.be/.co.uk + two affiliate sites
+    "De'Longhi PAC N90 ECO Silent": "B07NC5CP6F",
+    # de.camelcamelcamel mirrors the amazon.de German title verbatim
+    # ("Comfee Mobiles Klimagerät MPPH-09CRN7, 3-in-1 …") + amazon.de promo
+    # redirectAsin + es.CCC + ubuy + webprice.eu
+    "Comfee MPPH-09CRN7": "B07KJYD1ZP",
     "AEG ChillFlex Pro": "",
-    "Klarstein Kraftwerk Smart 12K": "",
+    # amazon.de direct ("… 12000BTU/h - Anthracite") + amazon.es + webprice.eu
+    "Klarstein Kraftwerk Smart 12K": "B08VWSP8FW",
     "Midea PortaSplit": "",
     "MeacoFan 1056": "",
     "Rowenta VU5690 Eole Infinite": "",
-    "Comfee MDDF-20DEN7": "",
+    # de.camelcamelcamel mirrors the amazon.de German title verbatim
+    # ("COMFEE' Luftentfeuchter 20L/Tag … MDDF-20DEN7") — non-WF confirmed —
+    # + amazon.es/.ae/.co.uk + ubuy
+    "Comfee MDDF-20DEN7": "B07KJX6RDK",
     "Marstek Venus E": "",
     "Anker Solarbank 3 E2700 Pro": "",
     "Anker Solarbank 2 E1600 Pro": "",
@@ -706,6 +729,15 @@ def device_of(slug):
         return "dehum"
     if "luftreiniger" in s:
         return "purifier"
+    # Bodenpflege family (vertical replication #1, 2026-08-28): a distinct key
+    # so every ac-only component (sizer, heat-energy box, climate box, AC
+    # quickpick) skips these pages by construction. DEVICE_MODELS has no
+    # "vacuum" table yet — early pages are troubleshooting-shaped and carry
+    # their parts via CONTEXT_MODELS; a curated model table comes only when a
+    # buying-intent page earns it.
+    if ("staubsauger" in s or "saugwischer" in s or "tineco" in s
+            or "dreame" in s or "saugroboter" in s):
+        return "vacuum"
     # Note: there is deliberately no "cooler" branch. DEVICE_MODELS has no cooler
     # family, and the lookup falls back to "ac", so adding one would be dead code
     # that changes nothing. The page that mattered — bester-luftkuehler, holder of
@@ -883,6 +915,15 @@ CONTEXT_MODELS = {
  # Fast-strike 2026-08-26 (rising "infrarotheizung für garage" v=44.050): the
  # page's own verdict is spot-heat yes / frost guard cheaper / whole-room no —
  # the three chips ARE those three answers, nothing beyond the article's claims.
+ # Bodenpflege #1 (2026-08-28). Troubleshooting page: the reader owns the
+ # device, so the cards are the parts its own diagnosis chapters end in —
+ # never a replacement unit. Search links by part name (ASIN convention:
+ # verified ASINs only, and consumables have none verified yet).
+ "tineco-saugt-nicht-mehr": [
+   ("Ersatzfilter-Set (Tineco-kompatibel)", "Die häufigste Ursache", "Zugesetzte Filterlamellen sind laut den verlinkten Anleitungen der Grund Nr. 1 für schwache Saugleistung — Wechselrhythmus schlägt Nachkaufen im Defektfall.", "Preis vor Ort prüfen", "tineco+ersatzfilter", "purifier"),
+   ("Ersatz-Bürstenrolle", "Wenn die Walze blockiert", "Haare und Fasern um die Walze bremsen den Luftstrom, bevor irgendetwas defekt ist — eine Reserve-Rolle macht die Reinigung zur 5-Minuten-Sache.", "Preis vor Ort prüfen", "tineco+b%C3%BCrstenrolle+ersatz", "purifier"),
+   ("Reinigungslösung für Waschsauger", "Schont Schlauch & Dichtungen", "Zu scharfe Reiniger nennt die verlinkte Schlauch-Anleitung als eine Ursache für Materialermüdung — die freigegebene Lösung ist die billigere Versicherung.", "Preis vor Ort prüfen", "tineco+reinigungsl%C3%B6sung", "purifier"),
+ ],
  "infrarotheizung-garage": [
    ("Infrarot-Heizstrahler (Wand/Decke)", "Punktwärme am Arbeitsplatz", "Wärmt dich und die Werkbank direkt statt der Garagenluft — der Einsatzfall, für den Infrarot in der ungedämmten Garage gebaut ist.", "Preis vor Ort prüfen", "infrarot+heizstrahler+werkstatt+wandmontage", "heater"),
    ("Frostwächter mit Thermostat", "Nur frostfrei halten", "Springt erst unterhalb der eingestellten Temperatur an — für reinen Frostschutz die sparsamere Lösung als ein Panel im Dauerbetrieb.", "Preis vor Ort prüfen", "frostw%C3%A4chter+thermostat", "heater"),
@@ -2670,6 +2711,7 @@ def inject_quickpick(html, slug, en=False):
     # Someone whose unit leaks or smells already owns one, and a page about coping
     # without a unit should not be answered with "here is how to pick one".
     if any(k in slug for k in ("tropft", "stinkt", "zu-laut", "kuehlt-nicht", "reinigen",
+                               "saugt-nicht",
                                "leaking", "not-cooling", "smells-musty", "how-to-clean",
                                "without-ac", "ohne-klimaanlage", "mit-eis",
                                # Humidifier pages route to the "dehum" family for
