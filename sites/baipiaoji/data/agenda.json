@@ -1,9 +1,9 @@
 {
-  "generated": "2026-08-27",
+  "generated": "2026-08-28",
   "note": "由 scripts/trend-radar.mjs 每日聚合五路站内信号生成。只排队不写事实；核实动作按硬规则执行。分数是领先指标的相对排序，不是预测。",
   "counts": {
-    "candidate": 23,
-    "category_hot": 5,
+    "candidate": 24,
+    "category_hot": 4,
     "stale": 0,
     "demand": 0
   },
@@ -37,6 +37,18 @@
         "ms-copilot"
       ],
       "score": 80
+    },
+    {
+      "id": "candidate:github.com",
+      "type": "verify_candidate",
+      "title": "核实候选：We built open OpenRouter that turns usage into a better model",
+      "why": "HN 189 分 / 37 评论（2026-08-28 发现）——外部热度已验证，站内尚未收录",
+      "action": "按收录标准核实 https://github.com/experientiallabs/experiential；合格则中英同步入库，limits 走 limits-edit.mjs",
+      "refs": [
+        "https://github.com/experientiallabs/experiential",
+        "https://news.ycombinator.com/item?id=49471407"
+      ],
+      "score": 60
     },
     {
       "id": "candidate:danielvaughn.dev",
@@ -158,18 +170,6 @@
         "https://news.ycombinator.com/item?id=49145934"
       ],
       "score": 44
-    },
-    {
-      "id": "candidate:github.com",
-      "type": "verify_candidate",
-      "title": "核实候选：I made a Raspberry with Qwen my local car AI",
-      "why": "HN 106 分 / 24 评论（2026-08-26 发现）——外部热度已验证，站内尚未收录",
-      "action": "按收录标准核实 https://github.com/ThinkOffApp/CarWatch；合格则中英同步入库，limits 走 limits-edit.mjs",
-      "refs": [
-        "https://github.com/ThinkOffApp/CarWatch",
-        "https://news.ycombinator.com/item?id=49435675"
-      ],
-      "score": 40
     }
   ]
 }
