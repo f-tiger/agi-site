@@ -32,6 +32,51 @@ GAMES = {
     "nonogram":   dict(page="nonogram.html",   js="app-nonogram.js",   data=["nonogram-daily.json", "nonogram-pool.json"]),
 }
 
+# Hub order — evidence first, then intrinsic approachability (2026-08-28).
+#
+# The zip's index.html is where an itch player actually PICKS a game: D1 shows
+# the crossover pattern is "back to the hub, open the next one in a new tab"
+# (every path in the 2026-08-27 Finnish session carried the itch iframe as its
+# referrer, including the six games opened after the first). So this list is the
+# highest-leverage surface in the package, and it was previously just dict order.
+#
+# Completion rate, all-time human, play_start -> solve (surfaces merged, so the
+# live page and the packaged copy of the same game count together):
+#   minisudoku 3/4 · trail 4/6 · nonogram 1/5 · gridlings 5/29 · balance 1/7
+#   starbattle 0/9 · kropki 0/3 · towers 0/3 · sandwich 0/2 · futoshiki 0/1 · thermo 0/1
+#
+# Only three of those are worth acting on: minisudoku and trail are demonstrably
+# finishable, and starbattle's 0/9 is the largest zero in the set. The middle of
+# the table is n<=7 and is ordered by intrinsic approachability, NOT by evidence —
+# do not quote it as a ranking. Star Battle moves from 3rd to last: 10x10 two-star
+# is the hardest format here, nobody has ever completed it, and leading a picker
+# with the most punishing board costs the sessions the easier games would win.
+# (P(0 solves in 9 | true rate 25%) is about 7.5% — suggestive, not proven.)
+HUB_ORDER = ["minisudoku", "trail", "nonogram", "gridlings", "balance",
+             "kropki", "sandwich", "futoshiki", "towers", "thermo", "starbattle"]
+
+# Display names. sl.capitalize() rendered "Starbattle" and "Minisudoku" on the
+# hub — machine-generated naming on the one page a portal reviewer reads first.
+HUB_NAME = {"minisudoku": "Mini Sudoku", "starbattle": "Star Battle",
+            "thermo": "Thermometers"}
+
+# One factual line per card so a newcomer can self-select instead of guessing.
+# Grid size and the rule, nothing evaluative — no "easy"/"hard" labels, which
+# would be a claim about the player rather than about the board.
+HUB_SUB = {
+    "minisudoku": "6×6 · five-minute sudoku",
+    "trail":      "one line through every cell",
+    "nonogram":   "paint the clues, no guessing",
+    "gridlings":  "every animal in every colour, none touching",
+    "balance":    "suns &amp; moons, never three in a row",
+    "kropki":     "the missing dot is a clue",
+    "sandwich":   "sums between 1 and the max",
+    "futoshiki":  "inequalities pin the numbers",
+    "towers":     "skyscraper sightlines",
+    "thermo":     "mercury never skips a cell",
+    "starbattle": "10×10 · two stars per row, none touching",
+}
+
 ICONS = {"gridlings":"\U0001F98A","balance":"\U0001F319","starbattle":"\u2B50","trail":"\U0001F43E","futoshiki":"\u2276","towers":"\U0001F3D9","minisudoku":"\U0001F522","kropki":"\u26AB","sandwich":"\U0001F96A","thermo":"\U0001F321","nonogram":"\u25A6"}
 
 README = """{name} — a Gridlings daily logic puzzle (standalone build)
@@ -219,9 +264,13 @@ def main():
             zf.writestr("README.txt", README.format(name=slug.capitalize() + " (CrazyGames build: SDK on, no external links)", days=450, epoch="2026-08-24"))
         open(os.path.join(cgdir, f"{slug}.zip"), "wb").write(buf.getvalue())
         print(f"CG build: downloads/cg/{slug}.zip")
+    assert set(HUB_ORDER) == set(GAMES), "HUB_ORDER must list every game exactly once"
     hub_rows = "".join(
-        f'<a href="{sl}/index.html" style="border:1px solid rgba(128,128,128,.4);border-radius:12px;padding:14px 16px;text-decoration:none;color:inherit;background:rgba(128,128,128,.07);font-size:16px;display:block">{ICONS[sl]} <strong>{sl.capitalize()}</strong></a>'
-        for sl in GAMES)
+        f'<a href="{sl}/index.html" style="border:1px solid rgba(128,128,128,.4);border-radius:12px;'
+        f'padding:14px 16px;text-decoration:none;color:inherit;background:rgba(128,128,128,.07);'
+        f'font-size:16px;display:block">{ICONS[sl]} <strong>{HUB_NAME.get(sl, sl.capitalize())}</strong>'
+        f'<br><span style="font-size:12.5px;color:#777">{HUB_SUB[sl]}</span></a>'
+        for sl in HUB_ORDER)
     all_zf.writestr("index.html", f"""<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Gridlings — 11 Daily Logic Puzzles</title>
