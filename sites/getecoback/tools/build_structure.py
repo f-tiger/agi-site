@@ -541,16 +541,35 @@ def jstr(s):
 # site is never broken and nothing is ever fabricated: an empty string means
 # "we don't know it", and the code falls back rather than guessing.
 # How to fill it in: docs/amazon-asin-howto.md
+# Filled 2026-08-28 by cross-source verification (owner: 「链接你用其他手段验证」
+# — direct amazon.de fetches are bot-walled for both the sandbox and GitHub
+# runners, two runs on record). Acceptance rule, pre-registered: an ASIN ships
+# only when >=2 independent domains tie it to the exact model with ZERO
+# conflicts; a camelcamelcamel.de hit counts double-weight because it mirrors
+# the amazon.de listing title verbatim. Full evidence in the 2026-08-28 session
+# report; per-row provenance below.
 MODEL_ASIN = {
+    # FAILED verification, deliberately empty: B0BZWP26GD is EX105 on ES/BE/
+    # NL/IT/FR but the amazon.de listing titles itself "PACEX93" (8900 BTU,
+    # filed under "Musical Instruments & DJ" — a dirty variant listing). No
+    # DE-specific EX105 ASIN found. Search link is the honest state.
     "De'Longhi Pinguino PAC EX105": "",
-    "De'Longhi PAC N90 ECO Silent": "",
-    "Comfee MPPH-09CRN7": "",
+    # amazon.de direct listing + .nl/.es/.be/.co.uk + two affiliate sites
+    "De'Longhi PAC N90 ECO Silent": "B07NC5CP6F",
+    # de.camelcamelcamel mirrors the amazon.de German title verbatim
+    # ("Comfee Mobiles Klimagerät MPPH-09CRN7, 3-in-1 …") + amazon.de promo
+    # redirectAsin + es.CCC + ubuy + webprice.eu
+    "Comfee MPPH-09CRN7": "B07KJYD1ZP",
     "AEG ChillFlex Pro": "",
-    "Klarstein Kraftwerk Smart 12K": "",
+    # amazon.de direct ("… 12000BTU/h - Anthracite") + amazon.es + webprice.eu
+    "Klarstein Kraftwerk Smart 12K": "B08VWSP8FW",
     "Midea PortaSplit": "",
     "MeacoFan 1056": "",
     "Rowenta VU5690 Eole Infinite": "",
-    "Comfee MDDF-20DEN7": "",
+    # de.camelcamelcamel mirrors the amazon.de German title verbatim
+    # ("COMFEE' Luftentfeuchter 20L/Tag … MDDF-20DEN7") — non-WF confirmed —
+    # + amazon.es/.ae/.co.uk + ubuy
+    "Comfee MDDF-20DEN7": "B07KJX6RDK",
     "Marstek Venus E": "",
     "Anker Solarbank 3 E2700 Pro": "",
     "Anker Solarbank 2 E1600 Pro": "",
