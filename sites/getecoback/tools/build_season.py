@@ -53,13 +53,31 @@ DE_SEASONS = {
         "h1": "Feuchte Wohnung im Herbst? Schimmel stoppen, clever heizen",
         "sub": "EcoBack ist dein Raumklima- und Energie-Ratgeber für das ganze Jahr. Jetzt im Herbst: Wäsche trocknet drinnen, Fenster beschlagen — die richtige Zeit für Luftentfeuchter, Geräte-Einlagerung und den Heiz-Check vor dem Winter.",
         "badge": "🍂 Herbst · Schimmel vorbeugen & Heiz-Check",
+        # Targets picked from D1, not by hand — same correction the season bridge
+        # got on 2026-08-27, applied to the component that fix did not touch.
+        # The previous six slots were hand-chosen and, measured over 28 days,
+        # carried 0 affiliate clicks between them: luftentfeuchter-gegen-schimmel
+        # has never recorded a single row, keller-lueften-sommer likewise,
+        # ueberwintern 11 pv / 0 aff, heizluefter-stromverbrauch 1 pv / 0 aff.
+        # Two further slots pointed at Balkonspeicher, i.e. the energy section the
+        # owner degraded on 2026-08-26 — the autumn hero is the wrong place to
+        # re-promote it. Meanwhile the pages that actually earn in this cluster
+        # were absent: luftentfeuchter-40-qm (4 pv / 3 aff — the best autumn
+        # converter on the site), stinkt-schimmel (15 pv / 2 aff — the most-read
+        # autumn page), mit-heizfunktion (5 pv / 1 aff, and it carries summer AC
+        # owners into the heating season).
+        # Two slots go to pages published 2026-08-26 that answer the largest
+        # verified demand in trends-rising.json ("schimmel im keller entfernen"
+        # v=108.750, "sparsamer heizlüfter" v=32.000). They have no traffic yet
+        # because they are days old; a homepage link is the internal equity that
+        # gets them crawled and ranked. That is the point of the slot, not a
+        # reward for traffic they do not have.
         "teaser": [
-            ("💧", "Luftentfeuchter gegen Schimmel", "/guide/luftentfeuchter-gegen-schimmel.html"),
-            ("💨", "Taupunkt-Check: Jetzt lüften oder nicht?", "/guide/keller-lueften-sommer.html"),
-            ("📦", "Mobile Klimaanlage überwintern", "/guide/mobile-klimaanlage-ueberwintern.html"),
-            ("🔥", "Heizlüfter: Stromkosten berechnen", "/guide/heizluefter-stromverbrauch.html"),
-            ("🔋", "Balkonspeicher winterfest machen", "/guide/balkonspeicher-winter-frost.html"),
-            ("💶", "Balkonspeicher-Förderung: Wer zahlt was dazu?", "/guide/balkonspeicher-foerderung.html"),
+            ("💧", "Luftentfeuchter für 40 m²: wie viel Liter/Tag?", "/guide/luftentfeuchter-40-qm.html"),
+            ("🦠", "Schimmel im Keller entfernen", "/guide/schimmel-im-keller-entfernen.html"),
+            ("🌬️", "Klimaanlage stinkt? Schimmel-Geruch loswerden", "/guide/mobile-klimaanlage-stinkt-schimmel.html"),
+            ("🔥", "Heizlüfter stromsparend: welcher lohnt sich?", "/guide/heizluefter-stromsparend.html"),
+            ("♨️", "Klimaanlage mit Heizfunktion: lohnt sich das?", "/guide/klimaanlage-mit-heizfunktion.html"),
             ("🛒", "Alles für Luftqualität", "/kategorie/luftqualitaet.html"),
         ],
     },
@@ -99,8 +117,12 @@ DE_SEASONS = {
 DE_SEASON_VIDEO = {
     "sommer": ("l8z9FzMbpj8", "Die beste mobile Klimaanlage 2026? De'Longhi Pinguino PAC EX105 im Video-Test",
                "/guide/beste-tragbare-klimaanlage-hitzewelle.html", "Zum Ratgeber: Beste tragbare Klimaanlage →"),
+    # Retargeted 2026-08-28 for the same reason as the teaser above: the CTA sent
+    # the autumn homepage's second-biggest module to a page D1 has never recorded
+    # a view of. The Comfee MDDF-20DEN7 in this video is discussed on the sizing
+    # page too, so the video and its destination still match.
     "herbst": ("mBSS57P_rl4", "Comfee MDDF-20DEN7 Luftentfeuchter im Video-Test",
-               "/guide/luftentfeuchter-gegen-schimmel.html", "Zum Ratgeber: Luftentfeuchter gegen Schimmel →"),
+               "/guide/luftentfeuchter-40-qm.html", "Zum Ratgeber: Luftentfeuchter für 40 m² →"),
     "winter": ("x1S_Y7b9bvc", "Infrarotheizung im Härtetest: Reichen 400 W für 8 m² im Winter?",
                "/guide/infrarotheizung-watt-rechner.html", "Zum Watt-Rechner für Infrarotheizungen →"),
     "fruehjahr": ("pTbLIJzfJoQ", "Balkonkraftwerk mit Speicher: Top 5 im Test (2026)",

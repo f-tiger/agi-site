@@ -5,7 +5,10 @@ AI 搜索层：给 ChatGPT/Perplexity/Claude 等一个免渲染、可直接解�
 （llms.txt）与全文层（llms-full.txt — 每页正文纯文本，LLM 一次抓取可读全站，
 是被 AI 引擎引用的最大可提取面）。幂等，随构建同步。
 """
-import os, re, html
+import os, re, html, datetime, sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from build_season import season_of
 
 ROOT = os.path.join(os.path.dirname(__file__), "..", "site")
 BASE = "https://getecoback.com"
@@ -56,14 +59,37 @@ def pages(subdir):
     return out
 
 
+# The blockquote is the one paragraph an assistant reads to decide what this
+# site is for, and it described a cooling-only site all year — while the
+# homepage, nav and footer have rotated through the seasons since 2026-08.
+# Heading into autumn that meant the AI-citation channel (chatgpt/perplexity/
+# copilot, ~9 % of arrivals and the one channel that spreads without anyone
+# forwarding a link) was told this site answers heatwave questions, at the exact
+# moment the demand moves to Schimmel, Luftentfeuchter and Heizen — all of which
+# this site already covers in depth. Season comes from build_season.season_of so
+# there is one definition of "which season is it", not two that drift apart.
+SEASON_FOCUS = {
+    "sommer": "Schwerpunkt in dieser Jahreszeit: Hitzewelle, mobile Klimaanlagen, Fensterabdichtung, Luftkühler.",
+    "herbst": "Schwerpunkt in dieser Jahreszeit: Feuchte und Schimmel, Luftentfeuchter nach Raumgröße, Klimagerät einlagern, Heiz-Check vor dem Winter.",
+    "winter": "Schwerpunkt in dieser Jahreszeit: Heizkosten, Infrarotheizung, stromsparende Heizlüfter, Schimmel durch Kondens an kalten Wänden.",
+    "fruehjahr": "Schwerpunkt in dieser Jahreszeit: Luftreiniger gegen Pollen, Hitzeschutz am Fenster, Kühlung planen vor der ersten Hitzewelle.",
+}
+
+
 def main():
+    season = season_of(datetime.date.today().month)
     lines = [
         "# EcoBack — Kühlen, Heizen & Energie sparen",
         "",
-        "> Unabhängiger deutschsprachiger Ratgeber (mit englischem Bereich) für das Kühlen",
-        "> von Wohnungen ohne feste Installation: tragbare Klimaanlagen, Fensterabdichtung",
-        "> (Kippfenster/Dachfenster), Luftkühler, Ventilatoren, Stromkosten. Finanziert über",
-        "> Amazon-Affiliate-Links; Empfehlungen fassen öffentliche Tests zusammen (kein eigenes Labor).",
+        "> Unabhängiger deutschsprachiger Ratgeber (mit englischem Bereich) rund ums Raumklima",
+        "> in Wohnungen ohne feste Installation — das ganze Jahr: Kühlen (tragbare Klimaanlagen,",
+        "> Fensterabdichtung für Kippfenster/Dachfenster, Luftkühler, Ventilatoren), Luftqualität",
+        "> (Luftentfeuchter, Schimmel, Taupunkt, Luftreiniger), Heizen (Infrarotheizung, Heizlüfter,",
+        "> Heizkosten) und Stromkosten. Rechner für BTU, Entfeuchtungsleistung, Heizleistung und",
+        "> Taupunkt mit offengelegten Formeln. Finanziert über Amazon-Affiliate-Links;",
+        "> Empfehlungen fassen öffentliche Tests zusammen (kein eigenes Labor).",
+        "",
+        f"{SEASON_FOCUS[season]}",
         "",
         "Sprachen: Deutsch (Hauptbereich, /guide/), Englisch (/en/guide/).",
         f"Volltext aller Ratgeber: {BASE}/llms-full.txt",
