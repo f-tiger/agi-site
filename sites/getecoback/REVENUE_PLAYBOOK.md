@@ -48,7 +48,8 @@
    - 已写(去重修正)：Abluftschlauch verlängern & isolieren（2026-07-11；发现已有 abluftschlauch-verlaengern.html，遂把 isolieren 意图+De'Longhi 保修警告+Alufolie 无用节并入既有页并删除重复的 klimaanlage-abluftschlauch-verlaengern.html，避免自我蚕食；FAQ 增至4问）
    - 已写(英语纵深)：Portable AC skylight/roof window（2026-07-11，EN；SERP=eBay/Etsy/Amazon商品页+Quora+HVAC论坛，无专门指南=low；与德语 dachfenster 页互挂 hreflang；诚实角度=热空气上升+防雨=屋顶窗更难；内链 tilt/heatwave/BTU/kernbohrung）
    - **秋冬批次（9/1 启动，2026-07-15 深度评估定）**：Heizen 品类最薄(9页)且 Infrarotheizung 簇 7 月已 64 展示=秋冬需求提前。批次含：überwintern（下条）、Infrarotheizung 场景深化（Bad/Homeoffice/Wohnwagen，先 KGR 判定）、Heizlüfter vs Infrarot vs Klima-Heizfunktion 对比页、Luftentfeuchter Winter/Kondens 角度。日更 Routine 届时按此执行。
-   - 待写（9 月初发布）：Mobile Klimaanlage überwintern/einlagern（2026-07-11 抽查=low：论坛×3+小博客，无大媒体；季节切换常青词，秋季流量入口；产品=atmungsaktive Abdeckhaube；内链 reinigen/vergleich 货币页）
+   - 已写（台账修正 2026-08-28）：Mobile Klimaanlage überwintern/einlagern —— mobile-klimaanlage-ueberwintern.html 已在线且 28 天有搜索引擎 pv 9 次（D1），本条此前一直标「待写」是台账漂移
+   - 已弃（2026-08-28 秋冬批次 KGR 预判定，三连红海）：①Infrarotheizung Bad —— 首屏 Bosch/heizung.de/energie-experten/heimwerker/schwaebische 占满；Bad 意图由既有 heizung-qm 页 + Schmidbauer ISP T 700 W「Auch fürs Bad」卡承接，不新写；②Heizlüfter vs Infrarotheizung 对比页 —— 首屏 t-online/Bosch/ADAC/heizsparer + 厂商内容营销；对比意图已在 heizung-qm FAQ 内答过,独立页不立；③Kondenswasser Fenster innen —— 首屏 Vattenfall/co2online/ADAC/energieheld/immowelt 全大牌;通用词不打,秋冬 Luftentfeuchter 线只走差异化角度（renter/无钻孔/按面积),即已有 luftentfeuchter-qm 系+wohnmobil-feuchtigkeit-winter 的打法。**结论:7 月定的秋冬批次四个方向里三个是红海,秋冬增长主力应放在已验证结构（qm 梯×语言面×AI 引用面）而非新品类词。**
    - 已弃：Luftentfeuchter Schlafzimmer nachts leise（2026-07-11 抽查：Stiftung Warentest+smart-home-fox 等评测站占满首屏，红海）
    - 已写：Klimaanlage Zugluft Nackenschmerzen（2026-07-11，SERP=健康站占屏但无人答"设备怎么摆/怎么设置"角度，差异化成立；内链 schlafzimmer 货币页+nachts+homeoffice）
    - 已写：Klimaanlage Dachfenster（2026-07-11，SERP=亚克力板店×3+论坛=low，商业意图强；内链 dachgeschoss/kippfenster/BTU/hitzewelle 货币页）
