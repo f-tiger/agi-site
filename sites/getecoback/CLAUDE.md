@@ -167,6 +167,88 @@ insert-only 等于把这个组件永久冻结在它第一次注入时的样子�
 (别让一个死区块永远占着 13-24 个页面的版面)。BTU 第四档看 `/guide/split-klimaanlage-ohne-kernbohrung.html`
 的站内浏览是否从 10 pv 起来。
 
+## 病毒式传播诊断(2026-08-28,owner:「扩大联盟点击量,让网站可以被病毒式传播」)
+
+### 一、社交分享已被本站自己的数据证伪,别再提
+
+`window.ebShare` 已在 158 页;可见的分享按钮长在热浪带里,而 `heat_now` 28 天
+**渲染 226 次**(level 1/2 都在),首页 BTU 结果另有一个。即:分享按钮被展示了
+约 226 次,`share` 事件 **0**。**「加分享按钮」这条路已经用真实曝光量证伪过一次,
+不要再作为方案提出。** 更根本的算术:约 15 次真人浏览/天,任何分享机制的产出都
+在噪声以下。
+
+### 二、但「已经在被转发」是测不到的,别把 share=0 读成「没人转发」
+
+258 次无 referrer 的真人浏览里,**205 次落在深层页面、只有 53 次落在首页**。没人
+会凭记忆敲 `/guide/klimaanlage-wohnmobil.html`——这是**有人/某个应用给了链接**才
+产生的访问,而 WhatsApp、ChatGPT 客户端等一律剥掉 Referer。所以:**本站被转发和被
+AI 引用的真实规模,大于 chatgpt+perplexity+copilot 那 25 次所显示的**;`share=0`
+只说明「没人点那个按钮」,不说明「没人转发」。埋点看不见的东西不等于不存在。
+
+### 三、本站可行的病毒形态 = 蹭别人的病毒性(Faktencheck),不是自己成为病毒
+
+病毒式产品自带搜索量,本站做那个如实回答「这东西靠谱吗」的页面。trends-rising
+同一形态三个词:epicooler 42.000(已有 Faktencheck)、**coolizi 23.600**、
+**air zuma 14.650**(后两者站内 0 提及)。**实测 SERP(2026-08-28)**:搜
+「Coolizi Erfahrungen Test」返回 7 条,**7 条全部是卖家侧的假测评域**
+(managedcaremag / culturalcognition / berlios / differ.blog / checkzentrum /
+tomorrow-focus),内容逐句复述厂商话术——这既是机会,也正是本站 Warnsignal-Checkliste
+存在的理由。**注意 tomorrow-focus 也在这一批里,不要再把它当独立信源引用**
+(08-23 那条记录把它记成了发 WARNUNG 的第三方,本轮实测显示它是同一批域之一)。
+**沙箱对 verbraucherzentrale.de 与 watchlist-internet.at 均被 egress 代理拦截**,
+无法回源核实,故只以具名链接让读者自查,绝不复述其结论。
+
+本轮动作:**不新建页**(通用意图已被 `klimaanlage-ohne-abluftschlauch` 覆盖,按蚕食
+规则应深化),只在该物理集线器补一段具名实例 + 链到 epicooler Faktencheck——此前
+全站只有 3 页链到它,而拥有同话题通用词(27.300)的这一页不在其中。
+
+### 四、**最大的钱线缺陷:四分之一的联盟点击落在赚不到钱的商城(owner 待办)**
+
+按国家 × 版块拆 28 天的 95 次 `affiliate_click`:
+
+| 来源 | 落地版块 | pv | affiliate_click | 商城是否能计佣 |
+|---|---|---|---|---|
+| DE | /guide/ | 254 | **44** | ✅ amazon.de / getecoback-21 |
+| **US** | /en/ | 47 | **16** | ❌ 送到 amazon.de |
+| **GB** | /en/ | 8 | **8** | ❌ 送到 amazon.de(且 08-06 已记录 getecoback-21 在 .co.uk 不计佣) |
+| CH/AT/LU/IT/ES/NL/PT/CA | 两侧 | — | 21 | 部分可(欧盟可送达) |
+
+EN 区 **318 处联盟链接 100% 是 amazon.de + getecoback-21**(grep 逐条确认),而 EN 区
+恰好是全站前五页里的三页。**US 16 + GB 8 = 24 次点击(占 95 次的 25%)结构性赚不到钱**
+——不是转化差,是把人送进了他基本不会下单的商城。按已确认的 €9,96/119 clicks 口径,
+这 25% 是**不需要任何新流量就能拿回的营收**。
+
+**为什么本轮不自行切换**:美国站 tag `ecoback0d-20` 已由 owner 确认归属(根仓台账),
+tds 已在用;但 Amazon Associates 条款要求**账号后台的站点列表包含投放站点**,
+getecoback.com 未列——**未列就切,佣金可被判无效**,那是比现在更坏的结果。且根仓
+「高价值品类扩展」条已明确:改 EN 区商城属于**契约变更**,须先改契约再动。
+
+**owner 待办(1 分钟,解锁上表 24 次点击/28 天)**:在 US Associates 后台的站点列表里
+加上 **getecoback.com**(与已在待办的 thedollscout.com、agiscorecard.com 同一处)。
+**加完告诉我,我按页切 EN 区到 amazon.com/ecoback0d-20,并保留 EU 访客走 .de。**
+
+### 五、本轮改动与判定线(2026-09-25,28 天后)
+
+1. **秋季首页栏按 D1 重选**(9/1 随季节上线):原六位手选目标 28 天合计 **0 次联盟点击**
+   (gegen-schimmel 与 keller-lueften-sommer 在 D1 里从来没有过一行,ueberwintern 11 pv/0 aff,
+   heizluefter-stromverbrauch 1 pv/0 aff),另有两位给了已降级的能源板块;真正在转化的
+   40-qm(4 pv/**3 aff**)、stinkt-schimmel(15 pv/**2 aff**)、mit-heizfunktion(5 pv/1 aff)
+   全部缺席。已重选,并把两位给 08-26 新发、对应最大需求的两页
+   (schimmel-im-keller-entfernen v=108.750、heizluefter-stromsparend v=32.000)。
+   秋季视频 CTA 同样从 0 pv 页改指 40-qm。
+   → **判定:五个目标页合计 affiliate_click ≥5 → 版位选对了;<2 → 是版位本身的问题。**
+2. **llms.txt 站点描述整年是「为公寓降温」**——这是 AI 助手判断本站是什么的唯一一段话,
+   而首页/导航/页脚早已随季节轮换,只有它没有。已改为全年真实范围 + 随季节的重点行
+   (`season_of` 复用 build_season,避免两处季节定义漂移)。
+   → **判定:AI 引荐(chatgpt/perplexity/copilot)28 天 ≥25 次(当前 25)→ 持平即合格,
+   因为秋季是本站历史上从未有过流量的季节;≤10 → 描述不是瓶颈,回头查 md_serve 链路。**
+3. **通用集线器 → epicooler Faktencheck 的连接**
+   → **判定:该链接点击 ≥3 或 epicooler 页真人 pv 上升 → 再考虑给 coolizi 单独出页
+   (按快反规则一天一页、14 天冷却);两者皆 0 → 品牌词需求到不了本站,别再加页。**
+
+**本轮刻意没做的**:没有新增任何联盟钩子。干净窗口浏览→亚马逊 **18.9%**,内容型联盟站
+通常个位数——**漏斗没有可压榨空间,加钩子是把 18% 调到 19% 而流量在腰斩**。
+
 ## 执行令(2026-08-20,基于两轮深度调研,详见根仓 docs/fleet-deep-dive-2026-08.md)
 
 1. **P0 归属已确认解除(2026-08-25)。** owner 出示 partnernet.amazon.de 后台截图:

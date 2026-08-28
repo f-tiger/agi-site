@@ -41,6 +41,14 @@ invest_tool_click、tds affiliate_click(D1 hits 表 ev 列;链路 2026-08-19 上
   who-is-leopold-aschenbrenner 阅读清单(3 本书,search 链接)同日上线。
   **owner 待办(1 分钟,保佣金有效性)**:US Associates 后台的站点列表需包含
   thedollscout.com 与 agiscorecard.com——Amazon 条款要求列出投放站点,未列可致佣金作废。
+  **2026-08-28 追加 getecoback.com 到同一待办,并且它现在是舰队最大的单笔钱线缺陷**:
+  eco 的 EN 区 318 处联盟链接 100% 是 amazon.de/getecoback-21,而 28 天里
+  **US 16 次 + GB 8 次 = 24 次 affiliate_click(占 eco 全部 95 次的 25%)**
+  被送进了这些访客基本不会下单的商城(GB 侧另有 08-06 已记录的「getecoback-21 在
+  .co.uk 不计佣」)。EN 区恰是 eco 前五页里的三页。**这 25% 不需要任何新流量就能拿回**,
+  但**未把 getecoback.com 列进 US Associates 就切换,佣金可被判无效**——所以先待办、
+  后切换,不自行抢跑。owner 加完站点列表后,eco 侧按页切 amazon.com/ecoback0d-20、
+  EU 访客继续走 .de(属 EN 区契约变更,按高价值扩展条的规矩执行)。
 里程碑口径:舰队订阅计数 = agi 真实 subscribers + bpj 真实 subs(2026-08-23 起;
 当日 bpj 首个真实订阅 kon***@gmail.com 经脱敏核验,舰队 3/5)。
 
