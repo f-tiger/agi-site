@@ -3077,7 +3077,14 @@ def inject_sizer(html, slug, en=False):
 def inject_radar(html, radar=RADAR):
     """Idempotently add the compact Hitze-Radar opt-in just above the footer."""
     if "<!--EB_RADAR-->" in html:
-        return html
+        # Was insert-only, and it was the last injector still returning the page
+        # untouched — the same bug fixed for the nav (2026-08-26) and the sticky
+        # bar (2026-08-27). The cost here was an honesty one, not a cosmetic one:
+        # the "Der Versand ist noch im Aufbau — bis er steht, bekommst du keine
+        # E-Mails" disclaimer was added to this opt-in on 2026-08-06 and never
+        # reached a single already-built page, so 85 of the 112 radar-bearing
+        # German guide pages kept promising heat alerts the site cannot yet send.
+        return re.sub(r'<!--EB_RADAR-->.*?<!--/EB_RADAR-->\n?', lambda m: radar, html, flags=re.S)
     if "<!--EB_FOOTER-->" in html:
         return html.replace("<!--EB_FOOTER-->", radar + "<!--EB_FOOTER-->", 1)
     return html.replace("</body>", radar + "</body>", 1)
