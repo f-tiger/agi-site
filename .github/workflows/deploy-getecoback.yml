@@ -109,6 +109,9 @@ jobs:
       - name: Check every affiliate block carries a Werbekennzeichnung
         run: python3 tools/check_adlabel.py
 
+      - name: Check FAQ JSON-LD matches visible text verbatim
+        run: python3 tools/check_faq_parity.py
+
       - name: Deploy to Cloudflare Workers
         uses: cloudflare/wrangler-action@v3
         with:
