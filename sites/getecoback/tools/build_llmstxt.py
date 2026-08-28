@@ -91,7 +91,7 @@ def main():
         "",
         f"{SEASON_FOCUS[season]}",
         "",
-        "Sprachen: Deutsch (Hauptbereich, /guide/), Englisch (/en/guide/).",
+        "Sprachen: Deutsch (Hauptbereich, /guide/), Englisch (/en/guide/), Italienisch (/it/guide/).",
         f"Volltext aller Ratgeber: {BASE}/llms-full.txt",
         "",
         "## Interaktive Tools & Widgets",
@@ -119,6 +119,7 @@ def main():
     ]
     de = pages("guide")
     en = pages("en/guide")
+    it = pages("it/guide")
     kat = pages("kategorie")
     lines.append("## Ratgeber (Deutsch)")
     lines.append("")
@@ -127,6 +128,10 @@ def main():
     lines += ["", "## Guides (English)", ""]
     for url, t, d in en:
         lines.append(f"- [{t}]({url}): {d}")
+    if it:
+        lines += ["", "## Guide (Italiano)", ""]
+        for url, t, d in it:
+            lines.append(f"- [{t}]({url}): {d}")
     lines += ["", "## Kategorien", ""]
     for url, t, d in kat:
         lines.append(f"- [{t}]({url}): {d}")
@@ -141,7 +146,7 @@ def main():
     ]
     out = os.path.join(ROOT, "llms.txt")
     open(out, "w", encoding="utf-8").write("\n".join(lines))
-    print(f"llms.txt: {len(de)} DE + {len(en)} EN guides, {len(kat)} categories")
+    print(f"llms.txt: {len(de)} DE + {len(en)} EN + {len(it)} IT guides, {len(kat)} categories")
 
     # ---- llms-full.txt: full readable text of every guide, one fetch for LLMs ----
     full = ["# EcoBack — Volltext aller Ratgeber (llms-full.txt)",
@@ -150,7 +155,7 @@ def main():
             "> zitierfähige URL steht über jedem Abschnitt. Stand: siehe sitemap.xml.",
             ""]
     n = 0
-    for subdir in ("guide", "en/guide"):
+    for subdir in ("guide", "en/guide", "it/guide"):
         for url, t, d in pages(subdir):
             fn = os.path.join(ROOT, subdir, url.rsplit("/", 1)[1])
             txt = body_text(fn)

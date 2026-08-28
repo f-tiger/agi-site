@@ -69,7 +69,7 @@ Balkonkraftwerk 补贴(balkonspeicher_foerderung 工具已在,萨克森等州补
 调研结论(五路排名,来源在根仓 revenue-strategy 文档与会话报告)按「量级×自动化
 ×出信号速度」排序,**每日轮从上往下取,一天 1-2 项,做完打勾**:
 
-- [ ] **①意大利语试点(最高优先)**:把最强转化页(italy 集群)译成**意大利语原生页**
+- [x] **①意大利语试点(最高优先,✅ 2026-08-28 上线 10 页)**:把最强转化页(italy 集群)译成**意大利语原生页**
   (10 页试点,gen_i18n 思路+互挂 hreflang+判定页六件套)。依据:Profound 32.5 亿
   引用研究——查询语言重写整个引用图(德语查询→80% 引用德语页;ChatGPT 是唯一落后者),
   而本站第一转化页是一张**用错语言**的意大利页。亚马逊链接**沿用 amazon.de**
@@ -77,6 +77,19 @@ Balkonkraftwerk 补贴(balkonspeicher_foerderung 工具已在,萨克森等州补
   点击漏到搜索页);per-marketplace 直链等 owner 在 PartnerNet 核实能否挂 .it/.fr/.es
   tracking ID(UNVERIFIED,别自行假设)。判死线:试点 60 天 0 Bing 曝光且 0 AI 引荐
   且 0 联盟点击 → 停在试点,不全站翻译。
+  **执行记录(2026-08-28)**:`site/it/guide/` 10 页上线——flagship
+  miglior-condizionatore-portatile-italia(源 = D1 28 天第一转化页 italy EN,
+  12 aff/28d 其中 3 次来自 IT)+ 15/25/30-mq 三连 + anta-ribalta(de/en/it 三语组)
+  + senza-unita-esterna + rumoroso + camper + senza-finestra + deumidificatore-40-mq,
+  全部按转化榜排序选定。基建同轮落地:build_hreflang **配对模型→语言组模型**
+  (并查集,VALID_LANGS+it,x-default 优先级 de>en>it,旧 25 对字节不变)、
+  faq-parity/llms.txt/sitemap/search-index/MCP ratgeber_lesen/部署健康检查全部覆盖
+  /it/;worker 德语弹层只注入 /guide/ 不碰 /it/。IT 页自包含(无 EB_ 注入),
+  自带 page_view/affiliate_click 埋点(D1 现有白名单),链接一律 amazon.de+
+  getecoback-21(未用 OneLink,未挂 .it tag——等 owner 核实)。三写手并行+中央
+  复校:全部型号/数字逐条溯源到源页,零新造;判死线复核日 = **2026-10-27**
+  (60 天),口径:Bing 曝光(owner Bing WMT)+ D1 referrer AI 引荐 + /it/ 页
+  affiliate_click。
 - [ ] **②秋季 pSEO 补英文面**:qm 系列(entfeuchter/heizung)已有德语,Bing 的
   字面匹配偏好正是 qm 页的结构红利;补 EN 版(单模板),硬门:每页 ≥3 个独立数据点
   (post-HCU 生存线)。判死线:新批次 45 天 Bing 收录率 <30% → 停止加系列,先修收录。

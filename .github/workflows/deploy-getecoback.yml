@@ -150,6 +150,7 @@ jobs:
           check "https://getecoback.com/impressum.html" "Impressum"
           check "https://getecoback.com/datenschutz.html" "DSGVO"
           check "https://getecoback.com/en/" "tag=getecoback-21"
+          check "https://getecoback.com/it/guide/miglior-condizionatore-portatile-italia.html" "tag=getecoback-21"
 
           # Canonical-URL middleware: every legacy variant must 301 to
           # https://getecoback.com/...*.html (matches canonical tags + sitemap)

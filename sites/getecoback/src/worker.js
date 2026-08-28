@@ -998,7 +998,7 @@ async function mcpCallTool(name, args, env) {
       }
       path = u.pathname;
     }
-    if (!/^\/(guide|en\/guide|kategorie)\/[a-z0-9-]+\.html$/i.test(path)) {
+    if (!/^\/(guide|en\/guide|it\/guide|kategorie)\/[a-z0-9-]+\.html$/i.test(path)) {
       return { content: [{ type: "text", text: "Bitte einen Ratgeber-Pfad angeben, z. B. /guide/klimaanlage-kippfenster.html (aus ratgeber_suche)." }], isError: true };
     }
     let html = "";

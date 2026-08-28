@@ -23,7 +23,8 @@ def visible_text(s):
 def main():
     bad = []
     files = glob.glob(os.path.join(SITE, "guide", "*.html")) + \
-            glob.glob(os.path.join(SITE, "en", "guide", "*.html"))
+            glob.glob(os.path.join(SITE, "en", "guide", "*.html")) + \
+            glob.glob(os.path.join(SITE, "it", "guide", "*.html"))
     checked = 0
     for f in sorted(files):
         s = open(f, encoding="utf-8").read()

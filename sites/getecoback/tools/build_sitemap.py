@@ -43,7 +43,7 @@ def priority_and_freq(url):
         return "1.0", "daily"
     if path == "/en/":
         return "0.7", "daily"
-    if path.startswith("/en/"):
+    if path.startswith("/en/") or path.startswith("/it/"):
         return "0.6", "weekly"
     if path.startswith("/guide/"):
         return "0.9", "weekly"
