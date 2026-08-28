@@ -702,7 +702,16 @@ DEVICE_MODELS_EN = {
  ],
  "dehum": [
    ("Comfee MDDF-20DEN7", "Best value", "Proven dehumidifier for living spaces.", "€€ · approx. €150–200", "Comfee+MDDF-20DEN7", "dehum"),
+   ("MeacoDry Arete One 20L", "Quiet & for laundry", "Manufacturer rating 20 l/day, HEPA filter and laundry mode; public tests praise it mainly for quiet running.", "€€€ · check price locally", "MeacoDry+Arete+One+20L", "dehum"),
    ("For the basement", "Continuous", "Models with a drain hose for continuous use.", "by room size", "dehumidifier+basement+drain+hose", "dehum"),
+ ],
+ # EN heater ladder (2026-08-28, with the EN qm series): same verified models as
+ # the German set — names, search terms and manufacturer claims identical, only
+ # the card copy is English.
+ "heater": [
+   ("Schmidbauer Hybrid Pro 600 W", "Small rooms", "Infrared plus convection with a stepless thermostat; the manufacturer names 6–12 m² as its range.", "€€ · check price locally", "Schmidbauer+Hybrid+Pro+600+W+Infrarotheizung", "heater"),
+   ("Schmidbauer ISP T 700 W", "Bathroom-capable", "700 W and rated by the manufacturer for damp rooms — the answer to bathroom heating without running a fan heater for hours.", "€€ · check price locally", "Schmidbauer+ISP+T+700+Infrarotheizung", "heater"),
+   ("Midea NTH20-17BR", "Fast heat", "Ceramic fan heater with two stages (1,200 / 2,000 W) — for quick warm-ups, not for continuous heating.", "€ · check price locally", "Midea+NTH20-17BR+Heizl%C3%BCfter", "heater"),
  ],
 }
 
@@ -775,12 +784,10 @@ SKIP_MODELS = {"btu-rechner", "stromkosten-rechner", "infrarotheizung-watt-rechn
                "fensterabdichtung-selber-bauen",
                "auto-bei-hitze-kuehlen", "haustier-hitze-kuehlen",
                "ventilator-mit-eis", "richtig-lueften-bei-hitze", "pc-ueberhitzt-sommer"}
-# EN qm twins (上量队列② 2026-08-28): the generated template carries its own
-# generic rec box + CTA; DEVICE_MODELS_EN has no dehum/heater card sets, and
-# models_block would fall back to the AC set — wrong products on a sizing page.
-# Until EN dehum/heater cards exist, keep the injectors off these pages.
-SKIP_MODELS |= {f"dehumidifier-{q}-sqm" for q in (10, 15, 20, 25, 30, 40)}
-SKIP_MODELS |= {f"electric-heater-{q}-sqm" for q in (10, 15, 20, 25, 30, 40, 50)}
+# EN qm twins were briefly in SKIP_MODELS on 2026-08-28 (DEVICE_MODELS_EN had
+# no heater set, and models_block falls back to AC cards). Same day the EN
+# dehum/heater card sets were added, so the injectors now serve these pages
+# the verified model ladders — the proven toppick+grid double hook.
 
 
 # --- Pages whose reader wants a real product, just not the one device_of()
@@ -1306,6 +1313,33 @@ def models_block(device, en=False, slug=None):
                "Aktuellen Preis auf Amazon prüfen. Symbolbilder. "
                f"Vorab das Wichtigste: Viele Kommunen bezuschussen Speicher mit 100–500 € — aber fast immer nur, "
                f"wenn {foerder} gestellt wird.{groesse}")
+    # Same correction for the humidity and heating families (2026-08-28, found
+    # while enabling the EN qm cards): the default sub tells a dehumidifier or
+    # heater buyer about window sealing for monoblocks — nonsense advice under
+    # these cards on 13 DE pages since the band shipped. One device-true
+    # sentence each instead.
+    if device == "dehum":
+        sub = (("Compiled from public tests & customer reviews — not tested by us. "
+                "Prices vary; check the current price on Amazon. Illustrations, not product photos. "
+                "One thing first: what matters is the litres/day rating plus a humidistat — it switches "
+                "off at the target humidity, which is where the electricity saving is. "
+                "Amazon.de ships to most EU countries, with site and checkout available in English.")
+               if en else
+               ("Aus öffentlichen Tests & Kundenbewertungen zusammengestellt — nicht selbst getestet. "
+                "Preise schwanken, aktuellen Preis auf Amazon prüfen. Symbolbilder. "
+                "Vorab das Wichtigste: Entscheidend sind Liter/Tag-Leistung und ein Hygrostat — "
+                "er schaltet bei Zielfeuchte ab, das spart am meisten Strom."))
+    if device == "heater":
+        sub = (("Compiled from public tests & customer reviews — not tested by us. "
+                "Prices vary; check the current price on Amazon. Illustrations, not product photos. "
+                "One thing first: size the wattage to the room (60–100 W per m² depending on insulation) "
+                "and let a thermostat cycle it — running flat out is the expensive mistake. "
+                "Amazon.de ships to most EU countries, with site and checkout available in English.")
+               if en else
+               ("Aus öffentlichen Tests & Kundenbewertungen zusammengestellt — nicht selbst getestet. "
+                "Preise schwanken, aktuellen Preis auf Amazon prüfen. Symbolbilder. "
+                "Vorab das Wichtigste: Watt nach Raumgröße wählen (60–100 W pro m² je nach Dämmung) "
+                "und per Thermostat takten lassen — Dauerlauf ist der teure Fehler."))
     if en and slug in CONTEXT_SUB_EN:
         head, sub = "What actually helps here", CONTEXT_SUB_EN[slug]
     elif slug in CONTEXT_SUB and not en:
