@@ -11,8 +11,10 @@ rising 对应面:trendspy 拉三站种子的 related_queries rising,分别写各
 
 架构与配额:与 fleet_trends.mjs 一样一次服务三站;但外部抓取遵守舰队「每次只抓 2
 个种子」的配额纪律(eco/SR 独立验证过的上限)——三站种子合成一个池子,按序轮换,
-每次运行只打 Google 2 次,全池 ~6 天覆盖一轮。keep-last-good、抓不到绝不伪造、
-autocomplete 作零配额兜底。沙箱对 google 出网 403,只有 runner 能抓。
+每次运行只打 Google 2 次。池子随槽位增长(2026-08-28 起 20 种子,含 eco-us/
+eco-it/probe 槽),全池覆盖一轮 ≈ 池大小÷2 天(当前 ~10 天)——单日配额纪律不变,
+只是各槽刷新变慢;某槽需要更快信号时缩池,别提配额。keep-last-good、抓不到绝不
+伪造、autocomplete 作零配额兜底。沙箱对 google 出网 403,只有 runner 能抓。
 
 诚实边界:这是**选题输入,不是选题依据**。任何由 rising 词引出的页面仍要过三门
 (尤其需求门)与各站硬内容规则;rising 词里的编造/幻名一律不落页。
@@ -45,6 +47,13 @@ FLEET = [
     # 数据要等下一次 runner 跑(沙箱对 Google 403),首轮落库前不得据此出任何页。
     {"site": "eco-us", "geo": "US", "out": "sites/getecoback/data/trends-rising-us.json",
      "seeds": ["portable air conditioner", "dehumidifier"]},
+    # eco 意大利面(2026-08-28,上量队列①意大利语试点当日上线):/it/guide/ 10 页
+    # 是按 D1 转化榜选题的翻译批,但试点此前没有任何意大利需求信号——判死线复核
+    # (2026-10-27)之前若要在试点内换题/调题,必须有 IT geo 数据而不是猜。种子同
+    # eco-us 的纪律:品类词而非型号(试点只有 10 页,型号级信号还承载不起)。
+    # 数据等 runner 首轮落库(沙箱对 Google 403),落库前不得据此出任何页。
+    {"site": "eco-it", "geo": "IT", "out": "sites/getecoback/data/trends-rising-it.json",
+     "seeds": ["condizionatore portatile", "deumidificatore"]},
     # 高费率品类扩展探针(2026-08-26,docs/highvalue-expansion-2026-08.md):不属于任何
     # 站点,只验需求——探针过线(v≥1.000 或连续两轮购买/求证意图)才进 KGR/建面流程。
     {"site": "probe-us", "geo": "US", "out": "data/probes-rising.json",
