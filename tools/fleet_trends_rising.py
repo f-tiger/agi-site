@@ -37,6 +37,14 @@ FLEET = [
      "seeds": ["artificial general intelligence", "agi timeline"]},
     {"site": "tds", "geo": "US", "out": "sites/thedollscout/content/trends-rising.json",
      "seeds": ["sex doll", "realdoll", "silicone doll"]},
+    # eco 的美国面(2026-08-28,owner:「分别扩展德国与美国不同的热点」)。此前 eco 只有
+    # 德国需求信号——sites/getecoback/tools/fetch_trends_rising.py 写死 GEO="DE",而
+    # 「按美国趋势扩展」在没有美国数据时只能靠猜,那是本站明令禁止的。故先建数据面。
+    # 种子刻意是**品类词而非型号**:eco 的美国面只有 /en/ 的 47 次真人浏览/28 天,
+    # 还不足以承载型号级选品;品类 rising 才回答「美国读者此刻在找哪一类」这个问题。
+    # 数据要等下一次 runner 跑(沙箱对 Google 403),首轮落库前不得据此出任何页。
+    {"site": "eco-us", "geo": "US", "out": "sites/getecoback/data/trends-rising-us.json",
+     "seeds": ["portable air conditioner", "dehumidifier"]},
     # 高费率品类扩展探针(2026-08-26,docs/highvalue-expansion-2026-08.md):不属于任何
     # 站点,只验需求——探针过线(v≥1.000 或连续两轮购买/求证意图)才进 KGR/建面流程。
     {"site": "probe-us", "geo": "US", "out": "data/probes-rising.json",

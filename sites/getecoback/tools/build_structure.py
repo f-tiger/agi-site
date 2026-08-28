@@ -14,7 +14,7 @@ English pages under /en/ and the standalone 404 are left untouched.
 
 Run: python3 tools/build_structure.py   (then python3 tools/build_sitemap.py)
 """
-import os, re, glob, json, html as htmllib
+import os, re, glob, json, urllib.parse, html as htmllib
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = os.path.join(ROOT, "site")
@@ -611,18 +611,30 @@ DEVICE_MODELS = {
    ("MeacoFan 1056", "Besonders leise", "Sehr leise — ideal fürs Schlafzimmer.", "€€ · ca. 90–120 €", "MeacoFan+1056", "fan"),
    ("Standventilator", "Fürs große Zimmer", "Höhenverstellbar, kräftiger Luftstrom.", "ab 30 €", "standventilator+leise", "fan"),
  ],
+ # Autumn/winter product ladders, 2026-08-28. Until today "dehum" carried one
+ # real model and "heater" carried none at all — three category labels with
+ # generic search links — while the ac ladder had eight named models. That is
+ # backwards for the season we are entering, and it runs on exactly the pattern
+ # this site's own 2026-07 competitor study called the conversion weak point
+ # (generic search box) versus what converts (named model + role label).
+ # The models added below are the ones DE rising demand actually names, each
+ # verified as a real German-market product before it was written down:
+ # meaco arete one 20l v=36.350 · midea heizlüfter v=71.400 ·
+ # schmidbauer infrarotheizung v=62.950. No ASINs, no invented prices, no test
+ # scores — by-name search links and role labels only, same as every other card.
  "dehum": [
    ("Comfee MDDF-20DEN7", "Preis-Leistung", "Bewährter Entfeuchter für Wohnräume.", "€€ · ca. 150–200 €", "Comfee+MDDF-20DEN7", "dehum"),
+   ("MeacoDry Arete One 20L", "Leise & für Wäsche", "Herstellerangabe 20 l/Tag, HEPA-Filter und Wäschetrocknungs-Modus; in öffentlichen Tests vor allem für den leisen Betrieb gelobt.", "€€€ · Preis vor Ort prüfen", "MeacoDry+Arete+One+20L", "dehum"),
    ("Für den Keller", "Dauerbetrieb", "Modelle mit Ablaufschlauch für Dauerbetrieb.", "je nach Raumgröße", "luftentfeuchter+keller+ablaufschlauch", "dehum"),
-   ("Leise fürs Schlafzimmer", "Besonders leise", "Niedriger dB-Wert für den Nachtbetrieb.", "€€", "luftentfeuchter+leise+schlafzimmer", "dehum"),
  ],
  "purifier": [
    ("Levoit (HEPA)", "Gegen Pollen", "HEPA-Filter gegen Pollen, Staub & Gerüche.", "€€ · ca. 90–160 €", "Levoit+Luftreiniger+HEPA", "purifier"),
    ("Für große Räume", "Hohe Leistung", "Höhere Filterleistung (CADR) fürs Wohnzimmer.", "€€€", "luftreiniger+gro%C3%9Fe+r%C3%A4ume+HEPA", "purifier"),
  ],
  "heater": [
-   ("Infrarotheizung", "Effizient", "Wärmt Flächen statt Luft — angenehm & sparsam.", "ab 90 €", "infrarotheizung", "heater"),
-   ("Heizlüfter", "Schnell warm", "Sofort warm für Bad & Übergangszeit.", "ab 25 €", "heizl%C3%BCfter+stromsparend", "heater"),
+   ("Schmidbauer Hybrid Pro 600 W", "Kleine Räume", "Infrarot plus Konvektion mit stufenlosem Thermostat; der Hersteller nennt 6–12 m² als Einsatzbereich.", "€€ · Preis vor Ort prüfen", "Schmidbauer+Hybrid+Pro+600+W+Infrarotheizung", "heater"),
+   ("Schmidbauer ISP T 700 W", "Auch fürs Bad", "700 W, laut Hersteller für Feuchträume geeignet — die Antwort auf „Heizung fürs Bad“, ohne Heizlüfter-Dauerlauf.", "€€ · Preis vor Ort prüfen", "Schmidbauer+ISP+T+700+Infrarotheizung", "heater"),
+   ("Midea NTH20-17BR", "Schnell warm", "Keramik-Heizlüfter mit zwei Stufen (1.200 / 2.000 W) — für kurzes Aufheizen, nicht für den Dauerbetrieb.", "€ · Preis vor Ort prüfen", "Midea+NTH20-17BR+Heizl%C3%BCfter", "heater"),
    ("Klima mit Heizfunktion", "2-in-1", "Kühlt im Sommer, heizt im Winter.", "ab 300 €", "klimaanlage+mit+heizfunktion", "ac"),
  ],
  # Balcony storage is the highest-basket category on this site — and the one
@@ -2112,6 +2124,25 @@ SHARE = ('<!--EB_SHARE--><script>(function(){'
 # else (zero CLS, zero noise), which is why it is safe on every EN guide page.
 US_TAG = "ecoback0d-20"
 
+# 2026-08-28: the bridge shipped pointing at a bare category search because we had
+# verified no US-market model. That gap is now closed for portable ACs — these
+# three are the recurring picks across named US outlets (RTINGS, NBC Select,
+# Forbes Vetted, TechGearLab), i.e. the same "compiled from public tests, not
+# tested by us" standard the German cards run on. By-name search links, no ASINs,
+# no prices, no invented test scores. Devices where we have verified nothing for
+# the US market keep the honest category link — an empty ladder is better than a
+# guessed one, and that is exactly why the EU models are not reused here.
+US_MODELS = {
+    "portable air conditioner": [
+        ("Midea Duo MAP14HS1TBL", "the dual-hose one",
+         "Dual-hose inverter — it takes its exhaust air from outside instead of from your room, which is the flaw single-hose units have. Repeatedly the overall pick in US tests."),
+        ("Whynter NEX ARC-1230WN", "for large rooms",
+         "Rated for noticeably larger rooms than the usual portable unit."),
+        ("Black+Decker BPACT14WT", "the budget pick",
+         "The common budget recommendation; US reviewers note it struggles in big or west-facing rooms."),
+    ],
+}
+
 
 def us_term(slug):
     s = slug.lower()
@@ -2127,6 +2158,33 @@ def us_term(slug):
 def usmarket_html(slug):
     term, plural = us_term(slug)
     url = f"https://www.amazon.com/s?k={term.replace(' ', '+')}&tag={US_TAG}"
+    picks = US_MODELS.get(term) or []
+    if picks:
+        rows = "".join(
+            '+\'<li style="margin:0 0 7px;"><a href="https://www.amazon.com/s?k='
+            + urllib.parse.quote_plus(name) + '&tag=' + US_TAG + '" target="_blank" '
+            'rel="sponsored noopener" style="font-weight:700;">' + name + '</a> '
+            '<span style="color:#4a5a67;">— <em>' + role + '</em>. ' + note + '</span></li>\''
+            for name, role, note in picks)
+        body = (
+            '+\'<p style="margin:0 0 8px;font-size:13.5px;color:#4a5a67;line-height:1.5;">'
+            'The units recommended below are the European models — Amazon.de prices and ships within '
+            'the EU, so they are a poor fit for you. We have not tested any of these ourselves; '
+            'these are the models US reviewers keep picking:</p>\''
+            '+\'<ul style="margin:0 0 10px 18px;font-size:13.5px;line-height:1.5;">\''
+            + rows + '+\'</ul>\''
+            '+\'<a href="' + url + '" target="_blank" rel="sponsored noopener" '
+            'style="font-size:13.5px;font-weight:700;">See all ' + plural + ' on Amazon.com →</a>\'')
+    else:
+        body = (
+            '+\'<p style="margin:0 0 10px;font-size:13.5px;color:#4a5a67;line-height:1.5;">'
+            'The units recommended below are the European models — they are what the public tests we '
+            'summarise actually cover, and Amazon.de prices and ships within the EU, so they are a poor '
+            'fit for you. We have not tested the US market, so we point you at the category rather than '
+            'name a model we cannot vouch for.</p>\''
+            '+\'<a href="' + url + '" target="_blank" rel="sponsored noopener" '
+            'style="display:inline-block;background:#f59e0b;color:#1a2733;font-weight:800;padding:10px 16px;'
+            'border-radius:8px;text-decoration:none;font-size:14px;">Browse ' + plural + ' on Amazon.com →</a>\'')
     return (
         '<!--EB_USMARKET--><div id="eb-usmarket"></div>'
         '<script>(function(){'
@@ -2138,13 +2196,7 @@ def usmarket_html(slug):
         '+\'<div style="font-size:11px;font-weight:800;color:#7a6f4e;letter-spacing:.3px;margin-bottom:6px;">'
         'Ad · affiliate link — same price for you</div>\''
         '+\'<strong style="display:block;font-size:15px;margin-bottom:4px;">Looks like you are in North America</strong>\''
-        '+\'<p style="margin:0 0 10px;font-size:13.5px;color:#4a5a67;line-height:1.5;">'
-        'The units recommended below are the European models — they are what the public tests we summarise actually cover, '
-        'and Amazon.de prices and ships within the EU, so they are a poor fit for you. '
-        'We have not tested the US market, so we point you at the category rather than name a model we cannot vouch for.</p>\''
-        '+\'<a href="' + url + '" target="_blank" rel="sponsored noopener" '
-        'style="display:inline-block;background:#f59e0b;color:#1a2733;font-weight:800;padding:10px 16px;'
-        'border-radius:8px;text-decoration:none;font-size:14px;">Browse ' + plural + ' on Amazon.com →</a>\''
+        + body +
         '+\'</div></div>\';'
         '})();</script><!--/EB_USMARKET-->\n')
 

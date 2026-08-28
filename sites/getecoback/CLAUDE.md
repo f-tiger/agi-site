@@ -285,6 +285,53 @@ llms-full.txt 的导语),以及 FAQ 问题名本身(「Was berichten **unabhäng
 且提供的代码是纯 iframe、来源链接在 noindex 框内,**即使有人嵌入也不产生反链**。
 结论:**判负,不投入,代码留着别动**(零维护成本),不要再写「优化 widget 转化」这类任务。
 
+## 按趋势扩联盟商品:德/美分开(2026-08-28,owner:「分别扩展德国与美国不同的热点」)
+
+**先纠正两个默认假设**:①**美国侧没有趋势数据**——eco 自己的 `fetch_trends_rising.py`
+写死 `GEO="DE"`,舰队 `probe-us` 的输出 `data/probes-rising.json` **从未成功写出过**,
+沙箱对 Google 403 只有 runner 能抓 → 「按美国趋势扩展」当天无数据可依,只能先建管道。
+②**「扩展」不等于建页**:对抗审计当天刚否掉 DG3(「Schimmel im Badezimmer 零覆盖」是
+只 grep 单个词造成的假空白,正确 grep 出 5 个已有页)。故本轮动作是**扩商品卡不扩页**
+——这也正是 owner 原话说的「扩展亚马逊联盟**产品**」。
+
+**真缺口(实查 `DEVICE_MODELS`)**:`ac`(夏季)**8 个具名型号**,而承载秋冬的两族
+`dehum` 只有 1 个真型号 + 2 个泛标签、`heater` **一个具名型号都没有**(三个全是泛品类
+标签)。而本站 2026-07 竞对结论恰恰是「具体型号 + 角色标签」才转化、泛搜索框是转化短板
+——秋冬两族正跑在被自己判定为弱的那个模式上,而季节正在转向它们。
+
+**DE 侧已补(型号全部先经 WebSearch 核实为德国市场真实在售,再落页)**:
+- `dehum` + **MeacoDry Arete One 20L**(rising `meaco arete one 20l` v=36.350;Geizhals/
+  Otto/meaco.de 均在售)——角色「Leise & für Wäsche」,只写厂商标称(20 l/Tag、HEPA、
+  Wäschetrocknungs-Modus)与「公开测试称赞其安静」,不写自测结论。落在 9 页,含
+  `luftentfeuchter-40-qm`(4 pv/**3 aff**,本站秋季最强转化页)与 20-qm(8 pv)。
+- `heater` 三个泛标签 → **Schmidbauer Hybrid Pro 600 W**(小房间 6–12 m²)、
+  **Schmidbauer ISP T 700 W**(厂商称适用于潮湿房间 = 接住「Heizung fürs Bad」意图)、
+  **Midea NTH20-17BR**(陶瓷 1.200/2.000 W 两档,注明适合快速升温而非长时间运行)。
+  rising 依据:`midea heizlüfter` v=71.400、`schmidbauer infrarotheizung` v=62.950。
+  落在 11 页,含七个 `heizung-N-qm` 面积页 + `heizung-40-qm`(1 aff)+ `mit-heizfunktion`(1 aff)。
+  保留 `Klima mit Heizfunktion` 作 2-in-1 交叉位。
+
+**US 侧两件**:
+1. **`EB_USMARKET` 从「只给品类」升级为具名美国型号**(仅 AC 页):**Midea Duo
+   MAP14HS1TBL**(双软管——排风取自室外而非房间,正是单管机的结构缺陷,与本站物理立场
+   直接咬合)、**Whynter NEX ARC-1230WN**(大房间)、**Black+Decker BPACT14WT**(预算档,
+   并如实写出美国评测指出的大房间/西晒短板)。依据是 RTINGS / NBC Select / Forbes Vetted /
+   TechGearLab 的重复交集,口径与德语卡一致(汇总公开测试、未自测、按名搜索、无 ASIN
+   无价格无编造评分)。**没有核实过美国型号的设备族(除湿/风扇/取暖)继续只给品类链接**
+   ——空梯子好过猜出来的梯子,这也正是欧洲型号绝不在美国面复用的原因。
+2. **补建美国需求面**:`tools/fleet_trends_rising.py` 新增 `eco-us`(geo=US,种子
+   `portable air conditioner` / `dehumidifier`,写 `data/trends-rising-us.json`)。
+   种子刻意是**品类词而非型号**:eco 的美国面 28 天只有 47 次真人浏览,还撑不起型号级
+   选品,品类 rising 才回答「美国读者此刻在找哪一类」。**配额代价如实记账:全池 16→18
+   个种子,全覆盖一轮从 ~8 天变 ~9 天。数据要等下一次 runner(沙箱 403),首轮落库前
+   不得据此出任何页。**
+
+**判定线(2026-09-25,28 天)**:①DE 秋冬具名型号卡的 `affiliate_click` ≥8(当前该两族
+28 天合计 7)→ 「具名 > 泛标签」在秋冬族同样成立,把该模式补到 `purifier`/`fan` 的泛标签位;
+<4 → 是流量不是卡片,停止在型号上投入。②`affiliate_click{source:"us-market"}` ≥5 →
+北美桥成立(此判定线本轮不变,只是内容从品类升级为型号,若仍为 0 则连型号也救不了,
+按原定撤块)。③`data/trends-rising-us.json` 首轮落库后再评估是否值得给美国面出页。
+
 ### 五、本轮改动与判定线(2026-09-25,28 天后)
 
 1. **秋季首页栏按 D1 重选**(9/1 随季节上线):原六位手选目标 28 天合计 **0 次联盟点击**
