@@ -127,6 +127,12 @@ yahoo 3 · chatgpt 2 · ecosia 1。**Google 依旧为 0**。所以秋冬的活�
 - `.github/workflows/eco-verify-asins.yml`:仅 workflow_dispatch(外部副作用不进
   push 路径),验证通过才 commit 回 main → 正常 eco 部署把该型号所有卡/pill/弹层
   从搜索链接换成 `/dp/<ASIN>?tag=getecoback-21`。
+- **结果(2026-08-28,两跑)**:run#1 空标题 → 查明是 gzip 未解压(urllib 不自动解压),
+  修复;run#2 标题解析正常但五页全部返回 `Amazon.de`——**亚马逊对 GitHub runner 的
+  数据中心 IP 出机器人拦截页**。按预先承诺停止迭代(继续换 UA = 对抗反爬,不做)。
+  **管线保留**:任何一个核验过的 ASIN 进 `MODEL_ASIN` 即全站传播;核验降级为 owner
+  的 3 分钟(五个 /dp/ 链接逐个点开确认型号,清单在会话报告里),或 owner 开 PA-API
+  (5 单已达解锁线)后永久自动化。**别再空跑这个 workflow**——每跑一次都是已知结局。
 - **实证教训(候选收集时撞到的)**:EX105 的六国通用 ASIN `B0BZWP26GD` 在
   amazon.de 标题显示的是 **PAC EX93**——程序化取 ASIN 不核验 = 把读者送错产品,
   这就是核验为什么必须在 .de 上做。
