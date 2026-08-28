@@ -113,7 +113,7 @@ Balkonkraftwerk 补贴(balkonspeicher_foerderung 工具已在,萨克森等州补
   标注「不含税费」,ok:false 不渲染零编造,埋点 strom_now 新入白名单)注入全部
   storage 页(balkonkraftwerk-ohne-bohren、growatt-probleme 等 AI 引荐落地页
   全覆盖)。Playwright 三分支(EN 热/EN 冷/strom)实测渲染零 JS 错误。
-- [ ] **⑥EN 区 US 访客市场切换(预登记 2026-08-28,次轮最高优先)**:owner 当日已把
+- [x] **⑥EN 区 US 访客市场切换(预登记并✅ 2026-08-28 当日上线)**:owner 当日已把
   getecoback.com 列入 US Associates 站点列表 → 根仓台账那条「25% 点击送错商城」
   (28 天 US 16 + GB 8 = 24/95)的 US 半边解封。**薄 PRD**:①范围 = EN 页面上
   **品类级搜索链**(qm 页 CTA、通用 category 链)对 America/* 时区访客改写为
@@ -126,6 +126,11 @@ Balkonkraftwerk 补贴(balkonspeicher_foerderung 工具已在,萨克森等州补
   America/* 时区伪装实测 + 现有 13 闸门。判定线:28 天窗内 US 国别 amazon.com
   点击 >0 且 US Associates 后台出现非零点击(owner 截图)→ 保留;US 点击继续
   全落 .de → 复盘词表映射。
+  **执行记录(2026-08-28 当日)**:`EB_USSWITCH` 注入全部 EN guide 页——精确词
+  白名单(11 个 qm 品类词)按 exact-match 改写,America/* 时区门控。Playwright
+  三场景实测:US 访客 qm 页两条品类 CTA 全部切到 amazon.com/dehumidifier+
+  ecoback0d-20、EU 访客 0 改写、US 访客具名型号页 0 改写,零 JS 错误。改写链
+  带 data-eb-ussw 标记,affiliate_click 的 link_url 落 .com = D1 判定线数据源。
 - [ ] **④Pinterest DE 管道(需 owner 一次开户)**:家居是 Pinterest 2026 第一品类,
   **官方 API 自动化明确合规**(≤25 pin/天,30-60 分钟间隔;禁浏览器机器人)。
   90 天 ≥300 pin 后 <10k 曝光或 <100 出站点击 → 杀;收到任何账号警告立即停。

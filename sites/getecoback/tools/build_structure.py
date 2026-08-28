@@ -2276,6 +2276,44 @@ STROMNOW = ('<!--EB_STROMNOW--><div id="eb-stromnow"></div>\n<script>(function()
             '})();</script><!--/EB_STROMNOW-->\n')
 
 
+# US-visitor marketplace switch on EN pages (上量队列⑥ 2026-08-28; owner added
+# getecoback.com to the US Associates site list the same day, which un-gates
+# this). 28-day D1: 24 of 95 affiliate clicks came from US+GB and went to
+# amazon.de, where those visitors realistically do not order. This rewrites
+# ONLY category-level search links, via an exact-term allowlist — a German
+# category term searched on amazon.com returns empty/garbage, so each term maps
+# to its plain English category (no spec-qualifier translation: litres→pints
+# would be inventing a conversion). Named EU model links are deliberately NOT
+# rewritten: searching "De'Longhi Pinguino" on amazon.com is a dead result, and
+# those visitors are already served named US models by the EB_USMARKET bridge.
+# GB stays unfixed (no .co.uk tag — owner side).
+USSWITCH = ('<!--EB_USSWITCH--><script>(function(){var tz="";'
+            'try{tz=Intl.DateTimeFormat().resolvedOptions().timeZone||"";}catch(e){return;}'
+            'if(tz.indexOf("America/")!==0)return;'
+            'var MAP={"luftentfeuchter":"dehumidifier",'
+            '"luftentfeuchter 10 liter":"dehumidifier","luftentfeuchter 12 liter":"dehumidifier",'
+            '"luftentfeuchter 20 liter":"dehumidifier","luftentfeuchter 25 liter":"dehumidifier",'
+            '"luftentfeuchter 30 liter":"dehumidifier",'
+            '"infrarotheizung 600 watt":"space heater","infrarotheizung 1000 watt":"space heater",'
+            '"infrarotheizung 1500 watt":"space heater","infrarotheizung 2000 watt":"space heater",'
+            '"infrarotheizung set":"space heater"};'
+            'document.querySelectorAll(\'a[href*="amazon.de/s?k="]\').forEach(function(a){'
+            'try{var u=new URL(a.href);var k=u.searchParams.get("k");if(!k)return;'
+            'var us=MAP[k.toLowerCase()];if(!us)return;'
+            'a.href="https://www.amazon.com/s?k="+encodeURIComponent(us)+"&tag=ecoback0d-20";'
+            'a.setAttribute("data-eb-ussw","1");}catch(e){}});'
+            '})();</script><!--/EB_USSWITCH-->\n')
+
+
+def inject_usswitch(html):
+    """Idempotently add the US marketplace switch on EN guide pages."""
+    if "<!--EB_USSWITCH-->" in html:
+        return re.sub(r'<!--EB_USSWITCH-->.*?<!--/EB_USSWITCH-->\n?', lambda m: USSWITCH, html, flags=re.S)
+    if "<!--EB_TRACK-->" in html:
+        return html.replace("<!--EB_TRACK-->", USSWITCH + "<!--EB_TRACK-->", 1)
+    return html
+
+
 # Nothing on this site was ever forwardable. The one moment a Raumklima page is
 # worth passing on is the moment it is genuinely hot — someone in a flat at 34 °C
 # sending "what actually helps" into a family chat is the only kind of spread this
@@ -3465,6 +3503,7 @@ def main():
             if device_of(slug) == "ac":
                 new = inject_heatnow_en(new)
             new = inject_usmarket(new, slug)
+            new = inject_usswitch(new)
             new = inject_models(new, slug, en=True)
             new = inject_sizer(new, slug, en=True)
             new = inject_toppick(new, slug, en=True)
