@@ -119,3 +119,30 @@ Google 引荐本来就是 0——别人的灾难对我们不是新损失)。
   (按地板类型/宠物/过敏),复用 EB_SIZER 的注入器模式与 MCP 暴露惯例
   (工具即 agent 可调用面,但 **Associates 链接不进工具的 API 输出**,红线不变)。
   lead-gen 层的工具就是既有 Strompreis-Radar/heizkosten-rechner,CTA 挂那里。
+
+## 六、横向复制流水线(owner 2026-08-28:「网站应该自行横向复制,规模化」)
+
+规模化的对象是**这条已验证的流水线**,不是站点数量。舰队已经付过一次「先复制
+壳、后找需求」的学费——tds(63pv/0 点击)、sourceradar(休眠)、gamesledger
+(零外部互动)全是没过需求门就实例化的复制品。所以复制流水线的第一条规则:
+
+**复制由判定线触发,不由日历触发。** 每个新垂直必须等上一个垂直过线才开工。
+
+流水线四步(全部已有机器,复制 = 实例化,不是重造):
+1. **信号**:rising 种子机制(舰队级,fleet_trends_rising.py)——新候选品类
+   先当种子收 2-4 周需求数据,零成本。当前在收:kaffeevollautomat / akku
+   staubsauger / matratze(已判死,种子保留收睡眠气候长尾)/ saugwischer。
+2. **判定**:三门 + KGR + 竞争扫描(本次 Bodenpflege/Kaffee/Matratzen 的
+   扫描方法即模板)。过门 → 薄 PRD 一页。
+3. **实例化**:eco 的机器全部是生成器层的,复制即参数化——CONTEXT_MODELS
+   (品类型号表)+ MODEL_ASIN(多源核验管线)+ EB_* 注入器(卡/工具/标识/
+   埋点)+ check_events/check_adlabel 闸门 + D1 worker + hreflang。
+   目录制垂直(如 Bodenpflege)零新基建;新域垂直(如 Kaffee)需要一次
+   wrangler+workflow 复制(有 8 个先例)。
+4. **验证线**:每个实例带预注册 28 天线(引用或浏览信号)+ 90 天线(首笔
+   联盟点击);不过线 → 冻结在 ≤3 页,机器成本归零(生成器不跑新页)。
+
+**当前排程**:复制 #1 = Bodenpflege 目录(种子数据 ~09-02 → 过门即开工,
+1 页/天);复制 #2 = Kaffee 新域(前置:#1 过 28 天线,预计最早 2026-10 中);
+复制 #3+ = 每季度 rising 扫描补一个候选。稳态节奏 ≈ **每 4-6 周一个新垂直,
+且仅当上一个活着**——这是复利,不是铺摊子。
