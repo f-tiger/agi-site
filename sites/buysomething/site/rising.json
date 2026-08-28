@@ -1,5 +1,5 @@
 {
- "fetched": "2026-08-27",
+ "fetched": "2026-08-28",
  "seeds": {
   "electric spin scrubber": {
    "auto": [
@@ -97,20 +97,38 @@
   "heatless curls": {
    "rising": [
     {
+     "q": "heatless curls with robe belt",
+     "v": 18000
+    },
+    {
+     "q": "heatless curls with tights",
+     "v": 11150
+    },
+    {
      "q": "heartless curls",
-     "v": 21350
-    },
-    {
-     "q": "kitsch xl heatless curls",
-     "v": 19950
-    },
-    {
-     "q": "do heatless curls work on curly hair",
-     "v": 10200
+     "v": 2900
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-08-27"
+   "fetched": "2026-08-28"
+  },
+  "high speed hair dryer": {
+   "rising": [
+    {
+     "q": "conair infiniti pro hair dryer",
+     "v": 170
+    },
+    {
+     "q": "xfinity high speed internet",
+     "v": 150
+    },
+    {
+     "q": "conair hair dryer",
+     "v": 40
+    }
+   ],
+   "source": "related-queries",
+   "fetched": "2026-08-28"
   }
  }
 }
