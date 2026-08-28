@@ -28,10 +28,13 @@ Deliberately NOT pinned (decision ledger, do not "complete" these):
 Run: python3 tools/verify_asins.py [--dry-run]
 Exit 0 always (a blocked fetch is a report, not a build failure).
 """
+import gzip
+import io
 import re
 import sys
 import time
 import urllib.request
+import zlib
 
 BUILD = __file__.rsplit("/", 1)[0] + "/build_structure.py"
 
@@ -56,24 +59,52 @@ UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/126.0 Safari/537.36")
 
 
-def fetch_title(asin):
+def fetch_title(asin, ua=UA):
+    """First runner attempt came back with empty titles on all five candidates:
+    urllib does not decompress, and a compressed body turns the <title> regex
+    into a no-match. Decompress by Content-Encoding, and when the title is
+    still empty, surface the headers + body head so the log says WHY instead
+    of a bare 'blocked'."""
     req = urllib.request.Request(
         f"https://www.amazon.de/dp/{asin}",
-        headers={"User-Agent": UA, "Accept-Language": "de-DE,de;q=0.9",
-                 "Accept": "text/html"})
+        headers={"User-Agent": ua, "Accept-Language": "de-DE,de;q=0.9",
+                 "Accept": "text/html,application/xhtml+xml",
+                 "Accept-Encoding": "gzip"})
     with urllib.request.urlopen(req, timeout=25) as r:
-        html = r.read(300_000).decode("utf-8", "replace")
-    m = re.search(r"<title>(.*?)</title>", html, re.S)
-    return (m.group(1).strip() if m else ""), html
+        raw = r.read(600_000)
+        enc = (r.headers.get("Content-Encoding") or "").lower()
+        ctype = r.headers.get("Content-Type") or ""
+    if "gzip" in enc:
+        try:
+            raw = gzip.GzipFile(fileobj=io.BytesIO(raw)).read(600_000)
+        except OSError:
+            pass
+    elif "deflate" in enc:
+        try:
+            raw = zlib.decompress(raw)
+        except zlib.error:
+            pass
+    html = raw.decode("utf-8", "replace")
+    m = re.search(r"<title[^>]*>(.*?)</title>", html, re.S | re.I)
+    title = re.sub(r"\s+", " ", m.group(1)).strip() if m else ""
+    if not title:
+        head = re.sub(r"\s+", " ", html[:200])
+        print(f"  [diag {asin}] enc={enc!r} ctype={ctype!r} body-head={head!r}")
+    return title, html
 
 
 def main():
     dry = "--dry-run" in sys.argv
     src = open(BUILD, encoding="utf-8").read()
     verified, failed = [], []
+    UA2 = ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 "
+           "(KHTML, like Gecko) Version/17.4 Safari/605.1.15")
     for name, asin, req, forb in CANDIDATES:
         try:
             title, html = fetch_title(asin)
+            if not title:  # one retry with a different UA before giving up
+                time.sleep(4)
+                title, html = fetch_title(asin, ua=UA2)
         except Exception as e:
             failed.append((name, asin, f"fetch error: {e}"))
             time.sleep(3)
