@@ -1,62 +1,76 @@
 {
- "category": "Heizleistung nach Raumgröße",
- "note": "Programmatische Kategorie #2: eine Seite je Raumgröße für Heizleistung (Watt). Neue Größe = Eintrag hier + `python tools/gen_heizung_qm.py`.",
- "entries": [
-  {
-   "qm": 10,
-   "watt": "600–800",
-   "wref": 700,
-   "raumtyp": "kleines Büro oder Badezimmer",
-   "suchbegriff": "infrarotheizung+600+watt",
-   "hinweis": "Für 10 m² reichen meist 600–800 W. In gut gedämmten Räumen eher weniger, im Altbau mehr."
-  },
-  {
-   "qm": 15,
-   "watt": "900–1.200",
-   "wref": 1050,
-   "raumtyp": "Arbeitszimmer oder kleines Wohnzimmer",
-   "suchbegriff": "infrarotheizung+1000+watt",
-   "hinweis": "15 m² brauchen rund 900–1.200 W — je nach Dämmung ein größeres Panel oder zwei kleine."
-  },
-  {
-   "qm": 20,
-   "watt": "1.200–1.600",
-   "wref": 1400,
-   "raumtyp": "Wohnzimmer oder Schlafzimmer",
-   "suchbegriff": "infrarotheizung+1500+watt",
-   "hinweis": "Ab 20 m² sind 1.200–1.600 W sinnvoll. Zwei Panels verteilen die Wärme oft besser als eines."
-  },
-  {
-   "qm": 25,
-   "watt": "1.500–2.000",
-   "wref": 1750,
-   "raumtyp": "größeres Wohnzimmer",
-   "suchbegriff": "infrarotheizung+2000+watt",
-   "hinweis": "25 m² benötigen 1.500–2.000 W. Bei hohen Decken oder Altbau am oberen Ende planen."
-  },
-  {
-   "qm": 30,
-   "watt": "1.800–2.400",
-   "wref": 2100,
-   "raumtyp": "offener Wohnbereich",
-   "suchbegriff": "infrarotheizung+2000+watt",
-   "hinweis": "Für 30 m² plane 1.800–2.400 W, meist auf mehrere Heizpanels verteilt."
-  },
-  {
-   "qm": 40,
-   "watt": "2.400–3.200",
-   "wref": 2800,
-   "raumtyp": "sehr großer oder offener Raum",
-   "suchbegriff": "infrarotheizung+set",
-   "hinweis": "40 m² sinnvoll nur mit mehreren Panels (2.400–3.200 W gesamt) — als alleinige Heizung im tiefen Winter grenzwertig."
-  },
-  {
-   "qm": 50,
-   "watt": "3.000–4.000",
-   "wref": 3500,
-   "raumtyp": "sehr großer offener Bereich",
-   "suchbegriff": "infrarotheizung+set",
-   "hinweis": "50 m² heizt du elektrisch nur mit mehreren Panels (3.000–4.000 W gesamt) — als Dauerlösung ist hier eine Wärmepumpe wirtschaftlicher; Infrarot bleibt Zonen-/Zusatzheizung."
-  }
- ]
+  "category": "Heizleistung nach Raumgröße",
+  "note": "Programmatische Kategorie #2: eine Seite je Raumgröße für Heizleistung (Watt). Neue Größe = Eintrag hier + `python tools/gen_heizung_qm.py`. ⚠️ gen_heizung_qm.py 是一次性脚手架:已提交的 DE 页在生成后被增补过(EB 组件/加深 FAQ/日期),重跑会把增补全部冲掉(2026-08-28 实测,git checkout 挽回)。加新尺寸时只跑新条目或手工比对,别整体重跑。_en 字段供 EN 孪生生成器使用。",
+  "entries": [
+    {
+      "qm": 10,
+      "watt": "600–800",
+      "wref": 700,
+      "raumtyp": "kleines Büro oder Badezimmer",
+      "suchbegriff": "infrarotheizung+600+watt",
+      "hinweis": "Für 10 m² reichen meist 600–800 W. In gut gedämmten Räumen eher weniger, im Altbau mehr.",
+      "raumtyp_en": "small office or bathroom",
+      "hinweis_en": "For 10 m², 600–800 W is usually enough. Well-insulated rooms need less, old buildings more."
+    },
+    {
+      "qm": 15,
+      "watt": "900–1.200",
+      "wref": 1050,
+      "raumtyp": "Arbeitszimmer oder kleines Wohnzimmer",
+      "suchbegriff": "infrarotheizung+1000+watt",
+      "hinweis": "15 m² brauchen rund 900–1.200 W — je nach Dämmung ein größeres Panel oder zwei kleine.",
+      "raumtyp_en": "home office or small living room",
+      "hinweis_en": "15 m² needs around 900–1,200 W — depending on insulation, one larger panel or two small ones."
+    },
+    {
+      "qm": 20,
+      "watt": "1.200–1.600",
+      "wref": 1400,
+      "raumtyp": "Wohnzimmer oder Schlafzimmer",
+      "suchbegriff": "infrarotheizung+1500+watt",
+      "hinweis": "Ab 20 m² sind 1.200–1.600 W sinnvoll. Zwei Panels verteilen die Wärme oft besser als eines.",
+      "raumtyp_en": "living room or bedroom",
+      "hinweis_en": "From 20 m² upwards, 1,200–1,600 W makes sense. Two panels often spread the heat better than one."
+    },
+    {
+      "qm": 25,
+      "watt": "1.500–2.000",
+      "wref": 1750,
+      "raumtyp": "größeres Wohnzimmer",
+      "suchbegriff": "infrarotheizung+2000+watt",
+      "hinweis": "25 m² benötigen 1.500–2.000 W. Bei hohen Decken oder Altbau am oberen Ende planen.",
+      "raumtyp_en": "larger living room",
+      "hinweis_en": "25 m² needs 1,500–2,000 W. With high ceilings or in an old building, plan at the upper end."
+    },
+    {
+      "qm": 30,
+      "watt": "1.800–2.400",
+      "wref": 2100,
+      "raumtyp": "offener Wohnbereich",
+      "suchbegriff": "infrarotheizung+2000+watt",
+      "hinweis": "Für 30 m² plane 1.800–2.400 W, meist auf mehrere Heizpanels verteilt.",
+      "raumtyp_en": "open-plan living area",
+      "hinweis_en": "For 30 m² plan on 1,800–2,400 W, usually spread across several heating panels."
+    },
+    {
+      "qm": 40,
+      "watt": "2.400–3.200",
+      "wref": 2800,
+      "raumtyp": "sehr großer oder offener Raum",
+      "suchbegriff": "infrarotheizung+set",
+      "hinweis": "40 m² sinnvoll nur mit mehreren Panels (2.400–3.200 W gesamt) — als alleinige Heizung im tiefen Winter grenzwertig.",
+      "raumtyp_en": "very large or open-plan room",
+      "hinweis_en": "40 m² only works with several panels (2,400–3,200 W in total) — as the sole heating in deep winter it is borderline."
+    },
+    {
+      "qm": 50,
+      "watt": "3.000–4.000",
+      "wref": 3500,
+      "raumtyp": "sehr großer offener Bereich",
+      "suchbegriff": "infrarotheizung+set",
+      "hinweis": "50 m² heizt du elektrisch nur mit mehreren Panels (3.000–4.000 W gesamt) — als Dauerlösung ist hier eine Wärmepumpe wirtschaftlicher; Infrarot bleibt Zonen-/Zusatzheizung.",
+      "raumtyp_en": "very large open area",
+      "hinweis_en": "50 m² can only be heated electrically with several panels (3,000–4,000 W in total) — as a permanent solution a heat pump is more economical here; infrared remains a zone or supplementary heater."
+    }
+  ]
 }

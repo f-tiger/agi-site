@@ -1,12 +1,66 @@
 {
   "category": "Luftentfeuchter nach Raumgröße",
-  "note": "Programmatische Kategorie #3: Entfeuchter-Kapazität (Liter/Tag) je Raumgröße. Neue Größe = Eintrag + `python tools/gen_entfeuchter_qm.py`.",
+  "note": "Programmatische Kategorie #3: Entfeuchter-Kapazität (Liter/Tag) je Raumgröße. Neue Größe = Eintrag + `python tools/gen_entfeuchter_qm.py`. ⚠️ gen_entfeuchter_qm.py 是一次性脚手架:已提交的 DE 页在生成后被增补过(EB 组件/加深 FAQ/日期),重跑会把增补全部冲掉(2026-08-28 实测,git checkout 挽回)。加新尺寸时只跑新条目或手工比对,别整体重跑。_en 字段供 EN 孪生生成器使用。",
   "entries": [
-    {"qm": 10, "liter": "10–12", "lref": 10, "raumtyp": "Bad oder kleiner Raum", "suchbegriff": "luftentfeuchter+10+liter", "hinweis": "Für 10 m² reicht meist ein 10–12-Liter-Gerät. Bei starker Feuchte (Bad, Keller) eher mehr."},
-    {"qm": 15, "liter": "12–16", "lref": 14, "raumtyp": "Schlaf- oder Arbeitszimmer", "suchbegriff": "luftentfeuchter+12+liter", "hinweis": "15 m² brauchen ca. 12–16 Liter/Tag Entfeuchtungsleistung."},
-    {"qm": 20, "liter": "16–20", "lref": 18, "raumtyp": "Wohnzimmer oder Schlafzimmer", "suchbegriff": "luftentfeuchter+20+liter", "hinweis": "Ab 20 m² sind 16–20 Liter/Tag sinnvoll, besonders in Erdgeschoss- oder Altbauwohnungen."},
-    {"qm": 25, "liter": "20", "lref": 20, "raumtyp": "größeres Wohnzimmer", "suchbegriff": "luftentfeuchter+20+liter", "hinweis": "25 m² sind mit einem 20-Liter-Gerät gut bedient."},
-    {"qm": 30, "liter": "20–25", "lref": 22, "raumtyp": "offener Wohnbereich", "suchbegriff": "luftentfeuchter+25+liter", "hinweis": "Für 30 m² plane 20–25 Liter/Tag ein, bei sehr feuchten Räumen mehr."},
-    {"qm": 40, "liter": "25–30", "lref": 28, "raumtyp": "Keller oder sehr großer Raum", "suchbegriff": "luftentfeuchter+30+liter", "hinweis": "40 m² oder feuchte Keller brauchen 25–30 Liter/Tag — hier lohnt ein kräftiges Gerät."}
+    {
+      "qm": 10,
+      "liter": "10–12",
+      "lref": 10,
+      "raumtyp": "Bad oder kleiner Raum",
+      "suchbegriff": "luftentfeuchter+10+liter",
+      "hinweis": "Für 10 m² reicht meist ein 10–12-Liter-Gerät. Bei starker Feuchte (Bad, Keller) eher mehr.",
+      "raumtyp_en": "bathroom or small room",
+      "hinweis_en": "For 10 m² a 10–12-litre unit is usually enough. With heavy moisture (bathroom, basement) go bigger."
+    },
+    {
+      "qm": 15,
+      "liter": "12–16",
+      "lref": 14,
+      "raumtyp": "Schlaf- oder Arbeitszimmer",
+      "suchbegriff": "luftentfeuchter+12+liter",
+      "hinweis": "15 m² brauchen ca. 12–16 Liter/Tag Entfeuchtungsleistung.",
+      "raumtyp_en": "bedroom or home office",
+      "hinweis_en": "15 m² needs about 12–16 litres/day of extraction capacity."
+    },
+    {
+      "qm": 20,
+      "liter": "16–20",
+      "lref": 18,
+      "raumtyp": "Wohnzimmer oder Schlafzimmer",
+      "suchbegriff": "luftentfeuchter+20+liter",
+      "hinweis": "Ab 20 m² sind 16–20 Liter/Tag sinnvoll, besonders in Erdgeschoss- oder Altbauwohnungen.",
+      "raumtyp_en": "living room or bedroom",
+      "hinweis_en": "From 20 m² upwards, 16–20 litres/day makes sense — especially in ground-floor or older buildings."
+    },
+    {
+      "qm": 25,
+      "liter": "20",
+      "lref": 20,
+      "raumtyp": "größeres Wohnzimmer",
+      "suchbegriff": "luftentfeuchter+20+liter",
+      "hinweis": "25 m² sind mit einem 20-Liter-Gerät gut bedient.",
+      "raumtyp_en": "larger living room",
+      "hinweis_en": "25 m² is well served by a 20-litre unit."
+    },
+    {
+      "qm": 30,
+      "liter": "20–25",
+      "lref": 22,
+      "raumtyp": "offener Wohnbereich",
+      "suchbegriff": "luftentfeuchter+25+liter",
+      "hinweis": "Für 30 m² plane 20–25 Liter/Tag ein, bei sehr feuchten Räumen mehr.",
+      "raumtyp_en": "open-plan living area",
+      "hinweis_en": "For 30 m² plan on 20–25 litres/day, more in very damp rooms."
+    },
+    {
+      "qm": 40,
+      "liter": "25–30",
+      "lref": 28,
+      "raumtyp": "Keller oder sehr großer Raum",
+      "suchbegriff": "luftentfeuchter+30+liter",
+      "hinweis": "40 m² oder feuchte Keller brauchen 25–30 Liter/Tag — hier lohnt ein kräftiges Gerät.",
+      "raumtyp_en": "basement or very large room",
+      "hinweis_en": "40 m² or damp basements need 25–30 litres/day — this is where a powerful unit pays off."
+    }
   ]
 }

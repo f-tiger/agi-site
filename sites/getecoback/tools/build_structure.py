@@ -713,7 +713,8 @@ def device_of(slug):
         return "storage"
     if "ventilator" in s:
         return "fan"
-    if ("luftentfeuchter" in s or "waesche-trocknen" in s or s.startswith("keller-")
+    if ("luftentfeuchter" in s or "dehumidifier" in s
+            or "waesche-trocknen" in s or s.startswith("keller-")
             or "beschlagen" in s or "taupunkt" in s
             # The RV winter-damp page is a humidity page whose slug carries none of
             # the usual tokens; without this it would fall through to "ac" and get
@@ -746,7 +747,8 @@ def device_of(slug):
     # parts its own cleaning chapter is about. klimaanlage-vs-luftkuehler keeps
     # the AC set on purpose: there it is a buying comparison, and naming cooler
     # models we have not seen endorsed anywhere would be invention.
-    if ("infrarotheizung" in s or "heizluefter" in s or s.startswith(("heizung-", "heizkosten-"))
+    if ("infrarotheizung" in s or "heizluefter" in s
+            or s.startswith(("heizung-", "heizkosten-", "electric-heater-"))
             # Tenant winter page: reversible measures, not a device page. It must
             # land in "heater" so the cooling components stay off it; its own
             # CONTEXT_MODELS overrides the card grid with the renter product set.
@@ -773,6 +775,12 @@ SKIP_MODELS = {"btu-rechner", "stromkosten-rechner", "infrarotheizung-watt-rechn
                "fensterabdichtung-selber-bauen",
                "auto-bei-hitze-kuehlen", "haustier-hitze-kuehlen",
                "ventilator-mit-eis", "richtig-lueften-bei-hitze", "pc-ueberhitzt-sommer"}
+# EN qm twins (上量队列② 2026-08-28): the generated template carries its own
+# generic rec box + CTA; DEVICE_MODELS_EN has no dehum/heater card sets, and
+# models_block would fall back to the AC set — wrong products on a sizing page.
+# Until EN dehum/heater cards exist, keep the injectors off these pages.
+SKIP_MODELS |= {f"dehumidifier-{q}-sqm" for q in (10, 15, 20, 25, 30, 40)}
+SKIP_MODELS |= {f"electric-heater-{q}-sqm" for q in (10, 15, 20, 25, 30, 40, 50)}
 
 
 # --- Pages whose reader wants a real product, just not the one device_of()

@@ -90,9 +90,18 @@ Balkonkraftwerk 补贴(balkonspeicher_foerderung 工具已在,萨克森等州补
   复校:全部型号/数字逐条溯源到源页,零新造;判死线复核日 = **2026-10-27**
   (60 天),口径:Bing 曝光(owner Bing WMT)+ D1 referrer AI 引荐 + /it/ 页
   affiliate_click。
-- [ ] **②秋季 pSEO 补英文面**:qm 系列(entfeuchter/heizung)已有德语,Bing 的
+- [x] **②秋季 pSEO 补英文面(✅ 2026-08-28 上线 13 页)**:qm 系列(entfeuchter/heizung)已有德语,Bing 的
   字面匹配偏好正是 qm 页的结构红利;补 EN 版(单模板),硬门:每页 ≥3 个独立数据点
   (post-HCU 生存线)。判死线:新批次 45 天 Bing 收录率 <30% → 停止加系列,先修收录。
+  **执行记录(2026-08-28)**:`gen_entfeuchter_qm_en.py`(6 页 dehumidifier-X-sqm)+
+  `gen_heizung_qm_en.py`(7 页 electric-heater-X-sqm),读**同一份** content JSON
+  (数字单一来源,只加 `_en` 文案字段);每页数据点:阶梯值 + 60–100 W/m² 或
+  <60% RH 阈值 + €/h 成本 + 透明季度公式 + 全系列阶梯表(互链)。de↔en hreflang
+  组自动成对。**判死线复核日 = 2026-10-12**(45 天,Bing 收录率口径,owner Bing WMT)。
+  ⚠️ 两个教训:①DE gen_* 是一次性脚手架,重跑会冲掉已提交页的后续增补
+  (当日实测,git checkout 挽回;JSON note 已记);②device_of 补 "dehumidifier"/
+  "electric-heater-" EN token 时,顺带修出一个存量缺陷——EN drying-clothes 页一直被
+  归为 ac,页顶挂着 AC toppick+BTU 制冷 sizer,本轮起改为除湿机组件。
 - [ ] **③AI 引荐页六件套改造**:D1 里 AI 引荐落地 TOP3 页(tilt-and-turn/
   kippfenster/balkonkraftwerk-ohne-bohren)补判定页六件套。判死线:连续两次月度
   Bing AI Performance 拉取该页类 0 引用 → 记反面发现停投。
