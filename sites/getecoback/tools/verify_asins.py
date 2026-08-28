@@ -1,0 +1,111 @@
+#!/usr/bin/env python3
+"""Resolve the MODEL_ASIN table against live amazon.de product pages — on a
+GitHub runner, which (unlike the session sandbox) has egress to amazon.de.
+
+Why this exists: docs/amazon-asin-howto.md calls the search-page→product-page
+switch "the only big lever that is not additional traffic" (40/40 measured
+affiliate clicks landed on a search page; every extra step roughly halves
+conversion). The table sat empty for 15 days because filling it was specced as
+a 10-minute owner task. This closes the loop without the owner and without
+fabrication: an ASIN candidate ships ONLY if the live amazon.de page for it
+carries the exact model tokens in its <title>. A candidate that fails, or a
+bot-check/consent interstitial, leaves the model on its search link — the
+site's honest fallback — and says so in the log.
+
+Candidates were collected 2026-08-28 from web search (marketplace listings /
+promo redirectAsin params); provenance per row below. Verification here is the
+gate, the search results are only the lead.
+
+Deliberately NOT pinned (decision ledger, do not "complete" these):
+- AEG ChillFlex Pro         — a variant FAMILY (AXP26/34/35…); the site's card
+  names no sub-model, so pinning one would be an editorial claim never made.
+- Midea PortaSplit          — the classic (B0D3PP64JS) is the exact unit the
+  ausverkauft page is about, and the shelf now holds three same-name siblings
+  (Cool / -E / classic); the search page is the honest landing for a reader.
+- Rowenta VU5690, MeacoFan 1056 — fans; season over, near-zero click value.
+- Marstek / Anker storage   — energy section demoted 2026-08-26, no new spend.
+
+Run: python3 tools/verify_asins.py [--dry-run]
+Exit 0 always (a blocked fetch is a report, not a build failure).
+"""
+import re
+import sys
+import time
+import urllib.request
+
+BUILD = __file__.rsplit("/", 1)[0] + "/build_structure.py"
+
+# (model name exactly as in MODEL_ASIN, candidate ASIN, required title tokens,
+#  forbidden title tokens)  — token match is case-insensitive substring.
+CANDIDATES = [
+    # amazon.de listing found via six-marketplace family; the .de title in
+    # search results showed "PACEX93" — expected to FAIL here. Kept as a
+    # candidate so the live page, not a search snippet, makes the call.
+    ("De'Longhi Pinguino PAC EX105", "B0BZWP26GD", ["ex105"], ["ex93"]),
+    # amazon.de promo page carried redirectAsin=B07KJYD1ZP for this model
+    ("Comfee MPPH-09CRN7", "B07KJYD1ZP", ["mpph-09crn7"], []),
+    # amazon.de direct listing
+    ("De'Longhi PAC N90 ECO Silent", "B07NC5CP6F", ["n90"], []),
+    # amazon.de direct listing (Anthracite, 12000BTU/h)
+    ("Klarstein Kraftwerk Smart 12K", "B08VWSP8FW", ["kraftwerk", "12000"], []),
+    # amazon.de direct listing; -WF is the WiFi sibling, a different product
+    ("Comfee MDDF-20DEN7", "B07KJX6RDK", ["mddf-20den7"], ["-wf", "20den7-wf"]),
+]
+
+UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+      "(KHTML, like Gecko) Chrome/126.0 Safari/537.36")
+
+
+def fetch_title(asin):
+    req = urllib.request.Request(
+        f"https://www.amazon.de/dp/{asin}",
+        headers={"User-Agent": UA, "Accept-Language": "de-DE,de;q=0.9",
+                 "Accept": "text/html"})
+    with urllib.request.urlopen(req, timeout=25) as r:
+        html = r.read(300_000).decode("utf-8", "replace")
+    m = re.search(r"<title>(.*?)</title>", html, re.S)
+    return (m.group(1).strip() if m else ""), html
+
+
+def main():
+    dry = "--dry-run" in sys.argv
+    src = open(BUILD, encoding="utf-8").read()
+    verified, failed = [], []
+    for name, asin, req, forb in CANDIDATES:
+        try:
+            title, html = fetch_title(asin)
+        except Exception as e:
+            failed.append((name, asin, f"fetch error: {e}"))
+            time.sleep(3)
+            continue
+        t = title.lower()
+        if not title or "roboter" in t or "robot check" in t or "captcha" in t:
+            failed.append((name, asin, f"blocked/interstitial (title: {title[:60]!r})"))
+        elif any(x in t for x in forb):
+            failed.append((name, asin, f"forbidden token in title: {title[:90]!r}"))
+        elif all(x in t for x in req):
+            verified.append((name, asin, title[:90]))
+        else:
+            failed.append((name, asin, f"required tokens {req} not in title: {title[:90]!r}"))
+        time.sleep(3)  # politeness: five product pages, one-shot run
+
+    for name, asin, title in verified:
+        pat = re.escape(f'"{name}": "') + r'[A-Z0-9]*"'
+        new_src, n = re.subn(pat, f'"{name}": "{asin}"', src)
+        if n == 1:
+            src = new_src
+            print(f"VERIFIED  {name} -> {asin}  ({title})")
+        else:
+            print(f"SKIP      {name}: MODEL_ASIN entry not found in build_structure.py")
+    for name, asin, why in failed:
+        print(f"KEPT-SEARCH-LINK  {name} ({asin}): {why}")
+
+    if verified and not dry:
+        open(BUILD, "w", encoding="utf-8").write(src)
+        print(f"\nwrote {len(verified)} verified ASIN(s) into MODEL_ASIN")
+    elif not verified:
+        print("\nno candidate verified — MODEL_ASIN unchanged, all search links intact")
+
+
+if __name__ == "__main__":
+    main()

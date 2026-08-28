@@ -1,0 +1,45 @@
+# One-shot, dispatch-only: resolve eco's MODEL_ASIN table against live
+# amazon.de product pages (the runner has egress; the session sandbox does
+# not). External side-effects never ride the push path (fleet Actions rule),
+# and this fetches five product pages once — not a schedule.
+#
+# On verified matches it commits build_structure.py back to main, which
+# triggers the normal eco deploy: every card/pill/exit-prompt for a verified
+# model switches from an amazon.de search link to its /dp/ product page with
+# the same affiliate tag. Zero verified matches = zero commit = site unchanged.
+name: eco verify ASINs (manual, one-shot)
+
+on:
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: eco-verify-asins
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Guard — always operate on main's tip
+        run: |
+          git fetch origin main -q && git reset --hard origin/main
+      - name: Verify candidate ASINs against live amazon.de titles
+        working-directory: sites/getecoback
+        run: python3 tools/verify_asins.py
+      - name: Commit verified ASINs (deploy fires via the normal eco path)
+        run: |
+          if git diff --quiet sites/getecoback/tools/build_structure.py; then
+            echo "no verified ASINs — nothing to commit"
+            exit 0
+          fi
+          git config user.name "Claude"
+          git config user.email "noreply@anthropic.com"
+          git add sites/getecoback/tools/build_structure.py
+          git commit -m "feat(eco): runner-verified ASINs into MODEL_ASIN — search links become product links" -m "Each ASIN was verified this run against its live amazon.de product page title (tools/verify_asins.py); candidates that failed stay on their honest search links. The deliberate keep-as-search-link ledger (AEG family, PortaSplit, fans) is in the script header."
+          git pull --rebase --autostash origin main
+          git push
