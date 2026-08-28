@@ -23,7 +23,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = os.path.join(ROOT, "site")
 
 BLOCKS = ["EB_TOPPICK", "EB_MODELS", "EB_STICKY", "EB_POPUP",
-          "EB_HERBST", "EB_SIZER", "EB_RISING_RAIL"]
+          "EB_HERBST", "EB_SIZER", "EB_RISING_RAIL", "EB_USMARKET"]
 # German pages must carry a German marker, English pages an English one.
 LABELS = ("Anzeige", "Werbung", ">Ad<", "Ad ·")
 

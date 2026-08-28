@@ -41,6 +41,14 @@ invest_tool_click、tds affiliate_click(D1 hits 表 ev 列;链路 2026-08-19 上
   who-is-leopold-aschenbrenner 阅读清单(3 本书,search 链接)同日上线。
   **owner 待办(1 分钟,保佣金有效性)**:US Associates 后台的站点列表需包含
   thedollscout.com 与 agiscorecard.com——Amazon 条款要求列出投放站点,未列可致佣金作废。
+  **✅ 2026-08-28 owner 已完成站点列表**(后台截图:`ecoback0d-20` 的 Websites 列表现含
+  www.getecoback.com + agiscorecard.com + thedollscout.com,"Websites and Mobile Apps updated")。
+  **US 侧仍有付款侧待办(不挡投放)**:后台红条「Der Hauptkontoinhaber muss die Steuerdaten
+  vollständig ausfüllen」——US 账号税务信息未填完,佣金会累计但付不出来,与 DE 侧那条同类。
+  US 账号 30 天当前 0 点击/$0.00,符合预期(eco 的 EN 链接此前全部指向 .de)。
+  **DE 台账刷新(截图,30 天窗 07-29→08-27)**:佣金 **€10,26**(上次 €9,96)、**125 点击**、
+  **10 单**、转化 **8,00%**(上次 4,20%,翻倍)、下单额 €473,08、已发货 9、退货 0。
+  下方原始记录保留为背景:
   **2026-08-28 追加 getecoback.com 到同一待办,并且它现在是舰队最大的单笔钱线缺陷**:
   eco 的 EN 区 318 处联盟链接 100% 是 amazon.de/getecoback-21,而 28 天里
   **US 16 次 + GB 8 次 = 24 次 affiliate_click(占 eco 全部 95 次的 25%)**

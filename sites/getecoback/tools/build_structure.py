@@ -1365,7 +1365,12 @@ CLIMATE_BOX = (
     '</div>'
     '<p style="margin:0 0 10px;font-size:14px;color:#4a4335;"><strong>Was daraus folgt — und was nicht.</strong> '
     'Ein Klimagerät löst das Klimaproblem nicht, es verbraucht zusätzlich Strom; ehrlicher ist die Reihenfolge '
-    '<a href="/guide/wohnung-kuehlen-ohne-klimaanlage.html" style="color:#0f6ba8;">erst beschatten und lüften</a>, '
+    # /guide/wohnung-kuehlen-ohne-klimaanlage.html has never existed — this anchor
+    # 404'd on all 55 pages carrying the block, three of them in the site's top six.
+    # The anchor promises two things, so it now points at the two pages that
+    # actually deliver them instead of one page that delivers neither.
+    'erst <a href="/guide/hitzeschutz-fenster.html" style="color:#0f6ba8;">beschatten</a> und '
+    '<a href="/guide/richtig-lueften-bei-hitze.html" style="color:#0f6ba8;">lüften</a>, '
     'dann kühlen, und den Verbrauch <a href="/guide/klimaanlage-stromkosten.html" style="color:#0f6ba8;">'
     'vorher durchrechnen</a>. Was sich aber jedes Jahr wiederholt: In der Welle sind die guten Geräte innerhalb '
     'weniger Tage vergriffen oder teurer. Wer <em>vor</em> der Welle entscheidet, hat die Auswahl — das ist der '
@@ -2085,6 +2090,77 @@ SHARE = ('<!--EB_SHARE--><script>(function(){'
          '};})();</script><!--/EB_SHARE-->\n')
 
 
+# North-American readers on the EN pages are the one segment the amazon.de
+# contract genuinely fails. 28 days, /en/ pages: US 16 + CA 2 affiliate clicks
+# into a store that will not serve them. The EU-English readers this section was
+# actually designed for (IT/ES/NL/PT/AT/CH — amazon.de ships the EU and offers an
+# English checkout) are served correctly and are deliberately left alone.
+#
+# The naive fix — repoint the EN links at amazon.com with the US tag — was
+# rejected on evidence (2026-08-28): the units these pages recommend (Comfee
+# MPPH-09CRN7, AEG ChillFlex Pro, De'Longhi Pinguino PAC EX105, Klarstein
+# Kraftwerk, MeacoFan 1056) are European-market models, so a .com search for them
+# returns nothing. Sending a US reader into an empty search is worse than today,
+# and quietly swapping a named model card for a generic .com search would be a
+# bait-and-switch. So this block says the true thing instead: these are the
+# European models, they will not reach you, here is the right store for your
+# market — and it links a category, not a specific model we have not verified is
+# sold there.
+#
+# The signal is the browser's own timezone: device-local, nothing is sent
+# anywhere to obtain it, and it needs no consent. Renders nothing for everyone
+# else (zero CLS, zero noise), which is why it is safe on every EN guide page.
+US_TAG = "ecoback0d-20"
+
+
+def us_term(slug):
+    s = slug.lower()
+    if any(k in s for k in ("dehumidif", "damp", "musty", "mold", "mould", "drying-clothes", "humid")):
+        return "dehumidifier", "dehumidifiers"
+    if "fan" in s:
+        return "tower fan", "tower fans"
+    if any(k in s for k in ("heater", "heating", "radiator")):
+        return "space heater", "space heaters"
+    return "portable air conditioner", "portable air conditioners"
+
+
+def usmarket_html(slug):
+    term, plural = us_term(slug)
+    url = f"https://www.amazon.com/s?k={term.replace(' ', '+')}&tag={US_TAG}"
+    return (
+        '<!--EB_USMARKET--><div id="eb-usmarket"></div>'
+        '<script>(function(){'
+        'var el=document.getElementById("eb-usmarket");if(!el)return;'
+        'var tz="";try{tz=Intl.DateTimeFormat().resolvedOptions().timeZone||"";}catch(e){return;}'
+        'if(tz.indexOf("America/")!==0)return;'
+        'el.innerHTML=\'<div style="max-width:1000px;margin:10px auto 0;padding:0 20px;">\''
+        '+\'<div style="background:#fff8ed;border:1px solid #f3ddc0;border-radius:12px;padding:14px 16px;">\''
+        '+\'<div style="font-size:11px;font-weight:800;color:#7a6f4e;letter-spacing:.3px;margin-bottom:6px;">'
+        'Ad · affiliate link — same price for you</div>\''
+        '+\'<strong style="display:block;font-size:15px;margin-bottom:4px;">Looks like you are in North America</strong>\''
+        '+\'<p style="margin:0 0 10px;font-size:13.5px;color:#4a5a67;line-height:1.5;">'
+        'The units recommended below are the European models — they are what the public tests we summarise actually cover, '
+        'and Amazon.de prices and ships within the EU, so they are a poor fit for you. '
+        'We have not tested the US market, so we point you at the category rather than name a model we cannot vouch for.</p>\''
+        '+\'<a href="' + url + '" target="_blank" rel="sponsored noopener" '
+        'style="display:inline-block;background:#f59e0b;color:#1a2733;font-weight:800;padding:10px 16px;'
+        'border-radius:8px;text-decoration:none;font-size:14px;">Browse ' + plural + ' on Amazon.com →</a>\''
+        '+\'</div></div>\';'
+        '})();</script><!--/EB_USMARKET-->\n')
+
+
+def inject_usmarket(html, slug):
+    """Idempotently add the North-America market notice. EN guide pages only."""
+    blk = usmarket_html(slug)
+    if "<!--EB_USMARKET-->" in html:
+        return re.sub(r'<!--EB_USMARKET-->.*?<!--/EB_USMARKET-->\n?', lambda m: blk, html, flags=re.S)
+    if "<!--EB_MODELS-->" in html:
+        return html.replace("<!--EB_MODELS-->", blk + "<!--EB_MODELS-->", 1)
+    if "<!--/EB_TRUST-->" in html:
+        return html.replace("<!--/EB_TRUST-->", "<!--/EB_TRUST-->\n" + blk, 1)
+    return html
+
+
 def inject_share(html):
     """Idempotently expose window.ebShare. Renders nothing on its own."""
     if "<!--EB_SHARE-->" in html:
@@ -2713,7 +2789,8 @@ TRACK = ('<!--EB_TRACK--><script>(function(){'
          'document.addEventListener("click",function(e){'
          'var a=e.target&&e.target.closest&&e.target.closest(\'a[href*="amazon."]\');'
          'if(!a){surf="";return;}'
-         'surf=a.closest("#eb-herbst")?"home-herbst":'
+         'surf=a.closest("#eb-usmarket")?"us-market":'
+         'a.closest("#eb-herbst")?"home-herbst":'
          'a.hasAttribute("data-eb-tp")?"toppick":'
          'a.closest("#eb-models")?"models":'
          'a.closest("#eb-ac-finder")?"ac-finder":'
@@ -2741,8 +2818,15 @@ TRACK = ('<!--EB_TRACK--><script>(function(){'
          # an affiliate_click was just reported — one click is never counted twice.
          'document.addEventListener("click",function(e){'
          'var a=e.target.closest&&e.target.closest(\'a[href*="amazon."]\');if(!a)return;'
+         # The capture-phase listener above has already worked out which component
+         # the link sits in; this fallback used to throw that away and stamp every
+         # click "inline", so any block without its own handler was invisible in
+         # the funnel — it reported the default even for links the tracker had just
+         # identified. Use the computed surface, keep "inline" only as the genuine
+         # fallback, and carry link_url so the 500 ms de-duplication can compare
+         # actual URLs instead of two blanks.
          'setTimeout(function(){if(+new Date()-lastAff<500)return;'
-         'if(window.gtag)gtag("event","affiliate_click",{source:"inline",page:location.pathname});},0);'
+         'if(window.gtag)gtag("event","affiliate_click",{source:surf||"inline",page:location.pathname,link_url:a.href});},0);'
          '});})();</script><!--/EB_TRACK-->')
 
 
@@ -3066,6 +3150,7 @@ def main():
             title = h1(new) or slug
             url = canonical(new) or f"https://getecoback.com/en/guide/{slug}.html"
             new = inject_crumb_trust(new, "klimaanlagen", title, url, en=True)
+            new = inject_usmarket(new, slug)
             new = inject_models(new, slug, en=True)
             new = inject_sizer(new, slug, en=True)
             new = inject_toppick(new, slug, en=True)

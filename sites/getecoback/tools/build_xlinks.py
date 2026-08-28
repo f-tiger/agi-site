@@ -49,6 +49,13 @@ def block(series_key, qm):
     for j in (i - 1, i + 1):
         if 0 <= j < len(SIZES):
             q2 = SIZES[j]
+            # SIZES is the union across series, but not every series has every
+            # size — the dehumidifier ladder stops at 40 m², so the 40 m² page
+            # was linking a 50 m² page that does not exist. The cross-category
+            # branch below has always checked this; the adjacent-size branch
+            # never did.
+            if not os.path.exists(os.path.join(GUIDE, s["slug"].format(qm=q2) + ".html")):
+                continue
             links.append((f"/guide/{s['slug'].format(qm=q2)}.html",
                           s["label"].format(qm=q2) + " →"))
     # same size, other series (cross-category)

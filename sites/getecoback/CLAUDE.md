@@ -218,7 +218,36 @@ EN 区 **318 处联盟链接 100% 是 amazon.de + getecoback-21**(grep 逐条确
 ——不是转化差,是把人送进了他基本不会下单的商城。按已确认的 €9,96/119 clicks 口径,
 这 25% 是**不需要任何新流量就能拿回的营收**。
 
-**为什么本轮不自行切换**:美国站 tag `ecoback0d-20` 已由 owner 确认归属(根仓台账),
+**✅ 悬置已解除并已落地(2026-08-28 当日,owner 出示后台截图)**:`ecoback0d-20` 的站点列表
+已含 www.getecoback.com。但**简单换 tag 的做法被证据否掉了**——本页推荐的
+Comfee MPPH-09CRN7、AEG ChillFlex Pro、De'Longhi Pinguino PAC EX105、Klarstein、
+MeacoFan 1056 **全是欧洲市场型号**(实搜:MPPH-09CRN7 只在 amazon.com.be 等欧洲站),
+在 amazon.com 搜它们**返回空**。把美国读者送进空搜索比现状更糟;把一张写着具体型号的卡
+悄悄换成 .com 的泛品类搜索则是挂羊头卖狗肉。
+
+**落地的是说实话的版本 `EB_USMARKET`**(27 个 EN guide 页,DE 页 0):仅当浏览器时区为
+`America/*` 时渲染(设备本地信号,不发任何请求、无需同意;其余读者零渲染零 CLS),
+内容如实说明「下面是欧洲型号、amazon.de 不适合你、我们没测过美国市场所以只给品类不点名型号」,
+并给一条 amazon.com 品类搜索(按页面设备映射 portable air conditioner / dehumidifier /
+tower fan / space heater)+ `ecoback0d-20` + 广告标识。**EU-English 读者(IT/ES/NL/PT/AT/CH)
+是本区当初的设计对象,amazon.de 对他们正确,一个字没动。**
+Chromium 实测:America/New_York 与 America/Toronto 渲染(217px,广告标识在位,
+rel="sponsored noopener",链接带 US tag);Europe/Berlin 与 Europe/Madrid **零渲染 0px**;
+无页面错误。
+
+**顺带修好的埋点缺陷(全站,不止本块)**:EB_TRACK 的兜底监听器把捕获阶段刚算出的组件
+来源丢掉、给每一次点击硬编码 `source:"inline"`,所以任何没有自带追踪器的区块在漏斗里
+都是隐形的。改为用已算出的 surface(`"inline"` 仅作真正兜底)并带上 `link_url`(500ms 去重
+从此能比对真实 URL 而不是两个空串)。**双计数回归实测**:btu-rechner(自带追踪器)、
+strompreis-radar(无)、最高流量的 midea 页、EN 头部页,四页各点一次**均恰好 1 条**
+affiliate_click,来源分别为 body / toppick / toppick / toppick——不再是清一色 inline。
+
+**判定线(2026-09-25,28 天)**:`affiliate_click{source:"us-market"}` ≥5 → 北美桥成立,
+再考虑给它配真正的美国型号(需先验证在售,不得编造);0 → 北美读者不接受品类页,
+撤掉此块,并把结论记下:EN 区就是给 EU-English 读者的。
+
+下方为决策当时的原始记录(背景保留):
+**为什么当时不自行切换**:美国站 tag `ecoback0d-20` 已由 owner 确认归属(根仓台账),
 tds 已在用;但 Amazon Associates 条款要求**账号后台的站点列表包含投放站点**,
 getecoback.com 未列——**未列就切,佣金可被判无效**,那是比现在更坏的结果。且根仓
 「高价值品类扩展」条已明确:改 EN 区商城属于**契约变更**,须先改契约再动。
