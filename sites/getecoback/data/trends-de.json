@@ -1,48 +1,53 @@
 {
  "ok": true,
- "fetched": "2026-08-27",
+ "fetched": "2026-08-28",
  "source": "https://trends.google.com/trending/rss?geo=DE",
- "matched": [],
+ "matched": [
+  {
+   "title": "sturm",
+   "traffic": "5000+"
+  }
+ ],
  "top": [
   {
-   "title": "wahlarena sachsen anhalt",
-   "traffic": "20000+"
+   "title": "sturm",
+   "traffic": "5000+"
   },
   {
-   "title": "eugen polanski",
-   "traffic": "200+"
+   "title": "wasser",
+   "traffic": "2000+"
   },
   {
-   "title": "meyer werft",
-   "traffic": "100+"
+   "title": "düsseldorf – stuttgart ii",
+   "traffic": "2000+"
   },
   {
-   "title": "siegfried mazet",
-   "traffic": "100+"
-  },
-  {
-   "title": "luca hänni",
+   "title": "wisdom mike",
    "traffic": "500+"
   },
   {
-   "title": "linienbus",
+   "title": "commonwealth",
    "traffic": "200+"
   },
   {
-   "title": "ivy league",
+   "title": "wisła płock – korona kielce",
    "traffic": "200+"
   },
   {
-   "title": "madeleine von schweden",
+   "title": "verdi",
+   "traffic": "200+"
+  },
+  {
+   "title": "feine sahne fischfilet tour 2027",
    "traffic": "100+"
   },
   {
-   "title": "märtha louise von norwegen",
+   "title": "ту-95",
    "traffic": "100+"
   },
   {
-   "title": "rbb24",
-   "traffic": "200+"
+   "title": "liebe braucht meer",
+   "traffic": "100+"
   }
  ],
  "history": [
@@ -87,6 +92,12 @@
   {
    "d": "2026-08-27",
    "matched": []
+  },
+  {
+   "d": "2026-08-28",
+   "matched": [
+    "sturm"
+   ]
   }
  ]
 }
