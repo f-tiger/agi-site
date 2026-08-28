@@ -114,6 +114,31 @@ yahoo 3 · chatgpt 2 · ecosia 1。**Google 依旧为 0**。所以秋冬的活�
    `kühlt ein luftentfeuchter`,v=41.950)。刻意**不加构建日期**:build_xlinks 每次部署都跑,
    日期戳只会让 diff 天天变而不说明任何关于内容的事实。
 
+### ASIN 直链管线(2026-08-28,owner「针对舰队优化，提升营收」)
+
+舰队营收盘点后的收敛结论:**全舰队唯一验证过「点击→钱」全链路的就是本站**,而本站
+文档自己判定的最大无需新流量杠杆(`docs/amazon-asin-howto.md`:40/40 点击落搜索页,
+每多一步转化减半)卡在「owner 的 10 分钟」上 15 天。现已把这 10 分钟自动化:
+
+- `tools/verify_asins.py`:候选 ASIN(WebSearch 收集,来源注在行内)在 **GitHub
+  runner 上**(有出网)逐个访问 amazon.de 真实产品页,**标题含必需型号 token 且不含
+  禁用 token 才回写** `MODEL_ASIN`;被 robot-check/同意页拦截或不匹配 → 保持搜索链接
+  并如实报告。**核验是闸门:错 ASIN 把读者带去错产品,比搜索链接更糟。**
+- `.github/workflows/eco-verify-asins.yml`:仅 workflow_dispatch(外部副作用不进
+  push 路径),验证通过才 commit 回 main → 正常 eco 部署把该型号所有卡/pill/弹层
+  从搜索链接换成 `/dp/<ASIN>?tag=getecoback-21`。
+- **实证教训(候选收集时撞到的)**:EX105 的六国通用 ASIN `B0BZWP26GD` 在
+  amazon.de 标题显示的是 **PAC EX93**——程序化取 ASIN 不核验 = 把读者送错产品,
+  这就是核验为什么必须在 .de 上做。
+- **主动保持搜索链接的台账(别再「补全」它们)**:AEG ChillFlex Pro(变体家族,
+  站内从未指定子型号)· Midea PortaSplit(经典款正是 ausverkauft 页那台,货架上
+  现有三个同名兄弟款,搜索页对读者更诚实)· 两款风扇(季节已过)· 储能(板块已降级)。
+- **PA-API 已达解锁条件**(需 3 单,现有 5 单)——это owner 侧的永久自动化路径,
+  只在下次 PartnerNet 截图时顺带提一次,不催。
+- **判定口径**:D1 看不到成交,判据在 PartnerNet——下次 owner 贴月度截图时,对比
+  click→order 转化率 vs 基线 **4.20%**(2026-07-26→08-24 窗口)。dp 直链的预期方向
+  是转化率升、点击数不变。
+
 ### 两条判定线的口径修正(必须在十月前定死,否则事后可以两头解释)
 
 - **十月线**:原文「10 月 aff_click ≥ 8 月的 50%」没有分母。D1 里**没有 2026-08-05 之前的
