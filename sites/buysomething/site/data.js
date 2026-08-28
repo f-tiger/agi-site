@@ -344,9 +344,9 @@ const PRODUCTS = [
     freightMode: "Air-friendly · featherweight",
     season: "Year-round; Q4 stocking-stuffer spike",
     orderBy: "Any month",
-    risks: "Ad-competition is far past the saturation threshold — treat as a cash-cow: ride organic content, keep zero ad budget, no new SKU investment.",
+    risks: "Ad-competition is far past the saturation threshold — treat as a cash-cow: ride organic content, keep zero ad budget, no new SKU investment. The rising-query mix (trendspy, fetched 2026-08-27) sharpens where that organic content has to land: the single largest rising term is the MISSPELLING \"heartless curls\" (21,350), the second is brand-locked \"kitsch xl heatless curls\" (19,950), and the third is an objection — \"do heatless curls work on curly hair\" (10,200). Read together: the format's demand is being captured by one incumbent brand and by shoppers who cannot spell the category, so an unbranded generic inherits little of it by default.",
     whyHot: "8–12× spread on a featherweight no-cert product — best cash-flow starter SKU on this list.",
-    buyerTip: "Satin > silk-claims: test colorfastness; dark satin bleeding onto pillowcases is the 1-star pattern."
+    buyerTip: "Satin > silk-claims: test colorfastness; dark satin bleeding onto pillowcases is the 1-star pattern. Second, answer the hair-type question on the listing itself — \"does it work on curly hair\" is a top-3 rising query (10,200, 2026-08-27), i.e. the dominant buyer doubt. We take no position on whether it works on any given hair type; the point is that unanswered fit doubt is what converts into returns."
   },
   {
     id: "hair-dryer",

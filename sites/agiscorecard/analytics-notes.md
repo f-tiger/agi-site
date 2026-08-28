@@ -951,3 +951,64 @@ itch 累计 `play_start ≥150` 且 `solve ≥25` 才继续投游戏线。
 **对照(同 28 天,为什么游戏线只能降级而不是加倍)**:eco 676 次浏览 → **95 次
 affiliate 点击**(唯一已验证的收入路径);gridlings 46 次开局 → **0 订阅、0 收入事件、
 0 次 AI 引用**(`subs` 表 0 行)。
+
+## 2026-08-28 日结 — 一个我自己踩进去的读数陷阱(必须先记这条)
+
+**`slidein_show` 28 天 404 次这个数字是错的,别再引用它。** 我今天就是照着它开始设计
+改动的,直到按 location 拆开才发现:**404 里有 332 次(82%)根本不是本站的**——它们是
+**Compass 子站**(compass.agiscorecard.com)的弹层,路径是 `/en/tools/portfolio/`、
+`/en/vs/amd-vs-meta/` 这类 Compass 页面。而且其中 **326/332 是 `ua_class='bot'`**。
+
+Compass 往主站 D1 写事件**是设计如此**(OPT-LOG:267:它的弹层把订阅地址收进主站
+`subscribers` 表,location `compass_popup`)——**问题不在于它写,而在于两个产品共用
+`slidein_show` 这一个事件名,读表的人没有任何提示。**
+
+**本站自己的滑入面板真实漏斗(28 天):**
+
+| | |
+|---|---|
+| `slidein_show`(仅本站:timer 25 + scroll 14 + 8-17 前 legacy 33) | **72** |
+| → `subscribe_click{slidein_*}` | **0** |
+| → `sub_open` | **0**(3 次 sub_open 全部来自 footer_cta 2 + post_scorecard 1) |
+
+72 次曝光 0 转化**还不足以判死这个面板**:若真实转化率 2%,P(72 次全空)=0.98^72≈23%,
+这是个很可能的空。**所以今天不动它的文案**——那会是拿噪声当信号,正是站规反对的。
+
+**读数纪律(以后每次读这张表都必须做):**
+```sql
+-- 本站自己的事件:排除 Compass 的跨站行
+SELECT name, COUNT(*) FROM events
+WHERE day > date('now','-28 days')
+  AND location IS NOT 'compass_popup'
+  AND path NOT LIKE '/en/%'          -- Compass 的英文路径前缀
+GROUP BY name;
+```
+**跨仓契约(待办,不在本仓)**:Compass(aistock 仓)的弹层应改用 `compass_slidein_show`
+这个独立事件名;在它改之前,本仓每一次读数都必须带上面这个过滤。
+**我原本想加一列 `origin_host` 从源头分开,ALTER TABLE 被权限闸门挡下(生产库 DDL,
+这个闸门是合理的)。** 需要 owner 批准才做;不做也不阻塞——按 location 已经可分。
+
+## 其余今日一手数字(28 天,已按上面口径去污)
+
+- **`index_click{*_live}` = 0。** 全站 `index_click` 只有 3 行:`directory` 2、`hero` 1,
+  **没有任何一行是 `*_live`**。三个高引用页(sa-summary / what-is-agi / oom-explained)
+  的首屏活数字钩子自 08-16 上线以来 **12 天零点击**。预注册判定日是 **08-30(还有 2 天)**,
+  我不提前结算;但按目前数据,那天的结论几乎确定是「引用是纯品牌资产,不换点击」,
+  届时按指令**停止再加钩子**。
+- **agent MCP 调用仍为 0。** `site_search{location='mcp'}` 的 2 行(08-18)是
+  **MCP 生态信誉扫描器**(标签 `mcp-reputation-scanner-canary` + `tool:sunwatch_ledger`,
+  `ua_class='bot'`,两次相隔 133 毫秒),analytics-notes:881 早已判定不是真实 agent。
+  **不算里程碑。**
+- **订阅:`subscribers` 共 2 行,全部 `status='stored'`**(footer_cta 08-14、
+  post_scorecard 08-19)——NO-API 模式下 stored 是正常态,不是故障。距上一个订阅
+  已 9 天。09-30 证伪线口径 sub_ok 累计 **2/5**。
+- 本站事件人机分列:human 834 / bot 186。
+
+## 引用放大队列:**两项均被前置条件卡住,不是空**
+
+- `datacenter-grid-cost-tracker` — 前置:9 月上旬 Bing 明细确认 capex 页引用仍在涨。**今天没有 9 月数据 → 不动工。**
+- `eu-ai-act-de` — 前置:英文版 28 天判定线先过(首个 AI 引用或进站内 TOP10)。**未过 → 不动工。**
+
+按站规「队列空了不要为凑数塞猜的选题」,同理适用于「被卡住」:**今天不新造选题**。
+下个月 1-3 日向 owner 要 Bing AI Performance 两张明细后才能补货。
+
