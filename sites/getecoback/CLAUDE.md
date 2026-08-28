@@ -64,6 +64,19 @@ Balkonkraftwerk 补贴(balkonspeicher_foerderung 工具已在,萨克森等州补
 现成判定题材)。每篇必须复用已验证的 toppick+inline 双钩模式。判定线:
 新线首篇上线 28 天内 affiliate_click ≥5 → 续做;否则冬季只保新鲜度。
 
+## 三层营收架构(2026-08-28,owner「调研商业营收方向」+「AI 时代…突破性方案」)
+
+**执行文档 = 根仓 `docs/revenue-strategy-2026-08-28.md`,本节只放本站义务。**
+本站被定为舰队营收旗舰:①Amazon 商品联盟(现有,ASIN 直链等 owner 3 分钟)
+②能源/供暖 lead-gen(Check24 €16.50-20/lead 级,**挂既有页,不新建能源页**,
+阻塞项=owner 注册联盟账号)③Bodenpflege 新垂直(经空气质量桥接入,**动工前置=
+rising 种子出需求数据且 v≥200**,saugwischer 种子 08-28 已补,首轮全量 ~09-02)。
+分发假设:AI 引用第一(第一方证据:25 次 AI 助手引荐全落在高转化问题页)、
+Bing/DDG 第二、Google 最后。**合规红线:Associates 链接永不进 MCP/API/AI 输出面。**
+**保险丝:引用队列爬虫任何时候不设价不屏蔽。**
+判定线:GEO×联盟扩页 2026-11-30;lead CTA+60 天首条 lead;Bodenpflege 入口页
++28 天;Matratzen 利基已判死(只留睡眠气候长尾作普通选题);Kaffee 2026-11 复议。
+
 ## 联盟点击诊断(2026-08-27,owner「eco增加联盟点击」)——**瓶颈是流量,不是转化**
 
 先把分母修对,再谈优化。ua_class 列从 08-23 才有,之前的行是 NULL;`/__ci_healthcheck`

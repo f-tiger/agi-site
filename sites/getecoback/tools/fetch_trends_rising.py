@@ -15,10 +15,14 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "data", "trends-rising.json")
 # 2026-08-26 v2 品类补研(docs/amazon-category-strategy-2026-08.md):+3 个 6%/5% 带
 # 高客单候选(kaffeevollautomat €18-72/单、akku staubsauger €12-36、matratze €12-30)。
-# 9 seeds × 2/日 ≈ 4,5 天全覆盖;rising 数据先证需求,快反规则再决定建页。
+# 10 seeds × 2/日 = 5 天全覆盖;rising 数据先证需求,快反规则再决定建页。
+# saugwischer added 2026-08-28: the niche scan found Nass-Trockensauger is the
+# rising sub-segment of Bodenpflege (Tineco/Dreame duopoly press wave), and the
+# "akku staubsauger" seed does not capture those queries. 10 seeds × 2/day = 5-day
+# full coverage.
 SEEDS = ["luftentfeuchter", "heizlüfter", "balkonkraftwerk",
          "klimaanlage", "schimmel entfernen", "infrarotheizung",
-         "kaffeevollautomat", "akku staubsauger", "matratze"]
+         "kaffeevollautomat", "akku staubsauger", "matratze", "saugwischer"]
 GEO = "DE"
 TIMEFRAME = "today 3-m"
 GAP_S = 60
