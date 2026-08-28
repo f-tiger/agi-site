@@ -651,7 +651,9 @@ DEVICE_MODELS = {
  "storage": [
    ("Zendure SolarFlow 800 Pro", "Sweet Spot 1,9 kWh", "1,92 kWh — genau die Größe, die unser Rechner für ein 800-Watt-Balkonkraftwerk empfiehlt. TÜV-zertifiziert.", "1,92 kWh · Preis vor Ort prüfen", "Zendure+SolarFlow+800+Pro", "battery"),
    ("Anker Solarbank 3 E2700 Pro", "Obergrenze der Empfehlung", "2,7 kWh — mehr rechnet sich an 800 Watt selten. Ausgereifte App und passende Smart Plugs aus einer Hand.", "2,7 kWh · ca. 370 €/kWh", "Anker+Solarbank+3+E2700", "battery"),
-   ("EcoFlow STREAM", "Alles integriert", "Speicher, Wechselrichter und Steckdosen-Steuerung als ein System — rund 1,9 kWh.", "ca. 1,9 kWh · Preis vor Ort prüfen", "EcoFlow+STREAM+Balkonkraftwerk+Speicher", "battery"),
+   # EcoFlow removed 2026-08-28 — owner instruction: do not recommend EcoFlow
+   # products. Sitewide rule, recorded in CLAUDE.md; the storage ladder keeps
+   # four models, which still spans the 1,6-5,1 kWh range the pages discuss.
    ("Anker Solarbank 2 E1600 Pro", "Kleinste sinnvolle Größe", "1,6 kWh mit vier MPPT-Eingängen — reicht meist, wenn du tagsüber zu Hause bist, und lässt sich später erweitern.", "1,6 kWh · Preis vor Ort prüfen", "Anker+Solix+Solarbank+2+E1600+Pro", "battery"),
    ("Marstek Venus E", "Nur wenn es mehr als Balkon ist", "5,12 kWh zum niedrigsten Preis pro Kilowattstunde 2026 — aber rund doppelt so viel Kapazität, wie sich an einem 800-Watt-Balkonkraftwerk rechnet. Sinnvoll mit Dachanlage oder hohem Abendverbrauch.", "5,12 kWh · ca. 215 €/kWh", "Marstek+Venus+E+Balkonkraftwerk+Speicher", "battery"),
  ],
@@ -1176,7 +1178,6 @@ MODEL_PROCON = {
     # comparisons the price bands come from.
     "Marstek Venus E": ("Mit Abstand günstigster Preis pro kWh", "Für ein Balkonkraftwerk meist überdimensioniert"),
     "Anker Solarbank 3 E2700 Pro": ("Reifes Ökosystem, gute App", "Teurer pro kWh, Cloud für den vollen Funktionsumfang"),
-    "EcoFlow STREAM": ("Speicher, Wechselrichter & Steuerung aus einem System", "Weniger modular als die Konkurrenz"),
     "Zendure SolarFlow 800 Pro": ("Passende Größe zum kleinsten Gesamtpreis", "Höherer Preis pro kWh als große Speicher"),
     "Anker Solarbank 2 E1600 Pro": ("Vier MPPT-Eingänge, später erweiterbar", "1,6 kWh sind knapp, wenn tagsüber niemand da ist"),
 }

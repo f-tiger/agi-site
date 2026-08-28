@@ -285,6 +285,17 @@ llms-full.txt 的导语),以及 FAQ 问题名本身(「Was berichten **unabhäng
 且提供的代码是纯 iframe、来源链接在 noindex 框内,**即使有人嵌入也不产生反链**。
 结论:**判负,不投入,代码留着别动**(零维护成本),不要再写「优化 widget 转化」这类任务。
 
+## 品牌黑名单:EcoFlow(2026-08-28,owner:「不推荐ecoflow产品」)
+
+**全站规则,任何轮次不得回流**:不推荐任何 EcoFlow 产品。已清除三处:
+①`DEVICE_MODELS["storage"]` 卡片 + 优缺点表(7 个能源页的注入产物随重建清零);
+②`balkonkraftwerk-speicher-nachruesten` 正文的价格档列表项(整条删除);
+③`balkonspeicher-rechner` 计算器 ≤2 kWh 档的推荐 → 换为 **Zendure SolarFlow 800 Pro**
+(1,92 kWh,本就是站内 storage 梯子的「Sweet Spot」位,与档位一致)。
+重建后 `grep -ri ecoflow site/` = **0 处**;计算器三档 Chromium 实测全部正确
+(≤1 泛搜索 / ≤2 Zendure / 2,7 Anker),零页面错误。
+**新增内容自查项:出现 EcoFlow 即违规。**
+
 ## 全面优化轮:品类扩到流量所在(2026-08-28,owner:「全面优化,扩展联盟品类,获取更多点击」)
 
 **先修正一个会误导后续轮次的读数**:「11 页 191 pv 只有 5 次点击」大部分是**测量伪影**——
