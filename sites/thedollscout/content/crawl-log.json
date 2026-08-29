@@ -1,9 +1,9 @@
 {
   "zone": "thedollscout.com",
-  "updated": "2026-08-28",
+  "updated": "2026-08-29",
   "window": {
-    "since": "2026-08-25T18:49:47.931Z",
-    "until": "2026-08-28T18:49:47.931Z"
+    "since": "2026-08-26T12:44:37.043Z",
+    "until": "2026-08-29T12:44:37.043Z"
   },
   "days": {
     "2026-08-16": {
@@ -440,22 +440,59 @@
           "(unclassified)": 39
         }
       }
+    },
+    "2026-08-29": {
+      "Googlebot": {
+        "total": 49,
+        "redirectShare": 10,
+        "verified": {
+          "Search Engine Crawler": 49
+        }
+      },
+      "Bingbot": {
+        "total": 54,
+        "redirectShare": 26,
+        "verified": {
+          "Search Engine Crawler": 54
+        }
+      },
+      "GPTBot": {
+        "total": 86,
+        "redirectShare": 0,
+        "verified": {
+          "AI Crawler": 28,
+          "(unclassified)": 58
+        }
+      },
+      "ClaudeBot": {
+        "total": 30,
+        "redirectShare": 0,
+        "verified": {
+          "(unclassified)": 30
+        }
+      },
+      "PerplexityBot": {
+        "total": 32,
+        "redirectShare": 0,
+        "verified": {
+          "(unclassified)": 32
+        }
+      }
     }
   },
   "latest": {
     "Googlebot": {
-      "total": 62,
+      "total": 49,
       "byStatus": {
-        "200": 39,
-        "301": 18,
-        "308": 2,
-        "404": 3
+        "200": 43,
+        "301": 4,
+        "308": 1,
+        "404": 1
       },
       "verified": {
-        "Search Engine Crawler": 46,
-        "(unclassified)": 16
+        "Search Engine Crawler": 49
       },
-      "redirectShare": 32,
+      "redirectShare": 10,
       "paths": [
         {
           "path": "/robots.txt",
@@ -463,12 +500,22 @@
           "count": 14
         },
         {
-          "path": "/robots.txt",
-          "status": 301,
-          "count": 5
+          "path": "/guides/height-weight",
+          "status": 200,
+          "count": 4
         },
         {
-          "path": "/env.json",
+          "path": "/data/",
+          "status": 200,
+          "count": 4
+        },
+        {
+          "path": "/payment-protection",
+          "status": 200,
+          "count": 4
+        },
+        {
+          "path": "/robots.txt",
           "status": 301,
           "count": 4
         },
@@ -478,19 +525,9 @@
           "count": 3
         },
         {
-          "path": "/data/",
+          "path": "/js/search.js",
           "status": 200,
-          "count": 3
-        },
-        {
-          "path": "/guides/height-weight",
-          "status": 200,
-          "count": 3
-        },
-        {
-          "path": "/payment-protection",
-          "status": 200,
-          "count": 3
+          "count": 2
         },
         {
           "path": "/img/card-tpe.svg",
@@ -513,17 +550,7 @@
           "count": 2
         },
         {
-          "path": "/guides/height-weight.html",
-          "status": 308,
-          "count": 2
-        },
-        {
-          "path": "/wp/.env",
-          "status": 301,
-          "count": 2
-        },
-        {
-          "path": "/js/config.js",
+          "path": "/js/main.js",
           "status": 200,
           "count": 1
         },
@@ -533,48 +560,13 @@
           "count": 1
         },
         {
+          "path": "/js/config.js",
+          "status": 200,
+          "count": 1
+        },
+        {
           "path": "/js/share.js",
           "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/faq",
-          "status": 301,
-          "count": 1
-        },
-        {
-          "path": "/faq",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/web.config",
-          "status": 301,
-          "count": 1
-        },
-        {
-          "path": "/awsconfiguration.json",
-          "status": 301,
-          "count": 1
-        },
-        {
-          "path": "/actuator/configprops",
-          "status": 301,
-          "count": 1
-        },
-        {
-          "path": "/.env.prod",
-          "status": 301,
-          "count": 1
-        },
-        {
-          "path": "/.well-known/security.txt",
-          "status": 301,
-          "count": 1
-        },
-        {
-          "path": "/.well-known/security.txt",
-          "status": 404,
           "count": 1
         },
         {
@@ -583,58 +575,46 @@
           "count": 1
         },
         {
-          "path": "/graphql",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/graphql",
-          "status": 301,
-          "count": 1
-        },
-        {
-          "path": "/after-you-order",
-          "status": 200,
+          "path": "/guides/height-weight.html",
+          "status": 308,
           "count": 1
         }
       ]
     },
     "Bingbot": {
-      "total": 72,
+      "total": 54,
       "byStatus": {
-        "200": 44,
-        "301": 9,
+        "200": 40,
         "304": 3,
-        "308": 16
+        "308": 11
       },
       "verified": {
-        "Search Engine Crawler": 65,
-        "(unclassified)": 7
+        "Search Engine Crawler": 54
       },
-      "redirectShare": 39,
+      "redirectShare": 26,
       "paths": [
         {
           "path": "/legal/terms",
           "status": 200,
-          "count": 4
+          "count": 5
         },
         {
-          "path": "/config.yml",
-          "status": 301,
-          "count": 4
-        },
-        {
-          "path": "/cost-calculator",
+          "path": "/guides/",
           "status": 200,
           "count": 3
         },
         {
-          "path": "/checklist",
+          "path": "/sitemap.xml",
+          "status": 304,
+          "count": 3
+        },
+        {
+          "path": "/importing/australia",
           "status": 200,
           "count": 3
         },
         {
-          "path": "/robots.txt",
+          "path": "/importing/singapore",
           "status": 200,
           "count": 3
         },
@@ -649,14 +629,9 @@
           "count": 3
         },
         {
-          "path": "/sitemap.xml",
-          "status": 304,
-          "count": 3
-        },
-        {
-          "path": "/guides/",
+          "path": "/cost-calculator",
           "status": 200,
-          "count": 2
+          "count": 3
         },
         {
           "path": "/legal/terms.html",
@@ -669,27 +644,7 @@
           "count": 2
         },
         {
-          "path": "/importing/australia",
-          "status": 200,
-          "count": 2
-        },
-        {
-          "path": "/importing/singapore",
-          "status": 200,
-          "count": 2
-        },
-        {
-          "path": "/weight/",
-          "status": 200,
-          "count": 2
-        },
-        {
-          "path": "/mcp",
-          "status": 200,
-          "count": 2
-        },
-        {
-          "path": "/scam-check",
+          "path": "/feed.xml",
           "status": 200,
           "count": 2
         },
@@ -699,12 +654,12 @@
           "count": 2
         },
         {
-          "path": "/guides/discreet-shipping",
+          "path": "/checklist",
           "status": 200,
           "count": 2
         },
         {
-          "path": "/importing/canada",
+          "path": "/scam-check",
           "status": 200,
           "count": 2
         },
@@ -719,17 +674,37 @@
           "count": 1
         },
         {
-          "path": "/feed.xml",
-          "status": 200,
-          "count": 1
-        },
-        {
           "path": "/weight/150cm.html",
           "status": 308,
           "count": 1
         },
         {
+          "path": "/weight/",
+          "status": 200,
+          "count": 1
+        },
+        {
+          "path": "/robots.txt",
+          "status": 200,
+          "count": 1
+        },
+        {
           "path": "/guides/care-cleaning",
+          "status": 200,
+          "count": 1
+        },
+        {
+          "path": "/mcp",
+          "status": 200,
+          "count": 1
+        },
+        {
+          "path": "/importing/germany",
+          "status": 200,
+          "count": 1
+        },
+        {
+          "path": "/quiz",
           "status": 200,
           "count": 1
         },
@@ -744,6 +719,21 @@
           "count": 1
         },
         {
+          "path": "/scam-check.html",
+          "status": 308,
+          "count": 1
+        },
+        {
+          "path": "/guides/discreet-shipping",
+          "status": 200,
+          "count": 1
+        },
+        {
+          "path": "/importing/canada",
+          "status": 200,
+          "count": 1
+        },
+        {
           "path": "/faq",
           "status": 200,
           "count": 1
@@ -752,97 +742,20 @@
           "path": "/payment-protection.html",
           "status": 308,
           "count": 1
-        },
-        {
-          "path": "/importing/germany",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/quiz",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/robots.txt",
-          "status": 301,
-          "count": 1
-        },
-        {
-          "path": "/checklist.html",
-          "status": 308,
-          "count": 1
-        },
-        {
-          "path": "/scam-check.html",
-          "status": 308,
-          "count": 1
-        },
-        {
-          "path": "/guides/torso-vs-full-size.html",
-          "status": 308,
-          "count": 1
-        },
-        {
-          "path": "/amplifyconfiguration.json",
-          "status": 301,
-          "count": 1
-        },
-        {
-          "path": "/",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/mcp.html",
-          "status": 308,
-          "count": 1
-        },
-        {
-          "path": "/guides/discreet-shipping.html",
-          "status": 308,
-          "count": 1
-        },
-        {
-          "path": "/importing/canada.html",
-          "status": 308,
-          "count": 1
-        },
-        {
-          "path": "/importing/japan",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/",
-          "status": 301,
-          "count": 1
-        },
-        {
-          "path": "/env.js",
-          "status": 301,
-          "count": 1
-        },
-        {
-          "path": "/actuator/env",
-          "status": 301,
-          "count": 1
         }
       ]
     },
     "GPTBot": {
-      "total": 75,
+      "total": 86,
       "byStatus": {
-        "200": 6,
-        "301": 10,
-        "308": 1,
+        "200": 28,
         "404": 58
       },
       "verified": {
-        "AI Crawler": 3,
-        "(unclassified)": 72
+        "AI Crawler": 28,
+        "(unclassified)": 58
       },
-      "redirectShare": 15,
+      "redirectShare": 0,
       "paths": [
         {
           "path": "/sitemap.xml",
@@ -850,9 +763,109 @@
           "count": 3
         },
         {
-          "path": "/config.js",
-          "status": 301,
+          "path": "/js/analytics.js",
+          "status": 200,
           "count": 2
+        },
+        {
+          "path": "/guides/first-time-buyer",
+          "status": 200,
+          "count": 2
+        },
+        {
+          "path": "/data/",
+          "status": 200,
+          "count": 2
+        },
+        {
+          "path": "/js/photos.js",
+          "status": 200,
+          "count": 2
+        },
+        {
+          "path": "/guides/factory-photos",
+          "status": 200,
+          "count": 1
+        },
+        {
+          "path": "/checklist",
+          "status": 200,
+          "count": 1
+        },
+        {
+          "path": "/payment-protection",
+          "status": 200,
+          "count": 1
+        },
+        {
+          "path": "/js/share.js",
+          "status": 200,
+          "count": 1
+        },
+        {
+          "path": "/guides/care-cleaning",
+          "status": 200,
+          "count": 1
+        },
+        {
+          "path": "/",
+          "status": 200,
+          "count": 1
+        },
+        {
+          "path": "/weight/",
+          "status": 200,
+          "count": 1
+        },
+        {
+          "path": "/js/search.js",
+          "status": 200,
+          "count": 1
+        },
+        {
+          "path": "/feed.xml",
+          "status": 200,
+          "count": 1
+        },
+        {
+          "path": "/img/card-silicone.svg",
+          "status": 200,
+          "count": 1
+        },
+        {
+          "path": "/js/config.js",
+          "status": 200,
+          "count": 1
+        },
+        {
+          "path": "/guides/what-a-doll-costs",
+          "status": 200,
+          "count": 1
+        },
+        {
+          "path": "/legal/terms",
+          "status": 200,
+          "count": 1
+        },
+        {
+          "path": "/img/card-tpe.svg",
+          "status": 200,
+          "count": 1
+        },
+        {
+          "path": "/guides/tpe-vs-silicone",
+          "status": 200,
+          "count": 1
+        },
+        {
+          "path": "/css/main.css",
+          "status": 200,
+          "count": 1
+        },
+        {
+          "path": "/price-check",
+          "status": 200,
+          "count": 1
         },
         {
           "path": "/@fs/var/www/html/.env",
@@ -980,12 +993,12 @@
           "count": 1
         },
         {
-          "path": "/instance/config.py",
+          "path": "/gcp-service-account.json",
           "status": 404,
           "count": 1
         },
         {
-          "path": "/gcp-service-account.json",
+          "path": "/instance/config.py",
           "status": 404,
           "count": 1
         },
@@ -1043,131 +1056,19 @@
           "path": "/.env~",
           "status": 404,
           "count": 1
-        },
-        {
-          "path": "/config/aws.php",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/config.php.bak",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/actuator/mappings",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/uploads../.env",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/.env.docker",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/@fs/root/.aws/sso/cache/",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/docker-compose.yml",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/config/sendgrid.env",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/@fs/proc/1/environ",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/api/config",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/.env.backup",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/api/v2/config",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/.docker/config.json",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/metrics",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/back/.env",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/.anthropic/config.json",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/firebase-credentials.json",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/api/v1/env",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/@fs/app/terraform.tfvars",
-          "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/@fs/app/service-account.json",
-          "status": 404,
-          "count": 1
         }
       ]
     },
     "ClaudeBot": {
-      "total": 37,
+      "total": 30,
       "byStatus": {
-        "200": 1,
-        "301": 6,
         "404": 30
       },
       "verified": {
-        "(unclassified)": 37
+        "(unclassified)": 30
       },
-      "redirectShare": 16,
+      "redirectShare": 0,
       "paths": [
-        {
-          "path": "/.env.test",
-          "status": 301,
-          "count": 2
-        },
-        {
-          "path": "/backend/.env",
-          "status": 301,
-          "count": 2
-        },
         {
           "path": "/.azure/accessTokens.json",
           "status": 404,
@@ -1317,44 +1218,22 @@
           "path": "/@fs/app/terraform.tfstate",
           "status": 404,
           "count": 1
-        },
-        {
-          "path": "/guides/discreet-shipping",
-          "status": 301,
-          "count": 1
-        },
-        {
-          "path": "/key.json",
-          "status": 301,
-          "count": 1
-        },
-        {
-          "path": "/guides/discreet-shipping",
-          "status": 200,
-          "count": 1
         }
       ]
     },
     "PerplexityBot": {
-      "total": 39,
+      "total": 32,
       "byStatus": {
-        "200": 3,
-        "301": 4,
         "404": 32
       },
       "verified": {
-        "(unclassified)": 39
+        "(unclassified)": 32
       },
-      "redirectShare": 10,
+      "redirectShare": 0,
       "paths": [
         {
           "path": "/sendgrid/.env",
           "status": 404,
-          "count": 2
-        },
-        {
-          "path": "/js/analytics.js",
-          "status": 301,
           "count": 2
         },
         {
@@ -1505,31 +1384,6 @@
         {
           "path": "/creds.json",
           "status": 404,
-          "count": 1
-        },
-        {
-          "path": "/js/analytics.js",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/js/main.js",
-          "status": 200,
-          "count": 1
-        },
-        {
-          "path": "/app/.env",
-          "status": 301,
-          "count": 1
-        },
-        {
-          "path": "/feed.xml",
-          "status": 301,
-          "count": 1
-        },
-        {
-          "path": "/feed.xml",
-          "status": 200,
           "count": 1
         }
       ]
