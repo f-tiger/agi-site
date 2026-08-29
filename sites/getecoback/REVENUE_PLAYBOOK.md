@@ -44,6 +44,21 @@
    - `build_structure.py && build_sitemap.py && build_feed.py` → commit/push → CI 部署+IndexNow 自动推送
 2. **KGR 页内链回货币页**：每篇 KGR 页正文链 1–2 个对比/预算货币页（把长尾流量导向高转化页），货币页是成交主力，KGR 页是流量入口。
 3. **候选队列**（写完补充）：
+   - **竞品逆向调研(2026-08-29,owner「分析同类型站点…亚马逊品牌更大,不注册别的网站」)**:
+     用本站钱词真实 SERP 反查出同生态位集:smart-home-fox.de(最可学——单品类
+     场景切片:schlafzimmer/mietwohnung/leise/ohne-abluftschlauch/mini + **单型号
+     Test 页**(midea-portasplit-test)+ **品牌 hub**(comfee-geräte)+ SW-Testsieger
+     引流页)、luftentfeuchter-guide/-berater(单品类双子)、luftbewusst.de(资讯型,
+     商业面弱)、homeandsmart.de(大站)。**本站模型集与 2026 SERP 共识完全吻合**
+     (PortaSplit/Pinguino/Klarstein/AEG/Comfee)——选品无缺口,缺的是页型:
+     ①单型号 test/erfahrungen 页(最高购买意图,eco 只有 PortaSplit 3 页集群,
+     Pinguino/Comfee 零专页)②品牌 hub ③SW-rider(灰,缓)。
+   - 已写:**Pinguino PAC EX105 Test-Überblick**(2026-08-29,pinguino-pac-ex105-test.html;
+     KGR=绿:首屏利基站+聚合器+一家手机壳店,无 SW 无大媒体;一手源=ETM Testmagazin
+     A+++ 报道外链;63dB Turbo/55dB Raummitte/36kg/无密封套件 均标注「öffentliche
+     Tests」;340 BTU 规则定位 15–25 m²;四情境替代表全挂联盟链)。
+     **后续候选(同型,过三门后逐日做)**:comfee-mpph-09crn7-test、klarstein-kraftwerk-12k-test、
+     aeg-chillflex-pro-test;品牌 hub 等单型号页出信号再定。
    - 已写：Coolizi Coolzy Faktencheck（2026-08-29，coolizi-erfahrungen.html；需求=rising v≈23.600；SERP=与 EpiCooler 同一批评测农场域名占满首屏(tomorrow-focus 两个产品都推,可证)、无任何独立测试=差异化成立；物理不可能主张逐条对表(「无排气管降温 7–8 °C」「分子级纳米滤芯」)；与真品 Close Comfort Coolzy-Pro 的名称混淆单独成节；变现=诚实替代(Comfee dp/Pinguino/风扇)；蚕食检查:ohne-abluftschlauch 页仅一句提及,已互链）
    - 候选：Air Zuma Faktencheck（rising v≈14.650,同一农场家族;等 coolizi 页 28 天出信号再决定是否复制,避免同型页连发稀释）
    - ⚠️ 台账教训（2026-08-29）：infrarotheizung-garage 已于 08-26 在线(rising v≈44.050 已被消化),本轮差点重写覆盖——**动笔前先 ls/grep 查重是硬步骤**,generator 冲掉增补页与手写覆盖同型事故,一天内两次未遂。

@@ -9,7 +9,8 @@ US 侧(ecoback0d-20)佣金会累计但**不会支付**,直到填完。昨日起 
 美国访客切到 amazon.com(28 天窗里 US+GB 点击占 eco 全部的 25%),这条不填,
 新增的 US 佣金全部悬空。DE 侧同类红条同理(那边已在累计 €10,26)。
 
-## 2. 🔥 Klimaworld.com + Elektroflachheizung Shop 联盟申请(~10 分钟)——**同一流量 >2× 佣金**
+## ~~2. Klimaworld + Elektroflachheizung 联盟申请~~ —— **已撤回(2026-08-29 owner:「亚马逊品牌更大,不是再去注册别的网站」)**
+变现聚焦 Amazon Associates,不再建议注册其他联盟网络。原杠杆分析留档备查:
 秋冬主力是 Infrarotheizung 线(heizung-qm 阶梯 + garage 页 + Schmidbauer 卡,
 schmidbauer 搜索热度 rising v≈63k)。Amazon 家电佣金 3–4,5%;这两家专营店联盟
 挂 **10%**。同样的读者、同样的点击,佣金翻倍以上。申请通过后我来切链接。
@@ -20,7 +21,8 @@ GA4 显示 google 自然流量从 12 → 0(与 Google 2026-08-18 Spam Update 时
 顺手把 sitemap.xml 提交 + 对新页点几次「请求编入索引」。Bing Webmaster 同理
 (ChatGPT 走 Bing 索引,是本站第一引用渠道的闸门)。
 
-## 4. 📌 Pinterest 商业账号开户(~5 分钟)——解锁上量队列④
+## ~~4. Pinterest 商业账号开户~~ —— **已撤回(同上,不注册新平台)**
+上量队列④随之冻结。原分析留档:
 家居是 Pinterest 2026 第一品类;官方 API 自动化合规(≤25 pin/天)。开户 + 给我
 API 凭据(走 Secrets,不入库),管道我来建。90 天判死线已预登记。
 
