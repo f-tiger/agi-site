@@ -80,6 +80,31 @@
    - 已弃：Ventilator mit Wasserkühlung sinnvoll（vergleich.org/expertentesten/home&smart 占满首屏，红海）
 4. **每轮开头仍先测量**（site: 收录 / 部署绿 / 信号邮件），有真实信号立即切到诊断表对应动作，没有就继续铺 KGR。
 
+## 顶级联盟站对标矩阵(2026-08-29,owner「对标优秀联盟站,还缺哪些,热门产品也缺」)
+
+**最受欢迎联盟站(按被引用/被模仿度)**:全球模式标杆 = Wirecutter(NYT)、RTINGS
+(实测数据库型)、OutdoorGearLab;共同特征 = 实测+方法论透明+更新纪律+深比较表。
+德语区分三档:聚合器农场(vergleich.org/testit,量大信任低,不学)、niche 实测型
+(homeandsmart/smart-home-fox,页型可学——已移植)、大媒体(CHIP/ComputerBild,不可学)。
+
+**A 层结构元素对照(标杆 vs eco)**:
+| 元素 | 状态 |
+|---|---|
+| 方法论透明页(How we test) | ✓ wie-wir-empfehlen,公式公开(独特) |
+| 更新纪律(可见日期+dateModified) | ✓ |
+| 深比较表/单型号层/品牌层 | ✓ 本周期补齐 11 页 |
+| 「不自测」诚实声明 | ✓ 差异化资产,标杆都没有 |
+| 交互工具+MCP | ✓ 反超项(标杆无) |
+| 真人编辑 E-E-A-T | ✗ **但受隐私红线约束不造假人**;替代=引用外部实名测评者+视频(已做) |
+| 实测图片 | ✗ 结构性不可(不自测);替代=SVG 插画语言+外部测评视频(08-29 已强化) |
+| 价格追踪/Deals 层 | ✗ 需 PA-API(owner 侧);候选登记,不自行抢跑 |
+
+**C 层热门产品缺口(SERP 三源交叉,08-29)**:Trotec 全站 0 提及(德国气候设备第一品牌!
+TTK 系=amazon.de 参考线)→ 当日补 brand 页;Lidl Tronic 9000 BTU(rising 6.000+8.200,
+199 €,4,1★,不在 Amazon → Ausverkauft-Alternative 变现模式)→ 当日补;
+候选:Duux Whisper Flex/Stadler Form(夏季线,来年 KGR 后做)、"klimaanlage fest
+installiert"(rising 6.600,检查 split-ohne-kernbohrung 是否已接该意图)。
+
 ## 增长挖掘与售卖内容丰富层（2026-07-10 增补）
 
 > 触发词："自动化挖掘网站增长方案，丰富售卖内容，提升新站流量"。每轮按下面三步走，全程自动化、批量执行。
