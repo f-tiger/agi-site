@@ -789,3 +789,28 @@ verified-ai-free-tiers、agiscorecard-mcp 公开 → 免费）。
 - `main` is unprotected; direct push is the deploy mechanism.
 - robots.txt disallows the working files: `content-backlog.md`, `OPT-LOG.md`,
   `analytics-notes.md`, `/tools/`.
+
+## 转化架构令(2026-08-29 五视角复盘 + 对抗证伪后立,owner:「流量转化深度重构」)
+
+复盘结论(全文见 OPT-LOG 2026-08-29 第五轮):**卡点不是流量是终端**——868 真读者/28d,
+入口与中段都在走(tool_click ~20 次),但每一个带真实价格的表面都与读者的"答案时刻"
+物理隔开,priced click = 0。三条站规自此生效:
+
+1. **每页一条主钱路,按页面意图定**:投资意图页 → invest 漏斗(exposure→track-record→
+   Pro);阅读时刻页 → 书(若 10-31 组合线存活);站主意图 → /audits。**不并列摆摊**——
+   40 读者/日摊六个变现面,每个都在自己的噪声地板下,这就是复盘查明的病灶。
+2. **主 KPI = `rev_click`**:28 天内所有"带真实价格表面"的点击之和
+   (invest_tool_click{*_sunwatch_result|*_sunwatch*} + affiliate_click{book_*} +
+   audits/advertise 联系动作)。当前 ~0/28d,目标 ≥10/28d(2026-11-15)。每周记入
+   analytics-notes.md。与预登记线的衔接:11-15 invest 线的 Pro桥≥5 是 rev_click 的
+   真子集;09-30 sub_ok 线照常独立结算,sub_ok 降级为 flip-day 名单健康度指标,
+   flip-day 邮件义务绝对不变。
+3. **判定线到期照杀、不救、不提前拆**:08-30 `index_click{*_live}`(按 0 裁)、
+   09-26 opinion_*_exposure(≥8)、09-30 sub_ok(<5 判死)、10-07 E13 audits(0 询盘
+   转被动,判定期内不改被测对象)、10-15 exposure 结果行(≥30 次渲染 0 点击即拆行)、
+   10-31 书单组合线(全站 book_* <5 关 Associates)。被杀项当天拆除家具,绝不赖着。
+
+已被对抗证伪否决、**不要再提**的方案(2026-08-29 记录):①audits 表单重构(流量里
+没有站主,E13 期内改被测对象);②低流量判定页(collapse/capex-bubble)加钱线
+(噪声地板下 + 污染 09-26 被测钩子 + 硬同步面 4→5);③sasummary 书单块(算术
+天花板 €0.26/月,风险落在 42% 引用的旗舰页上)。
