@@ -1,0 +1,71 @@
+name: Deploy goldrush
+
+# The AI Gold Rush Ledger — 2026-08-29 建站(owner 指令,去币化合规形态)。
+# 域名:goldrush.agiscorecard.com(wrangler custom_domain 自动挂载)。
+# 成本核算:push ~0.7 分/次,无 schedule(进化循环搭舰队既有每日会话,零新增
+# Actions 成本),公开仓免费。
+# Owner 一键停止:仓里存在 sites/goldrush/KILLED 文件 → 本流水线拒绝部署,
+# 线上冻结在最后版本(OWNER-CONTROL.md 第 1 条的实现)。
+on:
+  push:
+    branches: [main]
+    paths: ["sites/goldrush/**", ".github/workflows/deploy-goldrush.yml"]
+  workflow_dispatch: {}
+
+concurrency:
+  group: deploy-goldrush
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      # 防回滚守卫(舰队标准,2026-08-26 事故):乱序补发的旧 push 事件一律部署
+      # main 当前 tip,绝不把生产滚回历史版本。fail-open:网络抖动不阻塞部署。
+      - name: Guard — a replayed/stale push deploys main's tip, never rolls back
+        if: github.event_name == 'push'
+        run: |
+          git fetch origin main -q || { echo "::warning::fetch failed — stale-run guard skipped"; exit 0; }
+          TIP=$(git rev-parse origin/main 2>/dev/null || true)
+          case "$TIP" in
+            "" | *[!0-9a-f]* ) echo "::warning::main tip unresolvable — stale-run guard skipped"; exit 0 ;;
+          esac
+          if [ "$(git rev-parse HEAD)" != "$TIP" ]; then
+            echo "::warning::stale run — deploying main tip instead of rolling back"
+            git reset --hard "$TIP"
+          fi
+      - name: Owner kill switch
+        run: |
+          if [ -f sites/goldrush/KILLED ]; then
+            echo "::notice::KILLED file present — owner has frozen this site; skipping deploy."
+            exit 1
+          fi
+      - name: Gate — expected files present and worker parses
+        working-directory: sites/goldrush
+        run: |
+          for f in site/index.html site/ledger.json site/llms.txt site/robots.txt worker.js wrangler.jsonc; do
+            [ -f "$f" ] || { echo "::error::missing $f"; exit 1; }
+          done
+          node --check worker.js
+          node -e "JSON.parse(require('fs').readFileSync('site/ledger.json','utf8'))"
+          echo "gate ok"
+      - name: Deploy worker
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          wranglerVersion: "4"
+          workingDirectory: sites/goldrush
+          command: deploy
+      - name: Post-deploy self-check
+        run: |
+          sleep 20
+          code=$(curl -s -o /dev/null -w '%{http_code}' "https://goldrush.agiscorecard.com/" || true)
+          ledger=$(curl -s -o /dev/null -w '%{http_code}' "https://goldrush.agiscorecard.com/ledger.json" || true)
+          echo "home=$code ledger=$ledger"
+          # 首次部署自定义域可能有 DNS 收敛延迟,只警告不失败;后续跑到 200 为准
+          [ "$code" = "200" ] && [ "$ledger" = "200" ] && echo "self-check ok" || echo "::warning::domain not yet serving 200 (first-deploy DNS convergence is normal)"
