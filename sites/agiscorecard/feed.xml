@@ -7,9 +7,16 @@
   <link rel="hub" href="https://pubsubhubbub.appspot.com/"/>
   <link rel="hub" href="https://pubsubhubbub.superfeedr.com/"/>
   <id>https://agiscorecard.com/</id>
-  <updated>2026-08-27T00:00:00Z</updated>
+  <updated>2026-08-29T00:00:00Z</updated>
   <author><name>The AGI Scorecard</name></author>
   <rights>CC BY 4.0 — reuse with attribution and a link to https://agiscorecard.com</rights>
+  <entry>
+    <title>Is Nvidia Overvalued? What Its AI Bet Actually Rides On</title>
+    <link href="https://agiscorecard.com/is-nvidia-overvalued"/>
+    <id>https://agiscorecard.com/is-nvidia-overvalued</id>
+    <updated>2026-08-29T00:00:00Z</updated>
+    <summary>We don&#x27;t grade the price — we grade the bet: 90% of Nvidia&#x27;s AI story rides on compute scaling and the capex wave, under 10% on AGI itself. Mapped, dated, sourced.</summary>
+  </entry>
   <entry>
     <title>Will There Be an Intelligence Explosion in 2027? (Graded)</title>
     <link href="https://agiscorecard.com/intelligence-explosion-2027"/>
@@ -142,12 +149,5 @@
     <id>https://agiscorecard.com/ai-orders-of-magnitude-explained</id>
     <updated>2026-08-16T00:00:00Z</updated>
     <summary>Aschenbrenner&#x27;s AGI case is built on counting OOMs — factors of 10 — in effective compute: raw compute + algorithmic efficiency + unhobbling.</summary>
-  </entry>
-  <entry>
-    <title>Changelog — What Changed on the AGI Scorecard</title>
-    <link href="https://agiscorecard.com/changelog"/>
-    <id>https://agiscorecard.com/changelog</id>
-    <updated>2026-08-16T00:00:00Z</updated>
-    <summary>Dated record of every real change on the evidence layer: verdict moves, Thesis Tracker score history, new tools and datasets. No backfilling.</summary>
   </entry>
 </feed>

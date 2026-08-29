@@ -96,7 +96,11 @@ exposure 工具 → 结果面板的 TG 绑定与 SunWatch Pro 桥。
 **站规不变**：零编造、判定型六件套（含首屏活数字）、EN 页 deep CTA、hreflang、
 sitemap/llms.txt/agi-questions 接线、单 h1、anti-churn（5-run 窗口）。
 
-### P1 · `is-nvidia-overvalued`（EN 判定页 · 现状型）【主线 C→A】
+### P1 · `is-nvidia-overvalued`（EN 判定页 · 现状型）【主线 C→A】✅ 已上线 2026-08-29
+按规格逐条落地：95/100 活数字（`index_click{nvda_live}`）+ 62.5 对照线、`?b=NVDA` 与
+`?b=NVDA-AAPL-GOOGL` 双钩子（`tool_click{opinion_nvda[_brk]}`）、映射表 + 三本逐笔账本表
+（ARK 1.8% / 伯克希尔无仓 / SA LP ~$1.57B put）、FAQ==JSON-LD、EDGAR 一手链接、
+零估值倍数/目标价。已接线 sitemap / llms.txt / agi-questions / 首页 chips。
 - **营收挂钩**：A。首屏活数字 → `?b=NVDA` 一键进 exposure → 结果面板 TG 绑定 + Pro 桥。
 - **标题**：`Is Nvidia Overvalued? What Its AI Bet Actually Rides On` (≤60c)
 - **需求证据**：真实查询（AAII/WEEX/Fool 全在写）；判定型现状问题 = 引用机器主粮。

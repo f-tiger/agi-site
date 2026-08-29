@@ -1012,3 +1012,18 @@ GROUP BY name;
 按站规「队列空了不要为凑数塞猜的选题」,同理适用于「被卡住」:**今天不新造选题**。
 下个月 1-3 日向 owner 要 Bing AI Performance 两张明细后才能补货。
 
+
+## 2026-08-29 日结 — sub_ok 到 2(漏斗完整),PRD P1 上线
+
+**订阅漏斗首次出现「完整两单」(28d,去 Compass 污染)**:`sub_open` 3 → `sub_submit` 2 →
+`sub_ok` **2**(footer_cta 1 + post_scorecard 1)。两个地址应已落 D1 `subscribers`
+(status='stored' 是常态,不报警)。**09-30 判定线:sub_ok 累计 <5 判死「订阅→Boosts」——
+当前 2,还差 3,一个月窗口。** footer_cta 与 post_scorecard 各转化 1,样本太小不做位置结论。
+
+**钩子层(28d)**:`tool_click{opinion_*}` 共 10 次,最强是 opinion_sasummary_exposure(4)
+——文章制造观点→exposure 接住的路径真实在走;exposure preset 5 次。
+**Pro 桥(exposure_*_sunwatch*)仍 0**,TG 绑定仍 0(11-15 判定线的两条硬指标未动)。
+`index_click{*_live}` 仍 **0**(既有页口径,明日 08-30 预登记判定按此裁)。
+
+**ship**:PRD P1 `/is-nvidia-overvalued`(详 OPT-LOG)。新增埋点从今天起可观察:
+`index_click{nvda_live}`、`tool_click{opinion_nvda[_brk]}`、`subscribe_click{deep_nvda}`。

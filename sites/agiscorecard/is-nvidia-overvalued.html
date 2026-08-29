@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FZXLMBB5QB"></script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a0a0b'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%234fc3a1'/%3E%3C/svg%3E">
+<title>Is Nvidia Overvalued? What Its AI Bet Actually Rides On</title>
+<meta name="description" content="We don't grade the price — we grade the bet: 90% of Nvidia's AI story rides on compute scaling and the capex wave, under 10% on AGI itself. Mapped, dated, sourced.">
+<link rel="canonical" href="https://agiscorecard.com/is-nvidia-overvalued">
+<meta property="og:title" content="Is Nvidia Overvalued? What Its AI Bet Actually Rides On">
+<meta property="og:description" content="No multiple, no target. By our published mapping, Nvidia is a buildout stock, not an AGI stock: 90% of its AI story rides on predictions currently graded supportive.">
+<meta property="og:url" content="https://agiscorecard.com/is-nvidia-overvalued">
+<meta property="og:type" content="article">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Is Nvidia overvalued? What its AI bet actually rides on","datePublished":"2026-08-29","dateModified":"2026-08-29","inLanguage":"en","author":{"@type":"Organization","name":"The AGI Scorecard","url":"https://agiscorecard.com/about"},"publisher":{"@type":"Organization","name":"The AGI Scorecard","url":"https://agiscorecard.com/"},"description":"A bet-structure audit of Nvidia: which graded AGI predictions its AI story actually depends on, what three line-by-line 13F books do about it, and the written condition that recomputes the reading. Deliberately no valuation multiple or price target."}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AGI Scorecard","item":"https://agiscorecard.com/"},{"@type":"ListItem","position":2,"name":"AGI questions, answered","item":"https://agiscorecard.com/agi-questions"},{"@type":"ListItem","position":3,"name":"Is Nvidia overvalued?","item":"https://agiscorecard.com/is-nvidia-overvalued"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is Nvidia overvalued in 2026?", "acceptedAnswer": {"@type": "Answer", "text": "This page deliberately does not grade the price — no multiple, no target, no buy/sell call. What it grades is the bet structure: by the AGI Scorecard's published mapping, 90% of Nvidia's AI story rides on compute scaling and the capex wave, both currently graded supportive, and only 10% on the intelligence-explosion prediction, still pending. Whether that structure is worth the current price is a judgement this page leaves to the reader."}}, {"@type": "Question", "name": "What would have to be true for Nvidia's AI bet to keep paying?", "acceptedAnswer": {"@type": "Answer", "text": "Two things, mostly: training compute keeps scaling on trend (graded On track as of the site's August 2026 review) and the AI capex wave keeps funding accelerators (graded Exceeded — spending overshot the prediction). Together those carry 90% of the mapped exposure. The remaining 10% rides on an intelligence explosion — automated AI research — still graded Pending. Nvidia is a buildout stock: it needs the spending to continue, not AGI itself to arrive."}}, {"@type": "Question", "name": "Do the big investors' 13F filings agree about Nvidia?", "acceptedAnswer": {"@type": "Answer", "text": "No — the three most legible AI books on file disagree completely. Per the Q2 2026 13Fs (filed 2026-08-14): ARK held Nvidia at just 1.8% of its ~$15.4B book, behind Tesla, AMD, Tempus, Amazon and Palantir; Berkshire Hathaway's filing has no Nvidia line at all. And Aschenbrenner's Situational Awareness LP held roughly $1.57B notional in Nvidia puts in its Q1 2026 filing — before losing about 67% in July 2026 as the shorts moved against it, per CNBC and Bloomberg."}}, {"@type": "Question", "name": "What would change this page's reading?", "acceptedAnswer": {"@type": "Answer", "text": "The 95/100 alignment reading recomputes the day any of the three mapped verdicts moves: if the capex or compute-scaling verdict is downgraded, the number falls with it. The mapping and weights are published in the site's open dataset (data.json) and the score is regenerated from it, never hand-edited. The flip condition is a verdict change, not a price move."}}]}</script>
+<style>
+  :root{--bg:#0a0a0b;--bg2:#111114;--bg3:#18181d;--border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.12);--text:#e8e8ec;--muted:#8888a0;--accent:#7c6af5;--accent2:#4fc3a1;--warn:#e8a040;--danger:#e05555;--font:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;--mono:'JetBrains Mono',monospace;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:16px;line-height:1.75;}
+  a{color:var(--accent);text-decoration:none;}a:hover{opacity:.8;}
+  header{border-bottom:1px solid var(--border);padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:56px;position:sticky;top:0;background:rgba(10,10,11,.92);backdrop-filter:blur(12px);z-index:100;}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px;color:var(--text);}
+  .logo-dot{width:8px;height:8px;background:var(--accent2);border-radius:50%;}
+  .back-link{font-size:13px;color:var(--muted);}.back-link:hover{color:var(--text);opacity:1;}
+  article{max-width:720px;margin:0 auto;padding:2.5rem 1.5rem 4rem;}
+  .eyebrow{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem;}
+  h1{font-size:clamp(1.7rem,4vw,2.4rem);font-weight:700;letter-spacing:-.02em;line-height:1.18;margin-bottom:1.25rem;}
+  .capsule{background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent2);border-radius:0 10px 10px 0;padding:1.15rem 1.4rem;font-size:16px;margin-bottom:1.75rem;}
+  .capsule .verdict{font-weight:700;}
+  .v-ok{color:var(--accent2);}.v-wrong{color:var(--danger);}.v-open{color:var(--accent);}.v-pending{color:var(--muted);}
+  h2{font-size:1.25rem;font-weight:600;margin:2.25rem 0 .9rem;letter-spacing:-.01em;}
+  h3{font-size:1.05rem;font-weight:600;margin:1.5rem 0 .6rem;}
+  p{margin-bottom:1rem;}
+  ul{margin:0 0 1rem 1.3rem;}li{margin-bottom:.45rem;}
+  strong{color:#fff;}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;margin:1rem 0 1.4rem;background:var(--bg2);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+  th{text-align:left;padding:10px 12px;color:var(--muted);font-weight:500;font-size:11px;letter-spacing:.05em;text-transform:uppercase;border-bottom:1px solid var(--border);}
+  td{padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:top;}
+  tr:last-child td{border-bottom:none;}
+  .nowrap{white-space:nowrap;font-weight:600;}
+  .updated{font-size:12px;color:var(--muted);margin-bottom:1.5rem;}
+  footer{border-top:1px solid var(--border);padding:24px 0;font-size:12px;color:var(--muted);text-align:center;}
+@media(max-width:640px){table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;white-space:nowrap}table td,table th{white-space:normal;min-width:92px}}
+</style>
+</head>
+<body>
+<header>
+  <a href="/" class="logo"><span class="logo-dot"></span>AGI Scorecard</a>
+  <a href="/" class="back-link">← Live scorecard</a>
+</header>
+<main>
+  <article>
+  <div class="eyebrow">Bet-structure audit · Follow the money</div>
+  <h1>Is Nvidia Overvalued? What Its AI Bet Actually Rides On</h1>
+  <div class="updated">Last updated: August 29, 2026 · No multiple, no target, no buy/sell call — deliberately · Not investment advice</div>
+
+  <div class="capsule"><span class="verdict">By this site's published mapping, 90% of Nvidia's AI story rides on the two predictions currently graded supportive — compute scaling and the capex wave — and less than 10% on AGI itself. It is a buildout stock, not an AGI stock.</span>
+  "Overvalued" is a price question, and every answer to it you'll find on this query is a hedge
+  ("on one hand… on the other"). This page answers the question underneath it instead:
+  <strong>which falsifiable propositions does Nvidia's AI premium actually depend on, and how are
+  they currently graded?</strong> That structure — not a price opinion — is what recomputes, in public,
+  the day a verdict moves.</div>
+
+  <div style="margin:1.2rem 0;padding:1rem 1.2rem;background:var(--bg2);border:1px solid var(--border);border-radius:12px;">
+    <span style="font-size:13px;color:var(--muted);">Nvidia's thesis-alignment reading — how much of its mapped AI exposure sits on predictions currently graded supportive:</span><br>
+    <a href="/progress-index" onclick="gtag('event','index_click',{location:'nvda_live'});" style="font-size:28px;font-weight:800;font-variant-numeric:tabular-nums;text-decoration:none;">95<span style="font-size:16px;color:var(--muted);">/100</span></a>
+    <span style="font-size:13px;color:var(--muted);">— vs the whole AGI-2027 thesis at <strong>62.5/100</strong>. Same weights, same dataset, recomputed only when a graded verdict flips.</span>
+  </div>
+
+  <h2>Where the 95/100 comes from</h2>
+  <p>Our <a href="/ai-stock-exposure" onclick="gtag('event','tool_click',{location:'opinion_nvda_inline'});">AI-stock
+  exposure tool</a> maps 17 tickers to the eight graded predictions from <em>Situational Awareness</em>, using the
+  same verdict weights as the Thesis Tracker (supportive = 1, open/pending = 0.5, refuted = 0). Nvidia's mapping,
+  published in <a href="/data.json">the open dataset</a>:</p>
+  <table>
+    <thead><tr><th>Prediction it rides on</th><th>Weight</th><th>Current verdict</th><th>Contribution</th></tr></thead>
+    <tbody>
+      <tr><td>Compute scaling stays on trend (training runs keep growing)</td><td class="nowrap">45%</td><td class="nowrap v-ok">On track</td><td class="nowrap">45.0</td></tr>
+      <tr><td>The AI capex wave (hundreds of billions into infrastructure)</td><td class="nowrap">45%</td><td class="nowrap v-ok">Exceeded</td><td class="nowrap">45.0</td></tr>
+      <tr><td>Intelligence explosion (automated AI research takes over)</td><td class="nowrap">10%</td><td class="nowrap v-pending">Pending</td><td class="nowrap">5.0</td></tr>
+      <tr><td><strong>Thesis-alignment reading</strong></td><td></td><td></td><td class="nowrap v-ok">95/100</td></tr>
+    </tbody>
+  </table>
+  <p>Read the asymmetry, because it is the whole answer: <strong>Nvidia does not need AGI to arrive.</strong> It
+  needs the spending and the scaling to continue — the shovels get bought either way. That is why its reading (95)
+  sits far above the full thesis (62.5): the two propositions it depends on are precisely the ones the evidence has
+  already delivered on, while the propositions still unresolved — the intelligence explosion, AGI itself — barely
+  touch it. Anyone pricing Nvidia as an "AGI bet" is paying for a story the mapping says it only 10% contains; anyone
+  dismissing it because "AGI is hype" is arguing with 10% of its exposure. Its real risk sits elsewhere:
+  <strong>the day the capex or compute verdict turns, 90% of this structure turns with it</strong> — see
+  <a href="/is-the-ai-capex-a-bubble">our capex-bubble audit</a> for what that evidence would look like.</p>
+  <p style="font-size:13px;color:var(--muted);">Honesty note: the reading is an editorial composite of published verdicts, not a probability, and "alignment" measures structure, not cheapness — a stock can ride entirely on true propositions and still be expensive. That judgement stays with you.</p>
+
+  <h2>What the line-by-line 13F books actually do about Nvidia</h2>
+  <p>Qualitative "bullish/bearish" quotes are cheap, so this site treats only <strong>line-by-line 13F filings</strong>
+  as holdings. On that standard, the three most legible AI books on file disagree about Nvidia completely:</p>
+  <table>
+    <thead><tr><th>Book</th><th>Nvidia position</th><th>Source (dated)</th></tr></thead>
+    <tbody>
+      <tr><td>ARK Invest (Cathie Wood) — the highest-beta AI believer</td><td><span class="v-open">Held, but small:</span> 1.8% of a ~$15.4B book — behind Tesla, AMD, Tempus, Amazon and Palantir</td><td><a href="https://www.sec.gov/Archives/edgar/data/1697748/000110465926096910/" rel="noopener nofollow">Q2 2026 13F, filed 2026-08-14</a> · <a href="/invest/cathie-wood">our read</a></td></tr>
+      <tr><td>Berkshire Hathaway (Buffett) — the discipline benchmark</td><td><span class="v-pending">No Nvidia line at all</span> — its AI exposure runs through Apple (22%) and Alphabet (12.6%)</td><td><a href="https://www.sec.gov/Archives/edgar/data/1067983/000119312526352200/" rel="noopener nofollow">Q2 2026 13F, filed 2026-08-14</a> · <a href="/invest/warren-buffett">our read</a></td></tr>
+      <tr><td>Situational Awareness LP (Aschenbrenner) — the AGI-2027 author himself</td><td><span class="v-wrong">Short:</span> ~$1.57B notional in Nvidia puts (within ~$8.5B of chip-name puts), while long AI power &amp; infrastructure</td><td>Q1 2026 13F; fund then lost ~67% in July as the shorts moved against it, per <a href="https://www.cnbc.com/2026/07/30/leopold-aschenbrenners-hedge-fund-is-facing-steep-ai-losses.html" rel="noopener nofollow">CNBC</a> and <a href="https://www.bloomberg.com/news/articles/2026-07-30/situational-awareness-assets-fall-to-10-billion-after-losses" rel="noopener nofollow">Bloomberg</a> · <a href="/aschenbrenner-fund-collapse">the collapse, graded</a></td></tr>
+    </tbody>
+  </table>
+  <p>The disagreement is the finding. All three books accept that the buildout is real — ARK owns the
+  higher-beta versions of it, Berkshire owns the cash flows adjacent to it, and even the fund shorting Nvidia was
+  simultaneously <em>long</em> AI power and infrastructure. What they disagree about is <strong>who captures the
+  spending, and for how long</strong> — which is exactly what you'd expect if Nvidia is a buildout stock. Your answer
+  to "is it overvalued" is really your answer to "how long does the capex wave run" — a question with
+  <a href="/ai-capex-trillion-dollar">a dated evidence trail</a>, not a vibe.</p>
+
+  <div style="margin:1.5rem 0;background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:1.1rem 1.3rem;">
+    <p style="margin:0 0 .7rem;font-weight:700;">So which of the three books is yours?</p>
+    <p style="margin:0 0 .8rem;font-size:14px;color:var(--muted);">Score a basket starting from Nvidia — the tool maps it (and 16 other tickers) to the eight graded predictions and names your archetype. No account, result is permalinked.</p>
+    <a href="/ai-stock-exposure?b=NVDA" onclick="gtag('event','tool_click',{location:'opinion_nvda'});" style="display:inline-block;background:#6350d9;color:#fff;padding:9px 20px;border-radius:8px;font-size:14px;font-weight:600;margin-right:8px;">Score NVDA against the thesis &rarr;</a>
+    <a href="/ai-stock-exposure?b=NVDA-AAPL-GOOGL" onclick="gtag('event','tool_click',{location:'opinion_nvda_brk'});" style="display:inline-block;background:var(--bg3);border:1px solid var(--border);color:var(--text);padding:9px 20px;border-radius:8px;font-size:14px;font-weight:600;">Try the Berkshire-shaped basket &rarr;</a>
+  </div>
+
+  <h2>What this page deliberately does not answer</h2>
+  <ul>
+    <li><strong>No valuation multiple.</strong> Any P/E we quoted would be stale within a quarter and add nothing you can't get from a terminal.</li>
+    <li><strong>No price target, no "up or down."</strong> This site grades falsifiable propositions with pre-registered flip conditions; a price call is neither.</li>
+    <li><strong>No forecast dressed as analysis.</strong> The one thing we publish that moves is the mapping above — and it moves only when a graded verdict does.</li>
+  </ul>
+
+  <h2>The flip condition — in writing</h2>
+  <p>The 95/100 reading recomputes the day any of its three mapped verdicts moves. If the capex wave stalls or the
+  compute-scaling trend breaks — each has a pre-registered flip condition on <a href="/situational-awareness-predictions">the
+  scorecard</a> — the script that generates the exposure page re-reads <a href="/data.json">data.json</a> and the
+  number falls mechanically. Nothing on this page is hand-tuned to a market mood; that is the difference between a
+  bet-structure audit and another "on the other hand" column.</p>
+
+  <h2>FAQ</h2>
+  <h3>Is Nvidia overvalued in 2026?</h3>
+  <p>This page deliberately does not grade the price — no multiple, no target, no buy/sell call. What it grades is the bet structure: by the AGI Scorecard's published mapping, 90% of Nvidia's AI story rides on compute scaling and the capex wave, both currently graded supportive, and only 10% on the intelligence-explosion prediction, still pending. Whether that structure is worth the current price is a judgement this page leaves to the reader.</p>
+  <h3>What would have to be true for Nvidia's AI bet to keep paying?</h3>
+  <p>Two things, mostly: training compute keeps scaling on trend (graded On track as of the site's August 2026 review) and the AI capex wave keeps funding accelerators (graded Exceeded — spending overshot the prediction). Together those carry 90% of the mapped exposure. The remaining 10% rides on an intelligence explosion — automated AI research — still graded Pending. Nvidia is a buildout stock: it needs the spending to continue, not AGI itself to arrive.</p>
+  <h3>Do the big investors' 13F filings agree about Nvidia?</h3>
+  <p>No — the three most legible AI books on file disagree completely. Per the Q2 2026 13Fs (filed 2026-08-14): ARK held Nvidia at just 1.8% of its ~$15.4B book, behind Tesla, AMD, Tempus, Amazon and Palantir; Berkshire Hathaway's filing has no Nvidia line at all. And Aschenbrenner's Situational Awareness LP held roughly $1.57B notional in Nvidia puts in its Q1 2026 filing — before losing about 67% in July 2026 as the shorts moved against it, per CNBC and Bloomberg.</p>
+  <h3>What would change this page's reading?</h3>
+  <p>The 95/100 alignment reading recomputes the day any of the three mapped verdicts moves: if the capex or compute-scaling verdict is downgraded, the number falls with it. The mapping and weights are published in the site's open dataset (data.json) and the score is regenerated from it, never hand-edited. The flip condition is a verdict change, not a price move.</p>
+
+  <div style="margin:1.6rem 0;">
+    <a href="https://agiscorecard.beehiiv.com/subscribe?utm_source=agiscorecard&amp;utm_medium=deep_nvda" target="_blank" rel="noopener" onclick="gtag('event','subscribe_click',{location:'deep_nvda'});" style="display:inline-block;background:#6350d9;color:#fff;padding:9px 20px;border-radius:8px;font-size:14px;font-weight:600;">One email if the capex or compute verdict flips &rarr;</a>
+  </div>
+  <p style="font-size:13px;color:var(--muted);">Browse all <a href="/agi-questions">AGI questions</a> · Holdings come only from line-by-line 13F filings; qualitative stances are never treated as positions. Method: dated, named sources only. Nothing here is investment advice.</p>
+  </article>
+</main>
+<footer>By the <a href="/about" style="color:var(--muted);">AGI Scorecard team</a> · Independent tracker of <a href="https://situational-awareness.ai" style="color:var(--muted);">Situational Awareness</a> · Not affiliated with any lab or fund · <a href="/privacy" style="color:var(--muted);">Privacy</a> · <a href="/advertise" style="color:var(--muted);">Advertise</a></footer>
+</body>
+</html>

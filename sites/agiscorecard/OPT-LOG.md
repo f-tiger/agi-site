@@ -1,3 +1,24 @@
+## 2026-08-29(daily run 04:00)— PRD P1 上线:/is-nvidia-overvalued(主线 C→A 第一页)
+
+- **阶梯定位**:⓪ 引用队列仍空(无新 Bing 明细,不塞猜测种子);① 无新增样本可复制;
+  按 08-17 重启令走 **PRD 队列每 run 一条** → P1(执行顺序第一,规格 08-17 已过三门)。
+- **ship**:`/is-nvidia-overvalued`,判定型现状页六件套齐:标题即问题(55c)、答案胶囊
+  先给判定(「90% 押在已判 supportive 的算力+capex,<10% 押 AGI——buildout 股不是 AGI 股」)、
+  映射表(45/45/10 × On track/Exceeded/Pending = **95/100**)+ 三本逐笔账本表
+  (ARK 1.8% 持有 / 伯克希尔无仓 / SA LP ~$1.57B NVDA put,全部一手 13F/已核实报道)、
+  FAQ 四条与 JSON-LD 逐字一致、EDGAR + data.json 一手源、首屏活数字 95/100 + 62.5 对照
+  (`index_click{nvda_live}`)。**硬约束守住:全页零估值倍数、零目标价、零涨跌判断**——
+  与 SERP 骑墙文的全部差异化。钩子:`?b=NVDA`(`tool_click{opinion_nvda}`)+
+  伯克希尔形状篮子 `?b=NVDA-AAPL-GOOGL`(`opinion_nvda_brk`)。
+- **接线**:sitemap(08-29)/ llms.txt / agi-questions hub / 首页 explore chip;
+  feed + search-index 再生成;PRD P1 已勾。
+- **说明**:08-24「判定期内不再加钩子」约束的是给**既有页**加装;P1 是 PRD 规定动作、
+  新页六件套含活数字是站规,不冲突。08-30 `index_click{*_live}` 判定仍按既有页 0 计。
+- **监控(28d,去 Compass 污染)**:`sub_ok` **2**(footer_cta 1 + post_scorecard 1,
+  漏斗完整 3 open→2 submit→2 ok;09-30 线 <5 判死,当前 2)、opinion 钩子 tool_click 10 次
+  (opinion_sasummary_exposure 4 最强)、exposure preset 5、Pro 桥 0、`index_click{*_live}` 0。
+- validate OK(223 页 / 205 URL)。
+
 ## 2026-08-27(daily run 04:00)— rung⑤ 最陈旧页刷新 + 两处记账纠错
 
 - **纠错(最重要产出)**:①`index_click{*_live}` 实为 **0**,08-26 日结误把 3 次首页
