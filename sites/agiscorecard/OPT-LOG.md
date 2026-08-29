@@ -1,3 +1,22 @@
+## 2026-08-29(第六轮,owner:「把点击率高的,强化转化」)
+
+- **点击榜重拉(含当日新面)**:全站互动第一名是被忽略的**首页时间线投票 vote_cast
+  13 次/28d(197 pv,≈6.6% 参与率,08-27 仍在发生)**,高于任何观点钩。而投票后面板
+  里的订阅位 `post_vote` **13 票 0 点击**——同页的 post_scorecard/footer_cta 却是全站
+  仅有的两单 sub_ok(开表即成 2/2)。输赢同页,差在文案:赢家卖「判定变动当周一封」,
+  post_vote 卖泛泛的「Subscribe free」。
+- **ship(强化接收端,不扩面)**:post_vote 位按赢家公式重写并**个性化到刚投的票**——
+  castVote() 动态写入「Your <archetype> call (<choice>) is on record. The evidence
+  clock reads 62.5/100 — get each verdict change the week it happens…」,按钮改为
+  具体承诺「Email me each verdict change →」。location 不变(post_vote,基线 0,
+  任何改善可见)。JS parse 检查通过。新增 62.5 硬编码在 index.html 内,换分 grep
+  可扫到,合规。
+- **克制**:opinion_*_exposure 家族 09-26 窗内不扩面;今日已改页一律未再碰;
+  exposure 接收端今晨已强化过,不重复。
+- **预登记判定线**:至 09-26,若期间 vote_cast ≥10 且 subscribe_click{post_vote} 仍为
+  0 → 投票后时刻不接受订阅 ask,记反面发现,把该位降为纯分享面(不再迭代文案)。
+- validate OK(223 页 / 205 URL)。
+
 ## 2026-08-29(第五轮,owner:「发挥你能力,对流量转化做更好的复盘,深度重构优化」)
 
 - **方法**:三轮 spec → inline 侦察拉齐两站权威数字 → workflow 舰队(5 诊断视角并行
