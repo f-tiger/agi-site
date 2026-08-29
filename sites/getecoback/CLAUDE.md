@@ -98,6 +98,7 @@ Balkonkraftwerk 补贴(balkonspeicher_foerderung 工具已在,萨克森等州补
   (数字单一来源,只加 `_en` 文案字段);每页数据点:阶梯值 + 60–100 W/m² 或
   <60% RH 阈值 + €/h 成本 + 透明季度公式 + 全系列阶梯表(互链)。de↔en hreflang
   组自动成对。**判死线复核日 = 2026-10-12**(45 天,Bing 收录率口径,owner Bing WMT)。
+  **t0 基线(2026-08-29 site: 实测)**:13 页 EN qm 收录 0、/it/ 11 页收录 0——上线 <24h 属正常爬行滞后,IndexNow 已推;复核日按此零点计收录率。
   ⚠️ 两个教训:①DE gen_* 是一次性脚手架,重跑会冲掉已提交页的后续增补
   (当日实测,git checkout 挽回;JSON note 已记);②device_of 补 "dehumidifier"/
   "electric-heater-" EN token 时,顺带修出一个存量缺陷——EN drying-clothes 页一直被
