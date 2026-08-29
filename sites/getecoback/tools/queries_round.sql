@@ -19,6 +19,8 @@ WHERE (ua_class IS NULL OR ua_class='human') AND page NOT LIKE '/__ci%'
 GROUP BY page, name, country ORDER BY MIN(ts);
 
 -- ③ affiliate_click 按 source 拆分(28 天;US 切换看 meta 里 amazon.com)
+-- ⚠️ 读数注意(2026-08-29 首跑实测):约 42/96 行 meta 无 source 键(08-28 归因
+-- fallback 修复前的存量事件,占比会随窗口滚动衰减)——别把"无 source"读成新缺陷。
 SELECT substr(meta, instr(meta,'"source"'), 30) src_raw,
   SUM(CASE WHEN meta LIKE '%amazon.com%' THEN 1 ELSE 0 END) us_com,
   COUNT(*) c
