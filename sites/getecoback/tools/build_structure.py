@@ -2678,6 +2678,82 @@ def inject_home_tool(html):
     return html
 
 
+# --- Homepage device-family strip (2026-08-29, owner「首页图片和视频很少,吸引力
+# 不够」). Four compact animated SVG tiles in the site's established illustration
+# language (the eb-spin/eb-wave/eb-drip keyframes already ship in eb-chrome CSS),
+# each routing to that family's money hub. Honest visuals — device physics, not
+# stock photos.
+DEVICE_TILES = [
+    ("Kühlen", "Mobile Klimaanlagen — echte Kälte mit Abluftschlauch",
+     "/guide/beste-tragbare-klimaanlage-hitzewelle.html",
+     '<svg viewBox="0 0 120 90" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Mobile Klimaanlage">'
+     '<rect x="18" y="22" width="44" height="56" rx="6" fill="#fff" stroke="#0f6ba8" stroke-width="2.5"/>'
+     '<rect x="25" y="30" width="30" height="10" rx="2" fill="#dce9f2"/>'
+     '<path d="M25 50h30M25 58h30M25 66h30" stroke="#9cc3dd" stroke-width="2.5"/>'
+     '<path d="M62 34 C82 34 84 26 100 26" stroke="#cd7f3a" stroke-width="5" fill="none" stroke-linecap="round"/>'
+     '<g fill="#2ea6c9"><path class="eb-drip" d="M12 46 l-7 -3 l7 -3 z"/><path class="eb-drip" d="M12 62 l-7 -3 l7 -3 z"/></g>'
+     '</svg>'),
+    ("Entfeuchten", "Luftentfeuchter — unter 60 % rF hat Schimmel keine Basis",
+     "/guide/luftentfeuchter-ratgeber.html",
+     '<svg viewBox="0 0 120 90" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Luftentfeuchter">'
+     '<rect x="38" y="20" width="44" height="58" rx="8" fill="#fff" stroke="#0f6ba8" stroke-width="2.5"/>'
+     '<circle cx="60" cy="42" r="12" fill="#eaf6ff" stroke="#0f6ba8" stroke-width="2"/>'
+     '<rect x="46" y="62" width="28" height="10" rx="2" fill="#dcedf7" stroke="#9cc3dd" stroke-width="1.5"/>'
+     '<g fill="#2ea6c9"><path class="eb-drip" d="M60 36 c3 4 5 6 5 9 a5 5 0 1 1 -10 0 c0 -3 2 -5 5 -9 z"/></g>'
+     '<g fill="#bfe3f5"><circle class="eb-wave" cx="24" cy="34" r="4"/><circle class="eb-wave" cx="18" cy="52" r="3"/><circle class="eb-wave" cx="28" cy="66" r="3"/></g>'
+     '</svg>'),
+    ("Heizen", "Infrarot-Panels — Strahlungswärme ohne Installation",
+     "/kategorie/heizen.html",
+     '<svg viewBox="0 0 120 90" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Infrarotheizung">'
+     '<rect x="22" y="24" width="76" height="42" rx="6" fill="#fff" stroke="#0f6ba8" stroke-width="2.5"/>'
+     '<rect x="28" y="30" width="64" height="30" rx="3" fill="#fdf3ea" stroke="#f3ddc0" stroke-width="1.5"/>'
+     '<g stroke="#e08c05" stroke-width="2.5" fill="none" stroke-linecap="round">'
+     '<path class="eb-wave" d="M38 78 q3 -5 0 -10"/><path class="eb-wave" d="M60 78 q3 -5 0 -10"/><path class="eb-wave" d="M82 78 q3 -5 0 -10"/></g>'
+     '</svg>'),
+    ("Luft bewegen", "Ventilatoren — der ehrliche Personen-Kühler",
+     "/guide/ventilator-kaufen-ratgeber.html",
+     '<svg viewBox="0 0 120 90" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ventilator">'
+     '<circle cx="60" cy="42" r="26" fill="#fff" stroke="#0f6ba8" stroke-width="2.5"/>'
+     '<g class="eb-spin"><path d="M60 42 L60 20 A22 22 0 0 1 74 32 z" fill="#9cc3dd"/>'
+     '<path d="M60 42 L79 52 A22 22 0 0 1 52 62 z" fill="#9cc3dd"/>'
+     '<path d="M60 42 L41 52 A22 22 0 0 1 46 26 z" fill="#9cc3dd"/><circle cx="60" cy="42" r="5" fill="#0f6ba8"/></g>'
+     '<rect x="54" y="68" width="12" height="8" fill="#dce9f2" stroke="#9cc3dd" stroke-width="1.5"/>'
+     '</svg>'),
+]
+
+
+def home_tiles_block():
+    tiles = "".join(
+        f'<a href="{href}" style="flex:1 1 200px;min-width:170px;background:#fff;border:1px solid #e4ebf0;'
+        'border-radius:14px;padding:16px 14px;text-decoration:none;text-align:center;'
+        'transition:box-shadow .15s,transform .15s;" '
+        'onmouseover="this.style.boxShadow=\'0 10px 24px rgba(15,107,168,.13)\';this.style.transform=\'translateY(-3px)\';" '
+        'onmouseout="this.style.boxShadow=\'none\';this.style.transform=\'none\';">'
+        f'<span style="display:block;max-width:120px;margin:0 auto 8px;">{svg}</span>'
+        f'<strong style="display:block;color:#0a4d7a;font-size:15.5px;margin-bottom:3px;">{name}</strong>'
+        f'<span style="display:block;color:#5b6b78;font-size:12.5px;line-height:1.45;">{desc}</span></a>'
+        for name, desc, href, svg in DEVICE_TILES)
+    return ('<!--EB_DEVICE_TILES--><section style="padding:38px 0 6px;background:#f7fafc;">'
+            '<div style="max-width:1000px;margin:0 auto;padding:0 20px;">'
+            '<h2 style="font-size:21px;margin:0 0 4px;">Welches Gerät wofür?</h2>'
+            '<p style="margin:0 0 14px;color:#5b6b78;font-size:13.5px;">Vier Gerätefamilien, vier ehrliche '
+            'Einsatzzwecke — so funktioniert das jeweils, und dahinter steht der passende Ratgeber.</p>'
+            f'<div style="display:flex;gap:14px;flex-wrap:wrap;">{tiles}</div>'
+            '</div></section><!--/EB_DEVICE_TILES-->')
+
+
+def inject_home_tiles(html):
+    """Idempotently put the illustrated device-family strip on the homepage,
+    directly under the homepage tool."""
+    blk = home_tiles_block()
+    if "<!--EB_DEVICE_TILES-->" in html:
+        return re.sub(r'<!--EB_DEVICE_TILES-->.*?<!--/EB_DEVICE_TILES-->\n?',
+                      lambda m: blk, html, flags=re.S)
+    if "<!--/EB_HOMETOOL-->" in html:
+        return html.replace("<!--/EB_HOMETOOL-->", "<!--/EB_HOMETOOL-->\n" + blk, 1)
+    return html
+
+
 # The window seal is the biggest cluster on this site and the one thing every
 # portable-AC owner has to buy, yet not one page here ever said how long a seal
 # has to be. The market says the same: a German manufacturer exists whose entire
@@ -3485,6 +3561,7 @@ def main():
             new = inject_heatnow(new)
             new = inject_home_toppick(new)
             new = inject_home_tool(new)
+            new = inject_home_tiles(new)
             new = inject_home_storage(new)
             new = inject_poplive(new)
         # Transaction layer + compact opt-in only on guide pages (where SEO

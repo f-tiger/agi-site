@@ -110,48 +110,80 @@ DE_SEASONS = {
     },
 }
 
-# Homepage video slot, rotated with the season. Independent German review
+# Homepage video rail, rotated with the season. Independent German review
 # videos (verified to exist via search); same click-to-load facade as the guide
 # pages — zero external requests before the visitor clicks (GDPR + CWV safe).
-# season -> (video_id, title, guide_href, guide_label)
-DE_SEASON_VIDEO = {
-    "sommer": ("l8z9FzMbpj8", "Die beste mobile Klimaanlage 2026? De'Longhi Pinguino PAC EX105 im Video-Test",
-               "/guide/beste-tragbare-klimaanlage-hitzewelle.html", "Zum Ratgeber: Beste tragbare Klimaanlage →"),
-    # Retargeted 2026-08-28 for the same reason as the teaser above: the CTA sent
-    # the autumn homepage's second-biggest module to a page D1 has never recorded
-    # a view of. The Comfee MDDF-20DEN7 in this video is discussed on the sizing
-    # page too, so the video and its destination still match.
-    "herbst": ("mBSS57P_rl4", "Comfee MDDF-20DEN7 Luftentfeuchter im Video-Test",
-               "/guide/luftentfeuchter-40-qm.html", "Zum Ratgeber: Luftentfeuchter für 40 m² →"),
-    "winter": ("x1S_Y7b9bvc", "Infrarotheizung im Härtetest: Reichen 400 W für 8 m² im Winter?",
-               "/guide/infrarotheizung-watt-rechner.html", "Zum Watt-Rechner für Infrarotheizungen →"),
-    "fruehjahr": ("pTbLIJzfJoQ", "Balkonkraftwerk mit Speicher: Top 5 im Test (2026)",
-                  "/guide/balkonkraftwerk-lohnt-sich-rechner.html", "Zum Rechner: Lohnt sich ein Balkonkraftwerk? →"),
+# 2026-08-29 owner「首页图片和视频很少」: one slot became a three-card rail; every
+# card deep-links its money page, all ids reused from the verified VIDEOS pool.
+# season -> [(video_id, title, guide_href, guide_label), ×3]
+DE_SEASON_VIDEOS = {
+    "sommer": [
+        ("l8z9FzMbpj8", "Die beste mobile Klimaanlage 2026? De'Longhi Pinguino PAC EX105 im Video-Test",
+         "/guide/beste-tragbare-klimaanlage-hitzewelle.html", "Ratgeber: Beste tragbare Klimaanlage →"),
+        ("7sooX2zoH0c", "De'Longhi Pinguino PAC EX105 im Test: Wie leise ist sie wirklich?",
+         "/guide/pinguino-pac-ex105-test.html", "Test-Überblick: PAC EX105 →"),
+        ("zIZ1kfab3LQ", "Ventilator-Test: MeacoFan 1056, Midea & Rowenta im Vergleich",
+         "/guide/ventilator-kaufen-ratgeber.html", "Ratgeber: Ventilator kaufen →"),
+    ],
+    # Retargeted 2026-08-28: CTA targets are D1-verified read pages, not zero-pv
+    # destinations. The Comfee MDDF-20DEN7 in the lead video is discussed on the
+    # sizing page too, so video and destination still match.
+    "herbst": [
+        ("mBSS57P_rl4", "Comfee MDDF-20DEN7 Luftentfeuchter im Video-Test",
+         "/guide/luftentfeuchter-40-qm.html", "Ratgeber: Luftentfeuchter für 40 m² →"),
+        ("NCdYI6HdQi8", "Nie wieder Schimmel: Comfee-Luftentfeuchter im Praxiseinsatz (Video)",
+         "/guide/luftentfeuchter-gegen-schimmel.html", "Ratgeber: Luftentfeuchter gegen Schimmel →"),
+        ("pTbLIJzfJoQ", "Balkonkraftwerk mit Speicher: Top 5 im Test (2026)",
+         "/guide/balkonkraftwerk-lohnt-sich-rechner.html", "Rechner: Lohnt sich ein Balkonkraftwerk? →"),
+    ],
+    "winter": [
+        ("x1S_Y7b9bvc", "Infrarotheizung im Härtetest: Reichen 400 W für 8 m² im Winter?",
+         "/guide/infrarotheizung-watt-rechner.html", "Watt-Rechner für Infrarotheizungen →"),
+        ("NCdYI6HdQi8", "Nie wieder Schimmel: Comfee-Luftentfeuchter im Praxiseinsatz (Video)",
+         "/guide/luftentfeuchter-gegen-schimmel.html", "Ratgeber: Luftentfeuchter gegen Schimmel →"),
+        ("WCKVwHAHUhs", "Lüftung, Heizung und Schimmelprävention im Keller — praktische Tipps (Video)",
+         "/guide/keller-lueften-sommer.html", "Ratgeber: Keller richtig lüften →"),
+    ],
+    "fruehjahr": [
+        ("pTbLIJzfJoQ", "Balkonkraftwerk mit Speicher: Top 5 im Test (2026)",
+         "/guide/balkonkraftwerk-lohnt-sich-rechner.html", "Rechner: Lohnt sich ein Balkonkraftwerk? →"),
+        ("l8z9FzMbpj8", "Die beste mobile Klimaanlage 2026? De'Longhi Pinguino PAC EX105 im Video-Test",
+         "/guide/beste-tragbare-klimaanlage-hitzewelle.html", "Ratgeber: Beste tragbare Klimaanlage →"),
+        ("zIZ1kfab3LQ", "Ventilator-Test: MeacoFan 1056, Midea & Rowenta im Vergleich",
+         "/guide/ventilator-kaufen-ratgeber.html", "Ratgeber: Ventilator kaufen →"),
+    ],
 }
 
 
 def season_video_html(season):
-    vid, title, href, label = DE_SEASON_VIDEO[season]
+    cards = ""
+    for vid, title, href, label in DE_SEASON_VIDEOS[season]:
+        cards += (
+            '<div class="eb-video" style="flex:1 1 300px;min-width:260px;">'
+            f'<button type="button" class="eb-video-fac" data-id="{vid}" aria-label="Video abspielen">'
+            '<span class="eb-video-badge">▷ VIDEO</span>'
+            '<span class="eb-video-play" aria-hidden="true">▶</span>'
+            f'<span class="eb-video-t" style="font-size:14px;">{title}</span>'
+            '<span class="eb-video-src">Externes YouTube-Video · klick zum Abspielen</span></button>'
+            f'<p class="eb-video-note" style="margin-top:6px;"><a href="{href}">{label}</a></p></div>')
     return (
         '<!--EB_SEASON_VIDEO--><section style="padding:44px 0;background:#fff;">'
-        '<div style="max-width:760px;margin:0 auto;padding:0 20px;">'
-        '<div class="eb-video"><div class="eb-video-hd">🎬 Unabhängiger Test im Video</div>'
-        f'<button type="button" class="eb-video-fac" data-id="{vid}" aria-label="Video abspielen">'
-        '<span class="eb-video-badge">▷ VIDEO</span>'
-        '<span class="eb-video-play" aria-hidden="true">▶</span>'
-        f'<span class="eb-video-t">{title}</span>'
-        '<span class="eb-video-src">Externes YouTube-Video · klick zum Abspielen</span></button>'
-        '<p class="eb-video-note">Externes Video von YouTube. Beim Klick werden Daten an YouTube (Google) '
-        'übertragen — siehe <a href="/datenschutz.html">Datenschutz</a>. '
-        f'<a href="{href}">{label}</a></p>'
-        '<script>(function(){var f=document.currentScript.parentNode.querySelector(".eb-video-fac");'
-        'if(!f)return;f.addEventListener("click",function(){var id=f.getAttribute("data-id");'
+        '<div style="max-width:1000px;margin:0 auto;padding:0 20px;">'
+        '<div class="eb-video-hd" style="font-weight:800;font-size:19px;margin:0 0 4px;">🎬 Im Video geprüft</div>'
+        '<p style="margin:0 0 14px;color:#5b6b78;font-size:13.5px;">Unabhängige Testvideos zu Geräten, '
+        'die wir empfehlen — wir testen nicht selbst, wir zeigen die, die es tun.</p>'
+        f'<div style="display:flex;gap:16px;flex-wrap:wrap;">{cards}</div>'
+        '<p class="eb-video-note">Externe Videos von YouTube. Erst beim Klick werden Daten an YouTube (Google) '
+        'übertragen — siehe <a href="/datenschutz.html">Datenschutz</a>.</p>'
+        '<script>(function(){var s=document.currentScript.parentNode;'
+        's.querySelectorAll(".eb-video-fac").forEach(function(f){'
+        'f.addEventListener("click",function(){var id=f.getAttribute("data-id");'
         'var w=document.createElement("div");w.className="eb-video-frame";'
         'w.innerHTML=\'<iframe src="https://www.youtube-nocookie.com/embed/\'+id+\'?autoplay=1" '
         'title="Video" loading="lazy" allow="autoplay; encrypted-media; picture-in-picture" '
         'allowfullscreen></iframe>\';f.parentNode.replaceChild(w,f);'
-        'if(window.gtag)gtag("event","video_play",{video_id:id,source:"home"});});})();</script>'
-        '</div></div></section><!--/EB_SEASON_VIDEO-->')
+        'if(window.gtag)gtag("event","video_play",{video_id:id,source:"home"});});});})();</script>'
+        '</div></section><!--/EB_SEASON_VIDEO-->')
 
 
 EN_SUB = {
