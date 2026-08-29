@@ -80,6 +80,21 @@
    - 已弃：Ventilator mit Wasserkühlung sinnvoll（vergleich.org/expertentesten/home&smart 占满首屏，红海）
 4. **每轮开头仍先测量**（site: 收录 / 部署绿 / 信号邮件），有真实信号立即切到诊断表对应动作，没有就继续铺 KGR。
 
+## AI 时代站点轮(2026-08-29,owner「eco站点做成ai时代站点」)
+
+按「发现→读→调用→引用磁石」四层补齐机器面(agi gen_agent_surfaces 模式移植,舰队互学):
+- **读**:181 个 per-page .md 镜像(/guide/<slug>.md,de/en/it 全覆盖)——此前 Markdown 只在
+  Accept 协商后面,无法被链接/发现;转换保内链、外链降纯文本,**联盟链接零进入由硬闸门
+  保证**(build_agent_md.py 检出即 build fail);worker 对 .md 发 X-Robots-Tag noindex,
+  HTML 保持 canonical。
+- **发现**:/for-agents.html(+.md)机器面总览;llms.txt 补 .md 模式/数据集/总览三行。
+- **调用**:MCP 第 9 个工具 geraet_wahl——计算器之上的「判定层」(问题→设备族+
+  尺寸 Faustregel+指南 URL),smoke 用例入 mcp_smoke.mjs;mcp.html 同步「九个工具」。
+- **引用磁石**:/sizing-data.json(CC BY 4.0)——BTU/Liter/Watt 三阶梯原创数据集,
+  与页面同源(读同一份 content JSON),dateModified 版本化。
+流水线新增 build_agent_md 步 + 部署自检 3 条(.md 服务/数据集/for-agents)。
+判定线:30 天 md_serve+mcp_call 趋势 ≥ 现基线,下次 Bing AI Performance 快照引用面不降。
+
 ## 顶级联盟站对标矩阵(2026-08-29,owner「对标优秀联盟站,还缺哪些,热门产品也缺」)
 
 **最受欢迎联盟站(按被引用/被模仿度)**:全球模式标杆 = Wirecutter(NYT)、RTINGS

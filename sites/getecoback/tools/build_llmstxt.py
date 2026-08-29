@@ -102,19 +102,24 @@ def main():
         "## Für KI-Agenten (MCP & offene APIs)",
         "",
         f"- MCP-Server (Model Context Protocol, Streamable HTTP, keine Authentifizierung): {BASE}/mcp",
-        "  Tools: btu_empfehlung, fensterabdichtung_laenge, hitzewelle_vorschau, klimaanlage_stromkosten, heizleistung_watt,",
+        "  Tools: geraet_wahl (welches Gerät löst mein Problem), btu_empfehlung, fensterabdichtung_laenge, hitzewelle_vorschau, klimaanlage_stromkosten, heizleistung_watt,",
         "  taupunkt_lueften, balkonspeicher_foerderung sowie ratgeber_suche + ratgeber_lesen (Volltextsuche und Volltext-Abruf aller Ratgeber).",
         "  Formeln identisch mit den Rechnern dieser Website; jede Antwort enthält Quell-URL und Affiliate-Disclosure.",
         "  Offizielles MCP Registry: io.github.f-tiger/hvac-btu-heat-klimaanlage (dort suchbar unter btu, hvac, heat, klima).",
         f"  Doku & Client-Konfiguration: {BASE}/mcp.html — Discovery: {BASE}/.well-known/mcp.json",
-        "- Markdown statt HTML: Jede Seite dieser Website liefert sauberes Markdown, wenn der Request",
-        "  `Accept: text/markdown` sendet (Content Negotiation, `Vary: Accept`). Navigation, Shop-Karten und",
-        "  Skripte sind darin entfernt, Überschriften und interne Links bleiben erhalten — gedacht zum Zitieren.",
+        "- Markdown statt HTML: Jeder Ratgeber hat einen direkt verlinkbaren Markdown-Zwilling unter",
+        "  derselben URL mit .md statt .html (z. B. /guide/btu-rechner.md) — Navigation, Shop-Karten und",
+        "  Skripte entfernt, interne Links erhalten, gedacht zum Zitieren. Zusätzlich liefert jede Seite",
+        "  dasselbe Markdown per Content Negotiation, wenn der Request `Accept: text/markdown` sendet",
+        "  (`Vary: Accept`).",
         f"  Beispiel: curl -H 'Accept: text/markdown' {BASE}/guide/btu-rechner.html",
         f"- Offene Aggregat-APIs (JSON, keine personenbezogenen Daten): {BASE}/api/heat (Live-Hitze- und Frostvorschau DE: 3-Tage-Maximum und 7-Tage-Minimum, beides mit Warnstufen), "
         f"{BASE}/api/strom (heutige Börsen-Stundenpreise DE, EPEX über aWATTar/SMARD), "
         f"{BASE}/api/top (meistgelesene Ratgeber), {BASE}/api/trend (Wochentrends), "
         f"{BASE}/search-index.json (Titel + Beschreibung + Sprache aller Seiten, ein Array).",
+        f"- Original-Datensatz (CC BY 4.0): {BASE}/sizing-data.json — BTU-/Liter-/Watt-Größenleitern"
+        " nach Raumgröße, identisch mit Rechnern und Ratgebern, mit dateModified.",
+        f"- Überblick aller Maschinen-Schnittstellen: {BASE}/for-agents.html",
         "",
     ]
     de = pages("guide")

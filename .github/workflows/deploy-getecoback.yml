@@ -100,6 +100,9 @@ jobs:
       - name: Rebuild llms.txt (AI-search index, auto-sync before deploy)
         run: python3 tools/build_llmstxt.py
 
+      - name: Build agent surfaces (.md mirrors + sizing dataset, affiliate-link gate)
+        run: python3 tools/build_agent_md.py
+
       - name: Rebuild site-search index (auto-sync new pages before deploy)
         run: python3 tools/build_search.py
 
@@ -151,6 +154,9 @@ jobs:
           check "https://getecoback.com/datenschutz.html" "DSGVO"
           check "https://getecoback.com/en/" "tag=getecoback-21"
           check "https://getecoback.com/it/guide/miglior-condizionatore-portatile-italia.html" "tag=getecoback-21"
+          check "https://getecoback.com/guide/btu-rechner.md" "Canonical (HTML"
+          check "https://getecoback.com/sizing-data.json" "creativecommons"
+          check "https://getecoback.com/for-agents.html" "MCP"
 
           # Canonical-URL middleware: every legacy variant must 301 to
           # https://getecoback.com/...*.html (matches canonical tags + sitemap)

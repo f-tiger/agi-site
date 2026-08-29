@@ -273,6 +273,12 @@ async function serveAsset(request, env, pathname) {
   if (!response.ok) return response;
   const headers = new Headers(response.headers);
   headers.set("cache-control", cacheControlFor(pathname));
+  // Agent surfaces (2026-08-29): per-page .md mirrors are for reading and
+  // citing by assistants, never for ranking — the HTML page stays canonical.
+  if (pathname.endsWith(".md")) {
+    headers.set("x-robots-tag", "noindex");
+    headers.set("content-type", "text/markdown; charset=utf-8");
+  }
   const out = new Response(response.body, {
     status: response.status,
     statusText: response.statusText,
@@ -661,6 +667,22 @@ async function handleTrend(env) {
 // source URL and the site's honesty line ("not self-tested"), which means the
 // disclosure travels with the data. No auth, no state, aggregate-only.
 const MCP_TOOLS = [
+  // AI-era round 2026-08-29: the decision LAYER above the per-device
+  // calculators. Assistants keep asking "which device class solves X" before
+  // any sizing question makes sense; this router answers it with the same
+  // honest physics the pages use, then hands over to the sizing tools/guides.
+  {
+    name: "geraet_wahl",
+    description: "Welches Gerät löst mein Raumklima-Problem? — Which device family solves a given indoor-climate problem (too hot, damp/mould, too cold, stale air), with the honest physics, the right size for the room and the matching guide. The decision layer above btu_empfehlung/heizleistung_watt.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        problem: { type: "string", enum: ["zu_heiss", "feucht_schimmel", "zu_kalt", "stickige_luft"], description: "Das Problem — the problem: zu_heiss = room too hot, feucht_schimmel = damp air / condensation / mould risk, zu_kalt = room too cold (no fixed heating), stickige_luft = stale air / odours" },
+        qm: { type: "number", description: "Raumfläche in m² — room floor area in square metres (4–120). Default: 20" },
+      },
+      required: ["problem"],
+    },
+  },
   {
     name: "btu_empfehlung",
     description: "Empfohlene Kühlleistung (BTU) für einen Raum, mit passender Geräteklasse. — Recommended cooling capacity in BTU for a room, with the matching device class: how many BTU do I need for X m²? Same formula as the calculator on getecoback.com (340 BTU/m² × sun factor), for Germany and Europe.",
@@ -814,6 +836,37 @@ function mcpToolResult(text) {
 
 async function mcpCallTool(name, args, env) {
   const a = args || {};
+  if (name === "geraet_wahl") {
+    const qm = Math.max(4, Math.min(120, Number(a.qm) || 20));
+    const qp = qm <= 12 ? 10 : qm <= 17 ? 15 : qm <= 22 ? 20 : qm <= 27 ? 25 : qm <= 35 ? 30 : 40;
+    // Same rules as the pages: 340 BTU/m² · dehum ladder (l/day) · 60–100 W/m².
+    let text;
+    if (a.problem === "zu_heiss") {
+      const btu = Math.round((qm * 340) / 500) * 500;
+      text = `Für "Raum zu heiß" ist die einzige Gerätefamilie, die netto kühlt, die mobile Klimaanlage mit Abluftschlauch (Wärme muss den Raum verlassen; Luftkühler/Ventilatoren kühlen nur die Person, nicht den Raum).\n` +
+        `Faustregel für ${qm} m²: ca. ${btu.toLocaleString("de-DE")} BTU. Ohne dichte Fensterabdichtung verliert jeder Monoblock den Großteil seiner Wirkung.\n` +
+        `Geräteklasse & Modelle: https://getecoback.com/guide/klimaanlage-${qp}-qm.html\n` +
+        `Feinrechnung (Decke, Personen, Sonne): Tool btu_empfehlung oder https://getecoback.com/guide/btu-rechner.html`;
+    } else if (a.problem === "feucht_schimmel") {
+      const liter = qm <= 12 ? "10–12" : qm <= 17 ? "12–16" : qm <= 22 ? "16–20" : qm <= 27 ? "20" : qm <= 35 ? "20–25" : "25–30";
+      const dq = qm <= 12 ? 10 : qm <= 17 ? 15 : qm <= 22 ? 20 : qm <= 27 ? 25 : qm <= 35 ? 30 : 40;
+      text = `Für "feuchte Luft / Kondens / Schimmelrisiko" ist der Kompressor-Luftentfeuchter mit Hygrostat die richtige Familie: unter ca. 60 % relativer Feuchte fehlt Schimmel die Grundlage.\n` +
+        `Faustregel für ${qm} m²: ${liter} Liter/Tag Entzugsleistung (Herstellerangaben sind Idealbedingungen, real ≈ die Hälfte).\n` +
+        `Geräteklasse & Modelle: https://getecoback.com/guide/luftentfeuchter-${dq}-qm.html\n` +
+        `Physik-Check für die eigene Wand: Tool taupunkt_lueften`;
+    } else if (a.problem === "zu_kalt") {
+      const wl = Math.round(qm * 60), wh = Math.round(qm * 100);
+      text = `Für "Raum zu kalt ohne feste Heizung" sind Infrarot-/Elektropaneele mit Thermostat die installationsfreie Familie (Zusatz-/Übergangsheizung; als alleinige Winterheizung ist eine Wärmepumpe wirtschaftlicher — Strom-Direktheizung macht aus 1 kWh Strom genau 1 kWh Wärme).\n` +
+        `Faustregel für ${qm} m² (gedämmter Raum): ${wl.toLocaleString("de-DE")}–${wh.toLocaleString("de-DE")} W.\n` +
+        `Geräteklasse & Modelle: https://getecoback.com/guide/heizung-${qp}-qm.html\n` +
+        `Feinrechnung: Tool heizleistung_watt`;
+    } else {
+      text = `Für "stickige Luft / Gerüche" ist die ehrliche Reihenfolge: erst richtig lüften (kostet nichts), dann je nach Ursache Luftreiniger (Partikel/Pollen) oder Luftentfeuchter (wenn die Ursache Feuchte ist — Muffgeruch ist oft ein Feuchteproblem).\n` +
+        `Einordnung Reiniger vs. Entfeuchter: https://getecoback.com/guide/luftentfeuchter-oder-luftreiniger.html\n` +
+        `Richtig lüften: https://getecoback.com/guide/richtig-lueften-bei-hitze.html`;
+    }
+    return mcpToolResult(text + `\n${MCP_DISCLOSURE}`);
+  }
   if (name === "btu_empfehlung") {
     const qm = Math.max(4, Math.min(120, Number(a.qm) || 20));
     const sun = a.sonne === "wenig" ? 0.9 : (a.sonne === "viel" ? 1.2 : 1);

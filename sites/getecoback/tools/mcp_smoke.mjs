@@ -44,6 +44,8 @@ function textOf(result) {
 const CASES = [
   // 20 m² × 340 BTU/m² = 6.800, rounded up to the 7.000 the site's own
   // calculator shows — the expectation is the published number, not the raw one.
+  // Decision layer: 20 m² damp room → dehumidifier family, ladder value, guide URL.
+  ["geraet_wahl", { problem: "feucht_schimmel", qm: 20 }, ["Luftentfeuchter", "16–20", "luftentfeuchter-20-qm"]],
   ["btu_empfehlung", { qm: 20, sonne: "normal" }, ["7.000", "BTU"]],
   ["fensterabdichtung_laenge", { breite_cm: 60, hoehe_cm: 140, fenstertyp: "kipp" }, ["4,00 m", "400"]],
   ["hitzewelle_vorschau", {}, ["°C"]],
