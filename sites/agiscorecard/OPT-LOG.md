@@ -1,3 +1,20 @@
+## 2026-08-29(第三轮,owner:「全站优化,不是单点」+「先优化prompt再执行」)
+
+- **三轮 spec 先行输出**(会话内可查):放大 = invest 观点钩(实测 ≈8% CTR)× 全部
+  有流量、缺该模式、出冷却的判定页;每页原生撰写,严禁同文复制;不碰被测元素与
+  冷却页;zh 侧 39 pv/28d 不过数据门,不做并记录缘由。
+- **ship(7 页 + 1 hub 链)**:how-close-is-agi(37 pv)· sam-altman(23)· ai-2027-
+  scenario(21)· will-agi-arrive-2027(16)· dario-amodei(10)· situational-awareness-
+  predictions(10)· ai-progress-2026-so-far(10)各新增内容原生的 invest 观点钩块,
+  埋点 `tool_click{opinion_<slug>_exposure, label}`,篮子全部在 17 票映射内
+  (TSLA-PLTR / NVDA-AMD-TSM / AAPL-GOOGL / MSFT-NVDA / META-BABA / held 四票组)。
+  will-agi-arrive-2027 与 invest.html 各加一条 /is-nvidia-overvalued 内链。
+  每页三处日期同步;did-open-source-ai-fade 审计时发现**已有**同款钩子(0 点击,
+  D1 分组只显有点击的标签),按防重断言跳过——这条断言救了一次重复叠块。
+- **预登记聚合判定线**:opinion_*_exposure 新铺家族(7+当日 when 页共 8 页)至
+  09-26 累计 ≥8 次点击 = 模式成立;<8 = sasummary 属内容特例,停止横铺并回收。
+- validate OK(223 页 / 205 URL)。
+
 ## 2026-08-29(第二轮,owner:「先优化prompt3轮,再执行:深度优化一次放大优势」)
 
 - **精简 spec(三轮后)**:放大 = 复制实测最强模式,不造新面。D1 实测:全站最强钩子是
