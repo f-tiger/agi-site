@@ -966,3 +966,26 @@ table.pl-tools tr.pl-on { background: var(--tool-s); }
    截图里 15s 明明生效却和另外两个没差别——这类「功能对了但看不出来」的缺陷
    只有真机截图能发现，静态检查和 DOM 断言都会放过它。 */
 .ask-hint button.on { background: var(--ink); color: var(--bg); }
+
+/* 工具注册门（2026-08-29,owner 指令）：JS 注入的注册卡,锁交互不锁内容。
+   视觉沿 .sub 体系但用 --tool 色竖线强调「这是解锁动作」;nudge 是被拦截时的
+   指路动画——用户点了被锁的控件,门卡要自己「答应一声」,否则像页面坏了。 */
+.reg-gate {
+  margin: 18px 0; padding: 18px 20px;
+  border: 2px solid var(--rule); border-left: 6px solid var(--tool);
+  background: var(--card);
+}
+.reg-gate h2 { font-size: 17px; line-height: 1.4; }
+.reg-gate > p { margin-top: 8px; font-size: 13.5px; line-height: 1.8; color: var(--ink-2); max-width: 66ch; }
+.reg-gate .sub-form { margin-top: 12px; }
+.reg-gate .sub-note { margin-top: 8px; font-size: 12px; color: var(--mute); max-width: 66ch; }
+.reg-gate .sub-msg { margin-top: 6px; font-size: 13px; font-weight: 600; color: var(--tool); }
+.reg-gate-nudge { animation: regGateNudge .7s ease; }
+.reg-gate-done { border-left-color: var(--tool); opacity: .85; }
+@keyframes regGateNudge {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-5px); }
+  40% { transform: translateX(5px); }
+  60% { transform: translateX(-3px); }
+  80% { transform: translateX(3px); }
+}

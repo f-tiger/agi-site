@@ -62,6 +62,19 @@
    行中 .md 路径抓取(剔除 __probe)≥10 → 镜像面保留续投;=0 → 该面退休,不再加码
    agent 面投入。本改动属引用面/管线(执行令第 1 条的非 Google 分发面),非内容页,
    不触冻结令。
+9. **工具注册门已上线 2026-08-29**(owner:「解决方案上做的太弱,最好是工具需要用户
+   注册才能用」)。8 个交互工具页(llm-api-calculator/publish-check/stack-builder/
+   video-quota-planner/subscription-audit/tokenizer/pipeline-video/free-for-you)
+   现须注册邮箱后使用:JS 注入门卡,只锁交互不锁内容(内容留在 HTML,不做全屏墙——
+   Google 侵入式插页 + 引用面命脉);对照板/判定页/limits.json/llms-full/MCP/API
+   一概不锁。注册=/api/subscribe(src=tool-gate:<slug>),已订阅者同邮箱解锁,
+   一次注册全站解锁(localStorage bpj_tool_reg)。pricing 页口径已同步(「单次计算
+   免费」→「全部工具免费,需注册」)。依据:PRD-subscription-pivot 已核实结论
+   「诉求存在,触发时机站错了」(表单曝光 39 提交 0)——门把请求搬到价值时刻。
+   **预登记判定线 2026-09-26(28 天窗,D1 现查,剔 CI/自测)**:gate view ≥30 且
+   tool-gate 真实注册 ≥1 → 门保留;view ≥30、注册 =0 且 calc 事件较前 28 天
+   跌 >80% → 带数据报 owner,建议降为软门(首次免费)。watch 页不在此列
+   (本身注册制);发信通道仍未接,门文案未承诺「立刻收到」。
 
 # CLAUDE.md
 

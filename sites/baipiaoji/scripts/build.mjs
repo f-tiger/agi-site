@@ -362,6 +362,94 @@ const metaDesc = (s, max = 155) => {
   return stop > max * 0.55 ? cut.slice(0, stop + 1).trim() : `${cut.trim()}…`;
 };
 
+// ---- 工具注册门（2026-08-29,owner:「解决方案上做的太弱,最好是工具需要用户注册才能用」）----
+//
+// PRD-subscription-pivot 的已核实结论是「订阅诉求存在,但触发时机站错了」（表单曝光 39 次
+// 提交 0 次）。这个门把注册请求搬到价值时刻:用户伸手用工具的那一下。设计约束:
+// ① 只锁交互不锁内容——内容全部留在 HTML 里,不做加载即弹的全屏墙(Google 侵入式插页
+//    惩罚 + 引用面是本站命脉);对照板/判定页/limits.json/llms-full/MCP/API 一概不锁,
+//    那是引用与变现资产(定位钉死条款)。
+// ② 复用 /api/subscribe 全套设施(D1 subs、蜜罐、幂等):注册=订阅,src=tool-gate:<slug>
+//    让 D1 直接回答「哪个工具在转化」。已订阅者填同一邮箱返回 already,同样解锁。
+// ③ 一次注册全站解锁,localStorage 记忆;localStorage 不可用(隐私模式)时按会话解锁。
+// ④ 门卡由 JS 注入:不进 HTML,不污染 SEO 摘要与 .md 镜像;无 JS 时工具本来就不可用。
+// 预登记判定线见 CLAUDE.md 执行令第 9 条(2026-09-26,gate 事件与 tool-gate 注册定去留)。
+const GATED_TOOLS = new Set([
+  '/llm-api-calculator.html', '/publish-check.html', '/stack-builder.html',
+  '/video-quota-planner.html', '/subscription-audit.html', '/tokenizer.html',
+  '/pipeline/video.html', '/free-for-you.html',
+]);
+function gateOf(path) {
+  if (!GATED_TOOLS.has(path)) return '';
+  const zh = LOCALE.code === 'zh';
+  const slug = path.replace(/^\//, '').replace(/\.html$/, '').replace(/\//g, '-');
+  const T = {
+    h2: zh ? '注册后免费使用：解锁本站全部工具' : 'Free with registration — unlocks every tool on this site',
+    p: zh
+      ? '留一个邮箱，本站全部自建工具（API 计算器、订阅体检、分词器、能不能发、流水线等）永久免费用，一次注册全站解锁。你关注的工具免费额度一变，我们也会告诉你。'
+      : 'Leave an email and every self-built tool on this site (API calculator, subscription audit, tokenizer, publish-check, pipelines and more) stays free to use — register once, unlocked everywhere. When a free tier you care about moves, you hear it too.',
+    ph: zh ? '你的邮箱' : 'your@email.com',
+    btn: zh ? '注册并解锁' : 'Register & unlock',
+    note: zh
+      ? '只用于解锁与额度变更提醒，不转让、不群发广告，随时可退订。邮箱之外我们不收集任何个人信息。已订阅过？填同一个邮箱即可解锁。'
+      : 'Used only to unlock the tools and for allowance-change alerts. Never sold, never blasted with ads, unsubscribe any time. Already subscribed? The same address unlocks.',
+    busy: zh ? '提交中…' : 'Submitting…',
+    done: zh ? '已解锁，本站全部工具可用。' : 'Unlocked — every tool on this site is now open.',
+    bad: zh ? '邮箱格式不对，再检查一下。' : 'That address does not look right — please check it.',
+    net: zh ? '网络出错，稍后再试。' : 'Network error — please retry.',
+  };
+  return `<script>(function(){
+var KEY='bpj_tool_reg',main=document.querySelector('main.stage');
+if(!main)return;
+var ok=false;try{ok=!!localStorage.getItem(KEY)}catch(e){}
+if(ok)return;
+var sess=false;
+var card=document.createElement('section');
+card.id='bpjGate';card.className='reg-gate';
+card.innerHTML='<h2>${T.h2}</h2><p>${T.p}</p>'
+  +'<form class="sub-form"><input type="email" name="email" required autocomplete="email" placeholder="${T.ph}" aria-label="${T.ph}">'
+  +'<input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">'
+  +'<button type="submit">${T.btn}</button></form>'
+  +'<p class="sub-note">${T.note}</p><p class="sub-msg" role="status" aria-live="polite"></p>';
+var hero=main.querySelector('.hero');
+if(hero&&hero.parentNode===main)hero.insertAdjacentElement('afterend',card);
+else main.insertAdjacentElement('afterbegin',card);
+if(window.bpjEv)bpjEv('gate','/gate/view/${slug}');
+function guard(e){
+  if(sess)return;
+  var t=e.target;
+  if(!t||!t.closest)return;
+  if(t.closest('#bpjGate,.sub,.gs,.slidein'))return;
+  var c=t.closest('input,select,textarea,button,[contenteditable]');
+  if(!c||!main.contains(c))return;
+  e.preventDefault();e.stopPropagation();
+  if(c.blur)c.blur();
+  card.classList.add('reg-gate-nudge');
+  setTimeout(function(){card.classList.remove('reg-gate-nudge')},700);
+  try{card.scrollIntoView({behavior:'smooth',block:'center'})}catch(x){card.scrollIntoView()}
+}
+['pointerdown','click','keydown','focusin'].forEach(function(n){document.addEventListener(n,guard,true)});
+var form=card.querySelector('form'),msg=card.querySelector('.sub-msg');
+form.addEventListener('submit',function(e){
+  e.preventDefault();
+  var email=(form.email.value||'').trim();
+  msg.textContent='${T.busy}';
+  fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({email:email,website:form.website.value||'',lang:'${LOCALE.code}',src:'tool-gate:${slug}'})})
+  .then(function(r){return r.json()}).then(function(d){
+    if(d&&d.ok){
+      sess=true;try{localStorage.setItem(KEY,'1')}catch(x){}
+      msg.textContent='${T.done}';
+      card.classList.add('reg-gate-done');
+      setTimeout(function(){if(card.parentNode)card.parentNode.removeChild(card)},1400);
+      if(window.bpjEv)bpjEv('gate','/gate/ok/${slug}');
+    }else{msg.textContent='${T.bad}';}
+  }).catch(function(){msg.textContent='${T.net}';});
+});
+})();</script>
+`;
+}
+
 function layout({ title, description, path, body, wide, schema, noindex }) {
   const canonical = `${BASE}${path}`;
   return `<!DOCTYPE html>
@@ -388,7 +476,7 @@ ${analyticsOf()}
 <body${(wide || body.includes('class="rail"')) ? ' class="has-rail"' : ''}>
 ${langSwitch(path)}
 ${body}
-${subJs()}
+${gateOf(path)}${subJs()}
 <footer class="site-footer">
   ${friendLinks.length ? `<nav class="friend-links"><span>${UI('friend_links', '友情链接')}</span>${friendLinks.map((l) => `<a href="${esc(l.url)}" target="_blank" rel="noopener nofollow" title="${esc(l.desc || '')}">${esc(l.name)}</a>`).join('')}</nav>` : ''}
   <p>${esc(NAME)} · ${esc(TAGLINE)} · ${UI('footer_count', '共收录')} ${tools.length} ${UI('footer_count_unit', '个真有免费额度的 AI 工具')}</p>
@@ -4540,12 +4628,12 @@ if (CODQ && CHATQ) {
   const zh = LOCALE.code === 'zh';
   const h1 = zh ? '定价：数据永久免费，卖的是围绕数据的服务' : 'Pricing: the data stays free — what is sold is the service around it';
   const desc = zh
-    ? '已核实数字、全部工具的单次计算、JSON API 与 MCP 服务器永久免费，数据以 CC BY 4.0 开放。将来收费的只有持续监控、报告导出与高频配额这类围绕数据的服务。付费收录、付费排序、付费徽章一概不卖——排序能买，核实就一文不值。'
-    : 'The verified figures, every tool\'s one-off calculation, the JSON API and the MCP server are free for good, and the data is open under CC BY 4.0. Only services around the data — continuous monitoring, report export, higher quotas — will ever be paid. Paid listing, paid ranking and paid badges are not for sale at any price: if ranking can be bought, verification is worthless.';
+    ? '已核实数字、JSON API 与 MCP 服务器永久免费，数据以 CC BY 4.0 开放；全部自建工具同样免费，使用前注册一个邮箱即可（一次注册全站解锁）。将来收费的只有持续监控、报告导出与高频配额这类围绕数据的服务。付费收录、付费排序、付费徽章一概不卖——排序能买，核实就一文不值。'
+    : 'The verified figures, the JSON API and the MCP server are free for good, and the data is open under CC BY 4.0. Every self-built tool is free too — register an email once and everything unlocks. Only services around the data — continuous monitoring, report export, higher quotas — will ever be paid. Paid listing, paid ranking and paid badges are not for sale at any price: if ranking can be bought, verification is worthless.';
   const FREE = zh
-    ? [['全部已核实数字与出处', '这是全站存在的理由'], ['每个自建工具的单次计算', '包括订阅体检、API 计算器、能不能发'],
+    ? [['全部已核实数字与出处', '这是全站存在的理由'], ['全部自建工具（注册邮箱后使用）', '订阅体检、API 计算器、能不能发、分词器等，一次注册全站解锁'],
        ['JSON API 与 limits.json / llms-full.txt', 'CC BY 4.0，署名回链即可商用'], ['MCP 服务器（14 工具 / 9 资源 / 4 提示词）', '无鉴权，无需安装']]
-    : [['Every verified figure and its source', 'This is why the site exists'], ['One-off calculation in every self-built tool', 'Audit, API calculator, publish-check included'],
+    : [['Every verified figure and its source', 'This is why the site exists'], ['Every self-built tool (free with email registration)', 'Audit, API calculator, publish-check, tokenizer and more — register once, unlocked everywhere'],
        ['JSON API and limits.json / llms-full.txt', 'CC BY 4.0 — attribute and link back, commercial use included'], ['MCP server (14 tools / 9 resources / 4 prompts)', 'No auth, nothing to install']];
   const PAID = zh
     ? [['持续监控·扩展档', '免费档已上线：/watch.html 可注册 webhook 监控 3 个工具。Pro 解锁全量监控与将来的历史时间序列导出——厂商不发公告，这来自每日重新核实'],
