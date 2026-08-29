@@ -1,7 +1,7 @@
 // goldrush worker: static assets + /e event whitelist + server-side pageview.
 // Fleet pattern (same as buysomething/gridlings): every D1 write is try/catch +
 // waitUntil — analytics must never be able to 500 the site.
-const ALLOWED = new Set(["ledger_click", "fork_click", "audit_click", "sub_click"]);
+const ALLOWED = new Set(["ledger_click", "fork_click", "audit_click", "sub_click", "grader_open", "grader_use", "grader_copy", "protocol_copy", "ledger_render"]);
 
 function uaClass(ua) {
   if (!ua) return "none";
@@ -25,6 +25,9 @@ export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
 
+    if (url.pathname === "/e" && request.method === "OPTIONS") {
+      return new Response(null, { headers: { "access-control-allow-origin": "*", "access-control-allow-methods": "POST", "access-control-allow-headers": "content-type" } });
+    }
     if (url.pathname === "/e" && request.method === "POST") {
       try {
         const b = await request.json();
@@ -42,10 +45,20 @@ export default {
       return new Response("ok", { headers: { "access-control-allow-origin": "*" } });
     }
 
+    // Protocol well-known alias: /claimledger.json serves the ledger with CORS
+    // open, per the protocol's own SHOULD — tools and agents read it from anywhere.
+    if (url.pathname === "/claimledger.json") {
+      const r = await env.ASSETS.fetch(new Request(url.origin + "/ledger.json"));
+      const h = new Headers(r.headers);
+      h.set("access-control-allow-origin", "*");
+      logRow(env, ctx, { name: "page_view", path: "/claimledger.json", ref: (request.headers.get("referer") || "").slice(0, 120), ua_class: uaClass(request.headers.get("user-agent")), country: (request.cf && request.cf.country) || "" });
+      return new Response(r.body, { status: r.status, headers: h });
+    }
+
     const res = await env.ASSETS.fetch(request);
     if (request.method === "GET" && res.status === 200) {
       const type = res.headers.get("content-type") || "";
-      if (type.includes("text/html") || url.pathname === "/ledger.json" || url.pathname === "/llms.txt") {
+      if (type.includes("text/html") || ["/ledger.json", "/llms.txt", "/protocol.md", "/agix.md"].includes(url.pathname)) {
         logRow(env, ctx, {
           name: "page_view",
           path: url.pathname.slice(0, 80),

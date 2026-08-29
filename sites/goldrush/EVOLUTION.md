@@ -1,4 +1,8 @@
-# Evolution Protocol v0.1 (2026-08-29)
+# Evolution Protocol v0.1 (2026-08-29) — SUPERSEDED by AGIX v0.1
+
+> Same day, this document was absorbed into the fuller, source-cited network
+> coordination algorithm **AGIX v0.1** (site/agix.md · /agix). AGIX is the
+> operative spec; this file stays for history per the never-delete rule.
 
 The editorial loop that keeps this ledger alive without a staff. It is a
 tree-search-shaped **algorithm in the plain sense** — states, scores, expansion,
