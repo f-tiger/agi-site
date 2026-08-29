@@ -33,6 +33,7 @@ live; changing them requires a version bump in this file.
 ## Honesty constraints (inherited from the parent network, non-negotiable)
 - Zero fabrication: no invented statistics, users, or testimonials — ever.
 - A "dead" verdict describes public evidence at a date, not an accusation.
-- The loop's own performance is public: if this site itself fails its
-  pre-registered survival line (see CLAUDE.md), that failure goes ON the ledger
-  as an entry update to "our own claim".
+- The loop's own performance is accountable: if this site fails its
+  pre-registered survival line (see CLAUDE.md), that failure is recorded in the
+  repository's public log — the operators' own revenue specifics stay private
+  by the owner's standing rule (2026-08-29).

@@ -17,13 +17,68 @@
     ]
   },
   "entries": [
-    {"id": "trading-agents", "claim": "AI trading agents make retail users money", "tier": "verified", "verdict": "no-audited-evidence", "asOf": "2026-08-24", "flip": "a vendor publishes a falsifiable live ledger showing net user outperformance after costs", "source": "https://agiscorecard.com/do-ai-trading-agents-work"},
-    {"id": "x402", "claim": "Agents paying per-use (x402) is the next economy", "tier": "verified", "verdict": "dead-by-volume", "asOf": "2026-08", "flip": "sustained real (non-test) volume growth for two consecutive quarters; next recheck 2026-11", "source": "https://agiscorecard.com/paradigm-experiment"},
-    {"id": "bai", "claim": "B.AI's crypto-settled model relay has 1.7M users", "tier": "self-reported", "verdict": "platform-real-figures-unverified", "asOf": "2026-08-23", "flip": "independently audited usage data from a named third party", "source": "https://agiscorecard.com/what-is-b-ai"},
-    {"id": "pandaai", "claim": "AI-trading startups are the place to be (PandaAI wave)", "tier": "reported", "verdict": "funding-real-returns-unverified", "asOf": "2026-08-17", "flip": "any funded vendor publishing audited user-level returns", "source": "https://agiscorecard.com/zh/what-is-pandaai"},
-    {"id": "boosts", "claim": "Small sites earn passive income from newsletter referral networks", "tier": "verified", "verdict": "refuted-first-party", "asOf": "2026-08", "flip": "a verified small-site case (<5k readers/mo) clearing $50/mo with its denominator published", "source": "https://agiscorecard.com/experiments"},
-    {"id": "copy13f", "claim": "Copying famous investors' 13F filings beats the market", "tier": "verified", "verdict": "split-depends-who", "asOf": "2026-08-16", "flip": "the quarterly filing-day-close recompute flips a copied book across the index line", "source": "https://agiscorecard.com/does-copying-13f-work"},
-    {"id": "faceless-video", "claim": "Faceless AI video channels are passive income", "tier": "reported", "verdict": "dead-lane-policy", "asOf": "2026-08-28", "flip": "a platform policy reversal, or a verified post-2025 channel ledger with revenue and strikes shown", "source": "https://goldrush.agiscorecard.com/#ledger"},
-    {"id": "ourselves", "claim": "An AI-run site network can make money (our own claim)", "tier": "verified", "verdict": "open-one-rail-verified", "asOf": "2026-08-29", "flip": "each experiment carries its own pre-registered kill date; the ledger updates on those dates", "source": "https://agiscorecard.com/experiments"}
+    {
+      "id": "trading-agents",
+      "claim": "AI trading agents make retail users money",
+      "tier": "verified",
+      "verdict": "no-audited-evidence",
+      "asOf": "2026-08-24",
+      "flip": "a vendor publishes a falsifiable live ledger showing net user outperformance after costs",
+      "source": "https://agiscorecard.com/do-ai-trading-agents-work"
+    },
+    {
+      "id": "x402",
+      "claim": "Agents paying per-use (x402) is the next economy",
+      "tier": "verified",
+      "verdict": "dead-by-volume",
+      "asOf": "2026-08",
+      "flip": "sustained real (non-test) volume growth for two consecutive quarters; next recheck 2026-11",
+      "source": "https://agiscorecard.com/paradigm-experiment"
+    },
+    {
+      "id": "bai",
+      "claim": "B.AI's crypto-settled model relay has 1.7M users",
+      "tier": "self-reported",
+      "verdict": "platform-real-figures-unverified",
+      "asOf": "2026-08-23",
+      "flip": "independently audited usage data from a named third party",
+      "source": "https://agiscorecard.com/what-is-b-ai"
+    },
+    {
+      "id": "pandaai",
+      "claim": "AI-trading startups are the place to be (PandaAI wave)",
+      "tier": "reported",
+      "verdict": "funding-real-returns-unverified",
+      "asOf": "2026-08-17",
+      "flip": "any funded vendor publishing audited user-level returns",
+      "source": "https://agiscorecard.com/zh/what-is-pandaai"
+    },
+    {
+      "id": "boosts",
+      "claim": "Small sites earn passive income from newsletter referral networks",
+      "tier": "reported",
+      "verdict": "arithmetic-dead-small-sites",
+      "asOf": "2026-08",
+      "flip": "a verified small-site case (<5k readers/mo) clearing $50/mo with its denominator published",
+      "source": "https://www.beehiiv.com/"
+    },
+    {
+      "id": "copy13f",
+      "claim": "Copying famous investors' 13F filings beats the market",
+      "tier": "verified",
+      "verdict": "split-depends-who",
+      "asOf": "2026-08-16",
+      "flip": "the quarterly filing-day-close recompute flips a copied book across the index line",
+      "source": "https://agiscorecard.com/does-copying-13f-work"
+    },
+    {
+      "id": "faceless-video",
+      "claim": "Faceless AI video channels are passive income",
+      "tier": "reported",
+      "verdict": "dead-lane-policy",
+      "asOf": "2026-08-28",
+      "flip": "a platform policy reversal, or a verified post-2025 channel ledger with revenue and strikes shown",
+      "source": "https://goldrush.agiscorecard.com/#ledger"
+    }
   ]
 }
