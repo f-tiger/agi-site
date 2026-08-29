@@ -1,5 +1,5 @@
 {
- "fetched": "2026-08-28",
+ "fetched": "2026-08-29",
  "seeds": {
   "electric spin scrubber": {
    "auto": [
@@ -115,12 +115,16 @@
   "high speed hair dryer": {
    "rising": [
     {
-     "q": "conair infiniti pro hair dryer",
-     "v": 170
+     "q": "xfinity high speed internet",
+     "v": 250
     },
     {
-     "q": "xfinity high speed internet",
-     "v": 150
+     "q": "laifen hair dryer",
+     "v": 100
+    },
+    {
+     "q": "conair infiniti pro hair dryer",
+     "v": 80
     },
     {
      "q": "conair hair dryer",
@@ -128,7 +132,41 @@
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-08-28"
+   "fetched": "2026-08-29"
+  },
+  "mini massage gun": {
+   "rising": [
+    {
+     "q": "therabody massage gun",
+     "v": 130
+    },
+    {
+     "q": "theragun massage gun",
+     "v": 70
+    },
+    {
+     "q": "theragun",
+     "v": 60
+    },
+    {
+     "q": "theragun mini",
+     "v": 60
+    },
+    {
+     "q": "bob and brad massage gun",
+     "v": 50
+    },
+    {
+     "q": "bob and brad mini massage gun",
+     "v": 50
+    },
+    {
+     "q": "travel massage gun",
+     "v": 50
+    }
+   ],
+   "source": "related-queries",
+   "fetched": "2026-08-29"
   }
  }
 }
