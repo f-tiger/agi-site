@@ -1,3 +1,20 @@
+## 2026-08-29(第七轮,owner:「优化prompt:强化股票部分」)
+
+- **三轮 spec 先行**;按 PRD 执行顺序落 **P2 `/does-copying-13f-work`**(五条队列里
+  引用潜力最大:SERP 极薄 + 全网唯一申报日收盘价口径一手回测)。
+- **ship**:六件套齐——胶囊判定「问题不是能不能抄,是抄谁」;活数字 +187.2% vs
+  QQQ +59.6%(截至 2026-08-16,`index_click{copy13f_live}`);逐人表**含败者**
+  (巴菲特 AI 切片 +37.3% 跑输);四条反面说明与数字同屏;Martin & Puthenpurackal
+  2008(SSRN)一手学术引用;钱路 = compass 计算器裸链(`invest_tool_click{copy13f_record}`,
+  `?who=` 短码本仓无可核实例故不带参,防编造)+ TG 绑定在计算器内。FAQ==JSON-LD 逐字。
+  实体落在 Buffett/Druckenmiller,对冲 73% Aschenbrenner 依赖。
+- **合规要点(上午 R3 否决人指的路)**:track-record 硬同步台账**同 commit 由四处
+  扩为五处**(CLAUDE.md 已改),季度重算义务覆盖本页。
+- **PRD 记账**:P2 ✅、P6 ✅(今晨第五轮已实质完成,补勾)。队列剩 P3(等 /invest
+  出冷却)、P4(zh 版)、P5(invest-data.json)。09-26 冻结窗未受污染(本页事件
+  全在 invest_tool_click / index_click 族)。
+- validate OK(**224 页 / 206 URL**)。
+
 ## 2026-08-29(第六轮,owner:「把点击率高的,强化转化」)
 
 - **点击榜重拉(含当日新面)**:全站互动第一名是被忽略的**首页时间线投票 vote_cast

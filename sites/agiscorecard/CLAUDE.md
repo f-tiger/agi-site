@@ -144,7 +144,7 @@ Positioning umbrella: **"The evidence layer for the AI era — track the predict
   **首页凸显(owner 2026-08-16「这个赚钱工具应该是在首页凸显」)**:`index.html` 与 `cn.html`
   在 #directory 之前各有一块独立的引流区,写死了德鲁肯米勒 +187.2% / QQQ +59.6% / 巴菲特
   +37.3%(跑输)。**它们受上面那条硬同步义务约束**——每季重算时,这两块和 invest 两页
-  一起改,共四处。
+  一起改,再加 `/does-copying-13f-work`(2026-08-29 上线,活数字+表格整页引用成绩单),**共五处**。
   **它是工具,不是榜单(2026-08-16 补齐)**:计算器「如果当时我抄了,今天多少钱」选投资人
   (可多选)+ 起始申报日 + 本金,全部在浏览器里算;深链 `?who=a-_-b&from=YYYY-MM-DD&amt=N`
   双向绑定,`?embed=1` 出无壳嵌入版 + 带 `utm_source=widget` 的品牌回链。基准必须用
