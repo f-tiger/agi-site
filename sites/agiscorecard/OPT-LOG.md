@@ -1,3 +1,20 @@
+## 2026-08-29(第二轮,owner:「先优化prompt3轮,再执行:深度优化一次放大优势」)
+
+- **精简 spec(三轮后)**:放大 = 复制实测最强模式,不造新面。D1 实测:全站最强钩子是
+  sasummary 的 invest 观点钩(≈20 曝光 4 点击 ≈8% CTR,直通营收主线 exposure);流量第一深页
+  /when-will-agi-arrive(145 pv/28d,08-19 快照后未动,出冷却)却完全没有 invest 通道。
+  数据门=D1 当日实查;需求门=145 真读者已在页上;商业门=接入主线 C→A。
+- **ship**:when-will-agi-arrive 表格区后新增 invest 观点钩块「Every date in that table is
+  also a live bet」——三个时间线阵营一键篮子(TSLA-PLTR / NVDA-AMD-TSM / AAPL-GOOGL,
+  全部在 17 票映射内已核),埋点 `tool_click{opinion_when_exposure, label=open|infra|cashflow}`;
+  文案引用当日 P1 的 90/10 结论并内链 /is-nvidia-overvalued(顺手给新页第一条高流量内链)。
+  三处日期同步(visible/JSON-LD/sitemap)。**未动**页上任何既有被测元素(opinion_when、
+  when_arrive_live、两个订阅位)——08-30 判定样本保持干净。
+- **判定线(预登记)**:opinion_when_exposure 28 天(至 09-26)≥3 次点击 = 模式可复制,
+  下一站 how-close-is-agi(37 pv,其 opinion 钩 CTR 5.4%);<3 = sasummary 的 8% 是内容
+  相关性特例,停止横铺。
+- validate OK(223 页 / 205 URL)。
+
 ## 2026-08-29(daily run 04:00)— PRD P1 上线:/is-nvidia-overvalued(主线 C→A 第一页)
 
 - **阶梯定位**:⓪ 引用队列仍空(无新 Bing 明细,不塞猜测种子);① 无新增样本可复制;
