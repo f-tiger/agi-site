@@ -50,6 +50,18 @@
    首个 AI 引用或 JS pv ≥30 → 把「AI 爬虫观测」做成月更小节;否则并入
    developers 页。**内容队列已清空**——下一轮回到常规阶梯(引用面维护 +
    两个转化探针读数),没有新的一手证据就不要立新页。
+8. **AI 时代 agent 面:每页 Markdown 镜像已上线 2026-08-29**(owner 指令「bpj站点
+   做成ai时代站点」;移植 agiscorecard 已验证形状,agi-site commit bc83473)。缺口
+   审计结论:本站 llms.txt/llms-full.txt/limits.md/MCP/爬虫记账早已齐备,唯一结构性
+   缺口是内容页镜像——build.mjs 末段现对根/en/money/plans 的 243 个内容页从已生成
+   HTML 提取(title/描述胶囊/H1/FAQ JSON-LD)生成同路径 .md(.html 换 .md),零第二
+   份手写副本、永不漂移;正典 .md(limits/pricing)优先,镜像只填空位;_middleware.js
+   对镜像加 X-Robots-Tag: noindex,HTML 页保持 canonical 与引用面;不进 sitemap;
+   程序化页(tools/vs/alternatives/wall/upgrade/c)不镜像——数据已由 limits.json/
+   llms-full/MCP 全量供给。**预登记判定线 2026-10-28(60 天窗)**:D1 hits 表 ev='bot'
+   行中 .md 路径抓取(剔除 __probe)≥10 → 镜像面保留续投;=0 → 该面退休,不再加码
+   agent 面投入。本改动属引用面/管线(执行令第 1 条的非 Google 分发面),非内容页,
+   不触冻结令。
 
 # CLAUDE.md
 

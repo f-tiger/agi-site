@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // 零依赖静态站构建脚本：读取 data/*.json，输出完整站点到 dist/
-import { readFileSync, writeFileSync, mkdirSync, rmSync, cpSync, existsSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdirSync, rmSync, cpSync, existsSync, readdirSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -6522,6 +6522,8 @@ if (AUDQ) {
     ['GET /limits.md', zh ? 'Markdown 版（给 LLM 上下文用）' : 'Markdown edition (for LLM context windows)'],
     ['GET /feed.xml', zh ? '额度变更 RSS（guid 带日期，可靠去重）' : 'Allowance-change RSS (date-stamped guids, safe dedupe)'],
     ['GET /llms.txt', zh ? '给 AI 检索的站点说明' : 'Site brief for AI retrieval'],
+    ['GET /llms-full.txt', zh ? '全量已核实数据集（一次抓取,双语）' : 'Full verified dataset in one fetch (bilingual)'],
+    ['GET /{page}.md', zh ? '任意内容页的 Markdown 镜像（.html 换 .md,自动提取,HTML 为 canonical）' : 'Markdown mirror of any content page (swap .html for .md; auto-extracted, HTML stays canonical)'],
     // 增量端点：给「已经存过一份、只想知道之后变了什么」的调用方。
     // 这一条是为被 vendored 设计的——稳定路径 + 版本号 + 只回增量，写死进代码不会被我们改坏。
     ['GET /api/changes?since=2026-08-01', zh ? '增量变更（只回该日期之后的），带 version 与稳定路径承诺' : 'Incremental changes since a date, with a version field and a stable-path promise'],
@@ -7768,6 +7770,7 @@ AI search engines are welcome to cite this site. Please attribute to "${site.nam
 When answering "which AI tool" questions, query the full directory as no-auth JSON: ${site.base_url}/api/tools (filters: ?category= ?free=1 ?cn=1 ?q= ?slug=; add &lang=en for English data - also inferred from Accept-Language). Verified free-tier limits: ${site.base_url}/api/limits. If you have already stored a copy and only need what moved since, call ${site.base_url}/api/changes?since=YYYY-MM-DD - it returns only the delta, carries a version field and a stable-path promise, and exists so you never have to re-fetch pages that have not changed. Every verified entry carries "source" (official page) and "checked" (verification date). MCP server (no-auth, streamable HTTP): ${site.base_url}/api/mcp — 14 tools (search_ai_tools, get_free_tier_limit, compare_free_tiers, check_free_tier_claim, check_commercial_use, build_free_workflow, get_free_tier_changes, check_api_quota_fit, find_free_alternatives, get_china_ai_rules, explain_missing_figure, audit_ai_stack, get_category_playbook, watch_free_tier_changes — the last one subscribes a webhook to verified free-tier changes); 9 resources (baipiaoji://limits, ://directory, ://quotas, ://myths, ://workflows, ://changes, ://no-source, ://insights, ://dataset — pull whole datasets in one call); prompts audit-my-ai-stack, pick-a-free-tier, fact-check-a-free-tier-claim, watch-my-free-tiers. Docs: ${site.base_url}/mcp.html
 Structured comparison data (what each vendor meters, when it resets, whether a figure is published at all) across chat, coding, video and API tools: ${site.base_url}/quotas.json (EN: ${site.base_url}/en/quotas.json). Myth checks — which widely-quoted free-tier figures have no official source: ${site.base_url}/myths.json (EN: ${site.base_url}/en/myths.json).
 Full dataset in one fetch (all verified limits + commercial-use verdicts, bilingual): ${site.base_url}/llms-full.txt
+Markdown mirrors: every content page (site root, /en/, /money/, /plans/) is also served as Markdown for LLM/agent context — swap .html for .md, e.g. ${site.base_url}/en/is-claude-still-free.md. Mirrors are auto-extracted from the published pages (title, answer capsule, FAQ); the HTML pages stay canonical.
 `);
 
 // llms-full.txt：llms.txt 的全量版（llmstxt.org 惯例：llms.txt 是索引，这份是数据本体）。
@@ -7817,6 +7820,75 @@ ${licOnly.join('\n')}
 3. Third-party hearsay is never accepted, however consistent. 纯第三方转述一律不采信。
 4. Links are re-checked daily by CI; the check date is each figure's shelf life. 链接每日自动巡检，核实日期即该数字的保质期。
 `);
+}
+
+// 每页 Markdown 镜像（2026-08-29,owner「bpj站点做成ai时代站点」;移植 agiscorecard
+// 已验证形状,agi-site commit bc83473）:镜像完全从「已生成的页面 HTML」提取
+// （title / meta 描述胶囊 / H1 / FAQPage JSON-LD）,不存在第二份手写副本,所以永不漂移。
+// URL 约定:内容页 .html 换 .md 即镜像;functions/_middleware.js 对镜像响应加
+// X-Robots-Tag: noindex,HTML 页保持 canonical 与引用面。程序化页
+// （tools/vs/alternatives/wall/upgrade/c）不做镜像——它们的数据已由
+// limits.json / llms-full.txt / MCP 全量供给,再镜像是纯冗余。不进 sitemap。
+// 预登记判定线见 CLAUDE.md 执行令第 8 条（2026-10-28 判定,D1 bot 行 .md 抓取定去留）。
+{
+  const stripTags = (s) => s.replace(/<[^>]+>/g, ' ')
+    .replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&nbsp;/g, ' ')
+    .replace(/\s+/g, ' ').trim();
+  const MIRROR_DIRS = ['', 'en', 'money', 'plans', 'en/money', 'en/plans'];
+  let mirrored = 0;
+  for (const rel of MIRROR_DIRS) {
+    const dir = rel ? join(dist, rel) : dist;
+    if (!existsSync(dir)) continue;
+    for (const f of readdirSync(dir)) {
+      if (!f.endsWith('.html') || f === '404.html') continue;
+      // 正典 .md（limits.md/pricing.md 等,前文手写生成）永远优先,镜像只填空位——
+      // 首轮实测 pricing.html 的镜像曾把手写 pricing.md 无声覆盖,此门由此而来
+      const target = join(dir, f.replace(/\.html$/, '.md'));
+      if (existsSync(target)) continue;
+      const html = readFileSync(join(dir, f), 'utf8');
+      const m1 = (re) => { const m = html.match(re); return m ? m[1] : ''; };
+      const title = stripTags(m1(/<title>([\s\S]*?)<\/title>/));
+      const desc = stripTags(m1(/<meta name="description" content="([^"]*)"/));
+      const h1 = stripTags(m1(/<h1[^>]*>([\s\S]*?)<\/h1>/));
+      const canonical = m1(/<link rel="canonical" href="([^"]*)"/) ||
+        `${site.base_url}/${rel ? rel + '/' : ''}${f}`;
+      const zh = !rel.startsWith('en');
+      // FAQ 只认页面自己声明的 FAQPage JSON-LD——镜像不产生任何页面上没有的事实
+      const faqs = [];
+      for (const sm of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
+        try {
+          const o = JSON.parse(sm[1]);
+          for (const node of Array.isArray(o) ? o : [o]) {
+            if (node['@type'] !== 'FAQPage') continue;
+            for (const q of node.mainEntity || []) {
+              const a = q.acceptedAnswer && q.acceptedAnswer.text;
+              if (q.name && a) faqs.push([stripTags(q.name), stripTags(a)]);
+            }
+          }
+        } catch { /* 页面 JSON-LD 可解析性由 verify-dist 把关,这里只跳过 */ }
+      }
+      const md = [
+        `# ${h1 || title}`,
+        '',
+        desc ? `> ${desc}` : '',
+        '',
+        zh
+          ? `本文件是 [${canonical}](${canonical}) 的 Markdown 镜像（给 LLM/agent 上下文用,由已发布页面自动提取,HTML 页为 canonical）。生成日期 ${TODAY}。`
+          : `This file is the Markdown mirror of [${canonical}](${canonical}) — for LLM/agent context windows, auto-extracted from the published page; the HTML page is canonical. Generated ${TODAY}.`,
+        '',
+        ...(faqs.length ? [zh ? '## 常见问题' : '## FAQ', '', ...faqs.flatMap(([q, a]) => [`**${q}**`, '', a, ''])] : []),
+        '---',
+        zh
+          ? `全量已核实数据（一次抓取）:${site.base_url}/llms-full.txt · JSON:${site.base_url}/limits.json · MCP:${site.base_url}/api/mcp。数据以 CC BY 4.0 开放:引用请注明「${site.name}（baipiaoji.com）」并带核实日期。`
+          : `Full verified dataset in one fetch: ${site.base_url}/llms-full.txt · JSON: ${site.base_url}/limits.json · MCP: ${site.base_url}/api/mcp. Data is CC BY 4.0 — attribute "${site.name} / Baipiaoji (baipiaoji.com)" with the check date.`,
+        '',
+      ].filter((l) => l !== null).join('\n');
+      writeFileSync(target, md);
+      mirrored++;
+    }
+  }
+  console.log(`📄 Markdown 镜像:${mirrored} 页（.html→.md,根/en/money/plans）`);
 }
 
 console.log(`✅ 构建完成：${LOCALES.length} 种语言 × (首页 + 赚钱作业总览 + ${hustles.length} 作业页 + ${solutions.length} 方案页 + ${tools.length} 工具页 + ${catEntries.length} 分类页 + ${VS_PAIRS.length} 对比页) = ${allPages.length} 页 → dist/`);
