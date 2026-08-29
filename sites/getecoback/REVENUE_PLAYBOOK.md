@@ -44,6 +44,9 @@
    - `build_structure.py && build_sitemap.py && build_feed.py` → commit/push → CI 部署+IndexNow 自动推送
 2. **KGR 页内链回货币页**：每篇 KGR 页正文链 1–2 个对比/预算货币页（把长尾流量导向高转化页），货币页是成交主力，KGR 页是流量入口。
 3. **候选队列**（写完补充）：
+   - 已写：Coolizi Coolzy Faktencheck（2026-08-29，coolizi-erfahrungen.html；需求=rising v≈23.600；SERP=与 EpiCooler 同一批评测农场域名占满首屏(tomorrow-focus 两个产品都推,可证)、无任何独立测试=差异化成立；物理不可能主张逐条对表(「无排气管降温 7–8 °C」「分子级纳米滤芯」)；与真品 Close Comfort Coolzy-Pro 的名称混淆单独成节；变现=诚实替代(Comfee dp/Pinguino/风扇)；蚕食检查:ohne-abluftschlauch 页仅一句提及,已互链）
+   - 候选：Air Zuma Faktencheck（rising v≈14.650,同一农场家族;等 coolizi 页 28 天出信号再决定是否复制,避免同型页连发稀释）
+   - ⚠️ 台账教训（2026-08-29）：infrarotheizung-garage 已于 08-26 在线(rising v≈44.050 已被消化),本轮差点重写覆盖——**动笔前先 ls/grep 查重是硬步骤**,generator 冲掉增补页与手写覆盖同型事故,一天内两次未遂。
    - 已写：Gekipptes Fenster einbruchsicher × Klimaanlage nachts（2026-07-11，klimaanlage-fenster-einbruchschutz.html；型号共识=ABUS FKS208(VdS)/FO400+PortaSplit 结构解；含保险角度 FAQ；内链 kippfenster/nachts/portasplit 货币页）
    - 已写(去重修正)：Abluftschlauch verlängern & isolieren（2026-07-11；发现已有 abluftschlauch-verlaengern.html，遂把 isolieren 意图+De'Longhi 保修警告+Alufolie 无用节并入既有页并删除重复的 klimaanlage-abluftschlauch-verlaengern.html，避免自我蚕食；FAQ 增至4问）
    - 已写(英语纵深)：Portable AC skylight/roof window（2026-07-11，EN；SERP=eBay/Etsy/Amazon商品页+Quora+HVAC论坛，无专门指南=low；与德语 dachfenster 页互挂 hreflang；诚实角度=热空气上升+防雨=屋顶窗更难；内链 tilt/heatwave/BTU/kernbohrung）
