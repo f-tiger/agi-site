@@ -248,6 +248,7 @@ what was actually optimized.
 
 1. Start from latest main: `git fetch origin main -q && git checkout -B claude/agiscorecard-github-migration-bpi0tm origin/main`
 2. Make the change. If pages were added/updated, regenerate the feed: `python3 tools/gen_feed.py`. **Validate: `python3 tools/validate.py` must print OK.**
+   页面有增改时同一 run 再跑 `python3 tools/gen_agent_surfaces.py`(llms-full.txt + 全部 .md 镜像,从页面自动提取,绝不手写第二份)。
 3. Identity: `git config user.email noreply@anthropic.com && git config user.name Claude`
 4. Push with rebase-on-conflict (headless sessions have no GitHub MCP — never rely on PRs):
    `for i in 1 2 3 4; do git fetch origin main -q && git rebase origin/main && git push origin HEAD:main && break || { git rebase --abort; sleep $((2**i)); }; done`

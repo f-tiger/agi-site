@@ -605,7 +605,21 @@ export default {
     // would otherwise take the whole site down on the very first request.
     const res = await env.ASSETS.fetch(request);
     const type = res.headers.get('content-type') || '';
-    if (!type.includes('text/html')) return res;
+    if (!type.includes('text/html')) {
+      // Markdown mirrors (gen_agent_surfaces.py) are an agent-fetch surface: count
+      // them server-side so the 60-day adoption line has real numbers, and mark them
+      // noindex — the HTML page stays the canonical and the citation surface. Both
+      // steps are wrapped so they can never break serving.
+      if (request.method === 'GET' && res.status === 200 && url.pathname.endsWith('.md')) {
+        try { recordView(env, ctx, request, url); } catch (e) {}
+        try {
+          const h = new Headers(res.headers);
+          h.set('x-robots-tag', 'noindex');
+          return new Response(res.body, { status: res.status, headers: h });
+        } catch (e) {}
+      }
+      return res;
+    }
 
     if (request.method === 'GET' && res.status === 200) {
       try { recordView(env, ctx, request, url); } catch (e) {}

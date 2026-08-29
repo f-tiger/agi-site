@@ -11,6 +11,13 @@
   <author><name>The AGI Scorecard</name></author>
   <rights>CC BY 4.0 — reuse with attribution and a link to https://agiscorecard.com</rights>
   <entry>
+    <title>AGI Scorecard Data for AI Agents: JSON, Feed, llms.txt</title>
+    <link href="https://agiscorecard.com/for-agents"/>
+    <id>https://agiscorecard.com/for-agents</id>
+    <updated>2026-08-29T00:00:00Z</updated>
+    <summary>Free, machine-readable AGI verdict data: /data.json (CC BY 4.0), an Atom feed, and llms.txt. Copy-paste prompt to add verdict-change alerts to any AI agent.</summary>
+  </entry>
+  <entry>
     <title>Will AGI Arrive by 2027? Aschenbrenner&amp;#x27;s Prediction</title>
     <link href="https://agiscorecard.com/will-agi-arrive-2027"/>
     <id>https://agiscorecard.com/will-agi-arrive-2027</id>
@@ -142,12 +149,5 @@
     <id>https://agiscorecard.com/audits</id>
     <updated>2026-08-23T00:00:00Z</updated>
     <summary>Two productized audits from the team behind a 37.5% AI-citation share: what AI assistants say about you ($299), and a two-ledger audit of any founder&#x27;s or project&#x27;s public claims ($499). No sales call.</summary>
-  </entry>
-  <entry>
-    <title>The Paradigm Bet: A Public, Pre-Registered Experiment</title>
-    <link href="https://agiscorecard.com/paradigm-experiment"/>
-    <id>https://agiscorecard.com/paradigm-experiment</id>
-    <updated>2026-08-23T00:00:00Z</updated>
-    <summary>Can the &#x27;2013 Bitcoin&#x27; pattern be run honestly in 2026? A live experiment ledger: pre-registered candidates, kill conditions filed before entry, monthly audits. Not investment advice.</summary>
   </entry>
 </feed>
