@@ -4,6 +4,8 @@
 
 Each verdict is one of: On track, Wrong, Open, or Pending, and carries a pre-registered condition that would flip it. Data is recombined across pages from the same verified evidence base. Not affiliated with any AI lab.
 
+Full content in one fetch: https://agiscorecard.com/llms-full.txt — and every top-level English page has a Markdown mirror at its URL + ".md" (e.g. https://agiscorecard.com/what-is-agi.md). MCP endpoint (Streamable HTTP, no auth): https://agiscorecard.com/mcp — docs at https://agiscorecard.com/for-agents
+
 ## Data
 - [Revenue experiment log (public, pre-registered)](https://agiscorecard.com/experiments): Ten attempts to monetise a ~200-user site, each with success AND kill thresholds published before the result; machine-readable at /experiments.json (CC BY 4.0). Includes a negative control arm and a registered self-falsification condition. Revenue to date: $0.
 

@@ -1,0 +1,1565 @@
+# The AGI Scorecard — full content for LLMs (llms-full.txt)
+
+> Independent tracker of the predictions in Leopold Aschenbrenner's "Situational
+> Awareness". Every page below: title, dated answer capsule, FAQ. Full dataset with
+> verdicts, evidence and flip conditions: https://agiscorecard.com/data.json (CC BY 4.0).
+> Thesis Tracker: 62.5/100 as of 2026-08-08. Index: https://agiscorecard.com/llms.txt
+> Each page also has a Markdown mirror at its URL + ".md"
+> (e.g. https://agiscorecard.com/what-is-agi.md).
+
+## Situational Awareness: A Two-Year Scorecard — Full Analysis
+
+URL: https://agiscorecard.com/two-year-scorecard.html
+
+Two years after Aschenbrenner predicted AGI by 2027: 3 predictions on track, 1 clearly wrong, 2 open.
+
+---
+
+## AGI Questions, Answered — The Full Scorecard Index
+
+URL: https://agiscorecard.com/agi-questions
+Every question the scorecard answers, in one place · Updated as verdicts change
+
+The AGI Scorecard grades every major prediction from Leopold Aschenbrenner's Situational Awareness against reality — and answers the questions people actually ask about AGI. Here's the full index.
+
+---
+
+## AGI Scorecard Data for AI Agents: JSON, Feed, llms.txt
+
+URL: https://agiscorecard.com/for-agents
+Last updated: August 17, 2026 · Updated as verdicts change
+
+Yes — every verdict on this site is free to reuse, machine-readable, and CC BY 4.0. The AGI Scorecard publishes its full dataset at /data.json (all 8 graded Situational Awareness predictions with verdicts, evidence, and flip conditions, plus the forecaster-timeline table), an Atom feed of new & updated pages at /feed.xml, and an AI-crawler index at /llms.txt. Attribution + a link is the only requirement.
+
+Q: Does the AGI Scorecard have an API?
+A: Not a keyed API — something simpler: the full dataset is a static JSON file at agiscorecard.com/data.json (CC BY 4.0), plus an Atom feed at /feed.xml and an llms.txt index. No key, no auth, no rate limits beyond the CDN's.
+
+Q: Can I use the data in my own project or newsletter?
+A: Yes. Everything in data.json is licensed CC BY 4.0 — reuse it freely with attribution and a link to agiscorecard.com.
+
+Q: How do I get notified when a verdict changes?
+A: Point any scheduled agent at /data.json and diff the verdicts between runs (the dateModified field tells you if anything moved), subscribe to /feed.xml, or get the email briefing (sent when a verdict moves, not on a fixed schedule).
+
+Q: Is AI crawling allowed on this site?
+A: Yes — robots.txt explicitly allows GPTBot, OAI-SearchBot, ClaudeBot, Claude-SearchBot, PerplexityBot, Google-Extended and other AI crawlers. The site is built to be cited.
+
+---
+
+## Add a Live AGI Tracker to Your AI Agent (One Command)
+
+URL: https://agiscorecard.com/skill
+Last updated: July 11, 2026 · Updated as verdicts change
+
+Yes — one command adds a live AGI-progress checker to your agent. The agi-scorecard skill teaches Claude Code (or any SKILL.md-compatible agent) to fetch this site’s graded Situational Awareness verdicts from /data.json, answer AGI-timeline questions from live data, and alert you when a verdict flips. No API key — the dataset is a static CC BY 4.0 file on a CDN.
+
+Q: How do I add the AGI Scorecard to Claude Code?
+A: Run one command: mkdir -p ~/.claude/skills/agi-scorecard && curl -fsSL -o ~/.claude/skills/agi-scorecard/SKILL.md https://agiscorecard.com/skill.md — then ask your agent about AGI progress or type /agi.
+
+Q: Does the skill need an API key?
+A: No. It reads the site's static data.json file (CC BY 4.0) — no key, no auth, no rate-limit dance. Telegram/email delivery, if you want it, uses whatever your own agent platform provides.
+
+Q: How do verdict-change alerts work?
+A: The skill keeps the last copy of data.json locally and diffs the verdicts on each run. When a prediction flips (say Open → On track), it reports one line with the change; when nothing moved, it stays silent.
+
+Q: Which agents does it work with?
+A: Any agent that loads SKILL.md-style skills — Claude Code natively, and OpenClaw or similar via their skills folder. Any tool that can fetch a URL can use the underlying /data.json directly.
+
+---
+
+## Live AGI Verdict Badges for Your README (Free SVG)
+
+URL: https://agiscorecard.com/badge
+Last updated: July 11, 2026 · Updated as verdicts change
+
+Yes — drop a live AGI verdict into any README with one line of markdown. These SVG badges show the current verdict on “AGI by 2027” and the full Situational Awareness scorecard tally. They are static files on a CDN, updated whenever a verdict changes — so your README always shows the live state of the AGI bet, never a stale copy.
+
+Q: How do I add the AGI 2027 badge to my README?
+A: Paste one line of markdown: an image link to https://agiscorecard.com/badge/agi-2027.svg wrapped in a link to the verdict page. The /badge page has copy-paste snippets for both badges.
+
+Q: Do the badges update automatically?
+A: Yes. They are static SVGs regenerated whenever a scorecard verdict changes, so every README embedding them shows the current verdict with no action on your part.
+
+Q: Are the badges free to use?
+A: Yes — free for any use, commercial or not. The underlying dataset is CC BY 4.0; the badge itself just asks that you link it back to agiscorecard.com.
+
+---
+
+## AGI-2027 Thesis Tracker: One Score for the 2027 Bet
+
+URL: https://agiscorecard.com/progress-index
+Last updated: August 8, 2026 · Updated as verdicts change
+
+The AGI-2027 thesis is currently tracking at 62.5/100. The Thesis Tracker is a single number for how much of Leopold Aschenbrenner’s Situational Awareness is holding up — a transparent mean of the 8 graded verdicts. It moves only when a verdict changes, and every verdict carries a pre-registered flip condition. No probability is claimed; it is an editorial composite you can audit line by line below.
+
+Q: What is the AGI-2027 Thesis Tracker?
+A: A single 0-100 score of how much of Aschenbrenner's Situational Awareness thesis is holding up, computed as the mean of the 8 graded verdict weights. As of 2026-08-08 it is 62.5/100. It is an editorial composite of published verdicts, not a probability of AGI.
+
+Q: How is the score calculated?
+A: Each of the 8 predictions contributes by verdict: supporting (On track/Exceeded/Holding) = 1.0, unresolved (Open/Pending) = 0.5, refuting (Wrong) = 0.0. The mean times 100 is the score. The full breakdown and machine-readable data are public.
+
+Q: When does the score change?
+A: Only when a verdict changes, and every verdict has a pre-registered flip condition. The headline 'AGI by 2027' claim resolves by January 1, 2028, which is the most likely near-term mover.
+
+Q: Can I use this data?
+A: Yes. The score, breakdown, and history are CC BY 4.0 at /data.json and /index-history.json. Cite the AGI Scorecard and link agiscorecard.com.
+
+---
+
+## What's Your AGI Type? A 30-Second Test | AGI Scorecard
+
+URL: https://agiscorecard.com/agi-test
+
+Take the 30-second AGI test: pick when you think AGI arrives and get your archetype — Accelerationist, True Believer, Realist, Skeptic or Contrarian — placed against Musk, Aschenbrenner, Hassabis and Metaculus.
+
+---
+
+## Was Aschenbrenner Right About AGI? Two-Year Scorecard (2026)
+
+URL: https://agiscorecard.com/was-aschenbrenner-right
+Last updated: July 12, 2026 · Updated as verdicts change
+
+Partly, so far. Two years after Situational Awareness (June 2024), of Aschenbrenner's major predictions 3 are on track, 1 is clearly wrong, 2 are still open, and 2 are too early to grade. His headline claim — AGI by 2027 — resolves by January 2028.
+
+Q: Was Aschenbrenner right about AGI?
+A: Partly. Two years in (mid-2026): 3 of his major predictions are on track, 1 is clearly wrong (open source fading), 2 are open, and 2 are too early to grade. His headline AGI-by-2027 prediction resolves by January 2028.
+
+Q: What was Aschenbrenner's biggest miss?
+A: His prediction that open-source AI would fade and proprietary labs would hold a durable moat. As of mid-2026, open-weight models (DeepSeek V4, Qwen 3.7 Max) trail the frontier by only ~3–6 months at far lower cost.
+
+Q: When does the AGI-2027 prediction resolve?
+A: By January 1, 2028. As of mid-2026 it is graded Open — agentic capability is strong but autonomous AI research is undemonstrated.
+
+---
+
+## Will AGI Arrive by 2027? Aschenbrenner's Prediction
+
+URL: https://agiscorecard.com/will-agi-arrive-2027
+Last updated: August 29, 2026 · Updated as verdicts change
+
+Open — too early to call. Aschenbrenner predicted AGI by 2027 in Situational Awareness. As of mid-2026, agentic coding is strong (~80% SWE-Bench Pro) but no system has autonomously conducted AI research. The prediction resolves by January 1, 2028. His 2027 is more aggressive than most forecasters.
+
+Q: Will AGI arrive by 2027?
+A: Undecided as of mid-2026. Aschenbrenner predicted AGI by 2027; agentic coding is strong but autonomous AI research is undemonstrated. The prediction resolves by January 1, 2028.
+
+Q: Is Aschenbrenner's 2027 timeline realistic?
+A: It is more aggressive than most. Hassabis says ~50% by 2030, Metaculus 50% by 2033, and academic surveys 50% by 2047. Only Musk (end of 2026) is more aggressive.
+
+Q: How have AGI timelines changed?
+A: Expert median estimates have compressed from roughly 2060 to roughly 2033 over about six years — the consensus keeps moving earlier.
+
+---
+
+## Did Open-Source AI Fade? Grading Aschenbrenner's Moat
+
+URL: https://agiscorecard.com/did-open-source-ai-fade
+Last updated: August 15, 2026 · Updated as verdicts change
+
+No — graded Wrong. Aschenbrenner predicted open-source models would fade and proprietary algorithms would form a durable US moat. As of mid-2026, open-weight models like DeepSeek V4 and Qwen 3.7 Max sit roughly 3–6 months behind the frontier — at a fraction of the cost, with genuine architectural innovation.
+
+Q: Did open-source AI fade as Aschenbrenner predicted?
+A: No. This is his clearest miss. As of mid-2026, open-weight models like DeepSeek V4 and Qwen 3.7 Max trail the proprietary frontier by only ~3–6 months, at a fraction of the cost, with real architectural innovation.
+
+Q: Are DeepSeek and Qwen just distilling Western models?
+A: Distillation allegations exist, but Epoch AI characterizes innovations like Multi-head Latent Attention and fine-grained Mixture-of-Experts as genuine advances. A world where the frontier can be cheaply distilled also undermines the durable-moat claim.
+
+Q: Why does the open-source verdict matter?
+A: Roughly a third of Situational Awareness's policy program ('Lock Down the Labs') assumes weights and algorithms are a durable moat. If AI diffuses cheaply, that geopolitical logic weakens.
+
+---
+
+## Aschenbrenner vs Metaculus: AGI Timeline Comparison (2026)
+
+URL: https://agiscorecard.com/aschenbrenner-vs-metaculus
+Last updated: June 30, 2026 · Updated as verdicts change
+
+A six-year gap. Aschenbrenner predicts AGI by 2027. The Metaculus community median is 50% by 2033 (25% by 2029, as of early 2026). Aschenbrenner is far more aggressive than the aggregated forecaster crowd, though both have moved earlier over time.
+
+Q: What is the difference between Aschenbrenner and Metaculus on AGI?
+A: Aschenbrenner predicts AGI by 2027; the Metaculus community median is 50% by 2033 (25% by 2029). Aschenbrenner is roughly six years more aggressive than the aggregated crowd.
+
+Q: Is Metaculus or Aschenbrenner more reliable on AGI timing?
+A: Metaculus aggregates ~2,000 forecasters and updates continuously, making it better calibrated as a crowd. Aschenbrenner is a single, internally-consistent but front-loaded extrapolation. On compute trends he's been closer; on diffusion the crowd has.
+
+Q: What does Metaculus predict for AGI?
+A: As of early 2026, the Metaculus community gives roughly 25% by 2029 and 50% by 2033.
+
+---
+
+## Situational Awareness Predictions: Full Tracker
+
+URL: https://agiscorecard.com/situational-awareness-predictions
+Last updated: August 29, 2026 · Updated as verdicts change
+
+8 predictions, graded live. Aschenbrenner's Situational Awareness (June 2024) made a set of specific, falsifiable predictions. As of mid-2026: 3 on track, 1 wrong, 2 open, 2 too early. Each is graded with evidence and a pre-registered condition to flip.
+
+Q: What did Situational Awareness predict?
+A: Aschenbrenner's 2024 essay predicted AGI by 2027, an intelligence explosion 2027–29, superintelligence in the 2030s, continued compute scaling, trillion-dollar capex, open source fading, and a US government AGI project.
+
+Q: How many of Aschenbrenner's predictions came true?
+A: As of mid-2026: 3 are on track, 1 is wrong (open source fading), 2 are open, and 2 are too early to grade.
+
+Q: Is Situational Awareness accurate?
+A: Partly. Its compute, capex, and capability predictions have largely held; its open-source prediction is wrong; and its defining AGI-2027 claim is still open, resolving by January 2028.
+
+---
+
+## When Will AGI Arrive? Every Major Forecast Compared (2026)
+
+URL: https://agiscorecard.com/when-will-agi-arrive
+Last updated: August 29, 2026 · Updated as verdicts change
+
+No consensus — but the range has narrowed sharply. Public AGI forecasts now cluster between 2026 and 2047: Musk says 2026, Aschenbrenner 2027, Hassabis ~50% by 2030, Metaculus 50% by 2033, and academic surveys 50% by 2047. Expert medians have compressed from roughly 2060 to roughly 2033 in about six years.
+
+Q: When will AGI arrive?
+A: There is no consensus. As of 2026, serious public forecasts range from 2026 (Musk) and 2027 (Aschenbrenner) to ~2030 (Hassabis), 2033 (Metaculus community), and 2047 (academic survey median).
+
+Q: Who predicts the earliest AGI?
+A: Elon Musk is the most aggressive among prominent voices, suggesting AGI by end of 2026. Aschenbrenner's 2027 is next, more aggressive than lab leaders like Demis Hassabis (~50% by 2030).
+
+Q: What is the expert consensus on AGI timing?
+A: The academic survey median (n=2,778) is 50% by 2047, and the Metaculus community median is 50% by 2033. But expert medians have compressed from roughly 2060 to 2033 in about six years.
+
+---
+
+## Who Is Building AGI? The Labs Racing to It (2026)
+
+URL: https://agiscorecard.com/who-is-building-agi
+Last updated: July 12, 2026 · Updated as verdicts change
+
+A handful of frontier labs — and they mostly agree it’s close, not that it’s here. The serious race is run by OpenAI, Google DeepMind, Anthropic, and xAI, with strong open-weight pressure from Chinese labs (DeepSeek, Qwen). Their leaders’ public timelines span 2026–2030+, but none has shown the one thing that would settle it: a system doing AI research autonomously. That’s why "AGI by 2027" is still graded Open.
+
+Q: Who is building AGI?
+A: The serious race is run by OpenAI, Google DeepMind, Anthropic, and xAI, with strong open-weight pressure from Chinese labs like DeepSeek and Qwen. Their leaders' public AGI timelines span 2026 to 2030+, but none has demonstrated the autonomous AI research that would settle it.
+
+Q: Which company is closest to AGI?
+A: On capability, the frontier labs (OpenAI, DeepMind, Anthropic, xAI) are neck-and-neck near the top, with open-weight models ~3–6 months behind. But none has crossed the decisive bar — reliable, autonomous, end-to-end work — so 'closest' is a matter of months on capability, not a finish line anyone has reached.
+
+Q: Do AI labs think AGI is here?
+A: No — mostly that it's close. Lab leaders' public positions range from Musk's aggressive end-of-2026 to Hassabis's ~50% by 2030, with the builders (Hassabis, Amodei) more measured than the loudest voices. None claims AGI has arrived.
+
+Q: How can I track which lab reaches AGI first?
+A: Watch the falsifiable, dated claims resolve rather than trusting any lab's framing. The AGI Scorecard's Thesis Tracker distills the shared 2027-ish bet into one auditable score that moves only on evidence.
+
+---
+
+## Did the Fund Collapse Prove Aschenbrenner Wrong About AGI?
+
+URL: https://agiscorecard.com/aschenbrenner-fund-collapse
+Last updated: August 20, 2026 · Updated as verdicts change
+
+No — none of the eight graded predictions moved. Situational Awareness lost about 67% in July 2026 and transferred most of its public stock portfolio to Citadel, per CNBC and Bloomberg. But every verdict on this scorecard carries a pre-registered flip condition, and not one of those conditions references the fund's P&L. The Thesis Tracker stays at 62.5/100. What died in July was a leveraged expression of the thesis — the thesis itself still resolves on evidence, by January 1, 2028.
+
+Q: What happened to Aschenbrenner's Situational Awareness fund?
+A: Per CNBC and Bloomberg reporting (July 30, 2026), the fund lost about 67% in July as its AI-infrastructure longs fell 35–47% while its chip-name shorts moved against it, on reported leverage of roughly 4x. After margin calls from prime brokers including Goldman Sachs, JPMorgan and Bank of America, it transferred most of its public equity portfolio to Citadel. Assets fell from a roughly $45B peak to about $10B, and the fund retained private stakes including Anthropic.
+
+Q: Did the fund go to zero, or did Citadel buy the fund?
+A: Neither. Two circulating claims are inaccurate: the fund did not go to zero (about $10B remains, including its Anthropic stake), and Citadel did not acquire the fund itself — it bought most of the fund's public stock portfolio. What was destroyed was the leveraged public-markets strategy.
+
+Q: Does the collapse change any of the AGI predictions' verdicts?
+A: No. All eight graded predictions from Situational Awareness carry pre-registered flip conditions, and none of those conditions references the fund's performance. The verdicts remain 3 on track, 1 wrong, 2 open, 2 pending, and the AGI-2027 Thesis Tracker remains 62.5/100. The capex prediction is graded on industry-wide spending, not on his P&L; the headline AGI-2027 claim resolves January 1, 2028 on evidence about AI capability.
+
+Q: Can a forecast be right while a fund betting on it blows up?
+A: Yes, and July 2026 is a live example of the mechanism: under stress, the fund's longs and shorts moved against it simultaneously — correlations went toward one — and roughly 4x leverage meant the position could not survive to see the thesis tested. Being right about an industry and surviving the path with leverage are different problems. The reverse discipline also holds: if AGI does not arrive by 2027, that prediction gets graded Wrong regardless of anyone's returns.
+
+---
+
+## EU AI Act: What Applies Now vs. What Got Deferred (2026)
+
+URL: https://agiscorecard.com/eu-ai-act-what-applies-now
+Last updated: August 21, 2026 · Re-checked when the law moves — deferral dates below are flip conditions, not trivia
+
+The deadline didn't vanish — it split. As of August 21, 2026: the transparency duties apply (Article 50 — chatbot disclosure since Aug 2, 2026, no grace period for new systems), while the Digital Omnibus on AI — Regulation (EU) 2026/1744, adopted law, in force since July 27, 2026 — deferred the high-risk obligations to Dec 2, 2027 (Annex III) and Aug 2, 2028 (Annex I). Most confusion online comes from mixing those two halves up.
+
+Q: Does the EU AI Act apply from August 2026?
+A: Partially — and that split is the confusion. The transparency duties (Article 50: chatbot disclosure, deepfake labelling) apply since August 2, 2026. But the Digital Omnibus on AI (Regulation (EU) 2026/1744, in force July 27, 2026) deferred the high-risk obligations: standalone high-risk systems (Annex III) to December 2, 2027, and product-embedded AI (Annex I) to August 2, 2028.
+
+Q: Does my chatbot have to tell users it's AI?
+A: Yes — since August 2, 2026, with no grace period, unless it is obvious to a reasonably informed user that they are interacting with AI. This applies to deployers building on third-party APIs, not just model providers. Non-compliance risks fines up to €15 million or 3% of worldwide turnover (Article 99(4)).
+
+Q: Which EU AI Act deadlines were deferred?
+A: Three moves, all made by Regulation (EU) 2026/1744: high-risk Annex III obligations moved from August 2, 2026 to December 2, 2027; high-risk Annex I (product-embedded) moved to August 2, 2028; and the Article 50(2) machine-readable marking duty got a grace period to December 2, 2026 — but only for systems already on the market before August 2, 2026. New systems must comply immediately.
+
+Q: What are the penalties for breaking the AI Act's transparency rules?
+A: Up to €15 million or 3% of total worldwide annual turnover, whichever is higher (for SMEs, whichever is lower), under Article 99(4) — applicable to Article 50 breaches since August 2, 2026.
+
+---
+
+## Which AI Agent Protocols Are Actually Used? (2026)
+
+URL: https://agiscorecard.com/which-agent-protocols-are-actually-used
+Last updated: August 21, 2026 · Adoption scoreboard, re-checked as evidence changes
+
+Two tiers, one honest read. MCP is the only agent protocol with cross-vendor production adoption you can verify. A2A is institutionally backed but shows little observable usage. And the agent- payments layer — x402, ACP, AP2, TAP — is a standards war running well ahead of its market: x402 transactions collapsed ~92% and OpenAI itself retreated from in-chat checkout in March 2026.
+
+Q: Which AI agent protocol has the most real adoption in 2026?
+A: MCP (Model Context Protocol). It is the only agent protocol with cross-vendor production adoption you can verify: OpenAI adopted it in March 2025, Google DeepMind in April 2025, an official public server registry is live, and server operators can see agent and crawler probes in their own logs.
+
+Q: Is x402 actually being used?
+A: Barely. On-chain data (Artemis) showed transactions collapsing roughly 92% from about 731,000 to about 57,000 per day between December 2025 and February 2026, and by mid-2026 daily volume was on the order of $28,000 — with roughly half of it looking like test transactions. The protocol exists; a real market does not yet.
+
+Q: Did agentic checkout fail?
+A: The first version retreated. OpenAI launched Instant Checkout with Stripe in September 2025 and relaunched Buy-it-in-ChatGPT in February 2026, but industry coverage reports it dropped in-ChatGPT checkout in March 2026. The payments standards war (ACP, AP2, TAP, x402) continues, but observable consumer usage remains thin.
+
+---
+
+## Who Is Leopold Aschenbrenner? Predictions & Track Record
+
+URL: https://agiscorecard.com/who-is-leopold-aschenbrenner
+Last updated: August 25, 2026 · Updated as verdicts change
+
+A former OpenAI researcher turned forecaster and investor. In June 2024 Leopold Aschenbrenner published Situational Awareness, a 165-page essay predicting AGI by 2027, and later founded Situational Awareness LP, an AI-focused investment firm. Two years on, his major predictions grade 3 on track, 1 wrong, 2 open.
+
+Q: Who is Leopold Aschenbrenner?
+A: Leopold Aschenbrenner is a former OpenAI Superalignment researcher who published Situational Awareness in June 2024, predicting AGI by 2027. He later founded Situational Awareness LP, an AI-focused investment firm.
+
+Q: What did Leopold Aschenbrenner predict?
+A: That AGI is plausible by 2027, followed by an intelligence explosion (2027–29) and superintelligence in the 2030s, driven by continued compute scaling, trillion-dollar capex, and algorithmic gains.
+
+Q: Was Aschenbrenner right?
+A: Partly, so far. As of mid-2026: 3 of his major predictions are on track, 1 is wrong (open source fading), and 2 are open — including the headline AGI-by-2027 call, which resolves by January 2028.
+
+Q: What is Situational Awareness LP?
+A: An AI-focused investment firm Aschenbrenner founded after leaving OpenAI, built around the thesis in his Situational Awareness essay.
+
+---
+
+## Situational Awareness Summary (Aschenbrenner, 2024)
+
+URL: https://agiscorecard.com/situational-awareness-summary
+Last updated: August 16, 2026 · Updated as verdicts change
+
+The case that AGI is close — once backed by a $45B fund that blew up in July 2026. Situational Awareness (June 2024) argues AGI is plausible by 2027 and superintelligence by the early 2030s, driven by compute scaling, algorithmic gains, and "unhobbling." Two years on, its trend predictions largely hold; its open-source-fading call is wrong; AGI-2027 is still open.
+
+Q: What is Situational Awareness about?
+A: It's Leopold Aschenbrenner's June 2024 essay arguing AGI is plausible by 2027, followed by an intelligence explosion and superintelligence in the 2030s, driven by compute scaling, algorithmic gains, and 'unhobbling.'
+
+Q: What did Situational Awareness predict?
+A: AGI by 2027, an intelligence explosion 2027–29, superintelligence in the 2030s, continued compute scaling, trillion-dollar capex, open source fading, and a US government AGI project.
+
+Q: Is Situational Awareness accurate?
+A: Partly. Its compute, capex, and capability predictions have largely held; its open-source prediction is wrong; and its defining AGI-2027 claim is still open, resolving by January 2028.
+
+---
+
+## Aschenbrenner vs Hassabis: AGI Timeline Comparison (2026)
+
+URL: https://agiscorecard.com/aschenbrenner-vs-hassabis
+Last updated: June 30, 2026 · Updated as verdicts change
+
+About three years apart. Aschenbrenner predicts AGI by 2027; DeepMind CEO Demis Hassabis puts it at roughly 50% by 2030. Both expect transformative AI within the decade — they differ on whether the final research-automation step lands in the first half or the second.
+
+Q: What's the difference between Aschenbrenner and Hassabis on AGI?
+A: Aschenbrenner predicts AGI by 2027; Demis Hassabis puts it at roughly 50% by 2030 — about three years more conservative. Both expect transformative AI within the decade.
+
+Q: Does Demis Hassabis think AGI is close?
+A: Yes, but more cautiously than Aschenbrenner. Hassabis has indicated roughly 50% odds of AGI by 2030 and frequently warns against over-hyping near-term timelines.
+
+Q: Who is more likely to be right?
+A: Too early to say. Aschenbrenner has been closer on compute and capex trends; Hassabis's caution on the timing of full autonomy looks defensible as of mid-2026, with autonomous AI research still undemonstrated.
+
+---
+
+## Will the US Government Build AGI? 'The Project'
+
+URL: https://agiscorecard.com/will-the-us-government-build-agi
+Last updated: June 30, 2026 · Updated as verdicts change
+
+Open — deadline not yet reached. Aschenbrenner predicted a Manhattan-Project-style US government AGI effort — “The Project” — by 2027/28. As of mid-2026, national-security involvement in AI is clearly growing, but no formal government project has been launched. The deadline hasn’t elapsed, so the verdict is Open.
+
+Q: Will the US government build AGI?
+A: Unresolved as of mid-2026. Aschenbrenner predicted a Manhattan-Project-style US government AGI effort by 2027/28. National-security involvement is growing, but no formal project exists yet, so the prediction is graded Open.
+
+Q: What is 'The Project' in Situational Awareness?
+A: Aschenbrenner's term for a predicted centralized US government AGI effort, analogous to the Manhattan Project, that he expected the national-security state to launch by roughly 2027/28.
+
+Q: Is the government taking over AI development?
+A: Not in a centralized way. As of mid-2026, frontier AI development is still led by private labs, though government attention — export controls, security requirements, defense interest — has grown significantly.
+
+---
+
+## Will There Be an Intelligence Explosion in 2027? (Graded)
+
+URL: https://agiscorecard.com/intelligence-explosion-2027
+Last updated: August 27, 2026 · Updated as verdicts change
+
+Too early to grade. Aschenbrenner predicted an “intelligence explosion” — AI automating AI research and compressing a decade of progress into about a year — beginning 2027–2029. As of mid-2026, the precondition (a system that can autonomously do AI research) is undemonstrated, so the prediction is Pending.
+
+Q: Will there be an intelligence explosion in 2027?
+A: Too early to tell. Aschenbrenner predicted one beginning 2027–29, triggered by AI automating AI research. As of mid-2026 that precondition is undemonstrated, so the prediction is graded Pending.
+
+Q: What is an intelligence explosion?
+A: The idea that once AI can do AI research, it rapidly improves itself — compressing roughly a decade of progress into about a year and vaulting from AGI to superintelligence.
+
+Q: Why is the intelligence-explosion prediction not graded yet?
+A: Because its trigger — a system that can autonomously conduct AI research end-to-end — hasn't been demonstrated, and the 2027–29 window hasn't arrived. There isn't yet evidence to grade it either way.
+
+---
+
+## Will There Be Superintelligence in the 2030s? (Graded)
+
+URL: https://agiscorecard.com/will-there-be-superintelligence
+Last updated: June 30, 2026 · Updated as verdicts change
+
+Too early to grade. Aschenbrenner predicted superintelligence — AI vastly beyond human level — in the early 2030s, arriving via an intelligence explosion that follows AGI. As of mid-2026 the chain hasn’t started: AGI-2027 is still open and the intelligence explosion is pending. So this is Pending.
+
+Q: Will there be superintelligence in the 2030s?
+A: Too early to tell. Aschenbrenner predicted superintelligence in the early 2030s, following AGI and an intelligence explosion. As of mid-2026 neither precursor has occurred, so the prediction is graded Pending.
+
+Q: What is superintelligence?
+A: AI with capabilities vastly beyond the best humans across essentially all domains. In Situational Awareness it arrives in the early 2030s, produced by an intelligence explosion in which AI rapidly improves AI.
+
+Q: Why isn't the superintelligence prediction graded yet?
+A: Because it depends on earlier steps — AGI by 2027 and an intelligence explosion — that haven't happened. Without those, there's no evidence to grade it either way.
+
+---
+
+## Is AI Compute Still Scaling? Aschenbrenner's OOM Bet, Graded
+
+URL: https://agiscorecard.com/is-ai-compute-still-scaling
+Last updated: June 30, 2026 · Updated as verdicts change
+
+On track. Aschenbrenner bet that effective compute would keep scaling at roughly 0.5 orders of magnitude per year. As of mid-2026 the pace has roughly held: an independent audit calls it “roughly supported,” with model launches scattered about ±0.5 OOM around the trend line.
+
+Q: Is AI compute still scaling in 2026?
+A: Yes. Aschenbrenner predicted effective compute would scale ~0.5 OOM/yr, and as of mid-2026 the pace has roughly held — an independent audit calls it 'roughly supported.' The prediction is graded On track.
+
+Q: Are AI scaling laws dead?
+A: Not as of mid-2026. Effective compute (raw compute plus algorithmic efficiency) has continued climbing near the ~0.5 OOM/yr pace Aschenbrenner projected, with launches scattered ±0.5 OOM around trend.
+
+Q: What would prove the scaling prediction wrong?
+A: It flips to Wrong if the next frontier generation lands more than 1 order of magnitude below the trend line, or if a major lab publicly abandons the scaling thesis.
+
+---
+
+## Did AI Capex Hit Trillion-Dollar Scale, as Predicted?
+
+URL: https://agiscorecard.com/ai-capex-trillion-dollar
+Last updated: August 25, 2026 · Updated as verdicts change
+
+Yes — exceeded. This is Aschenbrenner’s most clearly vindicated call. Capital expenditure on AI infrastructure has run ahead of even his aggressive trillion-dollar-scale projections. The one caveat: revenue has lagged the spend, which we deliberately don’t grade as a win.
+
+Q: Did AI investment reach trillion-dollar scale as Aschenbrenner predicted?
+A: Yes — this is his most clearly vindicated call, graded Exceeded. Capital expenditure on AI infrastructure has run ahead of even his aggressive trillion-dollar-scale projections.
+
+Q: Is AI capex a bubble?
+A: The scorecard doesn't rule either way, but it flags the gap: capex has exceeded Aschenbrenner's projections while revenue has lagged — the most generous third-party 2026 figure was ~$60B, below the run-rate the essay implied.
+
+Q: Why isn't AI revenue counted as a correct prediction?
+A: Because it isn't tracking to the essay's sketch. As of spring 2026, AI revenue is running meaningfully behind, so counting it would inflate the scorecard in Aschenbrenner's favor.
+
+---
+
+## Can AI Replace Knowledge Workers? The 2025/26 Call, Graded
+
+URL: https://agiscorecard.com/can-ai-replace-knowledge-workers
+Last updated: July 11, 2026 · Updated as verdicts change
+
+On track. Aschenbrenner predicted frontier AI would outpace college graduates on knowledge work by 2025/26. As of mid-2026 it broadly clears the bar: ~ 83% on GDPval, ~ 80% on SWE-Bench Pro, agents in production — though “drop-in coworker” reliability still lags the benchmark scores.
+
+Q: Can AI replace knowledge workers in 2026?
+A: Partially. Frontier models clear the capability bar Aschenbrenner predicted for 2025/26 (~83% GDPval, ~80% SWE-Bench Pro) and automate slices of knowledge work, but aren't yet reliable unsupervised replacements. The prediction is graded On track.
+
+Q: Was Aschenbrenner right that AI would outpace college graduates?
+A: On the benchmark bar, yes — graded On track. Frontier models reach ~83% on knowledge-work benchmarks and ~80% on agentic coding. The open question is 'drop-in coworker' reliability.
+
+Q: What would prove this prediction wrong?
+A: It flips to Wrong if, by end-2026, frontier models still can't complete a majority of representative entry-level knowledge-work tasks end-to-end without human cleanup.
+
+---
+
+## Will AI Cause Mass Unemployment? What the Data Shows (2026)
+
+URL: https://agiscorecard.com/will-ai-cause-mass-unemployment
+Last updated: July 12, 2026 · Updated as verdicts change
+
+Not the overnight wave the headlines predict — but a real, uneven shift already underway. On raw capability, AI has crossed knowledge-work thresholds (~ 83% on GDPval, ~ 80% on SWE-Bench Pro). But mass unemployment needs more than capability: it needs reliable, unsupervised, end-to-end autonomy — and that autonomy gap is exactly what is still undemonstrated. So the near-term picture is task-level automation and productivity pressure, not a sudden jobs cliff.
+
+Q: Will AI cause mass unemployment?
+A: Not in the overnight sense the headlines imply, as of mid-2026. AI has crossed knowledge-work capability thresholds (~83% GDPval, ~80% SWE-Bench Pro) and is automating tasks within jobs, but reliable unsupervised replacement of whole jobs is undemonstrated. The near-term effect is task automation and productivity pressure, not a sudden jobs cliff.
+
+Q: Is AI taking jobs right now?
+A: It's automating tasks within jobs and raising per-worker output, which reshapes roles and can slow hiring at the margin. But wholesale, unsupervised job replacement — one system reliably owning an entire role end-to-end — has not been demonstrated as of mid-2026.
+
+Q: When will AI seriously affect employment?
+A: It hinges on AI reaching drop-in-worker reliability, the same milestone behind the AGI-by-2027 verdict (currently Open). Public forecasts for that range from 2026 to 2047, clustering around 2030–2033.
+
+Q: Why hasn't AI caused mass layoffs despite being so capable?
+A: Because benchmark capability isn't the same as reliable, accountable, end-to-end autonomy. That autonomy gap is what keeps AI in an assist-and-augment role rather than a full-replacement one.
+
+---
+
+## Will AI Take Over? What the Capability Data Says (2026)
+
+URL: https://agiscorecard.com/will-ai-take-over
+Last updated: July 12, 2026 · Updated as verdicts change
+
+The scenarios all presuppose one capability that doesn’t exist yet: reliable, autonomous agency. "AI takes over" stories — from job-market dominance to sci-fi control — depend on AI that can act independently, at scale, without human oversight. As of 2026 AI is a powerful assistant (~83% GDPval) but can’t reliably run even one job end-to-end unsupervised. That autonomy gap is the load-bearing assumption in every takeover story — and it’s unmet.
+
+Q: Will AI take over the world?
+A: Not on current capability. Every 'takeover' scenario presupposes AI that can act autonomously and reliably at scale without human oversight — and as of 2026 AI can't reliably run even a single job end-to-end unsupervised. It's a powerful assistant, not an autonomous agent.
+
+Q: Is AI going to take over jobs / the economy?
+A: AI is automating tasks within jobs and raising output, which is reshaping work — but that's not the same as taking over. Reliable, unsupervised replacement of whole roles is undemonstrated. See 'will AI cause mass unemployment?' for the data.
+
+Q: What would AI need to actually take over?
+A: Reliable, unsupervised, long-horizon autonomous agency — the ability to act consequentially in the real world without a human in the loop. That's the exact capability the AGI-2027 verdict tracks, and it hasn't been demonstrated as of 2026.
+
+Q: When would 'AI takeover' become a real risk?
+A: When AI demonstrates reliable, unsupervised, long-horizon agency — the AGI milestone the scorecard tracks, which resolves by January 2028. Until that bar is cleared, takeover scenarios lack their load-bearing precondition.
+
+---
+
+## What Jobs Are Safe From AI? The Autonomy-Gap Answer (2026)
+
+URL: https://agiscorecard.com/what-jobs-are-safe-from-ai
+Last updated: July 24, 2026 · Updated as verdicts change
+
+The safest work needs reliable, unsupervised, end-to-end judgment — the exact thing AI still lacks. AI in 2026 automates tasks, not whole jobs: it clears ~83% on knowledge-work benchmarks but can’t reliably own a role unsupervised. So the jobs most exposed are task-bounded and digital; the most durable ones combine accountability, physical-world action, and human trust — where the autonomy gap bites hardest.
+
+Q: What jobs are safe from AI?
+A: In 2026, the most durable work needs reliable, unsupervised, end-to-end judgment, physical-world action, or deep human trust — the things AI still can't do reliably. AI automates scoped digital tasks (~83% GDPval) but can't own a whole job unsupervised, so task-bounded digital roles are the most exposed.
+
+Q: Which jobs will AI replace first?
+A: Task-bounded, fully digital, well-specified work is most exposed, because that's where AI's capability is strongest and the autonomy gap matters least. But 'replace' still overstates it — AI is automating tasks within jobs faster than it's replacing whole roles.
+
+Q: Why are some jobs safer from AI than others?
+A: Because the binding constraint in 2026 is reliable autonomy, not raw intelligence. Work that requires being accountable for outcomes end-to-end, unsupervised, is protected as long as AI can't reliably do that — the exact gap the AGI-2027 verdict tracks.
+
+Q: When will AI threaten more jobs?
+A: When AI demonstrates reliable, unsupervised, end-to-end work — the drop-in-worker milestone behind the AGI-by-2027 verdict, which resolves by January 2028. The Thesis Tracker moves the moment that changes.
+
+---
+
+## Aschenbrenner vs Musk: AGI Timeline Comparison (2026)
+
+URL: https://agiscorecard.com/aschenbrenner-vs-musk
+Last updated: July 11, 2026 · Updated as verdicts change
+
+Musk is even more aggressive. Elon Musk has suggested AGI by end of 2026; Aschenbrenner says 2027. Musk is the most aggressive prominent public voice, with Aschenbrenner just behind — both far ahead of lab leaders like Hassabis (~50% by 2030) and the forecaster crowd (Metaculus 2033).
+
+Q: What's the difference between Musk and Aschenbrenner on AGI?
+A: Musk has suggested AGI by end of 2026; Aschenbrenner says 2027. Musk is the most aggressive prominent voice, Aschenbrenner just behind — both far ahead of lab leaders and forecaster crowds.
+
+Q: Who predicts AGI sooner, Musk or Aschenbrenner?
+A: Musk, marginally — his end-of-2026 estimate is earlier than Aschenbrenner's 2027. Both are at the aggressive end of the public distribution.
+
+Q: Is AGI coming in 2026 as Musk suggests?
+A: Unlikely on a serious bar as of mid-2026 — no system has autonomously conducted AI research. Musk has a history of early timelines, which is reason to weight his nearer deadline cautiously.
+
+---
+
+## Is China Beating the US to AGI?
+
+URL: https://agiscorecard.com/will-china-beat-us-to-agi
+Last updated: June 30, 2026 · Updated as verdicts change
+
+Not yet — but the gap is months, not years. Aschenbrenner argued the US would hold a durable lead by locking down labs. As of mid-2026 the US frontier still leads, but open-weight Chinese models like DeepSeek V4 and Qwen 3.7 Max trail by only ~3–6 months — which undercuts the “durable moat” the essay assumed.
+
+Q: Is China beating the US to AGI?
+A: Not as of mid-2026 — the US frontier still leads. But open-weight Chinese models like DeepSeek V4 and Qwen 3.7 Max trail by only ~3–6 months at far lower cost, a much narrower gap than Aschenbrenner's framework assumed.
+
+Q: Does the US have a durable AI lead over China?
+A: Not a durable one, so far. The lead is months, not years, and closing — which is why the scorecard grades Aschenbrenner's 'open source fades, proprietary moat holds' prediction as Wrong.
+
+Q: How far behind are Chinese AI models?
+A: Roughly 3–6 months behind the proprietary frontier as of 2026, with genuine architectural innovation and dramatically lower pricing — not merely distillation of Western models.
+
+---
+
+## Situational Awareness vs AI 2027
+
+URL: https://agiscorecard.com/situational-awareness-vs-ai-2027
+Last updated: June 30, 2026 · Updated as verdicts change
+
+Two roads to the same year. Aschenbrenner’s Situational Awareness (June 2024) and the later AI 2027 scenario both center on 2027 and on the same engine — AI automating AI research. One is a trend-extrapolation thesis; the other a detailed month-by-month scenario. Their shared core claim, AGI around 2027, is graded Open here.
+
+Q: What is the difference between Situational Awareness and AI 2027?
+A: Both center on AGI around 2027 via AI automating AI research. Situational Awareness (2024) is a trend-extrapolation essay; AI 2027 is a later, detailed month-by-month scenario illustrating how a fast takeoff could unfold.
+
+Q: Do Situational Awareness and AI 2027 agree?
+A: On the essentials, yes: both treat 2027 as the inflection point and both hinge on recursive AI R&D. They differ in form — a forecasting thesis versus a narrative scenario.
+
+Q: Is the 2027 AGI forecast holding up?
+A: It's still open. As of mid-2026 agentic coding is strong but autonomous AI research is undemonstrated. The shared core claim resolves by January 1, 2028.
+
+---
+
+## Is AGI Just Hype? What a Two-Year Scorecard Actually Shows
+
+URL: https://agiscorecard.com/is-agi-just-hype
+Last updated: June 30, 2026 · Updated as verdicts change
+
+Neither pure hype nor imminent. The honest answer isn’t a slogan — it’s a scorecard. Grading Aschenbrenner’s specific, falsifiable AGI predictions two years on: the compute and capability trends are real and on track, one big claim (open source fading) is already wrong, and the headline “AGI by 2027” is genuinely open — strong but unproven.
+
+Q: Is AGI just hype?
+A: No, but it isn't imminent either. Grading specific predictions two years on: compute, capex, and capability trends are on track; the claim that open source would fade is wrong; and 'AGI by 2027' is genuinely open, resolving by January 2028.
+
+Q: Is AGI overhyped?
+A: In parts. AI revenue is behind the hype's run-rate, the 'shocking leap' hasn't landed as promised, and autonomous AI research is undemonstrated. But the core compute and capability trends are real and on track, so it's not pure hype.
+
+Q: What's real versus hype in AI right now?
+A: Real: compute scaling (~0.5 OOM/yr), trillion-dollar capex, ~83% on knowledge-work benchmarks. Overstated: a durable proprietary moat (open source didn't fade), near-term revenue, and a demonstrated path to fully autonomous AI research.
+
+---
+
+## Is AGI Inevitable? Trending vs Guaranteed (2026)
+
+URL: https://agiscorecard.com/is-agi-inevitable
+Last updated: July 12, 2026 · Updated as verdicts change
+
+Strongly trending, not guaranteed. The inputs that would produce AGI — compute (~0.5 OOM/yr), capex, and capability — are all still climbing, which is why almost no serious forecaster says "never." But "inevitable" overstates it: AGI still depends on crossing one unproven step (reliable autonomous research) and on those trends continuing, neither of which is guaranteed. That’s the difference between "on track" and "certain."
+
+Q: Is AGI inevitable?
+A: Strongly trending, but not guaranteed. The inputs — compute (~0.5 OOM/yr), capex, capability — keep climbing and expert timelines keep moving earlier, so almost no serious forecaster says 'never.' But AGI still depends on crossing one unproven step (reliable autonomous work) and on those trends continuing, so 'inevitable' overstates it.
+
+Q: Will AGI definitely happen?
+A: Most evidence points toward yes eventually, but 'definitely' is too strong. Two off-ramps remain: the autonomy step (reliable unsupervised end-to-end work) is undemonstrated, and the compute/capex trends driving progress could slow if funding pulls back.
+
+Q: Could AGI never happen?
+A: It's possible but looks unlikely on current trends. The main ways it stalls are capability plateauing at the autonomy line, or a capex/funding pullback slowing compute scaling. Neither is happening as of mid-2026, but neither is ruled out.
+
+Q: Is AGI a matter of when, not if?
+A: That's the optimists' framing, and the trends lend it support — but the honest read is 'on track with identified failure modes,' not certainty. The AGI-2027 verdict is graded Open, not guaranteed; it resolves by January 2028.
+
+---
+
+## Will AI Replace Programmers? What Benchmarks Say
+
+URL: https://agiscorecard.com/will-ai-replace-programmers
+Last updated: June 30, 2026 · Updated as verdicts change
+
+Partly — and unevenly. Agentic coding is genuinely strong: frontier models score ~ 80% on SWE-Bench Pro and agents ship real code in production. But “replace” overstates it — no system autonomously owns end-to-end software engineering without human review. On the capability curve this tracks Aschenbrenner’s “outpace college grads” call: On track, not a full replacement.
+
+Q: Will AI replace programmers?
+A: Partly, and unevenly. As of mid-2026 agentic coding is strong (~80% on SWE-Bench Pro) and automates parts of the job, but no system reliably owns end-to-end software engineering without human review. It augments programmers rather than replacing them.
+
+Q: How good is AI at coding in 2026?
+A: Frontier models score around 80% on SWE-Bench Pro and ship real code in production for well-scoped tasks — roughly the level Aschenbrenner predicted for 2025/26, graded On track.
+
+Q: What's stopping AI from fully replacing engineers?
+A: The gap between benchmark scores and reliable, accountable, end-to-end ownership in a real codebase. Autonomous software engineering without human cleanup is undemonstrated as of mid-2026.
+
+---
+
+## Demis Hassabis's AGI Prediction: ~50% by 2030 (2026)
+
+URL: https://agiscorecard.com/demis-hassabis-agi-prediction
+Last updated: June 30, 2026 · Updated as verdicts change
+
+Transformative AI this decade — but not imminent. Google DeepMind CEO Demis Hassabis puts AGI at roughly 50% by 2030: more cautious than Aschenbrenner’s 2027, more aggressive than the academic-survey median (2047). As a frontier-builder he expects transformative AI within the decade while warning against over-hyping exact near-term dates.
+
+Q: What is Demis Hassabis's AGI prediction?
+A: The DeepMind CEO puts AGI at roughly 50% by 2030 — more cautious than Aschenbrenner (2027) and Musk (2026), more aggressive than the academic-survey median (2047).
+
+Q: Does Demis Hassabis think AGI is close?
+A: Yes, but carefully. He expects transformative AI within the decade (~50% by 2030) while repeatedly warning against over-hyping near-term timelines.
+
+Q: Is Hassabis more reliable than Aschenbrenner on AGI?
+A: He builds frontier systems daily, so his caution on the timing of full autonomy looks defensible as of mid-2026. Aschenbrenner has been closer on compute and capex trends. Both expect transformative AI this decade.
+
+---
+
+## Elon Musk's AGI Prediction: By the End of 2026 (2026)
+
+URL: https://agiscorecard.com/elon-musk-agi-prediction
+Last updated: July 25, 2026 · Updated as verdicts change
+
+The most aggressive public call. Elon Musk (xAI) has suggested AGI by end of 2026 — earlier than anyone else prominent, ahead of even Aschenbrenner’s 2027. It’s worth weighting against his track record of optimistic timelines on self-driving and robotics.
+
+Q: What is Elon Musk's AGI prediction?
+A: Musk (xAI) has suggested AGI by the end of 2026 — the most aggressive timeline among prominent figures, ahead of Aschenbrenner's 2027 and well ahead of Hassabis (~50% by 2030).
+
+Q: Is AGI coming in 2026 as Musk says?
+A: Unlikely on a serious bar as of mid-2026 — no system autonomously conducts AI research. Musk also has a history of optimistic dates, which is reason to weight his nearer deadline cautiously.
+
+Q: Who predicts AGI sooner, Musk or Aschenbrenner?
+A: Musk, marginally — his end-of-2026 estimate is earlier than Aschenbrenner's 2027. Both sit at the aggressive end of the public distribution.
+
+---
+
+## Is the AI Capex a Bubble? The Spend-vs-Revenue Gap (2026)
+
+URL: https://agiscorecard.com/is-the-ai-capex-a-bubble
+Last updated: June 30, 2026 · Updated as verdicts change
+
+The spending is real; the gap is the risk. AI infrastructure capex has exceeded even Aschenbrenner’s aggressive trillion-dollar projections — that part is not hype. The bubble question is the gap: revenue is tracking behind the run-rate the spending implies. Not obviously a bubble on trend, but monetization is the thing to watch.
+
+Q: Is the AI capex a bubble?
+A: Not obviously, but the risk is real. Capex has exceeded trillion-dollar projections and underlying capability is on track — not pure mania. However, revenue is lagging the spend, which is the classic early-bubble signal to watch.
+
+Q: Is AI spending justified by revenue?
+A: Not yet fully. As of spring 2026 the most generous AI-revenue figure was ~$60B, with leading labs annualizing below that — behind the run-rate the record capex implies.
+
+Q: What would show the AI capex is/isn't a bubble?
+A: Revenue catching up to the spend would confirm it's justified; a stall in capability gains or revenue while capex keeps climbing would suggest overbuild.
+
+---
+
+## What Is 'Unhobbling' in AI? Aschenbrenner's Third Driver
+
+URL: https://agiscorecard.com/what-is-unhobbling-ai
+Last updated: July 19, 2026 · Updated as verdicts change
+
+The gains from unleashing models, not just scaling them. “Unhobbling” is Aschenbrenner’s term for the progress that comes from removing the artificial limits on models — giving them tools, memory, agent scaffolding, and reasoning — as opposed to raw compute. In Situational Awareness it’s one of three compounding drivers toward AGI, and two years on it’s visibly where much of the progress came from.
+
+Q: What is unhobbling in AI?
+A: Aschenbrenner's term for capability gains from removing artificial limits on models — adding reasoning, tools, memory, and agent scaffolding — rather than from raw scale. It unlocks latent capability a base model already has.
+
+Q: Why does unhobbling matter?
+A: Because big capability jumps can come without a new giant training run. In Situational Awareness it's one of three compounding drivers (compute, algorithmic efficiency, unhobbling) that add up to orders of magnitude of effective compute per year.
+
+Q: Is unhobbling actually happening?
+A: Yes — as of mid-2026, much of the visible progress (agentic coding ~80% SWE-Bench Pro, reasoning) came from unhobbling techniques, consistent with the essay's thesis.
+
+---
+
+## AI 'Orders of Magnitude' (OOMs), Explained (2026)
+
+URL: https://agiscorecard.com/ai-orders-of-magnitude-explained
+Last updated: August 16, 2026 · Updated as verdicts change
+
+The counting method behind the 2027 forecast. An order of magnitude (OOM) is a factor of 10. Aschenbrenner’s whole AGI case is built on counting OOMs of effective compute — raw compute + algorithmic efficiency + “unhobbling” — and betting they compound at ~ 0.5 OOM/yr toward AGI by 2027. Two years on, the pace has roughly held.
+
+Q: What are orders of magnitude in AI?
+A: An order of magnitude (OOM) is a factor of 10. Aschenbrenner counts OOMs of 'effective compute' — raw compute plus algorithmic efficiency plus unhobbling — because AI progress is exponential and easier to track as '10×s per year.'
+
+Q: How many OOMs per year did Aschenbrenner predict?
+A: Roughly 0.5 orders of magnitude of effective compute per year, sustained over the decade. As of mid-2026 the pace has roughly held, graded On track.
+
+Q: Why do OOMs matter for AGI?
+A: Because his AGI forecast is essentially an addition problem: stack enough OOMs of effective compute and you cross the AGI threshold. If the OOMs stop stacking, the 2027 timeline slips.
+
+---
+
+## What Is Superintelligence? And When Might It Arrive? (2026)
+
+URL: https://agiscorecard.com/what-is-superintelligence
+Last updated: June 30, 2026 · Updated as verdicts change
+
+AI far beyond the best humans — the end-state of the AGI argument. Superintelligence is AI vastly beyond the best humans across essentially all domains. In Situational Awareness it follows AGI via an intelligence explosion (AI improving AI), arriving in the early 2030s. As of mid-2026 that chain hasn’t started, so the timeline is speculative.
+
+Q: What is superintelligence?
+A: AI vastly beyond the best humans across essentially all domains — the end-state of Aschenbrenner's argument. Where AGI is roughly human-level, superintelligence dwarfs all human experts.
+
+Q: When will superintelligence arrive?
+A: Aschenbrenner predicted the early 2030s, via an intelligence explosion following AGI. As of mid-2026 the chain hasn't started (AGI-2027 is open, the intelligence explosion is pending), so the timeline is speculative.
+
+Q: How is superintelligence supposed to happen?
+A: Through an intelligence explosion: once AI can do AI research, it improves itself, compressing about a decade of progress into a year and vaulting from AGI to superintelligence.
+
+---
+
+## What Is the Singularity? The AI Version, Graded (2026)
+
+URL: https://agiscorecard.com/what-is-the-singularity
+Last updated: July 12, 2026 · Updated as verdicts change
+
+A popular name for one specific mechanism — and it hasn’t started. "The singularity" is the point where AI improving AI triggers runaway, self-accelerating progress — in Aschenbrenner’s framing, the intelligence explosion that turns AGI into superintelligence. As of mid-2026 its precondition — a system that can autonomously do AI research — is undemonstrated, so on this scorecard the singularity is graded Pending / speculative.
+
+Q: What is the singularity?
+A: The point where AI improving AI triggers runaway, self-accelerating progress that surpasses human comprehension — Aschenbrenner's intelligence explosion, which turns AGI into superintelligence. As of mid-2026 its precondition (autonomous AI research) is undemonstrated, so it's graded Pending.
+
+Q: Has the AI singularity started?
+A: No. The trigger — a system that can autonomously conduct AI research end-to-end — has not been demonstrated as of mid-2026. Until it does, the singularity is a forecast, not an event; the scorecard grades it Pending.
+
+Q: When will the singularity happen?
+A: It gates on AGI, whose public forecasts span 2026 (Musk) to 2047 (academic surveys), clustering around 2030–2033. Aschenbrenner puts AGI at 2027, the intelligence explosion at 2027–29, and superintelligence in the early 2030s.
+
+Q: Is the singularity the same as AGI?
+A: No. AGI is roughly human-level general capability; the singularity is the runaway self-improvement that AGI is supposed to trigger, producing superintelligence. AGI is the precondition; the singularity is the downstream event.
+
+---
+
+## DeepSeek vs OpenAI: How Far Behind Is China's Frontier?
+
+URL: https://agiscorecard.com/deepseek-vs-openai-gap
+Last updated: June 30, 2026 · Updated as verdicts change
+
+Months, not years — and closing. As of mid-2026, open-weight Chinese models like DeepSeek V4 and Qwen 3.7 Max trail the proprietary frontier (OpenAI and peers) by only ~3–6 months, at a fraction of the cost, with genuine architectural innovation. The durable gap Aschenbrenner’s framework assumed is instead thin — which is why his open-source prediction grades Wrong.
+
+Q: How far behind is DeepSeek versus OpenAI?
+A: As of mid-2026, open-weight models like DeepSeek V4 trail the proprietary frontier by only ~3–6 months, at a fraction of the cost, with genuine architectural innovation — a much narrower gap than expected.
+
+Q: Is DeepSeek just distilling OpenAI's models?
+A: Distillation claims exist, but Epoch AI rates innovations like Multi-head Latent Attention and fine-grained Mixture-of-Experts as genuine advances. A frontier that can be cheaply distilled also undermines the durable-moat thesis.
+
+Q: Does the US still lead OpenAI-style frontier AI?
+A: Yes, but not durably. The lead is months, not years, and closing — which is why Aschenbrenner's 'open source fades, proprietary moat holds' prediction is graded Wrong.
+
+---
+
+## What Is the 'AI 2027' Scenario? (Explained, 2026)
+
+URL: https://agiscorecard.com/ai-2027-scenario-explained
+Last updated: August 29, 2026 · Updated as verdicts change
+
+A month-by-month story of a possible 2027 takeoff. “AI 2027” is a widely-discussed 2025 scenario forecast — from researchers including former OpenAI staff — that depicts, step by step, how a fast takeoff could unfold around 2027, driven by AI automating AI research. It shares its core timing and mechanism with Aschenbrenner’s Situational Awareness, and that shared claim is graded Open here.
+
+Q: What is the AI 2027 scenario?
+A: A widely-discussed 2025 scenario forecast, from researchers including former OpenAI staff, depicting month by month how a fast AI takeoff could unfold around 2027 via AI automating AI research.
+
+Q: Is AI 2027 the same as Situational Awareness?
+A: They share the core: 2027 as the inflection point and recursive AI R&D as the engine. They differ in form — AI 2027 is a narrative scenario, Situational Awareness is a trend-extrapolation essay.
+
+Q: Is the AI 2027 forecast holding up?
+A: The shared core claim is still open. As of mid-2026 agentic coding is strong but autonomous AI research is undemonstrated; it resolves by January 1, 2028.
+
+---
+
+## How Close Are We to AGI? A Capability Check (2026)
+
+URL: https://agiscorecard.com/how-close-is-agi
+Last updated: August 29, 2026 · Updated as verdicts change
+
+Closer than skeptics say, further than optimists claim. As of mid-2026, frontier AI clears many knowledge-work bars — ~ 83% on GDPval, ~ 80% on SWE-Bench Pro, agents in production — but has not crossed the defining line: autonomously doing AI research end-to-end. So on capability we’re deep into “very capable assistant,” not yet “drop-in researcher.”
+
+Q: How close are we to AGI?
+A: Close on capability, not on autonomy. As of mid-2026 frontier AI reaches ~83% on GDPval and ~80% on SWE-Bench Pro, but no system autonomously conducts AI research end-to-end — the defining AGI bar.
+
+Q: What's still missing for AGI?
+A: Autonomy. The gap between a very capable assistant and AGI is a system that can independently do AI research and own tasks end-to-end without human cleanup — undemonstrated as of mid-2026.
+
+Q: When will we reach AGI?
+A: No consensus: forecasts range from 2026 (Musk) and 2027 (Aschenbrenner) to 2030 (Hassabis), 2033 (Metaculus), and 2047 (academic survey median). Expert medians have compressed from ~2060 to ~2033 in six years.
+
+---
+
+## AI vs Human Intelligence: Who's Ahead in 2026?
+
+URL: https://agiscorecard.com/ai-vs-human-intelligence
+Last updated: July 12, 2026 · Updated as verdicts change
+
+Superhuman in narrow bands, subhuman where it counts most: reliable, autonomous, real-world judgment. By 2026 AI beats most humans on many scoped tasks (~83% GDPval, ~80% SWE-Bench Pro) and vastly exceeds us on recall and speed. But it still can’t reliably own an open-ended job end-to-end without supervision — the dimension where human intelligence remains ahead, and the one that defines AGI.
+
+Q: Is AI smarter than humans?
+A: On some axes, yes — AI is superhuman at knowledge recall, speed, and scale, and near-to-above skilled humans on many scoped tasks (~83% GDPval). But it's below human on reliable, autonomous, long-horizon judgment — the axis that matters most for real work and that defines AGI.
+
+Q: How does AI compare to human intelligence?
+A: Intelligence is jagged, not a single scale. AI already exceeds humans on breadth, recall, speed, and many scoped tasks, while humans keep the lead on reliable end-to-end autonomy and accountability for real-world outcomes. The comparison depends entirely on which axis you measure.
+
+Q: What can humans do that AI can't (2026)?
+A: Reliably own an open-ended job end-to-end without supervision, take accountability for consequential real-world outcomes, and act with physical dexterity and deep interpersonal trust. These are the axes where human intelligence remains ahead.
+
+Q: When will AI surpass human intelligence overall?
+A: 'Overall' hinges on the autonomy axis, which is what AGI measures. Forecasts for AGI span 2026–2047, clustering around 2030–2033; the headline AGI-by-2027 verdict resolves by January 2028.
+
+---
+
+## How Will We Know When AGI Has Arrived? The Real Test
+
+URL: https://agiscorecard.com/how-will-we-know-agi-arrived
+Last updated: July 12, 2026 · Updated as verdicts change
+
+The test isn’t a benchmark score — it’s reliable autonomy. We’ll know AGI has arrived when a system can do the work of an AI researcher/engineer end-to-end, unsupervised — not when it clears one more eval. That single bar is why "AGI by 2027" is graded Open despite ~83% GDPval and ~80% SWE-Bench Pro: the capability is here, the autonomy isn’t.
+
+Q: How will we know when AGI has arrived?
+A: When a system can reliably do the work of an AI researcher or engineer end-to-end and unsupervised — not when it clears another benchmark. As of mid-2026 that autonomy bar is unmet, which is why the AGI-by-2027 verdict is Open.
+
+Q: Is there a test for AGI?
+A: The serious test isn't a single benchmark — it's reliable, accountable, long-horizon autonomy: owning a whole job end-to-end without human cleanup, and ultimately conducting AI research. Benchmark scores (GDPval ~83%, SWE-Bench ~80%) are necessary but not sufficient.
+
+Q: Why don't high benchmark scores mean AGI is here?
+A: Because scoring well on scoped tasks isn't the same as reliably owning an entire job unsupervised. The gap between benchmark capability and accountable autonomy is exactly what still separates today's models from AGI.
+
+Q: When will we know if AGI by 2027 was right?
+A: By January 1, 2028. The prediction is fulfilled if autonomous AI research is demonstrated by then, and Wrong if the deadline passes without it. The Thesis Tracker moves the moment that verdict changes.
+
+---
+
+## The US–China AI Arms Race: Is 'The Project' Coming? (2026)
+
+URL: https://agiscorecard.com/us-china-ai-arms-race
+Last updated: June 30, 2026 · Updated as verdicts change
+
+Open — with a weakening premise. Aschenbrenner argued the AGI race would force a Manhattan-Project-style US government AI effort — “The Project” — by 2027/28, premised on a durable proprietary lead. Two years on, national-security involvement is growing but no formal Project exists, and the moat that motivates it is thinner than assumed.
+
+Q: Is there a US–China AI arms race?
+A: In attention, yes — export controls, security requirements, and defense interest have all grown. But as of mid-2026 there's no centralized US government AGI effort ('The Project'), which Aschenbrenner predicted for 2027/28; it's graded Open.
+
+Q: What is 'The Project' in Situational Awareness?
+A: Aschenbrenner's term for a predicted Manhattan-Project-style US government AGI effort, which he expected the national-security state to launch by roughly 2027/28.
+
+Q: Is the US–China AI moat real?
+A: Thinner than assumed. Open-weight Chinese models trail by only ~3–6 months, so the durable proprietary moat that the arms-race logic depends on is already looking wrong.
+
+---
+
+## What Is GDPval? The AI Knowledge-Work Benchmark, Explained
+
+URL: https://agiscorecard.com/gdpval-explained
+Last updated: July 19, 2026 · Updated as verdicts change
+
+A benchmark for real, economically valuable knowledge work. GDPval scores AI models on deliverables drawn from actual occupations — the kind of tasks people are paid to do — against expert-produced reference work. On this scorecard, top models reach roughly 83%, the key evidence behind the On track verdict that AI is beginning to outpace college-grad knowledge workers.
+
+Q: What is GDPval?
+A: GDPval is a benchmark that scores AI models on real, economically valuable knowledge-work tasks drawn from many occupations, comparing their output against expert-produced reference deliverables. It's designed to measure job-like work, not abstract test questions.
+
+Q: What do AI models score on GDPval?
+A: On this scorecard, top models reach roughly 83% on GDPval-style knowledge work — strong enough that the 'AI outpaces college-grad knowledge workers' prediction is graded On track.
+
+Q: Does a high GDPval score mean AI can replace knowledge workers?
+A: Not on its own. A ~83% score shows strong task capability, but it doesn't prove reliable, unsupervised performance. Drop-in reliability still lags the benchmark, which is why full autonomy remains an open question.
+
+Q: How does GDPval relate to SWE-Bench?
+A: GDPval measures general knowledge work; SWE-Bench Pro (~80%) measures agentic software engineering. Both show strong task capability but a remaining gap on unsupervised autonomy.
+
+---
+
+## Andrej Karpathy's AGI Prediction: About a Decade Out
+
+URL: https://agiscorecard.com/karpathy-agi-prediction
+Last updated: July 10, 2026 · Updated as verdicts change
+
+Roughly a decade away — the insider skeptic. Andrej Karpathy, a founding member of OpenAI and former Tesla AI director, puts AGI about a decade out — one of the most conservative timelines among frontier insiders, and roughly 8 years later than Aschenbrenner’s 2027. His core argument: today’s models still have real cognitive deficits, and turning impressive demos into reliable agents is a decade of work, not a year.
+
+Q: What is Andrej Karpathy's AGI prediction?
+A: Karpathy puts AGI roughly a decade away. He describes the coming period as the “decade of agents” — arguing that today’s models still have real cognitive deficits and that reliable autonomous agents take years of engineering, not months.
+
+Q: Why is Karpathy more skeptical than Aschenbrenner?
+A: Both extrapolate from the same technology, but Karpathy weights the gap between benchmark performance and dependable real-world autonomy far more heavily. Aschenbrenner’s 2027 assumes trendlines compound quickly into autonomous AI research; Karpathy expects a long grind of reliability engineering first.
+
+Q: Is Karpathy an AI skeptic?
+A: No — he is bearish on short timelines, not on the technology. A founding member of OpenAI and former Tesla AI director, he expects transformative AI agents; he just thinks the transition takes about a decade rather than a couple of years.
+
+Q: Whose AGI timeline has been closer so far?
+A: Still unresolved. As of mid-2026, capability trends favor the aggressive camp (~83% GDPval, ~80% SWE-Bench Pro), but the autonomy bar that would settle AGI-by-2027 remains undemonstrated — which is the core of Karpathy’s argument. The 2027 claim resolves by January 2028.
+
+---
+
+## What Is SWE-Bench? The AI Coding Benchmark, Explained
+
+URL: https://agiscorecard.com/swe-bench-explained
+Last updated: July 10, 2026 · Updated as verdicts change
+
+The benchmark for real software-engineering work. SWE-Bench evaluates whether an AI agent can resolve real GitHub issues in real codebases — find the bug, write the patch, pass the tests. On this scorecard, top models reach roughly 80% on SWE-Bench Pro, the strongest single piece of evidence that agentic coding has crossed from demo to production capability.
+
+Q: What is SWE-Bench?
+A: SWE-Bench is a benchmark that tests whether AI agents can resolve real GitHub issues in real codebases — producing patches that pass the project's own tests. SWE-Bench Pro is the harder, contamination-resistant variant.
+
+Q: What do AI models score on SWE-Bench?
+A: On this scorecard, top models reach roughly 80% on SWE-Bench Pro as of mid-2026 — strong enough that agentic coding is treated as production capability rather than a demo.
+
+Q: Does 80% on SWE-Bench mean AI can replace programmers?
+A: Not by itself. Resolving scoped issues is a large part of engineering, but deciding what to build, handling ambiguity, and owning systems over time remain human work — which is why the scorecard grades the programmer question 'partly and unevenly.'
+
+Q: How does SWE-Bench relate to AGI?
+A: Situational Awareness treats software engineering as the on-ramp to automating AI research — its definition of AGI. Strong SWE-Bench results keep the AGI-by-2027 trend intact, but the autonomous-research bar itself is still undemonstrated.
+
+---
+
+## AI Progress in 2026 So Far: The Mid-Year Scorecard
+
+URL: https://agiscorecard.com/ai-progress-2026-so-far
+Last updated: August 29, 2026 · Updated as verdicts change
+
+Inputs on trend, one thesis broken, the big question open. At mid-2026, the tracked predictions grade 3 on track (knowledge-work capability, compute scaling, capex — the last exceeded), 1 wrong (open source did not fade), 2 open (AGI by 2027, the government Project) and 2 pending. The headline claim resolves in under 18 months.
+
+Q: How much AI progress has there been in 2026 so far?
+A: Substantial but uneven: knowledge-work capability (~83% GDPval) and agentic coding (~80% SWE-Bench Pro) kept climbing, compute stayed on its ~0.5 OOM/yr trend, and capex exceeded projections — but autonomous AI research remains undemonstrated.
+
+Q: Which AGI predictions are on track in 2026?
+A: Three of the eight tracked predictions: knowledge-work capability, compute scaling, and capex (exceeded). One is wrong (open source fading), two are open (AGI by 2027, the government Project), and two are pending.
+
+Q: Is AGI still possible by 2027?
+A: The claim is still open. The input trends it depends on have held through mid-2026, but the defining milestone — AI autonomously doing AI research — hasn't been demonstrated. It resolves by January 1, 2028.
+
+Q: What should I watch in late 2026?
+A: Three things: any demonstration of autonomous AI research, signs of a capability or compute plateau, and any formal US government AGI initiative. Each would move a major verdict.
+
+---
+
+## Are AI Scaling Laws Dead? What the 2026 Data Shows
+
+URL: https://agiscorecard.com/are-ai-scaling-laws-dead
+Last updated: July 10, 2026 · Updated as verdicts change
+
+No — not on the evidence this scorecard tracks. Through mid-2026, effective compute has roughly held the ~0.5 OOM/yr pace Aschenbrenner bet on, and capability benchmarks (~83% GDPval, ~80% SWE-Bench Pro) kept climbing. What HAS changed is where the gains come from: less from raw pre-training scale, more from reasoning, tools, and agents — "unhobbling."
+
+Q: Are AI scaling laws dead?
+A: Not on the tracked evidence. Through mid-2026, effective compute has roughly held its ~0.5 OOM/yr pace and capability benchmarks kept climbing. The gains have shifted from raw pre-training scale toward reasoning, tools, and agents — a change in composition, not an end to scaling.
+
+Q: Why do people say scaling is dead?
+A: Because raw pre-training jumps have shrunk, quality data is scarcer, and each order of magnitude costs far more. Those constraints are real, but the combined effective-compute trend — hardware plus algorithms plus unhobbling — has still roughly held.
+
+Q: What would prove scaling laws are actually dead?
+A: A sustained multi-year drop below the ~0.5 OOM/yr effective-compute pace, or capability benchmarks flatlining despite continued compute growth. A capex pullback driven by the revenue gap is the most credible route there.
+
+Q: What happens to the AGI 2027 prediction if scaling dies?
+A: It collapses — the 2027 forecast is an extrapolation of these curves. That's why this scorecard tracks the compute verdict so closely: it is the load-bearing input for the headline claim.
+
+---
+
+## How Fast Is AI Improving? Two Speeds, Explained (2026)
+
+URL: https://agiscorecard.com/how-fast-is-ai-improving
+Last updated: July 12, 2026 · Updated as verdicts change
+
+Fast on the inputs, uneven on the output that matters. The engines of AI progress are still compounding — effective compute at roughly 0.5 orders of magnitude per year, benchmark scores climbing to ~83% (GDPval) and ~80% (SWE-Bench Pro). But the capability that defines AGI — reliable autonomous work — is improving much more slowly, which is why "how fast is AI improving" has two very different answers.
+
+Q: How fast is AI improving in 2026?
+A: Fast on inputs, uneven on the output that matters. Effective compute is scaling ~0.5 orders of magnitude per year and benchmark scores are into the 80s% (GDPval ~83%, SWE-Bench Pro ~80%), but reliable autonomous work — the AGI-defining capability — is improving much more slowly.
+
+Q: Is AI progress slowing down?
+A: Not on the inputs — compute and benchmarks keep compounding roughly on trend. But the decisive output, reliable unsupervised autonomy, is the slow rate-limiting step. So 'slowing down' is true for the finish line and false for the engines driving toward it.
+
+Q: Is AI progress accelerating?
+A: On agentic capability and benchmarks, yes. On the autonomy that defines AGI, no — that's the bottleneck. The two answers come from measuring different axes, which is why headlines disagree.
+
+Q: How do I track the rate of AI progress objectively?
+A: Watch the axis that changes the answer — reliable autonomous capability — rather than benchmark headlines. The AGI Scorecard's Thesis Tracker distills that into one auditable score that moves only when a verdict changes.
+
+---
+
+## What Is AGI? Definition, Timelines & Current Status
+
+URL: https://agiscorecard.com/what-is-agi
+Last updated: August 26, 2026 · Updated as verdicts change
+
+AI that can do the cognitive work of a skilled human — and the definition is half the fight. AGI (artificial general intelligence) usually means AI that can perform essentially any cognitive task a human professional can. But forecasters use materially different bars — from “drop-in remote worker” to “automated AI researcher” — and that definitional gap explains much of why public AGI timelines range from 2026 to 2047.
+
+Q: What is AGI in simple terms?
+A: AGI (artificial general intelligence) is AI that can do essentially any cognitive task a skilled human professional can — not just chat or pass tests, but perform real work across domains. The strictest common bar is AI that can autonomously do AI research itself.
+
+Q: What is the difference between AGI and ASI?
+A: AGI matches skilled humans at general cognitive work; ASI (superintelligence) is far beyond the best humans at essentially everything. In most forecasts AGI comes first and, by automating AI research, accelerates the path to ASI.
+
+Q: Does AGI exist in 2026?
+A: By the loosest definition (benchmark-level capability on scoped tasks), arguably close — ~83% on GDPval-style knowledge work. By the serious bars — a reliable drop-in worker, or an automated AI researcher — no. That autonomy gap is why the AGI-by-2027 prediction is still Open.
+
+Q: Why do AGI predictions differ so much?
+A: Mostly definitions and weighting of the autonomy gap. Forecasters using capability-centric bars predict 2026–2027; those weighting reliability and autonomy land 2030–2047. Public forecasts currently span Musk (2026) to the academic survey median (2047).
+
+Q: What are examples of AGI today?
+A: There are none — no deployed system in 2026 meets a serious AGI bar. The closest candidates are frontier models scoring ~83% on GDPval-style knowledge work, which still fail the two bars that matter: working as a reliable drop-in employee, and doing autonomous AI research. Until one exists, the honest examples are hypothetical — which is why this site tracks eight dated predictions (62.5/100) instead of pointing at a product.
+
+---
+
+## Is ChatGPT AGI? The Honest Answer (2026)
+
+URL: https://agiscorecard.com/is-chatgpt-agi
+Last updated: July 12, 2026 · Updated as verdicts change
+
+No — and neither is any 2026 frontier model. Today’s best systems reach near skilled-human scores on scoped tasks (~ 83% on GDPval, ~ 80% on SWE-Bench Pro), but they lack the reliable, long-horizon, autonomous work that serious AGI definitions require — and they are nowhere near superintelligence. On this scorecard, "AGI by 2027" is still graded Open, precisely because that autonomy bar is unmet.
+
+Q: Is ChatGPT AGI?
+A: No. As of mid-2026, ChatGPT and other frontier models reach near skilled-human performance on scoped tasks (~83% GDPval, ~80% SWE-Bench Pro) but lack reliable, unsupervised, end-to-end autonomy — the bar serious AGI definitions require. They are also nowhere near superintelligence.
+
+Q: Is GPT-5 or any 2026 model AGI?
+A: No frontier model in 2026 meets the serious AGI bar. They are extremely capable assistants that clear much of the capability threshold but miss the autonomy one — no system reliably owns an entire job, or conducts AI research, without human supervision.
+
+Q: What would make ChatGPT actually AGI?
+A: Reliable, accountable, long-horizon autonomy: doing an entire job end-to-end without human cleanup, and ultimately conducting AI research itself. That is the milestone behind the AGI-by-2027 verdict, currently graded Open and resolving by January 2028.
+
+Q: Is ChatGPT superintelligent?
+A: Not remotely. Superintelligence means far exceeding the best humans at essentially everything. Current models sit in a 'very capable assistant' band — strong on scoped tasks, short of autonomous work, and far from superintelligence.
+
+---
+
+## Sam Altman's AGI Prediction: What He's Actually Said
+
+URL: https://agiscorecard.com/sam-altman-agi-prediction
+Last updated: August 29, 2026 · Updated as verdicts change
+
+Confident and near-term — but deliberately unnumbered. OpenAI CEO Sam Altman has said his lab is “confident we know how to build AGI as we have traditionally understood it,” and in his 2024 essay The Intelligence Age put superintelligence possibly “a few thousand days” away. Unlike Aschenbrenner’s 2027, he attaches no hard deadline — which makes his optimism harder to grade.
+
+Q: What is Sam Altman's AGI prediction?
+A: Altman has said OpenAI is “confident we know how to build AGI as we have traditionally understood it,” and in The Intelligence Age (2024) suggested superintelligence may be “a few thousand days” away. He deliberately avoids hard dates.
+
+Q: Did Sam Altman say AGI has been achieved?
+A: No. He has predicted AI agents joining the workforce and described AGI as near, while also arguing the milestone will feel less dramatic than expected when it arrives.
+
+Q: How does Altman's timeline compare to Aschenbrenner's?
+A: They're directionally aligned — both very near-term relative to expert medians. The difference is falsifiability: Aschenbrenner's 2027 resolves by January 2028, while “a few thousand days” spans roughly the late 2020s to early 2030s and can't cleanly miss.
+
+Q: Why doesn't the scorecard grade Altman's prediction?
+A: Because it has no deadline. This scorecard grades pre-registered, dated claims; Altman's public position is tracked here as context for the graded forecasts.
+
+---
+
+## Dario Amodei's AGI Prediction: Powerful AI by 2026–27?
+
+URL: https://agiscorecard.com/dario-amodei-agi-prediction
+Last updated: August 29, 2026 · Updated as verdicts change
+
+Among the earliest lab-leader timelines — with the caveats stated out loud. Anthropic CEO Dario Amodei avoids the term “AGI” but has said “powerful AI” — which he describes as “a country of geniuses in a datacenter” — could arrive as early as 2026–27, while explicitly flagging the uncertainty. That puts him alongside Aschenbrenner at the aggressive end of serious forecasts.
+
+Q: What is Dario Amodei's AGI prediction?
+A: Amodei avoids the term AGI but has said “powerful AI” — systems beyond Nobel-level experts with long-horizon autonomy, “a country of geniuses in a datacenter” — could arrive as early as 2026–27, with explicit uncertainty.
+
+Q: What does 'a country of geniuses in a datacenter' mean?
+A: Amodei's shorthand from Machines of Loving Grace (2024): millions of AI systems, each smarter than top human experts across fields, operating autonomously and faster than humans — his definition of transformative, powerful AI.
+
+Q: How does Amodei's timeline compare to Aschenbrenner's?
+A: They're closely aligned: Amodei's as-early-as 2026–27 window overlaps Aschenbrenner's 2027, and both use a strict autonomy-centric bar. The main difference is that Amodei attaches explicit uncertainty rather than a single focal year.
+
+Q: Is Amodei's prediction on track?
+A: The window is live but the destination is undemonstrated: capability benchmarks are strong as of mid-2026, but long-horizon autonomous systems — the core of his definition — haven't appeared. It resolves within roughly the next 18 months.
+
+---
+
+## AGI vs Superintelligence: The Difference, Explained
+
+URL: https://agiscorecard.com/agi-vs-superintelligence
+Last updated: July 10, 2026 · Updated as verdicts change
+
+One is human-level breadth; the other is beyond-human everything. AGI is AI that can do essentially any cognitive task a skilled human can. Superintelligence (ASI) is AI far beyond the best humans at essentially everything. In the standard forecast they are links in a chain: AGI automates AI research, an intelligence explosion follows, and ASI is the result. As of mid-2026: AGI-by-2027 is Open; the explosion and ASI are Pending.
+
+Q: What is the difference between AGI and superintelligence?
+A: AGI matches skilled humans at general cognitive work; superintelligence (ASI) far exceeds the best humans at essentially everything. AGI is the trigger; ASI is the predicted result of AGI automating AI research.
+
+Q: Does AGI come before superintelligence?
+A: In every major forecast, yes. The standard sequence is AGI → intelligence explosion (AI automating AI research) → superintelligence. Aschenbrenner dates these roughly 2027 → 2027–29 → early 2030s.
+
+Q: How far away is superintelligence?
+A: Unknowable with confidence — it depends on AGI and an intelligence explosion that haven't happened. Aschenbrenner forecasts the early 2030s; Altman has suggested 'a few thousand days.' This scorecard grades it Pending.
+
+Q: Is ChatGPT AGI or ASI?
+A: Neither. Current frontier systems score near skilled humans on scoped tasks (~83% GDPval) but lack the reliable long-horizon autonomy that defines serious AGI bars — and are nowhere near the beyond-all-humans bar of ASI.
+
+---
+
+## Narrow vs General AI: The Three Types, Explained (2026)
+
+URL: https://agiscorecard.com/narrow-vs-general-ai
+Last updated: July 12, 2026 · Updated as verdicts change
+
+Everything shipping in 2026 is still narrow AI — very wide narrow AI, but narrow. The ladder runs narrow (ANI) → general (AGI) → super (ASI). Today’s frontier models are astonishingly broad narrow AI: they clear ~83% on knowledge-work tasks (GDPval) yet still can’t reliably own a job end-to-end unsupervised — the line that separates narrow from general.
+
+Q: What is the difference between narrow AI and general AI?
+A: Narrow AI (ANI) is superb at specific tasks but can't reliably work autonomously across a whole job; general AI (AGI) can do essentially any cognitive job a skilled human can, reliably and unsupervised. As of mid-2026 everything shipping is still narrow AI — very broad, but narrow.
+
+Q: Is ChatGPT narrow or general AI?
+A: Narrow — very wide narrow AI. It clears ~83% on knowledge-work benchmarks across many domains, which feels general, but it can't reliably own a whole job end-to-end unsupervised, which is the line that defines general AI.
+
+Q: What are the three types of AI?
+A: Narrow AI (ANI) — task-specific; General AI (AGI) — human-level across cognitive work, reliable and autonomous; and Superintelligence (ASI) — far beyond the best humans at essentially everything. In 2026 we're at broad narrow AI; AGI is undemonstrated and ASI is speculative.
+
+Q: When will AI go from narrow to general?
+A: When a system can reliably own a whole job end-to-end without supervision — the AGI bar, tracked by the AGI-2027 verdict, which resolves by January 2028. Forecasts for that span 2026–2047, clustering around 2030–2033.
+
+---
+
+## Altman vs Musk on AGI: Two Aggressive Bets Compared
+
+URL: https://agiscorecard.com/altman-vs-musk-agi
+Last updated: July 10, 2026 · Updated as verdicts change
+
+Both maximally bullish — in opposite styles. Elon Musk has put AGI at end of 2026, the most aggressive dated call from any prominent figure — and one that resolves within months. Sam Altman says OpenAI is “confident we know how to build AGI” with superintelligence “a few thousand days” away — near-term in spirit but deliberately unfalsifiable. One bet can miss; the other can’t.
+
+Q: What is the difference between Altman's and Musk's AGI predictions?
+A: Musk gives a hard date — AGI by end of 2026, the most aggressive dated public call. Altman says OpenAI is confident it knows how to build AGI and puts superintelligence 'a few thousand days' away, but names no deadline. One is falsifiable within months; the other can't cleanly miss.
+
+Q: Will Musk's end-of-2026 AGI prediction come true?
+A: It resolves within months. As of mid-2026, capability benchmarks are strong (~83% GDPval, ~80% SWE-Bench Pro) but autonomous AI research and unsupervised end-to-end work remain undemonstrated — the bar most definitions require. Absent a very fast breakthrough, the call is on course to miss.
+
+Q: Do Altman and Musk agree on anything about AGI?
+A: Directionally, yes: both sit at the maximally aggressive end of public forecasts and expect transformative AI this decade — far earlier than the academic survey median of 2047. They differ in falsifiability, not in bullishness.
+
+Q: Whose AGI prediction should I trust more?
+A: Neither is a neutral observer — both run competing AI organizations. The scorecard's approach: weight dated, checkable claims (Musk's 2026, Aschenbrenner's 2027) over unfalsifiable ones, and grade them against public evidence as deadlines arrive.
+
+---
+
+## The Situational Awareness Timeline, Stage by Stage
+
+URL: https://agiscorecard.com/aschenbrenner-timeline
+Last updated: July 10, 2026 · Updated as verdicts change
+
+A five-stage ladder — currently standing on the first rung. Situational Awareness lays out a strict sequence: 2025/26 college-grad-level AI → 2027 AGI → 2027–29 intelligence explosion → 2027/28 a US government Project → 2030s superintelligence. As of mid-2026 the first stage is on track, the second is open, and everything above it is pending.
+
+Q: What is the Situational Awareness timeline?
+A: A five-stage sequence: college-grad-level AI by 2025/26, AGI in 2027, a US government Project by 2027/28, an intelligence explosion 2027–29, and superintelligence in the 2030s.
+
+Q: Which stages have happened so far?
+A: The first is on track — models perform near skilled-human level on knowledge work (~83% GDPval) and agentic coding (~80% SWE-Bench Pro). AGI (2027) is open, and every later stage is pending.
+
+Q: What happens if AGI doesn't arrive by 2027?
+A: The whole ladder loses its spine: the intelligence explosion and 2030s superintelligence stages depend on AGI arriving first. The claim resolves by January 1, 2028.
+
+Q: Is the timeline ahead or behind schedule?
+A: Roughly on schedule through stage one, with the decisive stage unresolved: input trends (compute, capex, capability) have held or exceeded, but the AGI stage's defining evidence — autonomous AI research — hasn't appeared.
+
+---
+
+## Altman vs Amodei on AGI: The Two Lab-CEO Bets Compared
+
+URL: https://agiscorecard.com/altman-vs-amodei-agi
+Last updated: July 11, 2026 · Updated as verdicts change
+
+Similar timelines, opposite disciplines. Sam Altman says OpenAI is “confident we know how to build AGI” and puts superintelligence “a few thousand days” out — bullish but deliberately undated. Dario Amodei forecasts “powerful AI” possibly by 2026–27, but wraps it in a precise definition and explicit uncertainty. The difference isn't optimism — it's how checkable each claim is.
+
+Q: What is the difference between Altman's and Amodei's AGI predictions?
+A: Both expect transformative AI soon, but Amodei gives a precise definition ('a country of geniuses in a datacenter') and an explicit possibly-2026–27 window with stated uncertainty, while Altman expresses confidence — 'we know how to build AGI' — without committing to a date or fixed definition.
+
+Q: What did Dario Amodei predict about AGI?
+A: In Machines of Loving Grace (October 2024), Amodei forecast 'powerful AI' — smarter than Nobel-level experts across fields — possibly arriving by 2026–27, while explicitly flagging his uncertainty.
+
+Q: Has either prediction come true as of mid-2026?
+A: Not yet. Capability benchmarks are strong (~83% GDPval, ~80% SWE-Bench Pro), but nothing resembling an autonomous 'country of geniuses' exists, and unsupervised reliability still lags. Amodei's window remains open through 2027.
+
+Q: Whose AGI framing does the scorecard prefer?
+A: Neither CEO's, structurally: this site anchors on dated, checkable claims — Aschenbrenner's 2027, which resolves by January 1, 2028 — because unfalsifiable confidence can't be graded.
+
+---
+
+## Musk vs Hassabis on AGI: Boldest Date vs Builder's Caution
+
+URL: https://agiscorecard.com/musk-vs-hassabis-agi
+Last updated: July 11, 2026 · Updated as verdicts change
+
+Four years apart — and opposite relationships with deadlines. Elon Musk puts AGI at end of 2026, the most aggressive dated call from any prominent figure. Demis Hassabis puts it at roughly 50% by 2030 and actively warns against hype. One has a long record of bold dates that slip; the other builds frontier models daily and still refuses to promise one.
+
+Q: What is the difference between Musk's and Hassabis's AGI predictions?
+A: Musk says AGI by end of 2026 — the boldest dated public call. Hassabis puts it at roughly 50% by 2030, framed as a probability rather than a promise, and warns against hype. The gap is about four years.
+
+Q: Will Musk's 2026 AGI prediction come true?
+A: It resolves December 31, 2026. As of mid-2026, benchmarks are strong (~83% GDPval, ~80% SWE-Bench Pro) but autonomous end-to-end work is undemonstrated — the bar most AGI definitions require — so the call is on course to miss absent a very fast breakthrough.
+
+Q: Why is Hassabis more cautious than Musk?
+A: Different vantage points: Hassabis builds frontier models and prices in the gap between benchmark capability and dependable autonomy daily. Musk's aggressive dating pattern mirrors his other ventures, where bold deadlines have frequently slipped.
+
+Q: Where does Aschenbrenner sit between them?
+A: Between the two: his 2027 is one year later than Musk and roughly three earlier than Hassabis's central mass — and it's the next dated claim to resolve, by January 1, 2028.
+
+---
+
+## Karpathy vs Altman on AGI: Same Lab Roots, Opposite Reads
+
+URL: https://agiscorecard.com/karpathy-vs-altman-agi
+Last updated: July 11, 2026 · Updated as verdicts change
+
+The most instructive disagreement in AI forecasting. Sam Altman runs OpenAI and says it is “confident we know how to build AGI.” Andrej Karpathy was a founding member of the same lab — and puts AGI about a decade away, calling this the “decade of agents,” not the year of them. Two people with frontier-level visibility, reading the same evidence in opposite directions.
+
+Q: How do Karpathy's and Altman's AGI predictions differ?
+A: Altman, OpenAI's CEO, says the lab is confident it knows how to build AGI and puts superintelligence 'a few thousand days' away. Karpathy, an OpenAI founding member who left, puts AGI about a decade out — roughly eight years apart despite shared frontier-level visibility.
+
+Q: Why do two OpenAI insiders disagree about AGI timing?
+A: Two factors: weighting and incentives. Karpathy weights the reliability gap between demos and dependable agents heavily; Altman extrapolates trends. Altman's confidence also serves OpenAI's positioning, while Karpathy has no lab to promote.
+
+Q: Who does the mid-2026 evidence favor?
+A: Both, partially: strong benchmarks (~83% GDPval, ~80% SWE-Bench Pro) support the optimistic read, while undemonstrated autonomous work supports the decade view. The first hard tiebreaker is Aschenbrenner's 2027 claim, resolving by January 2028.
+
+Q: What should I take away from this disagreement?
+A: That the deciding evidence doesn't exist yet. When insiders with equal visibility disagree by nearly a decade, tracking dated, checkable predictions — not confidence — is the only honest way to follow AGI progress.
+
+---
+
+## Can a 200-Visitor Site Make Money? A Public Log
+
+URL: https://agiscorecard.com/experiments
+Started: August 5, 2026 · Updated as experiments resolve
+
+So far: no. Revenue to date is $0. This site grades other people's dated predictions against conditions registered before the fact. It would be incoherent to hold public forecasters to that standard and not apply it to ourselves — so here are ten attempts to make this site earn money, each with a success threshold and a kill threshold published before the result exists. Machine-readable at /experiments.json.
+
+Q: Why publish revenue experiments that are mostly failing?
+A: Because this site grades other people's dated predictions against pre-registered conditions, and it would be incoherent to hold public forecasters to a standard we do not apply to ourselves. The log publishes each experiment's kill threshold before the result exists, so nobody — including us — can reinterpret a failure as a partial success afterwards.
+
+Q: How much has the site earned so far?
+A: Zero dollars. Total traffic was 211 active users over the 28 days to 2026-08-02. Those are the real numbers, and they are the starting line the experiments are measured from.
+
+Q: Why not just run ads?
+A: Because the arithmetic does not work at this size. At roughly 200 users a month, display ads at a typical tech RPM yield about $1.60 a month, and most ad networks will not accept a site below 10,000 monthly visitors at all. Ads are still included in the portfolio, but as a negative control that calibrates what traffic-dependent revenue actually looks like — not as a plan.
+
+Q: What would prove this whole approach wrong?
+A: The portfolio bets that at low traffic only value-per-user models are worth running. If the AdSense control arm out-earns the combined value-per-user arms over the same window, that thesis is wrong and the portfolio gets rebuilt. That condition is registered in experiments.json before the result is known.
+
+---
+
+## About the AGI Scorecard — Methodology & Independence
+
+URL: https://agiscorecard.com/about
+Last updated: July 10, 2026
+
+What the AGI Scorecard is, how verdicts are graded with pre-registered flip conditions, and why it's independent of every AI lab.
+
+---
+
+## Advertise on The AGI Scorecard — Reach AGI-Focused Readers
+
+URL: https://agiscorecard.com/advertise
+Last updated: July 11, 2026 · Live media kit — numbers update as we grow
+
+Sponsor the AGI Scorecard: an email briefing and a 200-page site reaching a high-intent audience researching AGI timelines. Introductory rates for early sponsors.
+
+---
+
+## Privacy Policy — AGI Scorecard
+
+URL: https://agiscorecard.com/privacy
+Last updated: August 6, 2026
+
+What data agiscorecard.com collects - GA4, a cookieless first-party log, and the email address you give a subscribe form - how it is used, and how to remove it.
+
+---
+
+## 预言 AGI 2027 的基金，7 月爆仓了 | AGI 记分牌
+
+URL: https://agiscorecard.com/cn
+
+他预言 AGI 2027、两年回报超1000%、做空英伟达85亿——2026年7月单月亏约67%，公开股票组合大部分转让给 Citadel。完整仓位收据与时间线，基于公开文件与多家媒体报道。
+
+---
+
+## AGI Forecaster Leaderboard: Who Called It Soonest
+
+URL: https://agiscorecard.com/forecaster-leaderboard
+Last updated: July 20, 2026 · Updated as verdicts change
+
+Nobody has won yet — but the boldest callers are already on the clock. Elon Musk (end of 2026) and Leopold Aschenbrenner (2027) are furthest out on a limb; the median expert sits around 2030, and a 2,778-person researcher survey lands at 2047. The only thing that settles it is evidence — and as of mid-2026 the AGI-2027 Thesis Tracker reads 62.5/100, with the defining milestone (AI autonomously doing AI research) still undemonstrated.
+
+Q: Who predicts AGI the soonest?
+A: Elon Musk has been the most aggressive, calling AGI by the end of 2026, followed by Leopold Aschenbrenner (2027) and Dario Amodei (“powerful AI” around 2026–27). The median expert forecast clusters around 2030, and a 2,778-person AI-researcher survey puts 50% odds at 2047.
+
+Q: Who is winning the AGI bet in 2026?
+A: Nobody has won yet. No system has autonomously conducted AI research end-to-end — the milestone these forecasts depend on — so even the soonest calls (Musk 2026, Aschenbrenner 2027) remain open, not resolved. The AGI-2027 Thesis Tracker reads 62.5/100 as of mid-2026.
+
+Q: What is the average expert prediction for AGI?
+A: The center of expert opinion sits around 2030–2033: Demis Hassabis (~50% by 2030), the Metaculus community (50% by 2033), and Samotsvety forecasters (~28% by 2030). Longer-horizon estimates like Andrej Karpathy's “about a decade out” and the 2,778-person survey's 50%-by-2047 pull the tail later.
+
+Q: How is the AGI forecaster leaderboard scored?
+A: It's ranked by how soon each forecaster says AGI arrives — soonest date first, because the boldest bet faces the verdict earliest. All positions are real, on-the-record public calls. The actual evidence is tracked separately by the auditable AGI-2027 Thesis Tracker.
+
+---
+
+## Free AI & AGI Tools: 6 Interactive Checks
+
+URL: https://agiscorecard.com/ai-tools
+
+The short version: most "AI tools" pages list other people's products. These nine are ours, and they all run off the same source — /data.json, eight falsifiable predictions from Leopold Aschenbrenner's Situational Awareness, each graded with a pre-registered flip condition and primary sources, published CC BY 4.0. That is why a quiz here can tell you which real forecaster you agree with instead of inventing a percentage.
+
+---
+
+## The Future Bet — A 60-Second Future Predictions Game
+
+URL: https://agiscorecard.com/future-bet
+
+Bet YES/NO on 12 bold predictions — AGI, robots, Mars, fusion, alien life — and see which real forecaster your bets match. Shareable grid, no sign-up.
+
+---
+
+## AI Prediction Receipts: Every Dated AGI Call, on the Clock
+
+URL: https://agiscorecard.com/prediction-receipts
+Last updated: July 24, 2026 · Countdowns update live
+
+Every dated AGI call, on one public clock. Elon Musk’s “AGI by end of 2026” is the first big receipt to come due — the countdown below is live. Aschenbrenner’s 2027 thesis follows (Jan 1, 2028), with the field stretching to the academic survey’s 2047. The evidence meter for the 2027 bet sits at 62.5/100 as of July 2026.
+
+Q: Which AI prediction expires first?
+A: Elon Musk's — he has said AGI arrives by the end of 2026, the boldest dated call on record. That receipt comes due December 31, 2026. Dario Amodei's 'powerful AI possibly 2026–27' window closes a year later, and Leopold Aschenbrenner's AGI-2027 thesis resolves January 1, 2028.
+
+Q: What happens when an AI prediction's date passes?
+A: The receipt stays and the stamp flips to DATE PASSED — pure date math against the claim's own deadline. Whether the claim was fulfilled is graded separately on the scorecard; as of July 2026 no system has met the AGI bar, and the AGI-2027 Thesis Tracker reads 62.5/100.
+
+Q: Are these real quotes and dates?
+A: Every claim is a documented public position — each receipt links to a full sourced record on this site, and the machine-readable dataset (data.json, CC BY 4.0) carries the primary sources. Nothing is invented; probabilistic forecasts are labeled and graded at their date, not before.
+
+---
+
+## AGI-2027 Resolution: Criteria, Countdown, Evidence
+
+URL: https://agiscorecard.com/agi-2027-resolution
+Last updated: August 8, 2026 · Updated as verdicts change
+
+The "AGI by 2027" claim resolves by January 1, 2028 — and the resolution criteria are already locked. This page is the permanent record of how the headline claim of Situational Awareness gets graded: what counts as AGI under the claim, what the evidence says today, and exactly what happens on resolution day. Written and pre-registered long before the deadline, so nobody — including us — can move the goalposts later.
+
+Q: When does the AGI-2027 prediction resolve?
+A: By January 1, 2028. The claim targets 2027, so the deadline is the end of that year; the verdict and full evidence trail will be published on this page.
+
+Q: What counts as AGI for this resolution?
+A: Aschenbrenner's own bar: models that can do the work of an AI researcher/engineer. Strong coding assistants alone do not qualify; autonomous AI-research work does. The criteria above were pre-registered before the outcome.
+
+Q: What does the evidence say right now?
+A: Verdict Open as of 2026-08-08: agentic coding is strong (~80% SWE-Bench Pro) but autonomous AI research is undemonstrated. The overall thesis tracks at 62.5/100.
+
+Q: How is this different from Polymarket's AGI market?
+A: Prediction markets price announcement events (e.g. 'OpenAI announces AGI'). This page grades a capability claim against pre-registered criteria. An announcement without the capability would move their contract but not this verdict — and vice versa.
+
+---
+
+## AGI Timeline: Prediction Markets vs Evidence
+
+URL: https://agiscorecard.com/agi-odds-vs-evidence
+Last updated: August 24, 2026 · Updated as verdicts change
+
+Prediction markets and this scorecard are measuring different things — and the difference is the insight. Polymarket prices an announcement event; the scorecard grades a capability claim against pre-registered criteria. Issue #1 of a running comparison: the market's AGI-by-2027 contract vs the Thesis Tracker's 62.5/100 evidence read.
+
+Q: Is the Thesis Tracker score a probability of AGI?
+A: No. 62.5/100 is the mean of 8 graded verdict weights — an auditable evidence composite, not a forecast. Prediction-market prices are crowd probabilities of specific contract wordings. The two answer different questions.
+
+Q: Why compare them at all?
+A: Because the gap is informative. An announcement-priced market and a capability-graded ledger diverging tells you the crowd expects labeling to run ahead of substance (or behind it). Traders need pre-registered resolution criteria; that is exactly what this site publishes.
+
+Q: How current are the odds shown?
+A: Each issue quotes a dated snapshot with a link to the live market — never a 'current' price. Since 2026-08-24 the odds are fetched automatically once a week and carry an exact UTC timestamp and the market's traded volume, so a reading can no longer drift into being quoted as if it were live. The series is reviewed weekly but only publishes a new issue when one side actually moves; every review, including the quiet ones, is logged on the page.
+
+---
+
+## Changelog — What Changed on the AGI Scorecard
+
+URL: https://agiscorecard.com/changelog
+Last updated: August 16, 2026 · Updated as verdicts change
+
+Everything that changed on the evidence layer, dated and real. Every entry corresponds to a shipped change; score history is machine-readable. If you would rather not check back: subscribers get one email when something that matters actually changes — a verdict, the score, a new tool — and silence otherwise.
+
+Q: How often does this page update?
+A: Whenever something real ships: a verdict change, a score move, a new tool or dataset. Entries are dated and correspond to public commits — nothing is backfilled or invented.
+
+Q: What counts as a change worth logging?
+A: Verdict flips, Thesis Tracker score moves, new tools and datasets, and structural site changes. Routine copy edits do not qualify.
+
+---
+
+## Your AGI Timeline: Pick a Year, See Who Agrees
+
+URL: https://agiscorecard.com/your-agi-timeline
+
+Slide to the year you think AGI arrives. See instantly where you land against Musk, Aschenbrenner, Hassabis, Metaculus and 2,778 researchers — plus the auditable 62.5/100 tracker.
+
+Q: When will AGI arrive?
+A: There is no consensus: published positions run from Musk's end-2026 to a 2,778-researcher survey median of 2047, with Aschenbrenner at 2027, Hassabis ~50% by 2030 and the Metaculus community ~50% by 2033. This tool places your own pick against all nine, and against the graded evidence.
+
+Q: Where do the forecaster positions come from?
+A: All nine are public positions quoted verbatim from the scorecard's machine-readable dataset at /data.json (CC BY 4.0). Where a forecaster gives a probability curve rather than a date, the marker sits at the year their own words put near 50%, and the wording is shown unaltered.
+
+Q: Does picking a year mean AGI will happen then?
+A: No. The tool shows where your view sits in the published distribution — it is a positioning device, not a forecast. What the scorecard actually grades is eight dated, falsifiable predictions, tracked as one auditable score.
+
+---
+
+## Calibration: We Score Our Own Predictions in Public
+
+URL: https://agiscorecard.com/calibration
+Last updated: August 8, 2026 · Updated as verdicts change
+
+We score our own predictions in public — and the sample is still small. This page inventories every probability-shaped claim the AGI Scorecard network makes (graded verdicts, an investing forecast ledger, red-team survival odds) and pre-commits to publishing a Brier score and calibration curve once scored calls reach n≥20. Until then we show the raw ledger and refuse to claim we are calibrated. We would rather show a small honest n than a big fake curve.
+
+Q: What is a Brier score?
+A: A measure of probability-forecast accuracy: the mean squared difference between stated probabilities and outcomes (0 = perfect, 0.25 = coin-flip guessing on binary events). We pre-commit to publishing ours once scored probability calls reach n≥20.
+
+Q: Why not publish a calibration curve now?
+A: The scored sample is 8 market calls plus 6 open odds — too small for a meaningful curve. Publishing one now would be theater. The raw ledgers are public and timestamped, so nothing is hidden in the meantime.
+
+Q: Who grades the calls?
+A: Outcomes are graded against pre-registered falsification conditions written before the outcome, with dated multi-source verification, and misses stay published with their lesson. The grading rules are public in the eight-layer method, including the red-team layer.
+
+---
+
+## Will AI Take My Job? A 60-Second Exposure Check (2026)
+
+URL: https://agiscorecard.com/ai-job-risk-check
+
+Answer 6 questions about your job and get your AI exposure tier — grounded in real 2026 evidence (~83% GDPval, ~80% SWE-Bench) and the autonomy gap. No sign-up.
+
+---
+
+## Matrix Odds Calculator — your own probability, not ours
+
+URL: https://agiscorecard.com/matrix-odds
+
+The short version: the film’s scenario needs five separate things to go right in a row. Four of them map onto predictions this site grades with pre-registered flip conditions and primary sources. The fifth — the part that makes it The Matrix rather than any other bad ending — has no evidence on either side, here or anywhere. That asymmetry is the actual finding, and it survives whatever numbers you pick.
+
+Q: Does this site think the Matrix scenario is likely?
+A: This site publishes no probability for it, and this page deliberately does not either. Every number you see is one you entered. What the site does publish is graded evidence on four of the five preconditions, with pre-registered flip conditions and primary sources.
+
+Q: Why does the fifth link have no evidence?
+A: Because there is none, in either direction. “A superintelligence would keep humans alive in a simulation” is not a falsifiable claim about the present world — there is no observation today that would confirm or refute it. Indifference, extinction and cooperation are separate branches with the same evidentiary status. Anyone quoting you a percentage for this link made it up.
+
+Q: Which link currently has the strongest evidence?
+A: The physical one. AI capex has already exceeded what the source text predicted, and compute scaling is on track — both graded from primary sources. The buildout is the least speculative part of the whole scenario, which is not the part most people argue about.
+
+Q: Why multiply instead of averaging?
+A: Because the scenario needs every step, not an average step. If any one link fails, the scenario fails. The caveat is that the links are not independent — see the method note above, which states plainly that correlation would push the true number higher than the product.
+
+Q: Is this a prediction, or advice?
+A: Neither. It is a reasoning tool over a public dataset. It tells you what your own stated beliefs imply, and shows you where the evidence runs out.
+
+---
+
+## AI Stock Exposure Check — Score Your AI Basket
+
+URL: https://agiscorecard.com/ai-stock-exposure
+
+You almost certainly cannot buy the AGI-2027 thesis. It scores 62.5/100 today. A standard AI infrastructure basket scores 99 against it — while about 2% of its weight rides on whether AGI actually arrives. The other 98% is the buildout: capex, compute, and knowledge-work capability that is already shipping. High score, different bet. This tool tells you which one you are holding.
+
+---
+
+## AI Investing Hub — Who's Betting What on AI (2026)
+
+URL: https://agiscorecard.com/invest
+Last updated: August 17, 2026 · Q2 2026 13F holdings (filed 2026-08-14) + July 2026 events per public reporting
+
+This scorecard tracks what people say about AGI. This section tracks what they do with money — from the rise and July-2026 blow-up of Aschenbrenner's own fund to how eight investing legends are actually positioned on AI. Public filings and public reporting only, education only, never advice.
+
+Q: How are the biggest investors positioned on AI in 2026?
+A: Per Q2 2026 SEC 13F filings (holdings as of June 30, filed August 14): Warren Buffett's Berkshire added Alphabet again — now 12.6% of the book across both share classes, its clearest AI bet — while staying out of Amazon; Cathie Wood is aggressively long AI infrastructure and next-gen compute; David Tepper leans bullish with Amazon at 15.4% his largest position; Bill Ackman remains bullish per his latest Q1 filing; Druckenmiller, Duan Yongping and Philippe Laffont are cautious; Michael Burry is the clearest bear.
+
+Q: What is Aschenbrenner betting on AI?
+A: Leopold Aschenbrenner — who predicted AGI by 2027 — runs Situational Awareness LP. Its Q1 2026 13F showed the fund long AI power and infrastructure (Bloom Energy, CoreWeave) with roughly $8.5B notional in put options against chip names including Nvidia. In late July 2026, per CNBC and Bloomberg reporting, the fund lost about 67% in a month and transferred most of its public equity portfolio to Citadel; assets fell from a ~$45B peak to about $10B, retaining private stakes such as Anthropic.
+
+Q: Is this investment advice?
+A: No. Everything in this section is educational information based on public SEC 13F filings and public statements. Holdings snapshots are quarterly and may not reflect current positions. Nothing here is a recommendation to buy or sell any security.
+
+---
+
+## Justin Sun's 2013 Bitcoin Story: How Much Is Verified?
+
+URL: https://agiscorecard.com/justin-sun-2013-bitcoin-story
+Last updated: August 23, 2026 · Two-ledger audit, sources dated
+
+Almost none of the investment story — and all of the positioning story. Every load-bearing detail of the famous origin story — how much Bitcoin he bought in 2013, the "tuition all-in," the 70–80x return, the "first ¥10M" — traces only to Sun's own tellings, and the numbers drift between versions. No contemporaneous (2013–14) record documents him holding Bitcoin at all. What is verifiable from that period is different and more instructive: a Ripple Labs Greater-China title (late 2013), a startup whose announced "eight-figure-USD" round was later reported as roughly a $1M IDG check, and an exceptional harvest of credential assets — magazine covers, Hupan Academy's first cohort, Forbes 30-under-30. The verified 2013 framework is positioning and attention, not stock-picking.
+
+---
+
+## What Is B.AI? Justin Sun's AI Relay Station, Audited
+
+URL: https://agiscorecard.com/what-is-b-ai
+Last updated: August 23, 2026 · Verified vs. self-reported, sources dated · Not investment advice
+
+Real product, unaudited numbers, and the clearest tell yet of where Sun thinks the next rail is. B.AI, launched April 12, 2026, resells access to Claude, GPT, Gemini and China's leading models behind one API key and one crypto-settled balance, with wallet login and agent-payment protocols (x402, ERC-8004) built in. The product claims are user-checkable; the growth numbers — 1.7M registered users, a daily $10,000 subsidy pool, a "tens-of-billions token subsidy" — trace to Sun's own announcements. The strategic read: in his 2013 story he says he bought the asset; in 2026 he is verifiably building the toll booth between wallets and every frontier model at once.
+
+---
+
+## Do AI Trading Agents Actually Make Money? The Evidence
+
+URL: https://agiscorecard.com/do-ai-trading-agents-work
+Last updated: August 24, 2026 · Base rates, dated sources, and a written flip condition · Not investment advice
+
+No audited public evidence that they do — and every documented base rate puts the burden of proof on the vendor. 2026's funding wave into "natural language → strategy → backtest → execution" platforms is real. But as of August 2026 no retail AI-trading-agent vendor publishes an independently verifiable live track record of user returns. What the literature documents instead: active retail traders overwhelmingly lose money, published strategies decay once known, and backtests — the industry's main sales exhibit — can be manufactured by trying enough variants. This page states exactly what evidence would flip that verdict.
+
+---
+
+## Is Nvidia Overvalued? What Its AI Bet Actually Rides On
+
+URL: https://agiscorecard.com/is-nvidia-overvalued
+Last updated: August 29, 2026 · No multiple, no target, no buy/sell call — deliberately · Not investment advice
+
+By this site's published mapping, 90% of Nvidia's AI story rides on the two predictions currently graded supportive — compute scaling and the capex wave — and less than 10% on AGI itself. It is a buildout stock, not an AGI stock. "Overvalued" is a price question, and every answer to it you'll find on this query is a hedge ("on one hand… on the other"). This page answers the question underneath it instead: which falsifiable propositions does Nvidia's AI premium actually depend on, and how are they currently graded? That structure — not a price opinion — is what recomputes, in public, the day a verdict moves.
+
+---
+
+## Is Claude Getting Dumber? What the Record Actually Shows
+
+URL: https://agiscorecard.com/is-claude-getting-dumber
+Last updated: August 24, 2026 · Two complaint cycles, dated sources, written flip condition
+
+Not as a policy — but this exact complaint has been officially confirmed real once, which is why it deserves an audit instead of an eye-roll. Anthropic's September 2025 postmortem admitted three infrastructure bugs degraded Claude's output for weeks — 16% of Sonnet 4 requests affected at the worst hour — while stating it never intentionally lowers quality for load or demand reasons. The August 2026 cycle (a reported effort-level A/B test in Claude Code) got an official "display bug" explanation and no independent benchmark has settled it. Between those two poles sit four mundane causes that feel identical from the user's chair. The ledger below separates them.
+
+---
+
+## Evidence Audits — AI Visibility & Claim Audits, Fixed Price
+
+URL: https://agiscorecard.com/audits
+The method behind this site's audits, productized · Payment after scope approval · USDT or invoice
+
+The market sells AI-visibility audits for $1,500–$15,000 — and admits many are "a screenshot and a sales call." We sell the same category of work for a fraction of that, because the method is systematized and the evidence does the selling: this site holds a measured 33–37.5% citation share on its core questions across AI answer engines, earned with the exact playbook we audit against — and our public claim audits show the standard of rigor before you pay a cent.
+
+---
+
+## The Paradigm Bet: A Public, Pre-Registered Experiment
+
+URL: https://agiscorecard.com/paradigm-experiment
+Opened: August 23, 2026 · Audited monthly (5th) · Entries only change with a dated note
+
+This page is an anti-hindsight device. Every "I bought early" legend is written after the fact — including the most famous one, which our audit found unverifiable. So we are running the experiment the opposite way: a small, fixed experimental allocation; candidates screened by six pre-registered criteria; kill conditions filed here before entry; monthly audits with dated notes. The honest base rates say the modal outcome is a loss — per-cohort data shows winners were category leaders, NFT-2021 produced zero, and 73–81% of retail lost money even in the winning asset (BIS). If this ledger ends red, that is a result, not an embarrassment. Nothing here is investment advice.
+
+---

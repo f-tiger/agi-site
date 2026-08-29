@@ -1,3 +1,21 @@
+## 2026-08-29(第四轮,owner:「站点离 AI 时代新站点还缺什么,补充完成」)
+
+- **三轮 spec 先行**;差集审计实测(不按泛清单重造):已有 = llms.txt / data.json+Dataset
+  / /mcp 远程端点(for-agents 已文档化)/ /for-agents / /skill / robots 放行引用爬虫 /
+  服务端爬虫计数 / IndexNow / 8 语 hreflang / ClaimReview(5 页已挂,覆盖问题非缺失,
+  扩覆盖要动冷却页,本轮跳过记录在案)。**确认缺失两面:llms-full.txt 与 Markdown 镜像。**
+- **ship**:`tools/gen_agent_surfaces.py`(新生成器,从已上线页面提取 title/答案胶囊/FAQ,
+  绝无手写第二份)→ ①`/llms-full.txt`(90 页引用核心,116KB,一次拉全)②90 个
+  `/<slug>.md` 镜像(URL+.md 约定);worker 加护栏分支:.md 拉取计入 D1 服务端 pageviews
+  + 回 `x-robots-tag: noindex`(HTML 页保持 canonical 与引用面,防重复收录),全部 try/catch
+  包裹不碰服务路径安全性。接线:llms.txt 头部广告三面(llms-full/.md/mcp)、for-agents
+  表加两行、站 CLAUDE.md ship 流程加再生成义务。x402/付费爬取维持判死不回头;NLWeb 类
+  无采用证据不建。
+- **预登记观察线(60 天,至 10-28)**:.md 路径被非 CI 真实 agent 拉取累计 ≥10 次,或
+  llms-full.txt 出现在爬虫拉取榜——任一成立 = 保留并考虑扩 zh;全空 = 记反面发现
+  (agent 表面不再加投),文件保留(零维护成本)。
+- validate OK(223 页 / 205 URL;.md 不进 sitemap,防重复内容)。
+
 ## 2026-08-29(第三轮,owner:「全站优化,不是单点」+「先优化prompt再执行」)
 
 - **三轮 spec 先行输出**(会话内可查):放大 = invest 观点钩(实测 ≈8% CTR)× 全部
