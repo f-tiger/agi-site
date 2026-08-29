@@ -1727,3 +1727,43 @@ WebApplication JSON-LD. The real gaps found and fixed:
 Judgement (28d): baked strip = crawlers can now cite actual products; watch
 whether vendor-product queries ever appear in AI-crawler fetches. Tools:
 watch quiz/cost-calculator fetch counts vs before.
+
+## 2026-08-29 (eco-playbook round) — owner: "太慢了，学习eco站点起量，抓住热点"
+
+Context, first-party: 11 days of D1 since the beacon went live — ~6 real
+human pv/day, 2 Google referrals total, affiliate_click 0. The pipeline is
+alive; the traffic isn't. Owner directive: port eco's ramp mechanics, catch
+trends. Three changes, all shipped today:
+
+1. **Fast-response page rule ported from eco** (CLAUDE.md new section):
+   rising word v≥200 + in niche + lands in the safety wedge → page the same
+   day; vendor-name + legit/reviews intent uses the lovedollshops-check
+   template (our Faktencheck isomorph); 14-day per-word cooldown; 1 page/day
+   max; baby-form/reborn = never, even negatively. Judgement: each page 28d
+   ≥1 search/assistant referral OR ≥1 affiliate_click OR AI-fetch streak ≥
+   scam-check; 3 consecutive zero pages → rule goes back to the shop.
+2. **Rising seed fixed on data** (tools/fleet_trends_rising.py): "silicone
+   doll" provably surfaces only ashton drake / reborn baby-doll queries
+   (v 28700/18550 — out of niche, red-line adjacent). Swapped for "rosemary
+   doll", the vendor name that "sex doll" related-queries surfaced by itself
+   — vendor seeds rise as "<vendor> reviews/legit", exactly what the wedge's
+   vendor-check template converts. Quota-neutral (swap, not add).
+   Today's signals, for the record: lars and the real girl v=7450
+   (film — informational, logged, no page), realbotix v=130 (below line),
+   rosemary doll v=40 (vendor intent, below line — the seed swap exists to
+   measure this family properly).
+3. **SNAD wedge page shipped** — /guides/doll-not-as-described ("arrived,
+   doesn't match the photos: the 72-hour plan"). Queued as the TOP uncovered
+   pain-query family since 08-25; consumer-protection shaped (SafeSearch-safe,
+   assistant-answerable), which is where this site's only Google click and
+   all its AI-crawl attention already live. Zero new facts: payment windows
+   cite /data/ (FOS ~120d from receipt, S75 £100–£30k), arrival evidence
+   defers to After You Order, variance judgement defers to factory-photos;
+   the 72h frame is explicitly labelled editorial-not-legal on the page.
+   Links no vendor at all, same as the other wedge pages. Cross-linked from
+   after-you-order + guides index; sitemap/llms/search-index rebuild in CI.
+
+Judgement (28d, 09-26): the SNAD page earns a search/assistant referral or
+an AI-crawler fetch streak ≥ factory-photos' → keep deepening the
+post-purchase wedge; zero everything → the wedge thesis takes the hit, log
+it against the 2026-10-01 wedge line honestly.

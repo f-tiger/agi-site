@@ -98,3 +98,29 @@ Routine。若那天它没跑成，手动执行上面的 resume 命令即可。
 **判定线（2026-10-01）**：楔子页 28 天自然点击（D1 ref 含 google/bing）≥10 → 楔子
 成立，继续深化并从楔子往联盟页导流；<10 → tds 降为每周最低维护（数据日志照跑），
 把每日额度让给有增长证据的站。红线不变：18+ 门、披露、未成年外观拒绝、不代发。
+
+## 快反出页规则（2026-08-29，owner：「太慢了，学习eco站点起量，抓住热点」——eco 已验证机制移植）
+
+eco 的起量机制（rising 触发当日出页 + Faktencheck 蹭病毒式产品的搜索量）移植到
+本站，但**只在安全楔子内触发**——产品导购页排不上的结构性诊断（SafeSearch/域龄/
+AI 拒答）没有变，热点也改变不了它。
+
+**每日双读**：`content/trends-us.json`（事件面）+ `content/trends-rising.json`
+（需求面；种子 2026-08-29 起 = sex doll / realdoll / rosemary doll——"silicone
+doll" 实抓证明只出 reborn 婴儿娃娃信号，已撤）。
+
+**出页判据（全满足才出，当天出）**：rising 词 v ≥ 200（或 Breakout）、属成人
+doll niche、且能落安全楔子（vendor 合法性 / 进口 / 付款 / 收货不符 / 规格）。
+- **vendor 名 + legit/reviews/scam 意图** → 用 `/vendors/lovedollshops-check`
+  模板（公开记录表、每行具名信源+日期、"unverified by us" 如实标注、自查漏斗、
+  vetted-vendor 块）。这是 eco Faktencheck 的本站同构：病毒式/热搜 vendor 的
+  "is X legit" SERP 若被通用打分站和卖家侧内容占据，垂直知识就是我们的差异。
+- **婴儿形态 / reborn（ashton drake、kaydora 类）= 红线，永不出页**，负面覆盖
+  也不行（08-25 kaydora 先例）。
+- **纯资讯型**（电影/纪录片/股价，如 lars and the real girl、realbotix）→ 不出页，
+  只记 growth-log 备查。
+- 同词 **14 天冷却**；当天**最多 1 页**；三门与硬内容规则照过,零编造不放松。
+
+**判定线**：每张快反页 28 天内 search/assistant 引荐 ≥1 或 affiliate_click ≥1
+或 AI 爬虫 fetch 连续性 ≥ scam-check → 机制有效继续；**连续 3 页全零 → 快反
+判据回炉**，并入 2026-10-01 楔子总判定一起复盘。

@@ -37,8 +37,14 @@ FLEET = [
      "seeds": ["deepseek", "midjourney", "suno", "sora", "gemini", "perplexity"]},
     {"site": "agi", "geo": "US", "out": "sites/agiscorecard/trends-rising.json",
      "seeds": ["artificial general intelligence", "agi timeline"]},
+    # tds 种子更正(2026-08-29,首轮数据复盘):"silicone doll" 实抓浮出的 TOP rising
+    # 全是 ashton drake / reborn 婴儿娃娃(v 28700/18550)——niche 外且紧邻本站
+    # 「未成年外观永不覆盖」红线,这个种子结构上打不到成人 doll 需求,撤。换成
+    # "rosemary doll":同轮 "sex doll" 的 related-queries 自己浮出的 vendor 名
+    # (真实需求信号),vendor 种子的 rising 正是 "<vendor> reviews/legit/coupon"
+    # 这类买家核查意图——tds 安全楔子(vendor-check 页)可直接承接。配额中性(换不加)。
     {"site": "tds", "geo": "US", "out": "sites/thedollscout/content/trends-rising.json",
-     "seeds": ["sex doll", "realdoll", "silicone doll"]},
+     "seeds": ["sex doll", "realdoll", "rosemary doll"]},
     # eco 的美国面(2026-08-28,owner:「分别扩展德国与美国不同的热点」)。此前 eco 只有
     # 德国需求信号——sites/getecoback/tools/fetch_trends_rising.py 写死 GEO="DE",而
     # 「按美国趋势扩展」在没有美国数据时只能靠猜,那是本站明令禁止的。故先建数据面。
