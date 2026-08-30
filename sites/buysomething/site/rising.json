@@ -1,5 +1,5 @@
 {
- "fetched": "2026-08-29",
+ "fetched": "2026-08-30",
  "seeds": {
   "electric spin scrubber": {
    "auto": [
@@ -137,36 +137,66 @@
   "mini massage gun": {
    "rising": [
     {
+     "q": "therabody",
+     "v": 120
+    },
+    {
      "q": "therabody massage gun",
-     "v": 130
+     "v": 100
+    },
+    {
+     "q": "therabody mini massage gun",
+     "v": 100
     },
     {
      "q": "theragun massage gun",
-     "v": 70
-    },
-    {
-     "q": "theragun",
-     "v": 60
+     "v": 50
     },
     {
      "q": "theragun mini",
-     "v": 60
+     "v": 50
     },
     {
-     "q": "bob and brad massage gun",
+     "q": "theragun",
      "v": 50
     },
     {
      "q": "bob and brad mini massage gun",
-     "v": 50
+     "v": 40
     },
     {
-     "q": "travel massage gun",
-     "v": 50
+     "q": "bob and brad massage gun",
+     "v": 40
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-08-29"
+   "fetched": "2026-08-30"
+  },
+  "leg compression boots": {
+   "rising": [
+    {
+     "q": "best leg compression sleeves",
+     "v": 50350
+    },
+    {
+     "q": "therabody jetboots prime",
+     "v": 5250
+    },
+    {
+     "q": "quinear leg compression",
+     "v": 120
+    },
+    {
+     "q": "therabody leg compression",
+     "v": 50
+    },
+    {
+     "q": "therabody",
+     "v": 40
+    }
+   ],
+   "source": "related-queries",
+   "fetched": "2026-08-30"
   }
  }
 }
