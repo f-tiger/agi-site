@@ -81,9 +81,14 @@
     <pre id="json"></pre>
     <button class="sec" onclick="copyEl('json','ok2')">Copy JSON</button><span class="ok" id="ok2">✓ copied</span>
 
-    <label>Make it yours</label>
-    <div class="hint">Downloads a renamed copy of this exact tool with your graded entries baked in — a ready-to-share, ready-to-host starter ledger. The spread unit is the adapted file.</div>
-    <div class="row"><input type="text" id="mylname" placeholder="Name your ledger, e.g. 'Crypto Claims Ledger'"><button class="sec" onclick="makeCopy()">Download my copy</button></div>
+    <label>Your ledger so far <span class="hint" style="display:inline">(everything you have graded in this browser session)</span></label>
+    <div id="mylist" class="hint">Nothing graded yet.</div>
+
+    <label>Publish it — this is what adopting the protocol actually is</label>
+    <div class="hint">Two files. <b>claimledger.json</b> is the one the protocol asks you to publish at your domain root; it is what any protocol tool reads. The tool copy is optional — a renamed version of this grader with your entries baked in, for people who want the editor too.</div>
+    <div class="row"><input type="text" id="mylname" placeholder="Name your ledger, e.g. 'Crypto Claims Ledger'"><input type="text" id="mylurl" placeholder="https://your-domain.com"></div>
+    <div class="row"><button onclick="downloadLedger()">Download claimledger.json →</button><button class="sec" onclick="makeCopy()">Download the tool copy</button></div>
+    <div class="hint" id="pubhint" style="margin-top:.4rem">Then serve it at <code>https://your-domain.com/claimledger.json</code> with <code>access-control-allow-origin: *</code>. That is the whole adoption step — no registration, no permission, nothing to pay.</div>
   </div>
 
   <h2>Read a ledger</h2>
@@ -100,6 +105,7 @@
 <script>
 var MYENTRIES = /*ENTRIES*/[]/*/ENTRIES*/;
 var METER={verified:'🟩🟩🟩',reported:'🟨🟨⬛','self-reported':'🟥⬛⬛'};
+window.addEventListener('DOMContentLoaded',function(){try{renderMine();if(MYENTRIES.length)document.getElementById('out').style.display='block';}catch(e){}});
 document.querySelectorAll('.tier input').forEach(function(r){r.addEventListener('change',function(){
   document.querySelectorAll('.tier').forEach(function(t){t.classList.toggle('sel',t.querySelector('input').checked);});});});
 function val(id){return document.getElementById(id).value.trim();}
@@ -129,6 +135,7 @@ function grade(){
   MYENTRIES.push(entry);
   document.getElementById('card').textContent=card;
   document.getElementById('json').textContent=JSON.stringify(entry,null,2);
+  renderMine();
   document.getElementById('out').style.display='block';
   document.getElementById('out').scrollIntoView({behavior:'smooth'});
   beacon('grader_use',tier);
@@ -140,6 +147,30 @@ function copyEl(id,okId){
   else{fallback(t);done();}
 }
 function fallback(t){var ta=document.createElement('textarea');ta.value=t;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(ta);}
+function ledgerEnvelope(){
+  var name=val('mylname')||'My Claim Ledger';
+  var url=val('mylurl')||'https://example.com';
+  var last=MYENTRIES.length?MYENTRIES[MYENTRIES.length-1].asOf:new Date().toISOString().slice(0,10);
+  return {name:name,url:url,license:'CC BY 4.0',dateModified:last,
+    method:{protocol:'Claim Ledger Protocol v0.1',spec:'https://goldrush.agiscorecard.com/protocol.md',
+            rules:['misses stay on the ledger','no payment ever changes a verdict','no token']},
+    entries:MYENTRIES,archive:[]};
+}
+function renderMine(){
+  var el=document.getElementById('mylist');if(!el)return;
+  if(!MYENTRIES.length){el.textContent='Nothing graded yet.';return;}
+  el.innerHTML=MYENTRIES.map(function(e,i){
+    return '<div style="padding:6px 0;border-bottom:1px solid rgba(255,255,255,.07)">'+METER[e.tier]+' <b>'+esc(e.verdict)+'</b> <span class="hint" style="display:inline">('+esc(e.asOf)+')</span><br>'+esc(e.claim.slice(0,120))+'</div>';
+  }).join('');
+}
+function downloadLedger(){
+  if(!MYENTRIES.length){alert('Grade at least one claim first.');return;}
+  var doc=ledgerEnvelope();
+  var blob=new Blob([JSON.stringify(doc,null,2)],{type:'application/json'});
+  var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='claimledger.json';
+  document.body.appendChild(a);a.click();document.body.removeChild(a);
+  beacon('grader_copy','ledger_file');
+}
 function makeCopy(){
   var name=val('mylname')||'My Claim Ledger';
   var html='<!DOCTYPE html>\n'+document.documentElement.outerHTML;
@@ -170,5 +201,6 @@ function readLedger(){
   }).catch(function(e){out.innerHTML='<p class="hint" style="color:var(--danger)">Could not read it: '+esc(e.message)+' — the site may not allow cross-origin reads (the protocol asks publishers to set access-control-allow-origin: *).</p>';});
 }
 </script>
+<script>try{fetch('/e',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({n:'page_view',l:'js',p:location.pathname})})}catch(e){}</script>
 </body>
 </html>

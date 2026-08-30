@@ -77,11 +77,12 @@ the moment you finish reading it.
   site's /claimledger.json: https://goldrush.agiscorecard.com/grader.html —
   save it, mail it, host it anywhere; it has no dependencies and works offline.
 - **Adapted copies are blessed.** Renaming, pre-filling, and rebranding the
-  grader file is encouraged — the tool ships a "download my copy" button that
-  bakes your graded entries into a ready-to-host starter ledger. The spread
-  unit is the adapted file, not the original.
-- **An installable agent skill** (open Agent Skills standard — SKILL.md,
-  adopted across 25+ agent products): https://goldrush.agiscorecard.com/skill/claim-ledger/SKILL.md
+  grader file is encouraged. The tool emits BOTH: a schema-valid
+  `claimledger.json` (the file this protocol asks you to publish) and,
+  optionally, a renamed copy of the grader itself with your entries baked in,
+  for people who want the editor too.
+- **An installable agent skill** (open Agent Skills standard — SKILL.md):
+  https://goldrush.agiscorecard.com/skill/claim-ledger/SKILL.md
   teaches any compatible agent to grade claims into protocol entries, emit
   verdict cards, and read/validate any site's /claimledger.json. Install it
   and your agent is a protocol consumer AND producer.
@@ -90,32 +91,44 @@ the moment you finish reading it.
   com.agiscorecard/agi-scorecard) reads and validates any site's
   /claimledger.json — agents can consume protocol ledgers with one tool call.
 - The network coordination layer above this format is published separately:
-  AGIX (v0.3 at this writing) — https://goldrush.agiscorecard.com/agix
+  AGIX — https://goldrush.agiscorecard.com/agix
 
 ## 5. The registry is a consumer, not a list
 
 The reference registry (https://goldrush.agiscorecard.com/protocol#ledgers)
 FETCHES, VALIDATES, and RENDERS every listed ledger — a listed site's verdicts
-are read and displayed, not merely linked. Publishing the file therefore has an
-immediate payoff: your ledger becomes readable by every protocol tool and
-agent the day you publish it.
+are read and displayed, not merely linked.
+
+**What listing is worth today, measured rather than promised.** An earlier
+version of this section said publishing the file makes your ledger "readable by
+every protocol tool and agent the day you publish it." That is the exact
+sentence llms.txt shipped with, and on this reference implementation it is
+false: as of 2026-08-30 this site's own /claimledger.json had been fetched by an
+outside client **zero** times in its entire life. The live count is published at
+/fetchlog.json and is updated as it moves. Adopt this protocol because the file
+is useful to you — a dated, checkable record you control — not because a network
+exists yet. It does not.
 
 Admission rules (written, mechanical, enforced in public):
 - `/claimledger.json` parses and every entry carries all five fields;
 - flip conditions are actually written (an empty flip fails validation);
 - no silent history rewrites — corrected verdicts stay visible with dates.
   Violations are flagged on the registry, not quietly dropped.
+Listing is infrastructure, not a growth offer: it costs nothing, it is worth
+approximately nothing while this registry has no audience, and saying otherwise
+would be the kind of unfalsifiable value claim this protocol grades.
 To be listed: publish the file, then open an issue or PR at
 https://github.com/f-tiger/agi-site. Listing is free, by right, open to
 competing ledger sites, and cannot be bought.
 
 **Founding ledgers (pre-registered 2026-08-30):** the first 10 external ledgers
 admitted earn permanent founding status — listed first, forever, irrevocably.
-The incentive design behind this is published in AGIX §7 (proof-of-grading);
-the full adoption economics — first-coverage tags minted once per niche,
-adoption epochs (founding 10 → early 90 → standard), the 0%-forever protocol
-fee, and why early adoption is financially rational without any token — is
-AGIX §7b.
+The incentive design behind this is published in AGIX §7 (proof-of-grading).
+**What founding status is not:** it is not an investment, it does not
+appreciate, and as of AGIX v0.6 this project no longer claims that adopting
+early is financially rational — that claim was deleted for lack of evidence and
+graded on the ledger. Founding status is an ordering rule on a list, published
+in advance so it cannot be handed out retroactively to friends.
 
 ## 5b. Founder independence
 

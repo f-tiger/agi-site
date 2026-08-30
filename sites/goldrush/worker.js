@@ -1,7 +1,7 @@
 // goldrush worker: static assets + /e event whitelist + server-side pageview.
 // Fleet pattern (same as buysomething/gridlings): every D1 write is try/catch +
 // waitUntil — analytics must never be able to 500 the site.
-const ALLOWED = new Set(["ledger_click", "fork_click", "audit_click", "sub_click", "grader_open", "grader_use", "grader_copy", "protocol_copy", "ledger_render"]);
+const ALLOWED = new Set(["page_view", "card_view", "ledger_click", "fork_click", "audit_click", "sub_click", "grader_open", "grader_use", "grader_copy", "protocol_copy", "ledger_render"]);
 
 function uaClass(ua) {
   if (!ua) return "none";
@@ -10,7 +10,11 @@ function uaClass(ua) {
   return "other";
 }
 
+// Our own deploy self-check tags itself ?ci=1 so it can never be counted as demand.
+// Our registry page fetches /claimledger.json itself, so its referrer is recorded and
+// excluded when the consumption number is computed (see /fetchlog.json definitions).
 function logRow(env, ctx, row) {
+  if (row && row.ci) return;
   if (!env.EV) return;
   ctx.waitUntil((async () => {
     try {
@@ -37,7 +41,7 @@ export default {
             label: String(b.l || "").slice(0, 80),
             path: String(b.p || "").slice(0, 80),
             ref: (request.headers.get("referer") || "").slice(0, 120),
-            ua_class: "human",
+            ua_class: "js",
             country: (request.cf && request.cf.country) || ""
           });
         }
@@ -52,7 +56,7 @@ export default {
       const r = await env.ASSETS.fetch(new Request(url.origin + "/ledger.json"));
       const h = new Headers(r.headers);
       h.set("access-control-allow-origin", "*");
-      logRow(env, ctx, { name: "page_view", path: "/claimledger.json", ref: (request.headers.get("referer") || "").slice(0, 120), ua_class: uaClass(request.headers.get("user-agent")), country: (request.cf && request.cf.country) || "" });
+      logRow(env, ctx, { ci: url.searchParams.get("ci") === "1", name: "page_view", path: "/claimledger.json", ref: (request.headers.get("referer") || "").slice(0, 120), ua_class: uaClass(request.headers.get("user-agent")), country: (request.cf && request.cf.country) || "" });
       return new Response(r.body, { status: r.status, headers: h });
     }
 
@@ -61,6 +65,7 @@ export default {
       const type = res.headers.get("content-type") || "";
       if (type.includes("text/html") || ["/ledger.json", "/llms.txt", "/protocol.md", "/agix.md", "/skill/claim-ledger/SKILL.md"].includes(url.pathname)) {
         logRow(env, ctx, {
+          ci: url.searchParams.get("ci") === "1",
           name: "page_view",
           path: url.pathname.slice(0, 80),
           ref: (request.headers.get("referer") || "").slice(0, 120),

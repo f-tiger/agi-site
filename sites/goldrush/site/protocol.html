@@ -99,10 +99,10 @@
   <strong>single self-contained file</strong> that both <em>emits</em> protocol-valid entries and
   <em>reads</em> any site's <code>/claimledger.json</code> — no dependencies, works offline from a saved
   copy. <strong>Adapted copies are blessed</strong>: rename it, pre-fill it, rebrand it (the tool ships a
-  "download my copy" button that bakes your entries into a ready-to-host starter ledger). An MCP-side consumer exists too: the <code>get_claim_ledger</code> tool on the agiscorecard MCP endpoint
+  "download my copy" button that emits a schema-valid claimledger.json, plus optionally a renamed copy of the editor). An MCP-side consumer exists too: the <code>get_claim_ledger</code> tool on the agiscorecard MCP endpoint
   (official MCP Registry: <code>com.agiscorecard/agi-scorecard</code>) reads and validates any site's
   <code>/claimledger.json</code> in one tool call. <strong>An installable agent skill exists too</strong>
-  (open Agent Skills standard, SKILL.md — adopted across 25+ agent products):
+  (open Agent Skills standard, SKILL.md):
   <a href="/skill/claim-ledger/SKILL.md"><code>/skill/claim-ledger/SKILL.md</code></a> teaches any
   compatible agent to grade claims into protocol entries, emit verdict cards, and read/validate any
   site's ledger — install it and your agent is a protocol consumer <em>and</em> producer. The network
@@ -113,7 +113,17 @@
   <h2 id="ledgers">5 · The registry is a consumer, not a list</h2>
   <p>This registry <strong>fetches, validates, and renders</strong> every listed ledger — live, in your
   browser, right now:</p>
-  <div id="regout" style="font-size:13.5px;color:var(--muted);margin:0 0 1rem;">fetching listed ledgers…</div>
+  <p class="fine" style="font-size:13px;opacity:.85"><strong>What listing is worth today, measured rather than promised.</strong>
+  An earlier version of this page said publishing the file makes your ledger readable by every protocol tool and agent the day
+  you publish it. That is verbatim the sentence llms.txt shipped with, and on this reference implementation it is false: as of
+  2026-08-30 this site's own <code>/claimledger.json</code> had been fetched by an outside client <strong>zero</strong> times in
+  its entire life (live count: <a href="/fetchlog.json">/fetchlog.json</a>). Adopt the format because the file is useful to you.
+  A network does not exist yet.</p>
+  <div id="regout" style="font-size:13.5px;color:var(--muted);margin:0 0 1rem;">
+    <div>1 ledger listed · 1 validates · <b>0</b> fetched by an outside client (<a href="/fetchlog.json">fetchlog.json</a>, 2026-08-30)</div>
+    <div>· <b>goldrush.agiscorecard.com (reference, first-party)</b> — 9 entries, all five fields present — <a href="/claimledger.json">/claimledger.json</a></div>
+    <div style="opacity:.7">No external ledger has been submitted yet. First-party ledgers are labelled and are never counted as adoption.</div>
+  </div>
   <p style="font-size:13.5px;">Admission rules (mechanical, enforced in public): the file parses; every entry carries all
   five fields; flip conditions are actually written; no silent history rewrites — violations are flagged,
   not quietly dropped. Publishing has an immediate payoff: your verdicts become readable by every
@@ -178,5 +188,6 @@ function ev(n,l){try{fetch('https://goldrush.agiscorecard.com/e',{method:'POST',
   });
 })();
 </script>
+<script>try{fetch('/e',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({n:'page_view',l:'js',p:location.pathname})})}catch(e){}</script>
 </body>
 </html>

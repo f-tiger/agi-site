@@ -105,5 +105,6 @@
 <script>
 function ev(n,l){try{fetch('/e',{method:'POST',body:JSON.stringify({n:n,l:l,p:location.pathname})});}catch(e){}}
 </script>
+<script>try{fetch('/e',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({n:'page_view',l:'js',p:location.pathname})})}catch(e){}</script>
 </body>
 </html>

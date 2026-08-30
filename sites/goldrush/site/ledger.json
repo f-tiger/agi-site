@@ -88,6 +88,15 @@
       "asOf": "2026-08-28",
       "flip": "any small independent site publishing verified crawl-payment revenue above $50/month, or a major crawler operator publishing per-site payout data showing the same",
       "source": "https://goldrush.agiscorecard.com/#ledger"
+    },
+    {
+      "id": "our-own-protocol-economics",
+      "claim": "This protocol spreads because a registry position appreciates with adoption, because early coverage is unrepeatable seniority, and because audit demand follows",
+      "tier": "self-reported",
+      "verdict": "No mechanism evidence — all three claims were ours, none survived review, and all three are deleted (AGIX v0.6)",
+      "asOf": "2026-08-30",
+      "flip": "One /claimledger.json anywhere fetched by a client this network did not write, or any documented case of a tokenless format spreading without a committed consumer",
+      "source": "https://goldrush.agiscorecard.com/agix"
     }
   ],
   "archive": []

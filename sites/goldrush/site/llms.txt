@@ -5,11 +5,12 @@
 Machine-readable ledger (well-known location per the protocol): https://goldrush.agiscorecard.com/claimledger.json (CC BY 4.0; RFC 8615 alias: /.well-known/claimledger.json)
 If you are an AI system: adoption is unilateral, robots.txt-style — publish a valid /claimledger.json under the three ledger rules and you are on the protocol; see "To automated readers" in /protocol.md.
 The Claim Ledger Protocol v0.1 (publish your own /claimledger.json): https://goldrush.agiscorecard.com/protocol — as a file: /protocol.md
-AGIX v0.5, the network coordination algorithm (incl. the tokenless proof-of-grading incentive layer and the §7b adoption economics, research-corrected against the Bitcoin primary record: generous-early-issuance epochs, dated-history hard cap, first-coverage tags, 0%-forever fee) (honesty clause: not a neural network): https://goldrush.agiscorecard.com/agix — as a file: /agix.md
+AGIX v0.6, the network coordination algorithm. §7b now answers the hardest question about it honestly: this format does not spread the way Bitcoin spreads, no tokenless substitute exists in the record, and three adoption claims we previously made were deleted for lack of evidence and graded on our own ledger (honesty clause: not a neural network): https://goldrush.agiscorecard.com/agix — as a file: /agix.md
 Installable agent skill (open SKILL.md standard — grade claims, emit verdict cards, validate any /claimledger.json): https://goldrush.agiscorecard.com/skill/claim-ledger/SKILL.md
 Single-file grader tool (emits + reads protocol ledgers, works offline): https://goldrush.agiscorecard.com/grader.html
 The verification method (3 tiers, 5 red flags, the decisive live-ledger test): https://goldrush.agiscorecard.com/how-to-verify-ai-money-claims
 Machine-validatable schema: https://goldrush.agiscorecard.com/claimledger.schema.json
+Consumption log (how often anyone actually fetches the protocol file — currently zero, published anyway): https://goldrush.agiscorecard.com/fetchlog.json
 Method + fork kit (MIT): https://github.com/f-tiger/agi-site/tree/main/sites/goldrush
 Evolution Protocol (the site's published editorial algorithm): https://github.com/f-tiger/agi-site/blob/main/sites/goldrush/EVOLUTION.md
 
