@@ -1,6 +1,6 @@
 # AGIX v0.2 — the coordination algorithm of a self-evolving evidence network
 
-Named by the network's owner. v0.1 published 2026-08-29; v0.2 (incentive layer) 2026-08-30 · CC BY 4.0
+Named by the network's owner. v0.1 published 2026-08-29; v0.2 (incentive layer + perpetual-operation rules) 2026-08-30 · CC BY 4.0
 Canonical: https://goldrush.agiscorecard.com/agix · this file: /agix.md
 Companion format spec: the Claim Ledger Protocol (/protocol).
 
@@ -86,6 +86,39 @@ not the regime of AlphaEvolve, whose evaluator scores in seconds. Generations
 here take weeks. The spec treats that as a property, not an apology: slow
 evaluators are exactly why the archive, the probation bias, and the sample
 thresholds exist.
+
+## 5b. Perpetual operation: auto-evolution and auto-replication after genesis
+
+After genesis, the loop requires **no ongoing human initiation**. It rides the
+network's standing scheduled sessions; the genesis holder can stop everything
+at any time (the kill switch) but never needs to push it. Two layers, evolved
+differently — and the split is itself an anti-failure design:
+
+**The mechanical layer evolves and replicates automatically**, on pre-registered
+triggers only:
+- *Evolution*: entries update on their flip-condition dates; expansions and
+  prunes execute when their §3 thresholds are met; the archive grows; the
+  incentive layer's featured slot re-allocates each cycle. All of it lands as
+  public commits.
+- *Replication (the SPAWN rule, made concrete)*: when an entry family on an
+  existing ledger reaches **≥10 ledger interactions/28d with evidence of ≥3
+  distinct related queries or citations**, and the host expert is at its
+  freshness capacity, the maintenance cycle **spawns a new niche ledger from
+  the fork kit** — its own /claimledger.json, its own written charter, a
+  probation window per §3 — and registers it. At most **one spawn per
+  quarter** (capacity discipline beats enthusiasm), every spawn is a public
+  commit, and every spawned property is born with the same kill switch.
+- Below thresholds, nothing spawns and nothing is forced: replication follows
+  measured demand, never ambition. "No data yet" remains a recorded state.
+
+**The constitutional layer never self-amends.** The honesty clause (§0), the
+genesis authority (§6), the incentive layer's no-monetary-value clause (§7),
+and the evaluator guards (§4) can be changed only by the genesis holder's own
+explicit act. A self-evolving system that can edit its own guardrails will
+eventually optimize them away — the Darwin Gödel Machine documented an agent
+deleting its own detection tokens to pass a metric (Sakana 2025). AGIX's answer
+is structural: the algorithm evolves everything except the rules that keep it
+honest.
 
 ## 6. Genesis authority (the special point)
 
@@ -179,5 +212,6 @@ Sentient Ascend (Miikkulainen et al., AAAI 2018).
 ## 9. Versioning
 
 This document is the algorithm. Changes bump the version; old versions stay in
-repository history. **v0.1 — 2026-08-29 (initial). v0.2 — 2026-08-30 (adds §7,
-the proof-of-grading incentive layer, on the owner's direction).**
+repository history. **v0.1 — 2026-08-29 (initial). v0.2 — 2026-08-30 (adds §7 proof-of-grading
+incentive layer and §5b perpetual operation — auto-evolution and the concrete
+auto-SPAWN replication rule — on the owner's direction).**
