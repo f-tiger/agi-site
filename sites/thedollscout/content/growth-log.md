@@ -1928,3 +1928,19 @@ recorded 2026-08-30) on homepages and rarity pages. Calculator extracted
 to shared js/odds-calc.js consumed by all four pages — the per-page copy
 risk (eco's injector lesson) is gone; odds_calc still fires on first user
 interaction only. Judgement lines unchanged from round 4.
+
+## 2026-08-30 (round 6) — owner: "labubu官网风格同频"
+
+Third and final visual anchor of the day: SWISS-COMMERCE LIGHT — pure
+white surface, one sans family, hairline rules, generous whitespace, a
+single deliberate red (#e4002b), left-aligned type, and huge tabular
+numerals as composition elements. This is the official store's register
+(white / black type / red accent / rounded product cards) matched in
+VIBE only: no Pop Mart logo shapes, no mascot artwork, the not-affiliated
+line stays on every page — impersonation is the red line 同频 must never
+cross. The Lo-Fi zine pass (round 5) lasted one round; the trajectory
+(inherited-dark → paper-zine → swiss-light) is recorded in CLAUDE.md with
+a "stop oscillating" note. Tool stays front-and-center: red-top-border
+card, red glowing result; bars now single-hue red. All shared components
+(odds-calc.js, hreflang, tags, gates) untouched — this round is a pure
+token-layer restyle plus SVG recolor, zero content or contract changes.
