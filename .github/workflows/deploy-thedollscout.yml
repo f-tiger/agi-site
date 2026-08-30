@@ -101,10 +101,17 @@ jobs:
             [ "$code" = "200" ] || { echo "::error::$p returned $code (expected 200)"; fail=1; }
             [ "$redirs" = "0" ] || { echo "::error::$p redirected $redirs times (expected 0)"; fail=1; }
           done
+          # 旧页断言:middleware 现在对退役路径回 410(比 404 更快触发引擎除名);
+          # 边缘缓存抖动(run #21/#25 实测 /scam-check 忽 200 忽 404)给一次 15s
+          # 重试机会,连续两次非 404/410 才判失败。
           for p in /scam-check /guides/tpe-vs-silicone /picks; do
             code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 20 "https://thedollscout.com$p")
+            if [ "$code" != "404" ] && [ "$code" != "410" ]; then
+              sleep 15
+              code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 20 "https://thedollscout.com$p")
+            fi
             echo "retired $p -> HTTP $code"
-            [ "$code" = "404" ] || { echo "::error::retired page $p returned $code (expected 404) — takedown not effective"; fail=1; }
+            case "$code" in 404|410) ;; *) echo "::error::retired page $p returned $code (expected 404/410) — takedown not effective"; fail=1 ;; esac
           done
           exit $fail
 
