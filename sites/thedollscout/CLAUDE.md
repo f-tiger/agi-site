@@ -40,10 +40,30 @@ Labubu / The Monsters 收藏品的**稀有度优先导购站**:核心痛点 = �
     直接拒绝构建。两个 storefront 链接都是**实测存在**的官方 POPMART 店铺页
     (amazon.com 与 amazon.de 各自的,2026-08-30 WebSearch 核实)。
 - **页面**:/ + /start + /rarity + /how-blind-boxes-work + /psychology +
-  /fake-check + /where-to-buy + /glossary + /data/,及其 /de/ 德语对(hreflang
-  语言组,x-default=EN;eco 模型;/data/ 无德语对)。德语页价格只引 US 区间 + 指官方 popmart.com/de 在售页,
-  **不发明 EUR 数字**。新增语言照此模式(页对 + hreflang + 对应市场 tag +
-  该市场 Associates 站点列表先行)。
+  /fake-check + /where-to-buy + /glossary + /checker + /finder + /lookup +
+  /data/,及其 /de/ 德语对(hreflang 语言组,x-default=EN;eco 模型;/data/
+  无德语对)。德语页价格只引 US 区间 + 指官方 popmart.com/de 在售页,
+  **不发明 EUR 数字**。
+- **语言策略(2026-08-30 晚,owner:「支持中文，和海外卖的最好区域语言」)**:
+  EN/DE = 全站对(变现市场);**zh(/zh/)与 th(/th/)= 单页精华版**
+  (hero + 概率计算器 + 数学三句话 + 8 检查速查 + 渠道原则),hreflang 只挂
+  首页组。选 th 的依据:泰国 = Pop Mart 海外第一市场(东南亚占国际营收 41%,
+  曼谷 ICONSIAM 全球最大旗舰店;kr-asia/Caixin/Nation Thailand 多源)。
+  **变现映射**:zh 页 → amazon.com + ecoback0d-20(服务在美中文读者;Associates
+  合规看站点列表不看页面语言);**th 页零联盟**(泰国无 Amazon,全部官方链接,
+  页内明示 unmonetized)。深链(证据页/工具)指 EN 版并标注「英文界面」。
+  新语言升全站对的门槛:该语言 28 天真人 pv ≥ 德语区,或出现该市场联盟通路。
+- **独特性原则(2026-08-30 晚,owner:「对比同类型网站要有独特性」)**:
+  同类站(labubu.directory / labubucollector / superfans / Fandom wiki)全是
+  静态图鉴/清单;本站车道 = content/competitive-gaps.md 的 5 缺口(交互工具、
+  概率轴、开放数据、诚实预算角度、多语对)。**不卷图鉴**:全系列 catalog /
+  发售日历不做;每个新增面必须落在 5 缺口之一。
+- **交互工具矩阵**(埋点全部首次真实交互才记,ev 白名单在 functions/api/ev.js):
+  odds-calc(odds_calc)、cost-calc(cost_calc)、fake-checker(checker_use,
+  判定语言禁说「保真」)、series-finder(finder_use)、model-search
+  (lookup_use,词条纪律:每条具名信源,查不到写 unverified,空结果明说
+  「不在索引 ≠ 不存在」)。工具 JS 一律共享文件,文案烘焙在页面 data 属性/DOM
+  里(禁止在 JS 里写多语文案)。
 
 ## GEO 面(2026-08-30 晚,owner:「调用技能做好seo，geo流量优化，做厚网站，另外mcp等也增强」)
 

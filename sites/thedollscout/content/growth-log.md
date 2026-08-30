@@ -2038,3 +2038,55 @@ getting rounds. (c) Profile is falsifiable: if D1 referrals show a
 decisively different audience shape (e.g. male-skewed search terms,
 zero parent-query landings), audience-profile.md gets revised from
 data, not defended.
+
+## 2026-08-30 (round 9) — owner: "站点快速再扩展，对比同类型网站要有独特性" + mid-round "支持中文，和海外卖的最好区域语言，增加搜索型号的工具？"
+
+Competitor scan first (content/competitive-gaps.md): the whole category —
+labubu.directory, labubucollector.com, labubusuperfans.com, the Fandom
+wiki, e-commerce blog listicles — is static directories and checklists.
+Nobody has an interactive verdict tool, an odds-first axis, open data, an
+honest budget angle, or language pairs. Recorded as the site's lane with
+an explicit "don't compete on catalogs" rule (no image rights, endless
+churn, 63-series incumbents).
+
+Shipped against those gaps, all tools with shared JS + per-language
+strings baked in HTML:
+1. /checker + /de/checker — the 8-signal dataset as an interactive
+   wizard: pass/fail/unsure per check, failing checks listed BY NAME,
+   three honest verdicts (red flags / inconclusive / "no red flags
+   found — not a guarantee"). No scoring: fake precision would be
+   fabrication by arithmetic. Event checker_use.
+2. /finder + /de/finder — three answers (use/vibe/chase) → one current
+   official series, linked to Pop Mart's own listings; chase=secret
+   routes through the chase-cost calculator first. Event finder_use.
+3. /lookup + /de/lookup — the owner's "型号搜索" ask: instant filter
+   over a curated per-entry-sourced identity index (Labubu 9-teeth/no
+   tail vs Zimomo larger/spiked-tail vs Mokoko pink/heart-nose — the
+   verified separators; Big Into Energy's Love/Happiness/Loyalty/
+   Serenity/Hope/Luck + secret ID; formats; terms). Entries state only
+   what named sources support; empty result says "not in our index ≠
+   doesn't exist". Event lookup_use.
+4. /zh/ + /th/ — single-page editions (hero + shared calculator with
+   localized strings + math-in-three-sentences + condensed 8 checks +
+   channel rule). Thai chosen as "海外卖得最好" by evidence: Thailand is
+   Pop Mart's top overseas market (SEA = 41% of international revenue
+   H1'24; world's largest store at ICONSIAM Bangkok — kr-asia, Caixin,
+   Nation Thailand). Monetization mapping: zh → amazon.com storefront
+   (US-listed site, compliance follows the Associates site list, not
+   page language); th → zero affiliate links, stated on-page.
+
+Surfaces: homepages get a tools row + zh/th nav links + 4-language
+hreflang on the homepage group; sitemap 17→27, urls.txt, llms.txt tools
++ languages sections, llms-full PAGES 16→24, self-check 23→33 URLs.
+
+Judgement lines (28d, by 09-27): (a) tools — first non-CI checker_use /
+finder_use / lookup_use each noted; if all three stay at zero while the
+pages get human pv, the tools row placement gets one revision; if the
+pages get no pv at all, it's a discovery problem, not a tool problem —
+don't touch the tools. (b) /zh/ and /th/ — each language's human pv and
+referral source tracked separately; a language crossing DE-region pv
+triggers the full-pair upgrade per CLAUDE.md; both flat at zero by 09-27
+→ record that language packs without language-market discovery lanes
+don't self-start, and stop adding languages. (c) competitive-gaps.md is
+the standing filter: any proposed page that lands in none of the 5 gaps
+gets rejected in triage, and that rejection is logged, not debated.

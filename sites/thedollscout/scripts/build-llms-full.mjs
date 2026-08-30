@@ -32,6 +32,9 @@ const PAGES = [
   ["fake-check.html", "/fake-check"],
   ["where-to-buy.html", "/where-to-buy"],
   ["glossary.html", "/glossary"],
+  ["checker.html", "/checker"],
+  ["finder.html", "/finder"],
+  ["lookup.html", "/lookup"],
   ["de/index.html", "/de/"],
   ["de/start.html", "/de/start"],
   ["de/rarity.html", "/de/rarity"],
@@ -40,6 +43,11 @@ const PAGES = [
   ["de/fake-check.html", "/de/fake-check"],
   ["de/where-to-buy.html", "/de/where-to-buy"],
   ["de/glossary.html", "/de/glossary"],
+  ["de/checker.html", "/de/checker"],
+  ["de/finder.html", "/de/finder"],
+  ["de/lookup.html", "/de/lookup"],
+  ["zh/index.html", "/zh/"],
+  ["th/index.html", "/th/"],
 ];
 
 function textOf(html) {

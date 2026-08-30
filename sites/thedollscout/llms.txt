@@ -18,6 +18,11 @@
 - [Your first Labubu: beginner's guide](https://thedollscout.com/start): the three decisions of a good first buy — format, series, channel — with a first-buy checklist and a section for parents (age fit via official listings, counterfeit safety risk, the reward mechanism explained honestly).
 - [The psychology of the pull](https://thedollscout.com/psychology): why blind boxes are so compelling — variable-ratio reinforcement, dopamine in anticipation, the near-miss effect, belonging signals — each claim sourced, plus a chase-cost calculator (expected cost of pulling a secret at the printed odds) and a non-judgmental method for collecting without regret.
 
+## Interactive tools (all math client-side, nothing uploaded)
+- [Lafufu Checker](https://thedollscout.com/checker): the 8 authenticity checks as a question-by-question tool — red flags listed by name; a clean run is reported as "no red flags found", never as proof of authenticity.
+- [Series Finder](https://thedollscout.com/finder): three preference answers (use, vibe, chase appetite) mapped to a current official series, linked to Pop Mart's own listings.
+- [Model Lookup](https://thedollscout.com/lookup): instant search over a curated, per-entry-sourced index — Labubu vs Zimomo vs Mokoko (tail/size/color separators), current series with their regulars and secrets, formats, collector terms; entries marked unverified where that's the honest state.
+
 ## German pages (same content, German market)
 - [Labubu Seltenheit: Secret-Quoten + Pull-Rechner](https://thedollscout.com/de/rarity)
 - [Wie Blindboxen wirklich funktionieren](https://thedollscout.com/de/how-blind-boxes-work)
@@ -26,6 +31,11 @@
 - [Glossar](https://thedollscout.com/de/glossary)
 - [Dein erster Labubu](https://thedollscout.com/de/start)
 - [Die Psychologie des Ziehens](https://thedollscout.com/de/psychology)
+- [Lafufu-Checker](https://thedollscout.com/de/checker) · [Serien-Finder](https://thedollscout.com/de/finder) · [Modell-Suche](https://thedollscout.com/de/lookup)
+
+## Other languages (single-page editions with the calculator and the 8 checks)
+- [中文版](https://thedollscout.com/zh/) — Chinese one-page edition
+- [ภาษาไทย](https://thedollscout.com/th/) — Thai one-page edition (Thailand is Pop Mart's largest overseas market)
 
 ## Machine-readable
 - [Full site text](https://thedollscout.com/llms-full.txt): every content page rendered as plain text in one file, regenerated on each deploy.

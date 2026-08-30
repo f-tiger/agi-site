@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interactive Lafufu Checker: Test Your Labubu in 8 Answers</title>
+<meta name="description" content="Answer the 8 authenticity checks — teeth, face, box, seal, markings, build, price, seller — and get an honest verdict: red flags listed, or 'no red flags found', never a fake guarantee of authenticity.">
+<link rel="canonical" href="https://thedollscout.com/checker">
+<link rel="alternate" hreflang="en" href="https://thedollscout.com/checker">
+<link rel="alternate" hreflang="de" href="https://thedollscout.com/de/checker">
+<link rel="alternate" hreflang="x-default" href="https://thedollscout.com/checker">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DollScout">
+<meta property="og:url" content="https://thedollscout.com/checker">
+<meta property="og:title" content="Interactive Lafufu Checker">
+<meta property="og:description" content="Your Labubu against the 8 sourced authenticity checks — answer by answer, with an honest verdict.">
+<meta property="og:image" content="https://thedollscout.com/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/css/main.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧸</text></svg>">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    { "@type": "Organization", "@id": "https://thedollscout.com/#org", "name": "DollScout", "url": "https://thedollscout.com/" },
+    { "@type": "BreadcrumbList", "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://thedollscout.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Lafufu Checker", "item": "https://thedollscout.com/checker" }]},
+    { "@type": "WebApplication",
+      "name": "Interactive Lafufu Checker",
+      "url": "https://thedollscout.com/checker",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "Any",
+      "isAccessibleForFree": true,
+      "featureList": "8 sourced authenticity checks answered pass/fail/unsure; red flags listed by name; honest verdict language (no authenticity guarantees); runs entirely in the browser",
+      "description": "Turns the site's published CC-BY authenticity-signals dataset into a question-by-question checker for a Labubu figure. Any failed check is listed as a red flag; a clean run is reported as 'no red flags found' — never as proof of authenticity, because no cosmetic check is proof.",
+      "publisher": { "@id": "https://thedollscout.com/#org" } }
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="notice-bar">🧸 <b>Evidence-standard buyer's guide.</b> Every claim sourced — or marked unverified. Independent: not affiliated with Pop&nbsp;Mart.</div>
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="/">Doll<b>Scout</b></a>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+    <nav class="nav">
+      <a href="/rarity">Rarity &amp; Odds</a>
+      <a href="/fake-check">Real vs Fake</a>
+      <a href="/where-to-buy">Where to Buy</a>
+      <a href="/de/checker" lang="de">DE</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+<section>
+  <div class="wrap prose">
+    <p class="breadcrumb"><a href="/">Home</a> / Lafufu Checker</p>
+    <h1>Run the checks. Get a straight answer.</h1>
+    <p class="meta">The same <a href="/fake-check">8 sourced authenticity checks</a> as our guide — but as a tool: answer what you see on your figure, and the verdict names exactly which checks failed. Everything runs in your browser; nothing is uploaded. Last updated 2026-08-30.</p>
+
+    <div class="tool" data-checker>
+      <p class="tool-title">🔍 LAFUFU CHECKER</p>
+
+      <fieldset data-check><legend>1. Teeth count</legend>
+        <p class="meta">Authentic: exactly nine distinct teeth with visible gaps. Counterfeit tell: wrong count, fused teeth, or a single white blob.</p>
+        <label><input type="radio" name="q1" value="pass"> Nine distinct teeth</label>
+        <label><input type="radio" name="q1" value="fail"> Not nine / fused / a blob</label>
+        <label><input type="radio" name="q1" value="unsure"> Can't tell</label>
+      </fieldset>
+      <fieldset data-check><legend>2. Face finish</legend>
+        <p class="meta">Authentic: soft peach tone, airbrushed blush, glossy eye depth. Counterfeit tell: harsh pink/orange, solid-circle blush, flat dull eyes.</p>
+        <label><input type="radio" name="q2" value="pass"> Soft, airbrushed, glossy eyes</label>
+        <label><input type="radio" name="q2" value="fail"> Harsh color / solid blush circles / flat eyes</label>
+        <label><input type="radio" name="q2" value="unsure"> Can't tell</label>
+      </fieldset>
+      <fieldset data-check><legend>3. Box finish</legend>
+        <p class="meta">Authentic: matte box, muted pastels, embossed series name, clean print. Counterfeit tell: glossy, uneven, washed-out or over-saturated print.</p>
+        <label><input type="radio" name="q3" value="pass"> Matte, embossed, clean print</label>
+        <label><input type="radio" name="q3" value="fail"> Glossy / uneven / bad print</label>
+        <label><input type="radio" name="q3" value="unsure"> No box / can't tell</label>
+      </fieldset>
+      <fieldset data-check><legend>4. Anti-counterfeit seal</legend>
+        <p class="meta">Authentic: QR seal that resolves to verification on popmart.com. Counterfeit tell: no seal, or a QR landing on a lookalike domain — check the domain in your browser's address bar.</p>
+        <label><input type="radio" name="q4" value="pass"> QR verifies on popmart.com</label>
+        <label><input type="radio" name="q4" value="fail"> No seal / QR goes elsewhere</label>
+        <label><input type="radio" name="q4" value="unsure"> Haven't scanned</label>
+      </fieldset>
+      <fieldset data-check><legend>5. Figure markings</legend>
+        <p class="meta">Authentic: Pop Mart engraving / artist name on the foot on 2024+ releases. Counterfeit tell: missing or mushy markings on recent series. On older series, absence is a question, not a verdict — answer &ldquo;can't tell&rdquo;.</p>
+        <label><input type="radio" name="q5" value="pass"> Crisp foot markings (recent series)</label>
+        <label><input type="radio" name="q5" value="fail"> Missing/mushy markings on a recent series</label>
+        <label><input type="radio" name="q5" value="unsure"> Older series / can't tell</label>
+      </fieldset>
+      <fieldset data-check><legend>6. Build quality</legend>
+        <p class="meta">Authentic: even fur, clean seams, crisp paint edges, substantial feel. Counterfeit tell: rough seams, grainy patches, mismatched gloss, light hollow plastic.</p>
+        <label><input type="radio" name="q6" value="pass"> Even, clean, substantial</label>
+        <label><input type="radio" name="q6" value="fail"> Rough / grainy / hollow-light</label>
+        <label><input type="radio" name="q6" value="unsure"> Can't tell</label>
+      </fieldset>
+      <fieldset data-check><legend>7. Price floor</legend>
+        <p class="meta">The one check you can run before buying: brand-new &ldquo;authentic&rdquo; stock far below official retail is the classic counterfeit signal. The official listing is the price reference.</p>
+        <label><input type="radio" name="q7" value="pass"> Price in line with official retail</label>
+        <label><input type="radio" name="q7" value="fail"> Far below official retail, sold as new/authentic</label>
+        <label><input type="radio" name="q7" value="unsure"> Don't know the official price</label>
+      </fieldset>
+      <fieldset data-check><legend>8. Seller of record</legend>
+        <p class="meta">The strongest check of all: an official Pop&nbsp;Mart channel (site, app, stores, Robo Shops, official TikTok Shop, official Amazon storefront) outranks every cosmetic check above.</p>
+        <label><input type="radio" name="q8" value="pass"> Official Pop Mart channel</label>
+        <label><input type="radio" name="q8" value="fail"> Marketplace seller that isn't Pop Mart / unknown</label>
+        <label><input type="radio" name="q8" value="unsure"> Not sure who the seller was</label>
+      </fieldset>
+
+      <div data-checker-result hidden style="margin-top:18px">
+        <div data-verdict-red hidden>
+          <p><span class="res-big"><span data-fail-count>0</span> red flag(s)</span></p>
+          <p><strong>Failed checks:</strong> <span data-fail-list></span></p>
+          <p>Treat this as a counterfeit signal, not a maybe. If you haven't bought yet: don't. If you have: document what you found (photos of the failed checks) and pursue the platform's refund path — a &ldquo;not as described&rdquo; claim is exactly what this evidence supports. Full reasoning per check: <a href="/fake-check">the guide</a>.</p>
+        </div>
+        <div data-verdict-unsure hidden>
+          <p><span class="res-big">Inconclusive</span></p>
+          <p>Too many checks unanswered to say anything honest. The two highest-value checks to resolve: <strong>scan the QR seal</strong> (check 4) and <strong>identify the seller of record</strong> (check 8) — the seller check outranks every cosmetic one.</p>
+        </div>
+        <div data-verdict-clear hidden>
+          <p><span class="res-big">No red flags found</span></p>
+          <p><strong>That is not a guarantee.</strong> No cosmetic check is proof — counterfeits improve constantly, and Pop&nbsp;Mart's own current guidance outranks this checker where they disagree. What a clean run does mean: none of the eight publicly documented tells is present. The structural protection remains the channel: <a href="/where-to-buy">buy where Pop&nbsp;Mart is the seller</a>.</p>
+        </div>
+      </div>
+      <p class="meta" style="margin-top:14px">Built on our <a href="/data/labubu-fake-signals.json">CC-BY signals dataset</a> (recorded 2026-08-30, per-signal sources inside). We have not laboratory-tested figures ourselves; signals are compiled from the named public reporting. Nothing you answer leaves your browser.</p>
+    </div>
+
+    <h2>Keep reading</h2>
+    <div class="grid c3" style="margin-top:18px">
+      <a class="card" href="/fake-check"><h3>The 8 checks, explained</h3><p>Each check with its named sources and its honest limits.</p></a>
+      <a class="card" href="/where-to-buy"><h3>Where to buy</h3><p>The channels where this checker is unnecessary by construction.</p></a>
+      <a class="card" href="/rarity"><h3>Rarity &amp; odds</h3><p>Why the rare ones are the faked ones — and the real math.</p></a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p class="disclosure">
+      <strong>Independent guide.</strong> Not affiliated with Pop Mart or Kasing Lung.
+      <strong>Affiliate disclosure:</strong> some outbound links on this site are Amazon affiliate links — DollScout may earn a commission at no cost to you. This page links to no store at all.
+      · <a href="/legal/affiliate-disclosure">Disclosure</a> · <a href="/legal/privacy">Privacy</a> · © <span id="year"></span> DollScout
+    </p>
+  </div>
+</footer>
+<script src="/js/config.js"></script>
+<script src="/js/analytics.js"></script>
+<script src="/js/fake-checker.js"></script>
+<script src="/js/main.js"></script>
+</body>
+</html>
