@@ -24,7 +24,12 @@ bpj 的 src=/__ci 是已知自测)、eco affiliate_click、bpj go(出站联盟�
 SR pick_open/out_click/calc_use、gridlings play/solve/subs、audits 询单、
 invest_tool_click、tds affiliate_click(D1 hits 表 ev 列;链路 2026-08-19 上线,
 08-24 复核通过:ev='' 的 JS 真人 pv 每日落库证明管道活着,affiliate_click=0 是
-真没人点、不是测不到——别再把它记成盲区)。**联盟归属现况**(变现的前提,悬置项必须每次带出):
+真没人点、不是测不到——别再把它记成盲区。**⚠️ 2026-08-30 tds 重大转向,owner
+原话「下架掉这个站点,风险太大,更换为卖labubu的站点」:成人站整体下架(旧页
+线上 404,deploy 自检断言),同域同 D1 改为 Labubu 真伪导购站,联盟 =
+amazon.com/ecoback0d-20(该域已在 US Associates 列表,零 owner 操作)。D1 口径
+不变,但 08-30 前的行属旧站,跨界对比无意义;台账从下一期起按新站计,判定线
+2026-10-29 见站内 CLAUDE.md)。**联盟归属现况**(变现的前提,悬置项必须每次带出):
 - amazon.de tag=**getecoback-21**(eco 全站+SR 新页,1,875 处)——**归属已确认
   (2026-08-25)**:owner 出示 partnernet.amazon.de 后台截图,该 StoreID 归其账号;
   P0 悬置解除,eco 恢复出联盟页。

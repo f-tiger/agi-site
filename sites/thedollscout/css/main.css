@@ -1,4 +1,4 @@
-/* DollScout — trust-first adult doll buyer's guide
+/* DollScout — evidence-first Labubu buyer's guide (2026-08-30 pivot; same design system)
    Palette: deep charcoal base, champagne accent, soft rose highlight */
 :root {
   --bg: #12100e;
@@ -431,3 +431,8 @@ body.gated { overflow: hidden; }
     transition-duration: .001ms !important;
   }
 }
+
+/* Wide tables scroll inside their own container — the page never scrolls
+   sideways. (Was page-local CSS on the retired site; global now.) */
+.table-scroll { overflow-x: auto; }
+.table-scroll table { min-width: 560px; }

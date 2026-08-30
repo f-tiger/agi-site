@@ -1767,3 +1767,38 @@ Judgement (28d, 09-26): the SNAD page earns a search/assistant referral or
 an AI-crawler fetch streak ≥ factory-photos' → keep deepening the
 post-purchase wedge; zero everything → the wedge thesis takes the hit, log
 it against the 2026-10-01 wedge line honestly.
+
+## 2026-08-30 (THE PIVOT) — owner: "重大决策：下架掉这个站点，风险太大，更换为卖labubu的站点"
+
+The adult-doll site is retired, in full, by owner decision. Archive = git
+history + the old private repo. This entry is the hinge between the two
+sites sharing this log; everything above it belongs to the retired site.
+
+What was decided (owner, same session): reuse the domain and all infra
+(Pages project, D1, GA4, IndexNow key, US Associates listing of 2026-08-28
+— the deciding argument for domain reuse), affiliate-guide model, zero
+inventory. What shipped same-day:
+
+- Takedown: every adult page, dataset, generator script and 9 of 11 tds
+  workflows removed; age gate, RTA Rating headers and adult meta gone;
+  deploy self-check now ASSERTS old pages 404 and a build gate fails the
+  deploy if any retired-site marker reappears in publishable files.
+- New site v1: / + /fake-check (flagship: 8-point real-vs-fake, every check
+  with named dated source; the retired site's evidence-standard DNA applied
+  to the category where fakes literally earned their own name) +
+  /where-to-buy (official channel ladder per Pop Mart's own advice via ABC
+  News; Amazon storefront + brand-search affiliate links, Ad-labelled;
+  no hard-coded prices — price-floor logic instead).
+- Sources actually verified via WebSearch (sandbox egress blocks the source
+  domains themselves — noted in CLAUDE.md; multi-source points only).
+- Trend inputs re-seeded: trends-us wordlist + rising seeds (labubu / fake
+  labubu / pop mart); old trend data reset with a dated note.
+- Analytics continuity: same D1, same ev taxonomy; rows before 2026-08-30
+  are the old site's — never compare across the hinge.
+
+Honest risk, pre-registered in CLAUDE.md: six weeks of 18+ history on this
+domain (RTA headers, adult meta). All removed + IndexNow re-pushed, but
+SafeSearch-classification residue has an unknown half-life. Judgement line
+2026-10-29: 28d human pv ≥ 3× the old site's ~6/day, or ≥1 affiliate_click,
+or ≥5 search/assistant referrals → pivot holds; all missed → escalate the
+domain-history hypothesis to owner with a fresh-domain proposal.
