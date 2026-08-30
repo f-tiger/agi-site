@@ -1,5 +1,5 @@
 {
- "fetched": "2026-08-29",
+ "fetched": "2026-08-30",
  "geo": "DE",
  "seeds": {
   "klimaanlage": {
@@ -367,50 +367,80 @@
    "fetched": "2026-08-29"
   },
   "matratze": {
+   "auto": [
+    "matratze englisch",
+    "matratze",
+    "matratzen concord",
+    "matratzen",
+    "matratze 140x200",
+    "matratze 180x200",
+    "matratzenschoner",
+    "matratze 90x200",
+    "matratze kaufen",
+    "matratze 160x200"
+   ],
    "rising": [
     {
-     "q": "fluss durch riga",
-     "v": 4050
+     "q": "matratze englisch",
+     "v": "new"
     },
     {
-     "q": "emma performance matratze",
-     "v": 130
+     "q": "matratzen concord",
+     "v": "new"
     },
     {
-     "q": "bett1 de",
-     "v": 130
+     "q": "matratzen",
+     "v": "new"
     },
     {
-     "q": "kühlende matratze",
-     "v": 130
+     "q": "matratze 140x200",
+     "v": "new"
     },
     {
-     "q": "pool matratze",
-     "v": 110
+     "q": "matratze 180x200",
+     "v": "new"
     },
     {
-     "q": "emma original matratze",
+     "q": "matratzenschoner",
+     "v": "new"
+    },
+    {
+     "q": "matratze 90x200",
+     "v": "new"
+    },
+    {
+     "q": "matratze kaufen",
+     "v": "new"
+    },
+    {
+     "q": "matratze 160x200",
+     "v": "new"
+    }
+   ],
+   "source": "autocomplete-diff",
+   "fetched": "2026-08-30"
+  },
+  "saugwischer": {
+   "rising": [
+    {
+     "q": "leifheit bodenwischer",
+     "v": 35500
+    },
+    {
+     "q": "wischroboter test",
+     "v": 22800
+    },
+    {
+     "q": "bester saugwischer",
      "v": 80
     },
     {
-     "q": "matratze für auto",
-     "v": 80
-    },
-    {
-     "q": "luftmatratze",
-     "v": 70
-    },
-    {
-     "q": "naturlatex matratze",
-     "v": 70
-    },
-    {
-     "q": "luft matratze",
-     "v": 70
+     "q": "carglass",
+     "v": 60
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-08-29"
+   "fetched": "2026-08-30"
   }
  }
 }
