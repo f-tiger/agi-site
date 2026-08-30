@@ -1,6 +1,7 @@
-# AGIX v0.5 — the coordination algorithm of a self-evolving evidence network
+# AGIX v0.6 — the coordination algorithm of a self-evolving evidence network
 
-Named by the network's owner. v0.1 published 2026-08-29; v0.2 (incentive layer + perpetual-operation rules), v0.3 (agent-architecture correspondence + skill distribution), v0.4 (adoption economics), and v0.5 (adoption economics research-corrected against the Bitcoin primary record) all 2026-08-30 · CC BY 4.0
+Named by the network's owner. v0.1 published 2026-08-29; v0.2–v0.6 all 2026-08-30 · CC BY 4.0
+**v0.6 deletes three adoption claims this document could not support** (§7b.3). The deletion is graded on the ledger under the protocol's own five fields — that is what the rules require of everyone else.
 Canonical: https://goldrush.agiscorecard.com/agix · this file: /agix.md
 Companion format spec: the Claim Ledger Protocol (/protocol).
 
@@ -224,110 +225,121 @@ reputation only. They have no monetary value, cannot be transferred or sold,
 and never will be. The moment a reward here becomes tradable, this network has
 become an entry on its own ledger.
 
-## 7b. Adoption economics — Bitcoin's engine, researched, corrected, and ported without the poison (v0.4; research-corrected in v0.5)
+## 7b. Adoption economics — what actually spreads a format, and what does not (v0.4; research-corrected v0.5; **overclaims deleted v0.6**)
 
-The premise of this section is the owner's: a protocol spreads when spreading
-it pays. Bitcoin is the strongest precedent, so before porting anything, get
-Bitcoin right. Five findings from the primary record — two of which corrected
-this spec's own first draft:
+### 7b.0 The question, and the honest answer
 
-1. **Bitcoin was not deflationary at launch — the opposite.** The first reward
-   era alone (2009–2012, 50 BTC per block) issued 10.5M coins: **half of all
-   bitcoin that will ever exist**. The design is *disinflationary under a hard
-   cap*: give away most of the supply early and cheaply to whoever shows up,
-   under a halving schedule (every 210,000 blocks) that tightens credibly and
-   automatically. Scarcity was the promise made to the future; **abundance was
-   the launch strategy.**
-2. **The supply schedule is immune to demand.** Difficulty adjustment means a
-   flood of new miners makes mining *harder*, never coins more plentiful. The
-   schedule cannot be rushed by enthusiasm or lobbied by late arrivals.
-3. **The incentive's stated purpose was security, not marketing.** Whitepaper
-   §6: the block reward "may help encourage nodes to stay honest" — a
-   would-be attacker "ought to find it more profitable to play by the rules."
-   Propagation was a side effect of an honesty-alignment machine.
-4. **Value was bootstrapped from predetermined supply plus expectation.**
-   Satoshi, 2009–2010: "the supply is predetermined and the value changes"
-   (the precious-metal framing); the base-metal thought experiment (scarcity
-   plus transportability alone can carry value); and the feedback loop — "as
-   the number of users grows, the value per coin increases," attracting more
-   users. Holders became evangelists because the design made adoption itself
-   the yield.
-5. **Two known costs, on the record.** The hoarding critique (a deflationary
-   asset discourages spending — Krugman and others), and the unsolved
-   **security-budget problem**: the subsidy decays toward zero and fee-only
-   security is not yet proven stable. An honest port carries the flaws too.
+The network's owner put the hardest question directly: *Bitcoin is valuable and
+tradable — that is why people spread it. How does this spread?*
 
-**The ports.** AGIX takes four mechanisms, tokenlessly:
+The answer, after a survey of roughly sixty adoption cases spanning 1994–2026:
+**it does not spread the way Bitcoin spreads, and no tokenless substitute for
+that engine was found.** Bitcoin's engine is a transferable claim whose payoff
+to an existing holder *rises* when a new person adopts. That is precisely the
+transferable stake this network's constitution forbids, and the record contains
+no mechanism that reproduces it without one.
 
-- **Port 1 — generous early issuance under a constitutionally tightening
-  schedule (the corrected port).** Permanent status is handed out most freely
-  to the earliest adopters: founding cohort (first 10 external ledgers —
-  permanent top listing, pre-registered) → early cohort (next 90 — lesser
-  permanent tag) → standard admission. These are the halvings. The schedule
-  cannot be quietly re-inflated later, because it lives in the constitutional
-  layer (§5b) that no future version can self-amend. And the hard-cap asset
-  underneath is **dated history**: the supply of 2026-dated, publicly
-  checkable grading record goes to zero forever when 2026 ends — a
-  **first-coverage tag** (the first admitted ledger to cover a claim niche,
-  displayed permanently) is minted once per niche, ever. A halving cuts new
-  supply in half; the calendar cuts early history to zero.
-- **Port 2 — demand-immune supply.** An adoption rush does not mint more
-  founding slots; like difficulty adjustment, it only raises the bar for the
-  same reward. Status is scheduled by the constitution, never by enthusiasm.
-- **Port 3 — honesty-first incentive alignment (the second corrected port).**
-  Per §6's real purpose: the featured slot and reputation standing (§7) are
-  computed from *kept promises* — misses on the record, flips honored on
-  their dates — and slashing is permanent and public, so a fraudulent ledger
-  loses more standing than fraud can earn. More profitable to play by the
-  rules, by construction.
-- **Port 4 — value indexed to adoption, Satoshi's feedback loop without a
-  ticker.** A registry position appreciates as the protocol spreads: every
-  agent that installs the skill, every site that embeds a ledger, every
-  engine that cites one increases the citation and referral share routed
-  through listed ledgers — founding positions first. Spreading the spec grows
-  the demand side of a grader's own audit business, so adopters evangelize
-  for the same reason holders did.
+Three earlier claims in this section have therefore been **deleted rather than
+defended** (§7b.3). Deleting them is not a retreat from the owner's question; it
+is the only answer to it this document is entitled to give, and under Rule 1 of
+the protocol the deletion is itself graded, dated, and published on the ledger.
 
-**Anti-hoarding, by construction.** The Krugman critique does not attach
-here: these positions are non-transferable and *productive only in use* — the
-featured slot decays to zero if unearned (§7), and seniority is priced only
-when audits are actually sold. There is nothing to hoard, only a record to
-keep extending.
+### 7b.1 What the record says actually causes adoption
 
-**The refusal — transferability.** The empirical record shows Bitcoin's
-propagation fuel was speculation (even at scale, merchant payments remained a
-small fraction of value flows; ownership spread because holding might pay).
-A tradable stake in a *verdict* network is a verdict market: whoever buys the
-stake buys the incentive to protect it, and ledger rule 2 ("no payment ever
-changes a verdict") dies by secondary market instead of by bribe. The cost is
-stated plainly: without speculative fuel, propagation is slower.
+One mechanism has a perfect hit rate in the surveyed cases: **a consumer with an
+audience commits to read the format, and pays the publisher something visible on
+the day they publish.**
 
-**The commercial rights layer — what a position is worth in actual
-currency.** Any listed ledger may sell audits and verification services under
-its own brand, priced on its own track record. The protocol's cut is **0%,
-forever** — credible precisely because the constitutional layer cannot
-self-amend: no future version can introduce rent. Early adoption is pure
-upside: the cost is grading labor, the asset is unrepeatable seniority, the
-revenue line is the grader's alone.
+| Format | The committed consumer | What the publisher got on day one |
+|---|---|---|
+| sitemaps.xml, schema.org | search engines | crawl coverage; rich results |
+| ads.txt | ad buyers refusing undeclared inventory | continued revenue |
+| RSS | a podcast/feed client with users | listeners |
+| MCP | a shipped client on day one | working tools for real users |
 
-**The ported flaw, stated honestly (our security-budget problem).** Bitcoin
-has not yet proven that fees alone can fund its security once the subsidy
-fades; this network's analog is unproven too. Its "subsidy" is scheduled
-AI-session maintenance labor; its "fees" are audit sales. If audits never
-sell, maintenance continues on the subsidy alone under pre-registered kill
-lines — the transition is governed by published verdict dates, not by hope,
-and this paragraph exists so no future version can pretend the problem was
-solved by omission.
+And the control case: **llms.txt** — free, open, well-designed, widely
+published, and dead. Of the valid files surveyed in 2026, the overwhelming
+majority were never requested even once. Nothing was wrong with the format. No
+consumer ever committed.
 
-**The AI-era optimization — the variable Bitcoin did not have.** Bitcoin
-propagated through humans, who speculate. This protocol propagates
-increasingly through agents, which do not. An agent selecting a source to
-cite prices verifiability, dated coverage, and machine-readability —
-precisely the assets this design mints — so in agent-mediated distribution,
-speculative fuel is worthless and verifiable seniority is what selection
-compounds on. And each model training cutoff is this system's halving: the
-dated, canonical sources in the corpus at cutoff keep their position in the
-weights; whoever is not on the record waits for the next epoch.
+The two *fastest* forces in the record are stronger still, and both are
+unavailable here: a **gatekeeper** that makes non-publication expensive (an ad
+buyer, a mailbox provider, a regulator), and a **platform** that makes
+publication the default (a host that ships the file for everyone). This network
+has no buyer, no regulator, and no platform, and it cannot manufacture one.
+
+**The cost the first adopter actually bears** (Farrell & Saloner, 1985/1986 —
+excess inertia): the first adopter of a standard with no installed base pays a
+transient incompatibility cost that later adopters never pay. Waiting strictly
+dominates adopting, unless that cost is compensated. Naming this cost honestly
+is worth more than asserting a payoff that is not there.
+
+### 7b.2 The measured state of this network, published rather than described
+
+As of 2026-08-30, on the reference implementation itself:
+
+- `/claimledger.json` — the canonical path this protocol asks the world to
+  publish and consume — had been fetched by an outside client **zero** times in
+  the site's entire life.
+- `/protocol`, `/agix`, `/grader.html` and the skill file had **zero** loads,
+  human or crawler.
+- The only repeated machine fetches of `/ledger.json` were this repository's own
+  deployment self-check: ten deploys, ten fetches, an exact match. **Our own CI
+  is not adoption**, and reading it as such would have been the third time this
+  network caught a self-test posing as demand.
+
+The live figures are published at `/fetchlog.json` and move as they move.
+
+### 7b.3 Deleted in v0.6 — three claims that did not survive their own standard
+
+1. **"A registry position appreciates as the protocol spreads."** Deleted. This
+   is an appreciation device drafted by the promoter — the exact instrument this
+   network's own governance lists under *never*, and independently barred by
+   OWNER-CONTROL.md ("anything whose value depends on new buyers"). That it was
+   written here at all, tokenless framing notwithstanding, is the strongest
+   available argument for why the constitutional layer cannot be self-amended.
+2. **"Unrepeatable seniority" as a reason to adopt early.** Deleted, except in
+   the one narrow form that is literally true: *you cannot retroactively have
+   published a dated verdict.* No case in the record shows first-mover status
+   causing adoption of anything. A claim with no flip condition is an opinion —
+   the protocol says so in Rule 1, and this document does not get an exemption.
+3. **"Audit demand" as a propagation mechanism.** Deleted. Audit demand is a
+   *consequence* of readership, never a cause of adoption, and this site's
+   lifetime audit-click count is zero.
+
+Also demoted: **"each model training cutoff is this system's halving."** No
+published study links a standard entering a training corpus to changed model
+behaviour toward it. Retained only as an explicitly labelled *untested
+analogy*, not as a mechanism.
+
+**What survives from v0.4/v0.5, unchanged.** Port 3 — honesty-first incentive
+alignment, standing computed from kept promises with permanent public slashing —
+survives; it is a faithful port of the whitepaper's §6 purpose and it does not
+depend on anyone else adopting. The refusal of transferability survives, with
+its cost restated plainly: no speculative fuel means slower propagation, and
+possibly none. The 0%-forever protocol fee survives, and is credible for exactly
+the reason the constitutional layer exists: no future version can introduce rent.
+
+### 7b.4 What this network is actually betting on, named so it can fail
+
+Not a propagation mechanism. Two things:
+
+1. **A tool that pays one person, alone, on the day they use it** — the grader
+   emits a file and a verdict card that are useful with zero other adopters. If
+   it is not worth using alone, it is not worth spreading, and no economics
+   section can repair that.
+2. **Being cited** — dated, checkable, first-party judgements are what answer
+   engines select for. That pays this site in attention, not the publisher in
+   adoption, and the distinction is the honest one.
+
+**Named dependency risk.** Every consumer of this protocol today is one this
+network wrote itself: its own registry, its own grader, its own skill file, its
+own MCP tool. That is the single-consumer failure mode with a documented
+precedent — RSS did not decline because a better format appeared; Google Reader
+closed on 1 July 2013 and adoption never recovered. **Flip condition:** if by
+2026-11-30 no `/claimledger.json` anywhere has been fetched by a client this
+network did not write, the correct conclusion is that the protocol has no
+consumer, and it is recorded as such rather than re-explained.
 
 ## 8. Prior art and lineage
 
@@ -352,24 +364,21 @@ format that can execute arbitrary logic becomes an attack surface).
 ## 9. Versioning
 
 This document is the algorithm. Changes bump the version; old versions stay in
-repository history. **v0.1 — 2026-08-29 (initial). v0.2 — 2026-08-30 (adds §7 proof-of-grading
-incentive layer and §5b perpetual operation — auto-evolution and the concrete
-auto-SPAWN replication rule — on the owner's direction). v0.3 — 2026-08-30
-(adds §3b, the correspondence to Anthropic's published agent-architecture
-vocabulary incl. the deliberate workflow-not-agent refusal, and the
-skill-file distribution lane — an installable SKILL.md under the open Agent
-Skills standard, on the owner's direction). v0.4 — 2026-08-30 (adds §7b
-adoption economics: Bitcoin's four-mechanism propagation engine decomposed,
-three ported tokenlessly — dated-history deflation with first-coverage tags
-and adoption epochs, adoption-indexed registry value, proof-of-grading entry —
-transferability refused with the cost stated, the 0%-forever commercial
-rights layer, and the AI-era substitution of verifiable seniority for
-speculative fuel; on the owner's direction). v0.5 — 2026-08-30 (research
-correction of §7b after the owner's challenge, against the Bitcoin primary
-record: Bitcoin was NOT deflationary at launch — the first reward era issued
-half of all coins ever, so the correct port is generous-early-issuance under
-a constitutionally tightening schedule; the incentive's stated purpose was
-honesty alignment, not marketing, so Port 3 is honesty-first; added
-demand-immune supply (the difficulty-adjustment port), the anti-hoarding
-note, and the honestly ported flaw — our security-budget analog is unproven
-and governed by kill lines, not hope).**
+repository history. **v0.1 — 2026-08-29 (initial). v0.2 — adds §7 proof-of-grading
+and §5b perpetual operation. v0.3 — adds §3b, the correspondence to published
+agent-architecture vocabulary, and the skill-file distribution lane. v0.4 — adds
+§7b adoption economics. v0.5 — research-corrects §7b against the Bitcoin primary
+record (Bitcoin was not deflationary at launch: the first reward era issued half
+of all coins ever, so the correct port is generous early issuance under a
+constitutionally tightening schedule; §6's incentive existed for honesty
+alignment, not marketing). v0.6 — 2026-08-30: after a ~60-case survey of
+adoption mechanisms and an adversarial review in which every proposed
+propagation mechanism was refuted, DELETES three claims this document could not
+support — registry-position appreciation (an appreciation device this network's
+own governance lists under never), unrepeatable seniority as a reason to adopt,
+and audit demand as a propagation mechanism — demotes the training-cutoff
+analogy to explicitly untested, and replaces them with the measured state
+(zero outside fetches of the canonical path), the named single-consumer
+dependency with a dated flip condition, and Farrell & Saloner's excess-inertia
+cost borne by the first adopter. v0.4 and v0.5 remain readable in repository
+history; the deleted claims are graded on the ledger rather than erased.**

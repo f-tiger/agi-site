@@ -2003,16 +2003,20 @@ function calc(){
   var sun=parseFloat(s.value)||1;
   // same as /guide/btu-rechner.html with its defaults: ceiling 1, 2 people, no open kitchen
   var btu=Math.round(qm*340*sun/500)*500;
-  var model,term,label;
-  if(btu<=9000){model="Comfee MPPH-09CRN7";term="Comfee+MPPH-09CRN7";label="bis ca. 9.000 BTU";}
-  else if(btu<=11000){model="De'Longhi Pinguino PAC EX105";term="De%27Longhi+Pinguino+PAC+EX105";label="9.000–11.000 BTU";}
-  else{model="Klarstein Kraftwerk Smart 12K";term="Klarstein+Kraftwerk+Smart+12K";label="ab 12.000 BTU";}
+  var model,term,url,label;
+  if(btu<=9000){model="Comfee MPPH-09CRN7";term="Comfee+MPPH-09CRN7";url=A_COMFEE;label="bis ca. 9.000 BTU";}
+  else if(btu<=11000){model="De'Longhi Pinguino PAC EX105";term="De%27Longhi+Pinguino+PAC+EX105";url=A_PINGUINO;label="9.000–11.000 BTU";}
+  else if(btu<=13500){model="Klarstein Kraftwerk Smart 12K";term="Klarstein+Kraftwerk+Smart+12K";url=A_KLARSTEIN;label="11.000–13.500 BTU";}
+  // Über ~13.500 BTU nennen wir kein Modell, weil wir keines haben: das größte tragbare
+  // Gerät in DEVICE_MODELS["ac"] ist der 12K-Klarstein. Einem Leser, der gerade 20.500 BTU
+  // ausgerechnet hat, ein 12.000-BTU-Gerät zu verkaufen, wäre schlicht gelogen.
+  else{model="";term="";url="";label="über 13.500 BTU";}
   var qp=qm<=12?10:qm<=17?15:qm<=22?20:qm<=27?25:qm<=35?30:40;
   r.innerHTML='<div style="font-size:13.5px;color:#4a5a67;">Empfohlene Kühlleistung für '+qm+' m²</div>'+
     '<div style="font-size:30px;font-weight:800;color:#0a4d7a;line-height:1.2;">ca. '+btu.toLocaleString("de-DE")+' BTU</div>'+
-    '<div style="margin:8px 0 0;font-size:14.5px;">Passende Geräteklasse ('+label+'): <strong>'+model+'</strong></div>'+
+    (model?'<div style="margin:8px 0 0;font-size:14.5px;">Passende Geräteklasse ('+label+'): <strong>'+model+'</strong></div>':'<div style="margin:8px 0 0;font-size:14.5px;">Klasse: <strong>'+label+'</strong> — hier ist ein tragbarer Monoblock am Limit. Ehrlich empfehlen können wir dafür keines unserer Geräte; realistisch sind ein <a href="/guide/split-klimaanlage-ohne-kernbohrung.html">Splitgerät ohne Kernbohrung</a> oder zwei kleinere Geräte.</div>')+
     '<div style="margin:12px 0 0;display:flex;gap:9px;flex-wrap:wrap;">'+
-    '<a href="https://www.amazon.de/s?k='+term+'&tag=getecoback-21" target="_blank" rel="sponsored noopener" style="background:#f59e0b;color:#1a2733;font-weight:800;padding:10px 16px;border-radius:8px;text-decoration:none;font-size:14px;">Preis auf Amazon prüfen →</a>'+
+    (model?'<a href="'+url+'" target="_blank" rel="sponsored noopener" style="background:#f59e0b;color:#1a2733;font-weight:800;padding:10px 16px;border-radius:8px;text-decoration:none;font-size:14px;">Preis auf Amazon prüfen →</a>':'')+
     '<a href="/guide/klimaanlage-'+qp+'-qm.html" style="background:#fff;color:#0a4d7a;border:1px solid #cfe0ea;font-weight:700;padding:10px 16px;border-radius:8px;text-decoration:none;font-size:14px;">Alle Empfehlungen für '+qp+' m² →</a>'+
     '<a href="/guide/btu-rechner.html" style="background:#fff;color:#0a4d7a;border:1px solid #cfe0ea;font-weight:700;padding:10px 16px;border-radius:8px;text-decoration:none;font-size:14px;">Decke, Personen, Küche einrechnen →</a>'+
     '<button type="button" id="eb-ht-save" style="background:#fff;color:#0a4d7a;border:1px solid #cfe0ea;font-weight:700;padding:10px 16px;border-radius:8px;font-size:14px;cursor:pointer;">📌 Diesen Raum merken</button>'+
@@ -2020,7 +2024,7 @@ function calc(){
     '<p id="eb-ht-perma" style="margin:8px 0 0;font-size:12px;color:#5b6b78;"></p>'+
     '<div id="eb-ht-sub" style="margin:14px 0 0;padding:14px 0 0;border-top:1px solid #cfe6fa;">'+
     '<strong style="font-size:14.5px;display:block;">Sollen wir dich erinnern, bevor es wieder heiß wird?</strong>'+
-    '<span style="font-size:13px;color:#4a5a67;display:block;margin:2px 0 9px;">Eine Nachricht vor der nächsten Hitzewelle — und wenn <strong>'+model+'</strong> im Preis fällt. Dein Raum ('+qm+' m²) ist dann schon hinterlegt.</span>'+
+    '<span style="font-size:13px;color:#4a5a67;display:block;margin:2px 0 9px;">Eine Nachricht vor der nächsten Hitzewelle — und wenn '+(model?'<strong>'+model+'</strong>':'ein passendes Gerät')+' im Preis fällt. Dein Raum ('+qm+' m²) ist dann schon hinterlegt.</span>'+
     '<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">'+
     '<input id="eb-ht-mail" type="email" placeholder="deine@email.de" autocomplete="email" style="flex:1 1 220px;padding:10px 12px;border:1px solid #cfd8e0;border-radius:8px;font-size:15px;background:#fff;color:#1a2733;">'+
     '<button type="button" id="eb-ht-sub-go" style="background:#0a4d7a;color:#fff;border:none;padding:11px 18px;border-radius:8px;font-weight:800;font-size:14px;cursor:pointer;">Erinnere mich</button></div>'+
@@ -2076,6 +2080,16 @@ else{var saved=window.ebReadRoom&&window.ebReadRoom();
 })();</script><!--/EB_HOMETOOL-->
 '''
 
+# The homepage tool's three picks resolve through the same amazon_url() helper as
+# every server-rendered card: a verified ASIN becomes a product page, an
+# unverified model keeps an honest search link. Substituted here because
+# HOME_TOOL is a plain literal — before this, the JS built its own s?k= URL and
+# the homepage sent buyers of two ASIN-verified models to a search box.
+HOME_TOOL = (HOME_TOOL
+    .replace("A_COMFEE", json.dumps(amazon_url("Comfee+MPPH-09CRN7", "Comfee MPPH-09CRN7")))
+    .replace("A_PINGUINO", json.dumps(amazon_url("De%27Longhi+Pinguino+PAC+EX105", "De'Longhi Pinguino PAC EX105")))
+    .replace("A_KLARSTEIN", json.dumps(amazon_url("Klarstein+Kraftwerk+Smart+12K", "Klarstein Kraftwerk Smart 12K"))))
+
 
 # Retention without an account and without email. A visitor who has worked out the
 # cooling capacity for their room has produced something worth keeping, and until
@@ -2105,6 +2119,10 @@ PROFILE = ('<!--EB_PROFILE--><div id="eb-profile"></div>\n<script>(function(){'
            'Number(p.btu).toLocaleString(EN?"en-GB":"de-DE")+\' BTU</span>\'+'
            '(p.model?\'<span style="color:#4a5a67;">\'+p.model+\'</span>\':"")+'
            '\'<a href="\'+sizeHref+\'" data-eb-p="size" style="color:#0f6ba8;font-weight:700;text-decoration:none;">\'+sizeText+\' →</a>\'+'
+           # Werbekennzeichnung (2026-08-29): this bar renders an affiliate link on
+           # every page it appears on and carried no label for its whole life — it
+           # was simply missing from check_adlabel's BLOCKS list, so nothing looked.
+           '\'<span style="font-size:11px;font-weight:800;color:#7a8b98;letter-spacing:.3px;">\'+(EN?"Ad":"Anzeige")+\'</span>\'+'
            '\'<a href="\'+amazon+\'" target="_blank" rel="sponsored noopener" data-eb-p="shop" '
            'style="color:#0f6ba8;font-weight:700;text-decoration:none;">\'+shop+\'</a>\'+'
            '\'<button type="button" id="eb-p-x" style="margin-left:auto;background:none;border:none;'
@@ -3368,7 +3386,7 @@ SIZER_TXT = {
         "mcp": ('Dieselbe Rechnung kann auch dein KI-Assistent direkt aufrufen — '
                 '<a href="/mcp.html" style="color:#0f6ba8;">MCP-Server einrichten →</a>'),
         "bands": [(9000, "bis ca. 9.000 BTU"), (11000, "9.000–11.000 BTU"),
-                  (13500, "12.000–13.500 BTU"), (0, "über 13.500 BTU")],
+                  (13500, "11.000–13.500 BTU"), (0, "über 13.500 BTU")],
         # Over ~13,500 BTU we name no model, because we have none to name: the
         # largest portable in DEVICE_MODELS["ac"] is the 12K Klarstein. Handing a
         # reader who just computed 20,500 BTU a 12,000 BTU unit is the calculator
@@ -3393,7 +3411,7 @@ SIZER_TXT = {
         "mcp": ('Your AI assistant can call this same calculation — '
                 '<a href="/mcp.html" style="color:#0f6ba8;">set up the MCP server →</a>'),
         "bands": [(9000, "up to approx. 9,000 BTU"), (11000, "9,000–11,000 BTU"),
-                  (13500, "12,000–13,500 BTU"), (0, "over 13,500 BTU")],
+                  (13500, "11,000–13,500 BTU"), (0, "over 13,500 BTU")],
         "big": ("At this room size a portable monoblock is at its limit — we have no unit "
                 "here we could honestly recommend for it. A fitted split system or two "
                 "smaller units are the realistic options."),
@@ -3443,15 +3461,32 @@ def sizer_block(en=False, prefill=20):
             'function calc(user){'
             'var qm=Math.max(4,Math.min(120,parseFloat(q.value)||20)),sun=parseFloat(s.value)||1;'
             # identical to /guide/btu-rechner.html at its own defaults
-            'var btu=Math.round(qm*340*sun/500)*500,model,term,label,big=false;'
-            'if(btu<=9000){model="Comfee MPPH-09CRN7";term="Comfee+MPPH-09CRN7";label=' + repr(b0) + ';}'
+            'var btu=Math.round(qm*340*sun/500)*500,model,term,url,test,label,big=false;'
+            # url is resolved HERE, at build time, through amazon_url() — the same
+            # helper the server-rendered cards use. Before 2026-08-29 this block
+            # concatenated its own s?k= search URL in the browser, which is why the
+            # ASIN pass of 2026-08-28 (261 card links) never reached the tool
+            # results: a verified product page existed and the widget with 95 % of
+            # all measured tool use still shipped readers to a search box.
+            # test = the model's own Test-Überblick, so the pick carries evidence at
+            # the moment of decision. German only: no EN test pages exist, and we do
+            # not link a reader to a page they cannot read.
+            'if(btu<=9000){model="Comfee MPPH-09CRN7";term="Comfee+MPPH-09CRN7";'
+            'url=' + repr(amazon_url("Comfee+MPPH-09CRN7", "Comfee MPPH-09CRN7")) + ';'
+            + ('test="";' if en else 'test="/guide/comfee-mpph-09crn7-test.html";')
+            + 'label=' + repr(b0) + ';}'
             'else if(btu<=11000){model="De\'Longhi Pinguino PAC EX105";term="De%27Longhi+Pinguino+PAC+EX105";'
-            'label=' + repr(b1) + ';}'
+            'url=' + repr(amazon_url("De%27Longhi+Pinguino+PAC+EX105", "De'Longhi Pinguino PAC EX105")) + ';'
+            + ('test="";' if en else 'test="/guide/pinguino-pac-ex105-test.html";')
+            + 'label=' + repr(b1) + ';}'
             'else if(btu<=13500){model="Klarstein Kraftwerk Smart 12K";'
-            'term="Klarstein+Kraftwerk+Smart+12K";label=' + repr(b2) + ';}'
+            'term="Klarstein+Kraftwerk+Smart+12K";'
+            'url=' + repr(amazon_url("Klarstein+Kraftwerk+Smart+12K", "Klarstein Kraftwerk Smart 12K")) + ';'
+            + ('test="";' if en else 'test="/guide/klarstein-kraftwerk-smart-12k-test.html";')
+            + 'label=' + repr(b2) + ';}'
             # Above the ladder we sell nothing. term="" switches the result panel
             # from an Amazon button to the honest sentence (+ a route, where one exists).
-            'else{model="";term="";big=true;label=' + repr(b3) + ';}'
+            'else{model="";term="";url="";test="";big=true;label=' + repr(b3) + ';}'
             'var qp=qm<=12?10:qm<=17?15:qm<=22?20:qm<=27?25:qm<=35?30:40;'
             'var grid=document.getElementById("eb-models");'
             'var second=grid?\'<a href="#eb-models" style="background:#fff;color:#0a4d7a;border:1px solid '
@@ -3466,9 +3501,10 @@ def sizer_block(en=False, prefill=20):
             + f'+btu.toLocaleString("{loc}")+\' BTU</div>\''
             '+(big?(\'<div style="margin:7px 0 0;font-size:14px;">\'+' + repr(t["cls"]) + '+\' (\'+label+\')</div>\''
             '+\'<p style="margin:7px 0 0;font-size:13.5px;color:#3d4d5a;">\'+' + repr(t["big"]) + '+\'</p>\')'
-            ':(\'<div style="margin:7px 0 0;font-size:14px;">\'+' + repr(t["cls"]) + '+\' (\'+label+\'): <strong>\'+model+\'</strong></div>\'))'
+            ':(\'<div style="margin:7px 0 0;font-size:14px;">\'+' + repr(t["cls"]) + '+\' (\'+label+\'): <strong>\'+model+\'</strong>\''
+            '+(test?\' · <a href="\'+test+\'" style="font-size:13px;color:#0f6ba8;">Was sagen die Tests?</a>\':"")+\'</div>\'))'
             '+\'<div style="margin:11px 0 0;display:flex;gap:8px;flex-wrap:wrap;">\''
-            '+(big?' + repr(BIGCTA_HTML) + ':\'<a href="https://www.amazon.de/s?k=\'+term+\'&tag=getecoback-21" target="_blank" '
+            '+(big?' + repr(BIGCTA_HTML) + ':\'<a href="\'+url+\'" target="_blank" '
             'rel="sponsored noopener" style="background:#f59e0b;color:#1a2733;font-weight:800;padding:9px 15px;'
             'border-radius:8px;text-decoration:none;font-size:13.5px;">\'+' + repr(t["amz"]) + '+\'</a>\')'
             '+second'

@@ -95,6 +95,59 @@
 流水线新增 build_agent_md 步 + 部署自检 3 条(.md 服务/数据集/for-agents)。
 判定线:30 天 md_serve+mcp_call 趋势 ≥ 现基线,下次 Bing AI Performance 快照引用面不降。
 
+## 工具层调研轮(2026-08-29,owner「优化eco的工具,吸引联盟用户」)
+
+**45 agent 工作流**(11 面审计→规格、4 路调研、合成、18 次三镜头对抗验证)+ 我方 Playwright
+运行时实测(10 个工具,移动视口,拦截 beacon)。**对抗验证否掉了 6 个头部动作中的 5 个**
+——多数是「证据是修复前的快照」或「动的是零流量面」,这正是对抗验证的价值。
+
+**核心诊断**:工具不转化不是因为结果面难看,而是 ①`amazon_url()` 只被服务端渲染的卡片用了,
+**JS 渲染的工具结果面全部绕过它自己拼 `s?k=` 搜索链**——2026-08-28 那次 261 条 ASIN 深链
+改造没覆盖到工具;②11 个独立工具页整个 D1 生命周期合计 **19 次真人 pv、0 联盟点击**
+(/tools.html 历史 0 pv),重建它们的结果面是陷阱。
+
+**本轮落地(全部在有真流量的面上)**:
+- **EB_SIZER(66 页,占全站 38/40 次工具使用)**:结果 CTA 走 `amazon_url()` → Comfee/
+  Klarstein 出 `/dp/` 深链(Pinguino 无核验 ASIN,诚实保持搜索链);型号名后加
+  「Was sagen die Tests?」证据链(德语专属——EN 无测评页,不给读者链看不懂的页)。
+- **首页工具**:同样改深链;并修掉一个真缺陷——`else` 分支无上界,45 m²(15.500 BTU)
+  的读者被推荐 12.000 BTU 机型。现在 >13.500 BTU 一个型号都不推,改说实话 + 指向
+  split-ohne-kernbohrung(与 btu-rechner/sizer 口径一致)。
+- **EB_PROFILE 广告标注**:191 页的档案条一直挂着联盟链却**从无 Werbekennzeichnung**
+  ——因为它压根不在 check_adlabel 的 BLOCKS 里,闸门只查它被告知要查的东西。
+  已补标注 + 补进闸门(检查面 816→1035 块)。
+
+**⚠️ 自查出的零编造违规(我当天引入的)**:btu-rechner 结果表里
+`kwh:"~0,7",eur:"0,21"` 归给 Pinguino EX105,注释还写着「取自各自测评页」——
+但该页 **一个 kWh 数字都没有**,全站唯一的「0,7 kWh」在一张除湿机页上。已删除,
+改为该页逐字有的两项(A+++、~63 dB Turbo);渲染加 `if(cls.kwh)` 守卫(直接删字段会
+线上打印 "undefined");「laut Tests」改「laut Datenblatt」——Comfee/Klarstein 那两个
+数字是厂商数据表值,把厂商标称说成测试结论,在一个立身之本是「Wir testen nicht selbst」
+的站上是同一类违规,只是低一层。
+**新闸门 `tools/check_cited_figures.py` 入流水线**:工具打印的每个数字必须在它引用的
+那一页上存在(按数值比对,「~1,0 kWh」匹配「rund 1 kWh」)。已用重新注入 bug 实测拦截成功。
+站点此前有广告标注闸门、事件闸门、FAQ 逐字闸门,**唯独没有「印出来的数字要有出处」这一道**
+——这个洞正是那个数字进来的路。
+
+**判死线**:2026-09-26 复核 D1——sizer 来源的 affiliate_click 中 `/dp/` 链接占比应 >0
+(当前 0/103,99% 落搜索页);若 sizer 点击仍为 0,说明瓶颈在流量不在链接形态,停止在
+工具结果面继续投入。
+
+**别再做(实测否决,勿复活)**:
+  - Do NOT rebuild the result panels of the standalone calculator pages to 'the btu-rechner bar'。
+  - Do NOT build EB_HEATSIZER or any new heating-cluster tool this quarter。
+  - Do NOT invest in /widgets。
+  - Do NOT add price display, price-history, price-alert, 'is this a good price' or Prime-Day/deal tools。
+  - Do NOT ship Amazon Add-to-Cart links (gp/aws/cart/add。
+  - Do NOT invest further in llms。
+  - Do NOT invent an EX105 consumption figure to 'repair' the ~0,7 kWh line on btu-rechner。
+  - Do NOT invent an ASIN for the Pinguino PAC EX105, Midea PortaSplit, AEG ChillFlex Pro, MeacoDry, MeacoFan, Rowenta, or any heater or balcony battery。
+  - Do NOT repoint EU model names at amazon。
+  - Do NOT add EB_SIZER to /guide/klimaanlage-wohnmobil。
+
+**唯一通过门槛的新工具候选**(不在本轮做,登记):
+  - **EB_TAUPUNKT — "Kann ich jetzt lüften?" as an indexable page **:The honest negative branch IS the purchase moment: when the physics says there is no ventilation window, the only remaining fix is a dehumidifier, and(SERP 证据:Every ranking result in the German 'taupunkt rechner / kann ich jetzt lüften / lüftungsrechner' SERP is a micr)
+
 ## 顶级联盟站对标矩阵(2026-08-29,owner「对标优秀联盟站,还缺哪些,热门产品也缺」)
 
 **最受欢迎联盟站(按被引用/被模仿度)**:全球模式标杆 = Wirecutter(NYT)、RTINGS

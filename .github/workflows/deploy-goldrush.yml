@@ -64,8 +64,8 @@ jobs:
       - name: Post-deploy self-check
         run: |
           sleep 20
-          code=$(curl -s -o /dev/null -w '%{http_code}' "https://goldrush.agiscorecard.com/" || true)
-          ledger=$(curl -s -o /dev/null -w '%{http_code}' "https://goldrush.agiscorecard.com/ledger.json" || true)
+          code=$(curl -s -o /dev/null -w '%{http_code}' "https://goldrush.agiscorecard.com/?ci=1" || true)
+          ledger=$(curl -s -o /dev/null -w '%{http_code}' "https://goldrush.agiscorecard.com/ledger.json?ci=1" || true)
           echo "home=$code ledger=$ledger"
           # 首次部署自定义域可能有 DNS 收敛延迟,只警告不失败;后续跑到 200 为准
           [ "$code" = "200" ] && [ "$ledger" = "200" ] && echo "self-check ok" || echo "::warning::domain not yet serving 200 (first-deploy DNS convergence is normal)"
