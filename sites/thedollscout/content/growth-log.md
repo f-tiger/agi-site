@@ -1859,3 +1859,15 @@ eco-port optimization round (this commit):
   match reality.
 - Next: IndexNow MODE=all full registration of the new URL set right after
   this deploys.
+
+## 2026-08-30 (round 3 addendum) — owner completed the GSC step
+
+Owner's screenshot: sitemap.xml resubmitted in Google Search Console,
+status Success, last read 2026-08-30 (same day), 7 pages discovered = the
+new site's complete URL set (3 EN + 3 DE + /data/). With IndexNow MODE=all
+already accepted by Bing/Yandex/Naver/Seznam, every discovery lane is now
+formally re-opened on the new content. What remains outside our hands:
+Google's SafeSearch reclassification latency (unknowable, pre-registered),
+and the DE PartnerNet Websites listing (suspension item, unchanged).
+Measurement cadence: D1 weekly reads against the 2026-10-29 judgement line;
+GSC coverage/impressions are owner-side screenshots when convenient.
