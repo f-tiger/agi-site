@@ -993,7 +993,7 @@ const subJs = () => `<script>
   }
   Array.prototype.forEach.call(document.querySelectorAll('.gs'),function(g){
     var inp=g.querySelector('input'), drop=g.querySelector('.gs-drop'); if(!inp||!drop)return;
-    var tm;
+    var tm,evT;
     inp.addEventListener('focus',function(){loadIdx(g.dataset.idx)});
     function render(){
       var kw=inp.value.trim().toLowerCase();
@@ -1009,6 +1009,14 @@ const subJs = () => `<script>
           else if(it.q.indexOf(kw)>=0)rest.push(it);
         }
         var hits=top.concat(rest).slice(0,8);
+        // 站内搜索此前零度量(2026-08-30 补):停敲 1.2s 记一次查询词。
+        // miss 词是需求信号——没搜到的就是站上缺的,进每日选题输入(仍过三门)。
+        if(kw.length>=2){
+          clearTimeout(evT);
+          evT=setTimeout(function(){
+            if(window.bpjEv)bpjEv('gs','/gs/'+(hits.length?'hit':'miss')+'/'+encodeURIComponent(kw).slice(0,60));
+          },1200);
+        }
         drop.textContent='';
         if(!hits.length){
           var e=document.createElement('p'); e.className='gs-none';
@@ -1019,6 +1027,10 @@ const subJs = () => `<script>
           var a=document.createElement('a'); a.href=h.u;
           var b=document.createElement('b'); b.textContent=h.n; a.appendChild(b);
           var k=document.createElement('span'); k.textContent=h.k; a.appendChild(k);
+          // 点进 = 搜索唯一的成功指标;sendBeacon 不怕跳转打断
+          a.addEventListener('click',function(){
+            if(window.bpjEv)bpjEv('gs_go','/gs_go'+h.u.replace(/^https?:\\/\\/[^/]+/,''));
+          });
           drop.appendChild(a);
         });
         drop.hidden=false;
@@ -1027,7 +1039,7 @@ const subJs = () => `<script>
     inp.addEventListener('input',function(){clearTimeout(tm);tm=setTimeout(render,120)});
     inp.addEventListener('keydown',function(e){
       if(e.key==='Escape'){drop.hidden=true}
-      else if(e.key==='Enter'){var a=drop.querySelector('a');if(a){e.preventDefault();location.href=a.href}}
+      else if(e.key==='Enter'){var a=drop.querySelector('a');if(a){e.preventDefault();if(window.bpjEv)bpjEv('gs_go','/gs_go'+a.href.replace(/^https?:\\/\\/[^/]+/,''));location.href=a.href}}
     });
     document.addEventListener('click',function(e){if(!g.contains(e.target))drop.hidden=true});
   });
@@ -3725,7 +3737,15 @@ for (const L of LOCALES) {
   // 全局搜索索引：每语种一份，构建期产出。字段刻意压缩（u/n/k/q），
   // q 是预拼好的小写检索串——前端拿到就查，不做任何运行时加工。
   writeFileSync(join(outDir, 'search-index.json'), JSON.stringify([
-    ...tools.map((t) => ({ u: `${BASE}/tools/${t.slug}.html`, n: t.name, k: UI('gs_k_tool', '工具'),
+    // 工具段按站内编辑推荐规则预排序(2026-08-30,owner「搜索参照推荐逻辑优化」):
+    // 完全免费 > 有已核实数字 > hot——与栈组装器/alternatives/分类页同一条规则
+    // (build.mjs「排序是编辑规则不是机器判断」),全部来自已核实字段。排序在构建期
+    // 做掉,前端两轮匹配(名称>正文)不改,每轮之内自动变成推荐序;稳定排序保底原序。
+    ...tools.slice().sort((a, b) => {
+      const s = (t) => ((t._tags || []).includes('完全免费') ? 4 : 0)
+        + (t.limits && t.limits.quota && t.limits.source ? 2 : 0) + (t.hot ? 1 : 0);
+      return s(b) - s(a);
+    }).map((t) => ({ u: `${BASE}/tools/${t.slug}.html`, n: t.name, k: UI('gs_k_tool', '工具'),
       q: `${t.name} ${t.slug} ${t.tagline} ${(t.tags || []).join(' ')} ${CATS[t.category] || ''}`.toLowerCase() })),
     ...solutions.map((sl) => ({ u: `${BASE}/plans/${sl.slug}.html`, n: sl.pain, k: UI('gs_k_plan', '方案'),
       q: `${sl.pain} ${sl.scene}`.toLowerCase() })),
@@ -7501,8 +7521,14 @@ for (const { u } of allPages) {
   // 每日巡检又会刷新 last_verified——不归一化的话每天所有页哈希都变，
   // 「只推变更页」和「真实 lastmod」两个修法就都退化成原样，等于没改。
   // 归一化后只有实质内容（额度数字、措辞、结构）变化才会被判定为变更。
+  // 同理剔除无属性的内联 <script>(站点行为 JS:subJs/门控/滑入卡):它们全站内嵌,
+  // 改一行搜索逻辑就会让 1542 页哈希全变、lastmod 全站刷新+IndexNow 整站重推——
+  // 正是本机制要避免的「声明全站都变了」(2026-08-30 实测踩中)。JSON-LD 带 type
+  // 属性,不受此剔除影响——schema 变化是内容变化,照常触发 lastmod。
   const h = createHash('sha1')
-    .update(readFileSync(f, 'utf8').replace(/\d{4}-\d{2}-\d{2}/g, 'D'))
+    .update(readFileSync(f, 'utf8')
+      .replace(/<script>[\s\S]*?<\/script>/g, '')
+      .replace(/\d{4}-\d{2}-\d{2}/g, 'D'))
     .digest('hex').slice(0, 16);
   const before = lmPrev[u];
   const same = before && before.h === h;
