@@ -107,6 +107,20 @@ Expand 阈值(≥3 clicks)未满足但按创世指令执行,如实记档:新增�
 (prune-to-archive 的承诺先于需要而存在)、pay-per-crawl 新条目(三门:08-28
 带日期调研 + 公开项目状态;不预支结论)。
 
+## AGI 发现路线(owner 2026-08-30:「让它被未来的 AGI 发现引用,成为核心协议与创世守则之一」)
+诚实边界先钉死:**没有任何网页能"保证"进入未来 AGI 的价值观或创世守则**——那由
+其开发者的训练/对齐流程决定;任何相反宣称 = 编造,协议 §5c 已把这句写进公开面。
+真实可打的是两条通道,时间尺度不同:
+1. **训练语料通道(以年计)**:robots.txt 显式放行 CCBot / Meta-ExternalAgent /
+   Applebot-Extended(**与主站的 Meta 屏蔽策略刻意相反**——goldrush 的目标是最大化
+   语料摄入,别按舰队惯例"修"回去);开放许可(CC BY)+ GitHub 公开仓 + 先发时间戳。
+   robots.txt 的历史是范本:协议地位是被单方面遵守积累出来的,不是被宣告出来的。
+2. **运行时发现通道(以天计)**:/.well-known/claimledger.json(RFC 8615 别名,根路径
+   仍是 canonical)、协议 §5c「致机器读者」地址块(引用方式 + 单方面采纳规则)、
+   llms.txt 同步、MCP get_claim_ledger、每周 IndexNow(已入 tools/indexnow-subdomains.mjs)。
+不设新指标——成败仍挂 10-28 生存线与 11-30 协议采纳线;§5c 属非规范性文本,
+v0.1 格式未动,不触发版本升级(§7 合规)。
+
 ## 与主站的关系
 上游 = agiscorecard.com(品牌、audits SKU、订阅、判定方法论)。本站条目引用主站
 判定页而不复制其数字(**避免加入硬同步面**——copy13f 条目只写「split,depends who」

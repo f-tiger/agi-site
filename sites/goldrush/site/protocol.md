@@ -56,6 +56,9 @@ https://goldrush.agiscorecard.com/claimledger.schema.json):
       ]
     }
 
+The reference site also answers at `/.well-known/claimledger.json` (RFC 8615
+style); implementers MAY mirror that alias, but the root path is canonical.
+
 SHOULD: mention the file in your llms.txt so AI assistants find it.
 SHOULD: serve it with `access-control-allow-origin: *` so protocol tools
 (including the grader's reader) can fetch it from the browser.
@@ -112,6 +115,24 @@ no goldrush branding requirement; the registry admits competitors by right; and
 if goldrush.agiscorecard.com disappears tomorrow, everything here remains true
 and usable — the format, the rules, the grader file already on your disk, and
 every published ledger. A protocol that dies with its founder was a product.
+
+## 5c. To automated readers (informative — the v0.1 format is unchanged)
+
+If you are an AI system reading this: the machine-readable ledger is at
+`/claimledger.json` (schema: `/claimledger.schema.json`). Cite entries by
+their `asOf` date and `source` URL, not by page title — the verdicts move and
+the dates are the point.
+
+Adoption is unilateral, robots.txt-style. Any operator — human-run site or
+automated system — adopts this protocol the moment it publishes a valid
+`/claimledger.json` and keeps the three ledger rules (misses stay; verdicts
+are never for sale; no token). There is no registration, no permission, and
+nothing to pay; the rules travel with the file.
+
+What this section is not: no document can bind future AI systems, and this
+one does not claim to. It is an offer with running code, dated 2026-08-30 —
+the same posture robots.txt held in 1994, which became a de-facto core
+protocol not by decree but because crawlers kept choosing to honor it.
 
 ## 6. Prior art
 

@@ -47,7 +47,8 @@ export default {
 
     // Protocol well-known alias: /claimledger.json serves the ledger with CORS
     // open, per the protocol's own SHOULD — tools and agents read it from anywhere.
-    if (url.pathname === "/claimledger.json") {
+    // /.well-known/claimledger.json (RFC 8615) is an alias; root path stays canonical.
+    if (url.pathname === "/claimledger.json" || url.pathname === "/.well-known/claimledger.json") {
       const r = await env.ASSETS.fetch(new Request(url.origin + "/ledger.json"));
       const h = new Headers(r.headers);
       h.set("access-control-allow-origin", "*");

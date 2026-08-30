@@ -3,7 +3,7 @@
 // 同协议;每个 host 必须自己服务密钥文件(两站 site/ 目录已放同名 key.txt)。
 // 只在 runner 上跑(会话沙箱出网被挡);只挂 schedule(舰队 CI 纪律第 3 条)。
 const KEY = '16507d8e1997c4be371f5fbaf7ac1985';
-const HOSTS = ['play.agiscorecard.com', 'source.agiscorecard.com'];
+const HOSTS = ['play.agiscorecard.com', 'source.agiscorecard.com', 'goldrush.agiscorecard.com'];
 
 let failures = 0;
 for (const HOST of HOSTS) {
