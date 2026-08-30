@@ -37,8 +37,11 @@ FLEET = [
      "seeds": ["deepseek", "midjourney", "suno", "sora", "gemini", "perplexity"]},
     {"site": "agi", "geo": "US", "out": "sites/agiscorecard/trends-rising.json",
      "seeds": ["artificial general intelligence", "agi timeline"]},
+    # tds 种子全换(2026-08-30,owner 重大决策:成人站下架,本域改为 Labubu 导购站):
+    # "labubu" 主需求面;"fake labubu" 直接浮出真伪鉴别长尾(本站旗舰页所在);
+    # "pop mart" 品牌面(新系列/补货事件会先在这里冒头)。配额中性(3 换 3)。
     {"site": "tds", "geo": "US", "out": "sites/thedollscout/content/trends-rising.json",
-     "seeds": ["sex doll", "realdoll", "silicone doll"]},
+     "seeds": ["labubu", "fake labubu", "pop mart"]},
     # eco 的美国面(2026-08-28,owner:「分别扩展德国与美国不同的热点」)。此前 eco 只有
     # 德国需求信号——sites/getecoback/tools/fetch_trends_rising.py 写死 GEO="DE",而
     # 「按美国趋势扩展」在没有美国数据时只能靠猜,那是本站明令禁止的。故先建数据面。

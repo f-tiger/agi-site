@@ -1727,3 +1727,102 @@ WebApplication JSON-LD. The real gaps found and fixed:
 Judgement (28d): baked strip = crawlers can now cite actual products; watch
 whether vendor-product queries ever appear in AI-crawler fetches. Tools:
 watch quiz/cost-calculator fetch counts vs before.
+
+## 2026-08-29 (eco-playbook round) — owner: "太慢了，学习eco站点起量，抓住热点"
+
+Context, first-party: 11 days of D1 since the beacon went live — ~6 real
+human pv/day, 2 Google referrals total, affiliate_click 0. The pipeline is
+alive; the traffic isn't. Owner directive: port eco's ramp mechanics, catch
+trends. Three changes, all shipped today:
+
+1. **Fast-response page rule ported from eco** (CLAUDE.md new section):
+   rising word v≥200 + in niche + lands in the safety wedge → page the same
+   day; vendor-name + legit/reviews intent uses the lovedollshops-check
+   template (our Faktencheck isomorph); 14-day per-word cooldown; 1 page/day
+   max; baby-form/reborn = never, even negatively. Judgement: each page 28d
+   ≥1 search/assistant referral OR ≥1 affiliate_click OR AI-fetch streak ≥
+   scam-check; 3 consecutive zero pages → rule goes back to the shop.
+2. **Rising seed fixed on data** (tools/fleet_trends_rising.py): "silicone
+   doll" provably surfaces only ashton drake / reborn baby-doll queries
+   (v 28700/18550 — out of niche, red-line adjacent). Swapped for "rosemary
+   doll", the vendor name that "sex doll" related-queries surfaced by itself
+   — vendor seeds rise as "<vendor> reviews/legit", exactly what the wedge's
+   vendor-check template converts. Quota-neutral (swap, not add).
+   Today's signals, for the record: lars and the real girl v=7450
+   (film — informational, logged, no page), realbotix v=130 (below line),
+   rosemary doll v=40 (vendor intent, below line — the seed swap exists to
+   measure this family properly).
+3. **SNAD wedge page shipped** — /guides/doll-not-as-described ("arrived,
+   doesn't match the photos: the 72-hour plan"). Queued as the TOP uncovered
+   pain-query family since 08-25; consumer-protection shaped (SafeSearch-safe,
+   assistant-answerable), which is where this site's only Google click and
+   all its AI-crawl attention already live. Zero new facts: payment windows
+   cite /data/ (FOS ~120d from receipt, S75 £100–£30k), arrival evidence
+   defers to After You Order, variance judgement defers to factory-photos;
+   the 72h frame is explicitly labelled editorial-not-legal on the page.
+   Links no vendor at all, same as the other wedge pages. Cross-linked from
+   after-you-order + guides index; sitemap/llms/search-index rebuild in CI.
+
+Judgement (28d, 09-26): the SNAD page earns a search/assistant referral or
+an AI-crawler fetch streak ≥ factory-photos' → keep deepening the
+post-purchase wedge; zero everything → the wedge thesis takes the hit, log
+it against the 2026-10-01 wedge line honestly.
+
+## 2026-08-30 (THE PIVOT) — owner: "重大决策：下架掉这个站点，风险太大，更换为卖labubu的站点"
+
+The adult-doll site is retired, in full, by owner decision. Archive = git
+history + the old private repo. This entry is the hinge between the two
+sites sharing this log; everything above it belongs to the retired site.
+
+What was decided (owner, same session): reuse the domain and all infra
+(Pages project, D1, GA4, IndexNow key, US Associates listing of 2026-08-28
+— the deciding argument for domain reuse), affiliate-guide model, zero
+inventory. What shipped same-day:
+
+- Takedown: every adult page, dataset, generator script and 9 of 11 tds
+  workflows removed; age gate, RTA Rating headers and adult meta gone;
+  deploy self-check now ASSERTS old pages 404 and a build gate fails the
+  deploy if any retired-site marker reappears in publishable files.
+- New site v1: / + /fake-check (flagship: 8-point real-vs-fake, every check
+  with named dated source; the retired site's evidence-standard DNA applied
+  to the category where fakes literally earned their own name) +
+  /where-to-buy (official channel ladder per Pop Mart's own advice via ABC
+  News; Amazon storefront + brand-search affiliate links, Ad-labelled;
+  no hard-coded prices — price-floor logic instead).
+- Sources actually verified via WebSearch (sandbox egress blocks the source
+  domains themselves — noted in CLAUDE.md; multi-source points only).
+- Trend inputs re-seeded: trends-us wordlist + rising seeds (labubu / fake
+  labubu / pop mart); old trend data reset with a dated note.
+- Analytics continuity: same D1, same ev taxonomy; rows before 2026-08-30
+  are the old site's — never compare across the hinge.
+
+Honest risk, pre-registered in CLAUDE.md: six weeks of 18+ history on this
+domain (RTA headers, adult meta). All removed + IndexNow re-pushed, but
+SafeSearch-classification residue has an unknown half-life. Judgement line
+2026-10-29: 28d human pv ≥ 3× the old site's ~6/day, or ≥1 affiliate_click,
+or ≥5 search/assistant referrals → pivot holds; all missed → escalate the
+domain-history hypothesis to owner with a fresh-domain proposal.
+
+## 2026-08-30 (round 2) — owner: "联盟id用我的德国和美国id，分别做多语言"
+
+Dual-tag, dual-market build on day one of the new site:
+
+- /de/ German pages shipped as full pairs of the three EN pages (hreflang
+  language groups, x-default=EN — eco's verified model). German pages carry
+  amazon.de links with getecoback-21; EN pages keep amazon.com with
+  ecoback0d-20. Both official POPMART storefronts verified to exist via
+  WebSearch before linking (amazon.com and amazon.de each have one).
+- New build gate: a .de link carrying the US tag (or .com carrying the DE
+  tag) fails the deploy — a crossed tag earns exactly nothing, so it is a
+  build error, not a style issue.
+- No invented EUR prices: DE pages cite the sourced US retail range and
+  point at popmart.com/de live listings for euros.
+- Deploy self-check extended to assert the three /de/ pages 200 + zero
+  redirects.
+- PRE-REGISTERED SUSPENSION ITEM (report every round until cleared): the
+  DE PartnerNet Websites list must include thedollscout.com — same lesson
+  as the eco/US listing of 08-28; unlisted sites risk commission
+  invalidation. DE links are live per owner's explicit instruction, but DE
+  revenue counts as unconfirmed until the listing is done (~1 owner-minute).
+- D1 attribution needs no change: affiliate_click stores the target
+  hostname, so .com vs .de clicks separate cleanly in the ledger.
