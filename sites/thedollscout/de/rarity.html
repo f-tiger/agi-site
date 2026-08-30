@@ -84,10 +84,11 @@
     </div>
 
     <h2>Secret-Pull-Rechner</h2>
-    <div class="callout tool" id="calc">
+    <div class="tool" data-odds-tool data-milestones="Für 50% Chance bei 1:{n} bräuchtest du {b50} Boxen; für 90%: {b90} Boxen." id="calc">
+      <p class="tool-title">🎰 SECRET-PULL-RECHNER</p>
       <div class="row">
         <label for="odds"><strong>Secret-Quote</strong></label>
-        <select id="odds">
+        <select id="odds" data-odds>
           <option value="72" selected>1 : 72 — üblich bei 6-Figuren-Serien</option>
           <option value="120">1 : 120 — berichtet für manche Collabs</option>
           <option value="144">1 : 144 — üblich bei 12-Figuren-Serien</option>
@@ -95,15 +96,26 @@
           <option value="720">1 : 720 — berichtet für Glow/Ultra-Varianten</option>
           <option value="custom">Eigene…</option>
         </select>
-        <span id="customwrap" hidden>1 : <input id="customodds" type="number" min="2" max="100000" value="72" style="width:90px"></span>
+        <span id="customwrap" data-customwrap hidden>1 : <input id="customodds" data-customodds type="number" min="2" max="100000" value="72" style="width:90px"></span>
       </div>
       <div class="row" style="margin-top:10px">
         <label for="boxes"><strong>Boxen, die du öffnest</strong></label>
-        <input id="boxes" type="number" min="1" max="10000" value="6" style="width:90px">
+        <input id="boxes" data-boxes type="number" min="1" max="10000" value="6" style="width:90px">
       </div>
-      <p style="margin-top:14px">Chance auf mindestens ein Secret: <span class="res-big" id="result">—</span></p>
-      <p class="meta" id="milestones"></p>
+      <p style="margin-top:14px">Chance auf mindestens ein Secret: <span class="res-big" id="result" data-result>—</span></p>
+      <p class="meta" id="milestones" data-milestones-out></p>
       <p class="meta">Modell: unabhängige Einzelbox-Ziehungen zur gedruckten Rate. Versiegelte ganze Cases können abweichen — dies ist ehrlich das Einzelbox-Modell. Mathematik: 1 − (1 − 1/N)<sup>Boxen</sup>; keine Daten verlassen deinen Browser.</p>
+    </div>
+
+
+    <div class="bars" aria-label="Benötigte Boxen für 50% Secret-Chance, je berichteter Quote">
+      <p class="tool-title" style="margin-bottom:6px">BOXEN FÜR 50% CHANCE, JE QUOTE</p>
+      <div class="bar-row"><span class="bar-name">1:72</span><span class="bar-track"><span class="bar-fill" style="width:10%"></span></span><span class="bar-val">50</span></div>
+      <div class="bar-row"><span class="bar-name">1:120</span><span class="bar-track"><span class="bar-fill" style="width:17%"></span></span><span class="bar-val">83</span></div>
+      <div class="bar-row"><span class="bar-name">1:144</span><span class="bar-track"><span class="bar-fill" style="width:20%"></span></span><span class="bar-val">100</span></div>
+      <div class="bar-row"><span class="bar-name">1:168</span><span class="bar-track"><span class="bar-fill" style="width:23%"></span></span><span class="bar-val">117</span></div>
+      <div class="bar-row"><span class="bar-name">1:720</span><span class="bar-track"><span class="bar-fill" style="width:100%"></span></span><span class="bar-val">499</span></div>
+      <p class="bar-cap">Unabhängige-Ziehung-Mathematik aus der Tabelle unten, Stand 2026-08-30.</p>
     </div>
 
     <h2>Wie selten ist ein Secret-Labubu?</h2>
@@ -151,44 +163,6 @@
 <script src="/js/config.js"></script>
 <script src="/js/analytics.js"></script>
 <script src="/js/main.js"></script>
-<script>
-(function () {
-  "use strict";
-  var odds = document.getElementById("odds"),
-      customwrap = document.getElementById("customwrap"),
-      customodds = document.getElementById("customodds"),
-      boxes = document.getElementById("boxes"),
-      result = document.getElementById("result"),
-      milestones = document.getElementById("milestones");
-  var sent = false;
-  function n() {
-    var v = odds.value === "custom" ? parseInt(customodds.value, 10) : parseInt(odds.value, 10);
-    return (v >= 2 && v <= 100000) ? v : NaN;
-  }
-  function recalc(fromUser) {
-    customwrap.hidden = odds.value !== "custom";
-    var N = n(), b = parseInt(boxes.value, 10);
-    if (!N || !b || b < 1) { result.textContent = "—"; milestones.textContent = ""; return; }
-    var p = 1 / N, atLeastOne = 1 - Math.pow(1 - p, b);
-    result.textContent = (atLeastOne * 100).toFixed(atLeastOne < 0.095 ? 1 : 0) + "%";
-    var b50 = Math.ceil(Math.log(0.5) / Math.log(1 - p)),
-        b90 = Math.ceil(Math.log(0.1) / Math.log(1 - p));
-    milestones.textContent = "Für 50% Chance bei 1:" + N + " bräuchtest du " + b50 +
-      " Boxen; für 90%: " + b90 + " Boxen.";
-    /* Nur echte Nutzung zählen: Event erst bei der ersten NUTZER-Interaktion,
-       nie beim Initial-Render (eco-Lektion: sonst misst die Beurteilungslinie
-       nur Seitenaufrufe). */
-    if (fromUser && !sent) { sent = true; try {
-      var payload = JSON.stringify({ p: location.pathname, r: "", e: "odds_calc" });
-      if (navigator.sendBeacon) navigator.sendBeacon("/api/ev", payload);
-    } catch (e) {} }
-  }
-  var onUser = function () { recalc(true); };
-  odds.addEventListener("change", onUser);
-  customodds.addEventListener("input", onUser);
-  boxes.addEventListener("input", onUser);
-  recalc(false);
-})();
-</script>
+<script src="/js/odds-calc.js"></script>
 </body>
 </html>

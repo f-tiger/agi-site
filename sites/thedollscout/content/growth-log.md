@@ -1908,3 +1908,23 @@ Repositioning + enrichment, shipped same-session:
    tool earns expansion (per-series presets); 0 → tool stays but stops
    getting rounds. Rarity page joins the standard page line (referral or
    AI-fetch streak by 09-27).
+
+## 2026-08-30 (round 5) — owner: "增强图文吸引力，工具凸显" + mid-round "现在的风格是不是太重了，不适合labubu的年轻人？"
+
+Full visual re-anchor, and the owner's mid-round correction changed its
+direction: the first pass toward dark neon was scrapped in place because
+the observation was right — every dark theme on this domain is inherited
+gravity from the adult site, and Labubu's audience is young, pastel,
+sticker-culture. New anchor (per the frontend-design skill discipline):
+LO-FI — paper-yellow surface, zine/scrapbook energy, rotated sticker
+cards with tape corners, colliding system fonts, riso misregistration
+reserved for REAL numbers only ("1:72" as a crooked sticker; the
+calculator result). No webfonts added; system stack IS the anchor.
+
+Tool prominence: the Secret Pull Calculator now sits front-and-center on
+BOTH homepages as a taped clipboard panel, plus a single-hue labeled bar
+row ("boxes for a 50% shot": 50 / 83 / 100 / 117 / 499 — derived math,
+recorded 2026-08-30) on homepages and rarity pages. Calculator extracted
+to shared js/odds-calc.js consumed by all four pages — the per-page copy
+risk (eco's injector lesson) is gone; odds_calc still fires on first user
+interaction only. Judgement lines unchanged from round 4.
