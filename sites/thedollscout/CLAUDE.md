@@ -39,9 +39,9 @@ Labubu / The Monsters 收藏品的**稀有度优先导购站**:核心痛点 = �
   - 串 tag = 零佣金:deploy 有构建闸门,.de 链挂 US tag 或 .com 链挂 DE tag
     直接拒绝构建。两个 storefront 链接都是**实测存在**的官方 POPMART 店铺页
     (amazon.com 与 amazon.de 各自的,2026-08-30 WebSearch 核实)。
-- **页面**:/ + /rarity + /how-blind-boxes-work + /fake-check + /where-to-buy +
-  /glossary + /data/,及其 /de/ 德语对(hreflang 语言组,x-default=EN;eco 模型;
-  /data/ 无德语对)。德语页价格只引 US 区间 + 指官方 popmart.com/de 在售页,
+- **页面**:/ + /start + /rarity + /how-blind-boxes-work + /psychology +
+  /fake-check + /where-to-buy + /glossary + /data/,及其 /de/ 德语对(hreflang
+  语言组,x-default=EN;eco 模型;/data/ 无德语对)。德语页价格只引 US 区间 + 指官方 popmart.com/de 在售页,
   **不发明 EUR 数字**。新增语言照此模式(页对 + hreflang + 对应市场 tag +
   该市场 Associates 站点列表先行)。
 
@@ -67,6 +67,17 @@ Labubu / The Monsters 收藏品的**稀有度优先导购站**:核心痛点 = �
   /how-blind-boxes-work FAQ LD;/glossary DefinedTermSet LD。FAQ LD 文本必须
   与页面可见文本一致(不造影子内容)。og:image 全站统一 /img/og.png
   (PIL 自绘 Swiss 风,1200×630,不含任何官方素材)。
+
+## 受众画像(2026-08-30,owner:「调研labubu群体心理画像，再看推荐内容」)
+
+**`content/audience-profile.md` 是本站选题的常驻依据**(内部文档,不发布):
+核心买家 = 25-34 岁女性(~60% 女性);Gen Z 是 TikTok 发现层非主力买家;家长
+是独立子人群。动机 = 变率强化多巴胺回路 + secret 追逐 + 包挂身份符号 + 内在
+小孩/丑萌审美 + 社群归属。可服务痛点 = 买家悔恨/超支、怕假、新手无从下手、
+家长适龄焦虑。据此出的页:/start(新手+家长)、/psychology(机制透明 + 期望
+成本工具,埋点 cost_calc)。**画像内容纪律**:写机制不写诊断,不给读者贴
+「addiction」标签;「投资/增值」角度与「戒瘾」卖点是画像明确拒绝项。新选题
+先对照画像的动机/痛点矩阵,再过三门。
 
 ## 硬内容规则(继承舰队,零妥协)
 

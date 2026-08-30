@@ -25,14 +25,18 @@ const BASE = "https://thedollscout.com";
    reading order we'd hand a person. */
 const PAGES = [
   ["index.html", "/"],
+  ["start.html", "/start"],
   ["rarity.html", "/rarity"],
   ["how-blind-boxes-work.html", "/how-blind-boxes-work"],
+  ["psychology.html", "/psychology"],
   ["fake-check.html", "/fake-check"],
   ["where-to-buy.html", "/where-to-buy"],
   ["glossary.html", "/glossary"],
   ["de/index.html", "/de/"],
+  ["de/start.html", "/de/start"],
   ["de/rarity.html", "/de/rarity"],
   ["de/how-blind-boxes-work.html", "/de/how-blind-boxes-work"],
+  ["de/psychology.html", "/de/psychology"],
   ["de/fake-check.html", "/de/fake-check"],
   ["de/where-to-buy.html", "/de/where-to-buy"],
   ["de/glossary.html", "/de/glossary"],

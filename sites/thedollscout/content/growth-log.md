@@ -1989,3 +1989,52 @@ no schedule) but gets no further investment; (c) llms-full.txt fetches
 by named AI bots appear in the D1 bot log — if the bot table shows GPTBot/
 ClaudeBot/PerplexityBot reading it within 28d, GEO surfaces get the next
 round; if only Googlebot ever touches it, GEO investment pauses.
+
+## 2026-08-30 (round 8) — owner: "站点tds需要再丰富并进化，现在太简单了，包括调研labubu群体心理画像，再看推荐内容"
+
+Research first, pages second. WebSearch multi-source audience profile
+written to content/audience-profile.md (permanent topic-selection input):
+core buyer = women 25-34 (~60% female; Chain Store Age / DemandSage);
+Gen Z is the TikTok discovery layer, not the committed-buyer layer
+(UserTesting survey); parents are a distinct segment with their own
+query ecosystem. Motivations: variable-ratio dopamine loop, secret
+chase + set completion, bag-charm status signaling (celebrity
+provenance), inner-child/ugly-cute appeal, community membership.
+Serviceable pains: buyer's guilt and overspend (Guardian reporting;
+China state-media warnings via NBC), fake anxiety, beginner confusion,
+parent age/safety worry. Explicitly rejected angles recorded in the
+profile: investment/appreciation content (site rule 4) and
+quit-addiction framing (we do budget math, not diagnosis).
+
+Two page pairs shipped from the profile:
+1. /start + /de/start — the beginner/parent page: three-decision
+   structure (format → series → channel), formats table, first-buy
+   checklist, straight-talk parents section (official age listings are
+   the authority; counterfeits bypass the safety chain; agree the box
+   count before the store). Highest buyer intent on the site; one
+   Ad-labelled storefront line per marketplace, tags marketplace-correct.
+2. /psychology + /de/psychology — the differentiation page: the
+   variable-reward mechanics sourced (Mental Floss, Rowan Center, Young
+   Post), the wanting explained without judgment (CBS, FASHION,
+   Refinery29, NBC), the two lies of the loop, and the CHASE-COST
+   REALITY tool (js/cost-calc.js, shared EN/DE): user enters their local
+   box price (we never print prices), gets expected cost of pulling a
+   secret (N boxes at 1:N, geometric) vs a 50% chance. New D1 event
+   cost_calc, first-user-interaction only, whitelisted in ev.js.
+   No affiliate links on the psychology page at all — trust is its yield.
+
+Surfaces updated: homepage cards (4-card second grid now), sitemap
+13→17 URLs, urls.txt, llms.txt, llms-full PAGES 12→16, self-check
+19→23 URLs, #series anchors on both homepages.
+
+Judgement lines (pre-registered, 28d by 09-27): (a) /start joins the
+standard page line — first search/assistant referral or AI-fetch streak,
+plus it is the page most likely to earn the site's first affiliate_click
+(highest intent); if /start gets human pv but zero storefront clicks,
+the storefront line placement gets ONE revision, not a redesign.
+(b) cost_calc ≥3 real uses → psychology page earns expansion (per-series
+presets); 0 uses AND 0 AI fetches → the tool stays but the page stops
+getting rounds. (c) Profile is falsifiable: if D1 referrals show a
+decisively different audience shape (e.g. male-skewed search terms,
+zero parent-query landings), audience-profile.md gets revised from
+data, not defended.
