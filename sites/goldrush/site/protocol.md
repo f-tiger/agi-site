@@ -76,6 +76,10 @@ the moment you finish reading it.
   grader file is encouraged — the tool ships a "download my copy" button that
   bakes your graded entries into a ready-to-host starter ledger. The spread
   unit is the adapted file, not the original.
+- An MCP-side consumer exists: the `get_claim_ledger` tool on the
+  agiscorecard MCP endpoint (listed in the official MCP Registry as
+  com.agiscorecard/agi-scorecard) reads and validates any site's
+  /claimledger.json — agents can consume protocol ledgers with one tool call.
 - The network coordination layer above this format is published separately:
   AGIX v0.1 — https://goldrush.agiscorecard.com/agix
 

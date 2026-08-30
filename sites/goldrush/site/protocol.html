@@ -98,7 +98,9 @@
   <strong>single self-contained file</strong> that both <em>emits</em> protocol-valid entries and
   <em>reads</em> any site's <code>/claimledger.json</code> — no dependencies, works offline from a saved
   copy. <strong>Adapted copies are blessed</strong>: rename it, pre-fill it, rebrand it (the tool ships a
-  "download my copy" button that bakes your entries into a ready-to-host starter ledger). The network
+  "download my copy" button that bakes your entries into a ready-to-host starter ledger). An MCP-side consumer exists too: the <code>get_claim_ledger</code> tool on the agiscorecard MCP endpoint
+  (official MCP Registry: <code>com.agiscorecard/agi-scorecard</code>) reads and validates any site's
+  <code>/claimledger.json</code> in one tool call. The network
   coordination layer above this format is published separately as <a href="/agix">AGIX v0.1</a>.</p>
   <a class="btn" href="/grader.html" onclick="ev('grader_open','protocol')">Open the grader →</a>
   <a class="btn sec" href="/protocol.md" onclick="ev('protocol_copy','md')">Get this protocol as a file →</a>
