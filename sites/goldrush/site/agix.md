@@ -1,6 +1,6 @@
-# AGIX v0.2 — the coordination algorithm of a self-evolving evidence network
+# AGIX v0.3 — the coordination algorithm of a self-evolving evidence network
 
-Named by the network's owner. v0.1 published 2026-08-29; v0.2 (incentive layer + perpetual-operation rules) 2026-08-30 · CC BY 4.0
+Named by the network's owner. v0.1 published 2026-08-29; v0.2 (incentive layer + perpetual-operation rules) 2026-08-30; v0.3 (agent-architecture correspondence + skill distribution) 2026-08-30 · CC BY 4.0
 Canonical: https://goldrush.agiscorecard.com/agix · this file: /agix.md
 Companion format spec: the Claim Ledger Protocol (/protocol).
 
@@ -56,6 +56,35 @@ breaks, the break is stated.
 | Port mechanisms, never content | The exploit step copies *mechanisms* (packaging, hook structures, protocols) across experts — never niche content. Cloning content collapses the population into correlated duplicates. | PBT 2017 (exploit/explore); Shumailov et al., Nature 2024 (recursive self-feeding kills diversity) |
 | Gated candidates, external verdicts | New candidates pass cheap pre-gates (data / demand / value) before any work — but pass/fail **verdicts come only from measured external behavior**, never from the generating agent's own opinion of its work. | Tree of Thoughts 2023 (generate/evaluate/expand/prune); Huang et al. 2024 (self-correction without external signal degrades); Zheng et al. 2023 (LLM judges are biased) |
 | Capacity with explicit overflow | Each expert has a hard freshness capacity (what can be kept current). A claim beyond capacity is routed to a spawn decision or explicitly marked not-covered — never silently added as a page that will rot. | Switch Transformer 2022 (capacity factor; but dropping a claim is an editorial act, so overflow here is explicit non-coverage, not silent loss) |
+
+## 3b. The loop in published agent-architecture terms (added in v0.3)
+
+Anthropic's "Building Effective Agents" (2024) — the most widely adopted
+published methodology for agent systems — distinguishes **workflows** (LLMs
+and tools orchestrated through predefined code paths) from **agents** (LLMs
+dynamically directing their own processes), names five composable patterns,
+and states three design principles: simplicity, transparency, and a carefully
+crafted agent-computer interface (ACI). AGIX maps onto that vocabulary
+exactly, and the one place it refuses the mapping is load-bearing:
+
+| Anthropic pattern / principle | Where it lives in AGIX |
+|---|---|
+| Routing | §2's two routing layers — a query or claim is classified once and sent to one specialist expert. |
+| Prompt chaining with gates | The §3 cycle itself: five steps with the three pre-gates (data / demand / value) between signal and publish. |
+| Parallelization (voting) | The §4 evaluator panel — independent signals (dual-channel traffic, third-party citations, money events) must agree before a verdict; one channel alone never decides. |
+| Orchestrator-workers | The SPAWN rule (§5b): the maintenance cycle delegates a demand-proven niche to a new worker ledger with its own charter. |
+| Evaluator-optimizer | SCORE → EXPAND — with one deliberate substitution: the evaluator is **measured external behavior**, never a co-located model judging its own generator (Zheng et al. 2023 on judge bias; Huang et al. 2024 on self-correction without external signal). |
+| Simplicity ("find the simplest solution possible") | The entry format is five fields; the protocol fits on one page. Complexity was refused where offered (no token, no invented neural network). |
+| Transparency ("explicitly show planning steps") | Every loop step lands as a public commit; the repository history IS the planning trace. |
+| ACI ("invest as much in agent-computer interfaces as in human ones"; poka-yoke your tools) | The machine surfaces are designed like products: schema constraints that make dishonesty a validation error (a `flip` under 15 characters fails), an MCP tool with https-only/size-capped guards, and a skill file whose description states its trigger conditions. |
+
+**The refusal**: by Anthropic's own definition, AGIX's mechanical layer is
+deliberately a **workflow, not an agent** — predefined code paths,
+pre-registered triggers, no runtime self-direction. That follows their first
+advice (use the simplest architecture that suffices) and this spec's §5b
+rationale: a system that directs its own process is exactly the system that
+can direct itself around its guardrails. Autonomy lives in the schedule;
+discretion stays constitutional.
 
 ## 4. The evaluator panel and its guards
 
@@ -207,11 +236,21 @@ Mixtral (Jiang et al. 2024) · OLMoE (Muennighoff et al. 2024) · DeepSeekMoE
 (Yao et al. 2023) · Reward hacking (Skalse et al. 2022) · Model collapse
 (Shumailov et al., Nature 2024) · Self-correction limits (Huang et al. 2024) ·
 LLM-as-judge bias (Zheng et al. 2023) · Darwin Gödel Machine (Sakana 2025) ·
-Sentient Ascend (Miikkulainen et al., AAAI 2018).
+Sentient Ascend (Miikkulainen et al., AAAI 2018) · Building Effective Agents
+(Anthropic, 2024 — workflows vs agents, five patterns, ACI) · Agent Skills
+open standard (agentskills.io, 2025 — SKILL.md, progressive disclosure;
+adopted across 25+ agent products within twelve weeks) · Ethereum whitepaper
+(Buterin 2014 — the platform lesson only: a base ledger others build on
+permissionlessly; its generality is deliberately NOT ported, because a claims
+format that can execute arbitrary logic becomes an attack surface).
 
 ## 9. Versioning
 
 This document is the algorithm. Changes bump the version; old versions stay in
 repository history. **v0.1 — 2026-08-29 (initial). v0.2 — 2026-08-30 (adds §7 proof-of-grading
 incentive layer and §5b perpetual operation — auto-evolution and the concrete
-auto-SPAWN replication rule — on the owner's direction).**
+auto-SPAWN replication rule — on the owner's direction). v0.3 — 2026-08-30
+(adds §3b, the correspondence to Anthropic's published agent-architecture
+vocabulary incl. the deliberate workflow-not-agent refusal, and the
+skill-file distribution lane — an installable SKILL.md under the open Agent
+Skills standard, on the owner's direction).**

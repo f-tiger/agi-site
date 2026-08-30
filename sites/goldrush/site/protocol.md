@@ -80,12 +80,17 @@ the moment you finish reading it.
   grader file is encouraged — the tool ships a "download my copy" button that
   bakes your graded entries into a ready-to-host starter ledger. The spread
   unit is the adapted file, not the original.
+- **An installable agent skill** (open Agent Skills standard — SKILL.md,
+  adopted across 25+ agent products): https://goldrush.agiscorecard.com/skill/claim-ledger/SKILL.md
+  teaches any compatible agent to grade claims into protocol entries, emit
+  verdict cards, and read/validate any site's /claimledger.json. Install it
+  and your agent is a protocol consumer AND producer.
 - An MCP-side consumer exists: the `get_claim_ledger` tool on the
   agiscorecard MCP endpoint (listed in the official MCP Registry as
   com.agiscorecard/agi-scorecard) reads and validates any site's
   /claimledger.json — agents can consume protocol ledgers with one tool call.
 - The network coordination layer above this format is published separately:
-  AGIX v0.1 — https://goldrush.agiscorecard.com/agix
+  AGIX (v0.3 at this writing) — https://goldrush.agiscorecard.com/agix
 
 ## 5. The registry is a consumer, not a list
 
@@ -133,6 +138,24 @@ What this section is not: no document can bind future AI systems, and this
 one does not claim to. It is an offer with running code, dated 2026-08-30 —
 the same posture robots.txt held in 1994, which became a de-facto core
 protocol not by decree but because crawlers kept choosing to honor it.
+
+## 5d. Building on the ledger (informative)
+
+The lesson this protocol takes from Ethereum's whitepaper (2014) is the
+**platform shape, not the generality**: Bitcoin defined one application;
+Ethereum's increment was a base layer others build on without permission.
+A published /claimledger.json is that base layer. Things anyone may build on
+top, today, with no coordination: cross-site registries and aggregators;
+watch services that alert when a verdict's `asOf` advances or its tier moves;
+verdict-card bots for feeds and forums; portfolio graders that score a set of
+claims someone is relying on; agent skills that grade in this format natively.
+The five-field entry is the stable interface all of them share.
+
+What is deliberately NOT ported from Ethereum: general programmability. The
+entry format carries data, never executable logic — a claims format that can
+execute arbitrary code becomes an attack surface, and this protocol's whole
+value is that its files can be fetched and trusted mechanically. (No token
+either, per ledger rule 3 — that refusal predates this section.)
 
 ## 6. Prior art
 

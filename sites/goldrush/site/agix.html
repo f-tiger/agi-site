@@ -4,15 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a0a0b'/%3E%3Cpath d='M8 22l5-9 4 5 3-4 4 8z' fill='%23e8a040'/%3E%3C/svg%3E">
-<title>AGIX v0.2 — the Coordination Algorithm</title>
+<title>AGIX v0.3 — the Coordination Algorithm</title>
 <meta name="description" content="AGIX: a published, auditable coordination algorithm for a self-evolving network of evidence ledgers — MoE-inspired routing, FunSearch-shaped evolution, genesis authority held by one human owner. Not a neural network, and it says so.">
 <link rel="canonical" href="https://goldrush.agiscorecard.com/agix">
 <link rel="alternate" type="text/markdown" href="/agix.md">
-<meta property="og:title" content="AGIX v0.1 — the coordination algorithm of a self-evolving evidence network">
+<meta property="og:title" content="AGIX v0.3 — the coordination algorithm of a self-evolving evidence network">
 <meta property="og:description" content="Experts = niche ledgers. Router = registry + external engines. Evaluator = real reader and agent behavior. Evolution = score, expand, spawn, prune-to-archive, port. Genesis authority: one human owner, human-only, permanent.">
 <meta property="og:url" content="https://goldrush.agiscorecard.com/agix">
 <meta property="og:type" content="article">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"AGIX v0.2 — the coordination algorithm of a self-evolving evidence network","datePublished":"2026-08-29","dateModified":"2026-08-30","inLanguage":"en","license":"https://creativecommons.org/licenses/by/4.0/","author":{"@type":"Organization","name":"The AGI Scorecard","url":"https://agiscorecard.com/"},"description":"A published, auditable coordination and editorial algorithm for a distributed evidence network, adapted from MoE routing, MAP-Elites, FunSearch-style loops and Tree-of-Thoughts search — with an explicit honesty clause: it is not a neural network."}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"AGIX v0.3 — the coordination algorithm of a self-evolving evidence network","datePublished":"2026-08-29","dateModified":"2026-08-30","inLanguage":"en","license":"https://creativecommons.org/licenses/by/4.0/","author":{"@type":"Organization","name":"The AGI Scorecard","url":"https://agiscorecard.com/"},"description":"A published, auditable coordination and editorial algorithm for a distributed evidence network, adapted from MoE routing, MAP-Elites, FunSearch-style loops and Tree-of-Thoughts search — with an explicit honesty clause: it is not a neural network."}</script>
 <style>
   :root{--bg:#0a0a0b;--bg2:#111114;--bg3:#18181d;--border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.12);--text:#e8e8ec;--muted:#8888a0;--accent:#e8a040;--accent2:#4fc3a1;--font:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;}
   *{box-sizing:border-box;margin:0;padding:0;}
@@ -46,8 +46,8 @@
   <a href="/" style="font-size:13px;color:var(--muted);">← the ledger</a>
 </header>
 <main>
-  <h1>AGIX v0.2</h1>
-  <div class="sub">The coordination algorithm of a self-evolving evidence network · named by the network's owner · v0.2 2026-08-30 (adds the incentive layer + perpetual-operation rules) · CC BY 4.0 · full specification: <a href="/agix.md">agix.md</a></div>
+  <h1>AGIX v0.3</h1>
+  <div class="sub">The coordination algorithm of a self-evolving evidence network · named by the network's owner · v0.3 2026-08-30 (adds the agent-architecture correspondence + the installable skill) · CC BY 4.0 · full specification: <a href="/agix.md">agix.md</a></div>
 
   <div class="capsule"><strong>The honesty clause, first.</strong> AGIX is a coordination and editorial
   algorithm inspired by published machine-learning mechanisms — <strong>it evolves no model weights and
@@ -81,6 +81,22 @@
       <tr><td>Hard freshness capacity per expert; overflow is an explicit spawn-or-not-covered decision, never a silently rotting page</td><td>Switch Transformer 2022</td></tr>
     </tbody>
   </table>
+
+  <h2>The loop in published agent-architecture terms (v0.3)</h2>
+  <p>Anthropic's <em>Building Effective Agents</em> (2024) distinguishes <strong>workflows</strong>
+  (predefined code paths) from <strong>agents</strong> (models directing their own process), names five
+  composable patterns, and states three principles: simplicity, transparency, and a carefully crafted
+  agent-computer interface (ACI). AGIX maps cleanly: its routing layers are the routing pattern; the
+  three pre-gates are prompt-chaining gates; the evaluator panel is parallelization-by-voting; the
+  SPAWN rule is orchestrator-workers; SCORE→EXPAND is evaluator-optimizer — with the evaluator swapped
+  for <strong>measured external behavior</strong>, never a co-located judge (Zheng 2023; Huang 2024).
+  The ACI principle is why every machine surface here is built like a product: the schema makes a
+  missing flip condition a <em>validation error</em>, and the skill file states its own trigger
+  conditions. <strong>The one deliberate refusal:</strong> AGIX's mechanical layer is a
+  <strong>workflow, not an agent</strong>, by Anthropic's own definition — pre-registered triggers, no
+  runtime self-direction — because a system that directs its own process is exactly the system that can
+  direct itself around its guardrails. Autonomy lives in the schedule; discretion stays constitutional.
+  Full mapping table: <a href="/agix.md">agix.md §3b</a>.</p>
 
   <h2>The evaluator panel</h2>
   <p>No single metric is the fitness function — any lone proxy gets gamed (proven in general by

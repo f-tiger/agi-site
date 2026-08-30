@@ -23,7 +23,7 @@ AI 淘金潮的证据账本:每一条「AI 赚钱」宣称 → 证据层级(veri
 - 传播引擎①fork 套件:FORK.md + MIT(内容 CC BY 4.0);②引用机器:判定型账本
   条目按主站六件套方法论逐步扩为深页(Evolution Protocol 的 Expand 步)。
 
-## AGIX v0.2 = 本站与后续网络的协调算法(owner 命名;site/agix.md 是唯一规则源,改规则必须升版本)
+## AGIX v0.3 = 本站与后续网络的协调算法(owner 命名;site/agix.md 是唯一规则源,改规则必须升版本)
 EVOLUTION.md 已被 AGIX 吸收(同日,保留存档)。核心:SCORE→EXPAND→SPAWN→PRUNE(降级进
 公开档案,永不删除)→PORT(只移植机制,永不移植内容);每条机制在 agix.md 里标注文献出处
 (MoE/MAP-Elites/FunSearch/ToT 系),诚实条款第一句写明「不是神经网络」。**创世权限(owner
@@ -39,6 +39,12 @@ EVOLUTION.md 已被 AGIX 吸收(同日,保留存档)。核心:SCORE→EXPAND→S
 ≥3 相关查询证据 + 宿主达新鲜度上限 → 从 fork 套件孵化新垂直账本,每季最多 1 个,
 公开 commit,天生带 kill switch);**宪法层永不自改**(诚实条款/创世/无币条款/评估
 护栏只有 owner 本人能动——DGM 删自检代码的教训,结构性防自改护栏)。
+**v0.3 agent 架构对应(owner 2026-08-30「Anthropic agent 白皮书 × web3 白皮书再优化」)**:
+§3b 把 AGIX 逐条映射到 Anthropic《Building Effective Agents》词汇(routing/门控链/
+投票并行/orchestrator-workers/evaluator-optimizer + 三原则:简单/透明/ACI),并写明
+**唯一的拒绝**:机械层按其定义刻意是 workflow 不是 agent(能自主导向流程的系统就是
+能绕开护栏的系统)——这条拒绝是宪法级理由,别"升级成 agent"。以太坊白皮书只借
+平台形状(账本之上可无许可构建),**刻意不借通用可编程性**(条目永远是数据不是代码)。
 
 ## 传播三件套(2026-08-29 调研裁决后定型;fork-整站方案已被 owner 否决并由历史证据证实)
 ① `/protocol`(+/protocol.md)= Claim Ledger Protocol v0.1:well-known 路径
@@ -48,6 +54,11 @@ EVOLUTION.md 已被 AGIX 吸收(同日,保留存档)。核心:SCORE→EXPAND→S
 (7 行文本判定卡,Wordle 分享格教训),「下载我的副本」烤入用户条目
 (GTDTiddlyWiki 教训:传播单元是改名副本)。
 ③ `/agix`(+/agix.md)= 网络协调算法白皮书。
+④(2026-08-30 增)`/skill/claim-ledger/SKILL.md` = **可安装 agent 技能**(开放 Agent
+Skills 标准,12 周被 25+ agent 产品采纳——比 MCP 更轻的分发单元):任何兼容 agent 装上
+即同时成为协议的消费者与生产者。frontmatter 约束:name 小写连字符、禁含 claude/anthropic,
+description ≤1024 字符须写明触发条件。仓库根另有 AGENTS.md(给在 fork 里干活的编码
+agent 的宪法不变量 + 校验清单)。
 **发布纪律(比特币实史)**:先全部跑起来才宣布;只为新版本发声,不为提醒发声;
 预算 11-20 个月静默期;异议逐条书面回应并入 addenda。
 
