@@ -1,6 +1,6 @@
-# AGIX v0.1 — the coordination algorithm of a self-evolving evidence network
+# AGIX v0.2 — the coordination algorithm of a self-evolving evidence network
 
-Named by the network's owner. Published 2026-08-29 · CC BY 4.0
+Named by the network's owner. v0.1 published 2026-08-29; v0.2 (incentive layer + perpetual-operation rules) 2026-08-30 · CC BY 4.0
 Canonical: https://goldrush.agiscorecard.com/agix · this file: /agix.md
 Companion format spec: the Claim Ledger Protocol (/protocol).
 
@@ -87,6 +87,39 @@ here take weeks. The spec treats that as a property, not an apology: slow
 evaluators are exactly why the archive, the probation bias, and the sample
 thresholds exist.
 
+## 5b. Perpetual operation: auto-evolution and auto-replication after genesis
+
+After genesis, the loop requires **no ongoing human initiation**. It rides the
+network's standing scheduled sessions; the genesis holder can stop everything
+at any time (the kill switch) but never needs to push it. Two layers, evolved
+differently — and the split is itself an anti-failure design:
+
+**The mechanical layer evolves and replicates automatically**, on pre-registered
+triggers only:
+- *Evolution*: entries update on their flip-condition dates; expansions and
+  prunes execute when their §3 thresholds are met; the archive grows; the
+  incentive layer's featured slot re-allocates each cycle. All of it lands as
+  public commits.
+- *Replication (the SPAWN rule, made concrete)*: when an entry family on an
+  existing ledger reaches **≥10 ledger interactions/28d with evidence of ≥3
+  distinct related queries or citations**, and the host expert is at its
+  freshness capacity, the maintenance cycle **spawns a new niche ledger from
+  the fork kit** — its own /claimledger.json, its own written charter, a
+  probation window per §3 — and registers it. At most **one spawn per
+  quarter** (capacity discipline beats enthusiasm), every spawn is a public
+  commit, and every spawned property is born with the same kill switch.
+- Below thresholds, nothing spawns and nothing is forced: replication follows
+  measured demand, never ambition. "No data yet" remains a recorded state.
+
+**The constitutional layer never self-amends.** The honesty clause (§0), the
+genesis authority (§6), the incentive layer's no-monetary-value clause (§7),
+and the evaluator guards (§4) can be changed only by the genesis holder's own
+explicit act. A self-evolving system that can edit its own guardrails will
+eventually optimize them away — the Darwin Gödel Machine documented an agent
+deleting its own detection tokens to pass a metric (Sakana 2025). AGIX's answer
+is structural: the algorithm evolves everything except the rules that keep it
+honest.
+
 ## 6. Genesis authority (the special point)
 
 All authority in this network derives from its **genesis record**: the founding
@@ -117,7 +150,52 @@ cannot spend, transfer, or custody value; the network will never issue a token;
 no payment ever changes a verdict; a one-file kill switch freezes any AGIX-run
 property instantly.
 
-## 7. Prior art and lineage
+## 7. The incentive layer — proof-of-grading (added in v0.2)
+
+Bitcoin's deepest invention was not the coin; it was an incentive structure in
+which honest contribution is the most profitable strategy: work is verified
+mechanically, rewards are allocated automatically, early contributors earn
+more, and attacking costs more than cooperating. AGIX ports that structure
+**without any token** — the genesis limits forbid one, and ledger rule 3 grades
+points-whose-value-needs-new-buyers as a claim awaiting a verdict.
+
+**What this network can actually pay** (all real, none transferable, none monetary):
+- **Distribution** — registry placement, syndication of a ledger's verdicts on
+  network surfaces with attribution, and machine reach: every listed ledger is
+  served to AI agents through the `get_claim_ledger` MCP tool.
+- **Reputation** — the public conformance state (validates / flagged), and
+  permanent founding status (below).
+- **Permanence** — a never-deleted, dated public record of grading work, which
+  is precisely the asset no individual claim-checker can cheaply build alone.
+
+**The mechanics, mapped:**
+1. **Proof-of-grading (the work).** Admission = mechanically verifiable work:
+   a `/claimledger.json` that validates against the published schema, with all
+   five fields, real flip conditions, and resolving sources. Like proof-of-work,
+   it is expensive to fake well and cheap to verify.
+2. **Algorithmic reward allocation (the AI half).** Each AGIX cycle, the SCORE
+   step ranks listed ledgers on measured signals only — agent fetches of their
+   ledger, conformance state, citation evidence where third-party data exists —
+   and allocates the cycle's featured-syndication slot accordingly. The reward
+   router is the same gating machinery as §3, pointed at contributors; scores
+   are never subsidized, only selection is (the §3 probation rule applies to
+   new ledgers too).
+3. **Early-contributor curve (the halving analog).** Pre-registered: the first
+   **10** external ledgers admitted to the registry earn permanent, irrevocable
+   **founding-ledger status** — listed first, forever. Like early block
+   subsidies, the reward is largest exactly when joining is least obviously
+   worth it, and it decays to zero by design.
+4. **Slashing (honesty enforcement).** A ledger caught silently rewriting its
+   history is publicly flagged on the registry — reputation slashing. Flags are
+   dated and, like everything else here, never deleted; a corrected ledger's
+   recovery is also public.
+
+**The honesty clause of this layer:** these rewards are distribution and
+reputation only. They have no monetary value, cannot be transferred or sold,
+and never will be. The moment a reward here becomes tradable, this network has
+become an entry on its own ledger.
+
+## 8. Prior art and lineage
 
 Adaptive mixtures of local experts (Jacobs et al. 1991) · Sparsely-gated MoE
 (Shazeer et al. 2017) · Switch Transformers (Fedus et al. 2022) · ST-MoE (Zoph
@@ -131,7 +209,9 @@ Mixtral (Jiang et al. 2024) · OLMoE (Muennighoff et al. 2024) · DeepSeekMoE
 LLM-as-judge bias (Zheng et al. 2023) · Darwin Gödel Machine (Sakana 2025) ·
 Sentient Ascend (Miikkulainen et al., AAAI 2018).
 
-## 8. Versioning
+## 9. Versioning
 
 This document is the algorithm. Changes bump the version; old versions stay in
-repository history. **v0.1 — 2026-08-29.**
+repository history. **v0.1 — 2026-08-29 (initial). v0.2 — 2026-08-30 (adds §7 proof-of-grading
+incentive layer and §5b perpetual operation — auto-evolution and the concrete
+auto-SPAWN replication rule — on the owner's direction).**

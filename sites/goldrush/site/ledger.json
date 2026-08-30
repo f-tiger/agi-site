@@ -2,7 +2,7 @@
   "name": "The AI Gold Rush Ledger",
   "url": "https://goldrush.agiscorecard.com/",
   "license": "CC BY 4.0",
-  "dateModified": "2026-08-29",
+  "dateModified": "2026-08-30",
   "method": {
     "tiers": {
       "verified": "primary documents or our own measured data",
@@ -79,6 +79,16 @@
       "asOf": "2026-08-28",
       "flip": "a platform policy reversal, or a verified post-2025 channel ledger with revenue and strikes shown",
       "source": "https://goldrush.agiscorecard.com/#ledger"
+    },
+    {
+      "id": "pay-per-crawl",
+      "claim": "Small sites can earn passive income charging AI crawlers to read them (pay-per-crawl)",
+      "tier": "reported",
+      "verdict": "not-a-small-site-income-lane-yet",
+      "asOf": "2026-08-28",
+      "flip": "any small independent site publishing verified crawl-payment revenue above $50/month, or a major crawler operator publishing per-site payout data showing the same",
+      "source": "https://goldrush.agiscorecard.com/#ledger"
     }
-  ]
+  ],
+  "archive": []
 }
