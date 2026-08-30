@@ -111,7 +111,11 @@ competing ledger sites, and cannot be bought.
 
 **Founding ledgers (pre-registered 2026-08-30):** the first 10 external ledgers
 admitted earn permanent founding status — listed first, forever, irrevocably.
-The incentive design behind this is published in AGIX §7 (proof-of-grading).
+The incentive design behind this is published in AGIX §7 (proof-of-grading);
+the full adoption economics — first-coverage tags minted once per niche,
+adoption epochs (founding 10 → early 90 → standard), the 0%-forever protocol
+fee, and why early adoption is financially rational without any token — is
+AGIX §7b.
 
 ## 5b. Founder independence
 

@@ -1,6 +1,6 @@
-# AGIX v0.3 — the coordination algorithm of a self-evolving evidence network
+# AGIX v0.4 — the coordination algorithm of a self-evolving evidence network
 
-Named by the network's owner. v0.1 published 2026-08-29; v0.2 (incentive layer + perpetual-operation rules) 2026-08-30; v0.3 (agent-architecture correspondence + skill distribution) 2026-08-30 · CC BY 4.0
+Named by the network's owner. v0.1 published 2026-08-29; v0.2 (incentive layer + perpetual-operation rules) 2026-08-30; v0.3 (agent-architecture correspondence + skill distribution) 2026-08-30; v0.4 (adoption economics — the tokenless deflationary design) 2026-08-30 · CC BY 4.0
 Canonical: https://goldrush.agiscorecard.com/agix · this file: /agix.md
 Companion format spec: the Claim Ledger Protocol (/protocol).
 
@@ -224,6 +224,83 @@ reputation only. They have no monetary value, cannot be transferred or sold,
 and never will be. The moment a reward here becomes tradable, this network has
 become an entry on its own ledger.
 
+## 7b. Adoption economics — the deflationary design, ported without the poison (added in v0.4)
+
+Bitcoin's whitepaper is remembered for the technology, but its distribution ran
+on the financial design. Decompose that engine honestly into four mechanisms:
+
+1. **Credible fixed supply** — 21M coins, halvings enforced by consensus code
+   rather than promises. Being early was mathematically cheaper per unit than
+   being late, and the schedule could be verified before trusting it.
+2. **Value indexed to adoption** — the asset appreciates with the network, so
+   every holder profits from evangelism; distribution was self-funding. The
+   empirical record says this engine was speculative, not transactional: even
+   at scale, merchant payments remained a small fraction of value flows while
+   ownership kept spreading — people held because holding might pay, and
+   payment usage piggybacked on ownership.
+3. **Permissionless costly entry** — mining converted real resources into
+   stake with no gatekeeper's approval.
+4. **Transferability** — a market price made the incentive liquid and legible.
+   It was the fuel of propagation AND the engine of every bubble, rug, and
+   fraud the sector produced.
+
+AGIX ports the first three and refuses the fourth. The refusal is the design.
+
+**Port 1 — the genuinely deflationary asset is dated history.** The supply of
+2026-dated, publicly checkable grading record shrinks to zero the moment 2026
+ends; it can never be minted again at any price. A miss kept on the ledger, a
+flip honored on its date, a niche covered first — each is a coinbase-style
+mint that happens exactly once. Latecomers can buy traffic; they cannot buy
+seniority. This out-deflates Bitcoin: a halving cuts new supply in half — the
+passage of time cuts the supply of early history to zero. Concretely:
+
+- **First-coverage tags**: the first admitted ledger to cover a claim niche
+  carries a permanent, registry-displayed first-coverage mark — minted once
+  per niche, ever.
+- **Adoption epochs (the halving schedule)**: founding cohort — the first 10
+  external ledgers, permanent top listing, already pre-registered — then an
+  early cohort (the next 90, a lesser permanent tag), then standard admission.
+  A fixed, published schedule of diminishing permanent status.
+
+**Port 2 — value indexed to adoption, without a price ticker.** A registry
+position appreciates as the protocol spreads: every new consumer — an agent
+installing the skill, a site embedding a ledger, an engine citing one —
+increases the citation and referral share routed through listed ledgers,
+founding positions first. Spreading the protocol is therefore in a grader's
+direct financial interest: the demand side of their audit business grows with
+every copy of the spec that lands.
+
+**Port 3 — costly entry is proof-of-grading (§7).** Public grading labor with
+misses on the record is the mining: permissionless, expensive to fake,
+verifiable by strangers.
+
+**The refusal — transferability.** A tradable stake in a verdict network is a
+verdict market: whoever buys the stake buys the incentive to protect it, and
+ledger rule 2 ("no payment ever changes a verdict") dies by secondary market
+instead of by bribe. The cost of this refusal is stated plainly — propagation
+without speculative fuel is slower. The compensation is specific to this era,
+below.
+
+**The commercial rights layer — what the position is worth in actual
+currency.** Any listed ledger may sell audits and verification services under
+its own brand, priced on its own track record. The protocol's cut is **0%,
+forever** — and the promise is credible precisely because the constitutional
+layer cannot self-amend (§5b): no future version can introduce rent. Early
+adoption is pure upside: the cost is grading labor, the asset is unrepeatable
+seniority, and the audit revenue line belongs entirely to the grader.
+
+**The AI-era optimization — the variable Bitcoin did not have.** Bitcoin
+propagated through humans, who speculate. This protocol propagates
+increasingly through agents, which do not. An agent selecting a source to cite
+does not care what the source might be worth tomorrow; published citation
+research rewards dated statistics, primary sources, and machine-readable
+coverage — precisely the assets this design mints. In agent-mediated
+distribution, speculative fuel is worthless and verifiable seniority is what
+selection compounds on. And each model training cutoff that passes is this
+system's halving: the canonical, dated sources in the corpus at cutoff keep
+their position in the weights; whoever is not yet on the record waits for the
+next epoch.
+
 ## 8. Prior art and lineage
 
 Adaptive mixtures of local experts (Jacobs et al. 1991) · Sparsely-gated MoE
@@ -253,4 +330,10 @@ auto-SPAWN replication rule — on the owner's direction). v0.3 — 2026-08-30
 (adds §3b, the correspondence to Anthropic's published agent-architecture
 vocabulary incl. the deliberate workflow-not-agent refusal, and the
 skill-file distribution lane — an installable SKILL.md under the open Agent
-Skills standard, on the owner's direction).**
+Skills standard, on the owner's direction). v0.4 — 2026-08-30 (adds §7b
+adoption economics: Bitcoin's four-mechanism propagation engine decomposed,
+three ported tokenlessly — dated-history deflation with first-coverage tags
+and adoption epochs, adoption-indexed registry value, proof-of-grading entry —
+transferability refused with the cost stated, the 0%-forever commercial
+rights layer, and the AI-era substitution of verifiable seniority for
+speculative fuel; on the owner's direction).**
