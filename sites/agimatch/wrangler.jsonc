@@ -1,0 +1,12 @@
+{
+  // agimatch — 2026-08-30, owner-directed matching-platform sub-site on the
+  // agiscorecard umbrella (same pattern as goldrush/source/play/invest).
+  // Payment addresses are Worker secrets (PAY_USDT_TRC20 / PAY_USDC_EVM),
+  // set in the Cloudflare dashboard — never in this public repo.
+  "name": "agimatch",
+  "main": "worker.js",
+  "compatibility_date": "2026-08-01",
+  "assets": { "directory": "site", "binding": "ASSETS", "run_worker_first": true },
+  "routes": [{ "pattern": "match.agiscorecard.com", "custom_domain": true }],
+  "d1_databases": [{ "binding": "EV", "database_name": "agimatch-events", "database_id": "71f9d85f-1363-48f4-85ee-a445fb9dd203" }]
+}

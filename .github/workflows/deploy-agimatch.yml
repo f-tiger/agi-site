@@ -1,0 +1,114 @@
+name: Deploy agimatch
+
+# agimatch — 2026-08-30 建站(owner 指令:「构建一个撮合平台的agi子域名…有需求,有回应,
+# 解决用户痛点…可以对接现有成熟的需求撮合平台…支付交易用web3进行」+ 同日追加
+# 「ai也可以解决问题,撮合也可以解决问题」→ solve-first,匹配兜底)。
+# 域名:match.agiscorecard.com(wrangler custom_domain 自动挂载)。
+# 成本核算:push ~0.7 分/次,无 schedule(路由表维护搭舰队既有每日会话)。
+# Owner 一键停止:仓里存在 sites/agimatch/KILLED 文件 → 本流水线拒绝部署,
+# 线上冻结在最后版本。
+on:
+  push:
+    branches: [main]
+    paths: ["sites/agimatch/**", ".github/workflows/deploy-agimatch.yml"]
+  workflow_dispatch: {}
+
+concurrency:
+  group: deploy-agimatch
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      # 防回滚守卫(舰队标准,2026-08-26 事故):乱序补发的旧 push 事件一律部署
+      # main 当前 tip,绝不把生产滚回历史版本。fail-open:网络抖动不阻塞部署。
+      - name: Guard — a replayed/stale push deploys main's tip, never rolls back
+        if: github.event_name == 'push'
+        run: |
+          git fetch origin main -q || { echo "::warning::fetch failed — stale-run guard skipped"; exit 0; }
+          TIP=$(git rev-parse origin/main 2>/dev/null || true)
+          case "$TIP" in
+            "" | *[!0-9a-f]* ) echo "::warning::main tip unresolvable — stale-run guard skipped"; exit 0 ;;
+          esac
+          if [ "$(git rev-parse HEAD)" != "$TIP" ]; then
+            echo "::warning::stale run — deploying main tip instead of rolling back"
+            git reset --hard "$TIP"
+          fi
+      - name: Owner kill switch
+        run: |
+          if [ -f sites/agimatch/KILLED ]; then
+            echo "::notice::KILLED file present — owner has frozen this site; skipping deploy."
+            exit 1
+          fi
+      - name: Gate — expected files present, worker parses, routes.json valid
+        working-directory: sites/agimatch
+        run: |
+          for f in site/index.html site/routes.json site/llms.txt site/robots.txt worker.js wrangler.jsonc; do
+            [ -f "$f" ] || { echo "::error::missing $f"; exit 1; }
+          done
+          node --check worker.js
+          node -e "
+            const r = JSON.parse(require('fs').readFileSync('site/routes.json','utf8'));
+            if (!Array.isArray(r.buckets) || !r.buckets.length) throw new Error('routes.json: no buckets');
+            const ids = new Set();
+            let priced = 0, sourced = 0;
+            for (const b of r.buckets) {
+              if (!b.id || !b.tier || !b.answer) throw new Error('routes.json: bucket missing id/tier/answer: ' + JSON.stringify(b).slice(0,120));
+              if (!['SOLVED-NOW','DIY-WITH-GUIDE','NEEDS-A-HUMAN'].includes(b.tier)) throw new Error('routes.json: bad tier ' + b.tier);
+              if (ids.has(b.id)) throw new Error('routes.json: duplicate bucket id ' + b.id);
+              ids.add(b.id);
+              if (!Array.isArray(b.keywords) || !b.keywords.length) throw new Error('routes.json: bucket has no keywords, it can never match: ' + b.id);
+              // ZERO-FABRICATION GATE: any bucket that states a price must carry a source.
+              // An unsourced number is the one failure mode this whole site cannot survive.
+              const claimsPrice = Boolean(b.typical_cost) || (b.tools || []).some(t => t && t.price);
+              if (claimsPrice) {
+                priced++;
+                if (!Array.isArray(b.sources) || !b.sources.length) {
+                  throw new Error('routes.json: bucket ' + b.id + ' states a price with no source — unsourced numbers are never published');
+                }
+                sourced++;
+              }
+              for (const s of (b.sources || [])) {
+                if (!s.url || !/^https?:\/\//.test(s.url)) throw new Error('routes.json: bucket ' + b.id + ' has a source without a real URL');
+              }
+              // A 'hire a human' verdict must say where and what to ask for, or it is not an answer.
+              if (b.tier === 'NEEDS-A-HUMAN' && !(b.route && b.route.url) && !(b.ask_for || []).length) {
+                throw new Error('routes.json: bucket ' + b.id + ' says hire a human but gives neither a route nor a brief');
+              }
+            }
+            console.log('routes.json ok — ' + r.buckets.length + ' buckets, ' + priced + ' state a price, ' + sourced + ' of those sourced');
+          "
+          # 公开仓红线:钱包地址/密钥永不入仓,收款地址只走 Worker secret
+          if grep -rEn '0x[0-9a-fA-F]{40}|T[1-9A-HJ-NP-Za-km-z]{33}' site worker.js wrangler.jsonc; then
+            echo "::error::a wallet-address-shaped string is committed — payment addresses must be Worker secrets"; exit 1
+          fi
+          echo "gate ok"
+      - name: Deploy worker
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          wranglerVersion: "4"
+          workingDirectory: sites/agimatch
+          command: deploy
+      - name: Post-deploy self-check
+        run: |
+          sleep 20
+          base="https://match.agiscorecard.com"
+          home=$(curl -s -o /dev/null -w '%{http_code}' "$base/" || true)
+          routes=$(curl -s -o /dev/null -w '%{http_code}' "$base/routes.json" || true)
+          # 需求提交 API 必须活着:太短的 need 要被 400 拒绝(证明校验路径在跑,
+          # 而不是 500/404)——这是本站唯一的痛点入口,静默失效等于站死了。
+          api=$(curl -s -o /dev/null -w '%{http_code}' -X POST "$base/api/request" \
+                -H 'content-type: application/json' -d '{"need":"x"}' || true)
+          echo "home=$home routes=$routes api_reject_short=$api"
+          if [ "$home" = "200" ] && [ "$routes" = "200" ] && [ "$api" = "400" ]; then
+            echo "self-check ok"
+          else
+            echo "::warning::domain not yet serving as expected (first-deploy DNS convergence is normal; otherwise investigate)"
+          fi

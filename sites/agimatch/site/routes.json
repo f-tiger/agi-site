@@ -1,0 +1,299 @@
+{
+  "version": "0.1",
+  "updated": "2026-08-30",
+  "license": "CC BY 4.0",
+  "url": "https://match.agiscorecard.com/",
+  "note": "Every price here carries a source. Verdicts are dated and carry a flip condition.",
+  "method": "Each bucket classifies a common AI-work request as SOLVED-NOW (a shipping product already does it), DIY-WITH-GUIDE (no engineer required), or NEEDS-A-HUMAN (genuinely custom). Prices are quoted from the sources listed on each bucket and go stale; the as_of date says when each verdict was made and the flip field says what would change it.",
+  "premise": {
+    "claim": "Over 40% of agentic AI projects will be canceled by the end of 2027 due to escalating costs, unclear business value, or inadequate risk controls; Gartner also estimates only about 130 of the thousands of self-described agentic AI vendors are real, calling the rest 'agent washing' — existing chatbots, assistants and RPA rebranded.",
+    "as_of": "2025-06-25",
+    "source": "https://www.gartner.com/en/newsroom/press-releases/2025-06-25-gartner-predicts-over-40-percent-of-agentic-ai-projects-will-be-canceled-by-end-of-2027"
+  },
+  "examples": [
+    "read my incoming emails and file them by order number",
+    "I want a chatbot on my website that answers customer questions",
+    "chat with my company's PDFs and policies",
+    "an agent that updates our internal system when an order comes in",
+    "someone pitched me an AI agency for $12,000",
+    "summarise my meetings and send action items"
+  ],
+  "buckets": [
+    {
+      "id": "meeting-notes",
+      "tier": "SOLVED-NOW",
+      "title": "Notes, summaries and action items from meetings",
+      "keywords": ["meeting notes", "meeting summary", "transcribe", "transcription", "take notes", "call notes", "record my meetings", "action items", "note taker", "summarise my meetings", "summarize my meetings", "zoom", "google meet", "teams"],
+      "answer": "Nothing to build here. Every major meeting platform ships this now, and several standalone tools have free tiers that cover an individual's whole usage.",
+      "detail": "Built-in options are Zoom AI Companion, Google Meet's 'take notes for me' (Gemini) and Microsoft Copilot's Intelligent Recap — invisible to other participants and needing no setup, but platform-locked and often tied to a higher subscription tier. Standalone tools work across platforms.",
+      "tools": [
+        { "name": "Fathom", "url": "https://fathom.video/", "price": "Free for individuals", "note": "unlimited recordings, transcriptions and storage on the free tier" },
+        { "name": "Otter", "url": "https://otter.ai/", "price": "Free 300 min/mo; Pro $8.33/mo billed annually", "note": "30 min per conversation on free" },
+        { "name": "Fireflies", "url": "https://fireflies.ai/", "price": "Free 400 min; Pro $10/user/mo billed annually", "note": "Pro is $18/mo without the annual commitment" }
+      ],
+      "as_of": "2026-08-30",
+      "flip": "A named free tier is withdrawn, or the built-in platform features move behind an enterprise-only plan — then this becomes a paid-tool choice, still not a hire.",
+      "sources": [
+        { "label": "Fathom", "url": "https://fathom.video/" },
+        { "label": "Fireflies pricing 2026 (Claap)", "url": "https://www.claap.io/blog/fireflies-pricing" },
+        { "label": "Otter vs Fireflies pricing", "url": "https://speakwiseapp.com/blog/otter-ai-vs-fireflies-ai" },
+        { "label": "Built-in note takers for Google Meet", "url": "https://fellow.ai/blog/google-meet-ai-note-taker/" }
+      ]
+    },
+    {
+      "id": "docs-qa",
+      "tier": "SOLVED-NOW",
+      "title": "Asking questions across your own documents",
+      "keywords": ["chat with my documents", "chat with my pdfs", "ask my documents", "my pdfs", "knowledge base", "rag", "retrieval augmented", "search my files", "query my documents", "internal wiki", "company policies", "chat with pdf", "document q&a", "ask questions about my files"],
+      "answer": "Source-grounded document Q&A is a free consumer feature. Commissioning a retrieval pipeline for this is one of the most common pieces of avoidable AI spend.",
+      "detail": "The distinction that matters: a source-grounded tool answers only from the documents you gave it and cites the exact passage, which is what you want for policies and contracts. A general assistant is more flexible but more likely to drift from your files.",
+      "tools": [
+        { "name": "NotebookLM / Gemini Notebook", "url": "https://notebooklm.google.com/", "price": "Free with a Google account", "note": "100 notebooks, 50 sources each, 50 chat queries/day; answers cite the passage. Renamed Gemini Notebook on 2026-07-16 — same tool, same limits" },
+        { "name": "ChatGPT Projects", "url": "https://chatgpt.com/", "price": "Free tier", "note": "keeps running context across chats; not source-grounded, so verify quotes against the file" }
+      ],
+      "as_of": "2026-08-30",
+      "flip": "The free query limits fall below everyday use, or source-grounded citation is removed — at which point a paid tool, still not a build, is the answer.",
+      "sources": [
+        { "label": "ChatGPT Projects vs NotebookLM, 2026", "url": "https://elephas.app/blog/chatgpt-projects-vs-notebooklm" },
+        { "label": "NotebookLM vs ChatGPT comparison", "url": "https://www.notelyn.com/blog/notebooklm-vs-chatgpt" }
+      ]
+    },
+    {
+      "id": "website-chatbot",
+      "tier": "SOLVED-NOW",
+      "title": "A chatbot answering customers on your website",
+      "keywords": ["website chatbot", "chat widget", "customer support bot", "support chatbot", "chatbot for my website", "live chat", "answer customer questions", "customer service ai", "help desk ai", "chatbot on my site"],
+      "answer": "This is a product you configure, not a system you build. The decision that actually costs you money is the billing model, not the vendor.",
+      "detail": "Per-resolution billing looks cheap at pilot volume and scales badly; flat plans often cost less once you are busy. Price the vendor at the volume you expect in a year, not the volume you have this month.",
+      "tools": [
+        { "name": "Chatbase", "url": "https://www.chatbase.co/", "price": "From $40/mo", "note": "credit-based; $40 per additional 1,000 credits" },
+        { "name": "Tidio (Lyro AI)", "url": "https://www.tidio.com/", "price": "Lyro add-on $39/mo for 50 conversations up to $289/mo for 500", "note": "base Tidio packages start at $29/mo" },
+        { "name": "Intercom (Fin)", "url": "https://www.intercom.com/", "price": "$0.99 per resolution plus seats at $29/$85/$132 per seat/mo", "note": "50-resolution monthly minimum; at 2,000 resolutions/month that is $1,980/mo in AI fees alone" }
+      ],
+      "as_of": "2026-08-30",
+      "flip": "Any of these vendors changes billing model, or your volume passes the point where a per-resolution plan beats a flat one — recheck the arithmetic, not the vendor list.",
+      "sources": [
+        { "label": "AI chatbot pricing comparison, 8 platforms (2026)", "url": "https://alhena.ai/blog/ai-chatbot-pricing-comparison/" },
+        { "label": "AI chatbot pricing comparison, 7 platforms (2026)", "url": "https://sitegpt.ai/blog/ai-chatbot-pricing-comparison" }
+      ]
+    },
+    {
+      "id": "connect-two-apps",
+      "tier": "DIY-WITH-GUIDE",
+      "title": "Making two apps talk, with an AI step in the middle",
+      "keywords": ["connect", "integrate", "integration", "sync", "zapier", "make.com", "n8n", "automate", "automation", "workflow", "when this happens", "trigger", "webhook", "move data between", "automatically send"],
+      "answer": "This is the single most common thing sold as 'an AI agent'. It is a workflow in an automation tool, there is probably a published template for it, and you can build it in an afternoon.",
+      "detail": "The billing models differ in ways that decide the cost: Zapier charges per step, Make per module, n8n per workflow run. At 5,000–20,000 tasks a month Zapier typically runs $49–299/mo while Make runs $16–29/mo for equivalent work — so a multi-step workflow is where Zapier gets expensive.",
+      "steps": [
+        "Write the sentence 'when X happens in app A, do Y in app B' — if you cannot, the problem is not automation yet.",
+        "Search your automation tool's template gallery for that exact pair before building anything.",
+        "Add at most one AI step, and only where the input is genuinely unstructured text.",
+        "Run it in manual-approve mode for a week. Anything that surprises you now would have surprised you in production.",
+        "Only then turn it on unattended — and set a failure notification, because silent failure is the real cost."
+      ],
+      "tools": [
+        { "name": "Make", "url": "https://www.make.com/", "price": "Entry paid tier $9/mo for 10,000 credits", "note": "cheapest at volume in the comparisons below" },
+        { "name": "n8n", "url": "https://n8n.io/", "price": "From $20/mo, or free self-hosted", "note": "per-workflow-run billing; self-hosting is genuinely free if you can run a container" },
+        { "name": "Zapier", "url": "https://zapier.com/", "price": "Free 100 tasks/mo (2-step workflows only); Professional $29.99/mo, or $19.99/mo billed annually, for 750 tasks", "note": "widest app support; webhooks are paid-plan only" }
+      ],
+      "route": {
+        "platform": "Zapier Solution Partner Directory",
+        "url": "https://zapier.com/partnerdirectory/",
+        "label": "Rather someone else built it? See Zapier's certified partners",
+        "disclosure": "Plain link, not an affiliate link. The tool vendor's own directory is a higher-intent place to hire for this than a general marketplace — the people listed do only this. n8n's equivalent is experts.n8n.io. Neither is vetted by this site."
+      },
+      "as_of": "2026-08-30",
+      "flip": "Any of the three changes its billing unit, or the free tier stops covering a two-step workflow.",
+      "sources": [
+        { "label": "Zapier vs Make vs n8n pricing tested (2026)", "url": "https://automationatlas.io/guides/zapier-vs-make-vs-n8n-comparison/" },
+        { "label": "n8n vs Zapier vs Make (Parseur, 2026)", "url": "https://parseur.com/blog/zapier-n8n-make" },
+        { "label": "Zapier Solution Partner Directory", "url": "https://zapier.com/partnerdirectory/" },
+        { "label": "n8n Service Partner Directory", "url": "https://experts.n8n.io/" }
+      ]
+    },
+    {
+      "id": "email-sorting",
+      "tier": "DIY-WITH-GUIDE",
+      "title": "Sorting, labelling or routing incoming email",
+      "keywords": ["email", "emails", "inbox", "sort my email", "route emails", "filter emails", "gmail", "outlook", "forward emails", "read my emails", "file them", "order number", "extract from emails"],
+      "answer": "Rules first, AI second. Most of this is a mail filter, and the part that genuinely needs a model is one step inside an automation tool.",
+      "detail": "The reason to do rules first is not purity, it is debugging: when a deterministic filter misroutes something you can see why, and when a model does you often cannot. Use the model only for the part that is actually unstructured — pulling a reference number out of free text, or classifying tone.",
+      "steps": [
+        "Write down the five categories you actually want. If you cannot name them, no system can sort into them.",
+        "Build whatever you can as plain mail rules — sender, subject, keyword. This handles more than people expect.",
+        "For the genuinely unstructured part, add one AI step in an automation tool that extracts the field you need.",
+        "Send low-confidence cases to a review folder rather than guessing. A wrong file is worse than an unfiled one.",
+        "Check the review folder weekly — that is your measurement of whether it is working."
+      ],
+      "tools": [
+        { "name": "Make", "url": "https://www.make.com/", "price": "Entry paid tier $9/mo for 10,000 credits" },
+        { "name": "n8n", "url": "https://n8n.io/", "price": "From $20/mo, or free self-hosted" }
+      ],
+      "route": {
+        "platform": "n8n Service Partner Directory",
+        "url": "https://experts.n8n.io/",
+        "label": "Rather someone else built it? See n8n's partner directory",
+        "disclosure": "Plain link, not an affiliate link. Zapier's equivalent is zapier.com/partnerdirectory. Neither is vetted by this site — but a tool vendor's own directory is narrower and higher-intent than a general marketplace for a job this specific."
+      },
+      "as_of": "2026-08-30",
+      "flip": "Mailbox providers ship reliable AI-native rules built in, which would move this to SOLVED-NOW.",
+      "sources": [
+        { "label": "Zapier vs Make vs n8n pricing tested (2026)", "url": "https://automationatlas.io/guides/zapier-vs-make-vs-n8n-comparison/" },
+        { "label": "n8n Service Partner Directory", "url": "https://experts.n8n.io/" }
+      ]
+    },
+    {
+      "id": "vetting-a-vendor",
+      "tier": "DIY-WITH-GUIDE",
+      "title": "What it should cost, and how to vet who is quoting you",
+      "keywords": ["agency", "quoted me", "pitched", "proposal", "vendor", "is it worth it", "should i pay", "they want", "quote", "consultant", "consultant cost", "automation consultant", "is this a scam", "too expensive", "reasonable price", "how much", "how much does it cost", "cost", "price", "pricing", "rate", "hourly rate", "worth paying", "fair price", "budget"],
+      "answer": "Two answers in one: what this work actually costs, and the four questions that tell you whether the person quoting is real. Gartner estimates only about 130 of the thousands of self-described agentic AI vendors are real, and calls the rest 'agent washing' — existing chatbots, assistants and RPA rebranded.",
+      "detail": "Published rates disagree, and the disagreement is the useful part: Upwork's own AI-agent-developer category page cites $30–150/hr, specialist rate cards put freelance AI agent developers at $155–185/hr, and broader surveys give $80–250/hr globally — roughly $50–80 junior, $80–120 mid, $120–200 senior, with LLM specialisation adding a 30–50% premium and regulated domains 20–40%. Marketplace fees come out of what your builder receives, so they shape the quote: Upwork moved to a variable 0–15% per-contract freelancer fee on 2025-05-01 (most pay around 10%), and Fiverr takes a flat 20%. A quote outside those bands is not automatically wrong — it needs an explanation. And the same Gartner analysis predicts over 40% of agentic AI projects will be canceled by the end of 2027, on escalating costs, unclear business value or inadequate risk controls: you are not being paranoid, you are pricing a known failure rate.",
+      "typical_cost": "$30–150/hr per Upwork's own category page; $155–185/hr per specialist rate cards; $80–250/hr across broader surveys ($50–80 junior, $80–120 mid, $120–200 senior). Before comparing a fixed-price quote, divide it by the hours it implies and see which band it lands in.",
+      "steps": [
+        "Ask what the system does when the model is wrong. A real builder has a specific answer with a fallback path; agent-washing has a reassurance.",
+        "Ask for a live demo on your data, not their demo data. The gap between the two is where most projects die.",
+        "Ask which parts are deterministic code and which are model calls. If everything is 'the AI', nobody has designed it.",
+        "Ask what one run costs at your volume, in dollars, at the volume you will have in a year — not today's pilot volume.",
+        "Ask what you own at the end and whether it runs without them. If the answer is unclear, that is the price of the second project too."
+      ],
+      "as_of": "2026-08-30",
+      "flip": "Gartner publishes a materially different vendor-reality estimate, the cancellation prediction resolves (its own horizon is end of 2027), or the rate bands move enough that a quote inside them stops being a useful signal.",
+      "sources": [
+        { "label": "Gartner: over 40% of agentic AI projects canceled by end of 2027 (press release, 2025-06-25)", "url": "https://www.gartner.com/en/newsroom/press-releases/2025-06-25-gartner-predicts-over-40-percent-of-agentic-ai-projects-will-be-canceled-by-end-of-2027" },
+        { "label": "Upwork AI agent developers (rates cited on the category page)", "url": "https://www.upwork.com/hire/ai-agent-developers/" },
+        { "label": "Cost to hire freelance AI agent developer, 2026", "url": "https://www.secondtalent.com/cost-to-hire/ai-agent-developer/" },
+        { "label": "AI developer hourly rate, aggregated (2026)", "url": "https://www.contractrates.fyi/AI-Developer/hourly-rates" },
+        { "label": "Upwork freelancer service fee, 2026 guide", "url": "https://freelancercalculator.com/upwork-service-fee-2026-official-guide/" },
+        { "label": "Fiverr seller fees, 2026", "url": "https://freelancecompare.com/blog/fiverr-fees-explained" }
+      ]
+    },
+    {
+      "id": "agent-on-internal-system",
+      "tier": "NEEDS-A-HUMAN",
+      "title": "An agent that has to drive your internal or legacy system",
+      "keywords": ["internal system", "legacy", "our crm", "our erp", "no api", "custom system", "in-house", "our database", "proprietary", "update our system", "our software", "warehouse", "inventory system"],
+      "answer": "This is genuinely custom. No product knows your internal system, and the work is mostly the integration and the failure handling, not the model.",
+      "detail": "Be aware of what you are actually buying: in most of these projects the AI is a small part and the integration is the project. Price it as an integration job with an AI step, and be suspicious of anyone who prices it the other way round.",
+      "ask_for": [
+        "Which exact system and version, and whether it has any API, export, or database access at all — this single answer moves the price more than anything else.",
+        "What happens when the agent is wrong or the system is down: the specific fallback, not a promise of accuracy.",
+        "Which parts will be deterministic code and which will be model calls.",
+        "Who holds the credentials during and after the build, and how they are rotated at handover.",
+        "What you own at the end, and a demonstration that it runs without the builder.",
+        "The running cost per month at your real volume, itemised — model calls, hosting, and their retainer separately."
+      ],
+      "typical_cost": "Rate sources disagree, and the gap is worth knowing: Upwork's own AI-agent-developer page cites $30–150/hr, while specialist rate cards put freelance AI agent developers at $155–185/hr; broader surveys give $80–250/hr globally, roughly $50–80 junior, $80–120 mid, $120–200 senior. Treat a quote outside those bands as needing an explanation, not as automatically wrong.",
+      "red_flag": "They quote a fixed price before asking which system you run, or they call a scripted integration an 'AI agent'.",
+      "route": {
+        "platform": "Upwork",
+        "url": "https://www.upwork.com/hire/ai-agent-developers/",
+        "label": "See AI agent developers on Upwork",
+        "disclosure": "Plain link, not an affiliate link. This site has not vetted anyone listed there — the brief above is what protects you, not the platform."
+      },
+      "as_of": "2026-08-30",
+      "flip": "A product ships that genuinely connects to arbitrary legacy systems without bespoke integration work. Claimed regularly; not verified yet.",
+      "sources": [
+        { "label": "Upwork AI agent developers (rates cited on the category page)", "url": "https://www.upwork.com/hire/ai-agent-developers/" },
+        { "label": "Cost to hire freelance AI agent developer, 2026", "url": "https://www.secondtalent.com/cost-to-hire/ai-agent-developer/" },
+        { "label": "AI developer hourly rate, aggregated (2026)", "url": "https://www.contractrates.fyi/AI-Developer/hourly-rates" }
+      ]
+    },
+    {
+      "id": "llm-in-your-product",
+      "tier": "NEEDS-A-HUMAN",
+      "title": "An AI feature inside a product you already ship",
+      "keywords": ["our product", "our app", "our saas", "add ai to", "our platform", "in our software", "feature in our", "our users", "our customers use", "embed ai", "ai feature"],
+      "answer": "Hire for this, but hire for evaluation as much as for building. Shipping a model into a product your customers already trust is a quality-control problem wearing an engineering costume.",
+      "detail": "The demo is the easy part and takes days. What takes months is knowing whether it is still working next quarter, on inputs nobody anticipated. If a proposal has no evaluation plan, it is a prototype quote priced as a product.",
+      "ask_for": [
+        "How we will know it works: the evaluation set, who writes it, and what score is the ship threshold.",
+        "The latency and cost budget per request, and what happens when a request exceeds it.",
+        "The behaviour on a bad or unsafe output — visible to the user, or caught first, and by what.",
+        "How a regression is detected after launch, given the model provider can change under you.",
+        "Whether the design survives switching model providers, and what that migration would cost.",
+        "What is logged, where it is stored, and how that squares with what you have told your customers."
+      ],
+      "typical_cost": "Same rate bands as custom agent work — Upwork's category page cites $30–150/hr, specialist rate cards $155–185/hr, broader surveys $80–250/hr — but expect evaluation and monitoring to be a real line item rather than a rounding error. A proposal with no such line is the thing to question.",
+      "red_flag": "No evaluation plan, or a fixed price for 'AI integration' with no mention of what happens when the output is wrong.",
+      "route": {
+        "platform": "Upwork",
+        "url": "https://www.upwork.com/hire/artificial-intelligence-engineers/",
+        "label": "See AI engineers on Upwork",
+        "disclosure": "Plain link, not an affiliate link. This site has not vetted anyone listed there."
+      },
+      "as_of": "2026-08-30",
+      "flip": "Evaluation tooling becomes good enough to be a configured product rather than engineering work.",
+      "sources": [
+        { "label": "Upwork AI agent developers (rates cited on the category page)", "url": "https://www.upwork.com/hire/ai-agent-developers/" },
+        { "label": "Cost to hire freelance AI agent developer, 2026", "url": "https://www.secondtalent.com/cost-to-hire/ai-agent-developer/" }
+      ]
+    },
+    {
+      "id": "irreversible-actions",
+      "tier": "NEEDS-A-HUMAN",
+      "title": "An agent that spends money, sends things, or changes records",
+      "keywords": ["spend", "payment", "purchase", "buy", "order on my behalf", "send emails to customers", "post on", "delete", "refund", "book", "transfer", "acts on its own", "autonomous", "without me"],
+      "answer": "Hire, and hire specifically for the failure design. The model is not the hard part; the hard part is what the system is permitted to do when it is confidently wrong.",
+      "detail": "Gartner's stated reasons for the cancellation rate are escalating costs, unclear business value, and inadequate risk controls. This bucket is where the third reason bites, because the mistakes are not recoverable by re-running the job.",
+      "ask_for": [
+        "The blast radius: the maximum damage one wrong action can do, stated in money or records.",
+        "Which actions require a human approval step, and why the others do not.",
+        "The rate limits and hard caps, and where they are enforced — in the agent's own reasoning does not count.",
+        "How an action is reversed, and who is paged when one cannot be.",
+        "The audit trail: what is recorded for every action, and can you read it without the builder.",
+        "A dry-run mode you can leave on for a month before anything is live."
+      ],
+      "typical_cost": "Same rate bands as custom agent work, but budget separately for the review period — the cost of this category is dominated by the supervised run-in, not the build.",
+      "red_flag": "Approval steps are described as a temporary phase to remove later, or the caps live inside the prompt rather than in the code around it.",
+      "route": {
+        "platform": "Upwork",
+        "url": "https://www.upwork.com/hire/agentic-ai-developers/",
+        "label": "See agentic AI developers on Upwork",
+        "disclosure": "Plain link, not an affiliate link. This site has not vetted anyone listed there."
+      },
+      "as_of": "2026-08-30",
+      "flip": "Standard, audited guardrail products for financial or destructive agent actions become the norm rather than bespoke work.",
+      "sources": [
+        { "label": "Gartner: over 40% of agentic AI projects canceled by end of 2027 (press release, 2025-06-25)", "url": "https://www.gartner.com/en/newsroom/press-releases/2025-06-25-gartner-predicts-over-40-percent-of-agentic-ai-projects-will-be-canceled-by-end-of-2027" },
+        { "label": "Cost to hire freelance AI agent developer, 2026", "url": "https://www.secondtalent.com/cost-to-hire/ai-agent-developer/" }
+      ]
+    },
+    {
+      "id": "voice-phone-agent",
+      "tier": "NEEDS-A-HUMAN",
+      "title": "An AI that answers or makes phone calls",
+      "keywords": ["phone", "voice agent", "call", "calls", "answer the phone", "receptionist", "voice ai", "cold call", "phone bot", "ivr", "call center"],
+      "answer": "There are products in this space, but the deployment is not self-serve: telephony, recording consent and call-handling rules are jurisdiction-specific, and getting them wrong is a legal problem rather than a quality one.",
+      "detail": "Treat the recording and disclosure rules as the first question rather than a detail at the end — they differ by country and by state, and they determine what the system is allowed to do before any vendor comparison matters.",
+      "ask_for": [
+        "Which jurisdictions your callers are in, and what each requires for recording and AI disclosure.",
+        "What the system says when someone asks whether they are talking to a machine.",
+        "The handoff to a human: how it is triggered, how fast, and what happens outside working hours.",
+        "Per-minute running cost at your real call volume, including the telephony leg.",
+        "What is retained from each call, for how long, and where."
+      ],
+      "typical_cost": "Not published here — we have not verified a current rate range specific to voice agent work, and the rate cards we did verify cover agent development generally rather than telephony deployments. Ask for a fixed scope quote and compare at least three.",
+      "red_flag": "Recording consent and AI disclosure are treated as a footnote, or the quote covers the agent but not the telephony bill.",
+      "route": {
+        "platform": "Upwork",
+        "url": "https://www.upwork.com/hire/ai-voice-agent-developers/",
+        "label": "See AI voice agent developers on Upwork",
+        "disclosure": "Plain link, not an affiliate link. This site has not vetted anyone listed there."
+      },
+      "as_of": "2026-08-30",
+      "flip": "A self-serve product handles jurisdiction-specific consent and disclosure well enough that deployment stops needing a specialist.",
+      "sources": [
+        { "label": "Upwork AI voice agent developers category", "url": "https://www.upwork.com/hire/ai-voice-agent-developers/" }
+      ]
+    }
+  ],
+  "platform_fees": {
+    "note": "Useful when comparing a marketplace quote to a direct one — the fee comes out of what your builder receives, so it shapes the price you are quoted.",
+    "as_of": "2026-08-30",
+    "rows": [
+      { "platform": "Upwork", "freelancer_fee": "Variable 0–15% per contract since 2025-05-01, replacing the previous flat 10%; most freelancers pay around 10%", "source": "https://freelancercalculator.com/upwork-service-fee-2026-official-guide/" },
+      { "platform": "Fiverr", "freelancer_fee": "Flat 20% of every order, no tiers or volume discounts", "source": "https://freelancecompare.com/blog/fiverr-fees-explained" }
+    ]
+  }
+}

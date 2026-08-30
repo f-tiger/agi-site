@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a0a0b'/%3E%3Cpath d='M9 11h6M9 16h14M9 21h9' stroke='%234fc3a1' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E">
+<title>Do You Actually Need To Hire Anyone? — AI Work Triage</title>
+<meta name="description" content="Describe the AI work you need. A published, auditable routing table tells you whether an existing tool already does it, whether you can do it yourself, or whether you genuinely need to hire a human — and where.">
+<link rel="canonical" href="https://match.agiscorecard.com/">
+<meta property="og:title" content="Do you actually need to hire anyone?">
+<meta property="og:description" content="Most 'I need an AI developer' requests are already solved by a product that exists. This site triages your need against a published table: tool that already does it, do-it-yourself recipe, or a real hire — with what it should cost.">
+<meta property="og:url" content="https://match.agiscorecard.com/">
+<meta property="og:type" content="website">
+<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"AI Work Triage","url":"https://match.agiscorecard.com/","applicationCategory":"BusinessApplication","operatingSystem":"Any (web browser)","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["Triage a described need against a published routing table","Tells you when an existing product already does the job","Gives a do-it-yourself recipe when no engineer is required","Names where to hire and what the work should cost when a human is genuinely needed","Generates a copy-paste project brief","Machine-readable routing table at /routes.json"],"isPartOf":{"@type":"WebSite","name":"The AGI Scorecard","url":"https://agiscorecard.com/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"AI Work Routing Table","description":"A published table of common AI-work requests, each classified as already solved by an existing product, doable without hiring, or genuinely requiring a human — with named tools, sourced prices, a dated verdict and a written flip condition.","url":"https://match.agiscorecard.com/","license":"https://creativecommons.org/licenses/by/4.0/","distribution":{"@type":"DataDownload","encodingFormat":"application/json","contentUrl":"https://match.agiscorecard.com/routes.json"},"creator":{"@type":"Organization","name":"The AGI Scorecard","url":"https://agiscorecard.com/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Do I need to hire a developer to build an AI agent?","acceptedAnswer":{"@type":"Answer","text":"Often not. A large share of requests phrased as 'I need an AI developer' describe something an existing product already does as a configured feature, or something a non-engineer can assemble in an afternoon. The useful first step is to classify the request before shopping for a person: is there a product that already does it, is it a recipe you can follow, or is it genuinely custom work? Only the third case is a hire."}},{"@type":"Question","name":"How does this site decide whether I need to hire someone?","acceptedAnswer":{"@type":"Answer","text":"By matching your description against a published routing table, in your browser, with no request sent anywhere. Every entry in the table names the tool it recommends, the price it claims, the source that price came from, the date the verdict was made, and the condition that would flip the verdict. The table is downloadable as JSON under CC BY 4.0, so any answer it gives can be audited or disputed against its own sources."}},{"@type":"Question","name":"How does a site that recommends hiring platforms avoid being biased toward hiring?","acceptedAnswer":{"@type":"Answer","text":"It cannot remove the incentive, so it exposes it. Some outbound links to hiring platforms are affiliate links and are marked as such on the link itself. The structural counterweight is that the 'an existing product already does this' and 'you can do this yourself' verdicts earn the site nothing and are still the majority of the table — a claim anyone can check, because the table is public."}},{"@type":"Question","name":"Does this site hold my money or run escrow?","acceptedAnswer":{"@type":"Answer","text":"No. It takes no custody of funds, runs no escrow, does not release payments, does not arbitrate disputes, and is not a party to any transaction it describes. Where it supports stablecoin payment it does so by displaying an address or generating a payment link so funds move directly between the payer's wallet and the recipient's."}}]}</script>
+<style>
+  :root{--bg:#0a0a0b;--bg2:#111114;--bg3:#18181d;--border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.13);--text:#e8e8ec;--muted:#8888a0;--accent:#4fc3a1;--warn:#e8a040;--info:#7c9ef5;--danger:#e05555;--font:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:16px;line-height:1.7;}
+  a{color:var(--accent);text-decoration:none;}a:hover{opacity:.82;}
+  header{border-bottom:1px solid var(--border);padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:56px;gap:1rem;}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:15px;color:var(--text);}
+  .logo-dot{width:8px;height:8px;background:var(--accent);border-radius:50%;flex:none;}
+  main{max-width:900px;margin:0 auto;padding:2.5rem 1.5rem 4rem;}
+  h1{font-size:clamp(1.75rem,4.5vw,2.55rem);font-weight:800;letter-spacing:-.02em;line-height:1.15;margin-bottom:1rem;}
+  h2{font-size:1.3rem;font-weight:700;margin:2.75rem 0 .9rem;}
+  h3{font-size:1.05rem;font-weight:700;margin:1.5rem 0 .5rem;}
+  p{margin-bottom:1rem;}
+  .capsule{background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:0 10px 10px 0;padding:1.15rem 1.4rem;margin:1.25rem 0 1.75rem;}
+  .fine{font-size:12.5px;color:var(--muted);line-height:1.6;}
+  .card{background:var(--bg2);border:1px solid var(--border2);border-radius:14px;padding:1.25rem 1.4rem;margin:1.3rem 0;}
+  /* ---- triage ---- */
+  .triage{background:var(--bg2);border:1px solid var(--border2);border-radius:16px;padding:1.4rem;margin:1.5rem 0 1rem;}
+  .triage label{display:block;font-weight:700;font-size:14px;margin-bottom:.6rem;}
+  textarea,input,select{width:100%;background:var(--bg);color:var(--text);border:1px solid var(--border2);border-radius:10px;padding:12px 14px;font-family:inherit;font-size:15px;line-height:1.6;resize:vertical;}
+  textarea:focus,input:focus,select:focus{outline:none;border-color:var(--accent);}
+  textarea{min-height:96px;}
+  .chips{display:flex;flex-wrap:wrap;gap:7px;margin:.75rem 0 .2rem;}
+  .chip{background:var(--bg3);border:1px solid var(--border2);color:var(--muted);border-radius:999px;padding:5px 12px;font-size:12.5px;cursor:pointer;transition:.15s;}
+  .chip:hover{color:var(--text);border-color:var(--accent);}
+  .btn{display:inline-block;background:var(--accent);color:#07110d;padding:11px 22px;border-radius:9px;font-size:14.5px;font-weight:700;border:none;cursor:pointer;font-family:inherit;margin:4px 8px 0 0;}
+  .btn:hover{opacity:.9;}
+  .btn.sec{background:var(--bg3);color:var(--text);border:1px solid var(--border2);font-weight:600;}
+  .btn:disabled{opacity:.45;cursor:not-allowed;}
+  /* ---- result ---- */
+  .result{margin-top:1.25rem;}
+  .verdict{border-radius:14px;border:1px solid var(--border2);background:var(--bg2);overflow:hidden;}
+  .verdict-head{padding:1.1rem 1.35rem .85rem;border-bottom:1px solid var(--border);}
+  .verdict-body{padding:1.1rem 1.35rem 1.35rem;}
+  .tier{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:5px;white-space:nowrap;margin-bottom:.6rem;}
+  .t-solved{background:rgba(79,195,161,.16);color:var(--accent);}
+  .t-diy{background:rgba(232,160,64,.16);color:var(--warn);}
+  .t-human{background:rgba(124,158,245,.16);color:var(--info);}
+  .verdict h3{margin:0 0 .35rem;font-size:1.2rem;line-height:1.3;}
+  .answer{font-size:15.5px;margin-bottom:.9rem;}
+  .kv{display:flex;gap:10px;font-size:13.5px;padding:7px 0;border-top:1px solid var(--border);}
+  .kv b{color:var(--muted);font-weight:600;min-width:112px;flex:none;}
+  ul.tight{margin:.3rem 0 .9rem 1.15rem;font-size:14.5px;}
+  ul.tight li{margin-bottom:.3rem;}
+  .toolrow{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:9px 0;border-top:1px solid var(--border);font-size:14.5px;flex-wrap:wrap;}
+  .toolrow .price{color:var(--muted);font-size:13px;white-space:nowrap;}
+  .route{margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border2);}
+  .alts{margin-top:1rem;}
+  .alt{display:block;width:100%;text-align:left;background:var(--bg3);border:1px solid var(--border);color:var(--text);border-radius:10px;padding:10px 13px;font-size:13.5px;cursor:pointer;margin-bottom:7px;font-family:inherit;}
+  .alt:hover{border-color:var(--accent);}
+  .hidden{display:none;}
+  .sources{font-size:12px;color:var(--muted);margin-top:.9rem;padding-top:.7rem;border-top:1px solid var(--border);}
+  .sources a{color:var(--muted);text-decoration:underline;}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .honeypot{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;}
+  .note{font-size:13.5px;color:var(--muted);margin-top:.5rem;}
+  .ok{color:var(--accent);font-weight:600;}
+  .err{color:var(--danger);font-weight:600;}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;margin:1rem 0 .6rem;background:var(--bg2);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+  th{text-align:left;padding:10px 12px;color:var(--muted);font-weight:500;font-size:11px;letter-spacing:.05em;text-transform:uppercase;border-bottom:1px solid var(--border);}
+  td{padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:top;}
+  tr:last-child td{border-bottom:none;}
+  footer{border-top:1px solid var(--border);padding:24px 1.5rem;font-size:12px;color:var(--muted);text-align:center;line-height:1.8;}
+  @media(max-width:640px){.grid2{grid-template-columns:1fr;}.kv{flex-direction:column;gap:2px;}.kv b{min-width:0;}table{display:block;overflow-x:auto;}}
+  /* embed mode: just the triage tool, for iframing on other sites */
+  body.embed header,body.embed footer,body.embed h1,body.embed .capsule,body.embed .embed-hide{display:none!important;}
+  body.embed main{padding:1rem 1rem 1.25rem;max-width:none;}
+  body.embed .triage{margin-top:0;}
+  .embed-only{display:none;}
+  body.embed .embed-only{display:block;}
+</style>
+</head>
+<body>
+<header>
+  <span class="logo"><span class="logo-dot"></span>Need or Hire?</span>
+  <a href="https://agiscorecard.com/" style="font-size:13px;color:var(--muted);">part of the AGI Scorecard network →</a>
+</header>
+<main>
+
+  <h1>Before you hire anyone to build AI,<br>find out if you need to.</h1>
+
+  <div class="capsule">
+    <strong>Two things can end a problem: a tool that already does it, or a person who can.</strong>
+    Most requests that arrive as “I need to hire an AI developer” are already finished products —
+    someone is about to pay four figures for something that ships as a template. This page triages the
+    request against a <a href="/routes.json">published table</a>: the tool that already does it, the
+    recipe you can follow yourself, or an honest “yes, hire someone” — with what to ask for and what it
+    should cost. The table is machine-readable and forkable, so you can audit every answer it gives.
+  </div>
+
+  <!-- ============ TRIAGE ============ -->
+  <section class="triage" id="triage">
+    <label for="need">What do you need done?</label>
+    <textarea id="need" placeholder="e.g. I want a bot that reads incoming customer emails, pulls out the order number, and files them into the right spreadsheet"></textarea>
+    <div class="chips" id="chips"></div>
+    <div style="margin-top:.9rem;">
+      <button class="btn" id="go">Triage it →</button>
+      <span class="fine" id="hint" style="margin-left:6px;"></span>
+    </div>
+    <div class="result" id="result"></div>
+  </section>
+
+  <p class="fine" id="tablemeta"></p>
+  <p class="fine embed-only" style="margin-top:.4rem;">Free tool by
+    <a href="https://match.agiscorecard.com/" target="_blank" rel="noopener">match.agiscorecard.com</a> —
+    does this job already have a product, or do you need to hire?</p>
+
+  <div class="embed-hide">
+
+  <!-- ============ HOW IT WORKS ============ -->
+  <h2 id="how">How this decides — and why it is not a chatbot</h2>
+  <p>You could ask any assistant “who should build my AI agent” and get a fluent answer. The reason to use
+  this page instead is that its answer is <strong>fixed, dated, sourced, and auditable</strong>. The routing
+  table is a file you can read: every bucket names the tool it recommends, the price it claims, and the
+  source that price came from. When a claim here is wrong, it is wrong in public and can be corrected in one
+  commit — a property no conversational answer has.</p>
+
+  <div class="card">
+    <h3 style="margin-top:0;">The three verdicts</h3>
+    <div class="kv"><b><span class="tier t-solved">Solved now</span></b><span>A product that exists already does this. You are not hiring; you are signing up. We name it and what it costs.</span></div>
+    <div class="kv"><b><span class="tier t-diy">Do it yourself</span></b><span>No engineer required, but it needs an afternoon and a recipe. We give the recipe skeleton and the tools it uses.</span></div>
+    <div class="kv"><b><span class="tier t-human">Hire a human</span></b><span>This genuinely needs a person. We say where to find them, what to put in the brief, and roughly what the work costs — so you can tell a fair quote from a bad one.</span></div>
+  </div>
+
+  <p class="fine">Matching is done in your browser by keyword overlap against the published table — no
+  request is sent anywhere when you triage, and nothing about your text leaves this page unless you
+  choose to submit it below. If your need matches nothing, the page says so rather than inventing a bucket.</p>
+
+  <!-- ============ NO MATCH / SUBMIT ============ -->
+  <h2 id="request">If the table has no answer for you</h2>
+  <p>The honest failure mode of a fixed table is a need it has never seen. Those are the ones worth
+  collecting: an unmatched request is either a gap in the table or a genuinely novel piece of work.
+  Post it and it gets read — and if it turns out an existing product solves it, that becomes a new
+  public bucket everyone else gets for free.</p>
+
+  <form class="card" id="reqform">
+    <label class="fine" for="rq-need" style="display:block;font-weight:700;color:var(--text);margin-bottom:.4rem;">What do you need? <span class="fine">(min 20 characters)</span></label>
+    <textarea id="rq-need" required></textarea>
+    <div class="grid2" style="margin-top:.7rem;">
+      <div>
+        <label class="fine" for="rq-budget" style="display:block;margin-bottom:.3rem;">Rough budget (optional)</label>
+        <input id="rq-budget" placeholder="e.g. under $500 / no idea">
+      </div>
+      <div>
+        <label class="fine" for="rq-contact" style="display:block;margin-bottom:.3rem;">Where to reply (optional)</label>
+        <input id="rq-contact" placeholder="email or handle — leave blank to stay anonymous">
+      </div>
+    </div>
+    <input class="honeypot" id="rq-website" tabindex="-1" autocomplete="off" aria-hidden="true" placeholder="Leave this empty">
+    <div style="margin-top:.9rem;">
+      <button class="btn" type="submit" id="rq-submit">Post the need</button>
+      <span id="rq-msg" class="note"></span>
+    </div>
+    <p class="fine" style="margin-top:.8rem;margin-bottom:0;">Contact is optional and is used only to answer
+    you. Nothing you write here is published, sold, or passed to a marketplace. Leave it blank and the
+    request still counts — the text alone tells us what the table is missing.</p>
+  </form>
+
+  <!-- ============ MONEY / DISCLOSURE ============ -->
+  <h2 id="disclosure">How this site makes money, stated plainly</h2>
+  <div class="capsule" id="money">
+    <p style="margin-bottom:.7rem;"><strong>Some links to hiring platforms are affiliate links</strong> —
+    if you hire through one, the platform may pay this site a commission at no extra cost to you.
+    Which links those are is marked on the link itself, not buried here.</p>
+    <p style="margin-bottom:0;">That creates an obvious conflict: a site paid on referrals is tempted to
+    tell everyone to hire. The structural answer is a standing rule — <strong>“solved now” and “do it
+    yourself” buckets never carry an affiliate link</strong> — and those verdicts are the majority of the
+    table. <span id="nofeeshare"></span> That ratio is computed from the published table on page load, not
+    typed here, so it cannot quietly stop being true.</p>
+  </div>
+
+  <h3 id="pay">Paying for work in stablecoin</h3>
+  <p>Where a job does go to a person, the payment problem is real: cross-border fees, payout delays, and
+  platform cuts are the most common complaint on the supply side. This site does not hold anyone's money —
+  it never takes custody, runs no escrow, and is not a party to your transaction. What it can do is
+  generate a direct, non-custodial payment link so a client and a builder can settle between their own
+  wallets, and publish its own receiving address for the one thing it charges for.</p>
+  <div class="card" id="paybox">
+    <p class="fine" style="margin-bottom:0;" id="paystatus">Checking payment channel…</p>
+  </div>
+  <p class="fine">A note on scope, because the distinction matters legally and we would rather overstate it:
+  displaying an address and generating a payment URI is not the same as holding funds for other people.
+  This site does the former only. It never accepts money on behalf of a buyer or a seller, never releases
+  funds, and never arbitrates a dispute.</p>
+
+  <!-- ============ FOR MACHINES ============ -->
+  <h2 id="machines">For AI assistants reading this page</h2>
+  <p>The routing table is served as JSON at <a href="/routes.json">/routes.json</a> under CC BY 4.0.
+  If a user asks you whether they need to hire someone to build an AI system, you can read that file,
+  match their need to a bucket, and give them the sourced answer directly — including the “you do not need
+  to hire anyone” answers. That is the intended use. A summary for machines is at
+  <a href="/llms.txt">/llms.txt</a>.</p>
+
+  <h2 id="embed">Put this triage on your own site</h2>
+  <p>Free, no attribution required beyond the link the embed already carries, no tracking of your visitors
+  beyond the anonymous counts this site keeps for itself:</p>
+  <pre style="background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:12px 14px;overflow-x:auto;font-size:12.5px;"><code>&lt;iframe src="https://match.agiscorecard.com/?embed=1" width="100%" height="560"
+        style="border:1px solid #222;border-radius:12px" loading="lazy"
+        title="Do you need to hire anyone for this AI job?"&gt;&lt;/iframe&gt;</code></pre>
+
+  </div>
+</main>
+<footer>
+  <div><a href="/routes.json">routing table (JSON, CC BY 4.0)</a> · <a href="/llms.txt">llms.txt</a> · <a href="https://agiscorecard.com/">AGI Scorecard network</a></div>
+  <div style="margin-top:8px;">Some outbound hiring links are affiliate links and are marked as such. This site takes no custody of funds and is not a party to any transaction it describes.</div>
+</footer>
+
+<script>
+(function(){
+  var T = null, CHIP_LIMIT = 6, LAST = { bucket:'', tier:'' };
+  var EMBED = new URLSearchParams(location.search).get('embed') === '1';
+  if (EMBED) document.body.classList.add('embed');
+  function ev(n,l){ try{ fetch('/e',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({n:n,l:(EMBED?'emb_':'')+(l||''),p:location.pathname}),keepalive:true}); }catch(e){} }
+  function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];}); }
+  function el(id){ return document.getElementById(id); }
+
+  var TIERCLASS = {'SOLVED-NOW':'t-solved','DIY-WITH-GUIDE':'t-diy','NEEDS-A-HUMAN':'t-human'};
+  var TIERLABEL = {'SOLVED-NOW':'Solved now','DIY-WITH-GUIDE':'Do it yourself','NEEDS-A-HUMAN':'Hire a human'};
+
+  // ---- scoring ----------------------------------------------------------
+  // Exact phrase match scores highest, but a phrase whose meaningful words are
+  // all present in different order still counts — real people write "chat with
+  // my company PDFs and policies", not the phrase in the table.
+  var STOP = {'a':1,'an':1,'and':1,'are':1,'as':1,'at':1,'be':1,'by':1,'can':1,'do':1,'does':1,'for':1,'from':1,'has':1,'have':1,'i':1,'in':1,'is':1,'it':1,'me':1,'my':1,'of':1,'on':1,'or':1,'our':1,'that':1,'the':1,'their':1,'them':1,'then':1,'this':1,'to':1,'up':1,'us':1,'want':1,'we':1,'with':1,'you':1,'your':1,'need':1,'like':1,'would':1,'some':1,'someone':1,'something':1,'get':1,'make':1,'build':1,'help':1};
+  function esc4re(s){ return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); }
+  function hasWord(text, w){
+    // tolerate a plural 's' on either side, which is most of the drift in practice
+    var base = w.replace(/s$/,'');
+    return new RegExp('(^|[^a-z0-9])' + esc4re(base) + 's?([^a-z0-9]|$)','i').test(text);
+  }
+  function score(bucket, text){
+    var s = 0, kws = bucket.keywords || [];
+    for (var i=0;i<kws.length;i++){
+      var k = String(kws[i]).toLowerCase().trim();
+      if (!k) continue;
+      var words = k.split(/\s+/);
+      var content = words.filter(function(w){ return !STOP[w] && w.length > 1; });
+      if (!content.length) content = words;
+      // exact phrase — the strongest signal
+      if (new RegExp('(^|[^a-z0-9])' + esc4re(k) + '([^a-z0-9]|$)','i').test(text)){
+        s += 2 + Math.min(content.length - 1, 3) * 1.5;
+        continue;
+      }
+      // otherwise credit the meaningful words that are present, scaled by how
+      // much of the phrase they cover, so a one-word hit on a four-word phrase
+      // stays weak while a full-coverage reorder scores nearly as well as exact
+      var hit = 0;
+      for (var j=0;j<content.length;j++) if (hasWord(text, content[j])) hit++;
+      if (hit) s += hit * (hit / content.length) * 1.2;
+    }
+    return s;
+  }
+  // Below this, the honest answer is "the table has no bucket for this".
+  var CONFIDENT = 1.6;
+
+  function renderBucket(b){
+    var h = '';
+    h += '<div class="verdict"><div class="verdict-head">';
+    h += '<span class="tier ' + (TIERCLASS[b.tier]||'') + '">' + esc(TIERLABEL[b.tier]||b.tier) + '</span>';
+    h += '<h3>' + esc(b.title || b.id) + '</h3></div><div class="verdict-body">';
+    h += '<p class="answer">' + esc(b.answer) + '</p>';
+    if (b.detail) h += '<p class="fine" style="margin-bottom:.9rem;">' + esc(b.detail) + '</p>';
+
+    if (b.tools && b.tools.length){
+      h += '<div class="kv" style="border-top:none;padding-top:0;"><b>What already does it</b><span></span></div>';
+      for (var i=0;i<b.tools.length;i++){
+        var t = b.tools[i];
+        h += '<div class="toolrow"><span>' + (t.url ? '<a href="'+esc(t.url)+'" target="_blank" rel="noopener nofollow" data-tool="'+esc(t.name)+'">'+esc(t.name)+'</a>' : esc(t.name)) + (t.note ? ' <span class="fine">— '+esc(t.note)+'</span>' : '') + '</span><span class="price">' + esc(t.price || '') + '</span></div>';
+      }
+    }
+
+    if (b.steps && b.steps.length){
+      h += '<div class="kv"><b>The recipe</b><span></span></div><ul class="tight">';
+      for (var j=0;j<b.steps.length;j++) h += '<li>' + esc(b.steps[j]) + '</li>';
+      h += '</ul>';
+    }
+
+    if (b.ask_for && b.ask_for.length){
+      h += '<div class="kv"><b>Put this in the brief</b><span></span></div><ul class="tight">';
+      for (var k=0;k<b.ask_for.length;k++) h += '<li>' + esc(b.ask_for[k]) + '</li>';
+      h += '</ul>';
+    }
+
+    if (b.typical_cost) h += '<div class="kv"><b>What it should cost</b><span>' + esc(b.typical_cost) + '</span></div>';
+    if (b.red_flag) h += '<div class="kv"><b>Walk away if</b><span>' + esc(b.red_flag) + '</span></div>';
+    if (b.as_of) h += '<div class="kv"><b>Verdict as of</b><span>' + esc(b.as_of) + '</span></div>';
+    if (b.flip) h += '<div class="kv"><b>This flips if</b><span>' + esc(b.flip) + '</span></div>';
+
+    if (b.tier === 'NEEDS-A-HUMAN'){
+      h += '<div class="route" style="border-top:1px solid var(--border);padding-top:.9rem;margin-top:.9rem;">' +
+           '<button class="btn sec" data-brief="' + esc(b.id) + '">Copy a brief you can paste anywhere →</button>' +
+           '<div class="fine" style="margin-top:.5rem;">Builds a structured brief from your own words plus the ' +
+           'scope points above. Paste it into any marketplace — a vague brief is the single most reliable ' +
+           'cause of a bad hire.</div></div>';
+    }
+
+    if (b.route && b.route.url){
+      h += '<div class="route"><a class="btn" href="' + esc(b.route.url) + '" target="_blank" rel="noopener nofollow sponsored" data-route="' + esc(b.route.platform||'') + '">' + esc(b.route.label || ('Find someone on ' + (b.route.platform||'a marketplace'))) + ' →</a>';
+      h += '<div class="fine" style="margin-top:.5rem;">' + esc(b.route.disclosure || 'Outbound link to an independent marketplace. This site does not vet the individuals listed there.') + '</div></div>';
+    }
+
+    if (b.sources && b.sources.length){
+      h += '<div class="sources">Sources: ';
+      for (var m=0;m<b.sources.length;m++){
+        var s = b.sources[m];
+        h += (m?' · ':'') + '<a href="'+esc(s.url)+'" target="_blank" rel="noopener">'+esc(s.label||s.url)+'</a>';
+      }
+      h += '</div>';
+    }
+    h += '</div></div>';
+    return h;
+  }
+
+  function show(ranked, text){
+    var box = el('result');
+    if (!ranked.length || ranked[0].s < CONFIDENT){
+      var near = ranked.filter(function(r){ return r.s > 0; }).slice(0,3);
+      var sugg = '';
+      if (near.length){
+        sugg = '<div class="alts" style="margin-top:.9rem;"><div class="fine" style="margin-bottom:.5rem;">' +
+          'Closest buckets, in case one of them is your job described differently:</div>';
+        for (var n=0;n<near.length;n++){
+          sugg += '<button class="alt" data-bucket="' + esc(near[n].b.id) + '"><strong>' +
+                  esc(TIERLABEL[near[n].b.tier]||'') + '</strong> — ' + esc(near[n].b.title||near[n].b.id) + '</button>';
+        }
+        sugg += '</div>';
+      }
+      box.innerHTML = '<div class="card"><strong>The table has no confident answer for this.</strong>' +
+        '<p class="fine" style="margin:.5rem 0 0;">That is a real answer, not a failure — it means this need is ' +
+        'either novel or described in words the table does not carry yet. Guessing here would be worse than ' +
+        'saying so. Post it below and it gets read; if a product already solves it, it becomes a public bucket.</p>' +
+        sugg +
+        '<p style="margin:.8rem 0 0;"><a class="btn sec" href="#request" data-req>Post the need →</a></p></div>';
+      bindAlts(box);
+      ev('triage_result','nomatch');
+      LAST = { bucket:'nomatch', tier:'' };
+      var rq = el('rq-need'); if (rq && !rq.value) rq.value = text;
+      return;
+    }
+    var top = ranked[0].b;
+    LAST = { bucket: top.id, tier: top.tier };
+    var h = renderBucket(top);
+    var alts = ranked.slice(1,4).filter(function(r){ return r.s > 0; });
+    if (alts.length){
+      h += '<div class="alts"><div class="fine" style="margin-bottom:.5rem;">Not it? Closest other buckets:</div>';
+      for (var i=0;i<alts.length;i++){
+        h += '<button class="alt" data-bucket="' + esc(alts[i].b.id) + '"><strong>' + esc(TIERLABEL[alts[i].b.tier]||'') + '</strong> — ' + esc(alts[i].b.title||alts[i].b.id) + '</button>';
+      }
+      h += '</div>';
+    }
+    h += '<p class="fine" style="margin-top:1rem;">Still not right? <a href="#request" data-req>Post the need</a> — unmatched requests are how the table grows.</p>';
+    box.innerHTML = h;
+    ev('triage_result', top.id);
+    var rq2 = el('rq-need'); if (rq2 && !rq2.value) rq2.value = text;
+    bindAlts(box);
+  }
+
+  function bindAlts(box){
+    box.querySelectorAll('[data-bucket]').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var id = btn.getAttribute('data-bucket');
+        var b = T.buckets.filter(function(x){ return x.id===id; })[0];
+        if (b){ box.innerHTML = renderBucket(b); LAST = { bucket:b.id, tier:b.tier }; bindAlts(box); ev('triage_result','alt_'+id); box.scrollIntoView({behavior:'smooth',block:'start'}); }
+      });
+    });
+  }
+
+  function run(){
+    var text = (el('need').value||'').trim();
+    if (text.length < 6){ el('hint').textContent = 'Add a few more words.'; return; }
+    el('hint').textContent = '';
+    if (!T){ el('hint').textContent = 'Table still loading…'; return; }
+    var lower = ' ' + text.toLowerCase() + ' ';
+    var ranked = T.buckets.map(function(b){ return {b:b, s:score(b, lower)}; })
+                          .sort(function(a,b){ return b.s - a.s; });
+    ev('triage_use', String(text.length));
+    show(ranked, text);
+    try { history.replaceState(null,'','?q=' + encodeURIComponent(text.slice(0,200))); } catch(e){}
+  }
+
+  // ---- brief generator: the copyable unit that travels off-site ----
+  function buildBrief(b, needText){
+    var L = [];
+    L.push('WHAT I NEED');
+    L.push(needText || '(describe the job in your own words here)');
+    L.push('');
+    if (b.ask_for && b.ask_for.length){
+      L.push('SCOPE — please address each of these in your proposal:');
+      for (var i=0;i<b.ask_for.length;i++) L.push('  ' + (i+1) + '. ' + b.ask_for[i]);
+      L.push('');
+    }
+    if (b.typical_cost){ L.push('BUDGET GUIDE'); L.push('  ' + b.typical_cost); L.push(''); }
+    if (b.red_flag){ L.push('I WILL PASS ON PROPOSALS THAT'); L.push('  ' + b.red_flag); L.push(''); }
+    L.push('DELIVERABLES I EXPECT');
+    L.push('  - Working code or configuration I own and can run without you');
+    L.push('  - A short handover note: how to run it, what it costs to operate, what breaks it');
+    L.push('');
+    L.push('— brief structured with match.agiscorecard.com (free, no signup)');
+    return L.join('\n');
+  }
+
+  document.addEventListener('click', function(e){
+    var btn = e.target.closest ? e.target.closest('[data-brief]') : null;
+    if (!btn || !T) return;
+    var id = btn.getAttribute('data-brief');
+    var b = T.buckets.filter(function(x){ return x.id===id; })[0];
+    if (!b) return;
+    var text = buildBrief(b, (el('need').value||'').trim());
+    var done = function(){ btn.textContent = 'Brief copied ✓'; ev('brief_copy', id); setTimeout(function(){ btn.textContent = 'Copy a brief you can paste anywhere →'; }, 2500); };
+    if (navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(done).catch(function(){ fallbackCopy(text, done); });
+    } else fallbackCopy(text, done);
+  });
+  function fallbackCopy(text, done){
+    var ta = document.createElement('textarea');
+    ta.value = text; ta.style.position='fixed'; ta.style.left='-9999px';
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); done(); } catch(e){}
+    document.body.removeChild(ta);
+  }
+
+  // ---- outbound click tracking (delegated) ----
+  document.addEventListener('click', function(e){
+    var a = e.target.closest ? e.target.closest('a') : null;
+    if (!a) return;
+    if (a.hasAttribute('data-route')) ev('route_click', a.getAttribute('data-route'));
+    else if (a.hasAttribute('data-tool')) ev('tool_click', a.getAttribute('data-tool'));
+    // In an embed the request section is hidden, so send those clicks to the full site.
+    if (EMBED && a.hasAttribute('data-req')){
+      e.preventDefault();
+      window.open('https://match.agiscorecard.com/#request', '_blank', 'noopener');
+    }
+  });
+
+  // ---- load table ----
+  fetch('/routes.json').then(function(r){ return r.json(); }).then(function(j){
+    T = j;
+    var meta = el('tablemeta');
+    if (meta) meta.innerHTML = 'Routing table v' + esc(j.version||'?') + ' · ' + (j.buckets||[]).length +
+      ' buckets · last reviewed ' + esc(j.updated||'?') + ' · <a href="/routes.json">read it</a>' +
+      (j.note ? ' · ' + esc(j.note) : '');
+    // Self-auditing honesty line: counted from the table, never typed.
+    var share = el('nofeeshare');
+    if (share){
+      var all = j.buckets || [];
+      var free = all.filter(function(b){ return b.tier === 'SOLVED-NOW' || b.tier === 'DIY-WITH-GUIDE'; }).length;
+      share.textContent = 'Right now that is ' + free + ' of ' + all.length + ' buckets — ' +
+        Math.round(free / all.length * 100) + '% of the answers this page can give you.';
+    }
+    var chips = el('chips');
+    if (chips){
+      var ex = (j.examples||[]).slice(0, CHIP_LIMIT);
+      chips.innerHTML = ex.map(function(x){ return '<button class="chip" type="button">' + esc(x) + '</button>'; }).join('');
+      chips.querySelectorAll('.chip').forEach(function(c){
+        c.addEventListener('click', function(){ el('need').value = c.textContent; run(); });
+      });
+    }
+    var q = new URLSearchParams(location.search).get('q');
+    if (q){ el('need').value = q; run(); }
+    var b = new URLSearchParams(location.search).get('b');
+    if (b){
+      var hit = (j.buckets||[]).filter(function(x){ return x.id===b; })[0];
+      if (hit){ el('result').innerHTML = renderBucket(hit); LAST = { bucket:hit.id, tier:hit.tier }; ev('triage_result','deeplink_'+b); }
+    }
+  }).catch(function(){
+    el('hint').textContent = 'Routing table failed to load — reload the page.';
+  });
+
+  el('go').addEventListener('click', run);
+  el('need').addEventListener('keydown', function(e){ if ((e.metaKey||e.ctrlKey) && e.key==='Enter') run(); });
+
+  // ---- request form ----
+  el('reqform').addEventListener('submit', function(e){
+    e.preventDefault();
+    var msg = el('rq-msg'), btn = el('rq-submit');
+    var need = (el('rq-need').value||'').trim();
+    if (need.length < 20){ msg.className='note err'; msg.textContent='Please describe it in at least 20 characters.'; return; }
+    btn.disabled = true; msg.className='note'; msg.textContent='Sending…';
+    fetch('/api/request',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({
+      need: need,
+      budget: (el('rq-budget').value||'').trim(),
+      contact: (el('rq-contact').value||'').trim(),
+      website: (el('rq-website').value||''),
+      category: LAST.bucket,
+      route: LAST.tier
+    })}).then(function(r){ return r.json(); }).then(function(j){
+      if (j && j.ok){ msg.className='note ok'; msg.textContent='Received. If you left a contact, you get an answer; either way the table learns from it.'; el('reqform').reset(); }
+      else { msg.className='note err'; msg.textContent='Could not send — please try again.'; btn.disabled=false; }
+    }).catch(function(){ msg.className='note err'; msg.textContent='Network error — please try again.'; btn.disabled=false; });
+  });
+  el('rq-need').addEventListener('focus', function(){ ev('request_open',''); }, {once:true});
+
+  // ---- payment channel (addresses come from Worker secrets; never in the repo) ----
+  function payUnset(){
+    var box = el('paybox');
+    if (box) box.innerHTML = '<p class="fine" style="margin:0;"><strong>Channel not published yet.</strong> ' +
+        'The receiving address is held as a deployment secret and is deliberately absent from this ' +
+        'site\'s public source. Until the operator publishes one, this site charges nothing and there ' +
+        'is nothing to pay — which is the honest state to be in before anyone has asked to.</p>';
+  }
+  fetch('/api/pay-info').then(function(r){ return r.json(); }).then(function(p){
+    var box = el('paybox');
+    if (!p || !p.configured){ payUnset(); return; }
+    var rows = '';
+    if (p.usdc_evm) rows += '<div class="toolrow"><span><strong>USDC</strong> <span class="fine">(EVM)</span></span><span class="price"><code id="a-evm">' + esc(p.usdc_evm) + '</code></span></div>';
+    if (p.usdt_trc20) rows += '<div class="toolrow"><span><strong>USDT</strong> <span class="fine">(TRC-20)</span></span><span class="price"><code id="a-trc">' + esc(p.usdt_trc20) + '</code></span></div>';
+    box.innerHTML = '<p style="margin:0 0 .5rem;"><strong>Direct, non-custodial.</strong> Funds move from ' +
+      'your wallet to the address below. Nothing is held in between and there is no account to open.</p>' +
+      rows + '<p class="fine" style="margin:.8rem 0 0;">Verify the address against this page over HTTPS ' +
+      'before sending. Transfers are irreversible.</p>';
+    ev('pay_open','shown');
+  }).catch(payUnset);
+})();
+</script>
+</body>
+</html>
