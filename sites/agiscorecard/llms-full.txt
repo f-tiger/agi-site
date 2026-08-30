@@ -27,7 +27,7 @@ The AGI Scorecard grades every major prediction from Leopold Aschenbrenner's Sit
 ## AGI Scorecard Data for AI Agents: JSON, Feed, llms.txt
 
 URL: https://agiscorecard.com/for-agents
-Last updated: August 17, 2026 · Updated as verdicts change
+Last updated: August 29, 2026 · Updated as verdicts change
 
 Yes — every verdict on this site is free to reuse, machine-readable, and CC BY 4.0. The AGI Scorecard publishes its full dataset at /data.json (all 8 graded Situational Awareness predictions with verdicts, evidence, and flip conditions, plus the forecaster-timeline table), an Atom feed of new & updated pages at /feed.xml, and an AI-crawler index at /llms.txt. Attribution + a link is the only requirement.
 
@@ -1534,6 +1534,15 @@ URL: https://agiscorecard.com/is-nvidia-overvalued
 Last updated: August 29, 2026 · No multiple, no target, no buy/sell call — deliberately · Not investment advice
 
 By this site's published mapping, 90% of Nvidia's AI story rides on the two predictions currently graded supportive — compute scaling and the capex wave — and less than 10% on AGI itself. It is a buildout stock, not an AGI stock. "Overvalued" is a price question, and every answer to it you'll find on this query is a hedge ("on one hand… on the other"). This page answers the question underneath it instead: which falsifiable propositions does Nvidia's AI premium actually depend on, and how are they currently graded? That structure — not a price opinion — is what recomputes, in public, the day a verdict moves.
+
+---
+
+## Does Copying 13F Filings Actually Work? We Tested It
+
+URL: https://agiscorecard.com/does-copying-13f-work
+Last updated: August 29, 2026 · Recomputed each 13F season · Not investment advice
+
+Over 8 rebalance periods, copying the right investor's disclosed AI book beat the index badly — and copying Buffett's AI slice lost to it. The question is not whether copying works; it is who you copy. Everyone else answers this question with a quarter-end backtest, which quietly assumes you traded 45 days before you could have read the filing. Ours buys at the closing price of the day the 13F was filed — the first price a real person opening EDGAR could actually pay — and holds to the next filing. Winners and the loser are published together, with the caveats on the same screen.
 
 ---
 

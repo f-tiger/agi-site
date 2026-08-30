@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claim Grader — single-file tool (Claim Ledger Protocol v0.1)</title>
+<meta name="description" content="Grade any money claim in two minutes: evidence tier, dated verdict, written flip condition — and read any site's /claimledger.json. One self-contained file; save it, rename it, make it yours. Works offline.">
+<link rel="canonical" href="https://goldrush.agiscorecard.com/grader.html">
+<style>
+  :root{--bg:#0a0a0b;--bg2:#111114;--bg3:#18181d;--border:rgba(255,255,255,0.1);--border2:rgba(255,255,255,0.16);--text:#e8e8ec;--muted:#8888a0;--accent:#e8a040;--accent2:#4fc3a1;--danger:#e05555;--font:-apple-system,BlinkMacSystemFont,'Inter',sans-serif;--mono:ui-monospace,Menlo,monospace;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:16px;line-height:1.65;}
+  a{color:var(--accent);text-decoration:none;}
+  main{max-width:680px;margin:0 auto;padding:2rem 1.25rem 4rem;}
+  h1{font-size:clamp(1.5rem,4vw,2rem);font-weight:800;letter-spacing:-.02em;margin-bottom:.35rem;}
+  h2{font-size:1.15rem;font-weight:700;margin:2.2rem 0 .6rem;}
+  .sub{font-size:12.5px;color:var(--muted);margin-bottom:1.4rem;}
+  label{display:block;font-weight:600;font-size:14px;margin:1.2rem 0 .35rem;}
+  .hint{font-size:12.5px;color:var(--muted);margin:0 0 .4rem;}
+  input[type=text],textarea,select{width:100%;background:var(--bg2);border:1px solid var(--border2);border-radius:8px;color:var(--text);font-family:var(--font);font-size:14.5px;padding:10px 12px;}
+  textarea{min-height:64px;resize:vertical;}
+  .tiers{display:grid;gap:8px;margin-top:.3rem;}
+  .tier{display:flex;gap:10px;align-items:flex-start;background:var(--bg2);border:1px solid var(--border);border-radius:9px;padding:10px 12px;cursor:pointer;font-size:13.5px;}
+  .tier input{margin-top:4px;}
+  .tier b{display:block;font-size:13px;text-transform:uppercase;letter-spacing:.04em;}
+  .tier.sel{border-color:var(--accent);}
+  button{background:var(--accent);color:#0a0a0b;border:0;border-radius:8px;padding:11px 22px;font-size:14.5px;font-weight:700;cursor:pointer;margin-top:1.2rem;}
+  button.sec{background:var(--bg3);color:var(--text);border:1px solid var(--border2);font-weight:600;}
+  .warn{color:var(--danger);font-size:13px;margin-top:.5rem;display:none;}
+  #out{display:none;margin-top:2rem;border-top:1px solid var(--border);padding-top:1.4rem;}
+  pre{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:1rem;font-family:var(--mono);font-size:12.5px;overflow-x:auto;white-space:pre-wrap;word-break:break-word;line-height:1.6;margin:.5rem 0 1rem;}
+  .ok{color:var(--accent2);font-size:13px;margin-left:8px;display:none;}
+  .foot{margin-top:2.2rem;padding-top:1rem;border-top:1px solid var(--border);font-size:12px;color:var(--muted);}
+  #ledgerout{margin-top:.8rem;}
+  table{width:100%;border-collapse:collapse;font-size:12.5px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin:.5rem 0;}
+  th{text-align:left;padding:7px 10px;color:var(--muted);font-size:10.5px;text-transform:uppercase;border-bottom:1px solid var(--border);}
+  td{padding:7px 10px;border-bottom:1px solid var(--border);vertical-align:top;}
+  tr:last-child td{border-bottom:none;}
+  .row{display:flex;gap:8px;}
+  .row input{flex:1;}
+  .row button{margin-top:0;white-space:nowrap;}
+</style>
+</head>
+<body>
+<main>
+  <h1>Claim Grader</h1>
+  <div class="sub">Grades money claims per the <a href="https://goldrush.agiscorecard.com/protocol">Claim Ledger Protocol v0.1</a> — and reads any site's <code>/claimledger.json</code>.
+  This is <strong>one self-contained file</strong>: save it (Ctrl/Cmd-S), rename it, pre-fill it, make it yours — the protocol blesses adapted copies. Works offline.</div>
+
+  <label for="claim">1 · The money claim, as its seller states it</label>
+  <div class="hint">e.g. "Our AI agent earns users 3% a week" · "This course pays for itself in a month"</div>
+  <textarea id="claim" placeholder="Paste or type the claim…"></textarea>
+
+  <label>2 · The best evidence you can actually find for it</label>
+  <div class="tiers" id="tiers">
+    <label class="tier"><input type="radio" name="tier" value="verified"><span><b style="color:var(--accent2)">verified 🟩🟩🟩</b>Primary documents (filings, contracts, raw data) — or numbers you measured yourself.</span></label>
+    <label class="tier"><input type="radio" name="tier" value="reported"><span><b style="color:var(--accent)">reported 🟨🟨⬛</b>Named, independent press or institutions. Not a screenshot, not an influencer.</span></label>
+    <label class="tier"><input type="radio" name="tier" value="self-reported"><span><b style="color:var(--muted)">self-reported 🟥⬛⬛</b>Every number traces back to whoever profits from the claim.</span></label>
+  </div>
+
+  <label for="source">3 · One URL a stranger can check</label>
+  <input type="text" id="source" placeholder="https://…">
+
+  <label for="verdict">4 · Your verdict, in one honest sentence</label>
+  <div class="hint">Describe the public evidence, not the person. "No audited evidence as of today" beats "scam".</div>
+  <textarea id="verdict" placeholder="e.g. No independently audited user returns exist as of this date; every published number is the vendor's own."></textarea>
+
+  <label for="flip">5 · The flip condition — what evidence would change your mind?</label>
+  <div class="hint">Be specific enough that the seller could actually satisfy it. A verdict without a flip condition is an opinion.</div>
+  <textarea id="flip" placeholder="e.g. A third-party-audited ledger of user-level returns, net of costs, covering 12 months."></textarea>
+
+  <button onclick="grade()">Grade it →</button>
+  <div class="warn" id="warn"></div>
+
+  <div id="out">
+    <label style="margin-top:0">Your verdict card <span class="hint" style="display:inline">(paste anywhere — forum, group chat, community; it survives unformatted)</span></label>
+    <pre id="card"></pre>
+    <button class="sec" onclick="copyEl('card','ok1')">Copy card</button><span class="ok" id="ok1">✓ copied</span>
+
+    <label>Protocol entry <span class="hint" style="display:inline">(drop into your own /claimledger.json)</span></label>
+    <pre id="json"></pre>
+    <button class="sec" onclick="copyEl('json','ok2')">Copy JSON</button><span class="ok" id="ok2">✓ copied</span>
+
+    <label>Your ledger so far <span class="hint" style="display:inline">(everything you have graded in this browser session)</span></label>
+    <div id="mylist" class="hint">Nothing graded yet.</div>
+
+    <label>Publish it — this is what adopting the protocol actually is</label>
+    <div class="hint">Two files. <b>claimledger.json</b> is the one the protocol asks you to publish at your domain root; it is what any protocol tool reads. The tool copy is optional — a renamed version of this grader with your entries baked in, for people who want the editor too.</div>
+    <div class="row"><input type="text" id="mylname" placeholder="Name your ledger, e.g. 'Crypto Claims Ledger'"><input type="text" id="mylurl" placeholder="https://your-domain.com"></div>
+    <div class="row"><button onclick="downloadLedger()">Download claimledger.json →</button><button class="sec" onclick="makeCopy()">Download the tool copy</button></div>
+    <div class="hint" id="pubhint" style="margin-top:.4rem">Then serve it at <code>https://your-domain.com/claimledger.json</code> with <code>access-control-allow-origin: *</code>. That is the whole adoption step — no registration, no permission, nothing to pay.</div>
+  </div>
+
+  <h2>Read a ledger</h2>
+  <div class="hint">Paste any site's <code>/claimledger.json</code> URL — validated against the protocol's five required fields. (The site must allow cross-origin reads; the protocol asks publishers to.)</div>
+  <div class="row"><input type="text" id="lurl" value="https://goldrush.agiscorecard.com/claimledger.json"><button class="sec" onclick="readLedger()">Read →</button></div>
+  <div id="ledgerout"></div>
+
+  <div class="foot">
+    Claim Ledger Protocol v0.1 · CC BY 4.0 · canonical: goldrush.agiscorecard.com/protocol ·
+    misses stay on the ledger · no payment ever changes a verdict · no tokens, ever ·
+    A verdict describes public evidence at a date — it is not an accusation of fraud. Nothing here is financial advice.
+  </div>
+</main>
+<script>
+var MYENTRIES = /*ENTRIES*/[]/*/ENTRIES*/;
+var METER={verified:'🟩🟩🟩',reported:'🟨🟨⬛','self-reported':'🟥⬛⬛'};
+window.addEventListener('DOMContentLoaded',function(){try{renderMine();if(MYENTRIES.length)document.getElementById('out').style.display='block';}catch(e){}});
+document.querySelectorAll('.tier input').forEach(function(r){r.addEventListener('change',function(){
+  document.querySelectorAll('.tier').forEach(function(t){t.classList.toggle('sel',t.querySelector('input').checked);});});});
+function val(id){return document.getElementById(id).value.trim();}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+function beacon(n,l){try{fetch('https://goldrush.agiscorecard.com/e',{method:'POST',body:JSON.stringify({n:n,l:l,p:'/grader.html'})}).catch(function(){});}catch(e){}}
+function grade(){
+  var claim=val('claim'),src=val('source'),verdict=val('verdict'),flip=val('flip');
+  var tierEl=document.querySelector('.tier input:checked');
+  var warn=document.getElementById('warn'),problems=[];
+  if(!claim)problems.push('state the claim');
+  if(!tierEl)problems.push('pick an evidence tier');
+  if(!/^https?:\/\/.+\..+/.test(src))problems.push('the source must be a checkable URL');
+  if(!verdict)problems.push('write the verdict');
+  if(!flip||flip.length<15)problems.push('the flip condition is the whole point — write what evidence would change your mind');
+  if(problems.length){warn.textContent='Not gradeable yet: '+problems.join(' · ');warn.style.display='block';return;}
+  warn.style.display='none';
+  var tier=tierEl.value,today=new Date().toISOString().slice(0,10);
+  var id=claim.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'').slice(0,40)||'claim';
+  var card='CLAIM LEDGER v0.1 · '+today+'\n'
+    +'“'+claim+'”\n'
+    +'EVIDENCE '+METER[tier]+' '+tier.toUpperCase()+'\n'
+    +'VERDICT: '+verdict+'\n'
+    +'FLIPS IF: '+flip+'\n'
+    +'SOURCE: '+src+'\n'
+    +'goldrush.agiscorecard.com/protocol';
+  var entry={id:id,claim:claim,tier:tier,verdict:verdict,asOf:today,flip:flip,source:src};
+  MYENTRIES.push(entry);
+  document.getElementById('card').textContent=card;
+  document.getElementById('json').textContent=JSON.stringify(entry,null,2);
+  renderMine();
+  document.getElementById('out').style.display='block';
+  document.getElementById('out').scrollIntoView({behavior:'smooth'});
+  beacon('grader_use',tier);
+}
+function copyEl(id,okId){
+  var t=document.getElementById(id).textContent;
+  var done=function(){var o=document.getElementById(okId);o.style.display='inline';setTimeout(function(){o.style.display='none';},1500);beacon('grader_copy',id);};
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(done,function(){fallback(t);done();});}
+  else{fallback(t);done();}
+}
+function fallback(t){var ta=document.createElement('textarea');ta.value=t;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(ta);}
+function ledgerEnvelope(){
+  var name=val('mylname')||'My Claim Ledger';
+  var url=val('mylurl')||'https://example.com';
+  var last=MYENTRIES.length?MYENTRIES[MYENTRIES.length-1].asOf:new Date().toISOString().slice(0,10);
+  return {name:name,url:url,license:'CC BY 4.0',dateModified:last,
+    method:{protocol:'Claim Ledger Protocol v0.1',spec:'https://goldrush.agiscorecard.com/protocol.md',
+            rules:['misses stay on the ledger','no payment ever changes a verdict','no token']},
+    entries:MYENTRIES,archive:[]};
+}
+function renderMine(){
+  var el=document.getElementById('mylist');if(!el)return;
+  if(!MYENTRIES.length){el.textContent='Nothing graded yet.';return;}
+  el.innerHTML=MYENTRIES.map(function(e,i){
+    return '<div style="padding:6px 0;border-bottom:1px solid rgba(255,255,255,.07)">'+METER[e.tier]+' <b>'+esc(e.verdict)+'</b> <span class="hint" style="display:inline">('+esc(e.asOf)+')</span><br>'+esc(e.claim.slice(0,120))+'</div>';
+  }).join('');
+}
+function downloadLedger(){
+  if(!MYENTRIES.length){alert('Grade at least one claim first.');return;}
+  var doc=ledgerEnvelope();
+  var blob=new Blob([JSON.stringify(doc,null,2)],{type:'application/json'});
+  var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='claimledger.json';
+  document.body.appendChild(a);a.click();document.body.removeChild(a);
+  beacon('grader_copy','ledger_file');
+}
+function makeCopy(){
+  var name=val('mylname')||'My Claim Ledger';
+  var html='<!DOCTYPE html>\n'+document.documentElement.outerHTML;
+  html=html.replace(/<title>[^<]*<\/title>/,'<title>'+esc(name)+' — Claim Grader (Claim Ledger Protocol v0.1)</title>');
+  html=html.replace(/<h1>[^<]*<\/h1>/,'<h1>'+esc(name)+'</h1>');
+  var baked=JSON.stringify(MYENTRIES);
+  html=html.replace(/var MYENTRIES = \/\*ENTRIES\*\/[\s\S]*?\/\*\/ENTRIES\*\/;/,'var MYENTRIES = /*ENTRIES*/'+baked+'/*/ENTRIES*/;');
+  var blob=new Blob([html],{type:'text/html'});
+  var a=document.createElement('a');a.href=URL.createObjectURL(blob);
+  a.download=name.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'').slice(0,50)+'.html';
+  document.body.appendChild(a);a.click();document.body.removeChild(a);
+  beacon('grader_copy','fork_file');
+}
+function readLedger(){
+  var u=val('lurl'),out=document.getElementById('ledgerout');
+  out.innerHTML='<p class="hint">fetching…</p>';
+  fetch(u).then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);return r.json();}).then(function(d){
+    var es=(d&&d.entries)||[];var req=['claim','tier','verdict','asOf','flip','source'];
+    var bad=0,rows='';
+    es.forEach(function(e){
+      var missing=req.filter(function(k){return!e[k];});if(missing.length)bad++;
+      rows+='<tr><td>'+esc(e.claim||'(missing claim)')+'</td><td>'+(METER[e.tier]||'❓')+' '+esc(e.tier||'?')+'</td><td>'+esc(e.verdict||'')+' <span class="hint">('+esc(e.asOf||'undated')+')</span></td><td>'+esc(e.flip||'⚠ no flip condition')+'</td></tr>';
+    });
+    out.innerHTML='<p class="hint"><b>'+esc(d.name||u)+'</b> · '+es.length+' entries · dateModified '+esc(d.dateModified||'?')
+      +' · protocol check: '+(bad===0&&es.length>0?'<span style="color:var(--accent2)">✓ all entries carry the five required fields</span>':'<span style="color:var(--danger)">'+bad+' entries missing required fields</span>')+'</p>'
+      +'<table><thead><tr><th>Claim</th><th>Tier</th><th>Verdict</th><th>Flips if</th></tr></thead><tbody>'+rows+'</tbody></table>';
+    beacon('ledger_render',u.slice(0,80));
+  }).catch(function(e){out.innerHTML='<p class="hint" style="color:var(--danger)">Could not read it: '+esc(e.message)+' — the site may not allow cross-origin reads (the protocol asks publishers to set access-control-allow-origin: *).</p>';});
+}
+</script>
+<script>try{fetch('/e',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({n:'page_view',l:'js',p:location.pathname})})}catch(e){}</script>
+</body>
+</html>

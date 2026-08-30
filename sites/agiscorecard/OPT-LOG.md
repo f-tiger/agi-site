@@ -1,3 +1,73 @@
+## 2026-08-30(每日 run 04:00)— 裁决日:*_live 判纯品牌资产;P4 中文判定页上线
+
+- **spec(三轮精简)**:今日双重身份——例行 run + `index_click{*_live}` 预登记裁决日。
+  阶梯:⓪ 无到期战略项(周一项明日)→ ⓪+ 引用队列空(Bing 明细 09-01 才可请)→
+  ① 新钩子家族首日无数据可赛 → **PRD 队列:P3 被冷却挡(invest.html 昨日动过)→ P4**。
+- **裁决**:`index_click{*_live}` 0/14 天 → 纯品牌资产,停加钩子、保留活数字的引用
+  价值(六件套⑥不变)。详见 analytics-notes。
+- **防误报 ×2**:mcp 2 次调用 = 08-18 已知扫描器;goldrush 首日 41"human" = CT 扫描
+  蜂群。均不作里程碑/增长上报。
+- **ship**:`/zh/does-copying-13f-work`(P4,规格照 PRD:zh 设计系统、赢输同表、四条
+  反面同屏、SSRN 一手引用、双向 hreflang、cn hub + sitemap + llms 接线、同步台账 5→6处)。
+- validate 待跑;单次 push。
+
+## 2026-08-29(第七轮,owner:「优化prompt:强化股票部分」)
+
+- **三轮 spec 先行**;按 PRD 执行顺序落 **P2 `/does-copying-13f-work`**(五条队列里
+  引用潜力最大:SERP 极薄 + 全网唯一申报日收盘价口径一手回测)。
+- **ship**:六件套齐——胶囊判定「问题不是能不能抄,是抄谁」;活数字 +187.2% vs
+  QQQ +59.6%(截至 2026-08-16,`index_click{copy13f_live}`);逐人表**含败者**
+  (巴菲特 AI 切片 +37.3% 跑输);四条反面说明与数字同屏;Martin & Puthenpurackal
+  2008(SSRN)一手学术引用;钱路 = compass 计算器裸链(`invest_tool_click{copy13f_record}`,
+  `?who=` 短码本仓无可核实例故不带参,防编造)+ TG 绑定在计算器内。FAQ==JSON-LD 逐字。
+  实体落在 Buffett/Druckenmiller,对冲 73% Aschenbrenner 依赖。
+- **合规要点(上午 R3 否决人指的路)**:track-record 硬同步台账**同 commit 由四处
+  扩为五处**(CLAUDE.md 已改),季度重算义务覆盖本页。
+- **PRD 记账**:P2 ✅、P6 ✅(今晨第五轮已实质完成,补勾)。队列剩 P3(等 /invest
+  出冷却)、P4(zh 版)、P5(invest-data.json)。09-26 冻结窗未受污染(本页事件
+  全在 invest_tool_click / index_click 族)。
+- validate OK(**224 页 / 206 URL**)。
+
+## 2026-08-29(第六轮,owner:「把点击率高的,强化转化」)
+
+- **点击榜重拉(含当日新面)**:全站互动第一名是被忽略的**首页时间线投票 vote_cast
+  13 次/28d(197 pv,≈6.6% 参与率,08-27 仍在发生)**,高于任何观点钩。而投票后面板
+  里的订阅位 `post_vote` **13 票 0 点击**——同页的 post_scorecard/footer_cta 却是全站
+  仅有的两单 sub_ok(开表即成 2/2)。输赢同页,差在文案:赢家卖「判定变动当周一封」,
+  post_vote 卖泛泛的「Subscribe free」。
+- **ship(强化接收端,不扩面)**:post_vote 位按赢家公式重写并**个性化到刚投的票**——
+  castVote() 动态写入「Your <archetype> call (<choice>) is on record. The evidence
+  clock reads 62.5/100 — get each verdict change the week it happens…」,按钮改为
+  具体承诺「Email me each verdict change →」。location 不变(post_vote,基线 0,
+  任何改善可见)。JS parse 检查通过。新增 62.5 硬编码在 index.html 内,换分 grep
+  可扫到,合规。
+- **克制**:opinion_*_exposure 家族 09-26 窗内不扩面;今日已改页一律未再碰;
+  exposure 接收端今晨已强化过,不重复。
+- **预登记判定线**:至 09-26,若期间 vote_cast ≥10 且 subscribe_click{post_vote} 仍为
+  0 → 投票后时刻不接受订阅 ask,记反面发现,把该位降为纯分享面(不再迭代文案)。
+- validate OK(223 页 / 205 URL)。
+
+## 2026-08-29(第五轮,owner:「发挥你能力,对流量转化做更好的复盘,深度重构优化」)
+
+- **方法**:三轮 spec → inline 侦察拉齐两站权威数字 → workflow 舰队(5 诊断视角并行
+  → 综合 → 3 名独立否决人,9 agents / 84.7 万 tokens)。
+- **复盘根因(五视角合流)**:eco 621 pv→100 带价点击(16%)vs agi 868 pv→0 带价点击。
+  不是流量问题——agi 入口与中段都在走(tool_click ~20)——是**终端断裂**:唯一有价
+  产品(SunWatch Pro ¥199/月)埋在工具第 4 块、跟在"未建成"块后面、文案还劝人
+  "stay here";audits 订单路终点是一个只收邮箱、按钮写着 Subscribe 的订阅表;
+  eco 验证过的"答案时刻放带价链接"模式被试在 ~2 pv/日的人物页上。六个变现面
+  同时摆摊,每个都在噪声地板下。
+- **裁决**:5 项方案,放行 2(R1 结果时刻放 Pro、R5 站规+KPI+照杀线),否决 2
+  (audits 表单、低流量页钱线),缓期 1(书单移位,算术天花板否决,只留 10-31 组合
+  kill 线)。否决理由全文在 workflow 产物,要点记入 CLAUDE.md 转化架构令。
+- **ship**:①gen_agi_exposure.py 三处改(结果面板带价一行 + 块序对调 + 劝退文案修正),
+  EN+zh 再生成(页面 08-19 后未动,出冷却);②CLAUDE.md 新增「转化架构令」(每页一条
+  主钱路 / rev_click 主 KPI / 判定线照杀);③revenue-experiments.md 记 E-R1 与全部
+  判定线;④agent surfaces 再生成。validate OK(223 页 / 205 URL)。
+- **明日起的判定日历**:08-30 *_live(按0裁)→ 09-26 opinion 家族(≥8)→ 09-30 sub_ok
+  (<5 判死)→ 10-07 E13 → 10-15 exposure 结果行 → 10-31 书单组合线 → 11-15 invest 线
+  + rev_click ≥10。
+
 ## 2026-08-29(第四轮,owner:「站点离 AI 时代新站点还缺什么,补充完成」)
 
 - **三轮 spec 先行**;差集审计实测(不按泛清单重造):已有 = llms.txt / data.json+Dataset

@@ -1,5 +1,5 @@
 {
- "fetched": "2026-08-28",
+ "fetched": "2026-08-30",
  "geo": "DE",
  "seeds": {
   "klimaanlage": {
@@ -324,47 +324,123 @@
    "rising": [
     {
      "q": "belstaff weste",
-     "v": 20450
-    },
-    {
-     "q": "lululemon bauchtasche",
-     "v": 13950
-    },
-    {
-     "q": "new balance 740",
-     "v": 8950
-    },
-    {
-     "q": "belstaff",
-     "v": 1800
+     "v": 21150
     },
     {
      "q": "belstaff jacke herren",
-     "v": 750
-    },
-    {
-     "q": "new balance 9060",
-     "v": 450
+     "v": 20600
     },
     {
      "q": "lululemon rucksack",
-     "v": 350
+     "v": 20250
+    },
+    {
+     "q": "belstaff",
+     "v": 2050
+    },
+    {
+     "q": "klimaanlage dyson",
+     "v": 850
     },
     {
      "q": "miele triflex hx2 pro",
-     "v": 300
+     "v": 350
     },
     {
-     "q": "carglass in meiner nähe",
-     "v": 300
+     "q": "lululemon shorts",
+     "v": 350
     },
     {
-     "q": "dyson filter kaufen",
+     "q": "new balance laufschuhe",
+     "v": 350
+    },
+    {
+     "q": "dyson nass und trockensauger",
+     "v": 250
+    },
+    {
+     "q": "ventilator dyson",
      "v": 250
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-08-28"
+   "fetched": "2026-08-29"
+  },
+  "matratze": {
+   "auto": [
+    "matratze englisch",
+    "matratze",
+    "matratzen concord",
+    "matratzen",
+    "matratze 140x200",
+    "matratze 180x200",
+    "matratzenschoner",
+    "matratze 90x200",
+    "matratze kaufen",
+    "matratze 160x200"
+   ],
+   "rising": [
+    {
+     "q": "matratze englisch",
+     "v": "new"
+    },
+    {
+     "q": "matratzen concord",
+     "v": "new"
+    },
+    {
+     "q": "matratzen",
+     "v": "new"
+    },
+    {
+     "q": "matratze 140x200",
+     "v": "new"
+    },
+    {
+     "q": "matratze 180x200",
+     "v": "new"
+    },
+    {
+     "q": "matratzenschoner",
+     "v": "new"
+    },
+    {
+     "q": "matratze 90x200",
+     "v": "new"
+    },
+    {
+     "q": "matratze kaufen",
+     "v": "new"
+    },
+    {
+     "q": "matratze 160x200",
+     "v": "new"
+    }
+   ],
+   "source": "autocomplete-diff",
+   "fetched": "2026-08-30"
+  },
+  "saugwischer": {
+   "rising": [
+    {
+     "q": "leifheit bodenwischer",
+     "v": 35500
+    },
+    {
+     "q": "wischroboter test",
+     "v": 22800
+    },
+    {
+     "q": "bester saugwischer",
+     "v": 80
+    },
+    {
+     "q": "carglass",
+     "v": 60
+    }
+   ],
+   "source": "related-queries",
+   "fetched": "2026-08-30"
   }
  }
 }

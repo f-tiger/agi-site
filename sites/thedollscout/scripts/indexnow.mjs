@@ -12,21 +12,9 @@ const KEY = readFileSync("scripts/indexnow-key.txt", "utf8").trim();
    ACTIVELY rather than whenever a crawler happens by, and IndexNow accepts
    any URL on the host, not just pages. */
 const EXTRA = [
-  "/mcp",
-  "/server.json",
-  "/.well-known/mcp.json",
-  "/data/doll-specs.json",
-  "/data/payment-recourse.json",
-  "/data/first-year-cost.json",
-  "/data/scam-signals.json",
-  "/data/import-costs.json",
   "/llms.txt",
-  "/feed.xml",
-].map((p) => `https://${HOST}${p}`);
-
-const urls = [
-  ...new Set([...readFileSync("scripts/urls.txt", "utf8").split("\n").filter(Boolean), ...EXTRA]),
-];
+  "/llms-full.txt",
+].map((p) => `https://thedollscout.com${p}`);
 
 if (!/^[a-f0-9]{32,}$/i.test(KEY)) {
   console.error("indexnow: key file looks wrong, skipping");

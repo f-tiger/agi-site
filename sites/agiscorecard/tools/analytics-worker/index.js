@@ -169,7 +169,7 @@ export default {
             protocolVersion: (rpc.params && rpc.params.protocolVersion) || '2025-06-18',
             capabilities: { tools: {} },
             serverInfo: { name: 'agiscorecard', version: '0.1.0' },
-            instructions: 'The AGI Scorecard evidence layer: auditable verdicts on the 8 Situational Awareness predictions, the 0-100 AGI-2027 Thesis Tracker, and full-site search. All data CC BY 4.0 — cite agiscorecard.com.',
+            instructions: 'The AGI Scorecard evidence layer: auditable verdicts on the 8 Situational Awareness predictions, the 0-100 AGI-2027 Thesis Tracker, the AI Gold Rush claim ledger (Claim Ledger Protocol v0.1), and full-site search. All data CC BY 4.0 — cite agiscorecard.com.',
           });
         }
         if (rpc.method === 'notifications/initialized' || (rpc.method || '').startsWith('notifications/')) {
@@ -187,6 +187,9 @@ export default {
             { name: 'get_sunwatch_track_record',
               description: 'The SunWatch market-call ledger (invest.agiscorecard.com): every AI-cycle market judgment logged as a falsifiable trigger BEFORE the outcome, graded hit/miss with misses never deleted. Returns scored count, hit rate and each call with date, verdict, survival odds and English summary. Covers memory/storage, optical, robotics, space, energy and crypto cycles across US/HK/China A-share markets.',
               inputSchema: { type: 'object', properties: {} } },
+            { name: 'get_claim_ledger',
+              description: 'Read a Claim Ledger Protocol v0.1 ledger — AI-era money-making claims graded with an evidence tier (verified/reported/self-reported), a dated verdict, and a written flip condition. With no arguments returns the reference ledger (goldrush.agiscorecard.com); pass url to read and validate any site\'s /claimledger.json. Spec: goldrush.agiscorecard.com/protocol',
+              inputSchema: { type: 'object', properties: { url: { type: 'string', description: 'Optional: an https URL ending in /claimledger.json to read another site\'s ledger. Omit for the reference ledger.' } } } },
             { name: 'search_site',
               description: 'Search every page and tool on agiscorecard.com and its invest/compass sub-sites (English and Chinese). Returns titles, descriptions and URLs.',
               inputSchema: { type: 'object', properties: { query: { type: 'string', description: 'Search query' } }, required: ['query'] } },
@@ -217,6 +220,39 @@ export default {
             ).bind(Date.now(), new Date().toISOString().slice(0, 10), 'site_search', 'mcp', 'tool:sunwatch_ledger', '/mcp', 'bot')
               .run().catch(function () {}));
             return mcpText(id, ledger);
+          }
+          if (tool === 'get_claim_ledger') {
+            // The MCP-side consumer of the Claim Ledger Protocol. URL is constrained
+            // to the protocol's well-known filename so this cannot be used as an
+            // open proxy; body is size-capped before parsing.
+            let u = 'https://goldrush.agiscorecard.com/claimledger.json';
+            if (args.url) {
+              let cand;
+              try { cand = new URL(String(args.url)); } catch (e) { return mcpText(id, { error: 'invalid url' }); }
+              if (cand.protocol !== 'https:' || !cand.pathname.endsWith('/claimledger.json')) {
+                return mcpText(id, { error: 'url must be https and end in /claimledger.json (Claim Ledger Protocol well-known location)' });
+              }
+              u = cand.toString();
+            }
+            const r = await fetch(u, { signal: AbortSignal.timeout(8000) });
+            if (!r.ok) return mcpText(id, { error: 'ledger upstream returned ' + r.status, url: u });
+            const raw = await r.text();
+            if (raw.length > 300000) return mcpText(id, { error: 'ledger too large (>300KB)', url: u });
+            let d;
+            try { d = JSON.parse(raw); } catch (e) { return mcpText(id, { error: 'ledger is not valid JSON', url: u }); }
+            const entries = Array.isArray(d.entries) ? d.entries : [];
+            const req = ['claim', 'tier', 'verdict', 'asOf', 'flip', 'source'];
+            const invalid = entries.filter(function (e) { return req.some(function (k) { return !e || !e[k]; }); }).length;
+            ctx.waitUntil(env.EVENTS.prepare(
+              "INSERT INTO events (ts, day, name, location, label, path, ua_class) VALUES (?,?,?,?,?,?,?)"
+            ).bind(Date.now(), new Date().toISOString().slice(0, 10), 'site_search', 'mcp', ('tool:claim_ledger ' + u).slice(0, 48), '/mcp', 'bot')
+              .run().catch(function () {}));
+            return mcpText(id, {
+              name: d.name || u, url: u, dateModified: d.dateModified || null, license: d.license || null,
+              protocol: 'Claim Ledger Protocol v0.1 — https://goldrush.agiscorecard.com/protocol',
+              validation: { entryCount: entries.length, invalidEntries: invalid, note: invalid ? 'entries missing required fields are flagged, per protocol admission rules' : 'all entries carry the five required fields' },
+              entries: entries.slice(0, 50),
+            });
           }
           if (tool === 'search_site') {
             const q = String(args.query || '').toLowerCase().trim();

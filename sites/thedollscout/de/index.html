@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DollScout — Labubu Seltenheit, Quoten &amp; Kaufberater</title>
+<meta name="description" content="Welcher Labubu ist wirklich selten, wie selten, und wie stehen deine Blindbox-Chancen wirklich? Mit Pull-Rechner, Echt-vs-Fälschung-Check und den offiziellen Kanälen. Jede Aussage mit Quelle.">
+<link rel="canonical" href="https://thedollscout.com/de/">
+<link rel="alternate" hreflang="en" href="https://thedollscout.com/">
+<link rel="alternate" hreflang="de" href="https://thedollscout.com/de/">
+<link rel="alternate" hreflang="zh" href="https://thedollscout.com/zh/">
+<link rel="alternate" hreflang="th" href="https://thedollscout.com/th/">
+<link rel="alternate" hreflang="x-default" href="https://thedollscout.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DollScout">
+<meta property="og:url" content="https://thedollscout.com/de/">
+<meta property="og:title" content="DollScout — der Labubu-Scout">
+<meta property="og:description" content="Welcher Labubu ist wirklich selten, wie selten, und wie stehen deine Blindbox-Chancen wirklich? Pull-Rechner, Seltenheits-Mathematik, Echtheits-Checks, offizielle Kanäle.">
+<meta property="og:image" content="https://thedollscout.com/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/css/main.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧸</text></svg>">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    { "@type": "Organization", "@id": "https://thedollscout.com/#org", "name": "DollScout", "url": "https://thedollscout.com/",
+      "description": "Seltenheits-orientierter Kaufberater für Labubu- und The-Monsters-Sammelfiguren: Secret-Quoten, Pull-Mathematik, Echtheits-Checks und offizielle Kanäle. Unabhängig; nicht mit Pop Mart oder Kasing Lung verbunden." },
+    { "@type": "WebSite", "name": "DollScout", "url": "https://thedollscout.com/de/",
+      "publisher": { "@id": "https://thedollscout.com/#org" }, "inLanguage": "de" }
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Zum Inhalt springen</a>
+<div class="notice-bar">🧸 <b>Kaufberater mit Beleg-Standard.</b> Jede Aussage mit Quelle — oder als unverifiziert markiert. Unabhängig: nicht mit Pop&nbsp;Mart verbunden.</div>
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="/de/">Doll<b>Scout</b></a>
+    <button class="nav-toggle" aria-label="Menü">☰</button>
+    <nav class="nav">
+      <a href="/de/rarity">Seltenheit</a>
+      <a href="/de/fake-check">Echt vs. Fälschung</a>
+      <a href="/de/where-to-buy">Wo kaufen</a>
+      <a href="/" lang="en">EN</a>
+      <a href="/zh/" lang="zh">中文</a>
+      <a href="/th/" lang="th">ไทย</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+<section>
+  <div class="wrap prose">
+    <h1>Welcher ist wirklich selten — und wie selten?</h1>
+    <div>
+      <span class="odds-sticker">1 : 72
+        <small>die am häufigsten berichtete Secret-Quote einer 6-Figuren-Serie — <a href="/de/rarity">wenn die Box es sagt</a></small>
+      </span>
+    </div>
+    <p class="meta" style="max-width:680px;margin:18px 0 0">Jede Labubu-Blindbox ist eine Wette. Die Quote steht auf der Box, die heißen Serien sind in Stunden ausverkauft, und je seltener eine Figur, desto härter wird sie gefälscht. DollScout ist der Scout für diese Jagd — nachrechenbare Seltenheits-Mathematik, durchführbare Echtheits-Checks und die kurze Liste der Orte, wo die bezahlte Quote auch die echte ist.</p>
+
+    <div class="tool" data-odds-tool data-milestones="Für 50% Chance bei 1:{n} bräuchtest du {b50} Boxen; für 90%: {b90} Boxen." id="calc">
+      <p class="tool-title">🎰 SECRET-PULL-RECHNER</p>
+      <div class="row">
+        <label for="odds-home"><strong>Secret-Quote</strong></label>
+        <select id="odds-home" data-odds>
+          <option value="72" selected>1 : 72 — üblich bei 6-Figuren-Serien</option>
+          <option value="120">1 : 120 — berichtet für manche Collabs</option>
+          <option value="144">1 : 144 — üblich bei 12-Figuren-Serien</option>
+          <option value="168">1 : 168 — berichtet für manche Collabs</option>
+          <option value="720">1 : 720 — berichtet für Glow/Ultra-Varianten</option>
+          <option value="custom">Eigene…</option>
+        </select>
+        <span data-customwrap hidden>1 : <input data-customodds type="number" min="2" max="100000" value="72" style="width:90px"></span>
+      </div>
+      <div class="row" style="margin-top:10px">
+        <label for="boxes-home"><strong>Boxen, die du öffnest</strong></label>
+        <input id="boxes-home" data-boxes type="number" min="1" max="10000" value="6" style="width:90px">
+      </div>
+      <p style="margin-top:14px">Chance auf mindestens ein Secret: <span class="res-big" data-result>—</span></p>
+      <p class="meta" data-milestones-out></p>
+      <p class="meta">Unabhängiges Einzelbox-Modell zur gedruckten Rate (versiegelte Cases können abweichen). Quoten-Quellen und die volle Mathematik: <a href="/de/rarity">Seltenheits-Seite</a>. Keine Daten verlassen deinen Browser.</p>
+    </div>
+
+    <div class="bars" aria-label="Benötigte Boxen für 50% Secret-Chance, je berichteter Quote">
+      <p class="tool-title" style="margin-bottom:6px">BOXEN FÜR 50% CHANCE, JE QUOTE</p>
+      <div class="bar-row"><span class="bar-name">1:72</span><span class="bar-track"><span class="bar-fill" style="width:10%"></span></span><span class="bar-val">50</span></div>
+      <div class="bar-row"><span class="bar-name">1:120</span><span class="bar-track"><span class="bar-fill" style="width:17%"></span></span><span class="bar-val">83</span></div>
+      <div class="bar-row"><span class="bar-name">1:144</span><span class="bar-track"><span class="bar-fill" style="width:20%"></span></span><span class="bar-val">100</span></div>
+      <div class="bar-row"><span class="bar-name">1:168</span><span class="bar-track"><span class="bar-fill" style="width:23%"></span></span><span class="bar-val">117</span></div>
+      <div class="bar-row"><span class="bar-name">1:720</span><span class="bar-track"><span class="bar-fill" style="width:100%"></span></span><span class="bar-val">499</span></div>
+      <p class="bar-cap">Unabhängige-Ziehung-Mathematik aus den berichteten Raten der <a href="/de/rarity">Seltenheits-Seite</a>, Stand 2026-08-30.</p>
+    </div>
+
+    <div class="grid c3" style="margin-top:34px">
+      <a class="card" href="/de/rarity">
+        <svg class="card-ico" viewBox="0 0 48 48" aria-hidden="true"><rect x="6" y="14" width="28" height="28" rx="6" fill="none" stroke="#111114" stroke-width="2.5"/><text x="20" y="35" fill="#111114" font-family="Helvetica,Arial,sans-serif" font-size="18" font-weight="700" text-anchor="middle">%</text><path d="M36 6 l3 8 8 1 -6 6 2 8 -7 -4 -7 4 2 -8 -6 -6 8 -1 z" fill="#e4002b"/></svg>
+        <h3>Seltenheit &amp; Secret-Quoten</h3><p>1:72? 1:144? Die berichteten Raten je Serienformat, mit Quelle — und der Rechner für deine echten Chancen.</p>
+      </a>
+      <a class="card" href="/de/fake-check">
+        <svg class="card-ico" viewBox="0 0 48 48" aria-hidden="true"><circle cx="20" cy="20" r="12" fill="none" stroke="#111114" stroke-width="2.5"/><line x1="29" y1="29" x2="42" y2="42" stroke="#111114" stroke-width="3.5" stroke-linecap="round"/><path d="M14 20 l4 4 8 -8" fill="none" stroke="#111114" stroke-width="2.5" stroke-linecap="round"/></svg>
+        <h3>Echt vs. Fälschung (Lafufu)</h3><p>Je seltener die Figur, desto häufiger die Fälschung. Der 8-Punkte-Check — Zähne, Box, Siegel, Prägung, Preisboden — jeder mit Quelle.</p>
+      </a>
+      <a class="card" href="/de/where-to-buy">
+        <svg class="card-ico" viewBox="0 0 48 48" aria-hidden="true"><path d="M8 18 l4 -10 h24 l4 10 v4 a6 6 0 0 1 -12 0 a6 6 0 0 1 -12 0 a6 6 0 0 1 -8 -4 z" fill="none" stroke="#111114" stroke-width="2.5" stroke-linejoin="round"/><rect x="12" y="26" width="24" height="14" rx="2" fill="none" stroke="#111114" stroke-width="2.5"/></svg>
+        <h3>Wo kaufen</h3><p>Die offiziellen Kanäle — sortiert danach, wie schwer eine Fälschung oder ein manipuliertes &bdquo;Secret garantiert&ldquo; dich erreichen kann.</p>
+      </a>
+    </div>
+
+    <div class="grid c2" style="margin-top:14px">
+      <a class="card" href="/de/how-blind-boxes-work"><h3>Wie Blindboxen wirklich funktionieren</h3><p>Serienstruktur, das Secret, Cases vs. lose Boxen, die Kaufformate und die Fallen — der ganze Mechanismus auf einer Seite.</p></a>
+      <a class="card" href="/de/glossary"><h3>Das Glossar</h3><p>Secret, Chase, Case, gedruckte Quote, Glow, Lafufu — jeder Begriff der Jagd, in Klartext definiert.</p></a>
+      <a class="card" href="/de/start"><h3>Dein erster Labubu</h3><p>Format, Serie, Kanal — die drei Entscheidungen eines guten Erstkaufs, plus Eltern-Abschnitt.</p></a>
+      <a class="card" href="/de/psychology"><h3>Die Psychologie des Ziehens</h3><p>Warum Blindboxen sich so anfühlen, mit Quellen — und der Jagdkosten-Rechner, der die Jagd bepreist, bevor sie beginnt.</p></a>
+    </div>
+
+    <div class="grid c3" style="margin-top:14px">
+      <a class="card" href="/de/checker"><h3>🔍 Lafufu-Checker</h3><p>Die 8 Echtheits-Checks als interaktives Werkzeug — antworte, was du siehst, bekomm die Red Flags namentlich.</p></a>
+      <a class="card" href="/de/finder"><h3>🧭 Serien-Finder</h3><p>Drei Antworten → die offizielle Serie, die passt, verlinkt auf Pop Marts eigene Seiten.</p></a>
+      <a class="card" href="/de/lookup"><h3>🔎 Modell-Suche</h3><p>Labubu, Zimomo, Mokoko, Seriennamen — eintippen, belegte Identitätskarte bekommen.</p></a>
+    </div>
+
+    <h2 id="series">Die aktuellen Serien</h2>
+    <p class="meta">Verlinkt auf Pop&nbsp;Marts eigene Produktseiten — die Referenz dafür, was jede Serie kostet und enthält. Bestand und Preise rotieren; die Live-Seite gewinnt immer.</p>
+    <div class="grid c2">
+      <a class="card" href="https://www.popmart.com/de/collection/27/the-monsters" rel="noopener"><h3>🧸 The Monsters — Kollektion (DE)</h3><p>Alles, was aktuell auf Pop Marts deutschem The-Monsters-Regal steht.</p></a>
+      <a class="card" href="https://www.popmart.com/de/search/Labubu" rel="noopener"><h3>🔎 Labubu-Suche (DE)</h3><p>Die aktuelle Labubu-Auswahl im offiziellen deutschen Store.</p></a>
+    </div>
+    <p class="meta" style="margin-top:12px">Anzeige · Affiliate-Link — für dich derselbe Preis: lieber vertraute Lieferung und Rückgabe? Der <a href="https://www.amazon.de/stores/POPMART/Labubu_IP-Serie/page/B6CDF189-09EA-4C7A-B319-D57268F9A0CB?tag=getecoback-21" rel="sponsored nofollow noopener">offizielle POP-MART-Markenshop auf Amazon.de</a> führt aktuelle Serien — &bdquo;Verkauf durch&ldquo; prüfen, <a href="/de/where-to-buy">wie immer</a>.</p>
+
+    <h2>Sieh die Quoten in Aktion</h2>
+    <p class="meta">Echte Unboxings ihrer Creator auf YouTube — die Seltenheits-Mathematik von oben, live. Eingebettet im datenschutzfreundlichen Modus; lädt erst von YouTube, wenn du auf Play drückst.</p>
+    <div class="grid c2">
+      <div>
+        <div class="video-wrap"><iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/3l54e-vuBSk" title="SECRET LABUBU Unboxing / i got every blind box (YouTube)" allow="accelerometer; encrypted-media; picture-in-picture" allowfullscreen></iframe></div>
+        <p class="meta" style="margin-top:8px">&bdquo;SECRET LABUBU Unboxing / i got every blind box&ldquo; — via YouTube (engl.).</p>
+      </div>
+      <div>
+        <div class="video-wrap"><iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/Bu16WWmYbyQ" title="POP MART LABUBU Exciting Macaron Plushie Blind Box Opening (YouTube)" allow="accelerometer; encrypted-media; picture-in-picture" allowfullscreen></iframe></div>
+        <p class="meta" style="margin-top:8px">&bdquo;Exciting Macaron Plushie Blind Box Opening&ldquo; — via YouTube (engl.).</p>
+      </div>
+    </div>
+
+    <h2>Wer macht Labubu?</h2>
+    <svg class="hero-art" viewBox="0 0 520 170" role="img" aria-label="Original-Illustration: eine Reihe versiegelter Blindboxen mit Fragezeichen und eine offene Box mit Stern — der Secret-Pull">
+      <g stroke="#c9c9d1" stroke-width="2">
+        <rect x="20"  y="55" width="80" height="90" rx="10" fill="#f2f2f5"/>
+        <rect x="120" y="55" width="80" height="90" rx="10" fill="#f2f2f5"/>
+        <rect x="220" y="55" width="80" height="90" rx="10" fill="#f2f2f5"/>
+        <rect x="420" y="55" width="80" height="90" rx="10" fill="#f2f2f5"/>
+      </g>
+      <g fill="#6e6e76" font-family="Helvetica,Arial,sans-serif" font-size="42" font-weight="700" text-anchor="middle">
+        <text x="60"  y="115">?</text><text x="160" y="115">?</text>
+        <text x="260" y="115">?</text><text x="460" y="115">?</text>
+      </g>
+      <rect x="325" y="105" width="70" height="40" rx="8" fill="#ffffff" stroke="#c9c9d1" stroke-width="2"/>
+      <g fill="#e4002b">
+        <path d="M360 18 l7 18 19 2 -14 13 4 19 -16 -10 -16 10 4 -19 -14 -13 19 -2 z"/>
+      </g>
+      <g fill="#e4002b" opacity=".55"><circle cx="330" cy="42" r="3"/><circle cx="394" cy="34" r="4"/><circle cx="342" cy="80" r="2.5"/><circle cx="382" cy="76" r="2.5"/></g>
+      <text x="360" y="165" fill="#6e6e76" font-family="Helvetica,Arial,sans-serif" font-size="12" text-anchor="middle">1 : 72 — wenn die Box es sagt</text>
+    </svg>
+    <p>Labubu wurde vom in Hongkong geborenen Künstler <a href="https://en.wikipedia.org/wiki/Kasing_Lung" rel="noopener">Kasing Lung</a> für seine illustrierte Reihe <em>The Monsters</em> (2015) geschaffen und wird seit 2019 in exklusiver Lizenz von Pop&nbsp;Mart produziert (<a href="https://en.wikipedia.org/wiki/Labubu" rel="noopener">Wikipedia, engl.</a>). Die Figur wurde populär genug, dass die Fälschungen einen eigenen Namen bekamen — <em>Lafufu</em> (<a href="https://gulfnews.com/amp/story/lifestyle/bought-a-labubu-learn-the-crucial-signs-that-reveal-if-its-a-genuine-or-a-lafufu-1.500206668" rel="noopener">Gulf News</a>) — genau deshalb gehören Seltenheitsjagd und <a href="/de/fake-check">Echtheits-Checks</a> auf dieselbe Seite. Unser Beleg-Datensatz ist <a href="/data/">als CC-BY-JSON veröffentlicht (engl.)</a>. DollScout ist ein unabhängiger Kaufberater: nicht mit Pop&nbsp;Mart, Kasing Lung oder der The-Monsters-IP verbunden; Produktnamen dienen nur der Identifikation.</p>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p class="disclosure">
+      <strong>Unabhängiger Ratgeber.</strong> Nicht mit Pop Mart oder Kasing Lung verbunden.
+      <strong>Affiliate-Hinweis:</strong> Als Amazon-Partner verdient DollScout an qualifizierten Käufen — für dich ändert sich der Preis nicht. Provisionen ändern nie, was wir schreiben.
+      · <a href="/legal/affiliate-disclosure">Disclosure (engl.)</a> · <a href="/legal/privacy">Privacy (engl.)</a> · © <span id="year"></span> DollScout
+    </p>
+  </div>
+</footer>
+<script src="/js/config.js"></script>
+<script src="/js/analytics.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/odds-calc.js"></script>
+</body>
+</html>

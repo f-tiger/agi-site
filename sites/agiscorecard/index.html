@@ -857,8 +857,8 @@
       <button class="email-submit" id="lock-btn" style="background:var(--bg3); margin-left:8px;" onclick="lockPrediction()">🔒 Lock it in</button>
       <span id="copied-msg" style="display:none; font-size:13px; color:var(--accent2); margin-left:10px;">✓ Copied</span>
       <div style="margin-top:1.1rem; padding:0.9rem 1.1rem; background:var(--bg2); border:1px solid rgba(124,106,245,.22); border-radius:10px; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:10px;">
-        <span style="font-size:13.5px; color:var(--text);">Want to know if your call was right? We track it — score now <strong style="color:var(--accent);">62.5/100</strong>.</span>
-        <a href="https://agiscorecard.beehiiv.com/subscribe?utm_source=agiscorecard&utm_medium=post_vote" target="_blank" rel="noopener" onclick="gtag('event','subscribe_click',{location:'post_vote'});" style="display:inline-block; background:var(--accent); color:#fff; padding:8px 18px; border-radius:7px; font-size:13px; font-weight:500; text-decoration:none; white-space:nowrap;">Subscribe free →</a>
+        <span id="post-vote-ask" style="font-size:13.5px; color:var(--text);"><strong>Your call is on record.</strong> The evidence clock reads <strong style="color:var(--accent);">62.5/100</strong> — get each verdict change the week it happens, and you'll know the moment it moves toward your date, or away from it.</span>
+        <a href="https://agiscorecard.beehiiv.com/subscribe?utm_source=agiscorecard&utm_medium=post_vote" target="_blank" rel="noopener" onclick="gtag('event','subscribe_click',{location:'post_vote'});" style="display:inline-block; background:var(--accent); color:#fff; padding:8px 18px; border-radius:7px; font-size:13px; font-weight:500; text-decoration:none; white-space:nowrap;">Email me each verdict change →</a>
       </div>
     </div>
   </div>
@@ -1262,6 +1262,7 @@
       <a href="/what-is-b-ai" onclick="gtag('event','explore_click',{label:'whatisbai'});" style="font-size:12px; color:var(--accent); border:1px solid var(--border2); border-radius:6px; padding:6px 12px;">🤖 What is B.AI? Sun's AI relay, audited</a>
       <a href="/do-ai-trading-agents-work" onclick="gtag('event','explore_click',{label:'doaitrading'});" style="font-size:12px; color:var(--accent); border:1px solid var(--border2); border-radius:6px; padding:6px 12px;">📉 Do AI trading agents make money?</a>
       <a href="/is-nvidia-overvalued" onclick="gtag('event','explore_click',{label:'nvda'});" style="font-size:12px; color:var(--accent); border:1px solid var(--border2); border-radius:6px; padding:6px 12px;">📈 Is Nvidia overvalued? What its AI bet rides on</a>
+      <a href="/does-copying-13f-work" onclick="gtag('event','explore_click',{label:'copy13f'});" style="font-size:12px; color:var(--accent); border:1px solid var(--border2); border-radius:6px; padding:6px 12px;">🧾 Does copying 13F filings work? We tested it</a>
       <a href="/is-claude-getting-dumber" onclick="gtag('event','explore_click',{label:'claudedumber'});" style="font-size:12px; color:var(--accent); border:1px solid var(--border2); border-radius:6px; padding:6px 12px;">🧠 Is Claude getting dumber?</a>
       <a href="/audits" onclick="gtag('event','explore_click',{label:'audits'});" style="font-size:12px; color:var(--accent); border:1px solid var(--border2); border-radius:6px; padding:6px 12px;">🧾 Evidence Audits — our method, for hire</a>
       <a href="/paradigm-experiment" onclick="gtag('event','explore_click',{label:'paradigm'});" style="font-size:12px; color:var(--accent); border:1px solid var(--border2); border-radius:6px; padding:6px 12px;">🎲 The Paradigm Bet — a public pre-registered experiment</a>
@@ -1320,6 +1321,12 @@ function castVote(choice) {
     '<div style="font-size:21px;font-weight:700;margin-bottom:6px;">' + a.emoji + ' ' + a.name + '</div>' +
     '<div>' + a.line + '</div>';
   renderSpectrum(choice);
+  // The ask is rewritten to speak to the vote just cast: the proven pattern on this
+  // page (post_scorecard, the only placement with a completed signup besides the
+  // footer) is urgency + a concrete weekly promise — post_vote had 13 votes and 0
+  // clicks on generic "Subscribe free" copy before this.
+  var ask = document.getElementById('post-vote-ask');
+  if (ask) ask.innerHTML = '<strong>Your ' + a.name + ' call (' + choice + ') is on record.</strong> The evidence clock reads <strong style="color:var(--accent);">62.5/100</strong> — get each verdict change the week it happens, and you’ll know the moment it moves toward your date, or away from it.';
   document.getElementById('vote-result').style.display = 'block';
   gtag('event','vote_cast',{label:choice});
 }

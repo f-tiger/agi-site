@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DollScout — Labubu 稀有度、隐藏款概率与买真指南(中文版)</title>
+<meta name="description" content="哪只 Labubu 真的稀有、隐藏款概率到底多少、怎么不买到假的 Lafufu——概率计算器 + 8 项真伪检查 + 官方渠道清单,每条结论都有信源。中文单页版。">
+<link rel="canonical" href="https://thedollscout.com/zh/">
+<link rel="alternate" hreflang="en" href="https://thedollscout.com/">
+<link rel="alternate" hreflang="de" href="https://thedollscout.com/de/">
+<link rel="alternate" hreflang="zh" href="https://thedollscout.com/zh/">
+<link rel="alternate" hreflang="th" href="https://thedollscout.com/th/">
+<link rel="alternate" hreflang="x-default" href="https://thedollscout.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DollScout">
+<meta property="og:url" content="https://thedollscout.com/zh/">
+<meta property="og:title" content="DollScout — Labubu 稀有度与买真指南">
+<meta property="og:description" content="隐藏款概率计算器、8 项真伪检查、官方渠道清单——每条结论都有信源。">
+<meta property="og:image" content="https://thedollscout.com/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/css/main.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧸</text></svg>">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    { "@type": "Organization", "@id": "https://thedollscout.com/#org", "name": "DollScout", "url": "https://thedollscout.com/" },
+    { "@type": "WebSite", "name": "DollScout(中文版)", "url": "https://thedollscout.com/zh/",
+      "publisher": { "@id": "https://thedollscout.com/#org" }, "inLanguage": "zh" }
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">跳到正文</a>
+<div class="notice-bar">🧸 <b>证据标准导购站。</b>每条结论具名信源,查不到就标注「未验证」。独立站点:与 Pop&nbsp;Mart 无关联。</div>
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="/zh/">Doll<b>Scout</b></a>
+    <button class="nav-toggle" aria-label="菜单">☰</button>
+    <nav class="nav">
+      <a href="/" lang="en">EN</a>
+      <a href="/de/" lang="de">DE</a>
+      <a href="/th/" lang="th">ไทย</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+<section>
+  <div class="wrap prose">
+    <h1>到底哪只稀有——有多稀有?</h1>
+    <div>
+      <span class="odds-sticker">1 : 72
+        <small>6 款系列最常见的隐藏款印刷概率——以盒上印刷值为准</small>
+      </span>
+    </div>
+    <p class="meta" style="max-width:680px;margin:18px 0 0">每个 Labubu 盲盒都是一次下注:概率印在盒上,热门系列几小时售罄,越稀有的款假货越多。DollScout 做三件事:可复算的概率数学、可执行的真伪检查、以及「你付钱买的概率就是真实概率」的渠道清单。中文版是单页精华;完整证据页(每条数据的信源链接)在<a href="/">英文站</a>。</p>
+
+    <div class="tool" data-odds-tool data-milestones="想要 50% 概率(按 1:{n})需要 {b50} 盒;90% 需要 {b90} 盒。" id="calc">
+      <p class="tool-title">🎰 隐藏款概率计算器</p>
+      <div class="row">
+        <label for="odds-home"><strong>隐藏款概率</strong></label>
+        <select id="odds-home" data-odds>
+          <option value="72" selected>1 : 72 —— 6 款系列常见</option>
+          <option value="120">1 : 120 —— 部分联名系列有报道</option>
+          <option value="144">1 : 144 —— 12 款系列常见</option>
+          <option value="168">1 : 168 —— 部分联名系列有报道</option>
+          <option value="720">1 : 720 —— 夜光/Ultra 变体有报道</option>
+          <option value="custom">自定义…</option>
+        </select>
+        <span data-customwrap hidden>1 : <input data-customodds type="number" min="2" max="100000" value="72" style="width:90px"></span>
+      </div>
+      <div class="row" style="margin-top:10px">
+        <label for="boxes-home"><strong>你要开的盒数</strong></label>
+        <input id="boxes-home" data-boxes type="number" min="1" max="10000" value="6" style="width:90px">
+      </div>
+      <p style="margin-top:14px">至少抽中一只隐藏款的概率:<span class="res-big" data-result>—</span></p>
+      <p class="meta" data-milestones-out></p>
+      <p class="meta">独立单盒模型,按印刷概率计算(整箱配比可能不同)。概率信源与完整数学在<a href="/rarity">英文稀有度页</a>。数据不离开你的浏览器。</p>
+    </div>
+
+    <h2>盲盒数学,三句话说完</h2>
+    <ul>
+      <li><strong>1:72 不是「第 72 盒必中」</strong>:开 12 盒约 15% 概率,50% 要 50 盒,90% 要 165 盒——每一盒都是独立抽取,第 13 盒仍然是 1:72。</li>
+      <li><strong>「隐藏款该出了」是赌徒谬误</strong>:连续不中不会让下一盒概率变高。</li>
+      <li><strong>追隐藏款的期望成本 = 概率 × 单盒价</strong>:1:72 就是平均 72 盒的钱。想要特定款,直接买已开盒的确定款通常更便宜——那时候起作用的是下面的真伪检查,不是运气。</li>
+    </ul>
+
+    <h2>8 项真伪检查(Lafufu 识别)</h2>
+    <p class="meta">每项的详细说明与具名信源在<a href="/fake-check">英文真伪页</a>,还有<a href="/checker">交互式检查工具</a>。速查版:</p>
+    <ol>
+      <li><strong>数牙齿</strong>:正品恰好 9 颗、齿缝清晰;数量不对或糊成一片 = 红旗。</li>
+      <li><strong>脸部工艺</strong>:柔和桃色、喷涂腮红、眼睛有光泽层次;死亮死粉、腮红是实心圆 = 红旗。</li>
+      <li><strong>盒子</strong>:哑光、印刷干净、系列名有压纹;反光、印刷发虚 = 红旗。</li>
+      <li><strong>防伪码</strong>:QR 扫出来必须落在 popmart.com 域名上,山寨域名 = 红旗。</li>
+      <li><strong>脚底刻印</strong>:2024 年后的系列脚底有 Pop Mart / 艺术家刻印;老系列没有不算判决。</li>
+      <li><strong>做工手感</strong>:毛发均匀、缝线干净、有分量;粗糙、发轻发空 = 红旗。</li>
+      <li><strong>价格地板</strong>:全新「正品」远低于官方零售价 = 经典假货信号。</li>
+      <li><strong>卖家身份(最重要)</strong>:官方渠道(官网、App、门店、官方店铺)高于以上一切外观检查。</li>
+    </ol>
+    <p class="meta">任何单项都不是保真证明;Pop&nbsp;Mart 官方现行指引与本站冲突时,以官方为准。</p>
+
+    <h2>去哪买真的</h2>
+    <p>原则一句话:<strong>认「卖家是谁」,不认网站 logo</strong>。首选 Pop&nbsp;Mart 官方渠道(<a href="https://www.popmart.com/" rel="noopener">popmart.com</a> 选择你所在地区、官方 App、线下门店);市场平台只买「Sold by / 卖家」是 POP MART 官方的链接。完整渠道排名在<a href="/where-to-buy">英文渠道页</a>。</p>
+    <p class="meta">广告 · 联盟链接(价格对你不变):在美国的读者可用 <a href="https://www.amazon.com/stores/POPMART/page/9EB83127-7B84-48B8-868F-805DB5FA39ED?tag=ecoback0d-20" rel="sponsored nofollow noopener">Amazon 上的 POP MART 官方店铺</a>——下单前照旧核对「Sold by」是 POP MART。</p>
+
+    <h2>更多工具(英文界面,数学通用)</h2>
+    <div class="grid c3" style="margin-top:18px">
+      <a class="card" href="/psychology#cost"><h3>追逐成本计算器</h3><p>输入你的本地单盒价,算出追隐藏款的期望成本。</p></a>
+      <a class="card" href="/checker"><h3>交互式验真工具</h3><p>逐题回答 8 项检查,直接告诉你哪几条是红旗。</p></a>
+      <a class="card" href="/lookup"><h3>型号查询</h3><p>Labubu、Zimomo、Mokoko、系列名——查这是哪只。</p></a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p class="disclosure">
+      <strong>独立导购站。</strong>与 Pop Mart 及 Kasing Lung 无关联;产品名仅作识别用途。
+      <strong>联盟披露:</strong>本站部分外链为 Amazon 联盟链接,你的价格不变,本站可能获得佣金。
+      · <a href="/legal/affiliate-disclosure">Disclosure(英文)</a> · <a href="/legal/privacy">Privacy(英文)</a> · © <span id="year"></span> DollScout
+    </p>
+  </div>
+</footer>
+<script src="/js/config.js"></script>
+<script src="/js/analytics.js"></script>
+<script src="/js/odds-calc.js"></script>
+<script src="/js/main.js"></script>
+</body>
+</html>

@@ -1,5 +1,5 @@
 {
- "fetched": "2026-08-28",
+ "fetched": "2026-08-30",
  "seeds": {
   "electric spin scrubber": {
    "auto": [
@@ -115,12 +115,16 @@
   "high speed hair dryer": {
    "rising": [
     {
-     "q": "conair infiniti pro hair dryer",
-     "v": 170
+     "q": "xfinity high speed internet",
+     "v": 250
     },
     {
-     "q": "xfinity high speed internet",
-     "v": 150
+     "q": "laifen hair dryer",
+     "v": 100
+    },
+    {
+     "q": "conair infiniti pro hair dryer",
+     "v": 80
     },
     {
      "q": "conair hair dryer",
@@ -128,7 +132,71 @@
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-08-28"
+   "fetched": "2026-08-29"
+  },
+  "mini massage gun": {
+   "rising": [
+    {
+     "q": "therabody",
+     "v": 120
+    },
+    {
+     "q": "therabody massage gun",
+     "v": 100
+    },
+    {
+     "q": "therabody mini massage gun",
+     "v": 100
+    },
+    {
+     "q": "theragun massage gun",
+     "v": 50
+    },
+    {
+     "q": "theragun mini",
+     "v": 50
+    },
+    {
+     "q": "theragun",
+     "v": 50
+    },
+    {
+     "q": "bob and brad mini massage gun",
+     "v": 40
+    },
+    {
+     "q": "bob and brad massage gun",
+     "v": 40
+    }
+   ],
+   "source": "related-queries",
+   "fetched": "2026-08-30"
+  },
+  "leg compression boots": {
+   "rising": [
+    {
+     "q": "best leg compression sleeves",
+     "v": 50350
+    },
+    {
+     "q": "therabody jetboots prime",
+     "v": 5250
+    },
+    {
+     "q": "quinear leg compression",
+     "v": 120
+    },
+    {
+     "q": "therabody leg compression",
+     "v": 50
+    },
+    {
+     "q": "therabody",
+     "v": 40
+    }
+   ],
+   "source": "related-queries",
+   "fetched": "2026-08-30"
   }
  }
 }

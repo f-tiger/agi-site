@@ -117,7 +117,10 @@ sitemap/llms.txt/agi-questions 接线、单 h1、anti-churn（5-run 窗口）。
   贵贱判断留给读者，这恰是与 Motley Fool 的差异化。
 - **埋点**：`tool_click{opinion_nvda}`（?b=NVDA 深链）、`index_click{nvda_live}`。
 
-### P2 · `does-copying-13f-work`（EN 判定页 · 判定型）【主线 C→绑定；实体对冲】
+### P2 · `does-copying-13f-work`（EN 判定页 · 判定型）【主线 C→绑定；实体对冲】 ✅ 已上线 2026-08-29
+按规格落地:活数字 +187.2% vs 59.6(`index_click{copy13f_live}`)、逐人表含败者、四条反面同屏、
+Martin & Puthenpurackal 2008 一手引用、计算器裸链(`invest_tool_click{copy13f_record}`,
+`?who=` 短码无本仓可核实例故不带参)、硬同步台账同 commit 扩为五处。
 - **营收挂钩**：C→track-record 计算器深链（`?who=…`）→ TG 绑定（`h_` 短码）。
 - **标题**：`Does Copying 13F Filings Actually Work? We Tested It` (≤60c)
 - **需求证据**：SERP 极薄（Medium/论文/工具页）；学界结论存在（copycat alpha
@@ -157,7 +160,8 @@ sitemap/llms.txt/agi-questions 接线、单 h1、anti-churn（5-run 窗口）。
 - **接线**：llms.txt + /for-agents + 后续 MCP tool（`get_invest_positions`，挂在既有
   /mcp，不新增基建）。生成器并入 `gen_agi_exposure.py` 的判定同步链。
 
-### P6 · exposure→Pro 桥转化优化（cro，产品侧唯一动刀处）
+### P6 · exposure→Pro 桥转化优化（cro，产品侧唯一动刀处） ✅ 已上线 2026-08-29(第五轮重构随 workflow 裁决落地:结果面板一行桥
+`exposure_<lang>_sunwatch_result` + 块序对调 + 劝退文案修正;判定线 10-15)
 - **现状诊断（cro 技能）**：桥块在页面静态深处（方法论与 FAQ 之后），读者算完分数
   的「价值时刻」看不到它；文案 6 行长稳（诚实但埋没）。0 点击 = 位置问题的先验
   大于文案问题（同全站 slidein 教训：先修位置阈值再改文案）。

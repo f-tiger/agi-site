@@ -1,0 +1,21 @@
+{
+  "name": "Claim Ledger Protocol — consumption log",
+  "url": "https://goldrush.agiscorecard.com/fetchlog.json",
+  "license": "CC BY 4.0",
+  "dateModified": "2026-08-30",
+  "why": "The protocol asks sites to publish /claimledger.json. This file publishes whether anyone actually reads it, including when the answer is nobody. 'Ledgers published' is deliberately NOT reported as traction: llms.txt scored well on exactly that number while being dead.",
+  "definitions": {
+    "ledgers_listed": "Ledgers on the reference registry, first-party included.",
+    "ledgers_validating": "Of those, how many parse and carry all five required fields in every entry.",
+    "outside_fetches_of_our_claimledger": "Fetches of goldrush.agiscorecard.com/claimledger.json EXCLUDING those with a goldrush referrer (our own registry page fetches it) and excluding our deployment self-check, which tags itself ?ci=1. This is the only consumption number this site can honestly observe: it cannot see fetches of somebody else's file on somebody else's server.",
+    "known_limit": "An external ledger's own readership is unobservable from here. The 2026-11-30 adoption line is therefore resolved by this number plus registry ledger_render events whose label is a non-goldrush URL."
+  },
+  "counts": {
+    "ledgers_listed": 1,
+    "ledgers_validating": 1,
+    "outside_fetches_of_our_claimledger": 0,
+    "as_of": "2026-08-30",
+    "period": "site lifetime (from 2026-08-29)"
+  },
+  "note": "Ten machine fetches of /ledger.json in this period were this repository's own deploy self-check — ten deploys, ten fetches. Our own CI is not adoption and is excluded."
+}

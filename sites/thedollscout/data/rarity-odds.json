@@ -1,0 +1,23 @@
+{
+  "name": "Labubu secret odds by series format",
+  "description": "Commonly reported secret/chase figure rates for The Monsters blind-box series, by format. The authoritative number for any series is the one printed on that series' own box and product listing; these are collector-reported rates for orientation.",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "publisher": "https://thedollscout.com/",
+  "documentation": "https://thedollscout.com/rarity",
+  "recorded": "2026-08-30",
+  "limitations": [
+    "Collector-reported rates, not an official Pop Mart publication; the box-printed odds outrank every row here.",
+    "Rates vary by series and year; we could not verify every series.",
+    "Sealed whole-case allocation can differ from independent single-box draws; probability math on these rates models loose boxes."
+  ],
+  "formats": [
+    { "format": "Standard series (6 figures)", "reportedOdds": "1:72", "oddsN": 72, "sources": ["https://tech-insider.org/mystery-boxes/labubu-mystery-box/", "https://globaltill.com/secret-labubu-complete-guide-2026/"] },
+    { "format": "Extended series (12 figures)", "reportedOdds": "1:144", "oddsN": 144, "sources": ["https://popboxss.com/blogs/d41d8cd9-8f00b204-e9800998-ecf8427e_6c691aab"] },
+    { "format": "Some collab series", "reportedOdds": "1:120 to 1:168", "oddsN": null, "sources": ["https://globaltill.com/secret-labubu-complete-guide-2026/"] },
+    { "format": "Glow / ultra variants", "reportedOdds": "as low as 1:720", "oddsN": 720, "sources": ["https://popboxss.com/blogs/d41d8cd9-8f00b204-e9800998-ecf8427e_6c691aab"] }
+  ],
+  "derived": {
+    "note": "Boxes needed for a 50% chance of at least one secret, independent-draw model: ceil(ln(0.5)/ln(1-1/N)).",
+    "boxesFor50pct": { "72": 50, "120": 83, "144": 100, "168": 117, "720": 499 }
+  }
+}
