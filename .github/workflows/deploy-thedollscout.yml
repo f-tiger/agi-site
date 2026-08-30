@@ -92,7 +92,7 @@ jobs:
         run: |
           sleep 20
           fail=0
-          for p in / /fake-check /where-to-buy /de/ /de/fake-check /de/where-to-buy /robots.txt /sitemap.xml; do
+          for p in / /fake-check /where-to-buy /de/ /de/fake-check /de/where-to-buy /data/ /robots.txt /sitemap.xml; do
             code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 20 "https://thedollscout.com$p")
             redirs=$(curl -s -o /dev/null -w "%{num_redirects}" -L --max-redirs 5 --max-time 20 "https://thedollscout.com$p" || echo 99)
             echo "$p -> HTTP $code, redirects $redirs"

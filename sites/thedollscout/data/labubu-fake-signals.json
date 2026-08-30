@@ -1,0 +1,25 @@
+{
+  "name": "Labubu authenticity signals (real vs fake / Lafufu checks)",
+  "description": "The eight checks to run on a Labubu / The Monsters figure before or after buying, compiled from named public sources. Published so the answer can be read by machines as well as people.",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "publisher": "https://thedollscout.com/",
+  "documentation": "https://thedollscout.com/fake-check",
+  "recorded": "2026-08-30",
+  "limitations": [
+    "We have not laboratory-tested figures ourselves; every signal is sourced from the named public reporting.",
+    "Seal designs, markings and box details vary by series and year; absence of one signal on an older series is a question, not a verdict.",
+    "Counterfeits improve constantly. Pop Mart's own current guidance outranks this dataset where they disagree.",
+    "No single signal is proof. The seller check (an official channel) outranks all cosmetic checks."
+  ],
+  "signalCount": 8,
+  "signals": [
+    { "order": 1, "name": "Teeth count", "authentic": "Exactly nine distinct teeth with visible gaps", "counterfeit": "Wrong count, fused teeth, or a single white blob", "sources": ["https://snkrdunk.com/en/magazine/2024/12/04/real-vs-fake-labubu-tips-to-ensure-your-collection-is-authentic/", "https://abcnews.com/GMA/Living/how-to-spot-fake-labubu/story?id=124575764"] },
+    { "order": 2, "name": "Face finish", "authentic": "Soft peach tone, airbrushed blush, eyes with glossy depth", "counterfeit": "Harsh pink/orange, blush painted as solid circles, flat dull eyes", "sources": ["https://www.hola.com/us/lifestyle/20250808849234/how-spot-fake-labubu/"] },
+    { "order": 3, "name": "Box finish", "authentic": "Matte, muted pastels, embossed series name, clean print", "counterfeit": "Glossy, uneven surface, washed-out or over-saturated print", "sources": ["https://snkrdunk.com/en/magazine/2024/12/04/real-vs-fake-labubu-tips-to-ensure-your-collection-is-authentic/"] },
+    { "order": 4, "name": "Anti-counterfeit seal", "authentic": "QR seal resolving to verification on popmart.com", "counterfeit": "No seal, or a QR landing on a lookalike domain", "sources": ["https://www.izoate.com/blog/how-to-tell-if-a-labubu-is-real-or-fake-in-2026-8-authenticity-checks/"] },
+    { "order": 5, "name": "Figure markings", "authentic": "Pop Mart engraving / artist name on the foot on 2024+ releases", "counterfeit": "Missing or mushy markings on recent series", "sources": ["https://abcnews.com/GMA/Living/how-to-spot-fake-labubu/story?id=124575764"] },
+    { "order": 6, "name": "Build quality", "authentic": "Even fur, clean seams, crisp paint edges, substantial feel", "counterfeit": "Rough seams, grainy patches, mismatched gloss, light hollow plastic", "sources": ["https://gulfnews.com/amp/story/lifestyle/bought-a-labubu-learn-the-crucial-signs-that-reveal-if-its-a-genuine-or-a-lafufu-1.500206668"] },
+    { "order": 7, "name": "Price floor", "authentic": "Standard blind boxes tracked at roughly $14-$28 US retail; euro prices vary by series on popmart.com", "counterfeit": "Brand-new 'authentic' stock far below official retail", "sources": ["https://www.demandsage.com/labubu-statistics/"] },
+    { "order": 8, "name": "Seller of record", "authentic": "An official Pop Mart channel (site, app, stores, Robo Shops, official TikTok Shop, official Amazon storefront)", "counterfeit": "Any channel where the cosmetic checks are your only protection", "sources": ["https://abcnews.com/GMA/Living/how-to-spot-fake-labubu/story?id=124575764"] }
+  ]
+}

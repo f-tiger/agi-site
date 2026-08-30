@@ -1826,3 +1826,36 @@ Dual-tag, dual-market build on day one of the new site:
   revenue counts as unconfirmed until the listing is done (~1 owner-minute).
 - D1 attribution needs no change: affiliate_click stores the target
   hostname, so .com vs .de clicks separate cleanly in the ledger.
+
+## 2026-08-30 (round 3) — owner: "是不是有门禁，都解掉" + "参照eco站点再优化"
+
+THE GATE FINDING, for the fleet's permanent record: the deploy pipeline had
+been RED since 08-22 — runs #13-#20 all failed in seconds at the
+build-data-page anchor gate (a hand edit broke a generator anchor). Every
+GEO/SEO/IndexNow improvement committed 08-25..08-27 (the IndexNow push
+mechanism's sitemap targets, the vendor-check page, hot-picks baking) NEVER
+reached production; the weekly IndexNow job was meanwhile submitting URLs
+that 404'd live. "We did everything and got no traffic" was literally true —
+the work was landing in a frozen deployment. Lesson: a red deploy is a
+silent gate unless something screams; the pivot's rewritten pipeline has no
+generator chain left to rot, and the fleet should treat "last successful
+deploy date" as a first-class health metric.
+
+Other gates settled: adult classification signals (RTA header / adult meta /
+age gate) died with the takedown; run #21 deployed the new site (all 6 pages
++ robots + sitemap 200, zero redirects), and the one red — /scam-check still
+200 — was edge-cache latency, confirmed by dispatch run #22 going fully
+green including the retired-pages-404 assertions.
+
+eco-port optimization round (this commit):
+- /data/ surface: labubu-fake-signals.json (CC-BY, per-signal sources,
+  limitations) + /data/ index with Dataset JSON-LD. Grounds: the old site's
+  ONLY Google click landed on /data/, and eco's dataset surfaces are its
+  AI-crawl magnets.
+- fake-check EN+DE: one Ad-labelled "skip the checklist" exit block
+  (official storefront, marketplace-correct tags; popmart.com linked
+  unmonetized beside it) — eco's lesson that a wedge page with zero anchors
+  gives a convinced reader nothing to act on. Footer disclosure updated to
+  match reality.
+- Next: IndexNow MODE=all full registration of the new URL set right after
+  this deploys.

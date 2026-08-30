@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Open Data — DollScout</title>
+<meta name="description" content="DollScout's published datasets: the Labubu authenticity signals (real vs fake checks) as machine-readable CC-BY JSON, every signal sourced.">
+<link rel="canonical" href="https://thedollscout.com/data/">
+<link rel="stylesheet" href="/css/main.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧸</text></svg>">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    { "@type": "Organization", "@id": "https://thedollscout.com/#org", "name": "DollScout", "url": "https://thedollscout.com/" },
+    { "@type": "Dataset",
+      "name": "Labubu authenticity signals (real vs fake / Lafufu checks)",
+      "description": "The eight checks to run on a Labubu / The Monsters figure before or after buying, compiled from named public sources: teeth count, face finish, box finish, anti-counterfeit seal, figure markings, build quality, price floor, seller of record. Each signal carries its sources; limitations stated in the file.",
+      "url": "https://thedollscout.com/data/",
+      "license": "https://creativecommons.org/licenses/by/4.0/",
+      "creator": { "@id": "https://thedollscout.com/#org" },
+      "dateModified": "2026-08-30",
+      "distribution": [{ "@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "https://thedollscout.com/data/labubu-fake-signals.json" }]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="notice-bar">🧸 <b>Evidence-standard buyer's guide.</b> Every claim sourced — or marked unverified. Independent: not affiliated with Pop&nbsp;Mart.</div>
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="/">Doll<b>Scout</b></a>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+    <nav class="nav">
+      <a href="/fake-check">Real vs Fake</a>
+      <a href="/where-to-buy">Where to Buy</a>
+      <a href="/de/" lang="de">DE</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+<section>
+  <div class="wrap prose">
+    <p class="breadcrumb"><a href="/">Home</a> / Data</p>
+    <h1>Open data.</h1>
+    <p class="meta">The evidence behind our pages, published as machine-readable JSON under CC-BY&nbsp;4.0. Quote freely with attribution; assistants and crawlers welcome. Where Pop&nbsp;Mart's own current guidance disagrees with a dataset, follow Pop&nbsp;Mart's.</p>
+
+    <div class="grid c2" style="margin-top:22px">
+      <a class="card" href="/data/labubu-fake-signals.json"><h3>labubu-fake-signals.json</h3><p>The 8 authenticity checks from <a href="/fake-check">the real-vs-fake guide</a> — authentic vs counterfeit indicators, per-signal sources, stated limitations. Recorded 2026-08-30.</p></a>
+      <a class="card" href="/fake-check"><h3>The human-readable version</h3><p>The same eight checks as a guide, with the reasoning and the honest limits of each.</p></a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p class="disclosure">
+      <strong>Independent guide.</strong> Not affiliated with Pop Mart or Kasing Lung.
+      <strong>Affiliate disclosure:</strong> some outbound links on this site are Amazon affiliate links — DollScout may earn a commission at no cost to you. This page links to no store at all.
+      · <a href="/legal/affiliate-disclosure">Disclosure</a> · <a href="/legal/privacy">Privacy</a> · © <span id="year"></span> DollScout
+    </p>
+  </div>
+</footer>
+<script src="/js/config.js"></script>
+<script src="/js/analytics.js"></script>
+<script src="/js/main.js"></script>
+</body>
+</html>
