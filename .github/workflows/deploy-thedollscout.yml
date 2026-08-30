@@ -16,6 +16,8 @@ on:
       - "!sites/thedollscout/content/growth-log.md"
       - "!sites/thedollscout/content/trends-rising.json"
       - "!sites/thedollscout/content/trends-us.json"
+      # 簿记文件,不发布(assemble-dist 排除 *.md)——手册更新不该烧一次部署。
+      - "!sites/thedollscout/CLAUDE.md"
       - ".github/workflows/deploy-thedollscout.yml"
   workflow_dispatch:
 

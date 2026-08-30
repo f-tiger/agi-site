@@ -1871,3 +1871,13 @@ Google's SafeSearch reclassification latency (unknowable, pre-registered),
 and the DE PartnerNet Websites listing (suspension item, unchanged).
 Measurement cadence: D1 weekly reads against the 2026-10-29 judgement line;
 GSC coverage/impressions are owner-side screenshots when convenient.
+
+## 2026-08-30 (round 3 close-out) — owner: "已经提交站点地图和bing、联盟已加"
+
+All three owner-side items cleared in one day: GSC sitemap (read same-day,
+7/7 pages discovered), Bing WMT sitemap submitted, and thedollscout.com
+added to the DE PartnerNet Websites list — the suspension item is RESOLVED,
+DE-side commission attribution is now confirmed on both marketplaces.
+Nothing is pending on the owner. The machine loop from here: daily trends
+fetch on the labubu seeds (first data next runner cycle), weekly IndexNow
+delta, daily D1 snapshot, judgement line 2026-10-29.

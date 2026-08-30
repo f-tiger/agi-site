@@ -19,10 +19,8 @@ Labubu / The Monsters 收藏品的**真伪优先导购站**。差异化 = 旧站
   - **EN 页 → amazon.com + `ecoback0d-20`**(thedollscout.com 已在 US Associates
     站点列表,2026-08-28 截图确认)。
   - **/de/ 页 → amazon.de + `getecoback-21`**(归属 owner,2026-08-25 截图确认)。
-    **⚠️ 悬置项(每次报告带出,直到解除)**:amazon.de PartnerNet 后台的站点
-    列表需包含 **thedollscout.com**——同 eco/US 那条的教训,未列可致 DE 侧佣金
-    作废(owner ~1 分钟)。列表完成前 DE 链接照常在线(owner 明示决策),
-    但营收判定按「未确权」记。
+    **✅ 悬置项已解除(2026-08-30,owner:「联盟已加」)**:thedollscout.com 已列入
+    DE PartnerNet 站点列表——DE 侧佣金归属确权,营收判定恢复正常口径。
   - 串 tag = 零佣金:deploy 有构建闸门,.de 链挂 US tag 或 .com 链挂 DE tag
     直接拒绝构建。两个 storefront 链接都是**实测存在**的官方 POPMART 店铺页
     (amazon.com 与 amazon.de 各自的,2026-08-30 WebSearch 核实)。
