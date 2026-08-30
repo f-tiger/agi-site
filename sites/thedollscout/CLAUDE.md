@@ -72,21 +72,27 @@ Labubu / The Monsters 收藏品的**稀有度优先导购站**:核心痛点 = �
   (8 天冻结教训):脚本任何失败只降级输出、永远 exit 0**,workflow 步骤再包
   continue-on-error 双保险。页面列表在脚本里显式维护——新页要进 llms-full 得
   加进 PAGES 数组。
-- **数据集 ×2(CC-BY,/data/)**:rarity-odds.json(格式别概率表 + boxesFor50pct
-  推导)+ labubu-fake-signals.json(8 项真伪信号)。/data/ 首页挂双 Dataset LD。
-- **MCP 端点 /mcp**(functions/mcp.js,streamable HTTP 无状态 JSON-RPC,
-  /.well-known/mcp.json 发现文档):3 个只读工具 labubu_rarity_odds /
-  labubu_fake_signals / secret_pull_probability。**承重决策:所有答案请求时
+- **数据集 ×3(CC-BY,/data/)**:rarity-odds.json(格式别概率表 + boxesFor50pct
+  推导)+ labubu-fake-signals.json(8 项真伪信号)+ labubu-glossary.json
+  (10 术语定义 + 别名,2026-08-30 GEO 深化轮)。/data/ 首页挂三个 Dataset LD。
+- **MCP 端点 /mcp**(functions/mcp.js v2.1.0,streamable HTTP 无状态 JSON-RPC,
+  /.well-known/mcp.json 发现文档):4 个只读工具 labubu_rarity_odds /
+  labubu_fake_signals / secret_pull_probability / define_labubu_term。**承重决策:所有答案请求时
   读已发布的 /data/*.json,绝不在端点里复刻规则**(第三真相源 = 舰队反复付费
   移除的失败模式);**联盟链接永不进 MCP 输出**。deploy 自检带 MCP 冒烟
   (initialize 回 protocolVersion + 1:72×12 盒算出 15.x%)。
 - **⚠️ middleware 退役 410 列表与新端点的碰撞已修**(2026-08-30):'/mcp' 与
   '/llms-full.txt' 曾在 RETIRED_PREFIXES 里,已移除;将来给退役列表加条目前
   先查它是否是新站的活路径。
-- 结构化数据:全站 Article/BreadcrumbList;/rarity WebApplication + FAQ LD;
-  /how-blind-boxes-work FAQ LD;/glossary DefinedTermSet LD。FAQ LD 文本必须
-  与页面可见文本一致(不造影子内容)。og:image 全站统一 /img/og.png
-  (PIL 自绘 Swiss 风,1200×630,不含任何官方素材)。
+- 结构化数据:全站 Article/BreadcrumbList;核心页全部有首屏答案块(callout)+
+  FAQ LD;工具页 WebApplication LD;/glossary DefinedTermSet + 逐条 DefinedTerm
+  实体(双语,2026-08-30 GEO 深化轮)。FAQ/DefinedTerm LD 文本必须与页面可见
+  文本一致(不造影子内容)。og:image 全站统一 /img/og.png(PIL 自绘 Swiss 风,
+  1200×630,不含任何官方素材)。
+- robots.txt 具名欢迎的 AI 爬虫(ai-seo 技能清单,2026-08-30 补齐):GPTBot、
+  OAI-SearchBot、ChatGPT-User、ClaudeBot、Claude-User、Claude-SearchBot、
+  Google-Extended、PerplexityBot、GrokBot、xAI-Bot。默认 * 本就全放行,具名条目
+  是给爬虫方的明确信号,新 bot 出现时顺手补。
 
 ## 受众画像(2026-08-30,owner:「调研labubu群体心理画像，再看推荐内容」)
 

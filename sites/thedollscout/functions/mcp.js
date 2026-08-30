@@ -20,7 +20,7 @@
    POST half of streamable HTTP — stateless, no session, no SSE. */
 
 const PROTOCOL_VERSION = "2025-06-18";
-const SERVER = { name: "dollscout", version: "2.0.0" };
+const SERVER = { name: "dollscout", version: "2.1.0" };
 
 const TOOLS = [
   {
@@ -52,6 +52,20 @@ const TOOLS = [
         boxes: { type: "number", description: "Number of blind boxes to be opened, e.g. 12" },
       },
       required: ["oddsN", "boxes"],
+    },
+  },
+  {
+    name: "define_labubu_term",
+    description:
+      "Plain-language definition of a Labubu / blind-box collecting term (blind box, series, regular, " +
+      "secret/chase, printed odds, case, glow variant, vinyl plush pendant, Lafufu, seller of record). " +
+      "Matches the term or its aliases; an unknown term returns the list of available terms, honestly.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        term: { type: "string", description: "The term to define, e.g. 'lafufu' or 'printed odds'" },
+      },
+      required: ["term"],
     },
   },
 ];
@@ -113,6 +127,34 @@ async function callTool(name, args, ctx) {
     };
   }
 
+  if (name === "define_labubu_term") {
+    const data = await ctx.load("/data/labubu-glossary.json");
+    const q = String(args.term || "").trim().toLowerCase();
+    if (!q) return { found: false, message: "Pass a term to define, e.g. { term: 'lafufu' }." };
+    const hit = data.terms.find(
+      (t) => t.term.toLowerCase() === q || (t.aliases || []).some((a) => a.toLowerCase() === q)
+    ) || data.terms.find(
+      (t) => t.term.toLowerCase().includes(q) || (t.aliases || []).some((a) => a.toLowerCase().includes(q))
+    );
+    if (!hit) {
+      return {
+        found: false,
+        message: `"${args.term}" is not in this glossary — which does not mean it doesn't exist.`,
+        availableTerms: data.terms.map((t) => t.term),
+        source: "https://thedollscout.com/glossary",
+      };
+    }
+    return {
+      found: true,
+      term: hit.term,
+      aliases: hit.aliases,
+      definition: hit.definition,
+      recorded: data.recorded,
+      limitations: data.limitations,
+      source: hit.url,
+    };
+  }
+
   return { found: false, message: `Unknown tool "${name}". Available: ${TOOLS.map((t) => t.name).join(", ")}.` };
 }
 
@@ -146,7 +188,7 @@ export async function onRequest({ request, env }) {
           "Every answer is read from the published CC-BY datasets at request time and carries their " +
           "recording date and limitations. No rule is reimplemented in this endpoint. No affiliate " +
           "links appear in tool output.",
-        datasets: ["https://thedollscout.com/data/rarity-odds.json", "https://thedollscout.com/data/labubu-fake-signals.json"],
+        datasets: ["https://thedollscout.com/data/rarity-odds.json", "https://thedollscout.com/data/labubu-fake-signals.json", "https://thedollscout.com/data/labubu-glossary.json"],
       },
       { headers: CORS }
     );

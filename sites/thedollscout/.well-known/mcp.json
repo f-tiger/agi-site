@@ -1,10 +1,10 @@
 {
   "name": "dollscout",
-  "version": "2.0.0",
-  "description": "Read-only MCP server for Labubu / The Monsters buyer evidence: reported secret odds by series format, the 8-point authenticity checklist, and pull-probability math. Every answer is served from the site's published CC-BY datasets with their recording dates and limitations. No affiliate links in output.",
+  "version": "2.1.0",
+  "description": "Read-only MCP server for Labubu / The Monsters buyer evidence: reported secret odds by series format, the 8-point authenticity checklist, pull-probability math, and plain-language term definitions. Every answer is served from the site's published CC-BY datasets with their recording dates and limitations. No affiliate links in output.",
   "endpoint": "https://thedollscout.com/mcp",
   "transport": "streamable-http",
   "protocolVersion": "2025-06-18",
-  "tools": ["labubu_rarity_odds", "labubu_fake_signals", "secret_pull_probability"],
+  "tools": ["labubu_rarity_odds", "labubu_fake_signals", "secret_pull_probability", "define_labubu_term"],
   "documentation": "https://thedollscout.com/llms.txt"
 }

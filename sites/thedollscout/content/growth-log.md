@@ -2090,3 +2090,37 @@ triggers the full-pair upgrade per CLAUDE.md; both flat at zero by 09-27
 don't self-start, and stop adding languages. (c) competitive-gaps.md is
 the standing filter: any proposed page that lands in none of the 5 gaps
 gets rejected in triage, and that rejection is logged, not debated.
+
+## 2026-08-30 (round 10) — owner: "调用geo等手段多轮深度优化"
+
+Deep GEO pass, audit-first. The audit came back better than assumed —
+every core page pair already carries a first-screen answer callout and
+FAQ LD (the round-7 work held) — so this round fixed the three real
+gaps instead of re-plowing:
+
+1. **Extractability**: /glossary and /de/glossary DefinedTermSet LD now
+   enumerates all 10 terms as individual DefinedTerm entities (name +
+   description matching the visible text) — the extraction unit for
+   "what is a lafufu / printed odds / chase" definition queries, in
+   both languages.
+2. **Machine-readable**: third CC-BY dataset data/labubu-glossary.json
+   (10 terms, aliases, per-term evidence links, limitations); /data/
+   carries a third Dataset LD node and its card. MCP v2.1.0 adds the
+   fourth tool define_labubu_term(term) — exact-then-substring match
+   over term+aliases, unknown terms answered honestly with the
+   available list, definitions read from the published JSON at request
+   time (no third source of truth). Discovery doc updated; deploy smoke
+   now also asserts define_labubu_term('lafufu') mentions counterfeit.
+3. **Crawler paths**: robots.txt now names the full ai-seo-skill bot
+   roster — added OAI-SearchBot, ChatGPT-User, Claude-User,
+   Claude-SearchBot, Google-Extended (GPTBot/ClaudeBot/PerplexityBot/
+   GrokBot/xAI-Bot were already named). Self-check +1 URL
+   (/data/labubu-glossary.json → 34); llms.txt lists the third dataset
+   and fourth tool; llms-full rebuilt.
+
+Judgement lines: these surfaces share the round-7 GEO lines (named AI
+bots reading llms-full/datasets in the D1 bot log by 09-27 gates the
+next GEO round). New sub-line: if the MCP log shows define_labubu_term
+as the first externally-called tool, that's evidence assistants want
+definitions over numbers — the next dataset should be the character
+identity index (lookup entries), not more odds math.

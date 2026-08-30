@@ -30,6 +30,15 @@
       "creator": { "@id": "https://thedollscout.com/#org" },
       "dateModified": "2026-08-30",
       "distribution": [{ "@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "https://thedollscout.com/data/rarity-odds.json" }]
+    },
+    { "@type": "Dataset",
+      "name": "Labubu / blind-box collecting glossary",
+      "description": "Ten collecting terms defined in plain language — blind box, series, regular, secret/chase, printed odds, case, glow variant, vinyl plush pendant, Lafufu, seller of record — with aliases and per-term links to the evidence pages. Pop Mart's own current terminology outranks this glossary where they disagree.",
+      "url": "https://thedollscout.com/data/",
+      "license": "https://creativecommons.org/licenses/by/4.0/",
+      "creator": { "@id": "https://thedollscout.com/#org" },
+      "dateModified": "2026-08-30",
+      "distribution": [{ "@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "https://thedollscout.com/data/labubu-glossary.json" }]
     }
   ]
 }
@@ -61,8 +70,9 @@
     <div class="grid c2" style="margin-top:22px">
       <a class="card" href="/data/rarity-odds.json"><h3>rarity-odds.json</h3><p>The reported secret rates per series format from <a href="/rarity">the rarity page</a> — 1:72 / 1:144 / collabs / glow variants, per-row sources, and the derived boxes-for-50% math. Recorded 2026-08-30.</p></a>
       <a class="card" href="/data/labubu-fake-signals.json"><h3>labubu-fake-signals.json</h3><p>The 8 authenticity checks from <a href="/fake-check">the real-vs-fake guide</a> — authentic vs counterfeit indicators, per-signal sources, stated limitations. Recorded 2026-08-30.</p></a>
+      <a class="card" href="/data/labubu-glossary.json"><h3>labubu-glossary.json</h3><p>The 10 collecting terms from <a href="/glossary">the glossary</a> as machine-readable definitions with aliases and per-term evidence links. Recorded 2026-08-30.</p></a>
     </div>
-    <p style="margin-top:18px">Both datasets are also callable: the site runs an <strong>MCP endpoint</strong> at <code>https://thedollscout.com/mcp</code> (Streamable HTTP, three read-only tools — rarity odds, fake signals, and a secret-pull probability calculator). Every tool answer is read from these files at request time and carries their recording date and limitations; no affiliate links appear in tool output. Human-readable versions: <a href="/rarity">rarity</a> · <a href="/fake-check">fake-check</a>.</p>
+    <p style="margin-top:18px">These datasets are also callable: the site runs an <strong>MCP endpoint</strong> at <code>https://thedollscout.com/mcp</code> (Streamable HTTP, four read-only tools — rarity odds, fake signals, a secret-pull probability calculator, and term definitions). Every tool answer is read from these files at request time and carries their recording date and limitations; no affiliate links appear in tool output. Human-readable versions: <a href="/rarity">rarity</a> · <a href="/fake-check">fake-check</a> · <a href="/glossary">glossary</a>.</p>
   </div>
 </section>
 </main>

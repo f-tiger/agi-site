@@ -41,7 +41,8 @@
 - [Full site text](https://thedollscout.com/llms-full.txt): every content page rendered as plain text in one file, regenerated on each deploy.
 - [Rarity odds dataset](https://thedollscout.com/data/rarity-odds.json) (CC-BY 4.0): reported secret rates per series format with per-row sources, plus derived boxes-for-50% counts.
 - [Authenticity signals dataset](https://thedollscout.com/data/labubu-fake-signals.json) (CC-BY 4.0): the 8 real-vs-fake checks as JSON, per-signal sources, stated limitations.
-- [MCP endpoint](https://thedollscout.com/mcp): Streamable HTTP, three read-only tools — labubu_rarity_odds, labubu_fake_signals, secret_pull_probability(oddsN, boxes). Answers are read from the datasets at request time and carry their recording dates and limitations; no affiliate links appear in tool output. Discovery: [/.well-known/mcp.json](https://thedollscout.com/.well-known/mcp.json).
+- [Glossary dataset](https://thedollscout.com/data/labubu-glossary.json) (CC-BY 4.0): the 10 collecting terms as machine-readable definitions with aliases and per-term evidence links.
+- [MCP endpoint](https://thedollscout.com/mcp): Streamable HTTP, four read-only tools — labubu_rarity_odds, labubu_fake_signals, secret_pull_probability(oddsN, boxes), define_labubu_term(term). Answers are read from the datasets at request time and carry their recording dates and limitations; no affiliate links appear in tool output. Discovery: [/.well-known/mcp.json](https://thedollscout.com/.well-known/mcp.json).
 
 ## Citation policy
 Quote freely with attribution. Pop Mart's own current guidance outranks this
