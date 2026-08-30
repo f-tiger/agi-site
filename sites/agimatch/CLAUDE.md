@@ -111,9 +111,19 @@ Gartner 新闻稿（2025-06-25）：**40% 以上的 agentic AI 项目会在 2027
    **没有一个是通用的「雇人并用加密货币付款」市场**。把认真的客户送过去等于坑他。
    → 所以本站架构是：**撮合走成熟主流平台（Upwork/Fiverr），web3 只做支付轨道，
    不做撮合场所**。owner 的「支付交易用 web3」指令由后者满足，前者不能为了扣字面而伤客户。
-2. **x402 作为人类访客的付款方式** —— 舰队自己的账本已判 **dead-by-volume（2026-08，
-   goldrush ledger 条目 `x402`，翻转条件：连续两个季度真实非测试交易量增长，
-   下次复核 2026-11）**。别把本站的收款建在这上面；到 11 月复核时若翻转再议。
+2. **x402 作为人类访客的付款方式** —— 拒绝，但**要把拒绝的理由记准，别记成「x402 死了」**：
+   - 舰队账本判的是 **dead-by-volume**（goldrush ledger 条目 `x402`，2026-08；翻转条件：
+     连续两个季度真实非测试交易量增长，下次复核 2026-11）——那是**经济体量**的判定。
+   - 2026-08-30 本轮调研补充的是**技术就绪度**，两者都成立且不矛盾：x402 技术上活着且
+     **Cloudflare 原生**（Coinbase/Cloudflare/Stripe 都在 x402 Foundation TSC，Cloudflare
+     自家仓库有基于 `@x402/hono` v2.24.0 的 Workers 示例，2026-08-27 发布）。
+   - **但两条足以沉掉一个天真实现的事实**：①免费的 `x402.org/facilitator` 是
+     **testnet-only，明确不支持 Base 主网**，上主网就得挑第三方 facilitator；
+     ②人类浏览器路径虽然存在（`@x402/paywall` + wagmi/Coinbase Wallet，EVM bundle
+     实测 655 KB gzipped），但**包括 Cloudflare 官方在内的每一个一方示例，付款方都是
+     「持私钥的 agent」而不是人**。
+   - **结论：x402 是 agent/API 侧的正确轨道，是首次到访的人类的未验证轨道。**
+     本站收人类的钱走普通稳定币转账。哪天本站要卖 agent 可读的 API，再回来看 x402。
 3. **自建托管/escrow** —— 一旦代持双方资金即进入资金传输监管范畴，公开仓 + 单人 owner
    的形态承担不起。非托管边界是硬约束，不是保守。
 4. **LaborX 作为撮合去处** —— 调研原文：Trustpilot 约 2.1 分，反复出现不付款、资金锁定、
@@ -143,10 +153,19 @@ rev_click**）→ `requests` 表行数（需求收件箱，**报计数与分类�
 
 ### owner 待办（只有账号持有人能做，自动化做不了）
 1. **联盟账号（变现的前提，v1 上线时全部未办，页面因此只放普通链接）**：
-   - Fiverr Affiliates：调研查到的条款为 marketplace CPA = 首单买家金额的 25% + 其余
-     订单 10% 分成 12 个月；Fiverr Pro CPA 70%；CPA 上限 $500；cookie 30 天；
-     起付 $100。数字随 owner 实际后台为准。
-   - Upwork：通过 Impact 平台运营，cookie 30 天。
+   - **⚠️ 以下数字全部 UNVERIFIED，只是规划输入，一律以 owner 实际后台为准。**
+     它们来自单次 WebSearch 的**合成摘要**（不是抓到的原页），对抗复核当日无法回源
+     （沙箱 egress 全封 + 搜索配额耗尽），且复核指出**存在跨平台串号嫌疑**。
+   - Fiverr Affiliates（UNVERIFIED）：marketplace CPA ≈ 首单买家金额 25% + 其余订单
+     10% 分成 12 个月；Fiverr Pro CPA ≈ 70%；CPA 上限 ≈ $500；cookie ≈ 30 天。
+     **「起付 $100」已降级为 UNKNOWN**——来源太薄，别据此做决定。
+     另：Fiverr 的申请是**人工审核**，通过时长未知，**所以不要假设"第一周就能变现"**。
+   - Upwork（UNVERIFIED）：通过 Impact 平台运营。**cookie 时长 = UNKNOWN**
+     ——原先这里写的「30 天」经复核判定很可能是**从 Fiverr 串过来的**，任何来源都没有
+     确立 Upwork 的 cookie 窗口。已删，不要再凭印象填回去。
+   - **注意区分**：PeoplePerHour / Contra / Braintrust 的那些「推荐」是**用户对用户的
+     friend-referral**（发站内额度/钱包积分），**不是面向内容站的 publisher 联盟计划**，
+     不要把它们并进联盟版图比较。
    - **⚠️ 照抄 eco/tds 的血泪教训：先把 match.agiscorecard.com 加进各计划的站点列表，
      再把页面链接换成联盟链接。未列站点就投放，佣金可被判无效——先待办、后切换，
      不自行抢跑。**
