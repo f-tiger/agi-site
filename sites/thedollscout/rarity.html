@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Labubu Rarity Guide: Secret Odds + Pull Calculator</title>
+<meta name="description" content="How rare is a secret Labubu really? The reported odds per series format (1:72, 1:144, rarer for collabs and glow variants), what's printed on the box — and a calculator for your actual chances across multiple boxes.">
+<link rel="canonical" href="https://thedollscout.com/rarity">
+<link rel="alternate" hreflang="en" href="https://thedollscout.com/rarity">
+<link rel="alternate" hreflang="de" href="https://thedollscout.com/de/rarity">
+<link rel="alternate" hreflang="x-default" href="https://thedollscout.com/rarity">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="DollScout">
+<meta property="og:url" content="https://thedollscout.com/rarity">
+<meta property="og:title" content="How rare is a secret Labubu, actually?">
+<meta property="og:description" content="The reported odds per series format, what's printed on the box, and a calculator that turns 1:72 into your real chances across N boxes.">
+<link rel="stylesheet" href="/css/main.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧸</text></svg>">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    { "@type": "Organization", "@id": "https://thedollscout.com/#org", "name": "DollScout", "url": "https://thedollscout.com/" },
+    { "@type": "BreadcrumbList", "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://thedollscout.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Rarity & Odds", "item": "https://thedollscout.com/rarity" }]},
+    { "@type": "Article",
+      "datePublished": "2026-08-30",
+      "dateModified": "2026-08-30",
+      "headline": "Labubu rarity: the secret odds, and your real chances",
+      "description": "How blind-box rarity actually works for Labubu / The Monsters: regular figures vs the secret, the odds printed on the box, commonly reported rates per series format, and the math of pulling one across multiple boxes.",
+      "url": "https://thedollscout.com/rarity",
+      "publisher": { "@id": "https://thedollscout.com/#org" },
+      "author": { "@id": "https://thedollscout.com/#org" },
+      "inLanguage": "en" },
+    { "@type": "WebApplication",
+      "name": "Labubu Secret Pull Calculator",
+      "url": "https://thedollscout.com/rarity",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "Any (browser)",
+      "isAccessibleForFree": true,
+      "description": "Enter your series' printed secret odds and how many blind boxes you plan to open; get the probability of at least one secret, and how many boxes 50% and 90% confidence would take.",
+      "featureList": ["Preset odds for common series formats (1:72, 1:120, 1:144, 1:168, 1:720)", "Custom odds input", "Probability of at least one secret across N boxes", "Boxes needed for 50% and 90% confidence"] },
+    { "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "How rare is a secret Labubu?",
+          "acceptedAnswer": { "@type": "Answer", "text": "The most commonly reported rate for a standard six-figure The Monsters series is 1 in 72 boxes; twelve-figure series are commonly reported at 1 in 144, some collaboration series at 1:120 to 1:168, and ultra-rare variants such as glow editions as low as 1 in 720. The authoritative number for your series is the one Pop Mart prints on that series' own box and product listing — check it there, and treat any seller who claims better odds than the printed ones as a red flag." } },
+        { "@type": "Question", "name": "What are my chances of pulling a secret across several boxes?",
+          "acceptedAnswer": { "@type": "Answer", "text": "For independently drawn boxes at 1-in-72 odds, twelve boxes give you about a 15% chance of at least one secret — not the near-certainty many buyers assume. The calculator on this page does the exact math for any odds and any number of boxes, and shows how many boxes a 50% or 90% chance actually requires. One honest caveat: sealed whole-case allocation can differ from independent single-box pulls, so treat the results as the loose-box model they are." } },
+        { "@type": "Question", "name": "Does rarity mean a Labubu is worth more?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Rarity is the engine of the secondary market: sold-out series and secret figures trade above retail, which DemandSage's 2026 statistics roundup documents at the market level. But the same engine powers the counterfeit market — the rarer and hotter a figure, the more heavily it is faked, and 'guaranteed secret' listings at bargain prices are a classic counterfeit pattern. Rarity math tells you what a pull is worth chasing; the authenticity checks tell you whether what you are buying is real. Use both." } },
+        { "@type": "Question", "name": "Is a 'guaranteed secret' listing real?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Treat it as a counterfeit signal. The blind-box economics only work because the secret is rare: a genuine secret figure's market value sits above retail, so a listing that guarantees one at or near blind-box price is offering something the math says cannot be genuine at that price. Occasional legitimate resales of pulled secrets exist — priced accordingly, from sellers who pass the seller-of-record and authenticity checks. A cheap guaranteed secret fails the arithmetic before you even inspect the teeth." } }
+      ] }
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="notice-bar">🧸 <b>Evidence-standard buyer's guide.</b> Every claim sourced — or marked unverified. Independent: not affiliated with Pop&nbsp;Mart.</div>
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="/">Doll<b>Scout</b></a>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+    <nav class="nav">
+      <a href="/rarity" class="active">Rarity &amp; Odds</a>
+      <a href="/fake-check">Real vs Fake</a>
+      <a href="/where-to-buy">Where to Buy</a>
+      <a href="/de/rarity" lang="de">DE</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+<section>
+  <div class="wrap prose">
+    <p class="breadcrumb"><a href="/">Home</a> / Rarity &amp; Odds</p>
+    <h1>How rare is a secret Labubu, actually?</h1>
+    <p class="meta">Every blind box is a bet, and most buyers place it without knowing the odds — even though the odds are printed on the box. This page collects the commonly reported rates per series format, sourced and dated (2026-08-30), and turns them into the number that actually matters: <strong>your</strong> chances, across the boxes <strong>you</strong> plan to open.</p>
+
+    <div class="callout">
+      <p><strong>The short answer:</strong> for a standard six-figure series, the secret is most commonly reported at <strong>1 in 72</strong>; twelve-figure series at <strong>1 in 144</strong>; some collabs at 1:120–1:168; ultra variants (glow editions) as low as <strong>1 in 720</strong>. The authoritative number for <em>your</em> series is printed on its box and listing. And the intuition check: at 1:72, twelve boxes ≈ a <strong>15% chance</strong> — not the near-certainty it feels like.</p>
+    </div>
+
+    <h2>Secret pull calculator</h2>
+    <div class="callout tool" id="calc">
+      <div class="row">
+        <label for="odds"><strong>Secret odds</strong></label>
+        <select id="odds">
+          <option value="72" selected>1 : 72 — common for 6-figure series</option>
+          <option value="120">1 : 120 — reported for some collabs</option>
+          <option value="144">1 : 144 — common for 12-figure series</option>
+          <option value="168">1 : 168 — reported for some collabs</option>
+          <option value="720">1 : 720 — reported for glow/ultra variants</option>
+          <option value="custom">Custom…</option>
+        </select>
+        <span id="customwrap" hidden>1 : <input id="customodds" type="number" min="2" max="100000" value="72" style="width:90px"></span>
+      </div>
+      <div class="row" style="margin-top:10px">
+        <label for="boxes"><strong>Boxes you'll open</strong></label>
+        <input id="boxes" type="number" min="1" max="10000" value="6" style="width:90px">
+      </div>
+      <p style="margin-top:14px">Chance of at least one secret: <span class="res-big" id="result">—</span></p>
+      <p class="meta" id="milestones"></p>
+      <p class="meta">Model: independent single-box pulls at the printed rate. Sealed whole-case allocation can differ from loose boxes — this is the loose-box model, stated honestly. Math: 1 − (1 − 1/N)<sup>boxes</sup>; no data leaves your browser.</p>
+    </div>
+
+    <h2>How rare is a secret Labubu?</h2>
+    <p>The most commonly reported rate for a standard six-figure The Monsters series is <strong>1 in 72</strong> boxes; twelve-figure series are commonly reported at <strong>1 in 144</strong>, some collaboration series at 1:120 to 1:168, and ultra-rare variants such as glow editions as low as <strong>1 in 720</strong>. The authoritative number for your series is the one Pop&nbsp;Mart prints on that series' own box and product listing — check it there, and treat any seller who claims better odds than the printed ones as a red flag.</p>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>Format</th><th>Commonly reported secret odds</th><th>Source</th></tr></thead>
+        <tbody>
+          <tr><td>Standard series (6 figures)</td><td>1 : 72</td><td><a href="https://tech-insider.org/mystery-boxes/labubu-mystery-box/" rel="noopener">Tech-Insider</a>, <a href="https://globaltill.com/secret-labubu-complete-guide-2026/" rel="noopener">GlobalTill</a> (2026)</td></tr>
+          <tr><td>Extended series (12 figures)</td><td>1 : 144</td><td><a href="https://popboxss.com/blogs/d41d8cd9-8f00b204-e9800998-ecf8427e_6c691aab" rel="noopener">Popboxss rarity guide</a> (2026)</td></tr>
+          <tr><td>Some collab series</td><td>1 : 120 – 1 : 168</td><td><a href="https://globaltill.com/secret-labubu-complete-guide-2026/" rel="noopener">GlobalTill</a> (2026)</td></tr>
+          <tr><td>Glow / ultra variants</td><td>as low as 1 : 720</td><td><a href="https://popboxss.com/blogs/d41d8cd9-8f00b204-e9800998-ecf8427e_6c691aab" rel="noopener">Popboxss rarity guide</a> (2026)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="meta">These are collector-reported rates, recorded 2026-08-30 — none of them outrank the odds printed on your series' own packaging. We could not verify every series and year; where your box disagrees with this table, the box wins.</p>
+
+    <h2>What are my chances of pulling a secret across several boxes?</h2>
+    <p>For independently drawn boxes at 1-in-72 odds, twelve boxes give you about a <strong>15% chance</strong> of at least one secret — not the near-certainty many buyers assume. The calculator on this page does the exact math for any odds and any number of boxes, and shows how many boxes a 50% or 90% chance actually requires. One honest caveat: sealed whole-case allocation can differ from independent single-box pulls, so treat the results as the loose-box model they are.</p>
+
+    <h2>Does rarity mean a Labubu is worth more?</h2>
+    <p>Rarity is the engine of the secondary market: sold-out series and secret figures trade above retail, which <a href="https://www.demandsage.com/labubu-statistics/" rel="noopener">DemandSage</a>'s 2026 statistics roundup documents at the market level. But the same engine powers the counterfeit market — the rarer and hotter a figure, the more heavily it is faked, and &ldquo;guaranteed secret&rdquo; listings at bargain prices are a classic counterfeit pattern. Rarity math tells you what a pull is worth chasing; the <a href="/fake-check">authenticity checks</a> tell you whether what you are buying is real. Use both.</p>
+
+    <h2>Is a &ldquo;guaranteed secret&rdquo; listing real?</h2>
+    <p>Treat it as a counterfeit signal. The blind-box economics only work because the secret is rare: a genuine secret figure's market value sits above retail, so a listing that guarantees one at or near blind-box price is offering something the math says cannot be genuine at that price. Occasional legitimate resales of pulled secrets exist — priced accordingly, from sellers who pass the <a href="/where-to-buy">seller-of-record</a> and <a href="/fake-check">authenticity</a> checks. A cheap guaranteed secret fails the arithmetic before you even inspect the teeth.</p>
+
+    <h2>Keep reading</h2>
+    <div class="grid c2" style="margin-top:18px">
+      <a class="card" href="/fake-check"><h3>Real vs Fake: the 8-point check</h3><p>The rarer the figure, the more it gets faked. The checks, each with its source.</p></a>
+      <a class="card" href="/where-to-buy"><h3>Where to actually buy one</h3><p>The official channels where the odds you're paying for are the odds you get.</p></a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p class="disclosure">
+      <strong>Independent guide.</strong> Not affiliated with Pop Mart or Kasing Lung.
+      <strong>Affiliate disclosure:</strong> some outbound links on this site are Amazon affiliate links — DollScout may earn a commission at no cost to you. This page links to no store at all.
+      · <a href="/legal/affiliate-disclosure">Disclosure</a> · <a href="/legal/privacy">Privacy</a> · © <span id="year"></span> DollScout
+    </p>
+  </div>
+</footer>
+<script src="/js/config.js"></script>
+<script src="/js/analytics.js"></script>
+<script src="/js/main.js"></script>
+<script>
+(function () {
+  "use strict";
+  var odds = document.getElementById("odds"),
+      customwrap = document.getElementById("customwrap"),
+      customodds = document.getElementById("customodds"),
+      boxes = document.getElementById("boxes"),
+      result = document.getElementById("result"),
+      milestones = document.getElementById("milestones");
+  var sent = false;
+  function n() {
+    var v = odds.value === "custom" ? parseInt(customodds.value, 10) : parseInt(odds.value, 10);
+    return (v >= 2 && v <= 100000) ? v : NaN;
+  }
+  function recalc(fromUser) {
+    customwrap.hidden = odds.value !== "custom";
+    var N = n(), b = parseInt(boxes.value, 10);
+    if (!N || !b || b < 1) { result.textContent = "—"; milestones.textContent = ""; return; }
+    var p = 1 / N, atLeastOne = 1 - Math.pow(1 - p, b);
+    result.textContent = (atLeastOne * 100).toFixed(atLeastOne < 0.095 ? 1 : 0) + "%";
+    var b50 = Math.ceil(Math.log(0.5) / Math.log(1 - p)),
+        b90 = Math.ceil(Math.log(0.1) / Math.log(1 - p));
+    milestones.textContent = "For a 50% chance at 1:" + N + " you'd need " + b50 +
+      " boxes; for 90%, " + b90 + " boxes.";
+    /* Count real use only: the event fires on the first USER interaction,
+       never on initial render — otherwise every pageview reads as a calc use
+       and the tool's judgement line measures nothing (eco's CI-pollution
+       lesson, applied client-side). */
+    if (fromUser && !sent) { sent = true; try {
+      var payload = JSON.stringify({ p: location.pathname, r: "", e: "odds_calc" });
+      if (navigator.sendBeacon) navigator.sendBeacon("/api/ev", payload);
+    } catch (e) {} }
+  }
+  var onUser = function () { recalc(true); };
+  odds.addEventListener("change", onUser);
+  customodds.addEventListener("input", onUser);
+  boxes.addEventListener("input", onUser);
+  recalc(false);
+})();
+</script>
+</body>
+</html>

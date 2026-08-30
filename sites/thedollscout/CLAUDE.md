@@ -8,11 +8,18 @@
   `dollscout-events`、GA4、IndexNow key),商业模式 = **联盟导购**(不自营、零库存)。
 - 旧站的安全楔子判定线、快反规则等条目随站废止;可复用的方法论已沉淀在下方。
 
-## 定位
+## 定位(2026-08-30 当日修正,owner:「真假不应该是最核心痛点,应该是流行和稀有程度」)
 
-Labubu / The Monsters 收藏品的**真伪优先导购站**。差异化 = 旧站验证过的
-「evidence-standard」基因平移:假货(Lafufu)是这个品类第一痛点,通用打分站
-无垂直知识,官方不做第三方比较——这个交叉点是我们的。
+Labubu / The Monsters 收藏品的**稀有度优先导购站**:核心痛点 = 流行与稀有
+(哪个系列热、隐藏款多稀有、我的抽盒概率到底是多少),真伪核查降级为支撑板块
+(逻辑衔接:越稀有越多假货)。evidence-standard 基因不变——稀有度恰是零编造的
+完美题材:**隐藏款概率印在盒子上**,我们只做有源转述 + 纯数学工具。
+- 旗舰页 /rarity(+/de/rarity):概率表(多源,标注「盒上印刷值为准」)+
+  **Secret Pull 计算器**(独立抽取模型,诚实标注与整箱配比的差异;埋点
+  odds_calc 只记真实交互,不记页面加载)。
+- 首页图文化:原创 SVG 插画(自绘,不用官方产品图——商标纪律第 3 条)+
+  YouTube 真实视频嵌入(youtube-nocookie 隐私模式,privacy 页已披露;
+  **视频 ID 必须来自实搜结果,绝不编造**)+ 官方系列卡链 popmart 在售页。
 
 - **主变现:双 tag 分市场**(owner 2026-08-30:「联盟id用我的德国和美国id,
   分别做多语言」):
@@ -24,7 +31,7 @@ Labubu / The Monsters 收藏品的**真伪优先导购站**。差异化 = 旧站
   - 串 tag = 零佣金:deploy 有构建闸门,.de 链挂 US tag 或 .com 链挂 DE tag
     直接拒绝构建。两个 storefront 链接都是**实测存在**的官方 POPMART 店铺页
     (amazon.com 与 amazon.de 各自的,2026-08-30 WebSearch 核实)。
-- **页面**:/ + /fake-check + /where-to-buy,及其 /de/ 德语对(hreflang 语言组,
+- **页面**:/ + /rarity + /fake-check + /where-to-buy,及其 /de/ 德语对(hreflang 语言组,
   x-default=EN;eco 模型)。德语页价格只引 US 区间 + 指官方 popmart.com/de 在售页,
   **不发明 EUR 数字**。新增语言照此模式(页对 + hreflang + 对应市场 tag +
   该市场 Associates 站点列表先行)。

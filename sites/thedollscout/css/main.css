@@ -436,3 +436,12 @@ body.gated { overflow: hidden; }
    sideways. (Was page-local CSS on the retired site; global now.) */
 .table-scroll { overflow-x: auto; }
 .table-scroll table { min-width: 560px; }
+
+/* 2026-08-30 repositioning round: hero art, video embeds, tool inputs. */
+.hero-art { display: block; width: 100%; max-width: 520px; margin: 22px auto 0; }
+.card-ico { width: 44px; height: 44px; margin-bottom: 12px; display: block; }
+.video-wrap { position: relative; padding-top: 56.25%; border-radius: 12px; overflow: hidden; border: 1px solid var(--line); background: #000; }
+.video-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.tool .row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+.tool input, .tool select { background: var(--bg-raised); border: 1px solid var(--line); color: var(--text); padding: 10px 12px; border-radius: 8px; font-size: 1rem; }
+.res-big { font-size: 2.1rem; font-weight: 700; color: #f5c26b; }

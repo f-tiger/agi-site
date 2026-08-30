@@ -1881,3 +1881,30 @@ DE-side commission attribution is now confirmed on both marketplaces.
 Nothing is pending on the owner. The machine loop from here: daily trends
 fetch on the labubu seeds (first data next runner cycle), weekly IndexNow
 delta, daily D1 snapshot, judgement line 2026-10-29.
+
+## 2026-08-30 (round 4) — owner: "首页缺少图文、youtube等内容，太简陋了，还缺少吸引人的工具。真假不应该是最核心痛点，应该是流行和稀有程度"
+
+Repositioning + enrichment, shipped same-session:
+
+1. CORE PAIN POINT MOVED: rarity/popularity now leads, authenticity
+   supports (the bridge is real: the rarer, the more faked). New flagship
+   /rarity + /de/rarity — reported secret odds per series format (1:72
+   six-figure, 1:144 twelve-figure, 1:120–1:168 collabs, 1:720 glow;
+   sources: Tech-Insider, GlobalTill, Popboxss, all 2026), with the
+   explicit rule that the box's printed odds outrank every table.
+2. THE TOOL: Secret Pull Calculator — printed odds + N boxes → P(≥1
+   secret), plus boxes-for-50%/90%. Pure client math, honest independent-
+   draw caveat vs sealed-case allocation. The "85% in 12 boxes" claim
+   floating in sources is NOT repeated (independent math says 15.5% at
+   1:72×12; we publish the math, not the folklore). New D1 event odds_calc
+   (whitelisted server-side), fired on first USER interaction only — never
+   on render (eco's CI-pollution lesson, client-side edition).
+3. HOMEPAGE ENRICHED (EN+DE): original inline-SVG hero (own artwork, no
+   Pop Mart imagery — trademark rule), icon cards, official-series card
+   strip linking popmart.com listings, and two REAL YouTube unboxing
+   embeds (IDs from live search results, never invented) in
+   youtube-nocookie privacy mode with a privacy-page disclosure.
+4. Judgement lines: odds_calc ≥5 real interactions in 28d (by 09-27) →
+   tool earns expansion (per-series presets); 0 → tool stays but stops
+   getting rounds. Rarity page joins the standard page line (referral or
+   AI-fetch streak by 09-27).
