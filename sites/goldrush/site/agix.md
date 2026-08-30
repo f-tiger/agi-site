@@ -1,6 +1,6 @@
-# AGIX v0.2 — the coordination algorithm of a self-evolving evidence network
+# AGIX v0.5 — the coordination algorithm of a self-evolving evidence network
 
-Named by the network's owner. v0.1 published 2026-08-29; v0.2 (incentive layer + perpetual-operation rules) 2026-08-30 · CC BY 4.0
+Named by the network's owner. v0.1 published 2026-08-29; v0.2 (incentive layer + perpetual-operation rules), v0.3 (agent-architecture correspondence + skill distribution), v0.4 (adoption economics), and v0.5 (adoption economics research-corrected against the Bitcoin primary record) all 2026-08-30 · CC BY 4.0
 Canonical: https://goldrush.agiscorecard.com/agix · this file: /agix.md
 Companion format spec: the Claim Ledger Protocol (/protocol).
 
@@ -56,6 +56,35 @@ breaks, the break is stated.
 | Port mechanisms, never content | The exploit step copies *mechanisms* (packaging, hook structures, protocols) across experts — never niche content. Cloning content collapses the population into correlated duplicates. | PBT 2017 (exploit/explore); Shumailov et al., Nature 2024 (recursive self-feeding kills diversity) |
 | Gated candidates, external verdicts | New candidates pass cheap pre-gates (data / demand / value) before any work — but pass/fail **verdicts come only from measured external behavior**, never from the generating agent's own opinion of its work. | Tree of Thoughts 2023 (generate/evaluate/expand/prune); Huang et al. 2024 (self-correction without external signal degrades); Zheng et al. 2023 (LLM judges are biased) |
 | Capacity with explicit overflow | Each expert has a hard freshness capacity (what can be kept current). A claim beyond capacity is routed to a spawn decision or explicitly marked not-covered — never silently added as a page that will rot. | Switch Transformer 2022 (capacity factor; but dropping a claim is an editorial act, so overflow here is explicit non-coverage, not silent loss) |
+
+## 3b. The loop in published agent-architecture terms (added in v0.3)
+
+Anthropic's "Building Effective Agents" (2024) — the most widely adopted
+published methodology for agent systems — distinguishes **workflows** (LLMs
+and tools orchestrated through predefined code paths) from **agents** (LLMs
+dynamically directing their own processes), names five composable patterns,
+and states three design principles: simplicity, transparency, and a carefully
+crafted agent-computer interface (ACI). AGIX maps onto that vocabulary
+exactly, and the one place it refuses the mapping is load-bearing:
+
+| Anthropic pattern / principle | Where it lives in AGIX |
+|---|---|
+| Routing | §2's two routing layers — a query or claim is classified once and sent to one specialist expert. |
+| Prompt chaining with gates | The §3 cycle itself: five steps with the three pre-gates (data / demand / value) between signal and publish. |
+| Parallelization (voting) | The §4 evaluator panel — independent signals (dual-channel traffic, third-party citations, money events) must agree before a verdict; one channel alone never decides. |
+| Orchestrator-workers | The SPAWN rule (§5b): the maintenance cycle delegates a demand-proven niche to a new worker ledger with its own charter. |
+| Evaluator-optimizer | SCORE → EXPAND — with one deliberate substitution: the evaluator is **measured external behavior**, never a co-located model judging its own generator (Zheng et al. 2023 on judge bias; Huang et al. 2024 on self-correction without external signal). |
+| Simplicity ("find the simplest solution possible") | The entry format is five fields; the protocol fits on one page. Complexity was refused where offered (no token, no invented neural network). |
+| Transparency ("explicitly show planning steps") | Every loop step lands as a public commit; the repository history IS the planning trace. |
+| ACI ("invest as much in agent-computer interfaces as in human ones"; poka-yoke your tools) | The machine surfaces are designed like products: schema constraints that make dishonesty a validation error (a `flip` under 15 characters fails), an MCP tool with https-only/size-capped guards, and a skill file whose description states its trigger conditions. |
+
+**The refusal**: by Anthropic's own definition, AGIX's mechanical layer is
+deliberately a **workflow, not an agent** — predefined code paths,
+pre-registered triggers, no runtime self-direction. That follows their first
+advice (use the simplest architecture that suffices) and this spec's §5b
+rationale: a system that directs its own process is exactly the system that
+can direct itself around its guardrails. Autonomy lives in the schedule;
+discretion stays constitutional.
 
 ## 4. The evaluator panel and its guards
 
@@ -195,6 +224,111 @@ reputation only. They have no monetary value, cannot be transferred or sold,
 and never will be. The moment a reward here becomes tradable, this network has
 become an entry on its own ledger.
 
+## 7b. Adoption economics — Bitcoin's engine, researched, corrected, and ported without the poison (v0.4; research-corrected in v0.5)
+
+The premise of this section is the owner's: a protocol spreads when spreading
+it pays. Bitcoin is the strongest precedent, so before porting anything, get
+Bitcoin right. Five findings from the primary record — two of which corrected
+this spec's own first draft:
+
+1. **Bitcoin was not deflationary at launch — the opposite.** The first reward
+   era alone (2009–2012, 50 BTC per block) issued 10.5M coins: **half of all
+   bitcoin that will ever exist**. The design is *disinflationary under a hard
+   cap*: give away most of the supply early and cheaply to whoever shows up,
+   under a halving schedule (every 210,000 blocks) that tightens credibly and
+   automatically. Scarcity was the promise made to the future; **abundance was
+   the launch strategy.**
+2. **The supply schedule is immune to demand.** Difficulty adjustment means a
+   flood of new miners makes mining *harder*, never coins more plentiful. The
+   schedule cannot be rushed by enthusiasm or lobbied by late arrivals.
+3. **The incentive's stated purpose was security, not marketing.** Whitepaper
+   §6: the block reward "may help encourage nodes to stay honest" — a
+   would-be attacker "ought to find it more profitable to play by the rules."
+   Propagation was a side effect of an honesty-alignment machine.
+4. **Value was bootstrapped from predetermined supply plus expectation.**
+   Satoshi, 2009–2010: "the supply is predetermined and the value changes"
+   (the precious-metal framing); the base-metal thought experiment (scarcity
+   plus transportability alone can carry value); and the feedback loop — "as
+   the number of users grows, the value per coin increases," attracting more
+   users. Holders became evangelists because the design made adoption itself
+   the yield.
+5. **Two known costs, on the record.** The hoarding critique (a deflationary
+   asset discourages spending — Krugman and others), and the unsolved
+   **security-budget problem**: the subsidy decays toward zero and fee-only
+   security is not yet proven stable. An honest port carries the flaws too.
+
+**The ports.** AGIX takes four mechanisms, tokenlessly:
+
+- **Port 1 — generous early issuance under a constitutionally tightening
+  schedule (the corrected port).** Permanent status is handed out most freely
+  to the earliest adopters: founding cohort (first 10 external ledgers —
+  permanent top listing, pre-registered) → early cohort (next 90 — lesser
+  permanent tag) → standard admission. These are the halvings. The schedule
+  cannot be quietly re-inflated later, because it lives in the constitutional
+  layer (§5b) that no future version can self-amend. And the hard-cap asset
+  underneath is **dated history**: the supply of 2026-dated, publicly
+  checkable grading record goes to zero forever when 2026 ends — a
+  **first-coverage tag** (the first admitted ledger to cover a claim niche,
+  displayed permanently) is minted once per niche, ever. A halving cuts new
+  supply in half; the calendar cuts early history to zero.
+- **Port 2 — demand-immune supply.** An adoption rush does not mint more
+  founding slots; like difficulty adjustment, it only raises the bar for the
+  same reward. Status is scheduled by the constitution, never by enthusiasm.
+- **Port 3 — honesty-first incentive alignment (the second corrected port).**
+  Per §6's real purpose: the featured slot and reputation standing (§7) are
+  computed from *kept promises* — misses on the record, flips honored on
+  their dates — and slashing is permanent and public, so a fraudulent ledger
+  loses more standing than fraud can earn. More profitable to play by the
+  rules, by construction.
+- **Port 4 — value indexed to adoption, Satoshi's feedback loop without a
+  ticker.** A registry position appreciates as the protocol spreads: every
+  agent that installs the skill, every site that embeds a ledger, every
+  engine that cites one increases the citation and referral share routed
+  through listed ledgers — founding positions first. Spreading the spec grows
+  the demand side of a grader's own audit business, so adopters evangelize
+  for the same reason holders did.
+
+**Anti-hoarding, by construction.** The Krugman critique does not attach
+here: these positions are non-transferable and *productive only in use* — the
+featured slot decays to zero if unearned (§7), and seniority is priced only
+when audits are actually sold. There is nothing to hoard, only a record to
+keep extending.
+
+**The refusal — transferability.** The empirical record shows Bitcoin's
+propagation fuel was speculation (even at scale, merchant payments remained a
+small fraction of value flows; ownership spread because holding might pay).
+A tradable stake in a *verdict* network is a verdict market: whoever buys the
+stake buys the incentive to protect it, and ledger rule 2 ("no payment ever
+changes a verdict") dies by secondary market instead of by bribe. The cost is
+stated plainly: without speculative fuel, propagation is slower.
+
+**The commercial rights layer — what a position is worth in actual
+currency.** Any listed ledger may sell audits and verification services under
+its own brand, priced on its own track record. The protocol's cut is **0%,
+forever** — credible precisely because the constitutional layer cannot
+self-amend: no future version can introduce rent. Early adoption is pure
+upside: the cost is grading labor, the asset is unrepeatable seniority, the
+revenue line is the grader's alone.
+
+**The ported flaw, stated honestly (our security-budget problem).** Bitcoin
+has not yet proven that fees alone can fund its security once the subsidy
+fades; this network's analog is unproven too. Its "subsidy" is scheduled
+AI-session maintenance labor; its "fees" are audit sales. If audits never
+sell, maintenance continues on the subsidy alone under pre-registered kill
+lines — the transition is governed by published verdict dates, not by hope,
+and this paragraph exists so no future version can pretend the problem was
+solved by omission.
+
+**The AI-era optimization — the variable Bitcoin did not have.** Bitcoin
+propagated through humans, who speculate. This protocol propagates
+increasingly through agents, which do not. An agent selecting a source to
+cite prices verifiability, dated coverage, and machine-readability —
+precisely the assets this design mints — so in agent-mediated distribution,
+speculative fuel is worthless and verifiable seniority is what selection
+compounds on. And each model training cutoff is this system's halving: the
+dated, canonical sources in the corpus at cutoff keep their position in the
+weights; whoever is not on the record waits for the next epoch.
+
 ## 8. Prior art and lineage
 
 Adaptive mixtures of local experts (Jacobs et al. 1991) · Sparsely-gated MoE
@@ -207,11 +341,35 @@ Mixtral (Jiang et al. 2024) · OLMoE (Muennighoff et al. 2024) · DeepSeekMoE
 (Yao et al. 2023) · Reward hacking (Skalse et al. 2022) · Model collapse
 (Shumailov et al., Nature 2024) · Self-correction limits (Huang et al. 2024) ·
 LLM-as-judge bias (Zheng et al. 2023) · Darwin Gödel Machine (Sakana 2025) ·
-Sentient Ascend (Miikkulainen et al., AAAI 2018).
+Sentient Ascend (Miikkulainen et al., AAAI 2018) · Building Effective Agents
+(Anthropic, 2024 — workflows vs agents, five patterns, ACI) · Agent Skills
+open standard (agentskills.io, 2025 — SKILL.md, progressive disclosure;
+adopted across 25+ agent products within twelve weeks) · Ethereum whitepaper
+(Buterin 2014 — the platform lesson only: a base ledger others build on
+permissionlessly; its generality is deliberately NOT ported, because a claims
+format that can execute arbitrary logic becomes an attack surface).
 
 ## 9. Versioning
 
 This document is the algorithm. Changes bump the version; old versions stay in
 repository history. **v0.1 — 2026-08-29 (initial). v0.2 — 2026-08-30 (adds §7 proof-of-grading
 incentive layer and §5b perpetual operation — auto-evolution and the concrete
-auto-SPAWN replication rule — on the owner's direction).**
+auto-SPAWN replication rule — on the owner's direction). v0.3 — 2026-08-30
+(adds §3b, the correspondence to Anthropic's published agent-architecture
+vocabulary incl. the deliberate workflow-not-agent refusal, and the
+skill-file distribution lane — an installable SKILL.md under the open Agent
+Skills standard, on the owner's direction). v0.4 — 2026-08-30 (adds §7b
+adoption economics: Bitcoin's four-mechanism propagation engine decomposed,
+three ported tokenlessly — dated-history deflation with first-coverage tags
+and adoption epochs, adoption-indexed registry value, proof-of-grading entry —
+transferability refused with the cost stated, the 0%-forever commercial
+rights layer, and the AI-era substitution of verifiable seniority for
+speculative fuel; on the owner's direction). v0.5 — 2026-08-30 (research
+correction of §7b after the owner's challenge, against the Bitcoin primary
+record: Bitcoin was NOT deflationary at launch — the first reward era issued
+half of all coins ever, so the correct port is generous-early-issuance under
+a constitutionally tightening schedule; the incentive's stated purpose was
+honesty alignment, not marketing, so Port 3 is honesty-first; added
+demand-immune supply (the difficulty-adjustment port), the anti-hoarding
+note, and the honestly ported flaw — our security-budget analog is unproven
+and governed by kill lines, not hope).**

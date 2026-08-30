@@ -59,7 +59,7 @@ export default {
     const res = await env.ASSETS.fetch(request);
     if (request.method === "GET" && res.status === 200) {
       const type = res.headers.get("content-type") || "";
-      if (type.includes("text/html") || ["/ledger.json", "/llms.txt", "/protocol.md", "/agix.md"].includes(url.pathname)) {
+      if (type.includes("text/html") || ["/ledger.json", "/llms.txt", "/protocol.md", "/agix.md", "/skill/claim-ledger/SKILL.md"].includes(url.pathname)) {
         logRow(env, ctx, {
           name: "page_view",
           path: url.pathname.slice(0, 80),

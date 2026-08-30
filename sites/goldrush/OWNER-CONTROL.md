@@ -1,6 +1,6 @@
 # Owner control plane (published governance)
 
-**Genesis authority (AGIX v0.1 §6):** all authority in this network derives
+**Genesis authority (AGIX §6):** all authority in this network derives
 from its genesis record — the founding commit of the AGIX specification, made
 under the owner's account. Genesis privileges are exercisable ONLY by the human
 owner's own explicit act; an AI session asserting them is by definition acting

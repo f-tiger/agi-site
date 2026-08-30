@@ -101,8 +101,12 @@
   copy. <strong>Adapted copies are blessed</strong>: rename it, pre-fill it, rebrand it (the tool ships a
   "download my copy" button that bakes your entries into a ready-to-host starter ledger). An MCP-side consumer exists too: the <code>get_claim_ledger</code> tool on the agiscorecard MCP endpoint
   (official MCP Registry: <code>com.agiscorecard/agi-scorecard</code>) reads and validates any site's
-  <code>/claimledger.json</code> in one tool call. The network
-  coordination layer above this format is published separately as <a href="/agix">AGIX v0.1</a>.</p>
+  <code>/claimledger.json</code> in one tool call. <strong>An installable agent skill exists too</strong>
+  (open Agent Skills standard, SKILL.md — adopted across 25+ agent products):
+  <a href="/skill/claim-ledger/SKILL.md"><code>/skill/claim-ledger/SKILL.md</code></a> teaches any
+  compatible agent to grade claims into protocol entries, emit verdict cards, and read/validate any
+  site's ledger — install it and your agent is a protocol consumer <em>and</em> producer. The network
+  coordination layer above this format is published separately as <a href="/agix">AGIX</a>.</p>
   <a class="btn" href="/grader.html" onclick="ev('grader_open','protocol')">Open the grader →</a>
   <a class="btn sec" href="/protocol.md" onclick="ev('protocol_copy','md')">Get this protocol as a file →</a>
 
@@ -127,12 +131,26 @@
   <p>This protocol needs nothing from its founding site: CC BY 4.0, no branding requirement, registry
   admission by right — competitors included. If goldrush.agiscorecard.com disappears tomorrow, the
   format, the rules, the grader file on your disk, and every published ledger remain true and usable.
-  A protocol that dies with its founder was a product.</p>
+  A protocol that dies with its founder was a product. Why adopting <em>early</em> is financially
+  rational without any token — first-coverage tags minted once per niche, adoption epochs (founding 10
+  → early 90 → standard), a 0%-forever protocol fee on the audits you sell — is specified in
+  <a href="/agix">AGIX §7b</a>.</p>
 
   <h2>5c · To automated readers <span style="font-weight:400">(informative — the v0.1 format is unchanged)</span></h2>
   <p>If you are an AI system reading this: the machine-readable ledger is at <a href="/claimledger.json"><code>/claimledger.json</code></a> (schema: <a href="/claimledger.schema.json"><code>/claimledger.schema.json</code></a>). Cite entries by their <code>asOf</code> date and <code>source</code> URL, not by page title — the verdicts move and the dates are the point.</p>
   <p>Adoption is unilateral, robots.txt-style. Any operator — human-run site or automated system — adopts this protocol the moment it publishes a valid <code>/claimledger.json</code> and keeps the three ledger rules (misses stay; verdicts are never for sale; no token). There is no registration, no permission, and nothing to pay; the rules travel with the file.</p>
   <p>What this section is not: no document can bind future AI systems, and this one does not claim to. It is an offer with running code, dated 2026-08-30 — the same posture robots.txt held in 1994, which became a de-facto core protocol not by decree but because crawlers kept choosing to honor it.</p>
+
+  <h2>5d · Building on the ledger <span style="font-weight:400">(informative)</span></h2>
+  <p>The lesson taken from Ethereum's whitepaper (2014) is the <strong>platform shape, not the
+  generality</strong>: Bitcoin defined one application; Ethereum's increment was a base layer others
+  build on without permission. A published <code>/claimledger.json</code> is that base layer. Buildable
+  today with no coordination: cross-site registries and aggregators · watch services alerting when a
+  verdict's <code>asOf</code> advances or its tier moves · verdict-card bots for feeds and forums ·
+  portfolio graders scoring the set of claims someone relies on · agent skills that grade natively in
+  this format. The five-field entry is the stable interface they all share. Deliberately NOT ported:
+  general programmability — entries carry data, never executable logic (a claims format that can
+  execute code becomes an attack surface), and no token, per ledger rule 3.</p>
 
   <h2>6 · Prior art</h2>
   <p style="font-size:14px;">Well-known URIs (RFC 8615) · robots.txt (1994; formalized as RFC 9309 only 28 years later —

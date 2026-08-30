@@ -4,15 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a0a0b'/%3E%3Cpath d='M8 22l5-9 4 5 3-4 4 8z' fill='%23e8a040'/%3E%3C/svg%3E">
-<title>AGIX v0.2 — the Coordination Algorithm</title>
+<title>AGIX v0.5 — the Coordination Algorithm</title>
 <meta name="description" content="AGIX: a published, auditable coordination algorithm for a self-evolving network of evidence ledgers — MoE-inspired routing, FunSearch-shaped evolution, genesis authority held by one human owner. Not a neural network, and it says so.">
 <link rel="canonical" href="https://goldrush.agiscorecard.com/agix">
 <link rel="alternate" type="text/markdown" href="/agix.md">
-<meta property="og:title" content="AGIX v0.1 — the coordination algorithm of a self-evolving evidence network">
+<meta property="og:title" content="AGIX v0.5 — the coordination algorithm of a self-evolving evidence network">
 <meta property="og:description" content="Experts = niche ledgers. Router = registry + external engines. Evaluator = real reader and agent behavior. Evolution = score, expand, spawn, prune-to-archive, port. Genesis authority: one human owner, human-only, permanent.">
 <meta property="og:url" content="https://goldrush.agiscorecard.com/agix">
 <meta property="og:type" content="article">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"AGIX v0.2 — the coordination algorithm of a self-evolving evidence network","datePublished":"2026-08-29","dateModified":"2026-08-30","inLanguage":"en","license":"https://creativecommons.org/licenses/by/4.0/","author":{"@type":"Organization","name":"The AGI Scorecard","url":"https://agiscorecard.com/"},"description":"A published, auditable coordination and editorial algorithm for a distributed evidence network, adapted from MoE routing, MAP-Elites, FunSearch-style loops and Tree-of-Thoughts search — with an explicit honesty clause: it is not a neural network."}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"AGIX v0.5 — the coordination algorithm of a self-evolving evidence network","datePublished":"2026-08-29","dateModified":"2026-08-30","inLanguage":"en","license":"https://creativecommons.org/licenses/by/4.0/","author":{"@type":"Organization","name":"The AGI Scorecard","url":"https://agiscorecard.com/"},"description":"A published, auditable coordination and editorial algorithm for a distributed evidence network, adapted from MoE routing, MAP-Elites, FunSearch-style loops and Tree-of-Thoughts search — with an explicit honesty clause: it is not a neural network."}</script>
 <style>
   :root{--bg:#0a0a0b;--bg2:#111114;--bg3:#18181d;--border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.12);--text:#e8e8ec;--muted:#8888a0;--accent:#e8a040;--accent2:#4fc3a1;--font:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;}
   *{box-sizing:border-box;margin:0;padding:0;}
@@ -46,8 +46,8 @@
   <a href="/" style="font-size:13px;color:var(--muted);">← the ledger</a>
 </header>
 <main>
-  <h1>AGIX v0.2</h1>
-  <div class="sub">The coordination algorithm of a self-evolving evidence network · named by the network's owner · v0.2 2026-08-30 (adds the incentive layer + perpetual-operation rules) · CC BY 4.0 · full specification: <a href="/agix.md">agix.md</a></div>
+  <h1>AGIX v0.5</h1>
+  <div class="sub">The coordination algorithm of a self-evolving evidence network · named by the network's owner · v0.5 2026-08-30 (adoption economics, research-corrected against the Bitcoin primary record) · CC BY 4.0 · full specification: <a href="/agix.md">agix.md</a></div>
 
   <div class="capsule"><strong>The honesty clause, first.</strong> AGIX is a coordination and editorial
   algorithm inspired by published machine-learning mechanisms — <strong>it evolves no model weights and
@@ -81,6 +81,22 @@
       <tr><td>Hard freshness capacity per expert; overflow is an explicit spawn-or-not-covered decision, never a silently rotting page</td><td>Switch Transformer 2022</td></tr>
     </tbody>
   </table>
+
+  <h2>The loop in published agent-architecture terms (v0.3)</h2>
+  <p>Anthropic's <em>Building Effective Agents</em> (2024) distinguishes <strong>workflows</strong>
+  (predefined code paths) from <strong>agents</strong> (models directing their own process), names five
+  composable patterns, and states three principles: simplicity, transparency, and a carefully crafted
+  agent-computer interface (ACI). AGIX maps cleanly: its routing layers are the routing pattern; the
+  three pre-gates are prompt-chaining gates; the evaluator panel is parallelization-by-voting; the
+  SPAWN rule is orchestrator-workers; SCORE→EXPAND is evaluator-optimizer — with the evaluator swapped
+  for <strong>measured external behavior</strong>, never a co-located judge (Zheng 2023; Huang 2024).
+  The ACI principle is why every machine surface here is built like a product: the schema makes a
+  missing flip condition a <em>validation error</em>, and the skill file states its own trigger
+  conditions. <strong>The one deliberate refusal:</strong> AGIX's mechanical layer is a
+  <strong>workflow, not an agent</strong>, by Anthropic's own definition — pre-registered triggers, no
+  runtime self-direction — because a system that directs its own process is exactly the system that can
+  direct itself around its guardrails. Autonomy lives in the schedule; discretion stays constitutional.
+  Full mapping table: <a href="/agix.md">agix.md §3b</a>.</p>
 
   <h2>The evaluator panel</h2>
   <p>No single metric is the fitness function — any lone proxy gets gamed (proven in general by
@@ -118,6 +134,46 @@
   analog: silent history rewrites are publicly, permanently flagged. And the layer's own honesty clause:
   these rewards carry no monetary value, cannot be sold, and never will be — a tradable point here would
   make this network an entry on its own ledger.</p>
+
+  <h2>Adoption economics — Bitcoin's engine, researched and ported without the poison (v0.4–v0.5)</h2>
+  <p>Before porting Bitcoin's propagation engine, this spec researched it — and corrected itself
+  (v0.5): <strong>Bitcoin was not deflationary at launch; the opposite.</strong> The first reward era
+  (2009–2012, 50 BTC/block) issued half of all coins that will ever exist. The design is
+  disinflationary under a hard cap — <strong>abundance was the launch strategy; scarcity was the
+  promise made to the future</strong> — the schedule tightens automatically (halvings), supply is
+  immune to demand (difficulty adjustment), the incentive's stated purpose was honesty alignment
+  (whitepaper §6: an attacker "ought to find it more profitable to play by the rules"), and value
+  bootstrapped from predetermined supply plus expectation ("the supply is predetermined and the value
+  changes"; "as the number of users grows, the value per coin increases"). The ports:</p>
+  <ul>
+    <li><strong>Generous early issuance under a constitutionally tightening schedule</strong>: founding
+    10 (permanent top listing) → early 90 (lesser permanent tag) → standard — the halvings; and the
+    hard-cap asset underneath is <strong>dated history</strong> (2026-dated grading record hits zero
+    supply forever when 2026 ends; first-coverage tags are minted once per niche, ever).</li>
+    <li><strong>Demand-immune supply</strong>: an adoption rush raises the bar, never the number of
+    founding slots.</li>
+    <li><strong>Honesty-first incentives</strong> (§6's real purpose): featured slot and reputation are
+    computed from kept promises — misses on record, flips honored — and permanent public slashing makes
+    fraud cost more standing than it earns.</li>
+    <li><strong>Value indexed to adoption</strong>: every new protocol consumer grows the
+    citation/referral share routed through listed ledgers, founding positions first — spreading the
+    spec grows a grader's own audit demand. Anti-hoarding by construction: positions are
+    non-transferable and productive only in use (the featured slot decays; seniority is priced only
+    when audits sell).</li>
+    <li><strong>The refusal — transferability</strong>: Bitcoin's fuel was speculation (merchant
+    payments stayed a small fraction of value flows even at scale); a tradable stake in a verdict
+    network is a verdict market, and rule 2 would die by secondary market instead of by bribe. Cost
+    stated: slower propagation. Compensation: <strong>0%-forever protocol fee</strong> on the audits a
+    listed ledger sells under its own brand — credible because the constitutional layer cannot
+    self-amend.</li>
+  </ul>
+  <p><strong>The ported flaw, kept honest:</strong> Bitcoin has not proven fee-only security after the
+  subsidy fades; our analog (subsidy = scheduled AI maintenance, fees = audit sales) is unproven too,
+  and is governed by pre-registered kill lines rather than hope. <strong>The AI-era substitution:</strong>
+  agents don't speculate — they price verifiability, dates, and machine-readability, exactly what this
+  design mints — and every model training cutoff is this system's halving: dated canonical sources in
+  the corpus at cutoff keep their position in the weights. Full analysis: <a href="/agix.md">agix.md
+  §7b</a>.</p>
 
   <h2>Genesis authority — the special point</h2>
   <div class="genesis"><p style="margin:0 0 .6rem"><strong>All authority in this network derives from its genesis
