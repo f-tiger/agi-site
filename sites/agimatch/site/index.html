@@ -416,6 +416,19 @@
     return L.join('\n');
   }
 
+  // Copy a receiving address. Deliberately re-states the verify-before-sending
+  // warning on every copy — an address pasted from a compromised page is the one
+  // irreversible mistake this page could contribute to.
+  document.addEventListener('click', function(e){
+    var cb = e.target.closest ? e.target.closest('[data-copy]') : null;
+    if (!cb) return;
+    var addr = cb.getAttribute('data-copy');
+    var net = cb.getAttribute('data-net') || '';
+    var mark = function(){ cb.textContent = 'copied ✓'; ev('pay_copy', net); setTimeout(function(){ cb.textContent = 'copy'; }, 2500); };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(addr).then(mark).catch(function(){ fallbackCopy(addr, mark); });
+    else fallbackCopy(addr, mark);
+  });
+
   document.addEventListener('click', function(e){
     var btn = e.target.closest ? e.target.closest('[data-brief]') : null;
     if (!btn || !T) return;
@@ -518,9 +531,14 @@
   fetch('/api/pay-info').then(function(r){ return r.json(); }).then(function(p){
     var box = el('paybox');
     if (!p || !p.configured){ payUnset(); return; }
+    function addrRow(label, net, addr){
+      return '<div class="toolrow"><span><strong>' + esc(label) + '</strong> <span class="fine">(' + esc(net) + ')</span></span>' +
+             '<span class="price"><code style="word-break:break-all;">' + esc(addr) + '</code> ' +
+             '<button class="btn sec" style="padding:3px 10px;font-size:12px;margin:0 0 0 6px;" data-copy="' + esc(addr) + '" data-net="' + esc(net) + '">copy</button></span></div>';
+    }
     var rows = '';
-    if (p.usdc_evm) rows += '<div class="toolrow"><span><strong>USDC</strong> <span class="fine">(EVM)</span></span><span class="price"><code id="a-evm">' + esc(p.usdc_evm) + '</code></span></div>';
-    if (p.usdt_trc20) rows += '<div class="toolrow"><span><strong>USDT</strong> <span class="fine">(TRC-20)</span></span><span class="price"><code id="a-trc">' + esc(p.usdt_trc20) + '</code></span></div>';
+    if (p.usdc_evm) rows += addrRow('USDC', 'EVM', p.usdc_evm);
+    if (p.usdt_trc20) rows += addrRow('USDT', 'TRC-20', p.usdt_trc20);
     box.innerHTML = '<p style="margin:0 0 .5rem;"><strong>Direct, non-custodial.</strong> Funds move from ' +
       'your wallet to the address below. Nothing is held in between and there is no account to open.</p>' +
       rows + '<p class="fine" style="margin:.8rem 0 0;">Verify the address against this page over HTTPS ' +
