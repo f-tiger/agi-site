@@ -9,6 +9,8 @@
 ## 布局与权威关系
 
 - `sites/agiscorecard/` · `sites/baipiaoji/` · `sites/getecoback/` · `sites/thedollscout/`
+  · `sites/goldrush/` · `sites/gridlings/` · `sites/buysomething/` · `sites/gamesledger/`
+  · `sites/agimatch/`(2026-08-30,match.agiscorecard.com,撮合分诊)
 - **每个站点目录内的 CLAUDE.md 是该站的操作手册,全部继续有效**(硬内容规则、
   零编造、防翻炒、各自的部署与数据契约)。本文件只管舰队层。
 - 原私有仓(f-tiger/agiscorecard、aitools、rearchfuture、sexweb)= 历史档案。
@@ -22,7 +24,10 @@
 (28 天窗),按站列:订阅(agi subscribers + bpj subs 真实行,CI/unsub 行剔除,
 bpj 的 src=/__ci 是已知自测)、eco affiliate_click、bpj go(出站联盟点击)、
 SR pick_open/out_click/calc_use、gridlings play/solve/subs、audits 询单、
-invest_tool_click、tds affiliate_click(D1 hits 表 ev 列;链路 2026-08-19 上线,
+invest_tool_click、**agimatch triage_use → route_click+brief_copy(主 KPI)→ requests
+行数(2026-08-30 建站,D1 `agimatch-events`;联盟未申请前 route 全是普通链接,
+所以这条线 v1 收入结构性为零,不是没测到——判定线见站内 CLAUDE.md)**、
+tds affiliate_click(D1 hits 表 ev 列;链路 2026-08-19 上线,
 08-24 复核通过:ev='' 的 JS 真人 pv 每日落库证明管道活着,affiliate_click=0 是
 真没人点、不是测不到——别再把它记成盲区。**⚠️ 2026-08-30 tds 重大转向,owner
 原话「下架掉这个站点,风险太大,更换为卖labubu的站点」:成人站整体下架(旧页
@@ -154,6 +159,10 @@ play.)+ 三个外部站(baipiaoji/getecoback/thedollscout)。实测教训:引用
   gamesledger、x-poster(风险较低,未在事故路径上;哪天动它们时顺手补,别单独churn)。
   自检要断言的是**事故的形状**,不是「有个 200 就行」:死循环场景下 `curl -L` 超限
   会返回 000,所以 200 断言其实够用,但 gridlings 额外断言零重定向更早暴露问题。
+  **agimatch(2026-08-30 建站)自带自检**,并把这条规矩往前推了一步:除首页/数据文件
+  200 外,还断言 `/api/request` 对过短输入返回 **400**——断言的是「校验路径真的在跑」,
+  而不是「有个响应」。500 或 404 都会被这条抓住。**新站点凡有写入型 API,照此办理**:
+  200 只证明服务器活着,不证明这个站的功能活着。
 
 ## 会话工作方式
 
