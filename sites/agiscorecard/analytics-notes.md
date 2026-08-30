@@ -1027,3 +1027,29 @@ GROUP BY name;
 
 **ship**:PRD P1 `/is-nvidia-overvalued`(详 OPT-LOG)。新增埋点从今天起可观察:
 `index_click{nvda_live}`、`tool_click{opinion_nvda[_brk]}`、`subscribe_click{deep_nvda}`。
+
+
+## 2026-08-30 日结 — 两项预登记裁决 + P4 上线 + 两次防误报
+
+**裁决①(08-16 预登记,今日到期):`index_click{*_live}` = 0/14 天** —— 三个高引用页
+的首屏活数字钩子上线两周零点击。**判定:引用→点击不经过活数字钩子,该通道是纯品牌
+资产。** 执行(按 08-29 转化架构令预写动作):既有页不再以"换点击"为目的加装活数字;
+站规六件套第⑥条**保留**(活数字的价值在引用差异化,即"聊天答案装不下的东西",这一半
+从未被证伪)。已装的活数字全部保留(引用侧继续工作),只撤"钩子能转化"这个宣称。
+
+**防误报①**:`site_search{mcp}` 2 次 sunwatch_ledger 调用经查全部为 08-18 已知信誉
+扫描器(133ms 间隔、bot、canary 同批)——**首个真实 agent 调用里程碑仍未发生**,
+四条件判据第三次拦住假里程碑。get_claim_ledger 昨日上线后暂无调用。
+
+**防误报②**:goldrush 首日 41 次"human" pageview —— 全部无 referrer、散布 8 国、
+发生在零宣布状态,判为**新子域证书进 CT 日志后的扫描器蜂群**(08-08 教训翻版)。
+真实互动仅 1 次 fork_click。不计增长,记上界。
+
+**28d 漏斗(去污)**:sub_ok 2(09-30 线 2/5)· opinion 钩家族基数不变(新铺 8 页
++ sunwatch_result + post_vote 首日均 0,一天无结论)· vote_cast 14 · rev_click ≈ 0。
+
+**ship**:PRD **P4 `/zh/does-copying-13f-work`**(中文侧主线,离 ¥199 买家画像最近的
+一页):zh Swiss 浅色系、忠实翻译 P2、zh_deep_page CTA、漏斗指 compass zh 计算器 +
+/zh/ai-stock-exposure(`invest_tool_click{zh_copy13f_record|exposure}`)、双向 hreflang、
+硬同步台账同 commit 扩为**六处**。P4 止损线(预登记):上线 +60 天 28d JS pv <5 →
+停止 zh invest 扩面。

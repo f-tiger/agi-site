@@ -1,3 +1,16 @@
+## 2026-08-30(每日 run 04:00)— 裁决日:*_live 判纯品牌资产;P4 中文判定页上线
+
+- **spec(三轮精简)**:今日双重身份——例行 run + `index_click{*_live}` 预登记裁决日。
+  阶梯:⓪ 无到期战略项(周一项明日)→ ⓪+ 引用队列空(Bing 明细 09-01 才可请)→
+  ① 新钩子家族首日无数据可赛 → **PRD 队列:P3 被冷却挡(invest.html 昨日动过)→ P4**。
+- **裁决**:`index_click{*_live}` 0/14 天 → 纯品牌资产,停加钩子、保留活数字的引用
+  价值(六件套⑥不变)。详见 analytics-notes。
+- **防误报 ×2**:mcp 2 次调用 = 08-18 已知扫描器;goldrush 首日 41"human" = CT 扫描
+  蜂群。均不作里程碑/增长上报。
+- **ship**:`/zh/does-copying-13f-work`(P4,规格照 PRD:zh 设计系统、赢输同表、四条
+  反面同屏、SSRN 一手引用、双向 hreflang、cn hub + sitemap + llms 接线、同步台账 5→6处)。
+- validate 待跑;单次 push。
+
 ## 2026-08-29(第七轮,owner:「优化prompt:强化股票部分」)
 
 - **三轮 spec 先行**;按 PRD 执行顺序落 **P2 `/does-copying-13f-work`**(五条队列里
