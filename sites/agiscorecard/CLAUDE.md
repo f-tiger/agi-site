@@ -317,6 +317,10 @@ strategy doc the same run. New strategy-relevant milestones to watch in D1:
 4. **Validate** (`tools/validate.py`), **ship** (procedure above), log to
    `OPT-LOG.md`, and report to the user in Chinese: GA4 numbers, what
    shipped, URL count (`grep -c '<loc>' sitemap.xml`).
+   **每日日报必含游戏数据(owner 2026-08-30:「游戏数据要放到每日日报」)**:
+   gridlings D1(bd3b1ca9-e9cb-4b71-9834-df3d67b39504,表 ev,human 口径)当日与
+   28 天 play_start/solve,itch 判定线进度(09-24:itch 累计 play_start≥150 且
+   solve≥25),itch 口径 = ref LIKE '%itch.zone%'。三行以内,零也要报零。
 5. **Milestones — notify the user prominently when first crossed:**
    Organic Search ≥ 10, ≥ 50, ≥ 200 (28-day active users); any deep page
    entering the top-3 landing pages; `subscribe_click` ≥ 20/28d; the FISSION
