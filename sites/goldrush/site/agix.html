@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a0a0b'/%3E%3Cpath d='M8 22l5-9 4 5 3-4 4 8z' fill='%23e8a040'/%3E%3C/svg%3E">
-<title>AGIX v0.1 — the Coordination Algorithm</title>
+<title>AGIX v0.2 — the Coordination Algorithm</title>
 <meta name="description" content="AGIX: a published, auditable coordination algorithm for a self-evolving network of evidence ledgers — MoE-inspired routing, FunSearch-shaped evolution, genesis authority held by one human owner. Not a neural network, and it says so.">
 <link rel="canonical" href="https://goldrush.agiscorecard.com/agix">
 <link rel="alternate" type="text/markdown" href="/agix.md">
@@ -12,7 +12,7 @@
 <meta property="og:description" content="Experts = niche ledgers. Router = registry + external engines. Evaluator = real reader and agent behavior. Evolution = score, expand, spawn, prune-to-archive, port. Genesis authority: one human owner, human-only, permanent.">
 <meta property="og:url" content="https://goldrush.agiscorecard.com/agix">
 <meta property="og:type" content="article">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"AGIX v0.1 — the coordination algorithm of a self-evolving evidence network","datePublished":"2026-08-29","dateModified":"2026-08-29","inLanguage":"en","license":"https://creativecommons.org/licenses/by/4.0/","author":{"@type":"Organization","name":"The AGI Scorecard","url":"https://agiscorecard.com/"},"description":"A published, auditable coordination and editorial algorithm for a distributed evidence network, adapted from MoE routing, MAP-Elites, FunSearch-style loops and Tree-of-Thoughts search — with an explicit honesty clause: it is not a neural network."}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"AGIX v0.2 — the coordination algorithm of a self-evolving evidence network","datePublished":"2026-08-29","dateModified":"2026-08-30","inLanguage":"en","license":"https://creativecommons.org/licenses/by/4.0/","author":{"@type":"Organization","name":"The AGI Scorecard","url":"https://agiscorecard.com/"},"description":"A published, auditable coordination and editorial algorithm for a distributed evidence network, adapted from MoE routing, MAP-Elites, FunSearch-style loops and Tree-of-Thoughts search — with an explicit honesty clause: it is not a neural network."}</script>
 <style>
   :root{--bg:#0a0a0b;--bg2:#111114;--bg3:#18181d;--border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.12);--text:#e8e8ec;--muted:#8888a0;--accent:#e8a040;--accent2:#4fc3a1;--font:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;}
   *{box-sizing:border-box;margin:0;padding:0;}
@@ -46,8 +46,8 @@
   <a href="/" style="font-size:13px;color:var(--muted);">← the ledger</a>
 </header>
 <main>
-  <h1>AGIX v0.1</h1>
-  <div class="sub">The coordination algorithm of a self-evolving evidence network · named by the network's owner · 2026-08-29 · CC BY 4.0 · full specification: <a href="/agix.md">agix.md</a></div>
+  <h1>AGIX v0.2</h1>
+  <div class="sub">The coordination algorithm of a self-evolving evidence network · named by the network's owner · v0.2 2026-08-30 (adds the proof-of-grading incentive layer) · CC BY 4.0 · full specification: <a href="/agix.md">agix.md</a></div>
 
   <div class="capsule"><strong>The honesty clause, first.</strong> AGIX is a coordination and editorial
   algorithm inspired by published machine-learning mechanisms — <strong>it evolves no model weights and
@@ -92,6 +92,20 @@
   the proxy</strong>. Its true published ancestor is Sentient Ascend (AAAI 2018), which evolved live
   websites on real visitor conversions — the weeks-per-generation regime, not AlphaEvolve's
   seconds-per-generation regime.</p>
+
+  <h2>The incentive layer — proof-of-grading (v0.2)</h2>
+  <p>Bitcoin's deepest invention was not the coin but an incentive structure where honest contribution
+  is the most profitable strategy. AGIX ports it <strong>without any token</strong>: the work is
+  <em>proof-of-grading</em> (a schema-valid ledger with real flip conditions — expensive to fake well,
+  cheap to verify); the rewards are the network's real assets — <strong>distribution</strong> (registry
+  placement, syndication with attribution, machine reach through the <code>get_claim_ledger</code> MCP
+  tool), <strong>reputation</strong> (public conformance state), and <strong>permanence</strong>. The AI
+  half: each cycle, AGIX's SCORE step allocates the featured-syndication slot by measured signals alone.
+  The halving analog: the first <strong>10 external ledgers ever admitted earn permanent founding
+  status</strong> — the reward is largest exactly when joining is least obviously worth it. The slashing
+  analog: silent history rewrites are publicly, permanently flagged. And the layer's own honesty clause:
+  these rewards carry no monetary value, cannot be sold, and never will be — a tradable point here would
+  make this network an entry on its own ledger.</p>
 
   <h2>Genesis authority — the special point</h2>
   <div class="genesis"><p style="margin:0 0 .6rem"><strong>All authority in this network derives from its genesis

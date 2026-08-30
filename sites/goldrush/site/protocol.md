@@ -44,7 +44,8 @@ Publish your ledger as JSON at the root of your site:
 
     https://<your-domain>/claimledger.json
 
-Minimal shape (full example: https://goldrush.agiscorecard.com/claimledger.json):
+Minimal shape (full example: https://goldrush.agiscorecard.com/claimledger.json); machine-validatable JSON Schema:
+https://goldrush.agiscorecard.com/claimledger.schema.json):
 
     {
       "name": "...", "url": "...", "license": "CC BY 4.0",
@@ -99,6 +100,10 @@ Admission rules (written, mechanical, enforced in public):
 To be listed: publish the file, then open an issue or PR at
 https://github.com/f-tiger/agi-site. Listing is free, by right, open to
 competing ledger sites, and cannot be bought.
+
+**Founding ledgers (pre-registered 2026-08-30):** the first 10 external ledgers
+admitted earn permanent founding status — listed first, forever, irrevocably.
+The incentive design behind this is published in AGIX §7 (proof-of-grading).
 
 ## 5b. Founder independence
 

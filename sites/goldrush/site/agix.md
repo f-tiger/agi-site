@@ -1,6 +1,6 @@
-# AGIX v0.1 — the coordination algorithm of a self-evolving evidence network
+# AGIX v0.2 — the coordination algorithm of a self-evolving evidence network
 
-Named by the network's owner. Published 2026-08-29 · CC BY 4.0
+Named by the network's owner. v0.1 published 2026-08-29; v0.2 (incentive layer) 2026-08-30 · CC BY 4.0
 Canonical: https://goldrush.agiscorecard.com/agix · this file: /agix.md
 Companion format spec: the Claim Ledger Protocol (/protocol).
 
@@ -117,7 +117,52 @@ cannot spend, transfer, or custody value; the network will never issue a token;
 no payment ever changes a verdict; a one-file kill switch freezes any AGIX-run
 property instantly.
 
-## 7. Prior art and lineage
+## 7. The incentive layer — proof-of-grading (added in v0.2)
+
+Bitcoin's deepest invention was not the coin; it was an incentive structure in
+which honest contribution is the most profitable strategy: work is verified
+mechanically, rewards are allocated automatically, early contributors earn
+more, and attacking costs more than cooperating. AGIX ports that structure
+**without any token** — the genesis limits forbid one, and ledger rule 3 grades
+points-whose-value-needs-new-buyers as a claim awaiting a verdict.
+
+**What this network can actually pay** (all real, none transferable, none monetary):
+- **Distribution** — registry placement, syndication of a ledger's verdicts on
+  network surfaces with attribution, and machine reach: every listed ledger is
+  served to AI agents through the `get_claim_ledger` MCP tool.
+- **Reputation** — the public conformance state (validates / flagged), and
+  permanent founding status (below).
+- **Permanence** — a never-deleted, dated public record of grading work, which
+  is precisely the asset no individual claim-checker can cheaply build alone.
+
+**The mechanics, mapped:**
+1. **Proof-of-grading (the work).** Admission = mechanically verifiable work:
+   a `/claimledger.json` that validates against the published schema, with all
+   five fields, real flip conditions, and resolving sources. Like proof-of-work,
+   it is expensive to fake well and cheap to verify.
+2. **Algorithmic reward allocation (the AI half).** Each AGIX cycle, the SCORE
+   step ranks listed ledgers on measured signals only — agent fetches of their
+   ledger, conformance state, citation evidence where third-party data exists —
+   and allocates the cycle's featured-syndication slot accordingly. The reward
+   router is the same gating machinery as §3, pointed at contributors; scores
+   are never subsidized, only selection is (the §3 probation rule applies to
+   new ledgers too).
+3. **Early-contributor curve (the halving analog).** Pre-registered: the first
+   **10** external ledgers admitted to the registry earn permanent, irrevocable
+   **founding-ledger status** — listed first, forever. Like early block
+   subsidies, the reward is largest exactly when joining is least obviously
+   worth it, and it decays to zero by design.
+4. **Slashing (honesty enforcement).** A ledger caught silently rewriting its
+   history is publicly flagged on the registry — reputation slashing. Flags are
+   dated and, like everything else here, never deleted; a corrected ledger's
+   recovery is also public.
+
+**The honesty clause of this layer:** these rewards are distribution and
+reputation only. They have no monetary value, cannot be transferred or sold,
+and never will be. The moment a reward here becomes tradable, this network has
+become an entry on its own ledger.
+
+## 8. Prior art and lineage
 
 Adaptive mixtures of local experts (Jacobs et al. 1991) · Sparsely-gated MoE
 (Shazeer et al. 2017) · Switch Transformers (Fedus et al. 2022) · ST-MoE (Zoph
@@ -131,7 +176,8 @@ Mixtral (Jiang et al. 2024) · OLMoE (Muennighoff et al. 2024) · DeepSeekMoE
 LLM-as-judge bias (Zheng et al. 2023) · Darwin Gödel Machine (Sakana 2025) ·
 Sentient Ascend (Miikkulainen et al., AAAI 2018).
 
-## 8. Versioning
+## 9. Versioning
 
 This document is the algorithm. Changes bump the version; old versions stay in
-repository history. **v0.1 — 2026-08-29.**
+repository history. **v0.1 — 2026-08-29 (initial). v0.2 — 2026-08-30 (adds §7,
+the proof-of-grading incentive layer, on the owner's direction).**
