@@ -57,6 +57,16 @@ jobs:
           fi
           echo "clean: no retired-site markers in publishable files"
 
+      # 双 tag 分市场契约(owner 2026-08-30):EN→amazon.com+ecoback0d-20,
+      # /de/→amazon.de+getecoback-21。串了 = 该点击一分钱佣金都没有,构建直接失败。
+      - name: Gate — affiliate tags must match their marketplace
+        run: |
+          set -e
+          if grep -rnE 'amazon\.de[^"]*ecoback0d-20|amazon\.com[^"]*getecoback-21' --include='*.html' .; then
+            echo "::error::affiliate tag crossed marketplaces (see matches above)"; exit 1
+          fi
+          echo "clean: every amazon link carries its own marketplace's tag"
+
       - name: Assemble static site into dist/
         run: bash scripts/assemble-dist.sh
 
@@ -82,7 +92,7 @@ jobs:
         run: |
           sleep 20
           fail=0
-          for p in / /fake-check /where-to-buy /robots.txt /sitemap.xml; do
+          for p in / /fake-check /where-to-buy /de/ /de/fake-check /de/where-to-buy /robots.txt /sitemap.xml; do
             code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 20 "https://thedollscout.com$p")
             redirs=$(curl -s -o /dev/null -w "%{num_redirects}" -L --max-redirs 5 --max-time 20 "https://thedollscout.com$p" || echo 99)
             echo "$p -> HTTP $code, redirects $redirs"

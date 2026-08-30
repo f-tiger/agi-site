@@ -1802,3 +1802,27 @@ SafeSearch-classification residue has an unknown half-life. Judgement line
 2026-10-29: 28d human pv ≥ 3× the old site's ~6/day, or ≥1 affiliate_click,
 or ≥5 search/assistant referrals → pivot holds; all missed → escalate the
 domain-history hypothesis to owner with a fresh-domain proposal.
+
+## 2026-08-30 (round 2) — owner: "联盟id用我的德国和美国id，分别做多语言"
+
+Dual-tag, dual-market build on day one of the new site:
+
+- /de/ German pages shipped as full pairs of the three EN pages (hreflang
+  language groups, x-default=EN — eco's verified model). German pages carry
+  amazon.de links with getecoback-21; EN pages keep amazon.com with
+  ecoback0d-20. Both official POPMART storefronts verified to exist via
+  WebSearch before linking (amazon.com and amazon.de each have one).
+- New build gate: a .de link carrying the US tag (or .com carrying the DE
+  tag) fails the deploy — a crossed tag earns exactly nothing, so it is a
+  build error, not a style issue.
+- No invented EUR prices: DE pages cite the sourced US retail range and
+  point at popmart.com/de live listings for euros.
+- Deploy self-check extended to assert the three /de/ pages 200 + zero
+  redirects.
+- PRE-REGISTERED SUSPENSION ITEM (report every round until cleared): the
+  DE PartnerNet Websites list must include thedollscout.com — same lesson
+  as the eco/US listing of 08-28; unlisted sites risk commission
+  invalidation. DE links are live per owner's explicit instruction, but DE
+  revenue counts as unconfirmed until the listing is done (~1 owner-minute).
+- D1 attribution needs no change: affiliate_click stores the target
+  hostname, so .com vs .de clicks separate cleanly in the ledger.

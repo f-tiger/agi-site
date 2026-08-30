@@ -14,12 +14,22 @@ Labubu / The Monsters 收藏品的**真伪优先导购站**。差异化 = 旧站
 「evidence-standard」基因平移:假货(Lafufu)是这个品类第一痛点,通用打分站
 无垂直知识,官方不做第三方比较——这个交叉点是我们的。
 
-- **主变现**:Amazon 联盟,tag `ecoback0d-20`(thedollscout.com 已在 owner 的
-  US Associates 站点列表内,2026-08-28 截图确认——**这是复用本域的核心理由**,
-  换域名要重新列)。链接形态:官方 POP MART storefront + 品牌搜索链,
-  `rel="sponsored nofollow noopener"`,所在区块带可见 Ad 标识。
-- **页面**:/(hub)· /fake-check(旗舰,8 点真伪检查)· /where-to-buy
-  (官方渠道梯 + 价格地板逻辑)。
+- **主变现:双 tag 分市场**(owner 2026-08-30:「联盟id用我的德国和美国id,
+  分别做多语言」):
+  - **EN 页 → amazon.com + `ecoback0d-20`**(thedollscout.com 已在 US Associates
+    站点列表,2026-08-28 截图确认)。
+  - **/de/ 页 → amazon.de + `getecoback-21`**(归属 owner,2026-08-25 截图确认)。
+    **⚠️ 悬置项(每次报告带出,直到解除)**:amazon.de PartnerNet 后台的站点
+    列表需包含 **thedollscout.com**——同 eco/US 那条的教训,未列可致 DE 侧佣金
+    作废(owner ~1 分钟)。列表完成前 DE 链接照常在线(owner 明示决策),
+    但营收判定按「未确权」记。
+  - 串 tag = 零佣金:deploy 有构建闸门,.de 链挂 US tag 或 .com 链挂 DE tag
+    直接拒绝构建。两个 storefront 链接都是**实测存在**的官方 POPMART 店铺页
+    (amazon.com 与 amazon.de 各自的,2026-08-30 WebSearch 核实)。
+- **页面**:/ + /fake-check + /where-to-buy,及其 /de/ 德语对(hreflang 语言组,
+  x-default=EN;eco 模型)。德语页价格只引 US 区间 + 指官方 popmart.com/de 在售页,
+  **不发明 EUR 数字**。新增语言照此模式(页对 + hreflang + 对应市场 tag +
+  该市场 Associates 站点列表先行)。
 
 ## 硬内容规则(继承舰队,零妥协)
 

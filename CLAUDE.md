@@ -29,7 +29,10 @@ invest_tool_click、tds affiliate_click(D1 hits 表 ev 列;链路 2026-08-19 上
 线上 404,deploy 自检断言),同域同 D1 改为 Labubu 真伪导购站,联盟 =
 amazon.com/ecoback0d-20(该域已在 US Associates 列表,零 owner 操作)。D1 口径
 不变,但 08-30 前的行属旧站,跨界对比无意义;台账从下一期起按新站计,判定线
-2026-10-29 见站内 CLAUDE.md)。**联盟归属现况**(变现的前提,悬置项必须每次带出):
+2026-10-29 见站内 CLAUDE.md。同日 owner:「联盟id用我的德国和美国id,分别做
+多语言」→ EN 页 amazon.com/ecoback0d-20 + /de/ 德语页 amazon.de/getecoback-21,
+hreflang 语言组;**新悬置项:DE PartnerNet 站点列表需加 thedollscout.com**,
+未列可致 DE 侧佣金作废——同 08-28 eco/US 那条教训,owner ~1 分钟)。**联盟归属现况**(变现的前提,悬置项必须每次带出):
 - amazon.de tag=**getecoback-21**(eco 全站+SR 新页,1,875 处)——**归属已确认
   (2026-08-25)**:owner 出示 partnernet.amazon.de 后台截图,该 StoreID 归其账号;
   P0 悬置解除,eco 恢复出联盟页。
