@@ -13,6 +13,7 @@ const KEY = readFileSync("scripts/indexnow-key.txt", "utf8").trim();
    any URL on the host, not just pages. */
 const EXTRA = [
   "/llms.txt",
+  "/llms-full.txt",
 ].map((p) => `https://thedollscout.com${p}`);
 
 if (!/^[a-f0-9]{32,}$/i.test(KEY)) {

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Open Data — DollScout</title>
-<meta name="description" content="DollScout's published datasets: the Labubu authenticity signals (real vs fake checks) as machine-readable CC-BY JSON, every signal sourced.">
+<meta name="description" content="DollScout's published datasets: Labubu secret/chase rarity odds per series format and the authenticity signals (real vs fake checks), as machine-readable CC-BY JSON, every row sourced.">
 <link rel="canonical" href="https://thedollscout.com/data/">
 <link rel="stylesheet" href="/css/main.css">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧸</text></svg>">
@@ -21,6 +21,15 @@
       "creator": { "@id": "https://thedollscout.com/#org" },
       "dateModified": "2026-08-30",
       "distribution": [{ "@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "https://thedollscout.com/data/labubu-fake-signals.json" }]
+    },
+    { "@type": "Dataset",
+      "name": "Labubu secret/chase rarity odds by series format",
+      "description": "Commonly reported secret-figure odds for Labubu / The Monsters blind-box series by format — 6-figure (1:72), 12-figure (1:144), collabs (1:120–1:168), glow/ultra variants (down to 1:720) — with per-row sources, plus derived box counts for a 50% pull chance under the independent-draw model. The odds printed on a specific series' own box outrank every row; limitations stated in the file.",
+      "url": "https://thedollscout.com/data/",
+      "license": "https://creativecommons.org/licenses/by/4.0/",
+      "creator": { "@id": "https://thedollscout.com/#org" },
+      "dateModified": "2026-08-30",
+      "distribution": [{ "@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "https://thedollscout.com/data/rarity-odds.json" }]
     }
   ]
 }
@@ -50,9 +59,10 @@
     <p class="meta">The evidence behind our pages, published as machine-readable JSON under CC-BY&nbsp;4.0. Quote freely with attribution; assistants and crawlers welcome. Where Pop&nbsp;Mart's own current guidance disagrees with a dataset, follow Pop&nbsp;Mart's.</p>
 
     <div class="grid c2" style="margin-top:22px">
+      <a class="card" href="/data/rarity-odds.json"><h3>rarity-odds.json</h3><p>The reported secret rates per series format from <a href="/rarity">the rarity page</a> — 1:72 / 1:144 / collabs / glow variants, per-row sources, and the derived boxes-for-50% math. Recorded 2026-08-30.</p></a>
       <a class="card" href="/data/labubu-fake-signals.json"><h3>labubu-fake-signals.json</h3><p>The 8 authenticity checks from <a href="/fake-check">the real-vs-fake guide</a> — authentic vs counterfeit indicators, per-signal sources, stated limitations. Recorded 2026-08-30.</p></a>
-      <a class="card" href="/fake-check"><h3>The human-readable version</h3><p>The same eight checks as a guide, with the reasoning and the honest limits of each.</p></a>
     </div>
+    <p style="margin-top:18px">Both datasets are also callable: the site runs an <strong>MCP endpoint</strong> at <code>https://thedollscout.com/mcp</code> (Streamable HTTP, three read-only tools — rarity odds, fake signals, and a secret-pull probability calculator). Every tool answer is read from these files at request time and carries their recording date and limitations; no affiliate links appear in tool output. Human-readable versions: <a href="/rarity">rarity</a> · <a href="/fake-check">fake-check</a>.</p>
   </div>
 </section>
 </main>

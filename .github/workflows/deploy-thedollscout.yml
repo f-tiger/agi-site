@@ -69,6 +69,13 @@ jobs:
           fi
           echo "clean: every amazon link carries its own marketplace's tag"
 
+      # llms-full.txt = 全站正文单文件渲染(GEO 面:AI 引擎一次抓取读全站)。
+      # 生成器铁律(本站 8 天冻结教训):脚本内部永远 exit 0,任何失败只降级
+      # 输出;这里再包一层 continue-on-error,双保险——生成器绝不阻断部署。
+      - name: Build llms-full.txt (degrades, never blocks)
+        continue-on-error: true
+        run: node scripts/build-llms-full.mjs
+
       - name: Assemble static site into dist/
         run: bash scripts/assemble-dist.sh
 
@@ -94,7 +101,7 @@ jobs:
         run: |
           sleep 20
           fail=0
-          for p in / /rarity /fake-check /where-to-buy /de/ /de/rarity /de/fake-check /de/where-to-buy /data/ /robots.txt /sitemap.xml; do
+          for p in / /rarity /fake-check /where-to-buy /how-blind-boxes-work /glossary /de/ /de/rarity /de/fake-check /de/where-to-buy /de/how-blind-boxes-work /de/glossary /data/ /robots.txt /sitemap.xml /llms.txt /llms-full.txt /img/og.png /data/rarity-odds.json /.well-known/mcp.json; do
             code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 20 "https://thedollscout.com$p")
             redirs=$(curl -s -o /dev/null -w "%{num_redirects}" -L --max-redirs 5 --max-time 20 "https://thedollscout.com$p" || echo 99)
             echo "$p -> HTTP $code, redirects $redirs"
@@ -113,6 +120,19 @@ jobs:
             echo "retired $p -> HTTP $code"
             case "$code" in 404|410) ;; *) echo "::error::retired page $p returned $code (expected 404/410) — takedown not effective"; fail=1 ;; esac
           done
+          # MCP 冒烟:initialize 必须回 protocolVersion;计算工具算 1:72×12 盒
+          # 必须回 15.x%(纯数学,答案确定)。/mcp 曾在退役 410 列表里——这两条
+          # 断言同时守住「函数活着」与「410 没有误伤」。
+          mcp=$(curl -s --max-time 20 -X POST https://thedollscout.com/mcp \
+            -H 'Content-Type: application/json' \
+            -d '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{}}')
+          echo "mcp initialize -> $mcp"
+          echo "$mcp" | grep -q '"protocolVersion"' || { echo "::error::MCP initialize did not return protocolVersion"; fail=1; }
+          calc=$(curl -s --max-time 20 -X POST https://thedollscout.com/mcp \
+            -H 'Content-Type: application/json' \
+            -d '{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"secret_pull_probability","arguments":{"oddsN":72,"boxes":12}}}')
+          echo "mcp secret_pull_probability(72,12) -> $calc"
+          echo "$calc" | grep -q '15\.' || { echo "::error::MCP calculator did not return ~15% for 1:72 x 12 boxes"; fail=1; }
           exit $fail
 
       # Bing/Yandex/Seznam/Naver pick this up within minutes.

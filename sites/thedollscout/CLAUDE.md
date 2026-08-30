@@ -39,10 +39,34 @@ Labubu / The Monsters 收藏品的**稀有度优先导购站**:核心痛点 = �
   - 串 tag = 零佣金:deploy 有构建闸门,.de 链挂 US tag 或 .com 链挂 DE tag
     直接拒绝构建。两个 storefront 链接都是**实测存在**的官方 POPMART 店铺页
     (amazon.com 与 amazon.de 各自的,2026-08-30 WebSearch 核实)。
-- **页面**:/ + /rarity + /fake-check + /where-to-buy,及其 /de/ 德语对(hreflang 语言组,
-  x-default=EN;eco 模型)。德语页价格只引 US 区间 + 指官方 popmart.com/de 在售页,
+- **页面**:/ + /rarity + /how-blind-boxes-work + /fake-check + /where-to-buy +
+  /glossary + /data/,及其 /de/ 德语对(hreflang 语言组,x-default=EN;eco 模型;
+  /data/ 无德语对)。德语页价格只引 US 区间 + 指官方 popmart.com/de 在售页,
   **不发明 EUR 数字**。新增语言照此模式(页对 + hreflang + 对应市场 tag +
   该市场 Associates 站点列表先行)。
+
+## GEO 面(2026-08-30 晚,owner:「调用技能做好seo，geo流量优化，做厚网站，另外mcp等也增强」)
+
+- **llms.txt**(手写索引)+ **llms-full.txt**(scripts/build-llms-full.mjs 在
+  deploy 里 assemble-dist 之前生成,全站 12 页正文单文件渲染)。**生成器铁律
+  (8 天冻结教训):脚本任何失败只降级输出、永远 exit 0**,workflow 步骤再包
+  continue-on-error 双保险。页面列表在脚本里显式维护——新页要进 llms-full 得
+  加进 PAGES 数组。
+- **数据集 ×2(CC-BY,/data/)**:rarity-odds.json(格式别概率表 + boxesFor50pct
+  推导)+ labubu-fake-signals.json(8 项真伪信号)。/data/ 首页挂双 Dataset LD。
+- **MCP 端点 /mcp**(functions/mcp.js,streamable HTTP 无状态 JSON-RPC,
+  /.well-known/mcp.json 发现文档):3 个只读工具 labubu_rarity_odds /
+  labubu_fake_signals / secret_pull_probability。**承重决策:所有答案请求时
+  读已发布的 /data/*.json,绝不在端点里复刻规则**(第三真相源 = 舰队反复付费
+  移除的失败模式);**联盟链接永不进 MCP 输出**。deploy 自检带 MCP 冒烟
+  (initialize 回 protocolVersion + 1:72×12 盒算出 15.x%)。
+- **⚠️ middleware 退役 410 列表与新端点的碰撞已修**(2026-08-30):'/mcp' 与
+  '/llms-full.txt' 曾在 RETIRED_PREFIXES 里,已移除;将来给退役列表加条目前
+  先查它是否是新站的活路径。
+- 结构化数据:全站 Article/BreadcrumbList;/rarity WebApplication + FAQ LD;
+  /how-blind-boxes-work FAQ LD;/glossary DefinedTermSet LD。FAQ LD 文本必须
+  与页面可见文本一致(不造影子内容)。og:image 全站统一 /img/og.png
+  (PIL 自绘 Swiss 风,1200×630,不含任何官方素材)。
 
 ## 硬内容规则(继承舰队,零妥协)
 

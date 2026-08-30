@@ -43,11 +43,14 @@ function botOf(ua) {
 // layer — and 410 tells search engines to deindex faster than a 404 would,
 // which is exactly what the SafeSearch-cleanup needs. Prefixes, not exact
 // paths: the old site had ~40 URLs and every one of them is gone.
+// '/mcp' and '/llms-full.txt' were on this list until 2026-08-30 evening:
+// both paths came back to life for the Labubu site (functions/mcp.js and a
+// generated llms-full.txt) and must not be 410'd here.
 const RETIRED_PREFIXES = [
   '/scam-check', '/picks', '/quiz', '/guides', '/importing', '/weight',
   '/vendors', '/after-you-order', '/payment-protection', '/cost-calculator',
-  '/price-check', '/checklist', '/faq', '/for-creators', '/trust', '/mcp',
-  '/ga-check', '/feed.xml', '/llms-full.txt', '/search-index.json', '/server.json',
+  '/price-check', '/checklist', '/faq', '/for-creators', '/trust',
+  '/ga-check', '/feed.xml', '/search-index.json', '/server.json',
 ];
 
 export async function onRequest(ctx) {

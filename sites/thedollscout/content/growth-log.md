@@ -1944,3 +1944,48 @@ a "stop oscillating" note. Tool stays front-and-center: red-top-border
 card, red glowing result; bars now single-hue red. All shared components
 (odds-calc.js, hreflang, tags, gates) untouched — this round is a pure
 token-layer restyle plus SVG recolor, zero content or contract changes.
+
+## 2026-08-30 (round 7) — owner: "先优化prompt再执行：调用技能做好seo，geo流量优化，做厚网站，另外mcp等也增强"
+
+Ran prompt-optimizer first (site rule), then executed against the
+optimized prompt. Four workstreams, all shipped in one deploy:
+
+1. **做厚 (site depth)**: two new content page pairs. /how-blind-boxes-work
+   (+/de/) — the mechanics page: series structure, what printed odds mean
+   across N boxes, sealed-case caveat, four buying formats, the traps;
+   FAQ LD with 4 Q&As matching visible text. /glossary (+/de/) — ten
+   plain-language definitions (blind box, series, regular, secret/chase,
+   printed odds, case, glow/ultra, vinyl plush pendant, Lafufu, seller of
+   record); DefinedTermSet LD. Both cross-link the evidence pages and
+   link no store. Site: 5→7 content pages per language, 9→13 sitemap URLs.
+
+2. **GEO**: llms-full.txt now generated at deploy (build-llms-full.mjs,
+   12 pages, ~60KB, exit-0-always per the freeze lesson) and llms.txt
+   rewritten to the rarity-first framing with both datasets + MCP listed.
+   Second CC-BY dataset published: data/rarity-odds.json (format odds +
+   boxesFor50pct derivations); /data/ index now carries two Dataset LD
+   nodes. og:image existed on zero pages this morning — now all 12 pages
+   carry the self-drawn Swiss og.png (1200×630) + twitter:card.
+
+3. **MCP 增强**: /mcp rebuilt for the Labubu site — 3 read-only tools
+   (labubu_rarity_odds, labubu_fake_signals, secret_pull_probability),
+   answers read from the published /data JSON at request time (no third
+   source of truth), recording dates + limitations travel with every
+   answer, no affiliate links in tool output, /.well-known/mcp.json
+   discovery doc. Collision fixed: '/mcp' and '/llms-full.txt' removed
+   from the middleware's retired-410 list — both are live paths again.
+
+4. **Deploy hardening**: self-check grows from 11 to 19 URLs (new pages,
+   both llms files, og.png, rarity dataset, mcp.json discovery) plus an
+   MCP smoke test (initialize must return protocolVersion; the calculator
+   tool must return ~15% for 1:72×12 — deterministic math, so a wrong
+   answer is a real failure). IndexNow EXTRA now includes /llms-full.txt.
+
+Judgement lines (pre-registered): (a) new pages join the standard page
+line — first search/assistant referral or AI-crawler fetch streak by
+09-27 or they stop getting rounds; (b) MCP: first non-CI tools/call by
+09-27 → note it and keep; zero by then → endpoint stays (costs nothing,
+no schedule) but gets no further investment; (c) llms-full.txt fetches
+by named AI bots appear in the D1 bot log — if the bot table shows GPTBot/
+ClaudeBot/PerplexityBot reading it within 28d, GEO surfaces get the next
+round; if only Googlebot ever touches it, GEO investment pauses.

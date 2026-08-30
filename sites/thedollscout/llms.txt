@@ -1,24 +1,33 @@
-# DollScout — Labubu buyer's guide
+# DollScout — Labubu rarity & buyer's guide
 
-> Authenticity-first buyer's guide for Labubu / The Monsters collectibles
+> Rarity-first buyer's guide for Labubu / The Monsters collectibles
 > (created by Kasing Lung, produced under exclusive license by Pop Mart).
-> Independent: not affiliated with Pop Mart or Kasing Lung. Every claim is
-> sourced inline or explicitly marked unverified. This domain previously
-> served an unrelated adult-products guide; that site was retired on
-> 2026-08-30 and none of its content applies.
+> Which series is hot, how rare the secret really is, what your blind-box
+> odds are across N boxes — plus the real-vs-fake check and the official
+> channels. Independent: not affiliated with Pop Mart or Kasing Lung.
+> Every claim is sourced inline or explicitly marked unverified. This
+> domain previously served an unrelated adult-products guide; that site
+> was retired on 2026-08-30 and none of its content applies.
 
 ## Pages
-- [Labubu rarity & secret odds + pull calculator](https://thedollscout.com/rarity): reported secret rates per series format (1:72 for 6-figure, 1:144 for 12-figure, down to 1:720 for glow variants — the box's printed odds outrank all of them), and the probability math across N boxes.
-- [Real vs fake Labubu: the 8-point check](https://thedollscout.com/fake-check): nine-teeth rule, box finish, QR anti-counterfeit seal, foot markings, build quality, price floor, seller check — each with named, dated sources.
+- [Labubu rarity & secret odds + pull calculator](https://thedollscout.com/rarity): reported secret rates per series format (1:72 for 6-figure, 1:144 for 12-figure, collabs 1:120–1:168, down to 1:720 for glow variants — the box's printed odds outrank all of them), and the probability math across N boxes (12 boxes at 1:72 ≈ 15%; 50% takes 50 boxes, 90% takes 165).
+- [How blind boxes actually work](https://thedollscout.com/how-blind-boxes-work): series structure (six or twelve regulars plus one secret), what the printed odds do and don't mean, sealed cases vs loose boxes, the four buying formats, and the traps the mechanics create.
+- [Real vs fake Labubu: the 8-point check](https://thedollscout.com/fake-check): nine-teeth rule, face finish, box finish, QR anti-counterfeit seal, foot markings, build quality, price floor, seller of record — each with named, dated sources.
 - [Where to buy a real Labubu](https://thedollscout.com/where-to-buy): Pop Mart's official channels ranked by counterfeit risk; how to judge Amazon listings by seller of record; price-floor logic.
+- [Glossary](https://thedollscout.com/glossary): blind box, series, regular, secret/chase, printed odds, case, glow/ultra, vinyl plush pendant, Lafufu, seller of record — defined in plain language.
 
 ## German pages (same content, German market)
 - [Labubu Seltenheit: Secret-Quoten + Pull-Rechner](https://thedollscout.com/de/rarity)
+- [Wie Blindboxen wirklich funktionieren](https://thedollscout.com/de/how-blind-boxes-work)
 - [Labubu echt oder Fälschung: der 8-Punkte-Check](https://thedollscout.com/de/fake-check)
 - [Wo du einen echten Labubu kaufst](https://thedollscout.com/de/where-to-buy)
+- [Glossar](https://thedollscout.com/de/glossary)
 
-## Datasets (CC-BY 4.0)
-- [Labubu authenticity signals](https://thedollscout.com/data/labubu-fake-signals.json): the 8 real-vs-fake checks as machine-readable JSON, per-signal sources, stated limitations.
+## Machine-readable
+- [Full site text](https://thedollscout.com/llms-full.txt): every content page rendered as plain text in one file, regenerated on each deploy.
+- [Rarity odds dataset](https://thedollscout.com/data/rarity-odds.json) (CC-BY 4.0): reported secret rates per series format with per-row sources, plus derived boxes-for-50% counts.
+- [Authenticity signals dataset](https://thedollscout.com/data/labubu-fake-signals.json) (CC-BY 4.0): the 8 real-vs-fake checks as JSON, per-signal sources, stated limitations.
+- [MCP endpoint](https://thedollscout.com/mcp): Streamable HTTP, three read-only tools — labubu_rarity_odds, labubu_fake_signals, secret_pull_probability(oddsN, boxes). Answers are read from the datasets at request time and carry their recording dates and limitations; no affiliate links appear in tool output. Discovery: [/.well-known/mcp.json](https://thedollscout.com/.well-known/mcp.json).
 
 ## Citation policy
 Quote freely with attribution. Pop Mart's own current guidance outranks this
