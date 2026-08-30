@@ -137,6 +137,43 @@ Labubu / The Monsters 收藏品的**稀有度优先导购站**:核心痛点 = �
   rising v≥200 + 属 niche + 真伪/渠道/系列角度可落 → 当天一页,14 天冷却,
   1 页/天;**转售炒价词、儿童向内容角度不出页**。
 
+## 部署链的「静默失败」铁律(2026-08-30 深审,157 agent 九面审计)
+
+同一天的审计在自己刚发的代码里挖出三个**绿灯下的静默故障**,全部写进纪律:
+1. **允许失败的步骤必须会喊**。`indexnow.mjs` 引用未定义的 `urls`,自 pivot 起
+   每次部署都抛异常;因为该步是 `continue-on-error`,整条流水线全绿,新站从未
+   向 IndexNow 推过一条 URL。修复后脚本用 `::error::` 注解把失败顶到 run 摘要。
+   **新增任何 continue-on-error 步骤时,必须同时给它一条会出现在摘要里的告警。**
+2. **「正常的安静结果」是自我伪装**。周更 IndexNow 跑 delta,而 sitemap 的
+   lastmod 是静态的 → 09-08 之后永远筛出 0 条,并把空结果打印成正常。已改
+   MODE=all 兜底;delta 空结果现在必须发 warning。**任何「没事发生」的分支都要
+   能区分「真的没事」与「机制死了」。**
+3. **埋点的可见范围就是结论的边界**。`isContentPath()` 不匹配无扩展名路径,
+   25 个页面里 20 个永远不可能产生 `ev='bot'` 行——「爬虫只碰入口页」的读数
+   是测量假象。**读 D1 结论前先问:这个口径能看见我要下结论的那部分吗?**
+
+## 结构化数据诚实闸门(同日,不可删除)
+
+站内铁律「LD 文本必须与页面可见文本一致」被自己连破两轮(round 8 的 16 条 FAQ、
+round 10 的 18 条 DefinedTerm 全是只存在于 JSON-LD 的影子内容)。现在
+`scripts/check-structured-data.mjs` 是**阻断闸门**,比较口径:实体解码 + NBSP/
+弯引号/破折号归一 + 去标签 + **去全部空白**后做子串判定(松于表现、严于文字——
+早期严格版本会误伤合规页面,而一个误报的闸门必然被关掉,闸门被关掉正是影子内容
+混进来的原因)。**教训:CLAUDE.md 里写下的规则若没有可执行检查,它只是愿望。**
+
+## 机器面纪律(GEO)
+
+- llms-full.txt:①保留链接 URL(否则「具名有源」在 AI 唯一整读的文件里变成无源
+  散文)②剥离 `hidden` 子树(checker 三个互斥判定同时在 DOM 里,会被当成本站结论
+  引用)③页头事实**从 .well-known/mcp.json 与 data/ 计算**,禁止手写(手写的
+  「3 tools / EN then DE」在 4 工具 4 语言之后还在每次部署重新发布错误事实)
+  ④**联盟 tag 不进 llms-full**,与 MCP 同一条规矩。
+- **发现通路**:每页 head 挂 `<link rel="alternate" type="text/plain">` 指两个
+  llms 文件,robots.txt 具名列出全部五个机器面——D1 实测 OAI-SearchBot 读了三次
+  robots.txt 就走,而当时站内没有任何一处指向 llms.txt。
+- CSS 组件规则会压过 UA 的 `[hidden]`;`[hidden]{display:none!important}` 必须
+  排在组件规则之前(`.card{display:block}` 曾让 /lookup 的筛选完全失效)。
+
 ## 判定线(预登记,防事后两头解释)
 
 - **搜索引擎清理期**:本域有 6 周 18+ 历史(RTA 头、adult meta、成人语义)。

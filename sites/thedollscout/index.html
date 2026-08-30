@@ -6,6 +6,8 @@
 <title>DollScout — Labubu Rarity, Odds &amp; Buyer's Guide</title>
 <meta name="description" content="Which Labubu is actually rare, how rare, and what your blind-box odds really are — with a pull calculator, the real-vs-fake check and the official channels. Every claim sourced.">
 <link rel="canonical" href="https://thedollscout.com/">
+<link rel="alternate" type="text/plain" href="/llms.txt" title="llms.txt — AI index of this site">
+<link rel="alternate" type="text/plain" href="/llms-full.txt" title="llms-full.txt — full site text for AI">
 <link rel="alternate" hreflang="en" href="https://thedollscout.com/">
 <link rel="alternate" hreflang="de" href="https://thedollscout.com/de/">
 <link rel="alternate" hreflang="zh" href="https://thedollscout.com/zh/">
@@ -26,10 +28,35 @@
 {
   "@context": "https://schema.org",
   "@graph": [
-    { "@type": "Organization", "@id": "https://thedollscout.com/#org", "name": "DollScout", "url": "https://thedollscout.com/",
-      "description": "Rarity-first buyer's guide for Labubu and The Monsters collectibles: secret odds, pull math, authenticity checks and official channels. Independent; not affiliated with Pop Mart or Kasing Lung." },
-    { "@type": "WebSite", "name": "DollScout", "url": "https://thedollscout.com/",
-      "publisher": { "@id": "https://thedollscout.com/#org" }, "inLanguage": "en" }
+    {
+      "@type": "Organization",
+      "@id": "https://thedollscout.com/#org",
+      "name": "DollScout",
+      "url": "https://thedollscout.com/",
+      "description": "Rarity-first buyer's guide for Labubu and The Monsters collectibles: secret odds, pull math, authenticity checks and official channels. Independent; not affiliated with Pop Mart or Kasing Lung."
+    },
+    {
+      "@type": "WebSite",
+      "name": "DollScout",
+      "url": "https://thedollscout.com/",
+      "publisher": {
+        "@id": "https://thedollscout.com/#org"
+      },
+      "inLanguage": "en"
+    },
+    {
+      "@type": "WebApplication",
+      "name": "Secret Pull Calculator",
+      "url": "https://thedollscout.com/#calc",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "Any",
+      "isAccessibleForFree": true,
+      "inLanguage": "en",
+      "featureList": "Probability of at least one secret across N blind boxes at the printed odds; boxes needed for a 50% and 90% chance; independent single-box model; runs entirely in the browser",
+      "publisher": {
+        "@id": "https://thedollscout.com/#org"
+      }
+    }
   ]
 }
 </script>

@@ -2124,3 +2124,90 @@ next GEO round). New sub-line: if the MCP log shows define_labubu_term
 as the first externally-called tool, that's evidence assistants want
 definitions over numbers — the next dataset should be the character
 identity index (lookup entries), not more odds math.
+
+## 2026-08-30 (round 11) — owner: "调用geo等手段多轮深度优化"
+
+Ran a 157-agent, nine-lens audit (structured data, extractability, crawl
+mechanics, agent files, i18n, internal linking, E-E-A-T, no-JS readability,
+query gaps) with three adversarial verifiers per finding and a completeness
+critic. 45 findings survived, 4 were refuted. The important result is not
+the count — it is that **five of the confirmed findings were live bugs this
+session shipped, and three of them were silent**.
+
+### Silent breakage found (all mine, all shipping green)
+1. **scripts/indexnow.mjs referenced an undefined `urls`** and threw on every
+   deploy SINCE THE PIVOT. The step carries continue-on-error, so a crashing
+   IndexNow push looked exactly like a working one in a green run. Not one URL
+   of the new site was ever pushed to Bing/Yandex/Naver/Seznam. Repaired, plus
+   ::error:: annotations so a non-blocking step still shouts, plus the machine
+   surfaces (llms.txt, llms-full.txt, mcp.json, 3 datasets) added to the push.
+   **Rule: a step allowed to fail must be made loud, or it is not a step.**
+2. **The weekly IndexNow job was a permanent no-op from 2026-09-08.** It ran
+   MODE=delta against sitemap lastmods that are static, and printed the empty
+   result as "the normal quiet outcome" — self-camouflaging. Weekly now runs
+   MODE=all (27 URLs/week is nothing); delta warns if it submits zero.
+3. **functions/_middleware.js isContentPath() never matched extensionless
+   paths**, so 20 of 25 published pages could not produce an ev='bot' row.
+   CORRECTION TO THIS SESSION'S OWN REPORT: earlier today I read the D1 bot
+   log and reported "every AI crawler stopped at the three entry points".
+   That was a measurement artefact — those were the only paths the logger
+   could see. The part that stands is narrower and still real: llms.txt,
+   llms-full.txt and the /data/*.json files DO have extensions, were
+   loggable, and were fetched zero times.
+
+### Self-rule violations found (the rule existed; nothing enforced it)
+4. **16 of 48 FAQ Q&A pairs existed only inside JSON-LD** — every one on
+   /start and /psychology, EN and DE, written in round 8. Then round 10's
+   DefinedTerm entities repeated the same mistake: 18 of 20 descriptions were
+   paraphrases, not the visible sentence. All 68 entries now match visible
+   text verbatim, and **scripts/check-structured-data.mjs is a blocking deploy
+   gate** — entity-decoded, quote/dash-folded, whitespace-stripped comparison,
+   because a gate that cries wolf gets disabled and a disabled gate is how
+   this got in. Pattern worth keeping: *a rule written in CLAUDE.md with no
+   executable check is a wish.*
+5. **`.card { display: block }` silently defeated `el.hidden`** (class
+   selector beats the UA stylesheet), so the Model Lookup filter shipped two
+   rounds ago never hid anything and could show "no match" above 12 visible
+   cards. One `[hidden]{display:none!important}` line fixes it.
+
+### GEO substance shipped this round
+- llms-full.txt now **keeps every link URL inline** (the site's whole
+  "named, dated source" promise previously arrived as unlinked prose in the
+  one file engines read whole), **strips conditional UI states** (the checker
+  had all three mutually exclusive verdicts in the DOM at once — quotable as
+  a self-contradiction), and its header facts are **computed from
+  .well-known/mcp.json and data/** instead of typed (the typed header was
+  republishing "3 tools / EN then DE" long after 4 tools and 4 languages).
+  Affiliate tags are stripped from it, matching the MCP no-affiliate rule.
+- **Discovery**: nothing on the site pointed at /llms.txt. Every page now
+  carries `<link rel="alternate" type="text/plain">` for both llms files and
+  robots.txt names all five machine surfaces.
+- **Linking**: not one of the 8 evidence pages linked any of the 3 tools.
+  All 14 EN+DE evidence pages now do; the two "related links" slots wasted on
+  `/` are gone.
+- Third dataset + 4th MCP tool wired into the self-check; ItemList on the
+  8-point check; WebApplication on the four calculator pages; Article image;
+  distinct @id per Dataset; nested `<a>` inside `<a>` removed from all three
+  dataset cards; CORS on the datasets; legal pages into sitemap/urls;
+  /finder's recommendations now ship visible (were 100% `hidden` = invisible
+  to crawlers); unsourced "sixty-plus series" replaced with honest wording;
+  12 source names per lookup page turned into real links.
+
+### Ledger (2026-08-30, CI excluded)
+human_pv 33 | bot 29 | **affiliate_click 1 — the site's first**, from the EN
+homepage, US, outbound to amazon.com. One click, not a sale: it proves the
+funnel is wired end to end, nothing about conversion. It does satisfy one of
+the three pre-registered 60-day conditions on day zero.
+Crawlers seen: YandexBot 15, Googlebot 5, Bingbot 4, OAI-SearchBot 3,
+GPTBot 1, ChatGPT-User 1 (a live user-triggered fetch through ChatGPT).
+ClaudeBot and PerplexityBot: not yet.
+
+### Judgement lines
+(a) IndexNow: the next deploy's log must show a 200/202 with 31 URLs. If it
+does not, the lane is broken at the endpoint, not the script.
+(b) Bot log: with extensionless paths now recorded, the 7-day bot table
+should show content pages, not just entry points. If it still shows only
+entry points by 09-06, crawlers really are bouncing and the problem is
+authority, not instrumentation — that would be the first evidence for it.
+(c) llms.txt/llms-full/dataset fetches by a named AI bot by 09-27 gates the
+next GEO round, unchanged from round 7.

@@ -39,7 +39,14 @@ if (MODE === "all") {
 }
 
 if (!urls.length) {
-  console.log(`indexnow: nothing changed in the last ${WINDOW_DAYS} days — no submission (that is the normal quiet outcome).`);
+  /* 2026-08-30: this used to print "that is the normal quiet outcome" and exit,
+     which made a PERMANENT no-op indistinguishable from a quiet week — the
+     sitemap's lastmod values are static, so delta silently returns zero forever
+     once the window passes them. Delta is no longer the scheduled default
+     (the weekly job runs MODE=all); if delta is chosen explicitly and finds
+     nothing, say plainly that it may be the static-lastmod trap. */
+  console.log(`indexnow: delta found no URL with a lastmod inside ${WINDOW_DAYS} days.`);
+  console.log("::warning::indexnow: delta submitted 0 URLs. If sitemap lastmod values are static, delta is a permanent no-op — use MODE=all.");
   process.exit(0);
 }
 

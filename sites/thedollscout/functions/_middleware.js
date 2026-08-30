@@ -26,6 +26,14 @@ const AI_BOTS = [
 function isContentPath(p) {
   if (p.startsWith('/api/')) return false;
   if (p === '/' || p.endsWith('/')) return true;
+  // Extensionless paths ARE the site's pages (/rarity, /de/glossary, /checker).
+  // Until 2026-08-30 this function only matched '/' , trailing-slash and known
+  // extensions, so 20 of 25 published pages could never produce an ev='bot' row
+  // and the AI-crawl log looked as if engines only ever touched the entry
+  // points. That was a measurement artefact, not crawler behaviour. Anything
+  // with a dot in its last segment is a static asset and still skipped.
+  var last = p.slice(p.lastIndexOf('/') + 1);
+  if (last && last.indexOf('.') === -1) return true;
   return /\.(html|txt|json|md|xml)$/i.test(p);
 }
 

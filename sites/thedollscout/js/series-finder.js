@@ -21,6 +21,11 @@
     var out = root.querySelector("[data-finder-out]");
     if (!selects.vibe || !selects.use || !selects.chase || !out) return;
     var sent = false;
+    /* The recommendation blocks ship VISIBLE in the HTML so a no-JS crawler
+       (which is most AI crawlers) reads all three series recommendations and
+       every advisory line instead of three empty dropdowns. JS takes over on
+       load and filters. Before 2026-08-30 they shipped `hidden`, so the page
+       contributed nothing at all to llms-full.txt or to any crawler. */
     function recalc() {
       var vibe = selects.vibe.value, use = selects.use.value, chase = selects.chase.value;
       var any = Boolean(vibe || use || chase);

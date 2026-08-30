@@ -1,7 +1,20 @@
-# Security headers, site-wide. The RTA adult Rating labels that used to live
-# here died with the adult site (2026-08-30 pivot) — this site needs none.
-/*
-  X-Content-Type-Options: nosniff
-  X-Frame-Options: DENY
-  Referrer-Policy: strict-origin-when-cross-origin
-  Permissions-Policy: geolocation=(), microphone=(), camera=()
+# CC-BY datasets and AI-index files are meant to be fetched cross-origin — by
+# the MCP endpoint's consumers, by browser-side agents, by anyone re-using the
+# data under the licence. The MCP endpoint has always sent
+# Access-Control-Allow-Origin: *, but the files it points at did not, so a
+# browser-based agent could call the tool and still fail to fetch the source.
+/data/*
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=3600
+
+/llms.txt
+  Access-Control-Allow-Origin: *
+  Content-Type: text/plain; charset=utf-8
+
+/llms-full.txt
+  Access-Control-Allow-Origin: *
+  Content-Type: text/plain; charset=utf-8
+
+/.well-known/mcp.json
+  Access-Control-Allow-Origin: *
+  Content-Type: application/json; charset=utf-8
