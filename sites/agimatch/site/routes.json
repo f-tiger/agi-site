@@ -3,12 +3,13 @@
   "updated": "2026-08-30",
   "license": "CC BY 4.0",
   "url": "https://match.agiscorecard.com/",
-  "note": "Every price here carries a source. Verdicts are dated and carry a flip condition.",
+  "note": "Every price says where we saw it. Read source_grade before quoting any of them.",
   "method": "Each bucket classifies a common AI-work request as SOLVED-NOW (a shipping product already does it), DIY-WITH-GUIDE (no engineer required), or NEEDS-A-HUMAN (genuinely custom). Prices are quoted from the sources listed on each bucket and go stale; the as_of date says when each verdict was made and the flip field says what would change it.",
   "premise": {
-    "claim": "Over 40% of agentic AI projects will be canceled by the end of 2027 due to escalating costs, unclear business value, or inadequate risk controls; Gartner also estimates only about 130 of the thousands of self-described agentic AI vendors are real, calling the rest 'agent washing' — existing chatbots, assistants and RPA rebranded.",
+    "claim": "Gartner predicts over 40% of agentic AI projects will be canceled by the end of 2027.",
     "as_of": "2025-06-25",
-    "source": "https://www.gartner.com/en/newsroom/press-releases/2025-06-25-gartner-predicts-over-40-percent-of-agentic-ai-projects-will-be-canceled-by-end-of-2027"
+    "source": "https://www.gartner.com/en/newsroom/press-releases/2025-06-25-gartner-predicts-over-40-percent-of-agentic-ai-projects-will-be-canceled-by-end-of-2027",
+    "evidence_grade": "The claim above is the press release headline and date. Wider figures circulated alongside it — a vendor-reality count, and the phrase agent washing — did not survive our own verification pass and are deliberately not repeated here."
   },
   "examples": [
     "read my incoming emails and file them by order number",
@@ -351,8 +352,8 @@
         "fair price",
         "budget"
       ],
-      "answer": "Two answers in one: what this work actually costs, and the four questions that tell you whether the person quoting is real. Gartner estimates only about 130 of the thousands of self-described agentic AI vendors are real, and calls the rest 'agent washing' — existing chatbots, assistants and RPA rebranded.",
-      "detail": "Published rates disagree, and the disagreement is the useful part: Upwork's own AI-agent-developer category page cites $30–150/hr, specialist rate cards put freelance AI agent developers at $155–185/hr, and broader surveys give $80–250/hr globally — roughly $50–80 junior, $80–120 mid, $120–200 senior, with LLM specialisation adding a 30–50% premium and regulated domains 20–40%. Marketplace fees come out of what your builder receives, so they shape the quote: Upwork moved to a variable 0–15% per-contract freelancer fee on 2025-05-01 (most pay around 10%), and Fiverr takes a flat 20%. A quote outside those bands is not automatically wrong — it needs an explanation. And the same Gartner analysis predicts over 40% of agentic AI projects will be canceled by the end of 2027, on escalating costs, unclear business value or inadequate risk controls: you are not being paranoid, you are pricing a known failure rate.",
+      "answer": "Two answers in one: what this work actually costs, and the four questions that tell you whether the person quoting is real.",
+      "detail": "Published rates disagree, and the disagreement is the useful part: Upwork's own AI-agent-developer category page cites $30–150/hr, specialist rate cards put freelance AI agent developers at $155–185/hr, and broader surveys give $80–250/hr globally — roughly $50–80 junior, $80–120 mid, $120–200 senior, with LLM specialisation adding a 30–50% premium and regulated domains 20–40%. Marketplace fees come out of what your builder receives, so they shape the quote: Upwork moved to a variable 0–15% per-contract freelancer fee on 2025-05-01 (most pay around 10%), and Fiverr takes a flat 20%. A quote outside those bands is not automatically wrong — it needs an explanation. And Gartner predicts over 40% of agentic AI projects will be cancelled by the end of 2027.",
       "typical_cost": "$30–150/hr per Upwork's own category page; $155–185/hr per specialist rate cards; $80–250/hr across broader surveys ($50–80 junior, $80–120 mid, $120–200 senior). Before comparing a fixed-price quote, divide it by the hours it implies and see which band it lands in.",
       "steps": [
         "Ask what the system does when the model is wrong. A real builder has a specific answer with a fallback path; agent-washing has a reassurance.",
@@ -606,5 +607,12 @@
         "source": "https://freelancecompare.com/blog/fiverr-fees-explained"
       }
     ]
+  },
+  "source_grade": {
+    "as_of": "2026-08-30",
+    "first_party_sources": 2,
+    "third_party_sources": 26,
+    "statement": "Almost every price in this table is cited to a third-party comparison article rather than the vendor's own pricing page, and some of those articles are published by companies selling a product that competes with the one being priced. The build environment cannot reach vendor pricing pages (outbound fetching is blocked), so first-party confirmation is pending. Treat these figures as dated observations to check on the vendor's page before you buy — not as quotes, and not as first-party facts.",
+    "fix": "Re-verify each price against the vendor's own pricing page from an environment with outbound access, and record which prices became first-party."
   }
 }
