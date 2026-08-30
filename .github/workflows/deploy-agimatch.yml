@@ -80,7 +80,24 @@ jobs:
               if (b.tier === 'NEEDS-A-HUMAN' && !(b.route && b.route.url) && !(b.ask_for || []).length) {
                 throw new Error('routes.json: bucket ' + b.id + ' says hire a human but gives neither a route nor a brief');
               }
+              if (b.route) {
+                if (typeof b.route.affiliate !== 'boolean') {
+                  throw new Error('routes.json: route on ' + b.id + ' has no affiliate boolean — that flag drives the rel attribute, the on-page label and this gate, so it may never be left implicit');
+                }
+                // THE ANTI-INCENTIVE RULE, enforced rather than trusted. A site paid on
+                // referrals is only believable when it says "you don't need to hire anyone"
+                // if that verdict cannot be the paid one.
+                if (b.route.affiliate === true && (b.tier === 'SOLVED-NOW' || b.tier === 'DIY-WITH-GUIDE')) {
+                  throw new Error('routes.json: bucket ' + b.id + ' is ' + b.tier + ' and carries a paid link. The site promises these verdicts are never monetised. Re-tier the bucket honestly and let the on-page counter drop, or drop the affiliate link — do not publish both.');
+                }
+                // The reverse mistake: pasting a tagged URL without labelling it paid.
+                if (b.route.affiliate !== true && /[?&](tag|aff|affiliate|ref|irclickid|utm_medium=affiliate)=|impact\.com|irclick|partnerize|awin1|shareasale/i.test(b.route.url)) {
+                  throw new Error('routes.json: route on ' + b.id + ' looks like a tracked affiliate URL but is not flagged affiliate:true — an undisclosed paid link is the one failure this site cannot ship');
+                }
+              }
             }
+            const paidRoutes = r.buckets.filter(b => b.route && b.route.affiliate === true).length;
+            console.log('anti-incentive gate ok — ' + paidRoutes + ' paid route(s), none on a solved-now or do-it-yourself verdict');
             console.log('routes.json ok — ' + r.buckets.length + ' buckets, ' + priced + ' state a price, ' + sourced + ' of those sourced');
           "
           # 公开仓红线:钱包地址/密钥永不入仓,收款地址只走 Worker secret

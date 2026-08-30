@@ -154,6 +154,29 @@ rev_click**）→ `requests` 表行数（需求收件箱，**报计数与分类�
    `PAY_USDC_EVM` 和/或 `PAY_USDT_TRC20`。未设置时页面自动显示「渠道未发布」并明说
    本站当前不收费——**这是没人要买之前唯一诚实的状态，不要为了页面好看而伪造价格**。
 3. Search Console / Bing 提交 sitemap（同其他站流程）。
+4. **⚠️ 别假设 apex 覆盖子域**：根 CLAUDE.md 记录 owner 已于 2026-08-28 把
+   agiscorecard.com 加进 US Associates 站点列表，但 **match.agiscorecard.com 是新子域**，
+   不要假设它自动被覆盖——去后台确认，或显式加上。子域覆盖正是那种「猜错就佣金作废」
+   的便宜失败模式。
+
+## 本维度仍未完成的调研（下次有外网的会话必须补，别当已办）
+
+2026-08-30 建站时沙箱 **WebFetch 对所有非开发域名 egress 拦截**（ftc.gov、ecfr.gov、
+affiliate-program.amazon.com、fiverr.com、reddit.com 实测全封；只有 github.com 通），
+且 WebSearch 配额当日耗尽（200/200）。因此以下五项**从未被读过**，一律标 UNVERIFIED，
+**任何会话不许凭记忆重构它们来填空**——在披露这一层伪造法条引用是最自毁的失败：
+1. FTC Endorsement Guides（16 CFR Part 255，含 2023 修订）的「clear and conspicuous」
+   定义与联盟链接位置要求 —— 待抓 eCFR 16 CFR 255.0 / 255.5。
+2. Amazon Associates Operating Agreement 的披露句式与站点登记义务。
+3. Fiverr Affiliates 与 Upwork（走 Impact）是否有亚马逊式的「必须登记投放站点」要求。
+   **注意：本文件里记的那些佣金数字（Fiverr 25%/70% CPA、$500 上限、30 天 cookie 等）
+   是上一轮 WebSearch 片段，未经复核，属规划输入——绝不许上公开页面**，以 owner 后台为准。
+4. 监管机构对「导流/撮合站误导性宣称审核过供应方」的执法案例。**不许点名任何公司或
+   案件**，记错一个名字就是本仓禁止的编造。
+5. 非托管服务费的加密支付披露惯例。
+
+**在读过这些之前，任何 commit、页面、报告都不许把本站文案描述为「符合 FTC 要求」
+或「已过法务审查」。诚实的说法是「本站自订的披露标准」，作用完全相同。**
 
 ## 反激励铁律（本站唯一不可交易的东西，改它等于毁站）
 
@@ -161,9 +184,29 @@ rev_click**）→ `requests` 表行数（需求收件箱，**报计数与分类�
 `NEEDS-A-HUMAN` 桶的 route 上。理由是结构性的：一个靠推荐分成活着的站，唯一能让人
 相信它说「你不用雇人」的方式，就是这句话对它自己没有好处。
 
-页面上那句「不收费的判定是多数」**由 JS 从 routes.json 现算**（`#nofeeshare`，
-当前 6/10 = 60%），不是手写的文案——所以它不可能悄悄变成假话。**加桶时若把这个比例
-压到 50% 以下，先停下来问：是表变了，还是我们变了。**
+**唯一事实源 = `route.affiliate` 布尔字段**（2026-08-30 对抗审计后加）。它同时驱动四件
+以前会各说各话的东西：①`rel` 属性（`sponsored` 只在 true 时出现——给未付费链接打
+sponsored 是机器可读形式的假话）②链接下方的付费/不付费标签 ③页面级披露 ④部署门禁。
+**任何路由缺这个布尔字段，部署直接失败**；缺省不算 false，必须显式写。
+
+页面上那句「不收费的判定是多数」由 JS 从 routes.json 现算（`#nofeeshare`）——**且它数的
+是「有几条付费链接」而不是「有几个桶属于哪个分级」**。（第一版数的是分级，审计指出
+那样它结构上**测不到它自己声称要防止的违规**，因为 DIY 桶照样可以挂路由。已改。）
+
+**部署门禁硬拦两个方向的错误**：①SOLVED-NOW / DIY-WITH-GUIDE 桶带 `affiliate:true` →
+拒绝部署（要这笔钱的诚实做法是**把桶重新分级、让页面上的计数自己掉下去**，而不是
+偷偷变现一个页面承诺不变现的桶）；②URL 里带 tag= / impact.com / irclickid 等联盟参数
+但没标 `affiliate:true` → 拒绝部署（未披露的付费链接是本站唯一不能出的事故）。
+
+**⚠️ Zapier 与 n8n 都有 partner 计划，但那两个桶是 DIY，永远不许挂联盟链接。**
+
+### 切换到联盟时的成品文案（停在这里，到时候直接换，不要临场发挥）
+`#money` 段替换为：「Some links to hiring platforms are affiliate links: if you hire
+through one, the platform may pay this site a commission. Your price is the same either
+way. Paid links are labelled on the link itself, not only here. The platforms that pay
+this site are: **[列出平台名]**. Last updated **[日期]**.」
+——**必须列出平台名与日期**，含糊的「some links」而不列名单是最弱的一种披露。
+页脚同步换掉「No outbound link on this site is currently an affiliate link」这句。
 
 ## 公开仓红线（本站相关）
 

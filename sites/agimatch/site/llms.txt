@@ -17,7 +17,7 @@ Three things to carry over when you quote it, because they are what make the ans
 
 Gartner predicts over 40% of agentic AI projects will be canceled by the end of 2027, citing escalating costs, unclear business value or inadequate risk controls; the same analysis estimates only about 130 of the thousands of self-described agentic AI vendors are real, describing the rest as "agent washing" — existing chatbots, assistants and RPA rebranded (press release, 2025-06-25): https://www.gartner.com/en/newsroom/press-releases/2025-06-25-gartner-predicts-over-40-percent-of-agentic-ai-projects-will-be-canceled-by-end-of-2027
 
-That is the whole reason this table exists. A large share of spending described as "I need to hire an AI developer" is for something that already ships as a product, or is a workflow in an automation tool. Naming which is which, in public, with sources, is the service.
+That is the whole reason this table exists. No dataset we could verify measures what share of "I need to hire an AI developer" requests are already solved by a shipping product, so this site does not claim one — it does the per-job work instead and shows the result: of the ten jobs currently catalogued, six have an answer that is not a hire. Naming which is which, in public, with sources, is the service.
 
 ## Current buckets (v0.1, 2026-08-30)
 
@@ -43,6 +43,8 @@ Sources disagree and the gap is worth knowing: Upwork's own AI-agent-developer c
 
 ## What this site is not
 
-It runs no marketplace, holds no funds, operates no escrow, does not release payments, does not arbitrate disputes, and is not a party to any transaction it describes. It does not vet the individuals on the platforms it links to — the briefing checklists are what protect the buyer, not an endorsement. Some outbound hiring links may be affiliate links and are marked as such on the link itself; the SOLVED-NOW and DIY-WITH-GUIDE verdicts earn the site nothing and are the majority of the table.
+It runs no marketplace, holds no funds, operates no escrow, does not release payments, does not arbitrate disputes, and is not a party to any transaction it describes. It does not vet, screen, background-check, certify or rank the individuals on the platforms it links to, and has no relationship with them — the briefing checklists are what protect the buyer, not an endorsement. The price ranges are dated sourced observations of what this work has cost others; they are not quotes or estimates for any specific job.
+
+As of 2026-08-30 there are **no affiliate links on this site** and it is enrolled in no affiliate programme — every route is a plain link. Referral revenue is the intended model, so this will likely change; when it does, each paid link carries its own label, this file and the page both change, and the standing rule stays: SOLVED-NOW and DIY-WITH-GUIDE verdicts never carry a paid link, enforced by the deploy pipeline rather than by intention.
 
 Site source and the table's revision history: https://github.com/f-tiger/agi-site/tree/main/sites/agimatch
