@@ -36,6 +36,12 @@ const PAGES = [
   ["checker.html", "/checker"],
   ["finder.html", "/finder"],
   ["lookup.html", "/lookup"],
+  ["odds/index.html", "/odds/"],
+  ["odds/one-box.html", "/odds/one-box"],
+  ["odds/six-boxes.html", "/odds/six-boxes"],
+  ["odds/twelve-boxes-full-case.html", "/odds/twelve-boxes-full-case"],
+  ["odds/twenty-four-boxes.html", "/odds/twenty-four-boxes"],
+  ["odds/seventy-two-boxes.html", "/odds/seventy-two-boxes"],
   ["de/index.html", "/de/"],
   ["de/start.html", "/de/start"],
   ["de/rarity.html", "/de/rarity"],
@@ -49,6 +55,12 @@ const PAGES = [
   ["de/lookup.html", "/de/lookup"],
   ["zh/index.html", "/zh/"],
   ["th/index.html", "/th/"],
+  ["de/odds/index.html", "/de/odds/"],
+  ["de/odds/one-box.html", "/de/odds/one-box"],
+  ["de/odds/six-boxes.html", "/de/odds/six-boxes"],
+  ["de/odds/twelve-boxes-full-case.html", "/de/odds/twelve-boxes-full-case"],
+  ["de/odds/twenty-four-boxes.html", "/de/odds/twenty-four-boxes"],
+  ["de/odds/seventy-two-boxes.html", "/de/odds/seventy-two-boxes"],
 ];
 
 function stripHiddenSubtrees(html) {

@@ -33,11 +33,18 @@ function canon(t) {
   return s.replace(/\s+/g, "");
 }
 
+/* ⚠️ 2026-08-31: this used to recurse into "de" and nothing else, so zh/, th/,
+ * legal/, data/ and every future subdirectory were silently outside the gate —
+ * a gate that cannot see a page cannot block anything on it. Now it walks every
+ * publishable directory and skips only what assemble-dist.sh already excludes. */
+const SKIP = new Set([".git", ".github", ".claude", ".agents", "node_modules",
+                      "dist", "scripts", "content", "img", "js", "css"]);
 function pages(dir) {
   const out = [];
   for (const name of readdirSync(dir)) {
+    if (SKIP.has(name)) continue;
     const p = join(dir, name);
-    if (statSync(p).isDirectory()) { if (name === "de") out.push(...pages(p)); continue; }
+    if (statSync(p).isDirectory()) { out.push(...pages(p)); continue; }
     if (name.endsWith(".html")) out.push(p);
   }
   return out;
