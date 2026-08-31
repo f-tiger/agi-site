@@ -553,10 +553,27 @@ def jstr(s):
 # the amazon.de listing title verbatim. Full evidence in the 2026-08-28 session
 # report; per-row provenance below.
 MODEL_ASIN = {
-    # FAILED verification, deliberately empty: B0BZWP26GD is EX105 on ES/BE/
-    # NL/IT/FR but the amazon.de listing titles itself "PACEX93" (8900 BTU,
-    # filed under "Musical Instruments & DJ" — a dirty variant listing). No
-    # DE-specific EX105 ASIN found. Search link is the honest state.
+    # CLOSED 2026-08-31 — do not reopen. Two independent observations now say
+    # B0BZWP26GD does not give the EX105 on amazon.de: on 08-28 the listing
+    # titled itself "PACEX93" (8900 BTU, filed under "Musical Instruments &
+    # DJ"), and today the owner opening it landed on the Pinguino GentleJet
+    # PAC AP98 at /dp/B0F3XL6LK6?th=1 — the ?th= parameter Amazon adds when it
+    # redirects a variant ASIN to the currently selected child.
+    #
+    # The search link is not a fallback here, it is the CORRECT form: it
+    # survives variant churn, whereas a /dp/ link to this ASIN would land the
+    # reader on a different product. That is the standing exception to "a
+    # search link costs conversion" — it only costs conversion when the direct
+    # link would actually reach the product named on the page.
+    #
+    # Withdrawn hypothesis, recorded so nobody re-derives it: Geizhals showing
+    # the EX105 at EUR 932-1999 from eBay resellers looked like end-of-life
+    # price inflation, but billiger.de lists the brand-new GentleJet at EUR
+    # 1199 too — the price shape is these comparison sites' data, not a
+    # discontinuation signal. EX105 remains live on heise/Geizhals/
+    # MediaMarkt.at. Whether it is still stocked on amazon.de specifically is
+    # unknown from here and cannot be read off the owner's screenshots while
+    # their amazon.de delivery country is set to the United States.
     "De'Longhi Pinguino PAC EX105": "",
     # 2026-08-31, owner screenshot of the amazon.de listing (first-party, the
     # strongest source available here): B0F3XL6LK6 is the De'Longhi Pinguino
