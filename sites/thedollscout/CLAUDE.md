@@ -129,13 +129,67 @@ Labubu / The Monsters 收藏品的**稀有度优先导购站**:核心痛点 = �
   (publishable 文件出现 rating-adult/age-gate/ds_age_ok/yourdoll 即失败)→
   assemble-dist → wrangler pages deploy → **自检**(新页 200+零重定向,
   旧成人页断言 404)→ IndexNow → beacon 自测。
-- 保留 workflows:tds-traffic(D1 快照)、tds-indexnow(周推)。其余 9 条旧站
-  workflow 已删,别恢复。
+- 保留 workflows:tds-traffic(每日 06:00 UTC,边缘流量 + D1 快照)、tds-indexnow
+  (周三 06:20 UTC,MODE=all 兜底)。其余 9 条旧站 workflow 已删,别恢复。
+  ⚠️ 公开仓的 schedule 实测延迟 5–12 小时(08-28 那次 06:00 的任务 18:22 才跑),
+  **任何「A 跑完 B 才跑」的时序假设都不成立**——下游要自己检查数据新鲜度。
+- **定时会话(Routine)**:「DollScout(Labubu 站)增长循环 · 每 2 天」,
+  `10 7 */2 * *`,每次开新会话。旧的「DollScout growth loop」已于 2026-08-31 删除
+  ——它整条 prompt 还在讲成人站,还要求「绝不削弱 18+ 闸门」,并且依赖两个已不存在
+  的文件(`GROWTH-LOOP.md`、`scripts/seo-audit.mjs`)。**它触发的会话没有 MCP 连接器**
+  (无 Cloudflare / 无 GitHub),所以它读 D1 只能靠 `content/d1-snapshot.json`,
+  验线上只能 `curl` 实探,Actions 日志读不到 → 它被要求把这些明写成「本轮未验证」。
 - 趋势输入:content/trends-us.json(词表 labubu/lafufu/pop mart/the monsters/
   kasing lung/blind box)+ content/trends-rising.json(种子 labubu / fake labubu /
   pop mart)——首轮数据等 runner(沙箱对 Google 403)。快反出页判据沿用 eco 模式:
   rising v≥200 + 属 niche + 真伪/渠道/系列角度可落 → 当天一页,14 天冷却,
   1 页/天;**转售炒价词、儿童向内容角度不出页**。
+
+## 部署链的「静默失败」铁律(2026-08-30 深审,157 agent 九面审计)
+
+同一天的审计在自己刚发的代码里挖出三个**绿灯下的静默故障**,全部写进纪律:
+1. **允许失败的步骤必须会喊**。`indexnow.mjs` 引用未定义的 `urls`,自 pivot 起
+   每次部署都抛异常;因为该步是 `continue-on-error`,整条流水线全绿,新站从未
+   向 IndexNow 推过一条 URL。修复后脚本用 `::error::` 注解把失败顶到 run 摘要。
+   **新增任何 continue-on-error 步骤时,必须同时给它一条会出现在摘要里的告警。**
+2. **「正常的安静结果」是自我伪装**。周更 IndexNow 跑 delta,而 sitemap 的
+   lastmod 是静态的 → 09-08 之后永远筛出 0 条,并把空结果打印成正常。已改
+   MODE=all 兜底;delta 空结果现在必须发 warning。**任何「没事发生」的分支都要
+   能区分「真的没事」与「机制死了」。**
+3. **埋点的可见范围就是结论的边界**。`isContentPath()` 不匹配无扩展名路径,
+   25 个页面里 20 个永远不可能产生 `ev='bot'` 行——「爬虫只碰入口页」的读数
+   是测量假象。**读 D1 结论前先问:这个口径能看见我要下结论的那部分吗?**
+4. **「诊断」不等于诊断,猜测不许打印成结论**(2026-08-31,定时任务重做时发现)。
+   `tds-traffic` 的 D1 快照导出步骤把 stderr 送进 `/dev/null`,失败时打印
+   「d1 snapshot skipped (no D1 access on token)」——那句话是**猜的**,没有任何证据
+   支持,而真正的错误被丢弃了。结果:2026-08-19→08-30 连续 12 天全绿、
+   `content/d1-snapshot.json` **一次都没落过库**,而它是无 MCP 的定时会话读到真实
+   读者数字的唯一通路。已改为直连 D1 REST API(database id 来自 wrangler.toml)、
+   打印真实 API 错误(长串一律 sed 打码)、失败与「0 行」两种情况都发 `::warning::`。
+   **规矩:任何 catch 分支不许写没验证过的原因;`2>/dev/null` 在 CI 里等于自愿失明。**
+
+
+## 结构化数据诚实闸门(同日,不可删除)
+
+站内铁律「LD 文本必须与页面可见文本一致」被自己连破两轮(round 8 的 16 条 FAQ、
+round 10 的 18 条 DefinedTerm 全是只存在于 JSON-LD 的影子内容)。现在
+`scripts/check-structured-data.mjs` 是**阻断闸门**,比较口径:实体解码 + NBSP/
+弯引号/破折号归一 + 去标签 + **去全部空白**后做子串判定(松于表现、严于文字——
+早期严格版本会误伤合规页面,而一个误报的闸门必然被关掉,闸门被关掉正是影子内容
+混进来的原因)。**教训:CLAUDE.md 里写下的规则若没有可执行检查,它只是愿望。**
+
+## 机器面纪律(GEO)
+
+- llms-full.txt:①保留链接 URL(否则「具名有源」在 AI 唯一整读的文件里变成无源
+  散文)②剥离 `hidden` 子树(checker 三个互斥判定同时在 DOM 里,会被当成本站结论
+  引用)③页头事实**从 .well-known/mcp.json 与 data/ 计算**,禁止手写(手写的
+  「3 tools / EN then DE」在 4 工具 4 语言之后还在每次部署重新发布错误事实)
+  ④**联盟 tag 不进 llms-full**,与 MCP 同一条规矩。
+- **发现通路**:每页 head 挂 `<link rel="alternate" type="text/plain">` 指两个
+  llms 文件,robots.txt 具名列出全部五个机器面——D1 实测 OAI-SearchBot 读了三次
+  robots.txt 就走,而当时站内没有任何一处指向 llms.txt。
+- CSS 组件规则会压过 UA 的 `[hidden]`;`[hidden]{display:none!important}` 必须
+  排在组件规则之前(`.card{display:block}` 曾让 /lookup 的筛选完全失效)。
 
 ## 判定线(预登记,防事后两头解释)
 

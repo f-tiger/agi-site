@@ -1053,3 +1053,54 @@ GROUP BY name;
 /zh/ai-stock-exposure(`invest_tool_click{zh_copy13f_record|exposure}`)、双向 hreflang、
 硬同步台账同 commit 扩为**六处**。P4 止损线(预登记):上线 +60 天 28d JS pv <5 →
 停止 zh invest 扩面。
+
+## 2026-08-31（周一，每日运行 + 四站记分板）
+
+**⚠ 赔率首次「实测位移」——市场 Yes 一周内 7.5% → 18.0%（+10.5 点，2.4 倍），证据侧纹丝不动。**
+两端均为机器核实带 ISO 时间戳、同一 market slug（`openai-announces-it-has-achieved-agi-before-2027`）：
+08-24 04:12:59 UTC Yes 7.5% / 成交额 $95,951 → 08-31 04:18:24 UTC Yes **18.0%** / $103,282（+7.6%，市场未关闭）。
+同期 Thesis Tracker 保持 **62.5/100**，八条判定无一变化。这是本系列**第一次两端都可测**的对比
+（08-08 那次是手抄无时间戳，08-24 因此只记「指示性」不发刊）。已发 **Issue #2**，并如实写明限度：
+一周一个点、约 $10 万成交额的单一市场偏薄、驱动原因未知且不编造；若下次回吐，回吐照样进复查表。
+
+**四条件判据第 4 次拦截 —— 差点把自己的调研 agent 报成「首个 agent MCP 调用」里程碑。**
+`site_search{location='mcp'}` 三条（`tool:sunwatch_ledger`、`tool:claim_ledger https://goldrush.agiscorecard.`、
+`mcp`），2026-08-30 20:40:39 UTC。过判据即死：①UA 全 bot 类 ②三次调用间隔 **430 毫秒**、
+扫过三个不同工具 ③落在本会话 23-agent 调研工作流窗口内。与 08-18 那次（scanner canary，133ms）同型。
+连带堵掉一个测量陷阱：同一时刻 goldrush D1 记到 1 次 `/claimledger.json` 抓取（无 UA、无 referrer）
+= **我们自己的 MCP 工具抓自己的文件**；若不排除，昨天刚发布的 `/fetchlog.json` 会在上线第一天
+把"外部采纳"计成 1。已当日加排除项 c。
+
+**转化漏斗（28d，JS 口径，剔除 compass_popup 与 /en/）**：page_view 921 · subscribe_click 4 ·
+sub_open 3 → sub_submit 2 → sub_ok **2** · invest_tool_click 9 · tool_click 18 · vote_cast 14。
+**rev_click 家族 ~13 / 921 pv = 1.4%**。sub_* 全族最后一次均为 08-19，已 12 天零。
+
+**周一深审计：09-30 判定线的仪器可信度（结论：仪器无故障，可放心裁决）。**
+先排除"仪器坏了"再谈"假设死了"：服务端真值 `subscribers` 表 = 2 行（footer_cta 08-14、
+post_scorecard 08-19，均 `status='stored'`，无 beehiiv key 时为正常态），与 JS 口径 `sub_ok`=2
+**精确吻合**。两条独立通道一致 → 不是表单坏了，是真没人订。09-30「sub_ok 累计 <5 判死
+订阅→Boosts 假设」将按真实行为裁决，当前 **2/5**。
+
+**四站记分板（28d）**
+| 站 | 真人 PV | 离钱最近的事件 | 转化率 | 备注 |
+|---|---|---|---|---|
+| agi | 921 (JS) | rev_click 家族 ~13 | 1.4% | sub_ok 2，自 08-19 无新增 |
+| bpj | 2779 (ev='') | `go` 33 | 1.2% | sub_view 125 → sub_submit 1；api 1471 |
+| eco | 850 | `affiliate_click` 106 | **12.5%** | mcp_call 353 / md_serve 564（含 CI，勿当增长）|
+| tds | 182 | `affiliate_click` 1 | 0.5% | D1 刚接通，样本太小 |
+**本周结论**：eco 的离钱转化率是其余三站的 **9–25 倍**，机制是把付费面放在"答案时刻"而非页尾。
+agi 已于 08-29 按同一诊断改过一轮，判定日 11-15，**本周不加码**（防翻炒），只记录差距仍在。
+
+**游戏层**：gridlings 今日 play_start **0** / solve **0**；28 天 70 / 14；
+**itch 累计 42 / 13，与上次读数完全持平**（09-24 判定线 150 / 25）。itch 侧零增长已持续多日，
+按预登记纪律不救不加码，到日裁决。
+
+**⓪+ 引用放大队列：两项均被自身前置条件挡住，本周不动工（是"被挡"不是"清空"）。**
+`eu-ai-act-de` 需英文版先过 28 天线 → 英文版 28 天 **1** 次 JS 浏览、TOP10 门槛 **12**，未过。
+`datacenter-grid-cost-tracker` 需 09 月上旬 Bing 明细 → 窗口 09-01~03 才开。按规则不塞猜的选题。
+
+**计划任务**：`agi-odds.yml` / `agi-indexnow.yml`（周一 03:25 / 03:17 UTC）到 04:17 UTC 仍未自动触发
+（08-24 那次也迟到，04:08 / 04:12）。证据只支持"延迟"，不足以断言故障，故**不改配置**；本次用
+workflow_dispatch 手动取到今天的读数（公开仓分钟免费，且为数据读取非外部副作用）。下周一若同样
+迟到再查。**操作失误自记**：本轮曾用 `git reset --hard` 同步，抹掉四份未提交改动并重做——
+有未提交改动时禁用 reset --hard。

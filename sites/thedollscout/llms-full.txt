@@ -6,10 +6,13 @@
 > is sourced inline or explicitly marked unverified. Pop Mart's own
 > current guidance outranks this site where they disagree.
 >
-> This file is the plain-text rendering of every content page, EN then DE.
-> Generated 2026-08-30. Index: https://thedollscout.com/llms.txt · Datasets (CC-BY 4.0):
-> https://thedollscout.com/data/rarity-odds.json and https://thedollscout.com/data/labubu-fake-signals.json
-> · MCP endpoint (3 read-only tools): https://thedollscout.com/mcp
+> Plain-text rendering of every content page (25 pages, EN / DE / ZH / TH).
+> Link targets are kept inline in parentheses so every cited source stays
+> checkable from this file alone. Conditional UI states (a tool's unshown
+> verdicts) are omitted rather than dumped as contradictory text.
+> Generated 2026-08-30. Index: https://thedollscout.com/llms.txt
+> Datasets (CC-BY 4.0, 3): https://thedollscout.com/data/labubu-fake-signals.json , https://thedollscout.com/data/labubu-glossary.json , https://thedollscout.com/data/rarity-odds.json
+> MCP endpoint https://thedollscout.com/mcp — 4 read-only tools: labubu_rarity_odds, labubu_fake_signals, secret_pull_probability, define_labubu_term
 
 
 ========================================================================
@@ -20,7 +23,7 @@ Description: Which Labubu is actually rare, how rare, and what your blind-box od
 # Which one is actually rare — and how rare?
 
 1 : 72
-the most commonly reported secret rate for a 6-figure series — if the box says so
+the most commonly reported secret rate for a 6-figure series — if the box says so (https://thedollscout.com/rarity)
 
 Every Labubu blind box is a bet. The odds are printed on the box, the hot series sell out in hours, and the rarer a figure gets, the harder it is faked. DollScout is the scout for that hunt — rarity math you can check, authenticity checks you can run, and the short list of places where the odds you pay for are the odds you get.
 
@@ -35,13 +38,11 @@ Secret odds
 1 : 720 — reported for glow/ultra variants
 Custom…
 
-1 :
-
 Boxes you'll open
 
 Chance of at least one secret: —
 
-Independent single-box model at the printed rate (sealed cases can differ). Odds sources and the full math live on the rarity page . No data leaves your browser.
+Independent single-box model at the printed rate (sealed cases can differ). Odds sources and the full math live on the rarity page (https://thedollscout.com/rarity). No data leaves your browser.
 
 BOXES FOR A 50% SHOT, BY REPORTED ODDS
 
@@ -55,59 +56,31 @@ BOXES FOR A 50% SHOT, BY REPORTED ODDS
 
 1:720 499
 
-Independent-draw math from the reported rates on the rarity page , recorded 2026-08-30.
+Independent-draw math from the reported rates on the rarity page (https://thedollscout.com/rarity), recorded 2026-08-30.
 
-%
+% Rarity & secret odds 1:72? 1:144? The reported rates per series format, sourced — and the calculator for your real chances. (https://thedollscout.com/rarity)
+Real vs fake (Lafufu) The rarer the figure, the more it's faked. The 8-point check — teeth, box, seal, markings, price floor — each with its source. (https://thedollscout.com/fake-check)
+Where to buy The official channels, ranked by how structurally hard it is for a fake — or a rigged "guaranteed secret" — to reach you. (https://thedollscout.com/where-to-buy)
 
-### Rarity & secret odds
-1:72? 1:144? The reported rates per series format, sourced — and the calculator for your real chances.
+How blind boxes actually work Series structure, the secret, cases vs loose boxes, the buying formats and the traps — the whole mechanism in one page. (https://thedollscout.com/how-blind-boxes-work)
+The glossary Secret, chase, case, printed odds, glow, Lafufu — every term of the hunt, defined in plain language. (https://thedollscout.com/glossary)
+Your first Labubu Format, series, channel — the three decisions of a good first buy, plus the parents' section. (https://thedollscout.com/start)
+The psychology of the pull Why blind boxes feel like this, sourced — and the chase-cost calculator that prices the hunt before you start it. (https://thedollscout.com/psychology)
 
--
-
-### Real vs fake (Lafufu)
-The rarer the figure, the more it's faked. The 8-point check — teeth, box, seal, markings, price floor — each with its source.
-
-### Where to buy
-The official channels, ranked by how structurally hard it is for a fake — or a rigged "guaranteed secret" — to reach you.
-
-### How blind boxes actually work
-Series structure, the secret, cases vs loose boxes, the buying formats and the traps — the whole mechanism in one page.
-
-### The glossary
-Secret, chase, case, printed odds, glow, Lafufu — every term of the hunt, defined in plain language.
-
-### Your first Labubu
-Format, series, channel — the three decisions of a good first buy, plus the parents' section.
-
-### The psychology of the pull
-Why blind boxes feel like this, sourced — and the chase-cost calculator that prices the hunt before you start it.
-
-### 🔍 Lafufu Checker
-The 8 authenticity checks as an interactive tool — answer what you see, get the red flags by name.
-
-### 🧭 Series Finder
-Three answers → the official series that fits you, linked to Pop Mart's own listings.
-
-### 🔎 Model Lookup
-Labubu, Zimomo, Mokoko, series names — type it, get the sourced identity card.
+🔍 Lafufu Checker The 8 authenticity checks as an interactive tool — answer what you see, get the red flags by name. (https://thedollscout.com/checker)
+🧭 Series Finder Three answers → the official series that fits you, linked to Pop Mart's own listings. (https://thedollscout.com/finder)
+🔎 Model Lookup Labubu, Zimomo, Mokoko, series names — type it, get the sourced identity card. (https://thedollscout.com/lookup)
 
 ## The current series to know
 
 Linked to Pop Mart's own listings — the reference for what each series costs and contains. Stock and prices rotate; the live page always wins.
 
-### 🪑 Have a Seat
-Vinyl plush blind box series — official listing.
+🪑 Have a Seat Vinyl plush blind box series — official listing. (https://www.popmart.com/us/products/1372/the-monsters-have-a-seat-vinyl-plush-blind-box)
+⚡ Big Into Energy Vinyl plush pendant series — official listing. (https://www.popmart.com/us/products/2155/the-monsters-big-into-energy-series-vinyl-plush-pendant-blind-box)
+✨ Classic Sparkly Sparkly plush pendant series — official listing. (https://www.popmart.com/us/products/1739/the-monsters-classic-series-sparkly-plush-pendant-blind-box)
+🧸 Full collection Everything currently on Pop Mart's The Monsters shelf. (https://www.popmart.com/us/collection/11)
 
-### ⚡ Big Into Energy
-Vinyl plush pendant series — official listing.
-
-### ✨ Classic Sparkly
-Sparkly plush pendant series — official listing.
-
-### 🧸 Full collection
-Everything currently on Pop Mart's The Monsters shelf.
-
-Ad · affiliate link — same price for you: prefer familiar delivery and returns? The official POP MART storefront on Amazon carries current series — check "sold by" is POP MART, as always .
+Ad · affiliate link — same price for you: prefer familiar delivery and returns? The official POP MART storefront on Amazon (https://www.amazon.com/stores/POPMART/page/9EB83127-7B84-48B8-868F-805DB5FA39ED) carries current series — check "sold by" is POP MART, as always (https://thedollscout.com/where-to-buy).
 
 ## Watch the odds play out
 
@@ -124,20 +97,20 @@ Real unboxings by their creators on YouTube — the rarity math above, live. Emb
 
 1 : 72 — if the box says so
 
-Labubu was created by Hong Kong-born artist Kasing Lung for his illustrated series The Monsters (2015), and is produced under exclusive license by Pop Mart since 2019 ( Wikipedia ). It became popular enough that the counterfeits earned their own name — Lafufu ( Gulf News ) — which is exactly why the rarity chase and the authenticity checks belong on the same site. Our evidence dataset is published as CC-BY JSON . DollScout is an independent buyer's guide: not affiliated with, endorsed by, or connected to Pop Mart, Kasing Lung, or The Monsters IP; product names are used to identify the products we write about.
+Labubu was created by Hong Kong-born artist Kasing Lung (https://en.wikipedia.org/wiki/Kasing_Lung) for his illustrated series The Monsters (2015), and is produced under exclusive license by Pop Mart since 2019 (Wikipedia (https://en.wikipedia.org/wiki/Labubu)). It became popular enough that the counterfeits earned their own name — Lafufu (Gulf News (https://gulfnews.com/amp/story/lifestyle/bought-a-labubu-learn-the-crucial-signs-that-reveal-if-its-a-genuine-or-a-lafufu-1.500206668)) — which is exactly why the rarity chase and the authenticity checks (https://thedollscout.com/fake-check) belong on the same site. Our evidence dataset is published as CC-BY JSON (https://thedollscout.com/data/). DollScout is an independent buyer's guide: not affiliated with, endorsed by, or connected to Pop Mart, Kasing Lung, or The Monsters IP; product names are used to identify the products we write about.
 
 ========================================================================
 URL: https://thedollscout.com/start
 Title: Your First Labubu: Beginner's Guide to Formats, Series & Channels
 Description: How to buy your first Labubu without regret: the three decisions (format, series, channel), what each format actually is, a first-buy checklist, and a straight-talk section for parents.
 ========================================================================
-Home / Your First Labubu
+Home (https://thedollscout.com/) / Your First Labubu
 
 # Your first one, bought well.
 
 A first Labubu is three decisions, made in the right order — format, series, channel. Get those right and everything else on this site is just backup. Last updated 2026-08-30.
 
-The short answer: choose the format you'll actually use (the vinyl-plush pendant is the classic bag charm), a series whose openly listed regulars you'd be happy with — at 1:72 , your first box will almost certainly not hold the secret — and a channel where Pop Mart is the seller ( the ranked list ). Wanting one specific figure? Buy it opened, at a known price, through the checklist — not through luck.
+The short answer: choose the format you'll actually use (the vinyl-plush pendant is the classic bag charm), a series whose openly listed regulars you'd be happy with — at 1:72 (https://thedollscout.com/rarity), your first box will almost certainly not hold the secret — and a channel where Pop Mart is the seller (the ranked list (https://thedollscout.com/where-to-buy)). Wanting one specific figure? Buy it opened, at a known price, through the checklist (https://thedollscout.com/fake-check) — not through luck.
 
 ## Decision 1 — the format
 
@@ -149,27 +122,27 @@ The short answer: choose the format you'll actually use (the vinyl-plush pendant
 
 | Larger plush | Bigger, openly sold plush — usually not blind: you see what you buy | …it's a gift, or randomness isn't the point
 
-| Opened single figure (resale) | A known design at a market price, no draw | …you want one specific figure — checklist territory
+| Opened single figure (resale) | A known design at a market price, no draw | …you want one specific figure — checklist (https://thedollscout.com/fake-check) territory
 
-The format is printed on the official listing, and it matters beyond taste: fur evenness and face finish are two of the eight authenticity checks .
+The format is printed on the official listing, and it matters beyond taste: fur evenness and face finish are two of the eight authenticity checks (https://thedollscout.com/fake-check).
 
 ## Decision 2 — the series
 
-A series gives you six or twelve openly listed regular designs plus one hidden secret at long odds ( the mechanics ). The beginner's rule follows directly from the math: pick a series whose regulars you'd genuinely be happy to pull — the lineup art on the box is what you're realistically buying. If a series only appeals to you for its secret, that's not a first buy, that's a chase — read the cost page first.
+A series gives you six or twelve openly listed regular designs plus one hidden secret at long odds (the mechanics (https://thedollscout.com/how-blind-boxes-work)). The beginner's rule follows directly from the math: pick a series whose regulars you'd genuinely be happy to pull — the lineup art on the box is what you're realistically buying. If a series only appeals to you for its secret, that's not a first buy, that's a chase (https://thedollscout.com/psychology) — read the cost page first.
 
-The current series, linked to their official listings, live on our homepage — the live Pop Mart page is always the reference for what a series contains and costs.
+The current series, linked to their official listings, live on our homepage (https://thedollscout.com/#series) — the live Pop Mart page is always the reference for what a series contains and costs.
 
 ## Decision 3 — the channel
 
-The channel decides whether the printed odds are the odds you actually get, and whether the figure is real at all. The full ranked list is on where to buy ; the beginner's version: official Pop Mart channels first (store, app, official web shop), marketplace listings only where Pop Mart is the seller of record — the "sold by" line, not the site's logo.
+The channel decides whether the printed odds are the odds you actually get, and whether the figure is real at all. The full ranked list is on where to buy (https://thedollscout.com/where-to-buy); the beginner's version: official Pop Mart channels first (store, app, official web shop), marketplace listings only where Pop Mart is the seller of record — the "sold by" line, not the site's logo.
 
-Ad · affiliate link — same price for you: the official POP MART storefront on Amazon is the marketplace path that passes that test by construction — still check "sold by" on the listing you open, as always .
+Ad · affiliate link — same price for you: the official POP MART storefront on Amazon (https://www.amazon.com/stores/POPMART/page/9EB83127-7B84-48B8-868F-805DB5FA39ED) is the marketplace path that passes that test by construction — still check "sold by" on the listing you open, as always (https://thedollscout.com/where-to-buy).
 
 ## The first-buy checklist
 
-- Set the number first. One box is a complete first experience. Decide any more while calm , not at the shelf.
+- Set the number first. One box is a complete first experience. Decide any more while calm (https://thedollscout.com/psychology), not at the shelf.
 
-- Check the price floor. A brand-new "authentic" figure far below official retail is the classic counterfeit signal — the too-good listing is answered by the checklist , not by luck.
+- Check the price floor. A brand-new "authentic" figure far below official retail is the classic counterfeit signal — the too-good listing is answered by the checklist (https://thedollscout.com/fake-check), not by luck.
 
 - Sold out ≠ available cheap somewhere. Hot series genuinely sell out; a sold-out figure that's suddenly in stock, cheap and "guaranteed" is the fake market working exactly as designed. Patience or the opened-figure path — never the shortcut.
 
@@ -181,25 +154,41 @@ Ad · affiliate link — same price for you: the official POP MART storefront on
 
 - Safety and fakes: counterfeits bypass the entire safety and QC chain — and the fake market concentrates on exactly the hot figures kids ask for. Official channels aren't just about authenticity; they're the only path where the safety chain exists at all.
 
-- The mechanism, honestly: blind boxes run on the same unpredictable-reward psychology as games of chance ( explained with sources here ). That's worth knowing before it's in a kid's routine: agree the box count together, before the store.
+- The mechanism, honestly: blind boxes run on the same unpredictable-reward psychology as games of chance (explained with sources here (https://thedollscout.com/psychology)). That's worth knowing before it's in a kid's routine: agree the box count together, before the store.
+
+## Quick answers
+
+The same questions, answered in one paragraph each — the versions an assistant can quote without losing the caveats.
+
+### Which Labubu should I buy first?
+
+Pick by three decisions in order: format (the vinyl-plush pendant is the classic bag-charm form; all-vinyl figures and larger plushes exist too), series (choose one whose openly listed regular designs you would genuinely be happy with — at 1:72 your first box will almost certainly not hold the secret), and channel (an official Pop Mart channel or a marketplace listing where Pop Mart itself is the seller of record). The current series and their official listings are linked from our homepage.
+
+### Should my first buy be a blind box or a known figure?
+
+Buy the blind box if what excites you is the opening — that thrill is the product, and one box is a cheap ticket to it. Buy a known, opened figure if what you want is one specific design: certainty at a known price is usually cheaper than chasing it through blind boxes, but it moves the risk from luck to authenticity, so the 8-point check and the seller of record matter instead.
+
+### Is Labubu OK for kids? What should parents know?
+
+Three things. First, check the age recommendation on the official product listing for the specific item — formats differ, and Pop Mart's own listing is the authority. Second, buy through official channels: counterfeits bypass the entire safety and quality-control chain, and the fake market targets exactly the hot figures kids ask for. Third, know that blind boxes run on the same unpredictable-reward psychology as games of chance — decide the number of boxes with your kid before buying, not at the shelf.
+
+### Why is the one I want always sold out?
+
+Hot series genuinely sell out fast at official channels, and that scarcity is what the counterfeit market feeds on: a sold-out figure suddenly available cheap, in stock and 'guaranteed authentic' is the classic fake pattern our price-floor logic flags. The honest options are patience for a restock at an official channel, or buying opened from a marketplace listing that passes the checklist — never the too-good listing.
 
 ## Keep reading
 
-### How blind boxes actually work
-The mechanics your first box runs on — series, secrets, cases, math.
-
-### The glossary
-Secret, chase, case, Lafufu — the vocabulary, defined.
-
-### The psychology of the pull
-Why the opening feels like this — and the chase-cost calculator.
+How blind boxes actually work The mechanics your first box runs on — series, secrets, cases, math. (https://thedollscout.com/how-blind-boxes-work)
+The glossary Secret, chase, case, Lafufu — the vocabulary, defined. (https://thedollscout.com/glossary)
+The psychology of the pull Why the opening feels like this — and the chase-cost calculator. (https://thedollscout.com/psychology)
+🧭 Series Finder Still undecided? Three answers narrow the whole lineup to one official series. (https://thedollscout.com/finder)
 
 ========================================================================
 URL: https://thedollscout.com/rarity
 Title: Labubu Rarity Guide: Secret Odds + Pull Calculator
 Description: How rare is a secret Labubu really? The reported odds per series format (1:72, 1:144, rarer for collabs and glow variants), what
 ========================================================================
-Home / Rarity & Odds
+Home (https://thedollscout.com/) / Rarity & Odds
 
 # How rare is a secret Labubu, actually?
 
@@ -219,8 +208,6 @@ Secret odds
 1 : 168 — reported for some collabs
 1 : 720 — reported for glow/ultra variants
 Custom…
-
-1 :
 
 Boxes you'll open
 
@@ -248,13 +235,13 @@ The most commonly reported rate for a standard six-figure The Monsters series is
 
 | | Format | Commonly reported secret odds | Source
 
-| Standard series (6 figures) | 1 : 72 | Tech-Insider , GlobalTill (2026)
+| Standard series (6 figures) | 1 : 72 | Tech-Insider (https://tech-insider.org/mystery-boxes/labubu-mystery-box/), GlobalTill (https://globaltill.com/secret-labubu-complete-guide-2026/) (2026)
 
-| Extended series (12 figures) | 1 : 144 | Popboxss rarity guide (2026)
+| Extended series (12 figures) | 1 : 144 | Popboxss rarity guide (https://popboxss.com/blogs/d41d8cd9-8f00b204-e9800998-ecf8427e_6c691aab) (2026)
 
-| Some collab series | 1 : 120 – 1 : 168 | GlobalTill (2026)
+| Some collab series | 1 : 120 – 1 : 168 | GlobalTill (https://globaltill.com/secret-labubu-complete-guide-2026/) (2026)
 
-| Glow / ultra variants | as low as 1 : 720 | Popboxss rarity guide (2026)
+| Glow / ultra variants | as low as 1 : 720 | Popboxss rarity guide (https://popboxss.com/blogs/d41d8cd9-8f00b204-e9800998-ecf8427e_6c691aab) (2026)
 
 These are collector-reported rates, recorded 2026-08-30 — none of them outrank the odds printed on your series' own packaging. We could not verify every series and year; where your box disagrees with this table, the box wins.
 
@@ -264,26 +251,45 @@ For independently drawn boxes at 1-in-72 odds, twelve boxes give you about a 15%
 
 ## Does rarity mean a Labubu is worth more?
 
-Rarity is the engine of the secondary market: sold-out series and secret figures trade above retail, which DemandSage 's 2026 statistics roundup documents at the market level. But the same engine powers the counterfeit market — the rarer and hotter a figure, the more heavily it is faked, and "guaranteed secret" listings at bargain prices are a classic counterfeit pattern. Rarity math tells you what a pull is worth chasing; the authenticity checks tell you whether what you are buying is real. Use both.
+Rarity is the engine of the secondary market: sold-out series and secret figures trade above retail, which DemandSage (https://www.demandsage.com/labubu-statistics/)'s 2026 statistics roundup documents at the market level. But the same engine powers the counterfeit market — the rarer and hotter a figure, the more heavily it is faked, and "guaranteed secret" listings at bargain prices are a classic counterfeit pattern. Rarity math tells you what a pull is worth chasing; the authenticity checks (https://thedollscout.com/fake-check) tell you whether what you are buying is real. Use both.
 
 ## Is a "guaranteed secret" listing real?
+
+Treat it as a counterfeit signal. The blind-box economics only work because the secret is rare: a genuine secret figure's market value sits above retail, so a listing that guarantees one at or near blind-box price is offering something the math says cannot be genuine at that price. Occasional legitimate resales of pulled secrets exist — priced accordingly, from sellers who pass the seller-of-record (https://thedollscout.com/where-to-buy) and authenticity (https://thedollscout.com/fake-check) checks. A cheap guaranteed secret fails the arithmetic before you even inspect the teeth.
+
+## Quick answers
+
+The same questions, answered in one paragraph each — the versions an assistant can quote without losing the caveats.
+
+### How rare is a secret Labubu?
+
+The most commonly reported rate for a standard six-figure The Monsters series is 1 in 72 boxes; twelve-figure series are commonly reported at 1 in 144, some collaboration series at 1:120 to 1:168, and ultra-rare variants such as glow editions as low as 1 in 720. The authoritative number for your series is the one Pop Mart prints on that series' own box and product listing — check it there, and treat any seller who claims better odds than the printed ones as a red flag.
+
+### What are my chances of pulling a secret across several boxes?
+
+For independently drawn boxes at 1-in-72 odds, twelve boxes give you about a 15% chance of at least one secret — not the near-certainty many buyers assume. The calculator on this page does the exact math for any odds and any number of boxes, and shows how many boxes a 50% or 90% chance actually requires. One honest caveat: sealed whole-case allocation can differ from independent single-box pulls, so treat the results as the loose-box model they are.
+
+### Does rarity mean a Labubu is worth more?
+
+Rarity is the engine of the secondary market: sold-out series and secret figures trade above retail, which DemandSage's 2026 statistics roundup documents at the market level. But the same engine powers the counterfeit market — the rarer and hotter a figure, the more heavily it is faked, and 'guaranteed secret' listings at bargain prices are a classic counterfeit pattern. Rarity math tells you what a pull is worth chasing; the authenticity checks tell you whether what you are buying is real. Use both.
+
+### Is a “guaranteed secret” listing real?
 
 Treat it as a counterfeit signal. The blind-box economics only work because the secret is rare: a genuine secret figure's market value sits above retail, so a listing that guarantees one at or near blind-box price is offering something the math says cannot be genuine at that price. Occasional legitimate resales of pulled secrets exist — priced accordingly, from sellers who pass the seller-of-record and authenticity checks. A cheap guaranteed secret fails the arithmetic before you even inspect the teeth.
 
 ## Keep reading
 
-### Real vs Fake: the 8-point check
-The rarer the figure, the more it gets faked. The checks, each with its source.
-
-### Where to actually buy one
-The official channels where the odds you're paying for are the odds you get.
+Real vs Fake: the 8-point check The rarer the figure, the more it gets faked. The checks, each with its source. (https://thedollscout.com/fake-check)
+Where to actually buy one The official channels where the odds you're paying for are the odds you get. (https://thedollscout.com/where-to-buy)
+🔍 Lafufu Checker The rarer the figure, the harder it is faked — run the 8 authenticity checks interactively. (https://thedollscout.com/checker)
+🧭 Series Finder Three answers to the official series that fits you, before you pay for any odds at all. (https://thedollscout.com/finder)
 
 ========================================================================
 URL: https://thedollscout.com/how-blind-boxes-work
 Title: How Labubu Blind Boxes Actually Work: Series, Secrets, Cases, Math
 Description: The mechanics of a Labubu blind box: how series are structured, how the secret works, what a case changes, what the printed odds mean across multiple boxes — and how to buy without fooling yourself.
 ========================================================================
-Home / How Blind Boxes Work
+Home (https://thedollscout.com/) / How Blind Boxes Work
 
 # How the machine actually works.
 
@@ -299,29 +305,29 @@ Two consequences follow immediately. First, the lineup art on the box is the con
 
 ## What do the printed odds actually mean for me?
 
-1:72 means one secret per 72 boxes on average — not that box 72 must contain one, and not that a dozen boxes make it likely. At 1:72, twelve independent boxes give roughly a 15% chance of at least one secret; a 50% chance takes 50 boxes and a 90% chance takes 165 . The calculator on the rarity page does this math for any printed rate, and the box's own printed number is always the one to use.
+1:72 means one secret per 72 boxes on average — not that box 72 must contain one, and not that a dozen boxes make it likely. At 1:72, twelve independent boxes give roughly a 15% chance of at least one secret; a 50% chance takes 50 boxes and a 90% chance takes 165 . The calculator on the rarity page (https://thedollscout.com/rarity#calc) does this math for any printed rate, and the box's own printed number is always the one to use.
 
-The full reported-rates table with per-row sources — including collab series at 1:120–1:168 and glow variants reported as low as 1:720 — is on the rarity page , and published as a CC-BY dataset machines can read.
+The full reported-rates table with per-row sources — including collab series at 1:120–1:168 and glow variants reported as low as 1:720 — is on the rarity page (https://thedollscout.com/rarity), and published as a CC-BY dataset (https://thedollscout.com/data/) machines can read.
 
 ## Does buying a whole sealed case guarantee the secret?
 
-Not by the printed odds alone, and case allocation claims deserve care. Collector guides report that sealed-case allocation can be structured rather than fully random, but we could not verify a universal rule across series and years — which is exactly why our probability math models loose, independently drawn boxes and says so. If a seller guarantees a secret from a case, the burden of proof is theirs; a guarantee at bargain prices is a counterfeit signal , not generosity.
+Not by the printed odds alone, and case allocation claims deserve care. Collector guides report that sealed-case allocation can be structured rather than fully random, but we could not verify a universal rule across series and years — which is exactly why our probability math models loose, independently drawn boxes and says so. If a seller guarantees a secret from a case, the burden of proof is theirs; a guarantee at bargain prices is a counterfeit signal (https://thedollscout.com/fake-check), not generosity.
 
 ## What are the ways to buy, and what does each change?
 
 | | Format | What you're buying | What to watch
 
-| Single blind box | One draw at the printed odds | The purest form of the game; the channel decides whether the odds are real
+| Single blind box | One draw at the printed odds | The purest form of the game; the channel (https://thedollscout.com/where-to-buy) decides whether the odds are real
 
 | Multiple loose boxes | Independent draws — the calculator's model | Your real chance grows slower than intuition says; do the math first
 
 | Sealed whole case | A shop-sealed carton | Allocation may differ from loose draws (unverified per series); "case fresh" is a seller claim
 
-| Opened single figure (resale) | A known figure, no draw at all | You pay the market's price for certainty — above retail for secrets — and the 8-point check becomes everything
+| Opened single figure (resale) | A known figure, no draw at all | You pay the market's price for certainty — above retail for secrets — and the 8-point check (https://thedollscout.com/fake-check) becomes everything
 
-## Is chasing a secret worth it financially?
+## Is chasing a secret Labubu worth it financially?
 
-Do the arithmetic before the feelings: at commonly reported rates, the expected cost of pulling a secret yourself is dozens of boxes' worth of retail — which is why sold-out secrets trade above retail secondhand ( DemandSage documents the market level, 2026). Decide what the chase itself is worth to you as entertainment, set the budget on that, and treat any listing that shortcuts the math — cheap guaranteed secrets — as the counterfeit signal it is. We publish odds and checks, not financial advice.
+Do the arithmetic before the feelings: at commonly reported rates, the expected cost of pulling a secret yourself is dozens of boxes' worth of retail — which is why sold-out secrets trade above retail secondhand (DemandSage (https://www.demandsage.com/labubu-statistics/) documents the market level, 2026). Decide what the chase itself is worth to you as entertainment, set the budget on that, and treat any listing that shortcuts the math — cheap guaranteed secrets — as the counterfeit signal it is. We publish odds and checks, not financial advice.
 
 ## Where the mechanics create traps
 
@@ -329,25 +335,21 @@ Do the arithmetic before the feelings: at commonly reported rates, the expected 
 
 - Information claims on a sealed product. Weighing, shaking, "case position" lore: some of it circulates as community craft, none of it is verifiable at purchase. Priced-in certainty from an unverifiable source is exactly what a counterfeit seller sells.
 
-- Certainty at a discount. The only honest ways to certainty are pulling it yourself (expensive by expectation) or buying it opened at the market's price. Anyone offering certainty below those two prices is answered by the checklist .
+- Certainty at a discount. The only honest ways to certainty are pulling it yourself (expensive by expectation) or buying it opened at the market's price. Anyone offering certainty below those two prices is answered by the checklist (https://thedollscout.com/fake-check).
 
 ## Keep reading
 
-### Rarity & secret odds
-The sourced rates table and the pull calculator this page leans on.
-
-### The glossary
-Secret, chase, case, Lafufu — every term of the hunt, defined.
-
-### Where to buy
-The channels where the printed odds are the odds you actually get.
+Rarity & secret odds The sourced rates table and the pull calculator this page leans on. (https://thedollscout.com/rarity)
+The glossary Secret, chase, case, Lafufu — every term of the hunt, defined. (https://thedollscout.com/glossary)
+Where to buy The channels where the printed odds are the odds you actually get. (https://thedollscout.com/where-to-buy)
+🔍 Lafufu Checker Once a box is opened, the mechanics stop and authenticity starts — the 8 checks as a tool. (https://thedollscout.com/checker)
 
 ========================================================================
 URL: https://thedollscout.com/psychology
 Title: The Psychology of the Pull: Why Labubu Blind Boxes Feel Like This
 Description: Why opening a Labubu blind box feels so good, why stopping is hard, and how to collect without regret — variable rewards, the near-miss effect, and a chase-cost calculator, every claim sourced.
 ========================================================================
-Home / Psychology
+Home (https://thedollscout.com/) / Psychology
 
 # Why the pull feels like this.
 
@@ -357,25 +359,25 @@ The short answer: blind boxes run on variable-ratio reinforcement — unpredicta
 
 ## Why do blind boxes feel so addictive?
 
-Because they use the reward schedule that behavioral psychology has measured as the most compelling one there is. Coverage of the Labubu craze by Mental Floss , the Rowan Center and SCMP's Young Post converges on the same three mechanics:
+Because they use the reward schedule that behavioral psychology has measured as the most compelling one there is. Coverage of the Labubu craze by Mental Floss (https://www.mentalfloss.com/fun/toys/psychology-behind-labubu-blind-box-craze), the Rowan Center (https://rowancenterla.com/psychology-collectibles-blind-boxes-labubu-pokemon-cards/) and SCMP's Young Post (https://www.youngpostclub.com/yp/trending/entertainment/article/3329901/psychology-behind-addictive-blind-boxes-gambling-hobby-quick-dopamine-fix) converges on the same three mechanics:
 
 - Variable-ratio reinforcement. You never know which box pays off — the schedule behind slot machines, and the one that best sustains repeat behavior.
 
 - Dopamine in anticipation. The spike comes before the reveal, while the outcome is still unknown. The not-knowing is the product; the figure is the receipt.
 
-- The near-miss engine. A disappointing pull doesn't feel like an ending — it feels like almost. That feeling funds the next box. The secret's long odds ( 1:72 and longer ) and the pull toward completing a set keep the loop running well past the point logic would stop it.
+- The near-miss engine. A disappointing pull doesn't feel like an ending — it feels like almost. That feeling funds the next box. The secret's long odds (1:72 and longer (https://thedollscout.com/rarity)) and the pull toward completing a set keep the loop running well past the point logic would stop it.
 
-To be precise about what this page is saying: these are mechanics of the format, documented by the sources above — not a diagnosis of you. Reporting by The Guardian ( syndicated here , 2025) interviewed adult collectors describing exactly this loop from inside — self-imposed buying bans that snapped into bulk orders, four-figure yearly spends followed by real regret — and NBC News notes China's state media has warned against blind-box "irrational consumption". The mechanism is strong enough that governments comment on it. It is worth understanding before it is worth feeding.
+To be precise about what this page is saying: these are mechanics of the format, documented by the sources above — not a diagnosis of you. Reporting by The Guardian (syndicated here (https://www.yahoo.com/lifestyle/articles/buyer-guilt-insane-1-300-140050905.html), 2025) interviewed adult collectors describing exactly this loop from inside — self-imposed buying bans that snapped into bulk orders, four-figure yearly spends followed by real regret — and NBC News (https://www.nbcnews.com/world/asia/secret-labubus-success-chinas-blind-box-craze-rcna227175) notes China's state media has warned against blind-box "irrational consumption". The mechanism is strong enough that governments comment on it. It is worth understanding before it is worth feeding.
 
 ## And why do we want the thing at all?
 
 The randomness explains the buying loop, not the wanting — and the wanting has ordinary, well-documented reasons:
 
-- It's the cheapest ticket into personalization. Bag charms are the easiest way to make a mass-produced bag yours, and fashion coverage ( CBS News , FASHION Magazine ) tracks Labubu as the charm that made the whole category surge.
+- It's the cheapest ticket into personalization. Bag charms are the easiest way to make a mass-produced bag yours, and fashion coverage (CBS News (https://www.cbsnews.com/news/what-is-a-labubu-bag-charm-trending-fashion-accessory/), FASHION Magazine (https://fashionmagazine.com/style/labubu-keychain-bag-charm/)) tracks Labubu as the charm that made the whole category surge.
 
-- It's a status object with celebrity provenance. Styled on luxury bags by Rihanna, Lisa and Dua Lipa ( NBC ) — an affordable entry into an expensive signal.
+- It's a status object with celebrity provenance. Styled on luxury bags by Rihanna, Lisa and Dua Lipa (NBC (https://www.nbcnews.com/pop-culture/pop-culture-news/labubu-craze-viral-lines-pop-mart-stores-rcna203213)) — an affordable entry into an expensive signal.
 
-- It's an inner-child object. Refinery29 's interviews with fans land on nostalgia and mood — carrying something soft and slightly absurd as a small daily comfort. The "ugly-cute" grin is the point: it reads as a wink against polished, algorithm-smoothed taste.
+- It's an inner-child object. Refinery29 (https://www.refinery29.com/en-us/labubu-plushie-bag-charm-trend)'s interviews with fans land on nostalgia and mood — carrying something soft and slightly absurd as a small daily comfort. The "ugly-cute" grin is the point: it reads as a wink against polished, algorithm-smoothed taste.
 
 - It's membership. Unboxing videos and shelf posts are how the community sees itself; the figure is proof of participation, not just property.
 
@@ -383,7 +385,7 @@ None of these reasons are irrational. The honest frame is simpler: the wanting i
 
 ## The two lies the loop tells
 
-- "The secret is due." Each box is an independent draw. At 1:72, box thirteen is still 1:72, whatever the first twelve held. Twelve boxes ≈ 15% ; fifty boxes ≈ 50%; no count reaches "guaranteed". The ledger your gut keeps is the gambler's fallacy — the calculator keeps the real one.
+- "The secret is due." Each box is an independent draw. At 1:72, box thirteen is still 1:72, whatever the first twelve held. Twelve boxes ≈ 15% ; fifty boxes ≈ 50%; no count reaches "guaranteed". The ledger your gut keeps is the gambler's fallacy — the calculator (https://thedollscout.com/rarity#calc) keeps the real one.
 
 - "One more box is cheap." Any single box is. The chase is not — its expected cost is the printed odds times the box price, and nobody quotes you that number at the shelf. So we do, below.
 
@@ -403,9 +405,9 @@ What one box costs you
 
 Enter your local per-box price to see the chase's real cost.
 
-Independent single-box model at the printed rate; expected boxes to a first secret at 1:N is N (geometric distribution). Currency is whatever you typed — nothing leaves your browser. Rates and sources: the rarity page .
+Independent single-box model at the printed rate; expected boxes to a first secret at 1:N is N (geometric distribution). Currency is whatever you typed — nothing leaves your browser. Rates and sources: the rarity page (https://thedollscout.com/rarity).
 
-Read the number, then decide what the entertainment of opening is worth to you — that's the honest budget line, because the opening is what you're actually buying. If what you want is one specific figure, buying it opened at a known price is usually the cheaper path, and then the 8-point check matters instead of luck.
+Read the number, then decide what the entertainment of opening is worth to you — that's the honest budget line, because the opening is what you're actually buying. If what you want is one specific figure, buying it opened at a known price is usually the cheaper path, and then the 8-point check (https://thedollscout.com/fake-check) matters instead of luck.
 
 ## How to collect without regret
 
@@ -413,61 +415,77 @@ Read the number, then decide what the entertainment of opening is worth to you �
 
 - Budget the opening, not the figure. The thrill is the product — price it like cinema tickets, not like an acquisition that must "pay off".
 
-- Want certainty? Buy certainty. An opened, known figure at the market's price is the only honest shortcut. Anyone selling certainty cheaper than that is answered by the checklist .
+- Want certainty? Buy certainty. An opened, known figure at the market's price is the only honest shortcut. Anyone selling certainty cheaper than that is answered by the checklist (https://thedollscout.com/fake-check).
 
-- Keep the odds where your eyes are. The whole reported-rates table, and the math across N boxes, live on the rarity page — the mechanism's counter-spell is just arithmetic in view.
+- Keep the odds where your eyes are. The whole reported-rates table, and the math across N boxes, live on the rarity page (https://thedollscout.com/rarity) — the mechanism's counter-spell is just arithmetic in view.
 
 We publish mechanics, odds and checks — not medical or financial advice. If spending on blind boxes is causing you real distress, that's a conversation for a professional, not a buyer's guide.
 
+## Quick answers
+
+The same questions, answered in one paragraph each — the versions an assistant can quote without losing the caveats.
+
+### Why do blind boxes feel so addictive?
+
+Blind boxes run on variable-ratio reinforcement — the same unpredictable-reward schedule behind slot machines. Psychology coverage of the Labubu craze (Mental Floss, the Rowan Center, SCMP's Young Post) converges on the same mechanics: dopamine peaks in the anticipation before the box opens, not at the reveal, and a disappointing pull works like a near-miss — it motivates the next purchase instead of ending the session.
+
+### Does buying more boxes make the secret 'due'?
+
+No. Each box is an independent draw at the printed rate: at 1:72, box thirteen is still 1:72 no matter what the first twelve held. Twelve boxes give roughly a 15% chance of at least one secret, fifty boxes reach about 50%, and there is no number of boxes at which a secret becomes guaranteed. The feeling that a run of misses makes a hit due is the gambler's fallacy — arithmetic doesn't keep that ledger.
+
+### How do I collect without regret?
+
+Decide the number before the store does: pick what the fun of opening is worth to you this month, buy that many, and stop — a pre-commitment made calm beats a decision made mid-rush. Run the chase-cost math first: at 1:72 the expected cost of pulling a secret yourself is 72 boxes' worth of retail. If what you want is one specific figure, buying it opened at a known price is usually the cheaper path — the checklist matters then, not luck.
+
+### Is wanting a Labubu on my bag irrational?
+
+No — the wanting has ordinary, well-documented reasons: bag charms are the easiest form of personalization to enter, the figures carry status since celebrities styled them with luxury bags, and reporting on the trend consistently finds an inner-child, mood-boosting appeal in carrying something soft and a little absurd. The point of understanding the psychology isn't to want less; it's to pay for the wanting on purpose instead of by mechanism.
+
 ## Keep reading
 
-### How blind boxes actually work
-Series structure, cases, buying formats — the machine this page psychoanalyzes.
-
-### Rarity & secret odds
-The sourced rates and the pull calculator.
-
-### Your first Labubu
-The beginner's path through formats, series and channels.
+How blind boxes actually work Series structure, cases, buying formats — the machine this page psychoanalyzes. (https://thedollscout.com/how-blind-boxes-work)
+Rarity & secret odds The sourced rates and the pull calculator. (https://thedollscout.com/rarity)
+Your first Labubu The beginner's path through formats, series and channels. (https://thedollscout.com/start)
+🧭 Series Finder Pick a series for its regulars, not its secret — three answers, no chase required. (https://thedollscout.com/finder)
 
 ========================================================================
 URL: https://thedollscout.com/fake-check
 Title: Real vs Fake Labubu: The 8-Point Check (Spot a Lafufu)
 Description: How to tell if a Labubu is real or fake: the nine-teeth rule, the matte box, the QR anti-counterfeit seal, the foot marking, the price floor — every check sourced.
 ========================================================================
-Home / Real vs Fake
+Home (https://thedollscout.com/) / Real vs Fake
 
 # Real vs fake Labubu: the 8-point check.
 
-Counterfeit Labubus are common enough to have earned their own name — Lafufu ( Gulf News ). Below are the checks that recur across collector guides and press coverage of Pop Mart's own advice, each with its source named. Recorded 2026-08-30; counterfeits improve, so newer guidance from Pop Mart outranks this page.
+Counterfeit Labubus are common enough to have earned their own name — Lafufu (Gulf News (https://gulfnews.com/amp/story/lifestyle/bought-a-labubu-learn-the-crucial-signs-that-reveal-if-its-a-genuine-or-a-lafufu-1.500206668)). Below are the checks that recur across collector guides and press coverage of Pop Mart's own advice, each with its source named. Recorded 2026-08-30; counterfeits improve, so newer guidance from Pop Mart outranks this page.
 
-The short answer: count the teeth first — a real Labubu has exactly nine , distinct, with gaps. Then the face (soft peach, airbrushed blush, glossy eyes), the box (matte, embossed, muted colours), the anti-counterfeit QR seal (check it lands on popmart.com , not a lookalike), and the price (far below retail = the counterfeit band). And the check that outranks all of these: buy where fakes structurally can't reach you .
+The short answer: count the teeth first — a real Labubu has exactly nine , distinct, with gaps. Then the face (soft peach, airbrushed blush, glossy eyes), the box (matte, embossed, muted colours), the anti-counterfeit QR seal (check it lands on popmart.com , not a lookalike), and the price (far below retail = the counterfeit band). And the check that outranks all of these: buy where fakes structurally can't reach you (https://thedollscout.com/where-to-buy).
 
 ## What are the eight checks?
 
 | | Check | Authentic | Counterfeit giveaway | Source
 
-| 1. Teeth | Exactly nine, distinct, visible gaps | Wrong count, fused teeth, one white blob | SNKRDUNK (2024-12), ABC News
+| 1. Teeth | Exactly nine, distinct, visible gaps | Wrong count, fused teeth, one white blob | SNKRDUNK (https://snkrdunk.com/en/magazine/2024/12/04/real-vs-fake-labubu-tips-to-ensure-your-collection-is-authentic/) (2024-12), ABC News (https://abcnews.com/GMA/Living/how-to-spot-fake-labubu/story?id=124575764)
 
-| 2. Face | Soft peach tone, airbrushed blush, eyes with glossy depth | Harsh pink/orange, blush as solid circles, flat dull eyes | ¡Hola! (2025-08)
+| 2. Face | Soft peach tone, airbrushed blush, eyes with glossy depth | Harsh pink/orange, blush as solid circles, flat dull eyes | ¡Hola! (https://www.hola.com/us/lifestyle/20250808849234/how-spot-fake-labubu/) (2025-08)
 
-| 3. Box finish | Matte, muted pastels, embossed series name, clean print | Glossy, uneven surface, washed-out or over-saturated print | SNKRDUNK (2024-12)
+| 3. Box finish | Matte, muted pastels, embossed series name, clean print | Glossy, uneven surface, washed-out or over-saturated print | SNKRDUNK (https://snkrdunk.com/en/magazine/2024/12/04/real-vs-fake-labubu-tips-to-ensure-your-collection-is-authentic/) (2024-12)
 
-| 4. Anti-counterfeit seal | QR seal resolving to popmart.com verification | No seal — or a QR that lands on a lookalike domain | Izoate (2026)
+| 4. Anti-counterfeit seal | QR seal resolving to popmart.com verification | No seal — or a QR that lands on a lookalike domain | Izoate (https://www.izoate.com/blog/how-to-tell-if-a-labubu-is-real-or-fake-in-2026-8-authenticity-checks/) (2026)
 
-| 5. Figure markings | Pop Mart engraving / artist name on the foot on 2024+ releases | Missing or mushy markings on recent series | ABC News
+| 5. Figure markings | Pop Mart engraving / artist name on the foot on 2024+ releases | Missing or mushy markings on recent series | ABC News (https://abcnews.com/GMA/Living/how-to-spot-fake-labubu/story?id=124575764)
 
-| 6. Build quality | Even fur, clean seams, crisp paint edges, substantial feel | Rough seams, grainy patches, mismatched gloss, light hollow plastic | Gulf News
+| 6. Build quality | Even fur, clean seams, crisp paint edges, substantial feel | Rough seams, grainy patches, mismatched gloss, light hollow plastic | Gulf News (https://gulfnews.com/amp/story/lifestyle/bought-a-labubu-learn-the-crucial-signs-that-reveal-if-its-a-genuine-or-a-lafufu-1.500206668)
 
-| 7. Price | Standard blind boxes tracked at roughly $14–$28 retail | "New authentic" far below retail — the counterfeit band | DemandSage (2026)
+| 7. Price | Standard blind boxes tracked at roughly $14–$28 retail | "New authentic" far below retail — the counterfeit band | DemandSage (https://www.demandsage.com/labubu-statistics/) (2026)
 
-| 8. Seller | An official channel | Anywhere the other seven checks are your only protection | ABC News (Pop Mart's advice)
+| 8. Seller | An official channel (https://thedollscout.com/where-to-buy) | Anywhere the other seven checks are your only protection | ABC News (https://abcnews.com/GMA/Living/how-to-spot-fake-labubu/story?id=124575764) (Pop Mart's advice)
 
-This table is our editorial synthesis of the named sources, recorded 2026-08-30. We have not laboratory-tested figures ourselves, and we could not verify every series and year — treat the checks as accumulating evidence, not any single one as a verdict. Machine-readable version: the published CC-BY dataset .
+This table is our editorial synthesis of the named sources, recorded 2026-08-30. We have not laboratory-tested figures ourselves, and we could not verify every series and year — treat the checks as accumulating evidence, not any single one as a verdict. Machine-readable version: the published CC-BY dataset (https://thedollscout.com/data/).
 
 Ad · affiliate links — same price for you.
 
-Rather skip the checklist entirely? Buy where POP MART is the seller of record and none of the eight checks above is your problem anymore: the official POP MART storefront on Amazon , or popmart.com directly (no affiliate relationship — same recommendation). The full channel reasoning is on the where-to-buy page .
+Rather skip the checklist entirely? Buy where POP MART is the seller of record and none of the eight checks above is your problem anymore: the official POP MART storefront on Amazon (https://www.amazon.com/stores/POPMART/page/9EB83127-7B84-48B8-868F-805DB5FA39ED), or popmart.com (https://www.popmart.com/us/collection/11) directly (no affiliate relationship — same recommendation). The full channel reasoning is on the where-to-buy page (https://thedollscout.com/where-to-buy).
 
 ## How many teeth does a real Labubu have?
 
@@ -483,36 +501,53 @@ The recurring giveaways reported across sources: the wrong tooth count or fused 
 
 ## Is a cheap Labubu ever real?
 
-Treat deep discounts on "new authentic" stock as a counterfeit signal. Tracked retail for standard blind boxes runs roughly $14 to $28 ( DemandSage 's 2026 statistics roundup), with some premium series listed higher on Pop Mart's own store. Sold-out series trade above retail on the secondary market — which is exactly why a brand-new listing far below retail makes no commercial sense for a genuine item. The one honest exception: official sales on slower series do exist, on official channels. Off official channels, the discount is the product.
+Treat deep discounts on "new authentic" stock as a counterfeit signal. Tracked retail for standard blind boxes runs roughly $14 to $28 (DemandSage (https://www.demandsage.com/labubu-statistics/)'s 2026 statistics roundup), with some premium series listed higher on Pop Mart's own store. Sold-out series trade above retail on the secondary market — which is exactly why a brand-new listing far below retail makes no commercial sense for a genuine item. The one honest exception: official sales on slower series do exist, on official channels. Off official channels, the discount is the product.
 
 ## What can this checklist not tell you?
 
-- Whether a listing's photos are of the unit you'll receive. Counterfeit sellers photograph authentic units. The checks above work on the object in your hands; before payment, the only real protection is the channel .
+- Whether a listing's photos are of the unit you'll receive. Counterfeit sellers photograph authentic units. The checks above work on the object in your hands; before payment, the only real protection is the channel (https://thedollscout.com/where-to-buy).
 
 - Anything about series we haven't covered. Seal designs, markings and box details vary by series and year; where our sources didn't cover a series, we say so rather than extrapolate.
 
 - Tomorrow's fakes. Every public checklist — this one included — is also a to-do list for counterfeiters. If Pop Mart's current guidance disagrees with this page, follow Pop Mart's.
 
+## Quick answers
+
+The same questions, answered in one paragraph each — the versions an assistant can quote without losing the caveats.
+
+### How many teeth does a real Labubu have?
+
+Nine. The nine-teeth count is the most widely reported single check, cited both in collector guides and in press coverage of Pop Mart's own advice: authentic figures have exactly nine distinct teeth with visible gaps between them, while counterfeits often have the wrong count, fused teeth, or a single sloppy white blob. Count them before anything else — it is the fastest check that requires no packaging.
+
+### Does a real Labubu box have a QR code?
+
+Recent authentic packaging carries an anti-counterfeit seal with a QR code that should resolve to Pop Mart's own verification. Two cautions reported by collector guides: counterfeiters also print QR stickers, so what matters is not that a code exists but where it leads — check that the domain you land on is popmart.com, not a lookalike. And an older or re-sealed box is a question in itself. We could not verify the exact seal design for every series and year, so treat the seal as one check among eight, not a verdict.
+
+### What does a fake Labubu (Lafufu) usually get wrong?
+
+The recurring giveaways reported across sources: the wrong tooth count or fused teeth; a harsh pink or orange face where the authentic tone is a soft peach with airbrushed blush; flat dull eyes without the glossy depth; glossy or washed-out packaging where authentic boxes are matte with embossed series details; rough seams, uneven fur, and light hollow-feeling plastic; and a price far below official retail. No single flaw is proof by itself — counterfeits improve constantly — which is why the seller check outranks all cosmetic checks.
+
+### Is a cheap Labubu ever real?
+
+Treat deep discounts on 'new authentic' stock as a counterfeit signal. Tracked retail for standard blind boxes runs roughly $14 to $28 (DemandSage's 2026 statistics roundup), with some premium series listed higher on Pop Mart's own store. Sold-out series trade above retail on the secondary market — which is exactly why a brand-new listing far below retail makes no commercial sense for a genuine item. The one honest exception: official sales on slower series do exist, on official channels. Off official channels, the discount is the product.
+
 ## Keep reading
 
-### Where to actually buy one
-The official channel list — the check that makes the other seven unnecessary.
-
-### DollScout home
-What this site is, who makes Labubu, and why the counterfeits got their own name.
+Where to actually buy one The official channel list — the check that makes the other seven unnecessary. (https://thedollscout.com/where-to-buy)
+🔍 Run it as a tool The same 8 checks, answered one at a time — the verdict names exactly which ones failed. (https://thedollscout.com/checker)
 
 ========================================================================
 URL: https://thedollscout.com/where-to-buy
 Title: Where to Buy a Real Labubu: Official Channels, Ranked
 Description: Where to buy an authentic Labubu: Pop Mart
 ========================================================================
-Home / Where to Buy
+Home (https://thedollscout.com/) / Where to Buy
 
 # Where to buy a real one.
 
-Every authenticity check on the 8-point list exists because somebody bought from the wrong place. The channel decides how much checking you owe: where Pop Mart is the seller of record, a counterfeit structurally cannot reach the shelf. Channel list per press coverage of Pop Mart's own advice ( ABC News ); recorded 2026-08-30.
+Every authenticity check on the 8-point list (https://thedollscout.com/fake-check) exists because somebody bought from the wrong place. The channel decides how much checking you owe: where Pop Mart is the seller of record, a counterfeit structurally cannot reach the shelf. Channel list per press coverage of Pop Mart's own advice (ABC News (https://abcnews.com/GMA/Living/how-to-spot-fake-labubu/story?id=124575764)); recorded 2026-08-30.
 
-The short answer: buy where the seller of record is Pop Mart — the official site , the app, retail stores and Robo Shops, the official TikTok Shop, or the official Pop Mart storefront on Amazon . On any other channel, the price is your first tell: far below retail means Lafufu .
+The short answer: buy where the seller of record is Pop Mart — the official site (https://www.popmart.com/us/collection/11), the app, retail stores and Robo Shops, the official TikTok Shop, or the official Pop Mart storefront on Amazon (https://www.amazon.com/stores/POPMART/page/9EB83127-7B84-48B8-868F-805DB5FA39ED). On any other channel, the price is your first tell: far below retail means Lafufu (https://thedollscout.com/fake-check).
 
 ## What are the official channels for buying Labubu?
 
@@ -520,13 +555,13 @@ Per press coverage of Pop Mart's own guidance: Pop Mart's website and app, Pop M
 
 | | Channel | Why it's safe | The catch
 
-| popmart.com / Pop Mart app | First-party; the reference for what each series should cost | Hot series sell out fast; drops are timed
+| popmart.com (https://www.popmart.com/us/collection/11) / Pop Mart app | First-party; the reference for what each series should cost | Hot series sell out fast; drops are timed
 
 | Pop Mart stores & Robo Shops | Physical first-party retail; you hold the box before paying | Location-dependent; stock varies by store
 
 | Official TikTok Shop | First-party account; live drops | Verify you're on the official account, not a lookalike shop
 
-| Amazon — POP MART storefront | Brand storefront; familiar returns and delivery | Amazon search mixes in third-party sellers — check the "sold by" line every time
+| Amazon — POP MART storefront (https://www.amazon.com/stores/POPMART/page/9EB83127-7B84-48B8-868F-805DB5FA39ED) | Brand storefront; familiar returns and delivery | Amazon search mixes in third-party sellers — check the "sold by" line every time
 
 | Official event booths | First-party at conventions and fairs | Event-only by definition
 
@@ -536,32 +571,49 @@ Ad · affiliate links — same price for you. The Amazon links on this page carr
 
 The official Pop Mart storefront on Amazon is on the official channel list — buy where the listing's seller is POP MART. Amazon search results, however, mix that storefront with third-party sellers, and a listing's photos prove nothing about the unit that ships. Check the "sold by" line before paying, and treat prices far below official retail as the counterfeit signal they are. If a listing fails the seller check, no photo check rescues it.
 
-Practical route: start from the POP MART storefront , or from a search for "POP MART Labubu The Monsters" — and then apply the seller check to whatever you click. We link searches and the storefront rather than individual listings on purpose: listings churn, and a dead or swapped listing is worse than a search you can judge yourself.
+Practical route: start from the POP MART storefront (https://www.amazon.com/stores/POPMART/page/9EB83127-7B84-48B8-868F-805DB5FA39ED), or from a search for "POP MART Labubu The Monsters" (https://www.amazon.com/s?k=POP+MART+Labubu+The+Monsters) — and then apply the seller check to whatever you click. We link searches and the storefront rather than individual listings on purpose: listings churn, and a dead or swapped listing is worse than a search you can judge yourself.
 
 ## How much does a real Labubu cost?
 
-Standard blind boxes have tracked at roughly $14 to $28 at retail ( DemandSage , 2026), with some premium series listed higher on Pop Mart's own store — and sold-out series trading above retail secondhand. Prices move per series and stock cycle, so check the live official listing rather than trusting any fixed number, this page's included. What is stable is the floor logic: brand-new "authentic" stock far below official retail is how counterfeits are priced, not how genuine ones are.
+Standard blind boxes have tracked at roughly $14 to $28 at retail (DemandSage (https://www.demandsage.com/labubu-statistics/), 2026), with some premium series listed higher on Pop Mart's own store — and sold-out series trading above retail secondhand. Prices move per series and stock cycle, so check the live official listing rather than trusting any fixed number, this page's included. What is stable is the floor logic: brand-new "authentic" stock far below official retail is how counterfeits are priced, not how genuine ones are.
 
-Current series to price-check against the official store: Have a Seat , Big Into Energy , Classic Sparkly . We deliberately print no exact prices here — the official page is the price, and a guide that hard-codes one goes stale the day a series rotates.
+Current series to price-check against the official store: Have a Seat (https://www.popmart.com/us/products/1372/the-monsters-have-a-seat-vinyl-plush-blind-box), Big Into Energy (https://www.popmart.com/us/products/2155/the-monsters-big-into-energy-series-vinyl-plush-pendant-blind-box), Classic Sparkly (https://www.popmart.com/us/products/1739/the-monsters-classic-series-sparkly-plush-pendant-blind-box). We deliberately print no exact prices here — the official page is the price, and a guide that hard-codes one goes stale the day a series rotates.
 
 ## Where do most fake Labubus get sold?
 
-Wherever the seller of record is not Pop Mart and the price undercuts retail: marketplace third-party listings, social-media shops, bulk "wholesale" offers, and street stalls. Sources covering Pop Mart's advice give the same guidance from the other direction: the company recommends buying only through official channels or verified retailers. On any other channel, assume the 8-point check is your only protection, and that it can lose.
+Wherever the seller of record is not Pop Mart and the price undercuts retail: marketplace third-party listings, social-media shops, bulk "wholesale" offers, and street stalls. Sources covering Pop Mart's advice give the same guidance from the other direction: the company recommends buying only through official channels or verified retailers. On any other channel, assume the 8-point check (https://thedollscout.com/fake-check) is your only protection, and that it can lose.
+
+## Quick answers
+
+The same questions, answered in one paragraph each — the versions an assistant can quote without losing the caveats.
+
+### What are the official channels for buying Labubu?
+
+Per press coverage of Pop Mart's own guidance: Pop Mart's website and app, Pop Mart retail stores and Robo Shop vending machines, the official Pop Mart TikTok Shop, official Pop Mart booths at events, and the official Pop Mart storefront on Amazon. The common thread is that in every one of these, the seller of record is Pop Mart itself — a counterfeit cannot enter the shelf. Everywhere else, you are trusting an intermediary.
+
+### Is buying Labubu on Amazon safe?
+
+The official Pop Mart storefront on Amazon is on the official channel list — buy where the listing's seller is POP MART. Amazon search results, however, mix that storefront with third-party sellers, and a listing's photos prove nothing about the unit that ships. Check the 'sold by' line before paying, and treat prices far below official retail as the counterfeit signal they are. If a listing fails the seller check, no photo check rescues it.
+
+### How much does a real Labubu cost?
+
+Standard blind boxes have tracked at roughly $14 to $28 at retail (DemandSage, 2026), with some premium series listed higher on Pop Mart's own store — and sold-out series trading above retail secondhand. Prices move per series and stock cycle, so check the live official listing rather than trusting any fixed number, this page's included. What is stable is the floor logic: brand-new 'authentic' stock far below official retail is how counterfeits are priced, not how genuine ones are.
+
+### Where do most fake Labubus get sold?
+
+Wherever the seller of record is not Pop Mart and the price undercuts retail: marketplace third-party listings, social-media shops, bulk 'wholesale' offers, and street stalls. Sources covering Pop Mart's advice give the same guidance from the other direction: the company recommends buying only through official channels or verified retailers. On any other channel, assume the 8-point check is your only protection, and that it can lose.
 
 ## Keep reading
 
-### Real vs Fake: the 8-point check
-For everything you buy off the official list — teeth, box, seal, markings, price floor.
-
-### DollScout home
-What this site is, who makes Labubu, and why the counterfeits got their own name.
+Real vs Fake: the 8-point check For everything you buy off the official list — teeth, box, seal, markings, price floor. (https://thedollscout.com/fake-check)
+🔍 Lafufu Checker Bought outside an official channel? Run the 8 checks interactively before you relax. (https://thedollscout.com/checker)
 
 ========================================================================
 URL: https://thedollscout.com/glossary
 Title: Labubu & Blind Box Glossary: Secret, Chase, Case, Lafufu
 Description: What secret, chase, case, printed odds, glow edition, vinyl plush and Lafufu actually mean in Labubu collecting — every term defined in plain language, cross-linked to the evidence pages.
 ========================================================================
-Home / Glossary
+Home (https://thedollscout.com/) / Glossary
 
 # The words of the hunt, defined.
 
@@ -569,7 +621,7 @@ Collecting has its own vocabulary, and half the confusion (and some of the scams
 
 ## What is a blind box?
 
-A sealed box whose specific figure you don't know until you open it. You choose the series; the series chooses the figure. The randomness is the product — and it is also why odds , authenticity and channel are the three questions that decide whether you bought well.
+A sealed box whose specific figure you don't know until you open it. You choose the series; the series chooses the figure. The randomness is the product — and it is also why odds (https://thedollscout.com/rarity), authenticity (https://thedollscout.com/fake-check) and channel (https://thedollscout.com/where-to-buy) are the three questions that decide whether you bought well.
 
 ## What is a series?
 
@@ -581,11 +633,11 @@ Any of the openly listed designs in a series — the figures shown on the box's 
 
 ## What is a secret (or chase)?
 
-The hidden extra design that is not part of the openly listed lineup and appears at long odds — most commonly reported at 1:72 for six-figure series and 1:144 for twelve-figure series, with the authoritative rate printed on each series' own box. The secret is the engine of the resale market and, for the same reason, of the counterfeit market. Full numbers: the rarity page .
+The hidden extra design that is not part of the openly listed lineup and appears at long odds — most commonly reported at 1:72 for six-figure series and 1:144 for twelve-figure series, with the authoritative rate printed on each series' own box. The secret is the engine of the resale market and, for the same reason, of the counterfeit market. Full numbers: the rarity page (https://thedollscout.com/rarity).
 
 ## What are printed odds?
 
-The rate stated on the box or official listing — "1:72" means one secret per 72 boxes on average. It is the one number that outranks every collector table, including ours. What printed odds do not tell you is your chance across several boxes; that is multiplication, and the calculator does it honestly.
+The rate stated on the box or official listing — "1:72" means one secret per 72 boxes on average. It is the one number that outranks every collector table, including ours. What printed odds do not tell you is your chance across several boxes; that is multiplication, and the calculator (https://thedollscout.com/rarity#calc) does it honestly.
 
 ## What is a case?
 
@@ -593,41 +645,59 @@ The sealed carton a shop receives, containing a fixed count of blind boxes. Coll
 
 ## What is a glow or ultra variant?
 
-A rarer-than-secret variant reported for some releases — glow-in-the-dark editions are the recurring example, with rates reported as low as 1:720 . At those odds, a 50% chance takes 499 boxes of independent draws; treat any cheap listing that promises one as arithmetic failing in public. Sources on the rarity page .
+A rarer-than-secret variant reported for some releases — glow-in-the-dark editions are the recurring example, with rates reported as low as 1:720 . At those odds, a 50% chance takes 499 boxes of independent draws; treat any cheap listing that promises one as arithmetic failing in public. Sources on the rarity page (https://thedollscout.com/rarity).
 
 ## What is a vinyl plush pendant?
 
-The dominant Labubu format: a soft plush body with a vinyl face, sized and looped to hang from a bag. "Figure" series are all-vinyl instead. The format is printed on the official listing — and matters for authenticity, because fur evenness and face finish are two of the eight checks .
+The dominant Labubu format: a soft plush body with a vinyl face, sized and looped to hang from a bag. "Figure" series are all-vinyl instead. The format is printed on the official listing — and matters for authenticity, because fur evenness and face finish are two of the eight checks (https://thedollscout.com/fake-check).
 
 ## What is a Lafufu?
 
-The community's name for a counterfeit Labubu ( Gulf News ). Fakes are common enough to have earned a word of their own — and the rarer and hotter the real figure, the more heavily it is faked. The recurring giveaways, each with its source: the 8-point check .
+The community's name for a counterfeit Labubu (Gulf News (https://gulfnews.com/amp/story/lifestyle/bought-a-labubu-learn-the-crucial-signs-that-reveal-if-its-a-genuine-or-a-lafufu-1.500206668)). Fakes are common enough to have earned a word of their own — and the rarer and hotter the real figure, the more heavily it is faked. The recurring giveaways, each with its source: the 8-point check (https://thedollscout.com/fake-check).
 
 ## What is the seller of record?
 
-The party actually selling you the item — on marketplaces, the "sold by" line, not the site's logo. It is the single strongest authenticity lever a buyer has: where Pop Mart itself is the seller of record, a counterfeit structurally cannot reach the shelf. The ranked channel list: where to buy .
+The party actually selling you the item — on marketplaces, the "sold by" line, not the site's logo. It is the single strongest authenticity lever a buyer has: where Pop Mart itself is the seller of record, a counterfeit structurally cannot reach the shelf. The ranked channel list: where to buy (https://thedollscout.com/where-to-buy).
 
 ## Keep reading
 
-### How blind boxes actually work
-Series structure, the secret, cases, and the honest math — in one page.
+How blind boxes actually work Series structure, the secret, cases, and the honest math — in one page. (https://thedollscout.com/how-blind-boxes-work)
+Rarity & secret odds The reported rates per format, sourced — and the pull calculator. (https://thedollscout.com/rarity)
+Real vs Fake The 8-point Lafufu check, each line with its source. (https://thedollscout.com/fake-check)
+🔎 Model Lookup Know the word but not the figure? Search the sourced identity index — Labubu vs Zimomo vs Mokoko. (https://thedollscout.com/lookup)
 
-### Rarity & secret odds
-The reported rates per format, sourced — and the pull calculator.
+========================================================================
+URL: https://thedollscout.com/data/
+Title: Open Data — DollScout
+Description: DollScout
+========================================================================
+Home (https://thedollscout.com/) / Data
 
-### Real vs Fake
-The 8-point Lafufu check, each line with its source.
+# Open data.
+
+The evidence behind our pages, published as machine-readable JSON under CC-BY 4.0. Quote freely with attribution; assistants and crawlers welcome. Where Pop Mart's own current guidance disagrees with a dataset, follow Pop Mart's.
+
+### rarity-odds.json (https://thedollscout.com/data/rarity-odds.json)
+The reported secret rates per series format from the rarity page (https://thedollscout.com/rarity) — 1:72 / 1:144 / collabs / glow variants, per-row sources, and the derived boxes-for-50% math. Recorded 2026-08-30.
+
+### labubu-fake-signals.json (https://thedollscout.com/data/labubu-fake-signals.json)
+The 8 authenticity checks from the real-vs-fake guide (https://thedollscout.com/fake-check) — authentic vs counterfeit indicators, per-signal sources, stated limitations. Recorded 2026-08-30.
+
+### labubu-glossary.json (https://thedollscout.com/data/labubu-glossary.json)
+The 10 collecting terms from the glossary (https://thedollscout.com/glossary) as machine-readable definitions with aliases and per-term evidence links. Recorded 2026-08-30.
+
+These datasets are also callable: the site runs an MCP endpoint at https://thedollscout.com/mcp (Streamable HTTP, four read-only tools — rarity odds, fake signals, a secret-pull probability calculator, and term definitions). Every tool answer is read from these files at request time and carries their recording date and limitations; no affiliate links appear in tool output. Human-readable versions: rarity (https://thedollscout.com/rarity) · fake-check (https://thedollscout.com/fake-check) · glossary (https://thedollscout.com/glossary).
 
 ========================================================================
 URL: https://thedollscout.com/checker
 Title: Interactive Lafufu Checker: Test Your Labubu in 8 Answers
 Description: Answer the 8 authenticity checks — teeth, face, box, seal, markings, build, price, seller — and get an honest verdict: red flags listed, or 
 ========================================================================
-Home / Lafufu Checker
+Home (https://thedollscout.com/) / Lafufu Checker
 
 # Run the checks. Get a straight answer.
 
-The same 8 sourced authenticity checks as our guide — but as a tool: answer what you see on your figure, and the verdict names exactly which checks failed. Everything runs in your browser; nothing is uploaded. Last updated 2026-08-30.
+The same 8 sourced authenticity checks (https://thedollscout.com/fake-check) as our guide — but as a tool: answer what you see on your figure, and the verdict names exactly which checks failed. Everything runs in your browser; nothing is uploaded. Last updated 2026-08-30.
 
 🔍 LAFUFU CHECKER
 
@@ -687,43 +757,24 @@ Official Pop Mart channel
 Marketplace seller that isn't Pop Mart / unknown
 Not sure who the seller was
 
-0 red flag(s)
-
-Failed checks:
-
-Treat this as a counterfeit signal, not a maybe. If you haven't bought yet: don't. If you have: document what you found (photos of the failed checks) and pursue the platform's refund path — a "not as described" claim is exactly what this evidence supports. Full reasoning per check: the guide .
-
-Inconclusive
-
-Too many checks unanswered to say anything honest. The two highest-value checks to resolve: scan the QR seal (check 4) and identify the seller of record (check 8) — the seller check outranks every cosmetic one.
-
-No red flags found
-
-That is not a guarantee. No cosmetic check is proof — counterfeits improve constantly, and Pop Mart's own current guidance outranks this checker where they disagree. What a clean run does mean: none of the eight publicly documented tells is present. The structural protection remains the channel: buy where Pop Mart is the seller .
-
-Built on our CC-BY signals dataset (recorded 2026-08-30, per-signal sources inside). We have not laboratory-tested figures ourselves; signals are compiled from the named public reporting. Nothing you answer leaves your browser.
+Built on our CC-BY signals dataset (https://thedollscout.com/data/labubu-fake-signals.json) (recorded 2026-08-30, per-signal sources inside). We have not laboratory-tested figures ourselves; signals are compiled from the named public reporting. Nothing you answer leaves your browser.
 
 ## Keep reading
 
-### The 8 checks, explained
-Each check with its named sources and its honest limits.
-
-### Where to buy
-The channels where this checker is unnecessary by construction.
-
-### Rarity & odds
-Why the rare ones are the faked ones — and the real math.
+The 8 checks, explained Each check with its named sources and its honest limits. (https://thedollscout.com/fake-check)
+Where to buy The channels where this checker is unnecessary by construction. (https://thedollscout.com/where-to-buy)
+Rarity & odds Why the rare ones are the faked ones — and the real math. (https://thedollscout.com/rarity)
 
 ========================================================================
 URL: https://thedollscout.com/finder
 Title: Labubu Series Finder: Which Series Fits You, in 3 Answers
 Description: Bag or shelf, cozy or bold or sparkly, happy with regulars or chasing the secret — three answers point you at the official series that fits, linked straight to Pop Mart
 ========================================================================
-Home / Series Finder
+Home (https://thedollscout.com/) / Series Finder
 
 # Three answers. One good starting series.
 
-Sixty-plus series exist; you need one to start with. This finder maps what you actually want — where it lives, what it looks like, how much chase you're signing up for — to a current official series, linked straight to Pop Mart's own listing. Last updated 2026-08-30; series rotate, the live listing always wins.
+Collector directories count dozens of Labubu series — a figure we have not independently verified — and you need one to start with. This finder maps what you actually want — where it lives, what it looks like, how much chase you're signing up for — to a current official series, linked straight to Pop Mart's own listing. Last updated 2026-08-30; series rotate, the live listing always wins.
 
 🧭 SERIES FINDER
 
@@ -749,116 +800,100 @@ Honestly, I want the secret
 
 Have a Seat
 
-The seated vinyl-plush blind box series — the soft, settle-in end of the current lineup. The official listing is the reference for the lineup and price.
+The seated vinyl-plush blind box series — the soft, settle-in end of the current lineup. The official listing (https://www.popmart.com/us/products/1372/the-monsters-have-a-seat-vinyl-plush-blind-box) is the reference for the lineup and price.
 
 Big Into Energy
 
-The vinyl-plush pendant series with six emotion-named regulars (Love, Happiness, Loyalty, Serenity, Hope, Luck) and a secret — the loud end of the lineup. The official listing is the reference.
+The vinyl-plush pendant series with six emotion-named regulars (Love, Happiness, Loyalty, Serenity, Hope, Luck) and a secret — the loud end of the lineup. The official listing (https://www.popmart.com/us/products/2155/the-monsters-big-into-energy-series-vinyl-plush-pendant-blind-box) is the reference.
 
 Classic Sparkly
 
-The sparkly plush pendant take on the classic series. The official listing is the reference.
+The sparkly plush pendant take on the classic series. The official listing (https://www.popmart.com/us/products/1739/the-monsters-classic-series-sparkly-plush-pendant-blind-box) is the reference.
 
 Bag duty is exactly what the pendant formats are looped for — check the format line on the listing before you buy.
 
-For a shelf, also look at the all-vinyl figure series in the full official collection — same blind-box structure, no loop, made to stand.
+For a shelf, also look at the all-vinyl figure series in the full official collection (https://www.popmart.com/us/collection/11) — same blind-box structure, no loop, made to stand.
 
-For a gift, consider a larger openly-sold plush instead of a blind box — you see what you give. The first-buy guide has the format table and the parents' section.
+For a gift, consider a larger openly-sold plush instead of a blind box — you see what you give. The first-buy guide (https://thedollscout.com/start) has the format table and the parents' section.
 
-That's the beginner's rule done right: at 1:72 , the regulars on the lineup art are what you're realistically buying.
+That's the beginner's rule done right: at 1:72 (https://thedollscout.com/rarity), the regulars on the lineup art are what you're realistically buying.
 
-Then read the chase-cost calculator first — the expected cost of pulling a secret is the printed odds times the box price, and it's honest to know that number before box one.
+Then read the chase-cost calculator (https://thedollscout.com/psychology#cost) first — the expected cost of pulling a secret is the printed odds times the box price, and it's honest to know that number before box one.
 
-Preference matching only — no odds change with your answers, and series rotate with stock. Nothing you answer leaves your browser. Channels where the listing is real: where to buy .
+Preference matching only — no odds change with your answers, and series rotate with stock. Nothing you answer leaves your browser. Channels where the listing is real: where to buy (https://thedollscout.com/where-to-buy).
 
 ## Keep reading
 
-### Your first Labubu
-The full three-decision path this finder shortcuts.
-
-### Rarity & odds
-What the secret really costs to chase, per format.
-
-### Lafufu Checker
-After you buy: the 8 checks as an interactive tool.
+Your first Labubu The full three-decision path this finder shortcuts. (https://thedollscout.com/start)
+Rarity & odds What the secret really costs to chase, per format. (https://thedollscout.com/rarity)
+Lafufu Checker After you buy: the 8 checks as an interactive tool. (https://thedollscout.com/checker)
 
 ========================================================================
 URL: https://thedollscout.com/lookup
 Title: Labubu Model Lookup: Which Character, Series or Format Is This?
 Description: Type a name — Labubu, Zimomo, Mokoko, Have a Seat, Big Into Energy, secret, Lafufu — and get the sourced identity card: what it is, how to tell it apart, where the evidence lives.
 ========================================================================
-Home / Model Lookup
+Home (https://thedollscout.com/) / Model Lookup
 
 # Which one is this?
 
-The identities that actually get confused — characters, current series, formats, collector terms — as an instant lookup. Every entry states only what its named sources support. Not in the index doesn't mean it doesn't exist: this is a curated evidence index, not a catalog of all 60+ series. Last updated 2026-08-30.
+The identities that actually get confused — characters, current series, formats, collector terms — as an instant lookup. Every entry states only what its named sources support. Not in the index doesn't mean it doesn't exist: this is a curated evidence index, not a catalog of every series. Last updated 2026-08-30.
 
 🔎 MODEL LOOKUP
 
 Name, series or term
 
-No match in our index. That does not mean it doesn't exist — over 60 series and many characters are out there. The authoritative directory is Pop Mart's own The Monsters collection ; our index covers only what we've verified against named sources.
-
 ### Labubu — the character
 
-The main character of The Monsters cast by Kasing Lung: mischievous elf, nine teeth , no tail. The nine-teeth count is also authenticity check #1 ( the guide ). Sources: SNKRDUNK Magazine; Bagaholicboy; the character coverage linked from the glossary .
+The main character of The Monsters cast by Kasing Lung: mischievous elf, nine teeth , no tail. The nine-teeth count is also authenticity check #1 (the guide (https://thedollscout.com/fake-check)). Sources: SNKRDUNK Magazine (https://snkrdunk.com/en/magazine/2025/06/10/understanding-the-labubu-universe-pop-mart-the-monsters/); Bagaholicboy (https://bagaholicboy.com/2024/09/the-monsters-zimomo-labubu-friends); the character coverage linked from the glossary (https://thedollscout.com/glossary).
 
 ### Zimomo — the character
 
-The tribe's leader figure: notably larger than Labubu, with a spiked tail — the tail is the fastest visual separator, since Labubu has none. Frequently confused with Labubu in resale listings; a "big Labubu with a tail" is a Zimomo. Sources: SNKRDUNK Magazine; Bagaholicboy; Extrabux comparison.
+The tribe's leader figure: notably larger than Labubu, with a spiked tail — the tail is the fastest visual separator, since Labubu has none. Frequently confused with Labubu in resale listings; a "big Labubu with a tail" is a Zimomo. Sources: SNKRDUNK Magazine (https://snkrdunk.com/en/magazine/2025/06/10/understanding-the-labubu-universe-pop-mart-the-monsters/); Bagaholicboy (https://bagaholicboy.com/2024/09/the-monsters-zimomo-labubu-friends); Extrabux comparison (https://www.extrabux.com/en/guide/8674889).
 
 ### Mokoko — the character
 
-Pink fur, white belly, heart-shaped nose — one of Labubu's companions, appearing only in select releases. Sources: SNKRDUNK Magazine; LatestLY character guide; Extrabux comparison.
+Pink fur, white belly, heart-shaped nose — one of Labubu's companions, appearing only in select releases. Sources: SNKRDUNK Magazine (https://snkrdunk.com/en/magazine/2025/06/10/understanding-the-labubu-universe-pop-mart-the-monsters/); LatestLY character guide (https://www.latestly.com/social-viral/labubu-character-names-zimomo-mokoko-pato-spooky-and-more-your-ultimate-guide-to-the-whimsical-world-of-the-monsters-7020870.html); Extrabux comparison (https://www.extrabux.com/en/guide/8674889).
 
 ### Pato, Spooky & other cast names
 
-Additional named members of The Monsters cast, attested in character guides (LatestLY; THISTOKYO directory). Their individual traits we have not verified — for identification, the official listing of the specific release is the reference.
+Additional named members of The Monsters cast, attested in character guides (LatestLY; THISTOKYO directory (https://thistokyo.com/en/trends/the-monsters-characters/)). Their individual traits we have not verified — for identification, the official listing of the specific release is the reference.
 
 ### Have a Seat — the series
 
-Seated vinyl-plush blind box series; commonly reported secret odds for 6-figure series are 1:72 (box-printed rate is authoritative). The official listing is the reference for lineup and price.
+Seated vinyl-plush blind box series; commonly reported secret odds for 6-figure series are 1:72 (box-printed rate is authoritative). The official listing (https://www.popmart.com/us/products/1372/the-monsters-have-a-seat-vinyl-plush-blind-box) is the reference for lineup and price.
 
 ### Big Into Energy — the series
 
-Vinyl-plush pendant series (April 2025) with six emotion-named regulars — Love, Happiness, Loyalty, Serenity, Hope, Luck — plus secret ID (Prism News catalog; product-insights coverage). The official listing is the reference.
+Vinyl-plush pendant series (April 2025) with six emotion-named regulars — Love, Happiness, Loyalty, Serenity, Hope, Luck — plus secret ID (Prism News catalog (https://www.prismnews.com/hobbies/labubu/every-labubu-series-and-character-name-catalogued-for-2026-collectors); product-insights coverage). The official listing (https://www.popmart.com/us/products/2155/the-monsters-big-into-energy-series-vinyl-plush-pendant-blind-box) is the reference.
 
 ### Classic Sparkly — the series
 
-Sparkly plush-pendant take on the classic series. The official listing is the reference.
+Sparkly plush-pendant take on the classic series. The official listing (https://www.popmart.com/us/products/1739/the-monsters-classic-series-sparkly-plush-pendant-blind-box) is the reference.
 
 ### Exciting Macaron — the series
 
-A frequently referenced vinyl-plush series in collector guides. We have not verified a current official listing — search the official store for live availability.
+A frequently referenced vinyl-plush series in collector guides. We have not verified a current official listing — search the official store (https://www.popmart.com/us/search/labubu) for live availability.
 
 ### Vinyl plush pendant — the format
 
-The dominant Labubu format: plush body, vinyl face, bag loop. Format is printed on the official listing and matters for authenticity (fur and face are two of the 8 checks ). Full format table: the first-buy guide .
-
-### Secret / chase — the term
-
-The hidden design outside the open lineup, most commonly reported at 1:72 (6-figure series) and 1:144 (12-figure) — box-printed rate authoritative. Math and sources: the rarity page ; definition: the glossary .
+The dominant Labubu format: plush body, vinyl face, bag loop. Format is printed on the official listing and matters for authenticity (fur and face are two of the 8 checks (https://thedollscout.com/fake-check)). Full format table: the first-buy guide (https://thedollscout.com/start).
 
 ### Lafufu — the term
 
-The community's name for a counterfeit Labubu (Gulf News). Identification: the interactive checker or the 8-point guide .
+The community's name for a counterfeit Labubu (Gulf News). Identification: the interactive checker (https://thedollscout.com/checker) or the 8-point guide (https://thedollscout.com/fake-check).
 
 ### The Monsters — the IP
 
-The cast and world created by artist Kasing Lung , produced under exclusive license by Pop Mart. Labubu is its main character. Source: Wikipedia; SNKRDUNK Magazine.
+The cast and world created by artist Kasing Lung , produced under exclusive license by Pop Mart. Labubu is its main character. Source: Wikipedia (https://en.wikipedia.org/wiki/Labubu); SNKRDUNK Magazine (https://snkrdunk.com/en/magazine/2025/06/10/understanding-the-labubu-universe-pop-mart-the-monsters/).
 
 Curated index, per-entry sources named; entries marked unverified where that's the honest state. Nothing you type leaves your browser. Corrections welcome via the sources on each evidence page.
 
 ## Keep reading
 
-### The glossary
-Every term of the hunt, defined in plain language.
-
-### Lafufu Checker
-Got the model — now check it's real, interactively.
-
-### Series Finder
-No model yet? Three answers to a good starting series.
+The glossary Every term of the hunt, defined in plain language. (https://thedollscout.com/glossary)
+Lafufu Checker Got the model — now check it's real, interactively. (https://thedollscout.com/checker)
+Series Finder No model yet? Three answers to a good starting series. (https://thedollscout.com/finder)
 
 ========================================================================
 URL: https://thedollscout.com/de/
@@ -868,7 +903,7 @@ Description: Welcher Labubu ist wirklich selten, wie selten, und wie stehen dein
 # Welcher ist wirklich selten — und wie selten?
 
 1 : 72
-die am häufigsten berichtete Secret-Quote einer 6-Figuren-Serie — wenn die Box es sagt
+die am häufigsten berichtete Secret-Quote einer 6-Figuren-Serie — wenn die Box es sagt (https://thedollscout.com/de/rarity)
 
 Jede Labubu-Blindbox ist eine Wette. Die Quote steht auf der Box, die heißen Serien sind in Stunden ausverkauft, und je seltener eine Figur, desto härter wird sie gefälscht. DollScout ist der Scout für diese Jagd — nachrechenbare Seltenheits-Mathematik, durchführbare Echtheits-Checks und die kurze Liste der Orte, wo die bezahlte Quote auch die echte ist.
 
@@ -883,13 +918,11 @@ Secret-Quote
 1 : 720 — berichtet für Glow/Ultra-Varianten
 Eigene…
 
-1 :
-
 Boxen, die du öffnest
 
 Chance auf mindestens ein Secret: —
 
-Unabhängiges Einzelbox-Modell zur gedruckten Rate (versiegelte Cases können abweichen). Quoten-Quellen und die volle Mathematik: Seltenheits-Seite . Keine Daten verlassen deinen Browser.
+Unabhängiges Einzelbox-Modell zur gedruckten Rate (versiegelte Cases können abweichen). Quoten-Quellen und die volle Mathematik: Seltenheits-Seite (https://thedollscout.com/de/rarity). Keine Daten verlassen deinen Browser.
 
 BOXEN FÜR 50% CHANCE, JE QUOTE
 
@@ -903,53 +936,29 @@ BOXEN FÜR 50% CHANCE, JE QUOTE
 
 1:720 499
 
-Unabhängige-Ziehung-Mathematik aus den berichteten Raten der Seltenheits-Seite , Stand 2026-08-30.
+Unabhängige-Ziehung-Mathematik aus den berichteten Raten der Seltenheits-Seite (https://thedollscout.com/de/rarity), Stand 2026-08-30.
 
-%
+% Seltenheit & Secret-Quoten 1:72? 1:144? Die berichteten Raten je Serienformat, mit Quelle — und der Rechner für deine echten Chancen. (https://thedollscout.com/de/rarity)
+Echt vs. Fälschung (Lafufu) Je seltener die Figur, desto häufiger die Fälschung. Der 8-Punkte-Check — Zähne, Box, Siegel, Prägung, Preisboden — jeder mit Quelle. (https://thedollscout.com/de/fake-check)
+Wo kaufen Die offiziellen Kanäle — sortiert danach, wie schwer eine Fälschung oder ein manipuliertes "Secret garantiert" dich erreichen kann. (https://thedollscout.com/de/where-to-buy)
 
-### Seltenheit & Secret-Quoten
-1:72? 1:144? Die berichteten Raten je Serienformat, mit Quelle — und der Rechner für deine echten Chancen.
+Wie Blindboxen wirklich funktionieren Serienstruktur, das Secret, Cases vs. lose Boxen, die Kaufformate und die Fallen — der ganze Mechanismus auf einer Seite. (https://thedollscout.com/de/how-blind-boxes-work)
+Das Glossar Secret, Chase, Case, gedruckte Quote, Glow, Lafufu — jeder Begriff der Jagd, in Klartext definiert. (https://thedollscout.com/de/glossary)
+Dein erster Labubu Format, Serie, Kanal — die drei Entscheidungen eines guten Erstkaufs, plus Eltern-Abschnitt. (https://thedollscout.com/de/start)
+Die Psychologie des Ziehens Warum Blindboxen sich so anfühlen, mit Quellen — und der Jagdkosten-Rechner, der die Jagd bepreist, bevor sie beginnt. (https://thedollscout.com/de/psychology)
 
--
-
-### Echt vs. Fälschung (Lafufu)
-Je seltener die Figur, desto häufiger die Fälschung. Der 8-Punkte-Check — Zähne, Box, Siegel, Prägung, Preisboden — jeder mit Quelle.
-
-### Wo kaufen
-Die offiziellen Kanäle — sortiert danach, wie schwer eine Fälschung oder ein manipuliertes "Secret garantiert" dich erreichen kann.
-
-### Wie Blindboxen wirklich funktionieren
-Serienstruktur, das Secret, Cases vs. lose Boxen, die Kaufformate und die Fallen — der ganze Mechanismus auf einer Seite.
-
-### Das Glossar
-Secret, Chase, Case, gedruckte Quote, Glow, Lafufu — jeder Begriff der Jagd, in Klartext definiert.
-
-### Dein erster Labubu
-Format, Serie, Kanal — die drei Entscheidungen eines guten Erstkaufs, plus Eltern-Abschnitt.
-
-### Die Psychologie des Ziehens
-Warum Blindboxen sich so anfühlen, mit Quellen — und der Jagdkosten-Rechner, der die Jagd bepreist, bevor sie beginnt.
-
-### 🔍 Lafufu-Checker
-Die 8 Echtheits-Checks als interaktives Werkzeug — antworte, was du siehst, bekomm die Red Flags namentlich.
-
-### 🧭 Serien-Finder
-Drei Antworten → die offizielle Serie, die passt, verlinkt auf Pop Marts eigene Seiten.
-
-### 🔎 Modell-Suche
-Labubu, Zimomo, Mokoko, Seriennamen — eintippen, belegte Identitätskarte bekommen.
+🔍 Lafufu-Checker Die 8 Echtheits-Checks als interaktives Werkzeug — antworte, was du siehst, bekomm die Red Flags namentlich. (https://thedollscout.com/de/checker)
+🧭 Serien-Finder Drei Antworten → die offizielle Serie, die passt, verlinkt auf Pop Marts eigene Seiten. (https://thedollscout.com/de/finder)
+🔎 Modell-Suche Labubu, Zimomo, Mokoko, Seriennamen — eintippen, belegte Identitätskarte bekommen. (https://thedollscout.com/de/lookup)
 
 ## Die aktuellen Serien
 
 Verlinkt auf Pop Marts eigene Produktseiten — die Referenz dafür, was jede Serie kostet und enthält. Bestand und Preise rotieren; die Live-Seite gewinnt immer.
 
-### 🧸 The Monsters — Kollektion (DE)
-Alles, was aktuell auf Pop Marts deutschem The-Monsters-Regal steht.
+🧸 The Monsters — Kollektion (DE) Alles, was aktuell auf Pop Marts deutschem The-Monsters-Regal steht. (https://www.popmart.com/de/collection/27/the-monsters)
+🔎 Labubu-Suche (DE) Die aktuelle Labubu-Auswahl im offiziellen deutschen Store. (https://www.popmart.com/de/search/Labubu)
 
-### 🔎 Labubu-Suche (DE)
-Die aktuelle Labubu-Auswahl im offiziellen deutschen Store.
-
-Anzeige · Affiliate-Link — für dich derselbe Preis: lieber vertraute Lieferung und Rückgabe? Der offizielle POP-MART-Markenshop auf Amazon.de führt aktuelle Serien — "Verkauf durch" prüfen, wie immer .
+Anzeige · Affiliate-Link — für dich derselbe Preis: lieber vertraute Lieferung und Rückgabe? Der offizielle POP-MART-Markenshop auf Amazon.de (https://www.amazon.de/stores/POPMART/Labubu_IP-Serie/page/B6CDF189-09EA-4C7A-B319-D57268F9A0CB) führt aktuelle Serien — "Verkauf durch" prüfen, wie immer (https://thedollscout.com/de/where-to-buy).
 
 ## Sieh die Quoten in Aktion
 
@@ -966,20 +975,20 @@ Echte Unboxings ihrer Creator auf YouTube — die Seltenheits-Mathematik von obe
 
 1 : 72 — wenn die Box es sagt
 
-Labubu wurde vom in Hongkong geborenen Künstler Kasing Lung für seine illustrierte Reihe The Monsters (2015) geschaffen und wird seit 2019 in exklusiver Lizenz von Pop Mart produziert ( Wikipedia, engl. ). Die Figur wurde populär genug, dass die Fälschungen einen eigenen Namen bekamen — Lafufu ( Gulf News ) — genau deshalb gehören Seltenheitsjagd und Echtheits-Checks auf dieselbe Seite. Unser Beleg-Datensatz ist als CC-BY-JSON veröffentlicht (engl.) . DollScout ist ein unabhängiger Kaufberater: nicht mit Pop Mart, Kasing Lung oder der The-Monsters-IP verbunden; Produktnamen dienen nur der Identifikation.
+Labubu wurde vom in Hongkong geborenen Künstler Kasing Lung (https://en.wikipedia.org/wiki/Kasing_Lung) für seine illustrierte Reihe The Monsters (2015) geschaffen und wird seit 2019 in exklusiver Lizenz von Pop Mart produziert (Wikipedia, engl. (https://en.wikipedia.org/wiki/Labubu)). Die Figur wurde populär genug, dass die Fälschungen einen eigenen Namen bekamen — Lafufu (Gulf News (https://gulfnews.com/amp/story/lifestyle/bought-a-labubu-learn-the-crucial-signs-that-reveal-if-its-a-genuine-or-a-lafufu-1.500206668)) — genau deshalb gehören Seltenheitsjagd und Echtheits-Checks (https://thedollscout.com/de/fake-check) auf dieselbe Seite. Unser Beleg-Datensatz ist als CC-BY-JSON veröffentlicht (engl.) (https://thedollscout.com/data/). DollScout ist ein unabhängiger Kaufberater: nicht mit Pop Mart, Kasing Lung oder der The-Monsters-IP verbunden; Produktnamen dienen nur der Identifikation.
 
 ========================================================================
 URL: https://thedollscout.com/de/start
 Title: Dein erster Labubu: Einsteiger-Guide zu Formaten, Serien & Kanälen
 Description: Wie du deinen ersten Labubu ohne Reue kaufst: die drei Entscheidungen (Format, Serie, Kanal), was jedes Format wirklich ist, die Erstkauf-Checkliste und ein Klartext-Abschnitt für Eltern.
 ========================================================================
-Start / Dein erster Labubu
+Start (https://thedollscout.com/de/) / Dein erster Labubu
 
 # Dein erster — gut gekauft.
 
 Ein erster Labubu ist drei Entscheidungen in der richtigen Reihenfolge — Format, Serie, Kanal. Sitzen die, ist alles andere auf dieser Website nur Rückendeckung. Stand 2026-08-30.
 
-Die kurze Antwort: wähle das Format , das du wirklich nutzt (der Vinyl-Plüsch-Anhänger ist der klassische Taschenanhänger), eine Serie , deren offen gelistete Regulars dir gefallen — bei 1:72 enthält deine erste Box das Secret fast sicher nicht — und einen Kanal , bei dem Pop Mart der Verkäufer ist ( die Rangliste ). Du willst eine bestimmte Figur? Kauf sie geöffnet, zum bekannten Preis, über die Checkliste — nicht übers Glück.
+Die kurze Antwort: wähle das Format , das du wirklich nutzt (der Vinyl-Plüsch-Anhänger ist der klassische Taschenanhänger), eine Serie , deren offen gelistete Regulars dir gefallen — bei 1:72 (https://thedollscout.com/de/rarity) enthält deine erste Box das Secret fast sicher nicht — und einen Kanal , bei dem Pop Mart der Verkäufer ist (die Rangliste (https://thedollscout.com/de/where-to-buy)). Du willst eine bestimmte Figur? Kauf sie geöffnet, zum bekannten Preis, über die Checkliste (https://thedollscout.com/de/fake-check) — nicht übers Glück.
 
 ## Entscheidung 1 — das Format
 
@@ -991,27 +1000,27 @@ Die kurze Antwort: wähle das Format , das du wirklich nutzt (der Vinyl-Plüsch-
 
 | Größerer Plüsch | Größerer, offen verkaufter Plüsch — meist nicht blind: du siehst, was du kaufst | …es ein Geschenk ist oder der Zufall nicht der Punkt ist
 
-| Geöffnete Einzelfigur (Resale) | Ein bekanntes Design zum Marktpreis, kein Zug | …du eine bestimmte Figur willst — Checklisten -Gebiet
+| Geöffnete Einzelfigur (Resale) | Ein bekanntes Design zum Marktpreis, kein Zug | …du eine bestimmte Figur willst — Checklisten (https://thedollscout.com/de/fake-check)-Gebiet
 
-Das Format steht auf der offiziellen Produktseite, und es zählt über den Geschmack hinaus: Fell-Gleichmäßigkeit und Gesichtsfinish sind zwei der acht Echtheits-Checks .
+Das Format steht auf der offiziellen Produktseite, und es zählt über den Geschmack hinaus: Fell-Gleichmäßigkeit und Gesichtsfinish sind zwei der acht Echtheits-Checks (https://thedollscout.com/de/fake-check).
 
 ## Entscheidung 2 — die Serie
 
-Eine Serie gibt dir sechs oder zwölf offen gelistete reguläre Designs plus ein verstecktes Secret zu langer Quote ( die Mechanik ). Die Einsteiger-Regel folgt direkt aus der Mathematik: nimm eine Serie, deren Regulars du wirklich gern ziehen würdest — das Lineup-Artwork auf der Box ist, was du realistisch kaufst. Reizt dich eine Serie nur wegen ihres Secrets, ist das kein Erstkauf, sondern eine Jagd — lies erst die Kosten-Seite.
+Eine Serie gibt dir sechs oder zwölf offen gelistete reguläre Designs plus ein verstecktes Secret zu langer Quote (die Mechanik (https://thedollscout.com/de/how-blind-boxes-work)). Die Einsteiger-Regel folgt direkt aus der Mathematik: nimm eine Serie, deren Regulars du wirklich gern ziehen würdest — das Lineup-Artwork auf der Box ist, was du realistisch kaufst. Reizt dich eine Serie nur wegen ihres Secrets, ist das kein Erstkauf, sondern eine Jagd (https://thedollscout.com/de/psychology) — lies erst die Kosten-Seite.
 
-Die aktuellen Serien, verlinkt auf ihre offiziellen Produktseiten, stehen auf unserer Startseite — die Live-Seite von Pop Mart ist immer die Referenz dafür, was eine Serie enthält und kostet.
+Die aktuellen Serien, verlinkt auf ihre offiziellen Produktseiten, stehen auf unserer Startseite (https://thedollscout.com/de/#series) — die Live-Seite von Pop Mart ist immer die Referenz dafür, was eine Serie enthält und kostet.
 
 ## Entscheidung 3 — der Kanal
 
-Der Kanal entscheidet, ob die gedruckte Quote die ist, die du wirklich bekommst — und ob die Figur überhaupt echt ist. Die volle Rangliste steht auf Wo kaufen ; die Einsteiger-Version: offizielle Pop-Mart-Kanäle zuerst (Store, App, offizieller Webshop), Marktplatz-Angebote nur, wenn Pop Mart der Verkäufer ist — die "Verkauf durch"-Zeile, nicht das Logo der Website.
+Der Kanal entscheidet, ob die gedruckte Quote die ist, die du wirklich bekommst — und ob die Figur überhaupt echt ist. Die volle Rangliste steht auf Wo kaufen (https://thedollscout.com/de/where-to-buy); die Einsteiger-Version: offizielle Pop-Mart-Kanäle zuerst (Store, App, offizieller Webshop), Marktplatz-Angebote nur, wenn Pop Mart der Verkäufer ist — die "Verkauf durch"-Zeile, nicht das Logo der Website.
 
-Anzeige · Affiliate-Link — für dich ändert sich der Preis nicht: der offizielle POP-MART-Storefront auf Amazon.de ist der Marktplatz-Weg, der diesen Test per Konstruktion besteht — prüfe trotzdem "Verkauf durch" im konkreten Angebot, wie immer .
+Anzeige · Affiliate-Link — für dich ändert sich der Preis nicht: der offizielle POP-MART-Storefront auf Amazon.de (https://www.amazon.de/stores/POPMART/Labubu_IP-Serie/page/B6CDF189-09EA-4C7A-B319-D57268F9A0CB) ist der Marktplatz-Weg, der diesen Test per Konstruktion besteht — prüfe trotzdem "Verkauf durch" im konkreten Angebot, wie immer (https://thedollscout.com/de/where-to-buy).
 
 ## Die Erstkauf-Checkliste
 
-- Leg die Zahl vorher fest. Eine Box ist ein vollständiges erstes Erlebnis. Mehr entscheidest du in Ruhe , nicht am Regal.
+- Leg die Zahl vorher fest. Eine Box ist ein vollständiges erstes Erlebnis. Mehr entscheidest du in Ruhe (https://thedollscout.com/de/psychology), nicht am Regal.
 
-- Prüf den Preisboden. Eine fabrikneue "echte" Figur weit unter dem offiziellen Preis ist das klassische Fälschungssignal — das Zu-gut-Angebot beantwortet die Checkliste , nicht das Glück.
+- Prüf den Preisboden. Eine fabrikneue "echte" Figur weit unter dem offiziellen Preis ist das klassische Fälschungssignal — das Zu-gut-Angebot beantwortet die Checkliste (https://thedollscout.com/de/fake-check), nicht das Glück.
 
 - Ausverkauft ≠ irgendwo billig lieferbar. Heiße Serien sind wirklich ausverkauft; eine ausverkaufte Figur, die plötzlich billig, lieferbar und "garantiert" ist, ist der Fälschungsmarkt bei der Arbeit. Geduld oder der Geöffnet-Weg — nie die Abkürzung.
 
@@ -1023,25 +1032,41 @@ Anzeige · Affiliate-Link — für dich ändert sich der Preis nicht: der offizi
 
 - Sicherheit und Fälschungen: Fälschungen umgehen die gesamte Sicherheits- und Qualitätskette — und der Fälschungsmarkt konzentriert sich genau auf die heißen Figuren, nach denen Kinder fragen. Offizielle Kanäle sind nicht nur eine Echtheitsfrage; sie sind der einzige Weg, auf dem die Sicherheitskette überhaupt existiert.
 
-- Der Mechanismus, ehrlich: Blindboxen laufen auf derselben Psychologie unvorhersehbarer Belohnung wie Glücksspiele ( hier mit Quellen erklärt ). Das gehört gewusst, bevor es in die Routine eines Kindes einzieht: Boxenzahl gemeinsam festlegen, vor dem Laden.
+- Der Mechanismus, ehrlich: Blindboxen laufen auf derselben Psychologie unvorhersehbarer Belohnung wie Glücksspiele (hier mit Quellen erklärt (https://thedollscout.com/de/psychology)). Das gehört gewusst, bevor es in die Routine eines Kindes einzieht: Boxenzahl gemeinsam festlegen, vor dem Laden.
+
+## Kurze Antworten
+
+Dieselben Fragen, je in einem Absatz beantwortet — die Fassungen, die eine KI zitieren kann, ohne die Einschränkungen zu verlieren.
+
+### Welchen Labubu soll ich als ersten kaufen?
+
+Wähle über drei Entscheidungen in dieser Reihenfolge: Format (der Vinyl-Plüsch-Anhänger ist die klassische Taschenform; reine Vinylfiguren und größere Plüsche gibt es auch), Serie (nimm eine, deren offen gelistete reguläre Designs dir wirklich gefallen würden — bei 1:72 wird deine erste Box das Secret fast sicher nicht enthalten) und Kanal (ein offizieller Pop-Mart-Kanal oder ein Marktplatz-Angebot, bei dem Pop Mart selbst der Verkäufer ist). Die aktuellen Serien mit offiziellen Produktseiten sind auf unserer Startseite verlinkt.
+
+### Sollte mein Erstkauf eine Blindbox oder eine bekannte Figur sein?
+
+Kauf die Blindbox, wenn dich das Öffnen reizt — der Nervenkitzel ist das Produkt, und eine Box ist ein günstiges Ticket dafür. Kauf eine bekannte, geöffnete Figur, wenn du ein bestimmtes Design willst: Gewissheit zum bekannten Preis ist meist billiger als die Jagd durch Blindboxen, verschiebt das Risiko aber vom Glück zur Echtheit — dann zählen der 8-Punkte-Check und der Verkäufer.
+
+### Ist Labubu für Kinder geeignet? Was sollten Eltern wissen?
+
+Drei Dinge. Erstens: prüfe die Altersempfehlung auf der offiziellen Produktseite des konkreten Artikels — Formate unterscheiden sich, und Pop Marts eigene Seite ist die Autorität. Zweitens: kauf über offizielle Kanäle — Fälschungen umgehen die gesamte Sicherheits- und Qualitätskette, und der Fälschungsmarkt zielt genau auf die heißen Figuren, nach denen Kinder fragen. Drittens: Blindboxen laufen auf derselben Psychologie unvorhersehbarer Belohnung wie Glücksspiele — legt die Boxenzahl gemeinsam vor dem Kauf fest, nicht am Regal.
+
+### Warum ist genau meiner immer ausverkauft?
+
+Heiße Serien sind an offiziellen Kanälen wirklich schnell ausverkauft, und genau von dieser Knappheit lebt der Fälschungsmarkt: eine ausverkaufte Figur, die plötzlich billig, lieferbar und 'garantiert echt' ist, ist das klassische Fake-Muster, das unsere Preisboden-Logik markiert. Die ehrlichen Optionen sind Geduld bis zum Restock am offiziellen Kanal — oder der Kauf einer geöffneten Figur über ein Angebot, das die Checkliste besteht. Nie das Zu-gut-Angebot.
 
 ## Weiterlesen
 
-### Wie Blindboxen wirklich funktionieren
-Die Mechanik, auf der deine erste Box läuft — Serien, Secrets, Cases, Mathe.
-
-### Das Glossar
-Secret, Chase, Case, Lafufu — das Vokabular, definiert.
-
-### Die Psychologie des Ziehens
-Warum das Öffnen sich so anfühlt — und der Jagdkosten-Rechner.
+Wie Blindboxen wirklich funktionieren Die Mechanik, auf der deine erste Box läuft — Serien, Secrets, Cases, Mathe. (https://thedollscout.com/de/how-blind-boxes-work)
+Das Glossar Secret, Chase, Case, Lafufu — das Vokabular, definiert. (https://thedollscout.com/de/glossary)
+Die Psychologie des Ziehens Warum das Öffnen sich so anfühlt — und der Jagdkosten-Rechner. (https://thedollscout.com/de/psychology)
+🧭 Serien-Finder Noch unentschieden? Drei Antworten grenzen das ganze Lineup auf eine offizielle Serie ein. (https://thedollscout.com/de/finder)
 
 ========================================================================
 URL: https://thedollscout.com/de/rarity
 Title: Labubu Seltenheit: Secret-Quoten + Pull-Rechner
 Description: Wie selten ist ein Secret-Labubu wirklich? Die berichteten Quoten je Serienformat (1:72, 1:144, seltener bei Collabs und Glow-Varianten), was auf der Box steht — und ein Rechner für deine echten Chancen über mehrere Boxen.
 ========================================================================
-Start / Seltenheit & Quoten
+Start (https://thedollscout.com/de/) / Seltenheit & Quoten
 
 # Wie selten ist ein Secret-Labubu wirklich?
 
@@ -1061,8 +1086,6 @@ Secret-Quote
 1 : 168 — berichtet für manche Collabs
 1 : 720 — berichtet für Glow/Ultra-Varianten
 Eigene…
-
-1 :
 
 Boxen, die du öffnest
 
@@ -1090,13 +1113,13 @@ Für eine Standard-Serie mit sechs Figuren wird am häufigsten 1 zu 72 berichtet
 
 | | Format | Berichtete Secret-Quote | Quelle
 
-| Standard-Serie (6 Figuren) | 1 : 72 | Tech-Insider , GlobalTill (2026)
+| Standard-Serie (6 Figuren) | 1 : 72 | Tech-Insider (https://tech-insider.org/mystery-boxes/labubu-mystery-box/), GlobalTill (https://globaltill.com/secret-labubu-complete-guide-2026/) (2026)
 
-| Erweiterte Serie (12 Figuren) | 1 : 144 | Popboxss Rarity-Guide (2026)
+| Erweiterte Serie (12 Figuren) | 1 : 144 | Popboxss Rarity-Guide (https://popboxss.com/blogs/d41d8cd9-8f00b204-e9800998-ecf8427e_6c691aab) (2026)
 
-| Manche Collab-Serien | 1 : 120 – 1 : 168 | GlobalTill (2026)
+| Manche Collab-Serien | 1 : 120 – 1 : 168 | GlobalTill (https://globaltill.com/secret-labubu-complete-guide-2026/) (2026)
 
-| Glow / Ultra-Varianten | bis 1 : 720 | Popboxss Rarity-Guide (2026)
+| Glow / Ultra-Varianten | bis 1 : 720 | Popboxss Rarity-Guide (https://popboxss.com/blogs/d41d8cd9-8f00b204-e9800998-ecf8427e_6c691aab) (2026)
 
 Das sind von Sammlern berichtete Raten, Stand 2026-08-30 — keine davon übertrumpft die auf deiner Verpackung gedruckte Quote. Wir konnten nicht jede Serie und jedes Jahr verifizieren; wo deine Box dieser Tabelle widerspricht, gewinnt die Box.
 
@@ -1106,26 +1129,45 @@ Bei unabhängig gezogenen Boxen mit 1-zu-72-Quote geben zwölf Boxen etwa 15% Ch
 
 ## Heißt selten auch wertvoller?
 
-Seltenheit ist der Motor des Zweitmarkts: ausverkaufte Serien und Secret-Figuren handeln über dem Handelspreis, was DemandSages Statistik-Überblick 2026 auf Marktebene dokumentiert. Derselbe Motor treibt aber den Fälschungsmarkt — je seltener und gefragter eine Figur, desto stärker wird sie gefälscht, und "Secret garantiert"-Angebote zum Schnäppchenpreis sind ein klassisches Fälschungsmuster. Die Seltenheits-Mathematik sagt dir, welcher Pull die Jagd wert ist; die Echtheits-Checks sagen dir, ob das Gekaufte echt ist. Nutze beides.
+Seltenheit ist der Motor des Zweitmarkts: ausverkaufte Serien und Secret-Figuren handeln über dem Handelspreis, was DemandSages (https://www.demandsage.com/labubu-statistics/) Statistik-Überblick 2026 auf Marktebene dokumentiert. Derselbe Motor treibt aber den Fälschungsmarkt — je seltener und gefragter eine Figur, desto stärker wird sie gefälscht, und "Secret garantiert"-Angebote zum Schnäppchenpreis sind ein klassisches Fälschungsmuster. Die Seltenheits-Mathematik sagt dir, welcher Pull die Jagd wert ist; die Echtheits-Checks (https://thedollscout.com/de/fake-check) sagen dir, ob das Gekaufte echt ist. Nutze beides.
 
 ## Ist ein "Secret garantiert"-Angebot echt?
+
+Behandle es als Fälschungssignal. Die Blindbox-Ökonomie funktioniert nur, weil das Secret selten ist: der Marktwert eines echten Secrets liegt über dem Handelspreis — ein Angebot, das eines zum oder nahe am Blindbox-Preis garantiert, verspricht etwas, das zu diesem Preis rechnerisch nicht echt sein kann. Legitime Weiterverkäufe gezogener Secrets gibt es — entsprechend bepreist, von Verkäufern, die den Verkäufer- (https://thedollscout.com/de/where-to-buy) und Echtheits-Check (https://thedollscout.com/de/fake-check) bestehen. Ein billiges garantiertes Secret scheitert an der Arithmetik, bevor du auch nur die Zähne zählst.
+
+## Kurze Antworten
+
+Dieselben Fragen, je in einem Absatz beantwortet — die Fassungen, die eine KI zitieren kann, ohne die Einschränkungen zu verlieren.
+
+### Wie selten ist ein Secret-Labubu?
+
+Für eine Standard-Serie mit sechs Figuren wird am häufigsten 1 zu 72 berichtet; Serien mit zwölf Figuren üblicherweise 1 zu 144, manche Collab-Serien 1:120 bis 1:168, Ultra-Varianten wie Glow-Editionen bis hinunter zu 1 zu 720. Die maßgebliche Zahl für deine Serie ist die, die Pop Mart auf deren Box und Produktseite druckt — prüfe sie dort, und behandle jeden Verkäufer, der bessere als die gedruckten Quoten verspricht, als Warnsignal.
+
+### Wie stehen meine Chancen über mehrere Boxen?
+
+Bei unabhängig gezogenen Boxen mit 1-zu-72-Quote geben zwölf Boxen etwa 15% Chance auf mindestens ein Secret — nicht die gefühlte Fast-Sicherheit. Der Rechner auf dieser Seite macht die exakte Rechnung für jede Quote und jede Boxenzahl und zeigt, wie viele Boxen 50% oder 90% wirklich erfordern. Ein ehrlicher Vorbehalt: die Verteilung in versiegelten ganzen Cases kann von unabhängigen Einzelboxen abweichen — dies ist das Einzelbox-Modell.
+
+### Heißt selten auch wertvoller?
+
+Seltenheit ist der Motor des Zweitmarkts: ausverkaufte Serien und Secret-Figuren handeln über dem Handelspreis, was DemandSages Statistik-Überblick 2026 auf Marktebene dokumentiert. Derselbe Motor treibt aber den Fälschungsmarkt — je seltener und gefragter eine Figur, desto stärker wird sie gefälscht, und 'Secret garantiert'-Angebote zum Schnäppchenpreis sind ein klassisches Fälschungsmuster. Die Seltenheits-Mathematik sagt dir, welcher Pull die Jagd wert ist; die Echtheits-Checks sagen dir, ob das Gekaufte echt ist. Nutze beides.
+
+### Ist ein „Secret garantiert“-Angebot echt?
 
 Behandle es als Fälschungssignal. Die Blindbox-Ökonomie funktioniert nur, weil das Secret selten ist: der Marktwert eines echten Secrets liegt über dem Handelspreis — ein Angebot, das eines zum oder nahe am Blindbox-Preis garantiert, verspricht etwas, das zu diesem Preis rechnerisch nicht echt sein kann. Legitime Weiterverkäufe gezogener Secrets gibt es — entsprechend bepreist, von Verkäufern, die den Verkäufer- und Echtheits-Check bestehen. Ein billiges garantiertes Secret scheitert an der Arithmetik, bevor du auch nur die Zähne zählst.
 
 ## Weiterlesen
 
-### Echt vs. Fälschung: der 8-Punkte-Check
-Je seltener die Figur, desto häufiger die Fälschung. Die Checks, jeder mit Quelle.
-
-### Wo du wirklich einen kaufst
-Die offiziellen Kanäle, wo die bezahlte Quote auch die echte ist.
+Echt vs. Fälschung: der 8-Punkte-Check Je seltener die Figur, desto häufiger die Fälschung. Die Checks, jeder mit Quelle. (https://thedollscout.com/de/fake-check)
+Wo du wirklich einen kaufst Die offiziellen Kanäle, wo die bezahlte Quote auch die echte ist. (https://thedollscout.com/de/where-to-buy)
+🔍 Lafufu-Checker Je seltener die Figur, desto härter gefälscht — die 8 Checks interaktiv. (https://thedollscout.com/de/checker)
+🧭 Serien-Finder Drei Antworten zur passenden offiziellen Serie — bevor du für irgendeine Quote zahlst. (https://thedollscout.com/de/finder)
 
 ========================================================================
 URL: https://thedollscout.com/de/how-blind-boxes-work
 Title: Wie Labubu-Blindboxen wirklich funktionieren: Serie, Secret, Case, Mathe
 Description: Die Mechanik einer Labubu-Blindbox: wie Serien aufgebaut sind, wie das Secret funktioniert, was ein Case ändert, was die gedruckte Quote über mehrere Boxen bedeutet — und wie man kauft, ohne sich selbst zu täuschen.
 ========================================================================
-Start / Wie Blindboxen funktionieren
+Start (https://thedollscout.com/de/) / Wie Blindboxen funktionieren
 
 # Wie die Maschine wirklich läuft.
 
@@ -1141,29 +1183,29 @@ Daraus folgt zweierlei sofort. Erstens: das Lineup-Artwork auf der Box ist der V
 
 ## Was bedeutet die gedruckte Quote konkret für mich?
 
-1:72 heißt im Schnitt ein Secret pro 72 Boxen — nicht, dass Box 72 eines enthalten muss, und nicht, dass ein Dutzend Boxen es wahrscheinlich macht. Bei 1:72 geben zwölf unabhängige Boxen rund 15% Chance auf mindestens ein Secret; eine 50%-Chance braucht 50 Boxen , eine 90%-Chance 165 . Der Rechner auf der Seltenheits-Seite rechnet das für jede gedruckte Rate — und maßgeblich ist immer die Zahl auf der eigenen Box.
+1:72 heißt im Schnitt ein Secret pro 72 Boxen — nicht, dass Box 72 eines enthalten muss, und nicht, dass ein Dutzend Boxen es wahrscheinlich macht. Bei 1:72 geben zwölf unabhängige Boxen rund 15% Chance auf mindestens ein Secret; eine 50%-Chance braucht 50 Boxen , eine 90%-Chance 165 . Der Rechner auf der Seltenheits-Seite (https://thedollscout.com/de/rarity#calc) rechnet das für jede gedruckte Rate — und maßgeblich ist immer die Zahl auf der eigenen Box.
 
-Die vollständige Tabelle berichteter Raten mit Quelle je Zeile — inklusive Collab-Serien bei 1:120–1:168 und Glow-Varianten bis hinunter zu 1:720 — steht auf der Seltenheits-Seite und ist als CC-BY-Datensatz maschinenlesbar veröffentlicht.
+Die vollständige Tabelle berichteter Raten mit Quelle je Zeile — inklusive Collab-Serien bei 1:120–1:168 und Glow-Varianten bis hinunter zu 1:720 — steht auf der Seltenheits-Seite (https://thedollscout.com/de/rarity) und ist als CC-BY-Datensatz (https://thedollscout.com/data/) maschinenlesbar veröffentlicht.
 
 ## Garantiert ein ganzer versiegelter Case das Secret?
 
-Nicht über die gedruckte Quote allein, und Case-Behauptungen verdienen Vorsicht. Sammler-Guides berichten, dass die Case-Verteilung strukturiert statt völlig zufällig sein kann, aber eine universelle Regel über Serien und Jahre hinweg konnten wir nicht verifizieren — genau deshalb modelliert unsere Wahrscheinlichkeits-Mathematik lose, unabhängig gezogene Boxen und sagt das dazu. Garantiert ein Verkäufer ein Secret aus dem Case, liegt die Beweislast bei ihm; eine Garantie zum Schnäppchenpreis ist ein Fälschungssignal , keine Großzügigkeit.
+Nicht über die gedruckte Quote allein, und Case-Behauptungen verdienen Vorsicht. Sammler-Guides berichten, dass die Case-Verteilung strukturiert statt völlig zufällig sein kann, aber eine universelle Regel über Serien und Jahre hinweg konnten wir nicht verifizieren — genau deshalb modelliert unsere Wahrscheinlichkeits-Mathematik lose, unabhängig gezogene Boxen und sagt das dazu. Garantiert ein Verkäufer ein Secret aus dem Case, liegt die Beweislast bei ihm; eine Garantie zum Schnäppchenpreis ist ein Fälschungssignal (https://thedollscout.com/de/fake-check), keine Großzügigkeit.
 
 ## Welche Kaufformate gibt es, und was ändert jedes?
 
 | | Format | Was du kaufst | Worauf achten
 
-| Einzelne Blindbox | Ein Zug zur gedruckten Quote | Die reinste Form des Spiels; der Kanal entscheidet, ob die Quote echt ist
+| Einzelne Blindbox | Ein Zug zur gedruckten Quote | Die reinste Form des Spiels; der Kanal (https://thedollscout.com/de/where-to-buy) entscheidet, ob die Quote echt ist
 
 | Mehrere lose Boxen | Unabhängige Züge — das Modell des Rechners | Deine echte Chance wächst langsamer als die Intuition sagt; erst rechnen
 
 | Versiegelter ganzer Case | Ein shop-versiegelter Karton | Verteilung kann von losen Zügen abweichen (je Serie unverifiziert); "case fresh" ist eine Verkäufer-Behauptung
 
-| Geöffnete Einzelfigur (Resale) | Eine bekannte Figur, kein Zug mehr | Du zahlst den Marktpreis für Gewissheit — über Retail bei Secrets — und der 8-Punkte-Check wird zu allem
+| Geöffnete Einzelfigur (Resale) | Eine bekannte Figur, kein Zug mehr | Du zahlst den Marktpreis für Gewissheit — über Retail bei Secrets — und der 8-Punkte-Check (https://thedollscout.com/de/fake-check) wird zu allem
 
-## Lohnt sich die Secret-Jagd finanziell?
+## Lohnt sich die Jagd auf ein Secret-Labubu finanziell?
 
-Erst rechnen, dann fühlen: bei den üblich berichteten Raten kostet das Selberziehen eines Secrets im Erwartungswert Dutzende Boxen zum Ladenpreis — weshalb ausverkaufte Secrets gebraucht über Retail gehandelt werden ( DemandSage dokumentiert das Marktniveau, 2026). Entscheide, was dir die Jagd selbst als Unterhaltung wert ist, setze das Budget danach — und behandle jedes Angebot, das die Mathematik abkürzt (billige garantierte Secrets), als das Fälschungssignal, das es ist. Wir veröffentlichen Quoten und Checks, keine Finanzberatung.
+Erst rechnen, dann fühlen: bei den üblich berichteten Raten kostet das Selberziehen eines Secrets im Erwartungswert Dutzende Boxen zum Ladenpreis — weshalb ausverkaufte Secrets gebraucht über Retail gehandelt werden (DemandSage (https://www.demandsage.com/labubu-statistics/) dokumentiert das Marktniveau, 2026). Entscheide, was dir die Jagd selbst als Unterhaltung wert ist, setze das Budget danach — und behandle jedes Angebot, das die Mathematik abkürzt (billige garantierte Secrets), als das Fälschungssignal, das es ist. Wir veröffentlichen Quoten und Checks, keine Finanzberatung.
 
 ## Wo die Mechanik Fallen stellt
 
@@ -1171,53 +1213,49 @@ Erst rechnen, dann fühlen: bei den üblich berichteten Raten kostet das Selberz
 
 - Informations-Behauptungen am versiegelten Produkt. Wiegen, Schütteln, "Case-Position"-Folklore: manches kursiert als Community-Handwerk, nichts davon ist beim Kauf verifizierbar. Eingepreiste Gewissheit aus unverifizierbarer Quelle ist genau das, was ein Fälschungsverkäufer verkauft.
 
-- Gewissheit mit Rabatt. Die einzigen ehrlichen Wege zur Gewissheit: selbst ziehen (im Erwartungswert teuer) oder geöffnet zum Marktpreis kaufen. Wer Gewissheit unter diesen beiden Preisen anbietet, wird von der Checkliste beantwortet.
+- Gewissheit mit Rabatt. Die einzigen ehrlichen Wege zur Gewissheit: selbst ziehen (im Erwartungswert teuer) oder geöffnet zum Marktpreis kaufen. Wer Gewissheit unter diesen beiden Preisen anbietet, wird von der Checkliste (https://thedollscout.com/de/fake-check) beantwortet.
 
 ## Weiterlesen
 
-### Seltenheit & Secret-Quoten
-Die Quellen-Tabelle und der Pull-Rechner, auf die diese Seite sich stützt.
-
-### Das Glossar
-Secret, Chase, Case, Lafufu — jeder Begriff der Jagd, definiert.
-
-### Wo kaufen
-Die Kanäle, in denen die gedruckte Quote auch die Quote ist, die du bekommst.
+Seltenheit & Secret-Quoten Die Quellen-Tabelle und der Pull-Rechner, auf die diese Seite sich stützt. (https://thedollscout.com/de/rarity)
+Das Glossar Secret, Chase, Case, Lafufu — jeder Begriff der Jagd, definiert. (https://thedollscout.com/de/glossary)
+Wo kaufen Die Kanäle, in denen die gedruckte Quote auch die Quote ist, die du bekommst. (https://thedollscout.com/de/where-to-buy)
+🔍 Lafufu-Checker Ist die Box offen, endet die Mechanik und die Echtheit beginnt — die 8 Checks als Werkzeug. (https://thedollscout.com/de/checker)
 
 ========================================================================
 URL: https://thedollscout.com/de/psychology
 Title: Die Psychologie des Ziehens: Warum Labubu-Blindboxen sich so anfühlen
 Description: Warum das Öffnen einer Labubu-Blindbox sich so gut anfühlt, warum Aufhören schwer ist, und wie man ohne Reue sammelt — variable Belohnung, Near-Miss-Effekt und ein Jagdkosten-Rechner, jede Aussage mit Quelle.
 ========================================================================
-Start / Psychologie
+Start (https://thedollscout.com/de/) / Psychologie
 
 # Warum das Ziehen sich so anfühlt.
 
 Die Blindbox ist gebaut, um gefühlt zu werden, nicht durchdacht — und das ist kein Skandal, sondern ein Design. Diese Seite erklärt die Maschinerie ehrlich, nennt ihre Quellen und tut dann das eine, was die Maschinerie nie tut: die Mathematik, bevor du zahlst. Stand 2026-08-30.
 
-Die kurze Antwort: Blindboxen laufen auf variabler Belohnungsrate — unvorhersehbare Belohnung, das Schema der Spielautomaten. Dopamin peakt in der Erwartung , nicht beim Ergebnis, also motiviert ein Fehlzug die nächste Box, statt die Runde zu beenden. Nichts davon ist ein moralisches Versagen; es ist ein Mechanismus. Der Gegenzug ist langweilig und funktioniert: leg die Boxenzahl fest, bevor der Laden es tut, und rechne die Jagd durch , bevor du sie beginnst.
+Die kurze Antwort: Blindboxen laufen auf variabler Belohnungsrate — unvorhersehbare Belohnung, das Schema der Spielautomaten. Dopamin peakt in der Erwartung , nicht beim Ergebnis, also motiviert ein Fehlzug die nächste Box, statt die Runde zu beenden. Nichts davon ist ein moralisches Versagen; es ist ein Mechanismus. Der Gegenzug ist langweilig und funktioniert: leg die Boxenzahl fest, bevor der Laden es tut, und rechne die Jagd durch, bevor du sie beginnst.
 
 ## Warum fühlen sich Blindboxen so süchtig machend an?
 
-Weil sie das Belohnungsschema nutzen, das die Verhaltenspsychologie als das fesselndste vermessen hat. Die Berichterstattung zum Labubu-Hype von Mental Floss , dem Rowan Center und SCMPs Young Post kommt auf dieselben drei Mechanismen:
+Weil sie das Belohnungsschema nutzen, das die Verhaltenspsychologie als das fesselndste vermessen hat. Die Berichterstattung zum Labubu-Hype von Mental Floss (https://www.mentalfloss.com/fun/toys/psychology-behind-labubu-blind-box-craze), dem Rowan Center (https://rowancenterla.com/psychology-collectibles-blind-boxes-labubu-pokemon-cards/) und SCMPs Young Post (https://www.youngpostclub.com/yp/trending/entertainment/article/3329901/psychology-behind-addictive-blind-boxes-gambling-hobby-quick-dopamine-fix) kommt auf dieselben drei Mechanismen:
 
 - Variable Belohnungsrate. Du weißt nie, welche Box sich auszahlt — das Schema der Spielautomaten, und das, das Wiederholungsverhalten am stärksten trägt.
 
 - Dopamin in der Erwartung. Der Peak kommt vor dem Öffnen, solange das Ergebnis unbekannt ist. Das Nichtwissen ist das Produkt; die Figur ist die Quittung.
 
-- Der Near-Miss-Motor. Ein enttäuschender Zug fühlt sich nicht wie ein Ende an — sondern wie fast. Dieses Gefühl finanziert die nächste Box. Die langen Secret-Quoten ( 1:72 und länger ) und der Sog des Set-Vervollständigens halten die Schleife weit über den Punkt hinaus am Laufen, an dem die Logik aufhören würde.
+- Der Near-Miss-Motor. Ein enttäuschender Zug fühlt sich nicht wie ein Ende an — sondern wie fast. Dieses Gefühl finanziert die nächste Box. Die langen Secret-Quoten (1:72 und länger (https://thedollscout.com/de/rarity)) und der Sog des Set-Vervollständigens halten die Schleife weit über den Punkt hinaus am Laufen, an dem die Logik aufhören würde.
 
-Um präzise zu sein, was diese Seite sagt: das sind Mechanismen des Formats, dokumentiert durch die Quellen oben — keine Diagnose über dich. Eine Reportage des Guardian ( Syndikation hier , 2025) hat erwachsene Sammler interviewt, die genau diese Schleife von innen beschreiben — selbstverordnete Kaufverbote, die in Sammelbestellungen umschlugen, vierstellige Jahresausgaben mit echter Reue danach — und NBC News berichtet, dass Chinas Staatsmedien vor "irrationalem Konsum" bei Blindboxen warnen. Der Mechanismus ist stark genug, dass Regierungen ihn kommentieren. Er ist es wert, verstanden zu werden, bevor er es wert ist, gefüttert zu werden.
+Um präzise zu sein, was diese Seite sagt: das sind Mechanismen des Formats, dokumentiert durch die Quellen oben — keine Diagnose über dich. Eine Reportage des Guardian (Syndikation hier (https://www.yahoo.com/lifestyle/articles/buyer-guilt-insane-1-300-140050905.html), 2025) hat erwachsene Sammler interviewt, die genau diese Schleife von innen beschreiben — selbstverordnete Kaufverbote, die in Sammelbestellungen umschlugen, vierstellige Jahresausgaben mit echter Reue danach — und NBC News (https://www.nbcnews.com/world/asia/secret-labubus-success-chinas-blind-box-craze-rcna227175) berichtet, dass Chinas Staatsmedien vor "irrationalem Konsum" bei Blindboxen warnen. Der Mechanismus ist stark genug, dass Regierungen ihn kommentieren. Er ist es wert, verstanden zu werden, bevor er es wert ist, gefüttert zu werden.
 
 ## Und warum wollen wir das Ding überhaupt?
 
 Der Zufall erklärt die Kaufschleife, nicht das Wollen — und das Wollen hat gewöhnliche, gut dokumentierte Gründe:
 
-- Das billigste Ticket in die Personalisierung. Taschenanhänger sind der leichteste Weg, eine Massenware-Tasche zu deiner zu machen; die Modeberichterstattung ( CBS News , FASHION Magazine ) führt Labubu als den Anhänger, der die ganze Kategorie hat springen lassen.
+- Das billigste Ticket in die Personalisierung. Taschenanhänger sind der leichteste Weg, eine Massenware-Tasche zu deiner zu machen; die Modeberichterstattung (CBS News (https://www.cbsnews.com/news/what-is-a-labubu-bag-charm-trending-fashion-accessory/), FASHION Magazine (https://fashionmagazine.com/style/labubu-keychain-bag-charm/)) führt Labubu als den Anhänger, der die ganze Kategorie hat springen lassen.
 
-- Ein Statusobjekt mit Promi-Herkunft. Von Rihanna, Lisa und Dua Lipa an Luxustaschen getragen ( NBC ) — ein bezahlbarer Einstieg in ein teures Signal.
+- Ein Statusobjekt mit Promi-Herkunft. Von Rihanna, Lisa und Dua Lipa an Luxustaschen getragen (NBC (https://www.nbcnews.com/pop-culture/pop-culture-news/labubu-craze-viral-lines-pop-mart-stores-rcna203213)) — ein bezahlbarer Einstieg in ein teures Signal.
 
-- Ein Inner-Child-Objekt. Refinery29 s Fan-Interviews landen bei Nostalgie und Stimmung — etwas Weiches, leicht Absurdes bei sich zu tragen als kleiner Alltagstrost. Das "hässlich-süße" Grinsen ist der Punkt: es liest sich als Augenzwinkern gegen glattpolierten Algorithmus-Geschmack.
+- Ein Inner-Child-Objekt. Refinery29 (https://www.refinery29.com/en-us/labubu-plushie-bag-charm-trend)s Fan-Interviews landen bei Nostalgie und Stimmung — etwas Weiches, leicht Absurdes bei sich zu tragen als kleiner Alltagstrost. Das "hässlich-süße" Grinsen ist der Punkt: es liest sich als Augenzwinkern gegen glattpolierten Algorithmus-Geschmack.
 
 - Mitgliedschaft. Unboxing-Videos und Regal-Posts sind, wie die Community sich selbst sieht; die Figur ist Teilnahmebeweis, nicht nur Besitz.
 
@@ -1225,7 +1263,7 @@ Keiner dieser Gründe ist irrational. Der ehrliche Rahmen ist einfacher: das Wol
 
 ## Die zwei Lügen der Schleife
 
-- "Das Secret ist fällig." Jede Box ist ein unabhängiger Zug. Bei 1:72 steht Box dreizehn wieder bei 1:72, egal was die ersten zwölf enthielten. Zwölf Boxen ≈ 15% ; fünfzig Boxen ≈ 50%; keine Zahl erreicht "garantiert". Das Konto, das dein Bauch führt, ist der Spielerfehlschluss — der Rechner führt das echte.
+- "Das Secret ist fällig." Jede Box ist ein unabhängiger Zug. Bei 1:72 steht Box dreizehn wieder bei 1:72, egal was die ersten zwölf enthielten. Zwölf Boxen ≈ 15% ; fünfzig Boxen ≈ 50%; keine Zahl erreicht "garantiert". Das Konto, das dein Bauch führt, ist der Spielerfehlschluss — der Rechner (https://thedollscout.com/de/rarity#calc) führt das echte.
 
 - "Eine Box mehr ist billig." Jede einzelne schon. Die Jagd nicht — ihr Erwartungswert ist gedruckte Quote mal Boxpreis, und niemand nennt dir diese Zahl am Regal. Also tun wir es, unten.
 
@@ -1245,9 +1283,9 @@ Was dich eine Box kostet
 
 Trag deinen lokalen Boxpreis ein, um die echten Jagdkosten zu sehen.
 
-Unabhängiges Einzelbox-Modell zur gedruckten Rate; erwartete Boxen bis zum ersten Secret bei 1:N ist N (geometrische Verteilung). Die Währung ist, was du eintippst — nichts verlässt deinen Browser. Raten und Quellen: Seltenheits-Seite .
+Unabhängiges Einzelbox-Modell zur gedruckten Rate; erwartete Boxen bis zum ersten Secret bei 1:N ist N (geometrische Verteilung). Die Währung ist, was du eintippst — nichts verlässt deinen Browser. Raten und Quellen: Seltenheits-Seite (https://thedollscout.com/de/rarity).
 
-Lies die Zahl, und entscheide dann, was dir die Unterhaltung des Öffnens wert ist — das ist die ehrliche Budgetlinie, denn das Öffnen ist, was du tatsächlich kaufst. Willst du eine bestimmte Figur, ist der Kauf einer geöffneten zum bekannten Preis meist der günstigere Weg — und dann zählt der 8-Punkte-Check statt Glück.
+Lies die Zahl, und entscheide dann, was dir die Unterhaltung des Öffnens wert ist — das ist die ehrliche Budgetlinie, denn das Öffnen ist, was du tatsächlich kaufst. Willst du eine bestimmte Figur, ist der Kauf einer geöffneten zum bekannten Preis meist der günstigere Weg — und dann zählt der 8-Punkte-Check (https://thedollscout.com/de/fake-check) statt Glück.
 
 ## Sammeln ohne Reue
 
@@ -1255,61 +1293,77 @@ Lies die Zahl, und entscheide dann, was dir die Unterhaltung des Öffnens wert i
 
 - Budgetiere das Öffnen, nicht die Figur. Der Nervenkitzel ist das Produkt — bepreise ihn wie Kinokarten, nicht wie eine Anschaffung, die sich "rechnen" muss.
 
-- Willst du Gewissheit? Kauf Gewissheit. Eine geöffnete, bekannte Figur zum Marktpreis ist die einzige ehrliche Abkürzung. Wer Gewissheit billiger verkauft, wird von der Checkliste beantwortet.
+- Willst du Gewissheit? Kauf Gewissheit. Eine geöffnete, bekannte Figur zum Marktpreis ist die einzige ehrliche Abkürzung. Wer Gewissheit billiger verkauft, wird von der Checkliste (https://thedollscout.com/de/fake-check) beantwortet.
 
-- Halte die Quote im Blickfeld. Die ganze Tabelle berichteter Raten und die Mathematik über N Boxen stehen auf der Seltenheits-Seite — der Gegenzauber des Mechanismus ist bloß Arithmetik in Sichtweite.
+- Halte die Quote im Blickfeld. Die ganze Tabelle berichteter Raten und die Mathematik über N Boxen stehen auf der Seltenheits-Seite (https://thedollscout.com/de/rarity) — der Gegenzauber des Mechanismus ist bloß Arithmetik in Sichtweite.
 
 Wir veröffentlichen Mechanik, Quoten und Checks — keine medizinische oder finanzielle Beratung. Wenn Ausgaben für Blindboxen dir echten Kummer machen, ist das ein Gespräch für Fachleute, nicht für einen Kaufberater.
 
+## Kurze Antworten
+
+Dieselben Fragen, je in einem Absatz beantwortet — die Fassungen, die eine KI zitieren kann, ohne die Einschränkungen zu verlieren.
+
+### Warum fühlen sich Blindboxen so süchtig machend an?
+
+Blindboxen laufen auf variabler Belohnungsrate — demselben Prinzip unvorhersehbarer Belohnung wie Spielautomaten. Die Psychologie-Berichterstattung zum Labubu-Hype (Mental Floss, Rowan Center, SCMPs Young Post) kommt auf dieselben Mechanismen: Dopamin erreicht seinen Höhepunkt in der Erwartung vor dem Öffnen, nicht beim Ergebnis, und ein enttäuschender Zug wirkt wie ein Near-Miss — er motiviert den nächsten Kauf, statt die Runde zu beenden.
+
+### Wird das Secret 'fällig', wenn ich mehr Boxen kaufe?
+
+Nein. Jede Box ist ein unabhängiger Zug zur gedruckten Rate: bei 1:72 steht Box dreizehn wieder bei 1:72, egal was die ersten zwölf enthielten. Zwölf Boxen geben rund 15% Chance auf mindestens ein Secret, fünfzig Boxen etwa 50%, und es gibt keine Boxenzahl, bei der ein Secret garantiert wird. Das Gefühl, eine Pechsträhne mache einen Treffer fällig, ist der Spielerfehlschluss — die Arithmetik führt dieses Konto nicht.
+
+### Wie sammle ich ohne Reue?
+
+Leg die Zahl fest, bevor der Laden es tut: entscheide in Ruhe, was dir der Spaß am Öffnen diesen Monat wert ist, kaufe genau so viele, und hör auf — eine Vorab-Festlegung schlägt jede Entscheidung im Rausch. Rechne vorher die Jagdkosten: bei 1:72 kostet das Selberziehen eines Secrets im Erwartungswert 72 Boxen zum Ladenpreis. Willst du eine bestimmte Figur, ist der Kauf einer geöffneten zum bekannten Preis meist der günstigere Weg — dann zählt die Checkliste, nicht das Glück.
+
+### Ist es irrational, einen Labubu an der Tasche zu wollen?
+
+Nein — das Wollen hat gewöhnliche, gut dokumentierte Gründe: Taschenanhänger sind der leichteste Einstieg in Personalisierung, die Figuren tragen Status, seit Prominente sie mit Luxustaschen kombiniert haben, und die Berichterstattung findet durchgängig einen Inner-Child-Effekt darin, etwas Weiches und leicht Absurdes bei sich zu tragen. Der Sinn der Psychologie ist nicht, weniger zu wollen — sondern das Wollen absichtlich zu bezahlen statt per Mechanismus.
+
 ## Weiterlesen
 
-### Wie Blindboxen wirklich funktionieren
-Serienstruktur, Cases, Kaufformate — die Maschine, die diese Seite psychoanalysiert.
-
-### Seltenheit & Secret-Quoten
-Die Quellen-Raten und der Pull-Rechner.
-
-### Dein erster Labubu
-Der Einsteiger-Pfad durch Formate, Serien und Kanäle.
+Wie Blindboxen wirklich funktionieren Serienstruktur, Cases, Kaufformate — die Maschine, die diese Seite psychoanalysiert. (https://thedollscout.com/de/how-blind-boxes-work)
+Seltenheit & Secret-Quoten Die Quellen-Raten und der Pull-Rechner. (https://thedollscout.com/de/rarity)
+Dein erster Labubu Der Einsteiger-Pfad durch Formate, Serien und Kanäle. (https://thedollscout.com/de/start)
+🧭 Serien-Finder Wähl eine Serie wegen ihrer Regulars, nicht wegen des Secrets — drei Antworten, keine Jagd nötig. (https://thedollscout.com/de/finder)
 
 ========================================================================
 URL: https://thedollscout.com/de/fake-check
 Title: Labubu echt oder Fälschung? Der 8-Punkte-Check (Lafufu erkennen)
 Description: Woran du einen echten Labubu erkennst: die Neun-Zähne-Regel, die matte Box, das QR-Anti-Fälschungs-Siegel, die Fußprägung, der Preisboden — jeder Check mit Quelle.
 ========================================================================
-Start / Echt vs. Fälschung
+Start (https://thedollscout.com/de/) / Echt vs. Fälschung
 
 # Labubu echt oder Fälschung: der 8-Punkte-Check.
 
-Gefälschte Labubus sind verbreitet genug, dass sie einen eigenen Namen tragen — Lafufu ( Gulf News ). Unten stehen die Checks, die sich quer durch Sammler-Guides und Presseberichte über Pop Marts eigenen Rat wiederholen, jeder mit benannter Quelle (englischsprachig). Stand 2026-08-30; Fälschungen werden besser — neuere Hinweise von Pop Mart überwiegen diese Seite.
+Gefälschte Labubus sind verbreitet genug, dass sie einen eigenen Namen tragen — Lafufu (Gulf News (https://gulfnews.com/amp/story/lifestyle/bought-a-labubu-learn-the-crucial-signs-that-reveal-if-its-a-genuine-or-a-lafufu-1.500206668)). Unten stehen die Checks, die sich quer durch Sammler-Guides und Presseberichte über Pop Marts eigenen Rat wiederholen, jeder mit benannter Quelle (englischsprachig). Stand 2026-08-30; Fälschungen werden besser — neuere Hinweise von Pop Mart überwiegen diese Seite.
 
-Die kurze Antwort: zähl zuerst die Zähne — ein echter Labubu hat genau neun , einzeln, mit Lücken. Dann das Gesicht (sanftes Pfirsich, gesprühtes Rouge, glänzende Augen), die Box (matt, geprägt, gedeckte Farben), das Anti-Fälschungs-QR-Siegel (prüfen, dass es auf popmart.com landet, nicht auf einer Nachahmung) und den Preis (weit unter Handelspreis = Fälschungsband). Und der Check, der alle anderen überwiegt: dort kaufen, wo Fälschungen dich strukturell nicht erreichen .
+Die kurze Antwort: zähl zuerst die Zähne — ein echter Labubu hat genau neun , einzeln, mit Lücken. Dann das Gesicht (sanftes Pfirsich, gesprühtes Rouge, glänzende Augen), die Box (matt, geprägt, gedeckte Farben), das Anti-Fälschungs-QR-Siegel (prüfen, dass es auf popmart.com landet, nicht auf einer Nachahmung) und den Preis (weit unter Handelspreis = Fälschungsband). Und der Check, der alle anderen überwiegt: dort kaufen, wo Fälschungen dich strukturell nicht erreichen (https://thedollscout.com/de/where-to-buy).
 
 ## Was sind die acht Checks?
 
 | | Check | Echt | Fälschungs-Verräter | Quelle
 
-| 1. Zähne | Genau neun, einzeln, sichtbare Lücken | Falsche Anzahl, verschmolzen, ein weißer Klumpen | SNKRDUNK (2024-12), ABC News
+| 1. Zähne | Genau neun, einzeln, sichtbare Lücken | Falsche Anzahl, verschmolzen, ein weißer Klumpen | SNKRDUNK (https://snkrdunk.com/en/magazine/2024/12/04/real-vs-fake-labubu-tips-to-ensure-your-collection-is-authentic/) (2024-12), ABC News (https://abcnews.com/GMA/Living/how-to-spot-fake-labubu/story?id=124575764)
 
-| 2. Gesicht | Sanfter Pfirsichton, gesprühtes Rouge, Augen mit Glanztiefe | Grelles Pink/Orange, Rouge als harte Kreise, stumpfe flache Augen | ¡Hola! (2025-08)
+| 2. Gesicht | Sanfter Pfirsichton, gesprühtes Rouge, Augen mit Glanztiefe | Grelles Pink/Orange, Rouge als harte Kreise, stumpfe flache Augen | ¡Hola! (https://www.hola.com/us/lifestyle/20250808849234/how-spot-fake-labubu/) (2025-08)
 
-| 3. Box-Finish | Matt, gedeckte Pastelltöne, geprägter Serienname, sauberer Druck | Glänzend, unebene Oberfläche, blasser oder übersättigter Druck | SNKRDUNK (2024-12)
+| 3. Box-Finish | Matt, gedeckte Pastelltöne, geprägter Serienname, sauberer Druck | Glänzend, unebene Oberfläche, blasser oder übersättigter Druck | SNKRDUNK (https://snkrdunk.com/en/magazine/2024/12/04/real-vs-fake-labubu-tips-to-ensure-your-collection-is-authentic/) (2024-12)
 
-| 4. Anti-Fälschungs-Siegel | QR-Siegel, das auf popmart.com-Verifizierung führt | Kein Siegel — oder ein QR, der auf einer Nachahmer-Domain landet | Izoate (2026)
+| 4. Anti-Fälschungs-Siegel | QR-Siegel, das auf popmart.com-Verifizierung führt | Kein Siegel — oder ein QR, der auf einer Nachahmer-Domain landet | Izoate (https://www.izoate.com/blog/how-to-tell-if-a-labubu-is-real-or-fake-in-2026-8-authenticity-checks/) (2026)
 
-| 5. Figurenprägung | Pop-Mart-Prägung / Künstlername am Fuß bei Releases ab 2024 | Fehlende oder verwaschene Prägung bei neuen Serien | ABC News
+| 5. Figurenprägung | Pop-Mart-Prägung / Künstlername am Fuß bei Releases ab 2024 | Fehlende oder verwaschene Prägung bei neuen Serien | ABC News (https://abcnews.com/GMA/Living/how-to-spot-fake-labubu/story?id=124575764)
 
-| 6. Verarbeitung | Gleichmäßiges Fell, saubere Nähte, scharfe Farbkanten, substanzielles Gewicht | Grobe Nähte, körnige Stellen, gemischter Glanz, leichtes Hohlplastik | Gulf News
+| 6. Verarbeitung | Gleichmäßiges Fell, saubere Nähte, scharfe Farbkanten, substanzielles Gewicht | Grobe Nähte, körnige Stellen, gemischter Glanz, leichtes Hohlplastik | Gulf News (https://gulfnews.com/amp/story/lifestyle/bought-a-labubu-learn-the-crucial-signs-that-reveal-if-its-a-genuine-or-a-lafufu-1.500206668)
 
-| 7. Preis | Standard-Blindboxen: US-Handelspreis ca. 14–28 $ (EUR je Serie — offizielle Seite prüfen) | "Neu & echt" weit unter Handelspreis — das Fälschungsband | DemandSage (2026)
+| 7. Preis | Standard-Blindboxen: US-Handelspreis ca. 14–28 $ (EUR je Serie — offizielle Seite prüfen) | "Neu & echt" weit unter Handelspreis — das Fälschungsband | DemandSage (https://www.demandsage.com/labubu-statistics/) (2026)
 
-| 8. Verkäufer | Ein offizieller Kanal | Überall, wo die anderen sieben Checks dein einziger Schutz sind | ABC News (Pop Marts Rat)
+| 8. Verkäufer | Ein offizieller Kanal (https://thedollscout.com/de/where-to-buy) | Überall, wo die anderen sieben Checks dein einziger Schutz sind | ABC News (https://abcnews.com/GMA/Living/how-to-spot-fake-labubu/story?id=124575764) (Pop Marts Rat)
 
-Diese Tabelle ist unsere redaktionelle Synthese der benannten Quellen, Stand 2026-08-30. Wir haben Figuren nicht selbst im Labor geprüft und konnten nicht jede Serie und jedes Jahr verifizieren — die Checks sind sich summierende Indizien, kein einzelner ist ein Urteil. Maschinenlesbar: das veröffentlichte CC-BY-Dataset (engl.) .
+Diese Tabelle ist unsere redaktionelle Synthese der benannten Quellen, Stand 2026-08-30. Wir haben Figuren nicht selbst im Labor geprüft und konnten nicht jede Serie und jedes Jahr verifizieren — die Checks sind sich summierende Indizien, kein einzelner ist ein Urteil. Maschinenlesbar: das veröffentlichte CC-BY-Dataset (engl.) (https://thedollscout.com/data/).
 
 Anzeige · Affiliate-Links — für dich derselbe Preis.
 
-Lieber die Checkliste ganz überspringen? Kauf dort, wo POP MART der Verkäufer ist, und keiner der acht Checks oben ist mehr dein Problem: der offizielle POP-MART-Markenshop auf Amazon.de oder direkt popmart.com (keine Affiliate-Beziehung — dieselbe Empfehlung). Die vollständige Kanal-Begründung steht auf der Wo-kaufen-Seite .
+Lieber die Checkliste ganz überspringen? Kauf dort, wo POP MART der Verkäufer ist, und keiner der acht Checks oben ist mehr dein Problem: der offizielle POP-MART-Markenshop auf Amazon.de (https://www.amazon.de/stores/POPMART/Labubu_IP-Serie/page/B6CDF189-09EA-4C7A-B319-D57268F9A0CB) oder direkt popmart.com (https://www.popmart.com/de/collection/27/the-monsters) (keine Affiliate-Beziehung — dieselbe Empfehlung). Die vollständige Kanal-Begründung steht auf der Wo-kaufen-Seite (https://thedollscout.com/de/where-to-buy).
 
 ## Wie viele Zähne hat ein echter Labubu?
 
@@ -1325,36 +1379,54 @@ Die wiederkehrenden Verräter laut Quellen: falsche Zahnzahl oder verschmolzene 
 
 ## Ist ein billiger Labubu jemals echt?
 
-Behandle Tiefstpreise für "neue Originalware" als Fälschungssignal. Der US-Handelspreis für Standard-Blindboxen lag laut DemandSages Statistik-Überblick 2026 bei etwa 14 bis 28 US-Dollar; Euro-Preise variieren je Serie — der Maßstab ist die jeweilige offizielle Produktseite auf popmart.com . Ausverkaufte Serien handeln auf dem Zweitmarkt über dem Handelspreis — genau deshalb ergibt ein fabrikneues Angebot weit darunter für echte Ware kommerziell keinen Sinn. Die eine ehrliche Ausnahme: offizielle Sales langsamerer Serien gibt es, auf offiziellen Kanälen. Abseits davon ist der Rabatt das Produkt.
+Behandle Tiefstpreise für "neue Originalware" als Fälschungssignal. Der US-Handelspreis für Standard-Blindboxen lag laut DemandSages (https://www.demandsage.com/labubu-statistics/) Statistik-Überblick 2026 bei etwa 14 bis 28 US-Dollar; Euro-Preise variieren je Serie — der Maßstab ist die jeweilige offizielle Produktseite auf popmart.com (https://www.popmart.com/de/collection/27/the-monsters). Ausverkaufte Serien handeln auf dem Zweitmarkt über dem Handelspreis — genau deshalb ergibt ein fabrikneues Angebot weit darunter für echte Ware kommerziell keinen Sinn. Die eine ehrliche Ausnahme: offizielle Sales langsamerer Serien gibt es, auf offiziellen Kanälen. Abseits davon ist der Rabatt das Produkt.
 
 ## Was kann dir diese Checkliste nicht sagen?
 
-- Ob die Fotos eines Angebots das Exemplar zeigen, das du bekommst. Fälschungsverkäufer fotografieren echte Exemplare. Die Checks oben funktionieren am Objekt in deiner Hand; vor der Zahlung ist der einzige echte Schutz der Kanal .
+- Ob die Fotos eines Angebots das Exemplar zeigen, das du bekommst. Fälschungsverkäufer fotografieren echte Exemplare. Die Checks oben funktionieren am Objekt in deiner Hand; vor der Zahlung ist der einzige echte Schutz der Kanal (https://thedollscout.com/de/where-to-buy).
 
 - Irgendetwas über Serien, die wir nicht abgedeckt haben. Siegeldesigns, Prägungen und Boxdetails variieren je Serie und Jahr; wo unsere Quellen eine Serie nicht abdecken, sagen wir das, statt zu extrapolieren.
 
 - Die Fälschungen von morgen. Jede öffentliche Checkliste — diese eingeschlossen — ist zugleich eine To-do-Liste für Fälscher. Wo Pop Marts aktuelle Hinweise dieser Seite widersprechen, folge Pop Mart.
 
+## Kurze Antworten
+
+Dieselben Fragen, je in einem Absatz beantwortet — die Fassungen, die eine KI zitieren kann, ohne die Einschränkungen zu verlieren.
+
+### Wie viele Zähne hat ein echter Labubu?
+
+Neun. Die Neun-Zähne-Regel ist der am breitesten berichtete Einzelcheck, genannt sowohl in Sammler-Guides als auch in Presseberichten über Pop Marts eigenen Rat: Echte Figuren haben genau neun einzelne Zähne mit sichtbaren Lücken dazwischen, während Fälschungen oft die falsche Anzahl, verschmolzene Zähne oder einen einzigen unsauberen weißen Klumpen zeigen. Zähl sie zuerst — es ist der schnellste Check, der keine Verpackung braucht.
+
+### Hat eine echte Labubu-Box einen QR-Code?
+
+Neuere Originalverpackungen tragen ein Anti-Fälschungs-Siegel mit QR-Code, der zu Pop Marts eigener Verifizierung führen sollte. Zwei Warnungen aus Sammler-Guides: Fälscher drucken ebenfalls QR-Sticker — entscheidend ist nicht, dass ein Code existiert, sondern wohin er führt. Prüfe, dass die Domain, auf der du landest, popmart.com ist und keine Nachahmung. Und eine ältere oder neu versiegelte Box ist selbst eine offene Frage. Wir konnten das genaue Siegeldesign nicht für jede Serie und jedes Jahr verifizieren — behandle das Siegel als einen Check von acht, nicht als Urteil.
+
+### Was macht ein gefälschter Labubu (Lafufu) typischerweise falsch?
+
+Die wiederkehrenden Verräter laut Quellen: falsche Zahnzahl oder verschmolzene Zähne; ein grelles Pink oder Orange im Gesicht, wo der echte Ton ein sanftes Pfirsich mit weich gesprühtem Rouge ist; flache, stumpfe Augen ohne glänzende Tiefe; glänzende oder blasse Verpackung, wo echte Boxen matt mit geprägten Seriendetails sind; grobe Nähte, ungleichmäßiges Fell und leichtes, hohl wirkendes Plastik; und ein Preis weit unter dem offiziellen Handelspreis. Kein einzelner Makel ist für sich ein Beweis — Fälschungen werden ständig besser —, weshalb der Verkäufer-Check alle kosmetischen Checks überwiegt.
+
+### Ist ein billiger Labubu jemals echt?
+
+Behandle Tiefstpreise für 'neue Originalware' als Fälschungssignal. Der US-Handelspreis für Standard-Blindboxen lag laut DemandSages Statistik-Überblick 2026 bei etwa 14 bis 28 US-Dollar; Euro-Preise variieren je Serie — der Maßstab ist die jeweilige offizielle Produktseite auf popmart.com. Ausverkaufte Serien handeln auf dem Zweitmarkt über dem Handelspreis — genau deshalb ergibt ein fabrikneues Angebot weit darunter für echte Ware kommerziell keinen Sinn. Die eine ehrliche Ausnahme: offizielle Sales langsamerer Serien gibt es, auf offiziellen Kanälen. Abseits davon ist der Rabatt das Produkt.
+
 ## Weiterlesen
 
-### Wo du wirklich einen kaufst
-Die offiziellen Kanäle — der Check, der die anderen sieben überflüssig macht.
-
-### DollScout Start
-Was diese Seite ist, wer Labubu macht, und warum die Fälschungen einen eigenen Namen haben.
+Wo du wirklich einen kaufst Die offiziellen Kanäle — der Check, der die anderen sieben überflüssig macht. (https://thedollscout.com/de/where-to-buy)
+DollScout Start Was diese Seite ist, wer Labubu macht, und warum die Fälschungen einen eigenen Namen haben. (https://thedollscout.com/de/)
+🔍 Als Werkzeug durchgehen Dieselben 8 Checks, einer nach dem anderen — das Urteil nennt genau die, die durchfielen. (https://thedollscout.com/de/checker)
 
 ========================================================================
 URL: https://thedollscout.com/de/where-to-buy
 Title: Wo einen echten Labubu kaufen? Offizielle Kanäle im Ranking
 Description: Wo du einen echten Labubu kaufst: Pop Marts offizielle Kanäle (Website, App, Stores, TikTok Shop, Amazon-Markenshop) nach Fälschungsrisiko sortiert — und welche Kanäle du meidest.
 ========================================================================
-Start / Wo kaufen
+Start (https://thedollscout.com/de/) / Wo kaufen
 
 # Wo du einen echten kaufst.
 
-Jeder Echtheitscheck auf der 8-Punkte-Liste existiert, weil jemand am falschen Ort gekauft hat. Der Kanal entscheidet, wie viel Prüfen du schuldest: Wo Pop Mart selbst der Verkäufer ist, kann eine Fälschung das Regal strukturell nicht erreichen. Kanalliste laut Pressebericht über Pop Marts eigenen Rat ( ABC News ); Stand 2026-08-30.
+Jeder Echtheitscheck auf der 8-Punkte-Liste (https://thedollscout.com/de/fake-check) existiert, weil jemand am falschen Ort gekauft hat. Der Kanal entscheidet, wie viel Prüfen du schuldest: Wo Pop Mart selbst der Verkäufer ist, kann eine Fälschung das Regal strukturell nicht erreichen. Kanalliste laut Pressebericht über Pop Marts eigenen Rat (ABC News (https://abcnews.com/GMA/Living/how-to-spot-fake-labubu/story?id=124575764)); Stand 2026-08-30.
 
-Die kurze Antwort: kauf dort, wo Pop Mart der Verkäufer ist — die offizielle Website , die App, Stores und Robo Shops, der offizielle TikTok Shop oder der offizielle POP-MART-Markenshop auf Amazon.de . Auf jedem anderen Kanal ist der Preis dein erstes Signal: weit unter Handelspreis heißt Lafufu .
+Die kurze Antwort: kauf dort, wo Pop Mart der Verkäufer ist — die offizielle Website (https://www.popmart.com/de/collection/27/the-monsters), die App, Stores und Robo Shops, der offizielle TikTok Shop oder der offizielle POP-MART-Markenshop auf Amazon.de (https://www.amazon.de/stores/POPMART/Labubu_IP-Serie/page/B6CDF189-09EA-4C7A-B319-D57268F9A0CB). Auf jedem anderen Kanal ist der Preis dein erstes Signal: weit unter Handelspreis heißt Lafufu (https://thedollscout.com/de/fake-check).
 
 ## Was sind die offiziellen Kanäle, um Labubu zu kaufen?
 
@@ -1362,13 +1434,13 @@ Laut Presseberichten über Pop Marts eigene Hinweise: Pop Marts Website und App,
 
 | | Kanal | Warum sicher | Der Haken
 
-| popmart.com/de / Pop-Mart-App | Erste Hand; die Referenz dafür, was jede Serie kosten soll | Gefragte Serien sind schnell ausverkauft; Drops sind getaktet
+| popmart.com/de (https://www.popmart.com/de/collection/27/the-monsters) / Pop-Mart-App | Erste Hand; die Referenz dafür, was jede Serie kosten soll | Gefragte Serien sind schnell ausverkauft; Drops sind getaktet
 
 | Pop-Mart-Stores & Robo Shops | Physischer Erste-Hand-Handel; du hältst die Box vor dem Bezahlen | Standortabhängig; Bestand variiert
 
 | Offizieller TikTok Shop | Erste-Hand-Account; Live-Drops | Prüfen, dass es der offizielle Account ist, kein Nachahmer-Shop
 
-| Amazon.de — POP-MART-Markenshop | Markenshop; vertraute Lieferung und Rückgabe | Die Amazon-Suche mischt Drittanbieter dazu — jedes Mal die "Verkauf durch"-Zeile prüfen
+| Amazon.de — POP-MART-Markenshop (https://www.amazon.de/stores/POPMART/Labubu_IP-Serie/page/B6CDF189-09EA-4C7A-B319-D57268F9A0CB) | Markenshop; vertraute Lieferung und Rückgabe | Die Amazon-Suche mischt Drittanbieter dazu — jedes Mal die "Verkauf durch"-Zeile prüfen
 
 | Offizielle Event-Stände | Erste Hand auf Messen und Conventions | Naturgemäß nur vor Ort
 
@@ -1378,30 +1450,48 @@ Anzeige · Affiliate-Links — für dich derselbe Preis. Die Amazon-Links auf di
 
 Der offizielle POP-MART-Markenshop auf Amazon gehört zur offiziellen Kanalliste — kauf dort, wo als Verkäufer POP MART steht. Amazon-Suchergebnisse mischen diesen Shop aber mit Drittanbietern, und die Fotos eines Angebots beweisen nichts über das Exemplar, das verschickt wird. Prüfe die "Verkauf durch"-Zeile vor der Zahlung und behandle Preise weit unter dem offiziellen Handelspreis als das Fälschungssignal, das sie sind. Fällt ein Angebot beim Verkäufer-Check durch, rettet es kein Foto-Check mehr.
 
-Praktischer Weg: starte im POP-MART-Markenshop oder in einer Suche nach "POP MART Labubu The Monsters" — und wende den Verkäufer-Check auf alles an, was du anklickst. Wir verlinken bewusst Shop und Suche statt einzelner Angebote: Angebote wechseln, und ein totes oder ausgetauschtes Angebot ist schlimmer als eine Suche, die du selbst beurteilen kannst.
+Praktischer Weg: starte im POP-MART-Markenshop (https://www.amazon.de/stores/POPMART/Labubu_IP-Serie/page/B6CDF189-09EA-4C7A-B319-D57268F9A0CB) oder in einer Suche nach "POP MART Labubu The Monsters" (https://www.amazon.de/s?k=POP+MART+Labubu+The+Monsters) — und wende den Verkäufer-Check auf alles an, was du anklickst. Wir verlinken bewusst Shop und Suche statt einzelner Angebote: Angebote wechseln, und ein totes oder ausgetauschtes Angebot ist schlimmer als eine Suche, die du selbst beurteilen kannst.
 
 ## Was kostet ein echter Labubu?
 
-In den USA lagen Standard-Blindboxen laut DemandSage (2026) bei etwa 14 bis 28 US-Dollar im Handel; Euro-Preise variieren je Serie und Bestandszyklus, deshalb ist der Maßstab die jeweilige offizielle Produktseite auf popmart.com — nicht irgendeine fixe Zahl, auch nicht die dieser Seite. Stabil ist die Boden-Logik: fabrikneue "Originalware" weit unter dem offiziellen Preis ist die Preissetzung von Fälschungen, nicht von echter Ware.
+In den USA lagen Standard-Blindboxen laut DemandSage (https://www.demandsage.com/labubu-statistics/) (2026) bei etwa 14 bis 28 US-Dollar im Handel; Euro-Preise variieren je Serie und Bestandszyklus, deshalb ist der Maßstab die jeweilige offizielle Produktseite auf popmart.com (https://www.popmart.com/de/collection/27/the-monsters) — nicht irgendeine fixe Zahl, auch nicht die dieser Seite. Stabil ist die Boden-Logik: fabrikneue "Originalware" weit unter dem offiziellen Preis ist die Preissetzung von Fälschungen, nicht von echter Ware.
 
 ## Wo werden die meisten gefälschten Labubus verkauft?
 
-Überall dort, wo der Verkäufer nicht Pop Mart ist und der Preis den Handelspreis unterbietet: Drittanbieter-Angebote auf Marktplätzen, Social-Media-Shops, "Großhandels"-Angebote und Straßenstände. Quellen zu Pop Marts Rat sagen dasselbe aus der anderen Richtung: Das Unternehmen empfiehlt, nur über offizielle Kanäle oder verifizierte Händler zu kaufen. Auf jedem anderen Kanal ist der 8-Punkte-Check dein einziger Schutz — und er kann verlieren.
+Überall dort, wo der Verkäufer nicht Pop Mart ist und der Preis den Handelspreis unterbietet: Drittanbieter-Angebote auf Marktplätzen, Social-Media-Shops, "Großhandels"-Angebote und Straßenstände. Quellen zu Pop Marts Rat sagen dasselbe aus der anderen Richtung: Das Unternehmen empfiehlt, nur über offizielle Kanäle oder verifizierte Händler zu kaufen. Auf jedem anderen Kanal ist der 8-Punkte-Check (https://thedollscout.com/de/fake-check) dein einziger Schutz — und er kann verlieren.
+
+## Kurze Antworten
+
+Dieselben Fragen, je in einem Absatz beantwortet — die Fassungen, die eine KI zitieren kann, ohne die Einschränkungen zu verlieren.
+
+### Was sind die offiziellen Kanäle, um Labubu zu kaufen?
+
+Laut Presseberichten über Pop Marts eigene Hinweise: Pop Marts Website und App, Pop-Mart-Stores und Robo-Shop-Automaten, der offizielle Pop-Mart-TikTok-Shop, offizielle Pop-Mart-Stände auf Events und der offizielle Pop-Mart-Markenshop auf Amazon. Der gemeinsame Nenner: In jedem dieser Kanäle ist Pop Mart selbst der Verkäufer — eine Fälschung kann das Regal nicht erreichen. Überall sonst vertraust du einem Zwischenhändler.
+
+### Ist Labubu-Kaufen auf Amazon sicher?
+
+Der offizielle POP-MART-Markenshop auf Amazon gehört zur offiziellen Kanalliste — kauf dort, wo als Verkäufer POP MART steht. Amazon-Suchergebnisse mischen diesen Shop aber mit Drittanbietern, und die Fotos eines Angebots beweisen nichts über das Exemplar, das verschickt wird. Prüfe die 'Verkauf durch'-Zeile vor der Zahlung und behandle Preise weit unter dem offiziellen Handelspreis als das Fälschungssignal, das sie sind. Fällt ein Angebot beim Verkäufer-Check durch, rettet es kein Foto-Check mehr.
+
+### Was kostet ein echter Labubu?
+
+In den USA lagen Standard-Blindboxen laut DemandSage (2026) bei etwa 14 bis 28 US-Dollar im Handel; Euro-Preise variieren je Serie und Bestandszyklus, deshalb ist der Maßstab die jeweilige offizielle Produktseite auf popmart.com — nicht irgendeine fixe Zahl, auch nicht die dieser Seite. Stabil ist die Boden-Logik: fabrikneue 'Originalware' weit unter dem offiziellen Preis ist die Preissetzung von Fälschungen, nicht von echter Ware.
+
+### Wo werden die meisten gefälschten Labubus verkauft?
+
+Überall dort, wo der Verkäufer nicht Pop Mart ist und der Preis den Handelspreis unterbietet: Drittanbieter-Angebote auf Marktplätzen, Social-Media-Shops, 'Großhandels'-Angebote und Straßenstände. Quellen zu Pop Marts Rat sagen dasselbe aus der anderen Richtung: Das Unternehmen empfiehlt, nur über offizielle Kanäle oder verifizierte Händler zu kaufen. Auf jedem anderen Kanal ist der 8-Punkte-Check dein einziger Schutz — und er kann verlieren.
 
 ## Weiterlesen
 
-### Echt vs. Fälschung: der 8-Punkte-Check
-Für alles, was du abseits der offiziellen Liste kaufst — Zähne, Box, Siegel, Prägung, Preisboden.
-
-### DollScout Start
-Was diese Seite ist, wer Labubu macht, und warum die Fälschungen einen eigenen Namen haben.
+Echt vs. Fälschung: der 8-Punkte-Check Für alles, was du abseits der offiziellen Liste kaufst — Zähne, Box, Siegel, Prägung, Preisboden. (https://thedollscout.com/de/fake-check)
+DollScout Start Was diese Seite ist, wer Labubu macht, und warum die Fälschungen einen eigenen Namen haben. (https://thedollscout.com/de/)
+🔍 Lafufu-Checker Außerhalb eines offiziellen Kanals gekauft? Erst die 8 Checks laufen lassen. (https://thedollscout.com/de/checker)
 
 ========================================================================
 URL: https://thedollscout.com/de/glossary
 Title: Labubu- & Blindbox-Glossar: Secret, Chase, Case, Lafufu
 Description: Was Secret, Chase, Case, gedruckte Quote, Glow-Edition, Vinyl-Plüsch und Lafufu beim Labubu-Sammeln wirklich bedeuten — jeder Begriff in Klartext, verlinkt auf die Beleg-Seiten.
 ========================================================================
-Start / Glossar
+Start (https://thedollscout.com/de/) / Glossar
 
 # Die Wörter der Jagd, definiert.
 
@@ -1409,7 +1499,7 @@ Sammeln hat sein eigenes Vokabular, und die halbe Verwirrung (und mancher Betrug
 
 ## Was ist eine Blindbox?
 
-Eine versiegelte Box, deren konkrete Figur du erst beim Öffnen erfährst. Du wählst die Serie; die Serie wählt die Figur. Der Zufall ist das Produkt — und genau deshalb sind Quote , Echtheit und Kanal die drei Fragen, die über einen guten Kauf entscheiden.
+Eine versiegelte Box, deren konkrete Figur du erst beim Öffnen erfährst. Du wählst die Serie; die Serie wählt die Figur. Der Zufall ist das Produkt — und genau deshalb sind Quote (https://thedollscout.com/de/rarity), Echtheit (https://thedollscout.com/de/fake-check) und Kanal (https://thedollscout.com/de/where-to-buy) die drei Fragen, die über einen guten Kauf entscheiden.
 
 ## Was ist eine Serie?
 
@@ -1421,11 +1511,11 @@ Jedes der offen gelisteten Designs einer Serie — die Figuren auf dem Lineup-Ar
 
 ## Was ist ein Secret (oder Chase)?
 
-Das versteckte Extra-Design außerhalb des offenen Lineups, das zu langen Quoten erscheint — am häufigsten berichtet mit 1:72 bei Sechser-Serien und 1:144 bei Zwölfer-Serien; maßgeblich ist die auf der jeweiligen Box gedruckte Rate. Das Secret ist der Motor des Zweitmarkts und aus demselben Grund der des Fälschungsmarkts. Alle Zahlen: Seltenheits-Seite .
+Das versteckte Extra-Design außerhalb des offenen Lineups, das zu langen Quoten erscheint — am häufigsten berichtet mit 1:72 bei Sechser-Serien und 1:144 bei Zwölfer-Serien; maßgeblich ist die auf der jeweiligen Box gedruckte Rate. Das Secret ist der Motor des Zweitmarkts und aus demselben Grund der des Fälschungsmarkts. Alle Zahlen: Seltenheits-Seite (https://thedollscout.com/de/rarity).
 
 ## Was ist die gedruckte Quote?
 
-Die auf Box oder offizieller Produktseite genannte Rate — "1:72" heißt im Schnitt ein Secret pro 72 Boxen. Sie ist die eine Zahl, die jede Sammler-Tabelle übertrumpft, unsere eingeschlossen. Was die gedruckte Quote nicht sagt: deine Chance über mehrere Boxen — das ist Multiplikation, und der Rechner macht sie ehrlich.
+Die auf Box oder offizieller Produktseite genannte Rate — "1:72" heißt im Schnitt ein Secret pro 72 Boxen. Sie ist die eine Zahl, die jede Sammler-Tabelle übertrumpft, unsere eingeschlossen. Was die gedruckte Quote nicht sagt: deine Chance über mehrere Boxen — das ist Multiplikation, und der Rechner (https://thedollscout.com/de/rarity#calc) macht sie ehrlich.
 
 ## Was ist ein Case?
 
@@ -1433,41 +1523,37 @@ Der versiegelte Karton, den ein Shop erhält, mit fester Anzahl Blindboxen. Samm
 
 ## Was ist eine Glow- oder Ultra-Variante?
 
-Eine noch seltenere Variante als das Secret, berichtet für manche Releases — Glow-in-the-dark-Editionen sind das wiederkehrende Beispiel, mit Raten bis hinunter zu 1:720 . Bei diesen Quoten braucht eine 50%-Chance 499 unabhängige Boxen; behandle jedes billige Angebot, das eine verspricht, als öffentlich scheiternde Arithmetik. Quellen: Seltenheits-Seite .
+Eine noch seltenere Variante als das Secret, berichtet für manche Releases — Glow-in-the-dark-Editionen sind das wiederkehrende Beispiel, mit Raten bis hinunter zu 1:720 . Bei diesen Quoten braucht eine 50%-Chance 499 unabhängige Boxen; behandle jedes billige Angebot, das eine verspricht, als öffentlich scheiternde Arithmetik. Quellen: Seltenheits-Seite (https://thedollscout.com/de/rarity).
 
 ## Was ist ein Vinyl-Plüsch-Anhänger?
 
-Das dominierende Labubu-Format: weicher Plüschkörper mit Vinylgesicht, mit Schlaufe für die Tasche. "Figuren"-Serien sind stattdessen ganz aus Vinyl. Das Format steht auf der offiziellen Produktseite — und zählt für die Echtheit, denn Fell-Gleichmäßigkeit und Gesichtsfinish sind zwei der acht Checks .
+Das dominierende Labubu-Format: weicher Plüschkörper mit Vinylgesicht, mit Schlaufe für die Tasche. "Figuren"-Serien sind stattdessen ganz aus Vinyl. Das Format steht auf der offiziellen Produktseite — und zählt für die Echtheit, denn Fell-Gleichmäßigkeit und Gesichtsfinish sind zwei der acht Checks (https://thedollscout.com/de/fake-check).
 
 ## Was ist ein Lafufu?
 
-Der Community-Name für einen gefälschten Labubu ( Gulf News ). Fälschungen sind verbreitet genug für ein eigenes Wort — und je seltener und gefragter die echte Figur, desto härter wird sie gefälscht. Die wiederkehrenden Verräter, jeder mit Quelle: der 8-Punkte-Check .
+Der Community-Name für einen gefälschten Labubu (Gulf News (https://gulfnews.com/amp/story/lifestyle/bought-a-labubu-learn-the-crucial-signs-that-reveal-if-its-a-genuine-or-a-lafufu-1.500206668)). Fälschungen sind verbreitet genug für ein eigenes Wort — und je seltener und gefragter die echte Figur, desto härter wird sie gefälscht. Die wiederkehrenden Verräter, jeder mit Quelle: der 8-Punkte-Check (https://thedollscout.com/de/fake-check).
 
 ## Was ist der Verkäufer (seller of record)?
 
-Die Partei, die dir tatsächlich verkauft — auf Marktplätzen die "Verkauf durch"-Zeile, nicht das Logo der Website. Es ist der stärkste Echtheits-Hebel eines Käufers: wo Pop Mart selbst der Verkäufer ist, kann eine Fälschung das Regal strukturell nicht erreichen. Die Kanalliste im Ranking: Wo kaufen .
+Die Partei, die dir tatsächlich verkauft — auf Marktplätzen die "Verkauf durch"-Zeile, nicht das Logo der Website. Es ist der stärkste Echtheits-Hebel eines Käufers: wo Pop Mart selbst der Verkäufer ist, kann eine Fälschung das Regal strukturell nicht erreichen. Die Kanalliste im Ranking: Wo kaufen (https://thedollscout.com/de/where-to-buy).
 
 ## Weiterlesen
 
-### Wie Blindboxen wirklich funktionieren
-Serienstruktur, das Secret, Cases und die ehrliche Mathematik — auf einer Seite.
-
-### Seltenheit & Secret-Quoten
-Die berichteten Raten je Format, mit Quelle — und der Pull-Rechner.
-
-### Echt vs. Fälschung
-Der 8-Punkte-Lafufu-Check, jede Zeile mit Quelle.
+Wie Blindboxen wirklich funktionieren Serienstruktur, das Secret, Cases und die ehrliche Mathematik — auf einer Seite. (https://thedollscout.com/de/how-blind-boxes-work)
+Seltenheit & Secret-Quoten Die berichteten Raten je Format, mit Quelle — und der Pull-Rechner. (https://thedollscout.com/de/rarity)
+Echt vs. Fälschung Der 8-Punkte-Lafufu-Check, jede Zeile mit Quelle. (https://thedollscout.com/de/fake-check)
+🔎 Modell-Suche Wort bekannt, Figur nicht? Durchsuch den belegten Identitäts-Index — Labubu vs. Zimomo vs. Mokoko. (https://thedollscout.com/de/lookup)
 
 ========================================================================
 URL: https://thedollscout.com/de/checker
 Title: Interaktiver Lafufu-Checker: Teste deinen Labubu in 8 Antworten
 Description: Beantworte die 8 Echtheits-Checks — Zähne, Gesicht, Box, Siegel, Prägung, Verarbeitung, Preis, Verkäufer — und erhalte ein ehrliches Urteil: Red Flags benannt, oder 
 ========================================================================
-Start / Lafufu-Checker
+Start (https://thedollscout.com/de/) / Lafufu-Checker
 
 # Checks durchgehen. Klare Antwort bekommen.
 
-Dieselben 8 belegten Echtheits-Checks wie im Guide — aber als Werkzeug: beantworte, was du an deiner Figur siehst, und das Urteil nennt genau die Checks, die durchgefallen sind. Alles läuft in deinem Browser; nichts wird hochgeladen. Stand 2026-08-30.
+Dieselben 8 belegten Echtheits-Checks (https://thedollscout.com/de/fake-check) wie im Guide — aber als Werkzeug: beantworte, was du an deiner Figur siehst, und das Urteil nennt genau die Checks, die durchgefallen sind. Alles läuft in deinem Browser; nichts wird hochgeladen. Stand 2026-08-30.
 
 🔍 LAFUFU-CHECKER
 
@@ -1527,43 +1613,24 @@ Offizieller Pop-Mart-Kanal
 Marktplatz-Verkäufer, der nicht Pop Mart ist / unbekannt
 Weiß nicht mehr, wer der Verkäufer war
 
-0 Red Flag(s)
-
-Durchgefallene Checks:
-
-Behandle das als Fälschungssignal, nicht als Vielleicht. Noch nicht gekauft: lass es. Schon gekauft: dokumentiere die Funde (Fotos der durchgefallenen Checks) und geh den Erstattungsweg der Plattform — genau diese Belege trägt eine "nicht wie beschrieben"-Reklamation. Die volle Begründung je Check: der Guide .
-
-Nicht schlüssig
-
-Zu viele Checks offen für eine ehrliche Aussage. Die zwei wertvollsten offenen Checks: QR-Siegel scannen (Check 4) und Verkäufer klären (Check 8) — der Verkäufer-Check übertrumpft alle kosmetischen.
-
-Keine Red Flags gefunden
-
-Das ist keine Garantie. Kein kosmetischer Check ist ein Beweis — Fälschungen werden ständig besser, und Pop Marts eigene aktuelle Hinweise übertrumpfen diesen Checker, wo sie abweichen. Was ein sauberer Durchlauf bedeutet: keiner der acht öffentlich dokumentierten Verräter ist da. Der strukturelle Schutz bleibt der Kanal: kauf, wo Pop Mart der Verkäufer ist .
-
-Gebaut auf unserem CC-BY-Signale-Datensatz (Stand 2026-08-30, Quellen je Signal im File). Wir haben Figuren nicht selbst im Labor getestet; die Signale sind aus der benannten öffentlichen Berichterstattung kompiliert. Nichts, was du antwortest, verlässt deinen Browser.
+Gebaut auf unserem CC-BY-Signale-Datensatz (https://thedollscout.com/data/labubu-fake-signals.json) (Stand 2026-08-30, Quellen je Signal im File). Wir haben Figuren nicht selbst im Labor getestet; die Signale sind aus der benannten öffentlichen Berichterstattung kompiliert. Nichts, was du antwortest, verlässt deinen Browser.
 
 ## Weiterlesen
 
-### Die 8 Checks, erklärt
-Jeder Check mit benannten Quellen und ehrlichen Grenzen.
-
-### Wo kaufen
-Die Kanäle, in denen dieser Checker per Konstruktion überflüssig ist.
-
-### Seltenheit & Quoten
-Warum die seltenen die gefälschten sind — und die echte Mathematik.
+Die 8 Checks, erklärt Jeder Check mit benannten Quellen und ehrlichen Grenzen. (https://thedollscout.com/de/fake-check)
+Wo kaufen Die Kanäle, in denen dieser Checker per Konstruktion überflüssig ist. (https://thedollscout.com/de/where-to-buy)
+Seltenheit & Quoten Warum die seltenen die gefälschten sind — und die echte Mathematik. (https://thedollscout.com/de/rarity)
 
 ========================================================================
 URL: https://thedollscout.com/de/finder
 Title: Labubu-Serien-Finder: Welche Serie passt zu dir — in 3 Antworten
 Description: Tasche oder Regal, gemütlich oder knallig oder glitzernd, zufrieden mit Regulars oder auf Secret-Jagd — drei Antworten zeigen dir die offizielle Serie, die passt, direkt zu Pop Marts eigenen Produktseiten verlinkt.
 ========================================================================
-Start / Serien-Finder
+Start (https://thedollscout.com/de/) / Serien-Finder
 
 # Drei Antworten. Eine gute Start-Serie.
 
-Es gibt über sechzig Serien; du brauchst eine zum Anfangen. Dieser Finder bildet ab, was du wirklich willst — wo sie lebt, wie sie aussieht, wie viel Jagd du dir zumutest — auf eine aktuelle offizielle Serie, direkt zu Pop Marts eigener Produktseite verlinkt. Stand 2026-08-30; Serien rotieren, die Live-Seite gewinnt immer.
+Sammler-Verzeichnisse zählen Dutzende Labubu-Serien — eine Zahl, die wir nicht unabhängig verifiziert haben — und du brauchst eine zum Anfangen. Dieser Finder bildet ab, was du wirklich willst — wo sie lebt, wie sie aussieht, wie viel Jagd du dir zumutest — auf eine aktuelle offizielle Serie, direkt zu Pop Marts eigener Produktseite verlinkt. Stand 2026-08-30; Serien rotieren, die Live-Seite gewinnt immer.
 
 🧭 SERIEN-FINDER
 
@@ -1589,116 +1656,104 @@ Ehrlich: ich will das Secret
 
 Have a Seat
 
-Die sitzende Vinyl-Plüsch-Blindbox-Serie — das weiche, gemütliche Ende des aktuellen Lineups. Referenz für Inhalt und Preis: die offizielle Produktseite, z. B. über die Labubu-Suche im deutschen Store .
+Die sitzende Vinyl-Plüsch-Blindbox-Serie — das weiche, gemütliche Ende des aktuellen Lineups. Referenz für Inhalt und Preis: die offizielle Produktseite, z. B. über die Labubu-Suche im deutschen Store (https://www.popmart.com/de/search/Labubu).
 
 Big Into Energy
 
-Die Vinyl-Plüsch-Anhänger-Serie mit sechs emotionsbenannten Regulars (Love, Happiness, Loyalty, Serenity, Hope, Luck) und einem Secret — das laute Ende des Lineups. Referenz: die offizielle Seite .
+Die Vinyl-Plüsch-Anhänger-Serie mit sechs emotionsbenannten Regulars (Love, Happiness, Loyalty, Serenity, Hope, Luck) und einem Secret — das laute Ende des Lineups. Referenz: die offizielle Seite (https://www.popmart.com/de/search/Labubu).
 
 Classic Sparkly
 
-Die glitzernde Plüsch-Anhänger-Fassung der Classic-Serie. Referenz: die offizielle Seite .
+Die glitzernde Plüsch-Anhänger-Fassung der Classic-Serie. Referenz: die offizielle Seite (https://www.popmart.com/de/search/Labubu).
 
 Taschendienst ist genau, wofür die Anhänger-Formate die Schlaufe haben — prüfe die Formatzeile auf der Produktseite vor dem Kauf.
 
-Fürs Regal sieh dir auch die reinen Vinylfiguren-Serien in der offiziellen Kollektion an — gleiche Blindbox-Struktur, keine Schlaufe, zum Hinstellen gemacht.
+Fürs Regal sieh dir auch die reinen Vinylfiguren-Serien in der offiziellen Kollektion (https://www.popmart.com/de/collection/27/the-monsters) an — gleiche Blindbox-Struktur, keine Schlaufe, zum Hinstellen gemacht.
 
-Für ein Geschenk lieber einen größeren, offen verkauften Plüsch statt Blindbox — du siehst, was du schenkst. Der Erstkauf-Guide hat die Formattabelle und den Eltern-Abschnitt.
+Für ein Geschenk lieber einen größeren, offen verkauften Plüsch statt Blindbox — du siehst, was du schenkst. Der Erstkauf-Guide (https://thedollscout.com/de/start) hat die Formattabelle und den Eltern-Abschnitt.
 
-Genau die Einsteiger-Regel: bei 1:72 ist das Lineup-Artwork, was du realistisch kaufst.
+Genau die Einsteiger-Regel: bei 1:72 (https://thedollscout.com/de/rarity) ist das Lineup-Artwork, was du realistisch kaufst.
 
-Dann lies zuerst den Jagdkosten-Rechner — der Erwartungswert der Secret-Jagd ist gedruckte Quote mal Boxpreis, und diese Zahl gehört vor Box eins gewusst.
+Dann lies zuerst den Jagdkosten-Rechner (https://thedollscout.com/de/psychology#cost) — der Erwartungswert der Secret-Jagd ist gedruckte Quote mal Boxpreis, und diese Zahl gehört vor Box eins gewusst.
 
-Reines Präferenz-Matching — keine Quote ändert sich mit deinen Antworten, und Serien rotieren mit dem Bestand. Nichts verlässt deinen Browser. Kanäle, in denen das Angebot echt ist: Wo kaufen .
+Reines Präferenz-Matching — keine Quote ändert sich mit deinen Antworten, und Serien rotieren mit dem Bestand. Nichts verlässt deinen Browser. Kanäle, in denen das Angebot echt ist: Wo kaufen (https://thedollscout.com/de/where-to-buy).
 
 ## Weiterlesen
 
-### Dein erster Labubu
-Der volle Drei-Entscheidungen-Pfad, den dieser Finder abkürzt.
-
-### Seltenheit & Quoten
-Was die Secret-Jagd je Format wirklich kostet.
-
-### Lafufu-Checker
-Nach dem Kauf: die 8 Checks als interaktives Werkzeug.
+Dein erster Labubu Der volle Drei-Entscheidungen-Pfad, den dieser Finder abkürzt. (https://thedollscout.com/de/start)
+Seltenheit & Quoten Was die Secret-Jagd je Format wirklich kostet. (https://thedollscout.com/de/rarity)
+Lafufu-Checker Nach dem Kauf: die 8 Checks als interaktives Werkzeug. (https://thedollscout.com/de/checker)
 
 ========================================================================
 URL: https://thedollscout.com/de/lookup
 Title: Labubu-Modell-Suche: Welcher Charakter, welche Serie, welches Format?
 Description: Tipp einen Namen — Labubu, Zimomo, Mokoko, Have a Seat, Big Into Energy, Secret, Lafufu — und bekomm die belegte Identitätskarte: was es ist, woran man es unterscheidet, wo die Belege liegen.
 ========================================================================
-Start / Modell-Suche
+Start (https://thedollscout.com/de/) / Modell-Suche
 
 # Welcher ist das?
 
-Die Identitäten, die wirklich verwechselt werden — Charaktere, aktuelle Serien, Formate, Sammlerbegriffe — als Sofort-Suche. Jeder Eintrag sagt nur, was seine benannten Quellen tragen. Nicht im Index heißt nicht, dass es nicht existiert: das ist ein kuratierter Beleg-Index, kein Katalog aller 60+ Serien. Stand 2026-08-30.
+Die Identitäten, die wirklich verwechselt werden — Charaktere, aktuelle Serien, Formate, Sammlerbegriffe — als Sofort-Suche. Jeder Eintrag sagt nur, was seine benannten Quellen tragen. Nicht im Index heißt nicht, dass es nicht existiert: das ist ein kuratierter Beleg-Index, kein Katalog aller Serien. Stand 2026-08-30.
 
 🔎 MODELL-SUCHE
 
 Name, Serie oder Begriff
 
-Kein Treffer in unserem Index. Das heißt nicht , dass es nicht existiert — es gibt über 60 Serien und viele Charaktere. Das maßgebliche Verzeichnis ist Pop Marts eigene The-Monsters-Kollektion ; unser Index deckt nur, was wir gegen benannte Quellen verifiziert haben.
-
 ### Labubu — der Charakter
 
-Die Hauptfigur des The-Monsters-Casts von Kasing Lung: schelmischer Elf, neun Zähne , kein Schwanz. Die Neun-Zähne-Zahl ist zugleich Echtheits-Check #1 ( der Guide ). Quellen: SNKRDUNK Magazine; Bagaholicboy; die Charakter-Berichte im Glossar .
+Die Hauptfigur des The-Monsters-Casts von Kasing Lung: schelmischer Elf, neun Zähne , kein Schwanz. Die Neun-Zähne-Zahl ist zugleich Echtheits-Check #1 (der Guide (https://thedollscout.com/de/fake-check)). Quellen: SNKRDUNK Magazine (https://snkrdunk.com/en/magazine/2025/06/10/understanding-the-labubu-universe-pop-mart-the-monsters/); Bagaholicboy (https://bagaholicboy.com/2024/09/the-monsters-zimomo-labubu-friends); die Charakter-Berichte im Glossar (https://thedollscout.com/de/glossary).
 
 ### Zimomo — der Charakter
 
-Die Anführer-Figur des Stamms: deutlich größer als Labubu, mit Stachelschwanz — der Schwanz ist der schnellste visuelle Unterscheider, denn Labubu hat keinen. Wird in Resale-Angeboten oft mit Labubu verwechselt; ein "großer Labubu mit Schwanz" ist ein Zimomo. Quellen: SNKRDUNK Magazine; Bagaholicboy; Extrabux-Vergleich.
+Die Anführer-Figur des Stamms: deutlich größer als Labubu, mit Stachelschwanz — der Schwanz ist der schnellste visuelle Unterscheider, denn Labubu hat keinen. Wird in Resale-Angeboten oft mit Labubu verwechselt; ein "großer Labubu mit Schwanz" ist ein Zimomo. Quellen: SNKRDUNK Magazine (https://snkrdunk.com/en/magazine/2025/06/10/understanding-the-labubu-universe-pop-mart-the-monsters/); Bagaholicboy (https://bagaholicboy.com/2024/09/the-monsters-zimomo-labubu-friends); Extrabux-Vergleich (https://www.extrabux.com/en/guide/8674889).
 
 ### Mokoko — der Charakter
 
-Pinkes Fell, weißer Bauch, herzförmige Nase — eine von Labubus Gefährtinnen, nur in ausgewählten Releases. Quellen: SNKRDUNK Magazine; LatestLY-Charakterguide; Extrabux-Vergleich.
+Pinkes Fell, weißer Bauch, herzförmige Nase — eine von Labubus Gefährtinnen, nur in ausgewählten Releases. Quellen: SNKRDUNK Magazine (https://snkrdunk.com/en/magazine/2025/06/10/understanding-the-labubu-universe-pop-mart-the-monsters/); LatestLY-Charakterguide (https://www.latestly.com/social-viral/labubu-character-names-zimomo-mokoko-pato-spooky-and-more-your-ultimate-guide-to-the-whimsical-world-of-the-monsters-7020870.html); Extrabux-Vergleich (https://www.extrabux.com/en/guide/8674889).
 
 ### Pato, Spooky & weitere Cast-Namen
 
-Weitere benannte Mitglieder des The-Monsters-Casts, belegt in Charakterguides (LatestLY; THISTOKYO-Verzeichnis). Ihre Einzelmerkmale haben wir nicht verifiziert — zur Identifikation ist die offizielle Produktseite des konkreten Releases die Referenz.
+Weitere benannte Mitglieder des The-Monsters-Casts, belegt in Charakterguides (LatestLY; THISTOKYO-Verzeichnis (https://thistokyo.com/en/trends/the-monsters-characters/)). Ihre Einzelmerkmale haben wir nicht verifiziert — zur Identifikation ist die offizielle Produktseite des konkreten Releases die Referenz.
 
 ### Have a Seat — die Serie
 
-Sitzende Vinyl-Plüsch-Blindbox-Serie; üblich berichtete Secret-Quote für Sechser-Serien ist 1:72 (Box-Aufdruck maßgeblich). Referenz für Lineup und Preis: die offizielle Produktseite über den deutschen Store .
+Sitzende Vinyl-Plüsch-Blindbox-Serie; üblich berichtete Secret-Quote für Sechser-Serien ist 1:72 (Box-Aufdruck maßgeblich). Referenz für Lineup und Preis: die offizielle Produktseite über den deutschen Store (https://www.popmart.com/de/search/Labubu).
 
 ### Big Into Energy — die Serie
 
-Vinyl-Plüsch-Anhänger-Serie (April 2025) mit sechs emotionsbenannten Regulars — Love, Happiness, Loyalty, Serenity, Hope, Luck — plus Secret ID (Prism-News-Katalog; Product-Insights-Berichte). Referenz: die offizielle Seite .
+Vinyl-Plüsch-Anhänger-Serie (April 2025) mit sechs emotionsbenannten Regulars — Love, Happiness, Loyalty, Serenity, Hope, Luck — plus Secret ID (Prism-News-Katalog (https://www.prismnews.com/hobbies/labubu/every-labubu-series-and-character-name-catalogued-for-2026-collectors); Product-Insights-Berichte). Referenz: die offizielle Seite (https://www.popmart.com/de/search/Labubu).
 
 ### Classic Sparkly — die Serie
 
-Die glitzernde Plüsch-Anhänger-Fassung der Classic-Serie. Referenz: die offizielle Seite .
+Die glitzernde Plüsch-Anhänger-Fassung der Classic-Serie. Referenz: die offizielle Seite (https://www.popmart.com/de/search/Labubu).
 
 ### Exciting Macaron — die Serie
 
-Eine in Sammlerguides häufig referenzierte Vinyl-Plüsch-Serie. Eine aktuelle offizielle Produktseite haben wir nicht verifiziert — prüfe den offiziellen Store auf Live-Verfügbarkeit.
+Eine in Sammlerguides häufig referenzierte Vinyl-Plüsch-Serie. Eine aktuelle offizielle Produktseite haben wir nicht verifiziert — prüfe den offiziellen Store (https://www.popmart.com/de/search/Labubu) auf Live-Verfügbarkeit.
 
 ### Vinyl-Plüsch-Anhänger — das Format
 
-Das dominierende Labubu-Format: Plüschkörper, Vinylgesicht, Taschenschlaufe. Das Format steht auf der offiziellen Produktseite und zählt für die Echtheit (Fell und Gesicht sind zwei der 8 Checks ). Volle Formattabelle: der Erstkauf-Guide .
+Das dominierende Labubu-Format: Plüschkörper, Vinylgesicht, Taschenschlaufe. Das Format steht auf der offiziellen Produktseite und zählt für die Echtheit (Fell und Gesicht sind zwei der 8 Checks (https://thedollscout.com/de/fake-check)). Volle Formattabelle: der Erstkauf-Guide (https://thedollscout.com/de/start).
 
 ### Secret / Chase — der Begriff
 
-Das versteckte Design außerhalb des offenen Lineups, am häufigsten berichtet mit 1:72 (Sechser-Serien) und 1:144 (Zwölfer) — Box-Aufdruck maßgeblich. Mathematik und Quellen: Seltenheits-Seite ; Definition: Glossar .
+Das versteckte Design außerhalb des offenen Lineups, am häufigsten berichtet mit 1:72 (Sechser-Serien) und 1:144 (Zwölfer) — Box-Aufdruck maßgeblich. Mathematik und Quellen: Seltenheits-Seite (https://thedollscout.com/de/rarity); Definition: Glossar (https://thedollscout.com/de/glossary).
 
 ### Lafufu — der Begriff
 
-Der Community-Name für einen gefälschten Labubu (Gulf News). Identifikation: der interaktive Checker oder der 8-Punkte-Guide .
+Der Community-Name für einen gefälschten Labubu (Gulf News). Identifikation: der interaktive Checker (https://thedollscout.com/de/checker) oder der 8-Punkte-Guide (https://thedollscout.com/de/fake-check).
 
 ### The Monsters — die IP
 
-Cast und Welt des Künstlers Kasing Lung , produziert unter Exklusivlizenz von Pop Mart. Labubu ist die Hauptfigur. Quelle: Wikipedia; SNKRDUNK Magazine.
+Cast und Welt des Künstlers Kasing Lung , produziert unter Exklusivlizenz von Pop Mart. Labubu ist die Hauptfigur. Quelle: Wikipedia (https://en.wikipedia.org/wiki/Labubu); SNKRDUNK Magazine (https://snkrdunk.com/en/magazine/2025/06/10/understanding-the-labubu-universe-pop-mart-the-monsters/).
 
 Kuratierter Index, Quellen je Eintrag benannt; unverifiziert markiert, wo das der ehrliche Stand ist. Nichts, was du tippst, verlässt deinen Browser.
 
 ## Weiterlesen
 
-### Das Glossar
-Jeder Begriff der Jagd, in Klartext definiert.
-
-### Lafufu-Checker
-Modell gefunden — jetzt interaktiv auf Echtheit prüfen.
-
-### Serien-Finder
-Noch kein Modell? Drei Antworten zur guten Start-Serie.
+Das Glossar Jeder Begriff der Jagd, in Klartext definiert. (https://thedollscout.com/de/glossary)
+Lafufu-Checker Modell gefunden — jetzt interaktiv auf Echtheit prüfen. (https://thedollscout.com/de/checker)
+Serien-Finder Noch kein Modell? Drei Antworten zur guten Start-Serie. (https://thedollscout.com/de/finder)
 
 ========================================================================
 URL: https://thedollscout.com/zh/
@@ -1710,7 +1765,7 @@ Description: 哪只 Labubu 真的稀有、隐藏款概率到底多少、怎么�
 1 : 72
 6 款系列最常见的隐藏款印刷概率——以盒上印刷值为准
 
-每个 Labubu 盲盒都是一次下注:概率印在盒上,热门系列几小时售罄,越稀有的款假货越多。DollScout 做三件事:可复算的概率数学、可执行的真伪检查、以及「你付钱买的概率就是真实概率」的渠道清单。中文版是单页精华;完整证据页(每条数据的信源链接)在 英文站 。
+每个 Labubu 盲盒都是一次下注:概率印在盒上,热门系列几小时售罄,越稀有的款假货越多。DollScout 做三件事:可复算的概率数学、可执行的真伪检查、以及「你付钱买的概率就是真实概率」的渠道清单。中文版是单页精华;完整证据页(每条数据的信源链接)在英文站 (https://thedollscout.com/)。
 
 🎰 隐藏款概率计算器
 
@@ -1723,13 +1778,11 @@ Description: 哪只 Labubu 真的稀有、隐藏款概率到底多少、怎么�
 1 : 720 —— 夜光/Ultra 变体有报道
 自定义…
 
-1 :
-
 你要开的盒数
 
 至少抽中一只隐藏款的概率: —
 
-独立单盒模型,按印刷概率计算(整箱配比可能不同)。概率信源与完整数学在 英文稀有度页 。数据不离开你的浏览器。
+独立单盒模型,按印刷概率计算(整箱配比可能不同)。概率信源与完整数学在英文稀有度页 (https://thedollscout.com/rarity)。数据不离开你的浏览器。
 
 ## 盲盒数学,三句话说完
 
@@ -1741,7 +1794,7 @@ Description: 哪只 Labubu 真的稀有、隐藏款概率到底多少、怎么�
 
 ## 8 项真伪检查(Lafufu 识别)
 
-每项的详细说明与具名信源在 英文真伪页 ,还有 交互式检查工具 。速查版:
+每项的详细说明与具名信源在英文真伪页 (https://thedollscout.com/fake-check),还有交互式检查工具 (https://thedollscout.com/checker)。速查版:
 
 - 数牙齿 :正品恰好 9 颗、齿缝清晰;数量不对或糊成一片 = 红旗。
 
@@ -1763,20 +1816,15 @@ Description: 哪只 Labubu 真的稀有、隐藏款概率到底多少、怎么�
 
 ## 去哪买真的
 
-原则一句话: 认「卖家是谁」,不认网站 logo 。首选 Pop Mart 官方渠道( popmart.com 选择你所在地区、官方 App、线下门店);市场平台只买「Sold by / 卖家」是 POP MART 官方的链接。完整渠道排名在 英文渠道页 。
+原则一句话: 认「卖家是谁」,不认网站 logo 。首选 Pop Mart 官方渠道(popmart.com (https://www.popmart.com/) 选择你所在地区、官方 App、线下门店);市场平台只买「Sold by / 卖家」是 POP MART 官方的链接。完整渠道排名在英文渠道页 (https://thedollscout.com/where-to-buy)。
 
-广告 · 联盟链接(价格对你不变):在美国的读者可用 Amazon 上的 POP MART 官方店铺 ——下单前照旧核对「Sold by」是 POP MART。
+广告 · 联盟链接(价格对你不变):在美国的读者可用 Amazon 上的 POP MART 官方店铺 (https://www.amazon.com/stores/POPMART/page/9EB83127-7B84-48B8-868F-805DB5FA39ED)——下单前照旧核对「Sold by」是 POP MART。
 
 ## 更多工具(英文界面,数学通用)
 
-### 追逐成本计算器
-输入你的本地单盒价,算出追隐藏款的期望成本。
-
-### 交互式验真工具
-逐题回答 8 项检查,直接告诉你哪几条是红旗。
-
-### 型号查询
-Labubu、Zimomo、Mokoko、系列名——查这是哪只。
+追逐成本计算器 输入你的本地单盒价,算出追隐藏款的期望成本。 (https://thedollscout.com/psychology#cost)
+交互式验真工具 逐题回答 8 项检查,直接告诉你哪几条是红旗。 (https://thedollscout.com/checker)
+型号查询 Labubu、Zimomo、Mokoko、系列名——查这是哪只。 (https://thedollscout.com/lookup)
 
 ========================================================================
 URL: https://thedollscout.com/th/
@@ -1788,7 +1836,7 @@ Description: Labubu ตัวไหนหายากจริง โอกา�
 1 : 72
 อัตรา Secret ที่ถูกรายงานบ่อยที่สุดของซีรีส์ 6 ตัว — ยึดตัวเลขที่พิมพ์บนกล่องเป็นหลัก
 
-กล่องสุ่ม Labubu ทุกกล่องคือการวางเดิมพัน: อัตราพิมพ์อยู่บนกล่อง ซีรีส์ฮิตหมดในไม่กี่ชั่วโมง และยิ่งตัวไหนหายาก ของปลอมก็ยิ่งเยอะ DollScout ทำสามอย่าง: คณิตศาสตร์ความน่าจะเป็นที่ตรวจทานได้ เช็กลิสต์ของแท้ที่ทำตามได้จริง และรายชื่อช่องทางที่ "อัตราที่คุณจ่ายคืออัตราจริง" หน้าภาษาไทยเป็นฉบับย่อหน้าเดียว; หน้าหลักฐานฉบับเต็ม (พร้อมลิงก์แหล่งอ้างอิงทุกตัวเลข) อยู่ที่ เว็บภาษาอังกฤษ
+กล่องสุ่ม Labubu ทุกกล่องคือการวางเดิมพัน: อัตราพิมพ์อยู่บนกล่อง ซีรีส์ฮิตหมดในไม่กี่ชั่วโมง และยิ่งตัวไหนหายาก ของปลอมก็ยิ่งเยอะ DollScout ทำสามอย่าง: คณิตศาสตร์ความน่าจะเป็นที่ตรวจทานได้ เช็กลิสต์ของแท้ที่ทำตามได้จริง และรายชื่อช่องทางที่ "อัตราที่คุณจ่ายคืออัตราจริง" หน้าภาษาไทยเป็นฉบับย่อหน้าเดียว; หน้าหลักฐานฉบับเต็ม (พร้อมลิงก์แหล่งอ้างอิงทุกตัวเลข) อยู่ที่เว็บภาษาอังกฤษ (https://thedollscout.com/)
 
 🎰 เครื่องคิดเลขโอกาสได้ Secret
 
@@ -1801,13 +1849,11 @@ Description: Labubu ตัวไหนหายากจริง โอกา�
 1 : 720 — มีรายงานสำหรับรุ่น Glow/Ultra
 กำหนดเอง…
 
-1 :
-
 จำนวนกล่องที่จะเปิด
 
 โอกาสได้ Secret อย่างน้อยหนึ่งตัว: —
 
-โมเดลกล่องเดี่ยวแบบอิสระตามอัตราที่พิมพ์ (ยกลังทั้งลังอาจต่างออกไป) แหล่งอ้างอิงและคณิตศาสตร์ฉบับเต็ม: หน้าความหายาก (อังกฤษ) ข้อมูลไม่ออกจากเบราว์เซอร์ของคุณ
+โมเดลกล่องเดี่ยวแบบอิสระตามอัตราที่พิมพ์ (ยกลังทั้งลังอาจต่างออกไป) แหล่งอ้างอิงและคณิตศาสตร์ฉบับเต็ม: หน้าความหายาก (อังกฤษ) (https://thedollscout.com/rarity) ข้อมูลไม่ออกจากเบราว์เซอร์ของคุณ
 
 ## คณิตศาสตร์กล่องสุ่ม สรุปสามข้อ
 
@@ -1819,7 +1865,7 @@ Description: Labubu ตัวไหนหายากจริง โอกา�
 
 ## เช็กลิสต์ของแท้ 8 ข้อ (จับ Lafufu)
 
-คำอธิบายละเอียดพร้อมแหล่งอ้างอิงรายข้ออยู่ที่ หน้าเช็กของแท้ (อังกฤษ) และมี เครื่องมือเช็กแบบตอบทีละข้อ ฉบับเร็ว:
+คำอธิบายละเอียดพร้อมแหล่งอ้างอิงรายข้ออยู่ที่หน้าเช็กของแท้ (อังกฤษ) (https://thedollscout.com/fake-check) และมีเครื่องมือเช็กแบบตอบทีละข้อ (https://thedollscout.com/checker) ฉบับเร็ว:
 
 - นับฟัน : ของแท้มี 9 ซี่พอดี เห็นร่องชัด; จำนวนผิดหรือติดกันเป็นก้อน = สัญญาณปลอม
 
@@ -1841,17 +1887,12 @@ Description: Labubu ตัวไหนหายากจริง โอกา�
 
 ## ซื้อของแท้ที่ไหน
 
-หลักการประโยคเดียว: ดูว่า "ผู้ขายคือใคร" ไม่ใช่โลโก้ของเว็บ เลือกช่องทางทางการของ Pop Mart ก่อนเสมอ — popmart.com (เลือกภูมิภาคของคุณ), แอปทางการ, หน้าร้านทางการ (ในไทยมีสาขาทางการรวมถึงแฟล็กชิปสโตร์ที่ใหญ่ที่สุดในโลกที่ ICONSIAM กรุงเทพฯ — รายงานโดย Nation Thailand และ Dao Insights, 2024) ตลาดออนไลน์ซื้อเฉพาะลิงก์ที่ผู้ขายเป็น POP MART ทางการเท่านั้น อันดับช่องทางฉบับเต็ม: หน้าช่องทาง (อังกฤษ)
+หลักการประโยคเดียว: ดูว่า "ผู้ขายคือใคร" ไม่ใช่โลโก้ของเว็บ เลือกช่องทางทางการของ Pop Mart ก่อนเสมอ — popmart.com (https://www.popmart.com/) (เลือกภูมิภาคของคุณ), แอปทางการ, หน้าร้านทางการ (ในไทยมีสาขาทางการรวมถึงแฟล็กชิปสโตร์ที่ใหญ่ที่สุดในโลกที่ ICONSIAM กรุงเทพฯ — รายงานโดย Nation Thailand และ Dao Insights, 2024) ตลาดออนไลน์ซื้อเฉพาะลิงก์ที่ผู้ขายเป็น POP MART ทางการเท่านั้น อันดับช่องทางฉบับเต็ม: หน้าช่องทาง (อังกฤษ) (https://thedollscout.com/where-to-buy)
 
 หน้าภาษาไทยนี้ไม่มีลิงก์โฆษณา/ลิงก์พันธมิตร — ลิงก์ทั้งหมดชี้ไปหน้าทางการของ Pop Mart โดยไม่มีค่าตอบแทน
 
 ## เครื่องมือเพิ่มเติม (หน้าจอเป็นอังกฤษ แต่คณิตศาสตร์เป็นสากล)
 
-### เครื่องคิดต้นทุนไล่ล่า
-ใส่ราคาต่อกล่องของคุณ แล้วดูต้นทุนคาดหวังของการไล่ล่า Secret
-
-### เครื่องเช็กของแท้แบบโต้ตอบ
-ตอบ 8 ข้อทีละข้อ แล้วระบบบอกชัดว่าข้อไหนคือ Red Flag
-
-### ค้นหารุ่น/ตัวละคร
-Labubu, Zimomo, Mokoko, ชื่อซีรีส์ — เช็กว่าตัวนี้คือตัวไหน
+เครื่องคิดต้นทุนไล่ล่า ใส่ราคาต่อกล่องของคุณ แล้วดูต้นทุนคาดหวังของการไล่ล่า Secret (https://thedollscout.com/psychology#cost)
+เครื่องเช็กของแท้แบบโต้ตอบ ตอบ 8 ข้อทีละข้อ แล้วระบบบอกชัดว่าข้อไหนคือ Red Flag (https://thedollscout.com/checker)
+ค้นหารุ่น/ตัวละคร Labubu, Zimomo, Mokoko, ชื่อซีรีส์ — เช็กว่าตัวนี้คือตัวไหน (https://thedollscout.com/lookup)

@@ -6,6 +6,8 @@
 <title>Labubu &amp; Blind Box Glossary: Secret, Chase, Case, Lafufu</title>
 <meta name="description" content="What secret, chase, case, printed odds, glow edition, vinyl plush and Lafufu actually mean in Labubu collecting — every term defined in plain language, cross-linked to the evidence pages.">
 <link rel="canonical" href="https://thedollscout.com/glossary">
+<link rel="alternate" type="text/plain" href="/llms.txt" title="llms.txt — AI index of this site">
+<link rel="alternate" type="text/plain" href="/llms-full.txt" title="llms-full.txt — full site text for AI">
 <link rel="alternate" hreflang="en" href="https://thedollscout.com/glossary">
 <link rel="alternate" hreflang="de" href="https://thedollscout.com/de/glossary">
 <link rel="alternate" hreflang="x-default" href="https://thedollscout.com/glossary">
@@ -24,44 +26,113 @@
 {
   "@context": "https://schema.org",
   "@graph": [
-    { "@type": "Organization", "@id": "https://thedollscout.com/#org", "name": "DollScout", "url": "https://thedollscout.com/" },
-    { "@type": "BreadcrumbList", "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://thedollscout.com/" },
-      { "@type": "ListItem", "position": 2, "name": "Glossary", "item": "https://thedollscout.com/glossary" }]},
-    { "@type": "DefinedTermSet", "@id": "https://thedollscout.com/glossary#terms",
+    {
+      "@type": "Organization",
+      "@id": "https://thedollscout.com/#org",
+      "name": "DollScout",
+      "url": "https://thedollscout.com/"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://thedollscout.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Glossary",
+          "item": "https://thedollscout.com/glossary"
+        }
+      ]
+    },
+    {
+      "@type": "DefinedTermSet",
+      "@id": "https://thedollscout.com/glossary#terms",
       "name": "Labubu & blind box collecting glossary",
       "description": "The terms of Labubu / The Monsters blind-box collecting, defined in plain language: blind box, series, regular, secret/chase, case, printed odds, glow edition, vinyl plush pendant, Lafufu, seller of record.",
       "url": "https://thedollscout.com/glossary",
       "hasDefinedTerm": [
-        { "@type": "DefinedTerm", "name": "blind box", "inDefinedTermSet": "https://thedollscout.com/glossary#terms",
-          "description": "A sealed box whose specific figure you don't know until you open it. You choose the series; the series chooses the figure. The randomness is the product." },
-        { "@type": "DefinedTerm", "name": "series", "inDefinedTermSet": "https://thedollscout.com/glossary#terms",
-          "description": "One themed release of figures sold in identical blind boxes — for The Monsters, commonly six or twelve regular designs plus one secret. The series name is printed on the box." },
-        { "@type": "DefinedTerm", "name": "regular", "inDefinedTermSet": "https://thedollscout.com/glossary#terms",
-          "description": "Any of the openly listed designs in a series — the figures shown on the box's lineup art. At six designs, an even split puts any one design at roughly 1-in-6 per box." },
-        { "@type": "DefinedTerm", "name": "secret (chase)", "inDefinedTermSet": "https://thedollscout.com/glossary#terms",
-          "description": "The hidden extra design that is not part of the openly listed lineup and appears at long odds — most commonly reported at 1:72 for six-figure series and 1:144 for twelve-figure series, with the authoritative rate printed on each series' own box." },
-        { "@type": "DefinedTerm", "name": "printed odds", "inDefinedTermSet": "https://thedollscout.com/glossary#terms",
-          "description": "The rate stated on the box or official listing — 1:72 means one secret per 72 boxes on average. It is the one number that outranks every collector table. It does not tell you your chance across several boxes; that is multiplication." },
-        { "@type": "DefinedTerm", "name": "case", "inDefinedTermSet": "https://thedollscout.com/glossary#terms",
-          "description": "The sealed carton a shop receives, containing a fixed count of blind boxes. Collector guides report case allocation can be structured rather than fully random, which is why honest probability math models loose, independently drawn boxes." },
-        { "@type": "DefinedTerm", "name": "glow / ultra variant", "inDefinedTermSet": "https://thedollscout.com/glossary#terms",
-          "description": "A rarer-than-secret variant reported for some releases — glow-in-the-dark editions are the recurring example, with rates reported as low as 1:720. At those odds, a 50% chance takes 499 boxes of independent draws." },
-        { "@type": "DefinedTerm", "name": "vinyl plush pendant", "inDefinedTermSet": "https://thedollscout.com/glossary#terms",
-          "description": "The dominant Labubu format: a soft plush body with a vinyl face, sized and looped to hang from a bag. 'Figure' series are all-vinyl instead. The format is printed on the official listing." },
-        { "@type": "DefinedTerm", "name": "Lafufu", "inDefinedTermSet": "https://thedollscout.com/glossary#terms",
-          "description": "The community's name for a counterfeit Labubu. Fakes are common enough to have earned a word of their own — and the rarer and hotter the real figure, the more heavily it is faked." },
-        { "@type": "DefinedTerm", "name": "seller of record", "inDefinedTermSet": "https://thedollscout.com/glossary#terms",
-          "description": "The party actually selling you the item — on marketplaces, the 'sold by' line, not the site's logo. Where Pop Mart itself is the seller of record, a counterfeit structurally cannot reach the shelf." }
-      ] },
-    { "@type": "Article",
+        {
+          "@type": "DefinedTerm",
+          "name": "blind box",
+          "inDefinedTermSet": "https://thedollscout.com/glossary#terms",
+          "description": "A sealed box whose specific figure you don't know until you open it. You choose the series; the series chooses the figure. The randomness is the product — and it is also why odds, authenticity and channel are the three questions that decide whether you bought well."
+        },
+        {
+          "@type": "DefinedTerm",
+          "name": "series",
+          "inDefinedTermSet": "https://thedollscout.com/glossary#terms",
+          "description": "One themed release of figures sold in identical blind boxes — for The Monsters, commonly six or twelve regular designs plus one secret. The series name (Have a Seat, Big Into Energy, Exciting Macaron…) is printed on the box, and its own listing is the reference for what it contains and costs."
+        },
+        {
+          "@type": "DefinedTerm",
+          "name": "regular",
+          "inDefinedTermSet": "https://thedollscout.com/glossary#terms",
+          "description": "Any of the openly listed designs in a series — the figures shown on the box's lineup art. Pulling a specific regular you want is its own smaller lottery: at six designs, an even split puts any one design at roughly 1-in-6 per box, before the secret is considered."
+        },
+        {
+          "@type": "DefinedTerm",
+          "name": "secret (chase)",
+          "inDefinedTermSet": "https://thedollscout.com/glossary#terms",
+          "description": "The hidden extra design that is not part of the openly listed lineup and appears at long odds — most commonly reported at 1:72 for six-figure series and 1:144 for twelve-figure series, with the authoritative rate printed on each series' own box. The secret is the engine of the resale market and, for the same reason, of the counterfeit market. Full numbers: the rarity page."
+        },
+        {
+          "@type": "DefinedTerm",
+          "name": "printed odds",
+          "inDefinedTermSet": "https://thedollscout.com/glossary#terms",
+          "description": "The rate stated on the box or official listing — “1:72” means one secret per 72 boxes on average. It is the one number that outranks every collector table, including ours. What printed odds do not tell you is your chance across several boxes; that is multiplication, and the calculator does it honestly."
+        },
+        {
+          "@type": "DefinedTerm",
+          "name": "case",
+          "inDefinedTermSet": "https://thedollscout.com/glossary#terms",
+          "description": "The sealed carton a shop receives, containing a fixed count of blind boxes. Collector guides report that case allocation can be structured rather than fully random — which is why our probability math is explicit about modelling loose, independently drawn boxes, and why “case fresh” claims on resale listings deserve the same skepticism as any other unverifiable claim."
+        },
+        {
+          "@type": "DefinedTerm",
+          "name": "glow / ultra variant",
+          "inDefinedTermSet": "https://thedollscout.com/glossary#terms",
+          "description": "A rarer-than-secret variant reported for some releases — glow-in-the-dark editions are the recurring example, with rates reported as low as 1:720. At those odds, a 50% chance takes 499 boxes of independent draws; treat any cheap listing that promises one as arithmetic failing in public. Sources on the rarity page."
+        },
+        {
+          "@type": "DefinedTerm",
+          "name": "vinyl plush pendant",
+          "inDefinedTermSet": "https://thedollscout.com/glossary#terms",
+          "description": "The dominant Labubu format: a soft plush body with a vinyl face, sized and looped to hang from a bag. “Figure” series are all-vinyl instead. The format is printed on the official listing — and matters for authenticity, because fur evenness and face finish are two of the eight checks."
+        },
+        {
+          "@type": "DefinedTerm",
+          "name": "Lafufu",
+          "inDefinedTermSet": "https://thedollscout.com/glossary#terms",
+          "description": "The community's name for a counterfeit Labubu (Gulf News). Fakes are common enough to have earned a word of their own — and the rarer and hotter the real figure, the more heavily it is faked. The recurring giveaways, each with its source: the 8-point check."
+        },
+        {
+          "@type": "DefinedTerm",
+          "name": "seller of record",
+          "inDefinedTermSet": "https://thedollscout.com/glossary#terms",
+          "description": "The party actually selling you the item — on marketplaces, the “sold by” line, not the site's logo. It is the single strongest authenticity lever a buyer has: where Pop Mart itself is the seller of record, a counterfeit structurally cannot reach the shelf. The ranked channel list: where to buy."
+        }
+      ]
+    },
+    {
+      "@type": "Article",
+      "image": "https://thedollscout.com/img/og.png",
       "datePublished": "2026-08-30",
       "dateModified": "2026-08-30",
       "headline": "The Labubu glossary: what the hunt's words actually mean",
       "url": "https://thedollscout.com/glossary",
-      "publisher": { "@id": "https://thedollscout.com/#org" },
-      "author": { "@id": "https://thedollscout.com/#org" },
-      "inLanguage": "en" }
+      "publisher": {
+        "@id": "https://thedollscout.com/#org"
+      },
+      "author": {
+        "@id": "https://thedollscout.com/#org"
+      },
+      "inLanguage": "en"
+    }
   ]
 }
 </script>
@@ -124,6 +195,7 @@
       <a class="card" href="/how-blind-boxes-work"><h3>How blind boxes actually work</h3><p>Series structure, the secret, cases, and the honest math — in one page.</p></a>
       <a class="card" href="/rarity"><h3>Rarity &amp; secret odds</h3><p>The reported rates per format, sourced — and the pull calculator.</p></a>
       <a class="card" href="/fake-check"><h3>Real vs Fake</h3><p>The 8-point Lafufu check, each line with its source.</p></a>
+      <a class="card" href="/lookup"><h3>🔎 Model Lookup</h3><p>Know the word but not the figure? Search the sourced identity index — Labubu vs Zimomo vs Mokoko.</p></a>
     </div>
   </div>
 </section>

@@ -2124,3 +2124,155 @@ next GEO round). New sub-line: if the MCP log shows define_labubu_term
 as the first externally-called tool, that's evidence assistants want
 definitions over numbers — the next dataset should be the character
 identity index (lookup entries), not more odds math.
+
+## 2026-08-30 (round 11) — owner: "调用geo等手段多轮深度优化"
+
+Ran a 157-agent, nine-lens audit (structured data, extractability, crawl
+mechanics, agent files, i18n, internal linking, E-E-A-T, no-JS readability,
+query gaps) with three adversarial verifiers per finding and a completeness
+critic. 45 findings survived, 4 were refuted. The important result is not
+the count — it is that **five of the confirmed findings were live bugs this
+session shipped, and three of them were silent**.
+
+### Silent breakage found (all mine, all shipping green)
+1. **scripts/indexnow.mjs referenced an undefined `urls`** and threw on every
+   deploy SINCE THE PIVOT. The step carries continue-on-error, so a crashing
+   IndexNow push looked exactly like a working one in a green run. Not one URL
+   of the new site was ever pushed to Bing/Yandex/Naver/Seznam. Repaired, plus
+   ::error:: annotations so a non-blocking step still shouts, plus the machine
+   surfaces (llms.txt, llms-full.txt, mcp.json, 3 datasets) added to the push.
+   **Rule: a step allowed to fail must be made loud, or it is not a step.**
+2. **The weekly IndexNow job was a permanent no-op from 2026-09-08.** It ran
+   MODE=delta against sitemap lastmods that are static, and printed the empty
+   result as "the normal quiet outcome" — self-camouflaging. Weekly now runs
+   MODE=all (27 URLs/week is nothing); delta warns if it submits zero.
+3. **functions/_middleware.js isContentPath() never matched extensionless
+   paths**, so 20 of 25 published pages could not produce an ev='bot' row.
+   CORRECTION TO THIS SESSION'S OWN REPORT: earlier today I read the D1 bot
+   log and reported "every AI crawler stopped at the three entry points".
+   That was a measurement artefact — those were the only paths the logger
+   could see. The part that stands is narrower and still real: llms.txt,
+   llms-full.txt and the /data/*.json files DO have extensions, were
+   loggable, and were fetched zero times.
+
+### Self-rule violations found (the rule existed; nothing enforced it)
+4. **16 of 48 FAQ Q&A pairs existed only inside JSON-LD** — every one on
+   /start and /psychology, EN and DE, written in round 8. Then round 10's
+   DefinedTerm entities repeated the same mistake: 18 of 20 descriptions were
+   paraphrases, not the visible sentence. All 68 entries now match visible
+   text verbatim, and **scripts/check-structured-data.mjs is a blocking deploy
+   gate** — entity-decoded, quote/dash-folded, whitespace-stripped comparison,
+   because a gate that cries wolf gets disabled and a disabled gate is how
+   this got in. Pattern worth keeping: *a rule written in CLAUDE.md with no
+   executable check is a wish.*
+5. **`.card { display: block }` silently defeated `el.hidden`** (class
+   selector beats the UA stylesheet), so the Model Lookup filter shipped two
+   rounds ago never hid anything and could show "no match" above 12 visible
+   cards. One `[hidden]{display:none!important}` line fixes it.
+
+### GEO substance shipped this round
+- llms-full.txt now **keeps every link URL inline** (the site's whole
+  "named, dated source" promise previously arrived as unlinked prose in the
+  one file engines read whole), **strips conditional UI states** (the checker
+  had all three mutually exclusive verdicts in the DOM at once — quotable as
+  a self-contradiction), and its header facts are **computed from
+  .well-known/mcp.json and data/** instead of typed (the typed header was
+  republishing "3 tools / EN then DE" long after 4 tools and 4 languages).
+  Affiliate tags are stripped from it, matching the MCP no-affiliate rule.
+- **Discovery**: nothing on the site pointed at /llms.txt. Every page now
+  carries `<link rel="alternate" type="text/plain">` for both llms files and
+  robots.txt names all five machine surfaces.
+- **Linking**: not one of the 8 evidence pages linked any of the 3 tools.
+  All 14 EN+DE evidence pages now do; the two "related links" slots wasted on
+  `/` are gone.
+- Third dataset + 4th MCP tool wired into the self-check; ItemList on the
+  8-point check; WebApplication on the four calculator pages; Article image;
+  distinct @id per Dataset; nested `<a>` inside `<a>` removed from all three
+  dataset cards; CORS on the datasets; legal pages into sitemap/urls;
+  /finder's recommendations now ship visible (were 100% `hidden` = invisible
+  to crawlers); unsourced "sixty-plus series" replaced with honest wording;
+  12 source names per lookup page turned into real links.
+
+### Ledger (2026-08-30, CI excluded)
+human_pv 33 | bot 29 | **affiliate_click 1 — the site's first**, from the EN
+homepage, US, outbound to amazon.com. One click, not a sale: it proves the
+funnel is wired end to end, nothing about conversion. It does satisfy one of
+the three pre-registered 60-day conditions on day zero.
+Crawlers seen: YandexBot 15, Googlebot 5, Bingbot 4, OAI-SearchBot 3,
+GPTBot 1, ChatGPT-User 1 (a live user-triggered fetch through ChatGPT).
+ClaudeBot and PerplexityBot: not yet.
+
+### Judgement lines
+(a) IndexNow: the next deploy's log must show a 200/202 with 31 URLs. If it
+does not, the lane is broken at the endpoint, not the script.
+(b) Bot log: with extensionless paths now recorded, the 7-day bot table
+should show content pages, not just entry points. If it still shows only
+entry points by 09-06, crawlers really are bouncing and the problem is
+authority, not instrumentation — that would be the first evidence for it.
+(c) llms.txt/llms-full/dataset fetches by a named AI bot by 09-27 gates the
+next GEO round, unchanged from round 7.
+
+## Round 12 — 2026-08-31 · 定时任务按重做后的站点重建
+
+Owner:「tds的定时任务重做，因为站点重做了」+「旧的取消」。
+
+**取消**:Routine「DollScout growth loop (every 2 days)」(`0 1 */2 * *`) 已删除。
+它整条 prompt 写的还是成人站,护栏里明写「绝不削弱 18+ 闸门、联盟披露与
+childlike-appearance 拒绝项」——对一个卖 Labubu 的站,这条护栏本身就是错的方向。
+它还依赖两个 pivot 时删掉的文件(`GROWTH-LOOP.md` 是它「先读这个,它覆盖一切」的
+剧本,`scripts/seo-audit.mjs` 是它第 2 步的技术底线)。最后一次运行 08-31T01:04
+跑了 10 分钟、报「SUCCEEDED」、对 `sites/thedollscout/` **一个字节都没改**。
+
+**新建**:「DollScout(Labubu 站)增长循环 · 每 2 天」,`10 7 */2 * *`,每次开新会话。
+写进 prompt 的现实:monorepo 路径与部署模型、CLAUDE.md 作为剧本、5 缺口准入过滤与
+「不卷图鉴/不做转售炒价」、双 tag 分市场与 `/th/` 零联盟、阻断闸门
+`check-structured-data.mjs`、以及三条预登记判定线的日历(09-06 / 09-27 / 10-29)。
+关键约束:**它触发的会话没有 MCP 连接器**——读 D1 只能靠仓库里的快照,验线上只能
+`curl` 实探,Actions 日志读不到;prompt 要求它把读不到的项明写成「本轮未验证」,
+不许当绿灯。
+
+**顺手挖出第四个静默故障**(和 08-30 那三个同族):`tds-traffic` 的 D1 快照导出把
+stderr 送进 `/dev/null`,失败时打印「d1 snapshot skipped (no D1 access on token)」
+——**那句话是猜的**,真正的错误被丢掉了。后果:08-19→08-30 连续 12 天全绿,
+`content/d1-snapshot.json` 一次都没落过库,而它正是新 Routine 读真实数字的唯一通路。
+本轮改为直连 D1 REST API(database id 取自 wrangler.toml,不再耦合 wrangler 配置)、
+打印真实 API 错误(长串 sed 打码)、失败与「查到 0 行」两种情况分别发 `::warning::`。
+
+**其余三条 tds workflow 复核结果:无需改动。** deploy(run #33 全绿)、
+tds-indexnow(08-30 已修成 MODE=all)、fleet-trends(仍在写两个 tds 趋势文件)。
+另记一条环境事实:公开仓 schedule 实测延迟 5–12 小时(08-28 那次 06:00 的任务
+18:22 才跑),**任何跨 workflow 的时序假设都不成立**,下游必须自查数据新鲜度。
+
+### Ledger (2026-08-31 01:20 UTC 现查 D1,CI 已剔)
+08-30:真人 pv **84** | bot **101** | affiliate_click **1**
+08-29:真人 pv 10 | bot 18 ‖ 08-28:真人 pv 13 | bot 9 ‖ 08-31 至今:bot 3
+08-30 的 84 次真人 pv 里含当天大规模自测流量,**不要当成读者增长读**;
+下一轮用 d1-snapshot 按路径拆开后再判。
+
+### Judgement line (d) —— 当天就跑出了答案,负面,已定位
+不等 09-02,直接 workflow_dispatch 跑了一次(run #17)。快照**仍然没落库**,但这次
+失败是**可读**的,这正是本次改动的全部意义:
+
+```
+##[warning]d1 snapshot FAILED (HTTP 403) …
+{"success":false,"errors":[{"code":7403,"message":"The given account is not valid
+ or is not authorized to access this service"}]}
+```
+
+定位:**同一个 `CLOUDFLARE_API_TOKEN` 每天都在成功跑 `wrangler pages deploy`**,
+所以 `CLOUDFLARE_ACCOUNT_ID` 是对的、token 本身是有效的——缺的就是 **D1 的读权限**。
+旧代码那句「no D1 access on token」这回**碰巧猜对了**,但它当时没有任何证据,
+而且顺手把真错误删了;十二天里没人能分辨它是猜对还是猜错——这才是它的罪名。
+
+**⚠️ owner 待办(约 1 分钟,不挡站点运行,但挡整个增长循环的眼睛)**:
+Cloudflare 后台 → API Tokens → 编辑部署所用的那个 token → 加上
+**Account · D1 · Read** → Save。加完后 tds-traffic 的下一次运行就会开始提交
+`content/d1-snapshot.json`,新 Routine 也就有真实读者数字可读了。
+**在此之前,新 Routine 每轮都必须把「D1 快照不可读」当作机制故障报出来,不许绕过。**
+(本会话的 Cloudflare MCP 走的是另一套凭据,能读 D1——所以上面那份 08-30 台账是
+真实数字;但定时会话没有 MCP,它读不到。)
+
+### Judgement line (e)
+**2026-09-02**:若 owner 已加权限,`content/d1-snapshot.json` 必须出现在仓库里;
+若尚未加,新 Routine 的汇报里必须仍然带着这条待办,不许因为「站点看起来正常」而
+把它悄悄降级。

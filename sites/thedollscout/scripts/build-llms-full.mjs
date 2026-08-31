@@ -13,7 +13,7 @@
    If this file is missing entirely the site still works; a stale or partial
    llms-full.txt is strictly better than no deploy. */
 
-import { readFile, writeFile } from "node:fs/promises";
+import { readFile, writeFile, readdir } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -32,6 +32,7 @@ const PAGES = [
   ["fake-check.html", "/fake-check"],
   ["where-to-buy.html", "/where-to-buy"],
   ["glossary.html", "/glossary"],
+  ["data/index.html", "/data/"],
   ["checker.html", "/checker"],
   ["finder.html", "/finder"],
   ["lookup.html", "/lookup"],
@@ -50,6 +51,34 @@ const PAGES = [
   ["th/index.html", "/th/"],
 ];
 
+function stripHiddenSubtrees(html) {
+  /* Elements shipped with the `hidden` attribute are conditional UI states,
+     not content. /checker holds three MUTUALLY EXCLUSIVE verdicts in the DOM
+     at once ("red flags" / "inconclusive" / "no red flags found"); dumping all
+     three into llms-full.txt produced a self-contradicting passage that an
+     assistant could quote as our verdict. Nesting-aware on purpose — the
+     verdict blocks live inside a hidden wrapper. */
+  let out = html, guard = 0;
+  const open = /<(div|p|span|section)\b[^>]*\bhidden\b[^>]*>/i;
+  while (guard++ < 200) {
+    const m = out.match(open);
+    if (!m) break;
+    const tag = m[1].toLowerCase();
+    const start = m.index;
+    let i = start + m[0].length, depth = 1;
+    const re = new RegExp(`<${tag}\\b[^>]*>|</${tag}>`, "gi");
+    re.lastIndex = i;
+    let hit;
+    while ((hit = re.exec(out))) {
+      depth += hit[0][1] === "/" ? -1 : 1;
+      if (depth === 0) { i = hit.index + hit[0].length; break; }
+    }
+    if (depth !== 0) i = out.length;
+    out = out.slice(0, start) + " " + out.slice(i);
+  }
+  return out;
+}
+
 function textOf(html) {
   /* Cheap, tolerant extraction — no DOM library on purpose (zero deps on the
      deploy path). Good-enough text beats a dependency that can break it. */
@@ -57,6 +86,26 @@ function textOf(html) {
   s = s.replace(/<script[\s\S]*?<\/script>/gi, " ");
   s = s.replace(/<style[\s\S]*?<\/style>/gi, " ");
   s = s.replace(/<!--[\s\S]*?-->/g, " ");
+  s = stripHiddenSubtrees(s);
+  /* Keep every citation verifiable. Until 2026-08-30 this stripped <a> tags
+     like any other markup, so the site's whole "named, dated source" promise
+     arrived in llms-full.txt as unlinked prose — an engine reading only this
+     file could not check a single claim. Now each link keeps its URL inline. */
+  s = s.replace(/<a\b[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/gi, (m, href, inner) => {
+    const label = inner.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
+    if (!label) return " ";
+    if (href.startsWith("#")) return label;
+    /* hrefs still carry raw entities here (entity decoding happens later in
+       the pipeline), so &amp;tag= would slip past a naive &tag= match. */
+    const raw = href.replace(/&amp;/g, "&");
+    let url = raw.startsWith("/") ? BASE + raw : raw;
+    /* Same iron rule the MCP endpoint follows: our affiliate tracking never
+       rides into a machine surface. The destination stays (the citation is
+       the point); the tag comes off, so an assistant quoting this file cannot
+       reproduce our Associates tag inside someone else's answer. */
+    url = url.replace(/([?&])tag=[^&]*(&|$)/, (m, p1, p2) => (p2 === "&" ? p1 : "")).replace(/[?&]$/, "");
+    return `${label} (${url})`;
+  });
   /* Keep the document's shape: headings become markdown-ish markers, block
      ends become line breaks, table cells get separators. */
   s = s.replace(/<h1[^>]*>/gi, "\n\n# ").replace(/<h2[^>]*>/gi, "\n\n## ").replace(/<h3[^>]*>/gi, "\n\n### ");
@@ -87,6 +136,23 @@ function titleOf(html) {
 const today = new Date().toISOString().slice(0, 10);
 const out = [];
 
+/* Header facts are COMPUTED, never typed. The hand-written header claimed
+   "3 read-only tools" and "EN then DE" long after the endpoint grew a fourth
+   tool and the site grew ZH and TH — this file is the one artefact AI engines
+   read whole, so a stale sentence here is a wrong fact republished on every
+   deploy. Read them from the sources of truth instead. */
+let toolNames = [], datasetFiles = [];
+try {
+  const disc = JSON.parse(await readFile(join(ROOT, ".well-known/mcp.json"), "utf8"));
+  toolNames = disc.tools || [];
+} catch (e) { /* header degrades, deploy continues */ }
+try {
+  datasetFiles = (await readdir(join(ROOT, "data")))
+    .filter((f) => f.endsWith(".json")).sort();
+} catch (e) { /* header degrades, deploy continues */ }
+const langs = [...new Set(PAGES.map(([, p]) =>
+  p.startsWith("/de/") ? "DE" : p.startsWith("/zh/") ? "ZH" : p.startsWith("/th/") ? "TH" : "EN"))];
+
 out.push("# DollScout — full site text (llms-full.txt)");
 out.push("");
 out.push("> Rarity-first buyer's guide for Labubu / The Monsters collectibles");
@@ -95,10 +161,17 @@ out.push("> Independent — not affiliated with Pop Mart or Kasing Lung. Every c
 out.push("> is sourced inline or explicitly marked unverified. Pop Mart's own");
 out.push("> current guidance outranks this site where they disagree.");
 out.push(">");
-out.push("> This file is the plain-text rendering of every content page, EN then DE.");
-out.push(`> Generated ${today}. Index: ${BASE}/llms.txt · Datasets (CC-BY 4.0):`);
-out.push(`> ${BASE}/data/rarity-odds.json and ${BASE}/data/labubu-fake-signals.json`);
-out.push(`> · MCP endpoint (3 read-only tools): ${BASE}/mcp`);
+out.push(`> Plain-text rendering of every content page (${PAGES.length} pages, ${langs.join(" / ")}).`);
+out.push("> Link targets are kept inline in parentheses so every cited source stays");
+out.push("> checkable from this file alone. Conditional UI states (a tool's unshown");
+out.push("> verdicts) are omitted rather than dumped as contradictory text.");
+out.push(`> Generated ${today}. Index: ${BASE}/llms.txt`);
+if (datasetFiles.length) {
+  out.push(`> Datasets (CC-BY 4.0, ${datasetFiles.length}): ` + datasetFiles.map((f) => `${BASE}/data/${f}`).join(" , "));
+}
+if (toolNames.length) {
+  out.push(`> MCP endpoint ${BASE}/mcp — ${toolNames.length} read-only tools: ${toolNames.join(", ")}`);
+}
 out.push("");
 
 for (const [file, path] of PAGES) {

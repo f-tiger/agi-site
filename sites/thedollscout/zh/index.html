@@ -6,6 +6,8 @@
 <title>DollScout — Labubu 稀有度、隐藏款概率与买真指南(中文版)</title>
 <meta name="description" content="哪只 Labubu 真的稀有、隐藏款概率到底多少、怎么不买到假的 Lafufu——概率计算器 + 8 项真伪检查 + 官方渠道清单,每条结论都有信源。中文单页版。">
 <link rel="canonical" href="https://thedollscout.com/zh/">
+<link rel="alternate" type="text/plain" href="/llms.txt" title="llms.txt — AI index of this site">
+<link rel="alternate" type="text/plain" href="/llms-full.txt" title="llms-full.txt — full site text for AI">
 <link rel="alternate" hreflang="en" href="https://thedollscout.com/">
 <link rel="alternate" hreflang="de" href="https://thedollscout.com/de/">
 <link rel="alternate" hreflang="zh" href="https://thedollscout.com/zh/">
@@ -26,9 +28,34 @@
 {
   "@context": "https://schema.org",
   "@graph": [
-    { "@type": "Organization", "@id": "https://thedollscout.com/#org", "name": "DollScout", "url": "https://thedollscout.com/" },
-    { "@type": "WebSite", "name": "DollScout(中文版)", "url": "https://thedollscout.com/zh/",
-      "publisher": { "@id": "https://thedollscout.com/#org" }, "inLanguage": "zh" }
+    {
+      "@type": "Organization",
+      "@id": "https://thedollscout.com/#org",
+      "name": "DollScout",
+      "url": "https://thedollscout.com/"
+    },
+    {
+      "@type": "WebSite",
+      "name": "DollScout(中文版)",
+      "url": "https://thedollscout.com/zh/",
+      "publisher": {
+        "@id": "https://thedollscout.com/#org"
+      },
+      "inLanguage": "zh"
+    },
+    {
+      "@type": "WebApplication",
+      "name": "隐藏款概率计算器",
+      "url": "https://thedollscout.com/zh/#calc",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "Any",
+      "isAccessibleForFree": true,
+      "inLanguage": "zh",
+      "featureList": "Probability of at least one secret across N blind boxes at the printed odds; boxes needed for a 50% and 90% chance; independent single-box model; runs entirely in the browser",
+      "publisher": {
+        "@id": "https://thedollscout.com/#org"
+      }
+    }
   ]
 }
 </script>

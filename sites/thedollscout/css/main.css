@@ -148,6 +148,12 @@ h3 { font-size: 1.08rem; font-weight: 700; margin-bottom: 8px; }
 .grid.c2 { grid-template-columns: repeat(2, 1fr); }
 @media (max-width: 860px) { .grid.c3 { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 620px) { .grid.c3, .grid.c2 { grid-template-columns: 1fr; } }
+/* [hidden] must outrank every component display rule below. Class selectors
+   beat the UA stylesheet's [hidden]{display:none}, so `.card { display:block }`
+   silently defeated el.hidden — the Model Lookup filter hid nothing and could
+   show "no match" above all 12 visible cards. Found 2026-08-30. */
+[hidden] { display: none !important; }
+
 .card {
   display: block; color: var(--ink);
   background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);

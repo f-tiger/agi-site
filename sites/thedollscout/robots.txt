@@ -36,4 +36,15 @@ Allow: /
 User-agent: xAI-Bot
 Allow: /
 
+# Machine-readable surfaces for AI engines and agents. Listed here because
+# robots.txt is measurably where crawlers stop: on 2026-08-30 the D1 edge log
+# showed OAI-SearchBot fetching /robots.txt three times and nothing else, and
+# not one crawler had ever fetched llms.txt — nothing on the site pointed at it.
+# (Comments are advisory; every path below is also Allow-ed by the rules above.)
+#   Site index for AI:      https://thedollscout.com/llms.txt
+#   Full site text:         https://thedollscout.com/llms-full.txt
+#   MCP endpoint (4 tools): https://thedollscout.com/mcp
+#   MCP discovery:          https://thedollscout.com/.well-known/mcp.json
+#   Open datasets (CC-BY):  https://thedollscout.com/data/
+
 Sitemap: https://thedollscout.com/sitemap.xml

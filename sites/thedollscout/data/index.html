@@ -4,8 +4,19 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Open Data — DollScout</title>
-<meta name="description" content="DollScout's published datasets: Labubu secret/chase rarity odds per series format and the authenticity signals (real vs fake checks), as machine-readable CC-BY JSON, every row sourced.">
+<meta name="description" content="DollScout's three published CC-BY datasets: Labubu secret/chase rarity odds per series format, the 8 authenticity signals (real vs fake checks), and the collecting glossary — machine-readable JSON, every row sourced, callable over MCP.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DollScout">
+<meta property="og:url" content="https://thedollscout.com/data/">
+<meta property="og:title" content="Open data — DollScout">
+<meta property="og:description" content="Three CC-BY datasets behind the pages: rarity odds, authenticity signals, collecting glossary. Machine-readable, sourced, and callable over MCP.">
+<meta property="og:image" content="https://thedollscout.com/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://thedollscout.com/data/">
+<link rel="alternate" type="text/plain" href="/llms.txt" title="llms.txt — AI index of this site">
+<link rel="alternate" type="text/plain" href="/llms-full.txt" title="llms-full.txt — full site text for AI">
 <link rel="stylesheet" href="/css/main.css">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧸</text></svg>">
 <script type="application/ld+json">
@@ -13,16 +24,22 @@
   "@context": "https://schema.org",
   "@graph": [
     { "@type": "Organization", "@id": "https://thedollscout.com/#org", "name": "DollScout", "url": "https://thedollscout.com/" },
+    { "@type": "BreadcrumbList", "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://thedollscout.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Data", "item": "https://thedollscout.com/data/" }]},
     { "@type": "Dataset",
+      "@id": "https://thedollscout.com/data/#fake-signals",
       "name": "Labubu authenticity signals (real vs fake / Lafufu checks)",
       "description": "The eight checks to run on a Labubu / The Monsters figure before or after buying, compiled from named public sources: teeth count, face finish, box finish, anti-counterfeit seal, figure markings, build quality, price floor, seller of record. Each signal carries its sources; limitations stated in the file.",
       "url": "https://thedollscout.com/data/",
       "license": "https://creativecommons.org/licenses/by/4.0/",
       "creator": { "@id": "https://thedollscout.com/#org" },
       "dateModified": "2026-08-30",
-      "distribution": [{ "@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "https://thedollscout.com/data/labubu-fake-signals.json" }]
+      "distribution": [{ "@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "https://thedollscout.com/data/labubu-fake-signals.json" }],
+      "isAccessibleForFree": true
     },
     { "@type": "Dataset",
+      "@id": "https://thedollscout.com/data/#rarity-odds",
       "name": "Labubu secret/chase rarity odds by series format",
       "description": "Commonly reported secret-figure odds for Labubu / The Monsters blind-box series by format — 6-figure (1:72), 12-figure (1:144), collabs (1:120–1:168), glow/ultra variants (down to 1:720) — with per-row sources, plus derived box counts for a 50% pull chance under the independent-draw model. The odds printed on a specific series' own box outrank every row; limitations stated in the file.",
       "url": "https://thedollscout.com/data/",
@@ -32,6 +49,7 @@
       "distribution": [{ "@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "https://thedollscout.com/data/rarity-odds.json" }]
     },
     { "@type": "Dataset",
+      "@id": "https://thedollscout.com/data/#glossary",
       "name": "Labubu / blind-box collecting glossary",
       "description": "Ten collecting terms defined in plain language — blind box, series, regular, secret/chase, printed odds, case, glow variant, vinyl plush pendant, Lafufu, seller of record — with aliases and per-term links to the evidence pages. Pop Mart's own current terminology outranks this glossary where they disagree.",
       "url": "https://thedollscout.com/data/",
@@ -68,9 +86,9 @@
     <p class="meta">The evidence behind our pages, published as machine-readable JSON under CC-BY&nbsp;4.0. Quote freely with attribution; assistants and crawlers welcome. Where Pop&nbsp;Mart's own current guidance disagrees with a dataset, follow Pop&nbsp;Mart's.</p>
 
     <div class="grid c2" style="margin-top:22px">
-      <a class="card" href="/data/rarity-odds.json"><h3>rarity-odds.json</h3><p>The reported secret rates per series format from <a href="/rarity">the rarity page</a> — 1:72 / 1:144 / collabs / glow variants, per-row sources, and the derived boxes-for-50% math. Recorded 2026-08-30.</p></a>
-      <a class="card" href="/data/labubu-fake-signals.json"><h3>labubu-fake-signals.json</h3><p>The 8 authenticity checks from <a href="/fake-check">the real-vs-fake guide</a> — authentic vs counterfeit indicators, per-signal sources, stated limitations. Recorded 2026-08-30.</p></a>
-      <a class="card" href="/data/labubu-glossary.json"><h3>labubu-glossary.json</h3><p>The 10 collecting terms from <a href="/glossary">the glossary</a> as machine-readable definitions with aliases and per-term evidence links. Recorded 2026-08-30.</p></a>
+      <div class="card"><h3><a href="/data/rarity-odds.json">rarity-odds.json</a></h3><p>The reported secret rates per series format from <a href="/rarity">the rarity page</a> — 1:72 / 1:144 / collabs / glow variants, per-row sources, and the derived boxes-for-50% math. Recorded 2026-08-30.</p></div>
+      <div class="card"><h3><a href="/data/labubu-fake-signals.json">labubu-fake-signals.json</a></h3><p>The 8 authenticity checks from <a href="/fake-check">the real-vs-fake guide</a> — authentic vs counterfeit indicators, per-signal sources, stated limitations. Recorded 2026-08-30.</p></div>
+      <div class="card"><h3><a href="/data/labubu-glossary.json">labubu-glossary.json</a></h3><p>The 10 collecting terms from <a href="/glossary">the glossary</a> as machine-readable definitions with aliases and per-term evidence links. Recorded 2026-08-30.</p></div>
     </div>
     <p style="margin-top:18px">These datasets are also callable: the site runs an <strong>MCP endpoint</strong> at <code>https://thedollscout.com/mcp</code> (Streamable HTTP, four read-only tools — rarity odds, fake signals, a secret-pull probability calculator, and term definitions). Every tool answer is read from these files at request time and carries their recording date and limitations; no affiliate links appear in tool output. Human-readable versions: <a href="/rarity">rarity</a> · <a href="/fake-check">fake-check</a> · <a href="/glossary">glossary</a>.</p>
   </div>
