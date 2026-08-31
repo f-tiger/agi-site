@@ -437,9 +437,9 @@ const PRODUCTS = [
     freightMode: "Sea for margin",
     season: "Jan fitness + marathon seasons (spring/fall)",
     orderBy: "October",
-    risks: "Sizing/fit returns — offer XL calf option; pressure-accuracy QC matters.",
+    risks: "Sizing/fit returns — offer XL calf option; pressure-accuracy QC matters. Second risk, from first-party trend data (trendspy rising related queries on the seed \"leg compression boots\", fetched 2026-08-30): demand under this seed is not converging on boots. The largest rising query by a wide margin is \"best leg compression sleeves\" (50,350) — a structurally cheaper adjacent format with no pump, no power and no FDA-adjacent claims surface — and the second is a brand-and-model term, \"therabody jetboots prime\" (5,250). Generic unbranded rising terms are an order of magnitude smaller (\"quinear leg compression\" 120, \"therabody leg compression\" 50). Read together: shoppers arriving in this category are splitting toward a cheaper product class or toward one incumbent brand by name, so an unbranded boot inherits little of that traffic by default.",
     whyHot: "Early-window pick in the longevity narrative with a huge incumbent price umbrella.",
-    buyerTip: "Marathon-training Facebook groups and run clubs are the underpriced ad channel."
+    buyerTip: "Marathon-training Facebook groups and run clubs are the underpriced ad channel. On the listing itself, answer the comparison the demand data says buyers are actually running — boots vs sleeves — instead of assuming they arrived wanting boots: \"best leg compression sleeves\" is the #1 rising query on this seed (50,350, trendspy 2026-08-30) and outweighs every generic boot term by two orders of magnitude. We take no position on which format recovers better; the point is that an unanswered format question is a bounce, and the boot has to earn the upgrade rather than assume it."
   },
   {
     id: "solar-camp-lights",
