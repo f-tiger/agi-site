@@ -2513,3 +2513,26 @@ validate 222 页 OK。种子在 content-backlog 打勾。
   累计 ≥5 → 阅读时刻钱路成立,复制到 `/situational-awareness-summary` 与 `/how-close-is-agi`;
   <5 → 关闭 Associates 并拆除书块(furniture 当天拆,不赖着)。**该判定现在才第一次真正可结算。**
 - validate OK(225 页 / 207 URL);亚马逊链接零泄漏进 llms/.md(红线已核)。
+
+
+## 2026-08-31(第三轮,owner:「继续扩展丰富 agi,在首页设置可玩游戏,最终还是转化游戏营收?」)
+- **先回答那个问号(一手证据,不是意见)**:舰队已经在跑游戏营收实测 = gridlings
+  (无广告无账号,变现靠门户分成 + 订阅钩)。**至今 0 收入**;CrazyGames €100 起付、2-4 周
+  审核;itch 判定线 09-24 需 150/25,今日读数 **42/13 且多日持平**。加上站规硬结论
+  「游戏化页面 AI 引用为 0」。**结论:游戏不是本站的营收路径,是参与/分享路径**——
+  已写进 CLAUDE.md,防止后续会话把它当增长故事重提。
+- **但 owner 方向对了一半,而且有数据**:全站参与率最高的两件东西正是**页内、轻量、不跳转**
+  的首页投票(vote_cast 13/28d ≈6.5%)与 readnext(13),而"跳去玩工具"的横幅 60 天共 5 次。
+  **所以做页内可玩,不做又一个跳转入口。**
+- **ship:`index.html#grade-game` 分歧引擎。** 读者用本站公开权重自己给八条判定打分 →
+  当场出分 → 与 Tracker 对照 → 列出逐条分歧 → 一键复制分享。**刻意不做猜谜**:答案就在同页
+  上方的记分板里,藏答案不诚实;这个游戏卖的是**分歧**,那才是本站独有的东西。
+- **零硬同步负债**:全部实时读 `/data.json`(判定 + tracker 分数),一个数字都没写死,
+  反而消掉了 index.html 里一处写死的 62.5。自检通过:读者若与我们完全一致,**精确得 62.5**。
+- 埋点 `calc_use{grade_game}` / `challenge_share{grade_game}` / `index_click{grade_game}`,
+  **读数按 location 拆分**(Compass 污染 slidein_show 的教训)。位置在记分板表格之后、
+  对比区之前——不动首屏与 Dataset JSON-LD,引用资产不受影响。
+- **判定线(预登记)至 2026-09-28**:`calc_use{grade_game}` 完成事件 ≥10 → 页内游戏形态成立,
+  把同形态复制到 `/progress-index` 与 `/when-will-agi-arrive`;<10 → 拆除,记「首页读者不玩
+  页内游戏」为反面发现。**`challenge_share{grade_game}` ≥3 单独构成裂变信号**(现基线 0)。
+- validate OK(225 页 / 207 URL);游戏 JS 单独 node --check 通过。

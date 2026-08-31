@@ -227,6 +227,31 @@ Marketing skills library installed at .claude/skills (38 skills) — invoke per 
 competitor-profiling（用户与竞对洞察）、offers / pricing / ab-testing /
 conversion-ops（变现与转化实验）、content-engine（多平台内容）。
 
+## 首页可玩游戏 = 分歧引擎(owner 2026-08-31「首页设置可玩游戏」;**不要改成猜谜**)
+
+`index.html#grade-game`:读者用**本站公开的同一套权重**(delivered=1 / undecided=0.5 /
+failed=0)自己给八条判定打分,当场得出自己的分数并与 Tracker 对照,列出逐条分歧。
+**三条设计约束,后续会话别推翻**:
+1. **不做猜谜。** 记分板表格就在同页上方,答案本来就公开;藏答案不诚实。游戏的产物是
+   **分歧**,不是"你猜对了几条"——而分歧恰恰是这个站唯一有资格制造的东西。
+2. **页内可玩、无跳转、无注册。** 依据是本站自己的数据:首页投票 `vote_cast` 13 次/28d
+   与 `readnext` 13 次,碾压所有"跳去玩工具"的横幅(opinion_* 60 天合计 5 次)。
+3. **数据实时读 `/data.json`,一个数字都不写死。** 判定或 Tracker 分数一改,游戏自动跟着变
+   ——**它不进硬同步清单**,反而顺手消掉了 index.html 里的一个写死 62.5。
+   `OURS` 映射必须与公开方法一致(On track/Exceeded=1、Open/Pending=0.5、Wrong=0);
+   改判定词表时先跑一遍"与我们完全一致应得 62.5"的自检。
+埋点(**读数必须按 location 拆分**,否则重蹈 Compass 弹层污染 slidein_show 的覆辙):
+`calc_use{grade_game}` 每次打分与完成、`challenge_share{grade_game}` 复制分享、
+`index_click{grade_game}` 去 Tracker。注意 `calc_use` 另有 `timeline_tool` 在用。
+
+**关于「游戏营收」(owner 追问,如实回答,别再当成增长路径重提)**:舰队已有一个正在跑的
+游戏营收实测——gridlings(11-12 款,**无广告、无账号**,变现 = 门户分成 + 订阅钩;
+GameDistribution 等因强制广告 SDK 与无广告承诺冲突已排除)。**至今收入为 0**:
+CrazyGames €100 起付、2-4 周审核;itch 判定线 09-24 要 150 starts/25 solves,
+当前 **42/13 且多日持平**。且站规硬结论仍然成立:**游戏化页面 AI 引用为 0**——
+它喂的是点击/分享/绑定,不喂引用引擎。**因此首页游戏的 KPI 不是营收,是参与与分享**;
+把它当营收路径考核就是拿错机器的尺子量。
+
 ## Prompt-optimization first, then skills (owner rule, 2026-07-11; skills step added 2026-07-25)
 
 Before executing ANY task (including daily automated runs), ALWAYS in this order:
