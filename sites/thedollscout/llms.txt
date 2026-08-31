@@ -19,6 +19,16 @@
 - [Your first Labubu: beginner's guide](https://thedollscout.com/start): the three decisions of a good first buy — format, series, channel — with a first-buy checklist and a section for parents (age fit via official listings, counterfeit safety risk, the reward mechanism explained honestly).
 - [The psychology of the pull](https://thedollscout.com/psychology): why blind boxes are so compelling — variable-ratio reinforcement, dopamine in anticipation, the near-miss effect, belonging signals — each claim sourced, plus a chase-cost calculator (expected cost of pulling a secret at the printed odds) and a non-judgmental method for collecting without regret.
 
+## Odds by purchase size (/odds/ — generated from the published rates, EN + DE)
+Every number below is arithmetic over the rates in rarity-odds.json, under an independent-draw model at the printed odds. Sealed-case allocation can differ.
+- [Secret odds by box count — hub](https://thedollscout.com/odds/): what each purchase size actually buys, one box through seventy-two, for every reported series format.
+- [One box](https://thedollscout.com/odds/one-box): 1.4% at 1:72. A first-box secret is exactly as likely as a 72nd-box secret.
+- [Six boxes](https://thedollscout.com/odds/six-boxes): 8.0% at 1:72. Six independent draws do not produce six different figures — duplicates are the normal outcome.
+- [Twelve boxes, a full case](https://thedollscout.com/odds/twelve-boxes-full-case): 15.5% at 1:72, expected count 0.17 — about one secret per six cases. A sealed case typically guarantees one of each regular figure, not the secret; the widely repeated "a case averages one secret" is wrong.
+- [Twenty-four boxes, two cases](https://thedollscout.com/odds/twenty-four-boxes): 28.5% at 1:72 — not double the 15.5% of one case. Independent draws compound, they do not add, and boxes already opened change nothing.
+- [Seventy-two boxes](https://thedollscout.com/odds/seventy-two-boxes): 63.5% at 1:72. "1 in 72" is a rate per box, never a countdown to the 72nd; buying all seventy-two still leaves better than a one-in-three chance of ending with none.
+- German pair of the whole cluster under [https://thedollscout.com/de/odds/](https://thedollscout.com/de/odds/).
+
 ## Interactive tools (all math client-side, nothing uploaded)
 - [Lafufu Checker](https://thedollscout.com/checker): the 8 authenticity checks as a question-by-question tool — red flags listed by name; a clean run is reported as "no red flags found", never as proof of authenticity.
 - [Series Finder](https://thedollscout.com/finder): three preference answers (use, vibe, chase appetite) mapped to a current official series, linked to Pop Mart's own listings.
@@ -40,7 +50,7 @@
 - [ภาษาไทย](https://thedollscout.com/th/) — Thai one-page edition (Thailand is Pop Mart's largest overseas market)
 
 ## Open data hub
-- [/data/](https://thedollscout.com/data/): the three CC-BY datasets with their descriptions, licences and recording dates, plus how to call them over MCP.
+- [/data/](https://thedollscout.com/data/): the four CC-BY datasets with their descriptions, licences and recording dates, plus how to call them over MCP.
 
 ## Legal
 - [Affiliate disclosure](https://thedollscout.com/legal/affiliate-disclosure): which links pay us, in which marketplace, and how they are labelled.
@@ -51,6 +61,7 @@
 - [Rarity odds dataset](https://thedollscout.com/data/rarity-odds.json) (CC-BY 4.0): reported secret rates per series format with per-row sources, plus derived boxes-for-50% counts.
 - [Authenticity signals dataset](https://thedollscout.com/data/labubu-fake-signals.json) (CC-BY 4.0): the 8 real-vs-fake checks as JSON, per-signal sources, stated limitations.
 - [Glossary dataset](https://thedollscout.com/data/labubu-glossary.json) (CC-BY 4.0): the 10 collecting terms as machine-readable definitions with aliases and per-term evidence links.
+- [Pull-probability dataset](https://thedollscout.com/data/pull-math.json) (CC-BY 4.0): chance of at least one secret, expected count, and the 50%/90% box thresholds for every reported odds format across the purchase sizes people actually buy. Computed from rarity-odds.json — it introduces no new rate of its own, only arithmetic.
 - [MCP endpoint](https://thedollscout.com/mcp): Streamable HTTP, four read-only tools — labubu_rarity_odds, labubu_fake_signals, secret_pull_probability(oddsN, boxes), define_labubu_term(term). Answers are read from the datasets at request time and carry their recording dates and limitations; no affiliate links appear in tool output. Discovery: [/.well-known/mcp.json](https://thedollscout.com/.well-known/mcp.json).
 
 ## Citation policy

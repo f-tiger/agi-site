@@ -82,9 +82,24 @@ jobs:
       # 16 条 FAQ 问答只存在于 JSON-LD,页面上一个字都没有——违反站内自订铁律
       # 「LD 文本必须与页面可见文本一致」。规则一直在,只是没有任何东西执行它)。
       # 比较对表现宽容、对文字严格:实体解码 + NBSP/弯引号/破折号归一 + 去标签 +
-      # 去全部空白后做子串判定。本地已跑通 68 条 0 失配,所以直接设为阻断闸门。
+      # 去全部空白后做子串判定。本地已跑通 0 失配,所以直接设为阻断闸门。
+      # 2026-08-31:walker 原本只递归 de/,zh/ th/ legal/ data/ 从未被检查过;
+      # 修好后覆盖 92 条。闸门看不见的页,闸门就管不住。
       - name: Gate — FAQ/DefinedTerm structured data must match visible text
         run: node scripts/check-structured-data.mjs
+
+      - name: Regenerate the /odds/ cluster and prove it is in sync
+        # 生成器是幂等的,所以在部署链上重跑一次等于断言「仓库里的页 == 数据脊算出来的页」。
+        # 若有人手改了生成页或改了 rarity-odds.json 却忘了重跑,这一步会让 diff 非空而失败。
+        run: |
+          node scripts/gen-odds-pages.mjs
+          if ! git diff --quiet -- odds de/odds data/pull-math.json; then
+            echo "::error::/odds/ 集群与数据脊不同步 —— 有人手改了生成页,或改了 rarity-odds.json 没重跑生成器。"
+            git --no-pager diff --stat -- odds de/odds data/pull-math.json
+            exit 1
+          fi
+          echo "odds cluster in sync with data/rarity-odds.json"
+
 
       # llms-full.txt = 全站正文单文件渲染(GEO 面:AI 引擎一次抓取读全站)。
       # 生成器铁律(本站 8 天冻结教训):脚本内部永远 exit 0,任何失败只降级
@@ -118,7 +133,7 @@ jobs:
         run: |
           sleep 20
           fail=0
-          for p in / /rarity /fake-check /where-to-buy /how-blind-boxes-work /glossary /start /psychology /checker /finder /lookup /zh/ /th/ /de/ /de/rarity /de/fake-check /de/where-to-buy /de/how-blind-boxes-work /de/glossary /de/start /de/psychology /de/checker /de/finder /de/lookup /data/ /robots.txt /sitemap.xml /llms.txt /llms-full.txt /img/og.png /data/rarity-odds.json /data/labubu-glossary.json /data/labubu-fake-signals.json /.well-known/mcp.json /legal/affiliate-disclosure /legal/privacy; do
+          for p in / /rarity /fake-check /where-to-buy /how-blind-boxes-work /glossary /start /psychology /checker /finder /lookup /zh/ /th/ /de/ /de/rarity /de/fake-check /de/where-to-buy /de/how-blind-boxes-work /de/glossary /de/start /de/psychology /de/checker /de/finder /de/lookup /data/ /robots.txt /sitemap.xml /llms.txt /llms-full.txt /img/og.png /data/rarity-odds.json /data/labubu-glossary.json /data/labubu-fake-signals.json /data/pull-math.json /.well-known/mcp.json /legal/affiliate-disclosure /legal/privacy /odds/ /odds/one-box /odds/six-boxes /odds/twelve-boxes-full-case /odds/twenty-four-boxes /odds/seventy-two-boxes /de/odds/ /de/odds/one-box /de/odds/six-boxes /de/odds/twelve-boxes-full-case /de/odds/twenty-four-boxes /de/odds/seventy-two-boxes; do
             code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 20 "https://thedollscout.com$p")
             redirs=$(curl -s -o /dev/null -w "%{num_redirects}" -L --max-redirs 5 --max-time 20 "https://thedollscout.com$p" || echo 99)
             echo "$p -> HTTP $code, redirects $redirs"

@@ -6,12 +6,12 @@
 > is sourced inline or explicitly marked unverified. Pop Mart's own
 > current guidance outranks this site where they disagree.
 >
-> Plain-text rendering of every content page (25 pages, EN / DE / ZH / TH).
+> Plain-text rendering of every content page (37 pages, EN / DE / ZH / TH).
 > Link targets are kept inline in parentheses so every cited source stays
 > checkable from this file alone. Conditional UI states (a tool's unshown
 > verdicts) are omitted rather than dumped as contradictory text.
-> Generated 2026-08-30. Index: https://thedollscout.com/llms.txt
-> Datasets (CC-BY 4.0, 3): https://thedollscout.com/data/labubu-fake-signals.json , https://thedollscout.com/data/labubu-glossary.json , https://thedollscout.com/data/rarity-odds.json
+> Generated 2026-08-31. Index: https://thedollscout.com/llms.txt
+> Datasets (CC-BY 4.0, 4): https://thedollscout.com/data/labubu-fake-signals.json , https://thedollscout.com/data/labubu-glossary.json , https://thedollscout.com/data/pull-math.json , https://thedollscout.com/data/rarity-odds.json
 > MCP endpoint https://thedollscout.com/mcp — 4 read-only tools: labubu_rarity_odds, labubu_fake_signals, secret_pull_probability, define_labubu_term
 
 
@@ -58,6 +58,7 @@ BOXES FOR A 50% SHOT, BY REPORTED ODDS
 
 Independent-draw math from the reported rates on the rarity page (https://thedollscout.com/rarity), recorded 2026-08-30.
 
+Odds by box count One box, six, a full case, seventy-two — what each purchase size actually buys, and the circulating claims each one disproves. (https://thedollscout.com/odds/)
 % Rarity & secret odds 1:72? 1:144? The reported rates per series format, sourced — and the calculator for your real chances. (https://thedollscout.com/rarity)
 Real vs fake (Lafufu) The rarer the figure, the more it's faked. The 8-point check — teeth, box, seal, markings, price floor — each with its source. (https://thedollscout.com/fake-check)
 Where to buy The official channels, ranked by how structurally hard it is for a fake — or a rigged "guaranteed secret" — to reach you. (https://thedollscout.com/where-to-buy)
@@ -178,6 +179,7 @@ Hot series genuinely sell out fast at official channels, and that scarcity is wh
 
 ## Keep reading
 
+Odds by box count One box, six, a full case, seventy-two — what each purchase size actually buys, and the circulating claims each one disproves. (https://thedollscout.com/odds/)
 How blind boxes actually work The mechanics your first box runs on — series, secrets, cases, math. (https://thedollscout.com/how-blind-boxes-work)
 The glossary Secret, chase, case, Lafufu — the vocabulary, defined. (https://thedollscout.com/glossary)
 The psychology of the pull Why the opening feels like this — and the chase-cost calculator. (https://thedollscout.com/psychology)
@@ -248,6 +250,8 @@ These are collector-reported rates, recorded 2026-08-30 — none of them outrank
 ## What are my chances of pulling a secret across several boxes?
 
 For independently drawn boxes at 1-in-72 odds, twelve boxes give you about a 15% chance of at least one secret — not the near-certainty many buyers assume. The calculator on this page does the exact math for any odds and any number of boxes, and shows how many boxes a 50% or 90% chance actually requires. One honest caveat: sealed whole-case allocation can differ from independent single-box pulls, so treat the results as the loose-box model they are.
+
+If you think in purchase sizes rather than box counts — one box, a set of six, a sealed case, two cases — the odds-by-box-count pages (https://thedollscout.com/odds/) run this same calculation for each of them across every reported series format, and name the circulating claim that each one disproves.
 
 ## Does rarity mean a Labubu is worth more?
 
@@ -339,6 +343,7 @@ Do the arithmetic before the feelings: at commonly reported rates, the expected 
 
 ## Keep reading
 
+Odds by box count One box, six, a full case, seventy-two — what each purchase size actually buys, and the circulating claims each one disproves. (https://thedollscout.com/odds/)
 Rarity & secret odds The sourced rates table and the pull calculator this page leans on. (https://thedollscout.com/rarity)
 The glossary Secret, chase, case, Lafufu — every term of the hunt, defined. (https://thedollscout.com/glossary)
 Where to buy The channels where the printed odds are the odds you actually get. (https://thedollscout.com/where-to-buy)
@@ -443,6 +448,7 @@ No — the wanting has ordinary, well-documented reasons: bag charms are the eas
 
 ## Keep reading
 
+Odds by box count One box, six, a full case, seventy-two — what each purchase size actually buys, and the circulating claims each one disproves. (https://thedollscout.com/odds/)
 How blind boxes actually work Series structure, cases, buying formats — the machine this page psychoanalyzes. (https://thedollscout.com/how-blind-boxes-work)
 Rarity & secret odds The sourced rates and the pull calculator. (https://thedollscout.com/rarity)
 Your first Labubu The beginner's path through formats, series and channels. (https://thedollscout.com/start)
@@ -686,6 +692,9 @@ The 8 authenticity checks from the real-vs-fake guide (https://thedollscout.com/
 ### labubu-glossary.json (https://thedollscout.com/data/labubu-glossary.json)
 The 10 collecting terms from the glossary (https://thedollscout.com/glossary) as machine-readable definitions with aliases and per-term evidence links. Recorded 2026-08-30.
 
+### pull-math.json (https://thedollscout.com/data/pull-math.json)
+Chance of at least one secret, expected count, and the 50%/90% thresholds for every odds format across real purchase sizes — the spine behind the odds-by-box-count pages (https://thedollscout.com/odds/). Computed from rarity-odds.json, so there is never a second source for the same numbers. Recorded 2026-08-31.
+
 These datasets are also callable: the site runs an MCP endpoint at https://thedollscout.com/mcp (Streamable HTTP, four read-only tools — rarity odds, fake signals, a secret-pull probability calculator, and term definitions). Every tool answer is read from these files at request time and carries their recording date and limitations; no affiliate links appear in tool output. Human-readable versions: rarity (https://thedollscout.com/rarity) · fake-check (https://thedollscout.com/fake-check) · glossary (https://thedollscout.com/glossary).
 
 ========================================================================
@@ -896,6 +905,375 @@ Lafufu Checker Got the model — now check it's real, interactively. (https://th
 Series Finder No model yet? Three answers to a good starting series. (https://thedollscout.com/finder)
 
 ========================================================================
+URL: https://thedollscout.com/odds/
+Title: Secret odds by box count — what each purchase size actually buys | DollScout
+Description: One box, six, a full case, two cases, seventy-two: the real chance of a secret at each purchase size, computed in the open, plus the circulating claims each one disproves.
+========================================================================
+Home (https://thedollscout.com/) / Odds by box count (https://thedollscout.com/odds/)
+
+# What does each purchase size actually buy?
+
+Almost every number passed around this hobby is a per-box rate — and almost every decision is made in purchase sizes: one box, a set, a case. These pages convert one into the other, for every reported series format, in the open where you can check the arithmetic. Last updated 2026-08-31.
+
+| | Purchase size | Chance of ≥1 secret (1:72) | Expected secrets
+
+| 1 box (https://thedollscout.com/odds/one-box) | 1.4% | 0.01
+
+| 6 boxes (https://thedollscout.com/odds/six-boxes) | 8.0% | 0.08
+
+| 12 boxes (https://thedollscout.com/odds/twelve-boxes-full-case) | 15.5% | 0.17
+
+| 24 boxes (https://thedollscout.com/odds/twenty-four-boxes) | 28.5% | 0.33
+
+| 72 boxes (https://thedollscout.com/odds/seventy-two-boxes) | 63.5% | 1.00
+
+Model: independent single-box draws at the printed odds. Sealed-case allocation can differ — these numbers model loose boxes. The authoritative number is always the one printed on that series' own box; the rates here are collector-reported for orientation (sources in the dataset).
+
+## Quick answers
+
+Does a sealed case guarantee a secret? No. A sealed case typically guarantees one of each regular figure. At 1:72 printed odds, twelve boxes carry a 15.5% chance of at least one secret and an expected count of 0.17 — about one secret per six cases.
+
+Does 1:72 mean the 72nd box is the secret? No. 1:72 is the rate per box, not a countdown. Buying all seventy-two gives a 63.5% chance of at least one secret — leaving more than a one-in-three chance of ending with none.
+
+## Open data
+
+The whole table — every format × every purchase size, plus the thresholds — is published as a CC-BY dataset at /data/pull-math.json (https://thedollscout.com/data/pull-math.json). It is computed from rarity-odds.json (https://thedollscout.com/data/rarity-odds.json) so there is never a second source for the same numbers.
+
+Rarity & calculator The sources behind every rate, and a calculator for any box count. (https://thedollscout.com/rarity)
+Why it feels different The reward mechanics behind the gap between the number and the feeling — plus the cost calculator. (https://thedollscout.com/psychology)
+How blind boxes work Series, secret, case — the mechanism in one page. (https://thedollscout.com/how-blind-boxes-work)
+
+========================================================================
+URL: https://thedollscout.com/odds/one-box
+Title: One box — the real secret odds for 1 box | DollScout
+Description: A single blind box: a 1.4% chance of at least one secret at 1:72, expected count 0.01. Full table across every reported series format, the 50% and 90% thresholds, and the circulating claim this disproves.
+========================================================================
+Home (https://thedollscout.com/) / Odds by box count (https://thedollscout.com/odds/) / One box
+
+# One box.
+
+The atom of the whole hobby, and the number every other number on this site is built from. Last updated 2026-08-31.
+
+1.4%
+chance of at least one secret from a single blind box — at 1:72 printed odds
+
+## The claim this box count disproves
+
+Circulating: “Someone pulled a secret on their first box, so it happens.”
+
+Actually: It does happen — that is what a 1.4% chance means, not what it feels like. The mistake is reading a rare event that occurred as evidence the rate is higher than printed. A first-box secret is exactly as likely as a 72nd-box secret.
+
+## The math, in the open
+
+For a single blind box drawn independently, the chance of at least one secret is 1 − (1 − 1/N) 1 and the expected count is simply 1/N . Across every reported series format:
+
+| | Series format | Printed odds | Chance of at least one secret
+
+| Standard 6-figure series | 1:72 | 1.4%
+
+| Some collab series (low end) | 1:120 | 0.8%
+
+| Extended 12-figure series | 1:144 | 0.7%
+
+| Some collab series (high end) | 1:168 | 0.6%
+
+| Glow / ultra variants | 1:720 | 0.1%
+
+Model: independent single-box draws at the printed odds. Sealed-case allocation can differ — these numbers model loose boxes. The authoritative number is always the one printed on that series' own box; the rates here are collector-reported for orientation (sources in the dataset).
+
+## How many boxes for a serious chance?
+
+| | Printed odds | Boxes for 50% | Boxes for 90%
+
+| 1:72 | 50 | 165
+
+| 1:120 | 83 | 276
+
+| 1:144 | 100 | 331
+
+| 1:168 | 117 | 386
+
+| 1:720 | 499 | 1657
+
+## What that costs — as a multiple, not a price
+
+We do not print prices — they rotate with series and stock. As a multiple: the expected cost of one secret is 72× a single box at 1:72, 144× at 1:144 and 720× at 1:720. A single blind box covers 0.01 of that. Put your own local box price into the calculator on the psychology page (https://thedollscout.com/psychology#cost).
+
+## Quick answers
+
+What are the odds of a secret from a single blind box? At 1:72 printed odds the chance of at least one secret is 1.4%, and the expected number of secrets is 0.01. Rarer formats are lower: 0.7% at 1:144 and 0.1% at 1:720.
+
+How many boxes would a 50 percent chance take? At 1:72 it takes 50 boxes for 50 percent and 165 for 90 percent. At 1:144 it is 100 and 331; at 1:720 it is 499 and 1657.
+
+All the odds + calculator The sources behind every rate, and a calculator for any box count. (https://thedollscout.com/rarity)
+Odds by box count The same math for every purchase size. (https://thedollscout.com/odds/)
+Where to Buy Once the math has decided: where the printed odds are the real odds. (https://thedollscout.com/where-to-buy)
+
+========================================================================
+URL: https://thedollscout.com/odds/six-boxes
+Title: Six boxes — one of each regular — the real secret odds for 6 boxes | DollScout
+Description: Six boxes: a 8.0% chance of at least one secret at 1:72, expected count 0.08. Full table across every reported series format, the 50% and 90% thresholds, and the circulating claim this disproves.
+========================================================================
+Home (https://thedollscout.com/) / Odds by box count (https://thedollscout.com/odds/) / Six boxes — one of each regular
+
+# Six boxes — one of each regular?
+
+Six is the number of regular figures in a standard series, which is why so many people buy six and expect the set. Last updated 2026-08-31.
+
+8.0%
+chance of at least one secret from six boxes — at 1:72 printed odds
+
+## The claim this box count disproves
+
+Circulating: “Buy six and you get the complete set.”
+
+Actually: Six boxes drawn independently do not produce six different figures — duplicates are the normal outcome, not bad luck. Six boxes buys you six draws, and the secret is a separate question with its own low rate.
+
+## The math, in the open
+
+For six boxes drawn independently, the chance of at least one secret is 1 − (1 − 1/N) 6 and the expected count is simply 6/N . Across every reported series format:
+
+| | Series format | Printed odds | Chance of at least one secret
+
+| Standard 6-figure series | 1:72 | 8.0%
+
+| Some collab series (low end) | 1:120 | 4.9%
+
+| Extended 12-figure series | 1:144 | 4.1%
+
+| Some collab series (high end) | 1:168 | 3.5%
+
+| Glow / ultra variants | 1:720 | 0.8%
+
+Model: independent single-box draws at the printed odds. Sealed-case allocation can differ — these numbers model loose boxes. The authoritative number is always the one printed on that series' own box; the rates here are collector-reported for orientation (sources in the dataset).
+
+## How many boxes for a serious chance?
+
+| | Printed odds | Boxes for 50% | Boxes for 90%
+
+| 1:72 | 50 | 165
+
+| 1:120 | 83 | 276
+
+| 1:144 | 100 | 331
+
+| 1:168 | 117 | 386
+
+| 1:720 | 499 | 1657
+
+## What that costs — as a multiple, not a price
+
+We do not print prices — they rotate with series and stock. As a multiple: the expected cost of one secret is 72× a single box at 1:72, 144× at 1:144 and 720× at 1:720. Six boxes covers 0.08 of that. Put your own local box price into the calculator on the psychology page (https://thedollscout.com/psychology#cost).
+
+## Quick answers
+
+What are the odds of a secret from six boxes? At 1:72 printed odds the chance of at least one secret is 8.0%, and the expected number of secrets is 0.08. Rarer formats are lower: 4.1% at 1:144 and 0.8% at 1:720.
+
+How many boxes would a 50 percent chance take? At 1:72 it takes 50 boxes for 50 percent and 165 for 90 percent. At 1:144 it is 100 and 331; at 1:720 it is 499 and 1657.
+
+All the odds + calculator The sources behind every rate, and a calculator for any box count. (https://thedollscout.com/rarity)
+Odds by box count The same math for every purchase size. (https://thedollscout.com/odds/)
+Where to Buy Once the math has decided: where the printed odds are the real odds. (https://thedollscout.com/where-to-buy)
+
+========================================================================
+URL: https://thedollscout.com/odds/twelve-boxes-full-case
+Title: A full case of twelve. Does it guarantee a secret — the real secret odds for 12 boxes | DollScout
+Description: Twelve boxes (a full case): a 15.5% chance of at least one secret at 1:72, expected count 0.17. Full table across every reported series format, the 50% and 90% thresholds, and the circulating claim this disproves.
+========================================================================
+Home (https://thedollscout.com/) / Odds by box count (https://thedollscout.com/odds/) / A full case of twelve. Does it guarantee a secret
+
+# A full case of twelve. Does it guarantee a secret?
+
+This is the single most misreported number in the hobby, and the one worth getting right before you spend case money. Last updated 2026-08-31.
+
+15.5%
+chance of at least one secret from twelve boxes (a full case) — at 1:72 printed odds
+
+## The claim this box count disproves
+
+Circulating: “A full case of twelve averages one secret.”
+
+Actually: At 1:72 printed odds, twelve boxes average 0.17 secrets — about one secret per six cases, not one per case. A sealed case does typically guarantee one of each regular figure; that guarantee is about the regulars, and it has been widely repeated as though it covered the secret. It does not.
+
+## The math, in the open
+
+For twelve boxes (a full case) drawn independently, the chance of at least one secret is 1 − (1 − 1/N) 12 and the expected count is simply 12/N . Across every reported series format:
+
+| | Series format | Printed odds | Chance of at least one secret
+
+| Standard 6-figure series | 1:72 | 15.5%
+
+| Some collab series (low end) | 1:120 | 9.6%
+
+| Extended 12-figure series | 1:144 | 8.0%
+
+| Some collab series (high end) | 1:168 | 6.9%
+
+| Glow / ultra variants | 1:720 | 1.7%
+
+Model: independent single-box draws at the printed odds. Sealed-case allocation can differ — these numbers model loose boxes. The authoritative number is always the one printed on that series' own box; the rates here are collector-reported for orientation (sources in the dataset).
+
+## How many boxes for a serious chance?
+
+| | Printed odds | Boxes for 50% | Boxes for 90%
+
+| 1:72 | 50 | 165
+
+| 1:120 | 83 | 276
+
+| 1:144 | 100 | 331
+
+| 1:168 | 117 | 386
+
+| 1:720 | 499 | 1657
+
+## What that costs — as a multiple, not a price
+
+We do not print prices — they rotate with series and stock. As a multiple: the expected cost of one secret is 72× a single box at 1:72, 144× at 1:144 and 720× at 1:720. Twelve boxes (a full case) covers 0.17 of that. Put your own local box price into the calculator on the psychology page (https://thedollscout.com/psychology#cost).
+
+## Quick answers
+
+What are the odds of a secret from twelve boxes (a full case)? At 1:72 printed odds the chance of at least one secret is 15.5%, and the expected number of secrets is 0.17. Rarer formats are lower: 8.0% at 1:144 and 1.7% at 1:720.
+
+How many boxes would a 50 percent chance take? At 1:72 it takes 50 boxes for 50 percent and 165 for 90 percent. At 1:144 it is 100 and 331; at 1:720 it is 499 and 1657.
+
+All the odds + calculator The sources behind every rate, and a calculator for any box count. (https://thedollscout.com/rarity)
+Odds by box count The same math for every purchase size. (https://thedollscout.com/odds/)
+Where to Buy Once the math has decided: where the printed odds are the real odds. (https://thedollscout.com/where-to-buy)
+
+========================================================================
+URL: https://thedollscout.com/odds/twenty-four-boxes
+Title: Two cases. Twice the boxes, not twice the odds — the real secret odds for 24 boxes | DollScout
+Description: Twenty-four boxes (two cases): a 28.5% chance of at least one secret at 1:72, expected count 0.33. Full table across every reported series format, the 50% and 90% thresholds, and the circulating claim this disproves.
+========================================================================
+Home (https://thedollscout.com/) / Odds by box count (https://thedollscout.com/odds/) / Two cases. Twice the boxes, not twice the odds
+
+# Two cases. Twice the boxes, not twice the odds.
+
+The tier people reach after one case disappointed them — and where the gambler's fallacy does its most expensive work. Last updated 2026-08-31.
+
+28.5%
+chance of at least one secret from twenty-four boxes (two cases) — at 1:72 printed odds
+
+## The claim this box count disproves
+
+Circulating: “I went through a case already, so I'm due.”
+
+Actually: The boxes you already opened change nothing about the ones you have not. Doubling from twelve to twenty-four boxes does not double your chance from 15.5% to 31% either — independent draws compound, they do not add.
+
+## The math, in the open
+
+For twenty-four boxes (two cases) drawn independently, the chance of at least one secret is 1 − (1 − 1/N) 24 and the expected count is simply 24/N . Across every reported series format:
+
+| | Series format | Printed odds | Chance of at least one secret
+
+| Standard 6-figure series | 1:72 | 28.5%
+
+| Some collab series (low end) | 1:120 | 18.2%
+
+| Extended 12-figure series | 1:144 | 15.4%
+
+| Some collab series (high end) | 1:168 | 13.3%
+
+| Glow / ultra variants | 1:720 | 3.3%
+
+Model: independent single-box draws at the printed odds. Sealed-case allocation can differ — these numbers model loose boxes. The authoritative number is always the one printed on that series' own box; the rates here are collector-reported for orientation (sources in the dataset).
+
+## How many boxes for a serious chance?
+
+| | Printed odds | Boxes for 50% | Boxes for 90%
+
+| 1:72 | 50 | 165
+
+| 1:120 | 83 | 276
+
+| 1:144 | 100 | 331
+
+| 1:168 | 117 | 386
+
+| 1:720 | 499 | 1657
+
+## What that costs — as a multiple, not a price
+
+We do not print prices — they rotate with series and stock. As a multiple: the expected cost of one secret is 72× a single box at 1:72, 144× at 1:144 and 720× at 1:720. Twenty-four boxes (two cases) covers 0.33 of that. Put your own local box price into the calculator on the psychology page (https://thedollscout.com/psychology#cost).
+
+## Quick answers
+
+What are the odds of a secret from twenty-four boxes (two cases)? At 1:72 printed odds the chance of at least one secret is 28.5%, and the expected number of secrets is 0.33. Rarer formats are lower: 15.4% at 1:144 and 3.3% at 1:720.
+
+How many boxes would a 50 percent chance take? At 1:72 it takes 50 boxes for 50 percent and 165 for 90 percent. At 1:144 it is 100 and 331; at 1:720 it is 499 and 1657.
+
+All the odds + calculator The sources behind every rate, and a calculator for any box count. (https://thedollscout.com/rarity)
+Odds by box count The same math for every purchase size. (https://thedollscout.com/odds/)
+Where to Buy Once the math has decided: where the printed odds are the real odds. (https://thedollscout.com/where-to-buy)
+
+========================================================================
+URL: https://thedollscout.com/odds/seventy-two-boxes
+Title: Seventy-two boxes. Surely by now — the real secret odds for 72 boxes | DollScout
+Description: Seventy-two boxes: a 63.5% chance of at least one secret at 1:72, expected count 1.00. Full table across every reported series format, the 50% and 90% thresholds, and the circulating claim this disproves.
+========================================================================
+Home (https://thedollscout.com/) / Odds by box count (https://thedollscout.com/odds/) / Seventy-two boxes. Surely by now
+
+# Seventy-two boxes. Surely by now?
+
+The number in the printed odds, which nearly everyone reads as the number of boxes that gets you there. It is the most counterintuitive result on this site. Last updated 2026-08-31.
+
+63.5%
+chance of at least one secret from seventy-two boxes — at 1:72 printed odds
+
+## The claim this box count disproves
+
+Circulating: “1:72 means the 72nd box is the one.”
+
+Actually: Buying all seventy-two gives you a 63.5% chance — better than a coin flip, and still more than a one-in-three chance of ending with nothing. “1 in 72” describes the rate per box, never a countdown. The expected number of secrets in 72 boxes is exactly one, and expecting one is not the same as getting one.
+
+## The math, in the open
+
+For seventy-two boxes drawn independently, the chance of at least one secret is 1 − (1 − 1/N) 72 and the expected count is simply 72/N . Across every reported series format:
+
+| | Series format | Printed odds | Chance of at least one secret
+
+| Standard 6-figure series | 1:72 | 63.5%
+
+| Some collab series (low end) | 1:120 | 45.3%
+
+| Extended 12-figure series | 1:144 | 39.5%
+
+| Some collab series (high end) | 1:168 | 34.9%
+
+| Glow / ultra variants | 1:720 | 9.5%
+
+Model: independent single-box draws at the printed odds. Sealed-case allocation can differ — these numbers model loose boxes. The authoritative number is always the one printed on that series' own box; the rates here are collector-reported for orientation (sources in the dataset).
+
+## How many boxes for a serious chance?
+
+| | Printed odds | Boxes for 50% | Boxes for 90%
+
+| 1:72 | 50 | 165
+
+| 1:120 | 83 | 276
+
+| 1:144 | 100 | 331
+
+| 1:168 | 117 | 386
+
+| 1:720 | 499 | 1657
+
+## What that costs — as a multiple, not a price
+
+We do not print prices — they rotate with series and stock. As a multiple: the expected cost of one secret is 72× a single box at 1:72, 144× at 1:144 and 720× at 1:720. Seventy-two boxes covers 1.00 of that. Put your own local box price into the calculator on the psychology page (https://thedollscout.com/psychology#cost).
+
+## Quick answers
+
+What are the odds of a secret from seventy-two boxes? At 1:72 printed odds the chance of at least one secret is 63.5%, and the expected number of secrets is 1.00. Rarer formats are lower: 39.5% at 1:144 and 9.5% at 1:720.
+
+How many boxes would a 50 percent chance take? At 1:72 it takes 50 boxes for 50 percent and 165 for 90 percent. At 1:144 it is 100 and 331; at 1:720 it is 499 and 1657.
+
+All the odds + calculator The sources behind every rate, and a calculator for any box count. (https://thedollscout.com/rarity)
+Odds by box count The same math for every purchase size. (https://thedollscout.com/odds/)
+Where to Buy Once the math has decided: where the printed odds are the real odds. (https://thedollscout.com/where-to-buy)
+
+========================================================================
 URL: https://thedollscout.com/de/
 Title: DollScout — Labubu Seltenheit, Quoten & Kaufberater
 Description: Welcher Labubu ist wirklich selten, wie selten, und wie stehen deine Blindbox-Chancen wirklich? Mit Pull-Rechner, Echt-vs-Fälschung-Check und den offiziellen Kanälen. Jede Aussage mit Quelle.
@@ -938,6 +1316,7 @@ BOXEN FÜR 50% CHANCE, JE QUOTE
 
 Unabhängige-Ziehung-Mathematik aus den berichteten Raten der Seltenheits-Seite (https://thedollscout.com/de/rarity), Stand 2026-08-30.
 
+Chancen pro Boxenzahl Eine Box, sechs, ein ganzer Case, zweiundsiebzig — was jede Kaufmenge wirklich bringt, und welche kursierende Behauptung daran scheitert. (https://thedollscout.com/de/odds/)
 % Seltenheit & Secret-Quoten 1:72? 1:144? Die berichteten Raten je Serienformat, mit Quelle — und der Rechner für deine echten Chancen. (https://thedollscout.com/de/rarity)
 Echt vs. Fälschung (Lafufu) Je seltener die Figur, desto häufiger die Fälschung. Der 8-Punkte-Check — Zähne, Box, Siegel, Prägung, Preisboden — jeder mit Quelle. (https://thedollscout.com/de/fake-check)
 Wo kaufen Die offiziellen Kanäle — sortiert danach, wie schwer eine Fälschung oder ein manipuliertes "Secret garantiert" dich erreichen kann. (https://thedollscout.com/de/where-to-buy)
@@ -1056,6 +1435,7 @@ Heiße Serien sind an offiziellen Kanälen wirklich schnell ausverkauft, und gen
 
 ## Weiterlesen
 
+Chancen pro Boxenzahl Eine Box, sechs, ein ganzer Case, zweiundsiebzig — was jede Kaufmenge wirklich bringt, und welche kursierende Behauptung daran scheitert. (https://thedollscout.com/de/odds/)
 Wie Blindboxen wirklich funktionieren Die Mechanik, auf der deine erste Box läuft — Serien, Secrets, Cases, Mathe. (https://thedollscout.com/de/how-blind-boxes-work)
 Das Glossar Secret, Chase, Case, Lafufu — das Vokabular, definiert. (https://thedollscout.com/de/glossary)
 Die Psychologie des Ziehens Warum das Öffnen sich so anfühlt — und der Jagdkosten-Rechner. (https://thedollscout.com/de/psychology)
@@ -1073,6 +1453,8 @@ Start (https://thedollscout.com/de/) / Seltenheit & Quoten
 Jede Blindbox ist eine Wette — und die meisten schließen sie ab, ohne die Quote zu kennen, obwohl sie auf der Box steht. Diese Seite sammelt die berichteten Raten je Serienformat, mit Quelle und Datum (Stand 2026-08-30), und macht daraus die Zahl, die zählt: deine Chancen, über die Boxen, die du öffnen willst.
 
 Die kurze Antwort: bei einer Standard-Serie mit sechs Figuren wird das Secret am häufigsten mit 1 zu 72 berichtet; Zwölfer-Serien mit 1 zu 144 ; manche Collabs 1:120–1:168; Ultra-Varianten (Glow) bis 1 zu 720 . Maßgeblich ist die auf deiner Box gedruckte Quote. Und der Realitätscheck: bei 1:72 geben zwölf Boxen ≈ 15% Chance — nicht die gefühlte Fast-Sicherheit.
+
+Wer in Kaufmengen denkt statt in Boxenzahlen — eine Box, ein Set aus sechs, ein versiegelter Case, zwei Cases — findet dieselbe Rechnung für jede Menge und jedes berichtete Serienformat auf den Seiten zu Chancen pro Boxenzahl (https://thedollscout.com/de/odds/), jeweils mit der kursierenden Behauptung, die daran scheitert.
 
 ## Secret-Pull-Rechner
 
@@ -1217,6 +1599,7 @@ Erst rechnen, dann fühlen: bei den üblich berichteten Raten kostet das Selberz
 
 ## Weiterlesen
 
+Chancen pro Boxenzahl Eine Box, sechs, ein ganzer Case, zweiundsiebzig — was jede Kaufmenge wirklich bringt, und welche kursierende Behauptung daran scheitert. (https://thedollscout.com/de/odds/)
 Seltenheit & Secret-Quoten Die Quellen-Tabelle und der Pull-Rechner, auf die diese Seite sich stützt. (https://thedollscout.com/de/rarity)
 Das Glossar Secret, Chase, Case, Lafufu — jeder Begriff der Jagd, definiert. (https://thedollscout.com/de/glossary)
 Wo kaufen Die Kanäle, in denen die gedruckte Quote auch die Quote ist, die du bekommst. (https://thedollscout.com/de/where-to-buy)
@@ -1321,6 +1704,7 @@ Nein — das Wollen hat gewöhnliche, gut dokumentierte Gründe: Taschenanhänge
 
 ## Weiterlesen
 
+Chancen pro Boxenzahl Eine Box, sechs, ein ganzer Case, zweiundsiebzig — was jede Kaufmenge wirklich bringt, und welche kursierende Behauptung daran scheitert. (https://thedollscout.com/de/odds/)
 Wie Blindboxen wirklich funktionieren Serienstruktur, Cases, Kaufformate — die Maschine, die diese Seite psychoanalysiert. (https://thedollscout.com/de/how-blind-boxes-work)
 Seltenheit & Secret-Quoten Die Quellen-Raten und der Pull-Rechner. (https://thedollscout.com/de/rarity)
 Dein erster Labubu Der Einsteiger-Pfad durch Formate, Serien und Kanäle. (https://thedollscout.com/de/start)
@@ -1896,3 +2280,372 @@ Description: Labubu ตัวไหนหายากจริง โอกา�
 เครื่องคิดต้นทุนไล่ล่า ใส่ราคาต่อกล่องของคุณ แล้วดูต้นทุนคาดหวังของการไล่ล่า Secret (https://thedollscout.com/psychology#cost)
 เครื่องเช็กของแท้แบบโต้ตอบ ตอบ 8 ข้อทีละข้อ แล้วระบบบอกชัดว่าข้อไหนคือ Red Flag (https://thedollscout.com/checker)
 ค้นหารุ่น/ตัวละคร Labubu, Zimomo, Mokoko, ชื่อซีรีส์ — เช็กว่าตัวนี้คือตัวไหน (https://thedollscout.com/lookup)
+
+========================================================================
+URL: https://thedollscout.com/de/odds/
+Title: Secret-Chance nach Boxenzahl — was jede Kaufmenge wirklich bringt | DollScout
+Description: Eine Box, sechs, ein ganzer Case, zwei Cases, zweiundsiebzig: die echte Chance auf ein Secret pro Kaufmenge, offen gerechnet, plus die kursierenden Behauptungen, die daran scheitern.
+========================================================================
+Start (https://thedollscout.com/de/) / Chancen pro Boxenzahl (https://thedollscout.com/de/odds/)
+
+# Was kauft eigentlich jede Kaufmenge?
+
+Fast jede Zahl, die in diesem Hobby weitergereicht wird, ist eine Chance pro Box — und fast jede Entscheidung wird in Kaufmengen getroffen: eine Box, ein Set, ein Case. Diese Seiten rechnen die eine in die andere um, für jedes berichtete Serienformat, offen und nachrechenbar. Zuletzt aktualisiert 2026-08-31.
+
+| | Kaufmenge | Chance auf mind. ein Secret (1:72) | Erwartungswert
+
+| 1 Box (https://thedollscout.com/de/odds/one-box) | 1,4 % | 0,01
+
+| 6 Boxen (https://thedollscout.com/de/odds/six-boxes) | 8,0 % | 0,08
+
+| 12 Boxen (https://thedollscout.com/de/odds/twelve-boxes-full-case) | 15,5 % | 0,17
+
+| 24 Boxen (https://thedollscout.com/de/odds/twenty-four-boxes) | 28,5 % | 0,33
+
+| 72 Boxen (https://thedollscout.com/de/odds/seventy-two-boxes) | 63,5 % | 1,00
+
+Modell: unabhängige Einzelziehungen zu den aufgedruckten Chancen. Die Zuteilung in versiegelten Cases kann davon abweichen — die Zahlen hier modellieren lose Boxen. Maßgeblich ist immer die auf der jeweiligen Serie aufgedruckte Zahl; die Raten hier sind Sammler-Angaben zur Orientierung (Quellen im Datensatz).
+
+## Kurze Antworten
+
+Garantiert ein versiegelter Case ein Secret? Nein. Ein versiegelter Case garantiert typischerweise je eine reguläre Figur. Bei aufgedruckten 1:72 liegen zwölf Boxen bei 15,5 % Chance auf mindestens ein Secret und einem Erwartungswert von 0,17 — etwa ein Secret pro sechs Cases.
+
+Bedeutet 1:72, dass die 72. Box das Secret ist? Nein. 1:72 ist die Rate pro Box, kein Countdown. Wer alle zweiundsiebzig kauft, hat 63,5 % Chance auf mindestens ein Secret — und damit mehr als eine Chance von eins zu drei, leer auszugehen.
+
+## Offene Daten
+
+Die gesamte Tabelle — jedes Format × jede Kaufmenge, plus die Schwellen — steht als CC-BY-Datensatz unter /data/pull-math.json (https://thedollscout.com/data/pull-math.json). Sie wird aus rarity-odds.json (https://thedollscout.com/data/rarity-odds.json) berechnet, damit es keine zweite Quelle für dieselben Zahlen gibt.
+
+Seltenheit & Rechner Die Quellen hinter jeder Rate, und ein Rechner für beliebige Boxenzahlen. (https://thedollscout.com/de/rarity)
+Warum es sich anders anfühlt Die Belohnungsmechanik hinter der Lücke zwischen Zahl und Gefühl — plus Kostenrechner. (https://thedollscout.com/de/psychology)
+Wie Blind Boxes funktionieren Serie, Secret, Case — die Mechanik auf einer Seite. (https://thedollscout.com/de/how-blind-boxes-work)
+
+========================================================================
+URL: https://thedollscout.com/de/odds/one-box
+Title: Eine Box — echte Secret-Chance bei 1 Box | DollScout
+Description: Eine einzelne Blind Box: 1,4 % Chance auf mindestens ein Secret bei 1:72, Erwartungswert 0,01. Volle Tabelle für alle Serienformate, Schwellen für 50 % und 90 %, und die kursierende Behauptung, die daran scheitert.
+========================================================================
+Start (https://thedollscout.com/de/) / Chancen pro Boxenzahl (https://thedollscout.com/de/odds/) / Eine Box
+
+# Eine Box.
+
+Das Atom des ganzen Hobbys — und die Zahl, aus der jede andere Zahl auf dieser Seite gebaut ist. Zuletzt aktualisiert 2026-08-31.
+
+1,4 %
+Chance auf mindestens ein Secret aus eine einzelne Blind Box — bei aufgedruckten 1:72
+
+## Die Behauptung, die hier scheitert
+
+Kursiert: „Jemand hat bei der ersten Box ein Secret gezogen, es passiert also.“
+
+Tatsächlich: Es passiert — genau das bedeutet eine Chance von 1,4 %, nicht mehr. Der Fehler ist, ein eingetretenes seltenes Ereignis als Beleg für eine höhere Rate zu lesen. Ein Secret in der ersten Box ist exakt so wahrscheinlich wie eines in der 72.
+
+## Die Rechnung, offen
+
+Bei eine einzelne Blind Box und unabhängigen Ziehungen ist die Chance auf mindestens ein Secret 1 − (1 − 1/N) 1 , der Erwartungswert schlicht 1/N . Für jedes berichtete Serienformat:
+
+| | Serienformat | Aufgedruckt | Chance auf mind. ein Secret
+
+| Standard-Serie (6 Figuren) | 1:72 | 1,4 %
+
+| Manche Collab-Serien (unteres Ende) | 1:120 | 0,8 %
+
+| Erweiterte Serie (12 Figuren) | 1:144 | 0,7 %
+
+| Manche Collab-Serien (oberes Ende) | 1:168 | 0,6 %
+
+| Glow-/Ultra-Varianten | 1:720 | 0,1 %
+
+Modell: unabhängige Einzelziehungen zu den aufgedruckten Chancen. Die Zuteilung in versiegelten Cases kann davon abweichen — die Zahlen hier modellieren lose Boxen. Maßgeblich ist immer die auf der jeweiligen Serie aufgedruckte Zahl; die Raten hier sind Sammler-Angaben zur Orientierung (Quellen im Datensatz).
+
+## Wie viele Boxen für eine ernsthafte Chance?
+
+| | Aufgedruckt | Boxen für 50 % | Boxen für 90 %
+
+| 1:72 | 50 | 165
+
+| 1:120 | 83 | 276
+
+| 1:144 | 100 | 331
+
+| 1:168 | 117 | 386
+
+| 1:720 | 499 | 1657
+
+## Was das kostet — als Faktor, nicht als Preis
+
+Wir drucken keine Preise — sie rotieren mit Serie und Verfügbarkeit. Als Faktor gerechnet: die erwarteten Kosten für ein Secret sind 72 × der Preis einer Box bei 1:72, 144 × bei 1:144 und 720 × bei 1:720. Eine einzelne Blind Box deckt davon 0,01 ab. Den Rechner mit deinem lokalen Boxenpreis gibt es auf der Psychologie-Seite (https://thedollscout.com/de/psychology#cost).
+
+## Kurze Antworten
+
+Wie hoch ist die Chance auf ein Secret bei eine einzelne Blind Box? Bei aufgedruckten 1:72 liegt die Chance auf mindestens ein Secret bei 1,4 %. Der Erwartungswert sind 0,01 Secrets. Bei selteneren Formaten ist die Chance niedriger: 0,7 % bei 1:144 und 0,1 % bei 1:720.
+
+Wie viele Boxen braucht es für eine 50-Prozent-Chance? Bei 1:72 sind es 50 Boxen für 50 Prozent und 165 für 90 Prozent. Bei 1:144 entsprechend 100 und 331, bei 1:720 dann 499 und 1657.
+
+Alle Chancen + Rechner Die Quellen hinter jeder Rate, und ein Rechner für jede Boxenzahl. (https://thedollscout.com/de/rarity)
+Chancen pro Boxenzahl Dieselbe Rechnung für jede Kaufmenge. (https://thedollscout.com/de/odds/)
+Wo kaufen Wenn die Mathematik entschieden hat: wo die aufgedruckte Chance auch die echte ist. (https://thedollscout.com/de/where-to-buy)
+
+========================================================================
+URL: https://thedollscout.com/de/odds/six-boxes
+Title: Sechs Boxen — je eine pro Figur — echte Secret-Chance bei 6 Boxen | DollScout
+Description: Sechs Boxen: 8,0 % Chance auf mindestens ein Secret bei 1:72, Erwartungswert 0,08. Volle Tabelle für alle Serienformate, Schwellen für 50 % und 90 %, und die kursierende Behauptung, die daran scheitert.
+========================================================================
+Start (https://thedollscout.com/de/) / Chancen pro Boxenzahl (https://thedollscout.com/de/odds/) / Sechs Boxen — je eine pro Figur
+
+# Sechs Boxen — je eine pro Figur?
+
+Sechs ist die Anzahl der regulären Figuren einer Standard-Serie — deshalb kaufen so viele sechs und erwarten das komplette Set. Zuletzt aktualisiert 2026-08-31.
+
+8,0 %
+Chance auf mindestens ein Secret aus sechs Boxen — bei aufgedruckten 1:72
+
+## Die Behauptung, die hier scheitert
+
+Kursiert: „Kauf sechs und du hast das komplette Set.“
+
+Tatsächlich: Sechs unabhängig gezogene Boxen ergeben nicht sechs verschiedene Figuren — Dubletten sind der Normalfall, nicht Pech. Sechs Boxen kaufen sechs Ziehungen; das Secret ist eine separate Frage mit eigener, niedriger Rate.
+
+## Die Rechnung, offen
+
+Bei sechs Boxen und unabhängigen Ziehungen ist die Chance auf mindestens ein Secret 1 − (1 − 1/N) 6 , der Erwartungswert schlicht 6/N . Für jedes berichtete Serienformat:
+
+| | Serienformat | Aufgedruckt | Chance auf mind. ein Secret
+
+| Standard-Serie (6 Figuren) | 1:72 | 8,0 %
+
+| Manche Collab-Serien (unteres Ende) | 1:120 | 4,9 %
+
+| Erweiterte Serie (12 Figuren) | 1:144 | 4,1 %
+
+| Manche Collab-Serien (oberes Ende) | 1:168 | 3,5 %
+
+| Glow-/Ultra-Varianten | 1:720 | 0,8 %
+
+Modell: unabhängige Einzelziehungen zu den aufgedruckten Chancen. Die Zuteilung in versiegelten Cases kann davon abweichen — die Zahlen hier modellieren lose Boxen. Maßgeblich ist immer die auf der jeweiligen Serie aufgedruckte Zahl; die Raten hier sind Sammler-Angaben zur Orientierung (Quellen im Datensatz).
+
+## Wie viele Boxen für eine ernsthafte Chance?
+
+| | Aufgedruckt | Boxen für 50 % | Boxen für 90 %
+
+| 1:72 | 50 | 165
+
+| 1:120 | 83 | 276
+
+| 1:144 | 100 | 331
+
+| 1:168 | 117 | 386
+
+| 1:720 | 499 | 1657
+
+## Was das kostet — als Faktor, nicht als Preis
+
+Wir drucken keine Preise — sie rotieren mit Serie und Verfügbarkeit. Als Faktor gerechnet: die erwarteten Kosten für ein Secret sind 72 × der Preis einer Box bei 1:72, 144 × bei 1:144 und 720 × bei 1:720. Sechs Boxen deckt davon 0,08 ab. Den Rechner mit deinem lokalen Boxenpreis gibt es auf der Psychologie-Seite (https://thedollscout.com/de/psychology#cost).
+
+## Kurze Antworten
+
+Wie hoch ist die Chance auf ein Secret bei sechs Boxen? Bei aufgedruckten 1:72 liegt die Chance auf mindestens ein Secret bei 8,0 %. Der Erwartungswert sind 0,08 Secrets. Bei selteneren Formaten ist die Chance niedriger: 4,1 % bei 1:144 und 0,8 % bei 1:720.
+
+Wie viele Boxen braucht es für eine 50-Prozent-Chance? Bei 1:72 sind es 50 Boxen für 50 Prozent und 165 für 90 Prozent. Bei 1:144 entsprechend 100 und 331, bei 1:720 dann 499 und 1657.
+
+Alle Chancen + Rechner Die Quellen hinter jeder Rate, und ein Rechner für jede Boxenzahl. (https://thedollscout.com/de/rarity)
+Chancen pro Boxenzahl Dieselbe Rechnung für jede Kaufmenge. (https://thedollscout.com/de/odds/)
+Wo kaufen Wenn die Mathematik entschieden hat: wo die aufgedruckte Chance auch die echte ist. (https://thedollscout.com/de/where-to-buy)
+
+========================================================================
+URL: https://thedollscout.com/de/odds/twelve-boxes-full-case
+Title: Ein ganzer Case mit zwölf. Garantiert das ein Secret — echte Secret-Chance bei 12 Boxen | DollScout
+Description: Zwölf Boxen (ein ganzer Case): 15,5 % Chance auf mindestens ein Secret bei 1:72, Erwartungswert 0,17. Volle Tabelle für alle Serienformate, Schwellen für 50 % und 90 %, und die kursierende Behauptung, die daran scheitert.
+========================================================================
+Start (https://thedollscout.com/de/) / Chancen pro Boxenzahl (https://thedollscout.com/de/odds/) / Ein ganzer Case mit zwölf. Garantiert das ein Secret
+
+# Ein ganzer Case mit zwölf. Garantiert das ein Secret?
+
+Das ist die am häufigsten falsch berichtete Zahl des Hobbys — und die, die man kennen sollte, bevor man Case-Geld ausgibt. Zuletzt aktualisiert 2026-08-31.
+
+15,5 %
+Chance auf mindestens ein Secret aus zwölf Boxen (ein ganzer Case) — bei aufgedruckten 1:72
+
+## Die Behauptung, die hier scheitert
+
+Kursiert: „Ein ganzer Case mit zwölf enthält im Schnitt ein Secret.“
+
+Tatsächlich: Bei aufgedruckten 1:72 enthalten zwölf Boxen im Schnitt 0,17 Secrets — also etwa ein Secret pro sechs Cases, nicht eines pro Case. Ein versiegelter Case garantiert typischerweise je eine reguläre Figur; diese Garantie betrifft die Regulären und wurde weithin so weitergegeben, als schlösse sie das Secret ein. Tut sie nicht.
+
+## Die Rechnung, offen
+
+Bei zwölf Boxen (ein ganzer Case) und unabhängigen Ziehungen ist die Chance auf mindestens ein Secret 1 − (1 − 1/N) 12 , der Erwartungswert schlicht 12/N . Für jedes berichtete Serienformat:
+
+| | Serienformat | Aufgedruckt | Chance auf mind. ein Secret
+
+| Standard-Serie (6 Figuren) | 1:72 | 15,5 %
+
+| Manche Collab-Serien (unteres Ende) | 1:120 | 9,6 %
+
+| Erweiterte Serie (12 Figuren) | 1:144 | 8,0 %
+
+| Manche Collab-Serien (oberes Ende) | 1:168 | 6,9 %
+
+| Glow-/Ultra-Varianten | 1:720 | 1,7 %
+
+Modell: unabhängige Einzelziehungen zu den aufgedruckten Chancen. Die Zuteilung in versiegelten Cases kann davon abweichen — die Zahlen hier modellieren lose Boxen. Maßgeblich ist immer die auf der jeweiligen Serie aufgedruckte Zahl; die Raten hier sind Sammler-Angaben zur Orientierung (Quellen im Datensatz).
+
+## Wie viele Boxen für eine ernsthafte Chance?
+
+| | Aufgedruckt | Boxen für 50 % | Boxen für 90 %
+
+| 1:72 | 50 | 165
+
+| 1:120 | 83 | 276
+
+| 1:144 | 100 | 331
+
+| 1:168 | 117 | 386
+
+| 1:720 | 499 | 1657
+
+## Was das kostet — als Faktor, nicht als Preis
+
+Wir drucken keine Preise — sie rotieren mit Serie und Verfügbarkeit. Als Faktor gerechnet: die erwarteten Kosten für ein Secret sind 72 × der Preis einer Box bei 1:72, 144 × bei 1:144 und 720 × bei 1:720. Zwölf Boxen (ein ganzer Case) deckt davon 0,17 ab. Den Rechner mit deinem lokalen Boxenpreis gibt es auf der Psychologie-Seite (https://thedollscout.com/de/psychology#cost).
+
+## Kurze Antworten
+
+Wie hoch ist die Chance auf ein Secret bei zwölf Boxen (ein ganzer Case)? Bei aufgedruckten 1:72 liegt die Chance auf mindestens ein Secret bei 15,5 %. Der Erwartungswert sind 0,17 Secrets. Bei selteneren Formaten ist die Chance niedriger: 8,0 % bei 1:144 und 1,7 % bei 1:720.
+
+Wie viele Boxen braucht es für eine 50-Prozent-Chance? Bei 1:72 sind es 50 Boxen für 50 Prozent und 165 für 90 Prozent. Bei 1:144 entsprechend 100 und 331, bei 1:720 dann 499 und 1657.
+
+Alle Chancen + Rechner Die Quellen hinter jeder Rate, und ein Rechner für jede Boxenzahl. (https://thedollscout.com/de/rarity)
+Chancen pro Boxenzahl Dieselbe Rechnung für jede Kaufmenge. (https://thedollscout.com/de/odds/)
+Wo kaufen Wenn die Mathematik entschieden hat: wo die aufgedruckte Chance auch die echte ist. (https://thedollscout.com/de/where-to-buy)
+
+========================================================================
+URL: https://thedollscout.com/de/odds/twenty-four-boxes
+Title: Zwei Cases. Doppelt so viele Boxen, nicht doppelte Chance — echte Secret-Chance bei 24 Boxen | DollScout
+Description: Vierundzwanzig Boxen (zwei Cases): 28,5 % Chance auf mindestens ein Secret bei 1:72, Erwartungswert 0,33. Volle Tabelle für alle Serienformate, Schwellen für 50 % und 90 %, und die kursierende Behauptung, die daran scheitert.
+========================================================================
+Start (https://thedollscout.com/de/) / Chancen pro Boxenzahl (https://thedollscout.com/de/odds/) / Zwei Cases. Doppelt so viele Boxen, nicht doppelte Chance
+
+# Zwei Cases. Doppelt so viele Boxen, nicht doppelte Chance.
+
+Die Stufe, die man erreicht, nachdem ein Case enttäuscht hat — und wo der Spielerfehlschluss am teuersten wird. Zuletzt aktualisiert 2026-08-31.
+
+28,5 %
+Chance auf mindestens ein Secret aus vierundzwanzig Boxen (zwei Cases) — bei aufgedruckten 1:72
+
+## Die Behauptung, die hier scheitert
+
+Kursiert: „Ich habe schon einen Case durch, ich bin also dran.“
+
+Tatsächlich: Die bereits geöffneten Boxen ändern nichts an den noch ungeöffneten. Und die Verdopplung von zwölf auf vierundzwanzig verdoppelt die Chance nicht von 15,5 % auf 31 % — unabhängige Ziehungen multiplizieren sich, sie addieren sich nicht.
+
+## Die Rechnung, offen
+
+Bei vierundzwanzig Boxen (zwei Cases) und unabhängigen Ziehungen ist die Chance auf mindestens ein Secret 1 − (1 − 1/N) 24 , der Erwartungswert schlicht 24/N . Für jedes berichtete Serienformat:
+
+| | Serienformat | Aufgedruckt | Chance auf mind. ein Secret
+
+| Standard-Serie (6 Figuren) | 1:72 | 28,5 %
+
+| Manche Collab-Serien (unteres Ende) | 1:120 | 18,2 %
+
+| Erweiterte Serie (12 Figuren) | 1:144 | 15,4 %
+
+| Manche Collab-Serien (oberes Ende) | 1:168 | 13,3 %
+
+| Glow-/Ultra-Varianten | 1:720 | 3,3 %
+
+Modell: unabhängige Einzelziehungen zu den aufgedruckten Chancen. Die Zuteilung in versiegelten Cases kann davon abweichen — die Zahlen hier modellieren lose Boxen. Maßgeblich ist immer die auf der jeweiligen Serie aufgedruckte Zahl; die Raten hier sind Sammler-Angaben zur Orientierung (Quellen im Datensatz).
+
+## Wie viele Boxen für eine ernsthafte Chance?
+
+| | Aufgedruckt | Boxen für 50 % | Boxen für 90 %
+
+| 1:72 | 50 | 165
+
+| 1:120 | 83 | 276
+
+| 1:144 | 100 | 331
+
+| 1:168 | 117 | 386
+
+| 1:720 | 499 | 1657
+
+## Was das kostet — als Faktor, nicht als Preis
+
+Wir drucken keine Preise — sie rotieren mit Serie und Verfügbarkeit. Als Faktor gerechnet: die erwarteten Kosten für ein Secret sind 72 × der Preis einer Box bei 1:72, 144 × bei 1:144 und 720 × bei 1:720. Vierundzwanzig Boxen (zwei Cases) deckt davon 0,33 ab. Den Rechner mit deinem lokalen Boxenpreis gibt es auf der Psychologie-Seite (https://thedollscout.com/de/psychology#cost).
+
+## Kurze Antworten
+
+Wie hoch ist die Chance auf ein Secret bei vierundzwanzig Boxen (zwei Cases)? Bei aufgedruckten 1:72 liegt die Chance auf mindestens ein Secret bei 28,5 %. Der Erwartungswert sind 0,33 Secrets. Bei selteneren Formaten ist die Chance niedriger: 15,4 % bei 1:144 und 3,3 % bei 1:720.
+
+Wie viele Boxen braucht es für eine 50-Prozent-Chance? Bei 1:72 sind es 50 Boxen für 50 Prozent und 165 für 90 Prozent. Bei 1:144 entsprechend 100 und 331, bei 1:720 dann 499 und 1657.
+
+Alle Chancen + Rechner Die Quellen hinter jeder Rate, und ein Rechner für jede Boxenzahl. (https://thedollscout.com/de/rarity)
+Chancen pro Boxenzahl Dieselbe Rechnung für jede Kaufmenge. (https://thedollscout.com/de/odds/)
+Wo kaufen Wenn die Mathematik entschieden hat: wo die aufgedruckte Chance auch die echte ist. (https://thedollscout.com/de/where-to-buy)
+
+========================================================================
+URL: https://thedollscout.com/de/odds/seventy-two-boxes
+Title: Zweiundsiebzig Boxen. Jetzt aber, oder — echte Secret-Chance bei 72 Boxen | DollScout
+Description: Zweiundsiebzig Boxen: 63,5 % Chance auf mindestens ein Secret bei 1:72, Erwartungswert 1,00. Volle Tabelle für alle Serienformate, Schwellen für 50 % und 90 %, und die kursierende Behauptung, die daran scheitert.
+========================================================================
+Start (https://thedollscout.com/de/) / Chancen pro Boxenzahl (https://thedollscout.com/de/odds/) / Zweiundsiebzig Boxen. Jetzt aber, oder
+
+# Zweiundsiebzig Boxen. Jetzt aber, oder?
+
+Die Zahl aus der aufgedruckten Wahrscheinlichkeit — die fast alle als die Anzahl Boxen lesen, die einen ans Ziel bringt. Das kontraintuitivste Ergebnis dieser Seite. Zuletzt aktualisiert 2026-08-31.
+
+63,5 %
+Chance auf mindestens ein Secret aus zweiundsiebzig Boxen — bei aufgedruckten 1:72
+
+## Die Behauptung, die hier scheitert
+
+Kursiert: „1:72 heißt, die 72. Box ist es dann.“
+
+Tatsächlich: Alle zweiundsiebzig zu kaufen ergibt 63,5 % — besser als ein Münzwurf, und immer noch mehr als eine Chance von eins zu drei, mit nichts dazustehen. „1 zu 72“ beschreibt die Rate pro Box, nie einen Countdown. Der Erwartungswert bei 72 Boxen ist genau ein Secret — und einen Erwartungswert zu haben ist nicht dasselbe, wie ihn zu bekommen.
+
+## Die Rechnung, offen
+
+Bei zweiundsiebzig Boxen und unabhängigen Ziehungen ist die Chance auf mindestens ein Secret 1 − (1 − 1/N) 72 , der Erwartungswert schlicht 72/N . Für jedes berichtete Serienformat:
+
+| | Serienformat | Aufgedruckt | Chance auf mind. ein Secret
+
+| Standard-Serie (6 Figuren) | 1:72 | 63,5 %
+
+| Manche Collab-Serien (unteres Ende) | 1:120 | 45,3 %
+
+| Erweiterte Serie (12 Figuren) | 1:144 | 39,5 %
+
+| Manche Collab-Serien (oberes Ende) | 1:168 | 34,9 %
+
+| Glow-/Ultra-Varianten | 1:720 | 9,5 %
+
+Modell: unabhängige Einzelziehungen zu den aufgedruckten Chancen. Die Zuteilung in versiegelten Cases kann davon abweichen — die Zahlen hier modellieren lose Boxen. Maßgeblich ist immer die auf der jeweiligen Serie aufgedruckte Zahl; die Raten hier sind Sammler-Angaben zur Orientierung (Quellen im Datensatz).
+
+## Wie viele Boxen für eine ernsthafte Chance?
+
+| | Aufgedruckt | Boxen für 50 % | Boxen für 90 %
+
+| 1:72 | 50 | 165
+
+| 1:120 | 83 | 276
+
+| 1:144 | 100 | 331
+
+| 1:168 | 117 | 386
+
+| 1:720 | 499 | 1657
+
+## Was das kostet — als Faktor, nicht als Preis
+
+Wir drucken keine Preise — sie rotieren mit Serie und Verfügbarkeit. Als Faktor gerechnet: die erwarteten Kosten für ein Secret sind 72 × der Preis einer Box bei 1:72, 144 × bei 1:144 und 720 × bei 1:720. Zweiundsiebzig Boxen deckt davon 1,00 ab. Den Rechner mit deinem lokalen Boxenpreis gibt es auf der Psychologie-Seite (https://thedollscout.com/de/psychology#cost).
+
+## Kurze Antworten
+
+Wie hoch ist die Chance auf ein Secret bei zweiundsiebzig Boxen? Bei aufgedruckten 1:72 liegt die Chance auf mindestens ein Secret bei 63,5 %. Der Erwartungswert sind 1,00 Secrets. Bei selteneren Formaten ist die Chance niedriger: 39,5 % bei 1:144 und 9,5 % bei 1:720.
+
+Wie viele Boxen braucht es für eine 50-Prozent-Chance? Bei 1:72 sind es 50 Boxen für 50 Prozent und 165 für 90 Prozent. Bei 1:144 entsprechend 100 und 331, bei 1:720 dann 499 und 1657.
+
+Alle Chancen + Rechner Die Quellen hinter jeder Rate, und ein Rechner für jede Boxenzahl. (https://thedollscout.com/de/rarity)
+Chancen pro Boxenzahl Dieselbe Rechnung für jede Kaufmenge. (https://thedollscout.com/de/odds/)
+Wo kaufen Wenn die Mathematik entschieden hat: wo die aufgedruckte Chance auch die echte ist. (https://thedollscout.com/de/where-to-buy)
