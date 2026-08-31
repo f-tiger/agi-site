@@ -1,0 +1,201 @@
+{
+  "name": "Labubu secret-pull probability by purchase size",
+  "description": "Chance of at least one secret figure, expected secret count, and the 50%/90% box thresholds, for each commonly reported blind-box odds format across the purchase sizes people actually buy. Every value is arithmetic over the rates published in rarity-odds.json — this file adds no new rate of its own.",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "publisher": "https://thedollscout.com/",
+  "documentation": "https://thedollscout.com/odds/",
+  "isBasedOn": "https://thedollscout.com/data/rarity-odds.json",
+  "recorded": "2026-08-31",
+  "method": {
+    "atLeastOne": "1 - (1 - 1/N)^boxes",
+    "expectedCount": "boxes / N",
+    "boxesForProbability": "ceil(ln(1-p) / ln(1 - 1/N))",
+    "model": "Independent single-box draws at the printed odds."
+  },
+  "limitations": [
+    "The authoritative rate for any series is the one printed on that series' own box; the N values here are collector-reported, inherited from rarity-odds.json along with its sources.",
+    "Sealed whole-case allocation can differ from independent single-box draws; every number here models loose boxes.",
+    "These are probabilities, not predictions: an expected count of 1 is not a guarantee of 1."
+  ],
+  "formats": [
+    {
+      "oddsN": 72,
+      "label": "Standard 6-figure series"
+    },
+    {
+      "oddsN": 120,
+      "label": "Some collab series (low end)"
+    },
+    {
+      "oddsN": 144,
+      "label": "Extended 12-figure series"
+    },
+    {
+      "oddsN": 168,
+      "label": "Some collab series (high end)"
+    },
+    {
+      "oddsN": 720,
+      "label": "Glow / ultra variants"
+    }
+  ],
+  "purchaseSizes": [
+    {
+      "boxes": 1,
+      "page": "https://thedollscout.com/odds/one-box",
+      "byFormat": {
+        "72": {
+          "atLeastOneSecret": 0.013889,
+          "expectedSecrets": 0.013889
+        },
+        "120": {
+          "atLeastOneSecret": 0.008333,
+          "expectedSecrets": 0.008333
+        },
+        "144": {
+          "atLeastOneSecret": 0.006944,
+          "expectedSecrets": 0.006944
+        },
+        "168": {
+          "atLeastOneSecret": 0.005952,
+          "expectedSecrets": 0.005952
+        },
+        "720": {
+          "atLeastOneSecret": 0.001389,
+          "expectedSecrets": 0.001389
+        }
+      }
+    },
+    {
+      "boxes": 6,
+      "page": "https://thedollscout.com/odds/six-boxes",
+      "byFormat": {
+        "72": {
+          "atLeastOneSecret": 0.080493,
+          "expectedSecrets": 0.083333
+        },
+        "120": {
+          "atLeastOneSecret": 0.04897,
+          "expectedSecrets": 0.05
+        },
+        "144": {
+          "atLeastOneSecret": 0.04095,
+          "expectedSecrets": 0.041667
+        },
+        "168": {
+          "atLeastOneSecret": 0.035187,
+          "expectedSecrets": 0.035714
+        },
+        "720": {
+          "atLeastOneSecret": 0.008304,
+          "expectedSecrets": 0.008333
+        }
+      }
+    },
+    {
+      "boxes": 12,
+      "page": "https://thedollscout.com/odds/twelve-boxes-full-case",
+      "byFormat": {
+        "72": {
+          "atLeastOneSecret": 0.154507,
+          "expectedSecrets": 0.166667
+        },
+        "120": {
+          "atLeastOneSecret": 0.095542,
+          "expectedSecrets": 0.1
+        },
+        "144": {
+          "atLeastOneSecret": 0.080223,
+          "expectedSecrets": 0.083333
+        },
+        "168": {
+          "atLeastOneSecret": 0.069136,
+          "expectedSecrets": 0.071429
+        },
+        "720": {
+          "atLeastOneSecret": 0.01654,
+          "expectedSecrets": 0.016667
+        }
+      }
+    },
+    {
+      "boxes": 24,
+      "page": "https://thedollscout.com/odds/twenty-four-boxes",
+      "byFormat": {
+        "72": {
+          "atLeastOneSecret": 0.285141,
+          "expectedSecrets": 0.333333
+        },
+        "120": {
+          "atLeastOneSecret": 0.181955,
+          "expectedSecrets": 0.2
+        },
+        "144": {
+          "atLeastOneSecret": 0.15401,
+          "expectedSecrets": 0.166667
+        },
+        "168": {
+          "atLeastOneSecret": 0.133492,
+          "expectedSecrets": 0.142857
+        },
+        "720": {
+          "atLeastOneSecret": 0.032806,
+          "expectedSecrets": 0.033333
+        }
+      }
+    },
+    {
+      "boxes": 72,
+      "page": "https://thedollscout.com/odds/seventy-two-boxes",
+      "byFormat": {
+        "72": {
+          "atLeastOneSecret": 0.63469,
+          "expectedSecrets": 1
+        },
+        "120": {
+          "atLeastOneSecret": 0.452566,
+          "expectedSecrets": 0.6
+        },
+        "144": {
+          "atLeastOneSecret": 0.394526,
+          "expectedSecrets": 0.5
+        },
+        "168": {
+          "atLeastOneSecret": 0.349395,
+          "expectedSecrets": 0.428571
+        },
+        "720": {
+          "atLeastOneSecret": 0.095225,
+          "expectedSecrets": 0.1
+        }
+      }
+    }
+  ],
+  "thresholds": {
+    "72": {
+      "boxesFor50pct": 50,
+      "boxesFor90pct": 165,
+      "expectedBoxesPerSecret": 72
+    },
+    "120": {
+      "boxesFor50pct": 83,
+      "boxesFor90pct": 276,
+      "expectedBoxesPerSecret": 120
+    },
+    "144": {
+      "boxesFor50pct": 100,
+      "boxesFor90pct": 331,
+      "expectedBoxesPerSecret": 144
+    },
+    "168": {
+      "boxesFor50pct": 117,
+      "boxesFor90pct": 386,
+      "expectedBoxesPerSecret": 168
+    },
+    "720": {
+      "boxesFor50pct": 499,
+      "boxesFor90pct": 1657,
+      "expectedBoxesPerSecret": 720
+    }
+  }
+}

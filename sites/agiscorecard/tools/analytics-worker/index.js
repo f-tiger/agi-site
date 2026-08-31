@@ -33,6 +33,12 @@ const ALLOWED_EVENTS = new Set([
   'pred_expand', 'readnext_click', 'analysis_click', 'advertise_click', 'sponsor_click',
   'exposure_score',
   'retake_test', 'badge_copy',
+  // Amazon Associates book links have existed on /who-is-leopold-aschenbrenner since
+  // launch and fire gtag('event','affiliate_click'), but the name was never allowlisted,
+  // so every click was dropped here and only GA4 could have seen it. That made the
+  // pre-registered 10-31 books line ('site-wide book_* < 5 -> close Associates')
+  // impossible to resolve honestly: a zero could mean nobody clicked OR nothing recorded.
+  'affiliate_click',
   // 站内搜索(2026-08-08):label=搜索词(截 80 字符)。site_search=需求信号,
   // search_no_result=产品缺口——每日运行读这两个驱动选题,是搜索存在的主要意义。
   'site_search', 'search_no_result', 'search_click',
@@ -494,12 +500,26 @@ export default {
         try { pageQuery = new URLSearchParams(String(body.u || '')); } catch (e) {}
         const [src, med, camp] = utmFrom(pageQuery);
 
+        // Internal-navigation instrument (2026-08-31). The beacon has always sent the
+        // full referrer, but it was reduced to a host before storage, so "which page
+        // sent this reader to that page" was unanswerable — and a real reader clicking
+        // an internal link looked identical to a crawler walking the nav. For
+        // page_view only, and ONLY when the referrer is same-origin, the referrer's
+        // PATH is kept in the otherwise-unused label column. Cross-origin referrers
+        // keep host-only treatment exactly as before: we never store a stranger's URL.
+        let label = clean(body.b, 48);
+        if (name === 'page_view' && !label) {
+          try {
+            const r = new URL(String(body.r || ''), url.origin);
+            if (r.hostname === url.hostname) label = clean('from:' + r.pathname, 48);
+          } catch (e) { /* no referrer, or unparseable — leave label null */ }
+        }
         const stmt = env.EVENTS.prepare(
           'INSERT INTO events (ts, day, name, location, label, path, ref_host, country, lang, ua_class,' +
           ' utm_source, utm_medium, utm_campaign) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)'
         ).bind(
           now, new Date(now).toISOString().slice(0, 10), name,
-          clean(body.l, 48), clean(body.b, 48), clean(body.p, 120),
+          clean(body.l, 48), label, clean(body.p, 120),
           refHost(body.r), (request.headers.get('cf-ipcountry') || '').slice(0, 2) || null,
           clean(body.g, 12), uaClass(request.headers.get('user-agent')),
           src, med, camp

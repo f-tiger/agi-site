@@ -9,6 +9,7 @@
 > Trends data refreshes daily from Google Trends; picks are hand-curated,
 > never auto-generated. Part of the AGI Scorecard site family.
 
+- [Sourcing margins](https://source.agiscorecard.com/sourcing-margins): first-party margin spread computed from all 31 curated picks — conservative median 1.9x with 17 of 31 under 2x, optimistic median 7.9x, plus the first-order cash each MOQ actually requires. Regenerated from the pick dataset, so it cannot drift from it.
 - [Radar picks](https://source.agiscorecard.com/#picks): current curated product list with three-tier pricing
 - [Why not Alibaba](https://source.agiscorecard.com/#difference): what this adds over marketplace browsing and ad-spy tools
 - [Buyer playbook](https://source.agiscorecard.com/#playbook): landed-cost and compliance checklist for first-time importers
