@@ -118,9 +118,13 @@ jobs:
             seen="$seen $tok"
             # 账号 ID 按**当前这个 token**反查,而不是所有 token 共用同一个 secret——
             # 万一某个 token 属于另一个账号,共用会造出「它没权限」的假阴性。反查不到才退回 secret。
+            # jq -r 对 null 打印的是字符串 "null" 而不是空串 —— 直接判 -z 会让
+            # 「反查不到就退回 secret」永不触发,请求打到 /accounts/null/ 拿一个 404,
+            # 于是这个 token 看起来「试过了」其实压根没被真正测过。必须显式滤掉 "null"。
             acct=$(curl -sS -H "Authorization: Bearer $tok" \
               "https://api.cloudflare.com/client/v4/accounts" 2>/dev/null \
-              | jq -r 'try (.result[0].id) catch empty')
+              | jq -r 'try (.result[0].id // empty) catch empty')
+            [ "$acct" = "null" ] && acct=""
             [ -z "$acct" ] && acct="${CLOUDFLARE_ACCOUNT_ID}"
             if [ -z "$acct" ]; then echo "  $name: 连账号列表都读不到"; continue; fi
             code=$(curl -sS -o d1-response.json -w '%{http_code}' \
