@@ -2249,7 +2249,30 @@ tds-indexnow(08-30 已修成 MODE=all)、fleet-trends(仍在写两个 tds 趋势
 08-30 的 84 次真人 pv 里含当天大规模自测流量,**不要当成读者增长读**;
 下一轮用 d1-snapshot 按路径拆开后再判。
 
-### Judgement line
-(d) **2026-09-02**(新 Routine 第二次运行):`content/d1-snapshot.json` 必须已在仓库里
-且不超过 48 小时。若仍不落库,说明 REST API 这条路也不通(最可能是 token 缺 D1 读
-权限),届时必须报 owner 去后台加权限——**不许再让这个循环瞎着跑第二个十二天。**
+### Judgement line (d) —— 当天就跑出了答案,负面,已定位
+不等 09-02,直接 workflow_dispatch 跑了一次(run #17)。快照**仍然没落库**,但这次
+失败是**可读**的,这正是本次改动的全部意义:
+
+```
+##[warning]d1 snapshot FAILED (HTTP 403) …
+{"success":false,"errors":[{"code":7403,"message":"The given account is not valid
+ or is not authorized to access this service"}]}
+```
+
+定位:**同一个 `CLOUDFLARE_API_TOKEN` 每天都在成功跑 `wrangler pages deploy`**,
+所以 `CLOUDFLARE_ACCOUNT_ID` 是对的、token 本身是有效的——缺的就是 **D1 的读权限**。
+旧代码那句「no D1 access on token」这回**碰巧猜对了**,但它当时没有任何证据,
+而且顺手把真错误删了;十二天里没人能分辨它是猜对还是猜错——这才是它的罪名。
+
+**⚠️ owner 待办(约 1 分钟,不挡站点运行,但挡整个增长循环的眼睛)**:
+Cloudflare 后台 → API Tokens → 编辑部署所用的那个 token → 加上
+**Account · D1 · Read** → Save。加完后 tds-traffic 的下一次运行就会开始提交
+`content/d1-snapshot.json`,新 Routine 也就有真实读者数字可读了。
+**在此之前,新 Routine 每轮都必须把「D1 快照不可读」当作机制故障报出来,不许绕过。**
+(本会话的 Cloudflare MCP 走的是另一套凭据,能读 D1——所以上面那份 08-30 台账是
+真实数字;但定时会话没有 MCP,它读不到。)
+
+### Judgement line (e)
+**2026-09-02**:若 owner 已加权限,`content/d1-snapshot.json` 必须出现在仓库里;
+若尚未加,新 Routine 的汇报里必须仍然带着这条待办,不许因为「站点看起来正常」而
+把它悄悄降级。

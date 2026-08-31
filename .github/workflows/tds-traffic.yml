@@ -108,7 +108,7 @@ jobs:
               echo "::warning::d1 snapshot is EMPTY (0 rows in the 14-day window) — the query ran, but nothing was logged. Verify the beacon, do not read this as 'no traffic'."
             fi
           else
-            echo "::warning::d1 snapshot FAILED (HTTP $code) — the growth loop has NO first-party numbers this run. Most likely cause: CLOUDFLARE_API_TOKEN lacks the D1 read permission (Account > D1 > Read)."
+            echo "::warning::d1 snapshot FAILED (HTTP $code) — the growth loop has NO first-party numbers this run. Confirmed 2026-08-31: the API answers 7403 'account not authorized to access this service' while the SAME token deploys Pages fine, so CLOUDFLARE_ACCOUNT_ID is valid and CLOUDFLARE_API_TOKEN is simply missing Account > D1 > Read. Owner fix, ~1 min, in the Cloudflare token editor."
             echo "--- Cloudflare API response (secrets masked) ---"
             { jq -c '{success, errors, messages}' d1-response.json 2>/dev/null || head -c 600 d1-response.json; } \
               | sed -E 's/[A-Za-z0-9_-]{30,}/***/g'
