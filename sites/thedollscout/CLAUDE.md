@@ -129,8 +129,16 @@ Labubu / The Monsters 收藏品的**稀有度优先导购站**:核心痛点 = �
   (publishable 文件出现 rating-adult/age-gate/ds_age_ok/yourdoll 即失败)→
   assemble-dist → wrangler pages deploy → **自检**(新页 200+零重定向,
   旧成人页断言 404)→ IndexNow → beacon 自测。
-- 保留 workflows:tds-traffic(D1 快照)、tds-indexnow(周推)。其余 9 条旧站
-  workflow 已删,别恢复。
+- 保留 workflows:tds-traffic(每日 06:00 UTC,边缘流量 + D1 快照)、tds-indexnow
+  (周三 06:20 UTC,MODE=all 兜底)。其余 9 条旧站 workflow 已删,别恢复。
+  ⚠️ 公开仓的 schedule 实测延迟 5–12 小时(08-28 那次 06:00 的任务 18:22 才跑),
+  **任何「A 跑完 B 才跑」的时序假设都不成立**——下游要自己检查数据新鲜度。
+- **定时会话(Routine)**:「DollScout(Labubu 站)增长循环 · 每 2 天」,
+  `10 7 */2 * *`,每次开新会话。旧的「DollScout growth loop」已于 2026-08-31 删除
+  ——它整条 prompt 还在讲成人站,还要求「绝不削弱 18+ 闸门」,并且依赖两个已不存在
+  的文件(`GROWTH-LOOP.md`、`scripts/seo-audit.mjs`)。**它触发的会话没有 MCP 连接器**
+  (无 Cloudflare / 无 GitHub),所以它读 D1 只能靠 `content/d1-snapshot.json`,
+  验线上只能 `curl` 实探,Actions 日志读不到 → 它被要求把这些明写成「本轮未验证」。
 - 趋势输入:content/trends-us.json(词表 labubu/lafufu/pop mart/the monsters/
   kasing lung/blind box)+ content/trends-rising.json(种子 labubu / fake labubu /
   pop mart)——首轮数据等 runner(沙箱对 Google 403)。快反出页判据沿用 eco 模式:
@@ -151,6 +159,15 @@ Labubu / The Monsters 收藏品的**稀有度优先导购站**:核心痛点 = �
 3. **埋点的可见范围就是结论的边界**。`isContentPath()` 不匹配无扩展名路径,
    25 个页面里 20 个永远不可能产生 `ev='bot'` 行——「爬虫只碰入口页」的读数
    是测量假象。**读 D1 结论前先问:这个口径能看见我要下结论的那部分吗?**
+4. **「诊断」不等于诊断,猜测不许打印成结论**(2026-08-31,定时任务重做时发现)。
+   `tds-traffic` 的 D1 快照导出步骤把 stderr 送进 `/dev/null`,失败时打印
+   「d1 snapshot skipped (no D1 access on token)」——那句话是**猜的**,没有任何证据
+   支持,而真正的错误被丢弃了。结果:2026-08-19→08-30 连续 12 天全绿、
+   `content/d1-snapshot.json` **一次都没落过库**,而它是无 MCP 的定时会话读到真实
+   读者数字的唯一通路。已改为直连 D1 REST API(database id 来自 wrangler.toml)、
+   打印真实 API 错误(长串一律 sed 打码)、失败与「0 行」两种情况都发 `::warning::`。
+   **规矩:任何 catch 分支不许写没验证过的原因;`2>/dev/null` 在 CI 里等于自愿失明。**
+
 
 ## 结构化数据诚实闸门(同日,不可删除)
 

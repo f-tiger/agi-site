@@ -74,19 +74,49 @@ jobs:
       # filters to what exists and warns about what does not.
 
       # First-party D1 snapshot (2026-08-19): aggregates from dollscout-events
-      # written back to the repo, so sessions without the Cloudflare MCP can
-      # read real reader/bot/click numbers straight from git — same pattern as
-      # baipiaoji's traffic-snapshot. Skips silently if the token lacks D1.
+      # written back to the repo. This file is the ONLY path the growth loop has
+      # to real reader/bot/click numbers — its scheduled sessions run without
+      # Cloudflare MCP, so if this step does not commit, the loop is blind.
+      #
+      # ⚠️ 2026-08-31: this step had never once succeeded. It shelled out to
+      # `wrangler d1 execute`, sent stderr to /dev/null, and printed the guess
+      # "no D1 access on token" as if it were a diagnosis — twelve days of green
+      # runs, no snapshot ever committed, and no way to see why. Textbook case of
+      # the站内 rule 「『正常的安静结果』是自我伪装」. Now: the D1 REST API direct
+      # (no npx, no wrangler config coupling, database id from wrangler.toml),
+      # the real API error printed, and a ::warning:: that reaches the run summary.
       - name: Export D1 analytics snapshot
         continue-on-error: true
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          D1_DATABASE_ID: 6e71ddc6-b58c-49f4-b6f5-207f3778133f
         run: |
-          npx wrangler@4 d1 execute dollscout-events --remote --json --command \
-            "SELECT d, ev, path, ref, country, COUNT(*) AS n FROM hits WHERE d >= date('now','-14 days') AND path NOT LIKE '/__ci%' GROUP BY d, ev, path, ref, country ORDER BY d DESC, n DESC LIMIT 500" \
-            > content/d1-snapshot.json 2>/dev/null \
-            && echo "d1 snapshot exported" || { echo "d1 snapshot skipped (no D1 access on token)"; rm -f content/d1-snapshot.json; }
+          set +e
+          SQL="SELECT d, ev, path, ref, country, COUNT(*) AS n FROM hits WHERE d >= date('now','-14 days') AND path NOT LIKE '/__ci%' GROUP BY d, ev, path, ref, country ORDER BY d DESC, n DESC LIMIT 500"
+          code=$(curl -sS -o d1-response.json -w '%{http_code}' \
+            -X POST "https://api.cloudflare.com/client/v4/accounts/${CLOUDFLARE_ACCOUNT_ID}/d1/database/${D1_DATABASE_ID}/query" \
+            -H "Authorization: Bearer ${CLOUDFLARE_API_TOKEN}" \
+            -H "Content-Type: application/json" \
+            --data "$(jq -n --arg sql "$SQL" '{sql:$sql}')" 2>d1-curl.err)
+          ok=$(jq -r 'try .success catch "false"' d1-response.json 2>/dev/null)
+          rows=$(jq -r 'try (.result[0].results | length) catch 0' d1-response.json 2>/dev/null)
+          if [ "$code" = "200" ] && [ "$ok" = "true" ]; then
+            mv d1-response.json content/d1-snapshot.json
+            echo "d1 snapshot exported: $rows aggregate rows (14d window, /__ci excluded)"
+            if [ "$rows" = "0" ]; then
+              echo "::warning::d1 snapshot is EMPTY (0 rows in the 14-day window) — the query ran, but nothing was logged. Verify the beacon, do not read this as 'no traffic'."
+            fi
+          else
+            echo "::warning::d1 snapshot FAILED (HTTP $code) — the growth loop has NO first-party numbers this run. Most likely cause: CLOUDFLARE_API_TOKEN lacks the D1 read permission (Account > D1 > Read)."
+            echo "--- Cloudflare API response (secrets masked) ---"
+            { jq -c '{success, errors, messages}' d1-response.json 2>/dev/null || head -c 600 d1-response.json; } \
+              | sed -E 's/[A-Za-z0-9_-]{30,}/***/g'
+            echo
+            sed -E 's/[A-Za-z0-9_-]{30,}/***/g' d1-curl.err | tail -5
+            rm -f content/d1-snapshot.json
+          fi
+          rm -f d1-response.json d1-curl.err
 
       - name: Commit the day's numbers
         run: |

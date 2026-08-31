@@ -2211,3 +2211,45 @@ entry points by 09-06, crawlers really are bouncing and the problem is
 authority, not instrumentation — that would be the first evidence for it.
 (c) llms.txt/llms-full/dataset fetches by a named AI bot by 09-27 gates the
 next GEO round, unchanged from round 7.
+
+## Round 12 — 2026-08-31 · 定时任务按重做后的站点重建
+
+Owner:「tds的定时任务重做，因为站点重做了」+「旧的取消」。
+
+**取消**:Routine「DollScout growth loop (every 2 days)」(`0 1 */2 * *`) 已删除。
+它整条 prompt 写的还是成人站,护栏里明写「绝不削弱 18+ 闸门、联盟披露与
+childlike-appearance 拒绝项」——对一个卖 Labubu 的站,这条护栏本身就是错的方向。
+它还依赖两个 pivot 时删掉的文件(`GROWTH-LOOP.md` 是它「先读这个,它覆盖一切」的
+剧本,`scripts/seo-audit.mjs` 是它第 2 步的技术底线)。最后一次运行 08-31T01:04
+跑了 10 分钟、报「SUCCEEDED」、对 `sites/thedollscout/` **一个字节都没改**。
+
+**新建**:「DollScout(Labubu 站)增长循环 · 每 2 天」,`10 7 */2 * *`,每次开新会话。
+写进 prompt 的现实:monorepo 路径与部署模型、CLAUDE.md 作为剧本、5 缺口准入过滤与
+「不卷图鉴/不做转售炒价」、双 tag 分市场与 `/th/` 零联盟、阻断闸门
+`check-structured-data.mjs`、以及三条预登记判定线的日历(09-06 / 09-27 / 10-29)。
+关键约束:**它触发的会话没有 MCP 连接器**——读 D1 只能靠仓库里的快照,验线上只能
+`curl` 实探,Actions 日志读不到;prompt 要求它把读不到的项明写成「本轮未验证」,
+不许当绿灯。
+
+**顺手挖出第四个静默故障**(和 08-30 那三个同族):`tds-traffic` 的 D1 快照导出把
+stderr 送进 `/dev/null`,失败时打印「d1 snapshot skipped (no D1 access on token)」
+——**那句话是猜的**,真正的错误被丢掉了。后果:08-19→08-30 连续 12 天全绿,
+`content/d1-snapshot.json` 一次都没落过库,而它正是新 Routine 读真实数字的唯一通路。
+本轮改为直连 D1 REST API(database id 取自 wrangler.toml,不再耦合 wrangler 配置)、
+打印真实 API 错误(长串 sed 打码)、失败与「查到 0 行」两种情况分别发 `::warning::`。
+
+**其余三条 tds workflow 复核结果:无需改动。** deploy(run #33 全绿)、
+tds-indexnow(08-30 已修成 MODE=all)、fleet-trends(仍在写两个 tds 趋势文件)。
+另记一条环境事实:公开仓 schedule 实测延迟 5–12 小时(08-28 那次 06:00 的任务
+18:22 才跑),**任何跨 workflow 的时序假设都不成立**,下游必须自查数据新鲜度。
+
+### Ledger (2026-08-31 01:20 UTC 现查 D1,CI 已剔)
+08-30:真人 pv **84** | bot **101** | affiliate_click **1**
+08-29:真人 pv 10 | bot 18 ‖ 08-28:真人 pv 13 | bot 9 ‖ 08-31 至今:bot 3
+08-30 的 84 次真人 pv 里含当天大规模自测流量,**不要当成读者增长读**;
+下一轮用 d1-snapshot 按路径拆开后再判。
+
+### Judgement line
+(d) **2026-09-02**(新 Routine 第二次运行):`content/d1-snapshot.json` 必须已在仓库里
+且不超过 48 小时。若仍不落库,说明 REST API 这条路也不通(最可能是 token 缺 D1 读
+权限),届时必须报 owner 去后台加权限——**不许再让这个循环瞎着跑第二个十二天。**
