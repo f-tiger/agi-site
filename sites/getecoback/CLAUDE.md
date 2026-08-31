@@ -929,6 +929,29 @@ Strompreis-Radar)。本循环补的是**外部需求信号**(Google Trends DE)�
 - **部署触发收敛为仅 main（2026-08-06，owner 截图发现）**：owner 发来 run #290 失败截图，查证后是**两个不同原因**：288/289（`12215d8`）是我的 heat 端点 bug（已修）；**290 是 GitHub 自身故障**——`Failed to resolve action download info: Service Unavailable / Internal Server Error`，重试两次后放弃，与代码无关（同一提交 `4948c26` 在 main 的 run 291 成功）。**但这暴露了一个结构问题**：`deploy.yml` 原本在 main **和**工作分支上都触发，而工作流是"改完立刻合并 main"，导致**每次推送产生两个一模一样的 run、把同一提交部署两遍**——浪费、红绿成对制造噪音、且把撞上 GitHub 瞬时故障的概率翻倍。已收敛为**仅 main 触发**（保留 `workflow_dispatch`）。**方法论**：我此前只查 main 的 run，等于只看了一半的 CI 状态；owner 的截图补上了我的盲区。
 - **Alibaba 品类研究 → 拒绝照榜选品，转向"买之前没人回答的问题"（2026-08-06，用户"深度研究 Alibaba 热销品类→挖掘用户需求→达成商业机会"）**：`alibaba.com` 与 `1688.com` 在本环境**均不可达（000）**，无法取一手榜单，二手数据已标注为候选而非结论。**热销构成**：Consumer Electronics 28%、Home & Garden 25%，爆品是投影仪/充电宝/空气炸锅/耳机——**与"我房间太热"的德国租客零重叠**。**方法论判断**：`Alibaba 热销 = 大量转售商正在抢` ＝ 红海信号而非机会信号；本站所有有效判断都是需求优先（先 SERP 判定再找供给），用供给榜倒推受众是把方法论反过来用，**故拒绝照榜选品**。**补充核实的合规差异**：非电器（窗封/隔热帘）**不触发 Stiftung EAR + 破产担保 + 处置费**，但**仍需** LUCID 包装注册（罚款至 20 万欧 + 销售禁令）、GPSR、PPWR（2026-08-12 起）、Gewerbe/增值税/14 天撤回/2 年质保——**更轻但仍非快路，也依然需要法人主体**。**真正的机会（三方证据交叉）**：① 本站数据 kippfenster 是最大簇且贡献 1/3 联盟点击；② 市场上存在专做**量身定制窗封**的德国厂商（FROSNIR）＝"尺寸不合"是真痛点；③ 公开评测共识的两个失效点是**长度不对**与**粘胶高温脱落**；④ 空白：SERP 全是薄比价站、**本站 4 个窗封页提到尺寸的是 0 个**。→ 机会不是卖那条窗封（要当进口商且它本身有缺陷），而是**解决买它之前没人回答的问题**。**已落地 `EB_SEALFIT`**：需要长度 = `2×(宽+高)` 向上取常见规格（纯算术不伪造规格）、量窗扇非窗框、三种窗型分别提示、诚实指出失效点是粘胶、超 5 m 不硬推产品改提示定制；覆盖 DE 3 页 + EN 2 页，埋点 `seal_fit{len,type}`。Chromium 实测四组算式与尺寸映射全部正确，并抓出超尺寸时 Amazon 链接拼成坏查询的 bug（已修）。**预注册判定**：60 天 `seal_fit` ≥25 次 → 需求确认可扩展定制方向；<8 次 → 降级。详见 `docs/sourcing-research-2026-08.md`。
 
+## 德语 SERP 对照结论:断点在实体不在内容(2026-08-31,owner「网站内容对比其他德国联盟站点」)
+
+**别再把「内容不如人」当处方。** 实测两条自家核心钱线词的德语 SERP
+(`klimaanlage kippfenster abdichten anleitung`、`mobile klimaanlage kühlt nicht richtig was tun`,
+两页 7 月即在线)——**eco 都不在前 ~8**;占屏的是**有地址的真实商家**
+(klimaanlagen-guru.de 带 SHOPVOTE/ProvenExpert/golocal 档案 + eBay 店、frosnir.de、
+ersatzteileshop.de、sos-zubehoer.de)、厂商(Bosch)、论坛(HaustechnikDialog/gutefrage)、
+大出版社(hausjournal.net)。**这是实体档次的差距,写更多页打不进去。**
+(方法边界:竞对域 egress 被拦、无 SEO 数据 MCP,故无同行流量/反链数字,不编;
+`site:` 运算符在本工具不可靠,未当证据。)
+
+**自查发现并已修的真实缺陷(并纠正我自己的首判)**:首页**有**规范发行方节点
+`https://getecoback.com/#org`(初判「从未定义」是错的);缺陷是**363 个 Organization
+提及里 362 个是匿名空节点、没有一个指回它**——实体图存在但是孤儿。
+新增 `tools/build_entity.py`(流水线在 build_xlinks 之后、build_hreflang 之前):
+全站 **365 处引用 / 184 页**加 `@id` 归并到 `#org`,匿名节点归零;规范节点补
+`publishingPrinciples`(wie-wir-empfehlen)+`mainEntityOfPage`(ueber-uns),
+**每条必须对应真实文件否则构建失败**;**不发 `sameAs`**(无已验证外部档案,
+编一个 = 借来的权威)。闸门双分支实测通过,流水线 byte-stable。
+**判定线(2026-10-31,60 天)**:GA4 ai-assistant 会话 ≥70(现 57)或 Bing WMT 被引页
+品牌关联有变化 → 成立;两项皆无 → **记反面发现:schema 实体层对本站量级无可测收益,
+停止投入。**
+
 ## 能源板块降级(2026-08-26,owner:「eco站点去掉能源板块,看看有没有更加合适板块」)
 
 执行为**降级而非删页**(证据:能源簇 28 天仅 2 次联盟点击却占首页最大版位;但它有

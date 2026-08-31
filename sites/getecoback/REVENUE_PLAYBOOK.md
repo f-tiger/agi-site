@@ -173,6 +173,51 @@ TTK 系=amazon.de 参考线)→ 当日补 brand 页;Lidl Tronic 9000 BTU(rising 
 候选:Duux Whisper Flex/Stadler Form(夏季线,来年 KGR 后做)、"klimaanlage fest
 installiert"(rising 6.600,检查 split-ohne-kernbohrung 是否已接该意图)。
 
+## 德语联盟站对照轮:流量断点不在内容,在实体(2026-08-31,owner「网站内容对比其他德国联盟站点,调用技能优化,提升流量」)
+
+**方法边界先说清**:competitor-profiling 技能的标准流程(Firecrawl map/scrape +
+DataForSEO 反链/排名)在本会话**跑不了**——竞对域被 egress 代理拦、无 SEO 数据 MCP。
+所以本轮用 WebSearch 看 SERP 构成 + 第一方 D1/GA4,**没有同行的流量与反链数字,
+不编**。`site:` 运算符在本工具里不可靠,未当证据用。
+
+**实测两条自家核心钱线词的德语 SERP**(页面 7 月就在线):
+`klimaanlage kippfenster abdichten anleitung`、`mobile klimaanlage kühlt nicht richtig was tun`
+——**eco 都不在前 ~8**。占屏的是四类:**真实商家**(klimaanlagen-guru.de,
+Monheim am Rhein 实体公司,带 SHOPVOTE/ProvenExpert/golocal 档案 + eBay 店;
+frosnir.de;ersatzteileshop.de;sos-zubehoer.de)、**厂商**(Bosch)、
+**论坛**(HaustechnikDialog、gutefrage)、**大出版社**(hausjournal.net)。
+
+**结论:这不是内容质量档次的差距,是实体档次的差距。** 上面每一个都是**可解析的
+实体**——有地址的公司、有第三方评价档案、或已确立的品牌。「再写几页更好的内容」
+打不进这一类;这也解释了 8 周站龄 + 139 页 + Google organic 归零那组数字。
+**别再把「我们内容不如人」当处方**(内容层的结构元素 08-29 对标矩阵已确认齐平甚至反超)。
+
+**据此审自家实体信号,并纠正我自己的首个判断**:
+- 初判「EcoBack 被断言 122 次却从未定义」——**错的**。首页**有**规范节点
+  `https://getecoback.com/#org`(带 logo/description/knowsAbout,被 WebSite 节点引用)。
+- 真实缺陷更锋利:**363 个 Organization 提及里 362 个是匿名空节点**
+  `{"@type":"Organization","name":"EcoBack","url":"…"}`,**没有一个指回那个定义**。
+  对解析器而言那是「362 个碰巧同名的组织」,不是「一个有 198 页的发行方」。
+  **实体图一直存在,但是孤儿。**
+
+**已落地 `tools/build_entity.py`(进 deploy 流水线,build_xlinks 之后、build_hreflang 之前)**:
+① 给每个匿名提及加 `@id` 指向规范节点——现网 **365 处引用 / 184 页**全部解析到
+`#org`,匿名节点归零;② 规范节点补两条 eco **能诚实主张、而多数竞对没有**的属性:
+`publishingPrinciples` → wie-wir-empfehlen.html、`mainEntityOfPage` → ueber-uns.html
+(**每条必须对应真实存在的文件,否则构建失败**);③ **不发 `sameAs`**——本站没有任何
+已验证的外部档案,编一个正是本站在别处拒绝的那种借来的权威。
+**闸门双分支实测**:重新注入一个匿名节点 → 被修复并计数;把 JSON-LD 弄坏 → 退出码 1。
+全流水线二次运行 **byte-stable**,四道既有闸门(events/adlabel/faq-parity/cited-figures)全过。
+
+**诚实预期,别过度承诺**:实体归并是**必要条件不是充分条件**——它让 eco 的 198 页
+在解析器眼里终于是一个发行方,但它不会凭空造出商家那种线下实体信号。
+**判定线(2026-10-31,60 天)**:①Bing/AI 面被引页的品牌关联(Bing WMT 快照,owner 侧)
+②GA4 ai-assistant 渠道会话 ≥70(现 57)。两项皆无变化 → 记入反面发现:
+**结构化实体标记对本站量级不产生可测收益,停止在 schema 层投入,把力气还给需求侧。**
+
+**本轮刻意没做的**:没新增页(SERP 证据说明新页打不进这类 SERP)、没动内容层
+(对标矩阵已齐平)、没申请任何非 Amazon 联盟(owner 明令变现只走 Amazon)。
+
 ## 增长挖掘与售卖内容丰富层（2026-07-10 增补）
 
 > 触发词："自动化挖掘网站增长方案，丰富售卖内容，提升新站流量"。每轮按下面三步走，全程自动化、批量执行。

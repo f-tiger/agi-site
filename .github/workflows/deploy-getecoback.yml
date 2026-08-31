@@ -88,6 +88,9 @@ jobs:
       - name: Inject room-size cross-links (idempotent)
         run: python3 tools/build_xlinks.py
 
+      - name: Consolidate publisher entity (@id graph; idempotent gate)
+        run: python3 tools/build_entity.py
+
       - name: Normalize + validate hreflang pairs (idempotent gate; non-zero exit blocks deploy)
         run: python3 tools/build_hreflang.py
 
