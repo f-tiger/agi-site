@@ -1,7 +1,20 @@
 {
- "d": "2026-08-30",
+ "d": "2026-08-31",
  "hits": [],
- "discovered": [],
- "watch": [],
+ "discovered": [
+  {
+   "query": "the walking dead",
+   "appid": 207610,
+   "name": "The Walking Dead",
+   "sim": 1.0
+  }
+ ],
+ "watch": [
+  {
+   "appid": 207610,
+   "name": "The Walking Dead",
+   "first_seen": "2026-08-31"
+  }
+ ],
  "note": "hits=in-pool trending; discovered=new games surfaced by trends via Steam official storesearch (>=0.85 name similarity); watch feeds the search pool only — verdict pages stay hand-curated."
 }
