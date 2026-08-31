@@ -165,6 +165,19 @@ PERF_HINTS = ("<!--eb-perf-->"
 # inject_chrome) so new rules — e.g. the transaction layer below — propagate to
 # all already-built pages, not just freshly created ones.
 CHROME_STYLE = ("<style id=\"eb-chrome\">"
+              # Comparison tables overflowed a 390 px viewport (found 2026-08-31 on
+              # split-klimaanlage-ohne-kernbohrung: 412 px table, 390 px screen, so
+              # the whole page scrolled sideways). 45 pages carry table.cmp, and a
+              # comparison table is this site's most-cited element type — letting it
+              # scroll inside its own box beats letting it drag the page with it.
+              # .cmp itself is defined per page, so the fix belongs in the one
+              # stylesheet that is injected everywhere and replaced in place.
+              # ...and it is not only table.cmp: the most-cited page on the site
+              # (klimaanlage-reinigen, 109 citations) overflowed on an UNCLASSED
+              # maintenance table added on 08-28. This site has no layout tables,
+              # so every table is a content table and every one of them may scroll
+              # inside its own box rather than drag the page sideways.
+              "@media(max-width:560px){table{display:block;overflow-x:auto;max-width:100%}}"
               ".eb-nav{position:sticky;top:0;z-index:100;background:#0a4d7a}"
               ".eb-nav-in{max-width:1000px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px 16px}"
               ".eb-nav a{text-decoration:none}"
@@ -842,6 +855,51 @@ CONTEXT_MODELS = {
  # durables this site's A-grade data shows converting. One switch-instead-of-fix
  # chip stays, honestly labelled, because the page has an explicit
  # "Alternativen im Blick" section.
+ # Split-Cluster (2026-08-31). The site's highest-ticket path was selling the
+ # cheapest device on it. The BTU calculator's fourth tier routes every room
+ # above 13.500 BTU here because a monoblock is genuinely at its limit — and
+ # split-klimaanlage-ohne-kernbohrung, portasplit-vs-monoblock and
+ # midea-portasplit-kaufen then showed that reader the same monoblock cards as
+ # a 15 m² page (EX105 / PAC N90 / Comfee / Klarstein). The whole cluster is
+ # built around the Midea PortaSplit, which this site already documents as sold
+ # out, so its own premise had no current answer.
+ #
+ # Correction to a first reading of this cluster: the tower-fan and portable-AC
+ # links on midea-portasplit-kaufen are NOT a mis-sell. Both sit inside the
+ # "for whom is this not worth it" section ("only hot on a few days — then a fan
+ # is enough", "a portable at ~250 € is louder and less efficient but available
+ # today"). That is this site's honest ordering doing its job. Left alone.
+ #
+ # Two contradictions resolve at once: a CONTEXT_MODELS page also drops out of
+ # EB_SIZER, and the sizer's top band was recommending a monoblock on the page
+ # whose thesis is that a monoblock has run out of room.
+ #
+ # Quick-Connect is the German term for what this cluster is about: pre-filled,
+ # self-sealing lines, so no flaring tool and no vacuum pump. Models confirmed
+ # on amazon.de listings, with public comparison coverage (homeandsmart,
+ # klimaanlagentest.de; notebookcheck reported the 9.000 BTU set at 449 €).
+ # SEARCH LINKS BY NAME, NO ASIN — candidates exist (B0F7XDNQRN, B0F7XC611X)
+ # but today's EX105 closure is exactly why a listing title read through a
+ # search index is not verification. They go in when someone opens the listing.
+ #
+ # Honest order, not commission order: 9.000 BTU first because most readers of
+ # this site size below 25 m²; the 12.000 for the rooms the fourth tier sends
+ # here; KESSER third because two competing listings for the same model make it
+ # the least unambiguous of the three.
+ **{slug: [
+   ("TCL BreezeIn Quick Connect 9.000 BTU", "Quick-Connect, bis ca. 25 m²",
+    "Vorgefüllte Leitungen mit Schnellkupplung — kein Bördeln, kein Vakuumieren. 2,6 kW, R32, kühlt und heizt. In öffentlichen Vergleichen als besonders leise geführt.",
+    "€€€ · ab ca. 450 €", "TCL+BreezeIn+Quick+Connect+9000+BTU", "ac"),
+   ("TCL BreezeIn Quick Connect 12.000 BTU", "Für die großen Räume",
+    "3,4 kW — die Klasse, in die dich der BTU-Rechner oberhalb von 13.500 BTU schickt, weil ein Monoblock dort ausläuft. R32, App- und Sprachsteuerung.",
+    "€€€ · Preis vor Ort prüfen", "TCL+BreezeIn+Quick+Connect+12000+BTU", "ac"),
+   ("KESSER Split Quick Connect 12.000 BTU", "Mit Heizfunktion im Set",
+    "3,4 kW, R32, Montagematerial im Lieferumfang. Achte beim Kauf auf die Variante — von diesem Modell stehen mehrere Angebote nebeneinander.",
+    "€€€ · Preis vor Ort prüfen", "KESSER+Split+Klimaanlage+Quick+Connect+12000+BTU", "ac"),
+ ] for slug in ("split-klimaanlage-ohne-kernbohrung",
+                "portasplit-vs-monoblock",
+                "midea-portasplit-kaufen")},
+
  "growatt-noah-2000-probleme": [
    ("Energiemessgerät (Steckdose)", "Erst messen", "Zeigt, was der NOAH wirklich liefert — die Grundlage für jede Ausgangsleistungs-Diagnose, unabhängig von der App.", "€ · ca. 10–20 €", "energiekostenmessger%C3%A4t+steckdose", "battery"),
    ("WLAN-Messsteckdose", "App-unabhängig loggen", "Protokolliert die Einspeisung auch dann, wenn die Growatt-App gerade streikt — mit eigener Verlaufskurve.", "€ · ca. 15–30 €", "wlan+steckdose+strommessung", "battery"),

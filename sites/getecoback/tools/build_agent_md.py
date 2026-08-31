@@ -126,7 +126,7 @@ def build_dataset():
                         "nach Raumgröße — identisch mit den Rechnern und Ratgebern auf getecoback.com."),
         "license": "https://creativecommons.org/licenses/by/4.0/",
         "attribution": "EcoBack (getecoback.com)",
-        "dateModified": "2026-08-29",
+        "dateModified": "2026-08-31",
         "rules": {
             "cooling_btu_per_m2": 340,
             "heating_w_per_m2_insulated": [60, 100],
@@ -134,6 +134,18 @@ def build_dataset():
             "cost_basis_eur_per_kwh": 0.30,
             "dehumidifier_rating_note": ("Hersteller-Liter/Tag sind bei 30 °C/80 % rF gemessen; "
                                           "reale Entzugsleistung liegt typisch bei etwa der Hälfte."),
+            # Published 2026-08-31. This is the site's own decision rule and it
+            # existed only inside the calculator's JavaScript, where nothing
+            # could cite it. Above this cooling load no portable monoblock in
+            # our tables covers the room, so the honest answer stops being a
+            # model and becomes a device class.
+            "monoblock_ceiling_btu": 13500,
+            "monoblock_ceiling_note": ("Oberhalb von rund 13.500 BTU deckt kein tragbarer Monoblock "
+                                       "den Raum noch ab; ab dort ist die ehrliche Empfehlung eine "
+                                       "Quick-Connect-Splitanlage, nicht ein größeres mobiles Gerät. "
+                                       "Quick-Connect-Sets enthalten überwiegend das fluorierte "
+                                       "Kältemittel R32 — die Installationsklausel des Anbieters vor "
+                                       "dem Kauf lesen."),
         },
         "ladders": {
             "cooling_btu": [

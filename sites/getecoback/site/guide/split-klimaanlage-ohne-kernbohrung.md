@@ -43,6 +43,14 @@ Heizfunktion | Meist ja (Wärmepumpe) | Teilweise |
 
 - **Kippfenster-Durchführung**: flaches Leitungsprofil + [Fensterabdichtung](https://getecoback.com/guide/klimaanlage-kippfenster.html) einplanen.
 
+## Kältemittel: R32 oder R290 — und wer die Anlage in Betrieb nehmen darf
+
+Das ist der Punkt, den die Vergleichsseiten überspringen, und er entscheidet mit über deine tatsächlichen Kosten. Quick-Connect-Sets arbeiten überwiegend mit **R32**. R32 ist ein fluoriertes Kältemittel — **R290** (Propan), das in vielen Monoblöcken steckt, ist es nicht. An das fluorierte knüpfen sich die Regeln für Handhabung und Inbetriebnahme, und bei Quick-Connect-Angeboten auf Amazon.de findet sich dazu teils der ausdrückliche Hinweis, dass Installation und Inbetriebnahme durch einen **zertifizierten Fachbetrieb** nachzuweisen sind.
+
+**Was konkret zu tun ist:** Lies vor dem Kauf die Installationsklausel des jeweiligen Anbieters — sie steht in der Artikelbeschreibung, nicht im Datenblatt. Wird dort ein Fachbetrieb verlangt, gehören dessen Kosten in deine Rechnung, und der Preisvorteil gegenüber einer klassisch installierten Splitanlage schrumpft. Steht dort nichts dergleichen, hast du das immerhin schriftlich.
+
+Wir sind keine Kältetechniker und geben keine Rechtsberatung. Was hier steht, ist die Aufforderung, die Angaben des Anbieters selbst zu lesen — nicht deren Auslegung.
+
 ## Mietwohnung & WEG: Was erlaubt ist (Stand Juli 2026)
 
 Der eigentliche Grund, warum viele „ohne Kernbohrung" suchen, ist nicht die Bohrmaschine — es ist die Erlaubnis. Die Rechtslage in Kürze:
@@ -62,6 +70,8 @@ Redaktionelle Zusammenfassung, keine Rechtsberatung.
 **Wie laut ist ein Quick-Connect-Split im Vergleich zum Monoblock?**Deutlich leiser im Raum: Beim Split arbeitet der Kompressor in der Außeneinheit, innen bleiben typischerweise rund 35–42 dB — Monoblöcke liegen innen meist bei 50–65 dB, weil der Kompressor mit im Zimmer steht. Für Schlafzimmer und Dauerbetrieb ist das der spürbarste Unterschied.
 
 **Kühlt ein Split ohne Kernbohrung besser als eine mobile Klimaanlage?**Ja, meist deutlich effizienter: Es entsteht kein Unterdruck im Raum, der warme Luft durch Tür- und Fensterritzen nachzieht, und die Abwärme bleibt komplett draußen. Der Preis dafür: höhere Anschaffungskosten und die Außeneinheit braucht einen Platz an Fenster oder Balkon.
+
+**Darf ich eine Quick-Connect-Splitanlage selbst in Betrieb nehmen?**Die Schnellkupplung ist so gebaut, dass du ohne Bördelwerkzeug und ohne Vakuumpumpe auskommst — das ist der technische Teil. Der rechtliche ist ein anderer: Quick-Connect-Sets enthalten überwiegend das fluorierte Kältemittel R32, und bei Angeboten auf Amazon.de findet sich dazu teils der ausdrückliche Hinweis, dass Installation und Inbetriebnahme durch einen zertifizierten Fachbetrieb nachzuweisen sind. Lies diese Klausel in der Artikelbeschreibung, bevor du bestellst — wird ein Fachbetrieb verlangt, gehören dessen Kosten in deine Rechnung. Wir sind keine Kältetechniker und geben keine Rechtsberatung.
 
 **Verfügbare Quick-Connect-Splitanlagen vergleichen:**
 

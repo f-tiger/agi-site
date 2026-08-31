@@ -929,6 +929,54 @@ Strompreis-Radar)。本循环补的是**外部需求信号**(Google Trends DE)�
 - **部署触发收敛为仅 main（2026-08-06，owner 截图发现）**：owner 发来 run #290 失败截图，查证后是**两个不同原因**：288/289（`12215d8`）是我的 heat 端点 bug（已修）；**290 是 GitHub 自身故障**——`Failed to resolve action download info: Service Unavailable / Internal Server Error`，重试两次后放弃，与代码无关（同一提交 `4948c26` 在 main 的 run 291 成功）。**但这暴露了一个结构问题**：`deploy.yml` 原本在 main **和**工作分支上都触发，而工作流是"改完立刻合并 main"，导致**每次推送产生两个一模一样的 run、把同一提交部署两遍**——浪费、红绿成对制造噪音、且把撞上 GitHub 瞬时故障的概率翻倍。已收敛为**仅 main 触发**（保留 `workflow_dispatch`）。**方法论**：我此前只查 main 的 run，等于只看了一半的 CI 状态；owner 的截图补上了我的盲区。
 - **Alibaba 品类研究 → 拒绝照榜选品，转向"买之前没人回答的问题"（2026-08-06，用户"深度研究 Alibaba 热销品类→挖掘用户需求→达成商业机会"）**：`alibaba.com` 与 `1688.com` 在本环境**均不可达（000）**，无法取一手榜单，二手数据已标注为候选而非结论。**热销构成**：Consumer Electronics 28%、Home & Garden 25%，爆品是投影仪/充电宝/空气炸锅/耳机——**与"我房间太热"的德国租客零重叠**。**方法论判断**：`Alibaba 热销 = 大量转售商正在抢` ＝ 红海信号而非机会信号；本站所有有效判断都是需求优先（先 SERP 判定再找供给），用供给榜倒推受众是把方法论反过来用，**故拒绝照榜选品**。**补充核实的合规差异**：非电器（窗封/隔热帘）**不触发 Stiftung EAR + 破产担保 + 处置费**，但**仍需** LUCID 包装注册（罚款至 20 万欧 + 销售禁令）、GPSR、PPWR（2026-08-12 起）、Gewerbe/增值税/14 天撤回/2 年质保——**更轻但仍非快路，也依然需要法人主体**。**真正的机会（三方证据交叉）**：① 本站数据 kippfenster 是最大簇且贡献 1/3 联盟点击；② 市场上存在专做**量身定制窗封**的德国厂商（FROSNIR）＝"尺寸不合"是真痛点；③ 公开评测共识的两个失效点是**长度不对**与**粘胶高温脱落**；④ 空白：SERP 全是薄比价站、**本站 4 个窗封页提到尺寸的是 0 个**。→ 机会不是卖那条窗封（要当进口商且它本身有缺陷），而是**解决买它之前没人回答的问题**。**已落地 `EB_SEALFIT`**：需要长度 = `2×(宽+高)` 向上取常见规格（纯算术不伪造规格）、量窗扇非窗框、三种窗型分别提示、诚实指出失效点是粘胶、超 5 m 不硬推产品改提示定制；覆盖 DE 3 页 + EN 2 页，埋点 `seal_fit{len,type}`。Chromium 实测四组算式与尺寸映射全部正确，并抓出超尺寸时 Amazon 链接拼成坏查询的 bug（已修）。**预注册判定**：60 天 `seal_fit` ≥25 次 → 需求确认可扩展定制方向；<8 次 → 降级。详见 `docs/sourcing-research-2026-08.md`。
 
+## 高客单品类扩展:Split/Quick-Connect(2026-08-31,owner「扩展提成多的贵的,做成德国专业 AI 时代站点」)
+
+**先立诚实边界**:「提成多」这半**核不到**——Amazon DE 的 Werbekostenerstattung 表这次
+WebSearch 挂了、PartnerNet 沙箱进不去,**不凭记忆报费率**。所以本轮只对「**贵的**」下手:
+Quick-Connect 分体机 **449 € 起**(notebookcheck 报的 TCL 9.000 BTU 促销价),站内 PortaSplit
+页自己写着 **~900–1.200 €**,对比单体机 250–400 €——**即便费率相同也是 1,5–3× 的每单价值**。
+费率那半是 owner 在 PartnerNet 后台看一眼的事。
+
+**为什么不是新建品类页**:本站冷启动实测(10 新页 → 6 pv)已判定「靠新页扩品类 ≈ 0 点击」。
+本轮扩的品类落在**已有排名 + 已有点击**的簇上——SERP 实测 `Split-Klimaanlage ohne
+Kernbohrung` 这条词上 **eco 自己的页与 homeandsmart / vergleich.org / klimaanlagentest 同屏**,
+这是本会话第一次看到 eco 页在竞争性德语 SERP 浮出。
+
+**修的缺陷(全站最贵的路径在卖最便宜的东西)**:BTU 计算器第四档把 **>13.500 BTU** 的房间
+全部路由到 split 页(因为单体机在那里确实到极限),而 `split-klimaanlage-ohne-kernbohrung`、
+`portasplit-vs-monoblock`、`midea-portasplit-kaufen` **三页挂的是和 15 m² 页一模一样的单体机卡**
+(EX105/PAC N90/Comfee/Klarstein);整个簇还建立在**站内自己记录为缺货**的 Midea PortaSplit 上,
+即它的前提没有当下答案。经 `CONTEXT_MODELS` 换为 Quick-Connect 卡组
+(TCL BreezeIn 9.000 / 12.000 BTU、KESSER 12.000 BTU;amazon.de 在售、有公开对比覆盖)。
+**顺带解掉第二个矛盾**:CONTEXT 页自动移出 EB_SIZER——而 sizer 的顶档正在这页推荐单体机。
+**链接一律按名搜索、零 ASIN**:候选 ASIN 有(B0F7XDNQRN / B0F7XC611X),但**今天 EX105 的
+结案理由正是「经搜索索引读到的 listing 标题不算核验」**,等有人真正打开 listing 再入表。
+
+**内容侧的差异化(这才是「AI 时代典型站点」那半)**:该页 1.831 词、有对比节有 Mietrecht 节,
+但 **F-Gas / Kältemittel / Fachbetrieb / R32 / R290 出现 0 次**——这是这个品类在德国最要命的
+购买问题,而全 SERP 没人讲。新增判定节 + 配套 FAQ(可见与 JSON-LD 逐字一致,parity 闸门验过):
+R32 是**氟化**制冷剂、R290(丙烷)不是;amazon.de 的 Quick-Connect 商品描述里**有的写明**
+安装与调试需持证 Fachbetrieb 证明。**给读者的动作是「买前读商家自己的安装条款」**——
+陈述事实、不做法律解释,并明写「我们不是制冷技师,不提供法律意见」。
+本站自有判定规则 `monoblock_ceiling_btu: 13500` 同时写进 **`sizing-data.json`(CC BY 4.0)**
+——此前它只活在计算器的 JS 里,没人能引用它。
+
+**两个自我纠正(过程记录)**:①我先把 `midea-portasplit-kaufen` 上的塔扇/单体机链接当成
+误销,读上下文后发现它们在**「für wen lohnt sie sich nicht」**段里(「只热几天,风扇就够」),
+是诚实降级,**保留**,代码注释已改;②可见 FAQ 第一次插错位置被 parity 闸门抓住——
+改为**直接从 JSON-LD 取答案文本**再插可见段,逐字一致由构造保证,比重打一遍可靠。
+
+**顺带修掉的移动端存量缺陷**:390px 下 `table.cmp` 溢出(412px)导致整页横滚;进一步发现
+**被引第 1 的 `klimaanlage-reinigen`(109 次)也溢出**,元凶是 08-28 我自己补的**无 class**
+保养表。本站没有布局表,故 CHROME_STYLE 加
+`@media(max-width:560px){table{display:block;overflow-x:auto;max-width:100%}}`,45 个带 cmp
+的页 + 所有内容表一次覆盖。**对比表是本站最吃引用的元素类型,让它在自己的框里滚,
+好过拖着整页横滚。** 10 页实测(德/英/意/首页/工具/被引第一)零横滚、表格照常、零 JS 错误。
+
+**判定线(2026-09-28,28 天)**:split 簇三页 `affiliate_click` ≥6(30 天基线:该簇合计 4,
+且全部指向单体机)→ 高客单路径成立,按同法补第二个高客单簇;**≤2 → 不是商品面的问题,
+是这个价位在本站受众里不成立**,记录并停止在高客单方向投入。
+
 ## EX105 ASIN 结案 + 一条方法论例外(2026-08-31,owner 两张 amazon.de 截图)
 
 **结案,任何轮次不再重议**:`B0BZWP26GD` 在 amazon.de 上给不出 EX105——两次独立观测:
