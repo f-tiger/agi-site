@@ -989,3 +989,13 @@ table.pl-tools tr.pl-on { background: var(--tool-s); }
   60% { transform: translateX(-3px); }
   80% { transform: translateX(3px); }
 }
+
+/* AI 赚钱作业包（2026-08-30）：墙后正文由 /api/earn 注入，样式沿用站内表格与步骤体系，
+   不新造视觉语言——它和公开作业是同一件事的两层，看起来就该是一家的。 */
+.earn-pack { margin-top: 18px; }
+.earn-pack > h2 { margin-top: 22px; font-size: 17px; }
+.earn-table td { vertical-align: top; }
+.earn-table td b { font-weight: 700; }
+.earn-table td i { color: var(--mute); font-style: normal; }
+.earn-nofig { margin-top: 10px; font-size: 13px; color: var(--ink-2); }
+.earn-nofig b { display: block; font-size: 12px; color: var(--mute); margin-bottom: 2px; }

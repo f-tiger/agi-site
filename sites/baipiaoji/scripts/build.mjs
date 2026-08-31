@@ -481,7 +481,7 @@ ${gateOf(path)}${subJs()}
   ${friendLinks.length ? `<nav class="friend-links"><span>${UI('friend_links', '友情链接')}</span>${friendLinks.map((l) => `<a href="${esc(l.url)}" target="_blank" rel="noopener nofollow" title="${esc(l.desc || '')}">${esc(l.name)}</a>`).join('')}</nav>` : ''}
   <p>${esc(NAME)} · ${esc(TAGLINE)} · ${UI('footer_count', '共收录')} ${tools.length} ${UI('footer_count_unit', '个真有免费额度的 AI 工具')}</p>
   <p class="disclosure">${UI('disclosure', '部分链接为合作推广链接，我们可能因此获得佣金；这不影响工具的收录标准与排序，也不会让你多花一分钱。福利以官方页面实时信息为准。')}${site.ga_id ? UI('privacy', '本站使用 Google Analytics 统计匿名访问数据，用于改进内容，不收集个人身份信息。') : ''}${UI('privacy_sub', ' 若你主动订阅额度变更提醒，我们会保存你填写的邮箱与你关注的工具列表，仅用于发送这些工具的额度变动通知；不转让、不用于广告投放，随时可退订。除此之外不收集任何个人信息。')}</p>
-  <p><a href="${BASE}/">${UI('home', '首页')}</a> · <a href="${BASE}/myths.html">${UI('myths_title', 'AI 免费额度流言核查')}</a> · <a href="${BASE}/free-for-you.html">${UI('ffy_nav', '你能白嫖什么')}</a> · <a href="${BASE}/publish-check.html">${UI('pc_nav', '能不能发')}</a> · <a href="${BASE}/no-official-source.html">${UI('ns_nav', '查无官方来源')}</a> · <a href="${BASE}/changes.html">${UI('ch_nav', '额度变更记录')}</a> · <a href="${BASE}/upgrade/">${UI('up_nav', '该买哪档')}</a> · <a href="${BASE}/solutions/coding.html">${LOCALE.code === 'zh' ? '解决方案' : 'Solutions'}</a> · <a href="${BASE}/why-did-my-ai-free-tier-stop-working.html">${LOCALE.code === 'zh' ? '额度突然不能用了' : 'Free tier stopped working'}</a> · <a href="${BASE}/report.html">${LOCALE.code === 'zh' ? '真相报告' : 'The report'}</a> · <a href="${BASE}/watch.html">${LOCALE.code === 'zh' ? '额度监控' : 'Watch'}</a> · <a href="${BASE}/submit.html">${UI('submit_nav', '提交工具')}</a> · <a href="${BASE}/for-vendors.html">${UI('vendors_nav', '厂商自荐')}</a> · <a href="${BASE}/developers.html">${UI('dev_nav', '开发者 API')}</a> · <a href="${BASE}/travel/">${UI('travel_nav', '旅行白嫖')}</a> · <a href="${BASE}/feed.xml">${UI('rss', 'RSS 订阅')}</a> · <a href="${BASE}/unsubscribe.html">${UI('unsub_nav', '退订提醒')}</a>${site.contact_email ? ` · <a href="mailto:${esc(site.contact_email)}">${UI('contact', '商务合作')}</a>` : ''}</p>
+  <p><a href="${BASE}/">${UI('home', '首页')}</a> · <a href="${BASE}/myths.html">${UI('myths_title', 'AI 免费额度流言核查')}</a> · <a href="${BASE}/free-for-you.html">${UI('ffy_nav', '你能白嫖什么')}</a> · <a href="${BASE}/publish-check.html">${UI('pc_nav', '能不能发')}</a> · <a href="${BASE}/no-official-source.html">${UI('ns_nav', '查无官方来源')}</a> · <a href="${BASE}/changes.html">${UI('ch_nav', '额度变更记录')}</a> · <a href="${BASE}/upgrade/">${UI('up_nav', '该买哪档')}</a> · <a href="${BASE}/solutions/coding.html">${LOCALE.code === 'zh' ? '解决方案' : 'Solutions'}</a> · <a href="${BASE}/earn/">${LOCALE.code === 'zh' ? 'AI 赚钱作业包' : 'AI earning packs'}</a> · <a href="${BASE}/why-did-my-ai-free-tier-stop-working.html">${LOCALE.code === 'zh' ? '额度突然不能用了' : 'Free tier stopped working'}</a> · <a href="${BASE}/report.html">${LOCALE.code === 'zh' ? '真相报告' : 'The report'}</a> · <a href="${BASE}/watch.html">${LOCALE.code === 'zh' ? '额度监控' : 'Watch'}</a> · <a href="${BASE}/submit.html">${UI('submit_nav', '提交工具')}</a> · <a href="${BASE}/for-vendors.html">${UI('vendors_nav', '厂商自荐')}</a> · <a href="${BASE}/developers.html">${UI('dev_nav', '开发者 API')}</a> · <a href="${BASE}/travel/">${UI('travel_nav', '旅行白嫖')}</a> · <a href="${BASE}/feed.xml">${UI('rss', 'RSS 订阅')}</a> · <a href="${BASE}/unsubscribe.html">${UI('unsub_nav', '退订提醒')}</a>${site.contact_email ? ` · <a href="mailto:${esc(site.contact_email)}">${UI('contact', '商务合作')}</a>` : ''}</p>
 </footer>
 </body>
 </html>`;
@@ -532,6 +532,7 @@ const railOf = () => `<aside class="rail">
   <nav class="rail-jump">
     <a href="${BASE}/#dirs"><b>${LOCALE.code === 'zh' ? '两个主攻方向' : 'Two directions'}</b><span>2</span></a>
     <a href="${BASE}/money/"><b>${UI('money_nav', '赚钱作业')}</b><span>${hustles.length}</span></a>
+    <a href="${BASE}/earn/"><b>${LOCALE.code === 'zh' ? '赚钱作业包' : 'Earning packs'}</b><span>${hustles.length}</span></a>
     <a href="${BASE}/#plans"><b>${UI('plans_title', '免费方案')}</b><span>${solutions.length}</span></a>
     <a href="${BASE}/vs/"><b>${UI('vs_nav', '两两对照')}</b><span>${VS_PAIRS.length}</span></a>
     <a href="${BASE}/publish-check.html"><b>${UI('pc_nav', '能不能发')}</b><span>${Object.keys(LICENCE).length}</span></a>
@@ -2037,6 +2038,7 @@ function hustlePage(h) {
       <ul>${h.traps.map((t) => `<li>${strong(t)}</li>`).join('')}</ul>
     </section>
     <p class="hustle-cost"><b>${UI('h_cost_label', '成本')}</b>${strong(h.cost)}</p>
+    <p class="coverage"><a href="${BASE}/earn/${esc(h.slug)}.html"><b>${LOCALE.code === 'zh' ? '这条路的接单作业包：每个工具的额度与商用权（注册免费看）→' : 'The client-work pack for this path: every tool\u2019s allowance and commercial rights (free after registration) →'}</b></a></p>
     <p class="no-promise">${UI('no_promise', '本站不承诺收入，也不卖课。这份作业只保证一件事：里面用到的工具确实免费，且额度已核实。做不做得成，取决于你做了多少。')}</p>
     <section class="faq">
       <h2>${UI('faq_title', '常见问题')}</h2>
@@ -2107,6 +2109,7 @@ function moneyIndexPage() {
     <ol class="ladder-list">
       <li><b>${UI('ladder_1_t', '想赚钱')}</b><span>${UI('ladder_1_d', '先在上面挑一条你能坚持的路，看清它怎么失败再开始')}</span></li>
       <li><b><a href="${BASE}/money/">${UI('ladder_2_t', '赚钱作业')}</a></b><span>${UI('ladder_2_d', '照着步骤做，每一步都指到具体的方案或工具')}</span></li>
+      <li><b><a href="${BASE}/earn/">${LOCALE.code === 'zh' ? 'AI 赚钱作业包' : 'AI earning packs'}</a></b><span>${LOCALE.code === 'zh' ? '接单前的两件事：工具额度到哪为止、做出来的能不能拿去接单（注册免费看）' : 'The two things to settle before client work: how far each free tier goes, and whether the output may be sold (free after registration)'}</span></li>
       <li><b><a href="${BASE}/#plans">${UI('ladder_3_t', '0 元方案')}</a></b><span>${UI('ladder_3_d', '作业里的每个环节，都有一套写好的免费做法')}</span></li>
       <li><b><a href="${BASE}/">${UI('ladder_4_t', '免费工具')}</a></b><span>${UI('ladder_4_d', '方案里用到的工具，额度都核实过，链接每天自动巡检')}</span></li>
     </ol>
@@ -3150,6 +3153,294 @@ function questionPage(qd) {
   });
 }
 
+// ---- 板块 21 号：AI 赚钱作业包 /earn/（2026-08-30，owner「加一个板块，ai赚钱板块，
+// 通过这个吸引转化，必须注册才能看」）----
+//
+// 为什么是「在 /money/ 之上加一层」而不是给现有 6 页加墙：那 6 页是已被索引的发现层，
+// 也是 AI 引用面（本站命脉）。给它们加墙等于把入口自己焊死。所以 /earn/ 的分工是：
+// 枢纽页公开可索引（负责被搜到、被引用），作业包正文注册后由服务端发放。
+//
+// 作业包凭什么值得留邮箱：它不是把公开页复制一遍，而是用本站独有的已核实数据编译出
+// 公开页给不了的东西——**这条路要用的每个工具，免费额度到哪、以及做出来的东西能不能
+// 拿去接单**（licence.json 的 39 条商用判定）。「能不能商用」正是赚钱场景的生死问题，
+// 而全网讲 AI 副业的内容几乎没人回答它，因为没人有这批逐条核实的授权数据。
+//
+// 四条硬内容底线（docs/competitor-research-money.md §四）在包里逐条落地：
+// 不承诺收入 / 必写失败原因 / 必写骗局 / 只用站内已核实的免费工具。
+// 无官方数字的工具如实列出——缺席即态度，不拿「大约」凑数。
+const EARN_PACKS = { zh: {}, en: {} };
+
+function earnPackOf(h) {
+  const zh = LOCALE.code === 'zh';
+  const seen = new Map();
+  const steps = h.steps.map((st, i) => {
+    const plan = st.plan ? planBySlug.get(st.plan) : null;
+    for (const s of (st.tools || [])) { const t = bySlug.get(s); if (t) seen.set(t.slug, t); }
+    return {
+      n: i + 1,
+      do: plain(st.do),
+      plan: plan ? { slug: plan.slug, title: plan.pain, steps: plan.steps.length } : null,
+      tools: (st.tools || []).filter((s) => bySlug.get(s)),
+    };
+  });
+  const stack = [], noFigure = [];
+  for (const t of seen.values()) {
+    const l = t.limits && t.limits.quota && t.limits.source ? t.limits : null;
+    const lic = LICENCE[t.slug];
+    const v = lic && VERDICT[lic.verdict];
+    if (!l) noFigure.push(t.name);
+    stack.push({
+      slug: t.slug, name: t.name, cat: CATS[t.category] || t.category,
+      url: `${BASE}/tools/${t.slug}.html`,
+      quota: l ? plain(l.quota) : '', source: l ? l.source : '', checked: l ? l.checked : '',
+      verdict: v ? {
+        label: zh ? v.zh : v.en, cls: v.cls,
+        scope: plain(zh ? lic.scope_zh : lic.scope_en), checked: lic.checked,
+        // 数据里的 **重点** 标记只在 HTML 场合转 <strong>；作业包正文由 JS 以纯文本
+        // 注入，不剥掉就会把星号原样显示给用户（build.mjs 顶部的既有约定）。
+        obligations: ((zh ? lic.obligations_zh : lic.obligations_en) || []).map(plain),
+      } : null,
+    });
+  }
+  return {
+    slug: h.slug, title: h.title, who: plain(h.who), why: plain(h.why), cost: plain(h.cost),
+    first_week: plain(h.first_week), reality: plain(h.reality),
+    traps: (h.traps || []).map(plain), steps, stack, no_figure: noFigure, checked_at: TODAY,
+  };
+}
+
+// 板块底线：四条硬规则在枢纽页与每个作业包页都露出——它既是内容规则，
+// 也是这个板块相对「卖课」竞对的全部差异，藏起来等于放弃定位。
+const earnLinesOf = () => {
+  const zh = LOCALE.code === 'zh';
+  return zh
+    ? [['不承诺收入数字', '承诺收入是这个品类所有骗局的起手式。我们一个数字都不给。'],
+       ['必写多数人为什么没做成', '只讲成功案例就是幸存者偏差，等于骗人。'],
+       ['必写这条路上的骗局长什么样', '你缺的是识别能力，不是又一份「玩法」。'],
+       ['只用站内已核实的免费工具', '全程 0 元才可验证；要花钱的路子我们核实不了，也不写。']]
+    : [['No income figures, ever', 'Promising income is how every scam in this category opens. We give no number.'],
+       ['Why most people fail is mandatory', 'Success stories alone are survivorship bias — that is lying by omission.'],
+       ['The scams on each path are named', 'What you lack is the ability to spot them, not another "playbook".'],
+       ['Only verified free tools from this site', 'Zero cost is what makes it checkable; paths that need money we cannot verify, so we do not write them.']];
+};
+
+const earnPackValueOf = () => {
+  const zh = LOCALE.code === 'zh';
+  return zh
+    ? ['这条路要用的每个工具：免费额度到哪为止、官方出处、核实日期',
+       '**做出来的东西能不能拿去接单**——逐条核实的商用授权判定与附带义务（水印、署名、退订后作品归谁）',
+       '哪些工具官方根本没公布数字——如实列出，不拿「大约」凑数',
+       '分步作业与第一周能做完什么；多数人为什么没做成；这条路上的骗局长什么样']
+    : ['Every tool the path needs: how far the free tier goes, the official source, the date it was checked',
+       '**Whether what you make can legally be sold to a client** — the verified commercial-use verdict and its obligations (watermarks, attribution, who owns the work if you stop paying)',
+       'Which tools publish no official figure at all — listed as such, never padded with "about"',
+       'The steps, what week one looks like, why most people fail, and what the scams on this path look like'];
+};
+
+// 注册墙的客户端一半。正文不在 HTML 里——它由 /api/earn 校验 D1 subs 后发放，
+// 所以「必须注册才能看」不是把 DOM 藏起来（查看源码即破），是服务端真的不给。
+function earnGateJs(slug) {
+  const zh = LOCALE.code === 'zh';
+  const T = {
+    h2: zh ? '注册后免费看这份作业包' : 'Register to read this pack — free',
+    p: zh
+      ? '留一个邮箱即可解锁本站全部作业包与自建工具，永久免费，不卖课、不承诺任何收入。你关注的工具免费额度一变，我们也会告诉你。'
+      : 'Leave an email to unlock every pack and every tool on this site — free for good. No courses, no income promises. When a free tier you rely on moves, you hear it too.',
+    ph: zh ? '你的邮箱' : 'your@email.com',
+    btn: zh ? '注册并解锁作业包' : 'Register & open the pack',
+    note: zh
+      ? '只用于解锁与额度变更提醒，不转让、不群发广告，随时可退订。已经注册过？填同一个邮箱即可。'
+      : 'Used only to unlock and to send allowance-change alerts. Never sold, never blasted with ads, unsubscribe any time. Already registered? The same address works.',
+    busy: zh ? '正在打开…' : 'Opening…',
+    bad: zh ? '邮箱格式不对，再检查一下。' : 'That address does not look right — please check it.',
+    net: zh ? '网络出错，稍后再试。' : 'Network error — please retry.',
+    stack: zh ? '这条路要用的工具（额度与商用权已逐条核实）' : 'The stack this path needs (allowances and commercial rights verified one by one)',
+    thTool: zh ? '工具' : 'Tool',
+    thQuota: zh ? '免费额度到哪为止' : 'How far the free tier goes',
+    thBiz: zh ? '能不能拿去接单' : 'Can you sell the output',
+    steps: zh ? '分步作业' : 'The steps',
+    week: zh ? '第一周' : 'Week one',
+    reality: zh ? '多数人为什么没做成' : 'Why most people fail',
+    traps: zh ? '这条路上的骗局长什么样' : 'What the scams on this path look like',
+    nofig: zh ? '官方没有公布数字的工具（如实列出，不代算）' : 'Tools that publish no official figure (listed as such, never estimated)',
+    plan: zh ? '照这套方案做' : 'Follow this playbook',
+    unknown: zh ? '官方未公布' : 'Not published officially',
+    nolic: zh ? '未核实商用条款' : 'Commercial terms not verified',
+    src: zh ? '官方出处' : 'Official source',
+    noPromise: zh
+      ? '本站不承诺收入，也不卖课。这份作业包只保证一件事：里面的额度与商用判定都能追溯到官方页面，并标注核实日期。'
+      : 'We promise no income and sell no courses. This pack guarantees one thing: every allowance and every commercial-use verdict traces to an official page, with the date it was checked.',
+  };
+  return `<script>(function(){
+var slot=document.getElementById('earnSlot');if(!slot)return;
+var EKEY='bpj_reg_email',RKEY='bpj_tool_reg',SLUG=${JSON.stringify(slug)},LANG='${LOCALE.code}';
+var BASEP=${JSON.stringify(BASE)};
+function esc(s){var d=document.createElement('div');d.textContent=s==null?'':String(s);return d.innerHTML}
+function open(email){
+  return fetch('/api/earn',{method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({email:email,slug:SLUG,lang:LANG})})
+    .then(function(r){return r.json()}).then(function(d){
+      if(!d||!d.ok||!d.pack)return false;
+      render(d.pack);return true;
+    });
+}
+function render(p){
+  var H='<div class="earn-pack">';
+  if(p.stack&&p.stack.length){
+    H+='<h2>${T.stack}</h2><div class="lt-scroll"><table class="limits-table earn-table"><thead><tr>'
+      +'<th>${T.thTool}</th><th>${T.thQuota}</th><th>${T.thBiz}</th></tr></thead><tbody>';
+    p.stack.forEach(function(t){
+      var q=t.quota?esc(t.quota):'<i>${T.unknown}</i>';
+      if(t.checked)q+='<span class="limits-src">'+esc(t.checked)+(t.source?' · <a href="'+esc(t.source)+'" target="_blank" rel="noopener nofollow">${T.src}</a>':'')+'</span>';
+      var v=t.verdict?'<b class="'+esc(t.verdict.cls)+'">'+esc(t.verdict.label)+'</b><span class="limits-src">'+esc(t.verdict.scope)+' · '+esc(t.verdict.checked)+'</span>'
+        +((t.verdict.obligations&&t.verdict.obligations.length)?'<span class="limits-src">'+t.verdict.obligations.map(esc).join('<br>')+'</span>':'')
+        :'<i>${T.nolic}</i>';
+      H+='<tr><td><a href="'+esc(t.url)+'">'+esc(t.name)+'</a><span class="limits-src">'+esc(t.cat)+'</span></td><td>'+q+'</td><td>'+v+'</td></tr>';
+    });
+    H+='</tbody></table></div>';
+  }
+  if(p.no_figure&&p.no_figure.length)H+='<p class="earn-nofig"><b>${T.nofig}</b>'+p.no_figure.map(esc).join('、')+'</p>';
+  if(p.steps&&p.steps.length){
+    H+='<h2>${T.steps}</h2><ol class="steps">';
+    p.steps.forEach(function(s){
+      H+='<li class="step"><span class="step-no">'+s.n+'</span><div class="step-body"><p>'+esc(s.do)+'</p>';
+      if(s.plan)H+='<a class="step-plan" href="'+BASEP+'/plans/'+esc(s.plan.slug)+'.html"><b>${T.plan}</b>'+esc(s.plan.title)+'</a>';
+      H+='</div></li>';
+    });
+    H+='</ol>';
+  }
+  if(p.first_week)H+='<p class="tip"><b>${T.week}</b>'+esc(p.first_week)+'</p>';
+  if(p.reality)H+='<section class="reality"><h2>${T.reality}</h2><p>'+esc(p.reality)+'</p></section>';
+  if(p.traps&&p.traps.length)H+='<section class="traps"><h2>${T.traps}</h2><ul>'+p.traps.map(function(t){return '<li>'+esc(t)+'</li>'}).join('')+'</ul></section>';
+  H+='<p class="no-promise">${T.noPromise}</p></div>';
+  slot.innerHTML=H;
+  if(window.bpjEv)bpjEv('earn','/earn/read/'+SLUG);
+}
+var saved='';try{saved=localStorage.getItem(EKEY)||''}catch(e){}
+if(saved){open(saved).then(function(okd){if(!okd)form()});}else form();
+function form(){
+  slot.innerHTML='<section class="reg-gate" id="earnGate"><h2>${T.h2}</h2><p>${T.p}</p>'
+    +'<form class="sub-form"><input type="email" name="email" required autocomplete="email" placeholder="${T.ph}" aria-label="${T.ph}">'
+    +'<input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">'
+    +'<button type="submit">${T.btn}</button></form>'
+    +'<p class="sub-note">${T.note}</p><p class="sub-msg" role="status" aria-live="polite"></p></section>';
+  if(window.bpjEv)bpjEv('earn','/earn/view/'+SLUG);
+  var f=slot.querySelector('form'),msg=slot.querySelector('.sub-msg');
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var email=(f.email.value||'').trim();msg.textContent='${T.busy}';
+    fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({email:email,website:f.website.value||'',lang:LANG,src:'earn-gate:'+SLUG})})
+      .then(function(r){return r.json()}).then(function(d){
+        if(!d||!d.ok){msg.textContent='${T.bad}';return}
+        try{localStorage.setItem(EKEY,email.toLowerCase());localStorage.setItem(RKEY,'1')}catch(x){}
+        if(window.bpjEv)bpjEv('earn','/earn/ok/'+SLUG);
+        return open(email.toLowerCase()).then(function(okd){if(!okd)msg.textContent='${T.net}'});
+      }).catch(function(){msg.textContent='${T.net}'});
+  });
+}
+})();</script>
+`;
+}
+
+// 作业包页：公开部分只有「这条路是什么、包里有什么、四条底线」——正文在墙后。
+// noindex + 不进 sitemap：墙后内容对搜索引擎是空页，让它进索引等于自造薄页。
+// 发现层走公开枢纽 /earn/ 与已被索引的 /money/ 六页。
+function earnPackPage(h) {
+  const zh = LOCALE.code === 'zh';
+  const lines = earnLinesOf();
+  const val = earnPackValueOf();
+  const nm = zh ? '赚钱作业包' : 'earning packs';
+  const lede = zh
+    ? `${h.title}：${h.who}这份作业包在公开作业之上，补的是接单前必须搞清的两件事——这条路要用的工具免费额度到哪为止，以及做出来的东西能不能拿去接单（逐条核实的商用授权判定）。注册后免费看，本站不承诺任何收入，也不卖课。`
+    : `${h.title}: ${h.who} On top of the public playbook, this pack adds the two things you must settle before taking client work — how far each tool's free tier goes, and whether what you produce may legally be sold (a commercial-use verdict verified one by one). Free after registration. We promise no income and sell no courses.`;
+  const body = `${railOf()}
+<main class="stage detail-stage">
+  <nav class="crumb"><a href="${BASE}/">${esc(NAME)}</a><i>/</i><a href="${BASE}/earn/">${esc(zh ? 'AI 赚钱作业包' : 'AI earning packs')}</a><i>/</i><span>${esc(h.title)}</span></nav>
+  ${gsOf()}
+  <article class="detail plan-detail">
+    <h1>${esc(zh ? `${h.title}：接单作业包` : `${h.title}: the client-work pack`)}</h1>
+    <p class="answer">${esc(lede)}</p>
+    <section class="panel">
+      <h2>${zh ? '包里有什么' : 'What is in the pack'}</h2>
+      <ul class="sub-perks">${val.map((v) => `<li>${strong(v)}</li>`).join('')}</ul>
+    </section>
+    <div id="earnSlot"></div>
+    <section class="panel">
+      <h2>${zh ? '这个板块的四条底线' : 'The four rules this section keeps'}</h2>
+      <ul class="sub-perks">${lines.map(([a, b]) => `<li><b>${esc(a)}</b>：${esc(b)}</li>`).join('')}</ul>
+    </section>
+    <p class="hustle-cost"><b>${zh ? '成本' : 'Cost'}</b>${strong(h.cost)}</p>
+    <p class="coverage"><a href="${BASE}/money/${esc(h.slug)}.html">${zh ? '这条路的公开作业（不用注册）→' : 'The public playbook for this path (no registration) →'}</a></p>
+  </article>
+  <section class="also">
+    <h2>${zh ? '其他作业包' : 'Other packs'}</h2>
+    <div class="also-list">${hustles.filter((x) => x.slug !== h.slug).map((x) => `<a href="${BASE}/earn/${esc(x.slug)}.html"><b>${esc(x.title)}</b><span>${x.steps.length} ${UI('steps_unit', '步')} · ¥0</span></a>`).join('')}</div>
+  </section>
+</main>
+${earnGateJs(h.slug)}`;
+  return layout({
+    title: zh ? `${h.title}：接单作业包（额度与商用权已核实）- ${NAME}` : `${h.title}: the client-work pack, with verified allowances and rights - ${NAME}`,
+    description: lede, path: `/earn/${h.slug}.html`, body, noindex: true,
+  });
+}
+
+// 枢纽页：公开、可索引、进 sitemap——它是这个板块的发现层与被引用面。
+function earnIndexPage() {
+  const zh = LOCALE.code === 'zh';
+  const lines = earnLinesOf();
+  const val = earnPackValueOf();
+  const answer = zh
+    ? `AI 赚钱作业包是 ${hustles.length} 条已调研路子的接单资料：每条给出要用的工具、每个工具的已核实免费额度与官方出处，以及最关键的一条——做出来的东西能不能拿去接单（本站逐条核实的商用授权判定，共 ${Object.keys(LICENCE).length} 条）。作业包注册后免费看；公开作业不用注册。别人卖你「月入过万」的课，我们免费给作业，并且明说多数人为什么失败、这条路上的骗局长什么样。本站不承诺任何收入数字。`
+    : `The AI earning packs are client-work briefs for ${hustles.length} researched paths: the tools each one needs, every tool's verified free-tier limit with its official source, and the question that decides whether the work is sellable at all — whether the output may legally be used commercially (${Object.keys(LICENCE).length} verdicts, verified one by one). Packs are free after registration; the public playbooks need none. Others sell you a course promising a monthly income; we give the homework away, and state plainly why most people fail and what the scams look like. We promise no income figures.`;
+  const faq = zh
+    ? [['为什么要注册才能看作业包？', '作业包是我们用已核实数据编译出来的接单资料，做它有持续成本（每天重新核实额度与授权条款）。注册免费、不收钱、不卖课；留邮箱的另一个作用是：你这条路上用的工具免费额度一变，我们能直接告诉你。'],
+       ['注册要花钱吗？会被推销吗？', '不花钱。邮箱只用于解锁与额度变更提醒，不转让、不群发广告，随时可退订。本站不卖课，也不接付费收录。'],
+       ['作业包会承诺我能赚多少钱吗？', '不会。一个收入数字都不给——承诺收入是这个品类所有骗局的共同起手式。作业包只保证：里面的额度与商用判定都能追溯到官方页面并标注核实日期。'],
+       ['不注册能看什么？', `${hustles.length} 条路的公开作业（/money/）全部开放，不用注册：适合谁、分几步、第一周做什么、为什么多数人没做成、骗局长什么样。作业包补的是工具额度与商用权这两层。`]]
+    : [['Why does a pack need registration?', 'A pack is client-work material compiled from data we re-verify daily — allowances and licence terms both. Registration is free and never charged; the address also lets us tell you when a free tier your path depends on moves.'],
+       ['Does registering cost anything? Will I be sold to?', 'No cost. The address is used only to unlock and to send allowance-change alerts — never sold, never blasted with ads, unsubscribe any time. We sell no courses and take no paid listings.'],
+       ['Will a pack promise me an income?', 'No. Not a single income figure — promising income is how every scam in this category opens. A pack guarantees only this: every allowance and verdict traces to an official page with its check date.'],
+       ['What can I read without registering?', `All ${hustles.length} public playbooks (/money/) are open: who each suits, the steps, week one, why most people fail, and what the scams look like. The packs add the tool allowances and the commercial-use layer.`]];
+  const body = `${railOf()}
+<main class="stage">
+  <nav class="crumb"><a href="${BASE}/">${esc(NAME)}</a><i>/</i><span>${esc(zh ? 'AI 赚钱作业包' : 'AI earning packs')}</span></nav>
+  ${gsOf()}
+  <header class="hero"><div class="hero-inner">
+    <h1>${esc(zh ? `AI 赚钱作业包：${hustles.length} 条路，接单前先搞清额度与商用权` : `AI earning packs: ${hustles.length} paths, with the allowance and the rights settled first`)}</h1>
+    <p class="answer">${esc(answer)}</p>
+  </div></header>
+  <section class="panel">
+    <h2>${zh ? '每份作业包里有什么' : 'What is in every pack'}</h2>
+    <ul class="sub-perks">${val.map((v) => `<li>${strong(v)}</li>`).join('')}</ul>
+  </section>
+  <section class="also"><h2>${zh ? `${hustles.length} 条路` : `The ${hustles.length} paths`}</h2>
+    <div class="also-list">${hustles.map((h) => `<a href="${BASE}/earn/${esc(h.slug)}.html"><b>${esc(h.title)}</b><span>${esc(plain(h.who).slice(0, 70))}</span></a>`).join('')}</div>
+  </section>
+  <section class="limits-table">
+    <h2 class="group-title">${zh ? '这个板块的四条底线' : 'The four rules this section keeps'}<span>${lines.length}</span></h2>
+    <p class="money-lede">${zh
+      ? '这个品类里绝大多数玩家在做同一件事：先承诺收入，再卖课。下面四条是我们的反面做法，写死在内容规则里，不是姿态。'
+      : 'Almost everyone in this category does the same thing: promise an income, then sell a course. The four rules below are the opposite, written into the content rules rather than into a slogan.'}</p>
+    <ul class="sub-perks">${lines.map(([a, b]) => `<li><b>${esc(a)}</b>：${esc(b)}</li>`).join('')}</ul>
+  </section>
+  <section class="faq">
+    <h2>${UI('faq_title', '常见问题')}</h2>
+    ${faq.map(([q, a]) => `<details><summary>${esc(q)}</summary><p>${esc(a)}</p></details>`).join('\n    ')}
+  </section>
+  <p class="updated">${zh ? '包内额度与商用判定的核实日期逐条标注，链接每日自动巡检。' : 'Every allowance and verdict inside carries its own check date; links are re-checked daily.'}</p>
+</main>`;
+  return layout({
+    title: zh ? `AI 赚钱作业包：${hustles.length} 条路的工具额度与商用权（注册免费看）- ${NAME}` : `AI earning packs: verified allowances and commercial rights for ${hustles.length} paths - ${NAME}`,
+    description: answer, path: '/earn/', body,
+    schema: [
+      crumbLd([{ name: NAME, url: `${BASE}/` }, { name: zh ? 'AI 赚钱作业包' : 'AI earning packs', url: `${BASE}/earn/` }]),
+      { '@context': 'https://schema.org', '@type': 'FAQPage',
+        mainEntity: faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) },
+    ],
+  });
+}
+
 // ---- 解决方案域枢纽 /solutions/<domain>.html ----（owner 2026-08-16 三块架构指令，路线图 #21）
 //
 // owner 要的是「分域的解决方案体系」（AI 视频 / AI coding 含 SDD 与 harness / 其他），
@@ -3416,6 +3707,16 @@ for (const L of LOCALES) {
   }
   writeFileSync(join(outDir, 'money', 'index.html'), moneyIndexPage());
   for (const h of hustles) writeFileSync(join(outDir, 'money', `${h.slug}.html`), hustlePage(h));
+
+  // AI 赚钱作业包板块（owner 2026-08-30）：枢纽页进 sitemap（公开发现层），
+  // 作业包页 noindex 且不进 sitemap——正文在墙后，让空页进索引等于自造薄页。
+  mkdirSync(join(outDir, 'earn'), { recursive: true });
+  writeFileSync(join(outDir, 'earn', 'index.html'), earnIndexPage());
+  allPages.push({ u: `${BASE}/earn/`, pr: '0.9' });
+  for (const h of hustles) {
+    writeFileSync(join(outDir, 'earn', `${h.slug}.html`), earnPackPage(h));
+    EARN_PACKS[LOCALE.code][h.slug] = earnPackOf(h);
+  }
 
   // 流言核查页：每条「流传说法 vs 官方口径」都指回对应工具页的核实记录
   writeFileSync(join(outDir, 'myths.html'), (() => {
@@ -3754,6 +4055,7 @@ for (const L of LOCALES) {
     ...VS_PAIRS.map(([a, b]) => ({ u: `${BASE}/vs/${a.slug}-vs-${b.slug}.html`, n: `${a.name} vs ${b.name}`, k: UI('gs_k_vs', '对比'),
       q: `${a.name} ${b.name} ${a.slug} ${b.slug} vs`.toLowerCase() })),
     ...[
+      ['/earn/', LOCALE.code === 'zh' ? 'AI 赚钱作业包' : 'AI earning packs', 'earn money 赚钱 副业 接单 变现 作业 包 商用 授权 外快 兼职'],
       ['/changes.html', UI('ch_nav', '额度变更记录'), 'changes changelog 变更 更新'],
       ['/upgrade/', UI('up_nav', '该买哪档'), 'upgrade pricing 价格 会员 档位 值不值 涨价 付费'],
       ['/publish-check.html', UI('pc_nav', '能不能发'), 'commercial licence 商用 授权 版权 水印'],
@@ -7499,6 +7801,13 @@ for (const L of LOCALES) {
 </body></html>`);
 }
 useLocale(LOCALES[0]);
+
+// 作业包正文交给服务端发放：写成 functions/ 之外的模块，由 functions/api/earn.js 导入
+// （放进 functions/ 会变成一条可直接抓取的路由，等于把墙拆了）。内容全部由已核实数据
+// 编译，构建期生成，与站点同源同鲜度——不存在需要单独维护的第二份副本。
+writeFileSync(join(root, 'data/earn-packs.generated.js'),
+  '// 由 scripts/build.mjs 生成，勿手改。作业包正文（/api/earn 校验注册后发放）。\n'
+  + 'export const PACKS = ' + JSON.stringify(EARN_PACKS, null, 1) + ';\n');
 
 // ---- 真实 lastmod ----
 // 之前 768 条 URL 每天一律写成当天日期。这跟 IndexNow 每天整站重推是同一个毛病：
