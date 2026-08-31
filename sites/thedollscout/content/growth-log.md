@@ -2272,6 +2272,28 @@ Cloudflare 后台 → API Tokens → 编辑部署所用的那个 token → 加�
 (本会话的 Cloudflare MCP 走的是另一套凭据,能读 D1——所以上面那份 08-30 台账是
 真实数字;但定时会话没有 MCP,它读不到。)
 
+### 追加(同日,owner 追问「Cloudflare 我不是一直在用吗」)—— 推断已升级为证据
+合理的追问,而且上面那条结论当时确实是推出来的。403/7403 至少有两个成因:token 缺
+D1 权限,或 `CLOUDFLARE_ACCOUNT_ID` 指向的账号与 token 所属账号不是同一个。给失败分支
+加了只打结论不打 ID 的诊断(公开仓),run #18 给出定论:
+
+```
+{"token_valid":true,"status":"active","errors":[]}
+accounts this token can list: 1
+CLOUDFLARE_ACCOUNT_ID is one of them: yes
+```
+
+**token 有效、账号对得上 → 7403 就是纯粹缺 Account · D1 · Read 这一项。**
+为什么「一直在用 Cloudflare」和这个不冲突:三条路走的是三套凭据——①站点自己写 D1 走
+`wrangler.toml` 的 **binding**,运行时直连,根本不经过 API token(所以埋点一直正常);
+②会话读 D1 走 Cloudflare 连接器(另一套 OAuth 凭据);③GitHub Actions 走这个按项勾选的
+API token,当初只勾了 Pages 编辑。**Cloudflare 的 token 是最小权限模型,不是「登录了就都能用」。**
+
+**同族缺陷已在 bpj 侧一并修掉**:`deploy-baipiaoji.yml` 的 D1 快照步骤是一模一样的
+`2>/dev/null` + 「snapshot skipped (no D1 access)」猜测,`sites/baipiaoji/data/traffic-snapshot.json`
+同样一个提交都没有。已改为同样的直连 REST API + 真错误 + `::warning::`。
+全舰队扫描确认只有这两处,没有第三处。
+
 ### Judgement line (e)
 **2026-09-02**:若 owner 已加权限,`content/d1-snapshot.json` 必须出现在仓库里;
 若尚未加,新 Routine 的汇报里必须仍然带着这条待办,不许因为「站点看起来正常」而

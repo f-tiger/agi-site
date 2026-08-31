@@ -149,16 +149,59 @@ jobs:
         run: npx wrangler@4 pages deploy dist --project-name=aiyangmao --branch=main --commit-dirty=true
 
       # 每日流量快照：把 D1 里的第一方打点聚合后写回仓库（data/traffic-snapshot.json），
-      # 任何会话（含无 MCP 的自动循环轮次）都能从 git 读到最新流量。token 若无 D1 权限则静默跳过。
+      # 任何会话（含无 MCP 的自动循环轮次）都能从 git 读到最新流量。
+      #
+      # ⚠️ 2026-08-31：这一步从来没有成功过一次。原来它 shell 出去跑 wrangler、把 stderr
+      # 送进 /dev/null，失败时打印「snapshot skipped (no D1 access)」——那句话是猜的，
+      # 真正的错误被丢掉了，而 continue-on-error 让整条流水线保持全绿。
+      # data/traffic-snapshot.json 至今一个提交都没有。tds 侧同一天发现同款缺陷，
+      # 诊断已确认（tds-traffic run #18）：token 有效、账号也对得上，缺的就是
+      # Account · D1 · Read 这一项权限。owner 在 Cloudflare token 里勾上这一项后，
+      # 这一步会自动开始工作，不需要再改代码。
+      # 现在：直连 D1 REST API（database id 取自 sites/baipiaoji/wrangler.toml），
+      # 打印真实 API 错误，失败与「查到 0 行」分别发 ::warning:: 顶到 run 摘要。
       - name: Export traffic snapshot from D1
         if: github.event_name != 'push'
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          D1_DATABASE_ID: 1ee08cb8-a174-4ec3-8dbc-89ef5d28aa05
         run: |
-          npx wrangler@4 d1 execute baipiaoji-hits --remote --json --command \
-            "SELECT d, path, lang, country, ref, COUNT(*) AS n FROM hits WHERE d >= date('now','-14 days') AND path != '/__selftest' GROUP BY d, path, lang, country, ref ORDER BY d DESC, n DESC LIMIT 500" \
-            > data/traffic-snapshot.json 2>/dev/null \
-            && echo "snapshot exported" || { echo "snapshot skipped (no D1 access)"; rm -f data/traffic-snapshot.json; }
+          set +e
+          # 本文件别处已用同样方式反查 account id（它不依赖 CLOUDFLARE_ACCOUNT_ID secret）
+          ACCOUNT_ID=$(curl -sS -H "Authorization: Bearer ${CLOUDFLARE_API_TOKEN}" \
+            "https://api.cloudflare.com/client/v4/accounts" 2>/dev/null | jq -r 'try (.result[0].id) catch empty')
+          if [ -z "$ACCOUNT_ID" ]; then
+            echo "::warning::traffic snapshot FAILED: 这个 token 连账号列表都读不到，D1 更读不到。"
+            exit 0
+          fi
+          SQL="SELECT d, path, lang, country, ref, COUNT(*) AS n FROM hits WHERE d >= date('now','-14 days') AND path != '/__selftest' GROUP BY d, path, lang, country, ref ORDER BY d DESC, n DESC LIMIT 500"
+          code=$(curl -sS -o d1-response.json -w '%{http_code}' \
+            -X POST "https://api.cloudflare.com/client/v4/accounts/${ACCOUNT_ID}/d1/database/${D1_DATABASE_ID}/query" \
+            -H "Authorization: Bearer ${CLOUDFLARE_API_TOKEN}" \
+            -H "Content-Type: application/json" \
+            --data "$(jq -n --arg sql "$SQL" '{sql:$sql}')" 2>d1-curl.err)
+          ok=$(jq -r 'try .success catch "false"' d1-response.json 2>/dev/null)
+          rows=$(jq -r 'try (.result[0].results | length) catch 0' d1-response.json 2>/dev/null)
+          if [ "$code" = "200" ] && [ "$ok" = "true" ]; then
+            mv d1-response.json data/traffic-snapshot.json
+            echo "snapshot exported: $rows aggregate rows (14d window, /__selftest excluded)"
+            if [ "$rows" = "0" ]; then
+              echo "::warning::traffic snapshot 是空的（14 天窗 0 行）——查询跑通了但什么都没记到。先查信标，别读成「没有流量」。"
+            fi
+          else
+            echo "::warning::traffic snapshot FAILED (HTTP $code) —— 无 MCP 的自动轮次这一轮读不到任何第一方流量。已知成因（2026-08-31 在 tds 侧确认）：CLOUDFLARE_API_TOKEN 缺 Account · D1 · Read。"
+            echo "--- Cloudflare API response (secrets masked) ---"
+            if [ -s d1-response.json ]; then
+              { jq -c '{success, errors, messages}' d1-response.json 2>/dev/null || head -c 600 d1-response.json; } \
+                | sed -E 's/[A-Za-z0-9_-]{30,}/***/g'
+            else
+              echo "(no response body — the request never completed; see the curl error below)"
+            fi
+            echo
+            sed -E 's/[A-Za-z0-9_-]{30,}/***/g' d1-curl.err | tail -5
+            rm -f data/traffic-snapshot.json
+          fi
+          rm -f d1-response.json d1-curl.err
         continue-on-error: true
 
       - name: Commit traffic snapshot
