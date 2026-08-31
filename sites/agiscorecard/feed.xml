@@ -7,9 +7,16 @@
   <link rel="hub" href="https://pubsubhubbub.appspot.com/"/>
   <link rel="hub" href="https://pubsubhubbub.superfeedr.com/"/>
   <id>https://agiscorecard.com/</id>
-  <updated>2026-08-29T00:00:00Z</updated>
+  <updated>2026-08-31T00:00:00Z</updated>
   <author><name>The AGI Scorecard</name></author>
   <rights>CC BY 4.0 — reuse with attribution and a link to https://agiscorecard.com</rights>
+  <entry>
+    <title>AGI Timeline: Prediction Markets vs Evidence</title>
+    <link href="https://agiscorecard.com/agi-odds-vs-evidence"/>
+    <id>https://agiscorecard.com/agi-odds-vs-evidence</id>
+    <updated>2026-08-31T00:00:00Z</updated>
+    <summary>Polymarket&#x27;s AGI-by-2027 contract vs the evidence: the market prices an announcement, the scorecard grades capability (62.5/100). Issue #2: the market Yes side doubled to 18% while the evidence composite held at 62.5/100.</summary>
+  </entry>
   <entry>
     <title>AGI Scorecard Data for AI Agents: JSON, Feed, llms.txt</title>
     <link href="https://agiscorecard.com/for-agents"/>
@@ -114,13 +121,6 @@
     <id>https://agiscorecard.com/ai-capex-trillion-dollar</id>
     <updated>2026-08-25T00:00:00Z</updated>
     <summary>Aschenbrenner&#x27;s most clearly vindicated call: AI infrastructure capex has run ahead of even his aggressive trillion-dollar projections.</summary>
-  </entry>
-  <entry>
-    <title>AGI Timeline: Prediction Markets vs Evidence</title>
-    <link href="https://agiscorecard.com/agi-odds-vs-evidence"/>
-    <id>https://agiscorecard.com/agi-odds-vs-evidence</id>
-    <updated>2026-08-25T00:00:00Z</updated>
-    <summary>Polymarket&#x27;s AGI-by-2027 contract vs the evidence: the market prices an announcement, the scorecard grades capability (62.5/100). Issue #1 of a running comparison.</summary>
   </entry>
   <entry>
     <title>Do AI Trading Agents Actually Make Money? The Evidence</title>

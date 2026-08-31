@@ -1,6 +1,6 @@
 # Coolizi Coolzy Erfahrungen: Was steckt hinter der Werbung?
 
-> Coolizi Coolzy im Faktencheck: Warum ein Gerät ohne Abluftschlauch keinen Raum um 7–8 °C kühlen kann, woran man die Werbe-Testseiten erkennt — und die ehrliche Alternative.
+> Coolizi Coolzy im Faktencheck: Warum ein Gerät ohne Abluftschlauch keinen Raum um 7–8 °C kühlt, woran du die Werbe-Testseiten erkennst — plus Alternative.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/coolizi-erfahrungen.html
 „Coolizi" gehört gerade zu den am schnellsten steigenden Suchbegriffen rund um Klimageräte in Deutschland. Beworben wird der **Coolizi Coolzy** als Klimaanlage ohne Abluftschlauch, ohne Installation, mit Kühl- und Heizfunktion. Wir haben das Gerät nicht gekauft und nicht getestet — dieser Artikel prüft stattdessen das, was sich von außen prüfen lässt: die Werbeversprechen gegen die Physik, die Quellenlage und das Vertriebsmuster.

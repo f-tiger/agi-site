@@ -1,6 +1,6 @@
-# Heizkosten senken als Mieter: was erlaubt ist und was sich rechnet (2026)
+# Heizkosten senken als Mieter: erlaubt & was sich rechnet (2026)
 
-> Als Mieter darfst du mehr ändern, als die meisten denken — aber längst nicht alles rechnet sich. Thermostatkopf, Türdichtung, Fensterfolie und Reflektorfolie im ehrlichen Wirkungs-Ranking.
+> Als Mieter darfst du mehr ändern, als die meisten denken — aber nicht alles rechnet sich. Thermostatkopf, Türdichtung und Folien im ehrlichen Ranking.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/heizkosten-senken-als-mieter.html
 **Die Kurzfassung.**

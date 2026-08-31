@@ -558,6 +558,16 @@ MODEL_ASIN = {
     # filed under "Musical Instruments & DJ" — a dirty variant listing). No
     # DE-specific EX105 ASIN found. Search link is the honest state.
     "De'Longhi Pinguino PAC EX105": "",
+    # 2026-08-31, owner screenshot of the amazon.de listing (first-party, the
+    # strongest source available here): B0F3XL6LK6 is the De'Longhi Pinguino
+    # GentleJet PAC AP98 — 11.500 BTU/h, R290, A+, 2,7 kW, style "for rooms up
+    # to 37,5 m²". Recorded so the ASIN is not lost, but DELIBERATELY UNUSED:
+    # no page names this model yet, and it must not be recommended on 3,5 stars
+    # from 25 reviews with no public test coverage — that is not the consensus
+    # this site requires. The same screenshot shows a dispatch warning and two
+    # sibling styles "currently unavailable", which a screenshot cannot resolve
+    # (it may reflect the owner's own delivery address, not German stock).
+    "De'Longhi Pinguino GentleJet PAC AP98": "B0F3XL6LK6",
     # amazon.de direct listing + .nl/.es/.be/.co.uk + two affiliate sites
     "De'Longhi PAC N90 ECO Silent": "B07NC5CP6F",
     # de.camelcamelcamel mirrors the amazon.de German title verbatim
@@ -592,7 +602,9 @@ def amazon_url(q, name=None):
 
 def shop_card(entry):
     svg_key, role, title, desc, price, q, grad = entry
-    url = f"https://www.amazon.de/s?k={q}&tag=getecoback-21"
+    # amazon_url() — not a hand-built search URL: this card names a model, and
+    # a verified model must land on its product page (2026-08-31 leak).
+    url = amazon_url(q, title)
     return (f'<div class="eb-shop-card"><div class="th" style="background:linear-gradient(135deg,{grad});">'
             f'<span class="rl">{role}</span>{SVG[svg_key]}</div>'
             f'<div class="bd"><h3>{title}</h3><p class="ds">{desc}</p>'
@@ -2110,7 +2122,20 @@ PROFILE = ('<!--EB_PROFILE--><div id="eb-profile"></div>\n<script>(function(){'
            'var sizeText=EN?("Guide for "+p.qm+" m²"):("Empfehlungen für "+p.qp+" m²");'
            'var lead=EN?"Your room":"Dein Raum";'
            'var forget=EN?"forget":"vergessen";'
-           'var amazon="https://www.amazon.de/s?k="+encodeURIComponent(p.term||"tragbare klimaanlage")+"&tag=getecoback-21";'
+           # The saved room stores the model the calculator picked; if that model
+           # has a verified ASIN, this bar must open its product page too. The map
+           # is emitted at build time from MODEL_ASIN, so the two never drift.
+           'var DP=' + json.dumps({q: a for q, a in (
+               ("Comfee+MPPH-09CRN7", MODEL_ASIN.get("Comfee MPPH-09CRN7", "")),
+               ("De%27Longhi+Pinguino+PAC+EX105", MODEL_ASIN.get("De'Longhi Pinguino PAC EX105", "")),
+               ("Klarstein+Kraftwerk+Smart+12K", MODEL_ASIN.get("Klarstein Kraftwerk Smart 12K", "")),
+           ) if ASIN_RE.match((a or "").strip().upper())}) + ';'
+           'var amazon=DP[p.term]?("https://www.amazon.de/dp/"+DP[p.term]+"?tag=getecoback-21")'
+           # p.term is stored ALREADY in query form ("Comfee+MPPH-09CRN7"), so
+           # encodeURIComponent() double-encoded it — the EX105 fallback searched
+           # amazon for the literal string "De%27Longhi+Pinguino+PAC+EX105".
+           # Found 2026-08-31 in the Playwright check of the fix above.
+           ':("https://www.amazon.de/s?k="+(p.term?String(p.term):encodeURIComponent("tragbare klimaanlage"))+"&tag=getecoback-21");'
            'var shop=EN?"Check price on Amazon →":"Preis auf Amazon prüfen →";'
            'host.innerHTML=\'<div style="max-width:1000px;margin:0 auto;padding:9px 20px;display:flex;'
            'gap:8px 14px;align-items:center;flex-wrap:wrap;font-size:13.5px;background:#eaf6ff;'
@@ -2610,7 +2635,7 @@ def home_storage_block():
                 '<p class="ds" style="margin:0 0 9px;"><span style="color:#177245;">✓ ' + pros + '</span><br>'
                 '<span style="color:#9a3412;">✕ ' + cons + '</span></p>'
                 '<div class="pr">Preis vor Ort prüfen</div>'
-                '<a class="go" href="https://www.amazon.de/s?k=' + term + '&tag=getecoback-21" target="_blank" rel="sponsored noopener">Preis auf Amazon prüfen →</a></div></div>')
+                '<a class="go" href="' + amazon_url(term, title) + '" target="_blank" rel="sponsored noopener">Preis auf Amazon prüfen →</a></div></div>')
     cards = (
         card('Der Keller-Favorit', 'linear-gradient(135deg,#eaf6ff,#cfe6f7)', drip, 'Comfee MDDF-20DEN7',
              'In mehreren Fachvergleichen der Keller-Favorit — 20 L/Tag, Hygrostat, Dauerablauf-Anschluss.',

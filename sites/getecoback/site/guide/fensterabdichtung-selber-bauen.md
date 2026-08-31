@@ -1,6 +1,6 @@
 # Fensterabdichtung selber bauen: Platte statt Stoff (2026)
 
-> Kippfenster-Abdichtung aus Hohlkammerplatte oder Plexiglas selber bauen: Material für 10–40 €, zwei erprobte Methoden, Magnetband-Trick — und wann Kaufen doch schlauer ist.
+> Kippfenster-Abdichtung selber bauen: Material für 10–40 €, zwei erprobte Methoden aus Hohlkammerplatte oder Plexiglas — und wann Kaufen schlauer ist.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/fensterabdichtung-selber-bauen.html
 Die Stoffabdichtung aus dem Set ist schnell montiert — aber wer sein Klimagerät den ganzen Sommer am selben Fenster betreibt, merkt ihre Schwächen: Der Reißverschluss lässt Luft durch, das Klebeband löst sich in der Sonne, und richtig dicht wird es nie. Die Baumarkt-Lösung schließt diese Lücke: eine passgenau geschnittene Platte, die die Kippöffnung fast vollständig verschließt. Hier sind die zwei Methoden, die sich in der DIY-Praxis durchgesetzt haben — und die ehrliche Abwägung, wann du besser doch kaufst.

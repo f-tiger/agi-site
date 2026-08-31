@@ -1,6 +1,6 @@
 # Fensterabdichtung für Klimaanlagen: Welche passt? (2026)
 
-> Klett-Stoff, starre Platte oder Dachfenster-Version? Welche Fensterabdichtung an dein Fenster passt, welche Länge du brauchst — und warum meist das Klebeband versagt, nicht der Stoff.
+> Klett-Stoff, starre Platte oder Dachfenster-Version? Welche Fensterabdichtung an dein Fenster passt, welche Länge du brauchst — und was meist versagt.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/fensterabdichtung-klimaanlage.html
 Die Fensterabdichtung ist das meistgekaufte Zubehörteil rund um mobile Klimaanlagen — und gleichzeitig das, bei dem am meisten schiefgeht: falsche Bauart fürs Fenster, zu kurze Länge, Klebeband, das sich in der Sonne löst. Hier ist die Entscheidung in drei Schritten: Bauart, Länge, Befestigung.
