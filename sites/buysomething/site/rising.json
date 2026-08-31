@@ -1,5 +1,5 @@
 {
- "fetched": "2026-08-30",
+ "fetched": "2026-08-31",
  "seeds": {
   "electric spin scrubber": {
    "auto": [
@@ -175,28 +175,82 @@
   "leg compression boots": {
    "rising": [
     {
-     "q": "best leg compression sleeves",
-     "v": 50350
-    },
-    {
-     "q": "therabody jetboots prime",
-     "v": 5250
-    },
-    {
      "q": "quinear leg compression",
-     "v": 120
+     "v": 180
     },
     {
      "q": "therabody leg compression",
-     "v": 50
+     "v": 110
     },
     {
      "q": "therabody",
-     "v": 40
+     "v": 80
+    },
+    {
+     "q": "best leg compression sleeves",
+     "v": 70
+    },
+    {
+     "q": "therabody compression boots",
+     "v": 60
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-08-30"
+   "fetched": "2026-08-31"
+  },
+  "solar camping lights": {
+   "auto": [
+    "solar camping lights",
+    "solar camping lights string",
+    "solar camping lights amazon",
+    "solar camping lights - bunnings",
+    "solar camping lights nz",
+    "solar camping lights kmart",
+    "solar camping lights anaconda",
+    "solar camping lights south africa",
+    "solar camping lights nearby",
+    "solar camping lights bcf"
+   ],
+   "rising": [
+    {
+     "q": "solar camping lights string",
+     "v": "new"
+    },
+    {
+     "q": "solar camping lights amazon",
+     "v": "new"
+    },
+    {
+     "q": "solar camping lights - bunnings",
+     "v": "new"
+    },
+    {
+     "q": "solar camping lights nz",
+     "v": "new"
+    },
+    {
+     "q": "solar camping lights kmart",
+     "v": "new"
+    },
+    {
+     "q": "solar camping lights anaconda",
+     "v": "new"
+    },
+    {
+     "q": "solar camping lights south africa",
+     "v": "new"
+    },
+    {
+     "q": "solar camping lights nearby",
+     "v": "new"
+    },
+    {
+     "q": "solar camping lights bcf",
+     "v": "new"
+    }
+   ],
+   "source": "autocomplete-diff",
+   "fetched": "2026-08-31"
   }
  }
 }
