@@ -558,6 +558,16 @@ MODEL_ASIN = {
     # filed under "Musical Instruments & DJ" — a dirty variant listing). No
     # DE-specific EX105 ASIN found. Search link is the honest state.
     "De'Longhi Pinguino PAC EX105": "",
+    # 2026-08-31, owner screenshot of the amazon.de listing (first-party, the
+    # strongest source available here): B0F3XL6LK6 is the De'Longhi Pinguino
+    # GentleJet PAC AP98 — 11.500 BTU/h, R290, A+, 2,7 kW, style "for rooms up
+    # to 37,5 m²". Recorded so the ASIN is not lost, but DELIBERATELY UNUSED:
+    # no page names this model yet, and it must not be recommended on 3,5 stars
+    # from 25 reviews with no public test coverage — that is not the consensus
+    # this site requires. The same screenshot shows a dispatch warning and two
+    # sibling styles "currently unavailable", which a screenshot cannot resolve
+    # (it may reflect the owner's own delivery address, not German stock).
+    "De'Longhi Pinguino GentleJet PAC AP98": "B0F3XL6LK6",
     # amazon.de direct listing + .nl/.es/.be/.co.uk + two affiliate sites
     "De'Longhi PAC N90 ECO Silent": "B07NC5CP6F",
     # de.camelcamelcamel mirrors the amazon.de German title verbatim

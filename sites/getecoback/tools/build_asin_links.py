@@ -39,6 +39,10 @@ VERIFIED = [
     ("mddf-20den7",              "B07KJX6RDK"),   # Comfee MDDF-20DEN7
     ("pac n90 eco silent",       "B07NC5CP6F"),   # De'Longhi PAC N90 ECO Silent
     ("kraftwerk smart 12k",      "B08VWSP8FW"),   # Klarstein Kraftwerk Smart 12K
+    ("pac ap98",                 "B0F3XL6LK6"),   # Pinguino GentleJet PAC AP98
+                                                  # (owner screenshot 08-31; no
+                                                  # page uses it yet — see
+                                                  # MODEL_ASIN for why)
 ]
 
 SEARCH = re.compile(r'https://www\.amazon\.de/s\?k=([^"\'&<\s]+)&(?:amp;)?tag=' + TAG)
