@@ -1,6 +1,6 @@
 # Feuchtigkeit im Wohnmobil im Winter: was wirklich hilft (2026)
 
-> Kondenswasser und Schimmel im Wohnmobil über den Winter: warum Kompressor-Entfeuchter in der Kälte kaum noch arbeiten, wann Granulat reicht und was ohne Strom auf dem Stellplatz funktioniert.
+> Kondenswasser und Schimmel im Wohnmobil über den Winter: warum Kompressor-Entfeuchter unter 10–15 °C kaum arbeiten und wann Granulat reicht.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/wohnmobil-feuchtigkeit-winter.html
 **Kurz und ehrlich.**

@@ -1,6 +1,6 @@
 # EpiCooler Erfahrungen & Test 2026: Was überprüfbar ist
 
-> EpiCooler im Faktencheck: Kühlung ohne Abluftschlauch widerspricht der Physik, „Testsieger“-Seiten gehören dem Verkäufer — und wie du eine „Test“-Domain in einer Minute selbst prüfst. Die ehrlichen Alternativen.
+> EpiCooler im Faktencheck: Kühlen ohne Abluftschlauch widerspricht der Physik, die „Testsieger“-Seiten gehören dem Verkäufer — plus ehrliche Alternativen.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/epicooler-erfahrungen.html
 

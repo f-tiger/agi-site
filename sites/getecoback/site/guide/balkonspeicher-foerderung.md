@@ -1,6 +1,6 @@
 # Balkonspeicher-Förderung 2026: Wer zahlt was dazu?
 
-> Förderung für Balkonkraftwerk und Speicher 2026: Bundesländer, rund 20 kommunale Programme und der Speicher-Bonus — plus die Rechnung, wie stark ein Zuschuss die Amortisation wirklich verkürzt.
+> Förderung für Balkonkraftwerk und Speicher 2026: Bundesländer, rund 20 kommunale Programme, Speicher-Bonus — und was ein Zuschuss wirklich bringt.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/balkonspeicher-foerderung.html
 **Kurz gesagt:** Bundesweit gibt es **keine Kaufprämie** — nur die Mehrwertsteuer-Befreiung. Zuschüsse kommen von einzelnen Bundesländern und rund **20 Kommunen**, typisch 100–500 €, oft mit **etwa 100 € extra für den Speicher**. Die wichtigste Regel ist keine Zahl, sondern die Reihenfolge: **erst Antrag, dann kaufen** — eine frühere Rechnung kippt den Zuschuss.

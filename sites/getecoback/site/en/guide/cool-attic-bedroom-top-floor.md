@@ -1,6 +1,6 @@
 # How to Cool an Attic Bedroom or Top-Floor Flat (2026)
 
-> Why a top-floor room stays hot into the night, the order that actually works — shade, ventilate, then cool — and the roof-window problem that stops most portable ACs from helping.
+> Why a top-floor room stays hot into the night, the order that works — shade, ventilate, then cool — and the roof-window problem most portable ACs hit.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/en/guide/cool-attic-bedroom-top-floor.html
 **Short answer:** work in this order — keep the sun off the glass from **outside**, ventilate only while the outside air is colder than the room (in a heatwave that is roughly 4 to 8 a.m.), and only then add a cooler. Size it for a top-floor room rather than for the floor area alone, and check how you will vent a **roof window** before you buy the unit, not after.

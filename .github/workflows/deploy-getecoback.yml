@@ -91,6 +91,9 @@ jobs:
       - name: Consolidate publisher entity (@id graph; idempotent gate)
         run: python3 tools/build_entity.py
 
+      - name: Point verified models at their product page (idempotent gate)
+        run: python3 tools/build_asin_links.py
+
       - name: Normalize + validate hreflang pairs (idempotent gate; non-zero exit blocks deploy)
         run: python3 tools/build_hreflang.py
 
@@ -120,6 +123,9 @@ jobs:
 
       - name: Check every tool figure exists on the page it cites
         run: python3 tools/check_cited_figures.py
+
+      - name: Check no SERP title or description is truncated
+        run: python3 tools/check_meta.py
 
       - name: Deploy to Cloudflare Workers
         uses: cloudflare/wrangler-action@v3

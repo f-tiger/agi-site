@@ -1,6 +1,6 @@
 # Window Seal for Portable ACs: Which Type Fits? (2026)
 
-> Velcro fabric, rigid panel or roof-window version? Which window seal fits your window, what length you need — and why it's usually the tape that fails, not the fabric.
+> Velcro fabric, rigid panel or roof-window version? Which window seal fits, what length you need — and why it's usually the tape that fails, not the fabric.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/en/guide/window-seal-portable-ac.html
 The window seal is the most-bought accessory around portable air conditioners — and the one where most purchases go wrong: the wrong type for the window, a length that is too short, tape that lets go in the sun. Here is the decision in three steps: type, length, mounting.

@@ -1,6 +1,6 @@
 # Heizdecke Stromverbrauch: Was kostet eine Nacht? (2026)
 
-> Was eine Heizdecke wirklich an Strom kostet: 2–5 Cent pro Stunde, rund 0,24 € pro Nacht — und warum sie mit Nachtabsenkung der Heizung zum Sparhebel wird. Alle Zahlen nachrechenbar.
+> Was eine Heizdecke wirklich kostet: 2–5 Cent pro Stunde, rund 0,24 € pro Nacht — und warum sie mit Nachtabsenkung zum Sparhebel wird. Zahlen nachrechenbar.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/heizdecke-stromverbrauch.html
 **Kurz gesagt:** Eine Heizdecke braucht 60–150 Watt — **2 bis 5 Cent pro Stunde**, rund **0,24 € pro Nacht** (100 W, 8 h, 0,30 €/kWh). Zum Sparhebel wird sie, weil sie die Person statt des Raums wärmt: Raumtemperatur nachts 2–3 °C absenken spart ein Vielfaches des Deckenstroms. Nur nicht unter ~16 °C — sonst kondensiert Feuchte an den Wänden.
