@@ -114,6 +114,20 @@ jobs:
               | sed -E 's/[A-Za-z0-9_-]{30,}/***/g'
             echo
             sed -E 's/[A-Za-z0-9_-]{30,}/***/g' d1-curl.err | tail -5
+            # Distinguish the two causes that both surface as 403/7403, so nobody
+            # has to guess again. Prints verdicts only — never a raw account id,
+            # because this is a public repo.
+            echo "--- token diagnostics (verdicts only, no ids) ---"
+            curl -sS -H "Authorization: Bearer ${CLOUDFLARE_API_TOKEN}" \
+              https://api.cloudflare.com/client/v4/user/tokens/verify 2>/dev/null \
+              | jq -c '{token_valid: .success, status: .result.status, errors: [.errors[]?.code]}' \
+              || echo "token verify: request failed"
+            accts=$(curl -sS -H "Authorization: Bearer ${CLOUDFLARE_API_TOKEN}" \
+              https://api.cloudflare.com/client/v4/accounts 2>/dev/null)
+            echo "accounts this token can list: $(echo "$accts" | jq -r 'try (.result|length) catch "unreadable"')"
+            echo "CLOUDFLARE_ACCOUNT_ID is one of them: $(echo "$accts" \
+              | jq -r --arg a "${CLOUDFLARE_ACCOUNT_ID}" 'try ([.result[]?.id] | if index($a) == null then "NO — the secret points at a different account" else "yes" end) catch "unreadable"')"
+            echo "Read the two lines above together: token_valid=true + account matches => the only missing piece is Account > D1 > Read."
             rm -f content/d1-snapshot.json
           fi
           rm -f d1-response.json d1-curl.err
