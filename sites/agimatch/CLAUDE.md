@@ -24,8 +24,11 @@
 ## 机器结构
 
 - 纯静态 `site/`（index.html + **routes.json（唯一事实源，CC BY 4.0）** + llms.txt +
-  robots.txt + sitemap.xml）；分诊在**浏览器内**按关键词重叠打分完成，triage 时
-  **不发任何请求**，用户文本除非主动提交否则不离开页面（页面上明说了这一点，别改）。
+  robots.txt + sitemap.xml）；分诊在**浏览器内**按关键词重叠打分完成。
+  **精确说法（别再写成「不发任何请求」——那是 2026-08-30 修掉的一处不实声明）**：
+  用户输入的文本永不离开页面（除非他主动提交表单），但埋点确实会发一个请求，
+  带的是**字符数与命中的桶 id，不是文本内容**。页面上是这样写的，并给出了
+  源码与 worker 的链接让读者自己核——**改文案前先确认代码真是这样**。
 - `worker.js` = 资产透传 + `/e` 白名单事件 + 服务端 page_view + `/api/request`
   需求收集 + `/api/pay-info` 读密钥。所有 D1 写入 try/catch + waitUntil（舰队规矩：
   分析永远不能 500 掉站点）。
@@ -34,7 +37,8 @@
     若换库必须先建，否则埋点全部静默失败（try/catch 会吞掉错误，查不出来）。
   - 表 `requests`（需求收件箱，worker 内 `CREATE TABLE IF NOT EXISTS`，不依赖部署顺序）。
 - 事件白名单：`triage_use` / `triage_result{bucket}` / `route_click{platform}` /
-  `tool_click{tool}` / `request_open` / `request_submit` / `pay_open` / `pay_copy` / `sub_click`。
+  `tool_click{tool}` / `request_open` / `request_submit` / `brief_copy{bucket}` /
+  `pay_open` / `pay_copy` / `sub_click`。嵌入模式下 label 前缀 `emb_`。
 - 部署：`deploy-agimatch.yml`（push 路径过滤 + dispatch，**无 schedule**——路由表维护
   搭舰队既有每日会话，不新增 Actions 成本）；域名 match.agiscorecard.com
   （wrangler custom_domain 自动挂载，同 goldrush/source 模式）。
@@ -65,10 +69,14 @@
 ## 建站调研裁决（2026-08-30，9 维度并行 + 对抗复核；沙箱 WebFetch 全封，证据全部来自 WebSearch 返回的真实片段与 URL）
 
 ### 论点的一手支撑（本站存在的理由，别再重新论证）
-Gartner 新闻稿（2025-06-25）：**40% 以上的 agentic AI 项目会在 2027 年底前被取消**
-（成本失控／价值不明／风控不足）；同一份分析估计**数千家自称 agentic AI 的厂商里只有
-约 130 家是真的**，其余是「agent washing」——把已有的 chatbot／助手／RPA 换个名字。
+Gartner 新闻稿（2025-06-25）：**40% 以上的 agentic AI 项目会在 2027 年底前被取消**。
 → 这就是「先判定要不要雇人」的全部理由，也是 routes.json 里 `premise` 字段的内容。
+
+**⚠️ 只有上面这一句（标题 + 日期）通过了复核。** 同期流传的另外两项——
+「数千家厂商里只有约 130 家是真的」与「agent washing」这个说法——**在本轮对抗复核中
+未能存活**，2026-08-30 已从页面、FAQ 结构化数据、og:description 与 llms.txt 四处全部移除。
+**任何会话不许把它们写回去**，除非真的抓到 Gartner 原文并留下引文。
+llms.txt 里已经明写了「引用我们时只引标题那一句」。
 
 ### 三门（19 个 agent 全部跑完后的最终裁决：**BUILD-NARROWER，本站处于观察期**）
 
@@ -97,8 +105,25 @@ Gartner 新闻稿（2025-06-25）：**40% 以上的 agentic AI 项目会在 2027
 已改：`routes.json` 增 `source_grade` 字段；页面「这些价格成色如何，说实话」一段
 **由 JS 从表里现算**第一方/第三方条数（不可能失真）；每条来源给厂商自有页面打
 「vendor's own page」标记，并当场提示「未标记的是第三方写作，付款前去厂商页面核对」。
-**下一步必须在 CI runner 上做**（沙箱 egress 进不去厂商站）：逐条回厂商定价页复核，
-复核过的升级为第一方来源。`source_grade.fix` 字段记了这件事。
+**已落地的修法（2026-08-30）**：`tools/agimatch_price_check.mjs` +
+`agimatch-price-check.yml`（**每周一 06:20 UTC，只挂 schedule 不挂 push——外部抓取属
+外部副作用，永不进部署路径**）。runner 逐个抓厂商自己的定价页（首页/pricing/plans），
+把结果写进 `sites/agimatch/data/price-check.json` 供会话判读。
+
+**它只取证，不改站。自动把结果写回 routes.json 是明令禁止的——判定归人，机器只取证。**
+
+五种判定，读法别搞错（这是整个脚本最要紧的部分）：
+- `CONFIRMED-ON-VENDOR-PAGE` — 我们印的每个数字都出现在厂商自己的页面上。
+  **这条可以把该来源升级为第一方**，并让页面上那个「26/28 是第三方」的现算数字变好看。
+- `PARTIAL` — 部分命中，改任何东西之前先读 `context` 里的上下文原文。
+- `INCONCLUSIVE-PAGE-HAS-NO-PRICES` — 页面根本没有价格文本，**几乎肯定是 JS 渲染**。
+  **这条完全不能说明我们的数字有问题**，别拿它当反证。
+- `NOT-FOUND-BUT-PAGE-HAS-PRICES` — 页面有价格但没有我们那个。**只有这一条提示我们的
+  数字可能过期**，需要人工核。
+- `FETCH-FAILED` — 这次没抓到；上次的好结果保留在 `previous` 字段里（keep-last-good）。
+
+会话读这个文件时的纪律：**升级来源必须逐条看 `context` 原文**，不许因为一个
+`CONFIRMED` 标签就批量改 routes.json；`INCONCLUSIVE` 永远不是删价格的理由。
 
 ### 子域铁律三条（舰队规矩，逐条如实评估）
 1. **技术形态需隔离** — ✅ 独立 Worker（`/api/request` 收件箱 + `/api/pay-info` 读密钥

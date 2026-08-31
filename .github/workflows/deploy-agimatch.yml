@@ -10,7 +10,9 @@ name: Deploy agimatch
 on:
   push:
     branches: [main]
-    paths: ["sites/agimatch/**", ".github/workflows/deploy-agimatch.yml"]
+    # data/ 是 CI 取证产物(每周的价格回源复核),不参与发布——排除掉,
+    # 否则每周提交一次证据就白白触发一次重新部署。
+    paths: ["sites/agimatch/**", "!sites/agimatch/data/**", ".github/workflows/deploy-agimatch.yml"]
   workflow_dispatch: {}
 
 concurrency:

@@ -1,0 +1,44 @@
+name: agimatch price re-check (weekly)
+
+# 2026-08-30。本站唯一的差异化是可审计性,但表里 28 条价格引用只有 2 条是厂商
+# 自己的页面——因为会话沙箱对厂商域名 egress 全封(实测 403),抓不到。runner 能抓。
+#
+# CI 纪律(舰队规矩):这是**外部抓取 = 外部副作用**,所以只挂 schedule + dispatch,
+# **绝不挂 push**,也绝不进部署路径。每周一次 × ~13 个厂商 × 最多 4 个候选页,
+# 礼貌间隔 2.5s,单次 ~2-3 分钟。
+#
+# 它**只产出证据,不改站**:写 sites/agimatch/data/price-check.json 供会话判读。
+# 自动把结果写回 routes.json 是明令禁止的——判定归人,机器只负责取证。
+on:
+  schedule:
+    - cron: '20 6 * * 1'   # 周一 06:20 UTC,避开 fleet-trends 的 03:45
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: agimatch-price-check
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - name: Re-check every printed price against the vendor's own page
+        # keep-last-good 在脚本里:抓不到就写 ok:false + 原因并保留上一次的好结果,
+        # 绝不因为一次网络抖动就把已确认的证据抹掉。所以这一步失败也不该红。
+        run: node tools/agimatch_price_check.mjs || echo "::warning::price check failed — last good retained"
+      - name: Commit the evidence if it changed
+        run: |
+          git config user.name 'Claude'
+          git config user.email 'noreply@anthropic.com'
+          git add sites/agimatch/data/price-check.json 2>/dev/null || true
+          git diff --cached --quiet || {
+            git commit -m "chore(agimatch): 价格回源复核 $(date -u +%F)"
+            git pull --rebase origin main
+            git push origin main
+          }
