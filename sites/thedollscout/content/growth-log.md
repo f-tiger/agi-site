@@ -2294,6 +2294,28 @@ API token,当初只勾了 Pages 编辑。**Cloudflare 的 token 是最小权限�
 同样一个提交都没有。已改为同样的直连 REST API + 真错误 + `::warning::`。
 全舰队扫描确认只有这两处,没有第三处。
 
+### 再追加(owner:「你换成舰队 agi 我配置的 cloudflare 的啊」)—— 凭据已穷举,结论完整
+owner 指出本仓有多个 Cloudflare token secret,而我只试了一个就下了「要去加权限」的结论。
+对的,那个结论只对那一个 token 成立。而且这条纪律仓里早就有:`scripts/cf-analytics.mjs`
+的注释写明它为什么三个全试——历史事故正是「换了 token、重跑拿到字节相同的旧错误」的
+假阴性。我在 D1 这条路上把同一个坑又踩了一遍。
+
+改为逐个试之后,**当场又踩出第二个假阴性**:zone token 那一行报的是
+`/accounts/null/d1/...` 的 404——`jq -r` 对空结果打印的是字符串 `"null"` 而不是空串,
+所以「反查不到就退回 secret」永不触发,那个 token 看起来「已经试过」其实压根没测到 D1。
+修掉 `// empty` + 显式滤 `"null"` 后重跑,三个 secret 的真实读数(run #21):
+
+| secret | 结果 |
+|---|---|
+| `CLOUDFLARE_API_TOKEN_ZONE` | HTTP 403 · 7403 |
+| `CLOUDFLARE_API_TOKEN` | HTTP 403 · 7403 |
+| `CF_API_TOKEN` | 未设置 |
+
+**本仓现有的每一个 Cloudflare 凭据都读不了 D1**,所以 owner 那一步动作仍然需要,只是
+现在是穷举后的结论而不是单点推断。方法论教训记两条:①「我只试了手边那一个」在有多个
+凭据时不构成结论;②**打印出来的失败也可能是假的**——`accounts/null` 那一行长得和真失败
+一模一样,只有把 URL 也打出来才看得见。可读的失败仍然可能是错的失败。
+
 ### Judgement line (e)
 **2026-09-02**:若 owner 已加权限,`content/d1-snapshot.json` 必须出现在仓库里;
 若尚未加,新 Routine 的汇报里必须仍然带着这条待办,不许因为「站点看起来正常」而
