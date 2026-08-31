@@ -85,53 +85,68 @@ jobs:
       # the站内 rule 「『正常的安静结果』是自我伪装」. Now: the D1 REST API direct
       # (no npx, no wrangler config coupling, database id from wrangler.toml),
       # the real API error printed, and a ::warning:: that reaches the run summary.
+      # First-party D1 snapshot (2026-08-19): aggregates from dollscout-events
+      # written back to the repo. This file is the ONLY path the growth loop has
+      # to real reader/bot/click numbers — its scheduled sessions run without
+      # Cloudflare MCP, so if this step does not commit, the loop is blind.
+      #
+      # ⚠️ 2026-08-31 两轮修正:①原来 shell 出去跑 wrangler、把 stderr 送进 /dev/null,
+      # 失败时把猜测「no D1 access on token」当诊断打印 —— 十二天全绿、一次都没落库。
+      # ②改直连 REST API 之后仍然只试了 CLOUDFLARE_API_TOKEN 一个凭据,而本仓有三个
+      # token secret;owner 指出这一点后改为逐个试(cf-analytics.mjs 早有此纪律)。
       - name: Export D1 analytics snapshot
         continue-on-error: true
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_API_TOKEN_ZONE: ${{ secrets.CLOUDFLARE_API_TOKEN_ZONE }}
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           D1_DATABASE_ID: 6e71ddc6-b58c-49f4-b6f5-207f3778133f
         run: |
           set +e
           SQL="SELECT d, ev, path, ref, country, COUNT(*) AS n FROM hits WHERE d >= date('now','-14 days') AND path NOT LIKE '/__ci%' GROUP BY d, ev, path, ref, country ORDER BY d DESC, n DESC LIMIT 500"
-          code=$(curl -sS -o d1-response.json -w '%{http_code}' \
-            -X POST "https://api.cloudflare.com/client/v4/accounts/${CLOUDFLARE_ACCOUNT_ID}/d1/database/${D1_DATABASE_ID}/query" \
-            -H "Authorization: Bearer ${CLOUDFLARE_API_TOKEN}" \
-            -H "Content-Type: application/json" \
-            --data "$(jq -n --arg sql "$SQL" '{sql:$sql}')" 2>d1-curl.err)
-          ok=$(jq -r 'try .success catch "false"' d1-response.json 2>/dev/null)
-          rows=$(jq -r 'try (.result[0].results | length) catch 0' d1-response.json 2>/dev/null)
-          if [ "$code" = "200" ] && [ "$ok" = "true" ]; then
+          BODY=$(jq -n --arg sql "$SQL" '{sql:$sql}')
+          # 舰队纪律(承 scripts/cf-analytics.mjs 的教训):**每个 token secret 都试一遍**,
+          # 不预设哪个「应该」有权限。历史事故:owner 轮换了另一个 token,重跑却拿到
+          # 字节相同的旧错误 —— 看起来像「权限还没生效」,其实是那个 token 压根没被读过。
+          # 按值去重(同一个 token 挂两个名字只算一个凭据),并打出是哪个 env var 生效。
+          seen=""; winner=""; rows=""
+          for name in CLOUDFLARE_API_TOKEN_ZONE CLOUDFLARE_API_TOKEN CF_API_TOKEN; do
+            tok="${!name}"
+            if [ -z "$tok" ]; then echo "  $name: 未设置"; continue; fi
+            case " $seen " in *" $tok "*) echo "  $name: 与前一个同值,跳过"; continue;; esac
+            seen="$seen $tok"
+            # 账号 ID 按**当前这个 token**反查,而不是所有 token 共用同一个 secret——
+            # 万一某个 token 属于另一个账号,共用会造出「它没权限」的假阴性。反查不到才退回 secret。
+            acct=$(curl -sS -H "Authorization: Bearer $tok" \
+              "https://api.cloudflare.com/client/v4/accounts" 2>/dev/null \
+              | jq -r 'try (.result[0].id) catch empty')
+            [ -z "$acct" ] && acct="${CLOUDFLARE_ACCOUNT_ID}"
+            if [ -z "$acct" ]; then echo "  $name: 连账号列表都读不到"; continue; fi
+            code=$(curl -sS -o d1-response.json -w '%{http_code}' \
+              -X POST "https://api.cloudflare.com/client/v4/accounts/${acct}/d1/database/${D1_DATABASE_ID}/query" \
+              -H "Authorization: Bearer $tok" -H "Content-Type: application/json" \
+              --data "$BODY" 2>d1-curl.err)
+            ok=$(jq -r 'try .success catch "false"' d1-response.json 2>/dev/null)
+            if [ "$code" = "200" ] && [ "$ok" = "true" ]; then
+              winner="$name"
+              rows=$(jq -r 'try (.result[0].results | length) catch 0' d1-response.json)
+              break
+            fi
+            if [ -s d1-response.json ]; then
+              echo "  $name: HTTP $code — $(jq -rc 'try ([.errors[]?| "\(.code) \(.message)"] | join("; ")) catch "unparseable"' d1-response.json 2>/dev/null | sed -E 's/[A-Za-z0-9_-]{30,}/***/g')"
+            else
+              echo "  $name: HTTP $code — 没有响应体 ($(sed -E 's/[A-Za-z0-9_-]{30,}/***/g' d1-curl.err | tail -1))"
+            fi
+          done
+          if [ -n "$winner" ]; then
             mv d1-response.json content/d1-snapshot.json
-            echo "d1 snapshot exported: $rows aggregate rows (14d window, /__ci excluded)"
+            echo "d1 snapshot exported via $winner: $rows aggregate rows"
             if [ "$rows" = "0" ]; then
-              echo "::warning::d1 snapshot is EMPTY (0 rows in the 14-day window) — the query ran, but nothing was logged. Verify the beacon, do not read this as 'no traffic'."
+              echo "::warning::d1 snapshot 是空的(14 天窗 0 行)——查询跑通了但什么都没记到。先查信标,别读成「没有流量」。"
             fi
           else
-            echo "::warning::d1 snapshot FAILED (HTTP $code) — the growth loop has NO first-party numbers this run. Confirmed 2026-08-31: the API answers 7403 'account not authorized to access this service' while the SAME token deploys Pages fine, so CLOUDFLARE_ACCOUNT_ID is valid and CLOUDFLARE_API_TOKEN is simply missing Account > D1 > Read. Owner fix, ~1 min, in the Cloudflare token editor."
-            echo "--- Cloudflare API response (secrets masked) ---"
-            if [ -s d1-response.json ]; then
-              { jq -c '{success, errors, messages}' d1-response.json 2>/dev/null || head -c 600 d1-response.json; } \
-                | sed -E 's/[A-Za-z0-9_-]{30,}/***/g'
-            else
-              echo "(no response body — the request never completed; see the curl error below)"
-            fi
-            echo
-            sed -E 's/[A-Za-z0-9_-]{30,}/***/g' d1-curl.err | tail -5
-            # Distinguish the two causes that both surface as 403/7403, so nobody
-            # has to guess again. Prints verdicts only — never a raw account id,
-            # because this is a public repo.
-            echo "--- token diagnostics (verdicts only, no ids) ---"
-            curl -sS -H "Authorization: Bearer ${CLOUDFLARE_API_TOKEN}" \
-              https://api.cloudflare.com/client/v4/user/tokens/verify 2>/dev/null \
-              | jq -c '{token_valid: .success, status: .result.status, errors: [.errors[]?.code]}' \
-              || echo "token verify: request failed"
-            accts=$(curl -sS -H "Authorization: Bearer ${CLOUDFLARE_API_TOKEN}" \
-              https://api.cloudflare.com/client/v4/accounts 2>/dev/null)
-            echo "accounts this token can list: $(echo "$accts" | jq -r 'try (.result|length) catch "unreadable"')"
-            echo "CLOUDFLARE_ACCOUNT_ID is one of them: $(echo "$accts" \
-              | jq -r --arg a "${CLOUDFLARE_ACCOUNT_ID}" 'try ([.result[]?.id] | if index($a) == null then "NO — the secret points at a different account" else "yes" end) catch "unreadable"')"
-            echo "Read the two lines above together: token_valid=true + account matches => the only missing piece is Account > D1 > Read."
+            echo "::warning::d1 snapshot FAILED —— 上面列出的每一个 token 都试过了,没有一个能读 D1。增长循环这一轮读不到任何第一方数字。若所有 token 都报 7403,就是都缺 Account · D1 · Read。"
             rm -f content/d1-snapshot.json
           fi
           rm -f d1-response.json d1-curl.err
