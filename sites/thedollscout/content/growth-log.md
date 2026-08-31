@@ -2272,6 +2272,50 @@ Cloudflare 后台 → API Tokens → 编辑部署所用的那个 token → 加�
 (本会话的 Cloudflare MCP 走的是另一套凭据,能读 D1——所以上面那份 08-30 台账是
 真实数字;但定时会话没有 MCP,它读不到。)
 
+### 追加(同日,owner 追问「Cloudflare 我不是一直在用吗」)—— 推断已升级为证据
+合理的追问,而且上面那条结论当时确实是推出来的。403/7403 至少有两个成因:token 缺
+D1 权限,或 `CLOUDFLARE_ACCOUNT_ID` 指向的账号与 token 所属账号不是同一个。给失败分支
+加了只打结论不打 ID 的诊断(公开仓),run #18 给出定论:
+
+```
+{"token_valid":true,"status":"active","errors":[]}
+accounts this token can list: 1
+CLOUDFLARE_ACCOUNT_ID is one of them: yes
+```
+
+**token 有效、账号对得上 → 7403 就是纯粹缺 Account · D1 · Read 这一项。**
+为什么「一直在用 Cloudflare」和这个不冲突:三条路走的是三套凭据——①站点自己写 D1 走
+`wrangler.toml` 的 **binding**,运行时直连,根本不经过 API token(所以埋点一直正常);
+②会话读 D1 走 Cloudflare 连接器(另一套 OAuth 凭据);③GitHub Actions 走这个按项勾选的
+API token,当初只勾了 Pages 编辑。**Cloudflare 的 token 是最小权限模型,不是「登录了就都能用」。**
+
+**同族缺陷已在 bpj 侧一并修掉**:`deploy-baipiaoji.yml` 的 D1 快照步骤是一模一样的
+`2>/dev/null` + 「snapshot skipped (no D1 access)」猜测,`sites/baipiaoji/data/traffic-snapshot.json`
+同样一个提交都没有。已改为同样的直连 REST API + 真错误 + `::warning::`。
+全舰队扫描确认只有这两处,没有第三处。
+
+### 再追加(owner:「你换成舰队 agi 我配置的 cloudflare 的啊」)—— 凭据已穷举,结论完整
+owner 指出本仓有多个 Cloudflare token secret,而我只试了一个就下了「要去加权限」的结论。
+对的,那个结论只对那一个 token 成立。而且这条纪律仓里早就有:`scripts/cf-analytics.mjs`
+的注释写明它为什么三个全试——历史事故正是「换了 token、重跑拿到字节相同的旧错误」的
+假阴性。我在 D1 这条路上把同一个坑又踩了一遍。
+
+改为逐个试之后,**当场又踩出第二个假阴性**:zone token 那一行报的是
+`/accounts/null/d1/...` 的 404——`jq -r` 对空结果打印的是字符串 `"null"` 而不是空串,
+所以「反查不到就退回 secret」永不触发,那个 token 看起来「已经试过」其实压根没测到 D1。
+修掉 `// empty` + 显式滤 `"null"` 后重跑,三个 secret 的真实读数(run #21):
+
+| secret | 结果 |
+|---|---|
+| `CLOUDFLARE_API_TOKEN_ZONE` | HTTP 403 · 7403 |
+| `CLOUDFLARE_API_TOKEN` | HTTP 403 · 7403 |
+| `CF_API_TOKEN` | 未设置 |
+
+**本仓现有的每一个 Cloudflare 凭据都读不了 D1**,所以 owner 那一步动作仍然需要,只是
+现在是穷举后的结论而不是单点推断。方法论教训记两条:①「我只试了手边那一个」在有多个
+凭据时不构成结论;②**打印出来的失败也可能是假的**——`accounts/null` 那一行长得和真失败
+一模一样,只有把 URL 也打出来才看得见。可读的失败仍然可能是错的失败。
+
 ### Judgement line (e)
 **2026-09-02**:若 owner 已加权限,`content/d1-snapshot.json` 必须出现在仓库里;
 若尚未加,新 Routine 的汇报里必须仍然带着这条待办,不许因为「站点看起来正常」而
