@@ -1,8 +1,8 @@
 # AGI Timeline: Prediction Markets vs Evidence
 
-_Last updated: August 24, 2026 · Updated as verdicts change_
+_Last updated: August 31, 2026 · Updated as verdicts change_
 
-**Answer:** Prediction markets and this scorecard are measuring different things — and the difference is the insight. Polymarket prices an announcement event; the scorecard grades a capability claim against pre-registered criteria. Issue #1 of a running comparison: the market's AGI-by-2027 contract vs the Thesis Tracker's 62.5/100 evidence read.
+**Answer:** Prediction markets and this scorecard are measuring different things — and the difference is the insight. Polymarket prices an announcement event; the scorecard grades a capability claim against pre-registered criteria. Issue #2: in the first week both sides were measured with timestamps, the market's Yes side more than doubled — 7.5% → 18.0% — while the evidence composite did not move at all (62.5/100). That divergence is the story.
 
 ## FAQ
 

@@ -212,14 +212,19 @@ specs above at any time to resume net-new page creation.
 所以「多覆盖一个判定型问题 = 多一份高份额引用」这条路，不需要先把流量做起来。
 这是本站目前唯一一条不受流量瓶颈约束的杠杆，优先级高于新工具。
 
-- [ ] `datacenter-grid-cost-tracker` —（2026-08-21 种,来源:根仓 startup-trend-sweep
+- [ ] `datacenter-grid-cost-tracker` —**【2026-08-31 闸门复查:未过,不动工】**前置条件是
+  「9 月上旬 Bing 明细确认 capex 页引用仍在涨」,而 Bing 明细窗口 09-01~03 才开,无数据即无依据。
+  —（2026-08-21 种,来源:根仓 startup-trend-sweep
   调研)美国州级「数据中心电网成本谁来付」追踪台账。全国性解释文已被 CNBC/Forbes/
   Consumer Reports/USAFacts 占满(勿做),但**州规则合订表**是碎片缺口:NJ 转嫁法
   2026-06-30、NY 数据中心暂停令 2026-07、PJM 容量费 $6.3B 转嫁。台账形状(州 ×
   规则 × 日期 × 源),适配 capex 集群,内链 /ai-capex-trillion-dollar、
   /is-the-ai-capex-a-bubble。**动工前置**:9 月上旬 Bing 明细确认 capex 页引用
   仍在涨;每条州规则必须一手源(州公告/法案文本),媒体报道只作导航。
-- [ ] `eu-ai-act-de` —(2026-08-21 种)/eu-ai-act-what-applies-now 的德语版
+- [ ] `eu-ai-act-de` —**【2026-08-31 闸门复查:未过,不动工】**前置条件是英文版先过 28 天线
+  (首个 AI 引用或站内 TOP10);实测英文版 28 天 JS 浏览 **1** 次,站内 TOP10 门槛 **12**,差得远。
+  按预登记纪律不跳闸——一个自己没人读的页面,翻译成德语只是把零复制一遍。
+  —(2026-08-21 种)/eu-ai-act-what-applies-now 的德语版
   ("Gilt die KI-Verordnung für mein Unternehmen?" 一屏判定 + 同一张台账),德语
   供给全是律所长文,且 KI-MIG/Bundesnetzagentur(KoKIVO)是德语原生题材。
   **动工前置**:英文版 28 天判定线先过(首个 AI 引用或站内 TOP10);过线后走

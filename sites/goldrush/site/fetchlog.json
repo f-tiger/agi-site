@@ -2,20 +2,20 @@
   "name": "Claim Ledger Protocol — consumption log",
   "url": "https://goldrush.agiscorecard.com/fetchlog.json",
   "license": "CC BY 4.0",
-  "dateModified": "2026-08-30",
+  "dateModified": "2026-08-31",
   "why": "The protocol asks sites to publish /claimledger.json. This file publishes whether anyone actually reads it, including when the answer is nobody. 'Ledgers published' is deliberately NOT reported as traction: llms.txt scored well on exactly that number while being dead.",
   "definitions": {
     "ledgers_listed": "Ledgers on the reference registry, first-party included.",
     "ledgers_validating": "Of those, how many parse and carry all five required fields in every entry.",
-    "outside_fetches_of_our_claimledger": "Fetches of goldrush.agiscorecard.com/claimledger.json EXCLUDING those with a goldrush referrer (our own registry page fetches it) and excluding our deployment self-check, which tags itself ?ci=1. This is the only consumption number this site can honestly observe: it cannot see fetches of somebody else's file on somebody else's server.",
+    "outside_fetches_of_our_claimledger": "Fetches of goldrush.agiscorecard.com/claimledger.json by a client this network did NOT write. Excluded, all three: (a) any fetch carrying a goldrush referrer — our own registry page fetches the file; (b) our deployment self-check, which tags itself ?ci=1; (c) fetches made by our own agiscorecard MCP server's get_claim_ledger tool, which is our code calling our file. Exclusion (c) was added 2026-08-31 after exactly that happened on 2026-08-30 and would otherwise have counted as adoption on the first day the number was published — the failure mode this file exists to prevent.",
     "known_limit": "An external ledger's own readership is unobservable from here. The 2026-11-30 adoption line is therefore resolved by this number plus registry ledger_render events whose label is a non-goldrush URL."
   },
   "counts": {
     "ledgers_listed": 1,
     "ledgers_validating": 1,
     "outside_fetches_of_our_claimledger": 0,
-    "as_of": "2026-08-30",
+    "as_of": "2026-08-31",
     "period": "site lifetime (from 2026-08-29)"
   },
-  "note": "Ten machine fetches of /ledger.json in this period were this repository's own deploy self-check — ten deploys, ten fetches. Our own CI is not adoption and is excluded."
+  "note": "Two self-inflicted signals caught and excluded so far. (1) Ten machine fetches of /ledger.json were this repository's own deploy self-check — ten deploys, ten fetches. (2) One fetch of /claimledger.json on 2026-08-30 was our own MCP server's get_claim_ledger tool. Neither is adoption. The count stays 0."
 }
