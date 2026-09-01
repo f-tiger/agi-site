@@ -1,106 +1,98 @@
 {
- "fetched": "2026-08-31",
+ "fetched": "2026-09-01",
  "geo": "US",
  "seeds": {
   "deepseek": {
    "rising": [
     {
-     "q": "deepseek 0731",
-     "v": 72950
-    },
-    {
      "q": "deepseek v4 flash 0731",
-     "v": 63300
-    },
-    {
-     "q": "dspark deepseek",
-     "v": 40750
-    },
-    {
-     "q": "deepseek 正式 版",
-     "v": 28500
-    },
-    {
-     "q": "dsh",
-     "v": 15850
-    },
-    {
-     "q": "dsh deepseek",
-     "v": 15150
-    },
-    {
-     "q": "deepseek v4 pro 0813",
-     "v": 14400
-    },
-    {
-     "q": "deepseek harness desktop",
-     "v": 13500
-    },
-    {
-     "q": "qwen 3.8",
-     "v": 12000
+     "v": 71850
     },
     {
      "q": "glm 5.2",
-     "v": 11100
+     "v": 50050
+    },
+    {
+     "q": "deepseek dspark",
+     "v": 42450
+    },
+    {
+     "q": "deepseek v4 正式 版",
+     "v": 27250
+    },
+    {
+     "q": "deepseek v4 pro 0813",
+     "v": 25100
+    },
+    {
+     "q": "dsh",
+     "v": 19150
+    },
+    {
+     "q": "qwen 3.8",
+     "v": 16600
+    },
+    {
+     "q": "glm 5.3",
+     "v": 8800
+    },
+    {
+     "q": "deepseek v4 pro vs glm 5.2",
+     "v": 7850
+    },
+    {
+     "q": "deepseek harness 插件",
+     "v": 5600
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-08-26"
+   "fetched": "2026-09-01"
   },
   "midjourney": {
-   "auto": [
-    "midjourney",
-    "midjourney ai",
-    "midjourney free",
-    "midjourney medical",
-    "midjourney scanner",
-    "midjourney login",
-    "midjourney pricing",
-    "midjourney v6",
-    "midjourney ai image generator",
-    "midjourney ai free"
-   ],
    "rising": [
     {
-     "q": "midjourney ai",
-     "v": "new"
+     "q": "midjourney ultrasound scanner",
+     "v": 38350
     },
     {
-     "q": "midjourney free",
-     "v": "new"
+     "q": "midjourney body scanner",
+     "v": 34700
     },
     {
-     "q": "midjourney medical",
-     "v": "new"
+     "q": "bfly stock",
+     "v": 8300
+    },
+    {
+     "q": "does midjourney have an api",
+     "v": 6150
+    },
+    {
+     "q": "what does upscale mean in midjourney",
+     "v": 3200
+    },
+    {
+     "q": "midjourney medical scanner",
+     "v": 1850
+    },
+    {
+     "q": "midjourney v8.2",
+     "v": 1150
     },
     {
      "q": "midjourney scanner",
-     "v": "new"
+     "v": 1100
     },
     {
-     "q": "midjourney login",
-     "v": "new"
+     "q": "midjourney medical imaging",
+     "v": 400
     },
     {
-     "q": "midjourney pricing",
-     "v": "new"
-    },
-    {
-     "q": "midjourney v6",
-     "v": "new"
-    },
-    {
-     "q": "midjourney ai image generator",
-     "v": "new"
-    },
-    {
-     "q": "midjourney ai free",
-     "v": "new"
+     "q": "midjourney ultrasound",
+     "v": 250
     }
    ],
-   "source": "autocomplete-diff",
-   "fetched": "2026-08-25"
+   "source": "related-queries",
+   "fetched": "2026-09-01"
   },
   "suno": {
    "auto": [
