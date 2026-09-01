@@ -2536,3 +2536,17 @@ validate 222 页 OK。种子在 content-backlog 打勾。
   把同形态复制到 `/progress-index` 与 `/when-will-agi-arrive`;<10 → 拆除,记「首页读者不玩
   页内游戏」为反面发现。**`challenge_share{grade_game}` ≥3 单独构成裂变信号**(现基线 0)。
 - validate OK(225 页 / 207 URL);游戏 JS 单独 node --check 通过。
+
+## 2026-09-01(每日 run,月初)— 只验仪器不动页面
+- **spec**:常规日更 + 月初两件(向 owner 要 Bing AI Performance 明细、核 Actions 额度重置)。
+  **自我批判并据此收手**:昨日一天已动 agi 三处并当面承诺静置,今日**不改任何页面**;
+  该做的是验证昨天装的仪器是否真在记录——那是验证,不是翻炒。
+- **仪器验证通过(本轮最重要产出)**:内部跳转配对上线不到 24 小时即产出 20 条 JS 口径记录,
+  **来源 100% 是首页,深页向外递送 0**;落点第一是 `/will-agi-arrive-2027`(4 次,正是首页
+  readnext 第二条,与"readnext 是全站最强 CTA"互证)。**n=20 且 <24h,按最小样本纪律不下结论**,
+  读法已固化进 analytics-setup.md(规范 SQL + 隐私边界:跨域来源永不存路径),09-14 正式读。
+- **不提前解读的两项**:`affiliate_click` 与 `calc_use{grade_game}` 均为 0,上线仅约 14 小时,
+  判定日 10-31 / 09-28。
+- **游戏**:今日 8/1(久违非零),28d 78/15,**itch 累计 42/13 持平——今天这 8 次不是 itch 来的**。
+- **⓪+ 队列**:两项仍被前置条件挡住;取数窗口今日开启,已向 owner 索取 Bing 两张明细。
+- ship:仅文档(analytics-setup.md 读法 + analytics-notes.md 日结 + 本文件)。**零页面改动。**
