@@ -107,6 +107,15 @@ sourceradar 此前 **3 张页面 vs eco 30+ 张**,且流量结构是首页中心
 
 ## 快反日志(每项一行,含判定线追踪)
 
+- **2026-09-01 · 深化 `solar-camp-lights`(选项①,种子「solar camping lights」,trendspy
+  autocomplete-diff 抓取 2026-08-31)**。信号不是某个词的量,而是**一个非随机的形态**:该种子的
+  9 条自动补全**全部**指向南半球——零售商 Bunnings / Kmart / BCF / Anaconda,地理词 nz /
+  south africa,**没有一条美国或欧洲限定词**。与卡片写死的北半球假设(`season: Mar–Aug`、
+  `orderBy: February`、「九月库存压到三月」)方向相反,故写进 risks。**诚实边界写在页面上**:
+  自动补全是本地化的且我们不控制采集器的表观位置,这是"谁的查询主导了建议面"的方向性读数,
+  **不是需求量**;且 autocomplete-diff 无 rising 数值(related-queries 被配额墙挡住,这是回退源),
+  **绝不与 v 值混用**。同词冷却至 2026-09-15。
+  判定线沿用:28 天 `pick_open{solar-camp-lights}` ≥5 → 有效;本站读者≈0,大概率记「样本不足」。
 - **2026-08-31 · 深化 `leg-compression`(选项①,词:「best leg compression sleeves」v=50,350,
   trendspy 抓取 2026-08-30)**。信号是真实产品需求、非品牌非新闻,远超 v≥200 门槛,且与既有选品
   强相关故走深化不新增(不造新品数据)。写入的判断:该种子下的需求**没有收敛到靴子**——第一位是

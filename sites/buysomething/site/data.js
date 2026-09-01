@@ -468,7 +468,7 @@ const PRODUCTS = [
     freightMode: "Sea · light and packable",
     season: "Hard seasonal Mar–Aug",
     orderBy: "February — do not overbuy for fall",
-    risks: "Seasonal stranding: unsold September inventory sits until March.",
+    risks: "Seasonal stranding: unsold September inventory sits until March — but check which hemisphere you are stranding it in. Our own rising-term harvest for this seed (trendspy autocomplete-diff, fetched 2026-08-31) came back with every single suggestion pointing south: the retailers are Bunnings, Kmart, BCF and Anaconda, and the geographies are New Zealand and South Africa. Not one US or European qualifier appeared. Autocomplete is localised and we do not control the harvester's apparent location, so this is a directional read of whose queries dominate the suggestion surface, not a demand measurement — and it carries no rising VALUE, because the related-queries endpoint is quota-walled and this is the fallback source. Read it against the season line above: the months this card tells you not to buy for are exactly the months the visible demand surface is heading into summer.",
     whyHot: "The fastest-growing niche (+62%) inside a steady $28B category.",
     buyerTip: "Retractable/spool designs photograph better and cut returns from tangle complaints."
   },
