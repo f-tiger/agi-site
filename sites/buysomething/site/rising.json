@@ -1,5 +1,5 @@
 {
- "fetched": "2026-09-02",
+ "fetched": "2026-09-03",
  "seeds": {
   "electric spin scrubber": {
    "auto": [
@@ -233,50 +233,112 @@
    "fetched": "2026-09-02"
   },
   "portable blender": {
+   "auto": [
+    "portable blender",
+    "portable blender bottle",
+    "portable blender for smoothies",
+    "portable blender cup",
+    "portable blender walmart",
+    "portable blender ninja",
+    "portable blender near me",
+    "portable blender for travel",
+    "portable blender amazon",
+    "portable blender for protein shakes"
+   ],
    "rising": [
     {
-     "q": "aldi ambiano portable blender",
-     "v": 1166450
+     "q": "portable blender bottle",
+     "v": "new"
     },
     {
-     "q": "ambiano portable blender",
-     "v": 18550
+     "q": "portable blender for smoothies",
+     "v": "new"
     },
     {
-     "q": "ninja nutri blender pro with auto-iq",
-     "v": 3050
+     "q": "portable blender cup",
+     "v": "new"
     },
     {
-     "q": "so yummy bella portable blender",
-     "v": 1150
+     "q": "portable blender walmart",
+     "v": "new"
     },
     {
-     "q": "vitamix portable cold foam blender",
-     "v": 1100
+     "q": "portable blender ninja",
+     "v": "new"
     },
     {
-     "q": "nutribullet blender portable",
-     "v": 120
+     "q": "portable blender near me",
+     "v": "new"
     },
     {
-     "q": "nutribullet",
-     "v": 120
+     "q": "portable blender for travel",
+     "v": "new"
     },
     {
-     "q": "nutribullet blender",
-     "v": 120
+     "q": "portable blender amazon",
+     "v": "new"
     },
     {
-     "q": "best portable blender",
-     "v": 80
-    },
-    {
-     "q": "vitamix",
-     "v": 80
+     "q": "portable blender for protein shakes",
+     "v": "new"
     }
    ],
-   "source": "related-queries",
-   "fetched": "2026-09-02"
+   "source": "autocomplete-diff",
+   "fetched": "2026-09-03"
+  },
+  "vegetable chopper": {
+   "auto": [
+    "vegetable chopper",
+    "vegetable chopper amazon",
+    "vegetable chopper walmart",
+    "vegetable chopper electric",
+    "vegetable chopper near me",
+    "vegetable chopper and slicer",
+    "vegetable chopper costco",
+    "vegetable chopper machine",
+    "vegetable chopper nearby",
+    "vegetable chopper manual"
+   ],
+   "rising": [
+    {
+     "q": "vegetable chopper amazon",
+     "v": "new"
+    },
+    {
+     "q": "vegetable chopper walmart",
+     "v": "new"
+    },
+    {
+     "q": "vegetable chopper electric",
+     "v": "new"
+    },
+    {
+     "q": "vegetable chopper near me",
+     "v": "new"
+    },
+    {
+     "q": "vegetable chopper and slicer",
+     "v": "new"
+    },
+    {
+     "q": "vegetable chopper costco",
+     "v": "new"
+    },
+    {
+     "q": "vegetable chopper machine",
+     "v": "new"
+    },
+    {
+     "q": "vegetable chopper nearby",
+     "v": "new"
+    },
+    {
+     "q": "vegetable chopper manual",
+     "v": "new"
+    }
+   ],
+   "source": "autocomplete-diff",
+   "fetched": "2026-09-03"
   }
  }
 }
