@@ -203,3 +203,27 @@ Weekly AI News 均 2–13 分钟成功）；**手动触发路径正常**（`fire
 （tds 因此冻结约 86 小时）；有定时部署的站（eco/bpj）只丢当天内容增量。
 新站上线时应默认给部署加一条低频 schedule 兜底，除非有明确理由不加。
 
+
+**2026-09-04 补充证据（同日晚些时候）**：
+- 两个**自绑定** Routine（agiscorecard 日报 `0 4 * * *`、sourceradar `40 5 * * *`）显示
+  `enabled=false` + **`suspension_reason: plan_no_longer_eligible`** —— 这是**平台层挂起**，
+  不是 owner 暂停，也不是会话侧能修的东西。它解释了 09-03 起两条日报的消失。
+- 三个新会话 Routine（tds / bpj / eco）经 `fire_trigger` 手动补跑**全部正常**，
+  tds 已跑完（8 分 33 秒 SUCCEEDED）。所以「新会话模式」本身没坏。
+- 结论修正：09-03 的断供**至少有两个不同原因**，自绑定那两条属账号/套餐层，
+  需要 owner 在 Routines 界面确认；不要把它们当成同一个 bug 一起处理。
+
+## 自动化清单纪律（owner 2026-09-04：「太多任务」+「舰队不能依赖你进化」）
+
+**新增或修改任何定时任务前，先读 `docs/fleet-automation-map.md`**（唯一权威清单）。
+三条纪律，逐条硬性：
+1. **先问能不能下沉到第①层**（`.github/workflows/`，零 AI）。取数/构建/部署/探活/
+   告警一律属于第①层；只有「需要判断力」的才配得上一个 Routine。
+2. **先算账再加 cron**（每次分钟 × 每月次数，写进提交说明）；外部副作用只挂 schedule。
+3. **合并优先于删除**：`update_trigger` 改 prompt + `enabled=false` 停用，
+   **永不 `delete_trigger`**——预登记判定线与历史必须留痕。
+
+第①层的兜底现在是 `fleet-heartbeat.yml`（每日 08:00 UTC）：八站探活、超 7 天未成功
+部署自动重发、快照写回 `data/fleet-health.json`、任一站非 200 直接把 run 打红。
+**GitHub 的 workflow 失败邮件是整条链上唯一不经过任何 AI 会话的告警通道**——
+所以「上面那句新站默认加低频 schedule」现在由 heartbeat 统一承担，不必每站各加一条。
