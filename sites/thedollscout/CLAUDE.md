@@ -233,6 +233,41 @@ round 10 的 18 条 DefinedTerm 全是只存在于 JSON-LD 的影子内容)。�
 - CSS 组件规则会压过 UA 的 `[hidden]`;`[hidden]{display:none!important}` 必须
   排在组件规则之前(`.card{display:block}` 曾让 /lookup 的筛选完全失效)。
 
+## 2026-09-04 晚:流量诊断 + 相关性修复(owner「重点优化 tds 站,一直没有什么流量」;prompt 三轮收敛)
+
+**先把「没流量」量化(D1,08-30→09-04,剔 /__ci)**:ev='' 123 行,其中 **100 行是 RU**(08-30 一天
+70 行扫遍 22 个路径、08-31 21 行扫遍 8 个新 /odds/ 路径,与 YandexBot 同日扫站重合)——是能跑 JS 的
+爬虫,不是读者。**非 RU 真人 pv = 6 天 23 次,全部落在 `/`**,内容页/de/zh/th 为 0;搜索/助手引荐 0
+(唯一 1 次 duckduckgo)。爬虫倒是都来了:Googlebot 38 路径、GPTBot 42 路径(09-01 整站扫 + llms-full
++ 每个 data/*.json 各 2 次)、Bingbot 13、OAI-SearchBot 19、Yandex 40。**边缘层每天仍有 100–150 次
+404/410 = 旧成人站 URL 还在被请求**。判定线 (b)(c) 已提前达成;(d)(e) d1-snapshot 仍缺(owner 侧 token)。
+
+**根因排序(不许归因于内容的规则照旧,以下是机制与相关性,不是文案)**:①站龄 5 天 + 收录延迟(主因,
+只有 GSC/Bing WMT 能看)②零权威零分发(暂存包里 tds 一条都没进过)③域名历史(不可测,预登记)
+④**页面没写出实体**:17 个 EN H1 里 15 个不含 "Labubu",12 个 /odds/ 的 title 与 H1 全部不含——
+搜「labubu secret odds」的人看到的是「One box — the real secret odds」;⑤旗舰词「how to tell if
+labubu is fake」的多源标准答案是**刮码 + fwsy.popmart.com 验证 + UV 灯**,本站只写了「QR 到 popmart.com」。
+
+**本轮做的(全部沙箱可做、规则内)**:
+1. H1/title/description 相关性一轮(EN + /de/ + /odds/ 生成器):每页 H1 含 "Labubu" + 查询名词,
+   原有腔调句降为副标;description ≤160。/odds/ 只改 `scripts/gen-odds-pages.mjs` 后重生成,
+   `data/pull-math.json` 字节不变。
+2. `/fake-check`(EN/DE)第 4 项补**刮码→扫码→fwsy.popmart.com→输码**流程与「无效/未找到/已验证
+   = 警示」,第 5 项补 **UV 反应标记(2024+ 版本,右脚底)**;三处同文(H2 段、Quick answers、
+   JSON-LD)逐字一致,结构化数据门通过;`data/labubu-fake-signals.json`(MCP + llms-full 的唯一事实源)
+   与 `/checker` 题面同步。信源:Pop Mart 官方帮助页(只具名,沙箱抓不到不复述)+ Feltify + Izoate;
+   UV:GamesRadar+ + Double Boxed(多源一致才落页)。**不写序列号格式(单源)**。
+3. 内链:`/` 与 `/rarity`(EN/DE)加「Secret odds by box count」带,/odds/* 从 2 条入链起步。
+4. 分发:`docs/distribution-staging/2026-W36.md` 第一条 tds 素材(**无链接无 tag** 的真回答,
+   owner 手发)。
+5. **60 天线的一处口径补记**:「affiliate_click ≥1」在 08-30 当天被单次点击技术性满足,
+   **不改预登记文本**,但 10-29 结算以 pv 与引荐两条为准,这一条不再单独援引。
+
+**owner 侧(沙箱做不了,按杠杆排)**:GSC Page indexing + Security/Manual actions + 对 `/`
+`/fake-check` `/rarity` `/odds/twelve-boxes-full-case` `/where-to-buy` 请求编入索引(~5 分钟,
+是①③两个主因唯一的诊断口);Bing WMT URL 检查(~3 分钟);Cloudflare token 加 Account·D1·Read
+(~1 分钟,否则每 2 天的 Routine 看不见 D1);把 W36 那条素材手发一次。
+
 ## 判定线(预登记,防事后两头解释)
 
 - **搜索引擎清理期**:本域有 6 周 18+ 历史(RTA 头、adult meta、成人语义)。
