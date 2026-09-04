@@ -168,8 +168,12 @@ play.)+ 三个外部站(baipiaoji/getecoback/thedollscout)。实测教训:引用
   schedule 本来就跑在 tip 上。**新增站点的 deploy workflow 必须照抄这一步。**
 - **部署后自检覆盖率(2026-08-27 审计)**:agi(200+内容+D1 读路径)、eco、tds、bpj
   已有真自检;**gridlings 当天补上**(7 条改写路径各断言 200 且零重定向——那次死循环
-  能潜伏三天,唯一原因就是这个站一个线上探测都没有)。**仍缺**:buysomething、
-  gamesledger、x-poster(风险较低,未在事故路径上;哪天动它们时顺手补,别单独churn)。
+  能潜伏三天,唯一原因就是这个站一个线上探测都没有)。**2026-09-04 补齐**:buysomething、
+  gamesledger、x-poster 三条也有了(路由 200、JSON 形状、404、/api/live、badge content-type、
+  /status);goldrush 从「只 warning」改为真断言。**同日发现三处「不可能失败」的自检**
+  (agi /api/trends 匹配任何含引号的响应、tds 49 条 200 断言能被上一版生产满足、bpj 信标
+  自测只打印不断言)——自检要能红,否则和没有一样;全部改法与教训见
+  `docs/fleet-optimization-2026-09-04.md`。
   自检要断言的是**事故的形状**,不是「有个 200 就行」:死循环场景下 `curl -L` 超限
   会返回 000,所以 200 断言其实够用,但 gridlings 额外断言零重定向更早暴露问题。
 
