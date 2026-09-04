@@ -1,57 +1,56 @@
 {
  "ok": true,
- "fetched": "2026-09-03",
+ "fetched": "2026-09-04",
  "source": "https://trends.google.com/trending/rss?geo=DE",
- "matched": [],
+ "matched": [
+  {
+   "title": "wetterwarnung",
+   "traffic": "200+"
+  }
+ ],
  "top": [
   {
-   "title": "mathys tel",
-   "traffic": "200+"
-  },
-  {
-   "title": "nordbayern",
-   "traffic": "200+"
-  },
-  {
-   "title": "plattling",
-   "traffic": "200+"
-  },
-  {
-   "title": "börse",
-   "traffic": "200+"
-  },
-  {
-   "title": "jürgen klopp bundestrainer",
-   "traffic": "5000+"
-  },
-  {
-   "title": "christian freuding",
-   "traffic": "100+"
-  },
-  {
-   "title": "b101",
-   "traffic": "100+"
-  },
-  {
-   "title": "hebebühne",
+   "title": "bsw",
    "traffic": "1000+"
   },
   {
-   "title": "mateu morey",
+   "title": "wetterwarnung",
+   "traffic": "200+"
+  },
+  {
+   "title": "rechnungshof",
    "traffic": "100+"
   },
   {
-   "title": "landeskriminalamt",
+   "title": "scooter braun",
+   "traffic": "500+"
+  },
+  {
+   "title": "wuppertaler schwebebahn",
+   "traffic": "100+"
+  },
+  {
+   "title": "lanxess arena",
+   "traffic": "100+"
+  },
+  {
+   "title": "wedemark",
+   "traffic": "200+"
+  },
+  {
+   "title": "basketball wm frauen 2026",
+   "traffic": "100+"
+  },
+  {
+   "title": "unbekannter toter",
    "traffic": "5000+"
+  },
+  {
+   "title": "ticketmaster",
+   "traffic": "1000+"
   }
  ],
  "history": [
-  {
-   "d": "2026-08-20",
-   "matched": [
-    "wetter magdeburg"
-   ]
-  },
   {
    "d": "2026-08-21",
    "matched": [
@@ -117,6 +116,12 @@
   {
    "d": "2026-09-03",
    "matched": []
+  },
+  {
+   "d": "2026-09-04",
+   "matched": [
+    "wetterwarnung"
+   ]
   }
  ]
 }
