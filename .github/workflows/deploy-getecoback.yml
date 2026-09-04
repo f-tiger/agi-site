@@ -234,6 +234,23 @@ jobs:
             *'"cold"'*) echo "OK cold field present" ;;
             *) echo "::error::/api/heat payload missing cold field: '$heat'"; fail=1 ;;
           esac
+          # Autumn counterpart (2026-08-31): the dew-point band is the live number
+          # for the humidity season, and it is the only reason a reader comes to
+          # the page instead of taking an assistant's summary. A silent outage
+          # here costs exactly that. Note the assertion is on "ok", not on a
+          # level: ok:false is a legitimate answer (upstream down) that the band
+          # correctly renders as nothing — a missing field is the real failure.
+          feuchte=""
+          for attempt in 1 2 3; do
+            feuchte=$(curl -s --max-time 20 "https://getecoback.com/api/feuchte" || echo "")
+            case "$feuchte" in *'"ok"'*) break ;; esac
+            sleep 5
+          done
+          echo "feuchte endpoint said: $feuchte"
+          case "$feuchte" in
+            *'"ok"'*) echo "OK feuchte endpoint" ;;
+            *) echo "::error::feuchte endpoint broken after 3 tries: '$feuchte'"; fail=1 ;;
+          esac
           # Exchange prices for the Strompreis-Radar. Served from the edge so
           # the reader's browser never calls aWATTar or SMARD itself; if this
           # breaks, the site's flagship energy tool shows nothing, quietly.

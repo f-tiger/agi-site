@@ -306,6 +306,7 @@ async function serveAsset(request, env, pathname) {
 // no consent banner is required and nothing here identifies a visitor.
 const EV_NAMES = new Set([
   "page_view", "affiliate_click", "b2b_intent", "lead_intent", "outbound_choice", "cold_now", "strom_now",
+  "feuchte_now",
   "embed_copy", "share", "video_play", "btu_calc", "hitze_check", "heat_check",
   "strom_check", "bkw_calc", "heizkosten_calc", "taupunkt_check",
   "standort_check", "strompreis_api", "widget_view",
@@ -416,6 +417,93 @@ async function coldReading() {
     worst = { level: 0, region: "", temp: null, day: "" };
   }
   return worst;
+}
+
+// Autumn live number (2026-08-31). EB_HEATNOW renders only from 28 °C and sits
+// on 11 of the 12 top-earning pages, so the site's one "a chat answer cannot
+// hold this" hook goes dark for eight months exactly as the humidity season
+// starts, and luftentfeuchter-40-qm (the best autumn converter) never had one.
+//
+// Dew point is the right autumn counterpart because the verdict genuinely
+// flips on it — but against the COLD SURFACE, not the room air. A first draft
+// here compared it to 20 °C indoor air and was wrong: at 15 °C / 95 % outside
+// the dew point is 14.2 °C, which still dries a 20 °C room. Condensation forms
+// on the coldest surface — the corner behind a wardrobe on an exterior wall, an
+// unheated cellar wall — and that is why airing a cellar on a mild damp day
+// makes it wetter, the classic mistake this site already documents.
+//
+// Two references, because the answer differs by room and both are honest
+// approximations the page states out loud (and links to the Taupunkt tool for
+// the reader's own measured surface):
+//   ~15 °C — cold corner on an exterior wall in a heated room
+//   ~13 °C — wall in an unheated cellar
+// Above both, airing cannot dry anything and a dehumidifier is not an upsell,
+// it is the only remaining physical answer.
+const DEW_WALL = 15;         // cold corner, heated room
+const DEW_CELLAR = 13;       // unheated cellar wall
+const DEW_NOTHING = { ok: false, level: 0, region: "", temp: null, rh: null, dew: null };
+
+// Magnus formula (a = 17.62, b = 243.12 °C). Checked against published dew
+// point tables at six points, all within 0.1 K.
+function dewPoint(t, rh) {
+  if (typeof t !== "number" || typeof rh !== "number" || rh <= 0 || rh > 100) return null;
+  const a = 17.62, b = 243.12;
+  const g = Math.log(rh / 100) + (a * t) / (b + t);
+  const d = (b * g) / (a - g);
+  return Number.isFinite(d) ? Math.round(d * 10) / 10 : null;
+}
+
+async function cityDew(name, lat, lon) {
+  try {
+    const r = await fetch(
+      `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}` +
+      `&current=temperature_2m,relative_humidity_2m&timezone=Europe%2FBerlin`,
+      { signal: AbortSignal.timeout(6000) });
+    if (!r.ok) return null;
+    const d = await r.json();
+    const t = d && d.current && d.current.temperature_2m;
+    const rh = d && d.current && d.current.relative_humidity_2m;
+    const dew = dewPoint(t, rh);
+    return dew === null ? null : { region: name, temp: t, rh, dew };
+  } catch (e) {
+    return null;
+  }
+}
+
+async function dewReading() {
+  try {
+    const results = await Promise.all(HEAT_CITIES.map(([n, la, lo]) => cityDew(n, la, lo)));
+    // Worst case of the three. Reporting the friendliest city would tell a
+    // reader to open the window on a day their own region cannot afford it.
+    let worst = null;
+    for (const c of results) if (c && (worst === null || c.dew > worst.dew)) worst = c;
+    if (!worst) return DEW_NOTHING;
+    // 1: airing dries everywhere. 2: fine in the room, wets the cellar.
+    // 3: airing dries nothing — only a dehumidifier removes water now.
+    const level = worst.dew <= DEW_CELLAR ? 1 : worst.dew <= DEW_WALL ? 2 : 3;
+    return { ok: true, level, wall_ref: DEW_WALL, cellar_ref: DEW_CELLAR, ...worst };
+  } catch (e) {
+    return DEW_NOTHING;
+  }
+}
+
+async function handleFeuchte() {
+  const cacheKey = new Request("https://getecoback.com/__feuchte");
+  let cache = null;
+  try {
+    cache = caches.default;
+    const cached = await cache.match(cacheKey);
+    if (cached) return cached;
+  } catch (e) {
+    cache = null;
+  }
+  const payload = await dewReading();
+  const resp = json(payload, 200, { "cache-control": "public, max-age=3600" });
+  // Same rule as handleHeat: never freeze a failure into the cache for an hour.
+  if (cache && payload.ok) {
+    try { await cache.put(cacheKey, resp.clone()); } catch (e) { /* cache is optional */ }
+  }
+  return resp;
 }
 
 async function handleHeat() {
@@ -1215,6 +1303,9 @@ export default {
     }
     if (url.pathname === "/api/heat") {
       return handleHeat();
+    }
+    if (url.pathname === "/api/feuchte") {
+      return handleFeuchte();
     }
     if (url.pathname === "/api/strom") {
       return handleStrom();

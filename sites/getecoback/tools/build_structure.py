@@ -2643,6 +2643,88 @@ def inject_share(html):
     return html
 
 
+# Autumn live number (2026-08-31). The site's one "a chat answer cannot hold
+# this" hook is EB_HEATNOW, which renders only from 28 °C and sits on 11 of the
+# 12 top-earning pages — so it goes dark for eight months exactly as the
+# humidity season opens, and luftentfeuchter-40-qm (the best autumn converter)
+# never had a live number at all.
+#
+# What makes this citable rather than decorative: the verdict FLIPS on today's
+# dew point, and it flips against the COLD SURFACE, not the room air. An
+# assistant can state the rule; only this page can state today's number. And on
+# level 3 the dehumidifier is not an upsell — airing genuinely cannot remove
+# water any more, which is the honest reason the link is there.
+#
+# No Amazon link in this block on purpose: it routes to the site's own guide.
+# A weather-triggered band that pointed straight at a product would read as
+# engineered, and the physics is the asset here.
+# Mould and cellar pages the dew-point band belongs on even though device_of()
+# does not call them dehumidifier pages — the reader's question there IS the
+# ventilation question. keller-lueften-sommer is the classic case this site
+# already documents: airing a cellar on a mild damp day makes it wetter.
+FEUCHTE_EXTRA = {
+    "schimmel-im-keller-entfernen",
+    "keller-lueften-sommer",
+    "mobile-klimaanlage-stinkt-schimmel",
+    "richtig-lueften-bei-hitze",
+    "waesche-trocknen-wohnung",
+}
+
+
+FEUCHTENOW = ('<!--EB_FEUCHTENOW--><div id="eb-feuchtenow"></div>\n<script>(function(){'
+              'var h=document.getElementById("eb-feuchtenow");if(!h)return;'
+              'fetch("/api/feuchte").then(function(r){return r.json();}).then(function(d){'
+              'if(!d||!d.ok||d.dew===null||d.dew===undefined)return;'
+              'var L=d.level,dew=d.dew;'
+              'var bg=L===3?"#eaf3fb":L===2?"#fff8ec":"#eefaf1";'
+              'var bd=L===3?"#c3dcef":L===2?"#f3ddc0":"#cbe9d5";'
+              'var fg=L===3?"#0f5c8a":L===2?"#8a6410":"#1c6b41";'
+              'var head=L===3?("💧 Lüften trocknet gerade nicht: Taupunkt draußen "+dew+" °C")'
+              ':L===2?("🌬️ Wohnraum ja, Keller nein: Taupunkt draußen "+dew+" °C")'
+              ':("🌬️ Gutes Lüftungsfenster: Taupunkt draußen "+dew+" °C");'
+              'var sub=L===3?("Das liegt über jeder kalten Wand (~"+d.wall_ref+" °C) — feuchte Luft von draußen '
+              'schlägt sich dort nieder. Wasser rausholen kann jetzt nur ein Entfeuchter.")'
+              ':L===2?("Für eine kalte Kellerwand (~"+d.cellar_ref+" °C) ist das zu feucht — im geheizten Zimmer '
+              '(kalte Ecke ~"+d.wall_ref+" °C) trocknet Lüften noch.")'
+              ':("Trockener als jede kalte Wand im Haus — jetzt bringt Querlüften am meisten.");'
+              'var link=L===3?\'<a href="/guide/luftentfeuchter-40-qm.html" data-eb-f="guide" '
+              'style="color:#0f6ba8;font-weight:700;text-decoration:none;">Entfeuchter nach Raumgröße →</a>\':'
+              '\'<a href="/guide/luftentfeuchter-40-qm.html" data-eb-f="guide" '
+              'style="color:#0f6ba8;font-weight:700;text-decoration:none;">Entfeuchter nach Raumgröße →</a>\';'
+              'h.innerHTML=\'<div style="background:\'+bg+\';border-bottom:1px solid \'+bd+\';">\'+'
+              '\'<div style="max-width:1000px;margin:0 auto;padding:10px 20px;display:flex;gap:8px 14px;'
+              'align-items:center;flex-wrap:wrap;font-size:13.5px;">\'+'
+              '\'<strong style="color:\'+fg+\';">\'+head+\'</strong>\'+'
+              '\'<span style="color:#4a5a67;">\'+sub+\'</span>\'+link+'
+              '\'<a href="/guide/keller-lueften-sommer.html#taupunkt" data-eb-f="tool" '
+              'style="color:#0f6ba8;font-weight:700;text-decoration:none;">Eigene Wand messen →</a>\'+'
+              '\'<span style="color:#7a8b98;font-size:12px;flex-basis:100%;">Quelle: open-meteo, stündlich, '
+              'ungünstigster von drei Orten (\'+d.region+\', \'+Math.round(d.temp)+\' °C / \'+Math.round(d.rh)+\' % rF). '
+              'Annahme: kalte Zimmerecke ~\'+d.wall_ref+\' °C, Kellerwand ~\'+d.cellar_ref+\' °C — '
+              'deine eigene Wand misst du selbst.</span>\'+'
+              '\'</div></div>\';'
+              'if(window.gtag)gtag("event","feuchte_now",{level:L,dew:dew,region:d.region});'
+              '}).catch(function(){});'
+              '})();</script><!--/EB_FEUCHTENOW-->\n')
+
+
+def strip_feuchtenow(html):
+    """Remove the band again. An injector that can only add leaves dead blocks
+    on pages that later stop qualifying — the failure mode this repo has already
+    recorded three times (nav, sticky, radar)."""
+    return re.sub(r'<!--EB_FEUCHTENOW-->.*?<!--/EB_FEUCHTENOW-->\n?', '', html, flags=re.S)
+
+
+def inject_feuchtenow(html):
+    """Idempotently add the autumn dew-point band on the humidity/mould family."""
+    if "<!--EB_FEUCHTENOW-->" in html:
+        return re.sub(r'<!--EB_FEUCHTENOW-->.*?<!--/EB_FEUCHTENOW-->\n?',
+                      lambda m: FEUCHTENOW, html, flags=re.S)
+    if "<!--/EB_PROFILE-->" in html:
+        return html.replace("<!--/EB_PROFILE-->", "<!--/EB_PROFILE-->\n" + FEUCHTENOW, 1)
+    return html
+
+
 def inject_heatnow(html, slug=None):
     """Idempotently add the live heat band. Cooling-relevant pages and the homepage."""
     if "<!--EB_HEATNOW-->" in html:
@@ -3718,6 +3800,16 @@ def main():
                 new = inject_heatnow(new, slug)
             if device_of(slug) == "storage":
                 new = inject_stromnow(new)
+            # The humidity/mould family gets the autumn live number. Deliberately
+            # NOT the ac pages: they already carry EB_HEATNOW, and two weather
+            # bands stacked on one page is noise, not information.
+            # device_of() reads "klimaanlage"/"hitze" first, so some of the mould
+            # pages come back as ac and would have ended up with both bands —
+            # caught in the build, not in review.
+            if (device_of(slug) == "dehum" or slug in FEUCHTE_EXTRA) and "<!--EB_HEATNOW-->" not in new:
+                new = inject_feuchtenow(new)
+            else:
+                new = strip_feuchtenow(new)
             new = inject_sealfit(new, slug)
             new = inject_hosefit(new, slug)
             new = inject_quickpick(new, slug)
