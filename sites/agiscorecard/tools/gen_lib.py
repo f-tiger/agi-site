@@ -3,7 +3,16 @@
 All facts are recombined from already-verified site data — no new claims invented."""
 import json, os
 
-OUT = "/home/user/agiscorecard"
+# 2026-09-04: this was hardcoded to "/home/user/agiscorecard" — the path of the
+# ARCHIVED private repo, left over from the 08-19 monorepo migration. That clone
+# still exists in session sandboxes, so all 28 generators that import gen_lib
+# (gen_index.py and gen_odds.py among them) kept writing there, printed "written",
+# and exited 0 while the monorepo received nothing. A verdict flip would have
+# regenerated /progress-index into a tree that must never be pushed, and the live
+# score would silently have stayed stale — the exact failure the propagation rule
+# in CLAUDE.md exists to prevent. Resolve from this file's own location instead,
+# which is correct wherever the repo is checked out.
+OUT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = "https://agiscorecard.com"
 OG_IMG = f"{SITE}/scorecard-summary.png"
 DATE = "2026-06-30"

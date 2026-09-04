@@ -1,0 +1,124 @@
+name: Fleet heartbeat
+
+# ── 第①层自治（owner 2026-09-04:「舰队自己不能依赖你进化…避免强依赖你」）──
+#
+# 存在的理由,有事故为证:2026-09-03 起两个自绑定 Routine 被平台挂起
+# (suspension_reason=plan_no_longer_eligible),thedollscout 因此冻结 ~86 小时
+# 才被人发现——它的部署是纯 push 触发,没有会话推它就没有任何东西推它。
+# 本 workflow 是舰队的「死人开关的反面」:AI 会话层整体死掉时,站点仍然
+# ①被探活 ②超过 7 天没部署就自动重新部署 ③把健康快照写回仓库,让任何一个
+# 后续会话不靠任何 MCP 就能读到舰队状态。
+#
+# 成本(CLAUDE.md 第 2 条要求先算账):实测 19 秒/次(2026-09-04 首跑),按最小计费
+# 粒度 1 分钟/次 × 30 次/月 = <=30 分钟/月,
+# agi-site 是公开仓 → Actions 免费,不占账号 2000 分钟额度。
+# 无外部副作用(不推 IndexNow、不存 Wayback),只 curl 自己的站 + 派发自己的部署。
+
+on:
+  schedule:
+    - cron: "0 8 * * *"   # 每日 08:00 UTC = 16:00 北京,晚于所有站点的部署窗口
+  workflow_dispatch: {}
+
+concurrency:
+  group: fleet-heartbeat
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  heartbeat:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Probe every site and redeploy anything stale
+        id: probe
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -uo pipefail
+          # site|live URL|deploy workflow file
+          SITES='agiscorecard|https://agiscorecard.com/|deploy-agiscorecard.yml
+          baipiaoji|https://baipiaoji.com/|deploy-baipiaoji.yml
+          getecoback|https://getecoback.com/|deploy-getecoback.yml
+          thedollscout|https://thedollscout.com/|deploy-thedollscout.yml
+          goldrush|https://goldrush.agiscorecard.com/|deploy-goldrush.yml
+          gridlings|https://play.agiscorecard.com/|deploy-gridlings.yml
+          buysomething|https://source.agiscorecard.com/|deploy-buysomething.yml
+          gamesledger|https://games.agiscorecard.com/|deploy-gamesledger.yml'
+
+          NOW=$(date -u +%s)
+          BAD=0
+          echo '{' > /tmp/h.json
+          echo "  \"generated\": \"$(date -u +%Y-%m-%dT%H:%M:%SZ)\"," >> /tmp/h.json
+          echo '  "sites": [' >> /tmp/h.json
+          FIRST=1
+
+          while IFS='|' read -r name url wf; do
+            name=$(echo "$name" | xargs); url=$(echo "$url" | xargs); wf=$(echo "$wf" | xargs)
+            [ -z "$name" ] && continue
+
+            # ① 探活:3 次重试,只认最终 200(重定向跟随)。
+            code=$(curl -sS -o /dev/null -w '%{http_code}' -L --retry 3 --retry-delay 3 \
+                     --max-time 25 -A 'agi-site-fleet-heartbeat' "$url" || echo 000)
+
+            # ② 最近一次成功部署的年龄。
+            last=$(gh api "repos/$REPO/actions/workflows/$wf/runs?status=success&per_page=1" \
+                     --jq '.workflow_runs[0].updated_at // ""' 2>/dev/null || echo "")
+            if [ -n "$last" ]; then
+              age=$(( (NOW - $(date -u -d "$last" +%s)) / 86400 ))
+            else
+              age=-1
+            fi
+
+            # ③ 超过 7 天没有成功部署 → 自动重新部署一次(幂等:部署链是「按当前
+            #    源码重建并发布」,重跑不会改变内容,只保证线上不是陈年产物)。
+            redeployed=false
+            if [ "$age" -ge 7 ] || [ "$age" -eq -1 ]; then
+              if gh workflow run "$wf" --ref main >/dev/null 2>&1; then
+                redeployed=true
+                echo "::warning::$name 已 ${age} 天没有成功部署,已自动派发 $wf"
+              fi
+            fi
+
+            # ④ 站点打不开是硬失败:让本次 run 变红,GitHub 会直接邮件通知 owner。
+            #    这是整条链上唯一不需要任何 AI 会话就能送达的告警。
+            if [ "$code" != "200" ]; then
+              BAD=1
+              echo "::error::$name ($url) 返回 $code,不是 200"
+            fi
+
+            [ $FIRST -eq 0 ] && echo ',' >> /tmp/h.json
+            FIRST=0
+            printf '    {"site":"%s","url":"%s","http":"%s","days_since_deploy":%s,"redeployed":%s}' \
+              "$name" "$url" "$code" "$age" "$redeployed" >> /tmp/h.json
+          done <<< "$SITES"
+
+          echo '' >> /tmp/h.json
+          echo '  ]' >> /tmp/h.json
+          echo '}' >> /tmp/h.json
+          mkdir -p data
+          cp /tmp/h.json data/fleet-health.json
+          cat data/fleet-health.json
+          echo "bad=$BAD" >> "$GITHUB_OUTPUT"
+
+      # 快照回仓:任何后续会话(哪怕没有 Cloudflare/GitHub MCP)都能 cat 一下就
+      # 知道舰队是不是活着。data/ 不在任何站点的部署 path 过滤里,不会烧部署。
+      - name: Commit health snapshot
+        run: |
+          cd "$GITHUB_WORKSPACE"
+          git config user.email noreply@anthropic.com
+          git config user.name Claude
+          git add data/fleet-health.json
+          git diff --cached --quiet && { echo "无变化"; exit 0; }
+          git commit -m "chore(fleet): heartbeat 健康快照 $(date -u +%F)"
+          for i in 1 2 3 4; do
+            git fetch origin main -q && git rebase -q origin/main && git push -q origin HEAD:main && break || { git rebase --abort 2>/dev/null || true; sleep $((2**i)); }
+          done
+
+      - name: Fail the run if any site is down
+        if: steps.probe.outputs.bad == '1'
+        run: exit 1

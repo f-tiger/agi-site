@@ -1,5 +1,5 @@
 {
- "fetched": "2026-08-31",
+ "fetched": "2026-09-04",
  "seeds": {
   "electric spin scrubber": {
    "auto": [
@@ -211,46 +211,164 @@
     "solar camping lights nearby",
     "solar camping lights bcf"
    ],
+   "rising": [],
+   "source": "autocomplete-diff",
+   "fetched": "2026-09-01"
+  },
+  "camping moon chair": {
+   "auto": [
+    "camping moon chair",
+    "camping moon chair with cup holder",
+    "camping moon chair home bargains",
+    "camping moon chair halfords",
+    "camping moon chairs for adults",
+    "camping moon chair go outdoors",
+    "camping moon chair nz",
+    "camping moon chairs uk",
+    "camping moon chair kids",
+    "camping moon chair sale"
+   ],
+   "rising": [],
+   "source": "autocomplete-diff",
+   "fetched": "2026-09-02"
+  },
+  "portable blender": {
+   "auto": [
+    "portable blender",
+    "portable blender bottle",
+    "portable blender for smoothies",
+    "portable blender cup",
+    "portable blender walmart",
+    "portable blender ninja",
+    "portable blender near me",
+    "portable blender for travel",
+    "portable blender amazon",
+    "portable blender for protein shakes"
+   ],
    "rising": [
     {
-     "q": "solar camping lights string",
+     "q": "portable blender bottle",
      "v": "new"
     },
     {
-     "q": "solar camping lights amazon",
+     "q": "portable blender for smoothies",
      "v": "new"
     },
     {
-     "q": "solar camping lights - bunnings",
+     "q": "portable blender cup",
      "v": "new"
     },
     {
-     "q": "solar camping lights nz",
+     "q": "portable blender walmart",
      "v": "new"
     },
     {
-     "q": "solar camping lights kmart",
+     "q": "portable blender ninja",
      "v": "new"
     },
     {
-     "q": "solar camping lights anaconda",
+     "q": "portable blender near me",
      "v": "new"
     },
     {
-     "q": "solar camping lights south africa",
+     "q": "portable blender for travel",
      "v": "new"
     },
     {
-     "q": "solar camping lights nearby",
+     "q": "portable blender amazon",
      "v": "new"
     },
     {
-     "q": "solar camping lights bcf",
+     "q": "portable blender for protein shakes",
      "v": "new"
     }
    ],
    "source": "autocomplete-diff",
-   "fetched": "2026-08-31"
+   "fetched": "2026-09-03"
+  },
+  "vegetable chopper": {
+   "rising": [
+    {
+     "q": "prestige vegetable chopper",
+     "v": 450
+    },
+    {
+     "q": "how to use a vegetable chopper",
+     "v": 200
+    },
+    {
+     "q": "bralo vegetable chopper",
+     "v": 180
+    },
+    {
+     "q": "miu vegetable chopper",
+     "v": 100
+    },
+    {
+     "q": "costco vegetable chopper",
+     "v": 90
+    }
+   ],
+   "source": "related-queries",
+   "fetched": "2026-09-04"
+  },
+  "power bank built in cable": {
+   "auto": [
+    "power bank built in cables",
+    "power bank built in cable not working",
+    "power bank built in cable 20000mah",
+    "power bank built in cable reddit",
+    "power bank built in cable iphone",
+    "power bank built in cable lightning",
+    "power bank built in cord",
+    "anker power bank built in cable",
+    "xiaomi power bank built in cable",
+    "power bank with built in cable and wall plug"
+   ],
+   "rising": [
+    {
+     "q": "power bank built in cables",
+     "v": "new"
+    },
+    {
+     "q": "power bank built in cable not working",
+     "v": "new"
+    },
+    {
+     "q": "power bank built in cable 20000mah",
+     "v": "new"
+    },
+    {
+     "q": "power bank built in cable reddit",
+     "v": "new"
+    },
+    {
+     "q": "power bank built in cable iphone",
+     "v": "new"
+    },
+    {
+     "q": "power bank built in cable lightning",
+     "v": "new"
+    },
+    {
+     "q": "power bank built in cord",
+     "v": "new"
+    },
+    {
+     "q": "anker power bank built in cable",
+     "v": "new"
+    },
+    {
+     "q": "xiaomi power bank built in cable",
+     "v": "new"
+    },
+    {
+     "q": "power bank with built in cable and wall plug",
+     "v": "new"
+    }
+   ],
+   "source": "autocomplete-diff",
+   "fetched": "2026-09-04"
   }
  }
 }

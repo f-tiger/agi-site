@@ -196,6 +196,9 @@ export default {
             { name: 'get_claim_ledger',
               description: 'Read a Claim Ledger Protocol v0.1 ledger — AI-era money-making claims graded with an evidence tier (verified/reported/self-reported), a dated verdict, and a written flip condition. With no arguments returns the reference ledger (goldrush.agiscorecard.com); pass url to read and validate any site\'s /claimledger.json. Spec: goldrush.agiscorecard.com/protocol',
               inputSchema: { type: 'object', properties: { url: { type: 'string', description: 'Optional: an https URL ending in /claimledger.json to read another site\'s ledger. Omit for the reference ledger.' } } } },
+            { name: 'get_invest_positions',
+              description: 'The Invest dataset: how the eight graded Situational Awareness predictions map onto 17 listed AI equities, how eight well-known investors are positioned per their public SEC 13F filings, and what copying them would have returned priced on the FILING DATE (not quarter end, which no real person could have traded). Educational only — never investment advice.',
+              inputSchema: { type: 'object', properties: {} } },
             { name: 'search_site',
               description: 'Search every page and tool on agiscorecard.com and its invest/compass sub-sites (English and Chinese). Returns titles, descriptions and URLs.',
               inputSchema: { type: 'object', properties: { query: { type: 'string', description: 'Search query' } }, required: ['query'] } },
@@ -259,6 +262,13 @@ export default {
               validation: { entryCount: entries.length, invalidEntries: invalid, note: invalid ? 'entries missing required fields are flagged, per protocol admission rules' : 'all entries carry the five required fields' },
               entries: entries.slice(0, 50),
             });
+          }
+          if (tool === 'get_invest_positions') {
+            const d = await asset('/invest-data.json');
+            ctx.waitUntil(env.EVENTS.prepare(
+              "INSERT INTO events (ts, day, name, location, label, path, ua_class) VALUES (?,?,?,?,?,?,?)"
+            ).bind(Date.now(), new Date().toISOString().slice(0, 10), 'site_search', 'mcp', 'tool:invest_positions', '/mcp', 'bot').run().catch(function () { }));
+            return mcpText(id, d);
           }
           if (tool === 'search_site') {
             const q = String(args.query || '').toLowerCase().trim();

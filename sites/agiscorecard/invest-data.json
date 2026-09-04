@@ -1,0 +1,573 @@
+{
+ "name": "AGI Scorecard — Invest dataset",
+ "url": "https://agiscorecard.com/invest-data.json",
+ "license": "CC BY 4.0 — cite agiscorecard.com/invest",
+ "dateModified": "2026-08-17",
+ "about": "How the eight graded Situational Awareness predictions map onto listed AI equities, how eight well-known investors are actually positioned per their public SEC 13F filings, and what copying them would have returned when priced on the filing date rather than at quarter end.",
+ "notInvestmentAdvice": "Educational information built from public SEC 13F filings and public statements. Holdings are quarterly snapshots and may not reflect current positions. Nothing here is a recommendation to buy or sell any security, and this site never judges whether a price is cheap or expensive.",
+ "thesisTracker": {
+  "score": 62.5,
+  "scale": "0–100, the mean of the eight verdict weights below",
+  "url": "https://agiscorecard.com/progress-index"
+ },
+ "predictions": [
+  {
+   "id": "knowledge-work",
+   "label": "Knowledge work",
+   "verdict": "On track",
+   "weight": 1.0,
+   "sources": [
+    {
+     "name": "OpenAI GDPval",
+     "url": "https://openai.com/index/gdpval/"
+    },
+    {
+     "name": "SWE-bench",
+     "url": "https://www.swebench.com"
+    }
+   ]
+  },
+  {
+   "id": "compute-scaling",
+   "label": "Compute scaling",
+   "verdict": "On track",
+   "weight": 1.0,
+   "sources": [
+    {
+     "name": "Epoch AI — Trends in AI",
+     "url": "https://epoch.ai/trends"
+    }
+   ]
+  },
+  {
+   "id": "capex",
+   "label": "AI capex",
+   "verdict": "Exceeded",
+   "weight": 1.0,
+   "sources": [
+    {
+     "name": "Epoch AI — Finances of AI",
+     "url": "https://epoch.ai/topics/finances"
+    }
+   ]
+  },
+  {
+   "id": "open-source-fades",
+   "label": "Open source fades",
+   "verdict": "Wrong",
+   "weight": 0.0,
+   "sources": [
+    {
+     "name": "Epoch AI",
+     "url": "https://epoch.ai"
+    }
+   ]
+  },
+  {
+   "id": "agi-2027",
+   "label": "AGI by 2027",
+   "verdict": "Open",
+   "weight": 0.5,
+   "sources": [
+    {
+     "name": "Situational Awareness (Aschenbrenner, 2024)",
+     "url": "https://situational-awareness.ai"
+    }
+   ]
+  },
+  {
+   "id": "the-project",
+   "label": "The Project",
+   "verdict": "Open",
+   "weight": 0.5,
+   "sources": [
+    {
+     "name": "Situational Awareness (Aschenbrenner, 2024)",
+     "url": "https://situational-awareness.ai"
+    }
+   ]
+  },
+  {
+   "id": "intelligence-explosion",
+   "label": "Intelligence explosion",
+   "verdict": "Pending",
+   "weight": 0.5,
+   "sources": [
+    {
+     "name": "Situational Awareness (Aschenbrenner, 2024)",
+     "url": "https://situational-awareness.ai"
+    }
+   ]
+  },
+  {
+   "id": "superintelligence",
+   "label": "Superintelligence",
+   "verdict": "Pending",
+   "weight": 0.5,
+   "sources": [
+    {
+     "name": "Situational Awareness (Aschenbrenner, 2024)",
+     "url": "https://situational-awareness.ai"
+    }
+   ]
+  }
+ ],
+ "filings": {
+  "quarter": "Q2 2026",
+  "holdingsAsOf": "June 30",
+  "filedOn": "August 14",
+  "note": "Line-by-line positions come only from 13F filings. A manager's qualitative commentary is NEVER recorded as a holding."
+ },
+ "investorStances": [
+  {
+   "investor": "Warren Buffett",
+   "firm": "Berkshire Hathaway",
+   "stance": "Cautious",
+   "note": "Alphabet added again in Q2 (A+C classes now 12.6% of the book) — the clearest AI bet; Apple still #1 at 22%; Amazon, exited in Q1, not rebought"
+  },
+  {
+   "investor": "Cathie Wood",
+   "firm": "ARK Invest",
+   "stance": "Bull",
+   "note": "Aggressively long AI infra & next-gen compute: CoreWeave, Cerebras; nuclear (X-Energy) as AI's power base"
+  },
+  {
+   "investor": "Bill Ackman",
+   "firm": "Pershing Square",
+   "stance": "Bull",
+   "note": "Amazon top AI position (17.4% of an 11-name book), Microsoft 15.3%, Meta 11.1% — per Q1 2026, his latest filing"
+  },
+  {
+   "investor": "David Tepper",
+   "firm": "Appaloosa",
+   "stance": "Bull",
+   "note": "Amazon #1 (15.4%), Micron 14.6%, TSMC 10.2% — AI monetization and the memory cycle over pure compute"
+  },
+  {
+   "investor": "Stanley Druckenmiller",
+   "firm": "Duquesne",
+   "stance": "Cautious",
+   "note": "TSMC top AI position (5.4%); rotated into storage and memory (Seagate 2.3%, SanDisk 1.5%) — the bottleneck trade, not the crowded names"
+  },
+  {
+   "investor": "Duan Yongping",
+   "firm": "H&H International",
+   "stance": "Cautious",
+   "note": "Apple the anchor (41.1% of the book); Tesla 7.4%, Nvidia 6.6% — the 2026 full-chain AI tilt held through Q2"
+  },
+  {
+   "investor": "Philippe Laffont",
+   "firm": "Coatue",
+   "stance": "Cautious",
+   "note": "Full-stack AI infrastructure: TSMC #1 (8.8%), Lam Research 8.4%, Micron 7.5%"
+  },
+  {
+   "investor": "Michael Burry",
+   "firm": "Scion (wound down)",
+   "stance": "Bear",
+   "note": "The clearest AI bear (per 2026-05 personal disclosure)"
+  }
+ ],
+ "investorProfiles": [
+  {
+   "slug": "cathie-wood",
+   "name": "Cathie Wood",
+   "holdingsAsOf": "2026-06-30",
+   "quarter": "Q2 2026",
+   "filedOn": "2026-08-14",
+   "url": "https://agiscorecard.com/invest/cathie-wood",
+   "holdings": [
+    {
+     "ticker": "TSLA",
+     "name": "Tesla",
+     "action": "Held",
+     "note": "#1 holding (7.5%) — the physical-AI bet"
+    },
+    {
+     "ticker": "AMD",
+     "name": "AMD",
+     "action": "Held",
+     "note": "#2 at 5.3% — the largest AI-semis position"
+    },
+    {
+     "ticker": "TEM",
+     "name": "Tempus AI",
+     "action": "Held",
+     "note": "3.8% — AI + healthcare data"
+    },
+    {
+     "ticker": "AMZN",
+     "name": "Amazon",
+     "action": "Held",
+     "note": "2.5% — cloud + AI platform"
+    },
+    {
+     "ticker": "PLTR",
+     "name": "Palantir",
+     "action": "Held",
+     "note": "2.4% — AI software"
+    },
+    {
+     "ticker": "NVDA",
+     "name": "Nvidia",
+     "action": "Held",
+     "note": "1.8%"
+    },
+    {
+     "ticker": "CRWV",
+     "name": "CoreWeave",
+     "action": "Held",
+     "note": "1.7% — pure-play GPU cloud"
+    }
+   ]
+  },
+  {
+   "slug": "warren-buffett",
+   "name": "Warren Buffett",
+   "holdingsAsOf": "2026-06-30",
+   "quarter": "Q2 2026",
+   "filedOn": "2026-08-14",
+   "url": "https://agiscorecard.com/invest/warren-buffett",
+   "holdings": [
+    {
+     "ticker": "AAPL",
+     "name": "Apple",
+     "action": "Held",
+     "note": "#1 holding at 22.0% of the book (12 separate filing lines, combined)"
+    },
+    {
+     "ticker": "GOOGL",
+     "name": "Alphabet",
+     "action": "Added",
+     "note": "Added again — Class A 9.4% + Class C 3.2% = 12.6% of the book; the clearest AI bet, two quarters running"
+    },
+    {
+     "ticker": "AMZN",
+     "name": "Amazon",
+     "action": "Exited",
+     "note": "Exited in Q1 2026; the Q2 filing confirms it was not rebought"
+    }
+   ]
+  }
+ ],
+ "tickerMap": {
+  "disclaimer": "The ticker-to-prediction mapping is editorial: it is an argument about what each company's AI valuation rides on, not a measured quantity. It is the part a reader should push back on. Weights sum to 1 within each ticker.",
+  "tool": "https://agiscorecard.com/ai-stock-exposure",
+  "tickers": [
+   {
+    "ticker": "NVDA",
+    "name": "Nvidia",
+    "coverage": "high",
+    "rationale": "Sells the shovels for both the scaling curve and the capex wave — the purest listed proxy for two of the three predictions currently graded supportive.",
+    "links": [
+     {
+      "prediction": "compute-scaling",
+      "weight": 0.45,
+      "direction": "pays off if the prediction HOLDS"
+     },
+     {
+      "prediction": "capex",
+      "weight": 0.45,
+      "direction": "pays off if the prediction HOLDS"
+     },
+     {
+      "prediction": "intelligence-explosion",
+      "weight": 0.1,
+      "direction": "pays off if the prediction HOLDS"
+     }
+    ]
+   },
+   {
+    "ticker": "AMD",
+    "name": "AMD",
+    "coverage": "high",
+    "rationale": "The second-source accelerator bet: it needs the spending to keep going more than it needs any particular capability milestone.",
+    "links": [
+     {
+      "prediction": "compute-scaling",
+      "weight": 0.4,
+      "direction": "pays off if the prediction HOLDS"
+     },
+     {
+      "prediction": "capex",
+      "weight": 0.6,
+      "direction": "pays off if the prediction HOLDS"
+     }
+    ]
+   },
+   {
+    "ticker": "TSM",
+    "name": "TSMC",
+    "coverage": "high",
+    "rationale": "Everything above is fabricated here. The exposure is to the physical scaling curve, one layer below whose logo is on the chip.",
+    "links": [
+     {
+      "prediction": "compute-scaling",
+      "weight": 0.5,
+      "direction": "pays off if the prediction HOLDS"
+     },
+     {
+      "prediction": "capex",
+      "weight": 0.5,
+      "direction": "pays off if the prediction HOLDS"
+     }
+    ]
+   },
+   {
+    "ticker": "AVGO",
+    "name": "Broadcom",
+    "coverage": "high",
+    "rationale": "Custom accelerators and the networking between them — a capex-cycle position more than a frontier-capability one.",
+    "links": [
+     {
+      "prediction": "capex",
+      "weight": 0.6,
+      "direction": "pays off if the prediction HOLDS"
+     },
+     {
+      "prediction": "compute-scaling",
+      "weight": 0.4,
+      "direction": "pays off if the prediction HOLDS"
+     }
+    ]
+   },
+   {
+    "ticker": "MSFT",
+    "name": "Microsoft",
+    "coverage": "high",
+    "rationale": "Spends on the buildout and sells the knowledge-work product on top of it. Exposed to both the money and the capability.",
+    "links": [
+     {
+      "prediction": "capex",
+      "weight": 0.5,
+      "direction": "pays off if the prediction HOLDS"
+     },
+     {
+      "prediction": "knowledge-work",
+      "weight": 0.5,
+      "direction": "pays off if the prediction HOLDS"
+     }
+    ]
+   },
+   {
+    "ticker": "GOOGL",
+    "name": "Alphabet",
+    "coverage": "high",
+    "rationale": "Full stack — own models, own TPUs, own distribution. Berkshire raised this 225% in Q1 2026 and added again in Q2, its clearest AI statement.",
+    "links": [
+     {
+      "prediction": "knowledge-work",
+      "weight": 0.4,
+      "direction": "pays off if the prediction HOLDS"
+     },
+     {
+      "prediction": "compute-scaling",
+      "weight": 0.3,
+      "direction": "pays off if the prediction HOLDS"
+     },
+     {
+      "prediction": "capex",
+      "weight": 0.3,
+      "direction": "pays off if the prediction HOLDS"
+     }
+    ]
+   },
+   {
+    "ticker": "AMZN",
+    "name": "Amazon",
+    "coverage": "high",
+    "rationale": "Cloud capex plus the agent products running on it. Berkshire exited it entirely the same quarter ARK was adding.",
+    "links": [
+     {
+      "prediction": "capex",
+      "weight": 0.5,
+      "direction": "pays off if the prediction HOLDS"
+     },
+     {
+      "prediction": "knowledge-work",
+      "weight": 0.5,
+      "direction": "pays off if the prediction HOLDS"
+     }
+    ]
+   },
+   {
+    "ticker": "META",
+    "name": "Meta",
+    "coverage": "medium",
+    "rationale": "The one position on this list that pays off when a prediction FAILS. Meta's AI strategy is open weights — it gains exactly where Aschenbrenner said the moat would hold. That prediction is already graded Wrong.",
+    "links": [
+     {
+      "prediction": "open-source-fades",
+      "weight": 1.0,
+      "direction": "pays off if the prediction FAILS"
+     }
+    ]
+   },
+   {
+    "ticker": "BABA",
+    "name": "Alibaba",
+    "coverage": "medium",
+    "rationale": "Qwen is open-weight and near-frontier. Like Meta, it is long the failure of the moat prediction — which is the one the scorecard has already called.",
+    "links": [
+     {
+      "prediction": "open-source-fades",
+      "weight": 1.0,
+      "direction": "pays off if the prediction FAILS"
+     }
+    ]
+   },
+   {
+    "ticker": "PLTR",
+    "name": "Palantir",
+    "coverage": "medium",
+    "rationale": "Deployed government and enterprise AI. The closest listed proxy for The Project, though a contractor is not the same thing as a national programme.",
+    "links": [
+     {
+      "prediction": "knowledge-work",
+      "weight": 0.7,
+      "direction": "pays off if the prediction HOLDS"
+     },
+     {
+      "prediction": "the-project",
+      "weight": 0.3,
+      "direction": "pays off if the prediction HOLDS"
+     }
+    ]
+   },
+   {
+    "ticker": "CRWV",
+    "name": "CoreWeave",
+    "coverage": "high",
+    "rationale": "Pure capex beta. If the spending slows, there is no second story here — which is what makes it the cleanest read on that one prediction.",
+    "links": [
+     {
+      "prediction": "capex",
+      "weight": 1.0,
+      "direction": "pays off if the prediction HOLDS"
+     }
+    ]
+   },
+   {
+    "ticker": "MU",
+    "name": "Micron",
+    "coverage": "high",
+    "rationale": "Memory is the bottleneck the scaling curve keeps running into. Cyclical in a way the software names are not.",
+    "links": [
+     {
+      "prediction": "compute-scaling",
+      "weight": 0.5,
+      "direction": "pays off if the prediction HOLDS"
+     },
+     {
+      "prediction": "capex",
+      "weight": 0.5,
+      "direction": "pays off if the prediction HOLDS"
+     }
+    ]
+   },
+   {
+    "ticker": "VRT",
+    "name": "Vertiv",
+    "coverage": "medium",
+    "rationale": "Power and cooling for the buildout. Exposed to how many racks get installed, not to what the models can do.",
+    "links": [
+     {
+      "prediction": "capex",
+      "weight": 1.0,
+      "direction": "pays off if the prediction HOLDS"
+     }
+    ]
+   },
+   {
+    "ticker": "CEG",
+    "name": "Constellation Energy",
+    "coverage": "low",
+    "rationale": "Compute demand shows up downstream as electricity demand. Real linkage, but a utility has a large business that has nothing to do with any of this.",
+    "links": [
+     {
+      "prediction": "capex",
+      "weight": 1.0,
+      "direction": "pays off if the prediction HOLDS"
+     }
+    ]
+   },
+   {
+    "ticker": "TSLA",
+    "name": "Tesla",
+    "coverage": "low",
+    "rationale": "Robotaxi and physical AI are not among the eight predictions. The honest linkage is thin — and it is ARK's largest holding at 7.5%.",
+    "links": [
+     {
+      "prediction": "knowledge-work",
+      "weight": 0.5,
+      "direction": "pays off if the prediction HOLDS"
+     },
+     {
+      "prediction": "agi-2027",
+      "weight": 0.5,
+      "direction": "pays off if the prediction HOLDS"
+     }
+    ]
+   },
+   {
+    "ticker": "TEM",
+    "name": "Tempus AI",
+    "coverage": "low",
+    "rationale": "AI applied to healthcare data. Rides the capability prediction, but through a regulated market with its own clock.",
+    "links": [
+     {
+      "prediction": "knowledge-work",
+      "weight": 1.0,
+      "direction": "pays off if the prediction HOLDS"
+     }
+    ]
+   },
+   {
+    "ticker": "AAPL",
+    "name": "Apple",
+    "coverage": "low",
+    "rationale": "The weakest linkage on the list, and deliberately kept: it is Berkshire's largest holding at 22%, and a basket full of it is barely an AGI bet at all.",
+    "links": [
+     {
+      "prediction": "knowledge-work",
+      "weight": 1.0,
+      "direction": "pays off if the prediction HOLDS"
+     }
+    ]
+   }
+  ]
+ },
+ "copyHomework": {
+  "asOf": "2026-08-16",
+  "rebalances": 8,
+  "since": "August 2024",
+  "method": "Each basket is bought at the CLOSE OF ITS FILING DATE and held to the next filing — a 13F is public ~45 days late, so quarter-end pricing assumes a price nobody could have traded.",
+  "scope": "AI-related holdings only, re-weighted as filed. Not these managers' whole-portfolio returns. 13F does not show shorts or option hedges; which names count as 'AI' is this site's editorial judgement.",
+  "returns": [
+   {
+    "investor": "Stanley Druckenmiller",
+    "pct": 187.2
+   },
+   {
+    "investor": "Cathie Wood",
+    "pct": 170.0
+   },
+   {
+    "investor": "David Tepper",
+    "pct": 108.2
+   },
+   {
+    "investor": "Warren Buffett",
+    "pct": 37.3,
+    "note": "lagged the benchmark"
+   }
+  ],
+  "benchmark": {
+   "name": "QQQ",
+   "pct": 59.6,
+   "window": "same window, per-leg compounded"
+  },
+  "source": "https://compass.agiscorecard.com/en/track-record"
+ },
+ "provenance": "Generated by tools/gen_invest_data.py from data.json, invest.html and the section's page generators. Nothing in this file is hand-typed; the generator exits non-zero rather than publish a number it could not read from a source."
+}

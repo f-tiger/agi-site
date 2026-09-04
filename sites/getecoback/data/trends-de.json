@@ -1,57 +1,56 @@
 {
  "ok": true,
- "fetched": "2026-08-31",
+ "fetched": "2026-09-04",
  "source": "https://trends.google.com/trending/rss?geo=DE",
- "matched": [],
+ "matched": [
+  {
+   "title": "wetterwarnung",
+   "traffic": "200+"
+  }
+ ],
  "top": [
   {
-   "title": "osterdeich",
-   "traffic": "200+"
-  },
-  {
-   "title": "200 megapixel",
-   "traffic": "200+"
-  },
-  {
-   "title": "dornstadt",
+   "title": "bsw",
    "traffic": "1000+"
   },
   {
-   "title": "bombenfund köln",
+   "title": "wetterwarnung",
    "traffic": "200+"
   },
   {
-   "title": "dtm",
-   "traffic": "200+"
-  },
-  {
-   "title": "україна",
-   "traffic": "200+"
-  },
-  {
-   "title": "rouven schröder",
-   "traffic": "200+"
-  },
-  {
-   "title": "corum fk",
-   "traffic": "2000+"
-  },
-  {
-   "title": "rhein fire",
+   "title": "rechnungshof",
    "traffic": "100+"
   },
   {
-   "title": "nosferatu spinne",
-   "traffic": "2000+"
+   "title": "scooter braun",
+   "traffic": "500+"
+  },
+  {
+   "title": "wuppertaler schwebebahn",
+   "traffic": "100+"
+  },
+  {
+   "title": "lanxess arena",
+   "traffic": "100+"
+  },
+  {
+   "title": "wedemark",
+   "traffic": "200+"
+  },
+  {
+   "title": "basketball wm frauen 2026",
+   "traffic": "100+"
+  },
+  {
+   "title": "unbekannter toter",
+   "traffic": "5000+"
+  },
+  {
+   "title": "ticketmaster",
+   "traffic": "1000+"
   }
  ],
  "history": [
-  {
-   "d": "2026-08-20",
-   "matched": [
-    "wetter magdeburg"
-   ]
-  },
   {
    "d": "2026-08-21",
    "matched": [
@@ -105,6 +104,24 @@
   {
    "d": "2026-08-31",
    "matched": []
+  },
+  {
+   "d": "2026-09-01",
+   "matched": []
+  },
+  {
+   "d": "2026-09-02",
+   "matched": []
+  },
+  {
+   "d": "2026-09-03",
+   "matched": []
+  },
+  {
+   "d": "2026-09-04",
+   "matched": [
+    "wetterwarnung"
+   ]
   }
  ]
 }

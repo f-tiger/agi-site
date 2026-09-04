@@ -1,3 +1,30 @@
+## 2026-09-04（合并后的首条「舰队日报」，agi + sourceradar）
+
+- **spec（两轮）**：R1 四层监控 + 游戏层 + 新增第①层 heartbeat；R2 自我批判——今天
+  是周五（不做周一项），且本会话当日已推 3 次，按配额纪律只允许再合并一次 push。
+- **⓪+ 引用队列：两项都被自己的前置闸门挡着**（`datacenter-grid-cost-tracker` 与
+  `eu-ai-act-de` 都要 09-01~03 的 Bing 明细/英文版过线，owner 尚未提供）。
+  队列是**被闸门挡住**，不是空——按纪律不塞猜的选题，回到 ①。
+- **ship：PRD P5 `/invest-data.json`**（原创机器可读数据集 = 引用磁石）。8 条判定+权重、
+  17 票映射、8 人 13F 态度、2 人逐笔持仓、抄作业成绩单（申报日定价）。生成器
+  `tools/gen_invest_data.py` **一个数字都不手写**，任何一处解析不到就 exit(1)。
+  接线：llms.txt + /for-agents 表 + `/mcp` 新工具 `get_invest_positions`（挂既有端点，
+  零新增基建，埋点 `site_search{mcp, tool:invest_positions}`）。
+- **本轮最重要的不是 ship，是这个 bug**：`gen_lib.OUT` 自 08-19 迁库起指向**已归档
+  私有仓**，28 个生成器（含 gen_index/gen_odds）一直写去无人处并返回 0。判定翻转日
+  这会让线上分数悄悄不动。已修；连带发现 `gen_for_agents.py`（-46 行）与
+  `gen_invest_profiles.py`（回滚一个季度、import 即写）都已落后于自己的页面，
+  两处加了大写警告，规矩写进 CLAUDE.md 新增的「生成器漂移」一节。
+- **数据（28 天 / 7 天，JS 口径）**：page_view 1042 / 262（≈37.4 人/日）；vote_cast 26/12；
+  subscribe_click 6/2；sub_open 4、sub_submit 2、**sub_ok 2**（09-30 线阈值 5）；
+  `tool_click` 17/**0**、`exposure_score` 16/**0** —— invest 工具近 7 天完全静默。
+  落地页第一名首次不是首页：**/when-will-agi-arrive 44 > / 28**。
+- **反面记录（不越期结算）**：`affiliate_click` 全站 14 天 **0**，而埋点已实测在线
+  （worker 部署代码含 affiliate_click 白名单 + 页面 onclick 齐全）——**这是真零，
+  不是仪器问题**。10-31 的 books 判定线按期结算，今天不提前裁决，也不动那一页
+  （5-run 防翻炒窗口内）。
+- validate OK（225 页 / 207 URL）。
+
 ## 2026-08-30(每日 run 04:00)— 裁决日:*_live 判纯品牌资产;P4 中文判定页上线
 
 - **spec(三轮精简)**:今日双重身份——例行 run + `index_click{*_live}` 预登记裁决日。
@@ -2536,3 +2563,17 @@ validate 222 页 OK。种子在 content-backlog 打勾。
   把同形态复制到 `/progress-index` 与 `/when-will-agi-arrive`;<10 → 拆除,记「首页读者不玩
   页内游戏」为反面发现。**`challenge_share{grade_game}` ≥3 单独构成裂变信号**(现基线 0)。
 - validate OK(225 页 / 207 URL);游戏 JS 单独 node --check 通过。
+
+## 2026-09-01(每日 run,月初)— 只验仪器不动页面
+- **spec**:常规日更 + 月初两件(向 owner 要 Bing AI Performance 明细、核 Actions 额度重置)。
+  **自我批判并据此收手**:昨日一天已动 agi 三处并当面承诺静置,今日**不改任何页面**;
+  该做的是验证昨天装的仪器是否真在记录——那是验证,不是翻炒。
+- **仪器验证通过(本轮最重要产出)**:内部跳转配对上线不到 24 小时即产出 20 条 JS 口径记录,
+  **来源 100% 是首页,深页向外递送 0**;落点第一是 `/will-agi-arrive-2027`(4 次,正是首页
+  readnext 第二条,与"readnext 是全站最强 CTA"互证)。**n=20 且 <24h,按最小样本纪律不下结论**,
+  读法已固化进 analytics-setup.md(规范 SQL + 隐私边界:跨域来源永不存路径),09-14 正式读。
+- **不提前解读的两项**:`affiliate_click` 与 `calc_use{grade_game}` 均为 0,上线仅约 14 小时,
+  判定日 10-31 / 09-28。
+- **游戏**:今日 8/1(久违非零),28d 78/15,**itch 累计 42/13 持平——今天这 8 次不是 itch 来的**。
+- **⓪+ 队列**:两项仍被前置条件挡住;取数窗口今日开启,已向 owner 索取 Bing 两张明细。
+- ship:仅文档(analytics-setup.md 读法 + analytics-notes.md 日结 + 本文件)。**零页面改动。**
