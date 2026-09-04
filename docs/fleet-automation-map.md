@@ -57,7 +57,8 @@ thedollscout 冻结约 **86 小时**——它的部署是纯 push 触发，没�
 | `agi-indexnow.yml` | `17 3 * * 1` | sitemap 提交（周一） |
 | `tds-indexnow.yml` | `20 6 * * 3` | tds IndexNow（周三） |
 
-**成本**：heartbeat ~1 分/次 × 30 = ~30 分/月；agi-site 为公开仓，Actions 免费，
+**成本**：heartbeat **实测 19 秒/次**（2026-09-04 首跑，run 33835200197），按 Actions
+最小计费粒度算 1 分/次 × 30 = ≤30 分/月；agi-site 为公开仓，Actions 免费，
 不占账号 2000 分钟额度（该额度只被私有仓消耗）。
 
 ---
@@ -127,3 +128,9 @@ bpj **347** · agi ~230 · eco **130** · tds **128** · **sourceradar 5**。
 Routines 界面里 tds / bpj / eco 三条 09-03 那次「11–15 毫秒 FAILED」的失败详情，
 本会话读不到。若今日 05:07（eco）与 22:02（bpj）的计划触发再次毫秒级失败，
 说明那是与自绑定挂起不同的第二个问题，需要 owner 反馈界面上的报错文本。
+
+### heartbeat 首跑实测（2026-09-04 04:00 UTC，run 33835200197，SUCCESS 19 秒）
+八站全部 `http 200`；`days_since_deploy`：baipiaoji/getecoback/buysomething/gamesledger 0、
+agiscorecard 2、thedollscout 3、goldrush 3、**gridlings 6**（距 7 天自动重发只差 1 天，
+正是这条链要兜的那一类）。快照已落 `data/fleet-health.json`，任何会话 `cat` 即可，
+不需要 Cloudflare MCP、不需要 GitHub MCP、不需要我。
