@@ -1169,3 +1169,30 @@ JS 口径 = 爬虫排除在外，**下一轮起可以真正回答内部跳转问
 
 **本轮不改任何页面**：昨日一天已动 agi 三处（转化仪器 / 阅读钱路 / 首页游戏）并承诺静置，
 三条判定线都需要真实数据说话。按站规「没有信号就不硬凑」，今日只做监控 + 读法固化。
+
+## 2026-09-04（合并后的首条舰队日报）
+
+| 口径 | 28 天 | 7 天 |
+|---|---|---|
+| page_view（JS 真人） | 1042 | 262（≈37.4/日） |
+| vote_cast | 26 | 12 |
+| subscribe_click | 6 | 2 |
+| sub_open / sub_submit / sub_ok | 4 / 2 / **2** | 1 / 0 / 0 |
+| tool_click | 17 | **0** |
+| exposure_score | 16 | **0** |
+| affiliate_click（全站） | **0**（14 天口径亦为 0） | 0 |
+
+- **落地页第一名首次不是首页**：`/when-will-agi-arrive` 44 > `/` 28（7 天）。同页
+  `readnext_click` / `affiliate_click` 均为 0 —— 站内最大入口一个人也不往下送。
+  该页在 5-run 防翻炒窗口内，**本轮不动**；10-31 books 判定线按期结算。
+- **affiliate 埋点已实测在线**（Cloudflare 部署代码含 `affiliate_click` 白名单，
+  页面 onclick 三处齐全）→ 这个 0 是真需求信号，不是仪器故障。
+- **invest 工具近 7 天完全静默**（tool_click 0、exposure_score 0），
+  11-15 的 invest 判定线届时按 PRD §五 三条阈值结算。
+- **游戏层（gridlings，human 口径，28 天）**：play_start 269、solve 123、hint_used 166、
+  play_again 118；**itch 口径 play_start 42 / solve 13**，09-24 阈值 150/25 —— 仍差得远。
+  当日 0（查询时间 04:00 UTC，当日几乎未开始，非异常）。
+- **sourceradar（buysomething）**：7 天 page_view **5**，无 rising 信号 → 本轮不动工，
+  这正是它并入本条日报的原因。
+- **第①层 heartbeat**（09-04 04:00 UTC 首跑，19 秒 SUCCESS）：八站全 200；
+  gridlings 已 6 天未部署（阈值 7，明日会自动重发）。

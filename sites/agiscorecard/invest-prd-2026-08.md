@@ -153,7 +153,7 @@ Martin & Puthenpurackal 2008 一手引用、计算器裸链(`invest_tool_click{c
 - **复用资产**：同 P2，忠实翻译 + zh Swiss 设计系统 + `zh_deep_page` CTA（站规）。
 - **埋点**：`invest_tool_click{exposure_zh_sunwatch*}` 是本页成败的最终读数。
 
-### P5 · invest 机器可读数据集 `invest-data.json`（辅线 E-free）
+### P5 · invest 机器可读数据集 `invest-data.json`（辅线 E-free） ✅ 已上线 2026-09-04
 - **营收挂钩**：不直接变现；喂引用机器（原创数据 = 第一引用磁石，data.json 已验证）。
 - **内容**：8 人态度（含 as-of/filed 日期与例外标注）+ 2 人逐笔 + 17 票映射（权重
   与 data.json 判定同步）+ 抄作业读数汇总 + CC BY 4.0 + dateModified。

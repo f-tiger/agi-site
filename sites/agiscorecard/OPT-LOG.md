@@ -1,3 +1,30 @@
+## 2026-09-04（合并后的首条「舰队日报」，agi + sourceradar）
+
+- **spec（两轮）**：R1 四层监控 + 游戏层 + 新增第①层 heartbeat；R2 自我批判——今天
+  是周五（不做周一项），且本会话当日已推 3 次，按配额纪律只允许再合并一次 push。
+- **⓪+ 引用队列：两项都被自己的前置闸门挡着**（`datacenter-grid-cost-tracker` 与
+  `eu-ai-act-de` 都要 09-01~03 的 Bing 明细/英文版过线，owner 尚未提供）。
+  队列是**被闸门挡住**，不是空——按纪律不塞猜的选题，回到 ①。
+- **ship：PRD P5 `/invest-data.json`**（原创机器可读数据集 = 引用磁石）。8 条判定+权重、
+  17 票映射、8 人 13F 态度、2 人逐笔持仓、抄作业成绩单（申报日定价）。生成器
+  `tools/gen_invest_data.py` **一个数字都不手写**，任何一处解析不到就 exit(1)。
+  接线：llms.txt + /for-agents 表 + `/mcp` 新工具 `get_invest_positions`（挂既有端点，
+  零新增基建，埋点 `site_search{mcp, tool:invest_positions}`）。
+- **本轮最重要的不是 ship，是这个 bug**：`gen_lib.OUT` 自 08-19 迁库起指向**已归档
+  私有仓**，28 个生成器（含 gen_index/gen_odds）一直写去无人处并返回 0。判定翻转日
+  这会让线上分数悄悄不动。已修；连带发现 `gen_for_agents.py`（-46 行）与
+  `gen_invest_profiles.py`（回滚一个季度、import 即写）都已落后于自己的页面，
+  两处加了大写警告，规矩写进 CLAUDE.md 新增的「生成器漂移」一节。
+- **数据（28 天 / 7 天，JS 口径）**：page_view 1042 / 262（≈37.4 人/日）；vote_cast 26/12；
+  subscribe_click 6/2；sub_open 4、sub_submit 2、**sub_ok 2**（09-30 线阈值 5）；
+  `tool_click` 17/**0**、`exposure_score` 16/**0** —— invest 工具近 7 天完全静默。
+  落地页第一名首次不是首页：**/when-will-agi-arrive 44 > / 28**。
+- **反面记录（不越期结算）**：`affiliate_click` 全站 14 天 **0**，而埋点已实测在线
+  （worker 部署代码含 affiliate_click 白名单 + 页面 onclick 齐全）——**这是真零，
+  不是仪器问题**。10-31 的 books 判定线按期结算，今天不提前裁决，也不动那一页
+  （5-run 防翻炒窗口内）。
+- validate OK（225 页 / 207 URL）。
+
 ## 2026-08-30(每日 run 04:00)— 裁决日:*_live 判纯品牌资产;P4 中文判定页上线
 
 - **spec(三轮精简)**:今日双重身份——例行 run + `index_click{*_live}` 预登记裁决日。

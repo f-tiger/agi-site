@@ -843,3 +843,34 @@ verified-ai-free-tiers、agiscorecard-mcp 公开 → 免费）。
 没有站主,E13 期内改被测对象);②低流量判定页(collapse/capex-bubble)加钱线
 (噪声地板下 + 污染 09-26 被测钩子 + 硬同步面 4→5);③sasummary 书单块(算术
 天花板 €0.26/月,风险落在 42% 引用的旗舰页上)。
+
+
+## 生成器漂移：跑任何 generator 之前先读这一节（2026-09-04 发现）
+
+**根因**：`tools/gen_lib.py` 的 `OUT` 自 08-19 迁库起一直硬编码为
+`/home/user/agiscorecard` —— **已归档私有仓**的路径。那个 clone 在会话沙箱里
+仍然存在，所以 28 个 import gen_lib 的生成器（**含 `gen_index.py` 与
+`gen_odds.py`**）一直在往那里写、打印「written」、退出码 0，而 monorepo 什么也
+没收到。真正的危险不是没写出来，而是：**判定翻转那天重跑 gen_index 会把
+/progress-index 生成进一个绝对不能推送的仓，线上分数悄悄保持旧值** —— 正是
+CLAUDE.md 里「propagation IS the product」那条规则要防的那件事。已改为
+`os.path.dirname(os.path.dirname(os.path.abspath(__file__)))`。
+
+**修好之后出现的新风险，必须知道**：路径修对了，生成器就从「写去无人处」变成
+「真的覆盖线上页面」。而多个生成器已经**落后于它们自己生成的页面**——页面被后续
+会话手工加厚过，生成器里的数据没跟上。已实测两例：
+- `tools/gen_for_agents.py`：跑一次会删掉 for-agents.html 上的 MCP 段、
+  llms-full/claimledger/.md 三行、预测市场段、引用段、CTA（**-46 行**）。
+- `tools/gen_invest_profiles.py`：仍是 Q1 2026 数据，页面已是 Q2，跑一次
+  把两页**回滚一个季度**；而且它 **import 即写**，`from gen_invest_profiles import
+  PROFILES` 本身就是破坏性操作。
+两个文件顶部都已加大写警告。
+
+**因此，铁律三条：**
+1. **跑完任何 generator，提交前必须 `git diff`**。行数大幅减少 = 生成器比页面旧，
+   停手，先把页面里的内容补回生成器。
+2. **需要读某个生成器的数据时，不要 import 它**（可能 import 即写）；
+   `tools/gen_invest_data.py` 的做法是**直接解析线上 HTML**，并在解析失败时
+   `exit(1)`——宁可红，不可发一个猜出来的数字。
+3. 判定翻转日重跑 gen_index / gen_badges / gen_agi_exposure / **gen_invest_data**
+   之后，逐个 `git diff` 确认改的是分数而不是别的东西。
