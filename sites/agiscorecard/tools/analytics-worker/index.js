@@ -234,7 +234,7 @@ export default {
             // The MCP-side consumer of the Claim Ledger Protocol. URL is constrained
             // to the protocol's well-known filename so this cannot be used as an
             // open proxy; body is size-capped before parsing.
-            let u = 'https://goldrush.agiscorecard.com/claimledger.json';
+            let u = 'https://goldrush.agiscorecard.com/claimledger.json?ci=1'; // fetchlog.json exclusion (c): our own MCP self-fetch must not count as adoption — the goldrush worker drops ?ci=1
             if (args.url) {
               let cand;
               try { cand = new URL(String(args.url)); } catch (e) { return mcpText(id, { error: 'invalid url' }); }
@@ -319,10 +319,10 @@ export default {
           .filter(function (r) { return r.h >= 5 && r.h >= 2 * Math.max(1, r.prev); })
           .slice(0, 5);
         return new Response(JSON.stringify({
-          searches: searches.results || [], zeroResults: zero.results || [], risingPages: rising,
+          ok: true, searches: searches.results || [], zeroResults: zero.results || [], risingPages: rising,
         }), { headers: { 'content-type': 'application/json', 'cache-control': 'public, max-age=1800', 'access-control-allow-origin': '*' } });
       } catch (e) {
-        return new Response(JSON.stringify({ searches: [], zeroResults: [], risingPages: [] }),
+        return new Response(JSON.stringify({ ok: false, searches: [], zeroResults: [], risingPages: [] }),
           { headers: { 'content-type': 'application/json' } });
       }
     }
@@ -676,7 +676,7 @@ export default {
       // them server-side so the 60-day adoption line has real numbers, and mark them
       // noindex — the HTML page stays the canonical and the citation surface. Both
       // steps are wrapped so they can never break serving.
-      if (request.method === 'GET' && res.status === 200 && url.pathname.endsWith('.md')) {
+      if (request.method === 'GET' && (res.status === 200 || res.status === 304) && url.pathname.endsWith('.md')) {
         try { recordView(env, ctx, request, url); } catch (e) {}
         try {
           const h = new Headers(res.headers);
@@ -684,10 +684,20 @@ export default {
           return new Response(res.body, { status: res.status, headers: h });
         } catch (e) {}
       }
+      // Share cards and badges are immutable per deploy and hot-linked from other
+      // sites: give them a week of edge/browser cache instead of the assets default.
+      // Wrapped like everything else here — a header failure must never break serving.
+      if (res.status === 200 && /^\/(share|badge)\//.test(url.pathname)) {
+        try {
+          const h = new Headers(res.headers);
+          h.set('cache-control', 'public, max-age=604800');
+          return new Response(res.body, { status: res.status, headers: h });
+        } catch (e) {}
+      }
       return res;
     }
 
-    if (request.method === 'GET' && res.status === 200) {
+    if (request.method === 'GET' && (res.status === 200 || res.status === 304)) {
       try { recordView(env, ctx, request, url); } catch (e) {}
     }
 

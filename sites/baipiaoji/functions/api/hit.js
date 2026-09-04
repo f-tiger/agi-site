@@ -33,7 +33,10 @@ export async function onRequestPost({ request, env }) {
     const path = String(b.p || '').slice(0, 200);
     if (!path.startsWith('/')) return new Response(null, { status: 204 });
     const lang = String(b.l || '').slice(0, 10);
-    const ev = EVENTS.has(b.e) ? b.e : '';
+    // 未知事件名直接丢弃：此前会被写成 ev=''，而 '' 正是「真人 pv」桶——
+    // 一个拼错的事件名不是丢失，而是冒充成页面浏览。
+    if (b.e && !EVENTS.has(b.e)) return new Response(null, { status: 204 });
+    const ev = b.e || '';
     let ref = '';
     try { if (b.r) ref = new URL(b.r).hostname.slice(0, 100); } catch {}
     // 站内跳转不算来源

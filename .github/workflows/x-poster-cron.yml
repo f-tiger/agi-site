@@ -30,4 +30,12 @@ jobs:
           echo "$out"
           status_line=$(curl -sS -m 20 "https://fleet-x-poster.tuoqiantu.workers.dev/status" || echo 'status probe failed')
           echo "STATUS: $status_line"
-          echo "$out" | grep -q '"ok":true' || { echo "::warning::x-poster run not ok (will retry tomorrow; 3 fails on one item auto-skips it)"; }
+          if echo "$out" | grep -q '"ok":true'; then
+            echo "x-poster run ok"
+          elif echo "$out" | grep -Eq 'x_api_402|x_api_429'; then
+            # account-level (credits/rate limit): self-healing, item untouched — warn, don't fail
+            echo "::warning::x-poster blocked at account level (402/429) — will retry tomorrow"
+          else
+            echo "::error::x-poster run not ok — see body above (3 fails on one item auto-skips it)"
+            exit 1
+          fi

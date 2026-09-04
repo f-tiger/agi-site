@@ -92,7 +92,7 @@ export async function onRequest(ctx) {
     const country = (ctx.request.headers.get('cf-ipcountry') || '').slice(0, 2);
     ctx.waitUntil(
       ctx.env.HITS.prepare('INSERT INTO hits (d, path, lang, country, ref, ev) VALUES (?,?,?,?,?,?)')
-        .bind(d, url.pathname.slice(0, 120), 'en', country, bot, 'bot')
+        .bind(d, url.pathname.slice(0, 120), (/^\/(de|zh|th)(\/|$)/.exec(url.pathname) || [,'en'])[1], country, bot, 'bot')
         .run().catch(() => {})
     );
   } catch (e) { /* never let logging surface as a page error */ }

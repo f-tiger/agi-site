@@ -129,7 +129,7 @@
   </footer>
 
 <script>
-function ev(n,l){try{fetch('/e',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({n:n,l:l,p:location.pathname})});}catch(e){}}
+function ev(n,l){try{var b=JSON.stringify({n:n,l:(l||'').slice(0,80),v:0,p:location.pathname});navigator.sendBeacon?navigator.sendBeacon('/e',b):fetch('/e',{method:'POST',body:b,keepalive:true});}catch(e){}}
 (function(){
   var W=[1.073, 1.116, 1.149, 1.224, 1.251, 1.399, 1.467, 1.566, 1.584, 1.663, 1.682, 1.743, 1.861, 1.887, 1.895, 1.934, 1.951, 2.04, 2.227, 2.238, 2.252, 2.315, 2.334, 2.358, 2.415, 2.577, 3.007, 3.027, 3.15, 3.987, 4.223], B=[2.576, 3.88, 4.224, 4.306, 4.838, 5.149, 5.447, 5.682, 5.695, 6.461, 6.667, 6.788, 7.052, 7.064, 7.12, 7.859, 8.016, 8.591, 8.591, 9.249, 9.333, 9.563, 10.191, 10.458, 11.69, 11.869, 13.667, 15.086, 18.464, 27.505, 28.432];
   function q(a,v){var c=0;for(var i=0;i<a.length;i++)if(a[i]<=v)c++;return Math.round(100*c/a.length);}

@@ -55,12 +55,13 @@ for (const file of pages(".").sort()) {
   const html = readFileSync(file, "utf8");
   const body = html.replace(/<script[\s\S]*?<\/script>/g, "");
   const visible = canon(body.replace(/<[^>]+>/g, ""));
-  const blocks = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)];
+  const blocks = [...html.matchAll(/<script[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)];
   for (const [, raw] of blocks) {
     let data;
     try { data = JSON.parse(raw); }
     catch (e) { console.error(`::error::${file}: JSON-LD does not parse — ${e.message}`); bad++; continue; }
-    for (const node of data["@graph"] || []) {
+    const nodes = Array.isArray(data) ? data : (data["@graph"] || [data]);
+    for (const node of nodes) {
       if (node["@type"] === "FAQPage") {
         for (const q of node.mainEntity || []) {
           checked++;

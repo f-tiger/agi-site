@@ -33,6 +33,7 @@ rsync -a \
   --exclude 'content' \
   --exclude '*.md' \
   --exclude '.gitignore' \
+  --exclude 'wrangler.toml' \
   ./ dist/
 
 echo "--- files that will be published:"

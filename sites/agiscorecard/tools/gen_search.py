@@ -40,6 +40,11 @@ for f in PAGES:
         url = "/"
     if url in ("/404", "/search"):
         continue
+    # two-year-scorecard is the one page whose canonical, sitemap entry and internal
+    # links all use the .html form (validate.py KNOWN_EXTENSIONLESS); keep the index
+    # consistent with them instead of emitting a second URL shape for the same page.
+    if url == "/two-year-scorecard":
+        url = "/two-year-scorecard.html"
     title = field(r"<title>(.*?)</title>", html)
     if not title:
         continue

@@ -39,6 +39,10 @@ PRD 与调研依据:仓库根 `docs/games-subsite-prd-2026-08.md`(三门证据�
 5. ~~D1 埋点~~(2026-08-22 完成:库 `gamesledger-events` 2bebbaef-aa46-4b75-89ca-77920ad4f863,表 `ev`;服务端 page_view + 信标白名单 quiz_start/quiz_done/live_check/subscribe_click/embed_copy/share_click;订阅钩三处——game_page/quiz_end/live_result,全部走同一个 beehiiv,**游戏站订户计入舰队 5 单证伪线**)
 6. 游戏扩容(新增游戏必须先验证真实 is-dead 查询需求,不为凑数加游戏)
 
+**埋点口径备注**:2026-09-04 起 `embed_copy` 改为只在判定页的嵌入代码块被点击时发信标(每次页面加载最多 1 次);
+此前 worker 在每次徽章 SVG 被请求时也写 `embed_copy`,所以 2026-09-04 之前的 embed_copy 行 ≈ 徽章浏览量、不是嵌入;
+服务端徽章请求现记为 `badge_serve`。
+
 ## 商业模型(owner 问「差异化和如何创造营收」,2026-08-22 答定)
 
 **差异化(三层,全部已上线、可验证,不是口号):**

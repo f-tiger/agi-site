@@ -364,6 +364,19 @@ tools/browser-smoke.js。② 封面包:site/covers/*.png(630×500,已入库;重�
 用 playwright 本地跑,CI 无浏览器)随 zip 附带 cover.png。③ 商店文案
 docs/games-store-listing.md(批量上传复制即用)。v2 候选(未做):音效、教学关。
 
+## 2026-09-04 舰队技术优化(详见根仓 docs/fleet-optimization-2026-09-04.md)
+
+- **sw.js VERSION gl-v1 → gl-v2**:08-27 的 Star Battle 区域线 CSS 重写从未 bump,回访的
+  PWA 读者一直拿到旧的、看不清区域的棋盘。同时 SW 只缓存 `net.ok` 的响应(此前 404/500
+  也会进缓存并被永久复用)。
+- worker.js 的 uaClass 补了 python-requests/curl/wget/scan/monitor 等:D1 里整站 7 个路径
+  一秒内扫完、ref="" 的「human」是扫描器不是人——08-27 渠道表里「116 直达 pv → 0 play_start」
+  是同一伪影。**只影响新行,历史行不改写。**
+- 部署:butler 推 itch 的步骤 `continue-on-error`(第三方 CDN 故障此前会让 Deploy worker
+  根本不跑);冒烟加 `/zh/app-starbattle.js`(`/zh/*.ext` 回退分支此前无探测);
+  文件门补 sub.js/embed.js/copy.js/firstrun.js;build_packages 的信标改写兼容双引号
+  (index.html 的 `sendBeacon("/e"` 此前在包里打到 itch 域 404)。
+
 ## 判定线(60 天,≈2026-10-21)
 
 JS 真人 play_start ≥500/28d 或任一门户过审上架或首笔门户分成入账 → 加码

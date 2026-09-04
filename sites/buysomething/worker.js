@@ -25,9 +25,16 @@ export default {
     const url = new URL(request.url);
 
     if (url.pathname === "/e" && request.method === "POST") {
+      // Cross-origin POSTs are answered but never written: sendBeacon sends an
+      // Origin header, and same-site beacons match the request host.
+      const origin = request.headers.get("origin");
+      let sameOrigin = true;
+      if (origin) {
+        try { sameOrigin = new URL(origin).hostname === url.hostname; } catch (e) { sameOrigin = false; }
+      }
       try {
         const b = await request.json();
-        if (ALLOWED.has(b.n)) {
+        if (sameOrigin && ALLOWED.has(b.n)) {
           await logRow(env, ctx, {
             name: b.n,
             label: String(b.l || "").slice(0, 80),
@@ -79,12 +86,20 @@ export default {
         for (const r of q.results) picks[r.label] = { o: r.o | 0, x: r.x | 0 };
         return new Response(JSON.stringify({ days: 28, picks }), { headers });
       } catch (e) {
-        return new Response('{"days":28,"picks":{}}', { headers });
+        return new Response('{"days":28,"picks":{},"degraded":true}', { headers });
       }
     }
 
-    const res = await env.ASSETS.fetch(request);
+    let res = await env.ASSETS.fetch(request);
     const accept = request.headers.get("accept") || "";
+    // Static css/js get a day of edge/browser cache; JSON (trends.json/rising.json
+    // refresh daily at 05:20 UTC) only 10 minutes so a reader never sees a day-old
+    // trend badge; HTML stays uncached so content changes are visible immediately.
+    const ctype = res.headers.get("content-type") || "";
+    if (res.status === 200 && !ctype.includes("text/html")) {
+      res = new Response(res.body, res);
+      res.headers.set("cache-control", ctype.includes("json") ? "public, max-age=600" : "public, max-age=86400");
+    }
     if (request.method === "GET" && accept.includes("text/html") && res.status === 200) {
       await logRow(env, ctx, {
         name: "page_view",

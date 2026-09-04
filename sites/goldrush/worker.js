@@ -5,7 +5,7 @@ const ALLOWED = new Set(["page_view", "card_view", "ledger_click", "fork_click",
 
 function uaClass(ua) {
   if (!ua) return "none";
-  if (/bot|crawl|spider|slurp|gptbot|claude|perplexity|bingpreview|headless/i.test(ua)) return "bot";
+  if (/bot|crawl|spider|slurp|gptbot|claude|perplexity|bingpreview|headless|python-requests|go-http|axios|curl|wget|scan|probe|monitor|uptime|http-client|libwww|okhttp/i.test(ua)) return "bot";
   if (/mozilla/i.test(ua)) return "human";
   return "other";
 }
@@ -63,7 +63,7 @@ export default {
     const res = await env.ASSETS.fetch(request);
     if (request.method === "GET" && res.status === 200) {
       const type = res.headers.get("content-type") || "";
-      if (type.includes("text/html") || ["/ledger.json", "/llms.txt", "/protocol.md", "/agix.md", "/skill/claim-ledger/SKILL.md"].includes(url.pathname)) {
+      if (type.includes("text/html") || ["/ledger.json", "/llms.txt", "/protocol.md", "/agix.md", "/skill/claim-ledger/SKILL.md", "/fetchlog.json", "/claimledger.schema.json"].includes(url.pathname)) {
         logRow(env, ctx, {
           ci: url.searchParams.get("ci") === "1",
           name: "page_view",

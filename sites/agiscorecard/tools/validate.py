@@ -5,9 +5,9 @@ Exit code 0 = safe to ship. Checks:
   - every JSON-LD block parses on every page
   - template FAQ pages: visible .faq-q count == FAQPage mainEntity count
     (two-year-scorecard.html uses different markup; checked by text instead)
-  - no broken internal links (root-level clean URLs)
+  - no broken internal links (root-relative <a>/<link> hrefs at any depth)
   - <div> balance per page
-  - sitemap.xml well-formed; every sitemap root URL has a matching file
+  - sitemap.xml well-formed; every sitemap URL has a matching file
 """
 import glob
 import json
@@ -51,11 +51,20 @@ for f in PAGES:
             for q in faq_schema:
                 if q["name"] not in html:
                     problems.append(f"{name}: FAQ question not visible: {q['name'][:60]}")
-    for href in set(re.findall(r"href=[\"']/([a-z0-9\-]+)[\"']", html)):
-        if href in KNOWN_EXTENSIONLESS:
+    # Root-relative links at any depth (/zh/foo, /agi-type/, /data.json), scoped to
+    # <a>/<link> tags with <script> blocks stripped — JS string literals and regex
+    # sources otherwise produce false positives. Anchors/query strings never match
+    # the character class, so they are skipped rather than mis-resolved.
+    no_script = re.sub(r"<script\b.*?</script>", "", html, flags=re.S)
+    for href in set(re.findall(r"<(?:a|link)\b[^>]*?href=[\"']/([a-z0-9\-/\.]+?)[\"']", no_script)):
+        base = href[:-5] if href.endswith(".html") else href.rstrip("/")
+        if not base or base in KNOWN_EXTENSIONLESS:
             continue
-        if not os.path.exists(os.path.join(ROOT, href + ".html")):
-            problems.append(f"{name}: broken internal link /{href}")
+        if (os.path.exists(os.path.join(ROOT, base + ".html"))
+                or os.path.exists(os.path.join(ROOT, base, "index.html"))
+                or os.path.isfile(os.path.join(ROOT, href))):
+            continue
+        problems.append(f"{name}: broken internal link /{href}")
     if html.count("<div") != html.count("</div>"):
         problems.append(f"{name}: div imbalance {html.count('<div')}/{html.count('</div>')}")
 
@@ -66,10 +75,11 @@ try:
 except Exception as e:
     problems.append(f"sitemap.xml: not well-formed: {e}")
 for loc in re.findall(r"<loc>https://agiscorecard\.com/([^<]*)</loc>", sm):
-    if not loc or "/" in loc:  # homepage or language subdir (files live in repo subdirs)
+    if not loc:  # homepage
         continue
-    base = loc.replace(".html", "")
-    if not os.path.exists(os.path.join(ROOT, base + ".html")):
+    base = loc[:-5] if loc.endswith(".html") else loc.rstrip("/")
+    if not (os.path.exists(os.path.join(ROOT, base + ".html"))
+            or os.path.exists(os.path.join(ROOT, base, "index.html"))):
         problems.append(f"sitemap.xml: no file for URL /{loc}")
 
 count = sm.count("<loc>")

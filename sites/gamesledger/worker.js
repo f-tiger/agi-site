@@ -25,9 +25,16 @@ export default {
     const url = new URL(request.url);
 
     if (url.pathname === "/e" && request.method === "POST") {
+      // Cross-origin POSTs are answered but never written: sendBeacon sends an
+      // Origin header, and same-site beacons match the request host.
+      const origin = request.headers.get("origin");
+      let sameOrigin = true;
+      if (origin) {
+        try { sameOrigin = new URL(origin).hostname === url.hostname; } catch (e) { sameOrigin = false; }
+      }
       try {
         const d = await request.json();
-        if (ALLOWED.has(d.n)) log(env, ctx, request, d.n, d.l, d.b);
+        if (sameOrigin && ALLOWED.has(d.n)) log(env, ctx, request, d.n, d.l, d.b);
       } catch (e) {}
       return new Response("ok", { status: 202 });
     }
@@ -44,7 +51,7 @@ export default {
       let res = await cache.match(key);
       if (res) return res;
       try {
-        const r = await fetch(STEAM + app, { headers: { "User-Agent": "gamesledger-live/1.0" } });
+        const r = await fetch(STEAM + app, { headers: { "User-Agent": "gamesledger-live/1.0" }, signal: AbortSignal.timeout(8000) });
         const d = await r.json();
         const resp = d && d.response;
         const body = (resp && resp.result === 1)
@@ -54,7 +61,7 @@ export default {
           status: body.ok ? 200 : 404,
           headers: { "content-type": "application/json", "cache-control": "public, max-age=120" },
         });
-        ctx.waitUntil(cache.put(key, res.clone()));
+        ctx.waitUntil(cache.put(key, res.clone()).catch(() => {}));
         return res;
       } catch (e) {
         return new Response(JSON.stringify({ ok: false, error: "steam unreachable" }),
@@ -65,14 +72,15 @@ export default {
     const bm = url.pathname.match(/^\/badge\/(\d{1,8})\.svg$/);
     if (bm) {
       const app = bm[1];
-      log(env, ctx, request, "embed_copy", "badge_serve", app);
+      // 2026-09-04: was logged as embed_copy (≈ pageviews of the badge, not embeds); now its own name.
+      log(env, ctx, request, "badge_serve", "badge", app);
       const cache = caches.default;
       const key = new Request(url.origin + "/badge/" + app + ".svg");
       let res = await cache.match(key);
       if (res) return res;
       let label = "no official number";
       try {
-        const r = await fetch(STEAM + app, { headers: { "User-Agent": "gamesledger-badge/1.0" } });
+        const r = await fetch(STEAM + app, { headers: { "User-Agent": "gamesledger-badge/1.0" }, signal: AbortSignal.timeout(8000) });
         const d = await r.json();
         if (d && d.response && d.response.result === 1) label = d.response.player_count.toLocaleString("en-US") + " in-game";
       } catch (e) {}
@@ -85,15 +93,16 @@ export default {
         `<text x="26" y="17" font-family="Verdana,sans-serif" font-size="12" fill="#e8e9ec">${text}</text>` +
         `<text x="${w - 8}" y="17" text-anchor="end" font-family="Verdana,sans-serif" font-size="9" fill="#9aa1ad">games ledger</text></svg>`;
       res = new Response(svg, { headers: { "content-type": "image/svg+xml", "cache-control": "public, max-age=600" } });
-      ctx.waitUntil(cache.put(key, res.clone()));
+      ctx.waitUntil(cache.put(key, res.clone()).catch(() => {}));
       return res;
     }
 
     // 服务端 pageview(HTML 导航请求;JSON/SVG/txt 数据面不计)——JS 关闭者与 AI 爬虫也被如实计数
+    const res = await env.ASSETS.fetch(request);
     const accept = request.headers.get("accept") || "";
-    if (request.method === "GET" && accept.includes("text/html")) {
+    if (request.method === "GET" && accept.includes("text/html") && res.status === 200) {
       log(env, ctx, request, "page_view", null, null);
     }
-    return env.ASSETS.fetch(request);
+    return res;
   },
 };

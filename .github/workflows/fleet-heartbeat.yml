@@ -45,7 +45,7 @@ jobs:
           baipiaoji|https://baipiaoji.com/|deploy-baipiaoji.yml
           getecoback|https://getecoback.com/|deploy-getecoback.yml
           thedollscout|https://thedollscout.com/|deploy-thedollscout.yml
-          goldrush|https://goldrush.agiscorecard.com/|deploy-goldrush.yml
+          goldrush|https://goldrush.agiscorecard.com/?ci=1|deploy-goldrush.yml
           gridlings|https://play.agiscorecard.com/|deploy-gridlings.yml
           buysomething|https://source.agiscorecard.com/|deploy-buysomething.yml
           gamesledger|https://games.agiscorecard.com/|deploy-gamesledger.yml'
