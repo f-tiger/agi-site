@@ -68,8 +68,8 @@ thedollscout 冻结约 **86 小时**——它的部署是纯 push 触发，没�
 |---|---|---|---|
 | agiscorecard daily（**已并入 sourceradar**） | `0 4 * * *` | 自绑定 | **合并**：sourceradar 的每日职责并入本条 |
 | ~~sourceradar 每日进化~~ | `40 5 * * *` | 自绑定 | **停用（保留不删）**，数据门不支持日频：7 天真人 pv = **5** |
-| getecoback daily v5 | `0 5 * * *` | 新会话 | 保留日频（7 天真人 pv 130 + 联盟机制）；加「无事则三句」汇报纪律 |
-| 白嫖计 daily v4 | `0 22 * * *` | 新会话 | 保留日频（7 天真人 pv 347、go 15、sub_view 66 — 全舰队最高）；同上 |
+| getecoback daily v5 | `0 5 * * *` | 新会话 | 保留日频（7 天真人 pv 130 + 联盟机制唯一在跑） |
+| 白嫖计 daily v4 | `0 22 * * *` | 新会话 | 保留日频（7 天真人 pv 347、go 15、sub_view 66 — 全舰队最高） |
 | DollScout 每 2 天 | `10 7 */2 * *` | 新会话 | 保留（7 天真人 pv 128，且已出**首个 affiliate_click**；09-06 判定线在即） |
 | paid-weekly-recheck（白嫖计付费档位） | `0 1 * * 1` → **`0 1 5 * *`** | 新会话 | **周 → 月**：14 个工具定价周频过密，且日循环已覆盖「命中工具当轮复核」 |
 | 舰队每周分发暂存 | `30 1 * * 1` | 新会话 | **不动**：其自身预登记规则是「连续 4 周全空勾才降频」，现仅 2 周（W34 0/6、W35 0/3），**不提前裁决** |
@@ -106,3 +106,24 @@ bpj **347** · agi ~230 · eco **130** · tds **128** · **sourceradar 5**。
 - **计划路径死了但站点还活着**：正常，这正是第①层的设计目的。
   `data/fleet-health.json` 是不依赖任何 MCP 的状态来源。
 - **站点非 200**：`fleet-heartbeat` 会把 run 打红并触发 GitHub 邮件。
+
+---
+
+## 六、2026-09-04 执行结果（实测，非计划）
+
+- `trig_018xnCHHqLjXgLdPoL4eQuGs`（舰队日报）：`update_trigger` 写入合并后的 prompt
+  并置 `enabled=true` 后，**`suspension_reason` 由 `plan_no_longer_eligible` 变为空**，
+  `next_run_at = 2026-09-04T04:01Z`。即：一次带 enabled 的更新把平台挂起解除了。
+  下次再遇到自绑定 Routine 被挂起，先试这一步，再惊动 owner。
+- `trig_014Qc7okJSgZ6HKWsNM8vnUm`（sourceradar）：改名为
+  `[已合并·勿启用] …`，保持 `enabled=false`，**未删除**（判定线与历史留痕）。
+  它的 `suspension_reason` 仍为 `plan_no_longer_eligible`——因为本来就不该再启用，不去动它。
+- `trig_018chEXs9JvJYexpHvbv3Pp4`：`0 1 * * 1` → `0 1 5 * *`，改名 paid-monthly-recheck。
+- eco / bpj / tds 三条：**只改频率认定，prompt 一字未动**。它们的 push 通知仍开着。
+  若 owner 要更少的手机推送，能做的只有重建 Routine（会丢 run 历史），
+  **不建议**——在 App 里静音那几条更便宜。这一条写在这里，免得后续会话自作主张去重建。
+
+### 仍需 owner 亲自确认的一件事
+Routines 界面里 tds / bpj / eco 三条 09-03 那次「11–15 毫秒 FAILED」的失败详情，
+本会话读不到。若今日 05:07（eco）与 22:02（bpj）的计划触发再次毫秒级失败，
+说明那是与自绑定挂起不同的第二个问题，需要 owner 反馈界面上的报错文本。
