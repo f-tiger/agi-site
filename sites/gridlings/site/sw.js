@@ -3,7 +3,7 @@
    Static assets + puzzle JSON: stale-while-revalidate (dailies are pre-baked,
    so yesterday's cache still contains today's board).
    Bump VERSION on breaking asset changes. */
-const VERSION = "gl-v1";
+const VERSION = "gl-v2"; // v2: 2026-08-27 Star Battle region-line CSS rewrite was never bumped — returning PWA readers kept the old, unsolvable board
 self.addEventListener("install", (e) => { self.skipWaiting(); });
 self.addEventListener("activate", (e) => {
   e.waitUntil((async () => {
@@ -24,7 +24,7 @@ self.addEventListener("fetch", (e) => {
       try {
         const net = await fetch(req);
         const c = await caches.open(VERSION);
-        c.put(req, net.clone());
+        if (net.ok) c.put(req, net.clone());
         return net;
       } catch (err) {
         const hit = await caches.match(req);
@@ -36,7 +36,7 @@ self.addEventListener("fetch", (e) => {
   e.respondWith((async () => {
     const c = await caches.open(VERSION);
     const hit = await c.match(req);
-    const refresh = fetch(req).then((net) => { c.put(req, net.clone()); return net; }).catch(() => null);
+    const refresh = fetch(req).then((net) => { if (net.ok) c.put(req, net.clone()); return net; }).catch(() => null);
     return hit || (await refresh) || Response.error();
   })());
 });

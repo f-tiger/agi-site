@@ -38,7 +38,7 @@ function json(body, status, extraHeaders) {
   });
 }
 
-async function handleSubscribe(request) {
+async function handleSubscribe(request, env, ctx) {
   const origin = request.headers.get("Origin") || "";
   const cors = ALLOWED_ORIGINS.has(origin)
     ? { "access-control-allow-origin": origin, "vary": "Origin" }
@@ -92,7 +92,21 @@ async function handleSubscribe(request) {
     body: JSON.stringify(row),
   });
 
-  if (resp.ok) return json({ ok: true }, 200, cors);
+  if (resp.ok) {
+    // Mirror the conversion into our own D1 the way handleSub2 does (2026-09-04):
+    // the Supabase table cannot be read from CI or the session, so without this
+    // row the newsletter path was the one funnel step invisible to the ledger.
+    // Same column list as every other ev INSERT; telemetry never costs a response.
+    try {
+      if (env && env.EVENTS && ctx) {
+        ctx.waitUntil(env.EVENTS.prepare(
+          "INSERT INTO ev (day, name, page, ref, meta, country, ua_class) VALUES (date('now'), 'subscribe', ?, '', ?, ?, 'human')"
+        ).bind(String(source || "").slice(0, 120), '{"source":"supabase"}',
+          request.headers.get("cf-ipcountry") || "").run().catch(() => {}));
+      }
+    } catch (e) { /* never block the reply on telemetry */ }
+    return json({ ok: true }, 200, cors);
+  }
   // Duplicate email (unique violation) — already subscribed, still a success.
   if (resp.status === 409) return json({ ok: true, duplicate: true }, 200, cors);
 
@@ -1290,7 +1304,7 @@ export default {
       return handleMcp(request, env);
     }
     if (url.pathname === "/api/subscribe") {
-      return handleSubscribe(request);
+      return handleSubscribe(request, env, ctx);
     }
     if (url.pathname === "/api/sub2") {
       return handleSub2(request, env, ctx);

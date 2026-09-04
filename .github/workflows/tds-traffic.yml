@@ -151,7 +151,7 @@ jobs:
             fi
           else
             echo "::warning::d1 snapshot FAILED —— 上面列出的每一个 token 都试过了,没有一个能读 D1。增长循环这一轮读不到任何第一方数字。若所有 token 都报 7403,就是都缺 Account · D1 · Read。"
-            rm -f content/d1-snapshot.json
+            git checkout -- content/d1-snapshot.json 2>/dev/null || true
           fi
           rm -f d1-response.json d1-curl.err
 

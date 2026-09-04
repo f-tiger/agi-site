@@ -505,7 +505,10 @@ EN_STICKY = sticky_bar("Find the right unit", "Check price on Amazon →", en=Tr
 
 def crumb_trust(cat_key, title, en=False):
     """Visible breadcrumb + honest trust bar, injected right under the nav."""
-    t = re.sub(r'\s+', ' ', re.sub('<[^>]+>', '', title)).strip()
+    # h1() hands back the heading's inner HTML, entities included; unescape
+    # before re-escaping or "&amp;" in a heading shows up as a literal "&amp;"
+    # in the crumb (8 pages, caught by check_crumb_parity 2026-09-04).
+    t = htmllib.unescape(re.sub(r'\s+', ' ', re.sub('<[^>]+>', '', title)).strip())
     if en:
         crumb = ('<!--EB_CRUMB--><nav class="eb-crumb" aria-label="Breadcrumb">'
                  '<a href="/en/">Home</a><span>›</span><a href="/en/">All&nbsp;Guides</a>'
@@ -527,8 +530,10 @@ def crumb_trust(cat_key, title, en=False):
     return crumb + trust + "\n"
 
 
-def breadcrumb_jsonld(cat_key, title, url, en=False):
-    t = re.sub(r'\s+', ' ', re.sub('<[^>]+>', '', title)).strip()
+def breadcrumb_node(cat_key, title, url, en=False):
+    """The BreadcrumbList node alone (no @context), for splicing into a page
+    that already carries an @graph."""
+    t = htmllib.unescape(re.sub(r'\s+', ' ', re.sub('<[^>]+>', '', title)).strip())
     if en:
         items = ('{"@type":"ListItem","position":1,"name":"Home","item":"https://getecoback.com/en/"},'
                  f'{{"@type":"ListItem","position":2,"name":{jstr(t)},"item":{jstr(url)}}}')
@@ -536,9 +541,63 @@ def breadcrumb_jsonld(cat_key, title, url, en=False):
         items = ('{"@type":"ListItem","position":1,"name":"Startseite","item":"https://getecoback.com/"},'
                  f'{{"@type":"ListItem","position":2,"name":{jstr(CAT_SHORT[cat_key])},"item":"https://getecoback.com/kategorie/{cat_key}.html"}},'
                  f'{{"@type":"ListItem","position":3,"name":{jstr(t)},"item":{jstr(url)}}}')
+    return '{"@type":"BreadcrumbList","itemListElement":[' + items + ']}'
+
+
+def breadcrumb_jsonld(cat_key, title, url, en=False):
+    node = breadcrumb_node(cat_key, title, url, en)
+    # node starts with {"@type":…}; the standalone script carries @context first.
     return ('<script type="application/ld+json" id="eb-crumb-ld">'
-            '{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":['
-            + items + ']}</script>\n')
+            '{"@context":"https://schema.org",' + node[1:] + '</script>\n')
+
+
+LD_SCRIPT_RE = re.compile(r'<script\b[^>]*type="application/ld\+json"[^>]*>(.*?)</script>', re.S)
+
+
+def replace_breadcrumb_ld(html, cat_key, title, url, en=False):
+    """Replace-in-place, never insert-only (2026-09-04): the breadcrumb JSON-LD
+    was inserted once and then frozen, so 165 of 171 guide pages carried a
+    BreadcrumbList that disagreed with the visible crumb (old "Guides →
+    /en/#guides" trails, stale titles). Three shapes exist on the site:
+      1. our own <script … id="eb-crumb-ld"> → replaced whole;
+      2. a BreadcrumbList node inside a page's @graph (Article + FAQPage +
+         BreadcrumbList, 119 pages) → only that node is spliced, byte-for-byte
+         around it, so the Article/FAQ nodes and their formatting survive;
+      3. a standalone BreadcrumbList script without our id → replaced whole;
+      4. none → inserted before </head>.
+    check_crumb_parity.py asserts the result matches the visible nav."""
+    node = breadcrumb_node(cat_key, title, url, en)
+    m = re.search(r'<script\b[^>]*id="eb-crumb-ld"[^>]*>.*?</script>\n?', html, re.S)
+    if m:
+        return html[:m.start()] + breadcrumb_jsonld(cat_key, title, url, en) + html[m.end():]
+    for m in LD_SCRIPT_RE.finditer(html):
+        body = m.group(1)
+        if "BreadcrumbList" not in body:
+            continue
+        try:
+            data = json.loads(body)
+        except ValueError:
+            continue
+        if isinstance(data, dict) and isinstance(data.get("@graph"), list):
+            # Locate the node's exact text span: the nearest "{" before the
+            # "BreadcrumbList" literal that decodes to that node.
+            dec = json.JSONDecoder()
+            hit = body.find('"BreadcrumbList"')
+            pos = body.rfind("{", 0, hit)
+            while pos >= 0:
+                try:
+                    obj, end = dec.raw_decode(body, pos)
+                except ValueError:
+                    obj, end = None, None
+                if isinstance(obj, dict) and obj.get("@type") == "BreadcrumbList":
+                    new_body = body[:pos] + node + body[end:]
+                    start = m.start(1)
+                    return html[:start] + new_body + html[start + len(body):]
+                pos = body.rfind("{", 0, pos)
+            continue  # shape not understood — leave it, try the next script
+        if isinstance(data, dict) and data.get("@type") == "BreadcrumbList":
+            return html[:m.start()] + breadcrumb_jsonld(cat_key, title, url, en).rstrip("\n") + html[m.end():]
+    return html.replace("</head>", breadcrumb_jsonld(cat_key, title, url, en) + "</head>", 1)
 
 
 def jstr(s):
@@ -1975,7 +2034,10 @@ HEATENERGY_BOX = (
     # Twenty-one pages advise pre-cooling on a timer; none of the cooling
     # cluster linked the accessory that does it. With the honest catch stated:
     # a smart plug only works if the unit powers back on by itself.
-    '<p style="margin:10px 0 0;font-size:12.5px;color:#5a5340;">Vorkühlen automatisieren: eine '
+    # Werbekennzeichnung at the ad itself (check_adlabel.py, denylist since
+    # 2026-09-04 — this block shipped 69 pages without one).
+    f'<p style="margin:10px 0 0;font-size:11px;color:#8a99a6;">{AD_LABEL[False]}</p>'
+    '<p style="margin:4px 0 0;font-size:12.5px;color:#5a5340;">Vorkühlen automatisieren: eine '
     '<a href="https://www.amazon.de/s?k=wlan+steckdose+zeitschaltuhr&amp;tag=getecoback-21" target="_blank" '
     'rel="sponsored noopener" style="color:#0f6ba8;font-weight:700;">WLAN-Steckdose mit Timer</a> (ab ~10&nbsp;€) '
     'schaltet das Gerät mittags ein — <strong>funktioniert nur, wenn dein Gerät nach Stromzufuhr von selbst '
@@ -2439,7 +2501,11 @@ STROMNOW = ('<!--EB_STROMNOW--><div id="eb-stromnow"></div>\n<script>(function()
 # rewritten: searching "De'Longhi Pinguino" on amazon.com is a dead result, and
 # those visitors are already served named US models by the EB_USMARKET bridge.
 # GB stays unfixed (no .co.uk tag — owner side).
-USSWITCH = ('<!--EB_USSWITCH--><script>(function(){var tz="";'
+# Wrapped in DOMContentLoaded (2026-09-04): the block is injected above
+# EB_TRACK, i.e. before the closing </body> but also before any block that a later
+# injector appends below it — and querySelectorAll at parse time cannot see
+# anchors the parser has not reached yet, so those links were never switched.
+USSWITCH = ('<!--EB_USSWITCH--><script>document.addEventListener("DOMContentLoaded",function(){var tz="";'
             'try{tz=Intl.DateTimeFormat().resolvedOptions().timeZone||"";}catch(e){return;}'
             'if(tz.indexOf("America/")!==0)return;'
             'var MAP={"luftentfeuchter":"dehumidifier",'
@@ -2454,7 +2520,7 @@ USSWITCH = ('<!--EB_USSWITCH--><script>(function(){var tz="";'
             'var us=MAP[k.toLowerCase()];if(!us)return;'
             'a.href="https://www.amazon.com/s?k="+encodeURIComponent(us)+"&tag=ecoback0d-20";'
             'a.setAttribute("data-eb-ussw","1");}catch(e){}});'
-            '})();</script><!--/EB_USSWITCH-->\n')
+            '});</script><!--/EB_USSWITCH-->\n')
 
 
 def inject_usswitch(html):
@@ -2981,6 +3047,9 @@ def sealfit_block(en=False):
     return ('<!--EB_SEALFIT--><section style="max-width:1000px;margin:18px auto 0;padding:0 20px;">'
             '<div style="background:#fff;border:2px solid #0f6ba8;border-radius:14px;padding:18px 20px;">'
             f'<strong style="font-size:17px;display:block;margin-bottom:3px;">{t[0]}</strong>'
+            # The result panel renders an Amazon link, so the label sits on the
+            # box itself (check_adlabel.py inspects this block since 2026-09-04).
+            f'<p style="margin:0 0 6px;font-size:11px;color:#8a99a6;">{AD_LABEL[en]}</p>'
             f'<p style="margin:0 0 12px;color:#5b6b78;font-size:13.5px;">{t[1]}</p>'
             '<div style="display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end;">'
             f'<div style="flex:1 1 130px;"><label for="eb-sf-w" style="display:block;font-weight:700;font-size:12.5px;margin-bottom:4px;">{t[2]}</label>'
@@ -3078,6 +3147,8 @@ def hosefit_block(en=False):
     return ('<!--EB_HOSEFIT--><section style="max-width:1000px;margin:18px auto 0;padding:0 20px;">'
             '<div style="background:#fff;border:2px solid #0f6ba8;border-radius:14px;padding:18px 20px;">'
             f'<strong style="font-size:17px;display:block;margin-bottom:3px;">{t[0]}</strong>'
+            # Same rule as the seal calculator: the verdict links to Amazon.
+            f'<p style="margin:0 0 6px;font-size:11px;color:#8a99a6;">{AD_LABEL[en]}</p>'
             f'<p style="margin:0 0 12px;color:#5b6b78;font-size:13.5px;">{t[1]}</p>'
             '<div style="display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end;">'
             f'<div style="flex:1 1 150px;"><label for="eb-hf-d" style="display:block;font-weight:700;font-size:12.5px;margin-bottom:4px;">{t[2]}</label>'
@@ -3521,9 +3592,7 @@ def inject_crumb_trust(html, cat_key, title, url, en=False):
         html = html.replace("<!--/EB_NAV-->", "<!--/EB_NAV-->\n" + block, 1)
     else:
         return html
-    if "eb-crumb-ld" not in html and "BreadcrumbList" not in html:
-        html = html.replace("</head>", breadcrumb_jsonld(cat_key, title, url, en) + "</head>", 1)
-    return html
+    return replace_breadcrumb_ld(html, cat_key, title, url, en)
 
 
 def inject_sticky(html, sticky=STICKY):

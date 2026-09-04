@@ -845,6 +845,26 @@ verified-ai-free-tiers、agiscorecard-mcp 公开 → 免费）。
 天花板 €0.26/月,风险落在 42% 引用的旗舰页上)。
 
 
+## 2026-09-04 舰队技术优化（机制层；详见根仓 docs/fleet-optimization-2026-09-04.md）
+
+- **20 个工作文件此前被当公开资产服务**（CLAUDE.md / OPT-LOG.md / analytics-notes.md …，
+  含全舰队 6 个 D1 database_id 与邮箱）：robots.txt 对 GPTBot/ClaudeBot 等各给了只含
+  `Allow: /` 的专属组，按 REP 它们根本看不到 `*` 组的 Disallow。已按 owner-identity 先例
+  加进 `.assetsignore`（留在 git，不再上站）。robots.txt 未动。
+- 部署自检两处「不可能失败」已修：`/api/trends` 的 D1 断言此前匹配任何含 `"` 的响应
+  （catch 分支回的空 JSON 也过），现断言 `"ok":true`；新增断言首页含 `/api/e`
+  （HTMLRewriter 注入信标的唯一线上证据）。
+- 4 页（matrix-odds ×2、zh/ai-orders-of-magnitude-explained、zh/situational-awareness-summary）
+  此前只向 `G-B3PN0PLGTG` 上报——不在报告属性里。生成器与页面都改回 `G-FZXLMBB5QB`。
+- `?pick=` 深链事件与 cn 页 viz_switch：前者在解析期触发、早于边缘注入的 gtag 包装器，
+  D1 永远收不到；后者初始加载就发一次（GA4 的 viz_switch ≈ pv）。均已修。
+- `tools/check_hreflang.py` 此前没接进任何门且 main 上 20 处失败（10 页 `zh`→`zh-Hans`
+  + 缺 x-default）；已修并接入 deploy 为阻断步骤。**其中 does-copying-13f-work 两页在
+  5 轮防翻炒窗内，只改了 hreflang 属性、未动一字正文**——这是有意的例外，记录在案。
+- validate.py 两个空转检查（sitemap 检查跳过所有含 `/` 的 URL = 56%；坏链只看单段路径）
+  已补成真检查，今日 0 问题。/share /badge 加 7 天缓存（`_headers` 在 run_worker_first
+  下无效，只能写在 worker 里）。
+
 ## 生成器漂移：跑任何 generator 之前先读这一节（2026-09-04 发现）
 
 **根因**：`tools/gen_lib.py` 的 `OUT` 自 08-19 迁库起一直硬编码为

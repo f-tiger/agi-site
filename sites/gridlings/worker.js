@@ -6,7 +6,7 @@ const ALLOWED = new Set(["play_start", "solve", "share_copy", "hint_used", "play
 
 function uaClass(ua) {
   if (!ua) return "none";
-  if (/bot|crawl|spider|slurp|gptbot|claude|perplexity|bingpreview|headless/i.test(ua)) return "bot";
+  if (/bot|crawl|spider|slurp|gptbot|claude|perplexity|bingpreview|headless|python-requests|go-http|axios|curl|wget|scan|probe|monitor|uptime|http-client|libwww|okhttp/i.test(ua)) return "bot";
   if (/mozilla/i.test(ua)) return "human";
   return "other";
 }

@@ -46,8 +46,11 @@ def main():
             continue
         games.append({"appid": int(aid), "name": nm[:80], "rank": r.get("rank"), "n": int(cc)})
     day = time.strftime("%Y-%m-%d", time.gmtime())
-    json.dump({"note": "Valve official Most Played chart; written only by CI.", "d": day, "games": games},
-              open(OUT, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    tmp = OUT + ".tmp"
+    with open(tmp, "w", encoding="utf-8") as fh:
+        json.dump({"note": "Valve official Most Played chart; written only by CI.", "d": day, "games": games},
+                  fh, ensure_ascii=False, indent=1)
+    os.replace(tmp, OUT)  # atomic: a crash mid-write never truncates the last good file
     print(f"top100: {len(games)} named games ({unnamed} unnamed dropped), day {day}")
 
 

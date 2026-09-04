@@ -76,10 +76,10 @@
       try { host = new URL(a.href).hostname.replace(/^www\./, ""); } catch (err) { return; }
       window.dsTrack("affiliate_click", {
         vendor: host,
-        location: a.closest(".hot-card") ? "bestsellers"
-          : a.closest(".promo-banner") ? "banner"
-          : a.closest(".pcard") ? "product_card"
-          : a.closest(".quiz-result") ? "quiz_result"
+        location: a.closest(".notice-bar") ? "notice_bar"
+          : a.closest(".hero") ? "hero"
+          : a.closest("table") ? "table"
+          : a.closest(".card") ? "card"
           : a.closest(".prose") ? "article" : "other",
         page_path: location.pathname
       });

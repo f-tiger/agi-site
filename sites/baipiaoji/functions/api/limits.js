@@ -46,13 +46,14 @@ export async function onRequestGet(ctx) {
     if (category) tools = tools.filter((t) => t.category === category);
 
     if (slug && !tools.length) {
+      logHit(ctx, '/api/limits/404', useEn ? 'en' : 'zh');
       return new Response(JSON.stringify({
         ok: false, code: 'not_found',
         hint: 'Unknown slug, or this tool has no officially-verifiable limit yet — absence is deliberate, we publish no unsourced numbers. List all via /api/limits.',
       }), { status: 404, headers });
     }
 
-    logHit(ctx, '/api/limits' + u.search, useEn ? 'en' : 'zh');
+    logHit(ctx, slug ? '/api/limits/' + String(slug).slice(0, 40) : (category ? '/api/limits/cat' : '/api/limits'), useEn ? 'en' : 'zh');
     return new Response(JSON.stringify({
       ok: true,
       lang: useEn ? 'en' : 'zh',

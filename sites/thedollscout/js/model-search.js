@@ -29,6 +29,7 @@
       if (!sent && needle) { sent = true; try {
         var payload = JSON.stringify({ p: location.pathname, r: "", e: "lookup_use" });
         if (navigator.sendBeacon) navigator.sendBeacon("/api/ev", payload);
+        if (window.dsTrack) window.dsTrack("lookup_use", { page_path: location.pathname });
       } catch (e) {} }
     }
     q.addEventListener("input", refilter);

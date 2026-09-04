@@ -92,9 +92,60 @@ jobs:
             echo "X secrets not fully configured (need 5 incl. X_RUN_KEY) — worker stays dormant (this is fine)"
             exit 0
           fi
-          npx wrangler@4 secret put X_API_KEY <<< "$XK"
-          npx wrangler@4 secret put X_API_SECRET <<< "$XS"
-          npx wrangler@4 secret put X_ACCESS_TOKEN <<< "$XT"
-          npx wrangler@4 secret put X_ACCESS_SECRET <<< "$XTS"
-          npx wrangler@4 secret put X_RUN_KEY <<< "$XRK"
+          # printf, not a here-string: <<< appends a newline that would become part of the secret
+          printf %s "$XK"  | npx wrangler@4 secret put X_API_KEY
+          printf %s "$XS"  | npx wrangler@4 secret put X_API_SECRET
+          printf %s "$XT"  | npx wrangler@4 secret put X_ACCESS_TOKEN
+          printf %s "$XTS" | npx wrangler@4 secret put X_ACCESS_SECRET
+          printf %s "$XRK" | npx wrangler@4 secret put X_RUN_KEY
           echo "x-poster ARMED"
+
+      # Post-deploy self-check (2026-09-04): skipped while dormant (no X_RUN_KEY).
+      # Read-only against /status and /; the POST /run probe deliberately carries NO
+      # key and must be rejected (403 = armed, 503 = not armed). The real run key never
+      # leaves GitHub Secrets here.
+      - name: Post-deploy self-check
+        env:
+          XRK: ${{ secrets.X_RUN_KEY }}
+        working-directory: tools/x-poster
+        run: |
+          set -u
+          if [ -z "$XRK" ]; then
+            echo "X_RUN_KEY not configured — poster dormant, self-check skipped"
+            exit 0
+          fi
+          BASE="https://fleet-x-poster.tuoqiantu.workers.dev"
+          fail=0
+          QLEN=$(node -e 'import("./queue.js").then(m=>console.log(m.default.length))')
+          echo "local queue length: $QLEN"
+          ok=0
+          for try in 1 2 3 4 5; do
+            code=$(curl -sS -m 20 -o status.json -w '%{http_code}' "$BASE/status" || echo 000)
+            if [ "$code" = "200" ] && python3 - "$QLEN" <<'PY'
+          import json, sys
+          j = json.load(open('status.json'))
+          assert isinstance(j.get('armed'), bool), 'armed not boolean'
+          assert isinstance(j.get('queue'), list), 'queue not a list'
+          assert len(j['queue']) == int(sys.argv[1]), f"queue length {len(j['queue'])} != local {sys.argv[1]}"
+          print('OK    /status armed=%s queue=%d' % (j['armed'], len(j['queue'])))
+          PY
+            then ok=1; break; fi
+            sleep 5
+          done
+          [ "$ok" = "1" ] || { echo "::error::/status -> HTTP $code or shape mismatch"; fail=1; }
+          if [ -f status.json ] && grep -Eq 'X_API|oauth_|secret|[A-Za-z0-9_-]{40,}' status.json; then
+            echo "::error::/status body contains a credential-shaped string"; fail=1
+          else
+            echo "OK    /status body has no credential-shaped strings"
+          fi
+          rm -f status.json
+          code=$(curl -sS -m 20 -o /dev/null -w '%{http_code}' "$BASE/" || echo 000)
+          if [ "$code" = "200" ]; then echo "OK    / -> 200"
+          else echo "::error::/ -> HTTP $code"; fail=1; fi
+          code=$(curl -sS -m 20 -o /dev/null -w '%{http_code}' -X POST "$BASE/run" || echo 000)
+          case "$code" in
+            403|503) echo "OK    POST /run without key -> $code (rejected)" ;;
+            *) echo "::error::POST /run without key -> HTTP $code (expected 403 or 503)"; fail=1 ;;
+          esac
+          [ "$fail" = "0" ] || exit 1
+          echo "self-check ok"

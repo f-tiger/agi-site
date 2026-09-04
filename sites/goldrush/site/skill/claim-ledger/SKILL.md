@@ -88,4 +88,4 @@ than rejecting wholesale. Then summarize entries as verdict cards.
 - Grading method (tiers, red flags, the live-ledger test):
   https://goldrush.agiscorecard.com/how-to-verify-ai-money-claims
 - Single-file grader tool (offline, no dependencies):
-  https://goldrush.agiscorecard.com/grader.html
+  https://goldrush.agiscorecard.com/grader

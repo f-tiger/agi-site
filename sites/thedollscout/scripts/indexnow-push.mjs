@@ -21,7 +21,7 @@
 
 import { readFileSync } from "node:fs";
 
-const KEY = "0252657e77641154c50b39045dc829f8";
+const KEY = readFileSync("scripts/indexnow-key.txt", "utf8").trim();
 const HOST = "thedollscout.com";
 const MODE = (process.env.MODE || "delta").toLowerCase();
 const WINDOW_DAYS = parseInt(process.env.WINDOW_DAYS || "8", 10);
