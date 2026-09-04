@@ -1,5 +1,5 @@
 {
- "fetched": "2026-09-03",
+ "fetched": "2026-09-04",
  "seeds": {
   "electric spin scrubber": {
    "auto": [
@@ -287,58 +287,88 @@
    "fetched": "2026-09-03"
   },
   "vegetable chopper": {
+   "rising": [
+    {
+     "q": "prestige vegetable chopper",
+     "v": 450
+    },
+    {
+     "q": "how to use a vegetable chopper",
+     "v": 200
+    },
+    {
+     "q": "bralo vegetable chopper",
+     "v": 180
+    },
+    {
+     "q": "miu vegetable chopper",
+     "v": 100
+    },
+    {
+     "q": "costco vegetable chopper",
+     "v": 90
+    }
+   ],
+   "source": "related-queries",
+   "fetched": "2026-09-04"
+  },
+  "power bank built in cable": {
    "auto": [
-    "vegetable chopper",
-    "vegetable chopper amazon",
-    "vegetable chopper walmart",
-    "vegetable chopper electric",
-    "vegetable chopper near me",
-    "vegetable chopper and slicer",
-    "vegetable chopper costco",
-    "vegetable chopper machine",
-    "vegetable chopper nearby",
-    "vegetable chopper manual"
+    "power bank built in cables",
+    "power bank built in cable not working",
+    "power bank built in cable 20000mah",
+    "power bank built in cable reddit",
+    "power bank built in cable iphone",
+    "power bank built in cable lightning",
+    "power bank built in cord",
+    "anker power bank built in cable",
+    "xiaomi power bank built in cable",
+    "power bank with built in cable and wall plug"
    ],
    "rising": [
     {
-     "q": "vegetable chopper amazon",
+     "q": "power bank built in cables",
      "v": "new"
     },
     {
-     "q": "vegetable chopper walmart",
+     "q": "power bank built in cable not working",
      "v": "new"
     },
     {
-     "q": "vegetable chopper electric",
+     "q": "power bank built in cable 20000mah",
      "v": "new"
     },
     {
-     "q": "vegetable chopper near me",
+     "q": "power bank built in cable reddit",
      "v": "new"
     },
     {
-     "q": "vegetable chopper and slicer",
+     "q": "power bank built in cable iphone",
      "v": "new"
     },
     {
-     "q": "vegetable chopper costco",
+     "q": "power bank built in cable lightning",
      "v": "new"
     },
     {
-     "q": "vegetable chopper machine",
+     "q": "power bank built in cord",
      "v": "new"
     },
     {
-     "q": "vegetable chopper nearby",
+     "q": "anker power bank built in cable",
      "v": "new"
     },
     {
-     "q": "vegetable chopper manual",
+     "q": "xiaomi power bank built in cable",
+     "v": "new"
+    },
+    {
+     "q": "power bank with built in cable and wall plug",
      "v": "new"
     }
    ],
    "source": "autocomplete-diff",
-   "fetched": "2026-09-03"
+   "fetched": "2026-09-04"
   }
  }
 }
