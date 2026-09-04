@@ -65,7 +65,26 @@ owner 指令：「优化整个舰队站点」。同日上午已做过一次体�
 - x-poster：线程发到一半失败会从第一条重发（最多 3 次）→ 逐条进度落 STATE 续发；失败只 warning → 402/429 以外 exit 1（接回 GitHub 邮件这条唯一不经 AI 的告警链）；密钥 `<<<` 带换行 → `printf %s |`；加 `package.json` type=module；加 `/status` 自检（不发真 key）。
 
 ### getecoback
-（见下节，随其实施代理结果补记。）
+- `check_adlabel.py` 是 9 个块名的白名单，EB_HEATENERGY/EB_SEALFIT/EB_HOSEFIT 三块（78 页）带联盟
+  链接却从未被检查、无 Werbekennzeichnung——与手册「548 个区块 100% 带标识」的说法矛盾。
+  → 门改为黑名单式全块扫描（旧 site/ 上恰好红 78 处，证明它看得见了），三块补标识。
+- Breadcrumb JSON-LD 是唯一还在「只插不改」的注入器：165/171 页 LD 与可见面包屑不一致
+  （有的 LD 声称父级是另一篇 guide）。→ 替换式注入（`@graph` 内只替换 BreadcrumbList 节点，
+  Article/FAQ 字节不动）+ 新门 `check_crumb_parity.py` 接入 deploy；顺带修了 8 页面包屑里
+  的 `&amp;amp;` 双重转义。
+- `check_events.py` 看不见 `ev("name")` 间接调用，也不扫 worker 注入的片段 → 补；
+  `build_search.py` 漏 `it/*.html`（197→198）；`build_feed.py` 双重转义（feed 4 处 `&amp;amp;`→0）。
+- 自检：404 断言（not_found_handling 回归）、robots/llms、`affiliate_click` 进 /api/ev 探针、
+  `/api/sub2` 幂等探针（email 主键 + INSERT OR IGNORE）、check_301 的 loc 误报修正。
+- eco-health 周一全量 198 URL 重推 IndexNow 与 deploy 的「只推增量」政策自相矛盾 → 只推
+  7 天内 lastmod；eco-mcp-smoke 在 push 上 `sleep 45` 与部署竞速 → 改 `workflow_run`；
+  eco-heat-alert 推送前补 rebase。
+- `/api/subscribe`（Supabase 表单）服务端从不写 D1 → 成功时补一行 `subscribe`（手册里
+  「Supabase 表单从未转化」的读数此前有测量盲区）；`db/d1_schema.sql` 从线上 sqlite_master
+  读回落库（此前仓库里没有 D1 建表语句）；EN 信任页补 GA4；404 页补埋点（meta 带 status:404）；
+  EB_USSWITCH 改 DOMContentLoaded（此前看不到它下方 popup/sticky 里的 33 个锚）。
+- **未动**：191 页 9.7 KB 重复内联 CSS（gzip 后每页 2.2 KB，收益小）、widgets 相关一切、
+  ASIN 直链台账、任何联盟标签。
 
 ## 三、验证方式与未验证项
 
