@@ -1,0 +1,583 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<title>OVERFIT — Outplay the AI That Learns You</title>
+<meta name="description" content="The enemy AI really does study your movement — then tells you exactly what it learned. Feed it a pattern, betray it, and watch the model collapse. A free arcade dodger for the AI era.">
+<link rel="canonical" href="https://play.agiscorecard.com/overfit">
+<meta property="og:title" content="OVERFIT — Outplay the AI That Learns You">
+<meta property="og:description" content="The boss studies your habits between waves and announces its predictions. Break them to crash the model. Free, no account.">
+<meta property="og:url" content="https://play.agiscorecard.com/overfit">
+<meta name="theme-color" content="#07090f">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2307090f'/%3E%3Cpath d='M16 6 L26 24 L6 24 Z' fill='none' stroke='%2300e5a8' stroke-width='2.5'/%3E%3Ccircle cx='16' cy='16' r='2.6' fill='%23ff3d71'/%3E%3C/svg%3E">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"OVERFIT","url":"https://play.agiscorecard.com/overfit","applicationCategory":"GameApplication","operatingSystem":"Any (browser)","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":"adaptive enemy AI that learns your movement, transparent training reports between waves, model-confusion combo mechanic, one-pointer controls, touch + mouse, no account","isPartOf":{"@type":"WebSite","name":"Gridlings","url":"https://play.agiscorecard.com/"}}</script>
+<style>
+  :root{--bg:#07090f;--ink:#dfe7ff;--mut:#7684a8;--ai:#ff3d71;--you:#00e5a8;--panel:#10141f;--line:rgba(255,255,255,.08);}
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+  html,body{height:100%;}
+  body{background:radial-gradient(1000px 640px at 50% -8%, #101b33 0%, var(--bg) 60%);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans JP",sans-serif;
+    display:flex;flex-direction:column;align-items:center;min-height:100%;overflow:hidden;touch-action:none;user-select:none;-webkit-user-select:none;}
+  header{width:100%;max-width:860px;display:flex;align-items:center;justify-content:space-between;padding:10px 14px 0;z-index:5;}
+  .logo{font-weight:800;font-size:17px;letter-spacing:2px;}
+  .logo em{font-style:normal;color:var(--ai);}
+  .hbtns{display:flex;gap:8px;}
+  .hbtn{background:var(--panel);border:1px solid var(--line);color:var(--mut);border-radius:9px;width:34px;height:34px;font-size:15px;cursor:pointer;line-height:1;}
+  #stage{flex:1;width:100%;max-width:860px;display:block;cursor:crosshair;}
+  footer{width:100%;max-width:860px;padding:4px 14px calc(10px + env(safe-area-inset-bottom));display:flex;justify-content:space-between;font-size:11px;color:var(--mut);z-index:5;}
+  footer a{color:var(--mut);text-decoration:none;border-bottom:1px dotted var(--mut);}
+  .cg footer{display:none;}
+  .modal{position:fixed;inset:0;background:rgba(5,7,14,.84);backdrop-filter:blur(7px);display:none;align-items:center;justify-content:center;z-index:50;padding:16px;}
+  .modal.show{display:flex;}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:24px 28px;max-width:360px;width:100%;text-align:center;box-shadow:0 18px 60px rgba(0,0,0,.55);}
+  .card h2{font-size:21px;margin-bottom:4px;letter-spacing:1px;}
+  .card .big{font-size:40px;font-weight:800;background:linear-gradient(120deg,#00e5a8,#5a8cf5);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .card p{color:var(--mut);font-size:13px;margin:8px 0 14px;line-height:1.55;}
+  .brief{text-align:left;background:rgba(255,61,113,.07);border:1px solid rgba(255,61,113,.25);border-radius:11px;padding:10px 13px;font-size:12.5px;margin:10px 0 14px;line-height:1.6;}
+  .brief b{color:var(--ai);}
+  .btn{display:inline-block;background:linear-gradient(120deg,#00b586,#00e5a8);color:#04140e;border:0;border-radius:12px;padding:12px 26px;font-size:15px;font-weight:800;cursor:pointer;font-family:inherit;letter-spacing:.4px;}
+  .btn:active{transform:scale(.97);}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">OVER<em>FIT</em></div>
+  <div class="hbtns">
+    <button class="hbtn" id="bmute" aria-label="Sound on/off">🔊</button>
+    <button class="hbtn" id="brestart" aria-label="Restart">↺</button>
+  </div>
+</header>
+<canvas id="stage"></canvas>
+<footer>
+  <span>No ads here · no account · free</span>
+  <a href="/" id="hublink">more games → Gridlings</a>
+</footer>
+
+<div class="modal" id="mstart" role="dialog">
+  <div class="card">
+    <h2>OVER<span style="color:var(--ai)">FIT</span></h2>
+    <p>Move with your <b>mouse or finger</b>. Your ship fires by itself.<br>
+    Between waves the enemy AI <b>reports what it learned about you</b> — and hunts you with it.</p>
+    <div class="brief">🧠 <b>Crash the model:</b> let it grow confident in a habit, then <b>do the opposite</b>. A confused AI staggers, and everything you destroy counts <b>double</b>.</div>
+    <button class="btn" id="bstart">Start Wave 1</button>
+  </div>
+</div>
+<div class="modal" id="mover" role="dialog">
+  <div class="card">
+    <h2 id="ovtitle">MODEL WINS</h2>
+    <div class="big" id="ovscore">0</div>
+    <p id="ovlines">Best: 0</p>
+    <button class="btn" id="bagain">Run it back</button>
+  </div>
+</div>
+
+<script>
+"use strict";
+/* ============ CrazyGames bridge (inline; active only in cg contexts) */
+(function () {
+  var on = window.GL_CG === true || /(^|[?&])cg=1/.test(location.search);
+  if (!on) { try { on = /crazygames\./.test(document.referrer); } catch (e) {} }
+  window.GL_CG = on;
+  var q = [];
+  window.ofCg = function (ev) { if (on) q.push(ev); };
+  window.ofAd = function (done) { done(); };
+  if (!on) return;
+  document.documentElement.classList.add("cg");
+  if (/[?&]muteAudio=true/.test(location.search)) window.GL_SDK_MUTE = true;
+  var s = document.createElement("script");
+  s.src = "https://sdk.crazygames.com/crazygames-sdk-v3.js";
+  s.async = true;
+  s.onload = function () {
+    try {
+      window.CrazyGames.SDK.init().then(function () {
+        var g = window.CrazyGames.SDK.game;
+        try {
+          var st = g.settings;
+          if (st && typeof st.muteAudio === "boolean") window.GL_SDK_MUTE = st.muteAudio;
+          g.addSettingsChangeListener(function (s2) { if (s2 && typeof s2.muteAudio === "boolean") window.GL_SDK_MUTE = s2.muteAudio; });
+        } catch (e) {}
+        try { g.loadingStart(); } catch (e) {} try { g.loadingStop(); } catch (e) {}
+        window.ofCg = function (ev) {
+          try {
+            if (ev === "start") g.gameplayStart();
+            else if (ev === "stop") g.gameplayStop();
+            else if (ev === "happy") g.happytime();
+          } catch (e) {}
+        };
+        q.splice(0).forEach(function (ev) { window.ofCg(ev); });
+        window.ofAd = function (done) {
+          var fin = false; var end = function () { if (!fin) { fin = true; done(); } };
+          try {
+            window.CrazyGames.SDK.ad.requestAd("midgame", { adFinished: end, adError: end, adStarted: function () {} });
+            setTimeout(end, 20000);
+          } catch (e) { end(); }
+        };
+      }).catch(function () {});
+    } catch (e) {}
+  };
+  document.head.appendChild(s);
+})();
+/* ============ beacon */
+function ev(n, l) {
+  try {
+    var d = JSON.stringify({ n: n, l: l || "of", p: "/overfit" });
+    var u = "https://play.agiscorecard.com/e";
+    if (navigator.sendBeacon) navigator.sendBeacon(u, new Blob([d], { type: "application/json" }));
+    else fetch(u, { method: "POST", body: d, keepalive: true, mode: "cors" }).catch(function () {});
+  } catch (e) {}
+}
+/* ============ audio */
+var AC = null, muted = false;
+try { muted = localStorage.getItem("ofMute") === "1"; } catch (e) {}
+function ac() { if (!AC) { try { AC = new (window.AudioContext || window.webkitAudioContext)(); } catch (e) {} }
+  if (AC && AC.state === "suspended") { try { AC.resume(); } catch (e) {} } return AC; }
+function tone(f, t0, dur, type, gain, slide) {
+  var a = ac(); if (!a || muted || window.GL_SDK_MUTE) return;
+  try {
+    var o = a.createOscillator(), g = a.createGain();
+    o.type = type || "sine"; o.frequency.setValueAtTime(f, a.currentTime + t0);
+    if (slide) o.frequency.exponentialRampToValueAtTime(slide, a.currentTime + t0 + dur);
+    g.gain.setValueAtTime(0, a.currentTime + t0);
+    g.gain.linearRampToValueAtTime(gain || 0.1, a.currentTime + t0 + 0.012);
+    g.gain.exponentialRampToValueAtTime(0.0001, a.currentTime + t0 + dur);
+    o.connect(g); g.connect(a.destination);
+    o.start(a.currentTime + t0); o.stop(a.currentTime + t0 + dur + 0.02);
+  } catch (e) {}
+}
+function noise(dur, freq, gain) {
+  var a = ac(); if (!a || muted || window.GL_SDK_MUTE) return;
+  try {
+    var n = a.createBufferSource(), b = a.createBuffer(1, a.sampleRate * dur, a.sampleRate), d = b.getChannelData(0);
+    for (var i = 0; i < d.length; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / d.length, 1.6);
+    var f = a.createBiquadFilter(); f.type = "lowpass"; f.frequency.value = freq;
+    var g = a.createGain(); g.gain.value = gain;
+    n.buffer = b; n.connect(f); f.connect(g); g.connect(a.destination); n.start();
+  } catch (e) {}
+}
+var sfx = {
+  shot: function () { tone(880, 0, 0.045, "square", 0.025, 640); },
+  kill: function () { tone(520, 0, 0.09, "triangle", 0.1, 240); noise(0.08, 1400, 0.06); },
+  hurt: function () { tone(160, 0, 0.22, "sawtooth", 0.16, 70); noise(0.2, 500, 0.2); },
+  wave: function () { tone(392, 0, 0.12, "triangle", 0.1); tone(494, 0.1, 0.12, "triangle", 0.1); tone(659, 0.2, 0.2, "triangle", 0.12); },
+  confuse: function () { tone(700, 0, 0.4, "sawtooth", 0.07, 90); tone(940, 0.05, 0.35, "square", 0.05, 120); noise(0.35, 900, 0.16); },
+  over: function () { tone(330, 0, 0.2, "sine", 0.12); tone(262, 0.18, 0.2, "sine", 0.12); tone(196, 0.36, 0.4, "sine", 0.12); },
+  beam: function () { tone(1400, 0, 0.5, "sine", 0.03, 1800); }
+};
+/* ============ layout */
+var cv = document.getElementById("stage"), cx = cv.getContext("2d");
+var W = 0, H = 0;
+function layout() {
+  var dpr = Math.min(window.devicePixelRatio || 1, 2.5);
+  var r = cv.getBoundingClientRect();
+  W = Math.max(320, r.width); H = Math.max(360, r.height);
+  cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+  cx.setTransform(dpr, 0, 0, dpr, 0, 0);
+}
+window.addEventListener("resize", layout);
+
+/* ============ THE MODEL — a real, transparent statistical learner over player behavior.
+   dirBins: 8-direction movement histogram. orbit: signed angular motion around arena
+   centre (+cw). speedAvg: EMA of speed. dodgeLR: which way the player breaks when a
+   sniper locks on. conf: how sharply the histogram peaks = model confidence. */
+var model;
+function freshModel() {
+  return { dirBins: new Array(8).fill(1), orbit: 0, samples: 8, speedAvg: 120, dodgeL: 1, dodgeR: 1, conf: 0, predDir: 0, predOrbit: 0 };
+}
+function learnFrame(dt) {
+  var sp = Math.hypot(P.vx, P.vy);
+  model.speedAvg += (sp - model.speedAvg) * Math.min(1, dt * 0.5);
+  if (sp > 30) {
+    var a = Math.atan2(P.vy, P.vx);
+    var bin = ((Math.round(a / (Math.PI / 4)) % 8) + 8) % 8;
+    model.dirBins[bin] += dt * 2;
+    model.samples += dt * 2;
+    var toC = Math.atan2(P.y - H / 2, P.x - W / 2);
+    var tang = a - toC - Math.PI / 2;
+    while (tang > Math.PI) tang -= 2 * Math.PI;
+    while (tang < -Math.PI) tang += 2 * Math.PI;
+    model.orbit += (Math.abs(tang) < Math.PI / 2 ? 1 : -1) * dt;
+  }
+  var mx = Math.max.apply(null, model.dirBins);
+  model.conf = Math.min(1, (mx / model.samples) * 8 / 3);
+  model.predDir = model.dirBins.indexOf(mx) * Math.PI / 4;
+  model.predOrbit = model.orbit >= 0 ? 1 : -1;
+}
+/* prediction the enemies actually use: blend of velocity lead + learned bias */
+function predictPos(t) {
+  var lead = Math.min(1.5, t);
+  var bx = Math.cos(model.predDir) * model.speedAvg * model.conf;
+  var by = Math.sin(model.predDir) * model.speedAvg * model.conf;
+  return { x: P.x + (P.vx * 0.6 + bx * 0.4) * lead, y: P.y + (P.vy * 0.6 + by * 0.4) * lead };
+}
+/* confusion: recent live behavior vs stated prediction */
+var recent = [];
+function confusionCheck(dt) {
+  var sp = Math.hypot(P.vx, P.vy);
+  if (sp > 40) {
+    var a = Math.atan2(P.vy, P.vx);
+    recent.push({ a: a, t: nowT });
+  }
+  while (recent.length && nowT - recent[0].t > 2.2) recent.shift();
+  if (confused > 0 || model.conf < 0.55 || recent.length < 25) return;
+  var agree = 0;
+  for (var i = 0; i < recent.length; i++) {
+    var d = Math.abs(recent[i].a - model.predDir);
+    while (d > Math.PI) d = Math.abs(d - 2 * Math.PI);
+    if (d < Math.PI / 2.5) agree++;
+  }
+  if (agree / recent.length < 0.14) {
+    confused = 2.2; confuseFlash = 1; recent.length = 0;
+    model.dirBins = model.dirBins.map(function (v) { return 1 + (v - 1) * 0.25; });
+    model.samples = model.dirBins.reduce(function (s, v) { return s + v; }, 0);
+    score += 25;
+    popText("MODEL CONFUSED  ×2", W / 2, H * 0.3, 26, 160);
+    sfx.confuse(); shake = 7;
+    window.ofCg("happy");
+  }
+}
+
+/* ============ game state */
+var P, foes, shots, beams, parts, pops, score, best = 0, wave, hp, over, running, confused, confuseFlash, shake, nowT, spawnQ, waveMsg, inv;
+try { best = parseInt(localStorage.getItem("ofBest") || "0", 10) || 0; } catch (e) {}
+var ptr = { x: 0, y: 0, on: false };
+function popText(txt, x, y, size, hue) { pops.push({ txt: txt, x: x, y: y, t: 0, life: 1.1, size: size, hue: hue }); }
+function burst(x, y, hue, n, spd) {
+  for (var i = 0; i < n; i++) {
+    var a = Math.random() * Math.PI * 2, sp = (spd || 160) * (0.4 + Math.random());
+    parts.push({ x: x, y: y, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp, t: 0, life: 0.4 + Math.random() * 0.35, hue: hue, r: 1.5 + Math.random() * 2.5 });
+  }
+}
+function reset(replay) {
+  P = { x: W / 2, y: H * 0.6, vx: 0, vy: 0, fire: 0 };
+  foes = []; shots = []; beams = []; parts = []; pops = []; spawnQ = [];
+  score = 0; wave = 0; hp = 3; over = false; running = false; confused = 0; confuseFlash = 0; shake = 0; inv = 0; waveMsg = null;
+  model = freshModel(); recent = [];
+  ptr.on = false;
+  document.getElementById("mover").classList.remove("show");
+  document.getElementById("mstart").classList.add("show");
+  if (replay) ev("play_again");
+}
+function trainingReport() {
+  var lines = [];
+  var pct = Math.round(model.conf * 100);
+  var dirs = ["→", "↘", "↓", "↙", "←", "↖", "↑", "↗"];
+  lines.push("drift bias: " + dirs[Math.round(model.predDir / (Math.PI / 4)) % 8] + "  (" + pct + "% conf)");
+  lines.push("orbit: " + (model.predOrbit > 0 ? "clockwise" : "counter-cw"));
+  var dl = model.dodgeL, dr = model.dodgeR;
+  if (dl + dr > 3) lines.push("dodges " + (dl > dr ? "LEFT " + Math.round(100 * dl / (dl + dr)) : "RIGHT " + Math.round(100 * dr / (dl + dr))) + "% on lock");
+  return lines;
+}
+function startWave() {
+  wave++;
+  var n = 3 + wave * 2;
+  var comp = [];
+  for (var i = 0; i < n; i++) {
+    var r = Math.random(), type = "chaser";
+    if (wave >= 2 && r < 0.35) type = "predictor";
+    if (wave >= 3 && r < 0.18) type = "sniper";
+    comp.push(type);
+  }
+  spawnQ = comp.map(function (t, i) { return { t: t, at: i * Math.max(0.28, 1.1 - wave * 0.08) }; });
+  nowTWave = 0;
+  waveMsg = { t: 0, lines: wave === 1 ? ["cold start — no data on you yet"] : trainingReport() };
+  sfx.wave();
+  if (wave > 1) { popText("TRAINING UPDATE", W / 2, H * 0.22, 22, 340); }
+  popText("WAVE " + wave, W / 2, H * 0.15, 30, 200);
+}
+var nowTWave = 0;
+function spawnFoe(type) {
+  var edge = Math.floor(Math.random() * 4), x, y;
+  if (edge === 0) { x = -20; y = Math.random() * H; }
+  else if (edge === 1) { x = W + 20; y = Math.random() * H; }
+  else if (edge === 2) { x = Math.random() * W; y = -20; }
+  else { x = Math.random() * W; y = H + 20; }
+  var base = 52 + wave * 7;
+  if (type === "chaser") foes.push({ type: type, x: x, y: y, hp: 1, sp: base * 1.15, r: 12, hue: 340, wob: Math.random() * 7 });
+  else if (type === "predictor") foes.push({ type: type, x: x, y: y, hp: 2, sp: base, r: 14, hue: 275, wob: Math.random() * 7 });
+  else foes.push({ type: type, x: x, y: y, hp: 2, sp: base * 0.55, r: 13, hue: 45, lock: 0, aim: null, wob: 0 });
+}
+/* ============ input */
+function evtPos(e) { var r = cv.getBoundingClientRect(); return { x: e.clientX - r.left, y: e.clientY - r.top }; }
+cv.addEventListener("pointerdown", function (e) { ac(); var p = evtPos(e); ptr.x = p.x; ptr.y = p.y; ptr.on = true; e.preventDefault(); }, { passive: false });
+cv.addEventListener("pointermove", function (e) { var p = evtPos(e); ptr.x = p.x; ptr.y = p.y; if (e.pointerType === "mouse") ptr.on = true; e.preventDefault(); }, { passive: false });
+cv.addEventListener("pointerup", function (e) { if (e.pointerType !== "mouse") ptr.on = false; }, { passive: false });
+
+/* ============ update */
+function update(dt) {
+  nowT += dt;
+  if (!running || over) return;
+  nowTWave += dt;
+  if (waveMsg) { waveMsg.t += dt; if (waveMsg.t > 2.6) waveMsg = null; }
+  /* player follows pointer */
+  if (ptr.on) {
+    var dx = ptr.x - P.x, dy = ptr.y - P.y, d = Math.hypot(dx, dy);
+    var v = Math.min(d * 9, 420);
+    if (d > 2) { P.vx = dx / d * v; P.vy = dy / d * v; } else { P.vx *= 0.7; P.vy *= 0.7; }
+  } else { P.vx *= 0.86; P.vy *= 0.86; }
+  P.x = Math.max(12, Math.min(W - 12, P.x + P.vx * dt));
+  P.y = Math.max(12, Math.min(H - 12, P.y + P.vy * dt));
+  if (inv > 0) inv -= dt;
+  learnFrame(dt);
+  confusionCheck(dt);
+  if (confused > 0) { confused -= dt; }
+  /* spawn queue */
+  for (var i = spawnQ.length - 1; i >= 0; i--) if (spawnQ[i].at <= nowTWave) { spawnFoe(spawnQ[i].t); spawnQ.splice(i, 1); }
+  /* autofire nearest foe */
+  P.fire -= dt;
+  if (P.fire <= 0 && foes.length) {
+    var near = null, nd = 1e9;
+    foes.forEach(function (f) { var d2 = Math.hypot(f.x - P.x, f.y - P.y); if (d2 < nd) { nd = d2; near = f; } });
+    if (near && nd < 520) {
+      var a2 = Math.atan2(near.y - P.y, near.x - P.x);
+      shots.push({ x: P.x, y: P.y, vx: Math.cos(a2) * 620, vy: Math.sin(a2) * 620, t: 0 });
+      P.fire = 0.16; sfx.shot();
+    }
+  }
+  /* shots */
+  for (var s = shots.length - 1; s >= 0; s--) {
+    var sh = shots[s]; sh.t += dt; sh.x += sh.vx * dt; sh.y += sh.vy * dt;
+    if (sh.t > 1.2 || sh.x < -20 || sh.y < -20 || sh.x > W + 20 || sh.y > H + 20) { shots.splice(s, 1); continue; }
+    for (var f2 = foes.length - 1; f2 >= 0; f2--) {
+      var fo = foes[f2];
+      if (Math.hypot(fo.x - sh.x, fo.y - sh.y) < fo.r + 4) {
+        shots.splice(s, 1); fo.hp--;
+        burst(sh.x, sh.y, fo.hue, 5, 120);
+        if (fo.hp <= 0) {
+          foes.splice(f2, 1);
+          var gain = (fo.type === "chaser" ? 10 : fo.type === "predictor" ? 20 : 30) * (confused > 0 ? 2 : 1);
+          score += gain;
+          popText("+" + gain, fo.x, fo.y, 15, fo.hue);
+          burst(fo.x, fo.y, fo.hue, 14, 200);
+          sfx.kill(); shake = Math.max(shake, 2.5);
+        }
+        break;
+      }
+    }
+  }
+  /* foes */
+  var stag = confused > 0 ? 0.28 : 1;
+  foes.forEach(function (f) {
+    if (f.type === "chaser") {
+      var a3 = Math.atan2(P.y - f.y, P.x - f.x) + Math.sin(nowT * 3 + f.wob) * 0.25;
+      f.x += Math.cos(a3) * f.sp * stag * dt; f.y += Math.sin(a3) * f.sp * stag * dt;
+    } else if (f.type === "predictor") {
+      var tgt = predictPos(Math.hypot(P.x - f.x, P.y - f.y) / 300);
+      var a4 = Math.atan2(tgt.y - f.y, tgt.x - f.x);
+      f.x += Math.cos(a4) * f.sp * stag * dt; f.y += Math.sin(a4) * f.sp * stag * dt;
+    } else { /* sniper: drift, lock at predicted pos, telegraph, fire beam */
+      f.lock += dt * stag;
+      var drift = Math.atan2(H / 2 - f.y, W / 2 - f.x);
+      f.x += Math.cos(drift) * f.sp * 0.4 * stag * dt; f.y += Math.sin(drift) * f.sp * 0.4 * stag * dt;
+      if (f.lock > 1.7 && !f.aim) {
+        var pp = predictPos(0.8);
+        f.aim = { x: pp.x, y: pp.y, t: 0 };
+        var side = ((pp.x - P.x) * P.vy - (pp.y - P.y) * P.vx);
+        f.aimSide = side;
+        sfx.beam();
+      }
+      if (f.aim) {
+        f.aim.t += dt;
+        if (f.aim.t > 0.85) {
+          beams.push({ x1: f.x, y1: f.y, x2: f.aim.x, y2: f.aim.y, t: 0 });
+          /* learn the dodge: which side did the player go relative to aim line */
+          var rel = ((f.aim.x - f.x) * (P.y - f.y) - (f.aim.y - f.y) * (P.x - f.x));
+          if (rel > 0) model.dodgeR++; else model.dodgeL++;
+          f.aim = null; f.lock = 0;
+        }
+      }
+    }
+    /* touch damage */
+    if (inv <= 0 && Math.hypot(f.x - P.x, f.y - P.y) < f.r + 9) {
+      hp--; inv = 1.2; sfx.hurt(); shake = 9;
+      burst(P.x, P.y, 160, 22, 260);
+      if (hp <= 0) endGame();
+    }
+  });
+  /* beams damage on flash frame */
+  for (var b2 = beams.length - 1; b2 >= 0; b2--) {
+    var bm = beams[b2]; bm.t += dt;
+    if (bm.t < 0.12 && inv <= 0) {
+      var A = { x: bm.x2 - bm.x1, y: bm.y2 - bm.y1 };
+      var L2 = A.x * A.x + A.y * A.y || 1;
+      var tt = Math.max(0, Math.min(1, ((P.x - bm.x1) * A.x + (P.y - bm.y1) * A.y) / L2));
+      var px = bm.x1 + A.x * tt, py = bm.y1 + A.y * tt;
+      if (Math.hypot(P.x - px, P.y - py) < 14) {
+        hp--; inv = 1.2; sfx.hurt(); shake = 10;
+        burst(P.x, P.y, 160, 22, 260);
+        if (hp <= 0) endGame();
+      }
+    }
+    if (bm.t > 0.35) beams.splice(b2, 1);
+  }
+  /* wave clear */
+  if (!spawnQ.length && !foes.length && !over) {
+    score += 15 * wave;
+    startWave();
+  }
+}
+function endGame() {
+  over = true; running = false;
+  window.ofCg("stop");
+  sfx.over();
+  ev("game_over", "of:" + score + ":w" + wave);
+  if (score > best) { best = score; try { localStorage.setItem("ofBest", String(best)); } catch (e) {} }
+  document.getElementById("ovscore").textContent = score;
+  document.getElementById("ovlines").textContent = "Wave " + wave + " · Best " + best;
+  document.getElementById("ovtitle").textContent = ["MODEL WINS", "IT LEARNED YOU", "PREDICTED.", "OVERFIT ACHIEVED"][Math.min(3, Math.floor(wave / 4))];
+  setTimeout(function () { document.getElementById("mover").classList.add("show"); }, 500);
+}
+/* ============ draw */
+function tri(x, y, a, r) {
+  cx.beginPath();
+  cx.moveTo(x + Math.cos(a) * r * 1.4, y + Math.sin(a) * r * 1.4);
+  cx.lineTo(x + Math.cos(a + 2.5) * r, y + Math.sin(a + 2.5) * r);
+  cx.lineTo(x + Math.cos(a - 2.5) * r, y + Math.sin(a - 2.5) * r);
+  cx.closePath();
+}
+function draw(dt) {
+  cx.clearRect(0, 0, W, H);
+  var ox = 0, oy = 0;
+  if (shake > 0) { ox = (Math.random() - .5) * shake; oy = (Math.random() - .5) * shake; shake = Math.max(0, shake - dt * 26); }
+  cx.save(); cx.translate(ox, oy);
+  /* grid backdrop */
+  cx.strokeStyle = "rgba(120,140,220,.05)"; cx.lineWidth = 1;
+  for (var gx = 40; gx < W; gx += 40) { cx.beginPath(); cx.moveTo(gx, 0); cx.lineTo(gx, H); cx.stroke(); }
+  for (var gy = 40; gy < H; gy += 40) { cx.beginPath(); cx.moveTo(0, gy); cx.lineTo(W, gy); cx.stroke(); }
+  /* HUD */
+  cx.textAlign = "center"; cx.fillStyle = "#dfe7ff"; cx.font = "800 26px -apple-system,'Segoe UI',sans-serif";
+  cx.fillText(String(score), W / 2, 34);
+  cx.textAlign = "left"; cx.fillStyle = "#7684a8"; cx.font = "700 12px -apple-system,'Segoe UI',sans-serif";
+  cx.fillText("WAVE " + wave, 14, 24);
+  cx.textAlign = "right";
+  cx.fillText("❤".repeat(Math.max(0, hp)) + "♡".repeat(Math.max(0, 3 - hp)), W - 14, 24);
+  /* model confidence bar — the AI's brain, always visible */
+  var bw = Math.min(280, W * 0.5), bx = (W - bw) / 2, by = 44;
+  cx.textAlign = "left"; cx.fillStyle = "#7684a8"; cx.font = "700 9px -apple-system,'Segoe UI',sans-serif";
+  cx.fillText("AI CONFIDENCE", bx, by - 3);
+  cx.fillStyle = "rgba(255,255,255,.07)";
+  cx.fillRect(bx, by, bw, 7);
+  var cw = bw * model.conf;
+  var grad = cx.createLinearGradient(bx, 0, bx + bw, 0);
+  grad.addColorStop(0, "#5a8cf5"); grad.addColorStop(1, "#ff3d71");
+  cx.fillStyle = confused > 0 ? "#00e5a8" : grad;
+  cx.fillRect(bx, by, Math.max(4, cw), 7);
+  if (confused > 0) {
+    confuseFlash += dt * 8;
+    cx.globalAlpha = 0.5 + 0.5 * Math.sin(confuseFlash);
+    cx.fillStyle = "#00e5a8"; cx.font = "800 11px -apple-system,'Segoe UI',sans-serif";
+    cx.fillText("CONFUSED — ×2", bx + bw + 8, by + 7);
+    cx.globalAlpha = 1;
+  }
+  /* wave training report card */
+  if (waveMsg) {
+    var a5 = Math.min(1, waveMsg.t * 3, (2.6 - waveMsg.t) * 2);
+    cx.globalAlpha = Math.max(0, a5);
+    cx.textAlign = "center"; cx.fillStyle = "#ff9db8"; cx.font = "600 13px 'JetBrains Mono',monospace,-apple-system";
+    waveMsg.lines.forEach(function (ln, i) { cx.fillText(ln, W / 2, H * 0.30 + i * 19); });
+    cx.globalAlpha = 1;
+  }
+  /* beams + telegraphs */
+  foes.forEach(function (f) {
+    if (f.type === "sniper" && f.aim) {
+      cx.globalAlpha = 0.25 + 0.55 * (f.aim.t / 0.85);
+      cx.strokeStyle = "#ffd23d"; cx.lineWidth = 1.5; cx.setLineDash([7, 6]);
+      cx.beginPath(); cx.moveTo(f.x, f.y); cx.lineTo(f.aim.x, f.aim.y); cx.stroke();
+      cx.setLineDash([]); cx.globalAlpha = 1;
+      cx.strokeStyle = "rgba(255,210,61,.7)";
+      cx.beginPath(); cx.arc(f.aim.x, f.aim.y, 10 + 6 * Math.sin(nowT * 9), 0, 7); cx.stroke();
+    }
+  });
+  beams.forEach(function (bm) {
+    cx.globalAlpha = Math.max(0, 1 - bm.t / 0.35);
+    cx.strokeStyle = "#ffd23d"; cx.lineWidth = 4;
+    cx.beginPath(); cx.moveTo(bm.x1, bm.y1); cx.lineTo(bm.x2, bm.y2); cx.stroke();
+    cx.globalAlpha = 1;
+  });
+  /* shots */
+  cx.fillStyle = "#9ff5dc";
+  shots.forEach(function (s) { cx.beginPath(); cx.arc(s.x, s.y, 3, 0, 7); cx.fill(); });
+  /* foes */
+  foes.forEach(function (f) {
+    var jx = confused > 0 ? (Math.random() - .5) * 4 : 0, jy = confused > 0 ? (Math.random() - .5) * 4 : 0;
+    cx.fillStyle = "hsl(" + f.hue + ",85%,62%)";
+    cx.shadowColor = "hsla(" + f.hue + ",90%,60%,.8)"; cx.shadowBlur = 12;
+    if (f.type === "chaser") { cx.beginPath(); cx.arc(f.x + jx, f.y + jy, f.r, 0, 7); cx.fill(); }
+    else if (f.type === "predictor") {
+      cx.save(); cx.translate(f.x + jx, f.y + jy); cx.rotate(nowT * 2);
+      cx.fillRect(-f.r * 0.85, -f.r * 0.85, f.r * 1.7, f.r * 1.7); cx.restore();
+    } else {
+      cx.save(); cx.translate(f.x + jx, f.y + jy); cx.rotate(nowT);
+      cx.beginPath();
+      for (var k = 0; k < 6; k++) { var aa = k * Math.PI / 3; cx.lineTo(Math.cos(aa) * f.r, Math.sin(aa) * f.r); }
+      cx.closePath(); cx.fill(); cx.restore();
+    }
+    cx.shadowBlur = 0;
+  });
+  /* player */
+  if (!over) {
+    var pa = Math.atan2(P.vy, P.vx) || -Math.PI / 2;
+    if (inv > 0 && Math.floor(nowT * 14) % 2) cx.globalAlpha = 0.35;
+    cx.shadowColor = "rgba(0,229,168,.9)"; cx.shadowBlur = 16;
+    cx.fillStyle = "#00e5a8"; tri(P.x, P.y, pa, 11); cx.fill();
+    cx.shadowBlur = 0; cx.globalAlpha = 1;
+  }
+  /* particles */
+  for (var pi = parts.length - 1; pi >= 0; pi--) {
+    var p2 = parts[pi]; p2.t += dt;
+    if (p2.t >= p2.life) { parts.splice(pi, 1); continue; }
+    p2.x += p2.vx * dt; p2.y += p2.vy * dt; p2.vx *= 0.985; p2.vy *= 0.985;
+    cx.globalAlpha = 1 - p2.t / p2.life;
+    cx.fillStyle = "hsl(" + p2.hue + ",85%,64%)";
+    cx.beginPath(); cx.arc(p2.x, p2.y, p2.r, 0, 7); cx.fill();
+    cx.globalAlpha = 1;
+  }
+  /* popups */
+  cx.textAlign = "center";
+  for (var pp2 = pops.length - 1; pp2 >= 0; pp2--) {
+    var q2 = pops[pp2]; q2.t += dt;
+    if (q2.t >= q2.life) { pops.splice(pp2, 1); continue; }
+    cx.globalAlpha = 1 - q2.t / q2.life;
+    cx.font = "800 " + q2.size + "px -apple-system,'Segoe UI',sans-serif";
+    cx.fillStyle = "hsl(" + q2.hue + ",90%,70%)";
+    cx.fillText(q2.txt, q2.x, q2.y - q2.t * 26);
+    cx.globalAlpha = 1;
+  }
+  cx.restore();
+}
+var last = 0;
+function loop(ts) {
+  var dt = Math.min(0.045, (ts - last) / 1000 || 0.016); last = ts;
+  update(dt); draw(dt);
+  requestAnimationFrame(loop);
+}
+/* ============ UI */
+document.getElementById("bmute").textContent = muted ? "🔇" : "🔊";
+document.getElementById("bmute").addEventListener("click", function () {
+  muted = !muted; this.textContent = muted ? "🔇" : "🔊";
+  try { localStorage.setItem("ofMute", muted ? "1" : "0"); } catch (e) {}
+});
+document.getElementById("brestart").addEventListener("click", function () { window.ofCg("stop"); reset(true); });
+document.getElementById("bstart").addEventListener("click", function () {
+  ac();
+  document.getElementById("mstart").classList.remove("show");
+  running = true; nowT = 0;
+  ev("play_start"); window.ofCg("start");
+  startWave();
+});
+document.getElementById("bagain").addEventListener("click", function () {
+  var b = this; b.disabled = true;
+  window.ofAd(function () {
+    b.disabled = false; reset(true);
+    document.getElementById("mstart").classList.remove("show");
+    running = true; nowT = 0; window.ofCg("start"); startWave();
+  });
+});
+document.getElementById("hublink").addEventListener("click", function () { ev("hub_click", "of"); });
+layout();
+reset(false);
+requestAnimationFrame(loop);
+window.OF_READY = true;
+</script>
+</body>
+</html>

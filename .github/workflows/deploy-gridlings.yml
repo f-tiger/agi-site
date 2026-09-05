@@ -106,7 +106,7 @@ jobs:
         run: |
           set -u
           fail=0
-          for p in / /starbattle /zh/starbattle /star-battle-rules /archive /download /blocknova /downloads/cg/blocknova-cg.zip /app-starbattle.js /zh/app-starbattle.js; do
+          for p in / /starbattle /zh/starbattle /star-battle-rules /archive /download /blocknova /overfit /downloads/cg/blocknova-cg.zip /downloads/cg/overfit-cg.zip /app-starbattle.js /zh/app-starbattle.js; do
             url="https://play.agiscorecard.com$p"
             ok=0; code=000; redirs=0
             # edge propagation can lag the wrangler deploy by a beat — retry briefly
