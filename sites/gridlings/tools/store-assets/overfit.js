@@ -10,7 +10,7 @@
  */
 module.exports = {
   readyExpr: "window.OF_READY === true",
-  startSelector: "#bstart",
+  startSelector: null,   // instant-play: no menu to click through
   probeExpr: `(() => ({ t: +(window.__AP && window.__AP.t || 0).toFixed(1), conf: +model.conf.toFixed(2),
     confusedAt: window.__AP && window.__AP.confusedAt, score, wave, hp, over }))()`,
 
@@ -25,7 +25,7 @@ module.exports = {
   ],
 
   stage: (c) => `
-    document.getElementById('mstart').classList.remove('show');
+    var hn=document.getElementById('hint'); if(hn) hn.style.display='none';
     document.querySelector('header').style.display='none';
     document.querySelector('footer').style.display='none';
     running = true; nowT = 5; wave = 7; score = 1560; hp = 3;
@@ -55,6 +55,7 @@ module.exports = {
     (function () {
       var ap = window.__AP;
       ptr.on = true; ptr.x = W * 0.5; ptr.y = H * 0.6;
+      armed = true;                       // skip the read-the-hint grace for capture
       var burstT = 0, mode = 'burst';
       function step() {
         if (typeof over === 'undefined' || over) { requestAnimationFrame(step); return; }

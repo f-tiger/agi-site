@@ -28,7 +28,19 @@
   footer{width:100%;max-width:1400px;padding:4px 14px calc(10px + env(safe-area-inset-bottom));display:flex;justify-content:space-between;font-size:11px;color:var(--mut);z-index:5;}
   footer a{color:var(--mut);text-decoration:none;border-bottom:1px dotted var(--mut);}
   .cg footer{display:none;}
-  .modal{position:fixed;inset:0;background:rgba(5,7,14,.84);backdrop-filter:blur(7px);display:none;align-items:center;justify-content:center;z-index:50;padding:16px;}
+  .modal{position:fixed;inset:0;top:0;right:0;bottom:0;left:0;background:rgba(5,7,14,.84);-webkit-backdrop-filter:blur(7px);backdrop-filter:blur(7px);display:none;align-items:center;justify-content:center;z-index:50;padding:16px;}
+  /* Non-blocking hint. The game is LIVE underneath from the first frame: a portal
+     measures load time up to the first gameplayStart, so a click gate in front of
+     the arena is the one thing that must not exist. */
+  #hint{position:fixed;inset:0;top:0;right:0;bottom:0;left:0;display:flex;align-items:center;justify-content:center;z-index:40;
+    padding:16px;pointer-events:none;transition:opacity .45s ease;}
+  #hint.gone{opacity:0;}
+  .hcard{background:rgba(16,20,31,.90);border:1px solid var(--line);border-radius:16px;
+    padding:18px 22px;max-width:360px;text-align:center;box-shadow:0 14px 44px rgba(0,0,0,.5);}
+  .hcard p{font-size:13.5px;color:var(--ink);line-height:1.6;}
+  .hcard .go{margin-top:12px;color:var(--you);font-weight:800;letter-spacing:1px;text-transform:uppercase;font-size:12px;
+    animation:pulse 1.5s ease-in-out infinite;}
+  @keyframes pulse{0%,100%{opacity:.45}50%{opacity:1}}
   .modal.show{display:flex;}
   .card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:24px 28px;max-width:360px;width:100%;text-align:center;box-shadow:0 18px 60px rgba(0,0,0,.55);}
   .card h2{font-size:21px;margin-bottom:4px;letter-spacing:1px;}
@@ -54,13 +66,11 @@
   <a href="/" id="hublink">more games → Gridlings</a>
 </footer>
 
-<div class="modal" id="mstart" role="dialog">
-  <div class="card">
-    <h2>OVER<span style="color:var(--ai)">FIT</span></h2>
-    <p>Move with your <b>mouse, finger, or WASD / arrow keys</b>. Your ship fires by itself.<br>
-    Between waves the enemy AI <b>reports what it learned about you</b> — and hunts you with it.</p>
-    <div class="brief">🧠 <b>Crash the model:</b> let it grow confident in a habit, then <b>do the opposite</b>. A confused AI staggers, and everything you destroy counts <b>double</b>.</div>
-    <button class="btn" id="bstart">Start Wave 1</button>
+<div id="hint" aria-hidden="true">
+  <div class="hcard">
+    <p><b>Move</b> — mouse, finger, or WASD / arrow keys. Your ship fires by itself.</p>
+    <div class="brief">🧠 The enemy AI is already learning how you move. Let it grow confident in a habit, then <b>do the opposite</b> — a confused model staggers, and everything you destroy counts <b>double</b>.</div>
+    <p class="go">move to begin</p>
   </div>
 </div>
 <div class="modal" id="mover" role="dialog">
@@ -240,6 +250,9 @@ function confusionCheck(dt) {
 /* ============ game state */
 var P, foes, shots, beams, parts, pops, score, best = 0, wave, hp, over, running, confused, confuseFlash, shake, nowT, waveMsg, inv;
 var waveQuota = 0, waveSpawned = 0, waveConc = 4, spawnTimer = 0;
+/* armed: the first spawn waits for the first real input (or 4s) so nobody
+   dies while still reading the hint. The arena is live either way. */
+var armed = false, armT = 0;
 try { best = parseInt(localStorage.getItem("ofBest") || "0", 10) || 0; } catch (e) {}
 var ptr = { x: 0, y: 0, on: false };
 function popText(txt, x, y, size, hue) { pops.push({ txt: txt, x: x, y: y, t: 0, life: 1.1, size: size, hue: hue }); }
@@ -256,9 +269,16 @@ function reset(replay) {
   score = 0; wave = 0; hp = 3; over = false; running = false; confused = 0; confuseFlash = 0; shake = 0; inv = 0; waveMsg = null;
   model = freshModel(); recent = [];
   ptr.on = false;
+  armed = false; armT = 0;
   document.getElementById("mover").classList.remove("show");
-  document.getElementById("mstart").classList.add("show");
+  var h = document.getElementById("hint");
+  if (h) h.classList.remove("gone");
   if (replay) ev("play_again");
+  /* Playable from this instant: no menu, no click gate. This is also exactly
+     what the portal automatic "first gameplay start" check looks for. */
+  running = true; nowT = 0;
+  ev("play_start"); window.ofCg("start");
+  startWave();
 }
 function trainingReport() {
   var lines = [];
@@ -315,9 +335,8 @@ function evtPos(e) { var r = cv.getBoundingClientRect(); return { x: e.clientX -
 var keys = { l: 0, r: 0, u: 0, d: 0 };
 var KEYMAP = { KeyA: "l", ArrowLeft: "l", KeyD: "r", ArrowRight: "r", KeyW: "u", ArrowUp: "u", KeyS: "d", ArrowDown: "d" };
 function primaryBtn() {
-  var m = document.getElementById("mover"), st = document.getElementById("mstart");
+  var m = document.getElementById("mover");
   if (m && m.classList.contains("show")) return document.getElementById("bagain");
-  if (st && st.classList.contains("show")) return document.getElementById("bstart");
   return null;
 }
 window.addEventListener("keydown", function (e) {
@@ -364,8 +383,17 @@ function update(dt) {
   learnFrame(dt);
   confusionCheck(dt);
   if (confused > 0) { confused -= dt; }
+  /* grace: hold the very first spawn until the player has moved (or 4s passed) */
+  if (!armed) {
+    armT += dt;
+    if (armT > 4 || Math.hypot(P.vx, P.vy) > 20) {
+      armed = true;
+      var hEl = document.getElementById("hint");
+      if (hEl) hEl.classList.add("gone");
+    }
+  }
   /* sustained spawning: refill toward the concurrent target until quota is spent */
-  if (waveSpawned < waveQuota) {
+  if (armed && waveSpawned < waveQuota) {
     spawnTimer -= dt;
     if (foes.length < waveConc && spawnTimer <= 0) {
       spawnFoe(pickType()); waveSpawned++;
@@ -612,20 +640,9 @@ document.getElementById("bmute").addEventListener("click", function () {
   try { localStorage.setItem("ofMute", muted ? "1" : "0"); } catch (e) {}
 });
 document.getElementById("brestart").addEventListener("click", function () { window.ofCg("stop"); reset(true); });
-document.getElementById("bstart").addEventListener("click", function () {
-  ac();
-  document.getElementById("mstart").classList.remove("show");
-  running = true; nowT = 0;
-  ev("play_start"); window.ofCg("start");
-  startWave();
-});
 document.getElementById("bagain").addEventListener("click", function () {
   var b = this; b.disabled = true;
-  window.ofAd(function () {
-    b.disabled = false; reset(true);
-    document.getElementById("mstart").classList.remove("show");
-    running = true; nowT = 0; window.ofCg("start"); startWave();
-  });
+  window.ofAd(function () { b.disabled = false; reset(true); });
 });
 document.getElementById("hublink").addEventListener("click", function () { ev("hub_click", "of"); });
 layout();
