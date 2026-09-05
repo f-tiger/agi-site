@@ -963,6 +963,33 @@ Strompreis-Radar)。本循环补的是**外部需求信号**(Google Trends DE)�
 - **部署触发收敛为仅 main（2026-08-06，owner 截图发现）**：owner 发来 run #290 失败截图，查证后是**两个不同原因**：288/289（`12215d8`）是我的 heat 端点 bug（已修）；**290 是 GitHub 自身故障**——`Failed to resolve action download info: Service Unavailable / Internal Server Error`，重试两次后放弃，与代码无关（同一提交 `4948c26` 在 main 的 run 291 成功）。**但这暴露了一个结构问题**：`deploy.yml` 原本在 main **和**工作分支上都触发，而工作流是"改完立刻合并 main"，导致**每次推送产生两个一模一样的 run、把同一提交部署两遍**——浪费、红绿成对制造噪音、且把撞上 GitHub 瞬时故障的概率翻倍。已收敛为**仅 main 触发**（保留 `workflow_dispatch`）。**方法论**：我此前只查 main 的 run，等于只看了一半的 CI 状态；owner 的截图补上了我的盲区。
 - **Alibaba 品类研究 → 拒绝照榜选品，转向"买之前没人回答的问题"（2026-08-06，用户"深度研究 Alibaba 热销品类→挖掘用户需求→达成商业机会"）**：`alibaba.com` 与 `1688.com` 在本环境**均不可达（000）**，无法取一手榜单，二手数据已标注为候选而非结论。**热销构成**：Consumer Electronics 28%、Home & Garden 25%，爆品是投影仪/充电宝/空气炸锅/耳机——**与"我房间太热"的德国租客零重叠**。**方法论判断**：`Alibaba 热销 = 大量转售商正在抢` ＝ 红海信号而非机会信号；本站所有有效判断都是需求优先（先 SERP 判定再找供给），用供给榜倒推受众是把方法论反过来用，**故拒绝照榜选品**。**补充核实的合规差异**：非电器（窗封/隔热帘）**不触发 Stiftung EAR + 破产担保 + 处置费**，但**仍需** LUCID 包装注册（罚款至 20 万欧 + 销售禁令）、GPSR、PPWR（2026-08-12 起）、Gewerbe/增值税/14 天撤回/2 年质保——**更轻但仍非快路，也依然需要法人主体**。**真正的机会（三方证据交叉）**：① 本站数据 kippfenster 是最大簇且贡献 1/3 联盟点击；② 市场上存在专做**量身定制窗封**的德国厂商（FROSNIR）＝"尺寸不合"是真痛点；③ 公开评测共识的两个失效点是**长度不对**与**粘胶高温脱落**；④ 空白：SERP 全是薄比价站、**本站 4 个窗封页提到尺寸的是 0 个**。→ 机会不是卖那条窗封（要当进口商且它本身有缺陷），而是**解决买它之前没人回答的问题**。**已落地 `EB_SEALFIT`**：需要长度 = `2×(宽+高)` 向上取常见规格（纯算术不伪造规格）、量窗扇非窗框、三种窗型分别提示、诚实指出失效点是粘胶、超 5 m 不硬推产品改提示定制；覆盖 DE 3 页 + EN 2 页，埋点 `seal_fit{len,type}`。Chromium 实测四组算式与尺寸映射全部正确，并抓出超尺寸时 Amazon 链接拼成坏查询的 bug（已修）。**预注册判定**：60 天 `seal_fit` ≥25 次 → 需求确认可扩展定制方向；<8 次 → 降级。详见 `docs/sourcing-research-2026-08.md`。
 
+## 需求优先的产品文案:空调 = 免安装(2026-09-05,owner「产品上,洞察真正需求,如空调是免安装」)
+
+**诊断**:本站赚钱最多的页(房车 / 翻转窗 / 天窗 / Split 免钻孔)全是「怎么不施工地装上」——
+读者的真实需求是**免安装、免钻孔、免房东**,而共享的产品区却把这件事藏在条件句后面:
+默认「Empfohlene Modelle」副标题**首句是警告**(「Vorab das Wichtigste: Ohne Fensterabdichtung …」),
+toppick 标题不带任何可行性信号,BTU 算算器输出只给型号不说「不用钻」。**同一批事实,顺序反了**。
+本轮**零新页、零新钩子、零新产品**(「给页加卡」09-04 已证伪),只改共享文案的顺序与作用域。
+
+**四处改动(`build_structure.py`,全部幂等、byte-stable、六闸门绿)**:
+① `models_block` 默认单体机副标题改为需求先行:「Alle Monoblöcke hier: **kein Bohren, kein
+Installateur**, in der Regel ohne Erlaubnis des Vermieters — Schlauch ans Fenster, Abdichtung drum,
+in rund 10 Minuten läuft es, rückstandslos」,**再**接窗封条件句;EN 同构(rented-apartment /
+tilt-and-turn 链接)。所有数字与断言均为站内既有已发布句(mietwohnung / kippfenster 页),零新断言。
+**作用域硬门 `monoblock_grid = (device=="ac" and not ctx)`**:CONTEXT 网格(Quick-Connect split、
+房车、配件套装)与 fan/shade/heater/dehum 族拿中性兜底——split 页自带 F-Gas 条款说的正是相反的话,
+第一版补丁曾把「kein Installateur」落到 split-ohne-kernbohrung / portasplit / thermovorhang /
+tineco 等 7 页,**验收 grep 抓出并修正**(现 0)。② toppick 标题后缀「— alle ohne Bohren」/
+「— all without drilling」,同门(DE 43 页 / EN 19 页;split 簇 0)。③ 活算算器 i18n 加 `nodrill`,
+型号行后接「— kein Bohren: Schlauch ans Fenster, Abdichtung drum」(DE 42 / EN 21 页,`node --check`
+通过);④ klimaanlagen 品类描述把「Kühlung ohne Bohren — für Mietwohnung und Altbau」提到前面。
+**验收数**:旧警告式首句残留 0;默认单体机行 DE 9 页 + EN 9 页(仅无 canonical 网格的页才渲染
+共享 models 区,qm 页与型号页有各自网格,不受影响)。
+
+**明确不主张点击提升**:这是文案顺序修正,不是流量动作;pv→click 已在 17–26 % 天花板附近,
+暗区是意图不是货架。**不设独立判定线**,并入 09-28(dp 份额 / split 簇)与十月各线一起读;
+唯一要看的副作用是 split 簇页副标题变中性后其 affiliate_click 不应下降(09-28 同窗对比)。
+
 ## 热门品类→站点:机制修复而非加页(2026-09-05,owner「针对德国目前热门搜索品类,再丰富网站」)
 
 **边界先立**:09-04 已立规「rising 只允许深化既有页,不再出新页」(6 个快反页全史 pv=0)。

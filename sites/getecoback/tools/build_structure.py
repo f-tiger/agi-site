@@ -24,7 +24,7 @@ GA4 = "G-E2V0Q9SJ9V"
 
 CATEGORIES = [
     ("klimaanlagen", "Klimaanlagen & Kühlen",
-     "Tragbare Klimaanlagen, Ventilatoren, Luftkühler und Kühlung ohne Installation — nach Raumgröße, Lautstärke und Budget."),
+     "Tragbare Klimaanlagen, Ventilatoren, Luftkühler und Kühlung ohne Bohren — für Mietwohnung und Altbau: nach Fenstertyp, Raumgröße und Budget."),
     ("heizen", "Heizen",
      "Effizient heizen: Klimaanlagen mit Heizfunktion, stromsparende Heizlüfter und Infrarotheizung."),
     ("luftqualitaet", "Luftqualität",
@@ -1419,27 +1419,57 @@ def model_card(entry, en=False):
 
 def models_block(device, en=False, slug=None):
     table = DEVICE_MODELS_EN if en else DEVICE_MODELS
-    entries = context_entries(slug, en) or table.get(device) or table["ac"]
+    ctx = context_entries(slug, en)
+    entries = ctx or table.get(device) or table["ac"]
     cards = "".join(model_card(e, en=en) for e in entries)
+    # The "no drilling, no installer" line is true of the default monoblock
+    # grid only. CONTEXT grids (Quick-Connect split, camper, accessory sets)
+    # and the fan/shade/heater families get a neutral fallback instead —
+    # the split pages carry an F-Gas clause that says the opposite.
+    monoblock_grid = (device == "ac" and not ctx)
     # The single most common cause of "bringt nichts" disappointment in community
     # threads is an unsealed window: the exhaust builds negative pressure and pulls
     # the hot air straight back in. Say it at the buying moment, not three pages later.
-    if en:
+    if en and monoblock_grid:
         head, sub = ("Recommended models",
+                     "Every portable unit here: <strong>no drilling, no installer</strong>, usually "
+                     '<a href="/en/guide/portable-ac-rented-apartment.html">no landlord permission</a> — '
+                     "hose to the window, seal around it, running in about 10 minutes, and it moves out with you. "
+                     'The one condition: without a <a href="/en/guide/portable-ac-tilt-and-turn-windows.html">sealed window</a> '
+                     "every portable AC loses most of its effect — hot air gets pulled straight back in. "
                      "Compiled from public tests & customer reviews — not tested by us. "
                      "Prices vary; check the current price on Amazon. Illustrations, not product photos. "
-                     'One thing first: without a <a href="/en/guide/portable-ac-tilt-and-turn-windows.html">sealed window</a> '
-                     "every portable AC loses most of its effect — hot air gets pulled straight back in. "
                      # A third of all clicks come from outside the DACH region, and the
                      # EU-English readers among them often don't know amazon.de will
                      # serve them in English — that unknown is checkout friction.
                      "Amazon.de ships to most EU countries, with site and checkout available in English.")
-    else:
+    elif en:
+        head, sub = ("Recommended models",
+                     "Compiled from public tests & customer reviews — not tested by us. "
+                     "Prices vary; check the current price on Amazon. Illustrations, not product photos. "
+                     "Amazon.de ships to most EU countries, with site and checkout available in English.")
+    elif not monoblock_grid:
         head, sub = ("Empfohlene Modelle",
-                     "Aus öffentlichen Tests & Kundenbewertungen zusammengestellt — nicht selbst "
-                     "getestet. Preise schwanken, aktuellen Preis auf Amazon prüfen. Symbolbilder. "
-                     'Vorab das Wichtigste: Ohne <a href="/guide/klimaanlage-kippfenster.html">dichte Fensterabdichtung</a> '
-                     "verliert jeder Monoblock den Großteil seiner Wirkung — die warme Luft wird sonst direkt zurückgesaugt.")
+                     "Aus öffentlichen Tests & Kundenbewertungen zusammengestellt — nicht selbst getestet. "
+                     "Preise schwanken, aktuellen Preis auf Amazon prüfen. Symbolbilder.")
+    else:
+        # 2026-09-05, owner: "the real need behind an air conditioner is
+        # no installation." The site's own numbers agree — its top-earning
+        # pages are the camper, the tilt-and-turn window, the roof window, the
+        # split-without-drilling — yet this line opened with a WARNING about
+        # window sealing. Same facts, need first, condition second. Every
+        # figure and claim here is already published on the linked pages
+        # ("in 10 Minuten erledigt", "kein Bohren, rückstandslos", "mobil ohne
+        # Bohren geht ohne Erlaubnis"); nothing new is asserted.
+        head, sub = ("Empfohlene Modelle",
+                     "Alle Monoblöcke hier: <strong>kein Bohren, kein Installateur</strong>, in der Regel "
+                     '<a href="/guide/klimaanlage-mietwohnung.html">ohne Erlaubnis des Vermieters</a> — '
+                     "Schlauch ans Fenster, Abdichtung drum, in rund 10 Minuten läuft es, und beim Auszug "
+                     "nimmst du es rückstandslos mit. Die eine Bedingung: Ohne "
+                     '<a href="/guide/klimaanlage-kippfenster.html">dichte Fensterabdichtung</a> '
+                     "verliert jeder Monoblock den Großteil seiner Wirkung — die warme Luft wird sonst direkt zurückgesaugt. "
+                     "Aus öffentlichen Tests & Kundenbewertungen zusammengestellt — nicht selbst getestet. "
+                     "Preise schwanken, aktuellen Preis auf Amazon prüfen. Symbolbilder.")
     # The default sub warns about window sealing — right for every monoblock,
     # nonsense under battery cards. Storage gets the one sentence that actually
     # protects this buyer: most subsidy programmes void the grant if the
@@ -1575,9 +1605,17 @@ def qm_toppick(slug):
 
 def toppick_block(device, en=False, slug=None):
     table = DEVICE_MODELS_EN if en else DEVICE_MODELS
-    entries = (context_entries(slug, en) or (None if en else qm_toppick(slug))
+    ctx = context_entries(slug, en)
+    entries = (ctx or (None if en else qm_toppick(slug))
                or table.get(device) or table["ac"])[:3]
     head, more = TOPPICK_HEAD[en]
+    # Need-first framing (2026-09-05): every device in the default AC set is a
+    # monoblock or the Quick-Connect PortaSplit — "ohne Bohren" is true of all
+    # of them. CONTEXT pages are excluded on purpose: the split cluster's
+    # sets carry an installer clause, and a blanket promise there would
+    # contradict the page's own refrigerant section.
+    if device == "ac" and not ctx:
+        head = head + (" — all without drilling" if en else " — alle ohne Bohren")
     pills = ""
     for name, role, _why, _price, q, _svg in entries:
         url = amazon_url(q, name)
@@ -2163,7 +2201,7 @@ function calc(){
   var qp=qm<=12?10:qm<=17?15:qm<=22?20:qm<=27?25:qm<=35?30:40;
   r.innerHTML='<div style="font-size:13.5px;color:#4a5a67;">Empfohlene Kühlleistung für '+qm+' m²</div>'+
     '<div style="font-size:30px;font-weight:800;color:#0a4d7a;line-height:1.2;">ca. '+btu.toLocaleString("de-DE")+' BTU</div>'+
-    (model?'<div style="margin:8px 0 0;font-size:14.5px;">Passende Geräteklasse ('+label+'): <strong>'+model+'</strong></div>':'<div style="margin:8px 0 0;font-size:14.5px;">Klasse: <strong>'+label+'</strong> — hier ist ein tragbarer Monoblock am Limit. Ehrlich empfehlen können wir dafür keines unserer Geräte; realistisch sind ein <a href="/guide/split-klimaanlage-ohne-kernbohrung.html">Splitgerät ohne Kernbohrung</a> oder zwei kleinere Geräte.</div>')+
+    (model?'<div style="margin:8px 0 0;font-size:14.5px;">Passende Geräteklasse ('+label+'): <strong>'+model+'</strong> — kein Bohren: Schlauch ans Fenster, Abdichtung drum.</div>':'<div style="margin:8px 0 0;font-size:14.5px;">Klasse: <strong>'+label+'</strong> — hier ist ein tragbarer Monoblock am Limit. Ehrlich empfehlen können wir dafür keines unserer Geräte; realistisch sind ein <a href="/guide/split-klimaanlage-ohne-kernbohrung.html">Splitgerät ohne Kernbohrung</a> oder zwei kleinere Geräte.</div>')+
     '<div style="margin:12px 0 0;display:flex;gap:9px;flex-wrap:wrap;">'+
     (model?'<a href="'+url+'" target="_blank" rel="sponsored noopener" style="background:#f59e0b;color:#1a2733;font-weight:800;padding:10px 16px;border-radius:8px;text-decoration:none;font-size:14px;">Preis auf Amazon prüfen →</a>':'')+
     '<a href="/guide/klimaanlage-'+qp+'-qm.html" style="background:#fff;color:#0a4d7a;border:1px solid #cfe0ea;font-weight:700;padding:10px 16px;border-radius:8px;text-decoration:none;font-size:14px;">Alle Empfehlungen für '+qp+' m² →</a>'+
@@ -3630,6 +3668,7 @@ SIZER_TXT = {
         "qm": "Raumgröße (m²)", "sun": "Sonneneinstrahlung",
         "opts": [("0.9", "Wenig (Nord, schattig)"), ("1", "Normal"), ("1.2", "Stark (Süd/West, Dachlage)")],
         "go": "Berechnen", "for": "Empfohlene Kühlleistung für", "cls": "Passende Geräteklasse",
+        "nodrill": "kein Bohren: Schlauch ans Fenster, Abdichtung drum",
         "amz": "Preis auf Amazon prüfen →", "grid": "Alle Empfehlungen auf dieser Seite ↓",
         "area": "Alle Empfehlungen für %d m² →", "full": "Decke, Personen, Küche einrechnen →",
         "note": ("Anzeige · Richtwert nach 340 BTU/m². Modelle nicht selbst getestet — Auswahl nach "
@@ -3655,6 +3694,7 @@ SIZER_TXT = {
         "qm": "Room size (m²)", "sun": "Sun exposure",
         "opts": [("0.9", "Low (north-facing, shaded)"), ("1", "Normal"), ("1.2", "Strong (south/west, top floor)")],
         "go": "Calculate", "for": "Recommended cooling capacity for", "cls": "Matching class",
+        "nodrill": "no drilling: hose to the window, seal around it",
         "amz": "Check the price on Amazon →", "grid": "All picks on this page ↓",
         "area": "All picks for %d m² →", "full": "Add ceiling height, people, kitchen →",
         "note": ("Ad · Rule of thumb: 340 BTU/m². Models not tested by us — compiled from public "
@@ -3753,6 +3793,7 @@ def sizer_block(en=False, prefill=20):
             '+(big?(\'<div style="margin:7px 0 0;font-size:14px;">\'+' + repr(t["cls"]) + '+\' (\'+label+\')</div>\''
             '+\'<p style="margin:7px 0 0;font-size:13.5px;color:#3d4d5a;">\'+' + repr(t["big"]) + '+\'</p>\')'
             ':(\'<div style="margin:7px 0 0;font-size:14px;">\'+' + repr(t["cls"]) + '+\' (\'+label+\'): <strong>\'+model+\'</strong>\''
+            '+\' — \'+' + repr(t["nodrill"]) +
             '+(test?\' · <a href="\'+test+\'" style="font-size:13px;color:#0f6ba8;">Was sagen die Tests?</a>\':"")+\'</div>\'))'
             '+\'<div style="margin:11px 0 0;display:flex;gap:8px;flex-wrap:wrap;">\''
             '+(big?' + repr(BIGCTA_HTML) + ':\'<a href="\'+url+\'" target="_blank" '
