@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <title>OVERFIT — Outplay the AI That Learns You</title>
-<meta name="description" content="The enemy AI really does study your movement — then tells you exactly what it learned. Feed it a pattern, betray it, and watch the model collapse. A free arcade dodger for the AI era.">
+<meta name="description" content="The enemy AI really does study your movement — then tells you exactly what it learned. Feed it a pattern, betray it, and watch the model collapse. A free arcade dodger for the AI era. Mouse, touch or WASD.">
 <link rel="canonical" href="https://play.agiscorecard.com/overfit">
 <meta property="og:title" content="OVERFIT — Outplay the AI That Learns You">
 <meta property="og:description" content="The boss studies your habits between waves and announces its predictions. Break them to crash the model. Free, no account.">
 <meta property="og:url" content="https://play.agiscorecard.com/overfit">
 <meta name="theme-color" content="#07090f">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2307090f'/%3E%3Cpath d='M16 6 L26 24 L6 24 Z' fill='none' stroke='%2300e5a8' stroke-width='2.5'/%3E%3Ccircle cx='16' cy='16' r='2.6' fill='%23ff3d71'/%3E%3C/svg%3E">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"OVERFIT","url":"https://play.agiscorecard.com/overfit","applicationCategory":"GameApplication","operatingSystem":"Any (browser)","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":"adaptive enemy AI that learns your movement, transparent training reports between waves, model-confusion combo mechanic, one-pointer controls, touch + mouse, no account","isPartOf":{"@type":"WebSite","name":"Gridlings","url":"https://play.agiscorecard.com/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"OVERFIT","url":"https://play.agiscorecard.com/overfit","applicationCategory":"GameApplication","operatingSystem":"Any (browser)","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":"adaptive enemy AI that learns your movement, transparent training reports between waves, model-confusion combo mechanic, mouse / touch / WASD / arrow-key controls, automatic firing, no account","isPartOf":{"@type":"WebSite","name":"Gridlings","url":"https://play.agiscorecard.com/"}}</script>
 <style>
   :root{--bg:#07090f;--ink:#dfe7ff;--mut:#7684a8;--ai:#ff3d71;--you:#00e5a8;--panel:#10141f;--line:rgba(255,255,255,.08);}
   *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
@@ -57,7 +57,7 @@
 <div class="modal" id="mstart" role="dialog">
   <div class="card">
     <h2>OVER<span style="color:var(--ai)">FIT</span></h2>
-    <p>Move with your <b>mouse or finger</b>. Your ship fires by itself.<br>
+    <p>Move with your <b>mouse, finger, or WASD / arrow keys</b>. Your ship fires by itself.<br>
     Between waves the enemy AI <b>reports what it learned about you</b> — and hunts you with it.</p>
     <div class="brief">🧠 <b>Crash the model:</b> let it grow confident in a habit, then <b>do the opposite</b>. A confused AI staggers, and everything you destroy counts <b>double</b>.</div>
     <button class="btn" id="bstart">Start Wave 1</button>
@@ -309,6 +309,32 @@ function spawnFoe(type) {
 }
 /* ============ input */
 function evtPos(e) { var r = cv.getBoundingClientRect(); return { x: e.clientX - r.left, y: e.clientY - r.top }; }
+/* WASD / arrow keys as a parallel scheme — CG QA plays on desktop and an arena
+   game with no keyboard option reads as thin. Space/Enter works the visible
+   primary button so a whole run never needs the mouse. */
+var keys = { l: 0, r: 0, u: 0, d: 0 };
+var KEYMAP = { KeyA: "l", ArrowLeft: "l", KeyD: "r", ArrowRight: "r", KeyW: "u", ArrowUp: "u", KeyS: "d", ArrowDown: "d" };
+function primaryBtn() {
+  var m = document.getElementById("mover"), st = document.getElementById("mstart");
+  if (m && m.classList.contains("show")) return document.getElementById("bagain");
+  if (st && st.classList.contains("show")) return document.getElementById("bstart");
+  return null;
+}
+window.addEventListener("keydown", function (e) {
+  if (e.repeat) return;
+  var k = KEYMAP[e.code];
+  if (k) { keys[k] = 1; ac(); e.preventDefault(); return; }
+  if (e.code === "Space" || e.code === "Enter") {
+    var b = primaryBtn();
+    if (b && !b.disabled) { e.preventDefault(); b.click(); }
+  }
+});
+window.addEventListener("keyup", function (e) {
+  var k = KEYMAP[e.code];
+  if (k) { keys[k] = 0; e.preventDefault(); }
+});
+/* a key held while the tab loses focus would otherwise stick forever */
+window.addEventListener("blur", function () { keys.l = keys.r = keys.u = keys.d = 0; });
 cv.addEventListener("pointerdown", function (e) { ac(); var p = evtPos(e); ptr.x = p.x; ptr.y = p.y; ptr.on = true; e.preventDefault(); }, { passive: false });
 cv.addEventListener("pointermove", function (e) { var p = evtPos(e); ptr.x = p.x; ptr.y = p.y; if (e.pointerType === "mouse") ptr.on = true; e.preventDefault(); }, { passive: false });
 cv.addEventListener("pointerup", function (e) { if (e.pointerType !== "mouse") ptr.on = false; }, { passive: false });
@@ -319,8 +345,15 @@ function update(dt) {
   if (!running || over) return;
   nowTWave += dt;
   if (waveMsg) { waveMsg.t += dt; if (waveMsg.t > 2.6) waveMsg = null; }
-  /* player follows pointer */
-  if (ptr.on) {
+  /* movement: keyboard while a key is held, else pointer follow, else coast.
+     Both feed P.vx/P.vy, so the learning model reads either input identically —
+     a keyboard player is profiled exactly like a mouse player. */
+  var kx = (keys.r ? 1 : 0) - (keys.l ? 1 : 0), ky = (keys.d ? 1 : 0) - (keys.u ? 1 : 0);
+  if (kx || ky) {
+    ptr.on = false;
+    var km = Math.hypot(kx, ky) || 1;
+    P.vx = kx / km * 400; P.vy = ky / km * 400;
+  } else if (ptr.on) {
     var dx = ptr.x - P.x, dy = ptr.y - P.y, d = Math.hypot(dx, dy);
     var v = Math.min(d * 9, 420);
     if (d > 2) { P.vx = dx / d * v; P.vy = dy / d * v; } else { P.vx *= 0.7; P.vy *= 0.7; }
