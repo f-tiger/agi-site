@@ -1196,3 +1196,18 @@ JS 口径 = 爬虫排除在外，**下一轮起可以真正回答内部跳转问
   这正是它并入本条日报的原因。
 - **第①层 heartbeat**（09-04 04:00 UTC 首跑，19 秒 SUCCESS）：八站全 200；
   gridlings 已 6 天未部署（阈值 7，明日会自动重发）。
+
+
+## 2026-09-05（周六舰队日报）
+
+- **agi 7 天真人 pv 299（≈42.7/日，环比 +14%）**；漏斗仍冷：subscribe_click 2、sub_open 1、
+  sub_ok 本周 0（累计 2，09-30 阈值 5）；vote_cast 13。
+- 昨夜另一会话（Fable 5.1）上线「客户视角簇」14 文件（/ai-and-your-job 等），当日读数
+  尚无意义，判定线以其 PRD（docs/agi-customer-lens-2026-09.md）为准；本 run 不叠加 ship
+  （防翻炒）。validate OK：228 页 / 210 URL。
+- **游戏层**：gridlings 28d play_start 276 / solve 123；itch 口径 43/13（09-24 阈值 150/25）。
+- **sourceradar**：28d pv 54，无信号，不动。
+- **第①层**：heartbeat 09-04 12:24 快照八站全 200；**gridlings 达到 7 天线被自动重发**
+  ——heartbeat 的自动兜底第一次真实触发，14:37 部署绿。
+- **第②层故障与处置**：换模后前两条新会话 run 卡死于 SSH 克隆权限提示
+  （详见 docs/fleet-automation-map.md §八）；已补跑 paid-monthly 并归档僵尸会话。

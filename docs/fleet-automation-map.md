@@ -162,3 +162,22 @@ owner 原话：「把 Routine 也换成 fable 5.1」。**全部 8 条启用中�
 
 **后续会话注意**：`update_trigger` 的 `model` 参数**只有 owner 用自己的话明确要求时才能动**。
 本次的授权原话已记录在上面；不要把它当成「以后可以随便换模型」的常设许可。
+
+---
+
+## 八、Fable 5.1 切换后的第一种新故障形态（2026-09-05 晨发现，处置在案）
+
+换模后最先触发的两条新会话 run **全部卡死在同一处**：
+- 白嫖计 daily（09-04 22:03 触发）与 paid-monthly-recheck（09-05 01:07 触发）都在
+  会话开头尝试 **`git clone git@github.com:…`（SSH 形式）**，auto 权限模式把该命令
+  挂起等人批准 → 无人值守会话永远等不到 → `SESSION_STATUS_REQUIRES_ACTION`，
+  各卡 6/3 小时，零提交、零 token 消耗。这与 09-03 的「11–15 毫秒 FAILED（会话没
+  创建）」和「自绑定被平台挂起」都**不是同一种故障**——现在已知的计划路径故障形态
+  有三种，处置各不同。
+- **处置规程（新增）**：`get_session` 看到 `pending_action` 是 SSH 克隆 →
+  ①`interrupt_session` 会被 auto 分类器拒（实测），不要反复试；
+  ②直接 `fire_trigger` 补跑，并在 `text` 里写明「克隆只用 add_repo 返回的 HTTPS
+  命令，禁 SSH；HTTPS 报错就把原文写进简报，不要换 SSH 重试」；
+  ③僵尸会话用 `archive_session` 清掉（实测可用）。
+- 待办：补跑结果确认 HTTPS 路径在新会话里可用后，把「禁 SSH 克隆」一行补进所有
+  需要克隆仓库的新会话 Routine prompt（bpj daily 今晚 22:02 前最要紧）。
