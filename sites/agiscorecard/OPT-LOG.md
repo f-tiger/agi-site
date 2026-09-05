@@ -2577,3 +2577,32 @@ validate 222 页 OK。种子在 content-backlog 打勾。
 - **游戏**:今日 8/1(久违非零),28d 78/15,**itch 累计 42/13 持平——今天这 8 次不是 itch 来的**。
 - **⓪+ 队列**:两项仍被前置条件挡住;取数窗口今日开启,已向 owner 索取 Bing 两张明细。
 - ship:仅文档(analytics-setup.md 读法 + analytics-notes.md 日结 + 本文件)。**零页面改动。**
+
+## 2026-09-05(owner:「agi 时代…切换到客户视角:AI 焦虑 / AI 替代工作…做完整调研,前后全方面升级 agi 站点,包括子站点」)
+- **spec(第 3 轮)**:见根仓 `docs/agi-customer-lens-2026-09.md`——目标「让担心 AI 抢走工作的人第一次
+  能遇到本站,并得到带日期/信源/翻转条件的『该不该担心』判定」;范围主域;不做分享按钮/新工具/
+  新子域/恐吓数字/机器发帖/子站重定位。前两轮砍掉的正是这几样(各有本站或 eco 的一手证伪)。
+- **调研(三路并行)**:客户需求面(Gallup 79% / Pew 71% / APA 57%;类目搜索在裁员周 +233%;
+  四种 job:安抚/规划/争论/追踪;病毒内核 = 数字+日期+权威+查我的职业;竞品全缺带日期判定)、
+  站内盘点(工作簇 7 页六件套齐但 **0 意见钩、0 一手源外链、6–10 周未更新**;工具不问职业、
+  不记分数、分享链接不带结果;CITATION AMPLIFICATION 队列已空)、一手数据(28d 真人 JS pv ≈1,100,
+  工作簇合计 ≈20,搜索/AI 引荐 0)。
+- **shipped**:①`/ai-and-your-job` + zh(入口判定页:恐惧 vs 证据三行账、三信号表、翻转条件、
+  下次复核 10-03、意见钩 `opinion_ai_and_your_job`、活数字 `index_click{ai_and_your_job}`、goldrush 互链)
+  ②`/amodei-white-collar-bloodbath-prediction`(ClaimReview 2/5,检查点到 2030-05-28,预言者台账工作版:
+  Amodei/Huang/Karpathy/Gates/McCrory 逐条带日期链接)③工作簇 7 页 + 5 个 zh 页:意见钩、
+  「Status as of 2026-09-05」时效框(每页 ≥2 一手源)、入口页内链;programmers 页加五源对账卡
+  (BLS −6%/+15%、NY Fed「据报道」、Indeed 71% senior、Microsoft 0.31/0.278、Anthropic 49%/55%/42%)
+  ④`/ai-job-risk-check` v2(+zh):按职业查(Microsoft *Working with AI* CC-BY,785 SOC,
+  `ai-applicability-scores.json`;明写「观察到的适用性,不是你的失业风险」)、结果写进 URL
+  (`?o=&t=&s=`)、`vote_cast{job_check_<Tier>:<score>}`、`calc_use{job_lookup,<SOC>}`;Chromium 12/12 断言
+  ⑤首页热点横幅 → 入口页(原 7 月基金爆仓横幅已过时)、header「AI & your job」、目录/agi-questions/
+  cn/llms.txt/sitemap/feed/search-index/llms-full + .md 镜像 ⑥分发暂存包 W36 两条手答素材。
+- **子站**:不重定位——四站全部在 09-21→10-28 判定窗内(判定期内不改被测对象);只在入口页加
+  goldrush 读者相关互链。
+- **判定线(2026-10-03,预登记,见 CLAUDE.md「客户视角簇」)**:入口页+血洗页 JS pv ≥30 或
+  搜索/AI 引荐 ≥3;`calc_use{job_lookup}` ≥10 且 `vote_cast{job_check_*}` ≥10;工作簇 `tool_click{opinion_*}`
+  ≥3;下一次 Bing 明细任一工作簇页被引。全部未达即记反面发现、停扩只保维护。
+- **诚实边界**:所有数字来自事实表(带信源日期);[thin] 项只写「据报道」;WebFetch 对几乎所有
+  新闻域被代理拦截,[verify] 项靠 WebSearch 多源片段核实原话。validate OK 228 页 / 210 URL;
+  hreflang 门 OK。**破了「一次一改」的日常纪律——owner 明确要求「前后全方面升级」,记录在案。**

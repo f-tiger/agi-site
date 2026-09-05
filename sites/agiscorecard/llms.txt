@@ -18,7 +18,7 @@ Full content in one fetch: https://agiscorecard.com/llms-full.txt — and every 
 - [Your AGI Timeline (one-slider tool)](https://agiscorecard.com/your-agi-timeline): Pick the year you think AGI arrives; the tool places it against nine real published forecasts (Musk end-2026 → survey median 2047, quoted verbatim from /data.json) and labels it bull/base/bear. Shareable, embeddable via ?embed=1.
 - [What's your AGI type? (30-second test)](https://agiscorecard.com/agi-test): Interactive test that maps you onto the forecaster spectrum (Musk/Aschenbrenner/Hassabis/Metaculus) and returns an archetype.
 - [The Future Bet (60-second game)](https://agiscorecard.com/future-bet): Bet YES/NO on 12 bold predictions (AGI, humanoid robots, Mars, anti-aging, fusion, alien life) and get a Futurist type + shareable grid; embeddable on other sites via iframe. Bridges to the AGI Tracker.
-- [Will AI take my job? (60-second exposure check)](https://agiscorecard.com/ai-job-risk-check): 6-question self-assessment returning an honest exposure tier grounded in tracked evidence (~83% GDPval, ~80% SWE-Bench Pro, the autonomy gap). No invented per-job statistics.
+- [Will AI take my job? (60-second exposure check)](https://agiscorecard.com/ai-job-risk-check): 6-question self-assessment returning an honest exposure tier, plus an occupation lookup over Microsoft Research's CC-BY applicability scores (785 occupations), grounded in tracked evidence (~83% GDPval, ~80% SWE-Bench Pro, the autonomy gap). No invented per-job statistics.
 - [AI prediction receipts](https://agiscorecard.com/prediction-receipts): Live countdowns to every dated public AGI call — Musk end-2026 (first to come due), Amodei 2026–27, Aschenbrenner 2027, Hassabis 2030, Metaculus 2033, survey 2047. Receipts stay when dates pass.
 - [AGI forecaster leaderboard](https://agiscorecard.com/forecaster-leaderboard): Every public AGI forecaster ranked by how soon they called it — Musk (end 2026), Aschenbrenner (2027), Amodei (2026–27), Hassabis/Samotsvety (~2030), Metaculus (2033), Karpathy (~2035), researcher survey (2047). Nobody has resolved yet; the Thesis Tracker reads 62.5/100.
 - [Data for AI agents](https://agiscorecard.com/for-agents): How to plug the scorecard's JSON, Atom feed, and llms.txt into any AI agent or digest tool.
@@ -67,6 +67,8 @@ Full content in one fetch: https://agiscorecard.com/llms-full.txt — and every 
 ## Verdict deep-dives
 
 - [Can AI replace knowledge workers?](https://agiscorecard.com/can-ai-replace-knowledge-workers): On track. ~83% GDPval, ~80% SWE-Bench Pro; drop-in reliability still lags benchmarks.
+- [Should you worry about AI taking your job?](https://agiscorecard.com/ai-and-your-job): Dated verdict (2026-09-05) with a fear-vs-evidence ledger — 79% expect fewer jobs (Gallup 2026) vs 4.2% unemployment and no discernible economy-wide disruption (Yale Budget Lab), with one concentrated early signal (Stanford Canaries: ~19% relative gap for ages 22–25 in exposed occupations). Flip conditions and next review 2026-10-03.
+- [Was Amodei right about the white-collar bloodbath?](https://agiscorecard.com/amodei-white-collar-bloodbath-prediction): The 2025-05-28 claim (half of entry-level white-collar jobs, 10–20% unemployment, 1–5 years) on a checkpoint clock to 2030 — status 2026-09-05: 0 of 2 headline metrics have moved; plus a dated pundit ledger (Huang, Karpathy, McCrory).
 - [Will AI cause mass unemployment?](https://agiscorecard.com/will-ai-cause-mass-unemployment): Not the overnight cliff — capability crossed thresholds but reliable unsupervised job replacement is undemonstrated; task automation, not a sudden jobs cliff.
 - [What jobs are safe from AI?](https://agiscorecard.com/what-jobs-are-safe-from-ai): The safest work needs reliable unsupervised judgment, physical action, or human trust — where the autonomy gap bites hardest.
 - [Will AI take over?](https://agiscorecard.com/will-ai-take-over): Every takeover scenario presupposes reliable autonomous agency, which is undemonstrated — AI is a powerful assistant, not an autonomous agent.
@@ -146,6 +148,7 @@ Full content in one fetch: https://agiscorecard.com/llms-full.txt — and every 
 - [免费 AI 工具合集（中文）](https://agiscorecard.com/zh/ai-tools): 8 个免费免注册的互动工具中文入口：AGI 类型测试、岗位暴露度自查、押注未来、追踪指数、投资板块、预言收据、AI 持仓敞口自查、黑客帝国概率计算器；其中 5 个支持 ?embed=1 嵌入。
 - [AGI 类型测试：你是哪种？](https://agiscorecard.com/zh/agi-test): 30 秒互动测试，测出你的 AGI 立场原型，与主要预测者对比。
 - [ChatGPT 算 AGI 吗](https://agiscorecard.com/zh/is-chatgpt-agi)
+- [该不该担心 AI 抢走你的工作（中文）](https://agiscorecard.com/zh/ai-and-your-job)
 - [AI 会造成大规模失业吗](https://agiscorecard.com/zh/will-ai-cause-mass-unemployment)
 - [我们怎么知道 AGI 到来了](https://agiscorecard.com/zh/how-will-we-know-agi-arrived)
 - [谁在造 AGI](https://agiscorecard.com/zh/who-is-building-agi)

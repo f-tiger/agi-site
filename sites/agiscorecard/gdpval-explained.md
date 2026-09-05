@@ -1,6 +1,6 @@
 # What Is GDPval? The AI Knowledge-Work Benchmark, Explained
 
-_Last updated: July 19, 2026 · Updated as verdicts change_
+_Last updated: September 5, 2026 · Updated as verdicts change_
 
 **Answer:** A benchmark for real, economically valuable knowledge work. GDPval scores AI models on deliverables drawn from actual occupations — the kind of tasks people are paid to do — against expert-produced reference work. On this scorecard, top models reach roughly 83%, the key evidence behind the On track verdict that AI is beginning to outpace college-grad knowledge workers.
 
