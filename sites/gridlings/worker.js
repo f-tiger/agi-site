@@ -2,7 +2,7 @@
 // All D1 writes are try/catch + waitUntil — analytics must never 500 the game.
 // GEO rules pages (2026-08-24): extensionless → .html, one set instead of ten else-ifs
 const GEO = new Set(["/futoshiki-rules","/kropki-sudoku-rules","/sandwich-sudoku-rules","/skyscraper-puzzle-rules","/star-battle-rules","/thermometer-puzzle-rules","/nonogram-rules","/6x6-sudoku-rules","/binary-puzzle-rules","/games-like-linkedin-queens"]);
-const ALLOWED = new Set(["play_start", "solve", "game_over", "share_copy", "hint_used", "play_again", "sub_click", "challenge_copy", "challenge_open", "challenge_result", "undo", "hub_click", "sweep_share", "embed_copy", "sub_submit", "sub_ok", "sub_fail"]);
+const ALLOWED = new Set(["play_start", "solve", "game_over", "calc_use", "share_copy", "hint_used", "play_again", "sub_click", "challenge_copy", "challenge_open", "challenge_result", "undo", "hub_click", "sweep_share", "embed_copy", "sub_submit", "sub_ok", "sub_fail"]);
 
 function uaClass(ua) {
   if (!ua) return "none";
@@ -72,6 +72,12 @@ export default {
       assetReq = new Request(new URL("/zh.html", url).toString(), request);
     } else if (url.pathname === "/archive" || url.pathname === "/archive/") {
       assetReq = new Request(new URL("/archive.html", url).toString(), request);
+    } else if (url.pathname === "/mimic" || url.pathname === "/mimic/") {
+      assetReq = new Request(new URL("/mimic.html", url).toString(), request);
+    } else if (url.pathname === "/overseer" || url.pathname === "/overseer/") {
+      assetReq = new Request(new URL("/overseer.html", url).toString(), request);
+    } else if (url.pathname === "/prompt" || url.pathname === "/prompt/") {
+      assetReq = new Request(new URL("/prompt.html", url).toString(), request);
     } else if (url.pathname === "/overfit" || url.pathname === "/overfit/") {
       assetReq = new Request(new URL("/overfit.html", url).toString(), request);
     } else if (url.pathname === "/blocknova" || url.pathname === "/blocknova/") {

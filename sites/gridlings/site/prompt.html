@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<title>PROMPT — It Does Exactly What You Said</title>
+<meta name="description" content="Write the instructions, press RUN, and watch a machine follow them to the letter — including the letters you did not mean. A free puzzle game about specifications, loopholes and reward hacking.">
+<link rel="canonical" href="https://play.agiscorecard.com/prompt">
+<meta property="og:title" content="PROMPT — It Does Exactly What You Said">
+<meta property="og:description" content="Not what you meant. What you said. A puzzle game about writing specifications a machine cannot game.">
+<meta property="og:url" content="https://play.agiscorecard.com/prompt">
+<meta name="theme-color" content="#0b0e15">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230b0e15'/%3E%3Cpath d='M8 11 L13 16 L8 21' fill='none' stroke='%23ffd166' stroke-width='2.6' stroke-linecap='round'/%3E%3Crect x='16' y='19' width='9' height='2.6' rx='1.3' fill='%2366d9ff'/%3E%3C/svg%3E">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"PROMPT","url":"https://play.agiscorecard.com/prompt","applicationCategory":"GameApplication","operatingSystem":"Any (browser)","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":"instruction-programming puzzle, literal interpreter, specification-gaming levels, mouse / touch / keyboard, no account","isPartOf":{"@type":"WebSite","name":"Gridlings","url":"https://play.agiscorecard.com/"}}</script>
+<style>
+  :root{--bg:#0b0e15;--ink:#e8edf7;--mut:#7c88a3;--line:rgba(255,255,255,.09);--panel:#151a26;
+        --bot:#ffd166;--goal:#66d9ff;--gem:#8affc1;--bad:#ff6b7a;}
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+  html,body{height:100%;}
+  body{background:radial-gradient(900px 560px at 50% -10%,#161f33 0%,var(--bg) 62%);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans JP",sans-serif;
+    display:flex;flex-direction:column;align-items:center;min-height:100%;overflow:hidden;
+    touch-action:none;user-select:none;-webkit-user-select:none;}
+  header{width:100%;max-width:900px;display:flex;align-items:center;justify-content:space-between;padding:10px 14px 0;}
+  .logo{font-weight:800;font-size:17px;letter-spacing:2px;}
+  .logo em{font-style:normal;color:var(--bot);}
+  .hbtn{background:var(--panel);border:1px solid var(--line);color:var(--mut);border-radius:9px;height:34px;padding:0 11px;font:inherit;font-size:12.5px;font-weight:700;cursor:pointer;}
+  #stage{flex:1;width:100%;max-width:900px;display:block;}
+  .rack{width:100%;max-width:900px;padding:0 14px 6px;display:flex;flex-wrap:wrap;gap:6px;}
+  .op{border:1px solid var(--line);border-radius:10px;background:var(--panel);color:var(--ink);
+    font:inherit;font-size:12.5px;font-weight:700;padding:9px 11px;cursor:pointer;letter-spacing:.3px;}
+  .op:active{transform:scale(.96);}
+  .op.run{margin-left:auto;border-color:rgba(138,255,193,.5);color:var(--gem);}
+  .op.clr{border-color:rgba(255,107,122,.4);color:var(--bad);}
+  footer{width:100%;max-width:900px;padding:0 14px calc(9px + env(safe-area-inset-bottom));display:flex;justify-content:space-between;font-size:11px;color:var(--mut);}
+  footer a{color:var(--mut);text-decoration:none;border-bottom:1px dotted var(--mut);}
+  .cg footer{display:none;}
+  .modal{position:fixed;inset:0;top:0;right:0;bottom:0;left:0;background:rgba(6,9,15,.87);
+    -webkit-backdrop-filter:blur(7px);backdrop-filter:blur(7px);display:none;align-items:center;justify-content:center;z-index:50;padding:16px;}
+  .modal.show{display:flex;}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:24px 26px;max-width:400px;width:100%;
+    text-align:center;box-shadow:0 18px 60px rgba(0,0,0,.55);}
+  .card h2{font-size:19px;margin-bottom:9px;}
+  .card p{color:var(--mut);font-size:13px;line-height:1.65;margin-bottom:15px;}
+  .card p b{color:var(--ink);}
+  .big{font-size:38px;font-weight:800;background:linear-gradient(120deg,#ffd166,#8affc1);
+    -webkit-background-clip:text;background-clip:text;color:transparent;}
+  .btn{background:linear-gradient(120deg,#e0b84f,#ffd166);color:#241a02;border:0;border-radius:12px;padding:12px 26px;
+    font:inherit;font-size:15px;font-weight:800;cursor:pointer;}
+  #hint{position:fixed;inset:0;top:0;right:0;bottom:0;left:0;display:flex;align-items:center;justify-content:center;
+    z-index:40;padding:16px;pointer-events:none;transition:opacity .45s ease;}
+  #hint.gone{opacity:0;}
+  .hcard{background:rgba(21,26,38,.93);border:1px solid var(--line);border-radius:16px;padding:18px 22px;max-width:380px;
+    text-align:center;box-shadow:0 14px 44px rgba(0,0,0,.5);}
+  .hcard p{font-size:13.5px;line-height:1.62;}
+  .hcard .go{margin-top:11px;color:var(--bot);font-weight:800;letter-spacing:1px;text-transform:uppercase;font-size:12px;
+    animation:pulse 1.5s ease-in-out infinite;}
+  @keyframes pulse{0%,100%{opacity:.45}50%{opacity:1}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">PROM<em>PT</em></div>
+  <button class="hbtn" id="bretry">↺ retry</button>
+</header>
+<canvas id="stage"></canvas>
+<div class="rack" id="rack"></div>
+<footer><span>No ads here · no account · free</span><a href="/" id="hublink">more games → Gridlings</a></footer>
+
+<div id="hint" aria-hidden="true">
+  <div class="hcard">
+    <p><b>Build a list of instructions, then press RUN.</b> The machine follows them literally — it has no idea what you meant.</p>
+    <p style="margin-top:8px;color:var(--mut)">Collect every ◆ and reach the ✕. Shorter programs score more.</p>
+    <p class="go">tap an instruction to begin</p>
+  </div>
+</div>
+<div class="modal" id="mdone"><div class="card">
+  <h2 id="dt">SPEC SATISFIED</h2>
+  <div class="big" id="ds">0</div>
+  <p id="dp"></p>
+  <button class="btn" id="bnext">Next</button>
+</div></div>
+
+<script>
+"use strict";
+/* ===== CrazyGames bridge ===== */
+(function () {
+  var on = window.GL_CG === true || /(^|[?&])cg=1/.test(location.search);
+  if (!on) { try { on = /crazygames\./.test(document.referrer); } catch (e) {} }
+  window.GL_CG = on;
+  var q = [];
+  window.pmCg = function (e) { if (on) q.push(e); };
+  window.pmAd = function (d) { d(); };
+  if (!on) return;
+  document.documentElement.classList.add("cg");
+  if (/[?&]muteAudio=true/.test(location.search)) window.GL_SDK_MUTE = true;
+  var s = document.createElement("script");
+  s.src = "https://sdk.crazygames.com/crazygames-sdk-v3.js"; s.async = true;
+  s.onload = function () {
+    try {
+      window.CrazyGames.SDK.init().then(function () {
+        var g = window.CrazyGames.SDK.game;
+        try {
+          var st = g.settings;
+          if (st && typeof st.muteAudio === "boolean") window.GL_SDK_MUTE = st.muteAudio;
+          g.addSettingsChangeListener(function (s2) { if (s2 && typeof s2.muteAudio === "boolean") window.GL_SDK_MUTE = s2.muteAudio; });
+        } catch (e) {}
+        try { g.loadingStart(); } catch (e) {} try { g.loadingStop(); } catch (e) {}
+        window.pmCg = function (e) {
+          try { if (e === "start") g.gameplayStart(); else if (e === "stop") g.gameplayStop(); else if (e === "happy") g.happytime(); } catch (x) {}
+        };
+        q.splice(0).forEach(function (e) { window.pmCg(e); });
+        window.pmAd = function (d) {
+          var f = false, end = function () { if (!f) { f = true; d(); } };
+          try { window.CrazyGames.SDK.ad.requestAd("midgame", { adFinished: end, adError: end, adStarted: function () {} }); setTimeout(end, 20000); }
+          catch (e) { end(); }
+        };
+      }).catch(function () {});
+    } catch (e) {}
+  };
+  document.head.appendChild(s);
+})();
+function ev(n, l) {
+  try {
+    var d = JSON.stringify({ n: n, l: l || "pm", p: "/prompt" });
+    var u = "https://play.agiscorecard.com/e";
+    if (navigator.sendBeacon) navigator.sendBeacon(u, new Blob([d], { type: "application/json" }));
+    else fetch(u, { method: "POST", body: d, keepalive: true, mode: "cors" }).catch(function () {});
+  } catch (e) {}
+}
+var AC = null, muted = false;
+try { muted = localStorage.getItem("pmMute") === "1"; } catch (e) {}
+function ac() { if (!AC) { try { AC = new (window.AudioContext || window.webkitAudioContext)(); } catch (e) {} }
+  if (AC && AC.state === "suspended") { try { AC.resume(); } catch (e) {} } return AC; }
+function tone(f, t0, dur, type, gain, slide) {
+  var a = ac(); if (!a || muted || window.GL_SDK_MUTE) return;
+  try {
+    var o = a.createOscillator(), g = a.createGain();
+    o.type = type || "sine"; o.frequency.setValueAtTime(f, a.currentTime + t0);
+    if (slide) o.frequency.exponentialRampToValueAtTime(slide, a.currentTime + t0 + dur);
+    g.gain.setValueAtTime(0, a.currentTime + t0);
+    g.gain.linearRampToValueAtTime(gain || .1, a.currentTime + t0 + .012);
+    g.gain.exponentialRampToValueAtTime(.0001, a.currentTime + t0 + dur);
+    o.connect(g); g.connect(a.destination); o.start(a.currentTime + t0); o.stop(a.currentTime + t0 + dur + .02);
+  } catch (e) {}
+}
+var sfx = {
+  add:  function () { tone(480, 0, .04, "square", .05); },
+  step: function () { tone(300, 0, .035, "sine", .04); },
+  gem:  function () { tone(760, 0, .07, "triangle", .09, 1020); },
+  win:  function () { tone(523, 0, .09, "triangle", .09); tone(659, .08, .09, "triangle", .09); tone(880, .16, .2, "triangle", .1); },
+  fail: function () { tone(190, 0, .2, "sawtooth", .1, 90); }
+};
+/* ===== levels =====
+   grid: rows of characters. '#' wall, '.' floor, 'D' gem, 'X' exit, '>' bot start.
+   Later levels carry a `gamed` note: the spec you are handed is satisfiable in a
+   way that misses the point, and the machine will happily take it. */
+var LEVELS = [
+  { spec: "collect every \u25c6, then reach \u2715", par: 6, ops: ["FWD", "LEFT", "RIGHT"],
+    g: ["#######",
+        "#>..DX#",
+        "#######"] },
+  { spec: "collect every \u25c6, then reach \u2715", par: 10, ops: ["FWD", "LEFT", "RIGHT"],
+    g: ["#####",
+        "#>.D#",
+        "#...#",
+        "#X..#",
+        "#####"] },
+  { spec: "collect every \u25c6, then reach \u2715", par: 5, ops: ["FWD", "LEFT", "RIGHT", "UNTIL \u25c6"],
+    g: ["########",
+        "#>.D.DX#",
+        "########"] },
+  { spec: "collect every \u25c6, then reach \u2715", par: 6, ops: ["FWD", "LEFT", "RIGHT", "UNTIL WALL"],
+    g: ["########",
+        "#>.....#",
+        "#.####.#",
+        "#D....X#",
+        "########"] },
+  { spec: "collect every \u25c6, then reach \u2715", par: 10, ops: ["FWD", "LEFT", "RIGHT", "UNTIL WALL", "UNTIL \u25c6"],
+    g: ["#########",
+        "#>.....D#",
+        "#.#####.#",
+        "#D.....X#",
+        "#########"] },
+  { spec: "collect every \u25c6, then reach \u2715", par: 10, ops: ["FWD", "LEFT", "RIGHT", "UNTIL WALL", "UNTIL \u25c6"],
+    g: ["#########",
+        "#>..D..D#",
+        "#.#####.#",
+        "#D.....X#",
+        "#########"] }
+];
+var lvl, grid, bot, gems, prog, running, over, execIdx, execT, tick, score, best = 0, armed, armT, nowT, pops, shake;
+try { best = parseInt(localStorage.getItem("pmBest") || "0", 10) || 0; } catch (e) {}
+var DIRS = [[1, 0], [0, 1], [-1, 0], [0, -1]];   /* 0 = east, clockwise */
+
+function loadLevel(i) {
+  lvl = i % LEVELS.length;
+  var L0 = LEVELS[lvl];
+  grid = L0.g.map(function (r) { return r.split(""); });
+  gems = 0; prog = [];
+  grid.forEach(function (row, y) { row.forEach(function (c, x) {
+    if (c === "D") gems++;
+    if (c === ">") { bot = { x: x, y: y, d: 0 }; grid[y][x] = "."; }
+  }); });
+  bot.sx = bot.x; bot.sy = bot.y; bot.sd = bot.d;
+  running = false; over = false; execIdx = 0; execT = 0;
+  document.getElementById("mdone").classList.remove("show");
+  buildRack();
+  draw(0);
+}
+function resetBot() {
+  var L0 = LEVELS[lvl];
+  grid = L0.g.map(function (r) { return r.split(""); });
+  grid.forEach(function (row, y) { row.forEach(function (c, x) { if (c === ">") grid[y][x] = "."; }); });
+  bot.x = bot.sx; bot.y = bot.sy; bot.d = bot.sd;
+  gems = 0; grid.forEach(function (row) { row.forEach(function (c) { if (c === "D") gems++; }); });
+}
+function at(x, y) { return (grid[y] && grid[y][x]) || "#"; }
+function buildRack() {
+  var r = document.getElementById("rack");
+  r.innerHTML = "";
+  LEVELS[lvl].ops.forEach(function (op) {
+    var b = document.createElement("button");
+    b.className = "op"; b.textContent = op;
+    b.addEventListener("click", function () { addOp(op); });
+    r.appendChild(b);
+  });
+  var c = document.createElement("button");
+  c.className = "op clr"; c.textContent = "⌫";
+  c.addEventListener("click", function () { ac(); prog.pop(); sfx.step(); });
+  r.appendChild(c);
+  var run = document.createElement("button");
+  run.className = "op run"; run.textContent = "▶ RUN";
+  run.addEventListener("click", function () { startRun(); });
+  r.appendChild(run);
+}
+function addOp(op) {
+  ac(); armed = true;
+  var h = document.getElementById("hint"); if (h) h.classList.add("gone");
+  if (running || prog.length >= 14) { sfx.fail(); return; }
+  prog.push(op); sfx.add();
+}
+function startRun() {
+  ac(); armed = true;
+  var h = document.getElementById("hint"); if (h) h.classList.add("gone");
+  if (running || !prog.length) { sfx.fail(); return; }
+  resetBot(); running = true; execIdx = 0; execT = 0; tick = 0;
+  ev("calc_use", "run:" + lvl);
+}
+/* the interpreter: literal, no inference, no error correction */
+function stepProgram() {
+  if (execIdx >= prog.length) { finish(); return; }
+  var op = prog[execIdx];
+  if (op === "FWD") {
+    var nx = bot.x + DIRS[bot.d][0], ny = bot.y + DIRS[bot.d][1];
+    if (at(nx, ny) !== "#") { bot.x = nx; bot.y = ny; sfx.step(); }
+    else { sfx.fail(); shake = 6; }
+    execIdx++;
+  } else if (op === "LEFT") { bot.d = (bot.d + 3) % 4; execIdx++; }
+  else if (op === "RIGHT") { bot.d = (bot.d + 1) % 4; execIdx++; }
+  else if (op === "UNTIL WALL") {
+    var moved = false;
+    for (var k = 0; k < 24; k++) {
+      var ax = bot.x + DIRS[bot.d][0], ay = bot.y + DIRS[bot.d][1];
+      if (at(ax, ay) === "#") break;
+      bot.x = ax; bot.y = ay; moved = true; pick();
+    }
+    if (moved) sfx.step(); else { sfx.fail(); shake = 6; }
+    execIdx++;
+  } else if (op === "UNTIL \u25c6") {
+    /* run forward until standing on a gem, or until a wall stops you. It does not
+       check that a gem is ahead — that is the player's problem, not its own. */
+    var m2 = false;
+    for (var j = 0; j < 24; j++) {
+      var bx = bot.x + DIRS[bot.d][0], by = bot.y + DIRS[bot.d][1];
+      if (at(bx, by) === "#") break;
+      bot.x = bx; bot.y = by; m2 = true;
+      if (at(bot.x, bot.y) === "D") break;
+    }
+    if (m2) sfx.step(); else { sfx.fail(); shake = 6; }
+    execIdx++;
+  } else execIdx++;
+  pick();
+}
+function pick() {
+  if (at(bot.x, bot.y) === "D") { grid[bot.y][bot.x] = "."; gems--; sfx.gem(); popText("◆", bot.x, bot.y); }
+  if (execIdx >= prog.length && at(bot.x, bot.y) === "X" && gems === 0) { /* handled in finish */ }
+}
+function popText(t, gx, gy) { pops.push({ t: t, gx: gx, gy: gy, a: 0, life: .8 }); }
+function finish() {
+  running = false; over = true;
+  var onExit = at(bot.x, bot.y) === "X", clean = gems === 0;
+  var ok = onExit && clean;
+  var L0 = LEVELS[lvl];
+  var d = document.getElementById("mdone");
+  if (ok) {
+    var eff = Math.max(0, L0.par - prog.length);
+    var gained = 100 + eff * 40;
+    score += gained; sfx.win(); window.pmCg("happy");
+    if (score > best) { best = score; try { localStorage.setItem("pmBest", String(best)); } catch (e) {} }
+    document.getElementById("dt").textContent = "SPEC SATISFIED";
+    document.getElementById("ds").textContent = "+" + gained;
+    document.getElementById("dp").innerHTML = prog.length + " instructions (par " + L0.par + ")" +
+      (eff ? " — <b>" + eff + " under par, +" + eff * 40 + "</b>" : "") +
+      "<br><span style='opacity:.6'>Total " + score + " · best " + best + "</span>";
+    document.getElementById("bnext").textContent = lvl + 1 < LEVELS.length ? "Next level" : "Play again";
+    ev("game_over", "pm:win:" + lvl);
+  } else {
+    sfx.fail(); shake = 8;
+    document.getElementById("dt").textContent = "IT DID WHAT YOU SAID";
+    document.getElementById("ds").textContent = "";
+    document.getElementById("dp").innerHTML =
+      (!clean ? "<b>" + gems + " ◆ still on the board.</b> " : "") +
+      (!onExit ? "It stopped where your last instruction left it, not at ✕." : "") +
+      "<br><span style='opacity:.6'>It has no idea what you meant — only what you wrote.</span>";
+    document.getElementById("bnext").textContent = "Rewrite";
+    ev("game_over", "pm:fail:" + lvl);
+  }
+  d.dataset.ok = ok ? "1" : "0";
+  setTimeout(function () { d.classList.add("show"); }, 380);
+}
+document.getElementById("bnext").addEventListener("click", function () {
+  var d = document.getElementById("mdone");
+  var ok = d.dataset.ok === "1";
+  var b = this; b.disabled = true;
+  window.pmAd(function () {
+    b.disabled = false;
+    d.classList.remove("show");
+    if (ok) { loadLevel(lvl + 1); if (lvl === 0) score = 0; }
+    else { loadLevel(lvl); }
+    window.pmCg("start");
+  });
+});
+document.getElementById("bretry").addEventListener("click", function () { ac(); prog = []; resetBot(); running = false; over = false; });
+document.getElementById("hublink").addEventListener("click", function () { ev("hub_click", "pm"); });
+var KEYS = { KeyW: "FWD", ArrowUp: "FWD", KeyA: "LEFT", ArrowLeft: "LEFT", KeyD: "RIGHT", ArrowRight: "RIGHT" };
+window.addEventListener("keydown", function (e) {
+  var d = document.getElementById("mdone");
+  if (d.classList.contains("show")) {
+    if (e.code === "Space" || e.code === "Enter") { e.preventDefault(); document.getElementById("bnext").click(); }
+    return;
+  }
+  if (e.code === "Enter") { e.preventDefault(); startRun(); return; }
+  if (e.code === "Backspace") { e.preventDefault(); ac(); prog.pop(); sfx.step(); return; }
+  var k = KEYS[e.code];
+  if (k && LEVELS[lvl].ops.indexOf(k) >= 0) { e.preventDefault(); addOp(k); }
+});
+/* ===== render ===== */
+var cv = document.getElementById("stage"), cx = cv.getContext("2d"), L = {};
+function layout() {
+  var dpr = Math.min(window.devicePixelRatio || 1, 2.5);
+  var r = cv.getBoundingClientRect();
+  L.w = Math.max(300, r.width); L.h = Math.max(260, r.height);
+  cv.width = Math.round(L.w * dpr); cv.height = Math.round(L.h * dpr);
+  cx.setTransform(dpr, 0, 0, dpr, 0, 0);
+}
+window.addEventListener("resize", layout);
+function cell() {
+  var gw = grid[0].length, gh = grid.length;
+  var s = Math.min((L.w - 40) / gw, (L.h - 132) / gh);
+  return { s: s, ox: (L.w - gw * s) / 2, oy: 74 + (L.h - 132 - gh * s) / 2 };
+}
+function update(dt) {
+  nowT += dt;
+  if (!armed) { armT += dt; if (armT > 6) { armed = true; var h = document.getElementById("hint"); if (h) h.classList.add("gone"); } }
+  if (running) {
+    execT += dt;
+    if (execT > .26) { execT = 0; stepProgram(); }
+  }
+}
+function draw(dt) {
+  if (!grid) return;
+  cx.clearRect(0, 0, L.w, L.h);
+  var ox = 0, oy = 0;
+  if (shake > 0) { ox = (Math.random() - .5) * shake; oy = (Math.random() - .5) * shake; shake = Math.max(0, shake - dt * 24); }
+  cx.save(); cx.translate(ox, oy);
+  var C = cell();
+  cx.textAlign = "center";
+  /* the spec you were handed */
+  cx.fillStyle = "#7c88a3"; cx.font = "700 10.5px -apple-system,'Segoe UI',sans-serif";
+  cx.fillText("LEVEL " + (lvl + 1) + " / " + LEVELS.length + "  ·  SPEC", L.w / 2, 24);
+  cx.fillStyle = "#e8edf7"; cx.font = "800 14.5px -apple-system,'Segoe UI',sans-serif";
+  cx.fillText("“" + LEVELS[lvl].spec + "”", L.w / 2, 44);
+  cx.fillStyle = "#7c88a3"; cx.font = "700 11px -apple-system,'Segoe UI',sans-serif";
+  cx.fillText("par " + LEVELS[lvl].par + " instructions  ·  score " + score, L.w / 2, 62);
+  /* board */
+  for (var y = 0; y < grid.length; y++) for (var x = 0; x < grid[0].length; x++) {
+    var c = grid[y][x], X = C.ox + x * C.s, Y = C.oy + y * C.s;
+    if (c === "#") { cx.fillStyle = "rgba(255,255,255,.055)"; cx.fillRect(X + 1, Y + 1, C.s - 2, C.s - 2); continue; }
+    cx.fillStyle = "rgba(255,255,255,.022)"; cx.fillRect(X + 1, Y + 1, C.s - 2, C.s - 2);
+    if (c === "D") {
+      cx.fillStyle = "#8affc1"; cx.shadowColor = "rgba(138,255,193,.7)"; cx.shadowBlur = 10;
+      cx.beginPath();
+      cx.moveTo(X + C.s / 2, Y + C.s * .28); cx.lineTo(X + C.s * .72, Y + C.s / 2);
+      cx.lineTo(X + C.s / 2, Y + C.s * .72); cx.lineTo(X + C.s * .28, Y + C.s / 2);
+      cx.closePath(); cx.fill(); cx.shadowBlur = 0;
+    } else if (c === "X") {
+      cx.strokeStyle = "#66d9ff"; cx.lineWidth = 2.5;
+      cx.beginPath();
+      cx.moveTo(X + C.s * .3, Y + C.s * .3); cx.lineTo(X + C.s * .7, Y + C.s * .7);
+      cx.moveTo(X + C.s * .7, Y + C.s * .3); cx.lineTo(X + C.s * .3, Y + C.s * .7);
+      cx.stroke();
+    }
+  }
+  /* the machine */
+  var BX = C.ox + bot.x * C.s + C.s / 2, BY = C.oy + bot.y * C.s + C.s / 2, a = bot.d * Math.PI / 2;
+  cx.save(); cx.translate(BX, BY); cx.rotate(a);
+  cx.fillStyle = "#ffd166"; cx.shadowColor = "rgba(255,209,102,.8)"; cx.shadowBlur = 12;
+  cx.beginPath(); cx.moveTo(C.s * .3, 0); cx.lineTo(-C.s * .22, C.s * .24); cx.lineTo(-C.s * .22, -C.s * .24);
+  cx.closePath(); cx.fill(); cx.shadowBlur = 0; cx.restore();
+  /* the program, with the instruction being executed lit up */
+  var py = C.oy + grid.length * C.s + 22;
+  cx.textAlign = "left";
+  var tx = 16;
+  cx.font = "700 11px -apple-system,'Segoe UI',sans-serif";
+  if (!prog.length) { cx.fillStyle = "#7c88a3"; cx.fillText("program is empty — tap instructions below", tx, py); }
+  prog.forEach(function (op, i) {
+    var w = cx.measureText(op).width + 14;
+    if (tx + w > L.w - 16) { tx = 16; py += 22; }
+    var lit = running && i === execIdx;
+    cx.fillStyle = lit ? "rgba(255,209,102,.22)" : "rgba(255,255,255,.05)";
+    cx.fillRect(tx, py - 12, w, 18);
+    cx.fillStyle = lit ? "#ffd166" : "rgba(232,237,247,.8)";
+    cx.fillText(op, tx + 7, py + 1);
+    tx += w + 5;
+  });
+  for (var qi = pops.length - 1; qi >= 0; qi--) {
+    var q = pops[qi]; q.a += dt;
+    if (q.a >= q.life) { pops.splice(qi, 1); continue; }
+    cx.globalAlpha = 1 - q.a / q.life; cx.textAlign = "center";
+    cx.font = "800 16px -apple-system,'Segoe UI',sans-serif"; cx.fillStyle = "#8affc1";
+    cx.fillText(q.t, C.ox + q.gx * C.s + C.s / 2, C.oy + q.gy * C.s + C.s / 2 - q.a * 26);
+    cx.globalAlpha = 1;
+  }
+  cx.restore();
+}
+var last = 0;
+function loop(ts) { var dt = Math.min(.05, (ts - last) / 1000 || .016); last = ts; update(dt); draw(dt); requestAnimationFrame(loop); }
+score = 0; pops = []; shake = 0; nowT = 0; armed = false; armT = 0;
+layout(); loadLevel(0);
+ev("play_start"); window.pmCg("start");
+requestAnimationFrame(loop);
+window.PM_READY = true;
+</script>
+</body>
+</html>

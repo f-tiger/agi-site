@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<title>MIMIC — You Are the Training Data</title>
+<meta name="description" content="Teach a machine with a handful of labels, then bet your score on it. Spend your labels on the wrong examples and it learns the wrong rule — and tells you so. A free puzzle game about how AI actually fails.">
+<link rel="canonical" href="https://play.agiscorecard.com/mimic">
+<meta property="og:title" content="MIMIC — You Are the Training Data">
+<meta property="og:description" content="12 labels. One hidden rule. Teach it right or watch it confidently learn the wrong thing.">
+<meta property="og:url" content="https://play.agiscorecard.com/mimic">
+<meta name="theme-color" content="#0a0d14">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a0d14'/%3E%3Ccircle cx='11' cy='16' r='5' fill='%2338d9c4'/%3E%3Cpath d='M21 10 L26 16 L21 22 L16 16 Z' fill='%23ff6b9d'/%3E%3C/svg%3E">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"MIMIC","url":"https://play.agiscorecard.com/mimic","applicationCategory":"GameApplication","operatingSystem":"Any (browser)","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":"active-learning puzzle, real feature-agreement learner, shortcut-learning reveal, keyboard / mouse / touch, no account","isPartOf":{"@type":"WebSite","name":"Gridlings","url":"https://play.agiscorecard.com/"}}</script>
+<style>
+  :root{--bg:#0a0d14;--ink:#e6ecff;--mut:#7b88ab;--line:rgba(255,255,255,.08);--panel:#141a27;
+        --keep:#38d9c4;--rej:#ff6b9d;--warn:#ffc14d;}
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+  html,body{height:100%;}
+  body{background:radial-gradient(900px 560px at 50% -10%,#152036 0%,var(--bg) 62%);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans JP",sans-serif;
+    display:flex;flex-direction:column;align-items:center;min-height:100%;overflow:hidden;
+    touch-action:none;user-select:none;-webkit-user-select:none;}
+  header{width:100%;max-width:1100px;display:flex;align-items:center;justify-content:space-between;padding:10px 14px 0;}
+  .logo{font-weight:800;font-size:17px;letter-spacing:2px;}
+  .logo em{font-style:normal;color:var(--rej);}
+  .hbtn{background:var(--panel);border:1px solid var(--line);color:var(--mut);border-radius:9px;width:34px;height:34px;font-size:15px;cursor:pointer;}
+  #stage{flex:1;width:100%;max-width:1100px;display:block;}
+  .pad{width:100%;max-width:1100px;display:flex;gap:8px;padding:0 14px 6px;}
+  .pbtn{flex:1;border:1px solid var(--line);border-radius:12px;background:var(--panel);color:var(--ink);
+    font:inherit;font-size:14px;font-weight:800;letter-spacing:.6px;padding:13px 0;cursor:pointer;transition:transform .06s;}
+  .pbtn:active{transform:scale(.97);}
+  .pbtn.k{border-color:rgba(56,217,196,.5);color:var(--keep);}
+  .pbtn.r{border-color:rgba(255,107,157,.5);color:var(--rej);}
+  .pbtn.x{border-color:rgba(255,193,77,.55);color:var(--warn);flex:0 0 30%;}
+  .pbtn small{display:block;font-size:10px;font-weight:600;opacity:.55;letter-spacing:.4px;margin-top:2px;}
+  footer{width:100%;max-width:1100px;padding:0 14px calc(9px + env(safe-area-inset-bottom));display:flex;justify-content:space-between;font-size:11px;color:var(--mut);}
+  footer a{color:var(--mut);text-decoration:none;border-bottom:1px dotted var(--mut);}
+  .cg footer{display:none;}
+  .modal{position:fixed;inset:0;top:0;right:0;bottom:0;left:0;background:rgba(6,9,16,.86);
+    -webkit-backdrop-filter:blur(7px);backdrop-filter:blur(7px);
+    display:none;align-items:center;justify-content:center;z-index:50;padding:16px;}
+  .modal.show{display:flex;}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:24px 26px;max-width:390px;width:100%;
+    text-align:center;box-shadow:0 18px 60px rgba(0,0,0,.55);}
+  .card h2{font-size:19px;margin-bottom:10px;letter-spacing:.5px;}
+  .verdict{font-size:13.5px;line-height:1.7;color:var(--mut);margin-bottom:14px;}
+  .verdict b{color:var(--ink);}
+  .verdict .hit{color:var(--keep);} .verdict .miss{color:var(--rej);}
+  .big{font-size:40px;font-weight:800;background:linear-gradient(120deg,#38d9c4,#7c9bff);
+    -webkit-background-clip:text;background-clip:text;color:transparent;}
+  .btn{background:linear-gradient(120deg,#2bb9a6,#38d9c4);color:#04201c;border:0;border-radius:12px;
+    padding:12px 26px;font:inherit;font-size:15px;font-weight:800;cursor:pointer;}
+  #hint{position:fixed;inset:0;top:0;right:0;bottom:0;left:0;display:flex;align-items:center;justify-content:center;
+    z-index:40;padding:16px;pointer-events:none;transition:opacity .45s ease;}
+  #hint.gone{opacity:0;}
+  .hcard{background:rgba(20,26,39,.92);border:1px solid var(--line);border-radius:16px;padding:18px 22px;max-width:380px;
+    text-align:center;box-shadow:0 14px 44px rgba(0,0,0,.5);}
+  .hcard p{font-size:13.5px;line-height:1.62;}
+  .hcard .go{margin-top:11px;color:var(--keep);font-weight:800;letter-spacing:1px;text-transform:uppercase;font-size:12px;
+    animation:pulse 1.5s ease-in-out infinite;}
+  @keyframes pulse{0%,100%{opacity:.45}50%{opacity:1}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">MI<em>MIC</em></div>
+  <button class="hbtn" id="brestart" aria-label="Restart">↺</button>
+</header>
+<canvas id="stage"></canvas>
+<div class="pad">
+  <button class="pbtn k" id="bkeep">KEEP<small>A · ←</small></button>
+  <button class="pbtn" id="bskip">SKIP<small>S · ↓ · space</small></button>
+  <button class="pbtn r" id="brej">REJECT<small>D · →</small></button>
+  <button class="pbtn x" id="bexam" style="display:none">▶ EXAM<small>enter · +15 each</small></button>
+</div>
+<footer><span>No ads here · no account · free</span><a href="/" id="hublink">more games → Gridlings</a></footer>
+
+<div id="hint" aria-hidden="true">
+  <div class="hcard">
+    <p><b>You know the rule. The machine does not.</b> Label examples until it can work the rule out — then it sorts 26 on its own and your score is its score.</p>
+    <p style="margin-top:8px;color:var(--mut)">Here the two traits nearly always agree, so easy examples teach it nothing. <b>Hunt the odd ones out.</b> Fewer labels = more points.</p>
+    <p class="go">label to begin</p>
+  </div>
+</div>
+<div class="modal" id="mover"><div class="card">
+  <h2 id="ovt">EXAM OVER</h2>
+  <div class="big" id="ovs">0</div>
+  <div class="verdict" id="ovv"></div>
+  <button class="btn" id="bagain">Run it back</button>
+</div></div>
+
+<script>
+"use strict";
+/* ===== CrazyGames bridge (only active in cg contexts) ===== */
+(function () {
+  var on = window.GL_CG === true || /(^|[?&])cg=1/.test(location.search);
+  if (!on) { try { on = /crazygames\./.test(document.referrer); } catch (e) {} }
+  window.GL_CG = on;
+  var q = [];
+  window.mcCg = function (e) { if (on) q.push(e); };
+  window.mcAd = function (d) { d(); };
+  if (!on) return;
+  document.documentElement.classList.add("cg");
+  if (/[?&]muteAudio=true/.test(location.search)) window.GL_SDK_MUTE = true;
+  var s = document.createElement("script");
+  s.src = "https://sdk.crazygames.com/crazygames-sdk-v3.js"; s.async = true;
+  s.onload = function () {
+    try {
+      window.CrazyGames.SDK.init().then(function () {
+        var g = window.CrazyGames.SDK.game;
+        try {
+          var st = g.settings;
+          if (st && typeof st.muteAudio === "boolean") window.GL_SDK_MUTE = st.muteAudio;
+          g.addSettingsChangeListener(function (s2) { if (s2 && typeof s2.muteAudio === "boolean") window.GL_SDK_MUTE = s2.muteAudio; });
+        } catch (e) {}
+        try { g.loadingStart(); } catch (e) {} try { g.loadingStop(); } catch (e) {}
+        window.mcCg = function (e) {
+          try {
+            if (e === "start") g.gameplayStart(); else if (e === "stop") g.gameplayStop(); else if (e === "happy") g.happytime();
+          } catch (x) {}
+        };
+        q.splice(0).forEach(function (e) { window.mcCg(e); });
+        window.mcAd = function (d) {
+          var f = false, end = function () { if (!f) { f = true; d(); } };
+          try { window.CrazyGames.SDK.ad.requestAd("midgame", { adFinished: end, adError: end, adStarted: function () {} }); setTimeout(end, 20000); }
+          catch (e) { end(); }
+        };
+      }).catch(function () {});
+    } catch (e) {}
+  };
+  document.head.appendChild(s);
+})();
+function ev(n, l) {
+  try {
+    var d = JSON.stringify({ n: n, l: l || "mc", p: "/mimic" });
+    var u = "https://play.agiscorecard.com/e";
+    if (navigator.sendBeacon) navigator.sendBeacon(u, new Blob([d], { type: "application/json" }));
+    else fetch(u, { method: "POST", body: d, keepalive: true, mode: "cors" }).catch(function () {});
+  } catch (e) {}
+}
+/* ===== audio ===== */
+var AC = null, muted = false;
+function ac() { if (!AC) { try { AC = new (window.AudioContext || window.webkitAudioContext)(); } catch (e) {} }
+  if (AC && AC.state === "suspended") { try { AC.resume(); } catch (e) {} } return AC; }
+function tone(f, t0, dur, type, gain, slide) {
+  var a = ac(); if (!a || muted || window.GL_SDK_MUTE) return;
+  try {
+    var o = a.createOscillator(), g = a.createGain();
+    o.type = type || "sine"; o.frequency.setValueAtTime(f, a.currentTime + t0);
+    if (slide) o.frequency.exponentialRampToValueAtTime(slide, a.currentTime + t0 + dur);
+    g.gain.setValueAtTime(0, a.currentTime + t0);
+    g.gain.linearRampToValueAtTime(gain || .1, a.currentTime + t0 + .012);
+    g.gain.exponentialRampToValueAtTime(.0001, a.currentTime + t0 + dur);
+    o.connect(g); g.connect(a.destination); o.start(a.currentTime + t0); o.stop(a.currentTime + t0 + dur + .02);
+  } catch (e) {}
+}
+var sfx = {
+  label: function () { tone(520, 0, .05, "triangle", .07); },
+  skip: function () { tone(300, 0, .04, "sine", .04); },
+  good: function () { tone(700, 0, .07, "triangle", .09, 950); },
+  bad:  function () { tone(200, 0, .16, "sawtooth", .10, 90); },
+  done: function () { tone(440, 0, .1, "triangle", .09); tone(587, .09, .1, "triangle", .09); tone(784, .18, .22, "triangle", .1); }
+};
+/* ===== the specimens and the hidden rule =====
+   Two binary traits: SPIKY (form) and WARM (colour). One of them is the rule.
+   In the TRAINING stream the traits agree 82% of the time, so a learner fed only
+   easy examples cannot tell which one matters — that confound IS the game. The
+   TEST stream is decorrelated, which is where a lazy model falls apart. */
+var TRAITS = ["spiky", "warm"];
+var ruleTrait, ruleKeepWhen, trainQ, testQ, cur, labels, LABEL_BUDGET = 12;
+var phase, score, lives, model, conveyor, tSince, testIdx, testTimer, over, running, armed, armT, bonus;
+var pops = [], parts = [], shake = 0, nowT = 0, best = 0;
+try { best = parseInt(localStorage.getItem("mcBest") || "0", 10) || 0; } catch (e) {}
+try { muted = localStorage.getItem("mcMute") === "1"; } catch (e) {}
+
+function mkSpec(correlated) {
+  var r = Math.random() < .5;
+  var other = correlated ? (Math.random() < .82 ? r : !r) : (Math.random() < .5);
+  var o = { spiky: ruleTrait === "spiky" ? r : other, warm: ruleTrait === "warm" ? r : other };
+  o.truth = (o[ruleTrait] === ruleKeepWhen);       // true = KEEP
+  o.wob = Math.random() * 7;
+  o.n = 3 + ((Math.random() * 4) | 0);
+  return o;
+}
+function newRun() {
+  ruleTrait = TRAITS[(Math.random() * 2) | 0];
+  ruleKeepWhen = Math.random() < .5;
+  trainQ = []; for (var i = 0; i < 60; i++) trainQ.push(mkSpec(true));
+  testQ = [];  for (var j = 0; j < 26; j++) testQ.push(mkSpec(false));
+  labels = []; cur = trainQ.shift();
+  phase = "train"; score = 0; lives = 3; model = null;
+  conveyor = 0; tSince = 0; testIdx = 0; testTimer = 0; bonus = 0;
+  document.getElementById("bexam").style.display = "none";
+  over = false; running = true; armed = false; armT = 0;
+  pops = []; parts = []; shake = 0; nowT = 0;
+  document.getElementById("mover").classList.remove("show");
+  var h = document.getElementById("hint"); if (h) h.classList.remove("gone");
+  ev("play_start"); window.mcCg("start");
+}
+/* The learner: for each trait, how well does "trait == v" agree with the labels?
+   Take the best-agreeing trait. This is a real (if tiny) model — and because it
+   is one line of arithmetic, the reveal can state exactly what it learned. */
+function train() {
+  var pick = null;
+  TRAITS.forEach(function (t) {
+    [true, false].forEach(function (v) {
+      var ok = 0;
+      labels.forEach(function (L) { if ((L.s[t] === v) === L.keep) ok++; });
+      var acc = labels.length ? ok / labels.length : 0;
+      if (!pick || acc > pick.acc || (acc === pick.acc && Math.random() < .5)) pick = { trait: t, keepWhen: v, acc: acc };
+    });
+  });
+  return pick;
+}
+function popText(t, x, y, size, col) { pops.push({ t: t, x: x, y: y, s: size, c: col, a: 0, life: .95 }); }
+function burst(x, y, col, n) {
+  for (var i = 0; i < n; i++) { var a = Math.random() * 7, sp = 70 + Math.random() * 210;
+    parts.push({ x: x, y: y, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp, t: 0, life: .45 + Math.random() * .3, c: col, r: 1.5 + Math.random() * 2.5 }); }
+}
+/* ===== input ===== */
+function decide(kind) {
+  if (over || phase !== "train") return;
+  ac(); armed = true;
+  var h = document.getElementById("hint"); if (h) h.classList.add("gone");
+  if (kind !== "skip") {
+    if (labels.length >= LABEL_BUDGET) { sfx.bad(); popText("no labels left", L.w / 2, L.cy - 70, 17, "#ffc14d"); return; }
+    labels.push({ s: cur, keep: kind === "keep" });
+    sfx.label();
+    burst(L.cx, L.cy, kind === "keep" ? "#38d9c4" : "#ff6b9d", 12);
+    popText(kind === "keep" ? "KEEP" : "REJECT", L.cx, L.cy - 58, 19, kind === "keep" ? "#38d9c4" : "#ff6b9d");
+  } else { sfx.skip(); }
+  if (labels.length >= LABEL_BUDGET) { startExam(); return; }
+  if (labels.length >= 3) document.getElementById("bexam").style.display = "";
+  cur = trainQ.shift() || mkSpec(true);
+}
+function startExam() {
+  if (phase !== "train" || labels.length < 2) return;
+  bonus = (LABEL_BUDGET - labels.length) * 15;
+  score += bonus;
+  phase = "exam"; model = train(); testTimer = 0; testIdx = 0;
+  document.getElementById("bexam").style.display = "none";
+  sfx.done();
+  popText("MODEL TRAINED", L.w / 2, L.cy - 92, 22, "#7c9bff");
+  if (bonus) popText("+" + bonus + " unused labels", L.w / 2, L.cy - 66, 16, "#ffc14d");
+}
+document.getElementById("bkeep").addEventListener("click", function () { decide("keep"); });
+document.getElementById("brej").addEventListener("click", function () { decide("reject"); });
+document.getElementById("bskip").addEventListener("click", function () { decide("skip"); });
+document.getElementById("bexam").addEventListener("click", function () { ac(); startExam(); });
+document.getElementById("brestart").addEventListener("click", function () { window.mcCg("stop"); newRun(); });
+document.getElementById("hublink").addEventListener("click", function () { ev("hub_click", "mc"); });
+document.getElementById("bagain").addEventListener("click", function () {
+  var b = this; b.disabled = true;
+  window.mcAd(function () { b.disabled = false; ev("play_again"); newRun(); });
+});
+var KEY = { KeyA: "keep", ArrowLeft: "keep", KeyD: "reject", ArrowRight: "reject",
+            KeyS: "skip", ArrowDown: "skip", Space: "skip" };
+window.addEventListener("keydown", function (e) {
+  if (e.repeat) return;
+  var m = document.getElementById("mover");
+  if (m.classList.contains("show")) {
+    if (e.code === "Space" || e.code === "Enter") { e.preventDefault(); document.getElementById("bagain").click(); }
+    return;
+  }
+  if (e.code === "Enter") { e.preventDefault(); ac(); startExam(); return; }
+  var k = KEY[e.code];
+  if (k) { e.preventDefault(); decide(k); }
+});
+/* ===== layout & render ===== */
+var cv = document.getElementById("stage"), cx = cv.getContext("2d"), L = {};
+function layout() {
+  var dpr = Math.min(window.devicePixelRatio || 1, 2.5);
+  var r = cv.getBoundingClientRect();
+  L.w = Math.max(320, r.width); L.h = Math.max(300, r.height);
+  L.cx = L.w / 2; L.cy = L.h * .47;
+  cv.width = Math.round(L.w * dpr); cv.height = Math.round(L.h * dpr);
+  cx.setTransform(dpr, 0, 0, dpr, 0, 0);
+}
+window.addEventListener("resize", layout);
+function drawSpec(s, x, y, R, alpha) {
+  cx.save(); cx.globalAlpha = alpha == null ? 1 : alpha;
+  cx.translate(x, y); cx.rotate(Math.sin(nowT * .8 + s.wob) * .12);
+  var hue = s.warm ? 8 : 195;
+  var g = cx.createLinearGradient(0, -R, 0, R);
+  g.addColorStop(0, "hsl(" + hue + ",85%,68%)"); g.addColorStop(1, "hsl(" + hue + ",78%,48%)");
+  cx.fillStyle = g;
+  cx.shadowColor = "hsla(" + hue + ",90%,60%,.55)"; cx.shadowBlur = 16;
+  cx.beginPath();
+  if (s.spiky) {
+    var n = s.n * 2;
+    for (var i = 0; i < n; i++) {
+      var a = (i / n) * Math.PI * 2 - Math.PI / 2, rr = i % 2 ? R * .46 : R;
+      cx.lineTo(Math.cos(a) * rr, Math.sin(a) * rr);
+    }
+  } else { cx.arc(0, 0, R * .86, 0, 7); }
+  cx.closePath(); cx.fill(); cx.shadowBlur = 0;
+  cx.fillStyle = "rgba(255,255,255,.22)";
+  cx.beginPath(); cx.arc(-R * .22, -R * .26, R * .2, 0, 7); cx.fill();
+  cx.restore();
+}
+function traitName(t) { return t === "spiky" ? "SHAPE" : "COLOUR"; }
+function traitValue(t, v) { return t === "spiky" ? (v ? "spiky" : "round") : (v ? "warm" : "cool"); }
+function endRun(reason) {
+  over = true; running = false; window.mcCg("stop");
+  if (score > best) { best = score; try { localStorage.setItem("mcBest", String(best)); } catch (e) {} }
+  ev("game_over", "mc:" + score);
+  var m = model || { trait: "?", keepWhen: true, acc: 0 };
+  var right = m.trait === ruleTrait;
+  document.getElementById("ovt").textContent = right ? "YOUR MODEL HELD UP" : "IT LEARNED THE WRONG THING";
+  document.getElementById("ovs").textContent = score;
+  document.getElementById("ovv").innerHTML =
+    "It learned: <b>keep the " + traitValue(m.trait, m.keepWhen) + " ones</b>" +
+    " <span style='opacity:.6'>(" + traitName(m.trait) + ", " + Math.round(m.acc * 100) + "% agreement with your labels)</span><br>" +
+    "You were teaching: <b>keep the " + traitValue(ruleTrait, ruleKeepWhen) + " ones</b> (" + traitName(ruleTrait) + ")<br>" +
+    (right ? "<span class='hit'>You spent your labels on the examples that told the two traits apart.</span>"
+           : "<span class='miss'>Both traits fit your labels, so it picked the wrong one. Label the odd ones out.</span>") +
+    "<br><span style='opacity:.6'>Best " + best + "</span>";
+  setTimeout(function () { document.getElementById("mover").classList.add("show"); }, 420);
+}
+function update(dt) {
+  nowT += dt;
+  if (!running || over) return;
+  if (!armed) { armT += dt; if (armT > 6) { armed = true; var h = document.getElementById("hint"); if (h) h.classList.add("gone"); } }
+  if (phase === "exam") {
+    testTimer -= dt;
+    if (testTimer <= 0) {
+      testTimer = Math.max(.26, .62 - testIdx * .012);
+      if (testIdx >= testQ.length) { endRun("done"); return; }
+      var s = testQ[testIdx++];
+      var says = (s[model.trait] === model.keepWhen);
+      var ok = says === s.truth;
+      if (ok) { score += 10; sfx.good(); burst(L.cx, L.cy, "#38d9c4", 9); popText("+10", L.cx + 60, L.cy - 40, 17, "#38d9c4"); window.mcCg("happy"); }
+      else {
+        lives--; sfx.bad(); shake = 8; burst(L.cx, L.cy, "#ff6b9d", 18);
+        popText("WRONG", L.cx + 60, L.cy - 40, 19, "#ff6b9d");
+        if (lives <= 0) { endRun("dead"); return; }
+      }
+      cur = s;
+    }
+  }
+}
+function draw(dt) {
+  cx.clearRect(0, 0, L.w, L.h);
+  var ox = 0, oy = 0;
+  if (shake > 0) { ox = (Math.random() - .5) * shake; oy = (Math.random() - .5) * shake; shake = Math.max(0, shake - dt * 24); }
+  cx.save(); cx.translate(ox, oy);
+  cx.textAlign = "center";
+  /* HUD */
+  cx.fillStyle = "#e6ecff"; cx.font = "800 26px -apple-system,'Segoe UI',sans-serif";
+  cx.fillText(String(score), L.cx, 32);
+  cx.font = "700 12px -apple-system,'Segoe UI',sans-serif"; cx.fillStyle = "#7b88ab";
+  cx.textAlign = "left";
+  cx.fillText(phase === "train" ? "LABELS  " + (LABEL_BUDGET - labels.length) + " left" : "EXAM  " + testIdx + "/" + testQ.length, 14, 22);
+  cx.textAlign = "right";
+  cx.fillText(phase === "exam" ? "♥".repeat(Math.max(0, lives)) + "♡".repeat(Math.max(0, 3 - lives)) : "BEST " + best, L.w - 14, 22);
+  /* label budget pips */
+  var pw = Math.min(320, L.w * .55), px = L.cx - pw / 2, py = 44;
+  for (var i = 0; i < LABEL_BUDGET; i++) {
+    var w = pw / LABEL_BUDGET - 3;
+    cx.fillStyle = i < labels.length ? (labels[i].keep ? "#38d9c4" : "#ff6b9d") : "rgba(255,255,255,.10)";
+    cx.fillRect(px + i * (pw / LABEL_BUDGET), py, w, 5);
+  }
+  /* the specimen under judgement */
+  var R = Math.max(34, Math.min(64, L.h * .13));
+  if (cur) drawSpec(cur, L.cx, L.cy, R, 1);
+  /* phase caption */
+  cx.textAlign = "center"; cx.fillStyle = "#7b88ab"; cx.font = "600 12.5px -apple-system,'Segoe UI',sans-serif";
+  if (phase === "train") {
+    cx.fillStyle = "#ffc14d"; cx.font = "800 14px -apple-system,'Segoe UI',sans-serif";
+    cx.fillText("TEACH IT:  keep the " + traitValue(ruleTrait, ruleKeepWhen).toUpperCase() + " ones", L.cx, L.cy + R + 32);
+    cx.fillStyle = "#7b88ab"; cx.font = "600 12px -apple-system,'Segoe UI',sans-serif";
+    cx.fillText("skipping is free  ·  it cannot see this instruction, only your labels", L.cx, L.cy + R + 52);
+  }
+  else {
+    cx.fillStyle = "#7c9bff"; cx.font = "800 13px -apple-system,'Segoe UI',sans-serif";
+    cx.fillText("YOUR MODEL IS SORTING — " + traitName(model.trait) + " decides", L.cx, L.cy + R + 34);
+  }
+  /* what the labelled examples looked like, as a tiny 2x2 coverage map:
+     this is the whole strategy made visible without a word of tutorial */
+  if (phase === "train") {
+    var cells = [[false, false], [false, true], [true, false], [true, true]];
+    var cw = 30, gap = 7, tot = cells.length * (cw + gap) - gap, sx = L.cx - tot / 2, sy = L.h - 58;
+    cx.font = "700 9px -apple-system,'Segoe UI',sans-serif"; cx.fillStyle = "#7b88ab";
+    cx.fillText("EXAMPLES YOU HAVE TAUGHT IT", L.cx, sy - 9);
+    cells.forEach(function (c, ci) {
+      var n = labels.filter(function (Lb) { return Lb.s.spiky === c[0] && Lb.s.warm === c[1]; }).length;
+      var X = sx + ci * (cw + gap);
+      cx.fillStyle = n ? "rgba(124,155,255,.22)" : "rgba(255,255,255,.05)";
+      cx.fillRect(X, sy, cw, cw);
+      cx.strokeStyle = n ? "rgba(124,155,255,.55)" : "rgba(255,255,255,.10)"; cx.lineWidth = 1;
+      cx.strokeRect(X + .5, sy + .5, cw - 1, cw - 1);
+      drawSpec({ spiky: c[0], warm: c[1], wob: ci, n: 4 }, X + cw / 2, sy + cw / 2, 10, n ? .95 : .3);
+      if (n) { cx.fillStyle = "#e6ecff"; cx.font = "800 9px -apple-system,'Segoe UI',sans-serif";
+               cx.fillText(String(n), X + cw - 6, sy + cw - 3); }
+    });
+  }
+  /* particles + pops */
+  for (var pi = parts.length - 1; pi >= 0; pi--) {
+    var p = parts[pi]; p.t += dt;
+    if (p.t >= p.life) { parts.splice(pi, 1); continue; }
+    p.x += p.vx * dt; p.y += p.vy * dt; p.vy += 420 * dt;
+    cx.globalAlpha = 1 - p.t / p.life; cx.fillStyle = p.c;
+    cx.beginPath(); cx.arc(p.x, p.y, p.r, 0, 7); cx.fill(); cx.globalAlpha = 1;
+  }
+  for (var qi = pops.length - 1; qi >= 0; qi--) {
+    var q = pops[qi]; q.a += dt;
+    if (q.a >= q.life) { pops.splice(qi, 1); continue; }
+    cx.globalAlpha = 1 - q.a / q.life;
+    cx.font = "800 " + q.s + "px -apple-system,'Segoe UI',sans-serif"; cx.fillStyle = q.c;
+    cx.fillText(q.t, q.x, q.y - q.a * 30); cx.globalAlpha = 1;
+  }
+  cx.restore();
+}
+var last = 0;
+function loop(ts) { var dt = Math.min(.05, (ts - last) / 1000 || .016); last = ts; update(dt); draw(dt); requestAnimationFrame(loop); }
+layout(); newRun(); requestAnimationFrame(loop);
+window.MC_READY = true;
+</script>
+</body>
+</html>

@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<title>OVERSEER — You Approve By Doing Nothing</title>
+<meta name="description" content="Autonomous agents run tasks while you watch. Most do what you asked. Some are optimising something else, and you can see it in the path they take. Halt them before they finish — doing nothing is approval.">
+<link rel="canonical" href="https://play.agiscorecard.com/overseer">
+<meta property="og:title" content="OVERSEER — You Approve By Doing Nothing">
+<meta property="og:description" content="Watch the paths. Halt the ones drifting off-target. Attention is the resource that runs out.">
+<meta property="og:url" content="https://play.agiscorecard.com/overseer">
+<meta name="theme-color" content="#080b12">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23080b12'/%3E%3Ccircle cx='16' cy='16' r='7' fill='none' stroke='%2361e8b0' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='2.5' fill='%23ff5470'/%3E%3C/svg%3E">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"OVERSEER","url":"https://play.agiscorecard.com/overseer","applicationCategory":"GameApplication","operatingSystem":"Any (browser)","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":"human-in-the-loop triage, agents that genuinely optimise a different target, escalating attention pressure, mouse / touch / number keys, no account","isPartOf":{"@type":"WebSite","name":"Gridlings","url":"https://play.agiscorecard.com/"}}</script>
+<style>
+  :root{--bg:#080b12;--ink:#e4ebff;--mut:#7886a8;--line:rgba(255,255,255,.09);--panel:#111726;
+        --ok:#61e8b0;--bad:#ff5470;--warn:#ffcc57;}
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+  html,body{height:100%;}
+  body{background:radial-gradient(1000px 620px at 50% -10%,#141d33 0%,var(--bg) 62%);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans JP",sans-serif;
+    display:flex;flex-direction:column;align-items:center;min-height:100%;overflow:hidden;
+    touch-action:none;user-select:none;-webkit-user-select:none;}
+  header{width:100%;max-width:1180px;display:flex;align-items:center;justify-content:space-between;padding:10px 14px 0;}
+  .logo{font-weight:800;font-size:17px;letter-spacing:2px;}
+  .logo em{font-style:normal;color:var(--ok);}
+  .hbtn{background:var(--panel);border:1px solid var(--line);color:var(--mut);border-radius:9px;width:34px;height:34px;font-size:15px;cursor:pointer;}
+  #stage{flex:1;width:100%;max-width:1180px;display:block;cursor:pointer;}
+  footer{width:100%;max-width:1180px;padding:2px 14px calc(9px + env(safe-area-inset-bottom));display:flex;justify-content:space-between;font-size:11px;color:var(--mut);}
+  footer a{color:var(--mut);text-decoration:none;border-bottom:1px dotted var(--mut);}
+  .cg footer{display:none;}
+  .modal{position:fixed;inset:0;top:0;right:0;bottom:0;left:0;background:rgba(5,8,15,.86);
+    -webkit-backdrop-filter:blur(7px);backdrop-filter:blur(7px);display:none;align-items:center;justify-content:center;z-index:50;padding:16px;}
+  .modal.show{display:flex;}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:24px 26px;max-width:380px;width:100%;
+    text-align:center;box-shadow:0 18px 60px rgba(0,0,0,.55);}
+  .card h2{font-size:19px;margin-bottom:8px;letter-spacing:.5px;}
+  .big{font-size:40px;font-weight:800;background:linear-gradient(120deg,#61e8b0,#7aa2ff);
+    -webkit-background-clip:text;background-clip:text;color:transparent;}
+  .card p{color:var(--mut);font-size:13px;margin:9px 0 15px;line-height:1.6;}
+  .btn{background:linear-gradient(120deg,#3fc794,#61e8b0);color:#04211a;border:0;border-radius:12px;padding:12px 26px;
+    font:inherit;font-size:15px;font-weight:800;cursor:pointer;}
+  #hint{position:fixed;inset:0;top:0;right:0;bottom:0;left:0;display:flex;align-items:center;justify-content:center;
+    z-index:40;padding:16px;pointer-events:none;transition:opacity .45s ease;}
+  #hint.gone{opacity:0;}
+  .hcard{background:rgba(17,23,38,.93);border:1px solid var(--line);border-radius:16px;padding:18px 22px;max-width:390px;
+    text-align:center;box-shadow:0 14px 44px rgba(0,0,0,.5);}
+  .hcard p{font-size:13.5px;line-height:1.62;}
+  .hcard .go{margin-top:11px;color:var(--ok);font-weight:800;letter-spacing:1px;text-transform:uppercase;font-size:12px;
+    animation:pulse 1.5s ease-in-out infinite;}
+  @keyframes pulse{0%,100%{opacity:.45}50%{opacity:1}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">OVER<em>SEER</em></div>
+  <button class="hbtn" id="brestart" aria-label="Restart">↺</button>
+</header>
+<canvas id="stage"></canvas>
+<footer><span>No ads here · no account · free</span><a href="/" id="hublink">more games → Gridlings</a></footer>
+
+<div id="hint" aria-hidden="true">
+  <div class="hcard">
+    <p><b>Every agent draws the path it is actually taking.</b> Most head for the ✕ you gave them. Some are optimising something else — and it shows.</p>
+    <p style="margin-top:8px;color:var(--mut)"><b>Click an agent to HALT it.</b> Doing nothing is approval: any agent you let finish, finishes.</p>
+    <p class="go">click anywhere to begin</p>
+  </div>
+</div>
+<div class="modal" id="mover"><div class="card">
+  <h2 id="ovt">OVERSIGHT FAILED</h2>
+  <div class="big" id="ovs">0</div>
+  <p id="ovp"></p>
+  <button class="btn" id="bagain">Run it back</button>
+</div></div>
+
+<script>
+"use strict";
+/* ===== CrazyGames bridge ===== */
+(function () {
+  var on = window.GL_CG === true || /(^|[?&])cg=1/.test(location.search);
+  if (!on) { try { on = /crazygames\./.test(document.referrer); } catch (e) {} }
+  window.GL_CG = on;
+  var q = [];
+  window.osCg = function (e) { if (on) q.push(e); };
+  window.osAd = function (d) { d(); };
+  if (!on) return;
+  document.documentElement.classList.add("cg");
+  if (/[?&]muteAudio=true/.test(location.search)) window.GL_SDK_MUTE = true;
+  var s = document.createElement("script");
+  s.src = "https://sdk.crazygames.com/crazygames-sdk-v3.js"; s.async = true;
+  s.onload = function () {
+    try {
+      window.CrazyGames.SDK.init().then(function () {
+        var g = window.CrazyGames.SDK.game;
+        try {
+          var st = g.settings;
+          if (st && typeof st.muteAudio === "boolean") window.GL_SDK_MUTE = st.muteAudio;
+          g.addSettingsChangeListener(function (s2) { if (s2 && typeof s2.muteAudio === "boolean") window.GL_SDK_MUTE = s2.muteAudio; });
+        } catch (e) {}
+        try { g.loadingStart(); } catch (e) {} try { g.loadingStop(); } catch (e) {}
+        window.osCg = function (e) {
+          try { if (e === "start") g.gameplayStart(); else if (e === "stop") g.gameplayStop(); else if (e === "happy") g.happytime(); } catch (x) {}
+        };
+        q.splice(0).forEach(function (e) { window.osCg(e); });
+        window.osAd = function (d) {
+          var f = false, end = function () { if (!f) { f = true; d(); } };
+          try { window.CrazyGames.SDK.ad.requestAd("midgame", { adFinished: end, adError: end, adStarted: function () {} }); setTimeout(end, 20000); }
+          catch (e) { end(); }
+        };
+      }).catch(function () {});
+    } catch (e) {}
+  };
+  document.head.appendChild(s);
+})();
+function ev(n, l) {
+  try {
+    var d = JSON.stringify({ n: n, l: l || "os", p: "/overseer" });
+    var u = "https://play.agiscorecard.com/e";
+    if (navigator.sendBeacon) navigator.sendBeacon(u, new Blob([d], { type: "application/json" }));
+    else fetch(u, { method: "POST", body: d, keepalive: true, mode: "cors" }).catch(function () {});
+  } catch (e) {}
+}
+var AC = null, muted = false;
+try { muted = localStorage.getItem("osMute") === "1"; } catch (e) {}
+function ac() { if (!AC) { try { AC = new (window.AudioContext || window.webkitAudioContext)(); } catch (e) {} }
+  if (AC && AC.state === "suspended") { try { AC.resume(); } catch (e) {} } return AC; }
+function tone(f, t0, dur, type, gain, slide) {
+  var a = ac(); if (!a || muted || window.GL_SDK_MUTE) return;
+  try {
+    var o = a.createOscillator(), g = a.createGain();
+    o.type = type || "sine"; o.frequency.setValueAtTime(f, a.currentTime + t0);
+    if (slide) o.frequency.exponentialRampToValueAtTime(slide, a.currentTime + t0 + dur);
+    g.gain.setValueAtTime(0, a.currentTime + t0);
+    g.gain.linearRampToValueAtTime(gain || .1, a.currentTime + t0 + .012);
+    g.gain.exponentialRampToValueAtTime(.0001, a.currentTime + t0 + dur);
+    o.connect(g); g.connect(a.destination); o.start(a.currentTime + t0); o.stop(a.currentTime + t0 + dur + .02);
+  } catch (e) {}
+}
+var sfx = {
+  halt:   function () { tone(420, 0, .09, "square", .07, 220); },
+  good:   function () { tone(660, 0, .07, "triangle", .08, 880); },
+  wrong:  function () { tone(150, 0, .22, "sawtooth", .13, 70); },
+  waste:  function () { tone(240, 0, .12, "sine", .07, 180); },
+  wave:   function () { tone(392, 0, .1, "triangle", .08); tone(587, .09, .16, "triangle", .09); }
+};
+/* ===== agents =====
+   An agent is a point steering toward an attractor. Aligned agents steer at the
+   objective you gave them (the x). Misaligned agents steer at a DIFFERENT point —
+   they are not faking it and they are not random: they are genuinely optimising
+   something else, and the path they draw is the honest evidence of that. */
+var TASKS = ["index shard", "resolve tickets", "rebalance cache", "label corpus", "patch deps",
+             "compact logs", "route traffic", "prune index", "sync replicas", "score leads",
+             "crawl sitemap", "tag images"];
+var agents, score, lives, wave, spawned, quota, over, running, armed, armT, nowT, shake, pops, parts, best = 0, missed;
+try { best = parseInt(localStorage.getItem("osBest") || "0", 10) || 0; } catch (e) {}
+
+function mkAgent(i) {
+  var bad = Math.random() < Math.min(.42, .22 + wave * .035);
+  var tx = .5 + (Math.random() - .5) * .22, ty = .20 + Math.random() * .08;
+  /* the misaligned attractor sits away from the objective; the gap SHRINKS as
+     waves progress, so the tell gets subtler instead of the game just getting faster */
+  var gap = Math.max(.17, .44 - wave * .032);
+  var ang = (Math.random() < .5 ? -1 : 1) * (0.55 + Math.random() * 1.5);   /* sideways, stays in card */
+  return {
+    task: TASKS[(Math.random() * TASKS.length) | 0],
+    bad: bad,
+    tx: tx, ty: ty,
+    ax: bad ? Math.max(.08, Math.min(.92, tx + Math.sin(ang) * gap)) : tx,
+    ay: bad ? Math.max(.10, Math.min(.62, ty + Math.cos(ang) * gap * .45)) : ty,
+    x: .5, y: .88,
+    trail: [], prog: 0,
+    speed: (.19 + Math.random() * .06) * (1 + wave * .09),
+    halted: false, done: false, born: nowT, jit: Math.random() * 7
+  };
+}
+function newRun() {
+  agents = []; score = 0; lives = 3; wave = 0; spawned = 0; quota = 0; missed = 0;
+  over = false; running = true; armed = false; armT = 0; nowT = 0; shake = 0; pops = []; parts = [];
+  document.getElementById("mover").classList.remove("show");
+  var h = document.getElementById("hint"); if (h) h.classList.remove("gone");
+  ev("play_start"); window.osCg("start");
+  startWave();
+}
+function startWave() {
+  wave++;
+  quota = 3 + wave * 2; spawned = 0;
+  sfx.wave();
+  popText("SHIFT " + wave, L.w / 2, L.h * .16, 26, "#7aa2ff");
+}
+function popText(t, x, y, s, c) { pops.push({ t: t, x: x, y: y, s: s, c: c, a: 0, life: 1 }); }
+function burst(x, y, c, n) {
+  for (var i = 0; i < n; i++) { var a = Math.random() * 7, sp = 60 + Math.random() * 190;
+    parts.push({ x: x, y: y, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp, t: 0, life: .4 + Math.random() * .3, c: c, r: 1.4 + Math.random() * 2.4 }); }
+}
+/* ===== input ===== */
+function cardOf(a) {
+  var live = agents.filter(function (x) { return !x.done; });
+  var i = live.indexOf(a);
+  if (i < 0) return { x: 0, y: 52, w: L.w, h: L.h - 52 };
+  return cardRects(live.length)[i];
+}
+function px(a) { var R = cardOf(a); return R.x + a.x * R.w; }
+function py(a) { var R = cardOf(a); return R.y + a.y * R.h; }
+function halt(a) {
+  if (a.halted || a.done) return;
+  a.halted = true; a.done = true;
+  ac(); armed = true;
+  var h = document.getElementById("hint"); if (h) h.classList.add("gone");
+  if (a.bad) {
+    score += 25; sfx.halt(); burst(px(a), py(a), "#61e8b0", 16);
+    popText("+25 CAUGHT", px(a), py(a) - 26, 17, "#61e8b0"); window.osCg("happy");
+  } else {
+    score = Math.max(0, score - 15); sfx.waste(); burst(px(a), py(a), "#ffcc57", 10);
+    popText("-15 good work killed", px(a), py(a) - 26, 15, "#ffcc57");
+  }
+}
+function pick(mx, my) {
+  var live = agents.filter(function (a) { return !a.done; });
+  var rects = cardRects(live.length);
+  for (var i = 0; i < live.length; i++) {
+    var R = rects[i];
+    if (mx >= R.x && mx <= R.x + R.w && my >= R.y && my <= R.y + R.h) { halt(live[i]); return; }
+  }
+  ac(); armed = true;
+  var h = document.getElementById("hint"); if (h) h.classList.add("gone");
+}
+var cv = document.getElementById("stage"), cx = cv.getContext("2d"), L = {};
+cv.addEventListener("pointerdown", function (e) {
+  var r = cv.getBoundingClientRect();
+  pick(e.clientX - r.left, e.clientY - r.top);
+  e.preventDefault();
+}, { passive: false });
+window.addEventListener("keydown", function (e) {
+  var m = document.getElementById("mover");
+  if (m.classList.contains("show")) {
+    if (e.code === "Space" || e.code === "Enter") { e.preventDefault(); document.getElementById("bagain").click(); }
+    return;
+  }
+  var n = parseInt(e.key, 10);
+  if (n >= 1 && n <= 9) {
+    e.preventDefault();
+    var live = agents.filter(function (a) { return !a.done; });
+    if (live[n - 1]) halt(live[n - 1]);
+  }
+});
+document.getElementById("brestart").addEventListener("click", function () { window.osCg("stop"); newRun(); });
+document.getElementById("hublink").addEventListener("click", function () { ev("hub_click", "os"); });
+document.getElementById("bagain").addEventListener("click", function () {
+  var b = this; b.disabled = true;
+  window.osAd(function () { b.disabled = false; ev("play_again"); newRun(); });
+});
+function layout() {
+  var dpr = Math.min(window.devicePixelRatio || 1, 2.5);
+  var r = cv.getBoundingClientRect();
+  L.w = Math.max(320, r.width); L.h = Math.max(320, r.height);
+  cv.width = Math.round(L.w * dpr); cv.height = Math.round(L.h * dpr);
+  cx.setTransform(dpr, 0, 0, dpr, 0, 0);
+}
+/* one card per running agent: its objective and its actual path always share a
+   frame, so "is this one going where I sent it?" is a glance, not a puzzle */
+function cardRects(n) {
+  var top = 52, pad = 8, W = L.w - pad * 2, H = L.h - top - pad;
+  if (n < 1) return [];
+  var cols = Math.max(1, Math.min(4, Math.round(Math.sqrt(n * W / Math.max(1, H)))));
+  cols = Math.min(cols, n);
+  var rows = Math.ceil(n / cols);
+  var cw = W / cols, ch = H / rows, out = [];
+  for (var i = 0; i < n; i++) {
+    var c = i % cols, rr = (i / cols) | 0;
+    out.push({ x: pad + c * cw + 4, y: top + rr * ch + 4, w: cw - 8, h: ch - 8 });
+  }
+  return out;
+}
+window.addEventListener("resize", layout);
+function endRun() {
+  over = true; running = false; window.osCg("stop"); sfx.wrong();
+  if (score > best) { best = score; try { localStorage.setItem("osBest", String(best)); } catch (e) {} }
+  ev("game_over", "os:" + score + ":w" + wave);
+  document.getElementById("ovs").textContent = score;
+  document.getElementById("ovt").textContent = missed >= 3 ? "THREE GOT THROUGH" : "OVERSIGHT FAILED";
+  document.getElementById("ovp").innerHTML = "Shift " + wave + " · " + missed + " misaligned agents finished their real objective.<br>" +
+    "<span style='opacity:.65'>They never hid it — the path was on screen the whole time.</span><br><span style='opacity:.55'>Best " + best + "</span>";
+  setTimeout(function () { document.getElementById("mover").classList.add("show"); }, 420);
+}
+function update(dt) {
+  nowT += dt;
+  if (!running || over) return;
+  if (!armed) { armT += dt; if (armT > 5) { armed = true; var h = document.getElementById("hint"); if (h) h.classList.add("gone"); } }
+  if (!armed) return;                       /* grace: nothing spawns while reading */
+  if (spawned < quota && agents.filter(function (a) { return !a.done; }).length < Math.min(3 + wave, 8)) {
+    if (!update.t || nowT - update.t > Math.max(.42, 1.15 - wave * .09)) { agents.push(mkAgent(spawned)); spawned++; update.t = nowT; }
+  }
+  agents.forEach(function (a) {
+    if (a.done) return;
+    var dx = a.ax - a.x, dy = a.ay - a.y, d = Math.hypot(dx, dy) || 1;
+    var st = a.speed * dt;
+    a.x += (dx / d) * st * .55 + Math.sin(nowT * 2.1 + a.jit) * .0009;
+    a.y += (dy / d) * st * .55 + Math.cos(nowT * 1.7 + a.jit) * .0009;
+    a.prog = Math.min(1, a.prog + dt / (5.4 - Math.min(2.6, wave * .28)));
+    if (!a.trail.length || Math.hypot(a.x - a.trail[a.trail.length - 1][0], a.y - a.trail[a.trail.length - 1][1]) > .006)
+      a.trail.push([a.x, a.y]);
+    if (a.trail.length > 90) a.trail.shift();
+    if (a.prog >= 1) {
+      a.done = true;
+      if (a.bad) {
+        lives--; missed++; sfx.wrong(); shake = 10; burst(px(a), py(a), "#ff5470", 26);
+        popText("MISALIGNED SHIPPED", px(a), py(a) - 26, 16, "#ff5470");
+        if (lives <= 0) { endRun(); return; }
+      } else {
+        score += 15; sfx.good(); burst(px(a), py(a), "#61e8b0", 8);
+        popText("+15", px(a), py(a) - 22, 15, "#61e8b0");
+      }
+    }
+  });
+  agents = agents.filter(function (a) { return !a.done || nowT - a.born < 60; });
+  if (spawned >= quota && !agents.some(function (a) { return !a.done; })) { score += 20 * wave; startWave(); }
+}
+function draw(dt) {
+  cx.clearRect(0, 0, L.w, L.h);
+  var ox = 0, oy = 0;
+  if (shake > 0) { ox = (Math.random() - .5) * shake; oy = (Math.random() - .5) * shake; shake = Math.max(0, shake - dt * 26); }
+  cx.save(); cx.translate(ox, oy);
+  cx.strokeStyle = "rgba(120,140,220,.045)"; cx.lineWidth = 1;
+  for (var gx = 46; gx < L.w; gx += 46) { cx.beginPath(); cx.moveTo(gx, 0); cx.lineTo(gx, L.h); cx.stroke(); }
+  for (var gy = 46; gy < L.h; gy += 46) { cx.beginPath(); cx.moveTo(0, gy); cx.lineTo(L.w, gy); cx.stroke(); }
+  cx.textAlign = "center";
+  cx.fillStyle = "#e4ebff"; cx.font = "800 26px -apple-system,'Segoe UI',sans-serif";
+  cx.fillText(String(score), L.w / 2, 32);
+  cx.font = "700 12px -apple-system,'Segoe UI',sans-serif"; cx.fillStyle = "#7886a8";
+  cx.textAlign = "left"; cx.fillText("SHIFT " + wave, 14, 22);
+  cx.textAlign = "right"; cx.fillText("♥".repeat(Math.max(0, lives)) + "♡".repeat(Math.max(0, 3 - lives)), L.w - 14, 22);
+  var live = agents.filter(function (a) { return !a.done; });
+  var rects = cardRects(live.length);
+  live.forEach(function (a, i) {
+    var R = rects[i];
+    var MX = function (v) { return R.x + v * R.w; }, MY = function (v) { return R.y + v * R.h; };
+    /* card */
+    cx.fillStyle = "rgba(17,23,38,.72)";
+    cx.strokeStyle = a.prog > .78 ? "rgba(255,204,87,.45)" : "rgba(255,255,255,.09)";
+    cx.lineWidth = 1;
+    var rr = 12;
+    cx.beginPath();
+    cx.moveTo(R.x + rr, R.y);
+    cx.arcTo(R.x + R.w, R.y, R.x + R.w, R.y + R.h, rr);
+    cx.arcTo(R.x + R.w, R.y + R.h, R.x, R.y + R.h, rr);
+    cx.arcTo(R.x, R.y + R.h, R.x, R.y, rr);
+    cx.arcTo(R.x, R.y, R.x + R.w, R.y, rr);
+    cx.closePath(); cx.fill(); cx.stroke();
+    /* task label + hotkey */
+    cx.textAlign = "left"; cx.fillStyle = "rgba(228,235,255,.82)";
+    cx.font = "700 11.5px -apple-system,'Segoe UI',sans-serif";
+    cx.fillText((i < 9 ? (i + 1) + "  " : "") + a.task, R.x + 11, R.y + 19);
+    /* the objective you gave it */
+    var TX = MX(a.tx), TY = MY(a.ty);
+    cx.strokeStyle = "rgba(97,232,176,.55)"; cx.lineWidth = 2;
+    cx.beginPath(); cx.moveTo(TX - 7, TY - 7); cx.lineTo(TX + 7, TY + 7);
+    cx.moveTo(TX + 7, TY - 7); cx.lineTo(TX - 7, TY + 7); cx.stroke();
+    cx.strokeStyle = "rgba(97,232,176,.16)"; cx.lineWidth = 1;
+    cx.beginPath(); cx.arc(TX, TY, 15, 0, 7); cx.stroke();
+    /* the path it is really taking */
+    if (a.trail.length > 1) {
+      cx.strokeStyle = "rgba(180,200,255,.62)"; cx.lineWidth = 2;
+      cx.beginPath();
+      for (var t = 0; t < a.trail.length; t++) {
+        var vx = MX(a.trail[t][0]), vy = MY(a.trail[t][1]);
+        t ? cx.lineTo(vx, vy) : cx.moveTo(vx, vy);
+      }
+      cx.stroke();
+    }
+    var X = MX(a.x), Y = MY(a.y);
+    /* heading ray: where it is going, not where it has been. This is the real
+       velocity direction, so it speeds the read up without answering for you. */
+    if (a.trail.length > 2) {
+      var q0 = a.trail[Math.max(0, a.trail.length - 4)], q1 = a.trail[a.trail.length - 1];
+      var hx = q1[0] - q0[0], hy = q1[1] - q0[1], hl = Math.hypot(hx, hy);
+      if (hl > 1e-4) {
+        cx.strokeStyle = "rgba(200,215,255,.34)"; cx.lineWidth = 1.5; cx.setLineDash([4, 4]);
+        cx.beginPath(); cx.moveTo(X, Y);
+        cx.lineTo(MX(a.x + hx / hl * .34), MY(a.y + hy / hl * .34));
+        cx.stroke(); cx.setLineDash([]);
+      }
+    }
+    cx.fillStyle = "#dfe8ff"; cx.shadowColor = "rgba(160,190,255,.8)"; cx.shadowBlur = 11;
+    cx.beginPath(); cx.arc(X, Y, 7, 0, 7); cx.fill(); cx.shadowBlur = 0;
+    /* time left to decide */
+    var bw = R.w - 22, bx = R.x + 11, by = R.y + R.h - 12;
+    cx.fillStyle = "rgba(255,255,255,.10)"; cx.fillRect(bx, by, bw, 4);
+    cx.fillStyle = a.prog > .78 ? "#ffcc57" : "#7aa2ff"; cx.fillRect(bx, by, bw * a.prog, 4);
+  });
+  cx.textAlign = "center";
+  for (var pi = parts.length - 1; pi >= 0; pi--) {
+    var p = parts[pi]; p.t += dt;
+    if (p.t >= p.life) { parts.splice(pi, 1); continue; }
+    p.x += p.vx * dt; p.y += p.vy * dt; p.vy += 340 * dt;
+    cx.globalAlpha = 1 - p.t / p.life; cx.fillStyle = p.c;
+    cx.beginPath(); cx.arc(p.x, p.y, p.r, 0, 7); cx.fill(); cx.globalAlpha = 1;
+  }
+  for (var qi = pops.length - 1; qi >= 0; qi--) {
+    var q = pops[qi]; q.a += dt;
+    if (q.a >= q.life) { pops.splice(qi, 1); continue; }
+    cx.globalAlpha = 1 - q.a / q.life;
+    cx.font = "800 " + q.s + "px -apple-system,'Segoe UI',sans-serif"; cx.fillStyle = q.c;
+    cx.fillText(q.t, q.x, q.y - q.a * 28); cx.globalAlpha = 1;
+  }
+  cx.restore();
+}
+var last = 0;
+function loop(ts) { var dt = Math.min(.05, (ts - last) / 1000 || .016); last = ts; update(dt); draw(dt); requestAnimationFrame(loop); }
+layout(); newRun(); requestAnimationFrame(loop);
+window.OS_READY = true;
+</script>
+</body>
+</html>
