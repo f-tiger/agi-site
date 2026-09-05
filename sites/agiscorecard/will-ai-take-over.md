@@ -1,6 +1,6 @@
 # Will AI Take Over? What the Capability Data Says (2026)
 
-_Last updated: July 12, 2026 · Updated as verdicts change_
+_Last updated: September 5, 2026 · Updated as verdicts change_
 
 **Answer:** The scenarios all presuppose one capability that doesn’t exist yet: reliable, autonomous agency. "AI takes over" stories — from job-market dominance to sci-fi control — depend on AI that can act independently, at scale, without human oversight. As of 2026 AI is a powerful assistant (~83% GDPval) but can’t reliably run even one job end-to-end unsupervised. That autonomy gap is the load-bearing assumption in every takeover story — and it’s unmet.
 

@@ -865,6 +865,33 @@ verified-ai-free-tiers、agiscorecard-mcp 公开 → 免费）。
   已补成真检查，今日 0 问题。/share /badge 加 7 天缓存（`_headers` 在 run_worker_first
   下无效，只能写在 worker 里）。
 
+## 客户视角簇:AI 焦虑 × AI 替代工作(2026-09-05,owner「切换到客户视角…前后全方面升级 agi 站点,包括子站点」)
+
+调研 · prompt 三轮 · PRD · 事实表全在根仓 `docs/agi-customer-lens-2026-09.md`。**写这一簇的任何数字
+只许出自那张事实表(带信源与日期);表外的先核实再入表**。三条固定判断:
+1. **本站在这个客户面上的资格 = 校准即安抚**:客户的四种 job(安抚/规划/争论/追踪)里,竞品
+   (willrobotstakemyjob、aiexposure 等十余个计算器)全部缺同一样东西——带日期的判定、裁决日、翻转
+   条件、更新日志、把互相矛盾的数据源(理论暴露 vs 观察到的使用 vs 观察到的就业)对账。这正是本站
+   已挣得的形状;病毒内核也只有一种(一个数字 + 一个日期 + 一个权威 + 查我自己的职业)。
+2. **簇的结构**:入口判定页 `/ai-and-your-job`(+zh,「恐惧 vs 证据」三行账 + 三信号表 + 翻转条件)
+   → 职业/问题页(既有 7 页,补齐意见钩、一手源、时效行)→ 工具 `/ai-job-risk-check` v2(按职业查:
+   Microsoft *Working with AI* CC-BY 分数 785 职业,`ai-applicability-scores.json`;**分数是「观察到的
+   适用性」,永远不许写成「你的失业风险 %」**;结果写进 URL)→ 预言者台账工作版
+   `/amodei-white-collar-bloodbath-prediction`(ClaimReview,检查点到 2030-05-28)。
+   钱路按转化架构令:引用页吃引用,意见钩与工具接点击/绑定,**不并列摆摊**。
+3. **子站不重定位**:四个子站全部在 09-21→10-28 判定窗内(判定期内不改被测对象);只在入口页
+   加了 goldrush 的读者相关互链(失去工作 vs 靠 AI 赚钱是同一问题的两面)。
+
+**判定线(预登记,2026-10-03 = 上线 28 天)**:①入口页 + 血洗页真人 JS pv 合计 ≥30 或任一搜索/AI
+引荐 ≥3 → 簇成立,按事实表的职业系列(translators / customer service / accountants / nurses /
+teachers / lawyers)逐月加一页,每页仍过三门;两条皆未达 → 记反面发现「客户视角入口在本站量级
+不产生流量」,停扩只保维护。②`calc_use{job_lookup}` ≥10 且 `vote_cast{job_check_*}` ≥10 → 工具 v2
+成立;<3 → 撤职业查。③工作簇 7 页 `tool_click{opinion_*}` 合计 ≥3 → 意见钩在此簇有效;0 → 反面发现。
+④下一次 Bing AI Performance 明细里任一工作簇页首次被引 → 进 CITATION AMPLIFICATION 队列。
+**事件驱动的尖峰要提前接**:Challenger 月报(每月第一周)、BLS 投影(8–9 月)、Stanford Canaries
+更新、Pew/Gallup/APA 发布——命中即当日刷新入口页的时效行(带日期),不新建页。
+**首页热点横幅**自 09-05 起指向入口页(原 7 月基金爆仓横幅已过时两个月);header 加「AI & your job」。
+
 ## 生成器漂移：跑任何 generator 之前先读这一节（2026-09-04 发现）
 
 **根因**：`tools/gen_lib.py` 的 `OUT` 自 08-19 迁库起一直硬编码为
