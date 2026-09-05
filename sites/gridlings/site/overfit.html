@@ -19,13 +19,13 @@
   body{background:radial-gradient(1000px 640px at 50% -8%, #101b33 0%, var(--bg) 60%);color:var(--ink);
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans JP",sans-serif;
     display:flex;flex-direction:column;align-items:center;min-height:100%;overflow:hidden;touch-action:none;user-select:none;-webkit-user-select:none;}
-  header{width:100%;max-width:860px;display:flex;align-items:center;justify-content:space-between;padding:10px 14px 0;z-index:5;}
+  header{width:100%;max-width:1400px;display:flex;align-items:center;justify-content:space-between;padding:10px 14px 0;z-index:5;}
   .logo{font-weight:800;font-size:17px;letter-spacing:2px;}
   .logo em{font-style:normal;color:var(--ai);}
   .hbtns{display:flex;gap:8px;}
   .hbtn{background:var(--panel);border:1px solid var(--line);color:var(--mut);border-radius:9px;width:34px;height:34px;font-size:15px;cursor:pointer;line-height:1;}
-  #stage{flex:1;width:100%;max-width:860px;display:block;cursor:crosshair;}
-  footer{width:100%;max-width:860px;padding:4px 14px calc(10px + env(safe-area-inset-bottom));display:flex;justify-content:space-between;font-size:11px;color:var(--mut);z-index:5;}
+  #stage{flex:1;width:100%;max-width:1400px;display:block;cursor:crosshair;}
+  footer{width:100%;max-width:1400px;padding:4px 14px calc(10px + env(safe-area-inset-bottom));display:flex;justify-content:space-between;font-size:11px;color:var(--mut);z-index:5;}
   footer a{color:var(--mut);text-decoration:none;border-bottom:1px dotted var(--mut);}
   .cg footer{display:none;}
   .modal{position:fixed;inset:0;background:rgba(5,7,14,.84);backdrop-filter:blur(7px);display:none;align-items:center;justify-content:center;z-index:50;padding:16px;}
@@ -231,14 +231,15 @@ function confusionCheck(dt) {
     model.dirBins = model.dirBins.map(function (v) { return 1 + (v - 1) * 0.25; });
     model.samples = model.dirBins.reduce(function (s, v) { return s + v; }, 0);
     score += 25;
-    popText("MODEL CONFUSED  ×2", W / 2, H * 0.3, 26, 160);
+    popText("MODEL CONFUSED  ×2", W / 2, H * 0.46, 26, 160);
     sfx.confuse(); shake = 7;
     window.ofCg("happy");
   }
 }
 
 /* ============ game state */
-var P, foes, shots, beams, parts, pops, score, best = 0, wave, hp, over, running, confused, confuseFlash, shake, nowT, spawnQ, waveMsg, inv;
+var P, foes, shots, beams, parts, pops, score, best = 0, wave, hp, over, running, confused, confuseFlash, shake, nowT, waveMsg, inv;
+var waveQuota = 0, waveSpawned = 0, waveConc = 4, spawnTimer = 0;
 try { best = parseInt(localStorage.getItem("ofBest") || "0", 10) || 0; } catch (e) {}
 var ptr = { x: 0, y: 0, on: false };
 function popText(txt, x, y, size, hue) { pops.push({ txt: txt, x: x, y: y, t: 0, life: 1.1, size: size, hue: hue }); }
@@ -250,7 +251,8 @@ function burst(x, y, hue, n, spd) {
 }
 function reset(replay) {
   P = { x: W / 2, y: H * 0.6, vx: 0, vy: 0, fire: 0 };
-  foes = []; shots = []; beams = []; parts = []; pops = []; spawnQ = [];
+  foes = []; shots = []; beams = []; parts = []; pops = [];
+  waveQuota = 0; waveSpawned = 0; waveConc = 4; spawnTimer = 0;
   score = 0; wave = 0; hp = 3; over = false; running = false; confused = 0; confuseFlash = 0; shake = 0; inv = 0; waveMsg = null;
   model = freshModel(); recent = [];
   ptr.on = false;
@@ -268,22 +270,30 @@ function trainingReport() {
   if (dl + dr > 3) lines.push("dodges " + (dl > dr ? "LEFT " + Math.round(100 * dl / (dl + dr)) : "RIGHT " + Math.round(100 * dr / (dl + dr))) + "% on lock");
   return lines;
 }
+function pickType() {
+  var r = Math.random();
+  if (wave >= 3 && r < 0.18) return "sniper";
+  if (wave >= 2 && r < 0.45) return "predictor";
+  return "chaser";
+}
+/* Waves keep PRESSURE on instead of dumping everything at once and leaving the
+   arena empty while the last straggler is hunted down: a quota per wave, and a
+   concurrent target that refills as slots free up. An empty screen is the one
+   thing an arcade dodger can never afford. */
 function startWave() {
   wave++;
-  var n = 3 + wave * 2;
-  var comp = [];
-  for (var i = 0; i < n; i++) {
-    var r = Math.random(), type = "chaser";
-    if (wave >= 2 && r < 0.35) type = "predictor";
-    if (wave >= 3 && r < 0.18) type = "sniper";
-    comp.push(type);
-  }
-  spawnQ = comp.map(function (t, i) { return { t: t, at: i * Math.max(0.28, 1.1 - wave * 0.08) }; });
+  waveQuota = Math.round((4 + wave * 3) * Math.max(1, Math.min(2.4, (W * H) / 430000)));
+  waveSpawned = 0;
+  // density is per-AREA: a desktop arena is ~2x a phone's, so it gets ~2x the
+  // pressure. Without this the same enemy count reads as an empty field on wide
+  // screens — which is exactly how a reviewer decides a dodger is not fun.
+  var areaScale = Math.max(1, Math.min(2.4, (W * H) / 430000));
+  waveConc = Math.round(Math.min(3 + wave, 9) * areaScale);
+  spawnTimer = 0;
   nowTWave = 0;
   waveMsg = { t: 0, lines: wave === 1 ? ["cold start — no data on you yet"] : trainingReport() };
   sfx.wave();
-  if (wave > 1) { popText("TRAINING UPDATE", W / 2, H * 0.22, 22, 340); }
-  popText("WAVE " + wave, W / 2, H * 0.15, 30, 200);
+  popText("WAVE " + wave, W / 2, H * 0.13, 30, 200);
 }
 var nowTWave = 0;
 function spawnFoe(type) {
@@ -321,8 +331,14 @@ function update(dt) {
   learnFrame(dt);
   confusionCheck(dt);
   if (confused > 0) { confused -= dt; }
-  /* spawn queue */
-  for (var i = spawnQ.length - 1; i >= 0; i--) if (spawnQ[i].at <= nowTWave) { spawnFoe(spawnQ[i].t); spawnQ.splice(i, 1); }
+  /* sustained spawning: refill toward the concurrent target until quota is spent */
+  if (waveSpawned < waveQuota) {
+    spawnTimer -= dt;
+    if (foes.length < waveConc && spawnTimer <= 0) {
+      spawnFoe(pickType()); waveSpawned++;
+      spawnTimer = Math.max(0.13, 0.45 - wave * 0.03);
+    }
+  }
   /* autofire nearest foe */
   P.fire -= dt;
   if (P.fire <= 0 && foes.length) {
@@ -411,7 +427,7 @@ function update(dt) {
     if (bm.t > 0.35) beams.splice(b2, 1);
   }
   /* wave clear */
-  if (!spawnQ.length && !foes.length && !over) {
+  if (waveSpawned >= waveQuota && !foes.length && !over) {
     score += 15 * wave;
     startWave();
   }
@@ -473,7 +489,12 @@ function draw(dt) {
   if (waveMsg) {
     var a5 = Math.min(1, waveMsg.t * 3, (2.6 - waveMsg.t) * 2);
     cx.globalAlpha = Math.max(0, a5);
-    cx.textAlign = "center"; cx.fillStyle = "#ff9db8"; cx.font = "600 13px 'JetBrains Mono',monospace,-apple-system";
+    cx.textAlign = "center";
+    if (wave > 1) {
+      cx.fillStyle = "#ff3d71"; cx.font = "800 12px -apple-system,'Segoe UI',sans-serif";
+      cx.fillText("TRAINING UPDATE", W / 2, H * 0.26);
+    }
+    cx.fillStyle = "#ff9db8"; cx.font = "600 13px 'JetBrains Mono',monospace,-apple-system";
     waveMsg.lines.forEach(function (ln, i) { cx.fillText(ln, W / 2, H * 0.30 + i * 19); });
     cx.globalAlpha = 1;
   }
