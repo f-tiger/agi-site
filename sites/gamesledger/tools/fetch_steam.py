@@ -62,7 +62,10 @@ def main():
             print(f"  {g['slug']}: {n}")
         time.sleep(0.6)
     store["generated"] = ts
-    json.dump(store, open(OUT, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    tmp = OUT + ".tmp"
+    with open(tmp, "w", encoding="utf-8") as fh:
+        json.dump(store, fh, ensure_ascii=False, indent=1)
+    os.replace(tmp, OUT)  # atomic: a crash mid-write never truncates the last good file
     print(f"fetched ok={ok} bad={bad} -> {OUT}")
     if ok == 0:
         sys.exit("all fetches failed — refusing to write a site from nothing")

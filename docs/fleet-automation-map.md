@@ -134,3 +134,31 @@ Routines 界面里 tds / bpj / eco 三条 09-03 那次「11–15 毫秒 FAILED�
 agiscorecard 2、thedollscout 3、goldrush 3、**gridlings 6**（距 7 天自动重发只差 1 天，
 正是这条链要兜的那一类）。快照已落 `data/fleet-health.json`，任何会话 `cat` 即可，
 不需要 Cloudflare MCP、不需要 GitHub MCP、不需要我。
+
+---
+
+## 七、Routine 模型统一切到 Fable 5.1（owner 2026-09-04 明确要求）
+
+owner 原话：「把 Routine 也换成 fable 5.1」。**全部 8 条启用中的 Routine 已写入
+`model: claude-fable-5-1`**，服务端全部接受（这同时证明该模型对本账号已开通 ——
+`update_trigger` 的 model 参数会校验 org 可用模型，不可用会直接被拒）。
+
+| Routine | 生效吗 |
+|---|---|
+| DollScout 每 2 天 | ✅ 下次 09-05 07:10 起 |
+| 白嫖计 daily v4 | ✅ 下次 09-04 22:02 起 |
+| getecoback daily v5 | ✅ 下次 09-05 05:07 起 |
+| sellSomething 周循环 | ✅ 下次 09-07 03:31 起 |
+| 舰队每周分发暂存 | ✅ 下次 09-07 01:31 起 |
+| paid-monthly-recheck | ✅ 下次 09-05 01:06 起 |
+| Weekly AI News Roundup | ✅ 下次 09-07 08:08 起（原本是 `claude-opus-4-8`，全舰队最旧的一条） |
+| **舰队日报（自绑定）** | ⚠️ **写入了但不会立即生效** |
+| **10 万实验月度复核（自绑定）** | ⚠️ **同上** |
+
+**为什么那两条不生效**：它们 `persist_session=true`，绑定在 owner 的常驻会话
+（`session_016njKJ81yVv2QdrpLYCX1Vc`）上，唤醒的是那个已存在的会话，因此**沿用该会话
+当前的模型**，直到绑定解除。要让它们跑在 Fable 5.1 上，只有一个办法：**owner 在那个
+会话里用模型选择器切到 Fable 5.1**（会话模型是客户端设置，会话侧改不了自己）。
+
+**后续会话注意**：`update_trigger` 的 `model` 参数**只有 owner 用自己的话明确要求时才能动**。
+本次的授权原话已记录在上面；不要把它当成「以后可以随便换模型」的常设许可。

@@ -1,0 +1,36 @@
+# CC-BY 数据与 AI 索引文件要能被跨域抓取：/api/limits 与 /api/mcp 早已回
+# Access-Control-Allow-Origin: *，但它们指向的这些静态文件此前没有——浏览器侧
+# agent 调完工具再去取源文件会失败。缓存：数据每日重建，TTL 保守；只有分词器
+# 词表是内容固定的常量才配 immutable。
+/limits.json
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=3600
+/en/limits.json
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=3600
+/directory.json
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=3600
+/quotas.json
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=3600
+/changes.json
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=600
+/llms.txt
+  Access-Control-Allow-Origin: *
+  Content-Type: text/plain; charset=utf-8
+/llms-full.txt
+  Access-Control-Allow-Origin: *
+  Content-Type: text/plain; charset=utf-8
+/.well-known/mcp.json
+  Access-Control-Allow-Origin: *
+  Content-Type: application/json; charset=utf-8
+/style.css
+  Cache-Control: public, max-age=600, stale-while-revalidate=86400
+/bpj.js
+  Cache-Control: public, max-age=600, stale-while-revalidate=86400
+/tokenizer.js
+  Cache-Control: public, max-age=600, stale-while-revalidate=86400
+/assets/tok/*
+  Cache-Control: public, max-age=31536000, immutable

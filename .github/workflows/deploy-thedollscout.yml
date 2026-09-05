@@ -109,7 +109,12 @@ jobs:
         run: node scripts/build-llms-full.mjs
 
       - name: Assemble static site into dist/
-        run: bash scripts/assemble-dist.sh
+        run: |
+          bash scripts/assemble-dist.sh
+          # Build stamp: the self-check below compares it with the live site so a
+          # deploy that silently landed on a preview branch (wrangler exits 0
+          # either way) can no longer pass on last week's production.
+          echo "$GITHUB_SHA" > dist/__build.txt
 
       - name: Deploy to Cloudflare Pages
         env:
@@ -133,7 +138,13 @@ jobs:
         run: |
           sleep 20
           fail=0
-          for p in / /rarity /fake-check /where-to-buy /how-blind-boxes-work /glossary /start /psychology /checker /finder /lookup /zh/ /th/ /de/ /de/rarity /de/fake-check /de/where-to-buy /de/how-blind-boxes-work /de/glossary /de/start /de/psychology /de/checker /de/finder /de/lookup /data/ /robots.txt /sitemap.xml /llms.txt /llms-full.txt /img/og.png /data/rarity-odds.json /data/labubu-glossary.json /data/labubu-fake-signals.json /data/pull-math.json /.well-known/mcp.json /legal/affiliate-disclosure /legal/privacy /odds/ /odds/one-box /odds/six-boxes /odds/twelve-boxes-full-case /odds/twenty-four-boxes /odds/seventy-two-boxes /de/odds/ /de/odds/one-box /de/odds/six-boxes /de/odds/twelve-boxes-full-case /de/odds/twenty-four-boxes /de/odds/seventy-two-boxes; do
+          live=$(curl -s --max-time 20 "https://thedollscout.com/__build.txt" | tr -d '[:space:]')
+          if [ "$live" != "$GITHUB_SHA" ]; then
+            echo "::error::live build stamp is '${live:-<none>}', expected $GITHUB_SHA — this deploy did not reach production"; fail=1
+          else
+            echo "build stamp ok: $live"
+          fi
+          for p in / /rarity /fake-check /where-to-buy /how-blind-boxes-work /glossary /start /psychology /checker /finder /lookup /zh/ /th/ /de/ /de/rarity /de/fake-check /de/where-to-buy /de/how-blind-boxes-work /de/glossary /de/start /de/psychology /de/checker /de/finder /de/lookup /data/ /robots.txt /sitemap.xml /llms.txt /llms-full.txt /img/og.png /data/rarity-odds.json /data/labubu-glossary.json /data/labubu-fake-signals.json /data/pull-math.json /.well-known/mcp.json /legal/affiliate-disclosure /legal/privacy /odds/ /odds/one-box /odds/six-boxes /odds/twelve-boxes-full-case /odds/twenty-four-boxes /odds/seventy-two-boxes /de/odds/ /de/odds/one-box /de/odds/six-boxes /de/odds/twelve-boxes-full-case /de/odds/twenty-four-boxes /de/odds/seventy-two-boxes /0252657e77641154c50b39045dc829f8.txt; do
             code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 20 "https://thedollscout.com$p")
             redirs=$(curl -s -o /dev/null -w "%{num_redirects}" -L --max-redirs 5 --max-time 20 "https://thedollscout.com$p" || echo 99)
             echo "$p -> HTTP $code, redirects $redirs"

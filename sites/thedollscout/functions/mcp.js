@@ -188,7 +188,7 @@ export async function onRequest({ request, env }) {
           "Every answer is read from the published CC-BY datasets at request time and carries their " +
           "recording date and limitations. No rule is reimplemented in this endpoint. No affiliate " +
           "links appear in tool output.",
-        datasets: ["https://thedollscout.com/data/rarity-odds.json", "https://thedollscout.com/data/labubu-fake-signals.json", "https://thedollscout.com/data/labubu-glossary.json"],
+        datasets: ["https://thedollscout.com/data/rarity-odds.json", "https://thedollscout.com/data/labubu-fake-signals.json", "https://thedollscout.com/data/labubu-glossary.json", "https://thedollscout.com/data/pull-math.json"],
       },
       { headers: CORS }
     );

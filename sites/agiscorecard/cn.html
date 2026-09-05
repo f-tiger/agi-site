@@ -515,7 +515,7 @@
           +'<div class="viz-track"><div class="viz-fill" style="width:'+pct+'%;background:'+color+'"></div></div>'
           +'<div class="viz-val" style="color:'+color+'">'+label+'</div></div>';
       }).join('');
-      gtag('event','viz_switch',{side: side});
+      if(byUser) gtag('event','viz_switch',{side: side});
       // 参与峰值捕获：只在用户真的切换过之后出现，初始加载不弹
       if(byUser && !vizEngaged){
         vizEngaged = true;

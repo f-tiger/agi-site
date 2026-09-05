@@ -49,6 +49,7 @@
       if (!sent && answered > 0) { sent = true; try {
         var payload = JSON.stringify({ p: location.pathname, r: "", e: "checker_use" });
         if (navigator.sendBeacon) navigator.sendBeacon("/api/ev", payload);
+        if (window.dsTrack) window.dsTrack("checker_use", { page_path: location.pathname });
       } catch (e) {} }
     }
     root.addEventListener("change", recalc);

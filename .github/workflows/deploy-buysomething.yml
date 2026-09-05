@@ -53,6 +53,8 @@ jobs:
           python3 tools/fetch_trends.py || echo "::warning::trends refresh failed — site keeps last good data (by design)"
       - name: Commit refreshed data (schedule/dispatch only)
         if: github.event_name != 'push'
+        # Best effort: a rebase conflict on the write-back must not block publishing.
+        continue-on-error: true
         run: |
           git config user.name "buysomething-bot"
           git config user.email "noreply@anthropic.com"
@@ -65,7 +67,10 @@ jobs:
       - name: Gate — expected files present
         working-directory: sites/buysomething
         run: |
-          for f in site/index.html site/styles.css site/app.js site/data.js; do
+          for f in site/index.html site/styles.css site/app.js site/data.js \
+                   site/landed-cost.html site/is-alibaba-legit.html site/sourcing-margins.html \
+                   site/robots.txt site/sitemap.xml site/llms.txt \
+                   site/16507d8e1997c4be371f5fbaf7ac1985.txt; do
             [ -f "$f" ] || { echo "::error::missing $f"; exit 1; }
           done
           node --check worker.js
@@ -78,3 +83,67 @@ jobs:
           wranglerVersion: "4"
           workingDirectory: sites/buysomething
           command: deploy
+      # Post-deploy self-check (2026-09-04): asserts the shape of a working deploy —
+      # routing, sitemap/robots/llms discovery files, the IndexNow key, JSON feeds
+      # and a real 404. Read-only: never POSTs to /e or /subscribe.
+      - name: Post-deploy self-check
+        run: |
+          set -u
+          BASE="https://source.agiscorecard.com"
+          UA='buysomething-deploy-selfcheck-bot (+ci; classified as bot by design)'
+          fail=0
+          # 1) 200 + zero redirects
+          for p in / /landed-cost /is-alibaba-legit /sourcing-margins /styles.css /app.js /data.js; do
+            ok=0; code=000; redirs=0
+            for try in 1 2 3 4 5; do
+              res=$(curl -s -o /dev/null -w '%{http_code} %{num_redirects}' -L --max-redirs 5 \
+                    -A "$UA" -H 'Accept: text/html' "$BASE$p" || echo '000 0')
+              code=${res%% *}; redirs=${res##* }
+              if [ "$code" = "200" ] && [ "$redirs" = "0" ]; then ok=1; break; fi
+              sleep 5
+            done
+            if [ "$ok" = "1" ]; then echo "OK    $p -> 200, no redirect"
+            else echo "::error::$p -> HTTP $code after $redirs redirect(s)"; fail=1; fi
+          done
+          # 2) 200 + body contains
+          check_body() { # path, grep-pattern...
+            p="$1"; shift
+            ok=0
+            for try in 1 2 3 4 5; do
+              body=$(curl -s -L --max-redirs 5 -A "$UA" -w '\n%{http_code}' "$BASE$p" || echo '000')
+              code=$(printf '%s' "$body" | tail -n1); body=$(printf '%s' "$body" | sed '$d')
+              if [ "$code" = "200" ]; then
+                ok=1
+                for pat in "$@"; do printf '%s' "$body" | grep -q -- "$pat" || ok=0; done
+              fi
+              [ "$ok" = "1" ] && break
+              sleep 5
+            done
+            if [ "$ok" = "1" ]; then echo "OK    $p body contains: $*"
+            else echo "::error::$p -> HTTP $code or body missing one of: $*"; fail=1; fi
+          }
+          check_body /sitemap.xml '<loc>' '/sourcing-margins'
+          check_body /robots.txt 'Sitemap:'
+          check_body /llms.txt 'sourcing-margins'
+          check_body / 'SourceRadar'
+          check_body /16507d8e1997c4be371f5fbaf7ac1985.txt ''
+          # 3) JSON feeds
+          check_json() { # path, python-assert-expr
+            p="$1"; expr="$2"; ok=0
+            for try in 1 2 3 4 5; do
+              if curl -s -L --max-redirs 5 -A "$UA" "$BASE$p" -o body.json && \
+                 python3 -c "import json,sys; j=json.load(open('body.json')); assert $expr, 'assert failed'" 2>/dev/null; then ok=1; break; fi
+              sleep 5
+            done
+            if [ "$ok" = "1" ]; then echo "OK    $p JSON: $expr"
+            else echo "::error::$p not valid JSON or failed: $expr"; fail=1; fi
+          }
+          check_json /trends.json 'True'
+          check_json /api/pop '"picks" in j and "degraded" not in j'
+          rm -f body.json
+          # 4) real 404
+          code=$(curl -s -o /dev/null -w '%{http_code}' -A "$UA" "$BASE/no-such-page-xyz" || echo 000)
+          if [ "$code" = "404" ]; then echo "OK    /no-such-page-xyz -> 404"
+          else echo "::error::/no-such-page-xyz -> HTTP $code (expected 404)"; fail=1; fi
+          [ "$fail" = "0" ] || exit 1
+          echo "self-check ok"

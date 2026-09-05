@@ -74,7 +74,7 @@ the moment you finish reading it.
 
 - A live ledger: https://goldrush.agiscorecard.com/ (entries + archive)
 - A single-file grader that BOTH emits protocol-valid entries AND reads any
-  site's /claimledger.json: https://goldrush.agiscorecard.com/grader.html —
+  site's /claimledger.json: https://goldrush.agiscorecard.com/grader —
   save it, mail it, host it anywhere; it has no dependencies and works offline.
 - **Adapted copies are blessed.** Renaming, pre-filling, and rebranding the
   grader file is encouraged. The tool emits BOTH: a schema-valid

@@ -20,7 +20,7 @@ const SHRINK_RATIO = 0.7;   // 短于原来的 70% 即视为可疑
 const now = JSON.parse(readFileSync(join(root, 'data/tools.json'), 'utf8'));
 let prev;
 try {
-  prev = JSON.parse(execSync('git show HEAD:data/tools.json', { cwd: root, encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 }));
+  prev = JSON.parse(execSync('git show HEAD:./data/tools.json', { cwd: root, encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 }));
 } catch {
   console.log('回归护栏：无法读取上一版本（首次提交？），跳过。');
   process.exit(0);

@@ -79,7 +79,10 @@ def main():
     samples = [s for s in store["samples"] if s["d"] != day] + [entry]
     store["samples"] = samples[-104:]
     store["generated"] = day
-    json.dump(store, open(OUT, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    tmp = OUT + ".tmp"
+    with open(tmp, "w", encoding="utf-8") as fh:
+        json.dump(store, fh, ensure_ascii=False, indent=1)
+    os.replace(tmp, OUT)  # atomic: a crash mid-write never truncates the last good file
     print(f"sample {day}: {disclosed_n}/{n} = {share}% disclosed ({unknown} unknown excluded)")
 
 

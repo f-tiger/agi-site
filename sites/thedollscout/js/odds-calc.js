@@ -35,6 +35,7 @@
       if (fromUser && !sent) { sent = true; try {
         var payload = JSON.stringify({ p: location.pathname, r: "", e: "odds_calc" });
         if (navigator.sendBeacon) navigator.sendBeacon("/api/ev", payload);
+        if (window.dsTrack) window.dsTrack("odds_calc", { page_path: location.pathname });
       } catch (e) {} }
     }
     var onUser = function () { recalc(true); };

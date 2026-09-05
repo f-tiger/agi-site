@@ -756,6 +756,40 @@ DAA(€4-60/条)、Vamo(€30)需要业主,**对本站不成立**;申请只会�
 **本轮刻意没做的**:没有新增任何联盟钩子。干净窗口浏览→亚马逊 **18.9%**,内容型联盟站
 通常个位数——**漏斗没有可压榨空间,加钩子是把 18% 调到 19% 而流量在腰斩**。
 
+## 钱线机制真值测试 + 判定线读数(2026-09-04 晚,owner「重点优化 eco 站」;prompt 三轮收敛后只剩这两件)
+
+**先说结论:本轮零内容改动、零新页、零新钩子。** 三轮 prompt 把「优化 eco」收敛为
+「在 09-10/09-25/09-28 三条判定线到期前,把三个 08-28 上线的钱线组件的零读数分清
+『真零』还是『没记到』」+「按站内既有规则处理当日最大需求信号」。两件都做完了,
+结果都是不动页面。
+
+**① 浏览器级真值测试(`tools/browser_smoke.cjs`,本地 Chromium × 两个时区 × 5 页)**:
+沙箱对 getecoback.com 出网被代理 403,所以对**构建产物 site/** 起本地静态服务测。
+America/New_York:5/5 页 `#eb-usmarket` 渲染(1.7–2.1 KB,amazon.com + ecoback0d-20),
+点击 → **恰好 1 条** `affiliate_click{source:"us-market", link_url:amazon.com…}`;
+EN qm 页 `EB_USSWITCH` 改写 2 条品类 CTA;`data-eb-sb` 点击 → 1 条 `season_bridge`。
+Europe/Berlin:5/5 页 US 块 0 字节、0 处 .com、点击 amazon.de 恰好 1 条(toppick)。
+10 次加载 **0 个页面错误**。→ **D1 里的零都是真零**:
+- `season_bridge` 08-28→09-04 = **0**(09-10 线:0 → 拆组件,不提前判,但按现状会拆)。
+- `affiliate_click{us-market}` = **0**;更要紧的是 **US/CA/GB 自 08-28 起 affiliate_click 全为 0**
+  (08-18→27 是 6/50 pv;08-28→09-04 是 0/42 pv,其中 08-28/29 各 12 pv 疑为扫描器)。
+  组件工作正常,所以 09-25 若仍为 0 就是「北美读者不接受品类页」,按预登记撤块。
+- `/dp/` 占比:08-31 修复后 5 天 **3/15 = 20%**(09-28 线 ≥15%,方向对,样本小)。
+- 十月线参照:28 天 117 次 = 4,2/天,近 7 天 23 次 = 3,3/天(线是 ≥2,07/天)。
+
+**② 当日最大需求信号的处置**:`luftentfeuchter` 种子 09-01 抓到 `luftentfeuchter bei hitze`
+v=155.800、`kühlt ein luftentfeuchter` v=41.200。查站内:**`luftentfeuchter-ratgeber` 早有
+H2「Ehrlich: Ein Entfeuchter kühlt die Luft nicht」+ 同名 FAQ**,答案已在;该页 28 天 **0 真人 pv**。
+按规则(设备词未过 KGR → 深化既有页;既有页已答 → 跳过)= **看过,无命中,跳过**。
+
+**③ 快反出页判据的自有 kill 线已触发**:08-23 起按需求信号新发的 6 页在 D1 里的**全史**真人 pv:
+epicooler 0 · heizluefter-stromsparend 0 · wohnmobil-feuchtigkeit-winter 0 · heizkosten-senken-
+als-mieter 0 · tineco-saugt-nicht-mehr 0 · schimmel-im-keller-entfernen 1(它们在 D1 里**一行都
+没有**,不是「少」)。快反规则预登记「连续 5 页全空 → 快反判据回炉」——**已满足**。
+与 08-28「新页冷启动 ≈ 0」结论一致。**自此:rising 信号只允许深化既有页,不再出新页,
+直到分发能力有变化(Google 收录恢复 / Bing 曝光 / AI 引荐落到新页)**;各页自己的 09-20/09-25
+判定线照常结算,不提前。
+
 ## 执行令(2026-08-20,基于两轮深度调研,详见根仓 docs/fleet-deep-dive-2026-08.md)
 
 1. **P0 归属已确认解除(2026-08-25)。** owner 出示 partnernet.amazon.de 后台截图:
