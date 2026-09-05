@@ -418,3 +418,39 @@ index.html #directory、cn.html 🎮玩法块(2026-08-24 补)。play 子域 site
   再议,避免在渠道假设未验证前铺第二条同类渠道。
 - 若 owner 想认真走「广告变现」路:那是**推翻无广告承诺的战略变更**,需 owner 明示,
   并接受 Coolmath 之外的大门户均强制广告 SDK 的现实。本次不代决。
+
+
+## Block Nova(2026-09-05,owner 指令:「我不想等下去,itch现在太小流量」「或者crazygame你做个全新爆款」)
+
+owner 决定重开 CrazyGames 线——**用全新品**,不是重投 gridlings(08-27「停止追」针对的是
+同一款反复重投,本条不推翻它)。品类选择有一手依据:Block Blast 类块拼图是当前 40+ 市场
+(含日本)第一的休闲益智品类,CG 上同品类多款在收。诚实前提写在最前面:**爆款不可承诺**,
+可执行的只有「把资产放进爆款发生过的通道 + 判定线」。
+
+**产品**:`/blocknova`(site/blocknova.html,单文件 27KB,零外部资源,canvas)。8×8 块拼图
+标准循环 + 签名机制 **Nova 计量槽**(消行充能,满 6 格后下一块落地引爆 3×3——给玩家主动权,
+对冲该品类「手气死」的最大差评点)。消行预览高亮、粒子、连击弹字、WebAudio 合成音、
+移动优先 + 桌面垂直居中。原创命名与视觉,不碰 Block Blast 的名字/美术。
+已过 Playwright 实测:真实指针拖拽落子、消行清零、计分(place=格数,清行=10×行²+连击×10)、
+Nova 充能均验证;零控制台报错。
+
+**广告口径(与本站承诺的一致性,先说清)**:本站页面照旧**零广告**;CG 上传包经其 SDK 在
+重开局时机请求 midgame 广告——那是 CG 平台自身的变现框架,即本手册第 4 条早已写明的
+「变现 = 门户分成」的具体机制,不是我们引入自己的广告 SDK。两个口径互不污染。
+
+**工程**:CG 上传包 = `tools/package_blocknova.py` → `site/downloads/cg/blocknova-cg.zip`
+(CI 构建,不入库,部署后 /downloads/cg/blocknova-cg.zip 可直接下载);worker 路由
+/blocknova + game_over 事件入白名单;hub 卡片与 sitemap 已接;部署自检加了两条 URL。
+信标用绝对地址(CG 域上跑也落我们的 D1,label=bn)。
+
+**owner 动作(投稿本身,约 10 分钟)**:CrazyGames 开发者后台(你已有账号,前两次投稿用过)
+→ Submit new game → 传 /downloads/cg/blocknova-cg.zip → 名称 Block Nova,品类 Puzzle,
+标签 block/puzzle/casual → 封面用会话交付的 cover-1920x1080.png / portrait-800x1200.png
+→ 描述抄 blocknova.html 的 meta description。审核 2-4 周。
+
+**预登记判定线(2026-09-05 立)**:
+- 若 CG 第三次给同一句「overall quality」模板拒稿 → **结论性反面**:CG 对本舰队关闭,
+  永不再投任何新品到 CG;门户线只剩 itch(已自动化)。不许第四投。
+- 若过审:上架后 28 天,CG 面板累计 plays ≥1000 或出现任何分成收入 → 游戏线重新升级,
+  做第二款/补日语;plays <200 → 只维护不加投,写反面。
+- 本站侧基线:D1 `play_start{label=bn}` 30 天读数与 /blocknova 页面 pv,首次读数 2026-10-05。

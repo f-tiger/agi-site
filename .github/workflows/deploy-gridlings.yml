@@ -65,6 +65,10 @@ jobs:
       - name: Build standalone game packages (deployed as assets, never committed)
         working-directory: sites/gridlings
         run: python3 tools/build_packages.py
+
+      - name: Build Block Nova CrazyGames package
+        working-directory: sites/gridlings
+        run: python3 tools/package_blocknova.py
       - name: Push package to itch.io via butler (auto-update the listing)
         # 第三方 CDN（broth.itch.zone）故障不得阻断本站部署：此前 curl/unzip 任一失败会让 Deploy worker 根本不跑
         continue-on-error: true
@@ -102,7 +106,7 @@ jobs:
         run: |
           set -u
           fail=0
-          for p in / /starbattle /zh/starbattle /star-battle-rules /archive /download /app-starbattle.js /zh/app-starbattle.js; do
+          for p in / /starbattle /zh/starbattle /star-battle-rules /archive /download /blocknova /downloads/cg/blocknova-cg.zip /app-starbattle.js /zh/app-starbattle.js; do
             url="https://play.agiscorecard.com$p"
             ok=0; code=000; redirs=0
             # edge propagation can lag the wrangler deploy by a beat — retry briefly
