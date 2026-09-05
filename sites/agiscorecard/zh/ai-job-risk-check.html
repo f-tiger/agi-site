@@ -15,7 +15,7 @@
 <meta name="twitter:title" content="AI 会取代我的工作吗？60 秒自查">
 <meta name="twitter:image" content="https://agiscorecard.com/scorecard-summary.png">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AGI 记分牌","item":"https://agiscorecard.com/cn"},{"@type":"ListItem","position":2,"name":"免费 AI 工具合集","item":"https://agiscorecard.com/zh/ai-tools"},{"@type":"ListItem","position":3,"name":"AI 岗位暴露度自查","item":"https://agiscorecard.com/zh/ai-job-risk-check"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"AI 岗位暴露度自查","url":"https://agiscorecard.com/zh/ai-job-risk-check","description":"6 道关于你实际怎么工作的题，算出 AI 暴露层级，依据 2026 年的公开基准证据与自主性缺口。","applicationCategory":"EducationalApplication","operatingSystem":"Any (web browser)","browserRequirements":"Requires JavaScript","isAccessibleForFree":true,"inLanguage":"zh-Hans","featureList":["6 道题评分规则公开","4 个暴露层级","不编造分岗位百分比","支持 ?embed=1 嵌入"],"offers":{"@type":"Offer","price":"0","priceCurrency":"CNY"},"publisher":{"@type":"Organization","name":"AGI 记分牌","url":"https://agiscorecard.com/"},"isPartOf":{"@type":"CollectionPage","name":"免费 AI 工具合集","url":"https://agiscorecard.com/zh/ai-tools"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"AI 岗位暴露度自查","url":"https://agiscorecard.com/zh/ai-job-risk-check","dateModified":"2026-09-05","description":"6 道关于你实际怎么工作的题，算出 AI 暴露层级，依据 2026 年的公开基准证据与自主性缺口。","applicationCategory":"EducationalApplication","operatingSystem":"Any (web browser)","browserRequirements":"Requires JavaScript","isAccessibleForFree":true,"inLanguage":"zh-Hans","featureList":["按职业查：微软研究院 785 个美国职业的 AI 适用性得分（CC-BY-4.0），明确标注为观察到的适用性、不是失业","6 道题评分规则公开","4 个暴露层级","不编造分岗位百分比","可分享的永久链接（?o= 职业，?t= 层级，?s= 分数）","支持 ?embed=1 嵌入"],"offers":{"@type":"Offer","price":"0","priceCurrency":"CNY"},"publisher":{"@type":"Organization","name":"AGI 记分牌","url":"https://agiscorecard.com/"},"isPartOf":{"@type":"CollectionPage","name":"免费 AI 工具合集","url":"https://agiscorecard.com/zh/ai-tools"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","inLanguage":"zh-Hans","mainEntity":[{"@type":"Question","name":"这个 AI 岗位暴露度自查是怎么算的？","acceptedAnswer":{"@type":"Answer","text":"6 道题分别对应 2026 年证据显示真正起作用的几个维度：你的工作有多依赖屏幕、有多结构化可重复（AI 在 GDPval 知识工作任务上已达约 83%、在 SWE-Bench Pro 智能体编程上约 80%），以及几道护城河——物理在场、人际信任、无人监督的端到端担责，后者至今没有系统可靠跨过。结果是一个层级，不是一个编造的百分比。"}},{"@type":"Question","name":"什么是自主性缺口？","acceptedAnswer":{"@type":"Answer","text":"指「在基准测试上考得好」和「能无人监督地扛下一整个岗位」之间的差距。截至 2026 年年中，没有任何 AI 系统可靠地跨过这条线。它决定了任务层面的暴露何时才会变成真正的岗位替代，也正是 AGI 记分牌持续追踪的那个里程碑。"}},{"@type":"Question","name":"结果可信吗？会不会是随便编的？","acceptedAnswer":{"@type":"Answer","text":"评分规则完全公开，且锚定本站持续追踪的公开证据：GDPval 类知识工作约 83%、SWE-Bench Pro 约 80%，以及尚未兑现的自主性里程碑（AGI-2027 命题追踪指数 62.5/100）。它只根据你自己的回答给出层级，不会宣称「你的岗位有 73% 会被替代」——那个数字没有人算得出来。"}},{"@type":"Question","name":"测出来暴露度高，我应该怎么办？","acceptedAnswer":{"@type":"Answer","text":"层级高说明你的日常任务和基准测试测的东西重合度高，不等于岗位明天就没了。真正该盯的是自主性缺口这条线什么时候被跨过——在那之前，最有效的做法是把工作重心往几道护城河上挪：端到端的担责、需要人际信任的环节、以及无法拆成可审阅产出的判断。"}}]}</script>
 <style>
 :root{--bg:#ffffff;--bg2:#f7f7f8;--bg3:#eeeef1;--border:rgba(0,0,0,0.12);--border2:rgba(0,0,0,0.18);--text:#0a0a0b;--muted:#63636e;--accent:#002FA7;--accent2:#0f7a52;--warn:#8a5a00;--danger:#C8102E;--font:'Noto Sans SC','PingFang SC','Microsoft YaHei',-apple-system,'Segoe UI',Roboto,sans-serif}
@@ -65,6 +65,25 @@ body.embed .wrap{padding:16px 16px 22px}
 body.embed header,body.embed .lead,body.embed .marketing,body.embed footer{display:none}
 body.embed h1{font-size:24px}
 body.embed .embed-brand{display:block}
+.lookup{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:20px 22px;margin-bottom:22px}
+.lookup label{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:8px}
+.lookup input{width:100%;padding:12px 14px;border-radius:10px;border:1px solid var(--border);background:var(--bg3);color:var(--text);font:inherit;font-size:16px}
+.lookup input:focus{outline:none;border-color:var(--accent)}
+.occ-list{margin-top:6px;border:1px solid var(--border);border-radius:10px;overflow:hidden;background:var(--bg3)}
+.occ-list button{display:flex;justify-content:space-between;gap:12px;width:100%;text-align:left;padding:10px 14px;border:0;border-bottom:1px solid var(--border);background:transparent;color:var(--text);font:inherit;font-size:14px;cursor:pointer}
+.occ-list button:last-child{border-bottom:0}.occ-list button:hover{background:var(--bg2)}
+.occ-s{color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+.occ-none,.occ-err{padding:10px 14px;font-size:13px;color:var(--muted)}
+.occ-card{margin-top:14px;border-top:1px solid var(--border);padding-top:14px;font-size:14px}
+.occ-big{font-size:34px;font-weight:800;line-height:1.1;margin:6px 0 2px}
+.occ-lbl{color:var(--muted);font-size:13px;margin-bottom:10px}.occ-lbl b{color:var(--text)}
+.occ-ctx{margin:0 0 10px 18px;color:var(--muted)}.occ-ctx li{margin:4px 0}.occ-ctx b{color:var(--text)}
+.occ-next{font-size:13px;color:var(--accent2)}
+.soc{font-size:12px;color:var(--muted);margin-left:6px;font-weight:400}
+.srcline{font-size:12px;color:var(--muted);margin-top:12px;line-height:1.6}
+.r-score{font-size:12px;color:var(--muted);margin-top:6px}
+[hidden]{display:none!important}
+body.embed .lookup{display:none}
 footer{margin-top:40px;font-size:12px;color:var(--muted);text-align:center;border-top:1px solid var(--border);padding-top:20px}
 footer a{color:var(--muted)}
 @media(max-width:640px){table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;white-space:nowrap}}
@@ -75,8 +94,15 @@ footer a{color:var(--muted)}
 <header><a class="brand" href="/cn">◆ AGI 记分牌</a><span class="kicker"><a href="/ai-job-risk-check" style="color:var(--muted)">English ↗</a></span></header>
 <div class="kicker">岗位暴露度自查 📋</div>
 <h1>AI 会取代我的工作吗？<br>60 秒测出你的暴露层级</h1>
-<p class="lead">6 道关于你实际怎么工作的题。给你一个诚实的暴露层级——依据 2026 年系统真正做到的事（知识工作约 83%、智能体编程约 80%），以及它们至今没跨过的那条线：<b>自主性缺口</b>。免注册，不编造百分比。</p>
+<p class="lead">6 道关于你实际怎么工作的题。给你一个诚实的暴露层级——依据 2026 年系统真正做到的事（知识工作约 83%、智能体编程约 80%），以及它们至今没跨过的那条线：<b>自主性缺口</b>。免注册，不编造百分比。新增：先查你的职业——微软研究院对 785 个美国职业的「观察到的 AI 适用性」得分，是什么就标什么。</p>
 
+<div class="lookup" id="lookup">
+  <label for="occ">按职业查（785 个美国职业，SOC 2018，职业名为英文）</label>
+  <input id="occ" type="text" placeholder="输入英文职业名——如 software developers、nurses、accountants" autocomplete="off" oninput="occSearch(this.value)" onfocus="loadOcc()" onkeydown="occKey(event)">
+  <div class="occ-list" id="occ-list" hidden></div>
+  <div class="occ-card" id="occ-card" hidden></div>
+  <p class="srcline">数据：微软研究院 <a href="https://github.com/microsoft/working-with-ai" target="_blank" rel="noopener">《Working with AI》</a> AI 适用性得分（2025 年 7 月），CC-BY-4.0，原样转载。得分 = Copilot 用户被<em>观察到</em>用 AI 完成的该职业工作活动占比——它衡量的是观察到的适用性，<b>不是失业</b>，也不是你个人的风险。</p>
+</div>
 <div id="play">
   <div class="progress" id="prog">第 1 题，共 6 题</div>
   <div class="bar"><i id="barfill"></i></div>
@@ -93,6 +119,7 @@ footer a{color:var(--muted)}
     <div class="k">你的 AI 暴露层级</div>
     <div class="name" id="r-name"></div>
     <div class="line" id="r-line"></div>
+    <div class="r-score" id="r-score"></div>
   </div>
   <div class="factors" id="r-factors"></div>
   <div class="row">
@@ -123,6 +150,8 @@ footer a{color:var(--muted)}
   <div>🔴 <b>正在射程内</b> — 屏幕上完成、结构化、产出可被审阅，而且缺少信任或判断护城河。暴露已经发生，替代只差自主性缺口这一步。</div>
 </div>
 <p style="color:var(--muted);font-size:14px">评分规则是公开的：每道题都对应本站持续追踪的一个证据维度——基准测试表现、机器人落后于软件的时间差、人际信任护城河，以及尚未兑现的自主性里程碑（<a href="/zh/progress-index">AGI-2027 命题追踪指数：62.5/100</a>）。它评的是<em>你的回答</em>，不会去编造分岗位的统计数字。延伸阅读：<a href="/zh/will-ai-replace-programmers">AI 会取代程序员吗</a> · <a href="/zh/will-ai-cause-mass-unemployment">会造成大规模失业吗</a> · <a href="/zh/what-jobs-are-safe-from-ai">哪些工作还安全</a>。</p>
+
+<p class="srcline" id="sources"><b>信源：</b>微软研究院《Working with AI》——785 个职业的 AI 适用性得分，CC-BY-4.0（<a href="https://github.com/microsoft/working-with-ai" target="_blank" rel="noopener">数据</a> · <a href="https://arxiv.org/abs/2507.07935" target="_blank" rel="noopener">论文，2025 年 7 月</a>）· Eloundou 等《GPTs are GPTs》，<a href="https://www.science.org/doi/10.1126/science.adj0998" target="_blank" rel="noopener">Science 2024</a>（约 80% 的美国劳动者有 ≥10% 的任务暴露于 LLM；约 19% 有 ≥50%；理论暴露，2023 年能力）· 斯坦福数字经济实验室<a href="https://digitaleconomy.stanford.edu/news/canariesaug26/" target="_blank" rel="noopener">《煤矿里的金丝雀》，2026 年 8 月更新</a>（暴露度最高职业中 22–25 岁相对就业缺口约 19%）· <a href="https://www.anthropic.com/research/economic-index-march-2026-report" target="_blank" rel="noopener">Anthropic 经济指数，2026 年 3 月</a>（49% 的职业有 ≥25% 的任务被观察到；55% 增强 vs 42% 自动化）。职业得分是微软的「观察到的适用性」口径，本页绝不把它当成你个人的风险百分比。如果你问的是自己的饭碗，<a href="/zh/ai-and-your-job">从这里开始</a>。</p>
 
 <h2>常见问题</h2>
 <div class="types">
@@ -160,12 +189,12 @@ var QS=[
   opts:[['是——最后拍板的是我',0],['和别人共同承担',1],['大部分时候我执行界定好的部分',2]]}
 ];
 var TIERS=[
- {min:10,emoji:'🔴',name:'正在射程内',line:'屏幕上完成、结构化、产出可被审阅，而且缺少信任或判断护城河。暴露已经发生——替代只差自主性缺口这一步。'},
- {min:7,emoji:'🟠',name:'贴近基准线',line:'你的大部分工作，长得很像 GDPval（约 83%）和 SWE-Bench Pro（约 80%）在测的东西。自主性缺口是你现在的主要护城河，值得盯着。'},
- {min:4,emoji:'🟡',name:'任务级暴露',line:'一部分工作和 AI 已经做得不错的事重合，但核心仍然需要人在回路里。'},
- {min:0,emoji:'🟢',name:'暂时安全',line:'你的工作躲在最硬的几道有据可查的护城河后面：物理在场、人际信任、端到端担责。'}
+ {min:10,slug:'crosshairs',emoji:'🔴',name:'正在射程内',line:'屏幕上完成、结构化、产出可被审阅，而且缺少信任或判断护城河。暴露已经发生——替代只差自主性缺口这一步。'},
+ {min:7,slug:'benchmark-adjacent',emoji:'🟠',name:'贴近基准线',line:'你的大部分工作，长得很像 GDPval（约 83%）和 SWE-Bench Pro（约 80%）在测的东西。自主性缺口是你现在的主要护城河，值得盯着。'},
+ {min:4,slug:'task-exposed',emoji:'🟡',name:'任务级暴露',line:'一部分工作和 AI 已经做得不错的事重合，但核心仍然需要人在回路里。'},
+ {min:0,slug:'sheltered',emoji:'🟢',name:'暂时安全',line:'你的工作躲在最硬的几道有据可查的护城河后面：物理在场、人际信任、端到端担责。'}
 ];
-var i=0, pts=[], myTier=null;
+var i=0, pts=[], myTier=null, myScore=null, myOcc=null;
 function render(){
   var c=QS[i];
   document.getElementById('prog').textContent='第 '+(i+1)+' 题，共 '+QS.length+' 题';
@@ -180,12 +209,22 @@ function render(){
     o.appendChild(b);
   });
 }
+function tierFor(total){for(var k=0;k<TIERS.length;k++){ if(total>=TIERS[k].min){return TIERS[k];} }return TIERS[TIERS.length-1];}
+function showTier(tier,total,restored){
+  myTier=tier; myScore=total;
+  document.getElementById('play').style.display='none';
+  document.getElementById('r-name').textContent=tier.emoji+' '+tier.name;
+  document.getElementById('r-line').textContent=tier.line;
+  document.getElementById('r-score').textContent=(total!=null?'评分 '+total+' / 12':'')+(restored?' · 这是别人分享的结果——重测一次看你自己的':'');
+  if(restored){
+    document.getElementById('r-factors').innerHTML='<b>这是分享来的结果。</b>点「重测」自己答 6 道题——推高与保护你的因素来自你自己的回答，不来自职业名。<br><span style="color:var(--muted)">背景：AI 在知识工作任务上约 83%、在智能体编程上约 80%，但没有任何系统能可靠地无人监督扛下一整个岗位——这条线的实时进度是 62.5/100。</span>';
+  }
+  document.getElementById('result').style.display='block';
+}
 function finish(){
   var total=pts.reduce(function(a,b){return a+b;},0);
-  for(var k=0;k<TIERS.length;k++){ if(total>=TIERS[k].min){myTier=TIERS[k];break;} }
-  document.getElementById('play').style.display='none';
-  document.getElementById('r-name').textContent=myTier.emoji+' '+myTier.name;
-  document.getElementById('r-line').textContent=myTier.line;
+  var tier=tierFor(total);
+  showTier(tier,total,false);
   var dims=['工作高度依赖屏幕','缺少物理在场护城河','人际信任护城河较弱','任务结构化程度高','产出可被审阅','自主判断空间有限'];
   var shields=['核心在线下/靠体力','需要人到现场','客户信任你这个人','工作高度非结构化','价值在现场、在当下','端到端担责'];
   var drivers=[],guards=[];
@@ -194,18 +233,71 @@ function finish(){
     '<b>推高你暴露度的：</b>'+(drivers.length?drivers.join('、'):'没有任何一项达到完全暴露')+'。<br>'+
     '<b>在保护你的：</b>'+(guards.length?guards.join('、'):'没有完整护城河——你的保护主要来自自主性缺口')+'。<br>'+
     '<span style="color:var(--muted)">背景：AI 在知识工作任务上约 83%、在智能体编程上约 80%，但没有任何系统能可靠地无人监督扛下一整个岗位——这条线的实时进度是 62.5/100。</span>';
-  document.getElementById('result').style.display='block';
   document.getElementById('result').scrollIntoView({behavior:'smooth'});
-  gtag('event','vote_cast',{label:'zh_job_check'});
+  gtag('event','vote_cast',{label:('zh_job_check_'+tier.slug+':'+total).slice(0,48)});
+  syncUrl();
 }
-function restart(){i=0;pts=[];myTier=null;document.getElementById('result').style.display='none';document.getElementById('play').style.display='block';render();window.scrollTo({top:0,behavior:'smooth'});}
-function sUrl(){return 'https://agiscorecard.com/zh/ai-job-risk-check';}
-function sText(){return '我测了一下自己岗位的 AI 暴露度：'+(myTier?myTier.emoji+' '+myTier.name:'')+'。决定「暴露」何时变成「替代」的是自主性缺口——你的呢？';}
+function restart(){i=0;pts=[];myTier=null;myScore=null;document.getElementById('result').style.display='none';document.getElementById('play').style.display='block';render();syncUrl();window.scrollTo({top:0,behavior:'smooth'});}
+function sParams(){var p=[];if(myOcc)p.push('o='+encodeURIComponent(myOcc.soc));if(myTier){p.push('t='+myTier.slug);if(myScore!=null)p.push('s='+myScore);}return p;}
+function sUrl(){var p=sParams();return 'https://agiscorecard.com/zh/ai-job-risk-check'+(p.length?'?'+p.join('&'):'');}
+function syncUrl(){try{var p=sParams();if(document.body.classList.contains('embed'))p.push('embed=1');history.replaceState(null,'',location.pathname+(p.length?'?'+p.join('&'):''));}catch(e){}}
+function sText(){return '我测了一下自己岗位的 AI 暴露度：'+(myTier?myTier.emoji+' '+myTier.name+(myScore!=null?'（'+myScore+'/12）':''):'')+(myOcc?' · '+myOcc.title+'：微软 AI 适用性 '+pct(myOcc.score):'')+'。决定「暴露」何时变成「替代」的是自主性缺口——你的呢？';}
+// ---- 按职业查（微软研究院《Working with AI》，CC-BY-4.0；观察到的适用性，不是失业）----
+var OCC=null, occLoading=null;
+function pct(x){return (Math.round(x*1000)/10)+'%';}
+function esc(t){return String(t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+function loadOcc(){
+  if(OCC)return Promise.resolve(OCC);
+  if(occLoading)return occLoading;
+  occLoading=fetch('/ai-applicability-scores.json').then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);return r.json();}).then(function(d){
+    OCC=d.occupations.slice().sort(function(a,b){return b.score-a.score;});
+    OCC.forEach(function(o,idx){o.rank=idx+1;});
+    return OCC;
+  }).catch(function(e){occLoading=null;var b=document.getElementById('occ-list');b.innerHTML='<div class="occ-err">职业表暂时加载不了——下面的 6 道题照常可用。</div>';b.hidden=false;throw e;});
+  return occLoading;
+}
+function occSearch(v){
+  var q=v.trim().toLowerCase(), box=document.getElementById('occ-list');
+  document.getElementById('occ-card').hidden=true; myOcc=null;
+  if(q.length<2){box.innerHTML='';box.hidden=true;return;}
+  loadOcc().then(function(list){
+    var words=q.split(/\s+/);
+    var hits=list.filter(function(o){var t=o.title.toLowerCase();return words.every(function(w){return t.indexOf(w)>-1;})||o.soc.indexOf(q)===0;});
+    hits.sort(function(a,b){var as=a.title.toLowerCase().indexOf(q)===0?0:1,bs=b.title.toLowerCase().indexOf(q)===0?0:1;return as-bs||a.title.localeCompare(b.title);});
+    hits=hits.slice(0,12); box.innerHTML='';
+    if(!hits.length){box.innerHTML='<div class="occ-none">785 个 SOC 职业名里没有匹配——换个更宽的英文词试试（nurse、analyst、driver）。</div>';box.hidden=false;return;}
+    hits.forEach(function(o){var b=document.createElement('button');b.type='button';b.innerHTML='<span>'+esc(o.title)+'</span><span class="occ-s">'+pct(o.score)+'</span>';b.onclick=function(){pickOcc(o,false);};box.appendChild(b);});
+    box.hidden=false;
+  }).catch(function(){});
+}
+function occKey(e){if(e.key==='Enter'){var b=document.querySelector('#occ-list button');if(b){e.preventDefault();b.click();}}}
+function pickOcc(o,restored){
+  myOcc=o; var top=OCC[0];
+  document.getElementById('occ').value=o.title;
+  var box=document.getElementById('occ-list'); box.innerHTML=''; box.hidden=true;
+  var card=document.getElementById('occ-card');
+  card.innerHTML='<div><b>'+esc(o.title)+'</b><span class="soc">SOC '+esc(o.soc)+'</span></div>'+
+    '<div class="occ-big">'+pct(o.score)+'</div>'+
+    '<div class="occ-lbl">微软 AI 适用性得分——观察到的 Copilot 使用，2025 年 7 月 · 785 个职业中排第 '+o.rank+' 位。<b>不是失业概率，也不是「你的风险 %」。</b></div>'+
+    '<ul class="occ-ctx">'+
+    '<li><b>微软适用性</b>（观察到的 Copilot 使用，2025 年 7 月）：该职业 '+pct(o.score)+' 的工作活动被观察到用 AI 完成。表中最高：'+esc(top.title)+'，'+pct(top.score)+'。</li>'+
+    '<li><b>Eloundou 等暴露度</b>（理论，2023）：约 80% 的美国劳动者有 ≥10% 的任务暴露于 LLM；约 19% 有 ≥50%。</li>'+
+    '<li><b>观察到的就业</b>：斯坦福《金丝雀》仅在暴露度最高的职业中、22–25 岁群体发现约 19% 的相对就业缺口（2026 年 8 月更新）；年长劳动者没有可比的下滑。</li>'+
+    '</ul><div class="occ-next">接着答下面 6 道题——它们打分的是<em>你怎么工作</em>，这是职业代码看不见的。</div>';
+  card.hidden=false;
+  if(!restored){gtag('event','calc_use',{location:'job_lookup',label:String(o.soc).slice(0,48)});syncUrl();}
+}
+function restoreFromUrl(){
+  var P={};location.search.replace(/^\?/,'').split('&').forEach(function(kv){var x=kv.split('=');if(x[0])P[decodeURIComponent(x[0])]=decodeURIComponent((x[1]||'').replace(/\+/g,' '));});
+  if(P.t){var tier=TIERS.filter(function(x){return x.slug===P.t;})[0];if(tier){var sc=(P.s!==undefined&&/^\d{1,2}$/.test(P.s)&&+P.s<=12)?+P.s:null;showTier(tier,sc,true);}}
+  if(P.o&&/^\d{2}-\d{4}$/.test(P.o)){loadOcc().then(function(list){var hit=list.filter(function(x){return x.soc===P.o;})[0];if(hit)pickOcc(hit,true);}).catch(function(){});}
+}
 function shareX(){gtag('event','x_share',{label:'zh_job_check'});window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(sText()+' 👇')+'&url='+encodeURIComponent(sUrl()),'_blank');}
 function copyShare(){gtag('event','challenge_share',{label:'zh_job_check'});navigator.clipboard.writeText(sText()+'\n'+sUrl()).then(function(){var c=document.getElementById('copied');c.style.display='inline';setTimeout(function(){c.style.display='none'},2000)});}
 function copyEmbed(){var t=document.getElementById('embedcode');navigator.clipboard.writeText(t.value).then(function(){var c=document.getElementById('embedcopied');c.style.display='inline';setTimeout(function(){c.style.display='none'},2000)});gtag('event','embed_copy',{location:'zh_job_check'});}
 window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
 render();
+restoreFromUrl();
 </script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-FZXLMBB5QB"></script>
 <script>gtag('js',new Date());gtag('config','G-FZXLMBB5QB')</script>
