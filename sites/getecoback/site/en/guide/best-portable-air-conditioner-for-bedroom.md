@@ -3,6 +3,9 @@
 > The best portable air conditioner for a bedroom in 2026: how quiet is quiet enough, the right BTU for sleep, and what actually matters for rest.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/en/guide/best-portable-air-conditioner-for-bedroom.html
+
+Live data on this page (hourly, rendered in the browser, not included in this Markdown view): https://getecoback.com/api/heat
+
 A portable AC that cools brilliantly but roars like a jet engine is useless in a bedroom. For sleep, you're balancing three things: enough cooling power for the room, low enough noise, and a night mode. Here's what to actually look for.
 
 As an Amazon Associate, EcoBack earns from qualifying purchases. Product links below are affiliate links — you pay the same price.

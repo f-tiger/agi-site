@@ -3,6 +3,9 @@
 > Verdunster 1–5 Cent, Ultraschall 5–7 Cent, Verdampfer bis 84 Cent pro Nacht — alle Zahlen mit der Formel Watt ÷ 1000 × Stunden × Strompreis nachrechenbar.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/luftbefeuchter-stromverbrauch.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/feuchte
+
 **Kurz gesagt:** Zwischen den Bauarten liegt **Faktor 10 bis 40**: Ein Verdunster mit Lüfter kostet **1–5 Cent pro Nacht**, ein Ultraschall-Vernebler 5–7 Cent, ein Verdampfer mit Heizelement **48–84 Cent** (8 h, 0,30 €/kWh). Vorher gehört aber ein 10-€-Hygrometer ins Zimmer: Nur wer **dauerhaft unter 40 %** Luftfeuchte misst, braucht überhaupt ein Gerät — über 60 % ist das Gegenteil dran.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks sind Affiliate-Links — du zahlst denselben Preis. Wir testen nicht selbst; alle Zahlen sind Rechnungen, die du mit deinem eigenen Strompreis und dem Typenschild deines Geräts nachvollziehen kannst.

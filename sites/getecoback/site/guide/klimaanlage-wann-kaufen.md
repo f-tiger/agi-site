@@ -3,6 +3,9 @@
 > Nebensaison oder Hitzewelle? Wann Klimaanlagen wirklich günstiger sind — und warum Verfügbarkeit der größere Hebel ist als der Preis.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/klimaanlage-wann-kaufen.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
+
 Wer in Deutschland etwas kauft, schaut vorher auf den Preisverlauf — völlig zu Recht. Bei Klimageräten ist das Timing aber anders, als die Faustregel „Nebensaison = billig" vermuten lässt. Hier ist der ehrliche Kalender: wo die Nebensaison wirklich spart, wo ihr Vorteil woanders liegt, und warum der teuerste Fehler nicht der falsche Preis ist, sondern der falsche Moment.
 
 **Kurzantwort:** Kauf **vor der Saison** (Oktober–April), aber nicht primär wegen des Gerätepreises — der Unterschied ist oft kleiner als gedacht. Die Nebensaison gewinnt bei **Auswahl, Lieferzeit und Montageterminen** (bei Split-Anlagen sind 5–10 % Nachlass auf die Montage realistisch). Der wirklich teure Fehler ist der Kauf **mitten in der Hitzewelle**: Dann sind die guten Modelle vergriffen und du nimmst, was übrig ist.

@@ -3,6 +3,9 @@
 > Einfache BTU-Tabelle nach Raumgröße in m² für tragbare Klimaanlagen — plus die Faktoren (Sonne, Dachgeschoss, Personen), bei denen du größer dimensionieren solltest.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/wie-viel-btu-brauche-ich.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
+
 BTU (British Thermal Units) misst die Kühlleistung einer Klimaanlage. Zu wenig, und der Raum bleibt warm; zu viel kostet unnötig Geld und macht mehr Lärm. Hier die einfache Version.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.

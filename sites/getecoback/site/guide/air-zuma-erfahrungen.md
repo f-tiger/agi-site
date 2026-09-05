@@ -3,6 +3,9 @@
 > Air Zuma im Faktencheck: Warum 2–7 Watt keinen Raum kühlen können, woran du die Werbe-Testseiten erkennst — und die ehrliche Alternative.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/air-zuma-erfahrungen.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
+
 „Air Zuma" (Schreibweise des Anbieters: **AirZuma**) gehört gerade zu den steigenden Suchbegriffen rund um Klimageräte in Deutschland. Beworben wird ein tragbares, akku-betriebenes Gerät mit „CoolCore™"-Technologie — ohne Abluftschlauch, ohne Installation, mit Wandmontage ohne Bohren. Wir haben das Gerät nicht gekauft und nicht getestet — dieser Artikel prüft stattdessen das, was sich von außen prüfen lässt: die Werbeversprechen gegen die Physik, die Quellenlage und das Vertriebsmuster. Im Ratgeber [Klimaanlage ohne Abluftschlauch](https://getecoback.com/guide/klimaanlage-ohne-abluftschlauch.html) taucht der Name bereits als Beispiel für diese Gerätewelle auf.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks zu den ehrlichen Alternativen unten sind Affiliate-Links — du zahlst denselben Preis. Zum AirZuma selbst enthält diese Seite bewusst keinen Kauflink.

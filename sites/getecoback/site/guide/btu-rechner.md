@@ -3,6 +3,9 @@
 > BTU-Rechner für tragbare Klimaanlagen: Raumgröße, Deckenhöhe, Sonne und Personen eingeben — sofort passende BTU-Zahl plus Modell-Empfehlung erhalten.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/btu-rechner.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
+
 Zu wenig BTU und dein Raum wird nie kühl; zu viel ist rausgeworfenes Geld und unnötig laut. Gib einfach deine Raumdaten ein — der Rechner nennt dir die passende Kühlleistung und ein dazu dimensioniertes Gerät.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Die Produktlinks im Ergebnis sind Affiliate-Links — du zahlst denselben Preis. Der Rechner liefert eine Orientierung, keine Gewähr.

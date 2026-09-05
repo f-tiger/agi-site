@@ -3,6 +3,9 @@
 > Mittags lüften macht den Keller im Sommer feuchter — Sommerkondensation. Der Taupunkt-Check sagt dir in 20 Sekunden, ob du jetzt lüften darfst.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/keller-lueften-sommer.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/feuchte
+
 **Kurzantwort:** Im Sommer gilt im Keller die umgekehrte Logik: **Je wärmer der Tag, desto schädlicher das Lüften.** Warme Luft trägt viel Wasser; im kühlen Keller kondensiert es an den Wänden — das heißt **Sommerkondensation**. Lüfte nur **nachts oder früh morgens (ca. 22–6 Uhr)**, kurz und kräftig, und nur wenn der **Taupunkt der Außenluft unter der Kellertemperatur** liegt. Dauerhaft gekippte Fenster sind die häufigste Schimmelursache im Keller. Reicht das Zeitfenster nicht (schwüle Wochen), übernimmt ein [Luftentfeuchter mit Hygrostat](https://getecoback.com/guide/luftentfeuchter-keller.html).
 
 **💧 Taupunkt-Check: Darf ich jetzt lüften?**

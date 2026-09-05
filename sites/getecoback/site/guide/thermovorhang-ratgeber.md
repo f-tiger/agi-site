@@ -3,6 +3,7 @@
 > Thermovorhang und Verdunkelungsrollo: im Sommer Hitze abhalten, im Winter Heizwärme sparen — Materialien, Montage ohne Bohren und ehrliche Erwartungen.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/thermovorhang-ratgeber.html
+
 Das Fenster ist die Schwachstelle jedes Raums — im Sommer strömt hier die Sonnenwärme herein, im Winter entweicht genau hier die Heizwärme. Ein guter Thermovorhang oder ein Verdunkelungsrollo arbeitet in beide Richtungen: Es dämpft im Hochsommer den Hitzeeintrag und reduziert in der kalten Jahreszeit den Wärmeverlust an der kältesten Fläche der Wohnung. Diese Anleitung zeigt, wann das wirklich etwas bringt, welche Materialien zählen, wie Mieter ohne Bohren montieren — und wo die ehrlichen Grenzen liegen.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.

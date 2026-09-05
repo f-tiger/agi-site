@@ -3,6 +3,9 @@
 > Luftentfeuchter-Kaufberatung 2026: Kompressor, Adsorption oder Granulat, richtige Größe nach Raum und Liter/Tag, Stromkosten und Pflege im Überblick.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/luftentfeuchter-ratgeber.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/feuchte
+
 Zu feuchte Raumluft ist mehr als ein Komfortproblem. Im Sommer lässt hohe Luftfeuchtigkeit die Hitze noch drückender wirken, weil der Schweiß auf der Haut kaum verdunstet. Im Winter schlägt sich dieselbe Feuchtigkeit an kalten Außenwänden und hinter Schränken nieder — und genau dort wächst dann Schimmel. Ein Luftentfeuchter hält die relative Luftfeuchte im gesunden Bereich von 40 bis 60 Prozent. Diese Kaufberatung zeigt dir, welche Bauart zu welchem Raum passt, wie viel Entzugsleistung du brauchst und was der Betrieb kostet.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
@@ -59,13 +62,25 @@ Ein typischer Kompressor-Luftentfeuchter für Wohnräume hat eine Leistungsaufna
 
 Das ist der häufigste Irrtum. Ein Luftentfeuchter senkt die Luftfeuchtigkeit, nicht die Temperatur — die Abwärme von Kompressor und Ventilator erwärmt den Raum sogar minimal. Trockenere Luft fühlt sich an heißen Tagen zwar spürbar angenehmer an, aber wer die Temperatur wirklich senken will, braucht ein anderes Gerät. Was Klimaanlage, Luftkühler und Entfeuchter jeweils leisten, vergleicht unser [Ratgeber Klimaanlage vs. Luftkühler](https://getecoback.com/guide/klimaanlage-vs-luftkuehler.html). Kurz: Klimaanlage kühlt und entfeuchtet, Luftkühler kühlt gefühlt durch Verdunstung, Entfeuchter trocknet nur.
 
+**Was er bei Schwüle trotzdem bringt — in Zahlen.** Wie heiß sich Luft anfühlt, hängt von der Feuchte ab. Der Hitzeindex des US-Wetterdienstes NOAA (Rothfusz-Regression, Stand 2026) rechnet das nach; bei gleicher Thermometer-Temperatur ergibt sich:
+
+Raumtemperatur | 70 % rF (schwül) | 50 % rF (entfeuchtet) | gefühlter Unterschied |
+
+26 °C | 27,3 °C | 26,6 °C | ≈ 0,7 K |
+
+28 °C | 30,7 °C | 28,4 °C | ≈ 2,3 K |
+
+30 °C | 35,0 °C | 31,0 °C | ≈ 4 K |
+
+Das Thermometer bleibt also stehen — aber bei 28–30 °C nimmt ein Entfeuchter der Luft 2–4 Grad gefühlte Hitze. Deshalb die ehrliche Reihenfolge: Ist es vor allem **heiß**, ist eine [mobile Klimaanlage](https://getecoback.com/guide/klimaanlage-30-qm.html) das richtige Gerät (sie entfeuchtet nebenbei). Ist es vor allem **feucht und stickig** — beschlagene Fenster, muffiger Geruch, Wäsche trocknet nicht — dann der [Entfeuchter nach Raumgröße](https://getecoback.com/guide/luftentfeuchter-40-qm.html). Ob Lüften gerade hilft oder Feuchte hereinholt, zeigt das Taupunkt-Band oben auf den Entfeuchter-Seiten, stündlich aus open-meteo.
+
 ## Pflege: Tank leeren und Filter reinigen
 
 Ein Entfeuchter ist pflegeleicht, aber zwei Handgriffe gehören dazu. Leere den Kondenswassertank regelmäßig — bei vollem Tank schaltet das Gerät automatisch ab; wer das umgehen will, nutzt einen Ablaufschlauch für Dauerbetrieb, sofern das Modell einen Anschluss hat. Reinige außerdem alle paar Wochen den Luftfilter am Ansauggitter: Setzt er sich mit Staub zu, sinkt die Entzugsleistung und der Verbrauch steigt. Der gleiche Grundsatz gilt für mobile Klimaanlagen und Luftkühler — die Anleitung dazu findest du in unserem [Ratgeber zum Reinigen](https://getecoback.com/guide/klimaanlage-reinigen.html). Stelle das Gerät mit etwas Abstand zur Wand, damit die Luft frei zirkulieren kann.
 
 ## Häufige Fragen
 
-**Kühlt ein Luftentfeuchter auch die Luft ab?**Nein. Er entzieht der Luft Feuchtigkeit, kühlt sie aber nicht — die Abwärme erwärmt den Raum sogar leicht. Trockenere Luft fühlt sich angenehmer an, wer aber die Temperatur senken will, braucht eine Klimaanlage oder einen Luftkühler.
+**Kühlt ein Luftentfeuchter auch die Luft ab?**Nein. Er entzieht der Luft Feuchtigkeit, kühlt sie aber nicht — die Abwärme erwärmt den Raum sogar leicht. Trockenere Luft fühlt sich angenehmer an, wer aber die Temperatur senken will, braucht eine Klimaanlage oder einen Luftkühler. Was er bei Schwüle bringt, lässt sich beziffern: Nach dem NOAA-Hitzeindex fühlen sich 28 °C bei 70 % Luftfeuchte wie 30,7 °C an, bei 50 % wie 28,4 °C — rund 2 Grad gefühlte Hitze weniger, ohne dass das Thermometer sich bewegt.
 
 **Welche Entzugsleistung in Litern pro Tag brauche ich?**Für Wohnräume bis 30 m² reichen 10–12 Liter/Tag, für Keller oder mehrere Räume 16–20 Liter, bei Neubau oder Wasserschaden 20–30 Liter. Die Literangabe gilt für Idealbedingungen — real liegt der Entzug meist darunter.
 

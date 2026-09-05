@@ -3,6 +3,7 @@
 > What size dehumidifier for 10 m²? Recommended: 10–12 litres/day. Capacity, running cost (~€0.09/h) and what to look for in a bathroom or small room.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/en/guide/dehumidifier-10-sqm.html
+
 Damp air, condensation on the windows or a musty smell in a room of around 10 m²? A dehumidifier fixes that — but only with the right capacity. Too small, and it never catches up. Here is the concrete recommendation for 10 m².
 
 As an Amazon Associate, EcoBack earns from qualifying purchases. Product links below are affiliate links — you pay the same price.

@@ -3,6 +3,9 @@
 > Abluftschlauch der mobilen Klimaanlage verlängern: max. ca. 2 m ohne großen Leistungsverlust — welches Zubehör du brauchst und wann du es besser lässt.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/abluftschlauch-verlaengern.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
+
 Der Abluftschlauch mobiler Klimaanlagen ist ab Werk meist nur 1,5 m lang — und das Fenster ist genau dann weiter weg. Die gute Nachricht: Verlängern geht. Die ehrliche Nachricht: nicht beliebig, und mit ein paar Regeln, damit die Kühlleistung nicht leidet.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.

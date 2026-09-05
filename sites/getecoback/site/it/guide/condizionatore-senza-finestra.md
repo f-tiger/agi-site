@@ -3,6 +3,7 @@
 > Condizionatore portatile senza finestra: funziona solo se l'aria calda esce — 5 vie reali, dal kit per porta al foro a muro da 130–160 mm, con la tabella.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/it/guide/condizionatore-senza-finestra.html
+
 **Dritti alle scelte**Annuncio · link affiliati — il prezzo per te non cambia
 
 TuttofareDe'Longhi Pinguino PAC EX105→

@@ -3,6 +3,9 @@
 > How to clean a portable air conditioner step by step: rinse the filter every 2 weeks, descale the tank with vinegar, brush the coils and dry it to stop mould.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/en/guide/how-to-clean-portable-air-conditioner.html
+
+Live data on this page (hourly, rendered in the browser, not included in this Markdown view): https://getecoback.com/api/heat
+
 A portable air conditioner is a dust magnet with a wet interior — the perfect combination for clogged filters, limescale and, eventually, mould. The good news: everything you need to clean is reachable without tools, and the whole routine takes about twenty minutes. This guide covers each part in the order you should do them, plus an honest section on mould: what vinegar genuinely handles, and where you should stop.
 
 As an Amazon Associate, EcoBack earns from qualifying purchases. Product links below are affiliate links — you pay the same price.

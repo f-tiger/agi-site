@@ -3,6 +3,9 @@
 > Strom sparen im Haushalt: 14 Maßnahmen mit echten Euro-Ersparnissen — Standby abschalten, Stromfresser finden, LED, Kühlschrank, Klima einstellen.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/strom-sparen-haushalt.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
+
 Strompreise rund um 0,30 € pro Kilowattstunde machen jeden vermeidbaren Verbrauch teuer. Die gute Nachricht: Die meisten Einsparungen kosten weder Komfort noch viel Geld — es geht um ein paar Gewohnheiten und wenige gezielte Anschaffungen. Diese Übersicht bündelt die 14 Maßnahmen mit dem besten Verhältnis aus Aufwand und Ersparnis. Alle Beträge sind grobe Richtwerte auf Basis von **0,30 €/kWh** — dein Tarif kann abweichen, die Größenordnung stimmt.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.

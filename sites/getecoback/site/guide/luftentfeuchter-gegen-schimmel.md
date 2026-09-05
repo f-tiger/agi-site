@@ -3,6 +3,9 @@
 > Hilft ein Luftentfeuchter gegen Schimmel? Ja — zur Vorbeugung unter 60 % Luftfeuchte. Was er nicht kann, wann der Fachmann ran muss, welches Gerät sich lohnt.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/luftentfeuchter-gegen-schimmel.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/feuchte
+
 Schimmel in der Zimmerecke, hinterm Schrank oder an der Fensterlaibung — und der erste Reflex ist oft: Luftentfeuchter kaufen. Bevor du das tust, lohnt ein nüchterner Blick darauf, was so ein Gerät tatsächlich leistet. Denn ein Luftentfeuchter ist ein sehr gutes Werkzeug gegen **zu feuchte Luft** — aber kein Schimmelentferner und kein Ersatz für die Suche nach der Ursache.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.

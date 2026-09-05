@@ -3,6 +3,7 @@
 > Climatizzatore senza unità esterna in facciata: gli split quick-connect portano circa 35–42 dB in stanza, senza carotaggio né installatore.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/it/guide/climatizzatore-senza-unita-esterna.html
+
 **Dritti alle scelte**Annuncio · link affiliati — il prezzo per te non cambia
 
 Split senza carotaggioMidea PortaSplit→

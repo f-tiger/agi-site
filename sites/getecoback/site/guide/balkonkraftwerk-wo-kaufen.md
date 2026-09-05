@@ -3,6 +3,9 @@
 > Balkonkraftwerk bei Amazon oder beim Solar-Fachhändler kaufen? Preis, Beratung, Garantie und Rückgabe im ehrlichen Vergleich — inklusive Entscheidungsregel.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/balkonkraftwerk-wo-kaufen.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/strom
+
 **Kurzantwort:** **Standard-Set, Selbstmontage, Standard-Balkon → Amazon** (schnell, einfache Rückgabe, viel Auswahl). **Sonderfall → Fachhändler**: ungewöhnliche Brüstung, Flachdach oder Fassade, Speicher-Nachrüstung, oder du willst eine Ansprechperson für die nächsten zehn Jahre. Preislich nehmen sich beide inzwischen wenig — für Balkonkraftwerke gilt der Nullsteuersatz, alle Preise sind Endpreise.
 
 Transparenz: Amazon-Links auf dieser Seite sind Partnerlinks — kaufst du darüber, erhalten wir eine Provision. Zu Fachhändlern verlinken wir **ohne** Provisionsbeziehung; wir verdienen an diesem Weg aktuell nichts. Beide Optionen stehen hier trotzdem gleichberechtigt, weil die Entscheidung von deiner Situation abhängen soll, nicht von unserer Vergütung.

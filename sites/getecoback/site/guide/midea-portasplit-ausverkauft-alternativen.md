@@ -3,6 +3,9 @@
 > Midea PortaSplit wieder ausverkauft: Produktion auf 6.000 Geräte/Tag verdoppelt, trotzdem knapp. 2 geprüfte Alternativen ohne Bohren — und wann Warten sich lohnt.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/midea-portasplit-ausverkauft-alternativen.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
+
 **Kurzantwort:** Die PortaSplit ist wegen extremer Nachfrage immer wieder ausverkauft — Midea hat die Produktion laut Branchenberichten auf 6.000 Geräte/Tag verdoppelt. Deine Optionen: **1)** **Clima Butler Split 2 (CB-3500)** — gleiches Prinzip ohne Bohren, ca. 3,5 kW, Inverter; **2)** **Remko RKL-DC-Serie** — stärker (ca. 4,3 kW laut Datenblatt), ebenfalls Split ohne Festinstallation; **3)** **Monoblock als Sofortlösung** — sofort lieferbar und günstiger, wenn die [Fensterabdichtung](https://getecoback.com/guide/klimaanlage-kippfenster.html) stimmt; **4)** **warten**, wenn dein Raum nachts erträglich bleibt — Nachschub ist unterwegs.
 
 Wir haben die Geräte nicht selbst getestet; diese Seite fasst öffentliche Tests und Verfügbarkeits-Berichte zusammen (ETM Testmagazin, home&smart, giga.de, smarthomeassistent.de). Amazon-Links sind Partnerlinks — sie finanzieren diese Seite, ohne dass du mehr zahlst.

@@ -3,6 +3,9 @@
 > Welche Klimaanlage für 10 m²? Empfohlen: 5.000–7.000 BTU. Mit Modell-Tipp, Stromkosten & Kauf-Checkliste für dein kleines Schlaf- oder Arbeitszimmer (2026).
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/klimaanlage-10-qm.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
+
 Du suchst eine tragbare Klimaanlage für einen Raum mit rund 10 m²? Die wichtigste Frage ist die richtige Kühlleistung (BTU): zu wenig, und das Gerät kommt nie hinterher; zu viel ist rausgeworfenes Geld und unnötig laut. Hier die konkrete Empfehlung für 10 m².
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.

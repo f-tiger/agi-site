@@ -3,6 +3,7 @@
 > Welche Heizleistung für 30 m²? Empfohlen: 1.800–2.400 W. Watt-Faustregel, Stromkosten & passende Infrarotheizung für dein offener Wohnbereich (2026).
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/heizung-30-qm.html
+
 Du willst einen Raum mit rund 30 m² elektrisch beheizen — mit Infrarotheizung oder Heizlüfter — und fragst dich, wie viel Watt du brauchst? Zu wenig, und es wird nie warm; zu viel kostet unnötig Strom. Hier die konkrete Empfehlung für 30 m².
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.

@@ -3,6 +3,9 @@
 > No window for your portable air conditioner? 5 venting routes compared — door seal kits, wall vents and what fails. Renter-safe options for European flats.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/en/guide/vent-portable-ac-without-window.html
+
+Live data on this page (hourly, rendered in the browser, not included in this Markdown view): https://getecoback.com/api/heat
+
 **Quick answer:** A portable air conditioner must send its hot exhaust out of the room, or it will warm the room instead of cooling it. Without a usable window you have five routes, in this order for most European homes: **1)** a fabric **door seal kit** on a hallway or balcony door (renter-safe, no drilling), **2)** a **tilted balcony/French door** sealed like a tilt window, **3)** a **through-wall vent** (permanent, needs the landlord's OK), **4)** venting into a rarely used **utility room or drop ceiling**, **5)** a **chimney flue — professional check only**. Dryer ducts are usually too narrow for the 125–150 mm hose. If none of these exist, an exhaust-free [evaporative cooler](https://getecoback.com/en/guide/portable-ac-vs-air-cooler.html) is the honest fallback.
 
 We haven't lab-tested these setups ourselves; this guide summarises the physics, manufacturer installation manuals and publicly documented venting methods. Links to Amazon are affiliate links — they fund this site at no extra cost to you.

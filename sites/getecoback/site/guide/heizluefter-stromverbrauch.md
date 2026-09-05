@@ -3,6 +3,7 @@
 > Heizlüfter Stromverbrauch konkret: 2000 Watt = 2 kWh, bei ~40 ct/kWh rund 0,80 € pro Stunde. Kostentabelle nach Wattzahl, Formel zum Selbstrechnen & Spartipps.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/heizluefter-stromverbrauch.html
+
 Der Heizlüfter ist das klassische „schnell warm"-Gerät: 25 Euro im Baumarkt, einstecken, und nach Sekunden kommt Wärme. Was auf dem Preisschild nicht steht: Er ist eines der stromhungrigsten Geräte im Haushalt. Bevor du ihn im Herbst wieder täglich laufen lässt, lohnt der Blick auf die Zahlen — sie sind einfach zu rechnen und ziemlich eindeutig. Hier bekommst du die Kosten pro Stunde, pro Abend und pro Monat für alle gängigen Wattzahlen, die Formel zum Nachrechnen mit deinem eigenen Tarif und eine ehrliche Antwort auf die Frage, wann sich das Gerät trotzdem lohnt.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.

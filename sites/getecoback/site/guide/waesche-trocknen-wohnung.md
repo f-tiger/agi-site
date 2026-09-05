@@ -3,6 +3,9 @@
 > Wäsche in der Wohnung trocknen ohne Schimmel: Eine Ladung gibt 1–2 Liter Wasser an die Luft ab — die richtigen Regeln und wie ein Luftentfeuchter hilft.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/waesche-trocknen-wohnung.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/feuchte
+
 Im Winter oder ohne Balkon bleibt oft nur eines: Die nasse Wäsche kommt auf den Ständer im Wohnzimmer oder Flur. Das Problem daran unterschätzen die meisten — eine einzige Ladung gibt **ein bis zwei Liter Wasser** in die Raumluft ab. Diese Feuchtigkeit muss irgendwohin, und wenn du sie nicht kontrollierst, landet sie als Kondenswasser an der kältesten Wand und wird dort zum Schimmel-Nährboden. Diese Anleitung zeigt dir, wie du drinnen trocknest, ohne deine Wohnung zu ruinieren.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.

@@ -36,8 +36,37 @@ GUIDE_MAP = [
      "/guide/schimmel-im-keller-entfernen.html", "Anleitung mit ehrlicher Grenze"),
     (re.compile(r"testsieger", re.I),
      "/guide/luftentfeuchter-keller.html", "Warum wir keinen Testsieger küren"),
+    # 2026-09-05: the strongest signal in the file (luftentfeuchter bei hitze,
+    # v=155.800) and its sibling (kühlt ein luftentfeuchter, 41.200) are
+    # QUESTIONS, and both were rendering as Amazon search chips on the
+    # homepage. The honest answer has lived on the Ratgeber since July; the
+    # rail now sends the questioner there.
+    (re.compile(r"luftentfeuchter.*(hitze|schwül|kühl)|kühlt.*luftentfeuchter", re.I),
+     "/guide/luftentfeuchter-ratgeber.html#ehrlich-ein-entfeuchter-kuehlt-die-luft-nicht",
+     "Kühlt er? Nein — was er bei Schwüle bringt"),
+    # The site has had a dedicated garage page since 08-26; the chip was
+    # still an Amazon search.
+    (re.compile(r"infrarotheizung.*garage|garage.*infrarot", re.I),
+     "/guide/infrarotheizung-garage.html", "Werkbank, Frostschutz oder ganze Garage?"),
 ]
 DROP = re.compile(r"lidl|angebot|aldi|action\b", re.I)
+
+# A question is not a purchase. Any query shaped like one may only ever be
+# routed to a guide; with no GUIDE_MAP match it is dropped, never sold.
+# ("kühlt ein luftentfeuchter" → Amazon search was live on the homepage.)
+QUESTION = re.compile(r"^(kühlt|hilft|wie|was|warum|wann|welche[rs]?|kann|darf|lohnt|ist)\b"
+                      r"|\b(wie funktioniert|was ist|was bedeutet|lohnt sich)\b", re.I)
+
+# Structural guard against seed pollution. When a seed is too small, Google
+# pads related_queries with whatever is trending nationally — on 08-29 the
+# "akku staubsauger" seed came back as belstaff/lululemon and "saugwischer" as
+# balenciaga/carglass, all above MIN_V. They stayed off the homepage only
+# because eight stronger chips filled the rail first. A chip must share a
+# token with this site's device vocabulary, or it does not exist.
+NICHE = re.compile(r"klima|kühl|kuehl|luft|entfeucht|feucht|schimmel|heiz|infrarot|wärme|waerme|"
+                   r"ventilator|abluft|fenster|balkonkraftwerk|solar|speicher|strom|"
+                   r"staubsauger|saugwisch|saugroboter|tineco|dreame|roborock|"
+                   r"kaffeevollautomat|matratze|taupunkt|lüft|lueft|radiator|heizstrahler", re.I)
 
 
 def main():
@@ -56,9 +85,13 @@ def main():
     stand = min(seed_dates) if seed_dates else data.get("fetched", "")
     rows = []
     for seed, v in data.get("seeds", {}).items():
+        if v.get("polluted"):
+            continue  # the fetcher judged this seed's rows off-topic; see fetch_trends_rising
         for r in v.get("rising", []):
             q, val = str(r.get("q", "")).strip(), r.get("v", 0)
             if not q or not isinstance(val, int) or val < MIN_V or DROP.search(q):
+                continue
+            if not NICHE.search(q):
                 continue
             rows.append((val, q))
     rows.sort(reverse=True)
@@ -76,6 +109,8 @@ def main():
                 f'border:1px solid #cfe0ea;border-radius:12px;padding:9px 14px;margin:0 8px 8px 0;'
                 f'text-decoration:none;"><span style="font-weight:700;color:#0a4d7a;font-size:13.5px;">{q}</span>'
                 f'<span style="font-size:11.5px;color:#5b6b78;">📖 {note} →</span></a>')
+        elif QUESTION.search(q):
+            continue  # a question with no answer page is dropped, never sold
         else:
             k = urllib.parse.quote_plus(q)
             chips.append(

@@ -3,6 +3,9 @@
 > Trotec TTK 52 E, 72 E, 70 HEPA oder 75 ECO? Test-Überblick: 16–24 l/Tag, reale Raumgrößen, Stromkosten ab 0,08 €/h — welcher TTK zu welchem Raum passt.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/trotec-luftentfeuchter-test.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/feuchte
+
 Wer in Deutschland nach einem Luftentfeuchter sucht, landet fast zwangsläufig bei der TTK-Reihe von Trotec — und steht dann vor einem Nummernsalat aus TTK 52 E, 72 E, 70 HEPA und 75 ECO. Die Kurzfassung: Der **TTK 72 E** ist das Preis-Leistungs-Arbeitstier für Keller und Wäsche (24 l/Tag für ca. 165–190 €), der **TTK 70 HEPA** der Wohnraum-Kandidat mit echtem HEPA-Filter und häufiger Vergleichssieger, der **TTK 52 E** die günstige Wahl für einzelne Zimmer bis ca. 20 m², und der **TTK 75 ECO** stammt aus der Gewerbe-Serie und ist für kalte Keller und Baustellen gebaut. Wir testen nicht selbst: Diese Seite fasst zusammen, was öffentliche Tests, Preisvergleiche und die Datenblätter des Herstellers sagen, und ordnet die Zahlen für konkrete Räume ein.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.

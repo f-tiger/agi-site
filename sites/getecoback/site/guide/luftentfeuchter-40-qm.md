@@ -3,6 +3,9 @@
 > Welcher Luftentfeuchter für 40 m²? Empfohlen: 25–30 Liter/Tag. Kapazität, Stromkosten & Geräte-Tipp für dein Keller oder sehr großer Raum (2026).
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/luftentfeuchter-40-qm.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/feuchte
+
 Feuchte Luft, beschlagene Fenster oder muffiger Geruch in einem Raum mit rund 40 m²? Ein Luftentfeuchter hilft — aber nur mit der richtigen Kapazität. Zu klein, und er kommt nie hinterher. Hier die konkrete Empfehlung für 40 m².
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.
@@ -33,6 +36,8 @@ Ein Kompressor-Luftentfeuchter zieht ca. 300 W, also rund **0,09 € pro Stunde*
 **Was kostet ein Luftentfeuchter für 40 m² an Strom?**Ein typisches Kompressor-Gerät zieht ca. 300 W, also rund 0,09 € pro Stunde (0,30 €/kWh). Mit Hygrostat läuft es nur bis zur Zielfeuchte und dann kaum noch.
 
 **Hilft ein Luftentfeuchter gegen Schimmel in 40 m²?**Ja — indem er die Luftfeuchtigkeit unter ~60 % hält, entzieht er Schimmel die Grundlage. Ein Hygrostat, der bei Zielfeuchte automatisch abschaltet, ist dafür ideal.
+
+**Hilft ein Luftentfeuchter bei Hitze?**Gegen die Temperatur nicht — er senkt nur die Luftfeuchte und gibt sogar etwas Abwärme ab. Gegen Schwüle schon: Nach dem NOAA-Hitzeindex fühlen sich 28 °C bei 70 % Luftfeuchte wie 30,7 °C an, bei 50 % wie 28,4 °C. Wer wirklich kühlen will, braucht eine Klimaanlage; wer vor allem feuchte, stickige Luft hat, ist hier richtig. Die Zahlen und die ehrliche Reihenfolge stehen im Luftentfeuchter-Ratgeber.
 
 **Passende Luftentfeuchter für 40 m² auf Amazon.de** — auf Liter/Tag und Hygrostat achten:
 

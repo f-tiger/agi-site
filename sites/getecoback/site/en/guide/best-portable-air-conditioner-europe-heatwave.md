@@ -3,6 +3,9 @@
 > Which portable AC actually cools your room? 2026 picks by BTU and room size — no installation, no drilling, plus the right seal for tilt-and-turn windows.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/en/guide/best-portable-air-conditioner-europe-heatwave.html
+
+Live data on this page (hourly, rendered in the browser, not included in this Markdown view): https://getecoback.com/api/heat
+
 The 2026 heatwave has pushed portable air conditioners into shortage across Germany, France and Spain. Prices swing daily and popular models sell out. This guide cuts through it: what to actually look for, and the fastest no-installation options you can order right now.
 
 **Quick answer:** For the 2026 Europe heatwave, buy a portable (monobloc) air conditioner sized to your room: roughly **7,000–9,000 BTU up to 15 m²**, **9,000–12,000 BTU for a 15–25 m² bedroom** (the sweet spot for most people), and **12,000–14,000 BTU for a living room**. Well-reviewed, widely available picks: **De'Longhi Pinguino** (medium rooms), **Comfee** (budget/small rooms), **Klarstein** (large rooms). Only a real portable AC actually lowers the temperature — fans and air coolers just move air.

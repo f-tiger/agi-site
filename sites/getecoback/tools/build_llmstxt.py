@@ -114,6 +114,7 @@ def main():
         "  (`Vary: Accept`).",
         f"  Beispiel: curl -H 'Accept: text/markdown' {BASE}/guide/btu-rechner.html",
         f"- Offene Aggregat-APIs (JSON, keine personenbezogenen Daten): {BASE}/api/heat (Live-Hitze- und Frostvorschau DE: 3-Tage-Maximum und 7-Tage-Minimum, beides mit Warnstufen), "
+        f"{BASE}/api/feuchte (aktueller Taupunkt DE, ungünstigster von drei Orten, stündlich, mit Lüftungsurteil gegen kalte Wand ~15 °C und Kellerwand ~13 °C; ok:false = keine Messung, nie geraten), "
         f"{BASE}/api/strom (heutige Börsen-Stundenpreise DE, EPEX über aWATTar/SMARD), "
         f"{BASE}/api/top (meistgelesene Ratgeber), {BASE}/api/trend (Wochentrends), "
         f"{BASE}/search-index.json (Titel + Beschreibung + Sprache aller Seiten, ein Array).",

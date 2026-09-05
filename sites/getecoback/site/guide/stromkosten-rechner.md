@@ -3,6 +3,9 @@
 > Stromkosten-Rechner für Klimaanlage, Luftkühler, Ventilator und Heizung: Laufzeit und Strompreis eingeben — sofort Kosten pro Stunde, Tag und Monat sehen.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/stromkosten-rechner.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
+
 Die Angst vor der Stromrechnung hält viele vom Kauf ab. Mit diesem Rechner weißt du vorher genau, was ein Ventilator, Luftkühler, eine Klimaanlage oder Heizung im Betrieb kostet — pro Stunde, pro Tag und im Monat.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks sind Affiliate-Links — du zahlst denselben Preis. Der Rechner liefert eine Orientierung, keine Gewähr.

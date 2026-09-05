@@ -3,6 +3,9 @@
 > A simple BTU calculator by room size in m² for portable air conditioners, plus the factors (sun, top floor, people) that mean you should size up. 2026 guide.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/en/guide/how-many-btu-do-i-need.html
+
+Live data on this page (hourly, rendered in the browser, not included in this Markdown view): https://getecoback.com/api/heat
+
 BTU (British Thermal Units) measures an air conditioner's cooling power. Too few and it can't keep your room cool; too many wastes money and makes more noise. Here's the simple version.
 
 As an Amazon Associate, EcoBack earns from qualifying purchases. Product links below are affiliate links — you pay the same price.

@@ -3,6 +3,9 @@
 > De'Longhi Pinguino im Vergleich: PAC EX105 mit A+++ oder PAC N90 ECO Silent unter 50 dB? Modellnummern erklärt, Vergleichstabelle, ehrliche Alternativen.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/delonghi-pinguino-vergleich.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
+
 Wer „De'Longhi Pinguino" sucht, hat die Marke schon gewählt — offen ist nur noch, welcher Pinguino es werden soll. Diese Seite beantwortet genau das: was hinter den PAC-Modellnummern steckt, wie sich die beiden Modelle unterscheiden, die wir auf diesem Portal führen, und wann ehrlicherweise gar kein Pinguino die beste Wahl ist. Wir testen nicht selbst: Alle Zahlen stammen aus Hersteller-Datenblättern und öffentlichen Tests.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.

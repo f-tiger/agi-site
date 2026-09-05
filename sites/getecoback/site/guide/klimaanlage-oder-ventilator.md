@@ -3,6 +3,7 @@
 > Klimaanlage oder Ventilator? Der ehrliche Vergleich von Kühlwirkung, Stromkosten, Preis und Lautstärke — plus klare Empfehlung nach Situation und Budget.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/klimaanlage-oder-ventilator.html
+
 Die häufigste Frage in der Hitzewelle: Reicht ein günstiger Ventilator, oder brauchst du eine echte Klimaanlage? Die kurze Antwort hängt an einem entscheidenden Unterschied — und deinem Budget.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.

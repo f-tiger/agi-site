@@ -3,6 +3,9 @@
 > Lohnt sich ein Balkonkraftwerk? Rechner für Ertrag, Ersparnis und Amortisation — mit und ohne Speicher, nach Ausrichtung und Strompreis. In 30 Sekunden zum Ergebnis.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/balkonkraftwerk-lohnt-sich-rechner.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/strom
+
 Lohnt sich ein Balkonkraftwerk für dich — und lohnt sich der Speicher dazu? Statt Pauschalaussagen rechnet dieser kostenlose Rechner mit deiner Ausrichtung, deinem Strompreis und deinem Kaufpreis. Ohne Anmeldung, Ergebnis sofort.
 
 **Kurz gesagt:** Ein 800-Watt-Balkonkraftwerk nach Süden liefert rund **750 kWh pro Jahr** (senkrecht am Balkon ~550–600 kWh). Bei einem Strompreis von 37 Cent und typischem Eigenverbrauch von ~55 % spart das etwa **150–190 € pro Jahr** — ein 500-€-Set amortisiert sich damit in **rund 3–4 Jahren**. Mit Speicher steigt der Eigenverbrauch auf bis zu 85 %, die Amortisation des Speichers dauert aber 7–12 Jahre. Danach: 20+ Jahre fast kostenloser Strom.

@@ -3,6 +3,9 @@
 > Kippfenster-Abdichtung selber bauen: Material für 10–40 €, zwei erprobte Methoden aus Hohlkammerplatte oder Plexiglas — und wann Kaufen schlauer ist.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/fensterabdichtung-selber-bauen.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
+
 Die Stoffabdichtung aus dem Set ist schnell montiert — aber wer sein Klimagerät den ganzen Sommer am selben Fenster betreibt, merkt ihre Schwächen: Der Reißverschluss lässt Luft durch, das Klebeband löst sich in der Sonne, und richtig dicht wird es nie. Die Baumarkt-Lösung schließt diese Lücke: eine passgenau geschnittene Platte, die die Kippöffnung fast vollständig verschließt. Hier sind die zwei Methoden, die sich in der DIY-Praxis durchgesetzt haben — und die ehrliche Abwägung, wann du besser doch kaufst.
 
 **Kurzantwort:** Miss den **gekippten Flügel** aus, lass dir eine **Hohlkammerplatte** (ab ~10 €) oder **Acrylglas** (ab ~20 €) zuschneiden, schneide eine Öffnung im Schlauchdurchmesser (meist 130/150 mm), befestige die Platte mit **selbstklebendem Magnetband** am Rahmen und dichte die Ränder mit **Schaumstoffband** ab. Kosten: 10–40 €, Zeitaufwand: ein Nachmittag. Dichter als jedes Stoff-Set — aber nur sinnvoll, wenn das Gerät am selben Fenster bleibt.

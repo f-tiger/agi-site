@@ -3,6 +3,7 @@
 > Condizionatore portatile per 30 m²: servono 12.000–13.000 BTU (regola dei 340 BTU/m²). Modello consigliato, costi elettrici e alternativa split senza fori.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/it/guide/condizionatore-portatile-30-mq.html
+
 **Dritti alle scelte**Annuncio · link affiliati — il prezzo per te non cambia
 
 AllrounderDe'Longhi Pinguino PAC EX105→

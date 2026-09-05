@@ -3,6 +3,9 @@
 > Klimaanlage und Luftkühler reinigen: Filter säubern, Wassertank entkalken, muffigen Geruch und Schimmel verhindern — Anleitung Schritt für Schritt.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/klimaanlage-reinigen.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
+
 Nach ein paar Wochen Dauerbetrieb in der Hitzewelle 2026 lässt fast jede mobile Klimaanlage und jeder Luftkühler spürbar nach: Die Luft kommt weniger kühl, das Gerät wird lauter, und irgendwann zieht ein muffiger Geruch durchs Zimmer. In den allermeisten Fällen ist nicht das Gerät kaputt — es ist nur verschmutzt. Diese Anleitung zeigt dir Schritt für Schritt, wie du Filter, Verdampfer und Wassertank reinigst, Schimmel vorbeugst und dein Gerät am Saisonende richtig einlagerst.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.

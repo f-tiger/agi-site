@@ -3,6 +3,9 @@
 > Hitze-Check: In 20 Sekunden das Überhitzungs-Risiko deines Zimmers bestimmen — nach Lage, Fensterausrichtung, Fensterfläche und Dämmung.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/hitze-check.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
+
 Nicht jedes Zimmer braucht gleich eine Klimaanlage. Ob ein Ventilator reicht oder ob du aktiv kühlen musst, hängt vor allem von vier Dingen ab: Lage, Fensterausrichtung, Fensterfläche und Dämmung. Der Hitze-Check gewichtet sie und sagt dir, was wirklich hilft — in der richtigen Reihenfolge.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks im Ergebnis sind Affiliate-Links — du zahlst denselben Preis. Der Check ist eine Orientierung, keine bauphysikalische Berechnung.

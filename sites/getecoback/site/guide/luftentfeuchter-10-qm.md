@@ -3,6 +3,9 @@
 > Welcher Luftentfeuchter für 10 m²? Empfohlen: 10–12 Liter/Tag. Kapazität, Stromkosten & Geräte-Tipp für dein Bad oder kleiner Raum (2026).
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/luftentfeuchter-10-qm.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/feuchte
+
 Feuchte Luft, beschlagene Fenster oder muffiger Geruch in einem Raum mit rund 10 m²? Ein Luftentfeuchter hilft — aber nur mit der richtigen Kapazität. Zu klein, und er kommt nie hinterher. Hier die konkrete Empfehlung für 10 m².
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.

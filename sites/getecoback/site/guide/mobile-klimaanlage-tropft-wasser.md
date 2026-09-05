@@ -3,6 +3,9 @@
 > Mobile Klimaanlage tropft Wasser? Ursachen: voller Tank, schiefe Aufstellung, vereister Verdampfer — mit Checkliste und Dauerlösung per Kondensatschlauch.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/mobile-klimaanlage-tropft-wasser.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
+
 Unter der mobilen Klimaanlage bildet sich eine Pfütze, oder das Gerät hinterlässt eine feuchte Spur auf dem Boden? Keine Panik: Bei Monoblock-Geräten ist tropfendes Wasser in den allermeisten Fällen kein Defekt, sondern eine Kleinigkeit — ein voller Kondensattank, ein nicht ganz fest sitzender Ablassstopfen oder ein schief stehendes Gehäuse. Dieser Ratgeber richtet sich gezielt an **mobile Monoblock-Klimaanlagen** (die meisten Anleitungen im Netz behandeln fest installierte Split-Geräte, bei denen ganz andere Ursachen gelten) und führt dich Schritt für Schritt zur Ursache.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.

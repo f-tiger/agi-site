@@ -3,6 +3,9 @@
 > Heat Check: find your room's overheating risk in 20 seconds — by floor, window direction, window size and insulation — plus what actually helps, in the right order.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/en/guide/heat-check.html
+
+Live data on this page (hourly, rendered in the browser, not included in this Markdown view): https://getecoback.com/api/heat
+
 Not every room needs an air conditioner. Whether a fan is enough or you need to actively cool depends mostly on four things: floor level, window direction, window area and insulation. The Heat Check weighs them and tells you what actually helps — in the right order.
 
 As an Amazon Associate, EcoBack earns from qualifying purchases. Product links in the result are affiliate links — you pay the same price. The check is guidance, not a building-physics calculation.

@@ -3,6 +3,7 @@
 > Wie viel Strom verbraucht ein Ventilator? Meist nur ~50 Watt: rund 2 Cent pro Stunde, 16 Cent pro Nacht. So rechnest du deine Kosten selbst — mit Beispiel.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/ventilator-stromverbrauch.html
+
 Läuft der Ventilator jede Nacht durch, kommt schnell die Sorge: Was macht das mit der Stromrechnung? Die gute Nachricht vorweg — ein Ventilator gehört zu den sparsamsten Geräten im Haushalt. Selbst bei Dauerbetrieb reden wir über wenige Euro pro Monat. Hier bekommst du die konkreten Zahlen, eine einfache Formel zum Nachrechnen und den ehrlichen Vergleich zur Klimaanlage.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.

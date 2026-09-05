@@ -3,6 +3,9 @@
 > Can't sleep in the heat? 12 proven ways to stay cool at night during the 2026 heatwave without air conditioning — plus the cheapest gear that actually helps.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/en/guide/how-to-sleep-in-a-heatwave-without-ac.html
+
+Live data on this page (hourly, rendered in the browser, not included in this Markdown view): https://getecoback.com/api/heat
+
 When your bedroom won't drop below 28°C, sleep becomes almost impossible. Most of Europe isn't built for heat, and installed AC is rare. Here are twelve things that genuinely help you sleep in a heatwave — starting with free tricks, then the cheap gear that makes the biggest difference.
 
 As an Amazon Associate, EcoBack earns from qualifying purchases. Product links below are affiliate links — you pay the same price.

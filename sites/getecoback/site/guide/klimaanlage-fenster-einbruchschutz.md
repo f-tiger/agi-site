@@ -3,6 +3,9 @@
 > Klimaanlage nachts am gekippten Fenster? So sicherst du es ab: ABUS FKS208 (VdS-geprüft) für die Kippstellung — und die Lösung ganz ohne offenes Fenster.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/klimaanlage-fenster-einbruchschutz.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
+
 Die mobile Klimaanlage soll nachts durchlaufen — also bleibt das Fenster mit dem Abluftschlauch gekippt. Im dritten Stock kein Thema, im Erdgeschoss oder an der Terrassentür schon: **Gekippte Fenster gelten als eine der häufigsten Schwachstellen bei Einbrüchen**, sie lassen sich ohne Werkzeug in Sekunden öffnen. Die gute Nachricht: Mit einer geprüften Kippsicherung bleibt der Kippspalt für den Schlauch nutzbar — und das Fenster trotzdem verriegelt.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.

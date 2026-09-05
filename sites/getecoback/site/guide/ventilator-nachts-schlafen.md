@@ -3,6 +3,7 @@
 > Ventilator nachts anlassen: gesund oder schädlich? Meist unproblematisch, wenn du nicht direkt anbläst — die 6 Regeln gegen trockene Augen und steifen Nacken.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/ventilator-nachts-schlafen.html
+
 An heißen Nächten hilft ein Ventilator beim Einschlafen — aber im Netz kursieren Warnungen, dass er nachts angelassen krank mache. Was stimmt davon? Die ehrliche Antwort: Für die meisten gesunden Menschen ist ein Ventilator über Nacht **völlig unbedenklich**. Die bekannten Probleme entstehen fast ausschließlich, wenn die Luft dauerhaft **direkt** auf Gesicht oder Nacken bläst. Mit sechs einfachen Regeln nimmst du fast alle Nachteile weg — und behältst nur die Kühlung.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.

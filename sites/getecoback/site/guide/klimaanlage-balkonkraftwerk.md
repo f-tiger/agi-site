@@ -3,6 +3,9 @@
 > Klimaanlage mit Balkonkraftwerk betreiben: Ein 800-W-Balkonkraftwerk deckt mittags einen großen Teil des Verbrauchs — die ehrliche Rechnung mit Beispiel.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/klimaanlage-balkonkraftwerk.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
+
 Die Idee liegt auf der Hand: Genau dann, wenn die Sonne auf die Wohnung knallt und die Klimaanlage am meisten Strom frisst, liefert ein Balkonkraftwerk auch am meisten Strom. Kaum ein anderer Verbraucher im Haushalt passt zeitlich so perfekt zur Solarproduktion. Aber reicht ein 800-Watt-Balkonkraftwerk wirklich, um eine Klimaanlage zu betreiben? Die kurze Antwort: teilweise — und das ist besser, als es klingt. Hier ist die ehrliche Rechnung ohne Solar-Marketing.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.

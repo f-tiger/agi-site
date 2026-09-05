@@ -3,6 +3,7 @@
 > Hitze am Fenster stoppen, bevor sie ins Zimmer kommt: Außenrollo, Sonnenschutzfolie und Thermo-Verdunkelungsrollo im Vergleich — der günstigste Kühl-Schritt zuerst.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/hitzeschutz-fenster.html
+
 Der billigste Weg, ein Zimmer kühl zu halten, kostet oft unter 20 € — und du kaufst dafür keine Klimaanlage, sondern hältst die Hitze am Fenster auf, bevor sie überhaupt hineinkommt. Rund drei Viertel der sommerlichen Wärme in einer Wohnung dringen durch verglaste Flächen ein. Wer die Sonne dort abfängt, spart sich einen großen Teil der Kühlung. Dieser Ratgeber geht die Optionen nach Preis-Leistung durch — vom günstigsten Schritt zuerst.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.

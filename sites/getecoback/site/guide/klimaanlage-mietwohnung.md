@@ -3,6 +3,9 @@
 > Klimaanlage in der Mietwohnung: Was ohne Genehmigung des Vermieters erlaubt ist und welche Geräte ohne Bohren funktionieren — der ehrliche Ratgeber 2026.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/klimaanlage-mietwohnung.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
+
 Als Mieter willst du bei 35 °C nicht schwitzen — aber du willst auch keine Kaution riskieren oder dich mit dem Vermieter anlegen. Die gute Nachricht: Für die meisten Mietwohnungen gibt es Kühlung ganz ohne bauliche Veränderung. Die schlechte: Ausgerechnet die fest installierte Split-Klimaanlage, die am besten kühlt, ist genau die, die du **nicht** einfach anbringen darfst. Hier der ehrliche Überblick, was geht und was nicht.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis. Dieser Artikel ist keine Rechtsberatung.

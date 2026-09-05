@@ -3,6 +3,9 @@
 > Auto bei Hitze kühlen: So bleibt dein Wagen im Sommer 2026 erträglich — Sonnenschutz, richtig lüften, schnell abkühlen und günstige Helfer, die sofort wirken.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/auto-bei-hitze-kuehlen.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
+
 Ein Auto in der prallen Sommersonne wird zur Sauna: An einem 30-°C-Tag steigt die Innentemperatur in einer halben Stunde auf über 50 °C, Lenkrad und Sitze werden fast unberührbar. Das kostet nicht nur Nerven, sondern belastet auch Kreislauf und Konzentration am Steuer. Hier sind neun Tricks, die deinen Wagen bei Hitze spürbar kühler halten — erst die kostenlosen Maßnahmen, dann die günstigen Helfer mit dem größten Effekt.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.

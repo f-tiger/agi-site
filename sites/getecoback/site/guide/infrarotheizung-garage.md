@@ -3,6 +3,7 @@
 > Infrarotheizung in der Garage: sinnvoll als Punktwärme am Werktisch, teuer als Raumheizung ohne Dämmung. Mit Stromkosten-Formel & Frostschutz-Alternative.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/infrarotheizung-garage.html
+
 **Kurz gesagt:** Eine Infrarotheizung ist in der Garage genau dann sinnvoll, wenn sie **dich und deinen Arbeitsplatz direkt bestrahlt** — denn sie erwärmt Oberflächen statt Luft, und Luft ist das, was eine ungedämmte Garage sofort wieder verliert. Als Raumheizung für die ganze Garage ist sie ohne Dämmung unwirtschaftlich, und für reinen **Frostschutz ist ein Frostwächter mit Thermostat** die passendere, sparsamere Lösung.
 
 ## Warum Infrarot in der Garage anders spielt als im Wohnzimmer

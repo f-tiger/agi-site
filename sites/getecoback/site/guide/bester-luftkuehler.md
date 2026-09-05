@@ -3,6 +3,9 @@
 > Bester Luftkühler 2026: Wie Verdunstungskühler wirklich funktionieren, wann sie bei trockener Hitze helfen und wann eine Klimaanlage die bessere Wahl ist.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/bester-luftkuehler.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
+
 „Bester Luftkühler" ist eine unehrliche Überschrift, wenn dahinter nur ein erfundener Testsieger steht. Denn der beste Luftkühler hängt komplett von deiner Situation ab — und in manchen Fällen ist der beste Luftkühler gar keiner. Dieser Ratgeber gibt dir stattdessen die echten Kaufkriterien an die Hand, damit du selbst entscheiden kannst, ob und welches Gerät zu dir passt.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.

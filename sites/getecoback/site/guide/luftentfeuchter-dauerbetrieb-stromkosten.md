@@ -3,6 +3,9 @@
 > Luftentfeuchter im Dauerbetrieb: Stromkosten von 0,09–0,21 €/h, bis über 100 €/Monat bei 24 h — und warum der Hygrostat-Modus meist günstiger ist.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/luftentfeuchter-dauerbetrieb-stromkosten.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/feuchte
+
 Der Keller riecht muffig, das Hygrometer zeigt 70 % — also Luftentfeuchter rein und einfach durchlaufen lassen? Bevor du das tust, lohnt ein Blick auf den Stromzähler: Im echten 24-Stunden-Dauerbetrieb gehört ein Kompressor-Entfeuchter zu den teureren Dauerverbrauchern im Haushalt. Hier rechnen wir ehrlich vor, was der Betrieb kostet, warum Dauerbetrieb in den meisten Fällen der falsche Ansatz ist — und in welchen zwei Situationen er trotzdem die richtige Wahl ist. Wir fassen dabei öffentlich verfügbare Informationen und Herstellerangaben zusammen.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.

@@ -3,6 +3,9 @@
 > A portable AC that runs but won't cool usually has a fixable cause: full tank, clogged filter, kinked hose or a leaky window seal. Check all 7 causes here.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/en/guide/portable-ac-not-cooling.html
+
+Live data on this page (hourly, rendered in the browser, not included in this Markdown view): https://getecoback.com/api/heat
+
 The good news first: a portable AC that suddenly stops cooling is rarely broken. It is usually being sabotaged by something small — a full tank, a blocked filter, a squashed hose, or the most overlooked cause of all: your own hot exhaust air leaking straight back into the room. Work through the seven checks below, from most common to least.
 
 As an Amazon Associate, EcoBack earns from qualifying purchases. Product links below are affiliate links — you pay the same price.

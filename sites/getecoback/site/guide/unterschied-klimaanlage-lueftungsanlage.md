@@ -3,6 +3,9 @@
 > Kühlt eine Lüftungsanlage die Wohnung? Nein — sie tauscht nur Luft aus. Was beide Systeme wirklich leisten: Vergleichstabelle, Kosten und Nachrüst-Tipps.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/unterschied-klimaanlage-lueftungsanlage.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
+
 „Wir haben doch eine Lüftungsanlage — warum ist es trotzdem 30 °C in der Wohnung?" Diese Frage taucht in jedem heißen Sommer wieder auf, und die Antwort ist einfach: Eine Lüftungsanlage ist keine Klimaanlage. Die beiden Systeme sehen für Laien ähnlich aus (Gerät, Rohre, Luft strömt), lösen aber komplett unterschiedliche Probleme. Hier steht klipp und klar, was welches System kann, was es kostet — und welches sich nachrüsten lässt.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.

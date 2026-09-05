@@ -3,6 +3,9 @@
 > Fensterabdichtung, Schlauchadapter, Thermo-Rollo: Wo Zubehör wirklich günstiger ist, was der Direktimport aus China kostet — an Wartezeit, Rückgabe und Nerven.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/klimaanlage-zubehoer-guenstig.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
+
 **Kurz:** Zubehör wie Fensterabdichtung, Schlauchadapter oder Hygrometer kostet direkt aus China oft **etwa die Hälfte**. Dafür zahlst du mit **ein bis drei Wochen Wartezeit** und einer Reklamation, die über die Plattform statt über einen deutschen Händler läuft. Steht das Gerät schon im Zimmer und es sind 34 °C, ist der schnelle Weg fast immer der richtige. Planst du für nächstes Jahr vor, ist der günstige Weg vernünftig.
 
 Wir verkaufen nichts selbst und importieren nichts. Amazon-Links sind Affiliate-Links; die Links zu AliExpress und Temu sind derzeit **ohne Provisionsbeziehung** — sie stehen hier, weil sie für dich billiger sein können, nicht weil wir daran verdienen.

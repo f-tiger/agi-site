@@ -3,6 +3,9 @@
 > Split-Klimaanlage ohne Kernbohrung: Wie Quick-Connect-Systeme leise Split-Kühlung ohne Installateur liefern und rund 1.000 € Montagekosten sparen.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/split-klimaanlage-ohne-kernbohrung.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
+
 Eine klassische Split-Klimaanlage ist leise und effizient — aber Kernbohrung, Kältemitteltechniker und 1.000–2.000 € Montagekosten schrecken ab, und zur Miete ist sie meist gar nicht erlaubt. Seit die Midea PortaSplit diese Lücke aufgerissen hat, gibt es eine wachsende Kategorie: **Split-Klimaanlagen mit Quick-Connect-Kupplung zur Selbstmontage**. Hier der ehrliche Überblick.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.

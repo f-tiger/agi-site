@@ -3,6 +3,9 @@
 > Mobile Klimaanlage kühlt nicht? Der 7-Punkte-Check: Wassertank, Filter, Abluftschlauch, Fensterabdichtung, BTU-Größe & wann der Fachmann ranmuss.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/mobile-klimaanlage-kuehlt-nicht.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
+
 Draußen 34 °C, die mobile Klimaanlage brummt seit Stunden — und trotzdem bleibt der Raum warm. Bevor du an einen Defekt glaubst oder ein neues Gerät kaufst: Bei Monoblock-Geräten gibt es eine Handvoll typischer Ursachen, die sich in einer festen Reihenfolge durchprüfen lassen. Die ersten fünf kannst du selbst beheben, meist in wenigen Minuten und ohne Werkzeug. Dieser Ratgeber geht die sieben Punkte vom Häufigsten zum Seltensten durch.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.

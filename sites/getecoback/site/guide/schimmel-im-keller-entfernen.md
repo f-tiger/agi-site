@@ -3,6 +3,9 @@
 > Schimmel im Keller entfernen: kleinflächig selbst behandeln, großflächig Fachbetrieb — und warum er ohne Entfeuchtung wiederkommt. Ehrliche Anleitung.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/schimmel-im-keller-entfernen.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
+
 Schimmel im Keller ist fast nie ein Reinigungsproblem, sondern ein Feuchteproblem mit sichtbarem Symptom. Deshalb hat diese Anleitung zwei Hälften: erst der Befall weg — mit dem richtigen Mittel für das richtige Material —, dann die Ursache weg, sonst stehst du in ein paar Wochen wieder vor demselben Fleck. Wir sagen ehrlich dazu, wo Eigenleistung endet und Fachhände nötig sind.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.

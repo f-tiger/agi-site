@@ -3,6 +3,7 @@
 > Klimaanlage mit Heizfunktion: kühlt im Sommer, heizt im Winter als Wärmepumpe — wann sich das gegenüber Strom- oder Gasheizung wirklich rechnet.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/klimaanlage-mit-heizfunktion.html
+
 Die meisten Klimageräte können mehr, als viele denken: Eine Klimaanlage mit Heizfunktion ist im Kern eine **Luft-Luft-Wärmepumpe** — im Sommer transportiert sie Wärme nach draußen (kühlt), im Winter dreht sie den Prozess um und holt Wärme von draußen herein (heizt). Das macht aus einem reinen Sommergerät eine Ganzjahres-Anschaffung — und ändert die Wirtschaftlichkeit komplett. Hier die ehrliche Einordnung.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.

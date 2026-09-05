@@ -3,6 +3,9 @@
 > Luftentfeuchter oder Luftreiniger? Der eine entzieht Feuchtigkeit gegen Schimmel, der andere filtert Pollen und Staub — die klare Empfehlung nach Problem.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/luftentfeuchter-oder-luftreiniger.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/feuchte
+
 Luftentfeuchter und Luftreiniger klingen ähnlich, machen aber komplett Unterschiedliches. Wer das falsche Gerät kauft, gibt Geld aus und löst sein Problem trotzdem nicht. Hier die klare Abgrenzung — und welches du brauchst.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.

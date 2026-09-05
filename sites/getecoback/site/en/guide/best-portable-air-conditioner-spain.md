@@ -3,6 +3,9 @@
 > Best portable AC for Spain in 2026: picks for renters and expats, comunidad rules that favour monoblocks, humid costa vs dry inland, sizing for 40°C heat.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/en/guide/best-portable-air-conditioner-spain.html
+
+Live data on this page (hourly, rendered in the browser, not included in this Markdown view): https://getecoback.com/api/heat
+
 Spain gets Europe's most brutal summer heat — Seville and Córdoba regularly pass 40°C — yet much of the rental stock, especially older flats in city centres, has no air conditioning at all. And renters usually can't just have a split unit installed: the landlord has to agree, and the comunidad often has a say about anything bolted to the façade. That's why the monoblock portable AC has become the default answer for renters and expats in Spain.
 
 As an Amazon Associate, EcoBack earns from qualifying purchases. Product links below are affiliate links — you pay the same price.

@@ -3,6 +3,9 @@
 > Stromkosten von Klimaanlagen pro Stunde: tragbare Geräte, Luftkühler und Ventilator im Vergleich — mit Rechenbeispielen 2026 und konkreten Spartipps.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/klimaanlage-stromkosten.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
+
 Die Angst vor der Stromrechnung hält viele vom Klimaanlagen-Kauf ab. Die gute Nachricht: Mit einer einfachen Formel weißt du vorher genau, was auf dich zukommt. Hier die Rechnung mit realistischen 2026er-Zahlen (Strompreis ~0,30 €/kWh als Rechenbasis — setze deinen eigenen Tarif ein).
 
 **Kurze Antwort:** Bei ~0,30 €/kWh kostet eine tragbare Klimaanlage rund **30 Cent pro Stunde** (9.000 BTU / ~1.000 W) bis **42 Cent pro Stunde** (14.000 BTU / ~1.400 W). Formel: **Watt ÷ 1.000 × Strompreis pro kWh**. Über einen Hitzemonat (8 Std./Nacht) sind das ~72–100 € — mit Timer und 25 °C eher **30–50 €**. Zum Vergleich: ein Ventilator (~50 W) kostet nur ~1,5 Cent pro Stunde, ein Luftkühler (~80 W) ~2,4 Cent.
