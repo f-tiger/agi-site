@@ -1,62 +1,51 @@
 {
  "ok": true,
- "fetched": "2026-09-04",
+ "fetched": "2026-09-05",
  "source": "https://trends.google.com/trending/rss?geo=DE",
- "matched": [
-  {
-   "title": "wetterwarnung",
-   "traffic": "200+"
-  }
- ],
+ "matched": [],
  "top": [
   {
-   "title": "bsw",
-   "traffic": "1000+"
-  },
-  {
-   "title": "wetterwarnung",
+   "title": "witz des tages",
    "traffic": "200+"
   },
   {
-   "title": "rechnungshof",
-   "traffic": "100+"
-  },
-  {
-   "title": "scooter braun",
-   "traffic": "500+"
-  },
-  {
-   "title": "wuppertaler schwebebahn",
-   "traffic": "100+"
-  },
-  {
-   "title": "lanxess arena",
-   "traffic": "100+"
-  },
-  {
-   "title": "wedemark",
+   "title": "jens spahn ski aggu",
    "traffic": "200+"
   },
   {
-   "title": "basketball wm frauen 2026",
+   "title": "erni mangold",
+   "traffic": "200+"
+  },
+  {
+   "title": "west nil virus",
    "traffic": "100+"
   },
   {
-   "title": "unbekannter toter",
+   "title": "sachsen anhalt",
    "traffic": "5000+"
   },
   {
-   "title": "ticketmaster",
-   "traffic": "1000+"
+   "title": "luis enrique",
+   "traffic": "200+"
+  },
+  {
+   "title": "judd trump",
+   "traffic": "500+"
+  },
+  {
+   "title": "tetris",
+   "traffic": "500+"
+  },
+  {
+   "title": "anna-carina woitschack",
+   "traffic": "200+"
+  },
+  {
+   "title": "nieheim",
+   "traffic": "100+"
   }
  ],
  "history": [
-  {
-   "d": "2026-08-21",
-   "matched": [
-    "wetter dresden"
-   ]
-  },
   {
    "d": "2026-08-22",
    "matched": [
@@ -122,6 +111,10 @@
    "matched": [
     "wetterwarnung"
    ]
+  },
+  {
+   "d": "2026-09-05",
+   "matched": []
   }
  ]
 }
