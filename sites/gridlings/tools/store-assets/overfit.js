@@ -44,7 +44,7 @@ module.exports = {
     burst(W*0.63, H*0.46, 275, 40, 240); burst(W*0.35, H*0.56, 340, 28, 210); burst(W*0.5, H*0.3, 160, 22, 190);
     waveMsg = null; pops = [];
     var t = document.createElement('div');
-    t.style.cssText='position:fixed;top:6%;left:0;right:0;text-align:center;z-index:40;pointer-events:none;font-family:-apple-system,Segoe UI,sans-serif;';
+    t.style.cssText='position:fixed;top:0;left:0;right:0;text-align:center;z-index:60;pointer-events:none;padding:${c.title*0.35}px 0 ${c.title*0.6}px;background:linear-gradient(180deg,#07090f 0%,#07090f 88%,#07090f00 100%);font-family:-apple-system,Segoe UI,sans-serif;';
     t.innerHTML='<div style="font-weight:900;font-size:${c.title}px;letter-spacing:4px;color:#fff;line-height:1">OVER<span style="color:#ff3d71">FIT</span></div>'
       +'<div style="font-weight:700;font-size:${c.tag}px;color:#00e5a8;margin-top:8px">the boss learns your moves — betray it</div>';
     document.body.appendChild(t);

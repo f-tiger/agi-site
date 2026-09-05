@@ -62,6 +62,13 @@ function run(bin, args) {
   });
 }
 
+/* read a PNG's real dimensions straight from the IHDR chunk -- the covers are
+   hard-gated on exact pixel sizes by the portals, so assert instead of trusting */
+function sizeOf(f) {
+  const b = fs.readFileSync(f);
+  return { w: b.readUInt32BE(16), h: b.readUInt32BE(20) };
+}
+
 (async () => {
   fs.mkdirSync(OUT, { recursive: true });
   const { srv, port } = await serve(SITE);
@@ -72,15 +79,30 @@ function run(bin, args) {
 
   /* ---------- covers: a staged frame of the real game, no mockups ---------- */
   for (const c of cfg.covers) {
-    const page = await browser.newPage({ viewport: { width: c.w, height: c.h } });
+    /* Render at HALF the target in CSS pixels and screenshot at 2x, instead of
+       opening a literal 1920px-wide window. Every game caps its playfield with
+       `max-width` (900-1400px), so a 1920 viewport does not make the game
+       bigger -- it just adds gutters, and the first covers came out as a small
+       cluster of art marooned in a field of empty background. At 960 CSS px
+       the playfield fills the frame and deviceScaleFactor 2 restores the pixel
+       count. The in-page canvas honours devicePixelRatio, so it is genuinely
+       sharper, not upscaled. */
+    const dsf = c.dsf || 2;
+    const page = await browser.newPage({
+      viewport: { width: Math.round(c.w / dsf), height: Math.round(c.h / dsf) },
+      deviceScaleFactor: dsf
+    });
     await page.goto(base, { waitUntil: "networkidle" });
     await page.waitForFunction(cfg.readyExpr);
-    await page.evaluate(cfg.stage(c));
+    /* title/tag sizes in the config are stated in FINAL pixels, so convert */
+    await page.evaluate(cfg.stage({ ...c, title: c.title / dsf, tag: c.tag / dsf }));
     await page.waitForTimeout(180);
     const f = path.join(OUT, `${slug}-cover-${c.name}-${c.w}x${c.h}.png`);
     await page.screenshot({ path: f });
     await page.close();
-    report.push(`${path.basename(f)}  ${(fs.statSync(f).size / 1024) | 0}KB`);
+    const got = await sizeOf(f);
+    if (got.w !== c.w || got.h !== c.h) throw new Error(`${path.basename(f)} came out ${got.w}x${got.h}, wanted ${c.w}x${c.h}`);
+    report.push(`${path.basename(f)}  ${got.w}x${got.h}  ${(fs.statSync(f).size / 1024) | 0}KB`);
   }
 
   /* ---------- videos: real gameplay driven by the game's own autopilot ---------- */

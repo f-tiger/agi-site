@@ -362,7 +362,9 @@ function draw(dt) {
     cx.fillRect(px + i * (pw / LABEL_BUDGET), py, w, 5);
   }
   /* the specimen under judgement */
-  var R = Math.max(34, Math.min(64, L.h * .13));
+  /* the specimen IS the interaction -- capped at 64px it sat as a small badge
+     in the middle of a large screen, hard to read the wobble/spikes on */
+  var R = Math.max(34, Math.min(92, L.h * .16, L.w * .20));
   if (cur) drawSpec(cur, L.cx, L.cy, R, 1);
   /* phase caption */
   cx.textAlign = "center"; cx.fillStyle = "#7b88ab"; cx.font = "600 12.5px -apple-system,'Segoe UI',sans-serif";

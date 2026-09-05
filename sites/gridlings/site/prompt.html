@@ -386,8 +386,15 @@ function draw(dt) {
   /* board */
   for (var y = 0; y < grid.length; y++) for (var x = 0; x < grid[0].length; x++) {
     var c = grid[y][x], X = C.ox + x * C.s, Y = C.oy + y * C.s;
-    if (c === "#") { cx.fillStyle = "rgba(255,255,255,.055)"; cx.fillRect(X + 1, Y + 1, C.s - 2, C.s - 2); continue; }
-    cx.fillStyle = "rgba(255,255,255,.022)"; cx.fillRect(X + 1, Y + 1, C.s - 2, C.s - 2);
+    /* walls were rgba(...,.055) against a .022 floor -- a 3% alpha difference that
+       vanished on a laptop screen and made the maze unreadable in a screenshot */
+    if (c === "#") {
+      cx.fillStyle = "rgba(126,145,190,.30)"; cx.fillRect(X + 1, Y + 1, C.s - 2, C.s - 2);
+      cx.strokeStyle = "rgba(150,170,215,.20)"; cx.lineWidth = 1;
+      cx.strokeRect(X + 1.5, Y + 1.5, C.s - 3, C.s - 3);
+      continue;
+    }
+    cx.fillStyle = "rgba(255,255,255,.032)"; cx.fillRect(X + 1, Y + 1, C.s - 2, C.s - 2);
     if (c === "D") {
       cx.fillStyle = "#8affc1"; cx.shadowColor = "rgba(138,255,193,.7)"; cx.shadowBlur = 10;
       cx.beginPath();
