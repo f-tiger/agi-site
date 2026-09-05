@@ -448,9 +448,38 @@ Nova 充能均验证;零控制台报错。
 标签 block/puzzle/casual → 封面用会话交付的 cover-1920x1080.png / portrait-800x1200.png
 → 描述抄 blocknova.html 的 meta description。审核 2-4 周。
 
-**预登记判定线(2026-09-05 立)**:
+**修订(2026-09-05 当日,owner:「你调研crazygame的爆款,不要重复,否则cg一定会拒绝,
+和上两次一样,做一个ai时代的好玩游戏」)**:Block Nova **不投 CG**——owner 判断饱和品类
+复制品会吃第三次模板拒稿,采纳。BN 保留为本站内容资产(判定线只剩本站基线:D1
+`play_start{label=bn}` 与 /blocknova pv,首读 2026-10-05);其 CG 包继续构建但不提交。
+**CG 投稿名额转移给 OVERFIT(见下节)。**
+
+## OVERFIT(2026-09-05,owner:「做一个ai时代的好玩游戏」)
+
+**调研依据**:CG 原创爆款(Space Waves,365 天 2.5M 下载)共性 = 单一输入动词、速度压力、
+30-90 秒一局、秒重开。OVERFIT 长在这副骨架上,原创层是 **AI 作为核心玩法动词,不是贴皮**:
+
+- `/overfit`(site/overfit.html,单文件 29KB,零外部资源):指针即移动、自动开火的
+  波次躲避射击。**敌方 AI 真实在学玩家**(浏览器内统计模型:8 向移动直方图、顺/逆
+  时针绕圈偏好、速度 EMA、被锁定时的闪避方向计数)——预判型敌人与狙击线全部按模型
+  打提前量,波间公开「训练报告」(drift bias / orbit / dodge 比例 + 置信度)。
+- **签名机制「过拟合崩溃」**:模型置信度 ≥0.55 时,玩家近 2.2 秒行为与模型预测方向
+  一致率 <14% → MODEL CONFUSED:敌人踉跄 2.2 秒、得分 ×2、模型直方图坍缩 75%。
+  核心循环 = 先喂它一个模式,再背叛它。AI CONFIDENCE 条常驻 HUD,机制全透明。
+- Playwright 实测在案:喂「向右」习惯 → conf 0.73/predDir→;反向背叛 → 混乱触发 +25;
+  战斗/波次/结算/秒重开全绿,零控制台报错。
+- 工程同 BN 标准:内联 CG 桥(仅 cg 模式)、绝对地址信标(label=of,事件
+  play_start/game_over/play_again/hub_click)、worker 路由 /overfit、hub/sitemap/
+  部署自检接线、CI 打包 site/downloads/cg/overfit-cg.zip。
+
+**owner 动作(约 10 分钟)**:CG 开发者后台 → Submit new game → 上传
+https://play.agiscorecard.com/downloads/cg/overfit-cg.zip → 名称 OVERFIT,品类
+Action/Arcade,标签 ai / dodge / arcade / survival → 封面用会话交付的
+of-cover-1920x1080.png / of-portrait-800x1200.png → 描述抄页面 meta description。
+
+**预登记判定线(自 BN 转移并沿用,2026-09-05 立)**:
 - 若 CG 第三次给同一句「overall quality」模板拒稿 → **结论性反面**:CG 对本舰队关闭,
   永不再投任何新品到 CG;门户线只剩 itch(已自动化)。不许第四投。
-- 若过审:上架后 28 天,CG 面板累计 plays ≥1000 或出现任何分成收入 → 游戏线重新升级,
-  做第二款/补日语;plays <200 → 只维护不加投,写反面。
-- 本站侧基线:D1 `play_start{label=bn}` 30 天读数与 /blocknova 页面 pv,首次读数 2026-10-05。
+- 若过审:上架后 28 天,CG 面板累计 plays ≥1000 或出现任何分成收入 → 游戏线重新升级
+  (做第二款/补日语);plays <200 → 只维护不加投,写反面。
+- 本站侧基线:D1 `play_start{label=of}` 30 天读数与 /overfit pv,首读 2026-10-05。
