@@ -55,6 +55,7 @@ thedollscout 冻结约 **86 小时**——它的部署是纯 push 触发，没�
 | `tds-traffic.yml` | `0 6 * * *` | tds D1 14 天窗导出 |
 | `agi-odds.yml` | `25 3 * * 1` | 赔率快照（周一，早于日报） |
 | `metaculus-bot.yml` | `13 */2 * * *` | **新增 2026-09-05**:Metaculus FutureEval 机器人锦标赛(舰队第一条与流量无关的营收线);job 级门 `vars.METACULUS_BOT_ENABLED=='1'`,未设 = 0 分钟;≤1,800 分钟/月(公开仓免费);详见 `docs/revenue-breakthrough-2026-09.md` |
+| `agi-paper-ledger.yml` | `40 22 * * 1-5` | **新增 2026-09-05**:预登记纸面交易台账,六臂确定性重算 → `sites/agiscorecard/paper-ledger.json`;≈22 分钟/月 + 触发 agi 部署 ≈66 分钟/月;取不到 SPY 即红;详见 `docs/auto-trading-research-2026-09.md` |
 | `agi-indexnow.yml` | `17 3 * * 1` | sitemap 提交（周一） |
 | `tds-indexnow.yml` | `20 6 * * 3` | tds IndexNow（周三） |
 

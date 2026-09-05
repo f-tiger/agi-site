@@ -1,3 +1,12 @@
+## 2026-09-05(晚)— /ai-trading-ledger 上线(预登记纸面台账;owner 问「自动化交易子站?」)
+
+裁定不开子站(根仓 docs/auto-trading-research-2026-09.md)。建:`tools/paper_ledger.py` 六臂确定性
+重算 + `agi-paper-ledger.yml` 每交易日 22:40 UTC + `/ai-trading-ledger` 页(EN,`.md` 手写镜像)+
+占位 `paper-ledger.json`。接线:`/do-ai-trading-agents-work` 同一标准框、`/invest` 工具卡、
+`/agi-questions`、llms.txt、sitemap、search-index(+1)。validate.py OK、hreflang OK、Playwright
+用合成夹具渲染核对。规则/篮子/起始日已预登记,不得再改。
+
+
 ## 2026-09-04（合并后的首条「舰队日报」，agi + sourceradar）
 
 - **spec（两轮）**：R1 四层监控 + 游戏层 + 新增第①层 heartbeat；R2 自我批判——今天

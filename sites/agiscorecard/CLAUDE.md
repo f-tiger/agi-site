@@ -921,3 +921,18 @@ CLAUDE.md 里「propagation IS the product」那条规则要防的那件事。�
    `exit(1)`——宁可红，不可发一个猜出来的数字。
 3. 判定翻转日重跑 gen_index / gen_badges / gen_agi_exposure / **gen_invest_data**
    之后，逐个 `git diff` 确认改的是分数而不是别的东西。
+
+## 纸面交易台账 `/ai-trading-ledger`(2026-09-05;裁定见根仓 docs/auto-trading-research-2026-09.md)
+
+- 数据契约:`paper-ledger.json` 由 `agi-paper-ledger.yml` 在 runner 上写(沙箱 403 Yahoo/Stooq),
+  **会话永远不要手改这个 JSON**,也不要在本地跑 `tools/paper_ledger.py` 后提交(会把 fixture/陈旧
+  价格写进去);本地只允许 `--fixture … --dry-run`。占位 JSON(`status: pre_registered`)在首个交易日
+  被覆盖。
+- 内容契约:页面**不出现任何「买/卖 X」**,仓位只在纸面执行后显示;不做 zh 镜像、不给券商链接;
+  六臂规则与 START 已预登记,**任何轮次不得改规则、改篮子、改起始日**——要改只能加新臂并注明日期。
+- 硬同步:`agi_basket` 的 10 只 = `/ai-stock-exposure` 两个预设;若那页预设改了,台账**不跟改**
+  (预登记优先),只在页面规则表注明「预设已于 X 日变更,台账沿用原篮子」。
+- 判定线:2026-11-04 页面真人 pv ≥30/28d 或任一引荐;2027-03-08 读数日;LLM 臂(`LEDGER_LLM_KEY`)
+  启动 +26 周把结果与 Alpha Arena 对照写进 `/do-ai-trading-agents-work`。
+- 事件:`invest_tool_click{invest_hub_ledger}`、`tool_click{doaitrading_ledger}`、
+  `index_click{ledger_tracker}`、`subscribe_click{deep_ledger}`。
