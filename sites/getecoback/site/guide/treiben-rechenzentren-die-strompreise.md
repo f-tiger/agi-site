@@ -3,6 +3,9 @@
 > Nein — bisher nicht: Haushaltsstrom fiel auf 37,0 ct/kWh (BDEW 4/2026), Netzentgelte sanken 17,6 %. Aber Frankfurt und die USA zeigen das Risiko. Die Zahlen.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/treiben-rechenzentren-die-strompreise.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
+
 **Die kurze Antwort: Nein — bisher nicht.** Die deutschen Haushaltsstrompreise **fallen** seit dem Krisenhoch: rund 47 ct/kWh Anfang 2023 → **37,0 ct/kWh** (BDEW-Strompreisanalyse, April 2026). Die Netzentgelte sanken 2026 sogar um durchschnittlich **17,6 %**. Rechenzentren stehen heute für rund **4 %** des deutschen Stromverbrauchs — ein dokumentierter Durchschlag auf deine Rechnung existiert nicht. **Aber:** In Frankfurt sind es schon ~20 % des Stadtverbrauchs, die Bundesnetzagentur projiziert bis zu 10 % bundesweit bis 2037 — und die USA zeigen gerade live, wie der Mechanismus aussieht, wenn er kippt.
 
 ## Deutschland vs. USA: dieselbe Frage, zwei verschiedene Antworten

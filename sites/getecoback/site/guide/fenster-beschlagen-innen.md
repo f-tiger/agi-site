@@ -3,6 +3,9 @@
 > Morgens nasse Scheiben? Nicht immer ist Lüften die Lösung. Der 3-Ursachen-Check zeigt, ob es an Feuchte, Lüftung oder kalter Scheibe liegt.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/fenster-beschlagen-innen.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
+
 **Kurzantwort:** Die Scheibe beschlägt, weil die Raumluft an ihr unter den **Taupunkt** abkühlt. Dahinter stecken drei verschiedene Ursachen mit drei verschiedenen Lösungen: **1)** zu viel Feuchte im Raum (Schlafende, Wäsche, Pflanzen) → Feuchtequelle reduzieren oder entfeuchten; **2)** zu wenig Luftwechsel → morgens und abends 5–10 Minuten stoßlüften, nicht kippen; **3)** zu kalte Scheibe (alte Verglasung, Wärmebrücke) → das ist ein bauliches Problem, dagegen hilft kein Entfeuchter. Der Diagnose-Ablauf unten trennt die drei Fälle in zwei Minuten.
 
 Diese Seite erklärt Bauphysik und Messwerte — sie ersetzt bei Bauschäden oder bestehendem Schimmelbefall keine Fachbegutachtung. Amazon-Links sind Partnerlinks; sie finanzieren diese Seite, ohne dass du mehr zahlst.

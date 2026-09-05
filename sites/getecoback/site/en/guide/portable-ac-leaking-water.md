@@ -3,6 +3,9 @@
 > Puddle under your portable air conditioner? Here's what's normal condensate, how often to drain the tank, and the 6 checks that fix most leaks in minutes.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/en/guide/portable-ac-leaking-water.html
+
+Live data on this page (hourly, rendered in the browser, not included in this Markdown view): https://getecoback.com/api/heat
+
 Water under your portable air conditioner, or a tank-full light that keeps shutting it down mid-heatwave? Before you assume it's broken: on monobloc units, water is almost never a fault. It's condensate — the only question is why it's ending up on your floor. This guide covers **portable monobloc units**; fixed split systems leak for entirely different reasons.
 
 As an Amazon Associate, EcoBack earns from qualifying purchases. Product links below are affiliate links — you pay the same price.

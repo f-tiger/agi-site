@@ -32,7 +32,7 @@ Volltext aller Ratgeber: https://getecoback.com/llms-full.txt
   dasselbe Markdown per Content Negotiation, wenn der Request `Accept: text/markdown` sendet
   (`Vary: Accept`).
   Beispiel: curl -H 'Accept: text/markdown' https://getecoback.com/guide/btu-rechner.html
-- Offene Aggregat-APIs (JSON, keine personenbezogenen Daten): https://getecoback.com/api/heat (Live-Hitze- und Frostvorschau DE: 3-Tage-Maximum und 7-Tage-Minimum, beides mit Warnstufen), https://getecoback.com/api/strom (heutige Börsen-Stundenpreise DE, EPEX über aWATTar/SMARD), https://getecoback.com/api/top (meistgelesene Ratgeber), https://getecoback.com/api/trend (Wochentrends), https://getecoback.com/search-index.json (Titel + Beschreibung + Sprache aller Seiten, ein Array).
+- Offene Aggregat-APIs (JSON, keine personenbezogenen Daten): https://getecoback.com/api/heat (Live-Hitze- und Frostvorschau DE: 3-Tage-Maximum und 7-Tage-Minimum, beides mit Warnstufen), https://getecoback.com/api/feuchte (aktueller Taupunkt DE, ungünstigster von drei Orten, stündlich, mit Lüftungsurteil gegen kalte Wand ~15 °C und Kellerwand ~13 °C; ok:false = keine Messung, nie geraten), https://getecoback.com/api/strom (heutige Börsen-Stundenpreise DE, EPEX über aWATTar/SMARD), https://getecoback.com/api/top (meistgelesene Ratgeber), https://getecoback.com/api/trend (Wochentrends), https://getecoback.com/search-index.json (Titel + Beschreibung + Sprache aller Seiten, ein Array).
 - Original-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json — BTU-/Liter-/Watt-Größenleitern nach Raumgröße, identisch mit Rechnern und Ratgebern, mit dateModified.
 - Überblick aller Maschinen-Schnittstellen: https://getecoback.com/for-agents.html
 

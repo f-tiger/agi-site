@@ -3,6 +3,9 @@
 > Midea PortaSplit vs. Monoblock-Klimaanlage: Kühlleistung, Lautstärke und Preis im direkten Vergleich — plus klare Empfehlung, für wen sich welche lohnt.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/portasplit-vs-monoblock.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
+
 Die Midea PortaSplit hat eine neue Kategorie populär gemacht: leise Split-Kühlung zur Selbstmontage, ohne Kernbohrung. Aber lohnt sich der Aufpreis gegenüber einer klassischen mobilen Monoblock-Klimaanlage? Hier der ehrliche, direkte Vergleich.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.

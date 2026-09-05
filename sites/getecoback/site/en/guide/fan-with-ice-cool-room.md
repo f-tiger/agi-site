@@ -3,6 +3,9 @@
 > Ice in front of a fan gives a real 5–7°F drop — but only for you, for 2–4 hours, not the room. Here's when the trick works and what actually cools a room.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/en/guide/fan-with-ice-cool-room.html
+
+Live data on this page (hourly, rendered in the browser, not included in this Markdown view): https://getecoback.com/api/heat
+
 Every heatwave the same hack goes viral: put a bowl of ice in front of your fan for "DIY air conditioning". It's not pure myth — but it doesn't do what most people think. Here's exactly what the ice-and-fan trick can and can't do, and how to actually bring a hot room down.
 
 As an Amazon Associate, EcoBack earns from qualifying purchases. Product links below are affiliate links — you pay the same price.

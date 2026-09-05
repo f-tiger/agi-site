@@ -3,6 +3,9 @@
 > Dachgeschoss kühlen bei 35 °C unterm Dach: kostenlose Sofortmaßnahmen, richtiges Lüften und welche Klimaanlage zu Schrägen und Kippfenstern passt.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/dachgeschoss-kuehlen.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
+
 Dachgeschosswohnungen sind die heißesten Wohnungen überhaupt: Das Dach heizt sich in der Sonne auf 60–80 °C auf und strahlt die Wärme direkt in deine Räume — dazu steigt die warme Luft aus dem ganzen Haus nach oben. 33–38 °C im Schlafzimmer sind in der Hitzewelle normal. Hier die Maßnahmen in der Reihenfolge, die sich bewährt hat.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.

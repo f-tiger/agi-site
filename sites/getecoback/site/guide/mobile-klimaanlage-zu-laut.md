@@ -3,6 +3,9 @@
 > Mobile Klimaanlage zu laut? Warum Monoblöcke 55–65 dB erreichen und was wirklich hilft: Antivibrationsmatte, Nachtmodus, Timer und Aufstellung.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/mobile-klimaanlage-zu-laut.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
+
 Du hast dir eine mobile Klimaanlage gekauft, endlich ist es kühl — aber an Schlafen oder konzentriertes Arbeiten ist neben dem Gerät kaum zu denken. Damit bist du nicht allein: Das Lärmproblem ist die häufigste Beschwerde über Monoblock-Klimageräte überhaupt. Hier bekommst du die ehrliche Antwort: was ein paar Dezibel bringt, was verschwendetes Geld ist und wann nur ein anderes Gerätekonzept hilft.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.

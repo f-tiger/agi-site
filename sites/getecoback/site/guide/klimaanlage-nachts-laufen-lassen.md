@@ -3,6 +3,9 @@
 > Klimaanlage nachts laufen lassen: Ist das sicher, was kostet eine Nacht (ca. 1,5–2,5 €) und warum Timer plus Sleep-Modus meist die klügere Wahl ist.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/klimaanlage-nachts-laufen-lassen.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
+
 Wenn nachts das Thermometer im Schlafzimmer nicht unter 27 °C fällt, ist die Versuchung groß, die mobile Klimaanlage einfach durchlaufen zu lassen. Aber ist das sicher? Was kostet eine durchgekühlte Nacht wirklich? Und schläft man mit Dauerbetrieb tatsächlich besser — oder wacht man mit steifem Nacken und hoher Stromrechnung auf? Dieser Ratgeber gibt ehrliche Antworten und zeigt, warum ein Timer plus Sleep-Modus für die meisten die klügere Lösung ist.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.

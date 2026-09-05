@@ -3,6 +3,7 @@
 > Als Mieter darfst du mehr ändern, als die meisten denken — aber nicht alles rechnet sich. Thermostatkopf, Türdichtung und Folien im ehrlichen Ranking.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/heizkosten-senken-als-mieter.html
+
 **Die Kurzfassung.**
 Alles, was sich **ohne Eingriff in die Bausubstanz** anbringen und beim Auszug spurlos entfernen lässt, ist als Mieter normalerweise deine Entscheidung. Nach echtem Effekt sortiert sieht die Liste aber anders aus als im Baumarkt-Regal: **Der größte Hebel ist der Zeitplan, nicht das Gerät.** Ein programmierbarer Thermostatkopf spart nur so viel, wie die Absenkung, die du damit einstellst. Zugluft abzudichten wirkt sofort und kostet fast nichts. Fensterfolie lohnt fast nur bei Einfachverglasung. Und die viel beworbene Reflektorfolie liegt laut Branchenverband bei **maximal vier Prozent** — in schlecht gedämmten Häusern.
 

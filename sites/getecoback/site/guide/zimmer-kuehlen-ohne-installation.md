@@ -3,6 +3,9 @@
 > Zimmer kühlen ohne Installation: die günstigsten Wege für Mieter — Luftkühler, Turmventilatoren und tragbare Klimaanlagen im ehrlichen Budget-Vergleich.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/zimmer-kuehlen-ohne-installation.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
+
 Eine fest installierte Klimaanlage kostet in Deutschland oft über 1.000 € plus wochenlange Wartezeit in der Hitzewelle — und zur Miete darfst du sie oft gar nicht einbauen. Hier sind die günstigsten Wege zur Abkühlung ohne Installation, ab 30 €, mit ehrlicher Einordnung, was jedes Gerät wirklich kann.
 
 **Warum das Thema bleibt:** Die Zahl der heißen Tage (über 30 °C) hat sich in Deutschland laut DWD-Daten mehr als verdoppelt — von durchschnittlich **4,2 Tagen pro Jahr** (1961–1990) auf **8,9 Tage** (1991–2020); der Rekordsommer 2018 kam auf 20,4 heiße Tage (DWD-Daten, via Tagesspiegel). Eine günstige Kühl-Lösung ohne Installation ist damit keine Einmal-Anschaffung für einen Ausnahmesommer, sondern zahlt sich Jahr für Jahr aus.

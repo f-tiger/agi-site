@@ -3,6 +3,9 @@
 > Welche Klimaanlage für 25 m²? Empfohlen: 10.000–12.000 BTU. Mit Modell-Tipp, Stromkosten & Kauf-Checkliste für dein Wohnzimmer oder großes Schlafzimmer (2026).
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/klimaanlage-25-qm.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
+
 Du suchst eine tragbare Klimaanlage für einen Raum mit rund 25 m²? Die wichtigste Frage ist die richtige Kühlleistung (BTU): zu wenig, und das Gerät kommt nie hinterher; zu viel ist rausgeworfenes Geld und unnötig laut. Hier die konkrete Empfehlung für 25 m².
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.

@@ -3,6 +3,9 @@
 > Balkonkraftwerk ohne Bohren befestigen: Gitterhaken, Klemmhalterung und Ballast im Vergleich — plus Windlast, Gewicht und was das Mietrecht dazu sagt.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/balkonkraftwerk-ohne-bohren.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/strom
+
 **Kurz gesagt:** Für Gitterbalkone gibt es **Haken- und Klemmhalterungen**, für massive Brüstungen **Klemmsysteme mit Gegenplatte**, für Boden und Flachdach die **ballastierte Aufständerung** — gebohrt wird nur noch an der Fassade. Entscheidend sind Geländerzustand, Windlast-Freigabe des Herstellers und seit Oktober 2024: Der Vermieter muss im Regelfall zustimmen, mitreden darf er über das Wie.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks sind Affiliate-Links — du zahlst denselben Preis. Wir montieren nicht selbst; der Vergleich fasst Herstellerangaben und öffentliche Erfahrungen zusammen.

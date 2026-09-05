@@ -3,6 +3,7 @@
 > Condizionatore portatile troppo rumoroso? 55–65 dB sono normali per un monoblocco: cosa aiuta davvero, dal tappetino antivibrazione da 10–20 € in su.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/it/guide/condizionatore-portatile-rumoroso.html
+
 **Dritti alle scelte**Annuncio · link affiliati — il prezzo per te non cambia
 
 Contro le vibrazioniTappetino antivibrazione→

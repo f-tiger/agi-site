@@ -3,6 +3,9 @@
 > Du kannst bei der Hitze nicht schlafen? 12 bewährte Tricks für kühle Nächte in der Hitzewelle 2026 ohne Klimaanlage — plus die günstigen Geräte, die wirklich helfen.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/bei-hitze-schlafen.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
+
 Wenn dein Schlafzimmer nachts nicht unter 28 °C fällt, wird Schlafen fast unmöglich. Die meisten Wohnungen in Europa sind nicht für Hitze gebaut, und Klimaanlagen sind selten. Hier sind zwölf Dinge, die wirklich beim Schlafen in der Hitzewelle helfen — erst die kostenlosen Tricks, dann die günstigen Geräte mit dem größten Effekt.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.

@@ -3,6 +3,9 @@
 > Richtig lüften bei Hitze: nur nachts und früh morgens lüften, tagsüber Fenster zu und verschatten. Stoßlüften statt kippen — so bleibt die Wohnung kühl.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/richtig-lueften-bei-hitze.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
+
 Bei Hitzewelle machen viele intuitiv das Falsche: Sie reißen mittags die Fenster auf, um „frische Luft“ hereinzulassen — und holen damit genau die Hitze herein, die sie loswerden wollen. Dabei ist die Regel einfach: **Lüfte nur dann, wenn es draußen kühler ist als drinnen.** Tagsüber bleiben die Fenster zu und verschattet. So hältst du deine Wohnung mehrere Grad kühler — ganz ohne Klimaanlage.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.

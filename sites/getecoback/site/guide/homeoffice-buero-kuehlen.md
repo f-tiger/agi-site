@@ -3,6 +3,9 @@
 > Konzentriert arbeiten bei Hitze: Wie du Homeoffice und Büro auch ohne feste Klimaanlage kühl bekommst — von Tischventilator bis mobiler Klimaanlage. Ratgeber 2026.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/homeoffice-buero-kuehlen.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
+
 Im Homeoffice gibt es keine Klimaanlage vom Arbeitgeber — und im kleinen Büro oft auch nicht. Dabei sinkt die Leistungsfähigkeit ab etwa 26–28 °C spürbar, ab 30 °C wird konzentriertes Arbeiten zur Qual. Die gute Nachricht: Für den Arbeitsplatz brauchst du selten eine teure Vollklimatisierung — es reicht, gezielt **die eine Person am Schreibtisch** kühl zu halten. Hier die Stufen nach Aufwand.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.

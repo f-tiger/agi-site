@@ -3,6 +3,9 @@
 > Lidl Tronic Klimaanlage im Check: 9.000 BTU für 199 € — für welche Räume das ehrlich reicht und welche Alternativen immer lieferbar sind.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/lidl-tronic-klimaanlage-test.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
+
 Die Tronic-Klimaanlage taucht bei Lidl immer dann auf, wenn sie alle suchen — und ist online regelmäßig schnell wieder ausverkauft. Wir testen nicht selbst: Diese Seite ordnet die öffentlich verfügbaren Daten zum Gerät ein und beantwortet die Frage, die nach jedem Aktionsfenster übrig bleibt — was tun, wenn sie (mal wieder) weg ist.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis. Der Link zur Lidl-Produktseite ist ein reiner Quellenverweis ohne Partnerprogramm.

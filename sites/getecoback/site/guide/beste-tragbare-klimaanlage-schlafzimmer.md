@@ -3,6 +3,9 @@
 > Die beste tragbare Klimaanlage fürs Schlafzimmer 2026: Wie leise ist leise genug, die richtige BTU-Zahl für guten Schlaf und worauf du beim Kauf achten solltest.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/beste-tragbare-klimaanlage-schlafzimmer.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
+
 Eine tragbare Klimaanlage, die super kühlt, aber wie ein Düsentriebwerk dröhnt, ist im Schlafzimmer nutzlos. Für guten Schlaf brauchst du drei Dinge im Gleichgewicht: genug Kühlleistung für den Raum, wenig Lärm und einen Nachtmodus. Darauf kommt es an.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.

@@ -3,6 +3,7 @@
 > Condizionatore portatile per il camper: solo un compressore raffredda davvero — a tetto (400–900 W), nel gavone o monoblocco, con consumi, pesi e rumore.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/it/guide/condizionatore-portatile-camper.html
+
 **Dritti alle scelte**Annuncio · link affiliati — il prezzo per te non cambia
 
 In libera & di notteVentola da campeggio 12V→

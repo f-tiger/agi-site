@@ -3,6 +3,9 @@
 > Growatt NOAH 2000 Probleme: App- & WLAN-Abbrüche, Firmware & Ausgangsleistung, Winter-Ladestopp, Wechselrichter-Kompatibilität — was Nutzer berichten & was hilft.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/growatt-noah-2000-probleme.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/strom
+
 **Transparenz:** Wir haben den NOAH 2000 nicht selbst getestet. Diese Übersicht fasst öffentlich dokumentierte Nutzerberichte (u. a. Photovoltaikforum) und Hersteller-Infos zusammen.
 
 Der Growatt NOAH 2000 ist einer der meistverkauften Balkonspeicher in Deutschland — vor allem, weil der Preis pro Kilowattstunde Speicherkapazität deutlich unter dem der etablierten Konkurrenz liegt. Entsprechend viele Erfahrungsberichte gibt es inzwischen, und entsprechend oft taucht die Suchanfrage „Growatt NOAH 2000 Probleme" auf. Dieser Ratgeber sortiert, was in Foren und Community-Threads tatsächlich gemeldet wird, was davon Software, was Physik und was ein echter Reklamationsfall ist — ohne Panikmache und ohne Schönfärberei.

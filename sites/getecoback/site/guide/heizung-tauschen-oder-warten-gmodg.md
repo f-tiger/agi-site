@@ -3,6 +3,7 @@
 > Das GModG gilt seit 29.07.2026: 65-Prozent-Regel abgeschafft, Heizungsfreiheit zurück, Bio-Quote ab 2029. Was das für deine Tauschentscheidung heißt — mit Tabelle.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/heizung-tauschen-oder-warten-gmodg.html
+
 **Kurzantwort:** Das Gebäudeenergiegesetz wurde **nicht abgeschafft**, sondern zum **29. Juli 2026** reformiert und in **GModG** (Gebäudeenergie-Modernisierungsgesetz) umbenannt. Die **65-Prozent-Erneuerbare-Pflicht ist weg**, die Wahl des Heizsystems wieder frei. Neu: **ab 2029** eine stufenweise Quote für Biomasse/erneuerbare Brennstoffe bei neuen fossilen Heizungen (in Stufen über 10 %, 15 % und 30 % bis **60 % im Jahr 2040**). „Warten" ist damit kein Plan mehr — aber ein Nottausch im Winter bleibt der teuerste Weg.
 
 ## Was gilt, was fällt — die Übersicht

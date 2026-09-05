@@ -3,6 +3,9 @@
 > Kippfenster abdichten für die tragbare Klimaanlage: Stoff-Kit mit Klett, Kunststoffplatte oder ganz ohne Kleben — rückstandsfrei, auch für die Mietwohnung.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/klimaanlage-kippfenster.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
+
 Dreh-Kipp-Fenster sind in Deutschland und Österreich Standard — und der Grund Nummer eins, warum Leute an der Installation ihrer tragbaren Klimaanlage scheitern. Die gute Nachricht: Es funktioniert problemlos, du brauchst nur die richtige Abdichtung. Hier die praktische Anleitung.
 
 **Kurze Antwort:** Ja — eine mobile Klimaanlage funktioniert am Kippfenster; nur das mitgelieferte flache Schiebefenster-Kit dichtet nicht ab. Verschließe den dreieckigen Spalt des gekippten Flügels mit einer von drei mietertauglichen Lösungen: einer **Stoff-Fensterabdichtung** (15–30 €, für die meisten am besten), einer **zugeschnittenen Acryl-/XPS-Platte** (10–40 €, beste Dichtung) oder einem **Kippfenster-Abluftadapter**. Alle drei sind rückstandsfrei, hinterlassen keine Schäden und brauchen keine Vermieter-Erlaubnis.

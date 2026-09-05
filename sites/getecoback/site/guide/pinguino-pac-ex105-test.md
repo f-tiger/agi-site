@@ -3,6 +3,9 @@
 > De'Longhi Pinguino PAC EX105 im Test-Überblick: A+++, ca. 63 dB im Turbo, bis ~25 m² — was öffentliche Tests messen und welche Alternativen es gibt.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/pinguino-pac-ex105-test.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
+
 Der Pinguino PAC EX105 ist das Gerät, das wir auf diesem Portal am häufigsten als erste Wahl nennen — Grund genug, ihm eine eigene Seite zu geben. Wir testen nicht selbst: Diese Seite fasst zusammen, was öffentliche Tests und Messungen zum EX105 sagen, und ordnet die Zahlen für konkrete Räume ein.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.

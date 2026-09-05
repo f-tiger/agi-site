@@ -3,6 +3,7 @@
 > What a dehumidifier actually costs to dry laundry indoors: cost per load at 200–500 W, how to compare it with your tumble dryer, and when it is the cheaper option.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/en/guide/dehumidifier-drying-clothes-cost.html
+
 **Short answer:** the sum is watts ÷ 1,000 × hours × your unit rate. At **€0.30/kWh** and six hours, one load costs about **€0.36** on a 200 W dehumidifier, **€0.54** at 300 W and **€0.90** at 500 W. A tumble dryer cycle at 2 kWh costs €0.60 at the same rate. The dehumidifier is usually cheaper, but it takes half a day rather than an hour.
 
 EcoBack is funded through Amazon affiliate links. We have not tested these machines ourselves — the figures below are arithmetic from the wattage on the machine and the rate you pay, so you can check every one of them.

@@ -3,6 +3,9 @@
 > De'Longhi PAC N90 ECO Silent im Test-Überblick: Silent-Modus unter 50 dB, 9.800 BTU/h für 15–25 m² — was Datenblatt und öffentliche Tests wirklich sagen.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/delonghi-pac-n90-test.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
+
 Der PAC N90 ECO Silent ist das Gerät, das wir auf diesem Portal empfehlen, wenn die Klimaanlage nachts im Schlafzimmer laufen soll — Grund genug, ihm eine eigene Seite zu geben. Wir testen nicht selbst: Diese Seite fasst zusammen, was Datenblatt, öffentliche Tests und Nutzerberichte zum N90 sagen, und ordnet vor allem die dB-Zahlen ehrlich ein.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.

@@ -3,6 +3,9 @@
 > Tilt-and-turn windows and portable air conditioners: how to vent the hose and seal the gap properly — plus the window seal kits that actually work.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/en/guide/portable-ac-tilt-and-turn-windows.html
+
+Live data on this page (hourly, rendered in the browser, not included in this Markdown view): https://getecoback.com/api/heat
+
 Tilt-and-turn windows (Dreh-Kipp-Fenster) are everywhere in Germany, Austria and much of Central Europe — and they're the #1 reason people struggle to set up a portable air conditioner. The good news: it works fine, you just need the right seal. Here's the practical answer.
 
 **Quick answer:** Yes — a portable air conditioner works with tilt-and-turn (Dreh-Kipp) windows; you just can't use the flat sliding-window kit it ships with. Seal the triangular gap of the tilted sash with one of three renter-safe options: a **fabric window seal kit** (€15–30, best for most people), a **cut acrylic/XPS panel** (€10–40, best seal), or a **tilt-window outlet adapter**. All three are non-permanent, leave no damage, and need no landlord permission.

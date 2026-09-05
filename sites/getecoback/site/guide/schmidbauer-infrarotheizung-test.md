@@ -3,6 +3,7 @@
 > Schmidbauer Infrarotheizung im Überblick: Serien von 300 bis 1.400 W, Faustregel 60–100 W pro m², Betrieb ab 0,18 €/h — was sich wirklich belegen lässt.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/schmidbauer-infrarotheizung-test.html
+
 Zwei Schmidbauer-Modelle stehen seit dieser Saison in unseren Heizungs-Empfehlungen — die **Hybrid Pro 600 W** für kleine Räume und die **ISP T 700 W** fürs Bad — und die Marke ist zugleich die meistgesuchte Infrarotheizung in unserer täglichen Google-Trends-Abfrage. Grund genug für eine eigene Seite. Wir testen nicht selbst: Diese Seite fasst zusammen, was sich über Schmidbauer öffentlich belegen lässt, und ordnet die Wattklassen für konkrete Räume ein.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.

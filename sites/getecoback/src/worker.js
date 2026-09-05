@@ -16,7 +16,7 @@
 function evUaClass(ua) {
   if (!ua) return "none";
   if (/^getecoback-ci\b/i.test(ua) || /^curl\//i.test(ua) || /^Wget\//i.test(ua)) return "ci";
-  if (/bot|crawl|spider|slurp|gptbot|oai-search|claude|perplexity|bingpreview|headless|python|node-fetch|axios|go-http/i.test(ua)) return "bot";
+  if (/bot|crawl|spider|slurp|gptbot|oai-search|claude|perplexity|bingpreview|headless|python|node-fetch|axios|go-http|undici|^node$|^node\/|okhttp|java\//i.test(ua)) return "bot";
   if (/mozilla/i.test(ua)) return "human";
   return "other";
 }
@@ -707,14 +707,21 @@ async function handleTrend(env) {
       "SELECT name, " +
       "SUM(CASE WHEN day >= date('now','-7 day') THEN 1 ELSE 0 END) AS n7, " +
       "SUM(CASE WHEN day < date('now','-7 day') AND day >= date('now','-14 day') THEN 1 ELSE 0 END) AS p7 " +
-      "FROM ev WHERE page NOT LIKE '/__ci%' AND day >= date('now','-14 day') " +
+      // ua_class filter added 2026-09-05: this endpoint is listed in llms.txt
+      // and read by assistants, and it was publishing mcp_call n7:87 while real
+      // third-party use was zero — the 87 were a daily canned-args replay plus
+      // the registry validator, classified 'other'/'bot'. An AI-facing surface
+      // that overstates its own adoption is the one lie this site cannot afford.
+      "FROM ev WHERE page NOT LIKE '/__ci%' AND (ua_class IS NULL OR ua_class='human') " +
+      "AND day >= date('now','-14 day') " +
       "GROUP BY name ORDER BY n7 DESC LIMIT 30"
     ).all();
     const pg = await env.EVENTS.prepare(
       "SELECT page, " +
       "SUM(CASE WHEN day >= date('now','-7 day') THEN 1 ELSE 0 END) AS n7, " +
       "SUM(CASE WHEN day < date('now','-7 day') AND day >= date('now','-14 day') THEN 1 ELSE 0 END) AS p7 " +
-      "FROM ev WHERE name='page_view' AND page NOT LIKE '/__ci%' AND day >= date('now','-14 day') " +
+      "FROM ev WHERE name='page_view' AND page NOT LIKE '/__ci%' AND (ua_class IS NULL OR ua_class='human') " +
+      "AND day >= date('now','-14 day') " +
       "GROUP BY page HAVING n7 >= 2 ORDER BY n7 DESC LIMIT 25"
     ).all();
     const zh = await env.EVENTS.prepare(
@@ -1260,6 +1267,10 @@ async function handleMcp(request, env) {
             JSON.stringify({
               tool: known ? name : "unknown",
               args: JSON.stringify(args || {}).slice(0, 160),
+              // 2026-09-05: a daily caller replaying the smoke's canned args
+              // took two sessions to rule out as adoption because nothing
+              // recorded who it was. The UA is not personal data; capped.
+              ua: mcpUa.slice(0, 80),
             }),
             evUaClass(mcpUa)
           ).run();

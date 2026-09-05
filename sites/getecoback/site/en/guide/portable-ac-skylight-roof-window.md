@@ -3,6 +3,9 @@
 > Venting a portable AC through a skylight or roof window: why the flat kit fails, the 3 seals that work, and the rain and hot-air traps to avoid.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/en/guide/portable-ac-skylight-roof-window.html
+
+Live data on this page (hourly, rendered in the browser, not included in this Markdown view): https://getecoback.com/api/heat
+
 Attic flats and top-floor rooms are the hottest in a heatwave — and they're often the ones with only a skylight (roof window / Velux-style) instead of a normal wall window. That's exactly where people get stuck setting up a portable air conditioner: the standard kit doesn't fit, and the physics work against you. The good news: it's doable without drilling. Here's the honest, practical answer.
 
 As an Amazon Associate, EcoBack earns from qualifying purchases. Product links below are affiliate links — you pay the same price.

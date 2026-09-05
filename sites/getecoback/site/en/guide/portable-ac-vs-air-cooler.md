@@ -3,6 +3,9 @@
 > Portable air conditioner vs evaporative air cooler compared for 2026: cooling power, running cost, best use cases, and which one to buy for your room and budget.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/en/guide/portable-ac-vs-air-cooler.html
+
+Live data on this page (hourly, rendered in the browser, not included in this Markdown view): https://getecoback.com/api/heat
+
 During a heatwave, the two most-bought cooling devices are portable air conditioners and evaporative air coolers. They're often confused, but they work completely differently — and buying the wrong one for your situation wastes money. Here's the honest comparison.
 
 As an Amazon Associate, EcoBack earns from qualifying purchases. Product links below are affiliate links — you pay the same price.

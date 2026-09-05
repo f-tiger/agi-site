@@ -3,6 +3,9 @@
 > AEG ChillFlex Pro im Test-Überblick: 64 dB normal, ~52 dB im Schlafmodus, 9.000–12.000 BTU je Variante — was öffentliche Tests messen, plus Alternativen.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/aeg-chillflex-pro-test.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
+
 Der AEG ChillFlex Pro taucht auf diesem Portal regelmäßig als Leise-Alternative in der Klasse des Pinguino PAC EX105 auf — Grund genug, ihm eine eigene Seite zu geben. Wir testen nicht selbst: Diese Seite fasst zusammen, was öffentliche Tests und Datenblätter zur ChillFlex-Pro-Familie sagen, und ordnet die Zahlen für konkrete Räume ein.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.

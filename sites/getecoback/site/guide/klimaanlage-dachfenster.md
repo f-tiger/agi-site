@@ -3,6 +3,9 @@
 > Mobile Klimaanlage am Dachfenster (Velux & Co.): welche Abdichtung am Schrägfenster hält — Stoff-Kit ab ca. 20 €, Acrylglas nach Maß oder Klemm-Platte.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/klimaanlage-dachfenster.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
+
 Ausgerechnet dort, wo es im Sommer am heißesten wird — im Dachgeschoss — ist die Installation der mobilen Klimaanlage am kniffligsten: Schwing- und Klapp-Schwing-Fenster (Velux, Roto & Co.) öffnen um eine Mittelachse, und das flache Standard-Fensterkit aus dem Karton hat daran keine Chance. Die gute Nachricht: Mit der richtigen Abdichtung läuft der Abluftschlauch auch am Dachfenster dicht und zuverlässig.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.

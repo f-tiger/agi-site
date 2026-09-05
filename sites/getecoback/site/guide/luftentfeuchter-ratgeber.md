@@ -3,6 +3,9 @@
 > Luftentfeuchter-Kaufberatung 2026: Kompressor, Adsorption oder Granulat, richtige Größe nach Raum und Liter/Tag, Stromkosten und Pflege im Überblick.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/luftentfeuchter-ratgeber.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/feuchte
+
 Zu feuchte Raumluft ist mehr als ein Komfortproblem. Im Sommer lässt hohe Luftfeuchtigkeit die Hitze noch drückender wirken, weil der Schweiß auf der Haut kaum verdunstet. Im Winter schlägt sich dieselbe Feuchtigkeit an kalten Außenwänden und hinter Schränken nieder — und genau dort wächst dann Schimmel. Ein Luftentfeuchter hält die relative Luftfeuchte im gesunden Bereich von 40 bis 60 Prozent. Diese Kaufberatung zeigt dir, welche Bauart zu welchem Raum passt, wie viel Entzugsleistung du brauchst und was der Betrieb kostet.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.

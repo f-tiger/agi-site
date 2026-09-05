@@ -3,6 +3,9 @@
 > Room temperature is the ceiling for your PC temps: a room 5°C hotter means ~5°C hotter hardware. Fix airflow and dust, then cool the room to stop throttling.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/en/guide/gaming-pc-overheating-summer.html
+
+Live data on this page (hourly, rendered in the browser, not included in this Markdown view): https://getecoback.com/api/heat
+
 Your PC was rock-solid all winter, and now it throttles, the fans scream, and games stutter the moment a heatwave hits. Nothing broke — the room got hotter, and room temperature is the one thing every guide skips. Here's how to fix both the case and the room, in the right order.
 
 As an Amazon Associate, EcoBack earns from qualifying purchases. Product links below are affiliate links — you pay the same price.

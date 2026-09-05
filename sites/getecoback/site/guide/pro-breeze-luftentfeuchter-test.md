@@ -3,6 +3,9 @@
 > Pro Breeze im Test-Überblick: Der 20L-Kompressor schafft bis 20 l/Tag und trocknet echte Räume — die Mini-Peltier-Geräte mit 250 ml/Tag nur den Schrank.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/pro-breeze-luftentfeuchter-test.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/feuchte
+
 Der Pro Breeze Luftentfeuchter 20L ist das Gerät, das wir auf diesem Portal als Preis-Einstieg in die 20-Liter-Klasse nennen — Grund genug, der Marke zur Entfeuchter-Saison eine eigene Seite zu geben. Denn wer nach „Pro Breeze Luftentfeuchter“ sucht, landet je nach Angebot bei Geräten, die sich um den Faktor 80 in der Leistung unterscheiden. Wir testen nicht selbst: Diese Seite fasst zusammen, was öffentliche Tests und die Hersteller-Produktseiten zu den Pro-Breeze-Geräten sagen, und ordnet die Zahlen für konkrete Räume ein.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.

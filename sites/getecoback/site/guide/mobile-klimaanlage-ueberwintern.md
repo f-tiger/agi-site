@@ -3,6 +3,9 @@
 > Wohin mit der mobilen Klimaanlage im Winter? 6 Schritte zum Einlagern: Wasser ablassen, 1–2 h trocknen lassen, atmungsaktiv abdecken, frostfrei lagern.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/mobile-klimaanlage-ueberwintern.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
+
 Die Hitzewelle ist vorbei, das Monoblock-Gerät steht nutzlos im Weg — und jetzt? Wer die mobile Klimaanlage einfach in den Keller schiebt oder in Folie wickelt, riskiert Schimmel im Gehäuse und im schlimmsten Fall einen Kompressorschaden. Dabei dauert das richtige Einlagern keine 30 Minuten aktive Arbeit (plus 1–2 Stunden Trockenlauf) und entscheidet darüber, ob das Gerät im nächsten Sommer frisch oder muffig startet.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.

@@ -3,6 +3,7 @@
 > Was kostet dein Zusatzheizen pro Winter? Rechner vergleicht Heizlüfter, Infrarotheizung und Klimaanlage mit Wärmepumpenfunktion — ehrlich.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/heizkosten-vergleich-rechner.html
+
 Heizlüfter, Infrarotheizung oder Klimaanlage mit Wärmepumpenfunktion: alle drei heizen elektrisch — aber pro Winter liegen zwischen ihnen Hunderte Euro. Dieser Rechner vergleicht alle drei für deinen Raum, statt jedes Gerät einzeln zu rechnen.
 
 **Kurz gesagt:** Heizlüfter und Infrarotheizung wandeln Strom **1:1** in Wärme (2 kWh Strom = 2 kWh Wärme); eine Klimaanlage mit Wärmepumpenfunktion liefert pro kWh Strom rund das **Dreifache** an Wärme (COP ~3) — die gleiche Wärme kostet also nur etwa ein Drittel. Beispiel 20 m², 4 h täglich, 5 Wintermonate, 37 ct/kWh: Heizlüfter/Infrarot ≈ **440 €**, Klima mit WP-Funktion ≈ **150 €**. Dafür kostet die Klima in der Anschaffung ein Vielfaches — der Rechner zeigt, ab wann sich das dreht.

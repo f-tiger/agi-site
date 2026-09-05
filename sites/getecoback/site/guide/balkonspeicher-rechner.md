@@ -3,6 +3,9 @@
 > Balkonspeicher-Rechner: BKW-Leistung, Tagesverbrauch und Tagesprofil eingeben — sofort die passende Speichergröße in kWh plus ehrliche Lohnt-sich-Einschätzung.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/balkonspeicher-rechner.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/strom
+
 Ein zu kleiner Speicher verschenkt Solarstrom, ein zu großer verschenkt Geld: Jede kWh Kapazität kostet mehrere hundert Euro und wird außerhalb des Hochsommers immer seltener voll. Der Rechner nennt dir die Speichergröße, die zu deinem Balkonkraftwerk und deinem Alltag passt — inklusive ehrlicher Ansage, wenn sich gar keiner lohnt.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Die Produktlinks im Ergebnis sind Affiliate-Links — du zahlst denselben Preis. Der Rechner liefert eine Orientierung, keine Gewähr.

@@ -3,6 +3,9 @@
 > Comfee im Marken-Check: Budgetmarke der Midea Group — was öffentliche Tests loben, wo die Geräte sparen und welche 2 Modelle für welche Räume passen.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/comfee-geraete-test.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
+
 „Ist diese billige Marke okay?" — das ist die Frage hinter jeder Comfee-Suche, und sie ist berechtigt: Die Geräte kosten oft die Hälfte dessen, was De'Longhi oder AEG aufrufen. Wir testen nicht selbst: Diese Seite fasst zusammen, was öffentliche Tests und Kundenbewertungen zur Marke sagen, und ordnet die beiden Comfee-Geräte ein, die auf diesem Portal empfohlen werden.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.

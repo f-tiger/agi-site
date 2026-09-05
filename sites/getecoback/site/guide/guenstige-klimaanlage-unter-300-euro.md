@@ -3,6 +3,9 @@
 > Günstige Klimaanlage unter 300 €: die besten mobilen Klimageräte und Alternativen — worauf du beim Sparen achten musst und wo Billig zur Falle wird.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/guenstige-klimaanlage-unter-300-euro.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
+
 Eine echte Klimaanlage muss nicht 600 € kosten. Aber beim Sparen gibt es eine klare Grenze, unter der es keine echte Kühlung mehr gibt — nur Luftbewegung. Hier die ehrliche Orientierung: was du unter 300 € bekommst, welche Modelle sich lohnen und wo du besser nicht sparst.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.

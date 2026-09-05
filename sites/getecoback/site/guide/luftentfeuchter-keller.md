@@ -3,6 +3,9 @@
 > Luftentfeuchter für den Keller: Ziel-Luftfeuchte unter 60 %, passende Entzugsleistung nach Kellergröße, Hygrostat, Dauerablauf und Stromkosten.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/luftentfeuchter-keller.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/feuchte
+
 Ein muffiger Keller ist selten Zufall. Feuchte Wände, klamme Luft und Modergeruch entstehen, weil warme, feuchte Luft auf kalte Kellerwände trifft und dort auskondensiert. Bleibt das über Wochen so, wird Schimmel fast unvermeidlich. Ein Luftentfeuchter löst das Problem an der Wurzel — vorausgesetzt, er ist richtig dimensioniert und läuft mit dem passenden Zubehör. Diese Anleitung zeigt dir, welche Ziel-Luftfeuchte du anpeilen solltest, wie viel Entzugsleistung du wirklich brauchst und wann ein günstiges Granulat reicht.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.

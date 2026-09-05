@@ -3,6 +3,9 @@
 > How much does a portable AC really cost to run? At €0.35/kWh: ~€0.35/hour, ~€2.80 per night, €25–45 in a heatwave month — plus 5 fixes that cut the bill.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/en/guide/portable-ac-running-cost.html
+
+Live data on this page (hourly, rendered in the browser, not included in this Markdown view): https://getecoback.com/api/heat
+
 Fear of the electricity bill stops a lot of people buying a portable air conditioner — and vague answers like "it depends" don't help. The good news: with one simple formula you know the cost before you buy. Here are the real numbers at a typical 2026 European price of **€0.35/kWh** (UK and Ireland sit in a similar range; swap in your own tariff).
 
 As an Amazon Associate, EcoBack earns from qualifying purchases. Product links below are affiliate links — you pay the same price.

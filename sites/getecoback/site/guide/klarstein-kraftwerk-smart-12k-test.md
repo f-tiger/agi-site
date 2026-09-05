@@ -3,6 +3,9 @@
 > Klarstein Kraftwerk Smart 12K im Test-Überblick: 12.000 BTU für 25–35 m², App-Steuerung, laut Datenblatt 50–65 dB — Stärken, Schwächen, Alternativen.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/klarstein-kraftwerk-smart-12k-test.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
+
 Das Kraftwerk Smart 12K ist das Gerät, das wir auf diesem Portal empfehlen, wenn der Raum über 25–30 m² liegt und ein normaler Monoblock nur noch gegenhält statt kühlt — „mehr Reserve" ist sein einziger Job. Wir testen nicht selbst: Diese Seite fasst zusammen, was öffentliche Tests und die Herstellerangaben zum 12K sagen, und ordnet die Zahlen für konkrete Räume ein.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.

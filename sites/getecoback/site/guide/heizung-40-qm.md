@@ -3,6 +3,7 @@
 > Welche Heizleistung für 40 m²? Empfohlen: 2.400–3.200 W. Watt-Faustregel, Stromkosten & passende Infrarotheizung für dein sehr großer oder offener Raum (2026).
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/heizung-40-qm.html
+
 Du willst einen Raum mit rund 40 m² elektrisch beheizen — mit Infrarotheizung oder Heizlüfter — und fragst dich, wie viel Watt du brauchst? Zu wenig, und es wird nie warm; zu viel kostet unnötig Strom. Hier die konkrete Empfehlung für 40 m².
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.

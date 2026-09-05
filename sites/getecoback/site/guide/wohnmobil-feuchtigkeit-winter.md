@@ -3,6 +3,9 @@
 > Kondenswasser und Schimmel im Wohnmobil über den Winter: warum Kompressor-Entfeuchter unter 10–15 °C kaum arbeiten und wann Granulat reicht.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/wohnmobil-feuchtigkeit-winter.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/feuchte
+
 **Kurz und ehrlich.**
 Im Standwinter entsteht Kondenswasser dort, wo die verbliebene Luftfeuchte auf kalte Flächen trifft — Fenster, Ecken, die Wand hinter dem Polster. Welches Gerät dagegen hilft, hängt an **zwei** Fragen, nicht an der Gerätegröße: **Wie kalt wird es im Fahrzeug?** Und **liegt Strom an?** Ein Kompressor-Entfeuchter — die übliche Bauart für Wohnräume — verliert in der Kälte stark an Wirkung. Ein Adsorptionstrockner arbeitet auch kalt, braucht aber Strom. Ohne Strom bleibt nur Granulat, mit klaren Grenzen.
 

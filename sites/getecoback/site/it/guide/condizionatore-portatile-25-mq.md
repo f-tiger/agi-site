@@ -3,6 +3,7 @@
 > Condizionatore portatile per 25 m²: servono 10.000–12.000 BTU (regola dei 340 BTU/m²). Modello consigliato, costi elettrici e consigli per il soggiorno.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/it/guide/condizionatore-portatile-25-mq.html
+
 **Dritti alle scelte**Annuncio · link affiliati — il prezzo per te non cambia
 
 AllrounderDe'Longhi Pinguino PAC EX105→

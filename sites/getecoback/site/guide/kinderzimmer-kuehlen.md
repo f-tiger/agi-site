@@ -3,6 +3,9 @@
 > Kinderzimmer bei Hitze sicher kühlen: richtige Schlaftemperatur, keine Zugluft, Kindersicherung & sichere Aufstellung von Ventilator und Klimaanlage.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/kinderzimmer-kuehlen.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
+
 Wenn das Thermometer draußen klettert, staut sich die Wärme ausgerechnet dort, wo dein Kind schlafen soll. Babys und Kleinkinder überhitzen schneller als Erwachsene — trotzdem musst du nicht in Panik verfallen. Mit ein paar richtigen Handgriffen bekommst du das Kinderzimmer sicher kühler, ganz ohne kalte Luft direkt aufs Bett. Hier steht, was wirklich hilft und was du besser lässt.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis. Dieser Artikel ist keine medizinische Beratung.

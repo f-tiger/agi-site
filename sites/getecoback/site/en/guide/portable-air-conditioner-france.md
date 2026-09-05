@@ -3,6 +3,9 @@
 > Which portable AC for a French flat in 2026? Why 9,000 BTU fits most 15–25 m² rooms, €250–450 price bands, tilt-and-turn window fixes and when to order.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/en/guide/portable-air-conditioner-france.html
+
+Live data on this page (hourly, rendered in the browser, not included in this Markdown view): https://getecoback.com/api/heat
+
 France's 2026 summer has already brought repeated heatwaves, and most French homes still have no air conditioning at all. A portable AC (climatiseur mobile) is the fastest fix: no installation, no landlord permission, plugged in the day it arrives. Here's how to pick the right size for a French flat, solve the window problem, and time your order so you're not shopping when everything is sold out.
 
 As an Amazon Associate, EcoBack earns from qualifying purchases. Product links below are affiliate links — you pay the same price.
