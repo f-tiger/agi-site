@@ -1,5 +1,5 @@
 {
- "fetched": "2026-09-04",
+ "fetched": "2026-09-05",
  "geo": "DE",
  "seeds": {
   "klimaanlage": {
@@ -57,104 +57,82 @@
    "fetched": "2026-09-04"
   },
   "schimmel entfernen": {
-   "auto": [
-    "schimmel entfernen",
-    "schimmel entfernen wand",
-    "schimmel entfernen hausmittel",
-    "schimmel entfernen dusche",
-    "schimmel entfernen dm",
-    "schimmel entfernen wand innen",
-    "schimmel entfernen textilien",
-    "schimmel entfernen tapete",
-    "schimmel entfernen spray",
-    "schimmel entfernen bad"
-   ],
    "rising": [
     {
-     "q": "schimmel entfernen wand",
-     "v": "new"
+     "q": "schimmel aus kleidung entfernen",
+     "v": 300
     },
     {
-     "q": "schimmel entfernen hausmittel",
-     "v": "new"
+     "q": "schwarzen schimmel entfernen",
+     "v": 120
     },
     {
-     "q": "schimmel entfernen dusche",
-     "v": "new"
+     "q": "schimmel an der wand dauerhaft entfernen",
+     "v": 80
     },
     {
-     "q": "schimmel entfernen dm",
-     "v": "new"
+     "q": "schimmel entfernen kosten",
+     "v": 80
     },
     {
-     "q": "schimmel entfernen wand innen",
-     "v": "new"
+     "q": "stockflecken",
+     "v": 60
     },
     {
-     "q": "schimmel entfernen textilien",
-     "v": "new"
-    },
-    {
-     "q": "schimmel entfernen tapete",
-     "v": "new"
-    },
-    {
-     "q": "schimmel entfernen spray",
-     "v": "new"
-    },
-    {
-     "q": "schimmel entfernen bad",
-     "v": "new"
+     "q": "schimmel entfernen bad fugen",
+     "v": 50
     }
    ],
-   "source": "autocomplete-diff",
-   "fetched": "2026-09-04"
+   "source": "related-queries",
+   "fetched": "2026-09-05",
+   "polluted": false
   },
   "infrarotheizung": {
    "rising": [
     {
-     "q": "schmidbauer infrarotheizung",
-     "v": 62950
+     "q": "infrarotheizung vor und nachteile",
+     "v": 86550
     },
     {
-     "q": "infrarotheizung für garage",
-     "v": 44050
+     "q": "infrarotheizung als bild",
+     "v": 58050
     },
     {
-     "q": "radiator heizung",
-     "v": 1950
+     "q": "ölradiator",
+     "v": 44300
     },
     {
-     "q": "infrarotheizung für bad",
-     "v": 200
+     "q": "infrarotheizung lüge",
+     "v": 39900
     },
     {
-     "q": "redwell infrarotheizung",
-     "v": 180
+     "q": "infrarotheizung energiesparend",
+     "v": 38050
     },
     {
-     "q": "klarstein",
-     "v": 110
+     "q": "infrarotheizung mobil",
+     "v": 34600
     },
     {
-     "q": "infrarotheizung decke licht",
-     "v": 80
+     "q": "könighaus infrarotheizung 600 watt",
+     "v": 34550
     },
     {
-     "q": "klarstein infrarotheizung",
-     "v": 70
+     "q": "infrarotheizung werkstatt",
+     "v": 6500
     },
     {
-     "q": "infrarotheizung bad",
-     "v": 60
+     "q": "pelletofen",
+     "v": 5700
     },
     {
-     "q": "infrarotheizung mit licht",
-     "v": 60
+     "q": "knebel infrarotheizung",
+     "v": 5100
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-08-25"
+   "fetched": "2026-09-05",
+   "polluted": false
   },
   "luftentfeuchter": {
    "rising": [

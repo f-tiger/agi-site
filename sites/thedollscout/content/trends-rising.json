@@ -1,4 +1,62 @@
 {
-  "note": "Reset 2026-08-30 (Labubu pivot) — previous seed data belonged to the retired adult site. tools/fleet_trends_rising.py refills this with the new seeds on its next runner cycle.",
-  "seeds": {}
+ "fetched": "2026-09-05",
+ "geo": "US",
+ "seeds": {
+  "labubu": {
+   "rising": [
+    {
+     "q": "crumbl labubu ube dot cake",
+     "v": 24900
+    },
+    {
+     "q": "lets try the viral crumbl labubu",
+     "v": 7600
+    },
+    {
+     "q": "labubu salon",
+     "v": 1250
+    },
+    {
+     "q": "labubu fifa world cup 2026",
+     "v": 950
+    },
+    {
+     "q": "jax labubu",
+     "v": 700
+    },
+    {
+     "q": "fifa world cup labubu",
+     "v": 650
+    },
+    {
+     "q": "world cup labubu",
+     "v": 500
+    },
+    {
+     "q": "labubu fifa",
+     "v": 250
+    },
+    {
+     "q": "chopped labubu",
+     "v": 190
+    },
+    {
+     "q": "labubu halloween costume",
+     "v": 190
+    }
+   ],
+   "source": "related-queries",
+   "fetched": "2026-09-05"
+  },
+  "fake labubu": {
+   "rising": [
+    {
+     "q": "popmart",
+     "v": 60
+    }
+   ],
+   "source": "related-queries",
+   "fetched": "2026-09-05"
+  }
+ }
 }

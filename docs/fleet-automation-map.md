@@ -181,5 +181,8 @@ owner 原话：「把 Routine 也换成 fable 5.1」。**全部 8 条启用中�
   ②直接 `fire_trigger` 补跑，并在 `text` 里写明「克隆只用 add_repo 返回的 HTTPS
   命令，禁 SSH；HTTPS 报错就把原文写进简报，不要换 SSH 重试」；
   ③僵尸会话用 `archive_session` 清掉（实测可用）。
-- 待办：补跑结果确认 HTTPS 路径在新会话里可用后，把「禁 SSH 克隆」一行补进所有
-  需要克隆仓库的新会话 Routine prompt（bpj daily 今晚 22:02 前最要紧）。
+- **已完成（09-05 04:56–04:59）**：「克隆纪律」段已补进全部 5 条克隆型新会话 Routine
+  的 prompt（bpj daily / eco daily / tds / 分发暂存 / sellSomething 周循环；paid-monthly
+  的补跑已在 fire_trigger text 里带过同款指令）。补跑会话 cse_01BUeRkf… 2 分钟内正常
+  结束、未再卡 pending —— 说明避开 SSH 后新会话路径能走通；它是否完成了 14 工具复核
+  以其推送给 owner 的简报为准（本会话读不到其转写，git 上未见 limits 提交，如实记录）。
