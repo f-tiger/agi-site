@@ -1,6 +1,6 @@
 # Will AI Replace Programmers? What Benchmarks Say
 
-_Last updated: June 30, 2026 · Updated as verdicts change_
+_Last updated: September 5, 2026 · Updated as verdicts change_
 
 **Answer:** Partly — and unevenly. Agentic coding is genuinely strong: frontier models score ~ 80% on SWE-Bench Pro and agents ship real code in production. But “replace” overstates it — no system autonomously owns end-to-end software engineering without human review. On the capability curve this tracks Aschenbrenner’s “outpace college grads” call: On track, not a full replacement.
 

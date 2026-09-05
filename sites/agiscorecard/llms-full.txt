@@ -27,7 +27,7 @@ The AGI Scorecard grades every major prediction from Leopold Aschenbrenner's Sit
 ## AGI Scorecard Data for AI Agents: JSON, Feed, llms.txt
 
 URL: https://agiscorecard.com/for-agents
-Last updated: August 29, 2026 · Updated as verdicts change
+Last updated: September 4, 2026 · Updated as verdicts change
 
 Yes — every verdict on this site is free to reuse, machine-readable, and CC BY 4.0. The AGI Scorecard publishes its full dataset at /data.json (all 8 graded Situational Awareness predictions with verdicts, evidence, and flip conditions, plus the forecaster-timeline table), an Atom feed of new & updated pages at /feed.xml, and an AI-crawler index at /llms.txt. Attribution + a link is the only requirement.
 
@@ -452,7 +452,7 @@ A: Because it isn't tracking to the essay's sketch. As of spring 2026, AI revenu
 ## Can AI Replace Knowledge Workers? The 2025/26 Call, Graded
 
 URL: https://agiscorecard.com/can-ai-replace-knowledge-workers
-Last updated: July 11, 2026 · Updated as verdicts change
+Last updated: September 5, 2026 · Updated as verdicts change
 
 On track. Aschenbrenner predicted frontier AI would outpace college graduates on knowledge work by 2025/26. As of mid-2026 it broadly clears the bar: ~ 83% on GDPval, ~ 80% on SWE-Bench Pro, agents in production — though “drop-in coworker” reliability still lags the benchmark scores.
 
@@ -467,10 +467,49 @@ A: It flips to Wrong if, by end-2026, frontier models still can't complete a maj
 
 ---
 
+## Should You Worry About AI Taking Your Job? (Sep 2026)
+
+URL: https://agiscorecard.com/ai-and-your-job
+Last updated: September 5, 2026 · Updated as the evidence moves · 中文
+
+Verdict as of September 5, 2026: worry in proportion, not in panic — economy-wide job loss from AI is not yet visible in the data, but a real, concentrated hit on early-career workers in the most AI-exposed occupations is. Fear 79% of Americans expect AI to reduce US jobs over the next 10 years; 18% of workers think their own job is likely gone within 5 years ( Gallup, 2026). Economy-wide, observed US unemployment 4.2%, no relative deterioration in AI-exposed occupations in aggregate (Anthropic economist Peter McCrory, Fortune, 2026-07-24); no discernible economy-wide disruption ( Yale Budget Lab tracker). Concentrated early signal Workers aged 22–25 in the most AI-exposed occupations: relative employment −13% (Aug 2025) → −16% (Nov 2025) → a gap of about 19% (Aug 2026 update, data through Jun 2026) ( Stanford Digital Economy Lab, Canaries).
+
+Q: Is AI actually taking jobs yet?
+A: Not economy-wide, as of September 2026: US unemployment is 4.2% and the Yale Budget Lab tracker finds no discernible disruption from AI. The one hard signal is concentrated — Stanford's Canaries study puts workers aged 22–25 in the most AI-exposed occupations at a relative employment gap of about 19% (data through June 2026), with no comparable decline for older workers.
+
+Q: Which jobs are most exposed to AI?
+A: By observed use, Microsoft's Working with AI study (July 2025) scores 785 occupations; Interpreters and Translators rank highest at 0.49. By theoretical exposure, Eloundou et al. (Science, 2024) put about 80% of US workers at 10%+ of tasks exposed to LLMs and about 19% at 50%+. Exposure measures which tasks AI can touch, not job loss.
+
+Q: Should I still major in computer science?
+A: The data splits the field, not the degree. BLS projects 2024–34 computer programmers −6% but software developers +15% and data scientists +33.5%. As reported by secondary sources citing NY Fed recent-graduate data, unemployment is 6.1% for computer science majors and 7.5% for computer engineering; CS enrollment for 2025–26 fell by roughly 8–11% according to reports citing National Student Clearinghouse data.
+
+Q: How worried should I be?
+A: In proportion to your situation, not the headlines. 57% of US adults call the rise of AI a significant source of stress (APA, 2025), yet economy-wide employment data shows no discernible AI disruption so far. Worry more if you are early-career in a highly exposed occupation doing unsupervised end-to-end judgment a system can already do; worry less if your role is supervising, deciding, or physically present. Re-checked 2026-10-03.
+
+---
+
+## Was Amodei Right About the White-Collar Bloodbath? (2026)
+
+URL: https://agiscorecard.com/amodei-white-collar-bloodbath-prediction
+Last updated: September 5, 2026 · Next review: October 3, 2026 · Updated as the data changes
+
+Not yet — 0 of 2 headline metrics have moved (as of 2026-09-05). On May 28, 2025, Axios reported that Anthropic CEO Dario Amodei said AI could wipe out half of all entry-level white-collar jobs and spike unemployment to 10–20% in the next one to five years. Sixteen months on: US unemployment is 4.2% (June 2026), and the sharpest entry-level signal is a concentrated ~19% relative gap for workers aged 22–25 in the most AI-exposed occupations — not half of entry-level white-collar jobs gone. The claim's own clock runs 2026-05-28 → 2030-05-28; checkpoint one (2026-05-28) passed at 4.2%, with 2027-05-28, 2028-05-28 and 2030-05-28 to come.
+
+Q: What exactly did Dario Amodei predict?
+A: As reported by Axios on May 28, 2025, Amodei said AI could wipe out half of all entry-level white-collar jobs and spike unemployment to 10–20% in the next one to five years. His direct words in the same interview: "Cancer is cured, the economy grows at 10% a year, the budget is balanced — and 20% of people don't have jobs." The claim's own clock runs from May 28, 2026 to May 28, 2030.
+
+Q: Has unemployment risen because of AI?
+A: Not in the aggregate data as of September 2026. US unemployment was 4.2% in June 2026 (Fortune, July 24, 2026), versus the 10–20% in the claim. Yale Budget Lab's monthly tracker finds no discernible economy-wide labor-market disruption from AI so far. Employer-stated AI layoffs are rising (Challenger: 112,713 AI-cited cuts January–July 2026 vs 54,836 in all of 2025), but those are stated reasons, not verified causation, and they have not moved the unemployment rate.
+
+Q: Is the entry-level job market getting worse?
+A: For one slice, yes. Stanford's Canaries in the Coal Mine (ADP payroll data, August 2026 update, data through June 2026) finds a relative employment gap of about 19% for workers aged 22–25 in the most AI-exposed occupations, up from −13% in August 2025 and −16% in November 2025. Older workers and less-exposed occupations show no comparable decline. That is a concentrated early signal, not half of entry-level white-collar jobs gone.
+
+---
+
 ## Will AI Cause Mass Unemployment? What the Data Shows (2026)
 
 URL: https://agiscorecard.com/will-ai-cause-mass-unemployment
-Last updated: July 12, 2026 · Updated as verdicts change
+Last updated: September 5, 2026 · Updated as verdicts change
 
 Not the overnight wave the headlines predict — but a real, uneven shift already underway. On raw capability, AI has crossed knowledge-work thresholds (~ 83% on GDPval, ~ 80% on SWE-Bench Pro). But mass unemployment needs more than capability: it needs reliable, unsupervised, end-to-end autonomy — and that autonomy gap is exactly what is still undemonstrated. So the near-term picture is task-level automation and productivity pressure, not a sudden jobs cliff.
 
@@ -491,7 +530,7 @@ A: Because benchmark capability isn't the same as reliable, accountable, end-to-
 ## Will AI Take Over? What the Capability Data Says (2026)
 
 URL: https://agiscorecard.com/will-ai-take-over
-Last updated: July 12, 2026 · Updated as verdicts change
+Last updated: September 5, 2026 · Updated as verdicts change
 
 The scenarios all presuppose one capability that doesn’t exist yet: reliable, autonomous agency. "AI takes over" stories — from job-market dominance to sci-fi control — depend on AI that can act independently, at scale, without human oversight. As of 2026 AI is a powerful assistant (~83% GDPval) but can’t reliably run even one job end-to-end unsupervised. That autonomy gap is the load-bearing assumption in every takeover story — and it’s unmet.
 
@@ -512,7 +551,7 @@ A: When AI demonstrates reliable, unsupervised, long-horizon agency — the AGI 
 ## What Jobs Are Safe From AI? The Autonomy-Gap Answer (2026)
 
 URL: https://agiscorecard.com/what-jobs-are-safe-from-ai
-Last updated: July 24, 2026 · Updated as verdicts change
+Last updated: September 5, 2026 · Updated as verdicts change
 
 The safest work needs reliable, unsupervised, end-to-end judgment — the exact thing AI still lacks. AI in 2026 automates tasks, not whole jobs: it clears ~83% on knowledge-work benchmarks but can’t reliably own a role unsupervised. So the jobs most exposed are task-bounded and digital; the most durable ones combine accountability, physical-world action, and human trust — where the autonomy gap bites hardest.
 
@@ -626,7 +665,7 @@ A: That's the optimists' framing, and the trends lend it support — but the hon
 ## Will AI Replace Programmers? What Benchmarks Say
 
 URL: https://agiscorecard.com/will-ai-replace-programmers
-Last updated: June 30, 2026 · Updated as verdicts change
+Last updated: September 5, 2026 · Updated as verdicts change
 
 Partly — and unevenly. Agentic coding is genuinely strong: frontier models score ~ 80% on SWE-Bench Pro and agents ship real code in production. But “replace” overstates it — no system autonomously owns end-to-end software engineering without human review. On the capability curve this tracks Aschenbrenner’s “outpace college grads” call: On track, not a full replacement.
 
@@ -827,7 +866,7 @@ A: No consensus: forecasts range from 2026 (Musk) and 2027 (Aschenbrenner) to 20
 ## AI vs Human Intelligence: Who's Ahead in 2026?
 
 URL: https://agiscorecard.com/ai-vs-human-intelligence
-Last updated: July 12, 2026 · Updated as verdicts change
+Last updated: September 5, 2026 · Updated as verdicts change
 
 Superhuman in narrow bands, subhuman where it counts most: reliable, autonomous, real-world judgment. By 2026 AI beats most humans on many scoped tasks (~83% GDPval, ~80% SWE-Bench Pro) and vastly exceeds us on recall and speed. But it still can’t reliably own an open-ended job end-to-end without supervision — the dimension where human intelligence remains ahead, and the one that defines AGI.
 
@@ -887,7 +926,7 @@ A: Thinner than assumed. Open-weight Chinese models trail by only ~3–6 months,
 ## What Is GDPval? The AI Knowledge-Work Benchmark, Explained
 
 URL: https://agiscorecard.com/gdpval-explained
-Last updated: July 19, 2026 · Updated as verdicts change
+Last updated: September 5, 2026 · Updated as verdicts change
 
 A benchmark for real, economically valuable knowledge work. GDPval scores AI models on deliverables drawn from actual occupations — the kind of tasks people are paid to do — against expert-produced reference work. On this scorecard, top models reach roughly 83%, the key evidence behind the On track verdict that AI is beginning to outpace college-grad knowledge workers.
 

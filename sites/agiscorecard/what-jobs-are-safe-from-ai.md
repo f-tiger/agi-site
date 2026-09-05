@@ -1,6 +1,6 @@
 # What Jobs Are Safe From AI? The Autonomy-Gap Answer (2026)
 
-_Last updated: July 24, 2026 · Updated as verdicts change_
+_Last updated: September 5, 2026 · Updated as verdicts change_
 
 **Answer:** The safest work needs reliable, unsupervised, end-to-end judgment — the exact thing AI still lacks. AI in 2026 automates tasks, not whole jobs: it clears ~83% on knowledge-work benchmarks but can’t reliably own a role unsupervised. So the jobs most exposed are task-bounded and digital; the most durable ones combine accountability, physical-world action, and human trust — where the autonomy gap bites hardest.
 
