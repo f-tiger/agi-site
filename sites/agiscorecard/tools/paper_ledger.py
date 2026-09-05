@@ -47,6 +47,21 @@ BENCH = ["SPY", "QQQ"]
 TICKERS = BENCH + BASKET
 LOOKBACK_DAYS = 330            # keep enough history for SMA200 + LLM 60-day window
 UA = {"User-Agent": "AGI Scorecard paper-ledger (https://agiscorecard.com/ai-trading-ledger)"}
+# NYSE full-day closures (2026-09 → 2027-12). Used only to name the next session for
+# the published target; a wrong entry costs one early/late rebalance, never money.
+NYSE_HOLIDAYS = {
+    "2026-11-26", "2026-12-25",
+    "2027-01-01", "2027-01-18", "2027-02-15", "2027-03-26", "2027-05-31", "2027-06-18",
+    "2027-07-05", "2027-09-06", "2027-11-25", "2027-12-24",
+}
+
+
+def next_session(d: str) -> str:
+    x = date.fromisoformat(d)
+    while True:
+        x += timedelta(days=1)
+        if x.weekday() < 5 and x.isoformat() not in NYSE_HOLIDAYS:
+            return x.isoformat()
 
 
 # --------------------------------------------------------------------------- data
@@ -222,9 +237,11 @@ def next_day(days: list[str], d: str) -> str | None:
 
 def run_arm(name: str, prices: dict, days: list[str], ledger: dict) -> dict:
     """Return {status, equity:{date:value}, trades, turnover, note}."""
-    if not days:
-        return {"status": "waiting_for_start", "equity": {}, "trades": 0, "turnover": 0}
     all_spy_days = sorted(prices.get("SPY", {}))
+    if not days:
+        return {"status": "waiting_for_start", "equity": {}, "trades": 0, "turnover": 0,
+                "target": {"as_of": all_spy_days[-1] if all_spy_days else None, "execute_on": START,
+                           "action": "wait", "weights": {}}}
     eq: dict[str, float] = {}
     pf = Portfolio()
     orders: dict[str, dict[str, float]] = {}   # execution day -> target weights
@@ -262,7 +279,8 @@ def run_arm(name: str, prices: dict, days: list[str], ledger: dict) -> dict:
         decs = ledger.get("llm_decisions", [])
         if not decs:
             return {"status": "not_started", "equity": {}, "trades": 0, "turnover": 0,
-                    "note": "waiting for LEDGER_LLM_KEY (owner secret); no decisions recorded"}
+                    "note": "waiting for LEDGER_LLM_KEY (owner secret); no decisions recorded",
+                    "target": {"as_of": days[-1], "execute_on": next_session(days[-1]), "action": "wait", "weights": {}}}
         for dec in decs:
             ex = dec.get("execute_on")
             if ex in days:
@@ -282,7 +300,47 @@ def run_arm(name: str, prices: dict, days: list[str], ledger: dict) -> dict:
         if started or d >= first:
             eq[d] = round(pf.value(px), 2)
     status = "live" if eq else "waiting_for_start"
-    return {"status": status, "equity": eq, "trades": pf.trades, "turnover": round(pf.turnover, 2)}
+    # --- target for the next session (what a mirror account should look like at its close)
+    last = days[-1]
+    px_last = px_on(prices, last)
+    total = pf.value(px_last)
+    cur_w = {t: n * px_last[t] / total for t, n in pf.shares.items() if t in px_last and total > 0}
+    if sum(cur_w.values()) > 1.0:  # cost drag leaves paper cash slightly negative; a mirror must stay unlevered
+        k = sum(cur_w.values())
+        cur_w = {t: v / k for t, v in cur_w.items()}
+    cur_w = {t: round(v, 4) for t, v in cur_w.items()}
+    nxt = next_session(last)
+    action, weights = "hold", cur_w
+    if name in ("agi_basket", "tracker_mix") and nxt[:7] != last[:7]:
+        action = "rebalance"
+        if name == "agi_basket":
+            weights = basket_eq
+        else:
+            w = tracker_score_asof(nxt) / 100.0
+            weights = {**{t: round(w / len(BASKET), 4) for t in BASKET}, "SPY": round(1.0 - w, 4)}
+    elif name == "sma200_spy" and nxt[:7] != last[:7]:
+        s200 = sma(prices["SPY"], last, 200)
+        if s200 is not None:
+            action = "rebalance"
+            weights = {"SPY": 1.0} if prices["SPY"][last] > s200 else {}
+    elif name == "llm_agent":
+        pend = [d for d in ledger.get("llm_decisions", []) if d.get("execute_on") == nxt or d.get("execute_on") is None]
+        if pend:
+            action = "rebalance"
+            weights = {k: float(v) for k, v in pend[-1]["weights"].items() if k != "CASH"}
+    if not eq:  # first session ever: every arm enters at the first close
+        action = "enter"
+        if name == "spy_hold": weights = {"SPY": 1.0}
+        elif name == "qqq_hold": weights = {"QQQ": 1.0}
+        elif name == "agi_basket": weights = basket_eq
+        elif name == "tracker_mix":
+            w = tracker_score_asof(nxt) / 100.0
+            weights = {**{t: round(w / len(BASKET), 4) for t in BASKET}, "SPY": round(1.0 - w, 4)}
+        elif name == "sma200_spy":
+            s200 = sma(prices["SPY"], last, 200)
+            weights = {"SPY": 1.0} if (s200 is None or prices["SPY"][last] > s200) else {}
+    target = {"as_of": last, "execute_on": nxt, "action": action, "weights": weights}
+    return {"status": status, "equity": eq, "trades": pf.trades, "turnover": round(pf.turnover, 2), "target": target}
 
 
 def metrics(eq: dict[str, float], bench: dict[str, float]) -> dict:

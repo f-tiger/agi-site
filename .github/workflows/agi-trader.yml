@@ -1,0 +1,67 @@
+name: personal mirror trader (owner-only, paper by default)
+
+# ── owner 2026-09-05:「自动化交易是个人用…目标是自己用来赚钱」+「不是给别人用,所以为什么不能做,就是要做」──
+#
+# 这不是站点功能,不是产品,不给任何人用:它把 owner 自己的一个 Alpaca 账户(默认纸面账户)
+# 在每个交易日收盘前调整成 /ai-trading-ledger 六臂之一的目标仓位。策略输出是公开的
+# (paper-ledger.json 里的 target),账户是 owner 的,密钥在 GitHub Secrets。
+#
+# 公开仓的 Actions 日志是公开的 → 执行器只打印计数与状态,永不打印余额、仓位、金额。
+#
+# 门:job 级 `vars.TRADER_ENABLED == '1'`;变量不存在 = 0 分钟、0 副作用。
+# 实盘另有一道门:`vars.TRADER_LIVE == '1'`,缺省纸面。
+# 预登记护栏(tools/trader/README.md):最大投入 TRADER_MAX_NOTIONAL(缺省 1000 美元)、
+# 镜像臂纸面回撤 ≤ −10% 即清仓并把 run 打红、台账陈旧 >3 个交易日不交易、只在收盘前
+# 45 分钟窗口内动作、tools/trader/KILLED 文件存在即清仓(owner 一键停止)。
+#
+# 成本:两个 cron(夏令时/冬令时各命中一个,另一个看钟后立即退出)× ~1 分钟 × 22 天
+# ≈ 44 分钟/月,公开仓免费;未启用 0 分钟。外部副作用 = 向 owner 自己的券商账户下单,
+# 只挂 schedule/dispatch,不挂 push;不写回仓库。
+
+on:
+  schedule:
+    - cron: "40 19 * * 1-5"   # 15:40 ET during DST
+    - cron: "40 20 * * 1-5"   # 15:40 ET during standard time
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "只计算不下单"
+        required: false
+        default: true
+        type: boolean
+      force:
+        description: "忽略收盘前窗口(纸面测试用)"
+        required: false
+        default: false
+        type: boolean
+
+concurrency:
+  group: agi-trader
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  mirror:
+    if: ${{ vars.TRADER_ENABLED == '1' || github.event_name == 'workflow_dispatch' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.11" }
+      - run: pip install -q requests
+      - name: Mirror one ledger arm into the owner's account
+        env:
+          ALPACA_KEY_ID: ${{ secrets.ALPACA_KEY_ID }}
+          ALPACA_SECRET_KEY: ${{ secrets.ALPACA_SECRET_KEY }}
+          TRADER_ARM: ${{ vars.TRADER_ARM }}
+          TRADER_LIVE: ${{ vars.TRADER_LIVE }}
+          TRADER_MAX_NOTIONAL: ${{ vars.TRADER_MAX_NOTIONAL }}
+          TRADER_WINDOW_MIN: ${{ vars.TRADER_WINDOW_MIN }}
+          TRADER_DRY_RUN: ${{ (github.event_name == 'workflow_dispatch' && github.event.inputs.dry_run == 'true') && '1' || '' }}
+        run: |
+          FORCE=""
+          if [ "${{ github.event.inputs.force }}" = "true" ]; then FORCE="--force"; fi
+          python tools/trader/alpaca_mirror.py $FORCE
