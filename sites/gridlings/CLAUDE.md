@@ -506,6 +506,8 @@ of-cover-1920x1080.png / of-portrait-800x1200.png → 描述抄页面 meta descr
 | 视频 | 预览视频 **15–20 秒**，超长会被裁到 20 秒 |
 | 审核 | 开放投稿，2–4 周，€100 起付月结 |
 | 分成 | 广告 60% / 内购 70%（其 2026 GameMaker jam 条款口径，非主文档） |
+| 结算 | Tipalti 代付，**€100 起付**、按月，不足自动滚存；名义 NET 60，实际多在次月 10 号前 |
+| Billing | **不影响审核、不影响广告投放，只卡提现**。Basic Launch requirements 十行检查项里没有任何一行与 billing 相关（2026-09-05 owner 截图为证）；收入照常累积到 Earnings Balance。**触发填写的条件是余额真的开始走**，在此之前不填 = 不必要地把身份/银行/税表交给第三方。第 3 步 Tax Forms 非美国人走 W-8BEN，**owner-only，会话永不代填、永不索取这些信息** |
 | Tags | **固定下拉，不是自由词**。已反查确认存在：`survival` `top-down` `avoid` `skill` `space` `block` `brain` `third-person-shooter`。**没有 `ai` 标签** |
 | Category | 与 tags 是两个字段：`/c/shooting` `/c/puzzle` `/c/casual` `/c/clicker` `/c/driving` |
 
