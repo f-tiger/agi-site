@@ -4,7 +4,9 @@ name: agiscorecard paper-trading ledger (daily)
 #
 # 裁定见 docs/auto-trading-research-2026-09.md:不开子站、不碰真钱、不卖信号。
 # /do-ai-trading-agents-work 要求厂商拿出「可核验的实盘台账」,本站自己先拿出来:
-# 六个臂(SPY/QQQ 买入持有、AGI 十股等权、Tracker 加权、Faber 200 日均线、LLM 周频配置)
+# 十个臂(SPY/QQQ 买入持有、AGI 十股等权、Tracker 加权、Faber 200 日均线、LLM 周频配置;
+# 2026-09-05 同日追加四条已发表的配置规则:Antonacci GEM 双动量、Faber GTAA-5、SPY 10% 波动率目标、
+# 篮子内 12-1 动量前五)
 # 从 2026-09-08 起用同一份复权日线确定性重算,结果落 sites/agiscorecard/paper-ledger.json,
 # 页面 /ai-trading-ledger 只读它。零编造:取不到的 ticker 沿用上次缓存并标记;完全取不到
 # SPY 则 exit 1 让 run 变红。
@@ -46,7 +48,12 @@ jobs:
           import json, datetime as dt
           L = json.load(open("sites/agiscorecard/paper-ledger.json"))
           assert L["start"] == "2026-09-08" and L["notional"] == 10000
-          assert set(L["arms"]) == {"spy_hold","qqq_hold","agi_basket","tracker_mix","sma200_spy","llm_agent"}
+          assert set(L["arms"]) == {"spy_hold","qqq_hold","sixty_forty","agi_basket","tracker_mix","sma200_spy","llm_agent",
+                                    "gem_dual_momentum","gtaa5","spy_voltarget","basket_mom5"}
+          for k, a in L["arms"].items():
+              t = a.get("target") or {}
+              assert t.get("action") in ("enter","hold","rebalance","wait"), f"{k}: bad target"
+              assert sum(float(v) for v in (t.get("weights") or {}).values()) <= 1.0001, f"{k}: levered target"
           age = (dt.date.today() - dt.date.fromisoformat(L["last_price_date"])).days
           assert age <= 5, f"SPY price is {age} days old — data pipeline broken, refusing to publish"
           for k, a in L["arms"].items():

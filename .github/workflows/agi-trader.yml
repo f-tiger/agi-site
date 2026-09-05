@@ -1,39 +1,37 @@
-name: personal mirror trader (owner-only, paper by default)
+name: personal mirror trader
 
-# ── owner 2026-09-05:「自动化交易是个人用…目标是自己用来赚钱」+「不是给别人用,所以为什么不能做,就是要做」──
+# ── owner 自用(2026-09-05:「自动化交易是个人用…目标是自己用来赚钱」+「不是给别人用,所以为什么
+#    不能做,就是要做」+「调研清楚,如何完善这个可以自动交易的股票平台」)──
 #
-# 这不是站点功能,不是产品,不给任何人用:它把 owner 自己的一个 Alpaca 账户(默认纸面账户)
-# 在每个交易日收盘前调整成 /ai-trading-ledger 六臂之一的目标仓位。策略输出是公开的
-# (paper-ledger.json 里的 target),账户是 owner 的,密钥在 GitHub Secrets。
+# 不是产品、不是信号、不给任何人用。每个交易日收盘前,把 owner 自己的一个 Alpaca 账户
+# (缺省纸面)调整成 /ai-trading-ledger 某一臂的目标仓位。策略公开(台账 JSON 的 target),
+# 钱和密钥是 owner 的。执行器不含策略:tools/trader/alpaca_mirror.py。
 #
-# 公开仓的 Actions 日志是公开的 → 执行器只打印计数与状态,永不打印余额、仓位、金额。
+# 执行模型(2026-09-05 调研):整股走 market-on-close(cls,与纸面台账同用官方收盘价;
+# Alpaca 在 15:50 ET 之后拒收 cls),零股余额走 day 市价单;GitHub cron 高峰可迟到 15–60 分钟
+# → 四条错峰 cron 覆盖夏令/冬令的 14:45/15:15 ET,幂等 = 从 Alpaca 读「今日已有订单」;
+# 距收盘 ≤10 分钟 = 太晚,跳过并变红(邮件即告警)。
 #
-# 门:job 级 `vars.TRADER_ENABLED == '1'`;变量不存在 = 0 分钟、0 副作用。
-# 实盘另有一道门:`vars.TRADER_LIVE == '1'`,缺省纸面。
-# 预登记护栏(tools/trader/README.md):最大投入 TRADER_MAX_NOTIONAL(缺省 1000 美元)、
-# 镜像臂纸面回撤 ≤ −10% 即清仓并把 run 打红、台账陈旧 >3 个交易日不交易、只在收盘前
-# 45 分钟窗口内动作、tools/trader/KILLED 文件存在即清仓(owner 一键停止)。
-#
-# 成本:两个 cron(夏令时/冬令时各命中一个,另一个看钟后立即退出)× ~1 分钟 × 22 天
-# ≈ 44 分钟/月,公开仓免费;未启用 0 分钟。外部副作用 = 向 owner 自己的券商账户下单,
-# 只挂 schedule/dispatch,不挂 push;不写回仓库。
+# 门:job 级 vars.TRADER_ENABLED == '1'(dispatch 例外,便于纸面冒烟);实盘再过 vars.TRADER_LIVE。
+# 成本:4 次/日 × ~1 分钟 × 22 日 ≈ 90 分钟/月(多数为「太早/已下单」秒退),公开仓免费;未启用 0。
+# 日志纪律:公开仓日志公开,执行器只打印计数;金额只经 Telegram(可选 secrets)发给 owner。
 
 on:
   schedule:
-    - cron: "40 19 * * 1-5"   # 15:40 ET during DST
-    - cron: "40 20 * * 1-5"   # 15:40 ET during standard time
+    - cron: "45 18 * * 1-5"   # 14:45 ET (EDT)
+    - cron: "15 19 * * 1-5"   # 15:15 ET (EDT) / 14:15 ET (EST)
+    - cron: "45 19 * * 1-5"   # 15:45 ET (EDT, cls still open) / 14:45 ET (EST)
+    - cron: "15 20 * * 1-5"   # 16:15 ET (EDT, closed → no-op) / 15:15 ET (EST)
   workflow_dispatch:
     inputs:
       dry_run:
         description: "只计算不下单"
-        required: false
+        type: boolean
         default: true
-        type: boolean
       force:
-        description: "忽略收盘前窗口(纸面测试用)"
-        required: false
-        default: false
+        description: "忽略时间窗与幂等检查(纸面测试用)"
         type: boolean
+        default: false
 
 concurrency:
   group: agi-trader
@@ -52,16 +50,17 @@ jobs:
       - uses: actions/setup-python@v5
         with: { python-version: "3.11" }
       - run: pip install -q requests
-      - name: Mirror one ledger arm into the owner's account
+      - name: Mirror
         env:
           ALPACA_KEY_ID: ${{ secrets.ALPACA_KEY_ID }}
           ALPACA_SECRET_KEY: ${{ secrets.ALPACA_SECRET_KEY }}
+          TRADER_TG_TOKEN: ${{ secrets.TRADER_TG_TOKEN }}
+          TRADER_TG_CHAT: ${{ secrets.TRADER_TG_CHAT }}
           TRADER_ARM: ${{ vars.TRADER_ARM }}
           TRADER_LIVE: ${{ vars.TRADER_LIVE }}
           TRADER_MAX_NOTIONAL: ${{ vars.TRADER_MAX_NOTIONAL }}
-          TRADER_WINDOW_MIN: ${{ vars.TRADER_WINDOW_MIN }}
-          TRADER_DRY_RUN: ${{ (github.event_name == 'workflow_dispatch' && github.event.inputs.dry_run == 'true') && '1' || '' }}
         run: |
-          FORCE=""
-          if [ "${{ github.event.inputs.force }}" = "true" ]; then FORCE="--force"; fi
-          python tools/trader/alpaca_mirror.py $FORCE
+          ARGS=""
+          if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then ARGS="$ARGS --dry-run"; fi
+          if [ "${{ github.event.inputs.force }}" = "true" ]; then ARGS="$ARGS --force"; fi
+          python tools/trader/alpaca_mirror.py $ARGS
