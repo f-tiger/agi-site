@@ -1,0 +1,81 @@
+name: Metaculus forecasting bot
+
+# ── 舰队第一条「与流量无关」的营收线(2026-09-05,owner:「针对商业营收,突破性调研思考」)──
+#
+# Metaculus FutureEval 机器人锦标赛:每季 $50k 奖池、300–500 题、一年三季,
+# 奖金按预测准确度分配——不需要一个访客。舰队的核心能力正是带日期、带翻转条件的判定
+# (agiscorecard 赔率快照 / 台账 / 预登记判定线),这条线把它直接变成现金奖励。
+# 决策文档:docs/revenue-breakthrough-2026-09.md;代码:tools/metaculus-bot/。
+#
+# 门:job 级 `vars.METACULUS_BOT_ENABLED == '1'`。变量不存在 = 整个 job 被跳过,
+# 不分配 runner、不计分钟。owner 只需三步(≈10 分钟):
+#   ① https://www.metaculus.com/futureeval/participate/ 建 bot 账号 → 复制 token
+#   ② 仓库 Settings → Secrets → Actions:METACULUS_TOKEN(必需;只有它时 LLM 走
+#      Metaculus 自己的代理 metaculus/gpt-4o,即赛事赞助算力;OPENROUTER_API_KEY 可选,
+#      免费额度表单见 tools/metaculus-bot/README.md)
+#   ③ Settings → Variables → Actions:METACULUS_BOT_ENABLED = 1
+#   然后 Actions → 本 workflow → Run workflow → mode=test_questions 冒烟一次。
+#
+# 成本(CLAUDE.md 纪律:先算账再加 cron):模板默认每 20 分钟一跑(72 次/天);本仓改为
+# 每 2 小时(12 次/天),题目开放窗口以天计,2 小时足够。实测估算 3–5 分钟/次(含依赖安装,
+# pip 缓存后更短)→ ≤60 分钟/天 ≈ 1,800 分钟/月;公开仓 Actions 免费。未启用时 0 分钟。
+# 外部副作用 = 向 Metaculus 提交预测,只挂 schedule/dispatch,永不挂 push。
+# 不写回仓库,不碰任何站点;与 8 条 deploy 互不相干。
+
+on:
+  schedule:
+    - cron: "13 */2 * * *"
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "tournament | test_questions | metaculus_cup"
+        required: false
+        default: "tournament"
+        type: choice
+        options: [tournament, test_questions, metaculus_cup]
+      dry_run:
+        description: "只推理不提交(冒烟用)"
+        required: false
+        default: false
+        type: boolean
+
+concurrency:
+  group: metaculus-bot
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  forecast:
+    # 变量缺失或 != '1' → 直接跳过(手动 dispatch 例外,便于 owner 首轮冒烟)
+    if: ${{ vars.METACULUS_BOT_ENABLED == '1' || github.event_name == 'workflow_dispatch' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: tools/metaculus-bot/requirements.txt
+      - name: Install
+        run: pip install -q -r tools/metaculus-bot/requirements.txt
+      - name: Syntax gate
+        run: python -m py_compile tools/metaculus-bot/main.py
+      - name: Forecast
+        working-directory: tools/metaculus-bot
+        env:
+          METACULUS_TOKEN: ${{ secrets.METACULUS_TOKEN }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          PERPLEXITY_API_KEY: ${{ secrets.PERPLEXITY_API_KEY }}
+          EXA_API_KEY: ${{ secrets.EXA_API_KEY }}
+          ASKNEWS_CLIENT_ID: ${{ secrets.ASKNEWS_CLIENT_ID }}
+          ASKNEWS_SECRET: ${{ secrets.ASKNEWS_SECRET }}
+        run: |
+          MODE="${{ github.event.inputs.mode || 'tournament' }}"
+          DRY=""
+          if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then DRY="--dry-run"; fi
+          python main.py --mode "$MODE" $DRY

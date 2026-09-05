@@ -231,3 +231,32 @@ Weekly AI News 均 2–13 分钟成功）；**手动触发路径正常**（`fire
 部署自动重发、快照写回 `data/fleet-health.json`、任一站非 200 直接把 run 打红。
 **GitHub 的 workflow 失败邮件是整条链上唯一不经过任何 AI 会话的告警通道**——
 所以「上面那句新站默认加低频 schedule」现在由 heartbeat 统一承担，不必每站各加一条。
+
+## 营收突破线:与流量解耦(2026-09-05,owner:「针对商业营收,突破性调研思考,可以新开子站,或者优化原有的站点」)
+
+**裁定**:营收公式 `流量 × 18,9% × €0,085` 里只有流量能动而两个月没动;**新子站不开**
+(子域继承≈0、三条铁律无候选全中、08-28「稀释不是杠杆」无新证据推翻)。突破 = 把营收从流量
+解耦。决策文档 `docs/revenue-breakthrough-2026-09.md`(三轮 prompt、8 站钱线、杀单再确认、
+owner 决策卡、事实表)。
+- **#1 Metaculus FutureEval 机器人锦标赛(已建)**:每季 $50k 奖池、300–500 题、bot-only,
+  按准确度付奖金,不需要访客。`tools/metaculus-bot/` + `.github/workflows/metaculus-bot.yml`
+  (每 2 小时;**job 级门 `vars.METACULUS_BOT_ENABLED=='1'`,未设 = 0 分钟 0 副作用**)。
+  bot 的研究步把 agiscorecard `llms.txt` 作为 house prior 喂 AI 类题。owner 三步 ≈10 分钟
+  见 `tools/metaculus-bot/README.md`。**赛规 bot-only,永不人工干预预测;零编造照适用;
+  联盟链接永不进预测说明。**
+- **#2 eco 租客契合 lead-gen(Check24/Verivox Stromwechsel,€16,50–20/lead ≈ 200 次 Amazon
+  点击)**:与 08-28 杀掉的 PV/热泵线索不同(那条要业主,这条是租客的事),但撞 owner
+  2026-08-29「只走 Amazon」——**只请示不抢跑,一行代码不写**;owner 答 no 则永久归档。
+- **#3 Amazon.de 服务 bounty(Prime/Audible 免费试用 Prämie,现有 tag)**:预登记 **09-29**
+  (eco 三条 affiliate_click 判定线结算后)在非判定窗购买页加一行,事件 `bounty_click`;
+  金额在登录后的 Vergütungskatalog,owner 下次截图顺带。
+- **#5 Perplexity Comet Plus 出版商池**:owner 一封邮件(草稿在文档 §七),60 天无回复归档。
+- **外部变更要盯**:Cloudflare Pay-Per-Use 2026-09-15 起默认拦截 [thin]——保险丝「引用队列
+  爬虫不设价不屏蔽」优先,09-15 后若 heartbeat 看到 GPTBot/OAI-SearchBot/ClaudeBot/
+  PerplexityBot 被 403,先解封。
+- **判定线(预登记)**:Metaculus 启用 +28d ≥30 题已提交且成功率 ≥80%;当季结算 +45d 奖金/
+  位次进台账(零也记),未进前 1/3 下季不续;**2026-12-05 总线**:舰队非 Amazon 收入 >0 或
+  eco 联盟 ≥€30/30d,否则「解耦」判负,回到把 eco 做厚。
+- **本轮再确认的杀单**(别再提):Boosts、x402(11 月复核)、爬虫收费、展示广告、分享按钮、
+  widgets、非 Amazon 联盟(#2 是唯一请示例外)、PV/热泵线索、B2B 冷邮、新域/新子站、先复制壳、
+  游戏当营收、X 自动发帖、KDP、代币、买站、卖引擎。
