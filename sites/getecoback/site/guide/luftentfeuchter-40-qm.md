@@ -37,6 +37,8 @@ Ein Kompressor-Luftentfeuchter zieht ca. 300 W, also rund **0,09 € pro Stunde*
 
 **Hilft ein Luftentfeuchter gegen Schimmel in 40 m²?**Ja — indem er die Luftfeuchtigkeit unter ~60 % hält, entzieht er Schimmel die Grundlage. Ein Hygrostat, der bei Zielfeuchte automatisch abschaltet, ist dafür ideal.
 
+**Hilft ein Luftentfeuchter bei Hitze?**Gegen die Temperatur nicht — er senkt nur die Luftfeuchte und gibt sogar etwas Abwärme ab. Gegen Schwüle schon: Nach dem NOAA-Hitzeindex fühlen sich 28 °C bei 70 % Luftfeuchte wie 30,7 °C an, bei 50 % wie 28,4 °C. Wer wirklich kühlen will, braucht eine Klimaanlage; wer vor allem feuchte, stickige Luft hat, ist hier richtig. Die Zahlen und die ehrliche Reihenfolge stehen im Luftentfeuchter-Ratgeber.
+
 **Passende Luftentfeuchter für 40 m² auf Amazon.de** — auf Liter/Tag und Hygrostat achten:
 
 Luftentfeuchter ansehen →
