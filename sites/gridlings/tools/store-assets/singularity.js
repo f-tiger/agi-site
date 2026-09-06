@@ -16,12 +16,16 @@ module.exports = {
     { name: "portrait", rec: { w: 540, h: 960 }, out: { w: 1080, h: 1920 } }
   ],
   trailerCss: "#hint{display:none!important}#nudge{display:none!important}#toasts{top:auto;bottom:16px;max-width:260px}.toast{font-size:11px;padding:6px 9px}",
-  poster: (c) => require("./_poster.js")(c, {
-    fontFace: require("./_fonts.js").russo, family: "'Russo One'", titleScale: 0.7, heroScale: .8, lines: 1.62,
+  /* landscape: one line, small; portrait/square: two lines. A 16-character
+     wordmark cannot be both big and unbroken at 800px wide. */
+  poster: (c) => require("./_poster.js")(c, Object.assign(c.w > c.h * 1.1
+    ? { titleScale: 0.46, tagScale: 1.7, nowrap: true, heroScale: .86, word: "SINGULARITY <em>INC.</em>" }
+    : { titleScale: 0.62, lines: 1.85, heroScale: .8, word: "SINGULARITY<br><em style='font-size:.62em;line-height:1.1'>INC.</em>" }, {
+    fontFace: require("./_fonts.js").russo, family: "'Russo One'",
     ground: (W, H) => `radial-gradient(${W*.9}px ${H*.9}px at 60% 35%, #1b3a6a 0%, #0f1f45 40%, #090f2a 72%, #04061a 100%)`,
     rays: "rgba(57,242,255,.07)",
     ink: "#ffffff", ink2: "#39f2ff", outline: "#0a1030", shadow: "#ff3fa4", tagInk: "#bfe9ff",
-    word: "SINGULARITY<br><em style='font-size:.62em;line-height:1'>INC.</em>", tagline: "BUILD THE LAB THAT BUILDS THE MODEL",
+    tagline: "BUILD THE LAB THAT BUILDS THE MODEL",
     /* the server hall from the game: racks, drones, the core -- eye-free */
     hero: `<svg viewBox="0 0 200 200"><defs>
 <radialGradient id="cg" cx=".45" cy=".4" r=".6"><stop offset="0" stop-color="#d9fdff"/><stop offset=".45" stop-color="#39f2ff"/><stop offset="1" stop-color="#0a6a7a"/></radialGradient>
@@ -37,7 +41,7 @@ module.exports = {
 <g fill="#1a2444" stroke="#05081a" stroke-width="1.5"><rect x="56" y="126" width="14" height="12" rx="2"/><rect x="130" y="130" width="14" height="12" rx="2"/><rect x="92" y="140" width="14" height="12" rx="2"/><rect x="40" y="60" width="14" height="12" rx="2"/><rect x="150" y="56" width="14" height="12" rx="2"/></g>
 <g fill="#ff3fa4"><rect x="56" y="136" width="14" height="3"/><rect x="130" y="140" width="14" height="3"/><rect x="92" y="150" width="14" height="3"/><rect x="40" y="70" width="14" height="3"/><rect x="150" y="66" width="14" height="3"/></g>
 <g font-family="Russo One,Arial Black,Arial,sans-serif" font-size="14" text-anchor="middle"><rect x="58" y="164" width="84" height="26" rx="13" fill="#ffcc57"/><text x="100" y="182" fill="#1a1200">$1.2M/s</text></g></svg>`
-  }),
+  })),
   stage: (c) => `
     (function(){ var S = SG.S; S.money = 184000; S.data = 9200; S.gen.agent = 22; S.gen.gpu = 14; S.gen.dataset = 3; S.gen.researcher = 4; S.clickLv = 6; S.models = 11; S.earned = 610000; S.align = 4; S.prestige = 1; S.clicks = 300; S.t = 1200;
       document.getElementById('hint').classList.add('gone'); document.getElementById('nudge').style.display = 'none'; SG.render(); })();

@@ -8,7 +8,7 @@ module.exports = function poster(c, o) {
   const W = c.w, H = c.h, port = H > W * 1.1, sq = Math.abs(W - H) < W * .1;
   const vm = Math.min(W, H);
   const title = (sq ? .19 : port ? .19 : .27) * vm * (o.titleScale || 1);
-  const tag = title * .18;
+  const tag = title * .18 * (o.tagScale || 1);   /* o.tagScale: keep the tagline readable when the wordmark is set small */
   const hero = (sq ? .66 : port ? .84 : .70) * vm * (o.heroScale || 1);
   const ol = Math.max(2, Math.round(title * .045));
   const ring = [[ol,0],[-ol,0],[0,ol],[0,-ol],[ol,ol],[-ol,ol],[ol,-ol],[-ol,-ol]].map(([x,y]) => `${x}px ${y}px 0 ${o.outline}`).join(",");
@@ -26,7 +26,7 @@ module.exports = function poster(c, o) {
     .rays{position:absolute;inset:-40%;background:repeating-conic-gradient(from 0deg,${o.rays || "rgba(255,255,255,.12)"} 0 9deg,rgba(255,255,255,0) 9deg 22deg);}
     .hero{position:absolute;left:50%;top:${heroTop};width:${hero}px;height:${hero}px;transform:translate(-50%,-50%);}
     .hero svg{width:100%;height:100%;overflow:visible;}
-    .word{position:absolute;left:0;right:0;top:${wordTop};text-align:center;font-weight:${o.fontFace ? 400 : 900};font-size:${title}px;line-height:1;letter-spacing:${title*.02}px;color:${o.ink};text-shadow:${ring}${drop};}
+    .word{position:absolute;left:0;right:0;top:${wordTop};text-align:center;white-space:${o.nowrap ? "nowrap" : "normal"};font-weight:${o.fontFace ? 400 : 900};font-size:${title}px;line-height:1;letter-spacing:${title*.02}px;color:${o.ink};text-shadow:${ring}${drop};}
     .word em{font-style:normal;color:${o.ink2};}
     .tag{position:absolute;left:0;right:0;top:${tagTop};text-align:center;font-weight:800;font-size:${tag}px;color:${o.tagInk};letter-spacing:${tag*.05}px;text-shadow:0 1px 0 rgba(255,255,255,.35);}
   </style></head><body>
