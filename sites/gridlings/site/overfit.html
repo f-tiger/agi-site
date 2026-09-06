@@ -188,22 +188,24 @@ function tone(f, t0, dur, type, gain, slide) {
     o.start(a.currentTime + t0); o.stop(a.currentTime + t0 + dur + 0.02);
   } catch (e) {}
 }
-function noise(dur, freq, gain) {
+function noise(dur, freq, gain, t0) {
   var a = ac(); if (!a || muted || window.GL_SDK_MUTE) return;
   try {
     var n = a.createBufferSource(), b = a.createBuffer(1, a.sampleRate * dur, a.sampleRate), d = b.getChannelData(0);
     for (var i = 0; i < d.length; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / d.length, 1.6);
     var f = a.createBiquadFilter(); f.type = "lowpass"; f.frequency.value = freq;
     var g = a.createGain(); g.gain.value = gain;
-    n.buffer = b; n.connect(f); f.connect(g); g.connect(a.destination); n.start();
+    n.buffer = b; n.connect(f); f.connect(g); g.connect(a.destination); n.start(a.currentTime + (t0 || 0));
   } catch (e) {}
 }
 var sfx = {
-  shot: function () { tone(880, 0, 0.045, "square", 0.025, 640); },
-  kill: function () { tone(520, 0, 0.09, "triangle", 0.1, 240); noise(0.08, 1400, 0.06); },
+  shot: function () { tone(880, 0, 0.045, "square", 0.025, 640); noise(0.03, 5200, 0.03); },
+  kill: function () { tone(520, 0, 0.09, "triangle", 0.1, 240); tone(95, 0, 0.14, "sine", 0.14, 40); noise(0.14, 1400, 0.09); },
+  bossIn: function () { tone(70, 0, 1.3, "sawtooth", 0.11, 52); tone(140, 0.1, 1.1, "square", 0.04, 105); noise(1.0, 320, 0.08); },
+  bossDie: function () { noise(0.7, 900, 0.2); tone(210, 0, 0.7, "sawtooth", 0.14, 38); tone(523, 0.32, 0.3, "triangle", 0.1); tone(784, 0.48, 0.45, "triangle", 0.1); tone(1046, 0.6, 0.5, "sine", 0.07); },
   hurt: function () { tone(160, 0, 0.22, "sawtooth", 0.16, 70); noise(0.2, 500, 0.2); },
-  wave: function () { tone(392, 0, 0.12, "triangle", 0.1); tone(494, 0.1, 0.12, "triangle", 0.1); tone(659, 0.2, 0.2, "triangle", 0.12); },
-  confuse: function () { tone(700, 0, 0.4, "sawtooth", 0.07, 90); tone(940, 0.05, 0.35, "square", 0.05, 120); noise(0.35, 900, 0.16); },
+  wave: function () { tone(392, 0, 0.12, "triangle", 0.1); tone(494, 0.1, 0.12, "triangle", 0.1); tone(659, 0.2, 0.3, "triangle", 0.12); tone(784, 0.2, 0.3, "sine", 0.05); noise(0.3, 2200, 0.04, 0.2); },
+  confuse: function () { for (var i = 0; i < 6; i++) tone(420 + ((i * 7) % 5) * 130, i * 0.05, 0.04, "square", 0.05); tone(700, 0.3, 0.4, "sawtooth", 0.07, 90); noise(0.45, 900, 0.16, 0.25); },
   over: function () { tone(330, 0, 0.2, "sine", 0.12); tone(262, 0.18, 0.2, "sine", 0.12); tone(196, 0.36, 0.4, "sine", 0.12); },
   beam: function () { tone(1400, 0, 0.5, "sine", 0.03, 1800); }
 };
@@ -339,6 +341,11 @@ function startWave() {
   wave++;
   waveQuota = Math.round((4 + wave * 3) * Math.max(1, Math.min(2.4, (W * H) / 430000)));
   waveSpawned = 0;
+  /* Every fifth wave the model stops hiding behind its minions and comes out as a
+     body: a sniper-class foe whose hull IS the radar rose. It aims where it
+     predicts you, takes double damage while confused, and the wave cannot end
+     until it is dead. */
+  if (wave % 5 === 0) { spawnBoss(); waveQuota = Math.round(waveQuota * .6); }
   // density is per-AREA: a desktop arena is ~2x a phone's, so it gets ~2x the
   // pressure. Without this the same enemy count reads as an empty field on wide
   // screens — which is exactly how a reviewer decides a dodger is not fun.
@@ -348,12 +355,19 @@ function startWave() {
   nowTWave = 0;
   waveMsg = { t: 0, lines: wave === 1 ? ["cold start \u2014 no data on you yet"] : trainingReport() };
   /* the wave card doubles as the model's training report: what it now believes about you */
-  showIntro(wave === 1 ? "WAVE 1" : "WAVE " + wave + " \u00b7 TRAINING UPDATE", waveMsg.lines[0], waveMsg.lines.slice(1).join("  \u00b7  "));
+  if (wave % 5 === 0) showIntro("WAVE " + wave + " \u00b7 BOSS", "the model itself", "it fires where it predicts you \u00b7 confuse it for double damage");
+  else showIntro(wave === 1 ? "WAVE 1" : "WAVE " + wave + " \u00b7 TRAINING UPDATE", waveMsg.lines[0], waveMsg.lines.slice(1).join("  \u00b7  "));
   if (armed) sfx.wave();   /* silent on the page-load wave: creating an
      AudioContext before a user gesture logs a Chrome autoplay warning */
   /* wave announcement moved into the intro card (it collided with the rose) */
 }
 var nowTWave = 0;
+function spawnBoss() {
+  var base = 52 + wave * 7;
+  foes.push({ type: "sniper", boss: true, x: W / 2, y: -50, hp: 10 + wave, hpMax: 10 + wave, sp: base * .32, r: 34, hue: 275, lock: 0.9, aim: null, wob: 0 });
+  if (armed) sfx.bossIn();
+  shake = 8;
+}
 function spawnFoe(type) {
   var edge = Math.floor(Math.random() * 4), x, y;
   if (edge === 0) { x = -20; y = Math.random() * H; }
@@ -463,15 +477,20 @@ function update(dt) {
     for (var f2 = foes.length - 1; f2 >= 0; f2--) {
       var fo = foes[f2];
       if (Math.hypot(fo.x - sh.x, fo.y - sh.y) < fo.r + 4) {
-        shots.splice(s, 1); fo.hp--;
+        shots.splice(s, 1); fo.hp -= (fo.boss && confused > 0) ? 2 : 1;
         burst(sh.x, sh.y, fo.hue, 5, 120);
         if (fo.hp <= 0) {
           foes.splice(f2, 1);
           var gain = (fo.type === "chaser" ? 10 : fo.type === "predictor" ? 20 : 30) * (confused > 0 ? 2 : 1);
+          if (fo.boss) gain = (250 + wave * 20) * (confused > 0 ? 2 : 1);
           score += gain;
-          popText("+" + gain, fo.x, fo.y, 15, fo.hue);
-          burst(fo.x, fo.y, fo.hue, 14, 200);
-          sfx.kill(); shake = Math.max(shake, 2.5); rings.push({ x: fo.x, y: fo.y, t: 0, hue: fo.hue });
+          popText("+" + gain, fo.x, fo.y, fo.boss ? 24 : 15, fo.hue);
+          burst(fo.x, fo.y, fo.hue, fo.boss ? 60 : 14, fo.boss ? 320 : 200);
+          if (fo.boss) {
+            popText("MODEL DESTROYED", W / 2, H * .4, 26, 160); shake = 16; sfx.bossDie(); window.ofCg("happy");
+            rings.push({ x: fo.x, y: fo.y, t: 0, hue: 275 }); rings.push({ x: fo.x, y: fo.y, t: -.14, hue: 340 }); rings.push({ x: fo.x, y: fo.y, t: -.28, hue: 160 });
+            setTimeout(function () { confettiBurst(110); }, 150);
+          } else { sfx.kill(); shake = Math.max(shake, 2.5); rings.push({ x: fo.x, y: fo.y, t: 0, hue: fo.hue }); }
         }
         break;
       }
@@ -509,6 +528,7 @@ function update(dt) {
         }
       }
     }
+    if (f.boss) { f.x = Math.max(f.r, Math.min(W - f.r, f.x)); f.y = Math.max(f.r + 60, Math.min(H * .45, f.y)); }
     /* touch damage */
     if (inv <= 0 && Math.hypot(f.x - P.x, f.y - P.y) < f.r + 9) {
       hp--; inv = 1.2; sfx.hurt(); shake = 9;
@@ -556,6 +576,54 @@ function endGame() {
   modalT = setTimeout(function () { document.getElementById("mover").classList.add("show"); }, 500);
 }
 /* ============ draw */
+/* the model's movement histogram as an 8-petal rose. Shared by the HUD and the
+   boss's hull, so the thing you fight is literally the thing that has been
+   watching you. */
+function drawRose(x, y, R, dish) {
+  var mn = Math.min.apply(null, model.dirBins), mxv = Math.max.apply(null, model.dirBins), span = Math.max(1e-6, mxv - mn);
+  var k = R / 26;
+  cx.save(); cx.translate(x, y);
+  if (dish) {
+    cx.fillStyle = "rgba(10,14,24,.85)"; cx.beginPath(); cx.arc(0, 0, R + 9, 0, 7); cx.fill();
+    cx.strokeStyle = "rgba(255,255,255,.10)"; cx.lineWidth = 1; cx.stroke();
+    cx.strokeStyle = "rgba(255,255,255,.06)"; cx.beginPath(); cx.arc(0, 0, R * .5, 0, 7); cx.stroke();
+  }
+  for (var bi = 0; bi < 8; bi++) {
+    var wgt = (model.dirBins[bi] - mn) / span, len = 9 * k + R * .72 * wgt, ang = bi * Math.PI / 4;
+    var top = model.dirBins[bi] === mxv && model.conf > .15;
+    if (confused > 0) { ang += (Math.random() - .5) * .5; len *= .6 + Math.random() * .6; }
+    cx.save(); cx.rotate(ang);
+    cx.fillStyle = confused > 0 ? "rgba(0,229,168,.75)" : top ? "#ff3d71" : "rgba(90,140,245," + (0.35 + wgt * .5) + ")";
+    if (top && confused <= 0) { cx.shadowColor = "rgba(255,61,113,.9)"; cx.shadowBlur = 10 * k; }
+    cx.beginPath(); cx.moveTo(0, -3.5 * k); cx.lineTo(len, -1.2 * k); cx.lineTo(len + 3 * k, 0); cx.lineTo(len, 1.2 * k); cx.lineTo(0, 3.5 * k); cx.closePath(); cx.fill();
+    cx.restore();
+  }
+  cx.fillStyle = confused > 0 ? "#00e5a8" : "#ff3d71"; cx.beginPath(); cx.arc(0, 0, 3.5 * k, 0, 7); cx.fill();
+  cx.restore();
+}
+function drawBoss(fx, fy, fr, look, f) {
+  /* a slow heavy pulse; the hull is a dark disc carrying the live rose */
+  var pulse = 1 + Math.sin(nowT * 3) * .03;
+  cx.save(); cx.translate(fx, fy); cx.scale(pulse, pulse);
+  cx.shadowColor = "rgba(160,90,255,.8)"; cx.shadowBlur = 26;
+  var hb = cx.createRadialGradient(-fr * .3, -fr * .3, fr * .1, 0, 0, fr);
+  hb.addColorStop(0, "#3a2a66"); hb.addColorStop(1, "#12091f");
+  cx.fillStyle = hb; cx.beginPath(); cx.arc(0, 0, fr, 0, 7); cx.fill(); cx.shadowBlur = 0;
+  cx.strokeStyle = "#0a0412"; cx.lineWidth = 4; cx.stroke();
+  cx.strokeStyle = "rgba(190,150,255,.35)"; cx.lineWidth = 1.5; cx.beginPath(); cx.arc(0, 0, fr * .82, 0, 7); cx.stroke();
+  cx.restore();
+  drawRose(fx, fy, fr * .68, false);
+  /* the eye rides the centre and looks where it aims */
+  var er = fr * .26, ex = fx + Math.cos(look) * fr * .12, ey = fy + Math.sin(look) * fr * .12;
+  cx.fillStyle = "#fff"; cx.beginPath(); cx.arc(ex, ey, er, 0, 7); cx.fill();
+  cx.fillStyle = "#120616"; cx.beginPath(); cx.arc(ex + Math.cos(look) * er * .42, ey + Math.sin(look) * er * .42, er * .55, 0, 7); cx.fill();
+  cx.strokeStyle = "#120616"; cx.lineWidth = 1.5; cx.beginPath(); cx.arc(ex, ey, er * .8, 0, 7); cx.stroke();
+  /* health ring */
+  var hpF = Math.max(0, f.hp / f.hpMax);
+  cx.strokeStyle = "rgba(0,0,0,.5)"; cx.lineWidth = 5; cx.beginPath(); cx.arc(fx, fy, fr + 9, 0, 7); cx.stroke();
+  cx.strokeStyle = confused > 0 ? "#00e5a8" : "#ff3d71"; cx.lineWidth = 5; cx.lineCap = "round";
+  cx.beginPath(); cx.arc(fx, fy, fr + 9, -Math.PI / 2, -Math.PI / 2 + Math.PI * 2 * hpF); cx.stroke(); cx.lineCap = "butt";
+}
 function rrp(x, y, w, h, r) { r = Math.min(r, w / 2, h / 2); cx.moveTo(x + r, y); cx.arcTo(x + w, y, x + w, y + h, r); cx.arcTo(x + w, y + h, x, y + h, r); cx.arcTo(x, y + h, x, y, r); cx.arcTo(x, y, x + w, y, r); cx.closePath(); }
 function tri(x, y, a, r) {
   cx.beginPath();
@@ -616,23 +684,7 @@ function draw(dt) {
      believes in most is lit in its colour; the whole thing scrambles green while it
      is confused. This is the game's AI made visible -- the player watches it learn. */
   var RX = W / 2, RY = 80, RR = 26;
-  var mn = Math.min.apply(null, model.dirBins), mxv = Math.max.apply(null, model.dirBins), span = Math.max(1e-6, mxv - mn);
-  cx.save(); cx.translate(RX, RY);
-  cx.fillStyle = "rgba(10,14,24,.85)"; cx.beginPath(); cx.arc(0, 0, RR + 9, 0, 7); cx.fill();
-  cx.strokeStyle = "rgba(255,255,255,.10)"; cx.lineWidth = 1; cx.stroke();
-  cx.strokeStyle = "rgba(255,255,255,.06)"; cx.beginPath(); cx.arc(0, 0, RR * .5, 0, 7); cx.stroke();
-  for (var bi = 0; bi < 8; bi++) {
-    var wgt = (model.dirBins[bi] - mn) / span, len = 9 + RR * .72 * wgt, ang = bi * Math.PI / 4;
-    var top = model.dirBins[bi] === mxv && model.conf > .15;
-    if (confused > 0) { ang += (Math.random() - .5) * .5; len *= .6 + Math.random() * .6; }
-    cx.save(); cx.rotate(ang);
-    cx.fillStyle = confused > 0 ? "rgba(0,229,168,.75)" : top ? "#ff3d71" : "rgba(90,140,245," + (0.35 + wgt * .5) + ")";
-    if (top && confused <= 0) { cx.shadowColor = "rgba(255,61,113,.9)"; cx.shadowBlur = 10; }
-    cx.beginPath(); cx.moveTo(0, -3.5); cx.lineTo(len, -1.2); cx.lineTo(len + 3, 0); cx.lineTo(len, 1.2); cx.lineTo(0, 3.5); cx.closePath(); cx.fill();
-    cx.restore();
-  }
-  cx.fillStyle = confused > 0 ? "#00e5a8" : "#ff3d71"; cx.beginPath(); cx.arc(0, 0, 3.5, 0, 7); cx.fill();
-  cx.restore();
+  drawRose(RX, RY, RR, true);
   cx.textAlign = "center"; cx.fillStyle = "#7684a8"; cx.font = "700 9px -apple-system,'Segoe UI',sans-serif";
   cx.font = "400 9.5px 'Audiowide',-apple-system,sans-serif"; cx.fillText(confused > 0 ? "CONFUSED  \u00d72" : "AI MODEL OF YOU  " + Math.round(model.conf * 100) + "%", RX, RY + RR + 22);
   if (confused > 0) { confuseFlash += dt * 8; cx.globalAlpha = 0.5 + 0.5 * Math.sin(confuseFlash);
@@ -674,6 +726,7 @@ function draw(dt) {
     /* where its eye looks is what it is doing: chasers look at you, predictors look
        where the model says you will be, snipers look down their own aim line */
     var look = f.type === "predictor" ? model.predDir : (f.type === "sniper" && f.aim) ? Math.atan2(f.aim.y - fy, f.aim.x - fx) : Math.atan2(P.y - fy, P.x - fx);
+    if (f.boss) { drawBoss(fx, fy, fr, look, f); return; }
     var body = cx.createRadialGradient(fx - fr * .35, fy - fr * .35, fr * .1, fx, fy, fr * 1.05);
     body.addColorStop(0, "hsl(" + f.hue + ",95%,78%)"); body.addColorStop(.6, "hsl(" + f.hue + ",85%,58%)"); body.addColorStop(1, "hsl(" + f.hue + ",80%,36%)");
     cx.fillStyle = body; cx.strokeStyle = "#120616"; cx.lineWidth = 2.5; cx.lineJoin = "round";
@@ -734,7 +787,7 @@ function draw(dt) {
     cx.globalAlpha = 1;
   }
   /* kill shockwaves */
-  for (var ri = rings.length - 1; ri >= 0; ri--) { var rg2 = rings[ri]; rg2.t += dt; if (rg2.t > .45) { rings.splice(ri, 1); continue; }
+  for (var ri = rings.length - 1; ri >= 0; ri--) { var rg2 = rings[ri]; rg2.t += dt; if (rg2.t > .45) { rings.splice(ri, 1); continue; } if (rg2.t < 0) continue;
     var kk = rg2.t / .45; cx.globalAlpha = 1 - kk; cx.strokeStyle = "hsl(" + rg2.hue + ",90%,70%)"; cx.lineWidth = 3 * (1 - kk) + .5;
     cx.beginPath(); cx.arc(rg2.x, rg2.y, 6 + kk * 46, 0, 7); cx.stroke(); cx.globalAlpha = 1; }
   /* particles */

@@ -605,3 +605,23 @@ NODE_PATH=/opt/node22/lib/node_modules node tools/capture-store-assets.js <slug>
 - `cg-package-smoke.js` —— 验**真正要上传的 zip**（解包后跑）：零交互触发 `gameplayStart`、无控制台报错、无意外外链、文件数与体积。
 - `check-autopilot-globals.js` —— `page.evaluate` 跑在全局作用域，脚本里一句 `var draw` 会顶掉游戏自己的 `draw()`；上线前断言不撞名。
 - `verify-minima.js` / `verify-prompt-reel.js` —— 用**只含玩家可见信息**的策略证明每一关可通关；MINIMA 跑两种策略（纯下坡 / 会翻山），**纯下坡赢不了不是 bug，那是设计；会翻山的赢不了才是 broken**。
+
+## 深度美术三件套（2026-09-06，owner「Prompt 和 over 再做深度美术」→「1、2、3 都做」）
+
+- **专属字体是「HTML 感」最大的单一来源**。Google Fonts 直连与 GitHub API（只放本会话仓库）
+  都进不去，但 **npm 通**：`registry.npmjs.org/@fontsource/<name>/latest` → tarball →
+  `files/<name>-latin-400-normal.woff2`，已按 latin 子集化，12–15KB。base64 嵌为 data URI，
+  零运行时请求，OFL 许可随字体走。共享模块 `tools/store-assets/_fonts.js` 供海报用。
+  PROMPT = Fredoka One，OVERFIT = Audiowide。**Audiowide 的斜杠零在大号分数上像 ⊘**，数字用粗系统字。
+- **音效层**：纯振荡器没有「体」。`noise(dur, cutoff, gain, t0)` 用一段随机缓冲过低通，配合
+  tone 叠层——点击是 5kHz 短噪、脚步是低频 thump、宝石是 7kHz shimmer、失败是 300Hz thud、
+  whoosh 是 1.1kHz 长噪配正弦滑音。所有声音仍受 muted / GL_SDK_MUTE 门控，且**页面加载时
+  不发声**（Chrome autoplay 警告会让门户拒收）。
+- **过关转场**（PROMPT）：出场是入场的镜像——地砖沿对角线波浪缩出，机器人淡出，回调后下一关
+  弹入。`startExit(cb)` 在按 Next 时调用，`exiting` 期间 over 仍为 true 所以不会吞输入。
+- **模型即 boss**（OVERFIT）：每 5 波一只，复用狙击手分支（type:"sniper", boss:true）——
+  朝模型预测的位置开火，这正是主题；船体就是 HUD 那朵玫瑰雷达（`drawRose` 共享），
+  搅乱状态下受双倍伤害，血环显示 hp；死亡 = 三层冲击波 + 彩带 + `happytime`。
+  波次结算要求 `!foes.length`，boss 未死波次不结束。
+- 视觉深度的通用配方（两款都用了）：星云 + 三层视差星星 + 暗角；主体物 = 渐变 + 深色描边 +
+  一只会看方向的眼睛；地砖弹入；挤出的墙块侧面；拖尾子弹；击杀冲击波环。

@@ -207,14 +207,28 @@ function tone(f, t0, dur, type, gain, slide) {
     o.connect(g); g.connect(a.destination); o.start(a.currentTime + t0); o.stop(a.currentTime + t0 + dur + .02);
   } catch (e) {}
 }
+/* shaped noise through a lowpass: the "body" that pure oscillators lack -- clicks,
+   thuds, shimmer and whooshes are all this with a different cutoff */
+function noise(dur, freq, gain, t0) {
+  var a = ac(); if (!a || muted || window.GL_SDK_MUTE) return;
+  try {
+    var n = a.createBufferSource(), b = a.createBuffer(1, Math.max(1, Math.floor(a.sampleRate * dur)), a.sampleRate), d = b.getChannelData(0);
+    for (var i = 0; i < d.length; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / d.length, 1.6);
+    var f = a.createBiquadFilter(); f.type = "lowpass"; f.frequency.value = freq;
+    var g = a.createGain(); g.gain.value = gain;
+    n.buffer = b; n.connect(f); f.connect(g); g.connect(a.destination); n.start(a.currentTime + (t0 || 0));
+  } catch (e) {}
+}
 var sfx = {
-  add:  function () { tone(480, 0, .04, "square", .05); },
-  step: function () { tone(300, 0, .035, "sine", .04); },
-  gem:  function () { tone(760, 0, .07, "triangle", .09, 1020); tone(1520, .05, .09, "sine", .05, 2100); },
-  win:  function () { tone(523, 0, .09, "triangle", .09); tone(659, .08, .09, "triangle", .09); tone(784, .16, .09, "triangle", .1); tone(1046, .24, .28, "triangle", .11); },
-  plan: function () { tone(520, 0, .06, "sine", .05, 780); tone(780, .07, .08, "sine", .05, 1040); },
-  star: function (i) { tone(880 + i * 220, 0, .12, "triangle", .08, 1200 + i * 220); },
-  fail: function () { tone(190, 0, .2, "sawtooth", .1, 90); }
+  add:  function () { tone(520, 0, .04, "square", .04); noise(.025, 5000, .05); },
+  step: function () { tone(220, 0, .05, "sine", .06, 160); noise(.03, 1800, .05); },
+  gem:  function () { tone(760, 0, .07, "triangle", .09, 1020); tone(1520, .05, .12, "sine", .06, 2100); tone(2280, .10, .14, "sine", .035); noise(.14, 7000, .04, .04); },
+  win:  function () { tone(523, 0, .10, "triangle", .09); tone(659, .09, .10, "triangle", .09); tone(784, .18, .10, "triangle", .1); tone(1046, .27, .40, "triangle", .11);
+                      tone(1318, .30, .45, "sine", .06); tone(1568, .30, .45, "sine", .05); noise(.5, 2600, .05, .27); },
+  plan: function () { tone(420, 0, .32, "sine", .05, 1240); noise(.34, 1400, .06); },
+  star: function (i) { tone(880 + i * 220, 0, .14, "triangle", .08, 1200 + i * 220); noise(.06, 6000, .03); },
+  fail: function () { tone(190, 0, .22, "sawtooth", .1, 80); noise(.26, 320, .14); },
+  whoosh: function () { noise(.42, 1100, .09); tone(260, 0, .42, "sine", .045, 1100); }
 };
 /* ===== levels =====
    grid: rows of characters. '#' wall, '.' floor, 'D' gem, 'X' exit, '>' bot start.
@@ -266,6 +280,7 @@ var LEVELS = [
 var lvl, grid, bot, gems, prog, running, over, execIdx, execT, tick, score, best = 0, armed, armT, nowT, pops, shake;
 var CAP = 14, capWarn = 0, modalT = 0;
 var parts = [], flash = 0, cleared = 0, introT = 0, countT = 0, countTo = 0, countEl = null, enterT = 9;
+var exiting = false, exitT = 0, exitCb = null;
 var fxc = document.getElementById("fx"), fxx = fxc.getContext("2d"), confetti = [];
 try { best = parseInt(localStorage.getItem("pmBest") || "0", 10) || 0; } catch (e) {}
 var DIRS = [[1, 0], [0, 1], [-1, 0], [0, -1]];   /* 0 = east, clockwise */
@@ -432,6 +447,11 @@ function pick() {
   if (execIdx >= prog.length && at(bot.x, bot.y) === "X" && gems === 0) { /* handled in finish */ }
 }
 function rr(x, y, w, h, r) { r = Math.min(r, w / 2, h / 2); cx.beginPath(); cx.moveTo(x + r, y); cx.arcTo(x + w, y, x + w, y + h, r); cx.arcTo(x + w, y + h, x, y + h, r); cx.arcTo(x, y + h, x, y, r); cx.arcTo(x, y, x + w, y, r); cx.closePath(); }
+/* the outgoing board leaves the way the incoming one arrives: a diagonal wave */
+function startExit(cb) {
+  if (exiting) return;
+  exiting = true; exitT = 0; exitCb = cb; sfx.whoosh();
+}
 function popText(t, gx, gy) { pops.push({ t: t, gx: gx, gy: gy, a: 0, life: .8 }); }
 function burst(px, py, color, n) {
   for (var i = 0; i < n; i++) { var a = Math.random() * 7, sp = 70 + Math.random() * 220;
@@ -546,9 +566,8 @@ document.getElementById("bnext").addEventListener("click", function () {
   window.pmAd(function () {
     b.disabled = false;
     d.classList.remove("show");
-    if (ok) { loadLevel(lvl + 1); if (lvl === 0) score = 0; }
-    else { loadLevel(lvl); }
-    window.pmCg("start");
+    if (ok) { startExit(function () { loadLevel(lvl + 1); window.pmCg("start"); }); }
+    else { loadLevel(lvl); window.pmCg("start"); }
   });
 });
 document.getElementById("bagain2").addEventListener("click", function () {
@@ -594,6 +613,8 @@ function update(dt) {
     q.vy += 520 * dt; q.x += q.vx * dt; q.y += q.vy * dt; q.vx *= .98; }
   if (flash > 0) flash = Math.max(0, flash - dt * 1.6);
   enterT += dt;
+  if (exiting) { exitT += dt;
+    if (grid && exitT > (grid[0].length + grid.length) * .045 + .42) { exiting = false; var cb0 = exitCb; exitCb = null; if (cb0) cb0(); } }
   var nn = document.getElementById("nudge"), nb = nn && !nn.classList.contains("gone") && document.querySelector(".rack .op");
   if (nb) { var nr = nb.getBoundingClientRect(); nn.style.left = (nr.left + nr.width / 2 - 17) + "px"; nn.style.top = (nr.top - 30) + "px"; }
   if (introT > 0) { introT -= dt; if (introT <= 0) { document.getElementById("intro").classList.remove("show");
@@ -680,6 +701,7 @@ function draw(dt) {
     /* pop-in: tiles arrive in a diagonal wave when a level loads */
     var ek = Math.max(0, Math.min(1, (enterT - (x + y) * .045) / .35)), es = ek < 1 ? 1.2 * ek - .2 * ek * ek * ek * 1 : 1;
     es = 1 - Math.pow(1 - ek, 3);
+    if (exiting) { var xk = Math.max(0, Math.min(1, (exitT - (x + y) * .045) / .3)); es *= 1 - xk * xk; }
     if (es <= 0.01) continue;
     cx.save(); cx.translate(X + C.s / 2, Y + C.s / 2); cx.scale(es, es); cx.translate(-(X + C.s / 2), -(Y + C.s / 2));
     if (c === "#") {
@@ -767,6 +789,7 @@ function draw(dt) {
     cx.arc(BX, BY, C.s * .42, bot.da, want, dd < 0);
     cx.stroke();
   }
+  cx.save(); if (exiting) cx.globalAlpha = Math.max(0, 1 - exitT * 2.4);
   cx.fillStyle = "rgba(0,0,0,.45)"; cx.beginPath(); cx.ellipse(BX, BY + C.s * .30, C.s * .30, C.s * .10, 0, 0, 7); cx.fill();
   cx.save(); cx.translate(BX, BY + Math.sin(nowT * 3.2) * C.s * .025); cx.rotate(a);
   /* squash along the direction of travel, stretch across it: the step reads as a
@@ -796,6 +819,7 @@ function draw(dt) {
   cx.fillStyle = running && (Math.floor(nowT * 6) % 2) ? "#ff6b7a" : "#8affc1";
   cx.beginPath(); cx.arc(-C.s * .17, -C.s * .30, C.s * .05, 0, 7); cx.fill();
   cx.strokeStyle = "#241a02"; cx.lineWidth = 1.5; cx.beginPath(); cx.moveTo(-C.s * .17, -C.s * .26); cx.lineTo(-C.s * .17, -C.s * .16); cx.stroke();
+  cx.restore();
   cx.restore();
   /* the program, with the instruction being executed lit up */
   var py = C.oy + grid.length * C.s + C.s * .28 + 26;

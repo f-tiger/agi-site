@@ -62,6 +62,8 @@ module.exports = {
 
   autopilot: `
     window.__AP = { phase: 'feed', confusedAt: null, t0: performance.now() };
+    /* start at wave 4: the model-as-boss arrives at wave 5, inside the 16s clip */
+    wave = 3; foes = []; waveSpawned = 99; waveQuota = 0; startWave();
     (function () {
       var ap = window.__AP;
       ptr.on = true; ptr.x = W * 0.5; ptr.y = H * 0.6;
