@@ -1,12 +1,27 @@
 # Gridlings
 
-> Free daily logic grid puzzle in the browser. Fill an N×N grid so every row
-> and column contains each animal once and each color once, every animal–color
-> pair appears exactly once, and the same animal never touches itself — not
-> even diagonally. Every published board is machine-verified to have exactly
-> one solution reachable by pure deduction (no guessing). New puzzle daily at
-> 00:00 UTC; unlimited free play in three difficulties. No account, no
-> download, no ads. English and Chinese.
+> Free browser games, two halves. **Eleven daily constraint logic puzzles** — every
+> published board machine-verified before release to have exactly one solution reachable
+> by pure deduction, no guessing, new boards at 00:00 UTC. And **seven games about how
+> machine learning actually behaves** (launched 2026-09-06), where the machine in the game
+> really does the thing the title claims: it overfits to you, learns from the labels you
+> spend, plans its own route through your specification, or races a ghost trained on your
+> own laps. Everything here is free, runs in a browser tab, and needs no account, no
+> download and no ads. English and Chinese (puzzles).
+
+## Games about AI (new, 2026-09-06)
+
+- [Free browser games about AI — the seven, mapped](https://play.agiscorecard.com/ai-games): hub page — which AI behaviour each game makes playable (specification gaming, overfitting, labelling, oversight, gradient descent, capability scaling, imitation learning), what you do in each, and how long each takes. The honest limit is stated on the page: these are small hand-built systems, not language models, and no game calls an external model.
+- [PROMPT](https://play.agiscorecard.com/prompt): specification gaming as a puzzle — you write instructions for a literal interpreter that follows the words and not the intention, and takes every shortcut you forgot to forbid. Six levels; later ones let the machine plan its own route to a target, so the shortcut becomes the route it reliably chooses.
+- [OVERFIT](https://play.agiscorecard.com/overfit): arcade dodger about overfitting — between waves the boss fits a model to how you moved, shows its training report on screen, and shoots where that model predicts you will be. Being consistently skilful is the most dangerous thing you can do; the combo pays you for the moment the model is confidently wrong.
+- [MIMIC](https://play.agiscorecard.com/mimic): labelling and active learning — you know the hidden rule, the learner does not. Spend as few labels as you can, then it classifies 26 items alone. If your examples happen to agree on some other feature, it learns that instead, and the end screen names the feature it actually picked up (shortcut learning).
+- [OVERSEER](https://play.agiscorecard.com/overseer): human oversight at scale — eight agents run at once and one is genuinely optimising a different target than the one you set. You cannot read their reasoning, only watch what their paths do, and attention is the resource that runs out. Approving by doing nothing is the default failure.
+- [MINIMA](https://play.agiscorecard.com/minima): gradient descent as a puzzle — the terrain is invisible and you only feel the slope under your feet, on a limited step budget. Every level hides a flat spot that is not the bottom, which is what "stuck in a local minimum" actually feels like.
+- [SINGULARITY INC.](https://play.agiscorecard.com/singularity): idle game about scaling an AI lab — label data by hand, buy GPUs, train models that earn while the tab is closed, prestige by shipping the model. At scale a model starts optimising something other than the target you set, and dealing with it costs real progress. Closest of the seven to the Universal Paperclips genre; unaffiliated and not a clone.
+- [GHOSTLINE](https://play.agiscorecard.com/ghostline): imitation learning as a racing game — low-poly time trials on procedural tracks plus a daily track, where the ghost is built from the runs you finish and gets faster as it sees more of them. Medals are set from the model's reference lap, so beating gold means beating your own recent driving.
+- [Block Nova](https://play.agiscorecard.com/blocknova): free 8×8 block puzzle with a comeback mechanic — clear lines, charge the Nova meter, detonate. Offline-capable, no account. (Arcade, not one of the AI seven.)
+
+## Daily logic puzzles
 
 - [Play today's puzzle](https://play.agiscorecard.com/): daily board + free play
 - [中文版](https://play.agiscorecard.com/zh): same game, Chinese interface

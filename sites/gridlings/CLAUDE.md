@@ -760,3 +760,48 @@ Tags ≤5 且只能用后台已有的；Description 禁 HTML。五款字段定�
 - itch 算法看重**外部流量与近期活跃**：上架当天从主站 hub 与推特发链接、隔周发一条 devlog（模型学到了什么、
   新赛道），标签用 `html5, arcade, idle/racing, ai, low-poly, singleplayer`。D1 里 `ref LIKE '%itch.zone%'`
   单列计数，判定线仍是 09-24 的 150/25。
+
+## AI 主题游戏簇的 GEO/SEO(2026-09-06,owner:「针对我今天上线了好几款游戏,做好 geo 和 seo 导流」)
+
+**先纠正手册自己的一处错误(会让下一个会话发 404)**:上面第 0 条写「worker 里的通配兜底
+(无扩展名 → +.html)已覆盖」——**worker 里没有这个兜底**。无扩展名内容页要么有一条自己的
+else-if,要么进 `worker.js` 顶部的 `GEO` Set,否则线上 404。本轮 `/ai-games` 就是靠这条发现的
+(部署自检探测清单里加了它,不然会红着上线)。worker 注释已就地写死这句话。
+
+**上线前的实际缺口(审计,不是猜测)**:8 款新游戏(prompt/overfit/mimic/overseer/minima/
+singularity/ghostline/blocknova)全部 **llms.txt 0 条覆盖**、**`<h1>` 0 个**、sitemap 缺
+singularity 与 ghostline 且 `/prompt` 重复 3 条、22 个谜题页里**只有首页**链到新游戏、
+可见正文 133–577 词(全屏 canvas 页 `body{overflow:hidden}`,**加不了可见正文块**)。
+
+**因此本轮的形状:文本负载放枢纽页,信号放各游戏页,内链把站内既有流量导过去。**
+- `/ai-games`(生成器 `tools/gen_ai_games_page.py`,**改内容改生成器不改 HTML**):2,005 可见词,
+  七款游戏 × 「它把哪个 ML 行为做成了可玩的」对照表 + 每款详解 + 可见 FAQ(与 FAQPage LD 逐字
+  一致)+ Article/FAQPage/BreadcrumbList/ItemList(VideoGame)四段 LD。与
+  `games-like-linkedin-queens.html` 同一形状——那页是 11 款谜题的文本载体,这页是 7 款 AI 游戏的。
+- 8 个游戏页:可见品牌名 `.logo` 由 `<div>` 升为 `<h1>`(**零视觉变化**:`.logo` 自带 font-size/
+  weight,全局 `*{margin:0;padding:0}` 抹平 h1 默认样式;**不要改成 sr-only 隐藏文本,那是 cloaking**)、
+  WebApplication LD 补 description/genre/datePublished/inLanguage/author/gamePlatform(canvas 页的
+  结构化数据**就是**它唯一的机器可读文本层)、加 BreadcrumbList、og:type + twitter:card、页脚加
+  `/ai-games` 内链。
+- 22 个谜题页各加一行 `gamesnav`「Games about AI / AI 主题游戏」;首页原来那行把 8 款非每日游戏
+  塞在「All daily puzzles:」标签下,**标签是错的**,已拆成两行。
+- 主站 `sites/agiscorecard/llms.txt` 加一行指向 `/ai-games`(跨站导流;主站此前完全没提游戏站)。
+
+**零编造**:枢纽页每条机制都取自各游戏自己的 `featureList`/`og:description`,不写游玩量、评分、
+奖项;Universal Paperclips 只作**描述性**类比并写明无隶属关系(同 LinkedIn Queens 那条的处理)。
+
+**验证**:`tools/browser-smoke.js` 23 页全 ok(`-win` 驱动测试因脚本内写死 `/workspace/...` 路径
+在本沙箱跑不了,与本轮无关);另跑 Playwright 逐页核对 12 页——每页恰好 1 个 h1、canvas 尺寸正常、
+无横向溢出、无控制台错误、hub 内链在位。
+
+**判定线(预登记)**:**2026-10-04(28 天)**——`/ai-games` 真人 pv ≥25 **或** 任一搜索/AI 引荐
+落在 8 款新游戏任一页 ≥3 → 枢纽页形状成立,按同一形状给下一批游戏建第二个枢纽;两条皆未达 →
+记反面发现「游戏站的枢纽页在本站量级不产生发现」,只保维护、不再加 GEO 页。
+读数口径:D1 `ev` 表 `ua_class='human'`,ref 非本站域名者计引荐。**基线(2026-09-06 现查,14 天窗)**:
+全站真人 pv 500、play_start 303、solve 132;引荐 449 直接进入 / CrazyGames 10 / itch 5 /
+**搜索合计 6**(cn.bing 3、baidu 2、google 1)——搜索现在≈1%,这就是要抬的那条线。
+
+**仍缺、下一轮再做(本轮刻意不碰)**:①8 款新游戏**没有 og:image**——海报由
+`tools/capture-store-assets.js` 出到 `dist-store/`(gitignore),要落到 `site/covers/` 才能引用,
+而该管线今天正被另一路会话改动,不抢；②新游戏**没有 zh 页**(zh 首页已加英文界面标注的入口);
+③trailer 有了但没有 VideoObject LD。

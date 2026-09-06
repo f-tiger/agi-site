@@ -1,7 +1,9 @@
 // Gridlings worker: static assets + /e beacon + server-side pageview log.
 // All D1 writes are try/catch + waitUntil — analytics must never 500 the game.
-// GEO rules pages (2026-08-24): extensionless → .html, one set instead of ten else-ifs
-const GEO = new Set(["/futoshiki-rules","/kropki-sudoku-rules","/sandwich-sudoku-rules","/skyscraper-puzzle-rules","/star-battle-rules","/thermometer-puzzle-rules","/nonogram-rules","/6x6-sudoku-rules","/binary-puzzle-rules","/games-like-linkedin-queens"]);
+// GEO rules/answer pages: extensionless → .html, one set instead of ten else-ifs.
+// (2026-08-24 rules pages; 2026-09-06 /ai-games hub.) There is NO generic extensionless
+// fallback in this worker — every new content page MUST be added to this Set or it 404s.
+const GEO = new Set(["/ai-games","/futoshiki-rules","/kropki-sudoku-rules","/sandwich-sudoku-rules","/skyscraper-puzzle-rules","/star-battle-rules","/thermometer-puzzle-rules","/nonogram-rules","/6x6-sudoku-rules","/binary-puzzle-rules","/games-like-linkedin-queens"]);
 const ALLOWED = new Set(["play_start", "solve", "game_over", "calc_use", "share_copy", "hint_used", "play_again", "sub_click", "challenge_copy", "challenge_open", "challenge_result", "undo", "hub_click", "sweep_share", "embed_copy", "sub_submit", "sub_ok", "sub_fail"]);
 
 function uaClass(ua) {
