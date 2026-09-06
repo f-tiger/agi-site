@@ -24,6 +24,16 @@ module.exports = {
     { name: "portrait", rec: { w: 540, h: 960 }, out: { w: 1080, h: 1920 } }
   ],
 
+  poster: (c) => require("./_poster.js")(c, {
+    /* Swiss: the tile stays white on a dark portal page, which is louder than any
+       colour there. Ink wordmark, one orange hard drop, no rays. */
+    ground: (W, H) => `#ffffff`, rays: null,
+    ink: "#111113", ink2: "#FF4F00", outline: "#ffffff", shadow: "#FF4F00", tagInk: "#111113",
+    word: "MINI<em>MA</em>", tagline: "YOU CAN ONLY FEEL THE SLOPE",
+    hero: `<svg viewBox="0 0 200 200"><g fill="none" stroke="#111113" stroke-linecap="round"><path d="M10 40 C60 20 120 30 190 10" stroke-width="1.4" opacity=".45"/><path d="M10 70 C60 46 120 60 190 40" stroke-width="2.4"/><path d="M10 100 C60 74 120 92 190 72" stroke-width="1.4" opacity=".45"/><path d="M10 130 C60 104 120 124 190 104" stroke-width="2.4"/><path d="M10 160 C60 136 120 156 190 136" stroke-width="1.4" opacity=".45"/><path d="M10 190 C60 168 120 188 190 168" stroke-width="2.4"/>
+<ellipse cx="132" cy="112" rx="42" ry="22" stroke-width="1.4" opacity=".55"/><ellipse cx="132" cy="112" rx="26" ry="13" stroke-width="2.4"/><ellipse cx="132" cy="112" rx="11" ry="5.5" stroke-width="1.4"/></g>
+<g><circle cx="58" cy="84" r="9" fill="#FF4F00"/><path d="M58 84 L110 106" stroke="#FF4F00" stroke-width="3.2" stroke-linecap="round"/><path d="M110 106 l-12 -1 l4 -8" fill="#FF4F00"/></g></svg>`
+  }),
   stage: (c) => `
     armed = true; document.getElementById('hint').style.display='none';
     document.querySelector('header').style.display='none';

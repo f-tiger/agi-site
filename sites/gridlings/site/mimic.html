@@ -67,6 +67,28 @@
   .hcard .go{margin-top:11px;color:var(--keep);font-weight:800;letter-spacing:1px;text-transform:uppercase;font-size:12px;
     animation:pulse 1.5s ease-in-out infinite;}
   @keyframes pulse{0%,100%{opacity:.45}50%{opacity:1}}
+
+  /* ---- juice layer (shared recipe across the fleet) ---- */
+  .stars{display:flex;justify-content:center;gap:8px;margin:2px 0 8px;height:34px;}
+  .stars svg{width:32px;height:32px;opacity:.18;transform:scale(.6);transition:opacity .25s,transform .35s cubic-bezier(.2,1.6,.4,1);}
+  .stars svg.on{opacity:1;transform:scale(1);}
+  .ribbon{display:inline-block;background:#38d9c4;color:#04201c;font-size:11px;font-weight:900;letter-spacing:1.6px;
+    padding:4px 10px;border-radius:999px;margin-bottom:8px;opacity:0;transform:translateY(6px);transition:opacity .3s,transform .3s;}
+  .ribbon.show{opacity:1;transform:none;}
+  .btn{border-bottom:4px solid rgba(0,0,0,.38)!important;border-radius:13px!important;min-width:180px;font-size:16px!important;font-weight:900!important;
+    transition:transform .06s,border-bottom-width .06s;}
+  .btn:active{transform:translateY(3px)!important;border-bottom-width:1px!important;}
+  #intro{position:fixed;left:50%;top:21%;transform:translate(-50%,-50%) scale(.9);z-index:45;pointer-events:none;
+    text-align:center;opacity:0;transition:opacity .25s,transform .25s;
+    background:rgba(10,13,22,.88);border:1px solid #38d9c444;border-radius:16px;padding:14px 22px;
+    box-shadow:0 16px 50px rgba(0,0,0,.5);max-width:86vw;}
+  #intro.show{opacity:1;transform:translate(-50%,-50%) scale(1);}
+  #intro .n{font-size:13px;font-weight:800;letter-spacing:3px;color:#8a95b3;}
+  #intro .t{font-size:clamp(18px,4.3vw,30px);font-weight:900;color:#38d9c4;text-shadow:0 6px 30px #38d9c455;margin-top:4px;white-space:nowrap;}
+  #intro .s{font-size:14px;color:#e8edf7;margin-top:8px;opacity:.85;}
+  #fx{position:fixed;inset:0;z-index:55;pointer-events:none;}
+  .pbtn{border-bottom:4px solid rgba(0,0,0,.5)!important;background:linear-gradient(180deg,#1b2131,#131826)!important;transition:transform .06s,border-bottom-width .06s!important;}
+  .pbtn:active{transform:translateY(3px)!important;border-bottom-width:1px!important;}
 </style>
 </head>
 <body>
@@ -90,8 +112,12 @@
     <p><b>Keep it, or reject it.</b> A / S / D or tap.</p><p class="go">teach the machine your rule</p>
   </div>
 </div>
+<div id="intro" aria-hidden="true"><div class="n" id="in"></div><div class="t" id="it"></div><div class="s" id="is"></div></div>
+<canvas id="fx" aria-hidden="true"></canvas>
 <div class="modal" id="mover"><div class="card">
+  <div class="ribbon" id="drib">NEW BEST</div>
   <h2 id="ovt">EXAM OVER</h2>
+  <div class="stars" id="dstars"></div>
   <div class="big" id="ovs">0</div>
   <div class="verdict" id="ovv"></div>
   <button class="btn" id="bagain">Run it back</button>
@@ -205,6 +231,7 @@ function newRun() {
   document.getElementById("mover").classList.remove("show");
   var h = document.getElementById("hint"); if (h) h.classList.remove("gone");
   ev("play_start"); window.mcCg("start");
+  showIntro("TRAINING", "keep the " + traitValue(ruleTrait, ruleKeepWhen).toUpperCase() + " ones", "it cannot see this rule \u2014 only your labels");
 }
 /* The learner: for each trait, how well does "trait == v" agree with the labels?
    Take the best-agreeing trait. This is a real (if tiny) model — and because it
@@ -247,6 +274,7 @@ function startExam() {
   bonus = (LABEL_BUDGET - labels.length) * 15;
   score += bonus;
   phase = "exam"; model = train(); testTimer = 0; testIdx = 0;
+  showIntro("EXAM", "26 specimens, on its own", "your labels are all it knows");
   document.getElementById("bexam").style.display = "none";
   sfx.done();
   popText("MODEL TRAINED", L.w / 2, L.cy - 92, 22, "#7c9bff");
@@ -316,13 +344,18 @@ function endRun(reason) {
   over = true; running = false;
   if (reason === "done" && lives === 3) window.mcCg("happy");   /* once, on a clean sweep */
   window.mcCg("stop");
-  if (score > best) { best = score; try { localStorage.setItem("mcBest", String(best)); } catch (e) {} }
+  var isBest = score > best;
+  if (isBest) { best = score; try { localStorage.setItem("mcBest", String(best)); } catch (e) {} }
   ev("game_over", "mc:" + score);
   var m = model || { trait: "?", keepWhen: true, acc: 0 };
   var right = m.trait === ruleTrait && m.keepWhen === ruleKeepWhen;   /* polarity counts:
      same trait, flipped keepWhen is the exact inverse rule and gets everything wrong */
   document.getElementById("ovt").textContent = right ? "YOUR MODEL HELD UP" : "IT LEARNED THE WRONG THING";
-  document.getElementById("ovs").textContent = score;
+  countUp(document.getElementById("ovs"), score);
+  /* stars = lives the model kept through its exam; a dead model earns none */
+  setStars(reason === "done" ? lives : 0);
+  document.getElementById("drib").classList.toggle("show", isBest && score > 0);
+  if (reason === "done" && lives > 0) setTimeout(function () { confettiBurst(lives * 40 + 30); }, 420);
   document.getElementById("ovv").innerHTML =
     "It learned: <b>keep the " + traitValue(m.trait, m.keepWhen) + " ones</b>" +
     " <span style='opacity:.6'>(" + traitName(m.trait) + ", " + Math.round(m.acc * 100) + "% agreement with your labels)</span><br>" +
@@ -334,6 +367,7 @@ function endRun(reason) {
   modalT = setTimeout(function () { document.getElementById("mover").classList.add("show"); }, 420);
 }
 function update(dt) {
+  juiceTick(dt);
   nowT += dt;
   if (!running || over) return;
   if (!armed) { armT += dt; if (armT > 6) { armed = true; var h = document.getElementById("hint"); if (h) h.classList.add("gone"); } }
@@ -360,6 +394,18 @@ function draw(dt) {
   var ox = 0, oy = 0;
   if (shake > 0) { ox = (Math.random() - .5) * shake; oy = (Math.random() - .5) * shake; shake = Math.max(0, shake - dt * 24); }
   cx.save(); cx.translate(ox, oy);
+  /* stage, not page: drifting motes, a vignette, and a lit pedestal under the specimen */
+  for (var mi = 0; mi < 12; mi++) {
+    var mx = ((mi * 137.5) % L.w + nowT * (4 + mi % 3) * 3) % L.w, my = ((mi * 89.3) % L.h + Math.sin(nowT * .6 + mi) * 12);
+    cx.fillStyle = "rgba(56,217,196," + (0.05 + 0.05 * Math.sin(nowT * 1.3 + mi)) + ")";
+    cx.beginPath(); cx.arc(mx, my, 1.5 + (mi % 3), 0, 7); cx.fill();
+  }
+  var ped = cx.createRadialGradient(L.cx, L.cy + 10, 10, L.cx, L.cy + 10, Math.min(L.w, L.h) * .34);
+  ped.addColorStop(0, "rgba(56,217,196,.14)"); ped.addColorStop(.6, "rgba(56,217,196,.04)"); ped.addColorStop(1, "rgba(56,217,196,0)");
+  cx.fillStyle = ped; cx.fillRect(0, 0, L.w, L.h);
+  var vg = cx.createRadialGradient(L.cx, L.cy, L.h * .3, L.cx, L.cy, Math.max(L.w, L.h) * .75);
+  vg.addColorStop(0, "rgba(0,0,0,0)"); vg.addColorStop(1, "rgba(0,0,0,.5)");
+  cx.fillStyle = vg; cx.fillRect(0, 0, L.w, L.h);
   cx.textAlign = "center";
   /* HUD */
   cx.fillStyle = "#e6ecff"; cx.font = "800 26px -apple-system,'Segoe UI',sans-serif";
@@ -442,6 +488,50 @@ bm.addEventListener("click", function () {
   bm.textContent = muted ? "\ud83d\udd07" : "\ud83d\udd0a";
   try { localStorage.setItem("mcMute", muted ? "1" : "0"); } catch (e) {}
 });
+
+/* ===== juice layer: count-up, stars, ribbon, confetti, intro card ===== */
+var fxc = document.getElementById("fx"), fxx = fxc.getContext("2d"), confetti = [], introT = 0, countT = 0, countTo = 0, countEl = null, countPrefix = "";
+function fxLayout() { var dpr = Math.min(window.devicePixelRatio || 1, 2); fxc.width = innerWidth * dpr; fxc.height = innerHeight * dpr; fxx.setTransform(dpr, 0, 0, dpr, 0, 0); }
+function confettiBurst(n) {
+  fxLayout();
+  var cols = ["#38d9c4","#ff6b9d","#7c9bff","#ffffff"];
+  for (var i = 0; i < n; i++) { var side = i % 2 ? 1 : -1;
+    confetti.push({ x: innerWidth / 2 + side * innerWidth * .46, y: innerHeight * .62,
+      vx: -side * (180 + Math.random() * 360), vy: -Math.random() * 700 - 260, r: 3 + Math.random() * 3.5, a: Math.random() * 7, va: (Math.random() - .5) * 14,
+      c: cols[i % cols.length], t: 0, life: 1.6 + Math.random() * .8 }); }
+}
+function fxStep(dt) {
+  if (!confetti.length) { if (fxc.width) fxx.clearRect(0, 0, innerWidth, innerHeight); return; }
+  fxx.clearRect(0, 0, innerWidth, innerHeight);
+  for (var i = confetti.length - 1; i >= 0; i--) {
+    var c = confetti[i]; c.t += dt; if (c.t > c.life) { confetti.splice(i, 1); continue; }
+    c.vy += 900 * dt; c.x += c.vx * dt; c.y += c.vy * dt; c.vx *= .992; c.a += c.va * dt;
+    fxx.save(); fxx.translate(c.x, c.y); fxx.rotate(c.a); fxx.globalAlpha = Math.min(1, (c.life - c.t) * 1.5);
+    fxx.fillStyle = c.c; fxx.fillRect(-c.r, -c.r * .6, c.r * 2, c.r * 1.2); fxx.restore();
+  }
+}
+function setStars(n) {
+  var el = document.getElementById("dstars"); if (!el) return; var h = "";
+  for (var i = 0; i < 3; i++) h += "<svg viewBox='0 0 24 24'><path d='M12 2l3 6.6 7 .8-5.2 4.8 1.5 7L12 17.6 5.7 21.2l1.5-7L2 9.4l7-.8z' fill='#38d9c4' stroke='#04201c' stroke-width='1.2' stroke-linejoin='round'/></svg>";
+  el.innerHTML = h;
+  var svgs = el.querySelectorAll("svg");
+  for (var k = 0; k < n; k++) (function (k) { setTimeout(function () { svgs[k].classList.add("on"); sfx.good(); }, 500 + k * 220); })(k);
+}
+function countUp(el, to, prefix) { countEl = el; countTo = to; countT = 0; countPrefix = prefix || ""; el.textContent = countPrefix + "0"; }
+function juiceTick(dt) {
+  if (introT > 0) { introT -= dt; if (introT <= 0) { document.getElementById("intro").classList.remove("show");
+    var hh = document.getElementById("hint"); if (hh && !armed) hh.classList.remove("gone"); } }
+  if (countEl) { countT = Math.min(1, countT + dt / .7); var e = 1 - Math.pow(1 - countT, 3);
+    countEl.textContent = countPrefix + Math.round(countTo * e); if (countT >= 1) countEl = null; }
+  fxStep(dt);
+}
+function showIntro(n, t, s2) {
+  var el = document.getElementById("intro");
+  document.getElementById("in").textContent = n; document.getElementById("it").textContent = t; document.getElementById("is").textContent = s2 || "";
+  el.classList.add("show"); introT = 1.4;
+  var hh = document.getElementById("hint"); if (hh && !armed) hh.classList.add("gone");
+}
+window.addEventListener("resize", fxLayout);
 </script>
 </body>
 </html>

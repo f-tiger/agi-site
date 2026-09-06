@@ -21,10 +21,15 @@
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans JP",sans-serif;
     display:flex;flex-direction:column;align-items:center;min-height:100%;overflow:hidden;
     touch-action:none;user-select:none;-webkit-user-select:none;}
-  header{width:100%;max-width:900px;display:flex;align-items:center;justify-content:space-between;padding:10px 14px 0;}
-  .logo{font-weight:800;font-size:17px;letter-spacing:2px;}
+  header{width:100%;max-width:900px;display:flex;align-items:center;justify-content:space-between;padding:8px 12px;
+    background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.015));border-bottom:1px solid rgba(255,255,255,.07);
+    box-shadow:0 8px 24px rgba(0,0,0,.35);position:relative;z-index:6;}
+  .logo{font-weight:900;font-size:16px;letter-spacing:2.5px;text-shadow:0 2px 0 rgba(0,0,0,.6);}
   .logo em{font-style:normal;color:var(--bot);}
-  .hbtn{background:var(--panel);border:1px solid var(--line);color:var(--mut);border-radius:9px;height:34px;padding:0 11px;font:inherit;font-size:12.5px;font-weight:700;cursor:pointer;min-height:36px;}
+  .hbtn{background:linear-gradient(180deg,#232b3f,#161c2b);border:1px solid rgba(255,255,255,.10);border-bottom:3px solid rgba(0,0,0,.55);
+    color:#c9d2ea;border-radius:11px;height:38px;min-width:38px;padding:0 11px;font:inherit;font-size:12.5px;font-weight:800;cursor:pointer;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.10);transition:transform .06s,border-bottom-width .06s;}
+  .hbtn:active{transform:translateY(2px);border-bottom-width:1px;}
   /* A <canvas> carries an intrinsic height from its width/height attributes, and a
    flex item defaults to min-height:auto -- so the canvas could GROW to fill the
    column but never SHRINK, and with body{overflow:hidden} everything below it
@@ -35,12 +40,19 @@
   .rack{width:100%;max-width:900px;padding:0 14px 6px;display:flex;flex-wrap:wrap;gap:6px;}
   /* buttons with a physical bottom edge: pressing pushes them down, which is the
      single cheapest "this is a real game" signal a control can give */
-  .op{border:1px solid var(--line);border-bottom:4px solid rgba(0,0,0,.55);border-radius:11px;
-    background:linear-gradient(180deg,#1b2131,#131826);color:var(--ink);
-    font:inherit;font-size:12.5px;font-weight:800;padding:0 13px;min-height:46px;cursor:pointer;letter-spacing:.3px;
-    transition:transform .06s,border-bottom-width .06s;}
+  /* instruction keys: an icon first, the word small beneath, a glossy top edge and
+     a physical bottom edge. Visuals carry the meaning; the text confirms it. */
+  .op{border:1px solid rgba(255,255,255,.10);border-bottom:4px solid rgba(0,0,0,.6);border-radius:13px;
+    background:linear-gradient(180deg,#242c42 0%,#181e2f 55%,#131827 100%);color:var(--ink);
+    font:inherit;font-size:10.5px;font-weight:800;padding:6px 12px 5px;min-height:52px;min-width:62px;cursor:pointer;letter-spacing:.6px;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 6px 14px rgba(0,0,0,.35);transition:transform .06s,border-bottom-width .06s;}
+  .op svg{width:22px;height:22px;display:block;filter:drop-shadow(0 2px 0 rgba(0,0,0,.5));}
   .op:active{transform:translateY(3px);border-bottom-width:1px;}
-  .op.run{background:linear-gradient(180deg,#1d3a30,#12271f);}
+  .op.run{background:linear-gradient(180deg,#2ad39a 0%,#12a874 60%,#0d8a5f 100%);color:#04261a;border-color:rgba(255,255,255,.25);
+    font-size:13px;min-width:96px;letter-spacing:1.2px;}
+  .op.run svg{width:20px;height:20px;}
+  .op.clr{background:linear-gradient(180deg,#3a1f2a,#231520);}
   .dots{display:flex;gap:6px;align-items:center;}
   .dots i{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.12);display:block;transition:background .3s,transform .3s;}
   .dots i.done{background:var(--gem);}
@@ -67,8 +79,9 @@
   .modal{position:fixed;inset:0;top:0;right:0;bottom:0;left:0;background:rgba(6,9,15,.87);
     -webkit-backdrop-filter:blur(7px);backdrop-filter:blur(7px);display:none;align-items:center;justify-content:center;z-index:50;padding:16px;}
   .modal.show{display:flex;}
-  .card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:24px 26px;max-width:400px;width:100%;
-    text-align:center;box-shadow:0 18px 60px rgba(0,0,0,.55);}
+  .card{background:linear-gradient(180deg,#1b2235,#131827);border:1px solid rgba(255,255,255,.10);border-radius:22px;padding:26px 26px 24px;max-width:400px;width:100%;
+    text-align:center;box-shadow:0 24px 70px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.10);position:relative;overflow:hidden;}
+  .card::before{content:"";position:absolute;left:0;right:0;top:0;height:6px;background:linear-gradient(90deg,#ffd166,#8affc1,#66d9ff);}
   .card h2{font-size:19px;margin-bottom:9px;letter-spacing:1px;}
   .stars{display:flex;justify-content:center;gap:8px;margin:4px 0 8px;height:34px;}
   .stars svg{width:32px;height:32px;opacity:.18;transform:scale(.6);transition:opacity .25s,transform .35s cubic-bezier(.2,1.6,.4,1);}
@@ -275,24 +288,31 @@ function buildRack() {
   var r = document.getElementById("rack");
   r.innerHTML = "";
   var KEYCAP = { "FWD": "W", "LEFT": "A", "RIGHT": "D", "UNTIL WALL": "Q", "UNTIL \u25c6": "E" };
+  var ICON = {
+    "FWD": "<svg viewBox='0 0 24 24' fill='none' stroke='#ffd166' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><path d='M12 20V5M6 11l6-6 6 6'/></svg>",
+    "LEFT": "<svg viewBox='0 0 24 24' fill='none' stroke='#ffd166' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><path d='M9 5H6a3 3 0 0 0-3 3v0'/><path d='M4 16a8 8 0 1 0 2-10.5'/><path d='M4 11v5h5'/></svg>",
+    "RIGHT": "<svg viewBox='0 0 24 24' fill='none' stroke='#ffd166' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><path d='M20 16a8 8 0 1 1-2-10.5'/><path d='M20 11v5h-5'/></svg>",
+    "UNTIL WALL": "<svg viewBox='0 0 24 24' fill='none' stroke='#ffd166' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><path d='M4 12h11M11 7l5 5-5 5'/><path d='M20 4v16' stroke='#9fb0d8'/></svg>",
+    "UNTIL \u25c6": "<svg viewBox='0 0 24 24' fill='none' stroke='#ffd166' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><path d='M3 12h9M9 7l5 5-5 5'/><path d='M19 8l3 4-3 4-3-4z' fill='#8affc1' stroke='#8affc1'/></svg>"
+  };
   LEVELS[lvl].ops.forEach(function (op) {
     var b = document.createElement("button");
-    b.className = "op"; b.innerHTML = shown(op) + (KEYCAP[op] ? " <kbd>" + KEYCAP[op] + "</kbd>" : "");
+    b.className = "op"; b.innerHTML = (ICON[op] || "") + "<span>" + op.replace("UNTIL ", "TO ") + (KEYCAP[op] ? " <kbd>" + KEYCAP[op] + "</kbd>" : "") + "</span>";
     b.addEventListener("click", function () { addOp(op); });
     r.appendChild(b);
   });
   var c = document.createElement("button");
-  c.className = "op clr"; c.textContent = "⌫";
+  c.className = "op clr"; c.innerHTML = "<svg viewBox='0 0 24 24' fill='none' stroke='#ff6b7a' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'><path d='M21 5H8l-5 7 5 7h13z'/><path d='M12 9l6 6M18 9l-6 6'/></svg><span>CLEAR</span>";
   c.addEventListener("click", function () { if (running || over) { sfx.fail(); return; } ac(); prog.pop(); sfx.step(); });
   r.appendChild(c);
   var run = document.createElement("button");
-  run.className = "op run"; run.textContent = "▶ RUN";
+  run.className = "op run"; run.innerHTML = "<svg viewBox='0 0 24 24'><path d='M7 4l13 8-13 8z' fill='#04261a'/></svg><span>RUN</span>";
   run.addEventListener("click", function () { startRun(); });
   r.appendChild(run);
 }
 /* what the player SEES for an op. Internal names stay as-is so stepProgram()
    and the LEVELS ops lists are untouched. */
-var LABEL = { "LEFT": "\u21ba LEFT", "RIGHT": "\u21bb RIGHT" };
+var LABEL = { "FWD": "\u2191 FWD", "LEFT": "\u21ba LEFT", "RIGHT": "\u21bb RIGHT" };
 function shown(op) { return LABEL[op] || op; }
 function addOp(op) {
   ac(); armed = true; nudge(false);
@@ -511,6 +531,8 @@ function update(dt) {
   for (var pi = parts.length - 1; pi >= 0; pi--) { var q = parts[pi]; q.t += dt; if (q.t > q.life) { parts.splice(pi, 1); continue; }
     q.vy += 520 * dt; q.x += q.vx * dt; q.y += q.vy * dt; q.vx *= .98; }
   if (flash > 0) flash = Math.max(0, flash - dt * 1.6);
+  var nn = document.getElementById("nudge"), nb = nn && !nn.classList.contains("gone") && document.querySelector(".rack .op");
+  if (nb) { var nr = nb.getBoundingClientRect(); nn.style.left = (nr.left + nr.width / 2 - 17) + "px"; nn.style.top = (nr.top - 30) + "px"; }
   if (introT > 0) { introT -= dt; if (introT <= 0) { document.getElementById("intro").classList.remove("show");
     var hh2 = document.getElementById("hint"); if (hh2 && !armed) hh2.classList.remove("gone"); } }
   if (countEl) { countT = Math.min(1, countT + dt / .7); var e = 1 - Math.pow(1 - countT, 3);
@@ -543,11 +565,20 @@ function draw(dt) {
   var vg = cx.createRadialGradient(L.w / 2, L.h * .45, L.h * .25, L.w / 2, L.h * .45, Math.max(L.w, L.h) * .75);
   vg.addColorStop(0, "rgba(0,0,0,0)"); vg.addColorStop(1, "rgba(0,0,0,.55)");
   cx.fillStyle = vg; cx.fillRect(0, 0, L.w, L.h);
+  /* a lit floor behind the slab and two soft light streaks: depth without a texture */
+  var C0 = cell();
+  var fg = cx.createRadialGradient(L.w / 2, C0.oy + grid.length * C0.s * .5, 10, L.w / 2, C0.oy + grid.length * C0.s * .5, Math.max(L.w, L.h) * .5);
+  fg.addColorStop(0, "rgba(255,209,102,.10)"); fg.addColorStop(.5, "rgba(255,209,102,.03)"); fg.addColorStop(1, "rgba(255,209,102,0)");
+  cx.fillStyle = fg; cx.fillRect(0, 0, L.w, L.h);
+  cx.save(); cx.globalAlpha = .032; cx.fillStyle = "#ffd166";
+  cx.beginPath(); cx.moveTo(L.w * .1, 0); cx.lineTo(L.w * .22, 0); cx.lineTo(L.w * .55, L.h); cx.lineTo(L.w * .43, L.h); cx.closePath(); cx.fill();
+  cx.beginPath(); cx.moveTo(L.w * .62, 0); cx.lineTo(L.w * .68, 0); cx.lineTo(L.w * .92, L.h); cx.lineTo(L.w * .86, L.h); cx.closePath(); cx.fill();
+  cx.restore();
   /* the spec chip */
   cx.textAlign = "center";
   var spec = "\u201c" + LEVELS[lvl].spec + "\u201d";
   cx.font = "800 13.5px -apple-system,'Segoe UI',sans-serif";
-  var sw = cx.measureText(spec).width + 34, sx0 = L.w / 2 - sw / 2, sy0 = C.oy - 46;
+  var sw = cx.measureText(spec).width + 34, sx0 = L.w / 2 - sw / 2, sy0 = C.oy - C.s * .28 - 42;
   rr(sx0, sy0, sw, 30, 15); cx.fillStyle = "rgba(255,209,102,.10)"; cx.fill();
   cx.strokeStyle = "rgba(255,209,102,.35)"; cx.lineWidth = 1; cx.stroke();
   cx.fillStyle = "#ffe9b0"; cx.fillText(spec, L.w / 2, sy0 + 20);
@@ -555,11 +586,14 @@ function draw(dt) {
   cx.fillText("PAR " + LEVELS[lvl].par + "   \u00b7   SCORE " + score, L.w / 2, sy0 - 8);
   /* the slab the board sits on: a lit top face, a dark thickness below */
   var bw = grid[0].length * C.s, bh = grid.length * C.s, pad = C.s * .28;
-  cx.fillStyle = "#1b2a6b"; rr(C.ox - pad, C.oy - pad + C.s * .18, bw + pad * 2, bh + pad * 2, C.s * .32); cx.fill();
+  cx.save(); cx.shadowColor = "rgba(0,0,0,.55)"; cx.shadowBlur = C.s * .6; cx.shadowOffsetY = C.s * .3;
+  cx.fillStyle = "#1b2a6b"; rr(C.ox - pad, C.oy - pad + C.s * .18, bw + pad * 2, bh + pad * 2, C.s * .32); cx.fill(); cx.restore();
   var sg = cx.createLinearGradient(0, C.oy - pad, 0, C.oy + bh + pad);
   sg.addColorStop(0, "#1a2133"); sg.addColorStop(1, "#0e1320");
   cx.fillStyle = sg; rr(C.ox - pad, C.oy - pad, bw + pad * 2, bh + pad * 2, C.s * .32); cx.fill();
   cx.strokeStyle = "rgba(255,255,255,.08)"; cx.lineWidth = 1.5; cx.stroke();
+  cx.strokeStyle = "rgba(255,255,255,.16)"; cx.lineWidth = 2;
+  cx.beginPath(); cx.moveTo(C.ox - pad + C.s * .32, C.oy - pad + 1); cx.lineTo(C.ox + bw + pad - C.s * .32, C.oy - pad + 1); cx.stroke();
   /* board */
   for (var y = 0; y < grid.length; y++) for (var x = 0; x < grid[0].length; x++) {
     var c = grid[y][x], X = C.ox + x * C.s, Y = C.oy + y * C.s;
@@ -576,8 +610,9 @@ function draw(dt) {
       continue;
     }
     /* floor: sunk tile with an inner bevel */
-    cx.fillStyle = "rgba(0,0,0,.35)"; rr(X + 2, Y + 2, C.s - 4, C.s - 4, r0); cx.fill();
-    cx.fillStyle = "rgba(255,255,255,.035)"; rr(X + 3, Y + 3, C.s - 6, C.s - 6, r0 * .8); cx.fill();
+    cx.fillStyle = "rgba(0,0,0,.38)"; rr(X + 2, Y + 2, C.s - 4, C.s - 4, r0); cx.fill();
+    cx.fillStyle = ((x + y) % 2) ? "rgba(255,255,255,.045)" : "rgba(255,255,255,.025)"; rr(X + 3, Y + 3, C.s - 6, C.s - 6, r0 * .8); cx.fill();
+    cx.fillStyle = "rgba(255,255,255,.05)"; rr(X + 4, Y + 4, C.s - 8, C.s * .16, r0 * .6); cx.fill();
     if (c === "D") {
       var pulse = 1 + Math.sin(nowT * 4 + x + y) * .06;
       cx.save(); cx.translate(X + C.s / 2, Y + C.s / 2); cx.scale(pulse, pulse);
@@ -616,7 +651,8 @@ function draw(dt) {
     cx.arc(BX, BY, C.s * .42, bot.da, want, dd < 0);
     cx.stroke();
   }
-  cx.save(); cx.translate(BX, BY); cx.rotate(a);
+  cx.fillStyle = "rgba(0,0,0,.45)"; cx.beginPath(); cx.ellipse(BX, BY + C.s * .30, C.s * .30, C.s * .10, 0, 0, 7); cx.fill();
+  cx.save(); cx.translate(BX, BY + Math.sin(nowT * 3.2) * C.s * .025); cx.rotate(a);
   /* squash along the direction of travel, stretch across it: the step reads as a
      hop instead of a slide between cells */
   var sq = bot.sq || 0; cx.scale(1 + sq * .28, 1 - sq * .22);
@@ -631,6 +667,10 @@ function draw(dt) {
   /* the eye: a character, not a cursor */
   cx.fillStyle = "#fff"; cx.beginPath(); cx.arc(C.s * .02, -C.s * .05, C.s * .085, 0, 7); cx.fill();
   cx.fillStyle = "#241a02"; cx.beginPath(); cx.arc(C.s * .05, -C.s * .05, C.s * .045, 0, 7); cx.fill();
+  /* antenna light: blinks while the program runs */
+  cx.fillStyle = running && (Math.floor(nowT * 6) % 2) ? "#ff6b7a" : "#8affc1";
+  cx.beginPath(); cx.arc(-C.s * .17, -C.s * .30, C.s * .05, 0, 7); cx.fill();
+  cx.strokeStyle = "#241a02"; cx.lineWidth = 1.5; cx.beginPath(); cx.moveTo(-C.s * .17, -C.s * .26); cx.lineTo(-C.s * .17, -C.s * .16); cx.stroke();
   cx.restore();
   /* the program, with the instruction being executed lit up */
   var py = C.oy + grid.length * C.s + C.s * .28 + 26;
@@ -638,16 +678,20 @@ function draw(dt) {
   var tx = 16;
   cx.font = "700 11px -apple-system,'Segoe UI',sans-serif";
   if (!prog.length) { cx.fillStyle = "#7c88a3"; cx.fillText("program is empty — tap instructions below", tx, py); }
+  if (prog.length) { cx.strokeStyle = "rgba(255,255,255,.10)"; cx.lineWidth = 2; cx.setLineDash([3, 5]);
+    cx.beginPath(); cx.moveTo(16, py - 3); cx.lineTo(L.w - 16, py - 3); cx.stroke(); cx.setLineDash([]); }
   prog.forEach(function (op, i) {
-    var lbl = shown(op);
-    var w = cx.measureText(lbl).width + 14;
-    if (tx + w > L.w - 16) { tx = 16; py += 22; }
-    var lit = running && i === execIdx;
-    cx.fillStyle = lit ? "rgba(255,209,102,.22)" : "rgba(255,255,255,.05)";
-    cx.fillRect(tx, py - 12, w, 18);
-    cx.fillStyle = lit ? "#ffd166" : "rgba(232,237,247,.8)";
-    cx.fillText(lbl, tx + 7, py + 1);
-    tx += w + 5;
+    var lbl = shown(op).replace("UNTIL ", "TO ");
+    var w = cx.measureText(lbl).width + 18;
+    if (tx + w > L.w - 16) { tx = 16; py += 26; }
+    var lit = running && i === execIdx, done = running && i < execIdx;
+    if (lit) { cx.shadowColor = "rgba(255,209,102,.8)"; cx.shadowBlur = 12; }
+    cx.fillStyle = lit ? "#ffd166" : done ? "rgba(138,255,193,.22)" : "rgba(255,255,255,.08)";
+    rr(tx, py - 13, w, 21, 10.5); cx.fill(); cx.shadowBlur = 0;
+    cx.strokeStyle = lit ? "#fff" : "rgba(255,255,255,.12)"; cx.lineWidth = 1; cx.stroke();
+    cx.fillStyle = lit ? "#241a02" : done ? "#8affc1" : "rgba(232,237,247,.85)";
+    cx.fillText(lbl, tx + 9, py + 1);
+    tx += w + 6;
   });
   if (capWarn > 0) {
     capWarn = Math.max(0, capWarn - dt);

@@ -18,6 +18,19 @@ module.exports = {
     { name: "landscape", rec: { w: 1280, h: 720 }, out: { w: 1920, h: 1080 } },
     { name: "portrait", rec: { w: 540, h: 960 }, out: { w: 1080, h: 1920 } }
   ],
+  poster: (c) => require("./_poster.js")(c, {
+    ground: (W, H) => `radial-gradient(${W*.9}px ${H*.9}px at 60% 30%, #b3ffd9 0%, #61e8b0 38%, #2fb98a 72%, #135b45 100%)`,
+    ink: "#03261c", ink2: "#ffcc57", outline: "#ffffff", shadow: "#0d4a3a", tagInk: "#03261c",
+    word: "OVER<em>SEER</em>", tagline: "YOU APPROVE BY DOING NOTHING",
+    hero: `<svg viewBox="0 0 200 200"><defs><linearGradient id="c" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1c2740"/><stop offset="1" stop-color="#0d1322"/></linearGradient></defs>
+<g stroke-width="5" stroke-linejoin="round">
+<rect x="6" y="30" width="56" height="140" rx="12" fill="url(#c)" stroke="#03261c"/><rect x="72" y="18" width="56" height="152" rx="12" fill="url(#c)" stroke="#ffcc57" stroke-width="6"/><rect x="138" y="30" width="56" height="140" rx="12" fill="url(#c)" stroke="#03261c"/>
+</g>
+<g fill="none" stroke-linecap="round"><path d="M34 158 C34 120 30 90 34 62" stroke="#61e8b0" stroke-width="5"/><circle cx="34" cy="52" r="9" fill="none" stroke="#61e8b0" stroke-width="3"/><path d="M28 46l12 12M40 46l-12 12" stroke="#61e8b0" stroke-width="3"/>
+<path d="M166 158 C166 120 162 90 166 62" stroke="#61e8b0" stroke-width="5"/><circle cx="166" cy="52" r="9" stroke="#61e8b0" stroke-width="3"/><path d="M160 46l12 12M172 46l-12 12" stroke="#61e8b0" stroke-width="3"/>
+<circle cx="100" cy="42" r="9" stroke="#61e8b0" stroke-width="3" opacity=".6"/><path d="M94 36l12 12M106 36l-12 12" stroke="#61e8b0" stroke-width="3" opacity=".6"/>
+<path d="M100 160 C100 130 108 110 122 96 S118 76 126 64" stroke="#ff5470" stroke-width="6"/><circle cx="126" cy="60" r="8" fill="#fff" stroke="#ff5470" stroke-width="4"/></g></svg>`
+  }),
   stage: (c) => `
     armed = true; document.getElementById('hint').style.display='none';
     document.querySelector('header').style.display='none';
