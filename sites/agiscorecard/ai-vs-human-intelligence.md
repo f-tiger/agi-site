@@ -1,6 +1,6 @@
 # AI vs Human Intelligence: Who's Ahead in 2026?
 
-_Last updated: July 12, 2026 · Updated as verdicts change_
+_Last updated: September 5, 2026 · Updated as verdicts change_
 
 **Answer:** Superhuman in narrow bands, subhuman where it counts most: reliable, autonomous, real-world judgment. By 2026 AI beats most humans on many scoped tasks (~83% GDPval, ~80% SWE-Bench Pro) and vastly exceeds us on recall and speed. But it still can’t reliably own an open-ended job end-to-end without supervision — the dimension where human intelligence remains ahead, and the one that defines AGI.
 

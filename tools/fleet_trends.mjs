@@ -16,8 +16,9 @@ const MAPS = {
   'sites/agiscorecard/trends-us.json': ['agi', 'openai', 'anthropic', 'claude', 'gpt', 'gemini',
     'superintelligence', 'altman', 'aschenbrenner', 'deepmind', 'artificial general intelligence',
     'ai benchmark', 'gpt-6', 'sam altman'],
-  'sites/thedollscout/content/trends-us.json': ['sex doll', 'love doll', 'tpe doll',
-    'silicone doll', 'realdoll'],
+  // 2026-08-30 pivot(owner 决定):tds 下架成人站,改为 Labubu 导购站——词表整体换。
+  'sites/thedollscout/content/trends-us.json': ['labubu', 'lafufu', 'pop mart',
+    'the monsters', 'kasing lung', 'blind box'],
 };
 const SHORT = new Set(['agi', 'gpt', 'veo', 'sora', 'kimi', 'suno', 'grok', 'qwen']); // 词边界匹配,防 magic/sorana/kimi-antonelli 误配
 

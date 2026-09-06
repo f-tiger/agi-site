@@ -1,6 +1,6 @@
 # Will AI Cause Mass Unemployment? What the Data Shows (2026)
 
-_Last updated: July 12, 2026 · Updated as verdicts change_
+_Last updated: September 5, 2026 · Updated as verdicts change_
 
 **Answer:** Not the overnight wave the headlines predict — but a real, uneven shift already underway. On raw capability, AI has crossed knowledge-work thresholds (~ 83% on GDPval, ~ 80% on SWE-Bench Pro). But mass unemployment needs more than capability: it needs reliable, unsupervised, end-to-end autonomy — and that autonomy gap is exactly what is still undemonstrated. So the near-term picture is task-level automation and productivity pressure, not a sudden jobs cliff.
 

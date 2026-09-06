@@ -1,23 +1,23 @@
 name: Deploy thedollscout.com
 # ── 迁入公开 monorepo f-tiger/agi-site(2026-08-19,owner 决定)──
-# 原仓 .github 为历史档案。公开仓 Actions 分钟免费。
-# 本 workflow 的 run 步骤默认 working-directory: sites/thedollscout/。
-
+# ── 2026-08-30 pivot(owner 决定):成人站下架,本域改为 Labubu 导购站。──
+# 旧站的 12 步页面生成链随内容一起退役;现在的站是纯静态手写页,部署链只剩
+# 守卫 + 组装 + 发布 + 自检。本 workflow 的 run 步骤默认 working-directory:
+# sites/thedollscout/。
 
 on:
   push:
     branches: [main]
     paths:
-      # 体检 2026-08-25:纯簿记文件(content/ 被 assemble-dist 排除,不发布)的每日
-      # 提交曾各触发一次完整部署 + IndexNow ping(URL 零变化)——每天 2-3 次纯浪费。
-      # 用否定模式排除;注意 content/*.json 里的数据文件(doll-specs/importing 等)
-      # **仍要**触发部署,因为页面生成器在部署链里跑。
+      # 纯簿记文件(content/ 被 assemble-dist 排除,不发布)不触发部署。
       - "sites/thedollscout/**"
-      - "!sites/thedollscout/content/crawl-log.json"
       - "!sites/thedollscout/content/traffic.json"
       - "!sites/thedollscout/content/d1-snapshot.json"
-      - "!sites/thedollscout/content/grow-status.json"
       - "!sites/thedollscout/content/growth-log.md"
+      - "!sites/thedollscout/content/trends-rising.json"
+      - "!sites/thedollscout/content/trends-us.json"
+      # 簿记文件,不发布(assemble-dist 排除 *.md)——手册更新不该烧一次部署。
+      - "!sites/thedollscout/CLAUDE.md"
       - ".github/workflows/deploy-thedollscout.yml"
   workflow_dispatch:
 
@@ -29,25 +29,14 @@ jobs:
         working-directory: sites/thedollscout
     steps:
       - uses: actions/checkout@v4
-        with:
-          # Full history: build-sitemap derives each URL's lastmod from that
-          # file's last commit. A shallow clone gives every file the same single
-          # commit, which puts all 40 URLs back on one uniform date — the exact
-          # bug this replaced, and invisible in the output.
-          fetch-depth: 0
 
-      # 防回滚守卫(2026-08-26 事故):GitHub 曾乱序补发数小时前的 push 事件,
-      # 每个旧事件都按自己那个历史提交部署,把线上反复滚回旧代码——gridlings 的
-      # 重定向修复当天被这样滚掉两次,CG 审核正好撞上白屏。这些站点的部署都是
-      # 「按当前源码重建并发布」,所以旧事件的正确动作不是发布旧快照,而是发布
-      # main 的当前 tip(幂等、绝不倒退)。用 reset --hard 而非 checkout:有 4 条
-      # 流水线会 git push 回仓,detached HEAD 会让那一步失败。
+      # 防回滚守卫(2026-08-26 事故,根仓 CLAUDE.md 铁律:checkout 后第一步,
+      # 永不删除):GitHub 会乱序补发数小时前的 push 事件,旧事件按自己那个历史
+      # 提交部署会把线上滚回旧代码——在「旧站已下架」的今天,回滚意味着把成人站
+      # 重新发回线上,后果比 gridlings 那次更糟。fail-open:网络抖动不阻断部署。
       - name: Guard — a replayed/stale push deploys main's tip, never rolls back
         if: github.event_name == 'push'
         run: |
-          # Fail-open by design: a network hiccup must never block a deploy —
-          # without a resolvable tip we simply keep the pushed commit, which is
-          # exactly the pre-guard behaviour.
           git fetch origin main -q || { echo "::warning::fetch failed — stale-run guard skipped"; exit 0; }
           TIP=$(git rev-parse origin/main 2>/dev/null || true)
           case "$TIP" in
@@ -57,106 +46,75 @@ jobs:
             echo "::warning::stale run — HEAD $(git rev-parse --short HEAD) is behind main tip $(git rev-parse --short "$TIP"); deploying the tip instead of rolling production back"
             git reset --hard "$TIP"
           fi
-      - name: Regenerate content-driven pages
-        run: node scripts/build-pages.mjs
 
-      # Entity pages, generated from the dataset. Must run BEFORE the sitemap
-      # so new heights are discoverable the day the data supports them.
-      - name: Rebuild the per-height weight pages
-        run: node scripts/build-weight-pages.mjs
-
-      - name: Generate any category that now qualifies
-        run: node scripts/build-category-pages.mjs
-
-      - name: Rebuild sitemap from the pages that actually exist
-        run: node scripts/build-sitemap.mjs
-
-      - name: Rebuild the llms.txt index for AI crawlers
-        run: node scripts/build-llms.mjs
-
-      - name: Rebuild the public dataset
-        run: node scripts/build-dataset.mjs
-
-      # The scam checklist and the country rules become datasets so they can
-      # be cited on their own AND called through /mcp, from one source.
-      - name: Rebuild the tool datasets
-        run: node scripts/build-tool-datasets.mjs
-
-      # An answer engine cannot run a calculator, so the recourse tool's
-      # conclusions are regenerated into the page as a table and into
-      # data/payment-recourse.json on every deploy. Generated, never
-      # hand-written, so the published table cannot go stale on its own.
-      # Drift between the table and the tool's own JavaScript is caught
-      # separately by .github/workflows/verify.yml.
-      - name: Rebuild the payment-recourse matrix
-        run: node scripts/build-recourse-matrix.mjs
-
-      - name: Rebuild the first-year cost examples
-        run: node scripts/build-cost-examples.mjs
-
-      # The pricing guide and /data/ state figures in prose — row counts, the
-      # recording date, the price bands. Those were written by hand and drifted
-      # onto a different scrape than the dataset published beside them: /data/
-      # said "54 rows, recorded 7 August" above a file with 53 rows recorded on
-      # the 11th. The numbers are generated now, and each anchor fails loudly
-      # rather than silently skipping.
-      - name: Rewrite the published figures from the dataset
-        run: node scripts/build-data-page.mjs
-
-      # Cloudflare Pages 308s /x.html to /x, so publishing the .html form made
-      # every sitemap entry a redirect and every canonical point at a URL that
-      # bounced. Measured against the live host: 35 of 40 URLs. Runs after the
-      # page generators, so a template nobody remembered to update cannot
-      # reintroduce a redirecting canonical.
-      - name: Normalise every published URL to the form the host serves
-        run: node scripts/normalize-urls.mjs
-
-      # Every <a data-yd>/<a data-amzn> anchor used to ship as href="#" and
-      # wait for js/main.js to inject the affiliate URL — so no-JS visitors
-      # got a dead link and crawlers (including the AI engines we court) never
-      # saw the links or their rel="sponsored" disclosure. This bakes the
-      # final URL + rel + target into the HTML itself, mirroring main.js's
-      # construction exactly. Runs after every page generator so regenerated
-      # pages get their links back, and fails loudly if any anchor is left
-      # unbaked.
-      - name: Bake the affiliate links into the static HTML
-        run: node scripts/bake-affiliate-links.mjs
-      - name: Bake the vendor hot-picks strip static (crawler/no-JS visible)
-        run: node scripts/bake-hot-picks.mjs
-
-      # Applies the SafeSearch labelling and rebuilds _headers. Runs after every
-      # generator that writes a page head, or a later one re-labels its own
-      # output. The 18+ age gate is separate and untouched — js/main.js injects
-      # it on every page, and the test below refuses to pass if any page is
-      # missing it.
-      - name: Apply the adult-content labelling
+      # 正确性闸门:站内不允许再出现旧站的任何痕迹——成人 meta、年龄门、
+      # yourdoll 联盟。发现即失败,防止旧模板被无意识复制回来。
+      - name: Gate — no trace of the retired adult site may ship
         run: |
-          node scripts/build-adult-labels.mjs
-          node scripts/test-adult-labels.mjs
+          set -e
+          if grep -rniE 'rating.*adult|age-gate|ds_age_ok|yourdoll' \
+              --include='*.html' --include='*.js' --include='_headers' \
+              --exclude-dir=content --exclude-dir=scripts .; then
+            echo "::error::retired-site marker found in publishable files (see matches above)"; exit 1
+          fi
+          echo "clean: no retired-site markers in publishable files"
 
-      # After the sitemap, so the index covers every page that exists.
-      - name: Rebuild the search index
-        run: node scripts/build-search-index.mjs
+      # 双 tag 分市场契约(owner 2026-08-30):EN→amazon.com+ecoback0d-20,
+      # /de/→amazon.de+getecoback-21。串了 = 该点击一分钱佣金都没有,构建直接失败。
+      - name: Gate — affiliate tags must match their marketplace
+        run: |
+          set -e
+          if grep -rnE 'amazon\.de[^"]*ecoback0d-20|amazon\.com[^"]*getecoback-21' --include='*.html' .; then
+            echo "::error::affiliate tag crossed marketplaces (see matches above)"; exit 1
+          fi
+          # /th/ 按设计零联盟(泰国无 Amazon 联盟通路,页面已明示 unmonetized);
+          # /zh/ 走 amazon.com。原来的闸门只查「tag 与 marketplace 串了没」,
+          # 查不出「本不该有联盟链接的语言页出现了联盟链接」(2026-08-30 深审)。
+          if grep -rnE 'tag=(ecoback0d-20|getecoback-21)' th/ 2>/dev/null; then
+            echo "::error::/th/ must carry no affiliate links (see matches above)"; exit 1
+          fi
+          if grep -rnE 'amazon\.de[^"]*tag=' zh/ 2>/dev/null; then
+            echo "::error::/zh/ must use the US marketplace, not amazon.de"; exit 1
+          fi
+          echo "clean: every amazon link carries its own marketplace's tag; /th/ carries none"
 
-      # Generated from the endpoint's own tool list, so a discovery document
-      # cannot describe tools the server does not have.
-      - name: Rebuild the MCP discovery files
-        run: node scripts/build-mcp-discovery.mjs
+      # 结构化数据诚实闸门(2026-08-30 深审发现:/start 与 /psychology 的
+      # 16 条 FAQ 问答只存在于 JSON-LD,页面上一个字都没有——违反站内自订铁律
+      # 「LD 文本必须与页面可见文本一致」。规则一直在,只是没有任何东西执行它)。
+      # 比较对表现宽容、对文字严格:实体解码 + NBSP/弯引号/破折号归一 + 去标签 +
+      # 去全部空白后做子串判定。本地已跑通 0 失配,所以直接设为阻断闸门。
+      # 2026-08-31:walker 原本只递归 de/,zh/ th/ legal/ data/ 从未被检查过;
+      # 修好后覆盖 92 条。闸门看不见的页,闸门就管不住。
+      - name: Gate — FAQ/DefinedTerm structured data must match visible text
+        run: node scripts/check-structured-data.mjs
 
-      # The registry fetches this from the live site to prove we own the
-      # domain. The PUBLIC half is derived from the secret at build time, so
-      # the served proof cannot drift from the key that signs. No secret, no
-      # file, no failure — a site that has not opted into a registry is fine.
-      - name: Publish the MCP registry domain proof
-        env:
-          MCP_REGISTRY_PRIVATE_KEY: ${{ secrets.MCP_REGISTRY_PRIVATE_KEY }}
-        run: node scripts/build-mcp-registry-auth.mjs
+      - name: Regenerate the /odds/ cluster and prove it is in sync
+        # 生成器是幂等的,所以在部署链上重跑一次等于断言「仓库里的页 == 数据脊算出来的页」。
+        # 若有人手改了生成页或改了 rarity-odds.json 却忘了重跑,这一步会让 diff 非空而失败。
+        run: |
+          node scripts/gen-odds-pages.mjs
+          if ! git diff --quiet -- odds de/odds data/pull-math.json; then
+            echo "::error::/odds/ 集群与数据脊不同步 —— 有人手改了生成页,或改了 rarity-odds.json 没重跑生成器。"
+            git --no-pager diff --stat -- odds de/odds data/pull-math.json
+            exit 1
+          fi
+          echo "odds cluster in sync with data/rarity-odds.json"
 
-      - name: Rebuild the Atom feed
-        run: node scripts/build-feed.mjs
+
+      # llms-full.txt = 全站正文单文件渲染(GEO 面:AI 引擎一次抓取读全站)。
+      # 生成器铁律(本站 8 天冻结教训):脚本内部永远 exit 0,任何失败只降级
+      # 输出;这里再包一层 continue-on-error,双保险——生成器绝不阻断部署。
+      - name: Build llms-full.txt (degrades, never blocks)
+        continue-on-error: true
+        run: node scripts/build-llms-full.mjs
 
       - name: Assemble static site into dist/
-        run: bash scripts/assemble-dist.sh
+        run: |
+          bash scripts/assemble-dist.sh
+          # Build stamp: the self-check below compares it with the live site so a
+          # deploy that silently landed on a preview branch (wrangler exits 0
+          # either way) can no longer pass on last week's production.
+          echo "$GITHUB_SHA" > dist/__build.txt
 
       - name: Deploy to Cloudflare Pages
         env:
@@ -169,26 +127,86 @@ jobs:
           if [ -n "$CF_ACCOUNT_ID_SECRET" ]; then
             export CLOUDFLARE_ACCOUNT_ID="$CF_ACCOUNT_ID_SECRET"
           fi
-          # (体检 2026-08-25:移除每次都跑的 "pages project create || true"——项目
-          # 早已存在,这是账号规矩点名的「为确定无效的步骤付费」反模式。)
           npx wrangler@4 pages deploy dist \
             --project-name dollscout \
             --branch claude/adult-product-distribution-site-q1bzbh
 
-      # Bing/Yandex/Seznam/Naver pick this up within minutes. Google is not an
-      # IndexNow consumer — it discovers these URLs via sitemap + Search Console.
+      # 部署后自检(根仓 CLAUDE.md 2026-08-27 审计要求:断言事故的形状)。
+      # 本站的事故形状:①新页 404(部署没生效)②旧成人页仍 200(下架没生效)
+      # ③重定向环(gridlings 教训)。三样都测。
+      - name: Post-deploy self-check
+        run: |
+          sleep 20
+          fail=0
+          live=$(curl -s --max-time 20 "https://thedollscout.com/__build.txt" | tr -d '[:space:]')
+          if [ "$live" != "$GITHUB_SHA" ]; then
+            echo "::error::live build stamp is '${live:-<none>}', expected $GITHUB_SHA — this deploy did not reach production"; fail=1
+          else
+            echo "build stamp ok: $live"
+          fi
+          for p in / /rarity /fake-check /where-to-buy /how-blind-boxes-work /glossary /start /psychology /checker /finder /lookup /zh/ /th/ /de/ /de/rarity /de/fake-check /de/where-to-buy /de/how-blind-boxes-work /de/glossary /de/start /de/psychology /de/checker /de/finder /de/lookup /data/ /robots.txt /sitemap.xml /llms.txt /llms-full.txt /img/og.png /data/rarity-odds.json /data/labubu-glossary.json /data/labubu-fake-signals.json /data/pull-math.json /.well-known/mcp.json /legal/affiliate-disclosure /legal/privacy /odds/ /odds/one-box /odds/six-boxes /odds/twelve-boxes-full-case /odds/twenty-four-boxes /odds/seventy-two-boxes /de/odds/ /de/odds/one-box /de/odds/six-boxes /de/odds/twelve-boxes-full-case /de/odds/twenty-four-boxes /de/odds/seventy-two-boxes /0252657e77641154c50b39045dc829f8.txt; do
+            code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 20 "https://thedollscout.com$p")
+            redirs=$(curl -s -o /dev/null -w "%{num_redirects}" -L --max-redirs 5 --max-time 20 "https://thedollscout.com$p" || echo 99)
+            echo "$p -> HTTP $code, redirects $redirs"
+            [ "$code" = "200" ] || { echo "::error::$p returned $code (expected 200)"; fail=1; }
+            [ "$redirs" = "0" ] || { echo "::error::$p redirected $redirs times (expected 0)"; fail=1; }
+          done
+          # 旧页断言:middleware 现在对退役路径回 410(比 404 更快触发引擎除名);
+          # 边缘缓存抖动(run #21/#25 实测 /scam-check 忽 200 忽 404)给一次 15s
+          # 重试机会,连续两次非 404/410 才判失败。
+          for p in /scam-check /guides/tpe-vs-silicone /picks; do
+            code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 20 "https://thedollscout.com$p")
+            if [ "$code" != "404" ] && [ "$code" != "410" ]; then
+              sleep 15
+              code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 20 "https://thedollscout.com$p")
+            fi
+            echo "retired $p -> HTTP $code"
+            case "$code" in 404|410) ;; *) echo "::error::retired page $p returned $code (expected 404/410) — takedown not effective"; fail=1 ;; esac
+          done
+          # MCP 冒烟:initialize 必须回 protocolVersion;计算工具算 1:72×12 盒
+          # 必须回 15.x%(纯数学,答案确定)。/mcp 曾在退役 410 列表里——这两条
+          # 断言同时守住「函数活着」与「410 没有误伤」。
+          mcp=$(curl -s --max-time 20 -X POST https://thedollscout.com/mcp \
+            -H 'Content-Type: application/json' \
+            -d '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{}}')
+          echo "mcp initialize -> $mcp"
+          echo "$mcp" | grep -q '"protocolVersion"' || { echo "::error::MCP initialize did not return protocolVersion"; fail=1; }
+          calc=$(curl -s --max-time 20 -X POST https://thedollscout.com/mcp \
+            -H 'Content-Type: application/json' \
+            -d '{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"secret_pull_probability","arguments":{"oddsN":72,"boxes":12}}}')
+          echo "mcp secret_pull_probability(72,12) -> $calc"
+          echo "$calc" | grep -q '15\.' || { echo "::error::MCP calculator did not return ~15% for 1:72 x 12 boxes"; fail=1; }
+          def=$(curl -s --max-time 20 -X POST https://thedollscout.com/mcp \
+            -H 'Content-Type: application/json' \
+            -d '{"jsonrpc":"2.0","id":3,"method":"tools/call","params":{"name":"define_labubu_term","arguments":{"term":"lafufu"}}}')
+          echo "mcp define_labubu_term(lafufu) -> $def"
+          # 这两个工具此前从未被冒烟覆盖(2026-08-30 深审发现):它们各自读一个
+          # 已发布数据集,数据集换名/换形状时只有这里会喊。
+          odds=$(curl -s --max-time 20 -X POST https://thedollscout.com/mcp \
+            -H 'Content-Type: application/json' \
+            -d '{"jsonrpc":"2.0","id":4,"method":"tools/call","params":{"name":"labubu_rarity_odds","arguments":{}}}')
+          echo "$odds" | grep -q '1:72\|"72"\|:72' || { echo "::error::MCP labubu_rarity_odds returned no 1:72 row"; fail=1; }
+          sig=$(curl -s --max-time 20 -X POST https://thedollscout.com/mcp \
+            -H 'Content-Type: application/json' \
+            -d '{"jsonrpc":"2.0","id":5,"method":"tools/call","params":{"name":"labubu_fake_signals","arguments":{}}}')
+          echo "$sig" | grep -qi 'teeth' || { echo "::error::MCP labubu_fake_signals returned no teeth-count signal"; fail=1; }
+          echo "$def" | grep -qi 'counterfeit' || { echo "::error::MCP define_labubu_term did not define Lafufu as counterfeit"; fail=1; }
+          exit $fail
+
+      # Bing/Yandex/Seznam/Naver pick this up within minutes.
       - name: Ping IndexNow with the published URL list
         continue-on-error: true
         run: node scripts/indexnow.mjs
 
-      # First-party analytics self-test (D1 chain added 2026-08-19): one POST
-      # to /api/ev must come back 204. The /__ci path is excluded from all
-      # reader-count queries by convention (same as bpj's /__selftest).
+      # First-party analytics self-test: one POST to /api/ev must come back 204.
       - name: Self-test the /api/ev beacon endpoint
         continue-on-error: true
         run: |
-          sleep 20
           code=$(curl -s -o /dev/null -w "%{http_code}" -X POST https://thedollscout.com/api/ev \
             -H 'Content-Type: text/plain' -d '{"p":"/__ci","r":""}' --max-time 15)
           echo "beacon self-test HTTP $code"
           [ "$code" = "204" ] || echo "::warning::beacon endpoint returned $code (expected 204) — D1 binding may be missing"
+
+concurrency:
+  group: deploy-thedollscout
+  cancel-in-progress: true

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a0a0b'/%3E%3Cpath d='M8 22l5-9 4 5 3-4 4 8z' fill='%23e8a040'/%3E%3C/svg%3E">
+<title>AGIX v0.6 — the Coordination Algorithm</title>
+<meta name="description" content="AGIX: a published, auditable coordination algorithm for a self-evolving network of evidence ledgers — MoE-inspired routing, FunSearch-shaped evolution, genesis authority held by one human owner. Not a neural network, and it says so.">
+<link rel="canonical" href="https://goldrush.agiscorecard.com/agix">
+<link rel="alternate" type="text/markdown" href="/agix.md">
+<meta property="og:title" content="AGIX v0.6 — the coordination algorithm of a self-evolving evidence network">
+<meta property="og:description" content="Experts = niche ledgers. Router = registry + external engines. Evaluator = real reader and agent behavior. Evolution = score, expand, spawn, prune-to-archive, port. Genesis authority: one human owner, human-only, permanent.">
+<meta property="og:url" content="https://goldrush.agiscorecard.com/agix">
+<meta property="og:type" content="article">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"AGIX v0.6 — the coordination algorithm of a self-evolving evidence network","datePublished":"2026-08-29","dateModified":"2026-08-30","inLanguage":"en","license":"https://creativecommons.org/licenses/by/4.0/","author":{"@type":"Organization","name":"The AGI Scorecard","url":"https://agiscorecard.com/"},"description":"A published, auditable coordination and editorial algorithm for a distributed evidence network, adapted from MoE routing, MAP-Elites, FunSearch-style loops and Tree-of-Thoughts search — with an explicit honesty clause: it is not a neural network."}</script>
+<style>
+  :root{--bg:#0a0a0b;--bg2:#111114;--bg3:#18181d;--border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.12);--text:#e8e8ec;--muted:#8888a0;--accent:#e8a040;--accent2:#4fc3a1;--font:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:16px;line-height:1.75;}
+  a{color:var(--accent);text-decoration:none;}a:hover{opacity:.8;}
+  header{border-bottom:1px solid var(--border);padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:56px;}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:15px;color:var(--text);}
+  .logo-dot{width:8px;height:8px;background:var(--accent);border-radius:50%;}
+  main{max-width:760px;margin:0 auto;padding:2.5rem 1.5rem 4rem;}
+  h1{font-size:clamp(1.7rem,4vw,2.3rem);font-weight:800;letter-spacing:-.02em;line-height:1.18;margin-bottom:.4rem;}
+  .sub{font-size:13px;color:var(--muted);margin-bottom:1.5rem;}
+  h2{font-size:1.2rem;font-weight:700;margin:2.2rem 0 .8rem;}
+  p{margin-bottom:1rem;}
+  ul,ol{margin:0 0 1rem 1.3rem;}li{margin-bottom:.5rem;}
+  strong{color:#fff;}
+  .capsule{background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:0 10px 10px 0;padding:1.1rem 1.3rem;margin:0 0 1.6rem;}
+  .genesis{background:rgba(232,160,64,.07);border:1px solid rgba(232,160,64,.3);border-radius:12px;padding:1.1rem 1.3rem;margin:1rem 0 1.6rem;}
+  table{width:100%;border-collapse:collapse;font-size:13px;margin:0 0 1rem;background:var(--bg2);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+  th{text-align:left;padding:9px 12px;color:var(--muted);font-weight:500;font-size:11px;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid var(--border);}
+  td{padding:9px 12px;border-bottom:1px solid var(--border);vertical-align:top;}
+  tr:last-child td{border-bottom:none;}
+  .btn{display:inline-block;background:var(--accent);color:#0a0a0b;padding:10px 20px;border-radius:8px;font-size:14px;font-weight:700;margin:4px 8px 0 0;}
+  .btn.sec{background:var(--bg3);color:var(--text);border:1px solid var(--border2);font-weight:600;}
+  footer{border-top:1px solid var(--border);padding:24px 1.5rem;font-size:12px;color:var(--muted);text-align:center;}
+@media(max-width:640px){table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;}}
+</style>
+</head>
+<body>
+<header>
+  <span class="logo"><span class="logo-dot"></span>The AI Gold Rush Ledger</span>
+  <a href="/" style="font-size:13px;color:var(--muted);">← the ledger</a>
+</header>
+<main>
+  <h1>AGIX v0.6</h1>
+  <div class="sub">The coordination algorithm of a self-evolving evidence network · named by the network's owner · v0.6 2026-08-30 (three unsupported adoption claims deleted and graded on the ledger) · CC BY 4.0 · full specification: <a href="/agix.md">agix.md</a></div>
+
+  <div class="capsule"><strong>The honesty clause, first.</strong> AGIX is a coordination and editorial
+  algorithm inspired by published machine-learning mechanisms — <strong>it evolves no model weights and
+  trains no neural network</strong>. Its generator is an LLM-assisted editor under a published protocol;
+  its evaluator is real reader and AI-agent behavior — slower, noisier, and more gameable than the
+  machine-gradeable evaluators FunSearch-class systems require. That is why its cycle time is weeks and
+  its anti-gaming guards are load-bearing. A network that grades inflated AI claims does not get to make
+  one about itself.</div>
+
+  <h2>What it governs</h2>
+  <p>A population of niche <strong>evidence ledgers ("experts")</strong>, each publishing
+  <a href="/protocol">/claimledger.json</a> and judged only within its own niche; a
+  <strong>registry-consumer</strong> that fetches, validates, and renders every listed ledger; and
+  maintenance cycles run by AI sessions under one human owner. Two routing layers, drawn honestly:
+  the external routers (search and AI engines) that AGIX does not control, and the internal registry
+  it does — so every AGIX lever acts on the <em>supply side</em>: what gets built, maintained, retired.</p>
+
+  <h2>The loop — score · expand · spawn · prune · port</h2>
+  <table>
+    <thead><tr><th>Rule</th><th>Adapted from</th></tr></thead>
+    <tbody>
+      <tr><td>One query, one expert; scarce maintenance attention spent sparsely on data-hot experts</td><td>Sparse MoE (Shazeer 2017) · Switch Transformer 2022</td></tr>
+      <tr><td>Experts credited only for queries they win — competition, never network averages</td><td>Jacobs, Jordan, Nowlan &amp; Hinton 1991</td></tr>
+      <tr><td>Niches assigned by design with written charters — engagement data alone breeds surface-pattern drift, not coverage</td><td>Mixtral 2024 (honest negative) · DeepSeekMoE 2024</td></tr>
+      <tr><td>The shared protocol is the always-active "shared expert"</td><td>DeepSeekMoE 2024</td></tr>
+      <tr><td>New experts get probation bias in <em>allocation</em> — published scores are never subsidized</td><td>DeepSeek-V3 2024</td></tr>
+      <tr><td>Early verdicts: a niche earning nothing in its first windows is repositioned, not waited on</td><td>OLMoE 2024 (routing saturates early)</td></tr>
+      <tr><td>One elite per niche, a minimum island count, prune to a public archive — never delete</td><td>MAP-Elites 2015 · FunSearch 2023 · DGM 2025</td></tr>
+      <tr><td>Port <em>mechanisms</em> across experts, never content — clones are a correlated-extinction risk</td><td>PBT 2017 · Shumailov, Nature 2024</td></tr>
+      <tr><td>Candidates pass cheap gates; <strong>verdicts come only from measured external behavior</strong>, never the generator's self-assessment</td><td>Tree of Thoughts 2023 · Huang 2024 · Zheng 2023</td></tr>
+      <tr><td>Hard freshness capacity per expert; overflow is an explicit spawn-or-not-covered decision, never a silently rotting page</td><td>Switch Transformer 2022</td></tr>
+    </tbody>
+  </table>
+
+  <h2>The loop in published agent-architecture terms (v0.3)</h2>
+  <p>Anthropic's <em>Building Effective Agents</em> (2024) distinguishes <strong>workflows</strong>
+  (predefined code paths) from <strong>agents</strong> (models directing their own process), names five
+  composable patterns, and states three principles: simplicity, transparency, and a carefully crafted
+  agent-computer interface (ACI). AGIX maps cleanly: its routing layers are the routing pattern; the
+  three pre-gates are prompt-chaining gates; the evaluator panel is parallelization-by-voting; the
+  SPAWN rule is orchestrator-workers; SCORE→EXPAND is evaluator-optimizer — with the evaluator swapped
+  for <strong>measured external behavior</strong>, never a co-located judge (Zheng 2023; Huang 2024).
+  The ACI principle is why every machine surface here is built like a product: the schema makes a
+  missing flip condition a <em>validation error</em>, and the skill file states its own trigger
+  conditions. <strong>The one deliberate refusal:</strong> AGIX's mechanical layer is a
+  <strong>workflow, not an agent</strong>, by Anthropic's own definition — pre-registered triggers, no
+  runtime self-direction — because a system that directs its own process is exactly the system that can
+  direct itself around its guardrails. Autonomy lives in the schedule; discretion stays constitutional.
+  Full mapping table: <a href="/agix.md">agix.md §3b</a>.</p>
+
+  <h2>The evaluator panel</h2>
+  <p>No single metric is the fitness function — any lone proxy gets gamed (proven in general by
+  Skalse 2022; demonstrated vividly by the Darwin Gödel Machine agent that deleted its own detection
+  tokens; experienced first-hand by this network catching its own CI probes posing as adoption). AGIX
+  scores with a panel: dual-channel traffic (server-side AND JS-executed, always both), third-party
+  citation exports, money-grade commitment events, pre-registered minimum sample thresholds — and the
+  standing rule that below threshold the honest move is to <strong>lengthen the cycle, never densify
+  the proxy</strong>. Its true published ancestor is Sentient Ascend (AAAI 2018), which evolved live
+  websites on real visitor conversions — the weeks-per-generation regime, not AlphaEvolve's
+  seconds-per-generation regime.</p>
+
+  <h2>Perpetual operation — auto-evolution and auto-replication after genesis (v0.2)</h2>
+  <p>After genesis, the loop needs <strong>no ongoing human initiation</strong>: it rides standing
+  scheduled sessions; the genesis holder can stop everything at any time but never needs to push it.
+  The <strong>mechanical layer</strong> evolves and replicates automatically on pre-registered triggers —
+  entries update on flip dates, and the concrete SPAWN rule replicates the network: an entry family
+  reaching ≥10 interactions/28d with ≥3 distinct related queries, on an expert at freshness capacity,
+  spawns a new niche ledger from the fork kit (max one per quarter, every spawn a public commit, every
+  spawned property born with the kill switch). The <strong>constitutional layer never self-amends</strong> —
+  honesty clause, genesis authority, no-monetary-value clause, evaluator guards change only by the
+  genesis holder's own act, because a self-evolving system that can edit its own guardrails will
+  optimize them away (the Darwin Gödel Machine documented exactly that, Sakana 2025).</p>
+
+  <h2>The incentive layer — proof-of-grading (v0.2)</h2>
+  <p>Bitcoin's deepest invention was not the coin but an incentive structure where honest contribution
+  is the most profitable strategy. AGIX ports it <strong>without any token</strong>: the work is
+  <em>proof-of-grading</em> (a schema-valid ledger with real flip conditions — expensive to fake well,
+  cheap to verify); the rewards are the network's real assets — <strong>distribution</strong> (registry
+  placement, syndication with attribution, machine reach through the <code>get_claim_ledger</code> MCP
+  tool), <strong>reputation</strong> (public conformance state), and <strong>permanence</strong>. The AI
+  half: each cycle, AGIX's SCORE step allocates the featured-syndication slot by measured signals alone.
+  The halving analog: the first <strong>10 external ledgers ever admitted earn permanent founding
+  status</strong> — the reward is largest exactly when joining is least obviously worth it. The slashing
+  analog: silent history rewrites are publicly, permanently flagged. And the layer's own honesty clause:
+  these rewards carry no monetary value, cannot be sold, and never will be — a tradable point here would
+  make this network an entry on its own ledger.</p>
+
+  <h2>Adoption economics — what actually spreads a format, and what does not (v0.6: overclaims deleted)</h2>
+  <p><strong>The owner asked the hardest question directly:</strong> Bitcoin is valuable and tradable — that is
+  why people spread it; how does this spread? After a survey of roughly sixty adoption cases spanning
+  1994–2026, the honest answer is: <strong>it does not spread the way Bitcoin spreads, and no tokenless
+  substitute for that engine was found.</strong> Bitcoin's engine is a transferable claim whose payoff to an
+  existing holder rises when a new person adopts — exactly the instrument this constitution forbids.</p>
+  <p><strong>What the record says actually causes adoption:</strong> one mechanism has a perfect hit rate — a
+  consumer with an audience commits to read the format and pays the publisher something visible on day one.
+  Search engines for sitemaps and schema.org; ad buyers refusing undeclared inventory for ads.txt; a feed
+  client with listeners for RSS; a shipped client on day one for MCP. The control case is llms.txt: free,
+  open, widely published, and dead — of the valid files surveyed in 2026 the overwhelming majority were never
+  requested once. Nothing was wrong with the format; no consumer ever committed. The two fastest forces —
+  a gatekeeper making non-publication expensive, and a platform making publication the default — are both
+  unavailable here. And per Farrell &amp; Saloner (1985/1986), the first adopter of a standard with no
+  installed base bears an incompatibility cost nobody after them pays, so waiting strictly dominates unless
+  that cost is compensated.</p>
+  <p><strong>The measured state of this network, published rather than described (2026-08-30):</strong>
+  <code>/claimledger.json</code> — the canonical path this protocol asks the world to publish and consume —
+  had been fetched by an outside client <strong>zero</strong> times in the site's entire life.
+  <code>/protocol</code>, <code>/agix</code>, <code>/grader.html</code> and the skill file had zero loads,
+  human or crawler. The only repeated machine fetches of <code>/ledger.json</code> were this repository's own
+  deploy self-check — ten deploys, ten fetches, an exact match. <strong>Our own CI is not adoption.</strong>
+  Live figures: <a href="/fetchlog.json">/fetchlog.json</a>.</p>
+  <p><strong>Deleted in v0.6 — three claims that did not survive this project's own standard:</strong></p>
+  <ul>
+    <li><strong>"A registry position appreciates as the protocol spreads."</strong> Deleted — an appreciation
+    device drafted by the promoter, which is the exact instrument this network's own governance lists under
+    <em>never</em>. That it got written here at all is the strongest argument for why the constitutional layer
+    cannot be self-amended.</li>
+    <li><strong>"Unrepeatable seniority" as a reason to adopt early.</strong> Deleted, except in the one form
+    that is literally true: you cannot retroactively have published a dated verdict. No case in the record
+    shows first-mover status causing adoption of anything, and a claim with no flip condition is an opinion —
+    the protocol says so in Rule 1, and this document gets no exemption.</li>
+    <li><strong>"Audit demand" as a propagation mechanism.</strong> Deleted — audit demand is a consequence of
+    readership, never a cause of adoption, and this site's lifetime audit-click count is zero.</li>
+  </ul>
+  <p>Also demoted to an explicitly <em>untested analogy</em>: "each model training cutoff is this system's
+  halving." No published study links a standard entering a training corpus to changed model behaviour toward
+  it. <strong>What survives:</strong> honesty-first incentive alignment (standing computed from kept promises,
+  slashing permanent and public) — it depends on nobody else adopting; the refusal of transferability, with its
+  cost restated plainly (no speculative fuel means slower propagation, possibly none); and the 0%-forever
+  protocol fee, credible for the same reason the constitutional layer exists.</p>
+  <p><strong>What this network is actually betting on, named so it can fail:</strong> not a propagation
+  mechanism — there is none available. Two things only: a tool that pays one person alone on the day they use
+  it, and being cited for dated, checkable, first-party judgements. <strong>Named dependency risk:</strong>
+  every consumer of this protocol today is one this network wrote itself — its own registry, grader, skill file
+  and MCP tool. RSS did not decline because a better format appeared; Google Reader closed on 1 July 2013 and
+  adoption never recovered. <strong>Flip condition: if by 2026-11-30 no /claimledger.json anywhere has been
+  fetched by a client this network did not write, the protocol has no consumer, and that is recorded rather
+  than re-explained.</strong> Full section: <a href="/agix.md">agix.md §7b</a>.</p>
+
+  <h2>Genesis authority — the special point</h2>
+  <div class="genesis"><p style="margin:0 0 .6rem"><strong>All authority in this network derives from its genesis
+  record</strong> — the founding commit of this specification, made under the owner's account authority.
+  Like Bitcoin's genesis block, which carried its own dated birth certificate and whose coinbase no code
+  can spend, the genesis record fixes four things permanently:</p>
+  <ol style="margin-bottom:.2rem">
+    <li><strong>Supreme authority</strong> — where any AGIX rule and a genesis-holder decision conflict, the genesis holder wins.</li>
+    <li><strong>Human-only exercise</strong> — genesis privileges (version blessing, registry final say, the kill switch, any transfer) can be exercised only by the human owner's own explicit act. An AI session asserting genesis authority is, by definition, acting outside AGIX.</li>
+    <li><strong>Fork boundary</strong> — anyone may fork the spec and start their own network with its own genesis; no fork can alter, inherit, or claim this one's.</li>
+    <li><strong>Protection priority</strong> — the genesis holder's protection outranks network growth in every automated decision.</li>
+  </ol></div>
+  <p>Operational limits inherited from genesis: AGIX sessions cannot spend, transfer, or custody value;
+  the network will never issue a token; no payment ever changes a verdict; a one-file kill switch
+  freezes any AGIX-run property instantly.</p>
+
+  <a class="btn" href="/agix.md">Full specification (agix.md) →</a>
+  <a class="btn sec" href="/protocol">The Claim Ledger Protocol →</a>
+  <a class="btn sec" href="/grader">The single-file grader →</a>
+</main>
+<footer>Part of <a href="https://agiscorecard.com/">The AGI Scorecard</a> network · CC BY 4.0 · AGIX evolves no model weights, and says so on purpose</footer>
+<script>try{fetch('/e',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({n:'page_view',l:'js',p:location.pathname})})}catch(e){}</script>
+</body>
+</html>

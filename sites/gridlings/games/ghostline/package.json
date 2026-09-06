@@ -1,0 +1,13 @@
+{
+  "name": "ghostline",
+  "private": true,
+  "description": "GHOSTLINE \u2014 low-poly time-trial racer against the AI trained on you. `npm run build` bundles src + three into ../../site/ghostline.html (committed artifact).",
+  "scripts": {
+    "build": "node build.cjs"
+  },
+  "devDependencies": {
+    "esbuild": "0.24.0",
+    "three": "0.170.0"
+  },
+  "type": "module"
+}

@@ -6,7 +6,8 @@
        work, cohort and retention analysis does not.
      - Google signals and ad personalisation are off. This is measurement, not
        advertising.
-     - Nothing fires until the visitor passes the 18+ gate.
+     - Fires on load; the 18+ gate this used to wait for died with the adult
+       site (2026-08-30 pivot).
    With no measurement ID configured, every call here is a no-op. */
 (function () {
   "use strict";
@@ -61,11 +62,11 @@
     window.gtag("event", name, params || {});
   };
 
-  /* main.js dispatches this once the age gate is satisfied. */
-  window.addEventListener("ds:age-verified", boot);
+  /* The age gate died with the adult site (2026-08-30 pivot) — boot on load. */
+  document.addEventListener("ds:consented", boot);
 
   document.addEventListener("DOMContentLoaded", function () {
-    if (localStorage.getItem("ds_age_ok") === "1") boot();
+    boot();
 
     /* Outbound affiliate clicks — the event that actually maps to revenue. */
     document.addEventListener("click", function (e) {
@@ -75,31 +76,14 @@
       try { host = new URL(a.href).hostname.replace(/^www\./, ""); } catch (err) { return; }
       window.dsTrack("affiliate_click", {
         vendor: host,
-        location: a.closest(".hot-card") ? "bestsellers"
-          : a.closest(".promo-banner") ? "banner"
-          : a.closest(".pcard") ? "product_card"
-          : a.closest(".quiz-result") ? "quiz_result"
+        location: a.closest(".notice-bar") ? "notice_bar"
+          : a.closest(".hero") ? "hero"
+          : a.closest("table") ? "table"
+          : a.closest(".card") ? "card"
           : a.closest(".prose") ? "article" : "other",
         page_path: location.pathname
       });
     }, true);
 
-    /* Share buttons — rendered by share.js, so bind by delegation rather than
-       per-button, and label by the button text we already render. */
-    document.addEventListener("click", function (e) {
-      var b = e.target.closest && e.target.closest(".share-btn");
-      if (!b) return;
-      window.dsTrack("share_clicked", {
-        network: (b.textContent || "").replace(/[^a-z]/gi, "").toLowerCase() || "unknown",
-        page_path: location.pathname
-      });
-    }, true);
-
-    /* Print is the completion signal for the checklist. */
-    if (location.pathname.indexOf("/checklist") === 0) {
-      window.addEventListener("beforeprint", function () {
-        window.dsTrack("checklist_printed", { page_path: location.pathname });
-      });
-    }
   });
 })();

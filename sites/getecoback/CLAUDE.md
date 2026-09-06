@@ -756,6 +756,40 @@ DAA(€4-60/条)、Vamo(€30)需要业主,**对本站不成立**;申请只会�
 **本轮刻意没做的**:没有新增任何联盟钩子。干净窗口浏览→亚马逊 **18.9%**,内容型联盟站
 通常个位数——**漏斗没有可压榨空间,加钩子是把 18% 调到 19% 而流量在腰斩**。
 
+## 钱线机制真值测试 + 判定线读数(2026-09-04 晚,owner「重点优化 eco 站」;prompt 三轮收敛后只剩这两件)
+
+**先说结论:本轮零内容改动、零新页、零新钩子。** 三轮 prompt 把「优化 eco」收敛为
+「在 09-10/09-25/09-28 三条判定线到期前,把三个 08-28 上线的钱线组件的零读数分清
+『真零』还是『没记到』」+「按站内既有规则处理当日最大需求信号」。两件都做完了,
+结果都是不动页面。
+
+**① 浏览器级真值测试(`tools/browser_smoke.cjs`,本地 Chromium × 两个时区 × 5 页)**:
+沙箱对 getecoback.com 出网被代理 403,所以对**构建产物 site/** 起本地静态服务测。
+America/New_York:5/5 页 `#eb-usmarket` 渲染(1.7–2.1 KB,amazon.com + ecoback0d-20),
+点击 → **恰好 1 条** `affiliate_click{source:"us-market", link_url:amazon.com…}`;
+EN qm 页 `EB_USSWITCH` 改写 2 条品类 CTA;`data-eb-sb` 点击 → 1 条 `season_bridge`。
+Europe/Berlin:5/5 页 US 块 0 字节、0 处 .com、点击 amazon.de 恰好 1 条(toppick)。
+10 次加载 **0 个页面错误**。→ **D1 里的零都是真零**:
+- `season_bridge` 08-28→09-04 = **0**(09-10 线:0 → 拆组件,不提前判,但按现状会拆)。
+- `affiliate_click{us-market}` = **0**;更要紧的是 **US/CA/GB 自 08-28 起 affiliate_click 全为 0**
+  (08-18→27 是 6/50 pv;08-28→09-04 是 0/42 pv,其中 08-28/29 各 12 pv 疑为扫描器)。
+  组件工作正常,所以 09-25 若仍为 0 就是「北美读者不接受品类页」,按预登记撤块。
+- `/dp/` 占比:08-31 修复后 5 天 **3/15 = 20%**(09-28 线 ≥15%,方向对,样本小)。
+- 十月线参照:28 天 117 次 = 4,2/天,近 7 天 23 次 = 3,3/天(线是 ≥2,07/天)。
+
+**② 当日最大需求信号的处置**:`luftentfeuchter` 种子 09-01 抓到 `luftentfeuchter bei hitze`
+v=155.800、`kühlt ein luftentfeuchter` v=41.200。查站内:**`luftentfeuchter-ratgeber` 早有
+H2「Ehrlich: Ein Entfeuchter kühlt die Luft nicht」+ 同名 FAQ**,答案已在;该页 28 天 **0 真人 pv**。
+按规则(设备词未过 KGR → 深化既有页;既有页已答 → 跳过)= **看过,无命中,跳过**。
+
+**③ 快反出页判据的自有 kill 线已触发**:08-23 起按需求信号新发的 6 页在 D1 里的**全史**真人 pv:
+epicooler 0 · heizluefter-stromsparend 0 · wohnmobil-feuchtigkeit-winter 0 · heizkosten-senken-
+als-mieter 0 · tineco-saugt-nicht-mehr 0 · schimmel-im-keller-entfernen 1(它们在 D1 里**一行都
+没有**,不是「少」)。快反规则预登记「连续 5 页全空 → 快反判据回炉」——**已满足**。
+与 08-28「新页冷启动 ≈ 0」结论一致。**自此:rising 信号只允许深化既有页,不再出新页,
+直到分发能力有变化(Google 收录恢复 / Bing 曝光 / AI 引荐落到新页)**;各页自己的 09-20/09-25
+判定线照常结算,不提前。
+
 ## 执行令(2026-08-20,基于两轮深度调研,详见根仓 docs/fleet-deep-dive-2026-08.md)
 
 1. **P0 归属已确认解除(2026-08-25)。** owner 出示 partnernet.amazon.de 后台截图:
@@ -928,6 +962,303 @@ Strompreis-Radar)。本循环补的是**外部需求信号**(Google Trends DE)�
   **同日修复（run 288 部署失败）**：`/api/heat` 在生产返回**空**，CI 断言正确地把构建判红（站点本身部署成功、其余断言全绿，仅该端点坏）。根因是我把它写成了"可能失败"的端点——7 个并行上游请求 + Cache API 调用都没有各自的兜底，任一环出问题就没有响应。改为**防御式**：城市减到 3 个（够覆盖区域性热浪、快得多）、每个上游 `AbortSignal.timeout(6000)` 且单独 try/catch、Cache API 读写各自 try/catch（缓存是可选项，不是依赖）、**失败一律降级为 `{level:0}` 而非空**，且**失败结果不写缓存**（否则会把"沉默"冻结一小时，而那小时可能正好很热）。离线桩测六种失败模式（正常/凉爽/上游 500/上游抛异常/上游返垃圾/Cache 不可用）全部返回合法 JSON。CI 断言加 3 次重试，避免第三方瞬时抖动阻塞部署。**教训**：给"必须永远可用"的东西写断言之前，先让它真的永远可用。
 - **部署触发收敛为仅 main（2026-08-06，owner 截图发现）**：owner 发来 run #290 失败截图，查证后是**两个不同原因**：288/289（`12215d8`）是我的 heat 端点 bug（已修）；**290 是 GitHub 自身故障**——`Failed to resolve action download info: Service Unavailable / Internal Server Error`，重试两次后放弃，与代码无关（同一提交 `4948c26` 在 main 的 run 291 成功）。**但这暴露了一个结构问题**：`deploy.yml` 原本在 main **和**工作分支上都触发，而工作流是"改完立刻合并 main"，导致**每次推送产生两个一模一样的 run、把同一提交部署两遍**——浪费、红绿成对制造噪音、且把撞上 GitHub 瞬时故障的概率翻倍。已收敛为**仅 main 触发**（保留 `workflow_dispatch`）。**方法论**：我此前只查 main 的 run，等于只看了一半的 CI 状态；owner 的截图补上了我的盲区。
 - **Alibaba 品类研究 → 拒绝照榜选品，转向"买之前没人回答的问题"（2026-08-06，用户"深度研究 Alibaba 热销品类→挖掘用户需求→达成商业机会"）**：`alibaba.com` 与 `1688.com` 在本环境**均不可达（000）**，无法取一手榜单，二手数据已标注为候选而非结论。**热销构成**：Consumer Electronics 28%、Home & Garden 25%，爆品是投影仪/充电宝/空气炸锅/耳机——**与"我房间太热"的德国租客零重叠**。**方法论判断**：`Alibaba 热销 = 大量转售商正在抢` ＝ 红海信号而非机会信号；本站所有有效判断都是需求优先（先 SERP 判定再找供给），用供给榜倒推受众是把方法论反过来用，**故拒绝照榜选品**。**补充核实的合规差异**：非电器（窗封/隔热帘）**不触发 Stiftung EAR + 破产担保 + 处置费**，但**仍需** LUCID 包装注册（罚款至 20 万欧 + 销售禁令）、GPSR、PPWR（2026-08-12 起）、Gewerbe/增值税/14 天撤回/2 年质保——**更轻但仍非快路，也依然需要法人主体**。**真正的机会（三方证据交叉）**：① 本站数据 kippfenster 是最大簇且贡献 1/3 联盟点击；② 市场上存在专做**量身定制窗封**的德国厂商（FROSNIR）＝"尺寸不合"是真痛点；③ 公开评测共识的两个失效点是**长度不对**与**粘胶高温脱落**；④ 空白：SERP 全是薄比价站、**本站 4 个窗封页提到尺寸的是 0 个**。→ 机会不是卖那条窗封（要当进口商且它本身有缺陷），而是**解决买它之前没人回答的问题**。**已落地 `EB_SEALFIT`**：需要长度 = `2×(宽+高)` 向上取常见规格（纯算术不伪造规格）、量窗扇非窗框、三种窗型分别提示、诚实指出失效点是粘胶、超 5 m 不硬推产品改提示定制；覆盖 DE 3 页 + EN 2 页，埋点 `seal_fit{len,type}`。Chromium 实测四组算式与尺寸映射全部正确，并抓出超尺寸时 Amazon 链接拼成坏查询的 bug（已修）。**预注册判定**：60 天 `seal_fit` ≥25 次 → 需求确认可扩展定制方向；<8 次 → 降级。详见 `docs/sourcing-research-2026-08.md`。
+
+## 需求优先的产品文案:空调 = 免安装(2026-09-05,owner「产品上,洞察真正需求,如空调是免安装」)
+
+**诊断**:本站赚钱最多的页(房车 / 翻转窗 / 天窗 / Split 免钻孔)全是「怎么不施工地装上」——
+读者的真实需求是**免安装、免钻孔、免房东**,而共享的产品区却把这件事藏在条件句后面:
+默认「Empfohlene Modelle」副标题**首句是警告**(「Vorab das Wichtigste: Ohne Fensterabdichtung …」),
+toppick 标题不带任何可行性信号,BTU 算算器输出只给型号不说「不用钻」。**同一批事实,顺序反了**。
+本轮**零新页、零新钩子、零新产品**(「给页加卡」09-04 已证伪),只改共享文案的顺序与作用域。
+
+**四处改动(`build_structure.py`,全部幂等、byte-stable、六闸门绿)**:
+① `models_block` 默认单体机副标题改为需求先行:「Alle Monoblöcke hier: **kein Bohren, kein
+Installateur**, in der Regel ohne Erlaubnis des Vermieters — Schlauch ans Fenster, Abdichtung drum,
+in rund 10 Minuten läuft es, rückstandslos」,**再**接窗封条件句;EN 同构(rented-apartment /
+tilt-and-turn 链接)。所有数字与断言均为站内既有已发布句(mietwohnung / kippfenster 页),零新断言。
+**作用域硬门 `monoblock_grid = (device=="ac" and not ctx)`**:CONTEXT 网格(Quick-Connect split、
+房车、配件套装)与 fan/shade/heater/dehum 族拿中性兜底——split 页自带 F-Gas 条款说的正是相反的话,
+第一版补丁曾把「kein Installateur」落到 split-ohne-kernbohrung / portasplit / thermovorhang /
+tineco 等 7 页,**验收 grep 抓出并修正**(现 0)。② toppick 标题后缀「— alle ohne Bohren」/
+「— all without drilling」,同门(DE 43 页 / EN 19 页;split 簇 0)。③ 活算算器 i18n 加 `nodrill`,
+型号行后接「— kein Bohren: Schlauch ans Fenster, Abdichtung drum」(DE 42 / EN 21 页,`node --check`
+通过);④ klimaanlagen 品类描述把「Kühlung ohne Bohren — für Mietwohnung und Altbau」提到前面。
+**验收数**:旧警告式首句残留 0;默认单体机行 DE 9 页 + EN 9 页(仅无 canonical 网格的页才渲染
+共享 models 区,qm 页与型号页有各自网格,不受影响)。
+
+**明确不主张点击提升**:这是文案顺序修正,不是流量动作;pv→click 已在 17–26 % 天花板附近,
+暗区是意图不是货架。**不设独立判定线**,并入 09-28(dp 份额 / split 簇)与十月各线一起读;
+唯一要看的副作用是 split 簇页副标题变中性后其 affiliate_click 不应下降(09-28 同窗对比)。
+
+## 热门品类→站点:机制修复而非加页(2026-09-05,owner「针对德国目前热门搜索品类,再丰富网站」)
+
+**边界先立**:09-04 已立规「rising 只允许深化既有页,不再出新页」(6 个快反页全史 pv=0)。
+本轮**零新页**,所有动作落在机制与既有页上。
+
+**当前信号(data/trends-rising.json,各种子 08-25→09-04)按可用性分三类**:
+- **真 rising 且 niche**:`luftentfeuchter bei hitze` **155.800**(全站最强)· `kühlt ein luftentfeuchter`
+  41.200 · `mobiles klimagerät` 67.600 · `schmidbauer infrarotheizung` 62.950(08-28 已落卡)·
+  `infrarotheizung für garage` 44.050(**已有专页**)· `sparsamer heizlüfter` 26.000 · `infrarot
+  heizstrahler` 27.550 · `dyson ventilator und heizlüfter` 36.900 · `comfee mddf-20den7-wf` 26.300。
+- **被污染的种子(不可作依据)**:`akku staubsauger` → belstaff/lululemon,`saugwischer` →
+  balenciaga/carglass。种子量太小,Google 用全国热词填充;**这些行的 v 都过了栏的 MIN_V=7000**。
+- **autocomplete 兜底(只有 new 标记、无量)**:`klimaanlage`/`schimmel entfernen`/`matratze` 三个种子
+  ——`schimmel entfernen wand/dusche/tapete/spray` 是经典秋季簇,但**无法按量判定**,且本站
+  `schimmel-im-keller-entfernen`(v=108.750 出的页)全史 1 pv = 该簇在本域也是冷启动。
+
+**首页 rising 栏(#1 pv 页,61 pv)现网缺陷,本轮修**:栏把「问题」当商品卖——
+`kühlt ein luftentfeuchter` / `luftentfeuchter bei hitze` 都渲染成 **Amazon 搜索 chip**,而答案
+7 月起就在 `luftentfeuchter-ratgeber`;`amazon.de` 这种垃圾词上了首页联盟位;`infrarotheizung
+für garage` 有专页却指向搜索。**更危险**:belstaff/balenciaga 没上首页**只因 8 个位置先被更高值
+占满**——运气不是守卫。`build_rising_rail` 加三层:①`QUESTION`(kühlt/hilft/wie/was/warum…)
+**只能落站内页,无匹配即丢弃,永不成为 Amazon 链**;②`NICHE` 词元守卫,无设备词元的查询不存在;
+③GUIDE_MAP 补 garage 专页 + 两个问题词→ratgeber 的「Ehrlich」节;跳过 `polluted` 种子。
+`fetch_trends_rising`(runner 侧)加污染判定:rising 行含种子词元不足 ⅓ → `polluted:true`
+(行照写,不静默丢)。**合成数据跑真实 main() 验证**:六条垃圾/问题行给 999.99x 的值,栏零垃圾、
+零问题词当商品、polluted 种子被跳过。**注意**:polluted 标记由下一次 runner 抓取才写入,
+现存 JSON 里 `dreame h14 pro` / `bissel saugwischer` 仍能进栏(含 saugwisch 词元,且本站有
+Bodenpflege 族,可接受)。
+
+**唯一的内容动作(深化既有页)**:`luftentfeuchter-ratgeber`「Ehrlich: Ein Entfeuchter kühlt die
+Luft nicht」节补 **NOAA 热指数表**(Rothfusz 回归,本地算,可归因):28 °C 时 70 %→30,7 °C、
+50 %→28,4 °C;30 °C 时 35,0→31,0。**结论句:它不降温,但在 28–30 °C 时少 2–4 K 体感热**,
+并给出诚实顺序(热→空调;湿闷→除湿机)。同名 FAQ 同步加数字(可见与 LD 同一字符串);
+`luftentfeuchter-40-qm`(秋季钱线 + 露点带)加 FAQ「Hilft ein Luftentfeuchter bei Hitze?」指向它。
+该页 28 天 0 真人 pv——**首页栏现在把最强信号送到这里,这是它第一次有入口**。
+
+**刻意不做并记档**:Dyson Hot+Cool(Elektronik 低费率、无公开测评基础、且是「给页加卡」
+的已证伪动作)· `infrarot heizstrahler` / `zeltheizung`(要新页)· `heizstrahler baby`(婴儿安全)·
+`anker solix solarbank 4`(owner 08-26 降级能源板块)· `schimmel entfernen wand/…`(冷启动)。
+
+**判定线(2026-10-03,28 天)**:栏的 `rising_guide` 点击 ≥5 → 「问题落答案」成立,把同样的
+问题→答案路由推广到 `trends-de.json` 的热搜命中;**0 → 栏是装饰,拆**(别让它占首页首屏)。
+
+## AI 面说真话轮(2026-09-05,owner「继续扩 AI 助手友好优化;点击太少,全局优化」)
+
+**5 天读数**:pv 133 / aff 23 = 17,3%(持平,~19 pv/天);dp 直链占 7 天点击 **13%**(3/23,
+对 09-28 ≥15% 线是早期正信号);amazon.com 仍 0;`/api/feuchte` 生产返回真实读数(runner 日志
+09-04:柏林露点 15,4 °C → level 3),`feuchte_now` 0 只是那 18 页 30 小时零访客,非缺陷。
+**冷启动第三次独立确认**:EN qm 13 页与 IT 11 页上线 8 天,真人 pv **都是 0**。
+→ **「扩 AI 面 = 再加页/再加镜像」在本域是往没人看的地方扩,本轮零新页。**
+
+**runner 日志暴露一条 AI 面上的假话(本轮主修)**:`/api/trend`(llms.txt 明列、供助手读)
+公布 **`mcp_call n7:87`**,而真实第三方使用是 **0**。拆开:每天 ~10:00 UTC 一批 9 次、
+**参数与 smoke 脚本逐字相同**(但时刻与 smoke 的 11:20–11:42 对不上,是另一个每日重放者,
+UA 落成 `other`——最可能是 undici 裸 `node` UA);另有 ~22h 漂移的 geraet_wahl ×2 与
+`mcp_probe` 21 次全 `bot` = 注册表校验器。**同一陷阱第三次咬人**(08-23、08-28 各一次),
+这次修结构:①trend 端点两条 SQL 加 `(ua_class IS NULL OR ua_class='human')`;②`mcp_call`
+的 meta 补记 UA(截 80,非个人数据)——下次「是谁」一条 SQL 可答;③`evUaClass` 把
+`undici|^node$|okhttp|java/` 归 bot。**验收 = 下一次 runner 日志 `trend endpoint said` 里
+`mcp_call n7 ≈ 0`。**
+
+**AI 面两处补齐**:①`/api/feuchte` 此前在 for-agents.html / llms.txt **一处未列**(只列了 heat)
+→ 补列,含 `ok:false = 不猜` 契约;②**活数字对 AI 读者不可见**:HEATNOW/FEUCHTENOW/STROMNOW
+全是 JS 渲染,爬虫与 .md 镜像看到空 div——citation-growth 第⑥件要求活数字在页面上,而它恰恰
+对最需要它的读者是隐形的。`build_agent_md` 现在在剥 `EB_*` 块**之前**探测标记,在 .md 头部
+写一行「Live-Daten auf dieser Seite … {endpoint}」(**128 个镜像**),助手读到就知道这页有个
+它装不下的数字、JSON 在哪。顺手修一个存量格式缺陷:.md 头块与正文之间从建站起就**没有空行**
+(head 末尾 `""` 只给一个换行,body 又 strip 过),助手会把 canonical 行读进首段。
+
+**.md 镜像前 50 词审计通过**(被引第一 / 收入第一 / 秋季钱线 / split):标题 → 一句含数字的
+答案 → canonical → 首段直答,Perplexity 偏好的形态,**没有缺陷,不动**。
+
+**「点击太少」的全局答案没有变,本轮不重复证明**:转化面已两次证伪(18,9% 无空间;258 pv
+暗区有面零点击),点击 = 买前意图流量 × 25,8%;Google organic 0 且 GSC 在 owner 侧。
+本轮唯一与点击直接相关的读数是 dp 直链 13%(正向)。
+
+**刻意没做**:新页、新 MCP 工具、新镜像语言、任何钩子;不碰 growatt(09-25)/kuehlt-nicht。
+
+## 暗区证伪 + 秋季活数字(2026-08-31,owner「突破性做成 AI 联盟站,联盟点击暴增」)
+
+**本轮最重要的产出是一条否定结论,它退役了一整类未来提案。**
+
+**① 暗区测量(30 天,真人剔 CI)**:总 pv **727**,其中 **258(35,5%)**落在**零联盟点击**的
+75 个页上;33 个有收入页 469 pv → 121 点击 = **25,8%**。看起来是「补商品面就能 +27~55%」。
+**② 逐页核查后证伪**:那些暗区页的商品面**全部齐全且意图匹配**——`ueberwintern`(24 pv,
+当前站内第一)页顶 toppick 就是 Abdeckhaube / Ersatz-Filter / Verdampfer-Reiniger,
+`abluftschlauch-verlaengern` 就是延长管/转接头/隔热套,`luftentfeuchter-20-qm` 就是
+MDDF-20DEN7/MeacoDry。**有面,零点击。**
+→ **「给 X 页加商品面/加钩子」这条路今天被 258 pv 的样本正式证伪,退役,任何轮次不要再提。**
+暗区不是销售面问题,是**站在那里的人不在购买时刻**(多为「我已经有这台机器,我有个问题」)。
+**③ 由此定死的算术**:点击 = 买前意图流量 × 25,8%;**转化侧已无空间,只能动流量**。
+而「暴增」在数周内不可得——Google organic = 0 且无 GSC 无法诊断(owner 侧),Bing 系慢增。
+
+**④ 渠道质量实测(推翻了「把站做成 AI 站」的直觉)**:按来源看落在暗区的比例——
+**AI 助手 5/30 = 17%(最健康)** · direct 97/320 = 30% · **搜索引擎 118/286 = 41%(漏在这)**。
+**AI 渠道已经是全站落地质量最好的渠道,再铺 AI 管线不碰漏点。** owner 的方向直觉是对的,
+但理由不是「加 AI 功能」,而是「AI 是唯一又增长(+185% MoM)又落对地方(83%)的渠道」。
+
+**⑤ 本轮落地(唯一还成立的动作)**:`EB_HEATNOW` 是本站唯一的「聊天答案装不下的活数字」
+(citation-growth 六件套第⑥件 = 引用→点击的转化件),但它 **≥28 °C 温度门控**,且覆盖
+**12 个头部收入页里的 11 个** —— 今天出制冷季,**整条钱线的活数字要熄火 8 个月**,而秋季钱线
+`luftentfeuchter-40-qm` 一个都没有。新增 **`EB_FEUCHTENOW`**(18 页,湿度/霉菌簇):
+`/api/feuchte` 服务端取 open-meteo 当前温湿度 → **Magnus 公式算露点**(对表 6 点全部 ±0,1 K),
+取三城**最差**值,三档判定 —— 露点 ≤13 °C 到处可通风 / ≤15 °C 房间可但地下室不可 /
+>15 °C **通风已经排不出水,只有除湿机能**。埋点 `feuchte_now`,Playwright 四分支实测
+(三档文案阈值正确 + `ok:false` **零渲染零编造**),部署自检加 `/api/feuchte` 断言。
+
+**⑥ 一处我自己写错并纠正的物理**:初稿拿露点比**室内空气 20 °C**,举例「15 °C/95% 开窗会灌湿」
+——**算出来是 14,2 °C,对 20 °C 房间仍是排湿,例子是错的**。凝结发生在**最冷表面**不是室内空气,
+所以改为双参考:**热房间的冷墙角 ~15 °C、无暖气地下室墙 ~13 °C**(页面明写这是假设,并链到
+自测入口)。这才是本站 `keller-lueften-sommer` 讲的那个经典错误,判定也才会**真的反转**。
+**教训:活数字的阈值必须锚在真实失效面上,锚错了整块就是装饰。**
+
+**⑦ 刻意没做,并记下理由**:
+- **不把露点做成 MCP 工具**——那个活数字正是读者**放弃摘要、来页面**的唯一理由,交给助手
+  等于把访问换成零点击回答;且 `mcp_call` 至今真实调用为 0,加工具的期望收益本就 ≈0。
+- 块内**不放任何 Amazon 链接**(只链站内指南):天气触发的横幅直接指向商品会显得是设计出来卖货的,
+  而这里的资产是物理本身。check_adlabel 因此不适用于本块,符合规则。
+- 不碰 `growatt-noah-2000-probleme`(09-25 判定线未到,不得提前施救)与 `kuehlt-nicht`(已判负)。
+
+**判定线(2026-09-28,28 天)**:`feuchte_now` 渲染 ≥50 次 **且** 湿度簇 `affiliate_click` ≥6
+(30 天基线该簇 5)→ 秋季活数字成立,按同法给取暖簇做冬季版;**渲染够但点击 ≤2 → 活数字
+不驱动购买**,记入反面发现并撤块(别让一个死区块常年占着 18 页的版面)。
+
+## 高客单品类扩展:Split/Quick-Connect(2026-08-31,owner「扩展提成多的贵的,做成德国专业 AI 时代站点」)
+
+**先立诚实边界**:「提成多」这半**核不到**——Amazon DE 的 Werbekostenerstattung 表这次
+WebSearch 挂了、PartnerNet 沙箱进不去,**不凭记忆报费率**。所以本轮只对「**贵的**」下手:
+Quick-Connect 分体机 **449 € 起**(notebookcheck 报的 TCL 9.000 BTU 促销价),站内 PortaSplit
+页自己写着 **~900–1.200 €**,对比单体机 250–400 €——**即便费率相同也是 1,5–3× 的每单价值**。
+费率那半是 owner 在 PartnerNet 后台看一眼的事。
+
+**为什么不是新建品类页**:本站冷启动实测(10 新页 → 6 pv)已判定「靠新页扩品类 ≈ 0 点击」。
+本轮扩的品类落在**已有排名 + 已有点击**的簇上——SERP 实测 `Split-Klimaanlage ohne
+Kernbohrung` 这条词上 **eco 自己的页与 homeandsmart / vergleich.org / klimaanlagentest 同屏**,
+这是本会话第一次看到 eco 页在竞争性德语 SERP 浮出。
+
+**修的缺陷(全站最贵的路径在卖最便宜的东西)**:BTU 计算器第四档把 **>13.500 BTU** 的房间
+全部路由到 split 页(因为单体机在那里确实到极限),而 `split-klimaanlage-ohne-kernbohrung`、
+`portasplit-vs-monoblock`、`midea-portasplit-kaufen` **三页挂的是和 15 m² 页一模一样的单体机卡**
+(EX105/PAC N90/Comfee/Klarstein);整个簇还建立在**站内自己记录为缺货**的 Midea PortaSplit 上,
+即它的前提没有当下答案。经 `CONTEXT_MODELS` 换为 Quick-Connect 卡组
+(TCL BreezeIn 9.000 / 12.000 BTU、KESSER 12.000 BTU;amazon.de 在售、有公开对比覆盖)。
+**顺带解掉第二个矛盾**:CONTEXT 页自动移出 EB_SIZER——而 sizer 的顶档正在这页推荐单体机。
+**链接一律按名搜索、零 ASIN**:候选 ASIN 有(B0F7XDNQRN / B0F7XC611X),但**今天 EX105 的
+结案理由正是「经搜索索引读到的 listing 标题不算核验」**,等有人真正打开 listing 再入表。
+
+**内容侧的差异化(这才是「AI 时代典型站点」那半)**:该页 1.831 词、有对比节有 Mietrecht 节,
+但 **F-Gas / Kältemittel / Fachbetrieb / R32 / R290 出现 0 次**——这是这个品类在德国最要命的
+购买问题,而全 SERP 没人讲。新增判定节 + 配套 FAQ(可见与 JSON-LD 逐字一致,parity 闸门验过):
+R32 是**氟化**制冷剂、R290(丙烷)不是;amazon.de 的 Quick-Connect 商品描述里**有的写明**
+安装与调试需持证 Fachbetrieb 证明。**给读者的动作是「买前读商家自己的安装条款」**——
+陈述事实、不做法律解释,并明写「我们不是制冷技师,不提供法律意见」。
+本站自有判定规则 `monoblock_ceiling_btu: 13500` 同时写进 **`sizing-data.json`(CC BY 4.0)**
+——此前它只活在计算器的 JS 里,没人能引用它。
+
+**两个自我纠正(过程记录)**:①我先把 `midea-portasplit-kaufen` 上的塔扇/单体机链接当成
+误销,读上下文后发现它们在**「für wen lohnt sie sich nicht」**段里(「只热几天,风扇就够」),
+是诚实降级,**保留**,代码注释已改;②可见 FAQ 第一次插错位置被 parity 闸门抓住——
+改为**直接从 JSON-LD 取答案文本**再插可见段,逐字一致由构造保证,比重打一遍可靠。
+
+**顺带修掉的移动端存量缺陷**:390px 下 `table.cmp` 溢出(412px)导致整页横滚;进一步发现
+**被引第 1 的 `klimaanlage-reinigen`(109 次)也溢出**,元凶是 08-28 我自己补的**无 class**
+保养表。本站没有布局表,故 CHROME_STYLE 加
+`@media(max-width:560px){table{display:block;overflow-x:auto;max-width:100%}}`,45 个带 cmp
+的页 + 所有内容表一次覆盖。**对比表是本站最吃引用的元素类型,让它在自己的框里滚,
+好过拖着整页横滚。** 10 页实测(德/英/意/首页/工具/被引第一)零横滚、表格照常、零 JS 错误。
+
+**判定线(2026-09-28,28 天)**:split 簇三页 `affiliate_click` ≥6(30 天基线:该簇合计 4,
+且全部指向单体机)→ 高客单路径成立,按同法补第二个高客单簇;**≤2 → 不是商品面的问题,
+是这个价位在本站受众里不成立**,记录并停止在高客单方向投入。
+
+## EX105 ASIN 结案 + 一条方法论例外(2026-08-31,owner 两张 amazon.de 截图)
+
+**结案,任何轮次不再重议**:`B0BZWP26GD` 在 amazon.de 上给不出 EX105——两次独立观测:
+08-28 标题是「PACEX93」;08-31 owner 打开它落到 **Pinguino GentleJet PAC AP98**
+(`/dp/B0F3XL6LK6?th=1`,`?th=` 正是 Amazon 把变体 ASIN 重定向到当前子项时加的参数)。
+
+**新方法论例外(重要,写进 MODEL_ASIN 注释)**:对这类**变体混乱的型号,搜索链接不是
+退而求其次,而是正确形态**——它扛得住变体 churn,而 dp 链接会把读者送到**另一个型号**。
+「搜索链接损失转化」只在**直链真能到达页面所写那款**时才成立。别再把 EX105 的搜索链接
+当缺陷去「补全」。
+
+**我推错并撤回的一步(记下防再犯)**:Geizhals 显示 EX105 €932–1.999 且多为 eBay 转售商,
+我据此推「停产后转售抬价」。第二源直接推翻:**全新的 GentleJet 在 billiger.de 也是 €1.199**
+——**这个价格形态是比价站自己的数据问题,不是停产信号**。EX105 在 heise/Geizhals/
+MediaMarkt.at 仍是活跃条目。**教训:同一指标要先在对照组上验一次再当信号用。**
+
+**AP98 的可得性反对意见撤回**:owner 截图上的「cannot be dispatched」「Currently
+unavailable」源于其 amazon.de **收货国设为美国**,不是德国缺货。
+但 `B0F3XL6LK6` 仍**只入表不上页**:3,5★/25 条评价、零公开测评覆盖,不够本站的具名门槛。
+
+**owner 侧 30 秒(影响以后每一次核验)**:amazon.de 的收货地址从美国改回德国——
+否则任何截图都读不出德国真实可得性,以后所有 ASIN/库存核验都会带这个偏差。
+
+**刻意没做**:`delonghi-pinguino-vergleich`(站内唯一讲 Pinguino 家族、且不知道 GentleJet
+线存在的页)30 天 **0 真人浏览** → 按本站规矩不在死页上做左右手互换。GentleJet 覆盖等
+该页有流量、或有公开测评可引时再说。
+
+## 点击→成交那一段的缺陷轮(2026-08-31,owner「提升搜索点击率、转化率,扩大优势产品和点击」)
+
+**先把「转化率」指对地方**:站内 pv→Amazon 干净窗口 18,9%(内容站通常个位数),
+漏斗没有可压榨空间——这条早已判死,本轮**一个新钩子都没加**。真正有空间的是
+**点击→成交**:D1 30 天里 102 条带 link_url 的点击,**101 条落搜索页、只有 1 条 /dp/**。
+
+**€8,5 那笔(占全部营收 83%)的归因**(D1 一手,最强候选非证明):佣金记 08-19,
+Amazon 发货才计佣;全月点击峰值是 **08-16(12 次)**,差 3 天正是订单→发货时差;
+那 12 次里 **7 次来自 `/guide/klimaanlage-30-qm.html`**(一个 LU 访客连开 EX105/PAC N90/
+MPPH-09CRN7/Klarstein 四款 = 比价成交形状),该页也是 30 天联盟点击第一(13 次)。
+金额按本站观测费率(08-05 €13,44→€0,67 = 4,99%)反推 ≈ €170 订单。
+**两条边界**:Amazon 按 24h 内买的任何东西计佣,未必是被点那款;PartnerNet 不暴露单笔归因。
+
+**型号点击榜(30 天,具名型号 53 次)**:**EX105 24(45%)** · MPPH-09CRN7 11 ·
+PAC N90 6 · Klarstein 12K 4 · PortaSplit 3 · AEG 3 · MDDF-20DEN7 2。
+**最大的一段仍堵着**:EX105 是唯一被留在搜索页的核验失败项。**新证据但不足以翻案**——
+de.camelcamelcamel(该方法论里权重加倍,逐字镜像 amazon.de 标题)现在显示 `B0BZWP26GD`
+的德语标题是 **EX105、10.000 BTU/h、A+++**,与 08-28 直读 amazon.de 的「PACEX93」**冲突**。
+按预登记规则 **冲突 = 悬而未决,保持搜索链接,不自行翻案**。→ **owner 3 分钟动作,
+现在是全站杠杆最大的一件**:打开 `amazon.de/dp/B0BZWP26GD` 读标题,是 EX105 就告诉我,
+我烘焙进 MODEL_ASIN,**45% 的具名型号点击当天从搜索页搬到商品页**。
+
+**已修的三处真缺陷(全在生成器/构建层,正文没动)**:
+1. **43 处已核验型号仍走搜索页**(MPPH-09CRN7 27 · Klarstein 12K 10 · MDDF-20DEN7 5 ·
+   PAC N90 1),分布在 29 页——单型号 test 页与 EN 簇的手写正文链接,加两个自己拼 URL
+   的卡片构建器(`shop_card()` 与除湿卡)从没调用过 `amazon_url()`。**与 08-30 修 sizer
+   同一类 bug:ASIN 表是对的,产出面没学会。** 新增 `tools/build_asin_links.py`(HTML 层
+   重写 + 闸门,进流水线):现全站 **570 条直链全部带 tag**,已核验型号零漏网;
+   两个卡片构建器同时改用 `amazon_url()`,从源头不再产出泄漏。
+   **刻意不改的**:EX105 / AEG ChillFlex Pro / Midea PortaSplit / MeacoFan / Rowenta
+   (核验未过或未做——**编一个 ASIN 把读者送错产品,比搜索页更糟**);品类词
+   (`mobile klimaanlage 14000 BTU` 等)不是型号链接,没有单一商品能回答它。
+2. **保存房间条(EB_PROFILE,191 页)的链接双重编码**:`p.term` 存的就是查询形态
+   (`De%27Longhi+Pinguino+PAC+EX105`),再过一次 `encodeURIComponent()` → Amazon 搜的是
+   **字面串 `De%2527Longhi%2BPinguino%2B…`** = 死查询。Playwright 验证时撞出来的存量 bug,
+   已修;该条同时学会读 build 时注入的 term→ASIN 表(EX105 因空 ASIN 正确落回搜索)。
+3. **SERP 截断**:17 页 meta description >165 字符(最长 287)、1 个标题 73 字符,全部改到
+   120–155 / ≤65,关键词前置 + 保留一个数字锚点。新增 `tools/check_meta.py` 闸门。
+   **三个标题刻意不动并写进闸门注释**:klimaanlage-reinigen(66,被引第 1,109 次)、
+   EN tilt-and-turn(66,8 点击/30d)、beste-tragbare-hitzewelle(70,7 月 CTR 改写过)——
+   **Google organic 已归零、GSC 在 owner 侧,没有 CTR 数据可对照,为 1 个字符去动正在
+   吃引用/点击的标题是有下行无上行的赌**。**这也是本轮没做「全站标题 CTR 改写」的原因。**
+
+**判定线(2026-09-28,28 天)**:D1 里 `/dp/` 链接占 affiliate_click 的比例 **≥15%**
+(现 ~1%;已核验型号占具名点击 43%,理论上限约 20-25%)→ 重写触达了读者;
+**仍 <5% → 读者用的面不是我修的那些面,回去重诊断,别重复同一动作**。
+PartnerNet 侧对照 8,26% 基线,但**季节与品类混合会污染它,不作单独判据**。
+
+## 德语 SERP 对照结论:断点在实体不在内容(2026-08-31,owner「网站内容对比其他德国联盟站点」)
+
+**别再把「内容不如人」当处方。** 实测两条自家核心钱线词的德语 SERP
+(`klimaanlage kippfenster abdichten anleitung`、`mobile klimaanlage kühlt nicht richtig was tun`,
+两页 7 月即在线)——**eco 都不在前 ~8**;占屏的是**有地址的真实商家**
+(klimaanlagen-guru.de 带 SHOPVOTE/ProvenExpert/golocal 档案 + eBay 店、frosnir.de、
+ersatzteileshop.de、sos-zubehoer.de)、厂商(Bosch)、论坛(HaustechnikDialog/gutefrage)、
+大出版社(hausjournal.net)。**这是实体档次的差距,写更多页打不进去。**
+(方法边界:竞对域 egress 被拦、无 SEO 数据 MCP,故无同行流量/反链数字,不编;
+`site:` 运算符在本工具不可靠,未当证据。)
+
+**自查发现并已修的真实缺陷(并纠正我自己的首判)**:首页**有**规范发行方节点
+`https://getecoback.com/#org`(初判「从未定义」是错的);缺陷是**363 个 Organization
+提及里 362 个是匿名空节点、没有一个指回它**——实体图存在但是孤儿。
+新增 `tools/build_entity.py`(流水线在 build_xlinks 之后、build_hreflang 之前):
+全站 **365 处引用 / 184 页**加 `@id` 归并到 `#org`,匿名节点归零;规范节点补
+`publishingPrinciples`(wie-wir-empfehlen)+`mainEntityOfPage`(ueber-uns),
+**每条必须对应真实文件否则构建失败**;**不发 `sameAs`**(无已验证外部档案,
+编一个 = 借来的权威)。闸门双分支实测通过,流水线 byte-stable。
+**判定线(2026-10-31,60 天)**:GA4 ai-assistant 会话 ≥70(现 57)或 Bing WMT 被引页
+品牌关联有变化 → 成立;两项皆无 → **记反面发现:schema 实体层对本站量级无可测收益,
+停止投入。**
 
 ## 能源板块降级(2026-08-26,owner:「eco站点去掉能源板块,看看有没有更加合适板块」)
 

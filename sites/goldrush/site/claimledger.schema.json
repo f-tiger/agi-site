@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://goldrush.agiscorecard.com/claimledger.schema.json",
+  "title": "Claim Ledger Protocol v0.1",
+  "description": "Machine-validatable schema for /claimledger.json — the well-known ledger of graded money claims. Spec: https://goldrush.agiscorecard.com/protocol (CC BY 4.0).",
+  "type": "object",
+  "required": ["name", "url", "dateModified", "entries"],
+  "properties": {
+    "name": { "type": "string", "minLength": 1 },
+    "url": { "type": "string", "format": "uri" },
+    "license": { "type": "string" },
+    "dateModified": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+    "method": { "type": "object" },
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["claim", "tier", "verdict", "asOf", "flip", "source"],
+        "properties": {
+          "id": { "type": "string" },
+          "claim": { "type": "string", "minLength": 3 },
+          "tier": { "enum": ["verified", "reported", "self-reported"] },
+          "verdict": { "type": "string", "minLength": 3 },
+          "asOf": { "type": "string", "pattern": "^\\d{4}(-\\d{2})?(-\\d{2})?$" },
+          "flip": { "type": "string", "minLength": 15, "description": "The written flip condition. A verdict without one is an opinion — minLength enforces that it is actually written." },
+          "source": { "type": "string", "pattern": "^https?://.+\\..+" }
+        }
+      }
+    },
+    "archive": {
+      "type": "array",
+      "description": "Pruned entries — demoted, never deleted, per ledger rule 1.",
+      "items": { "type": "object" }
+    }
+  }
+}

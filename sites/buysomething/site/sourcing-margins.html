@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#128225;</text></svg>">
+  <link rel="stylesheet" href="styles.css">
+  <title>China Sourcing Margins: What 31 Real Picks Show (2026)</title>
+  <meta name="description" content="Not a number, a range. Across 31 curated China-sourced picks the conservative median is 1.9x and 17 of 31 land under 2x, while the optimistic median is 7.9x. Computed from the published dataset.">
+  <link rel="canonical" href="https://source.agiscorecard.com/sourcing-margins">
+  <meta property="og:title" content="China sourcing margins: 1.9x or 7.9x, depending entirely on your two prices">
+  <meta property="og:description" content="17 of 31 curated picks fall under 2x once you assume the worst factory price, the tariff and freight. The same picks reach a 7.9x median under best-case assumptions.">
+  <meta property="og:url" content="https://source.agiscorecard.com/sourcing-margins">
+  <meta property="og:type" content="article">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "China sourcing margins: what 31 curated picks actually show", "datePublished": "2026-08-31", "dateModified": "2026-09-01", "inLanguage": "en", "author": {"@type": "Organization", "name": "SourceRadar (AGI Scorecard)", "url": "https://agiscorecard.com/about"}, "publisher": {"@type": "Organization", "name": "SourceRadar", "url": "https://source.agiscorecard.com/"}, "description": "First-party margin spread computed from 31 curated China-sourced picks: conservative median 1.9x, optimistic median 7.9x, 17 of 31 below 2x."}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What margin do you actually get importing from China?", "acceptedAnswer": {"@type": "Answer", "text": "On this site's own 31 curated picks, the honest answer is a range, not a number. Taking the worst case on every input — the top of the factory price band, plus the US tariff, plus per-unit freight, compared against the LOWEST Western retail price — the median multiple is 1.9× and 17 of 31 picks come in under 2×. Taking the best case on every input — the bottom of the factory band against the highest retail price — the median is 7.9×. Both are computed from the same published dataset; which end you land on is decided by your buy price and your selling price, not by the category."}}, {"@type": "Question", "name": "Is the '10x margin from China' claim true?", "acceptedAnswer": {"@type": "Answer", "text": "It exists only at the optimistic end of the range. Across these 31 picks the optimistic multiple runs from 2.6× to 28.4×, so a 10× outcome is real for some products under best-case buying and pricing — but the same products land at 1.1× to 4.2× under worst-case assumptions, and the conservative median across the whole set is 1.9×. Any single headline multiple quoted without stating which end of both price bands it uses is not checkable."}}, {"@type": "Question", "name": "How much money do you need for a first order?", "acceptedAnswer": {"@type": "Answer", "text": "MOQ multiplied by the top of the factory price band gives a median first-order goods cost of $3,300 across these picks, ranging from $690 to $7,200 before freight, duty, inspection and samples. That is goods only; the landed-cost page covers what customs adds on top."}}, {"@type": "Question", "name": "Does harder compliance buy you more margin?", "acceptedAnswer": {"@type": "Answer", "text": "Not in this dataset. Grouping the picks by the compliance difficulty already recorded for each one, the conservative median multiple is low: 2.3×, medium: 1.7×, high: 2.3×. In other words, taking on the harder certification burden does not, by itself, show up as a wider spread here — the compliance work buys defensibility against competitors, not a better buy price."}}, {"@type": "Question", "name": "Where do these numbers come from?", "acceptedAnswer": {"@type": "Answer", "text": "They are computed from this site's own curated pick dataset — the same 1688 and Alibaba factory price bands, Western retail bands, MOQs, US tariff rates and per-unit freight figures published on each pick card, recomputed by a script whenever the dataset changes. They are the curator's researched figures, not audited invoices, and Western retail is an observed price band rather than a guaranteed selling price. Check any individual row against its pick card, and confirm live duty rates with a customs broker before wiring money."}}]}</script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="/">
+        <span class="brand-mark">&#128225;</span>
+        <span class="brand-text">Source<em>Radar</em></span>
+      </a>
+      <nav class="main-nav">
+        <a href="/#picks">Radar Picks</a>
+        <a href="/landed-cost">Landed Cost</a>
+        <a href="/is-alibaba-legit">Alibaba Risk</a>
+        <a href="/sourcing-margins">Margins</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <h1>China sourcing margins:<br><span class="accent">what 31 real picks actually show</span></h1>
+      <p class="hero-sub"><strong>The answer is a range, and both ends are honest.</strong>
+      Assume the worst on every input &mdash; top of the factory price band, plus the US tariff, plus
+      per-unit freight, against the <em>lowest</em> Western retail price &mdash; and the median multiple
+      across our 31 curated picks is <strong>1.9&times;</strong>, with <strong>17 of 31 under 2&times;</strong>.
+      Assume the best on every input and the median is <strong>7.9&times;</strong>.
+      Same products, same dataset. Which end you land on is set by your buy price and your selling
+      price &mdash; not by the category you picked.</p>
+      <p class="hero-sub muted">Computed from the published pick dataset on 2026-09-01. Every row is checkable against its own
+      <a href="/#picks">pick card</a>.</p>
+    </div>
+  </section>
+
+  <section class="container" style="padding:1.5rem 0 0">
+    <div class="calc">
+      <h2>Run it on your own numbers</h2>
+      <div class="calc-grid">
+        <label class="calc-field">Factory unit price (USD)<input id="mFac" type="number" min="0" step="0.01" value="8"></label>
+        <label class="calc-field">Tariff rate %<input id="mTar" type="number" min="0" max="200" value="33"></label>
+        <label class="calc-field">Freight per unit (USD)<input id="mFr" type="number" min="0" step="0.01" value="1"></label>
+        <label class="calc-field">Your retail price (USD)<input id="mRet" type="number" min="0" step="0.01" value="25"></label>
+      </div>
+      <div class="calc-results">
+        <div class="calc-result"><strong>Landed unit cost</strong>: <span id="mLanded">&mdash;</span></div>
+        <div class="calc-result"><strong>Gross multiple</strong>: <span id="mMult">&mdash;</span></div>
+        <div class="calc-result"><strong>Where that sits</strong>: <span id="mRank">&mdash;</span></div>
+      </div>
+      <p class="calc-note">Goods, duty and freight only &mdash; it excludes ad spend, returns, platform fees, storage and
+      the samples and inspections you pay for before any of this. Those are what turn a 1.9&times; gross into a loss.
+      Customs specifics are on the <a href="/landed-cost">landed-cost page</a>.</p>
+    </div>
+  </section>
+
+  <section class="container" style="padding:1.5rem 0">
+    <h2>The spread, both ends stated</h2>
+    <table class="data-table">
+      <thead><tr><th>Reading</th><th>How it is computed</th><th>Median</th><th>Range</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Conservative</strong></td><td>Top of factory band &times; (1 + tariff) + freight, against the <em>lowest</em> retail price</td><td><strong>1.9&times;</strong></td><td>1.1&times; &ndash; 4.2&times;</td></tr>
+        <tr><td><strong>Optimistic</strong></td><td>Bottom of factory band &times; (1 + tariff) + freight, against the <em>highest</em> retail price</td><td><strong>7.9&times;</strong></td><td>2.6&times; &ndash; 28.4&times;</td></tr>
+        <tr><td><strong>First-order cash</strong></td><td>MOQ &times; top of factory band (goods only, before duty, freight, samples, inspection)</td><td><strong>$3,300</strong></td><td>$690 &ndash; $7,200</td></tr>
+      </tbody>
+    </table>
+    <p class="muted">The gap between the two rows is the entire argument. A single headline multiple quoted
+    without saying which end of <em>both</em> price bands it used cannot be checked, and that is the form
+    almost every &ldquo;source from China and make 10&times;&rdquo; claim takes.</p>
+  </section>
+
+  <section class="container" style="padding:0 0 1.5rem">
+    <h2>Best five on the conservative reading</h2>
+    <table class="data-table">
+      <thead><tr><th>Pick</th><th>Conservative</th><th>Optimistic</th><th>Landed (worst)</th><th>Retail band</th><th>MOQ</th><th>First order</th></tr></thead>
+      <tbody><tr><td><strong>14-in-1 Vegetable Chopper</strong><br><span class="muted">Kitchen</span></td><td>4.2&times;</td><td>11.7&times;</td><td>$5.92</td><td>$25&ndash;35</td><td>1000</td><td>$4,000</td></tr><tr><td><strong>Heatless Curling Set</strong><br><span class="muted">Hair Tools</span></td><td>4.0&times;</td><td>18.5&times;</td><td>$3.01</td><td>$12&ndash;25</td><td>500</td><td>$1,000</td></tr><tr><td><strong>Flip-Straw Dual-Lid Water Bottle</strong><br><span class="muted">Drinkware</span></td><td>3.1&times;</td><td>9.2&times;</td><td>$6.99</td><td>$22&ndash;40</td><td>500</td><td>$2,250</td></tr><tr><td><strong>Robot-Vacuum Compatible Consumables Kit</strong><br><span class="muted">Home Cleaning</span></td><td>3.0&times;</td><td>28.4&times;</td><td>$4.96</td><td>$15&ndash;35</td><td>500</td><td>$1,750</td></tr><tr><td><strong>Mini Massage Gun (Type-C)</strong><br><span class="muted">Recovery &amp; Wellness</span></td><td>3.0&times;</td><td>13.7&times;</td><td>$9.98</td><td>$30&ndash;100</td><td>100</td><td>$690</td></tr></tbody>
+    </table>
+    <h2 style="margin-top:1.5rem">Worst five on the conservative reading</h2>
+    <table class="data-table">
+      <thead><tr><th>Pick</th><th>Conservative</th><th>Optimistic</th><th>Landed (worst)</th><th>Retail band</th><th>MOQ</th><th>First order</th></tr></thead>
+      <tbody><tr><td><strong>Smart Aroma Diffuser + Car Vent Clip</strong><br><span class="muted">Home Fragrance</span></td><td>1.1&times;</td><td>27.5&times;</td><td>$23.31</td><td>$25&ndash;129</td><td>300</td><td>$5,100</td></tr><tr><td><strong>Compressor Car Fridge (Dual-Zone)</strong><br><span class="muted">Auto &amp; Overlanding</span></td><td>1.1&times;</td><td>4.2&times;</td><td>$178.25</td><td>$199&ndash;399</td><td>50</td><td>$6,250</td></tr><tr><td><strong>Modern Mamian (Horse-Face) Skirt</strong><br><span class="muted">New Chinese Style</span></td><td>1.1&times;</td><td>6.7&times;</td><td>$17.40</td><td>$20&ndash;60</td><td>100</td><td>$1,200</td></tr><tr><td><strong>Foldable Walking Pad</strong><br><span class="muted">Home Fitness</span></td><td>1.2&times;</td><td>2.6&times;</td><td>$162.63</td><td>$199&ndash;299</td><td>50</td><td>$5,550</td></tr><tr><td><strong>Lightweight Four-Wheel Rollator</strong><br><span class="muted">Silver Economy</span></td><td>1.3&times;</td><td>4.3&times;</td><td>$71.17</td><td>$89&ndash;169</td><td>100</td><td>$4,900</td></tr></tbody>
+    </table>
+    <p class="muted">Note the pattern in the bottom table: the thin conservative multiples cluster on the
+    <em>expensive</em> units. A $7,200 first order that has to clear a 1.1&times; worst case is a different
+    risk from a $690 order at 3&times; &mdash; which is why first-order cash is in the table above and not a footnote.</p>
+    <p><a class="btn" href="/#picks" onclick="ev('out_click','margins_to_picks')">See all 31 picks with their own numbers &rarr;</a></p>
+  </section>
+
+  <section class="container" style="padding:0 0 2rem">
+    <h2>Method, and what these numbers are not</h2>
+    <ul>
+      <li><strong>Source.</strong> Every figure is computed from this site&rsquo;s curated pick dataset &mdash; the factory
+      price bands, retail bands, MOQs, tariff rates and per-unit freight published on each pick card. The page is
+      regenerated by script from that dataset, so it cannot drift from it.</li>
+      <li><strong>These are researched figures, not audited invoices.</strong> Factory bands come from listed 1688 and
+      Alibaba pricing at curation time; Western retail is an observed price band, not a guaranteed selling price.</li>
+      <li><strong>Gross, not net.</strong> The multiples exclude advertising, returns, platform commission, storage,
+      samples and inspection. On thin categories those costs consume the entire spread.</li>
+      <li><strong>Tariffs move.</strong> The duty rates baked into each pick were current at curation; policy has changed
+      repeatedly since 2025. Confirm live rates with a customs broker before committing money.</li>
+      <li><strong>Sample of 31.</strong> This is what our own curated set shows. It is not a claim about every product
+      category in the world, and we will not present it as one.</li>
+    </ul>
+  </section>
+
+  <section class="container" style="padding:0 0 2rem">
+    <h2>Frequently asked questions</h2>
+    <h3>What margin do you actually get importing from China?</h3><p>On this site's own 31 curated picks, the honest answer is a range, not a number. Taking the worst case on every input — the top of the factory price band, plus the US tariff, plus per-unit freight, compared against the LOWEST Western retail price — the median multiple is 1.9× and 17 of 31 picks come in under 2×. Taking the best case on every input — the bottom of the factory band against the highest retail price — the median is 7.9×. Both are computed from the same published dataset; which end you land on is decided by your buy price and your selling price, not by the category.</p><h3>Is the '10x margin from China' claim true?</h3><p>It exists only at the optimistic end of the range. Across these 31 picks the optimistic multiple runs from 2.6× to 28.4×, so a 10× outcome is real for some products under best-case buying and pricing — but the same products land at 1.1× to 4.2× under worst-case assumptions, and the conservative median across the whole set is 1.9×. Any single headline multiple quoted without stating which end of both price bands it uses is not checkable.</p><h3>How much money do you need for a first order?</h3><p>MOQ multiplied by the top of the factory price band gives a median first-order goods cost of $3,300 across these picks, ranging from $690 to $7,200 before freight, duty, inspection and samples. That is goods only; the landed-cost page covers what customs adds on top.</p><h3>Does harder compliance buy you more margin?</h3><p>Not in this dataset. Grouping the picks by the compliance difficulty already recorded for each one, the conservative median multiple is low: 2.3×, medium: 1.7×, high: 2.3×. In other words, taking on the harder certification burden does not, by itself, show up as a wider spread here — the compliance work buys defensibility against competitors, not a better buy price.</p><h3>Where do these numbers come from?</h3><p>They are computed from this site's own curated pick dataset — the same 1688 and Alibaba factory price bands, Western retail bands, MOQs, US tariff rates and per-unit freight figures published on each pick card, recomputed by a script whenever the dataset changes. They are the curator's researched figures, not audited invoices, and Western retail is an observed price band rather than a guaranteed selling price. Check any individual row against its pick card, and confirm live duty rates with a customs broker before wiring money.</p>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>SourceRadar &middot; part of the <a href="https://agiscorecard.com/">AGI Scorecard</a> network &middot;
+      numbers recomputed from the published dataset on 2026-09-01.</p>
+      <p class="muted">Not financial, legal or customs advice. Verify duty rates and supplier claims independently before wiring money.</p>
+    </div>
+  </footer>
+
+<script>
+function ev(n,l){try{var b=JSON.stringify({n:n,l:(l||'').slice(0,80),v:0,p:location.pathname});navigator.sendBeacon?navigator.sendBeacon('/e',b):fetch('/e',{method:'POST',body:b,keepalive:true});}catch(e){}}
+(function(){
+  var W=[1.073, 1.116, 1.149, 1.224, 1.251, 1.399, 1.467, 1.566, 1.584, 1.663, 1.682, 1.743, 1.861, 1.887, 1.895, 1.934, 1.951, 2.04, 2.227, 2.238, 2.252, 2.315, 2.334, 2.358, 2.415, 2.577, 3.007, 3.027, 3.15, 3.987, 4.223], B=[2.576, 3.88, 4.224, 4.306, 4.838, 5.149, 5.447, 5.682, 5.695, 6.461, 6.667, 6.788, 7.052, 7.064, 7.12, 7.859, 8.016, 8.591, 8.591, 9.249, 9.333, 9.563, 10.191, 10.458, 11.69, 11.869, 13.667, 15.086, 18.464, 27.505, 28.432];
+  function q(a,v){var c=0;for(var i=0;i<a.length;i++)if(a[i]<=v)c++;return Math.round(100*c/a.length);}
+  function calc(){
+    var f=+document.getElementById('mFac').value||0, t=(+document.getElementById('mTar').value||0)/100,
+        fr=+document.getElementById('mFr').value||0, r=+document.getElementById('mRet').value||0;
+    var landed=f*(1+t)+fr, m=landed>0?r/landed:0;
+    document.getElementById('mLanded').textContent='$'+landed.toFixed(2);
+    document.getElementById('mMult').textContent=m?m.toFixed(1)+'x':'—';
+    document.getElementById('mRank').textContent = !m ? '—' :
+      ('above '+q(W,m)+'% of our picks on the conservative reading, '+q(B,m)+'% on the optimistic one');
+  }
+  ['mFac','mTar','mFr','mRet'].forEach(function(id){
+    var el=document.getElementById(id); if(!el)return;
+    el.addEventListener('input',calc);
+    el.addEventListener('change',function(){ev('calc_use','margins');});
+  });
+  calc();
+})();
+</script>
+</body>
+</html>

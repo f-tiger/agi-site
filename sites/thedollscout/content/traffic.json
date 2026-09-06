@@ -2,10 +2,10 @@
   "source": "Cloudflare GraphQL Analytics API (edge-measured)",
   "note": "Counted at the edge, so unaffected by ad blockers, privacy browsers or network-level blocking of Google. Includes bot and crawler traffic, which on a new site is most of it — read it as a floor, not as humans.",
   "zone": "thedollscout.com",
-  "updated": "2026-08-28",
+  "updated": "2026-09-06",
   "window": {
     "since": "2026-07-26",
-    "until": "2026-08-27"
+    "until": "2026-09-05"
   },
   "days": {
     "2026-07-26": {
@@ -1643,6 +1643,479 @@
         "CN": 15,
         "EC": 9,
         "GB": 7
+      }
+    },
+    "2026-08-28": {
+      "date": "2026-08-28",
+      "requests": 400,
+      "pageViews": 130,
+      "uniques": 158,
+      "byIpType": {
+        "noRecord": 309,
+        "searchEngine": 67,
+        "unknown": 24
+      },
+      "byBrowser": {
+        "Unknown": 48,
+        "MobileSafari": 42,
+        "Chrome": 24,
+        "BingBot": 11,
+        "GoogleBot": 3,
+        "ChromeMobile": 1,
+        "Edge": 1
+      },
+      "byContentType": {
+        "html": 228,
+        "js": 78,
+        "svg": 30,
+        "empty": 23,
+        "txt": 23,
+        "css": 14,
+        "xml": 3,
+        "json": 1
+      },
+      "byStatus": {
+        "200": 270,
+        "204": 22,
+        "301": 54,
+        "304": 1,
+        "308": 6,
+        "403": 6,
+        "404": 38,
+        "405": 3
+      },
+      "topCountries": {
+        "US": 146,
+        "DE": 55,
+        "CA": 53,
+        "GB": 32,
+        "CN": 25,
+        "NL": 19,
+        "PL": 16,
+        "SG": 14
+      }
+    },
+    "2026-08-29": {
+      "date": "2026-08-29",
+      "requests": 562,
+      "pageViews": 129,
+      "uniques": 139,
+      "byIpType": {
+        "noRecord": 323,
+        "unknown": 202,
+        "searchEngine": 37
+      },
+      "byBrowser": {
+        "Unknown": 57,
+        "MobileSafari": 30,
+        "Chrome": 20,
+        "BingBot": 8,
+        "Edge": 8,
+        "Firefox": 2,
+        "ChromeMobile": 2,
+        "Safari": 1,
+        "GoogleBot": 1
+      },
+      "byContentType": {
+        "html": 349,
+        "js": 85,
+        "svg": 65,
+        "txt": 29,
+        "empty": 15,
+        "css": 14,
+        "xml": 3,
+        "json": 1,
+        "csv": 1
+      },
+      "byStatus": {
+        "200": 315,
+        "204": 22,
+        "301": 43,
+        "304": 1,
+        "308": 3,
+        "403": 6,
+        "404": 171,
+        "405": 1
+      },
+      "topCountries": {
+        "US": 311,
+        "CA": 102,
+        "DE": 51,
+        "IN": 40,
+        "GB": 13,
+        "NL": 11,
+        "CN": 10,
+        "FR": 4
+      }
+    },
+    "2026-08-30": {
+      "date": "2026-08-30",
+      "requests": 1337,
+      "pageViews": 760,
+      "uniques": 339,
+      "byIpType": {
+        "noRecord": 548,
+        "unknown": 456,
+        "searchEngine": 332,
+        "badHost": 1
+      },
+      "byBrowser": {
+        "Curl": 340,
+        "Unknown": 192,
+        "MobileSafari": 124,
+        "YandexBot": 56,
+        "GoogleBot": 31,
+        "Chrome": 8,
+        "BingBot": 5,
+        "Safari": 1,
+        "ChromeMobile": 1,
+        "Edge": 1,
+        "ChromeHeadless": 1
+      },
+      "byContentType": {
+        "html": 868,
+        "txt": 165,
+        "empty": 101,
+        "js": 93,
+        "json": 53,
+        "xml": 31,
+        "css": 15,
+        "png": 11
+      },
+      "byStatus": {
+        "200": 1062,
+        "204": 119,
+        "301": 61,
+        "304": 4,
+        "404": 47,
+        "405": 1,
+        "410": 43
+      },
+      "topCountries": {
+        "US": 945,
+        "RU": 171,
+        "CN": 31,
+        "DE": 26,
+        "MX": 26,
+        "BR": 18,
+        "NL": 18,
+        "SG": 17
+      }
+    },
+    "2026-08-31": {
+      "date": "2026-08-31",
+      "requests": 902,
+      "pageViews": 504,
+      "uniques": 253,
+      "byIpType": {
+        "noRecord": 540,
+        "unknown": 205,
+        "searchEngine": 157
+      },
+      "byBrowser": {
+        "Unknown": 305,
+        "Curl": 78,
+        "MobileSafari": 60,
+        "YandexBot": 22,
+        "Chrome": 17,
+        "GoogleBot": 10,
+        "Firefox": 4,
+        "BingBot": 3,
+        "AppleBot": 2,
+        "Edge": 2,
+        "ChromeMobile": 1
+      },
+      "byContentType": {
+        "html": 650,
+        "txt": 120,
+        "json": 42,
+        "js": 40,
+        "empty": 31,
+        "css": 8,
+        "xml": 7,
+        "png": 4
+      },
+      "byStatus": {
+        "200": 661,
+        "204": 29,
+        "301": 54,
+        "304": 3,
+        "403": 1,
+        "404": 91,
+        "405": 2,
+        "410": 61
+      },
+      "topCountries": {
+        "US": 641,
+        "RU": 61,
+        "NL": 39,
+        "DE": 26,
+        "FR": 24,
+        "IN": 23,
+        "CN": 10,
+        "FI": 9
+      }
+    },
+    "2026-09-01": {
+      "date": "2026-09-01",
+      "requests": 450,
+      "pageViews": 171,
+      "uniques": 202,
+      "byIpType": {
+        "noRecord": 228,
+        "unknown": 152,
+        "searchEngine": 70
+      },
+      "byBrowser": {
+        "Unknown": 73,
+        "MobileSafari": 32,
+        "Chrome": 30,
+        "Opera": 19,
+        "GoogleBot": 8,
+        "Firefox": 5,
+        "YandexBot": 2,
+        "AppleBot": 1,
+        "Edge": 1
+      },
+      "byContentType": {
+        "html": 311,
+        "txt": 92,
+        "js": 17,
+        "json": 13,
+        "empty": 8,
+        "xml": 4,
+        "css": 3,
+        "png": 2
+      },
+      "byStatus": {
+        "200": 246,
+        "204": 3,
+        "301": 62,
+        "308": 2,
+        "403": 12,
+        "404": 66,
+        "405": 3,
+        "410": 56
+      },
+      "topCountries": {
+        "US": 237,
+        "HK": 28,
+        "FR": 27,
+        "GB": 26,
+        "DE": 25,
+        "SG": 15,
+        "CN": 14,
+        "TR": 12
+      }
+    },
+    "2026-09-02": {
+      "date": "2026-09-02",
+      "requests": 395,
+      "pageViews": 149,
+      "uniques": 222,
+      "byIpType": {
+        "noRecord": 168,
+        "searchEngine": 124,
+        "unknown": 101,
+        "allowlist": 2
+      },
+      "byBrowser": {
+        "Chrome": 65,
+        "MobileSafari": 30,
+        "Unknown": 22,
+        "GoogleBot": 20,
+        "YandexBot": 3,
+        "Edge": 3,
+        "Safari": 2,
+        "AppleBot": 2,
+        "Firefox": 1,
+        "BingBot": 1
+      },
+      "byContentType": {
+        "html": 229,
+        "txt": 124,
+        "js": 13,
+        "json": 11,
+        "empty": 9,
+        "css": 6,
+        "xml": 2,
+        "png": 1
+      },
+      "byStatus": {
+        "200": 233,
+        "204": 2,
+        "301": 52,
+        "304": 1,
+        "308": 3,
+        "404": 28,
+        "405": 3,
+        "410": 73
+      },
+      "topCountries": {
+        "US": 240,
+        "FR": 42,
+        "NL": 16,
+        "GB": 15,
+        "CN": 14,
+        "DE": 13,
+        "RU": 11,
+        "BR": 10
+      }
+    },
+    "2026-09-03": {
+      "date": "2026-09-03",
+      "requests": 421,
+      "pageViews": 142,
+      "uniques": 242,
+      "byIpType": {
+        "noRecord": 183,
+        "unknown": 139,
+        "searchEngine": 99
+      },
+      "byBrowser": {
+        "Unknown": 66,
+        "Chrome": 35,
+        "MobileSafari": 30,
+        "Firefox": 3,
+        "Edge": 3,
+        "YandexBot": 2,
+        "BingBot": 1,
+        "GoogleBot": 1,
+        "OperaMobile": 1
+      },
+      "byContentType": {
+        "html": 301,
+        "txt": 101,
+        "empty": 8,
+        "js": 8,
+        "json": 1,
+        "xml": 1,
+        "css": 1
+      },
+      "byStatus": {
+        "200": 191,
+        "204": 3,
+        "301": 59,
+        "304": 1,
+        "308": 1,
+        "403": 12,
+        "404": 88,
+        "405": 3,
+        "410": 63
+      },
+      "topCountries": {
+        "US": 267,
+        "DE": 28,
+        "FR": 24,
+        "CN": 17,
+        "GB": 17,
+        "RU": 12,
+        "JP": 8,
+        "SG": 8
+      }
+    },
+    "2026-09-04": {
+      "date": "2026-09-04",
+      "requests": 755,
+      "pageViews": 315,
+      "uniques": 280,
+      "byIpType": {
+        "unknown": 361,
+        "noRecord": 236,
+        "searchEngine": 158
+      },
+      "byBrowser": {
+        "Curl": 156,
+        "Unknown": 80,
+        "MobileSafari": 40,
+        "Chrome": 14,
+        "YandexBot": 12,
+        "GoogleBot": 8,
+        "BingBot": 2,
+        "Firefox": 1,
+        "ChromeMobile": 1,
+        "Edge": 1
+      },
+      "byContentType": {
+        "html": 480,
+        "txt": 190,
+        "json": 33,
+        "js": 22,
+        "empty": 14,
+        "xml": 7,
+        "png": 6,
+        "css": 3
+      },
+      "byStatus": {
+        "200": 467,
+        "204": 16,
+        "301": 57,
+        "304": 1,
+        "403": 16,
+        "404": 92,
+        "405": 3,
+        "410": 103
+      },
+      "topCountries": {
+        "US": 555,
+        "RU": 37,
+        "BR": 31,
+        "CN": 29,
+        "GB": 24,
+        "DE": 17,
+        "SG": 11,
+        "KR": 9
+      }
+    },
+    "2026-09-05": {
+      "date": "2026-09-05",
+      "requests": 1950,
+      "pageViews": 176,
+      "uniques": 173,
+      "byIpType": {
+        "noRecord": 1778,
+        "unknown": 99,
+        "searchEngine": 73
+      },
+      "byBrowser": {
+        "MobileSafari": 63,
+        "Unknown": 59,
+        "Curl": 25,
+        "Chrome": 20,
+        "Firefox": 4,
+        "GoogleBot": 3,
+        "Safari": 1,
+        "BingBot": 1
+      },
+      "byContentType": {
+        "html": 1559,
+        "empty": 194,
+        "txt": 170,
+        "js": 18,
+        "json": 4,
+        "xml": 3,
+        "css": 2
+      },
+      "byStatus": {
+        "200": 238,
+        "204": 3,
+        "301": 178,
+        "304": 1,
+        "308": 2,
+        "403": 118,
+        "404": 1153,
+        "405": 190,
+        "410": 67
+      },
+      "topCountries": {
+        "FR": 1010,
+        "NL": 326,
+        "FI": 278,
+        "US": 208,
+        "CA": 20,
+        "UA": 20,
+        "DE": 13,
+        "CN": 12
       }
     }
   }

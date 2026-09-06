@@ -225,7 +225,10 @@ const hreflang = (path) => (path.startsWith('/travel') && !hasEnTravel(path) ? L
 const RAW_BY_SLUG = new Map(RAW_TOOLS.map((t) => [t.slug, t]));
 const zhLimitsOf = (t) => RAW_BY_SLUG.get(t.slug)?.limits;
 
-const langSwitch = (path) => `<nav class="lang">${LOCALES
+// 与 hreflang 同一套资格判定：只有中文的旅行页不能给读者一个指向 404 的「English」。
+// 兜底页（/404.html，noindex）由 Pages 对全站路径共用，也没有英文副本。
+const langSwitch = (path) => path === '/404.html' ? '' : `<nav class="lang">${
+  (path.startsWith('/travel') && !hasEnTravel(path) ? LOCALES.filter((l) => l.code === 'zh') : LOCALES)
   .map((l) => l.code === LOCALE.code
     ? `<span class="on">${l.label}</span>`
     : `<a href="${site.base_url}${l.dir}${path}">${l.label}</a>`)
@@ -400,6 +403,15 @@ function gateOf(path) {
   };
   return `<script>(function(){
 var KEY='bpj_tool_reg',main=document.querySelector('main.stage');
+// bpjEv 自 2026-09-03 起随 /bpj.js 以 defer 加载（main 的整站字节优化），
+// 页面解析期尚未执行——门卡的曝光事件若直接调用会静默丢失，而判定线正是靠这个读数
+// 决定门的去留。defer 脚本保证在 DOMContentLoaded 之前跑完，所以事件挂在它上面发。
+function EV(n,p){
+  var f=function(){if(window.bpjEv)bpjEv(n,p)};
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',f);
+  else f();
+}
+
 if(!main)return;
 var ok=false;try{ok=!!localStorage.getItem(KEY)}catch(e){}
 if(ok)return;
@@ -414,7 +426,7 @@ card.innerHTML='<h2>${T.h2}</h2><p>${T.p}</p>'
 var hero=main.querySelector('.hero');
 if(hero&&hero.parentNode===main)hero.insertAdjacentElement('afterend',card);
 else main.insertAdjacentElement('afterbegin',card);
-if(window.bpjEv)bpjEv('gate','/gate/view/${slug}');
+EV('gate','/gate/view/${slug}');
 function guard(e){
   if(sess)return;
   var t=e.target;
@@ -677,8 +689,9 @@ const watchBtnOf = (slug) => {
   ><i>${zh ? '关注额度变化' : 'Follow this limit'}</i></button>`;
 };
 
-const subJs = () => `<script>
-(function(){
+// 关注/订阅漏斗脚本：与语言无关（运行时读 <html lang>），此前作为 18.8 KB 的内联块
+// 逐字重复在 1,545 页里（占整站 HTML 字节的 42%），改为一份可缓存的 /bpj.js。
+const SUB_JS_BODY = `(function(){
   var KEY='bpj_watch';
   function read(){try{return JSON.parse(localStorage.getItem(KEY)||'[]')}catch(e){return []}}
   function write(a){try{localStorage.setItem(KEY,JSON.stringify(a.slice(0,40)))}catch(e){}}
@@ -1073,7 +1086,8 @@ const subJs = () => `<script>
     },{passive:true});
   }
 })();
-</script>`;
+`;
+const subJs = () => `<script defer src="${site.base_url}/bpj.js"></script>`;
 
 const sponsorOf = () => site.sponsor?.url
   ? `<a class="sponsor" href="${esc(site.sponsor.url)}" target="_blank" rel="noopener nofollow"><b>${UI('sponsor_label', '本周推荐')}</b>${esc(site.sponsor.name)} — ${esc(site.sponsor.text)}</a>`
@@ -1616,9 +1630,9 @@ function toolPage(tool) {
       <summary>${UI('embed_title', '是这个工具的团队，或想转载这条数据？')}</summary>
       <div>
         <p>${UI('embed_badge_note', '核实徽章（挂到官网或 README，链接回本页即可使用）：')}</p>
-        <p class="embed-preview"><img src="${site.base_url}/badge/${esc(tool.slug)}.svg" alt="${UI('embed_badge_alt', '白嫖计已核实免费额度')}" width="236" height="40"></p>
+        <p class="embed-preview"><img src="${site.base_url}/badge/${esc(tool.slug)}.svg" alt="${UI('embed_badge_alt', '白嫖计已核实免费额度')}" width="236" height="40" loading="lazy"></p>
         <pre><code>${esc(`<a href="${site.base_url}${LOCALE.dir}/tools/${tool.slug}.html?utm_source=badge">
-  <img src="${site.base_url}/badge/${tool.slug}.svg" alt="${UI('embed_badge_alt', '白嫖计已核实免费额度')}" width="236" height="40">
+  <img src="${site.base_url}/badge/${tool.slug}.svg" alt="${UI('embed_badge_alt', '白嫖计已核实免费额度')}" width="236" height="40" loading="lazy">
 </a>`)}</code></pre>
         <p>${UI('embed_data_note', '本站已核实的额度数据以 CC BY 4.0 开放转载（含商用），条件是注明「白嫖计 baipiaoji.com」并回链：')}<a href="${site.base_url}/limits.json">limits.json</a> · <a href="${site.base_url}/limits.md">limits.md</a></p>
       </div>
@@ -3276,6 +3290,15 @@ var slot=document.getElementById('earnSlot');if(!slot)return;
 var EKEY='bpj_reg_email',RKEY='bpj_tool_reg',SLUG=${JSON.stringify(slug)},LANG='${LOCALE.code}';
 var BASEP=${JSON.stringify(BASE)};
 function esc(s){var d=document.createElement('div');d.textContent=s==null?'':String(s);return d.innerHTML}
+// bpjEv 自 2026-09-03 起随 /bpj.js 以 defer 加载（main 的整站字节优化），
+// 页面解析期尚未执行——门卡的曝光事件若直接调用会静默丢失，而判定线正是靠这个读数
+// 决定门的去留。defer 脚本保证在 DOMContentLoaded 之前跑完，所以事件挂在它上面发。
+function EV(n,p){
+  var f=function(){if(window.bpjEv)bpjEv(n,p)};
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',f);
+  else f();
+}
+
 function open(email){
   return fetch('/api/earn',{method:'POST',headers:{'Content-Type':'application/json'},
     body:JSON.stringify({email:email,slug:SLUG,lang:LANG})})
@@ -3314,7 +3337,7 @@ function render(p){
   if(p.traps&&p.traps.length)H+='<section class="traps"><h2>${T.traps}</h2><ul>'+p.traps.map(function(t){return '<li>'+esc(t)+'</li>'}).join('')+'</ul></section>';
   H+='<p class="no-promise">${T.noPromise}</p></div>';
   slot.innerHTML=H;
-  if(window.bpjEv)bpjEv('earn','/earn/read/'+SLUG);
+  EV('earn','/earn/read/'+SLUG);
 }
 var saved='';try{saved=localStorage.getItem(EKEY)||''}catch(e){}
 if(saved){open(saved).then(function(okd){if(!okd)form()});}else form();
@@ -3324,7 +3347,7 @@ function form(){
     +'<input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">'
     +'<button type="submit">${T.btn}</button></form>'
     +'<p class="sub-note">${T.note}</p><p class="sub-msg" role="status" aria-live="polite"></p></section>';
-  if(window.bpjEv)bpjEv('earn','/earn/view/'+SLUG);
+  EV('earn','/earn/view/'+SLUG);
   var f=slot.querySelector('form'),msg=slot.querySelector('.sub-msg');
   f.addEventListener('submit',function(e){
     e.preventDefault();
@@ -5112,7 +5135,7 @@ if (CODQ && CHATQ) {
     <h2 class="group-title">${zh ? '③ 它是怎么算的' : '③ How it works'}<span>3</span></h2>
     <ul class="pc-duties">
       <li><b>${zh ? '本地' : 'Local'}</b>${zh ? '文本不离开你的浏览器：没有接口调用，没有上传，断网也能用（词表加载完之后）。' : 'The text never leaves your browser: no API call, no upload, and it keeps working offline once the table has loaded.'}</li>
-      <li><b>${zh ? '自研' : 'Ours'}</b>${zh ? '字节对合并算法是我们自己实现的（' : 'The byte-pair merge algorithm is our own implementation ('}<a href="${BASE}/tokenizer.js">tokenizer.js</a>${zh ? '），词表是公开常量，性质接近字符编码表。' : '); the token tables are published constants, closer in nature to a character-encoding table.'}</li>
+      <li><b>${zh ? '自研' : 'Ours'}</b>${zh ? '字节对合并算法是我们自己实现的（' : 'The byte-pair merge algorithm is our own implementation ('}<a href="${site.base_url}/tokenizer.js">tokenizer.js</a>${zh ? '），词表是公开常量，性质接近字符编码表。' : '); the token tables are published constants, closer in nature to a character-encoding table.'}</li>
       <li><b>${zh ? '可证' : 'Proven'}</b>${zh ? '写自己的实现就得自己证明它对：仓库里有 420 例金标准（含中日韩、ZWJ emoji、重音字符、空白边界与 400 条随机串），每次 CI 都逐例比对 840 次，不一致即构建失败。' : 'Writing your own implementation means proving it: the repository carries 420 golden cases (CJK, ZWJ emoji, accents, whitespace edges and 400 random strings) checked 840 times on every CI run, and any mismatch fails the build.'}</li>
     </ul>
   </section>
@@ -5498,8 +5521,8 @@ if (DSNQ) {
       ? `一个数字只有在厂商自己的页面（定价页/帮助中心/条款）写明时才发布，并带官方出处与核实日期随行；官方口径互相矛盾时如实记为矛盾（不挑一个），纯第三方转述一律不采信，官方没公布就发布「未公布」本身。链接每日自动巡检，变更进入<a href="${BASE}/changes.html">公开变更日志</a>——也可以<a href="${BASE}/watch.html">注册 webhook</a>，你依赖的那几家一变就通知你。`
       : `A figure is published only when the vendor's own page (pricing, help centre, terms) states it, and it travels with its official source and check date; contradictory official pages are recorded as contradictions rather than resolved by preference, third-party restatements are never accepted, and "unpublished" is itself published as the finding. Links are re-checked daily, changes land in the <a href="${BASE}/changes.html">public change log</a> — or <a href="${BASE}/watch.html">register a webhook</a> and hear the same day one of your dependencies moves.`}</p>
     <p class="money-lede">${zh
-      ? `全部数据以 CC BY 4.0 开放（<a href="${BASE}/limits.json">limits.json</a> · <a href="${BASE}/llms-full.txt">llms-full.txt</a>），并有<a href="${BASE}/mcp.html">无鉴权 MCP 服务器</a>供 agent 直接调用。转载本报告的数字请注明「白嫖计 baipiaoji.com」并附核实日期。`
-      : `The whole dataset is open under CC BY 4.0 (<a href="${BASE}/limits.json">limits.json</a> · <a href="${BASE}/llms-full.txt">llms-full.txt</a>), with a <a href="${BASE}/mcp.html">no-auth MCP server</a> for agents. When citing these figures, attribute "Baipiaoji (baipiaoji.com)" with the check date.`}</p>
+      ? `全部数据以 CC BY 4.0 开放（<a href="${BASE}/limits.json">limits.json</a> · <a href="${site.base_url}/llms-full.txt">llms-full.txt</a>），并有<a href="${BASE}/mcp.html">无鉴权 MCP 服务器</a>供 agent 直接调用。转载本报告的数字请注明「白嫖计 baipiaoji.com」并附核实日期。`
+      : `The whole dataset is open under CC BY 4.0 (<a href="${BASE}/limits.json">limits.json</a> · <a href="${site.base_url}/llms-full.txt">llms-full.txt</a>), with a <a href="${BASE}/mcp.html">no-auth MCP server</a> for agents. When citing these figures, attribute "Baipiaoji (baipiaoji.com)" with the check date.`}</p>
   </section>
 
   <section class="limits-table">
@@ -7757,6 +7780,10 @@ ${el.groups.map((g) => `  <section class="limits-table">
 // 站点级文件只出一份（用中文态的数据做统计）
 useLocale(LOCALES[0]);
 cpSync(join(root, 'assets/style.css'), join(dist, 'style.css'));
+writeFileSync(join(dist, 'bpj.js'), SUB_JS_BODY + '\n');
+// CORS + 缓存策略：MCP/Agent 面早已 ACAO:*，它指向的静态数据文件此前没有——
+// 浏览器侧 agent 拿到链接却抓不动。thedollscout/_headers 的同一修法。
+cpSync(join(root, 'assets/_headers'), join(dist, '_headers'));
 // 自研分词器：脚本与词表原样发出去。词表是二进制常量，构建期不加工——
 // 加工就意味着可能改坏，而它正确与否是 scripts/tokenizer-test.mjs 用金标准锁住的。
 cpSync(join(root, 'assets/tokenizer.js'), join(dist, 'tokenizer.js'));

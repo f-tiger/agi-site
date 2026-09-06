@@ -72,17 +72,24 @@ async function runOnce(env) {
     await env.STATE.put('posted:' + item.id, 'skipped_over_280');
     return { ok: false, note: 'item ' + item.id + ' has a part over 280 chars, skipped' };
   }
+  // 线程进度记账(2026-09-04):每发出一段就把已发 id 写进 progress:<id>,
+  // 中途失败下轮从断点续发(回复上一段),不再从第 1 段重发;成功后清掉进度键。
+  const pk = 'progress:' + item.id;
+  let ids = [];
+  try { ids = JSON.parse((await env.STATE.get(pk)) || '{"ids":[]}').ids || []; } catch (e) { ids = []; }
+  const resumedFrom = ids.length;
   try {
-    let prev = null;
-    const ids = [];
-    for (const t of parts) {
+    let prev = ids.length ? ids[ids.length - 1] : null;
+    for (const t of parts.slice(ids.length)) {
       prev = await postTweet(env, t, prev);
       ids.push(prev);
+      await env.STATE.put(pk, JSON.stringify({ ids }));
       if (parts.length > 1) await new Promise((res) => setTimeout(res, 1500));
     }
     await env.STATE.put('posted:' + item.id, JSON.stringify({ day: today, tweet_ids: ids }));
+    await env.STATE.delete(pk);
     await env.STATE.put('last_run_day', today);
-    return { ok: true, posted: item.id, tweets: ids.length };
+    return { ok: true, posted: item.id, tweets: ids.length, ...(resumedFrom ? { resumed_from_part: resumedFrom + 1 } : {}) };
   } catch (e) {
     const msg = (e && e.message) || '';
     // 402 credits depleted / 429 限流是账户级状态,不是这条内容有毒——不消耗

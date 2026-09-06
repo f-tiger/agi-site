@@ -1,290 +1,266 @@
 {
- "fetched": "2026-08-28",
+ "fetched": "2026-09-06",
  "geo": "US",
  "seeds": {
   "deepseek": {
    "rising": [
     {
-     "q": "deepseek 0731",
-     "v": 72950
-    },
-    {
      "q": "deepseek v4 flash 0731",
-     "v": 63300
-    },
-    {
-     "q": "dspark deepseek",
-     "v": 40750
-    },
-    {
-     "q": "deepseek 正式 版",
-     "v": 28500
-    },
-    {
-     "q": "dsh",
-     "v": 15850
-    },
-    {
-     "q": "dsh deepseek",
-     "v": 15150
-    },
-    {
-     "q": "deepseek v4 pro 0813",
-     "v": 14400
-    },
-    {
-     "q": "deepseek harness desktop",
-     "v": 13500
-    },
-    {
-     "q": "qwen 3.8",
-     "v": 12000
+     "v": 71850
     },
     {
      "q": "glm 5.2",
-     "v": 11100
+     "v": 50050
+    },
+    {
+     "q": "deepseek dspark",
+     "v": 42450
+    },
+    {
+     "q": "deepseek v4 正式 版",
+     "v": 27250
+    },
+    {
+     "q": "deepseek v4 pro 0813",
+     "v": 25100
+    },
+    {
+     "q": "dsh",
+     "v": 19150
+    },
+    {
+     "q": "qwen 3.8",
+     "v": 16600
+    },
+    {
+     "q": "glm 5.3",
+     "v": 8800
+    },
+    {
+     "q": "deepseek v4 pro vs glm 5.2",
+     "v": 7850
+    },
+    {
+     "q": "deepseek harness 插件",
+     "v": 5600
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-08-26"
+   "fetched": "2026-09-01"
   },
   "midjourney": {
-   "auto": [
-    "midjourney",
-    "midjourney ai",
-    "midjourney free",
-    "midjourney medical",
-    "midjourney scanner",
-    "midjourney login",
-    "midjourney pricing",
-    "midjourney v6",
-    "midjourney ai image generator",
-    "midjourney ai free"
-   ],
    "rising": [
     {
-     "q": "midjourney ai",
-     "v": "new"
+     "q": "midjourney ultrasound scanner",
+     "v": 38350
     },
     {
-     "q": "midjourney free",
-     "v": "new"
+     "q": "midjourney body scanner",
+     "v": 34700
     },
     {
-     "q": "midjourney medical",
-     "v": "new"
+     "q": "bfly stock",
+     "v": 8300
+    },
+    {
+     "q": "does midjourney have an api",
+     "v": 6150
+    },
+    {
+     "q": "what does upscale mean in midjourney",
+     "v": 3200
+    },
+    {
+     "q": "midjourney medical scanner",
+     "v": 1850
+    },
+    {
+     "q": "midjourney v8.2",
+     "v": 1150
     },
     {
      "q": "midjourney scanner",
-     "v": "new"
+     "v": 1100
     },
     {
-     "q": "midjourney login",
-     "v": "new"
+     "q": "midjourney medical imaging",
+     "v": 400
     },
     {
-     "q": "midjourney pricing",
-     "v": "new"
-    },
-    {
-     "q": "midjourney v6",
-     "v": "new"
-    },
-    {
-     "q": "midjourney ai image generator",
-     "v": "new"
-    },
-    {
-     "q": "midjourney ai free",
-     "v": "new"
+     "q": "midjourney ultrasound",
+     "v": 250
     }
    ],
-   "source": "autocomplete-diff",
-   "fetched": "2026-08-25"
+   "source": "related-queries",
+   "fetched": "2026-09-01"
   },
   "suno": {
-   "auto": [
-    "suno",
-    "suno ai",
-    "sunoco",
-    "sunosi",
-    "sunoo",
-    "suno music",
-    "sunoco near me",
-    "sunomono",
-    "suno inc",
-    "suno studio"
-   ],
    "rising": [
     {
-     "q": "suno ai",
-     "v": "new"
+     "q": "suno data breach scale",
+     "v": 15100
     },
     {
-     "q": "sunoco",
-     "v": "new"
+     "q": "suno series d funding",
+     "v": 11250
     },
     {
-     "q": "sunosi",
-     "v": "new"
+     "q": "treblo",
+     "v": 4250
     },
     {
-     "q": "sunoo",
-     "v": "new"
+     "q": "suno bmg ai licensing deal",
+     "v": 3150
     },
     {
-     "q": "suno music",
-     "v": "new"
+     "q": "vidiq",
+     "v": 1450
     },
     {
-     "q": "sunoco near me",
-     "v": "new"
+     "q": "bmg suno",
+     "v": 1200
     },
     {
-     "q": "sunomono",
-     "v": "new"
+     "q": "suno artist incubator program",
+     "v": 950
     },
     {
-     "q": "suno inc",
-     "v": "new"
+     "q": "suno studio 2.0",
+     "v": 950
     },
     {
-     "q": "suno studio",
-     "v": "new"
+     "q": "suno copyright detection and fingerprinting",
+     "v": 950
+    },
+    {
+     "q": "suno data breach",
+     "v": 650
     }
    ],
-   "source": "autocomplete-diff",
-   "fetched": "2026-08-25"
+   "source": "related-queries",
+   "fetched": "2026-09-02"
   },
   "sora": {
-   "auto": [
-    "sora",
-    "sora 2",
-    "soraya roberts",
-    "soranik natu",
-    "sora kingdom hearts",
-    "sora fortnite",
-    "sora bird",
-    "sorana cirstea",
-    "sora ai app",
-    "sodalite palworld"
-   ],
    "rising": [
     {
-     "q": "sora 2",
-     "v": "new"
+     "q": "sora dora raphael",
+     "v": 13050
     },
     {
-     "q": "soraya roberts",
-     "v": "new"
+     "q": "when is sora coming to fortnite",
+     "v": 12150
     },
     {
-     "q": "soranik natu",
-     "v": "new"
+     "q": "sora release date fortnite speculation",
+     "v": 9100
     },
     {
-     "q": "sora kingdom hearts",
-     "v": "new"
+     "q": "is sora in fortnite",
+     "v": 1750
     },
     {
-     "q": "sora fortnite",
-     "v": "new"
+     "q": "sora brentwood",
+     "v": 1400
     },
     {
-     "q": "sora bird",
-     "v": "new"
+     "q": "sora no manimani",
+     "v": 900
     },
     {
-     "q": "sorana cirstea",
-     "v": "new"
+     "q": "kh4 sora",
+     "v": 850
     },
     {
-     "q": "sora ai app",
-     "v": "new"
+     "q": "sora in fortnite",
+     "v": 750
     },
     {
-     "q": "sodalite palworld",
-     "v": "new"
+     "q": "fortnite sora",
+     "v": 750
+    },
+    {
+     "q": "how old is sora in kh4",
+     "v": 600
     }
    ],
-   "source": "autocomplete-diff",
-   "fetched": "2026-08-25"
+   "source": "related-queries",
+   "fetched": "2026-09-02"
   },
   "gemini": {
    "rising": [
     {
      "q": "sony bravia 9 ii true rgb 4k hdr google tv with gemini",
-     "v": 4250
+     "v": 3250
     },
     {
      "q": "gemini 3.7 flash",
-     "v": 1900
+     "v": 3200
     },
     {
      "q": "sergey brin google gemini ban",
-     "v": 1400
+     "v": 2900
     },
     {
-     "q": "gemini 3.5 pro release date",
-     "v": 900
+     "q": "gemini season kanye",
+     "v": 1250
     },
     {
      "q": "gemini 3.6",
-     "v": 750
+     "v": 650
+    },
+    {
+     "q": "gemini 3.5 pro release date",
+     "v": 550
     },
     {
      "q": "gemini 3.5 pro",
-     "v": 450
+     "v": 350
     },
     {
      "q": "gemini notebook",
-     "v": 200
+     "v": 250
+    },
+    {
+     "q": "gemini omni flash",
+     "v": 140
     },
     {
      "q": "gemini 3.5",
-     "v": 160
-    },
-    {
-     "q": "gemini 3.5 flash",
-     "v": 150
-    },
-    {
-     "q": "when does gemini season end",
-     "v": 110
+     "v": 120
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-08-28"
+   "fetched": "2026-09-03"
   },
   "perplexity": {
    "rising": [
     {
      "q": "glm 5.2",
-     "v": 9850
-    },
-    {
-     "q": "chatgpt claude perplexity financial advice",
-     "v": 8050
+     "v": 9550
     },
     {
      "q": "perplexity ai ceo startup strategy",
-     "v": 6500
-    },
-    {
-     "q": "best crm for small businesses",
-     "v": 5850
+     "v": 6950
     },
     {
      "q": "perplexity brain ai memory system",
-     "v": 300
+     "v": 2050
+    },
+    {
+     "q": "perplexity nvidia local ai agent",
+     "v": 200
+    },
+    {
+     "q": "chatgpt claude perplexity financial advice",
+     "v": 180
     },
     {
      "q": "how to cancel perplexity subscription",
-     "v": 70
+     "v": 60
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-08-28"
+   "fetched": "2026-09-03"
   }
  }
 }

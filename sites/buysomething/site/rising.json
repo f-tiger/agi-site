@@ -1,5 +1,5 @@
 {
- "fetched": "2026-08-28",
+ "fetched": "2026-09-06",
  "seeds": {
   "electric spin scrubber": {
    "auto": [
@@ -115,12 +115,16 @@
   "high speed hair dryer": {
    "rising": [
     {
-     "q": "conair infiniti pro hair dryer",
-     "v": 170
+     "q": "xfinity high speed internet",
+     "v": 250
     },
     {
-     "q": "xfinity high speed internet",
-     "v": 150
+     "q": "laifen hair dryer",
+     "v": 100
+    },
+    {
+     "q": "conair infiniti pro hair dryer",
+     "v": 80
     },
     {
      "q": "conair hair dryer",
@@ -128,7 +132,278 @@
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-08-28"
+   "fetched": "2026-08-29"
+  },
+  "mini massage gun": {
+   "rising": [
+    {
+     "q": "therabody",
+     "v": 120
+    },
+    {
+     "q": "therabody massage gun",
+     "v": 100
+    },
+    {
+     "q": "therabody mini massage gun",
+     "v": 100
+    },
+    {
+     "q": "theragun massage gun",
+     "v": 50
+    },
+    {
+     "q": "theragun mini",
+     "v": 50
+    },
+    {
+     "q": "theragun",
+     "v": 50
+    },
+    {
+     "q": "bob and brad mini massage gun",
+     "v": 40
+    },
+    {
+     "q": "bob and brad massage gun",
+     "v": 40
+    }
+   ],
+   "source": "related-queries",
+   "fetched": "2026-08-30"
+  },
+  "leg compression boots": {
+   "rising": [
+    {
+     "q": "quinear leg compression",
+     "v": 180
+    },
+    {
+     "q": "therabody leg compression",
+     "v": 110
+    },
+    {
+     "q": "therabody",
+     "v": 80
+    },
+    {
+     "q": "best leg compression sleeves",
+     "v": 70
+    },
+    {
+     "q": "therabody compression boots",
+     "v": 60
+    }
+   ],
+   "source": "related-queries",
+   "fetched": "2026-08-31"
+  },
+  "solar camping lights": {
+   "auto": [
+    "solar camping lights",
+    "solar camping lights string",
+    "solar camping lights amazon",
+    "solar camping lights - bunnings",
+    "solar camping lights nz",
+    "solar camping lights kmart",
+    "solar camping lights anaconda",
+    "solar camping lights south africa",
+    "solar camping lights nearby",
+    "solar camping lights bcf"
+   ],
+   "rising": [],
+   "source": "autocomplete-diff",
+   "fetched": "2026-09-01"
+  },
+  "camping moon chair": {
+   "auto": [
+    "camping moon chair",
+    "camping moon chair with cup holder",
+    "camping moon chair home bargains",
+    "camping moon chair halfords",
+    "camping moon chairs for adults",
+    "camping moon chair go outdoors",
+    "camping moon chair nz",
+    "camping moon chairs uk",
+    "camping moon chair kids",
+    "camping moon chair sale"
+   ],
+   "rising": [],
+   "source": "autocomplete-diff",
+   "fetched": "2026-09-02"
+  },
+  "portable blender": {
+   "auto": [
+    "portable blender",
+    "portable blender bottle",
+    "portable blender for smoothies",
+    "portable blender cup",
+    "portable blender walmart",
+    "portable blender ninja",
+    "portable blender near me",
+    "portable blender for travel",
+    "portable blender amazon",
+    "portable blender for protein shakes"
+   ],
+   "rising": [
+    {
+     "q": "portable blender bottle",
+     "v": "new"
+    },
+    {
+     "q": "portable blender for smoothies",
+     "v": "new"
+    },
+    {
+     "q": "portable blender cup",
+     "v": "new"
+    },
+    {
+     "q": "portable blender walmart",
+     "v": "new"
+    },
+    {
+     "q": "portable blender ninja",
+     "v": "new"
+    },
+    {
+     "q": "portable blender near me",
+     "v": "new"
+    },
+    {
+     "q": "portable blender for travel",
+     "v": "new"
+    },
+    {
+     "q": "portable blender amazon",
+     "v": "new"
+    },
+    {
+     "q": "portable blender for protein shakes",
+     "v": "new"
+    }
+   ],
+   "source": "autocomplete-diff",
+   "fetched": "2026-09-03"
+  },
+  "vegetable chopper": {
+   "rising": [
+    {
+     "q": "prestige vegetable chopper",
+     "v": 450
+    },
+    {
+     "q": "how to use a vegetable chopper",
+     "v": 200
+    },
+    {
+     "q": "bralo vegetable chopper",
+     "v": 180
+    },
+    {
+     "q": "miu vegetable chopper",
+     "v": 100
+    },
+    {
+     "q": "costco vegetable chopper",
+     "v": 90
+    }
+   ],
+   "source": "related-queries",
+   "fetched": "2026-09-04"
+  },
+  "power bank built in cable": {
+   "auto": [
+    "power bank built in cables",
+    "power bank built in cable not working",
+    "power bank built in cable 20000mah",
+    "power bank built in cable reddit",
+    "power bank built in cable iphone",
+    "power bank built in cable lightning",
+    "power bank built in cord",
+    "anker power bank built in cable",
+    "xiaomi power bank built in cable",
+    "power bank with built in cable and wall plug"
+   ],
+   "rising": [],
+   "source": "autocomplete-diff",
+   "fetched": "2026-09-05"
+  },
+  "makeup organizer": {
+   "rising": [
+    {
+     "q": "temu makeup organizer",
+     "v": 200
+    },
+    {
+     "q": "target makeup organizer",
+     "v": 140
+    },
+    {
+     "q": "makeup drawers",
+     "v": 50
+    },
+    {
+     "q": "makeup organizer drawers",
+     "v": 40
+    }
+   ],
+   "source": "related-queries",
+   "fetched": "2026-09-06"
+  },
+  "mamian skirt": {
+   "auto": [
+    "mamian skirt",
+    "mamian skirt pattern",
+    "mamian skirt men",
+    "mamian skirt chinese",
+    "mamian skirt modern",
+    "mamian skirt sewing pattern",
+    "mamian skirt how to wear",
+    "mamian skirt plus size",
+    "mamian skirt dior",
+    "mamian skirt dance"
+   ],
+   "rising": [
+    {
+     "q": "mamian skirt pattern",
+     "v": "new"
+    },
+    {
+     "q": "mamian skirt men",
+     "v": "new"
+    },
+    {
+     "q": "mamian skirt chinese",
+     "v": "new"
+    },
+    {
+     "q": "mamian skirt modern",
+     "v": "new"
+    },
+    {
+     "q": "mamian skirt sewing pattern",
+     "v": "new"
+    },
+    {
+     "q": "mamian skirt how to wear",
+     "v": "new"
+    },
+    {
+     "q": "mamian skirt plus size",
+     "v": "new"
+    },
+    {
+     "q": "mamian skirt dior",
+     "v": "new"
+    },
+    {
+     "q": "mamian skirt dance",
+     "v": "new"
+    }
+   ],
+   "source": "autocomplete-diff",
+   "fetched": "2026-09-06"
   }
  }
 }

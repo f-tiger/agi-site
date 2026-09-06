@@ -1,6 +1,6 @@
 # AGI Scorecard Data for AI Agents: JSON, Feed, llms.txt
 
-_Last updated: August 17, 2026 · Updated as verdicts change_
+_Last updated: September 4, 2026 · Updated as verdicts change_
 
 **Answer:** Yes — every verdict on this site is free to reuse, machine-readable, and CC BY 4.0. The AGI Scorecard publishes its full dataset at /data.json (all 8 graded Situational Awareness predictions with verdicts, evidence, and flip conditions, plus the forecaster-timeline table), an Atom feed of new & updated pages at /feed.xml, and an AI-crawler index at /llms.txt. Attribution + a link is the only requirement.
 

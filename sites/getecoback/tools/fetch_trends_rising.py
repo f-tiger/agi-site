@@ -8,7 +8,8 @@
 trendspy 拉德国 geo 的 related_queries rising,写 data/trends-rising.json。
 规则同舰队管线:≥30s 间隔、keep-last-good、抓不到绝不伪造。
 """
-import json, os, re, sys, time
+import json
+import re, os, re, sys, time
 from datetime import datetime, timezone
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -126,7 +127,20 @@ def main():
             except Exception as e:  # noqa: BLE001
                 print(f"  autocomplete error {seed!r}: {e}", file=sys.stderr)
         if rows:
-            result[seed] = {"rising": rows, "source": "related-queries", "fetched": today}
+            # Pollution check (2026-09-05). A seed with too little volume comes
+            # back padded with whatever Germany is searching nationally —
+            # "akku staubsauger" returned belstaff/lululemon, "saugwischer"
+            # balenciaga/carglass, all with rising values above the rail's
+            # threshold. If fewer than a third of the rows share a token with
+            # the seed, the whole seed is flagged and the homepage rail skips
+            # it. The rows are still written: nothing is silently discarded.
+            toks = [t for t in re.split(r"\W+", seed.lower()) if len(t) > 3]
+            hits = sum(1 for r in rows if any(t in str(r.get("q", "")).lower() for t in toks))
+            polluted = bool(rows) and hits * 3 < len(rows)
+            result[seed] = {"rising": rows, "source": "related-queries", "fetched": today,
+                            "polluted": polluted}
+            if polluted:
+                print(f"  seed {seed!r} looks polluted: {hits}/{len(rows)} rows on-topic — flagged")
     if result:
         json.dump({"fetched": today, "geo": GEO, "seeds": result},
                   open(OUT, "w", encoding="utf-8"), ensure_ascii=False, indent=1)

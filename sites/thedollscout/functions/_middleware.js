@@ -26,6 +26,14 @@ const AI_BOTS = [
 function isContentPath(p) {
   if (p.startsWith('/api/')) return false;
   if (p === '/' || p.endsWith('/')) return true;
+  // Extensionless paths ARE the site's pages (/rarity, /de/glossary, /checker).
+  // Until 2026-08-30 this function only matched '/' , trailing-slash and known
+  // extensions, so 20 of 25 published pages could never produce an ev='bot' row
+  // and the AI-crawl log looked as if engines only ever touched the entry
+  // points. That was a measurement artefact, not crawler behaviour. Anything
+  // with a dot in its last segment is a static asset and still skipped.
+  var last = p.slice(p.lastIndexOf('/') + 1);
+  if (last && last.indexOf('.') === -1) return true;
   return /\.(html|txt|json|md|xml)$/i.test(p);
 }
 
@@ -36,7 +44,35 @@ function botOf(ua) {
   return '';
 }
 
+// Retired-site paths (2026-08-30 pivot). The adult site's pages were removed
+// from the deployment, but its hottest URLs kept flapping back as stale 200s
+// from warm edge caches (run #21/#25 self-checks caught /scam-check doing it).
+// Answering 410 Gone here makes the takedown deterministic at the function
+// layer — and 410 tells search engines to deindex faster than a 404 would,
+// which is exactly what the SafeSearch-cleanup needs. Prefixes, not exact
+// paths: the old site had ~40 URLs and every one of them is gone.
+// '/mcp' and '/llms-full.txt' were on this list until 2026-08-30 evening:
+// both paths came back to life for the Labubu site (functions/mcp.js and a
+// generated llms-full.txt) and must not be 410'd here.
+const RETIRED_PREFIXES = [
+  '/scam-check', '/picks', '/quiz', '/guides', '/importing', '/weight',
+  '/vendors', '/after-you-order', '/payment-protection', '/cost-calculator',
+  '/price-check', '/checklist', '/faq', '/for-creators', '/trust',
+  '/ga-check', '/feed.xml', '/search-index.json', '/server.json',
+];
+
 export async function onRequest(ctx) {
+  try {
+    const path = new URL(ctx.request.url).pathname;
+    for (const p of RETIRED_PREFIXES) {
+      if (path === p || path.startsWith(p + '/') || path === p + '.html') {
+        return new Response('Gone. This site now hosts the Labubu buyer\'s guide: https://thedollscout.com/', {
+          status: 410,
+          headers: { 'content-type': 'text/plain; charset=utf-8', 'cache-control': 'public, max-age=300' },
+        });
+      }
+    }
+  } catch (e) { /* fall through to normal serving */ }
   const res = await ctx.next();
   try {
     const url = new URL(ctx.request.url);
@@ -56,7 +92,7 @@ export async function onRequest(ctx) {
     const country = (ctx.request.headers.get('cf-ipcountry') || '').slice(0, 2);
     ctx.waitUntil(
       ctx.env.HITS.prepare('INSERT INTO hits (d, path, lang, country, ref, ev) VALUES (?,?,?,?,?,?)')
-        .bind(d, url.pathname.slice(0, 120), 'en', country, bot, 'bot')
+        .bind(d, url.pathname.slice(0, 120), (/^\/(de|zh|th)(\/|$)/.exec(url.pathname) || [,'en'])[1], country, bot, 'bot')
         .run().catch(() => {})
     );
   } catch (e) { /* never let logging surface as a page error */ }

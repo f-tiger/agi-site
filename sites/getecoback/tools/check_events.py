@@ -20,12 +20,17 @@ def used_names():
     names = set()
     files = glob.glob(os.path.join(SITE, "**", "*.html"), recursive=True)
     files += glob.glob(os.path.join(SITE, "js", "*.js"))
+    # Edge-injected snippets (SUB2_SNIPPET, popup_view) live in the Worker, not
+    # in any page file, and must be counted as fired too.
+    files.append(WORKER)
     for path in files:
         text = open(path, encoding="utf-8").read()
         names |= set(re.findall(r'gtag\(\s*["\']event["\']\s*,\s*["\']([a-z_0-9]+)["\']', text))
         names |= set(re.findall(r'send\(\s*["\']([a-z_0-9]+)["\']', text))
         # widgets post their beacon body directly instead of going through send()
         names |= set(re.findall(r'\bn:\s*["\']([a-z_0-9]+)["\']', text))
+        # component-local helpers: function ev(n,m){gtag("event",n,m)} then ev("x")
+        names |= set(re.findall(r'\bev\(\s*["\']([a-z_0-9]+)["\']', text))
     return names
 
 

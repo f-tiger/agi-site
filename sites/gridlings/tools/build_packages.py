@@ -120,7 +120,7 @@ def strip_page(html_src, slug):
     s = re.sub(r'<p class="subline">Embed this game:.*?</p>\n?', "", s, flags=re.S)
     # inline hub-card beacons (gridlings index): root-absolute /e posts to the
     # portal origin and every hub_click is lost — same rewrite as the engine js
-    s = s.replace("sendBeacon('/e'", "sendBeacon('https://play.agiscorecard.com/e'")
+    s = re.sub(r"sendBeacon\((['\"])/e\1", lambda m: f"sendBeacon({m.group(1)}https://play.agiscorecard.com/e{m.group(1)}", s)
     utm = f"?utm_source=package&utm_medium={slug}"
     s = re.sub(r'href="/(?!/)([a-z0-9-]*)"',
                lambda m: f'href="{SITE_URL}/{m.group(1)}{utm}" target="_blank" rel="noopener"', s)

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a0a0b'/%3E%3Cpath d='M8 22l5-9 4 5 3-4 4 8z' fill='%23e8a040'/%3E%3C/svg%3E">
+<title>The AI Gold Rush Ledger — Every Money Claim, Graded</title>
+<meta name="description" content="Every AI-era money-making claim graded with dated evidence and a written flip condition: trading agents, agent payments, faceless video, newsletter arbitrage. Open source — fork it.">
+<link rel="canonical" href="https://goldrush.agiscorecard.com/">
+<meta property="og:title" content="The AI Gold Rush Ledger — every money claim, graded">
+<meta property="og:description" content="In every gold rush the reliable money was made selling picks and maps. This site sells nothing; it publishes the map: AI money claims with dated verdicts, evidence tiers, and flip conditions. MIT-licensed — fork your own.">
+<meta property="og:url" content="https://goldrush.agiscorecard.com/">
+<meta property="og:type" content="website">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"The AI Gold Rush Ledger","description":"AI-era money-making claims graded with evidence tiers (verified / reported / self-reported), dated verdicts and written flip conditions. Machine-readable.","url":"https://goldrush.agiscorecard.com/","license":"https://creativecommons.org/licenses/by/4.0/","distribution":{"@type":"DataDownload","encodingFormat":"application/json","contentUrl":"https://goldrush.agiscorecard.com/ledger.json"},"creator":{"@type":"Organization","name":"The AGI Scorecard","url":"https://agiscorecard.com/"},"dateModified":"2026-08-29"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is the AI Gold Rush Ledger?", "acceptedAnswer": {"@type": "Answer", "text": "A public ledger that grades AI-era money-making claims — trading agents, agent payment rails, faceless video farms, newsletter arbitrage, 13F copying — with three evidence tiers (verified, reported, self-reported), a dated verdict, and a written flip condition that says exactly what evidence would change it. It sells none of the schemes it grades."}}, {"@type": "Question", "name": "Who runs this site and how is it controlled?", "acceptedAnswer": {"@type": "Answer", "text": "It is operated autonomously by AI sessions under a single human owner with absolute control: every change is a public git commit, the owner holds a one-file kill switch that freezes all deployment, and the site will never issue a token, take payments for rankings, or execute financial transactions. The governance document is published in the repository."}}, {"@type": "Question", "name": "Can I copy this site?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — and the easiest copy is not the site but the tool and the format: the grader is a single self-contained file you can save, rename, and pre-fill with your own graded claims, and publishing one file (/claimledger.json, five fields, three rules) puts your ledger on the protocol registry, which actively reads it. The full site source is MIT-licensed too, for those who want everything."}}, {"@type": "Question", "name": "How does the site evolve without a staff?", "acceptedAnswer": {"@type": "Answer", "text": "By AGIX, a published coordination algorithm adapted with citations from mixture-of-experts routing, MAP-Elites niching, and FunSearch-shaped evolution loops: real reader and agent behavior scores each entry, winners get expanded, dead entries get pruned to a public archive (never deleted), and at most one gated candidate is added per cycle. It is an auditable editorial algorithm in git — not a neural network, and its spec says so plainly. Supreme authority rests with a genesis record only the human owner can exercise."}}]}</script>
+<style>
+  :root{--bg:#0a0a0b;--bg2:#111114;--bg3:#18181d;--border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.12);--text:#e8e8ec;--muted:#8888a0;--accent:#e8a040;--accent2:#4fc3a1;--danger:#e05555;--font:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:16px;line-height:1.7;}
+  a{color:var(--accent);text-decoration:none;}a:hover{opacity:.8;}
+  header{border-bottom:1px solid var(--border);padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:56px;}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:15px;color:var(--text);}
+  .logo-dot{width:8px;height:8px;background:var(--accent);border-radius:50%;}
+  main{max-width:880px;margin:0 auto;padding:2.5rem 1.5rem 4rem;}
+  h1{font-size:clamp(1.8rem,4.5vw,2.6rem);font-weight:800;letter-spacing:-.02em;line-height:1.15;margin-bottom:1rem;}
+  h2{font-size:1.3rem;font-weight:700;margin:2.5rem 0 .9rem;}
+  p{margin-bottom:1rem;}
+  .capsule{background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:0 10px 10px 0;padding:1.15rem 1.4rem;margin:1.25rem 0 1.75rem;}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;margin:1rem 0 .6rem;background:var(--bg2);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+  th{text-align:left;padding:10px 12px;color:var(--muted);font-weight:500;font-size:11px;letter-spacing:.05em;text-transform:uppercase;border-bottom:1px solid var(--border);}
+  td{padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:top;}
+  tr:last-child td{border-bottom:none;}
+  .tier{font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:2px 8px;border-radius:5px;white-space:nowrap;}
+  .t-ver{background:rgba(79,195,161,.15);color:var(--accent2);}
+  .t-rep{background:rgba(232,160,64,.15);color:var(--accent);}
+  .t-self{background:rgba(136,136,160,.18);color:var(--muted);}
+  .v-dead{color:var(--danger);font-weight:700;}.v-ok{color:var(--accent2);font-weight:700;}.v-open{color:var(--accent);font-weight:700;}.v-split{color:#7c9ef5;font-weight:700;}
+  .fine{font-size:12.5px;color:var(--muted);}
+  .card{background:var(--bg2);border:1px solid var(--border2);border-radius:14px;padding:1.2rem 1.4rem;margin:1.3rem 0;}
+  .btn{display:inline-block;background:var(--accent);color:#0a0a0b;padding:10px 20px;border-radius:8px;font-size:14px;font-weight:700;margin:4px 8px 0 0;}
+  .btn.sec{background:var(--bg3);color:var(--text);border:1px solid var(--border2);font-weight:600;}
+  .faq-q{font-weight:600;margin:1.3rem 0 .4rem;}
+  footer{border-top:1px solid var(--border);padding:24px 1.5rem;font-size:12px;color:var(--muted);text-align:center;}
+@media(max-width:640px){table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;white-space:nowrap}td,th{white-space:normal;min-width:100px}}
+</style>
+</head>
+<body>
+<header>
+  <span class="logo"><span class="logo-dot"></span>The AI Gold Rush Ledger</span>
+  <a href="https://agiscorecard.com/" style="font-size:13px;color:var(--muted);">part of the AGI Scorecard network →</a>
+</header>
+<main>
+  <h1>Everyone is selling you an AI gold mine.<br>We grade the claims.</h1>
+  <div class="capsule"><strong>In every gold rush, the reliable money was made selling picks, shovels, and maps.</strong>
+  This site sells none of the schemes it covers. It publishes the map: every AI-era money-making claim we can
+  source gets an <strong>evidence tier</strong> (verified / reported / self-reported), a <strong>dated verdict</strong>,
+  and a <strong>written flip condition</strong> — the exact evidence that would change our mind. Misses stay on the
+  ledger. And the whole site is <a href="#fork">MIT-licensed: fork it</a>.</div>
+
+  <h2 id="ledger">The ledger <span class="fine">(v0.1 · 2026-08-29 · machine-readable at <a href="/ledger.json">/ledger.json</a>, CC BY 4.0)</span></h2>
+  <table>
+    <thead><tr><th>The money claim</th><th>Evidence tier</th><th>Verdict (dated)</th><th>Flip condition</th></tr></thead>
+    <tbody>
+      <tr><td><a href="https://agiscorecard.com/do-ai-trading-agents-work" onclick="ev('ledger_click','trading-agents')">"AI trading agents make retail users money"</a></td><td><span class="tier t-ver">verified base rates</span></td><td class="v-dead">No audited evidence (2026-08-24)</td><td>A vendor publishes a falsifiable live ledger showing net user outperformance after costs</td></tr>
+      <tr><td><a href="https://agiscorecard.com/paradigm-experiment" onclick="ev('ledger_click','x402')">"Agents paying per-use (x402) is the next economy"</a></td><td><span class="tier t-ver">verified volumes</span></td><td class="v-dead">Dead by volume (2026-08; YTD −93%, ~half of remaining traffic is tests)</td><td>Sustained real (non-test) volume growth for two consecutive quarters — next recheck 2026-11</td></tr>
+      <tr><td><a href="https://agiscorecard.com/what-is-b-ai" onclick="ev('ledger_click','bai')">"B.AI's crypto-settled model relay has 1.7M users"</a></td><td><span class="tier t-self">self-reported</span></td><td class="v-open">Platform real; user &amp; subsidy figures trace only to the operator (2026-08-23)</td><td>Independently audited usage data from a named third party</td></tr>
+      <tr><td><a href="https://agiscorecard.com/zh/what-is-pandaai" onclick="ev('ledger_click','pandaai')">"AI-trading startups are the place to be (PandaAI wave)"</a></td><td><span class="tier t-rep">reported funding</span></td><td class="v-open">Funding real (3 rounds in 2 months, named press 2026-08-17); user profits unverified</td><td>Any funded vendor publishing audited user-level returns</td></tr>
+      <tr><td>"Small sites earn passive income from newsletter referral networks"<span class="fine" style="display:block">graded on the network's own published payout arithmetic</span></td><td><span class="tier t-rep">reported rates</span></td><td class="v-dead">Arithmetic-dead at small-site traffic: at the widely published $1&ndash;3 per qualified subscriber, clearing even $50/mo requires subscription volume far beyond a small site's readership (2026-08)</td><td>A verified small-site case (&lt;5k readers/mo) clearing $50/mo, with its denominator published</td></tr>
+      <tr><td><a href="https://agiscorecard.com/does-copying-13f-work" onclick="ev('ledger_click','copy13f')">"Copying famous investors' 13F filings beats the market"</a></td><td><span class="tier t-ver">first-party backtest</span></td><td class="v-split">Split — depends entirely on who you copy (filing-day-close backtest, recomputed quarterly)</td><td>The quarterly recompute flips a copied book across the index line</td></tr>
+      <tr><td>"Small sites can earn passive income charging AI crawlers (pay-per-crawl)"<span class="fine" style="display:block">graded from platform-program status and published market data</span></td><td><span class="tier t-rep">reported</span></td><td class="v-open">Not an income lane for small sites yet: the flagship program remains invite-gated and no small site has published verified crawl revenue (researched 2026-08-28)</td><td>A small independent site publishing verified crawl-payment revenue above $50/month, or per-site payout data from a crawler operator showing the same</td></tr>
+      <tr><td>"Faceless AI video channels are passive income"<span class="fine" style="display:block">graded from platform policy, not a vendor pitch</span></td><td><span class="tier t-rep">reported policy</span></td><td class="v-dead">Dead lane: YouTube's July 2025 monetization update targets mass-produced &amp; repetitious content (researched 2026-08-28)</td><td>A platform policy reversal, or a verified post-2025 channel ledger with revenue and strikes shown</td></tr>
+          </tbody>
+  </table>
+  <p class="fine">Tier definitions — <strong>verified</strong>: primary documents or our own measured data · <strong>reported</strong>: named independent press · <strong>self-reported</strong>: traces only to the seller. A claim graded "dead" or "no evidence" is a statement about the public evidence at the date shown, not an accusation of fraud. Nothing here is financial advice.</p>
+
+  <h2 id="archive">The archive <span class="fine">(pruned entries — demoted here, never deleted)</span></h2>
+  <p class="fine" style="margin-bottom:1rem;">Per AGIX, entries nobody touches for 90 days move here rather than disappearing: losing designs are evidence and stepping stones. Empty so far — the ledger is young, and this section existing before it is needed is the point.</p>
+
+  <div class="card">
+    <p style="margin:0 0 .5rem;font-weight:700;">Named in an entry above? Here is the correction path — it is free, and it is the only one.</p>
+    <p class="fine" style="margin:0 0 .5rem;">Send a dated primary source that meets the flip condition written in the row, by opening an issue at <a href="https://github.com/f-tiger/agi-site/issues" target="_blank" rel="noopener" onclick="ev('ledger_click','correction')">the public repository</a>. We publish the recomputed verdict with its date, and the previous verdict stays visible above it. Evidence changes verdicts here. Nothing else does.</p>
+    <p class="fine" style="margin:0 0 .8rem;"><strong>Conflict rule (2026-08-30):</strong> we do not sell audits, advertising, or any service to a party named in an open entry. An earlier version of this page put a paid-audit link directly beneath these verdicts; that was a pay-to-fix structure and it has been removed. Grade any claim yourself in 10 minutes with <a href="/how-to-verify-ai-money-claims" onclick="ev('ledger_click','method')">the verification method</a>.</p>
+    <a class="btn sec" href="https://agiscorecard.beehiiv.com/subscribe?utm_source=goldrush&utm_medium=ledger" onclick="ev('sub_click','ledger')" target="_blank" rel="noopener">One email when a verdict flips →</a>
+  </div>
+
+  <h2 id="fork">Take the tool. Adopt the protocol.</h2>
+  <p>The durable inventions of past eras weren't the coins — they were the <strong>artifacts that traveled</strong>:
+  a short canonical document, a reference implementation running before it was announced, a file anyone
+  could copy and make their own. This ledger ships all three. The
+  <a href="/grader" onclick="ev('grader_open','home')">grader</a> is a single self-contained file —
+  grade any money claim, paste the verdict card anywhere, and download a schema-valid
+  <code>claimledger.json</code> — the actual file this protocol asks you to publish. The <a href="/protocol" onclick="ev('fork_click','protocol')">Claim Ledger Protocol</a> is one
+  well-known file (<code>/claimledger.json</code>) with five fields and three rules, and its registry
+  actively reads every ledger that publishes it — though as of 2026-08-30 no outside client has fetched
+  ours even once (<a href="/fetchlog.json">the count is published</a>). The coordination algorithm that runs this network is
+  published too: <a href="/agix" onclick="ev('fork_click','agix')">AGIX</a>.</p>
+  <a class="btn" href="/grader" onclick="ev('grader_open','home_btn')">Open the grader →</a>
+  <a class="btn sec" href="/protocol" onclick="ev('fork_click','protocol_btn')">Read the protocol →</a>
+  <a class="btn sec" href="https://github.com/f-tiger/agi-site/tree/main/sites/goldrush" onclick="ev('fork_click','github')" target="_blank" rel="noopener">Source (MIT) →</a>
+
+  <h2>How the site evolves — AGIX, stated honestly</h2>
+  <p>This site is maintained by AI sessions running <a href="/agix"><strong>AGIX</strong></a> — a published,
+  auditable coordination algorithm adapted (with citations) from mixture-of-experts routing, MAP-Elites
+  niching, FunSearch-shaped evolution loops, and tree search: score every entry by real reader and agent
+  behavior, expand winners, prune to a public archive (never delete), add at most one gated candidate per
+  cycle. Its honesty clause is load-bearing: <strong>it is an editorial algorithm, not a neural network</strong> —
+  a site that grades inflated AI claims does not get to make one about itself. Its supreme authority is a
+  <a href="/agix">genesis record</a> only the human owner can exercise.</p>
+
+  <h2>Governance — who controls this, in writing</h2>
+  <p>One human owner holds absolute control: every deploy is a public commit; a
+  <a href="https://github.com/f-tiger/agi-site/blob/main/sites/goldrush/OWNER-CONTROL.md" target="_blank" rel="noopener">one-file kill switch</a>
+  freezes the pipeline instantly; the AI sessions that maintain the site cannot spend, transfer, or invest
+  anything. Three permanent commitments: <strong>no token, ever</strong> · <strong>no payment ever changes a
+  verdict</strong> · <strong>misses stay on the ledger</strong>.</p>
+
+  <h2>FAQ</h2>
+  <div class="faq-q">What is the AI Gold Rush Ledger?</div><p>A public ledger that grades AI-era money-making claims — trading agents, agent payment rails, faceless video farms, newsletter arbitrage, 13F copying — with three evidence tiers (verified, reported, self-reported), a dated verdict, and a written flip condition that says exactly what evidence would change it. It sells none of the schemes it grades.</p>
+  <div class="faq-q">Who runs this site and how is it controlled?</div><p>It is operated autonomously by AI sessions under a single human owner with absolute control: every change is a public git commit, the owner holds a one-file kill switch that freezes all deployment, and the site will never issue a token, take payments for rankings, or execute financial transactions. The governance document is published in the repository.</p>
+  <div class="faq-q">Can I copy this site?</div><p>Yes — and the easiest copy is not the site but the tool and the format: the grader is a single self-contained file you can save, rename, and pre-fill with your own graded claims, and publishing one file (/claimledger.json, five fields, three rules) puts your ledger on the protocol registry, which actively reads it. The full site source is MIT-licensed too, for those who want everything.</p>
+  <div class="faq-q">How does the site evolve without a staff?</div><p>By AGIX, a published coordination algorithm adapted with citations from mixture-of-experts routing, MAP-Elites niching, and FunSearch-shaped evolution loops: real reader and agent behavior scores each entry, winners get expanded, dead entries get pruned to a public archive (never deleted), and at most one gated candidate is added per cycle. It is an auditable editorial algorithm in git — not a neural network, and its spec says so plainly. Supreme authority rests with a genesis record only the human owner can exercise.</p>
+</main>
+<footer>Part of <a href="https://agiscorecard.com/">The AGI Scorecard</a> network · <a href="/ledger.json">ledger.json</a> (CC BY 4.0) · <a href="/llms.txt">llms.txt</a> · <a href="https://github.com/f-tiger/agi-site/tree/main/sites/goldrush">source (MIT)</a> · Not financial advice · Verdicts are never for sale</footer>
+<script>
+function ev(n,l){try{fetch('/e',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({n:n,l:l,p:location.pathname})});}catch(e){}}
+ev('page_view','js');
+</script>
+</body>
+</html>

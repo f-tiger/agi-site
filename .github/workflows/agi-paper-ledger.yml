@@ -1,0 +1,72 @@
+name: agiscorecard paper-trading ledger (daily)
+
+# ── 预登记纸面交易台账(2026-09-05,owner:「做一个自动化交易股票子站点?…先调研再实施」)──
+#
+# 裁定见 docs/auto-trading-research-2026-09.md:不开子站、不碰真钱、不卖信号。
+# /do-ai-trading-agents-work 要求厂商拿出「可核验的实盘台账」,本站自己先拿出来:
+# 十个臂(SPY/QQQ 买入持有、AGI 十股等权、Tracker 加权、Faber 200 日均线、LLM 周频配置;
+# 2026-09-05 同日追加四条已发表的配置规则:Antonacci GEM 双动量、Faber GTAA-5、SPY 10% 波动率目标、
+# 篮子内 12-1 动量前五)
+# 从 2026-09-08 起用同一份复权日线确定性重算,结果落 sites/agiscorecard/paper-ledger.json,
+# 页面 /ai-trading-ledger 只读它。零编造:取不到的 ticker 沿用上次缓存并标记;完全取不到
+# SPY 则 exit 1 让 run 变红。
+#
+# 成本(先算账):周一至周五 22:40 UTC(美股收盘后 2h40m)各一次,~1 分钟/次 ≈ 22 分钟/月;
+# 提交 JSON 会触发 deploy-agiscorecard(~3 分钟)≈ 66 分钟/月;公开仓免费。
+# 外部副作用:只读 Yahoo 图表接口(沙箱 403,只有 runner 能取);LLM 臂只在 owner 设了
+# LEDGER_LLM_KEY 时调用 OpenRouter,否则该臂 not_started。只挂 schedule/dispatch,不挂 push。
+
+on:
+  schedule:
+    - cron: "40 22 * * 1-5"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: agi-paper-ledger
+  cancel-in-progress: false
+
+jobs:
+  ledger:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.11" }
+      - run: pip install -q requests
+      - name: Recompute ledger
+        env:
+          LEDGER_LLM_KEY: ${{ secrets.LEDGER_LLM_KEY }}
+          LEDGER_LLM_MODEL: ${{ vars.LEDGER_LLM_MODEL }}
+        run: python sites/agiscorecard/tools/paper_ledger.py
+      - name: Self-check (shape, freshness, no fabrication)
+        run: |
+          python - <<'PY'
+          import json, datetime as dt
+          L = json.load(open("sites/agiscorecard/paper-ledger.json"))
+          assert L["start"] == "2026-09-08" and L["notional"] == 10000
+          assert set(L["arms"]) == {"spy_hold","qqq_hold","sixty_forty","agi_basket","tracker_mix","sma200_spy","llm_agent",
+                                    "gem_dual_momentum","gtaa5","spy_voltarget","basket_mom5"}
+          for k, a in L["arms"].items():
+              t = a.get("target") or {}
+              assert t.get("action") in ("enter","hold","rebalance","wait"), f"{k}: bad target"
+              assert sum(float(v) for v in (t.get("weights") or {}).values()) <= 1.0001, f"{k}: levered target"
+          age = (dt.date.today() - dt.date.fromisoformat(L["last_price_date"])).days
+          assert age <= 5, f"SPY price is {age} days old — data pipeline broken, refusing to publish"
+          for k, a in L["arms"].items():
+              if a["status"] == "live":
+                  assert a["metrics"]["last"] > 0 and abs(a["metrics"]["max_drawdown_pct"]) <= 100
+          print("ledger OK:", L["last_price_date"], {k: a["status"] for k, a in L["arms"].items()})
+          PY
+      - name: Commit if changed
+        run: |
+          git config user.name 'Claude'
+          git config user.email 'noreply@anthropic.com'
+          git add sites/agiscorecard/paper-ledger.json
+          if git diff --cached --quiet; then echo "no change"; exit 0; fi
+          git commit -m "chore(ledger): paper-trading ledger $(date -u +%F) (runner 取复权日线,确定性重算)"
+          git pull --rebase origin main
+          git push

@@ -144,7 +144,7 @@ Positioning umbrella: **"The evidence layer for the AI era — track the predict
   **首页凸显(owner 2026-08-16「这个赚钱工具应该是在首页凸显」)**:`index.html` 与 `cn.html`
   在 #directory 之前各有一块独立的引流区,写死了德鲁肯米勒 +187.2% / QQQ +59.6% / 巴菲特
   +37.3%(跑输)。**它们受上面那条硬同步义务约束**——每季重算时,这两块和 invest 两页
-  一起改,共四处。
+  一起改,再加 `/does-copying-13f-work` + `/zh/does-copying-13f-work`(2026-08-29/30 上线,活数字+表格整页引用成绩单),**共六处**。
   **它是工具,不是榜单(2026-08-16 补齐)**:计算器「如果当时我抄了,今天多少钱」选投资人
   (可多选)+ 起始申报日 + 本金,全部在浏览器里算;深链 `?who=a-_-b&from=YYYY-MM-DD&amt=N`
   双向绑定,`?embed=1` 出无壳嵌入版 + 带 `utm_source=widget` 的品牌回链。基准必须用
@@ -226,6 +226,31 @@ Marketing skills library installed at .claude/skills (38 skills) — invoke per 
 2026-08-17 增补（owner 授权自主装技能）：customer-research / market-research /
 competitor-profiling（用户与竞对洞察）、offers / pricing / ab-testing /
 conversion-ops（变现与转化实验）、content-engine（多平台内容）。
+
+## 首页可玩游戏 = 分歧引擎(owner 2026-08-31「首页设置可玩游戏」;**不要改成猜谜**)
+
+`index.html#grade-game`:读者用**本站公开的同一套权重**(delivered=1 / undecided=0.5 /
+failed=0)自己给八条判定打分,当场得出自己的分数并与 Tracker 对照,列出逐条分歧。
+**三条设计约束,后续会话别推翻**:
+1. **不做猜谜。** 记分板表格就在同页上方,答案本来就公开;藏答案不诚实。游戏的产物是
+   **分歧**,不是"你猜对了几条"——而分歧恰恰是这个站唯一有资格制造的东西。
+2. **页内可玩、无跳转、无注册。** 依据是本站自己的数据:首页投票 `vote_cast` 13 次/28d
+   与 `readnext` 13 次,碾压所有"跳去玩工具"的横幅(opinion_* 60 天合计 5 次)。
+3. **数据实时读 `/data.json`,一个数字都不写死。** 判定或 Tracker 分数一改,游戏自动跟着变
+   ——**它不进硬同步清单**,反而顺手消掉了 index.html 里的一个写死 62.5。
+   `OURS` 映射必须与公开方法一致(On track/Exceeded=1、Open/Pending=0.5、Wrong=0);
+   改判定词表时先跑一遍"与我们完全一致应得 62.5"的自检。
+埋点(**读数必须按 location 拆分**,否则重蹈 Compass 弹层污染 slidein_show 的覆辙):
+`calc_use{grade_game}` 每次打分与完成、`challenge_share{grade_game}` 复制分享、
+`index_click{grade_game}` 去 Tracker。注意 `calc_use` 另有 `timeline_tool` 在用。
+
+**关于「游戏营收」(owner 追问,如实回答,别再当成增长路径重提)**:舰队已有一个正在跑的
+游戏营收实测——gridlings(11-12 款,**无广告、无账号**,变现 = 门户分成 + 订阅钩;
+GameDistribution 等因强制广告 SDK 与无广告承诺冲突已排除)。**至今收入为 0**:
+CrazyGames €100 起付、2-4 周审核;itch 判定线 09-24 要 150 starts/25 solves,
+当前 **42/13 且多日持平**。且站规硬结论仍然成立:**游戏化页面 AI 引用为 0**——
+它喂的是点击/分享/绑定,不喂引用引擎。**因此首页游戏的 KPI 不是营收,是参与与分享**;
+把它当营收路径考核就是拿错机器的尺子量。
 
 ## Prompt-optimization first, then skills (owner rule, 2026-07-11; skills step added 2026-07-25)
 
@@ -317,6 +342,10 @@ strategy doc the same run. New strategy-relevant milestones to watch in D1:
 4. **Validate** (`tools/validate.py`), **ship** (procedure above), log to
    `OPT-LOG.md`, and report to the user in Chinese: GA4 numbers, what
    shipped, URL count (`grep -c '<loc>' sitemap.xml`).
+   **每日日报必含游戏数据(owner 2026-08-30:「游戏数据要放到每日日报」)**:
+   gridlings D1(bd3b1ca9-e9cb-4b71-9834-df3d67b39504,表 ev,human 口径)当日与
+   28 天 play_start/solve,itch 判定线进度(09-24:itch 累计 play_start≥150 且
+   solve≥25),itch 口径 = ref LIKE '%itch.zone%'。三行以内,零也要报零。
 5. **Milestones — notify the user prominently when first crossed:**
    Organic Search ≥ 10, ≥ 50, ≥ 200 (28-day active users); any deep page
    entering the top-3 landing pages; `subscribe_click` ≥ 20/28d; the FISSION
@@ -789,3 +818,124 @@ verified-ai-free-tiers、agiscorecard-mcp 公开 → 免费）。
 - `main` is unprotected; direct push is the deploy mechanism.
 - robots.txt disallows the working files: `content-backlog.md`, `OPT-LOG.md`,
   `analytics-notes.md`, `/tools/`.
+
+## 转化架构令(2026-08-29 五视角复盘 + 对抗证伪后立,owner:「流量转化深度重构」)
+
+复盘结论(全文见 OPT-LOG 2026-08-29 第五轮):**卡点不是流量是终端**——868 真读者/28d,
+入口与中段都在走(tool_click ~20 次),但每一个带真实价格的表面都与读者的"答案时刻"
+物理隔开,priced click = 0。三条站规自此生效:
+
+1. **每页一条主钱路,按页面意图定**:投资意图页 → invest 漏斗(exposure→track-record→
+   Pro);阅读时刻页 → 书(若 10-31 组合线存活);站主意图 → /audits。**不并列摆摊**——
+   40 读者/日摊六个变现面,每个都在自己的噪声地板下,这就是复盘查明的病灶。
+2. **主 KPI = `rev_click`**:28 天内所有"带真实价格表面"的点击之和
+   (invest_tool_click{*_sunwatch_result|*_sunwatch*} + affiliate_click{book_*} +
+   audits/advertise 联系动作)。当前 ~0/28d,目标 ≥10/28d(2026-11-15)。每周记入
+   analytics-notes.md。与预登记线的衔接:11-15 invest 线的 Pro桥≥5 是 rev_click 的
+   真子集;09-30 sub_ok 线照常独立结算,sub_ok 降级为 flip-day 名单健康度指标,
+   flip-day 邮件义务绝对不变。
+3. **判定线到期照杀、不救、不提前拆**:08-30 `index_click{*_live}`(按 0 裁)、
+   09-26 opinion_*_exposure(≥8)、09-30 sub_ok(<5 判死)、10-07 E13 audits(0 询盘
+   转被动,判定期内不改被测对象)、10-15 exposure 结果行(≥30 次渲染 0 点击即拆行)、
+   10-31 书单组合线(全站 book_* <5 关 Associates)。被杀项当天拆除家具,绝不赖着。
+
+已被对抗证伪否决、**不要再提**的方案(2026-08-29 记录):①audits 表单重构(流量里
+没有站主,E13 期内改被测对象);②低流量判定页(collapse/capex-bubble)加钱线
+(噪声地板下 + 污染 09-26 被测钩子 + 硬同步面 4→5);③sasummary 书单块(算术
+天花板 €0.26/月,风险落在 42% 引用的旗舰页上)。
+
+
+## 2026-09-04 舰队技术优化（机制层；详见根仓 docs/fleet-optimization-2026-09-04.md）
+
+- **20 个工作文件此前被当公开资产服务**（CLAUDE.md / OPT-LOG.md / analytics-notes.md …，
+  含全舰队 6 个 D1 database_id 与邮箱）：robots.txt 对 GPTBot/ClaudeBot 等各给了只含
+  `Allow: /` 的专属组，按 REP 它们根本看不到 `*` 组的 Disallow。已按 owner-identity 先例
+  加进 `.assetsignore`（留在 git，不再上站）。robots.txt 未动。
+- 部署自检两处「不可能失败」已修：`/api/trends` 的 D1 断言此前匹配任何含 `"` 的响应
+  （catch 分支回的空 JSON 也过），现断言 `"ok":true`；新增断言首页含 `/api/e`
+  （HTMLRewriter 注入信标的唯一线上证据）。
+- 4 页（matrix-odds ×2、zh/ai-orders-of-magnitude-explained、zh/situational-awareness-summary）
+  此前只向 `G-B3PN0PLGTG` 上报——不在报告属性里。生成器与页面都改回 `G-FZXLMBB5QB`。
+- `?pick=` 深链事件与 cn 页 viz_switch：前者在解析期触发、早于边缘注入的 gtag 包装器，
+  D1 永远收不到；后者初始加载就发一次（GA4 的 viz_switch ≈ pv）。均已修。
+- `tools/check_hreflang.py` 此前没接进任何门且 main 上 20 处失败（10 页 `zh`→`zh-Hans`
+  + 缺 x-default）；已修并接入 deploy 为阻断步骤。**其中 does-copying-13f-work 两页在
+  5 轮防翻炒窗内，只改了 hreflang 属性、未动一字正文**——这是有意的例外，记录在案。
+- validate.py 两个空转检查（sitemap 检查跳过所有含 `/` 的 URL = 56%；坏链只看单段路径）
+  已补成真检查，今日 0 问题。/share /badge 加 7 天缓存（`_headers` 在 run_worker_first
+  下无效，只能写在 worker 里）。
+
+## 客户视角簇:AI 焦虑 × AI 替代工作(2026-09-05,owner「切换到客户视角…前后全方面升级 agi 站点,包括子站点」)
+
+调研 · prompt 三轮 · PRD · 事实表全在根仓 `docs/agi-customer-lens-2026-09.md`。**写这一簇的任何数字
+只许出自那张事实表(带信源与日期);表外的先核实再入表**。三条固定判断:
+1. **本站在这个客户面上的资格 = 校准即安抚**:客户的四种 job(安抚/规划/争论/追踪)里,竞品
+   (willrobotstakemyjob、aiexposure 等十余个计算器)全部缺同一样东西——带日期的判定、裁决日、翻转
+   条件、更新日志、把互相矛盾的数据源(理论暴露 vs 观察到的使用 vs 观察到的就业)对账。这正是本站
+   已挣得的形状;病毒内核也只有一种(一个数字 + 一个日期 + 一个权威 + 查我自己的职业)。
+2. **簇的结构**:入口判定页 `/ai-and-your-job`(+zh,「恐惧 vs 证据」三行账 + 三信号表 + 翻转条件)
+   → 职业/问题页(既有 7 页,补齐意见钩、一手源、时效行)→ 工具 `/ai-job-risk-check` v2(按职业查:
+   Microsoft *Working with AI* CC-BY 分数 785 职业,`ai-applicability-scores.json`;**分数是「观察到的
+   适用性」,永远不许写成「你的失业风险 %」**;结果写进 URL)→ 预言者台账工作版
+   `/amodei-white-collar-bloodbath-prediction`(ClaimReview,检查点到 2030-05-28)。
+   钱路按转化架构令:引用页吃引用,意见钩与工具接点击/绑定,**不并列摆摊**。
+3. **子站不重定位**:四个子站全部在 09-21→10-28 判定窗内(判定期内不改被测对象);只在入口页
+   加了 goldrush 的读者相关互链(失去工作 vs 靠 AI 赚钱是同一问题的两面)。
+
+**判定线(预登记,2026-10-03 = 上线 28 天)**:①入口页 + 血洗页真人 JS pv 合计 ≥30 或任一搜索/AI
+引荐 ≥3 → 簇成立,按事实表的职业系列(translators / customer service / accountants / nurses /
+teachers / lawyers)逐月加一页,每页仍过三门;两条皆未达 → 记反面发现「客户视角入口在本站量级
+不产生流量」,停扩只保维护。②`calc_use{job_lookup}` ≥10 且 `vote_cast{job_check_*}` ≥10 → 工具 v2
+成立;<3 → 撤职业查。③工作簇 7 页 `tool_click{opinion_*}` 合计 ≥3 → 意见钩在此簇有效;0 → 反面发现。
+④下一次 Bing AI Performance 明细里任一工作簇页首次被引 → 进 CITATION AMPLIFICATION 队列。
+**事件驱动的尖峰要提前接**:Challenger 月报(每月第一周)、BLS 投影(8–9 月)、Stanford Canaries
+更新、Pew/Gallup/APA 发布——命中即当日刷新入口页的时效行(带日期),不新建页。
+**首页热点横幅**自 09-05 起指向入口页(原 7 月基金爆仓横幅已过时两个月);header 加「AI & your job」。
+
+## 生成器漂移：跑任何 generator 之前先读这一节（2026-09-04 发现）
+
+**根因**：`tools/gen_lib.py` 的 `OUT` 自 08-19 迁库起一直硬编码为
+`/home/user/agiscorecard` —— **已归档私有仓**的路径。那个 clone 在会话沙箱里
+仍然存在，所以 28 个 import gen_lib 的生成器（**含 `gen_index.py` 与
+`gen_odds.py`**）一直在往那里写、打印「written」、退出码 0，而 monorepo 什么也
+没收到。真正的危险不是没写出来，而是：**判定翻转那天重跑 gen_index 会把
+/progress-index 生成进一个绝对不能推送的仓，线上分数悄悄保持旧值** —— 正是
+CLAUDE.md 里「propagation IS the product」那条规则要防的那件事。已改为
+`os.path.dirname(os.path.dirname(os.path.abspath(__file__)))`。
+
+**修好之后出现的新风险，必须知道**：路径修对了，生成器就从「写去无人处」变成
+「真的覆盖线上页面」。而多个生成器已经**落后于它们自己生成的页面**——页面被后续
+会话手工加厚过，生成器里的数据没跟上。已实测两例：
+- `tools/gen_for_agents.py`：跑一次会删掉 for-agents.html 上的 MCP 段、
+  llms-full/claimledger/.md 三行、预测市场段、引用段、CTA（**-46 行**）。
+- `tools/gen_invest_profiles.py`：仍是 Q1 2026 数据，页面已是 Q2，跑一次
+  把两页**回滚一个季度**；而且它 **import 即写**，`from gen_invest_profiles import
+  PROFILES` 本身就是破坏性操作。
+两个文件顶部都已加大写警告。
+
+**因此，铁律三条：**
+1. **跑完任何 generator，提交前必须 `git diff`**。行数大幅减少 = 生成器比页面旧，
+   停手，先把页面里的内容补回生成器。
+2. **需要读某个生成器的数据时，不要 import 它**（可能 import 即写）；
+   `tools/gen_invest_data.py` 的做法是**直接解析线上 HTML**，并在解析失败时
+   `exit(1)`——宁可红，不可发一个猜出来的数字。
+3. 判定翻转日重跑 gen_index / gen_badges / gen_agi_exposure / **gen_invest_data**
+   之后，逐个 `git diff` 确认改的是分数而不是别的东西。
+
+## 纸面交易台账 `/ai-trading-ledger`(2026-09-05;裁定见根仓 docs/auto-trading-research-2026-09.md)
+
+- 数据契约:`paper-ledger.json` 由 `agi-paper-ledger.yml` 在 runner 上写(沙箱 403 Yahoo/Stooq),
+  **会话永远不要手改这个 JSON**,也不要在本地跑 `tools/paper_ledger.py` 后提交(会把 fixture/陈旧
+  价格写进去);本地只允许 `--fixture … --dry-run`。占位 JSON(`status: pre_registered`)在首个交易日
+  被覆盖。
+- 内容契约:页面**不出现任何「买/卖 X」**,仓位只在纸面执行后显示;不做 zh 镜像、不给券商链接;
+  **十一臂**规则与 START 已预登记(原六臂 + 09-05 同日追加 60/40、GEM、GTAA-5、SPY 波动率目标、
+  篮子 12-1 动量前五,均早于 09-08 起始),**任何轮次不得改规则、改篮子、改起始日**——要改只能加
+  新臂并注明日期。每臂的 `target`(下一交易日目标权重)是 owner 自用执行器 `tools/trader/` 的唯一
+  输入,改 `target` 的形状 = 改执行契约,两边同一次提交。
+- 硬同步:`agi_basket` 的 10 只 = `/ai-stock-exposure` 两个预设;若那页预设改了,台账**不跟改**
+  (预登记优先),只在页面规则表注明「预设已于 X 日变更,台账沿用原篮子」。
+- 判定线:2026-11-04 页面真人 pv ≥30/28d 或任一引荐;2027-03-08 读数日;LLM 臂(`LEDGER_LLM_KEY`)
+  启动 +26 周把结果与 Alpha Arena 对照写进 `/do-ai-trading-agents-work`。
+- 事件:`invest_tool_click{invest_hub_ledger}`、`tool_click{doaitrading_ledger}`、
+  `index_click{ledger_tracker}`、`subscribe_click{deep_ledger}`。

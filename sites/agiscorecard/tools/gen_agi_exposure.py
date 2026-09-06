@@ -298,6 +298,7 @@ function render(){
     +'<div class="big">'+Math.round(far)+'<i>%</i></div>'
     +'<div class="cmp">'+L.farnote+'</div></div></div>'
     +'<p class="kind k-'+kind+'"><b>'+L.names[kind]+L.namesep+'</b>'+L.kinds[kind]+'</p>'
+    +'<p class="fine">'+L.pro_line+'</p>'
     +'<div class="share"><button type="button" class="btn sec" onclick="copyLink()">'+L.copybtn
       +'</button><span id="linkcopied">&#10003;</span>'
       +'<a class="btn sec" id="xshare" target="_blank" rel="noopener">'+L.xbtn+'</a></div>'
@@ -564,9 +565,10 @@ COPY = {
  "h_pro": "What a paid tier would add",
  "pro": "<p>This tool is free and stays free. The recurring version is a different product, and it is not built yet:</p><ul><li>An alert the day a verdict flips &mdash; that is the day every basket score on this page moves.</li><li>Quarterly 13F diffs against the basket in your saved link, filed within days of each deadline.</li><li>The full ticker map rather than the seventeen names here.</li></ul><p>There is no waitlist form and no pre-order. The briefing below is where it would be announced, and subscribers get asked what it should cost before anything is priced.</p>",
  "h_bridge": "The one paid product that does exist",
- "bridge": "<p>Separately from this page, one live subscription runs on this domain, and it is deliberately not the same thing. <a href=\"https://invest.agiscorecard.com/en\" target=\"_blank\" rel=\"noopener\" onclick=\"gtag('event','invest_tool_click',{location:'__BRIDGELOC__'});\">SunWatch</a> writes market judgements as falsifiable price triggers, watches them by machine across the US, Hong Kong and A&#8209;share sessions, and files every one in public &mdash; <a href=\"https://invest.agiscorecard.com/en/track-record\" target=\"_blank\" rel=\"noopener\" onclick=\"gtag('event','invest_tool_click',{location:'__BRIDGELOC___record'});\">hits and misses side by side</a>, losers never deleted. The free tier is a daily Telegram preview; Pro is &yen;199/month (&asymp;$28, paid in USDT, no account and no card on file) for the specific entry and stop levels and the real-time trigger alerts.</p><p>It does not score baskets and it will not tell you what this page tells you. If you want the exposure map, stay here &mdash; it is free and it stays free. If you want a dated, auditable position on names like these <em>this week</em>, that is what is over there.</p>",
+ "bridge": "<p>Separately from this page, one live subscription runs on this domain, and it is deliberately not the same thing. <a href=\"https://invest.agiscorecard.com/en\" target=\"_blank\" rel=\"noopener\" onclick=\"gtag('event','invest_tool_click',{location:'__BRIDGELOC__'});\">SunWatch</a> writes market judgements as falsifiable price triggers, watches them by machine across the US, Hong Kong and A&#8209;share sessions, and files every one in public &mdash; <a href=\"https://invest.agiscorecard.com/en/track-record\" target=\"_blank\" rel=\"noopener\" onclick=\"gtag('event','invest_tool_click',{location:'__BRIDGELOC___record'});\">hits and misses side by side</a>, losers never deleted. The free tier is a daily Telegram preview; Pro is &yen;199/month (&asymp;$28, paid in USDT, no account and no card on file) for the specific entry and stop levels and the real-time trigger alerts.</p><p>It does not score baskets and it will not tell you what this page tells you &mdash; the exposure map stays free either way. What it adds is a dated, auditable position on names like these <em>this week</em>.</p>",
  "bridgebtn": "See the public track record &rarr;",
  "tgbtn": "Watch it on Telegram &rarr;",
+ "pro_line": "This page maps exposure; it never gives positions. A dated, auditable call on names like these, <em>this week</em>: <a href=\"https://invest.agiscorecard.com/en/track-record\" target=\"_blank\" rel=\"noopener\" onclick=\"gtag('event','invest_tool_click',{location:'exposure_en_sunwatch_result'});\">SunWatch &mdash; public track record, misses never deleted</a> &middot; Pro &yen;199/mo &asymp; $28, USDT, no account. The exposure map stays free either way.",
  "tgnote": "One tap, no email and no account. The bot confirms the tickers back to you, then sends the free daily preview and one message the day the Tracker score moves \u2014 which is the day this basket re-scores.",
  "tglong": "Pick 10 tickers or fewer to have this basket watched on Telegram \u2014 the link that carries it has a length limit, and a truncated basket would be the wrong one to watch.",
  "sub": "Get told when the score moves",
@@ -661,9 +663,10 @@ COPY = {
  "h_pro": "如果做成付费版，会多什么",
  "pro": "<p>这个工具免费，而且会一直免费。真正可以订阅的是另一件东西，目前<strong>还没做</strong>：</p><ul><li>判定翻转当天的提醒——那一天，本页所有组合分数都会变。</li><li>按季度把新 13F 与你保存的那个链接里的组合做差分，截止日后几天内出。</li><li>完整标的映射，而不是这里的 17 个。</li></ul><p>没有等待名单表单，也没有预售。要发布的话会发在下面这份简报里，而且定价之前会先问订阅者应该定多少。</p>",
  "h_bridge": "本域名下唯一一个真的在收费的产品",
- "bridge": "<p>和这个页面分开，本域名下确实跑着一个可以订阅的付费产品，而且它<strong>刻意</strong>不是同一件事。<a href=\"https://invest.agiscorecard.com/\" target=\"_blank\" rel=\"noopener\" onclick=\"gtag('event','invest_tool_click',{location:'__BRIDGELOC__'});\">SunWatch</a> 把市场判断写成可证伪的价格触发条件，用机器跨美股 / 港股 / A 股三个时段盯盘，每一条都公开建档——<a href=\"https://invest.agiscorecard.com/track-record\" target=\"_blank\" rel=\"noopener\" onclick=\"gtag('event','invest_tool_click',{location:'__BRIDGELOC___record'});\">命中与失误同等展示</a>，失误从不删除。免费档是每日一条 Telegram 预告；Pro 是 &yen;199/月（USDT 支付，无需注册、不留卡号），解锁具体买卖价位、止损线和实时触发报警。</p><p>它不算组合分数，也给不了你这个页面给你的东西。想要暴露度地图，就留在这里——免费，而且会一直免费。想要的是<em>本周</em>对这类标的一条有日期、可回查的仓位判断，那在那边。</p>",
+ "bridge": "<p>和这个页面分开，本域名下确实跑着一个可以订阅的付费产品，而且它<strong>刻意</strong>不是同一件事。<a href=\"https://invest.agiscorecard.com/\" target=\"_blank\" rel=\"noopener\" onclick=\"gtag('event','invest_tool_click',{location:'__BRIDGELOC__'});\">SunWatch</a> 把市场判断写成可证伪的价格触发条件，用机器跨美股 / 港股 / A 股三个时段盯盘，每一条都公开建档——<a href=\"https://invest.agiscorecard.com/track-record\" target=\"_blank\" rel=\"noopener\" onclick=\"gtag('event','invest_tool_click',{location:'__BRIDGELOC___record'});\">命中与失误同等展示</a>，失误从不删除。免费档是每日一条 Telegram 预告；Pro 是 &yen;199/月（USDT 支付，无需注册、不留卡号），解锁具体买卖价位、止损线和实时触发报警。</p><p>它不算组合分数，也给不了你这个页面给你的东西——暴露度地图无论如何都免费。它补上的，是<em>本周</em>对这类标的一条有日期、可回查的仓位判断。</p>",
  "bridgebtn": "去看公开战绩 &rarr;",
  "tgbtn": "用 Telegram 盯住它 &rarr;",
+ "pro_line": "本页只算暴露度，不给仓位。想要对这类标的一条有日期、可回查的<em>本周</em>判断：<a href=\"https://invest.agiscorecard.com/track-record\" target=\"_blank\" rel=\"noopener\" onclick=\"gtag('event','invest_tool_click',{location:'exposure_zh_sunwatch_result'});\">SunWatch——公开对账，失误不删</a> · Pro &yen;199/月（USDT，无需注册）。暴露度地图无论如何都免费。",
  "tgnote": "一次点击，不用邮箱、不用注册。bot 会把标的原样念回来确认，然后发每日免费预告，以及追踪指数分数变动那天的一条消息——那一天这个组合会重新计分。",
  "tglong": "标的选到 10 个以内才能用 Telegram 盯住：承载它的链接有长度上限，而盯一个被截断的组合是错的。",
  "sub": "分数变动时通知你",
@@ -756,15 +759,15 @@ __LD__
 __METHOD__
 
 <div class="pro">
-<h3 style="margin-top:0">__H_PRO__</h3>
-__PRO__
-<a class="btn sec" href="https://agiscorecard.beehiiv.com/subscribe?utm_source=agiscorecard&amp;utm_medium=__UTM___pro" target="_blank" rel="noopener" onclick="gtag('event','subscribe_click',{location:'__PROLOC__'});">__SUBBTN__</a>
-</div>
-
-<div class="pro">
 <h3 style="margin-top:0">__H_BRIDGE__</h3>
 __BRIDGE__
 <a class="btn sec" href="https://invest.agiscorecard.com/__BRIDGEPATH__" target="_blank" rel="noopener" onclick="gtag('event','invest_tool_click',{location:'__BRIDGELOC___btn'});">__BRIDGEBTN__</a>
+</div>
+
+<div class="pro">
+<h3 style="margin-top:0">__H_PRO__</h3>
+__PRO__
+<a class="btn sec" href="https://agiscorecard.beehiiv.com/subscribe?utm_source=agiscorecard&amp;utm_medium=__UTM___pro" target="_blank" rel="noopener" onclick="gtag('event','subscribe_click',{location:'__PROLOC__'});">__SUBBTN__</a>
 </div>
 
 <h2>__H_EMBED__</h2>
@@ -803,7 +806,7 @@ def build(lang, preds, base, asof):
         "holdnote", "nohold", "covwarn", "loc", "sensnone",
         "score_label", "far_label", "farnote", "kinds", "names", "namesep", "sharetext",
         "copybtn", "xbtn", "sharenote", "ctahead", "ctabody", "ctabtn", "utm",
-        "tgbtn", "tgnote", "tglong")}
+        "tgbtn", "tgnote", "tglong", "pro_line")}
 
     script = (SCRIPT
               .replace("__DATA__", js_payload(preds, lang))

@@ -285,3 +285,39 @@ SELECT status, COUNT(*) FROM subscribers GROUP BY status;
 **隐私（已同步改 /privacy，非可选）**：这是全站**唯一**的个人数据。
 原文写着"不存任何标识符"，现在存邮箱——不改就是撒谎。已新增小节说明存了什么、为什么存
 （`topic` 是为了兑现"这条翻转时通知你"）、以及如何删除。
+
+## 2026-08-31 追加：内部跳转配对（`events.label = 'from:/<来源路径>'`）
+
+**背景**：在此之前"A 页→B 页"从来没有被记录过。信标一直在发完整 `document.referrer`，
+但 worker 落库时调 `refHost()` 只留了域名。owner 要求做"内部跳转深度分析"时才发现，
+而当时只能回答"仪器答不了"。
+
+**现在的口径**：`page_view` 事件、且 referrer 与本站同源时，来源**路径**写进 `label`，
+形如 `from:/when-will-agi-arrive`。跨域来源仍只留 `ref_host`（**绝不存陌生人的 URL**）。
+因为是 JS 事件，**爬虫天然被排除**——这正是 `pageviews.ref_host` 做不到的那件事
+（真读者点导航与爬虫爬导航在只存域名的表里形状完全一样）。
+
+**规范查询（内部跳转配对，28 天）**：
+```sql
+SELECT substr(label, 6) AS from_path, path AS to_path, COUNT(*) n
+FROM events
+WHERE name='page_view' AND label LIKE 'from:%'
+  AND day > date('now','-28 days')
+GROUP BY from_path, to_path
+ORDER BY n DESC;
+```
+**哪些页在向外递送（recirculation）**：
+```sql
+SELECT substr(label,6) AS from_path, COUNT(*) sends
+FROM events WHERE name='page_view' AND label LIKE 'from:%'
+  AND day > date('now','-28 days') GROUP BY from_path ORDER BY sends DESC;
+```
+
+**首日读数（2026-08-31 下午上线，2026-09-01 04:0x 读）**：20 次内部跳转，
+**来源 100% 是首页 `/`，深页向外递送为 0**。落点最多的是 `/will-agi-arrive-2027`（4 次，
+正是首页 readnext 块的第二条）。**样本 <24 小时、n=20，按最小样本纪律不据此下结论**，
+但若该形状持续，结论会是：**不是"用户留不住"，而是只有首页在循环，承接搜索流量的深页
+是终点站**。到 09-14（两周）再正式读一次。
+
+**注意**：`label` 在 `page_view` 上此前一直为空，所以这个用法不与任何历史口径冲突；
+其他事件的 `label` 含义不变（例如 `calc_use{grade_game}` 的 label 是判定 id:打分）。

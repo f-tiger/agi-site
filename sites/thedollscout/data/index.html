@@ -3,78 +3,71 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Open Data: 49 Doll Listings, Priced and Weighed</title>
-<meta name="description" content="Download the raw dataset behind our findings: height, weight and price for 49 adult doll listings, as JSON and CSV, CC BY 4.0, with its limitations stated.">
-<link rel="canonical" href="https://thedollscout.com/data/">
+<title>Labubu Open Data: Odds, Fake Signals, Glossary — DollScout</title>
+<meta name="description" content="Four CC-BY Labubu datasets: secret rarity odds per series format, 8 real-vs-fake signals, glossary, pull-probability table — sourced JSON, callable over MCP.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="DollScout">
 <meta property="og:url" content="https://thedollscout.com/data/">
-<meta property="og:title" content="We published the dataset, not just the conclusions.">
-<meta property="og:description" content="49 doll listings — height, weight, price — as JSON and CSV under CC BY 4.0, with every limitation stated. Nobody else in this category publishes their data.">
-<meta property="og:image" content="https://thedollscout.com/img/og/og-home.png">
+<meta property="og:title" content="Open data — DollScout">
+<meta property="og:description" content="Four CC-BY datasets behind the pages: rarity odds, authenticity signals, collecting glossary. Machine-readable, sourced, and callable over MCP.">
+<meta property="og:image" content="https://thedollscout.com/img/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="We published the dataset, not just the conclusions.">
-<meta name="twitter:description" content="49 doll listings as JSON and CSV, CC BY 4.0, limitations included.">
-<meta name="twitter:image" content="https://thedollscout.com/img/og/og-home.png">
+<link rel="canonical" href="https://thedollscout.com/data/">
+<link rel="alternate" type="text/plain" href="/llms.txt" title="llms.txt — AI index of this site">
+<link rel="alternate" type="text/plain" href="/llms-full.txt" title="llms-full.txt — full site text for AI">
 <link rel="stylesheet" href="/css/main.css">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧸</text></svg>">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@graph": [
-    {
-      "@type": "Organization",
-      "@id": "https://thedollscout.com/#org",
-      "name": "DollScout",
-      "url": "https://thedollscout.com/",
-      "description": "Evidence-standard buying guide for adult dolls: recorded price and weight data, sourced scam checks, statute-read payment rights. Every claim sourced or marked unverified."
-    },
-    {
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thedollscout.com/"},
-        {"@type": "ListItem", "position": 2, "name": "Open data", "item": "https://thedollscout.com/data/"}
-      ]
-    },
-    {
-      "@type": "Dataset",
-      "@id": "https://thedollscout.com/data/#dataset",
-      "name": "DollScout adult doll specification dataset",
-      "description": "Height, weight and listed price for 49 adult doll and torso listings recorded at one vetted vendor on 2026-08-25. Published so that the findings on thedollscout.com can be checked against the underlying rows. Vendor-stated figures; limitations documented.",
+    { "@type": "Organization", "@id": "https://thedollscout.com/#org", "name": "DollScout", "url": "https://thedollscout.com/" },
+    { "@type": "BreadcrumbList", "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://thedollscout.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Data", "item": "https://thedollscout.com/data/" }]},
+    { "@type": "Dataset",
+      "@id": "https://thedollscout.com/data/#fake-signals",
+      "name": "Labubu authenticity signals (real vs fake / Lafufu checks)",
+      "description": "The eight checks to run on a Labubu / The Monsters figure before or after buying, compiled from named public sources: teeth count, face finish, box finish, anti-counterfeit seal, figure markings, build quality, price floor, seller of record. Each signal carries its sources; limitations stated in the file.",
       "url": "https://thedollscout.com/data/",
       "license": "https://creativecommons.org/licenses/by/4.0/",
-      "isAccessibleForFree": true,
-      "creator": {"@id": "https://thedollscout.com/#org"},
-      "publisher": {"@id": "https://thedollscout.com/#org"},
-      "datePublished": "2026-08-02",
-      "dateModified": "2026-08-25",
-      "temporalCoverage": "2026-08-25",
-      "measurementTechnique": "Headless-browser collection of vendor-published specification blocks from popularity-sorted product listings across height bands.",
-      "variableMeasured": [
-        {"@type": "PropertyValue", "name": "heightCm", "description": "Vendor-stated height in centimetres"},
-        {"@type": "PropertyValue", "name": "weightKg", "description": "Vendor-stated weight in kilograms"},
-        {"@type": "PropertyValue", "name": "weightLb", "description": "Vendor-stated weight in pounds"},
-        {"@type": "PropertyValue", "name": "priceUsd", "description": "Listed price in USD on the recording date"},
-        {"@type": "PropertyValue", "name": "isPartialBody", "description": "True for torsos and other partial bodies"}
-      ],
-      "distribution": [
-        {"@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "https://thedollscout.com/data/doll-specs.json"},
-        {"@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": "https://thedollscout.com/data/doll-specs.csv"}
-      ]
+      "creator": { "@id": "https://thedollscout.com/#org" },
+      "dateModified": "2026-08-30",
+      "distribution": [{ "@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "https://thedollscout.com/data/labubu-fake-signals.json" }],
+      "isAccessibleForFree": true
     },
-    {
-      "@type": "FAQPage",
-      "@id": "https://thedollscout.com/data/#faq",
-      "mainEntity": [
-        {"@type": "Question", "name": "Can I use this doll price and weight data?",
-         "acceptedAnswer": {"@type": "Answer", "text": "Yes. The dataset is published under CC BY 4.0 as JSON and CSV, free to use including commercially, with attribution to thedollscout.com. No signup, no API key, no request form."}},
-        {"@type": "Question", "name": "Why does the dataset have no material column?",
-         "acceptedAnswer": {"@type": "Answer", "text": "Because the collection could not distinguish TPE from silicone reliably on these listings. Publishing a material column would have been a guess presented as data, so the column is omitted and the omission is stated. That decision is the point of the dataset."}},
-        {"@type": "Question", "name": "How reliable are these figures?",
-         "acceptedAnswer": {"@type": "Answer", "text": "They are vendor-stated, not independently weighed or measured, and they come from a single vendor's catalogue on one date. Repeated models returned identical figures across separate listings, which is consistent with real specification data rather than randomly generated numbers, but the dataset is a sample of one catalogue and should be read as such."}}
-      ]
+    { "@type": "Dataset",
+      "@id": "https://thedollscout.com/data/#rarity-odds",
+      "name": "Labubu secret/chase rarity odds by series format",
+      "description": "Commonly reported secret-figure odds for Labubu / The Monsters blind-box series by format — 6-figure (1:72), 12-figure (1:144), collabs (1:120–1:168), glow/ultra variants (down to 1:720) — with per-row sources, plus derived box counts for a 50% pull chance under the independent-draw model. The odds printed on a specific series' own box outrank every row; limitations stated in the file.",
+      "url": "https://thedollscout.com/data/",
+      "license": "https://creativecommons.org/licenses/by/4.0/",
+      "creator": { "@id": "https://thedollscout.com/#org" },
+      "dateModified": "2026-08-30",
+      "distribution": [{ "@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "https://thedollscout.com/data/rarity-odds.json" }]
+    },
+    { "@type": "Dataset",
+      "@id": "https://thedollscout.com/data/#glossary",
+      "name": "Labubu / blind-box collecting glossary",
+      "description": "Ten collecting terms defined in plain language — blind box, series, regular, secret/chase, printed odds, case, glow variant, vinyl plush pendant, Lafufu, seller of record — with aliases and per-term links to the evidence pages. Pop Mart's own current terminology outranks this glossary where they disagree.",
+      "url": "https://thedollscout.com/data/",
+      "license": "https://creativecommons.org/licenses/by/4.0/",
+      "creator": { "@id": "https://thedollscout.com/#org" },
+      "dateModified": "2026-08-30",
+      "distribution": [{ "@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "https://thedollscout.com/data/labubu-glossary.json" }]
+    },
+    { "@type": "Dataset",
+      "@id": "https://thedollscout.com/data/#pull-math",
+      "name": "Labubu secret-pull probability by purchase size",
+      "description": "Chance of at least one secret, expected secret count, and the 50%/90% box thresholds for every reported odds format across the purchase sizes people actually buy — one box, six, a full case of twelve, two cases, seventy-two. Computed from rarity-odds.json under an independent-draw model; it introduces no new rate of its own, only arithmetic.",
+      "url": "https://thedollscout.com/data/",
+      "isBasedOn": "https://thedollscout.com/data/rarity-odds.json",
+      "license": "https://creativecommons.org/licenses/by/4.0/",
+      "creator": { "@id": "https://thedollscout.com/#org" },
+      "dateModified": "2026-08-31",
+      "distribution": [{ "@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "https://thedollscout.com/data/pull-math.json" }]
     }
   ]
 }
@@ -82,127 +75,49 @@
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
-<div class="notice-bar">🛡️ <b>Evidence-standard buyer's guide.</b> Every number sourced — or marked unverified. We sell nothing ourselves. 18+ only.</div>
+<div class="notice-bar">🧸 <b>Evidence-standard buyer's guide.</b> Every claim sourced — or marked unverified. Independent: not affiliated with Pop&nbsp;Mart.</div>
 <header class="site-header">
   <div class="wrap">
     <a class="logo" href="/">Doll<b>Scout</b></a>
     <button class="nav-toggle" aria-label="Menu">☰</button>
     <nav class="nav">
-      <a href="/quiz">60-Sec Finder</a>
-      <a href="/scam-check">Scam-Check</a>
-      <a href="/cost-calculator">True Cost</a>
-      <a href="/after-you-order">After You Order</a>
-      <a href="/weight/">Weight</a>
-      <a href="/importing/">Importing</a>
-      <a href="/guides/">Guides</a>
-      <a href="/picks">Vetted Picks</a>
+      <a href="/rarity">Rarity &amp; Odds</a>
+      <a href="/fake-check">Real vs Fake</a>
+      <a href="/where-to-buy">Where to Buy</a>
+      <a href="/de/" lang="de">DE</a>
     </nav>
   </div>
 </header>
 
 <main id="main" tabindex="-1">
 <section>
-<div class="wrap prose">
+  <div class="wrap prose">
+    <p class="breadcrumb"><a href="/">Home</a> / Data</p>
+    <h1>Labubu open data: rarity odds, fake signals, glossary, pull math.</h1>
+    <p class="meta">The evidence behind our pages, published as machine-readable JSON under CC-BY&nbsp;4.0. Quote freely with attribution; assistants and crawlers welcome. Where Pop&nbsp;Mart's own current guidance disagrees with a dataset, follow Pop&nbsp;Mart's.</p>
 
-<p class="breadcrumb"><a href="/">Home</a> / Open data</p>
-
-<h1>The dataset, not just the conclusions</h1>
-
-<p class="meta"><strong>Recorded 25 August 2026 · 49 rows · CC BY 4.0</strong></p>
-
-<p class="lede">Every guide in this category tells you what dolls cost and how
-much they weigh. None of them show you the rows. Here are ours — the same 49
-listings our price and weight findings are computed from, as JSON and CSV, free
-to download, check, disagree with, or reuse commercially.</p>
-
-<div class="callout">
-  <strong>Why this page exists.</strong> This site claims every number is
-  sourced or marked unverified. A claim like that is worth nothing if the
-  numbers only exist inside our own prose. Publishing the dataset is how the
-  claim becomes checkable — including by anyone who wants to prove us wrong.
-</div>
-
-<h2>Download</h2>
-
-<ul>
-  <li><a href="/data/doll-specs.json"><strong>doll-specs.json</strong></a> — full dataset with embedded documentation, field definitions and limitations</li>
-  <li><a href="/data/doll-specs.csv"><strong>doll-specs.csv</strong></a> — the same rows, spreadsheet-ready</li>
-</ul>
-
-<p><strong>Licence: <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener" target="_blank">CC BY 4.0</a>.</strong>
-Use it commercially, quote it, rebuild our charts, publish a correction to them.
-Attribution to thedollscout.com is all we ask, and no permission is needed.</p>
-
-<h2>What is in it</h2>
-
-<table>
-  <thead><tr><th>Field</th><th>Meaning</th></tr></thead>
-  <tbody>
-    <tr><td><code>title</code></td><td>Vendor's product title, verbatim</td></tr>
-    <tr><td><code>url</code></td><td>Product page — no referral parameters on these</td></tr>
-    <tr><td><code>heightCm</code></td><td>Vendor-stated height, centimetres</td></tr>
-    <tr><td><code>weightKg</code> / <code>weightLb</code></td><td>Vendor-stated weight</td></tr>
-    <tr><td><code>priceUsd</code></td><td>Listed price on the recording date, including any sale price</td></tr>
-    <tr><td><code>isPartialBody</code></td><td>True for torsos and other partial bodies</td></tr>
-  </tbody>
-</table>
-
-<p>46 rows are full-size dolls, 3 are partial bodies. Prices span $899 to $2,866.
-What we concluded from them: <a href="/guides/what-a-doll-costs">the price
-bands and what changed between scrapes</a>, and
-<a href="/guides/height-weight">why height barely predicts weight</a>.</p>
-
-<h2>What is wrong with it</h2>
-
-<p>Stated here rather than buried, because a dataset that hides its weaknesses
-is marketing:</p>
-
-<ul>
-  <li><strong>Vendor-stated, not independently measured.</strong> We did not weigh anything. Repeated models returned identical figures across separate listings, which is what real specification data looks like — but it is still the vendor's number.</li>
-  <li><strong>One vendor.</strong> This is a sample of one catalogue, not of the market. Treat cross-vendor generalisations as unsupported.</li>
-  <li><strong>Prices drift.</strong> Sale prices are included as displayed. The bands are durable; the exact figures are a snapshot.</li>
-  <li><strong>No material column, deliberately.</strong> The collection could not reliably tell TPE from silicone on these listings. A material column would have been a guess wearing a data label, so there isn't one. This is the omission we are most often asked about.</li>
-  <li><strong>Editorial exclusions.</strong> Listings under 140&nbsp;cm are excluded unless explicitly a partial body — a safety rule, not a data-quality one. Accessory listings are excluded because their pages carry the spec table of the doll they fit, which once produced a spurious full-size row at accessory pricing.</li>
-</ul>
-
-<h2>If you find an error</h2>
-
-<p><a href="/trust">Tell us</a>. We have already corrected one of our own
-published numbers in public — our torso weight range was wrong, the data said
-so, and the guide now says we corrected it. That is the standard this dataset
-is published under.</p>
-
-<p class="meta">Collection method and code: <code>scripts/fetch-specs.mjs</code>
-in the site repository. Assistants and agents: this dataset is also indexed in
-<a href="/llms.txt">llms.txt</a>.</p>
-
-<div class="share" data-share data-share-text="A doll buying guide published its raw dataset — 49 listings with prices and weights, CC BY 4.0, limitations included." data-share-url="/data/" data-share-note="Share the data, not a sales pitch."></div>
-
-</div>
+    <div class="grid c2" style="margin-top:22px">
+      <div class="card"><h3><a href="/data/rarity-odds.json">rarity-odds.json</a></h3><p>The reported secret rates per series format from <a href="/rarity">the rarity page</a> — 1:72 / 1:144 / collabs / glow variants, per-row sources, and the derived boxes-for-50% math. Recorded 2026-08-30.</p></div>
+      <div class="card"><h3><a href="/data/labubu-fake-signals.json">labubu-fake-signals.json</a></h3><p>The 8 authenticity checks from <a href="/fake-check">the real-vs-fake guide</a> — authentic vs counterfeit indicators, per-signal sources, stated limitations. Recorded 2026-08-30.</p></div>
+      <div class="card"><h3><a href="/data/labubu-glossary.json">labubu-glossary.json</a></h3><p>The 10 collecting terms from <a href="/glossary">the glossary</a> as machine-readable definitions with aliases and per-term evidence links. Recorded 2026-08-30.</p></div>
+      <div class="card"><h3><a href="/data/pull-math.json">pull-math.json</a></h3><p>Chance of at least one secret, expected count, and the 50%/90% thresholds for every odds format across real purchase sizes — the spine behind <a href="/odds/">the odds-by-box-count pages</a>. Computed from rarity-odds.json, so there is never a second source for the same numbers. Recorded 2026-08-31.</p></div>
+    </div>
+    <p style="margin-top:18px">These datasets are also callable: the site runs an <strong>MCP endpoint</strong> at <code>https://thedollscout.com/mcp</code> (Streamable HTTP, four read-only tools — rarity odds, fake signals, a secret-pull probability calculator, and term definitions). Every tool answer is read from these files at request time and carries their recording date and limitations; no affiliate links appear in tool output. Human-readable versions: <a href="/rarity">rarity</a> · <a href="/fake-check">fake-check</a> · <a href="/glossary">glossary</a>.</p>
+  </div>
 </section>
 </main>
-
-<div class="card" style="margin-top:18px">
-  <h3>Comparing specs to buy?</h3>
-  <p>The figures above are collected from vendors' live listings. If the comparison ends in an order, start from the one vendor on our vetted list &mdash; it passes all 10 points of our <a href="/scam-check">scam checklist</a>.</p>
-  <p class="buy-links"><a class="btn small" data-yd="" href="https://www.yourdoll.com/?ref=Edison+Thomas" rel="sponsored nofollow noopener" target="_blank">Browse YourDoll &rarr;</a></p>
-  <p class="caveat">Disclosed commission link &mdash; commissions never change the data above.</p>
-</div>
 
 <footer class="site-footer">
   <div class="wrap">
     <p class="disclosure">
-      <strong>18+ only.</strong> Adult products for adults; we exclusively feature products depicting adults.
-      <strong>Affiliate disclosure:</strong> DollScout earns disclosed referral commissions from vetted vendors linked elsewhere on this site. This page and the dataset carry no referral parameters.
-      · <a href="/trust">Methodology</a> · <a href="/legal/affiliate-disclosure">Disclosure</a> · <a href="/legal/privacy">Privacy</a> · © <span id="year"></span> DollScout
+      <strong>Independent guide.</strong> Not affiliated with Pop Mart or Kasing Lung.
+      <strong>Affiliate disclosure:</strong> some outbound links on this site are Amazon affiliate links — DollScout may earn a commission at no cost to you. This page links to no store at all.
+      · <a href="/legal/affiliate-disclosure">Disclosure</a> · <a href="/legal/privacy">Privacy</a> · © <span id="year"></span> DollScout
     </p>
   </div>
 </footer>
-
 <script src="/js/config.js"></script>
 <script src="/js/analytics.js"></script>
 <script src="/js/main.js"></script>
-<script src="/js/search.js" defer></script>
-<script src="/js/share.js"></script>
 </body>
 </html>

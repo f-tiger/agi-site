@@ -80,6 +80,74 @@
    - 已弃：Ventilator mit Wasserkühlung sinnvoll（vergleich.org/expertentesten/home&smart 占满首屏，红海）
 4. **每轮开头仍先测量**（site: 收录 / 部署绿 / 信号邮件），有真实信号立即切到诊断表对应动作，没有就继续铺 KGR。
 
+## AI 时代站点轮(2026-08-29,owner「eco站点做成ai时代站点」)
+
+按「发现→读→调用→引用磁石」四层补齐机器面(agi gen_agent_surfaces 模式移植,舰队互学):
+- **读**:181 个 per-page .md 镜像(/guide/<slug>.md,de/en/it 全覆盖)——此前 Markdown 只在
+  Accept 协商后面,无法被链接/发现;转换保内链、外链降纯文本,**联盟链接零进入由硬闸门
+  保证**(build_agent_md.py 检出即 build fail);worker 对 .md 发 X-Robots-Tag noindex,
+  HTML 保持 canonical。
+- **发现**:/for-agents.html(+.md)机器面总览;llms.txt 补 .md 模式/数据集/总览三行。
+- **调用**:MCP 第 9 个工具 geraet_wahl——计算器之上的「判定层」(问题→设备族+
+  尺寸 Faustregel+指南 URL),smoke 用例入 mcp_smoke.mjs;mcp.html 同步「九个工具」。
+- **引用磁石**:/sizing-data.json(CC BY 4.0)——BTU/Liter/Watt 三阶梯原创数据集,
+  与页面同源(读同一份 content JSON),dateModified 版本化。
+流水线新增 build_agent_md 步 + 部署自检 3 条(.md 服务/数据集/for-agents)。
+判定线:30 天 md_serve+mcp_call 趋势 ≥ 现基线,下次 Bing AI Performance 快照引用面不降。
+
+## 工具层调研轮(2026-08-29,owner「优化eco的工具,吸引联盟用户」)
+
+**45 agent 工作流**(11 面审计→规格、4 路调研、合成、18 次三镜头对抗验证)+ 我方 Playwright
+运行时实测(10 个工具,移动视口,拦截 beacon)。**对抗验证否掉了 6 个头部动作中的 5 个**
+——多数是「证据是修复前的快照」或「动的是零流量面」,这正是对抗验证的价值。
+
+**核心诊断**:工具不转化不是因为结果面难看,而是 ①`amazon_url()` 只被服务端渲染的卡片用了,
+**JS 渲染的工具结果面全部绕过它自己拼 `s?k=` 搜索链**——2026-08-28 那次 261 条 ASIN 深链
+改造没覆盖到工具;②11 个独立工具页整个 D1 生命周期合计 **19 次真人 pv、0 联盟点击**
+(/tools.html 历史 0 pv),重建它们的结果面是陷阱。
+
+**本轮落地(全部在有真流量的面上)**:
+- **EB_SIZER(66 页,占全站 38/40 次工具使用)**:结果 CTA 走 `amazon_url()` → Comfee/
+  Klarstein 出 `/dp/` 深链(Pinguino 无核验 ASIN,诚实保持搜索链);型号名后加
+  「Was sagen die Tests?」证据链(德语专属——EN 无测评页,不给读者链看不懂的页)。
+- **首页工具**:同样改深链;并修掉一个真缺陷——`else` 分支无上界,45 m²(15.500 BTU)
+  的读者被推荐 12.000 BTU 机型。现在 >13.500 BTU 一个型号都不推,改说实话 + 指向
+  split-ohne-kernbohrung(与 btu-rechner/sizer 口径一致)。
+- **EB_PROFILE 广告标注**:191 页的档案条一直挂着联盟链却**从无 Werbekennzeichnung**
+  ——因为它压根不在 check_adlabel 的 BLOCKS 里,闸门只查它被告知要查的东西。
+  已补标注 + 补进闸门(检查面 816→1035 块)。
+
+**⚠️ 自查出的零编造违规(我当天引入的)**:btu-rechner 结果表里
+`kwh:"~0,7",eur:"0,21"` 归给 Pinguino EX105,注释还写着「取自各自测评页」——
+但该页 **一个 kWh 数字都没有**,全站唯一的「0,7 kWh」在一张除湿机页上。已删除,
+改为该页逐字有的两项(A+++、~63 dB Turbo);渲染加 `if(cls.kwh)` 守卫(直接删字段会
+线上打印 "undefined");「laut Tests」改「laut Datenblatt」——Comfee/Klarstein 那两个
+数字是厂商数据表值,把厂商标称说成测试结论,在一个立身之本是「Wir testen nicht selbst」
+的站上是同一类违规,只是低一层。
+**新闸门 `tools/check_cited_figures.py` 入流水线**:工具打印的每个数字必须在它引用的
+那一页上存在(按数值比对,「~1,0 kWh」匹配「rund 1 kWh」)。已用重新注入 bug 实测拦截成功。
+站点此前有广告标注闸门、事件闸门、FAQ 逐字闸门,**唯独没有「印出来的数字要有出处」这一道**
+——这个洞正是那个数字进来的路。
+
+**判死线**:2026-09-26 复核 D1——sizer 来源的 affiliate_click 中 `/dp/` 链接占比应 >0
+(当前 0/103,99% 落搜索页);若 sizer 点击仍为 0,说明瓶颈在流量不在链接形态,停止在
+工具结果面继续投入。
+
+**别再做(实测否决,勿复活)**:
+  - Do NOT rebuild the result panels of the standalone calculator pages to 'the btu-rechner bar'。
+  - Do NOT build EB_HEATSIZER or any new heating-cluster tool this quarter。
+  - Do NOT invest in /widgets。
+  - Do NOT add price display, price-history, price-alert, 'is this a good price' or Prime-Day/deal tools。
+  - Do NOT ship Amazon Add-to-Cart links (gp/aws/cart/add。
+  - Do NOT invest further in llms。
+  - Do NOT invent an EX105 consumption figure to 'repair' the ~0,7 kWh line on btu-rechner。
+  - Do NOT invent an ASIN for the Pinguino PAC EX105, Midea PortaSplit, AEG ChillFlex Pro, MeacoDry, MeacoFan, Rowenta, or any heater or balcony battery。
+  - Do NOT repoint EU model names at amazon。
+  - Do NOT add EB_SIZER to /guide/klimaanlage-wohnmobil。
+
+**唯一通过门槛的新工具候选**(不在本轮做,登记):
+  - **EB_TAUPUNKT — "Kann ich jetzt lüften?" as an indexable page **:The honest negative branch IS the purchase moment: when the physics says there is no ventilation window, the only remaining fix is a dehumidifier, and(SERP 证据:Every ranking result in the German 'taupunkt rechner / kann ich jetzt lüften / lüftungsrechner' SERP is a micr)
+
 ## 顶级联盟站对标矩阵(2026-08-29,owner「对标优秀联盟站,还缺哪些,热门产品也缺」)
 
 **最受欢迎联盟站(按被引用/被模仿度)**:全球模式标杆 = Wirecutter(NYT)、RTINGS
@@ -104,6 +172,51 @@ TTK 系=amazon.de 参考线)→ 当日补 brand 页;Lidl Tronic 9000 BTU(rising 
 199 €,4,1★,不在 Amazon → Ausverkauft-Alternative 变现模式)→ 当日补;
 候选:Duux Whisper Flex/Stadler Form(夏季线,来年 KGR 后做)、"klimaanlage fest
 installiert"(rising 6.600,检查 split-ohne-kernbohrung 是否已接该意图)。
+
+## 德语联盟站对照轮:流量断点不在内容,在实体(2026-08-31,owner「网站内容对比其他德国联盟站点,调用技能优化,提升流量」)
+
+**方法边界先说清**:competitor-profiling 技能的标准流程(Firecrawl map/scrape +
+DataForSEO 反链/排名)在本会话**跑不了**——竞对域被 egress 代理拦、无 SEO 数据 MCP。
+所以本轮用 WebSearch 看 SERP 构成 + 第一方 D1/GA4,**没有同行的流量与反链数字,
+不编**。`site:` 运算符在本工具里不可靠,未当证据用。
+
+**实测两条自家核心钱线词的德语 SERP**(页面 7 月就在线):
+`klimaanlage kippfenster abdichten anleitung`、`mobile klimaanlage kühlt nicht richtig was tun`
+——**eco 都不在前 ~8**。占屏的是四类:**真实商家**(klimaanlagen-guru.de,
+Monheim am Rhein 实体公司,带 SHOPVOTE/ProvenExpert/golocal 档案 + eBay 店;
+frosnir.de;ersatzteileshop.de;sos-zubehoer.de)、**厂商**(Bosch)、
+**论坛**(HaustechnikDialog、gutefrage)、**大出版社**(hausjournal.net)。
+
+**结论:这不是内容质量档次的差距,是实体档次的差距。** 上面每一个都是**可解析的
+实体**——有地址的公司、有第三方评价档案、或已确立的品牌。「再写几页更好的内容」
+打不进这一类;这也解释了 8 周站龄 + 139 页 + Google organic 归零那组数字。
+**别再把「我们内容不如人」当处方**(内容层的结构元素 08-29 对标矩阵已确认齐平甚至反超)。
+
+**据此审自家实体信号,并纠正我自己的首个判断**:
+- 初判「EcoBack 被断言 122 次却从未定义」——**错的**。首页**有**规范节点
+  `https://getecoback.com/#org`(带 logo/description/knowsAbout,被 WebSite 节点引用)。
+- 真实缺陷更锋利:**363 个 Organization 提及里 362 个是匿名空节点**
+  `{"@type":"Organization","name":"EcoBack","url":"…"}`,**没有一个指回那个定义**。
+  对解析器而言那是「362 个碰巧同名的组织」,不是「一个有 198 页的发行方」。
+  **实体图一直存在,但是孤儿。**
+
+**已落地 `tools/build_entity.py`(进 deploy 流水线,build_xlinks 之后、build_hreflang 之前)**:
+① 给每个匿名提及加 `@id` 指向规范节点——现网 **365 处引用 / 184 页**全部解析到
+`#org`,匿名节点归零;② 规范节点补两条 eco **能诚实主张、而多数竞对没有**的属性:
+`publishingPrinciples` → wie-wir-empfehlen.html、`mainEntityOfPage` → ueber-uns.html
+(**每条必须对应真实存在的文件,否则构建失败**);③ **不发 `sameAs`**——本站没有任何
+已验证的外部档案,编一个正是本站在别处拒绝的那种借来的权威。
+**闸门双分支实测**:重新注入一个匿名节点 → 被修复并计数;把 JSON-LD 弄坏 → 退出码 1。
+全流水线二次运行 **byte-stable**,四道既有闸门(events/adlabel/faq-parity/cited-figures)全过。
+
+**诚实预期,别过度承诺**:实体归并是**必要条件不是充分条件**——它让 eco 的 198 页
+在解析器眼里终于是一个发行方,但它不会凭空造出商家那种线下实体信号。
+**判定线(2026-10-31,60 天)**:①Bing/AI 面被引页的品牌关联(Bing WMT 快照,owner 侧)
+②GA4 ai-assistant 渠道会话 ≥70(现 57)。两项皆无变化 → 记入反面发现:
+**结构化实体标记对本站量级不产生可测收益,停止在 schema 层投入,把力气还给需求侧。**
+
+**本轮刻意没做的**:没新增页(SERP 证据说明新页打不进这类 SERP)、没动内容层
+(对标矩阵已齐平)、没申请任何非 Amazon 联盟(owner 明令变现只走 Amazon)。
 
 ## 增长挖掘与售卖内容丰富层（2026-07-10 增补）
 

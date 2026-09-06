@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Labubu Seltenheit: Secret-Quoten + Pull-Rechner</title>
+<meta name="description" content="Wie selten ist ein Secret-Labubu wirklich? Berichtete Quoten je Serienformat (1:72, 1:144, seltener bei Collabs und Glow), was auf der Box steht, plus Rechner.">
+<link rel="canonical" href="https://thedollscout.com/de/rarity">
+<link rel="alternate" type="text/plain" href="/llms.txt" title="llms.txt — AI index of this site">
+<link rel="alternate" type="text/plain" href="/llms-full.txt" title="llms-full.txt — full site text for AI">
+<link rel="alternate" hreflang="en" href="https://thedollscout.com/rarity">
+<link rel="alternate" hreflang="de" href="https://thedollscout.com/de/rarity">
+<link rel="alternate" hreflang="x-default" href="https://thedollscout.com/rarity">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="DollScout">
+<meta property="og:url" content="https://thedollscout.com/de/rarity">
+<meta property="og:title" content="Wie selten ist ein Secret-Labubu wirklich?">
+<meta property="og:description" content="Die berichteten Quoten je Serienformat, was auf der Box steht, und ein Rechner, der aus 1:72 deine echten Chancen über N Boxen macht.">
+<meta property="og:image" content="https://thedollscout.com/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/css/main.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧸</text></svg>">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    { "@type": "Organization", "@id": "https://thedollscout.com/#org", "name": "DollScout", "url": "https://thedollscout.com/" },
+    { "@type": "BreadcrumbList", "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Start", "item": "https://thedollscout.com/de/" },
+      { "@type": "ListItem", "position": 2, "name": "Seltenheit & Quoten", "item": "https://thedollscout.com/de/rarity" }]},
+    { "@type": "Article",
+      "image": "https://thedollscout.com/img/og.png",
+      "datePublished": "2026-08-30",
+      "dateModified": "2026-08-30",
+      "headline": "Labubu-Seltenheit: die Secret-Quoten und deine echten Chancen",
+      "description": "Wie Blindbox-Seltenheit bei Labubu / The Monsters funktioniert: reguläre Figuren vs. Secret, die auf der Box gedruckten Quoten, berichtete Raten je Serienformat und die Mathematik mehrerer Boxen.",
+      "url": "https://thedollscout.com/de/rarity",
+      "publisher": { "@id": "https://thedollscout.com/#org" },
+      "author": { "@id": "https://thedollscout.com/#org" },
+      "inLanguage": "de" },
+    { "@type": "WebApplication",
+      "name": "Labubu Secret-Pull-Rechner",
+      "url": "https://thedollscout.com/de/rarity",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "Any (browser)",
+      "isAccessibleForFree": true,
+      "description": "Gib die gedruckte Secret-Quote deiner Serie und die Anzahl geplanter Boxen ein; erhalte die Wahrscheinlichkeit für mindestens ein Secret sowie die Boxenzahl für 50% und 90% Sicherheit.",
+      "featureList": ["Voreingestellte Quoten gängiger Formate (1:72, 1:120, 1:144, 1:168, 1:720)", "Eigene Quote eingebbar", "Wahrscheinlichkeit für mindestens ein Secret über N Boxen", "Boxenzahl für 50% und 90% Sicherheit"] },
+    { "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "Wie selten ist ein Secret-Labubu?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Für eine Standard-Serie mit sechs Figuren wird am häufigsten 1 zu 72 berichtet; Serien mit zwölf Figuren üblicherweise 1 zu 144, manche Collab-Serien 1:120 bis 1:168, Ultra-Varianten wie Glow-Editionen bis hinunter zu 1 zu 720. Die maßgebliche Zahl für deine Serie ist die, die Pop Mart auf deren Box und Produktseite druckt — prüfe sie dort, und behandle jeden Verkäufer, der bessere als die gedruckten Quoten verspricht, als Warnsignal." } },
+        { "@type": "Question", "name": "Wie stehen meine Chancen über mehrere Boxen?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Bei unabhängig gezogenen Boxen mit 1-zu-72-Quote geben zwölf Boxen etwa 15% Chance auf mindestens ein Secret — nicht die gefühlte Fast-Sicherheit. Der Rechner auf dieser Seite macht die exakte Rechnung für jede Quote und jede Boxenzahl und zeigt, wie viele Boxen 50% oder 90% wirklich erfordern. Ein ehrlicher Vorbehalt: die Verteilung in versiegelten ganzen Cases kann von unabhängigen Einzelboxen abweichen — dies ist das Einzelbox-Modell." } },
+        { "@type": "Question", "name": "Heißt selten auch wertvoller?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Seltenheit ist der Motor des Zweitmarkts: ausverkaufte Serien und Secret-Figuren handeln über dem Handelspreis, was DemandSages Statistik-Überblick 2026 auf Marktebene dokumentiert. Derselbe Motor treibt aber den Fälschungsmarkt — je seltener und gefragter eine Figur, desto stärker wird sie gefälscht, und 'Secret garantiert'-Angebote zum Schnäppchenpreis sind ein klassisches Fälschungsmuster. Die Seltenheits-Mathematik sagt dir, welcher Pull die Jagd wert ist; die Echtheits-Checks sagen dir, ob das Gekaufte echt ist. Nutze beides." } },
+        { "@type": "Question", "name": "Ist ein \u201eSecret garantiert\u201c-Angebot echt?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Behandle es als Fälschungssignal. Die Blindbox-Ökonomie funktioniert nur, weil das Secret selten ist: der Marktwert eines echten Secrets liegt über dem Handelspreis — ein Angebot, das eines zum oder nahe am Blindbox-Preis garantiert, verspricht etwas, das zu diesem Preis rechnerisch nicht echt sein kann. Legitime Weiterverkäufe gezogener Secrets gibt es — entsprechend bepreist, von Verkäufern, die den Verkäufer- und Echtheits-Check bestehen. Ein billiges garantiertes Secret scheitert an der Arithmetik, bevor du auch nur die Zähne zählst." } }
+      ] }
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Zum Inhalt springen</a>
+<div class="notice-bar">🧸 <b>Kaufberater mit Beleg-Standard.</b> Jede Aussage mit Quelle — oder als unverifiziert markiert. Unabhängig: nicht mit Pop&nbsp;Mart verbunden.</div>
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="/de/">Doll<b>Scout</b></a>
+    <button class="nav-toggle" aria-label="Menü">☰</button>
+    <nav class="nav">
+      <a href="/de/rarity" class="active">Seltenheit</a>
+      <a href="/de/fake-check">Echt vs. Fälschung</a>
+      <a href="/de/where-to-buy">Wo kaufen</a>
+      <a href="/rarity" lang="en">EN</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+<section>
+  <div class="wrap prose">
+    <p class="breadcrumb"><a href="/de/">Start</a> / Seltenheit &amp; Quoten</p>
+    <h1>Wie selten ist ein Secret-Labubu wirklich?</h1>
+    <p class="meta">Jede Blindbox ist eine Wette — und die meisten schließen sie ab, ohne die Quote zu kennen, obwohl sie auf der Box steht. Diese Seite sammelt die berichteten Raten je Serienformat, mit Quelle und Datum (Stand 2026-08-30), und macht daraus die Zahl, die zählt: <strong>deine</strong> Chancen, über die Boxen, die <strong>du</strong> öffnen willst.</p>
+
+    <div class="callout">
+      <p><strong>Die kurze Antwort:</strong> bei einer Standard-Serie mit sechs Figuren wird das Secret am häufigsten mit <strong>1 zu 72</strong> berichtet; Zwölfer-Serien mit <strong>1 zu 144</strong>; manche Collabs 1:120–1:168; Ultra-Varianten (Glow) bis <strong>1 zu 720</strong>. Maßgeblich ist die auf <em>deiner</em> Box gedruckte Quote. Und der Realitätscheck: bei 1:72 geben zwölf Boxen ≈ <strong>15% Chance</strong> — nicht die gefühlte Fast-Sicherheit.</p>
+    </div>
+
+
+    <p>Wer in Kaufmengen denkt statt in Boxenzahlen — eine Box, ein Set aus sechs, ein versiegelter Case, zwei Cases — findet dieselbe Rechnung für jede Menge und jedes berichtete Serienformat auf <a href="/de/odds/">den Seiten zu Chancen pro Boxenzahl</a>, jeweils mit der kursierenden Behauptung, die daran scheitert.</p>
+    <h2>Secret-Pull-Rechner</h2>
+    <div class="tool" data-odds-tool data-milestones="Für 50% Chance bei 1:{n} bräuchtest du {b50} Boxen; für 90%: {b90} Boxen." id="calc">
+      <p class="tool-title">🎰 SECRET-PULL-RECHNER</p>
+      <div class="row">
+        <label for="odds"><strong>Secret-Quote</strong></label>
+        <select id="odds" data-odds>
+          <option value="72" selected>1 : 72 — üblich bei 6-Figuren-Serien</option>
+          <option value="120">1 : 120 — berichtet für manche Collabs</option>
+          <option value="144">1 : 144 — üblich bei 12-Figuren-Serien</option>
+          <option value="168">1 : 168 — berichtet für manche Collabs</option>
+          <option value="720">1 : 720 — berichtet für Glow/Ultra-Varianten</option>
+          <option value="custom">Eigene…</option>
+        </select>
+        <span id="customwrap" data-customwrap hidden>1 : <input id="customodds" data-customodds type="number" min="2" max="100000" value="72" style="width:90px"></span>
+      </div>
+      <div class="row" style="margin-top:10px">
+        <label for="boxes"><strong>Boxen, die du öffnest</strong></label>
+        <input id="boxes" data-boxes type="number" min="1" max="10000" value="6" style="width:90px">
+      </div>
+      <p style="margin-top:14px">Chance auf mindestens ein Secret: <span class="res-big" id="result" data-result>—</span></p>
+      <p class="meta" id="milestones" data-milestones-out></p>
+      <p class="meta">Modell: unabhängige Einzelbox-Ziehungen zur gedruckten Rate. Versiegelte ganze Cases können abweichen — dies ist ehrlich das Einzelbox-Modell. Mathematik: 1 − (1 − 1/N)<sup>Boxen</sup>; keine Daten verlassen deinen Browser.</p>
+    </div>
+
+
+    <div class="bars" aria-label="Benötigte Boxen für 50% Secret-Chance, je berichteter Quote">
+      <p class="tool-title" style="margin-bottom:6px">BOXEN FÜR 50% CHANCE, JE QUOTE</p>
+      <div class="bar-row"><span class="bar-name">1:72</span><span class="bar-track"><span class="bar-fill" style="width:10%"></span></span><span class="bar-val">50</span></div>
+      <div class="bar-row"><span class="bar-name">1:120</span><span class="bar-track"><span class="bar-fill" style="width:17%"></span></span><span class="bar-val">83</span></div>
+      <div class="bar-row"><span class="bar-name">1:144</span><span class="bar-track"><span class="bar-fill" style="width:20%"></span></span><span class="bar-val">100</span></div>
+      <div class="bar-row"><span class="bar-name">1:168</span><span class="bar-track"><span class="bar-fill" style="width:23%"></span></span><span class="bar-val">117</span></div>
+      <div class="bar-row"><span class="bar-name">1:720</span><span class="bar-track"><span class="bar-fill" style="width:100%"></span></span><span class="bar-val">499</span></div>
+      <p class="bar-cap">Unabhängige-Ziehung-Mathematik aus der Tabelle unten, Stand 2026-08-30.</p>
+    </div>
+
+    <h2>Wie selten ist ein Secret-Labubu?</h2>
+    <p>Für eine Standard-Serie mit sechs Figuren wird am häufigsten <strong>1 zu 72</strong> berichtet; Serien mit zwölf Figuren üblicherweise <strong>1 zu 144</strong>, manche Collab-Serien 1:120 bis 1:168, Ultra-Varianten wie Glow-Editionen bis hinunter zu <strong>1 zu 720</strong>. Die maßgebliche Zahl für deine Serie ist die, die Pop&nbsp;Mart auf deren Box und Produktseite druckt — prüfe sie dort, und behandle jeden Verkäufer, der bessere als die gedruckten Quoten verspricht, als Warnsignal.</p>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>Format</th><th>Berichtete Secret-Quote</th><th>Quelle</th></tr></thead>
+        <tbody>
+          <tr><td>Standard-Serie (6 Figuren)</td><td>1 : 72</td><td><a href="https://tech-insider.org/mystery-boxes/labubu-mystery-box/" rel="noopener">Tech-Insider</a>, <a href="https://globaltill.com/secret-labubu-complete-guide-2026/" rel="noopener">GlobalTill</a> (2026)</td></tr>
+          <tr><td>Erweiterte Serie (12 Figuren)</td><td>1 : 144</td><td><a href="https://popboxss.com/blogs/d41d8cd9-8f00b204-e9800998-ecf8427e_6c691aab" rel="noopener">Popboxss Rarity-Guide</a> (2026)</td></tr>
+          <tr><td>Manche Collab-Serien</td><td>1 : 120 – 1 : 168</td><td><a href="https://globaltill.com/secret-labubu-complete-guide-2026/" rel="noopener">GlobalTill</a> (2026)</td></tr>
+          <tr><td>Glow / Ultra-Varianten</td><td>bis 1 : 720</td><td><a href="https://popboxss.com/blogs/d41d8cd9-8f00b204-e9800998-ecf8427e_6c691aab" rel="noopener">Popboxss Rarity-Guide</a> (2026)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="meta">Das sind von Sammlern berichtete Raten, Stand 2026-08-30 — keine davon übertrumpft die auf deiner Verpackung gedruckte Quote. Wir konnten nicht jede Serie und jedes Jahr verifizieren; wo deine Box dieser Tabelle widerspricht, gewinnt die Box.</p>
+
+    <h2>Wie stehen meine Chancen über mehrere Boxen?</h2>
+    <p>Bei unabhängig gezogenen Boxen mit 1-zu-72-Quote geben zwölf Boxen etwa <strong>15% Chance</strong> auf mindestens ein Secret — nicht die gefühlte Fast-Sicherheit. Der Rechner auf dieser Seite macht die exakte Rechnung für jede Quote und jede Boxenzahl und zeigt, wie viele Boxen 50% oder 90% wirklich erfordern. Ein ehrlicher Vorbehalt: die Verteilung in versiegelten ganzen Cases kann von unabhängigen Einzelboxen abweichen — dies ist das Einzelbox-Modell.</p>
+
+    <h2>Heißt selten auch wertvoller?</h2>
+    <p>Seltenheit ist der Motor des Zweitmarkts: ausverkaufte Serien und Secret-Figuren handeln über dem Handelspreis, was <a href="https://www.demandsage.com/labubu-statistics/" rel="noopener">DemandSages</a> Statistik-Überblick 2026 auf Marktebene dokumentiert. Derselbe Motor treibt aber den Fälschungsmarkt — je seltener und gefragter eine Figur, desto stärker wird sie gefälscht, und &bdquo;Secret garantiert&ldquo;-Angebote zum Schnäppchenpreis sind ein klassisches Fälschungsmuster. Die Seltenheits-Mathematik sagt dir, welcher Pull die Jagd wert ist; die <a href="/de/fake-check">Echtheits-Checks</a> sagen dir, ob das Gekaufte echt ist. Nutze beides.</p>
+
+    <h2>Ist ein &bdquo;Secret garantiert&ldquo;-Angebot echt?</h2>
+    <p>Behandle es als Fälschungssignal. Die Blindbox-Ökonomie funktioniert nur, weil das Secret selten ist: der Marktwert eines echten Secrets liegt über dem Handelspreis — ein Angebot, das eines zum oder nahe am Blindbox-Preis garantiert, verspricht etwas, das zu diesem Preis rechnerisch nicht echt sein kann. Legitime Weiterverkäufe gezogener Secrets gibt es — entsprechend bepreist, von Verkäufern, die den <a href="/de/where-to-buy">Verkäufer-</a> und <a href="/de/fake-check">Echtheits-Check</a> bestehen. Ein billiges garantiertes Secret scheitert an der Arithmetik, bevor du auch nur die Zähne zählst.</p>
+
+    <h2>Kurze Antworten</h2>
+    <p class="meta">Dieselben Fragen, je in einem Absatz beantwortet — die Fassungen, die eine KI zitieren kann, ohne die Einschränkungen zu verlieren.</p>
+    <h3>Wie selten ist ein Secret-Labubu?</h3>
+    <p>Für eine Standard-Serie mit sechs Figuren wird am häufigsten 1 zu 72 berichtet; Serien mit zwölf Figuren üblicherweise 1 zu 144, manche Collab-Serien 1:120 bis 1:168, Ultra-Varianten wie Glow-Editionen bis hinunter zu 1 zu 720. Die maßgebliche Zahl für deine Serie ist die, die Pop Mart auf deren Box und Produktseite druckt — prüfe sie dort, und behandle jeden Verkäufer, der bessere als die gedruckten Quoten verspricht, als Warnsignal.</p>
+    <h3>Wie stehen meine Chancen über mehrere Boxen?</h3>
+    <p>Bei unabhängig gezogenen Boxen mit 1-zu-72-Quote geben zwölf Boxen etwa 15% Chance auf mindestens ein Secret — nicht die gefühlte Fast-Sicherheit. Der Rechner auf dieser Seite macht die exakte Rechnung für jede Quote und jede Boxenzahl und zeigt, wie viele Boxen 50% oder 90% wirklich erfordern. Ein ehrlicher Vorbehalt: die Verteilung in versiegelten ganzen Cases kann von unabhängigen Einzelboxen abweichen — dies ist das Einzelbox-Modell.</p>
+    <h3>Heißt selten auch wertvoller?</h3>
+    <p>Seltenheit ist der Motor des Zweitmarkts: ausverkaufte Serien und Secret-Figuren handeln über dem Handelspreis, was DemandSages Statistik-Überblick 2026 auf Marktebene dokumentiert. Derselbe Motor treibt aber den Fälschungsmarkt — je seltener und gefragter eine Figur, desto stärker wird sie gefälscht, und 'Secret garantiert'-Angebote zum Schnäppchenpreis sind ein klassisches Fälschungsmuster. Die Seltenheits-Mathematik sagt dir, welcher Pull die Jagd wert ist; die Echtheits-Checks sagen dir, ob das Gekaufte echt ist. Nutze beides.</p>
+    <h3>Ist ein „Secret garantiert“-Angebot echt?</h3>
+    <p>Behandle es als Fälschungssignal. Die Blindbox-Ökonomie funktioniert nur, weil das Secret selten ist: der Marktwert eines echten Secrets liegt über dem Handelspreis — ein Angebot, das eines zum oder nahe am Blindbox-Preis garantiert, verspricht etwas, das zu diesem Preis rechnerisch nicht echt sein kann. Legitime Weiterverkäufe gezogener Secrets gibt es — entsprechend bepreist, von Verkäufern, die den Verkäufer- und Echtheits-Check bestehen. Ein billiges garantiertes Secret scheitert an der Arithmetik, bevor du auch nur die Zähne zählst.</p>
+
+    <h2>Weiterlesen</h2>
+    <div class="card" style="margin-top:14px">
+      <h3>Labubu-Secret-Chance nach Boxenzahl</h3>
+      <p><a href="/de/odds/one-box">1 Box</a> · <a href="/de/odds/six-boxes">6 Boxen</a> · <a href="/de/odds/twelve-boxes-full-case">12 Boxen (ganzer Case)</a> · <a href="/de/odds/twenty-four-boxes">24 Boxen</a> · <a href="/de/odds/seventy-two-boxes">72 Boxen</a> — die echte Chance auf ein Secret pro Kaufmenge, <a href="/de/odds/">alle fünf im Vergleich</a>.</p>
+    </div>
+    <div class="grid c2" style="margin-top:18px">
+      <a class="card" href="/de/fake-check"><h3>Echt vs. Fälschung: der 8-Punkte-Check</h3><p>Je seltener die Figur, desto häufiger die Fälschung. Die Checks, jeder mit Quelle.</p></a>
+      <a class="card" href="/de/where-to-buy"><h3>Wo du wirklich einen kaufst</h3><p>Die offiziellen Kanäle, wo die bezahlte Quote auch die echte ist.</p></a>
+      <a class="card" href="/de/checker"><h3>🔍 Lafufu-Checker</h3><p>Je seltener die Figur, desto härter gefälscht — die 8 Checks interaktiv.</p></a>
+      <a class="card" href="/de/finder"><h3>🧭 Serien-Finder</h3><p>Drei Antworten zur passenden offiziellen Serie — bevor du für irgendeine Quote zahlst.</p></a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p class="disclosure">
+      <strong>Unabhängiger Ratgeber.</strong> Nicht mit Pop Mart oder Kasing Lung verbunden.
+      <strong>Affiliate-Hinweis:</strong> Als Amazon-Partner verdient DollScout an qualifizierten Käufen — für dich ändert sich der Preis nicht. Diese Seite verlinkt keinen Shop.
+      · <a href="/legal/affiliate-disclosure">Disclosure (engl.)</a> · <a href="/legal/privacy">Privacy (engl.)</a> · © <span id="year"></span> DollScout
+    </p>
+  </div>
+</footer>
+<script src="/js/config.js"></script>
+<script src="/js/analytics.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/odds-calc.js"></script>
+</body>
+</html>

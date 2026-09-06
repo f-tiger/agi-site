@@ -1,100 +1,280 @@
-<!-- MONOREPO 迁移说明(2026-08-19,owner 决定) -->
-> **本站已迁入公开 monorepo `f-tiger/agi-site`,路径 `sites/thedollscout/`。**
-> 部署分支由 claude/adult-product-distribution-site-q1bzbh 改为 agi-site 的
-> `main`(deploy-thedollscout.yml;Pages 项目 dollscout 的 production-branch
-> 名不变,deploy 命令里的 --branch 参数保持原值)。sitemap 的 lastmod 依赖
-> git 历史,迁移用的是全新快照历史,故 build-sitemap.mjs 增加了
-> content/lastmod-baseline.json(自旧仓真实历史采集;仅对导入后未改过的文件
-> 生效,改过的文件仍用真实 git 日期)。旧私有仓 f-tiger/sexweb 是历史档案,
-> 不再推送。公开仓红线见仓库根 CLAUDE.md。
-> **D1 第一方埋点(2026-08-19 起)**:库 `dollscout-events`
-> (id 6e71ddc6-b58c-49f4-b6f5-207f3778133f,表 `hits`,与 baipiaoji-hits 同构)。
-> 两条线分开读、绝不混算:`ev=''` = js/main.js 的 /api/ev beacon(JS 真跑了,
-> 真人线);`ev='bot'` = functions/_middleware.js 服务端记的已知 AI 爬虫
-> (ref 列存爬虫名);`ev='affiliate_click'` = 联盟链接点击(营收事件,ref 列存
-> 目标域名;2026-08-19 前它在任何系统里都没被记录过)。owner 2026-08-19 决定
-> 暂不配 GA4 API key,D1 为主读数通道;tds-traffic.yml 每日把 14 天聚合回写
-> `content/d1-snapshot.json`,无 MCP 的会话从 git 读它(ev='' 行 = 真人线)。
-> crawl-check 自测带 `x-probe` 头被过滤,不入账;
-> 绑定在 wrangler.toml,随每次 pages deploy 应用。GA4 照旧保留在页面上。
+# CLAUDE.md — thedollscout.com(Labubu 导购站)
 
-# CLAUDE.md
+## 2026-08-30 重大转向(owner 原话:「下架掉这个站点,风险太大,更换为卖labubu的站点」)
 
-## 用户全局要求（每次会话必须遵守）
-- **先优化再执行**：收到任何任务后，先把用户需求整理为"优化后的结构化执行方案"（目标 / 差异化 / 步骤 / 交付物），向用户展示后再动手执行。已装 `prompt-optimizer` skill（.claude/skills/prompt-optimizer，2026-08-17 增补），优先调用它完成此步。
-- **技能库增补（2026-08-17，owner 授权）**：market-research / article-writing / content-engine / brand-voice / marketing-campaign / growth-log（研究与内容）+ frontend-design / web-design-guidelines / responsive-design（建站设计，来自 agiscorecard 已验证锚点体系）。执行营销/SEO/设计任务前先查 .claude/skills 是否有对应技能。
+- **旧站(18+ 成人 doll 导购)整体下架**。归档 = git 历史 + 旧私有仓 f-tiger/sexweb;
+  旧页面线上一律 404,deploy 自检会断言这一点。**不要从 git 历史恢复任何旧页面。**
+- owner 同轮确认:**复用本域名与全部基建**(Cloudflare Pages 项目 dollscout、D1
+  `dollscout-events`、GA4、IndexNow key),商业模式 = **联盟导购**(不自营、零库存)。
+- 旧站的安全楔子判定线、快反规则等条目随站废止;可复用的方法论已沉淀在下方。
 
-## 项目概述
-成人 doll（18+ 合法成人用品）分销/导购静态网站。目标：通过差异化的"信任型导购"定位获取流量，用分销链接变现。
+## 定位(2026-08-30 当日修正,owner:「真假不应该是最核心痛点,应该是流行和稀有程度」)
 
-- **主分销**：yourdoll.com 正式 affiliate 计划（现金佣金），参数 `?ref=Edison+Thomas`（所有 yourdoll 链接自动带此参数，见 `js/config.js`）。注意：`?wlr_ref=REF-V12-ZP6` 是另一套积分制 Rewards Club 推荐参数，已弃用
-- **次分销**：Amazon 联盟（选品参考 getecoback.com），Associate tag 在 `js/config.js` 中占位，用户注册后填入
-- **部署**：Cloudflare Pages，零构建（纯静态 HTML/CSS/JS），根目录即发布目录
+Labubu / The Monsters 收藏品的**稀有度优先导购站**:核心痛点 = 流行与稀有
+(哪个系列热、隐藏款多稀有、我的抽盒概率到底是多少),真伪核查降级为支撑板块
+(逻辑衔接:越稀有越多假货)。evidence-standard 基因不变——稀有度恰是零编造的
+完美题材:**隐藏款概率印在盒子上**,我们只做有源转述 + 纯数学工具。
+- 旗舰页 /rarity(+/de/rarity):概率表(多源,标注「盒上印刷值为准」)+
+  **Secret Pull 计算器**(独立抽取模型,诚实标注与整箱配比的差异;埋点
+  odds_calc 只记真实交互,不记页面加载)。
+- 首页图文化:原创 SVG 插画(自绘,不用官方产品图——商标纪律第 3 条)+
+  YouTube 真实视频嵌入(youtube-nocookie 隐私模式,privacy 页已披露;
+  **视频 ID 必须来自实搜结果,绝不编造**)+ 官方系列卡链 popmart 在售页。
+- **视觉锚点(2026-08-30 三改定稿,owner:「labubu官网风格同频」)= Swiss 电商白**:
+  纯白底、单一无衬线字族(Helvetica 系)、大留白、细线分隔、**唯一强调色红
+  #e4002b**、左对齐排版、巨大数字作构图元素("1:72" 大字、计算器结果红色大号)。
+  与官方商店同频的是**气质**(白/黑字/红点缀/圆角商品卡),**绝不触碰 Pop Mart
+  品牌资产**:不用其 logo 图形、吉祥物绘图,"not affiliated" 声明全站保留。
+  工具 = 首页 C 位红顶边卡片,js/odds-calc.js 四页共享(禁止页内副本)。
+  改视觉先过 .claude/skills/frontend-design 的锚点纪律,别混搭。
+  (轨迹备查:v1 承旧站深色 → v2 Lo-Fi 纸感 → v3 本版;别再回摆。)
 
-## 差异化定位（基于竞品与 Reddit 痛点调研）
-行业最大痛点是**信任缺失**（诈骗站、货不对板、假工厂货）。本站定位为"买家保护优先"的导购站：
-1. Scam-Check 防诈清单 + 验证过的供应商（导流到 yourdoll）
-2. 60 秒选型测验（quiz.html）→ 个性化推荐 → 分销链接（病毒钩子：结果可分享）
-3. TPE vs 硅胶、首次购买、隐私收货等 SEO 指南内容
-4. 价格提醒/优惠码邮件订阅（lead magnet：First-Buyer Checklist）
+- **主变现:双 tag 分市场**(owner 2026-08-30:「联盟id用我的德国和美国id,
+  分别做多语言」):
+  - **EN 页 → amazon.com + `ecoback0d-20`**(thedollscout.com 已在 US Associates
+    站点列表,2026-08-28 截图确认)。
+  - **/de/ 页 → amazon.de + `getecoback-21`**(归属 owner,2026-08-25 截图确认)。
+    **✅ 悬置项已解除(2026-08-30,owner:「联盟已加」)**:thedollscout.com 已列入
+    DE PartnerNet 站点列表——DE 侧佣金归属确权,营收判定恢复正常口径。
+  - 串 tag = 零佣金:deploy 有构建闸门,.de 链挂 US tag 或 .com 链挂 DE tag
+    直接拒绝构建。两个 storefront 链接都是**实测存在**的官方 POPMART 店铺页
+    (amazon.com 与 amazon.de 各自的,2026-08-30 WebSearch 核实)。
+- **页面**:/ + /start + /rarity + /how-blind-boxes-work + /psychology +
+  /fake-check + /where-to-buy + /glossary + /checker + /finder + /lookup +
+  /data/,及其 /de/ 德语对(hreflang 语言组,x-default=EN;eco 模型;/data/
+  无德语对)。德语页价格只引 US 区间 + 指官方 popmart.com/de 在售页,
+  **不发明 EUR 数字**。
+- **语言策略(2026-08-30 晚,owner:「支持中文，和海外卖的最好区域语言」)**:
+  EN/DE = 全站对(变现市场);**zh(/zh/)与 th(/th/)= 单页精华版**
+  (hero + 概率计算器 + 数学三句话 + 8 检查速查 + 渠道原则),hreflang 只挂
+  首页组。选 th 的依据:泰国 = Pop Mart 海外第一市场(东南亚占国际营收 41%,
+  曼谷 ICONSIAM 全球最大旗舰店;kr-asia/Caixin/Nation Thailand 多源)。
+  **变现映射**:zh 页 → amazon.com + ecoback0d-20(服务在美中文读者;Associates
+  合规看站点列表不看页面语言);**th 页零联盟**(泰国无 Amazon,全部官方链接,
+  页内明示 unmonetized)。深链(证据页/工具)指 EN 版并标注「英文界面」。
+  新语言升全站对的门槛:该语言 28 天真人 pv ≥ 德语区,或出现该市场联盟通路。
+- **独特性原则(2026-08-30 晚,owner:「对比同类型网站要有独特性」)**:
+  同类站(labubu.directory / labubucollector / superfans / Fandom wiki)全是
+  静态图鉴/清单;本站车道 = content/competitive-gaps.md 的 5 缺口(交互工具、
+  概率轴、开放数据、诚实预算角度、多语对)。**不卷图鉴**:全系列 catalog /
+  发售日历不做;每个新增面必须落在 5 缺口之一。
+- **交互工具矩阵**(埋点全部首次真实交互才记,ev 白名单在 functions/api/ev.js):
+  odds-calc(odds_calc)、cost-calc(cost_calc)、fake-checker(checker_use,
+  判定语言禁说「保真」)、series-finder(finder_use)、model-search
+  (lookup_use,词条纪律:每条具名信源,查不到写 unverified,空结果明说
+  「不在索引 ≠ 不存在」)。工具 JS 一律共享文件,文案烘焙在页面 data 属性/DOM
+  里(禁止在 JS 里写多语文案)。
 
-## 合规红线（不可移除）
-- 全站 18+ 年龄确认门（js/main.js）
-- 仅推广成人形态产品；明确声明拒绝任何未成年外观产品
-- 联盟披露页 + 页脚披露；affiliate 链接一律 `rel="sponsored nofollow noopener"`
-- 不使用露骨图片；产品图由 GitHub Actions 每周从 yourdoll.com 热链抓取（`scripts/fetch-photos.mjs` → `js/photos.js`，自动生成勿手改），加载失败回退到 `img/*.svg` 原创插画
+## 程序化出页(2026-08-31,owner:「参考 eco 快速扩展流量」)
 
-## 技术约定
-- 纯静态多页站，无框架无构建；共享样式 `css/main.css`，共享逻辑 `js/main.js`，配置 `js/config.js`
-- `_headers` 配置 Cloudflare 安全响应头；`sitemap.xml` / `robots.txt` 需与页面同步维护
-- 新增页面：复制现有页面骨架（header/footer 为手写重复，改动导航时需全站同步）
+移植 eco 的 `gen_*.py` 模式:**一个数据脊 + 一个模板 + 一个生成器 = 一片页**,
+而不是手写。首个集群 `/odds/`(EN+DE 各 6 页:hub + 1/6/12/24/72 盒)。
 
-## 定时 workflow 已暂停至 2026-09-01（owner 2026-08-18）
+- **生成器 `scripts/gen-odds-pages.mjs`**。承重决策:概率数字**从已发布的
+  `data/rarity-odds.json` 读**,生成器里不重新声明——与 functions/mcp.js 同一条
+  「不做第三个真相源」的规矩。其余全是算术,算术不需要信源。启动时断言每个要渲染的
+  格式都在数据脊里有背书,否则 exit 1。
+- **eco 明确判死「无独立数据点的纯模板 pSEO」,所以每页硬门 ≥3 个独立数据点**。本集群
+  每页 5 个:该盒数在 5 种格式下的精确概率、期望只数、50%/90% 阈值、期望成本倍数、
+  以及**该盒数证伪的那条流传说法**。
+- **差异化来自纠错,不是来自铺量**(eco 的 GModG 招式):这个 niche 最常被复述的两个
+  数字是错的——「整箱 12 盒平均出一只隐藏」(实际期望 0.17)、「12 盒 85% 概率」
+  (实际 15.5%)。纠错是本站零编造基因最强的题材:纯数学,不需要任何抓不到的原文。
+  **只纠正说法本身,绝不点名竞品**(承 competitive-gaps 的拒绝项)。
+- **零联盟链接**:这些是「要不要再买」的决策页,答案常常是「不要」;挂购买按钮会和
+  /psychology 自相矛盾。变现由它们指向的 /where-to-buy 承担(同 /how-blind-boxes-work 的先例)。
+- **三道闸门,新增页永远不会变成孤儿**:①生成器自带 wiring guard——生成的每个 URL
+  必须出现在 sitemap.xml、scripts/urls.txt、build-llms-full 的 PAGES 里,否则 exit 1;
+  ②部署链在部署**之前**重跑生成器并断言 `git diff` 为空(有人手改生成页、或改了
+  rarity-odds.json 忘了重跑 → 构建失败);③12 个 URL 全部进部署后自检。
+- **加新盒数的正确姿势**:只改 `COUNTS` 数组(含 EN/DE 文案),跑生成器,按它报的
+  ::error:: 把 URL 补进三处机器面。别手写页。
+- ⚠️ 同日修:`check-structured-data.mjs` 的 walker 原来只递归 `de/`,`zh/` `th/`
+  `legal/` `data/` **从来没被检查过**;改为遍历全部可发布目录后覆盖从 68 → 92 条。
+  **闸门看不见的页,闸门就管不住**——与埋点那条是同一条纪律。
 
-账号级 GitHub Actions 额度（2,000 分钟/月，四站共享）在 8/18 用尽。耗尽的签名很好认：
-**run 在 2 秒内失败，runner_id 为 0、runner_name 为空**，一个 step 都没跑。看到这个不要
-改代码去"修"，那不是代码问题。
+## GEO 面(2026-08-30 晚,owner:「调用技能做好seo，geo流量优化，做厚网站，另外mcp等也增强」)
 
-本仓 7 个定时 workflow（archive / crawl-check / crawl-log / fetch-photos / fetch-specs /
-grow / traffic）已用 `node scripts/schedules.mjs --pause` 停掉，schedule 块以 `#PAUSED>`
-前缀原样保留。恢复只能跑 `node scripts/schedules.mjs --resume`，**不要手改注释**——脚本
-的 pause→resume 往返是字节级无损的，手改不是。`workflow_dispatch` 全部保留，需要时可手动
-触发单次。
+- **llms.txt**(手写索引)+ **llms-full.txt**(scripts/build-llms-full.mjs 在
+  deploy 里 assemble-dist 之前生成,全站 12 页正文单文件渲染)。**生成器铁律
+  (8 天冻结教训):脚本任何失败只降级输出、永远 exit 0**,workflow 步骤再包
+  continue-on-error 双保险。页面列表在脚本里显式维护——新页要进 llms-full 得
+  加进 PAGES 数组。
+- **数据集 ×3(CC-BY,/data/)**:rarity-odds.json(格式别概率表 + boxesFor50pct
+  推导)+ labubu-fake-signals.json(8 项真伪信号)+ labubu-glossary.json
+  (10 术语定义 + 别名,2026-08-30 GEO 深化轮)。/data/ 首页挂三个 Dataset LD。
+- **MCP 端点 /mcp**(functions/mcp.js v2.1.0,streamable HTTP 无状态 JSON-RPC,
+  /.well-known/mcp.json 发现文档):4 个只读工具 labubu_rarity_odds /
+  labubu_fake_signals / secret_pull_probability / define_labubu_term。**承重决策:所有答案请求时
+  读已发布的 /data/*.json,绝不在端点里复刻规则**(第三真相源 = 舰队反复付费
+  移除的失败模式);**联盟链接永不进 MCP 输出**。deploy 自检带 MCP 冒烟
+  (initialize 回 protocolVersion + 1:72×12 盒算出 15.x%)。
+- **⚠️ middleware 退役 410 列表与新端点的碰撞已修**(2026-08-30):'/mcp' 与
+  '/llms-full.txt' 曾在 RETIRED_PREFIXES 里,已移除;将来给退役列表加条目前
+  先查它是否是新站的活路径。
+- 结构化数据:全站 Article/BreadcrumbList;核心页全部有首屏答案块(callout)+
+  FAQ LD;工具页 WebApplication LD;/glossary DefinedTermSet + 逐条 DefinedTerm
+  实体(双语,2026-08-30 GEO 深化轮)。FAQ/DefinedTerm LD 文本必须与页面可见
+  文本一致(不造影子内容)。og:image 全站统一 /img/og.png(PIL 自绘 Swiss 风,
+  1200×630,不含任何官方素材)。
+- robots.txt 具名欢迎的 AI 爬虫(ai-seo 技能清单,2026-08-30 补齐):GPTBot、
+  OAI-SearchBot、ChatGPT-User、ClaudeBot、Claude-User、Claude-SearchBot、
+  Google-Extended、PerplexityBot、GrokBot、xAI-Bot。默认 * 本就全放行,具名条目
+  是给爬虫方的明确信号,新 bot 出现时顺手补。
 
-9/1 有一次性 Routine（trig_0145J5qiC5QZM6mcmbQecYKf）负责恢复本仓 workflow + 5 个舰队
-Routine。若那天它没跑成，手动执行上面的 resume 命令即可。
+## 受众画像(2026-08-30,owner:「调研labubu群体心理画像，再看推荐内容」)
 
-暂停期间 traffic/crawl-log 的边缘数据会缺 14 天——这在额度耗尽时本来就会缺，暂停不额外
-造成损失，只是不再产生红叉。
+**`content/audience-profile.md` 是本站选题的常驻依据**(内部文档,不发布):
+核心买家 = 25-34 岁女性(~60% 女性);Gen Z 是 TikTok 发现层非主力买家;家长
+是独立子人群。动机 = 变率强化多巴胺回路 + secret 追逐 + 包挂身份符号 + 内在
+小孩/丑萌审美 + 社群归属。可服务痛点 = 买家悔恨/超支、怕假、新手无从下手、
+家长适龄焦虑。据此出的页:/start(新手+家长)、/psychology(机制透明 + 期望
+成本工具,埋点 cost_calc)。**画像内容纪律**:写机制不写诊断,不给读者贴
+「addiction」标签;「投资/增值」角度与「戒瘾」卖点是画像明确拒绝项。新选题
+先对照画像的动机/痛点矩阵,再过三门。
 
-## 自动化授权与运行方式（owner 2026-08-17）
+## 硬内容规则(继承舰队,零妥协)
 
-- Owner 原话：「合并sexweb，这个站应该和其他站自动化」——本站纳入四站试点舰队
-  （agiscorecard / baipiaoji / getecoback / thedollscout），营收为北极星，站间对抗学习。
-  **生产分支 `claude/adult-product-distribution-site-q1bzbh` 可直接推送**（push 即部署）。
-- 每日自动优化 Routine 自绑定到舰队会话：每天一个高质量改动（CTR 标题 / GEO 答案块 /
-  KGR 判定过的新页 / 内链），数据源 content/traffic.json + crawl-log.json + GA4（凭据
-  配好后）。合规红线（18+ 门 / 披露 / 未成年外观拒绝）绝对优先，永不为流量放松。
-- 联盟链接已烘焙进静态 HTML（scripts/bake-affiliate-links.mjs，挂在 deploy.yml
-  normalize-urls 之后）：无 JS 访客可点、爬虫可见 rel=sponsored。新增页面带 data-yd /
-  data-amzn 锚点即可，CI 自动烘焙；本仓是私有仓，Actions 计费，避免一天多次 push。
+1. **零编造**:每条事实具名信源 + 日期,查不到就写 "we could not verify"。
+   沙箱对 popmart.com/snkrdunk/izoate/demandsage 等均 egress 拦截(2026-08-30
+   实测)——**只具名链接让读者自查,不复述抓不到的原文细节**;WebSearch 多源
+   一致的要点可用,单源孤证不落页。
+2. **不印具体价格**:价格随系列/库存轮动,页面只写区间(有源)+ 链官方在售页。
+   「价格地板」逻辑(远低于零售的全新"正品"=假货带)是结构判断,可写。
+3. **商标纪律**:每页页脚 + 首页正文声明与 Pop Mart / Kasing Lung 无关联;
+   产品名仅作识别用途;**不盗用官方产品图**(旧站规矩延续:要图用原创插画)。
+4. **不荐二手/代购渠道,不做转售炒价内容**:本站立场是买到真品,不是投机。
+5. **Pop Mart 官方现行指引与本站冲突时,以官方为准**——这句话写在页面上,
+   也是对自己的约束。
 
-## 安全楔子策略（2026-08-22 舰队对比诊断的结论，每日 Routine 从此按这个打）
+## 技术与部署
 
-**诊断（全一手数据）**：Googlebot 每天爬 600-815 次、GPTBot/ClaudeBot/PerplexityBot
-各 70-120 次——爬取是全舰队最重的；但 D1 实测真人 JS 浏览仅 ~10 次/天（edge 口径的
-131/天里大部分是未识别爬虫 + `/__ci` 自测），**3 天里 Google 只送来 1 次点击**（落在
-/data/），affiliate_click 自埋点上线起为 0。GEO 机器无缺件（llms.txt + MCP 可调用工具
-+ Dataset JSON-LD 全舰队最先进）——**瓶颈是结构性的**：①SafeSearch 对产品查询默认
-过滤 ②AI 助手对成人产品推荐类问题拒答（引用杠杆对本站大半关闭）③域龄 <1 月 vs
-竞对多年权威。给 tds 抄 agi 的作业解决不了这三条。
+- 纯静态多页,零构建;共享 css/main.css + js/(config/analytics/main)。
+- **D1 埋点契约不变**(库/表/ev 口径同旧站,数据连续):`ev=''` 真人 JS pv、
+  `ev='bot'` 已知 AI 爬虫、`ev='affiliate_click'` 联盟点击(ref=目标域名)。
+  台账读数照旧剔 `/__ci`。**2026-08-30 前的 D1 行属旧站,跨站对比无意义。**
+- deploy-thedollscout.yml:防回滚守卫(铁律,checkout 后第一步)→ 下架闸门
+  (publishable 文件出现 rating-adult/age-gate/ds_age_ok/yourdoll 即失败)→
+  assemble-dist → wrangler pages deploy → **自检**(新页 200+零重定向,
+  旧成人页断言 404)→ IndexNow → beacon 自测。
+- 保留 workflows:tds-traffic(每日 06:00 UTC,边缘流量 + D1 快照)、tds-indexnow
+  (周三 06:20 UTC,MODE=all 兜底)。其余 9 条旧站 workflow 已删,别恢复。
+  ⚠️ 公开仓的 schedule 实测延迟 5–12 小时(08-28 那次 06:00 的任务 18:22 才跑),
+  **任何「A 跑完 B 才跑」的时序假设都不成立**——下游要自己检查数据新鲜度。
+- **定时会话(Routine)**:「DollScout(Labubu 站)增长循环 · 每 2 天」,
+  `10 7 */2 * *`,每次开新会话。旧的「DollScout growth loop」已于 2026-08-31 删除
+  ——它整条 prompt 还在讲成人站,还要求「绝不削弱 18+ 闸门」,并且依赖两个已不存在
+  的文件(`GROWTH-LOOP.md`、`scripts/seo-audit.mjs`)。**它触发的会话没有 MCP 连接器**
+  (无 Cloudflare / 无 GitHub),所以它读 D1 只能靠 `content/d1-snapshot.json`,
+  验线上只能 `curl` 实探,Actions 日志读不到 → 它被要求把这些明写成「本轮未验证」。
+- 趋势输入:content/trends-us.json(词表 labubu/lafufu/pop mart/the monsters/
+  kasing lung/blind box)+ content/trends-rising.json(种子 labubu / fake labubu /
+  pop mart)——首轮数据等 runner(沙箱对 Google 403)。快反出页判据沿用 eco 模式:
+  rising v≥200 + 属 niche + 真伪/渠道/系列角度可落 → 当天一页,14 天冷却,
+  1 页/天;**转售炒价词、儿童向内容角度不出页**。
 
-**可赢楔子 = 非产品的消费者保护信息层**：进口关税/清关（importing/*）、防骗核验
-（scam-check）、付款保障（payment-protection）、规格数据（/data/，唯一拿到 Google
-点击的页面）。这些查询不触发 SafeSearch 过滤，AI 助手也愿意回答（伤害减免/消费者
-保护性质）。每日一改动只投这个楔子：楔子页的 CTR 标题、答案胶囊、内链、数据集扩充；
-**产品评测/导购页在判定线前不再新增**——排不上的页面写十篇也是零。
+## 2026-09-04 舰队技术优化(机制层,零内容改动;详见根仓 docs/fleet-optimization-2026-09-04.md)
 
-**判定线（2026-10-01）**：楔子页 28 天自然点击（D1 ref 含 google/bing）≥10 → 楔子
-成立，继续深化并从楔子往联盟页导流；<10 → tds 降为每周最低维护（数据日志照跑），
-把每日额度让给有增长证据的站。红线不变：18+ 门、披露、未成年外观拒绝、不代发。
+- **D1 `lang` 列自此有效**:此前 ev.js 与 _middleware.js 把每一行都写死 `'en'`,/de/ /zh/ /th/
+  全记成英文——「该语言 28 天真人 pv ≥ 德语区」那条升级线读的是常量。现按路径前缀写
+  de/zh/th/en;**09-04 前的行按 path 前缀回溯即可**,没有数据丢失。
+- **未知事件名改为丢弃**:此前 `ALLOWED.has(e) ? e : ''` 会把拼错/新加的事件名写成
+  `ev=''`,而 `''` 正是真人 pv 桶——错名不是丢失而是冒充成页面浏览。
+- 部署自检新增**构建戳断言**(`dist/__build.txt` = 本次 SHA):wrangler 发到 preview
+  分支也 exit 0,此前 49 条 200 断言全能被上一版生产满足。另 wrangler.toml 不再随
+  dist 发布(曾把 D1 database_id 当静态文件对外服务)。
+- legal/* 与 404 页补上 config/analytics/main 三件套(此前零埋点);五个工具的
+  use 事件同步进 GA4;analytics.js 的 location 维度改用现存类名(旧站的 .hot-card
+  等四个选择器在本站 0 命中)。/css /js /img 加了缓存头。
+
+## 部署链的「静默失败」铁律(2026-08-30 深审,157 agent 九面审计)
+
+同一天的审计在自己刚发的代码里挖出三个**绿灯下的静默故障**,全部写进纪律:
+1. **允许失败的步骤必须会喊**。`indexnow.mjs` 引用未定义的 `urls`,自 pivot 起
+   每次部署都抛异常;因为该步是 `continue-on-error`,整条流水线全绿,新站从未
+   向 IndexNow 推过一条 URL。修复后脚本用 `::error::` 注解把失败顶到 run 摘要。
+   **新增任何 continue-on-error 步骤时,必须同时给它一条会出现在摘要里的告警。**
+2. **「正常的安静结果」是自我伪装**。周更 IndexNow 跑 delta,而 sitemap 的
+   lastmod 是静态的 → 09-08 之后永远筛出 0 条,并把空结果打印成正常。已改
+   MODE=all 兜底;delta 空结果现在必须发 warning。**任何「没事发生」的分支都要
+   能区分「真的没事」与「机制死了」。**
+3. **埋点的可见范围就是结论的边界**。`isContentPath()` 不匹配无扩展名路径,
+   25 个页面里 20 个永远不可能产生 `ev='bot'` 行——「爬虫只碰入口页」的读数
+   是测量假象。**读 D1 结论前先问:这个口径能看见我要下结论的那部分吗?**
+4. **「诊断」不等于诊断,猜测不许打印成结论**(2026-08-31,定时任务重做时发现)。
+   `tds-traffic` 的 D1 快照导出步骤把 stderr 送进 `/dev/null`,失败时打印
+   「d1 snapshot skipped (no D1 access on token)」——那句话是**猜的**,没有任何证据
+   支持,而真正的错误被丢弃了。结果:2026-08-19→08-30 连续 12 天全绿、
+   `content/d1-snapshot.json` **一次都没落过库**,而它是无 MCP 的定时会话读到真实
+   读者数字的唯一通路。已改为直连 D1 REST API(database id 来自 wrangler.toml)、
+   打印真实 API 错误(长串一律 sed 打码)、失败与「0 行」两种情况都发 `::warning::`。
+   **规矩:任何 catch 分支不许写没验证过的原因;`2>/dev/null` 在 CI 里等于自愿失明。**
+
+
+## 结构化数据诚实闸门(同日,不可删除)
+
+站内铁律「LD 文本必须与页面可见文本一致」被自己连破两轮(round 8 的 16 条 FAQ、
+round 10 的 18 条 DefinedTerm 全是只存在于 JSON-LD 的影子内容)。现在
+`scripts/check-structured-data.mjs` 是**阻断闸门**,比较口径:实体解码 + NBSP/
+弯引号/破折号归一 + 去标签 + **去全部空白**后做子串判定(松于表现、严于文字——
+早期严格版本会误伤合规页面,而一个误报的闸门必然被关掉,闸门被关掉正是影子内容
+混进来的原因)。**教训:CLAUDE.md 里写下的规则若没有可执行检查,它只是愿望。**
+
+## 机器面纪律(GEO)
+
+- llms-full.txt:①保留链接 URL(否则「具名有源」在 AI 唯一整读的文件里变成无源
+  散文)②剥离 `hidden` 子树(checker 三个互斥判定同时在 DOM 里,会被当成本站结论
+  引用)③页头事实**从 .well-known/mcp.json 与 data/ 计算**,禁止手写(手写的
+  「3 tools / EN then DE」在 4 工具 4 语言之后还在每次部署重新发布错误事实)
+  ④**联盟 tag 不进 llms-full**,与 MCP 同一条规矩。
+- **发现通路**:每页 head 挂 `<link rel="alternate" type="text/plain">` 指两个
+  llms 文件,robots.txt 具名列出全部五个机器面——D1 实测 OAI-SearchBot 读了三次
+  robots.txt 就走,而当时站内没有任何一处指向 llms.txt。
+- CSS 组件规则会压过 UA 的 `[hidden]`;`[hidden]{display:none!important}` 必须
+  排在组件规则之前(`.card{display:block}` 曾让 /lookup 的筛选完全失效)。
+
+## 2026-09-04 晚:流量诊断 + 相关性修复(owner「重点优化 tds 站,一直没有什么流量」;prompt 三轮收敛)
+
+**先把「没流量」量化(D1,08-30→09-04,剔 /__ci)**:ev='' 123 行,其中 **100 行是 RU**(08-30 一天
+70 行扫遍 22 个路径、08-31 21 行扫遍 8 个新 /odds/ 路径,与 YandexBot 同日扫站重合)——是能跑 JS 的
+爬虫,不是读者。**非 RU 真人 pv = 6 天 23 次,全部落在 `/`**,内容页/de/zh/th 为 0;搜索/助手引荐 0
+(唯一 1 次 duckduckgo)。爬虫倒是都来了:Googlebot 38 路径、GPTBot 42 路径(09-01 整站扫 + llms-full
++ 每个 data/*.json 各 2 次)、Bingbot 13、OAI-SearchBot 19、Yandex 40。**边缘层每天仍有 100–150 次
+404/410 = 旧成人站 URL 还在被请求**。判定线 (b)(c) 已提前达成;(d)(e) d1-snapshot 仍缺(owner 侧 token)。
+
+**根因排序(不许归因于内容的规则照旧,以下是机制与相关性,不是文案)**:①站龄 5 天 + 收录延迟(主因,
+只有 GSC/Bing WMT 能看)②零权威零分发(暂存包里 tds 一条都没进过)③域名历史(不可测,预登记)
+④**页面没写出实体**:17 个 EN H1 里 15 个不含 "Labubu",12 个 /odds/ 的 title 与 H1 全部不含——
+搜「labubu secret odds」的人看到的是「One box — the real secret odds」;⑤旗舰词「how to tell if
+labubu is fake」的多源标准答案是**刮码 + fwsy.popmart.com 验证 + UV 灯**,本站只写了「QR 到 popmart.com」。
+
+**本轮做的(全部沙箱可做、规则内)**:
+1. H1/title/description 相关性一轮(EN + /de/ + /odds/ 生成器):每页 H1 含 "Labubu" + 查询名词,
+   原有腔调句降为副标;description ≤160。/odds/ 只改 `scripts/gen-odds-pages.mjs` 后重生成,
+   `data/pull-math.json` 字节不变。
+2. `/fake-check`(EN/DE)第 4 项补**刮码→扫码→fwsy.popmart.com→输码**流程与「无效/未找到/已验证
+   = 警示」,第 5 项补 **UV 反应标记(2024+ 版本,右脚底)**;三处同文(H2 段、Quick answers、
+   JSON-LD)逐字一致,结构化数据门通过;`data/labubu-fake-signals.json`(MCP + llms-full 的唯一事实源)
+   与 `/checker` 题面同步。信源:Pop Mart 官方帮助页(只具名,沙箱抓不到不复述)+ Feltify + Izoate;
+   UV:GamesRadar+ + Double Boxed(多源一致才落页)。**不写序列号格式(单源)**。
+3. 内链:`/` 与 `/rarity`(EN/DE)加「Secret odds by box count」带,/odds/* 从 2 条入链起步。
+4. 分发:`docs/distribution-staging/2026-W36.md` 第一条 tds 素材(**无链接无 tag** 的真回答,
+   owner 手发)。
+5. **60 天线的一处口径补记**:「affiliate_click ≥1」在 08-30 当天被单次点击技术性满足,
+   **不改预登记文本**,但 10-29 结算以 pv 与引荐两条为准,这一条不再单独援引。
+
+**owner 侧(沙箱做不了,按杠杆排)**:GSC Page indexing + Security/Manual actions + 对 `/`
+`/fake-check` `/rarity` `/odds/twelve-boxes-full-case` `/where-to-buy` 请求编入索引(~5 分钟,
+是①③两个主因唯一的诊断口);Bing WMT URL 检查(~3 分钟);Cloudflare token 加 Account·D1·Read
+(~1 分钟,否则每 2 天的 Routine 看不见 D1);把 W36 那条素材手发一次。
+
+## 判定线(预登记,防事后两头解释)
+
+- **搜索引擎清理期**:本域有 6 周 18+ 历史(RTA 头、adult meta、成人语义)。
+  已全部移除并重推 IndexNow,但 SafeSearch 分类残留多久无法预测——**诚实
+  记录,不许把早期零流量归因于内容**。基线:2026-08-30 起 D1 周报。
+- **60 天线(2026-10-29)**:D1 28 天窗真人 pv ≥ 旧站基线(~6/天)× 3,或
+  affiliate_click ≥ 1,或 search/assistant 引荐 ≥ 5 → 转向初步成立,继续投入;
+  全部未达 → 把「域名历史包袱」假设升级为主因,报 owner 议新域名。
+- 旧站教训延续:任何漏斗事件读数前先剔 CI;insert-only injector 禁止;
+  判定线一律带日期与查询口径。

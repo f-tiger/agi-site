@@ -33,6 +33,12 @@ const ALLOWED_EVENTS = new Set([
   'pred_expand', 'readnext_click', 'analysis_click', 'advertise_click', 'sponsor_click',
   'exposure_score',
   'retake_test', 'badge_copy',
+  // Amazon Associates book links have existed on /who-is-leopold-aschenbrenner since
+  // launch and fire gtag('event','affiliate_click'), but the name was never allowlisted,
+  // so every click was dropped here and only GA4 could have seen it. That made the
+  // pre-registered 10-31 books line ('site-wide book_* < 5 -> close Associates')
+  // impossible to resolve honestly: a zero could mean nobody clicked OR nothing recorded.
+  'affiliate_click',
   // 站内搜索(2026-08-08):label=搜索词(截 80 字符)。site_search=需求信号,
   // search_no_result=产品缺口——每日运行读这两个驱动选题,是搜索存在的主要意义。
   'site_search', 'search_no_result', 'search_click',
@@ -169,7 +175,7 @@ export default {
             protocolVersion: (rpc.params && rpc.params.protocolVersion) || '2025-06-18',
             capabilities: { tools: {} },
             serverInfo: { name: 'agiscorecard', version: '0.1.0' },
-            instructions: 'The AGI Scorecard evidence layer: auditable verdicts on the 8 Situational Awareness predictions, the 0-100 AGI-2027 Thesis Tracker, and full-site search. All data CC BY 4.0 — cite agiscorecard.com.',
+            instructions: 'The AGI Scorecard evidence layer: auditable verdicts on the 8 Situational Awareness predictions, the 0-100 AGI-2027 Thesis Tracker, the AI Gold Rush claim ledger (Claim Ledger Protocol v0.1), and full-site search. All data CC BY 4.0 — cite agiscorecard.com.',
           });
         }
         if (rpc.method === 'notifications/initialized' || (rpc.method || '').startsWith('notifications/')) {
@@ -186,6 +192,12 @@ export default {
               inputSchema: { type: 'object', properties: {} } },
             { name: 'get_sunwatch_track_record',
               description: 'The SunWatch market-call ledger (invest.agiscorecard.com): every AI-cycle market judgment logged as a falsifiable trigger BEFORE the outcome, graded hit/miss with misses never deleted. Returns scored count, hit rate and each call with date, verdict, survival odds and English summary. Covers memory/storage, optical, robotics, space, energy and crypto cycles across US/HK/China A-share markets.',
+              inputSchema: { type: 'object', properties: {} } },
+            { name: 'get_claim_ledger',
+              description: 'Read a Claim Ledger Protocol v0.1 ledger — AI-era money-making claims graded with an evidence tier (verified/reported/self-reported), a dated verdict, and a written flip condition. With no arguments returns the reference ledger (goldrush.agiscorecard.com); pass url to read and validate any site\'s /claimledger.json. Spec: goldrush.agiscorecard.com/protocol',
+              inputSchema: { type: 'object', properties: { url: { type: 'string', description: 'Optional: an https URL ending in /claimledger.json to read another site\'s ledger. Omit for the reference ledger.' } } } },
+            { name: 'get_invest_positions',
+              description: 'The Invest dataset: how the eight graded Situational Awareness predictions map onto 17 listed AI equities, how eight well-known investors are positioned per their public SEC 13F filings, and what copying them would have returned priced on the FILING DATE (not quarter end, which no real person could have traded). Educational only — never investment advice.',
               inputSchema: { type: 'object', properties: {} } },
             { name: 'search_site',
               description: 'Search every page and tool on agiscorecard.com and its invest/compass sub-sites (English and Chinese). Returns titles, descriptions and URLs.',
@@ -217,6 +229,46 @@ export default {
             ).bind(Date.now(), new Date().toISOString().slice(0, 10), 'site_search', 'mcp', 'tool:sunwatch_ledger', '/mcp', 'bot')
               .run().catch(function () {}));
             return mcpText(id, ledger);
+          }
+          if (tool === 'get_claim_ledger') {
+            // The MCP-side consumer of the Claim Ledger Protocol. URL is constrained
+            // to the protocol's well-known filename so this cannot be used as an
+            // open proxy; body is size-capped before parsing.
+            let u = 'https://goldrush.agiscorecard.com/claimledger.json?ci=1'; // fetchlog.json exclusion (c): our own MCP self-fetch must not count as adoption — the goldrush worker drops ?ci=1
+            if (args.url) {
+              let cand;
+              try { cand = new URL(String(args.url)); } catch (e) { return mcpText(id, { error: 'invalid url' }); }
+              if (cand.protocol !== 'https:' || !cand.pathname.endsWith('/claimledger.json')) {
+                return mcpText(id, { error: 'url must be https and end in /claimledger.json (Claim Ledger Protocol well-known location)' });
+              }
+              u = cand.toString();
+            }
+            const r = await fetch(u, { signal: AbortSignal.timeout(8000) });
+            if (!r.ok) return mcpText(id, { error: 'ledger upstream returned ' + r.status, url: u });
+            const raw = await r.text();
+            if (raw.length > 300000) return mcpText(id, { error: 'ledger too large (>300KB)', url: u });
+            let d;
+            try { d = JSON.parse(raw); } catch (e) { return mcpText(id, { error: 'ledger is not valid JSON', url: u }); }
+            const entries = Array.isArray(d.entries) ? d.entries : [];
+            const req = ['claim', 'tier', 'verdict', 'asOf', 'flip', 'source'];
+            const invalid = entries.filter(function (e) { return req.some(function (k) { return !e || !e[k]; }); }).length;
+            ctx.waitUntil(env.EVENTS.prepare(
+              "INSERT INTO events (ts, day, name, location, label, path, ua_class) VALUES (?,?,?,?,?,?,?)"
+            ).bind(Date.now(), new Date().toISOString().slice(0, 10), 'site_search', 'mcp', ('tool:claim_ledger ' + u).slice(0, 48), '/mcp', 'bot')
+              .run().catch(function () {}));
+            return mcpText(id, {
+              name: d.name || u, url: u, dateModified: d.dateModified || null, license: d.license || null,
+              protocol: 'Claim Ledger Protocol v0.1 — https://goldrush.agiscorecard.com/protocol',
+              validation: { entryCount: entries.length, invalidEntries: invalid, note: invalid ? 'entries missing required fields are flagged, per protocol admission rules' : 'all entries carry the five required fields' },
+              entries: entries.slice(0, 50),
+            });
+          }
+          if (tool === 'get_invest_positions') {
+            const d = await asset('/invest-data.json');
+            ctx.waitUntil(env.EVENTS.prepare(
+              "INSERT INTO events (ts, day, name, location, label, path, ua_class) VALUES (?,?,?,?,?,?,?)"
+            ).bind(Date.now(), new Date().toISOString().slice(0, 10), 'site_search', 'mcp', 'tool:invest_positions', '/mcp', 'bot').run().catch(function () { }));
+            return mcpText(id, d);
           }
           if (tool === 'search_site') {
             const q = String(args.query || '').toLowerCase().trim();
@@ -267,10 +319,10 @@ export default {
           .filter(function (r) { return r.h >= 5 && r.h >= 2 * Math.max(1, r.prev); })
           .slice(0, 5);
         return new Response(JSON.stringify({
-          searches: searches.results || [], zeroResults: zero.results || [], risingPages: rising,
+          ok: true, searches: searches.results || [], zeroResults: zero.results || [], risingPages: rising,
         }), { headers: { 'content-type': 'application/json', 'cache-control': 'public, max-age=1800', 'access-control-allow-origin': '*' } });
       } catch (e) {
-        return new Response(JSON.stringify({ searches: [], zeroResults: [], risingPages: [] }),
+        return new Response(JSON.stringify({ ok: false, searches: [], zeroResults: [], risingPages: [] }),
           { headers: { 'content-type': 'application/json' } });
       }
     }
@@ -458,12 +510,26 @@ export default {
         try { pageQuery = new URLSearchParams(String(body.u || '')); } catch (e) {}
         const [src, med, camp] = utmFrom(pageQuery);
 
+        // Internal-navigation instrument (2026-08-31). The beacon has always sent the
+        // full referrer, but it was reduced to a host before storage, so "which page
+        // sent this reader to that page" was unanswerable — and a real reader clicking
+        // an internal link looked identical to a crawler walking the nav. For
+        // page_view only, and ONLY when the referrer is same-origin, the referrer's
+        // PATH is kept in the otherwise-unused label column. Cross-origin referrers
+        // keep host-only treatment exactly as before: we never store a stranger's URL.
+        let label = clean(body.b, 48);
+        if (name === 'page_view' && !label) {
+          try {
+            const r = new URL(String(body.r || ''), url.origin);
+            if (r.hostname === url.hostname) label = clean('from:' + r.pathname, 48);
+          } catch (e) { /* no referrer, or unparseable — leave label null */ }
+        }
         const stmt = env.EVENTS.prepare(
           'INSERT INTO events (ts, day, name, location, label, path, ref_host, country, lang, ua_class,' +
           ' utm_source, utm_medium, utm_campaign) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)'
         ).bind(
           now, new Date(now).toISOString().slice(0, 10), name,
-          clean(body.l, 48), clean(body.b, 48), clean(body.p, 120),
+          clean(body.l, 48), label, clean(body.p, 120),
           refHost(body.r), (request.headers.get('cf-ipcountry') || '').slice(0, 2) || null,
           clean(body.g, 12), uaClass(request.headers.get('user-agent')),
           src, med, camp
@@ -610,7 +676,7 @@ export default {
       // them server-side so the 60-day adoption line has real numbers, and mark them
       // noindex — the HTML page stays the canonical and the citation surface. Both
       // steps are wrapped so they can never break serving.
-      if (request.method === 'GET' && res.status === 200 && url.pathname.endsWith('.md')) {
+      if (request.method === 'GET' && (res.status === 200 || res.status === 304) && url.pathname.endsWith('.md')) {
         try { recordView(env, ctx, request, url); } catch (e) {}
         try {
           const h = new Headers(res.headers);
@@ -618,10 +684,20 @@ export default {
           return new Response(res.body, { status: res.status, headers: h });
         } catch (e) {}
       }
+      // Share cards and badges are immutable per deploy and hot-linked from other
+      // sites: give them a week of edge/browser cache instead of the assets default.
+      // Wrapped like everything else here — a header failure must never break serving.
+      if (res.status === 200 && /^\/(share|badge)\//.test(url.pathname)) {
+        try {
+          const h = new Headers(res.headers);
+          h.set('cache-control', 'public, max-age=604800');
+          return new Response(res.body, { status: res.status, headers: h });
+        } catch (e) {}
+      }
       return res;
     }
 
-    if (request.method === 'GET' && res.status === 200) {
+    if (request.method === 'GET' && (res.status === 200 || res.status === 304)) {
       try { recordView(env, ctx, request, url); } catch (e) {}
     }
 

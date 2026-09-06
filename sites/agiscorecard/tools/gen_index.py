@@ -13,6 +13,8 @@ and regenerates /progress-index.html. Honest by construction: a documented mean
 of verdict weights, never invented precision.
 """
 import json, os, sys, collections
+import re as _re
+import datetime as _dt
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATE = sys.argv[1] if len(sys.argv) > 1 else "2026-07-12"
@@ -179,8 +181,10 @@ html = g.build(
     h1="AGI-2027 Thesis Tracker: one score for the whole bet",
     capsule=capsule, body_html=body, faqs=faqs, related=related,
 )
-DATE_LONG = "July 12, 2026"
-html = html.replace("Last updated: June 30, 2026", f"Last updated: {DATE_LONG}")
+# Derived from the run date, never hardcoded: a literal here froze the visible
+# "Last updated" at 2026-07-12 for two months while dateModified moved on.
+DATE_LONG = _dt.date.fromisoformat(DATE).strftime("%B %-d, %Y")
+html = _re.sub(r"Last updated: [A-Z][a-z]+ \d{1,2}, \d{4}", f"Last updated: {DATE_LONG}", html)
 html = html.replace('"datePublished": "2026-06-30", "dateModified": "2026-06-30"',
                     f'"datePublished": "2026-07-12", "dateModified": "{DATE}"')
 html = html.replace(

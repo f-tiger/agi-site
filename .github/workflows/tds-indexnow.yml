@@ -1,11 +1,16 @@
-name: tds IndexNow push (weekly delta)
+name: tds IndexNow push (weekly full-sitemap safety net)
 
 # 非 Google 发现通道(2026-08-25,owner:「有没有其他办法,你突破思考执行」)。
 # tds 的三条结构性封锁(SafeSearch/AI 拒答/域龄)全部最重地压在 Google 上;
 # IndexNow 背后的 Bing/Yandex/Naver/Seznam 恰是封锁最弱的一侧——Yandex 已是本站
 # 最勤爬虫(34 次/28d),Naver 对应韩国进口页受众。key 文件自建站起就在站根,
 # 只差推送机制。外部副作用挂 schedule 不挂 push(舰队 CI 纪律第 3 条);
-# 每周一次 delta(只推 lastmod 8 天内的 URL),礼貌且协议正确。
+# ⚠️ 2026-08-30 修正:原来每周跑 delta(只推 lastmod 8 天内的 URL)。本站
+# sitemap 的 lastmod 是静态写死的 2026-08-30,所以 09-08 之后 delta 永远筛出 0 条,
+# 而脚本把空结果打印成「正常的安静结果」——一个会自我伪装的永久 no-op。
+# 现在的分工:**变更驱动的推送走部署链**(scripts/indexnow.mjs,每次 deploy 跑,
+# 31 个 URL 含机器面);**本周更任务改为 MODE=all 的兜底**——27 条 URL/周对
+# IndexNow 是可忽略的量,却能保证「部署链万一再坏」时发现通道不会静默归零。
 # 成本:~0.2 分/周 ≈ 1 分/月(公开仓免费)。首次全量注册用 workflow_dispatch MODE=all。
 on:
   schedule:
@@ -13,10 +18,10 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: 'delta (default) or all (one-time full registration)'
+        description: 'all (default, weekly safety net) or delta (lastmod window)'
         type: choice
-        options: [delta, all]
-        default: delta
+        options: [all, delta]
+        default: all
 
 permissions:
   contents: read
@@ -35,7 +40,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with: { node-version: 22 }
-      - name: Submit changed URLs to IndexNow (Bing/Yandex/Naver/Seznam)
+      - name: Submit the full sitemap to IndexNow (Bing/Yandex/Naver/Seznam)
         env:
-          MODE: ${{ inputs.mode || 'delta' }}
+          MODE: ${{ inputs.mode || 'all' }}
         run: node scripts/indexnow-push.mjs

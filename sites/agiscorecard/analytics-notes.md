@@ -1027,3 +1027,206 @@ GROUP BY name;
 
 **ship**:PRD P1 `/is-nvidia-overvalued`(详 OPT-LOG)。新增埋点从今天起可观察:
 `index_click{nvda_live}`、`tool_click{opinion_nvda[_brk]}`、`subscribe_click{deep_nvda}`。
+
+
+## 2026-08-30 日结 — 两项预登记裁决 + P4 上线 + 两次防误报
+
+**裁决①(08-16 预登记,今日到期):`index_click{*_live}` = 0/14 天** —— 三个高引用页
+的首屏活数字钩子上线两周零点击。**判定:引用→点击不经过活数字钩子,该通道是纯品牌
+资产。** 执行(按 08-29 转化架构令预写动作):既有页不再以"换点击"为目的加装活数字;
+站规六件套第⑥条**保留**(活数字的价值在引用差异化,即"聊天答案装不下的东西",这一半
+从未被证伪)。已装的活数字全部保留(引用侧继续工作),只撤"钩子能转化"这个宣称。
+
+**防误报①**:`site_search{mcp}` 2 次 sunwatch_ledger 调用经查全部为 08-18 已知信誉
+扫描器(133ms 间隔、bot、canary 同批)——**首个真实 agent 调用里程碑仍未发生**,
+四条件判据第三次拦住假里程碑。get_claim_ledger 昨日上线后暂无调用。
+
+**防误报②**:goldrush 首日 41 次"human" pageview —— 全部无 referrer、散布 8 国、
+发生在零宣布状态,判为**新子域证书进 CT 日志后的扫描器蜂群**(08-08 教训翻版)。
+真实互动仅 1 次 fork_click。不计增长,记上界。
+
+**28d 漏斗(去污)**:sub_ok 2(09-30 线 2/5)· opinion 钩家族基数不变(新铺 8 页
++ sunwatch_result + post_vote 首日均 0,一天无结论)· vote_cast 14 · rev_click ≈ 0。
+
+**ship**:PRD **P4 `/zh/does-copying-13f-work`**(中文侧主线,离 ¥199 买家画像最近的
+一页):zh Swiss 浅色系、忠实翻译 P2、zh_deep_page CTA、漏斗指 compass zh 计算器 +
+/zh/ai-stock-exposure(`invest_tool_click{zh_copy13f_record|exposure}`)、双向 hreflang、
+硬同步台账同 commit 扩为**六处**。P4 止损线(预登记):上线 +60 天 28d JS pv <5 →
+停止 zh invest 扩面。
+
+## 2026-08-31（周一，每日运行 + 四站记分板）
+
+**⚠ 赔率首次「实测位移」——市场 Yes 一周内 7.5% → 18.0%（+10.5 点，2.4 倍），证据侧纹丝不动。**
+两端均为机器核实带 ISO 时间戳、同一 market slug（`openai-announces-it-has-achieved-agi-before-2027`）：
+08-24 04:12:59 UTC Yes 7.5% / 成交额 $95,951 → 08-31 04:18:24 UTC Yes **18.0%** / $103,282（+7.6%，市场未关闭）。
+同期 Thesis Tracker 保持 **62.5/100**，八条判定无一变化。这是本系列**第一次两端都可测**的对比
+（08-08 那次是手抄无时间戳，08-24 因此只记「指示性」不发刊）。已发 **Issue #2**，并如实写明限度：
+一周一个点、约 $10 万成交额的单一市场偏薄、驱动原因未知且不编造；若下次回吐，回吐照样进复查表。
+
+**四条件判据第 4 次拦截 —— 差点把自己的调研 agent 报成「首个 agent MCP 调用」里程碑。**
+`site_search{location='mcp'}` 三条（`tool:sunwatch_ledger`、`tool:claim_ledger https://goldrush.agiscorecard.`、
+`mcp`），2026-08-30 20:40:39 UTC。过判据即死：①UA 全 bot 类 ②三次调用间隔 **430 毫秒**、
+扫过三个不同工具 ③落在本会话 23-agent 调研工作流窗口内。与 08-18 那次（scanner canary，133ms）同型。
+连带堵掉一个测量陷阱：同一时刻 goldrush D1 记到 1 次 `/claimledger.json` 抓取（无 UA、无 referrer）
+= **我们自己的 MCP 工具抓自己的文件**；若不排除，昨天刚发布的 `/fetchlog.json` 会在上线第一天
+把"外部采纳"计成 1。已当日加排除项 c。
+
+**转化漏斗（28d，JS 口径，剔除 compass_popup 与 /en/）**：page_view 921 · subscribe_click 4 ·
+sub_open 3 → sub_submit 2 → sub_ok **2** · invest_tool_click 9 · tool_click 18 · vote_cast 14。
+**rev_click 家族 ~13 / 921 pv = 1.4%**。sub_* 全族最后一次均为 08-19，已 12 天零。
+
+**周一深审计：09-30 判定线的仪器可信度（结论：仪器无故障，可放心裁决）。**
+先排除"仪器坏了"再谈"假设死了"：服务端真值 `subscribers` 表 = 2 行（footer_cta 08-14、
+post_scorecard 08-19，均 `status='stored'`，无 beehiiv key 时为正常态），与 JS 口径 `sub_ok`=2
+**精确吻合**。两条独立通道一致 → 不是表单坏了，是真没人订。09-30「sub_ok 累计 <5 判死
+订阅→Boosts 假设」将按真实行为裁决，当前 **2/5**。
+
+**四站记分板（28d）**
+| 站 | 真人 PV | 离钱最近的事件 | 转化率 | 备注 |
+|---|---|---|---|---|
+| agi | 921 (JS) | rev_click 家族 ~13 | 1.4% | sub_ok 2，自 08-19 无新增 |
+| bpj | 2779 (ev='') | `go` 33 | 1.2% | sub_view 125 → sub_submit 1；api 1471 |
+| eco | 850 | `affiliate_click` 106 | **12.5%** | mcp_call 353 / md_serve 564（含 CI，勿当增长）|
+| tds | 182 | `affiliate_click` 1 | 0.5% | D1 刚接通，样本太小 |
+**本周结论**：eco 的离钱转化率是其余三站的 **9–25 倍**，机制是把付费面放在"答案时刻"而非页尾。
+agi 已于 08-29 按同一诊断改过一轮，判定日 11-15，**本周不加码**（防翻炒），只记录差距仍在。
+
+**游戏层**：gridlings 今日 play_start **0** / solve **0**；28 天 70 / 14；
+**itch 累计 42 / 13，与上次读数完全持平**（09-24 判定线 150 / 25）。itch 侧零增长已持续多日，
+按预登记纪律不救不加码，到日裁决。
+
+**⓪+ 引用放大队列：两项均被自身前置条件挡住，本周不动工（是"被挡"不是"清空"）。**
+`eu-ai-act-de` 需英文版先过 28 天线 → 英文版 28 天 **1** 次 JS 浏览、TOP10 门槛 **12**，未过。
+`datacenter-grid-cost-tracker` 需 09 月上旬 Bing 明细 → 窗口 09-01~03 才开。按规则不塞猜的选题。
+
+**计划任务**：`agi-odds.yml` / `agi-indexnow.yml`（周一 03:25 / 03:17 UTC）到 04:17 UTC 仍未自动触发
+（08-24 那次也迟到，04:08 / 04:12）。证据只支持"延迟"，不足以断言故障，故**不改配置**；本次用
+workflow_dispatch 手动取到今天的读数（公开仓分钟免费，且为数据读取非外部副作用）。下周一若同样
+迟到再查。**操作失误自记**：本轮曾用 `git reset --hard` 同步，抹掉四份未提交改动并重做——
+有未提交改动时禁用 reset --hard。
+
+
+## 2026-08-31 追加：转化重做 + 内部跳转深度分析（owner 两问）
+
+**先纠我自己一个读数错误**：本页早些时候写的内部跳转数字用了 `COUNT(*)`，但 `pageviews`
+是聚合表、真实次数在 `hits` 列。正确口径（28 天，服务端 human，剔 /en/）：
+**无来源 18,639 · 站内跳转 1,358 · 外部来源 502**。
+
+**"用户留不住"——数据不支持，但也不能证实，因为仪器坏了。**
+带 referrer 的请求几乎必然是真实浏览器（爬虫一般不发 Referer），据此带来源的浏览约 1,860 次，
+其中 **73% 是站内跳转**——表面看人是在站内走动的。但落点清单
+（/ 77、ai-stock-exposure 46+15、two-year-scorecard 42、agi-test 40+28、**/search 39**、
+invest 17+12、future-bet 17+12、ai-tools 14+12、advertise 13）**几乎就是本站导航 + 目录块本身**，
+而"真实读者点导航"和"爬虫顺着导航爬"会产生完全一样的形状。**铁证**：`/search` 有 39 次内部
+到达，真实 `site_search` 事件却是 **0**（那 5 条全是 MCP 调用）。
+
+**根因（已修）**：`pageviews` 只存 `ref_host` 不存来源路径；`events` 存的也是 `ref_host`——
+信标其实一直在发完整 `document.referrer`，是 worker 落库时调 `refHost()` 主动把路径丢了。
+**所以"A 页→B 页"从来没有被记录过。** 今日改为：`page_view` 且 referrer 同源时，把来源
+**路径**存进 label（`from:/xxx`），跨域来源仍只留 host（绝不存陌生人的 URL）。
+JS 口径 = 爬虫排除在外，**下一轮起可以真正回答内部跳转问题**。
+
+**转化诊断：钱路全都装在没人到达的地方。**
+- 书籍联盟（唯一适配"信息意图"的钱路）只挂在 `/who-is-leopold-aschenbrenner`——**终身 6 次浏览**；
+  且 **`affiliate_click` 根本不在 D1 白名单**，点了也不记录。10-31 那条"全站 book_* <5 关
+  Associates"因此是**双重不可结算**：页面没人看 + 事件不记录。两处今日都已修。
+- SunWatch Pro ¥199（全站唯一带真实价格的链接）：**60 天 0 次点击**。9 次 `invest_tool_click`
+  全是导航（nav 4 / nav_compass 3 / cn_more 1 / starthere_compass 1），没有一次是付费面。
+- exposure 工具：16 次使用**全部集中在 08-11 一天**，此后 20 天零使用。
+- 意见钩子 `tool_click{opinion_*}`：60 天共 5 次（09-26 判定线需 ≥8）。
+
+**赢家形态已经被数据指出来了**：全站点击率最高的内部 CTA 是首页 `readnext_click`
+**28 天 13 次的纯文字块**，高于所有设计过的横幅（opinion_* 60 天合计 5 次）。
+因此本轮不再加第四块横幅，而是按 readnext 形态把书路装到 `/when-will-agi-arrive`
+（154 次 JS 确认浏览，全站第二）——两个免费原文排在前面且明说不赚钱，三本书标注联盟披露。
+
+**变现算术（诚实交底，别再画饼）**：按当前 921 次 JS 浏览/28 天 ≈ 每天 33 人——
+书籍联盟即使 5% 点击率、10% 下单率、$20 书 4% 佣金 ≈ **$1/月**；SunWatch Pro 需约 5 倍流量
+才有 1 单/月；订阅→Boosts 早已被算术判死（实测 1 订阅/368pv，可行线需 ~37 万 pv/28d）。
+**结论：在 33 人/天这个量级上，没有任何转化机制能产生有意义的收入——瓶颈是流量不是报价。**
+本轮的价值不在于"提高转化率"，而在于把每条钱路变成**可测量、判定线可结算**的状态，
+这样流量真的来的那天答案已经现成。
+
+## 2026-09-01（每日运行，月初）
+
+**昨日新装的仪器已确认工作。** JS 口径内部跳转配对首次产出：20 次，**来源 100% 是首页 `/`**，
+深页向外递送 **0**。落点：`/will-agi-arrive-2027` 4（首页 readnext 第二条）、`/` 4（锚点/重载）、
+其余 13 页各 1（about、what-is-agi、elon-musk、widget、zh/ai-job-risk-check…）。
+**样本 <24h、n=20，不下结论**——但方向已能看出「不是留不住，而是只有首页在循环」。
+读法已固化进 analytics-setup.md，09-14 正式读。
+
+**转化层**：28 天 JS 浏览 **1,004**（昨 921）；`sub_ok` 仍 **2**、`subscribe_click` 4，
+两者最后一次都停在 08-19（13 天零）。`affiliate_click`（昨日入白名单）与
+`calc_use{grade_game}`（昨日上线）目前 **均为 0**——上线仅约 14 小时，判定日分别是 10-31 与
+09-28，**不提前解读**。`slidein_show` 79 次仍 0 点击。
+
+**游戏层**：gridlings 今日 **play_start 8 / solve 1**（久违非零日）；28 天 **78 / 15**；
+**itch 累计 42 / 13 持平**——今天这 8 次不是 itch 来的，**itch 通道仍是死的**。
+09-24 判定线 150/25，剩 23 天需 +108 starts，按当前 itch 速率不可能达成；**但到日再裁，不提前**。
+
+**⓪+ 引用队列**：两项仍被自身前置条件挡住（英文 eu-ai-act 28 天浏览未过线；capex 引用趋势
+需 Bing 明细）。**今日起进入取数窗口（09-01~03），已在报告里向 owner 索取。**
+
+**本轮不改任何页面**：昨日一天已动 agi 三处（转化仪器 / 阅读钱路 / 首页游戏）并承诺静置，
+三条判定线都需要真实数据说话。按站规「没有信号就不硬凑」，今日只做监控 + 读法固化。
+
+## 2026-09-04（合并后的首条舰队日报）
+
+| 口径 | 28 天 | 7 天 |
+|---|---|---|
+| page_view（JS 真人） | 1042 | 262（≈37.4/日） |
+| vote_cast | 26 | 12 |
+| subscribe_click | 6 | 2 |
+| sub_open / sub_submit / sub_ok | 4 / 2 / **2** | 1 / 0 / 0 |
+| tool_click | 17 | **0** |
+| exposure_score | 16 | **0** |
+| affiliate_click（全站） | **0**（14 天口径亦为 0） | 0 |
+
+- **落地页第一名首次不是首页**：`/when-will-agi-arrive` 44 > `/` 28（7 天）。同页
+  `readnext_click` / `affiliate_click` 均为 0 —— 站内最大入口一个人也不往下送。
+  该页在 5-run 防翻炒窗口内，**本轮不动**；10-31 books 判定线按期结算。
+- **affiliate 埋点已实测在线**（Cloudflare 部署代码含 `affiliate_click` 白名单，
+  页面 onclick 三处齐全）→ 这个 0 是真需求信号，不是仪器故障。
+- **invest 工具近 7 天完全静默**（tool_click 0、exposure_score 0），
+  11-15 的 invest 判定线届时按 PRD §五 三条阈值结算。
+- **游戏层（gridlings，human 口径，28 天）**：play_start 269、solve 123、hint_used 166、
+  play_again 118；**itch 口径 play_start 42 / solve 13**，09-24 阈值 150/25 —— 仍差得远。
+  当日 0（查询时间 04:00 UTC，当日几乎未开始，非异常）。
+- **sourceradar（buysomething）**：7 天 page_view **5**，无 rising 信号 → 本轮不动工，
+  这正是它并入本条日报的原因。
+- **第①层 heartbeat**（09-04 04:00 UTC 首跑，19 秒 SUCCESS）：八站全 200；
+  gridlings 已 6 天未部署（阈值 7，明日会自动重发）。
+
+
+## 2026-09-05（周六舰队日报）
+
+- **agi 7 天真人 pv 299（≈42.7/日，环比 +14%）**；漏斗仍冷：subscribe_click 2、sub_open 1、
+  sub_ok 本周 0（累计 2，09-30 阈值 5）；vote_cast 13。
+- 昨夜另一会话（Fable 5.1）上线「客户视角簇」14 文件（/ai-and-your-job 等），当日读数
+  尚无意义，判定线以其 PRD（docs/agi-customer-lens-2026-09.md）为准；本 run 不叠加 ship
+  （防翻炒）。validate OK：228 页 / 210 URL。
+- **游戏层**：gridlings 28d play_start 276 / solve 123；itch 口径 43/13（09-24 阈值 150/25）。
+- **sourceradar**：28d pv 54，无信号，不动。
+- **第①层**：heartbeat 09-04 12:24 快照八站全 200；**gridlings 达到 7 天线被自动重发**
+  ——heartbeat 的自动兜底第一次真实触发，14:37 部署绿。
+- **第②层故障与处置**：换模后前两条新会话 run 卡死于 SSH 克隆权限提示
+  （详见 docs/fleet-automation-map.md §八）；已补跑 paid-monthly 并归档僵尸会话。
+
+## 2026-09-06（周日舰队日报，本会话被 owner 占用于 gridlings 美术，监控由子代理直读 D1）
+
+- **agi 7 天真人 pv 333（≈47.6/日，环比 +11%）**，28d 1087。漏斗仍冷：subscribe_click 2、
+  sub_open 1（09-03 /ai-2027-scenario-explained，未提交）、**sub_ok 已 18 天零**（累计 2，
+  09-30 阈值 5）。invest_tool_click 7d 1，无 sunwatch/tg_watch 点击。
+- 7d 外部来源（human hits）：google 73 · bing 16 · duckduckgo 13 · claude.ai 3 ·
+  forum.effectivealtruism.org 3 · chatgpt.com 2。**09-05 出现 D1 上线以来首次真人 site_search**
+  （US，EA 论坛引荐，label 为空——home_suggest 跳 /search 未带词），非里程碑，记一笔。
+  `site_search{mcp}` 7d 0 条，首个真实 agent 调用仍未发生。
+- **游戏层**：gridlings 28d play_start 291 / solve 124；7d 221 / 110（towers 09-01~03 三天
+  集中爆发后回落到个位数）；**itch 口径 43/13，7d 仅 +1/+0**，09-24 阈值 150/25 按当前速率
+  不会过线，到日再裁。**prompt / mimic / overseer / minima 在 D1 中 0 行**（尚未上 CG，仅挂
+  hub），overfit 6/0。
+- **sourceradar**：28d pv 66（human 50），7d human 9，其余事件全站累计 0，不动。
+- **第①层**：heartbeat 09-05 11:31Z 八站全 200，days_since_deploy 全 0。
+- **本日 ship（gridlings，见 OPT-LOG）**：OVERSEER 深度美术（无眼睛的一套新插画语言）、
+  五款商店视频改逐帧截图（根治 CG 预览模糊）、海报标语与字标重叠修复。agi 站内容零改动
+  （周日 + 客户视角簇判定期内）。

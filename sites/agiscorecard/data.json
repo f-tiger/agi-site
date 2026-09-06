@@ -4,7 +4,7 @@
   "url": "https://agiscorecard.com/",
   "dataUrl": "https://agiscorecard.com/data.json",
   "license": "CC BY 4.0 — reuse freely with attribution and a link to https://agiscorecard.com",
-  "dateModified": "2026-08-17",
+  "dateModified": "2026-09-06",
   "summary": {
     "on_track": 3,
     "wrong": 1,
@@ -252,7 +252,7 @@
     "name": "AGI-2027 Thesis Tracker",
     "score": 62.5,
     "of": 100,
-    "asOf": "2026-08-08",
+    "asOf": "2026-09-06",
     "method": "Mean of the 8 verdict weights (supportive=1, unresolved/open/pending=0.5, refuted=0) x100. An editorial composite of the published verdicts, not a probability.",
     "historyUrl": "https://agiscorecard.com/index-history.json",
     "pageUrl": "https://agiscorecard.com/progress-index"

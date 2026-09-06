@@ -74,19 +74,86 @@ jobs:
       # filters to what exists and warns about what does not.
 
       # First-party D1 snapshot (2026-08-19): aggregates from dollscout-events
-      # written back to the repo, so sessions without the Cloudflare MCP can
-      # read real reader/bot/click numbers straight from git — same pattern as
-      # baipiaoji's traffic-snapshot. Skips silently if the token lacks D1.
+      # written back to the repo. This file is the ONLY path the growth loop has
+      # to real reader/bot/click numbers — its scheduled sessions run without
+      # Cloudflare MCP, so if this step does not commit, the loop is blind.
+      #
+      # ⚠️ 2026-08-31: this step had never once succeeded. It shelled out to
+      # `wrangler d1 execute`, sent stderr to /dev/null, and printed the guess
+      # "no D1 access on token" as if it were a diagnosis — twelve days of green
+      # runs, no snapshot ever committed, and no way to see why. Textbook case of
+      # the站内 rule 「『正常的安静结果』是自我伪装」. Now: the D1 REST API direct
+      # (no npx, no wrangler config coupling, database id from wrangler.toml),
+      # the real API error printed, and a ::warning:: that reaches the run summary.
+      # First-party D1 snapshot (2026-08-19): aggregates from dollscout-events
+      # written back to the repo. This file is the ONLY path the growth loop has
+      # to real reader/bot/click numbers — its scheduled sessions run without
+      # Cloudflare MCP, so if this step does not commit, the loop is blind.
+      #
+      # ⚠️ 2026-08-31 两轮修正:①原来 shell 出去跑 wrangler、把 stderr 送进 /dev/null,
+      # 失败时把猜测「no D1 access on token」当诊断打印 —— 十二天全绿、一次都没落库。
+      # ②改直连 REST API 之后仍然只试了 CLOUDFLARE_API_TOKEN 一个凭据,而本仓有三个
+      # token secret;owner 指出这一点后改为逐个试(cf-analytics.mjs 早有此纪律)。
       - name: Export D1 analytics snapshot
         continue-on-error: true
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_API_TOKEN_ZONE: ${{ secrets.CLOUDFLARE_API_TOKEN_ZONE }}
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          D1_DATABASE_ID: 6e71ddc6-b58c-49f4-b6f5-207f3778133f
         run: |
-          npx wrangler@4 d1 execute dollscout-events --remote --json --command \
-            "SELECT d, ev, path, ref, country, COUNT(*) AS n FROM hits WHERE d >= date('now','-14 days') AND path NOT LIKE '/__ci%' GROUP BY d, ev, path, ref, country ORDER BY d DESC, n DESC LIMIT 500" \
-            > content/d1-snapshot.json 2>/dev/null \
-            && echo "d1 snapshot exported" || { echo "d1 snapshot skipped (no D1 access on token)"; rm -f content/d1-snapshot.json; }
+          set +e
+          SQL="SELECT d, ev, path, ref, country, COUNT(*) AS n FROM hits WHERE d >= date('now','-14 days') AND path NOT LIKE '/__ci%' GROUP BY d, ev, path, ref, country ORDER BY d DESC, n DESC LIMIT 500"
+          BODY=$(jq -n --arg sql "$SQL" '{sql:$sql}')
+          # 舰队纪律(承 scripts/cf-analytics.mjs 的教训):**每个 token secret 都试一遍**,
+          # 不预设哪个「应该」有权限。历史事故:owner 轮换了另一个 token,重跑却拿到
+          # 字节相同的旧错误 —— 看起来像「权限还没生效」,其实是那个 token 压根没被读过。
+          # 按值去重(同一个 token 挂两个名字只算一个凭据),并打出是哪个 env var 生效。
+          seen=""; winner=""; rows=""
+          for name in CLOUDFLARE_API_TOKEN_ZONE CLOUDFLARE_API_TOKEN CF_API_TOKEN; do
+            tok="${!name}"
+            if [ -z "$tok" ]; then echo "  $name: 未设置"; continue; fi
+            case " $seen " in *" $tok "*) echo "  $name: 与前一个同值,跳过"; continue;; esac
+            seen="$seen $tok"
+            # 账号 ID 按**当前这个 token**反查,而不是所有 token 共用同一个 secret——
+            # 万一某个 token 属于另一个账号,共用会造出「它没权限」的假阴性。反查不到才退回 secret。
+            # jq -r 对 null 打印的是字符串 "null" 而不是空串 —— 直接判 -z 会让
+            # 「反查不到就退回 secret」永不触发,请求打到 /accounts/null/ 拿一个 404,
+            # 于是这个 token 看起来「试过了」其实压根没被真正测过。必须显式滤掉 "null"。
+            acct=$(curl -sS -H "Authorization: Bearer $tok" \
+              "https://api.cloudflare.com/client/v4/accounts" 2>/dev/null \
+              | jq -r 'try (.result[0].id // empty) catch empty')
+            [ "$acct" = "null" ] && acct=""
+            [ -z "$acct" ] && acct="${CLOUDFLARE_ACCOUNT_ID}"
+            if [ -z "$acct" ]; then echo "  $name: 连账号列表都读不到"; continue; fi
+            code=$(curl -sS -o d1-response.json -w '%{http_code}' \
+              -X POST "https://api.cloudflare.com/client/v4/accounts/${acct}/d1/database/${D1_DATABASE_ID}/query" \
+              -H "Authorization: Bearer $tok" -H "Content-Type: application/json" \
+              --data "$BODY" 2>d1-curl.err)
+            ok=$(jq -r 'try .success catch "false"' d1-response.json 2>/dev/null)
+            if [ "$code" = "200" ] && [ "$ok" = "true" ]; then
+              winner="$name"
+              rows=$(jq -r 'try (.result[0].results | length) catch 0' d1-response.json)
+              break
+            fi
+            if [ -s d1-response.json ]; then
+              echo "  $name: HTTP $code — $(jq -rc 'try ([.errors[]?| "\(.code) \(.message)"] | join("; ")) catch "unparseable"' d1-response.json 2>/dev/null | sed -E 's/[A-Za-z0-9_-]{30,}/***/g')"
+            else
+              echo "  $name: HTTP $code — 没有响应体 ($(sed -E 's/[A-Za-z0-9_-]{30,}/***/g' d1-curl.err | tail -1))"
+            fi
+          done
+          if [ -n "$winner" ]; then
+            mv d1-response.json content/d1-snapshot.json
+            echo "d1 snapshot exported via $winner: $rows aggregate rows"
+            if [ "$rows" = "0" ]; then
+              echo "::warning::d1 snapshot 是空的(14 天窗 0 行)——查询跑通了但什么都没记到。先查信标,别读成「没有流量」。"
+            fi
+          else
+            echo "::warning::d1 snapshot FAILED —— 上面列出的每一个 token 都试过了,没有一个能读 D1。增长循环这一轮读不到任何第一方数字。若所有 token 都报 7403,就是都缺 Account · D1 · Read。"
+            git checkout -- content/d1-snapshot.json 2>/dev/null || true
+          fi
+          rm -f d1-response.json d1-curl.err
 
       - name: Commit the day's numbers
         run: |

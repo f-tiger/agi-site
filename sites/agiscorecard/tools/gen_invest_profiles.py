@@ -1,6 +1,14 @@
 # -*- coding: utf-8 -*-
 """Generate /invest/<slug> investor profile pages for the Invest section.
 
+!! STALE AS OF 2026-09-04 — DO NOT RUN WITHOUT UPDATING PROFILES FIRST !!
+The two live pages were hand-updated to the Q2 2026 13F (holdings 2026-06-30,
+filed 2026-08-14). The PROFILES data below is still Q1 2026, so running this
+file ROLLS BOTH PAGES BACK A QUARTER — titles, meta, FAQ and JSON-LD included.
+It also writes on import, so `from gen_invest_profiles import PROFILES` is
+destructive; tools/gen_invest_data.py deliberately parses the live HTML instead.
+The Q3 fix: update PROFILES from the filing, run this, diff before committing.
+
 Data is migrated verbatim from the merged aistock dataset, which sources every
 position from public SEC 13F filings and named reporting — each page carries its
 `asOf` date and links its primary sources. Nothing here is estimated or invented:

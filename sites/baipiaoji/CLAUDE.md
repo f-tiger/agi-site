@@ -209,6 +209,25 @@ growth-log（研究与内容线，补齐原库缺口）+ frontend-design / web-d
 responsive-design（建站设计，来自 agiscorecard 已验证的设计锚点体系）。执行营销 / SEO /
 GEO / 设计类任务前，先查技能库是否覆盖，覆盖则按其框架执行。
 
+## 2026-09-04 舰队技术优化（管线维护，冻结令允许的范围；详见根仓 docs/fleet-optimization-2026-09-04.md）
+
+- **guard-regression.mjs 自并舰以来一直在静默跳过**：`git show HEAD:data/tools.json` 在
+  monorepo 里解析不到（路径相对仓根），脚本打印「无法读取上一版本，跳过」并 exit 0。
+  已改 `HEAD:./data/tools.json`，且该步现在进了「Gate on chain self-tests」——它第一次
+  真正能拦部署。
+- **verify-dist 的坏链门此前只看 70,421 条链接里的 4 条**（build 输出绝对 URL，门只认
+  `/` 开头）。现 href+src 都查、同站绝对 URL 归一化、`?` 与 `/api/*` 排除；顺手修掉
+  5 条真死链（旅行页只有中文却挂「English」、404 页语言切换、`${BASE}/tokenizer.js`
+  与 `llms-full.txt` 被套上 /en/ 前缀）。
+- **关注/订阅漏斗脚本外置为 `/bpj.js`**：此前 18.8 KB 内联块逐字重复在 1,545 页
+  （整站 HTML 字节的 42%）。首次部署后 page-lastmod 会把全站标成「当天变更」，
+  IndexNow 那一轮会推全量一次——**这是一次性的，不是「每天说一遍全都变了」**。
+- 新增 `assets/_headers` → dist：数据文件加 CORS（MCP 早已 ACAO:*，它指向的文件此前没有）
+  + 静态资源缓存；hit.js 未知事件名改为丢弃（此前写成 `ev=''` = 真人 pv 桶）；
+  /api/limits 的 hits.path 不再带原始查询串（无界基数），404 分支也计数。
+- 部署链：信标自测能失败了（断言 204）、退订断言 `code:done`、dispatch/中间件自测纳入
+  run-everything 汇总门、首个 commit 步补 `pull --rebase`。
+
 ## 冻结令（2026-08-17 红队决议，解冻条件明确）
 
 依据：本仓自己 08-16 的结论「上游发现层不通，问题页做多少都是空转」（Bing 只索引

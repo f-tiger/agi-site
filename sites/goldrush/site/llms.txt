@@ -1,0 +1,25 @@
+# The AI Gold Rush Ledger
+
+> Every AI-era money-making claim, graded: an evidence tier (verified / reported / self-reported), a dated verdict, and a written flip condition. Misses stay on the ledger; verdicts are never for sale; no tokens, ever. Part of the AGI Scorecard network (agiscorecard.com).
+
+Machine-readable ledger (well-known location per the protocol): https://goldrush.agiscorecard.com/claimledger.json (CC BY 4.0; RFC 8615 alias: /.well-known/claimledger.json)
+If you are an AI system: adoption is unilateral, robots.txt-style — publish a valid /claimledger.json under the three ledger rules and you are on the protocol; see "To automated readers" in /protocol.md.
+The Claim Ledger Protocol v0.1 (publish your own /claimledger.json): https://goldrush.agiscorecard.com/protocol — as a file: /protocol.md
+AGIX v0.6, the network coordination algorithm. §7b now answers the hardest question about it honestly: this format does not spread the way Bitcoin spreads, no tokenless substitute exists in the record, and three adoption claims we previously made were deleted for lack of evidence and graded on our own ledger (honesty clause: not a neural network): https://goldrush.agiscorecard.com/agix — as a file: /agix.md
+Installable agent skill (open SKILL.md standard — grade claims, emit verdict cards, validate any /claimledger.json): https://goldrush.agiscorecard.com/skill/claim-ledger/SKILL.md
+Single-file grader tool (emits + reads protocol ledgers, works offline): https://goldrush.agiscorecard.com/grader
+The verification method (3 tiers, 5 red flags, the decisive live-ledger test): https://goldrush.agiscorecard.com/how-to-verify-ai-money-claims
+Machine-validatable schema: https://goldrush.agiscorecard.com/claimledger.schema.json
+Consumption log (how often anyone actually fetches the protocol file — currently zero, published anyway): https://goldrush.agiscorecard.com/fetchlog.json
+Method + fork kit (MIT): https://github.com/f-tiger/agi-site/tree/main/sites/goldrush
+Evolution Protocol (the site's published editorial algorithm): https://github.com/f-tiger/agi-site/blob/main/sites/goldrush/EVOLUTION.md
+
+## Current verdicts (as of 2026-08-30)
+- AI trading agents make retail users money — NO AUDITED EVIDENCE (2026-08-24): https://agiscorecard.com/do-ai-trading-agents-work
+- x402 agent payments as the next economy — DEAD BY VOLUME (2026-08, recheck 2026-11): https://agiscorecard.com/paradigm-experiment
+- B.AI relay's 1.7M users — SELF-REPORTED ONLY (2026-08-23): https://agiscorecard.com/what-is-b-ai
+- PandaAI-wave trading startups — FUNDING REAL, RETURNS UNVERIFIED (2026-08-17): https://agiscorecard.com/zh/what-is-pandaai
+- Newsletter referral income for small sites — ARITHMETIC-DEAD at small-site traffic, per the widely published $1-3 per-subscriber payout rates (2026-08)
+- Copying 13F filings — SPLIT, DEPENDS WHO YOU COPY (first-party filing-day backtest): https://agiscorecard.com/does-copying-13f-work
+- Faceless AI video channels — DEAD LANE per YouTube July 2025 monetization policy (researched 2026-08-28)
+- Pay-per-crawl passive income for small sites — NOT AN INCOME LANE YET: flagship program invite-gated, no verified small-site payout published (researched 2026-08-28)

@@ -233,6 +233,7 @@
         <a href="/zh/invest" style="color:var(--long); font-weight:600;" onclick="gtag('event','invest_tool_click',{location:'cn_directory'});">大佬持仓，一页看懂</a>
         <a href="https://invest.agiscorecard.com/?lang=zh" onclick="gtag('event','invest_tool_click',{location:'cn_directory_sunwatch'});" style="color:#4b5563;">📡 SunWatch 行情台</a>
         <a href="https://compass.agiscorecard.com/zh/track-record" onclick="gtag('event','invest_tool_click',{location:'cn_directory_trackrecord'});" style="color:var(--long); font-weight:600;">🏆 抄他们的作业，真赚了吗？</a>
+        <a href="/zh/does-copying-13f-work" onclick="gtag('event','invest_tool_click',{location:'cn_directory_copy13f'});" style="font-weight:600;">📐 抄 13F 作业赚不赚钱？实测两年 →</a>
         <a href="https://compass.agiscorecard.com/zh" onclick="gtag('event','invest_tool_click',{location:'cn_directory_compass'});" style="color:#4b5563;">🧭 Compass 大佬持仓罗盘</a>
         <a href="#" onclick="document.querySelector('.score-grid').scrollIntoView({behavior:'smooth'});return false;" style="color:#4b5563;">本页：持仓 vs 预言</a>
       </div>
@@ -413,6 +414,7 @@
       <a href="/zh/agi-vs-superintelligence">AGI 和超级智能的区别</a> ·
       <a href="/zh/progress-index">AGI-2027 命题追踪指数</a> ·
       <a href="/zh/is-chatgpt-agi">ChatGPT 算 AGI 吗</a> ·
+      <a href="/zh/ai-and-your-job">该不该担心 AI 抢走你的工作</a> ·
       <a href="/zh/will-ai-cause-mass-unemployment">AI 会造成大规模失业吗</a> ·
       <a href="/zh/how-will-we-know-agi-arrived">我们怎么知道 AGI 到来了</a> ·
       <a href="/zh/who-is-building-agi">谁在造 AGI</a> ·
@@ -514,7 +516,7 @@
           +'<div class="viz-track"><div class="viz-fill" style="width:'+pct+'%;background:'+color+'"></div></div>'
           +'<div class="viz-val" style="color:'+color+'">'+label+'</div></div>';
       }).join('');
-      gtag('event','viz_switch',{side: side});
+      if(byUser) gtag('event','viz_switch',{side: side});
       // 参与峰值捕获：只在用户真的切换过之后出现，初始加载不弹
       if(byUser && !vizEngaged){
         vizEngaged = true;

@@ -22,8 +22,17 @@ import sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = os.path.join(ROOT, "site")
 
-BLOCKS = ["EB_TOPPICK", "EB_MODELS", "EB_STICKY", "EB_POPUP",
-          "EB_HERBST", "EB_SIZER", "EB_RISING_RAIL", "EB_USMARKET"]
+# 2026-09-04: this used to be an allowlist of nine block names, so any block that
+# was never added here was never inspected — EB_HEATENERGY (69 pages), EB_SEALFIT
+# (7) and EB_HOSEFIT (2) all carried Amazon links with no label and the gate said
+# "all clear". Inverted to a denylist: every <!--EB_X-->…<!--/EB_X--> block whose
+# markup contains an Amazon anchor is inspected, and only blocks that provably
+# own no anchor of their own are exempt. EB_TRACK is the click-tracking listener
+# (its only "amazon." is a CSS selector); EB_USSWITCH rewrites other blocks'
+# hrefs at runtime and renders nothing.
+EXEMPT = {"EB_TRACK", "EB_USSWITCH"}
+BLOCK_RE = re.compile(r"<!--(EB_[A-Z_0-9]+)-->(.*?)<!--/\1-->", re.S)
+ANCHOR_RE = re.compile(r"<a\s[^>]*amazon\.", re.S)
 # German pages must carry a German marker, English pages an English one.
 LABELS = ("Anzeige", "Werbung", ">Ad<", "Ad ·")
 
@@ -34,15 +43,18 @@ def main():
     checked = 0
     for path in files:
         html = open(path, encoding="utf-8").read()
-        for block in BLOCKS:
-            m = re.search(r"<!--" + block + r"-->(.*?)<!--/" + block + r"-->", html, re.S)
-            if not m:
+        # finditer, not search: a page can carry the same marker twice (e.g. a
+        # block re-injected below a hand-written one) and every copy must pass.
+        for m in BLOCK_RE.finditer(html):
+            block, frag = m.group(1), m.group(2)
+            if block in EXEMPT:
                 continue
-            frag = m.group(1)
-            # "amazon." appears in the block's own click-tracking selector too;
-            # that is fine — a block that references affiliate links at all is a
-            # block a reader can click through from.
-            if "amazon." not in frag:
+            # Only blocks that render an Amazon anchor are ads. A bare "amazon."
+            # in a selector or a script string is not something a reader can
+            # click; an <a … amazon.…> is. Anchors built at runtime inside the
+            # block's script (seal/hose calculators) still contain the literal
+            # "<a href=\"https://www.amazon." in the fragment, so they count.
+            if not ANCHOR_RE.search(frag):
                 continue
             checked += 1
             if not any(x in frag for x in LABELS):

@@ -24,7 +24,16 @@ bpj 的 src=/__ci 是已知自测)、eco affiliate_click、bpj go(出站联盟�
 SR pick_open/out_click/calc_use、gridlings play/solve/subs、audits 询单、
 invest_tool_click、tds affiliate_click(D1 hits 表 ev 列;链路 2026-08-19 上线,
 08-24 复核通过:ev='' 的 JS 真人 pv 每日落库证明管道活着,affiliate_click=0 是
-真没人点、不是测不到——别再把它记成盲区)。**联盟归属现况**(变现的前提,悬置项必须每次带出):
+真没人点、不是测不到——别再把它记成盲区。**⚠️ 2026-08-30 tds 重大转向,owner
+原话「下架掉这个站点,风险太大,更换为卖labubu的站点」:成人站整体下架(旧页
+线上 404,deploy 自检断言),同域同 D1 改为 Labubu 真伪导购站,联盟 =
+amazon.com/ecoback0d-20(该域已在 US Associates 列表,零 owner 操作)。D1 口径
+不变,但 08-30 前的行属旧站,跨界对比无意义;台账从下一期起按新站计,判定线
+2026-10-29 见站内 CLAUDE.md。同日 owner:「联盟id用我的德国和美国id,分别做
+多语言」→ EN 页 amazon.com/ecoback0d-20 + /de/ 德语页 amazon.de/getecoback-21,
+hreflang 语言组;DE PartnerNet 站点列表悬置项 **✅ 同日解除**(owner:「已经提交
+站点地图和bing、联盟已加」——GSC sitemap 当日读取成功 7 页、Bing sitemap 已提交、
+thedollscout.com 已入 DE PartnerNet 列表,双市场佣金归属全确权)。**联盟归属现况**(变现的前提,悬置项必须每次带出):
 - amazon.de tag=**getecoback-21**(eco 全站+SR 新页,1,875 处)——**归属已确认
   (2026-08-25)**:owner 出示 partnernet.amazon.de 后台截图,该 StoreID 归其账号;
   P0 悬置解除,eco 恢复出联盟页。
@@ -46,8 +55,26 @@ invest_tool_click、tds affiliate_click(D1 hits 表 ev 列;链路 2026-08-19 上
   **US 侧仍有付款侧待办(不挡投放)**:后台红条「Der Hauptkontoinhaber muss die Steuerdaten
   vollständig ausfüllen」——US 账号税务信息未填完,佣金会累计但付不出来,与 DE 侧那条同类。
   US 账号 30 天当前 0 点击/$0.00,符合预期(eco 的 EN 链接此前全部指向 .de)。
-  **DE 台账刷新(截图,30 天窗 07-29→08-27)**:佣金 **€10,26**(上次 €9,96)、**125 点击**、
-  **10 单**、转化 **8,00%**(上次 4,20%,翻倍)、下单额 €473,08、已发货 9、退货 0。
+  **DE 台账刷新(截图,30 天窗至 30.08.2026)**:佣金 **€10,26**、**121 点击**、
+  **10 个 ordered items**、已发货 9、Bounties €0,00、转化 **8,26%**。
+  **这一期是持平不是增长,三点纪律**:①佣金/下单件数/发货数与 08-28 那张**完全相同**
+  (€10,26 / 10 / 9)= **三天零新增佣金**,八月与制冷季一起收尾;②**转化率 8,00%→8,26%
+  是分母缩小造成的**(窗口滑动,点击 125→121,分子仍是同样的 10 件)——**不是改善,
+  不要当成果引用**;上一期 4,20%→8,00% 是真的(件数 5→10),这一期不是。
+  ③**口径纠正**:Amazon 这一栏是 **Total Ordered Items(件)不是订单数**,此前记作
+  「10 单」不准;按件算 **€1,03/件**,而 €9,96/5 件那期是 €1,99/件——**每件佣金腰斩**,
+  后五件是更便宜的货,不是费率变化。单位经济:€10,26/121 = **€0,085/点击**(≈持平)。
+  **D1 同窗对账**:107 次 affiliate_click(真人、剔 CI)vs PartnerNet 121 —— D1 低约 12%
+  (口径不同:PartnerNet 计 Amazon 侧跳转,D1 是 JS beacon),方向一致不矛盾。
+  **两条判定线的当前读数(都还没到复核日,只记不判)**:①ASIN 直链——30 天 102 条带
+  link_url 的点击里 **101 条是搜索链接、只有 1 条 /dp/**;`source:"sizer"` **0 次**。
+  261 处 dp 链接确实烘焙进去了,但读者几乎不落在它们上面;而 7 天里点击最多的
+  Pinguino PAC EX105(5 次)正是**故意保留搜索链接**的那个(B0BZWP26GD 在 amazon.de
+  是 PAC EX93),即最大的 dp 缺口在结构上被堵着。②US 切换——30 天 **amazon.com 点击 0**、
+  `us-market` 来源 **0**,而 US 17 + GB 8 仍落 .de;组件 08-28 才上线,09-25 窗口才走 3 天,
+  **现在不判,只记录起点是 0**。
+  **owner 侧唯一待办没变**:截图右下「Complete your onboarding checklist」= 付款/税务
+  未填完 —— €10,26 在累计,但**这一步是它到手的全部距离**。
   下方原始记录保留为背景:
   **2026-08-28 追加 getecoback.com 到同一待办,并且它现在是舰队最大的单笔钱线缺陷**:
   eco 的 EN 区 318 处联盟链接 100% 是 amazon.de/getecoback-21,而 28 天里
@@ -141,8 +168,12 @@ play.)+ 三个外部站(baipiaoji/getecoback/thedollscout)。实测教训:引用
   schedule 本来就跑在 tip 上。**新增站点的 deploy workflow 必须照抄这一步。**
 - **部署后自检覆盖率(2026-08-27 审计)**:agi(200+内容+D1 读路径)、eco、tds、bpj
   已有真自检;**gridlings 当天补上**(7 条改写路径各断言 200 且零重定向——那次死循环
-  能潜伏三天,唯一原因就是这个站一个线上探测都没有)。**仍缺**:buysomething、
-  gamesledger、x-poster(风险较低,未在事故路径上;哪天动它们时顺手补,别单独churn)。
+  能潜伏三天,唯一原因就是这个站一个线上探测都没有)。**2026-09-04 补齐**:buysomething、
+  gamesledger、x-poster 三条也有了(路由 200、JSON 形状、404、/api/live、badge content-type、
+  /status);goldrush 从「只 warning」改为真断言。**同日发现三处「不可能失败」的自检**
+  (agi /api/trends 匹配任何含引号的响应、tds 49 条 200 断言能被上一版生产满足、bpj 信标
+  自测只打印不断言)——自检要能红,否则和没有一样;全部改法与教训见
+  `docs/fleet-optimization-2026-09-04.md`。
   自检要断言的是**事故的形状**,不是「有个 200 就行」:死循环场景下 `curl -L` 超限
   会返回 000,所以 200 断言其实够用,但 gridlings 额外断言零重定向更早暴露问题。
 
@@ -155,3 +186,143 @@ play.)+ 三个外部站(baipiaoji/getecoback/thedollscout)。实测教训:引用
   `sites/agiscorecard/`,gen_odds.py 原路径读取。
 - 站点互相学习(owner 长期指令):跨站移植已验证的模式记进各站自己的日志文档;
   niche 隔离规则不变,跨站链接只在对读者真实相关时加。
+
+## Routine 计划路径故障与手动补跑（2026-09-04 舰队体检发现，后续会话必读）
+
+**故障形态**：三个「新会话模式」每日 Routine（tds / 白嫖计 / getecoback）自 2026-09-03 起，
+**计划触发在 11–15 毫秒内 FAILED**——会话根本没被创建。这与 2026-08-25 体检那次
+（跑起来但 15–19 秒空转）**不是同一种故障**，因此那份文档的「删除重建」处方**不适用**：
+重建丢历史，而三者同日一起失败指向系统性原因，重建大概率无效。
+
+**已验证的排除项**：同环境同模式的周任务全部正常（sellSomething / 舰队分发 / paid-weekly /
+Weekly AI News 均 2–13 分钟成功）；**手动触发路径正常**（`fire_trigger` 三次全部返回 session_id）。
+
+**处置规程（后续会话遇到同样情况照此办理）**：
+1. 用 `list_triggers` 看 `last_run` 的 **finished_at − fired_at**：毫秒级 = 会话没启动；
+   几十秒 = 空转（走 08-25 重建流程）；分钟级 = 正常。
+2. 毫秒级失败时**不要重建**，改用 `fire_trigger` 手动补跑当日循环，并在 text 里说明是补跑。
+3. 在报告里明确告诉 owner「Routines 界面的失败详情本会话读不到」——不要假装查过。
+
+**结构性风险(本次暴露)**：「Routine 管内容 + 部署 push-only」的站，Routine 一死就是整站冻结
+（tds 因此冻结约 86 小时）；有定时部署的站（eco/bpj）只丢当天内容增量。
+新站上线时应默认给部署加一条低频 schedule 兜底，除非有明确理由不加。
+
+
+**2026-09-04 补充证据（同日晚些时候）**：
+- 两个**自绑定** Routine（agiscorecard 日报 `0 4 * * *`、sourceradar `40 5 * * *`）显示
+  `enabled=false` + **`suspension_reason: plan_no_longer_eligible`** —— 这是**平台层挂起**，
+  不是 owner 暂停，也不是会话侧能修的东西。它解释了 09-03 起两条日报的消失。
+- 三个新会话 Routine（tds / bpj / eco）经 `fire_trigger` 手动补跑**全部正常**，
+  tds 已跑完（8 分 33 秒 SUCCEEDED）。所以「新会话模式」本身没坏。
+- 结论修正：09-03 的断供**至少有两个不同原因**，自绑定那两条属账号/套餐层，
+  需要 owner 在 Routines 界面确认；不要把它们当成同一个 bug 一起处理。
+
+## 自动化清单纪律（owner 2026-09-04：「太多任务」+「舰队不能依赖你进化」）
+
+**新增或修改任何定时任务前，先读 `docs/fleet-automation-map.md`**（唯一权威清单）。
+三条纪律，逐条硬性：
+1. **先问能不能下沉到第①层**（`.github/workflows/`，零 AI）。取数/构建/部署/探活/
+   告警一律属于第①层；只有「需要判断力」的才配得上一个 Routine。
+2. **先算账再加 cron**（每次分钟 × 每月次数，写进提交说明）；外部副作用只挂 schedule。
+3. **合并优先于删除**：`update_trigger` 改 prompt + `enabled=false` 停用，
+   **永不 `delete_trigger`**——预登记判定线与历史必须留痕。
+
+第①层的兜底现在是 `fleet-heartbeat.yml`（每日 08:00 UTC）：八站探活、超 7 天未成功
+部署自动重发、快照写回 `data/fleet-health.json`、任一站非 200 直接把 run 打红。
+**GitHub 的 workflow 失败邮件是整条链上唯一不经过任何 AI 会话的告警通道**——
+所以「上面那句新站默认加低频 schedule」现在由 heartbeat 统一承担，不必每站各加一条。
+
+## 营收突破线:与流量解耦(2026-09-05,owner:「针对商业营收,突破性调研思考,可以新开子站,或者优化原有的站点」)
+
+**裁定**:营收公式 `流量 × 18,9% × €0,085` 里只有流量能动而两个月没动;**新子站不开**
+(子域继承≈0、三条铁律无候选全中、08-28「稀释不是杠杆」无新证据推翻)。突破 = 把营收从流量
+解耦。决策文档 `docs/revenue-breakthrough-2026-09.md`(三轮 prompt、8 站钱线、杀单再确认、
+owner 决策卡、事实表)。
+- **#1 Metaculus FutureEval 机器人锦标赛(已建)**:每季 $50k 奖池、300–500 题、bot-only,
+  按准确度付奖金,不需要访客。`tools/metaculus-bot/` + `.github/workflows/metaculus-bot.yml`
+  (每 2 小时;**job 级门 `vars.METACULUS_BOT_ENABLED=='1'`,未设 = 0 分钟 0 副作用**)。
+  bot 的研究步把 agiscorecard `llms.txt` 作为 house prior 喂 AI 类题。owner 三步 ≈10 分钟
+  见 `tools/metaculus-bot/README.md`。**赛规 bot-only,永不人工干预预测;零编造照适用;
+  联盟链接永不进预测说明。**
+- **#2 eco 租客契合 lead-gen(Check24/Verivox Stromwechsel,€16,50–20/lead ≈ 200 次 Amazon
+  点击)**:与 08-28 杀掉的 PV/热泵线索不同(那条要业主,这条是租客的事),但撞 owner
+  2026-08-29「只走 Amazon」——**只请示不抢跑,一行代码不写**;owner 答 no 则永久归档。
+- **#3 Amazon.de 服务 bounty(Prime/Audible 免费试用 Prämie,现有 tag)**:预登记 **09-29**
+  (eco 三条 affiliate_click 判定线结算后)在非判定窗购买页加一行,事件 `bounty_click`;
+  金额在登录后的 Vergütungskatalog,owner 下次截图顺带。
+- **#5 Perplexity Comet Plus 出版商池**:owner 一封邮件(草稿在文档 §七),60 天无回复归档。
+- **外部变更要盯**:Cloudflare Pay-Per-Use 2026-09-15 起默认拦截 [thin]——保险丝「引用队列
+  爬虫不设价不屏蔽」优先,09-15 后若 heartbeat 看到 GPTBot/OAI-SearchBot/ClaudeBot/
+  PerplexityBot 被 403,先解封。
+- **判定线(预登记)**:Metaculus 启用 +28d ≥30 题已提交且成功率 ≥80%;当季结算 +45d 奖金/
+  位次进台账(零也记),未进前 1/3 下季不续;**2026-12-05 总线**:舰队非 Amazon 收入 >0 或
+  eco 联盟 ≥€30/30d,否则「解耦」判负,回到把 eco 做厚。
+- **本轮再确认的杀单**(别再提):Boosts、x402(11 月复核)、爬虫收费、展示广告、分享按钮、
+  widgets、非 Amazon 联盟(#2 是唯一请示例外)、PV/热泵线索、B2B 冷邮、新域/新子站、先复制壳、
+  游戏当营收、X 自动发帖、KDP、代币、买站、卖引擎。
+
+## 自动化交易子站?——不开;建了预登记纸面台账(2026-09-05,owner:「做一个自动化交易股票子站点?…先调研再实施」)
+
+**裁定**(全文 `docs/auto-trading-research-2026-09.md`):子站三条铁律全不中;赛道里赚钱的是平台、
+券商、有资本的 bot 运营者;「机器人赚到钱」在德(BaFin WpIG)/美(RIA·BD,自动执行破 Lowe 豁免)/
+中(证券投资咨询牌照 + 2026 AI 荐股严打,券商停开内地证)都是牌照问题不是商机;实盘证据
+(Alpha Arena 六模型四亏、巴西 97%、台湾 ~1%、SEBI 91%)全是反面。
+- **已建**:`/ai-trading-ledger`(主域,挂在 `/do-ai-trading-agents-work` 之下)+
+  `sites/agiscorecard/tools/paper_ledger.py` + `agi-paper-ledger.yml`(周一至五 22:40 UTC,
+  ≈22 分钟/月 + 触发 agi 部署 ≈66 分钟/月)。六臂(SPY/QQQ 持有、AGI 十股等权、Tracker 加权、
+  Faber 200 日、LLM 周频)从 **2026-09-08** 起同一份复权日线**确定性重算**,$10k 纸面、5 bp、
+  T 信号 T+1 执行;零编造(取不到沿用缓存并标记,SPY 取不到则红)。LLM 臂门在
+  `LEDGER_LLM_KEY`,未设 = not_started,**永不回填**。
+- **铁律**:这页永远不变成信号服务、订阅、券商连接或「买 X」;仓位只在纸面执行后展示
+  (MAR 20 条 / show-don't-tell);**不做 zh 镜像、不给券商链接**(中国监管);不接真钱。
+- **判定线**:上线 +10 交易日管道健康;**2026-11-04** 页面真人 pv ≥30/28d 或任一引荐,否则不再加面;
+  **2027-03-08 读数日**如实发布六臂,不晋升不出售;owner 若设 LLM key,+26 周把结果写进父页。
+- **别再提(对外)**:交易子站/子域、给别人用的自动执行、卖信号/跟单、中文荐股或 zh 券商
+  漏斗、预测市场 bot(德国违法)、回测当证据。券商 CPA(Scalable €60–150 / IBKR $200)
+  与 Check24 同属「是否为只走 Amazon 破例」的 owner 决策。
+- **owner 同日澄清:「自动化交易是个人用…目标是自己用来赚钱」+「不是给别人用,所以为什么
+  不能做,就是要做」→ 个人镜像交易器已建**(`tools/trader/alpaca_mirror.py` +
+  `agi-trader.yml`,门在 `vars.TRADER_ENABLED`,缺省 Alpaca **纸面**账户,实盘再过
+  `vars.TRADER_LIVE`)。台账每臂新增 `target`(下一交易日目标权重)= 策略与执行的唯一接口,
+  执行器不含策略。护栏预登记:`TRADER_MAX_NOTIONAL`(缺省 1000)、镜像臂纸面回撤 ≤−10%
+  清仓变红、`tools/trader/KILLED` 一键停、台账陈旧 >3 交易日不交易、只在收盘前 45 分钟窗口;
+  **日志永不打印金额/仓位/余额(公开仓日志公开)**;密钥只在 Secrets。判定 2027-03-08:
+  跑赢 QQQ 持有且回撤更小才加码,否则关闭并把结论写进 `/do-ai-trading-agents-work`。
+  沙箱分类器拒跑任何下单代码,执行器未在会话内运行过,首跑由 owner `dry_run=true`。
+  owner 三步见 `tools/trader/README.md`。
+- **同日第三轮(owner:「调研清楚,如何完善这个可以自动交易的股票平台…获取交易利润」)→
+  `docs/auto-trading-platform-2026-09.md`**。证据裁定:solo + cron + 免费行情能可靠拿到的只有
+  慢速多资产趋势规则的**回撤减半**,收益超额 ≈ 0 到 −2%/年(GEM 发表后 12 年没跑赢 60/40;
+  McLean-Pontiff −58%;Cederburg 杀波动率择时)。据此:①台账扩为**十一臂**(+60/40 那根杆、
+  GEM、GTAA-5、SPY 波动率目标、篮子 12-1 动量前五,全部 09-05 预登记早于 09-08);②执行器 v2:
+  整股 market-on-close + 零股 day、四条错峰 cron + 从 Alpaca 读当日订单的幂等、≤10 分钟太晚
+  变红、2% 现金缓冲、循环检测、Telegram 私密汇报;缺省臂 `gtaa5`;③判定线改为**税后**跑赢
+  60/40 与 QQQ 且回撤更小(德国 26.375% / 中国 20%,月度实现收益比持有多交税)。
+  **别再提**:日内交易(cron 抖动 + IEX 延迟)、LLM 选股当策略、行业轮动(换手/税最差)、
+  加参数提收益(发表后衰减)。
+
+## 手发文案的反 AI 味规则(2026-09-06,owner:「提示内容是AI生成,你要人性化的表达,不然被封了」)
+
+**适用范围:`docs/distribution-staging/` 里所有给 owner 手发的稿子,以及周任务「舰队每周分发
+暂存」生成的一切内容。** 起因:本轮给 r/incremental_games 写的首版草稿被 owner 一眼认出是 AI
+写的。这类版块的封禁判定往往在前三行就完成,一条被判自动生成的帖子等于烧掉一个版块。
+
+**写完必须逐条自查(全部是本轮实际改掉的东西)**
+1. **破折号**。`—` / `——` 在一稿里出现两次以上就露。改句号、逗号或括号。目标是 **0**。
+2. **句长方差**。全稿句长若集中在 20–30 词就是机器节奏。**要有 2–6 词的碎句,也要有 40+ 词
+   拖沓的长句**。本轮三稿改后的分布:2–39 / 5–58 / 2–37。
+3. **三拍排比**。`A, B, and C`、「Partly X, partly Y, and partly Z」是 LLM 默认节奏,删。
+4. **揭晓式结构**。「真正的重点是」「The part I actually built it for:」——软文腔,删。
+5. **零缺点零不确定**。必须有一处「这块我还没调好」、一个已知 rough edge、一个具体待解问题。
+6. **营销形容词**:satisfying / seamless / genuinely / crafted / robust,一律删。
+7. **结尾的漂亮行动号召**。换成一个具体问题然后停住。
+8. **跨版块撞句**。同一批稿子里**不许有两条帖子共享一个 6 词以上的句子**——重复本身就是垃圾
+   信号。本轮机检确认三稿两两之间相同长句 = 0。
+
+**正面做法:用源码里的真实数字和真实机制名。** 开发者会写「第三个模型之后开始出 rogue,给你
+20 秒,关掉损失一个模型换 +2 alignment」;营销文案只会写「动态事件系统」。写稿前先去代码里
+挖(本轮从 `singularity.html` 挖出四个生产者、16 个升级、`Alignment dividend`、`ASI-3 trained`、
+20 秒窗口、60 秒加成),**挖不到就别写那句,不许编**(零编造规则照旧适用于分发稿)。
+
+**交付时必须附一句**:请 owner 自己再改动 10% 左右(换两三个词、删一句、换成自己的口气)。
+一字不动地跨版块粘贴是最容易被判自动化的行为。

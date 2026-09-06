@@ -88,6 +88,12 @@ jobs:
       - name: Inject room-size cross-links (idempotent)
         run: python3 tools/build_xlinks.py
 
+      - name: Consolidate publisher entity (@id graph; idempotent gate)
+        run: python3 tools/build_entity.py
+
+      - name: Point verified models at their product page (idempotent gate)
+        run: python3 tools/build_asin_links.py
+
       - name: Normalize + validate hreflang pairs (idempotent gate; non-zero exit blocks deploy)
         run: python3 tools/build_hreflang.py
 
@@ -100,6 +106,9 @@ jobs:
       - name: Rebuild llms.txt (AI-search index, auto-sync before deploy)
         run: python3 tools/build_llmstxt.py
 
+      - name: Build agent surfaces (.md mirrors + sizing dataset, affiliate-link gate)
+        run: python3 tools/build_agent_md.py
+
       - name: Rebuild site-search index (auto-sync new pages before deploy)
         run: python3 tools/build_search.py
 
@@ -111,6 +120,15 @@ jobs:
 
       - name: Check FAQ JSON-LD matches visible text verbatim
         run: python3 tools/check_faq_parity.py
+
+      - name: Check breadcrumb JSON-LD matches the visible breadcrumb
+        run: python3 tools/check_crumb_parity.py
+
+      - name: Check every tool figure exists on the page it cites
+        run: python3 tools/check_cited_figures.py
+
+      - name: Check no SERP title or description is truncated
+        run: python3 tools/check_meta.py
 
       - name: Deploy to Cloudflare Workers
         uses: cloudflare/wrangler-action@v3
@@ -151,6 +169,28 @@ jobs:
           check "https://getecoback.com/datenschutz.html" "DSGVO"
           check "https://getecoback.com/en/" "tag=getecoback-21"
           check "https://getecoback.com/it/guide/miglior-condizionatore-portatile-italia.html" "tag=getecoback-21"
+          check "https://getecoback.com/guide/btu-rechner.md" "Canonical (HTML"
+          check "https://getecoback.com/sizing-data.json" "creativecommons"
+          check "https://getecoback.com/for-agents.html" "MCP"
+          # Crawler/agent entry points that are rebuilt every deploy.
+          check "https://getecoback.com/robots.txt" "Sitemap:"
+          check "https://getecoback.com/llms.txt" "getecoback.com"
+          # not_found_handling regression guard (2026-09-04): an unknown path must
+          # be a real 404, not a 200 fallback that would let search engines index
+          # every typo. The canonical middleware first 301s the extensionless
+          # path to .html, so follow redirects and assert the final status.
+          nf=""
+          for attempt in 1 2 3; do
+            nf=$(curl -sL -o /dev/null --max-time 20 -w "%{http_code}" "https://getecoback.com/__nope-ci" || echo "000")
+            [ "$nf" = "404" ] && break
+            sleep 3
+          done
+          if [ "$nf" = "404" ]; then
+            echo "OK unknown path is a 404"
+          else
+            echo "::error::https://getecoback.com/__nope-ci expected 404, got $nf (not_found_handling regression?)"
+            fail=1
+          fi
 
           # Canonical-URL middleware: every legacy variant must 301 to
           # https://getecoback.com/...*.html (matches canonical tags + sitemap)
@@ -158,12 +198,19 @@ jobs:
             url="$1"; expect="$2"
             for attempt in 1 2 3; do
               out=$(curl -s -o /dev/null --max-time 20 -w "%{http_code} %{redirect_url}" "$url" || echo "000")
-              code="${out%% *}"; loc="${out#* }"
+              code="${out%% *}"
+              # "${out#* }" on a space-less "000" returns "000" itself, which
+              # used to print as "got 000 -> 000". Empty loc = no redirect seen.
+              loc=""
+              case "$out" in *" "*) loc="${out#* }" ;; esac
               [ "$code" = "301" ] && break
               sleep 3
             done
-            if [ "$code" != "301" ] || [ "$loc" != "$expect" ]; then
-              echo "::error::$url expected 301 -> $expect, got $code -> $loc"
+            if [ "$code" = "000" ]; then
+              echo "::error::$url unreachable after 3 tries (curl failed) — expected 301 -> $expect"
+              fail=1
+            elif [ "$code" != "301" ] || [ "$loc" != "$expect" ]; then
+              echo "::error::$url expected 301 -> $expect, got $code -> ${loc:-<no Location>}"
               fail=1
             else
               echo "OK 301 $url -> $loc"
@@ -188,7 +235,9 @@ jobs:
           esac
           # 漏斗事件验收(2026-08-20 触发器体检):lead_intent 与 cold_now 是两条
           # 新营收链路的唯一度量,白名单掉一个就整条链静默失明——每次部署验收。
-          for evn in lead_intent cold_now; do
+          # affiliate_click added 2026-09-04: it is the money event of the whole
+          # site, and the only one this loop did not assert.
+          for evn in lead_intent cold_now affiliate_click; do
             r=$(curl -s --max-time 20 -X POST "https://getecoback.com/api/ev" \
                  -H "Content-Type: text/plain" \
                  -d '{"n":"'$evn'","p":"/__ci_healthcheck","r":"","m":{"ci":1}}' || echo "")
@@ -197,6 +246,19 @@ jobs:
               *) echo "::error::funnel event $evn rejected: $r"; fail=1 ;;
             esac
           done
+          # Opt-in capture (/api/sub2, 2026-09-04): the only capture surface on the
+          # guide pages, and it writes to D1 directly. subs.email is the PRIMARY KEY
+          # and the Worker uses INSERT OR IGNORE, so this probe is one idempotent
+          # row for all time; its ev row lands on /__ci_healthcheck, which every
+          # ledger query already excludes.
+          s2=$(curl -s --max-time 20 -X POST "https://getecoback.com/api/sub2" \
+                 -H "Content-Type: application/json" \
+                 -d '{"email":"ci@getecoback.invalid","consent":true,"consent_text":"ci","page":"/__ci_healthcheck"}' || echo "")
+          echo "sub2 endpoint said: $s2"
+          case "$s2" in
+            *'"ok":true'*) echo "OK sub2 capture (D1 write confirmed)" ;;
+            *) echo "::error::sub2 capture broken: $s2"; fail=1 ;;
+          esac
           # The live heat band drives the weather-reactive layer; a silent outage
           # would simply mean the site says nothing on the days that matter most.
           heat=""
@@ -215,6 +277,23 @@ jobs:
           case "$heat" in
             *'"cold"'*) echo "OK cold field present" ;;
             *) echo "::error::/api/heat payload missing cold field: '$heat'"; fail=1 ;;
+          esac
+          # Autumn counterpart (2026-08-31): the dew-point band is the live number
+          # for the humidity season, and it is the only reason a reader comes to
+          # the page instead of taking an assistant's summary. A silent outage
+          # here costs exactly that. Note the assertion is on "ok", not on a
+          # level: ok:false is a legitimate answer (upstream down) that the band
+          # correctly renders as nothing — a missing field is the real failure.
+          feuchte=""
+          for attempt in 1 2 3; do
+            feuchte=$(curl -s --max-time 20 "https://getecoback.com/api/feuchte" || echo "")
+            case "$feuchte" in *'"ok"'*) break ;; esac
+            sleep 5
+          done
+          echo "feuchte endpoint said: $feuchte"
+          case "$feuchte" in
+            *'"ok"'*) echo "OK feuchte endpoint" ;;
+            *) echo "::error::feuchte endpoint broken after 3 tries: '$feuchte'"; fail=1 ;;
           esac
           # Exchange prices for the Strompreis-Radar. Served from the edge so
           # the reader's browser never calls aWATTar or SMARD itself; if this
@@ -295,6 +374,14 @@ jobs:
       - name: Assert the MCP registry still lists this server (scheduled + manual)
         if: github.event_name != 'push'
         run: |
+          # Fail-open on an unreachable registry, fail-closed on a real delisting.
+          # 2026-08-30: the daily run went red with an EMPTY response — the API was
+          # briefly unreachable from the runner, and the old check could not tell
+          # "the registry says we are gone" (the thing worth alerting on) from "the
+          # registry said nothing at all" (someone else's outage). It read the
+          # outage as a purge. Same principle the stale-push guard above already
+          # follows: infrastructure noise must never turn a green deploy red,
+          # because a red run nobody can act on is how real red runs get ignored.
           entry=""
           for attempt in 1 2 3; do
             entry=$(curl -s --max-time 20 "https://registry.modelcontextprotocol.io/v0.1/servers?search=getecoback" || echo "")
@@ -302,8 +389,16 @@ jobs:
             sleep 10
           done
           case "$entry" in
-            *"getecoback-climate-weather"*) echo "OK registry listing present" ;;
-            *) echo "::error::MCP registry no longer lists getecoback-climate-weather: ${entry:0:200}"; exit 1 ;;
+            *"getecoback-climate-weather"*)
+              echo "OK registry listing present" ;;
+            "")
+              echo "::warning::MCP registry unreachable from this runner (empty response after 3 tries) — cannot assert the listing; not failing the deploy" ;;
+            *'"servers"'*)
+              # A well-formed listing that does not contain us IS the delisting
+              # this guard exists to catch.
+              echo "::error::MCP registry responded but no longer lists getecoback-climate-weather: ${entry:0:200}"; exit 1 ;;
+            *)
+              echo "::warning::MCP registry returned an unrecognised payload — treating as an outage, not a delisting: ${entry:0:200}" ;;
           esac
 
       # The condensation layer of the trend loop: pull the live aggregates,

@@ -36,8 +36,10 @@ def main():
         slug = os.path.basename(path)[:-5]
         items.append({
             "url": f"{BASE}/guide/{slug}.html",
-            "title": htmllib.escape(title_of(h)),
-            "desc": htmllib.escape(meta(h, "description")),
+            # The page fields are already HTML-escaped (&amp;); unescape first so
+            # the feed carries &amp; once, not &amp;amp;.
+            "title": htmllib.escape(htmllib.unescape(title_of(h))),
+            "desc": htmllib.escape(htmllib.unescape(meta(h, "description"))),
             "date": pubdate(h),
         })
     items.sort(key=lambda i: (i["date"], i["url"]), reverse=True)

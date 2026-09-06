@@ -16,12 +16,13 @@
 <meta name="description" content="Can the '2013 Bitcoin' pattern be run honestly in 2026? A live experiment ledger: pre-registered candidates, kill conditions filed before entry, monthly audits. Not investment advice.">
 <link rel="canonical" href="https://agiscorecard.com/paradigm-experiment">
 <link rel="alternate" hreflang="en" href="https://agiscorecard.com/paradigm-experiment">
-<link rel="alternate" hreflang="zh" href="https://agiscorecard.com/zh/paradigm-experiment">
+<link rel="alternate" hreflang="zh-Hans" href="https://agiscorecard.com/zh/paradigm-experiment">
+<link rel="alternate" hreflang="x-default" href="https://agiscorecard.com/paradigm-experiment">
 <meta property="og:title" content="The Paradigm Bet: A Public, Pre-Registered Experiment">
 <meta property="og:description" content="Pre-registered candidates, kill conditions filed before entry, monthly audits — the anti-hindsight way to test the '2013 Bitcoin' pattern in 2026.">
 <meta property="og:url" content="https://agiscorecard.com/paradigm-experiment">
 <meta property="og:type" content="article">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"The Paradigm Bet: a public, pre-registered experiment","datePublished":"2026-08-23","dateModified":"2026-08-23","inLanguage":"en","author":{"@type":"Organization","name":"The AGI Scorecard","url":"https://agiscorecard.com/about"},"publisher":{"@type":"Organization","name":"The AGI Scorecard","url":"https://agiscorecard.com/"},"description":"A live experiment ledger testing whether the 2013-Bitcoin pattern can be run honestly in 2026: pre-registered candidates, falsification conditions filed before entry, monthly audits."}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"The Paradigm Bet: a public, pre-registered experiment","datePublished":"2026-08-23","dateModified":"2026-09-05","inLanguage":"en","author":{"@type":"Organization","name":"The AGI Scorecard","url":"https://agiscorecard.com/about"},"publisher":{"@type":"Organization","name":"The AGI Scorecard","url":"https://agiscorecard.com/"},"description":"A live experiment ledger testing whether the 2013-Bitcoin pattern can be run honestly in 2026: pre-registered candidates, falsification conditions filed before entry, monthly audits."}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AGI Scorecard","item":"https://agiscorecard.com/"},{"@type":"ListItem","position":2,"name":"Invest","item":"https://agiscorecard.com/invest"},{"@type":"ListItem","position":3,"name":"The Paradigm Bet experiment","item":"https://agiscorecard.com/paradigm-experiment"}]}</script>
 <style>
   :root{--bg:#0a0a0b;--bg2:#111114;--bg3:#18181d;--border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.12);--text:#e8e8ec;--muted:#8888a0;--accent:#7c6af5;--accent2:#4fc3a1;--warn:#e8a040;--danger:#e05555;--font:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;--mono:'JetBrains Mono',monospace;}
@@ -67,7 +68,7 @@
 <main>
   <div class="eyebrow">Live experiment · Pre-registered, auditable</div>
   <h1>The Paradigm Bet: Can "2013 Bitcoin" Be Repeated Honestly?</h1>
-  <div class="updated">Opened: August 23, 2026 · Audited monthly (5th) · Entries only change with a dated note</div>
+  <div class="updated">Opened: August 23, 2026 · Audited monthly (5th) — last audit 2026-09-05, no falsifier triggered · Entries only change with a dated note</div>
   <div id="exp-vitals" style="display:flex;gap:18px;flex-wrap:wrap;margin:1.1rem 0;font-variant-numeric:tabular-nums;">
     <div><span style="font-size:24px;font-weight:800;" id="ev-days">–</span><br><span style="font-size:12px;color:var(--muted);">days running</span></div>
     <div><span style="font-size:24px;font-weight:800;" id="ev-entries">3</span><br><span style="font-size:12px;color:var(--muted);">pre-registered</span></div>
@@ -134,7 +135,7 @@
     var tb = document.querySelector("#exp-table tbody");
     if (tb && pre.length) {
       tb.innerHTML = pre.map(function (r) {
-        var st = r.status === "open" ? '<span class="v-open">' + (document.documentElement.lang === "zh" ? "持有中" : "Open") + "</span>"
+        var st = r.status === "open" ? '<span class="v-open">' + (document.documentElement.lang === "zh" ? "未入场" : "Open") + "</span>"
                : r.status === "watch" ? '<span class="v-ok">' + (document.documentElement.lang === "zh" ? "观察单" : "Watchlist") + "</span>"
                : '<span class="v-wrong">' + r.status + "</span>";
         return "<tr><td>" + r.asset + "</td><td>" + r.thesis + "</td><td>" + r.falsifier + "</td><td class='nowrap'>" + st + "</td></tr>";

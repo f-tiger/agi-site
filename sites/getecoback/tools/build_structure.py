@@ -24,7 +24,7 @@ GA4 = "G-E2V0Q9SJ9V"
 
 CATEGORIES = [
     ("klimaanlagen", "Klimaanlagen & Kühlen",
-     "Tragbare Klimaanlagen, Ventilatoren, Luftkühler und Kühlung ohne Installation — nach Raumgröße, Lautstärke und Budget."),
+     "Tragbare Klimaanlagen, Ventilatoren, Luftkühler und Kühlung ohne Bohren — für Mietwohnung und Altbau: nach Fenstertyp, Raumgröße und Budget."),
     ("heizen", "Heizen",
      "Effizient heizen: Klimaanlagen mit Heizfunktion, stromsparende Heizlüfter und Infrarotheizung."),
     ("luftqualitaet", "Luftqualität",
@@ -165,6 +165,19 @@ PERF_HINTS = ("<!--eb-perf-->"
 # inject_chrome) so new rules — e.g. the transaction layer below — propagate to
 # all already-built pages, not just freshly created ones.
 CHROME_STYLE = ("<style id=\"eb-chrome\">"
+              # Comparison tables overflowed a 390 px viewport (found 2026-08-31 on
+              # split-klimaanlage-ohne-kernbohrung: 412 px table, 390 px screen, so
+              # the whole page scrolled sideways). 45 pages carry table.cmp, and a
+              # comparison table is this site's most-cited element type — letting it
+              # scroll inside its own box beats letting it drag the page with it.
+              # .cmp itself is defined per page, so the fix belongs in the one
+              # stylesheet that is injected everywhere and replaced in place.
+              # ...and it is not only table.cmp: the most-cited page on the site
+              # (klimaanlage-reinigen, 109 citations) overflowed on an UNCLASSED
+              # maintenance table added on 08-28. This site has no layout tables,
+              # so every table is a content table and every one of them may scroll
+              # inside its own box rather than drag the page sideways.
+              "@media(max-width:560px){table{display:block;overflow-x:auto;max-width:100%}}"
               ".eb-nav{position:sticky;top:0;z-index:100;background:#0a4d7a}"
               ".eb-nav-in{max-width:1000px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px 16px}"
               ".eb-nav a{text-decoration:none}"
@@ -492,7 +505,10 @@ EN_STICKY = sticky_bar("Find the right unit", "Check price on Amazon →", en=Tr
 
 def crumb_trust(cat_key, title, en=False):
     """Visible breadcrumb + honest trust bar, injected right under the nav."""
-    t = re.sub(r'\s+', ' ', re.sub('<[^>]+>', '', title)).strip()
+    # h1() hands back the heading's inner HTML, entities included; unescape
+    # before re-escaping or "&amp;" in a heading shows up as a literal "&amp;"
+    # in the crumb (8 pages, caught by check_crumb_parity 2026-09-04).
+    t = htmllib.unescape(re.sub(r'\s+', ' ', re.sub('<[^>]+>', '', title)).strip())
     if en:
         crumb = ('<!--EB_CRUMB--><nav class="eb-crumb" aria-label="Breadcrumb">'
                  '<a href="/en/">Home</a><span>›</span><a href="/en/">All&nbsp;Guides</a>'
@@ -514,8 +530,10 @@ def crumb_trust(cat_key, title, en=False):
     return crumb + trust + "\n"
 
 
-def breadcrumb_jsonld(cat_key, title, url, en=False):
-    t = re.sub(r'\s+', ' ', re.sub('<[^>]+>', '', title)).strip()
+def breadcrumb_node(cat_key, title, url, en=False):
+    """The BreadcrumbList node alone (no @context), for splicing into a page
+    that already carries an @graph."""
+    t = htmllib.unescape(re.sub(r'\s+', ' ', re.sub('<[^>]+>', '', title)).strip())
     if en:
         items = ('{"@type":"ListItem","position":1,"name":"Home","item":"https://getecoback.com/en/"},'
                  f'{{"@type":"ListItem","position":2,"name":{jstr(t)},"item":{jstr(url)}}}')
@@ -523,9 +541,63 @@ def breadcrumb_jsonld(cat_key, title, url, en=False):
         items = ('{"@type":"ListItem","position":1,"name":"Startseite","item":"https://getecoback.com/"},'
                  f'{{"@type":"ListItem","position":2,"name":{jstr(CAT_SHORT[cat_key])},"item":"https://getecoback.com/kategorie/{cat_key}.html"}},'
                  f'{{"@type":"ListItem","position":3,"name":{jstr(t)},"item":{jstr(url)}}}')
+    return '{"@type":"BreadcrumbList","itemListElement":[' + items + ']}'
+
+
+def breadcrumb_jsonld(cat_key, title, url, en=False):
+    node = breadcrumb_node(cat_key, title, url, en)
+    # node starts with {"@type":…}; the standalone script carries @context first.
     return ('<script type="application/ld+json" id="eb-crumb-ld">'
-            '{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":['
-            + items + ']}</script>\n')
+            '{"@context":"https://schema.org",' + node[1:] + '</script>\n')
+
+
+LD_SCRIPT_RE = re.compile(r'<script\b[^>]*type="application/ld\+json"[^>]*>(.*?)</script>', re.S)
+
+
+def replace_breadcrumb_ld(html, cat_key, title, url, en=False):
+    """Replace-in-place, never insert-only (2026-09-04): the breadcrumb JSON-LD
+    was inserted once and then frozen, so 165 of 171 guide pages carried a
+    BreadcrumbList that disagreed with the visible crumb (old "Guides →
+    /en/#guides" trails, stale titles). Three shapes exist on the site:
+      1. our own <script … id="eb-crumb-ld"> → replaced whole;
+      2. a BreadcrumbList node inside a page's @graph (Article + FAQPage +
+         BreadcrumbList, 119 pages) → only that node is spliced, byte-for-byte
+         around it, so the Article/FAQ nodes and their formatting survive;
+      3. a standalone BreadcrumbList script without our id → replaced whole;
+      4. none → inserted before </head>.
+    check_crumb_parity.py asserts the result matches the visible nav."""
+    node = breadcrumb_node(cat_key, title, url, en)
+    m = re.search(r'<script\b[^>]*id="eb-crumb-ld"[^>]*>.*?</script>\n?', html, re.S)
+    if m:
+        return html[:m.start()] + breadcrumb_jsonld(cat_key, title, url, en) + html[m.end():]
+    for m in LD_SCRIPT_RE.finditer(html):
+        body = m.group(1)
+        if "BreadcrumbList" not in body:
+            continue
+        try:
+            data = json.loads(body)
+        except ValueError:
+            continue
+        if isinstance(data, dict) and isinstance(data.get("@graph"), list):
+            # Locate the node's exact text span: the nearest "{" before the
+            # "BreadcrumbList" literal that decodes to that node.
+            dec = json.JSONDecoder()
+            hit = body.find('"BreadcrumbList"')
+            pos = body.rfind("{", 0, hit)
+            while pos >= 0:
+                try:
+                    obj, end = dec.raw_decode(body, pos)
+                except ValueError:
+                    obj, end = None, None
+                if isinstance(obj, dict) and obj.get("@type") == "BreadcrumbList":
+                    new_body = body[:pos] + node + body[end:]
+                    start = m.start(1)
+                    return html[:start] + new_body + html[start + len(body):]
+                pos = body.rfind("{", 0, pos)
+            continue  # shape not understood — leave it, try the next script
+        if isinstance(data, dict) and data.get("@type") == "BreadcrumbList":
+            return html[:m.start()] + breadcrumb_jsonld(cat_key, title, url, en).rstrip("\n") + html[m.end():]
+    return html.replace("</head>", breadcrumb_jsonld(cat_key, title, url, en) + "</head>", 1)
 
 
 def jstr(s):
@@ -553,11 +625,38 @@ def jstr(s):
 # the amazon.de listing title verbatim. Full evidence in the 2026-08-28 session
 # report; per-row provenance below.
 MODEL_ASIN = {
-    # FAILED verification, deliberately empty: B0BZWP26GD is EX105 on ES/BE/
-    # NL/IT/FR but the amazon.de listing titles itself "PACEX93" (8900 BTU,
-    # filed under "Musical Instruments & DJ" — a dirty variant listing). No
-    # DE-specific EX105 ASIN found. Search link is the honest state.
+    # CLOSED 2026-08-31 — do not reopen. Two independent observations now say
+    # B0BZWP26GD does not give the EX105 on amazon.de: on 08-28 the listing
+    # titled itself "PACEX93" (8900 BTU, filed under "Musical Instruments &
+    # DJ"), and today the owner opening it landed on the Pinguino GentleJet
+    # PAC AP98 at /dp/B0F3XL6LK6?th=1 — the ?th= parameter Amazon adds when it
+    # redirects a variant ASIN to the currently selected child.
+    #
+    # The search link is not a fallback here, it is the CORRECT form: it
+    # survives variant churn, whereas a /dp/ link to this ASIN would land the
+    # reader on a different product. That is the standing exception to "a
+    # search link costs conversion" — it only costs conversion when the direct
+    # link would actually reach the product named on the page.
+    #
+    # Withdrawn hypothesis, recorded so nobody re-derives it: Geizhals showing
+    # the EX105 at EUR 932-1999 from eBay resellers looked like end-of-life
+    # price inflation, but billiger.de lists the brand-new GentleJet at EUR
+    # 1199 too — the price shape is these comparison sites' data, not a
+    # discontinuation signal. EX105 remains live on heise/Geizhals/
+    # MediaMarkt.at. Whether it is still stocked on amazon.de specifically is
+    # unknown from here and cannot be read off the owner's screenshots while
+    # their amazon.de delivery country is set to the United States.
     "De'Longhi Pinguino PAC EX105": "",
+    # 2026-08-31, owner screenshot of the amazon.de listing (first-party, the
+    # strongest source available here): B0F3XL6LK6 is the De'Longhi Pinguino
+    # GentleJet PAC AP98 — 11.500 BTU/h, R290, A+, 2,7 kW, style "for rooms up
+    # to 37,5 m²". Recorded so the ASIN is not lost, but DELIBERATELY UNUSED:
+    # no page names this model yet, and it must not be recommended on 3,5 stars
+    # from 25 reviews with no public test coverage — that is not the consensus
+    # this site requires. The same screenshot shows a dispatch warning and two
+    # sibling styles "currently unavailable", which a screenshot cannot resolve
+    # (it may reflect the owner's own delivery address, not German stock).
+    "De'Longhi Pinguino GentleJet PAC AP98": "B0F3XL6LK6",
     # amazon.de direct listing + .nl/.es/.be/.co.uk + two affiliate sites
     "De'Longhi PAC N90 ECO Silent": "B07NC5CP6F",
     # de.camelcamelcamel mirrors the amazon.de German title verbatim
@@ -592,7 +691,9 @@ def amazon_url(q, name=None):
 
 def shop_card(entry):
     svg_key, role, title, desc, price, q, grad = entry
-    url = f"https://www.amazon.de/s?k={q}&tag=getecoback-21"
+    # amazon_url() — not a hand-built search URL: this card names a model, and
+    # a verified model must land on its product page (2026-08-31 leak).
+    url = amazon_url(q, title)
     return (f'<div class="eb-shop-card"><div class="th" style="background:linear-gradient(135deg,{grad});">'
             f'<span class="rl">{role}</span>{SVG[svg_key]}</div>'
             f'<div class="bd"><h3>{title}</h3><p class="ds">{desc}</p>'
@@ -813,6 +914,51 @@ CONTEXT_MODELS = {
  # durables this site's A-grade data shows converting. One switch-instead-of-fix
  # chip stays, honestly labelled, because the page has an explicit
  # "Alternativen im Blick" section.
+ # Split-Cluster (2026-08-31). The site's highest-ticket path was selling the
+ # cheapest device on it. The BTU calculator's fourth tier routes every room
+ # above 13.500 BTU here because a monoblock is genuinely at its limit — and
+ # split-klimaanlage-ohne-kernbohrung, portasplit-vs-monoblock and
+ # midea-portasplit-kaufen then showed that reader the same monoblock cards as
+ # a 15 m² page (EX105 / PAC N90 / Comfee / Klarstein). The whole cluster is
+ # built around the Midea PortaSplit, which this site already documents as sold
+ # out, so its own premise had no current answer.
+ #
+ # Correction to a first reading of this cluster: the tower-fan and portable-AC
+ # links on midea-portasplit-kaufen are NOT a mis-sell. Both sit inside the
+ # "for whom is this not worth it" section ("only hot on a few days — then a fan
+ # is enough", "a portable at ~250 € is louder and less efficient but available
+ # today"). That is this site's honest ordering doing its job. Left alone.
+ #
+ # Two contradictions resolve at once: a CONTEXT_MODELS page also drops out of
+ # EB_SIZER, and the sizer's top band was recommending a monoblock on the page
+ # whose thesis is that a monoblock has run out of room.
+ #
+ # Quick-Connect is the German term for what this cluster is about: pre-filled,
+ # self-sealing lines, so no flaring tool and no vacuum pump. Models confirmed
+ # on amazon.de listings, with public comparison coverage (homeandsmart,
+ # klimaanlagentest.de; notebookcheck reported the 9.000 BTU set at 449 €).
+ # SEARCH LINKS BY NAME, NO ASIN — candidates exist (B0F7XDNQRN, B0F7XC611X)
+ # but today's EX105 closure is exactly why a listing title read through a
+ # search index is not verification. They go in when someone opens the listing.
+ #
+ # Honest order, not commission order: 9.000 BTU first because most readers of
+ # this site size below 25 m²; the 12.000 for the rooms the fourth tier sends
+ # here; KESSER third because two competing listings for the same model make it
+ # the least unambiguous of the three.
+ **{slug: [
+   ("TCL BreezeIn Quick Connect 9.000 BTU", "Quick-Connect, bis ca. 25 m²",
+    "Vorgefüllte Leitungen mit Schnellkupplung — kein Bördeln, kein Vakuumieren. 2,6 kW, R32, kühlt und heizt. In öffentlichen Vergleichen als besonders leise geführt.",
+    "€€€ · ab ca. 450 €", "TCL+BreezeIn+Quick+Connect+9000+BTU", "ac"),
+   ("TCL BreezeIn Quick Connect 12.000 BTU", "Für die großen Räume",
+    "3,4 kW — die Klasse, in die dich der BTU-Rechner oberhalb von 13.500 BTU schickt, weil ein Monoblock dort ausläuft. R32, App- und Sprachsteuerung.",
+    "€€€ · Preis vor Ort prüfen", "TCL+BreezeIn+Quick+Connect+12000+BTU", "ac"),
+   ("KESSER Split Quick Connect 12.000 BTU", "Mit Heizfunktion im Set",
+    "3,4 kW, R32, Montagematerial im Lieferumfang. Achte beim Kauf auf die Variante — von diesem Modell stehen mehrere Angebote nebeneinander.",
+    "€€€ · Preis vor Ort prüfen", "KESSER+Split+Klimaanlage+Quick+Connect+12000+BTU", "ac"),
+ ] for slug in ("split-klimaanlage-ohne-kernbohrung",
+                "portasplit-vs-monoblock",
+                "midea-portasplit-kaufen")},
+
  "growatt-noah-2000-probleme": [
    ("Energiemessgerät (Steckdose)", "Erst messen", "Zeigt, was der NOAH wirklich liefert — die Grundlage für jede Ausgangsleistungs-Diagnose, unabhängig von der App.", "€ · ca. 10–20 €", "energiekostenmessger%C3%A4t+steckdose", "battery"),
    ("WLAN-Messsteckdose", "App-unabhängig loggen", "Protokolliert die Einspeisung auch dann, wenn die Growatt-App gerade streikt — mit eigener Verlaufskurve.", "€ · ca. 15–30 €", "wlan+steckdose+strommessung", "battery"),
@@ -1273,27 +1419,57 @@ def model_card(entry, en=False):
 
 def models_block(device, en=False, slug=None):
     table = DEVICE_MODELS_EN if en else DEVICE_MODELS
-    entries = context_entries(slug, en) or table.get(device) or table["ac"]
+    ctx = context_entries(slug, en)
+    entries = ctx or table.get(device) or table["ac"]
     cards = "".join(model_card(e, en=en) for e in entries)
+    # The "no drilling, no installer" line is true of the default monoblock
+    # grid only. CONTEXT grids (Quick-Connect split, camper, accessory sets)
+    # and the fan/shade/heater families get a neutral fallback instead —
+    # the split pages carry an F-Gas clause that says the opposite.
+    monoblock_grid = (device == "ac" and not ctx)
     # The single most common cause of "bringt nichts" disappointment in community
     # threads is an unsealed window: the exhaust builds negative pressure and pulls
     # the hot air straight back in. Say it at the buying moment, not three pages later.
-    if en:
+    if en and monoblock_grid:
         head, sub = ("Recommended models",
+                     "Every portable unit here: <strong>no drilling, no installer</strong>, usually "
+                     '<a href="/en/guide/portable-ac-rented-apartment.html">no landlord permission</a> — '
+                     "hose to the window, seal around it, running in about 10 minutes, and it moves out with you. "
+                     'The one condition: without a <a href="/en/guide/portable-ac-tilt-and-turn-windows.html">sealed window</a> '
+                     "every portable AC loses most of its effect — hot air gets pulled straight back in. "
                      "Compiled from public tests & customer reviews — not tested by us. "
                      "Prices vary; check the current price on Amazon. Illustrations, not product photos. "
-                     'One thing first: without a <a href="/en/guide/portable-ac-tilt-and-turn-windows.html">sealed window</a> '
-                     "every portable AC loses most of its effect — hot air gets pulled straight back in. "
                      # A third of all clicks come from outside the DACH region, and the
                      # EU-English readers among them often don't know amazon.de will
                      # serve them in English — that unknown is checkout friction.
                      "Amazon.de ships to most EU countries, with site and checkout available in English.")
-    else:
+    elif en:
+        head, sub = ("Recommended models",
+                     "Compiled from public tests & customer reviews — not tested by us. "
+                     "Prices vary; check the current price on Amazon. Illustrations, not product photos. "
+                     "Amazon.de ships to most EU countries, with site and checkout available in English.")
+    elif not monoblock_grid:
         head, sub = ("Empfohlene Modelle",
-                     "Aus öffentlichen Tests & Kundenbewertungen zusammengestellt — nicht selbst "
-                     "getestet. Preise schwanken, aktuellen Preis auf Amazon prüfen. Symbolbilder. "
-                     'Vorab das Wichtigste: Ohne <a href="/guide/klimaanlage-kippfenster.html">dichte Fensterabdichtung</a> '
-                     "verliert jeder Monoblock den Großteil seiner Wirkung — die warme Luft wird sonst direkt zurückgesaugt.")
+                     "Aus öffentlichen Tests & Kundenbewertungen zusammengestellt — nicht selbst getestet. "
+                     "Preise schwanken, aktuellen Preis auf Amazon prüfen. Symbolbilder.")
+    else:
+        # 2026-09-05, owner: "the real need behind an air conditioner is
+        # no installation." The site's own numbers agree — its top-earning
+        # pages are the camper, the tilt-and-turn window, the roof window, the
+        # split-without-drilling — yet this line opened with a WARNING about
+        # window sealing. Same facts, need first, condition second. Every
+        # figure and claim here is already published on the linked pages
+        # ("in 10 Minuten erledigt", "kein Bohren, rückstandslos", "mobil ohne
+        # Bohren geht ohne Erlaubnis"); nothing new is asserted.
+        head, sub = ("Empfohlene Modelle",
+                     "Alle Monoblöcke hier: <strong>kein Bohren, kein Installateur</strong>, in der Regel "
+                     '<a href="/guide/klimaanlage-mietwohnung.html">ohne Erlaubnis des Vermieters</a> — '
+                     "Schlauch ans Fenster, Abdichtung drum, in rund 10 Minuten läuft es, und beim Auszug "
+                     "nimmst du es rückstandslos mit. Die eine Bedingung: Ohne "
+                     '<a href="/guide/klimaanlage-kippfenster.html">dichte Fensterabdichtung</a> '
+                     "verliert jeder Monoblock den Großteil seiner Wirkung — die warme Luft wird sonst direkt zurückgesaugt. "
+                     "Aus öffentlichen Tests & Kundenbewertungen zusammengestellt — nicht selbst getestet. "
+                     "Preise schwanken, aktuellen Preis auf Amazon prüfen. Symbolbilder.")
     # The default sub warns about window sealing — right for every monoblock,
     # nonsense under battery cards. Storage gets the one sentence that actually
     # protects this buyer: most subsidy programmes void the grant if the
@@ -1429,9 +1605,17 @@ def qm_toppick(slug):
 
 def toppick_block(device, en=False, slug=None):
     table = DEVICE_MODELS_EN if en else DEVICE_MODELS
-    entries = (context_entries(slug, en) or (None if en else qm_toppick(slug))
+    ctx = context_entries(slug, en)
+    entries = (ctx or (None if en else qm_toppick(slug))
                or table.get(device) or table["ac"])[:3]
     head, more = TOPPICK_HEAD[en]
+    # Need-first framing (2026-09-05): every device in the default AC set is a
+    # monoblock or the Quick-Connect PortaSplit — "ohne Bohren" is true of all
+    # of them. CONTEXT pages are excluded on purpose: the split cluster's
+    # sets carry an installer clause, and a blanket promise there would
+    # contradict the page's own refrigerant section.
+    if device == "ac" and not ctx:
+        head = head + (" — all without drilling" if en else " — alle ohne Bohren")
     pills = ""
     for name, role, _why, _price, q, _svg in entries:
         url = amazon_url(q, name)
@@ -1888,7 +2072,10 @@ HEATENERGY_BOX = (
     # Twenty-one pages advise pre-cooling on a timer; none of the cooling
     # cluster linked the accessory that does it. With the honest catch stated:
     # a smart plug only works if the unit powers back on by itself.
-    '<p style="margin:10px 0 0;font-size:12.5px;color:#5a5340;">Vorkühlen automatisieren: eine '
+    # Werbekennzeichnung at the ad itself (check_adlabel.py, denylist since
+    # 2026-09-04 — this block shipped 69 pages without one).
+    f'<p style="margin:10px 0 0;font-size:11px;color:#8a99a6;">{AD_LABEL[False]}</p>'
+    '<p style="margin:4px 0 0;font-size:12.5px;color:#5a5340;">Vorkühlen automatisieren: eine '
     '<a href="https://www.amazon.de/s?k=wlan+steckdose+zeitschaltuhr&amp;tag=getecoback-21" target="_blank" '
     'rel="sponsored noopener" style="color:#0f6ba8;font-weight:700;">WLAN-Steckdose mit Timer</a> (ab ~10&nbsp;€) '
     'schaltet das Gerät mittags ein — <strong>funktioniert nur, wenn dein Gerät nach Stromzufuhr von selbst '
@@ -2003,16 +2190,20 @@ function calc(){
   var sun=parseFloat(s.value)||1;
   // same as /guide/btu-rechner.html with its defaults: ceiling 1, 2 people, no open kitchen
   var btu=Math.round(qm*340*sun/500)*500;
-  var model,term,label;
-  if(btu<=9000){model="Comfee MPPH-09CRN7";term="Comfee+MPPH-09CRN7";label="bis ca. 9.000 BTU";}
-  else if(btu<=11000){model="De'Longhi Pinguino PAC EX105";term="De%27Longhi+Pinguino+PAC+EX105";label="9.000–11.000 BTU";}
-  else{model="Klarstein Kraftwerk Smart 12K";term="Klarstein+Kraftwerk+Smart+12K";label="ab 12.000 BTU";}
+  var model,term,url,label;
+  if(btu<=9000){model="Comfee MPPH-09CRN7";term="Comfee+MPPH-09CRN7";url=A_COMFEE;label="bis ca. 9.000 BTU";}
+  else if(btu<=11000){model="De'Longhi Pinguino PAC EX105";term="De%27Longhi+Pinguino+PAC+EX105";url=A_PINGUINO;label="9.000–11.000 BTU";}
+  else if(btu<=13500){model="Klarstein Kraftwerk Smart 12K";term="Klarstein+Kraftwerk+Smart+12K";url=A_KLARSTEIN;label="11.000–13.500 BTU";}
+  // Über ~13.500 BTU nennen wir kein Modell, weil wir keines haben: das größte tragbare
+  // Gerät in DEVICE_MODELS["ac"] ist der 12K-Klarstein. Einem Leser, der gerade 20.500 BTU
+  // ausgerechnet hat, ein 12.000-BTU-Gerät zu verkaufen, wäre schlicht gelogen.
+  else{model="";term="";url="";label="über 13.500 BTU";}
   var qp=qm<=12?10:qm<=17?15:qm<=22?20:qm<=27?25:qm<=35?30:40;
   r.innerHTML='<div style="font-size:13.5px;color:#4a5a67;">Empfohlene Kühlleistung für '+qm+' m²</div>'+
     '<div style="font-size:30px;font-weight:800;color:#0a4d7a;line-height:1.2;">ca. '+btu.toLocaleString("de-DE")+' BTU</div>'+
-    '<div style="margin:8px 0 0;font-size:14.5px;">Passende Geräteklasse ('+label+'): <strong>'+model+'</strong></div>'+
+    (model?'<div style="margin:8px 0 0;font-size:14.5px;">Passende Geräteklasse ('+label+'): <strong>'+model+'</strong> — kein Bohren: Schlauch ans Fenster, Abdichtung drum.</div>':'<div style="margin:8px 0 0;font-size:14.5px;">Klasse: <strong>'+label+'</strong> — hier ist ein tragbarer Monoblock am Limit. Ehrlich empfehlen können wir dafür keines unserer Geräte; realistisch sind ein <a href="/guide/split-klimaanlage-ohne-kernbohrung.html">Splitgerät ohne Kernbohrung</a> oder zwei kleinere Geräte.</div>')+
     '<div style="margin:12px 0 0;display:flex;gap:9px;flex-wrap:wrap;">'+
-    '<a href="https://www.amazon.de/s?k='+term+'&tag=getecoback-21" target="_blank" rel="sponsored noopener" style="background:#f59e0b;color:#1a2733;font-weight:800;padding:10px 16px;border-radius:8px;text-decoration:none;font-size:14px;">Preis auf Amazon prüfen →</a>'+
+    (model?'<a href="'+url+'" target="_blank" rel="sponsored noopener" style="background:#f59e0b;color:#1a2733;font-weight:800;padding:10px 16px;border-radius:8px;text-decoration:none;font-size:14px;">Preis auf Amazon prüfen →</a>':'')+
     '<a href="/guide/klimaanlage-'+qp+'-qm.html" style="background:#fff;color:#0a4d7a;border:1px solid #cfe0ea;font-weight:700;padding:10px 16px;border-radius:8px;text-decoration:none;font-size:14px;">Alle Empfehlungen für '+qp+' m² →</a>'+
     '<a href="/guide/btu-rechner.html" style="background:#fff;color:#0a4d7a;border:1px solid #cfe0ea;font-weight:700;padding:10px 16px;border-radius:8px;text-decoration:none;font-size:14px;">Decke, Personen, Küche einrechnen →</a>'+
     '<button type="button" id="eb-ht-save" style="background:#fff;color:#0a4d7a;border:1px solid #cfe0ea;font-weight:700;padding:10px 16px;border-radius:8px;font-size:14px;cursor:pointer;">📌 Diesen Raum merken</button>'+
@@ -2020,7 +2211,7 @@ function calc(){
     '<p id="eb-ht-perma" style="margin:8px 0 0;font-size:12px;color:#5b6b78;"></p>'+
     '<div id="eb-ht-sub" style="margin:14px 0 0;padding:14px 0 0;border-top:1px solid #cfe6fa;">'+
     '<strong style="font-size:14.5px;display:block;">Sollen wir dich erinnern, bevor es wieder heiß wird?</strong>'+
-    '<span style="font-size:13px;color:#4a5a67;display:block;margin:2px 0 9px;">Eine Nachricht vor der nächsten Hitzewelle — und wenn <strong>'+model+'</strong> im Preis fällt. Dein Raum ('+qm+' m²) ist dann schon hinterlegt.</span>'+
+    '<span style="font-size:13px;color:#4a5a67;display:block;margin:2px 0 9px;">Eine Nachricht vor der nächsten Hitzewelle — und wenn '+(model?'<strong>'+model+'</strong>':'ein passendes Gerät')+' im Preis fällt. Dein Raum ('+qm+' m²) ist dann schon hinterlegt.</span>'+
     '<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">'+
     '<input id="eb-ht-mail" type="email" placeholder="deine@email.de" autocomplete="email" style="flex:1 1 220px;padding:10px 12px;border:1px solid #cfd8e0;border-radius:8px;font-size:15px;background:#fff;color:#1a2733;">'+
     '<button type="button" id="eb-ht-sub-go" style="background:#0a4d7a;color:#fff;border:none;padding:11px 18px;border-radius:8px;font-weight:800;font-size:14px;cursor:pointer;">Erinnere mich</button></div>'+
@@ -2076,6 +2267,16 @@ else{var saved=window.ebReadRoom&&window.ebReadRoom();
 })();</script><!--/EB_HOMETOOL-->
 '''
 
+# The homepage tool's three picks resolve through the same amazon_url() helper as
+# every server-rendered card: a verified ASIN becomes a product page, an
+# unverified model keeps an honest search link. Substituted here because
+# HOME_TOOL is a plain literal — before this, the JS built its own s?k= URL and
+# the homepage sent buyers of two ASIN-verified models to a search box.
+HOME_TOOL = (HOME_TOOL
+    .replace("A_COMFEE", json.dumps(amazon_url("Comfee+MPPH-09CRN7", "Comfee MPPH-09CRN7")))
+    .replace("A_PINGUINO", json.dumps(amazon_url("De%27Longhi+Pinguino+PAC+EX105", "De'Longhi Pinguino PAC EX105")))
+    .replace("A_KLARSTEIN", json.dumps(amazon_url("Klarstein+Kraftwerk+Smart+12K", "Klarstein Kraftwerk Smart 12K"))))
+
 
 # Retention without an account and without email. A visitor who has worked out the
 # cooling capacity for their room has produced something worth keeping, and until
@@ -2096,7 +2297,20 @@ PROFILE = ('<!--EB_PROFILE--><div id="eb-profile"></div>\n<script>(function(){'
            'var sizeText=EN?("Guide for "+p.qm+" m²"):("Empfehlungen für "+p.qp+" m²");'
            'var lead=EN?"Your room":"Dein Raum";'
            'var forget=EN?"forget":"vergessen";'
-           'var amazon="https://www.amazon.de/s?k="+encodeURIComponent(p.term||"tragbare klimaanlage")+"&tag=getecoback-21";'
+           # The saved room stores the model the calculator picked; if that model
+           # has a verified ASIN, this bar must open its product page too. The map
+           # is emitted at build time from MODEL_ASIN, so the two never drift.
+           'var DP=' + json.dumps({q: a for q, a in (
+               ("Comfee+MPPH-09CRN7", MODEL_ASIN.get("Comfee MPPH-09CRN7", "")),
+               ("De%27Longhi+Pinguino+PAC+EX105", MODEL_ASIN.get("De'Longhi Pinguino PAC EX105", "")),
+               ("Klarstein+Kraftwerk+Smart+12K", MODEL_ASIN.get("Klarstein Kraftwerk Smart 12K", "")),
+           ) if ASIN_RE.match((a or "").strip().upper())}) + ';'
+           'var amazon=DP[p.term]?("https://www.amazon.de/dp/"+DP[p.term]+"?tag=getecoback-21")'
+           # p.term is stored ALREADY in query form ("Comfee+MPPH-09CRN7"), so
+           # encodeURIComponent() double-encoded it — the EX105 fallback searched
+           # amazon for the literal string "De%27Longhi+Pinguino+PAC+EX105".
+           # Found 2026-08-31 in the Playwright check of the fix above.
+           ':("https://www.amazon.de/s?k="+(p.term?String(p.term):encodeURIComponent("tragbare klimaanlage"))+"&tag=getecoback-21");'
            'var shop=EN?"Check price on Amazon →":"Preis auf Amazon prüfen →";'
            'host.innerHTML=\'<div style="max-width:1000px;margin:0 auto;padding:9px 20px;display:flex;'
            'gap:8px 14px;align-items:center;flex-wrap:wrap;font-size:13.5px;background:#eaf6ff;'
@@ -2105,6 +2319,10 @@ PROFILE = ('<!--EB_PROFILE--><div id="eb-profile"></div>\n<script>(function(){'
            'Number(p.btu).toLocaleString(EN?"en-GB":"de-DE")+\' BTU</span>\'+'
            '(p.model?\'<span style="color:#4a5a67;">\'+p.model+\'</span>\':"")+'
            '\'<a href="\'+sizeHref+\'" data-eb-p="size" style="color:#0f6ba8;font-weight:700;text-decoration:none;">\'+sizeText+\' →</a>\'+'
+           # Werbekennzeichnung (2026-08-29): this bar renders an affiliate link on
+           # every page it appears on and carried no label for its whole life — it
+           # was simply missing from check_adlabel's BLOCKS list, so nothing looked.
+           '\'<span style="font-size:11px;font-weight:800;color:#7a8b98;letter-spacing:.3px;">\'+(EN?"Ad":"Anzeige")+\'</span>\'+'
            '\'<a href="\'+amazon+\'" target="_blank" rel="sponsored noopener" data-eb-p="shop" '
            'style="color:#0f6ba8;font-weight:700;text-decoration:none;">\'+shop+\'</a>\'+'
            '\'<button type="button" id="eb-p-x" style="margin-left:auto;background:none;border:none;'
@@ -2321,7 +2539,11 @@ STROMNOW = ('<!--EB_STROMNOW--><div id="eb-stromnow"></div>\n<script>(function()
 # rewritten: searching "De'Longhi Pinguino" on amazon.com is a dead result, and
 # those visitors are already served named US models by the EB_USMARKET bridge.
 # GB stays unfixed (no .co.uk tag — owner side).
-USSWITCH = ('<!--EB_USSWITCH--><script>(function(){var tz="";'
+# Wrapped in DOMContentLoaded (2026-09-04): the block is injected above
+# EB_TRACK, i.e. before the closing </body> but also before any block that a later
+# injector appends below it — and querySelectorAll at parse time cannot see
+# anchors the parser has not reached yet, so those links were never switched.
+USSWITCH = ('<!--EB_USSWITCH--><script>document.addEventListener("DOMContentLoaded",function(){var tz="";'
             'try{tz=Intl.DateTimeFormat().resolvedOptions().timeZone||"";}catch(e){return;}'
             'if(tz.indexOf("America/")!==0)return;'
             'var MAP={"luftentfeuchter":"dehumidifier",'
@@ -2336,7 +2558,7 @@ USSWITCH = ('<!--EB_USSWITCH--><script>(function(){var tz="";'
             'var us=MAP[k.toLowerCase()];if(!us)return;'
             'a.href="https://www.amazon.com/s?k="+encodeURIComponent(us)+"&tag=ecoback0d-20";'
             'a.setAttribute("data-eb-ussw","1");}catch(e){}});'
-            '})();</script><!--/EB_USSWITCH-->\n')
+            '});</script><!--/EB_USSWITCH-->\n')
 
 
 def inject_usswitch(html):
@@ -2525,6 +2747,88 @@ def inject_share(html):
     return html
 
 
+# Autumn live number (2026-08-31). The site's one "a chat answer cannot hold
+# this" hook is EB_HEATNOW, which renders only from 28 °C and sits on 11 of the
+# 12 top-earning pages — so it goes dark for eight months exactly as the
+# humidity season opens, and luftentfeuchter-40-qm (the best autumn converter)
+# never had a live number at all.
+#
+# What makes this citable rather than decorative: the verdict FLIPS on today's
+# dew point, and it flips against the COLD SURFACE, not the room air. An
+# assistant can state the rule; only this page can state today's number. And on
+# level 3 the dehumidifier is not an upsell — airing genuinely cannot remove
+# water any more, which is the honest reason the link is there.
+#
+# No Amazon link in this block on purpose: it routes to the site's own guide.
+# A weather-triggered band that pointed straight at a product would read as
+# engineered, and the physics is the asset here.
+# Mould and cellar pages the dew-point band belongs on even though device_of()
+# does not call them dehumidifier pages — the reader's question there IS the
+# ventilation question. keller-lueften-sommer is the classic case this site
+# already documents: airing a cellar on a mild damp day makes it wetter.
+FEUCHTE_EXTRA = {
+    "schimmel-im-keller-entfernen",
+    "keller-lueften-sommer",
+    "mobile-klimaanlage-stinkt-schimmel",
+    "richtig-lueften-bei-hitze",
+    "waesche-trocknen-wohnung",
+}
+
+
+FEUCHTENOW = ('<!--EB_FEUCHTENOW--><div id="eb-feuchtenow"></div>\n<script>(function(){'
+              'var h=document.getElementById("eb-feuchtenow");if(!h)return;'
+              'fetch("/api/feuchte").then(function(r){return r.json();}).then(function(d){'
+              'if(!d||!d.ok||d.dew===null||d.dew===undefined)return;'
+              'var L=d.level,dew=d.dew;'
+              'var bg=L===3?"#eaf3fb":L===2?"#fff8ec":"#eefaf1";'
+              'var bd=L===3?"#c3dcef":L===2?"#f3ddc0":"#cbe9d5";'
+              'var fg=L===3?"#0f5c8a":L===2?"#8a6410":"#1c6b41";'
+              'var head=L===3?("💧 Lüften trocknet gerade nicht: Taupunkt draußen "+dew+" °C")'
+              ':L===2?("🌬️ Wohnraum ja, Keller nein: Taupunkt draußen "+dew+" °C")'
+              ':("🌬️ Gutes Lüftungsfenster: Taupunkt draußen "+dew+" °C");'
+              'var sub=L===3?("Das liegt über jeder kalten Wand (~"+d.wall_ref+" °C) — feuchte Luft von draußen '
+              'schlägt sich dort nieder. Wasser rausholen kann jetzt nur ein Entfeuchter.")'
+              ':L===2?("Für eine kalte Kellerwand (~"+d.cellar_ref+" °C) ist das zu feucht — im geheizten Zimmer '
+              '(kalte Ecke ~"+d.wall_ref+" °C) trocknet Lüften noch.")'
+              ':("Trockener als jede kalte Wand im Haus — jetzt bringt Querlüften am meisten.");'
+              'var link=L===3?\'<a href="/guide/luftentfeuchter-40-qm.html" data-eb-f="guide" '
+              'style="color:#0f6ba8;font-weight:700;text-decoration:none;">Entfeuchter nach Raumgröße →</a>\':'
+              '\'<a href="/guide/luftentfeuchter-40-qm.html" data-eb-f="guide" '
+              'style="color:#0f6ba8;font-weight:700;text-decoration:none;">Entfeuchter nach Raumgröße →</a>\';'
+              'h.innerHTML=\'<div style="background:\'+bg+\';border-bottom:1px solid \'+bd+\';">\'+'
+              '\'<div style="max-width:1000px;margin:0 auto;padding:10px 20px;display:flex;gap:8px 14px;'
+              'align-items:center;flex-wrap:wrap;font-size:13.5px;">\'+'
+              '\'<strong style="color:\'+fg+\';">\'+head+\'</strong>\'+'
+              '\'<span style="color:#4a5a67;">\'+sub+\'</span>\'+link+'
+              '\'<a href="/guide/keller-lueften-sommer.html#taupunkt" data-eb-f="tool" '
+              'style="color:#0f6ba8;font-weight:700;text-decoration:none;">Eigene Wand messen →</a>\'+'
+              '\'<span style="color:#7a8b98;font-size:12px;flex-basis:100%;">Quelle: open-meteo, stündlich, '
+              'ungünstigster von drei Orten (\'+d.region+\', \'+Math.round(d.temp)+\' °C / \'+Math.round(d.rh)+\' % rF). '
+              'Annahme: kalte Zimmerecke ~\'+d.wall_ref+\' °C, Kellerwand ~\'+d.cellar_ref+\' °C — '
+              'deine eigene Wand misst du selbst.</span>\'+'
+              '\'</div></div>\';'
+              'if(window.gtag)gtag("event","feuchte_now",{level:L,dew:dew,region:d.region});'
+              '}).catch(function(){});'
+              '})();</script><!--/EB_FEUCHTENOW-->\n')
+
+
+def strip_feuchtenow(html):
+    """Remove the band again. An injector that can only add leaves dead blocks
+    on pages that later stop qualifying — the failure mode this repo has already
+    recorded three times (nav, sticky, radar)."""
+    return re.sub(r'<!--EB_FEUCHTENOW-->.*?<!--/EB_FEUCHTENOW-->\n?', '', html, flags=re.S)
+
+
+def inject_feuchtenow(html):
+    """Idempotently add the autumn dew-point band on the humidity/mould family."""
+    if "<!--EB_FEUCHTENOW-->" in html:
+        return re.sub(r'<!--EB_FEUCHTENOW-->.*?<!--/EB_FEUCHTENOW-->\n?',
+                      lambda m: FEUCHTENOW, html, flags=re.S)
+    if "<!--/EB_PROFILE-->" in html:
+        return html.replace("<!--/EB_PROFILE-->", "<!--/EB_PROFILE-->\n" + FEUCHTENOW, 1)
+    return html
+
+
 def inject_heatnow(html, slug=None):
     """Idempotently add the live heat band. Cooling-relevant pages and the homepage."""
     if "<!--EB_HEATNOW-->" in html:
@@ -2592,7 +2896,7 @@ def home_storage_block():
                 '<p class="ds" style="margin:0 0 9px;"><span style="color:#177245;">✓ ' + pros + '</span><br>'
                 '<span style="color:#9a3412;">✕ ' + cons + '</span></p>'
                 '<div class="pr">Preis vor Ort prüfen</div>'
-                '<a class="go" href="https://www.amazon.de/s?k=' + term + '&tag=getecoback-21" target="_blank" rel="sponsored noopener">Preis auf Amazon prüfen →</a></div></div>')
+                '<a class="go" href="' + amazon_url(term, title) + '" target="_blank" rel="sponsored noopener">Preis auf Amazon prüfen →</a></div></div>')
     cards = (
         card('Der Keller-Favorit', 'linear-gradient(135deg,#eaf6ff,#cfe6f7)', drip, 'Comfee MDDF-20DEN7',
              'In mehreren Fachvergleichen der Keller-Favorit — 20 L/Tag, Hygrostat, Dauerablauf-Anschluss.',
@@ -2781,6 +3085,9 @@ def sealfit_block(en=False):
     return ('<!--EB_SEALFIT--><section style="max-width:1000px;margin:18px auto 0;padding:0 20px;">'
             '<div style="background:#fff;border:2px solid #0f6ba8;border-radius:14px;padding:18px 20px;">'
             f'<strong style="font-size:17px;display:block;margin-bottom:3px;">{t[0]}</strong>'
+            # The result panel renders an Amazon link, so the label sits on the
+            # box itself (check_adlabel.py inspects this block since 2026-09-04).
+            f'<p style="margin:0 0 6px;font-size:11px;color:#8a99a6;">{AD_LABEL[en]}</p>'
             f'<p style="margin:0 0 12px;color:#5b6b78;font-size:13.5px;">{t[1]}</p>'
             '<div style="display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end;">'
             f'<div style="flex:1 1 130px;"><label for="eb-sf-w" style="display:block;font-weight:700;font-size:12.5px;margin-bottom:4px;">{t[2]}</label>'
@@ -2878,6 +3185,8 @@ def hosefit_block(en=False):
     return ('<!--EB_HOSEFIT--><section style="max-width:1000px;margin:18px auto 0;padding:0 20px;">'
             '<div style="background:#fff;border:2px solid #0f6ba8;border-radius:14px;padding:18px 20px;">'
             f'<strong style="font-size:17px;display:block;margin-bottom:3px;">{t[0]}</strong>'
+            # Same rule as the seal calculator: the verdict links to Amazon.
+            f'<p style="margin:0 0 6px;font-size:11px;color:#8a99a6;">{AD_LABEL[en]}</p>'
             f'<p style="margin:0 0 12px;color:#5b6b78;font-size:13.5px;">{t[1]}</p>'
             '<div style="display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end;">'
             f'<div style="flex:1 1 150px;"><label for="eb-hf-d" style="display:block;font-weight:700;font-size:12.5px;margin-bottom:4px;">{t[2]}</label>'
@@ -3321,9 +3630,7 @@ def inject_crumb_trust(html, cat_key, title, url, en=False):
         html = html.replace("<!--/EB_NAV-->", "<!--/EB_NAV-->\n" + block, 1)
     else:
         return html
-    if "eb-crumb-ld" not in html and "BreadcrumbList" not in html:
-        html = html.replace("</head>", breadcrumb_jsonld(cat_key, title, url, en) + "</head>", 1)
-    return html
+    return replace_breadcrumb_ld(html, cat_key, title, url, en)
 
 
 def inject_sticky(html, sticky=STICKY):
@@ -3361,6 +3668,7 @@ SIZER_TXT = {
         "qm": "Raumgröße (m²)", "sun": "Sonneneinstrahlung",
         "opts": [("0.9", "Wenig (Nord, schattig)"), ("1", "Normal"), ("1.2", "Stark (Süd/West, Dachlage)")],
         "go": "Berechnen", "for": "Empfohlene Kühlleistung für", "cls": "Passende Geräteklasse",
+        "nodrill": "kein Bohren: Schlauch ans Fenster, Abdichtung drum",
         "amz": "Preis auf Amazon prüfen →", "grid": "Alle Empfehlungen auf dieser Seite ↓",
         "area": "Alle Empfehlungen für %d m² →", "full": "Decke, Personen, Küche einrechnen →",
         "note": ("Anzeige · Richtwert nach 340 BTU/m². Modelle nicht selbst getestet — Auswahl nach "
@@ -3368,7 +3676,7 @@ SIZER_TXT = {
         "mcp": ('Dieselbe Rechnung kann auch dein KI-Assistent direkt aufrufen — '
                 '<a href="/mcp.html" style="color:#0f6ba8;">MCP-Server einrichten →</a>'),
         "bands": [(9000, "bis ca. 9.000 BTU"), (11000, "9.000–11.000 BTU"),
-                  (13500, "12.000–13.500 BTU"), (0, "über 13.500 BTU")],
+                  (13500, "11.000–13.500 BTU"), (0, "über 13.500 BTU")],
         # Over ~13,500 BTU we name no model, because we have none to name: the
         # largest portable in DEVICE_MODELS["ac"] is the 12K Klarstein. Handing a
         # reader who just computed 20,500 BTU a 12,000 BTU unit is the calculator
@@ -3386,6 +3694,7 @@ SIZER_TXT = {
         "qm": "Room size (m²)", "sun": "Sun exposure",
         "opts": [("0.9", "Low (north-facing, shaded)"), ("1", "Normal"), ("1.2", "Strong (south/west, top floor)")],
         "go": "Calculate", "for": "Recommended cooling capacity for", "cls": "Matching class",
+        "nodrill": "no drilling: hose to the window, seal around it",
         "amz": "Check the price on Amazon →", "grid": "All picks on this page ↓",
         "area": "All picks for %d m² →", "full": "Add ceiling height, people, kitchen →",
         "note": ("Ad · Rule of thumb: 340 BTU/m². Models not tested by us — compiled from public "
@@ -3393,7 +3702,7 @@ SIZER_TXT = {
         "mcp": ('Your AI assistant can call this same calculation — '
                 '<a href="/mcp.html" style="color:#0f6ba8;">set up the MCP server →</a>'),
         "bands": [(9000, "up to approx. 9,000 BTU"), (11000, "9,000–11,000 BTU"),
-                  (13500, "12,000–13,500 BTU"), (0, "over 13,500 BTU")],
+                  (13500, "11,000–13,500 BTU"), (0, "over 13,500 BTU")],
         "big": ("At this room size a portable monoblock is at its limit — we have no unit "
                 "here we could honestly recommend for it. A fitted split system or two "
                 "smaller units are the realistic options."),
@@ -3443,15 +3752,32 @@ def sizer_block(en=False, prefill=20):
             'function calc(user){'
             'var qm=Math.max(4,Math.min(120,parseFloat(q.value)||20)),sun=parseFloat(s.value)||1;'
             # identical to /guide/btu-rechner.html at its own defaults
-            'var btu=Math.round(qm*340*sun/500)*500,model,term,label,big=false;'
-            'if(btu<=9000){model="Comfee MPPH-09CRN7";term="Comfee+MPPH-09CRN7";label=' + repr(b0) + ';}'
+            'var btu=Math.round(qm*340*sun/500)*500,model,term,url,test,label,big=false;'
+            # url is resolved HERE, at build time, through amazon_url() — the same
+            # helper the server-rendered cards use. Before 2026-08-29 this block
+            # concatenated its own s?k= search URL in the browser, which is why the
+            # ASIN pass of 2026-08-28 (261 card links) never reached the tool
+            # results: a verified product page existed and the widget with 95 % of
+            # all measured tool use still shipped readers to a search box.
+            # test = the model's own Test-Überblick, so the pick carries evidence at
+            # the moment of decision. German only: no EN test pages exist, and we do
+            # not link a reader to a page they cannot read.
+            'if(btu<=9000){model="Comfee MPPH-09CRN7";term="Comfee+MPPH-09CRN7";'
+            'url=' + repr(amazon_url("Comfee+MPPH-09CRN7", "Comfee MPPH-09CRN7")) + ';'
+            + ('test="";' if en else 'test="/guide/comfee-mpph-09crn7-test.html";')
+            + 'label=' + repr(b0) + ';}'
             'else if(btu<=11000){model="De\'Longhi Pinguino PAC EX105";term="De%27Longhi+Pinguino+PAC+EX105";'
-            'label=' + repr(b1) + ';}'
+            'url=' + repr(amazon_url("De%27Longhi+Pinguino+PAC+EX105", "De'Longhi Pinguino PAC EX105")) + ';'
+            + ('test="";' if en else 'test="/guide/pinguino-pac-ex105-test.html";')
+            + 'label=' + repr(b1) + ';}'
             'else if(btu<=13500){model="Klarstein Kraftwerk Smart 12K";'
-            'term="Klarstein+Kraftwerk+Smart+12K";label=' + repr(b2) + ';}'
+            'term="Klarstein+Kraftwerk+Smart+12K";'
+            'url=' + repr(amazon_url("Klarstein+Kraftwerk+Smart+12K", "Klarstein Kraftwerk Smart 12K")) + ';'
+            + ('test="";' if en else 'test="/guide/klarstein-kraftwerk-smart-12k-test.html";')
+            + 'label=' + repr(b2) + ';}'
             # Above the ladder we sell nothing. term="" switches the result panel
             # from an Amazon button to the honest sentence (+ a route, where one exists).
-            'else{model="";term="";big=true;label=' + repr(b3) + ';}'
+            'else{model="";term="";url="";test="";big=true;label=' + repr(b3) + ';}'
             'var qp=qm<=12?10:qm<=17?15:qm<=22?20:qm<=27?25:qm<=35?30:40;'
             'var grid=document.getElementById("eb-models");'
             'var second=grid?\'<a href="#eb-models" style="background:#fff;color:#0a4d7a;border:1px solid '
@@ -3466,9 +3792,11 @@ def sizer_block(en=False, prefill=20):
             + f'+btu.toLocaleString("{loc}")+\' BTU</div>\''
             '+(big?(\'<div style="margin:7px 0 0;font-size:14px;">\'+' + repr(t["cls"]) + '+\' (\'+label+\')</div>\''
             '+\'<p style="margin:7px 0 0;font-size:13.5px;color:#3d4d5a;">\'+' + repr(t["big"]) + '+\'</p>\')'
-            ':(\'<div style="margin:7px 0 0;font-size:14px;">\'+' + repr(t["cls"]) + '+\' (\'+label+\'): <strong>\'+model+\'</strong></div>\'))'
+            ':(\'<div style="margin:7px 0 0;font-size:14px;">\'+' + repr(t["cls"]) + '+\' (\'+label+\'): <strong>\'+model+\'</strong>\''
+            '+\' — \'+' + repr(t["nodrill"]) +
+            '+(test?\' · <a href="\'+test+\'" style="font-size:13px;color:#0f6ba8;">Was sagen die Tests?</a>\':"")+\'</div>\'))'
             '+\'<div style="margin:11px 0 0;display:flex;gap:8px;flex-wrap:wrap;">\''
-            '+(big?' + repr(BIGCTA_HTML) + ':\'<a href="https://www.amazon.de/s?k=\'+term+\'&tag=getecoback-21" target="_blank" '
+            '+(big?' + repr(BIGCTA_HTML) + ':\'<a href="\'+url+\'" target="_blank" '
             'rel="sponsored noopener" style="background:#f59e0b;color:#1a2733;font-weight:800;padding:9px 15px;'
             'border-radius:8px;text-decoration:none;font-size:13.5px;">\'+' + repr(t["amz"]) + '+\'</a>\')'
             '+second'
@@ -3582,6 +3910,16 @@ def main():
                 new = inject_heatnow(new, slug)
             if device_of(slug) == "storage":
                 new = inject_stromnow(new)
+            # The humidity/mould family gets the autumn live number. Deliberately
+            # NOT the ac pages: they already carry EB_HEATNOW, and two weather
+            # bands stacked on one page is noise, not information.
+            # device_of() reads "klimaanlage"/"hitze" first, so some of the mould
+            # pages come back as ac and would have ended up with both bands —
+            # caught in the build, not in review.
+            if (device_of(slug) == "dehum" or slug in FEUCHTE_EXTRA) and "<!--EB_HEATNOW-->" not in new:
+                new = inject_feuchtenow(new)
+            else:
+                new = strip_feuchtenow(new)
             new = inject_sealfit(new, slug)
             new = inject_hosefit(new, slug)
             new = inject_quickpick(new, slug)

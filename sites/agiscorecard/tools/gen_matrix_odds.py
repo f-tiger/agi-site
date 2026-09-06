@@ -22,7 +22,7 @@ import os
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = "https://agiscorecard.com"
-GA = "G-B3PN0PLGTG"
+GA = "G-FZXLMBB5QB"
 
 # ---------------------------------------------------------------- 数据源
 with open(os.path.join(ROOT, "data.json"), encoding="utf-8") as fh:

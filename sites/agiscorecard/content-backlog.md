@@ -212,14 +212,30 @@ specs above at any time to resume net-new page creation.
 所以「多覆盖一个判定型问题 = 多一份高份额引用」这条路，不需要先把流量做起来。
 这是本站目前唯一一条不受流量瓶颈约束的杠杆，优先级高于新工具。
 
-- [ ] `datacenter-grid-cost-tracker` —（2026-08-21 种,来源:根仓 startup-trend-sweep
+- [x] (CITATION AMPLIFICATION·客户视角簇)`ai-and-your-job` + zh、`amodei-white-collar-bloodbath-prediction`、
+  工作簇 7 页补意见钩/一手源/时效行、`ai-job-risk-check` v2 按职业查(2026-09-05 出厂,依据根仓
+  docs/agi-customer-lens-2026-09.md;判定线 2026-10-03,见 CLAUDE.md「客户视角簇」)。
+- [ ] `occupation-verdict-series` —**【门:2026-10-03 入口页判定线过线后才动工,每月最多 1 页】**
+  「Will AI replace [X]?」五源对账卡系列(Microsoft 适用性 / Anthropic 指数 / Eloundou / BLS 2024–34 /
+  Indeed),候选顺序按 Microsoft 分与搜索需求:interpreters & translators(0.49,分最高)→ customer
+  service → accountants → nurses → teachers → lawyers → graphic designers。每页必须:标题即问题、
+  首屏答案胶囊、五源表、带日期判定、翻转条件、FAQ 逐字一致、活数字钩;**暴露 ≠ 失业写在每张卡上**。
+- [ ] `ai-jobs-monthly-status-line` — 事件驱动维护项(不是新页):Challenger 月报 / BLS / Stanford
+  Canaries / Pew·Gallup·APA 任一发布 → 当日刷新 `/ai-and-your-job` 与血洗页的时效行(带日期与源),
+  并按预登记阈值判断判定是否翻转;翻转即走 flip-day 义务(data.json 不涉及,但 ClaimReview 评分要改)。
+- [ ] `datacenter-grid-cost-tracker` —**【2026-08-31 闸门复查:未过,不动工】**前置条件是
+  「9 月上旬 Bing 明细确认 capex 页引用仍在涨」,而 Bing 明细窗口 09-01~03 才开,无数据即无依据。
+  —（2026-08-21 种,来源:根仓 startup-trend-sweep
   调研)美国州级「数据中心电网成本谁来付」追踪台账。全国性解释文已被 CNBC/Forbes/
   Consumer Reports/USAFacts 占满(勿做),但**州规则合订表**是碎片缺口:NJ 转嫁法
   2026-06-30、NY 数据中心暂停令 2026-07、PJM 容量费 $6.3B 转嫁。台账形状(州 ×
   规则 × 日期 × 源),适配 capex 集群,内链 /ai-capex-trillion-dollar、
   /is-the-ai-capex-a-bubble。**动工前置**:9 月上旬 Bing 明细确认 capex 页引用
   仍在涨;每条州规则必须一手源(州公告/法案文本),媒体报道只作导航。
-- [ ] `eu-ai-act-de` —(2026-08-21 种)/eu-ai-act-what-applies-now 的德语版
+- [ ] `eu-ai-act-de` —**【2026-08-31 闸门复查:未过,不动工】**前置条件是英文版先过 28 天线
+  (首个 AI 引用或站内 TOP10);实测英文版 28 天 JS 浏览 **1** 次,站内 TOP10 门槛 **12**,差得远。
+  按预登记纪律不跳闸——一个自己没人读的页面,翻译成德语只是把零复制一遍。
+  —(2026-08-21 种)/eu-ai-act-what-applies-now 的德语版
   ("Gilt die KI-Verordnung für mein Unternehmen?" 一屏判定 + 同一张台账),德语
   供给全是律所长文,且 KI-MIG/Bundesnetzagentur(KoKIVO)是德语原生题材。
   **动工前置**:英文版 28 天判定线先过(首个 AI 引用或站内 TOP10);过线后走

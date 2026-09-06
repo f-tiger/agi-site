@@ -1727,3 +1727,642 @@ WebApplication JSON-LD. The real gaps found and fixed:
 Judgement (28d): baked strip = crawlers can now cite actual products; watch
 whether vendor-product queries ever appear in AI-crawler fetches. Tools:
 watch quiz/cost-calculator fetch counts vs before.
+
+## 2026-08-29 (eco-playbook round) — owner: "太慢了，学习eco站点起量，抓住热点"
+
+Context, first-party: 11 days of D1 since the beacon went live — ~6 real
+human pv/day, 2 Google referrals total, affiliate_click 0. The pipeline is
+alive; the traffic isn't. Owner directive: port eco's ramp mechanics, catch
+trends. Three changes, all shipped today:
+
+1. **Fast-response page rule ported from eco** (CLAUDE.md new section):
+   rising word v≥200 + in niche + lands in the safety wedge → page the same
+   day; vendor-name + legit/reviews intent uses the lovedollshops-check
+   template (our Faktencheck isomorph); 14-day per-word cooldown; 1 page/day
+   max; baby-form/reborn = never, even negatively. Judgement: each page 28d
+   ≥1 search/assistant referral OR ≥1 affiliate_click OR AI-fetch streak ≥
+   scam-check; 3 consecutive zero pages → rule goes back to the shop.
+2. **Rising seed fixed on data** (tools/fleet_trends_rising.py): "silicone
+   doll" provably surfaces only ashton drake / reborn baby-doll queries
+   (v 28700/18550 — out of niche, red-line adjacent). Swapped for "rosemary
+   doll", the vendor name that "sex doll" related-queries surfaced by itself
+   — vendor seeds rise as "<vendor> reviews/legit", exactly what the wedge's
+   vendor-check template converts. Quota-neutral (swap, not add).
+   Today's signals, for the record: lars and the real girl v=7450
+   (film — informational, logged, no page), realbotix v=130 (below line),
+   rosemary doll v=40 (vendor intent, below line — the seed swap exists to
+   measure this family properly).
+3. **SNAD wedge page shipped** — /guides/doll-not-as-described ("arrived,
+   doesn't match the photos: the 72-hour plan"). Queued as the TOP uncovered
+   pain-query family since 08-25; consumer-protection shaped (SafeSearch-safe,
+   assistant-answerable), which is where this site's only Google click and
+   all its AI-crawl attention already live. Zero new facts: payment windows
+   cite /data/ (FOS ~120d from receipt, S75 £100–£30k), arrival evidence
+   defers to After You Order, variance judgement defers to factory-photos;
+   the 72h frame is explicitly labelled editorial-not-legal on the page.
+   Links no vendor at all, same as the other wedge pages. Cross-linked from
+   after-you-order + guides index; sitemap/llms/search-index rebuild in CI.
+
+Judgement (28d, 09-26): the SNAD page earns a search/assistant referral or
+an AI-crawler fetch streak ≥ factory-photos' → keep deepening the
+post-purchase wedge; zero everything → the wedge thesis takes the hit, log
+it against the 2026-10-01 wedge line honestly.
+
+## 2026-08-30 (THE PIVOT) — owner: "重大决策：下架掉这个站点，风险太大，更换为卖labubu的站点"
+
+The adult-doll site is retired, in full, by owner decision. Archive = git
+history + the old private repo. This entry is the hinge between the two
+sites sharing this log; everything above it belongs to the retired site.
+
+What was decided (owner, same session): reuse the domain and all infra
+(Pages project, D1, GA4, IndexNow key, US Associates listing of 2026-08-28
+— the deciding argument for domain reuse), affiliate-guide model, zero
+inventory. What shipped same-day:
+
+- Takedown: every adult page, dataset, generator script and 9 of 11 tds
+  workflows removed; age gate, RTA Rating headers and adult meta gone;
+  deploy self-check now ASSERTS old pages 404 and a build gate fails the
+  deploy if any retired-site marker reappears in publishable files.
+- New site v1: / + /fake-check (flagship: 8-point real-vs-fake, every check
+  with named dated source; the retired site's evidence-standard DNA applied
+  to the category where fakes literally earned their own name) +
+  /where-to-buy (official channel ladder per Pop Mart's own advice via ABC
+  News; Amazon storefront + brand-search affiliate links, Ad-labelled;
+  no hard-coded prices — price-floor logic instead).
+- Sources actually verified via WebSearch (sandbox egress blocks the source
+  domains themselves — noted in CLAUDE.md; multi-source points only).
+- Trend inputs re-seeded: trends-us wordlist + rising seeds (labubu / fake
+  labubu / pop mart); old trend data reset with a dated note.
+- Analytics continuity: same D1, same ev taxonomy; rows before 2026-08-30
+  are the old site's — never compare across the hinge.
+
+Honest risk, pre-registered in CLAUDE.md: six weeks of 18+ history on this
+domain (RTA headers, adult meta). All removed + IndexNow re-pushed, but
+SafeSearch-classification residue has an unknown half-life. Judgement line
+2026-10-29: 28d human pv ≥ 3× the old site's ~6/day, or ≥1 affiliate_click,
+or ≥5 search/assistant referrals → pivot holds; all missed → escalate the
+domain-history hypothesis to owner with a fresh-domain proposal.
+
+## 2026-08-30 (round 2) — owner: "联盟id用我的德国和美国id，分别做多语言"
+
+Dual-tag, dual-market build on day one of the new site:
+
+- /de/ German pages shipped as full pairs of the three EN pages (hreflang
+  language groups, x-default=EN — eco's verified model). German pages carry
+  amazon.de links with getecoback-21; EN pages keep amazon.com with
+  ecoback0d-20. Both official POPMART storefronts verified to exist via
+  WebSearch before linking (amazon.com and amazon.de each have one).
+- New build gate: a .de link carrying the US tag (or .com carrying the DE
+  tag) fails the deploy — a crossed tag earns exactly nothing, so it is a
+  build error, not a style issue.
+- No invented EUR prices: DE pages cite the sourced US retail range and
+  point at popmart.com/de live listings for euros.
+- Deploy self-check extended to assert the three /de/ pages 200 + zero
+  redirects.
+- PRE-REGISTERED SUSPENSION ITEM (report every round until cleared): the
+  DE PartnerNet Websites list must include thedollscout.com — same lesson
+  as the eco/US listing of 08-28; unlisted sites risk commission
+  invalidation. DE links are live per owner's explicit instruction, but DE
+  revenue counts as unconfirmed until the listing is done (~1 owner-minute).
+- D1 attribution needs no change: affiliate_click stores the target
+  hostname, so .com vs .de clicks separate cleanly in the ledger.
+
+## 2026-08-30 (round 3) — owner: "是不是有门禁，都解掉" + "参照eco站点再优化"
+
+THE GATE FINDING, for the fleet's permanent record: the deploy pipeline had
+been RED since 08-22 — runs #13-#20 all failed in seconds at the
+build-data-page anchor gate (a hand edit broke a generator anchor). Every
+GEO/SEO/IndexNow improvement committed 08-25..08-27 (the IndexNow push
+mechanism's sitemap targets, the vendor-check page, hot-picks baking) NEVER
+reached production; the weekly IndexNow job was meanwhile submitting URLs
+that 404'd live. "We did everything and got no traffic" was literally true —
+the work was landing in a frozen deployment. Lesson: a red deploy is a
+silent gate unless something screams; the pivot's rewritten pipeline has no
+generator chain left to rot, and the fleet should treat "last successful
+deploy date" as a first-class health metric.
+
+Other gates settled: adult classification signals (RTA header / adult meta /
+age gate) died with the takedown; run #21 deployed the new site (all 6 pages
++ robots + sitemap 200, zero redirects), and the one red — /scam-check still
+200 — was edge-cache latency, confirmed by dispatch run #22 going fully
+green including the retired-pages-404 assertions.
+
+eco-port optimization round (this commit):
+- /data/ surface: labubu-fake-signals.json (CC-BY, per-signal sources,
+  limitations) + /data/ index with Dataset JSON-LD. Grounds: the old site's
+  ONLY Google click landed on /data/, and eco's dataset surfaces are its
+  AI-crawl magnets.
+- fake-check EN+DE: one Ad-labelled "skip the checklist" exit block
+  (official storefront, marketplace-correct tags; popmart.com linked
+  unmonetized beside it) — eco's lesson that a wedge page with zero anchors
+  gives a convinced reader nothing to act on. Footer disclosure updated to
+  match reality.
+- Next: IndexNow MODE=all full registration of the new URL set right after
+  this deploys.
+
+## 2026-08-30 (round 3 addendum) — owner completed the GSC step
+
+Owner's screenshot: sitemap.xml resubmitted in Google Search Console,
+status Success, last read 2026-08-30 (same day), 7 pages discovered = the
+new site's complete URL set (3 EN + 3 DE + /data/). With IndexNow MODE=all
+already accepted by Bing/Yandex/Naver/Seznam, every discovery lane is now
+formally re-opened on the new content. What remains outside our hands:
+Google's SafeSearch reclassification latency (unknowable, pre-registered),
+and the DE PartnerNet Websites listing (suspension item, unchanged).
+Measurement cadence: D1 weekly reads against the 2026-10-29 judgement line;
+GSC coverage/impressions are owner-side screenshots when convenient.
+
+## 2026-08-30 (round 3 close-out) — owner: "已经提交站点地图和bing、联盟已加"
+
+All three owner-side items cleared in one day: GSC sitemap (read same-day,
+7/7 pages discovered), Bing WMT sitemap submitted, and thedollscout.com
+added to the DE PartnerNet Websites list — the suspension item is RESOLVED,
+DE-side commission attribution is now confirmed on both marketplaces.
+Nothing is pending on the owner. The machine loop from here: daily trends
+fetch on the labubu seeds (first data next runner cycle), weekly IndexNow
+delta, daily D1 snapshot, judgement line 2026-10-29.
+
+## 2026-08-30 (round 4) — owner: "首页缺少图文、youtube等内容，太简陋了，还缺少吸引人的工具。真假不应该是最核心痛点，应该是流行和稀有程度"
+
+Repositioning + enrichment, shipped same-session:
+
+1. CORE PAIN POINT MOVED: rarity/popularity now leads, authenticity
+   supports (the bridge is real: the rarer, the more faked). New flagship
+   /rarity + /de/rarity — reported secret odds per series format (1:72
+   six-figure, 1:144 twelve-figure, 1:120–1:168 collabs, 1:720 glow;
+   sources: Tech-Insider, GlobalTill, Popboxss, all 2026), with the
+   explicit rule that the box's printed odds outrank every table.
+2. THE TOOL: Secret Pull Calculator — printed odds + N boxes → P(≥1
+   secret), plus boxes-for-50%/90%. Pure client math, honest independent-
+   draw caveat vs sealed-case allocation. The "85% in 12 boxes" claim
+   floating in sources is NOT repeated (independent math says 15.5% at
+   1:72×12; we publish the math, not the folklore). New D1 event odds_calc
+   (whitelisted server-side), fired on first USER interaction only — never
+   on render (eco's CI-pollution lesson, client-side edition).
+3. HOMEPAGE ENRICHED (EN+DE): original inline-SVG hero (own artwork, no
+   Pop Mart imagery — trademark rule), icon cards, official-series card
+   strip linking popmart.com listings, and two REAL YouTube unboxing
+   embeds (IDs from live search results, never invented) in
+   youtube-nocookie privacy mode with a privacy-page disclosure.
+4. Judgement lines: odds_calc ≥5 real interactions in 28d (by 09-27) →
+   tool earns expansion (per-series presets); 0 → tool stays but stops
+   getting rounds. Rarity page joins the standard page line (referral or
+   AI-fetch streak by 09-27).
+
+## 2026-08-30 (round 5) — owner: "增强图文吸引力，工具凸显" + mid-round "现在的风格是不是太重了，不适合labubu的年轻人？"
+
+Full visual re-anchor, and the owner's mid-round correction changed its
+direction: the first pass toward dark neon was scrapped in place because
+the observation was right — every dark theme on this domain is inherited
+gravity from the adult site, and Labubu's audience is young, pastel,
+sticker-culture. New anchor (per the frontend-design skill discipline):
+LO-FI — paper-yellow surface, zine/scrapbook energy, rotated sticker
+cards with tape corners, colliding system fonts, riso misregistration
+reserved for REAL numbers only ("1:72" as a crooked sticker; the
+calculator result). No webfonts added; system stack IS the anchor.
+
+Tool prominence: the Secret Pull Calculator now sits front-and-center on
+BOTH homepages as a taped clipboard panel, plus a single-hue labeled bar
+row ("boxes for a 50% shot": 50 / 83 / 100 / 117 / 499 — derived math,
+recorded 2026-08-30) on homepages and rarity pages. Calculator extracted
+to shared js/odds-calc.js consumed by all four pages — the per-page copy
+risk (eco's injector lesson) is gone; odds_calc still fires on first user
+interaction only. Judgement lines unchanged from round 4.
+
+## 2026-08-30 (round 6) — owner: "labubu官网风格同频"
+
+Third and final visual anchor of the day: SWISS-COMMERCE LIGHT — pure
+white surface, one sans family, hairline rules, generous whitespace, a
+single deliberate red (#e4002b), left-aligned type, and huge tabular
+numerals as composition elements. This is the official store's register
+(white / black type / red accent / rounded product cards) matched in
+VIBE only: no Pop Mart logo shapes, no mascot artwork, the not-affiliated
+line stays on every page — impersonation is the red line 同频 must never
+cross. The Lo-Fi zine pass (round 5) lasted one round; the trajectory
+(inherited-dark → paper-zine → swiss-light) is recorded in CLAUDE.md with
+a "stop oscillating" note. Tool stays front-and-center: red-top-border
+card, red glowing result; bars now single-hue red. All shared components
+(odds-calc.js, hreflang, tags, gates) untouched — this round is a pure
+token-layer restyle plus SVG recolor, zero content or contract changes.
+
+## 2026-08-30 (round 7) — owner: "先优化prompt再执行：调用技能做好seo，geo流量优化，做厚网站，另外mcp等也增强"
+
+Ran prompt-optimizer first (site rule), then executed against the
+optimized prompt. Four workstreams, all shipped in one deploy:
+
+1. **做厚 (site depth)**: two new content page pairs. /how-blind-boxes-work
+   (+/de/) — the mechanics page: series structure, what printed odds mean
+   across N boxes, sealed-case caveat, four buying formats, the traps;
+   FAQ LD with 4 Q&As matching visible text. /glossary (+/de/) — ten
+   plain-language definitions (blind box, series, regular, secret/chase,
+   printed odds, case, glow/ultra, vinyl plush pendant, Lafufu, seller of
+   record); DefinedTermSet LD. Both cross-link the evidence pages and
+   link no store. Site: 5→7 content pages per language, 9→13 sitemap URLs.
+
+2. **GEO**: llms-full.txt now generated at deploy (build-llms-full.mjs,
+   12 pages, ~60KB, exit-0-always per the freeze lesson) and llms.txt
+   rewritten to the rarity-first framing with both datasets + MCP listed.
+   Second CC-BY dataset published: data/rarity-odds.json (format odds +
+   boxesFor50pct derivations); /data/ index now carries two Dataset LD
+   nodes. og:image existed on zero pages this morning — now all 12 pages
+   carry the self-drawn Swiss og.png (1200×630) + twitter:card.
+
+3. **MCP 增强**: /mcp rebuilt for the Labubu site — 3 read-only tools
+   (labubu_rarity_odds, labubu_fake_signals, secret_pull_probability),
+   answers read from the published /data JSON at request time (no third
+   source of truth), recording dates + limitations travel with every
+   answer, no affiliate links in tool output, /.well-known/mcp.json
+   discovery doc. Collision fixed: '/mcp' and '/llms-full.txt' removed
+   from the middleware's retired-410 list — both are live paths again.
+
+4. **Deploy hardening**: self-check grows from 11 to 19 URLs (new pages,
+   both llms files, og.png, rarity dataset, mcp.json discovery) plus an
+   MCP smoke test (initialize must return protocolVersion; the calculator
+   tool must return ~15% for 1:72×12 — deterministic math, so a wrong
+   answer is a real failure). IndexNow EXTRA now includes /llms-full.txt.
+
+Judgement lines (pre-registered): (a) new pages join the standard page
+line — first search/assistant referral or AI-crawler fetch streak by
+09-27 or they stop getting rounds; (b) MCP: first non-CI tools/call by
+09-27 → note it and keep; zero by then → endpoint stays (costs nothing,
+no schedule) but gets no further investment; (c) llms-full.txt fetches
+by named AI bots appear in the D1 bot log — if the bot table shows GPTBot/
+ClaudeBot/PerplexityBot reading it within 28d, GEO surfaces get the next
+round; if only Googlebot ever touches it, GEO investment pauses.
+
+## 2026-08-30 (round 8) — owner: "站点tds需要再丰富并进化，现在太简单了，包括调研labubu群体心理画像，再看推荐内容"
+
+Research first, pages second. WebSearch multi-source audience profile
+written to content/audience-profile.md (permanent topic-selection input):
+core buyer = women 25-34 (~60% female; Chain Store Age / DemandSage);
+Gen Z is the TikTok discovery layer, not the committed-buyer layer
+(UserTesting survey); parents are a distinct segment with their own
+query ecosystem. Motivations: variable-ratio dopamine loop, secret
+chase + set completion, bag-charm status signaling (celebrity
+provenance), inner-child/ugly-cute appeal, community membership.
+Serviceable pains: buyer's guilt and overspend (Guardian reporting;
+China state-media warnings via NBC), fake anxiety, beginner confusion,
+parent age/safety worry. Explicitly rejected angles recorded in the
+profile: investment/appreciation content (site rule 4) and
+quit-addiction framing (we do budget math, not diagnosis).
+
+Two page pairs shipped from the profile:
+1. /start + /de/start — the beginner/parent page: three-decision
+   structure (format → series → channel), formats table, first-buy
+   checklist, straight-talk parents section (official age listings are
+   the authority; counterfeits bypass the safety chain; agree the box
+   count before the store). Highest buyer intent on the site; one
+   Ad-labelled storefront line per marketplace, tags marketplace-correct.
+2. /psychology + /de/psychology — the differentiation page: the
+   variable-reward mechanics sourced (Mental Floss, Rowan Center, Young
+   Post), the wanting explained without judgment (CBS, FASHION,
+   Refinery29, NBC), the two lies of the loop, and the CHASE-COST
+   REALITY tool (js/cost-calc.js, shared EN/DE): user enters their local
+   box price (we never print prices), gets expected cost of pulling a
+   secret (N boxes at 1:N, geometric) vs a 50% chance. New D1 event
+   cost_calc, first-user-interaction only, whitelisted in ev.js.
+   No affiliate links on the psychology page at all — trust is its yield.
+
+Surfaces updated: homepage cards (4-card second grid now), sitemap
+13→17 URLs, urls.txt, llms.txt, llms-full PAGES 12→16, self-check
+19→23 URLs, #series anchors on both homepages.
+
+Judgement lines (pre-registered, 28d by 09-27): (a) /start joins the
+standard page line — first search/assistant referral or AI-fetch streak,
+plus it is the page most likely to earn the site's first affiliate_click
+(highest intent); if /start gets human pv but zero storefront clicks,
+the storefront line placement gets ONE revision, not a redesign.
+(b) cost_calc ≥3 real uses → psychology page earns expansion (per-series
+presets); 0 uses AND 0 AI fetches → the tool stays but the page stops
+getting rounds. (c) Profile is falsifiable: if D1 referrals show a
+decisively different audience shape (e.g. male-skewed search terms,
+zero parent-query landings), audience-profile.md gets revised from
+data, not defended.
+
+## 2026-08-30 (round 9) — owner: "站点快速再扩展，对比同类型网站要有独特性" + mid-round "支持中文，和海外卖的最好区域语言，增加搜索型号的工具？"
+
+Competitor scan first (content/competitive-gaps.md): the whole category —
+labubu.directory, labubucollector.com, labubusuperfans.com, the Fandom
+wiki, e-commerce blog listicles — is static directories and checklists.
+Nobody has an interactive verdict tool, an odds-first axis, open data, an
+honest budget angle, or language pairs. Recorded as the site's lane with
+an explicit "don't compete on catalogs" rule (no image rights, endless
+churn, 63-series incumbents).
+
+Shipped against those gaps, all tools with shared JS + per-language
+strings baked in HTML:
+1. /checker + /de/checker — the 8-signal dataset as an interactive
+   wizard: pass/fail/unsure per check, failing checks listed BY NAME,
+   three honest verdicts (red flags / inconclusive / "no red flags
+   found — not a guarantee"). No scoring: fake precision would be
+   fabrication by arithmetic. Event checker_use.
+2. /finder + /de/finder — three answers (use/vibe/chase) → one current
+   official series, linked to Pop Mart's own listings; chase=secret
+   routes through the chase-cost calculator first. Event finder_use.
+3. /lookup + /de/lookup — the owner's "型号搜索" ask: instant filter
+   over a curated per-entry-sourced identity index (Labubu 9-teeth/no
+   tail vs Zimomo larger/spiked-tail vs Mokoko pink/heart-nose — the
+   verified separators; Big Into Energy's Love/Happiness/Loyalty/
+   Serenity/Hope/Luck + secret ID; formats; terms). Entries state only
+   what named sources support; empty result says "not in our index ≠
+   doesn't exist". Event lookup_use.
+4. /zh/ + /th/ — single-page editions (hero + shared calculator with
+   localized strings + math-in-three-sentences + condensed 8 checks +
+   channel rule). Thai chosen as "海外卖得最好" by evidence: Thailand is
+   Pop Mart's top overseas market (SEA = 41% of international revenue
+   H1'24; world's largest store at ICONSIAM Bangkok — kr-asia, Caixin,
+   Nation Thailand). Monetization mapping: zh → amazon.com storefront
+   (US-listed site, compliance follows the Associates site list, not
+   page language); th → zero affiliate links, stated on-page.
+
+Surfaces: homepages get a tools row + zh/th nav links + 4-language
+hreflang on the homepage group; sitemap 17→27, urls.txt, llms.txt tools
++ languages sections, llms-full PAGES 16→24, self-check 23→33 URLs.
+
+Judgement lines (28d, by 09-27): (a) tools — first non-CI checker_use /
+finder_use / lookup_use each noted; if all three stay at zero while the
+pages get human pv, the tools row placement gets one revision; if the
+pages get no pv at all, it's a discovery problem, not a tool problem —
+don't touch the tools. (b) /zh/ and /th/ — each language's human pv and
+referral source tracked separately; a language crossing DE-region pv
+triggers the full-pair upgrade per CLAUDE.md; both flat at zero by 09-27
+→ record that language packs without language-market discovery lanes
+don't self-start, and stop adding languages. (c) competitive-gaps.md is
+the standing filter: any proposed page that lands in none of the 5 gaps
+gets rejected in triage, and that rejection is logged, not debated.
+
+## 2026-08-30 (round 10) — owner: "调用geo等手段多轮深度优化"
+
+Deep GEO pass, audit-first. The audit came back better than assumed —
+every core page pair already carries a first-screen answer callout and
+FAQ LD (the round-7 work held) — so this round fixed the three real
+gaps instead of re-plowing:
+
+1. **Extractability**: /glossary and /de/glossary DefinedTermSet LD now
+   enumerates all 10 terms as individual DefinedTerm entities (name +
+   description matching the visible text) — the extraction unit for
+   "what is a lafufu / printed odds / chase" definition queries, in
+   both languages.
+2. **Machine-readable**: third CC-BY dataset data/labubu-glossary.json
+   (10 terms, aliases, per-term evidence links, limitations); /data/
+   carries a third Dataset LD node and its card. MCP v2.1.0 adds the
+   fourth tool define_labubu_term(term) — exact-then-substring match
+   over term+aliases, unknown terms answered honestly with the
+   available list, definitions read from the published JSON at request
+   time (no third source of truth). Discovery doc updated; deploy smoke
+   now also asserts define_labubu_term('lafufu') mentions counterfeit.
+3. **Crawler paths**: robots.txt now names the full ai-seo-skill bot
+   roster — added OAI-SearchBot, ChatGPT-User, Claude-User,
+   Claude-SearchBot, Google-Extended (GPTBot/ClaudeBot/PerplexityBot/
+   GrokBot/xAI-Bot were already named). Self-check +1 URL
+   (/data/labubu-glossary.json → 34); llms.txt lists the third dataset
+   and fourth tool; llms-full rebuilt.
+
+Judgement lines: these surfaces share the round-7 GEO lines (named AI
+bots reading llms-full/datasets in the D1 bot log by 09-27 gates the
+next GEO round). New sub-line: if the MCP log shows define_labubu_term
+as the first externally-called tool, that's evidence assistants want
+definitions over numbers — the next dataset should be the character
+identity index (lookup entries), not more odds math.
+
+## 2026-08-30 (round 11) — owner: "调用geo等手段多轮深度优化"
+
+Ran a 157-agent, nine-lens audit (structured data, extractability, crawl
+mechanics, agent files, i18n, internal linking, E-E-A-T, no-JS readability,
+query gaps) with three adversarial verifiers per finding and a completeness
+critic. 45 findings survived, 4 were refuted. The important result is not
+the count — it is that **five of the confirmed findings were live bugs this
+session shipped, and three of them were silent**.
+
+### Silent breakage found (all mine, all shipping green)
+1. **scripts/indexnow.mjs referenced an undefined `urls`** and threw on every
+   deploy SINCE THE PIVOT. The step carries continue-on-error, so a crashing
+   IndexNow push looked exactly like a working one in a green run. Not one URL
+   of the new site was ever pushed to Bing/Yandex/Naver/Seznam. Repaired, plus
+   ::error:: annotations so a non-blocking step still shouts, plus the machine
+   surfaces (llms.txt, llms-full.txt, mcp.json, 3 datasets) added to the push.
+   **Rule: a step allowed to fail must be made loud, or it is not a step.**
+2. **The weekly IndexNow job was a permanent no-op from 2026-09-08.** It ran
+   MODE=delta against sitemap lastmods that are static, and printed the empty
+   result as "the normal quiet outcome" — self-camouflaging. Weekly now runs
+   MODE=all (27 URLs/week is nothing); delta warns if it submits zero.
+3. **functions/_middleware.js isContentPath() never matched extensionless
+   paths**, so 20 of 25 published pages could not produce an ev='bot' row.
+   CORRECTION TO THIS SESSION'S OWN REPORT: earlier today I read the D1 bot
+   log and reported "every AI crawler stopped at the three entry points".
+   That was a measurement artefact — those were the only paths the logger
+   could see. The part that stands is narrower and still real: llms.txt,
+   llms-full.txt and the /data/*.json files DO have extensions, were
+   loggable, and were fetched zero times.
+
+### Self-rule violations found (the rule existed; nothing enforced it)
+4. **16 of 48 FAQ Q&A pairs existed only inside JSON-LD** — every one on
+   /start and /psychology, EN and DE, written in round 8. Then round 10's
+   DefinedTerm entities repeated the same mistake: 18 of 20 descriptions were
+   paraphrases, not the visible sentence. All 68 entries now match visible
+   text verbatim, and **scripts/check-structured-data.mjs is a blocking deploy
+   gate** — entity-decoded, quote/dash-folded, whitespace-stripped comparison,
+   because a gate that cries wolf gets disabled and a disabled gate is how
+   this got in. Pattern worth keeping: *a rule written in CLAUDE.md with no
+   executable check is a wish.*
+5. **`.card { display: block }` silently defeated `el.hidden`** (class
+   selector beats the UA stylesheet), so the Model Lookup filter shipped two
+   rounds ago never hid anything and could show "no match" above 12 visible
+   cards. One `[hidden]{display:none!important}` line fixes it.
+
+### GEO substance shipped this round
+- llms-full.txt now **keeps every link URL inline** (the site's whole
+  "named, dated source" promise previously arrived as unlinked prose in the
+  one file engines read whole), **strips conditional UI states** (the checker
+  had all three mutually exclusive verdicts in the DOM at once — quotable as
+  a self-contradiction), and its header facts are **computed from
+  .well-known/mcp.json and data/** instead of typed (the typed header was
+  republishing "3 tools / EN then DE" long after 4 tools and 4 languages).
+  Affiliate tags are stripped from it, matching the MCP no-affiliate rule.
+- **Discovery**: nothing on the site pointed at /llms.txt. Every page now
+  carries `<link rel="alternate" type="text/plain">` for both llms files and
+  robots.txt names all five machine surfaces.
+- **Linking**: not one of the 8 evidence pages linked any of the 3 tools.
+  All 14 EN+DE evidence pages now do; the two "related links" slots wasted on
+  `/` are gone.
+- Third dataset + 4th MCP tool wired into the self-check; ItemList on the
+  8-point check; WebApplication on the four calculator pages; Article image;
+  distinct @id per Dataset; nested `<a>` inside `<a>` removed from all three
+  dataset cards; CORS on the datasets; legal pages into sitemap/urls;
+  /finder's recommendations now ship visible (were 100% `hidden` = invisible
+  to crawlers); unsourced "sixty-plus series" replaced with honest wording;
+  12 source names per lookup page turned into real links.
+
+### Ledger (2026-08-30, CI excluded)
+human_pv 33 | bot 29 | **affiliate_click 1 — the site's first**, from the EN
+homepage, US, outbound to amazon.com. One click, not a sale: it proves the
+funnel is wired end to end, nothing about conversion. It does satisfy one of
+the three pre-registered 60-day conditions on day zero.
+Crawlers seen: YandexBot 15, Googlebot 5, Bingbot 4, OAI-SearchBot 3,
+GPTBot 1, ChatGPT-User 1 (a live user-triggered fetch through ChatGPT).
+ClaudeBot and PerplexityBot: not yet.
+
+### Judgement lines
+(a) IndexNow: the next deploy's log must show a 200/202 with 31 URLs. If it
+does not, the lane is broken at the endpoint, not the script.
+(b) Bot log: with extensionless paths now recorded, the 7-day bot table
+should show content pages, not just entry points. If it still shows only
+entry points by 09-06, crawlers really are bouncing and the problem is
+authority, not instrumentation — that would be the first evidence for it.
+(c) llms.txt/llms-full/dataset fetches by a named AI bot by 09-27 gates the
+next GEO round, unchanged from round 7.
+
+## Round 12 — 2026-08-31 · 定时任务按重做后的站点重建
+
+Owner:「tds的定时任务重做，因为站点重做了」+「旧的取消」。
+
+**取消**:Routine「DollScout growth loop (every 2 days)」(`0 1 */2 * *`) 已删除。
+它整条 prompt 写的还是成人站,护栏里明写「绝不削弱 18+ 闸门、联盟披露与
+childlike-appearance 拒绝项」——对一个卖 Labubu 的站,这条护栏本身就是错的方向。
+它还依赖两个 pivot 时删掉的文件(`GROWTH-LOOP.md` 是它「先读这个,它覆盖一切」的
+剧本,`scripts/seo-audit.mjs` 是它第 2 步的技术底线)。最后一次运行 08-31T01:04
+跑了 10 分钟、报「SUCCEEDED」、对 `sites/thedollscout/` **一个字节都没改**。
+
+**新建**:「DollScout(Labubu 站)增长循环 · 每 2 天」,`10 7 */2 * *`,每次开新会话。
+写进 prompt 的现实:monorepo 路径与部署模型、CLAUDE.md 作为剧本、5 缺口准入过滤与
+「不卷图鉴/不做转售炒价」、双 tag 分市场与 `/th/` 零联盟、阻断闸门
+`check-structured-data.mjs`、以及三条预登记判定线的日历(09-06 / 09-27 / 10-29)。
+关键约束:**它触发的会话没有 MCP 连接器**——读 D1 只能靠仓库里的快照,验线上只能
+`curl` 实探,Actions 日志读不到;prompt 要求它把读不到的项明写成「本轮未验证」,
+不许当绿灯。
+
+**顺手挖出第四个静默故障**(和 08-30 那三个同族):`tds-traffic` 的 D1 快照导出把
+stderr 送进 `/dev/null`,失败时打印「d1 snapshot skipped (no D1 access on token)」
+——**那句话是猜的**,真正的错误被丢掉了。后果:08-19→08-30 连续 12 天全绿,
+`content/d1-snapshot.json` 一次都没落过库,而它正是新 Routine 读真实数字的唯一通路。
+本轮改为直连 D1 REST API(database id 取自 wrangler.toml,不再耦合 wrangler 配置)、
+打印真实 API 错误(长串 sed 打码)、失败与「查到 0 行」两种情况分别发 `::warning::`。
+
+**其余三条 tds workflow 复核结果:无需改动。** deploy(run #33 全绿)、
+tds-indexnow(08-30 已修成 MODE=all)、fleet-trends(仍在写两个 tds 趋势文件)。
+另记一条环境事实:公开仓 schedule 实测延迟 5–12 小时(08-28 那次 06:00 的任务
+18:22 才跑),**任何跨 workflow 的时序假设都不成立**,下游必须自查数据新鲜度。
+
+### Ledger (2026-08-31 01:20 UTC 现查 D1,CI 已剔)
+08-30:真人 pv **84** | bot **101** | affiliate_click **1**
+08-29:真人 pv 10 | bot 18 ‖ 08-28:真人 pv 13 | bot 9 ‖ 08-31 至今:bot 3
+08-30 的 84 次真人 pv 里含当天大规模自测流量,**不要当成读者增长读**;
+下一轮用 d1-snapshot 按路径拆开后再判。
+
+### Judgement line (d) —— 当天就跑出了答案,负面,已定位
+不等 09-02,直接 workflow_dispatch 跑了一次(run #17)。快照**仍然没落库**,但这次
+失败是**可读**的,这正是本次改动的全部意义:
+
+```
+##[warning]d1 snapshot FAILED (HTTP 403) …
+{"success":false,"errors":[{"code":7403,"message":"The given account is not valid
+ or is not authorized to access this service"}]}
+```
+
+定位:**同一个 `CLOUDFLARE_API_TOKEN` 每天都在成功跑 `wrangler pages deploy`**,
+所以 `CLOUDFLARE_ACCOUNT_ID` 是对的、token 本身是有效的——缺的就是 **D1 的读权限**。
+旧代码那句「no D1 access on token」这回**碰巧猜对了**,但它当时没有任何证据,
+而且顺手把真错误删了;十二天里没人能分辨它是猜对还是猜错——这才是它的罪名。
+
+**⚠️ owner 待办(约 1 分钟,不挡站点运行,但挡整个增长循环的眼睛)**:
+Cloudflare 后台 → API Tokens → 编辑部署所用的那个 token → 加上
+**Account · D1 · Read** → Save。加完后 tds-traffic 的下一次运行就会开始提交
+`content/d1-snapshot.json`,新 Routine 也就有真实读者数字可读了。
+**在此之前,新 Routine 每轮都必须把「D1 快照不可读」当作机制故障报出来,不许绕过。**
+(本会话的 Cloudflare MCP 走的是另一套凭据,能读 D1——所以上面那份 08-30 台账是
+真实数字;但定时会话没有 MCP,它读不到。)
+
+### 追加(同日,owner 追问「Cloudflare 我不是一直在用吗」)—— 推断已升级为证据
+合理的追问,而且上面那条结论当时确实是推出来的。403/7403 至少有两个成因:token 缺
+D1 权限,或 `CLOUDFLARE_ACCOUNT_ID` 指向的账号与 token 所属账号不是同一个。给失败分支
+加了只打结论不打 ID 的诊断(公开仓),run #18 给出定论:
+
+```
+{"token_valid":true,"status":"active","errors":[]}
+accounts this token can list: 1
+CLOUDFLARE_ACCOUNT_ID is one of them: yes
+```
+
+**token 有效、账号对得上 → 7403 就是纯粹缺 Account · D1 · Read 这一项。**
+为什么「一直在用 Cloudflare」和这个不冲突:三条路走的是三套凭据——①站点自己写 D1 走
+`wrangler.toml` 的 **binding**,运行时直连,根本不经过 API token(所以埋点一直正常);
+②会话读 D1 走 Cloudflare 连接器(另一套 OAuth 凭据);③GitHub Actions 走这个按项勾选的
+API token,当初只勾了 Pages 编辑。**Cloudflare 的 token 是最小权限模型,不是「登录了就都能用」。**
+
+**同族缺陷已在 bpj 侧一并修掉**:`deploy-baipiaoji.yml` 的 D1 快照步骤是一模一样的
+`2>/dev/null` + 「snapshot skipped (no D1 access)」猜测,`sites/baipiaoji/data/traffic-snapshot.json`
+同样一个提交都没有。已改为同样的直连 REST API + 真错误 + `::warning::`。
+全舰队扫描确认只有这两处,没有第三处。
+
+### 再追加(owner:「你换成舰队 agi 我配置的 cloudflare 的啊」)—— 凭据已穷举,结论完整
+owner 指出本仓有多个 Cloudflare token secret,而我只试了一个就下了「要去加权限」的结论。
+对的,那个结论只对那一个 token 成立。而且这条纪律仓里早就有:`scripts/cf-analytics.mjs`
+的注释写明它为什么三个全试——历史事故正是「换了 token、重跑拿到字节相同的旧错误」的
+假阴性。我在 D1 这条路上把同一个坑又踩了一遍。
+
+改为逐个试之后,**当场又踩出第二个假阴性**:zone token 那一行报的是
+`/accounts/null/d1/...` 的 404——`jq -r` 对空结果打印的是字符串 `"null"` 而不是空串,
+所以「反查不到就退回 secret」永不触发,那个 token 看起来「已经试过」其实压根没测到 D1。
+修掉 `// empty` + 显式滤 `"null"` 后重跑,三个 secret 的真实读数(run #21):
+
+| secret | 结果 |
+|---|---|
+| `CLOUDFLARE_API_TOKEN_ZONE` | HTTP 403 · 7403 |
+| `CLOUDFLARE_API_TOKEN` | HTTP 403 · 7403 |
+| `CF_API_TOKEN` | 未设置 |
+
+**本仓现有的每一个 Cloudflare 凭据都读不了 D1**,所以 owner 那一步动作仍然需要,只是
+现在是穷举后的结论而不是单点推断。方法论教训记两条:①「我只试了手边那一个」在有多个
+凭据时不构成结论;②**打印出来的失败也可能是假的**——`accounts/null` 那一行长得和真失败
+一模一样,只有把 URL 也打出来才看得见。可读的失败仍然可能是错的失败。
+
+### Judgement line (e)
+**2026-09-02**:若 owner 已加权限,`content/d1-snapshot.json` 必须出现在仓库里;
+若尚未加,新 Routine 的汇报里必须仍然带着这条待办,不许因为「站点看起来正常」而
+把它悄悄降级。
+
+
+## Round 13 — 2026-08-31 · 参考 eco 移植程序化出页(/odds/ 集群,12 页)
+
+Owner:「参考 eco 快速扩展流量」。先读 eco 实际在做什么,而不是照抄印象。
+
+**eco 的真实打法**(sites/getecoback):206 页里 131 个 guide,其中 40 页由三个
+`gen_*.py` 从 JSON 数据脊生成(qm 系列 = 房间面积 × 品类);`build_*.py` 管 sitemap/
+hreflang/互链/llms;`check_*.py` 是闸门。它的上量队列里写得很清楚:**「纯模板 pSEO
+(无独立数据点)」是判死项**,每页硬门 ≥3 个独立数据点。它的差异化名场面是
+GModG——**纠正一个被广泛复述的错日期**。
+
+**不能照抄的那一半,如实说**:eco 的另一半是「rising 词 → 当天出页」。tds 的
+`content/trends-rising.json` 08-30 重置后 runner 还没回填,`trends-us.json` 连续两天
+`matched: []`(当日热搜面被体育/节日占满,舰队早已记录这个结构问题)。**没有 rising
+信号就没有快反,这一轮只移植结构那一半**,不假装有需求信号。
+
+**需求门的证据(WebSearch,多源)**:「多少盒能开出隐藏款」是真实查询族,已有 8 个竞品页
+在做。**但整个 niche 在传错数字**——检索结果里同时出现「整箱 12 盒平均出一只隐藏」与
+「12 盒有 85% 概率」。实算(1:72,独立抽取):**期望 0.167 只、概率 15.5%**。
+两个说法都错,而且互相矛盾。这就是本轮的差异化支点,且是本站零编造基因最强的题材。
+
+**出的东西**:
+- `scripts/gen-odds-pages.mjs` —— 本站第一个生成器。概率**读已发布的
+  data/rarity-odds.json**,不重新声明(同 MCP 的「不做第三个真相源」)。
+- `/odds/` 集群 EN+DE 各 6 页(hub + 1/6/12/24/72 盒),每页 5 个独立数据点 +
+  该盒数证伪的那条流传说法。**不点名任何竞品**;**零联盟链接**(决策页答案常是
+  「别买了」,挂购买按钮会和 /psychology 自相矛盾,变现交给 /where-to-buy)。
+- `data/pull-math.json` —— 第 4 个 CC-BY 数据集(缺口 3),完全由 rarity-odds.json 算出。
+- 站点页数 **25 → 37**,llms-full 从 ~180KB 到 201KB。
+- 入链:从 rarity/psychology/how-blind-boxes-work/index/start 的 EN+DE 共 10 页指入。
+
+**三道防孤儿闸门**:生成器 wiring guard(URL 必须在 sitemap+urls.txt+llms-full 里)、
+部署前的「重跑生成器且 diff 必须为空」、12 个 URL 进部署后自检。
+
+**顺手修的第五个覆盖漏洞**:`check-structured-data.mjs` 的 walker 只递归 `de/`,
+所以 `zh/` `th/` `legal/` `data/` **从来没被这个阻断闸门检查过**。修好后 68 → 92 条,
+全部 0 影子内容(包括第一次被检查的那几页)。**闸门看不见的页,闸门就管不住。**
+
+### 本轮预登记判定线
+- **(f) 2026-09-30(30 天)**:/odds/ 12 页在 D1 里合计真人 pv ≥ 12(即平均每页 ≥1),
+  或出现任一 AI 引荐/搜索引荐落在 /odds/ → 程序化出页这条路成立,按同样模式扩下一个
+  数据脊;**合计 pv < 12 → 判负**,不再加盒数,把结论写成「本站的瓶颈不在页数」并停止
+  铺量,转而做 rising 快反(届时 rising 数据应已回填)。
+- **(g) 2026-10-15**:Bing/IndexNow 侧 12 页收录率 <30% → 问题在收录不在内容,先修收录
+  再谈扩量(口径承 eco 的 45 天收录线)。

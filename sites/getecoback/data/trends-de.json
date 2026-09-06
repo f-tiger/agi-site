@@ -1,74 +1,56 @@
 {
  "ok": true,
- "fetched": "2026-08-28",
+ "fetched": "2026-09-06",
  "source": "https://trends.google.com/trending/rss?geo=DE",
  "matched": [
   {
-   "title": "sturm",
-   "traffic": "5000+"
+   "title": "wettersturz",
+   "traffic": "200+"
   }
  ],
  "top": [
   {
-   "title": "sturm",
-   "traffic": "5000+"
-  },
-  {
-   "title": "wasser",
-   "traffic": "2000+"
-  },
-  {
-   "title": "düsseldorf – stuttgart ii",
-   "traffic": "2000+"
-  },
-  {
-   "title": "wisdom mike",
+   "title": "dietmar hamann",
    "traffic": "500+"
   },
   {
-   "title": "commonwealth",
+   "title": "immer wieder sonntags",
+   "traffic": "2000+"
+  },
+  {
+   "title": "kit harington",
    "traffic": "200+"
   },
   {
-   "title": "wisła płock – korona kielce",
+   "title": "владимир путин",
    "traffic": "200+"
   },
   {
-   "title": "verdi",
-   "traffic": "200+"
-  },
-  {
-   "title": "feine sahne fischfilet tour 2027",
+   "title": "marktwert",
    "traffic": "100+"
   },
   {
-   "title": "ту-95",
+   "title": "new glenn",
    "traffic": "100+"
   },
   {
-   "title": "liebe braucht meer",
+   "title": "wuppertal",
+   "traffic": "500+"
+  },
+  {
+   "title": "wettersturz",
+   "traffic": "200+"
+  },
+  {
+   "title": "diesel",
+   "traffic": "100+"
+  },
+  {
+   "title": "netflix abo",
    "traffic": "100+"
   }
  ],
  "history": [
-  {
-   "d": "2026-08-20",
-   "matched": [
-    "wetter magdeburg"
-   ]
-  },
-  {
-   "d": "2026-08-21",
-   "matched": [
-    "wetter dresden"
-   ]
-  },
-  {
-   "d": "2026-08-22",
-   "matched": [
-    "berlin wetter"
-   ]
-  },
   {
    "d": "2026-08-23",
    "matched": []
@@ -97,6 +79,46 @@
    "d": "2026-08-28",
    "matched": [
     "sturm"
+   ]
+  },
+  {
+   "d": "2026-08-29",
+   "matched": []
+  },
+  {
+   "d": "2026-08-30",
+   "matched": []
+  },
+  {
+   "d": "2026-08-31",
+   "matched": []
+  },
+  {
+   "d": "2026-09-01",
+   "matched": []
+  },
+  {
+   "d": "2026-09-02",
+   "matched": []
+  },
+  {
+   "d": "2026-09-03",
+   "matched": []
+  },
+  {
+   "d": "2026-09-04",
+   "matched": [
+    "wetterwarnung"
+   ]
+  },
+  {
+   "d": "2026-09-05",
+   "matched": []
+  },
+  {
+   "d": "2026-09-06",
+   "matched": [
+    "wettersturz"
    ]
   }
  ]

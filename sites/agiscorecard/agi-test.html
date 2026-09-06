@@ -187,7 +187,8 @@ try{
     var btns=document.querySelectorAll('.vote-btn');
     var order=['accelerationist','true-believer','realist','skeptic','contrarian'];
     var idx=order.indexOf(m[1]);
-    if(idx>-1 && btns[idx]){ btns[idx].click(); gtag('event','deeplink_pick',{label:m[1]}); }
+    // Deferred: the gtag beacon wrapper is edge-injected at the end of <body>, so it does not exist yet at parse time.
+    window.addEventListener('DOMContentLoaded',function(){ if(idx>-1 && btns[idx]){ btns[idx].click(); gtag('event','deeplink_pick',{label:m[1]}); } });
   }
 }catch(e){}
 

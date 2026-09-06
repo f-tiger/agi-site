@@ -22,9 +22,10 @@ const ZH_ALLOW = new Set(['中文', '国家反诈中心']);
 
 let broken = 0, ldErr = 0, leak = 0, placeholder = 0, md = 0, contradiction = 0;
 const exists = (href) => {
-  let h = href.split('#')[0];
+  let h = href.split('#')[0].split('?')[0];
   if (!h) return true;
   if (h.startsWith('http') || h.startsWith('mailto')) return true;
+  if (h.startsWith('/api/')) return true;   // Pages Functions 路由，不在 dist 里
   h = h.replace(/^\//, '');
   return [join(root, h), join(root, h, 'index.html'), join(root, h.replace(/\/$/, '') + '/index.html')]
     .some((c) => { try { statSync(c); return true; } catch { return false; } });
@@ -32,8 +33,11 @@ const exists = (href) => {
 
 for (const p of pages) {
   const html = readFileSync(p, 'utf8');
-  for (const m of html.matchAll(/href="([^"]+)"/g)) {
-    if (m[1].startsWith('/') && !exists(m[1])) { console.log('BROKEN', p, m[1]); broken++; }
+  // build.mjs 输出的是绝对 URL（https://baipiaoji.com/...），此前只检查以 / 开头的
+  // 相对链接——70,421 条里只看了 4 条，broken=0 是没看，不是没坏。
+  for (const m of html.matchAll(/\s(?:href|src)="([^"]+)"/g)) {
+    const h = m[1].replace(/^https:\/\/baipiaoji\.com(?=\/|$)/, '') || '/';
+    if (h.startsWith('/') && !exists(h)) { console.log('BROKEN', p, m[1]); broken++; }
   }
   for (const m of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
     try { JSON.parse(m[1]); } catch { console.log('LD-ERR', p); ldErr++; }

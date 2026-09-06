@@ -117,7 +117,10 @@ sitemap/llms.txt/agi-questions 接线、单 h1、anti-churn（5-run 窗口）。
   贵贱判断留给读者，这恰是与 Motley Fool 的差异化。
 - **埋点**：`tool_click{opinion_nvda}`（?b=NVDA 深链）、`index_click{nvda_live}`。
 
-### P2 · `does-copying-13f-work`（EN 判定页 · 判定型）【主线 C→绑定；实体对冲】
+### P2 · `does-copying-13f-work`（EN 判定页 · 判定型）【主线 C→绑定；实体对冲】 ✅ 已上线 2026-08-29
+按规格落地:活数字 +187.2% vs 59.6(`index_click{copy13f_live}`)、逐人表含败者、四条反面同屏、
+Martin & Puthenpurackal 2008 一手引用、计算器裸链(`invest_tool_click{copy13f_record}`,
+`?who=` 短码无本仓可核实例故不带参)、硬同步台账同 commit 扩为五处。
 - **营收挂钩**：C→track-record 计算器深链（`?who=…`）→ TG 绑定（`h_` 短码）。
 - **标题**：`Does Copying 13F Filings Actually Work? We Tested It` (≤60c)
 - **需求证据**：SERP 极薄（Medium/论文/工具页）；学界结论存在（copycat alpha
@@ -132,7 +135,7 @@ sitemap/llms.txt/agi-questions 接线、单 h1、anti-churn（5-run 窗口）。
 - **附带价值**：引用实体落在 Buffett/Druckenmiller，对冲 73% Aschenbrenner 实体依赖。
 - **季度义务**：并入既有硬同步清单（invest 两页 + 首页两块 + 本页，共五处同一 run 改）。
 
-### P3 · `/invest` hub 再瞄准（优化，不新增 URL）【主线 C 的枢纽】
+### P3 · `/invest` hub 再瞄准（优化，不新增 URL）【主线 C 的枢纽】 ✅ 已上线 2026-09-06
 - **营收挂钩**：hub 是 P1/P2 的上游枢纽；现标题 "AI Investing Hub — Who's Betting
   What on AI (2026)" 是品牌腔，不是问题本身。
 - **动作**：title/meta 改为查询形（如 `How Are the Biggest Investors Positioned on
@@ -140,7 +143,7 @@ sitemap/llms.txt/agi-questions 接线、单 h1、anti-churn（5-run 窗口）。
   62.5 对照，埋点 `index_click{invest_live}`）。FAQ 已达标不动。
 - **约束**：anti-churn——/invest 8-17 刚改过（Q2 同步），**5 个 run 窗口后再动**。
 
-### P4 · zh 判定页 `zh/does-copying-13f-work`（中文侧主线）【离钱最近的一条】
+### P4 · zh 判定页 `zh/does-copying-13f-work`（中文侧主线）【离钱最近的一条】 ✅ 已上线 2026-08-30（当时漏打勾）
 - **营收挂钩**：**SunWatch Pro 的实际买家画像（¥199 USDT 自助）在中文侧**。
   本页 → /zh/ai-stock-exposure（zh Pro 桥）→ invest.agiscorecard.com/zh。
 - **标题**：「抄大佬的 13F 作业到底赚不赚钱？实测两年」
@@ -150,14 +153,15 @@ sitemap/llms.txt/agi-questions 接线、单 h1、anti-churn（5-run 窗口）。
 - **复用资产**：同 P2，忠实翻译 + zh Swiss 设计系统 + `zh_deep_page` CTA（站规）。
 - **埋点**：`invest_tool_click{exposure_zh_sunwatch*}` 是本页成败的最终读数。
 
-### P5 · invest 机器可读数据集 `invest-data.json`（辅线 E-free）
+### P5 · invest 机器可读数据集 `invest-data.json`（辅线 E-free） ✅ 已上线 2026-09-04
 - **营收挂钩**：不直接变现；喂引用机器（原创数据 = 第一引用磁石，data.json 已验证）。
 - **内容**：8 人态度（含 as-of/filed 日期与例外标注）+ 2 人逐笔 + 17 票映射（权重
   与 data.json 判定同步）+ 抄作业读数汇总 + CC BY 4.0 + dateModified。
 - **接线**：llms.txt + /for-agents + 后续 MCP tool（`get_invest_positions`，挂在既有
   /mcp，不新增基建）。生成器并入 `gen_agi_exposure.py` 的判定同步链。
 
-### P6 · exposure→Pro 桥转化优化（cro，产品侧唯一动刀处）
+### P6 · exposure→Pro 桥转化优化（cro，产品侧唯一动刀处） ✅ 已上线 2026-08-29(第五轮重构随 workflow 裁决落地:结果面板一行桥
+`exposure_<lang>_sunwatch_result` + 块序对调 + 劝退文案修正;判定线 10-15)
 - **现状诊断（cro 技能）**：桥块在页面静态深处（方法论与 FAQ 之后），读者算完分数
   的「价值时刻」看不到它；文案 6 行长稳（诚实但埋没）。0 点击 = 位置问题的先验
   大于文案问题（同全站 slidein 教训：先修位置阈值再改文案）。

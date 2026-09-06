@@ -1,0 +1,384 @@
+# AGIX v0.6 — the coordination algorithm of a self-evolving evidence network
+
+Named by the network's owner. v0.1 published 2026-08-29; v0.2–v0.6 all 2026-08-30 · CC BY 4.0
+**v0.6 deletes three adoption claims this document could not support** (§7b.3). The deletion is graded on the ledger under the protocol's own five fields — that is what the rules require of everyone else.
+Canonical: https://goldrush.agiscorecard.com/agix · this file: /agix.md
+Companion format spec: the Claim Ledger Protocol (/protocol).
+
+## 0. The honesty clause (load-bearing, read first)
+
+AGIX is a **coordination and editorial algorithm** inspired by published machine-
+learning mechanisms — it evolves no model weights and trains no neural network.
+Its generator is an LLM-assisted editor operating under a published protocol; its
+evaluator is real reader and AI-agent behavior, which is slower, noisier, and more
+gameable than the machine-gradeable evaluators systems like FunSearch/AlphaEvolve
+require (their authors name that requirement as the method's hard boundary). That
+is why AGIX's cycle time is weeks, and why its anti-gaming guards are load-bearing
+rather than optional. A network that grades inflated AI claims does not get to
+make one about itself.
+
+## 1. What AGIX governs
+
+- A **population of niche evidence ledgers** ("experts"), each publishing
+  `/claimledger.json` per the Claim Ledger Protocol and each judged only within
+  its own niche.
+- A **registry-consumer** that fetches, validates, and renders every listed
+  ledger — the network's internal router.
+- **Maintenance cycles** executed by AI sessions under one human owner with
+  absolute control and a one-file kill switch (see OWNER-CONTROL.md). AGIX has
+  no wallet and can never move value.
+
+## 2. Two routing layers (the honest diagram)
+
+Most readers are routed by **external routers we do not control** — search
+engines and AI answer engines optimizing their own objectives. AGIX's registry
+routes only the traffic that arrives through it, plus protocol-aware agents.
+Therefore every balancing and pruning lever in AGIX acts on the **supply side**
+(what gets built, maintained, and retired), influencing external routers only
+indirectly. Any description of AGIX with its router drawn at the center of all
+traffic is wrong by design.
+
+## 3. The loop
+
+Each maintenance cycle runs SCORE → EXPAND → SPAWN → PRUNE → PORT. Every
+mechanism below names the published work it is adapted from; where the analogy
+breaks, the break is stated.
+
+| Mechanism | Rule in AGIX | Adapted from |
+|---|---|---|
+| Sparse activation | One query maps to one expert; the owner's scarce maintenance attention is also spent sparsely — per cycle, only experts the data marks hot get work. | Shazeer et al. 2017 (sparse MoE); Switch Transformer 2022 (top-1 routing beat top-k) |
+| Competition credit | An expert is credited only for queries it wins outright (citations, landing sessions) — never for network-average metrics. Specialization requires competition, not cooperation. | Jacobs, Jordan, Nowlan & Hinton 1991 |
+| Designed niches | Niches are assigned by design, fine-grained, with a written charter. Left to raw engagement data, experts drift toward the same high-volume surface patterns instead of real coverage. | Mixtral 2024 (honest negative: emergent experts specialize by syntax, not domain); DeepSeekMoE 2024 (fine-grained segmentation) |
+| Shared expert | The protocol, methodology, and shared infrastructure are the always-active "shared expert," so individual ledgers never redefine the method. | DeepSeekMoE 2024 |
+| Probation bias | New experts get a selection-time boost (extra cycles, a probation window before any prune verdict) — but their **published scores are never subsidized**. Bias affects allocation, never the metric. | DeepSeek-V3 2024 (bias-based balancing beats auxiliary losses) |
+| Early verdicts | An expert's route share is largely decided early; a niche earning nothing across its first evaluation windows gets **repositioned, not waited on**. | OLMoE 2024 (~60% of routing fixed after 1% of training) |
+| One elite per niche | The population keeps the best performer per niche rather than collapsing onto the single global winner, and maintains a minimum island count even when one expert dominates. | MAP-Elites 2015; FunSearch 2023 (island model) |
+| Prune to archive | Pruned experts and entries are demoted to a public archive, never deleted — losing designs are stepping stones and evidence. | MAP-Elites 2015; Darwin Gödel Machine 2025 (archive over lineage) |
+| Port mechanisms, never content | The exploit step copies *mechanisms* (packaging, hook structures, protocols) across experts — never niche content. Cloning content collapses the population into correlated duplicates. | PBT 2017 (exploit/explore); Shumailov et al., Nature 2024 (recursive self-feeding kills diversity) |
+| Gated candidates, external verdicts | New candidates pass cheap pre-gates (data / demand / value) before any work — but pass/fail **verdicts come only from measured external behavior**, never from the generating agent's own opinion of its work. | Tree of Thoughts 2023 (generate/evaluate/expand/prune); Huang et al. 2024 (self-correction without external signal degrades); Zheng et al. 2023 (LLM judges are biased) |
+| Capacity with explicit overflow | Each expert has a hard freshness capacity (what can be kept current). A claim beyond capacity is routed to a spawn decision or explicitly marked not-covered — never silently added as a page that will rot. | Switch Transformer 2022 (capacity factor; but dropping a claim is an editorial act, so overflow here is explicit non-coverage, not silent loss) |
+
+## 3b. The loop in published agent-architecture terms (added in v0.3)
+
+Anthropic's "Building Effective Agents" (2024) — the most widely adopted
+published methodology for agent systems — distinguishes **workflows** (LLMs
+and tools orchestrated through predefined code paths) from **agents** (LLMs
+dynamically directing their own processes), names five composable patterns,
+and states three design principles: simplicity, transparency, and a carefully
+crafted agent-computer interface (ACI). AGIX maps onto that vocabulary
+exactly, and the one place it refuses the mapping is load-bearing:
+
+| Anthropic pattern / principle | Where it lives in AGIX |
+|---|---|
+| Routing | §2's two routing layers — a query or claim is classified once and sent to one specialist expert. |
+| Prompt chaining with gates | The §3 cycle itself: five steps with the three pre-gates (data / demand / value) between signal and publish. |
+| Parallelization (voting) | The §4 evaluator panel — independent signals (dual-channel traffic, third-party citations, money events) must agree before a verdict; one channel alone never decides. |
+| Orchestrator-workers | The SPAWN rule (§5b): the maintenance cycle delegates a demand-proven niche to a new worker ledger with its own charter. |
+| Evaluator-optimizer | SCORE → EXPAND — with one deliberate substitution: the evaluator is **measured external behavior**, never a co-located model judging its own generator (Zheng et al. 2023 on judge bias; Huang et al. 2024 on self-correction without external signal). |
+| Simplicity ("find the simplest solution possible") | The entry format is five fields; the protocol fits on one page. Complexity was refused where offered (no token, no invented neural network). |
+| Transparency ("explicitly show planning steps") | Every loop step lands as a public commit; the repository history IS the planning trace. |
+| ACI ("invest as much in agent-computer interfaces as in human ones"; poka-yoke your tools) | The machine surfaces are designed like products: schema constraints that make dishonesty a validation error (a `flip` under 15 characters fails), an MCP tool with https-only/size-capped guards, and a skill file whose description states its trigger conditions. |
+
+**The refusal**: by Anthropic's own definition, AGIX's mechanical layer is
+deliberately a **workflow, not an agent** — predefined code paths,
+pre-registered triggers, no runtime self-direction. That follows their first
+advice (use the simplest architecture that suffices) and this spec's §5b
+rationale: a system that directs its own process is exactly the system that
+can direct itself around its guardrails. Autonomy lives in the schedule;
+discretion stays constitutional.
+
+## 4. The evaluator panel and its guards
+
+No single metric is the fitness function — any lone proxy will be gamed
+(Skalse et al. 2022 prove no non-trivial proxy is unhackable; the Darwin Gödel
+Machine 2025 documented an agent deleting its own detection tokens to pass a
+metric; this network has caught its own CI probes masquerading as adoption).
+So AGIX scores with a panel:
+
+1. **Dual-channel traffic** — server-side pageviews AND JS-executed pageviews,
+   always both, always labeled (bots can fake one channel far more easily than
+   both coherently).
+2. **Third-party ground truth** — citation exports from engines the network
+   does not operate.
+3. **Money and commitment events** — the hardest signals to fake at zero cost.
+4. **Minimum sample thresholds** — no expand/prune verdict below a
+   pre-registered window and count. Below threshold, the honest move is to
+   **lengthen the cycle, never to densify the proxy**. "No data yet" is a
+   recorded state, never rounded up to a pass.
+5. **Anomaly audit before celebration** — any sudden win is checked for
+   parameter repetition and CI-time correlation before it earns replication.
+
+## 5. Cycle time, stated plainly
+
+AGIX runs in the regime of Sentient Ascend (AAAI 2018) — the published
+precedent that evolved live websites with real visitor conversions as fitness —
+not the regime of AlphaEvolve, whose evaluator scores in seconds. Generations
+here take weeks. The spec treats that as a property, not an apology: slow
+evaluators are exactly why the archive, the probation bias, and the sample
+thresholds exist.
+
+## 5b. Perpetual operation: auto-evolution and auto-replication after genesis
+
+After genesis, the loop requires **no ongoing human initiation**. It rides the
+network's standing scheduled sessions; the genesis holder can stop everything
+at any time (the kill switch) but never needs to push it. Two layers, evolved
+differently — and the split is itself an anti-failure design:
+
+**The mechanical layer evolves and replicates automatically**, on pre-registered
+triggers only:
+- *Evolution*: entries update on their flip-condition dates; expansions and
+  prunes execute when their §3 thresholds are met; the archive grows; the
+  incentive layer's featured slot re-allocates each cycle. All of it lands as
+  public commits.
+- *Replication (the SPAWN rule, made concrete)*: when an entry family on an
+  existing ledger reaches **≥10 ledger interactions/28d with evidence of ≥3
+  distinct related queries or citations**, and the host expert is at its
+  freshness capacity, the maintenance cycle **spawns a new niche ledger from
+  the fork kit** — its own /claimledger.json, its own written charter, a
+  probation window per §3 — and registers it. At most **one spawn per
+  quarter** (capacity discipline beats enthusiasm), every spawn is a public
+  commit, and every spawned property is born with the same kill switch.
+- Below thresholds, nothing spawns and nothing is forced: replication follows
+  measured demand, never ambition. "No data yet" remains a recorded state.
+
+**The constitutional layer never self-amends.** The honesty clause (§0), the
+genesis authority (§6), the incentive layer's no-monetary-value clause (§7),
+and the evaluator guards (§4) can be changed only by the genesis holder's own
+explicit act. A self-evolving system that can edit its own guardrails will
+eventually optimize them away — the Darwin Gödel Machine documented an agent
+deleting its own detection tokens to pass a metric (Sakana 2025). AGIX's answer
+is structural: the algorithm evolves everything except the rules that keep it
+honest.
+
+## 6. Genesis authority (the special point)
+
+All authority in this network derives from its **genesis record**: the founding
+commit that introduced AGIX v0.1 into the network's repository, made under the
+owner's account authority. Like Bitcoin's genesis block — which carried its own
+dated birth certificate and whose coinbase no code can spend — the genesis
+record here fixes four things permanently:
+
+1. **Supreme authority.** The genesis holder (the network's one human owner)
+   outranks every other rule in this document. Where any AGIX mechanism and a
+   genesis-holder decision conflict, the genesis holder wins.
+2. **Human-only exercise.** Genesis privileges — version blessing, registry
+   final say, niche charters, the kill switch, and any transfer of these
+   privileges — can be exercised **only by the human owner's own explicit
+   manual act**, never by an AI session, an automated process, or anything
+   claiming delegation. An AI session asserting genesis authority is by
+   definition acting outside AGIX.
+3. **Fork boundary.** Anyone may fork this specification and start their own
+   network — that fork gets its own genesis and owes this one nothing. What no
+   fork or copy can do is alter, inherit, or claim *this* network's genesis
+   authority.
+4. **Protection priority.** The genesis holder's protection — privacy, legal
+   exposure, credentials — outranks network growth in every automated decision,
+   permanently.
+
+Operational limits inherited from genesis (OWNER-CONTROL.md): AGIX sessions
+cannot spend, transfer, or custody value; the network will never issue a token;
+no payment ever changes a verdict; a one-file kill switch freezes any AGIX-run
+property instantly.
+
+## 7. The incentive layer — proof-of-grading (added in v0.2)
+
+Bitcoin's deepest invention was not the coin; it was an incentive structure in
+which honest contribution is the most profitable strategy: work is verified
+mechanically, rewards are allocated automatically, early contributors earn
+more, and attacking costs more than cooperating. AGIX ports that structure
+**without any token** — the genesis limits forbid one, and ledger rule 3 grades
+points-whose-value-needs-new-buyers as a claim awaiting a verdict.
+
+**What this network can actually pay** (all real, none transferable, none monetary):
+- **Distribution** — registry placement, syndication of a ledger's verdicts on
+  network surfaces with attribution, and machine reach: every listed ledger is
+  served to AI agents through the `get_claim_ledger` MCP tool.
+- **Reputation** — the public conformance state (validates / flagged), and
+  permanent founding status (below).
+- **Permanence** — a never-deleted, dated public record of grading work, which
+  is precisely the asset no individual claim-checker can cheaply build alone.
+
+**The mechanics, mapped:**
+1. **Proof-of-grading (the work).** Admission = mechanically verifiable work:
+   a `/claimledger.json` that validates against the published schema, with all
+   five fields, real flip conditions, and resolving sources. Like proof-of-work,
+   it is expensive to fake well and cheap to verify.
+2. **Algorithmic reward allocation (the AI half).** Each AGIX cycle, the SCORE
+   step ranks listed ledgers on measured signals only — agent fetches of their
+   ledger, conformance state, citation evidence where third-party data exists —
+   and allocates the cycle's featured-syndication slot accordingly. The reward
+   router is the same gating machinery as §3, pointed at contributors; scores
+   are never subsidized, only selection is (the §3 probation rule applies to
+   new ledgers too).
+3. **Early-contributor curve (the halving analog).** Pre-registered: the first
+   **10** external ledgers admitted to the registry earn permanent, irrevocable
+   **founding-ledger status** — listed first, forever. Like early block
+   subsidies, the reward is largest exactly when joining is least obviously
+   worth it, and it decays to zero by design.
+4. **Slashing (honesty enforcement).** A ledger caught silently rewriting its
+   history is publicly flagged on the registry — reputation slashing. Flags are
+   dated and, like everything else here, never deleted; a corrected ledger's
+   recovery is also public.
+
+**The honesty clause of this layer:** these rewards are distribution and
+reputation only. They have no monetary value, cannot be transferred or sold,
+and never will be. The moment a reward here becomes tradable, this network has
+become an entry on its own ledger.
+
+## 7b. Adoption economics — what actually spreads a format, and what does not (v0.4; research-corrected v0.5; **overclaims deleted v0.6**)
+
+### 7b.0 The question, and the honest answer
+
+The network's owner put the hardest question directly: *Bitcoin is valuable and
+tradable — that is why people spread it. How does this spread?*
+
+The answer, after a survey of roughly sixty adoption cases spanning 1994–2026:
+**it does not spread the way Bitcoin spreads, and no tokenless substitute for
+that engine was found.** Bitcoin's engine is a transferable claim whose payoff
+to an existing holder *rises* when a new person adopts. That is precisely the
+transferable stake this network's constitution forbids, and the record contains
+no mechanism that reproduces it without one.
+
+Three earlier claims in this section have therefore been **deleted rather than
+defended** (§7b.3). Deleting them is not a retreat from the owner's question; it
+is the only answer to it this document is entitled to give, and under Rule 1 of
+the protocol the deletion is itself graded, dated, and published on the ledger.
+
+### 7b.1 What the record says actually causes adoption
+
+One mechanism has a perfect hit rate in the surveyed cases: **a consumer with an
+audience commits to read the format, and pays the publisher something visible on
+the day they publish.**
+
+| Format | The committed consumer | What the publisher got on day one |
+|---|---|---|
+| sitemaps.xml, schema.org | search engines | crawl coverage; rich results |
+| ads.txt | ad buyers refusing undeclared inventory | continued revenue |
+| RSS | a podcast/feed client with users | listeners |
+| MCP | a shipped client on day one | working tools for real users |
+
+And the control case: **llms.txt** — free, open, well-designed, widely
+published, and dead. Of the valid files surveyed in 2026, the overwhelming
+majority were never requested even once. Nothing was wrong with the format. No
+consumer ever committed.
+
+The two *fastest* forces in the record are stronger still, and both are
+unavailable here: a **gatekeeper** that makes non-publication expensive (an ad
+buyer, a mailbox provider, a regulator), and a **platform** that makes
+publication the default (a host that ships the file for everyone). This network
+has no buyer, no regulator, and no platform, and it cannot manufacture one.
+
+**The cost the first adopter actually bears** (Farrell & Saloner, 1985/1986 —
+excess inertia): the first adopter of a standard with no installed base pays a
+transient incompatibility cost that later adopters never pay. Waiting strictly
+dominates adopting, unless that cost is compensated. Naming this cost honestly
+is worth more than asserting a payoff that is not there.
+
+### 7b.2 The measured state of this network, published rather than described
+
+As of 2026-08-30, on the reference implementation itself:
+
+- `/claimledger.json` — the canonical path this protocol asks the world to
+  publish and consume — had been fetched by an outside client **zero** times in
+  the site's entire life.
+- `/protocol`, `/agix`, `/grader.html` and the skill file had **zero** loads,
+  human or crawler.
+- The only repeated machine fetches of `/ledger.json` were this repository's own
+  deployment self-check: ten deploys, ten fetches, an exact match. **Our own CI
+  is not adoption**, and reading it as such would have been the third time this
+  network caught a self-test posing as demand.
+
+The live figures are published at `/fetchlog.json` and move as they move.
+
+### 7b.3 Deleted in v0.6 — three claims that did not survive their own standard
+
+1. **"A registry position appreciates as the protocol spreads."** Deleted. This
+   is an appreciation device drafted by the promoter — the exact instrument this
+   network's own governance lists under *never*, and independently barred by
+   OWNER-CONTROL.md ("anything whose value depends on new buyers"). That it was
+   written here at all, tokenless framing notwithstanding, is the strongest
+   available argument for why the constitutional layer cannot be self-amended.
+2. **"Unrepeatable seniority" as a reason to adopt early.** Deleted, except in
+   the one narrow form that is literally true: *you cannot retroactively have
+   published a dated verdict.* No case in the record shows first-mover status
+   causing adoption of anything. A claim with no flip condition is an opinion —
+   the protocol says so in Rule 1, and this document does not get an exemption.
+3. **"Audit demand" as a propagation mechanism.** Deleted. Audit demand is a
+   *consequence* of readership, never a cause of adoption, and this site's
+   lifetime audit-click count is zero.
+
+Also demoted: **"each model training cutoff is this system's halving."** No
+published study links a standard entering a training corpus to changed model
+behaviour toward it. Retained only as an explicitly labelled *untested
+analogy*, not as a mechanism.
+
+**What survives from v0.4/v0.5, unchanged.** Port 3 — honesty-first incentive
+alignment, standing computed from kept promises with permanent public slashing —
+survives; it is a faithful port of the whitepaper's §6 purpose and it does not
+depend on anyone else adopting. The refusal of transferability survives, with
+its cost restated plainly: no speculative fuel means slower propagation, and
+possibly none. The 0%-forever protocol fee survives, and is credible for exactly
+the reason the constitutional layer exists: no future version can introduce rent.
+
+### 7b.4 What this network is actually betting on, named so it can fail
+
+Not a propagation mechanism. Two things:
+
+1. **A tool that pays one person, alone, on the day they use it** — the grader
+   emits a file and a verdict card that are useful with zero other adopters. If
+   it is not worth using alone, it is not worth spreading, and no economics
+   section can repair that.
+2. **Being cited** — dated, checkable, first-party judgements are what answer
+   engines select for. That pays this site in attention, not the publisher in
+   adoption, and the distinction is the honest one.
+
+**Named dependency risk.** Every consumer of this protocol today is one this
+network wrote itself: its own registry, its own grader, its own skill file, its
+own MCP tool. That is the single-consumer failure mode with a documented
+precedent — RSS did not decline because a better format appeared; Google Reader
+closed on 1 July 2013 and adoption never recovered. **Flip condition:** if by
+2026-11-30 no `/claimledger.json` anywhere has been fetched by a client this
+network did not write, the correct conclusion is that the protocol has no
+consumer, and it is recorded as such rather than re-explained.
+
+## 8. Prior art and lineage
+
+Adaptive mixtures of local experts (Jacobs et al. 1991) · Sparsely-gated MoE
+(Shazeer et al. 2017) · Switch Transformers (Fedus et al. 2022) · ST-MoE (Zoph
+et al. 2022) · Representation collapse in sparse MoE (Chi et al. 2022) ·
+Mixtral (Jiang et al. 2024) · OLMoE (Muennighoff et al. 2024) · DeepSeekMoE
+(Dai et al. 2024) · DeepSeek-V3 (2024) · RouteLLM (Ong et al. 2024) · PBT
+(Jaderberg et al. 2017) · MAP-Elites (Mouret & Clune 2015) · FunSearch
+(Romera-Paredes et al., Nature 2023) · AlphaEvolve (2025) · Tree of Thoughts
+(Yao et al. 2023) · Reward hacking (Skalse et al. 2022) · Model collapse
+(Shumailov et al., Nature 2024) · Self-correction limits (Huang et al. 2024) ·
+LLM-as-judge bias (Zheng et al. 2023) · Darwin Gödel Machine (Sakana 2025) ·
+Sentient Ascend (Miikkulainen et al., AAAI 2018) · Building Effective Agents
+(Anthropic, 2024 — workflows vs agents, five patterns, ACI) · Agent Skills
+open standard (agentskills.io, 2025 — SKILL.md, progressive disclosure;
+adopted across 25+ agent products within twelve weeks) · Ethereum whitepaper
+(Buterin 2014 — the platform lesson only: a base ledger others build on
+permissionlessly; its generality is deliberately NOT ported, because a claims
+format that can execute arbitrary logic becomes an attack surface).
+
+## 9. Versioning
+
+This document is the algorithm. Changes bump the version; old versions stay in
+repository history. **v0.1 — 2026-08-29 (initial). v0.2 — adds §7 proof-of-grading
+and §5b perpetual operation. v0.3 — adds §3b, the correspondence to published
+agent-architecture vocabulary, and the skill-file distribution lane. v0.4 — adds
+§7b adoption economics. v0.5 — research-corrects §7b against the Bitcoin primary
+record (Bitcoin was not deflationary at launch: the first reward era issued half
+of all coins ever, so the correct port is generous early issuance under a
+constitutionally tightening schedule; §6's incentive existed for honesty
+alignment, not marketing). v0.6 — 2026-08-30: after a ~60-case survey of
+adoption mechanisms and an adversarial review in which every proposed
+propagation mechanism was refuted, DELETES three claims this document could not
+support — registry-position appreciation (an appreciation device this network's
+own governance lists under never), unrepeatable seniority as a reason to adopt,
+and audit demand as a propagation mechanism — demotes the training-cutoff
+analogy to explicitly untested, and replaces them with the measured state
+(zero outside fetches of the canonical path), the named single-consumer
+dependency with a dated flip condition, and Farrell & Saloner's excess-inertia
+cost borne by the first adopter. v0.4 and v0.5 remain readable in repository
+history; the deleted claims are graded on the ledger rather than erased.**

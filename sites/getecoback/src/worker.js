@@ -16,7 +16,7 @@
 function evUaClass(ua) {
   if (!ua) return "none";
   if (/^getecoback-ci\b/i.test(ua) || /^curl\//i.test(ua) || /^Wget\//i.test(ua)) return "ci";
-  if (/bot|crawl|spider|slurp|gptbot|oai-search|claude|perplexity|bingpreview|headless|python|node-fetch|axios|go-http/i.test(ua)) return "bot";
+  if (/bot|crawl|spider|slurp|gptbot|oai-search|claude|perplexity|bingpreview|headless|python|node-fetch|axios|go-http|undici|^node$|^node\/|okhttp|java\//i.test(ua)) return "bot";
   if (/mozilla/i.test(ua)) return "human";
   return "other";
 }
@@ -38,7 +38,7 @@ function json(body, status, extraHeaders) {
   });
 }
 
-async function handleSubscribe(request) {
+async function handleSubscribe(request, env, ctx) {
   const origin = request.headers.get("Origin") || "";
   const cors = ALLOWED_ORIGINS.has(origin)
     ? { "access-control-allow-origin": origin, "vary": "Origin" }
@@ -92,7 +92,21 @@ async function handleSubscribe(request) {
     body: JSON.stringify(row),
   });
 
-  if (resp.ok) return json({ ok: true }, 200, cors);
+  if (resp.ok) {
+    // Mirror the conversion into our own D1 the way handleSub2 does (2026-09-04):
+    // the Supabase table cannot be read from CI or the session, so without this
+    // row the newsletter path was the one funnel step invisible to the ledger.
+    // Same column list as every other ev INSERT; telemetry never costs a response.
+    try {
+      if (env && env.EVENTS && ctx) {
+        ctx.waitUntil(env.EVENTS.prepare(
+          "INSERT INTO ev (day, name, page, ref, meta, country, ua_class) VALUES (date('now'), 'subscribe', ?, '', ?, ?, 'human')"
+        ).bind(String(source || "").slice(0, 120), '{"source":"supabase"}',
+          request.headers.get("cf-ipcountry") || "").run().catch(() => {}));
+      }
+    } catch (e) { /* never block the reply on telemetry */ }
+    return json({ ok: true }, 200, cors);
+  }
   // Duplicate email (unique violation) — already subscribed, still a success.
   if (resp.status === 409) return json({ ok: true, duplicate: true }, 200, cors);
 
@@ -273,6 +287,12 @@ async function serveAsset(request, env, pathname) {
   if (!response.ok) return response;
   const headers = new Headers(response.headers);
   headers.set("cache-control", cacheControlFor(pathname));
+  // Agent surfaces (2026-08-29): per-page .md mirrors are for reading and
+  // citing by assistants, never for ranking — the HTML page stays canonical.
+  if (pathname.endsWith(".md")) {
+    headers.set("x-robots-tag", "noindex");
+    headers.set("content-type", "text/markdown; charset=utf-8");
+  }
   const out = new Response(response.body, {
     status: response.status,
     statusText: response.statusText,
@@ -300,6 +320,7 @@ async function serveAsset(request, env, pathname) {
 // no consent banner is required and nothing here identifies a visitor.
 const EV_NAMES = new Set([
   "page_view", "affiliate_click", "b2b_intent", "lead_intent", "outbound_choice", "cold_now", "strom_now",
+  "feuchte_now",
   "embed_copy", "share", "video_play", "btu_calc", "hitze_check", "heat_check",
   "strom_check", "bkw_calc", "heizkosten_calc", "taupunkt_check",
   "standort_check", "strompreis_api", "widget_view",
@@ -410,6 +431,93 @@ async function coldReading() {
     worst = { level: 0, region: "", temp: null, day: "" };
   }
   return worst;
+}
+
+// Autumn live number (2026-08-31). EB_HEATNOW renders only from 28 °C and sits
+// on 11 of the 12 top-earning pages, so the site's one "a chat answer cannot
+// hold this" hook goes dark for eight months exactly as the humidity season
+// starts, and luftentfeuchter-40-qm (the best autumn converter) never had one.
+//
+// Dew point is the right autumn counterpart because the verdict genuinely
+// flips on it — but against the COLD SURFACE, not the room air. A first draft
+// here compared it to 20 °C indoor air and was wrong: at 15 °C / 95 % outside
+// the dew point is 14.2 °C, which still dries a 20 °C room. Condensation forms
+// on the coldest surface — the corner behind a wardrobe on an exterior wall, an
+// unheated cellar wall — and that is why airing a cellar on a mild damp day
+// makes it wetter, the classic mistake this site already documents.
+//
+// Two references, because the answer differs by room and both are honest
+// approximations the page states out loud (and links to the Taupunkt tool for
+// the reader's own measured surface):
+//   ~15 °C — cold corner on an exterior wall in a heated room
+//   ~13 °C — wall in an unheated cellar
+// Above both, airing cannot dry anything and a dehumidifier is not an upsell,
+// it is the only remaining physical answer.
+const DEW_WALL = 15;         // cold corner, heated room
+const DEW_CELLAR = 13;       // unheated cellar wall
+const DEW_NOTHING = { ok: false, level: 0, region: "", temp: null, rh: null, dew: null };
+
+// Magnus formula (a = 17.62, b = 243.12 °C). Checked against published dew
+// point tables at six points, all within 0.1 K.
+function dewPoint(t, rh) {
+  if (typeof t !== "number" || typeof rh !== "number" || rh <= 0 || rh > 100) return null;
+  const a = 17.62, b = 243.12;
+  const g = Math.log(rh / 100) + (a * t) / (b + t);
+  const d = (b * g) / (a - g);
+  return Number.isFinite(d) ? Math.round(d * 10) / 10 : null;
+}
+
+async function cityDew(name, lat, lon) {
+  try {
+    const r = await fetch(
+      `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}` +
+      `&current=temperature_2m,relative_humidity_2m&timezone=Europe%2FBerlin`,
+      { signal: AbortSignal.timeout(6000) });
+    if (!r.ok) return null;
+    const d = await r.json();
+    const t = d && d.current && d.current.temperature_2m;
+    const rh = d && d.current && d.current.relative_humidity_2m;
+    const dew = dewPoint(t, rh);
+    return dew === null ? null : { region: name, temp: t, rh, dew };
+  } catch (e) {
+    return null;
+  }
+}
+
+async function dewReading() {
+  try {
+    const results = await Promise.all(HEAT_CITIES.map(([n, la, lo]) => cityDew(n, la, lo)));
+    // Worst case of the three. Reporting the friendliest city would tell a
+    // reader to open the window on a day their own region cannot afford it.
+    let worst = null;
+    for (const c of results) if (c && (worst === null || c.dew > worst.dew)) worst = c;
+    if (!worst) return DEW_NOTHING;
+    // 1: airing dries everywhere. 2: fine in the room, wets the cellar.
+    // 3: airing dries nothing — only a dehumidifier removes water now.
+    const level = worst.dew <= DEW_CELLAR ? 1 : worst.dew <= DEW_WALL ? 2 : 3;
+    return { ok: true, level, wall_ref: DEW_WALL, cellar_ref: DEW_CELLAR, ...worst };
+  } catch (e) {
+    return DEW_NOTHING;
+  }
+}
+
+async function handleFeuchte() {
+  const cacheKey = new Request("https://getecoback.com/__feuchte");
+  let cache = null;
+  try {
+    cache = caches.default;
+    const cached = await cache.match(cacheKey);
+    if (cached) return cached;
+  } catch (e) {
+    cache = null;
+  }
+  const payload = await dewReading();
+  const resp = json(payload, 200, { "cache-control": "public, max-age=3600" });
+  // Same rule as handleHeat: never freeze a failure into the cache for an hour.
+  if (cache && payload.ok) {
+    try { await cache.put(cacheKey, resp.clone()); } catch (e) { /* cache is optional */ }
+  }
+  return resp;
 }
 
 async function handleHeat() {
@@ -613,14 +721,21 @@ async function handleTrend(env) {
       "SELECT name, " +
       "SUM(CASE WHEN day >= date('now','-7 day') THEN 1 ELSE 0 END) AS n7, " +
       "SUM(CASE WHEN day < date('now','-7 day') AND day >= date('now','-14 day') THEN 1 ELSE 0 END) AS p7 " +
-      "FROM ev WHERE page NOT LIKE '/__ci%' AND day >= date('now','-14 day') " +
+      // ua_class filter added 2026-09-05: this endpoint is listed in llms.txt
+      // and read by assistants, and it was publishing mcp_call n7:87 while real
+      // third-party use was zero — the 87 were a daily canned-args replay plus
+      // the registry validator, classified 'other'/'bot'. An AI-facing surface
+      // that overstates its own adoption is the one lie this site cannot afford.
+      "FROM ev WHERE page NOT LIKE '/__ci%' AND (ua_class IS NULL OR ua_class='human') " +
+      "AND day >= date('now','-14 day') " +
       "GROUP BY name ORDER BY n7 DESC LIMIT 30"
     ).all();
     const pg = await env.EVENTS.prepare(
       "SELECT page, " +
       "SUM(CASE WHEN day >= date('now','-7 day') THEN 1 ELSE 0 END) AS n7, " +
       "SUM(CASE WHEN day < date('now','-7 day') AND day >= date('now','-14 day') THEN 1 ELSE 0 END) AS p7 " +
-      "FROM ev WHERE name='page_view' AND page NOT LIKE '/__ci%' AND day >= date('now','-14 day') " +
+      "FROM ev WHERE name='page_view' AND page NOT LIKE '/__ci%' AND (ua_class IS NULL OR ua_class='human') " +
+      "AND day >= date('now','-14 day') " +
       "GROUP BY page HAVING n7 >= 2 ORDER BY n7 DESC LIMIT 25"
     ).all();
     const zh = await env.EVENTS.prepare(
@@ -661,6 +776,22 @@ async function handleTrend(env) {
 // source URL and the site's honesty line ("not self-tested"), which means the
 // disclosure travels with the data. No auth, no state, aggregate-only.
 const MCP_TOOLS = [
+  // AI-era round 2026-08-29: the decision LAYER above the per-device
+  // calculators. Assistants keep asking "which device class solves X" before
+  // any sizing question makes sense; this router answers it with the same
+  // honest physics the pages use, then hands over to the sizing tools/guides.
+  {
+    name: "geraet_wahl",
+    description: "Welches Gerät löst mein Raumklima-Problem? — Which device family solves a given indoor-climate problem (too hot, damp/mould, too cold, stale air), with the honest physics, the right size for the room and the matching guide. The decision layer above btu_empfehlung/heizleistung_watt.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        problem: { type: "string", enum: ["zu_heiss", "feucht_schimmel", "zu_kalt", "stickige_luft"], description: "Das Problem — the problem: zu_heiss = room too hot, feucht_schimmel = damp air / condensation / mould risk, zu_kalt = room too cold (no fixed heating), stickige_luft = stale air / odours" },
+        qm: { type: "number", description: "Raumfläche in m² — room floor area in square metres (4–120). Default: 20" },
+      },
+      required: ["problem"],
+    },
+  },
   {
     name: "btu_empfehlung",
     description: "Empfohlene Kühlleistung (BTU) für einen Raum, mit passender Geräteklasse. — Recommended cooling capacity in BTU for a room, with the matching device class: how many BTU do I need for X m²? Same formula as the calculator on getecoback.com (340 BTU/m² × sun factor), for Germany and Europe.",
@@ -814,6 +945,37 @@ function mcpToolResult(text) {
 
 async function mcpCallTool(name, args, env) {
   const a = args || {};
+  if (name === "geraet_wahl") {
+    const qm = Math.max(4, Math.min(120, Number(a.qm) || 20));
+    const qp = qm <= 12 ? 10 : qm <= 17 ? 15 : qm <= 22 ? 20 : qm <= 27 ? 25 : qm <= 35 ? 30 : 40;
+    // Same rules as the pages: 340 BTU/m² · dehum ladder (l/day) · 60–100 W/m².
+    let text;
+    if (a.problem === "zu_heiss") {
+      const btu = Math.round((qm * 340) / 500) * 500;
+      text = `Für "Raum zu heiß" ist die einzige Gerätefamilie, die netto kühlt, die mobile Klimaanlage mit Abluftschlauch (Wärme muss den Raum verlassen; Luftkühler/Ventilatoren kühlen nur die Person, nicht den Raum).\n` +
+        `Faustregel für ${qm} m²: ca. ${btu.toLocaleString("de-DE")} BTU. Ohne dichte Fensterabdichtung verliert jeder Monoblock den Großteil seiner Wirkung.\n` +
+        `Geräteklasse & Modelle: https://getecoback.com/guide/klimaanlage-${qp}-qm.html\n` +
+        `Feinrechnung (Decke, Personen, Sonne): Tool btu_empfehlung oder https://getecoback.com/guide/btu-rechner.html`;
+    } else if (a.problem === "feucht_schimmel") {
+      const liter = qm <= 12 ? "10–12" : qm <= 17 ? "12–16" : qm <= 22 ? "16–20" : qm <= 27 ? "20" : qm <= 35 ? "20–25" : "25–30";
+      const dq = qm <= 12 ? 10 : qm <= 17 ? 15 : qm <= 22 ? 20 : qm <= 27 ? 25 : qm <= 35 ? 30 : 40;
+      text = `Für "feuchte Luft / Kondens / Schimmelrisiko" ist der Kompressor-Luftentfeuchter mit Hygrostat die richtige Familie: unter ca. 60 % relativer Feuchte fehlt Schimmel die Grundlage.\n` +
+        `Faustregel für ${qm} m²: ${liter} Liter/Tag Entzugsleistung (Herstellerangaben sind Idealbedingungen, real ≈ die Hälfte).\n` +
+        `Geräteklasse & Modelle: https://getecoback.com/guide/luftentfeuchter-${dq}-qm.html\n` +
+        `Physik-Check für die eigene Wand: Tool taupunkt_lueften`;
+    } else if (a.problem === "zu_kalt") {
+      const wl = Math.round(qm * 60), wh = Math.round(qm * 100);
+      text = `Für "Raum zu kalt ohne feste Heizung" sind Infrarot-/Elektropaneele mit Thermostat die installationsfreie Familie (Zusatz-/Übergangsheizung; als alleinige Winterheizung ist eine Wärmepumpe wirtschaftlicher — Strom-Direktheizung macht aus 1 kWh Strom genau 1 kWh Wärme).\n` +
+        `Faustregel für ${qm} m² (gedämmter Raum): ${wl.toLocaleString("de-DE")}–${wh.toLocaleString("de-DE")} W.\n` +
+        `Geräteklasse & Modelle: https://getecoback.com/guide/heizung-${qp}-qm.html\n` +
+        `Feinrechnung: Tool heizleistung_watt`;
+    } else {
+      text = `Für "stickige Luft / Gerüche" ist die ehrliche Reihenfolge: erst richtig lüften (kostet nichts), dann je nach Ursache Luftreiniger (Partikel/Pollen) oder Luftentfeuchter (wenn die Ursache Feuchte ist — Muffgeruch ist oft ein Feuchteproblem).\n` +
+        `Einordnung Reiniger vs. Entfeuchter: https://getecoback.com/guide/luftentfeuchter-oder-luftreiniger.html\n` +
+        `Richtig lüften: https://getecoback.com/guide/richtig-lueften-bei-hitze.html`;
+    }
+    return mcpToolResult(text + `\n${MCP_DISCLOSURE}`);
+  }
   if (name === "btu_empfehlung") {
     const qm = Math.max(4, Math.min(120, Number(a.qm) || 20));
     const sun = a.sonne === "wenig" ? 0.9 : (a.sonne === "viel" ? 1.2 : 1);
@@ -1119,6 +1281,10 @@ async function handleMcp(request, env) {
             JSON.stringify({
               tool: known ? name : "unknown",
               args: JSON.stringify(args || {}).slice(0, 160),
+              // 2026-09-05: a daily caller replaying the smoke's canned args
+              // took two sessions to rule out as adoption because nothing
+              // recorded who it was. The UA is not personal data; capped.
+              ua: mcpUa.slice(0, 80),
             }),
             evUaClass(mcpUa)
           ).run();
@@ -1149,7 +1315,7 @@ export default {
       return handleMcp(request, env);
     }
     if (url.pathname === "/api/subscribe") {
-      return handleSubscribe(request);
+      return handleSubscribe(request, env, ctx);
     }
     if (url.pathname === "/api/sub2") {
       return handleSub2(request, env, ctx);
@@ -1162,6 +1328,9 @@ export default {
     }
     if (url.pathname === "/api/heat") {
       return handleHeat();
+    }
+    if (url.pathname === "/api/feuchte") {
+      return handleFeuchte();
     }
     if (url.pathname === "/api/strom") {
       return handleStrom();

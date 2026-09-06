@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FZXLMBB5QB"></script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a0a0b'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%234fc3a1'/%3E%3C/svg%3E">
+<title>抄大佬的 13F 作业到底赚不赚钱？实测两年</title>
+<meta name="description" content="用申报日收盘价实测抄作业：德鲁肯米勒 AI 持仓 +187.2% 对 QQQ +59.6%，木头姐 +170%，而抄巴菲特 AI 切片跑输。问题不是能不能抄，是抄谁。带日期，可复算。">
+<link rel="canonical" href="https://agiscorecard.com/zh/does-copying-13f-work">
+<link rel="alternate" hreflang="en" href="https://agiscorecard.com/does-copying-13f-work">
+<link rel="alternate" hreflang="zh-Hans" href="https://agiscorecard.com/zh/does-copying-13f-work">
+<link rel="alternate" hreflang="x-default" href="https://agiscorecard.com/does-copying-13f-work">
+<meta property="og:title" content="抄大佬的 13F 作业到底赚不赚钱？实测两年">
+<meta property="og:description" content="全网唯一用「申报日收盘价建仓」口径的回测——那是一个真人打开 EDGAR 后能拿到的第一个价格。赢家与输家同表公布，四条反面说明与数字同屏。">
+<meta property="og:url" content="https://agiscorecard.com/zh/does-copying-13f-work">
+<meta property="og:type" content="article">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"抄大佬的 13F 作业到底赚不赚钱？实测两年","datePublished":"2026-08-30","dateModified":"2026-08-30","inLanguage":"zh","author":{"@type":"Organization","name":"AGI 记分牌","url":"https://agiscorecard.com/about"},"publisher":{"@type":"Organization","name":"AGI 记分牌","url":"https://agiscorecard.com/"},"description":"对「抄 13F 作业赚不赚钱」的一手回测：申报日收盘价建仓、持有到下次申报,2024年8月以来 8 个再平衡期,赢家与输家同表公布,每季度随新申报自动重算。"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AGI 记分牌","item":"https://agiscorecard.com/cn"},{"@type":"ListItem","position":2,"name":"中文内容","item":"https://agiscorecard.com/cn"},{"@type":"ListItem","position":3,"name":"抄 13F 作业赚不赚钱","item":"https://agiscorecard.com/zh/does-copying-13f-work"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "抄大佬的 13F 持仓到底赚不赚钱？", "acceptedAnswer": {"@type": "Answer", "text": "能赚——但问题是抄谁。我们的回测在每份 13F 申报当天的收盘价买入该投资人披露的 AI 持仓，持有到下一次申报。2024年8月以来 8 个再平衡期（截至 2026-08-16）：德鲁肯米勒 +187.2%、木头姐（Cathie Wood）+170%、Tepper +108.2%，同窗口 QQQ +59.6%；而巴菲特的 AI 相关切片只有 +37.3%，跑输指数。抄作业不是一个策略，是每个投资人各一个策略。"}}, {"@type": "Question", "name": "13F 延迟 45 天公布，抄作业不就失效了吗？", "acceptedAnswer": {"@type": "Answer", "text": "经典学术结论说不会：Martin 与 Puthenpurackal 的伯克希尔研究（SSRN，2008）发现，1976 到 2006 年间模仿伯克希尔已披露持仓的组合，即使在披露公开一个月后才交易，仍能大幅跑赢市场。我们的测试是这个思路的「可交易版」：从不使用季度末价格（读到申报的人 45 天前根本拿不到那个价），只用申报日收盘价——一个真人打开 EDGAR 后能付到的第一个价格。"}}, {"@type": "Question", "name": "为什么抄巴菲特跑输，抄别人却跑赢？", "acceptedAnswer": {"@type": "Answer", "text": "因为伯克希尔账本里的 AI 切片是刻意保守的：贴着 AI 的现金流生意（苹果，以及 2026 年持续加仓的谷歌），而不是加速卡类股票。该切片在测试窗口收益 +37.3%，对 QQQ 的 +59.6%——这是关于「这个 AI 切片、这个窗口」的事实，不是对伯克希尔整体组合的判定；13F 可见的切片本来就代表不了全貌。"}}, {"@type": "Question", "name": "这个回测和其他 13F 网站有什么不同？", "acceptedAnswer": {"@type": "Answer", "text": "三点。定价：我们查到的其他回测全部用季度末价格，等于假设你在能读到申报的 45 天之前就完成了交易；我们用申报日收盘价。诚实：输家（巴菲特 AI 切片跑输）与赢家同表公布，四条反面说明与数字同屏。可审计：持仓来自 EDGAR 逐行申报原文，收益用复权日线，整套结果每个 13F 申报季自动重算，而不是写完就不动。"}}]}</script>
+<style>
+  :root{--bg:#ffffff;--bg2:#f7f7f8;--bg3:#eeeef1;--border:rgba(0,0,0,0.10);--border2:rgba(0,0,0,0.18);--text:#0a0a0b;--muted:#63636e;--accent:#002FA7;--accent2:#0f7a52;--warn:#8a5a00;--danger:#C8102E;--font:'Noto Sans SC','PingFang SC','Microsoft YaHei',-apple-system,Helvetica Neue,sans-serif;--mono:'JetBrains Mono',monospace;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-variant-numeric:tabular-nums;background:var(--bg);color:var(--text);font-family:var(--font);font-size:16px;line-height:1.75;}
+  a{color:var(--accent);text-decoration:none;}a:hover{opacity:.8;}
+  header{border-bottom:1px solid var(--border);padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:56px;position:sticky;top:0;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);z-index:100;}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px;color:var(--text);}
+  .logo-dot{width:8px;height:8px;background:var(--accent2);border-radius:50%;}
+  .back-link{font-size:13px;color:var(--muted);}.back-link:hover{color:var(--text);opacity:1;}
+  article{max-width:720px;margin:0 auto;padding:2.5rem 1.5rem 4rem;}
+  .eyebrow{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem;}
+  h1{font-size:clamp(1.7rem,4vw,2.4rem);font-weight:700;letter-spacing:-.02em;line-height:1.18;margin-bottom:1.25rem;}
+  .capsule{background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent2);border-radius:0 10px 10px 0;padding:1.15rem 1.4rem;font-size:16px;margin-bottom:1.75rem;}
+  .capsule .verdict{font-weight:700;}
+  .v-ok{color:var(--accent2);}.v-wrong{color:var(--danger);}.v-open{color:var(--accent);}.v-pending{color:var(--muted);}
+  h2{font-size:1.25rem;font-weight:600;margin:2.25rem 0 .9rem;letter-spacing:-.01em;}
+  h3{font-size:1.05rem;font-weight:600;margin:1.5rem 0 .6rem;}
+  p{margin-bottom:1rem;}
+  ul{margin:0 0 1rem 1.3rem;}li{margin-bottom:.45rem;}
+  strong{color:#000;font-weight:700;}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;margin:1rem 0 1.4rem;background:var(--bg2);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+  th{text-align:left;padding:10px 12px;color:var(--muted);font-weight:500;font-size:11px;letter-spacing:.05em;text-transform:uppercase;border-bottom:1px solid var(--border);}
+  td{padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:top;}
+  tr:last-child td{border-bottom:none;}
+  .nowrap{white-space:nowrap;font-weight:600;}
+  .updated{font-size:12px;color:var(--muted);margin-bottom:1.5rem;}
+  .big{font-size:28px;font-weight:800;}
+  footer{border-top:1px solid var(--border);padding:24px 0;font-size:12px;color:var(--muted);text-align:center;}
+@media(max-width:640px){table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;white-space:nowrap}table td,table th{white-space:normal;min-width:92px}}
+</style>
+</head>
+<body>
+<header>
+  <a href="/cn" class="logo"><span class="logo-dot"></span>AGI 记分牌</a>
+  <a href="/cn" class="back-link">← 中文首页</a>
+</header>
+<main>
+  <article>
+  <div class="eyebrow">实测,不空谈 · 跟着钱走</div>
+  <h1>抄大佬的 13F 作业到底赚不赚钱？实测两年</h1>
+  <div class="updated">最后更新:2026年8月30日 · 每个 13F 申报季自动重算 · 不构成投资建议</div>
+
+  <div class="capsule"><span class="verdict">8 个再平衡期实测:抄对了人,大幅跑赢指数;抄巴菲特的 AI 切片,跑输。问题从来不是「能不能抄」,是「抄谁」。</span>
+  别家的回测几乎全用季度末价格——等于假设你在能读到申报的 45 天之前就完成了交易。我们的账本
+  在<strong>申报当天的收盘价</strong>买入(真人打开 EDGAR 后能付到的第一个价格),持有到下次申报。
+  赢家与输家同表公布,四条反面说明与数字同屏。</div>
+
+  <div style="margin:1.2rem 0;padding:1rem 1.2rem;background:var(--bg2);border:1px solid var(--border);border-radius:12px;">
+    <span style="font-size:13px;color:var(--muted);">头条读数,每个申报季重算(截至 2026-08-16,2024年8月以来 8 个再平衡期):</span><br>
+    <a href="https://compass.agiscorecard.com/zh/track-record" target="_blank" rel="noopener" onclick="gtag('event','index_click',{location:'zh_copy13f_live'});" class="big" style="text-decoration:none;">+187.2%<span style="font-size:16px;color:var(--muted);"> 德鲁肯米勒</span></a>
+    <span style="font-size:13px;color:var(--muted);">— 同窗口 <strong>QQQ +59.6%</strong>。抄错账本(巴菲特 AI 切片 +37.3%)则跑输同一个指数。</span>
+  </div>
+
+  <h2>数字——赢家与输家放在一张表里</h2>
+  <table>
+    <thead><tr><th>抄谁的 AI 账本</th><th>2024年8月以来收益</th><th>同窗口 QQQ</th><th>判定</th></tr></thead>
+    <tbody>
+      <tr><td>斯坦利·德鲁肯米勒</td><td class="nowrap v-ok">+187.2%</td><td class="nowrap">+59.6%</td><td class="v-ok">跑赢约 3 倍</td></tr>
+      <tr><td>木头姐(Cathie Wood / ARK)</td><td class="nowrap v-ok">+170%</td><td class="nowrap">+59.6%</td><td class="v-ok">跑赢</td></tr>
+      <tr><td>大卫·Tepper</td><td class="nowrap v-ok">+108.2%</td><td class="nowrap">+59.6%</td><td class="v-ok">跑赢</td></tr>
+      <tr><td>沃伦·巴菲特(AI 相关切片)</td><td class="nowrap v-wrong">+37.3%</td><td class="nowrap">+59.6%</td><td class="v-wrong">跑输</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:13px;color:var(--muted);margin-top:-.6rem;">四条反面说明属于这张表的同一屏,不放页脚:①算的是每位投资人的 <strong>AI 相关切片</strong>,不是整个组合;②13F 看不见做空与期权对冲,被对冲过的账本在这里显得「裸奔」;③「哪些持仓算 AI」是本站的编辑判断;④任一期价格覆盖不足组合 50% 直接跳过、不硬猜。过往收益不承诺任何未来。</p>
+
+  <h2>为什么「申报日价格」是整件事的关键</h2>
+  <p>13F 在季度结束后约 <strong>45 天</strong>才公开。用季度末价格做的回测——市面上几乎全部——
+  是在给一个「申报还不存在的时刻」定价。这不是小瑕疵:那是「测一个策略」与「测穿越时空」的区别。
+  我们的账本每个仓位都在申报日收盘价进场、下次申报时再平衡,收益用复权日线,持仓取自
+  <a href="https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&amp;type=13F" rel="noopener nofollow">EDGAR 逐行申报原文</a>。</p>
+  <p>学术底率也指向同一个方向:Martin 与 Puthenpurackal 的伯克希尔研究
+  (<a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=806246" rel="noopener">"Imitation is the Sincerest Form of Flattery"</a>,SSRN 2008)
+  发现 1976–2006 年模仿伯克希尔已披露持仓、哪怕晚一个月交易,仍大幅跑赢市场——延迟是扛得住的。
+  我们补上的是文献给不了的那部分:<strong>今天这些 AI 账本里,哪本在你真付得到的价格上值得抄</strong>
+  ——答案按投资人劈得很开。</p>
+
+  <div style="margin:1.5rem 0;background:var(--bg2);border:1px solid var(--border2);border-radius:14px;padding:1.1rem 1.3rem;">
+    <p style="margin:0 0 .7rem;font-weight:700;">自己跑一遍——你选人、你选起点、你定本金</p>
+    <p style="margin:0 0 .8rem;font-size:14px;color:var(--muted);">「抄作业计算器」回答"如果当时我抄了,今天值多少钱":任选投资人组合与起始申报日,浏览器里当场算,每一段都用该投资人自己窗口的 QQQ 做基准,结果可以永久链接分享。工具里一键可绑 Telegram,下一次 13F 落地时收到更新。</p>
+    <a href="https://compass.agiscorecard.com/zh/track-record" target="_blank" rel="noopener" onclick="gtag('event','invest_tool_click',{location:'zh_copy13f_record'});" style="display:inline-block;background:var(--accent);color:#fff;padding:9px 20px;border-radius:8px;font-size:14px;font-weight:600;margin-right:8px;">打开计算器 &rarr;</a>
+    <a href="/zh/ai-stock-exposure" onclick="gtag('event','invest_tool_click',{location:'zh_copy13f_exposure'});" style="display:inline-block;background:var(--bg3);border:1px solid var(--border2);color:var(--text);padding:9px 20px;border-radius:8px;font-size:14px;font-weight:600;">给我的持仓打个分 &rarr;</a>
+  </div>
+
+  <h2>这个测试回答不了的三件事</h2>
+  <ul>
+    <li><strong>会不会一直有效。</strong>8 个再平衡期是真实记录,也是很短的记录;下个申报季一切重算,包括我们自己的头条数字。</li>
+    <li><strong>任何关于整体组合的结论。</strong>AI 切片是本站能对照<a href="/situational-awareness-predictions">已判定预测</a>去评的那部分;伯克希尔全账本是另一头(且这里没测的)动物。</li>
+    <li><strong>下一个该抄谁。</strong>账本报告的是「在可交易价格上发生过什么」,不给未来排名——一个以判定预测为业的网站,最清楚这是两份不同的工作。</li>
+  </ul>
+
+  <h2>常见问题</h2>
+  <h3>抄大佬的 13F 持仓到底赚不赚钱？</h3>
+  <p>能赚——但问题是抄谁。我们的回测在每份 13F 申报当天的收盘价买入该投资人披露的 AI 持仓，持有到下一次申报。2024年8月以来 8 个再平衡期（截至 2026-08-16）：德鲁肯米勒 +187.2%、木头姐（Cathie Wood）+170%、Tepper +108.2%，同窗口 QQQ +59.6%；而巴菲特的 AI 相关切片只有 +37.3%，跑输指数。抄作业不是一个策略，是每个投资人各一个策略。</p>
+  <h3>13F 延迟 45 天公布，抄作业不就失效了吗？</h3>
+  <p>经典学术结论说不会：Martin 与 Puthenpurackal 的伯克希尔研究（SSRN，2008）发现，1976 到 2006 年间模仿伯克希尔已披露持仓的组合，即使在披露公开一个月后才交易，仍能大幅跑赢市场。我们的测试是这个思路的「可交易版」：从不使用季度末价格（读到申报的人 45 天前根本拿不到那个价），只用申报日收盘价——一个真人打开 EDGAR 后能付到的第一个价格。</p>
+  <h3>为什么抄巴菲特跑输，抄别人却跑赢？</h3>
+  <p>因为伯克希尔账本里的 AI 切片是刻意保守的：贴着 AI 的现金流生意（苹果，以及 2026 年持续加仓的谷歌），而不是加速卡类股票。该切片在测试窗口收益 +37.3%，对 QQQ 的 +59.6%——这是关于「这个 AI 切片、这个窗口」的事实，不是对伯克希尔整体组合的判定；13F 可见的切片本来就代表不了全貌。</p>
+  <h3>这个回测和其他 13F 网站有什么不同？</h3>
+  <p>三点。定价：我们查到的其他回测全部用季度末价格，等于假设你在能读到申报的 45 天之前就完成了交易；我们用申报日收盘价。诚实：输家（巴菲特 AI 切片跑输）与赢家同表公布，四条反面说明与数字同屏。可审计：持仓来自 EDGAR 逐行申报原文，收益用复权日线，整套结果每个 13F 申报季自动重算，而不是写完就不动。</p>
+
+  <div style="margin:1.6rem 0;">
+    <a href="https://agiscorecard.beehiiv.com/subscribe?utm_source=agiscorecard&amp;utm_medium=zh_deep_copy13f" target="_blank" rel="noopener" onclick="gtag('event','subscribe_click',{location:'zh_deep_page'});" style="display:inline-block;background:var(--accent);color:#fff;padding:9px 20px;border-radius:8px;font-size:14px;font-weight:600;">每个申报季收一封重算后的账本（英文表单）&rarr;</a>
+  </div>
+  <p style="font-size:13px;color:var(--muted);">英文原版:<a href="/does-copying-13f-work">Does Copying 13F Filings Actually Work?</a> · 持仓只认逐行 13F 申报;账本每季重算,本页数字同一次运行内更新。本页不构成投资建议。</p>
+  </article>
+</main>
+<footer>出品:<a href="/about" style="color:var(--muted);">AGI 记分牌</a> · 独立追踪 <a href="https://situational-awareness.ai" style="color:var(--muted);">Situational Awareness</a> · 与任何实验室或基金无关联 · <a href="/privacy" style="color:var(--muted);">隐私</a></footer>
+</body>
+</html>

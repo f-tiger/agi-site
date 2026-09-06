@@ -1,370 +1,467 @@
 {
- "fetched": "2026-08-28",
+ "fetched": "2026-09-06",
  "geo": "DE",
  "seeds": {
   "klimaanlage": {
+   "auto": [
+    "klimaanlage",
+    "klimaanlage englisch",
+    "klimaanlage kaufen",
+    "klimaanlage mobil",
+    "klimaanlage splitgerät",
+    "klimaanlagen",
+    "klimaanlage deutschland",
+    "klimaanlage mit abluftschlauch",
+    "klimaanlage einbauen",
+    "klimaanlage ohne außengerät"
+   ],
    "rising": [
     {
-     "q": "epicooler",
-     "v": 42000
+     "q": "klimaanlage englisch",
+     "v": "new"
     },
     {
-     "q": "coolizi",
-     "v": 23600
+     "q": "klimaanlage kaufen",
+     "v": "new"
     },
     {
-     "q": "air zuma klimaanlage",
-     "v": 14650
+     "q": "klimaanlage mobil",
+     "v": "new"
     },
     {
-     "q": "midea portasplit klimaanlage lidl",
-     "v": 10650
+     "q": "klimaanlage splitgerät",
+     "v": "new"
     },
     {
-     "q": "epicooler test",
-     "v": 8950
+     "q": "klimaanlagen",
+     "v": "new"
     },
     {
-     "q": "lidl klimaanlage angebot",
-     "v": 8200
+     "q": "klimaanlage deutschland",
+     "v": "new"
     },
     {
-     "q": "klimaanlage für zuhause ohne schlauch",
-     "v": 7900
+     "q": "klimaanlage mit abluftschlauch",
+     "v": "new"
     },
     {
-     "q": "epicooler erfahrungen",
-     "v": 6950
+     "q": "klimaanlage einbauen",
+     "v": "new"
     },
     {
-     "q": "klimaanlage fest installiert",
-     "v": 6600
-    },
-    {
-     "q": "tronic klimaanlage 9000 btu",
-     "v": 6000
+     "q": "klimaanlage ohne außengerät",
+     "v": "new"
     }
    ],
-   "source": "related-queries",
-   "fetched": "2026-08-23"
+   "source": "autocomplete-diff",
+   "fetched": "2026-09-04"
   },
   "schimmel entfernen": {
    "rising": [
     {
-     "q": "schimmel im keller entfernen",
-     "v": 108750
-    },
-    {
-     "q": "schimmel im badezimmer entfernen",
-     "v": 78800
-    },
-    {
-     "q": "schimmel auf leder entfernen",
-     "v": 35350
-    },
-    {
-     "q": "schimmel keller entfernen",
-     "v": 1100
-    },
-    {
-     "q": "schimmel aus stoff entfernen",
-     "v": 150
-    },
-    {
      "q": "schimmel aus kleidung entfernen",
-     "v": 140
+     "v": 300
     },
     {
-     "q": "schimmel auf silikonfugen entfernen",
-     "v": 140
+     "q": "schwarzen schimmel entfernen",
+     "v": 120
     },
     {
-     "q": "schimmel kleidung entfernen",
-     "v": 100
-    },
-    {
-     "q": "schimmel entfernen bad fugen",
-     "v": 90
-    },
-    {
-     "q": "schimmel in der dusche entfernen",
-     "v": 70
-    }
-   ],
-   "source": "related-queries",
-   "fetched": "2026-08-24"
-  },
-  "infrarotheizung": {
-   "rising": [
-    {
-     "q": "schmidbauer infrarotheizung",
-     "v": 62950
-    },
-    {
-     "q": "infrarotheizung für garage",
-     "v": 44050
-    },
-    {
-     "q": "radiator heizung",
-     "v": 1950
-    },
-    {
-     "q": "infrarotheizung für bad",
-     "v": 200
-    },
-    {
-     "q": "redwell infrarotheizung",
-     "v": 180
-    },
-    {
-     "q": "klarstein",
-     "v": 110
-    },
-    {
-     "q": "infrarotheizung decke licht",
+     "q": "schimmel an der wand dauerhaft entfernen",
      "v": 80
     },
     {
-     "q": "klarstein infrarotheizung",
-     "v": 70
+     "q": "schimmel entfernen kosten",
+     "v": 80
     },
     {
-     "q": "infrarotheizung bad",
+     "q": "stockflecken",
      "v": 60
     },
     {
-     "q": "infrarotheizung mit licht",
-     "v": 60
+     "q": "schimmel entfernen bad fugen",
+     "v": 50
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-08-25"
+   "fetched": "2026-09-05",
+   "polluted": false
+  },
+  "infrarotheizung": {
+   "auto": [
+    "infrarotheizung",
+    "infrarotheizung wand",
+    "infrarotheizung decke",
+    "infrarotheizung badezimmer",
+    "infrarotheizung bild",
+    "infrarotheizung test",
+    "infrarotheizungen",
+    "infrarotheizung standgerät",
+    "infrarotheizung stromverbrauch",
+    "infrarotheizung spiegel"
+   ],
+   "rising": [
+    {
+     "q": "infrarotheizung wand",
+     "v": "new"
+    },
+    {
+     "q": "infrarotheizung decke",
+     "v": "new"
+    },
+    {
+     "q": "infrarotheizung badezimmer",
+     "v": "new"
+    },
+    {
+     "q": "infrarotheizung bild",
+     "v": "new"
+    },
+    {
+     "q": "infrarotheizung test",
+     "v": "new"
+    },
+    {
+     "q": "infrarotheizungen",
+     "v": "new"
+    },
+    {
+     "q": "infrarotheizung standgerät",
+     "v": "new"
+    },
+    {
+     "q": "infrarotheizung stromverbrauch",
+     "v": "new"
+    },
+    {
+     "q": "infrarotheizung spiegel",
+     "v": "new"
+    }
+   ],
+   "source": "autocomplete-diff",
+   "fetched": "2026-09-06"
   },
   "luftentfeuchter": {
    "rising": [
     {
-     "q": "klarstein mobile klimaanlage mit abluftschlauch, 4-in-1 klimagerät mit ventilato",
-     "v": 43450
+     "q": "luftentfeuchter bei hitze",
+     "v": 155800
     },
     {
-     "q": "klimaanlage mobil",
-     "v": 42600
+     "q": "mobiles klimagerät",
+     "v": 67600
     },
     {
      "q": "kühlt ein luftentfeuchter",
-     "v": 41950
+     "v": 41200
     },
     {
-     "q": "split klimaanlage",
-     "v": 40850
-    },
-    {
-     "q": "meaco dry arete one 25l",
-     "v": 40050
-    },
-    {
-     "q": "meaco arete one 20l",
-     "v": 36350
-    },
-    {
-     "q": "luftentfeuchter keller ohne strom",
-     "v": 28500
+     "q": "pro breeze luftentfeuchter 20l",
+     "v": 39400
     },
     {
      "q": "klimaanlage ohne abluftschlauch",
-     "v": 27300
+     "v": 33300
     },
     {
-     "q": "luftentfeuchter testsieger stiftung warentest",
-     "v": 27300
+     "q": "klimaanlage mobil",
+     "v": 32300
     },
     {
-     "q": "de longhi luftentfeuchter",
-     "v": 20750
+     "q": "comfee mddf-20den7-wf",
+     "v": 26300
+    },
+    {
+     "q": "klarstein mobile klimaanlage mit abluftschlauch, 4-in-1 klimagerät mit ventilato",
+     "v": 17800
+    },
+    {
+     "q": "klimagerät ohne abluftschlauch",
+     "v": 17450
+    },
+    {
+     "q": "luftentfeuchter und reiniger",
+     "v": 17350
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-08-26"
+   "fetched": "2026-09-01"
   },
   "heizlüfter": {
    "rising": [
     {
-     "q": "midea heizlüfter",
-     "v": 71400
+     "q": "amazon.de",
+     "v": 50300
+    },
+    {
+     "q": "dyson ventilator und heizlüfter",
+     "v": 36900
+    },
+    {
+     "q": "infrarot heizstrahler",
+     "v": 27550
     },
     {
      "q": "sparsamer heizlüfter",
-     "v": 32000
+     "v": 26000
     },
     {
-     "q": "heizlüfter fürs bad",
-     "v": 26250
+     "q": "heizstrahler baby",
+     "v": 18850
     },
     {
-     "q": "energiesparender heizlüfter",
-     "v": 13750
+     "q": "zeltheizung",
+     "v": 6050
     },
     {
-     "q": "heizlüfter für badezimmer",
-     "v": 8850
+     "q": "ecomat 2000 select",
+     "v": 5850
     },
     {
      "q": "ventilator",
-     "v": 850
-    },
-    {
-     "q": "dyson ventilator",
-     "v": 700
-    },
-    {
-     "q": "silvercrest heizlüfter",
      "v": 600
     },
     {
-     "q": "dyson hot cool",
-     "v": 120
+     "q": "dyson ventilator",
+     "v": 300
     },
     {
      "q": "beste heizlüfter",
-     "v": 120
+     "v": 100
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-08-27"
+   "fetched": "2026-09-02"
   },
   "balkonkraftwerk": {
    "rising": [
     {
-     "q": "anker solix solarbank 4 e5000 pro,meter gen 2 ,5xbp5000 balkonkraftwerk",
-     "v": 6450
-    },
-    {
      "q": "anker solix solarbank 4 e5000 pro",
-     "v": 3300
+     "v": 24550
     },
     {
-     "q": "anker solix 4 pro",
-     "v": 600
-    },
-    {
-     "q": "split klimaanlage",
-     "v": 600
+     "q": "anker solix solarbank 4 e5000 pro,meter gen 2 ,5xbp5000 balkonkraftwerk",
+     "v": 8400
     },
     {
      "q": "anker solarbank 4 pro",
-     "v": 550
+     "v": 500
     },
     {
-     "q": "anker solix 4",
+     "q": "balkonkraftwerk klimaanlage",
      "v": 450
     },
     {
-     "q": "balkonkraftwerk nicht angemeldet strafe",
-     "v": 80
+     "q": "anker solix 4 pro",
+     "v": 450
     },
     {
-     "q": "balkonkraftwerk registrieren",
-     "v": 70
-    },
-    {
-     "q": "marktstammregister balkonkraftwerk",
-     "v": 60
+     "q": "anker solix 4",
+     "v": 350
     },
     {
      "q": "bundesnetzagentur balkonkraftwerk anmelden",
      "v": 60
+    },
+    {
+     "q": "balkonkraftwerk wie funktioniert das",
+     "v": 60
+    },
+    {
+     "q": "solarmodul 500 watt",
+     "v": 60
+    },
+    {
+     "q": "marktstammregister balkonkraftwerk",
+     "v": 60
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-08-27"
+   "fetched": "2026-09-03"
   },
   "kaffeevollautomat": {
+   "auto": [
+    "kaffeevollautomat",
+    "kaffeevollautomat test",
+    "kaffeevollautomat delonghi",
+    "kaffeevollautomat testsieger",
+    "kaffeevollautomat philips",
+    "kaffeevollautomat siemens",
+    "kaffeevollautomat angebot",
+    "kaffeevollautomat günstig",
+    "kaffeevollautomat jura",
+    "kaffeevollautomat klein"
+   ],
    "rising": [
     {
-     "q": "siemens kaffeevollautomat eq.6 plus s400 te654509de",
-     "v": 7450
+     "q": "kaffeevollautomat test",
+     "v": "new"
     },
     {
-     "q": "krups kaffeevollautomat intensity milk",
-     "v": 400
+     "q": "kaffeevollautomat delonghi",
+     "v": "new"
     },
     {
-     "q": "kaffeevollautomat mit 2 bohnenbehälter testsieger",
-     "v": 400
+     "q": "kaffeevollautomat testsieger",
+     "v": "new"
     },
     {
-     "q": "kitchenaid kaffeevollautomat",
-     "v": 130
+     "q": "kaffeevollautomat philips",
+     "v": "new"
     },
     {
-     "q": "siemens kaffeevollautomat reparatur",
-     "v": 90
+     "q": "kaffeevollautomat siemens",
+     "v": "new"
     },
     {
-     "q": "kaffeevollautomat mit zwei bohnenbehälter und zwei mahlwerken",
-     "v": 90
+     "q": "kaffeevollautomat angebot",
+     "v": "new"
     },
     {
-     "q": "de'longhi kaffeevollautomat",
-     "v": 90
+     "q": "kaffeevollautomat günstig",
+     "v": "new"
     },
     {
-     "q": "kaffeevollautomat von tchibo",
-     "v": 90
+     "q": "kaffeevollautomat jura",
+     "v": "new"
     },
     {
-     "q": "samsung kaffeevollautomat",
-     "v": 80
+     "q": "kaffeevollautomat klein",
+     "v": "new"
     }
    ],
-   "source": "related-queries",
-   "fetched": "2026-08-28"
+   "source": "autocomplete-diff",
+   "fetched": "2026-09-06"
   },
   "akku staubsauger": {
    "rising": [
     {
      "q": "belstaff weste",
-     "v": 20450
-    },
-    {
-     "q": "lululemon bauchtasche",
-     "v": 13950
-    },
-    {
-     "q": "new balance 740",
-     "v": 8950
-    },
-    {
-     "q": "belstaff",
-     "v": 1800
+     "v": 21150
     },
     {
      "q": "belstaff jacke herren",
-     "v": 750
-    },
-    {
-     "q": "new balance 9060",
-     "v": 450
+     "v": 20600
     },
     {
      "q": "lululemon rucksack",
-     "v": 350
+     "v": 20250
+    },
+    {
+     "q": "belstaff",
+     "v": 2050
+    },
+    {
+     "q": "klimaanlage dyson",
+     "v": 850
     },
     {
      "q": "miele triflex hx2 pro",
-     "v": 300
+     "v": 350
     },
     {
-     "q": "carglass in meiner nähe",
-     "v": 300
+     "q": "lululemon shorts",
+     "v": 350
     },
     {
-     "q": "dyson filter kaufen",
+     "q": "new balance laufschuhe",
+     "v": 350
+    },
+    {
+     "q": "dyson nass und trockensauger",
+     "v": 250
+    },
+    {
+     "q": "ventilator dyson",
      "v": 250
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-08-28"
+   "fetched": "2026-08-29"
+  },
+  "matratze": {
+   "auto": [
+    "matratze englisch",
+    "matratze",
+    "matratzen concord",
+    "matratzen",
+    "matratze 140x200",
+    "matratze 180x200",
+    "matratzenschoner",
+    "matratze 90x200",
+    "matratze kaufen",
+    "matratze 160x200"
+   ],
+   "rising": [
+    {
+     "q": "matratze englisch",
+     "v": "new"
+    },
+    {
+     "q": "matratzen concord",
+     "v": "new"
+    },
+    {
+     "q": "matratzen",
+     "v": "new"
+    },
+    {
+     "q": "matratze 140x200",
+     "v": "new"
+    },
+    {
+     "q": "matratze 180x200",
+     "v": "new"
+    },
+    {
+     "q": "matratzenschoner",
+     "v": "new"
+    },
+    {
+     "q": "matratze 90x200",
+     "v": "new"
+    },
+    {
+     "q": "matratze kaufen",
+     "v": "new"
+    },
+    {
+     "q": "matratze 160x200",
+     "v": "new"
+    }
+   ],
+   "source": "autocomplete-diff",
+   "fetched": "2026-08-30"
+  },
+  "saugwischer": {
+   "rising": [
+    {
+     "q": "dreame h14 pro",
+     "v": 135150
+    },
+    {
+     "q": "bissel saugwischer",
+     "v": 37800
+    },
+    {
+     "q": "balenciaga schuhe",
+     "v": 27950
+    },
+    {
+     "q": "saugwischroboter test",
+     "v": 22300
+    },
+    {
+     "q": "roborock saros 20",
+     "v": 7850
+    },
+    {
+     "q": "carglass",
+     "v": 40
+    }
+   ],
+   "source": "related-queries",
+   "fetched": "2026-08-31"
   }
  }
 }
