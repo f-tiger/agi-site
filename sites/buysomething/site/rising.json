@@ -1,5 +1,5 @@
 {
- "fetched": "2026-09-05",
+ "fetched": "2026-09-06",
  "seeds": {
   "electric spin scrubber": {
    "auto": [
@@ -332,16 +332,16 @@
   "makeup organizer": {
    "rising": [
     {
-     "q": "makeup organizer target",
-     "v": 120
+     "q": "temu makeup organizer",
+     "v": 200
     },
     {
-     "q": "beis makeup bag",
-     "v": 110
+     "q": "target makeup organizer",
+     "v": 140
     },
     {
-     "q": "makeup caddy",
-     "v": 90
+     "q": "makeup drawers",
+     "v": 50
     },
     {
      "q": "makeup organizer drawers",
@@ -349,7 +349,61 @@
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-09-05"
+   "fetched": "2026-09-06"
+  },
+  "mamian skirt": {
+   "auto": [
+    "mamian skirt",
+    "mamian skirt pattern",
+    "mamian skirt men",
+    "mamian skirt chinese",
+    "mamian skirt modern",
+    "mamian skirt sewing pattern",
+    "mamian skirt how to wear",
+    "mamian skirt plus size",
+    "mamian skirt dior",
+    "mamian skirt dance"
+   ],
+   "rising": [
+    {
+     "q": "mamian skirt pattern",
+     "v": "new"
+    },
+    {
+     "q": "mamian skirt men",
+     "v": "new"
+    },
+    {
+     "q": "mamian skirt chinese",
+     "v": "new"
+    },
+    {
+     "q": "mamian skirt modern",
+     "v": "new"
+    },
+    {
+     "q": "mamian skirt sewing pattern",
+     "v": "new"
+    },
+    {
+     "q": "mamian skirt how to wear",
+     "v": "new"
+    },
+    {
+     "q": "mamian skirt plus size",
+     "v": "new"
+    },
+    {
+     "q": "mamian skirt dior",
+     "v": "new"
+    },
+    {
+     "q": "mamian skirt dance",
+     "v": "new"
+    }
+   ],
+   "source": "autocomplete-diff",
+   "fetched": "2026-09-06"
   }
  }
 }
