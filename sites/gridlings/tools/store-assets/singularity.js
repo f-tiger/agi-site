@@ -36,9 +36,14 @@ module.exports = {
 <ellipse cx="100" cy="150" rx="78" ry="26" fill="#0d1734" stroke="#ff3fa4" stroke-width="3"/>
 <g fill="url(#rk)" stroke="#05081a" stroke-width="2"><rect x="8" y="88" width="20" height="52" rx="3"/><rect x="34" y="96" width="20" height="52" rx="3"/><rect x="146" y="96" width="20" height="52" rx="3"/><rect x="172" y="88" width="20" height="52" rx="3"/></g>
 <g fill="#39f2ff" opacity=".9"><rect x="13" y="94" width="10" height="34" rx="2"/><rect x="39" y="102" width="10" height="34" rx="2"/><rect x="151" y="102" width="10" height="34" rx="2"/><rect x="177" y="94" width="10" height="34" rx="2"/></g>
-<circle cx="100" cy="88" r="40" fill="#39f2ff" opacity=".45" filter="url(#glow)"/>
-<polygon points="100,52 131,70 131,106 100,124 69,106 69,70" fill="url(#cg)" stroke="#e9ffff" stroke-width="2.5" stroke-linejoin="round"/>
-<polygon points="100,52 131,70 100,88 69,70" fill="#ffffff" opacity=".25"/><polygon points="100,88 131,70 131,106 100,124" fill="#000" opacity=".18"/>
+<circle cx="100" cy="88" r="34" fill="#39f2ff" opacity=".35" filter="url(#glow)"/>
+<g fill="#0d1630" fill-opacity=".55" stroke="#39f2ff" stroke-width="2.6" stroke-linejoin="round">
+<polygon points="100,44 134,62 138,100 112,128 88,128 62,100 66,62"/>
+<polygon points="100,44 118,74 106,104 88,128"/><polygon points="100,44 82,74 94,104 112,128"/>
+<polyline points="66,62 82,74 118,74 134,62"/><polyline points="62,100 82,74"/><polyline points="138,100 118,74"/><polyline points="62,100 94,104 106,104 138,100"/>
+</g>
+<polygon points="100,62 122,88 100,114 78,88" fill="url(#cg)" stroke="#e9ffff" stroke-width="2"/><polygon points="100,62 122,88 100,88" fill="#fff" opacity=".35"/><polygon points="100,88 122,88 100,114" fill="#000" opacity=".2"/>
+<ellipse cx="100" cy="90" rx="46" ry="14" fill="none" stroke="#39f2ff" stroke-width="2.5" transform="rotate(22 100 90)" opacity=".9"/>
 <ellipse cx="100" cy="92" rx="52" ry="16" fill="none" stroke="#ff3fa4" stroke-width="4" transform="rotate(-14 100 92)"/>
 <g fill="#1a2444" stroke="#05081a" stroke-width="1.5"><rect x="56" y="126" width="14" height="12" rx="2"/><rect x="130" y="130" width="14" height="12" rx="2"/><rect x="92" y="140" width="14" height="12" rx="2"/><rect x="40" y="60" width="14" height="12" rx="2"/><rect x="150" y="56" width="14" height="12" rx="2"/></g>
 <g fill="#ff3fa4"><rect x="56" y="136" width="14" height="3"/><rect x="130" y="140" width="14" height="3"/><rect x="92" y="150" width="14" height="3"/><rect x="40" y="70" width="14" height="3"/><rect x="150" y="66" width="14" height="3"/></g>
