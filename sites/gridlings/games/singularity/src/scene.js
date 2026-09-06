@@ -62,20 +62,39 @@ export function makeScene(canvas) {
   const drones = new THREE.InstancedMesh(droneGeo, droneMat, DRONES), leds = new THREE.InstancedMesh(ledGeo, ledMat, DRONES);
   scene.add(drones); scene.add(leds);
 
-  /* core */
-  /* the core must read as a faceted solid, not a blob: emissive stays under the
-     bloom threshold on most facets, so the light does the shading and only the
-     brightest facets and the halo bloom */
-  const coreMat = new THREE.MeshStandardMaterial({ color: 0x0e3a44, emissive: 0x18b8cc, emissiveIntensity: 0.55, roughness: .28, metalness: .35, flatShading: true });
-  const coreEdges = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.IcosahedronGeometry(1, 1)), new THREE.LineBasicMaterial({ color: 0xbff8ff, transparent: true, opacity: .7 }));
-  coreEdges.position.y = 2.2;
-  const core = new THREE.Mesh(new THREE.IcosahedronGeometry(1, 1), coreMat); core.position.y = 2.2; scene.add(core); core.add(coreEdges); coreEdges.position.set(0, 0, 0);
-  const halo = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.IcosahedronGeometry(1.45, 1)), new THREE.LineBasicMaterial({ color: CYAN, transparent: true, opacity: .55 }));
-  halo.position.y = 2.2; scene.add(halo);
-  const ring = new THREE.Mesh(new THREE.TorusGeometry(1.9, 0.05, 8, 64), new THREE.MeshBasicMaterial({ color: MAGENTA }));
-  ring.position.y = 2.2; ring.rotation.x = Math.PI / 2.4; scene.add(ring);
+  /* core: a hard-edged AI core, not a light ball. A dark glossy dodecahedron
+     cage with bright edge tubes (instanced cylinders, one per edge), a small
+     sharp crystal spinning inside that carries the actual glow, and two
+     gyroscope rings. Skins swap the crystal and the edge colour. */
+  const coreGroup = new THREE.Group(); coreGroup.position.y = 2.2; scene.add(coreGroup);
+  const cageMat = new THREE.MeshStandardMaterial({ color: 0x0d1630, roughness: .22, metalness: .85, flatShading: true, transparent: true, opacity: .55, depthWrite: false });
+  const cage = new THREE.Mesh(new THREE.DodecahedronGeometry(1.25, 0), cageMat); coreGroup.add(cage);
+  const edgeMat = new THREE.MeshBasicMaterial({ color: CYAN });
+  let edgeMesh = null;
+  function buildEdges(geo, r) {
+    if (edgeMesh) { coreGroup.remove(edgeMesh); edgeMesh.geometry.dispose(); }
+    const eg = new THREE.EdgesGeometry(geo), pos = eg.attributes.position.array, n = pos.length / 6;
+    const im = new THREE.InstancedMesh(new THREE.CylinderGeometry(r, r, 1, 6, 1), edgeMat, n);
+    const a = new THREE.Vector3(), b = new THREE.Vector3(), up = new THREE.Vector3(0, 1, 0), dir = new THREE.Vector3(), q = new THREE.Quaternion(), m = new THREE.Matrix4(), sc = new THREE.Vector3();
+    for (let i = 0; i < n; i++) {
+      a.set(pos[i * 6], pos[i * 6 + 1], pos[i * 6 + 2]); b.set(pos[i * 6 + 3], pos[i * 6 + 4], pos[i * 6 + 5]);
+      dir.subVectors(b, a); const len = dir.length(); q.setFromUnitVectors(up, dir.normalize());
+      m.compose(a.add(b).multiplyScalar(0.5), q, sc.set(1, len, 1)); im.setMatrixAt(i, m);
+    }
+    im.instanceMatrix.needsUpdate = true; edgeMesh = im; coreGroup.add(im);
+  }
+  buildEdges(cage.geometry, 0.035);
+  const coreMat = new THREE.MeshStandardMaterial({ color: 0x0e3a44, emissive: CYAN, emissiveIntensity: 1.6, roughness: .2, metalness: .3, flatShading: true });
+  const core = new THREE.Mesh(new THREE.OctahedronGeometry(0.7, 0), coreMat); coreGroup.add(core);
+  const vertexDots = new THREE.Mesh(new THREE.SphereGeometry(0.07, 8, 8), new THREE.MeshBasicMaterial({ color: 0xffffff }));
+  const halo = new THREE.Mesh(new THREE.TorusGeometry(1.75, 0.035, 8, 64), new THREE.MeshBasicMaterial({ color: CYAN, transparent: true, opacity: .8 }));
+  halo.rotation.x = Math.PI / 3; coreGroup.add(halo);
+  const ring = new THREE.Mesh(new THREE.TorusGeometry(1.95, 0.05, 8, 64), new THREE.MeshBasicMaterial({ color: MAGENTA }));
+  ring.rotation.x = Math.PI / 2.4; coreGroup.add(ring);
   const plinth = new THREE.Mesh(new THREE.CylinderGeometry(1.2, 1.5, 0.5, 8), new THREE.MeshStandardMaterial({ color: 0x1a2340, roughness: .6, metalness: .5 }));
   plinth.position.y = 0.25; scene.add(plinth);
+  const pillar = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.2, 0.9, 8), new THREE.MeshBasicMaterial({ color: CYAN, transparent: true, opacity: .5 }));
+  pillar.position.y = 0.95; scene.add(pillar);
 
   /* stage props: beams (datacenter), towers (campus), orbital ring (singularity) */
   const beams = new THREE.Group();
@@ -124,22 +143,20 @@ export function makeScene(canvas) {
 
   /* core skins: the collectible. Each is a different solid and palette. */
   const SKIN = {
-    core: { geo: () => new THREE.IcosahedronGeometry(1, 1), col: 0x0b2b33, em: CYAN, ring: MAGENTA },
-    prism: { geo: () => new THREE.OctahedronGeometry(1.15, 0), col: 0x1a0b33, em: 0xb28cff, ring: CYAN },
-    shard: { geo: () => new THREE.TetrahedronGeometry(1.3, 0), col: 0x33110b, em: 0xff7a3d, ring: GOLD },
-    knot: { geo: () => new THREE.TorusKnotGeometry(0.7, 0.26, 96, 12), col: 0x0b3320, em: 0x5cff9d, ring: CYAN },
-    sun: { geo: () => new THREE.SphereGeometry(1.05, 24, 24), col: 0x332a0b, em: GOLD, ring: 0xff7a3d },
-    void: { geo: () => new THREE.IcosahedronGeometry(1, 2), col: 0x05060c, em: MAGENTA, ring: 0x5cff9d },
-    halo: { geo: () => new THREE.IcosahedronGeometry(0.9, 1), col: 0x0b2b33, em: 0xffffff, ring: CYAN },
-    apex: { geo: () => new THREE.DodecahedronGeometry(1.1, 0), col: 0x2b0b33, em: 0xff3fa4, ring: GOLD }
+    core: { geo: () => new THREE.OctahedronGeometry(0.62, 0), col: 0x0e3a44, em: CYAN, ring: MAGENTA },
+    prism: { geo: () => new THREE.TetrahedronGeometry(0.75, 0), col: 0x1a0b33, em: 0xb28cff, ring: CYAN },
+    shard: { geo: () => new THREE.ConeGeometry(0.5, 1.1, 4), col: 0x33110b, em: 0xff7a3d, ring: GOLD },
+    knot: { geo: () => new THREE.TorusKnotGeometry(0.36, 0.13, 64, 8), col: 0x0b3320, em: 0x5cff9d, ring: CYAN },
+    sun: { geo: () => new THREE.IcosahedronGeometry(0.6, 0), col: 0x332a0b, em: GOLD, ring: 0xff7a3d },
+    void: { geo: () => new THREE.BoxGeometry(0.8, 0.8, 0.8), col: 0x05060c, em: MAGENTA, ring: 0x5cff9d },
+    halo: { geo: () => new THREE.OctahedronGeometry(0.5, 1), col: 0x0b2b33, em: 0xffffff, ring: CYAN },
+    apex: { geo: () => new THREE.DodecahedronGeometry(0.62, 0), col: 0x2b0b33, em: 0xff3fa4, ring: GOLD }
   };
   let skinId = "core", skinEm = CYAN;
   function setSkin(id) {
     const k = SKIN[id] || SKIN.core; if (id === skinId && core.geometry.userData.skin === id) return;
     skinId = id; core.geometry.dispose(); core.geometry = k.geo(); core.geometry.userData.skin = id;
-    coreEdges.geometry.dispose(); coreEdges.geometry = new THREE.EdgesGeometry(k.geo());
-    halo.geometry.dispose(); halo.geometry = new THREE.EdgesGeometry(k.geo().clone().scale(1.45, 1.45, 1.45));
-    coreMat.color.setHex(k.col); skinEm = k.em; coreMat.emissive.setHex(k.em); halo.material.color.setHex(k.em); coreLight.color.setHex(k.em); ring.material.color.setHex(k.ring);
+    coreMat.color.setHex(k.col); skinEm = k.em; coreMat.emissive.setHex(k.em); halo.material.color.setHex(k.em); edgeMat.color.setHex(k.em); coreLight.color.setHex(k.em); ring.material.color.setHex(k.ring);
   }
   const st = { gpus: 0, agents: 0, tier: 0, boost: false, training: false, stage: 0, pulse: 0, zoom: 0, shake: 0, t: 0, W: 1, H: 1, span: 24, a: 1, sx: 0, sy: 0, coinRate: 0, moteRate: 0, low: false, market: null };
   const MARKET_TINT = { boom: 0xffcc57, shortage: 0x39f2ff, grant: 0xb28cff };
@@ -174,9 +191,9 @@ export function makeScene(canvas) {
       M.compose(P.set(x, 0.85, z), Q.identity(), on ? SC.set(1, 1, 1) : SC.set(0, 0, 0)); strips.setMatrixAt(i, M);
     }
     racks.instanceMatrix.needsUpdate = true; strips.instanceMatrix.needsUpdate = true;
-    const s = 0.7 + Math.min(TIERMAX, tier) * 0.13;
-    core.scale.setScalar(s); halo.scale.setScalar(s); ring.scale.setScalar(0.8 + s * 0.35);
-    coreMat.emissive.setHex(boost ? GOLD : skinEm); coreLight.color.setHex(boost ? GOLD : skinEm);
+    const s = 0.7 + Math.min(TIERMAX, tier) * 0.11;
+    coreGroup.scale.setScalar(s);
+    coreMat.emissive.setHex(boost ? GOLD : skinEm); edgeMat.color.setHex(boost ? GOLD : skinEm); coreLight.color.setHex(boost ? GOLD : skinEm);
   }
   const TIERMAX = 19;
   function pulse(n) {
@@ -216,14 +233,14 @@ export function makeScene(canvas) {
     const ang = t * 0.06, R = 25.5;
     cam.position.set(Math.cos(ang) * R, 16, Math.sin(ang) * R); cam.lookAt(0, 0.6, 0);
     const spin = st.training ? 3.2 : 1;
-    core.rotation.y += dt * 0.4 * spin; core.rotation.x = Math.sin(t * 0.5) * 0.2;
-    halo.rotation.y -= dt * 0.25 * spin; halo.rotation.z += dt * 0.15 * spin;
-    ring.rotation.z += dt * 0.5;
+    cage.rotation.y += dt * 0.18 * spin; edgeMesh.rotation.copy(cage.rotation);
+    core.rotation.y -= dt * 1.1 * spin; core.rotation.x += dt * 0.7 * spin;
+    halo.rotation.z += dt * 0.6 * spin; ring.rotation.z -= dt * 0.35;
     st.pulse = Math.max(0, st.pulse - dt * 3);
     if (dt > 0.045) { slowT += dt; if (slowT > 3 && !st.low) setQuality(true); } else slowT = Math.max(0, slowT - dt * 0.5);
-    const ps = 1 + st.pulse * 0.25 + (st.training ? Math.sin(t * 9) * 0.05 : 0), base = 0.7 + Math.min(TIERMAX, st.tier) * 0.13;
-    core.scale.setScalar(base * ps); coreLight.intensity = 5 + st.pulse * 12 + Math.sin(t * 3) * 0.6 + (st.training ? 3 : 0);
-    coreMat.emissiveIntensity = 0.55 + st.pulse * 1.4 + (st.training ? 0.4 : 0);
+    const ps = 1 + st.pulse * 0.35 + (st.training ? Math.sin(t * 9) * 0.05 : 0);
+    core.scale.setScalar(ps); coreLight.intensity = 5 + st.pulse * 12 + Math.sin(t * 3) * 0.6 + (st.training ? 3 : 0);
+    coreMat.emissiveIntensity = 1.6 + st.pulse * 1.4 + (st.training ? 0.5 : 0);
     /* drones ring */
     const n = Math.min(DRONES, st.agents), r0 = 3.6;
     for (let i = 0; i < DRONES; i++) {
