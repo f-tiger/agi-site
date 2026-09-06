@@ -32,15 +32,18 @@ module.exports = {
     const vm = Math.min(W, H);
     const title = sq ? vm * .19 : port ? vm * .19 : vm * .27;
     const tag = title * .18;
-    const slab = sq ? vm * .66 : port ? vm * .84 : vm * .70;
+    const slab = sq ? vm * .66 : port ? vm * .84 : vm * .63;   /* 16:9: leaves room under the tagline */
     /* outline built from eight text-shadows: -webkit-text-stroke with paint-order
        rendered nothing visible in the first pass */
     const o = Math.max(2, Math.round(title * .045));
     const ring = [[o,0],[-o,0],[0,o],[0,-o],[o,o],[-o,o],[o,-o],[-o,-o]].map(([x,y]) => `${x}px ${y}px 0 #fff`).join(",");
     const drop = `, 0 ${Math.round(title*.07)}px 0 #1b2a6b, 0 ${Math.round(title*.12)}px ${Math.round(title*.10)}px rgba(40,20,0,.35)`;
-    const wordTop = port ? "68%" : sq ? "64%" : "6%";
-    const tagTop  = port ? "85%" : sq ? "85%" : "31%";
-    const slabTop = port ? "36%" : sq ? "36%" : "66%";
+    const wordTopPx = Math.round((port ? .68 : sq ? .64 : .06) * H);
+    /* tagline hangs off the wordmark's real box (this word is set at title*1.08)
+       -- the old fixed 31% sat inside the letters' drop shadow on 16:9 */
+    const tagTopPx = Math.round(wordTopPx + title * 1.08 * 1.04 + o + title * .07 + title * .04);
+    const wordTop = wordTopPx + "px", tagTop = tagTopPx + "px";
+    const slabTop = port ? "36%" : sq ? "36%" : "70%";
     return `<!doctype html><html><head><meta charset="utf-8"><style>${FACE}
       html,body{margin:0;width:${W}px;height:${H}px;overflow:hidden;
         font-family:'Fredoka One',-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;}

@@ -38,7 +38,7 @@ module.exports = {
 <g fill="#fff4d6" opacity=".2"><path d="M29 58 L22 38 L44 38 L37 58Z"/><path d="M163 58 L156 38 L178 38 L171 58Z"/><path transform="rotate(-55 118 74)" d="M112 66 L104 48 L128 48 L124 66Z"/></g>
 <g stroke="#06101c" stroke-width="2"><rect x="25" y="58" width="16" height="12" rx="3.5" fill="url(#rv)"/><rect x="159" y="58" width="16" height="12" rx="3.5" fill="url(#rv)"/><g transform="rotate(-55 118 74)"><rect x="110" y="68" width="16" height="12" rx="3.5" fill="url(#rv)"/></g></g>
 <g fill="#61e8b0"><rect x="30" y="61" width="6" height="6" rx="1.5"/><rect x="164" y="61" width="6" height="6" rx="1.5"/></g>
-<g transform="translate(100 104) rotate(-12)"><polygon points="-30,-12 -12,-30 12,-30 30,-12 30,12 12,30 -12,30 -30,12" fill="#ff5470" fill-opacity=".25" stroke="#ff5470" stroke-width="6" stroke-linejoin="round"/><text x="0" y="7" text-anchor="middle" font-family="Bungee,Arial Black,Arial,sans-serif" font-size="18" fill="#fff">HALT</text></g>
+<g transform="translate(100 118) rotate(-12)"><polygon points="-27,-11 -11,-27 11,-27 27,-11 27,11 11,27 -11,27 -27,11" fill="#ff5470" fill-opacity=".25" stroke="#ff5470" stroke-width="6" stroke-linejoin="round"/><text x="0" y="7" text-anchor="middle" font-family="Bungee,Arial Black,Arial,sans-serif" font-size="16" fill="#fff">HALT</text></g>
 <g fill="#61e8b0"><rect x="12" y="146" width="10" height="10" rx="2"/><rect x="79" y="146" width="10" height="10" rx="2"/><rect x="146" y="146" width="10" height="10" rx="2"/></g>
 <g fill="rgba(255,255,255,.35)"><rect x="26" y="149" width="26" height="4" rx="2"/><rect x="93" y="149" width="26" height="4" rx="2"/><rect x="160" y="149" width="26" height="4" rx="2"/></g></svg>`
   }),

@@ -147,7 +147,7 @@ function sizeOf(f) {
       const q = rafQ.splice(0); for (const cb of q) { try { cb(now); } catch (e) { console.error("raf", e); } }
     };
   })();`;
-  for (const v of cfg.videos) {
+  for (const v of (process.env.ONLY === "covers" ? [] : cfg.videos)) {
     const frames = path.join(OUT, "_frames_" + v.name);
     fs.rmSync(frames, { recursive: true, force: true }); fs.mkdirSync(frames, { recursive: true });
     const dsf = 2;
