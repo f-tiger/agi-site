@@ -209,7 +209,7 @@ function loadLevel(i) {
   gems = 0; prog = [];
   grid.forEach(function (row, y) { row.forEach(function (c, x) {
     if (c === "D") gems++;
-    if (c === ">") { bot = { x: x, y: y, d: 0 }; grid[y][x] = "."; }
+    if (c === ">") { bot = { x: x, y: y, d: 0, da: 0 }; grid[y][x] = "."; }
   }); });
   bot.sx = bot.x; bot.sy = bot.y; bot.sd = bot.d;
   running = false; over = false; execIdx = 0; execT = 0; capWarn = 0;
@@ -224,7 +224,7 @@ function resetBot() {
   var L0 = LEVELS[lvl];
   grid = L0.g.map(function (r) { return r.split(""); });
   grid.forEach(function (row, y) { row.forEach(function (c, x) { if (c === ">") grid[y][x] = "."; }); });
-  bot.x = bot.sx; bot.y = bot.sy; bot.d = bot.sd;
+  bot.x = bot.sx; bot.y = bot.sy; bot.d = bot.sd; bot.da = bot.sd * Math.PI / 2;
   gems = 0; grid.forEach(function (row) { row.forEach(function (c) { if (c === "D") gems++; }); });
 }
 function at(x, y) { return (grid[y] && grid[y][x]) || "#"; }
@@ -234,7 +234,7 @@ function buildRack() {
   var KEYCAP = { "FWD": "W", "LEFT": "A", "RIGHT": "D", "UNTIL WALL": "Q", "UNTIL \u25c6": "E" };
   LEVELS[lvl].ops.forEach(function (op) {
     var b = document.createElement("button");
-    b.className = "op"; b.innerHTML = op + (KEYCAP[op] ? " <kbd>" + KEYCAP[op] + "</kbd>" : "");
+    b.className = "op"; b.innerHTML = shown(op) + (KEYCAP[op] ? " <kbd>" + KEYCAP[op] + "</kbd>" : "");
     b.addEventListener("click", function () { addOp(op); });
     r.appendChild(b);
   });
@@ -247,6 +247,10 @@ function buildRack() {
   run.addEventListener("click", function () { startRun(); });
   r.appendChild(run);
 }
+/* what the player SEES for an op. Internal names stay as-is so stepProgram()
+   and the LEVELS ops lists are untouched. */
+var LABEL = { "LEFT": "\u21ba LEFT", "RIGHT": "\u21bb RIGHT" };
+function shown(op) { return LABEL[op] || op; }
 function addOp(op) {
   ac(); armed = true;
   var h = document.getElementById("hint"); if (h) h.classList.add("gone");
@@ -435,7 +439,20 @@ function draw(dt) {
     }
   }
   /* the machine */
-  var BX = C.ox + bot.x * C.s + C.s / 2, BY = C.oy + bot.y * C.s + C.s / 2, a = bot.d * Math.PI / 2;
+  var BX = C.ox + bot.x * C.s + C.s / 2, BY = C.oy + bot.y * C.s + C.s / 2;
+  var want = bot.d * Math.PI / 2;
+  if (typeof bot.da !== "number") bot.da = want;
+  var dd = want - bot.da;
+  while (dd > Math.PI) dd -= Math.PI * 2;      /* always turn the short way round */
+  while (dd < -Math.PI) dd += Math.PI * 2;
+  bot.da += dd * Math.min(1, dt * 15);
+  var a = bot.da;
+  if (Math.abs(dd) > 0.06) {                   /* an arc, so the pivot is visible */
+    cx.strokeStyle = "rgba(255,209,102,.75)"; cx.lineWidth = 2;
+    cx.beginPath();
+    cx.arc(BX, BY, C.s * .42, bot.da, want, dd < 0);
+    cx.stroke();
+  }
   cx.save(); cx.translate(BX, BY); cx.rotate(a);
   cx.fillStyle = "#ffd166"; cx.shadowColor = "rgba(255,209,102,.8)"; cx.shadowBlur = 12;
   cx.beginPath(); cx.moveTo(C.s * .3, 0); cx.lineTo(-C.s * .22, C.s * .24); cx.lineTo(-C.s * .22, -C.s * .24);
@@ -447,13 +464,14 @@ function draw(dt) {
   cx.font = "700 11px -apple-system,'Segoe UI',sans-serif";
   if (!prog.length) { cx.fillStyle = "#7c88a3"; cx.fillText("program is empty — tap instructions below", tx, py); }
   prog.forEach(function (op, i) {
-    var w = cx.measureText(op).width + 14;
+    var lbl = shown(op);
+    var w = cx.measureText(lbl).width + 14;
     if (tx + w > L.w - 16) { tx = 16; py += 22; }
     var lit = running && i === execIdx;
     cx.fillStyle = lit ? "rgba(255,209,102,.22)" : "rgba(255,255,255,.05)";
     cx.fillRect(tx, py - 12, w, 18);
     cx.fillStyle = lit ? "#ffd166" : "rgba(232,237,247,.8)";
-    cx.fillText(op, tx + 7, py + 1);
+    cx.fillText(lbl, tx + 7, py + 1);
     tx += w + 5;
   });
   if (capWarn > 0) {
