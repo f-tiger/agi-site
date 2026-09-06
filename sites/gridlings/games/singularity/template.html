@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<title>SINGULARITY INC. — Build the Lab That Builds the Model</title>
+<meta name="description" content="Label data, buy GPUs, train models that earn on their own. An idle game about running an AI lab — until a model starts optimising something else.">
+<link rel="canonical" href="https://play.agiscorecard.com/singularity">
+<meta property="og:title" content="SINGULARITY INC. — Build the Lab That Builds the Model">
+<meta property="og:description" content="An idle game about running an AI lab. Your models earn while you are away — and sometimes optimise something else.">
+<meta property="og:url" content="https://play.agiscorecard.com/singularity">
+<meta name="theme-color" content="#070a14">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23070a14'/%3E%3Cpolygon points='16,4 27,11 27,22 16,29 5,22 5,11' fill='none' stroke='%2339f2ff' stroke-width='2.2'/%3E%3Ccircle cx='16' cy='16.5' r='4' fill='%23ff3fa4'/%3E%3C/svg%3E">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"SINGULARITY INC.","url":"https://play.agiscorecard.com/singularity","applicationCategory":"GameApplication","operatingSystem":"Any (browser)","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":"idle / clicker progression, offline earnings, models that earn on their own, rogue-model decisions, prestige (ship the model), 3D server hall, mouse / touch, no account","isPartOf":{"@type":"WebSite","name":"Gridlings","url":"https://play.agiscorecard.com/"}}</script>
+<style>
+  /*__FONT__*/
+  :root{--bg:#070a14;--panel:rgba(12,17,32,.86);--line:rgba(255,255,255,.1);--ink:#e8eeff;--mut:#8b96b8;--cy:#39f2ff;--mg:#ff3fa4;--gold:#ffcc57;--display:'Russo One',Impact,'Arial Black',sans-serif;}
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+  html,body{height:100%;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;overflow:hidden;user-select:none;-webkit-user-select:none;font-variant-numeric:tabular-nums;}
+  #stage{position:fixed;inset:0;width:100%;height:100%;display:block;cursor:pointer;touch-action:none;}
+  header{position:fixed;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:10px 14px;z-index:5;pointer-events:none;background:linear-gradient(180deg,rgba(7,10,20,.85),rgba(7,10,20,0));}
+  header>*{pointer-events:auto;}
+  .logo{font-family:var(--display);font-size:17px;letter-spacing:1px;color:#fff;text-shadow:0 0 18px rgba(57,242,255,.5);}
+  .logo em{font-style:normal;color:var(--cy);}
+  .hb{display:flex;gap:8px;}
+  .hbtn{background:rgba(20,28,48,.8);border:1px solid var(--line);border-bottom:3px solid rgba(0,0,0,.5);color:#aab6d6;border-radius:9px;min-width:36px;height:36px;font:inherit;font-size:12px;font-weight:700;cursor:pointer;padding:0 10px;}
+  #panel{position:fixed;left:14px;top:60px;bottom:14px;width:330px;z-index:4;display:flex;flex-direction:column;gap:10px;overflow:auto;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 20px 60px rgba(0,0,0,.5);}
+  .res{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+  .r{background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:12px;padding:8px 10px;}
+  .r .k{font-size:10px;font-weight:800;letter-spacing:1.4px;color:var(--mut);}
+  .r .v{font-family:var(--display);font-size:22px;line-height:1.15;color:#fff;}
+  .r .s{font-size:11px;color:var(--cy);font-weight:700;}
+  .r.money .v{color:var(--gold);} .r.money .s{color:var(--gold);}
+  .big{border:0;border-radius:14px;padding:12px 14px;font-family:var(--display);font-size:16px;letter-spacing:.5px;color:#04141a;background:linear-gradient(120deg,#39f2ff,#22c3d6);border-bottom:4px solid rgba(0,0,0,.35);cursor:pointer;text-align:left;transition:transform .06s,border-bottom-width .06s;}
+  .big span{display:block;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;font-size:11.5px;font-weight:700;letter-spacing:0;opacity:.8;margin-top:2px;}
+  .big b{color:#062a33;}
+  .big:active:not(:disabled){transform:translateY(3px);border-bottom-width:1px;}
+  .big:disabled{background:rgba(255,255,255,.07);color:var(--mut);cursor:default;border-bottom-color:rgba(0,0,0,.2);}
+  .big:disabled b{color:var(--mut);}
+  #blabel{background:linear-gradient(120deg,#ff3fa4,#d92a82);color:#fff;} #blabel span{color:#ffd8ec;}
+  #bship{background:linear-gradient(120deg,#ffcc57,#ffb020);}
+  #shop{display:flex;flex-direction:column;gap:6px;}
+  .item{display:grid;grid-template-columns:1fr auto;grid-template-areas:"nm pr" "ds pr";gap:0 10px;text-align:left;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:12px;padding:8px 10px;color:var(--ink);font:inherit;cursor:pointer;opacity:.62;transition:opacity .15s,transform .06s;}
+  .item.can{opacity:1;border-color:rgba(57,242,255,.35);} .item.can:active{transform:scale(.985);}
+  .item .nm{grid-area:nm;font-weight:800;font-size:13px;} .item .nm b{color:var(--cy);font-weight:800;}
+  .item .ds{grid-area:ds;font-size:11px;color:var(--mut);} .item .pr{grid-area:pr;align-self:center;font-family:var(--display);font-size:14px;color:var(--gold);}
+  .item.shk{animation:shk .25s;} @keyframes shk{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+  #models{display:flex;flex-wrap:wrap;gap:5px;} #models i{font-style:normal;font-family:var(--display);font-size:11px;padding:3px 7px;border-radius:999px;background:rgba(57,242,255,.12);color:var(--cy);border:1px solid rgba(57,242,255,.3);}
+  #models i.rg{background:rgba(255,63,164,.2);color:var(--mg);border-color:var(--mg);animation:pulse .8s infinite;} #models i.none{background:none;border:0;color:var(--mut);font-family:inherit;font-weight:600;}
+  @keyframes pulse{50%{opacity:.5}}
+  .sec{font-size:10px;font-weight:800;letter-spacing:1.6px;color:var(--mut);margin-top:2px;}
+  #hint{position:fixed;left:50%;top:22%;transform:translateX(-50%);z-index:6;pointer-events:none;text-align:center;transition:opacity .4s;}
+  #hint.gone{opacity:0;}
+  #hint .t{font-family:var(--display);font-size:clamp(16px,3vw,26px);color:#fff;text-shadow:0 0 24px rgba(57,242,255,.7);}
+  #hint .s{font-size:13px;color:#bfd0ff;margin-top:6px;}
+  #toasts{position:fixed;right:14px;top:60px;z-index:7;display:flex;flex-direction:column;gap:6px;pointer-events:none;max-width:320px;}
+  .toast{background:rgba(12,17,32,.92);border:1px solid var(--line);border-left:3px solid var(--cy);border-radius:10px;padding:9px 12px;font-size:12.5px;font-weight:700;box-shadow:0 10px 30px rgba(0,0,0,.4);transition:opacity .4s,transform .4s;}
+  .toast.ok{border-left-color:var(--cy);} .toast.bad{border-left-color:var(--mg);} .toast.ms{border-left-color:var(--gold);font-family:var(--display);font-weight:400;}
+  .toast.out{opacity:0;transform:translateX(20px);}
+  .pop{position:fixed;z-index:8;pointer-events:none;font-family:var(--display);font-size:18px;color:var(--gold);text-shadow:0 2px 0 rgba(0,0,0,.6),0 0 14px rgba(255,204,87,.6);animation:rise .9s ease-out forwards;transform:translate(-50%,-100%);}
+  @keyframes rise{to{transform:translate(-50%,-100%) translateY(-60px);opacity:0}}
+  #modal{position:fixed;inset:0;z-index:20;display:none;align-items:center;justify-content:center;background:rgba(3,5,12,.8);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);padding:16px;}
+  #modal.show{display:flex;}
+  .card{background:linear-gradient(180deg,#141c33,#0c1224);border:1px solid rgba(255,255,255,.14);border-radius:18px;padding:22px 24px;max-width:420px;width:100%;box-shadow:0 24px 70px rgba(0,0,0,.6);position:relative;overflow:hidden;}
+  .card::before{content:"";position:absolute;left:0;right:0;top:0;height:5px;background:linear-gradient(90deg,var(--cy),var(--mg));}
+  .card h2{font-family:var(--display);font-size:17px;letter-spacing:.5px;margin:6px 0 10px;color:#fff;}
+  .card p{font-size:13.5px;line-height:1.6;color:#c9d3f0;} .card p b{color:#fff;}
+  .btns{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap;}
+  .btn{flex:1;min-width:120px;border:0;border-radius:12px;padding:12px 14px;font-family:var(--display);font-size:13px;color:#04141a;background:linear-gradient(120deg,#39f2ff,#22c3d6);border-bottom:4px solid rgba(0,0,0,.35);cursor:pointer;}
+  .btn.alt{background:rgba(255,255,255,.08);color:#dfe6ff;border-bottom-color:rgba(0,0,0,.3);}
+  .btn:active{transform:translateY(3px);border-bottom-width:1px;}
+  footer{position:fixed;right:14px;bottom:10px;font-size:11px;color:var(--mut);z-index:3;} footer a{color:var(--mut);}
+  .cg footer{display:none;}
+  .res{grid-template-columns:1fr 1fr 1fr 1fr;gap:6px;}
+  .r .v{font-size:17px;} .r.rp .v{color:#b8a6ff;} .r.rp .s{color:#b8a6ff;} .r.al .v{color:var(--mg);} .r.al .s{color:var(--mg);}
+  .tabs{display:flex;gap:4px;align-items:center;border-bottom:1px solid var(--line);padding-bottom:6px;}
+  .tab{background:none;border:0;color:var(--mut);font-family:var(--display);font-size:12px;letter-spacing:.5px;padding:0 12px;min-height:38px;border-radius:9px;cursor:pointer;}
+  .tab.on{background:rgba(57,242,255,.14);color:var(--cy);}
+  .stg{margin-left:auto;font-family:var(--display);font-size:10px;color:var(--gold);letter-spacing:.5px;}
+  .pane{display:none;flex-direction:column;gap:8px;} .pane.on{display:flex;}
+  .big{position:relative;overflow:hidden;} .big i{position:absolute;left:0;bottom:0;height:4px;background:#fff;opacity:.7;}
+  .big.busy{background:linear-gradient(120deg,#1f2a4d,#151d38);color:#cfe6ff;} .big.busy b{color:var(--cy);} .big.busy span{color:#9fb3d9;}
+  .item{position:relative;} .item .mile{grid-column:1/-1;height:3px;background:rgba(255,255,255,.08);border-radius:2px;margin-top:6px;overflow:hidden;} .item .mile i{display:block;height:100%;background:var(--cy);width:0;}
+  .item.rs{grid-template-areas:"nm pr" "ds pr";} .item.rs .pr{color:#b8a6ff;} .item.got{opacity:.45;border-color:rgba(184,166,255,.4);} .item.got .pr{color:var(--mut);}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:5px;}
+  .achv{display:flex;align-items:center;gap:7px;font-size:11.5px;color:var(--mut);background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:9px;padding:6px 8px;}
+  .achv i{width:10px;height:10px;border-radius:3px;border:1px solid var(--line);flex:none;} .achv.got{color:var(--ink);} .achv.got i{background:var(--gold);border-color:var(--gold);}
+  #nudge{position:fixed;z-index:9;pointer-events:none;transform:translate(-50%,-100%);text-align:center;opacity:0;transition:opacity .3s;}
+  #nudge.show{opacity:1;} #nudge b{display:block;color:var(--gold);font-size:18px;animation:bob .7s ease-in-out infinite;}
+  #nudge.dn{transform:translate(-50%,0);} #nudge.dn b{transform:rotate(180deg);order:2;} #nudge.dn{display:flex;flex-direction:column;align-items:center;} #nudge span{display:block;font-size:12px;font-weight:800;color:#fff;background:rgba(7,10,20,.85);padding:4px 8px;border-radius:8px;white-space:nowrap;}
+  @keyframes bob{50%{transform:translateY(-5px)}}
+  #combo{position:fixed;left:50%;top:14%;transform:translateX(-50%) scale(.6);z-index:8;pointer-events:none;font-family:var(--display);font-size:42px;color:var(--gold);text-shadow:0 0 24px rgba(255,204,87,.8),0 3px 0 rgba(0,0,0,.6);opacity:0;transition:opacity .15s,transform .15s;}
+  #combo.show{opacity:1;transform:translateX(-50%) scale(1);}
+  .mis{position:relative;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:10px;padding:7px 10px 9px;font-size:12px;font-weight:700;display:flex;justify-content:space-between;gap:8px;overflow:hidden;margin-bottom:5px;}
+  .mis em{font-style:normal;color:var(--gold);font-family:var(--display);font-size:11px;white-space:nowrap;} .mis i{position:absolute;left:0;bottom:0;height:3px;background:var(--cy);}
+  .skin{background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:10px;padding:7px 9px;text-align:left;color:var(--mut);font:inherit;cursor:pointer;opacity:.55;}
+  .skin b{display:block;font-family:var(--display);font-weight:400;font-size:12px;color:var(--ink);} .skin span{font-size:10.5px;} .skin.got{opacity:1;} .skin.on{border-color:var(--cy);background:rgba(57,242,255,.12);}
+  #tapb{position:fixed;left:50%;top:22%;transform:translateX(-50%);z-index:8;pointer-events:none;font-family:var(--display);font-size:16px;color:#fff;background:rgba(255,204,87,.9);color:#1a1200;padding:6px 12px;border-radius:999px;opacity:0;transition:opacity .2s;} #tapb.show{opacity:1;}
+  #cache{position:fixed;z-index:9;background:none;border:0;padding:0;cursor:pointer;opacity:0;pointer-events:none;transform:translate(-50%,-50%);transition:opacity .25s;filter:drop-shadow(0 0 16px rgba(255,204,87,.9));width:56px;height:56px;}
+  #cache.show{opacity:1;pointer-events:auto;animation:bob .8s ease-in-out infinite;}
+  #boot{position:fixed;inset:0;z-index:30;background:#070a14;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;transition:opacity .6s;}
+  #boot.gone{opacity:0;pointer-events:none;} #boot .bl{font-family:var(--display);font-size:clamp(22px,5vw,40px);color:#fff;letter-spacing:1px;text-shadow:0 0 30px rgba(57,242,255,.6);} #boot .bl em{font-style:normal;color:var(--cy);}
+  #boot .bs{font-family:var(--display);font-size:11px;letter-spacing:3px;color:var(--mut);animation:pulse 1s infinite;}
+  .ad{border:1px dashed rgba(255,204,87,.6);background:rgba(255,204,87,.08);color:var(--gold);border-radius:12px;padding:9px 12px;font:inherit;font-size:12px;font-weight:800;cursor:pointer;width:100%;text-align:left;min-height:38px;margin-bottom:6px;}
+  #market{position:fixed;left:50%;top:9%;transform:translateX(-50%);z-index:8;pointer-events:none;font-family:var(--display);font-size:12px;letter-spacing:1px;color:#1a1200;background:linear-gradient(90deg,#ffcc57,#ffe08a);padding:6px 12px;border-radius:999px;opacity:0;transition:opacity .3s;box-shadow:0 6px 20px rgba(255,204,87,.35);}
+  #market.show{opacity:1;}
+  .stg{max-width:96px;text-align:right;line-height:1.1;}
+  #flash{position:fixed;inset:0;z-index:15;pointer-events:none;background:#fff;opacity:0;} #flash.go{animation:fl .5s ease-out;} @keyframes fl{0%{opacity:.7}100%{opacity:0}}
+  @media (max-width:760px){
+    #panel{left:0;right:0;bottom:0;top:auto;width:auto;height:50%;border-radius:16px 16px 0 0;padding:8px 10px 12px;gap:7px;}
+    .res{gap:4px;} .r{padding:6px 7px;} .r .k{font-size:8.5px;letter-spacing:.8px;} .r .v{font-size:14px;} .r .s{font-size:10px;} #combo{top:8%;font-size:34px;}
+    .r .v{font-size:18px;} .big{font-size:14px;padding:10px 12px;}
+    #hint{top:16%;} footer{display:none;} #toasts{top:auto;bottom:calc(50% + 8px);left:10px;right:10px;max-width:none;align-items:flex-start;} .toast{font-size:11.5px;padding:7px 10px;max-width:80vw;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;} #market{top:8%;font-size:11px;} #combo{top:14%;}
+    #panel{padding-bottom:calc(12px + env(safe-area-inset-bottom));}
+  }
+</style>
+</head>
+<body>
+<canvas id="stage"></canvas>
+<div id="boot"><div class="bl">SINGULARITY <em>INC.</em></div><div class="bs">BOOTING THE LAB</div></div>
+<header>
+  <div class="logo">SINGULARITY <em>INC.</em></div>
+  <div class="hb"><button class="hbtn" id="bmute" aria-label="Sound on/off">🔊</button></div>
+</header>
+<div id="hint"><div class="t">TAP THE CORE TO LABEL DATA</div><div class="s">data trains models · models earn money · money buys the lab</div></div>
+<div id="panel">
+  <div class="res">
+    <div class="r"><div class="k">DATA</div><div class="v" id="rdata">0</div><div class="s" id="rdrate">+0/s</div></div>
+    <div class="r money"><div class="k">MONEY</div><div class="v" id="rmoney">$0</div><div class="s" id="rrate">$0/s</div></div>
+    <div class="r rp"><div class="k">RESEARCH</div><div class="v" id="rrp">0</div><div class="s" id="rrprate">+0/s</div></div>
+    <div class="r al"><div class="k">ALIGNMENT</div><div class="v" id="ralign">0</div><div class="s" id="ralignm">×1.00</div></div>
+  </div>
+  <div class="tabs"><button class="tab on" data-t="lab">LAB</button><button class="tab" data-t="research">RESEARCH</button><button class="tab" data-t="goals">GOALS</button><span class="stg" id="stagename">GARAGE</span></div>
+  <div class="pane on" id="pane-lab">
+    <button class="big" id="blabel">LABEL DATA<span>or tap anywhere in the hall</span></button>
+    <button class="big" id="btrain">TRAIN</button>
+    <div id="ads" hidden><button class="ad" id="adboost">⚡ REVENUE ×2 FOR 2 MIN · watch an ad</button><button class="ad" id="adtrain" hidden>FINISH TRAINING NOW · watch an ad</button></div>
+    <div class="sec">MODELS</div>
+    <div id="models"></div>
+    <div class="sec">MISSIONS</div>
+    <div id="missions"></div>
+    <div class="sec">THE LAB</div>
+    <div id="shop"></div>
+    <button class="big" id="bship">SHIP MODEL</button>
+  </div>
+  <div class="pane" id="pane-research">
+    <div class="sec" id="rsline">0 / 16 papers</div>
+    <div id="research"></div>
+  </div>
+  <div class="pane" id="pane-goals">
+    <div class="sec" id="dailyline">Day streak 0 / 7</div>
+    <div class="sec">CORE SKINS</div>
+    <div id="skins" class="grid"></div>
+    <div class="sec">ACHIEVEMENTS <span id="achline"></span></div>
+    <div id="ach" class="grid"></div>
+    <div class="sec">MILESTONES</div>
+    <div id="mst" class="grid"></div>
+    <button class="hbtn" id="breset" aria-label="Wipe save" style="align-self:flex-start;margin-top:8px">wipe save</button>
+  </div>
+</div>
+<div id="nudge"><b>▼</b><span></span></div>
+<div id="combo">×1</div>
+<div id="tapb">TAP ×5</div>
+<div id="market"></div>
+<button id="cache" aria-label="Data cache"><svg viewBox="0 0 48 48" width="56" height="56"><polygon points="24,4 42,14 42,34 24,44 6,34 6,14" fill="#ffcc57" stroke="#1a1200" stroke-width="3" stroke-linejoin="round"/><polygon points="24,4 42,14 24,24 6,14" fill="#fff0b8"/><polygon points="24,24 42,14 42,34 24,44" fill="#e0a020"/></svg></button>
+<div id="flash"></div>
+<div id="toasts"></div>
+<div id="modal"><div class="card"><h2 id="mt"></h2><p id="mb"></p><div class="btns" id="mbtns"></div></div></div>
+<footer><span>No ads inside · no account · free</span> · <a href="/" id="hublink">more games → Gridlings</a></footer>
+<script>
+"use strict";
+/*__BUNDLE__*/</script>
+</body>
+</html>

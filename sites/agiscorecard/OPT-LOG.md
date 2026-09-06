@@ -2615,3 +2615,23 @@ validate 222 页 OK。种子在 content-backlog 打勾。
 - **诚实边界**:所有数字来自事实表(带信源日期);[thin] 项只写「据报道」;WebFetch 对几乎所有
   新闻域被代理拦截,[verify] 项靠 WebSearch 多源片段核实原话。validate OK 228 页 / 210 URL;
   hreflang 门 OK。**破了「一次一改」的日常纪律——owner 明确要求「前后全方面升级」,记录在案。**
+
+## 2026-09-06 — gridlings：OVERSEER 深度美术 + 五款商店视频逐帧重录（agi 站零改动）
+
+- **OVERSEER**：Bungee 内嵌字体；无眼插画语言（显示器墙 / 巡检车 / 靶盘 / HALT 章）；`slots()`
+  半秒 CRT 关机保持网格不重排；音层 noise()+7 音；波次改为 intro 卡；pop 文字限幅、rover 随卡
+  片缩放、intro 卡片手机端换行。fleet-smoke 五款绿、cg-package-smoke 29.7KB gameplayStart 77ms。
+- **素材工具**：`capture-store-assets.js` 视频改虚拟时钟逐帧截图（根治 CG 预览模糊）；
+  `_poster.js` 标语从字标盒子推算位置（PROMPT 16:9 遮挡）；`build-fonts.sh` 重建字体模块。
+- 判定线不变；agi 内容在客户视角簇判定期内，本日不叠加 ship。
+- **同日追加**：MINIMA 深度美术（纸质测绘图：分层色 + 山体阴影 + 羽化揭示、测量钉、脚印虚线、HEAT 抛物线
+  跳跃、Rubik Mono One、音层）；L3 步数 1450→1750（确定性验证器下 explorer 由 2–5/12 升到 9/16，
+  不动井宽——加宽会合并盆地）；`verify-minima.js` 改虚拟时钟（结论不再随帧率漂移）；五款预告片抗转码
+  重录；MIMIC / MINIMA 海报主体收进画布；CG 16 项分类定案 + `docs/cg-store-copy.md`；质量基线入 CLAUDE.md。
+- **同日追加（gridlings）**：新游戏 **SINGULARITY INC.**（冲 CG 首页的放置类，Three.js + esbuild 单文件 568KB）：
+  4 生成器 × 5 里程碑、20 代模型带训练时长、研究树 16、成就 26、皮肤 8、任务 3 条滚动、数据缓存、每日连击、
+  离线报告、失控/对齐、声望；4 阶段 3D 机房；`verify-singularity.js` 数值门全绿；fleet-smoke / 包自检绿。
+  PRD `docs/singularity-prd.md`（含首页级验收线 §六、对标表 §七）。
+- **同日追加（gridlings）**：新游戏 **GHOSTLINE**（Driving 分类冲首页：低多边形计时赛，对手 = 用你自己驾驶训练的模型；
+  程序生成 12 条赛道 + 每日 + 随机、奖牌由模型参考圈设定、6 辆车、触屏转向区）；轨道坐标系物理由 `verify-ghostline.js`
+  证明可玩且刹车有价值；itch 分发改为每款一个项目页 + 部署时 butler 逐个推送（owner 需先建页）。

@@ -1,5 +1,5 @@
 {
- "fetched": "2026-09-04",
+ "fetched": "2026-09-06",
  "seeds": {
   "electric spin scrubber": {
    "auto": [
@@ -325,50 +325,85 @@
     "xiaomi power bank built in cable",
     "power bank with built in cable and wall plug"
    ],
+   "rising": [],
+   "source": "autocomplete-diff",
+   "fetched": "2026-09-05"
+  },
+  "makeup organizer": {
    "rising": [
     {
-     "q": "power bank built in cables",
+     "q": "temu makeup organizer",
+     "v": 200
+    },
+    {
+     "q": "target makeup organizer",
+     "v": 140
+    },
+    {
+     "q": "makeup drawers",
+     "v": 50
+    },
+    {
+     "q": "makeup organizer drawers",
+     "v": 40
+    }
+   ],
+   "source": "related-queries",
+   "fetched": "2026-09-06"
+  },
+  "mamian skirt": {
+   "auto": [
+    "mamian skirt",
+    "mamian skirt pattern",
+    "mamian skirt men",
+    "mamian skirt chinese",
+    "mamian skirt modern",
+    "mamian skirt sewing pattern",
+    "mamian skirt how to wear",
+    "mamian skirt plus size",
+    "mamian skirt dior",
+    "mamian skirt dance"
+   ],
+   "rising": [
+    {
+     "q": "mamian skirt pattern",
      "v": "new"
     },
     {
-     "q": "power bank built in cable not working",
+     "q": "mamian skirt men",
      "v": "new"
     },
     {
-     "q": "power bank built in cable 20000mah",
+     "q": "mamian skirt chinese",
      "v": "new"
     },
     {
-     "q": "power bank built in cable reddit",
+     "q": "mamian skirt modern",
      "v": "new"
     },
     {
-     "q": "power bank built in cable iphone",
+     "q": "mamian skirt sewing pattern",
      "v": "new"
     },
     {
-     "q": "power bank built in cable lightning",
+     "q": "mamian skirt how to wear",
      "v": "new"
     },
     {
-     "q": "power bank built in cord",
+     "q": "mamian skirt plus size",
      "v": "new"
     },
     {
-     "q": "anker power bank built in cable",
+     "q": "mamian skirt dior",
      "v": "new"
     },
     {
-     "q": "xiaomi power bank built in cable",
-     "v": "new"
-    },
-    {
-     "q": "power bank with built in cable and wall plug",
+     "q": "mamian skirt dance",
      "v": "new"
     }
    ],
    "source": "autocomplete-diff",
-   "fetched": "2026-09-04"
+   "fetched": "2026-09-06"
   }
  }
 }

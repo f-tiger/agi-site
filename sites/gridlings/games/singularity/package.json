@@ -1,0 +1,7 @@
+{
+  "name": "singularity-inc",
+  "private": true,
+  "description": "SINGULARITY INC. — AI-lab idle game. `npm run build` bundles src + three into ../../site/singularity.html (the committed artifact; CI does not run npm).",
+  "scripts": { "build": "node build.js" },
+  "devDependencies": { "esbuild": "0.24.0", "three": "0.170.0" }
+}

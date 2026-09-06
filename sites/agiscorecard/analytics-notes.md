@@ -1211,3 +1211,22 @@ JS 口径 = 爬虫排除在外，**下一轮起可以真正回答内部跳转问
   ——heartbeat 的自动兜底第一次真实触发，14:37 部署绿。
 - **第②层故障与处置**：换模后前两条新会话 run 卡死于 SSH 克隆权限提示
   （详见 docs/fleet-automation-map.md §八）；已补跑 paid-monthly 并归档僵尸会话。
+
+## 2026-09-06（周日舰队日报，本会话被 owner 占用于 gridlings 美术，监控由子代理直读 D1）
+
+- **agi 7 天真人 pv 333（≈47.6/日，环比 +11%）**，28d 1087。漏斗仍冷：subscribe_click 2、
+  sub_open 1（09-03 /ai-2027-scenario-explained，未提交）、**sub_ok 已 18 天零**（累计 2，
+  09-30 阈值 5）。invest_tool_click 7d 1，无 sunwatch/tg_watch 点击。
+- 7d 外部来源（human hits）：google 73 · bing 16 · duckduckgo 13 · claude.ai 3 ·
+  forum.effectivealtruism.org 3 · chatgpt.com 2。**09-05 出现 D1 上线以来首次真人 site_search**
+  （US，EA 论坛引荐，label 为空——home_suggest 跳 /search 未带词），非里程碑，记一笔。
+  `site_search{mcp}` 7d 0 条，首个真实 agent 调用仍未发生。
+- **游戏层**：gridlings 28d play_start 291 / solve 124；7d 221 / 110（towers 09-01~03 三天
+  集中爆发后回落到个位数）；**itch 口径 43/13，7d 仅 +1/+0**，09-24 阈值 150/25 按当前速率
+  不会过线，到日再裁。**prompt / mimic / overseer / minima 在 D1 中 0 行**（尚未上 CG，仅挂
+  hub），overfit 6/0。
+- **sourceradar**：28d pv 66（human 50），7d human 9，其余事件全站累计 0，不动。
+- **第①层**：heartbeat 09-05 11:31Z 八站全 200，days_since_deploy 全 0。
+- **本日 ship（gridlings，见 OPT-LOG）**：OVERSEER 深度美术（无眼睛的一套新插画语言）、
+  五款商店视频改逐帧截图（根治 CG 预览模糊）、海报标语与字标重叠修复。agi 站内容零改动
+  （周日 + 客户视角簇判定期内）。

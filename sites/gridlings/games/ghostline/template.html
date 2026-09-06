@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<title>GHOSTLINE — Race the AI Trained on You</title>
+<meta name="description" content="Low-poly time trials where the ghost is a model trained on your own driving. Every run you finish, it studies your line and gets faster. Beat yourself.">
+<link rel="canonical" href="https://play.agiscorecard.com/ghostline">
+<meta property="og:title" content="GHOSTLINE — Race the AI Trained on You">
+<meta property="og:description" content="Time trials against a ghost that learns from every run you finish.">
+<meta property="og:url" content="https://play.agiscorecard.com/ghostline">
+<meta name="theme-color" content="#7fd0ff">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2314182a'/%3E%3Cpath d='M5 22 C10 8 22 8 27 22' stroke='%2339f2ff' stroke-width='3' fill='none'/%3E%3Crect x='12' y='17' width='8' height='5' rx='2' fill='%23ff3fa4'/%3E%3C/svg%3E">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"GHOSTLINE","url":"https://play.agiscorecard.com/ghostline","applicationCategory":"GameApplication","operatingSystem":"Any (browser)","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":"low-poly 3D time trials, procedural tracks, a ghost trained on your own runs that improves after every finish, medals from the model's reference lap, daily track, 6 cars, keyboard / touch, no account","isPartOf":{"@type":"WebSite","name":"Gridlings","url":"https://play.agiscorecard.com/"}}</script>
+<style>
+  /*__FONT__*/
+  :root{--ink:#eef3ff;--mut:#9aa6c4;--cy:#39f2ff;--mg:#ff3fa4;--gold:#ffcc57;--panel:rgba(14,18,32,.86);--line:rgba(255,255,255,.12);--display:'Racing Sans One',Impact,'Arial Black',sans-serif;}
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+  html,body{height:100%;background:#7fd0ff;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;overflow:hidden;user-select:none;-webkit-user-select:none;font-variant-numeric:tabular-nums;}
+  #stage{position:fixed;inset:0;width:100%;height:100%;display:block;touch-action:none;}
+  header{position:fixed;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:10px 14px;z-index:5;pointer-events:none;}
+  header>*{pointer-events:auto;}
+  .logo{font-family:var(--display);font-size:20px;letter-spacing:1px;color:#fff;text-shadow:0 2px 0 rgba(0,0,0,.35),0 0 18px rgba(57,242,255,.5);}
+  .logo em{font-style:normal;color:var(--cy);}
+  .hbtn{background:var(--panel);border:1px solid var(--line);border-bottom:3px solid rgba(0,0,0,.5);color:#dfe6ff;border-radius:10px;min-width:40px;height:40px;font:inherit;font-size:13px;font-weight:800;cursor:pointer;padding:0 12px;}
+  #hud{position:fixed;left:0;right:0;top:56px;z-index:4;pointer-events:none;display:none;flex-direction:column;align-items:center;gap:4px;}
+  #hud.show{display:flex;}
+  #time{font-family:var(--display);font-size:clamp(34px,7vw,58px);color:#fff;text-shadow:0 3px 0 rgba(0,0,0,.4),0 0 24px rgba(57,242,255,.35);line-height:1;}
+  #speed{font-family:var(--display);font-size:16px;color:#fff;text-shadow:0 2px 0 rgba(0,0,0,.4);opacity:.9;}
+  .row{display:flex;gap:10px;align-items:center;}
+  .chip{background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:5px 11px;font-family:var(--display);font-size:13px;letter-spacing:.5px;}
+  .vs.ok{color:var(--cy);} .vs.bad{color:var(--mg);}
+  .split{position:fixed;left:50%;top:38%;transform:translate(-50%,-50%) scale(.8);font-family:var(--display);font-size:clamp(30px,7vw,54px);opacity:0;transition:opacity .2s,transform .2s;text-shadow:0 3px 0 rgba(0,0,0,.45);z-index:4;pointer-events:none;}
+  .split.show{opacity:1;transform:translate(-50%,-50%) scale(1);} .split.ok{color:var(--cy);} .split.bad{color:var(--mg);}
+  #count{position:fixed;left:50%;top:40%;transform:translate(-50%,-50%);font-family:var(--display);font-size:clamp(80px,20vw,160px);color:#fff;text-shadow:0 6px 0 rgba(0,0,0,.35),0 0 40px rgba(255,255,255,.5);z-index:6;pointer-events:none;display:none;}
+  #count.show{display:block;}
+  #lines{position:fixed;inset:0;pointer-events:none;z-index:3;opacity:0;background:repeating-conic-gradient(from 0deg at 50% 50%,rgba(255,255,255,.25) 0 1.2deg,transparent 1.2deg 6deg);-webkit-mask:radial-gradient(circle at 50% 50%,transparent 32%,#000 78%);mask:radial-gradient(circle at 50% 50%,transparent 32%,#000 78%);}
+  #wallflash{position:fixed;inset:0;pointer-events:none;z-index:3;background:radial-gradient(circle,transparent 40%,rgba(255,63,164,.55));opacity:0;} #wallflash.go{animation:wf .35s ease-out;} @keyframes wf{0%{opacity:1}100%{opacity:0}}
+  .zone{position:fixed;bottom:0;height:46%;z-index:4;opacity:0;} .zone.on{opacity:.12;background:#fff;}
+  #zl{left:0;width:40%;} #zr{right:0;width:40%;}
+  #zb{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(18px + env(safe-area-inset-bottom));width:96px;height:96px;border-radius:50%;background:rgba(255,63,164,.35);border:3px solid rgba(255,255,255,.7);z-index:5;display:none;align-items:center;justify-content:center;font-family:var(--display);font-size:14px;color:#fff;text-shadow:0 2px 0 rgba(0,0,0,.4);}
+  #zb.on{background:rgba(255,63,164,.8);}
+  @media (pointer:coarse){#zb{display:flex;}}
+  .modal{position:fixed;inset:0;z-index:20;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(8,12,24,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);}
+  .modal.show{display:flex;}
+  .card{background:linear-gradient(180deg,#171e36,#0f1428);border:1px solid rgba(255,255,255,.14);border-radius:20px;padding:22px 24px;max-width:520px;width:100%;box-shadow:0 24px 70px rgba(0,0,0,.5);position:relative;overflow:hidden;max-height:92vh;overflow-y:auto;}
+  .card::before{content:"";position:absolute;left:0;right:0;top:0;height:6px;background:repeating-linear-gradient(90deg,#fff 0 18px,#111 18px 36px);}
+  .card h2{font-family:var(--display);font-size:22px;letter-spacing:.5px;margin:8px 0 4px;color:#fff;}
+  .card p{font-size:13.5px;line-height:1.55;color:#c9d3f0;} .card p b{color:#fff;} .ok{color:var(--cy);} .bad{color:var(--mg);}
+  .sub{font-size:12px;color:var(--mut);margin-bottom:10px;}
+  #tmedals i{font-style:normal;font-family:var(--display);font-size:12px;margin-right:10px;} .g{color:var(--gold);} .s{color:#d7dcea;} .b{color:#d98c5f;}
+  .btns{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;}
+  .btn{flex:1;min-width:120px;border:0;border-radius:12px;padding:13px 14px;font-family:var(--display);font-size:15px;color:#04141a;background:linear-gradient(120deg,#39f2ff,#22c3d6);border-bottom:4px solid rgba(0,0,0,.35);cursor:pointer;min-height:44px;}
+  .btn.alt{background:rgba(255,255,255,.09);color:#e6ecff;} .btn.pink{background:linear-gradient(120deg,#ff3fa4,#d92a82);color:#fff;}
+  .btn:active{transform:translateY(3px);border-bottom-width:1px;}
+  #rt{font-family:var(--display);font-size:56px;color:#fff;line-height:1;} #rbest{font-family:var(--display);font-size:13px;color:var(--gold);letter-spacing:1px;}
+  .medal{display:inline-block;font-family:var(--display);font-size:13px;letter-spacing:1px;padding:5px 12px;border-radius:999px;margin:8px 0;}
+  .medal.gold{background:var(--gold);color:#2a1e00;} .medal.silver{background:#d7dcea;color:#1a1f2e;} .medal.bronze{background:#d98c5f;color:#2a1200;} .medal.none{background:rgba(255,255,255,.08);color:var(--mut);}
+  #rwalls{font-size:12px;color:var(--mut);margin-top:6px;}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 0;}
+  .tk{background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:12px;padding:10px 8px;color:var(--ink);font:inherit;cursor:pointer;text-align:left;display:flex;flex-direction:column;gap:2px;min-height:64px;}
+  .tk b{font-family:var(--display);font-weight:400;font-size:18px;color:var(--cy);} .tk span{font-size:12px;font-weight:700;} .tk em{font-style:normal;font-family:var(--display);font-size:11px;color:var(--mut);}
+  .tk em.gold{color:var(--gold);} .tk em.silver{color:#d7dcea;} .tk em.bronze{color:#d98c5f;}
+  .wide{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+  .wide button span{display:block;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;font-size:11px;font-weight:700;opacity:.8;margin-top:2px;}
+  #garage{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px;}
+  .carb{background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:12px;padding:8px;min-width:74px;color:var(--ink);font:inherit;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;}
+  .carb i{width:36px;height:18px;border-radius:6px 6px 3px 3px;background:var(--c);box-shadow:0 3px 0 rgba(0,0,0,.4);} .carb span{font-family:var(--display);font-size:11px;} .carb small{font-size:10px;color:var(--mut);}
+  .carb.on{border-color:var(--cy);background:rgba(57,242,255,.12);} .carb.lock{opacity:.5;}
+  footer{position:fixed;right:14px;bottom:10px;font-size:11px;color:#eaf4ff;text-shadow:0 1px 0 rgba(0,0,0,.4);z-index:3;} footer a{color:#fff;} .cg footer{display:none;}
+  #boot{position:fixed;inset:0;z-index:30;background:#14182a;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;transition:opacity .6s;}
+  #boot.gone{opacity:0;pointer-events:none;} #boot .bl{font-family:var(--display);font-size:clamp(26px,6vw,46px);color:#fff;} #boot .bl em{font-style:normal;color:var(--cy);} #boot .bs{font-family:var(--display);font-size:12px;letter-spacing:3px;color:var(--mut);}
+  @media (max-width:640px){ .grid{grid-template-columns:repeat(3,1fr);gap:6px;} .tk{min-height:56px;padding:8px 6px;} .card{padding:16px 14px;} #rt{font-size:44px;} .logo{font-size:16px;} }
+</style>
+</head>
+<body>
+<canvas id="stage"></canvas>
+<div id="lines"></div><div id="wallflash"></div>
+<div id="boot"><div class="bl">GHOST<em>LINE</em></div><div class="bs">THE MODEL IS STUDYING THE TRACK</div></div>
+<header><div class="logo">GHOST<em>LINE</em></div><div style="display:flex;gap:8px"><button class="hbtn" id="bmute" aria-label="Sound on/off">🔊</button><button class="hbtn" id="bmenu2" aria-label="Tracks">TRACKS</button></div></header>
+<div id="hud"><div id="time">0.00</div><div id="speed">0 km/h</div><div class="row"><span class="chip" id="cps">0/0</span><span class="chip vs ok" id="vs">MODEL</span></div></div>
+<div class="split" id="split"></div>
+<div id="count">3</div>
+<div class="zone" id="zl"></div><div class="zone" id="zr"></div><div id="zb">BRAKE</div>
+<div class="modal" id="menu"><div class="card">
+  <h2>PICK A TRACK</h2><div class="sub">Steer with ← → (A/D) · brake with Space · R restarts · the ghost is a model trained on YOUR runs</div>
+  <div class="grid" id="grid"></div>
+  <div class="wide"><button class="btn pink" id="bdaily">DAILY TRACK<span>—</span></button><button class="btn alt" id="brandom">RANDOM TRACK<span>a new seed every time</span></button></div>
+  <div class="sub" style="margin-top:12px">GARAGE · <span id="mcount">0 medal pts</span></div>
+  <div id="garage"></div>
+</div></div>
+<div class="modal" id="result"><div class="card">
+  <div class="sub" id="tname">Track</div>
+  <div id="rt">0.00</div><div id="rbest"></div>
+  <div class="medal none" id="rmedal"></div>
+  <div class="sub" id="tmeta"></div><div id="tmedals"></div><div class="sub" id="tclone" style="margin-top:6px"></div>
+  <p id="rclone"></p><div id="rwalls"></div>
+  <div class="btns"><button class="btn" id="bretry">RETRY (R)</button><button class="btn pink" id="bnext">NEXT TRACK</button><button class="btn alt" id="bmenu">TRACKS</button></div>
+</div></div>
+<footer><span>No ads inside · no account · free</span> · <a href="/" id="hublink">more games → Gridlings</a></footer>
+<script>
+"use strict";
+/*__BUNDLE__*/</script>
+</body>
+</html>

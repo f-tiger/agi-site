@@ -2,10 +2,10 @@
   "source": "Cloudflare GraphQL Analytics API (edge-measured)",
   "note": "Counted at the edge, so unaffected by ad blockers, privacy browsers or network-level blocking of Google. Includes bot and crawler traffic, which on a new site is most of it — read it as a floor, not as humans.",
   "zone": "thedollscout.com",
-  "updated": "2026-09-04",
+  "updated": "2026-09-06",
   "window": {
     "since": "2026-07-26",
-    "until": "2026-09-03"
+    "until": "2026-09-05"
   },
   "days": {
     "2026-07-26": {
@@ -2012,6 +2012,110 @@
         "RU": 12,
         "JP": 8,
         "SG": 8
+      }
+    },
+    "2026-09-04": {
+      "date": "2026-09-04",
+      "requests": 755,
+      "pageViews": 315,
+      "uniques": 280,
+      "byIpType": {
+        "unknown": 361,
+        "noRecord": 236,
+        "searchEngine": 158
+      },
+      "byBrowser": {
+        "Curl": 156,
+        "Unknown": 80,
+        "MobileSafari": 40,
+        "Chrome": 14,
+        "YandexBot": 12,
+        "GoogleBot": 8,
+        "BingBot": 2,
+        "Firefox": 1,
+        "ChromeMobile": 1,
+        "Edge": 1
+      },
+      "byContentType": {
+        "html": 480,
+        "txt": 190,
+        "json": 33,
+        "js": 22,
+        "empty": 14,
+        "xml": 7,
+        "png": 6,
+        "css": 3
+      },
+      "byStatus": {
+        "200": 467,
+        "204": 16,
+        "301": 57,
+        "304": 1,
+        "403": 16,
+        "404": 92,
+        "405": 3,
+        "410": 103
+      },
+      "topCountries": {
+        "US": 555,
+        "RU": 37,
+        "BR": 31,
+        "CN": 29,
+        "GB": 24,
+        "DE": 17,
+        "SG": 11,
+        "KR": 9
+      }
+    },
+    "2026-09-05": {
+      "date": "2026-09-05",
+      "requests": 1950,
+      "pageViews": 176,
+      "uniques": 173,
+      "byIpType": {
+        "noRecord": 1778,
+        "unknown": 99,
+        "searchEngine": 73
+      },
+      "byBrowser": {
+        "MobileSafari": 63,
+        "Unknown": 59,
+        "Curl": 25,
+        "Chrome": 20,
+        "Firefox": 4,
+        "GoogleBot": 3,
+        "Safari": 1,
+        "BingBot": 1
+      },
+      "byContentType": {
+        "html": 1559,
+        "empty": 194,
+        "txt": 170,
+        "js": 18,
+        "json": 4,
+        "xml": 3,
+        "css": 2
+      },
+      "byStatus": {
+        "200": 238,
+        "204": 3,
+        "301": 178,
+        "304": 1,
+        "308": 2,
+        "403": 118,
+        "404": 1153,
+        "405": 190,
+        "410": 67
+      },
+      "topCountries": {
+        "FR": 1010,
+        "NL": 326,
+        "FI": 278,
+        "US": 208,
+        "CA": 20,
+        "UA": 20,
+        "DE": 13,
+        "CN": 12
       }
     }
   }
