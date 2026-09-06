@@ -16,13 +16,13 @@ module.exports = function poster(c, o) {
   const wordTop = port ? "68%" : sq ? "64%" : "6%";
   const tagTop  = port ? "85%" : sq ? "85%" : "31%";
   const heroTop = port ? "36%" : sq ? "36%" : "66%";
-  return `<!doctype html><html><head><meta charset="utf-8"><style>
-    html,body{margin:0;width:${W}px;height:${H}px;overflow:hidden;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Arial Black",Arial,sans-serif;}
+  return `<!doctype html><html><head><meta charset="utf-8"><style>${o.fontFace || ""}
+    html,body{margin:0;width:${W}px;height:${H}px;overflow:hidden;font-family:${o.family ? o.family + "," : ""}-apple-system,BlinkMacSystemFont,"Segoe UI","Arial Black",Arial,sans-serif;}
     body{background:${o.ground(W, H)};}
     .rays{position:absolute;inset:-40%;background:repeating-conic-gradient(from 0deg,${o.rays || "rgba(255,255,255,.12)"} 0 9deg,rgba(255,255,255,0) 9deg 22deg);}
     .hero{position:absolute;left:50%;top:${heroTop};width:${hero}px;height:${hero}px;transform:translate(-50%,-50%);}
     .hero svg{width:100%;height:100%;overflow:visible;}
-    .word{position:absolute;left:0;right:0;top:${wordTop};text-align:center;font-weight:900;font-size:${title}px;line-height:1;letter-spacing:${title*.02}px;color:${o.ink};text-shadow:${ring}${drop};}
+    .word{position:absolute;left:0;right:0;top:${wordTop};text-align:center;font-weight:${o.fontFace ? 400 : 900};font-size:${title}px;line-height:1;letter-spacing:${title*.02}px;color:${o.ink};text-shadow:${ring}${drop};}
     .word em{font-style:normal;color:${o.ink2};}
     .tag{position:absolute;left:0;right:0;top:${tagTop};text-align:center;font-weight:800;font-size:${tag}px;color:${o.tagInk};letter-spacing:${tag*.05}px;text-shadow:0 1px 0 rgba(255,255,255,.35);}
   </style></head><body>

@@ -27,6 +27,7 @@ module.exports = {
      wordmark is navy with a white stroke and a hard shadow; the hero is the
      machine on a tilted slab of its own grid with one gem and the exit. */
   poster: (c) => {
+    const FACE = require('./_fonts.js').fredoka;
     const W = c.w, H = c.h, port = H > W * 1.1, sq = Math.abs(W - H) < W * .1;
     const vm = Math.min(W, H);
     const title = sq ? vm * .19 : port ? vm * .19 : vm * .27;
@@ -40,9 +41,9 @@ module.exports = {
     const wordTop = port ? "68%" : sq ? "64%" : "6%";
     const tagTop  = port ? "85%" : sq ? "85%" : "31%";
     const slabTop = port ? "36%" : sq ? "36%" : "66%";
-    return `<!doctype html><html><head><meta charset="utf-8"><style>
+    return `<!doctype html><html><head><meta charset="utf-8"><style>${FACE}
       html,body{margin:0;width:${W}px;height:${H}px;overflow:hidden;
-        font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial Black,Arial,sans-serif;}
+        font-family:'Fredoka One',-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;}
       body{background:
         radial-gradient(${W*.9}px ${H*.9}px at 70% 30%, #ffe08a 0%, #ffd166 38%, #ffb347 72%, #ff9a3c 100%);}
       .rays{position:absolute;inset:-40%;background:repeating-conic-gradient(from 0deg,
@@ -57,7 +58,7 @@ module.exports = {
       .gem{position:absolute;inset:10%;}
       .x{position:absolute;inset:16%;}
       .word{position:absolute;left:0;right:0;top:${wordTop};text-align:center;
-        font-weight:900;font-size:${title}px;line-height:1;letter-spacing:${title*.02}px;color:#0b0e15;
+        font-weight:400;font-size:${title*1.08}px;line-height:1;letter-spacing:${title*.03}px;color:#0b0e15;
         text-shadow:${ring}${drop};}
       .word em{font-style:normal;color:#1b2a6b;}
       .tag{position:absolute;left:0;right:0;top:${tagTop};text-align:center;
