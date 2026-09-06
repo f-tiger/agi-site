@@ -97,6 +97,20 @@ export function makeScene(canvas) {
   const pts = new THREE.Points(pGeo, new THREE.PointsMaterial({ color: GOLD, size: 0.22, transparent: true, opacity: .95, sizeAttenuation: true }));
   scene.add(pts);
 
+  /* flow: the lab visibly working. Coins rise from lit racks (rate follows
+     revenue), data motes stream from the drones into the core (rate follows
+     agents). Two pools, no allocation per frame. */
+  const FN = 90;
+  const fPos = new Float32Array(FN * 3), fVel = new Float32Array(FN * 3), fLife = new Float32Array(FN);
+  const fGeo = new THREE.BufferGeometry(); fGeo.setAttribute("position", new THREE.BufferAttribute(fPos, 3));
+  const coins = new THREE.Points(fGeo, new THREE.PointsMaterial({ color: GOLD, size: 0.28, transparent: true, opacity: .9 })); scene.add(coins);
+  const DN = 90;
+  const dPos = new Float32Array(DN * 3), dVel = new Float32Array(DN * 3), dLife = new Float32Array(DN);
+  const dGeo = new THREE.BufferGeometry(); dGeo.setAttribute("position", new THREE.BufferAttribute(dPos, 3));
+  const motes = new THREE.Points(dGeo, new THREE.PointsMaterial({ color: 0xff8ad0, size: 0.16, transparent: true, opacity: .85 })); scene.add(motes);
+  let coinAcc = 0, moteAcc = 0;
+  const dronePos = []; for (let i = 0; i < DRONES; i++) dronePos.push([0, -5, 0]);
+
   /* bloom */
   const composer = new EffectComposer(renderer);
   composer.addPass(new RenderPass(scene, cam));
@@ -121,7 +135,8 @@ export function makeScene(canvas) {
     halo.geometry.dispose(); halo.geometry = new THREE.EdgesGeometry(k.geo().clone().scale(1.45, 1.45, 1.45));
     coreMat.color.setHex(k.col); skinEm = k.em; coreMat.emissive.setHex(k.em); halo.material.color.setHex(k.em); coreLight.color.setHex(k.em); ring.material.color.setHex(k.ring);
   }
-  const st = { gpus: 0, agents: 0, tier: 0, boost: false, training: false, stage: 0, pulse: 0, zoom: 0, shake: 0, t: 0, W: 1, H: 1, span: 24, a: 1, sx: 0, sy: 0 };
+  const st = { gpus: 0, agents: 0, tier: 0, boost: false, training: false, stage: 0, pulse: 0, zoom: 0, shake: 0, t: 0, W: 1, H: 1, span: 24, a: 1, sx: 0, sy: 0, coinRate: 0, moteRate: 0, low: false, market: null };
+  const MARKET_TINT = { boom: 0xffcc57, shortage: 0x39f2ff, grant: 0xb28cff };
   function resize() {
     const W = canvas.clientWidth || 300, H = canvas.clientHeight || 300, phone = W < 640;
     const dpr = Math.min(window.devicePixelRatio || 1, phone ? 1.5 : 2);
@@ -170,6 +185,21 @@ export function makeScene(canvas) {
     }
   }
   function zoom() { st.zoom = 1; }
+  function setFlow(coinRate, moteRate) { st.coinRate = coinRate; st.moteRate = moteRate; }
+  function setMarket(id) {
+    st.market = id;
+    const base = STAGE_BG[Math.min(4, st.stage)];
+    scene.fog.color.setHex(base); renderer.setClearColor(base, 1);
+    key.color.setHex(id && MARKET_TINT[id] ? MARKET_TINT[id] : 0xdfe8ff); key.intensity = id ? 1.6 : 1.1;
+    padRing.material.color.setHex(id && MARKET_TINT[id] ? MARKET_TINT[id] : MAGENTA);
+  }
+  /* performance guard: a phone that cannot hold the frame loses bloom and pixel ratio, not the game */
+  let slowT = 0;
+  function setQuality(low) {
+    if (low === st.low) return; st.low = low;
+    renderer.setPixelRatio(low ? 1 : Math.min(window.devicePixelRatio || 1, st.W < 640 ? 1.5 : 2));
+    const W = st.W, H = st.H; renderer.setSize(W, H, false); composer.setSize(W * renderer.getPixelRatio(), H * renderer.getPixelRatio());
+  }
   function shake(a) { st.shake = Math.max(st.shake, a || 0.6); }
   function tick(dt) {
     st.t += dt;
@@ -184,6 +214,7 @@ export function makeScene(canvas) {
     halo.rotation.y -= dt * 0.25 * spin; halo.rotation.z += dt * 0.15 * spin;
     ring.rotation.z += dt * 0.5;
     st.pulse = Math.max(0, st.pulse - dt * 3);
+    if (dt > 0.045) { slowT += dt; if (slowT > 3 && !st.low) setQuality(true); } else slowT = Math.max(0, slowT - dt * 0.5);
     const ps = 1 + st.pulse * 0.25 + (st.training ? Math.sin(t * 9) * 0.05 : 0), base = 0.7 + Math.min(TIERMAX, st.tier) * 0.13;
     core.scale.setScalar(base * ps); coreLight.intensity = 5 + st.pulse * 12 + Math.sin(t * 3) * 0.6 + (st.training ? 3 : 0);
     coreMat.emissiveIntensity = 1.2 + st.pulse * 1.6 + (st.training ? 0.6 : 0);
@@ -196,6 +227,7 @@ export function makeScene(canvas) {
       Q.setFromEuler(new THREE.Euler(0, -a, 0));
       M.compose(P.set(x, y, z), Q, SC.set(1, 1, 1)); drones.setMatrixAt(i, M);
       M.compose(P.set(x, y - 0.2, z), Q, SC.set(1, 1, 1)); leds.setMatrixAt(i, M);
+      dronePos[i][0] = x; dronePos[i][1] = y; dronePos[i][2] = z;
     }
     drones.instanceMatrix.needsUpdate = true; leds.instanceMatrix.needsUpdate = true;
     /* particles */
@@ -205,8 +237,24 @@ export function makeScene(canvas) {
       pPos[i * 3] += pVel[i * 3] * dt; pPos[i * 3 + 1] += pVel[i * 3 + 1] * dt; pPos[i * 3 + 2] += pVel[i * 3 + 2] * dt;
     }
     pGeo.attributes.position.needsUpdate = true;
-    composer.render();
+    /* coins */
+    coinAcc += st.coinRate * dt;
+    while (coinAcc >= 1) { coinAcc -= 1;
+      for (let i = 0; i < FN; i++) if (fLife[i] <= 0) { const k = Math.floor(Math.random() * Math.max(1, Math.min(RACKS, st.gpus))), rp = rackPos[k];
+        fPos[i * 3] = rp[0] + (Math.random() - .5) * .6; fPos[i * 3 + 1] = 1.9; fPos[i * 3 + 2] = rp[1]; fVel[i * 3] = (Math.random() - .5) * .4; fVel[i * 3 + 1] = 1.6 + Math.random(); fVel[i * 3 + 2] = (Math.random() - .5) * .4; fLife[i] = 1.4; break; } }
+    for (let i = 0; i < FN; i++) { if (fLife[i] <= 0) { fPos[i * 3 + 1] = -10; continue; } fLife[i] -= dt; fPos[i * 3] += fVel[i * 3] * dt; fPos[i * 3 + 1] += fVel[i * 3 + 1] * dt; fPos[i * 3 + 2] += fVel[i * 3 + 2] * dt; }
+    fGeo.attributes.position.needsUpdate = true; coins.material.opacity = st.gpus > 0 ? .9 : 0;
+    /* data motes: drone -> core */
+    moteAcc += st.moteRate * dt;
+    const nd = Math.min(DRONES, st.agents);
+    while (moteAcc >= 1 && nd > 0) { moteAcc -= 1;
+      for (let i = 0; i < DN; i++) if (dLife[i] <= 0) { const d = dronePos[Math.floor(Math.random() * nd)];
+        dPos[i * 3] = d[0]; dPos[i * 3 + 1] = d[1]; dPos[i * 3 + 2] = d[2];
+        const L = 0.8; dVel[i * 3] = (0 - d[0]) / L; dVel[i * 3 + 1] = (2.2 - d[1]) / L; dVel[i * 3 + 2] = (0 - d[2]) / L; dLife[i] = L; break; } }
+    for (let i = 0; i < DN; i++) { if (dLife[i] <= 0) { dPos[i * 3 + 1] = -10; continue; } dLife[i] -= dt; dPos[i * 3] += dVel[i * 3] * dt; dPos[i * 3 + 1] += dVel[i * 3 + 1] * dt; dPos[i * 3 + 2] += dVel[i * 3 + 2] * dt; }
+    dGeo.attributes.position.needsUpdate = true;
+    if (st.low) renderer.render(scene, cam); else composer.render();
   }
   resize(); setState(0, 0, 0, false, false, 0);
-  return { resize, setState, setSkin, pulse, zoom, shake, tick, renderer };
+  return { resize, setState, setSkin, setFlow, setMarket, setQuality, pulse, zoom, shake, tick, renderer };
 }

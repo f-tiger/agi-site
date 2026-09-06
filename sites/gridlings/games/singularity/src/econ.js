@@ -74,13 +74,18 @@ export const MISSION_POOL = [
   { id: "rp", text: n => "Collect " + n + " research points", n: s => Math.max(3, Math.round(rpRate(s) * 180 + 3)), key: "rpTotal" },
   { id: "rogue", text: n => "Resolve a rogue model", n: s => 1, key: "rogueTotal" }
 ];
+export const MARKETS = [
+  { id: "boom", name: "AI BOOM", desc: "revenue ×1.5 for 90 s" },
+  { id: "shortage", name: "COMPUTE SHORTAGE", desc: "GPU racks 30% off for 90 s" },
+  { id: "grant", name: "RESEARCH GRANT", desc: "research points ×3 for 90 s" }
+];
 export const B = { OFFLINE_MAX: 8 * 3600, OFFLINE_RATE: 0.5, trainCost: t => Math.round(20 * Math.pow(3.0, t)), modelRev: t => Math.pow(2.0, t),
   trainTime: t => 3 * Math.pow(1.7, t), shipAt: p => 250000 * Math.pow(4, p), rogueEvery: 150 };
 export function fresh() {
   return { data: 0, money: 0, rp: 0, gen: { agent: 0, gpu: 0, dataset: 0, researcher: 0 }, clickLv: 0, models: 0, training: null,
     research: [], ach: {}, ms: {}, stat: { shutdown: 0, run: 0, offline: 0 }, earned: 0, lifetime: 0, prestige: 0, align: 0, clicks: 0,
     combo: 0, comboT: 0, rogue: null, boost: 0, nextRogue: B.rogueEvery + Math.random() * 90, t: 0, streak: 0, lastDaily: 0, savedAt: Date.now(), started: Date.now(),
-    skin: "core", missions: [], missionsDone: 0, nextCache: 90 + Math.random() * 60, tapBoost: 0, rpTotal: 0, rogueTotal: 0, caches: 0 };
+    skin: "core", missions: [], missionsDone: 0, nextCache: 90 + Math.random() * 60, market: null, nextMarket: 240 + Math.random() * 120, tapBoost: 0, rpTotal: 0, rogueTotal: 0, caches: 0 };
 }
 export const has = (s, id) => s.research.indexOf(id) >= 0;
 const mile = (s, g) => Math.pow(2, MILES.filter(m => s.gen[g] >= m).length);
@@ -90,18 +95,18 @@ export const dataMult = s => (1 + (has(s, "flywheel") ? 0.4 : 0.2) * s.gen.datas
 export const comboMult = s => Math.min(5, 1 + Math.floor(s.combo / 8));
 export const clickPower = s => (1 + s.clickLv) * (has(s, "active") ? 3 : 1) * (s.tapBoost > 0 ? 5 : 1) * dataMult(s);
 export const dataRate = s => s.gen.agent * 0.5 * (has(s, "synthetic") ? 2 : 1) * (has(s, "agentic") ? 3 : 1) * mile(s, "agent") * dataMult(s);
-export const rpRate = s => s.gen.researcher * 0.05 * (has(s, "autoresearch") ? 2 : 1) * mile(s, "researcher");
+export const rpRate = s => s.gen.researcher * 0.05 * (has(s, "autoresearch") ? 2 : 1) * mile(s, "researcher") * (s.market && s.market.id === "grant" ? 3 : 1);
 export function revenue(s) {
   let r = 0; for (let t = 0; t < s.models; t++) r += B.modelRev(t);
   r *= 1 + (has(s, "scaling") ? 0.14 : 0.08) * s.gen.gpu; r *= mile(s, "gpu");
   if (has(s, "flash")) r *= 1.5; if (has(s, "moe")) r *= 2; if (has(s, "inference")) r *= 2;
   if (has(s, "selfimprove")) r *= 1 + 0.05 * s.models;
-  return r * alignMult(s) * achBonus(s) * (s.boost > 0 ? 2 : 1);
+  return r * alignMult(s) * achBonus(s) * (s.boost > 0 ? 2 : 1) * (s.market && s.market.id === "boom" ? 1.5 : 1);
 }
 export const trainTime = (s, t) => B.trainTime(t) * (has(s, "mixedp") ? .5 : 1) * (has(s, "distill") ? .5 : 1);
 export const cost = {
   agent: s => Math.round(GENS.agent.base * Math.pow(GENS.agent.growth, s.gen.agent)),
-  gpu: s => Math.round(GENS.gpu.base * Math.pow(GENS.gpu.growth, s.gen.gpu)),
+  gpu: s => Math.round(GENS.gpu.base * Math.pow(GENS.gpu.growth, s.gen.gpu) * (s.market && s.market.id === "shortage" ? 0.7 : 1)),
   dataset: s => Math.round(GENS.dataset.base * Math.pow(GENS.dataset.growth, s.gen.dataset)),
   researcher: s => Math.round(GENS.researcher.base * Math.pow(GENS.researcher.growth, s.gen.researcher)),
   click: s => Math.round(25 * Math.pow(1.9, s.clickLv))
@@ -129,7 +134,7 @@ export function ship(s) {
   if (!canShip(s)) return 0;
   const g = shipGain(s); s.align += g; s.prestige++;
   s.data = 0; s.money = 0; s.rp = Math.floor(s.rp * 0.5); s.gen = { agent: 0, gpu: 0, dataset: 0, researcher: 0 }; s.clickLv = 0; s.models = 0; s.training = null; s.earned = 0;
-  s.rogue = null; s.boost = 0; s.nextRogue = B.rogueEvery + Math.random() * 90; s.missions = []; return g;
+  s.rogue = null; s.boost = 0; s.nextRogue = B.rogueEvery + Math.random() * 90; s.missions = []; s.market = null; return g;
 }
 export function click(s) {
   s.combo = s.comboT > 0 ? s.combo + 1 : 1; s.comboT = 0.35;
@@ -157,7 +162,7 @@ export function newMission(s) {
   const used = s.missions.map(m => m.id);
   const pool = MISSION_POOL.filter(m => used.indexOf(m.id) < 0 && (m.id !== "rogue" || s.models >= 3) && (m.id !== "rp" || s.gen.researcher > 0));
   const t = pool[Math.floor(Math.random() * pool.length)];
-  const n = t.n(s); return { id: t.id, text: t.text(n), key: t.key, base: getKey(s, t.key), n, reward: { money: Math.round((revenue(s) * 60 + 5 * (s.models + 1)) * Math.min(1, s.t / 600)), rp: s.gen.researcher > 0 ? Math.round((2 + s.research.length) * Math.min(1, s.t / 600)) : 0 } };
+  const n = t.n(s); return { id: t.id, text: t.text(n), key: t.key, base: getKey(s, t.key), n, reward: { money: Math.max(5 * (s.models + 1), Math.round((revenue(s) * 60 + 5 * (s.models + 1)) * Math.min(1, s.t / 600))), rp: s.gen.researcher > 0 ? Math.round((2 + s.research.length) * Math.min(1, s.t / 600)) : 0 } };
 }
 export function missionProgress(s, m) { return Math.max(0, Math.min(1, (getKey(s, m.key) - m.base) / m.n)); }
 export function fillMissions(s) { while (s.missions.length < 3) s.missions.push(newMission(s)); }
@@ -168,6 +173,8 @@ export function tick(s, dt) {
   s.rpTotal += rpRate(s) * dt;
   if (s.boost > 0) s.boost = Math.max(0, s.boost - dt);
   if (s.tapBoost > 0) s.tapBoost = Math.max(0, s.tapBoost - dt);
+  if (s.market) { s.market.left -= dt; if (s.market.left <= 0) { s.market = null; out.push({ type: "market-end" }); } }
+  else if (s.models >= 2) { s.nextMarket -= dt; if (s.nextMarket <= 0) { const mk = MARKETS[Math.floor(Math.random() * MARKETS.length)]; s.market = { id: mk.id, left: 90 }; s.nextMarket = 240 + Math.random() * 120; out.push({ type: "market", mk }); } }
   fillMissions(s);
   for (let i = s.missions.length - 1; i >= 0; i--) {
     const m = s.missions[i];

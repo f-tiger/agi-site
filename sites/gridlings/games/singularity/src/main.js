@@ -59,6 +59,35 @@ function noise(dur, freq, gain, t0) {
     const f = a.createBiquadFilter(); f.type = "lowpass"; f.frequency.value = freq; const g = a.createGain(); g.gain.value = gain;
     n.buffer = b; n.connect(f); f.connect(g); g.connect(a.destination); n.start(a.currentTime + (t0 || 0)); } catch (e) {}
 }
+/* ambient loop: two detuned saws through a slow lowpass on a four-chord cycle,
+   plus a soft sine arpeggio. Procedural, so it costs no bytes and never repeats
+   exactly. Starts on the first gesture, follows the mute button and the SDK. */
+const music = (() => {
+  let on = false, nodes = null, timer = null, step = 0;
+  const CH = [[110, 130.81, 164.81], [87.31, 110, 130.81], [98, 123.47, 146.83], [130.81, 164.81, 196]];
+  function start() {
+    const a = ac(); if (!a || on) return; on = true;
+    const master = a.createGain(); master.gain.value = 0; master.connect(a.destination);
+    master.gain.linearRampToValueAtTime(muted || window.GL_SDK_MUTE ? 0 : 0.045, a.currentTime + 2);
+    const lp = a.createBiquadFilter(); lp.type = "lowpass"; lp.frequency.value = 520; lp.Q.value = 0.7; lp.connect(master);
+    const oscs = [];
+    for (let v = 0; v < 3; v++) for (let d = -1; d <= 1; d += 2) { const o = a.createOscillator(); o.type = "sawtooth"; o.detune.value = d * 7; const g = a.createGain(); g.gain.value = 0.18; o.connect(g); g.connect(lp); o.start(); oscs.push(o); }
+    const arp = a.createGain(); arp.gain.value = 0.5; arp.connect(master);
+    nodes = { master, lp, oscs, arp };
+    const beat = () => {
+      const chord = CH[Math.floor(step / 16) % 4], t = a.currentTime;
+      if (step % 16 === 0) oscs.forEach((o, i) => o.frequency.setTargetAtTime(chord[Math.floor(i / 2)], t, 0.4));
+      lp.frequency.setTargetAtTime(420 + 260 * (0.5 + 0.5 * Math.sin(step / 11)), t, 0.3);
+      if (step % 2 === 0 && Math.random() < 0.7) { const o = a.createOscillator(), g = a.createGain(); o.type = "sine"; o.frequency.value = chord[(step / 2) % 3] * 4 * (Math.random() < .25 ? 1.5 : 1);
+        g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(0.09, t + 0.02); g.gain.exponentialRampToValueAtTime(0.0001, t + 0.5); o.connect(g); g.connect(arp); o.start(t); o.stop(t + 0.55); }
+      step++;
+    };
+    timer = setInterval(beat, 300);
+  }
+  function level() { if (nodes) nodes.master.gain.setTargetAtTime(muted || window.GL_SDK_MUTE ? 0 : 0.045, ac().currentTime, 0.3); }
+  return { start, level };
+})();
+const buzz = ms => { try { if (navigator.vibrate) navigator.vibrate(ms); } catch (e) {} };
 const sfx = {
   click: c => { tone(700 + Math.min(5, c) * 90 + Math.random() * 60, 0, .05, "triangle", .05, 1400); noise(.03, 5000, .03); },
   buy: () => { tone(520, 0, .07, "triangle", .07, 780); tone(1040, .06, .09, "sine", .04); },
@@ -91,7 +120,7 @@ function load() {
 const $ = id => document.getElementById(id);
 const scene = makeScene($("stage"));
 const stageOf = s => s.models >= 15 ? 4 : s.models >= 10 ? 3 : s.models >= 6 ? 2 : s.models >= 2 ? 1 : 0;
-const STAGE_NAME = ["GARAGE", "SERVER ROOM", "DATACENTER", "CAMPUS", "ORBITAL"];
+const STAGE_NAME = ["GARAGE", "SERVERS", "DATACENTER", "CAMPUS", "ORBITAL"];
 let tab = "lab";
 function setTab(t) { tab = t; document.querySelectorAll(".tab").forEach(b => b.classList.toggle("on", b.dataset.t === t)); document.querySelectorAll(".pane").forEach(p => p.classList.toggle("on", p.id === "pane-" + t)); render(true); }
 document.querySelectorAll(".tab").forEach(b => b.addEventListener("click", () => { ac(); setTab(b.dataset.t); }));
@@ -152,7 +181,10 @@ function render(force) {
   $("rmoney").textContent = "$" + E.fmt(S.money); $("rrate").textContent = "$" + E.fmt(E.revenue(S)) + "/s" + (S.boost > 0 ? " ×2 " + Math.ceil(S.boost) + "s" : "");
   $("rrp").textContent = E.fmt(S.rp); $("rrprate").textContent = "+" + E.fmt(E.rpRate(S)) + "/s";
   $("ralign").textContent = S.align; $("ralignm").textContent = "×" + E.alignMult(S).toFixed(2);
-  $("stagename").textContent = STAGE_NAME[stageOf(S)] + (S.prestige ? " · GEN " + (S.prestige + 1) : "");
+  $("stagename").textContent = STAGE_NAME[stageOf(S)] + (S.prestige ? " · G" + (S.prestige + 1) : "");
+  const mk = S.market ? E.MARKETS.find(m => m.id === S.market.id) : null; $("market").classList.toggle("show", !!mk); if (mk) $("market").textContent = mk.name + " · " + Math.ceil(S.market.left) + "s";
+  scene.setFlow(Math.min(14, Math.log10(E.revenue(S) + 1) * 2.5), Math.min(12, S.gen.agent * 0.4));
+  if (CG.on) { $("ads").hidden = false; $("adboost").hidden = S.boost > 0; $("adtrain").hidden = !S.training || S.training.left < 15; }
   const cm = E.comboMult(S); $("combo").textContent = "×" + cm; $("combo").classList.toggle("show", S.combo >= 8 && S.comboT > 0);
   if (tab === "lab") {
     for (const g of ["agent", "gpu", "dataset", "researcher"]) {
@@ -167,6 +199,7 @@ function render(force) {
     if (S.training) { tb.disabled = true; tb.classList.add("busy"); tb.innerHTML = `TRAINING <b>${E.TIERS[S.training.tier]}</b><span>${E.fmtTime(S.training.left)} left</span><i style="width:${(1 - S.training.left / S.training.total) * 100}%"></i>`; }
     else if (n) { tb.disabled = !n.ok; tb.classList.remove("busy"); tb.innerHTML = `TRAIN <b>${n.name}</b><span>${E.fmt(n.data)} data${n.gpus ? " · " + n.gpus + " GPU" + (n.gpus > 1 ? "s" : "") : ""} · ${E.fmtTime(n.time)}</span>`; }
     else { tb.disabled = true; tb.innerHTML = "ASI-3 TRAINED<span>ship it</span>"; }
+    if (S.training) $("adtrain").textContent = "FINISH TRAINING NOW · watch an ad";
     const can = E.canShip(S), sb = $("bship"); sb.disabled = !can;
     sb.innerHTML = `SHIP MODEL<span>${can ? "+" + E.shipGain(S) + " alignment · resets the lab, keeps research" : "at $" + E.fmt(E.B.shipAt(S.prestige)) + " earned this gen (" + E.fmt(S.earned) + ")"}</span>`;
     let mh = ""; for (let t = 0; t < S.models; t++) mh += `<i class="${S.rogue && S.rogue.tier === t ? "rg" : ""}">${E.TIERS[t]}</i>`;
@@ -199,7 +232,7 @@ $("cache").addEventListener("pointerdown", e => {
   toast(r.kind === "money" ? "Data cache: +$" + E.fmt(r.amount) : r.kind === "rp" ? "Data cache: +" + r.amount + " RP" : r.kind === "data" ? "Data cache: +" + E.fmt(r.amount) + " data" : "Data cache: every tap ×5 for 20 s", "ok"); ev("cache", r.kind); render(true);
 }, { passive: false });
 function doClick(x, y) {
-  ac(); const r = E.click(S), p = r.p; sfx.click(E.comboMult(S)); scene.pulse(); pop("+" + E.fmt(p), x, y);
+  ac(); music.start(); const r = E.click(S), p = r.p; sfx.click(E.comboMult(S)); scene.pulse(); pop("+" + E.fmt(p), x, y); buzz(E.comboMult(S) > 1 ? 12 : 6);
   if (r.cache) dropCache();
   if (S.clicks === 1) { $("hint").classList.add("gone"); ev("first_click"); }
   render();
@@ -230,9 +263,12 @@ function rogueModal() {
     [["Shut it down", () => { const r = E.resolveRogue(S, "shutdown"); if (r) { toast("Shut down " + E.TIERS[r.tier] + " · +" + r.align + " alignment", "ok"); ev("rogue", "shutdown"); } render(true); }],
      ["Let it run", () => { const r = E.resolveRogue(S, "run"); if (r) { toast(r.ate ? "It ate the dataset. Revenue ×2 anyway." : "Revenue ×2 for 60 s", r.ate ? "bad" : "ok"); ev("rogue", r.ate ? "run_ate" : "run"); } render(true); }]]]);
 }
-$("bmute").addEventListener("click", () => { muted = !muted; $("bmute").textContent = muted ? "🔇" : "🔊"; try { localStorage.setItem("sgMute", muted ? "1" : "0"); } catch (e) {} });
+$("bmute").addEventListener("click", () => { muted = !muted; $("bmute").textContent = muted ? "🔇" : "🔊"; try { localStorage.setItem("sgMute", muted ? "1" : "0"); } catch (e) {} music.level(); });
+setInterval(() => music.level(), 1500);   /* the portal can flip muteAudio at any time */
 $("bmute").textContent = muted ? "🔇" : "🔊";
 $("hublink").addEventListener("click", () => ev("hub_click"));
+$("adboost").addEventListener("click", () => CG.ad("rewarded", ok => { if (ok) { S.boost = Math.max(S.boost, 120); toast("Revenue ×2 for 2 minutes", "ok"); } ev("rewarded", ok ? "boost_ok" : "boost_fail"); render(true); }));
+$("adtrain").addEventListener("click", () => CG.ad("rewarded", ok => { if (ok && S.training) { S.training.left = 0.01; toast("Training run finished", "ok"); } ev("rewarded", ok ? "train_ok" : "train_fail"); render(true); }));
 $("breset").addEventListener("click", () => modal("Wipe the save?", "Everything, including alignment. There is no undo.", [["Wipe", () => { S = E.fresh(); save(); render(true); }], ["Keep", null]]));
 
 /* ===== boot ===== */
@@ -252,7 +288,8 @@ if (loaded) {
 }
 const d = E.daily(S, Date.now());
 if (d && (loaded || d.streak > 1)) queueModal(["DAILY BONUS · DAY " + d.streak, `Streak ${d.streak} / 7: <b>$${E.fmt(d.money)}</b> and <b>${d.rp} RP</b>. Come back tomorrow for more.`, [["Nice", null]]]);
-buildShop(); scene.setSkin(S.skin || "core"); E.fillMissions(S); setTab("lab"); render(true);
+buildShop(); scene.setSkin(S.skin || "core"); E.fillMissions(S); if (S.market) scene.setMarket(S.market.id); setTab("lab"); render(true);
+requestAnimationFrame(() => requestAnimationFrame(() => { const b = $("boot"); b.classList.add("gone"); setTimeout(() => b.remove(), 700); }));
 ev("play_start"); CG.ev("start");            /* an idle game has no "start": you are playing the moment it is on screen */
 if (loaded && loaded.clicks > 0) $("hint").classList.add("gone");
 window.addEventListener("resize", () => { scene.resize(); nudge(); });
@@ -268,7 +305,9 @@ function loop(now) {
     else if (e.type === "trained") { sfx.train(); scene.pulse(40); scene.zoom(); scene.shake(0.5); flash(); toast(E.TIERS[e.tier] + " is live — it earns on its own now", "ok"); if (e.tier === 0 || stageOf(S) !== stageOf({ ...S, models: S.models - 1 })) CG.ev("happy"); if (stageOf(S) !== stageOf({ ...S, models: S.models - 1 })) toast("THE LAB GREW · " + STAGE_NAME[stageOf(S)], "ms"); render(true); }
     else if (e.type === "milestone") { sfx.ms(); toast("MILESTONE · " + e.m.name, "ms"); ev("milestone", e.m.id); }
     else if (e.type === "ach") { sfx.ms(); toast("ACHIEVEMENT · " + e.a.name + " · +1% revenue", "ms"); }
-    else if (e.type === "mission") { sfx.research(); toast("MISSION · " + e.m.text + " · +$" + E.fmt(e.m.reward.money) + (e.m.reward.rp ? ", +" + e.m.reward.rp + " RP" : ""), "ms"); ev("mission", e.m.id); }
+    else if (e.type === "market") { sfx.ms(); scene.setMarket(e.mk.id); toast(e.mk.name + " · " + e.mk.desc, "ms"); ev("market", e.mk.id); }
+    else if (e.type === "market-end") { scene.setMarket(null); }
+    else if (e.type === "mission") { sfx.research(); toast("MISSION · " + e.m.text + (e.m.reward.money ? " · +$" + E.fmt(e.m.reward.money) : "") + (e.m.reward.rp ? ", +" + e.m.reward.rp + " RP" : ""), "ms"); ev("mission", e.m.id); }
   }
   if (cacheT > 0) { cacheT -= dt; if (cacheT <= 0) $("cache").classList.remove("show"); }
   render(); scene.tick(dt);
