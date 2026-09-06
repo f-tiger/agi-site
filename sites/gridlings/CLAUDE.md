@@ -830,3 +830,10 @@ PolyTrack 的幽灵能多开（自己的前次 + 排行榜对手）。GHOSTLINE 
 **金色 = 你自己的最好一圈，蓝色 = 用你的跑法训练出来的模型**，同场跑。实现上不存录像，
 存的是 `AI.learn` 出来的策略（`S.pb[seed]`），用同一套 `driverFor` 重放——省存储，且和模型幽灵共用一条代码路径。
 **不做**赛道编辑器（成本远超一轮）与漂移计分（漂移更慢，会和计时赛的目标函数打架）。
+
+## 别手改构建产物（2026-09-06 差点丢失一次 SEO 提交）
+`site/ghostline.html` 与 `site/singularity.html` 是 `games/<slug>/build.*` 的产物。
+09-06 的 GEO/SEO 提交把 og:type、twitter:card、BreadcrumbList、`<h1 class="logo">`、
+页脚 `/ai-games` 链接直接写进了这两个产物文件——**下一次重建就会把它们静默抹掉**。
+已把五处全部移回各自 template.html。规矩：**凡是 `games/` 下有生成器的页面，只改 template，
+改完 `node build.*` 重建**；只有 `site/` 下手写的页面（首页、hub、GEO 页）才直接编辑。
