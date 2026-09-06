@@ -19,6 +19,7 @@ module.exports = {
     { name: "portrait", rec: { w: 540, h: 960 }, out: { w: 1080, h: 1920 } }
   ],
   poster: (c) => require("./_poster.js")(c, {
+    fontFace: require("./_fonts.js").righteous, family: "'Righteous'", titleScale: 1.0,
     ground: (W, H) => `radial-gradient(${W*.9}px ${H*.9}px at 65% 30%, #7ff5e4 0%, #38d9c4 40%, #22a6a0 74%, #14616e 100%)`,
     ink: "#062a26", ink2: "#ff6b9d", outline: "#ffffff", shadow: "#0b5a52", tagInk: "#062a26",
     word: "MI<em>MIC</em>", tagline: "YOU ARE THE TRAINING DATA",
