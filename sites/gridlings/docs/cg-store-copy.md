@@ -64,7 +64,7 @@ AZERTY 布局也能用）。Build 一律 `https://play.agiscorecard.com/download
 - **Category**: Driving
 - **Tags**: racing · car · time-trial · 3d · ai
 - **Description**:
-  Low-poly time trials where the ghost is you. Every run you finish, the model studies your line, tries to improve it, and races you next time as a ghost — it only ever gets faster. Steer, brake into the bends (a braked slide turns harder than grip), and stay off the barriers: a wall costs more than a brake tap. Twelve campaign tracks, a daily track, endless random tracks, medals set by the model's reference lap, split times at every checkpoint, and six cars to unlock. No account, no ads inside the game.
+  Low-poly time trials where the ghost is you. Every run you finish, the model studies your line, tries to improve it, and races you next time as a blue ghost — it only ever gets faster. Your own best lap runs beside it as a gold ghost, so you are chasing two versions of yourself at once. Steer, brake into the bends (a braked slide turns harder than grip), and stay off the barriers: a wall costs more than a brake tap. Twelve campaign tracks, a daily track, endless random tracks, medals set by the model's reference lap, split times at every checkpoint, and six cars to unlock. No account, no ads inside the game.
 - **Controls**:
   Keyboard: ← → or A / D to steer, Space (or ↓ / S) to brake, R to restart, Enter for the next track. Throttle is automatic.
   Touch: hold the left or right side of the screen to steer, the BRAKE button to brake.

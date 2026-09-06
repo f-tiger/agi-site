@@ -59,7 +59,7 @@ const buzz = ms => { try { if (navigator.vibrate) navigator.vibrate(ms); } catch
 
 /* ===== save ===== */
 const KEY = "glSave";
-let S = { best: {}, medals: {}, clones: {}, ref: {}, car: "ion", plays: 0, finishes: 0, streak: 0, lastDaily: 0, lastSeed: null };
+let S = { best: {}, medals: {}, clones: {}, pb: {}, ref: {}, car: "ion", plays: 0, finishes: 0, streak: 0, lastDaily: 0, lastSeed: null };
 try { const raw = /[?&]reset=1/.test(location.search) ? null : localStorage.getItem(KEY); if (raw) S = Object.assign(S, JSON.parse(raw)); } catch (e) {}
 function save() { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} }
 const medalCount = () => Object.values(S.medals).reduce((a, m) => a + (m === "gold" ? 3 : m === "silver" ? 2 : m === "bronze" ? 1 : 0), 0);
@@ -68,7 +68,7 @@ const fmtT = t => t >= 1e8 ? "--" : (Math.floor(t / 60) ? Math.floor(t / 60) + "
 /* ===== UI refs ===== */
 const $ = id => document.getElementById(id);
 const scene = makeScene($("stage"));
-let T = null, seed = null, level = 1, me = null, gh = null, ghPol = null, ref = null, state = "menu", count = 0, rec = [], lastCp = 0, splitTxtT = 0, finishes = 0, cpFlash = 0;
+let T = null, seed = null, level = 1, me = null, gh = null, ghPol = null, pb = null, pbPol = null, ref = null, state = "menu", count = 0, rec = [], lastCp = 0, splitTxtT = 0, finishes = 0, cpFlash = 0;
 const inp = { l: false, r: false, b: false, tl: false, tr: false, tb: false };
 
 function setCar(id) { const c = CARS.find(x => x.id === id) || CARS[0]; S.car = c.id; scene.setCar(c.col); }
@@ -78,12 +78,14 @@ function loadTrack(sd, lv) {
   if (!S.ref[sd]) { const o = AI.optimize(T, AI.baseline(T), 500, TR.rng(sd * 7 + 3)); S.ref[sd] = o.t; S.clones[sd] = { target: Array.from(o.pol.target), brake: Array.from(o.pol.brake), t: o.t }; save(); }
   ref = AI.medals(S.ref[sd]);
   const cl = S.clones[sd]; ghPol = { target: Float32Array.from(cl.target), brake: Uint8Array.from(cl.brake), t: cl.t };
+  /* your own best lap rides along as a second, gold ghost -- the line you are trying to beat */
+  const p = (S.pb || {})[sd]; pbPol = p ? { target: Float32Array.from(p.target), brake: Uint8Array.from(p.brake), t: p.t } : null;
   $("tname").textContent = T.name; $("tmeta").textContent = T.length + " m · " + T.cps.length + " checkpoints";
   $("tmedals").innerHTML = `<i class="g">◆ ${fmtT(ref.gold)}</i><i class="s">◆ ${fmtT(ref.silver)}</i><i class="b">◆ ${fmtT(ref.bronze)}</i>`;
   $("tclone").textContent = "MODEL " + fmtT(ghPol.t) + (S.best[sd] ? " · YOU " + fmtT(S.best[sd]) : "");
 }
 function startRace() {
-  me = PH.fresh(); gh = PH.fresh(); rec = []; lastCp = 0; state = "count"; count = 3.2; cpFlash = 0;
+  me = PH.fresh(); gh = PH.fresh(); pb = pbPol ? PH.fresh() : null; rec = []; lastCp = 0; state = "count"; count = 3.2; cpFlash = 0;
   $("menu").classList.remove("show"); $("result").classList.remove("show"); $("hud").classList.add("show"); $("count").classList.add("show");
   scene.snapCamera(me); if (armed) { engine.start(); music.start(); } S.plays++; S.lastSeed = seed; save(); ev("race_start", "s" + seed);
   CG.ev("start");
@@ -91,6 +93,8 @@ function startRace() {
 function endRace() {
   state = "done"; $("hud").classList.remove("show"); CG.ev("stop"); sfx.finish(); buzz(30);
   const t = me.t, prev = S.best[seed], isBest = !prev || t < prev; if (isBest) S.best[seed] = t;
+  /* a personal best is kept as a replayable line, not just a number: next run it drives beside you */
+  if (isBest && me.cp >= T.cps.length) { const bp = AI.learn(T, rec); S.pb = S.pb || {}; S.pb[seed] = { target: Array.from(bp.target), brake: Array.from(bp.brake), t }; }
   const medal = t <= ref.gold ? "gold" : t <= ref.silver ? "silver" : t <= ref.bronze ? "bronze" : null;
   const rank = { gold: 3, silver: 2, bronze: 1 }; const prevMedal = S.medals[seed];
   if (medal && (!prevMedal || rank[medal] > rank[prevMedal])) { S.medals[seed] = medal; sfx.medal(); CG.ev("happy"); ev("medal", medal); }
@@ -147,11 +151,12 @@ let last = performance.now(), acc = 0; const DT = 1 / 120;
 function loop(now) {
   const dt = Math.min(0.1, (now - last) / 1000 || 0); last = now;
   if (state === "count") { const prev = Math.ceil(count); count -= dt; const cur = Math.ceil(count); $("count").textContent = count > 0 ? String(cur) : "GO"; if (cur !== prev && count > 0) sfx.count();
-    if (count <= 0) { state = "race"; sfx.go(); setTimeout(() => $("count").classList.remove("show"), 500); } scene.tick(dt, me, gh); engine.set(0, false, true); }
+    if (count <= 0) { state = "race"; sfx.go(); setTimeout(() => $("count").classList.remove("show"), 500); } scene.tick(dt, me, gh, pb); engine.set(0, false, true); }
   else if (state === "race") {
     const steer = (inp.l || inp.tl ? -1 : 0) + (inp.r || inp.tr ? 1 : 0), brake = inp.b || inp.tb;
     acc += dt; let e = null;
     while (acc >= DT) { acc -= DT; const r = PH.step(T, me, { steer, brake }, DT); if (r) e = r; if (gh && !gh.done) PH.step(T, gh, AI.driverFor(ghPol)(T, gh), DT);
+      if (pb && !pb.done) PH.step(T, pb, AI.driverFor(pbPol)(T, pb), DT);
       if (rec.length === 0 || me.s - rec[rec.length - 1].s >= 2) rec.push({ s: me.s, d: me.d, brake }); }
     if (e) { if (e.type === "cp") { sfx.cp(); cpFlash = 1; const gt = gh.splits[e.i - 1]; if (gt !== undefined) { const dlt = e.t - gt; $("split").textContent = (dlt <= 0 ? "" : "+") + dlt.toFixed(2); $("split").className = "split show " + (dlt <= 0 ? "ok" : "bad"); splitTxtT = 2; } }
       else if (e.type === "wall") { sfx.wall(); buzz(20); $("wallflash").classList.remove("go"); void $("wallflash").offsetWidth; $("wallflash").classList.add("go"); }
@@ -160,8 +165,8 @@ function loop(now) {
     $("time").textContent = fmtT(me.t); $("speed").textContent = Math.round(me.v * 3.6) + " km/h"; $("cps").textContent = me.cp + "/" + T.cps.length;
     const dlt = gh.done ? null : (gh.s - me.s); $("vs").textContent = gh.done ? "MODEL FINISHED " + fmtT(gh.t) : (dlt > 0 ? "MODEL +" + dlt.toFixed(0) + " m" : "YOU +" + (-dlt).toFixed(0) + " m"); $("vs").className = "chip vs " + (gh.done || dlt > 0 ? "bad" : "ok");
     $("lines").style.opacity = Math.max(0, (me.v - 26) / 24) * 0.7;
-    engine.set(me.v, me.drift > 0, true); scene.tick(dt, me, gh);
-  } else { scene.tick(dt, me || PH.fresh(), null); engine.set(0, false, false); }
+    engine.set(me.v, me.drift > 0, true); scene.tick(dt, me, gh, pb);
+  } else { scene.tick(dt, me || PH.fresh(), null, null); engine.set(0, false, false); }
   requestAnimationFrame(loop);
 }
 /* boot: the last track (or the opener) starts by itself after the countdown --

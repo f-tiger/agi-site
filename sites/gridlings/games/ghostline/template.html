@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <title>GHOSTLINE — Race the AI Trained on You</title>
 <meta name="description" content="Low-poly time trials where the ghost is a model trained on your own driving. Every run you finish, it studies your line and gets faster. Beat yourself.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
 <link rel="canonical" href="https://play.agiscorecard.com/ghostline">
 <meta property="og:title" content="GHOSTLINE — Race the AI Trained on You">
 <meta property="og:description" content="Time trials against a ghost that learns from every run you finish.">
@@ -12,6 +14,7 @@
 <meta name="theme-color" content="#7fd0ff">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2314182a'/%3E%3Cpath d='M5 22 C10 8 22 8 27 22' stroke='%2339f2ff' stroke-width='3' fill='none'/%3E%3Crect x='12' y='17' width='8' height='5' rx='2' fill='%23ff3fa4'/%3E%3C/svg%3E">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"GHOSTLINE","url":"https://play.agiscorecard.com/ghostline","applicationCategory":"GameApplication","operatingSystem":"Any (browser)","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":"low-poly 3D time trials, procedural tracks, a ghost trained on your own runs that improves after every finish, medals from the model's reference lap, daily track, 6 cars, keyboard / touch, no account","isPartOf":{"@type":"WebSite","name":"Gridlings","url":"https://play.agiscorecard.com/"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Gridlings", "item": "https://play.agiscorecard.com/"}, {"@type": "ListItem", "position": 2, "name": "Games about AI", "item": "https://play.agiscorecard.com/ai-games"}, {"@type": "ListItem", "position": 3, "name": "GHOSTLINE", "item": "https://play.agiscorecard.com/ghostline"}]}</script>
 <style>
   /*__FONT__*/
   :root{--ink:#eef3ff;--mut:#9aa6c4;--cy:#39f2ff;--mg:#ff3fa4;--gold:#ffcc57;--panel:rgba(14,18,32,.86);--line:rgba(255,255,255,.12);--display:'Racing Sans One',Impact,'Arial Black',sans-serif;}
@@ -70,20 +73,23 @@
   footer{position:fixed;right:14px;bottom:10px;font-size:11px;color:#eaf4ff;text-shadow:0 1px 0 rgba(0,0,0,.4);z-index:3;} footer a{color:#fff;} .cg footer{display:none;}
   #boot{position:fixed;inset:0;z-index:30;background:#14182a;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;transition:opacity .6s;}
   #boot.gone{opacity:0;pointer-events:none;} #boot .bl{font-family:var(--display);font-size:clamp(26px,6vw,46px);color:#fff;} #boot .bl em{font-style:normal;color:var(--cy);} #boot .bs{font-family:var(--display);font-size:12px;letter-spacing:3px;color:var(--mut);}
+  /* short landscape phones: the split popup used to land on top of the speed readout */
+  @media (max-height:520px){ #hud{top:8px;} #time{font-size:clamp(28px,5.5vh,40px);} .split{top:60%;font-size:clamp(24px,5vh,38px);} }
   @media (max-width:640px){ .grid{grid-template-columns:repeat(3,1fr);gap:6px;} .tk{min-height:56px;padding:8px 6px;} .card{padding:16px 14px;} #rt{font-size:44px;} .logo{font-size:16px;} }
+.sub .cy{color:#39f2ff}.sub .gd{color:#ffd166}
 </style>
 </head>
 <body>
 <canvas id="stage"></canvas>
 <div id="lines"></div><div id="wallflash"></div>
 <div id="boot"><div class="bl">GHOST<em>LINE</em></div><div class="bs">THE MODEL IS STUDYING THE TRACK</div></div>
-<header><div class="logo">GHOST<em>LINE</em></div><div style="display:flex;gap:8px"><button class="hbtn" id="bmute" aria-label="Sound on/off">🔊</button><button class="hbtn" id="bmenu2" aria-label="Tracks">TRACKS</button></div></header>
+<header><h1 class="logo">GHOST<em>LINE</em></h1><div style="display:flex;gap:8px"><button class="hbtn" id="bmute" aria-label="Sound on/off">🔊</button><button class="hbtn" id="bmenu2" aria-label="Tracks">TRACKS</button></div></header>
 <div id="hud"><div id="time">0.00</div><div id="speed">0 km/h</div><div class="row"><span class="chip" id="cps">0/0</span><span class="chip vs ok" id="vs">MODEL</span></div></div>
 <div class="split" id="split"></div>
 <div id="count">3</div>
 <div class="zone" id="zl"></div><div class="zone" id="zr"></div><div id="zb">BRAKE</div>
 <div class="modal" id="menu"><div class="card">
-  <h2>PICK A TRACK</h2><div class="sub">Steer with ← → (A/D) · brake with Space · R restarts · the ghost is a model trained on YOUR runs</div>
+  <h2>PICK A TRACK</h2><div class="sub">Steer with ← → (A/D) · brake with Space · R restarts · <b class="cy">blue ghost</b> = a model trained on YOUR runs · <b class="gd">gold ghost</b> = your own best lap</div>
   <div class="grid" id="grid"></div>
   <div class="wide"><button class="btn pink" id="bdaily">DAILY TRACK<span>—</span></button><button class="btn alt" id="brandom">RANDOM TRACK<span>a new seed every time</span></button></div>
   <div class="sub" style="margin-top:12px">GARAGE · <span id="mcount">0 medal pts</span></div>
@@ -97,7 +103,7 @@
   <p id="rclone"></p><div id="rwalls"></div>
   <div class="btns"><button class="btn" id="bretry">RETRY (R)</button><button class="btn pink" id="bnext">NEXT TRACK</button><button class="btn alt" id="bmenu">TRACKS</button></div>
 </div></div>
-<footer><span>No ads inside · no account · free</span> · <a href="/" id="hublink">more games → Gridlings</a></footer>
+<footer><span>No ads inside · no account · free</span> · <a href="/" id="hublink">more games → Gridlings</a> · <a href="/ai-games">games about AI</a></footer>
 <script>
 "use strict";
 /*__BUNDLE__*/</script>

@@ -17,7 +17,7 @@ function plan(seed, level) {
     if (roll < 0.42) {
       const dir = r() < 0.5 ? -1 : 1, radius = 16 + r() * (40 - Math.min(20, level * 2)), ang = (30 + r() * (60 + Math.min(60, level * 8))) * Math.PI / 180;
       segs.push({ t: "t", radius, ang: ang * dir }); heading += ang * dir;
-    } else if (roll < 0.62 && level >= 2) segs.push({ t: "h", len: 40 + r() * 40, amp: (r() < 0.5 ? -1 : 1) * (2 + r() * 4) });
+    } else if (roll < 0.62 && level >= 2) segs.push({ t: "h", len: 40 + r() * 40, amp: 2 + r() * 4 });   /* rises only: a dip would sink under the flat ground plane */
     else segs.push({ t: "s", len: 30 + r() * 60 });
   }
   segs.push({ t: "s", len: 50 });

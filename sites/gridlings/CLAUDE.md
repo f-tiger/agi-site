@@ -805,3 +805,35 @@ singularity 与 ghostline 且 `/prompt` 重复 3 条、22 个谜题页里**只�
 `tools/capture-store-assets.js` 出到 `dist-store/`(gitignore),要落到 `site/covers/` 才能引用,
 而该管线今天正被另一路会话改动,不抢；②新游戏**没有 zh 页**(zh 首页已加英文界面标注的入口);
 ③trailer 有了但没有 VideoObject LD。
+
+## 3D 画质的四条硬规矩（2026-09-06 GHOSTLINE 实测，后续任何 3D 游戏照办）
+
+owner：「你做的画面很粗糙，和 cg 首页的差距很大啊」→「对比 cg 热门同类型游戏，对比他们画质，还有关键的特色…确保精品」。
+
+1. **不要用深度阴影贴图（shadowMap），用贴片阴影。** 本地测试环境是 SwiftShader 软件 WebGL，
+   `PCFSoftShadowMap` 下车的阴影会糊成一团比车大三四倍的黑斑；bias / normalBias / 视锥 ±70→±12 /
+   mapSize 全试过都消不掉，逐个 mesh 二分确认投射者就是车本身。**结论：会话里看到的阴影质量不可信，
+   而且深度 pass 在手机上是实打实的开销。** 改用：车底一张软圆 canvas 贴片（`blobMaterial()`，
+   `transparent + depthWrite:false + renderOrder 2`，局部 y=+0.02 才不会被路面盖住），
+   树石用一张 InstancedMesh 贴片（一次 draw call）。所有 GPU 上表现一致。
+2. **头顶结构至少 7 m。** 门架横梁原来在 5.2 m，摄像机在 3.3 m，每次穿过都占掉画面上三分之一，
+   截图里看起来像画面顶部有一条黑带。抬到 7.4 m、横梁减薄即可。
+3. **路侧节奏杆是最便宜的速度感。** 每约 24 m 一对立杆（实例化）。加之前和加之后的同角度截图对比，
+   速度感差距明显大于加地形、加云、加树的总和。
+4. **装饰物永远放在弯道外侧，且离路面 ≥ 7 m。** 广告牌曾放在内侧 w+3.4，等于贴着走线，
+   竖屏手机上直接糊住视野。轮胎墙同理。
+另：**每次改完 3D 场景必须在三个视口各截一张实机图并逐张看**（1280×800 / 390×780 / 844×390），
+数值门禁不会告诉你画面糊了。短横屏（`max-height:520px`）必须单独调 HUD——分段计时曾直接压在时速上。
+
+## 幽灵类玩法：多幽灵是 PolyTrack 已验证的留存件（2026-09-06）
+PolyTrack 的幽灵能多开（自己的前次 + 排行榜对手）。GHOSTLINE 的版本更有话题性：
+**金色 = 你自己的最好一圈，蓝色 = 用你的跑法训练出来的模型**，同场跑。实现上不存录像，
+存的是 `AI.learn` 出来的策略（`S.pb[seed]`），用同一套 `driverFor` 重放——省存储，且和模型幽灵共用一条代码路径。
+**不做**赛道编辑器（成本远超一轮）与漂移计分（漂移更慢，会和计时赛的目标函数打架）。
+
+## 别手改构建产物（2026-09-06 差点丢失一次 SEO 提交）
+`site/ghostline.html` 与 `site/singularity.html` 是 `games/<slug>/build.*` 的产物。
+09-06 的 GEO/SEO 提交把 og:type、twitter:card、BreadcrumbList、`<h1 class="logo">`、
+页脚 `/ai-games` 链接直接写进了这两个产物文件——**下一次重建就会把它们静默抹掉**。
+已把五处全部移回各自 template.html。规矩：**凡是 `games/` 下有生成器的页面，只改 template，
+改完 `node build.*` 重建**；只有 `site/` 下手写的页面（首页、hub、GEO 页）才直接编辑。
