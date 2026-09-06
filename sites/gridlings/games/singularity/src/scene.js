@@ -63,8 +63,13 @@ export function makeScene(canvas) {
   scene.add(drones); scene.add(leds);
 
   /* core */
-  const coreMat = new THREE.MeshStandardMaterial({ color: 0x0b2b33, emissive: CYAN, emissiveIntensity: 1.4, roughness: .3, metalness: .4, flatShading: true });
-  const core = new THREE.Mesh(new THREE.IcosahedronGeometry(1, 1), coreMat); core.position.y = 2.2; scene.add(core);
+  /* the core must read as a faceted solid, not a blob: emissive stays under the
+     bloom threshold on most facets, so the light does the shading and only the
+     brightest facets and the halo bloom */
+  const coreMat = new THREE.MeshStandardMaterial({ color: 0x0e3a44, emissive: 0x18b8cc, emissiveIntensity: 0.55, roughness: .28, metalness: .35, flatShading: true });
+  const coreEdges = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.IcosahedronGeometry(1, 1)), new THREE.LineBasicMaterial({ color: 0xbff8ff, transparent: true, opacity: .7 }));
+  coreEdges.position.y = 2.2;
+  const core = new THREE.Mesh(new THREE.IcosahedronGeometry(1, 1), coreMat); core.position.y = 2.2; scene.add(core); core.add(coreEdges); coreEdges.position.set(0, 0, 0);
   const halo = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.IcosahedronGeometry(1.45, 1)), new THREE.LineBasicMaterial({ color: CYAN, transparent: true, opacity: .55 }));
   halo.position.y = 2.2; scene.add(halo);
   const ring = new THREE.Mesh(new THREE.TorusGeometry(1.9, 0.05, 8, 64), new THREE.MeshBasicMaterial({ color: MAGENTA }));
@@ -114,7 +119,7 @@ export function makeScene(canvas) {
   /* bloom */
   const composer = new EffectComposer(renderer);
   composer.addPass(new RenderPass(scene, cam));
-  const bloom = new UnrealBloomPass(new THREE.Vector2(1, 1), 0.7, 0.55, 0.62);
+  const bloom = new UnrealBloomPass(new THREE.Vector2(1, 1), 0.55, 0.45, 0.8);
   composer.addPass(bloom);
 
   /* core skins: the collectible. Each is a different solid and palette. */
@@ -132,6 +137,7 @@ export function makeScene(canvas) {
   function setSkin(id) {
     const k = SKIN[id] || SKIN.core; if (id === skinId && core.geometry.userData.skin === id) return;
     skinId = id; core.geometry.dispose(); core.geometry = k.geo(); core.geometry.userData.skin = id;
+    coreEdges.geometry.dispose(); coreEdges.geometry = new THREE.EdgesGeometry(k.geo());
     halo.geometry.dispose(); halo.geometry = new THREE.EdgesGeometry(k.geo().clone().scale(1.45, 1.45, 1.45));
     coreMat.color.setHex(k.col); skinEm = k.em; coreMat.emissive.setHex(k.em); halo.material.color.setHex(k.em); coreLight.color.setHex(k.em); ring.material.color.setHex(k.ring);
   }
@@ -217,7 +223,7 @@ export function makeScene(canvas) {
     if (dt > 0.045) { slowT += dt; if (slowT > 3 && !st.low) setQuality(true); } else slowT = Math.max(0, slowT - dt * 0.5);
     const ps = 1 + st.pulse * 0.25 + (st.training ? Math.sin(t * 9) * 0.05 : 0), base = 0.7 + Math.min(TIERMAX, st.tier) * 0.13;
     core.scale.setScalar(base * ps); coreLight.intensity = 5 + st.pulse * 12 + Math.sin(t * 3) * 0.6 + (st.training ? 3 : 0);
-    coreMat.emissiveIntensity = 1.2 + st.pulse * 1.6 + (st.training ? 0.6 : 0);
+    coreMat.emissiveIntensity = 0.55 + st.pulse * 1.4 + (st.training ? 0.4 : 0);
     /* drones ring */
     const n = Math.min(DRONES, st.agents), r0 = 3.6;
     for (let i = 0; i < DRONES; i++) {
