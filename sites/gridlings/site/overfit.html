@@ -349,7 +349,7 @@ function startWave() {
   showIntro(wave === 1 ? "WAVE 1" : "WAVE " + wave + " \u00b7 TRAINING UPDATE", waveMsg.lines[0], waveMsg.lines.slice(1).join("  \u00b7  "));
   if (armed) sfx.wave();   /* silent on the page-load wave: creating an
      AudioContext before a user gesture logs a Chrome autoplay warning */
-  popText("WAVE " + wave, W / 2, H * 0.13, 30, 200);
+  /* wave announcement moved into the intro card (it collided with the rose) */
 }
 var nowTWave = 0;
 function spawnFoe(type) {

@@ -31,7 +31,7 @@ module.exports = {
     hero: `<svg viewBox="0 0 200 200"><defs><radialGradient id="e" cx=".4" cy=".4"><stop offset="0" stop-color="#ffd7e4"/><stop offset=".5" stop-color="#ff3d71"/><stop offset="1" stop-color="#6b0f2c"/></radialGradient><linearGradient id="s" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#b8ffe9"/><stop offset="1" stop-color="#00b586"/></linearGradient></defs>
 <g transform="translate(118 74)"><circle r="54" fill="url(#e)" stroke="#2a0a14" stroke-width="7"/><circle cx="-6" cy="-4" r="24" fill="#2a0a14"/><circle cx="2" cy="-10" r="9" fill="#fff"/><path d="M-52 -18 Q-18 -60 34 -46" fill="none" stroke="#2a0a14" stroke-width="8" stroke-linecap="round"/></g>
 <g transform="translate(52 142) rotate(-28)"><polygon points="38,0 -22,26 -12,0 -22,-26" fill="url(#s)" stroke="#04140e" stroke-width="7" stroke-linejoin="round"/><circle cx="8" cy="-4" r="6" fill="#fff"/></g>
-<g><rect x="20" y="182" width="160" height="12" rx="6" fill="#2a0a14"/><rect x="20" y="182" width="118" height="12" rx="6" fill="#00e5a8"/></g></svg>`
+<g><rect x="20" y="168" width="160" height="12" rx="6" fill="#2a0a14"/><rect x="20" y="168" width="118" height="12" rx="6" fill="#00e5a8"/></g></svg>`
   }),
   stage: (c) => `
     var hn=document.getElementById('hint'); if(hn) hn.style.display='none';
