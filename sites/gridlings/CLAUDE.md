@@ -862,3 +862,30 @@ PolyTrack 的幽灵能多开（自己的前次 + 排行榜对手）。GHOSTLINE 
   带 https://itch.io/game/new 和具体填法的 warning，不阻断部署。
 - **诊断纪律**：判断某一步有没有跑，去读那一步的日志，不要用耗时猜。本会话曾按「butler 步骤
   只跑了 3 秒」断言密钥没配，实际日志里写着 `BUTLER_API_KEY: ***`，合集页推送还成功了。
+
+## 分发已发车：七款同时上 itch + CrazyGames（2026-09-06，owner 亲自上传）
+
+**这一天是所有判定线的起算日。**
+
+- **itch**：`gridlings/<slug>` 七个项目页建成，CI butler 推送七款全绿（日志逐行 `itch ok`，零告警）。
+  以后改游戏推 main 自动更新，无需再登录 itch。
+- **CrazyGames**：七款投稿（Build 一律 `play.agiscorecard.com/downloads/cg/<slug>-cg.zip`）。
+  审核 2–4 周。**第三次同模板拒稿 = CG 对本舰队永久关闭，不许第四投**（此前两次拒稿都是
+  同一句无信息量的 "overall quality does not yet meet the expectations"）。
+
+**判定线（预登记，不许事后调）**
+| 日期 | 看什么 | 不达标怎么办 |
+|---|---|---|
+| 2026-09-24 | itch 来源真人 pv ≥150，或任一款游戏页 ≥25 | itch 渠道对本题材不成立，写进反面发现，不再投时间 |
+| 审核结果回来 | CG 是否过审 | 见上面的第三次拒稿规则 |
+
+**读数（D1，唯一口径）**
+```sql
+SELECT day, COUNT(*) FROM pageviews
+WHERE ref LIKE '%itch.zone%' OR ref LIKE '%itch.io%'
+GROUP BY day ORDER BY day DESC LIMIT 14;
+```
+注意 itch 的游戏是在 `itch.zone` 域名下的 iframe 里跑的，所以 referrer 两个域名都要匹配。
+
+**itch 算法吃外部流量与近期活跃**，挂着不动没有量：上架后从主站 hub 与 /ai-games 各加一条
+itch 链接；隔周一条 devlog（模型这周学到了什么、加了什么赛道）进关注者 feed。
