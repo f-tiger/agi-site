@@ -1,6 +1,6 @@
 # itch.io 上架：owner 操作手册（2026-09-06）
 
-七款游戏的打包与推送已经全自动，**缺的只有你手上的三件事**：itch 账号里的 API key、
+七款游戏的打包与推送已经全自动，API key 也早就配好了。**缺的只有两件事**：
 七个项目页、每页一次的素材上传。做完之后，以后每次改游戏，推 main 就会自动更新 itch 上的版本，
 不需要再登录 itch。
 
@@ -9,16 +9,22 @@
 
 ---
 
-## 第 0 步：把 API key 交给 CI（一次，约 2 分钟）
+## 第 0 步：已经做完了（2026-09-06 用部署日志核实）
 
-部署日志现在是 `no BUTLER_API_KEY — skip itch push`，也就是这一步没做之前，后面全都不会发生。
+`BUTLER_API_KEY` 早就配好了，合集页 `gridlings/gridlings-11-daily-logic-puzzles` 每次部署
+都在正常更新（09-06 那次是 `✓ 6.19 KiB patch`）。**不要**重新生成 key。
 
-1. 登录 itch.io → 右上角头像 → **Settings** → 左栏 **API keys** → **Generate new API key**。
-2. 复制那串 key。
-3. 打开 https://github.com/f-tiger/agi-site/settings/secrets/actions → **New repository secret**
-   - Name: `BUTLER_API_KEY`
-   - Secret: 粘贴那串 key
-4. 保存即可。**不要**把 key 贴进对话、issue 或任何文件。
+同一次运行里，七款游戏的推送全部报同一个错：
+
+```
+creating build on remote server: itch.io API error (400): /wharf/builds: invalid game
+```
+
+`invalid game` 的唯一含义是 **`gridlings/<slug>` 这个项目不存在**，与 key 无关。
+所以真正缺的只有第 1 步。
+
+> 记录一次判断失误：本会话曾按「butler 步骤只跑了 3 秒」推断 key 没配，这是猜测。
+> 正确做法是直接读那一步的日志——`BUTLER_API_KEY: ***` 和 `invalid game` 都写在里面。
 
 ## 第 1 步：建七个项目页（每个约 3 分钟）
 
@@ -47,7 +53,7 @@ itch.io → 右上角 **Upload new project**。七款各建一个，**URL 必须
 
 ## 第 2 步：让 CI 把包推上去（不用你动手）
 
-第 0、1 步做完后，仓库下一次推 main 就会自动执行：
+项目页建好后，仓库下一次推 main 就会自动执行：
 
 ```
 butler push /tmp/itch-<slug> gridlings/<slug>:html
@@ -97,4 +103,5 @@ GROUP BY day ORDER BY day DESC LIMIT 14;
   那个 SDK 在 itch.zone 域名下不会加载，带着反而会报错）。
 - 部署 workflow 里的 butler 步骤对七款逐个推送，任何一款失败只 warning，不阻断部署。
 - 七款的 630×500 itch 封面已全部生成。
+- `BUTLER_API_KEY` 已配置并验证可用（合集页在正常自动更新）。
 - 商店文案七款齐全，GHOSTLINE 那节已按新加的金色幽灵更新。
