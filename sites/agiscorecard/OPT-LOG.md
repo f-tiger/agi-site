@@ -2624,3 +2624,7 @@ validate 222 页 OK。种子在 content-backlog 打勾。
 - **素材工具**：`capture-store-assets.js` 视频改虚拟时钟逐帧截图（根治 CG 预览模糊）；
   `_poster.js` 标语从字标盒子推算位置（PROMPT 16:9 遮挡）；`build-fonts.sh` 重建字体模块。
 - 判定线不变；agi 内容在客户视角簇判定期内，本日不叠加 ship。
+- **同日追加**：MINIMA 深度美术（纸质测绘图：分层色 + 山体阴影 + 羽化揭示、测量钉、脚印虚线、HEAT 抛物线
+  跳跃、Rubik Mono One、音层）；L3 步数 1450→1750（确定性验证器下 explorer 由 2–5/12 升到 9/16，
+  不动井宽——加宽会合并盆地）；`verify-minima.js` 改虚拟时钟（结论不再随帧率漂移）；五款预告片抗转码
+  重录；MIMIC / MINIMA 海报主体收进画布；CG 16 项分类定案 + `docs/cg-store-copy.md`；质量基线入 CLAUDE.md。

@@ -554,7 +554,11 @@ NODE_PATH=/opt/node22/lib/node_modules node tools/capture-store-assets.js <slug>
 
 ## 四、投稿字段速查（OVERFIT 实例）
 
-- Name：`OVERFIT` · Category：Shooting（次选 Casual）
+- **CG 的 Category 下拉只有 16 项（owner 截图 2026-09-06）：.io / Action / Adventure / Arcade / Beauty / Board /
+  Card / Clicker / Driving / Puzzle / Shooting / Simulation / Sports / Strategy / Trivia / Word。
+  没有 Casual**——之前给的「Casual」全部作废。五款定案：OVERFIT = Action · PROMPT = Puzzle ·
+  MIMIC = Puzzle（归纳规则是解谜）· OVERSEER = Arcade（限时注意力反应）· MINIMA = Puzzle。
+- Name：`OVERFIT` · Category：Action（次选 Shooting）
 - Tags：`survival` `top-down` `avoid` `skill`（有 `space` 可加）
 - Controls：鼠标免点击跟随 / WASD·方向键 / 触屏按住拖动 / 空格·回车开局 / 自动开火
 - Build：`https://play.agiscorecard.com/downloads/cg/<slug>-cg.zip`（CI 每次部署重建）
@@ -646,3 +650,34 @@ NODE_PATH=/opt/node22/lib/node_modules node tools/capture-store-assets.js <slug>
   （字号 ×1.04 + 描边环 + 硬投影），横版 16:9 在 .27×1080 的字号下原来会压进投影里。
 - **字体模块可重建**：`tools/store-assets/build-fonts.sh` 从 npm 拉五个 @fontsource 包重生成
   `_fonts.js`（fredoka / audiowide / righteous / bungee / rubikmono），别再手改那个文件。
+
+## CG 质量基线——每款新游戏上架前的固定门槛（owner 2026-09-06：「记住 CG 的游戏分类、美术质量、字体质量，保证后续游戏质量」）
+
+**分类**：CG 后台只有这 16 个 Category：.io / Action / Adventure / Arcade / Beauty / Board / Card /
+Clicker / Driving / Puzzle / Shooting / Simulation / Sports / Strategy / Trivia / Word。
+**没有 Casual。** 定案：OVERFIT = Action，PROMPT / MIMIC / MINIMA = Puzzle，OVERSEER = Arcade。
+Tags ≤5 且只能用后台已有的；Description 禁 HTML。五款字段定稿在 `docs/cg-store-copy.md`。
+
+**字体门槛**（「HTML 感」的最大单一来源）：
+- 每款一个专属展示字体，走 npm：`tools/store-assets/build-fonts.sh`（@fontsource latin 子集，
+  12–15KB，SIL OFL，base64 内嵌，零运行时请求）。已用：Fredoka One（PROMPT）、Audiowide
+  （OVERFIT）、Righteous（MIMIC）、Bungee（OVERSEER）、Rubik Mono One（MINIMA）。**新游戏不复用**。
+- 展示字体只管字标 / 大数字 / 标题 / 按钮；正文与提示仍用系统字。**大号数字要先看一眼**
+  （Audiowide 的斜杠零像 ⊘，Bungee 全大写在手机上要允许换行）。
+- 画布内文字用同一字体（`cx.font = "400 26px 'Bungee',…"`），data URI 字体几帧内可用。
+
+**美术门槛**（每款都要过，缺一不上架）：
+1. **插画词汇先写一行再动手**，且与已有五款不同（机器人有眼 / 飞船与敌机 / 标本 / 无眼的
+   显示器墙与巡检车 / 无眼的纸质测绘图）。**别再默认「渐变体 + 描边 + 一只眼」**。
+2. 舞台：有背景层次（星云或纸纹 + 视差或网格 + 暗角或桌面光），主体物有体积（渐变 + 深色
+   描边 + 高光 + 影子），关键状态有过渡（入场弹入 / CRT 开关机 / 抛物线跳跃 / 出场折叠）。
+3. Juice 全套：count-up、三星/三格、NEW BEST、彩带（游戏内保留，预告片里关掉）、intro 卡、
+   触感按钮（4px 底边 + 按下位移）。
+4. 音层：`noise()` + `tone()` 叠层，≥6 种事件音；页面加载时静音（autoplay 警告会被门户拒收）。
+5. 海报三张：`_poster.js` 配方（饱和满铺底 / 描边字标占半宽 / 一个放大的主体 / 无 HUD 无小字）；
+   **主体 SVG 内容必须在 200 格画布的 30–196 之间**，标语由字标盒子推算位置；三种尺寸都要肉眼
+   看一遍有没有遮挡或裁切（MIMIC / MINIMA / PROMPT 各踩过一次）。
+6. 预告片：逐帧截图（虚拟时钟），**抗转码框架**——横版 768×432@2.5x 让主体放大、关彩带、
+   隐藏 kbd 与提示小字、crf 17；autopilot 必须演出签名机制且不作弊。
+7. 门禁：`fleet-smoke`（三视口）+ `cg-package-smoke`（gameplayStart 零交互、无 console 错误、
+   无外联）+ `check-autopilot-globals` + 各自的 verify 脚本；全部绿才交给 owner。

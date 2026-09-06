@@ -27,12 +27,28 @@ module.exports = {
   poster: (c) => require("./_poster.js")(c, {
     /* Swiss: the tile stays white on a dark portal page, which is louder than any
        colour there. Ink wordmark, one orange hard drop, no rays. */
-    ground: (W, H) => `#ffffff`, rays: null,
-    ink: "#111113", ink2: "#FF4F00", outline: "#ffffff", shadow: "#FF4F00", tagInk: "#111113",
+    fontFace: require("./_fonts.js").rubikmono, family: "'Rubik Mono One'", titleScale: .8,
+    ground: (W, H) => `#f4f1ea`, rays: null,
+    ink: "#111113", ink2: "#FF4F00", outline: "#ffffff", shadow: "#ffffff", tagInk: "#111113",   /* flat: the hard drop peeked out as orange slivers */
     word: "MINI<em>MA</em>", tagline: "YOU CAN ONLY FEEL THE SLOPE",
-    hero: `<svg viewBox="0 0 200 200"><g fill="none" stroke="#111113" stroke-linecap="round"><path d="M10 40 C60 20 120 30 190 10" stroke-width="1.4" opacity=".45"/><path d="M10 70 C60 46 120 60 190 40" stroke-width="2.4"/><path d="M10 100 C60 74 120 92 190 72" stroke-width="1.4" opacity=".45"/><path d="M10 130 C60 104 120 124 190 104" stroke-width="2.4"/><path d="M10 160 C60 136 120 156 190 136" stroke-width="1.4" opacity=".45"/><path d="M10 190 C60 168 120 188 190 168" stroke-width="2.4"/>
-<ellipse cx="132" cy="112" rx="42" ry="22" stroke-width="1.4" opacity=".55"/><ellipse cx="132" cy="112" rx="26" ry="13" stroke-width="2.4"/><ellipse cx="132" cy="112" rx="11" ry="5.5" stroke-width="1.4"/></g>
-<g><circle cx="58" cy="84" r="9" fill="#FF4F00"/><path d="M58 84 L110 106" stroke="#FF4F00" stroke-width="3.2" stroke-linecap="round"/><path d="M110 106 l-12 -1 l4 -8" fill="#FF4F00"/></g></svg>`
+    heroScale: .82,
+    /* contours live in 56..196 of the box so the top line no longer runs
+       through the tagline (first pass started at y=10) */
+    hero: `<svg viewBox="0 0 200 200"><defs>
+<radialGradient id="basin" cx=".64" cy=".58" r=".6"><stop offset="0" stop-color="#cf8a52"/><stop offset=".42" stop-color="#e6c89c"/><stop offset="1" stop-color="#f1e6d2"/></radialGradient>
+<linearGradient id="pin" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff7a3d"/><stop offset="1" stop-color="#e03f00"/></linearGradient>
+<filter id="soft" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="2.6"/></filter></defs>
+<path d="M22 74 C42 36 112 30 152 52 C192 74 194 150 154 182 C112 204 40 194 22 154 C6 124 6 100 22 74Z" fill="url(#basin)" filter="url(#soft)"/>
+<g fill="none" stroke="#14161c" stroke-linecap="round">
+<path d="M28 96 C60 74 110 70 172 60" stroke-width="1.4" opacity=".45"/>
+<path d="M26 120 C60 100 112 96 176 84" stroke-width="2.4"/>
+<path d="M30 146 C62 128 116 124 178 112" stroke-width="1.4" opacity=".45"/>
+<path d="M38 172 C66 156 118 150 172 138" stroke-width="2.4"/>
+<ellipse cx="130" cy="120" rx="40" ry="22" stroke-width="1.4" opacity=".55"/><ellipse cx="130" cy="120" rx="25" ry="13" stroke-width="2.4"/><ellipse cx="130" cy="120" rx="11" ry="5.5" stroke-width="1.4"/></g>
+<path d="M44 58 C50 88 58 108 78 118 S104 124 116 121" fill="none" stroke="#14161c" stroke-width="2" stroke-dasharray="3 4" stroke-linecap="round"/>
+<path d="M78 118 L112 121" stroke="#FF4F00" stroke-width="3.4" stroke-linecap="round"/><path d="M119 121.5 l-10 -6 l1 11z" fill="#FF4F00" stroke="#14161c" stroke-width="1.2" stroke-linejoin="round"/>
+<ellipse cx="78" cy="120" rx="9" ry="3.6" fill="rgba(20,22,28,.28)"/>
+<path d="M65 88 A13 13 0 1 1 91 88 L78 118 Z" fill="url(#pin)" stroke="#14161c" stroke-width="2.2" stroke-linejoin="round"/><circle cx="78" cy="88" r="4.2" fill="#fff"/><circle cx="73" cy="82" r="2.2" fill="rgba(255,255,255,.55)"/></svg>`
   }),
   stage: (c) => `
     armed = true; document.getElementById('hint').style.display='none';
@@ -68,10 +84,10 @@ module.exports = {
     var t = document.createElement('div');
     t.style.cssText='position:fixed;top:0;left:0;right:0;text-align:center;z-index:60;pointer-events:none;'
       + 'padding:${c.title*0.35}px 0 ${c.title*0.6}px;'
-      + 'background:linear-gradient(180deg,#ffffff 0%,#ffffff 88%,#ffffff00 100%);'
-      + 'font-family:-apple-system,Helvetica Neue,Arial,sans-serif;';
-    t.innerHTML = "<div style='font-weight:800;font-size:${c.title}px;letter-spacing:6px;color:#111113;line-height:1'>MINI<span style=color:#FF4F00>MA</span></div>"
-      + "<div style='font-weight:700;font-size:${c.tag}px;color:#FF4F00;margin-top:8px'>you can only feel the slope</div>";
+      + 'background:linear-gradient(180deg,#f4f1ea 0%,#f4f1ea 88%,#f4f1ea00 100%);'
+      + 'font-family:Rubik Mono One,Impact,sans-serif;';
+    t.innerHTML = "<div style='font-weight:400;font-size:${c.title}px;letter-spacing:2px;color:#111113;line-height:1'>MINI<span style=color:#FF4F00>MA</span></div>"
+      + "<div style='font-weight:400;font-size:${c.tag}px;color:#FF4F00;margin-top:8px'>you can only feel the slope</div>";
     document.body.appendChild(t);
   `,
 

@@ -125,32 +125,16 @@ function sizeOf(f) {
      same recipe as the covers), and ffmpeg encodes the sequence. Deterministic
      and sharp; costs ~1-2 minutes per video. */
   const FPS = 30;
-  const CLOCK = `(() => {
-    let now = 0, timers = [], rafQ = [], tid = 1;
-    const T0 = 1725580800000;
-    performance.now = () => now; Date.now = () => T0 + now;
-    window.requestAnimationFrame = cb => { rafQ.push(cb); return rafQ.length; };
-    window.cancelAnimationFrame = () => {};
-    window.setTimeout = (fn, ms, ...a) => { const id = tid++; timers.push({ id, at: now + Math.max(0, +ms || 0), fn, a, iv: 0 }); return id; };
-    window.setInterval = (fn, ms, ...a) => { const id = tid++; const iv = Math.max(1, +ms || 1); timers.push({ id, at: now + iv, fn, a, iv }); return id; };
-    window.clearTimeout = window.clearInterval = id => { timers = timers.filter(t => t.id !== id); };
-    window.__tick = ms => {
-      const target = now + ms;
-      for (;;) {
-        let due = null; for (const t of timers) if (t.at <= target && (!due || t.at < due.at)) due = t;
-        if (!due) break;
-        now = due.at;
-        if (due.iv) due.at += due.iv; else timers = timers.filter(t => t !== due);
-        try { typeof due.fn === "function" ? due.fn(...due.a) : (0, eval)(String(due.fn)); } catch (e) { console.error("timer", e); }
-      }
-      now = target;
-      const q = rafQ.splice(0); for (const cb of q) { try { cb(now); } catch (e) { console.error("raf", e); } }
-    };
-  })();`;
+  const CLOCK = require("./_vclock.js");
   for (const v of (process.env.ONLY === "covers" ? [] : cfg.videos)) {
     const frames = path.join(OUT, "_frames_" + v.name);
     fs.rmSync(frames, { recursive: true, force: true }); fs.mkdirSync(frames, { recursive: true });
-    const dsf = 2;
+    /* TRANSCODE-PROOF framing. The portal re-encodes every upload into a small,
+       low-bitrate hover preview, so what survives is big shapes and high
+       contrast, not detail. Landscape is therefore laid out at 768x432 CSS px
+       (2.5x pixels): the hero objects come out ~2x larger than at 1280x720. */
+    const dsf = v.dsf || (v.name === "landscape" ? 2.5 : 2);
+    if (!Number.isInteger(v.out.w / dsf) || !Number.isInteger(v.out.h / dsf)) throw new Error(`${v.name}: ${v.out.w}x${v.out.h} not divisible by dsf ${dsf}`);
     const ctx = await browser.newContext({
       viewport: { width: v.out.w / dsf, height: v.out.h / dsf }, deviceScaleFactor: dsf
     });
@@ -165,6 +149,13 @@ function sizeOf(f) {
     await page.goto(base, { waitUntil: "networkidle" });
     await page.waitForFunction(cfg.readyExpr);
     if (cfg.startSelector) await page.click(cfg.startSelector);
+    /* Confetti is the enemy of a low-bitrate transcode: hundreds of moving
+       fragments eat the whole bitrate budget and everything else turns to
+       blocks. Hint sub-lines and keycaps are unreadable at preview size and
+       only add noise. Both are stripped for the trailer only -- the game is
+       untouched. */
+    await page.evaluate(() => { ["confettiBurst", "squareBurst"].forEach(n => { if (typeof window[n] === "function") window[n] = function () {}; }); });
+    await page.addStyleTag({ content: "kbd{display:none!important}footer{display:none!important}#intro .s{display:none!important}" + (cfg.trailerCss || "") });
     await page.evaluate(cfg.autopilot);
     /* let the intro settle without filming it */
     await page.evaluate(ms => { for (let i = 0; i < ms / (1000 / 30); i++) window.__tick(1000 / 30); }, TRIM * 1000);
@@ -180,7 +171,7 @@ function sizeOf(f) {
     if (errs.length) throw new Error("page errors during capture: " + errs.join(" | "));
     const mp4 = path.join(OUT, `${slug}-gameplay-${v.name}-${v.out.w}x${v.out.h}.mp4`);
     await run(FF, ["-v", "error", "-y", "-framerate", String(FPS), "-i", path.join(frames, "%05d.png"),
-      "-c:v", "libx264", "-preset", "slow", "-crf", "19", "-pix_fmt", "yuv420p",
+      "-c:v", "libx264", "-preset", "slow", "-crf", "17", "-pix_fmt", "yuv420p",
       "-movflags", "+faststart", "-an", mp4]);
     fs.rmSync(frames, { recursive: true, force: true });
     report.push(`${path.basename(mp4)}  ${(fs.statSync(mp4).size / 1024) | 0}KB  ${(n / FPS).toFixed(1)}s ${n}f  probe=${JSON.stringify(last)}`);

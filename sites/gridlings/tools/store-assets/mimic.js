@@ -23,10 +23,13 @@ module.exports = {
     ground: (W, H) => `radial-gradient(${W*.9}px ${H*.9}px at 65% 30%, #7ff5e4 0%, #38d9c4 40%, #22a6a0 74%, #14616e 100%)`,
     ink: "#062a26", ink2: "#ff6b9d", outline: "#ffffff", shadow: "#0b5a52", tagInk: "#062a26",
     word: "MI<em>MIC</em>", tagline: "YOU ARE THE TRAINING DATA",
+    heroScale: .82,
+    /* everything inside 30..196 of the 200-box: the first pass drew the REJECT
+       pill at y=216 (clipped) and the star's top ran into the tagline */
     hero: `<svg viewBox="0 0 200 200"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#d9fff8"/><stop offset="1" stop-color="#38d9c4"/></linearGradient><linearGradient id="w" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffd2a8"/><stop offset="1" stop-color="#ff7a45"/></linearGradient></defs>
-<g transform="translate(112 92) rotate(-8)"><polygon points="0,-72 20,-24 70,-22 30,10 42,60 0,32 -42,60 -30,10 -70,-22 -20,-24" fill="url(#g)" stroke="#062a26" stroke-width="7" stroke-linejoin="round"/><circle cx="-14" cy="-10" r="11" fill="#fff" opacity=".85"/></g>
-<g transform="translate(46 150)"><circle r="30" fill="url(#w)" stroke="#062a26" stroke-width="6"/><circle cx="-9" cy="-8" r="7" fill="#fff" opacity=".8"/></g>
-<g font-family="Arial Black,Arial,sans-serif" font-weight="900" font-size="15" text-anchor="middle"><rect x="70" y="164" width="84" height="28" rx="14" fill="#062a26"/><text x="112" y="184" fill="#38d9c4">KEEP</text><rect x="6" y="190" width="80" height="26" rx="13" fill="#062a26"/><text x="46" y="209" fill="#ff6b9d" font-size="13">REJECT</text></g></svg>`
+<g transform="translate(120 96) rotate(-8)"><polygon points="0,-60 17,-20 58,-18 25,8 35,50 0,27 -35,50 -25,8 -58,-18 -17,-20" fill="url(#g)" stroke="#062a26" stroke-width="7" stroke-linejoin="round"/><circle cx="-12" cy="-8" r="10" fill="#fff" opacity=".85"/></g>
+<g transform="translate(46 140)"><circle r="27" fill="url(#w)" stroke="#062a26" stroke-width="6"/><circle cx="-8" cy="-7" r="6.5" fill="#fff" opacity=".8"/></g>
+<g font-family="Arial Black,Arial,sans-serif" font-weight="900" font-size="15" text-anchor="middle"><rect x="84" y="150" width="84" height="27" rx="13.5" fill="#062a26"/><text x="126" y="170" fill="#38d9c4">KEEP</text><rect x="6" y="170" width="80" height="26" rx="13" fill="#062a26"/><text x="46" y="189" fill="#ff6b9d" font-size="13">REJECT</text></g></svg>`
   }),
   stage: (c) => `
     armed = true; document.getElementById('hint').style.display='none';

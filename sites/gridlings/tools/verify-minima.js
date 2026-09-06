@@ -31,6 +31,9 @@ function serve(dir) {
   const browser = await chromium.launch();
   const page = await browser.newPage({ viewport: { width: 1100, height: 720 } });
   const errs = [];
+  /* deterministic: the game only advances when the policy ticks it, so the
+     verdict is the same on a loaded machine as on an idle one */
+  await page.addInitScript(require("./_vclock.js"));
   page.on("pageerror", e => errs.push("pageerror: " + e.message));
   page.on("console", m => { if (m.type() === "error") errs.push("console: " + m.text()); });
 
@@ -53,7 +56,7 @@ function serve(dir) {
   await page.route("**/play.agiscorecard.com/e", r => r.fulfill({ status: 204, body: "" }));
   await page.goto(`http://127.0.0.1:${port}/minima.html`, { waitUntil: "networkidle" });
   await page.waitForFunction("window.MN_READY === true");
-  await page.waitForTimeout(600);
+  await page.evaluate(() => { for (let i = 0; i < 36; i++) window.__tick(1000 / 60); });
 
   const cg = await page.evaluate("window.__cg");
   console.log(`gameplayStart with zero interaction: ${cg.some(e => e[0] === "start") ? "YES at " + Math.round(cg.find(e => e[0] === "start")[1]) + "ms" : "NO  <-- BLOCKER"}`);
@@ -61,8 +64,8 @@ function serve(dir) {
   const nLevels = await page.evaluate("LEVELS.length");
   let bad = 0;
   for (let i = 0; i < nLevels; i++) {
-    const r = await page.evaluate(async ({ i, TRIALS }) => {
-      const sleep = ms => new Promise(r => setTimeout(r, ms));
+    const r = await page.evaluate(({ i, TRIALS }) => {
+      const tick = () => window.__tick(1000 / 60);
       const out = { wins: 0, stepsLeft: [], heats: [], decoys: 0, note: LEVELS[i].note };
 
       /* how many distinct local minima sit ABOVE the target — i.e. traps that a
@@ -93,13 +96,18 @@ function serve(dir) {
             all. THIS is the one that gates. If the explorer cannot finish a
             level inside its step budget, no player can, and the level ships
             broken. Neither policy reads anything the player cannot see. */
-      async function play(kind) {
+      function play(kind) {
         loadLevel(i);
         armed = true;
-        let heats = 0, guard = 0, stall = 0, mode = "descend", pushA = 0, pushLeft = 0;
+        let heats = 0, guard = 0, stall = 0, mode = "descend", pushA = 0, pushLeft = 0, pushT0 = 0;
         let bestSeen = fieldAt(probe.x, probe.y);
         const startX = probe.x, startY = probe.y;
-        while (!over && guard++ < 3000) {
+        while (!over && guard < 3000) {
+          /* HEAT is now a visible 0.45s jump during which the game ignores
+             movement; that is animation, not level design, so it must not eat
+             the iteration budget this verdict is based on */
+          if (typeof jump !== "undefined" && jump) { tick(); continue; }
+          guard++;
           const lo = fieldAt(probe.x, probe.y);
           if (lo < bestSeen - 1e-4) { bestSeen = lo; stall = 0; } else stall++;
           const g = gradAt(probe.x, probe.y), m = Math.hypot(g[0], g[1]);
@@ -107,8 +115,10 @@ function serve(dir) {
             ptr.on = true;
             ptr.x = Math.max(0, Math.min(1, probe.x + Math.cos(pushA) * 0.12));
             ptr.y = Math.max(0, Math.min(1, probe.y + Math.sin(pushA) * 0.12));
-            pushLeft -= 0.30 / 60;
-            if (pushLeft <= 0 || (m > 0.9 && lo < bestSeen - 0.03)) mode = "descend";
+            /* push length in GAME time, not verifier iterations: iteration
+               pacing follows the frame rate, and a heavier draw pass was
+               shortening every push (explorer 2/12 on a level it had passed) */
+            if (nowT - pushT0 >= 0.26 / SPEED || (m > 0.9 && lo < bestSeen - 0.03)) mode = "descend";
           } else if (m < 0.05 || stall > (kind === "explorer" ? 90 : 60)) {
             if (steps >= 90 && (kind === "follower" || Math.random() < 0.5)) { doHeat(); heats++; stall = 0; }
             else if (kind === "explorer") {
@@ -116,15 +126,14 @@ function serve(dir) {
                  privileged knowledge of where the deep basin is */
               if (pushLeft === 0 && pushA === 0) pushA = Math.atan2(probe.y - startY, probe.x - startX) || 0;
               else pushA += 2.399;
-              pushLeft = 0.26; mode = "push"; stall = 0;
+              pushLeft = 0.26; pushT0 = nowT; mode = "push"; stall = 0;
             } else break;
           } else if (m > 1e-9) {
             ptr.on = true;
             ptr.x = Math.max(0, Math.min(1, probe.x - g[0] / m * 0.12));
             ptr.y = Math.max(0, Math.min(1, probe.y - g[1] / m * 0.12));
           }
-          await sleep(0);
-          if (guard % 3 === 0) await sleep(4);
+          tick();
         }
         ptr.on = false;
         return { won: won, left: Math.round(steps), heats: heats };
@@ -134,7 +143,7 @@ function serve(dir) {
       out.explorer = { wins: 0, left: [], heats: [] };
       for (let t = 0; t < TRIALS; t++) {
         for (const kind of ["follower", "explorer"]) {
-          const r = await play(kind);
+          const r = play(kind);
           const bucket = out[kind];
           if (r.won) { bucket.wins++; bucket.left.push(r.left); }
           bucket.heats.push(r.heats);          /* recorded for EVERY trial: the
