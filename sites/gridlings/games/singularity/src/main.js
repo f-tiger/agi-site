@@ -152,7 +152,9 @@ function buildShop() {
 }
 function shake(el) { el.classList.remove("shk"); void el.offsetWidth; el.classList.add("shk"); }
 function toast(txt, cls) {
-  const t = document.createElement("div"); t.className = "toast " + (cls || ""); t.textContent = txt; $("toasts").appendChild(t);
+  const box = $("toasts"), cap = innerWidth < 760 ? 2 : 4;
+  while (box.children.length >= cap) box.firstChild.remove();     /* never a wall over the hall */
+  const t = document.createElement("div"); t.className = "toast " + (cls || ""); t.textContent = txt; box.appendChild(t);
   setTimeout(() => { t.classList.add("out"); setTimeout(() => t.remove(), 400); }, 2800);
 }
 function pop(txt, x, y, cls) {

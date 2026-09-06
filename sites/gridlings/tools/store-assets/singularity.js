@@ -15,7 +15,9 @@ module.exports = {
     { name: "landscape", rec: { w: 1280, h: 720 }, out: { w: 1920, h: 1080 }, dsf: 2 },   /* the side panel needs the width */
     { name: "portrait", rec: { w: 540, h: 960 }, out: { w: 1080, h: 1920 } }
   ],
-  trailerCss: "#hint{display:none!important}#nudge{display:none!important}#toasts{top:auto;bottom:16px;max-width:260px}.toast{font-size:11px;padding:6px 9px}",
+  /* toasts: bottom-right on the wide frame (off the core), the game's own
+     above-the-panel placement on the tall one (off the shop) */
+  trailerCss: "#hint{display:none!important}#nudge{display:none!important}@media(min-width:761px){#toasts{top:auto;bottom:16px;max-width:260px}}.toast{font-size:11px;padding:6px 9px}",
   /* landscape: one line, small; portrait/square: two lines. A 16-character
      wordmark cannot be both big and unbroken at 800px wide. */
   poster: (c) => require("./_poster.js")(c, Object.assign(c.w > c.h * 1.1
