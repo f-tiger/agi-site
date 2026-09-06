@@ -2628,3 +2628,7 @@ validate 222 页 OK。种子在 content-backlog 打勾。
   跳跃、Rubik Mono One、音层）；L3 步数 1450→1750（确定性验证器下 explorer 由 2–5/12 升到 9/16，
   不动井宽——加宽会合并盆地）；`verify-minima.js` 改虚拟时钟（结论不再随帧率漂移）；五款预告片抗转码
   重录；MIMIC / MINIMA 海报主体收进画布；CG 16 项分类定案 + `docs/cg-store-copy.md`；质量基线入 CLAUDE.md。
+- **同日追加（gridlings）**：新游戏 **SINGULARITY INC.**（冲 CG 首页的放置类，Three.js + esbuild 单文件 568KB）：
+  4 生成器 × 5 里程碑、20 代模型带训练时长、研究树 16、成就 26、皮肤 8、任务 3 条滚动、数据缓存、每日连击、
+  离线报告、失控/对齐、声望；4 阶段 3D 机房；`verify-singularity.js` 数值门全绿；fleet-smoke / 包自检绿。
+  PRD `docs/singularity-prd.md`（含首页级验收线 §六、对标表 §七）。

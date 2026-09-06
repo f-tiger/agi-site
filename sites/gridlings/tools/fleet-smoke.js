@@ -9,8 +9,8 @@ const { chromium } = require("playwright");
 const http = require("http"), fs = require("fs"), path = require("path");
 const ROOT = path.dirname(__dirname), SITE = path.join(ROOT, "site");
 const GAMES = process.argv.slice(2).length ? process.argv.slice(2)
-  : ["overfit", "mimic", "overseer", "prompt", "minima"];
-const READY = { overfit: "OF_READY", mimic: "MC_READY", overseer: "OS_READY", prompt: "PM_READY", minima: "MN_READY" };
+  : ["overfit", "mimic", "overseer", "prompt", "minima", "singularity"];
+const READY = { overfit: "OF_READY", mimic: "MC_READY", overseer: "OS_READY", prompt: "PM_READY", minima: "MN_READY", singularity: "SG_READY" };
 const VIEWS = [{ w: 844, h: 390, n: "landscape" }, { w: 390, h: 780, n: "portrait" }, { w: 1280, h: 800, n: "desktop" }];
 
 function serve(dir) {
@@ -61,7 +61,14 @@ function serve(dir) {
         const out = [];
         document.querySelectorAll("button, footer, .rack, .pad, .bar").forEach(el => {
           const b = el.getBoundingClientRect();
-          if (b.height > 0 && b.bottom > vh + 0.5) out.push(el.id || el.className || el.tagName);
+          if (!(b.height > 0 && b.bottom > vh + 0.5)) return;
+          /* inside a scrollable panel that is itself on screen = reachable (idle
+             games keep a long shop in a scroll area; that is not a hidden control) */
+          for (let a = el.parentElement; a; a = a.parentElement) {
+            const ov = getComputedStyle(a).overflowY, r = a.getBoundingClientRect();
+            if ((ov === "auto" || ov === "scroll") && r.bottom <= vh + 0.5 && a.scrollHeight > a.clientHeight) return;
+          }
+          out.push(el.id || el.className || el.tagName);
         });
         return out;
       }, v.h);

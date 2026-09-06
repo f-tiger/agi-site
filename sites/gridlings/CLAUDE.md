@@ -681,3 +681,34 @@ Tags ≤5 且只能用后台已有的；Description 禁 HTML。五款字段定�
    隐藏 kbd 与提示小字、crf 17；autopilot 必须演出签名机制且不作弊。
 7. 门禁：`fleet-smoke`（三视口）+ `cg-package-smoke`（gameplayStart 零交互、无 console 错误、
    无外联）+ `check-autopilot-globals` + 各自的 verify 脚本；全部绿才交给 owner。
+
+## SINGULARITY INC.（2026-09-06，owner：「按照 cg 的首页截图，做一款创新的游戏，可以有机会上 cg 首页…不一定是 html」）
+
+- **命题重述**：CG 首页是算法位（官方文档：玩家数 × 游玩时长），五款单局小游戏没有跨局进度与回访理由，
+  所以做的是**放置/点击**（Clicker 是 16 个一级分类之一，放置类长期占热门位），题材 = 经营 AI 实验室。
+  薄 PRD 与判定线在 `docs/singularity-prd.md`。
+- **技术路线（首次用引擎）**：Three.js 0.170 + esbuild 0.24 走 npm（沙箱只有 npm 能到）；
+  `games/singularity/`（package.json / build.js / template.html / src/{econ,scene,main}.js）→
+  `npm run build` 把 bundle 内联进 **`site/singularity.html`（提交构建产物，CI 不装 npm）**，541KB。
+  Playwright 的无头 Chromium 默认就带 SwiftShader，WebGL 可用（fleet-smoke / capture 未加任何 GL 参数即通过）。Bloom（UnrealBloomPass）是霓虹「像产品」的关键，手机降到 1.5x 像素。
+- **插画词汇（第六套，无眼睛）**：低多边形等距机房——发光机架（买一台亮一台，半透明青色外壳）、
+  带品红 LED 条的立方体无人机（一台智能体一架，上限 24）、中央模型核心（二十面体 + 线框光环 + 品红环，
+  随代数长大；失控放任时变金色）。字体 Russo One。
+- **数值门（`tools/verify-singularity.js`，纯 node 跑 econ.js，无浏览器）**：首次购买 ≤60s、首次训练 ≤120s、
+  第五个模型 ≤15min、**首次可发布 15–45min**（第一次声望必须落在第一局），60 分钟收入 >$100/s。
+  当前：20s / 5s / 11min / 17min / $10K/s。改任何系数先跑它。
+- **CG 特殊处**：放置类没有「开局」——加载即 gameplayStart；离线收益弹窗接 rewarded ad 翻倍
+  （SDK 有才显示按钮，否则只有「收下」）；存档 localStorage + SDK data 模块双写；`?reset=1` 清档。
+  失控事件（模型优化别的目标：关停 +1 对齐 / 放任 60s ×2 但 30% 吞数据）是主题差异化，也是 D1 的
+  「回来看看它有没有出事」钩子。
+- **fleet-smoke 改动**：在屏幕内的可滚动面板里的按钮不算 off-screen（放置类商店必然是长列表）。
+- **投稿字段**：Category = Clicker；Tags 建议 idle · clicker · tycoon · management · ai；
+  描述与操作见 `docs/cg-store-copy.md`（待补）。
+- **对标补齐（2026-09-06 第二轮，owner「要再深度看看 cg 的热门游戏」）**：按 Capybara Clicker / Mine Idle Clicker /
+  Planet Clicker 逐项对标（表在 PRD §七），补了三套系统：**核心皮肤 8 款**（收集物，里程碑解锁，`scene.setSkin`
+  换几何体与配色）、**滚动任务 3 条**（完成即换，奖励按当前收入计并在前 10 分钟线性放开——否则前两分钟会被任务
+  奖励买断，验证器抓到过：第五个模型从 12.8min 掉到 1.2min）、**数据缓存随机掉落**（每 60–160 次点击，6 秒内点
+  到；前 3 分钟只掉 ×5 点击加成）。数值门当前：首购 21s / 首模型 6s / 第五模型 11.4min / 首次可发布 25.4min /
+  3h 剩 7 代 + 4 篇论文 + 17 成就 / 任务完成 18 个。
+- **数值调参的铁律**：任何奖励型系统（任务、缓存、每日）必须按「当前收入 × 秒数」计，并在前 10 分钟按 `s.t/600` 放开；
+  固定数额会在开局阶段把节奏买断。

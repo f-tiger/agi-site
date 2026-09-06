@@ -17,7 +17,7 @@ module.exports = function poster(c, o) {
   /* the tagline hangs off the wordmark's real box (font size + outline ring +
      hard drop) instead of a fixed percentage -- at the landscape title size the
      percentage put it inside the letters' drop shadow */
-  const tagTopPx = Math.round(wordTopPx + title * 1.04 + ol + title * .07 + title * .04);
+  const tagTopPx = Math.round(wordTopPx + title * 1.04 * (o.lines || 1) + ol + title * .07 + title * .04);   /* o.lines: wordmark height in line-heights when it wraps on purpose */
   const wordTop = wordTopPx + "px", tagTop = tagTopPx + "px";
   const heroTop = port ? "36%" : sq ? "36%" : "66%";
   return `<!doctype html><html><head><meta charset="utf-8"><style>${o.fontFace || ""}

@@ -51,3 +51,11 @@ AZERTY 布局也能用）。Build 一律 `https://play.agiscorecard.com/download
 - **Controls**:
   Mouse / touch: tap the direction pad, tap HEAT to jump out of a valley.
   Keyboard: WASD or arrow keys to step, Space / Enter = HEAT; on the result card Space / Enter = next level / restart.
+
+## SINGULARITY INC.（2026-09-06 新增，冲首页的放置类）
+- **Category**: Clicker
+- **Tags**: idle · clicker · tycoon · management · ai
+- **Description**:
+  Run the AI lab. Tap the core to label data, train a model, and it starts earning on its own — then hire agents so the data labels itself, and add GPU racks so bigger models fit. Watch the lab grow from a garage to a datacenter, a campus and an orbital ring. Every model keeps working while you are away: come back to offline earnings and a report of what happened. But models are not always yours: sometimes one stops serving customers and starts optimising something else. Shut it down for alignment, or let it run for double revenue and hope it does not eat your data. Missions, research papers, 26 achievements, 8 core skins, a daily streak, and a prestige loop that takes you from v0.1 to ASI. No account, no ads inside the game.
+- **Controls**:
+  Mouse / touch: tap the core (or anywhere in the hall) to label data; tap the panel to buy, train and ship. Nothing else to learn.

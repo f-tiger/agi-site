@@ -11,7 +11,7 @@ const http = require("http"), fs = require("fs"), path = require("path"), os = r
 const ROOT = path.dirname(__dirname);
 const CG = path.join(ROOT, "site", "downloads", "cg");
 const GAMES = process.argv.slice(2).length ? process.argv.slice(2)
-  : ["overfit", "mimic", "overseer", "prompt", "minima"];
+  : ["overfit", "mimic", "overseer", "prompt", "minima", "singularity"];
 
 function serve(dir) {
   const TYPES = { ".html": "text/html", ".js": "text/javascript", ".json": "application/json", ".png": "image/png" };

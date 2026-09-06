@@ -86,6 +86,8 @@ export default {
       assetReq = new Request(new URL("/overseer.html", url).toString(), request);
     } else if (url.pathname === "/prompt" || url.pathname === "/prompt/") {
       assetReq = new Request(new URL("/prompt.html", url).toString(), request);
+    } else if (url.pathname === "/singularity" || url.pathname === "/singularity/") {
+      assetReq = new Request(new URL("/singularity.html", url).toString(), request);
     } else if (url.pathname === "/minima" || url.pathname === "/minima/") {
       assetReq = new Request(new URL("/minima.html", url).toString(), request);
     } else if (url.pathname === "/overfit" || url.pathname === "/overfit/") {
