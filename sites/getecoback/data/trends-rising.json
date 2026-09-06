@@ -1,5 +1,5 @@
 {
- "fetched": "2026-09-05",
+ "fetched": "2026-09-06",
  "geo": "DE",
  "seeds": {
   "klimaanlage": {
@@ -88,51 +88,58 @@
    "polluted": false
   },
   "infrarotheizung": {
+   "auto": [
+    "infrarotheizung",
+    "infrarotheizung wand",
+    "infrarotheizung decke",
+    "infrarotheizung badezimmer",
+    "infrarotheizung bild",
+    "infrarotheizung test",
+    "infrarotheizungen",
+    "infrarotheizung standgerät",
+    "infrarotheizung stromverbrauch",
+    "infrarotheizung spiegel"
+   ],
    "rising": [
     {
-     "q": "infrarotheizung vor und nachteile",
-     "v": 86550
+     "q": "infrarotheizung wand",
+     "v": "new"
     },
     {
-     "q": "infrarotheizung als bild",
-     "v": 58050
+     "q": "infrarotheizung decke",
+     "v": "new"
     },
     {
-     "q": "ölradiator",
-     "v": 44300
+     "q": "infrarotheizung badezimmer",
+     "v": "new"
     },
     {
-     "q": "infrarotheizung lüge",
-     "v": 39900
+     "q": "infrarotheizung bild",
+     "v": "new"
     },
     {
-     "q": "infrarotheizung energiesparend",
-     "v": 38050
+     "q": "infrarotheizung test",
+     "v": "new"
     },
     {
-     "q": "infrarotheizung mobil",
-     "v": 34600
+     "q": "infrarotheizungen",
+     "v": "new"
     },
     {
-     "q": "könighaus infrarotheizung 600 watt",
-     "v": 34550
+     "q": "infrarotheizung standgerät",
+     "v": "new"
     },
     {
-     "q": "infrarotheizung werkstatt",
-     "v": 6500
+     "q": "infrarotheizung stromverbrauch",
+     "v": "new"
     },
     {
-     "q": "pelletofen",
-     "v": 5700
-    },
-    {
-     "q": "knebel infrarotheizung",
-     "v": 5100
+     "q": "infrarotheizung spiegel",
+     "v": "new"
     }
    ],
-   "source": "related-queries",
-   "fetched": "2026-09-05",
-   "polluted": false
+   "source": "autocomplete-diff",
+   "fetched": "2026-09-06"
   },
   "luftentfeuchter": {
    "rising": [
@@ -273,46 +280,58 @@
    "fetched": "2026-09-03"
   },
   "kaffeevollautomat": {
+   "auto": [
+    "kaffeevollautomat",
+    "kaffeevollautomat test",
+    "kaffeevollautomat delonghi",
+    "kaffeevollautomat testsieger",
+    "kaffeevollautomat philips",
+    "kaffeevollautomat siemens",
+    "kaffeevollautomat angebot",
+    "kaffeevollautomat günstig",
+    "kaffeevollautomat jura",
+    "kaffeevollautomat klein"
+   ],
    "rising": [
     {
-     "q": "siemens kaffeevollautomat eq.6 plus s400 te654509de",
-     "v": 7450
+     "q": "kaffeevollautomat test",
+     "v": "new"
     },
     {
-     "q": "krups kaffeevollautomat intensity milk",
-     "v": 400
+     "q": "kaffeevollautomat delonghi",
+     "v": "new"
     },
     {
-     "q": "kaffeevollautomat mit 2 bohnenbehälter testsieger",
-     "v": 400
+     "q": "kaffeevollautomat testsieger",
+     "v": "new"
     },
     {
-     "q": "kitchenaid kaffeevollautomat",
-     "v": 130
+     "q": "kaffeevollautomat philips",
+     "v": "new"
     },
     {
-     "q": "siemens kaffeevollautomat reparatur",
-     "v": 90
+     "q": "kaffeevollautomat siemens",
+     "v": "new"
     },
     {
-     "q": "kaffeevollautomat mit zwei bohnenbehälter und zwei mahlwerken",
-     "v": 90
+     "q": "kaffeevollautomat angebot",
+     "v": "new"
     },
     {
-     "q": "de'longhi kaffeevollautomat",
-     "v": 90
+     "q": "kaffeevollautomat günstig",
+     "v": "new"
     },
     {
-     "q": "kaffeevollautomat von tchibo",
-     "v": 90
+     "q": "kaffeevollautomat jura",
+     "v": "new"
     },
     {
-     "q": "samsung kaffeevollautomat",
-     "v": 80
+     "q": "kaffeevollautomat klein",
+     "v": "new"
     }
    ],
-   "source": "related-queries",
-   "fetched": "2026-08-28"
+   "source": "autocomplete-diff",
+   "fetched": "2026-09-06"
   },
   "akku staubsauger": {
    "rising": [

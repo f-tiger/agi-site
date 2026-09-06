@@ -1,57 +1,56 @@
 {
  "ok": true,
- "fetched": "2026-09-05",
+ "fetched": "2026-09-06",
  "source": "https://trends.google.com/trending/rss?geo=DE",
- "matched": [],
+ "matched": [
+  {
+   "title": "wettersturz",
+   "traffic": "200+"
+  }
+ ],
  "top": [
   {
-   "title": "witz des tages",
+   "title": "dietmar hamann",
+   "traffic": "500+"
+  },
+  {
+   "title": "immer wieder sonntags",
+   "traffic": "2000+"
+  },
+  {
+   "title": "kit harington",
    "traffic": "200+"
   },
   {
-   "title": "jens spahn ski aggu",
+   "title": "владимир путин",
    "traffic": "200+"
   },
   {
-   "title": "erni mangold",
-   "traffic": "200+"
-  },
-  {
-   "title": "west nil virus",
+   "title": "marktwert",
    "traffic": "100+"
   },
   {
-   "title": "sachsen anhalt",
-   "traffic": "5000+"
+   "title": "new glenn",
+   "traffic": "100+"
   },
   {
-   "title": "luis enrique",
-   "traffic": "200+"
-  },
-  {
-   "title": "judd trump",
+   "title": "wuppertal",
    "traffic": "500+"
   },
   {
-   "title": "tetris",
-   "traffic": "500+"
-  },
-  {
-   "title": "anna-carina woitschack",
+   "title": "wettersturz",
    "traffic": "200+"
   },
   {
-   "title": "nieheim",
+   "title": "diesel",
+   "traffic": "100+"
+  },
+  {
+   "title": "netflix abo",
    "traffic": "100+"
   }
  ],
  "history": [
-  {
-   "d": "2026-08-22",
-   "matched": [
-    "berlin wetter"
-   ]
-  },
   {
    "d": "2026-08-23",
    "matched": []
@@ -115,6 +114,12 @@
   {
    "d": "2026-09-05",
    "matched": []
+  },
+  {
+   "d": "2026-09-06",
+   "matched": [
+    "wettersturz"
+   ]
   }
  ]
 }
