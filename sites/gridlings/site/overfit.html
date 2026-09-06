@@ -77,6 +77,7 @@
   #intro .t{font-size:clamp(18px,4.3vw,30px);font-weight:900;color:#00e5a8;text-shadow:0 6px 30px #00e5a855;margin-top:4px;white-space:nowrap;}
   #intro .s{font-size:14px;color:#e8edf7;margin-top:8px;opacity:.85;}
   #fx{position:fixed;inset:0;z-index:55;pointer-events:none;}
+  #intro{top:36%!important;}
 </style>
 </head>
 <body>
@@ -343,7 +344,9 @@ function startWave() {
   waveConc = Math.round(Math.min(3 + wave, 9) * areaScale);
   spawnTimer = 0;
   nowTWave = 0;
-  waveMsg = { t: 0, lines: wave === 1 ? ["cold start — no data on you yet"] : trainingReport() };
+  waveMsg = { t: 0, lines: wave === 1 ? ["cold start \u2014 no data on you yet"] : trainingReport() };
+  /* the wave card doubles as the model's training report: what it now believes about you */
+  showIntro(wave === 1 ? "WAVE 1" : "WAVE " + wave + " \u00b7 TRAINING UPDATE", waveMsg.lines[0], waveMsg.lines.slice(1).join("  \u00b7  "));
   if (armed) sfx.wave();   /* silent on the page-load wave: creating an
      AudioContext before a user gesture logs a Chrome autoplay warning */
   popText("WAVE " + wave, W / 2, H * 0.13, 30, 200);
@@ -551,6 +554,7 @@ function endGame() {
   modalT = setTimeout(function () { document.getElementById("mover").classList.add("show"); }, 500);
 }
 /* ============ draw */
+function rrp(x, y, w, h, r) { r = Math.min(r, w / 2, h / 2); cx.moveTo(x + r, y); cx.arcTo(x + w, y, x + w, y + h, r); cx.arcTo(x + w, y + h, x, y + h, r); cx.arcTo(x, y + h, x, y, r); cx.arcTo(x, y, x + w, y, r); cx.closePath(); }
 function tri(x, y, a, r) {
   cx.beginPath();
   cx.moveTo(x + Math.cos(a) * r * 1.4, y + Math.sin(a) * r * 1.4);
@@ -577,37 +581,50 @@ function draw(dt) {
   cx.fillText("WAVE " + wave, 14, 24);
   cx.textAlign = "right";
   cx.fillText("❤".repeat(Math.max(0, hp)) + "♡".repeat(Math.max(0, 3 - hp)), W - 14, 24);
-  /* model confidence bar — the AI's brain, always visible */
-  var bw = Math.min(280, W * 0.5), bx = (W - bw) / 2, by = 44;
-  cx.textAlign = "left"; cx.fillStyle = "#7684a8"; cx.font = "700 9px -apple-system,'Segoe UI',sans-serif";
-  cx.fillText("AI CONFIDENCE", bx, by - 3);
-  cx.fillStyle = "rgba(255,255,255,.07)";
-  cx.fillRect(bx, by, bw, 7);
-  var cw = bw * model.conf;
-  var grad = cx.createLinearGradient(bx, 0, bx + bw, 0);
-  grad.addColorStop(0, "#5a8cf5"); grad.addColorStop(1, "#ff3d71");
-  cx.fillStyle = confused > 0 ? "#00e5a8" : grad;
-  cx.fillRect(bx, by, Math.max(4, cw), 7);
-  if (confused > 0) {
-    confuseFlash += dt * 8;
-    cx.globalAlpha = 0.5 + 0.5 * Math.sin(confuseFlash);
-    cx.fillStyle = "#00e5a8"; cx.font = "800 11px -apple-system,'Segoe UI',sans-serif";
-    cx.fillText("CONFUSED — ×2", bx + bw + 8, by + 7);
-    cx.globalAlpha = 1;
+  /* atmosphere: motes and two soft light streaks, so the arena is a lit stage
+     between waves instead of a grid on a black page */
+  for (var mi = 0; mi < 14; mi++) {
+    var mx = ((mi * 137.5) % W + nowT * (4 + mi % 3) * 3) % W, my = ((mi * 89.3) % H + Math.sin(nowT * .6 + mi) * 12);
+    cx.fillStyle = "rgba(0,229,168," + (0.05 + 0.05 * Math.sin(nowT * 1.3 + mi)) + ")";
+    cx.beginPath(); cx.arc(mx, my, 1.5 + (mi % 3), 0, 7); cx.fill();
   }
-  /* wave training report card */
-  if (waveMsg) {
-    var a5 = Math.min(1, waveMsg.t * 3, (2.6 - waveMsg.t) * 2);
-    cx.globalAlpha = Math.max(0, a5);
-    cx.textAlign = "center";
-    if (wave > 1) {
-      cx.fillStyle = "#ff3d71"; cx.font = "800 12px -apple-system,'Segoe UI',sans-serif";
-      cx.fillText("TRAINING UPDATE", W / 2, H * 0.26);
-    }
-    cx.fillStyle = "#ff9db8"; cx.font = "600 13px 'JetBrains Mono',monospace,-apple-system";
-    waveMsg.lines.forEach(function (ln, i) { cx.fillText(ln, W / 2, H * 0.30 + i * 19); });
-    cx.globalAlpha = 1;
+  for (var di = 0; di < 9; di++) {
+    var dx = ((di * 211.7) % W + nowT * (6 + di % 4) * 2.2) % W, dy = ((di * 149.3) % H + nowT * (3 + di % 3) * 1.6) % H, ds = 9 + (di % 4) * 6;
+    cx.save(); cx.translate(dx, dy); cx.rotate(nowT * (.2 + di * .05)); cx.globalAlpha = .07;
+    cx.fillStyle = di % 2 ? "#5a8cf5" : "#ff3d71"; cx.beginPath();
+    for (var dk = 0; dk < 5; dk++) { var da = dk * Math.PI * 2 / 5; cx.lineTo(Math.cos(da) * ds, Math.sin(da) * ds * .8); }
+    cx.closePath(); cx.fill(); cx.restore();
   }
+  cx.save(); cx.globalAlpha = .03; cx.fillStyle = "#ff3d71";
+  cx.beginPath(); cx.moveTo(W * .1, 0); cx.lineTo(W * .22, 0); cx.lineTo(W * .55, H); cx.lineTo(W * .43, H); cx.closePath(); cx.fill();
+  cx.beginPath(); cx.moveTo(W * .62, 0); cx.lineTo(W * .68, 0); cx.lineTo(W * .92, H); cx.lineTo(W * .86, H); cx.closePath(); cx.fill();
+  cx.restore();
+  /* THE MODEL'S BRAIN: an 8-petal rose of its movement histogram. The petal it
+     believes in most is lit in its colour; the whole thing scrambles green while it
+     is confused. This is the game's AI made visible -- the player watches it learn. */
+  var RX = W / 2, RY = 80, RR = 26;
+  var mn = Math.min.apply(null, model.dirBins), mxv = Math.max.apply(null, model.dirBins), span = Math.max(1e-6, mxv - mn);
+  cx.save(); cx.translate(RX, RY);
+  cx.fillStyle = "rgba(10,14,24,.85)"; cx.beginPath(); cx.arc(0, 0, RR + 9, 0, 7); cx.fill();
+  cx.strokeStyle = "rgba(255,255,255,.10)"; cx.lineWidth = 1; cx.stroke();
+  cx.strokeStyle = "rgba(255,255,255,.06)"; cx.beginPath(); cx.arc(0, 0, RR * .5, 0, 7); cx.stroke();
+  for (var bi = 0; bi < 8; bi++) {
+    var wgt = (model.dirBins[bi] - mn) / span, len = 9 + RR * .72 * wgt, ang = bi * Math.PI / 4;
+    var top = model.dirBins[bi] === mxv && model.conf > .15;
+    if (confused > 0) { ang += (Math.random() - .5) * .5; len *= .6 + Math.random() * .6; }
+    cx.save(); cx.rotate(ang);
+    cx.fillStyle = confused > 0 ? "rgba(0,229,168,.75)" : top ? "#ff3d71" : "rgba(90,140,245," + (0.35 + wgt * .5) + ")";
+    if (top && confused <= 0) { cx.shadowColor = "rgba(255,61,113,.9)"; cx.shadowBlur = 10; }
+    cx.beginPath(); cx.moveTo(0, -3.5); cx.lineTo(len, -1.2); cx.lineTo(len + 3, 0); cx.lineTo(len, 1.2); cx.lineTo(0, 3.5); cx.closePath(); cx.fill();
+    cx.restore();
+  }
+  cx.fillStyle = confused > 0 ? "#00e5a8" : "#ff3d71"; cx.beginPath(); cx.arc(0, 0, 3.5, 0, 7); cx.fill();
+  cx.restore();
+  cx.textAlign = "center"; cx.fillStyle = "#7684a8"; cx.font = "700 9px -apple-system,'Segoe UI',sans-serif";
+  cx.fillText(confused > 0 ? "CONFUSED  \u00d72" : "AI MODEL OF YOU  " + Math.round(model.conf * 100) + "%", RX, RY + RR + 22);
+  if (confused > 0) { confuseFlash += dt * 8; cx.globalAlpha = 0.5 + 0.5 * Math.sin(confuseFlash);
+    cx.fillStyle = "#00e5a8"; cx.font = "900 12px -apple-system,'Segoe UI',sans-serif"; cx.fillText("EVERYTHING COUNTS DOUBLE", RX, RY + RR + 36); cx.globalAlpha = 1; }
+
   /* beams + telegraphs */
   foes.forEach(function (f) {
     if (f.type === "sniper" && f.aim) {
@@ -625,33 +642,66 @@ function draw(dt) {
     cx.beginPath(); cx.moveTo(bm.x1, bm.y1); cx.lineTo(bm.x2, bm.y2); cx.stroke();
     cx.globalAlpha = 1;
   });
-  /* shots */
-  cx.fillStyle = "#9ff5dc";
-  shots.forEach(function (s) { cx.beginPath(); cx.arc(s.x, s.y, 3, 0, 7); cx.fill(); });
+  /* shots: capsules with a fading trail */
+  cx.lineCap = "round";
+  shots.forEach(function (s) {
+    var tl = Math.hypot(s.vx, s.vy) * 0.045;
+    var ux = s.vx / (Math.hypot(s.vx, s.vy) || 1), uy = s.vy / (Math.hypot(s.vx, s.vy) || 1);
+    var g3 = cx.createLinearGradient(s.x - ux * tl, s.y - uy * tl, s.x, s.y);
+    g3.addColorStop(0, "rgba(159,245,220,0)"); g3.addColorStop(1, "rgba(159,245,220,.9)");
+    cx.strokeStyle = g3; cx.lineWidth = 5; cx.beginPath(); cx.moveTo(s.x - ux * tl, s.y - uy * tl); cx.lineTo(s.x, s.y); cx.stroke();
+    cx.shadowColor = "rgba(0,229,168,.9)"; cx.shadowBlur = 10;
+    cx.fillStyle = "#e8fff7"; cx.beginPath(); cx.arc(s.x, s.y, 3.2, 0, 7); cx.fill(); cx.shadowBlur = 0;
+  });
+  cx.lineCap = "butt";
   /* foes */
   foes.forEach(function (f) {
     var jx = confused > 0 ? (Math.random() - .5) * 4 : 0, jy = confused > 0 ? (Math.random() - .5) * 4 : 0;
-    cx.fillStyle = "hsl(" + f.hue + ",85%,62%)";
-    cx.shadowColor = "hsla(" + f.hue + ",90%,60%,.8)"; cx.shadowBlur = 12;
-    if (f.type === "chaser") { cx.beginPath(); cx.arc(f.x + jx, f.y + jy, f.r, 0, 7); cx.fill(); }
+    var fx = f.x + jx, fy = f.y + jy, fr = f.r * (W < 520 ? 1.22 : 1);
+    /* where its eye looks is what it is doing: chasers look at you, predictors look
+       where the model says you will be, snipers look down their own aim line */
+    var look = f.type === "predictor" ? model.predDir : (f.type === "sniper" && f.aim) ? Math.atan2(f.aim.y - fy, f.aim.x - fx) : Math.atan2(P.y - fy, P.x - fx);
+    var body = cx.createRadialGradient(fx - fr * .35, fy - fr * .35, fr * .1, fx, fy, fr * 1.05);
+    body.addColorStop(0, "hsl(" + f.hue + ",95%,78%)"); body.addColorStop(.6, "hsl(" + f.hue + ",85%,58%)"); body.addColorStop(1, "hsl(" + f.hue + ",80%,36%)");
+    cx.fillStyle = body; cx.strokeStyle = "#120616"; cx.lineWidth = 2.5; cx.lineJoin = "round";
+    cx.shadowColor = "hsla(" + f.hue + ",90%,60%,.7)"; cx.shadowBlur = 14;
+    if (f.type === "chaser") { cx.beginPath(); cx.arc(fx, fy, fr, 0, 7); cx.fill(); cx.shadowBlur = 0; cx.stroke(); }
     else if (f.type === "predictor") {
-      cx.save(); cx.translate(f.x + jx, f.y + jy); cx.rotate(nowT * 2);
-      cx.fillRect(-f.r * 0.85, -f.r * 0.85, f.r * 1.7, f.r * 1.7); cx.restore();
+      cx.save(); cx.translate(fx, fy); cx.rotate(nowT * 1.2);
+      cx.beginPath(); rrp(-fr * 0.85, -fr * 0.85, fr * 1.7, fr * 1.7, fr * .3); cx.fill(); cx.shadowBlur = 0; cx.stroke(); cx.restore();
     } else {
-      cx.save(); cx.translate(f.x + jx, f.y + jy); cx.rotate(nowT);
-      cx.beginPath();
-      for (var k = 0; k < 6; k++) { var aa = k * Math.PI / 3; cx.lineTo(Math.cos(aa) * f.r, Math.sin(aa) * f.r); }
-      cx.closePath(); cx.fill(); cx.restore();
+      cx.save(); cx.translate(fx, fy); cx.rotate(nowT * .8);
+      cx.beginPath(); for (var k = 0; k < 6; k++) { var aa = k * Math.PI / 3; cx.lineTo(Math.cos(aa) * fr, Math.sin(aa) * fr); }
+      cx.closePath(); cx.fill(); cx.shadowBlur = 0; cx.stroke(); cx.restore();
+      if (f.aim) { cx.strokeStyle = "rgba(255,210,61," + (0.3 + 0.6 * f.aim.t / .85) + ")"; cx.lineWidth = 2;
+        cx.beginPath(); cx.arc(fx, fy, fr + 5, -Math.PI / 2, -Math.PI / 2 + Math.PI * 2 * Math.min(1, f.aim.t / .85)); cx.stroke(); }
     }
+    /* the eye */
+    var er = fr * .42, pr = er * .55, px2 = fx + Math.cos(look) * fr * .18, py2 = fy + Math.sin(look) * fr * .18;
+    cx.fillStyle = "#fff"; cx.beginPath(); cx.arc(px2, py2, er, 0, 7); cx.fill();
+    cx.fillStyle = "#120616"; cx.beginPath(); cx.arc(px2 + Math.cos(look) * er * .4, py2 + Math.sin(look) * er * .4, pr, 0, 7); cx.fill();
+    if (f.type === "predictor") { cx.strokeStyle = "#120616"; cx.lineWidth = 1.2; cx.beginPath(); cx.arc(px2, py2, er * .78, 0, 7); cx.stroke(); }
     cx.shadowBlur = 0;
   });
   /* player */
   if (!over) {
-    var pa = P.a;
-    if (inv > 0 && Math.floor(nowT * 14) % 2) cx.globalAlpha = 0.35;
+    var pa = P.a, spd = Math.hypot(P.vx, P.vy);
+    /* thruster: exhaust particles proportional to speed, from the tail */
+    if (spd > 40 && Math.random() < Math.min(1, spd / 260)) {
+      parts.push({ x: P.x - Math.cos(pa) * 12, y: P.y - Math.sin(pa) * 12, vx: -Math.cos(pa) * 90 + (Math.random() - .5) * 50, vy: -Math.sin(pa) * 90 + (Math.random() - .5) * 50,
+        t: 0, life: .22 + Math.random() * .16, hue: 160, r: 2 + Math.random() * 2.2 });
+    }
+    cx.fillStyle = "rgba(0,0,0,.35)"; cx.beginPath(); cx.ellipse(P.x, P.y + 12, 12, 4, 0, 0, 7); cx.fill();
+    if (inv > 0) { cx.strokeStyle = "rgba(0,229,168," + (0.35 + 0.35 * Math.sin(nowT * 18)) + ")"; cx.lineWidth = 2.5;
+      cx.beginPath(); cx.arc(P.x, P.y, 20, 0, 7); cx.stroke(); }
+    if (inv > 0 && Math.floor(nowT * 14) % 2) cx.globalAlpha = 0.45;
+    var hull = cx.createLinearGradient(P.x - Math.cos(pa) * 12, P.y - Math.sin(pa) * 12, P.x + Math.cos(pa) * 14, P.y + Math.sin(pa) * 14);
+    hull.addColorStop(0, "#00b586"); hull.addColorStop(1, "#b8ffe9");
     cx.shadowColor = "rgba(0,229,168,.9)"; cx.shadowBlur = 16;
-    cx.fillStyle = "#00e5a8"; tri(P.x, P.y, pa, 11); cx.fill();
-    cx.shadowBlur = 0; cx.globalAlpha = 1;
+    cx.fillStyle = hull; tri(P.x, P.y, pa, 12); cx.fill(); cx.shadowBlur = 0;
+    cx.strokeStyle = "#04140e"; cx.lineWidth = 2; cx.lineJoin = "round"; cx.stroke();
+    cx.fillStyle = "#fff"; cx.beginPath(); cx.arc(P.x + Math.cos(pa) * 3, P.y + Math.sin(pa) * 3, 3, 0, 7); cx.fill();
+    cx.globalAlpha = 1;
   }
   /* particles */
   for (var pi = parts.length - 1; pi >= 0; pi--) {
