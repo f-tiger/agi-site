@@ -528,7 +528,8 @@ function update(dt) {
         }
       }
     }
-    if (f.boss) { f.x = Math.max(f.r, Math.min(W - f.r, f.x)); f.y = Math.max(f.r + 60, Math.min(H * .45, f.y)); }
+    /* keep the boss out of the HUD band: the rose lives at y=80 and the boss wears the same rose */
+    if (f.boss) { f.x = Math.max(f.r, Math.min(W - f.r, f.x)); f.y = Math.max(f.r + 130, Math.min(H * .48, f.y)); }
     /* touch damage */
     if (inv <= 0 && Math.hypot(f.x - P.x, f.y - P.y) < f.r + 9) {
       hp--; inv = 1.2; sfx.hurt(); shake = 9;
