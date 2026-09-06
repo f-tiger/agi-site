@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <title>OVERFIT — Outplay the AI That Learns You</title>
-<meta name="description" content="The enemy AI really does study your movement — then tells you exactly what it learned. Feed it a pattern, betray it, and watch the model collapse. A free arcade dodger for the AI era. Mouse, touch or WASD.">
+<meta name="description" content="The boss learns your movement and shoots where you are going. Feed it a habit, then break it. A free arcade dodger about an AI that overfits to you.">
 <link rel="canonical" href="https://play.agiscorecard.com/overfit">
 <meta property="og:title" content="OVERFIT — Outplay the AI That Learns You">
 <meta property="og:description" content="The boss studies your habits between waves and announces its predictions. Break them to crash the model. Free, no account.">
@@ -23,8 +23,14 @@
   .logo{font-weight:800;font-size:17px;letter-spacing:2px;}
   .logo em{font-style:normal;color:var(--ai);}
   .hbtns{display:flex;gap:8px;}
-  .hbtn{background:var(--panel);border:1px solid var(--line);color:var(--mut);border-radius:9px;width:34px;height:34px;font-size:15px;cursor:pointer;line-height:1;}
-  #stage{flex:1;width:100%;max-width:1400px;display:block;cursor:crosshair;}
+  .hbtn{background:var(--panel);border:1px solid var(--line);color:var(--mut);border-radius:9px;width:34px;height:34px;font-size:15px;cursor:pointer;line-height:1;min-height:36px;}
+  /* A <canvas> carries an intrinsic height from its width/height attributes, and a
+   flex item defaults to min-height:auto -- so the canvas could GROW to fill the
+   column but never SHRINK, and with body{overflow:hidden} everything below it
+   (the controls) was pushed off a short viewport with no way to scroll to them.
+   `flex:1 1 0` + `min-height:0` is what lets it shrink; layout() then resizes the
+   backing store to whatever box it actually got. */
+  #stage{flex:1 1 0;min-height:0;width:100%;max-width:1400px;display:block;cursor:crosshair;}
   footer{width:100%;max-width:1400px;padding:4px 14px calc(10px + env(safe-area-inset-bottom));display:flex;justify-content:space-between;font-size:11px;color:var(--mut);z-index:5;}
   footer a{color:var(--mut);text-decoration:none;border-bottom:1px dotted var(--mut);}
   .cg footer{display:none;}
@@ -37,6 +43,7 @@
   #hint.gone{opacity:0;}
   .hcard{background:rgba(16,20,31,.90);border:1px solid var(--line);border-radius:16px;
     padding:18px 22px;max-width:360px;text-align:center;box-shadow:0 14px 44px rgba(0,0,0,.5);}
+  .hcard .keys{margin-bottom:10px;}
   .hcard p{font-size:13.5px;color:var(--ink);line-height:1.6;}
   .hcard .go{margin-top:12px;color:var(--you);font-weight:800;letter-spacing:1px;text-transform:uppercase;font-size:12px;
     animation:pulse 1.5s ease-in-out infinite;}
@@ -68,9 +75,8 @@
 
 <div id="hint" aria-hidden="true">
   <div class="hcard">
-    <p><b>Move</b> — mouse, finger, or WASD / arrow keys. Your ship fires by itself.</p>
-    <div class="brief">🧠 The enemy AI is already learning how you move. Let it grow confident in a habit, then <b>do the opposite</b> — a confused model staggers, and everything you destroy counts <b>double</b>.</div>
-    <p class="go">move to begin</p>
+    <div class="keys"><svg viewBox="0 0 118 46" width="118" height="46" aria-hidden="true"><rect x="45" y="1" width="20" height="20" rx="3" fill="none" stroke="rgba(255,255,255,.42)"/><rect x="23" y="24" width="20" height="20" rx="3" fill="none" stroke="rgba(255,255,255,.42)"/><rect x="45" y="24" width="20" height="20" rx="3" fill="none" stroke="rgba(255,255,255,.42)"/><rect x="67" y="24" width="20" height="20" rx="3" fill="none" stroke="rgba(255,255,255,.42)"/><path d="M55 17v-9M51 12l4-4 4 4" stroke="#00e5a8" stroke-width="1.7" fill="none"/><path d="M38 34h-9M33 30l-4 4 4 4" stroke="#00e5a8" stroke-width="1.7" fill="none"/><path d="M55 29v9M51 34l4 4 4-4" stroke="#00e5a8" stroke-width="1.7" fill="none"/><path d="M72 34h9M77 30l4 4-4 4" stroke="#00e5a8" stroke-width="1.7" fill="none"/><circle cx="9" cy="23" r="5" fill="#00e5a8"/><path d="M9 23 L1 15" stroke="#00e5a8" stroke-width="1.6" fill="none"/><path d="M9 23 L18 31" stroke="rgba(255,255,255,.42)" stroke-width="1.2" stroke-dasharray="2 2" fill="none"/></svg></div>
+    <p><b>Move.</b> It shoots by itself.</p><p class="go">the boss is learning your habits</p>
   </div>
 </div>
 <div class="modal" id="mover" role="dialog">
@@ -262,7 +268,9 @@ function burst(x, y, hue, n, spd) {
     parts.push({ x: x, y: y, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp, t: 0, life: 0.4 + Math.random() * 0.35, hue: hue, r: 1.5 + Math.random() * 2.5 });
   }
 }
+var modalT = 0;
 function reset(replay) {
+  clearTimeout(modalT);   /* a modal still in flight would land on the new run */
   P = { x: W / 2, y: H * 0.6, vx: 0, vy: 0, fire: 0, a: -Math.PI / 2 };
   foes = []; shots = []; beams = []; parts = []; pops = [];
   waveQuota = 0; waveSpawned = 0; waveConc = 4; spawnTimer = 0;
@@ -312,7 +320,8 @@ function startWave() {
   spawnTimer = 0;
   nowTWave = 0;
   waveMsg = { t: 0, lines: wave === 1 ? ["cold start — no data on you yet"] : trainingReport() };
-  sfx.wave();
+  if (armed) sfx.wave();   /* silent on the page-load wave: creating an
+     AudioContext before a user gesture logs a Chrome autoplay warning */
   popText("WAVE " + wave, W / 2, H * 0.13, 30, 200);
 }
 var nowTWave = 0;
@@ -500,6 +509,7 @@ function update(dt) {
   }
 }
 function endGame() {
+  if (over) return;
   over = true; running = false;
   window.ofCg("stop");
   sfx.over();
@@ -508,7 +518,8 @@ function endGame() {
   document.getElementById("ovscore").textContent = score;
   document.getElementById("ovlines").textContent = "Wave " + wave + " · Best " + best;
   document.getElementById("ovtitle").textContent = ["MODEL WINS", "IT LEARNED YOU", "PREDICTED.", "OVERFIT ACHIEVED"][Math.min(3, Math.floor(wave / 4))];
-  setTimeout(function () { document.getElementById("mover").classList.add("show"); }, 500);
+  clearTimeout(modalT);
+  modalT = setTimeout(function () { document.getElementById("mover").classList.add("show"); }, 500);
 }
 /* ============ draw */
 function tri(x, y, a, r) {

@@ -26,6 +26,14 @@ export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
 
+    if (url.pathname === "/e" && request.method === "OPTIONS") {
+      return new Response(null, { status: 204, headers: {
+        "access-control-allow-origin": "*",
+        "access-control-allow-methods": "POST, OPTIONS",
+        "access-control-allow-headers": "content-type",
+        "access-control-max-age": "86400"
+      } });
+    }
     if (url.pathname === "/e" && request.method === "POST") {
       try {
         const b = await request.json();
@@ -78,6 +86,8 @@ export default {
       assetReq = new Request(new URL("/overseer.html", url).toString(), request);
     } else if (url.pathname === "/prompt" || url.pathname === "/prompt/") {
       assetReq = new Request(new URL("/prompt.html", url).toString(), request);
+    } else if (url.pathname === "/minima" || url.pathname === "/minima/") {
+      assetReq = new Request(new URL("/minima.html", url).toString(), request);
     } else if (url.pathname === "/overfit" || url.pathname === "/overfit/") {
       assetReq = new Request(new URL("/overfit.html", url).toString(), request);
     } else if (url.pathname === "/blocknova" || url.pathname === "/blocknova/") {

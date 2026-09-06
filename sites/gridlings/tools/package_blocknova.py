@@ -16,7 +16,8 @@ import io, os, zipfile
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 GAMES = [("blocknova.html", "blocknova-cg.zip"), ("overfit.html", "overfit-cg.zip"),
          ("mimic.html", "mimic-cg.zip"), ("overseer.html", "overseer-cg.zip"),
-         ("prompt.html", "prompt-cg.zip")]
+         ("prompt.html", "prompt-cg.zip"),
+         ("minima.html", "minima-cg.zip")]
 outdir = os.path.join(ROOT, "site", "downloads", "cg")
 os.makedirs(outdir, exist_ok=True)
 marker = "<script>\n\"use strict\";"

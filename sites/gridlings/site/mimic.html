@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <title>MIMIC — You Are the Training Data</title>
-<meta name="description" content="Teach a machine with a handful of labels, then bet your score on it. Spend your labels on the wrong examples and it learns the wrong rule — and tells you so. A free puzzle game about how AI actually fails.">
+<meta name="description" content="You know the rule, the machine does not. Spend as few labels as you can, then watch it sort 26 on its own. A free puzzle game about teaching a model.">
 <link rel="canonical" href="https://play.agiscorecard.com/mimic">
 <meta property="og:title" content="MIMIC — You Are the Training Data">
 <meta property="og:description" content="12 labels. One hidden rule. Teach it right or watch it confidently learn the wrong thing.">
@@ -24,8 +24,14 @@
   header{width:100%;max-width:1100px;display:flex;align-items:center;justify-content:space-between;padding:10px 14px 0;}
   .logo{font-weight:800;font-size:17px;letter-spacing:2px;}
   .logo em{font-style:normal;color:var(--rej);}
-  .hbtn{background:var(--panel);border:1px solid var(--line);color:var(--mut);border-radius:9px;width:34px;height:34px;font-size:15px;cursor:pointer;}
-  #stage{flex:1;width:100%;max-width:1100px;display:block;}
+  .hbtn{background:var(--panel);border:1px solid var(--line);color:var(--mut);border-radius:9px;width:34px;height:34px;font-size:15px;cursor:pointer;min-height:36px;}
+  /* A <canvas> carries an intrinsic height from its width/height attributes, and a
+   flex item defaults to min-height:auto -- so the canvas could GROW to fill the
+   column but never SHRINK, and with body{overflow:hidden} everything below it
+   (the controls) was pushed off a short viewport with no way to scroll to them.
+   `flex:1 1 0` + `min-height:0` is what lets it shrink; layout() then resizes the
+   backing store to whatever box it actually got. */
+  #stage{flex:1 1 0;min-height:0;width:100%;max-width:1100px;display:block;}
   .pad{width:100%;max-width:1100px;display:flex;gap:8px;padding:0 14px 6px;}
   .pbtn{flex:1;border:1px solid var(--line);border-radius:12px;background:var(--panel);color:var(--ink);
     font:inherit;font-size:14px;font-weight:800;letter-spacing:.6px;padding:13px 0;cursor:pointer;transition:transform .06s;}
@@ -33,7 +39,7 @@
   .pbtn.k{border-color:rgba(56,217,196,.5);color:var(--keep);}
   .pbtn.r{border-color:rgba(255,107,157,.5);color:var(--rej);}
   .pbtn.x{border-color:rgba(255,193,77,.55);color:var(--warn);flex:0 0 30%;}
-  .pbtn small{display:block;font-size:10px;font-weight:600;opacity:.55;letter-spacing:.4px;margin-top:2px;}
+  .pbtn small{display:block;font-size:11px;font-weight:600;opacity:.9;letter-spacing:.4px;margin-top:2px;}
   footer{width:100%;max-width:1100px;padding:0 14px calc(9px + env(safe-area-inset-bottom));display:flex;justify-content:space-between;font-size:11px;color:var(--mut);}
   footer a{color:var(--mut);text-decoration:none;border-bottom:1px dotted var(--mut);}
   .cg footer{display:none;}
@@ -56,6 +62,7 @@
   #hint.gone{opacity:0;}
   .hcard{background:rgba(20,26,39,.92);border:1px solid var(--line);border-radius:16px;padding:18px 22px;max-width:380px;
     text-align:center;box-shadow:0 14px 44px rgba(0,0,0,.5);}
+  .hcard .keys{margin-bottom:10px;}
   .hcard p{font-size:13.5px;line-height:1.62;}
   .hcard .go{margin-top:11px;color:var(--keep);font-weight:800;letter-spacing:1px;text-transform:uppercase;font-size:12px;
     animation:pulse 1.5s ease-in-out infinite;}
@@ -65,6 +72,7 @@
 <body>
 <header>
   <div class="logo">MI<em>MIC</em></div>
+  <button class="hbtn" id="bmute" aria-label="Sound on/off">🔊</button>
   <button class="hbtn" id="brestart" aria-label="Restart">↺</button>
 </header>
 <canvas id="stage"></canvas>
@@ -78,9 +86,8 @@
 
 <div id="hint" aria-hidden="true">
   <div class="hcard">
-    <p><b>You know the rule. The machine does not.</b> Label examples until it can work the rule out — then it sorts 26 on its own and your score is its score.</p>
-    <p style="margin-top:8px;color:var(--mut)">Here the two traits nearly always agree, so easy examples teach it nothing. <b>Hunt the odd ones out.</b> Fewer labels = more points.</p>
-    <p class="go">label to begin</p>
+    <div class="keys"><svg viewBox="0 0 118 46" width="118" height="46" aria-hidden="true"><rect x="8" y="8" width="30" height="30" rx="5" fill="none" stroke="rgba(255,255,255,.42)"/><rect x="44" y="8" width="30" height="30" rx="5" fill="none" stroke="#38d9c4" stroke-width="1.8"/><rect x="80" y="8" width="30" height="30" rx="5" fill="none" stroke="rgba(255,255,255,.42)"/><circle cx="59" cy="23" r="6" fill="#38d9c4"/><circle cx="59" cy="23" r="12" fill="none" stroke="#38d9c4" stroke-width="1.2" opacity=".55"/></svg></div>
+    <p><b>Keep it, or reject it.</b> A / S / D or tap.</p><p class="go">teach the machine your rule</p>
   </div>
 </div>
 <div class="modal" id="mover"><div class="card">
@@ -170,7 +177,7 @@ var sfx = {
 var TRAITS = ["spiky", "warm"];
 var ruleTrait, ruleKeepWhen, trainQ, testQ, cur, labels, LABEL_BUDGET = 12;
 var phase, score, lives, model, conveyor, tSince, testIdx, testTimer, over, running, armed, armT, bonus;
-var pops = [], parts = [], shake = 0, nowT = 0, best = 0;
+var pops = [], parts = [], shake = 0, nowT = 0, best = 0, modalT = 0;
 try { best = parseInt(localStorage.getItem("mcBest") || "0", 10) || 0; } catch (e) {}
 try { muted = localStorage.getItem("mcMute") === "1"; } catch (e) {}
 
@@ -184,6 +191,7 @@ function mkSpec(correlated) {
   return o;
 }
 function newRun() {
+  clearTimeout(modalT);
   ruleTrait = TRAITS[(Math.random() * 2) | 0];
   ruleKeepWhen = Math.random() < .5;
   trainQ = []; for (var i = 0; i < 60; i++) trainQ.push(mkSpec(true));
@@ -235,7 +243,7 @@ function decide(kind) {
   cur = trainQ.shift() || mkSpec(true);
 }
 function startExam() {
-  if (phase !== "train" || labels.length < 2) return;
+  if (phase !== "train" || labels.length < 3) return;   /* same floor the button uses */
   bonus = (LABEL_BUDGET - labels.length) * 15;
   score += bonus;
   phase = "exam"; model = train(); testTimer = 0; testIdx = 0;
@@ -258,6 +266,8 @@ var KEY = { KeyA: "keep", ArrowLeft: "keep", KeyD: "reject", ArrowRight: "reject
             KeyS: "skip", ArrowDown: "skip", Space: "skip" };
 window.addEventListener("keydown", function (e) {
   if (e.repeat) return;
+  var ae = document.activeElement;      /* let a focused button have its own key */
+  if (ae && ae.tagName === "BUTTON" && (e.code === "Space" || e.code === "Enter")) return;
   var m = document.getElementById("mover");
   if (m.classList.contains("show")) {
     if (e.code === "Space" || e.code === "Enter") { e.preventDefault(); document.getElementById("bagain").click(); }
@@ -272,7 +282,7 @@ var cv = document.getElementById("stage"), cx = cv.getContext("2d"), L = {};
 function layout() {
   var dpr = Math.min(window.devicePixelRatio || 1, 2.5);
   var r = cv.getBoundingClientRect();
-  L.w = Math.max(320, r.width); L.h = Math.max(300, r.height);
+  L.w = Math.max(320, r.width); L.h = Math.max(170, r.height);
   L.cx = L.w / 2; L.cy = L.h * .47;
   cv.width = Math.round(L.w * dpr); cv.height = Math.round(L.h * dpr);
   cx.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -302,11 +312,15 @@ function drawSpec(s, x, y, R, alpha) {
 function traitName(t) { return t === "spiky" ? "SHAPE" : "COLOUR"; }
 function traitValue(t, v) { return t === "spiky" ? (v ? "spiky" : "round") : (v ? "warm" : "cool"); }
 function endRun(reason) {
-  over = true; running = false; window.mcCg("stop");
+  if (over) return;
+  over = true; running = false;
+  if (reason === "done" && lives === 3) window.mcCg("happy");   /* once, on a clean sweep */
+  window.mcCg("stop");
   if (score > best) { best = score; try { localStorage.setItem("mcBest", String(best)); } catch (e) {} }
   ev("game_over", "mc:" + score);
   var m = model || { trait: "?", keepWhen: true, acc: 0 };
-  var right = m.trait === ruleTrait;
+  var right = m.trait === ruleTrait && m.keepWhen === ruleKeepWhen;   /* polarity counts:
+     same trait, flipped keepWhen is the exact inverse rule and gets everything wrong */
   document.getElementById("ovt").textContent = right ? "YOUR MODEL HELD UP" : "IT LEARNED THE WRONG THING";
   document.getElementById("ovs").textContent = score;
   document.getElementById("ovv").innerHTML =
@@ -316,7 +330,8 @@ function endRun(reason) {
     (right ? "<span class='hit'>You spent your labels on the examples that told the two traits apart.</span>"
            : "<span class='miss'>Both traits fit your labels, so it picked the wrong one. Label the odd ones out.</span>") +
     "<br><span style='opacity:.6'>Best " + best + "</span>";
-  setTimeout(function () { document.getElementById("mover").classList.add("show"); }, 420);
+  clearTimeout(modalT);
+  modalT = setTimeout(function () { document.getElementById("mover").classList.add("show"); }, 420);
 }
 function update(dt) {
   nowT += dt;
@@ -330,7 +345,7 @@ function update(dt) {
       var s = testQ[testIdx++];
       var says = (s[model.trait] === model.keepWhen);
       var ok = says === s.truth;
-      if (ok) { score += 10; sfx.good(); burst(L.cx, L.cy, "#38d9c4", 9); popText("+10", L.cx + 60, L.cy - 40, 17, "#38d9c4"); window.mcCg("happy"); }
+      if (ok) { score += 10; sfx.good(); burst(L.cx, L.cy, "#38d9c4", 9); popText("+10", L.cx + 60, L.cy - 40, 17, "#38d9c4"); }
       else {
         lives--; sfx.bad(); shake = 8; burst(L.cx, L.cy, "#ff6b9d", 18);
         popText("WRONG", L.cx + 60, L.cy - 40, 19, "#ff6b9d");
@@ -370,9 +385,10 @@ function draw(dt) {
   cx.textAlign = "center"; cx.fillStyle = "#7b88ab"; cx.font = "600 12.5px -apple-system,'Segoe UI',sans-serif";
   if (phase === "train") {
     cx.fillStyle = "#ffc14d"; cx.font = "800 14px -apple-system,'Segoe UI',sans-serif";
-    cx.fillText("TEACH IT:  keep the " + traitValue(ruleTrait, ruleKeepWhen).toUpperCase() + " ones", L.cx, L.cy + R + 32);
+    var cap = Math.min(L.cy + R + 32, L.h - 78);
+    cx.fillText("TEACH IT:  keep the " + traitValue(ruleTrait, ruleKeepWhen).toUpperCase() + " ones", L.cx, cap);
     cx.fillStyle = "#7b88ab"; cx.font = "600 12px -apple-system,'Segoe UI',sans-serif";
-    cx.fillText("skipping is free  ·  it cannot see this instruction, only your labels", L.cx, L.cy + R + 52);
+    cx.fillText("skipping is free  ·  it cannot see this instruction, only your labels", L.cx, cap + 20);
   }
   else {
     cx.fillStyle = "#7c9bff"; cx.font = "800 13px -apple-system,'Segoe UI',sans-serif";
@@ -418,6 +434,14 @@ var last = 0;
 function loop(ts) { var dt = Math.min(.05, (ts - last) / 1000 || .016); last = ts; update(dt); draw(dt); requestAnimationFrame(loop); }
 layout(); newRun(); requestAnimationFrame(loop);
 window.MC_READY = true;
+
+var bm = document.getElementById("bmute");
+bm.textContent = muted ? "\ud83d\udd07" : "\ud83d\udd0a";
+bm.addEventListener("click", function () {
+  muted = !muted;
+  bm.textContent = muted ? "\ud83d\udd07" : "\ud83d\udd0a";
+  try { localStorage.setItem("mcMute", muted ? "1" : "0"); } catch (e) {}
+});
 </script>
 </body>
 </html>

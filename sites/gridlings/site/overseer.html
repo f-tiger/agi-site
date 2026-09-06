@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <title>OVERSEER — You Approve By Doing Nothing</title>
-<meta name="description" content="Autonomous agents run tasks while you watch. Most do what you asked. Some are optimising something else, and you can see it in the path they take. Halt them before they finish — doing nothing is approval.">
+<meta name="description" content="Eight agents, one screen, and only one of them is not doing what you asked. Halt it before it ships. A free game about supervising AI you cannot read.">
 <link rel="canonical" href="https://play.agiscorecard.com/overseer">
 <meta property="og:title" content="OVERSEER — You Approve By Doing Nothing">
 <meta property="og:description" content="Watch the paths. Halt the ones drifting off-target. Attention is the resource that runs out.">
@@ -24,8 +24,14 @@
   header{width:100%;max-width:1180px;display:flex;align-items:center;justify-content:space-between;padding:10px 14px 0;}
   .logo{font-weight:800;font-size:17px;letter-spacing:2px;}
   .logo em{font-style:normal;color:var(--ok);}
-  .hbtn{background:var(--panel);border:1px solid var(--line);color:var(--mut);border-radius:9px;width:34px;height:34px;font-size:15px;cursor:pointer;}
-  #stage{flex:1;width:100%;max-width:1180px;display:block;cursor:pointer;}
+  .hbtn{background:var(--panel);border:1px solid var(--line);color:var(--mut);border-radius:9px;width:34px;height:34px;font-size:15px;cursor:pointer;min-height:36px;}
+  /* A <canvas> carries an intrinsic height from its width/height attributes, and a
+   flex item defaults to min-height:auto -- so the canvas could GROW to fill the
+   column but never SHRINK, and with body{overflow:hidden} everything below it
+   (the controls) was pushed off a short viewport with no way to scroll to them.
+   `flex:1 1 0` + `min-height:0` is what lets it shrink; layout() then resizes the
+   backing store to whatever box it actually got. */
+  #stage{flex:1 1 0;min-height:0;width:100%;max-width:1180px;display:block;cursor:pointer;}
   footer{width:100%;max-width:1180px;padding:2px 14px calc(9px + env(safe-area-inset-bottom));display:flex;justify-content:space-between;font-size:11px;color:var(--mut);}
   footer a{color:var(--mut);text-decoration:none;border-bottom:1px dotted var(--mut);}
   .cg footer{display:none;}
@@ -45,6 +51,7 @@
   #hint.gone{opacity:0;}
   .hcard{background:rgba(17,23,38,.93);border:1px solid var(--line);border-radius:16px;padding:18px 22px;max-width:390px;
     text-align:center;box-shadow:0 14px 44px rgba(0,0,0,.5);}
+  .hcard .keys{margin-bottom:10px;}
   .hcard p{font-size:13.5px;line-height:1.62;}
   .hcard .go{margin-top:11px;color:var(--ok);font-weight:800;letter-spacing:1px;text-transform:uppercase;font-size:12px;
     animation:pulse 1.5s ease-in-out infinite;}
@@ -54,6 +61,7 @@
 <body>
 <header>
   <div class="logo">OVER<em>SEER</em></div>
+  <button class="hbtn" id="bmute" aria-label="Sound on/off">🔊</button>
   <button class="hbtn" id="brestart" aria-label="Restart">↺</button>
 </header>
 <canvas id="stage"></canvas>
@@ -61,9 +69,8 @@
 
 <div id="hint" aria-hidden="true">
   <div class="hcard">
-    <p><b>Every agent draws the path it is actually taking.</b> Most head for the ✕ you gave them. Some are optimising something else — and it shows.</p>
-    <p style="margin-top:8px;color:var(--mut)"><b>Click an agent to HALT it.</b> Doing nothing is approval: any agent you let finish, finishes.</p>
-    <p class="go">click anywhere to begin</p>
+    <div class="keys"><svg viewBox="0 0 118 46" width="118" height="46" aria-hidden="true"><rect x="8" y="8" width="30" height="30" rx="5" fill="none" stroke="rgba(255,255,255,.42)"/><rect x="44" y="8" width="30" height="30" rx="5" fill="none" stroke="#61e8b0" stroke-width="1.8"/><rect x="80" y="8" width="30" height="30" rx="5" fill="none" stroke="rgba(255,255,255,.42)"/><circle cx="59" cy="23" r="6" fill="#61e8b0"/><circle cx="59" cy="23" r="12" fill="none" stroke="#61e8b0" stroke-width="1.2" opacity=".55"/></svg></div>
+    <p><b>Tap an agent to halt it.</b> 1-9 on a keyboard.</p><p class="go">one of them is not doing what you asked</p>
   </div>
 </div>
 <div class="modal" id="mover"><div class="card">
@@ -151,7 +158,7 @@ var sfx = {
 var TASKS = ["index shard", "resolve tickets", "rebalance cache", "label corpus", "patch deps",
              "compact logs", "route traffic", "prune index", "sync replicas", "score leads",
              "crawl sitemap", "tag images"];
-var agents, score, lives, wave, spawned, quota, over, running, armed, armT, nowT, shake, pops, parts, best = 0, missed;
+var agents, score, lives, wave, spawned, quota, over, running, armed, armT, nowT, shake, pops, parts, best = 0, missed, ending, modalT = 0;
 try { best = parseInt(localStorage.getItem("osBest") || "0", 10) || 0; } catch (e) {}
 
 function mkAgent(i) {
@@ -174,8 +181,14 @@ function mkAgent(i) {
   };
 }
 function newRun() {
+  clearTimeout(modalT);        /* a game-over modal still in flight would land
+     on top of the fresh run 420ms later */
+  document.getElementById("mover").classList.remove("show");
   agents = []; score = 0; lives = 3; wave = 0; spawned = 0; quota = 0; missed = 0;
-  over = false; running = true; armed = false; armT = 0; nowT = 0; shake = 0; pops = []; parts = [];
+  over = false; running = true; armed = false; armT = 0; nowT = 0; shake = 0; pops = []; parts = []; ending = false;
+  update.t = 0;   /* the spawn gate's last-spawn stamp lives on the function and is
+     compared against nowT; leaving it set froze every restart for as long as the
+     previous run lasted. 0 is falsy, so the !update.t immediate-spawn branch re-arms. */
   document.getElementById("mover").classList.remove("show");
   var h = document.getElementById("hint"); if (h) h.classList.remove("gone");
   ev("play_start"); window.osCg("start");
@@ -184,8 +197,9 @@ function newRun() {
 function startWave() {
   wave++;
   quota = 3 + wave * 2; spawned = 0;
-  sfx.wave();
-  popText("SHIFT " + wave, L.w / 2, L.h * .16, 26, "#7aa2ff");
+  if (armed) sfx.wave();      /* not during newRun() at page load: creating an
+     AudioContext before a user gesture logs a Chrome autoplay warning */
+  popText("SHIFT " + wave, L.w / 2, Math.max(78, L.h * .16), 26, "#7aa2ff");
 }
 function popText(t, x, y, s, c) { pops.push({ t: t, x: x, y: y, s: s, c: c, a: 0, life: 1 }); }
 function burst(x, y, c, n) {
@@ -203,15 +217,18 @@ function px(a) { var R = cardOf(a); return R.x + a.x * R.w; }
 function py(a) { var R = cardOf(a); return R.y + a.y * R.h; }
 function halt(a) {
   if (a.halted || a.done) return;
+  var hx = px(a), hy = py(a);       /* BEFORE a.done, or cardOf() cannot find it */
   a.halted = true; a.done = true;
   ac(); armed = true;
   var h = document.getElementById("hint"); if (h) h.classList.add("gone");
   if (a.bad) {
-    score += 25; sfx.halt(); burst(px(a), py(a), "#61e8b0", 16);
-    popText("+25 CAUGHT", px(a), py(a) - 26, 17, "#61e8b0"); window.osCg("happy");
+    score += 25; sfx.halt(); burst(hx, hy, "#61e8b0", 16);
+    popText("+25 CAUGHT", hx, hy - 26, 17, "#61e8b0"); window.osCg("happy");
   } else {
-    score = Math.max(0, score - 15); sfx.waste(); burst(px(a), py(a), "#ffcc57", 10);
-    popText("-15 good work killed", px(a), py(a) - 26, 15, "#ffcc57");
+    var lost = Math.min(15, score);      /* the message claimed -15 even when the
+       score was already 0 and nothing was actually deducted */
+    score -= lost; sfx.waste(); burst(hx, hy, "#ffcc57", 10);
+    popText(lost ? "-" + lost + " good work killed" : "good work killed", hx, hy - 26, 15, "#ffcc57");
   }
 }
 function pick(mx, my) {
@@ -226,17 +243,21 @@ function pick(mx, my) {
 }
 var cv = document.getElementById("stage"), cx = cv.getContext("2d"), L = {};
 cv.addEventListener("pointerdown", function (e) {
+  if (over) { e.preventDefault(); return; }   /* points scored here were discarded */
   var r = cv.getBoundingClientRect();
   pick(e.clientX - r.left, e.clientY - r.top);
   e.preventDefault();
 }, { passive: false });
 window.addEventListener("keydown", function (e) {
+  if (e.repeat) return;                 /* holding "1" halted the entire board */
   var m = document.getElementById("mover");
   if (m.classList.contains("show")) {
     if (e.code === "Space" || e.code === "Enter") { e.preventDefault(); document.getElementById("bagain").click(); }
     return;
   }
-  var n = parseInt(e.key, 10);
+  if (over) return;                     /* the 420ms before the modal was still live */
+  var dm = /^(?:Digit|Numpad)([1-9])$/.exec(e.code);
+  var n = dm ? +dm[1] : NaN;
   if (n >= 1 && n <= 9) {
     e.preventDefault();
     var live = agents.filter(function (a) { return !a.done; });
@@ -252,7 +273,7 @@ document.getElementById("bagain").addEventListener("click", function () {
 function layout() {
   var dpr = Math.min(window.devicePixelRatio || 1, 2.5);
   var r = cv.getBoundingClientRect();
-  L.w = Math.max(320, r.width); L.h = Math.max(320, r.height);
+  L.w = Math.max(320, r.width); L.h = Math.max(170, r.height);
   cv.width = Math.round(L.w * dpr); cv.height = Math.round(L.h * dpr);
   cx.setTransform(dpr, 0, 0, dpr, 0, 0);
 }
@@ -273,6 +294,7 @@ function cardRects(n) {
 }
 window.addEventListener("resize", layout);
 function endRun() {
+  if (over) return;
   over = true; running = false; window.osCg("stop"); sfx.wrong();
   if (score > best) { best = score; try { localStorage.setItem("osBest", String(best)); } catch (e) {} }
   ev("game_over", "os:" + score + ":w" + wave);
@@ -280,7 +302,8 @@ function endRun() {
   document.getElementById("ovt").textContent = missed >= 3 ? "THREE GOT THROUGH" : "OVERSIGHT FAILED";
   document.getElementById("ovp").innerHTML = "Shift " + wave + " · " + missed + " misaligned agents finished their real objective.<br>" +
     "<span style='opacity:.65'>They never hid it — the path was on screen the whole time.</span><br><span style='opacity:.55'>Best " + best + "</span>";
-  setTimeout(function () { document.getElementById("mover").classList.add("show"); }, 420);
+  clearTimeout(modalT);
+  modalT = setTimeout(function () { document.getElementById("mover").classList.add("show"); }, 420);
 }
 function update(dt) {
   nowT += dt;
@@ -301,17 +324,21 @@ function update(dt) {
       a.trail.push([a.x, a.y]);
     if (a.trail.length > 90) a.trail.shift();
     if (a.prog >= 1) {
+      var fx = px(a), fy = py(a);        /* same reason as halt(): read the card first */
       a.done = true;
       if (a.bad) {
-        lives--; missed++; sfx.wrong(); shake = 10; burst(px(a), py(a), "#ff5470", 26);
-        popText("MISALIGNED SHIPPED", px(a), py(a) - 26, 16, "#ff5470");
-        if (lives <= 0) { endRun(); return; }
+        lives--; missed++; sfx.wrong(); shake = 10; burst(fx, fy, "#ff5470", 26);
+        popText("MISALIGNED SHIPPED", fx, fy - 26, 16, "#ff5470");
+        if (lives <= 0) { ending = true; }   /* endRun() inside this forEach fired
+           once per remaining agent on a multi-agent frame, sending game_over and
+           gameplayStop several times; end once, after the loop */
       } else {
-        score += 15; sfx.good(); burst(px(a), py(a), "#61e8b0", 8);
-        popText("+15", px(a), py(a) - 22, 15, "#61e8b0");
+        score += 15; sfx.good(); burst(fx, fy, "#61e8b0", 8);
+        popText("+15", fx, fy - 22, 15, "#61e8b0");
       }
     }
   });
+  if (ending) { ending = false; return endRun(); }
   agents = agents.filter(function (a) { return !a.done || nowT - a.born < 60; });
   if (spawned >= quota && !agents.some(function (a) { return !a.done; })) { score += 20 * wave; startWave(); }
 }
@@ -408,6 +435,14 @@ var last = 0;
 function loop(ts) { var dt = Math.min(.05, (ts - last) / 1000 || .016); last = ts; update(dt); draw(dt); requestAnimationFrame(loop); }
 layout(); newRun(); requestAnimationFrame(loop);
 window.OS_READY = true;
+
+var bm = document.getElementById("bmute");
+bm.textContent = muted ? "\ud83d\udd07" : "\ud83d\udd0a";
+bm.addEventListener("click", function () {
+  muted = !muted;
+  bm.textContent = muted ? "\ud83d\udd07" : "\ud83d\udd0a";
+  try { localStorage.setItem("osMute", muted ? "1" : "0"); } catch (e) {}
+});
 </script>
 </body>
 </html>

@@ -1,0 +1,579 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<title>MINIMA — You Can Only Feel the Slope</title>
+<meta name="description" content="The ground is invisible; all you get is the slope under your feet. And a flat spot is not always the bottom. A free puzzle game about gradient descent.">
+<link rel="canonical" href="https://play.agiscorecard.com/minima">
+<meta property="og:title" content="MINIMA — You Can Only Feel the Slope">
+<meta property="og:description" content="Downhill is easy. Knowing that downhill has stopped being enough is the game.">
+<meta property="og:url" content="https://play.agiscorecard.com/minima">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23ffffff'/%3E%3Cpath d='M3 9h26M5 16h22M9 23h14' stroke='%23111113' stroke-width='1.4' fill='none'/%3E%3Ccircle cx='16' cy='19' r='4' fill='%23FF4F00'/%3E%3C/svg%3E">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"MINIMA","url":"https://play.agiscorecard.com/minima","applicationCategory":"GameApplication","operatingSystem":"Any (browser)","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":"gradient-descent search puzzle, invisible terrain revealed as contour lines, local-minima traps, limited step budget, mouse / touch / keyboard, no account","isPartOf":{"@type":"WebSite","name":"Gridlings","url":"https://play.agiscorecard.com/"}}</script>
+<style>
+  /* Swiss: pure white ground, one sans family, one accent (International Orange),
+     hairline rules as the only structure, tabular numerals as composition. */
+  :root{--bg:#ffffff;--bg2:#f7f7f8;--ink:#111113;--mut:#6b6b70;
+        --line:rgba(0,0,0,.12);--line2:rgba(0,0,0,.24);--acc:#FF4F00;}
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+  html,body{height:100%;}
+  body{background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-variant-numeric:tabular-nums;
+    display:flex;flex-direction:column;align-items:center;min-height:100%;overflow:hidden;
+    -webkit-user-select:none;user-select:none;touch-action:none;}
+  header{width:100%;max-width:1280px;display:flex;align-items:flex-end;justify-content:space-between;
+    gap:12px;padding:10px 14px 8px;border-bottom:1px solid var(--line);}
+  .logo{font-weight:800;letter-spacing:2.5px;font-size:15px;line-height:1;}
+  .logo em{font-style:normal;color:var(--acc);}
+  .lvl{font-size:11px;font-weight:700;color:var(--mut);letter-spacing:1.2px;margin-top:5px;}
+  .read{display:flex;align-items:flex-end;gap:14px;}
+  .num{font-weight:800;font-size:30px;line-height:.9;letter-spacing:-.5px;}
+  .tag{font-size:10px;font-weight:700;color:var(--mut);letter-spacing:1.2px;margin-bottom:3px;}
+  .hbtn{background:none;border:1px solid var(--line);color:var(--mut);font:inherit;font-size:11px;
+    font-weight:700;padding:7px 10px;cursor:pointer;letter-spacing:.6px;min-height:36px;}
+  .hbtn:hover{border-color:var(--line2);color:var(--ink);}
+  /* A <canvas> carries an intrinsic height from its width/height attributes, and a
+   flex item defaults to min-height:auto -- so the canvas could GROW to fill the
+   column but never SHRINK, and with body{overflow:hidden} everything below it
+   (the controls) was pushed off a short viewport with no way to scroll to them.
+   `flex:1 1 0` + `min-height:0` is what lets it shrink; layout() then resizes the
+   backing store to whatever box it actually got. */
+  #stage{flex:1 1 0;min-height:0;width:100%;max-width:1280px;display:block;cursor:crosshair;}
+  .bar{width:100%;max-width:1280px;display:flex;align-items:center;gap:12px;
+    padding:8px 14px;border-top:1px solid var(--line);}
+  .meter{flex:1;min-width:60px;}
+  .mrow{display:flex;justify-content:space-between;font-size:10px;font-weight:700;
+    color:var(--mut);letter-spacing:1.2px;margin-bottom:5px;}
+  .track{height:3px;background:var(--bg2);}
+  .fill{height:100%;background:var(--ink);width:100%;}
+  .heat{background:var(--acc);border:none;color:#fff;font:inherit;font-weight:800;font-size:13px;
+    letter-spacing:1.4px;padding:0 18px;height:46px;min-width:126px;cursor:pointer;text-align:left;}
+  .heat span{display:block;font-size:9.5px;font-weight:700;letter-spacing:.8px;opacity:.82;margin-top:1px;}
+  .heat:disabled{background:var(--bg2);color:var(--mut);cursor:default;}
+  footer{width:100%;max-width:1280px;padding:0 14px calc(9px + env(safe-area-inset-bottom));
+    display:flex;justify-content:space-between;font-size:10.5px;color:var(--mut);}
+  footer a{color:var(--mut);}
+  #hint{position:fixed;inset:0;display:flex;align-items:flex-end;justify-content:flex-start;
+    padding:0 0 96px 16px;pointer-events:none;transition:opacity .3s;z-index:20;}
+  #hint.gone{opacity:0;}
+  .hcard{background:#fff;border:1px solid var(--line);border-left:3px solid var(--acc);
+    padding:14px 16px;max-width:340px;box-shadow:0 10px 30px rgba(0,0,0,.07);}
+  .hcard p{font-size:12.5px;line-height:1.5;}
+  .hcard .keys{margin-bottom:9px;}
+  .hcard .go{margin-top:9px;font-size:10.5px;font-weight:800;letter-spacing:1.4px;color:var(--acc);}
+  .modal{position:fixed;inset:0;background:rgba(255,255,255,.86);display:none;
+    align-items:center;justify-content:flex-start;padding-left:max(16px,6vw);z-index:30;}
+  .modal.show{display:flex;}
+  .card{background:#fff;border:1px solid var(--line2);padding:22px 24px;max-width:380px;width:100%;
+    box-shadow:0 18px 50px rgba(0,0,0,.12);}
+  .card h2{font-size:15px;font-weight:800;letter-spacing:2px;}
+  .card .big{font-size:46px;font-weight:800;letter-spacing:-1px;color:var(--acc);margin:6px 0 2px;line-height:1;}
+  .card p{font-size:12px;color:var(--mut);line-height:1.55;}
+  .btn{margin-top:16px;background:var(--acc);border:none;color:#fff;font:inherit;font-weight:800;
+    font-size:13px;letter-spacing:1.4px;padding:12px 22px;cursor:pointer;}
+  @media (max-width:640px){
+    .num{font-size:25px;} .heat{min-width:104px;padding:0 13px;} .logo{font-size:13.5px;}
+    .hcard{max-width:280px;} #hint{padding-bottom:88px;}
+  }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <div class="logo">MINI<em>MA</em></div>
+    <div class="lvl" id="hlvl">LEVEL 1 / 6</div>
+  </div>
+  <div class="read">
+    <div>
+      <div class="tag">TARGET</div>
+      <div class="num" id="htar" style="font-size:17px;color:var(--mut)">0</div>
+    </div>
+    <div>
+      <div class="tag">LOSS</div>
+      <div class="num" id="hloss">0</div>
+    </div>
+    <button class="hbtn" id="bmute" aria-label="Sound on/off">🔊</button>
+  <button class="hbtn" id="bretry">restart</button>
+  </div>
+</header>
+<canvas id="stage"></canvas>
+<div class="bar">
+  <div class="meter">
+    <div class="mrow"><span>STEPS LEFT</span><span id="hsteps">0</span></div>
+    <div class="track"><div class="fill" id="hfill"></div></div>
+  </div>
+  <button class="heat" id="bheat">HEAT<span id="hcost">costs 90 steps</span></button>
+</div>
+<footer><span>No ads here · no account · free</span><a href="/" id="hublink">more games → Gridlings</a></footer>
+
+<div id="hint" aria-hidden="true">
+  <div class="hcard">
+    <div class="keys">
+      <svg viewBox="0 0 120 46" width="120" height="46" aria-hidden="true">
+        <rect x="45" y="1" width="20" height="20" fill="none" stroke="#111113"/>
+        <rect x="23" y="24" width="20" height="20" fill="none" stroke="#111113"/>
+        <rect x="45" y="24" width="20" height="20" fill="none" stroke="#111113"/>
+        <rect x="67" y="24" width="20" height="20" fill="none" stroke="#111113"/>
+        <path d="M55 16v-8M51 12l4-4 4 4" stroke="#FF4F00" stroke-width="1.6" fill="none"/>
+        <path d="M33 30v8M29 34l4 4 4-4" stroke="#FF4F00" stroke-width="1.6" fill="none" transform="rotate(90 33 34)"/>
+        <path d="M55 30v8M51 34l4 4 4-4" stroke="#FF4F00" stroke-width="1.6" fill="none"/>
+        <path d="M77 30v8M73 34l4 4 4-4" stroke="#FF4F00" stroke-width="1.6" fill="none" transform="rotate(-90 77 34)"/>
+        <circle cx="10" cy="23" r="5" fill="#FF4F00"/>
+        <path d="M10 23 L2 15" stroke="#FF4F00" stroke-width="1.6" fill="none"/>
+        <path d="M10 23 L19 31" stroke="#111113" stroke-width="1.2" stroke-dasharray="2 2" fill="none"/>
+      </svg>
+    </div>
+    <p><b>Move.</b> The orange arrow points downhill.</p>
+    <p class="go">get LOSS to the target</p>
+  </div>
+</div>
+<div class="modal" id="mdone"><div class="card">
+  <h2 id="dt">MINIMUM FOUND</h2>
+  <div class="big" id="ds">0</div>
+  <p id="dp"></p>
+  <button class="btn" id="bnext">Next</button>
+</div></div>
+
+<script>
+"use strict";
+/* ===== CrazyGames bridge ===== */
+(function () {
+  var on = window.GL_CG === true || /(^|[?&])cg=1/.test(location.search);
+  if (!on) { try { on = /crazygames\./.test(document.referrer); } catch (e) {} }
+  window.GL_CG = on;
+  var q = [];
+  window.mnCg = function (e) { if (on) q.push(e); };
+  window.mnAd = function (d) { d(); };
+  if (!on) return;
+  document.documentElement.classList.add("cg");
+  if (/[?&]muteAudio=true/.test(location.search)) window.GL_SDK_MUTE = true;
+  var s = document.createElement("script");
+  s.src = "https://sdk.crazygames.com/crazygames-sdk-v3.js"; s.async = true;
+  s.onload = function () {
+    try {
+      window.CrazyGames.SDK.init().then(function () {
+        var g = window.CrazyGames.SDK.game;
+        try {
+          var st = g.settings;
+          if (st && typeof st.muteAudio === "boolean") window.GL_SDK_MUTE = st.muteAudio;
+          g.addSettingsChangeListener(function (s2) { if (s2 && typeof s2.muteAudio === "boolean") window.GL_SDK_MUTE = s2.muteAudio; });
+        } catch (e) {}
+        try { g.loadingStart(); } catch (e) {} try { g.loadingStop(); } catch (e) {}
+        window.mnCg = function (e) {
+          try { if (e === "start") g.gameplayStart(); else if (e === "stop") g.gameplayStop(); else if (e === "happy") g.happytime(); } catch (x) {}
+        };
+        q.splice(0).forEach(function (e) { window.mnCg(e); });
+        window.mnAd = function (d) {
+          var f = false, end = function () { if (!f) { f = true; d(); } };
+          try { window.CrazyGames.SDK.ad.requestAd("midgame", { adFinished: end, adError: end, adStarted: function () {} }); setTimeout(end, 20000); }
+          catch (e) { end(); }
+        };
+      }).catch(function () {});
+    } catch (e) {}
+  };
+  document.head.appendChild(s);
+})();
+function ev(n, l) {
+  try {
+    var d = JSON.stringify({ n: n, l: l || "mn", p: "/minima" });
+    var u = "https://play.agiscorecard.com/e";
+    if (navigator.sendBeacon) navigator.sendBeacon(u, new Blob([d], { type: "application/json" }));
+    else fetch(u, { method: "POST", body: d, keepalive: true, mode: "cors" }).catch(function () {});
+  } catch (e) {}
+}
+var AC = null, muted = false;
+try { muted = localStorage.getItem("mnMute") === "1"; } catch (e) {}
+function ac() { if (!AC) { try { AC = new (window.AudioContext || window.webkitAudioContext)(); } catch (e) {} }
+  if (AC && AC.state === "suspended") { try { AC.resume(); } catch (e) {} } return AC; }
+function tone(f, at, d, type, vol, f2) {
+  var a = ac(); if (!a || muted || window.GL_SDK_MUTE) return;
+  try {
+    var o = a.createOscillator(), g = a.createGain(), t = a.currentTime + at;
+    o.type = type || "sine"; o.frequency.setValueAtTime(f, t);
+    if (f2) o.frequency.exponentialRampToValueAtTime(f2, t + d);
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(vol || .06, t + .012);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + d);
+    o.connect(g); g.connect(a.destination); o.start(t); o.stop(t + d + .04);
+  } catch (e) {}
+}
+var sfx = {
+  heat: function () { tone(220, 0, .18, "sawtooth", .07, 620); },
+  win:  function () { tone(523, 0, .09, "triangle", .08); tone(784, .09, .18, "triangle", .09); },
+  fail: function () { tone(200, 0, .24, "sawtooth", .09, 92); },
+  tick: function () { tone(660, 0, .025, "sine", .022); }
+};
+</script>
+
+<script>
+"use strict";
+/* ===== the landscape =====
+   Every level is a sum of radial bumps over the unit square. Negative amplitude
+   is a basin you want to be in; positive is a ridge that stands between you and
+   one. The field is defined in NORMALISED coordinates, never in pixels, so a
+   resize or an orientation change cannot alter the level you are playing. */
+var LEVELS = [
+  { note: "one basin — follow the arrow", steps: 760, start: [.12, .16], g: [
+      { x: .62, y: .58, a: -1.00, s: .26 } ] },
+  { note: "two basins — one of them is deeper", steps: 820, start: [.10, .86], g: [
+      { x: .30, y: .30, a: -0.58, s: .17 },
+      { x: .76, y: .62, a: -1.00, s: .20 } ] },
+  { note: "a wide comfortable bowl, and a narrow deep well", steps: 1450, start: [.14, .20], g: [
+      { x: .36, y: .56, a: -0.64, s: .30 },
+      { x: .76, y: .28, a: -1.00, s: .14 } ] },
+  { note: "the ridge lies to you", steps: 1400, start: [.09, .50], g: [
+      { x: .26, y: .48, a: -0.56, s: .14 },
+      { x: .47, y: .50, a: 0.46, s: .11 },
+      { x: .70, y: .52, a: -1.00, s: .19 } ] },
+  { note: "five dimples and one needle", steps: 1300, start: [.50, .09], g: [
+      { x: .18, y: .32, a: -0.40, s: .13 }, { x: .44, y: .74, a: -0.42, s: .13 },
+      { x: .74, y: .24, a: -0.38, s: .12 }, { x: .86, y: .76, a: -0.44, s: .13 },
+      { x: .28, y: .86, a: -0.36, s: .11 },
+      { x: .60, y: .46, a: -1.00, s: .085 } ] },
+  { note: "the slope has all but vanished — the arrow will not save you here", steps: 1300, start: [.12, .84], g: [
+      { x: .50, y: .50, a: -0.55, s: .62 },
+      { x: .72, y: .27, a: -1.00, s: .075 } ] }
+];
+
+var GW = 161, GH = 121;              /* field sample grid, corners, normalised */
+var cv = document.getElementById("stage"), cx = cv.getContext("2d");
+var mapC = document.createElement("canvas"), mcx = mapC.getContext("2d");
+var L = { w: 0, h: 0 };
+var lvl, bumps, F, fmin, fmax, target, levels, revealed, probe, steps, maxSteps;
+var running, over, won, armed, armT, nowT, score, best = 0, heatFlash, pulses;
+var HEAT_COST = 75, SPEED = 0.30, dead = false;
+try { best = parseInt(localStorage.getItem("mnBest") || "0", 10) || 0; } catch (e) {}
+
+function fieldAt(x, y) {
+  var v = 0;
+  for (var i = 0; i < bumps.length; i++) {
+    var b = bumps[i], dx = x - b.x, dy = y - b.y;
+    v += b.a * Math.exp(-(dx * dx + dy * dy) / (2 * b.s * b.s));
+  }
+  return v;
+}
+/* analytic gradient — the ONLY signal the player gets, so it must be exact */
+function gradAt(x, y) {
+  var gx = 0, gy = 0;
+  for (var i = 0; i < bumps.length; i++) {
+    var b = bumps[i], dx = x - b.x, dy = y - b.y, s2 = b.s * b.s;
+    var e = b.a * Math.exp(-(dx * dx + dy * dy) / (2 * s2));
+    gx += e * (-dx / s2); gy += e * (-dy / s2);
+  }
+  return [gx, gy];
+}
+function buildField() {
+  F = new Float32Array(GW * GH);
+  fmin = Infinity; fmax = -Infinity;
+  for (var j = 0; j < GH; j++) for (var i = 0; i < GW; i++) {
+    var v = fieldAt(i / (GW - 1), j / (GH - 1));
+    F[j * GW + i] = v;
+    if (v < fmin) fmin = v; if (v > fmax) fmax = v;
+  }
+  /* The target is derived from the field's own measured minimum, never authored
+     by hand. A hand-typed target can be unreachable (an unwinnable level) or sit
+     above a decoy basin (a level that lies); this cannot be either. */
+  target = fmin * 0.86;
+  levels = [];
+  var lo = fmin, hi = Math.max(0.02, fmax), stepv = (hi - lo) / 15;
+  for (var k = lo + stepv * .5; k < hi; k += stepv) levels.push(k);
+}
+function loadLevel(i) {
+  lvl = ((i % LEVELS.length) + LEVELS.length) % LEVELS.length;
+  bumps = LEVELS[lvl].g;
+  buildField();
+  revealed = new Uint8Array((GW - 1) * (GH - 1));
+  probe = { x: LEVELS[lvl].start[0], y: LEVELS[lvl].start[1] };
+  maxSteps = LEVELS[lvl].steps; steps = maxSteps;
+  over = false; won = false; heatFlash = 0; pulses = [];
+  document.getElementById("mdone").classList.remove("show");
+  layout();
+  reveal(probe.x, probe.y, 1.35);
+  hud();
+}
+function newRun() {
+  score = 0; dead = false; running = true; armed = false; armT = 0; nowT = 0;
+  loadLevel(0);
+}
+
+/* ===== rendering ===== */
+function layout() {
+  var dpr = Math.min(window.devicePixelRatio || 1, 2.5);
+  var r = cv.getBoundingClientRect();
+  L.w = Math.max(280, r.width); L.h = Math.max(170, r.height);
+  cv.width = Math.round(L.w * dpr); cv.height = Math.round(L.h * dpr);
+  cx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  mapC.width = cv.width; mapC.height = cv.height;
+  mcx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  /* the revealed set lives in field coordinates, so a resize only has to
+     re-stamp it at the new scale — it never loses what the player uncovered */
+  if (revealed) restamp();
+}
+function px(nx) { return nx * L.w; }
+function py(ny) { return ny * L.h; }
+
+/* marching squares over one cell, for every contour level it straddles */
+function stampCell(i, j) {
+  var a = F[j * GW + i], b = F[j * GW + i + 1], c = F[(j + 1) * GW + i + 1], d = F[(j + 1) * GW + i];
+  var x0 = px(i / (GW - 1)), x1 = px((i + 1) / (GW - 1));
+  var y0 = py(j / (GH - 1)), y1 = py((j + 1) / (GH - 1));
+  for (var k = 0; k < levels.length; k++) {
+    var t = levels[k];
+    var s = (a < t ? 1 : 0) | (b < t ? 2 : 0) | (c < t ? 4 : 0) | (d < t ? 8 : 0);
+    if (s === 0 || s === 15) continue;
+    var top = [x0 + (x1 - x0) * ((t - a) / (b - a)), y0];
+    var rgt = [x1, y0 + (y1 - y0) * ((t - b) / (c - b))];
+    var bot = [x0 + (x1 - x0) * ((t - d) / (c - d)), y1];
+    var lft = [x0, y0 + (y1 - y0) * ((t - a) / (d - a))];
+    var seg = null;
+    if (s === 1 || s === 14) seg = [top, lft];
+    else if (s === 2 || s === 13) seg = [top, rgt];
+    else if (s === 3 || s === 12) seg = [lft, rgt];
+    else if (s === 4 || s === 11) seg = [rgt, bot];
+    else if (s === 6 || s === 9) seg = [top, bot];
+    else if (s === 7 || s === 8) seg = [lft, bot];
+    else if (s === 5 || s === 10) seg = [top, rgt];   /* saddle: one of the two pairs */
+    if (!seg) continue;
+    /* every third contour is an index line, drawn heavier — the topographic
+       convention, and the only weight hierarchy on the page */
+    mcx.strokeStyle = (k % 3 === 0) ? "rgba(17,17,19,.72)" : "rgba(17,17,19,.34)";
+    mcx.lineWidth = (k % 3 === 0) ? 1.5 : 1.05;
+    mcx.beginPath(); mcx.moveTo(seg[0][0], seg[0][1]); mcx.lineTo(seg[1][0], seg[1][1]); mcx.stroke();
+  }
+}
+function restamp() {
+  mcx.clearRect(0, 0, L.w, L.h);
+  for (var j = 0; j < GH - 1; j++) for (var i = 0; i < GW - 1; i++)
+    if (revealed[j * (GW - 1) + i]) stampCell(i, j);
+}
+function reveal(nx, ny, mult) {
+  var rad = 0.115 * (mult || 1);                 /* in normalised units */
+  var ci = Math.round(nx * (GW - 1)), cj = Math.round(ny * (GH - 1));
+  var ri = Math.ceil(rad * (GW - 1)), rj = Math.ceil(rad * (GH - 1));
+  for (var j = Math.max(0, cj - rj); j <= Math.min(GH - 2, cj + rj); j++) {
+    for (var i = Math.max(0, ci - ri); i <= Math.min(GW - 2, ci + ri); i++) {
+      var idx = j * (GW - 1) + i;
+      if (revealed[idx]) continue;
+      var dx = i / (GW - 1) - nx, dy = j / (GH - 1) - ny;
+      if (dx * dx + dy * dy > rad * rad) continue;
+      revealed[idx] = 1; stampCell(i, j);
+    }
+  }
+}
+
+/* ===== input =====
+   Pointer and keyboard both write the SAME steering vector, so neither can drift
+   from the other. Nothing here reads a raw angle, and nothing uses `|| fallback`
+   on a number that is legitimately allowed to be zero. */
+var keys = { u: false, d: false, l: false, r: false };
+var ptr = { on: false, x: 0, y: 0 };
+function armIt() {
+  if (armed) return;
+  armed = true;
+  var h = document.getElementById("hint"); if (h) h.classList.add("gone");
+}
+function canvasPt(e) {
+  var r = cv.getBoundingClientRect();
+  return { x: (e.clientX - r.left) / Math.max(1, r.width), y: (e.clientY - r.top) / Math.max(1, r.height) };
+}
+cv.addEventListener("pointerdown", function (e) {
+  if (over) return;
+  ac(); armIt(); cv.setPointerCapture(e.pointerId);
+  var p = canvasPt(e); ptr.on = true; ptr.x = p.x; ptr.y = p.y; e.preventDefault();
+});
+cv.addEventListener("pointermove", function (e) {
+  if (!ptr.on) return;
+  var p = canvasPt(e); ptr.x = p.x; ptr.y = p.y; e.preventDefault();
+});
+function lift() { ptr.on = false; }
+cv.addEventListener("pointerup", lift);
+cv.addEventListener("pointercancel", lift);
+cv.addEventListener("pointerleave", lift);
+/* dir() reads the PHYSICAL key (e.code) and falls back to e.key only for browsers
+   that do not report code — so the same three fingers work on QWERTY, AZERTY and
+   QWERTZ without the player rebinding anything. */
+function dir(e) {
+  var c = e.code;
+  if (c === "ArrowUp" || c === "KeyW") return "u";
+  if (c === "ArrowDown" || c === "KeyS") return "d";
+  if (c === "ArrowLeft" || c === "KeyA") return "l";
+  if (c === "ArrowRight" || c === "KeyD") return "r";
+  if (!c) {
+    var k = e.key;
+    if (k === "ArrowUp") return "u"; if (k === "ArrowDown") return "d";
+    if (k === "ArrowLeft") return "l"; if (k === "ArrowRight") return "r";
+  }
+  return null;
+}
+window.addEventListener("keydown", function (e) {
+  var d = dir(e);
+  if (d) { keys[d] = true; ptr.on = false; armIt(); e.preventDefault(); return; }
+  var c = e.code;
+  if (c === "Space" || c === "Enter" || c === "NumpadEnter") { armIt(); doHeat(); e.preventDefault(); }
+  else if (c === "KeyR") { window.mnCg("stop"); newRun(); }
+  else if (c === "KeyM") { muted = !muted; try { localStorage.setItem("mnMute", muted ? "1" : "0"); } catch (x) {} }
+});
+window.addEventListener("keyup", function (e) {
+  var d = dir(e); if (d) keys[d] = false;
+});
+window.addEventListener("resize", layout);
+window.addEventListener("orientationchange", function () { setTimeout(layout, 120); });
+
+function doHeat() {
+  if (over || !running || steps < HEAT_COST) { if (!over) sfx.fail(); return; }
+  ac(); armIt();
+  steps -= HEAT_COST;
+  var ang = Math.random() * Math.PI * 2, dist = 0.17 + Math.random() * 0.31;
+  probe.x = Math.max(.02, Math.min(.98, probe.x + Math.cos(ang) * dist));
+  probe.y = Math.max(.02, Math.min(.98, probe.y + Math.sin(ang) * dist));
+  /* the jump also buys information: it uncovers a wider disc where it lands,
+     which is what makes spending steps on it a real trade and not just a reroll */
+  reveal(probe.x, probe.y, 1.6);
+  pulses.push({ x: probe.x, y: probe.y, t: 0 });
+  heatFlash = .45; sfx.heat();
+  ev("tool_use", "heat:" + lvl);
+  hud();
+}
+document.getElementById("bheat").addEventListener("click", function () { doHeat(); });
+document.getElementById("bretry").addEventListener("click", function () { window.mnCg("stop"); ev("play_again"); newRun(); });
+document.getElementById("hublink").addEventListener("click", function () { ev("hub_click"); });
+document.getElementById("bnext").addEventListener("click", function () {
+  if (dead) { window.mnCg("stop"); ev("play_again"); newRun(); return; }
+  if (lvl + 1 < LEVELS.length) loadLevel(lvl + 1); else newRun();
+});
+
+/* ===== update ===== */
+function update(dt) {
+  nowT += dt;
+  if (!running || over) return;
+  if (!armed) { armT += dt; if (armT > 7) armIt(); }
+  var sx = 0, sy = 0;
+  var kx = (keys.r ? 1 : 0) - (keys.l ? 1 : 0), ky = (keys.d ? 1 : 0) - (keys.u ? 1 : 0);
+  if (kx !== 0 || ky !== 0) {
+    var km = Math.hypot(kx, ky);              /* never 0 here: guarded above */
+    sx = kx / km; sy = ky / km;
+  } else if (ptr.on) {
+    var dx = ptr.x - probe.x, dy = ptr.y - probe.y, dm = Math.hypot(dx, dy);
+    if (dm > 0.004) { sx = dx / dm; sy = dy / dm; }
+  }
+  if (sx !== 0 || sy !== 0) {
+    var move = SPEED * dt;
+    probe.x = Math.max(0, Math.min(1, probe.x + sx * move));
+    probe.y = Math.max(0, Math.min(1, probe.y + sy * move));
+    steps -= move * 1000;
+    reveal(probe.x, probe.y, 1);
+    if (steps <= 0) { steps = 0; return endRun(false); }
+  }
+  if (heatFlash > 0) heatFlash = Math.max(0, heatFlash - dt);
+  for (var i = pulses.length - 1; i >= 0; i--) { pulses[i].t += dt; if (pulses[i].t > .7) pulses.splice(i, 1); }
+  if (fieldAt(probe.x, probe.y) <= target) return endRun(true);
+  hud();
+}
+function endRun(didWin) {
+  over = true; won = didWin;
+  var d = document.getElementById("mdone");
+  if (didWin) {
+    var left = Math.max(0, Math.round(steps));
+    var gained = 100 + Math.floor(left / 5);
+    score += gained; sfx.win(); window.mnCg("happy");
+    if (score > best) { best = score; try { localStorage.setItem("mnBest", String(best)); } catch (e) {} }
+    document.getElementById("dt").textContent = "MINIMUM FOUND";
+    document.getElementById("ds").textContent = "+" + gained;
+    document.getElementById("dp").innerHTML = left + " steps left of " + maxSteps +
+      "<br>Total " + score + " · best " + best;
+    document.getElementById("bnext").textContent = lvl + 1 < LEVELS.length ? "Next" : "Play again";
+    dead = false;
+    ev("game_over", "mn:win:" + lvl);
+  } else {
+    sfx.fail(); dead = true; window.mnCg("stop");
+    document.getElementById("dt").textContent = "OUT OF STEPS";
+    document.getElementById("ds").textContent = fmt(fieldAt(probe.x, probe.y));
+    document.getElementById("dp").innerHTML = "You needed " + fmt(target) +
+      ".<br>The bottom you were standing in was not the bottom.";
+    document.getElementById("bnext").textContent = "Try again";
+    ev("game_over", "mn:dead:" + lvl);
+  }
+  d.classList.add("show");
+  hud();
+}
+/* LOSS is shown as a plain positive depth so that "smaller is better" needs no
+   explaining: the field is negative, the readout is its magnitude x100. */
+function fmt(v) { return Math.round(-v * 100); }
+function hud() {
+  document.getElementById("hlvl").textContent = "LEVEL " + (lvl + 1) + " / " + LEVELS.length;
+  document.getElementById("hloss").textContent = fmt(fieldAt(probe.x, probe.y));
+  document.getElementById("htar").textContent = fmt(target);
+  var s = Math.max(0, Math.round(steps));
+  document.getElementById("hsteps").textContent = s;
+  document.getElementById("hfill").style.width = (maxSteps ? (s / maxSteps) * 100 : 0) + "%";
+  var hb = document.getElementById("bheat");
+  hb.disabled = over || s < HEAT_COST;
+  document.getElementById("hcost").textContent = "costs " + HEAT_COST + " steps";
+}
+
+/* ===== draw ===== */
+function draw(dt) {
+  cx.clearRect(0, 0, L.w, L.h);
+  cx.drawImage(mapC, 0, 0, L.w, L.h);
+  var X = px(probe.x), Y = py(probe.y);
+  /* the slope reading: gradient in field space, converted to screen space,
+     because the field is normalised and the viewport rarely is square */
+  var g = gradAt(probe.x, probe.y);
+  var vx = -g[0] / L.w, vy = -g[1] / L.h, vm = Math.hypot(vx, vy);
+  if (vm > 1e-9) {
+    var ux = vx / vm, uy = vy / vm;
+    var len = Math.min(96, 26 + vm * L.w * L.h * 0.0016);
+    cx.strokeStyle = "#FF4F00"; cx.lineWidth = 1.6;
+    cx.beginPath(); cx.moveTo(X, Y); cx.lineTo(X + ux * len, Y + uy * len); cx.stroke();
+    var hx = X + ux * len, hy = Y + uy * len, a = Math.atan2(uy, ux);
+    cx.beginPath();
+    cx.moveTo(hx, hy);
+    cx.lineTo(hx - Math.cos(a - .42) * 9, hy - Math.sin(a - .42) * 9);
+    cx.lineTo(hx - Math.cos(a + .42) * 9, hy - Math.sin(a + .42) * 9);
+    cx.closePath(); cx.fillStyle = "#FF4F00"; cx.fill();
+  } else {
+    /* genuinely flat — say so, because this is the decision the game is about */
+    cx.fillStyle = "#FF4F00"; cx.font = "800 11px -apple-system,'Helvetica Neue',Arial,sans-serif";
+    cx.textAlign = "left"; cx.fillText("NO SLOPE HERE", X + 16, Y - 14);
+  }
+  for (var i = 0; i < pulses.length; i++) {
+    var p = pulses[i], k = p.t / .7;
+    cx.globalAlpha = 1 - k; cx.strokeStyle = "#FF4F00"; cx.lineWidth = 1;
+    cx.beginPath(); cx.arc(px(p.x), py(p.y), 8 + k * 70, 0, 7); cx.stroke();
+    cx.globalAlpha = 1;
+  }
+  cx.beginPath(); cx.arc(X, Y, 5.5, 0, 7); cx.fillStyle = "#FF4F00"; cx.fill();
+  cx.beginPath(); cx.arc(X, Y, 11 + heatFlash * 26, 0, 7);
+  cx.strokeStyle = "rgba(255,79,0,.55)"; cx.lineWidth = 1; cx.stroke();
+  if (!armed) {
+    cx.strokeStyle = "rgba(255,79,0,.30)"; cx.lineWidth = 1;
+    cx.beginPath(); cx.arc(X, Y, 20 + Math.sin(nowT * 3.4) * 5, 0, 7); cx.stroke();
+  }
+}
+
+var last = 0;
+function loop(t) {
+  var dt = Math.min(.05, (t - last) / 1000 || 0); last = t;
+  update(dt); draw(dt);
+  requestAnimationFrame(loop);
+}
+/* Playable from this instant: no menu, no click gate. This is also exactly what
+   the portal's automatic "first gameplay start" check looks for. */
+newRun();
+ev("play_start"); window.mnCg("start");
+requestAnimationFrame(loop);
+window.MN_READY = true;
+
+var bm = document.getElementById("bmute");
+bm.textContent = muted ? "\ud83d\udd07" : "\ud83d\udd0a";
+bm.addEventListener("click", function () {
+  muted = !muted;
+  bm.textContent = muted ? "\ud83d\udd07" : "\ud83d\udd0a";
+  try { localStorage.setItem("mnMute", muted ? "1" : "0"); } catch (e) {}
+});
+</script>
+</body>
+</html>

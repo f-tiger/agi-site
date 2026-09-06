@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <title>PROMPT — It Does Exactly What You Said</title>
-<meta name="description" content="Write the instructions, press RUN, and watch a machine follow them to the letter — including the letters you did not mean. A free puzzle game about specifications, loopholes and reward hacking.">
+<meta name="description" content="Write the instructions, press RUN, and watch a machine follow them to the letter, not to the meaning. A free puzzle game about saying what you mean.">
 <link rel="canonical" href="https://play.agiscorecard.com/prompt">
 <meta property="og:title" content="PROMPT — It Does Exactly What You Said">
 <meta property="og:description" content="Not what you meant. What you said. A puzzle game about writing specifications a machine cannot game.">
 <meta property="og:url" content="https://play.agiscorecard.com/prompt">
 <meta name="theme-color" content="#0b0e15">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230b0e15'/%3E%3Cpath d='M8 11 L13 16 L8 21' fill='none' stroke='%23ffd166' stroke-width='2.6' stroke-linecap='round'/%3E%3Crect x='16' y='19' width='9' height='2.6' rx='1.3' fill='%2366d9ff'/%3E%3C/svg%3E">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"PROMPT","url":"https://play.agiscorecard.com/prompt","applicationCategory":"GameApplication","operatingSystem":"Any (browser)","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":"instruction-programming puzzle, literal interpreter, specification-gaming levels, mouse / touch / keyboard, no account","isPartOf":{"@type":"WebSite","name":"Gridlings","url":"https://play.agiscorecard.com/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"PROMPT","url":"https://play.agiscorecard.com/prompt","applicationCategory":"GameApplication","operatingSystem":"Any (browser)","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":"instruction-programming puzzle, literal interpreter, 6 levels, mouse / touch / keyboard, no account","isPartOf":{"@type":"WebSite","name":"Gridlings","url":"https://play.agiscorecard.com/"}}</script>
 <style>
   :root{--bg:#0b0e15;--ink:#e8edf7;--mut:#7c88a3;--line:rgba(255,255,255,.09);--panel:#151a26;
         --bot:#ffd166;--goal:#66d9ff;--gem:#8affc1;--bad:#ff6b7a;}
@@ -24,12 +24,19 @@
   header{width:100%;max-width:900px;display:flex;align-items:center;justify-content:space-between;padding:10px 14px 0;}
   .logo{font-weight:800;font-size:17px;letter-spacing:2px;}
   .logo em{font-style:normal;color:var(--bot);}
-  .hbtn{background:var(--panel);border:1px solid var(--line);color:var(--mut);border-radius:9px;height:34px;padding:0 11px;font:inherit;font-size:12.5px;font-weight:700;cursor:pointer;}
-  #stage{flex:1;width:100%;max-width:900px;display:block;}
+  .hbtn{background:var(--panel);border:1px solid var(--line);color:var(--mut);border-radius:9px;height:34px;padding:0 11px;font:inherit;font-size:12.5px;font-weight:700;cursor:pointer;min-height:36px;}
+  /* A <canvas> carries an intrinsic height from its width/height attributes, and a
+   flex item defaults to min-height:auto -- so the canvas could GROW to fill the
+   column but never SHRINK, and with body{overflow:hidden} everything below it
+   (the controls) was pushed off a short viewport with no way to scroll to them.
+   `flex:1 1 0` + `min-height:0` is what lets it shrink; layout() then resizes the
+   backing store to whatever box it actually got. */
+  #stage{flex:1 1 0;min-height:0;width:100%;max-width:900px;display:block;}
   .rack{width:100%;max-width:900px;padding:0 14px 6px;display:flex;flex-wrap:wrap;gap:6px;}
   .op{border:1px solid var(--line);border-radius:10px;background:var(--panel);color:var(--ink);
-    font:inherit;font-size:12.5px;font-weight:700;padding:9px 11px;cursor:pointer;letter-spacing:.3px;}
+    font:inherit;font-size:12.5px;font-weight:700;padding:0 12px;min-height:44px;cursor:pointer;letter-spacing:.3px;}
   .op:active{transform:scale(.96);}
+  .op kbd{font:inherit;font-size:9.5px;opacity:.55;border:1px solid var(--line);border-radius:4px;padding:0 3px;margin-left:3px;}
   .op.run{margin-left:auto;border-color:rgba(138,255,193,.5);color:var(--gem);}
   .op.clr{border-color:rgba(255,107,122,.4);color:var(--bad);}
   footer{width:100%;max-width:900px;padding:0 14px calc(9px + env(safe-area-inset-bottom));display:flex;justify-content:space-between;font-size:11px;color:var(--mut);}
@@ -52,6 +59,7 @@
   #hint.gone{opacity:0;}
   .hcard{background:rgba(21,26,38,.93);border:1px solid var(--line);border-radius:16px;padding:18px 22px;max-width:380px;
     text-align:center;box-shadow:0 14px 44px rgba(0,0,0,.5);}
+  .hcard .keys{margin-bottom:10px;}
   .hcard p{font-size:13.5px;line-height:1.62;}
   .hcard .go{margin-top:11px;color:var(--bot);font-weight:800;letter-spacing:1px;text-transform:uppercase;font-size:12px;
     animation:pulse 1.5s ease-in-out infinite;}
@@ -61,6 +69,7 @@
 <body>
 <header>
   <div class="logo">PROM<em>PT</em></div>
+  <button class="hbtn" id="bmute" aria-label="Sound on/off">🔊</button>
   <button class="hbtn" id="bretry">↺ retry</button>
 </header>
 <canvas id="stage"></canvas>
@@ -69,9 +78,8 @@
 
 <div id="hint" aria-hidden="true">
   <div class="hcard">
-    <p><b>Build a list of instructions, then press RUN.</b> The machine follows them literally — it has no idea what you meant.</p>
-    <p style="margin-top:8px;color:var(--mut)">Collect every ◆ and reach the ✕. Shorter programs score more.</p>
-    <p class="go">tap an instruction to begin</p>
+    <div class="keys"><svg viewBox="0 0 118 46" width="118" height="46" aria-hidden="true"><rect x="45" y="1" width="20" height="20" rx="3" fill="none" stroke="rgba(255,255,255,.42)"/><rect x="23" y="24" width="20" height="20" rx="3" fill="none" stroke="rgba(255,255,255,.42)"/><rect x="45" y="24" width="20" height="20" rx="3" fill="none" stroke="rgba(255,255,255,.42)"/><rect x="67" y="24" width="20" height="20" rx="3" fill="none" stroke="rgba(255,255,255,.42)"/><path d="M55 17v-9M51 12l4-4 4 4" stroke="#ffd166" stroke-width="1.7" fill="none"/><path d="M38 34h-9M33 30l-4 4 4 4" stroke="#ffd166" stroke-width="1.7" fill="none"/><path d="M55 29v9M51 34l4 4 4-4" stroke="#ffd166" stroke-width="1.7" fill="none"/><path d="M72 34h9M77 30l4 4-4 4" stroke="#ffd166" stroke-width="1.7" fill="none"/><circle cx="9" cy="23" r="5" fill="#ffd166"/><path d="M9 23 L1 15" stroke="#ffd166" stroke-width="1.6" fill="none"/><path d="M9 23 L18 31" stroke="rgba(255,255,255,.42)" stroke-width="1.2" stroke-dasharray="2 2" fill="none"/></svg></div>
+    <p><b>Add instructions, then RUN.</b></p><p class="go">it obeys the words, not the meaning</p>
   </div>
 </div>
 <div class="modal" id="mdone"><div class="card">
@@ -190,6 +198,7 @@ var LEVELS = [
         "#########"] }
 ];
 var lvl, grid, bot, gems, prog, running, over, execIdx, execT, tick, score, best = 0, armed, armT, nowT, pops, shake;
+var CAP = 14, capWarn = 0, modalT = 0;
 try { best = parseInt(localStorage.getItem("pmBest") || "0", 10) || 0; } catch (e) {}
 var DIRS = [[1, 0], [0, 1], [-1, 0], [0, -1]];   /* 0 = east, clockwise */
 
@@ -203,9 +212,12 @@ function loadLevel(i) {
     if (c === ">") { bot = { x: x, y: y, d: 0 }; grid[y][x] = "."; }
   }); });
   bot.sx = bot.x; bot.sy = bot.y; bot.sd = bot.d;
-  running = false; over = false; execIdx = 0; execT = 0;
+  running = false; over = false; execIdx = 0; execT = 0; capWarn = 0;
+  clearTimeout(modalT);
   document.getElementById("mdone").classList.remove("show");
   buildRack();
+  layout();      /* AFTER the rack exists: sized before it, the canvas locked to a
+                    height that assumed an empty control row */
   draw(0);
 }
 function resetBot() {
@@ -219,15 +231,16 @@ function at(x, y) { return (grid[y] && grid[y][x]) || "#"; }
 function buildRack() {
   var r = document.getElementById("rack");
   r.innerHTML = "";
+  var KEYCAP = { "FWD": "W", "LEFT": "A", "RIGHT": "D", "UNTIL WALL": "Q", "UNTIL \u25c6": "E" };
   LEVELS[lvl].ops.forEach(function (op) {
     var b = document.createElement("button");
-    b.className = "op"; b.textContent = op;
+    b.className = "op"; b.innerHTML = op + (KEYCAP[op] ? " <kbd>" + KEYCAP[op] + "</kbd>" : "");
     b.addEventListener("click", function () { addOp(op); });
     r.appendChild(b);
   });
   var c = document.createElement("button");
   c.className = "op clr"; c.textContent = "⌫";
-  c.addEventListener("click", function () { ac(); prog.pop(); sfx.step(); });
+  c.addEventListener("click", function () { if (running || over) { sfx.fail(); return; } ac(); prog.pop(); sfx.step(); });
   r.appendChild(c);
   var run = document.createElement("button");
   run.className = "op run"; run.textContent = "▶ RUN";
@@ -237,13 +250,17 @@ function buildRack() {
 function addOp(op) {
   ac(); armed = true;
   var h = document.getElementById("hint"); if (h) h.classList.add("gone");
-  if (running || prog.length >= 14) { sfx.fail(); return; }
+  if (running || over) { sfx.fail(); return; }
+  if (prog.length >= CAP) {                 /* the cap was silent: only a tone, and
+       the portal can mute audio, so a player just saw taps do nothing */
+    sfx.fail(); capWarn = 2.2; return;
+  }
   prog.push(op); sfx.add();
 }
 function startRun() {
   ac(); armed = true;
   var h = document.getElementById("hint"); if (h) h.classList.add("gone");
-  if (running || !prog.length) { sfx.fail(); return; }
+  if (running || over || !prog.length) { sfx.fail(); return; }
   resetBot(); running = true; execIdx = 0; execT = 0; tick = 0;
   ev("calc_use", "run:" + lvl);
 }
@@ -317,7 +334,10 @@ function finish() {
     ev("game_over", "pm:fail:" + lvl);
   }
   d.dataset.ok = ok ? "1" : "0";
-  setTimeout(function () { d.classList.add("show"); }, 380);
+  window.pmCg("stop");            /* the run has ended; without this the next
+     gameplayStart() is the second in a row with an ad request between them */
+  clearTimeout(modalT);
+  modalT = setTimeout(function () { d.classList.add("show"); }, 380);
 }
 document.getElementById("bnext").addEventListener("click", function () {
   var d = document.getElementById("mdone");
@@ -331,9 +351,14 @@ document.getElementById("bnext").addEventListener("click", function () {
     window.pmCg("start");
   });
 });
-document.getElementById("bretry").addEventListener("click", function () { ac(); prog = []; resetBot(); running = false; over = false; });
+document.getElementById("bretry").addEventListener("click", function () {
+  ac(); clearTimeout(modalT);           /* cancel a result modal still in flight */
+  document.getElementById("mdone").classList.remove("show");
+  prog = []; resetBot(); running = false; over = false; capWarn = 0;
+});
 document.getElementById("hublink").addEventListener("click", function () { ev("hub_click", "pm"); });
-var KEYS = { KeyW: "FWD", ArrowUp: "FWD", KeyA: "LEFT", ArrowLeft: "LEFT", KeyD: "RIGHT", ArrowRight: "RIGHT" };
+var KEYS = { KeyW: "FWD", ArrowUp: "FWD", KeyA: "LEFT", ArrowLeft: "LEFT", KeyD: "RIGHT", ArrowRight: "RIGHT",
+             KeyQ: "UNTIL WALL", KeyE: "UNTIL \u25c6" };
 window.addEventListener("keydown", function (e) {
   var d = document.getElementById("mdone");
   if (d.classList.contains("show")) {
@@ -341,7 +366,7 @@ window.addEventListener("keydown", function (e) {
     return;
   }
   if (e.code === "Enter") { e.preventDefault(); startRun(); return; }
-  if (e.code === "Backspace") { e.preventDefault(); ac(); prog.pop(); sfx.step(); return; }
+  if (e.code === "Backspace") { e.preventDefault(); if (running || over) { sfx.fail(); return; } ac(); prog.pop(); sfx.step(); return; }
   var k = KEYS[e.code];
   if (k && LEVELS[lvl].ops.indexOf(k) >= 0) { e.preventDefault(); addOp(k); }
 });
@@ -350,7 +375,7 @@ var cv = document.getElementById("stage"), cx = cv.getContext("2d"), L = {};
 function layout() {
   var dpr = Math.min(window.devicePixelRatio || 1, 2.5);
   var r = cv.getBoundingClientRect();
-  L.w = Math.max(300, r.width); L.h = Math.max(260, r.height);
+  L.w = Math.max(300, r.width); L.h = Math.max(170, r.height);
   cv.width = Math.round(L.w * dpr); cv.height = Math.round(L.h * dpr);
   cx.setTransform(dpr, 0, 0, dpr, 0, 0);
 }
@@ -431,6 +456,13 @@ function draw(dt) {
     cx.fillText(op, tx + 7, py + 1);
     tx += w + 5;
   });
+  if (capWarn > 0) {
+    capWarn = Math.max(0, capWarn - dt);
+    cx.globalAlpha = Math.min(1, capWarn); cx.textAlign = "center";
+    cx.font = "800 13px -apple-system,'Segoe UI',sans-serif"; cx.fillStyle = "#ffd166";
+    cx.fillText("program is full — " + CAP + " instructions max", L.w / 2, L.h - 14);
+    cx.globalAlpha = 1;
+  }
   for (var qi = pops.length - 1; qi >= 0; qi--) {
     var q = pops[qi]; q.a += dt;
     if (q.a >= q.life) { pops.splice(qi, 1); continue; }
@@ -448,6 +480,14 @@ layout(); loadLevel(0);
 ev("play_start"); window.pmCg("start");
 requestAnimationFrame(loop);
 window.PM_READY = true;
+
+var bm = document.getElementById("bmute");
+bm.textContent = muted ? "\ud83d\udd07" : "\ud83d\udd0a";
+bm.addEventListener("click", function () {
+  muted = !muted;
+  bm.textContent = muted ? "\ud83d\udd07" : "\ud83d\udd0a";
+  try { localStorage.setItem("pmMute", muted ? "1" : "0"); } catch (e) {}
+});
 </script>
 </body>
 </html>

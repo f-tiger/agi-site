@@ -558,3 +558,50 @@ NODE_PATH=/opt/node22/lib/node_modules node tools/capture-store-assets.js <slug>
 - Tags：`survival` `top-down` `avoid` `skill`（有 `space` 可加）
 - Controls：鼠标免点击跟随 / WASD·方向键 / 触屏按住拖动 / 空格·回车开局 / 自动开火
 - Build：`https://play.agiscorecard.com/downloads/cg/<slug>-cg.zip`（CI 每次部署重建）
+
+---
+
+## CG 规则补齐 + 爆品路径（2026-09-06，WebSearch 取证；crazygames.com/docs 在沙箱内仍 403）
+
+**上架是两段式，过审只是第一段。**
+
+- **Basic Launch**：过审后只给有限流量，跑到「≥7 天 **且** ≥500 次游玩」才结束；到不了 500 次，21 天自动结束。
+- 期间量三件事：**conversion to gameplay**（开局后真正玩满 1 分钟的比例，头部 **80%+**）、**Day-1 retention**（强势游戏 **10–15%**）、average playtime。加载 **<10 秒**、包体 **<20MB**。
+- 过关 → **Full Launch**：进 browse feed / 搜索 / 推荐轮播（按 genre、tags、engagement 分发）；Full Launch 头几天表现好，再拿 featured 位与算法加权。
+- 出处：docs.crazygames.com/resources/basic-launch-metrics/、/requirements/{quality,technical,gameplay,intro}/。
+
+**由此固定三条判断：**
+1. **第一分钟决定一切**，不是第六关。80% 的人要在 60 秒内还在玩——教学关必须在 30 秒内给出第一次「赢」。
+2. **D1 retention 是本舰队最大的缺口**：五款都没有回访理由。「每日同一张地形/关卡 + 排行」是唯一同时喂 D1 与「多人感」且不需要实时服务器的东西。
+3. **包体是我们唯一的结构性优势**：9–12KB vs 手机首页 20MB 门槛，加载和 conversion 天然满分。别拿它去换任何重资源方案。
+
+**两条成文规则，之前全舰队都在违反：**
+- **键位必须适配布局**（文档点名 AZERTY）。判 `e.code`（物理键），**不要判 `e.key`**——法国键盘上 W/A 不在 WASD 的位置，数字键不按 Shift 给的是 `&é"`。
+- **引导「优先视觉、限制文字」**，用键位图或手势图，教学放进玩法，可跳过。两段散文式 hint 卡是反面典型，很可能就是两次「overall quality」拒稿里没说出口的部分。
+
+## 六维度审计查出的缺陷类别（2026-09-05/06，40 agent + 双人对抗验证，全部实测复现）
+
+**做完任何新游戏，按这张表自查一遍：**
+
+| 类别 | 具体形态 | 检测 |
+|---|---|---|
+| **画布不能收缩** | `<canvas>` 带固有高度 + flex 项 `min-height:auto` → 只能撑大不能缩小；配 `body{overflow:hidden}`，控件被顶出视口且无法滚动。**五款全中，PROMPT 连竖屏都中** | `tools/fleet-smoke.js` |
+| | 修法：`flex:1 1 0` + `min-height:0`，并把 layout 的高度下限降到 ~170 | |
+| **状态跨局泄漏** | 挂在函数对象上的时间戳（`update.t`）不随 `newRun()` 归零 → 重开后空场，时长 = 上一局时长 | 同上（restart 后必须有活物） |
+| **结算弹窗竞态** | `setTimeout(...380/420/500)` 没句柄 → 这期间重开会把旧弹窗盖到新局上，还能跳关、重复计分、发两次 `gameplayStop` | 同上（重开后不得有 modal.show） |
+| **结束后仍可输入** | `over` 之后到弹窗出现之间没有守卫 → 得分被丢弃、`happytime` 排在 `gameplayStop` 之后 | |
+| **落点用已失效的索引算** | 先置 `a.done=true` 再调 `px(a)`，而 `px` 按「活着的 agent」找卡片 → 反馈画到别人卡上 | |
+| **按住不放连发** | 缺 `e.repeat` 守卫 → 按住一个数字键把整块板子清空 | |
+| **手势前建 AudioContext** | `newRun()` 里的音效在页面加载时就建 AudioContext → Chrome 每次加载都记一条 autoplay 警告；门户拒收有控制台报错的包 | `fleet-smoke` 抓 autoplay |
+| **埋点被 CORS 预检打掉** | `application/json` 不在 CORS 安全名单，浏览器先发 OPTIONS；worker 只处理 POST → 门户版所有事件静默丢失 | worker 必须答 OPTIONS |
+| **文案与实现不符** | meta 卖「reward hacking / 关卡」而版本里没有；「skipping is free」而实际扣分；「your score is its score」而有 150 分预支 | 逐条对照 |
+| **SDK 滥用** | `happytime()` 一局发 26 次（每答对一题一次）；`gameplayStop()` 从不调用 | `fleet-smoke` 计数 |
+| **判定忽略极性** | 学到「同一特征、相反方向」= 完全相反的规则，却被判为「学对了」 | |
+| **键盘覆盖不全** | 只绑了 5 个指令里的 3 个 → 后两关键盘玩家可证明无解 | |
+| **静音键读了但没人写** | 四款读 `*Mute` 而没有静音控件，公开站根本没法静音 | |
+
+**可复跑的工具（全部在 `tools/`）：**
+- `fleet-smoke.js` —— 上架前唯一的总闸：秒开 / `gameplayStart` / 控制台干净 / 手机三视口无越界 / 触控目标 / 重开真的重开。**不过不投。**
+- `cg-package-smoke.js` —— 验**真正要上传的 zip**（解包后跑）：零交互触发 `gameplayStart`、无控制台报错、无意外外链、文件数与体积。
+- `check-autopilot-globals.js` —— `page.evaluate` 跑在全局作用域，脚本里一句 `var draw` 会顶掉游戏自己的 `draw()`；上线前断言不撞名。
+- `verify-minima.js` / `verify-prompt-reel.js` —— 用**只含玩家可见信息**的策略证明每一关可通关；MINIMA 跑两种策略（纯下坡 / 会翻山），**纯下坡赢不了不是 bug，那是设计；会翻山的赢不了才是 broken**。
