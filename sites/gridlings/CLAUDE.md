@@ -625,3 +625,24 @@ NODE_PATH=/opt/node22/lib/node_modules node tools/capture-store-assets.js <slug>
   波次结算要求 `!foes.length`，boss 未死波次不结束。
 - 视觉深度的通用配方（两款都用了）：星云 + 三层视差星星 + 暗角；主体物 = 渐变 + 深色描边 +
   一只会看方向的眼睛；地砖弹入；挤出的墙块侧面；拖尾子弹；击杀冲击波环。
+
+## 插画语言要分家 + 商店视频要逐帧（2026-09-06，owner「都是大眼睛，没有其他的插画吗」「over 的视频上传后有点模糊」「PROMPT 16:9 的图片文字遮挡了」）
+
+- **会话没有位图绘图模型，只能做程序化矢量插画（SVG/Canvas）。** 能做的是让每款游戏用**不同
+  的插画词汇**，而不是把「渐变体 + 描边 + 一只眼」复制五遍。已定：PROMPT = 机器人（有眼）、
+  OVERFIT = 飞船与带眼敌机、MIMIC = 被审判的标本（有眼）、**OVERSEER = 俯视控制室：显示器墙
+  （bezel + 扫描线 + 状态 LED + 标签铭牌）、带前灯的巡检车、降落靶盘、HALT 八角章——一只眼睛
+  都没有**；MINIMA 走瑞士几何，同样无眼。新游戏先写一行「插画词汇」再动手，避免再撞车。
+- **显示器不再瞬间消失**：`slots()` 让已结束的卡片停留 `FADE=.5s`（CRT 收成一条线），
+  网格不会在手指下重排——之前一点就重排会误停旁边那台。结束态用 `a.how`
+  （caught/waste/shipped/ok）决定闪色与是否盖章。
+- **商店视频改逐帧截图**：Playwright `recordVideo` 是调试用 screencast（JPEG→低码率 VP8），
+  原先还在 1280×720 录完再放大到 1080p，CG 悬停预览明显发糊。现在 `capture-store-assets.js`
+  在页面注入**虚拟时钟**（rAF/setTimeout/setInterval/performance.now 全部只在 `__tick()` 时
+  推进），半尺寸视口 × deviceScaleFactor 2 逐帧 PNG 截图（与封面同配方），ffmpeg crf 19 编码。
+  确定性、无丢帧、像素级清晰；代价是每条视频 1–2 分钟。CSS transition 仍走真实时间，
+  只是略快，可接受。
+- **海报标语位置**：`_poster.js` 的 tagline 从「固定百分比」改为「挂在字标真实盒子下方」
+  （字号 ×1.04 + 描边环 + 硬投影），横版 16:9 在 .27×1080 的字号下原来会压进投影里。
+- **字体模块可重建**：`tools/store-assets/build-fonts.sh` 从 npm 拉五个 @fontsource 包重生成
+  `_fonts.js`（fredoka / audiowide / righteous / bungee / rubikmono），别再手改那个文件。

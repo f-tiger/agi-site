@@ -2615,3 +2615,12 @@ validate 222 页 OK。种子在 content-backlog 打勾。
 - **诚实边界**:所有数字来自事实表(带信源日期);[thin] 项只写「据报道」;WebFetch 对几乎所有
   新闻域被代理拦截,[verify] 项靠 WebSearch 多源片段核实原话。validate OK 228 页 / 210 URL;
   hreflang 门 OK。**破了「一次一改」的日常纪律——owner 明确要求「前后全方面升级」,记录在案。**
+
+## 2026-09-06 — gridlings：OVERSEER 深度美术 + 五款商店视频逐帧重录（agi 站零改动）
+
+- **OVERSEER**：Bungee 内嵌字体；无眼插画语言（显示器墙 / 巡检车 / 靶盘 / HALT 章）；`slots()`
+  半秒 CRT 关机保持网格不重排；音层 noise()+7 音；波次改为 intro 卡；pop 文字限幅、rover 随卡
+  片缩放、intro 卡片手机端换行。fleet-smoke 五款绿、cg-package-smoke 29.7KB gameplayStart 77ms。
+- **素材工具**：`capture-store-assets.js` 视频改虚拟时钟逐帧截图（根治 CG 预览模糊）；
+  `_poster.js` 标语从字标盒子推算位置（PROMPT 16:9 遮挡）；`build-fonts.sh` 重建字体模块。
+- 判定线不变；agi 内容在客户视角簇判定期内，本日不叠加 ship。

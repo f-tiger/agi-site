@@ -115,39 +115,75 @@ function sizeOf(f) {
     report.push(`${path.basename(f)}  ${got.w}x${got.h}  ${(fs.statSync(f).size / 1024) | 0}KB`);
   }
 
-  /* ---------- videos: real gameplay driven by the game's own autopilot ---------- */
+  /* ---------- videos: real gameplay driven by the game's own autopilot ----------
+     Frame-stepped, not screen-recorded. Playwright's recordVideo is a debugging
+     screencast (JPEG frames -> low-bitrate VP8), and the first trailers were
+     shot at 1280x720 then upscaled -- on the portal's hover preview they were
+     visibly soft. Here the page runs on a VIRTUAL clock (rAF + timers + now()
+     all advance only when __tick() is called), every frame is a lossless PNG
+     screenshot at the FINAL pixel size (half-size viewport, deviceScaleFactor 2,
+     same recipe as the covers), and ffmpeg encodes the sequence. Deterministic
+     and sharp; costs ~1-2 minutes per video. */
+  const FPS = 30;
+  const CLOCK = `(() => {
+    let now = 0, timers = [], rafQ = [], tid = 1;
+    const T0 = 1725580800000;
+    performance.now = () => now; Date.now = () => T0 + now;
+    window.requestAnimationFrame = cb => { rafQ.push(cb); return rafQ.length; };
+    window.cancelAnimationFrame = () => {};
+    window.setTimeout = (fn, ms, ...a) => { const id = tid++; timers.push({ id, at: now + Math.max(0, +ms || 0), fn, a, iv: 0 }); return id; };
+    window.setInterval = (fn, ms, ...a) => { const id = tid++; const iv = Math.max(1, +ms || 1); timers.push({ id, at: now + iv, fn, a, iv }); return id; };
+    window.clearTimeout = window.clearInterval = id => { timers = timers.filter(t => t.id !== id); };
+    window.__tick = ms => {
+      const target = now + ms;
+      for (;;) {
+        let due = null; for (const t of timers) if (t.at <= target && (!due || t.at < due.at)) due = t;
+        if (!due) break;
+        now = due.at;
+        if (due.iv) due.at += due.iv; else timers = timers.filter(t => t !== due);
+        try { typeof due.fn === "function" ? due.fn(...due.a) : (0, eval)(String(due.fn)); } catch (e) { console.error("timer", e); }
+      }
+      now = target;
+      const q = rafQ.splice(0); for (const cb of q) { try { cb(now); } catch (e) { console.error("raf", e); } }
+    };
+  })();`;
   for (const v of cfg.videos) {
-    const raw = path.join(OUT, "_raw_" + v.name);
-    fs.rmSync(raw, { recursive: true, force: true });
+    const frames = path.join(OUT, "_frames_" + v.name);
+    fs.rmSync(frames, { recursive: true, force: true }); fs.mkdirSync(frames, { recursive: true });
+    const dsf = 2;
     const ctx = await browser.newContext({
-      viewport: { width: v.rec.w, height: v.rec.h },
-      recordVideo: { dir: raw, size: { width: v.rec.w, height: v.rec.h } }
+      viewport: { width: v.out.w / dsf, height: v.out.h / dsf }, deviceScaleFactor: dsf
     });
+    await ctx.addInitScript(CLOCK);
     const page = await ctx.newPage();
     const errs = [];
     page.on("pageerror", e => errs.push(e.message));
+    /* a real console error is a rejection at the portal; a beacon that cannot
+       reach the collector from this sandbox is not (same filter as fleet-smoke) */
+    page.on("console", m => { const t = m.text(); if (m.type() === "error" && !/ERR_TUNNEL|ERR_NAME|Failed to load resource/.test(t)) errs.push(t); });
+    await page.route("**/play.agiscorecard.com/e", r => r.fulfill({ status: 204, body: "" }));
     await page.goto(base, { waitUntil: "networkidle" });
     await page.waitForFunction(cfg.readyExpr);
     if (cfg.startSelector) await page.click(cfg.startSelector);
     await page.evaluate(cfg.autopilot);
-    const t0 = Date.now();
-    let last = null;
-    while ((Date.now() - t0) / 1000 < SECONDS + TRIM) {
-      await page.waitForTimeout(500);
-      last = await page.evaluate(cfg.probeExpr);
-      if (last && last.over) break;
+    /* let the intro settle without filming it */
+    await page.evaluate(ms => { for (let i = 0; i < ms / (1000 / 30); i++) window.__tick(1000 / 30); }, TRIM * 1000);
+    let last = null, n = 0;
+    const total = SECONDS * FPS;
+    while (n < total) {
+      await page.evaluate(ms => window.__tick(ms), 1000 / FPS);
+      await page.screenshot({ path: path.join(frames, String(n).padStart(5, "0") + ".png"), type: "png" });
+      n++;
+      if (n % 15 === 0) { last = await page.evaluate(cfg.probeExpr); if (last && last.over) break; }
     }
     await ctx.close();
     if (errs.length) throw new Error("page errors during capture: " + errs.join(" | "));
-    const webm = fs.readdirSync(raw).find(f => f.endsWith(".webm"));
     const mp4 = path.join(OUT, `${slug}-gameplay-${v.name}-${v.out.w}x${v.out.h}.mp4`);
-    await run(FF, ["-v", "error", "-y", "-ss", String(TRIM), "-t", String(SECONDS),
-      "-i", path.join(raw, webm),
-      "-vf", `scale=${v.out.w}:${v.out.h}:flags=lanczos,fps=30`,
-      "-c:v", "libx264", "-preset", "slow", "-crf", "20", "-pix_fmt", "yuv420p",
+    await run(FF, ["-v", "error", "-y", "-framerate", String(FPS), "-i", path.join(frames, "%05d.png"),
+      "-c:v", "libx264", "-preset", "slow", "-crf", "19", "-pix_fmt", "yuv420p",
       "-movflags", "+faststart", "-an", mp4]);
-    fs.rmSync(raw, { recursive: true, force: true });
-    report.push(`${path.basename(mp4)}  ${(fs.statSync(mp4).size / 1024) | 0}KB  ${SECONDS}s  probe=${JSON.stringify(last)}`);
+    fs.rmSync(frames, { recursive: true, force: true });
+    report.push(`${path.basename(mp4)}  ${(fs.statSync(mp4).size / 1024) | 0}KB  ${(n / FPS).toFixed(1)}s ${n}f  probe=${JSON.stringify(last)}`);
   }
   await browser.close();
   srv.close();

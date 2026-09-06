@@ -13,8 +13,12 @@ module.exports = function poster(c, o) {
   const ol = Math.max(2, Math.round(title * .045));
   const ring = [[ol,0],[-ol,0],[0,ol],[0,-ol],[ol,ol],[-ol,ol],[ol,-ol],[-ol,-ol]].map(([x,y]) => `${x}px ${y}px 0 ${o.outline}`).join(",");
   const drop = `, 0 ${Math.round(title*.07)}px 0 ${o.shadow}, 0 ${Math.round(title*.12)}px ${Math.round(title*.10)}px rgba(0,0,0,.35)`;
-  const wordTop = port ? "68%" : sq ? "64%" : "6%";
-  const tagTop  = port ? "85%" : sq ? "85%" : "31%";
+  const wordTopPx = Math.round((port ? .68 : sq ? .64 : .06) * H);
+  /* the tagline hangs off the wordmark's real box (font size + outline ring +
+     hard drop) instead of a fixed percentage -- at the landscape title size the
+     percentage put it inside the letters' drop shadow */
+  const tagTopPx = Math.round(wordTopPx + title * 1.04 + ol + title * .07 + title * .04);
+  const wordTop = wordTopPx + "px", tagTop = tagTopPx + "px";
   const heroTop = port ? "36%" : sq ? "36%" : "66%";
   return `<!doctype html><html><head><meta charset="utf-8"><style>${o.fontFace || ""}
     html,body{margin:0;width:${W}px;height:${H}px;overflow:hidden;font-family:${o.family ? o.family + "," : ""}-apple-system,BlinkMacSystemFont,"Segoe UI","Arial Black",Arial,sans-serif;}
