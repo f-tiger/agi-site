@@ -44,9 +44,30 @@ NOTIONAL = 10_000.0
 COST_BPS = 5                   # per side, applied on traded notional
 BASKET = ["NVDA", "AMD", "TSM", "AVGO", "MU", "MSFT", "GOOGL", "AMZN", "AAPL", "META"]
 BENCH = ["SPY", "QQQ"]
-TICKERS = BENCH + BASKET
-LOOKBACK_DAYS = 330            # keep enough history for SMA200 + LLM 60-day window
+# Multi-asset ETF universe for the published allocation rules (added 2026-09-05, before START):
+# VEU ex-US equity · AGG US aggregate bonds · IEF 7-10y Treasuries · VNQ REITs · DBC commodities · BIL T-bills
+ETFS = ["VEU", "AGG", "IEF", "VNQ", "DBC", "BIL"]
+TICKERS = BENCH + BASKET + ETFS
+LOOKBACK_DAYS = 430            # 12-1 momentum needs ~273 sessions; SMA200; LLM 60-day window
+MONTHLY_ARMS = ("gem_dual_momentum", "gtaa5", "spy_voltarget", "basket_mom5", "sixty_forty")
+ARM_ORDER = ["spy_hold", "qqq_hold", "sixty_forty", "agi_basket", "tracker_mix", "sma200_spy", "llm_agent",
+             "gem_dual_momentum", "gtaa5", "spy_voltarget", "basket_mom5"]
 UA = {"User-Agent": "AGI Scorecard paper-ledger (https://agiscorecard.com/ai-trading-ledger)"}
+# NYSE full-day closures (2026-09 → 2027-12). Used only to name the next session for
+# the published target; a wrong entry costs one early/late rebalance, never money.
+NYSE_HOLIDAYS = {
+    "2026-11-26", "2026-12-25",
+    "2027-01-01", "2027-01-18", "2027-02-15", "2027-03-26", "2027-05-31", "2027-06-18",
+    "2027-07-05", "2027-09-06", "2027-11-25", "2027-12-24",
+}
+
+
+def next_session(d: str) -> str:
+    x = date.fromisoformat(d)
+    while True:
+        x += timedelta(days=1)
+        if x.weekday() < 5 and x.isoformat() not in NYSE_HOLIDAYS:
+            return x.isoformat()
 
 
 # --------------------------------------------------------------------------- data
@@ -162,6 +183,73 @@ def sma(series: dict[str, float], upto: str, n: int) -> float | None:
     return sum(vals) / n
 
 
+def trailing_return(series: dict[str, float], upto: str, lag_sessions: int, skip_sessions: int = 0) -> float | None:
+    """price(t - skip) / price(t - lag) - 1 over the ticker's own sessions."""
+    ds = [d for d in sorted(series) if d <= upto]
+    if len(ds) <= lag_sessions:
+        return None
+    end = series[ds[-1 - skip_sessions]] if skip_sessions < len(ds) else None
+    start = series[ds[-1 - lag_sessions]]
+    if end is None or start <= 0:
+        return None
+    return end / start - 1
+
+
+def realized_vol(series: dict[str, float], upto: str, n: int = 21) -> float | None:
+    """Annualised std of the last n daily log returns."""
+    ds = [d for d in sorted(series) if d <= upto]
+    if len(ds) < n + 1:
+        return None
+    px = [series[d] for d in ds[-(n + 1):]]
+    rets = [math.log(px[i] / px[i - 1]) for i in range(1, len(px))]
+    mu = sum(rets) / len(rets)
+    var = sum((r - mu) ** 2 for r in rets) / (len(rets) - 1)
+    return math.sqrt(var) * math.sqrt(252)
+
+
+def signal_for(name: str, d: str, prices: dict) -> dict[str, float] | None:
+    """Published allocation rules, evaluated at close d. None = insufficient history."""
+    p = prices
+    if name == "gem_dual_momentum":
+        # Antonacci GEM: 12-month absolute momentum vs T-bills, relative momentum SPY vs ex-US.
+        r = {t: trailing_return(p.get(t, {}), d, 252) for t in ("SPY", "VEU", "BIL")}
+        if any(v is None for v in r.values()):
+            return None
+        if r["SPY"] > r["BIL"]:
+            return {"SPY": 1.0} if r["SPY"] >= r["VEU"] else {"VEU": 1.0}
+        return {"AGG": 1.0}
+    if name == "gtaa5":
+        # Faber GTAA-5: 20 % each of SPY, VEU, IEF, VNQ, DBC when above the 200-day average, else cash.
+        out = {}
+        for t in ("SPY", "VEU", "IEF", "VNQ", "DBC"):
+            s = p.get(t, {})
+            m = sma(s, d, 200)
+            if m is None or d not in s:
+                return None
+            if s[d] > m:
+                out[t] = 0.2
+        return out
+    if name == "spy_voltarget":
+        # 10 % annualised volatility target on SPY from 21-day realised vol, capped at 100 % (no leverage).
+        v = realized_vol(p.get("SPY", {}), d, 21)
+        if v is None or v <= 0:
+            return None
+        return {"SPY": round(min(1.0, 0.10 / v), 4)}
+    if name == "sixty_forty":
+        # The static bar every timing rule must clear: 60 % SPY / 40 % AGG, rebalanced monthly.
+        if d not in p.get("SPY", {}) or d not in p.get("AGG", {}):
+            return None
+        return {"SPY": 0.6, "AGG": 0.4}
+    if name == "basket_mom5":
+        # Jegadeesh-Titman 12-1 momentum inside the AGI basket: top 5 of 10, equal weight.
+        scores = {t: trailing_return(p.get(t, {}), d, 252, 21) for t in BASKET}
+        if any(v is None for v in scores.values()):
+            return None
+        top = sorted(scores, key=lambda t: scores[t], reverse=True)[:5]
+        return {t: 0.2 for t in top}
+    raise ValueError(name)
+
+
 def tracker_score_asof(d: str) -> float:
     try:
         hist = json.loads(INDEX_HISTORY.read_text(encoding="utf-8"))
@@ -222,9 +310,11 @@ def next_day(days: list[str], d: str) -> str | None:
 
 def run_arm(name: str, prices: dict, days: list[str], ledger: dict) -> dict:
     """Return {status, equity:{date:value}, trades, turnover, note}."""
-    if not days:
-        return {"status": "waiting_for_start", "equity": {}, "trades": 0, "turnover": 0}
     all_spy_days = sorted(prices.get("SPY", {}))
+    if not days:
+        return {"status": "waiting_for_start", "equity": {}, "trades": 0, "turnover": 0,
+                "target": {"as_of": all_spy_days[-1] if all_spy_days else None, "execute_on": START,
+                           "action": "wait", "weights": {}}}
     eq: dict[str, float] = {}
     pf = Portfolio()
     orders: dict[str, dict[str, float]] = {}   # execution day -> target weights
@@ -258,11 +348,24 @@ def run_arm(name: str, prices: dict, days: list[str], ledger: dict) -> dict:
                 ex = first if d == first else next_day(days, d)
                 if ex:
                     orders[ex] = target
+    elif name in MONTHLY_ARMS:
+        # signal at the session before START and at each month-end close; executed next session
+        prev = [d for d in all_spy_days if d < first]
+        if prev:
+            t0 = signal_for(name, prev[-1], prices)
+            if t0 is not None:
+                orders[first] = t0
+        for d in [d for d in all_spy_days if d >= first and d in ltd]:
+            ex = next_day(days, d)
+            tgt = signal_for(name, d, prices)
+            if ex and tgt is not None:
+                orders[ex] = tgt
     elif name == "llm_agent":
         decs = ledger.get("llm_decisions", [])
         if not decs:
             return {"status": "not_started", "equity": {}, "trades": 0, "turnover": 0,
-                    "note": "waiting for LEDGER_LLM_KEY (owner secret); no decisions recorded"}
+                    "note": "waiting for LEDGER_LLM_KEY (owner secret); no decisions recorded",
+                    "target": {"as_of": days[-1], "execute_on": next_session(days[-1]), "action": "wait", "weights": {}}}
         for dec in decs:
             ex = dec.get("execute_on")
             if ex in days:
@@ -282,7 +385,53 @@ def run_arm(name: str, prices: dict, days: list[str], ledger: dict) -> dict:
         if started or d >= first:
             eq[d] = round(pf.value(px), 2)
     status = "live" if eq else "waiting_for_start"
-    return {"status": status, "equity": eq, "trades": pf.trades, "turnover": round(pf.turnover, 2)}
+    # --- target for the next session (what a mirror account should look like at its close)
+    last = days[-1]
+    px_last = px_on(prices, last)
+    total = pf.value(px_last)
+    cur_w = {t: n * px_last[t] / total for t, n in pf.shares.items() if t in px_last and total > 0}
+    if sum(cur_w.values()) > 1.0:  # cost drag leaves paper cash slightly negative; a mirror must stay unlevered
+        k = sum(cur_w.values())
+        cur_w = {t: v / k for t, v in cur_w.items()}
+    cur_w = {t: round(v, 4) for t, v in cur_w.items()}
+    nxt = next_session(last)
+    action, weights = "hold", cur_w
+    if name in ("agi_basket", "tracker_mix") and nxt[:7] != last[:7]:
+        action = "rebalance"
+        if name == "agi_basket":
+            weights = basket_eq
+        else:
+            w = tracker_score_asof(nxt) / 100.0
+            weights = {**{t: round(w / len(BASKET), 4) for t in BASKET}, "SPY": round(1.0 - w, 4)}
+    elif name == "sma200_spy" and nxt[:7] != last[:7]:
+        s200 = sma(prices["SPY"], last, 200)
+        if s200 is not None:
+            action = "rebalance"
+            weights = {"SPY": 1.0} if prices["SPY"][last] > s200 else {}
+    elif name in MONTHLY_ARMS and nxt[:7] != last[:7]:
+        sig = signal_for(name, last, prices)
+        if sig is not None:
+            action, weights = "rebalance", sig
+    elif name == "llm_agent":
+        pend = [d for d in ledger.get("llm_decisions", []) if d.get("execute_on") == nxt or d.get("execute_on") is None]
+        if pend:
+            action = "rebalance"
+            weights = {k: float(v) for k, v in pend[-1]["weights"].items() if k != "CASH"}
+    if not eq:  # first session ever: every arm enters at the first close
+        action = "enter"
+        if name == "spy_hold": weights = {"SPY": 1.0}
+        elif name == "qqq_hold": weights = {"QQQ": 1.0}
+        elif name == "agi_basket": weights = basket_eq
+        elif name == "tracker_mix":
+            w = tracker_score_asof(nxt) / 100.0
+            weights = {**{t: round(w / len(BASKET), 4) for t in BASKET}, "SPY": round(1.0 - w, 4)}
+        elif name == "sma200_spy":
+            s200 = sma(prices["SPY"], last, 200)
+            weights = {"SPY": 1.0} if (s200 is None or prices["SPY"][last] > s200) else {}
+        elif name in MONTHLY_ARMS:
+            weights = signal_for(name, last, prices) or {}
+    target = {"as_of": last, "execute_on": nxt, "action": action, "weights": weights}
+    return {"status": status, "equity": eq, "trades": pf.trades, "turnover": round(pf.turnover, 2), "target": target}
 
 
 def metrics(eq: dict[str, float], bench: dict[str, float]) -> dict:
@@ -398,7 +547,7 @@ def main() -> int:
 
     arms = {}
     bench_eq = None
-    for name in ["spy_hold", "qqq_hold", "agi_basket", "tracker_mix", "sma200_spy", "llm_agent"]:
+    for name in ARM_ORDER:
         res = run_arm(name, prices, days, ledger)
         if name == "spy_hold":
             bench_eq = res["equity"]
@@ -407,7 +556,7 @@ def main() -> int:
 
     ledger.update({
         "version": 1, "start": START, "notional": NOTIONAL, "cost_bps": COST_BPS,
-        "basket": BASKET, "benchmarks": BENCH,
+        "basket": BASKET, "benchmarks": BENCH, "etf_universe": ETFS, "arm_order": ARM_ORDER,
         "generated": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "last_price_date": all_spy_days[-1],
         "trading_days_since_start": len(days),

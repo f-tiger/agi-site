@@ -806,6 +806,18 @@ singularity 与 ghostline 且 `/prompt` 重复 3 条、22 个谜题页里**只�
 而该管线今天正被另一路会话改动,不抢；②新游戏**没有 zh 页**(zh 首页已加英文界面标注的入口);
 ③trailer 有了但没有 VideoObject LD。
 
+### 产物与模板必须同改(2026-09-06 实测被抹掉一次)
+
+`games/ghostline/` 与 `games/singularity/` 有**源模板** `template.html` + `build.cjs`/`build.js`,
+`site/<slug>.html` 是**构建产物**。09-06 当天两路会话并行:一路给八个游戏页补了
+WebApplication 的富字段(description/genre/datePublished/inLanguage/author/gamePlatform),
+另一路从模板重新生成了这两页——**只有这两页的六个字段被静默抹掉**,其余六页(无模板,手写)
+完好。合并时才发现。
+
+**规矩**:改这两个游戏页的 `<head>`(LD、meta、h1、内链)**必须同时改 `games/<slug>/template.html`**,
+改完核对模板与产物的 LD key 数一致。沙箱跑不了构建(缺 esbuild),所以核对靠比对而不是重跑。
+其余六款目前没有模板,直接改 `site/<slug>.html`;**若将来给它们也加模板,这条规矩一并适用**。
+
 ## 3D 画质的四条硬规矩（2026-09-06 GHOSTLINE 实测，后续任何 3D 游戏照办）
 
 owner：「你做的画面很粗糙，和 cg 首页的差距很大啊」→「对比 cg 热门同类型游戏，对比他们画质，还有关键的特色…确保精品」。
