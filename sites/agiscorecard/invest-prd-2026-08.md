@@ -135,7 +135,7 @@ Martin & Puthenpurackal 2008 一手引用、计算器裸链(`invest_tool_click{c
 - **附带价值**：引用实体落在 Buffett/Druckenmiller，对冲 73% Aschenbrenner 实体依赖。
 - **季度义务**：并入既有硬同步清单（invest 两页 + 首页两块 + 本页，共五处同一 run 改）。
 
-### P3 · `/invest` hub 再瞄准（优化，不新增 URL）【主线 C 的枢纽】
+### P3 · `/invest` hub 再瞄准（优化，不新增 URL）【主线 C 的枢纽】 ✅ 已上线 2026-09-06
 - **营收挂钩**：hub 是 P1/P2 的上游枢纽；现标题 "AI Investing Hub — Who's Betting
   What on AI (2026)" 是品牌腔，不是问题本身。
 - **动作**：title/meta 改为查询形（如 `How Are the Biggest Investors Positioned on
@@ -143,7 +143,7 @@ Martin & Puthenpurackal 2008 一手引用、计算器裸链(`invest_tool_click{c
   62.5 对照，埋点 `index_click{invest_live}`）。FAQ 已达标不动。
 - **约束**：anti-churn——/invest 8-17 刚改过（Q2 同步），**5 个 run 窗口后再动**。
 
-### P4 · zh 判定页 `zh/does-copying-13f-work`（中文侧主线）【离钱最近的一条】
+### P4 · zh 判定页 `zh/does-copying-13f-work`（中文侧主线）【离钱最近的一条】 ✅ 已上线 2026-08-30（当时漏打勾）
 - **营收挂钩**：**SunWatch Pro 的实际买家画像（¥199 USDT 自助）在中文侧**。
   本页 → /zh/ai-stock-exposure（zh Pro 桥）→ invest.agiscorecard.com/zh。
 - **标题**：「抄大佬的 13F 作业到底赚不赚钱？实测两年」

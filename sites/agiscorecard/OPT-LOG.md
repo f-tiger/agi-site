@@ -2664,3 +2664,41 @@ Status August 14、504 days（实为 482）、45 days without a verdict change�
 
 Tracker 今日读数：62.5/100，自 06-30 起 4 次读数无变化（68 天）。判定未变，故 gen_badges /
 gen_agi_exposure / widget 无需重算。
+
+## 2026-09-06（第二条）— invest PRD P3：`/invest` hub 再瞄准，队列自此清空
+
+**三门**
+- **数据门**：`/invest` 是 invest 簇里唯一有真实读者的页（JS `page_view` 7 次/28d；
+  服务端 human 66）。而 8-29 上线的两个判定页 `/does-copying-13f-work`、
+  `/is-nvidia-overvalued` **JS pv 均为 0**，服务端却每天都有 human 命中
+  （14 / 16）。按本仓既有口径，服务端 human 是 UA 正则的猜测、是上界，
+  JS pv 才是真人——**这两页的服务端流量绝大部分是没认出来的爬虫，真实读者是 0**。
+  全站 JS 份额约 14%，这两页约 0%，比例本身就是证据。（顺带排除了「埋点坏了」：
+  全站 JS `page_view` 今天 38、昨天 66，信道正常。）
+- **需求门**：标题原为 "AI Investing Hub — Who's Betting What on AI (2026)"，是品牌腔
+  不是问题本身；判定型页面的第一条站规就是「标题即那个问题」。
+- **商业门**：hub 是 P1/P2 的上游枢纽，也是 exposure→Pro 桥的入口。
+
+**改了什么（一处页面，不新增 URL）**
+- `<title>` → `How Are Top Investors Positioned on AI? (Q2 2026 13F)`（53 字符）；
+  meta description 重写为答案型（155 字符，卡满上限）；`<h1>` 改成同一个问题。
+  原来的编辑腔那句 "Predictions are cheap. Positions are not." 没有丢，前移进胶囊首句。
+- 首屏加**活数字**：`3 bull · 4 cautious · 1 bear`，标注持仓截至 6 月 30 日、8 月 14 日申报，
+  并给出 62.5/100 的同口径对照（同样八条判定，所以两个数可比）。
+  埋点 `index_click{invest_live}` 与 `{invest_live_tracker}`。
+- **零编造的做法**：capsule 里每个数字都从 `invest-data.json` 读出后用正则断言比对过
+  （3/4/1、held June 30、filed August 14、tracker 62.5），不是手打的。
+- 顺手修一个死链：活数字指向 `#legends`，而这页**原本一个 id 都没有**；已给
+  「How 8 investing legends are positioned on AI」补 id，并断言全页锚点无悬空。
+- `Last updated` / sitemap lastmod → 2026-09-06（sitemap 原为 2026-08-13）。
+
+**anti-churn 说明**：`/invest` 最近一次改动是 09-05，但那是给 `/ai-trading-ledger` 加一张
+工具卡的一行接线，不是同一个优化面；title/meta 自 08-17 起 20 天、32 个 run 未动，
+满足「5 个 run 窗口」。
+
+**PRD 状态**：P4 其实 8-30 就上线了、当时漏打勾，现已补。**P1–P6 全部完成，invest PRD 队列清空。**
+下一次 invest 侧的动作是 11 月的 Q3 13F 同步义务（含 invest.html / zh/invest.html / index.html /
+cn.html 四处写死数字的硬同步），以及 11-15 的判定日。
+
+**判定线提醒（11-15，不许事后调）**：invest 簇 JS pv ≥60/28d、Pro 桥点击累计 ≥5、TG 绑定 ≥1，
+三条中 <2 条达标即回归季度同步义务模式。**今天的读数：JS pv 约 25/28d、Pro 桥 0、绑定未知。**
