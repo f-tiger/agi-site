@@ -78,7 +78,9 @@ function sizeOf(f) {
   const report = [];
 
   /* ---------- covers: a staged frame of the real game, no mockups ---------- */
-  for (const c of (process.env.ONLY === "videos" ? [] : cfg.covers)) {
+  /* itch.io wants a 630x500 cover; same poster recipe, one more size */
+  const covers = cfg.poster ? cfg.covers.concat([{ name: "itch", w: 630, h: 500, title: 70, tag: 22 }]) : cfg.covers;
+  for (const c of (process.env.ONLY === "videos" ? [] : covers)) {
     /* Render at HALF the target in CSS pixels and screenshot at 2x, instead of
        opening a literal 1920px-wide window. Every game caps its playfield with
        `max-width` (900-1400px), so a 1920 viewport does not make the game

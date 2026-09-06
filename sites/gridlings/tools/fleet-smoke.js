@@ -9,8 +9,8 @@ const { chromium } = require("playwright");
 const http = require("http"), fs = require("fs"), path = require("path");
 const ROOT = path.dirname(__dirname), SITE = path.join(ROOT, "site");
 const GAMES = process.argv.slice(2).length ? process.argv.slice(2)
-  : ["overfit", "mimic", "overseer", "prompt", "minima", "singularity"];
-const READY = { overfit: "OF_READY", mimic: "MC_READY", overseer: "OS_READY", prompt: "PM_READY", minima: "MN_READY", singularity: "SG_READY" };
+  : ["overfit", "mimic", "overseer", "prompt", "minima", "singularity", "ghostline"];
+const READY = { overfit: "OF_READY", mimic: "MC_READY", overseer: "OS_READY", prompt: "PM_READY", minima: "MN_READY", singularity: "SG_READY", ghostline: "GL_READY" };
 const VIEWS = [{ w: 844, h: 390, n: "landscape" }, { w: 390, h: 780, n: "portrait" }, { w: 1280, h: 800, n: "desktop" }];
 
 function serve(dir) {
@@ -87,7 +87,8 @@ function serve(dir) {
       if (v.n === "desktop") {
         /* a restart must restart: the board has to come back to life promptly */
         await p.waitForTimeout(6500);
-        const btn = await p.$("#brestart") || await p.$("#bretry");
+        let btn = await p.$("#brestart") || await p.$("#bretry");
+        if (btn && !(await btn.isVisible())) btn = null;    /* a retry button that lives in a result modal is not a restart control */
         if (btn) {
           await btn.click();
           await p.waitForTimeout(7000);

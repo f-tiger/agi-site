@@ -2632,3 +2632,6 @@ validate 222 页 OK。种子在 content-backlog 打勾。
   4 生成器 × 5 里程碑、20 代模型带训练时长、研究树 16、成就 26、皮肤 8、任务 3 条滚动、数据缓存、每日连击、
   离线报告、失控/对齐、声望；4 阶段 3D 机房；`verify-singularity.js` 数值门全绿；fleet-smoke / 包自检绿。
   PRD `docs/singularity-prd.md`（含首页级验收线 §六、对标表 §七）。
+- **同日追加（gridlings）**：新游戏 **GHOSTLINE**（Driving 分类冲首页：低多边形计时赛，对手 = 用你自己驾驶训练的模型；
+  程序生成 12 条赛道 + 每日 + 随机、奖牌由模型参考圈设定、6 辆车、触屏转向区）；轨道坐标系物理由 `verify-ghostline.js`
+  证明可玩且刹车有价值；itch 分发改为每款一个项目页 + 部署时 butler 逐个推送（owner 需先建页）。

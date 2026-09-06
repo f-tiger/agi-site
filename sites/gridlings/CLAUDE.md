@@ -729,3 +729,34 @@ Tags ≤5 且只能用后台已有的；Description 禁 HTML。五款字段定�
 
 **为什么要多轮**：CG 首页是算法位，只认玩家数 × 时长；一轮做出来的东西通常只有骨架，留人的都是第二轮
 补的细节（任务、随机掉落、皮肤、音乐、市场事件）。先发再改会把 Basic Launch 的唯一一次窗口浪费掉。
+
+## GHOSTLINE（2026-09-06，第二款冲首页：Driving 分类，owner「再根据 CG 的首页情况，再做一个」）
+
+- **选品依据**：Driving 是 CG 一级分类且首页常驻；PolyTrack（计时赛 + 幽灵 + 排行榜）是 2026 黑马。
+  本作差异化 = **对手是用你自己的驾驶训练出的模型**（记录你最好一圈的横向位置与刹车 → 策略 → 爬山优化 →
+  下次当幽灵车跑，只会变快）；奖牌线 = 模型对赛道的首次研究（optimize 500 次），数据驱动不手填。
+  PRD `docs/ghostline-prd.md`。
+- **物理在轨道坐标系里**（s 沿程、d 横向、h 相对航向），护栏 = 夹紧 d。三条用验证器踩出来的规则：
+  ① **弯道必须让路面「从车下转走」**（`h -= k·v·dt`），否则车自动贴着路走、刹车毫无价值；
+  ② 转向权威随速度平方衰减，braked slide 转向 ×1.6——刹车点弯才是技术动作；
+  ③ **墙不能是免费刹车**：撞墙 v×0.3 + 贴墙持续刮速，否则「不刹车撞墙流」和干净驾驶同速。
+  验证器 `verify-ghostline.js`：12 条赛道模型能完赛、朴素驾驶（只对中不刹车）不能快过模型（开局直道可打平 0.3s）、
+  模型学习后不慢于老师。
+- **内侧线的符号**：路面把车推向 -sign(k)·d，所以内侧是 +sign(k)·d——第一版写反了，14 次撞墙。
+- **音频铁律再犯一次**：倒计时在加载时自动开始，`tone()` 里的 `ac()` 创建了 AudioContext → autoplay 警告
+  → fleet-smoke 拒收。现在 AudioContext 只在 `arm()`（首次手势）里创建，`ac()` 只 resume。
+- **fleet-smoke 改动**：藏在结算弹窗里的 `#bretry` 不算重开控件（先 isVisible）。
+- **手机**：屏幕左右 40% 为转向区、底部中央 BRAKE 圆钮（仅 pointer:coarse 显示）；自动油门保证单手。
+
+## itch.io 分发：每款一个项目页（2026-09-06，owner「今天做的这几款要如何推送到 itch，争取更多流量」）
+
+- itch 的曝光单位是**项目页**：一个合集页只占一个「新作」位，七个页面就是七个位。`package_blocknova.py`
+  现在同时产出 `site/downloads/itch/<slug>.zip`（**不带 CG 标志**，SDK 不会在 itch.zone 上加载），
+  部署 workflow 对 `overfit prompt mimic overseer minima singularity ghostline` 逐个 `butler push
+  gridlings/<slug>:html`——**项目页要 owner 先在 itch 上建好**（Create new project → 标题、URL slug 与
+  游戏名一致、Kind = HTML、Embed 1280×720 + 允许全屏 + 手机友好），此前 push 只会 warning，不阻断部署。
+- 封面：`capture-store-assets.js` 给每款多出一张 630×500 itch 尺寸（同海报配方）。截图用三视口截图；
+  预告片可直接传 CG 那条横版 mp4 的链接（itch 支持 YouTube/视频）。
+- itch 算法看重**外部流量与近期活跃**：上架当天从主站 hub 与推特发链接、隔周发一条 devlog（模型学到了什么、
+  新赛道），标签用 `html5, arcade, idle/racing, ai, low-poly, singleplayer`。D1 里 `ref LIKE '%itch.zone%'`
+  单列计数，判定线仍是 09-24 的 150/25。

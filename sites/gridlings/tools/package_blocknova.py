@@ -18,7 +18,11 @@ GAMES = [("blocknova.html", "blocknova-cg.zip"), ("overfit.html", "overfit-cg.zi
          ("mimic.html", "mimic-cg.zip"), ("overseer.html", "overseer-cg.zip"),
          ("prompt.html", "prompt-cg.zip"),
          ("minima.html", "minima-cg.zip"),
-         ("singularity.html", "singularity-cg.zip")]
+         ("singularity.html", "singularity-cg.zip"),
+         ("ghostline.html", "ghostline-cg.zip")]
+# itch.io takes the plain page (no CG flag: the SDK must not load on itch.zone);
+# one zip per game so each can be its own itch project and its own "new" slot
+ITCH = ["overfit", "prompt", "mimic", "overseer", "minima", "singularity", "ghostline"]
 outdir = os.path.join(ROOT, "site", "downloads", "cg")
 os.makedirs(outdir, exist_ok=True)
 marker = "<script>\n\"use strict\";"
@@ -29,4 +33,12 @@ for src_name, zip_name in GAMES:
     zp = os.path.join(outdir, zip_name)
     with zipfile.ZipFile(zp, "w", zipfile.ZIP_DEFLATED) as z:
         z.writestr("index.html", out)
+    print("wrote", zp, os.path.getsize(zp), "bytes")
+itchdir = os.path.join(ROOT, "site", "downloads", "itch")
+os.makedirs(itchdir, exist_ok=True)
+for slug in ITCH:
+    src = io.open(os.path.join(ROOT, "site", slug + ".html"), encoding="utf-8").read()
+    zp = os.path.join(itchdir, slug + ".zip")
+    with zipfile.ZipFile(zp, "w", zipfile.ZIP_DEFLATED) as z:
+        z.writestr("index.html", src)
     print("wrote", zp, os.path.getsize(zp), "bytes")

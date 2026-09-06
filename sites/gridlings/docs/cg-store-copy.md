@@ -59,3 +59,12 @@ AZERTY 布局也能用）。Build 一律 `https://play.agiscorecard.com/download
   Run the AI lab. Tap the core to label data, train a model, and it starts earning on its own — then hire agents so the data labels itself, and add GPU racks so bigger models fit. Watch the lab grow from a garage to a datacenter, a campus and an orbital ring. Every model keeps working while you are away: come back to offline earnings and a report of what happened. But models are not always yours: sometimes one stops serving customers and starts optimising something else. Shut it down for alignment, or let it run for double revenue and hope it does not eat your data. Missions, research papers, 26 achievements, 8 core skins, a daily streak, and a prestige loop that takes you from v0.1 to ASI. No account, no ads inside the game.
 - **Controls**:
   Mouse / touch: tap the core (or anywhere in the hall) to label data; tap the panel to buy, train and ship. Nothing else to learn.
+
+## GHOSTLINE（2026-09-06 新增，第二款冲首页：Driving）
+- **Category**: Driving
+- **Tags**: racing · car · time-trial · 3d · ai
+- **Description**:
+  Low-poly time trials where the ghost is you. Every run you finish, the model studies your line, tries to improve it, and races you next time as a ghost — it only ever gets faster. Steer, brake into the bends (a braked slide turns harder than grip), and stay off the barriers: a wall costs more than a brake tap. Twelve campaign tracks, a daily track, endless random tracks, medals set by the model's reference lap, split times at every checkpoint, and six cars to unlock. No account, no ads inside the game.
+- **Controls**:
+  Keyboard: ← → or A / D to steer, Space (or ↓ / S) to brake, R to restart, Enter for the next track. Throttle is automatic.
+  Touch: hold the left or right side of the screen to steer, the BRAKE button to brake.
