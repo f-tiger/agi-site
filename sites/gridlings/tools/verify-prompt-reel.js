@@ -20,6 +20,8 @@ const REEL = require(path.join(ROOT, "tools", "store-assets", "prompt.js"));
 const m = REEL.autopilot.match(/var REEL = (\[[\s\S]*?\]);/);
 if (!m) { console.error("could not find REEL in prompt.js autopilot"); process.exit(1); }
 const plans = eval(m[1].replace(/\\\\u/g, "\\u"));
+const mt = REEL.autopilot.match(/var TRAPS = (\[[\s\S]*?\]);/);
+const traps = mt ? eval(mt[1].replace(/\\\\u/g, "\\u")) : [];
 
 function serve(dir) {
   const types = { ".html": "text/html", ".js": "text/javascript", ".json": "application/json" };
@@ -46,16 +48,30 @@ function serve(dir) {
     const r = await page.evaluate(({ lvl, ops }) => {
       loadLevel(lvl);
       prog = ops.slice();
-      resetBot(); running = true; execIdx = 0;
-      for (let i = 0; i < 200 && execIdx < prog.length; i++) stepProgram();
+      resetBot(); running = true; execIdx = 0; seeking = null; over = false;
+      /* SEEK spans several ticks (a thinking beat, then one cell per tick), so
+         drive the interpreter until the program is exhausted or the level ends */
+      for (let i = 0; i < 600 && !over && (execIdx < prog.length || seeking); i++) stepProgram();
       const onExit = at(bot.x, bot.y) === "X";
-      return { par: LEVELS[lvl].par, used: ops.length, onExit, gemsLeft: gems,
+      return { par: LEVELS[lvl].par, used: ops.length, onExit, gemsLeft: gems, over, tripped: over && !onExit,
                allowed: ops.every(o => LEVELS[lvl].ops.indexOf(o) >= 0) };
     }, p);
     const ok = r.onExit && r.gemsLeft === 0 && r.allowed && r.used <= r.par;
     if (!ok) bad++;
     console.log(`${ok ? "PASS" : "FAIL"} level ${p.lvl + 1}: ${r.used} ops (par ${r.par}), ` +
                 `onExit=${r.onExit} gemsLeft=${r.gemsLeft} opsAllowed=${r.allowed}`);
+  }
+  for (const t of traps) {
+    const r = await page.evaluate(({ lvl, ops }) => {
+      loadLevel(lvl); prog = ops.slice(); resetBot(); running = true; execIdx = 0; seeking = null; over = false;
+      let shortcut = false; const f = finish; finish = function (reason) { if (reason === "shortcut") shortcut = true; f(reason); };
+      for (let i = 0; i < 600 && !over && (execIdx < prog.length || seeking); i++) stepProgram();
+      finish = f;
+      return { shortcut, onExit: at(bot.x, bot.y) === "X", gemsLeft: gems };
+    }, t);
+    const ok = r.shortcut;
+    if (!ok) bad++;
+    console.log(`${ok ? "PASS" : "FAIL"} level ${t.lvl + 1} trap: greedy program ${r.shortcut ? "hit the red tile as designed" : "did NOT trip (onExit=" + r.onExit + ", gemsLeft=" + r.gemsLeft + ")"}`);
   }
   await browser.close(); srv.close();
   process.exit(bad ? 1 : 0);

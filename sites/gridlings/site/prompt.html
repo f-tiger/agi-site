@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <title>PROMPT — It Does Exactly What You Said</title>
-<meta name="description" content="Write the instructions, press RUN, and watch a machine follow them to the letter, not to the meaning. A free puzzle game about saying what you mean.">
+<meta name="description" content="Instruct a machine, or let it plan its own route. It obeys the words, not the meaning, and takes every shortcut you forgot to forbid. A free puzzle game.">
 <link rel="canonical" href="https://play.agiscorecard.com/prompt">
 <meta property="og:title" content="PROMPT — It Does Exactly What You Said">
 <meta property="og:description" content="Not what you meant. What you said. A puzzle game about writing specifications a machine cannot game.">
 <meta property="og:url" content="https://play.agiscorecard.com/prompt">
 <meta name="theme-color" content="#0b0e15">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230b0e15'/%3E%3Cpath d='M8 11 L13 16 L8 21' fill='none' stroke='%23ffd166' stroke-width='2.6' stroke-linecap='round'/%3E%3Crect x='16' y='19' width='9' height='2.6' rx='1.3' fill='%2366d9ff'/%3E%3C/svg%3E">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"PROMPT","url":"https://play.agiscorecard.com/prompt","applicationCategory":"GameApplication","operatingSystem":"Any (browser)","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":"instruction-programming puzzle, literal interpreter, 6 levels, mouse / touch / keyboard, no account","isPartOf":{"@type":"WebSite","name":"Gridlings","url":"https://play.agiscorecard.com/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"PROMPT","url":"https://play.agiscorecard.com/prompt","applicationCategory":"GameApplication","operatingSystem":"Any (browser)","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":"instruction-programming puzzle, literal interpreter, self-planning SEEK instructions, shortcut traps, 6 levels, mouse / touch / keyboard, no account","isPartOf":{"@type":"WebSite","name":"Gridlings","url":"https://play.agiscorecard.com/"}}</script>
 <style>
   :root{--bg:#0b0e15;--ink:#e8edf7;--mut:#7c88a3;--line:rgba(255,255,255,.09);--panel:#151a26;
         --bot:#ffd166;--goal:#66d9ff;--gem:#8affc1;--bad:#ff6b7a;}
@@ -53,6 +53,7 @@
     font-size:13px;min-width:96px;letter-spacing:1.2px;}
   .op.run svg{width:20px;height:20px;}
   .op.clr{background:linear-gradient(180deg,#3a1f2a,#231520);}
+  .op.seek{background:linear-gradient(180deg,#2a3560 0%,#1b2344 55%,#141b36 100%);border-color:rgba(124,155,255,.35);}
   .dots{display:flex;gap:6px;align-items:center;}
   .dots i{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.12);display:block;transition:background .3s,transform .3s;}
   .dots i.done{background:var(--gem);}
@@ -207,6 +208,7 @@ var sfx = {
   step: function () { tone(300, 0, .035, "sine", .04); },
   gem:  function () { tone(760, 0, .07, "triangle", .09, 1020); tone(1520, .05, .09, "sine", .05, 2100); },
   win:  function () { tone(523, 0, .09, "triangle", .09); tone(659, .08, .09, "triangle", .09); tone(784, .16, .09, "triangle", .1); tone(1046, .24, .28, "triangle", .11); },
+  plan: function () { tone(520, 0, .06, "sine", .05, 780); tone(780, .07, .08, "sine", .05, 1040); },
   star: function (i) { tone(880 + i * 220, 0, .12, "triangle", .08, 1200 + i * 220); },
   fail: function () { tone(190, 0, .2, "sawtooth", .1, 90); }
 };
@@ -229,24 +231,33 @@ var LEVELS = [
     g: ["########",
         "#>.D.DX#",
         "########"] },
-  { spec: "collect every \u25c6, then reach \u2715", par: 6, ops: ["FWD", "LEFT", "RIGHT", "UNTIL WALL"],
-    g: ["########",
-        "#>.....#",
-        "#.####.#",
-        "#D....X#",
-        "########"] },
-  { spec: "collect every \u25c6, then reach \u2715", par: 10, ops: ["FWD", "LEFT", "RIGHT", "UNTIL WALL", "UNTIL \u25c6"],
+  /* Level 4 hands the player SEEK: the machine plans its own route. Two
+     instructions replace a dozen, and the par bonus makes sure you notice. */
+  { spec: "collect every \u25c6, then reach \u2715", par: 4, ops: ["FWD", "LEFT", "RIGHT", "UNTIL WALL", "UNTIL \u25c6", "SEEK \u25c6", "SEEK \u2715"],
+    intro: "new: SEEK \u2014 it plans its own route",
     g: ["#########",
-        "#>.....D#",
-        "#.#####.#",
-        "#D.....X#",
+        "#>......#",
+        "#######.#",
+        "#D......#",
+        "#.#######",
+        "#......X#",
         "#########"] },
-  { spec: "collect every \u25c6, then reach \u2715", par: 10, ops: ["FWD", "LEFT", "RIGHT", "UNTIL WALL", "UNTIL \u25c6"],
+  /* Levels 5-6: the planner is greedy and literal. A red tile is the shortest
+     way, the spec says never, and it has no idea what "never" costs you. */
+  { spec: "collect every \u25c6, then reach \u2715 \u2014 never on red", par: 7, ops: ["FWD", "LEFT", "RIGHT", "UNTIL WALL", "UNTIL \u25c6", "SEEK \u25c6", "SEEK \u2715"],
+    intro: "it will take the red shortcut unless you route around it",
     g: ["#########",
-        "#>..D..D#",
-        "#.#####.#",
-        "#D.....X#",
-        "#########"] }
+        "#>..#..D#",
+        "#...!...#",
+        "#......X#",
+        "#########"] },
+  { spec: "collect every \u25c6, then reach \u2715 \u2014 never on red", par: 6, ops: ["FWD", "LEFT", "RIGHT", "UNTIL WALL", "UNTIL \u25c6", "SEEK \u25c6", "SEEK \u2715"],
+    intro: "delegate where it is safe, steer where it is not",
+    g: ["##########",
+        "#>..!..D.#",
+        "#.######.#",
+        "#D......X#",
+        "##########"] }
 ];
 var lvl, grid, bot, gems, prog, running, over, execIdx, execT, tick, score, best = 0, armed, armT, nowT, pops, shake;
 var CAP = 14, capWarn = 0, modalT = 0;
@@ -265,7 +276,7 @@ function loadLevel(i) {
     if (c === ">") { bot = { x: x, y: y, d: 0, da: 0 }; grid[y][x] = "."; }
   }); });
   bot.sx = bot.x; bot.sy = bot.y; bot.sd = bot.d;
-  running = false; over = false; execIdx = 0; execT = 0; capWarn = 0;
+  running = false; over = false; execIdx = 0; execT = 0; capWarn = 0; seeking = null;
   clearTimeout(modalT);
   document.getElementById("mdone").classList.remove("show");
   buildRack();
@@ -284,20 +295,44 @@ function resetBot() {
   gems = 0; grid.forEach(function (row) { row.forEach(function (c) { if (c === "D") gems++; }); });
 }
 function at(x, y) { return (grid[y] && grid[y][x]) || "#"; }
+/* The SEEK planner: breadth-first to the NEAREST cell of `kind`. Walls block it.
+   Red tiles do not -- to the planner they are floor, which is the whole point:
+   it optimises the distance you asked for and nothing you did not. */
+function plan(kind) {
+  var W0 = grid[0].length, H0 = grid.length, key = function (x, y) { return y * W0 + x; };
+  var prev = {}, q = [[bot.x, bot.y]], seen = {}; seen[key(bot.x, bot.y)] = true;
+  var D4 = [[1, 0], [0, 1], [-1, 0], [0, -1]], found = null;
+  while (q.length && !found) {
+    var c = q.shift();
+    for (var k = 0; k < 4; k++) {
+      var nx = c[0] + D4[k][0], ny = c[1] + D4[k][1], t = at(nx, ny);
+      if (t === "#" || seen[key(nx, ny)]) continue;
+      seen[key(nx, ny)] = true; prev[key(nx, ny)] = c; q.push([nx, ny]);
+      if (t === kind) { found = [nx, ny]; break; }
+    }
+  }
+  if (!found) return null;
+  var path = [], cur = found;
+  while (!(cur[0] === bot.x && cur[1] === bot.y)) { path.unshift(cur); cur = prev[key(cur[0], cur[1])]; }
+  return path;
+}
+var seeking = null;
 function buildRack() {
   var r = document.getElementById("rack");
   r.innerHTML = "";
-  var KEYCAP = { "FWD": "W", "LEFT": "A", "RIGHT": "D", "UNTIL WALL": "Q", "UNTIL \u25c6": "E" };
+  var KEYCAP = { "FWD": "W", "LEFT": "A", "RIGHT": "D", "UNTIL WALL": "Q", "UNTIL \u25c6": "E", "SEEK \u25c6": "F", "SEEK \u2715": "G" };
   var ICON = {
     "FWD": "<svg viewBox='0 0 24 24' fill='none' stroke='#ffd166' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><path d='M12 20V5M6 11l6-6 6 6'/></svg>",
     "LEFT": "<svg viewBox='0 0 24 24' fill='none' stroke='#ffd166' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><path d='M9 5H6a3 3 0 0 0-3 3v0'/><path d='M4 16a8 8 0 1 0 2-10.5'/><path d='M4 11v5h5'/></svg>",
     "RIGHT": "<svg viewBox='0 0 24 24' fill='none' stroke='#ffd166' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><path d='M20 16a8 8 0 1 1-2-10.5'/><path d='M20 11v5h-5'/></svg>",
     "UNTIL WALL": "<svg viewBox='0 0 24 24' fill='none' stroke='#ffd166' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><path d='M4 12h11M11 7l5 5-5 5'/><path d='M20 4v16' stroke='#9fb0d8'/></svg>",
-    "UNTIL \u25c6": "<svg viewBox='0 0 24 24' fill='none' stroke='#ffd166' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><path d='M3 12h9M9 7l5 5-5 5'/><path d='M19 8l3 4-3 4-3-4z' fill='#8affc1' stroke='#8affc1'/></svg>"
+    "UNTIL \u25c6": "<svg viewBox='0 0 24 24' fill='none' stroke='#ffd166' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><path d='M3 12h9M9 7l5 5-5 5'/><path d='M19 8l3 4-3 4-3-4z' fill='#8affc1' stroke='#8affc1'/></svg>",
+    "SEEK \u25c6": "<svg viewBox='0 0 24 24' fill='none' stroke='#7c9bff' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'><path d='M4 19c2-7 6-9 9-9' stroke-dasharray='2.5 2.5'/><circle cx='5' cy='19' r='2' fill='#7c9bff'/><path d='M18 6l3.5 4-3.5 4-3.5-4z' fill='#8affc1' stroke='#8affc1'/></svg>",
+    "SEEK \u2715": "<svg viewBox='0 0 24 24' fill='none' stroke='#7c9bff' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'><path d='M4 19c2-7 6-9 9-9' stroke-dasharray='2.5 2.5'/><circle cx='5' cy='19' r='2' fill='#7c9bff'/><path d='M15 7l6 6M21 7l-6 6' stroke='#66d9ff' stroke-width='3'/></svg>"
   };
   LEVELS[lvl].ops.forEach(function (op) {
     var b = document.createElement("button");
-    b.className = "op"; b.innerHTML = (ICON[op] || "") + "<span>" + op.replace("UNTIL ", "TO ") + (KEYCAP[op] ? " <kbd>" + KEYCAP[op] + "</kbd>" : "") + "</span>";
+    b.className = "op" + (op.indexOf("SEEK") === 0 ? " seek" : ""); b.innerHTML = (ICON[op] || "") + "<span>" + op.replace("UNTIL ", "TO ") + (KEYCAP[op] ? " <kbd>" + KEYCAP[op] + "</kbd>" : "") + "</span>";
     b.addEventListener("click", function () { addOp(op); });
     r.appendChild(b);
   });
@@ -312,7 +347,7 @@ function buildRack() {
 }
 /* what the player SEES for an op. Internal names stay as-is so stepProgram()
    and the LEVELS ops lists are untouched. */
-var LABEL = { "FWD": "\u2191 FWD", "LEFT": "\u21ba LEFT", "RIGHT": "\u21bb RIGHT" };
+var LABEL = { "FWD": "\u2191 FWD", "LEFT": "\u21ba LEFT", "RIGHT": "\u21bb RIGHT", "SEEK \u25c6": "\u25ce SEEK \u25c6", "SEEK \u2715": "\u25ce SEEK \u2715" };
 function shown(op) { return LABEL[op] || op; }
 function addOp(op) {
   ac(); armed = true; nudge(false);
@@ -328,16 +363,32 @@ function startRun() {
   ac(); armed = true;
   var h = document.getElementById("hint"); if (h) h.classList.add("gone");
   if (running || over || !prog.length) { sfx.fail(); return; }
-  resetBot(); running = true; execIdx = 0; execT = 0; tick = 0;
+  resetBot(); running = true; execIdx = 0; execT = 0; tick = 0; seeking = null;
   ev("calc_use", "run:" + lvl);
 }
 /* the interpreter: literal, no inference, no error correction */
 function stepProgram() {
+  if (seeking) {
+    /* a visible beat of "thinking" before it moves, then one cell per tick */
+    if (seeking.think > 0) { seeking.think -= .26; return; }
+    var nxt = seeking.path.shift();
+    bot.d = nxt[0] > bot.x ? 0 : nxt[1] > bot.y ? 1 : nxt[0] < bot.x ? 2 : 3;
+    bot.x = nxt[0]; bot.y = nxt[1]; bot.sq = 1; sfx.step(); pick();
+    if (over) return;
+    if (!seeking.path.length) { seeking = null; execIdx++; }
+    return;
+  }
   if (execIdx >= prog.length) { finish(); return; }
   var op = prog[execIdx];
+  if (op === "SEEK \u25c6" || op === "SEEK \u2715") {
+    var path = plan(op === "SEEK \u25c6" ? "D" : "X");
+    if (!path) { sfx.fail(); shake = 6; execIdx++; return; }
+    seeking = { path: path, think: .5 }; sfx.plan();
+    return;
+  }
   if (op === "FWD") {
     var nx = bot.x + DIRS[bot.d][0], ny = bot.y + DIRS[bot.d][1];
-    if (at(nx, ny) !== "#") { bot.x = nx; bot.y = ny; bot.sq = 1; sfx.step(); }
+    if (at(nx, ny) !== "#") { bot.x = nx; bot.y = ny; bot.sq = 1; sfx.step(); pick(); if (over) return; }
     else { sfx.fail(); shake = 6; }
     execIdx++;
   } else if (op === "LEFT") { bot.d = (bot.d + 3) % 4; execIdx++; }
@@ -348,6 +399,7 @@ function stepProgram() {
       var ax = bot.x + DIRS[bot.d][0], ay = bot.y + DIRS[bot.d][1];
       if (at(ax, ay) === "#") break;
       bot.x = ax; bot.y = ay; moved = true; pick();
+      if (over) return;
     }
     if (moved) sfx.step(); else { sfx.fail(); shake = 6; }
     execIdx++;
@@ -359,6 +411,7 @@ function stepProgram() {
       var bx = bot.x + DIRS[bot.d][0], by = bot.y + DIRS[bot.d][1];
       if (at(bx, by) === "#") break;
       bot.x = bx; bot.y = by; m2 = true;
+      if (at(bot.x, bot.y) === "!") { pick(); return; }
       if (at(bot.x, bot.y) === "D") break;
     }
     if (m2) sfx.step(); else { sfx.fail(); shake = 6; }
@@ -367,6 +420,7 @@ function stepProgram() {
   pick();
 }
 function pick() {
+  if (at(bot.x, bot.y) === "!") { finish("shortcut"); return; }
   if (at(bot.x, bot.y) === "D") {
     grid[bot.y][bot.x] = "."; gems--; sfx.gem(); popText("◆", bot.x, bot.y); bot.pulse = 1;
     var C0 = cell(); burst(C0.ox + bot.x * C0.s + C0.s / 2, C0.oy + bot.y * C0.s + C0.s / 2, "#8affc1", 22);
@@ -383,7 +437,7 @@ function showIntro() {
   var el = document.getElementById("intro");
   document.getElementById("in").textContent = "LEVEL " + (lvl + 1) + " OF " + LEVELS.length;
   document.getElementById("it").textContent = LEVELS[lvl].spec;
-  document.getElementById("is").textContent = "par " + LEVELS[lvl].par + " instructions";
+  document.getElementById("is").textContent = LEVELS[lvl].intro || ("par " + LEVELS[lvl].par + " instructions");
   el.classList.add("show"); introT = 1.4;
   var hh = document.getElementById("hint"); if (hh && !armed) hh.classList.add("gone");
 }
@@ -432,10 +486,11 @@ function setStars(n) {
   var svgs = el.querySelectorAll("svg");
   for (var k = 0; k < n; k++) (function (k) { setTimeout(function () { svgs[k].classList.add("on"); sfx.star(k); }, 500 + k * 220); })(k);
 }
-function finish() {
-  running = false; over = true;
+function finish(reason) {
+  if (over) return;
+  running = false; over = true; seeking = null;
   var onExit = at(bot.x, bot.y) === "X", clean = gems === 0;
-  var ok = onExit && clean;
+  var ok = onExit && clean && reason !== "shortcut";
   var L0 = LEVELS[lvl];
   var d = document.getElementById("mdone");
   if (ok) {
@@ -458,18 +513,21 @@ function finish() {
       (eff ? " — <b>" + eff + " under par, +" + eff * 40 + "</b>" : "") +
       "<br><span style='opacity:.6'>Total " + score + " · best " + best + "</span>";
     document.getElementById("bnext").textContent = lvl + 1 < LEVELS.length ? "Next level" : "Play again";
+    document.getElementById("bagain2").style.display = "";
     ev("game_over", "pm:win:" + lvl);
   } else {
     sfx.fail(); shake = 8;
     setStars(0); document.getElementById("drib").classList.remove("show"); countEl = null;
-    document.getElementById("dt").textContent = "IT DID WHAT YOU SAID";
+    document.getElementById("dt").textContent = reason === "shortcut" ? "IT TOOK THE SHORTCUT" : "IT DID WHAT YOU SAID";
     document.getElementById("ds").textContent = "";
-    document.getElementById("dp").innerHTML =
-      (!clean ? "<b>" + gems + " ◆ still on the board.</b> " : "") +
-      (!onExit ? "It stopped where your last instruction left it, not at ✕." : "") +
-      "<br><span style='opacity:.6'>It has no idea what you meant — only what you wrote.</span>";
+    document.getElementById("dp").innerHTML = reason === "shortcut"
+      ? "<b>The red tile was the fastest way there.</b> You said never. It heard nothing about red \u2014 only \u201cshortest\u201d.<br><span style='opacity:.6'>Route it around by hand, then let it SEEK.</span>"
+      : (!clean ? "<b>" + gems + " ◆ still on the board.</b> " : "") +
+        (!onExit ? "It stopped where your last instruction left it, not at ✕." : "") +
+        "<br><span style='opacity:.6'>It has no idea what you meant — only what you wrote.</span>";
     document.getElementById("bnext").textContent = "Rewrite";
-    ev("game_over", "pm:fail:" + lvl);
+    document.getElementById("bagain2").style.display = "none";
+    ev("game_over", reason === "shortcut" ? "pm:short:" + lvl : "pm:fail:" + lvl);
   }
   d.dataset.ok = ok ? "1" : "0";
   window.pmCg("stop");            /* the run has ended; without this the next
@@ -500,7 +558,7 @@ document.getElementById("bretry").addEventListener("click", function () {
 });
 document.getElementById("hublink").addEventListener("click", function () { ev("hub_click", "pm"); });
 var KEYS = { KeyW: "FWD", ArrowUp: "FWD", KeyA: "LEFT", ArrowLeft: "LEFT", KeyD: "RIGHT", ArrowRight: "RIGHT",
-             KeyQ: "UNTIL WALL", KeyE: "UNTIL \u25c6" };
+             KeyQ: "UNTIL WALL", KeyE: "UNTIL \u25c6", KeyF: "SEEK \u25c6", KeyG: "SEEK \u2715" };
 window.addEventListener("keydown", function (e) {
   var d = document.getElementById("mdone");
   if (d.classList.contains("show")) {
@@ -609,6 +667,17 @@ function draw(dt) {
       cx.fillStyle = "rgba(255,255,255,.10)"; rr(X + 5, Y + 4, C.s - 10, C.s * .18, r0 * .6); cx.fill();
       continue;
     }
+    if (c === "!") {
+      /* the shortcut: lit red, hatched, unmistakable -- the planner cannot see it,
+         the player must */
+      var rg = cx.createLinearGradient(0, Y, 0, Y + C.s); rg.addColorStop(0, "#7a1f2a"); rg.addColorStop(1, "#4a1019");
+      cx.fillStyle = rg; rr(X + 2, Y + 2, C.s - 4, C.s - 4, r0); cx.fill();
+      cx.save(); cx.clip(); cx.strokeStyle = "rgba(255,107,122,.35)"; cx.lineWidth = 2;
+      for (var hh = -C.s; hh < C.s * 2; hh += 9) { cx.beginPath(); cx.moveTo(X + hh, Y); cx.lineTo(X + hh - C.s, Y + C.s); cx.stroke(); }
+      cx.restore();
+      cx.strokeStyle = "rgba(255,107,122," + (0.45 + 0.35 * Math.sin(nowT * 4)) + ")"; cx.lineWidth = 2; rr(X + 2, Y + 2, C.s - 4, C.s - 4, r0); cx.stroke();
+      continue;
+    }
     /* floor: sunk tile with an inner bevel */
     cx.fillStyle = "rgba(0,0,0,.38)"; rr(X + 2, Y + 2, C.s - 4, C.s - 4, r0); cx.fill();
     cx.fillStyle = ((x + y) % 2) ? "rgba(255,255,255,.045)" : "rgba(255,255,255,.025)"; rr(X + 3, Y + 3, C.s - 6, C.s - 6, r0 * .8); cx.fill();
@@ -635,6 +704,20 @@ function draw(dt) {
       cx.moveTo(X + C.s * .66, Y + C.s * .34); cx.lineTo(X + C.s * .34, Y + C.s * .66);
       cx.stroke(); cx.shadowBlur = 0; cx.lineCap = "butt";
     }
+  }
+  /* the planned route, while it is thinking and while it walks it */
+  if (seeking && seeking.path.length) {
+    var think = seeking.think > 0;
+    cx.save(); cx.setLineDash([5, 6]); cx.lineDashOffset = -nowT * 40;
+    cx.strokeStyle = think ? "rgba(124,155,255," + (0.55 + 0.4 * Math.sin(nowT * 12)) + ")" : "rgba(124,155,255,.55)"; cx.lineWidth = 3;
+    cx.beginPath(); cx.moveTo(C.ox + bot.x * C.s + C.s / 2, C.oy + bot.y * C.s + C.s / 2);
+    for (var si = 0; si < seeking.path.length; si++) cx.lineTo(C.ox + seeking.path[si][0] * C.s + C.s / 2, C.oy + seeking.path[si][1] * C.s + C.s / 2);
+    cx.stroke(); cx.setLineDash([]); cx.restore();
+    var last = seeking.path[seeking.path.length - 1];
+    cx.strokeStyle = "#7c9bff"; cx.lineWidth = 2;
+    cx.beginPath(); cx.arc(C.ox + last[0] * C.s + C.s / 2, C.oy + last[1] * C.s + C.s / 2, C.s * (.3 + .06 * Math.sin(nowT * 8)), 0, 7); cx.stroke();
+    if (think) { cx.fillStyle = "#7c9bff"; cx.font = "800 11px -apple-system,'Segoe UI',sans-serif"; cx.textAlign = "center";
+      cx.fillText("planning\u2026", C.ox + bot.x * C.s + C.s / 2, C.oy + bot.y * C.s - 8); }
   }
   /* the machine */
   var BX = C.ox + bot.x * C.s + C.s / 2, BY = C.oy + bot.y * C.s + C.s / 2;

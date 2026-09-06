@@ -66,15 +66,20 @@ module.exports = {
     </style></head><body>
     <div class="rays"></div>
     <div class="slab">
-      ${(() => { let g = ""; const wall = new Set([0,1,2,3,4, 10,11,12,13,14, 7]);
+      ${(() => { let g = ""; const wall = new Set([0,1,2,3,4, 10,11,12,13,14]);
         for (let i = 0; i < 15; i++) {
           let inner = "";
           if (i === 5) inner = `<svg class="bot" viewBox="0 0 100 100"><polygon points="10,10 96,50 10,90" fill="#ffd166" stroke="#0b0e15" stroke-width="7" stroke-linejoin="round"/></svg>`;
           if (i === 8) inner = `<svg class="gem" viewBox="0 0 100 100"><polygon points="50,4 96,50 50,96 4,50" fill="#8affc1" stroke="#0b0e15" stroke-width="7" stroke-linejoin="round"/></svg>`;
           if (i === 9) inner = `<svg class="x" viewBox="0 0 100 100"><path d="M16 16 84 84M84 16 16 84" stroke="#66d9ff" stroke-width="16" stroke-linecap="round"/></svg>`;
+          if (i === 7) inner = `<svg class="x" viewBox="0 0 100 100"><rect x="6" y="6" width="88" height="88" rx="14" fill="#7a1f2a" stroke="#ff6b7a" stroke-width="6"/><path d="M14 86 86 14M-6 60 40 14M60 86 106 40" stroke="#ff6b7a" stroke-width="7" opacity=".55"/></svg>`;
           g += `<div class="c${wall.has(i) ? " w" : ""}">${inner}</div>`; }
         return g; })()}
     </div>
+    <svg style="position:absolute;left:50%;top:${slabTop};width:${slab}px;height:${slab*.6}px;transform:translate(-50%,-50%) rotate(-7deg);overflow:visible" viewBox="0 0 500 300" fill="none">
+      <path d="M62 150 H240 V90 H392" stroke="#7c9bff" stroke-width="9" stroke-linecap="round" stroke-dasharray="14 14"/>
+      <circle cx="392" cy="90" r="26" stroke="#7c9bff" stroke-width="7"/>
+    </svg>
     <div class="word">PROM<em>PT</em></div>
     <div class="tag">IT DOES EXACTLY WHAT YOU SAID</div>
     </body></html>`;
@@ -109,9 +114,15 @@ module.exports = {
         own level would be advertising a broken game. Levels 1-3 are corridors:
         correct, but they film as three cells and a dot. */
      var REEL = [
-       { lvl: 3, ops: ['RIGHT','UNTIL WALL','LEFT','UNTIL WALL'] },
-       { lvl: 4, ops: ['RIGHT','UNTIL \u25c6','LEFT','UNTIL WALL','LEFT','UNTIL \u25c6','RIGHT','RIGHT','UNTIL WALL'] },
-       { lvl: 5, ops: ['UNTIL \u25c6','UNTIL \u25c6','RIGHT','UNTIL WALL','RIGHT','UNTIL \u25c6','RIGHT','RIGHT','UNTIL WALL'] }
+       { lvl: 3, ops: ['SEEK \\u25c6','SEEK \\u2715'] },
+       { lvl: 4, ops: ['RIGHT','UNTIL WALL','LEFT','UNTIL WALL','SEEK \\u25c6','SEEK \\u2715'] },
+       { lvl: 5, ops: ['SEEK \\u25c6','LEFT','UNTIL WALL','SEEK \\u25c6','SEEK \\u2715'] }
+     ];
+     /* programs that MUST fail on the red tile -- the verifier asserts the trap
+        actually traps, otherwise the level teaches nothing */
+     var TRAPS = [
+       { lvl: 4, ops: ['SEEK \\u25c6','SEEK \\u2715'] },
+       { lvl: 5, ops: ['SEEK \\u25c6','SEEK \\u25c6','SEEK \\u2715'] }
      ];
      window.__PM_REEL_DONE = false;
      var t0 = performance.now(), ri = 0;
