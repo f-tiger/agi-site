@@ -25,7 +25,7 @@ module.exports = {
   ],
 
   poster: (c) => require("./_poster.js")(c, {
-    fontFace: require("./_fonts.js").audiowide, family: "'Audiowide'", titleScale: 1.06,
+    fontFace: require("./_fonts.js").audiowide, family: "'Audiowide'", titleScale: 0.84,
     ground: (W, H) => `radial-gradient(${W*.9}px ${H*.9}px at 60% 30%, #ff9bb8 0%, #ff3d71 40%, #c2204f 72%, #5a0f26 100%)`,
     ink: "#ffffff", ink2: "#00e5a8", outline: "#2a0a14", shadow: "#5a0f26", tagInk: "#ffffff",
     word: "OVER<em>FIT</em>", tagline: "THE BOSS LEARNS YOUR MOVES",
