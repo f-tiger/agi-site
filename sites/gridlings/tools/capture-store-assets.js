@@ -92,10 +92,20 @@ function sizeOf(f) {
       viewport: { width: Math.round(c.w / dsf), height: Math.round(c.h / dsf) },
       deviceScaleFactor: dsf
     });
-    await page.goto(base, { waitUntil: "networkidle" });
-    await page.waitForFunction(cfg.readyExpr);
-    /* title/tag sizes in the config are stated in FINAL pixels, so convert */
-    await page.evaluate(cfg.stage({ ...c, title: c.title / dsf, tag: c.tag / dsf }));
+    if (cfg.poster) {
+      /* A POSTER, not a screenshot. On the portal's home page the tile is the
+         entire pitch, and every tile that ranks there is the same recipe: a
+         saturated full-bleed ground, a heavy outlined wordmark across half the
+         width, one hero object blown up large, no HUD, no small text. A
+         screenshot with a title band is invisible next to that. The game itself
+         stays quiet; only the tile is loud. */
+      await page.setContent(cfg.poster({ ...c, w: c.w / dsf, h: c.h / dsf }), { waitUntil: "load" });
+    } else {
+      await page.goto(base, { waitUntil: "networkidle" });
+      await page.waitForFunction(cfg.readyExpr);
+      /* title/tag sizes in the config are stated in FINAL pixels, so convert */
+      await page.evaluate(cfg.stage({ ...c, title: c.title / dsf, tag: c.tag / dsf }));
+    }
     await page.waitForTimeout(180);
     const f = path.join(OUT, `${slug}-cover-${c.name}-${c.w}x${c.h}.png`);
     await page.screenshot({ path: f });
