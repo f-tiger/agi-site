@@ -70,3 +70,13 @@ jobs:
           git commit -m "chore(ledger): paper-trading ledger $(date -u +%F) (runner 取复权日线,确定性重算)"
           git pull --rebase origin main
           git push
+
+      - name: Executor contract tests (mock broker, no order leaves the runner)
+        # 台账的 `target` 就是执行器唯一的输入契约,所以在产出 target 的这条流水线上守它。
+        # 20 个场景跑真执行器,但 ALPACA_BASE_URL 指向 127.0.0.1 的 mock —— 没有账号、没有密钥、
+        # 一张单也出不去。2026-09-06 首跑当场抓到两个会亏钱的缺陷(卖单被拒仍继续买 = 超配;
+        # 台账权重和 >1 被照单执行 = 加杠杆),所以它必须能红,不能只是摆着。
+        # 成本:~4 秒/次 × 22 次/月 ≈ 1.5 分钟/月,复用已在跑的 job,不新增 schedule。
+        # 故意放在 commit 之后:测试红了要告警(GitHub 失败邮件),但执行器的 bug 不该
+        # 连坐让当天台账发不出去 —— 「一条流水线死 = 整站冻结」是 09-04 已经吃过的亏。
+        run: python3 tools/trader/test_mirror.py
