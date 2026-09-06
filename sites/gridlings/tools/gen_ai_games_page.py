@@ -187,7 +187,8 @@ def build():
         f'  <h3 id="{g[0]}">{g[2]} {esc(g[1])} — {esc(g[3])}</h3>\n'
         + "\n".join(f"  <p>{esc(p)}</p>" for p in g[7])
         + f'\n  <p><a href="/{g[0]}" class="cta">Play {esc(g[1])} →</a> '
-          f'<span style="color:var(--mut);font-size:.9rem">Free · no account · {esc(g[5])}</span></p>'
+          f'<span style="color:var(--mut);font-size:.9rem">Free · no account · {esc(g[5])} · '
+          f'<a href="https://gridlings.itch.io/{g[0]}" rel="noopener">also on itch.io</a></span></p>'
         for g in GAMES)
 
     faq_html = "\n".join(
