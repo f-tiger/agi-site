@@ -76,6 +76,26 @@ itch 的封面、截图、预告片必须在网页上传，butler 推不了。�
 - **Description**：直接抄 `docs/cg-store-copy.md` 里对应那节的 Description + Controls，
   两段之间空一行。那份文案是按 CG 规则写的，itch 通用。
 
+## 以后再加新游戏：只有一步
+
+**全部继续放在 `gridlings` 这一个账号下，永远不需要重新配置。** 一个 itch 账号可以挂无限个项目，
+同一个 `BUTLER_API_KEY` 对该账号下所有项目都有效。放在一个账号还有额外好处：关注者是账号级的，
+你发的每条 devlog 都会进所有关注者的 feed，分散到多个账号等于把这个复利砍碎。
+
+新游戏上线时你要做的只有**建那个项目页**（约 2 分钟），因为 **butler 无法创建项目页**——
+itch 没有提供创建项目的 API，这是平台限制，不是我们的实现问题
+（itch 官方 butler 手册与论坛均确认："Butler does not create a new project page for you"）。
+
+除此之外全自动：
+- 部署 workflow 现在**按 `site/downloads/itch/*.zip` 自动发现要推的游戏**，加游戏不需要改 workflow。
+- 项目页还没建时，CI 会打印一条带具体操作的 warning，例如
+  `project gridlings/<slug> does not exist. Create it at https://itch.io/game/new with URL exactly '<slug>' ...`，
+  并且不阻断其他游戏和网站部署。
+- 页面建好后，下一次部署它自己就上去了。
+
+**命名规则**：项目 URL 必须与 `site/downloads/itch/<slug>.zip` 的 slug 完全一致。
+注意 itch 会把下划线换成短横线，所以 slug 里别用下划线。
+
 ## 第 4 步：上架当天与之后
 
 itch 的推荐算法吃**外部流量 + 近期活跃**，光挂着不会有量：

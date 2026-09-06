@@ -87,11 +87,23 @@ jobs:
           zipfile.ZipFile("site/downloads/gridlings-all-11.zip").extractall("/tmp/itchbuild")
           PYEOF
           /tmp/butler/butler push /tmp/itchbuild gridlings/gridlings-11-daily-logic-puzzles:html --userversion "$(date -u +%F)" || echo "::warning::butler push failed — itch listing keeps previous build"
-          # one itch project per AI game (owner creates the page once as gridlings/<slug>; until then the push
-          # just warns). Plain build, no CG flag. Same butler diffing, so an unchanged game uploads nothing.
-          for slug in overfit prompt mimic overseer minima singularity ghostline; do
-            rm -rf /tmp/itch-$slug && mkdir -p /tmp/itch-$slug && python3 -c "import zipfile;zipfile.ZipFile('site/downloads/itch/$slug.zip').extractall('/tmp/itch-$slug')"
-            /tmp/butler/butler push /tmp/itch-$slug gridlings/$slug:html --userversion "$(date -u +%F)" || echo "::warning::itch push skipped for $slug (project gridlings/$slug not created yet?)"
+          # One itch project per game, discovered from the packages themselves — adding a game
+          # never means editing this workflow. Plain build, no CG flag; butler diffs, so an
+          # unchanged game uploads nothing. butler CANNOT create a project page (itch has no API
+          # for it), so a game whose page does not exist yet warns with the exact steps to fix it.
+          for z in site/downloads/itch/*.zip; do
+            slug=$(basename "$z" .zip)
+            rm -rf "/tmp/itch-$slug" && mkdir -p "/tmp/itch-$slug"
+            python3 -c "import zipfile,sys;zipfile.ZipFile(sys.argv[1]).extractall(sys.argv[2])" "$z" "/tmp/itch-$slug"
+            if out=$(/tmp/butler/butler push "/tmp/itch-$slug" "gridlings/$slug:html" --userversion "$(date -u +%F)" 2>&1); then
+              echo "itch ok   $slug"
+            else
+              echo "$out"
+              case "$out" in
+                *"invalid game"*) echo "::warning::itch: project gridlings/$slug does not exist. Create it at https://itch.io/game/new with URL exactly '$slug', Kind=HTML, embed 1280x720, fullscreen + mobile friendly. It then publishes itself on the next deploy." ;;
+                *) echo "::warning::itch push failed for $slug — see the butler output above (not a missing-project error)" ;;
+              esac
+            fi
           done
       - name: Deploy worker
         uses: cloudflare/wrangler-action@v3

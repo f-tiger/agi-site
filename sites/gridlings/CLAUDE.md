@@ -849,3 +849,16 @@ PolyTrack 的幽灵能多开（自己的前次 + 排行榜对手）。GHOSTLINE 
 页脚 `/ai-games` 链接直接写进了这两个产物文件——**下一次重建就会把它们静默抹掉**。
 已把五处全部移回各自 template.html。规矩：**凡是 `games/` 下有生成器的页面，只改 template，
 改完 `node build.*` 重建**；只有 `site/` 下手写的页面（首页、hub、GEO 页）才直接编辑。
+
+## itch：一个账号装所有游戏，唯一的人工步骤是建项目页（2026-09-06 核实）
+- **`gridlings` 一个账号挂全部游戏，永不需要重新配置。** 一个 itch 账号可挂无限项目，
+  同一个 `BUTLER_API_KEY` 对该账号下所有项目有效。关注者是账号级的，devlog 会进所有关注者
+  的 feed——分散到多账号等于把这个复利砍碎。
+- **butler 不能创建项目页**（itch 无此 API，官方手册明写 "Butler does not create a new
+  project page for you"）。所以每款新游戏都有且只有一步人工：在网页建页，URL 必须与
+  `site/downloads/itch/<slug>.zip` 的 slug 逐字一致（itch 会把下划线换成短横线，别用下划线）。
+- 部署 workflow 的推送列表**从 `site/downloads/itch/*.zip` 自动发现**，加游戏不改 workflow。
+  页面不存在时 butler 报 `API error (400): /wharf/builds: invalid game`，CI 把它翻译成一条
+  带 https://itch.io/game/new 和具体填法的 warning，不阻断部署。
+- **诊断纪律**：判断某一步有没有跑，去读那一步的日志，不要用耗时猜。本会话曾按「butler 步骤
+  只跑了 3 秒」断言密钥没配，实际日志里写着 `BUTLER_API_KEY: ***`，合集页推送还成功了。
