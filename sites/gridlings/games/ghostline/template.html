@@ -70,7 +70,10 @@
   footer{position:fixed;right:14px;bottom:10px;font-size:11px;color:#eaf4ff;text-shadow:0 1px 0 rgba(0,0,0,.4);z-index:3;} footer a{color:#fff;} .cg footer{display:none;}
   #boot{position:fixed;inset:0;z-index:30;background:#14182a;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;transition:opacity .6s;}
   #boot.gone{opacity:0;pointer-events:none;} #boot .bl{font-family:var(--display);font-size:clamp(26px,6vw,46px);color:#fff;} #boot .bl em{font-style:normal;color:var(--cy);} #boot .bs{font-family:var(--display);font-size:12px;letter-spacing:3px;color:var(--mut);}
+  /* short landscape phones: the split popup used to land on top of the speed readout */
+  @media (max-height:520px){ #hud{top:8px;} #time{font-size:clamp(28px,5.5vh,40px);} .split{top:60%;font-size:clamp(24px,5vh,38px);} }
   @media (max-width:640px){ .grid{grid-template-columns:repeat(3,1fr);gap:6px;} .tk{min-height:56px;padding:8px 6px;} .card{padding:16px 14px;} #rt{font-size:44px;} .logo{font-size:16px;} }
+.sub .cy{color:#39f2ff}.sub .gd{color:#ffd166}
 </style>
 </head>
 <body>
@@ -83,7 +86,7 @@
 <div id="count">3</div>
 <div class="zone" id="zl"></div><div class="zone" id="zr"></div><div id="zb">BRAKE</div>
 <div class="modal" id="menu"><div class="card">
-  <h2>PICK A TRACK</h2><div class="sub">Steer with ← → (A/D) · brake with Space · R restarts · the ghost is a model trained on YOUR runs</div>
+  <h2>PICK A TRACK</h2><div class="sub">Steer with ← → (A/D) · brake with Space · R restarts · <b class="cy">blue ghost</b> = a model trained on YOUR runs · <b class="gd">gold ghost</b> = your own best lap</div>
   <div class="grid" id="grid"></div>
   <div class="wide"><button class="btn pink" id="bdaily">DAILY TRACK<span>—</span></button><button class="btn alt" id="brandom">RANDOM TRACK<span>a new seed every time</span></button></div>
   <div class="sub" style="margin-top:12px">GARAGE · <span id="mcount">0 medal pts</span></div>
