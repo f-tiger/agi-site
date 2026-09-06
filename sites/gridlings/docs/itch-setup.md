@@ -46,8 +46,8 @@ itch.io → 右上角 **Upload new project**。七款各建一个，**URL 必须
 - **Kind of project**: `HTML`
 - **Uploads**: 先随便传一个占位 zip 也行，**或者干脆不传**——第 2 步 CI 会自动推真正的包。
   如果你先传了占位包，记得把它标成 *This file will be played in the browser*。
-- **Embed options**: `Embed in page`，宽 **1280**、高 **720**，勾上 **Fullscreen button**
-  和 **Mobile friendly**（七款都做了手机适配）。
+- **Embed options**: **建页时这一栏很可能不出现**——itch 只在项目已经有一个浏览器可玩的文件之后
+  才显示嵌入设置。所以它属于第 2.5 步，见下。
 - **Pricing**: `No payments`（免费）。
 - **Visibility**: 先设 **Draft**，等 CI 把包推上来、你自己试玩一遍再改 **Public**。
 
@@ -64,6 +64,25 @@ https://github.com/f-tiger/agi-site/actions/workflows/deploy-gridlings.yml
 点 **Run workflow** 手动触发一次。
 
 推完去每个项目页看一眼 **Uploads** 里有没有出现新版本（版本号是当天日期），有就说明通了。
+
+## 第 2.5 步：包推上去之后，回每一页配 Embed options（必做）
+
+CI 推完第一个包，项目页会报：
+
+```
+You've selected a HTML5 game but haven't configured how your project is embedded
+```
+
+这不是包的问题，是嵌入参数还没填。**建页当时填不了**，因为那时项目里还没有可玩文件，
+itch 不显示这一栏。包到位后它才出现。七页各做一次：
+
+1. 进项目的 **Edit** 页，滚到 Uploads 下面的 **Embed options**
+2. 选 **Embed in page**
+3. Viewport 填 **1280** × **720**
+4. 勾 **Fullscreen button**、**Mobile friendly**（七款都做了手机适配）
+5. 页面底部 **Save**
+
+存完刷新项目页，游戏就能直接在页面里玩了。
 
 ## 第 3 步：每页的素材（要你上传，CI 不管这个）
 
