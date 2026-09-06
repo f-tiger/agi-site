@@ -7,9 +7,16 @@
   <link rel="hub" href="https://pubsubhubbub.appspot.com/"/>
   <link rel="hub" href="https://pubsubhubbub.superfeedr.com/"/>
   <id>https://agiscorecard.com/</id>
-  <updated>2026-09-05T00:00:00Z</updated>
+  <updated>2026-09-06T00:00:00Z</updated>
   <author><name>The AGI Scorecard</name></author>
   <rights>CC BY 4.0 — reuse with attribution and a link to https://agiscorecard.com</rights>
+  <entry>
+    <title>When Will AGI Arrive? Every Major Forecast Compared (2026)</title>
+    <link href="https://agiscorecard.com/when-will-agi-arrive"/>
+    <id>https://agiscorecard.com/when-will-agi-arrive</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <summary>Public AGI forecasts now cluster between 2026 and 2047: Musk 2026, Aschenbrenner 2027, Hassabis ~2030, Metaculus 2033, academic surveys 2047.</summary>
+  </entry>
   <entry>
     <title>Can AI Replace Knowledge Workers? The 2025/26 Call, Graded</title>
     <link href="https://agiscorecard.com/can-ai-replace-knowledge-workers"/>
@@ -81,6 +88,27 @@
     <summary>Answer 6 questions about your job and get your AI exposure tier — grounded in real 2026 evidence (~83% GDPval, ~80% SWE-Bench) and the autonomy gap. No sign-up.</summary>
   </entry>
   <entry>
+    <title>Do AI Trading Agents Actually Make Money? The Evidence</title>
+    <link href="https://agiscorecard.com/do-ai-trading-agents-work"/>
+    <id>https://agiscorecard.com/do-ai-trading-agents-work</id>
+    <updated>2026-09-05T00:00:00Z</updated>
+    <summary>AI trading agents, audited: day-trading base rates, backtest overfitting, funding hype vs verifiable returns. Dated sources; not investment advice.</summary>
+  </entry>
+  <entry>
+    <title>AI Trading Ledger: Eleven Bots, One Pre-Registered Public Track Record</title>
+    <link href="https://agiscorecard.com/ai-trading-ledger"/>
+    <id>https://agiscorecard.com/ai-trading-ledger</id>
+    <updated>2026-09-05T00:00:00Z</updated>
+    <summary>A paper-trading ledger with rules fixed before the start: SPY/QQQ benchmarks, an AI basket, a Thesis-Tracker mix, Faber 200-day and GTAA-5, GEM dual momentum, vol targeting, 12-1 momentum and an LLM arm, recomputed daily in public. Not investment advice.</summary>
+  </entry>
+  <entry>
+    <title>The Paradigm Bet: A Public, Pre-Registered Experiment</title>
+    <link href="https://agiscorecard.com/paradigm-experiment"/>
+    <id>https://agiscorecard.com/paradigm-experiment</id>
+    <updated>2026-09-05T00:00:00Z</updated>
+    <summary>Can the &#x27;2013 Bitcoin&#x27; pattern be run honestly in 2026? A live experiment ledger: pre-registered candidates, kill conditions filed before entry, monthly audits. Not investment advice.</summary>
+  </entry>
+  <entry>
     <title>AGI Scorecard Data for AI Agents: JSON, Feed, llms.txt</title>
     <link href="https://agiscorecard.com/for-agents"/>
     <id>https://agiscorecard.com/for-agents</id>
@@ -109,13 +137,6 @@
     <summary>Every major prediction from Aschenbrenner&amp;#x27;s Situational Awareness essay, tracked against reality: AGI 2027, compute scaling, open source, the Project, and more.</summary>
   </entry>
   <entry>
-    <title>When Will AGI Arrive? Every Major Forecast Compared (2026)</title>
-    <link href="https://agiscorecard.com/when-will-agi-arrive"/>
-    <id>https://agiscorecard.com/when-will-agi-arrive</id>
-    <updated>2026-08-29T00:00:00Z</updated>
-    <summary>Public AGI forecasts now cluster between 2026 and 2047: Musk 2026, Aschenbrenner 2027, Hassabis ~2030, Metaculus 2033, academic surveys 2047.</summary>
-  </entry>
-  <entry>
     <title>What Is the &#x27;AI 2027&#x27; Scenario? (Explained, 2026)</title>
     <link href="https://agiscorecard.com/ai-2027-scenario-explained"/>
     <id>https://agiscorecard.com/ai-2027-scenario-explained</id>
@@ -128,26 +149,5 @@
     <id>https://agiscorecard.com/how-close-is-agi</id>
     <updated>2026-08-29T00:00:00Z</updated>
     <summary>Closer than skeptics say, further than optimists claim. Mid-2026: frontier AI clears many knowledge-work bars (~83% GDPval.</summary>
-  </entry>
-  <entry>
-    <title>AI Progress in 2026 So Far: The Mid-Year Scorecard</title>
-    <link href="https://agiscorecard.com/ai-progress-2026-so-far"/>
-    <id>https://agiscorecard.com/ai-progress-2026-so-far</id>
-    <updated>2026-08-29T00:00:00Z</updated>
-    <summary>Mid-2026 synthesis of all 8 tracked predictions: capability and compute on track, capex exceeded, the open-source call wrong, AGI-by-2027 still open.</summary>
-  </entry>
-  <entry>
-    <title>Sam Altman&#x27;s AGI Prediction: What He&#x27;s Actually Said</title>
-    <link href="https://agiscorecard.com/sam-altman-agi-prediction"/>
-    <id>https://agiscorecard.com/sam-altman-agi-prediction</id>
-    <updated>2026-08-29T00:00:00Z</updated>
-    <summary>Sam Altman says OpenAI is confident it knows how to build AGI, with superintelligence &#x27;a few thousand days&#x27; away. His position vs the other forecasts.</summary>
-  </entry>
-  <entry>
-    <title>Dario Amodei&#x27;s AGI Prediction: Powerful AI by 2026–27?</title>
-    <link href="https://agiscorecard.com/dario-amodei-agi-prediction"/>
-    <id>https://agiscorecard.com/dario-amodei-agi-prediction</id>
-    <updated>2026-08-29T00:00:00Z</updated>
-    <summary>Anthropic&#x27;s CEO avoids the term AGI but says &#x27;powerful AI&#x27; — a country of geniuses in a datacenter — could arrive as early as 2026–27.</summary>
   </entry>
 </feed>

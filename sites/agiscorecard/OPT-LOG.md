@@ -2635,3 +2635,32 @@ validate 222 页 OK。种子在 content-backlog 打勾。
 - **同日追加（gridlings）**：新游戏 **GHOSTLINE**（Driving 分类冲首页：低多边形计时赛，对手 = 用你自己驾驶训练的模型；
   程序生成 12 条赛道 + 每日 + 随机、奖牌由模型参考圈设定、6 辆车、触屏转向区）；轨道坐标系物理由 `verify-ghostline.js`
   证明可玩且刹车有价值；itch 分发改为每款一个项目页 + 部署时 butler 逐个推送（owner 需先建页）。
+
+## 2026-09-06 — 首屏活数字过期（最大深页），并修好让它持续过期的那个 bug
+
+**owner 问「流量增长后怎么转化为订阅/营收/广告」。先用 D1 算术排序，再动手。**
+28 天真实读者（JS `page_view`）1,115，约 40/天，比 8 月的约 17/天翻了一倍；同期新订阅 **0**
+（累计 2，最后一次 8-19）。三条路的单位流量产出：
+- **广告**：约 1,200 pv/月 × 偏高 $8 RPM ≈ **$10/月**，且拖慢靠「干净快权威」吃引用的页 → 排除，
+  等约 5 万 pv/月再谈。
+- **订阅**：Boosts 早已算死（1 订阅/368pv，差 950 倍），且当前发不出邮件 → 保留 CTA 作 2027-12
+  期权，**停止加码，不再新增订阅入口**。
+- **付费产品**：1 个 SunWatch Pro = ¥199/月 ≈ $28/月经常性，超过另外两条一年之和 → 唯一成立的。
+
+**但要如实记下**：按 40 人/日，最大页 181 pv/28d，钩子 CTR 即使 5% 也只有 9 次点击，
+一个月产不出 1 个付费用户。**瓶颈是流量不是转化**，唯一不受流量约束的杠杆仍是引用份额（阶梯 ⓪）。
+
+**诊断→本次唯一改动。** `/when-will-agi-arrive`（181 pv/28d，全站第二）首屏那个块标题是
+「The part a chat answer goes stale on」，自己却挂着四周前的数字：as of 2026-08-08、
+Status August 14、504 days（实为 482）、45 days without a verdict change（实为 68）。
+一个卖点是「我不会过期」的模块自己过期，是自我否定，且这页是高引用页。已全部更新，
+`Last updated` / JSON-LD dateModified / sitemap lastmod 同步到 2026-09-06。
+
+**根因（真 bug，不是忘了更新）**：`tools/gen_index.py:182` 把 `DATE_LONG` 写死成
+`"July 12, 2026"`，且用 `replace("Last updated: June 30, 2026", ...)` 这种字面量匹配——
+第二次运行起就再也匹配不上。结果 Tracker 页（本站旗舰差异化资产）**两个月来一直显示
+"Last updated: July 12, 2026"，而 JSON-LD 的 dateModified 一直在前进**。已改为从运行日期
+派生 + 正则替换。validate.py 正是靠「可见日期 vs dateModified 不一致」抓出来的。
+
+Tracker 今日读数：62.5/100，自 06-30 起 4 次读数无变化（68 天）。判定未变，故 gen_badges /
+gen_agi_exposure / widget 无需重算。
