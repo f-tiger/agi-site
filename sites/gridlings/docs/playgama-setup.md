@@ -131,3 +131,24 @@ SDK 不可用时（静态标签 404、动态兜底也 404、或全局对象缺�
   `window.GL_PG_ERR` · `typeof window.bridge` · `window.bridge.isInitialized` ·
   `window.bridge.platform.id`。第四条尤其关键：它应该是 `qa_tool`，
   如果是 `mock` 说明他们的平台识别没生效。
+
+## 2026-09-07：Basic Certification 100% 通过，GHOSTLINE 已提交审核（2–5 天）
+认证全过，广告在认证工具里成功展示。**根因回顾**：三次失败分别是——① 广告触发点自动跑
+到不了；② SDK 用动态注入而非 index.html 静态标签、且 init 失败被 `.catch(){}` 吞掉；
+③ **上传了错的包**（传成了 `ghostline-cg.zip`,控制台里 `crazygames-sdk-v3.js initialized`
+是铁证)。前两条是真问题、已修；第三条是操作失误,与代码无关。
+**两个包别再混**：`downloads/playgama/ghostline.zip`（4 个文件,约 240KB)给 Playgama;
+`downloads/cg/ghostline-cg.zip`（1 个文件,约 162KB)给 CrazyGames。
+
+**自我声明题的正确答案（GHOSTLINE）**：Rewarded Ads = **No**，Interstitial Ads = **Yes**。
+只有 SINGULARITY 有激励视频。填 Yes 换过审是假声明,不许。
+
+## 广告展示时必须暂停 + 静音（2026-09-07 补齐）
+Playgama 的广告遮罩上明写 "The game should be paused and audio muted while this ad is
+displayed" —— 而我们当时**两样都没做**：引擎照跑、声音照响，一局比赛可能在广告背后跑输。
+- 游戏循环开头加 `window.GL_SDK_PAUSE` 闸门：为真时只推进时间戳、不推进任何游戏状态。
+- 接 Bridge 的 `pause_state_changed` / `audio_state_changed` 两个事件。
+- **不等平台通知**：广告一进入 `loading`/`opened` 就自行暂停并静音，任一终态释放；
+  25 秒超时路径同样释放（否则一个卡住的广告会把游戏永久冻住）。
+- 实测：2.5 秒暂停期内比赛计时只前进 **0.10 秒**（那一帧是设标志时已在处理中的），
+  释放后立刻恢复。CG 变体的既有静音逻辑不受影响。

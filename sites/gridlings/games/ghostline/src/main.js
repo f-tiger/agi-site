@@ -77,6 +77,10 @@ function playgama() {
       /* happytime has no Bridge equivalent; dropping it is correct, not a gap */
       api.ev = e => { if (e === "start") send("gameplay_started"); else if (e === "stop") send("gameplay_stopped"); };
       q.splice(0).forEach(api.ev);
+      try {
+        br.on("pause_state_changed", st => { window.GL_SDK_PAUSE = st === "paused"; });
+        br.on("audio_state_changed", st => { window.GL_SDK_MUTE = st === "muted"; });
+      } catch (e) {}
       api.ready = true;
       api.ad = (type, done) => {
         let fired = false; const end = ok => { if (!fired) { fired = true; done(ok); } };
@@ -86,16 +90,20 @@ function playgama() {
            no-reward close, so it must resolve false — an interstitial closing is a
            normal finish and resolves true. */
         let paid = false;
+        /* Do not wait for the platform to tell us: the moment an ad opens, hold the
+           game and silence it; release on any terminal state. */
+        const release = () => { window.GL_SDK_PAUSE = false; window.GL_SDK_AD_MUTE = false; };
         const onState = st => {
-          if (st === "rewarded") { paid = true; end(true); }
-          else if (st === "closed") end(rewarded ? paid : true);
-          else if (st === "failed") end(false);
+          if (st === "opened" || st === "loading") { window.GL_SDK_PAUSE = true; window.GL_SDK_AD_MUTE = true; }
+          else if (st === "rewarded") { paid = true; release(); end(true); }
+          else if (st === "closed") { release(); end(rewarded ? paid : true); }
+          else if (st === "failed") { release(); end(false); }
         };
         try {
           br.advertisement.on(evt, onState);
           if (rewarded) br.advertisement.showRewarded(); else br.advertisement.showInterstitial();
-          setTimeout(() => end(false), 25000);
-        } catch (e) { window.GL_AD_ERR = String((e && e.stack) || e); end(false); }
+          setTimeout(() => { release(); end(false); }, 25000);
+        } catch (e) { release(); window.GL_AD_ERR = String((e && e.stack) || e); end(false); }
       };
     }).catch(e => {
       /* A swallowed init rejection is indistinguishable from "the platform never
@@ -124,7 +132,7 @@ let AC = null, muted = false; try { muted = localStorage.getItem("glMute") === "
 let armed = false;
 function ac() { if (AC && AC.state === "suspended") { try { AC.resume(); } catch (e) {} } return AC; }
 function arm() { if (armed) return; armed = true; try { AC = new (window.AudioContext || window.webkitAudioContext)(); } catch (e) {} ac(); engine.start(); music.start(); }
-const quiet = () => muted || window.GL_SDK_MUTE;
+const quiet = () => muted || window.GL_SDK_MUTE || window.GL_SDK_AD_MUTE;
 function tone(f, t0, dur, type, gain, slide) { const a = ac(); if (!a || quiet()) return; try { const o = a.createOscillator(), g = a.createGain(); o.type = type || "sine"; o.frequency.setValueAtTime(f, a.currentTime + t0); if (slide) o.frequency.exponentialRampToValueAtTime(slide, a.currentTime + t0 + dur); g.gain.setValueAtTime(0, a.currentTime + t0); g.gain.linearRampToValueAtTime(gain || .1, a.currentTime + t0 + .012); g.gain.exponentialRampToValueAtTime(.0001, a.currentTime + t0 + dur); o.connect(g); g.connect(a.destination); o.start(a.currentTime + t0); o.stop(a.currentTime + t0 + dur + .02); } catch (e) {} }
 function noise(dur, freq, gain, t0) { const a = ac(); if (!a || quiet()) return; try { const n = a.createBufferSource(), b = a.createBuffer(1, Math.max(1, Math.floor(a.sampleRate * dur)), a.sampleRate), d = b.getChannelData(0); for (let i = 0; i < d.length; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / d.length, 1.6); const f = a.createBiquadFilter(); f.type = "lowpass"; f.frequency.value = freq; const g = a.createGain(); g.gain.value = gain; n.buffer = b; n.connect(f); f.connect(g); g.connect(a.destination); n.start(a.currentTime + (t0 || 0)); } catch (e) {} }
 const engine = (() => { let o = null, g = null, f = null, sk = null, skg = null;
@@ -256,6 +264,11 @@ zone("zl", "tl"); zone("zr", "tr"); zone("zb", "tb");
 /* ===== loop ===== */
 let last = performance.now(), acc = 0; const DT = 1 / 120;
 function loop(now) {
+  /* Portals pause the game while an ad covers it — Playgama's own ad overlay states
+     the expectation outright ("the game should be paused and audio muted"). Holding
+     the clock here rather than only silencing audio means a race is not quietly lost
+     behind an interstitial. */
+  if (window.GL_SDK_PAUSE) { last = now; requestAnimationFrame(loop); return; }
   const dt = Math.min(0.1, (now - last) / 1000 || 0); last = now;
   if (state === "count") { const prev = Math.ceil(count); count -= dt; const cur = Math.ceil(count); $("count").textContent = count > 0 ? String(cur) : "GO"; if (cur !== prev && count > 0) sfx.count();
     if (count <= 0) { state = "race"; sfx.go(); setTimeout(() => $("count").classList.remove("show"), 500); } scene.tick(dt, me, gh, pb); engine.set(0, false, true); }
