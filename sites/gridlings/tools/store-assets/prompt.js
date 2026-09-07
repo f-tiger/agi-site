@@ -15,7 +15,7 @@ module.exports = {
                         over: !!window.__PM_REEL_DONE }))()`,
   covers: [
     { name: "landscape", w: 1920, h: 1080, title: 110, tag: 34 },
-    { name: "portrait", w: 800, h: 1200, title: 64, tag: 22 },
+    { name: "portrait", w: 1080, h: 1920, title: 64, tag: 22 },
     { name: "square", w: 800, h: 800, title: 66, tag: 19 }
   ],
   videos: [
