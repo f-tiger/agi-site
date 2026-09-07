@@ -241,9 +241,28 @@ owner 决策卡、事实表)。
 - **#1 Metaculus FutureEval 机器人锦标赛(已建)**:每季 $50k 奖池、300–500 题、bot-only,
   按准确度付奖金,不需要访客。`tools/metaculus-bot/` + `.github/workflows/metaculus-bot.yml`
   (每 2 小时;**job 级门 `vars.METACULUS_BOT_ENABLED=='1'`,未设 = 0 分钟 0 副作用**)。
-  bot 的研究步把 agiscorecard `llms.txt` 作为 house prior 喂 AI 类题。owner 三步 ≈10 分钟
-  见 `tools/metaculus-bot/README.md`。**赛规 bot-only,永不人工干预预测;零编造照适用;
-  联盟链接永不进预测说明。**
+  bot 的研究步把 agiscorecard `llms.txt` 作为 house prior 喂 AI 类题。**赛规 bot-only,
+  永不人工干预预测;零编造照适用;联盟链接永不进预测说明。**
+
+  **📍 当前状态(2026-09-07 收盘,后续会话先读这段再开口,别催 owner 做已经做过的事)**:
+  - ✅ bot 账号 `agiscorecardBots` 已建(Metaculus 规则:**只有第一个 bot 有奖金资格**,
+    所以永远不要建第二个);`METACULUS_TOKEN` 已入 Secrets;`METACULUS_BOT_ENABLED` 曾设为 1。
+  - ✅ **管道已验证通到 LLM 调用之前**:run #14 与 #15 都成功连上 Metaculus 并拉到
+    bot-testing-area 的 10 道题。**不是代码问题。**
+  - ❌ **卡点:这个 Metaculus 账号一个模型的额度都没有。** 两次都是
+    `400 You don't have an allowance for model`,先 `<gpt-4o-search-preview>`(库的默认值),
+    钉死模型后变成 `<gpt-4o>`。**赞助算力要单独申请,不是有 token 就有** —— README 里原来
+    那句写反了,已改。
+  - 🕓 **算力申请表 2026-09-07 已提交**(trial 100 USD,conservative 150 / ambitious 400;
+    criticality 5 并用两次失败 run 坐实)。**等 Metaculus 回复,周期未知,不要编时间。**
+  - ⏸️ **`METACULUS_BOT_ENABLED` 已由 owner 主动设回 `0`** —— 不是忘了开,是刻意关的:
+    每 2 小时红一次 = 一天 12 封内容相同的失败邮件,会毁掉「GitHub 失败邮件是唯一不经过 AI
+    的告警通道」这条舰队保险丝。**手动 dispatch 不受这个变量限制**(工作流的门带
+    `|| github.event_name == 'workflow_dispatch'`),所以额度到了先手动跑一次确认通,
+    **再**把变量改回 `1`。
+  - 🔧 额度到手后**不需要改代码**:`_llm_config()` 的四个角色都读环境变量
+    (`BOT_MODEL` / `BOT_PARSER_MODEL` / `BOT_RESEARCHER`),设了 `OPENROUTER_API_KEY`
+    会自动改走 `openrouter/openai/gpt-4o`。
 - **#2 eco 租客契合 lead-gen(Check24/Verivox Stromwechsel,€16,50–20/lead ≈ 200 次 Amazon
   点击)**:与 08-28 杀掉的 PV/热泵线索不同(那条要业主,这条是租客的事),但撞 owner
   2026-08-29「只走 Amazon」——**只请示不抢跑,一行代码不写**;owner 答 no 则永久归档。
