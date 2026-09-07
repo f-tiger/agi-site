@@ -1090,6 +1090,21 @@ CONTEXT_MODELS = {
    ("Frostwächter mit Thermostat", "Nur frostfrei halten", "Springt erst unterhalb der eingestellten Temperatur an — für reinen Frostschutz die sparsamere Lösung als ein Panel im Dauerbetrieb.", "Preis vor Ort prüfen", "frostw%C3%A4chter+thermostat", "heater"),
    ("Steckdosen-Thermostat", "Abschaltung nachrüsten", "Schaltet einen vorhandenen Strahler temperaturgesteuert — Dauerbetrieb ist laut der Rechnung auf dieser Seite der teuerste Fehler.", "Preis vor Ort prüfen", "steckdosen+thermostat+heizung", "heater"),
  ],
+ "infrarotheizung-badezimmer": [
+   ("Infrarotheizung fürs Bad", "Der Normalfall", "Panel auf die freie Wandfläche. Die Watt-Tabelle oben nennt für ein 6-m²-Bad je nach Dämmung 360 bis 600 W — nicht selbst getestet.", "Preis vor Ort prüfen", "infrarotheizung+bad", "heater"),
+   ("Spiegelheizung", "Wenn keine Wand frei ist", "Löst das eigentliche Bad-Problem, den Platz. Schutzart und Montage stehen in der Produktangabe und gehören dort geprüft.", "Preis vor Ort prüfen", "spiegelheizung+bad", "heater"),
+   ("Steckdosen-Thermostat mit Timer", "Damit es nur morgens läuft", "Die Gegenrechnung auf dieser Seite betrifft das vergessene Panel — die Abschaltung ist der billigste Schutz davor.", "Preis vor Ort prüfen", "steckdosen+thermostat+heizung", "heater"),
+ ],
+ "infrarotheizung-standgeraet": [
+   ("Infrarotheizung als Standgerät", "Ohne Bohren, ohne Erlaubnis", "Aufstellen, einstecken, beim Auszug rückstandslos mitnehmen — der eine echte Vorteil dieser Bauform.", "Preis vor Ort prüfen", "infrarotheizung+standger%C3%A4t", "heater"),
+   ("Steckdosen-Thermostat mit Timer", "Damit es nicht den Abend durchläuft", "Die Rechnung auf dieser Seite zeigt: teuer wird der Dauerbetrieb, nicht die Wattzahl.", "Preis vor Ort prüfen", "steckdosen+thermostat+heizung", "heater"),
+   ("Energiekostenmessgerät", "Erst messen, dann glauben", "Zeigt, was das Gerät wirklich zieht — glaub keiner Rechnung, auch unserer nicht.", "Preis vor Ort prüfen", "energiekostenmessger%C3%A4t+steckdose", "purifier"),
+ ],
+ "infrarotheizung-decke-oder-wand": [
+   ("Infrarotheizung zur Deckenmontage", "Wenn keine Wand mehr frei ist", "Strahlt nach unten auf die Zone darunter. Befestigungsmaterial und zulässiger Untergrund stehen in der Montageanleitung.", "Preis vor Ort prüfen", "infrarotheizung+deckenmontage", "heater"),
+   ("Bildheizung", "Dasselbe Gerät mit Motiv", "Reine Optikfrage — die Wattzahl entscheidet, nicht das Bild. Die Auswahl an Größen ist kleiner als bei schlichten Panels.", "Preis vor Ort prüfen", "infrarotheizung+bild", "heater"),
+   ("Infrarotheizung mit Thermostat", "Die sinnvolle Grundausstattung", "Ohne Thermostat läuft das Panel durch — egal, ob es an der Wand oder an der Decke hängt.", "Preis vor Ort prüfen", "infrarotheizung+mit+thermostat", "heater"),
+ ],
  "infrarotheizung-ratgeber": [
    ("Schmidbauer Infrarotheizung", "Meistgesucht diese Woche", "Die aktuell meistgesuchte Marke in unserer täglichen Google-Trends-Abfrage (Stand 25.08.). Nachfrage-Signal, kein Testurteil — nicht selbst getestet.", "Preis vor Ort prüfen", "Schmidbauer+Infrarotheizung", "heater"),
    ("Infrarotheizung mit Thermostat", "Die sinnvolle Grundausstattung", "Ohne Thermostat läuft die Paneele durch — mit schaltet sie nur, wenn der Raum es braucht.", "Preis vor Ort prüfen", "infrarotheizung+mit+thermostat", "heater"),
@@ -2597,8 +2612,9 @@ US_SWITCH_RULES = [
     ('trinkbrunnen katze', 'cat water fountain'),
     ('wäscheständer|standtrockner|waeschest', 'clothes drying rack'),
     ('heizdecke|heizkissen|wärmeunterbett|waermeunterbett', 'electric heated blanket'),
+    ('handtuchheizk', 'electric towel warmer'),
     ('frostwächter', 'frost protection heater'),
-    ('heizstrahler|infrarot heiz|infrarotheizung|schmidbauer', 'infrared panel heater'),
+    ('heizstrahler|infrarot heiz|infrarotheizung|schmidbauer|spiegelheizung|bildheizung', 'infrared panel heater'),
     ('heizlüfter|heizluefter|nth20', 'space heater'),
     ('thermostat', 'plug in thermostat'),
     ('energiekostenmess|strommessger|messfunktion|strommessung', 'electricity usage monitor'),
@@ -2622,7 +2638,12 @@ USSWITCH = ('<!--EB_USSWITCH--><script>(function(){var tz="";'
             # America/* covers the US, Canada and Latin America. Amazon.com is
             # the least-bad marketplace for all of them; amazon.de is useless to all.
             'if(tz.indexOf("America/")!==0)return;'
-            'var R=[["fensterabdichtung|fensterdichtung|abdichtung|abdicht|schaumstoffband|fensterabluft|kippfenster|hohlkammerplatte|xps platte|seal kit","portable ac window seal kit"],["abluftschlauch|isolierschlauch|abluft|schlauchadapter","portable ac exhaust hose"],["kondensatpumpe","condensate removal pump"],["kondensatschlauch|ablaufschlauch|mit schlauch|drain hose","dehumidifier drain hose"],["reiniger|verdampfer|schimmelentferner|coil cleaner","air conditioner coil cleaner"],["lamellenkamm|k\\u00fchlrippen","air conditioner fin comb"],["ersatzfilter|filtermatte|hepa filter","replacement air filter"],["abdeckhaube","air conditioner cover"],["antivibrationsmatte|vibrationsd","anti vibration pad"],["k\\u00fchlakku","cooler ice pack"],["antikalk|entkalker|zitronens","citric acid descaler"],["dachklimaanlage","rv rooftop air conditioner"],["thermomatte","rv windshield cover"],["granulat","moisture absorber"],["hygrometer|hygrostat","indoor hygrometer"],["thermometer","indoor outdoor thermometer"],["luftbefeuchter|verdunster","cool mist humidifier"],["luftreiniger|air purifier|ac2887","hepa air purifier"],["fenstersauger","window vacuum"],["dreame|bissel|saugwischer","wet dry vacuum"],["tineco","tineco filter"],["hitzeschutzfolie|sonnenschutzfolie|isolierfolie|reflektorfolie","window insulation film"],["rollo|jalousie","blackout roller shade"],["thermovorhang|verdunkelungsvorhang|hitzeschutz.*vorhang","thermal blackout curtain"],["t\\u00fcrdichtung|zugluftstopper","door draft stopper"],["markise|sonnensegel|ampelschirm","patio shade sail"],["sonnenschutz.*(scheibe|auto)|auto sonnenschutz","car sun shade"],["sonnenschutz","sun shade"],["k\\u00fchlmatte hund|k\\u00fchlweste hund","dog cooling mat"],["trinkbrunnen katze","cat water fountain"],["w\\u00e4schest\\u00e4nder|standtrockner|waeschest","clothes drying rack"],["heizdecke|heizkissen|w\\u00e4rmeunterbett|waermeunterbett","electric heated blanket"],["frostw\\u00e4chter","frost protection heater"],["heizstrahler|infrarot heiz|infrarotheizung|schmidbauer","infrared panel heater"],["heizl\\u00fcfter|heizluefter|nth20","space heater"],["thermostat","plug in thermostat"],["energiekostenmess|strommessger|messfunktion|strommessung","electricity usage monitor"],["steckdose|steckdosenleiste|zeitschaltuhr","smart plug"],["wasserwaage","small spirit level"],["magnetband","self adhesive magnetic tape"],["klebeband","aluminum foil tape"],["fenstergriff|abus f","window security lock"],["adsorptionstrockner|luftentfeuchter|entfeuchter|meacodry|trotec ttk|pro breeze|dehumidifier","dehumidifier"],["luftk\\u00fchler|luftkuehler|air cooler","evaporative air cooler"],["turmventilator|tower fan","tower fan"],["standventilator","pedestal fan"],["12v|campingventilator","12v fan"],["deckenventilator","ceiling fan"],["ventilator|meacofan|rowenta","room fan"],["klimaanlage|klimager|pinguino|chillflex|portasplit|breezein|quick connect|suntec|bosch cool|remko|clima butler|air conditioner|split","portable air conditioner"]];'
+            # Rendered from US_SWITCH_RULES above rather than duplicated here.
+            # It was a second hand-written copy for one day (2026-09-06/07);
+            # check_usswitch.py reads the Python list, so a divergence would have
+            # been a gate that passes while the site ships the stale rules.
+            'var R=' + json.dumps([[a, b] for a, b in US_SWITCH_RULES],
+                                  ensure_ascii=True, separators=(',', ':')) + ';'
             'for(var i=0;i<R.length;i++){try{R[i][0]=new RegExp(R[i][0]);}catch(e){R[i][0]=null;}}'
             'var sw=function(a){if(!a||!a.href||a.href.indexOf("amazon.de/s?k=")<0)return;'
             'try{var u=new URL(a.href);var k=(u.searchParams.get("k")||"").toLowerCase();if(!k)return;'

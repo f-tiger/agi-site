@@ -963,6 +963,62 @@ Strompreis-Radar)。本循环补的是**外部需求信号**(Google Trends DE)�
 - **部署触发收敛为仅 main（2026-08-06，owner 截图发现）**：owner 发来 run #290 失败截图，查证后是**两个不同原因**：288/289（`12215d8`）是我的 heat 端点 bug（已修）；**290 是 GitHub 自身故障**——`Failed to resolve action download info: Service Unavailable / Internal Server Error`，重试两次后放弃，与代码无关（同一提交 `4948c26` 在 main 的 run 291 成功）。**但这暴露了一个结构问题**：`deploy.yml` 原本在 main **和**工作分支上都触发，而工作流是"改完立刻合并 main"，导致**每次推送产生两个一模一样的 run、把同一提交部署两遍**——浪费、红绿成对制造噪音、且把撞上 GitHub 瞬时故障的概率翻倍。已收敛为**仅 main 触发**（保留 `workflow_dispatch`）。**方法论**：我此前只查 main 的 run，等于只看了一半的 CI 状态；owner 的截图补上了我的盲区。
 - **Alibaba 品类研究 → 拒绝照榜选品，转向"买之前没人回答的问题"（2026-08-06，用户"深度研究 Alibaba 热销品类→挖掘用户需求→达成商业机会"）**：`alibaba.com` 与 `1688.com` 在本环境**均不可达（000）**，无法取一手榜单，二手数据已标注为候选而非结论。**热销构成**：Consumer Electronics 28%、Home & Garden 25%，爆品是投影仪/充电宝/空气炸锅/耳机——**与"我房间太热"的德国租客零重叠**。**方法论判断**：`Alibaba 热销 = 大量转售商正在抢` ＝ 红海信号而非机会信号；本站所有有效判断都是需求优先（先 SERP 判定再找供给），用供给榜倒推受众是把方法论反过来用，**故拒绝照榜选品**。**补充核实的合规差异**：非电器（窗封/隔热帘）**不触发 Stiftung EAR + 破产担保 + 处置费**，但**仍需** LUCID 包装注册（罚款至 20 万欧 + 销售禁令）、GPSR、PPWR（2026-08-12 起）、Gewerbe/增值税/14 天撤回/2 年质保——**更轻但仍非快路，也依然需要法人主体**。**真正的机会（三方证据交叉）**：① 本站数据 kippfenster 是最大簇且贡献 1/3 联盟点击；② 市场上存在专做**量身定制窗封**的德国厂商（FROSNIR）＝"尺寸不合"是真痛点；③ 公开评测共识的两个失效点是**长度不对**与**粘胶高温脱落**；④ 空白：SERP 全是薄比价站、**本站 4 个窗封页提到尺寸的是 0 个**。→ 机会不是卖那条窗封（要当进口商且它本身有缺陷），而是**解决买它之前没人回答的问题**。**已落地 `EB_SEALFIT`**：需要长度 = `2×(宽+高)` 向上取常见规格（纯算术不伪造规格）、量窗扇非窗框、三种窗型分别提示、诚实指出失效点是粘胶、超 5 m 不硬推产品改提示定制；覆盖 DE 3 页 + EN 2 页，埋点 `seal_fit{len,type}`。Chromium 实测四组算式与尺寸映射全部正确，并抓出超尺寸时 Amazon 链接拼成坏查询的 bug（已修）。**预注册判定**：60 天 `seal_fit` ≥25 次 → 需求确认可扩展定制方向；<8 次 → 降级。详见 `docs/sourcing-research-2026-08.md`。
 
+## 品类扩张:Infrarotheizung 安装形态簇(2026-09-07,owner「我坚持要做品类扩张…要根据 google trends 等关键字、GEO 进行」)
+
+**owner 两次重申要扩品类,09-04 的「只深化不出新页」规则由 owner 明示解除。本条记录先验有多差,
+再记录做了什么——不把它包装成会涨 PV。**
+
+**选题依据(owner 指定用 Google Trends + GEO)**:`data/trends-rising.json`,geo=**DE**。规则:
+只取 `polluted != true` 的种子;命中要同时满足①处境/形态型问句 ②所属品类站内已有页 ③尚未覆盖。
+最新一份种子 `infrarotheizung`(autocomplete-diff,09-06)浮出的**全是安装形态词**:
+wand / decke / badezimmer / bild / spiegel / standgerät / stromverbrauch / test —— 后两个已覆盖,
+前六个一个都没有。季节对得上:09-07 制冷季收尾(cool 簇 41 页 273 pv,下行)、供暖季开场
+(heat 簇 8 页 19 pv,上行)。**off-niche 种子刻意不用**:`kaffeevollautomat`(数据干净、量真实,
+但在 Raumklima 域上是零权重孤儿页,撞 08-28「稀释不是杠杆」)、`akku staubsauger`
+(polluted=true,belstaff/lululemon)、`matratze`(只有 autocomplete 无量)。
+**GEO 只做 DE**:EN/IT 镜像上线 8 天 0 pv,复制那条路是重放已测到的失败。
+
+**出的三页(全部处境题,不是产品页)**:`infrarotheizung-badezimmer`(badezimmer+spiegel;
+15 分钟高峰负载才是红外在浴室成立的理由 + 4/6/8/10 m² 的瓦数表 + 每月个位数欧元的算术 +
+诚实劝退:有暖气片就装可编程恒温头、要暖毛巾就买毛巾架)· `infrarotheizung-standgeraet`
+(standgerät;把本站招牌的「免安装/不钻孔/不问房东」搬进供暖季,并说清代价:占地、只暖区域不暖房间、
+地面热源对有孩子/宠物的家是隐患)· `infrarotheizung-decke-oder-wand`(decke+wand+bild;
+决策页,Bildheizung 明说是**外观决策不是性能决策**)。三页互链 + 回链 watt-rechner / ratgeber /
+klimaanlage-mietwohnung,并各配 CONTEXT_MODELS 货架。
+
+**事实纪律(沙箱抓不到外部源,所以约束更硬)**:全部数字只有两个来源——站内已发布的
+**60/80/100 W/m²** 档,以及 `kW × h × 0,30 €/kWh` 的自算(逐条复核:6 m²×60/80/100 = 360/480/600 W;
+0,6 kW×0,333 h×0,30 = 0,06 €;900 W 双次 = 5,40 €/月;20 m²×80 = 1.600 W)。安全段照抄
+`infrarotheizung-garage` 已确立的写法:**只指向厂商与电工,绝不断言数值**——不写 IP 等级、
+不写 VDE/DIN 条款、不写最小间距厘米数,并带「Das ist keine Elektro- oder Rechtsberatung.」。
+中央复校脚本机检 12 类规则(标题/描述长度、canonical/og/hreflang 指向、FAQ JSON-LD 与可见文本逐字、
+Amazon 全为按名搜索链且带 tag+rel、无 /dp/、内链全部存在、日期、#org 节点、广告标签、编造探针),
+**0 failures**;七闸门全绿;全管线 byte-stable。
+
+**先验很差,必须写在前面**:
+- 新页冷启动已被**四个独立队列**证实:08-09 起 10 页 → 6 pv;08-23 起 6 个快反页 → 全史 0;
+  EN qm 13 页 + IT 11 页 → 8 天 0;**08-29 的 16 个品牌/型号测评页 → 9 天 1 pv**。
+- **内链不是杠杆(本轮新证)**:`heizluefter-stromsparend` 有 **96 条站内入链**,D1 **全史 0 行**。
+  所以「挂进簇里就能起来」在本域已被自己的数据打掉,别再用这个理由立项。
+- **本轮假设只被证实了一半**:选题依据是「处境型问句能排、产品型排不上」,但
+  `infrarotheizung-garage` 正是处境型,**全史 0 pv**;`infrarotheizung-ratgeber` 全史 1 pv。
+  所以真正的区分变量可能不是问句形态,而是**簇本身有没有排名**——制冷簇有 273 pv 撑着,
+  供暖簇几乎没有可继承的权重。**这轮测的是「季节刚开场的品类 + 处境型问句」能不能改变结果,
+  不是「多出页就有流量」。**
+- 唯一与前几批不同、且在会话手里的分发面:新页立刻进 llms.txt / .md 镜像 / search-index /
+  MCP —— 那是**不需要排队等排名**的一条(AI 引荐 28 天 24 pv 且是唯一在长的渠道)。
+  Google organic 仍是 0,Bing 系是全部搜索面,两者都在 owner 侧。
+
+**判定线 2026-10-05(28 天)**:三页合计真人 pv,**≥10 且其中有搜索或 AI 引荐来源** → 假设成立,
+按同样方式把 rising 里剩下的形态词做完;**合计 = 0 → 这是第五次独立确认,自此在本域彻底关闭
+「靠新页扩品类」,除非分发能力先变(Google 收录恢复 / Bing 曝光 / AI 引荐落到新页)**,并把这条
+写成硬规则而不是建议;1–9 → 不判,推到 60 天(11-06)复核,理由是本域排名周期明显长于 28 天。
+
+**同轮修掉的一个自造陷阱**:09-06 上线 US switch 时,我把规则表**同时**以 Python 列表和烘焙好的
+JS 数组存了两份,而 `check_usswitch.py` 只读 Python 那份 —— 改了 Python 不改 JS,闸门会绿而线上跑旧规则,
+正是「不可能失败的自检」。已改为 JS 数组由 `json.dumps(US_SWITCH_RULES)` 在 import 时渲染,单一真相源,
+并断言两者恒等。顺带补三条新词规则(spiegelheizung / bildheizung / handtuchheizkörper),覆盖率 94,2%。
+
 ## 美国市场链路修复:14% 的点击落在买不到的商城(2026-09-06,owner「继续优化」)
 
 **先量后改(D1,28 天,剔 bot 与 /__ci)**:662 真人 pv / 107 affiliate_click = **16 %**
