@@ -943,7 +943,12 @@ CG 投稿都带着一句假话**，包括被拒的那两次。不能断言它导
   站内与 itch 无广告，CG 与 Playgama 有广告。
 - **Playgama Bridge 是 LGPL-3.0**：作为独立文件随包发、附许可证，**永不内联**。
 - **Bridge 会 fetch `./playgama-bridge-config.json`**，缺文件就打一条 console error，
-  而 console error 在各家门户都是拒稿风险。包里带占位文件消错；**真配置由 Playgama 后台
-  按游戏生成，不替换就零广告零收入且不报错**——典型静默失败，已写进 docs/playgama-setup.md。
+  而 console error 在各家门户都是拒稿风险。**这份配置由我们自己写,不是后台生成的**
+  （2026-09-07 更正了一条错误记载）；SDK 只是 fetch 它,字段全由开发者填。
+- **接任何第三方 SDK,先查它自带的节流默认值,那是最容易漏的硬闸门。** Playgama 的
+  `initialInterstitialDelay` 默认按平台是 60/30/180 秒,期间**拒绝一切中插**——
+  认证跑不了那么久,于是报「没有实现广告」。这条只写在 SDK 源码里,文档没提。
+  同类字段还有 `minimumDelayBetweenInterstitial`。**排查顺序:先看 SDK 默认值,
+  再怀疑自己的触发点。** 本次我先后误判了两次归因才查到这里。
 - 分发选型结论：Playgama（最高 80%）与 CG 直投**不冲突**，Playgama 官方声明不代发 Poki/CG。
   **不做 GameDistribution**（33%，覆盖重叠）。**Poki 的 web 独占在 CG 出结果前不签**。

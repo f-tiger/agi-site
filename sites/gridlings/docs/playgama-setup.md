@@ -33,9 +33,12 @@ Playgama 明确写着「**我们不代你发布到 Poki 和 CrazyGames**，但�
 ## owner 要做的（会话不代注册任何外部账号）
 1. 到 https://developer.playgama.com/ 注册开发者账号。
 2. 新建游戏，上传 `site/downloads/playgama/ghostline.zip`。
-3. **关键一步**：后台会为这个游戏生成 `playgama-bridge-config.json`（含各平台广告位 id）。
-   **用它替换包里的占位文件**。不换的话游戏照样能玩、Bridge 照样初始化，
-   但**一分广告都不会投，也就没有收入**——这是个不报错的静默失败，所以写在这里。
+3. ~~后台会生成 config，用它替换占位文件~~ —— **这条是错的，2026-09-07 更正**。
+   `playgama-bridge-config.json` 是**我们自己写的**，不是后台生成的：SDK 只是在初始化时
+   fetch `./playgama-bridge-config.json`，字段（`advertisement` / `platforms` /
+   `forciblySetPlatformId` 等）全部由开发者填。包里现在带的就是真配置，不需要你替换。
+   （后台确实会给一个 `saas.publicToken`，但那是排行榜、每日奖励这类 SaaS 功能用的，
+   基础广告不需要。）
 4. 提交审核，把审核反馈发回来。
 
 ## 判定线（事前登记）
@@ -90,3 +93,19 @@ called correctly at startup."**
 所以下一次跑认证之前，**先把后台生成的 config 换进去**——这既是变现的必要步骤，
 也可能就是这次超时的根因。如果换了配置仍然超时，把 `window.GL_PG_ERR` 的值发我，
 那里现在会有真正的失败原因。
+
+
+## 认证「没有广告」的真正原因（2026-09-07，从 SDK 源码查实）
+`initialInterstitialDelay` 是 SDK 自带的冷启动保护，**默认值按平台是 60 / 30 / 180 秒**——
+在这段时间内它会**拒绝任何中插请求**。认证跑的时间远短于此，所以无论我们在代码里怎么调
+`showInterstitial()`，它都看不到广告。这解释了第一次认证的 findings，也解释了我在本地
+只能看到 `loading → failed`。
+
+已在 `vendor/playgama/playgama-bridge-config.json` 里显式覆盖：
+`initialInterstitialDelay: 5`（不打扰开局，但认证与真实玩家都够得着）、
+`minimumDelayBetweenInterstitial: 60`（游戏侧 `adBreak` 本来就有 90 秒间隔，
+这里写 60 是为了让 SDK 不会意外成为更紧的那道闸）。
+
+**教训（已写进 CLAUDE.md）**：接第三方 SDK 时，**平台自带的节流默认值要当成一等公民去查**。
+我先后把「没接广告」归因为触发点够不到、又把 init 超时归因为脚本注入方式，两次都只对了一半，
+真正的硬闸门写在 SDK 源码的默认值里，不在文档里。
