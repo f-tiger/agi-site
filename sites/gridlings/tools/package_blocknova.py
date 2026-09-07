@@ -46,6 +46,34 @@ for src_name, zip_name in GAMES:
     with zipfile.ZipFile(zp, "w", zipfile.ZIP_DEFLATED) as z:
         z.writestr("index.html", out)
     print("wrote", zp, os.path.getsize(zp), "bytes")
+# Playgama Bridge variant: game + the SDK as its own file + its licence. Bridge is
+# LGPL-3.0-or-later, so it is never inlined into the game — it stays a replaceable
+# file, which is what that licence asks for and what Playgama ships it as.
+# Pilot is GHOSTLINE only; the other six follow once the first one clears review.
+PLAYGAMA = ["ghostline"]
+pgdir = os.path.join(ROOT, "site", "downloads", "playgama")
+vendor = os.path.join(ROOT, "vendor", "playgama")
+os.makedirs(pgdir, exist_ok=True)
+for slug in PLAYGAMA:
+    src = io.open(os.path.join(ROOT, "site", slug + ".html"), encoding="utf-8").read()
+    assert marker in src, slug + ": main script marker moved — update this packager"
+    out = src.replace(marker, "<script>window.GL_PG=true;</script>\n" + marker, 1)
+    # the ad-free footer is false here too: this build shows Playgama's ads
+    for _claim in ("No ads inside", "No ads here"):
+        out = out.replace(_claim + " \u00b7 no account \u00b7 free", "No account \u00b7 free to play")
+        out = out.replace(_claim, "Free to play")
+    assert "No ads" not in out, slug + ": an ad-free claim survived into the Playgama build"
+    zp = os.path.join(pgdir, slug + ".zip")
+    with zipfile.ZipFile(zp, "w", zipfile.ZIP_DEFLATED) as z:
+        z.writestr("index.html", out)
+        z.write(os.path.join(vendor, "playgama-bridge.js"), "playgama-bridge.js")
+        z.write(os.path.join(vendor, "LICENSE"), "LICENSE-playgama-bridge.txt")
+        # Bridge fetches ./playgama-bridge-config.json on init; without the file it
+        # logs a console error, and a console error is a rejection risk on every
+        # portal. This placeholder silences it. It carries no ad unit ids, so it
+        # MUST be swapped for the portal-generated config or nothing monetises.
+        z.write(os.path.join(vendor, "playgama-bridge-config.json"), "playgama-bridge-config.json")
+    print("wrote", zp, os.path.getsize(zp), "bytes")
 itchdir = os.path.join(ROOT, "site", "downloads", "itch")
 os.makedirs(itchdir, exist_ok=True)
 for slug in ITCH:

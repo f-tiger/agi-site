@@ -1,0 +1,5 @@
+{
+  "_README": "PLACEHOLDER. Playgama's developer portal generates the real config for each registered game; it carries the per-platform ad unit ids. Without replacing this file the Bridge still initialises and the game is fully playable, but NO ADS SERVE, which means no revenue. Replace it before the game goes live, not after.",
+  "_source": "https://developer.playgama.com/",
+  "platforms": {}
+}

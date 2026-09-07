@@ -4,7 +4,19 @@ import * as PH from "./physics.js";
 import * as AI from "./ai.js";
 
 /* ===== CrazyGames bridge ===== */
-const CG = (function () {
+/* Portal bridge. One contract — on / ev("start"|"stop"|"happy") / ad(type, done) —
+   with two implementations behind it, so nothing else in the game knows or cares
+   which portal it is running on:
+     · CrazyGames, via their own SDK (window.GL_CG)
+     · Playgama Bridge, which also fronts Y8, MSN, Discord, YouTube Playables,
+       Xiaomi, Telegram and ~20 more (window.GL_PG)
+   Neither loads on our own site or on itch, where the game is genuinely ad-free. */
+const PORTAL = (function () {
+  if (window.GL_PG === true || /(^|[?&])pg=1/.test(location.search)) return playgama();
+  return crazygames();
+})();
+
+function crazygames() {
   let on = window.GL_CG === true || /(^|[?&])cg=1/.test(location.search);
   if (!on) { try { on = /crazygames\./.test(document.referrer); } catch (e) {} }
   window.GL_CG = on;
@@ -25,7 +37,50 @@ const CG = (function () {
   }).catch(() => {}); } catch (e) {} };
   document.head.appendChild(s);
   return api;
-})();
+}
+
+function playgama() {
+  /* Bridge is LGPL-3.0, so it ships as its own file next to index.html and is
+     never inlined into the game — keep it replaceable, as that licence intends. */
+  const q = []; let br = null;
+  const api = { on: true, ev: e => q.push(e), ad: (type, done) => done(false) };
+  window.GL_PG = true;
+  document.documentElement.classList.add("pg");
+  const s = document.createElement("script"); s.src = "playgama-bridge.js"; s.async = true;
+  s.onload = () => {
+    br = window.bridge;
+    if (!br || typeof br.initialize !== "function") return;   /* leave the no-op api in place */
+    br.initialize().then(() => {
+      const send = m => { try { br.platform.sendMessage(m); } catch (e) {} };
+      send("game_ready");
+      /* happytime has no Bridge equivalent; dropping it is correct, not a gap */
+      api.ev = e => { if (e === "start") send("gameplay_started"); else if (e === "stop") send("gameplay_stopped"); };
+      q.splice(0).forEach(api.ev);
+      api.ad = (type, done) => {
+        let fired = false; const end = ok => { if (!fired) { fired = true; done(ok); } };
+        const rewarded = type === "rewarded";
+        const evt = rewarded ? "rewarded_state_changed" : "interstitial_state_changed";
+        /* A rewarded ad only pays out on the "rewarded" state. Closing it early is a
+           no-reward close, so it must resolve false — an interstitial closing is a
+           normal finish and resolves true. */
+        let paid = false;
+        const onState = st => {
+          if (st === "rewarded") { paid = true; end(true); }
+          else if (st === "closed") end(rewarded ? paid : true);
+          else if (st === "failed") end(false);
+        };
+        try {
+          br.advertisement.on(evt, onState);
+          if (rewarded) br.advertisement.showRewarded(); else br.advertisement.showInterstitial();
+          setTimeout(() => end(false), 25000);
+        } catch (e) { end(false); }
+      };
+    }).catch(() => {});
+  };
+  s.onerror = () => {};   /* a missing SDK must never stop the game from being playable */
+  document.head.appendChild(s);
+  return api;
+}
 function ev(n, l) { try { const d = JSON.stringify({ n, l: l || "gl", p: "/ghostline" }), u = "https://play.agiscorecard.com/e";
   if (navigator.sendBeacon) navigator.sendBeacon(u, new Blob([d], { type: "application/json" })); else fetch(u, { method: "POST", body: d, keepalive: true, mode: "cors" }).catch(() => {}); } catch (e) {} }
 
@@ -88,16 +143,16 @@ function startRace() {
   me = PH.fresh(); gh = PH.fresh(); pb = pbPol ? PH.fresh() : null; rec = []; lastCp = 0; state = "count"; count = 3.2; cpFlash = 0;
   $("menu").classList.remove("show"); $("result").classList.remove("show"); $("hud").classList.add("show"); $("count").classList.add("show");
   scene.snapCamera(me); if (armed) { engine.start(); music.start(); } S.plays++; S.lastSeed = seed; save(); ev("race_start", "s" + seed);
-  CG.ev("start");
+  PORTAL.ev("start");
 }
 function endRace() {
-  state = "done"; $("hud").classList.remove("show"); CG.ev("stop"); sfx.finish(); buzz(30);
+  state = "done"; $("hud").classList.remove("show"); PORTAL.ev("stop"); sfx.finish(); buzz(30);
   const t = me.t, prev = S.best[seed], isBest = !prev || t < prev; if (isBest) S.best[seed] = t;
   /* a personal best is kept as a replayable line, not just a number: next run it drives beside you */
   if (isBest && me.cp >= T.cps.length) { const bp = AI.learn(T, rec); S.pb = S.pb || {}; S.pb[seed] = { target: Array.from(bp.target), brake: Array.from(bp.brake), t }; }
   const medal = t <= ref.gold ? "gold" : t <= ref.silver ? "silver" : t <= ref.bronze ? "bronze" : null;
   const rank = { gold: 3, silver: 2, bronze: 1 }; const prevMedal = S.medals[seed];
-  if (medal && (!prevMedal || rank[medal] > rank[prevMedal])) { S.medals[seed] = medal; sfx.medal(); CG.ev("happy"); ev("medal", medal); }
+  if (medal && (!prevMedal || rank[medal] > rank[prevMedal])) { S.medals[seed] = medal; sfx.medal(); PORTAL.ev("happy"); ev("medal", medal); }
   const beat = t < ghPol.t;
   /* the model studies the run: it learns your line, then tries to improve it.
      It only ever gets faster; a bad run cannot make it worse. */
@@ -112,7 +167,7 @@ function endRace() {
   $("rwalls").textContent = me.walls ? me.walls + " wall hit" + (me.walls > 1 ? "s" : "") + " — each one costs more than a brake tap" : "clean run — no walls";
   ev("finish", "s" + seed + ":" + t.toFixed(1)); if (beat) ev("beat_clone", "s" + seed);
   const show = () => { $("result").classList.add("show"); refreshGarage(); };
-  if (CG.on && finishes % 3 === 0) CG.ad("midgame", show); else show();
+  if (PORTAL.on && finishes % 3 === 0) PORTAL.ad("midgame", show); else show();
 }
 /* ===== menu ===== */
 function buildMenu() {
@@ -134,7 +189,7 @@ $("brandom").addEventListener("click", () => { arm(); sfx.click(); loadTrack(200
 $("bretry").addEventListener("click", () => { arm(); sfx.click(); loadTrack(seed, level); startRace(); });
 $("bnext").addEventListener("click", () => { arm(); sfx.click(); const i = TR.CAMPAIGN.findIndex(c => c.seed === seed); const n = TR.CAMPAIGN[(i + 1) % TR.CAMPAIGN.length]; loadTrack(n.seed, n.level); startRace(); });
 $("bmenu").addEventListener("click", () => { arm(); sfx.click(); state = "menu"; $("result").classList.remove("show"); buildMenu(); $("menu").classList.add("show"); });
-$("bmenu2").addEventListener("click", () => { state = "menu"; $("hud").classList.remove("show"); $("count").classList.remove("show"); CG.ev("stop"); buildMenu(); $("menu").classList.add("show"); });
+$("bmenu2").addEventListener("click", () => { state = "menu"; $("hud").classList.remove("show"); $("count").classList.remove("show"); PORTAL.ev("stop"); buildMenu(); $("menu").classList.add("show"); });
 $("bmute").addEventListener("click", () => { muted = !muted; $("bmute").textContent = muted ? "🔇" : "🔊"; try { localStorage.setItem("glMute", muted ? "1" : "0"); } catch (e) {} music.level(); });
 $("bmute").textContent = muted ? "🔇" : "🔊"; setInterval(() => music.level(), 1500);
 $("hublink").addEventListener("click", () => ev("hub_click"));

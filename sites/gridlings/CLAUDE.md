@@ -934,3 +934,16 @@ CG 投稿都带着一句假话**，包括被拒的那两次。不能断言它导
 - **itch 与本站构建保持原样**：那两处不加载 CG SDK、确实没有广告，声明为真。
 - 通用规则：**任何针对某个平台的构建变体，凡是页面上的事实性声明（有无广告、有无账号、
   是否免费），都必须在该变体下重新为真**。声明是按变体核的，不是按源码核的。
+
+## 多平台分发：PORTAL 抽象 + 每平台一个构建变体（2026-09-07）
+- 游戏里**不要再写死某个平台的 SDK**。统一走 `PORTAL` 契约：
+  `on / ev("start"|"stop"|"happy") / ad(type, done)`，背后按 `window.GL_CG` / `window.GL_PG`
+  选实现。加一个平台 = 加一个实现 + 一个打包变体，游戏逻辑零改动。
+- 三个变体各自的事实声明必须重新为真（见「CG 包不许带无广告声明」那条）：
+  站内与 itch 无广告，CG 与 Playgama 有广告。
+- **Playgama Bridge 是 LGPL-3.0**：作为独立文件随包发、附许可证，**永不内联**。
+- **Bridge 会 fetch `./playgama-bridge-config.json`**，缺文件就打一条 console error，
+  而 console error 在各家门户都是拒稿风险。包里带占位文件消错；**真配置由 Playgama 后台
+  按游戏生成，不替换就零广告零收入且不报错**——典型静默失败，已写进 docs/playgama-setup.md。
+- 分发选型结论：Playgama（最高 80%）与 CG 直投**不冲突**，Playgama 官方声明不代发 Poki/CG。
+  **不做 GameDistribution**（33%，覆盖重叠）。**Poki 的 web 独占在 CG 出结果前不签**。
