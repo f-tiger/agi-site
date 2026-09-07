@@ -53,12 +53,24 @@ function playgama() {
      connected in index.html"), and a static tag also removes the failure mode where
      a dynamically injected script never fires onload and init silently never happens.
      The dynamic path stays as a fallback for anyone opening the file without it. */
+  /* An SDK that never loads fails certification while the game itself plays perfectly —
+     the most invisible failure there is. Every path that can end that way reports here,
+     on screen, so it can be read (or photographed) without opening devtools. This can
+     only appear in the Playgama build, and only when the SDK is genuinely unusable. */
+  const sdkMissing = (why) => {
+    window.GL_PG_ERR = "playgama-bridge.js unusable: " + why;
+    try {
+      const d = document.createElement("div");
+      d.textContent = "SDK NOT LOADED \u2014 " + why;
+      d.style.cssText = "position:fixed;left:0;right:0;bottom:0;z-index:99999;background:#c8102e;color:#fff;"
+        + "font:12px/1.5 monospace;padding:6px 10px;text-align:center;pointer-events:none";
+      const put = () => (document.body || document.documentElement).appendChild(d);
+      if (document.body) put(); else document.addEventListener("DOMContentLoaded", put);
+    } catch (e) {}
+  };
   const boot = (attempt) => {
     br = window.bridge;
-    if (!br || typeof br.initialize !== "function") {
-      window.GL_PG_ERR = "bridge global missing after load";   /* diagnosable, not silent */
-      return;
-    }
+    if (!br || typeof br.initialize !== "function") { sdkMissing("window.bridge is undefined after the script tag ran"); return; }
     br.initialize().then(() => {
       const send = m => { try { br.platform.sendMessage(m); } catch (e) {} };
       send("game_ready");
@@ -97,7 +109,7 @@ function playgama() {
   else {
     const s = document.createElement("script"); s.src = "playgama-bridge.js"; s.async = true;
     s.onload = () => boot(0);
-    s.onerror = () => {};   /* a missing SDK must never stop the game from being playable */
+    s.onerror = () => sdkMissing("the file 404s next to index.html");   /* the game stays playable either way */
     document.head.appendChild(s);
   }
   return api;
