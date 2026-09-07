@@ -67,3 +67,26 @@ least one type of advertising — Rewarded or Interstitial."**
 
 **owner 要做的**：重新上传新包，再跑一次 certification。跑的时候**至少点一次
 TRACKS 再选一条赛道**——那一步就是广告触发点。
+
+## 认证第二次未过：SDK initialization check failed（2026-09-07）
+报错原文：**"Platform did not receive the initialization signal from the game within 30
+seconds. Ensure the script is connected in index.html and the initialization method is
+called correctly at startup."**
+
+**已改的两处**
+1. **SDK 改成 index.html 里的静态 `<script src>`**，由打包器插在游戏 bundle 之前。
+   原来是游戏代码运行时动态注入的——认证提示里那句 "ensure the script is connected in
+   index.html" 就是在说这件事；静态标签同时消掉了「注入的脚本 onload 不触发 → 永不初始化」
+   这个失败模式。动态注入保留为兜底。
+2. **初始化失败不再被吞掉**。原来 `.catch(() => {})` 让 init 拒绝和「平台没收到信号」
+   看起来一模一样——而后者正是它造成的症状。现在失败原因写到 `window.GL_PG_ERR`，
+   并在 1.5 秒后自动重试一次。
+
+**本地实测**：从页面加载到 `bridge.isInitialized === true` 用 **2.8–3.6 秒**（上限 30 秒），
+零 console error，点击换赛道仍能触发中插。
+
+**还没排除的一个原因，需要 owner 配合**：包里的 `playgama-bridge-config.json` 仍是占位的
+`{"platforms": {}}`。本地 mock 平台下初始化能过，**但他们的真实平台可能要靠这份配置完成握手**。
+所以下一次跑认证之前，**先把后台生成的 config 换进去**——这既是变现的必要步骤，
+也可能就是这次超时的根因。如果换了配置仍然超时，把 `window.GL_PG_ERR` 的值发我，
+那里现在会有真正的失败原因。

@@ -57,7 +57,11 @@ os.makedirs(pgdir, exist_ok=True)
 for slug in PLAYGAMA:
     src = io.open(os.path.join(ROOT, "site", slug + ".html"), encoding="utf-8").read()
     assert marker in src, slug + ": main script marker moved — update this packager"
-    out = src.replace(marker, "<script>window.GL_PG=true;</script>\n" + marker, 1)
+    # The SDK goes in as a real <script src> BEFORE the game bundle: certification
+    # checks that it is connected in index.html, and a static tag means bridge is
+    # already parsed when the game's portal code runs, so initialize() fires at once.
+    out = src.replace(marker, '<script>window.GL_PG=true;</script>\n'
+                              '<script src="playgama-bridge.js"></script>\n' + marker, 1)
     # the ad-free footer is false here too: this build shows Playgama's ads
     for _claim in ("No ads inside", "No ads here"):
         out = out.replace(_claim + " \u00b7 no account \u00b7 free", "No account \u00b7 free to play")

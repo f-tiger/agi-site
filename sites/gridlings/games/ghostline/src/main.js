@@ -47,10 +47,18 @@ function playgama() {
   const api = { on: true, ready: false, ev: e => q.push(e), ad: (type, done) => done(false) };
   window.GL_PG = true;
   document.documentElement.classList.add("pg");
-  const s = document.createElement("script"); s.src = "playgama-bridge.js"; s.async = true;
-  s.onload = () => {
+  /* The SDK is a plain <script src> in index.html, injected by the packager, so it is
+     already parsed by the time this runs and initialize() fires at the earliest
+     possible moment. Certification checks for exactly that ("ensure the script is
+     connected in index.html"), and a static tag also removes the failure mode where
+     a dynamically injected script never fires onload and init silently never happens.
+     The dynamic path stays as a fallback for anyone opening the file without it. */
+  const boot = (attempt) => {
     br = window.bridge;
-    if (!br || typeof br.initialize !== "function") return;   /* leave the no-op api in place */
+    if (!br || typeof br.initialize !== "function") {
+      window.GL_PG_ERR = "bridge global missing after load";   /* diagnosable, not silent */
+      return;
+    }
     br.initialize().then(() => {
       const send = m => { try { br.platform.sendMessage(m); } catch (e) {} };
       send("game_ready");
@@ -77,10 +85,21 @@ function playgama() {
           setTimeout(() => end(false), 25000);
         } catch (e) { window.GL_AD_ERR = String((e && e.stack) || e); end(false); }
       };
-    }).catch(() => {});
+    }).catch(e => {
+      /* A swallowed init rejection is indistinguishable from "the platform never
+         heard from us", which is exactly the certification failure it causes. Record
+         it and retry once — a transient handshake failure should not cost the run. */
+      window.GL_PG_ERR = String((e && (e.stack || e.message)) || e);
+      if (!attempt) setTimeout(() => boot(1), 1500);
+    });
   };
-  s.onerror = () => {};   /* a missing SDK must never stop the game from being playable */
-  document.head.appendChild(s);
+  if (window.bridge) boot(0);
+  else {
+    const s = document.createElement("script"); s.src = "playgama-bridge.js"; s.async = true;
+    s.onload = () => boot(0);
+    s.onerror = () => {};   /* a missing SDK must never stop the game from being playable */
+    document.head.appendChild(s);
+  }
   return api;
 }
 function ev(n, l) { try { const d = JSON.stringify({ n, l: l || "gl", p: "/ghostline" }), u = "https://play.agiscorecard.com/e";
