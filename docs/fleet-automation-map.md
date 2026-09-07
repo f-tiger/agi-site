@@ -53,7 +53,7 @@ thedollscout 冻结约 **86 小时**——它的部署是纯 push 触发，没�
 | `eco-heat-alert.yml` | `0 6 * * *` | eco 热度告警 |
 | `eco-mcp-smoke.yml` | `17 6 * * *` | eco MCP 冒烟 |
 | `tds-traffic.yml` | `0 6 * * *` | tds D1 14 天窗导出 |
-| `agi-odds.yml` | `25 3 * * 1` | 赔率快照（周一，早于日报） |
+| `agi-odds.yml` | `25 3 * * 1` | 赔率快照（周一，早于日报）；**2026-09-07 加挂 AGI 行情板**（`fetch_market_board.mjs` + `gen_market_board.py` → `/agi-prediction-markets`，~0.5 分钟/月，不新增 schedule；取不到就 continue-on-error 跳过，不拖累赔率快照）。裁定见 `docs/prediction-market-platform-2026-09.md` |
 | `metaculus-bot.yml` | `13 */2 * * *` | **新增 2026-09-05**:Metaculus FutureEval 机器人锦标赛(舰队第一条与流量无关的营收线);job 级门 `vars.METACULUS_BOT_ENABLED=='1'`,未设 = 0 分钟;≤1,800 分钟/月(公开仓免费);详见 `docs/revenue-breakthrough-2026-09.md` |
 | `agi-trader.yml` | `45 18` / `15 19` / `45 19` / `15 20 * * 1-5` | **新增 2026-09-05**:owner 自用镜像交易器(Alpaca,缺省纸面;整股 market-on-close + 零股 day;四条错峰 cron 抗 GitHub 延迟,幂等读当日订单);job 级门 `vars.TRADER_ENABLED=='1'`,未设 = 0 分钟;≈90 分钟/月(多数秒退);日志只打印计数;详见 `tools/trader/README.md` |
 | `agi-paper-ledger.yml` | `40 22 * * 1-5` | **新增 2026-09-05**:预登记纸面交易台账,十一臂确定性重算 → `sites/agiscorecard/paper-ledger.json`;≈22 分钟/月 + 触发 agi 部署 ≈66 分钟/月;取不到 SPY 即红;**2026-09-06 追加一步**:`tools/trader/test_mirror.py` 20 场景对本地 mock 券商跑执行器(~4 秒/次 ≈ 1.5 分钟/月,不新增 schedule,放在 commit 之后以免连坐);详见 `docs/auto-trading-research-2026-09.md`、`tools/trader/README.md` |
