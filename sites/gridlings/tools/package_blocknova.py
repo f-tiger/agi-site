@@ -54,7 +54,7 @@ for src_name, zip_name in GAMES:
 # hand-written games share tools/portal/playgama-portal.js instead — one file, five
 # games, so a lesson learned once is not re-learned five times. Their prefix is the
 # window.<prefix>Cg / window.<prefix>Ad seam each already exposes.
-PLAYGAMA = ["ghostline"]
+PLAYGAMA = ["ghostline", "singularity"]
 PLAYGAMA_SHARED = {"overfit": "of", "prompt": "pm", "mimic": "mc", "overseer": "os", "minima": "mn"}
 pgdir = os.path.join(ROOT, "site", "downloads", "playgama")
 vendor = os.path.join(ROOT, "vendor", "playgama")

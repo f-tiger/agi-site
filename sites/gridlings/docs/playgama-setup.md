@@ -189,3 +189,21 @@ SDK 缺失时页面底部红色横幅）。
 
 **SINGULARITY 尚未接入**：它和 GHOSTLINE 一样是 src 构建、且用激励视频而非中插，
 形状不同，单独处理。
+
+## SINGULARITY 接入（2026-09-07，七款齐了）
+它和另外六款形状不同，所以单独一轮：**用激励视频不用中插**，且是 src 构建。
+- 沿用 GHOSTLINE 的 `PORTAL` 契约（`on / ev / ad / data`），新增 Playgama 实现，
+  游戏逻辑零改动（10 处调用点统一换名）。
+- **点击可达天然满足**：它的三个激励入口（`#adboost` / `#adtrain` / 离线结算的
+  「看广告 ×2」）本来就是可见的自愿点击按钮，认证工具点得到。
+  但有个前提——那块面板由 `PORTAL.on` 控制显隐，所以 Playgama 下 `on` 必须为 true，已实测面板可见。
+- **激励视频只在 `rewarded` 状态计入奖励**，中途关闭不给奖励（`closed` 时看 `paid` 标志）。
+  这条和中插不同，写错就是白送奖励或该给不给。
+- **放置类特有的一条**：广告期间必须停掉经济。不停的话玩家看广告的时间也在产钱，
+  既不公平也会被审核挑出来。实测暂停 2.5 秒内金额 100 → 100，纹丝不动。
+
+**实测**：Bridge 初始化 2.878 秒（上限 30）、广告面板可见、激励链路
+`loading → failed`（本地无库存）、零 console error、无 SDK 缺失横幅。
+门禁：fleet-smoke / cg-package-smoke（157.8KB，gameplayStart 1379ms）/ verify-singularity 全绿。
+
+**自我声明**：Rewarded = **Yes**，Interstitial = **No**。与另外六款相反，别填错。

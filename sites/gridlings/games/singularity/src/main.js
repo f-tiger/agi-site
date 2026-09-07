@@ -2,7 +2,17 @@ import { makeScene } from "./scene.js";
 import * as E from "./econ.js";
 
 /* ===== CrazyGames bridge (same contract as the other five) ===== */
-const CG = (function () {
+/* Portal bridge. One contract — on / ev / ad(type, done) / data — with two
+   implementations behind it, so nothing else in the game knows which portal it runs
+   on. SINGULARITY monetises with REWARDED video (three visible opt-in buttons), not
+   interstitials, so the reachability problem that failed GHOSTLINE's first
+   certification does not apply here: a certification pass can click those buttons. */
+const PORTAL = (function () {
+  if (window.GL_PG === true || /(^|[?&])pg=1/.test(location.search)) return playgama();
+  return crazygames();
+})();
+
+function crazygames() {
   let on = window.GL_CG === true || /(^|[?&])cg=1/.test(location.search);
   if (!on) { try { on = /crazygames\./.test(document.referrer); } catch (e) {} }
   window.GL_CG = on;
@@ -32,7 +42,71 @@ const CG = (function () {
   };
   document.head.appendChild(s);
   return api;
-})();
+}
+
+function playgama() {
+  /* Bridge ships as its own file next to index.html (LGPL-3.0: keep it replaceable)
+     and is loaded by a static script tag the packager writes, which is what portal
+     certification checks for. */
+  const q = []; let br = null;
+  const api = { on: true, ready: false, ev: e => q.push(e), ad: (type, done) => done(false), data: null };
+  window.GL_PG = true;
+  document.documentElement.classList.add("cg");   /* same class: it only reveals the ad buttons */
+  const fail = (why) => {
+    window.GL_PG_ERR = "playgama-bridge.js unusable: " + why;
+    try {
+      const d = document.createElement("div");
+      d.textContent = "SDK NOT LOADED \u2014 " + why;
+      d.style.cssText = "position:fixed;left:0;right:0;bottom:0;z-index:99999;background:#c8102e;color:#fff;"
+        + "font:12px/1.5 monospace;padding:6px 10px;text-align:center;pointer-events:none";
+      const put = () => (document.body || document.documentElement).appendChild(d);
+      if (document.body) put(); else document.addEventListener("DOMContentLoaded", put);
+    } catch (e) {}
+  };
+  const boot = (attempt) => {
+    br = window.bridge;
+    if (!br || typeof br.initialize !== "function") { fail("window.bridge is undefined after the script tag ran"); return; }
+    br.initialize().then(() => {
+      const send = m => { try { br.platform.sendMessage(m); } catch (e) {} };
+      try {
+        br.on("pause_state_changed", st => { window.GL_SDK_PAUSE = st === "paused"; });
+        br.on("audio_state_changed", st => { window.GL_SDK_MUTE = st === "muted"; });
+      } catch (e) {}
+      send("game_ready");
+      api.ev = e => { if (e === "start") send("gameplay_started"); else if (e === "stop") send("gameplay_stopped"); };
+      q.splice(0).forEach(api.ev);
+      api.ready = true;
+      api.ad = (type, done) => {
+        let fired = false, paid = false;
+        const release = () => { window.GL_SDK_PAUSE = false; window.GL_SDK_AD_MUTE = false; };
+        const end = ok => { if (!fired) { fired = true; release(); done(ok); } };
+        /* A rewarded ad pays only on "rewarded"; closing it early earns nothing. */
+        const onState = st => {
+          if (st === "loading" || st === "opened") { window.GL_SDK_PAUSE = true; window.GL_SDK_AD_MUTE = true; }
+          else if (st === "rewarded") { paid = true; end(true); }
+          else if (st === "closed") end(paid);
+          else if (st === "failed") end(false);
+        };
+        try {
+          br.advertisement.on("rewarded_state_changed", onState);
+          br.advertisement.showRewarded();
+          setTimeout(() => end(false), 25000);
+        } catch (e) { window.GL_AD_ERR = String((e && e.stack) || e); end(false); }
+      };
+    }).catch(e => {
+      window.GL_PG_ERR = String((e && (e.stack || e.message)) || e);
+      if (!attempt) setTimeout(() => boot(1), 1500);
+    });
+  };
+  if (window.bridge) boot(0);
+  else {
+    const s = document.createElement("script"); s.src = "playgama-bridge.js"; s.async = true;
+    s.onload = () => boot(0);
+    s.onerror = () => fail("the file 404s next to index.html");
+    document.head.appendChild(s);
+  }
+  return api;
+}
 function ev(n, l) {
   try {
     const d = JSON.stringify({ n, l: l || "sg", p: "/singularity" }), u = "https://play.agiscorecard.com/e";
@@ -46,14 +120,14 @@ let AC = null, muted = false;
 try { muted = localStorage.getItem("sgMute") === "1"; } catch (e) {}
 function ac() { if (!AC) { try { AC = new (window.AudioContext || window.webkitAudioContext)(); } catch (e) {} } if (AC && AC.state === "suspended") { try { AC.resume(); } catch (e) {} } return AC; }
 function tone(f, t0, dur, type, gain, slide) {
-  const a = ac(); if (!a || muted || window.GL_SDK_MUTE) return;
+  const a = ac(); if (!a || muted || window.GL_SDK_MUTE || window.GL_SDK_AD_MUTE) return;
   try { const o = a.createOscillator(), g = a.createGain(); o.type = type || "sine"; o.frequency.setValueAtTime(f, a.currentTime + t0);
     if (slide) o.frequency.exponentialRampToValueAtTime(slide, a.currentTime + t0 + dur);
     g.gain.setValueAtTime(0, a.currentTime + t0); g.gain.linearRampToValueAtTime(gain || .1, a.currentTime + t0 + .012); g.gain.exponentialRampToValueAtTime(.0001, a.currentTime + t0 + dur);
     o.connect(g); g.connect(a.destination); o.start(a.currentTime + t0); o.stop(a.currentTime + t0 + dur + .02); } catch (e) {}
 }
 function noise(dur, freq, gain, t0) {
-  const a = ac(); if (!a || muted || window.GL_SDK_MUTE) return;
+  const a = ac(); if (!a || muted || window.GL_SDK_MUTE || window.GL_SDK_AD_MUTE) return;
   try { const n = a.createBufferSource(), b = a.createBuffer(1, Math.max(1, Math.floor(a.sampleRate * dur)), a.sampleRate), d = b.getChannelData(0);
     for (let i = 0; i < d.length; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / d.length, 1.6);
     const f = a.createBiquadFilter(); f.type = "lowpass"; f.frequency.value = freq; const g = a.createGain(); g.gain.value = gain;
@@ -68,7 +142,7 @@ const music = (() => {
   function start() {
     const a = ac(); if (!a || on) return; on = true;
     const master = a.createGain(); master.gain.value = 0; master.connect(a.destination);
-    master.gain.linearRampToValueAtTime(muted || window.GL_SDK_MUTE ? 0 : 0.045, a.currentTime + 2);
+    master.gain.linearRampToValueAtTime(muted || window.GL_SDK_MUTE || window.GL_SDK_AD_MUTE ? 0 : 0.045, a.currentTime + 2);
     const lp = a.createBiquadFilter(); lp.type = "lowpass"; lp.frequency.value = 520; lp.Q.value = 0.7; lp.connect(master);
     const oscs = [];
     for (let v = 0; v < 3; v++) for (let d = -1; d <= 1; d += 2) { const o = a.createOscillator(); o.type = "sawtooth"; o.detune.value = d * 7; const g = a.createGain(); g.gain.value = 0.18; o.connect(g); g.connect(lp); o.start(); oscs.push(o); }
@@ -84,7 +158,7 @@ const music = (() => {
     };
     timer = setInterval(beat, 300);
   }
-  function level() { if (nodes) nodes.master.gain.setTargetAtTime(muted || window.GL_SDK_MUTE ? 0 : 0.045, ac().currentTime, 0.3); }
+  function level() { if (nodes) nodes.master.gain.setTargetAtTime(muted || window.GL_SDK_MUTE || window.GL_SDK_AD_MUTE ? 0 : 0.045, ac().currentTime, 0.3); }
   return { start, level };
 })();
 const buzz = ms => { try { if (navigator.vibrate) navigator.vibrate(ms); } catch (e) {} };
@@ -106,7 +180,7 @@ const KEY = "sgSave2";
 function save() {
   S.savedAt = Date.now();
   try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {}
-  try { if (CG.data) CG.data.setItem(KEY, JSON.stringify(S)); } catch (e) {}
+  try { if (PORTAL.data) PORTAL.data.setItem(KEY, JSON.stringify(S)); } catch (e) {}
 }
 function load() {
   let raw = null;
@@ -186,7 +260,7 @@ function render(force) {
   $("stagename").textContent = STAGE_NAME[stageOf(S)] + (S.prestige ? " · G" + (S.prestige + 1) : "");
   const mk = S.market ? E.MARKETS.find(m => m.id === S.market.id) : null; $("market").classList.toggle("show", !!mk); if (mk) $("market").textContent = mk.name + " · " + Math.ceil(S.market.left) + "s";
   scene.setFlow(Math.min(14, Math.log10(E.revenue(S) + 1) * 2.5), Math.min(12, S.gen.agent * 0.4));
-  if (CG.on) { $("ads").hidden = false; $("adboost").hidden = S.boost > 0; $("adtrain").hidden = !S.training || S.training.left < 15; }
+  if (PORTAL.on) { $("ads").hidden = false; $("adboost").hidden = S.boost > 0; $("adtrain").hidden = !S.training || S.training.left < 15; }
   const cm = E.comboMult(S); $("combo").textContent = "×" + cm; $("combo").classList.toggle("show", S.combo >= 8 && S.comboT > 0);
   if (tab === "lab") {
     for (const g of ["agent", "gpu", "dataset", "researcher"]) {
@@ -246,7 +320,7 @@ $("bship").addEventListener("click", () => {
   if (!E.canShip(S)) return;
   modal("SHIP " + (S.models ? E.TIERS[S.models - 1] : "the lab") + "?",
     `Release resets money, data, agents and GPUs (research and achievements stay). You keep <b>+${E.shipGain(S)} alignment</b>: every point is a permanent bonus to everything.`,
-    [["Ship it", () => { const g = E.ship(S); sfx.ship(); scene.pulse(60); scene.shake(1.2); flash(); toast("Shipped. +" + g + " alignment", "ok"); ev("ship", "p" + S.prestige); CG.ev("happy"); render(true); save(); }], ["Not yet", null]]);
+    [["Ship it", () => { const g = E.ship(S); sfx.ship(); scene.pulse(60); scene.shake(1.2); flash(); toast("Shipped. +" + g + " alignment", "ok"); ev("ship", "p" + S.prestige); PORTAL.ev("happy"); render(true); save(); }], ["Not yet", null]]);
 });
 function modal(title, html, buttons) {
   const m = $("modal"); $("mt").textContent = title; $("mb").innerHTML = html;
@@ -269,8 +343,8 @@ $("bmute").addEventListener("click", () => { muted = !muted; $("bmute").textCont
 setInterval(() => music.level(), 1500);   /* the portal can flip muteAudio at any time */
 $("bmute").textContent = muted ? "🔇" : "🔊";
 $("hublink").addEventListener("click", () => ev("hub_click"));
-$("adboost").addEventListener("click", () => CG.ad("rewarded", ok => { if (ok) { S.boost = Math.max(S.boost, 120); toast("Revenue ×2 for 2 minutes", "ok"); } ev("rewarded", ok ? "boost_ok" : "boost_fail"); render(true); }));
-$("adtrain").addEventListener("click", () => CG.ad("rewarded", ok => { if (ok && S.training) { S.training.left = 0.01; toast("Training run finished", "ok"); } ev("rewarded", ok ? "train_ok" : "train_fail"); render(true); }));
+$("adboost").addEventListener("click", () => PORTAL.ad("rewarded", ok => { if (ok) { S.boost = Math.max(S.boost, 120); toast("Revenue ×2 for 2 minutes", "ok"); } ev("rewarded", ok ? "boost_ok" : "boost_fail"); render(true); }));
+$("adtrain").addEventListener("click", () => PORTAL.ad("rewarded", ok => { if (ok && S.training) { S.training.left = 0.01; toast("Training run finished", "ok"); } ev("rewarded", ok ? "train_ok" : "train_fail"); render(true); }));
 $("breset").addEventListener("click", () => modal("Wipe the save?", "Everything, including alignment. There is no undo.", [["Wipe", () => { S = E.fresh(); save(); render(true); }], ["Keep", null]]));
 
 /* ===== boot ===== */
@@ -281,7 +355,7 @@ if (loaded) {
   if (off && off.gain >= 1) {
     const claim = mult => { S.money += off.gain * mult; S.earned += off.gain * mult; S.lifetime += off.gain * mult; S.stat.offline++; toast("+$" + E.fmt(off.gain * mult) + " while you were away", "ok"); render(true); save(); };
     const btns = [["Collect $" + E.fmt(off.gain), () => claim(1)]];
-    if (CG.on) btns.unshift(["Watch an ad: collect ×2", () => CG.ad("rewarded", ok => { claim(ok ? 2 : 1); ev("rewarded", ok ? "ok" : "fail"); })]);
+    if (PORTAL.on) btns.unshift(["Watch an ad: collect ×2", () => PORTAL.ad("rewarded", ok => { claim(ok ? 2 : 1); ev("rewarded", ok ? "ok" : "fail"); })]);
     let extra = "";
     if (off.trained !== null) extra += `<br>Training finished: <b>${E.TIERS[off.trained]}</b> is live.`;
     if (off.rogues) extra += `<br>The safety team shut down <b>${off.rogues}</b> rogue run${off.rogues > 1 ? "s" : ""}: +${off.rogues} alignment.`;
@@ -292,19 +366,23 @@ const d = E.daily(S, Date.now());
 if (d && (loaded || d.streak > 1)) queueModal(["DAILY BONUS · DAY " + d.streak, `Streak ${d.streak} / 7: <b>$${E.fmt(d.money)}</b> and <b>${d.rp} RP</b>. Come back tomorrow for more.`, [["Nice", null]]]);
 buildShop(); scene.setSkin(S.skin || "core"); E.fillMissions(S); if (S.market) scene.setMarket(S.market.id); setTab("lab"); render(true);
 requestAnimationFrame(() => requestAnimationFrame(() => { const b = $("boot"); b.classList.add("gone"); setTimeout(() => b.remove(), 700); }));
-ev("play_start"); CG.ev("start");            /* an idle game has no "start": you are playing the moment it is on screen */
+ev("play_start"); PORTAL.ev("start");            /* an idle game has no "start": you are playing the moment it is on screen */
 if (loaded && loaded.clicks > 0) $("hint").classList.add("gone");
 window.addEventListener("resize", () => { scene.resize(); nudge(); });
 document.addEventListener("visibilitychange", () => { if (document.hidden) save(); });
 window.addEventListener("beforeunload", save);
 let last = performance.now(), saveT = 0;
 function loop(now) {
+  /* An idle game keeps earning behind an ad unless it is told not to. Portals ask for
+     the game to be paused while an ad is up, and here it also matters for fairness:
+     time spent watching an ad must not silently tick the economy. */
+  if (window.GL_SDK_PAUSE) { last = now; requestAnimationFrame(loop); return; }
   const dt = Math.min(0.1, (now - last) / 1000 || 0); last = now;
   const evs = E.tick(S, dt);
   for (const e of evs) {
     if (e.type === "rogue") rogueModal();
     else if (e.type === "rogue-auto") toast("No decision — it was shut down for you. +1 alignment");
-    else if (e.type === "trained") { sfx.train(); scene.pulse(40); scene.zoom(); scene.shake(0.5); flash(); toast(E.TIERS[e.tier] + " is live — it earns on its own now", "ok"); if (e.tier === 0 || stageOf(S) !== stageOf({ ...S, models: S.models - 1 })) CG.ev("happy"); if (stageOf(S) !== stageOf({ ...S, models: S.models - 1 })) toast("THE LAB GREW · " + STAGE_NAME[stageOf(S)], "ms"); render(true); }
+    else if (e.type === "trained") { sfx.train(); scene.pulse(40); scene.zoom(); scene.shake(0.5); flash(); toast(E.TIERS[e.tier] + " is live — it earns on its own now", "ok"); if (e.tier === 0 || stageOf(S) !== stageOf({ ...S, models: S.models - 1 })) PORTAL.ev("happy"); if (stageOf(S) !== stageOf({ ...S, models: S.models - 1 })) toast("THE LAB GREW · " + STAGE_NAME[stageOf(S)], "ms"); render(true); }
     else if (e.type === "milestone") { sfx.ms(); toast("MILESTONE · " + e.m.name, "ms"); ev("milestone", e.m.id); }
     else if (e.type === "ach") { sfx.ms(); toast("ACHIEVEMENT · " + e.a.name + " · +1% revenue", "ms"); }
     else if (e.type === "market") { sfx.ms(); scene.setMarket(e.mk.id); toast(e.mk.name + " · " + e.mk.desc, "ms"); ev("market", e.mk.id); }
