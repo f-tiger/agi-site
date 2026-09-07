@@ -33,6 +33,37 @@ LLM 额度(OpenRouter 表单)/ Metaculus 自有代理。本目录是该模板的
 dry_run = false,跑完到 Metaculus 个人页确认预测已落(bot-testing-area 赛区)。
 之后每 2 小时自动在当季赛 + MiniBench 上对新题预测,已预测过的题跳过。
 
+## ⚠️ 模型额度(2026-09-07 首跑踩到,必读)
+
+**Metaculus 代理的赞助额度是按「模型名」发的,不是按账号发的。** 首跑(run #14)token 通、
+API 通、成功拉到 10 道题,但 10 道全挂在同一个错上:
+
+```
+400 - You don't have an allowance for model <gpt-4o-search-preview> on <Openai>
+```
+
+原因是不显式传 `llms=` 时,`forecasting-tools` 会自己挑 `openai/gpt-4o-search-preview`
+做研究步 —— 一个谁也没申请过额度的模型。**教训:库的默认值不是我们的默认值。**
+
+现在 `main.py` 的 `_llm_config()` 把四个角色全部钉死,并且每个都能用仓库变量改:
+
+| 变量 | 作用 | 缺省 |
+|---|---|---|
+| `BOT_MODEL` | 主模型 | `metaculus/gpt-4o`;若设了 `OPENROUTER_API_KEY` 则 `openrouter/openai/gpt-4o` |
+| `BOT_PARSER_MODEL` | parser / summarizer | 同主模型 |
+| `BOT_RESEARCHER` | 研究步 | 同主模型(**故意不用带 web search 的**——那类模型几乎肯定没额度) |
+
+**如果换成 `metaculus/gpt-4o` 仍然报 no allowance**,说明这个账号目前一个模型的额度都没有,
+三条出路(失败时脚本自己会把这段打出来):
+1. 设 `BOT_MODEL` 换成你确实有额度的模型名;
+2. 按 Metaculus 说明发邮件给 **ben@metaculus.com** 申请额度(附 bot 用途与所需模型);
+3. 设 Secret `OPENROUTER_API_KEY`(免费额度表单 https://forms.gle/aQdYMq9Pisrf1v7d8),
+   设了之后脚本自动改走 `openrouter/openai/gpt-4o`,**不需要改代码**。
+
+同一轮还修了一个把诊断藏起来的缺陷:`bot.log_report_summary()` 在有任何失败时会直接抛异常,
+于是我们自己的 red-on-empty 与失败诊断永远轮不到跑 —— 首跑看到的是一屏 traceback 而不是
+一行「问题在这」。现在它被 try 包住,**它只是打印器,不该决定命运**。
+
 ## 本地冒烟(可选)
 
 ```

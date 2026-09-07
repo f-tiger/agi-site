@@ -15,10 +15,14 @@ which Metaculus publishes for bot makers to copy. Fleet changes:
                    turns the GitHub run red instead of silently doing nothing.
   * --dry-run    — never publishes; used for local/CI smoke tests.
 
-Secrets: METACULUS_TOKEN is required. With only that token, forecasting-tools
-routes LLM calls through Metaculus' own proxy ("metaculus/gpt-4o"), which is the
-tournament's sponsored path; OPENROUTER_API_KEY / OPENAI_API_KEY /
-ANTHROPIC_API_KEY override it. Nothing here writes to the repo.
+Secrets: METACULUS_TOKEN is required. Nothing here writes to the repo.
+
+Models are pinned explicitly (see _llm_config). The 2026-09-07 first run proved
+why: left to its defaults, forecasting-tools picks `openai/gpt-4o-search-preview`
+for the research step, and the Metaculus proxy grants budget **per model name**,
+so a model nobody applied for returns 400 "no allowance" — all 10 questions
+failed on it. Library defaults are not our defaults. Every role is overridable
+with a repo variable so the model set can change without touching this file.
 """
 
 from __future__ import annotations
@@ -591,6 +595,66 @@ def check_environment() -> None:
         logger.warning("No LLM key set; forecasting-tools will use the Metaculus proxy (metaculus/gpt-4o).")
 
 
+# ----------------------------------------------------------------------------
+# 模型配置(2026-09-07 首跑事故之后从「靠库的默认」改为「显式钉死」)
+# ----------------------------------------------------------------------------
+
+DEFAULT_PROXY_MODEL = "metaculus/gpt-4o"
+
+
+def _llm_config() -> dict:
+    """Pin every LLM role.
+
+    Metaculus 的赞助额度是**按模型名**发的(申请方式见 README),所以「用哪个模型」
+    不能交给库去猜:首跑就是被 `openai/gpt-4o-search-preview` 这个没人申请过的默认值
+    打成 10 道题全 400。
+
+    研究步默认也用普通模型而不是带 web search 的那种 —— 同样是额度按模型名给,
+    带搜索的那些几乎肯定没有额度。研究质量因此下降,但 house prior 仍然注入,
+    而那才是本 bot 相对模板的差异所在。要更好的研究步就设 OPENROUTER_API_KEY
+    或 BOT_RESEARCHER(例如 asknews/news-summaries,需要 AskNews 密钥)。
+    """
+    if _real_env("BOT_MODEL"):
+        model = os.environ["BOT_MODEL"].strip()
+    elif _real_env("OPENROUTER_API_KEY"):
+        model = "openrouter/openai/gpt-4o"
+    else:
+        model = DEFAULT_PROXY_MODEL
+    small = (os.getenv("BOT_PARSER_MODEL") or "").strip() or model
+    researcher = (os.getenv("BOT_RESEARCHER") or "").strip() or model
+    logger.info("llms: default=%s parser=%s researcher=%s", model, small, researcher)
+    return {
+        "default": GeneralLlm(model=model, temperature=0.3, timeout=60, allowed_tries=2),
+        "summarizer": small,
+        "parser": small,
+        "researcher": researcher,
+    }
+
+
+
+def diagnose(bad: list) -> None:
+    """把最常见的几类失败翻译成一句能照做的话。
+
+    一屏 tenacity/litellm 的 traceback 里,真正有用的只有一行。首跑那次是
+    「no allowance for model」,而它离「去申请额度或换模型」还隔着二十层调用栈。
+    """
+    blob = " ".join(str(e) for e in bad).lower()
+    if not blob:
+        return
+    if "allowance" in blob or "insufficient_quota" in blob or "quota" in blob:
+        print("\n诊断:Metaculus 代理的赞助额度是**按模型名**发的,当前用的模型没有额度。")
+        print("  三条出路,任选其一:")
+        print("  1) 设仓库变量 BOT_MODEL 换成一个你确实有额度的模型名;")
+        print("  2) 按 Metaculus 说明发邮件给 ben@metaculus.com 申请额度(说明 bot 用途与所需模型);")
+        print("  3) 设 Secret OPENROUTER_API_KEY(免费额度表单在 tools/metaculus-bot/README.md),")
+        print("     设了之后本脚本自动改走 openrouter/openai/gpt-4o。")
+    elif "unauthorized" in blob or "401" in blob or "invalid token" in blob:
+        print("\n诊断:METACULUS_TOKEN 无效或已过期 —— 去 Settings → My Forecasting Bots 重新 Reveal API Key。")
+    elif "rate limit" in blob or "429" in blob:
+        print("\n诊断:被限流。这一轮不用管,下一次 cron 会重试;连续多轮如此再调低并发。")
+
+
+
 def summarize(reports: list, publish: bool, mode: str) -> int:
     ok = [r for r in reports if isinstance(r, ForecastReport)]
     bad = [r for r in reports if not isinstance(r, ForecastReport)]
@@ -603,6 +667,7 @@ def summarize(reports: list, publish: bool, mode: str) -> int:
             print("  ✓ (report without url)")
     for e in bad:
         print(f"  ✗ {type(e).__name__}: {str(e)[:200]}")
+    diagnose(bad)
     print("=" * 72)
     # Red-on-empty: questions existed, every one failed → make the run fail.
     if bad and not ok:
@@ -636,6 +701,7 @@ def main() -> int:
         folder_to_save_reports_to=None,
         skip_previously_forecasted_questions=(run_mode == "tournament"),
         extra_metadata_in_explanation=True,
+        llms=_llm_config(),
     )
 
     client = MetaculusClient()
@@ -647,7 +713,12 @@ def main() -> int:
     else:
         reports = asyncio.run(bot.forecast_on_tournament("bot-testing-area", return_exceptions=True))
 
-    bot.log_report_summary(reports)
+    try:
+        bot.log_report_summary(reports)
+    except Exception as e:
+        # forecasting-tools 在有任何失败时会 raise,于是我们自己的诊断和退出码永远轮不到跑
+        # —— 首跑看到的就是一屏 traceback 而不是一行「问题在这」。它只是打印器,不该决定命运。
+        logger.warning("log_report_summary raised (%s); continuing to our own summary", type(e).__name__)
     return summarize(reports, publish, run_mode)
 
 
