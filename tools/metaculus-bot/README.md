@@ -23,8 +23,9 @@ LLM 额度(OpenRouter 表单)/ Metaculus 自有代理。本目录是该模板的
 1. https://www.metaculus.com/futureeval/participate/ 注册 **bot 账号**并生成 token
    (规则、一人一 bot、披露要求以该页为准)。
 2. 仓库 `Settings → Secrets and variables → Actions`:
-   - Secret `METACULUS_TOKEN`(必需)。只有它时,LLM 调用走 Metaculus 代理
-     `metaculus/gpt-4o`(赛事赞助算力,forecasting-tools 内置)。
+   - Secret `METACULUS_TOKEN`(必需,但**不够**)。⚠️ 2026-09-07 run #15 实测证伪了
+     「有 token 就有算力」这个假设:代理确实会转发,但**赞助额度要单独申请**,
+     没申请就是 `400 no allowance`(连普通 `gpt-4o` 也一样)。见下方「模型额度」。
    - 可选 Secret `OPENROUTER_API_KEY`:免费额度表单
      https://forms.gle/aQdYMq9Pisrf1v7d8(模板 README 给出),或自建 key。
 3. `Variables` 加 `METACULUS_BOT_ENABLED = 1`。
@@ -53,8 +54,10 @@ API 通、成功拉到 10 道题,但 10 道全挂在同一个错上:
 | `BOT_PARSER_MODEL` | parser / summarizer | 同主模型 |
 | `BOT_RESEARCHER` | 研究步 | 同主模型(**故意不用带 web search 的**——那类模型几乎肯定没额度) |
 
-**如果换成 `metaculus/gpt-4o` 仍然报 no allowance**,说明这个账号目前一个模型的额度都没有,
-三条出路(失败时脚本自己会把这段打出来):
+**run #15 已经证实就是这种情况**:钉死成 `metaculus/gpt-4o` 之后,错误从 `<gpt-4o-search-preview>` 变成 `<gpt-4o>` —— 模型钉死生效了,但这个账号**一个模型的额度都没有**。
+(顺带:这一轮也证明了两处修复有效,日志里能看到 `log_report_summary raised … continuing to our own summary`、干净的 `forecasts=0 failures=10` 摘要、以及下面这段诊断被真的打印出来。)
+三条出路,
+(失败时脚本自己会把这段打出来):
 1. 设 `BOT_MODEL` 换成你确实有额度的模型名;
 2. 按 Metaculus 说明发邮件给 **ben@metaculus.com** 申请额度(附 bot 用途与所需模型);
 3. 设 Secret `OPENROUTER_API_KEY`(免费额度表单 https://forms.gle/aQdYMq9Pisrf1v7d8),
