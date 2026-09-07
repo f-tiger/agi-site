@@ -407,6 +407,28 @@ jobs:
             -d '{"hook":"https://hooks.example.com/x","slugs":["no-such-slug-xyz"]}')
           echo "$unk" | grep -q 'unknown_slugs' || { echo "::error::未知 slug 未被拒"; exit 1; }
 
+      # 赚钱作业包的注册墙（2026-09-07 上线当日补自检）。断言的是**事故的形状**，
+      # 不是「有个 200 就行」：这堵墙唯一的失败模式是墙塌了或屋子空了——
+      # ① 未注册的邮箱竟然拿到了正文（墙没起作用，全站白送）；
+      # ② 正文模块没随 Function 打包（每个包页对读者都是一个报错，而没人会告诉我们）。
+      # 两条都不会让页面变 404，所以不主动断言就永远发现不了。
+      - name: Self-test earning-pack registration wall
+        id: st_earn
+        run: |
+          hub=$(curl -s -o /dev/null -w '%{http_code}' -m 20 'https://baipiaoji.com/earn/')
+          [ "$hub" = "200" ] || { echo "::error::/earn/ 枢纽页返回 $hub"; exit 1; }
+          # 未注册地址必须拿不到正文
+          deny=$(curl -s -m 20 -X POST 'https://baipiaoji.com/api/earn' -H 'content-type: application/json' \
+            -d '{"email":"__selftest-not-registered@example.com","slug":"ai-design-service","lang":"zh"}')
+          echo "$deny" | grep -q 'not_registered' || { echo "::error::未注册邮箱没有被拒：$deny"; exit 1; }
+          # 未知 slug 必须 404，而不是回一个空壳成功
+          unk=$(curl -s -m 20 -X POST 'https://baipiaoji.com/api/earn' -H 'content-type: application/json' \
+            -d '{"email":"__selftest-not-registered@example.com","slug":"no-such-path-xyz","lang":"zh"}')
+          echo "$unk" | grep -q 'unknown' || { echo "::error::未知作业包 slug 未被拒：$unk"; exit 1; }
+          # 正文模块确实随 Function 打包了：模块缺失时 Pages 构建期就会把整个 Function 判死，
+          # 表现为 500/HTML 错误页而不是我们自己的 JSON。上面两条拿到 JSON 即已证伪该情形。
+          echo "✅ 注册墙在位：未注册被拒、未知 slug 被拒、Function 正常加载正文模块"
+
       - name: MCP discovery surface check
         run: |
           listed=false
@@ -554,5 +576,6 @@ jobs:
           check "第一方信标" "${{ steps.st_beacon.outcome }}"
           check "事实回归守卫" "${{ steps.st_guard.outcome }}"
           check "变更分发" "${{ steps.st_dispatch.outcome }}"
+          check "赚钱作业包注册墙" "${{ steps.st_earn.outcome }}"
           [ "$fail" = "0" ] || exit 1
           echo "✅ 全部链路自测通过"
