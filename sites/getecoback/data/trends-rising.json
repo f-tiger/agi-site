@@ -1,5 +1,5 @@
 {
- "fetched": "2026-09-06",
+ "fetched": "2026-09-07",
  "geo": "DE",
  "seeds": {
   "klimaanlage": {
@@ -280,104 +280,90 @@
    "fetched": "2026-09-03"
   },
   "kaffeevollautomat": {
-   "auto": [
-    "kaffeevollautomat",
-    "kaffeevollautomat test",
-    "kaffeevollautomat delonghi",
-    "kaffeevollautomat testsieger",
-    "kaffeevollautomat philips",
-    "kaffeevollautomat siemens",
-    "kaffeevollautomat angebot",
-    "kaffeevollautomat günstig",
-    "kaffeevollautomat jura",
-    "kaffeevollautomat klein"
-   ],
    "rising": [
     {
-     "q": "kaffeevollautomat test",
-     "v": "new"
+     "q": "krups kaffeevollautomat intensity milk",
+     "v": 16350
     },
     {
-     "q": "kaffeevollautomat delonghi",
-     "v": "new"
+     "q": "siemens kaffeevollautomat eq.6 plus s400 te654509de",
+     "v": 9100
     },
     {
-     "q": "kaffeevollautomat testsieger",
-     "v": "new"
+     "q": "siemens kaffeevollautomat eq.6 plus s300 te653501de",
+     "v": 1750
     },
     {
-     "q": "kaffeevollautomat philips",
-     "v": "new"
+     "q": "kaffeevollautomat mit 2 bohnenbehälter testsieger",
+     "v": 250
     },
     {
-     "q": "kaffeevollautomat siemens",
-     "v": "new"
+     "q": "siemens te651509de eq.6 plus s100 kaffeevollautomat",
+     "v": 250
     },
     {
-     "q": "kaffeevollautomat angebot",
-     "v": "new"
+     "q": "de'longhi kaffeevollautomat",
+     "v": 100
     },
     {
-     "q": "kaffeevollautomat günstig",
-     "v": "new"
+     "q": "samsung kaffeevollautomat",
+     "v": 80
     },
     {
-     "q": "kaffeevollautomat jura",
-     "v": "new"
-    },
-    {
-     "q": "kaffeevollautomat klein",
-     "v": "new"
+     "q": "mini kaffeevollautomat",
+     "v": 60
     }
    ],
-   "source": "autocomplete-diff",
-   "fetched": "2026-09-06"
+   "source": "related-queries",
+   "fetched": "2026-09-07",
+   "polluted": false
   },
   "akku staubsauger": {
    "rising": [
     {
-     "q": "belstaff weste",
-     "v": 21150
-    },
-    {
      "q": "belstaff jacke herren",
-     "v": 20600
+     "v": 25150
     },
     {
-     "q": "lululemon rucksack",
-     "v": 20250
+     "q": "belstaff weste",
+     "v": 21800
+    },
+    {
+     "q": "dyson tp09",
+     "v": 19750
     },
     {
      "q": "belstaff",
-     "v": 2050
+     "v": 1400
+    },
+    {
+     "q": "lululemon rucksack",
+     "v": 700
+    },
+    {
+     "q": "lululemon align shorts",
+     "v": 550
     },
     {
      "q": "klimaanlage dyson",
-     "v": 850
-    },
-    {
-     "q": "miele triflex hx2 pro",
-     "v": 350
+     "v": 550
     },
     {
      "q": "lululemon shorts",
-     "v": 350
+     "v": 550
     },
     {
-     "q": "new balance laufschuhe",
-     "v": 350
+     "q": "dyson purifier hot cool",
+     "v": 300
     },
     {
-     "q": "dyson nass und trockensauger",
-     "v": 250
-    },
-    {
-     "q": "ventilator dyson",
-     "v": 250
+     "q": "ford",
+     "v": 300
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-08-29"
+   "fetched": "2026-09-07",
+   "polluted": true
   },
   "matratze": {
    "auto": [

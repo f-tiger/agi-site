@@ -1,60 +1,56 @@
 {
  "ok": true,
- "fetched": "2026-09-06",
+ "fetched": "2026-09-07",
  "source": "https://trends.google.com/trending/rss?geo=DE",
  "matched": [
   {
-   "title": "wettersturz",
-   "traffic": "200+"
+   "title": "sturm der liebe",
+   "traffic": "1000+"
   }
  ],
  "top": [
   {
-   "title": "dietmar hamann",
-   "traffic": "500+"
+   "title": "deutsche fußballnationalmannschaft",
+   "traffic": "5000+"
   },
   {
-   "title": "immer wieder sonntags",
+   "title": "jon rahm",
+   "traffic": "100+"
+  },
+  {
+   "title": "ultimate fighting championship",
+   "traffic": "200+"
+  },
+  {
+   "title": "alstätte",
+   "traffic": "200+"
+  },
+  {
+   "title": "stephan embacher",
+   "traffic": "200+"
+  },
+  {
+   "title": "sturm der liebe",
+   "traffic": "1000+"
+  },
+  {
+   "title": "ballistische rakete",
+   "traffic": "1000+"
+  },
+  {
+   "title": "predator",
+   "traffic": "1000+"
+  },
+  {
+   "title": "mariia maksina",
    "traffic": "2000+"
   },
   {
-   "title": "kit harington",
-   "traffic": "200+"
-  },
-  {
-   "title": "владимир путин",
-   "traffic": "200+"
-  },
-  {
-   "title": "marktwert",
-   "traffic": "100+"
-  },
-  {
-   "title": "new glenn",
-   "traffic": "100+"
-  },
-  {
-   "title": "wuppertal",
-   "traffic": "500+"
-  },
-  {
-   "title": "wettersturz",
-   "traffic": "200+"
-  },
-  {
-   "title": "diesel",
-   "traffic": "100+"
-  },
-  {
-   "title": "netflix abo",
-   "traffic": "100+"
+   "title": "volkswagen ag",
+   "traffic": "2000+"
   }
  ],
  "history": [
-  {
-   "d": "2026-08-23",
-   "matched": []
-  },
   {
    "d": "2026-08-24",
    "matched": []
@@ -119,6 +115,12 @@
    "d": "2026-09-06",
    "matched": [
     "wettersturz"
+   ]
+  },
+  {
+   "d": "2026-09-07",
+   "matched": [
+    "sturm der liebe"
    ]
   }
  ]
