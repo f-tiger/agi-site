@@ -7,15 +7,29 @@
   <link rel="hub" href="https://pubsubhubbub.appspot.com/"/>
   <link rel="hub" href="https://pubsubhubbub.superfeedr.com/"/>
   <id>https://agiscorecard.com/</id>
-  <updated>2026-09-06T00:00:00Z</updated>
+  <updated>2026-09-07T00:00:00Z</updated>
   <author><name>The AGI Scorecard</name></author>
   <rights>CC BY 4.0 — reuse with attribution and a link to https://agiscorecard.com</rights>
+  <entry>
+    <title>AGI Timeline: Prediction Markets vs Evidence</title>
+    <link href="https://agiscorecard.com/agi-odds-vs-evidence"/>
+    <id>https://agiscorecard.com/agi-odds-vs-evidence</id>
+    <updated>2026-09-07T00:00:00Z</updated>
+    <summary>Polymarket&#x27;s AGI-by-2027 contract vs the evidence: the market prices an announcement, the scorecard grades capability (62.5/100). Issue #3 of a running comparison.</summary>
+  </entry>
   <entry>
     <title>When Will AGI Arrive? Every Major Forecast Compared (2026)</title>
     <link href="https://agiscorecard.com/when-will-agi-arrive"/>
     <id>https://agiscorecard.com/when-will-agi-arrive</id>
     <updated>2026-09-06T00:00:00Z</updated>
     <summary>Public AGI forecasts now cluster between 2026 and 2047: Musk 2026, Aschenbrenner 2027, Hassabis ~2030, Metaculus 2033, academic surveys 2047.</summary>
+  </entry>
+  <entry>
+    <title>How Are Top Investors Positioned on AI? (Q2 2026 13F)</title>
+    <link href="https://agiscorecard.com/invest"/>
+    <id>https://agiscorecard.com/invest</id>
+    <updated>2026-09-06T00:00:00Z</updated>
+    <summary>Eight investing legends, graded from line-by-line Q2 2026 13F filings: 3 bull, 4 cautious, 1 bear. Filed August 14. Plus Aschenbrenner&#x27;s own blown-up fund.</summary>
   </entry>
   <entry>
     <title>Can AI Replace Knowledge Workers? The 2025/26 Call, Graded</title>
@@ -116,13 +130,6 @@
     <summary>Free, machine-readable AGI verdict data: /data.json (CC BY 4.0), an Atom feed, and llms.txt. Copy-paste prompt to add verdict-change alerts to any AI agent.</summary>
   </entry>
   <entry>
-    <title>AGI Timeline: Prediction Markets vs Evidence</title>
-    <link href="https://agiscorecard.com/agi-odds-vs-evidence"/>
-    <id>https://agiscorecard.com/agi-odds-vs-evidence</id>
-    <updated>2026-08-31T00:00:00Z</updated>
-    <summary>Polymarket&#x27;s AGI-by-2027 contract vs the evidence: the market prices an announcement, the scorecard grades capability (62.5/100). Issue #2: the market Yes side doubled to 18% while the evidence composite held at 62.5/100.</summary>
-  </entry>
-  <entry>
     <title>Will AGI Arrive by 2027? Aschenbrenner&amp;#x27;s Prediction</title>
     <link href="https://agiscorecard.com/will-agi-arrive-2027"/>
     <id>https://agiscorecard.com/will-agi-arrive-2027</id>
@@ -142,12 +149,5 @@
     <id>https://agiscorecard.com/ai-2027-scenario-explained</id>
     <updated>2026-08-29T00:00:00Z</updated>
     <summary>&#x27;AI 2027&#x27; is a widely-discussed 2025 scenario depicting, month by month, how a fast takeoff could unfold around 2027 via AI automating AI research.</summary>
-  </entry>
-  <entry>
-    <title>How Close Are We to AGI? A Capability Check (2026)</title>
-    <link href="https://agiscorecard.com/how-close-is-agi"/>
-    <id>https://agiscorecard.com/how-close-is-agi</id>
-    <updated>2026-08-29T00:00:00Z</updated>
-    <summary>Closer than skeptics say, further than optimists claim. Mid-2026: frontier AI clears many knowledge-work bars (~83% GDPval.</summary>
   </entry>
 </feed>

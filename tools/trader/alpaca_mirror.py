@@ -28,6 +28,11 @@ Guards (all pre-registered, see tools/trader/README.md):
   * stale ledger         — target older than 3 sessions, or the arm's symbols in
                            the ledger's fetch_errors: do nothing, exit 1
   * loop detector        — more than 30 orders planned: refuse, exit 1
+  * levered target       — ledger weights summing > 1: refuse, exit 1 (the executor
+                           does not trust the ledger; silently normalising would hide
+                           an upstream bug)
+  * sell-then-abort      — any rejected sell cancels the buy leg, because the buys are
+                           funded by those sells; a rejected buy only under-deploys
   * dry-run              — TRADER_DRY_RUN=1 or --dry-run: compute, submit nothing
 """
 
@@ -197,6 +202,11 @@ def main() -> int:
     if tgt.get("action") in (None, "wait") or not tgt.get("as_of"):
         print(f"arm={arm} status={A.get('status')} action=wait — nothing to mirror yet")
         return 0
+    wsum = sum(float(v) for v in (tgt.get("weights") or {}).values())
+    if wsum > 1.0001:
+        print(f"LEVERED target: weights sum to {wsum:.4f} > 1 — refusing to trade")
+        telegram(f"[trader {mode}] target weights sum {wsum:.4f} > 1; refused. Ledger is wrong.")
+        return 1
     if sessions_between(tgt["as_of"], today) > 3:
         print(f"STALE ledger: target as_of={tgt['as_of']} today={today} — refusing to trade")
         telegram(f"[trader {mode}] stale ledger ({tgt['as_of']}), no trades.")
@@ -257,6 +267,14 @@ def main() -> int:
         except Exception as e:
             err += 1
             print(f"order error ({type(e).__name__}) on sell")
+    if err:
+        # Buys are funded by the sells above. If a sell was rejected, the cash was never
+        # freed — submitting the buys anyway over-allocates (leverage on a margin account,
+        # an inconsistent book on a cash one). Stop here and let the next cron retry from
+        # the real position state. Failed BUYS are not symmetric: they only under-deploy.
+        print(f"aborting before buys: {err} sell order(s) failed")
+        telegram(f"[trader {mode}] {err} sell(s) rejected; skipped {len(buys)} buy(s) to avoid over-allocating.")
+        return 1
     for l in buys:
         try:
             if l["qty"] >= 1:

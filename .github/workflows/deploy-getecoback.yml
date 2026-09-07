@@ -130,6 +130,9 @@ jobs:
       - name: Check no SERP title or description is truncated
         run: python3 tools/check_meta.py
 
+      - name: Check the US marketplace switch still covers the links we ship
+        run: python3 tools/check_usswitch.py
+
       - name: Deploy to Cloudflare Workers
         uses: cloudflare/wrangler-action@v3
         with:
@@ -175,6 +178,13 @@ jobs:
           # Crawler/agent entry points that are rebuilt every deploy.
           check "https://getecoback.com/robots.txt" "Sitemap:"
           check "https://getecoback.com/llms.txt" "getecoback.com"
+          # US marketplace switch (2026-09-06). Its predecessor was live for four
+          # weeks matching none of the terms readers clicked and nothing noticed,
+          # so assert the shape of that accident on the live page: the block must
+          # be present on both sections, carry the US associates tag, and hold a
+          # rule for the term readers actually click most.
+          check "https://getecoback.com/guide/klimaanlage-wohnmobil.html" "EB_USSWITCH"
+          check "https://getecoback.com/guide/klimaanlage-wohnmobil.html" "rv rooftop air conditioner"
           # not_found_handling regression guard (2026-09-04): an unknown path must
           # be a real 404, not a 200 fallback that would let search engines index
           # every typo. The canonical middleware first 301s the extensionless

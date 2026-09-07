@@ -2543,26 +2543,106 @@ STROMNOW = ('<!--EB_STROMNOW--><div id="eb-stromnow"></div>\n<script>(function()
 # EB_TRACK, i.e. before the closing </body> but also before any block that a later
 # injector appends below it — and querySelectorAll at parse time cannot see
 # anchors the parser has not reached yet, so those links were never switched.
-USSWITCH = ('<!--EB_USSWITCH--><script>document.addEventListener("DOMContentLoaded",function(){var tz="";'
+US_TAG = "ecoback0d-20"
+
+# US marketplace switch. Measured defect (2026-09-06): 15 of 107 affiliate
+# clicks in 28 days came from the United States and every one of them landed on
+# amazon.de, where the visitor cannot buy — amazon.de prices in euro and ships
+# within the EU. The switch already existed but carried a hand-written map of
+# eleven German terms (dehumidifier and infrared-heater sizes only). It covered
+# 22 of the 398 Amazon links in the English section, and not one of the terms US
+# readers actually clicked: "De'Longhi Pinguino PAC EX105" (6 clicks), "Comfee
+# MPPH-09CRN7" (4), Klarstein, Midea PortaSplit, Fensterabdichtung,
+# Kondensatpumpe, Luftkühler. A fixed list of product names cannot keep up with
+# 252 distinct search terms across the site, so classification moves to ordered
+# keyword rules — specific accessory rules first, broad category rules last.
+#
+# The rules map to CATEGORIES, never to a substitute model. A reader who clicked
+# a named European unit is sent to the US category, not to some other maker's box
+# relabelled as their choice; naming US models is the job of the EB_USMARKET
+# bridge above, where every pick is attributed to a named US outlet. Terms with
+# no US counterpart — balcony solar plants, battery storage, cut-to-size acrylic
+# — deliberately match nothing and keep their amazon.de link.
+
+US_SWITCH_RULES = [
+    ('fensterabdichtung|fensterdichtung|abdichtung|abdicht|schaumstoffband|fensterabluft|kippfenster|hohlkammerplatte|xps platte|seal kit', 'portable ac window seal kit'),
+    ('abluftschlauch|isolierschlauch|abluft|schlauchadapter', 'portable ac exhaust hose'),
+    ('kondensatpumpe', 'condensate removal pump'),
+    ('kondensatschlauch|ablaufschlauch|mit schlauch|drain hose', 'dehumidifier drain hose'),
+    ('reiniger|verdampfer|schimmelentferner|coil cleaner', 'air conditioner coil cleaner'),
+    ('lamellenkamm|kühlrippen', 'air conditioner fin comb'),
+    ('ersatzfilter|filtermatte|hepa filter', 'replacement air filter'),
+    ('abdeckhaube', 'air conditioner cover'),
+    ('antivibrationsmatte|vibrationsd', 'anti vibration pad'),
+    ('kühlakku', 'cooler ice pack'),
+    ('antikalk|entkalker|zitronens', 'citric acid descaler'),
+    ('dachklimaanlage', 'rv rooftop air conditioner'),
+    ('thermomatte', 'rv windshield cover'),
+    ('granulat', 'moisture absorber'),
+    ('hygrometer|hygrostat', 'indoor hygrometer'),
+    ('thermometer', 'indoor outdoor thermometer'),
+    ('luftbefeuchter|verdunster', 'cool mist humidifier'),
+    ('luftreiniger|air purifier|ac2887', 'hepa air purifier'),
+    ('fenstersauger', 'window vacuum'),
+    ('dreame|bissel|saugwischer', 'wet dry vacuum'),
+    ('tineco', 'tineco filter'),
+    ('hitzeschutzfolie|sonnenschutzfolie|isolierfolie|reflektorfolie', 'window insulation film'),
+    ('rollo|jalousie', 'blackout roller shade'),
+    ('thermovorhang|verdunkelungsvorhang|hitzeschutz.*vorhang', 'thermal blackout curtain'),
+    ('türdichtung|zugluftstopper', 'door draft stopper'),
+    ('markise|sonnensegel|ampelschirm', 'patio shade sail'),
+    ('sonnenschutz.*(scheibe|auto)|auto sonnenschutz', 'car sun shade'),
+    ('sonnenschutz', 'sun shade'),
+    ('kühlmatte hund|kühlweste hund', 'dog cooling mat'),
+    ('trinkbrunnen katze', 'cat water fountain'),
+    ('wäscheständer|standtrockner|waeschest', 'clothes drying rack'),
+    ('heizdecke|heizkissen|wärmeunterbett|waermeunterbett', 'electric heated blanket'),
+    ('frostwächter', 'frost protection heater'),
+    ('heizstrahler|infrarot heiz|infrarotheizung|schmidbauer', 'infrared panel heater'),
+    ('heizlüfter|heizluefter|nth20', 'space heater'),
+    ('thermostat', 'plug in thermostat'),
+    ('energiekostenmess|strommessger|messfunktion|strommessung', 'electricity usage monitor'),
+    ('steckdose|steckdosenleiste|zeitschaltuhr', 'smart plug'),
+    ('wasserwaage', 'small spirit level'),
+    ('magnetband', 'self adhesive magnetic tape'),
+    ('klebeband', 'aluminum foil tape'),
+    ('fenstergriff|abus f', 'window security lock'),
+    ('adsorptionstrockner|luftentfeuchter|entfeuchter|meacodry|trotec ttk|pro breeze|dehumidifier', 'dehumidifier'),
+    ('luftkühler|luftkuehler|air cooler', 'evaporative air cooler'),
+    ('turmventilator|tower fan', 'tower fan'),
+    ('standventilator', 'pedestal fan'),
+    ('12v|campingventilator', '12v fan'),
+    ('deckenventilator', 'ceiling fan'),
+    ('ventilator|meacofan|rowenta', 'room fan'),
+    ('klimaanlage|klimager|pinguino|chillflex|portasplit|breezein|quick connect|suntec|bosch cool|remko|clima butler|air conditioner|split', 'portable air conditioner'),
+]
+
+USSWITCH = ('<!--EB_USSWITCH--><script>(function(){var tz="";'
             'try{tz=Intl.DateTimeFormat().resolvedOptions().timeZone||"";}catch(e){return;}'
+            # America/* covers the US, Canada and Latin America. Amazon.com is
+            # the least-bad marketplace for all of them; amazon.de is useless to all.
             'if(tz.indexOf("America/")!==0)return;'
-            'var MAP={"luftentfeuchter":"dehumidifier",'
-            '"luftentfeuchter 10 liter":"dehumidifier","luftentfeuchter 12 liter":"dehumidifier",'
-            '"luftentfeuchter 20 liter":"dehumidifier","luftentfeuchter 25 liter":"dehumidifier",'
-            '"luftentfeuchter 30 liter":"dehumidifier",'
-            '"infrarotheizung 600 watt":"space heater","infrarotheizung 1000 watt":"space heater",'
-            '"infrarotheizung 1500 watt":"space heater","infrarotheizung 2000 watt":"space heater",'
-            '"infrarotheizung set":"space heater"};'
-            'document.querySelectorAll(\'a[href*="amazon.de/s?k="]\').forEach(function(a){'
-            'try{var u=new URL(a.href);var k=u.searchParams.get("k");if(!k)return;'
-            'var us=MAP[k.toLowerCase()];if(!us)return;'
-            'a.href="https://www.amazon.com/s?k="+encodeURIComponent(us)+"&tag=ecoback0d-20";'
-            'a.setAttribute("data-eb-ussw","1");}catch(e){}});'
-            '});</script><!--/EB_USSWITCH-->\n')
+            'var R=[["fensterabdichtung|fensterdichtung|abdichtung|abdicht|schaumstoffband|fensterabluft|kippfenster|hohlkammerplatte|xps platte|seal kit","portable ac window seal kit"],["abluftschlauch|isolierschlauch|abluft|schlauchadapter","portable ac exhaust hose"],["kondensatpumpe","condensate removal pump"],["kondensatschlauch|ablaufschlauch|mit schlauch|drain hose","dehumidifier drain hose"],["reiniger|verdampfer|schimmelentferner|coil cleaner","air conditioner coil cleaner"],["lamellenkamm|k\\u00fchlrippen","air conditioner fin comb"],["ersatzfilter|filtermatte|hepa filter","replacement air filter"],["abdeckhaube","air conditioner cover"],["antivibrationsmatte|vibrationsd","anti vibration pad"],["k\\u00fchlakku","cooler ice pack"],["antikalk|entkalker|zitronens","citric acid descaler"],["dachklimaanlage","rv rooftop air conditioner"],["thermomatte","rv windshield cover"],["granulat","moisture absorber"],["hygrometer|hygrostat","indoor hygrometer"],["thermometer","indoor outdoor thermometer"],["luftbefeuchter|verdunster","cool mist humidifier"],["luftreiniger|air purifier|ac2887","hepa air purifier"],["fenstersauger","window vacuum"],["dreame|bissel|saugwischer","wet dry vacuum"],["tineco","tineco filter"],["hitzeschutzfolie|sonnenschutzfolie|isolierfolie|reflektorfolie","window insulation film"],["rollo|jalousie","blackout roller shade"],["thermovorhang|verdunkelungsvorhang|hitzeschutz.*vorhang","thermal blackout curtain"],["t\\u00fcrdichtung|zugluftstopper","door draft stopper"],["markise|sonnensegel|ampelschirm","patio shade sail"],["sonnenschutz.*(scheibe|auto)|auto sonnenschutz","car sun shade"],["sonnenschutz","sun shade"],["k\\u00fchlmatte hund|k\\u00fchlweste hund","dog cooling mat"],["trinkbrunnen katze","cat water fountain"],["w\\u00e4schest\\u00e4nder|standtrockner|waeschest","clothes drying rack"],["heizdecke|heizkissen|w\\u00e4rmeunterbett|waermeunterbett","electric heated blanket"],["frostw\\u00e4chter","frost protection heater"],["heizstrahler|infrarot heiz|infrarotheizung|schmidbauer","infrared panel heater"],["heizl\\u00fcfter|heizluefter|nth20","space heater"],["thermostat","plug in thermostat"],["energiekostenmess|strommessger|messfunktion|strommessung","electricity usage monitor"],["steckdose|steckdosenleiste|zeitschaltuhr","smart plug"],["wasserwaage","small spirit level"],["magnetband","self adhesive magnetic tape"],["klebeband","aluminum foil tape"],["fenstergriff|abus f","window security lock"],["adsorptionstrockner|luftentfeuchter|entfeuchter|meacodry|trotec ttk|pro breeze|dehumidifier","dehumidifier"],["luftk\\u00fchler|luftkuehler|air cooler","evaporative air cooler"],["turmventilator|tower fan","tower fan"],["standventilator","pedestal fan"],["12v|campingventilator","12v fan"],["deckenventilator","ceiling fan"],["ventilator|meacofan|rowenta","room fan"],["klimaanlage|klimager|pinguino|chillflex|portasplit|breezein|quick connect|suntec|bosch cool|remko|clima butler|air conditioner|split","portable air conditioner"]];'
+            'for(var i=0;i<R.length;i++){try{R[i][0]=new RegExp(R[i][0]);}catch(e){R[i][0]=null;}}'
+            'var sw=function(a){if(!a||!a.href||a.href.indexOf("amazon.de/s?k=")<0)return;'
+            'try{var u=new URL(a.href);var k=(u.searchParams.get("k")||"").toLowerCase();if(!k)return;'
+            'for(var i=0;i<R.length;i++){if(R[i][0]&&R[i][0].test(k)){'
+            'a.href="https://www.amazon.com/s?k="+encodeURIComponent(R[i][1])+"&tag=ecoback0d-20";'
+            'a.setAttribute("data-eb-ussw","1");return;}}}catch(e){}};'
+            'var pass=function(){try{document.querySelectorAll(\'a[href*="amazon.de/s?k="]\').forEach(sw);}catch(e){}};'
+            'if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",pass);else pass();'
+            # Several components build their Amazon links after load (the sticky bar,
+            # the sizer, the window-measurement calculator), so the sweep above cannot
+            # see them. Catch those at click time in the capture phase: this block sits
+            # above EB_TRACK in the document, so its listener runs first and the tracker
+            # records the rewritten URL.
+            'document.addEventListener("click",function(e){'
+            'var a=e.target&&e.target.closest&&e.target.closest(\'a[href*="amazon.de/s?k="]\');if(a)sw(a);},true);'
+            '})();</script><!--/EB_USSWITCH-->\n')
 
 
 def inject_usswitch(html):
-    """Idempotently add the US marketplace switch on EN guide pages."""
+    """Idempotently add the US marketplace switch (DE + EN guide pages)."""
     if "<!--EB_USSWITCH-->" in html:
         return re.sub(r'<!--EB_USSWITCH-->.*?<!--/EB_USSWITCH-->\n?', lambda m: USSWITCH, html, flags=re.S)
     if "<!--EB_TRACK-->" in html:
@@ -2615,7 +2695,6 @@ SHARE = ('<!--EB_SHARE--><script>(function(){'
 # The signal is the browser's own timezone: device-local, nothing is sent
 # anywhere to obtain it, and it needs no consent. Renders nothing for everyone
 # else (zero CLS, zero noise), which is why it is safe on every EN guide page.
-US_TAG = "ecoback0d-20"
 
 # 2026-08-28: the bridge shipped pointing at a bare category search because we had
 # verified no US-market model. That gap is now closed for portable ACs — these
@@ -3900,6 +3979,7 @@ def main():
             url = canonical(new) or f"https://getecoback.com/guide/{slug}.html"
             new = inject_crumb_trust(new, cat_of(slug), title, url)
             new = inject_usmarket(new, slug)
+            new = inject_usswitch(new)
             new = inject_models(new, slug)
             new = inject_sizer(new, slug)
             new = inject_toppick(new, slug)
