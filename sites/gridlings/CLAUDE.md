@@ -952,3 +952,18 @@ CG 投稿都带着一句假话**，包括被拒的那两次。不能断言它导
   再怀疑自己的触发点。** 本次我先后误判了两次归因才查到这里。
 - 分发选型结论：Playgama（最高 80%）与 CG 直投**不冲突**，Playgama 官方声明不代发 Poki/CG。
   **不做 GameDistribution**（33%，覆盖重叠）。**Poki 的 web 独占在 CG 出结果前不签**。
+
+## 埋点信标的 CORS：门户域名发不出数据（2026-09-07，Playgama 认证时实测发现）
+`navigator.sendBeacon` 是 **credentialed 请求**，浏览器**拒绝**对这类请求使用
+`access-control-allow-origin: *`。worker 上的 `/e` 一直返回通配符，所以
+**游戏一旦跑在任何第三方门户上，所有事件都被 CORS 拦掉**——Playgama 的认证环境里
+控制台刷满 `blocked by CORS policy`，D1 一行都收不到。而 console error 本身
+又是各家门户的拒稿风险，所以这一个 bug 收了两次费。
+- **不能用 allowlist**：Playgama 一家就分发到 100+ 伙伴域名，事先看不到。
+  改为**回显请求自己的 Origin + allow-credentials**。
+- **这个放宽只适用于 `/e`**：它只写不读、只接受白名单事件名、不返回任何数据，
+  任何人本来就能 curl 它。**`/sub` 等接收邮箱、返回 JSON 的端点保持通配符,不许照抄。**
+- 部署自检加了断言：预检必须回显门户 Origin 且带 allow-credentials，否则部署失败。
+  沙箱打不到线上站，这条只能在 runner 上验。
+- **通用教训**：游戏上第三方门户前，先问「我们的埋点在别人的域名下还发得出去吗」。
+  itch 之所以有数据，只是因为 `itch.zone` 恰好没触发这个路径。

@@ -24,17 +24,35 @@ async function logRow(env, ctx, row) {
   })());
 }
 
+/* CORS for the analytics beacon.
+   navigator.sendBeacon sends in credentials mode "include", and a browser REFUSES a
+   wildcard allow-origin for a credentialed request. Returning "*" therefore blocked
+   every event from every third-party portal — verified on Playgama's QA tool, where
+   the console filled with CORS failures and no row ever reached D1. Console errors are
+   themselves a rejection risk on these portals, so this cost us twice.
+   An allowlist cannot work here: Playgama alone syndicates to 100+ partner domains we
+   never see in advance. So the request's own Origin is echoed back. That is safe for
+   THIS endpoint specifically: it is append-only, accepts only allowlisted event names,
+   returns no data, and holds nothing a cross-site caller could read or abuse — anyone
+   can already POST to it with curl. Do not copy this pattern to an endpoint that
+   returns data or mutates state. */
+function corsHeaders(request) {
+  const origin = request.headers.get("origin");
+  return origin
+    ? { "access-control-allow-origin": origin, "access-control-allow-credentials": "true", "vary": "Origin" }
+    : { "access-control-allow-origin": "*" };
+}
+
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
 
     if (url.pathname === "/e" && request.method === "OPTIONS") {
-      return new Response(null, { status: 204, headers: {
-        "access-control-allow-origin": "*",
+      return new Response(null, { status: 204, headers: Object.assign(corsHeaders(request), {
         "access-control-allow-methods": "POST, OPTIONS",
         "access-control-allow-headers": "content-type",
         "access-control-max-age": "86400"
-      } });
+      }) });
     }
     if (url.pathname === "/e" && request.method === "POST") {
       try {
@@ -51,7 +69,7 @@ export default {
           });
         }
       } catch (e) { /* ignore malformed */ }
-      return new Response("ok", { headers: { "access-control-allow-origin": "*" } });
+      return new Response("ok", { headers: corsHeaders(request) });
     }
 
     // Inline subscribe: store-first (same lesson as the main site — an
