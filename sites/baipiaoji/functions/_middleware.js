@@ -41,11 +41,20 @@ function botOf(ua) {
   return '';
 }
 
+// Markdown 镜像（build.mjs 末段生成,.html 换 .md）必须 noindex:HTML 页是 canonical
+// 与引用面,镜像只喂 LLM/agent 上下文,进搜索索引就是重复内容稀释。
+// limits.md / pricing.md 没有 HTML 孪生、本身就是正典数据文件,不在此列。
+const CANONICAL_MD = new Set(['/limits.md', '/pricing.md']);
+
 export async function onRequest(ctx) {
-  const res = await ctx.next();
+  let res = await ctx.next();
   try {
     const url = new URL(ctx.request.url);
     if (ctx.request.method !== 'GET' || !isContentPath(url.pathname)) return res;
+    if (/\.md$/i.test(url.pathname) && !CANONICAL_MD.has(url.pathname)) {
+      res = new Response(res.body, res);
+      res.headers.set('X-Robots-Tag', 'noindex');
+    }
     // 我方探针（scripts/ai-crawler-probe.mjs）每天伪装九家 UA 敲三个路径，
     // 记进去就等于每天给自己造几十条假抓取——而这张表存在的意义正是回答
     // 「AI 爬虫到底来没来」。自证数据必须挡在门外。

@@ -50,6 +50,62 @@
    首个 AI 引用或 JS pv ≥30 → 把「AI 爬虫观测」做成月更小节;否则并入
    developers 页。**内容队列已清空**——下一轮回到常规阶梯(引用面维护 +
    两个转化探针读数),没有新的一手证据就不要立新页。
+8. **AI 时代 agent 面:每页 Markdown 镜像已上线 2026-08-29**(owner 指令「bpj站点
+   做成ai时代站点」;移植 agiscorecard 已验证形状,agi-site commit bc83473)。缺口
+   审计结论:本站 llms.txt/llms-full.txt/limits.md/MCP/爬虫记账早已齐备,唯一结构性
+   缺口是内容页镜像——build.mjs 末段现对根/en/money/plans 的 243 个内容页从已生成
+   HTML 提取(title/描述胶囊/H1/FAQ JSON-LD)生成同路径 .md(.html 换 .md),零第二
+   份手写副本、永不漂移;正典 .md(limits/pricing)优先,镜像只填空位;_middleware.js
+   对镜像加 X-Robots-Tag: noindex,HTML 页保持 canonical 与引用面;不进 sitemap;
+   程序化页(tools/vs/alternatives/wall/upgrade/c)不镜像——数据已由 limits.json/
+   llms-full/MCP 全量供给。**预登记判定线 2026-10-28(60 天窗)**:D1 hits 表 ev='bot'
+   行中 .md 路径抓取(剔除 __probe)≥10 → 镜像面保留续投;=0 → 该面退休,不再加码
+   agent 面投入。本改动属引用面/管线(执行令第 1 条的非 Google 分发面),非内容页,
+   不触冻结令。
+9. **工具注册门已上线 2026-08-29**(owner:「解决方案上做的太弱,最好是工具需要用户
+   注册才能用」)。8 个交互工具页(llm-api-calculator/publish-check/stack-builder/
+   video-quota-planner/subscription-audit/tokenizer/pipeline-video/free-for-you)
+   现须注册邮箱后使用:JS 注入门卡,只锁交互不锁内容(内容留在 HTML,不做全屏墙——
+   Google 侵入式插页 + 引用面命脉);对照板/判定页/limits.json/llms-full/MCP/API
+   一概不锁。注册=/api/subscribe(src=tool-gate:<slug>),已订阅者同邮箱解锁,
+   一次注册全站解锁(localStorage bpj_tool_reg)。pricing 页口径已同步(「单次计算
+   免费」→「全部工具免费,需注册」)。依据:PRD-subscription-pivot 已核实结论
+   「诉求存在,触发时机站错了」(表单曝光 39 提交 0)——门把请求搬到价值时刻。
+   **预登记判定线 2026-09-26(28 天窗,D1 现查,剔 CI/自测)**:gate view ≥30 且
+   tool-gate 真实注册 ≥1 → 门保留;view ≥30、注册 =0 且 calc 事件较前 28 天
+   跌 >80% → 带数据报 owner,建议降为软门(首次免费)。watch 页不在此列
+   (本身注册制);发信通道仍未接,门文案未承诺「立刻收到」。
+10. **搜索对齐推荐逻辑 + 首次有度量 2026-08-30**(owner:「搜索功能可否参照推荐
+   逻辑优化」)。改动:①search-index.json 工具段构建期按编辑推荐规则预排序
+   (完全免费+4 / 有已核实数字+2 / hot+1,与栈组装器/alternatives 同一条规则,
+   零机器编造),前端两轮匹配(名称>正文)不变,每轮之内自动变推荐序;②站内搜索
+   此前零埋点,补 D1 事件:`gs`(停敲 1.2s,/gs/hit|miss/<词>,≥2 字符)+
+   `gs_go`(下拉点进,含 Enter 路径)。**miss 词=需求信号**,高频 miss 进每日
+   选题输入(仍过三门)。③顺手修了 lastmod 指纹机制:剔除无属性内联 <script>
+   (行为 JS 全站内嵌,改一行就全站 lastmod 刷新+IndexNow 整站重推——本次实测
+   踩中;JSON-LD 带 type 属性不受影响),并已按新公式一次性迁移哈希、保留全部
+   原变更日期(本轮 0/1542 页误刷)。**预登记判定线 2026-09-27(28 天,D1 现查)**:
+   `gs` 事件 <10 → 搜索线停止投入优化;≥10 → 按 hit/miss 比与 gs_go 点进率定
+   下一步,miss 高频词交选题队列。
+11. **AI 赚钱作业包板块 /earn/ 已上线 2026-08-30**(owner:「加一个板块,ai赚钱板块,
+   通过这个吸引转化,必须注册才能看」)。结构:**枢纽页 /earn/ 公开可索引进 sitemap**
+   (发现层与被引用面),6 条路的作业包页 noindex、不进 sitemap、不做 .md 镜像,
+   **正文由 /api/earn 服务端校验 D1 subs 后发放**——静态站上前端藏 DOM 查看源码即破,
+   所以正文只存在于 data/earn-packs.generated.js(构建期编译,不进 dist),实测页面
+   HTML 里 0 字节包内容。**现有 /money/ 六页保持全公开**:它们是已被索引的入口与
+   AI 引用面,加墙等于焊死自己的发现层;作业包是它们之上的一层。
+   包内容零编造,全部来自已核实字段:工具清单+已核实额度+官方出处+核实日期、
+   **licence.json 的商用判定(能不能拿去接单)+义务条款**、无官方数字者如实列出、
+   分步作业、第一周、失败原因、骗局。四条硬底线(不承诺收入/必写失败原因/必写骗局/
+   只用站内已核实免费工具)在枢纽页与每个包页明写。注册走 /api/subscribe
+   (src=earn-gate:<slug>),与工具门共用 localStorage,一次注册全站解锁;退订用户
+   服务端拒发(否则退订成了单方面假动作)。埋点:earn view/ok/read + 服务端 earn_open
+   (只记路径,绝不记邮箱——公开仓隐私红线)。**边界写清**:这是转化机制不是 DRM,
+   底层事实本就 CC BY 公开、本仓也是公开仓,墙拦的是「不留邮箱就把编译好的接单资料
+   拿走」。**预登记判定线 2026-09-28(28 天,D1 现查,剔 CI/自测)**:earn-gate 真实
+   注册 ≥3 → 板块保留并扩路子;=0 且枢纽页 pv ≥50 → 墙拆掉降为公开页(说明是墙
+   而不是内容拦住了人);pv <50 → 是分发问题不是板块问题,先补发现层再判。
+   本板块属 owner 当日直接指令(与 2026-08-17 vendor 探针同一先例),其余冻结条款不变。
 
 # CLAUDE.md
 
