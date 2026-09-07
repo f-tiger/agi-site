@@ -1230,3 +1230,47 @@ JS 口径 = 爬虫排除在外，**下一轮起可以真正回答内部跳转问
 - **本日 ship（gridlings，见 OPT-LOG）**：OVERSEER 深度美术（无眼睛的一套新插画语言）、
   五款商店视频改逐帧截图（根治 CG 预览模糊）、海报标语与字标重叠修复。agi 站内容零改动
   （周日 + 客户视角簇判定期内）。
+
+## 2026-09-07（周一，舰队日报）
+
+**第①层 heartbeat**：8 站全 200，无一站 days_since_deploy ≥7。无告警。
+
+**agiscorecard**（D1 f84f9d29，真实读者只认 JS `events.page_view`）
+- 28 天真实 pv **1,102**（≈39/天）；昨日 50。订阅：累计 2，28 天内 sub_ok **2**、
+  sub_open 4、subscribe_click 6，全部停在 8-19，**18 天零新增**。`status='stored'` 积压 2（NO-API 模式下这是正常态）。
+- invest：`invest_tool_click` 28 天 9 次，**Pro 桥 `exposure_*_sunwatch` 仍为 0**。
+- **`site_search{location='mcp'}` 28 天 5 次 —— 按四条件判据全数不通过，不是 agent 采用**：
+  5 条全部 `ua_class='bot'`；08-30 三条间隔 430 毫秒、08-18 两条间隔 133 毫秒（批量）；
+  `tool:sunwatch_ledger` 跨日重复；一条标签直接是 `mcp-reputation-scanner-canary`。
+  且 8 天无新调用。**里程碑未达成，继续记零。**
+
+**gridlings**（D1 bd3b1ca9，表 ev）
+- 28 天 play_start 308、solve 132、play_again 127、hub_click 20。
+- **09-06 的 716 次浏览是 687 爬虫 + 29 真人**——七款上架 itch/CG 当天引来的抓取。
+  真人日线是平的：29 / 33 / 9 / 29 / 93 / 43 / 15。**投稿日的尖峰不算增长，写进反面记录。**
+- **itch 判定线（09-24）读数**：`ref LIKE '%itch.zone%'` 且 human，累计 **play_start 43 / 150、
+  solve 13 / 25**，覆盖 5 个活跃日（08-24 起）。七款新页 09-06 才上架，尚未进入这个读数。
+
+**四站对抗记分板**
+| 站 | 真人 pv/28d | 离钱最近的事件 | 备注 |
+|---|---|---|---|
+| agiscorecard | 1,102 | sub_ok 2（18 天零新增） | 引用型内容为主 |
+| baipiaoji | 1,603 | `go` 出站 49；subs 3 | 全舰队真人量最大 |
+| getecoback | 289 | **affiliate_click 40（人）**，昨日 3 | 转化率 13.8%，全舰队最高 |
+| gridlings | 见上 | hub_click 20 | 游戏层，不吃引用 |
+- **getecoback 的 mcp_call 437 次仍不可信**：只有 33 个不同 `meta`，重复约 13 倍，
+  与 08-16 判定的冒烟测试同签名。**不作为 agent 采用上报。**
+- 可移植的模式：eco 的 affiliate_click/pv = 13.8%，是舰队里唯一被验证的高转化钩子形状；
+  agi 侧订阅钩子 0.5% 差 27 倍。差别在于 eco 的动作与页面意图同向（找免费额度→点去用），
+  agi 的订阅与「读一个判定」不同向。
+
+**thedollscout**：`content/d1-snapshot.json` **仍不存在**。owner 待办未完成（Cloudflare →
+API Tokens → 部署用 token → 加 Account · D1 · Read，约 1 分钟）。按 09-02 判定线，
+此项每轮必须继续上报，不因「站点看起来正常」降级。
+
+**sourceradar / buysomething**：28 天真人 pv 50，`pick_open`/`out_click`/`calc_use`/`search_use`
+**全部为 0**。按低频站规矩：只报数字，不 bump、不造内容。
+
+**本周赔率**：Polymarket「OpenAI 在 2027 前宣布达成 AGI」→ Yes **27%** / No 73%，
+成交量 $194,567（2026-09-07 04:06:55 UTC 机读）。对照证据侧：Tracker 62.5/100、
+AGI-2027 判定 Open，均未动。
