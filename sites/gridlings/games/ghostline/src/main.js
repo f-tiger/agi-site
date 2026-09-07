@@ -21,7 +21,7 @@ function crazygames() {
   if (!on) { try { on = /crazygames\./.test(document.referrer); } catch (e) {} }
   window.GL_CG = on;
   const q = []; let sdk = null;
-  const api = { on, ev: e => { if (on) q.push(e); }, ad: (type, done) => done(false) };
+  const api = { on, ready: false, ev: e => { if (on) q.push(e); }, ad: (type, done) => done(false) };
   if (!on) return api;
   document.documentElement.classList.add("cg");
   if (/[?&]muteAudio=true/.test(location.search)) window.GL_SDK_MUTE = true;
@@ -32,6 +32,7 @@ function crazygames() {
     try { g.loadingStart(); } catch (e) {} try { g.loadingStop(); } catch (e) {}
     api.ev = e => { try { if (e === "start") g.gameplayStart(); else if (e === "stop") g.gameplayStop(); else if (e === "happy") g.happytime(); } catch (x) {} };
     q.splice(0).forEach(api.ev);
+    api.ready = true;
     api.ad = (type, done) => { let f = false; const end = ok => { if (!f) { f = true; done(ok); } };
       try { sdk.ad.requestAd(type, { adFinished: () => end(true), adError: () => end(false), adStarted: () => {} }); setTimeout(() => end(false), 25000); } catch (e) { end(false); } };
   }).catch(() => {}); } catch (e) {} };
@@ -43,7 +44,7 @@ function playgama() {
   /* Bridge is LGPL-3.0, so it ships as its own file next to index.html and is
      never inlined into the game — keep it replaceable, as that licence intends. */
   const q = []; let br = null;
-  const api = { on: true, ev: e => q.push(e), ad: (type, done) => done(false) };
+  const api = { on: true, ready: false, ev: e => q.push(e), ad: (type, done) => done(false) };
   window.GL_PG = true;
   document.documentElement.classList.add("pg");
   const s = document.createElement("script"); s.src = "playgama-bridge.js"; s.async = true;
@@ -56,6 +57,7 @@ function playgama() {
       /* happytime has no Bridge equivalent; dropping it is correct, not a gap */
       api.ev = e => { if (e === "start") send("gameplay_started"); else if (e === "stop") send("gameplay_stopped"); };
       q.splice(0).forEach(api.ev);
+      api.ready = true;
       api.ad = (type, done) => {
         let fired = false; const end = ok => { if (!fired) { fired = true; done(ok); } };
         const rewarded = type === "rewarded";
@@ -73,7 +75,7 @@ function playgama() {
           br.advertisement.on(evt, onState);
           if (rewarded) br.advertisement.showRewarded(); else br.advertisement.showInterstitial();
           setTimeout(() => end(false), 25000);
-        } catch (e) { end(false); }
+        } catch (e) { window.GL_AD_ERR = String((e && e.stack) || e); end(false); }
       };
     }).catch(() => {});
   };
@@ -139,6 +141,25 @@ function loadTrack(sd, lv) {
   $("tmedals").innerHTML = `<i class="g">◆ ${fmtT(ref.gold)}</i><i class="s">◆ ${fmtT(ref.silver)}</i><i class="b">◆ ${fmtT(ref.bronze)}</i>`;
   $("tclone").textContent = "MODEL " + fmtT(ghPol.t) + (S.best[sd] ? " · YOU " + fmtT(S.best[sd]) : "");
 }
+/* Ads run at natural breakpoints only — a finished race, or the moment the player
+   chooses a different track — and share one cooldown so the two triggers cannot
+   stack. The track-change trigger matters twice over: it is the honest breakpoint
+   AND the only one reachable by clicking, so a portal's automated certification
+   pass (which cannot drive a car well enough to finish a lap) can still observe
+   that advertising is implemented. */
+const AD_GAP_MS = 90000;
+let lastAdAt = 0;
+function adBreak(then) {
+  const now = performance.now();
+  /* ready matters as much as on: before the portal SDK finishes initialising, ad()
+     is a stub that returns instantly. Counting that as a shown ad would burn the
+     cooldown on nothing — which is exactly what happened to the first certification
+     run, and to any player who changes track in the first few seconds. */
+  if (!PORTAL.on || !PORTAL.ready || (lastAdAt && now - lastAdAt < AD_GAP_MS)) { then(); return; }
+  lastAdAt = now;
+  PORTAL.ad("midgame", then);
+}
+function go(sd, lv) { adBreak(() => { loadTrack(sd, lv); startRace(); }); }
 function startRace() {
   me = PH.fresh(); gh = PH.fresh(); pb = pbPol ? PH.fresh() : null; rec = []; lastCp = 0; state = "count"; count = 3.2; cpFlash = 0;
   $("menu").classList.remove("show"); $("result").classList.remove("show"); $("hud").classList.add("show"); $("count").classList.add("show");
@@ -167,14 +188,14 @@ function endRace() {
   $("rwalls").textContent = me.walls ? me.walls + " wall hit" + (me.walls > 1 ? "s" : "") + " — each one costs more than a brake tap" : "clean run — no walls";
   ev("finish", "s" + seed + ":" + t.toFixed(1)); if (beat) ev("beat_clone", "s" + seed);
   const show = () => { $("result").classList.add("show"); refreshGarage(); };
-  if (PORTAL.on && finishes % 3 === 0) PORTAL.ad("midgame", show); else show();
+  if (finishes % 3 === 0) adBreak(show); else show();
 }
 /* ===== menu ===== */
 function buildMenu() {
   const grid = $("grid"); grid.innerHTML = "";
   TR.CAMPAIGN.forEach((c, i) => { const b = document.createElement("button"); b.className = "tk"; const m = S.medals[c.seed];
     b.innerHTML = `<b>${i + 1}</b><span>${TR.trackName(c.seed)}</span><em class="${m || "none"}">${m ? "◆ " + fmtT(S.best[c.seed]) : (S.best[c.seed] ? fmtT(S.best[c.seed]) : "—")}</em>`;
-    b.addEventListener("click", () => { arm(); sfx.click(); loadTrack(c.seed, c.level); startRace(); }); grid.appendChild(b); });
+    b.addEventListener("click", () => { arm(); sfx.click(); go(c.seed, c.level); }); grid.appendChild(b); });
   const d = TR.dailySeed(new Date()); $("bdaily").querySelector("span").textContent = TR.trackName(d) + (S.best[d] ? " · " + fmtT(S.best[d]) : "");
   refreshGarage();
 }
@@ -184,10 +205,10 @@ function refreshGarage() {
     b.innerHTML = `<i></i><span>${c.name}</span><small>${mc >= c.req ? "" : c.req + " pts"}</small>`;
     b.addEventListener("click", () => { arm(); if (mc < c.req) { sfx.wall(); return; } sfx.click(); setCar(c.id); save(); refreshGarage(); }); g.appendChild(b); });
 }
-$("bdaily").addEventListener("click", () => { arm(); sfx.click(); loadTrack(TR.dailySeed(new Date()), 4); startRace(); });
-$("brandom").addEventListener("click", () => { arm(); sfx.click(); loadTrack(200000 + Math.floor(Math.random() * 800000), 2 + Math.floor(Math.random() * 5)); startRace(); });
-$("bretry").addEventListener("click", () => { arm(); sfx.click(); loadTrack(seed, level); startRace(); });
-$("bnext").addEventListener("click", () => { arm(); sfx.click(); const i = TR.CAMPAIGN.findIndex(c => c.seed === seed); const n = TR.CAMPAIGN[(i + 1) % TR.CAMPAIGN.length]; loadTrack(n.seed, n.level); startRace(); });
+$("bdaily").addEventListener("click", () => { arm(); sfx.click(); go(TR.dailySeed(new Date()), 4); });
+$("brandom").addEventListener("click", () => { arm(); sfx.click(); go(200000 + Math.floor(Math.random() * 800000), 2 + Math.floor(Math.random() * 5)); });
+$("bretry").addEventListener("click", () => { arm(); sfx.click(); go(seed, level); });
+$("bnext").addEventListener("click", () => { arm(); sfx.click(); const i = TR.CAMPAIGN.findIndex(c => c.seed === seed); const n = TR.CAMPAIGN[(i + 1) % TR.CAMPAIGN.length]; go(n.seed, n.level); });
 $("bmenu").addEventListener("click", () => { arm(); sfx.click(); state = "menu"; $("result").classList.remove("show"); buildMenu(); $("menu").classList.add("show"); });
 $("bmenu2").addEventListener("click", () => { state = "menu"; $("hud").classList.remove("show"); $("count").classList.remove("show"); PORTAL.ev("stop"); buildMenu(); $("menu").classList.add("show"); });
 $("bmute").addEventListener("click", () => { muted = !muted; $("bmute").textContent = muted ? "🔇" : "🔊"; try { localStorage.setItem("glMute", muted ? "1" : "0"); } catch (e) {} music.level(); });
@@ -234,5 +255,5 @@ window.addEventListener("resize", () => scene.resize());
 window.addEventListener("pointerdown", () => arm(), { once: true });
 window.addEventListener("beforeunload", save);
 requestAnimationFrame(() => requestAnimationFrame(() => { const b = $("boot"); b.classList.add("gone"); setTimeout(() => b.remove(), 700); }));
-window.GL = { get S() { return S; }, get me() { return me; }, get gh() { return gh; }, get T() { return T; }, get state() { return state; }, inp, loadTrack, startRace, endRace, TR, PH, AI };
+window.GL = { get PORTAL() { return PORTAL; }, get adAt() { return lastAdAt; }, get S() { return S; }, get me() { return me; }, get gh() { return gh; }, get T() { return T; }, get state() { return state; }, inp, loadTrack, startRace, endRace, TR, PH, AI };
 window.GL_READY = true;

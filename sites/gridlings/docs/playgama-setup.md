@@ -42,3 +42,28 @@ Playgama 明确写着「**我们不代你发布到 Poki 和 CrazyGames**，但�
 试点只做 GHOSTLINE。**其余六款要等第一款过审 + 后台能看到真实展示数之后再批量推**，
 理由是我们无法在沙箱里验证他们的审核口味，一次推七款如果踩到同一个坑就是七倍返工。
 `tools/package_blocknova.py` 里的 `PLAYGAMA` 列表现在只有 ghostline，扩表即扩量。
+
+## 认证第一次未过：广告触发不到（2026-09-07，已修）
+Playgama QA tool 只报一条：**"No advertising is implemented. Certification requires at
+least one type of advertising — Rewarded or Interstitial."**
+
+**不是没接，是它到不了。** 原来中插挂在「每完成第 3 局」上，而自动认证跑不完一局赛车——
+它开不了车。所以整个认证会话里一次广告调用都观察不到。
+
+修法：广告改挂在**共用的自然中断点**上，`adBreak()` 统一调度，两个触发点共用一个 90 秒冷却：
+1. **换赛道**（campaign / daily / random / retry / next 五个入口全部走 `go()`）——
+   这是诚实的中断点，**也是只靠点击就能到达的那个**，认证工具因此能观察到。
+2. 完赛后每三局一次（原有逻辑保留）。
+
+**开机自动起跑那一条路径刻意不放广告**，否则零交互 gameplayStart 就废了。
+
+**顺带修掉一个真 bug**：SDK 初始化完成前，`PORTAL.ad` 还是立即回调的占位实现，
+它什么都不做却会把 90 秒冷却消耗掉。真实玩家开局几秒内换赛道会踩到。已加 `PORTAL.ready`
+闸门——SDK 没就绪就不消耗广告位。
+
+**实测证据（只用点击，不开车）**：打开 TRACKS → 点一条赛道 →
+`interstitial_state_changed: loading → failed`（failed 只因占位配置下无库存）。
+诊断口 `GL.PORTAL` / `GL.adAt` 已留在构建里，方便下次直接看状态。
+
+**owner 要做的**：重新上传新包，再跑一次 certification。跑的时候**至少点一次
+TRACKS 再选一条赛道**——那一步就是广告触发点。
