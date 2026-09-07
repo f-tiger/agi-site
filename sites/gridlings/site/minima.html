@@ -546,8 +546,16 @@ document.getElementById("bheat").addEventListener("click", function () { doHeat(
 document.getElementById("bretry").addEventListener("click", function () { window.mnCg("stop"); ev("play_again"); newRun(); });
 document.getElementById("hublink").addEventListener("click", function () { ev("hub_click"); });
 document.getElementById("bnext").addEventListener("click", function () {
-  if (dead) { window.mnCg("stop"); ev("play_again"); newRun(); return; }
-  if (lvl + 1 < LEVELS.length) loadLevel(lvl + 1); else newRun();
+  /* MINIMA had no ad call anywhere: mnAd was defined twice and invoked never, so on a
+     portal it would have certified as "no advertising implemented" with nothing to
+     trigger. Leaving a level is this game's natural breakpoint and the one a
+     click-only certification pass can reach. */
+  var b = this; b.disabled = true;
+  window.mnAd(function () {
+    b.disabled = false;
+    if (dead) { window.mnCg("stop"); ev("play_again"); newRun(); return; }
+    if (lvl + 1 < LEVELS.length) loadLevel(lvl + 1); else newRun();
+  });
 });
 
 /* ===== update ===== */

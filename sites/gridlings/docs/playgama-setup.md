@@ -152,3 +152,40 @@ displayed" —— 而我们当时**两样都没做**：引擎照跑、声音照�
   25 秒超时路径同样释放（否则一个卡住的广告会把游戏永久冻住）。
 - 实测：2.5 秒暂停期内比赛计时只前进 **0.10 秒**（那一帧是设标志时已在处理中的），
   释放后立刻恢复。CG 变体的既有静音逻辑不受影响。
+
+## 五款老游戏一次性接入（2026-09-07，owner：「改造后续的几个游戏，确保一次能够提交通过」）
+
+**做法上的选择**：不把 GHOSTLINE 的桥手工复制五遍。那些游戏早就把
+`window.<前缀>Cg` / `window.<前缀>Ad` 暴露成了全局，本身就是现成的抽象边界，
+所以新增 `tools/portal/playgama-portal.js` **一个文件服务五款**，
+打包时注入并换绑那两个全局，**游戏本体一行未改**。
+前缀：overfit=of · prompt=pm · mimic=mc · overseer=os · minima=mn。
+
+**GHOSTLINE 的五条教训全部内建在这个共享文件里**：①广告点必须点击可达
+②SDK 未就绪不消耗冷却 ③覆盖 SDK 自带的 initialInterstitialDelay
+④广告期间暂停 + 静音 ⑤init 与广告错误永不吞掉（写 `GL_PG_ERR` / `GL_AD_ERR`，
+SDK 缺失时页面底部红色横幅）。
+
+**顺带查出一个会直接导致 MINIMA 认证失败的问题**：它的 `mnAd` **定义了两次、从未被调用**——
+提交上去会卡在 Interstitial 那一步，而且连个能触发的地方都没有。已在「下一关 / 重开」
+按钮上补了触发点（该游戏的自然中断点，也是点击可达的那个）。
+
+**五款实测（Playwright，逐款）**
+| 游戏 | Bridge 初始化 | 桥接换绑 | 广告链路 | done() 必调 | console error |
+|---|---|---|---|---|---|
+| overfit | 204ms | ok | loading→failed | ✓ | 0 |
+| prompt | 336ms | ok | loading→failed | ✓ | 0 |
+| mimic | 312ms | ok | loading→failed | ✓ | 0 |
+| overseer | 255ms | ok | loading→failed | ✓ | 0 |
+| minima | 258ms | ok | loading→failed | ✓ | 0 |
+
+`failed` 只因本地无广告库存；真实平台上应走到 `opened`。上限是 30 秒，这五款都在 0.35 秒内。
+
+**每款的自我声明答案（别填错，填 Yes 换过审是假声明）**
+| 游戏 | Rewarded | Interstitial |
+|---|---|---|
+| OVERFIT / PROMPT / MIMIC / OVERSEER / MINIMA / GHOSTLINE | **No** | **Yes** |
+| SINGULARITY | **Yes** | No（它用的是激励视频） |
+
+**SINGULARITY 尚未接入**：它和 GHOSTLINE 一样是 src 构建、且用激励视频而非中插，
+形状不同，单独处理。
