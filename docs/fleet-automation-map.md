@@ -140,7 +140,44 @@ agiscorecard 2、thedollscout 3、goldrush 3、**gridlings 6**（距 7 天自动
 
 ---
 
-## 七、Routine 模型统一切到 Fable 5.1（owner 2026-09-04 明确要求）
+## 七、Routine 模型：Fable 5.1 → 已于 2026-09-07 全部改回 Opus 5
+
+**⛔ 2026-09-07 撤销（owner 原话：「帮我把所有你的定时任务跑的模型改成默认的，不用fable」）。**
+9 条启用中的 Routine 现在**全部是 `claude-opus-5`**（`update_trigger` 逐条确认，
+`derived_state.model` 复查通过）。选 opus-5 而不是别的：API **不接受把 model 清空**
+（`"default"` 报 `invalid_model`，空串报 `model must not be empty`），必须写一个具体 ID；
+owner 在本会话被问到时选了 opus-5，它与常驻会话 `session_016njKJ81yVv2QdrpLYCX1Vc`
+当前跑的模型一致，两条自绑定 Routine 因此不会分叉（见下第 2 条）。
+
+| Routine | 现模型 |
+|---|---|
+| DollScout 每 2 天 | claude-opus-5 |
+| 白嫖计 daily v4 | claude-opus-5 |
+| getecoback daily v5 | claude-opus-5 |
+| sellSomething 周循环 | claude-opus-5 |
+| 舰队每周分发暂存 | claude-opus-5 |
+| paid-monthly-recheck | claude-opus-5 |
+| Weekly AI News Roundup | claude-opus-5 |
+| 舰队日报（自绑定） | claude-opus-5（写入即与绑定会话一致，见下） |
+| 10 万实验月度复核（自绑定） | claude-opus-5（同上） |
+| [已合并·勿启用] sourceradar | 未设（停用中，不动） |
+
+**两个必须传下去的操作坑（本次踩到）**：
+1. **模型存在两个字段里，只看一个会漏。** `list_triggers` 返回的
+   `session_request.config.model` 和 `derived_state.model` 不总是同一份：
+   "Weekly AI News Roundup" 的 `session_request` 里根本没有 `config`（它带 3 个 MCP
+   连接器，是另一种建法），模型只出现在 `derived_state.model`。**只查 config.model 会
+   把它误判成「已经是默认」而漏掉。以 `derived_state.model` 为准。**
+2. **自绑定那两条的模型仍由绑定会话决定。** 写入照样成功，但真正生效的是
+   `session_016njKJ81yVv2QdrpLYCX1Vc` 当前的模型 —— 实测该会话
+   `user_switched_model` / `last_served_model` 都是 `claude-opus-5`，所以本次两边一致、
+   没有分叉；若 owner 以后在那个会话里切模型，这两条会跟着走，Routine 里写的值不作数。
+
+下方 08/09-04 的原始记录保留为背景（它解释了第八节那类故障的时间线）：
+
+---
+
+### 原记录：Routine 模型统一切到 Fable 5.1（owner 2026-09-04 明确要求，已于 09-07 撤销）
 
 owner 原话：「把 Routine 也换成 fable 5.1」。**全部 8 条启用中的 Routine 已写入
 `model: claude-fable-5-1`**，服务端全部接受（这同时证明该模型对本账号已开通 ——
@@ -164,7 +201,8 @@ owner 原话：「把 Routine 也换成 fable 5.1」。**全部 8 条启用中�
 会话里用模型选择器切到 Fable 5.1**（会话模型是客户端设置，会话侧改不了自己）。
 
 **后续会话注意**：`update_trigger` 的 `model` 参数**只有 owner 用自己的话明确要求时才能动**。
-本次的授权原话已记录在上面；不要把它当成「以后可以随便换模型」的常设许可。
+两次授权原话（09-04 换 Fable、09-07 改回 Opus 5）都已记录在本节；不要把它们当成
+「以后可以随便换模型」的常设许可。
 
 ---
 
