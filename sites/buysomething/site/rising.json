@@ -1,5 +1,5 @@
 {
- "fetched": "2026-09-07",
+ "fetched": "2026-09-08",
  "seeds": {
   "electric spin scrubber": {
    "auto": [
@@ -369,14 +369,112 @@
    "fetched": "2026-09-07"
   },
   "chinese style shirt": {
+   "auto": [
+    "chinese style shirt",
+    "chinese style shirt women",
+    "chinese style shirt name",
+    "chinese style shirts for men",
+    "chinese style shirt zara",
+    "chinese style shirt pattern",
+    "chinese style shirt collar",
+    "what are traditional chinese shirts called",
+    "chinese shirt name",
+    "chinese style dishes"
+   ],
    "rising": [
     {
-     "q": "mandarin collar shirt",
-     "v": 70
+     "q": "chinese style shirt women",
+     "v": "new"
+    },
+    {
+     "q": "chinese style shirt name",
+     "v": "new"
+    },
+    {
+     "q": "chinese style shirts for men",
+     "v": "new"
+    },
+    {
+     "q": "chinese style shirt zara",
+     "v": "new"
+    },
+    {
+     "q": "chinese style shirt pattern",
+     "v": "new"
+    },
+    {
+     "q": "chinese style shirt collar",
+     "v": "new"
+    },
+    {
+     "q": "what are traditional chinese shirts called",
+     "v": "new"
+    },
+    {
+     "q": "chinese shirt name",
+     "v": "new"
+    },
+    {
+     "q": "chinese style dishes",
+     "v": "new"
     }
    ],
-   "source": "related-queries",
-   "fetched": "2026-09-07"
+   "source": "autocomplete-diff",
+   "fetched": "2026-09-08"
+  },
+  "gongfu tea set": {
+   "auto": [
+    "gongfu tea set",
+    "gongfu tea set parts",
+    "gongfu tea set near me",
+    "gongfu tea set with tray",
+    "gongfu tea set reddit",
+    "gongfu tea setup",
+    "gongfu tea set travel",
+    "gongfu tea set amazon",
+    "gongfu tea set for one",
+    "gongfu tea set components"
+   ],
+   "rising": [
+    {
+     "q": "gongfu tea set parts",
+     "v": "new"
+    },
+    {
+     "q": "gongfu tea set near me",
+     "v": "new"
+    },
+    {
+     "q": "gongfu tea set with tray",
+     "v": "new"
+    },
+    {
+     "q": "gongfu tea set reddit",
+     "v": "new"
+    },
+    {
+     "q": "gongfu tea setup",
+     "v": "new"
+    },
+    {
+     "q": "gongfu tea set travel",
+     "v": "new"
+    },
+    {
+     "q": "gongfu tea set amazon",
+     "v": "new"
+    },
+    {
+     "q": "gongfu tea set for one",
+     "v": "new"
+    },
+    {
+     "q": "gongfu tea set components",
+     "v": "new"
+    }
+   ],
+   "source": "autocomplete-diff",
+   "fetched": "2026-09-08"
   }
  }
 }
