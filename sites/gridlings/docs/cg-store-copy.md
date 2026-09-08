@@ -10,6 +10,10 @@ AZERTY 布局也能用）。Build 一律 `https://play.agiscorecard.com/download
 > 那句话在这两个商店页上是假的，已全部改成「No account needed, free to play.」。
 > **只有站内页面与 itch 版本可以宣称无广告**——那两处确实不加载任何广告 SDK。
 > 若已用旧文案提交，请一并更正商店描述，不要只改包。
+>
+> **2026-09-08 复核**：包这一侧现在是干净的（八个 CG 包 + 七个 Playgama 包全部 0 命中，
+> 断言已改为不区分大小写）。**但商店页描述是 owner 在 CG 后台手打的，重传 zip 不会改动它**
+> ——若当初粘的是旧文案，仍需在 CG 后台逐款把结尾那句改成「No account needed, free to play.」。
 
 ---
 

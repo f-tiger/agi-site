@@ -11,7 +11,38 @@ committed (same convention as build_packages.py).
 submitted to CG (saturated-genre copy risk = third template rejection), but
 its package keeps building — it costs nothing and keeps the option open.
 """
-import io, os, zipfile
+import io, os, re, zipfile
+
+# Every build that goes to a PORTAL (CrazyGames, Playgama) requests ads — a midgame
+# interstitial, or a rewarded video in SINGULARITY. So any ad-free claim in the page is
+# false THERE and nowhere else: the gridlings.com page and the itch build load no ad SDK
+# at all, and their claims stay untouched.
+#
+# 2026-09-08: the first version of this only rewrote two exact capitalised strings and
+# asserted on "No ads". A lowercase claim in Block Nova's <meta description> ("no ads on
+# this site") walked straight past both. Rewrite by regex, assert case-insensitively, and
+# cover "ad-free" too, so a third wording cannot ship either.
+_AD_CLAIMS = [
+    (re.compile(r"No ads (?:inside|here) \u00b7 no account \u00b7 free"), "No account \u00b7 free to play"),
+    (re.compile(r"no ads on this site, no account", re.I), "no account"),
+    (re.compile(r", no sign-up and no ads", re.I), " and no sign-up"),
+    (re.compile(r"no account, no ads", re.I), "no account"),
+    (re.compile(r"No ads (?:inside|here)"), "Free to play"),
+]
+# NB: not "no advertising" — MINIMA's source carries that phrase inside a code comment
+# quoting a Playgama rejection, and a comment is not a claim to a player.
+_AD_LEFTOVER = re.compile(r"no ads|ad-free", re.I)
+
+
+def strip_ad_claims(out, what):
+    for pat, repl in _AD_CLAIMS:
+        out = pat.sub(repl, out)
+    m = _AD_LEFTOVER.search(out)
+    assert not m, "%s: an ad-free claim survived - %r" % (
+        what, out[max(0, m.start() - 60):m.end() + 60])
+    return out
+
+
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 GAMES = [("blocknova.html", "blocknova-cg.zip"), ("overfit.html", "overfit-cg.zip"),
@@ -38,10 +69,7 @@ for src_name, zip_name in GAMES:
     # gated on window.GL_CG — so the footer's ad-free claim is false there and nowhere
     # else. It had been shipping in all eight submissions, in two wordings. Both are
     # rewritten here, and the assert stops a third wording from slipping through.
-    for _claim in ("No ads inside", "No ads here"):
-        out = out.replace(_claim + " \u00b7 no account \u00b7 free", "No account \u00b7 free to play")
-        out = out.replace(_claim, "Free to play")
-    assert "No ads" not in out, src_name + ": an ad-free claim survived into the CG build"
+    out = strip_ad_claims(out, src_name + " (CG build)")
     zp = os.path.join(outdir, zip_name)
     with zipfile.ZipFile(zp, "w", zipfile.ZIP_DEFLATED) as z:
         z.writestr("index.html", out)
@@ -68,10 +96,7 @@ for slug in PLAYGAMA:
     out = src.replace(marker, '<script>window.GL_PG=true;</script>\n'
                               '<script src="playgama-bridge.js"></script>\n' + marker, 1)
     # the ad-free footer is false here too: this build shows Playgama's ads
-    for _claim in ("No ads inside", "No ads here"):
-        out = out.replace(_claim + " \u00b7 no account \u00b7 free", "No account \u00b7 free to play")
-        out = out.replace(_claim, "Free to play")
-    assert "No ads" not in out, slug + ": an ad-free claim survived into the Playgama build"
+    out = strip_ad_claims(out, slug + " (Playgama build)")
     zp = os.path.join(pgdir, slug + ".zip")
     with zipfile.ZipFile(zp, "w", zipfile.ZIP_DEFLATED) as z:
         z.writestr("index.html", out)
@@ -94,10 +119,7 @@ for slug, prefix in sorted(PLAYGAMA_SHARED.items()):
     out = src.replace(marker, head + marker, 1)
     out = out.replace("</body>", "<script>\n" + portal + "\n</script>\n</body>", 1)
     assert "GL_PORTAL_PREFIX" in out and out.count("playgama-portal") >= 0
-    for _claim in ("No ads inside", "No ads here"):
-        out = out.replace(_claim + " \u00b7 no account \u00b7 free", "No account \u00b7 free to play")
-        out = out.replace(_claim, "Free to play")
-    assert "No ads" not in out, slug + ": an ad-free claim survived into the Playgama build"
+    out = strip_ad_claims(out, slug + " (Playgama build)")
     zp = os.path.join(pgdir, slug + ".zip")
     with zipfile.ZipFile(zp, "w", zipfile.ZIP_DEFLATED) as z:
         z.writestr("index.html", out)
