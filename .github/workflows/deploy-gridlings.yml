@@ -75,6 +75,34 @@ jobs:
       - name: Build Block Nova CrazyGames package
         working-directory: sites/gridlings
         run: python3 tools/package_blocknova.py
+
+      # The packager fails loudly when a transform breaks, but a game silently dropping
+      # out of a variant list only prints a line nobody reads. This asserts the set.
+      # A game whose product lacks the GL_CLEAN beacon guard is skipped BY DESIGN
+      # (ghostline/singularity until they are rebuilt from games/<slug>/), so the clean
+      # list names only the builds that must exist.
+      - name: Gate — every distribution package the owner uploads actually got built
+        working-directory: sites/gridlings
+        run: |
+          set -u
+          fail=0
+          for f in cg/prompt-cg.zip cg/mimic-cg.zip cg/minima-cg.zip cg/overseer-cg.zip \
+                   cg/overfit-cg.zip cg/singularity-cg.zip cg/ghostline-cg.zip cg/blocknova-cg.zip \
+                   playgama/prompt.zip playgama/mimic.zip playgama/minima.zip playgama/overseer.zip \
+                   playgama/overfit.zip playgama/singularity.zip playgama/ghostline.zip \
+                   clean/prompt.zip clean/mimic.zip clean/minima.zip clean/overseer.zip \
+                   clean/overfit.zip clean/blocknova.zip \
+                   clean/gridlings.zip clean/balance.zip clean/starbattle.zip clean/trail.zip \
+                   clean/futoshiki.zip clean/towers.zip clean/minisudoku.zip clean/kropki.zip \
+                   clean/sandwich.zip clean/thermo.zip clean/nonogram.zip \
+                   itch/prompt.zip itch/mimic.zip itch/minima.zip itch/overseer.zip \
+                   itch/overfit.zip itch/singularity.zip itch/ghostline.zip \
+                   cg/starbattle.zip; do
+            p="site/downloads/$f"
+            if [ ! -s "$p" ]; then echo "::error::package missing or empty: $p"; fail=1; fi
+          done
+          [ "$fail" = "0" ] || exit 1
+          echo "OK    all 40 distribution packages present"
       - name: Push package to itch.io via butler (auto-update the listing)
         # 第三方 CDN（broth.itch.zone）故障不得阻断本站部署：此前 curl/unzip 任一失败会让 Deploy worker 根本不跑
         continue-on-error: true
@@ -148,7 +176,7 @@ jobs:
         run: |
           set -u
           fail=0
-          for p in / /ai-games /starbattle /zh/starbattle /star-battle-rules /archive /download /blocknova /overfit /mimic /overseer /prompt /minima /singularity /downloads/cg/overfit-cg.zip /downloads/cg/mimic-cg.zip /downloads/cg/overseer-cg.zip /downloads/cg/prompt-cg.zip /downloads/cg/minima-cg.zip /downloads/cg/singularity-cg.zip /ghostline /downloads/cg/ghostline-cg.zip /downloads/itch/ghostline.zip /app-starbattle.js /zh/app-starbattle.js; do
+          for p in / /ai-games /starbattle /zh/starbattle /star-battle-rules /archive /download /blocknova /overfit /mimic /overseer /prompt /minima /singularity /downloads/cg/overfit-cg.zip /downloads/cg/mimic-cg.zip /downloads/cg/overseer-cg.zip /downloads/cg/prompt-cg.zip /downloads/cg/minima-cg.zip /downloads/cg/singularity-cg.zip /ghostline /downloads/cg/ghostline-cg.zip /downloads/itch/ghostline.zip /downloads/playgama/prompt.zip /downloads/clean/prompt.zip /app-starbattle.js /zh/app-starbattle.js; do
             url="https://play.agiscorecard.com$p"
             ok=0; code=000; redirs=0
             # edge propagation can lag the wrangler deploy by a beat — retry briefly

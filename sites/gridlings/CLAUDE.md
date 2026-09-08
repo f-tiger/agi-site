@@ -1048,3 +1048,72 @@ cg-package-smoke，别靠肉眼。
   沙箱打不到线上站，这条只能在 runner 上验。
 - **通用教训**：游戏上第三方门户前，先问「我们的埋点在别人的域名下还发得出去吗」。
   itch 之所以有数据，只是因为 `itch.zone` 恰好没触发这个路径。
+
+## 一个 Bridge 构建 = 19 个平台,别再写第二个适配器(2026-09-08,读 SDK 源码所得)
+
+owner:「深度挖掘游戏方向,做好大平台,大流量的投放游戏」。第一件事是纠正 2026-09-07 那条计划。
+
+`vendor/playgama/playgama-bridge.js`(@playgama/bridge **2.1.0**)里有一张**平台判定谓词表**,
+按 hostname / 查询参数 / 全局对象自动认出宿主。19 条全表抄进根仓
+`docs/games-distribution-2026-09.md` 第二节;枚举共 **28 个平台 id**(含 youtube / msn / yandex /
+y8 / poki / gamedistribution / discord / telegram / tiktok / gamesnacks / samsung / reddit /
+lagged / vk / ok / xiaomi / microsoft_store / huawei / jio_games)。三条硬结论:
+
+1. **同一个 `downloads/playgama/<slug>.zip` 传到这 19 家任何一家都能跑**,Bridge 自己去调那家的
+   SDK。**「加一个平台 = 加一个 PORTAL 实现」到此作废**——只有 Bridge 枚举里**没有**的平台
+   (如 GamePix)才需要新代码,而那种平台目前一家都不值得写。
+2. **判定不到就落 `MOCK` = 无广告无分成。** 表外的宿主域要靠配置里的 `forciblySetPlatformId`
+   或 URL 上的 `?platform_id=`。**某个平台没数据时先查这一条,再怀疑自己的触发点**(与
+   `initialInterstitialDelay` 同一个教训:先看 SDK 默认值)。
+3. **配置是两层**:`{ 默认…, platforms: { <id>: {覆盖…} } }`,检测到的那层覆盖默认层。需要平台侧
+   ID 才能变现的(源码字段名):`y8` = `gameId/channelId/adsenseId`、`msn` = `gameId`、
+   `lagged` = `devId/publisherId`、`discord` = `appId`;CG / Yandex / YouTube /
+   GameDistribution / GameSnacks **零配置**。**没拿到 ID 就别上那家的变现——占位值换来的是
+   控制台报错 = 拒稿风险。**
+
+## 第四个变体:clean(授权级);顺带查出 strict 并不像手册说的那么干净(2026-09-08)
+
+**Coolmath Games**(2026-05 去重网页受众全球前五)的提交规则**要求**无广告(明文含「不给你自己的
+站或公司做广告」)、无任何外链、**不得有向开发者回传的统计计数器**——我们此前没有任何一个变体
+满足它,所以这家全球前五的门户在结构上一直投不了。现在能投了。
+
+- **定义只有一条断言,故意做成不可能靠巧合满足**:`play.agiscorecard.com` 这个字符串
+  **在包内任何一个文件里都不出现**。它一次覆盖信标 URL、canonical、hreflang、og:url、JSON-LD 的
+  两个 url、页脚链接、README。**2026-09-08 页脚死链事故的成因正是这些各查各的、漏了一个。**
+- 产物 **17 个**:`site/downloads/clean/<slug>.zip` —— 6 款画布游戏(`package_blocknova.py`)+
+  11 款谜题(`build_packages.py`)。GHOSTLINE 与 SINGULARITY **暂无**:产物要先从 `games/<slug>/`
+  重建才会带守卫,打包器**明确打印跳过原因**而不是悄悄少一个包。
+- **查出手册自己的一处错**:此前写谜题 strict 包「零外链」。零**锚点**是对的,但每个 strict 包仍带
+  **六处**指向我们域名的引用(canonical、两条 hreflang、og:url、两个 JSON-LD url),引擎 js 里还有
+  信标 URL 与挑战 URL,`README.txt` 更是**明文要求授权方给我们做反链**。GL_CLEAN 让这些在运行时
+  是死的,但**死代码不等于没有计数器**:审阅者打开 index.html 看到一个指向我们的 sendBeacon,
+  结论就是「有回传」。所以 clean 加在 strict **之上**,不改 strict(授权套件依赖它的署名条款)。
+- **源码侧两处永久修正(不是打包器 hack)**:①八款画布游戏的信标函数首行加
+  `if (window.GL_CLEAN) return;`——与谜题引擎 2026-08-24 起同一个约定,一套不是两套;
+  ②**CG 载入器原来会嗅探 `document.referrer`**,所以「本包不发任何请求」原本是**宿主的属性而不是
+  包的属性**;现在 `if (window.GL_CLEAN) on = false;` 压在所有检测路径之后(PG 侧同样压掉 `pg=1`)。
+- **门禁 `tools/clean-package-smoke.js`**:在页面脚本运行前**接管 `sendBeacon` 与 `fetch`**,
+  连**被吞掉的调用**也算失败——画布游戏的 `ev()` 全局可直接调,谜题引擎的 `gev()` 藏在 IIFE 里只能
+  靠真玩触发,**接管出口是唯一对两种形状都成立的证法**;只统计**离开包**的调用(谜题引擎正当地
+  fetch 自己的 pool json)。17 包 × 2 视口 = 34 项全绿;**已用反例证明它会红**——把未处理的站内页
+  原样打包,六个维度同时报错(试图回传 / 请求外泄 / GL_CLEAN 未注入 / DOM 里出现我们的域名 /
+  根相对链接残留 / 控制台报错)。
+- CI:新增门断言 **39 个包**全部存在且非空(一款游戏静默从某个变体列表掉出去,此前只会打印一行
+  没人看的日志);部署后自检加探 `/downloads/clean/prompt.zip` 与 `/downloads/playgama/prompt.zip`
+  (playgama 目录此前**一条线上探测都没有**)。
+- **代价写在明处**:无埋点无外链的包**谁都能转手自托管而我们永远不会知道**。strict 早已是同样性质
+  (授权套件就这么用),所以不是新风险;但 clean 包**不进 `/downloads` 浏览界面**,只有直链。
+- **Coolmath 投不投是 owner 拍板项**(2026-08-27 已立规,本轮不代决):逐款资格、文案、步骤在
+  `docs/coolmath-submission.md`;**OVERFIT 撞「无暴力」条款,不投**。平台裁定全表与判定线在根仓
+  `docs/games-distribution-2026-09.md`。
+
+## 改商店文案先回去读页面,别凭印象(2026-09-08 差点发出去一句假话)
+
+给 Coolmath 写第一版文案时,把 **MINIMA** 写成「看着等高线图找最低点」——而这款的整个设计是
+**地形看不见,只给你脚下的坡向**(页面标题就写着 "You Can Only Feel the Slope")。PROMPT 那版也编了
+「后面的关卡加转向与循环」这种源码里没有的东西。两处都是回去读页面可见文字、`featureList`、
+按钮标签和 `e.code` 分支才发现的。**规矩**:任何投稿文案、任何平台的描述字段,逐句必须能在页面或
+源码里指出出处;指不出来就删掉那句。零编造规则**同样适用于商店文案**,而且这类假话是直接说给正在
+审我们的平台听的。
+顺带修了一处源码与运行时不一致:MINIMA 的 HEAT 按钮静态写 "costs 90 steps",而 `HEAT_COST = 75`
+在运行时把它改写掉 —— 静态值已改成 75。

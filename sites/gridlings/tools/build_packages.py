@@ -151,6 +151,63 @@ def strict_page(html_src):
     s = s.replace("</title>", " (portal build)</title>", 1)
     return s
 
+# ---------------------------------------------------------------------------
+# CLEAN flavor — one step stricter than `strict`, and the difference matters.
+#
+# `strict` means "no external ANCHOR": it satisfies a portal that rejects clickable
+# links. Audited 2026-09-08, every strict zip still carries six references to our own
+# host in index.html (canonical, two hreflang alternates, og:url, two JSON-LD urls),
+# six more in the engine js (the beacon URL twice, the challenge url, the share text)
+# and one in README.txt — which actually ASKS the licensee for a backlink.
+#
+# Coolmath Games' published rules are stricter than "no anchors": no advertising
+# "including no ad for your own site or company", no external links at all, and no
+# stats counter that reports back to the developer. GL_CLEAN already makes the beacon
+# and the challenge UI dead at runtime, but a reviewer reading index.html sees a
+# sendBeacon to our domain and correctly concludes there is a counter. Dead code is
+# not an absent counter.
+#
+# So the clean flavor is defined by one assertion that cannot be satisfied by
+# accident: THE STRING "play.agiscorecard.com" APPEARS IN NO FILE OF THE ZIP.
+# Same rule and same wording as the canvas games' clean variant in
+# tools/package_blocknova.py — one concept for the whole site, not two.
+CLEAN_README = """{name}
+
+A daily logic puzzle. Open index.html in any modern browser — no install, no
+account, no network access of any kind. {days} pre-generated daily puzzles from
+{epoch}, each verified by solver to have exactly one solution reachable by pure
+deduction.
+
+This build contains no advertising, no external links, and no analytics: it never
+contacts any server, including ours. Offered under a non-exclusive licence for
+hosting; no attribution link is required or expected of the host.
+
+Not affiliated with LinkedIn or The New York Times.
+"""
+
+_CLEAN_HEAD = (
+    re.compile(r'[ \t]*<link rel="canonical"[^>]*>\n?'),
+    re.compile(r'[ \t]*<link rel="alternate"[^>]*>\n?'),
+    re.compile(r'[ \t]*<meta property="og:url"[^>]*>\n?'),
+    re.compile(r'[ \t]*<script type="application/ld\+json">.*?</script>\n?', re.S),
+)
+
+
+def clean_asset(text):
+    """Scrub every trace of our own host out of one file of a clean package.
+
+    The beacon URL becomes about:blank first (inert in both branches: sendBeacon
+    rejects a non-http scheme and the throw is already inside the engine's try/catch,
+    and GL_CLEAN means the call is never reached anyway). Everything else that still
+    spells our host is a canonical/share/challenge STRING that GL_CLEAN suppresses, so
+    dropping the origin leaves an inert path that is never fetched.
+    """
+    for pat in _CLEAN_HEAD:
+        text = pat.sub("", text)
+    text = text.replace('"%s/e"' % SITE_URL, '"about:blank"')
+    return text.replace(SITE_URL, "")
+
+
 def portal_js(js_src, page_path):
     """Zip copy of the engine: beacon goes to the site (CORS * on /e, so
     portal plays are measured, with the portal as referrer), and challenge
@@ -224,6 +281,47 @@ def main():
             zf.writestr("README.txt", README.format(name=slug.capitalize() + " (portal build, no external links)", days=450, epoch="2026-08-24"))
         open(os.path.join(sdir, f"{slug}.zip"), "wb").write(buf.getvalue())
     print(f"strict portal builds: {len(GAMES)} zips in downloads/strict/")
+    # clean flavor: strict, plus not one reference back to us anywhere in the zip.
+    # Written next to the canvas games' clean builds so one directory is the answer to
+    # "which packages may go to a platform that forbids ads, links and counters".
+    cdir = os.path.join(OUT, "clean")
+    os.makedirs(cdir, exist_ok=True)
+    for slug, g in GAMES.items():
+        d = json.load(open(os.path.join(SITE, g["data"][0])))
+        page = clean_asset(strict_page(strip_page(open(os.path.join(SITE, g["page"])).read(), slug)))
+        play_path = "/" if slug == "gridlings" else "/" + slug
+        js_body = clean_asset(portal_js(open(os.path.join(SITE, g["js"])).read(), play_path))
+        members = {
+            "index.html": page,
+            "style.css": clean_asset(open(os.path.join(SITE, "style.css")).read()),
+            g["js"]: js_body,
+            "firstrun.js": clean_asset(open(os.path.join(SITE, "firstrun.js")).read()),
+            "cg.js": clean_asset(open(os.path.join(SITE, "cg.js")).read()),
+            "copy.js": clean_asset(open(os.path.join(SITE, "copy.js")).read()),
+            "portal.js": clean_asset(open(os.path.join(SITE, "portal.js")).read()),
+            "README.txt": CLEAN_README.format(
+                # HUB_NAME, not slug.capitalize(): the README is read by the reviewer
+                # who decides whether to licence this, and "Starbattle" reads generated.
+                name=HUB_NAME.get(slug, slug.capitalize()), days=len(d["puzzles"]), epoch=d["epoch"]),
+        }
+        for f in g["data"]:
+            members[f] = open(os.path.join(SITE, f)).read()
+        for name, body in members.items():
+            assert "play.agiscorecard.com" not in body, (
+                f"clean/{slug}.zip: {name} still references our host — "
+                f"{body[max(0, body.find('play.agiscorecard.com') - 80):body.find('play.agiscorecard.com') + 80]!r}")
+            m = re.search(r'<a\b[^>]+href="(?:https?:)?//', body)
+            assert not m, f"clean/{slug}.zip: {name} has an external anchor — {m.group(0)!r}"
+        buf = io.BytesIO()
+        with zipfile.ZipFile(buf, "w", zipfile.ZIP_DEFLATED) as zf:
+            for name, body in members.items():
+                zf.writestr(name, body)
+            cov = os.path.join(SITE, "covers", f"{slug}.png")
+            if os.path.exists(cov):
+                zf.writestr("cover.png", open(cov, "rb").read())
+        open(os.path.join(cdir, f"{slug}.zip"), "wb").write(buf.getvalue())
+    print(f"clean licensing builds: {len(GAMES)} zips in downloads/clean/ "
+          f"(zero references to our host, asserted per file)")
     # CrazyGames upload flavor (2026-08-26 resubmission): strict base + the SDK
     # force-on. Upload builds carry no query string, so window.GL_CG=true is
     # injected BEFORE cg.js (loads SDK v3, reports loading/gameplay lifecycle)

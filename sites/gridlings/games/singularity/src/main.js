@@ -8,13 +8,18 @@ import * as E from "./econ.js";
    interstitials, so the reachability problem that failed GHOSTLINE's first
    certification does not apply here: a certification pass can click those buttons. */
 const PORTAL = (function () {
-  if (window.GL_PG === true || /(^|[?&])pg=1/.test(location.search)) return playgama();
+  if (!window.GL_CLEAN && (window.GL_PG === true || /(^|[?&])pg=1/.test(location.search))) return playgama();
   return crazygames();
 })();
 
 function crazygames() {
   let on = window.GL_CG === true || /(^|[?&])cg=1/.test(location.search);
   if (!on) { try { on = /crazygames\./.test(document.referrer); } catch (e) {} }
+  /* GL_CLEAN wins over every detection path above: the licensing build must not load a
+     portal SDK even if it happens to be iframed by a host whose referrer matches the
+     sniff. Without this line "makes no network request" would be a property of the HOST,
+     not of the package. */
+  if (window.GL_CLEAN) on = false;
   window.GL_CG = on;
   const q = []; let sdk = null;
   const api = { on, ev: e => { if (on) q.push(e); }, ad: (type, done) => done(false), data: null };
@@ -108,6 +113,12 @@ function playgama() {
   return api;
 }
 function ev(n, l) {
+  /* GL_CLEAN: the licensing / no-analytics build. Coolmath-class platforms forbid a stats
+     counter that reports back to the developer, so that build must not even try. Same flag
+     the puzzle engine in app.js has honoured since 2026-08-24 — one convention, not two.
+     The packager only emits a clean zip for a game whose PRODUCT carries this guard, so
+     until site/singularity.html is rebuilt from this source it stays off that list. */
+  if (window.GL_CLEAN) return;
   try {
     const d = JSON.stringify({ n, l: l || "sg", p: "/singularity" }), u = "https://play.agiscorecard.com/e";
     if (navigator.sendBeacon) navigator.sendBeacon(u, new Blob([d], { type: "application/json" }));

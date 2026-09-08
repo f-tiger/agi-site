@@ -158,7 +158,7 @@
     <div class="mrow"><span>STEPS LEFT</span><span id="hsteps">0</span></div>
     <div class="track"><div class="fill" id="hfill"></div></div>
   </div>
-  <button class="heat" id="bheat">HEAT<span id="hcost">costs 90 steps</span></button>
+  <button class="heat" id="bheat">HEAT<span id="hcost">costs 75 steps</span></button>
 </div>
 <footer><span>No ads here · no account · free</span><a href="/" id="hublink">more games → Gridlings</a> · <a href="/ai-games">games about AI</a></footer>
 
@@ -200,6 +200,11 @@
 (function () {
   var on = window.GL_CG === true || /(^|[?&])cg=1/.test(location.search);
   if (!on) { try { on = /crazygames\./.test(document.referrer); } catch (e) {} }
+  /* GL_CLEAN wins over every detection path above: the licensing build must not
+     load a portal SDK even if it happens to be iframed by a host whose referrer
+     matches the sniff. Without this line "makes no network request" would be a
+     property of the HOST, not of the package. */
+  if (window.GL_CLEAN) on = false;
   window.GL_CG = on;
   var q = [];
   window.mnCg = function (e) { if (on) q.push(e); };
@@ -234,6 +239,10 @@
   document.head.appendChild(s);
 })();
 function ev(n, l) {
+  /* GL_CLEAN: the licensing / no-analytics build (Coolmath-class platforms forbid a
+     stats counter that reports back to the developer). Same flag the puzzle engine
+     in app.js has honoured since 2026-08-24 — one convention, not two. */
+  if (window.GL_CLEAN) return;
   try {
     var d = JSON.stringify({ n: n, l: l || "mn", p: "/minima" });
     var u = "https://play.agiscorecard.com/e";

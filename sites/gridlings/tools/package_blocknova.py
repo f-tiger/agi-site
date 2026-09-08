@@ -1,15 +1,36 @@
 # -*- coding: utf-8 -*-
-"""Build the CrazyGames upload packages (Block Nova + OVERFIT).
+"""Build every distribution package for the eight canvas games.
 
-Each upload is ONE file: the game html renamed index.html with window.GL_CG
-pre-set (no query string exists on their CDN, same convention as cg.js).
-SDK loads from their CDN; the first-party beacon already uses an absolute URL
-with CORS. Output under site/downloads/cg/ — built in CI at deploy time, NOT
-committed (same convention as build_packages.py).
+One game, four destinations, four different sets of true statements:
 
-2026-09-05 update: OVERFIT added; per owner's call Block Nova is NOT being
-submitted to CG (saturated-genre copy risk = third template rejection), but
-its package keeps building — it costs nothing and keeps the option open.
+  site/downloads/cg/<slug>-cg.zip        CrazyGames. window.GL_CG pre-set, their SDK
+                                         from their CDN, ads on, first-party beacon on.
+  site/downloads/playgama/<slug>.zip     Playgama Bridge. ONE build that the Bridge's own
+                                         predicate table resolves to CrazyGames, Yandex,
+                                         Y8, MSN, YouTube Playables, Discord, Telegram,
+                                         GameDistribution, Lagged, Poki, TikTok, Reddit,
+                                         GameSnacks, Samsung … (see the table in
+                                         docs/games-distribution-2026-09.md). Ads on,
+                                         beacon on.
+  site/downloads/itch/<slug>.zip         itch.io. The plain page: no portal SDK, so the
+                                         page's own "no ads" claim stays true.
+  site/downloads/clean/<slug>.zip        Licensing grade. No ad SDK, no beacon, no link
+                                         and no reference of any kind pointing back at
+                                         us. This is the only build that can be offered
+                                         to a platform whose rules FORBID advertising,
+                                         external links and developer-side stats
+                                         counters — Coolmath Games is the big one, and
+                                         its rules are why this variant exists. The 11
+                                         logic puzzles have had this since 2026-08-24
+                                         (build_packages.py's strict flavor); the eight
+                                         canvas games did not until 2026-09-08.
+
+Everything here is built in CI at deploy time and NOT committed (same convention as
+build_packages.py).
+
+2026-09-05: per owner's call Block Nova is NOT submitted to CG (saturated-genre copy risk
+= third template rejection), but its packages keep building — they cost nothing and keep
+the option open.
 """
 import io, os, re, zipfile
 
@@ -156,6 +177,80 @@ for slug, prefix in sorted(PLAYGAMA_SHARED.items()):
         z.write(os.path.join(vendor, "playgama-bridge.js"), "playgama-bridge.js")
         z.write(os.path.join(vendor, "LICENSE"), "LICENSE-playgama-bridge.txt")
         z.write(os.path.join(vendor, "playgama-bridge-config.json"), "playgama-bridge-config.json")
+    print("wrote", zp, os.path.getsize(zp), "bytes")
+# ---------------------------------------------------------------------------
+# CLEAN / licensing-grade variant.
+#
+# Coolmath Games publishes seven rules for submitted games, and four of them are about
+# what a build must NOT do (coolmathgames.com/submit-a-game, read 2026-09-08 via search —
+# their site is blocked by this sandbox's egress proxy):
+#     · free of advertising — "this also means no ad for your own site or company"
+#     · free of any and all external links
+#     · no stats counter that reports back to the developer
+#     · no user data collection
+# Every other build we ship breaks at least one of those on purpose. So the clean build is
+# defined by a single assertion that is trivial to check and impossible to satisfy by
+# accident: THE STRING "play.agiscorecard.com" DOES NOT APPEAR IN THE OUTPUT AT ALL.
+# That one line covers the beacon URL, the canonical tag, og:url, the JSON-LD graph and
+# the footer links in one go — the 2026-09-08 footer bug happened precisely because each
+# of those was checked separately, and one of them wasn't.
+#
+# Note what is NOT stripped: the page's ad-free wording. In this variant it is TRUE, and
+# the footer that carried it is gone anyway. Per the 2026-09-07 rule, claims are checked
+# per variant, not per source file.
+CLEAN_CANDIDATES = ["prompt", "mimic", "minima", "overseer", "overfit", "blocknova",
+                    "singularity", "ghostline"]
+SITE_HOST = "play.agiscorecard.com"
+_LDJSON = re.compile(r'[ \t]*<script type="application/ld\+json">.*?</script>\n?', re.S)
+_CANONICAL = re.compile(r'[ \t]*<link rel="canonical"[^>]*>\n?')
+_OG_URL = re.compile(r'[ \t]*<meta property="og:url"[^>]*>\n?')
+# The guard is dead code once GL_CLEAN is set, but the URL still has to go so the
+# one-line assertion above can be the whole test. about:blank is inert in both branches:
+# sendBeacon rejects a non-http scheme and the throw is already inside try/catch.
+_BEACON_URL = re.compile(r'"https://play\.agiscorecard\.com/e"')
+# Both spellings: hand-written sources are readable, the two esbuild bundles are minified.
+_CLEAN_GUARD = re.compile(r"if\s*\(window\.GL_CLEAN\)\s*return")
+
+
+def clean_page(src, what):
+    # A game whose PRODUCT does not carry the beacon guard cannot get a clean build: the
+    # guard is what makes "no request leaves this package" a property of the package. For
+    # ghostline and singularity the guard lives in games/<slug>/src/main.js and only
+    # reaches site/<slug>.html on the next `node build.*` — until then they are skipped
+    # loudly rather than shipped hopefully.
+    if not _CLEAN_GUARD.search(src):
+        return None
+    out = src.replace(marker, "<script>window.GL_CLEAN=true;</script>\n" + marker, 1)
+    out = strip_site_footer(out, what)
+    # The structured data describes a WebApplication living at OUR url and a breadcrumb
+    # trail through OUR site. Served from a licensee's domain that is simply false, on top
+    # of being an external reference.
+    out = _LDJSON.sub("", out)
+    out = _CANONICAL.sub("", out)
+    out = _OG_URL.sub("", out)
+    out = _BEACON_URL.sub('"about:blank"', out)
+    assert SITE_HOST not in out, "%s: a reference to %s survived into the clean build - %r" % (
+        what, SITE_HOST, out[max(0, out.find(SITE_HOST) - 90):out.find(SITE_HOST) + 90])
+    m = re.search(r'<(?:a|link)[^>]+href="https?://', out)
+    assert not m, "%s: an external link survived into the clean build - %r" % (what, m.group(0))
+    for flag in ("window.GL_CG=true", "window.GL_PG=true"):
+        assert flag not in out, "%s: clean build must not set %s" % (what, flag)
+    return out
+
+
+cleandir = os.path.join(ROOT, "site", "downloads", "clean")
+os.makedirs(cleandir, exist_ok=True)
+for slug in CLEAN_CANDIDATES:
+    src = io.open(os.path.join(ROOT, "site", slug + ".html"), encoding="utf-8").read()
+    assert marker in src, slug + ": main script marker moved — update this packager"
+    out = clean_page(src, slug + " (clean build)")
+    if out is None:
+        print("skip  clean/%s.zip — the product has no `if (window.GL_CLEAN) return` guard; "
+              "rebuild it from games/%s/ so the guard lands in site/%s.html" % (slug, slug, slug))
+        continue
+    zp = os.path.join(cleandir, slug + ".zip")
+    with zipfile.ZipFile(zp, "w", zipfile.ZIP_DEFLATED) as z:
+        z.writestr("index.html", out)
     print("wrote", zp, os.path.getsize(zp), "bytes")
 itchdir = os.path.join(ROOT, "site", "downloads", "itch")
 os.makedirs(itchdir, exist_ok=True)
