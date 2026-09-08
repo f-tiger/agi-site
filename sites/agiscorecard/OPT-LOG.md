@@ -2733,3 +2733,55 @@ cn.html 四处写死数字的硬同步），以及 11-15 的判定日。
 **未做（有闸门，按规矩不硬凑）**：CITATION AMPLIFICATION 队列 4 项全部有前置闸门未过
 （occupation 系列等 10-03、datacenter/eu-ai-act 8-31 复查未过、ai-jobs 是事件驱动）；
 strategy-2027 剩的 3 项全卡在 owner 的 Gateway waitlist。invest PRD 队列昨天 P3 完成后已清空。
+
+## 2026-09-08（每日 run）— 站内搜索一个月来一直在丢词，今天才被读数抓到
+
+**spec（两轮自批后）**：第一版是「读 D1 → 按阶梯挑一项 → ship」。自批第一轮：阶梯 ⓪
+（引用放大）队列 4 项闸门全未过、strategy 剩项卡 owner waitlist、invest PRD 已清空，
+所以今天必然落到 ① 或 ⑤ —— 而 ① 的最优目标 `/when-will-agi-arrive` 09-06 刚动过，
+**5-run 冷却内，不许碰**。自批第二轮：那就先把读数本身读干净，别急着改页面；
+结果这一读就读出了今天唯一该做的事。所调 skill：analytics（口径与漏斗）、
+citation-growth（判定型页面清单，本轮未触发发布）。
+
+**发现一：`site_search` 从来不是「没人搜」，是「搜了但被我们删了」。**
+28 天 7 行 `site_search`，其中 5 行是 MCP 端 worker 自己写的（`tool:sunwatch_ledger` 等，
+`location='mcp'`，**不是读者搜索，读需求信号时必须排除**）。剩下 2 行是真的：
+09-05 12:37:54/55，一位从 `forum.effectivealtruism.org` 来的真人（US/en-US）点了首页
+「巴菲特持仓」建议词，一秒后在 `/search` 又搜了一次 —— **两行的 label 都是空的**。
+- 根因：collector 用**结构字段**的正则去洗**读者输入的文本**。
+  `clean = v.replace(/[^\w:/?=&.-]/g,'')`：空格被删，而 JS 的 `\w`（无 u 标志）是纯 ASCII，
+  所以每个中文字被删光。`clean('巴菲特') === ''`。多词英文剩粘连一坨
+  （`are we close to agi` → `areweclosetoagi`）。
+- 影响面：**2026-08-08 /search 上线至今整整一个月，每一位 zh 读者的搜索词都被静默丢弃。**
+  站内有 /cn + 30 多个 zh 页，这不是边角。
+- 为什么一直没发现：**洗字段的函数出错时不报错，只让表看起来正常。**「没人搜」和
+  「搜了但被删了」在数据里长得一模一样。CLAUDE.md 里那句「site_search 一次都没触发过」
+  就是被这个 bug 喂出来的结论。
+
+**ship（唯一改动，全在仪器层，零页面改动 = 零 churn）**
+- `tools/analytics-worker/index.js`：拆成两个洗法。`clean()` 继续严格，只用于**我们自己的
+  标识符**（事件名 / location / path / lang / UTM / topic）；新增 `cleanText()` 用于**读者
+  输入的文本**——保留任意语种的词与空格，只剥控制字符和 `<>"'` 反引号反斜杠
+  （ops 面板会把热词打印回 HTML，这几个必须剥）。
+- label 上限 48 → **80**，对齐一直以来的文档承诺与 `index.html` 自己的 `q.slice(0,80)`；
+  此前两边不一致，GA4 收 80 字、D1 只存 48 字。
+- 新增 `tools/test_analytics_sanitiser.mjs`（16 条断言，含那两行真实样本），
+  **挂进 deploy-agiscorecard.yml 的 push 路径**——它是对已部署 worker 的正确性闸门，
+  几秒钟，不违反配额纪律（外部副作用类才只能挂 schedule）。
+- 未回填历史：那两行的原词**无法复原**，不编造。空 label 保持原样，作为事故留痕。
+
+**发现二（防止一次误判，未 ship）：`calc_use{grade_game}` = 17 不等于「完成 17 次」。**
+08-31 预登记的判定线是「至 09-28，完成事件 ≥10 → 复制到 `/progress-index` 与
+`/when-will-agi-arrive`」。今天读出 17，看着已达标 —— 但逐行看：**全部来自 09-07
+20:24:52–20:25:27 的同一个人、35 秒内**，其中 8 行是逐条打分（`knowledge-work:delivered` 等），
+只有 4 行是 `complete:*`，而那 4 行还是同一人来回改 compute-scaling / agi-2027 反复重算的结果。
+**真实读数 = 1 人、4 次重算，不是 17。判定线未达标。** `challenge_share{grade_game}` = 0。
+按站规「CI 自测会伪装成增长」的同一条反射（这次不是 CI，是单人重复操作），
+记在案，防止 09-28 那天有人拿 17 去结算。正确查询：
+`... WHERE name='calc_use' AND location='grade_game' AND label LIKE 'complete:%'`。
+
+**未做（有闸门，按规矩不硬凑）**：CITATION AMPLIFICATION 队列 4 项闸门仍未过；
+`/when-will-agi-arrive` 转化钩（191 pv/28d、全站第二、subscribe_click 0）是下一个该做的，
+但 09-06 刚动过，**冷却到 5 个 run 后再做，今天不碰**。
+
+**validate OK（229 页 / 211 URL）；sanitiser 测试 16/16 通过。**

@@ -58,8 +58,42 @@ const ALLOWED_EVENTS = new Set([
 // people, which is exactly what the privacy promise rules out.
 const UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign'];
 
+// STRUCTURAL fields only — event name, location, path, lang, UTM, topic. Those are
+// OUR identifiers: always ASCII, always from a fixed vocabulary, so a strict allowlist
+// is the right shape and anything outside it is noise or an attack.
 const clean = (v, max) =>
   typeof v === 'string' && v ? v.replace(/[^\w:/?=&.-]/g, '').slice(0, max) : null;
+
+// READER-SUPPLIED TEXT — the site_search query above all. `clean` was being used for
+// this too, and it is the wrong filter twice over: it deletes spaces, and its \w is
+// ASCII-only without the u flag, so every CJK character is deleted as well.
+//
+// Evidence that this was not theoretical (2026-09-05, two rows): a reader arriving
+// from forum.effectivealtruism.org clicked the 巴菲特持仓 chip and then searched on
+// /search. Both rows stored an EMPTY label, because clean('巴菲特') === ''. Multi-word
+// English survived only as a fused blob — 'are we close to agi' -> 'areweclosetoagi'.
+// So the one loop whose entire purpose is to hear what readers ask for was deleting
+// the question and keeping the fact that a question was asked. Every zh reader's
+// search has been silently blank since /search shipped on 2026-08-08.
+//
+// This filter keeps words and spaces in any script, and strips what actually matters:
+// control characters, and the markup/quote characters that would make a stored label
+// dangerous when the ops dashboard prints the top queries back out.
+const cleanText = (v, max) => {
+  if (typeof v !== 'string' || !v) return null;
+  const out = v
+    .replace(/[\u0000-\u001f\u007f<>"'`\\]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .slice(0, max);
+  return out || null;
+};
+
+// The documented contract (CLAUDE.md, and index.html's own q.slice(0,80)) has always
+// said 80 characters. Storage truncated at 48, so the two disagreed; 80 is the number
+// that was promised, and a 48-char cut is short enough to lose the tail of a real
+// sentence-shaped query.
+const LABEL_MAX = 80;
 
 // Host only. A full referrer URL can carry query strings that identify people.
 const refHost = (r) => {
@@ -517,11 +551,11 @@ export default {
         // page_view only, and ONLY when the referrer is same-origin, the referrer's
         // PATH is kept in the otherwise-unused label column. Cross-origin referrers
         // keep host-only treatment exactly as before: we never store a stranger's URL.
-        let label = clean(body.b, 48);
+        let label = cleanText(body.b, LABEL_MAX);
         if (name === 'page_view' && !label) {
           try {
             const r = new URL(String(body.r || ''), url.origin);
-            if (r.hostname === url.hostname) label = clean('from:' + r.pathname, 48);
+            if (r.hostname === url.hostname) label = clean('from:' + r.pathname, LABEL_MAX);
           } catch (e) { /* no referrer, or unparseable — leave label null */ }
         }
         const stmt = env.EVENTS.prepare(
@@ -993,3 +1027,9 @@ const SLIDEIN = '<script>(function(){try{' +
     'if(left<=0){clearInterval(iv);show("timer");}' +
   '},1000);' +
 '}catch(e){}})();</script>';
+
+// Exported for tools/test_analytics_sanitiser.mjs only. The Workers runtime ignores
+// extra named exports; `export default` above stays the worker entrypoint. These two
+// functions decide what survives into D1, and a silent mistake in them looks exactly
+// like "nobody searched" — which is the failure that shipped for a month.
+export const __test = { clean, cleanText, LABEL_MAX };

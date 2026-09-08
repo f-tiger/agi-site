@@ -688,6 +688,22 @@ with weak/zero results are FIRST-CLASS backlog seeds (they outrank speculative t
 ideas; a search is a user telling you what to build). Never publish thin pages just to
 match a query — the hard content rules still gate what ships.
 
+**2026-09-08 复活 + 一个必须记住的教训。** 两条阈值都到了,而且这张表原本是坏的:
+- **量到了**:全站 JS `page_view` = **1147/28d**(>1000),按上面写的规矩,需求层重新纳入每日例行。
+- **它真的被用过,但读数是空的**:09-05 有一位从 `forum.effectivealtruism.org` 来的真人
+  点了首页「巴菲特持仓」建议词并在 `/search` 搜索,**两行都存成了空 label**。原因是
+  collector 用**结构字段**的正则去洗**读者输入的文本**:`[^\w:/?=&.-]` 删掉空格,而
+  JS 的 `\w`(无 u 标志)是纯 ASCII,于是每一个中文字都被删光——`clean('巴菲特') === ''`。
+  多词英文也只剩粘连的一坨(`are we close to agi` → `areweclosetoagi`)。
+  **也就是说 8-08 到 9-08 这一个月,每一位 zh 读者的搜索词都被静默丢弃了。**
+- 已修:新增 `cleanText()`(保留任意语种的词与空格,只剥控制字符与 `<>"'` 反引号反斜杠),
+  label 上限对齐文档承诺的 80 字符,并加 `tools/test_analytics_sanitiser.mjs`(挂进部署流水线)。
+- **通用教训,比这个 bug 本身重要**:**一个洗字段的函数出错时不会报错,只会让表看起来很正常。**
+  「没人搜」和「搜了但被我们删了」在数据里长得一模一样。凡是新增「读者自由输入」进 D1 的字段,
+  必须同时加一条断言/测试,证明一个中文样本能原样存进去。
+- **别把 `site_search{location='mcp'}` 当读者搜索**:那是 MCP 端由 worker 自己写的行
+  (`tool:sunwatch_ledger` 等),混在同一个 name 下。读需求信号时必须 `location != 'mcp'`。
+
 ## Owner alert channel — Telegram, major information only (owner request 2026-08-16)
 
 Owner: 使用我已经接好的股票提醒的 telegram 通道，如果有重大信息，给我指导提醒。

@@ -1274,3 +1274,49 @@ API Tokens → 部署用 token → 加 Account · D1 · Read，约 1 分钟）�
 **本周赔率**：Polymarket「OpenAI 在 2027 前宣布达成 AGI」→ Yes **27%** / No 73%，
 成交量 $194,567（2026-09-07 04:06:55 UTC 机读）。对照证据侧：Tracker 62.5/100、
 AGI-2027 判定 Open，均未动。
+
+## 2026-09-08（日结）
+
+**agiscorecard**（口径：真实读者只认 JS `events.page_view`）
+- JS pv **1147/28d**；后 14 天 628 vs 前 14 天 519（**+21%**）。服务端 `pageviews.human`
+  24,417 —— JS 占比仅 4.7%，那 24k 是含未识别爬虫的上限，**不作分母**。
+- 落地页：`/` 201 · **`/when-will-agi-arrive` 191**（全站第二，占总量 17%）·
+  `/situational-awareness-summary` 35 · `/how-close-is-agi` 31 · `/will-agi-arrive-2027` 30。
+- 来源：google 85 · duckduckgo 52 · bing 28 · **forum.effectivealtruism.org 11** ·
+  claude.ai 6 · chatgpt.com 6 · lesswrong 4 · copilot 3 · perplexity 2。
+  AI 引擎合计 后14天 9 vs 前14天 8（**持平，未翻倍**）；社区（EA+LW）6 vs 9。
+- 漏斗：`subscribe_click` 6 → `sub_open` 4 → `sub_submit` 2 → `sub_ok` **2**。
+  两次 sub_ok 都在首页（footer_cta / post_scorecard）。`subscribers` 表 **2 行 status='stored'**
+  （无 beehiiv key，这是正常态，非故障）。
+- **转化赛马的关键读数**：`/when-will-agi-arrive` 191 pv 产出 `subscribe_click` **0**；
+  而 `/ai-2027-scenario-explained` 仅 28 pv 却产出 2 次（`deep_scenario_mid` 形态）。
+  最大深页没有一个能被点的订阅钩 —— 这是下一个该做的事，但该页 09-06 刚动，冷却中。
+- `vote_cast` 39；`invest_tool_click` 13（全是导航位，**Pro 桥仍 0 点击**）；
+  `tool_click` 8；`index_click` 7；`embed_copy` 0；`affiliate_click` 0（10-31 判定线现读数 0/5）。
+- `calc_use{grade_game}` 表面 17，**真实为 1 人 4 次重算**（见 OPT-LOG 同日）；
+  `challenge_share{grade_game}` 0。09-28 判定线**未达标**。
+- **仪器事故（已修）**：`site_search` label 被结构字段正则洗成空串，中文全灭、
+  英文粘连；8-08 至今一个月的读者搜索词已永久丢失。详见 OPT-LOG 与 CLAUDE.md。
+
+**gridlings**（D1 bd3b1ca9，human 口径）
+- 28 天：pv 545 · play_start 325 · solve 135 · hint_used 182 · play_again 131。
+  今日：pv 3 · play_start 4 · solve 1 · hub_click 1。
+- **itch 判定线（09-24，需累计 play_start≥150 且 solve≥25）：现读数 43 / 13，
+  与 08-31 完全持平** —— itch 侧连续多日零新增，按现趋势判定日不会达标。
+- Playgama：七款包齐（09-07 SINGULARITY 收尾），GHOSTLINE 审核中；
+  CG 七款重传包审核中（2–4 周）。
+
+**sourceradar / buysomething**（低频站，规矩是无信号只报数字）
+- 28 天 human pv **50**（近 7 天仅 5），bot 32；`pick_open` / `out_click` / `calc_use` **全 0**。
+  队列无项、rising 无 v≥200 的真实产品需求 → **今日不动作、不 bump**。
+
+**第①层 heartbeat**（data/fleet-health.json，09-07 13:50Z）：八站全部 **200**，
+agiscorecard / baipiaoji / getecoback / gridlings / buysomething / gamesledger
+`days_since_deploy=0`，thedollscout 与 goldrush = 2。**无异常。**
+
+**里程碑**：无新达成。`/when-will-agi-arrive` 稳居第二深页（此前已记）；
+首个 agent MCP 调用**仍未成立** —— 28 天内 5 行 `location='mcp'` 全部是同秒批量、
+参数重复、且其中一行自带 `canary` 字样，四条件判据不过，按规矩不上报为里程碑。
+
+**owner 待办（沿用，未催）**：thedollscout `content/d1-snapshot.json` 仍缺
+（Cloudflare → API Tokens → deploy token → 加 `Account · D1 · Read`），自 09-02 挂起。

@@ -52,6 +52,15 @@ jobs:
         working-directory: sites/agiscorecard
         run: python3 tools/check_hreflang.py
 
+      # The collector's field sanitisers decide what survives into D1. When they are
+      # wrong they are wrong SILENTLY: from 2026-08-08 to 2026-09-08 every reader's
+      # search query was stored as an empty label, and the table looked fine. Runs on
+      # the push path because it is a correctness gate on the deployed worker, and it
+      # costs a couple of seconds.
+      - name: Test analytics field sanitisers
+        working-directory: sites/agiscorecard
+        run: node tools/test_analytics_sanitiser.mjs
+
       - name: Guard - owner privacy files must never exist in this public repo
         run: |
           bad=$(find . -path ./.git -prune -o \( -name "owner-identity*" -o -name "owner-trajectory*" \) -print | wc -l)
