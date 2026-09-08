@@ -106,11 +106,11 @@
     transition:transform .06s,border-bottom-width .06s;}
   .btn:active{transform:translateY(3px);border-bottom-width:1px;}
   #hint{position:fixed;inset:0;top:0;right:0;bottom:0;left:0;display:flex;align-items:flex-end;justify-content:center;
-    z-index:40;padding:16px 16px 150px;pointer-events:none;transition:opacity .45s ease;}
+    z-index:40;padding:16px 16px var(--hint-lift,150px);pointer-events:none;transition:opacity .45s ease;}
   #hint.gone{opacity:0;}
-  .hcard{background:rgba(21,26,38,.93);border:1px solid var(--line);border-radius:16px;padding:14px 20px;max-width:380px;
+  .hcard{background:rgba(21,26,38,.93);border:1px solid var(--line);border-radius:16px;padding:9px 20px;max-width:420px;
     text-align:center;box-shadow:0 14px 44px rgba(0,0,0,.5);}
-  .hcard .keys{margin-bottom:10px;}
+  .hcard .keys{display:none;}
   .hcard p{font-size:13.5px;line-height:1.62;}
   .hcard .go{margin-top:11px;color:var(--bot);font-weight:800;letter-spacing:1px;text-transform:uppercase;font-size:12px;
     animation:pulse 1.5s ease-in-out infinite;}
@@ -582,7 +582,12 @@ document.getElementById("bretry").addEventListener("click", function () {
   document.getElementById("mdone").classList.remove("show");
   prog = []; resetBot(); running = false; over = false; capWarn = 0;
 });
-document.getElementById("hublink").addEventListener("click", function () { ev("hub_click", "pm"); });
+// The footer is stripped from portal builds (its links are root-relative and would
+// point at the portal's own domain), so this element is genuinely optional. It used
+// to be dereferenced unconditionally, which would have thrown on load in every
+// portal package the moment the footer was removed.
+var _hub = document.getElementById("hublink");
+if (_hub) _hub.addEventListener("click", function () { ev("hub_click", "pm"); });
 var KEYS = { KeyW: "FWD", ArrowUp: "FWD", KeyA: "LEFT", ArrowLeft: "LEFT", KeyD: "RIGHT", ArrowRight: "RIGHT",
              KeyQ: "UNTIL WALL", KeyE: "UNTIL \u25c6", KeyF: "SEEK \u25c6", KeyG: "SEEK \u2715" };
 window.addEventListener("keydown", function (e) {
@@ -605,10 +610,30 @@ function layout() {
   cv.width = Math.round(L.w * dpr); cv.height = Math.round(L.h * dpr);
   cx.setTransform(dpr, 0, 0, dpr, 0, 0);
 }
-window.addEventListener("resize", function () { layout(); fxLayout(); if (!armed) nudge(true); });
+// The coach card used to be pinned a flat 150px above the bottom of the VIEWPORT,
+// which on desktop put it on top of the board panel — the first thing anyone sees.
+// cell() already knows exactly where the board is drawn, so pin the card to the gap
+// under the board instead. Clamped so a short window keeps it on screen.
+function placeHint() {
+  var h = document.getElementById("hint"), rk = document.getElementById("rack");
+  if (!h || !rk) return;
+  // Sit the card in the band between the board and the op buttons, by measuring the
+  // buttons rather than guessing an offset from the bottom of the window. The card was
+  // originally pinned a flat 150px above the viewport bottom, which put it on top of
+  // the board on desktop — and raising the tile cap only made that worse, since a
+  // bigger board reaches further down.
+  var lift = window.innerHeight - rk.getBoundingClientRect().top + 8;
+  h.style.setProperty("--hint-lift", Math.max(72, Math.min(lift, window.innerHeight - 150)) + "px");
+}
+window.addEventListener("resize", function () { layout(); fxLayout(); placeHint(); if (!armed) nudge(true); });
 function cell() {
   var gw = grid[0].length, gh = grid.length;
-  var s = Math.min((L.w - 56) / gw, (L.h - 118) / gh, 84);
+  // 2026-09-08: the cap was 84, which only ever binds on DESKTOP — mobile is
+  // width-bound long before it. So a 1280x800 window drew a small board in a
+  // large empty screen, which is what a portal reviewer sees first. 120 keeps a
+  // cap (an ultrawide would otherwise be height-bound at ~240px tiles) while
+  // letting the board actually use the window.
+  var s = Math.min((L.w - 56) / gw, (L.h - 118) / gh, 120);
   return { s: s, ox: (L.w - gw * s) / 2, oy: 66 + (L.h - 118 - gh * s) / 2 };
 }
 function update(dt) {
@@ -621,7 +646,7 @@ function update(dt) {
   var nn = document.getElementById("nudge"), nb = nn && !nn.classList.contains("gone") && document.querySelector(".rack .op");
   if (nb) { var nr = nb.getBoundingClientRect(); nn.style.left = (nr.left + nr.width / 2 - 17) + "px"; nn.style.top = (nr.top - 30) + "px"; }
   if (introT > 0) { introT -= dt; if (introT <= 0) { document.getElementById("intro").classList.remove("show");
-    var hh2 = document.getElementById("hint"); if (hh2 && !armed) hh2.classList.remove("gone"); } }
+    var hh2 = document.getElementById("hint"); if (hh2 && !armed) { placeHint(); hh2.classList.remove("gone"); } } }
   if (countEl) { countT = Math.min(1, countT + dt / .7); var e = 1 - Math.pow(1 - countT, 3);
     countEl.textContent = "+" + Math.round(countTo * e); if (countT >= 1) countEl = null; }
   if (bot) { if (bot.sq > 0) bot.sq = Math.max(0, bot.sq - dt * 7); if (bot.pulse > 0) bot.pulse = Math.max(0, bot.pulse - dt * 3); }

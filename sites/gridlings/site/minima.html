@@ -544,7 +544,12 @@ function doHeat() {
 }
 document.getElementById("bheat").addEventListener("click", function () { doHeat(); });
 document.getElementById("bretry").addEventListener("click", function () { window.mnCg("stop"); ev("play_again"); newRun(); });
-document.getElementById("hublink").addEventListener("click", function () { ev("hub_click"); });
+// The footer is stripped from portal builds (its links are root-relative and would
+// point at the portal's own domain), so this element is genuinely optional. It used
+// to be dereferenced unconditionally, which would have thrown on load in every
+// portal package the moment the footer was removed.
+var _hub = document.getElementById("hublink");
+if (_hub) _hub.addEventListener("click", function () { ev("hub_click"); });
 document.getElementById("bnext").addEventListener("click", function () {
   /* MINIMA had no ad call anywhere: mnAd was defined twice and invoked never, so on a
      portal it would have certified as "no advertising implemented" with nothing to

@@ -601,7 +601,12 @@ document.getElementById("ovbtn").addEventListener("click", function () {
   var b = this; b.disabled = true;
   window.bnAd(function () { b.disabled = false; reset(true); });
 });
-document.getElementById("hublink").addEventListener("click", function () { ev("hub_click", "bn"); });
+// The footer is stripped from portal builds (its links are root-relative and would
+// point at the portal's own domain), so this element is genuinely optional. It used
+// to be dereferenced unconditionally, which would have thrown on load in every
+// portal package the moment the footer was removed.
+var _hub = document.getElementById("hublink");
+if (_hub) _hub.addEventListener("click", function () { ev("hub_click", "bn"); });
 
 layout();
 reset(false);

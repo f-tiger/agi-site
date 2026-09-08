@@ -34,6 +34,33 @@ _AD_CLAIMS = [
 _AD_LEFTOVER = re.compile(r"no ads|ad-free", re.I)
 
 
+# The site footer must not travel into a PORTAL build. Two reasons, one of them a
+# hard defect rather than a matter of taste:
+#
+#   1. Its links are RELATIVE — href="/" and href="/ai-games". Inside a portal iframe
+#      those resolve against the PORTAL's origin, so every submitted package has been
+#      shipping two dead links on its first screen (crazygames.com/ai-games, and the
+#      portal's own homepage as "more games → Gridlings"). Verified 2026-09-08 in
+#      prompt.zip and prompt-cg.zip; nothing rewrote them.
+#   2. A footer advertising another website, inside someone else's storefront, reads as
+#      an embedded web page rather than a game.
+#
+# PROMPT was rejected by Playgama on 2026-09-08 for "overall quality"; that reason is
+# not itemised, so this is not proven to be THE cause — but it is a real defect, it was
+# in all 15 portal packages, and it is free to remove. The gridlings.com page and the
+# itch build keep their footer: there the links are correct and the branding is ours.
+_FOOTER = re.compile(r"<footer>.*?</footer>", re.S)
+
+
+def strip_site_footer(out, what):
+    out, n = _FOOTER.subn("", out)
+    assert n == 1, "%s: expected exactly one <footer>, found %d" % (what, n)
+    # Nothing else may point at our site with a root-relative href either.
+    m = re.search(r'<a[^>]+href="/(?!/)[^"]*"', out)
+    assert not m, "%s: a root-relative link survived into a portal build - %r" % (what, m.group(0))
+    return out
+
+
 def strip_ad_claims(out, what):
     for pat, repl in _AD_CLAIMS:
         out = pat.sub(repl, out)
@@ -70,6 +97,7 @@ for src_name, zip_name in GAMES:
     # else. It had been shipping in all eight submissions, in two wordings. Both are
     # rewritten here, and the assert stops a third wording from slipping through.
     out = strip_ad_claims(out, src_name + " (CG build)")
+    out = strip_site_footer(out, src_name + " (CG build)")
     zp = os.path.join(outdir, zip_name)
     with zipfile.ZipFile(zp, "w", zipfile.ZIP_DEFLATED) as z:
         z.writestr("index.html", out)
@@ -97,6 +125,7 @@ for slug in PLAYGAMA:
                               '<script src="playgama-bridge.js"></script>\n' + marker, 1)
     # the ad-free footer is false here too: this build shows Playgama's ads
     out = strip_ad_claims(out, slug + " (Playgama build)")
+    out = strip_site_footer(out, slug + " (Playgama build)")
     zp = os.path.join(pgdir, slug + ".zip")
     with zipfile.ZipFile(zp, "w", zipfile.ZIP_DEFLATED) as z:
         z.writestr("index.html", out)
@@ -120,6 +149,7 @@ for slug, prefix in sorted(PLAYGAMA_SHARED.items()):
     out = out.replace("</body>", "<script>\n" + portal + "\n</script>\n</body>", 1)
     assert "GL_PORTAL_PREFIX" in out and out.count("playgama-portal") >= 0
     out = strip_ad_claims(out, slug + " (Playgama build)")
+    out = strip_site_footer(out, slug + " (Playgama build)")
     zp = os.path.join(pgdir, slug + ".zip")
     with zipfile.ZipFile(zp, "w", zipfile.ZIP_DEFLATED) as z:
         z.writestr("index.html", out)

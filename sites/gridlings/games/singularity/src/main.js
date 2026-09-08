@@ -342,7 +342,10 @@ function rogueModal() {
 $("bmute").addEventListener("click", () => { muted = !muted; $("bmute").textContent = muted ? "🔇" : "🔊"; try { localStorage.setItem("sgMute", muted ? "1" : "0"); } catch (e) {} music.level(); });
 setInterval(() => music.level(), 1500);   /* the portal can flip muteAudio at any time */
 $("bmute").textContent = muted ? "🔇" : "🔊";
-$("hublink").addEventListener("click", () => ev("hub_click"));
+// Optional: the packager strips the site footer from portal builds, because its
+// links are root-relative and would resolve against the portal's own domain.
+const _hub = $("hublink");
+if (_hub) _hub.addEventListener("click", () => ev("hub_click"));
 $("adboost").addEventListener("click", () => PORTAL.ad("rewarded", ok => { if (ok) { S.boost = Math.max(S.boost, 120); toast("Revenue ×2 for 2 minutes", "ok"); } ev("rewarded", ok ? "boost_ok" : "boost_fail"); render(true); }));
 $("adtrain").addEventListener("click", () => PORTAL.ad("rewarded", ok => { if (ok && S.training) { S.training.left = 0.01; toast("Training run finished", "ok"); } ev("rewarded", ok ? "train_ok" : "train_fail"); render(true); }));
 $("breset").addEventListener("click", () => modal("Wipe the save?", "Everything, including alignment. There is no undo.", [["Wipe", () => { S = E.fresh(); save(); render(true); }], ["Keep", null]]));

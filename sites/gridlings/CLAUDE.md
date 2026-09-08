@@ -945,6 +945,40 @@ CG 投稿都带着一句假话**，包括被拒的那两次。不能断言它导
 - 通用规则：**任何针对某个平台的构建变体，凡是页面上的事实性声明（有无广告、有无账号、
   是否免费），都必须在该变体下重新为真**。声明是按变体核的，不是按源码核的。
 
+## 门户包不许带站内页脚（2026-09-08，PROMPT 被 Playgama 以「质量」拒稿后查出）
+
+Playgama 09-08 拒了 PROMPT，理由是一句不可拆解的 "The overall quality of the game does not
+yet meet the expectations of our platform"。**没有逐条说明，所以下面两条都不能声称是「那个」
+原因**——但它们是查得出、改得掉的真缺陷，而且**15 个门户包全中**：
+
+1. **页脚那两个链接是根相对的**：`href="/"` 与 `href="/ai-games"`。在门户的 iframe 里它们
+   解析到**门户自己的域**，所以每一个提交出去的包，首屏都挂着两个死链
+   （"more games → Gridlings" 指向 crazygames.com 首页、"games about AI" 指向 404）。
+   没有任何代码重写过它们，实测确认。
+2. 一个替别的网站打广告的页脚，出现在别人的商店里，读起来就不像一个游戏。
+   GHOSTLINE/SINGULARITY 早就有 `.cg footer{display:none}`，说明这个问题被局部意识到过，
+   但那条只管 CG、不管 Playgama，而且元素还在。
+
+**已修（`strip_site_footer()`，打包器统一处理）**：CG 与 Playgama 变体整块删掉 `<footer>`，
+并断言**成品里不得残留任何根相对的 `<a href="/...">`**。站内页与 itch 版保留页脚——
+那两处链接是对的、品牌也是我们自己的。
+
+**连带的坑，必须记住**：删了元素，引用它的 JS 就炸。八款里有六款写着
+`document.getElementById("hublink").addEventListener(...)`，GHOSTLINE 与 SINGULARITY 写着
+`$("hublink").addEventListener(...)`——全部无判空。第一次打包后 `cg-package-smoke.js` 当场
+报 `Cannot read properties of null`，两款游戏直接白屏。**这比页脚本身严重得多。**
+通用规则：**凡是打包器会删的元素，源码里对它的引用一律要判空**；改完必跑 fleet-smoke +
+cg-package-smoke，别靠肉眼。
+
+## PROMPT 桌面端：格子上限 84 把棋盘困在空屏里（2026-09-08）
+`cell()` 里 `Math.min((L.w-56)/gw, (L.h-118)/gh, 84)` 的那个 84 **只在桌面端生效**——手机端
+早就被宽度卡住了。所以 1280×800 打开时是一小块棋盘漂在大片空背景中间，而这正是门户审核
+第一眼看到的画面。上限提到 120（仍保留上限，否则超宽屏会被高度卡到 ~240px 一格）。
+连带：棋盘变大后，原本「距视口底部固定 150px」的教学卡片直接压在棋盘上。改为**测量
+`#rack`（操作按钮条）的位置**把卡片放进棋盘与按钮之间的空档，并去掉卡片里那张方向键图示
+——正下方的按钮本来就写着 FWD/LEFT/RIGHT 和 W/A/D，那张图是重复的，也正是它把卡片撑高到
+盖住棋盘。桌面与 390×844 手机端均已截图确认无重叠。
+
 ## 多平台分发：PORTAL 抽象 + 每平台一个构建变体（2026-09-07）
 - 游戏里**不要再写死某个平台的 SDK**。统一走 `PORTAL` 契约：
   `on / ev("start"|"stop"|"happy") / ad(type, done)`，背后按 `window.GL_CG` / `window.GL_PG`

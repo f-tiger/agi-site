@@ -252,7 +252,10 @@ $("bmenu").addEventListener("click", () => { arm(); sfx.click(); state = "menu";
 $("bmenu2").addEventListener("click", () => { state = "menu"; $("hud").classList.remove("show"); $("count").classList.remove("show"); PORTAL.ev("stop"); buildMenu(); $("menu").classList.add("show"); });
 $("bmute").addEventListener("click", () => { muted = !muted; $("bmute").textContent = muted ? "🔇" : "🔊"; try { localStorage.setItem("glMute", muted ? "1" : "0"); } catch (e) {} music.level(); });
 $("bmute").textContent = muted ? "🔇" : "🔊"; setInterval(() => music.level(), 1500);
-$("hublink").addEventListener("click", () => ev("hub_click"));
+// Optional: the packager strips the site footer from portal builds, because its
+// links are root-relative and would resolve against the portal's own domain.
+const _hub = $("hublink");
+if (_hub) _hub.addEventListener("click", () => ev("hub_click"));
 
 /* ===== input: keys, touch zones ===== */
 window.addEventListener("keydown", e => { arm(); const c = e.code; if (c === "ArrowLeft" || c === "KeyA") inp.l = true; else if (c === "ArrowRight" || c === "KeyD") inp.r = true; else if (c === "Space" || c === "ArrowDown" || c === "KeyS" || c === "ShiftLeft") inp.b = true; else if (c === "KeyR" && (state === "race" || state === "done")) { $("bretry").click(); } else if ((c === "Enter") && state === "done") $("bnext").click(); else return; e.preventDefault(); });
