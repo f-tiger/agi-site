@@ -1,60 +1,56 @@
 {
  "ok": true,
- "fetched": "2026-09-07",
+ "fetched": "2026-09-08",
  "source": "https://trends.google.com/trending/rss?geo=DE",
  "matched": [
   {
-   "title": "sturm der liebe",
-   "traffic": "1000+"
+   "title": "wetter münchen",
+   "traffic": "2000+"
   }
  ],
  "top": [
   {
-   "title": "deutsche fußballnationalmannschaft",
-   "traffic": "5000+"
+   "title": "wetter münchen",
+   "traffic": "2000+"
   },
   {
-   "title": "jon rahm",
+   "title": "lebensbescheinigung",
+   "traffic": "200+"
+  },
+  {
+   "title": "kaltennordheim",
+   "traffic": "200+"
+  },
+  {
+   "title": "fauda",
    "traffic": "100+"
   },
   {
-   "title": "ultimate fighting championship",
+   "title": "wüst afd-verbot",
+   "traffic": "500+"
+  },
+  {
+   "title": "gzsz-vorschau",
    "traffic": "200+"
   },
   {
-   "title": "alstätte",
+   "title": "datenpanne",
    "traffic": "200+"
   },
   {
-   "title": "stephan embacher",
+   "title": "peter thiel",
    "traffic": "200+"
   },
   {
-   "title": "sturm der liebe",
+   "title": "warntag",
+   "traffic": "500+"
+  },
+  {
+   "title": "regensburg",
    "traffic": "1000+"
-  },
-  {
-   "title": "ballistische rakete",
-   "traffic": "1000+"
-  },
-  {
-   "title": "predator",
-   "traffic": "1000+"
-  },
-  {
-   "title": "mariia maksina",
-   "traffic": "2000+"
-  },
-  {
-   "title": "volkswagen ag",
-   "traffic": "2000+"
   }
  ],
  "history": [
-  {
-   "d": "2026-08-24",
-   "matched": []
-  },
   {
    "d": "2026-08-25",
    "matched": [
@@ -121,6 +117,12 @@
    "d": "2026-09-07",
    "matched": [
     "sturm der liebe"
+   ]
+  },
+  {
+   "d": "2026-09-08",
+   "matched": [
+    "wetter münchen"
    ]
   }
  ]
