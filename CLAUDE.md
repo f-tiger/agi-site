@@ -20,7 +20,7 @@
 
 每次报告的诚实台账从「订阅 X/5、营收 0」升级为**钱线仪表盘**,数据一律 D1 现查
 (28 天窗),按站列:订阅(agi subscribers + bpj subs 真实行,CI/unsub 行剔除,
-bpj 的 src=/__ci 是已知自测)、eco affiliate_click、bpj go(出站联盟点击)、
+bpj 的 src=/__ci 是已知自测)、eco affiliate_click、**bpj go(出站点击,不是联盟点击——口径 2026-09-08 修正:tools.json 里 219 个工具带 affiliate 标记的是 0 个,90 天内被点过的 25 个工具无一例外,所以这一列恒等于 0 收入。此前把它列进钱线是记错,不要再当营收指标引用)**、
 SR pick_open/out_click/calc_use、gridlings play/solve/subs、audits 询单、
 invest_tool_click、tds affiliate_click(D1 hits 表 ev 列;链路 2026-08-19 上线,
 08-24 复核通过:ev='' 的 JS 真人 pv 每日落库证明管道活着,affiliate_click=0 是
