@@ -1320,3 +1320,45 @@ agiscorecard / baipiaoji / getecoback / gridlings / buysomething / gamesledger
 
 **owner 待办（沿用，未催）**：thedollscout `content/d1-snapshot.json` 仍缺
 （Cloudflare → API Tokens → deploy token → 加 `Account · D1 · Read`），自 09-02 挂起。
+
+## 2026-09-09（日结）
+
+**agiscorecard**（真实读者只认 JS `events.page_view`）
+- JS pv **1177/28d**；后 14 天 628 vs 前 14 天 549（**+14%**）。
+- 落地页：`/` 203 · **`/when-will-agi-arrive` 198** · `/situational-awareness-summary` 34 ·
+  `/how-close-is-agi` 32 · `/will-agi-arrive-2027` 30 · `/sam-altman-agi-prediction` 28 ·
+  `/ai-2027-scenario-explained` 28。
+- AI 引擎引荐 后14天 **9** vs 前14天 **9**（持平，未翻倍）；社区（EA Forum + LessWrong）7 vs 6。
+- 漏斗：`subscribe_click` 6 → `sub_open` 4 → `sub_submit` 2 → `sub_ok` **2**（均在首页）。
+  `subscribers` 仍 **2 行 status='stored'**（无 beehiiv key，正常态）。
+- `vote_cast` 44 · `calc_use` 21 · `invest_tool_click` 13（**Pro 桥仍 0**）· `tool_click` 8 ·
+  `index_click` 7 · `pick_ledger` 4 · `deeplink_pick` 2 · `affiliate_click` **0**（10-31 线 0/5）。
+- **两个数字必须按人读，不按事件读**：`calc_use{grade_game}` 17 次全部来自 09-07 一位读者
+  35 秒内的操作，其中 `complete:*` 5 次是同一人反复重算 → **09-28 判定线（≥10 次完成）未达标**；
+  `pick_ledger` 4 次全部来自同一个匿名 id `p_0368b360`，其中 3 次是同一个 pick。
+  `challenge_share` 仍为 **0**。
+- 站内搜索：修复上线后 24 小时内**尚无读者搜索**（唯一一行是 `location='mcp'` 的服务端写入）。
+  一天不构成证据，继续观察。
+
+**gridlings**（D1 bd3b1ca9，human 口径）
+- 28 天：pv 602 · play_start 342 · solve 135 · hint_used 182 · play_again 134。
+  今日：play_start 1，其余 0。
+- **itch 判定线（09-24，需累计 play_start≥150 且 solve≥25）：43 / 13，连续第 9 天零新增。**
+  按现趋势判定日不会达标。
+- **Playgama：PROMPT 09-08 被拒**（理由只有一句 "overall quality"，无逐条说明）。查出并已修两个
+  真缺陷：①门户包页脚那两个链接是根相对的，在 iframe 里指向门户自己的域 —— 15 个包全中；
+  ②PROMPT 桌面端格子上限 84px 把棋盘困在空屏里。连带修了删页脚导致 8 款 JS 空引用崩溃的坑
+  （smoke 测试当场抓到）。SINGULARITY 正在跑认证，其余六款审核中。
+
+**sourceradar / buysomething**：28 天 human pv **51**（近 7 天 6），bot 39；
+`pick_open` / `out_click` / `calc_use` 仍**全 0**。队列无项、rising 无 v≥200 的真实产品需求
+→ **今日不动作、不 bump**（连续第 6 天，符合低频站规矩）。
+
+**第①层 heartbeat**（09-08 12:27Z）：八站全部 **200**；thedollscout 与 goldrush
+`days_since_deploy=3`，其余 0。无异常。
+
+**里程碑**：无新达成。首个 agent MCP 调用仍不成立（`location='mcp'` 全是同秒批量、参数重复、
+含 canary 字样，四条件不过）。
+
+**owner 待办（沿用，未催）**：thedollscout `content/d1-snapshot.json` 仍缺
+（Cloudflare → API Tokens → deploy token → 加 `Account · D1 · Read`），自 09-02 挂起。

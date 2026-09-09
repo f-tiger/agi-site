@@ -2785,3 +2785,42 @@ citation-growth（判定型页面清单，本轮未触发发布）。
 但 09-06 刚动过，**冷却到 5 个 run 后再做，今天不碰**。
 
 **validate OK（229 页 / 211 URL）；sanitiser 测试 16/16 通过。**
+
+## 2026-09-09（每日 run）— 转化赛马：赢家和输家用的是同一段文案，差别只在位置
+
+**spec（两轮自批后）**：第一版「读 D1 → 按阶梯挑一项」。自批一：⓪ strategy 剩的 3 项
+全部卡在 owner 的 Gateway waitlist；⓪+ 引用队列 3 项闸门全未过（10-03 入口判定线 /
+事件驱动 / 08-31 复查未过）；invest PRD 已清空 —— 今天只能落 ①。自批二：① 的第一目标
+`/when-will-agi-arrive`（198 pv，全站第二，subscribe_click 0）**09-06 动过，5-run 冷却内
+不许碰**，所以要么换目标要么什么都不做。换目标之前先问一句「赢家到底赢在哪」——
+这一问改变了今天的动作。所调 skill：cro（位置 vs 文案的归因）、analytics（口径）。
+
+**诊断（这是今天真正的产出）。** 全站唯一在转化的深页是 `/ai-2027-scenario-explained`：
+**28 pv 出 2 次 `subscribe_click`**。而 `/situational-awareness-summary`（34 pv，且是 Bing
+引用榜第一、占 42%）**28 天 0 次**。原以为是后者缺钩子——**打开看才发现它一个不缺，
+而且用的是同一段文案、同一个按钮「Tell me when a verdict flips →」。**
+
+真正的差别是**位置**：
+- 赢家：该块在第一节正文之后（`<h2>What it is</h2>` → 一段 → 钩子 → 下一个 `<h2>`），
+  大约一屏内就出现。
+- 输家：该块虽然叫 `deep_sasummary_mid`，实际躺在 `<h2>The bottom line</h2>` 那一段之后、
+  FAQ 之前 —— **等于第二个页脚钩子**，而它下面紧跟着真正的 `deep_sasummary_foot`。
+  **两个 CTA 叠在文章末尾，阅读动线里一个都没有。**
+
+**ship（一处改动，只移动、不新增、不改文案）**：把 `deep_sasummary_mid` 整块从
+「The bottom line」之后移到「What the essay argues」正文之后（`<h2>The key predictions</h2>`
+之前），与赢家的位置逐字对齐。文案一个字没动 —— **本轮要检验的是位置这一个变量**，
+同时改文案就什么都归因不了。`deep_sasummary_foot` 保留在页脚不动。
+
+**刻意没做的事**：没有 bump `Last updated` / `dateModified` / sitemap lastmod。
+移动一个 CTA 不是内容更新，为它伪造新鲜度信号是骗 AI 引擎，而这一页正是全站引用第一的
+资产，不值得拿它冒险。
+
+**判定线（预登记，不许事后调）**：至 **2026-10-07**（28 天）——
+`subscribe_click{deep_sasummary_mid}` ≥1 → 「位置 > 文案」成立，把同样的上移动作
+复制到 `/how-close-is-agi` 与 `/will-agi-arrive-2027`；仍为 0 → 记一次反面发现
+「深页订阅钩与位置无关，34 pv 量级下这条路不成立」，并停止在深页上继续投入 CTA 位置实验。
+**注意分母**：34 pv/28d，赢家是 28 pv 出 2 次，所以 ≥1 是一个诚实的最小可判读阈值，
+不是「显著性」——样本本来就不支持显著性，别在判定日给它套统计检验。
+
+**validate OK（229 页 / 211 URL）；hreflang 图闭合。**
