@@ -1,5 +1,5 @@
 {
- "fetched": "2026-09-08",
+ "fetched": "2026-09-09",
  "geo": "DE",
  "seeds": {
   "klimaanlage": {
@@ -369,19 +369,23 @@
    "rising": [
     {
      "q": "fluss durch riga",
-     "v": 4000
-    },
-    {
-     "q": "kühlende matratze",
-     "v": 200
+     "v": 3850
     },
     {
      "q": "emma performance matratze",
-     "v": 130
+     "v": 150
+    },
+    {
+     "q": "kühlende matratze",
+     "v": 140
     },
     {
      "q": "bett1 de",
-     "v": 100
+     "v": 120
+    },
+    {
+     "q": "boxspringbett 140x200 mit matratze und topper",
+     "v": 90
     },
     {
      "q": "emma original matratze",
@@ -389,58 +393,59 @@
     },
     {
      "q": "pool matratze",
-     "v": 80
+     "v": 70
     },
     {
-     "q": "boxspringbett 140x200 mit matratze und topper",
-     "v": 80
-    },
-    {
-     "q": "flecken aus matratze entfernen",
-     "v": 50
+     "q": "ikea bett 140x200",
+     "v": 70
     },
     {
      "q": "emma original pro matratze",
-     "v": 50
+     "v": 70
     },
     {
-     "q": "decathlon matratze",
-     "v": 50
+     "q": "babybett matratze 70x140",
+     "v": 60
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-09-08",
+   "fetched": "2026-09-09",
    "polluted": false
   },
   "saugwischer": {
    "rising": [
     {
-     "q": "dreame h14 pro",
-     "v": 135150
+     "q": "roborock f25 ace pro",
+     "v": 62950
     },
     {
-     "q": "bissel saugwischer",
-     "v": 37800
+     "q": "vorwerk akkusauger",
+     "v": 41350
     },
     {
-     "q": "balenciaga schuhe",
-     "v": 27950
+     "q": "akku-saugwischer testsieger stiftung warentest",
+     "v": 21100
     },
     {
-     "q": "saugwischroboter test",
-     "v": 22300
+     "q": "leifheit bodenwischer",
+     "v": 4550
     },
     {
-     "q": "roborock saros 20",
-     "v": 7850
+     "q": "bester saugwischer",
+     "v": 60
     },
     {
-     "q": "carglass",
-     "v": 40
+     "q": "dyson staubsauger",
+     "v": 60
+    },
+    {
+     "q": "philips saugwischer",
+     "v": 50
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-08-31"
+   "fetched": "2026-09-09",
+   "polluted": false
   }
  }
 }

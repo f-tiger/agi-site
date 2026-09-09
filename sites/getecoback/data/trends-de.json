@@ -1,62 +1,51 @@
 {
  "ok": true,
- "fetched": "2026-09-08",
+ "fetched": "2026-09-09",
  "source": "https://trends.google.com/trending/rss?geo=DE",
- "matched": [
-  {
-   "title": "wetter münchen",
-   "traffic": "2000+"
-  }
- ],
+ "matched": [],
  "top": [
   {
-   "title": "wetter münchen",
-   "traffic": "2000+"
-  },
-  {
-   "title": "lebensbescheinigung",
+   "title": "fußballspieler",
    "traffic": "200+"
   },
   {
-   "title": "kaltennordheim",
+   "title": "die landarztpraxis team sonnenhof",
+   "traffic": "500+"
+  },
+  {
+   "title": "heise online",
    "traffic": "200+"
   },
   {
-   "title": "fauda",
+   "title": "miersch",
+   "traffic": "200+"
+  },
+  {
+   "title": "1. fc saarbrücken",
+   "traffic": "200+"
+  },
+  {
+   "title": "english open",
    "traffic": "100+"
   },
   {
-   "title": "wüst afd-verbot",
-   "traffic": "500+"
+   "title": "donald trump",
+   "traffic": "2000+"
   },
   {
-   "title": "gzsz-vorschau",
+   "title": "lea meyer",
    "traffic": "200+"
   },
   {
-   "title": "datenpanne",
-   "traffic": "200+"
-  },
-  {
-   "title": "peter thiel",
-   "traffic": "200+"
-  },
-  {
-   "title": "warntag",
-   "traffic": "500+"
-  },
-  {
-   "title": "regensburg",
+   "title": "johanna puff",
    "traffic": "1000+"
+  },
+  {
+   "title": "aktenzeichen xy … ungelöst",
+   "traffic": "500+"
   }
  ],
  "history": [
-  {
-   "d": "2026-08-25",
-   "matched": [
-    "wetter stuttgart"
-   ]
-  },
   {
    "d": "2026-08-26",
    "matched": [
@@ -124,6 +113,10 @@
    "matched": [
     "wetter münchen"
    ]
+  },
+  {
+   "d": "2026-09-09",
+   "matched": []
   }
  ]
 }
