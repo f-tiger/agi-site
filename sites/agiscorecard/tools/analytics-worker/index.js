@@ -154,15 +154,27 @@ function recordView(env, ctx, request, url) {
   // wrong twice: JS-executed page_views were 18-22% of "human" pageviews until Aug 7,
   // then fell to ~7% while "human" volume tripled — i.e. a fresh crawler fleet the
   // regex does not know about. Without the UA on file, the only honest response was to
-  // widen the regex blindly. This records a 48-char UA prefix, aggregated, so the next
-  // audit can name the offenders instead of guessing. Prefix only, never the full
-  // string (no fingerprinting), and only in aggregate counts.
+  // widen the regex blindly. This records a UA prefix, aggregated, so the next audit
+  // can name the offenders instead of guessing. Prefix only, never the full string
+  // (no fingerprinting), and only in aggregate counts.
+  //
+  // 2026-09-09: that prefix was 48 chars for everything, and the length was hiding the
+  // one number this site's whole GEO thesis rests on. GPTBot sends
+  // `Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; GPTBot/1.2; ...)`,
+  // whose first 48 characters are identical to several unrelated bots — so 4,114 crawler
+  // hits in 28 days sat in one anonymous bucket and "how often does OpenAI crawl us?"
+  // was unanswerable here, while baipiaoji, whose worker records the crawler NAME, could
+  // answer it all along. Bots now get 120 chars, which reaches the product token in every
+  // crawler UA the audit has seen; humans keep 48, because a long browser UA is a
+  // fingerprinting surface and readers were never the subject of this audit.
+  // Cutover note: bot rows written before today carry the short prefix, so one crawler's
+  // series splits across two keys — tools/geo_ledger.py folds by product name, not prefix.
   ctx.waitUntil(env.EVENTS.prepare(
     'INSERT INTO ua_audit (day, ua_prefix, ua_class, hits) VALUES (?,?,?,1)' +
     ' ON CONFLICT(day, ua_prefix, ua_class) DO UPDATE SET hits = hits + 1'
   ).bind(
     new Date().toISOString().slice(0, 10),
-    ua.slice(0, 48) || '(none)',
+    ua.slice(0, cls === 'bot' ? 120 : 48) || '(none)',
     cls
   ).run().catch(function () {}));
   const stmt = env.EVENTS.prepare(

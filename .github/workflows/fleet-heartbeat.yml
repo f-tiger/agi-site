@@ -105,6 +105,28 @@ jobs:
           cat data/fleet-health.json
           echo "bad=$BAD" >> "$GITHUB_OUTPUT"
 
+      # GEO 台账(2026-09-09,owner 问「ai 导流 geo 如何创造营收」)。跑在这里而不是
+      # 新开一条 schedule:根 CLAUDE.md 自动化纪律第 2 条「先算账再加 cron」——本步是
+      # 6 次 D1 只读查询,秒级,heartbeat 的分钟粒度吃得下,月增量 0 分钟。
+      #
+      # 退出码约定,决定 owner 会不会收到邮件:
+      #   0 = 正常  1 = 取数失败(只 warning:D1 抖动不该烧掉 heartbeat 这条唯一
+      #                        不经过 AI 会话的告警通道)  2 = 引用爬虫断供,真事故。
+      - name: GEO ledger
+        id: geo
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_API_TOKEN_ZONE: ${{ secrets.CLOUDFLARE_API_TOKEN_ZONE }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          set +e
+          python3 tools/geo_ledger.py --selftest || { echo "::error::geo_ledger selftest 失败"; echo "fuse=1" >> "$GITHUB_OUTPUT"; exit 0; }
+          python3 tools/geo_ledger.py --write data/geo-ledger.json
+          rc=$?
+          echo "geo_ledger exit=$rc"
+          [ "$rc" = "2" ] && echo "fuse=1" >> "$GITHUB_OUTPUT"
+          exit 0
+
       # 快照回仓:任何后续会话(哪怕没有 Cloudflare/GitHub MCP)都能 cat 一下就
       # 知道舰队是不是活着。data/ 不在任何站点的部署 path 过滤里,不会烧部署。
       - name: Commit health snapshot
@@ -112,13 +134,21 @@ jobs:
           cd "$GITHUB_WORKSPACE"
           git config user.email noreply@anthropic.com
           git config user.name Claude
-          git add data/fleet-health.json
+          # -A 而不是逐个文件名:geo-ledger 在取数失败的那次不会被写出来,
+          # 逐个 add 会让 git 因缺失路径报错,把心跳快照一起赔进去。
+          git add -A data/
           git diff --cached --quiet && { echo "无变化"; exit 0; }
-          git commit -m "chore(fleet): heartbeat 健康快照 $(date -u +%F)"
+          git commit -m "chore(fleet): heartbeat 健康快照 + GEO 台账 $(date -u +%F)"
           for i in 1 2 3 4; do
             git fetch origin main -q && git rebase -q origin/main && git push -q origin HEAD:main && break || { git rebase --abort 2>/dev/null || true; sleep $((2**i)); }
           done
 
       - name: Fail the run if any site is down
         if: steps.probe.outputs.bad == '1'
+        run: exit 1
+
+      # 引用爬虫集体沉默 = 舰队 GEO 资产在断供(2026-09-15 Cloudflare 默认拦截是
+      # 已知的触发源)。和站点打不开同级,让 run 变红把邮件送出去。
+      - name: Fail the run if the citation crawlers went quiet
+        if: steps.geo.outputs.fuse == '1'
         run: exit 1

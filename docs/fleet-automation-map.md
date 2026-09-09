@@ -46,7 +46,7 @@ thedollscout 冻结约 **86 小时**——它的部署是纯 push 触发，没�
 ### 数据与维护（外部副作用一律只挂 schedule，绝不挂 push）
 | workflow | cron (UTC) | 作用 |
 |---|---|---|
-| **`fleet-heartbeat.yml`** | `0 8 * * *` | **新增 2026-09-04**：八站探活 + 超 7 天未部署自动重发 + 快照写回 `data/fleet-health.json` + 站点非 200 直接把 run 打红（GitHub 邮件是唯一不经过任何 AI 会话的告警通道） |
+| **`fleet-heartbeat.yml`** | `0 8 * * *` | **新增 2026-09-04**：八站探活 + 超 7 天未部署自动重发 + 快照写回 `data/fleet-health.json` + 站点非 200 直接把 run 打红（GitHub 邮件是唯一不经过任何 AI 会话的告警通道）。**2026-09-09 加挂 GEO 台账**（`tools/geo_ledger.py` → `data/geo-ledger.json`）：6 次只读 D1 查询，**不新增 schedule、月增量 0 分钟**；五家引用爬虫任一沉默 >10 天 → 同样把 run 打红（这是 Cloudflare 2026-09-15 默认拦截的自动熔断）。取数失败只 warning，不烧告警通道 |
 | `fleet-trends.yml` | `45 3 * * *` | 全舰队趋势快照 |
 | `eco-trends.yml` | `30 4 * * *` | 德国热搜触发器 |
 | `eco-health.yml` | `0 5 * * *` | eco 站健康 |
