@@ -2,7 +2,7 @@
 
 Source: https://agiscorecard.com/ai-trading-ledger · Pre-registered 2026-09-05 · Paper only · Read date 2027-03-08 · Not investment advice
 
-**Status:** eleven arms start with the same $10,000 of paper money on 2026-09-08 and are recomputed every trading day from the same adjusted closes by a public GitHub workflow — no human, no discretion, no edits after the fact. Machine-readable ledger: https://agiscorecard.com/paper-ledger.json (CC BY 4.0).
+**Status:** fourteen arms each start with the same $10,000 of paper money — eleven on 2026-09-08, and three registered on 2026-09-09 (two levered TQQQ arms and one fitted cross-sectional ridge model) starting 2026-09-10 and are recomputed every trading day from the same adjusted closes by a public GitHub workflow — no human, no discretion, no edits after the fact. Machine-readable ledger: https://agiscorecard.com/paper-ledger.json (CC BY 4.0).
 
 | Arm | Rule |
 |---|---|
@@ -34,3 +34,36 @@ Because /do-ai-trading-agents-work holds vendors to a standard — positions tim
 
 **What happens if one arm beats the S&P 500?**
 Nothing automatic. The pre-registered read date is 2027-03-08 (six months). On that date every arm's return, maximum drawdown and excess versus SPY are published as they are. Six months of paper results in one market regime is not evidence of skill, and the page will say so.
+
+## The 100 %/yr target, written as arithmetic
+
+Compound growth at leverage L is `L*mu - L^2*sigma^2/2`. That is a downward parabola: it peaks at the
+Kelly leverage and falls again above it, so no amount of borrowing passes the ceiling `exp(S^2/2) - 1`,
+which depends only on the Sharpe ratio `S = mu/sigma`.
+
+| Sharpe | Best annual return at any leverage | Leverage for 100 %/yr (at 20 % vol) |
+|---|---|---|
+| 0.4 | 8.3 % | out of reach |
+| 0.6 | 19.7 % | out of reach |
+| 0.8 | 37.7 % | out of reach |
+| 1.0 | 64.9 % | out of reach |
+| 1.177 | 100.0 % | the exact threshold |
+| 1.3 | 132.8 % | 3.7x |
+| 1.5 | 208.0 % | 2.9x |
+| 2.0 | 638.9 % | 1.9x |
+
+Doubling every year is therefore a Sharpe problem, not a leverage problem: it needs a sustained Sharpe of
+at least 1.177, or about 1.36 at half Kelly, before borrowing costs, fees and taxes. Each arm's own
+measured Sharpe, and whether the target is reachable for it at all, is published in
+`/paper-ledger.json` under `arms.<name>.target_100` once the arm has 60 live sessions. Nothing is
+estimated before then.
+
+## Arms registered 2026-09-09 (start 2026-09-10)
+
+- **TQQQ trend** — hold the 3x Nasdaq-100 fund while QQQ is above its own 200-day average, T-bills
+  otherwise; signal taken on the index, never on the levered fund.
+- **TQQQ hold** — the same fund with no filter, as the control for the arm above.
+- **Ridge model** — a cross-sectional ridge regression over the ten AI names. Five standardised features
+  per stock per month (12-1 momentum, 6-1 momentum, one-month reversal, 21-day realised volatility,
+  distance from the 200-day average), fitted on every past month whose forward return is already known,
+  holding the top three when their predictions are positive and T-bills when none are.
