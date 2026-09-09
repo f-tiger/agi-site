@@ -61,14 +61,15 @@ TICKERS = BENCH + BASKET + ETFS + LEVERED
 # model having anything to learn from, and it is bounded because history is still trimmed.
 LOOKBACK_DAYS = 1100
 MONTHLY_ARMS = ("gem_dual_momentum", "gtaa5", "spy_voltarget", "basket_mom5", "sixty_forty",
-                "tqqq_trend", "ml_ridge")
+                "tqqq_trend", "ml_ridge", "ml_gbm")
 ARM_ORDER = ["spy_hold", "qqq_hold", "sixty_forty", "agi_basket", "tracker_mix", "sma200_spy", "llm_agent",
              "gem_dual_momentum", "gtaa5", "spy_voltarget", "basket_mom5", "tqqq_trend", "tqqq_hold",
-             "ml_ridge"]
+             "ml_ridge", "ml_gbm"]
 # Arms registered after START run from their own first session. Backfilling them to START
 # would hand them a look-ahead the older arms never had, however small, so they wait.
 LEVERED_START = "2026-09-10"
-ARM_START = {"tqqq_trend": LEVERED_START, "tqqq_hold": LEVERED_START, "ml_ridge": LEVERED_START}
+ARM_START = {"tqqq_trend": LEVERED_START, "tqqq_hold": LEVERED_START,
+             "ml_ridge": LEVERED_START, "ml_gbm": LEVERED_START}
 # These two are paper-only by construction. tools/trader/alpaca_mirror.py keeps its own
 # allowlist and does not contain them; that is deliberate and must stay that way.
 PAPER_ONLY = frozenset(ARM_START)
@@ -361,25 +362,214 @@ def ml_training_set(d: str, prices: dict) -> tuple[list[list[float]], list[float
     return X, y
 
 
-def ml_signal(d: str, prices: dict) -> dict[str, float] | None:
-    """Monthly target weights. Cash while the sample is too small — never a guess."""
+# ---- the non-linear counterpart, added 2026-09-09 after the algorithm survey ----------
+# Gu, Kelly & Xiu attribute the gain of trees and neural networks over linear models to
+# NONLINEAR INTERACTIONS between predictors, on the whole US cross-section with 900+ of them.
+# Whether that carries down to ten names and five features is an empirical question nobody has
+# answered for a book this size, so the ledger answers it: the same features, the same universe,
+# the same monthly rule, one linear model and one that can express interactions. Depth-2 trees
+# rather than stumps precisely because stumps are additive and could not express an interaction
+# even in principle — a stump ensemble would test nothing.
+GBM_ROUNDS = 50
+GBM_LR = 0.05
+GBM_DEPTH = 2
+GBM_MIN_LEAF = 8
+ML_MODELS = ("ridge", "gbm")
+
+
+def _tree_fit(X: list[list[float]], y: list[float], depth: int, min_leaf: int):
+    """Greedy regression tree. Returns ('leaf', value) or ('split', j, thr, left, right)."""
+    n = len(y)
+    mean = sum(y) / n if n else 0.0
+    if depth <= 0 or n < 2 * min_leaf:
+        return ("leaf", mean)
+    sse = sum((v - mean) ** 2 for v in y)
+    best = None
+    for j in range(len(X[0])):
+        order = sorted(range(n), key=lambda i: X[i][j])
+        # candidate thresholds are midpoints between consecutive distinct values
+        left_sum = left_n = 0.0
+        total = sum(y)
+        for k in range(n - 1):
+            i = order[k]
+            left_sum += y[i]
+            left_n += 1
+            if left_n < min_leaf or n - left_n < min_leaf:
+                continue
+            a, b = X[order[k]][j], X[order[k + 1]][j]
+            if a == b:
+                continue
+            # SSE reduction for a mean-split is a closed form; no need to re-sum each side
+            gain = left_sum ** 2 / left_n + (total - left_sum) ** 2 / (n - left_n) - total ** 2 / n
+            if best is None or gain > best[0]:
+                best = (gain, j, (a + b) / 2.0)
+    if best is None or best[0] <= 1e-12 or sse <= 1e-12:
+        return ("leaf", mean)
+    _, j, thr = best
+    li = [i for i in range(n) if X[i][j] <= thr]
+    ri = [i for i in range(n) if X[i][j] > thr]
+    if len(li) < min_leaf or len(ri) < min_leaf:
+        return ("leaf", mean)
+    return ("split", j, thr,
+            _tree_fit([X[i] for i in li], [y[i] for i in li], depth - 1, min_leaf),
+            _tree_fit([X[i] for i in ri], [y[i] for i in ri], depth - 1, min_leaf))
+
+
+def _tree_predict(node, x: list[float]) -> float:
+    while node[0] == "split":
+        node = node[3] if x[node[1]] <= node[2] else node[4]
+    return node[1]
+
+
+def gbm_fit(X: list[list[float]], y: list[float]):
+    """Least-squares gradient boosting. Hyper-parameters fixed before the start, never tuned."""
+    base = sum(y) / len(y)
+    resid = [v - base for v in y]
+    trees = []
+    for _ in range(GBM_ROUNDS):
+        t = _tree_fit(X, resid, GBM_DEPTH, GBM_MIN_LEAF)
+        trees.append(t)
+        for i in range(len(resid)):
+            resid[i] -= GBM_LR * _tree_predict(t, X[i])
+    return (base, trees)
+
+
+def gbm_predict(model, x: list[float]) -> float:
+    base, trees = model
+    return base + GBM_LR * sum(_tree_predict(t, x) for t in trees)
+
+
+def ml_scores(d: str, prices: dict, model: str = "ridge") -> dict[str, float] | None:
+    """Cross-sectional predictions at close d, or None when the model cannot be formed.
+
+    One code path for both consumers: the trading arm and the scoreboard that grades it.
+    If they diverged, the published score would stop describing the published portfolio.
+    """
     X, y = ml_training_set(d, prices)
     if len(X) < ML_MIN_TRAIN:
-        return {"BIL": 1.0}
-    coef = ml_fit(X, y, ML_RIDGE_LAMBDA)
-    if coef is None:
         return None
     cur = {t: r for t in BASKET if (r := ml_row(t, d, prices)) is not None}
     if len(cur) < ML_TOP_K:
         return None
     keys = list(cur)
     Z = _zscore([cur[t] for t in keys])
-    pred = {t: sum(c * z for c, z in zip(coef, row)) for t, row in zip(keys, Z)}
+    if model == "ridge":
+        coef = ml_fit(X, y, ML_RIDGE_LAMBDA)
+        if coef is None:
+            return None
+        return {t: sum(c * z for c, z in zip(coef, row)) for t, row in zip(keys, Z)}
+    if model == "gbm":
+        fitted = gbm_fit(X, y)
+        return {t: gbm_predict(fitted, row) for t, row in zip(keys, Z)}
+    raise ValueError(model)
+
+
+def ml_signal(d: str, prices: dict, model: str = "ridge") -> dict[str, float] | None:
+    """Monthly target weights. Cash while the sample is too small — never a guess."""
+    X, _ = ml_training_set(d, prices)
+    if len(X) < ML_MIN_TRAIN:
+        return {"BIL": 1.0}
+    pred = ml_scores(d, prices, model)
+    if pred is None:
+        return None
     top = [t for t in sorted(pred, key=lambda k: pred[k], reverse=True)[:ML_TOP_K] if pred[t] > 0]
     if not top:
         return {"BIL": 1.0}            # the model likes nothing this month; that is an answer
     w = round(1.0 / len(top), 4)
     return {t: w for t in top}
+
+
+# ------------------------------------------------------- live model scoreboard
+# Return-prediction papers report two numbers: monthly out-of-sample R^2 and rank IC. This
+# ledger's models are graded in those same units so the comparison to the literature is a
+# comparison and not a rhetorical flourish — Gu, Kelly & Xiu (2020) report 0.26 % monthly
+# out-of-sample R^2 for penalised linear models and 0.33-0.40 % for trees and neural nets.
+#
+# Everything here is FORWARD-ONLY: a month is graded when the month after it has finished, and
+# months before the arms' start date are never scored. There is no backtest in this file, and
+# the reason is that a walk-forward curve computed today would be the one number in the ledger
+# that nobody could check against a public execution date.
+SCORE_MIN_MONTHS = 6
+GKX_LINEAR_R2_PCT = 0.26
+GKX_NONLINEAR_R2_PCT = 0.40
+
+
+def spearman(x: list[float], y: list[float]) -> float | None:
+    """Rank correlation with ties averaged. None below three points."""
+    n = len(x)
+    if n < 3 or n != len(y):
+        return None
+
+    def rank(v):
+        order = sorted(range(n), key=lambda i: v[i])
+        r = [0.0] * n
+        i = 0
+        while i < n:
+            j = i
+            while j + 1 < n and v[order[j + 1]] == v[order[i]]:
+                j += 1
+            avg = (i + j) / 2.0 + 1.0
+            for k in range(i, j + 1):
+                r[order[k]] = avg
+            i = j + 1
+        return r
+
+    rx, ry = rank(x), rank(y)
+    mx, my = sum(rx) / n, sum(ry) / n
+    num = sum((a - mx) * (b - my) for a, b in zip(rx, ry))
+    dx = math.sqrt(sum((a - mx) ** 2 for a in rx))
+    dy = math.sqrt(sum((b - my) ** 2 for b in ry))
+    return num / (dx * dy) if dx > 0 and dy > 0 else None
+
+
+def model_scoreboard(prices: dict, since: str) -> dict:
+    """Grade every model's monthly predictions once their forward month has completed."""
+    spy = sorted(prices.get("SPY", {}))
+    idx = {d: i for i, d in enumerate(spy)}
+    out = {"benchmark": {"source": "Gu, Kelly & Xiu, Review of Financial Studies 2020",
+                         "monthly_oos_r2_pct_linear": GKX_LINEAR_R2_PCT,
+                         "monthly_oos_r2_pct_nonlinear": GKX_NONLINEAR_R2_PCT,
+                         "caveat": "their universe is the whole US cross-section with 900+ predictors; "
+                                   "this ledger has ten names and five features, so a smaller number here "
+                                   "is the expected result, not a malfunction"},
+           "scored_since": since, "min_months": SCORE_MIN_MONTHS, "models": {}}
+    for model in ML_MODELS:
+        rows, sse, sst, ics = [], 0.0, 0.0, []
+        for m in sorted(last_trading_day_of_month(spy)):
+            if m < since:
+                continue
+            j = idx.get(m)
+            if j is None or j + ML_FWD >= len(spy):
+                continue                                  # forward month not finished: not graded
+            end = spy[j + ML_FWD]
+            pred = ml_scores(m, prices, model)
+            if not pred:
+                continue
+            real = {}
+            for t in pred:
+                ser = prices.get(t, {})
+                if m in ser and end in ser and ser[m] > 0:
+                    real[t] = ser[end] / ser[m] - 1.0
+            keys = [t for t in pred if t in real]
+            if len(keys) < 5:
+                continue
+            mu = sum(real[t] for t in keys) / len(keys)
+            r = [real[t] - mu for t in keys]              # the model predicts relative rank
+            q = [pred[t] for t in keys]
+            sse += sum((a - b) ** 2 for a, b in zip(r, q))
+            sst += sum(a * a for a in r)
+            ic = spearman(q, r)
+            if ic is not None:
+                ics.append(ic)
+            rows.append({"as_of": m, "scored_on": end, "names": len(keys),
+                         "rank_ic": round(ic, 4) if ic is not None else None})
+        summary = {"months": len(rows),
+                   "status": "measured" if len(rows) >= SCORE_MIN_MONTHS else "insufficient_history"}
+        if rows:
+            summary["monthly_oos_r2_pct"] = round((1 - sse / sst) * 100, 3) if sst > 0 else None
+            summary["mean_rank_ic"] = round(sum(ics) / len(ics), 4) if ics else None
+        out["models"][model] = {"summary": summary, "recent": rows[-24:]}
+    return out
 
 
 def signal_for(name: str, d: str, prices: dict) -> dict[str, float] | None:
@@ -415,10 +605,10 @@ def signal_for(name: str, d: str, prices: dict) -> dict[str, float] | None:
         if d not in p.get("SPY", {}) or d not in p.get("AGG", {}):
             return None
         return {"SPY": 0.6, "AGG": 0.4}
-    if name == "ml_ridge":
+    if name in ("ml_ridge", "ml_gbm"):
         if "BIL" not in p:
             return None
-        return ml_signal(d, p)
+        return ml_signal(d, p, "ridge" if name == "ml_ridge" else "gbm")
     if name == "tqqq_trend":
         # The one widely-run retail route to a very high CAGR: hold a 3x fund only while the
         # underlying index is above its own 200-day average, sit in T-bills otherwise.
@@ -915,6 +1105,54 @@ def selftest() -> int:
     check(all(w >= 0 for w in full_sig.values()), "the model is long-only; no negative weights")
     check(len(full_sig) <= max(ML_TOP_K, 1), f"must hold at most {ML_TOP_K} names, got {full_sig}")
 
+    # ---- the non-linear model and the scoreboard that grades both models ----
+    # A depth-2 tree must express an interaction; a stump cannot, which is the entire reason
+    # GBM_DEPTH is 2 and not 1. Note the honest limit of greedy fitting: on pure XOR neither
+    # depth helps, because no first split reduces error and CART is greedy. So the test uses a
+    # conditional effect a greedy learner CAN find, y = x0 + 2*x0*x1, and asks depth 2 to beat
+    # depth 1 on it. Routing is checked separately on a hand-built tree.
+    ix = [[i / 20.0, (i * 7 % 13) / 13.0] for i in range(200)]
+    iy = [x[0] + 2 * x[0] * x[1] for x in ix]
+    sse1 = sum((a - _tree_predict(_tree_fit(ix, iy, 1, 5), x)) ** 2 for a, x in zip(iy, ix))
+    sse2 = sum((a - _tree_predict(_tree_fit(ix, iy, 2, 5), x)) ** 2 for a, x in zip(iy, ix))
+    check(sse2 < sse1 * 0.75, f"depth 2 must beat depth 1 on an interaction: {sse2:.1f} vs {sse1:.1f}")
+    hand = ("split", 0, 0.5, ("split", 1, 0.5, ("leaf", 1.0), ("leaf", 2.0)),
+            ("split", 1, 0.5, ("leaf", 3.0), ("leaf", 4.0)))
+    check([_tree_predict(hand, x) for x in ([0, 0], [0, 1], [1, 0], [1, 1])] == [1.0, 2.0, 3.0, 4.0],
+          "depth-2 routing is wrong")
+    check(GBM_DEPTH >= 2,
+          "GBM_DEPTH below 2 makes the ensemble additive, and the arm would test nothing")
+
+    # Boosting must reduce training error, and must not be a constant predictor.
+    gx = [[float(i) / 10.0, float((i * 7) % 11) / 10.0] for i in range(120)]
+    gy = [x[0] * x[1] * 4.0 for x in gx]                       # pure interaction, no main effect
+    gm = gbm_fit(gx, gy)
+    gp = [gbm_predict(gm, x) for x in gx]
+    base = sum(gy) / len(gy)
+    check(sum((a - b) ** 2 for a, b in zip(gy, gp)) < sum((a - base) ** 2 for a in gy),
+          "boosting must fit better than the mean")
+    check(max(gp) - min(gp) > 1e-6, "boosted model must not collapse to a constant")
+
+    check(abs(spearman([1, 2, 3, 4], [1, 2, 3, 4]) - 1.0) < 1e-9, "identical ranking scores 1")
+    check(abs(spearman([1, 2, 3, 4], [4, 3, 2, 1]) + 1.0) < 1e-9, "reversed ranking scores -1")
+    check(abs(spearman([1, 2, 3, 4, 5], [1, 2, 2, 4, 5])) < 1.0, "ties must not score a perfect 1")
+    check(spearman([1, 1, 1, 1], [1, 2, 3, 4]) is None, "no spread means no rank correlation")
+    check(spearman([1, 2], [2, 1]) is None, "two points is not a rank correlation")
+
+    # The scoreboard grades nothing before the arms started and nothing whose month is open.
+    board = model_scoreboard(px, cal[-1])
+    for mdl in ML_MODELS:
+        check(board["models"][mdl]["summary"]["months"] == 0,
+              f"{mdl}: nothing may be graded when the start date is the last session")
+        check(board["models"][mdl]["summary"]["status"] == "insufficient_history",
+              f"{mdl}: an empty scoreboard must say so rather than report a score")
+    board2 = model_scoreboard(px, cal[300])
+    check(board2["models"]["ridge"]["summary"]["months"] > 0,
+          "the scoreboard test is vacuous if no month is ever graded")
+    for row in board2["models"]["ridge"]["recent"]:
+        check(row["scored_on"] <= cal[-1], "a month graded on a date beyond the data is a leak")
+        check(row["scored_on"] > row["as_of"], "a month must be graded after it, never on itself")
+
     # The levered sleeve must stay out of the real-money executor's allowlist.
     mirror = (Path(__file__).resolve().parents[3] / "tools" / "trader" / "alpaca_mirror.py")
     if mirror.exists():
@@ -991,6 +1229,7 @@ def main() -> int:
         "trading_days_since_start": len(days),
         "fetch_errors": errors,
         "arms": arms,
+        "model_scores": model_scoreboard(prices, LEVERED_START),
         "judgement": {
             "read_date": "2027-03-08",
             "rule": "6 months after START: each arm's return, max drawdown and excess vs SPY are published as-is; "

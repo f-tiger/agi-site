@@ -2,7 +2,7 @@
 
 Source: https://agiscorecard.com/ai-trading-ledger · Pre-registered 2026-09-05 · Paper only · Read date 2027-03-08 · Not investment advice
 
-**Status:** fourteen arms each start with the same $10,000 of paper money — eleven on 2026-09-08, and three registered on 2026-09-09 (two levered TQQQ arms and one fitted cross-sectional ridge model) starting 2026-09-10 and are recomputed every trading day from the same adjusted closes by a public GitHub workflow — no human, no discretion, no edits after the fact. Machine-readable ledger: https://agiscorecard.com/paper-ledger.json (CC BY 4.0).
+**Status:** fifteen arms each start with the same $10,000 of paper money — eleven on 2026-09-08, and four registered on 2026-09-09 (two levered TQQQ arms and two fitted cross-sectional models, ridge and gradient-boosted trees) starting 2026-09-10 and are recomputed every trading day from the same adjusted closes by a public GitHub workflow — no human, no discretion, no edits after the fact. Machine-readable ledger: https://agiscorecard.com/paper-ledger.json (CC BY 4.0).
 
 | Arm | Rule |
 |---|---|
@@ -63,7 +63,21 @@ estimated before then.
 - **TQQQ trend** — hold the 3x Nasdaq-100 fund while QQQ is above its own 200-day average, T-bills
   otherwise; signal taken on the index, never on the levered fund.
 - **TQQQ hold** — the same fund with no filter, as the control for the arm above.
+- **Boosted trees** — the same five features, ten names and monthly rule, fitted with gradient-boosted
+  depth-2 regression trees (50 rounds, learning rate 0.05) instead of a linear model. Published gains of
+  trees and neural networks over linear models are attributed to interactions between predictors, found on
+  the whole US cross-section with hundreds of them; running both models on identical inputs is the only way
+  to test whether that survives at ten names and five features.
 - **Ridge model** — a cross-sectional ridge regression over the ten AI names. Five standardised features
   per stock per month (12-1 momentum, 6-1 momentum, one-month reversal, 21-day realised volatility,
   distance from the 200-day average), fitted on every past month whose forward return is already known,
   holding the top three when their predictions are positive and T-bills when none are.
+
+## Model scoreboard
+
+Both fitted models are graded in the units return-prediction papers use: monthly out-of-sample R^2 and
+mean rank information coefficient, published under `model_scores` in `/paper-ledger.json`. A month is
+scored only after the month following it has completed, and months before 2026-09-10 are never scored.
+There is no backtest. Reference point: Gu, Kelly & Xiu (Review of Financial Studies, 2020) report about
+0.26 % monthly out-of-sample R^2 for penalised linear models and 0.33-0.40 % for trees and neural
+networks, using 900+ predictors across the whole US cross-section.

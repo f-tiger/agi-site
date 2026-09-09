@@ -7,14 +7,14 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-FZXLMBB5QB"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-FZXLMBB5QB');</script>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a0a0b'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%234fc3a1'/%3E%3C/svg%3E">
-<title>AI Trading Ledger: Fourteen Bots, One Pre-Registered Public Track Record</title>
+<title>AI Trading Ledger: Fifteen Bots, One Pre-Registered Public Track Record</title>
 <meta name="description" content="A paper-trading ledger with rules fixed before the start: SPY/QQQ benchmarks, an AI basket, a Thesis-Tracker mix, Faber 200-day and GTAA-5, GEM dual momentum, vol targeting, 12-1 momentum and an LLM arm, recomputed daily in public. Not investment advice.">
 <link rel="canonical" href="https://agiscorecard.com/ai-trading-ledger">
-<meta property="og:title" content="AI Trading Ledger: fourteen bots, one pre-registered public track record">
+<meta property="og:title" content="AI Trading Ledger: fifteen bots, one pre-registered public track record">
 <meta property="og:description" content="The live, falsifiable ledger we ask AI-trading vendors for — kept by us, in public, paper only. Read date 2027-03-08.">
 <meta property="og:url" content="https://agiscorecard.com/ai-trading-ledger">
 <meta property="og:type" content="article">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Dataset", "name": "AGI Scorecard AI trading ledger (paper)", "description": "Pre-registered paper-trading ledger: twelve published rule-based arms, a cross-sectional ridge model and an LLM arm on US equities and ETFs, recomputed daily from adjusted closes on a public GitHub workflow. Each arm also reports the Sharpe ratio it would need to reach a 100 %/yr target. Educational; not investment advice.", "url": "https://agiscorecard.com/ai-trading-ledger", "license": "https://creativecommons.org/licenses/by/4.0/", "distribution": [{"@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "https://agiscorecard.com/paper-ledger.json"}], "creator": {"@type": "Organization", "name": "The AGI Scorecard", "url": "https://agiscorecard.com"}, "datePublished": "2026-09-05", "temporalCoverage": "2026-09-08/.."}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Dataset", "name": "AGI Scorecard AI trading ledger (paper)", "description": "Pre-registered paper-trading ledger: twelve published rule-based arms, two fitted cross-sectional models (ridge and gradient-boosted trees) and an LLM arm on US equities and ETFs, recomputed daily from adjusted closes on a public GitHub workflow. Each arm also reports the Sharpe ratio it would need to reach a 100 %/yr target. Educational; not investment advice.", "url": "https://agiscorecard.com/ai-trading-ledger", "license": "https://creativecommons.org/licenses/by/4.0/", "distribution": [{"@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "https://agiscorecard.com/paper-ledger.json"}], "creator": {"@type": "Organization", "name": "The AGI Scorecard", "url": "https://agiscorecard.com"}, "datePublished": "2026-09-05", "temporalCoverage": "2026-09-08/.."}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "AGI Scorecard", "item": "https://agiscorecard.com/"}, {"@type": "ListItem", "position": 2, "name": "Do AI trading agents make money?", "item": "https://agiscorecard.com/do-ai-trading-agents-work"}, {"@type": "ListItem", "position": 3, "name": "AI trading ledger", "item": "https://agiscorecard.com/ai-trading-ledger"}]}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Can this ledger reach 100% a year?", "acceptedAnswer": {"@type": "Answer", "text": "Only if one of its arms sustains a Sharpe ratio above about 1.18. Compound growth at leverage L is L·μ − L²σ²/2, which peaks at the Kelly leverage and falls again above it, so the highest annual return any leverage can reach is exp(S²/2) − 1, where S is the Sharpe ratio. Doubling every year therefore needs S of at least 1.177, or about 1.36 if you size at half Kelly. At a Sharpe of 1.0 the ceiling is 64.9%, and at 0.6 it is 19.7%. No leverage setting substitutes for the Sharpe ratio, so this ledger publishes each arm's measured figure instead of a target."}}, {"@type": "Question", "name": "Is the AI trading ledger investment advice or a signal service?", "acceptedAnswer": {"@type": "Answer", "text": "No. It is a paper-trading experiment with rules fixed before the start date. No security is recommended, nothing is executed for anyone, no real money is involved, and positions are shown only after the paper execution date. Nothing on this page is a recommendation to buy or sell anything."}}, {"@type": "Question", "name": "Why publish a paper ledger at all?", "acceptedAnswer": {"@type": "Answer", "text": "Because /do-ai-trading-agents-work holds vendors to a standard — positions timestamped before outcomes, every result graded, misses never deleted, methodology fixed in advance — and the only honest way to demand that standard is to meet it ourselves. The ledger is the demonstration, not a product."}}, {"@type": "Question", "name": "What happens if one arm beats the S&P 500?", "acceptedAnswer": {"@type": "Answer", "text": "Nothing automatic. The pre-registered read date is 2027-03-08 (six months). On that date every arm's return, maximum drawdown and excess versus SPY are published as they are. Six months of paper results in one market regime is not evidence of skill, and the page will say so."}}]}</script>
 <style>
@@ -70,14 +70,14 @@
 <main>
 <article>
   <div class="eyebrow">Live ledger · The agent economy</div>
-  <h1>AI Trading Ledger: fourteen bots, one pre-registered public track record</h1>
+  <h1>AI Trading Ledger: fifteen bots, one pre-registered public track record</h1>
   <div class="updated">Pre-registered September 5, 2026 · Paper only · Rules fixed before the start · Read date March 8, 2027 · Not investment advice</div>
 
   <div class="capsule"><span class="verdict">Status: <span id="st-verdict">loading the ledger…</span></span>
   <a href="/do-ai-trading-agents-work">Do AI trading agents make money?</a> answers "no audited public evidence" and tells vendors
   what would flip it: positions timestamped before outcomes, every result graded, misses never deleted, methodology fixed in advance.
-  This page is that record, kept by us. Fourteen arms each start with the same <strong>$10,000 of paper money</strong> — eleven on
-  <strong>September 8, 2026</strong>, and three registered later (two levered, one fitted model) on <strong>September 10</strong>
+  This page is that record, kept by us. Fifteen arms each start with the same <strong>$10,000 of paper money</strong> — eleven on
+  <strong>September 8, 2026</strong>, and four registered later (two levered and two fitted models) on <strong>September 10</strong>
   and are recomputed every trading day from the same adjusted closes by a public workflow — no human, no discretion, no edits after the fact.</div>
 
   <div id="ledger-viz" class="viz" style="position:relative;">
@@ -128,6 +128,19 @@
     <tbody><tr><td colspan="6" style="color:var(--muted);">Loading /paper-ledger.json…</td></tr></tbody>
   </table>
 
+  <h2>Model scoreboard, in the literature's units</h2>
+  <p>Return-prediction papers report two things: monthly out-of-sample R² and rank information
+  coefficient. Both models here are graded in exactly those units, so the comparison to published
+  work is a comparison rather than a flourish. A month is scored only once the month after it has
+  finished, and months before the models started are never scored — there is no backtest on this
+  page, because a curve computed today would be the one number here nobody could check against a
+  public execution date.</p>
+  <table id="score-table">
+    <thead><tr><th>Model</th><th class="num">Months scored</th><th class="num">Monthly out-of-sample R²</th><th class="num">Mean rank IC</th></tr></thead>
+    <tbody><tr><td colspan="4" style="color:var(--muted);">Loading /paper-ledger.json…</td></tr></tbody>
+  </table>
+  <p style="font-size:13.5px;color:var(--muted);" id="score-bench">Reference point: Gu, Kelly &amp; Xiu (<em>Review of Financial Studies</em>, 2020) report a monthly out-of-sample R² of about 0.26% for penalised linear models and 0.33–0.40% for trees and neural networks — using 900+ predictors across the entire US cross-section. This ledger has five features and ten names, so a smaller number here is the expected result rather than a malfunction. The reason to publish it anyway is that a model with no score is a claim, not a measurement.</p>
+
   <h2>The rules, fixed before the first trade</h2>
   <table class="rule">
     <thead><tr><th>Arm</th><th>Rule</th><th>Why it is here</th></tr></thead>
@@ -146,6 +159,7 @@
       <tr><td><span class="sw" style="background:#e66767"></span> Basket momentum 5</td><td>Inside the same ten AI names: rank by 12-1 month momentum (Jegadeesh-Titman), hold the top five at 20% each; monthly. <em>Added 2026-09-05.</em></td><td>The one arm that picks stocks — with a published rule, not an opinion.</td></tr>
       <tr><td><span class="sw" style="background:#7a3fbf"></span> TQQQ trend</td><td>At each month-end, hold the 3x Nasdaq-100 fund (TQQQ) while QQQ is above its own 200-day average, otherwise T-bills. The signal is taken on the index, never on the levered fund. <em>Registered 2026-09-09, starts 2026-09-10.</em></td><td>The best-known retail route to a very high return. It is here to be measured, including its drawdown.</td></tr>
       <tr><td><span class="sw" style="background:#7a3fbf"></span> TQQQ hold</td><td>Buy TQQQ at the first close and hold, with no filter at all. <em>Registered 2026-09-09, starts 2026-09-10.</em></td><td>The control for the arm above. Leverage without a rule is a different thing from leverage with one, and only a pair shows which part did the work.</td></tr>
+      <tr><td><span class="sw" style="background:#00868b"></span> Boosted trees</td><td>The same five features, the same ten names, the same monthly rule — fitted with gradient-boosted depth-2 regression trees instead of a linear model (50 rounds, learning rate 0.05, fixed before the start). <em>Registered 2026-09-09, starts 2026-09-10.</em></td><td>The published gains of trees and neural networks over linear models are attributed to <em>interactions</em> between predictors, found on the whole US cross-section with hundreds of them. Whether that survives at ten names and five features is an open question, and running both models on identical inputs is the only way to answer it here. Depth 2 rather than depth 1 because a stump ensemble is additive and could not express an interaction at all.</td></tr>
       <tr><td><span class="sw" style="background:#00868b"></span> Ridge model</td><td>A cross-sectional ridge regression over the same ten AI names. Five features per stock per month (12-1 momentum, 6-1 momentum, one-month reversal, 21-day realised volatility, distance from the 200-day average), standardised across the ten names, fitted on every past month whose forward return is already known, holding the top three when their predictions are positive and T-bills when none are. <em>Registered 2026-09-09, starts 2026-09-10.</em></td><td>The fitted model, not a published rule. Its reference point is Gu, Kelly &amp; Xiu (2020), whose comparable models reach a monthly out-of-sample R² near 0.3–0.4% using 900+ predictors across the whole US market.</td></tr>
     </tbody>
   </table>
@@ -177,7 +191,7 @@
 <footer>By the <a href="/about" style="color:var(--muted);">AGI Scorecard team</a> · Independent tracker of <a href="https://situational-awareness.ai" style="color:var(--muted);">Situational Awareness</a> · Not affiliated with any lab or fund · <a href="/privacy" style="color:var(--muted);">Privacy</a> · <a href="/advertise" style="color:var(--muted);">Advertise</a></footer>
 <script>
 (function(){
-  var ARMS=[["spy_hold","SPY hold","#e8e8ec",""],["qqq_hold","QQQ hold","#8888a0","5 4"],["sixty_forty","60/40","#8888a0","2 3"],["agi_basket","AGI basket","#199e70",""],["tracker_mix","Tracker mix","#c98500",""],["sma200_spy","200-day rule","#d55181",""],["llm_agent","LLM agent","#9085e9",""],["gem_dual_momentum","GEM dual momentum","#3987e5",""],["gtaa5","GTAA-5","#d95926",""],["spy_voltarget","SPY vol target","#008300",""],["basket_mom5","Basket momentum 5","#e66767",""],["tqqq_trend","TQQQ trend","#7a3fbf",""],["tqqq_hold","TQQQ hold","#7a3fbf","4 3"],["ml_ridge","Ridge model","#00868b",""]];
+  var ARMS=[["spy_hold","SPY hold","#e8e8ec",""],["qqq_hold","QQQ hold","#8888a0","5 4"],["sixty_forty","60/40","#8888a0","2 3"],["agi_basket","AGI basket","#199e70",""],["tracker_mix","Tracker mix","#c98500",""],["sma200_spy","200-day rule","#d55181",""],["llm_agent","LLM agent","#9085e9",""],["gem_dual_momentum","GEM dual momentum","#3987e5",""],["gtaa5","GTAA-5","#d95926",""],["spy_voltarget","SPY vol target","#008300",""],["basket_mom5","Basket momentum 5","#e66767",""],["tqqq_trend","TQQQ trend","#7a3fbf",""],["tqqq_hold","TQQQ hold","#7a3fbf","4 3"],["ml_ridge","Ridge model","#00868b",""],["ml_gbm","Boosted trees","#00868b","3 3"]];
   var HIDDEN={}; try{HIDDEN=JSON.parse(localStorage.getItem("ledger-hidden")||"{}")||{};}catch(e){}
   var STATUS={live:"Live",not_started:"Not started (no API key)"};
   function statusOf(L,key,A){
@@ -190,6 +204,7 @@
     document.getElementById("st-verdict").textContent="pre-registered; the first ledger file is written on the first trading day after September 8, 2026.";
     document.querySelector("#arm-table tbody").innerHTML='<tr><td colspan="6" style="color:var(--muted);">No ledger yet — nothing is backfilled.</td></tr>';
     document.getElementById("llm-box").textContent="Not started until an API key exists; no decisions recorded.";
+    document.querySelector("#score-table tbody").innerHTML='<tr><td colspan="4" style="color:var(--muted);">No ledger yet — nothing is scored before the models have a completed forward month.</td></tr>';
     document.querySelector("#t100-table tbody").innerHTML='<tr><td colspan="6" style="color:var(--muted);">No ledger yet — every arm needs 60 live sessions before a Sharpe ratio is computed, and none is estimated in advance.</td></tr>';
   });
   function render(L){
@@ -215,6 +230,17 @@
       }
       t100.insertAdjacentHTML("beforeend",'<tr><td><span class="sw" style="background:'+a[2]+'"></span> '+a[1]+'</td>'+cells+'</tr>');
     });
+    var MS=L.model_scores&&L.model_scores.models; var sb=document.querySelector("#score-table tbody");
+    if(!MS){sb.innerHTML='<tr><td colspan="4" style="color:var(--muted);">Not scored yet.</td></tr>';}
+    else{
+      var NAMES={ridge:"Ridge model",gbm:"Boosted trees"};
+      sb.innerHTML=Object.keys(MS).map(function(k){var S=MS[k].summary||{};
+        var r2=(S.monthly_oos_r2_pct==null)?"—":S.monthly_oos_r2_pct.toFixed(3)+"%";
+        var ic=(S.mean_rank_ic==null)?"—":S.mean_rank_ic.toFixed(3);
+        if(S.status!=="measured"){r2='<span style="color:var(--muted);">needs '+esc(String(L.model_scores.min_months||6))+' months</span>';ic="—";}
+        return '<tr><td><span class="sw" style="background:#00868b"></span> '+esc(NAMES[k]||k)+'</td><td class="num">'+(S.months||0)+'</td><td class="num">'+r2+'</td><td class="num">'+ic+'</td></tr>';
+      }).join("");
+    }
     var box=document.getElementById("llm-box"); var D=L.llm_decisions||[];
     if(!D.length){box.textContent="Not started until an API key exists; no decisions recorded."}else{
       box.innerHTML=D.slice(-8).reverse().map(function(d){var w=Object.keys(d.weights).map(function(k){return k+" "+Math.round(d.weights[k]*100)+"%";}).join(", ");return '<div style="margin-bottom:.6rem;"><strong style="color:var(--text)">'+esc(d.as_of_close)+'</strong> → executed '+esc(d.execute_on||"pending")+' · '+esc(d.model)+'<br>'+esc(w)+(d.rationale?'<br><em>'+esc(d.rationale.slice(0,300))+'</em>':'')+'</div>';}).join("");
