@@ -963,6 +963,60 @@ Strompreis-Radar)。本循环补的是**外部需求信号**(Google Trends DE)�
 - **部署触发收敛为仅 main（2026-08-06，owner 截图发现）**：owner 发来 run #290 失败截图，查证后是**两个不同原因**：288/289（`12215d8`）是我的 heat 端点 bug（已修）；**290 是 GitHub 自身故障**——`Failed to resolve action download info: Service Unavailable / Internal Server Error`，重试两次后放弃，与代码无关（同一提交 `4948c26` 在 main 的 run 291 成功）。**但这暴露了一个结构问题**：`deploy.yml` 原本在 main **和**工作分支上都触发，而工作流是"改完立刻合并 main"，导致**每次推送产生两个一模一样的 run、把同一提交部署两遍**——浪费、红绿成对制造噪音、且把撞上 GitHub 瞬时故障的概率翻倍。已收敛为**仅 main 触发**（保留 `workflow_dispatch`）。**方法论**：我此前只查 main 的 run，等于只看了一半的 CI 状态；owner 的截图补上了我的盲区。
 - **Alibaba 品类研究 → 拒绝照榜选品，转向"买之前没人回答的问题"（2026-08-06，用户"深度研究 Alibaba 热销品类→挖掘用户需求→达成商业机会"）**：`alibaba.com` 与 `1688.com` 在本环境**均不可达（000）**，无法取一手榜单，二手数据已标注为候选而非结论。**热销构成**：Consumer Electronics 28%、Home & Garden 25%，爆品是投影仪/充电宝/空气炸锅/耳机——**与"我房间太热"的德国租客零重叠**。**方法论判断**：`Alibaba 热销 = 大量转售商正在抢` ＝ 红海信号而非机会信号；本站所有有效判断都是需求优先（先 SERP 判定再找供给），用供给榜倒推受众是把方法论反过来用，**故拒绝照榜选品**。**补充核实的合规差异**：非电器（窗封/隔热帘）**不触发 Stiftung EAR + 破产担保 + 处置费**，但**仍需** LUCID 包装注册（罚款至 20 万欧 + 销售禁令）、GPSR、PPWR（2026-08-12 起）、Gewerbe/增值税/14 天撤回/2 年质保——**更轻但仍非快路，也依然需要法人主体**。**真正的机会（三方证据交叉）**：① 本站数据 kippfenster 是最大簇且贡献 1/3 联盟点击；② 市场上存在专做**量身定制窗封**的德国厂商（FROSNIR）＝"尺寸不合"是真痛点；③ 公开评测共识的两个失效点是**长度不对**与**粘胶高温脱落**；④ 空白：SERP 全是薄比价站、**本站 4 个窗封页提到尺寸的是 0 个**。→ 机会不是卖那条窗封（要当进口商且它本身有缺陷），而是**解决买它之前没人回答的问题**。**已落地 `EB_SEALFIT`**：需要长度 = `2×(宽+高)` 向上取常见规格（纯算术不伪造规格）、量窗扇非窗框、三种窗型分别提示、诚实指出失效点是粘胶、超 5 m 不硬推产品改提示定制；覆盖 DE 3 页 + EN 2 页，埋点 `seal_fit{len,type}`。Chromium 实测四组算式与尺寸映射全部正确，并抓出超尺寸时 Amazon 链接拼成坏查询的 bug（已修）。**预注册判定**：60 天 `seal_fit` ≥25 次 → 需求确认可扩展定制方向；<8 次 → 降级。详见 `docs/sourcing-research-2026-08.md`。
 
+## 品类扩张第二批:Schimmel 簇 + US 开关按国家码(2026-09-09,owner「继续扩大」)
+
+**这一批是上一批的对照组,不是又一批新页。** 09-07 我提出的区分变量是「**簇本身有没有排名**」:
+供暖簇没有(`infrarotheizung-garage` 全史 0、`-ratgeber` 全史 1),潮湿簇有
+(`mobile-klimaanlage-stinkt-schimmel` 28 天 12 pv,其中 **9 次来自搜索**,全站搜索驱动最强)。
+所以本批**同样 3 页、同样处境型问句、同一条判定线**,只有「簇是否已排名」这一个变量不同。
+选题全部取自 `schimmel entfernen` 种子(09-05,geo=DE,polluted=False):
+`schimmel-wand-kommt-wieder`(schimmel an der wand dauerhaft entfernen)·
+`schimmel-bad-fugen`(schimmel entfernen bad fugen)· `schimmel-kleiderschrank`
+(schimmel aus kleidung entfernen 300 + stockflecken)。
+**刻意跳过两行**:`schimmel entfernen kosten`(报不出可归因价格,无数字的成本页没用)、
+`schwarzen schimmel entfernen`(菌种与健康风险无法归因,离医疗声明太近)。
+
+**霉菌是健康话题,硬约束比上一批更严**:不写菌种、不写毒性、不写面积阈值(0,5 m² 那个数
+到处流传但无法归因 → 一律写「größere Flächen」)、不写洗涤温度(交给洗标)、不写配方与浓度、
+不写「杀灭 99,9%」,每页必须有 `Das ist keine medizinische Beratung.`。可用事实只有站内已发布的:
+表面 **70–80 %** 相对湿度孢子萌发、**40–60 / 60–70 / >70** 三档、Hygrometer 约 10 €、以及既有结论
+「除湿机防不治、对付建筑渗水永远白跑」。中央复校 12 类规则 **0 failures**(4 条 warning 是我的
+正则没盖住「Nicht selbst getestet」这种句首大写的诚实否定句,非缺陷)。
+
+**同轮修掉三个线上/流程缺陷**:
+1. **US 开关按国家码,不再只看浏览器时钟**(09-08 那次点击的直接结论):Cloudflare 判定 US、
+   页面带开关、词在规则里(`pinguino`),仍落 amazon.de —— 上报 UTC 的浏览器(Firefox
+   resistFingerprinting、VPN、出差)永远匹配不上 `America/`。改为三条路径:`America/*` 直接切(零网络)·
+   `Europe/*` 直接不切(零网络,覆盖 84% 流量)· **其余全部问 `/api/geo`**。**国家码刻意不写进 HTML**:
+   guide 页是 `public, max-age=0, must-revalidate`,把国别值烘进 body 会被共享缓存发给别的国家;
+   新端点单独 `no-store`。Chromium 四组真机验收全过,含「加载后生成的链接靠点击兜底改写」。
+   部署后自检加两条**对上一版会红**的断言(端点存在 + 必须 no-store)。
+2. **`schimmel-*` 归错设备族**:`device_of` 没有 schimmel 分支 → `schimmel-im-keller-entfernen`
+   一直是 `ac`,一个讲地下室霉菌的页面挂着「热浪预警」横幅和空调产品。改成湿度族。
+   **第一版我用子串匹配,把 `mobile-klimaanlage-stinkt-schimmel` 也拽了进去**——那页读者手里有空调、
+   要滤芯和清洁剂,而且是全站搜索最强页;已改成**前缀匹配**。
+3. **`inject_heatnow` 只插不删**(由 ②暴露):改了设备族之后旧的热浪 band 仍留在页面上,而
+   `EB_FEUCHTENOW` 的条件是「页面没有 HEATNOW」,于是该页**既没去掉错的、也没拿到对的**。
+   新增 `strip_heatnow`,非 ac 页一律清除。现在 73 个 ac 页保留热浪 band,湿度页拿到露点 band。
+   **教训:凡是「按条件注入」的组件,都要有对称的清除分支,否则分类一变就留下幽灵块。**
+
+**过程中我自己造的两个问题,都被闸门或复校抓住,记下来防复发**:
+①三个写页 agent 里有两个把 JSON-LD 拆成两个 `<script>` 并丢掉 BreadcrumbList,我写脚本补回
+`@graph`——**但这批页的模板用的是注入式 `eb-crumb-ld`,补进去就成了两个 BreadcrumbList**,
+被 `check_crumb_parity` 判红。站内两种形态都存在,**以模板为准、以闸门为准**,别按记忆补。
+②我第一版的复校脚本把注入区也算进内容检查,于是把昨天上线的美国桥的 `amazon.com/ecoback0d-20`
+链接报成「缺德国 tag」——**复校脚本必须先剥掉 `<!--EB_*-->` 区再检查**,否则报的是别人的代码。
+
+**判定线 2026-10-05(与 09-07 那批同日结算,构成对照)**:
+- 潮湿三页合计真人 pv **≥10 且有搜索或 AI 引荐来源** → 「簇已排名」是那个区分变量,后续扩张
+  只进已有排名的簇;
+- **潮湿 ≥10 而供暖 = 0** → 假设直接被证实,这是本域第一条可执行的选题规则;
+- **两批都 0** → 第五次独立确认,自此在本域**关闭「靠新页扩品类」**,除非分发能力先变
+  (Google 收录恢复 / Bing 曝光 / AI 引荐落到新页),并写成硬规则;
+- 1–9 → 不判,推 11-06。
+另记:US 切换首读(09-06 17:10 上线后 36 小时)**美国点击 2 次、其中 1 次首次落到 amazon.com**
+(来源 `us-market`,即 08-28 那个北美桥的**史上第一次**点击),n 太小不作数,09-25/10-05 再判。
+
 ## 品类扩张:Infrarotheizung 安装形态簇(2026-09-07,owner「我坚持要做品类扩张…要根据 google trends 等关键字、GEO 进行」)
 
 **owner 两次重申要扩品类,09-04 的「只深化不出新页」规则由 owner 明示解除。本条记录先验有多差,

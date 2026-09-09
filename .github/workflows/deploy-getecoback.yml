@@ -183,6 +183,16 @@ jobs:
           # so assert the shape of that accident on the live page: the block must
           # be present on both sections, carry the US associates tag, and hold a
           # rule for the term readers actually click most.
+          # /api/geo (2026-09-09): the US switch asks the edge which country the
+          # reader is in when the browser clock is ambiguous. It did not exist
+          # before this deploy, so this assertion is red against the previous
+          # build. It must be no-store — a cached country would be worse than none.
+          check "https://getecoback.com/api/geo" '"c"'
+          geo_cc=$(curl -sI --max-time 20 "https://getecoback.com/api/geo" | tr -d '\r' | grep -i '^cache-control:' || true)
+          case "$geo_cc" in
+            *no-store*) echo "OK /api/geo is no-store" ;;
+            *) echo "::error::/api/geo must be no-store, got: ${geo_cc:-<none>}"; fail=1 ;;
+          esac
           check "https://getecoback.com/guide/klimaanlage-wohnmobil.html" "EB_USSWITCH"
           check "https://getecoback.com/guide/klimaanlage-wohnmobil.html" "rv rooftop air conditioner"
           # not_found_handling regression guard (2026-09-04): an unknown path must

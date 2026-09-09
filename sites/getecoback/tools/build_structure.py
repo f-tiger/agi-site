@@ -830,6 +830,15 @@ def device_of(slug):
             # the usual tokens; without this it would fall through to "ac" and get
             # the cooling components on a page about a parked, unheated vehicle.
             or "feuchtigkeit-winter" in s
+            # Mould pages are humidity pages (2026-09-09). Without this the
+            # "schimmel-" family fell through to "ac": schimmel-im-keller-entfernen
+            # was live carrying the heatwave band and cooling products on a page
+            # about mould in an unheated cellar. Found while adding three more.
+            # Prefix, not substring: mobile-klimaanlage-stinkt-schimmel is a
+            # page about an air conditioner that smells, whose reader owns an AC
+            # and needs filters and cleaner. A substring test would have moved
+            # this site's best search-driven page into the wrong device family.
+            or s.startswith(("schimmel-", "stockflecken-"))
             # Humidifier pages live in the humidity family too: routing them to
             # "dehum" keeps every ac-only component (sizer, heat-energy box,
             # climate box) off the page; the card grid itself is overridden by
@@ -1089,6 +1098,21 @@ CONTEXT_MODELS = {
    ("Infrarot-Heizstrahler (Wand/Decke)", "Punktwärme am Arbeitsplatz", "Wärmt dich und die Werkbank direkt statt der Garagenluft — der Einsatzfall, für den Infrarot in der ungedämmten Garage gebaut ist.", "Preis vor Ort prüfen", "infrarot+heizstrahler+werkstatt+wandmontage", "heater"),
    ("Frostwächter mit Thermostat", "Nur frostfrei halten", "Springt erst unterhalb der eingestellten Temperatur an — für reinen Frostschutz die sparsamere Lösung als ein Panel im Dauerbetrieb.", "Preis vor Ort prüfen", "frostw%C3%A4chter+thermostat", "heater"),
    ("Steckdosen-Thermostat", "Abschaltung nachrüsten", "Schaltet einen vorhandenen Strahler temperaturgesteuert — Dauerbetrieb ist laut der Rechnung auf dieser Seite der teuerste Fehler.", "Preis vor Ort prüfen", "steckdosen+thermostat+heizung", "heater"),
+ ],
+ "schimmel-wand-kommt-wieder": [
+   ("Hygrometer (innen)", "Die Zahl vor jedem Kauf", "Erst messen, dann kaufen: entscheidend ist der Wert an der kalten Stelle, nicht in der Raummitte. Rund 10 €.", "Preis vor Ort prüfen", "hygrometer+innen", "purifier"),
+   ("Infrarot-Thermometer", "Wie kalt ist die Ecke wirklich", "Misst die Oberflächentemperatur der Wand — genau die Größe, um die es auf dieser Seite geht.", "Preis vor Ort prüfen", "thermometer+infrarot+oberfl%C3%A4che", "purifier"),
+   ("Luftentfeuchter", "Vorbeugen, nicht heilen", "Hält die Raumfeuchte unten, damit an der kalten Stelle gar nichts kondensiert. Vorhandenen Bewuchs entfernt er nicht.", "Preis vor Ort prüfen", "luftentfeuchter", "dehum"),
+ ],
+ "schimmel-bad-fugen": [
+   ("Duschabzieher", "Die wirksamste Minute", "Das Wasser von Fliesen und Fuge zu ziehen ist laut dieser Seite der wirksamste Einzelschritt — und der billigste.", "Preis vor Ort prüfen", "duschabzieher+abzieher+dusche", "purifier"),
+   ("Sanitärsilikon", "Wenn die Fuge erneuert wird", "Sobald der Belag im Silikon sitzt, hilft kein Reiniger mehr — dann wird die Fuge gezogen und neu gesetzt.", "Preis vor Ort prüfen", "sanit%C3%A4r+silikon+schimmelresistent", "purifier"),
+   ("Hygrometer (innen)", "Der Spitzenwert nach dem Duschen", "Zeigt, ob die Feuchte in der halben Stunde danach wirklich runtergeht. Rund 10 €.", "Preis vor Ort prüfen", "hygrometer+innen", "purifier"),
+ ],
+ "schimmel-kleiderschrank": [
+   ("Hygrometer (innen)", "Messen, wo es zählt", "Der Wert hinter und im Schrank entscheidet, nicht der in der Raummitte. Rund 10 €.", "Preis vor Ort prüfen", "hygrometer+innen", "purifier"),
+   ("Luftentfeuchter-Granulat", "Für den Schrank selbst", "Passiv, klein, für ein geschlossenes Möbel — der elektrische Entfeuchter ist für den Raum, nicht für den Schrank.", "Preis vor Ort prüfen", "luftentfeuchter+granulat", "dehum"),
+   ("Granulat-Nachfüllpack", "Der laufende Posten", "Granulat ist ein Verbrauchsmaterial — das gehört in die Rechnung, bevor du dich dafür entscheidest.", "Preis vor Ort prüfen", "raumentfeuchter+granulat+nachf%C3%BCll", "dehum"),
  ],
  "infrarotheizung-badezimmer": [
    ("Infrarotheizung fürs Bad", "Der Normalfall", "Panel auf die freie Wandfläche. Die Watt-Tabelle oben nennt für ein 6-m²-Bad je nach Dämmung 360 bis 600 W — nicht selbst getestet.", "Preis vor Ort prüfen", "infrarotheizung+bad", "heater"),
@@ -2634,31 +2658,38 @@ US_SWITCH_RULES = [
 ]
 
 USSWITCH = ('<!--EB_USSWITCH--><script>(function(){var tz="";'
-            'try{tz=Intl.DateTimeFormat().resolvedOptions().timeZone||"";}catch(e){return;}'
-            # America/* covers the US, Canada and Latin America. Amazon.com is
-            # the least-bad marketplace for all of them; amazon.de is useless to all.
-            'if(tz.indexOf("America/")!==0)return;'
-            # Rendered from US_SWITCH_RULES above rather than duplicated here.
-            # It was a second hand-written copy for one day (2026-09-06/07);
-            # check_usswitch.py reads the Python list, so a divergence would have
-            # been a gate that passes while the site ships the stale rules.
+            'try{tz=Intl.DateTimeFormat().resolvedOptions().timeZone||"";}catch(e){tz="";}'
+            'var NA=["US","CA","MX","PR","BR","AR","CL","CO","PE"];'
+            # Rendered from US_SWITCH_RULES rather than duplicated here; the gate
+            # reads the Python list, so a second copy would be a gate that lies.
             'var R=' + json.dumps([[a, b] for a, b in US_SWITCH_RULES],
                                   ensure_ascii=True, separators=(',', ':')) + ';'
-            'for(var i=0;i<R.length;i++){try{R[i][0]=new RegExp(R[i][0]);}catch(e){R[i][0]=null;}}'
             'var sw=function(a){if(!a||!a.href||a.href.indexOf("amazon.de/s?k=")<0)return;'
             'try{var u=new URL(a.href);var k=(u.searchParams.get("k")||"").toLowerCase();if(!k)return;'
             'for(var i=0;i<R.length;i++){if(R[i][0]&&R[i][0].test(k)){'
             'a.href="https://www.amazon.com/s?k="+encodeURIComponent(R[i][1])+"&tag=ecoback0d-20";'
             'a.setAttribute("data-eb-ussw","1");return;}}}catch(e){}};'
+            # Everything that touches the page happens here, so it runs once and only
+            # for a reader who can actually buy on amazon.com.
+            'var run=function(){'
+            'for(var i=0;i<R.length;i++){try{R[i][0]=new RegExp(R[i][0]);}catch(e){R[i][0]=null;}}'
             'var pass=function(){try{document.querySelectorAll(\'a[href*="amazon.de/s?k="]\').forEach(sw);}catch(e){}};'
             'if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",pass);else pass();'
-            # Several components build their Amazon links after load (the sticky bar,
-            # the sizer, the window-measurement calculator), so the sweep above cannot
-            # see them. Catch those at click time in the capture phase: this block sits
-            # above EB_TRACK in the document, so its listener runs first and the tracker
-            # records the rewritten URL.
+            # Several components build their Amazon links after load (the sticky bar, the
+            # sizer, the window calculator), so the sweep cannot see them. Catch those at
+            # click time in the capture phase: this block sits above EB_TRACK, so its
+            # listener runs first and the tracker records the rewritten URL.
             'document.addEventListener("click",function(e){'
-            'var a=e.target&&e.target.closest&&e.target.closest(\'a[href*="amazon.de/s?k="]\');if(a)sw(a);},true);'
+            'try{var a=e.target&&e.target.closest&&e.target.closest(\'a[href*="amazon.de/s?k="]\');if(a)sw(a);}catch(err){}},true);};'
+            # Cheapest path first. America/* decides alone, no network. Europe/* is 84 % of
+            # this site's traffic and is decided the same way, so it never pays for a
+            # request. Everything else — UTC, Etc/*, empty, an exotic zone — is the
+            # ambiguous case that was failing silently (a US reader on a UTC-reporting
+            # browser, 2026-09-08), and only those ask the edge which country they are in.
+            'if(tz.indexOf("America/")===0){run();}'
+            'else if(tz.indexOf("Europe/")===0){return;}'
+            'else{try{fetch("/api/geo").then(function(r){return r.json();}).then(function(d){'
+            'if(d&&d.c&&NA.indexOf(d.c)>=0)run();}).catch(function(){});}catch(e){}}'
             '})();</script><!--/EB_USSWITCH-->\n')
 
 
@@ -2927,6 +2958,17 @@ def inject_feuchtenow(html):
     if "<!--/EB_PROFILE-->" in html:
         return html.replace("<!--/EB_PROFILE-->", "<!--/EB_PROFILE-->\n" + FEUCHTENOW, 1)
     return html
+
+
+def strip_heatnow(html):
+    """Remove the live heat band. Needed because inject_heatnow only ever
+    inserts or replaces: when a page changes device family the old band stays
+    for ever. schimmel-im-keller-entfernen was live with a heatwave banner on a
+    page about mould in an unheated cellar, and reclassifying it to the humidity
+    family on 2026-09-09 did not clean it — the band had to be removed too. It
+    also blocks EB_FEUCHTENOW, which is skipped whenever EB_HEATNOW is present,
+    so the page got neither the right band nor the wrong one removed."""
+    return re.sub(r'<!--EB_HEATNOW-->.*?<!--/EB_HEATNOW-->\n?', '', html, flags=re.S)
 
 
 def inject_heatnow(html, slug=None):
@@ -4009,6 +4051,8 @@ def main():
             new = inject_video(new, slug)
             if device_of(slug) == "ac":
                 new = inject_heatnow(new, slug)
+            else:
+                new = strip_heatnow(new)
             if device_of(slug) == "storage":
                 new = inject_stromnow(new)
             # The humidity/mould family gets the autumn live number. Deliberately

@@ -501,6 +501,31 @@ async function dewReading() {
   }
 }
 
+// Which marketplace a reader can actually buy from. The US switch used to
+// decide this from the browser clock alone (Intl timezone starting "America/"),
+// and on 2026-09-08 a click proved that wrong: a reader Cloudflare geolocated to
+// the United States, on a page that carries the switch, clicking a term the rules
+// do cover ("pinguino"), still went to amazon.de. A browser that reports UTC —
+// Firefox with resistFingerprinting does exactly that, and so do VPNs and
+// travellers — never matches "America/" and never gets switched.
+//
+// The country is known here, at the edge, for free. It deliberately does NOT go
+// into the HTML: guide pages are served "public, max-age=0, must-revalidate", so
+// a per-country value baked into the body could be held by a shared cache and
+// handed to the wrong country. This endpoint is no-store instead, and the page
+// only calls it when the clock is genuinely ambiguous — never for the European
+// visitors who are 84 % of the traffic.
+function handleGeo(request) {
+  const c = (request.headers.get("CF-IPCountry") || "").toUpperCase();
+  return new Response(JSON.stringify({ c: /^[A-Z]{2}$/.test(c) ? c : "" }), {
+    headers: {
+      "content-type": "application/json; charset=utf-8",
+      "cache-control": "no-store",
+      "access-control-allow-origin": "*",
+    },
+  });
+}
+
 async function handleFeuchte() {
   const cacheKey = new Request("https://getecoback.com/__feuchte");
   let cache = null;
@@ -1331,6 +1356,9 @@ export default {
     }
     if (url.pathname === "/api/feuchte") {
       return handleFeuchte();
+    }
+    if (url.pathname === "/api/geo") {
+      return handleGeo(request);
     }
     if (url.pathname === "/api/strom") {
       return handleStrom();
