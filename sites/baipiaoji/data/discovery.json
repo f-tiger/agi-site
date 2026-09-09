@@ -1,6 +1,16 @@
 {
   "items": [
     {
+      "name": "LLM Attention Visualization",
+      "url": "https://ishamf.dev/p/llm-attention-visualizer/",
+      "host": "ishamf.dev",
+      "src": "https://news.ycombinator.com/item?id=49613068",
+      "points": 147,
+      "comments": 23,
+      "found": "2026-09-09",
+      "status": "candidate"
+    },
+    {
       "name": "Engrim – A universal, local-first SQLite memory engine for AI CLIs",
       "url": "https://github.com/timgordontg/engrim",
       "host": "github.com",
@@ -261,5 +271,5 @@
       "status": "candidate"
     }
   ],
-  "updated": "2026-09-08"
+  "updated": "2026-09-09"
 }
