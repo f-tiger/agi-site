@@ -1,5 +1,5 @@
 {
- "fetched": "2026-09-08",
+ "fetched": "2026-09-09",
  "seeds": {
   "electric spin scrubber": {
    "auto": [
@@ -423,58 +423,40 @@
    "fetched": "2026-09-08"
   },
   "gongfu tea set": {
-   "auto": [
-    "gongfu tea set",
-    "gongfu tea set parts",
-    "gongfu tea set near me",
-    "gongfu tea set with tray",
-    "gongfu tea set reddit",
-    "gongfu tea setup",
-    "gongfu tea set travel",
-    "gongfu tea set amazon",
-    "gongfu tea set for one",
-    "gongfu tea set components"
-   ],
    "rising": [
     {
-     "q": "gongfu tea set parts",
-     "v": "new"
+     "q": "gaiwan tea set",
+     "v": 60
     },
     {
-     "q": "gongfu tea set near me",
-     "v": "new"
-    },
-    {
-     "q": "gongfu tea set with tray",
-     "v": "new"
-    },
-    {
-     "q": "gongfu tea set reddit",
-     "v": "new"
-    },
-    {
-     "q": "gongfu tea setup",
-     "v": "new"
-    },
-    {
-     "q": "gongfu tea set travel",
-     "v": "new"
-    },
-    {
-     "q": "gongfu tea set amazon",
-     "v": "new"
-    },
-    {
-     "q": "gongfu tea set for one",
-     "v": "new"
-    },
-    {
-     "q": "gongfu tea set components",
-     "v": "new"
+     "q": "gongfu tea tray",
+     "v": 60
     }
    ],
-   "source": "autocomplete-diff",
-   "fetched": "2026-09-08"
+   "source": "related-queries",
+   "fetched": "2026-09-09"
+  },
+  "car refrigerator": {
+   "rising": [
+    {
+     "q": "samsung refrigerator water filters",
+     "v": 300
+    },
+    {
+     "q": "home depot refrigerator",
+     "v": 120
+    },
+    {
+     "q": "car insurance quote",
+     "v": 50
+    },
+    {
+     "q": "car insurance",
+     "v": 50
+    }
+   ],
+   "source": "related-queries",
+   "fetched": "2026-09-09"
   }
  }
 }
