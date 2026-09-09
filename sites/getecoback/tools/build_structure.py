@@ -4030,6 +4030,16 @@ def main():
             new = inject_radar(new)
             new = inject_climate(new, slug)
             new = inject_popup(new, slug)
+        # The US switch is not part of the transaction layer, and sitting inside
+        # that guide-only block is what kept it off 127 amazon.de links for the
+        # twelve days after it shipped (2026-08-28 → 09-09): the English homepage
+        # (11 links, where North-American readers actually land), the German
+        # homepage (25) and the four category hubs (16). It exists so a reader in
+        # America is not handed a German storefront, which is true wherever an
+        # amazon.de search link appears — so the condition is the link, not the
+        # directory. Idempotent, and inert on pages without such a link.
+        if "amazon.de/s?k=" in new:
+            new = inject_usswitch(new)
         if new != html:
             open(path, "w", encoding="utf-8").write(new)
             processed += 1
@@ -4065,6 +4075,11 @@ def main():
             new = inject_sticky(new, EN_STICKY)
             new = inject_radar(new, radar=EN_RADAR)
             new = inject_popup(new, slug, en=True)
+        # Same reason as in the German loop: the switch follows the amazon.de
+        # link, not the /en/guide/ directory — the English homepage carries 11 of
+        # them and had none of it until 2026-09-09.
+        if "amazon.de/s?k=" in new:
+            new = inject_usswitch(new)
         if new != html:
             open(path, "w", encoding="utf-8").write(new)
             en_processed += 1
