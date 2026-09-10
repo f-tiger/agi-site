@@ -1,5 +1,5 @@
 {
- "fetched": "2026-09-09",
+ "fetched": "2026-09-10",
  "seeds": {
   "electric spin scrubber": {
    "auto": [
@@ -439,24 +439,42 @@
   "car refrigerator": {
    "rising": [
     {
-     "q": "samsung refrigerator water filters",
-     "v": 300
-    },
-    {
      "q": "home depot refrigerator",
      "v": 120
     },
     {
-     "q": "car insurance quote",
-     "v": 50
+     "q": "quotes for car insurance",
+     "v": 60
     },
     {
      "q": "car insurance",
-     "v": 50
+     "v": 60
+    },
+    {
+     "q": "car insurance quote",
+     "v": 60
+    },
+    {
+     "q": "insurance for the car",
+     "v": 40
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-09-09"
+   "fetched": "2026-09-10"
+  },
+  "rollator walker": {
+   "rising": [
+    {
+     "q": "knee scooter",
+     "v": 9650
+    },
+    {
+     "q": "rollator walker near me",
+     "v": 40
+    }
+   ],
+   "source": "related-queries",
+   "fetched": "2026-09-10"
   }
  }
 }
