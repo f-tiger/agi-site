@@ -292,7 +292,18 @@ def season_block(links, title, lead=""):
             + lead_html + inner + '</div></section>' + js + '<!--/EB_SEASON-->\n')
 
 
-def inject_season(path, blk):
+def strip_season(path):
+    """Remove the bridge block from a carrier page. Guide pages only — the
+    homepage's EB_SEASON is a different component with the same marker name."""
+    html = open(path, encoding="utf-8").read()
+    new = re.sub(r"<!--EB_SEASON-->.*?<!--/EB_SEASON-->\n?", "", html, flags=re.S)
+    if new != html:
+        open(path, "w", encoding="utf-8").write(new)
+        return True
+    return False
+
+
+def _unused_inject_season(path, blk):
     html = open(path, encoding="utf-8").read()
     if "<!--EB_SEASON-->" in html:
         new = re.sub(r"<!--EB_SEASON-->.*?<!--/EB_SEASON-->\n?", blk, html, flags=re.S)
@@ -309,23 +320,37 @@ def inject_season(path, blk):
 
 
 def season_main():
-    for links, base in ((SEASON_DE_LINKS, GUIDE), (SEASON_EN_LINKS, os.path.join(ROOT, "site"))):
-        for href, _ in links:
-            tgt = os.path.join(ROOT, "site", href.lstrip("/"))
-            if not os.path.exists(tgt):
-                raise SystemExit(f"season bridge target does not exist: {href}")
+    """Kill line settled 2026-09-10, as pre-registered on 2026-08-28.
+
+    The bridge was a block on 24 cooling pages pointing readers at the autumn
+    pages, and it was instrumented on 08-28 precisely so that "nobody crosses
+    the seasons here" could be told apart from "this component is broken".
+    Thirteen days, 24 carrier pages, and the site's whole late-summer traffic
+    passing over it: `season_bridge` recorded **zero** clicks. The registered
+    consequence for zero was to remove it, so it is removed rather than argued
+    with. It is stripped from the carrier pages too — leaving a dead block on 24
+    pages is how a site accumulates components nobody can account for.
+
+    Note this is NOT the homepage seasonal rotation, which shares the EB_SEASON
+    marker name but lives in build_season.py, is working (the homepage now leads
+    with "Feuchte Wohnung im Herbst?"), and stays.
+
+    What the zero does not prove: that autumn content is pointless. Damp-cluster
+    pageviews rose 70 % over the same window while cooling fell 43 %. Readers do
+    arrive for autumn topics — they just do not arrive by being handed a link at
+    the bottom of a cooling page they came to for something else.
+    """
     n = 0
     for fn in SEASON_DE:
         p = os.path.join(GUIDE, fn)
-        if os.path.exists(p) and inject_season(p, season_block(
-                SEASON_DE_LINKS_BY_PAGE.get(fn, SEASON_DE_LINKS),
-                "Nach der Kühl-Saison: was jetzt ansteht", SEASON_DE_LEAD)):
+        if os.path.exists(p) and strip_season(p):
             n += 1
     for fn in SEASON_EN:
         p = os.path.join(ROOT, "site", "en", "guide", fn)
-        if os.path.exists(p) and inject_season(p, season_block(SEASON_EN_LINKS, "After the cooling season", SEASON_EN_LEAD)):
+        if os.path.exists(p) and strip_season(p):
             n += 1
-    print(f"season bridge injected/updated on {n} pages")
+    print(f"season bridge removed from {n} pages (kill line 2026-09-10, 0 clicks)")
+
 
 
 
