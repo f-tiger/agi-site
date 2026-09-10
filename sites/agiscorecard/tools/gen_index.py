@@ -308,3 +308,11 @@ zh_html = f"""<!DOCTYPE html>
 os.makedirs(os.path.join(ROOT, "zh"), exist_ok=True)
 open(os.path.join(ROOT, "zh", "progress-index.html"), "w").write(zh_html)
 print("zh/progress-index.html written")
+
+# --- keep the deep-page live hooks in sync (2026-09-10) ---
+# gen_index used to write only progress-index.html, so the seven deep pages carrying the
+# first-screen live number were never swept and silently drifted a month behind. They are
+# part of the same number; they get rewritten in the same run.
+import sync_live_hooks as _hooks
+_a, _s, _ch = _hooks.sync()
+print("live hooks synced to %s/100 as of %s%s" % (_s, _a, (" — " + ", ".join(_ch)) if _ch else " (already in sync)"))

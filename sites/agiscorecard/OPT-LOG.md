@@ -2845,3 +2845,70 @@ Playgama（PROMPT 已被同类模板拒一次，六款审核中，GHOSTLINE 已�
 **不下的结论**：不把「游戏线」判死。站内最强行为仍是「一坐下连玩 5–6 款」的跨游戏会话，
 发生在自有域、不依赖门户。**门户是分发假设，不是产品假设**；分发假设连挂三家，
 正确的动作是把投入从「求人上架」挪回自有域的留存与串联。
+
+## 2026-09-10（每日 run）— 七个「活数字」里有六个自己过期了一个月
+
+**spec（两轮自批后）**：⓪ strategy 三项仍卡 owner 的 Gateway waitlist；⓪+ 引用队列三项闸门
+未过；① 昨天刚动过 `/situational-awareness-summary`（判定线挂到 10-07，冷却中）；
+→ 落到 ⑤ GEO 底盘「刷新最陈旧页」。自批一：陈旧页里流量最高的是
+`/aschenbrenner-vs-metaculus`（9 pv，dateModified 停在 06-30，72 天），但它的核心数字是
+**Metaculus 社区中位数**，而沙箱对 metaculus.com 是 `connect_rejected`——**核不到就不能改**，
+零编造规则下这一页今天做不了实质刷新。自批二：那就先查一件更基础的事——**站上那些号称
+「活」的数字，自己是不是活的**。一查就是今天的全部产出。所调 skill：ai-seo（GEO 新鲜度）、
+analytics。
+
+**发现：七个首屏活数字钩子，六个停在 2026-08-08，而 data.json 已是 2026-09-06 —— 差 29 天。**
+
+| 页面 | 钩子写的 as-of | data.json |
+|---|---|---|
+| `/situational-awareness-summary`（引用榜第一，占 42%） | 2026-08-08 | 2026-09-06 |
+| `/what-is-agi`（Copilot 引用 91 次） | 2026-08-08 | 2026-09-06 |
+| `/how-close-is-agi` | 2026-08-08 | 2026-09-06 |
+| `/ai-orders-of-magnitude-explained` | 2026-08-08 | 2026-09-06 |
+| `/zh/situational-awareness-summary` | 2026-08-08 | 2026-09-06 |
+| `/zh/ai-orders-of-magnitude-explained` | 2026-08-08 | 2026-09-06 |
+| `/when-will-agi-arrive` | **2026-09-06** ✓ | 2026-09-06 |
+
+**为什么只有一个是对的**：09-06 那次 run 修了 `gen_index.py` 冻结可见日期的 bug，
+并顺手修了它当时正在看的那一页——但 **gen_index.py 从来只写 progress-index.html**，
+六个深页没有任何东西在扫。也就是说这不是一次性失误，**是一条注定会反复漂移的路径**。
+
+**为什么这条比它看起来严重**：这些钩子存在的唯一理由，是 CLAUDE.md 定的
+「首屏必须给出一个聊天答案装不下的、带日期会变的活数字」。**一个自己过期了一个月的
+活数字，比没有这个钩子更糟**——它对读者和引擎都在宣称新鲜，而且**过期时长得跟正常
+一模一样**。这与 09-08 那条洗字段的 bug 是同一类：静默、无报错、表面正常。
+
+**ship（一次改动，修 + 防）**
+- 新增 `tools/sync_live_hooks.py`：从 data.json 读 `thesisTracker.asOf` 与 `score`，
+  重写所有带钩子页面的日期与分数（EN `as of <strong>…` / zh `截至 <strong>…`）。
+  已跑，六页同步到 62.5/100 as of 2026-09-06。
+- `gen_index.py` 结尾调用它——分数变了，七个钩子在**同一次运行内**一起变。
+- `validate.py` 加闸门：任一钩子与 data.json 不一致即 **FAIL**。
+  **已实测**：把 `/what-is-agi` 的日期改成 2026-07-01 → validate 报
+  「活数字钩子过期 — what-is-agi.html: live hook says as-of 2026-07-01…」并**退出码 1**
+  （确认过退出码，不是只打印一行好看的字）。检查器本身缺失或改名也算失败，不静默放行。
+
+**刻意没做**：没有 bump 这六页的 `Last updated` / `dateModified` / sitemap lastmod。
+同步一个内嵌的数据字段不是编辑更新，为它一次性给六页伪造新鲜度信号，正是 Google 眼里的
+churn；钩子自己带着日期，那才是诚实的新鲜度信号。
+
+**未做且说明原因**：`/aschenbrenner-vs-metaculus`（72 天最陈旧、流量最高）本轮**不动**——
+它的关键数字要核 metaculus.com，沙箱出网被拒，核不到就不写。留在队列里等能核到的那天，
+不用「大概还是 2033」糊过去。
+
+**validate OK（229 页 / 211 URL）。**
+
+### 顺带查清的一件事：滑入框的真实读数（不改动，只记录）
+`slidein_show` 28 天 548 次看着很大，**其中 438 次是 Compass 子站的 `compass_popup`**
+（同名事件、不同 location，CLAUDE.md 早记过这个坑）。本站真实读数（08-06 至今累计）：
+**展示 129 · 关闭 37（29%）· `subscribe_click{slidein_*}` 0 · `agi_test_click{slidein}` 1**
+（09-09，DE，落在 `/when-will-agi-arrive`）。按页拆：`/` 73/20 · `/when-will-agi-arrive` 38/14 ·
+`/situational-awareness-summary` 10/3 · `/what-is-agi` 7/0 · `/ai-orders-of-magnitude-explained` 1/0。
+
+**没有据此拆掉它，理由是统计而不是舍不得**：0/129 对应的真实转化率 95% 上界约 2.3%,
+而弹窗订阅的行业常见区间就是 1–3%——**129 次展示根本分辨不出「正常」和「零」**。
+今天拿它判死，和昨天拿 17 次 `calc_use` 判活是同一种过度解读，只是方向相反。
+backlog 里原本只有「扩量闸门」没有「杀线」，现补一条：
+**判定线（预登记）：累计展示（排除 compass_popup）达 300 次时结算 —— `subscribe_click{slidein_*}`
++ `sub_open{slidein_*}` 合计仍为 0 → 全站移除滑入框，记反面发现；≥1 → 保留并按原闸门考虑扩量。**
+现读数 129/300。不因为等不及就提前判。

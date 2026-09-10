@@ -117,6 +117,12 @@ specs above at any time to resume net-new page creation.
   但**不要直接把弹窗铺到搜索落地页**——搜索来访者对弹窗更敏感，铺错会同时伤 SEO 体验与信任。
   前置条件：先等首页修好阈值后跑出 `slidein_show → agi_test_click{slidein}` 的真实转化率；
   比值站得住再考虑深页，且深页版应更克制（如仅在读完 FAQ 后出现，或改为内联块而非浮层）。
+  **2026-09-10 补一条杀线（原本只有扩量闸门，没有下线条件）**：真实累计读数为
+  展示 129 / 关闭 37 / `subscribe_click{slidein_*}` **0** / `agi_test_click{slidein}` 1。
+  0/129 的 95% 上界约 2.3%，与弹窗订阅 1–3% 的常见区间重叠，**这个样本量分辨不出零和正常**，
+  所以今天不拆。**判定线：累计展示（必须排除 Compass 的 `compass_popup`，它占了同名事件的 438/548）
+  达 300 次时结算——`subscribe_click{slidein_*}` + `sub_open{slidein_*}` 仍为 0 → 全站移除并记反面发现；
+  ≥1 → 保留，扩量仍按原闸门。** 现读数 129/300。
 - [ ] `demand-cluster-followups`（2026-08-06 自种，来自第一方 JS 确认读数）：
   实测最强需求信号是一条**完整的用户旅程**——搜索落在 `/situational-awareness-summary`
   （JS 确认 9 次，**超过首页**，且是唯一从 bing / duckduckgo / google 三个外部源进来的页面）

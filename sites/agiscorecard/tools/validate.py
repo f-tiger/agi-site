@@ -93,6 +93,17 @@ for _slug in ("situational-awareness-summary", "what-is-agi", "how-close-is-agi"
     if os.path.exists(_p) and "goes stale on" not in open(_p, encoding="utf-8").read():
         problems.append(f"{_slug}: 高引用页缺首屏活数字区块(定位深化第 ⑥ 条)")
 
+# 首屏「活数字」钩子必须与 data.json 一致(2026-09-10)。这些钩子存在的唯一理由就是
+# 「一个聊天答案装不下的、带日期会变的数」——所以一个自己过期了一个月的活数字比没有更糟,
+# 而且它过期时看起来完全正常。6/7 个钩子曾停在 2026-08-08 而 data.json 已是 2026-09-06。
+# 修法是 tools/sync_live_hooks.py(gen_index.py 每次调用),这里是让漂移无法悄悄发版的闸门。
+try:
+    import sync_live_hooks as _hooks
+    for _c in _hooks.check():
+        problems.append("活数字钩子过期 — " + _c)
+except Exception as _e:  # 缺文件/改名不该让整个校验静默通过
+    problems.append("活数字钩子检查无法运行: %r" % (_e,))
+
 # 可见「Last updated」必须与 JSON-LD 的 dateModified 一致。
 # 2026-08-18 实测有 7 页不一致,且**全部是可见日期更旧**——读者看到过期日期、
 # 引擎看到新日期。这类漂移不会报错、不会被人注意,只能靠校验拦。
