@@ -4973,8 +4973,8 @@ if (CODQ && CHATQ) {
   const zh = LOCALE.code === 'zh';
   const h1 = zh ? '定价：数据永久免费，卖的是围绕数据的服务' : 'Pricing: the data stays free — what is sold is the service around it';
   const desc = zh
-    ? '已核实数字、JSON API 与 MCP 服务器永久免费，数据以 CC BY 4.0 开放；全部自建工具同样免费，使用前注册一个邮箱即可（一次注册全站解锁）。将来收费的只有持续监控、报告导出与高频配额这类围绕数据的服务。付费收录、付费排序、付费徽章一概不卖——排序能买，核实就一文不值。'
-    : 'The verified figures, the JSON API and the MCP server are free for good, and the data is open under CC BY 4.0. Every self-built tool is free too — register an email once and everything unlocks. Only services around the data — continuous monitoring, report export, higher quotas — will ever be paid. Paid listing, paid ranking and paid badges are not for sale at any price: if ranking can be bought, verification is worthless.';
+    ? '已核实数字、JSON API 与 MCP 服务器永久免费，数据以 CC BY 4.0 开放；全部自建工具同样免费，使用前注册一个邮箱即可（一次注册全站解锁）。将来收费的只有持续监控、报告导出与高频配额这类围绕数据的服务。付费收录、付费排序、付费徽章一概不卖——排序能买，核实就一文不值。厂商唯一能买的是队列位置（加急核实：结论来得更快，不是更好的结论），详见厂商自荐页的「付费买不到的东西」。'
+    : 'The verified figures, the JSON API and the MCP server are free for good, and the data is open under CC BY 4.0. Every self-built tool is free too — register an email once and everything unlocks. Only services around the data — continuous monitoring, report export, higher quotas — will ever be paid. Paid listing, paid ranking and paid badges are not for sale at any price: if ranking can be bought, verification is worthless. The one thing a vendor can buy is queue position (expedited verification: a faster verdict, never a better one) — the vendor page lists what payment cannot buy.';
   const FREE = zh
     ? [['全部已核实数字与出处', '这是全站存在的理由'], ['全部自建工具（注册邮箱后使用）', '订阅体检、API 计算器、能不能发、分词器等，一次注册全站解锁'],
        ['JSON API 与 limits.json / llms-full.txt', 'CC BY 4.0，署名回链即可商用'], ['MCP 服务器（14 工具 / 9 资源 / 4 提示词）', '无鉴权，无需安装']]
@@ -7216,8 +7216,8 @@ curl -s 'https://baipiaoji.com/api/limits?slug=kimi'              # ${zh ? '这�
       ? '收录后的一切以我们的核实为准——提交里附的数字仅作线索，不会直接上站。这不是对提交者的不信任，是对所有读者的承诺：站上每个数字都过同一道门。'
       : "After listing, everything runs on our own verification — figures in a submission are treated as leads, never published as-is. That is not distrust of you; it is the promise to every reader that each number on this site passed the same gate."}</p>
     <p class="sub-note">${zh
-      ? `你是这个工具的厂商？除免费提交外，还有加急审核与首页推荐位可询价——收录标准与数字不受付费影响。见<a href="${BASE}/for-vendors.html">厂商自荐</a>。`
-      : `Are you the vendor of this tool? Beyond the free queue, expedited review and a homepage feature slot are available on inquiry — the criteria and the figures are unaffected by payment. See <a href="${BASE}/for-vendors.html">For vendors</a>.`}</p>
+      ? `你是这个工具的厂商？除免费队列外可询价<b>加急核实</b>——买到的是结论来得更快，不是更好的结论：收录标准、站内排序与每一个数字都不受付费影响。见<a href="${BASE}/for-vendors.html">厂商自荐</a>。`
+      : `Are you the vendor of this tool? Beyond the free queue you can ask about <b>expedited verification</b> — that buys a faster verdict, not a better one: the criteria, the ranking and every figure stay unaffected by payment. See <a href="${BASE}/for-vendors.html">For vendors</a>.`}</p>
   </section>
   <section class="limits-table">
     <h2 class="group-title">${zh ? '提交' : 'Submit'}<span>1</span></h2>
@@ -7234,12 +7234,19 @@ curl -s 'https://baipiaoji.com/api/limits?slug=kimi'              # ${zh ? '这�
       <button type="submit">${zh ? '提交' : 'Submit'}</button>
       <p class="sub-msg" role="status" aria-live="polite"></p>
     </form>
+    <p class="sub-note" id="vendorPath" hidden>${zh
+      ? `你是这个工具的厂商、希望更快拿到结论？<a href="${BASE}/for-vendors.html" data-biz="from-submit"><b>可以询价加急核实 →</b></a>　买到的只是队列位置：收录与否、站内排序、以及页面上的每一个数字，都不受付费影响。`
+      : `Are you this tool's vendor and want the verdict sooner? <a href="${BASE}/for-vendors.html" data-biz="from-submit"><b>Expedited verification is available on inquiry →</b></a>　What that buys is queue position only: inclusion, ranking and every figure on the page stay unaffected by payment.`}</p>
   </section>
 </main>
 <script>
 (function(){
   var ZH=${zh};
   var f=document.getElementById('submitForm'); if(!f)return;
+  document.addEventListener('click',function(e){
+    var a=e.target.closest?e.target.closest('[data-biz="from-submit"]'):null;
+    if(a&&window.bpjEv)bpjEv('biz','/biz/from-submit/click');
+  });
   f.addEventListener('submit',function(e){
     e.preventDefault();
     var msg=f.querySelector('.sub-msg'), btn=f.querySelector('button');
@@ -7264,6 +7271,16 @@ curl -s 'https://baipiaoji.com/api/limits?slug=kimi'              # ${zh ? '这�
       msg.textContent = d.code==='already'
         ? (ZH?'这个网址已经在队列里了——不用重复提交。':'That URL is already in the queue — no need to resubmit.')
         : (ZH?'已进队列。我们按收录标准核实后处理；留了邮箱的话会告诉你结果。':'In the queue. We will verify it against the criteria; if you left an email, you will hear the outcome.');
+      // 厂商入口放在这一刻,而不是只放在页首的小字里:提交成功 = 对方刚刚自报是这个工具的人,
+      // 也是他唯一一次在意「什么时候轮到我」的时候。09-10 查 D1 的依据:submissions 有 7 条真实
+      // 投稿(6 条在 10 天内),而 /for-vendors 90 天只有 2 次浏览——需求在敲门,收费入口没人看见,
+      // 11-15 那条「0 询价即撤」的判定线本来会在一个没人看过的页面上开火。
+      // 卖的只有队列位置:结论、排序、数字一律不动(见 /for-vendors 的「付费买不到的东西」)。
+      var vp=document.getElementById('vendorPath');
+      if(vp){
+        vp.hidden=false;
+        if(window.bpjEv)bpjEv('biz','/biz/from-submit/view');
+      }
     })
     .catch(function(){
       btn.disabled=false;
