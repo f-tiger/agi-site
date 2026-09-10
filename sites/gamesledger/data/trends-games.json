@@ -1,12 +1,24 @@
 {
- "d": "2026-09-09",
+ "d": "2026-09-10",
  "hits": [],
- "discovered": [],
+ "discovered": [
+  {
+   "query": "meteor shower",
+   "appid": 845650,
+   "name": "Meteor Shower",
+   "sim": 1.0
+  }
+ ],
  "watch": [
   {
    "appid": 207610,
    "name": "The Walking Dead",
    "first_seen": "2026-08-31"
+  },
+  {
+   "appid": 845650,
+   "name": "Meteor Shower",
+   "first_seen": "2026-09-10"
   }
  ],
  "note": "hits=in-pool trending; discovered=new games surfaced by trends via Steam official storesearch (>=0.85 name similarity); watch feeds the search pool only — verdict pages stay hand-curated."
