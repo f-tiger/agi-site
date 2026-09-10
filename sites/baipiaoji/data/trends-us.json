@@ -1,55 +1,56 @@
 {
  "ok": true,
- "fetched": "2026-09-09",
+ "fetched": "2026-09-10",
  "geo": "US",
- "matched": [],
+ "matched": [
+  {
+   "title": "deepseek v4.1 flash",
+   "traffic": "500+"
+  }
+ ],
  "top": [
   {
-   "title": "epstein files",
+   "title": "motagua - alianza",
+   "traffic": "100+"
+  },
+  {
+   "title": "delta flight 2311 rapid descent",
+   "traffic": "20000+"
+  },
+  {
+   "title": "deepseek v4.1 flash",
    "traffic": "500+"
   },
   {
-   "title": "iran war",
+   "title": "blake lively",
+   "traffic": "200+"
+  },
+  {
+   "title": "tommy mcmillen",
+   "traffic": "200+"
+  },
+  {
+   "title": "cynthia klitbo",
+   "traffic": "200+"
+  },
+  {
+   "title": "eliezer alfonzo",
+   "traffic": "200+"
+  },
+  {
+   "title": "jose trevino",
+   "traffic": "200+"
+  },
+  {
+   "title": "farmers almanac first snowfall map",
    "traffic": "2000+"
   },
   {
-   "title": "alexander zverev",
-   "traffic": "500+"
-  },
-  {
-   "title": "sinner us open",
-   "traffic": "100+"
-  },
-  {
-   "title": "arbor",
-   "traffic": "100+"
-  },
-  {
-   "title": "botic van de zandschulp",
-   "traffic": "200+"
-  },
-  {
-   "title": "alexander blockx",
-   "traffic": "200+"
-  },
-  {
-   "title": "lottery",
-   "traffic": "200+"
-  },
-  {
-   "title": "coach",
-   "traffic": "1000+"
-  },
-  {
-   "title": "rejected mail ballots washington oregon",
-   "traffic": "200+"
+   "title": "kaia gerber",
+   "traffic": "2000+"
   }
  ],
  "history": [
-  {
-   "d": "2026-08-26",
-   "matched": []
-  },
   {
    "d": "2026-08-27",
    "matched": []
@@ -107,6 +108,12 @@
   {
    "d": "2026-09-09",
    "matched": []
+  },
+  {
+   "d": "2026-09-10",
+   "matched": [
+    "deepseek v4.1 flash"
+   ]
   }
  ]
 }
