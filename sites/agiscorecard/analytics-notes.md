@@ -1362,3 +1362,32 @@ agiscorecard / baipiaoji / getecoback / gridlings / buysomething / gamesledger
 
 **owner 待办（沿用，未催）**：thedollscout `content/d1-snapshot.json` 仍缺
 （Cloudflare → API Tokens → deploy token → 加 `Account · D1 · Read`），自 09-02 挂起。
+
+## 2026-09-10（日结）
+
+**agiscorecard**：JS pv **1226/28d**；后 14 天 672 vs 前 14 天 560（**+20%**）。
+AI 引擎引荐 9 vs 10（**略降**，未翻倍）；社区 7 vs 6。
+- 落地页仍是 `/` 与 `/when-will-agi-arrive` 双头（约占全站 34%）。
+- 漏斗：`subscribe_click` 6 → `sub_open` 4 → `sub_submit` 2 → `sub_ok` **2**；
+  `subscribers` 2 行 status='stored'。Pro 桥 0，`affiliate_click` 0（10-31 线 0/5）。
+- 参与类明显上行：`vote_cast` 44→**63** · `deeplink_pick` 2→**7** · `tool_click` 8→**13** ·
+  `readnext_click` 13 · `pred_expand` 18 · `hot_topic_click` 7 · `agi_test_click` 6。
+  **全是页内、轻量、不跳转的东西在涨**，与 08-31 的结论一致。
+- 滑入框真实读数（排除 Compass 污染的 438 次）：展示 129 · 关闭 37 · 订阅点击 **0** ·
+  测试点击 1。**未拆除**——0/129 分辨不出「零」和「行业常见的 1–3%」。已补预登记杀线：
+  累计展示 300 次时结算（现 129/300）。
+- 站内搜索：修复上线三天，仍无读者搜索（唯一行是 `location='mcp'` 的服务端写入）。
+
+**gridlings**：28 天 pv 609 · play_start 349 · solve 135；**今日全 0**。
+**itch 判定线 43/13（09-24 需 150/25），连续第 10 天零新增。**
+CG 已按预登记线关闭（09-09）；拒稿原文仍未拿到，按「模板 = 关闭」执行中。
+Playgama：SINGULARITY 认证进行到激励广告一步，其余审核中。
+
+**sourceradar**：28 天真人 pv **52**（近 7 天 7），bot 46；交互事件仍全 0。
+连续第 7 天不动作、不 bump。
+
+**第①层 heartbeat**：读 data/fleet-health.json，八站全 200，无异常。
+
+**里程碑**：无新达成。
+
+**owner 待办（沿用，未催）**：thedollscout `content/d1-snapshot.json` 仍缺。
