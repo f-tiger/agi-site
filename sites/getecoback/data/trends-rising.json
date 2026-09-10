@@ -1,5 +1,5 @@
 {
- "fetched": "2026-09-09",
+ "fetched": "2026-09-10",
  "geo": "DE",
  "seeds": {
   "klimaanlage": {
@@ -145,47 +145,48 @@
    "rising": [
     {
      "q": "luftentfeuchter bei hitze",
-     "v": 155800
+     "v": 173750
     },
     {
      "q": "mobiles klimagerät",
-     "v": 67600
+     "v": 62900
     },
     {
-     "q": "kühlt ein luftentfeuchter",
-     "v": 41200
+     "q": "easy home luftentfeuchter",
+     "v": 61850
     },
     {
-     "q": "pro breeze luftentfeuchter 20l",
-     "v": 39400
-    },
-    {
-     "q": "klimaanlage ohne abluftschlauch",
-     "v": 33300
+     "q": "xiaomi luftentfeuchter",
+     "v": 50400
     },
     {
      "q": "klimaanlage mobil",
-     "v": 32300
+     "v": 47450
     },
     {
-     "q": "comfee mddf-20den7-wf",
-     "v": 26300
+     "q": "meacodry arete one 20l",
+     "v": 45600
     },
     {
      "q": "klarstein mobile klimaanlage mit abluftschlauch, 4-in-1 klimagerät mit ventilato",
-     "v": 17800
+     "v": 44600
     },
     {
-     "q": "klimagerät ohne abluftschlauch",
-     "v": 17450
+     "q": "split klimaanlage",
+     "v": 44250
     },
     {
-     "q": "luftentfeuchter und reiniger",
-     "v": 17350
+     "q": "kühlt ein luftentfeuchter",
+     "v": 41150
+    },
+    {
+     "q": "luftentfeuchter testsieger stiftung warentest",
+     "v": 28350
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-09-01"
+   "fetched": "2026-09-10",
+   "polluted": false
   },
   "heizlüfter": {
    "rising": [
@@ -415,36 +416,32 @@
   "saugwischer": {
    "rising": [
     {
-     "q": "roborock f25 ace pro",
-     "v": 62950
+     "q": "bester saugwischer roboter",
+     "v": 62450
     },
     {
-     "q": "vorwerk akkusauger",
-     "v": 41350
+     "q": "blume 2000",
+     "v": 10700
     },
     {
-     "q": "akku-saugwischer testsieger stiftung warentest",
-     "v": 21100
+     "q": "kärcher fc5",
+     "v": 3300
     },
     {
-     "q": "leifheit bodenwischer",
-     "v": 4550
-    },
-    {
-     "q": "bester saugwischer",
+     "q": "vorwerk staubsauger",
      "v": 60
     },
     {
      "q": "dyson staubsauger",
-     "v": 60
+     "v": 40
     },
     {
      "q": "philips saugwischer",
-     "v": 50
+     "v": 40
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-09-09",
+   "fetched": "2026-09-10",
    "polluted": false
   }
  }

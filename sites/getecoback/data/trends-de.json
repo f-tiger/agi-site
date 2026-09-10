@@ -1,57 +1,51 @@
 {
  "ok": true,
- "fetched": "2026-09-09",
+ "fetched": "2026-09-10",
  "source": "https://trends.google.com/trending/rss?geo=DE",
  "matched": [],
  "top": [
   {
-   "title": "fußballspieler",
+   "title": "cem özdemir",
+   "traffic": "5000+"
+  },
+  {
+   "title": "lol next",
    "traffic": "200+"
   },
   {
-   "title": "die landarztpraxis team sonnenhof",
-   "traffic": "500+"
+   "title": "cdu",
+   "traffic": "10000+"
   },
   {
-   "title": "heise online",
-   "traffic": "200+"
-  },
-  {
-   "title": "miersch",
-   "traffic": "200+"
-  },
-  {
-   "title": "1. fc saarbrücken",
-   "traffic": "200+"
-  },
-  {
-   "title": "english open",
+   "title": "pirsch",
    "traffic": "100+"
   },
   {
-   "title": "donald trump",
-   "traffic": "2000+"
-  },
-  {
-   "title": "lea meyer",
-   "traffic": "200+"
-  },
-  {
-   "title": "johanna puff",
+   "title": "george russell",
    "traffic": "1000+"
   },
   {
-   "title": "aktenzeichen xy … ungelöst",
-   "traffic": "500+"
+   "title": "kevin krawietz",
+   "traffic": "200+"
+  },
+  {
+   "title": "vw id. polo",
+   "traffic": "2000+"
+  },
+  {
+   "title": "liebe",
+   "traffic": "2000+"
+  },
+  {
+   "title": "abofalle",
+   "traffic": "200+"
+  },
+  {
+   "title": "games",
+   "traffic": "200+"
   }
  ],
  "history": [
-  {
-   "d": "2026-08-26",
-   "matched": [
-    "wie wird das wetter heute"
-   ]
-  },
   {
    "d": "2026-08-27",
    "matched": []
@@ -116,6 +110,10 @@
   },
   {
    "d": "2026-09-09",
+   "matched": []
+  },
+  {
+   "d": "2026-09-10",
    "matched": []
   }
  ]
