@@ -1,8 +1,8 @@
 {
-  "generated": "2026-09-06",
+  "generated": "2026-09-11",
   "note": "由 scripts/trend-radar.mjs 每日聚合五路站内信号生成。只排队不写事实；核实动作按硬规则执行。分数是领先指标的相对排序，不是预测。",
   "counts": {
-    "candidate": 25,
+    "candidate": 29,
     "category_hot": 0,
     "stale": 5,
     "demand": 0
@@ -86,6 +86,18 @@
       "score": 60
     },
     {
+      "id": "candidate:ishamf.dev",
+      "type": "verify_candidate",
+      "title": "核实候选：LLM Attention Visualization",
+      "why": "HN 147 分 / 23 评论（2026-09-09 发现）——外部热度已验证，站内尚未收录",
+      "action": "按收录标准核实 https://ishamf.dev/p/llm-attention-visualizer/；合格则中英同步入库，limits 走 limits-edit.mjs",
+      "refs": [
+        "https://ishamf.dev/p/llm-attention-visualizer/",
+        "https://news.ycombinator.com/item?id=49613068"
+      ],
+      "score": 54
+    },
+    {
       "id": "candidate:speko.ai",
       "type": "verify_candidate",
       "title": "核实候选：Launch HN: Speko (YC S26) – OpenRouter for Voice AI",
@@ -108,6 +120,18 @@
         "https://news.ycombinator.com/item?id=49166984"
       ],
       "score": 52
+    },
+    {
+      "id": "mcpsurface:bad",
+      "type": "mcp_surface",
+      "title": "MCP 发现面异常：官方 Registry 未收录/掉线",
+      "why": "体检于 2026-09-06——发现面断一天，agent 生态就少看见一天",
+      "action": "查 mcp-publish workflow 日志与最近改动；Registry 未收录则核对 server.json 校验错误并重新发布",
+      "refs": [
+        "server.json",
+        ".github/workflows/mcp-publish.yml"
+      ],
+      "score": 50
     },
     {
       "id": "candidate:github.com",
@@ -145,30 +169,6 @@
         "https://news.ycombinator.com/item?id=49198583"
       ],
       "score": 44
-    },
-    {
-      "id": "candidate:sprocket-demo.spikonado.com",
-      "type": "verify_candidate",
-      "title": "核实候选：Sprocket – The Best AI Agent for Hardware and Software Development",
-      "why": "HN 124 分 / 14 评论（2026-08-09 发现）——外部热度已验证，站内尚未收录",
-      "action": "按收录标准核实 https://sprocket-demo.spikonado.com；合格则中英同步入库，limits 走 limits-edit.mjs",
-      "refs": [
-        "https://sprocket-demo.spikonado.com",
-        "https://news.ycombinator.com/item?id=49145934"
-      ],
-      "score": 44
-    },
-    {
-      "id": "candidate:github.com",
-      "type": "verify_candidate",
-      "title": "核实候选：I made a Raspberry with Qwen my local car AI",
-      "why": "HN 106 分 / 24 评论（2026-08-26 发现）——外部热度已验证，站内尚未收录",
-      "action": "按收录标准核实 https://github.com/ThinkOffApp/CarWatch；合格则中英同步入库，limits 走 limits-edit.mjs",
-      "refs": [
-        "https://github.com/ThinkOffApp/CarWatch",
-        "https://news.ycombinator.com/item?id=49435675"
-      ],
-      "score": 40
     }
   ]
 }
