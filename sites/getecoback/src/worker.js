@@ -13,6 +13,42 @@
 //      anon-insert path (RLS + email-normalising trigger) is verified.
 
 
+// Which crawler, by name, for HTML requests only. evUaClass() already answers
+// "is this a bot", but not "which one" — and that gap is what blocks the single
+// biggest open question on this site. Google organic has sent 0 page views for
+// weeks while DuckDuckGo, Bing, Ecosia and Yahoo carry the entire search
+// channel. "Googlebot never comes" and "Googlebot comes constantly and Google
+// ranks us nowhere" call for opposite responses (a technical problem to escalate
+// versus a Search Console question), and from the JS beacon they look identical,
+// because a crawler that does not run JS never appears in it at all.
+//
+// Deliberately narrow: a fixed allowlist of coarse names, recorded only for
+// requests already classified as bots, never for human traffic. No user agent
+// string is stored, so this adds no fingerprinting surface — it answers "did
+// Googlebot fetch this page" and nothing else.
+const CRAWLERS = [
+  ["googlebot", /googlebot/i], ["google-extended", /google-extended/i],
+  ["google-other", /googleother|google-inspectiontool|apis-google|mediapartners-google/i],
+  ["bingbot", /bingbot|adidxbot|bingpreview/i],
+  ["gptbot", /gptbot/i], ["oai-searchbot", /oai-searchbot/i], ["chatgpt-user", /chatgpt-user/i],
+  ["claudebot", /claudebot|anthropic-ai|claude-web|claude-searchbot|claude-user/i],
+  ["perplexity", /perplexitybot|perplexity-user/i],
+  ["applebot", /applebot/i], ["duckduckbot", /duckduckbot|duckassistbot/i],
+  ["yandex", /yandexbot/i], ["baidu", /baiduspider/i], ["seznam", /seznambot/i],
+  ["petalbot", /petalbot/i], ["ccbot", /ccbot/i], ["amazonbot", /amazonbot/i],
+  ["meta-ai", /meta-externalagent|facebookbot|facebookexternalhit/i],
+  ["bytespider", /bytespider|tiktokspider/i],
+  ["ahrefs", /ahrefsbot/i], ["semrush", /semrushbot/i], ["mj12", /mj12bot/i],
+  ["dotbot", /dotbot/i], ["screamingfrog", /screaming frog/i],
+];
+
+function crawlerName(ua) {
+  if (!ua) return "";
+  for (const [name, re] of CRAWLERS) if (re.test(ua)) return name;
+  return "";
+}
+
+
 function evUaClass(ua) {
   if (!ua) return "none";
   if (/^getecoback-ci\b/i.test(ua) || /^curl\//i.test(ua) || /^Wget\//i.test(ua)) return "ci";
@@ -281,7 +317,7 @@ async function serveMarkdown(request, env, pathname, assetPath) {
   });
 }
 
-async function serveAsset(request, env, pathname) {
+async function serveAsset(request, env, pathname, ctx) {
   const response = await env.ASSETS.fetch(request);
   // Only strengthen caching for successful hits; leave 404s/errors short-lived.
   if (!response.ok) return response;
@@ -300,6 +336,19 @@ async function serveAsset(request, env, pathname) {
   });
   // Second-layer capture only on German guide pages (the traffic), never on
   // legal pages or the EN mirror; edge-injected so no page rebuild is needed.
+  // Server-side crawler log. HTML only, allowlisted crawlers only, one row per
+  // fetch, written after the response via waitUntil so it can never slow a
+  // request or fail one. Everything else — humans, assets, unknown agents — is
+  // not logged at all.
+  if ((headers.get("content-type") || "").includes("text/html")) {
+    const bot = crawlerName(request.headers.get("user-agent") || "");
+    if (bot && env.EVENTS && ctx && ctx.waitUntil) {
+      ctx.waitUntil(env.EVENTS.prepare(
+        "INSERT INTO ev (day, name, page, ref, meta, country, ua_class) VALUES (date('now'), 'crawl', ?, '', ?, ?, 'bot')"
+      ).bind(pathname.slice(0, 200), JSON.stringify({ bot }),
+        request.headers.get("cf-ipcountry") || "").run().catch(() => {}));
+    }
+  }
   const isGuide = /^\/guide\//.test(pathname) &&
     (headers.get("content-type") || "").includes("text/html") &&
     !/impressum|datenschutz|kontakt/.test(pathname);
@@ -319,6 +368,7 @@ async function serveAsset(request, env, pathname) {
 // header Cloudflare already provides. That is aggregate, non-personal data, so
 // no consent banner is required and nothing here identifies a visitor.
 const EV_NAMES = new Set([
+  "crawl",
   "page_view", "affiliate_click", "b2b_intent", "lead_intent", "outbound_choice", "cold_now", "strom_now",
   "feuchte_now",
   "embed_copy", "share", "video_play", "btu_calc", "hitze_check", "heat_check",
@@ -1409,12 +1459,12 @@ export default {
 
     if (url.pathname === "/") {
       url.pathname = "/index.html";
-      return serveAsset(new Request(url.toString(), request), env, "/");
+      return serveAsset(new Request(url.toString(), request), env, "/", ctx);
     }
     if (url.pathname === "/en/") {
       url.pathname = "/en/index.html";
-      return serveAsset(new Request(url.toString(), request), env, "/en/");
+      return serveAsset(new Request(url.toString(), request), env, "/en/", ctx);
     }
-    return serveAsset(request, env, url.pathname);
+    return serveAsset(request, env, url.pathname, ctx);
   },
 };

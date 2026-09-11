@@ -133,6 +133,9 @@ jobs:
       - name: Check the US marketplace switch still covers the links we ship
         run: python3 tools/check_usswitch.py
 
+      - name: Check the crawler allowlist still matches real user agents
+        run: node tools/test_crawler_ua.mjs
+
       - name: Deploy to Cloudflare Workers
         uses: cloudflare/wrangler-action@v3
         with:
