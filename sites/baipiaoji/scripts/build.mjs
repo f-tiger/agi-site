@@ -2573,6 +2573,39 @@ function upgradeIndexPage(upTools, groups) {
   });
 }
 
+// ---- 广告位渲染（2026-09-11，owner 指令的自助广告流程的展示端）----
+// 三条硬规矩,全部写在代码里而不是靠记性:
+// ① 必带明示「广告」标注(德国 UWG 的分离原则与 Google 的付费链接政策都要求);
+// ② 链接一律 rel="sponsored nofollow noopener" —— 漏掉这个,整站可能被判链接方案;
+// ③ 与已核实条目**不共用容器**:目录是核实来的,这块是买来的,读者必须一眼分得清。
+// 取数在客户端:付款后要立刻可见,而静态构建最快也要等下一次;没有广告时整块不渲染。
+const adSlotOf = (cat) => {
+  const zh = LOCALE.code === 'zh';
+  return `<div class="ad-slot" data-ad-cat="${esc(cat || '')}" hidden></div>
+<script>(function(){
+  var el=document.currentScript.previousElementSibling; if(!el)return;
+  var c=el.getAttribute('data-ad-cat')||'';
+  fetch('/api/ads?lang=${LOCALE.code}'+(c?'&cat='+encodeURIComponent(c):''))
+   .then(function(r){return r.json()}).then(function(d){
+    if(!d||!d.ads||!d.ads.length)return;
+    var H='<p class="ad-slot-h">${zh ? '广告' : 'Ad'}</p>';
+    d.ads.forEach(function(a){
+      var n=document.createElement('div');n.textContent=a.name;
+      var p=document.createElement('div');p.textContent=a.pitch;
+      H+='<a class="ad-item" rel="sponsored nofollow noopener" target="_blank" href="'+
+        String(a.url).replace(/"/g,'%22')+'" data-ad="'+String(a.id).replace(/[^a-z0-9]/gi,'')+'">'+
+        '<b>'+n.innerHTML+'</b><span>'+p.innerHTML+'</span></a>';
+    });
+    el.innerHTML=H; el.hidden=false;
+    if(window.bpjEv)bpjEv('ad','/ad/show/'+(c||'all'));
+    el.addEventListener('click',function(e){
+      var a=e.target.closest?e.target.closest('[data-ad]'):null;
+      if(a&&window.bpjEv)bpjEv('ad','/ad/click/'+a.getAttribute('data-ad'));
+    });
+  }).catch(function(){});
+})();</script>`;
+};
+
 function categoryPage(key, label) {
   const list = tools.filter((t) => t.category === key).sort((a, b) => (b.hot ? 1 : 0) - (a.hot ? 1 : 0));
   const freeN = list.filter((t) => (t._tags || []).includes('完全免费')).length;
@@ -2602,6 +2635,7 @@ function categoryPage(key, label) {
   const body = `<main class="stage">
   <nav class="crumb"><a href="${BASE}/">${esc(NAME)}</a><i>/</i><span>${esc(label)}</span></nav>
   ${gsOf()}
+  ${adSlotOf(key)}
   <header class="hero">
     <div class="hero-inner">
       <h1>${(ce && ce.h1) || UI('cat_h1', '免费{label} AI 工具推荐').replace('{label}', esc(label))}</h1>
@@ -4973,8 +5007,8 @@ if (CODQ && CHATQ) {
   const zh = LOCALE.code === 'zh';
   const h1 = zh ? '定价：数据永久免费，卖的是围绕数据的服务' : 'Pricing: the data stays free — what is sold is the service around it';
   const desc = zh
-    ? '已核实数字、JSON API 与 MCP 服务器永久免费，数据以 CC BY 4.0 开放；全部自建工具同样免费，使用前注册一个邮箱即可（一次注册全站解锁）。将来收费的只有持续监控、报告导出与高频配额这类围绕数据的服务。付费收录、付费排序、付费徽章一概不卖——排序能买，核实就一文不值。厂商唯一能买的是队列位置（加急核实：结论来得更快，不是更好的结论），详见厂商自荐页的「付费买不到的东西」。'
-    : 'The verified figures, the JSON API and the MCP server are free for good, and the data is open under CC BY 4.0. Every self-built tool is free too — register an email once and everything unlocks. Only services around the data — continuous monitoring, report export, higher quotas — will ever be paid. Paid listing, paid ranking and paid badges are not for sale at any price: if ranking can be bought, verification is worthless. The one thing a vendor can buy is queue position (expedited verification: a faster verdict, never a better one) — the vendor page lists what payment cannot buy.';
+    ? '已核实数字、JSON API 与 MCP 服务器永久免费，数据以 CC BY 4.0 开放；全部自建工具同样免费，使用前注册一个邮箱即可（一次注册全站解锁）。将来收费的只有持续监控、报告导出与高频配额这类围绕数据的服务。付费收录、付费排序、付费徽章一概不卖——排序能买，核实就一文不值。厂商能买的只有两样：队列位置（加急核实：结论来得更快，不是更好的结论），以及带明示「广告」标注、与目录物理分开的广告位（见<a href="' + BASE + '/advertise.html">投放</a>）。详见厂商自荐页的「付费买不到的东西」。'
+    : 'The verified figures, the JSON API and the MCP server are free for good, and the data is open under CC BY 4.0. Every self-built tool is free too — register an email once and everything unlocks. Only services around the data — continuous monitoring, report export, higher quotas — will ever be paid. Paid listing, paid ranking and paid badges are not for sale at any price: if ranking can be bought, verification is worthless. A vendor can buy exactly two things: queue position (expedited verification: a faster verdict, never a better one) and a labelled ad slot that sits apart from the directory (see <a href="' + BASE + '/advertise.html">advertise</a>). The vendor page lists what payment cannot buy.';
   const FREE = zh
     ? [['全部已核实数字与出处', '这是全站存在的理由'], ['全部自建工具（注册邮箱后使用）', '订阅体检、API 计算器、能不能发、分词器等，一次注册全站解锁'],
        ['JSON API 与 limits.json / llms-full.txt', 'CC BY 4.0，署名回链即可商用'], ['MCP 服务器（14 工具 / 9 资源 / 4 提示词）', '无鉴权，无需安装']]
@@ -7454,6 +7488,121 @@ curl -s 'https://baipiaoji.com/api/limits?slug=kimi'              # ${zh ? '这�
     ],
   }));
   allPages.push({ u: `${BASE}/for-vendors.html`, pr: '0.5' });
+
+// ---- 自助广告位 /advertise.html（2026-09-11，owner:「用户付款,自动上架用户的工具到
+// 不同板块,标注是广告,做成一个自动化流程,而不是等着我审核,我要的是钱」）----
+//
+// 与 /for-vendors.html 的分工写清楚,免得两页互相打架:
+//   for-vendors = 免费队列与加急核实(买的是**核实工作的先后**,结论仍可能是「不收录」)
+//   advertise   = 广告位(买的是**一块明示为广告的展示位**,与核实与排序完全无关)
+// 两者卖的是不同东西,而且都不碰「已核实目录」本身——目录与排序依旧不出售。
+//
+// 零人工的代价是门必须写死在代码里,而不是靠人看一眼:四道机器门在 /api/ad-draft,
+// 判不通过在付款之前就拒。付款由支付商托管(我们不碰卡号),webhook 验签后自动上架。
+{
+  const zh = LOCALE.code === 'zh';
+  const h1 = zh ? '把你的工具投放到这里' : 'Advertise your tool here';
+  const desc = zh
+    ? '自助投放:填三行、付款、立刻上架，全程无需等人审核。广告位一律带「广告」标注，与本站已核实的免费额度目录物理分开——目录的收录与排序永不出售。'
+    : 'Self-serve: three fields, pay, and the slot goes live immediately with nobody to wait for. Every slot carries an "Ad" label and sits apart from the verified free-tier directory — inclusion and ranking in that directory are never for sale.';
+  const HOW = zh
+    ? [['填三行', '工具名、官网、一句话说明。机器当场校验：必须是 https、不能是已收录工具的域名、说明里不能塞链接。'],
+       ['付款', '支付页由支付商托管，我们不接触你的卡号。'],
+       ['自动上架', `付款成功后由回调自动发布到你选的板块，${zh ? '' : ''}无需任何人审核。到期自动下架，不必联系我们。`]]
+    : [['Three fields', 'Tool name, official URL, one line. Checked on the spot: https only, not a domain already in the directory, and no links inside the pitch.'],
+       ['Pay', 'Checkout is hosted by the payment provider; we never touch your card details.'],
+       ['It goes live by itself', 'A webhook publishes the slot to the section you picked the moment payment clears. No human reviews it, and it retires on its own at the end of the run.']];
+  const NOT = zh
+    ? [['已核实数据', '广告买不到 limits 里的任何一个字：额度、官方出处、核实日期照旧只认官方页面。'],
+       ['目录排序', '站内排序是编辑规则（完全免费 > 有已核实数字 > hot），广告不参与，也改不动它。'],
+       ['伪装成推荐', '每个广告位都带明示「广告」标注，链接带 rel="sponsored"。不存在不标注的付费曝光。']]
+    : [['Verified figures', 'An ad buys no character of a limits entry: allowance, official source and check date still come only from the vendor’s own page.'],
+       ['Directory ranking', 'Ordering is an editorial rule (fully free > verified figure > hot). Ads do not enter it and cannot move it.'],
+       ['Looking like a recommendation', 'Every slot is labelled as an ad and every link carries rel="sponsored". Unlabelled paid exposure does not exist here.']];
+  const CATS_UI = catEntries.map(([k, v]) => [k, v]);
+  const body = `${railOf()}
+<main class="stage">
+  <nav class="crumb"><a href="${BASE}/">${esc(NAME)}</a><i>/</i><span>${esc(h1)}</span></nav>
+  ${gsOf()}
+  <header class="hero"><div class="hero-inner">
+    <h1>${esc(h1)}</h1>
+    <p class="answer">${esc(desc)}</p>
+  </div></header>
+  <section class="limits-table">
+    <h2 class="group-title">${zh ? '怎么走' : 'How it works'}<span>${HOW.length}</span></h2>
+    <ol class="pc-duties">${HOW.map(([t, d]) => `<li><b>${esc(t)}</b>${esc(d)}</li>`).join('')}</ol>
+  </section>
+  <section class="limits-table">
+    <h2 class="group-title">${zh ? '广告买不到的东西' : 'What an ad cannot buy'}<span>${NOT.length}</span></h2>
+    <ol class="pc-duties">${NOT.map(([t, d]) => `<li><b>${esc(t)}</b>${esc(d)}</li>`).join('')}</ol>
+    <p class="sub-note">${zh
+      ? '这一条是本站的生存方式：读者信这里的数字，是因为没有任何一个数字能被买走。广告位卖的是版面，不是判断。'
+      : 'This is how the site survives: readers trust these figures because none of them can be bought. A slot sells space, never a verdict.'}</p>
+  </section>
+  <section class="limits-table">
+    <h2 class="group-title">${zh ? '投放' : 'Book a slot'}<span>1</span></h2>
+    <form class="submit-form" id="adForm">
+      <label><span>${zh ? '工具名' : 'Tool name'}</span>
+        <input type="text" name="name" required maxlength="60" placeholder="${zh ? '例如：Kimi' : 'e.g. Kimi'}"></label>
+      <label><span>${zh ? '官网（https）' : 'Official URL (https)'}</span>
+        <input type="url" name="url" required maxlength="300" placeholder="https://"></label>
+      <label><span>${zh ? '一句话说明（最多 140 字，不能放链接）' : 'One line (140 chars max, no links)'}</span>
+        <input type="text" name="pitch" required maxlength="140"></label>
+      <label><span>${zh ? '投放板块' : 'Section'}</span>
+        <select name="cat" required>${CATS_UI.map(([k, v]) => `<option value="${esc(k)}">${esc(v)}</option>`).join('')}</select></label>
+      <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">
+      <button type="submit">${zh ? '去付款' : 'Continue to payment'}</button>
+      <p class="sub-msg" role="status" aria-live="polite"></p>
+    </form>
+    <p class="sub-note">${zh
+      ? '不收集除上面四项之外的任何信息；付款信息全部留在支付商那里，我们拿不到也不需要。'
+      : 'Nothing beyond those four fields is collected; payment details stay with the provider, where we can neither see nor need them.'}</p>
+  </section>
+</main>
+<script>
+(function(){
+  var ZH=${zh};
+  var f=document.getElementById('adForm'); if(!f)return;
+  function EV(n,p){try{if(window.bpjEv)window.bpjEv(n,p)}catch(e){}}
+  var seen=false;
+  function view(){if(!seen){seen=true;EV('ad','/ad/form/view')}}
+  f.addEventListener('focusin',view,{once:true});
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var msg=f.querySelector('.sub-msg'), btn=f.querySelector('button');
+    msg.className='sub-msg'; msg.textContent=ZH?'校验中…':'Checking…'; btn.disabled=true;
+    EV('ad','/ad/form/submit');
+    fetch('/api/ad-draft',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({name:f.name.value,url:f.url.value,pitch:f.pitch.value,
+        cat:f.cat.value,lang:'${LOCALE.code}',website:(f.querySelector('input[name=website]')||{}).value||''})})
+    .then(function(r){return r.json().catch(function(){return{ok:false}})})
+    .then(function(d){
+      btn.disabled=false;
+      if(d&&d.ok&&d.pay_url){EV('ad','/ad/pay/redirect');location.href=d.pay_url;return}
+      msg.className='sub-msg is-err';
+      var m={badurl:ZH?'网址解析不了，需要完整的 https:// 地址。':'That URL does not parse — a full https:// address is needed.',
+        nothttps:ZH?'只接受 https 的地址。':'https addresses only.',
+        badhost:ZH?'这个主机名不像正式官网。':'That hostname does not look like a real site.',
+        nolinks:ZH?'一句话说明里不能放链接。':'The one-line pitch cannot contain a link.',
+        refused:ZH?'这个品类我们不投放。':'We do not carry that category.',
+        missing:ZH?'有必填项没填。':'Something required is missing.',
+        not_configured:ZH?'收款通道还没接通——你的内容已经存下，接通后可以直接付款。':'The payment channel is not connected yet. Your details are saved and can be paid for once it is.'};
+      msg.textContent=m[d&&d.code]||(ZH?'没提交上，稍后再试。':'That did not go through — try again shortly.');
+      EV('ad','/ad/err/'+((d&&d.code)||'net'));
+    })
+    .catch(function(){btn.disabled=false;msg.className='sub-msg is-err';
+      msg.textContent=ZH?'网络没通，稍后再试。':'Network error — please try again.';});
+  });
+})();
+</script>`;
+
+  writeFileSync(join(dist, ...(L.dir ? [L.dir.slice(1)] : []), 'advertise.html'), layout({
+    title: `${h1} - ${NAME}`, description: desc, path: '/advertise.html', body,
+    schema: [crumbLd([{ name: NAME, url: `${BASE}/` }, { name: h1, url: `${BASE}/advertise.html` }])],
+  }));
+  allPages.push({ u: `${BASE}/advertise.html`, pr: '0.5' });
+}
+
 }
 
 // ---- 404 ----
