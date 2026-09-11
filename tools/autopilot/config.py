@@ -113,8 +113,19 @@ class SiteConfig:
         return any(p.search(rel) for p in self.exclude)
 
 
+# Configs live at the repo root, NOT inside sites/<x>/. Two reasons, both found the
+# hard way on 2026-09-11 before the first merge:
+#   1. agiscorecard's wrangler serves `./` as its asset directory, so a config file
+#      under sites/agiscorecard/ would have been published at
+#      https://agiscorecard.com/autopilot.json — an internal file on the public web.
+#      thedollscout's assemble-dist.sh would have rsynced its copy into dist too.
+#   2. Every config edit sits inside six deploy path filters, so tuning one regex
+#      would have redeployed six sites for nothing.
+CONFIG_DIR = os.path.join(REPO, "data", "autopilot", "config")
+
+
 def load(site):
-    path = os.path.join(REPO, "sites", site, "autopilot.json")
+    path = os.path.join(CONFIG_DIR, "%s.json" % site)
     if not os.path.isfile(path):
         raise ConfigError("no autopilot config for %r at %s" % (site, path))
     with open(path, encoding="utf-8") as fh:
@@ -123,11 +134,9 @@ def load(site):
 
 
 def all_sites():
-    base = os.path.join(REPO, "sites")
-    return sorted(
-        d for d in os.listdir(base)
-        if os.path.isfile(os.path.join(base, d, "autopilot.json"))
-    )
+    if not os.path.isdir(CONFIG_DIR):
+        return []
+    return sorted(f[:-5] for f in os.listdir(CONFIG_DIR) if f.endswith(".json"))
 
 
 # --- Worker route table --------------------------------------------------------

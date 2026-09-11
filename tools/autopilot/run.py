@@ -41,7 +41,7 @@ RECEIPTS = os.path.join(REPO, "data", "autopilot")
 
 def killed(site):
     for p in (os.path.join(HERE, "KILLED"),
-              os.path.join(REPO, "sites", site, "AUTOPILOT_OFF")):
+              os.path.join(config.CONFIG_DIR, "%s.OFF" % site)):
         if os.path.exists(p):
             return p
     return None
