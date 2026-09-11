@@ -90,6 +90,25 @@ jobs:
         run: node scripts/discover-tools.mjs
         continue-on-error: true
 
+      # 自扩展层（2026-09-11,owner:「让 bpj 站点可以自我扩展…为站点构建算法的后端能力」）。
+      # 两步都是零 AI、只产信号不写事实:
+      #   source-drift:抓每条 limits 的官方来源页,「数字+单位」令牌集合连续两日变了才确认漂移,
+      #                写 data/drift.json → 复核队列置顶 / 雷达 65 分 / 工具页如实提示「待复核」。
+      #                抓不到（403/超时）= 放行不比对;一个新数字都不写进 tools.json。
+      #   reach-export:curl 本站 /api/reach（Worker 自带 D1 绑定,零 token——CI 直连 D1 的
+      #                REST 导出在舰队里从未成功过一次),写 data/reach.json → 广告页真实触达表、
+      #                空广告位自售行、雷达按触达排付费档缺口、每日循环免 MCP 读数。
+      # 分钟账:drift ~1.5 分 + reach ~0.1 分,每日一次 ≈ 48 分/月,挂在已有 schedule 上不新增 cron。
+      - name: Source-page drift check (scheduled runs only)
+        if: github.event_name != 'push'
+        run: node scripts/source-drift.mjs
+        continue-on-error: true
+
+      - name: Export reach snapshot from /api/reach (scheduled runs only)
+        if: github.event_name != 'push'
+        run: node scripts/reach-export.mjs
+        continue-on-error: true
+
       - name: Commit refreshed data (scheduled runs only)
         if: github.event_name != 'push'
         run: |
@@ -429,6 +448,20 @@ jobs:
           # 表现为 500/HTML 错误页而不是我们自己的 JSON。上面两条拿到 JSON 即已证伪该情形。
           echo "✅ 注册墙在位：未注册被拒、未知 slug 被拒、Function 正常加载正文模块"
 
+      # 触达端点自测:形状与口径都要对——它是整个自扩展层的眼睛,瞎了要能红。
+      - name: Self-test reach endpoint
+        id: st_reach
+        run: |
+          r=$(curl -s -m 25 -A 'curl/8.0 bpj-ci-selftest' 'https://baipiaoji.com/api/reach?days=7')
+          echo "$r" | head -c 300; echo
+          echo "$r" | grep -q '"ok":true' || { echo "::error::/api/reach 未返回 ok:true"; exit 1; }
+          echo "$r" | grep -q '"humans_referred":[0-9]' || { echo "::error::/api/reach 缺 humans_referred 计数"; exit 1; }
+          echo "$r" | grep -q '"paths":\[' || { echo "::error::/api/reach 缺 paths 数组"; exit 1; }
+          echo "$r" | grep -q '"window_days":7' || { echo "::error::/api/reach 未按 days 参数取窗"; exit 1; }
+          # 只出聚合:响应里绝不能出现 @（邮箱）或完整 UA 字样
+          echo "$r" | grep -q '@' && { echo "::error::/api/reach 响应含 @ —— 疑似泄漏行级数据"; exit 1; }
+          echo "✅ /api/reach 在位：ok、计数、paths、窗口参数、零行级数据"
+
       - name: MCP discovery surface check
         run: |
           listed=false
@@ -577,5 +610,6 @@ jobs:
           check "事实回归守卫" "${{ steps.st_guard.outcome }}"
           check "变更分发" "${{ steps.st_dispatch.outcome }}"
           check "赚钱作业包注册墙" "${{ steps.st_earn.outcome }}"
+          check "触达端点" "${{ steps.st_reach.outcome }}"
           [ "$fail" = "0" ] || exit 1
           echo "✅ 全部链路自测通过"

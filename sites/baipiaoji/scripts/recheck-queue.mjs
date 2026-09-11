@@ -5,7 +5,7 @@
 // 已有五起过时事故（qoder / codebuddy / marscode / devv / deepinfra）全靠偶然撞见，
 // 而链接巡检只能保证网址活着、保证不了描述还对。这个队列把「该复核谁」变成确定性输出，
 // 供每日循环取用；不做自动改写——数字必须人工/单轮逐条核实，这是硬规则。
-import { readFileSync } from 'node:fs';
+import { readFileSync, existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -18,6 +18,15 @@ const withLimits = tools.filter((t) => t.limits?.checked);
 const queue = withLimits
   .map((t) => ({ slug: t.slug, name: t.name, cat: t.category, checked: t.limits.checked, age: days(t.limits.checked) }))
   .sort((a, b) => b.age - a.age);
+
+// 来源页漂移优先于一切阈值:厂商已经改了页面,等 30 天就是把过时数字挂 30 天（2026-09-11 自扩展层）
+const driftFile = join(root, 'data/drift.json');
+const drift = existsSync(driftFile) ? JSON.parse(readFileSync(driftFile, 'utf8')).items || [] : [];
+if (drift.length) {
+  console.log(`🔴 来源页漂移已确认 ${drift.length} 条（最先复核）：`);
+  for (const d of drift.slice(0, 15)) console.log(`  ${d.slug}  ${d.confirmed} 确认  +${(d.added || []).length} −${(d.removed || []).length}  ${d.url}`);
+  console.log('');
+}
 
 const STALE = 30;   // 超过这个天数视为该复核
 const stale = queue.filter((q) => q.age >= STALE);

@@ -181,6 +181,22 @@
    `ADS_WALLET_CHAIN` 等,或卡轨 `ADS_PAYMENT_LINK`/`STRIPE_WEBHOOK_SECRET`/`ADS_PRICE_CENTS`;
    ③手发 7 封厂商回复。
 
+14. **🧠 自扩展层已上线 2026-09-11(owner:「让bpj站点可以自我扩展…为站点构建算法的后端能力,
+   可以更新工具,并且创造营收」;三轮 prompt 与判定线见 `docs/self-expansion-2026-09.md`)。**
+   三件零 AI 的第①层能力,全部挂在已有每日 schedule 上(≈48 分/月,不新增 cron):
+   ① `/api/reach`(functions/api/reach.js)只出计数的触达聚合 → CI 每日 `scripts/reach-export.mjs`
+   写 `data/reach.json`。**每日循环与本会话读流量先读这个文件**(带来源真人 pv 按类目/工具/判定页、
+   来源域、AI 引荐、事件、投稿数),口径固定在端点一处(=traffic-truth 真人线 A),不再各自手写 SQL。
+   ② `scripts/source-drift.mjs`:每天抓每条 limits 的官方来源页,「数字+单位」令牌集合连续两日与
+   基线不同才确认漂移 → `data/drift.json`。**只标记不写事实**;抓不到放行;`limits.checked` 推进
+   到确认日后自动撤标。复核顺序从此 = 漂移确认 > 30 天阈值。
+   ③ 接线:雷达 `source_drift`(65 分)与 `paid_gap`(按触达排付费档缺口,喂 #13);复核队列漂移置顶;
+   工具页对漂移条目如实提示「官方页面 X 日有变动,本条待复核」;广告页出各板块**真实**触达表;
+   空广告位自售行(标「广告位」,事件 `/ad/house/<cat>`)。
+   **硬边界**:LLM 不进 CI 写事实;候选/投稿不自动成条目;新数字永远只走 limits-edit 两步。
+   **判定线**:09-25 `drift.json` 的 `fetched_ok` ≥60 且 ≥1 条经核实的真漂移 → 成立;<30 → 只盯可抓部分不再扩。
+   10-09 `ad/house` 点击 ≥5 → 自售行保留;=0 → 撤。
+
 # CLAUDE.md
 
 ## 工作方式要求（必须遵守）

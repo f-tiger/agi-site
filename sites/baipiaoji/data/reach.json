@@ -1,0 +1,694 @@
+{
+  "generated": "2026-09-11",
+  "source": "/api/reach",
+  "window_days": 28,
+  "since": "2026-08-14",
+  "until": "2026-09-11",
+  "definition": "ev='' AND ref != '' — referred human page views (traffic-truth.mjs human line A); direct/no-referrer visits and /__ self-test paths excluded; counts only, no row-level data",
+  "humans_referred": 260,
+  "per_day": 9.3,
+  "by_kind": {
+    "tool": 164,
+    "category": 49,
+    "page": 35,
+    "plans": 4,
+    "vs": 7,
+    "alternatives": 1
+  },
+  "categories": [
+    {
+      "cat": "chat",
+      "n": 81
+    },
+    {
+      "cat": "api",
+      "n": 40
+    },
+    {
+      "cat": "coding",
+      "n": 39
+    },
+    {
+      "cat": "video",
+      "n": 24
+    },
+    {
+      "cat": "image",
+      "n": 12
+    },
+    {
+      "cat": "office",
+      "n": 7
+    },
+    {
+      "cat": "agent",
+      "n": 4
+    },
+    {
+      "cat": "local",
+      "n": 3
+    },
+    {
+      "cat": "writing",
+      "n": 3
+    },
+    {
+      "cat": "audio",
+      "n": 3
+    },
+    {
+      "cat": "study",
+      "n": 2
+    },
+    {
+      "cat": "safety",
+      "n": 1
+    },
+    {
+      "cat": "search",
+      "n": 1
+    },
+    {
+      "cat": "design",
+      "n": 1
+    }
+  ],
+  "tools": [
+    {
+      "slug": "grok",
+      "cat": "chat",
+      "n": 67
+    },
+    {
+      "slug": "fireworks",
+      "cat": "api",
+      "n": 13
+    },
+    {
+      "slug": "kimi",
+      "cat": "chat",
+      "n": 9
+    },
+    {
+      "slug": "haiper",
+      "cat": "video",
+      "n": 8
+    },
+    {
+      "slug": "feishu-miaoji",
+      "cat": "office",
+      "n": 7
+    },
+    {
+      "slug": "pixverse",
+      "cat": "video",
+      "n": 5
+    },
+    {
+      "slug": "cline",
+      "cat": "coding",
+      "n": 3
+    },
+    {
+      "slug": "together",
+      "cat": "api",
+      "n": 3
+    },
+    {
+      "slug": "civitai",
+      "cat": "image",
+      "n": 3
+    },
+    {
+      "slug": "openrouter",
+      "cat": "api",
+      "n": 3
+    },
+    {
+      "slug": "fastgpt",
+      "cat": "agent",
+      "n": 2
+    },
+    {
+      "slug": "tongyi",
+      "cat": "chat",
+      "n": 2
+    },
+    {
+      "slug": "comfyui",
+      "cat": "local",
+      "n": 2
+    },
+    {
+      "slug": "google-flow",
+      "cat": "video",
+      "n": 2
+    },
+    {
+      "slug": "canva",
+      "cat": "image",
+      "n": 2
+    },
+    {
+      "slug": "zhiying",
+      "cat": "video",
+      "n": 2
+    },
+    {
+      "slug": "bailian",
+      "cat": "api",
+      "n": 1
+    },
+    {
+      "slug": "claude",
+      "cat": "chat",
+      "n": 1
+    },
+    {
+      "slug": "elicit",
+      "cat": "study",
+      "n": 1
+    },
+    {
+      "slug": "github-models",
+      "cat": "coding",
+      "n": 1
+    },
+    {
+      "slug": "groq",
+      "cat": "api",
+      "n": 1
+    },
+    {
+      "slug": "guojia-fanzha",
+      "cat": "safety",
+      "n": 1
+    },
+    {
+      "slug": "hailuo",
+      "cat": "video",
+      "n": 1
+    },
+    {
+      "slug": "hunyuan",
+      "cat": "chat",
+      "n": 1
+    },
+    {
+      "slug": "krea",
+      "cat": "image",
+      "n": 1
+    },
+    {
+      "slug": "perplexity",
+      "cat": "search",
+      "n": 1
+    },
+    {
+      "slug": "poe",
+      "cat": "chat",
+      "n": 1
+    },
+    {
+      "slug": "tongyi-lingma",
+      "cat": "coding",
+      "n": 1
+    },
+    {
+      "slug": "tongyi-wanxiang",
+      "cat": "image",
+      "n": 1
+    },
+    {
+      "slug": "connectedpapers",
+      "cat": "study",
+      "n": 1
+    },
+    {
+      "slug": "deepinfra",
+      "cat": "api",
+      "n": 1
+    },
+    {
+      "slug": "figma",
+      "cat": "design",
+      "n": 1
+    },
+    {
+      "slug": "fish-audio",
+      "cat": "audio",
+      "n": 1
+    },
+    {
+      "slug": "google-ai-studio",
+      "cat": "api",
+      "n": 1
+    },
+    {
+      "slug": "immersive-translate",
+      "cat": "writing",
+      "n": 1
+    },
+    {
+      "slug": "jianying",
+      "cat": "video",
+      "n": 1
+    },
+    {
+      "slug": "liblib",
+      "cat": "image",
+      "n": 1
+    },
+    {
+      "slug": "lm-studio",
+      "cat": "local",
+      "n": 1
+    },
+    {
+      "slug": "lovable",
+      "cat": "coding",
+      "n": 1
+    },
+    {
+      "slug": "mistral",
+      "cat": "api",
+      "n": 1
+    }
+  ],
+  "judgement": [],
+  "pages": [
+    {
+      "path": "grok",
+      "n": 67
+    },
+    {
+      "path": "coding",
+      "n": 31
+    },
+    {
+      "path": "/",
+      "n": 27
+    },
+    {
+      "path": "fireworks",
+      "n": 13
+    },
+    {
+      "path": "api",
+      "n": 10
+    },
+    {
+      "path": "kimi",
+      "n": 9
+    },
+    {
+      "path": "/report",
+      "n": 8
+    },
+    {
+      "path": "haiper",
+      "n": 8
+    },
+    {
+      "path": "feishu-miaoji",
+      "n": 7
+    },
+    {
+      "path": "pixverse",
+      "n": 5
+    },
+    {
+      "path": "image",
+      "n": 4
+    },
+    {
+      "path": "video",
+      "n": 4
+    },
+    {
+      "path": "cline",
+      "n": 3
+    },
+    {
+      "path": "together",
+      "n": 3
+    },
+    {
+      "path": "civitai",
+      "n": 3
+    },
+    {
+      "path": "openrouter",
+      "n": 3
+    },
+    {
+      "path": "/plans/free-video-gen",
+      "n": 2
+    },
+    {
+      "path": "fastgpt",
+      "n": 2
+    },
+    {
+      "path": "tongyi",
+      "n": 2
+    },
+    {
+      "path": "/vs/dify-vs-n8n",
+      "n": 2
+    },
+    {
+      "path": "comfyui",
+      "n": 2
+    },
+    {
+      "path": "google-flow",
+      "n": 2
+    },
+    {
+      "path": "canva",
+      "n": 2
+    },
+    {
+      "path": "zhiying",
+      "n": 2
+    },
+    {
+      "path": "/alternatives/grammarly",
+      "n": 1
+    },
+    {
+      "path": "/plans/free-life",
+      "n": 1
+    },
+    {
+      "path": "/plans/free-meeting-notes",
+      "n": 1
+    },
+    {
+      "path": "bailian",
+      "n": 1
+    },
+    {
+      "path": "claude",
+      "n": 1
+    },
+    {
+      "path": "elicit",
+      "n": 1
+    },
+    {
+      "path": "github-models",
+      "n": 1
+    },
+    {
+      "path": "groq",
+      "n": 1
+    },
+    {
+      "path": "guojia-fanzha",
+      "n": 1
+    },
+    {
+      "path": "hailuo",
+      "n": 1
+    },
+    {
+      "path": "hunyuan",
+      "n": 1
+    },
+    {
+      "path": "krea",
+      "n": 1
+    },
+    {
+      "path": "perplexity",
+      "n": 1
+    },
+    {
+      "path": "poe",
+      "n": 1
+    },
+    {
+      "path": "tongyi-lingma",
+      "n": 1
+    },
+    {
+      "path": "tongyi-wanxiang",
+      "n": 1
+    },
+    {
+      "path": "/vs/bailian-vs-cerebras",
+      "n": 1
+    },
+    {
+      "path": "/vs/cerebras-vs-openrouter",
+      "n": 1
+    },
+    {
+      "path": "/vs/cloudflare-workers-ai-vs-google-ai-studio",
+      "n": 1
+    },
+    {
+      "path": "/vs/google-ai-studio-vs-openrouter",
+      "n": 1
+    },
+    {
+      "path": "/vs/openrouter-vs-zhipu-glm",
+      "n": 1
+    },
+    {
+      "path": "connectedpapers",
+      "n": 1
+    },
+    {
+      "path": "deepinfra",
+      "n": 1
+    },
+    {
+      "path": "figma",
+      "n": 1
+    },
+    {
+      "path": "fish-audio",
+      "n": 1
+    },
+    {
+      "path": "google-ai-studio",
+      "n": 1
+    },
+    {
+      "path": "immersive-translate",
+      "n": 1
+    },
+    {
+      "path": "jianying",
+      "n": 1
+    },
+    {
+      "path": "liblib",
+      "n": 1
+    },
+    {
+      "path": "lm-studio",
+      "n": 1
+    },
+    {
+      "path": "lovable",
+      "n": 1
+    },
+    {
+      "path": "mistral",
+      "n": 1
+    },
+    {
+      "path": "opusclip",
+      "n": 1
+    },
+    {
+      "path": "quillbot",
+      "n": 1
+    },
+    {
+      "path": "replit",
+      "n": 1
+    },
+    {
+      "path": "tme-studio",
+      "n": 1
+    }
+  ],
+  "referrers": [
+    {
+      "ref": "www.google.com",
+      "n": 141
+    },
+    {
+      "ref": "cn.bing.com",
+      "n": 44
+    },
+    {
+      "ref": "www.perplexity.ai",
+      "n": 20
+    },
+    {
+      "ref": "chatgpt.com",
+      "n": 12
+    },
+    {
+      "ref": "m.facebook.com",
+      "n": 8
+    },
+    {
+      "ref": "www.facebook.com",
+      "n": 8
+    },
+    {
+      "ref": "m.baidu.com",
+      "n": 6
+    },
+    {
+      "ref": "yandex.com",
+      "n": 5
+    },
+    {
+      "ref": "www.bing.com",
+      "n": 4
+    },
+    {
+      "ref": "baidu.com",
+      "n": 3
+    },
+    {
+      "ref": "www.baidu.com",
+      "n": 3
+    },
+    {
+      "ref": "www.google.com.hk",
+      "n": 2
+    },
+    {
+      "ref": "com.twitter.android",
+      "n": 1
+    },
+    {
+      "ref": "kagi.com",
+      "n": 1
+    },
+    {
+      "ref": "www.yandex.com",
+      "n": 1
+    },
+    {
+      "ref": "yandex.com.tr",
+      "n": 1
+    }
+  ],
+  "ai_referrals": [
+    {
+      "ref": "chatgpt.com",
+      "path": "/c/api",
+      "n": 10
+    },
+    {
+      "ref": "www.perplexity.ai",
+      "path": "/en/c/image",
+      "n": 4
+    },
+    {
+      "ref": "www.perplexity.ai",
+      "path": "/en/c/video",
+      "n": 3
+    },
+    {
+      "ref": "www.perplexity.ai",
+      "path": "/en/vs/dify-vs-n8n",
+      "n": 2
+    },
+    {
+      "ref": "chatgpt.com",
+      "path": "/en/tools/zhiying",
+      "n": 1
+    },
+    {
+      "ref": "chatgpt.com",
+      "path": "/",
+      "n": 1
+    },
+    {
+      "ref": "kagi.com",
+      "path": "/en/tools/guojia-fanzha",
+      "n": 1
+    },
+    {
+      "ref": "www.perplexity.ai",
+      "path": "/en/vs/openrouter-vs-zhipu-glm",
+      "n": 1
+    },
+    {
+      "ref": "www.perplexity.ai",
+      "path": "/en/vs/google-ai-studio-vs-openrouter",
+      "n": 1
+    },
+    {
+      "ref": "www.perplexity.ai",
+      "path": "/en/vs/cloudflare-workers-ai-vs-google-ai-studio",
+      "n": 1
+    },
+    {
+      "ref": "www.perplexity.ai",
+      "path": "/en/vs/cerebras-vs-openrouter",
+      "n": 1
+    },
+    {
+      "ref": "www.perplexity.ai",
+      "path": "/en/vs/bailian-vs-cerebras",
+      "n": 1
+    },
+    {
+      "ref": "www.perplexity.ai",
+      "path": "/en/tools/perplexity",
+      "n": 1
+    },
+    {
+      "ref": "www.perplexity.ai",
+      "path": "/en/tools/openrouter",
+      "n": 1
+    },
+    {
+      "ref": "www.perplexity.ai",
+      "path": "/en/tools/groq",
+      "n": 1
+    },
+    {
+      "ref": "www.perplexity.ai",
+      "path": "/en/tools/claude",
+      "n": 1
+    },
+    {
+      "ref": "www.perplexity.ai",
+      "path": "/en/c/coding",
+      "n": 1
+    },
+    {
+      "ref": "www.perplexity.ai",
+      "path": "/",
+      "n": 1
+    }
+  ],
+  "events": {
+    "sub_view": 226,
+    "go": 57,
+    "sub_submit": 4,
+    "sheet_dl": 4,
+    "sub_ok": 3,
+    "star": 3,
+    "calc": 3,
+    "sub_dup": 1
+  },
+  "submissions": {
+    "new": 7,
+    "total": 7
+  },
+  "ads": {}
+}

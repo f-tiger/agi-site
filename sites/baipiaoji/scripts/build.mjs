@@ -78,6 +78,13 @@ const QUESTIONS = existsSync(join(root, 'data/questions.json'))
 
 const NOSRC = existsSync(join(root, 'data/no-source.json'))
   ? JSON.parse(readFileSync(join(root, 'data/no-source.json'), 'utf8')).items : [];
+// 自扩展层（2026-09-11）:触达（data/reach.json,CI 每日从 /api/reach 落库）与官方来源漂移
+// （data/drift.json,scripts/source-drift.mjs 每日比对来源页）。两份都是「该看什么」的信号,
+// 不是事实;缺省时为空,构建绝不依赖它们存在。
+const REACH = existsSync(join(root, 'data/reach.json')) ? JSON.parse(readFileSync(join(root, 'data/reach.json'), 'utf8')) : null;
+const DRIFT = existsSync(join(root, 'data/drift.json')) ? JSON.parse(readFileSync(join(root, 'data/drift.json'), 'utf8')) : { items: [] };
+const driftOf = (slug) => (DRIFT.items || []).find((d) => d.slug === slug) || null;
+const reachOfCat = (cat) => { const r = REACH && (REACH.categories || []).find((c) => c.cat === cat); return r ? r.n : null; };
 // 计量模型谱系：真正决定体验的不是「能白嫖多少」，而是「会撞上哪一种墙」。
 // 与类目规则同属洞察层——原本定义在 free-for-you 页面内部，
 // 接进 MCP 后 agent 也要用同一份，所以提到模块级：同一事实只写一处。
@@ -1587,7 +1594,13 @@ function toolPage(tool) {
       <p>${strong(tool.limits.quota)}</p>
       ${tool.limits.wall ? `<p class="limits-wall">${strong(tool.limits.wall)}</p>` : ''}
       <p class="limits-src">${UI('limits_src', '依据：{source}，{checked} 核实。额度政策变动频繁，以官方页面为准。')
-        .replace('{source}', srcLink(tool.limits.source || '')).replace('{checked}', esc(tool.limits.checked || ''))}</p>
+        .replace('{source}', srcLink(tool.limits.source || '')).replace('{checked}', esc(tool.limits.checked || ''))}</p>${(() => {
+        // 来源页漂移:机器只说「官方页面变了、这条待复核」,一个新数字都不写——新数字必须由人按两步核实。
+        const dr = driftOf(tool.slug); if (!dr) return '';
+        return `
+      <p class="limits-drift">${LOCALE.code === 'zh'
+        ? `⚠ 本站每日比对官方来源页：${esc(dr.confirmed)} 观测到该页数字有变动。上面这条仍是 ${esc(tool.limits.checked || '')} 核实的版本，已进入复核队列；复核前请以官方页面为准。`
+        : `⚠ We diff the official source page daily: its figures changed on ${esc(dr.confirmed)}. The entry above is still the ${esc(tool.limits.checked || '')} verification and is queued for re-check; until then, trust the vendor page.`}</p>`; })()}
       <p class="limits-watch"><a href="${BASE}/watch.html?pick=${esc(tool.slug)}"
         onclick="try{if(window.bpjEv)bpjEv('calc','/calc/watch-hook/${esc(tool.slug)}')}catch(e){}">${LOCALE.code === 'zh'
         ? `这个数字一变就通知我（webhook，免费盯 3 个）→`
@@ -2591,7 +2604,18 @@ const adSlotOf = (cat) => {
   var c=el.getAttribute('data-ad-cat')||'';
   fetch('/api/ads?lang=${LOCALE.code}'+(c?'&cat='+encodeURIComponent(c):''))
    .then(function(r){return r.json()}).then(function(d){
-    if(!d||!d.ads||!d.ads.length)return;
+    if(!d||!d.ads||!d.ads.length){
+      // 空位自售:没有广告时这块位置就是库存,标出真实触达数与投放入口。数字来自 CI 每日落库的 reach.json;
+      // 没有数字就只放入口。这一行是站方自己的话,不是广告,所以标「广告位」而非「广告」。
+      var R=${JSON.stringify(reachOfCat(cat))};
+      el.innerHTML='<p class="ad-slot-h">${zh ? '广告位' : 'Ad slot'}</p><a class="ad-house" href="${BASE}/advertise.html">'+
+        ${zh
+          ? `'这个板块的广告位空着'+(R==null?'':'，过去 ${REACH ? REACH.window_days : 28} 天有 '+R+' 次带来源真人浏览')+'。自助投放，付款即上架 →'`
+          : `'This section has an open ad slot'+(R==null?'':' with '+R+' referred human views in the past ${REACH ? REACH.window_days : 28} days')+'. Self-serve, live on payment →'`}+'</a>';
+      el.hidden=false;
+      el.querySelector('.ad-house').addEventListener('click',function(){if(window.bpjEv)bpjEv('ad','/ad/house/'+(c||'all'))});
+      return;
+    }
     var H='<p class="ad-slot-h">${zh ? '广告' : 'Ad'}</p>';
     d.ads.forEach(function(a){
       var n=document.createElement('div');n.textContent=a.name;
@@ -7543,6 +7567,14 @@ curl -s 'https://baipiaoji.com/api/limits?slug=kimi'              # ${zh ? '这�
       ? '这一条是本站的生存方式：读者信这里的数字，是因为没有任何一个数字能被买走。广告位卖的是版面，不是判断。'
       : 'This is how the site survives: readers trust these figures because none of them can be bought. A slot sells space, never a verdict.'}</p>
   </section>
+  ${REACH && (REACH.categories || []).length ? `<section class="limits-table">
+    <h2 class="group-title">${zh ? '各板块触达（真实数字，每日更新）' : 'Reach by section (real figures, updated daily)'}<span>${REACH.categories.length}</span></h2>
+    <p class="sub-note">${zh
+      ? `过去 ${REACH.window_days} 天（至 ${esc(REACH.until || REACH.generated)}）每个板块页面的带来源真人浏览次数：只算从搜索引擎、AI 助手或其他站点点进来的访问，不算直接访问、爬虫和本站自测。全站合计 ${REACH.humans_referred} 次，约 ${REACH.per_day}/日。数字小就是小，这里不放估算——投不投，你按这个数自己算。`
+      : `Referred human page views per section over the past ${REACH.window_days} days (to ${esc(REACH.until || REACH.generated)}): only visits arriving from a search engine, an AI assistant or another site count; direct hits, crawlers and our own self-tests do not. Site total ${REACH.humans_referred}, about ${REACH.per_day} a day. Small numbers are shown as small — no estimates here. Whether a slot is worth it is your arithmetic.`}</p>
+    <table><thead><tr><th>${zh ? '板块' : 'Section'}</th><th>${zh ? '带来源真人浏览' : 'Referred human views'}</th></tr></thead>
+    <tbody>${CATS_UI.map(([k, v]) => `<tr><td>${esc(v)}</td><td>${reachOfCat(k) == null ? '0' : reachOfCat(k)}</td></tr>`).join('')}</tbody></table>
+  </section>` : ''}
   <section class="limits-table">
     <h2 class="group-title">${zh ? '投放' : 'Book a slot'}<span>1</span></h2>
     <form class="submit-form" id="adForm">
