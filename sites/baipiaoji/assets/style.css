@@ -1008,3 +1008,15 @@ table.pl-tools tr.pl-on { background: var(--tool-s); }
 .ad-item b { display: block; font-size: 14px; color: var(--ink); }
 .ad-item span { display: block; margin-top: 2px; font-size: 12.5px; color: var(--ink-2); }
 .ad-item:hover { border-color: var(--rule); }
+
+/* 链上收款指令（2026-09-11）：地址与金额必须能被一眼看清并原样复制，
+   所以用等宽字体与可换行；警告不是装饰，走错链的钱找不回来。 */
+.ad-pay { margin-top: 14px; padding: 14px 16px; border: 2px solid var(--rule); background: var(--card); }
+.ad-pay h3 { font-size: 16px; }
+.ad-pay-dl { display: grid; grid-template-columns: auto 1fr; gap: 6px 14px; margin-top: 10px; font-size: 13px; }
+.ad-pay-dl dt { color: var(--mute); }
+.ad-pay-dl dd { margin: 0; }
+.ad-pay code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px;
+  word-break: break-all; background: var(--alt); padding: 2px 5px; }
+.ad-pay-warn { margin-top: 10px; font-size: 12.5px; line-height: 1.75; color: var(--ink-2);
+  border-left: 3px solid var(--work); padding-left: 10px; }

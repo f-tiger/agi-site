@@ -7579,6 +7579,33 @@ curl -s 'https://baipiaoji.com/api/limits?slug=kimi'              # ${zh ? '这�
     .then(function(d){
       btn.disabled=false;
       if(d&&d.ok&&d.pay_url){EV('ad','/ad/pay/redirect');location.href=d.pay_url;return}
+      // 链上收款:不跳转,当场给出地址与唯一金额。金额的分位尾数就是这笔订单的编号,
+      // 轮询按完全相等匹配——所以必须原样转,多一分少一分都认不出来。
+      if(d&&d.ok&&d.pay&&d.pay.address){
+        EV('ad','/ad/pay/wallet');
+        f.hidden=true;
+        var w=document.createElement('div'); w.className='ad-pay';
+        var addr=document.createElement('code'); addr.textContent=d.pay.address;
+        var amt=document.createElement('code'); amt.textContent=d.pay.amount+' '+d.pay.token;
+        w.innerHTML='<h3>'+(ZH?'转账即可上架':'Send the transfer to go live')+'</h3>';
+        var rows=[[ZH?'链':'Chain', d.pay.chain||'—'],[ZH?'代币':'Token', d.pay.token],
+                  [ZH?'收款地址':'Address', ''],[ZH?'金额（必须完全一致）':'Amount (must match exactly)','']];
+        var t=document.createElement('dl'); t.className='ad-pay-dl';
+        rows.forEach(function(r,i){
+          var dt=document.createElement('dt'); dt.textContent=r[0];
+          var dd=document.createElement('dd');
+          if(i===2)dd.appendChild(addr); else if(i===3)dd.appendChild(amt); else dd.textContent=r[1];
+          t.appendChild(dt); t.appendChild(dd);
+        });
+        w.appendChild(t);
+        var warn=document.createElement('p'); warn.className='ad-pay-warn';
+        warn.textContent=ZH
+          ?'金额的最后两位是这笔订单的编号，改动任何一位都会导致认领不到。走错链的转账无法找回。到账并确认后约 '+(d.pay.eta||'2h')+' 内自动上架，无需联系我们。'
+          :'The last two digits of the amount identify this order; change any digit and it cannot be claimed. A transfer on the wrong chain cannot be recovered. Once confirmed it goes live automatically within about '+(d.pay.eta||'2h')+', with nobody to contact.';
+        w.appendChild(warn);
+        f.parentNode.insertBefore(w,f);
+        return;
+      }
       msg.className='sub-msg is-err';
       var m={badurl:ZH?'网址解析不了，需要完整的 https:// 地址。':'That URL does not parse — a full https:// address is needed.',
         nothttps:ZH?'只接受 https 的地址。':'https addresses only.',
