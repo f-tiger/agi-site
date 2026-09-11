@@ -1781,7 +1781,17 @@
       "quota": "免费档可用，但**官方不公布具体条数**——x.ai 定价页与 Grok 官方 FAQ 都只说「Grok 免费起步」，没有给出免费档每天/每周多少条。任何第三方流传的「免费版每 X 小时 Y 条」都没有官方出处，本站不转述。真正写明的是**额度的结构**：付费 SuperGrok 各档共用**一个按周结算的用量池**（跨产品共享，不是每个功能各给一份）。另有一个常见的张冠李戴要避开：**xAI 文档里能查到的速率限制（RPS/TPM）是 API 团队配额，不是网页版与 App 的免费额度**，两者不能互相代入——按 API 的 RPS 去推网页版每天能聊多少，得出的数字没有意义。",
       "wall": "这里有一条几乎无人提及、但对判断「要不要升级」最关键的官方口径：**免费档额度与付费周额度是两套独立的池**。官方 FAQ 明写——周用量额度用尽时付费功能暂停，但你**仍然保有 Chat 与 Voice 的免费档额度，且它按自己的周期重置**，与周额度无关。换句话说，付费用户撞墙不等于归零，你会掉回免费档而不是掉到零。另一条：**撞上周额度不是硬停**，官方给三条路——买 Extra Usage Credits 立即继续、升到更高档换更大的周额度、或打开 Auto Top Up 自动续。用量明细在官方 Usage 标签页按产品拆分可查。",
       "source": "xAI 官方 Grok FAQ 与定价页（docs.x.ai/grok/faq、x.ai/pricing，经搜索索引引文核实；免费档具体条数官方未公布）",
-      "checked": "2026-08-08"
+      "checked": "2026-08-08",
+      "paid": {
+        "tiers": "SuperGrok Lite $10/月；SuperGrok $30/月（年付 $300/年，约省 17%）；SuperGrok Heavy $300/月（含 Grok Heavy 多智能体模式）。另有 X 平台捆绑路径：X Premium $8/月、X Premium+ $40/月（含 Grok 但配额随 X 档位，与独立 SuperGrok 不是同一条线）。单一来源提到的「SuperGrok Plus $100/月」仅见一家，未交叉核实，本站不采信",
+        "unit_cost": "官方不公布每档条数：2026-06 起付费各档共用**一个按周结算的用量池**，跨 Chat / Imagine / Voice / Build 花费，取代旧的「每 2 小时 N 条」上限；档位差别体现为周池大小与模型/功能解锁（DeepSearch、Big Brain、Imagine 视频）。撞周池后可买 Extra Usage Credits 或开 Auto Top Up 续用，等于按量加价",
+        "quota_included": "true——订阅内含网页版、App 与 Imagine 用量；API 另按 token 计费，不含在 SuperGrok 内（API 速率限制是团队配额，与订阅额度两码事）",
+        "rollover": "不累积：周用量池到点重置，未用完不结转；Extra Usage Credits 为预付余额，按 xAI 条款有效期另计",
+        "effective": "2026-09-11（=核实日；Lite/SuperGrok/Heavy 三档价格 2025 年中以来未变，2026-06 改为共享周池）",
+        "prev": "2025 年 SuperGrok 上线即 $30/月、Heavy $300/月；2026-06 计量方式由「每 2 小时提示上限」改为「共享周用量池」（价格未变）",
+        "source": "https://x.ai/pricing（官方；代理拦截未直抓，经 cloudzero.com / felloai.com / whichai.fyi 搜索索引引文三源交叉核实，[非官方口径]）",
+        "checked": "2026-09-11"
+      }
     }
   },
   {

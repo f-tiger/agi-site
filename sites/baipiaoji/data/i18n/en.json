@@ -2095,7 +2095,17 @@
         "quota": "The free tier works, but **xAI publishes no message count** — the x.ai pricing page and the official Grok FAQ only say Grok is free to start, with no per-day or per-week figure for the free tier. Every \"X messages per Y hours\" number circulating online has no official source, so we don't repeat it. What *is* documented is the **shape** of the allowance: paid SuperGrok plans draw from **a single weekly usage pool** shared across products, rather than a separate ration per feature. One common mix-up to avoid: **the rate limits you can find in xAI's docs (RPS/TPM) are per-team API quotas, not the web and app free allowance** — the two cannot be substituted, and inferring a daily chat count from an API RPS figure produces a meaningless number.",
         "wall": "One official detail here is almost never quoted and matters most when deciding whether to upgrade: **the free-tier allowance and the paid weekly pool are two separate pools.** The FAQ states that when the weekly usage limit is met, paid features pause — but you **still keep Grok's free-tier limits on Chat and Voice, and those reset on their own schedule**, independent of the weekly pool. Hitting the paid wall drops you back to the free tier, not to zero. The other documented point: **the weekly limit is not a hard stop** — xAI offers three exits: buy Extra Usage Credits to continue instantly, move to a higher plan for a larger weekly allowance, or switch on Auto Top Up. A per-product breakdown of what you've used sits in the official Usage tab.",
         "source": "xAI official Grok FAQ and pricing page (docs.x.ai/grok/faq, x.ai/pricing, verified via search-index quotes; the free-tier message count is not published officially)",
-        "checked": "2026-08-08"
+        "checked": "2026-08-08",
+        "paid": {
+          "tiers": "SuperGrok Lite $10/mo; SuperGrok $30/mo ($300/yr, ~17% off); SuperGrok Heavy $300/mo (adds Grok Heavy multi-agent mode). Bundled path via X: X Premium $8/mo, X Premium+ $40/mo (Grok included, allowance tied to the X tier, not the same line as standalone SuperGrok). A 'SuperGrok Plus $100/mo' tier appears in a single source only, not cross-verified, so we don't list it",
+          "unit_cost": "No per-tier message counts published: since June 2026 paid plans draw from **one weekly usage pool** shared across Chat / Imagine / Voice / Build, replacing the old per-2-hour prompt caps; tiers differ by pool size and unlocked models/features (DeepSearch, Big Brain, Imagine video). Past the weekly pool you can buy Extra Usage Credits or enable Auto Top Up, i.e. pay-as-you-go on top",
+          "quota_included": "true — web, app and Imagine usage are inside the subscription; the API is billed per token separately and is not part of SuperGrok (API rate limits are team quotas, a different thing from subscription allowance)",
+          "rollover": "No rollover: the weekly pool resets on schedule, unused allowance is lost; Extra Usage Credits are a prepaid balance with their own validity under xAI's terms",
+          "effective": "2026-09-11 (=verification date; Lite/SuperGrok/Heavy prices unchanged since mid-2025, metering switched to a shared weekly pool in June 2026)",
+          "prev": "SuperGrok launched 2025 at $30/mo, Heavy at $300/mo; in June 2026 metering moved from per-2-hour prompt caps to a shared weekly pool (prices unchanged)",
+          "source": "https://x.ai/pricing (official; proxy-blocked, cross-checked via cloudzero.com / felloai.com / whichai.fyi search-index quotes [unofficial])",
+          "checked": "2026-09-11"
+        }
       }
     },
     "ms-copilot": {
