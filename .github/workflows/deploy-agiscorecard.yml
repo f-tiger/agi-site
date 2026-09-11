@@ -61,6 +61,16 @@ jobs:
         working-directory: sites/agiscorecard
         run: node tools/test_analytics_sanitiser.mjs
 
+      # Two implementations of the same statistics ship in this deploy: the browser version
+      # inside backtest-audit.html and tools/strategy-audit/audit.py. A page that quietly
+      # disagreed with the CLI would still print an authoritative-looking number, so the
+      # parity test extracts the JS FROM THE PAGE and runs both on one fixture. It also runs
+      # the Python selftest, so neither can ship alone. Seconds; correctness gate, not a
+      # side effect, so it belongs on the deploy path.
+      - name: Test the backtest-audit tool (Python selftest + browser parity)
+        working-directory: .
+        run: node tools/strategy-audit/test_parity.mjs
+
       - name: Guard - owner privacy files must never exist in this public repo
         run: |
           bad=$(find . -path ./.git -prune -o \( -name "owner-identity*" -o -name "owner-trajectory*" \) -print | wc -l)

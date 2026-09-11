@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FZXLMBB5QB"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-FZXLMBB5QB');</script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a0a0b'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%234fc3a1'/%3E%3C/svg%3E">
+<title>Backtest Reality Check: Deflated Sharpe, Track Record Length, Target Feasibility</title>
+<meta name="description" content="Free tool. Paste an equity curve and get the deflated Sharpe ratio, the minimum track record length, and whether your return target is reachable at any leverage. Runs in your browser; nothing is uploaded.">
+<link rel="canonical" href="https://agiscorecard.com/backtest-audit">
+<meta property="og:title" content="Backtest Reality Check">
+<meta property="og:description" content="Every backtesting platform helps you make a backtest. This one asks whether the one you made survives the multiple-testing problem.">
+<meta property="og:url" content="https://agiscorecard.com/backtest-audit">
+<meta property="og:type" content="article">
+
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Backtest Reality Check", "url": "https://agiscorecard.com/backtest-audit", "applicationCategory": "FinanceApplication", "operatingSystem": "Any", "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Paste an equity curve or a column of returns and get the deflated Sharpe ratio, the minimum track record length, and whether a return target is reachable at any leverage. Runs entirely in the browser; nothing is uploaded.", "featureList": ["Deflated Sharpe ratio (Bailey & Lopez de Prado)", "Probabilistic Sharpe ratio", "Minimum track record length", "Kelly ceiling and required Sharpe for a return target", "Turnover cost haircut"], "isPartOf": {"@type": "WebSite", "name": "AGI Scorecard", "url": "https://agiscorecard.com/"}, "creator": {"@type": "Organization", "name": "The AGI Scorecard", "url": "https://agiscorecard.com"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What does a backtest audit actually check?", "acceptedAnswer": {"@type": "Answer", "text": "Four things, all arithmetic on the numbers you paste. Whether the Sharpe ratio survives being deflated for how many variants you tried, because searching 200 parameter sets over noise produces a good-looking best one by construction. How long a track record would have to be before that Sharpe is separable from luck. Whether the return target you have in mind is reachable at any leverage, since compound growth peaks at the Kelly fraction and falls above it, capping the best possible annual return at exp(S squared over 2) minus 1. And what turnover costs do to the edge. It never recommends a security and never sees your data."}}, {"@type": "Question", "name": "Why is my Sharpe ratio not enough on its own?", "acceptedAnswer": {"@type": "Answer", "text": "Because a Sharpe ratio does not know how many times you looked. If you test 200 strategy variants that all have zero real edge, the best of them will still show an annualised Sharpe well above zero, and that height is predictable: it is roughly the expected maximum of 200 draws. The deflated Sharpe ratio of Bailey and Lopez de Prado subtracts that height before asking whether anything is left, and also widens the error bars when returns are negatively skewed or fat-tailed, because both make a Sharpe ratio flatter than it looks."}}, {"@type": "Question", "name": "Is a 100% annual return possible?", "acceptedAnswer": {"@type": "Answer", "text": "Only with a sustained Sharpe ratio of at least 1.177 sized at full Kelly, or about 1.360 at half Kelly, before borrowing costs, fees and taxes. This is not a rule of thumb. Compound growth at leverage L is L times mu minus L squared sigma squared over two, a downward parabola that peaks at the Kelly leverage and falls again above it, so the highest annual return any leverage can reach is exp(S squared over 2) minus 1 and depends on the Sharpe ratio alone. At a Sharpe of 1.0 that ceiling is 64.9%, and at 0.6 it is 19.7%."}}, {"@type": "Question", "name": "Does this tool tell me what to buy?", "acceptedAnswer": {"@type": "Answer", "text": "No, and it is built so that it cannot. It reads a column of numbers you already have and returns statistics about that column. It names no security, makes no forecast, and takes no position on whether you should invest in anything. A recommendation about a financial instrument is a regulated activity; a statistic about a dataset is not, and the line between them is the reason this tool is shaped the way it is."}}]}</script>
+<style>
+  :root{--bg:#0a0a0b;--bg2:#111114;--bg3:#18181d;--border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.12);--text:#e8e8ec;--muted:#8888a0;--accent:#7c6af5;--accent2:#4fc3a1;--warn:#e8a040;--danger:#e05555;--font:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;--mono:'JetBrains Mono',monospace;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:16px;line-height:1.75;}
+  a{color:var(--accent);text-decoration:none;}a:hover{opacity:.8;}
+  header{border-bottom:1px solid var(--border);padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:56px;position:sticky;top:0;background:rgba(10,10,11,.92);backdrop-filter:blur(12px);z-index:100;}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px;color:var(--text);}
+  .logo-dot{width:8px;height:8px;background:var(--accent2);border-radius:50%;}
+  .back-link{font-size:13px;color:var(--muted);}.back-link:hover{color:var(--text);opacity:1;}
+  article{max-width:720px;margin:0 auto;padding:2.5rem 1.5rem 4rem;}
+  .eyebrow{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem;}
+  h1{font-size:clamp(1.7rem,4vw,2.4rem);font-weight:700;letter-spacing:-.02em;line-height:1.18;margin-bottom:1.25rem;}
+  .capsule{background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent2);border-radius:0 10px 10px 0;padding:1.15rem 1.4rem;font-size:16px;margin-bottom:1.75rem;}
+  .capsule .verdict{font-weight:700;}
+  .v-ok{color:var(--accent2);}.v-wrong{color:var(--danger);}.v-open{color:var(--accent);}.v-pending{color:var(--muted);}
+  h2{font-size:1.25rem;font-weight:600;margin:2.25rem 0 .9rem;letter-spacing:-.01em;}
+  h3{font-size:1.05rem;font-weight:600;margin:1.5rem 0 .6rem;}
+  p{margin-bottom:1rem;}
+  ul{margin:0 0 1rem 1.3rem;}li{margin-bottom:.45rem;}
+  strong{color:#fff;}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;margin:1rem 0 1.4rem;background:var(--bg2);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+  th{text-align:left;padding:10px 12px;color:var(--muted);font-weight:500;font-size:11px;letter-spacing:.05em;text-transform:uppercase;border-bottom:1px solid var(--border);}
+  td{padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:top;}
+  tr:last-child td{border-bottom:none;}
+  .nowrap{white-space:nowrap;font-weight:600;}
+  .updated{font-size:12px;color:var(--muted);margin-bottom:1.5rem;}
+  footer{border-top:1px solid var(--border);padding:24px 0;font-size:12px;color:var(--muted);text-align:center;}
+@media(max-width:640px){table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;white-space:nowrap}table td,table th{white-space:normal;min-width:92px}}
+
+
+  .viz{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:1rem 1.1rem;margin:1rem 0 1.4rem;}
+  .viz svg{width:100%;height:auto;display:block;}
+  .legend{display:flex;flex-wrap:wrap;gap:.6rem 1.1rem;font-size:12.5px;color:var(--muted);margin-top:.6rem;}
+  .legend span{display:inline-flex;align-items:center;gap:6px;}
+  .sw{width:14px;height:3px;border-radius:2px;display:inline-block;}
+  .tip{position:absolute;pointer-events:none;background:#1c1c22;border:1px solid var(--border2);border-radius:8px;padding:6px 9px;font-size:12px;color:var(--text);display:none;white-space:nowrap;}
+  .num{font-variant-numeric:tabular-nums;text-align:right;}
+  .pill{display:inline-block;font-size:11px;padding:2px 8px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);}
+  details{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:.7rem 1rem;margin-bottom:.6rem;}
+  summary{cursor:pointer;font-weight:600;}
+  details p{margin:.6rem 0 0;font-size:14.5px;}
+  .rule td:first-child{white-space:nowrap;}
+
+
+  textarea,input,select{background:var(--bg3);color:var(--text);border:1px solid var(--border2);border-radius:8px;padding:.6rem .7rem;font-family:var(--mono);font-size:13px;width:100%;}
+  textarea{min-height:140px;resize:vertical;}
+  label{display:block;font-size:12px;color:var(--muted);margin:.75rem 0 .3rem;}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;}
+  @media(max-width:560px){.grid2{grid-template-columns:1fr;}}
+  .btn{display:inline-block;background:var(--accent);color:#fff;padding:9px 20px;border-radius:8px;font-size:14px;font-weight:600;border:none;cursor:pointer;}
+  .btn.sec{background:var(--bg3);color:var(--text);border:1px solid var(--border2);}
+  pre.report{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:1rem;overflow-x:auto;font-family:var(--mono);font-size:12.5px;line-height:1.6;white-space:pre;}
+  .verdict{border-left:3px solid var(--warn);padding:.5rem 0 .5rem .9rem;margin:.6rem 0;font-size:14.5px;}
+  .verdict.ok{border-color:var(--accent2);}
+  .verdict.bad{border-color:var(--danger);}
+</style>
+</head>
+<body>
+<header>
+  <a href="/" class="logo"><span class="logo-dot"></span>AGI Scorecard</a>
+  <a href="/" class="back-link">&larr; Live scorecard</a>
+</header>
+<main>
+<article>
+  <div class="eyebrow">Free tool &middot; runs in your browser</div>
+  <h1>Backtest Reality Check</h1>
+  <div class="capsule"><strong>Every backtesting platform helps you <em>make</em> a backtest. This one asks whether the one you made survives the multiple-testing problem.</strong><br>
+  Paste an equity curve or a column of returns, say how many variants you tried before keeping this one, and get four numbers: the deflated Sharpe ratio, the minimum track record length, the highest annual return your Sharpe permits at <em>any</em> leverage, and what turnover costs do to it. Nothing is uploaded &mdash; the arithmetic runs in this page.</div>
+
+  <h2>Your track record</h2>
+  <label for="series">Numbers, one per line (a <code>date,value</code> pair per line is fine too)</label>
+  <textarea id="series" spellcheck="false" placeholder="100&#10;101.2&#10;99.8&#10;..."></textarea>
+  <div class="grid2">
+    <div><label for="kind">These numbers are</label>
+      <select id="kind"><option value="equity">equity values (account balance)</option><option value="returns">period returns (0.01 = 1%)</option></select></div>
+    <div><label for="ppy">Periods per year</label>
+      <select id="ppy"><option value="252">252 (daily)</option><option value="52">52 (weekly)</option><option value="12">12 (monthly)</option></select></div>
+    <div><label for="trials">Variants tried before keeping this one</label>
+      <input id="trials" type="number" min="1" step="1" value="1"></div>
+    <div><label for="target">Annual return target (1 = 100%, blank to skip)</label>
+      <input id="target" type="number" step="0.05" value="1"></div>
+    <div><label for="turnover">One-way turnover per year (blank to skip)</label>
+      <input id="turnover" type="number" step="1" placeholder="12"></div>
+    <div><label for="cost">Cost per side, basis points</label>
+      <input id="cost" type="number" step="1" value="5"></div>
+  </div>
+  <p style="margin:1rem 0;"><button class="btn" id="run">Audit it &rarr;</button>
+  <button class="btn sec" id="demo">Load a demo</button></p>
+  <div id="out"></div>
+
+  <h2>What the four numbers mean</h2>
+  <p><strong>Deflated Sharpe ratio.</strong> A Sharpe ratio does not know how many times you looked.
+  Test 200 variants with no real edge and the best one still shows a respectable Sharpe, at a height
+  that is predictable rather than mysterious. Bailey and L&oacute;pez de Prado's deflated Sharpe subtracts
+  that height first, then asks whether anything is left, widening the error bars when returns are
+  negatively skewed or fat-tailed. Above 0.95 the record survives the correction; below it, the record
+  is not distinguishable from the best of that many coin flips.</p>
+  <p><strong>Minimum track record length.</strong> How many observations you would need before the
+  measured Sharpe is separable from luck at all. A common and uncomfortable result: the record in hand
+  is shorter than the record it would take to know.</p>
+  <p><strong>The ceiling.</strong> Compound growth at leverage <em>L</em> is
+  <code>L&middot;&mu; &minus; L&sup2;&sigma;&sup2;/2</code>. That is a downward parabola: it peaks at the
+  Kelly leverage and falls again above it, so the best annual return <em>any</em> leverage can reach is
+  <code>exp(S&sup2;/2) &minus; 1</code> and depends on the Sharpe ratio alone. A 100% target needs a Sharpe
+  of at least 1.177 at full Kelly, about 1.360 at half. At a Sharpe of 1.0 the ceiling is 64.9%.</p>
+  <p><strong>The cost haircut.</strong> The edge that survives the first three tests still has to pay a
+  spread on every rebalance. This is where a monthly-turnover strategy with a thin edge stops being one.</p>
+
+  <h2>Run it yourself, or on many records</h2>
+  <p>The same arithmetic ships as a single dependency-free Python file in this site's public repository,
+  so you can check the implementation, run it on files, or put it in a pipeline:</p>
+  <pre class="report">python3 audit.py --equity curve.csv --trials 200 --target 1.0
+python3 audit.py --selftest   # 30 assertions, offline</pre>
+  <p style="font-size:13.5px;color:var(--muted);">Source: <code>tools/strategy-audit/audit.py</code> in
+  <a href="https://github.com/f-tiger/agi-site" rel="noopener">f-tiger/agi-site</a>. Standard library only.
+  The browser version above and the Python version are held to the same numbers by a parity test.</p>
+
+  <h2>Worked example: the S&amp;P 500 itself</h2>
+  <p>Fourteen months of SPY has an annualised Sharpe of 1.63, which is high enough that 4x leverage would
+  compound at 100% a year. Its deflated Sharpe, if you had arrived at it by trying 200 things, is
+  <strong>0.16</strong>. The index is not overfitted, of course &mdash; but that is the point. A number that
+  looks like an edge and a number that <em>is</em> one are separated by the question the deflated Sharpe
+  asks, and almost no backtest report asks it.</p>
+
+  <h2>FAQ</h2>
+  <details><summary>What does a backtest audit actually check?</summary><p>Four things, all arithmetic on the numbers you paste. Whether the Sharpe ratio survives being deflated for how many variants you tried, because searching 200 parameter sets over noise produces a good-looking best one by construction. How long a track record would have to be before that Sharpe is separable from luck. Whether the return target you have in mind is reachable at any leverage, since compound growth peaks at the Kelly fraction and falls above it, capping the best possible annual return at exp(S squared over 2) minus 1. And what turnover costs do to the edge. It never recommends a security and never sees your data.</p></details>
+<details><summary>Why is my Sharpe ratio not enough on its own?</summary><p>Because a Sharpe ratio does not know how many times you looked. If you test 200 strategy variants that all have zero real edge, the best of them will still show an annualised Sharpe well above zero, and that height is predictable: it is roughly the expected maximum of 200 draws. The deflated Sharpe ratio of Bailey and Lopez de Prado subtracts that height before asking whether anything is left, and also widens the error bars when returns are negatively skewed or fat-tailed, because both make a Sharpe ratio flatter than it looks.</p></details>
+<details><summary>Is a 100% annual return possible?</summary><p>Only with a sustained Sharpe ratio of at least 1.177 sized at full Kelly, or about 1.360 at half Kelly, before borrowing costs, fees and taxes. This is not a rule of thumb. Compound growth at leverage L is L times mu minus L squared sigma squared over two, a downward parabola that peaks at the Kelly leverage and falls again above it, so the highest annual return any leverage can reach is exp(S squared over 2) minus 1 and depends on the Sharpe ratio alone. At a Sharpe of 1.0 that ceiling is 64.9%, and at 0.6 it is 19.7%.</p></details>
+<details><summary>Does this tool tell me what to buy?</summary><p>No, and it is built so that it cannot. It reads a column of numbers you already have and returns statistics about that column. It names no security, makes no forecast, and takes no position on whether you should invest in anything. A recommendation about a financial instrument is a regulated activity; a statistic about a dataset is not, and the line between them is the reason this tool is shaped the way it is.</p></details>
+
+  <div style="margin:1.8rem 0;padding:1rem;border:1px solid var(--border2);border-radius:10px;background:var(--bg2);">
+    <strong>Want the audit done on a real claim, with a written verdict?</strong><br>
+    <span style="font-size:14.5px;color:var(--muted);">We run the same method as a fixed-price engagement,
+    including the parts a form cannot do: reconstructing turnover from trade logs, checking a stated
+    universe for survivorship, and writing the finding up so a third party can check it.</span><br>
+    <a class="btn" href="/audits" style="margin-top:.7rem;" onclick="gtag('event','audit_click',{location:'backtest_audit'});">See what an audit covers &rarr;</a>
+  </div>
+
+  <p style="font-size:13px;color:var(--muted);">Related: <a href="/ai-trading-ledger">Our own pre-registered paper ledger</a> &middot; <a href="/do-ai-trading-agents-work">Do AI trading agents make money?</a> &middot; <a href="/ai-tools">All free tools</a>.
+  Educational information only. This page returns statistics about numbers you supply; it is not investment advice and not a recommendation regarding any security.</p>
+</article>
+</main>
+<footer>By the <a href="/about" style="color:var(--muted);">AGI Scorecard team</a> &middot; Independent tracker of <a href="https://situational-awareness.ai" style="color:var(--muted);">Situational Awareness</a> &middot; Not affiliated with any lab or fund &middot; <a href="/privacy" style="color:var(--muted);">Privacy</a></footer>
+<script>
+// Backtest Reality Check — the same arithmetic as tools/strategy-audit/audit.py.
+// Held to that file by tools/strategy-audit/test_parity.mjs, which runs both on one fixture.
+// Nothing here leaves the browser: no fetch, no storage, no beacon carrying your numbers.
+(function () {
+  var EULER = 0.5772156649015329;
+
+  // Abramowitz & Stegun 7.1.26; |error| < 1.5e-7, which is why the parity test uses 2e-6.
+  function erf(x) {
+    var s = x < 0 ? -1 : 1, a = Math.abs(x);
+    var t = 1 / (1 + 0.3275911 * a);
+    var y = 1 - ((((1.061405429 * t - 1.453152027) * t + 1.421413741) * t - 0.284496736) * t + 0.254829592) * t * Math.exp(-a * a);
+    return s * y;
+  }
+  function cdf(x) { return 0.5 * (1 + erf(x / Math.SQRT2)); }
+
+  // Acklam's inverse normal CDF, relative error < 1.15e-9.
+  function invCdf(p) {
+    if (p <= 0 || p >= 1) return NaN;
+    var a = [-3.969683028665376e+01, 2.209460984245205e+02, -2.759285104469687e+02, 1.383577518672690e+02, -3.066479806614716e+01, 2.506628277459239e+00];
+    var b = [-5.447609879822406e+01, 1.615858368580409e+02, -1.556989798598866e+02, 6.680131188771972e+01, -1.328068155288572e+01];
+    var c = [-7.784894002430293e-03, -3.223964580411365e-01, -2.400758277161838e+00, -2.549732539343734e+00, 4.374664141464968e+00, 2.938163982698783e+00];
+    var d = [7.784695709041462e-03, 3.224671290700398e-01, 2.445134137142996e+00, 3.754408661907416e+00];
+    var pl = 0.02425, q, r;
+    if (p < pl) {
+      q = Math.sqrt(-2 * Math.log(p));
+      return (((((c[0] * q + c[1]) * q + c[2]) * q + c[3]) * q + c[4]) * q + c[5]) / ((((d[0] * q + d[1]) * q + d[2]) * q + d[3]) * q + 1);
+    }
+    if (p > 1 - pl) {
+      q = Math.sqrt(-2 * Math.log(1 - p));
+      return -(((((c[0] * q + c[1]) * q + c[2]) * q + c[3]) * q + c[4]) * q + c[5]) / ((((d[0] * q + d[1]) * q + d[2]) * q + d[3]) * q + 1);
+    }
+    q = p - 0.5; r = q * q;
+    return (((((a[0] * r + a[1]) * r + a[2]) * r + a[3]) * r + a[4]) * r + a[5]) * q /
+           (((((b[0] * r + b[1]) * r + b[2]) * r + b[3]) * r + b[4]) * r + 1);
+  }
+
+  function moments(x) {
+    var n = x.length;
+    if (n < 3) throw new Error("need at least 3 observations");
+    var m = x.reduce(function (a, b) { return a + b; }, 0) / n;
+    var d = x.map(function (v) { return v - m; });
+    var ss = d.reduce(function (a, v) { return a + v * v; }, 0);
+    var sd = Math.sqrt(ss / (n - 1));
+    if (!(sd > 0)) throw new Error("returns have zero variance — nothing to test");
+    var popSd = Math.sqrt(ss / n);
+    var m3 = d.reduce(function (a, v) { return a + v * v * v; }, 0) / n;
+    var m4 = d.reduce(function (a, v) { return a + v * v * v * v; }, 0) / n;
+    return { n: n, mean: m, sd: sd, skew: m3 / Math.pow(popSd, 3), kurtosis: m4 / Math.pow(popSd, 4) };
+  }
+
+  function toReturns(eq) {
+    if (eq.length < 2) throw new Error("need at least two equity points");
+    var out = [];
+    for (var i = 1; i < eq.length; i++) {
+      if (eq[i - 1] <= 0) throw new Error("equity values must be positive");
+      out.push(eq[i] / eq[i - 1] - 1);
+    }
+    return out;
+  }
+
+  function psr(sr, srStar, n, skew, kurt) {
+    if (n < 2) return null;
+    var v = 1 - skew * sr + (kurt - 1) / 4 * sr * sr;
+    if (v <= 0) return null;
+    return cdf((sr - srStar) * Math.sqrt(n - 1) / Math.sqrt(v));
+  }
+
+  function expectedMaxSharpe(trials, sd) {
+    if (trials < 1) throw new Error("trials must be >= 1");
+    if (trials === 1) return 0;
+    var z1 = invCdf(1 - 1 / trials), z2 = invCdf(1 - 1 / (trials * Math.E));
+    return sd * ((1 - EULER) * z1 + EULER * z2);
+  }
+
+  function minTRL(sr, srStar, skew, kurt, conf) {
+    if (sr <= srStar) return null;
+    var v = 1 - skew * sr + (kurt - 1) / 4 * sr * sr;
+    if (v <= 0) return null;
+    var z = invCdf(conf);
+    return 1 + v * Math.pow(z / (sr - srStar), 2);
+  }
+
+  function requiredSharpe(target, kellyFraction) {
+    var denom = kellyFraction - kellyFraction * kellyFraction / 2;
+    return Math.sqrt(Math.log(1 + target) / denom);
+  }
+  // Above this an annualised Sharpe is a units error, not a result — usually an equity curve
+  // pasted into the returns field. Mirrors IMPLAUSIBLE_SHARPE in audit.py.
+  var IMPLAUSIBLE_SHARPE = 10;
+  function kellyCeiling(s) {
+    if (s <= 0) return 0;
+    if (s > IMPLAUSIBLE_SHARPE) return null;
+    return Math.exp(s * s / 2) - 1;
+  }
+  function leverageForTarget(s, vol, target) {
+    if (vol <= 0 || s <= 0) return null;
+    var mu = s * vol, lnT = Math.log(1 + target);
+    var disc = mu * mu - 2 * lnT * vol * vol;
+    if (disc < 0) return null;
+    return (mu - Math.sqrt(disc)) / (vol * vol);
+  }
+
+  function round(x, k) { var f = Math.pow(10, k); return Math.round(x * f) / f; }
+
+  function audit(returns, ppy, trials, target, turnover, costBps) {
+    var m = moments(returns), n = m.n, root = Math.sqrt(ppy);
+    var srP = m.mean / m.sd, srA = srP * root;
+    var muA = m.mean * ppy, volA = m.sd * root;
+    var trialSd = 1 / Math.sqrt(n);
+    var sr0 = expectedMaxSharpe(trials, trialSd);
+    var r = {
+      observations: n, years: round(n / ppy, 2),
+      annualReturnPct: round(muA * 100, 2), annualVolPct: round(volA * 100, 2),
+      skew: round(m.skew, 3), kurtosis: round(m.kurtosis, 3),
+      sharpeAnnual: round(srA, 3), trials: trials,
+      expectedBestSharpeAnnual: round(sr0 * root, 3),
+      psrVsZero: round(psr(srP, 0, n, m.skew, m.kurtosis), 4),
+      dsr: round(psr(srP, sr0, n, m.skew, m.kurtosis), 4)
+    };
+    r.survives = r.dsr > 0.95;
+    if (Math.abs(srA) > IMPLAUSIBLE_SHARPE) {
+      r.implausible = true;
+      return r;                       // no further statistics on a mis-specified series
+    }
+    var t = minTRL(srP, 0, m.skew, m.kurtosis, 0.95);
+    r.minTrlObs = t === null ? null : round(t, 1);
+    r.minTrlYears = t === null ? null : round(t / ppy, 2);
+    if (target !== null) {
+      var lev = leverageForTarget(srA, volA, target);
+      r.target = {
+        targetPct: round(target * 100, 1),
+        requiredFull: round(requiredSharpe(target, 1), 3),
+        requiredHalf: round(requiredSharpe(target, 0.5), 3),
+        ceilingPct: (function (c) { return c === null ? null : round(c * 100, 1); })(kellyCeiling(srA)),
+        reachable: lev !== null,
+        leverage: lev === null ? null : round(lev, 2)
+      };
+    }
+    if (turnover !== null) {
+      var drag = turnover * 2 * costBps / 10000;
+      r.costs = {
+        dragPct: round(drag * 100, 3),
+        grossSharpe: round(muA / volA, 3),
+        netSharpe: round((muA - drag) / volA, 3)
+      };
+    }
+    return r;
+  }
+
+  function findings(r) {
+    var out = [];
+    if (r.implausible) return [["bad", "An annualised Sharpe of " + r.sharpeAnnual + " is not a result, it is almost certainly a units problem \u2014 most often an equity curve pasted where period returns were expected, or the wrong periods-per-year. Check the input and run it again; no further statistics are reported for this series."]];
+    if (r.sharpeAnnual <= 0) out.push(["bad", "The measured Sharpe is " + r.sharpeAnnual + ". Nothing below rescues that: a negative edge has no leverage that improves it, and the ceiling on compound growth is zero."]);
+    if (r.dsr !== null && !r.survives) out.push(["bad", "Deflated Sharpe is " + r.dsr + ", under the 0.95 threshold. After allowing for " + r.trials + " trial" + (r.trials === 1 ? "" : "s") + ", this record is not distinguishable from the best of that many coin flips."]);
+    if (r.dsr !== null && r.survives) out.push(["ok", "Deflated Sharpe is " + r.dsr + ", clearing the 0.95 threshold at " + r.trials + " declared trial" + (r.trials === 1 ? "" : "s") + ". Necessary, not sufficient."]);
+    if (r.minTrlObs && r.minTrlObs > r.observations) out.push(["", "The record is " + r.observations + " observations and would need about " + Math.round(r.minTrlObs) + " (" + r.minTrlYears + " years) before this Sharpe is separable from luck."]);
+    if (r.skew < -0.5) out.push(["", "Skew is " + r.skew + ": losses cluster. The Sharpe ratio flatters this shape, which is why the tests widen the error bars rather than ignore it."]);
+    if (r.kurtosis > 6) out.push(["", "Kurtosis is " + r.kurtosis + " against 3.0 for a normal. Fat tails; the worst observation in the sample is unlikely to be the worst possible."]);
+    if (r.target) {
+      if (!r.target.reachable) out.push(["bad", "A " + r.target.targetPct + "% annual target needs a Sharpe of at least " + r.target.requiredFull + " at full Kelly. Measured is " + r.sharpeAnnual + ", whose ceiling at ANY leverage is " + r.target.ceilingPct + "%. Past Kelly, more leverage lowers growth, so the target is out of reach at every setting."]);
+      else out.push(["", "The target is reachable in principle at " + r.target.leverage + "x leverage, before borrowing costs, fees and taxes, and at a drawdown that scales with it."]);
+    }
+    if (r.costs) {
+      if (r.costs.grossSharpe > 0 && r.costs.netSharpe <= 0) out.push(["bad", "Costs alone erase the edge: Sharpe " + r.costs.grossSharpe + " gross becomes " + r.costs.netSharpe + " net at the stated turnover."]);
+      else out.push(["", "Costs take the Sharpe from " + r.costs.grossSharpe + " to " + r.costs.netSharpe + " (" + r.costs.dragPct + "% a year of drag)."]);
+    }
+    if (!out.length) out.push(["ok", "No test here flags the record. That is not a recommendation, and surviving these checks is necessary rather than sufficient."]);
+    return out;
+  }
+
+  function parse(text) {
+    var out = [];
+    text.split(/[\r\n]+/).forEach(function (line) {
+      var cell = line.split(",").pop().trim();
+      var v = parseFloat(cell);
+      if (isFinite(v) && /^[-+0-9.eE]+$/.test(cell)) out.push(v);
+    });
+    return out;
+  }
+
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+
+  function render(r) {
+    var L = [];
+    L.push("Sample            " + r.observations + " observations (" + r.years + " years)");
+    L.push("Return / vol      " + r.annualReturnPct + "% / " + r.annualVolPct + "% annualised");
+    L.push("Shape             skew " + r.skew + ", kurtosis " + r.kurtosis + " (3.0 = normal)");
+    L.push("Sharpe            " + r.sharpeAnnual + " annualised");
+    L.push("");
+    L.push("Trials declared   " + r.trials);
+    L.push("Best by luck      " + r.expectedBestSharpeAnnual + " Sharpe expected from that many trials with no edge");
+    L.push("");
+    L.push("PSR vs zero       " + r.psrVsZero);
+    L.push("Deflated Sharpe   " + r.dsr + "  (" + (r.survives ? "survives" : "does NOT survive") + " the 0.95 threshold)");
+    L.push("Min track record  " + (r.minTrlObs === null ? "not applicable (Sharpe <= 0)" : r.minTrlObs + " observations (" + r.minTrlYears + " years)"));
+    if (r.implausible) return '<pre class="report">' + esc(L.join("\n")) + "</pre>" + '<div class="verdict bad">' + esc(findings(r)[0][1]) + "</div>";
+    if (r.target) {
+      L.push("");
+      L.push("Target            " + r.target.targetPct + "% a year");
+      L.push("Needs Sharpe      " + r.target.requiredFull + " at full Kelly, " + r.target.requiredHalf + " at half");
+      L.push("Ceiling at yours  " + r.target.ceilingPct + "% at any leverage");
+    }
+    if (r.costs) {
+      L.push("");
+      L.push("Costs             " + r.costs.dragPct + "% a year of drag; Sharpe " + r.costs.grossSharpe + " -> " + r.costs.netSharpe);
+    }
+    var html = '<pre class="report">' + esc(L.join("\n")) + "</pre>";
+    findings(r).forEach(function (f) {
+      html += '<div class="verdict ' + f[0] + '">' + esc(f[1]) + "</div>";
+    });
+    return html;
+  }
+
+  if (typeof module !== "undefined" && module.exports) {
+    module.exports = { audit: audit, moments: moments, toReturns: toReturns, psr: psr,
+                       expectedMaxSharpe: expectedMaxSharpe, minTRL: minTRL,
+                       requiredSharpe: requiredSharpe, kellyCeiling: kellyCeiling,
+                       leverageForTarget: leverageForTarget };
+    return;
+  }
+
+  var $ = function (id) { return document.getElementById(id); };
+
+  $("run").addEventListener("click", function () {
+    var nums = parse($("series").value);
+    var out = $("out");
+    if (nums.length < 3) {
+      out.innerHTML = '<div class="verdict bad">Paste at least three numbers. One per line, or a date,value pair per line.</div>';
+      return;
+    }
+    var rets;
+    try {
+      rets = $("kind").value === "equity" ? toReturns(nums) : nums;
+      var trials = Math.max(1, parseInt($("trials").value, 10) || 1);
+      var tRaw = $("target").value.trim();
+      var target = tRaw === "" ? null : parseFloat(tRaw);
+      var toRaw = $("turnover").value.trim();
+      var turnover = toRaw === "" ? null : parseFloat(toRaw);
+      var cost = parseFloat($("cost").value) || 0;
+      var r = audit(rets, parseInt($("ppy").value, 10), trials,
+                    (target === null || !isFinite(target)) ? null : target,
+                    (turnover === null || !isFinite(turnover)) ? null : turnover, cost);
+      out.innerHTML = render(r);
+      if (typeof gtag === "function") gtag("event", "calc_use", { location: "backtest_audit", label: "n" + r.observations + "_t" + trials });
+    } catch (e) {
+      out.innerHTML = '<div class="verdict bad">' + esc(e.message || "could not read those numbers") + "</div>";
+    }
+  });
+
+  $("demo").addEventListener("click", function () {
+    // A deliberately unremarkable curve: the kind that looks fine until it is deflated.
+    var v = 100, lines = [];
+    for (var i = 0; i < 252; i++) {
+      v *= 1 + 0.001 * ((i * 37) % 23 - 11) + 0.0006;
+      lines.push(v.toFixed(4));
+    }
+    $("series").value = lines.join("\n");
+    $("kind").value = "equity";
+    $("trials").value = "200";
+    $("run").click();
+  });
+})();
+
+</script>
+</body>
+</html>

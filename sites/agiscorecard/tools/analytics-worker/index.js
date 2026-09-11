@@ -31,6 +31,14 @@ const ALLOWED_EVENTS = new Set([
   'embed_brand_click', 'hot_topic_click', 'viz_switch', 'viz_capture_show',
   'prediction_lock', 'invest_tool_click', 'market_odds_load', 'calc_use',
   'pred_expand', 'readnext_click', 'analysis_click', 'advertise_click', 'sponsor_click',
+  // 2026-09-11: `audit_click` was the same trap `affiliate_click` was in August — a name the
+  // pages were expected to fire that this allowlist would have dropped on arrival, so the
+  // pre-registered /audits line could never have been resolved honestly. Worse on inspection:
+  // /audits carries no contact action to click at all, so its "zero inquiries" reading is an
+  // absence of instrument, not an absence of demand. The 2026-08-29 adversarial review killed
+  // restructuring that page and that kill stands; this only makes the event recordable, so the
+  // new /backtest-audit funnel into it has a denominator.
+  'audit_click',
   'exposure_score',
   'retake_test', 'badge_copy',
   // Amazon Associates book links have existed on /who-is-leopold-aschenbrenner since
