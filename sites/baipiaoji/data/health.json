@@ -765,8 +765,9 @@
     {
       "slug": "ttsmaker",
       "url": "https://ttsmaker.cn",
-      "ok": true,
-      "status": 200,
+      "ok": false,
+      "status": 0,
+      "error": "AbortError",
       "checked_at": "2026-09-11"
     },
     {
