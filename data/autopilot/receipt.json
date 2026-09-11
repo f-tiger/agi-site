@@ -30,16 +30,16 @@
     "bootstrapped": 0,
     "changed": 0,
     "covered": 0,
-    "demand_terms": 34,
+    "demand_terms": 42,
     "gaps": 1,
     "lastmod_updated": 0,
-    "offtopic": 33,
+    "offtopic": 41,
     "pages": 4,
     "undatable": 0
    },
    "notes": [
-    "sites/buysomething/site/rising.json: 2 seed(s) are on the AUTOCOMPLETE FALLBACK, not Google Trends rising (chinese style shirt, portable blender). Those rows are scored 1, not ranked against real volume — the demand face for them is degraded, not working.",
-    "sites/buysomething/site/rising.json: 11 fresh seed(s) used; 7 stale and 0 undated dropped"
+    "sites/buysomething/site/rising.json: 3 seed(s) are on the AUTOCOMPLETE FALLBACK, not Google Trends rising (chinese style shirt, portable blender, smart pill organizer). Those rows are scored 1, not ranked against real volume — the demand face for them is degraded, not working.",
+    "sites/buysomething/site/rising.json: 12 fresh seed(s) used; 7 stale and 0 undated dropped"
    ],
    "outcome": "ok",
    "site": "buysomething",
@@ -55,9 +55,9 @@
     "bootstrapped": 0,
     "changed": 0,
     "covered": 34,
-    "demand_terms": 77,
-    "gaps": 30,
-    "offtopic": 13,
+    "demand_terms": 78,
+    "gaps": 32,
+    "offtopic": 12,
     "pages": 204,
     "undatable": 0
    },
