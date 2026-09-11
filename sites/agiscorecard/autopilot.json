@@ -1,0 +1,44 @@
+{
+  "site": "agiscorecard",
+  "url_base": "https://agiscorecard.com",
+  "publish_root": "sites/agiscorecard",
+  "sitemap": "sites/agiscorecard/sitemap.xml",
+  "fix_sitemap": true,
+  "max_unresolved": 0,
+  "exclude": [
+    "^dist/",
+    "^node_modules/",
+    "^tools/",
+    "^docs/"
+  ],
+  "demand_files": [
+    "sites/agiscorecard/trends-rising.json"
+  ],
+  "demand_geo": "US",
+  "vocabulary": [
+    "agi",
+    "superintelligence",
+    "asi",
+    "forecast",
+    "timeline",
+    "aschenbrenner",
+    "metaculus",
+    "scaling",
+    "compute",
+    "benchmark",
+    "alignment",
+    "openai",
+    "anthropic",
+    "deepmind",
+    "prediction",
+    "odds",
+    "scorecard",
+    "2027",
+    "job",
+    "unemployment",
+    "invest",
+    "stock",
+    "etf",
+    "capex"
+  ]
+}

@@ -20,6 +20,13 @@ on:
       - "!sites/thedollscout/CLAUDE.md"
       - ".github/workflows/deploy-thedollscout.yml"
   workflow_dispatch:
+  # 每日兜底部署(2026-09-11)。**这是舰队冻结事故的直接修复**:2026-09-03 三条
+  # Routine 计划触发失败,本站冻结约 86 小时——因为它的部署是纯 push 触发,没有会话
+  # 推它就没有任何东西推它。零 AI 的每日任务全部只写 content/,而 content/ 既被 path
+  # 过滤显式排除、又被 assemble-dist.sh 排除,所以它们在结构上到不了线上。
+  # 这条 cron 是本站唯一不经过任何 AI 会话的发布路径。
+  schedule:
+    - cron: "20 7 * * *"
 
 jobs:
   deploy:

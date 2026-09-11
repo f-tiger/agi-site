@@ -1,0 +1,44 @@
+{
+  "site": "thedollscout",
+  "url_base": "https://thedollscout.com",
+  "publish_root": "sites/thedollscout",
+  "sitemap": "sites/thedollscout/sitemap.xml",
+  "fix_sitemap": true,
+  "max_unresolved": 0,
+  "exclude": [
+    "^content/",
+    "^scripts/",
+    "^dist/",
+    "^node_modules/"
+  ],
+  "demand_files": [
+    "sites/thedollscout/content/trends-rising.json"
+  ],
+  "demand_geo": "US",
+  "vocabulary": [
+    "labubu",
+    "monsters",
+    "popmart",
+    "pop mart",
+    "blind box",
+    "blindbox",
+    "rarity",
+    "secret",
+    "chase",
+    "fake",
+    "real",
+    "authentic",
+    "counterfeit",
+    "uv",
+    "stamp",
+    "series",
+    "macaron",
+    "exciting",
+    "macaron",
+    "have a seat",
+    "big into energy",
+    "odds",
+    "probability",
+    "checker"
+  ]
+}

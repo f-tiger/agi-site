@@ -1,0 +1,144 @@
+{
+ "runs": [
+  {
+   "changed_urls": [],
+   "counts": {
+    "bootstrapped": 0,
+    "changed": 0,
+    "covered": 1,
+    "demand_terms": 2,
+    "gaps": 0,
+    "lastmod_updated": 0,
+    "offtopic": 1,
+    "pages": 211,
+    "undatable": 0
+   },
+   "notes": [
+    "sites/agiscorecard/trends-rising.json: 2 seed(s) are on the AUTOCOMPLETE FALLBACK, not Google Trends rising (agi timeline, artificial general intelligence). Those rows are scored 1, not ranked against real volume — the demand face for them is degraded, not working."
+   ],
+   "outcome": "ok",
+   "site": "agiscorecard",
+   "today": "2026-09-11",
+   "wrote": [
+    "data/autopilot/agiscorecard.json",
+    "data/autopilot/agiscorecard-demand.json"
+   ]
+  },
+  {
+   "changed_urls": [],
+   "counts": {
+    "bootstrapped": 0,
+    "changed": 0,
+    "covered": 0,
+    "demand_terms": 34,
+    "gaps": 1,
+    "lastmod_updated": 0,
+    "offtopic": 33,
+    "pages": 4,
+    "undatable": 0
+   },
+   "notes": [
+    "sites/buysomething/site/rising.json: 2 seed(s) are on the AUTOCOMPLETE FALLBACK, not Google Trends rising (chinese style shirt, portable blender). Those rows are scored 1, not ranked against real volume — the demand face for them is degraded, not working.",
+    "sites/buysomething/site/rising.json: 11 fresh seed(s) used; 7 stale and 0 undated dropped"
+   ],
+   "outcome": "ok",
+   "site": "buysomething",
+   "today": "2026-09-11",
+   "wrote": [
+    "data/autopilot/buysomething.json",
+    "data/autopilot/buysomething-demand.json"
+   ]
+  },
+  {
+   "changed_urls": [],
+   "counts": {
+    "bootstrapped": 0,
+    "changed": 0,
+    "covered": 34,
+    "demand_terms": 77,
+    "gaps": 30,
+    "offtopic": 13,
+    "pages": 204,
+    "undatable": 0
+   },
+   "notes": [
+    "sitemap owned by this site's own generator — not touched",
+    "sites/getecoback/data/trends-rising.json: 2 seed(s) are on the AUTOCOMPLETE FALLBACK, not Google Trends rising (infrarotheizung, klimaanlage). Those rows are scored 1, not ranked against real volume — the demand face for them is degraded, not working."
+   ],
+   "outcome": "ok",
+   "site": "getecoback",
+   "today": "2026-09-11",
+   "wrote": [
+    "data/autopilot/getecoback.json",
+    "data/autopilot/getecoback-demand.json"
+   ]
+  },
+  {
+   "changed_urls": [],
+   "counts": {
+    "bootstrapped": 0,
+    "changed": 0,
+    "covered": 0,
+    "demand_terms": 0,
+    "gaps": 0,
+    "lastmod_updated": 0,
+    "offtopic": 0,
+    "pages": 5,
+    "undatable": 0
+   },
+   "notes": [],
+   "outcome": "ok",
+   "site": "goldrush",
+   "today": "2026-09-11",
+   "wrote": [
+    "data/autopilot/goldrush.json",
+    "data/autopilot/goldrush-demand.json"
+   ]
+  },
+  {
+   "changed_urls": [],
+   "counts": {
+    "bootstrapped": 0,
+    "changed": 0,
+    "covered": 0,
+    "demand_terms": 0,
+    "gaps": 0,
+    "lastmod_updated": 0,
+    "offtopic": 0,
+    "pages": 45,
+    "undatable": 0
+   },
+   "notes": [],
+   "outcome": "ok",
+   "site": "gridlings",
+   "today": "2026-09-11",
+   "wrote": [
+    "data/autopilot/gridlings.json",
+    "data/autopilot/gridlings-demand.json"
+   ]
+  },
+  {
+   "changed_urls": [],
+   "counts": {
+    "bootstrapped": 0,
+    "changed": 0,
+    "covered": 3,
+    "demand_terms": 18,
+    "gaps": 13,
+    "lastmod_updated": 0,
+    "offtopic": 2,
+    "pages": 39,
+    "undatable": 0
+   },
+   "notes": [],
+   "outcome": "ok",
+   "site": "thedollscout",
+   "today": "2026-09-11",
+   "wrote": [
+    "data/autopilot/thedollscout.json",
+    "data/autopilot/thedollscout-demand.json"
+   ]
+  }
+ ],
+ "today": "2026-09-11"
+}

@@ -1,0 +1,179 @@
+{
+ "covered": [
+  {
+   "kind": "value",
+   "match": 0.667,
+   "page": "fake-check.html",
+   "q": "pop mart overwatch",
+   "seed": "pop mart",
+   "source": "related-queries",
+   "stand": "2026-09-06",
+   "v": 550
+  },
+  {
+   "kind": "value",
+   "match": 0.667,
+   "page": "fake-check.html",
+   "q": "spongebob pop mart",
+   "seed": "pop mart",
+   "source": "related-queries",
+   "stand": "2026-09-06",
+   "v": 80
+  },
+  {
+   "kind": "value",
+   "match": 0.85,
+   "page": "fake-check.html",
+   "q": "popmart",
+   "seed": "fake labubu",
+   "source": "related-queries",
+   "stand": "2026-09-05",
+   "v": 60
+  }
+ ],
+ "gaps": [
+  {
+   "kind": "value",
+   "match": 0.5,
+   "page": "fake-check.html",
+   "q": "monster hunter pop mart",
+   "seed": "pop mart",
+   "source": "related-queries",
+   "stand": "2026-09-06",
+   "v": 25850
+  },
+  {
+   "kind": "value",
+   "match": 0.2,
+   "page": "index.html",
+   "q": "crumbl labubu ube dot cake",
+   "seed": "labubu",
+   "source": "related-queries",
+   "stand": "2026-09-05",
+   "v": 24900
+  },
+  {
+   "kind": "value",
+   "match": 0.333,
+   "page": "index.html",
+   "q": "lets try the viral crumbl labubu",
+   "seed": "labubu",
+   "source": "related-queries",
+   "stand": "2026-09-05",
+   "v": 7600
+  },
+  {
+   "kind": "value",
+   "match": 0.4,
+   "page": "fake-check.html",
+   "q": "pop mart international dessert expansion",
+   "seed": "pop mart",
+   "source": "related-queries",
+   "stand": "2026-09-06",
+   "v": 5300
+  },
+  {
+   "kind": "value",
+   "match": 0.5,
+   "page": "index.html",
+   "q": "labubu salon",
+   "seed": "labubu",
+   "source": "related-queries",
+   "stand": "2026-09-05",
+   "v": 1250
+  },
+  {
+   "kind": "value",
+   "match": 0.4,
+   "page": "rarity.html",
+   "q": "labubu fifa world cup 2026",
+   "seed": "labubu",
+   "source": "related-queries",
+   "stand": "2026-09-05",
+   "v": 950
+  },
+  {
+   "kind": "value",
+   "match": 0.5,
+   "page": "index.html",
+   "q": "jax labubu",
+   "seed": "labubu",
+   "source": "related-queries",
+   "stand": "2026-09-05",
+   "v": 700
+  },
+  {
+   "kind": "value",
+   "match": 0.25,
+   "page": "index.html",
+   "q": "fifa world cup labubu",
+   "seed": "labubu",
+   "source": "related-queries",
+   "stand": "2026-09-05",
+   "v": 650
+  },
+  {
+   "kind": "value",
+   "match": 0.333,
+   "page": "index.html",
+   "q": "world cup labubu",
+   "seed": "labubu",
+   "source": "related-queries",
+   "stand": "2026-09-05",
+   "v": 500
+  },
+  {
+   "kind": "value",
+   "match": 0.5,
+   "page": "index.html",
+   "q": "labubu fifa",
+   "seed": "labubu",
+   "source": "related-queries",
+   "stand": "2026-09-05",
+   "v": 250
+  },
+  {
+   "kind": "value",
+   "match": 0.562,
+   "page": "how-blind-boxes-work.html",
+   "q": "pop mart care bear",
+   "seed": "pop mart",
+   "source": "related-queries",
+   "stand": "2026-09-06",
+   "v": 250
+  },
+  {
+   "kind": "value",
+   "match": 0.5,
+   "page": "index.html",
+   "q": "chopped labubu",
+   "seed": "labubu",
+   "source": "related-queries",
+   "stand": "2026-09-05",
+   "v": 190
+  },
+  {
+   "kind": "value",
+   "match": 0.333,
+   "page": "index.html",
+   "q": "labubu halloween costume",
+   "seed": "labubu",
+   "source": "related-queries",
+   "stand": "2026-09-05",
+   "v": 190
+  }
+ ],
+ "generated": "2026-09-11",
+ "geo": "US",
+ "how_to_read": "gaps = 今天有需求、站内没有页面接得住(match < 0.60);covered = 已有页面接得住。**page 字段是「词元重叠度最高的现有页面」,不是编辑判断** —— 实测它会挑错:eco 的 'luftentfeuchter bei hitze' 被它指到 kinderzimmer-kuehlen.html,而本站自己的 rail 把这条问句路由到 luftentfeuchter-ratgeber 的「它不制冷」那一节。所以 page 只当线索用,别当结论。v 是 Google 的增长值,不是搜索量;kind=autocomplete-new 的行来自配额用尽后的兜底,分值恒为 1,不可与真实增长值比较。",
+ "note": "选题输入,不是选题依据。任何由它引出的页面仍要过本站三门与硬内容规则。本文件由 tools/autopilot 每日确定性生成,零 AI、零编造。",
+ "offtopic_dropped": [
+  "hirono mist walker",
+  "miniso"
+ ],
+ "site": "thedollscout",
+ "source_notes": [],
+ "sources": [
+  "sites/thedollscout/content/trends-rising.json"
+ ]
+}

@@ -1,0 +1,30 @@
+{
+  "site": "gridlings",
+  "url_base": "https://play.agiscorecard.com",
+  "publish_root": "sites/gridlings/site",
+  "sitemap": "sites/gridlings/site/sitemap.xml",
+  "fix_sitemap": true,
+  "max_unresolved": 0,
+  "exclude": [],
+  "demand_files": [],
+  "demand_geo": "US",
+  "vocabulary": [
+    "puzzle",
+    "daily",
+    "sudoku",
+    "nonogram",
+    "futoshiki",
+    "towers",
+    "thermo",
+    "starbattle",
+    "latin",
+    "trail",
+    "balance",
+    "binary",
+    "logic",
+    "brain",
+    "game",
+    "streak"
+  ],
+  "worker_routes": "sites/gridlings/worker.js"
+}

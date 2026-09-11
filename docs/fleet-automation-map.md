@@ -34,14 +34,14 @@ thedollscout 冻结约 **86 小时**——它的部署是纯 push 触发，没�
 ### 部署（push 到 main 即发布，各自 path 过滤）
 | workflow | 站点 | 定时兜底 |
 |---|---|---|
-| `deploy-agiscorecard.yml` | agiscorecard.com | 无（靠 heartbeat） |
+| `deploy-agiscorecard.yml` | agiscorecard.com | **`50 2 * * *`（2026-09-11 新增）** |
 | `deploy-baipiaoji.yml` | baipiaoji.com | `30 0 * * *` |
 | `deploy-getecoback.yml` | getecoback.com | `17 3 * * *` |
 | `deploy-buysomething.yml` | source.agiscorecard.com | `20 5 * * *` |
 | `deploy-gamesledger.yml` | games.agiscorecard.com | `10 6 * * *` |
-| `deploy-thedollscout.yml` | thedollscout.com | 无（靠 heartbeat） |
-| `deploy-goldrush.yml` | goldrush.agiscorecard.com | 无（刻意，靠 heartbeat） |
-| `deploy-gridlings.yml` | play.agiscorecard.com | 无（450 天谜题已预烘焙） |
+| `deploy-thedollscout.yml` | thedollscout.com | **`20 7 * * *`（2026-09-11 新增）** |
+| `deploy-goldrush.yml` | goldrush.agiscorecard.com | **`35 7 * * *`（2026-09-11 新增）** |
+| `deploy-gridlings.yml` | play.agiscorecard.com | **`50 7 * * *`（2026-09-11 新增）** |
 
 ### 数据与维护（外部副作用一律只挂 schedule，绝不挂 push）
 | workflow | cron (UTC) | 作用 |
@@ -58,6 +58,7 @@ thedollscout 冻结约 **86 小时**——它的部署是纯 push 触发，没�
 | `agi-trader.yml` | `45 18` / `15 19` / `45 19` / `15 20 * * 1-5` | **新增 2026-09-05**:owner 自用镜像交易器(Alpaca,缺省纸面;整股 market-on-close + 零股 day;四条错峰 cron 抗 GitHub 延迟,幂等读当日订单);job 级门 `vars.TRADER_ENABLED=='1'`,未设 = 0 分钟;≈90 分钟/月(多数秒退);日志只打印计数;详见 `tools/trader/README.md` |
 | `agi-paper-ledger.yml` | `40 22 * * 1-5` | **新增 2026-09-05**:预登记纸面交易台账,十一臂确定性重算 → `sites/agiscorecard/paper-ledger.json`;≈22 分钟/月 + 触发 agi 部署 ≈66 分钟/月;取不到 SPY 即红;**2026-09-06 追加一步**:`tools/trader/test_mirror.py` 20 场景对本地 mock 券商跑执行器(~4 秒/次 ≈ 1.5 分钟/月,不新增 schedule,放在 commit 之后以免连坐);详见 `docs/auto-trading-research-2026-09.md`、`tools/trader/README.md` |
 | `agi-indexnow.yml` | `17 3 * * 1` | sitemap 提交（周一） |
+| **`fleet-autopilot.yml`** | `40 2 * * *` | **新增 2026-09-11：站点自治升级算法**（零 AI）。内容哈希记账 → sitemap `<lastmod>` 变成可计算的事实；只对内容真变了的 URL 打 IndexNow；当日 rising 需求对着站内已有页面匹配，写出排序过的缺口队列给第②层。**不写一个字正文。** 自检 15 条红色夹具跑在最前面。全文 `docs/site-autopilot-2026-09.md` |
 | `tds-indexnow.yml` | `20 6 * * 3` | tds IndexNow（周三） |
 
 **成本**：heartbeat **实测 19 秒/次**（2026-09-04 首跑，run 33835200197），按 Actions
@@ -225,3 +226,39 @@ owner 原话：「把 Routine 也换成 fable 5.1」。**全部 8 条启用中�
   的补跑已在 fire_trigger text 里带过同款指令）。补跑会话 cse_01BUeRkf… 2 分钟内正常
   结束、未再卡 pending —— 说明避开 SSH 后新会话路径能走通；它是否完成了 14 工具复核
   以其推送给 owner 的简报为准（本会话读不到其转写，git 上未见 limits 提交，如实记录）。
+
+
+---
+
+## 九、2026-09-11：四条部署 schedule + 一条 autopilot（owner「避免不跑后就不更新了」）
+
+### 为什么加，而不是靠 heartbeat
+第五节写过「新站默认加低频 schedule 由 heartbeat 统一承担」。**那句话在本轮被实测推翻了**：
+heartbeat 的重发门是 `days_since_deploy >= 7`，它保的是**不掉线**，不是**不陈旧**。
+thedollscout 与 goldrush 在这条门下可以连续六天一个字节不变而 heartbeat 全绿 ——
+tds 2026-09-03 冻结 86 小时正是这个形状，而且**当时没修，是这次才修的**。
+agiscorecard 更隐蔽：它每天能重建**纯属副作用**（fleet-trends 把 trends-us.json 提交进
+它的目录），那条链一停（09-08 GitHub 丢掉全天计划运行）它就能静默停更一周。
+
+### 算账（纪律第 2 条）
+| 新增 | cron (UTC) | 单次 | 每月 |
+|---|---|---|---|
+| `fleet-autopilot.yml` | `40 2 * * *` | 实测 python 部分 <20 秒 → 计 1 分 | ≤30 分 |
+| `deploy-agiscorecard.yml` | `50 2 * * *` | ≈2 分 | ≈60 分 |
+| `deploy-thedollscout.yml` | `20 7 * * *` | ≈2 分 | ≈60 分 |
+| `deploy-goldrush.yml` | `35 7 * * *` | ≈1 分 | ≈30 分 |
+| `deploy-gridlings.yml` | `50 7 * * *` | ≈2 分 | ≈60 分 |
+| | | **合计** | **≈240 分/月** |
+
+公开仓 Actions 免费，不占账号 2000 分钟额度（那个额度只被私有仓消耗）。
+**不新增任何外部抓取**：autopilot 只读已提交进仓的需求文件，IndexNow 是既有的提交通道
+且只发增量。
+
+### 一条实测，推翻了仓里到处都写着的一句话
+260 次真实 run（GitHub API，2026-08-31→09-11）：**00:30–08:00 这一段的 cron 中位数迟到
+257–308 分钟**（最长 461），**2026-09-08 全舰队所有计划运行被 GitHub 整天丢掉**。
+所以仓里每一句「XX:XX 抓完给 YY:YY 的循环读」现在都是假的 —— fleet-trends 实际落在
+08:20，比 agi 04:00 的循环晚四小时。
+**新纪律：任何设计都不许依赖两条 workflow 的先后顺序。** 消费者必须自己读输入文件的
+时间戳并对陈旧作出反应（autopilot 的 `demand.py` 就是按这条写的：逐 seed 卡 10 天，
+过期的丢掉并写明原因，绝不当新鲜的用）。
