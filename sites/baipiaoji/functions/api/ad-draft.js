@@ -61,9 +61,15 @@ export async function onRequestPost({ request, env }) {
 
     const now = new Date();
     const id = crypto.randomUUID().replace(/-/g, '').slice(0, 20);
+    // 期望金额随草稿一起落库,webhook 拿它来核对真实到账金额。
+    // 为什么必须存:client_reference_id 是 URL 里买家可控的字符串,不核对金额的话,
+    // 买家可以用便宜档的支付链接配上贵档位子的 id 换取上架——签名只证明「Stripe 确实收到了钱」,
+    // 不证明「收到的是这个位子的钱」。(2026-09-11 调研查出的钱线缺陷)
+    const cents = Number(env.ADS_PRICE_CENTS || 0) || null;
+    const cur = String(env.ADS_CURRENCY || 'EUR').toUpperCase().slice(0, 3);
     await env.HITS.prepare(
-      'INSERT INTO ads (id, name, url, pitch, cat, lang, status, created) VALUES (?,?,?,?,?,?,?,?)'
-    ).bind(id, name, url, pitch, cat, lang, 'pending', now.toISOString().slice(0, 10)).run();
+      'INSERT INTO ads (id, name, url, pitch, cat, lang, status, created, price_cents, currency) VALUES (?,?,?,?,?,?,?,?,?,?)'
+    ).bind(id, name, url, pitch, cat, lang, 'pending', now.toISOString().slice(0, 10), cents, cur).run();
 
     // 支付链接由 owner 在支付商后台生成后写进环境变量;没配就如实说没接通,
     // 绝不假装收款成功。配上的那一刻整条流程即活,不用改一行代码。

@@ -57,29 +57,67 @@ export async function onRequestPost({ request, env }) {
   const s = ev.data && ev.data.object ? ev.data.object : {};
   const id = String(s.client_reference_id || '').replace(/[^a-z0-9]/gi, '').slice(0, 20);
   const session = String(s.id || '').slice(0, 80);
+  const evId = String(ev.id || '').slice(0, 80);
   if (!id) return json({ ok: true, code: 'noref' });
 
-  // 幂等:同一个 session 再来一次就直接成功返回
-  const dupe = await env.HITS.prepare('SELECT id FROM ads WHERE session = ?')
-    .bind(session).first().catch(() => null);
+  // 幂等以**事件 id** 为键而不是 session:被忽略与被拒的事件重投时也能一致返回,
+  // 而 session 只覆盖成功路径。两个都查,新旧行为都不漏。
+  const dupe = await env.HITS.prepare('SELECT ad_id FROM ad_orders WHERE event_id = ? OR session = ?')
+    .bind(evId, session).first().catch(() => null);
   if (dupe) return json({ ok: true, code: 'already' });
+
+  // 延迟到账的支付方式(如 SEPA 直接借记)会在钱到之前就触发 completed。
+  // 不判这一条,位子会在钱还没到的时候就上线。
+  if (s.payment_status && s.payment_status !== 'paid') return json({ ok: true, code: 'unpaid' });
+
+  const row = await env.HITS.prepare(
+    'SELECT id, cat, url, price_cents, currency, status FROM ads WHERE id = ?').bind(id).first().catch(() => null);
+  if (!row) return json({ ok: true, code: 'unknown' });
+  if (row.status !== 'pending') return json({ ok: true, code: 'notpending' });
+
+  // 金额核对。不符一律**拒绝,不自动折算成别的档位**——静默兜底会把上游问题藏起来,
+  // 这是本仓既有的规矩(执行器不信任台账,输入先校验再用)。
+  // 已知会命中这里的正当情形:中国买家常在付款时代扣 6% 增值税,到账会少于开票额。
+  // 那种情况需要 owner 定规则,不是让代码替他猜。
+  if (row.price_cents) {
+    const amt = Number(s.amount_total);
+    const cur = String(s.currency || '').toUpperCase();
+    if (amt !== Number(row.price_cents) || (row.currency && cur !== String(row.currency).toUpperCase())) {
+      env.HITS.prepare('INSERT INTO hits (d, path, lang, country, ref, ev) VALUES (?,?,?,?,?,?)')
+        .bind(new Date().toISOString().slice(0, 10), `/ad/mismatch/${id}`, 'zh', '', '', 'ad_mismatch')
+        .run().catch(() => {});
+      return json({ ok: true, code: 'amount_mismatch' });
+    }
+  }
 
   const days = Number(env.ADS_DAYS || 30);
   const now = new Date();
   const exp = new Date(now.getTime() + days * 86400000);
+  const today = now.toISOString().slice(0, 10);
+  const expDay = exp.toISOString().slice(0, 10);
   // 金额只存 Stripe 报的分值与币种,不做任何换算——换算等于自己编一个数字
   const amount = s.amount_total != null ? `${s.amount_total} ${String(s.currency || '').toUpperCase()}` : '';
 
   const res = await env.HITS.prepare(
     "UPDATE ads SET status='live', paid_at=?, expires=?, amount=?, session=? WHERE id=? AND status='pending'"
-  ).bind(now.toISOString().slice(0, 10), exp.toISOString().slice(0, 10), amount, session, id).run()
-    .catch(() => null);
+  ).bind(today, expDay, amount, session, id).run().catch(() => null);
+
+  // D1 的 .run() 即使一行都没改也返回真值,所以必须读 changes——否则竞态下会打出
+  // 「已上架」的点位和返回码,而实际什么都没发生。
+  const changed = res && res.meta && res.meta.changes === 1;
+  if (!changed) return json({ ok: true, code: 'nochange' });
+
+  // 拒付抗辩的唯一证据。广告展示位是最难自证交付的品类之一,而争议费不可退,
+  // 一笔 €50 的争议就吃掉好几笔交易的手续费空间。
+  // 隐私红线:只写订单与投放事实,不写买家邮箱、姓名或任何身份信息。
+  await env.HITS.prepare(
+    'INSERT OR IGNORE INTO ad_orders (ad_id, session, event_id, paid_at, amount, cat, url, starts, expires) VALUES (?,?,?,?,?,?,?,?,?)'
+  ).bind(id, session, evId, now.toISOString(), amount, row.cat || '', row.url || '', today, expDay)
+    .run().catch(() => {});
 
   // 打点只记事件与品类,不记买家任何信息(公开仓隐私红线)
-  if (res) {
-    env.HITS.prepare('INSERT INTO hits (d, path, lang, country, ref, ev) VALUES (?,?,?,?,?,?)')
-      .bind(now.toISOString().slice(0, 10), `/ad/live/${id}`, 'zh', '', '', 'ad_live')
-      .run().catch(() => {});
-  }
+  env.HITS.prepare('INSERT INTO hits (d, path, lang, country, ref, ev) VALUES (?,?,?,?,?,?)')
+    .bind(today, `/ad/live/${id}`, 'zh', '', '', 'ad_live').run().catch(() => {});
+
   return json({ ok: true, code: 'live' });
 }
