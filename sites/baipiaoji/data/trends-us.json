@@ -1,60 +1,51 @@
 {
  "ok": true,
- "fetched": "2026-09-10",
+ "fetched": "2026-09-11",
  "geo": "US",
- "matched": [
-  {
-   "title": "deepseek v4.1 flash",
-   "traffic": "500+"
-  }
- ],
+ "matched": [],
  "top": [
   {
-   "title": "motagua - alianza",
+   "title": "nick woltemade",
    "traffic": "100+"
   },
   {
-   "title": "delta flight 2311 rapid descent",
-   "traffic": "20000+"
+   "title": "elon musk",
+   "traffic": "100+"
   },
   {
-   "title": "deepseek v4.1 flash",
+   "title": "fire weather watch",
+   "traffic": "200+"
+  },
+  {
+   "title": "josh hartnett",
    "traffic": "500+"
   },
   {
-   "title": "blake lively",
-   "traffic": "200+"
+   "title": "ted cruz",
+   "traffic": "500+"
   },
   {
-   "title": "tommy mcmillen",
-   "traffic": "200+"
-  },
-  {
-   "title": "cynthia klitbo",
-   "traffic": "200+"
-  },
-  {
-   "title": "eliezer alfonzo",
-   "traffic": "200+"
-  },
-  {
-   "title": "jose trevino",
-   "traffic": "200+"
-  },
-  {
-   "title": "farmers almanac first snowfall map",
+   "title": "vaccines",
    "traffic": "2000+"
   },
   {
-   "title": "kaia gerber",
-   "traffic": "2000+"
+   "title": "vaccinations",
+   "traffic": "1000+"
+  },
+  {
+   "title": "cable tv",
+   "traffic": "200+"
+  },
+  {
+   "title": "내일 날씨",
+   "traffic": "500+"
+  },
+  {
+   "title": "aster",
+   "traffic": "10000+"
   }
  ],
  "history": [
-  {
-   "d": "2026-08-27",
-   "matched": []
-  },
   {
    "d": "2026-08-28",
    "matched": []
@@ -114,6 +105,10 @@
    "matched": [
     "deepseek v4.1 flash"
    ]
+  },
+  {
+   "d": "2026-09-11",
+   "matched": []
   }
  ]
 }
