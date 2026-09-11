@@ -12,6 +12,13 @@ on:
       - "sites/agiscorecard/**"
       - ".github/workflows/deploy-agiscorecard.yml"
   workflow_dispatch: {}
+  # 每日兜底部署(2026-09-11)。本站此前**没有自己的 schedule**——它每天能重新部署
+  # 纯属副作用:fleet-trends.yml 每天把 trends-us.json 提交进 sites/agiscorecard/,
+  # 撞上了本工作流的 path 过滤。那条链一停(09-08 GitHub 整天丢掉了全部计划运行),
+  # 本站最长可以 7 天不重建,只能等 heartbeat 的 7 天线来救。
+  # 注入器与生成器都是幂等的:平静的一天重建出字节相同的产物,照常部署,不改变什么。
+  schedule:
+    - cron: "50 2 * * *"
 
 concurrency:
   group: deploy-agiscorecard

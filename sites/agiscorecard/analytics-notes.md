@@ -1391,3 +1391,36 @@ Playgama：SINGULARITY 认证进行到激励广告一步，其余审核中。
 **里程碑**：无新达成。
 
 **owner 待办（沿用，未催）**：thedollscout `content/d1-snapshot.json` 仍缺。
+
+## 2026-09-11(日结)
+
+**agiscorecard**:JS pv **1261/28d**;后 14 天 696 vs 前 14 天 565(**+23%**)。
+**AI 引擎引荐 12 vs 8(+50%)**——连续两天上行,但绝对值仍是个位数量级,未达「翻倍」里程碑。
+社区(EA+LW)6 vs 7。
+- 漏斗:`subscribe_click` 5 → `sub_open` 3 → `sub_submit` 1 → `sub_ok` **1**。
+  **注意:sub_ok 从 2 变 1 是 28 天窗口滚动导致旧的那条出窗,不是掉了一个订户。**
+  `subscribers` 表仍 2 行 status='stored'。
+- 参与类继续上行:`vote_cast` 63→**64** · `pred_expand` 18→**19** · `invest_tool_click` 13→**17** ·
+  `tool_click` 13→**14** · `deeplink_pick` 7→**8**。仍然是页内、轻量、不跳转的东西在涨。
+- `affiliate_click` 0(10-31 线 0/5)· Pro 桥 0 · `challenge_share` 0 · `embed_copy` 0。
+- 站内搜索:修复上线四天,仍无读者搜索(唯一行是 `location='mcp'` 的服务端写入)。
+- 活数字钩子:09-10 的 `sync_live_hooks` + validate 闸门已随部署上线,七个钩子一致。
+
+**gridlings**:28 天 pv 637 · play_start 350 · solve 135;今日 pv 4、其余 0。
+**itch 判定线 43/13(09-24 需 150/25),连续第 11 天零新增。**
+CG 已按预登记线关闭(09-09);拒稿原文仍未拿到,按「模板 = 关闭」执行中。
+
+**sourceradar**:28 天真人 pv **54**(近 7 天 9),bot 53;交互事件仍全 0。
+连续第 8 天不动作、不 bump。
+
+**第①层 heartbeat**(09-10 12:33Z):八站全 **200**,thedollscout / goldrush `days_since_deploy=5`,
+其余 0。无异常。**自查纠正一次**:本轮一开始误判 heartbeat 已停更两天,实为本地 clone 落后于
+origin/main,`git log` 读的是 HEAD 不是 origin/main。已对上,无事。
+
+**SunWatch 机械执行层**(09-10 上线,另一仓):三只持仓当日读数
+7709.HK 不新建 L4 · 2513.HK 清仓 R1(擦线 0.6%)· AXTI 减一档 R2。
+判定已改为只用走完的日线。**待 owner 确认一次**:20:30 那场简报最前面是否出现了【持仓执行】段。
+
+**里程碑**:无新达成。首个 agent MCP 调用仍不成立(四条件判据不过)。
+
+**owner 待办(沿用,未催)**:thedollscout `content/d1-snapshot.json` 仍缺。

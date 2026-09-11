@@ -1,0 +1,30 @@
+{
+  "site": "buysomething",
+  "url_base": "https://source.agiscorecard.com",
+  "publish_root": "sites/buysomething/site",
+  "sitemap": "sites/buysomething/site/sitemap.xml",
+  "fix_sitemap": true,
+  "max_unresolved": 0,
+  "exclude": [],
+  "demand_files": [
+    "sites/buysomething/site/rising.json"
+  ],
+  "demand_geo": "US",
+  "vocabulary": [
+    "alibaba",
+    "1688",
+    "sourcing",
+    "supplier",
+    "moq",
+    "landed",
+    "cost",
+    "tariff",
+    "freight",
+    "margin",
+    "import",
+    "wholesale",
+    "dropship",
+    "factory",
+    "china"
+  ]
+}

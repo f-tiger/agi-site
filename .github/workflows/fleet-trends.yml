@@ -51,6 +51,15 @@ jobs:
           git add sites/baipiaoji/data/trends-rising.json 2>/dev/null || true
           git add sites/agiscorecard/trends-rising.json 2>/dev/null || true
           git add sites/thedollscout/content/trends-rising.json 2>/dev/null || true
+          # 2026-09-11:这两行此前不存在。tools/fleet_trends_rising.py 每天照常抓
+          # eco-us(geo=US)与 eco-it(geo=IT)并写出文件,但提交步骤从来没 add 过它们
+          # ——数据随 runner 一起销毁,20 个种子的轮转池里有 4 个(20%)在空转,全池
+          # 覆盖一圈从 8 天拖到 10 天,而且 keep-last-good 对这两个槽位永远是空的
+          # (每次都从零开始)。脚本的 run log 还把它们记成 "OK: n/7 updated"。
+          # eco 的 US 面在 2026-09-06 切到 amazon.com 之后才真正有用,IT 试点 20 页
+          # 也在等这份数据;两条预登记判定线都点名要它们,所以是补 add,不是删槽位。
+          git add sites/getecoback/data/trends-rising-us.json 2>/dev/null || true
+          git add sites/getecoback/data/trends-rising-it.json 2>/dev/null || true
           git add data/startup-radar.json 2>/dev/null || true
           git add data/probes-rising.json 2>/dev/null || true
           git add data/probes-de-rising.json 2>/dev/null || true

@@ -1,0 +1,162 @@
+name: Fleet autopilot (daily, zero-AI)
+
+# 站点自治升级算法(2026-09-11,owner:「舰队各个站点配置每天自动化升级能力,避免不跑
+# 后就不更新了…为每个站点设置一个更新算法,这个更新算法应该是网站自动运行的」)。
+#
+# 第①层。没有任何 AI 参与,Routine 全死了它照跑。每天做四件确定性的事:
+#   1. 给每个已发布页面按内容哈希记账 → sitemap 的 <lastmod> 变成可计算的事实,
+#      而不是手打的字面量(2026-09-11 审计:agiscorecard 60 条 URL 停在 2026-06-30);
+#   2. 算出「今天内容真的变了」的 URL 集合 → IndexNow 只提交这一批
+#      (全量重提被 IndexNow 自己的 FAQ 判为垃圾信号,会贬值本站以后的提交);
+#   3. 把当日 rising 需求词对着站内已有页面做匹配 → 写出「有需求、没页面」的排序队列,
+#      交给第②层去判断要不要写。**本层一个字的正文都不写。**
+#   4. 出具收据:做了什么、哪些信号是降级的、哪些被丢弃及原因。
+#
+# 配额账(舰队纪律第 2 条):本 job 实测 python 部分 <20 秒,按 Actions 最小计费
+# 粒度 1 分/次 × 30 = **≤30 分/月**;公开仓 Actions 免费,不占账号 2000 分钟额度。
+# 不新增任何抓取:需求数据沿用 fleet-trends / eco-trends 已经提交进仓的文件。
+#
+# 外部副作用(IndexNow)只挂 schedule,绝不挂 push —— 舰队 CI 纪律第 3 条。
+
+on:
+  schedule:
+    - cron: "40 2 * * *"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Compute and report, write nothing, ping nothing"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fleet-autopilot
+  cancel-in-progress: false      # never cancel a run that may be mid-commit
+
+jobs:
+  autopilot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # One clock reading for the whole run. Two steps computing "today"
+      # independently disagree across a midnight boundary, and this job stamps
+      # dates — a date that depends on which second a step started is not a fact.
+      - name: Freeze the clock
+        id: clock
+        run: echo "today=$(date -u +%F)" >> "$GITHUB_OUTPUT"
+
+      # The self-test runs BEFORE anything is written, and it is a set of red
+      # fixtures (verified 2026-09-11 by mutation: disabling chrome normalization
+      # and stamping today on bootstrap each turn it red). If the invariants that
+      # keep this job honest are broken, it must not run at all.
+      - name: Self-test the invariants (red fixtures)
+        run: python3 tools/autopilot/selftest.py
+
+      - name: Run the algorithm
+        id: run
+        run: |
+          set -o pipefail
+          FLAGS=""
+          if [ "${{ inputs.dry_run }}" = "true" ]; then FLAGS="--check"; fi
+          python3 tools/autopilot/run.py --today "${{ steps.clock.outputs.today }}" $FLAGS \
+            | tee "$GITHUB_STEP_SUMMARY"
+
+      - name: Commit what actually changed
+        if: inputs.dry_run != true
+        run: |
+          git config user.name 'Claude'
+          git config user.email 'noreply@anthropic.com'
+          # One path per `git add`, each guarded. A single non-matching pathspec
+          # makes git add abort and stage NOTHING — the failure that has bitten
+          # this repo five times, once discarding eleven nights of traffic data.
+          git add data/autopilot 2>/dev/null || true
+          for f in $(python3 -c "
+          import json,sys
+          d=json.load(open('data/autopilot/receipt.json'))
+          for r in d['runs']:
+              for p in r.get('wrote',[]):
+                  if not p.startswith('data/'): print(p)
+          "); do
+            git add "$f" 2>/dev/null || echo "::warning::could not stage $f"
+          done
+          if git diff --cached --quiet; then
+            echo "nothing changed today — no commit (this is a normal quiet day)"
+            echo "staged=0" >> "$GITHUB_ENV"
+          else
+            echo "staged=1" >> "$GITHUB_ENV"
+            git commit -m "chore(autopilot): honest lastmod + demand queue ${{ steps.clock.outputs.today }}"
+            for i in 1 2 3 4; do
+              git pull --rebase --autostash origin main && git push origin main && break
+              echo "push attempt $i failed; retrying"; sleep $((2**i))
+            done
+          fi
+
+      # Proof of work. The fleet has been burned five times by a green run that
+      # silently committed nothing — so "I changed pages" and "I staged nothing"
+      # may never both be true. This turns that combination red.
+      - name: Prove the run did what its receipt claims
+        if: inputs.dry_run != true
+        run: |
+          python3 - <<'PY'
+          import json, os, sys
+          d = json.load(open('data/autopilot/receipt.json'))
+          claimed = sum(r.get('counts', {}).get('lastmod_updated', 0) for r in d['runs'])
+          staged = os.environ.get('staged') == '1'
+          failed = [r['site'] for r in d['runs'] if r['outcome'] == 'failed']
+          for r in d['runs']:
+              print(r['site'], r['outcome'], r.get('counts'))
+          if failed:
+              print("::error::autopilot failed on: %s" % ', '.join(failed)); sys.exit(1)
+          if claimed and not staged:
+              print("::error::receipt claims %d lastmod corrections but nothing was "
+                    "staged — the write path is broken, not quiet" % claimed); sys.exit(1)
+          print("proof ok: claimed=%d staged=%s" % (claimed, staged))
+          PY
+
+      # IndexNow carries the delta and nothing else. The key is read from the
+      # verification file each site already publishes, so there is no key to keep
+      # in sync here and no secret in this repo.
+      - name: Submit only the URLs whose content actually changed
+        if: inputs.dry_run != true
+        run: |
+          python3 - <<'PY' > /tmp/pings.txt
+          import json, os, re, sys
+          sys.path.insert(0, 'tools/autopilot')
+          import config
+          changed = json.load(open('data/autopilot/changed-urls.json'))
+          for site, urls in sorted(changed.items()):
+              if not urls:
+                  continue
+              cfg = config.load(site)
+              if not cfg.indexnow:
+                  continue
+              keys = [f for f in os.listdir(cfg.publish_root)
+                      if re.fullmatch(r'[0-9a-f]{32}\.txt', f)]
+              if len(keys) != 1:
+                  print("SKIP\t%s\t%d key files in publish root" % (site, len(keys)),
+                        file=sys.stderr)
+                  continue
+              host = cfg.url_base.split('//', 1)[1]
+              print("%s\t%s\t%s\t%s" % (host, keys[0][:-4],
+                                        cfg.url_base + '/' + keys[0],
+                                        json.dumps(urls[:500])))
+          PY
+          if [ ! -s /tmp/pings.txt ]; then
+            echo "no page changed content today — no ping (a meaningless ping costs trust)"
+            exit 0
+          fi
+          while IFS=$'\t' read -r host key keyloc urls; do
+            n=$(echo "$urls" | python3 -c "import json,sys; print(len(json.load(sys.stdin)))")
+            echo "IndexNow: $host <- $n changed URL(s)"
+            code=$(curl -s -o /tmp/idx.out -w '%{http_code}' -X POST "https://api.indexnow.org/indexnow" \
+              -H "Content-Type: application/json; charset=utf-8" \
+              -d "{\"host\":\"$host\",\"key\":\"$key\",\"keyLocation\":\"$keyloc\",\"urlList\":$urls}" || echo 000)
+            echo "  HTTP $code"
+            case "$code" in
+              200|202) : ;;
+              *) echo "::warning::IndexNow rejected $host with HTTP $code: $(head -c 200 /tmp/idx.out)" ;;
+            esac
+          done < /tmp/pings.txt

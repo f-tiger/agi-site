@@ -34,14 +34,14 @@ thedollscout 冻结约 **86 小时**——它的部署是纯 push 触发，没�
 ### 部署（push 到 main 即发布，各自 path 过滤）
 | workflow | 站点 | 定时兜底 |
 |---|---|---|
-| `deploy-agiscorecard.yml` | agiscorecard.com | 无（靠 heartbeat） |
+| `deploy-agiscorecard.yml` | agiscorecard.com | **`50 2 * * *`（2026-09-11 新增）** |
 | `deploy-baipiaoji.yml` | baipiaoji.com | `30 0 * * *` |
 | `deploy-getecoback.yml` | getecoback.com | `17 3 * * *` |
 | `deploy-buysomething.yml` | source.agiscorecard.com | `20 5 * * *` |
 | `deploy-gamesledger.yml` | games.agiscorecard.com | `10 6 * * *` |
-| `deploy-thedollscout.yml` | thedollscout.com | 无（靠 heartbeat） |
-| `deploy-goldrush.yml` | goldrush.agiscorecard.com | 无（刻意，靠 heartbeat） |
-| `deploy-gridlings.yml` | play.agiscorecard.com | 无（450 天谜题已预烘焙） |
+| `deploy-thedollscout.yml` | thedollscout.com | **`20 7 * * *`（2026-09-11 新增）** |
+| `deploy-goldrush.yml` | goldrush.agiscorecard.com | **`35 7 * * *`（2026-09-11 新增）** |
+| `deploy-gridlings.yml` | play.agiscorecard.com | **`50 7 * * *`（2026-09-11 新增）** |
 
 ### 数据与维护（外部副作用一律只挂 schedule，绝不挂 push）
 | workflow | cron (UTC) | 作用 |
@@ -58,6 +58,7 @@ thedollscout 冻结约 **86 小时**——它的部署是纯 push 触发，没�
 | `agi-trader.yml` | `45 18` / `15 19` / `45 19` / `15 20 * * 1-5` | **新增 2026-09-05**:owner 自用镜像交易器(Alpaca,缺省纸面;整股 market-on-close + 零股 day;四条错峰 cron 抗 GitHub 延迟,幂等读当日订单);job 级门 `vars.TRADER_ENABLED=='1'`,未设 = 0 分钟;≈90 分钟/月(多数秒退);日志只打印计数;详见 `tools/trader/README.md` |
 | `agi-paper-ledger.yml` | `40 22 * * 1-5` | **新增 2026-09-05**:预登记纸面交易台账,十一臂确定性重算 → `sites/agiscorecard/paper-ledger.json`;≈22 分钟/月 + 触发 agi 部署 ≈66 分钟/月;取不到 SPY 即红;**2026-09-06 追加一步**:`tools/trader/test_mirror.py` 20 场景对本地 mock 券商跑执行器(~4 秒/次 ≈ 1.5 分钟/月,不新增 schedule,放在 commit 之后以免连坐);详见 `docs/auto-trading-research-2026-09.md`、`tools/trader/README.md` |
 | `agi-indexnow.yml` | `17 3 * * 1` | sitemap 提交（周一） |
+| **`fleet-autopilot.yml`** | `40 2 * * *` | **新增 2026-09-11：站点自治升级算法**（零 AI）。内容哈希记账 → sitemap `<lastmod>` 变成可计算的事实；只对内容真变了的 URL 打 IndexNow；当日 rising 需求对着站内已有页面匹配，写出排序过的缺口队列给第②层。**不写一个字正文。** 自检 15 条红色夹具跑在最前面。全文 `docs/site-autopilot-2026-09.md` |
 | `tds-indexnow.yml` | `20 6 * * 3` | tds IndexNow（周三） |
 
 **成本**：heartbeat **实测 19 秒/次**（2026-09-04 首跑，run 33835200197），按 Actions
@@ -140,7 +141,44 @@ agiscorecard 2、thedollscout 3、goldrush 3、**gridlings 6**（距 7 天自动
 
 ---
 
-## 七、Routine 模型统一切到 Fable 5.1（owner 2026-09-04 明确要求）
+## 七、Routine 模型：Fable 5.1 → 已于 2026-09-07 全部改回 Opus 5
+
+**⛔ 2026-09-07 撤销（owner 原话：「帮我把所有你的定时任务跑的模型改成默认的，不用fable」）。**
+9 条启用中的 Routine 现在**全部是 `claude-opus-5`**（`update_trigger` 逐条确认，
+`derived_state.model` 复查通过）。选 opus-5 而不是别的：API **不接受把 model 清空**
+（`"default"` 报 `invalid_model`，空串报 `model must not be empty`），必须写一个具体 ID；
+owner 在本会话被问到时选了 opus-5，它与常驻会话 `session_016njKJ81yVv2QdrpLYCX1Vc`
+当前跑的模型一致，两条自绑定 Routine 因此不会分叉（见下第 2 条）。
+
+| Routine | 现模型 |
+|---|---|
+| DollScout 每 2 天 | claude-opus-5 |
+| 白嫖计 daily v4 | claude-opus-5 |
+| getecoback daily v5 | claude-opus-5 |
+| sellSomething 周循环 | claude-opus-5 |
+| 舰队每周分发暂存 | claude-opus-5 |
+| paid-monthly-recheck | claude-opus-5 |
+| Weekly AI News Roundup | claude-opus-5 |
+| 舰队日报（自绑定） | claude-opus-5（写入即与绑定会话一致，见下） |
+| 10 万实验月度复核（自绑定） | claude-opus-5（同上） |
+| [已合并·勿启用] sourceradar | 未设（停用中，不动） |
+
+**两个必须传下去的操作坑（本次踩到）**：
+1. **模型存在两个字段里，只看一个会漏。** `list_triggers` 返回的
+   `session_request.config.model` 和 `derived_state.model` 不总是同一份：
+   "Weekly AI News Roundup" 的 `session_request` 里根本没有 `config`（它带 3 个 MCP
+   连接器，是另一种建法），模型只出现在 `derived_state.model`。**只查 config.model 会
+   把它误判成「已经是默认」而漏掉。以 `derived_state.model` 为准。**
+2. **自绑定那两条的模型仍由绑定会话决定。** 写入照样成功，但真正生效的是
+   `session_016njKJ81yVv2QdrpLYCX1Vc` 当前的模型 —— 实测该会话
+   `user_switched_model` / `last_served_model` 都是 `claude-opus-5`，所以本次两边一致、
+   没有分叉；若 owner 以后在那个会话里切模型，这两条会跟着走，Routine 里写的值不作数。
+
+下方 08/09-04 的原始记录保留为背景（它解释了第八节那类故障的时间线）：
+
+---
+
+### 原记录：Routine 模型统一切到 Fable 5.1（owner 2026-09-04 明确要求，已于 09-07 撤销）
 
 owner 原话：「把 Routine 也换成 fable 5.1」。**全部 8 条启用中的 Routine 已写入
 `model: claude-fable-5-1`**，服务端全部接受（这同时证明该模型对本账号已开通 ——
@@ -164,7 +202,8 @@ owner 原话：「把 Routine 也换成 fable 5.1」。**全部 8 条启用中�
 会话里用模型选择器切到 Fable 5.1**（会话模型是客户端设置，会话侧改不了自己）。
 
 **后续会话注意**：`update_trigger` 的 `model` 参数**只有 owner 用自己的话明确要求时才能动**。
-本次的授权原话已记录在上面；不要把它当成「以后可以随便换模型」的常设许可。
+两次授权原话（09-04 换 Fable、09-07 改回 Opus 5）都已记录在本节；不要把它们当成
+「以后可以随便换模型」的常设许可。
 
 ---
 
@@ -187,3 +226,54 @@ owner 原话：「把 Routine 也换成 fable 5.1」。**全部 8 条启用中�
   的补跑已在 fire_trigger text 里带过同款指令）。补跑会话 cse_01BUeRkf… 2 分钟内正常
   结束、未再卡 pending —— 说明避开 SSH 后新会话路径能走通；它是否完成了 14 工具复核
   以其推送给 owner 的简报为准（本会话读不到其转写，git 上未见 limits 提交，如实记录）。
+
+
+---
+
+## 九、2026-09-11：四条部署 schedule + 一条 autopilot（owner「避免不跑后就不更新了」）
+
+### 为什么加，而不是靠 heartbeat
+第五节写过「新站默认加低频 schedule 由 heartbeat 统一承担」。**那句话在本轮被实测推翻了**：
+heartbeat 的重发门是 `days_since_deploy >= 7`，它保的是**不掉线**，不是**不陈旧**。
+thedollscout 与 goldrush 在这条门下可以连续六天一个字节不变而 heartbeat 全绿 ——
+tds 2026-09-03 冻结 86 小时正是这个形状，而且**当时没修，是这次才修的**。
+agiscorecard 更隐蔽：它每天能重建**纯属副作用**（fleet-trends 把 trends-us.json 提交进
+它的目录），那条链一停（09-08 GitHub 丢掉全天计划运行）它就能静默停更一周。
+
+### 算账（纪律第 2 条）
+| 新增 | cron (UTC) | 单次 | 每月 |
+|---|---|---|---|
+| `fleet-autopilot.yml` | `40 2 * * *` | **首跑实测 12 秒**（run 34608344914，SUCCESS）→ 按最小计费粒度计 1 分 | ≤30 分 |
+| `deploy-agiscorecard.yml` | `50 2 * * *` | ≈2 分 | ≈60 分 |
+| `deploy-thedollscout.yml` | `20 7 * * *` | ≈2 分 | ≈60 分 |
+| `deploy-goldrush.yml` | `35 7 * * *` | ≈1 分 | ≈30 分 |
+| `deploy-gridlings.yml` | `50 7 * * *` | ≈2 分 | ≈60 分 |
+| | | **合计** | **≈240 分/月** |
+
+公开仓 Actions 免费，不占账号 2000 分钟额度（那个额度只被私有仓消耗）。
+**不新增任何外部抓取**：autopilot 只读已提交进仓的需求文件，IndexNow 是既有的提交通道
+且只发增量。
+
+### 一条实测，推翻了仓里到处都写着的一句话
+260 次真实 run（GitHub API，2026-08-31→09-11）：**00:30–08:00 这一段的 cron 中位数迟到
+257–308 分钟**（最长 461），**2026-09-08 全舰队所有计划运行被 GitHub 整天丢掉**。
+所以仓里每一句「XX:XX 抓完给 YY:YY 的循环读」现在都是假的 —— fleet-trends 实际落在
+08:20，比 agi 04:00 的循环晚四小时。
+**新纪律：任何设计都不许依赖两条 workflow 的先后顺序。** 消费者必须自己读输入文件的
+时间戳并对陈旧作出反应（autopilot 的 `demand.py` 就是按这条写的：逐 seed 卡 10 天，
+过期的丢掉并写明原因，绝不当新鲜的用）。
+
+
+### 2026-09-11 首跑实测（全部 workflow_dispatch，非计划）
+| run | 结果 | 耗时 |
+|---|---|---|
+| `fleet-autopilot` 34608344914 | ✅ SUCCESS | **12 秒** |
+| `deploy-goldrush` 34608334113 | ✅ SUCCESS | 31 秒 |
+| `deploy-gridlings` 34608334085 | ✅ SUCCESS | ~52 秒 |
+| `deploy-agiscorecard` 34608334017 | ✅ SUCCESS | ~80 秒 |
+| `deploy-thedollscout` 34608334005 | ✅ SUCCESS | ~81 秒（含 49 条线上自检） |
+| `fleet-heartbeat` 34608502800 | ✅ SUCCESS | 19 秒，**含新的「autopilot 是否还活着」断言** |
+
+autopilot 首跑**什么都没提交**——当天没有任何页面内容变化，所以没有 lastmod 该前进，
+也没有 URL 该进 IndexNow。这正是「平静的一天」该有的样子,proof-of-work 那一步确认了
+「声称有修正」与「什么都没 staged」没有同时为真。实际月成本据此从 ≈240 分下修到 **≈210 分**。

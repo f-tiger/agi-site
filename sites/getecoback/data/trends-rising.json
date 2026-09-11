@@ -1,5 +1,5 @@
 {
- "fetched": "2026-09-09",
+ "fetched": "2026-09-11",
  "geo": "DE",
  "seeds": {
   "klimaanlage": {
@@ -144,94 +144,96 @@
   "luftentfeuchter": {
    "rising": [
     {
-     "q": "luftentfeuchter bei hitze",
-     "v": 155800
+     "q": "meaco arete one 20l",
+     "v": 49800
     },
     {
-     "q": "mobiles klimagerät",
-     "v": 67600
+     "q": "luftentfeuchter keller test",
+     "v": 48200
     },
     {
-     "q": "kühlt ein luftentfeuchter",
-     "v": 41200
+     "q": "luftfeuchtigkeit senken",
+     "v": 46700
     },
     {
-     "q": "pro breeze luftentfeuchter 20l",
-     "v": 39400
-    },
-    {
-     "q": "klimaanlage ohne abluftschlauch",
-     "v": 33300
+     "q": "split klimaanlage",
+     "v": 41150
     },
     {
      "q": "klimaanlage mobil",
-     "v": 32300
-    },
-    {
-     "q": "comfee mddf-20den7-wf",
-     "v": 26300
+     "v": 40700
     },
     {
      "q": "klarstein mobile klimaanlage mit abluftschlauch, 4-in-1 klimagerät mit ventilato",
-     "v": 17800
+     "v": 38200
     },
     {
-     "q": "klimagerät ohne abluftschlauch",
-     "v": 17450
+     "q": "luftentfeuchter testsieger stiftung warentest",
+     "v": 31250
     },
     {
-     "q": "luftentfeuchter und reiniger",
-     "v": 17350
+     "q": "meacodry arete one 25l",
+     "v": 21350
+    },
+    {
+     "q": "bonaura luftentfeuchter",
+     "v": 19850
+    },
+    {
+     "q": "luftentfeuchter wohnung ohne strom",
+     "v": 19250
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-09-01"
+   "fetched": "2026-09-11",
+   "polluted": false
   },
   "heizlüfter": {
    "rising": [
     {
-     "q": "amazon.de",
-     "v": 50300
+     "q": "heizlüfter 300 watt",
+     "v": 50650
     },
     {
-     "q": "dyson ventilator und heizlüfter",
-     "v": 36900
+     "q": "energiesparender heizlüfter",
+     "v": 48600
     },
     {
-     "q": "infrarot heizstrahler",
-     "v": 27550
+     "q": "akku heizlüfter makita",
+     "v": 5700
     },
     {
-     "q": "sparsamer heizlüfter",
-     "v": 26000
+     "q": "heizlüfter garage",
+     "v": 4900
     },
     {
-     "q": "heizstrahler baby",
-     "v": 18850
+     "q": "heizlüfter baustelle",
+     "v": 3750
     },
     {
-     "q": "zeltheizung",
-     "v": 6050
-    },
-    {
-     "q": "ecomat 2000 select",
-     "v": 5850
+     "q": "brandson heizlüfter test",
+     "v": 3150
     },
     {
      "q": "ventilator",
-     "v": 600
+     "v": 450
     },
     {
      "q": "dyson ventilator",
-     "v": 300
+     "v": 190
     },
     {
-     "q": "beste heizlüfter",
-     "v": 100
+     "q": "dell",
+     "v": 70
+    },
+    {
+     "q": "philips heizlüfter",
+     "v": 60
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-09-02"
+   "fetched": "2026-09-11",
+   "polluted": false
   },
   "balkonkraftwerk": {
    "rising": [
@@ -415,36 +417,32 @@
   "saugwischer": {
    "rising": [
     {
-     "q": "roborock f25 ace pro",
-     "v": 62950
+     "q": "bester saugwischer roboter",
+     "v": 62450
     },
     {
-     "q": "vorwerk akkusauger",
-     "v": 41350
+     "q": "blume 2000",
+     "v": 10700
     },
     {
-     "q": "akku-saugwischer testsieger stiftung warentest",
-     "v": 21100
+     "q": "kärcher fc5",
+     "v": 3300
     },
     {
-     "q": "leifheit bodenwischer",
-     "v": 4550
-    },
-    {
-     "q": "bester saugwischer",
+     "q": "vorwerk staubsauger",
      "v": 60
     },
     {
      "q": "dyson staubsauger",
-     "v": 60
+     "v": 40
     },
     {
      "q": "philips saugwischer",
-     "v": 50
+     "v": 40
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-09-09",
+   "fetched": "2026-09-10",
    "polluted": false
   }
  }

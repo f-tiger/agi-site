@@ -8,6 +8,12 @@ on:
     branches: [main]
     paths: ["sites/gridlings/**", ".github/workflows/deploy-gridlings.yml"]
   workflow_dispatch: {}
+  # 每日兜底部署(2026-09-11)。谜题确实每天换,但只换在读者的浏览器里
+  # (app.js 的 utcToday 读已提交的 JSON)。服务端可见的那一面——sitemap 的 45 条
+  # lastmod、llms.txt、JSON-LD 日期——全是手打的常量,爬虫看到的是一个八月就停更的站。
+  # autopilot 每天修正 lastmod,这条 cron 保证修正过的产物真的被发出去。
+  schedule:
+    - cron: "50 7 * * *"
 
 concurrency:
   group: deploy-gridlings

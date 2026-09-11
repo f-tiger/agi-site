@@ -1,0 +1,43 @@
+{
+  "site": "getecoback",
+  "url_base": "https://getecoback.com",
+  "publish_root": "sites/getecoback/site",
+  "sitemap": "sites/getecoback/site/sitemap.xml",
+  "fix_sitemap": false,
+  "max_unresolved": 0,
+  "exclude": [],
+  "normalize": [
+    "<!--\\s*EB_NAV\\s*-->.*?<!--\\s*/EB_NAV\\s*-->",
+    "<!--\\s*EB_FOOTER\\s*-->.*?<!--\\s*/EB_FOOTER\\s*-->",
+    "<!--\\s*EB_SHARE\\s*-->.*?<!--\\s*/EB_SHARE\\s*-->",
+    "<!--\\s*EB_SEARCH\\s*-->.*?<!--\\s*/EB_SEARCH\\s*-->",
+    "<!--\\s*EB_TRACK\\s*-->.*?<!--\\s*/EB_TRACK\\s*-->",
+    "<!--\\s*EB_PROFILE\\s*-->.*?<!--\\s*/EB_PROFILE\\s*-->"
+  ],
+  "demand_files": [
+    "sites/getecoback/data/trends-rising.json"
+  ],
+  "demand_geo": "DE",
+  "vocabulary": [
+    "klimaanlage",
+    "luftentfeuchter",
+    "entfeuchter",
+    "heizung",
+    "infrarotheizung",
+    "heizlüfter",
+    "schimmel",
+    "keller",
+    "balkonkraftwerk",
+    "solar",
+    "strom",
+    "ventilator",
+    "abluft",
+    "taupunkt",
+    "wärmepumpe",
+    "kaffeevollautomat",
+    "matratze",
+    "staubsauger",
+    "saugwischer",
+    "lüften"
+  ]
+}

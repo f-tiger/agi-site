@@ -999,3 +999,24 @@ table.pl-tools tr.pl-on { background: var(--tool-s); }
 .earn-table td i { color: var(--mute); font-style: normal; }
 .earn-nofig { margin-top: 10px; font-size: 13px; color: var(--ink-2); }
 .earn-nofig b { display: block; font-size: 12px; color: var(--mute); margin-bottom: 2px; }
+
+/* 广告位（2026-09-11）：必须一眼看出是买来的，不是核实来的。所以用虚线框 + 明示标注，
+   且刻意不套用 .ticket/.limits-table 那套目录条目的视觉——视觉相似就是变相伪装。 */
+.ad-slot { margin: 16px 0 0; padding: 10px 12px; border: 1px dashed var(--line); background: var(--alt); }
+.ad-slot-h { font-size: 11px; font-weight: 800; letter-spacing: .08em; color: var(--mute); text-transform: uppercase; }
+.ad-item { display: block; margin-top: 6px; padding: 8px 10px; background: var(--card); border: 1px solid var(--line); text-decoration: none; }
+.ad-item b { display: block; font-size: 14px; color: var(--ink); }
+.ad-item span { display: block; margin-top: 2px; font-size: 12.5px; color: var(--ink-2); }
+.ad-item:hover { border-color: var(--rule); }
+
+/* 链上收款指令（2026-09-11）：地址与金额必须能被一眼看清并原样复制，
+   所以用等宽字体与可换行；警告不是装饰，走错链的钱找不回来。 */
+.ad-pay { margin-top: 14px; padding: 14px 16px; border: 2px solid var(--rule); background: var(--card); }
+.ad-pay h3 { font-size: 16px; }
+.ad-pay-dl { display: grid; grid-template-columns: auto 1fr; gap: 6px 14px; margin-top: 10px; font-size: 13px; }
+.ad-pay-dl dt { color: var(--mute); }
+.ad-pay-dl dd { margin: 0; }
+.ad-pay code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px;
+  word-break: break-all; background: var(--alt); padding: 2px 5px; }
+.ad-pay-warn { margin-top: 10px; font-size: 12.5px; line-height: 1.75; color: var(--ink-2);
+  border-left: 3px solid var(--work); padding-left: 10px; }
