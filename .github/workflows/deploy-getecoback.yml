@@ -191,6 +191,12 @@ jobs:
           # before this deploy, so this assertion is red against the previous
           # build. It must be no-store — a cached country would be worse than none.
           check "https://getecoback.com/api/geo" '"c"'
+          # Prove the server-side crawler log actually writes in production.
+          # Uses a self-test agent, never a real crawler's, so the dataset the
+          # Google question depends on is never polluted by our own probes.
+          curl -s -o /dev/null --max-time 20 -A "getecoback-crawlprobe/1.0" \
+            "https://getecoback.com/guide/klimaanlage-wohnmobil.html" || true
+          echo "crawl-log probe sent (verify in D1: name='crawl', bot='_selftest')"
           geo_cc=$(curl -sI --max-time 20 "https://getecoback.com/api/geo" | tr -d '\r' | grep -i '^cache-control:' || true)
           case "$geo_cc" in
             *no-store*) echo "OK /api/geo is no-store" ;;

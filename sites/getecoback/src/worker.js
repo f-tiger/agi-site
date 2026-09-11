@@ -40,6 +40,13 @@ const CRAWLERS = [
   ["bytespider", /bytespider|tiktokspider/i],
   ["ahrefs", /ahrefsbot/i], ["semrush", /semrushbot/i], ["mj12", /mj12bot/i],
   ["dotbot", /dotbot/i], ["screamingfrog", /screaming frog/i],
+  // Self-test bucket, not a real crawler. The deploy probes one page with this
+  // agent so the whole path — user-agent match, waitUntil, D1 insert — is proven
+  // in production instead of being assumed for a week and then found broken.
+  // Probing with a Googlebot agent would have been easier and would have
+  // fabricated Googlebot rows in the one dataset the decision depends on.
+  // ANALYSIS MUST EXCLUDE bot='_selftest'.
+  ["_selftest", /getecoback-crawlprobe/i],
 ];
 
 function crawlerName(ua) {
