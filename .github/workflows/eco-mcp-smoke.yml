@@ -11,14 +11,21 @@ name: MCP production smoke test
 
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths: ["sites/getecoback/src/worker.js", "sites/getecoback/tools/mcp_smoke.mjs", ".github/workflows/eco-mcp-smoke.yml"]
+  # Runs after the deploy has actually finished (2026-09-04). It used to trigger
+  # on the same push and `sleep 45`, racing a deploy that takes longer than that
+  # on most days — a red smoke run against the *previous* worker was noise, and
+  # a green one proved nothing about the code just pushed.
+  workflow_run:
+    workflows: ["Deploy getecoback.com"]
+    types: [completed]
   schedule:
      - cron: "17 6 * * *"
 
 jobs:
   smoke:
+    # Only smoke a deploy that succeeded; a failed/cancelled deploy already
+    # reported itself. Manual and scheduled runs always go.
+    if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name != 'workflow_run' }}
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -28,8 +35,5 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
-      - name: Wait for deploy to settle
-        if: github.event_name == 'push'
-        run: sleep 45
       - name: Call every tool on the live server
         run: node tools/mcp_smoke.mjs

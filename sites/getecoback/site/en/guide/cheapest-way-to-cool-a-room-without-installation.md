@@ -3,6 +3,9 @@
 > The cheapest ways to cool a room with no installation in the 2026 heatwave: air coolers, tower fans, dehumidifiers and portable AC honestly compared.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/en/guide/cheapest-way-to-cool-a-room-without-installation.html
+
+Live data on this page (hourly, rendered in the browser, not included in this Markdown view): https://getecoback.com/api/heat
+
 Installed air conditioning in much of Europe costs over €1,000 and comes with weeks-long waitlists during a heatwave — and if you rent, you often can't install it at all. Here are the cheapest no-installation ways to cool down, from €30 up, with what each is actually good for.
 
 As an Amazon Associate, EcoBack earns from qualifying purchases. Links below are affiliate links — you pay the same price.

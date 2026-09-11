@@ -3,6 +3,9 @@
 > MeacoDry Arete One 20L im Test-Überblick: 38–40 dB laut Hersteller, 46–53 dB unabhängig gemessen, 216 W — für wen sich der Leise-Aufpreis lohnt.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/meacodry-arete-one-test.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
+
 Der MeacoDry Arete One 20L ist das Gerät, das wir auf diesem Portal in der 20-Liter-Klasse als erste Wahl nennen — Grund genug, ihm zur Entfeuchter-Saison eine eigene Seite zu geben. Wir testen nicht selbst: Diese Seite fasst zusammen, was öffentliche Tests, Messungen und das Hersteller-Datenblatt zum Arete One sagen, und ordnet die Zahlen für konkrete Räume ein.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.

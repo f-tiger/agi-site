@@ -3,6 +3,7 @@
 > Tineco saugt nicht oder nur schwach: zugesetzter Filter, verschmutzte Tank-Sensoren, gerissener Schlauch oder müder Akku — mit Lösung und Kosten je Ursache.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/tineco-saugt-nicht-mehr.html
+
 **Die kurze Antwort:** In den dokumentierten Fällen ist die Reihenfolge fast immer dieselbe — **① zugesetzter Filter** (häufigste Ursache), **② verschmutzte Sensor-Stifte im Schmutzwassertank** (Waschsauger, die „voll" melden oder stoppen), **③ gerissener Schlauch** (Materialermüdung oder zu scharfe Reiniger), **④ verschlissener Akku**. Drei der vier Ursachen kosten zwischen null und wenigen Euro — ein Neugerät ist erst die Antwort, wenn ①–③ ausgeschlossen sind.
 
 Diese Seite fasst zusammen, was in öffentlich dokumentierten Fällen tatsächlich geholfen hat — mit Quellenlinks zu den jeweiligen Anleitungen. Wir haben die Geräte nicht selbst zerlegt; wo eine Anleitung verlinkt ist, ist sie die Referenz, nicht wir.

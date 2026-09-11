@@ -117,6 +117,12 @@ specs above at any time to resume net-new page creation.
   但**不要直接把弹窗铺到搜索落地页**——搜索来访者对弹窗更敏感，铺错会同时伤 SEO 体验与信任。
   前置条件：先等首页修好阈值后跑出 `slidein_show → agi_test_click{slidein}` 的真实转化率；
   比值站得住再考虑深页，且深页版应更克制（如仅在读完 FAQ 后出现，或改为内联块而非浮层）。
+  **2026-09-10 补一条杀线（原本只有扩量闸门，没有下线条件）**：真实累计读数为
+  展示 129 / 关闭 37 / `subscribe_click{slidein_*}` **0** / `agi_test_click{slidein}` 1。
+  0/129 的 95% 上界约 2.3%，与弹窗订阅 1–3% 的常见区间重叠，**这个样本量分辨不出零和正常**，
+  所以今天不拆。**判定线：累计展示（必须排除 Compass 的 `compass_popup`，它占了同名事件的 438/548）
+  达 300 次时结算——`subscribe_click{slidein_*}` + `sub_open{slidein_*}` 仍为 0 → 全站移除并记反面发现；
+  ≥1 → 保留，扩量仍按原闸门。** 现读数 129/300。
 - [ ] `demand-cluster-followups`（2026-08-06 自种，来自第一方 JS 确认读数）：
   实测最强需求信号是一条**完整的用户旅程**——搜索落在 `/situational-awareness-summary`
   （JS 确认 9 次，**超过首页**，且是唯一从 bing / duckduckgo / google 三个外部源进来的页面）
@@ -212,6 +218,17 @@ specs above at any time to resume net-new page creation.
 所以「多覆盖一个判定型问题 = 多一份高份额引用」这条路，不需要先把流量做起来。
 这是本站目前唯一一条不受流量瓶颈约束的杠杆，优先级高于新工具。
 
+- [x] (CITATION AMPLIFICATION·客户视角簇)`ai-and-your-job` + zh、`amodei-white-collar-bloodbath-prediction`、
+  工作簇 7 页补意见钩/一手源/时效行、`ai-job-risk-check` v2 按职业查(2026-09-05 出厂,依据根仓
+  docs/agi-customer-lens-2026-09.md;判定线 2026-10-03,见 CLAUDE.md「客户视角簇」)。
+- [ ] `occupation-verdict-series` —**【门:2026-10-03 入口页判定线过线后才动工,每月最多 1 页】**
+  「Will AI replace [X]?」五源对账卡系列(Microsoft 适用性 / Anthropic 指数 / Eloundou / BLS 2024–34 /
+  Indeed),候选顺序按 Microsoft 分与搜索需求:interpreters & translators(0.49,分最高)→ customer
+  service → accountants → nurses → teachers → lawyers → graphic designers。每页必须:标题即问题、
+  首屏答案胶囊、五源表、带日期判定、翻转条件、FAQ 逐字一致、活数字钩;**暴露 ≠ 失业写在每张卡上**。
+- [ ] `ai-jobs-monthly-status-line` — 事件驱动维护项(不是新页):Challenger 月报 / BLS / Stanford
+  Canaries / Pew·Gallup·APA 任一发布 → 当日刷新 `/ai-and-your-job` 与血洗页的时效行(带日期与源),
+  并按预登记阈值判断判定是否翻转;翻转即走 flip-day 义务(data.json 不涉及,但 ClaimReview 评分要改)。
 - [ ] `datacenter-grid-cost-tracker` —**【2026-08-31 闸门复查:未过,不动工】**前置条件是
   「9 月上旬 Bing 明细确认 capex 页引用仍在涨」,而 Bing 明细窗口 09-01~03 才开,无数据即无依据。
   —（2026-08-21 种,来源:根仓 startup-trend-sweep

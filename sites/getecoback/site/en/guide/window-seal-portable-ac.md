@@ -3,6 +3,9 @@
 > Velcro fabric, rigid panel or roof-window version? Which window seal fits, what length you need — and why it's usually the tape that fails, not the fabric.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/en/guide/window-seal-portable-ac.html
+
+Live data on this page (hourly, rendered in the browser, not included in this Markdown view): https://getecoback.com/api/heat
+
 The window seal is the most-bought accessory around portable air conditioners — and the one where most purchases go wrong: the wrong type for the window, a length that is too short, tape that lets go in the sun. Here is the decision in three steps: type, length, mounting.
 
 **Short answer:** For a **tilt or tilt-and-turn window**, take the universal **velcro fabric seal** (from ~€15–25, HOOMEE-style) — or a **rigid outlet panel** if the unit runs at the same window all summer. For a **roof window** you need the dedicated roof-window version. Length = **2 × (sash width + sash height)**, next size up when in doubt. And degrease the frame first — it is almost always the tape that fails, not the fabric.

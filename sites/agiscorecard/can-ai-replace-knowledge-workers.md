@@ -1,6 +1,6 @@
 # Can AI Replace Knowledge Workers? The 2025/26 Call, Graded
 
-_Last updated: July 11, 2026 · Updated as verdicts change_
+_Last updated: September 5, 2026 · Updated as verdicts change_
 
 **Answer:** On track. Aschenbrenner predicted frontier AI would outpace college graduates on knowledge work by 2025/26. As of mid-2026 it broadly clears the bar: ~ 83% on GDPval, ~ 80% on SWE-Bench Pro, agents in production — though “drop-in coworker” reliability still lags the benchmark scores.
 

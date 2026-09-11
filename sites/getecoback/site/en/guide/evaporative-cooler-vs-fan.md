@@ -3,6 +3,9 @@
 > Does an evaporative cooler beat a fan? In dry air its airstream drops 3–8°C — above ~65% humidity a €40 fan simply wins. Honest comparison, real numbers.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/en/guide/evaporative-cooler-vs-fan.html
+
+Live data on this page (hourly, rendered in the browser, not included in this Markdown view): https://getecoback.com/api/heat
+
 Evaporative coolers (also sold as "air coolers") look like the smarter fan: similar size, water tank, promises of "real cooling". Sometimes that's true — and sometimes a €40 fan will genuinely serve you better than a €120 cooler. The deciding factor isn't the device at all; it's the humidity where you live. Here's how the two actually compare.
 
 As an Amazon Associate, EcoBack earns from qualifying purchases. Product links below are affiliate links — you pay the same price.

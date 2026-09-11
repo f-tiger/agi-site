@@ -3,6 +3,9 @@
 > Nordbalkon oder Schatten vom Nachbarhaus? Der Standort-Check sagt in 30 Sekunden, wie viel kWh dein Balkon realistisch bringt — und wann es sich nicht lohnt.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/balkonkraftwerk-standort-check.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/strom
+
 **Kurzantwort:** Nicht der Preis entscheidet, ob sich ein Balkonkraftwerk lohnt, sondern **der Standort**. Süd aufgeständert bringt rund 950 kWh pro kWp im Jahr, senkrecht am Geländer nur noch etwa 70 Prozent davon, Nord unter 45 Prozent — und Schatten wirkt überproportional, weil in Reihe geschaltete Zellen sich gegenseitig ausbremsen. Der Check unten rechnet deine Kombination aus Ausrichtung, Montageart und Schattenstunden in eine realistische kWh-Spanne um.
 
 **☀️ Standort-Check**

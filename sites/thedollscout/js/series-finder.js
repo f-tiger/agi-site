@@ -42,6 +42,7 @@
       if (!sent && any) { sent = true; try {
         var payload = JSON.stringify({ p: location.pathname, r: "", e: "finder_use" });
         if (navigator.sendBeacon) navigator.sendBeacon("/api/ev", payload);
+        if (window.dsTrack) window.dsTrack("finder_use", { page_path: location.pathname });
       } catch (e) {} }
     }
     root.addEventListener("change", recalc);

@@ -8,6 +8,12 @@ on:
     branches: [main]
     paths: ["sites/gridlings/**", ".github/workflows/deploy-gridlings.yml"]
   workflow_dispatch: {}
+  # 每日兜底部署(2026-09-11)。谜题确实每天换,但只换在读者的浏览器里
+  # (app.js 的 utcToday 读已提交的 JSON)。服务端可见的那一面——sitemap 的 45 条
+  # lastmod、llms.txt、JSON-LD 日期——全是手打的常量,爬虫看到的是一个八月就停更的站。
+  # autopilot 每天修正 lastmod,这条 cron 保证修正过的产物真的被发出去。
+  schedule:
+    - cron: "50 7 * * *"
 
 concurrency:
   group: deploy-gridlings
@@ -45,7 +51,7 @@ jobs:
       - name: Gate — files present, JSON valid, puzzles cover today+300d
         working-directory: sites/gridlings
         run: |
-          for f in site/index.html site/zh.html site/app.js site/style.css site/puzzles-daily.json site/puzzles-pool.json site/balance.html site/balance-zh.html site/app-balance.js site/balance-daily.json site/balance-pool.json site/starbattle.html site/starbattle-zh.html site/app-starbattle.js site/starbattle-daily.json site/starbattle-pool.json site/trail.html site/trail-zh.html site/app-trail.js site/trail-daily.json site/trail-pool.json site/futoshiki.html site/futoshiki-zh.html site/app-futoshiki.js site/futoshiki-daily.json site/futoshiki-pool.json site/towers.html site/towers-zh.html site/app-towers.js site/towers-daily.json site/towers-pool.json site/minisudoku.html site/minisudoku-zh.html site/kropki.html site/kropki-zh.html site/sandwich.html site/sandwich-zh.html site/app-latin.js site/minisudoku-daily.json site/minisudoku-pool.json site/kropki-daily.json site/kropki-pool.json site/sandwich-daily.json site/sandwich-pool.json site/thermo.html site/thermo-zh.html site/app-thermo.js site/thermo-daily.json site/thermo-pool.json site/nonogram.html site/nonogram-zh.html site/app-nonogram.js site/nonogram-daily.json site/nonogram-pool.json site/bench.html site/bench-v1.json site/nonogram-no-guessing.html site/manifest.webmanifest site/sw.js site/icon-192.png site/icon-512.png site/archive.html site/robots.txt site/sitemap.xml site/llms.txt; do
+          for f in site/index.html site/zh.html site/app.js site/style.css site/puzzles-daily.json site/puzzles-pool.json site/balance.html site/balance-zh.html site/app-balance.js site/balance-daily.json site/balance-pool.json site/starbattle.html site/starbattle-zh.html site/app-starbattle.js site/starbattle-daily.json site/starbattle-pool.json site/trail.html site/trail-zh.html site/app-trail.js site/trail-daily.json site/trail-pool.json site/futoshiki.html site/futoshiki-zh.html site/app-futoshiki.js site/futoshiki-daily.json site/futoshiki-pool.json site/towers.html site/towers-zh.html site/app-towers.js site/towers-daily.json site/towers-pool.json site/minisudoku.html site/minisudoku-zh.html site/kropki.html site/kropki-zh.html site/sandwich.html site/sandwich-zh.html site/app-latin.js site/minisudoku-daily.json site/minisudoku-pool.json site/kropki-daily.json site/kropki-pool.json site/sandwich-daily.json site/sandwich-pool.json site/thermo.html site/thermo-zh.html site/app-thermo.js site/thermo-daily.json site/thermo-pool.json site/nonogram.html site/nonogram-zh.html site/app-nonogram.js site/nonogram-daily.json site/nonogram-pool.json site/bench.html site/bench-v1.json site/nonogram-no-guessing.html site/ai-games.html site/manifest.webmanifest site/sw.js site/icon-192.png site/icon-512.png site/archive.html site/robots.txt site/sitemap.xml site/llms.txt site/sub.js site/embed.js site/copy.js site/firstrun.js; do
             [ -f "$f" ] || { echo "::error::missing $f"; exit 1; }
           done
           node --check worker.js
@@ -65,7 +71,13 @@ jobs:
       - name: Build standalone game packages (deployed as assets, never committed)
         working-directory: sites/gridlings
         run: python3 tools/build_packages.py
+
+      - name: Build Block Nova CrazyGames package
+        working-directory: sites/gridlings
+        run: python3 tools/package_blocknova.py
       - name: Push package to itch.io via butler (auto-update the listing)
+        # 第三方 CDN（broth.itch.zone）故障不得阻断本站部署：此前 curl/unzip 任一失败会让 Deploy worker 根本不跑
+        continue-on-error: true
         working-directory: sites/gridlings
         env:
           BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
@@ -81,6 +93,24 @@ jobs:
           zipfile.ZipFile("site/downloads/gridlings-all-11.zip").extractall("/tmp/itchbuild")
           PYEOF
           /tmp/butler/butler push /tmp/itchbuild gridlings/gridlings-11-daily-logic-puzzles:html --userversion "$(date -u +%F)" || echo "::warning::butler push failed — itch listing keeps previous build"
+          # One itch project per game, discovered from the packages themselves — adding a game
+          # never means editing this workflow. Plain build, no CG flag; butler diffs, so an
+          # unchanged game uploads nothing. butler CANNOT create a project page (itch has no API
+          # for it), so a game whose page does not exist yet warns with the exact steps to fix it.
+          for z in site/downloads/itch/*.zip; do
+            slug=$(basename "$z" .zip)
+            rm -rf "/tmp/itch-$slug" && mkdir -p "/tmp/itch-$slug"
+            python3 -c "import zipfile,sys;zipfile.ZipFile(sys.argv[1]).extractall(sys.argv[2])" "$z" "/tmp/itch-$slug"
+            if out=$(/tmp/butler/butler push "/tmp/itch-$slug" "gridlings/$slug:html" --userversion "$(date -u +%F)" 2>&1); then
+              echo "itch ok   $slug"
+            else
+              echo "$out"
+              case "$out" in
+                *"invalid game"*) echo "::warning::itch: project gridlings/$slug does not exist. Create it at https://itch.io/game/new with URL exactly '$slug', Kind=HTML, embed 1280x720, fullscreen + mobile friendly. It then publishes itself on the next deploy." ;;
+                *) echo "::warning::itch push failed for $slug — see the butler output above (not a missing-project error)" ;;
+              esac
+            fi
+          done
       - name: Deploy worker
         uses: cloudflare/wrangler-action@v3
         with:
@@ -96,11 +126,29 @@ jobs:
       # 断言就是那次事故的形状:worker 改写过的每一类路径都必须 200 且**零重定向**。
       # 每类路径各取一个代表:根 / 英文游戏页 / 中文分支 / GEO 集合 / 一次性改写
       # (archive、download→downloads.html)/ 静态资源。任何一条不满足即让部署变红。
+      - name: Post-deploy smoke — the beacon must accept a third-party portal origin
+        # sendBeacon is a credentialed request, so a wildcard allow-origin is refused by
+        # the browser and every event from a portal is silently dropped. That shipped and
+        # cost us a blind Playgama certification run, so it is asserted here rather than
+        # trusted. The runner can reach the live site; the dev sandbox cannot.
+        run: |
+          set -u
+          origin="https://cmtrghe5y3mnghg0hsij5oja2.games.playgama.net"
+          hdrs=$(curl -s -D - -o /dev/null -X OPTIONS "https://play.agiscorecard.com/e" \
+                 -H "Origin: $origin" -H "Access-Control-Request-Method: POST" \
+                 -H "Access-Control-Request-Headers: content-type" | tr -d '\r')
+          echo "$hdrs" | grep -i "access-control-allow-" || true
+          echo "$hdrs" | grep -qi "access-control-allow-origin: $origin" \
+            || { echo "::error::/e preflight did not echo the portal origin — portal analytics are dead"; exit 1; }
+          echo "$hdrs" | grep -qi "access-control-allow-credentials: true" \
+            || { echo "::error::/e preflight is missing allow-credentials — sendBeacon will be refused"; exit 1; }
+          echo "OK    /e echoes a portal origin with credentials"
+
       - name: Post-deploy smoke — every rewritten path must be 200 with no redirect
         run: |
           set -u
           fail=0
-          for p in / /starbattle /zh/starbattle /star-battle-rules /archive /download /app-starbattle.js; do
+          for p in / /ai-games /starbattle /zh/starbattle /star-battle-rules /archive /download /blocknova /overfit /mimic /overseer /prompt /minima /singularity /downloads/cg/overfit-cg.zip /downloads/cg/mimic-cg.zip /downloads/cg/overseer-cg.zip /downloads/cg/prompt-cg.zip /downloads/cg/minima-cg.zip /downloads/cg/singularity-cg.zip /ghostline /downloads/cg/ghostline-cg.zip /downloads/itch/ghostline.zip /app-starbattle.js /zh/app-starbattle.js; do
             url="https://play.agiscorecard.com$p"
             ok=0; code=000; redirs=0
             # edge propagation can lag the wrangler deploy by a beat — retry briefly

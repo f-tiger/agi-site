@@ -4,6 +4,9 @@
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/epicooler-erfahrungen.html
 
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
+
+
 
 ---
 Maschinenlesbare Übersicht: https://getecoback.com/for-agents.html · Sizing-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json

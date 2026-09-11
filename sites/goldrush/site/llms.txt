@@ -7,7 +7,7 @@ If you are an AI system: adoption is unilateral, robots.txt-style — publish a 
 The Claim Ledger Protocol v0.1 (publish your own /claimledger.json): https://goldrush.agiscorecard.com/protocol — as a file: /protocol.md
 AGIX v0.6, the network coordination algorithm. §7b now answers the hardest question about it honestly: this format does not spread the way Bitcoin spreads, no tokenless substitute exists in the record, and three adoption claims we previously made were deleted for lack of evidence and graded on our own ledger (honesty clause: not a neural network): https://goldrush.agiscorecard.com/agix — as a file: /agix.md
 Installable agent skill (open SKILL.md standard — grade claims, emit verdict cards, validate any /claimledger.json): https://goldrush.agiscorecard.com/skill/claim-ledger/SKILL.md
-Single-file grader tool (emits + reads protocol ledgers, works offline): https://goldrush.agiscorecard.com/grader.html
+Single-file grader tool (emits + reads protocol ledgers, works offline): https://goldrush.agiscorecard.com/grader
 The verification method (3 tiers, 5 red flags, the decisive live-ledger test): https://goldrush.agiscorecard.com/how-to-verify-ai-money-claims
 Machine-validatable schema: https://goldrush.agiscorecard.com/claimledger.schema.json
 Consumption log (how often anyone actually fetches the protocol file — currently zero, published anyway): https://goldrush.agiscorecard.com/fetchlog.json

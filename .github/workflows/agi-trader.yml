@@ -1,0 +1,66 @@
+name: personal mirror trader
+
+# ── owner 自用(2026-09-05:「自动化交易是个人用…目标是自己用来赚钱」+「不是给别人用,所以为什么
+#    不能做,就是要做」+「调研清楚,如何完善这个可以自动交易的股票平台」)──
+#
+# 不是产品、不是信号、不给任何人用。每个交易日收盘前,把 owner 自己的一个 Alpaca 账户
+# (缺省纸面)调整成 /ai-trading-ledger 某一臂的目标仓位。策略公开(台账 JSON 的 target),
+# 钱和密钥是 owner 的。执行器不含策略:tools/trader/alpaca_mirror.py。
+#
+# 执行模型(2026-09-05 调研):整股走 market-on-close(cls,与纸面台账同用官方收盘价;
+# Alpaca 在 15:50 ET 之后拒收 cls),零股余额走 day 市价单;GitHub cron 高峰可迟到 15–60 分钟
+# → 四条错峰 cron 覆盖夏令/冬令的 14:45/15:15 ET,幂等 = 从 Alpaca 读「今日已有订单」;
+# 距收盘 ≤10 分钟 = 太晚,跳过并变红(邮件即告警)。
+#
+# 门:job 级 vars.TRADER_ENABLED == '1'(dispatch 例外,便于纸面冒烟);实盘再过 vars.TRADER_LIVE。
+# 成本:4 次/日 × ~1 分钟 × 22 日 ≈ 90 分钟/月(多数为「太早/已下单」秒退),公开仓免费;未启用 0。
+# 日志纪律:公开仓日志公开,执行器只打印计数;金额只经 Telegram(可选 secrets)发给 owner。
+
+on:
+  schedule:
+    - cron: "45 18 * * 1-5"   # 14:45 ET (EDT)
+    - cron: "15 19 * * 1-5"   # 15:15 ET (EDT) / 14:15 ET (EST)
+    - cron: "45 19 * * 1-5"   # 15:45 ET (EDT, cls still open) / 14:45 ET (EST)
+    - cron: "15 20 * * 1-5"   # 16:15 ET (EDT, closed → no-op) / 15:15 ET (EST)
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "只计算不下单"
+        type: boolean
+        default: true
+      force:
+        description: "忽略时间窗与幂等检查(纸面测试用)"
+        type: boolean
+        default: false
+
+concurrency:
+  group: agi-trader
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  mirror:
+    if: ${{ vars.TRADER_ENABLED == '1' || github.event_name == 'workflow_dispatch' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.11" }
+      - run: pip install -q requests
+      - name: Mirror
+        env:
+          ALPACA_KEY_ID: ${{ secrets.ALPACA_KEY_ID }}
+          ALPACA_SECRET_KEY: ${{ secrets.ALPACA_SECRET_KEY }}
+          TRADER_TG_TOKEN: ${{ secrets.TRADER_TG_TOKEN }}
+          TRADER_TG_CHAT: ${{ secrets.TRADER_TG_CHAT }}
+          TRADER_ARM: ${{ vars.TRADER_ARM }}
+          TRADER_LIVE: ${{ vars.TRADER_LIVE }}
+          TRADER_MAX_NOTIONAL: ${{ vars.TRADER_MAX_NOTIONAL }}
+        run: |
+          ARGS=""
+          if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then ARGS="$ARGS --dry-run"; fi
+          if [ "${{ github.event.inputs.force }}" = "true" ]; then ARGS="$ARGS --force"; fi
+          python tools/trader/alpaca_mirror.py $ARGS

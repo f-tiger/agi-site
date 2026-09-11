@@ -3,6 +3,9 @@
 > Midea im Marken-Check: weltgrößter Hausgeräte-Konzern hinter PortaSplit, Comfee & Toshiba — was öffentliche Quellen sagen und welche 2 Geräte wir führen.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/midea-geraete-test.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
+
 „Midea — ist das eine gute Marke?" — die Frage ist berechtigt, denn die meisten kennen den Namen erst, seit die PortaSplit in jeder Hitzewelle ausverkauft ist. Dabei ist die Marke alles andere als neu. Wir testen nicht selbst: Diese Seite fasst zusammen, was öffentliche Quellen über die Midea Group sagen, und ordnet die beiden Midea-Geräte ein, die auf diesem Portal geführt werden.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.

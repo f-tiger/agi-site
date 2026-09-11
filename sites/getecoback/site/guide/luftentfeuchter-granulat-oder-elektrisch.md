@@ -3,6 +3,9 @@
 > Luftentfeuchter: Granulat oder elektrisch? Granulat ab 5 € fürs Auto, elektrische Geräte mit 10–25 L/Tag für feuchte Räume — der ehrliche Vergleich.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/luftentfeuchter-granulat-oder-elektrisch.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/feuchte
+
 Im Baumarkt stehen sie oft direkt nebeneinander: die Granulat-Box für 6 € und der elektrische Luftentfeuchter für 150 €. Beide versprechen „trockene Luft" — und genau deshalb kaufen viele erst das Granulat, ärgern sich wochenlang über feuchte Wände und kaufen dann doch das Gerät. Dabei ist die Aufgabenteilung eigentlich klar, wenn man einmal die Zahlen nebeneinanderlegt.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.

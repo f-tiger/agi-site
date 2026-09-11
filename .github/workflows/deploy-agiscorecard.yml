@@ -12,6 +12,13 @@ on:
       - "sites/agiscorecard/**"
       - ".github/workflows/deploy-agiscorecard.yml"
   workflow_dispatch: {}
+  # 每日兜底部署(2026-09-11)。本站此前**没有自己的 schedule**——它每天能重新部署
+  # 纯属副作用:fleet-trends.yml 每天把 trends-us.json 提交进 sites/agiscorecard/,
+  # 撞上了本工作流的 path 过滤。那条链一停(09-08 GitHub 整天丢掉了全部计划运行),
+  # 本站最长可以 7 天不重建,只能等 heartbeat 的 7 天线来救。
+  # 注入器与生成器都是幂等的:平静的一天重建出字节相同的产物,照常部署,不改变什么。
+  schedule:
+    - cron: "50 2 * * *"
 
 concurrency:
   group: deploy-agiscorecard
@@ -48,9 +55,22 @@ jobs:
         working-directory: sites/agiscorecard
         run: python3 tools/validate.py
 
+      - name: Validate hreflang
+        working-directory: sites/agiscorecard
+        run: python3 tools/check_hreflang.py
+
+      # The collector's field sanitisers decide what survives into D1. When they are
+      # wrong they are wrong SILENTLY: from 2026-08-08 to 2026-09-08 every reader's
+      # search query was stored as an empty label, and the table looked fine. Runs on
+      # the push path because it is a correctness gate on the deployed worker, and it
+      # costs a couple of seconds.
+      - name: Test analytics field sanitisers
+        working-directory: sites/agiscorecard
+        run: node tools/test_analytics_sanitiser.mjs
+
       - name: Guard - owner privacy files must never exist in this public repo
         run: |
-          bad=$(find sites -name "owner-identity*" -o -name "owner-trajectory*" | wc -l)
+          bad=$(find . -path ./.git -prune -o \( -name "owner-identity*" -o -name "owner-trajectory*" \) -print | wc -l)
           if [ "$bad" != "0" ]; then
             echo "::error::owner privacy files found in public repo — refusing to deploy"
             exit 1
@@ -83,14 +103,16 @@ jobs:
             else echo "OK $url"; fi
           }
           check "https://agiscorecard.com/" "Thesis Tracker"
-          check "https://agiscorecard.com/progress-index" ""
+          # run_worker_first + HTMLRewriter: the beacon is edge-injected, not in any page file — assert it was actually injected.
+          check "https://agiscorecard.com/" "/api/e"
+          check "https://agiscorecard.com/progress-index" "One Score for the 2027 Bet"
           check "https://agiscorecard.com/data.json" "predictions"
           check "https://agiscorecard.com/sitemap.xml" "<loc>"
-          check "https://agiscorecard.com/cn" ""
+          check "https://agiscorecard.com/cn" "预言 AGI 2027 的基金"
           # D1 read path: /api/trends serves live rows; broken binding = broken JSON here.
           t=$(curl -s --max-time 20 "https://agiscorecard.com/api/trends" || echo "")
           case "$t" in
-            *'"'*) echo "OK /api/trends" ;;
+            *'"ok":true'*) echo "OK /api/trends" ;;
             *) echo "::error::/api/trends broken: ${t:0:120}"; fail=1 ;;
           esac
           exit $fail

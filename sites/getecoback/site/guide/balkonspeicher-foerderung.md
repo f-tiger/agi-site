@@ -3,6 +3,9 @@
 > Förderung für Balkonkraftwerk und Speicher 2026: Bundesländer, rund 20 kommunale Programme, Speicher-Bonus — und was ein Zuschuss wirklich bringt.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/balkonspeicher-foerderung.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/strom
+
 **Kurz gesagt:** Bundesweit gibt es **keine Kaufprämie** — nur die Mehrwertsteuer-Befreiung. Zuschüsse kommen von einzelnen Bundesländern und rund **20 Kommunen**, typisch 100–500 €, oft mit **etwa 100 € extra für den Speicher**. Die wichtigste Regel ist keine Zahl, sondern die Reihenfolge: **erst Antrag, dann kaufen** — eine frühere Rechnung kippt den Zuschuss.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks sind Affiliate-Links — du zahlst denselben Preis. Diese Seite ist keine Rechts- oder Förderberatung: Verbindlich ist immer die Richtlinie deines Programms.

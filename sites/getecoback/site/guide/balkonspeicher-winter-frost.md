@@ -3,6 +3,9 @@
 > Verträgt ein Balkonspeicher Frost? LiFePO4 lädt unter 0 °C nicht — moderne Geräte heizen vor oder stoppen automatisch.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/balkonspeicher-winter-frost.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/strom
+
 Der erste Nachtfrost kommt, und plötzlich taucht die Frage in jeder Balkonkraftwerk-Gruppe auf: Muss der Speicher jetzt rein? Die kurze Antwort: meistens nicht — aber nur, wenn du weißt, wie dein Gerät mit Kälte umgeht. Denn während die Solarmodule Frost völlig egal ist, reagiert die Lithium-Zelle im Speicher empfindlich auf das Laden bei Minusgraden. Dieser Ratgeber erklärt die Temperaturregeln, den besten Aufstellort und die richtige Einlagerung, falls der Speicher doch in den Winterschlaf geht.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.

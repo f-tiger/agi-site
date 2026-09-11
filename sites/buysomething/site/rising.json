@@ -1,5 +1,5 @@
 {
- "fetched": "2026-08-31",
+ "fetched": "2026-09-11",
  "seeds": {
   "electric spin scrubber": {
    "auto": [
@@ -211,46 +211,320 @@
     "solar camping lights nearby",
     "solar camping lights bcf"
    ],
+   "rising": [],
+   "source": "autocomplete-diff",
+   "fetched": "2026-09-01"
+  },
+  "camping moon chair": {
+   "auto": [
+    "camping moon chair",
+    "camping moon chair with cup holder",
+    "camping moon chair home bargains",
+    "camping moon chair halfords",
+    "camping moon chairs for adults",
+    "camping moon chair go outdoors",
+    "camping moon chair nz",
+    "camping moon chairs uk",
+    "camping moon chair kids",
+    "camping moon chair sale"
+   ],
+   "rising": [],
+   "source": "autocomplete-diff",
+   "fetched": "2026-09-02"
+  },
+  "portable blender": {
+   "auto": [
+    "portable blender",
+    "portable blender bottle",
+    "portable blender for smoothies",
+    "portable blender cup",
+    "portable blender walmart",
+    "portable blender ninja",
+    "portable blender near me",
+    "portable blender for travel",
+    "portable blender amazon",
+    "portable blender for protein shakes"
+   ],
    "rising": [
     {
-     "q": "solar camping lights string",
+     "q": "portable blender bottle",
      "v": "new"
     },
     {
-     "q": "solar camping lights amazon",
+     "q": "portable blender for smoothies",
      "v": "new"
     },
     {
-     "q": "solar camping lights - bunnings",
+     "q": "portable blender cup",
      "v": "new"
     },
     {
-     "q": "solar camping lights nz",
+     "q": "portable blender walmart",
      "v": "new"
     },
     {
-     "q": "solar camping lights kmart",
+     "q": "portable blender ninja",
      "v": "new"
     },
     {
-     "q": "solar camping lights anaconda",
+     "q": "portable blender near me",
      "v": "new"
     },
     {
-     "q": "solar camping lights south africa",
+     "q": "portable blender for travel",
      "v": "new"
     },
     {
-     "q": "solar camping lights nearby",
+     "q": "portable blender amazon",
      "v": "new"
     },
     {
-     "q": "solar camping lights bcf",
+     "q": "portable blender for protein shakes",
      "v": "new"
     }
    ],
    "source": "autocomplete-diff",
-   "fetched": "2026-08-31"
+   "fetched": "2026-09-03"
+  },
+  "vegetable chopper": {
+   "rising": [
+    {
+     "q": "prestige vegetable chopper",
+     "v": 450
+    },
+    {
+     "q": "how to use a vegetable chopper",
+     "v": 200
+    },
+    {
+     "q": "bralo vegetable chopper",
+     "v": 180
+    },
+    {
+     "q": "miu vegetable chopper",
+     "v": 100
+    },
+    {
+     "q": "costco vegetable chopper",
+     "v": 90
+    }
+   ],
+   "source": "related-queries",
+   "fetched": "2026-09-04"
+  },
+  "power bank built in cable": {
+   "auto": [
+    "power bank built in cables",
+    "power bank built in cable not working",
+    "power bank built in cable 20000mah",
+    "power bank built in cable reddit",
+    "power bank built in cable iphone",
+    "power bank built in cable lightning",
+    "power bank built in cord",
+    "anker power bank built in cable",
+    "xiaomi power bank built in cable",
+    "power bank with built in cable and wall plug"
+   ],
+   "rising": [],
+   "source": "autocomplete-diff",
+   "fetched": "2026-09-05"
+  },
+  "makeup organizer": {
+   "rising": [
+    {
+     "q": "temu makeup organizer",
+     "v": 200
+    },
+    {
+     "q": "target makeup organizer",
+     "v": 140
+    },
+    {
+     "q": "makeup drawers",
+     "v": 50
+    },
+    {
+     "q": "makeup organizer drawers",
+     "v": 40
+    }
+   ],
+   "source": "related-queries",
+   "fetched": "2026-09-06"
+  },
+  "mamian skirt": {
+   "auto": [
+    "mamian skirt",
+    "mamian skirt pattern",
+    "mamian skirt men",
+    "mamian skirt chinese",
+    "mamian skirt modern",
+    "mamian skirt sewing pattern",
+    "mamian skirt how to wear",
+    "mamian skirt plus size",
+    "mamian skirt dior",
+    "mamian skirt dance"
+   ],
+   "rising": [],
+   "source": "autocomplete-diff",
+   "fetched": "2026-09-07"
+  },
+  "chinese style shirt": {
+   "auto": [
+    "chinese style shirt",
+    "chinese style shirt women",
+    "chinese style shirt name",
+    "chinese style shirts for men",
+    "chinese style shirt zara",
+    "chinese style shirt pattern",
+    "chinese style shirt collar",
+    "what are traditional chinese shirts called",
+    "chinese shirt name",
+    "chinese style dishes"
+   ],
+   "rising": [
+    {
+     "q": "chinese style shirt women",
+     "v": "new"
+    },
+    {
+     "q": "chinese style shirt name",
+     "v": "new"
+    },
+    {
+     "q": "chinese style shirts for men",
+     "v": "new"
+    },
+    {
+     "q": "chinese style shirt zara",
+     "v": "new"
+    },
+    {
+     "q": "chinese style shirt pattern",
+     "v": "new"
+    },
+    {
+     "q": "chinese style shirt collar",
+     "v": "new"
+    },
+    {
+     "q": "what are traditional chinese shirts called",
+     "v": "new"
+    },
+    {
+     "q": "chinese shirt name",
+     "v": "new"
+    },
+    {
+     "q": "chinese style dishes",
+     "v": "new"
+    }
+   ],
+   "source": "autocomplete-diff",
+   "fetched": "2026-09-08"
+  },
+  "gongfu tea set": {
+   "rising": [
+    {
+     "q": "gaiwan tea set",
+     "v": 60
+    },
+    {
+     "q": "gongfu tea tray",
+     "v": 60
+    }
+   ],
+   "source": "related-queries",
+   "fetched": "2026-09-09"
+  },
+  "car refrigerator": {
+   "rising": [
+    {
+     "q": "home depot refrigerator",
+     "v": 120
+    },
+    {
+     "q": "quotes for car insurance",
+     "v": 60
+    },
+    {
+     "q": "car insurance",
+     "v": 60
+    },
+    {
+     "q": "car insurance quote",
+     "v": 60
+    },
+    {
+     "q": "insurance for the car",
+     "v": 40
+    }
+   ],
+   "source": "related-queries",
+   "fetched": "2026-09-10"
+  },
+  "rollator walker": {
+   "rising": [
+    {
+     "q": "drive medical four wheel rollator walker with fold up removable back support",
+     "v": 61300
+    }
+   ],
+   "source": "related-queries",
+   "fetched": "2026-09-11"
+  },
+  "smart pill organizer": {
+   "auto": [
+    "smart pill organizer",
+    "smart pill organizer with alarm",
+    "smart pill organizer with app",
+    "smart pill organizer arduino",
+    "smart pill organizer a170",
+    "smart pill organizers with reminders",
+    "smart pill organizer reddit",
+    "smart medicine organizer",
+    "smart vitamin organizer",
+    "smart pill dispenser"
+   ],
+   "rising": [
+    {
+     "q": "smart pill organizer with alarm",
+     "v": "new"
+    },
+    {
+     "q": "smart pill organizer with app",
+     "v": "new"
+    },
+    {
+     "q": "smart pill organizer arduino",
+     "v": "new"
+    },
+    {
+     "q": "smart pill organizer a170",
+     "v": "new"
+    },
+    {
+     "q": "smart pill organizers with reminders",
+     "v": "new"
+    },
+    {
+     "q": "smart pill organizer reddit",
+     "v": "new"
+    },
+    {
+     "q": "smart medicine organizer",
+     "v": "new"
+    },
+    {
+     "q": "smart vitamin organizer",
+     "v": "new"
+    },
+    {
+     "q": "smart pill dispenser",
+     "v": "new"
+    }
+   ],
+   "source": "autocomplete-diff",
+   "fetched": "2026-09-11"
   }
  }
 }

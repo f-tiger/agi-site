@@ -3,6 +3,9 @@
 > Klett-Stoff, starre Platte oder Dachfenster-Version? Welche Fensterabdichtung an dein Fenster passt, welche Länge du brauchst — und was meist versagt.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/fensterabdichtung-klimaanlage.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
+
 Die Fensterabdichtung ist das meistgekaufte Zubehörteil rund um mobile Klimaanlagen — und gleichzeitig das, bei dem am meisten schiefgeht: falsche Bauart fürs Fenster, zu kurze Länge, Klebeband, das sich in der Sonne löst. Hier ist die Entscheidung in drei Schritten: Bauart, Länge, Befestigung.
 
 **Kurzantwort:** Fürs **Kippfenster** nimmst du den universellen **Klett-Stoff** (ab ~15–25 €, z. B. HOOMEE-Bauart) — oder eine **starre Platte / ein Auslass-Panel**, wenn das Gerät den ganzen Sommer am selben Fenster läuft. Fürs **Dachfenster** braucht es die eigene Dachfenster-Version. Länge = **2 × (Flügelbreite + Flügelhöhe)**, im Zweifel größer. Und: Rahmen vorher entfetten — es versagt fast immer das Klebeband, nicht der Stoff.

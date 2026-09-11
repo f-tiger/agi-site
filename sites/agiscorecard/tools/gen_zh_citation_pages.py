@@ -92,9 +92,9 @@ def main():
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-B3PN0PLGTG"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FZXLMBB5QB"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}
-gtag('js',new Date());gtag('config','G-B3PN0PLGTG');</script>
+gtag('js',new Date());gtag('config','G-FZXLMBB5QB');</script>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23ffffff'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%234fc3a1'/%3E%3C/svg%3E">
 <title>{d["title"]}</title>
 <meta name="description" content="{d["desc"]}">

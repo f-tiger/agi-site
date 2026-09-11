@@ -3,6 +3,9 @@
 > Klarstein im Marken-Check: Berliner Online-Marke seit 2005 — was öffentliche Tests loben, wo die Geräte sparen und wann das Kraftwerk Smart 12K passt.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/klarstein-geraete-test.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
+
 „Kann man Klarstein kaufen?“ — die Frage hinter jeder Klarstein-Suche ist eine Vertrauensfrage: Die Marke ist auf Amazon allgegenwärtig, der Katalog reicht vom Klimagerät bis zum Weinkühlschrank, aber es gibt kein Ladengeschäft, in dem man ein Gerät vor dem Kauf anfassen könnte. Wir testen nicht selbst: Diese Seite fasst zusammen, was öffentliche Quellen über die Marke sagen, und ordnet das eine Klarstein-Gerät ein, das auf diesem Portal empfohlen wird.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.

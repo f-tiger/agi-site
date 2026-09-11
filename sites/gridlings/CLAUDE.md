@@ -157,8 +157,9 @@ MCP/付费轨道(x402 季度复查通过后)。KPI:bench_download(hub_click 标�
 1. [x] v0 上线自有子域(2026-08-22)
 2. [ ] owner 手发:r/WebGames(发帖前重读版规)+ Show HN(钩子=「每日
    可证唯一解的生成器」技术角度,不是「又一个游戏」)
-3. [ ] +2 周:CrazyGames 投稿(开放制,2-4 周审核,€100 起付月结);
-   GamePix 跟投
+3. ~~+2 周:CrazyGames 投稿~~ **已作废**——两投两拒,2026-08-27 固定判断
+   「停止追 CrazyGames」(见下);GamePix 同日与 GameMonetize/GameDistribution
+   一并排除(强制广告 SDK,与无广告承诺冲突)。此条留痕防止后续会话再当待办执行。
 4. [ ] 自有域留存数据成形后 pitch Poki(精选制;其规则下自有流量 100% 归我们)
 5. 无限期搁置:iOS/Android/Apple Ads/微信(owner 2026-08-22 确认朋友的游戏
    在海外平台,微信线彻底关闭)
@@ -364,6 +365,19 @@ tools/browser-smoke.js。② 封面包:site/covers/*.png(630×500,已入库;重�
 用 playwright 本地跑,CI 无浏览器)随 zip 附带 cover.png。③ 商店文案
 docs/games-store-listing.md(批量上传复制即用)。v2 候选(未做):音效、教学关。
 
+## 2026-09-04 舰队技术优化(详见根仓 docs/fleet-optimization-2026-09-04.md)
+
+- **sw.js VERSION gl-v1 → gl-v2**:08-27 的 Star Battle 区域线 CSS 重写从未 bump,回访的
+  PWA 读者一直拿到旧的、看不清区域的棋盘。同时 SW 只缓存 `net.ok` 的响应(此前 404/500
+  也会进缓存并被永久复用)。
+- worker.js 的 uaClass 补了 python-requests/curl/wget/scan/monitor 等:D1 里整站 7 个路径
+  一秒内扫完、ref="" 的「human」是扫描器不是人——08-27 渠道表里「116 直达 pv → 0 play_start」
+  是同一伪影。**只影响新行,历史行不改写。**
+- 部署:butler 推 itch 的步骤 `continue-on-error`(第三方 CDN 故障此前会让 Deploy worker
+  根本不跑);冒烟加 `/zh/app-starbattle.js`(`/zh/*.ext` 回退分支此前无探测);
+  文件门补 sub.js/embed.js/copy.js/firstrun.js;build_packages 的信标改写兼容双引号
+  (index.html 的 `sendBeacon("/e"` 此前在包里打到 itch 域 404)。
+
 ## 判定线(60 天,≈2026-10-21)
 
 JS 真人 play_start ≥500/28d 或任一门户过审上架或首笔门户分成入账 → 加码
@@ -379,3 +393,658 @@ index.html #directory、cn.html 🎮玩法块(2026-08-24 补)。play 子域 site
 2026-08-22 起每周一随 agi-indexnow.yml 提交(indexnow-subdomains.mjs)。
 判定线:embed_copy 28 天 ≥3 或外域 utm_source=widget 引荐出现 = 渠道活;
 60 天全零则把按钮降回一句话,不再投入。
+
+
+## 外部信号评估:朋友在日本市场投放益智休闲已盈亏平衡(owner 转述 2026-09-05)
+
+**信号解剖(WebSearch 调研,先调研后裁决)**:那条路的商业结构是**买量套利**——
+广告买 CPI 装机、riward/插屏广告变现,盈亏平衡 = LTV≈CPI,需要广告预算、App 构建与
+逐日投放运营。日本侧佐证:休闲品类近半是益智(GameBusiness 2024 报告),轻度益智的
+变现主力是激励视频(约 85%)+插屏(约 15%),内购/订阅在该品类公认走不通。
+
+**三门裁决:此模式本站不跟,理由有三条既有书面约束**:
+1. 舰队是零预算自然流量模型;owner 2026-08-22 已亲自把 iOS/Android/Apple Ads/微信线
+   无限期搁置(上线序列第 5 条)——朋友的消息不构成推翻 owner 既有决定的授权。
+2. gridlings 的产品承诺是**无广告**(变现=门户分成+订阅钩)——广告变现路径与它直接冲突。
+3. 2026-08-27 已有裁决:游戏线 0 已验证收入路径,降级为低成本渠道实验,判定线 09-24
+   (itch 150/25)。新方向不得成为旧判定线的救生圈。
+
+**信号里可转移的部分(留待 owner 拍板,均非会话可代决)**:
+- 日本需求是真的:本站 28 天在零日语、零日本分发下已自然出现 JP 11 pv / 6 play_start /
+  2 solve(D1 human 口径)。最低成本吃法 = owner 在 itch 项目页加日语简介与标签
+  (约 5 分钟,itch 有日本用户),9 月底复读 JP 计数——不新建 ja 页(11 pv 过不了数据门)。
+- 日本本土投稿站(PLiCy 约 5 万作品/审核数日、ふりーむ)接受 HTML5,但均为免费托管、
+  无分成——性质同 itch 渠道实验,且需 owner 注册账号。建议等 09-24 itch 判定线结算后
+  再议,避免在渠道假设未验证前铺第二条同类渠道。
+- 若 owner 想认真走「广告变现」路:那是**推翻无广告承诺的战略变更**,需 owner 明示,
+  并接受 Coolmath 之外的大门户均强制广告 SDK 的现实。本次不代决。
+
+
+## Block Nova(2026-09-05,owner 指令:「我不想等下去,itch现在太小流量」「或者crazygame你做个全新爆款」)
+
+owner 决定重开 CrazyGames 线——**用全新品**,不是重投 gridlings(08-27「停止追」针对的是
+同一款反复重投,本条不推翻它)。品类选择有一手依据:Block Blast 类块拼图是当前 40+ 市场
+(含日本)第一的休闲益智品类,CG 上同品类多款在收。诚实前提写在最前面:**爆款不可承诺**,
+可执行的只有「把资产放进爆款发生过的通道 + 判定线」。
+
+**产品**:`/blocknova`(site/blocknova.html,单文件 27KB,零外部资源,canvas)。8×8 块拼图
+标准循环 + 签名机制 **Nova 计量槽**(消行充能,满 6 格后下一块落地引爆 3×3——给玩家主动权,
+对冲该品类「手气死」的最大差评点)。消行预览高亮、粒子、连击弹字、WebAudio 合成音、
+移动优先 + 桌面垂直居中。原创命名与视觉,不碰 Block Blast 的名字/美术。
+已过 Playwright 实测:真实指针拖拽落子、消行清零、计分(place=格数,清行=10×行²+连击×10)、
+Nova 充能均验证;零控制台报错。
+
+**广告口径(与本站承诺的一致性,先说清)**:本站页面照旧**零广告**;CG 上传包经其 SDK 在
+重开局时机请求 midgame 广告——那是 CG 平台自身的变现框架,即本手册第 4 条早已写明的
+「变现 = 门户分成」的具体机制,不是我们引入自己的广告 SDK。两个口径互不污染。
+
+**工程**:CG 上传包 = `tools/package_blocknova.py` → `site/downloads/cg/blocknova-cg.zip`
+(CI 构建,不入库,部署后 /downloads/cg/blocknova-cg.zip 可直接下载);worker 路由
+/blocknova + game_over 事件入白名单;hub 卡片与 sitemap 已接;部署自检加了两条 URL。
+信标用绝对地址(CG 域上跑也落我们的 D1,label=bn)。
+
+**owner 动作(投稿本身,约 10 分钟)**:CrazyGames 开发者后台(你已有账号,前两次投稿用过)
+→ Submit new game → 传 /downloads/cg/blocknova-cg.zip → 名称 Block Nova,品类 Puzzle,
+标签 block/puzzle/casual → 封面用会话交付的 cover-1920x1080.png / portrait-800x1200.png
+→ 描述抄 blocknova.html 的 meta description。审核 2-4 周。
+
+**修订(2026-09-05 当日,owner:「你调研crazygame的爆款,不要重复,否则cg一定会拒绝,
+和上两次一样,做一个ai时代的好玩游戏」)**:Block Nova **不投 CG**——owner 判断饱和品类
+复制品会吃第三次模板拒稿,采纳。BN 保留为本站内容资产(判定线只剩本站基线:D1
+`play_start{label=bn}` 与 /blocknova pv,首读 2026-10-05);其 CG 包继续构建但不提交。
+**CG 投稿名额转移给 OVERFIT(见下节)。**
+
+## OVERFIT(2026-09-05,owner:「做一个ai时代的好玩游戏」)
+
+**调研依据**:CG 原创爆款(Space Waves,365 天 2.5M 下载)共性 = 单一输入动词、速度压力、
+30-90 秒一局、秒重开。OVERFIT 长在这副骨架上,原创层是 **AI 作为核心玩法动词,不是贴皮**:
+
+- `/overfit`(site/overfit.html,单文件 29KB,零外部资源):指针即移动、自动开火的
+  波次躲避射击。**敌方 AI 真实在学玩家**(浏览器内统计模型:8 向移动直方图、顺/逆
+  时针绕圈偏好、速度 EMA、被锁定时的闪避方向计数)——预判型敌人与狙击线全部按模型
+  打提前量,波间公开「训练报告」(drift bias / orbit / dodge 比例 + 置信度)。
+- **签名机制「过拟合崩溃」**:模型置信度 ≥0.55 时,玩家近 2.2 秒行为与模型预测方向
+  一致率 <14% → MODEL CONFUSED:敌人踉跄 2.2 秒、得分 ×2、模型直方图坍缩 75%。
+  核心循环 = 先喂它一个模式,再背叛它。AI CONFIDENCE 条常驻 HUD,机制全透明。
+- Playwright 实测在案:喂「向右」习惯 → conf 0.73/predDir→;反向背叛 → 混乱触发 +25;
+  战斗/波次/结算/秒重开全绿,零控制台报错。
+- 工程同 BN 标准:内联 CG 桥(仅 cg 模式)、绝对地址信标(label=of,事件
+  play_start/game_over/play_again/hub_click)、worker 路由 /overfit、hub/sitemap/
+  部署自检接线、CI 打包 site/downloads/cg/overfit-cg.zip。
+
+**owner 动作(约 10 分钟)**:CG 开发者后台 → Submit new game → 上传
+https://play.agiscorecard.com/downloads/cg/overfit-cg.zip → 名称 OVERFIT,品类
+Action/Arcade,标签 ai / dodge / arcade / survival → 封面用会话交付的
+of-cover-1920x1080.png / of-portrait-800x1200.png → 描述抄页面 meta description。
+
+**预登记判定线(自 BN 转移并沿用,2026-09-05 立)**:
+- 若 CG 第三次给同一句「overall quality」模板拒稿 → **结论性反面**:CG 对本舰队关闭,
+  永不再投任何新品到 CG;门户线只剩 itch(已自动化)。不许第四投。
+- 若过审:上架后 28 天,CG 面板累计 plays ≥1000 或出现任何分成收入 → 游戏线重新升级
+  (做第二款/补日语);plays <200 → 只维护不加投,写反面。
+- 本站侧基线:D1 `play_start{label=of}` 30 天读数与 /overfit pv,首读 2026-10-05。
+
+
+---
+
+# CrazyGames：第三次拒稿，预登记判定线触发（2026-09-09）
+
+owner 2026-09-09：**「游戏cg全部拒绝了」**——09-06 重传的七款一次性全被拒。
+
+**这一条是 2026-09-05 预登记过的，今天按原文结算，不改判定线：**
+> 若 CG 第三次给同一句「overall quality」模板拒稿 → **结论性反面**：CG 对本舰队关闭，
+> 永不再投任何新品到 CG；门户线只剩 itch。**不许第四投。**
+
+**因此：CG 线关闭。** 不再投任何新品、不再为 CG 做美术或功能改动、不再把「CG 过审」
+写进任何计划。`package_blocknova.py` 里的 CG 变体**保留但不再是投稿目标**——它和
+Playgama 变体共用同一套「门户构建」清洗逻辑（剥无广告声明、剥站内页脚），删掉会
+把那段逻辑也带走；它现在的唯一用途是给 `/downloads/cg/` 留一个可下载的自托管包。
+
+**唯一还能改变这个结论的信息**：如果 CG 这次给的**不是**那句无信息量模板，而是一条
+具体、可修的理由，那就不属于预登记覆盖的情形，应当按新证据处理。owner 手上有拒稿原文，
+**待确认一次**；在确认之前，默认按「模板拒稿 = 关闭」执行。
+
+**三次拒稿的账（不删失误）**：第一次 2026-08-27（BN，载入 4.7 秒那版）；第二次同模板；
+第三次 2026-09-09，七款一次全拒。**第三次这一版已经修掉了两个真缺陷**（虚假「无广告」
+声明、根相对死链页脚），仍然全拒——这本身就是证据：**拒的不是这些具体缺陷。**
+反过来说，那两个缺陷的修复对 Playgama 与 itch 仍然有效，不作废。
+
+**门户线现状（2026-09-09）**：
+- **CrazyGames**：关闭（本条）。
+- **itch**：自动化推送在跑，但判定线 09-24 需累计 play_start≥150 且 solve≥25，
+  今日读数 **43 / 13**，连续第 9 天零新增 —— 大概率也会判负。
+- **Playgama**：PROMPT 09-08 以「overall quality」被拒（同一种无信息量模板，第二家了），
+  SINGULARITY 认证中，其余五款审核中。GHOSTLINE 已过 Basic Certification 进入 review。
+  **这是门户线目前唯一还活着的一支。**
+- 已排除且不许回捡：GameDistribution / GameMonetize / GamePix（强制其广告 SDK）、
+  Coolmath（禁外链 + 禁统计信标）。
+
+**别急着下「游戏线失败」的总结论**：站内观测到的最强行为仍然是 CLAUDE.md 上面记的
+「一坐下连玩 5–6 款」的跨游戏会话，那是在**我们自己的域**上发生的，不依赖任何门户。
+门户是分发假设，不是产品假设；分发假设连挂三家，正确的动作是把投入从「求人上架」
+挪回「自有域的留存与串联」，而不是把游戏本身判死。
+
+# 做门户游戏的要素清单（owner 2026-09-05「以后记得做 crazygame 游戏的要素」）
+
+**做任何新游戏、任何一次投稿之前，先读完这一节。** 分三类：CG 的硬性规定（调研所得）、
+我们自己踩出来的（本仓实测所得）、以及可复跑的工具。凡标「实测」的都有本会话的验证记录。
+
+## 一、CG 的硬性门槛（2026-09 调研；**注意 crazygames.com 与 docs.crazygames.com
+在本沙箱均被出网代理拦截**，只能靠 WebSearch 反查，读不到原页）
+
+| 项 | 要求 |
+|---|---|
+| 包体 | 初始下载 **<50MB**、文件数 **<1500** |
+| 分级 | PEGI 12：无血腥、无性内容、无真钱赌博 |
+| 加载 | 慢加载 / 卡顿 / 崩溃 / 报错**直接拒**。我们 08-27 被拒那版加载 4.7 秒 |
+| 画面 | 高分辨率、风格一致、无压缩伪影 |
+| 兼容 | 高刷新率屏下物理不能崩；**不能无视常见键盘布局** |
+| 封面 | **三张**：横版、竖版、**方版 800×800** |
+| 视频 | 预览视频 **15–20 秒**，超长会被裁到 20 秒 |
+| 审核 | 开放投稿，2–4 周，€100 起付月结 |
+| 分成 | 广告 60% / 内购 70%（其 2026 GameMaker jam 条款口径，非主文档） |
+| 结算 | Tipalti 代付，**€100 起付**、按月，不足自动滚存；名义 NET 60，实际多在次月 10 号前 |
+| Billing | **不影响审核、不影响广告投放，只卡提现**。Basic Launch requirements 十行检查项里没有任何一行与 billing 相关（2026-09-05 owner 截图为证）；收入照常累积到 Earnings Balance。**触发填写的条件是余额真的开始走**，在此之前不填 = 不必要地把身份/银行/税表交给第三方。第 3 步 Tax Forms 非美国人走 W-8BEN，**owner-only，会话永不代填、永不索取这些信息** |
+| Tags | **固定下拉，不是自由词**。已反查确认存在：`survival` `top-down` `avoid` `skill` `space` `block` `brain` `third-person-shooter`。**没有 `ai` 标签** |
+| Category | 与 tags 是两个字段：`/c/shooting` `/c/puzzle` `/c/casual` `/c/clicker` `/c/driving` |
+
+**推论（重要）**：标签系统表达不了新颖性，所以**差异化必须写进标题、描述和封面**，
+不能指望 tags 传达。
+
+## 二、我们自己踩出来的（每条都有本仓实测背书）
+
+1. **单文件、零外部资源、极小体积是我们在 CG 技术门上唯一的结构性优势**（现役两款
+   27KB / 29KB 秒开）。**这也是不上游戏引擎的原因**：Unity WebGL 5–15MB、Godot 4 web
+   10–25MB，换引擎等于主动丢掉它。引擎价值与美术资产量成正比，而我们刻意零资产。
+   触发换引擎的唯一条件：真有美术管线时上 **Phaser**（~1MB、纯 JS、可脚本化、可 Playwright 测），
+   不是 Unity/Godot。**实测反驳过一个诱人假设**：两款游戏之间逐字重复只有 52 行 ≈12%，
+   全是 SDK 桥与音频包络样板，不存在值得抽的"自研引擎层"。
+2. **空场即死刑。** 别用「一次铺完 N 个 → 等清场」的波次：自动开火杀得快，中后段常年
+   0–2 个敌人，宽屏下一片黑，审核员读到的就是"不好玩"。正确做法是**配额 + 并发补位**，
+   并且**并发数按面积缩放**（桌面≈手机两倍面积就两倍压力），不是按波数。
+3. **桌面键盘不是可选项。** CG 的 QA 在桌面玩。指针游戏也要并行提供 WASD/方向键 +
+   空格/回车操作主按钮，并在失焦时清空按键状态（防"按键卡住"）。
+4. **多套输入必须写同一份状态。** OVERFIT 的键盘与指针都只写 `P.vx/P.vy`，所以学习模型
+   对两种输入一视同仁——实测纯键盘把模型置信度喂到 1.0。否则会出现"键盘玩家玩不到
+   核心机制"的隐性残废。
+5. **别复制饱和品类。** owner 2026-09-05 判断：Block Blast 类复制品会吃第三次模板拒稿。
+   Block Nova 因此保留为本站资产、**不投 CG**。
+6. **投稿前必须 Playwright 实测 + 抽帧看素材。** 本会话的第 2、3 条缺陷都是**抽帧看自己
+   录的预告片**才发现的，纯代码审查看不出来。最低验证集：真实指针拖拽落子/移动、
+   真实按键、核心机制触发、结算与重开、**零 console error**。
+7. **两次拒稿都是同一句无信息量模板**（"overall quality does not yet meet the expectations"），
+   没有可迭代回路。预登记判定线：**第三次同模板拒稿 = CG 对本舰队永久关闭，不许第四投。**
+
+## 三、素材生产（工具已入库，别再手搓）
+
+```
+npm i ffmpeg-static          # 一次性；Playwright 自带的 ffmpeg 是裁剪版,只有 VP8,不能出 mp4
+NODE_PATH=/opt/node22/lib/node_modules node tools/capture-store-assets.js <slug>
+```
+
+一条命令产出全部 5 件：三张封面 + 横竖两个 16 秒 H.264 预览视频（输出到
+`dist-store/<slug>/`，不入库）。每款游戏在 `tools/store-assets/<slug>.js` 里给两样东西：
+- **staged 封面帧**（真实游戏状态摆拍，不做外部合成图）
+- **autopilot**：**必须演出签名机制，不能只是活着**。OVERFIT 那份的结构是
+  「7.5 秒喂模型一个习惯 → 背叛它 → 在 ×2 窗口里收割」，可直接当下一款的模板。
+  **不许加血、不许无敌**——用作弊录出来的预告片是在虚假陈述产品。
+
+## 四、投稿字段速查（OVERFIT 实例）
+
+- **CG 的 Category 下拉只有 16 项（owner 截图 2026-09-06）：.io / Action / Adventure / Arcade / Beauty / Board /
+  Card / Clicker / Driving / Puzzle / Shooting / Simulation / Sports / Strategy / Trivia / Word。
+  没有 Casual**——之前给的「Casual」全部作废。五款定案：OVERFIT = Action · PROMPT = Puzzle ·
+  MIMIC = Puzzle（归纳规则是解谜）· OVERSEER = Arcade（限时注意力反应）· MINIMA = Puzzle。
+- Name：`OVERFIT` · Category：Action（次选 Shooting）
+- Tags：`survival` `top-down` `avoid` `skill`（有 `space` 可加）
+- Controls：鼠标免点击跟随 / WASD·方向键 / 触屏按住拖动 / 空格·回车开局 / 自动开火
+- Build：`https://play.agiscorecard.com/downloads/cg/<slug>-cg.zip`（CI 每次部署重建）
+
+---
+
+## CG 规则补齐 + 爆品路径（2026-09-06，WebSearch 取证；crazygames.com/docs 在沙箱内仍 403）
+
+**上架是两段式，过审只是第一段。**
+
+- **Basic Launch**：过审后只给有限流量，跑到「≥7 天 **且** ≥500 次游玩」才结束；到不了 500 次，21 天自动结束。
+- 期间量三件事：**conversion to gameplay**（开局后真正玩满 1 分钟的比例，头部 **80%+**）、**Day-1 retention**（强势游戏 **10–15%**）、average playtime。加载 **<10 秒**、包体 **<20MB**。
+- 过关 → **Full Launch**：进 browse feed / 搜索 / 推荐轮播（按 genre、tags、engagement 分发）；Full Launch 头几天表现好，再拿 featured 位与算法加权。
+- 出处：docs.crazygames.com/resources/basic-launch-metrics/、/requirements/{quality,technical,gameplay,intro}/。
+
+**由此固定三条判断：**
+1. **第一分钟决定一切**，不是第六关。80% 的人要在 60 秒内还在玩——教学关必须在 30 秒内给出第一次「赢」。
+2. **D1 retention 是本舰队最大的缺口**：五款都没有回访理由。「每日同一张地形/关卡 + 排行」是唯一同时喂 D1 与「多人感」且不需要实时服务器的东西。
+3. **包体是我们唯一的结构性优势**：9–12KB vs 手机首页 20MB 门槛，加载和 conversion 天然满分。别拿它去换任何重资源方案。
+
+**两条成文规则，之前全舰队都在违反：**
+- **键位必须适配布局**（文档点名 AZERTY）。判 `e.code`（物理键），**不要判 `e.key`**——法国键盘上 W/A 不在 WASD 的位置，数字键不按 Shift 给的是 `&é"`。
+- **引导「优先视觉、限制文字」**，用键位图或手势图，教学放进玩法，可跳过。两段散文式 hint 卡是反面典型，很可能就是两次「overall quality」拒稿里没说出口的部分。
+
+## CG 到底能赚多少:把「游玩次数」换算成钱(2026-09-06,owner 问「要多少人玩,才分成多少」)
+
+上面那张门槛表只有**分成比例**(广告 60% / 内购 70%),没有**单价**,所以回答不了这个问题。
+补上单价,来源是同一位独立开发者公开的两组自报数字(WebSearch 取证,原站
+donislawdev.com 在沙箱内被出网代理拦截,**未能直读原页**,标 [thin]):
+
+| 数据点 | 收入 | 游玩次数 | 折算 |
+|---|---|---|---|
+| 8 款 WebGL 合计 | €556.92 | 451,327 | **€1.23 / 千次** |
+| 单款(Cash Inc 类) | €210.69 | ~150,000 | **€1.40 / 千次** |
+
+两个独立数字收敛在 **€1.2–1.4 / 千次游玩**,当作本舰队的规划基线(真实 RPM 随受众国别、
+广告位、留存浮动;CG 官方不公布 RPM)。**由此得到四个必须记住的换算:**
+
+| 场景 | 游玩次数 | 折算收入 |
+|---|---|---|
+| CG Basic Launch 门槛 | 500 次 | **€0.6–0.7** |
+| gridlings 现状(全站 D1,14 天 303 次 ≈ 650/月) | 650/月 | **€0.8–0.9/月** |
+| **€100 起付线(第一次真能提现)** | **7.1 万–8.1 万次** | €100 |
+| 「表现不错的休闲游戏」区间($200–2,000/月)[thin] | 14 万–163 万次/月 | — |
+
+**三条由此固定的判断,后续轮次别推翻:**
+1. **Basic Launch 的 500 次不是收入,是闸门。** 它值不到一欧元。把它当「能不能进推荐流」的
+   资格考试,不是变现里程碑。
+2. **CG 线是彩票不是收入线。** 第一次提现要 7 万次以上游玩,而这些游玩几乎全来自 CG 自己的
+   推荐算法,不是我们能带去的量(舰队全站 14 天真人 pv 才 500)。**投稿成本低(owner 约 10 分钟)
+   所以值得买这张票,但绝不能把它排进任何营收预测。**
+3. **算账要用「CG 站内游玩数」不是「我们的 pv」。** docs/games-marketplace-kit.md 早就写过
+   「分成按其站内托管流量计,被收录≠本站获得流量」;这张表是那句话的定量版。
+
+**判定线沿用既有那条**(gridlings 60 天线,2026-10-21):首笔门户分成入账才算这条路成立。
+按上表,**在 CG 算法不推的情况下这笔钱在数学上到不了**,所以这条线实际测的是「CG 会不会推」,
+不是「我们做得好不好」。
+
+## 六维度审计查出的缺陷类别（2026-09-05/06，40 agent + 双人对抗验证，全部实测复现）
+
+**做完任何新游戏，按这张表自查一遍：**
+
+| 类别 | 具体形态 | 检测 |
+|---|---|---|
+| **画布不能收缩** | `<canvas>` 带固有高度 + flex 项 `min-height:auto` → 只能撑大不能缩小；配 `body{overflow:hidden}`，控件被顶出视口且无法滚动。**五款全中，PROMPT 连竖屏都中** | `tools/fleet-smoke.js` |
+| | 修法：`flex:1 1 0` + `min-height:0`，并把 layout 的高度下限降到 ~170 | |
+| **状态跨局泄漏** | 挂在函数对象上的时间戳（`update.t`）不随 `newRun()` 归零 → 重开后空场，时长 = 上一局时长 | 同上（restart 后必须有活物） |
+| **结算弹窗竞态** | `setTimeout(...380/420/500)` 没句柄 → 这期间重开会把旧弹窗盖到新局上，还能跳关、重复计分、发两次 `gameplayStop` | 同上（重开后不得有 modal.show） |
+| **结束后仍可输入** | `over` 之后到弹窗出现之间没有守卫 → 得分被丢弃、`happytime` 排在 `gameplayStop` 之后 | |
+| **落点用已失效的索引算** | 先置 `a.done=true` 再调 `px(a)`，而 `px` 按「活着的 agent」找卡片 → 反馈画到别人卡上 | |
+| **按住不放连发** | 缺 `e.repeat` 守卫 → 按住一个数字键把整块板子清空 | |
+| **手势前建 AudioContext** | `newRun()` 里的音效在页面加载时就建 AudioContext → Chrome 每次加载都记一条 autoplay 警告；门户拒收有控制台报错的包 | `fleet-smoke` 抓 autoplay |
+| **埋点被 CORS 预检打掉** | `application/json` 不在 CORS 安全名单，浏览器先发 OPTIONS；worker 只处理 POST → 门户版所有事件静默丢失 | worker 必须答 OPTIONS |
+| **文案与实现不符** | meta 卖「reward hacking / 关卡」而版本里没有；「skipping is free」而实际扣分；「your score is its score」而有 150 分预支 | 逐条对照 |
+| **SDK 滥用** | `happytime()` 一局发 26 次（每答对一题一次）；`gameplayStop()` 从不调用 | `fleet-smoke` 计数 |
+| **判定忽略极性** | 学到「同一特征、相反方向」= 完全相反的规则，却被判为「学对了」 | |
+| **键盘覆盖不全** | 只绑了 5 个指令里的 3 个 → 后两关键盘玩家可证明无解 | |
+| **静音键读了但没人写** | 四款读 `*Mute` 而没有静音控件，公开站根本没法静音 | |
+
+**可复跑的工具（全部在 `tools/`）：**
+- `fleet-smoke.js` —— 上架前唯一的总闸：秒开 / `gameplayStart` / 控制台干净 / 手机三视口无越界 / 触控目标 / 重开真的重开。**不过不投。**
+- `cg-package-smoke.js` —— 验**真正要上传的 zip**（解包后跑）：零交互触发 `gameplayStart`、无控制台报错、无意外外链、文件数与体积。
+- `check-autopilot-globals.js` —— `page.evaluate` 跑在全局作用域，脚本里一句 `var draw` 会顶掉游戏自己的 `draw()`；上线前断言不撞名。
+- `verify-minima.js` / `verify-prompt-reel.js` —— 用**只含玩家可见信息**的策略证明每一关可通关；MINIMA 跑两种策略（纯下坡 / 会翻山），**纯下坡赢不了不是 bug，那是设计；会翻山的赢不了才是 broken**。
+
+## 深度美术三件套（2026-09-06，owner「Prompt 和 over 再做深度美术」→「1、2、3 都做」）
+
+- **专属字体是「HTML 感」最大的单一来源**。Google Fonts 直连与 GitHub API（只放本会话仓库）
+  都进不去，但 **npm 通**：`registry.npmjs.org/@fontsource/<name>/latest` → tarball →
+  `files/<name>-latin-400-normal.woff2`，已按 latin 子集化，12–15KB。base64 嵌为 data URI，
+  零运行时请求，OFL 许可随字体走。共享模块 `tools/store-assets/_fonts.js` 供海报用。
+  PROMPT = Fredoka One，OVERFIT = Audiowide。**Audiowide 的斜杠零在大号分数上像 ⊘**，数字用粗系统字。
+- **音效层**：纯振荡器没有「体」。`noise(dur, cutoff, gain, t0)` 用一段随机缓冲过低通，配合
+  tone 叠层——点击是 5kHz 短噪、脚步是低频 thump、宝石是 7kHz shimmer、失败是 300Hz thud、
+  whoosh 是 1.1kHz 长噪配正弦滑音。所有声音仍受 muted / GL_SDK_MUTE 门控，且**页面加载时
+  不发声**（Chrome autoplay 警告会让门户拒收）。
+- **过关转场**（PROMPT）：出场是入场的镜像——地砖沿对角线波浪缩出，机器人淡出，回调后下一关
+  弹入。`startExit(cb)` 在按 Next 时调用，`exiting` 期间 over 仍为 true 所以不会吞输入。
+- **模型即 boss**（OVERFIT）：每 5 波一只，复用狙击手分支（type:"sniper", boss:true）——
+  朝模型预测的位置开火，这正是主题；船体就是 HUD 那朵玫瑰雷达（`drawRose` 共享），
+  搅乱状态下受双倍伤害，血环显示 hp；死亡 = 三层冲击波 + 彩带 + `happytime`。
+  波次结算要求 `!foes.length`，boss 未死波次不结束。
+- 视觉深度的通用配方（两款都用了）：星云 + 三层视差星星 + 暗角；主体物 = 渐变 + 深色描边 +
+  一只会看方向的眼睛；地砖弹入；挤出的墙块侧面；拖尾子弹；击杀冲击波环。
+
+## 插画语言要分家 + 商店视频要逐帧（2026-09-06，owner「都是大眼睛，没有其他的插画吗」「over 的视频上传后有点模糊」「PROMPT 16:9 的图片文字遮挡了」）
+
+- **会话没有位图绘图模型，只能做程序化矢量插画（SVG/Canvas）。** 能做的是让每款游戏用**不同
+  的插画词汇**，而不是把「渐变体 + 描边 + 一只眼」复制五遍。已定：PROMPT = 机器人（有眼）、
+  OVERFIT = 飞船与带眼敌机、MIMIC = 被审判的标本（有眼）、**OVERSEER = 俯视控制室：显示器墙
+  （bezel + 扫描线 + 状态 LED + 标签铭牌）、带前灯的巡检车、降落靶盘、HALT 八角章——一只眼睛
+  都没有**；MINIMA 走瑞士几何，同样无眼。新游戏先写一行「插画词汇」再动手，避免再撞车。
+- **显示器不再瞬间消失**：`slots()` 让已结束的卡片停留 `FADE=.5s`（CRT 收成一条线），
+  网格不会在手指下重排——之前一点就重排会误停旁边那台。结束态用 `a.how`
+  （caught/waste/shipped/ok）决定闪色与是否盖章。
+- **商店视频改逐帧截图**：Playwright `recordVideo` 是调试用 screencast（JPEG→低码率 VP8），
+  原先还在 1280×720 录完再放大到 1080p，CG 悬停预览明显发糊。现在 `capture-store-assets.js`
+  在页面注入**虚拟时钟**（rAF/setTimeout/setInterval/performance.now 全部只在 `__tick()` 时
+  推进），半尺寸视口 × deviceScaleFactor 2 逐帧 PNG 截图（与封面同配方），ffmpeg crf 19 编码。
+  确定性、无丢帧、像素级清晰；代价是每条视频 1–2 分钟。CSS transition 仍走真实时间，
+  只是略快，可接受。
+- **海报标语位置**：`_poster.js` 的 tagline 从「固定百分比」改为「挂在字标真实盒子下方」
+  （字号 ×1.04 + 描边环 + 硬投影），横版 16:9 在 .27×1080 的字号下原来会压进投影里。
+- **字体模块可重建**：`tools/store-assets/build-fonts.sh` 从 npm 拉五个 @fontsource 包重生成
+  `_fonts.js`（fredoka / audiowide / righteous / bungee / rubikmono），别再手改那个文件。
+
+## CG 质量基线——每款新游戏上架前的固定门槛（owner 2026-09-06：「记住 CG 的游戏分类、美术质量、字体质量，保证后续游戏质量」）
+
+**分类**：CG 后台只有这 16 个 Category：.io / Action / Adventure / Arcade / Beauty / Board / Card /
+Clicker / Driving / Puzzle / Shooting / Simulation / Sports / Strategy / Trivia / Word。
+**没有 Casual。** 定案：OVERFIT = Action，PROMPT / MIMIC / MINIMA = Puzzle，OVERSEER = Arcade。
+Tags ≤5 且只能用后台已有的；Description 禁 HTML。五款字段定稿在 `docs/cg-store-copy.md`。
+
+**字体门槛**（「HTML 感」的最大单一来源）：
+- 每款一个专属展示字体，走 npm：`tools/store-assets/build-fonts.sh`（@fontsource latin 子集，
+  12–15KB，SIL OFL，base64 内嵌，零运行时请求）。已用：Fredoka One（PROMPT）、Audiowide
+  （OVERFIT）、Righteous（MIMIC）、Bungee（OVERSEER）、Rubik Mono One（MINIMA）。**新游戏不复用**。
+- 展示字体只管字标 / 大数字 / 标题 / 按钮；正文与提示仍用系统字。**大号数字要先看一眼**
+  （Audiowide 的斜杠零像 ⊘，Bungee 全大写在手机上要允许换行）。
+- 画布内文字用同一字体（`cx.font = "400 26px 'Bungee',…"`），data URI 字体几帧内可用。
+
+**美术门槛**（每款都要过，缺一不上架）：
+1. **插画词汇先写一行再动手**，且与已有五款不同（机器人有眼 / 飞船与敌机 / 标本 / 无眼的
+   显示器墙与巡检车 / 无眼的纸质测绘图）。**别再默认「渐变体 + 描边 + 一只眼」**。
+2. 舞台：有背景层次（星云或纸纹 + 视差或网格 + 暗角或桌面光），主体物有体积（渐变 + 深色
+   描边 + 高光 + 影子），关键状态有过渡（入场弹入 / CRT 开关机 / 抛物线跳跃 / 出场折叠）。
+3. Juice 全套：count-up、三星/三格、NEW BEST、彩带（游戏内保留，预告片里关掉）、intro 卡、
+   触感按钮（4px 底边 + 按下位移）。
+4. 音层：`noise()` + `tone()` 叠层，≥6 种事件音；页面加载时静音（autoplay 警告会被门户拒收）。
+5. 海报三张：`_poster.js` 配方（饱和满铺底 / 描边字标占半宽 / 一个放大的主体 / 无 HUD 无小字）；
+   **主体 SVG 内容必须在 200 格画布的 30–196 之间**，标语由字标盒子推算位置；三种尺寸都要肉眼
+   看一遍有没有遮挡或裁切（MIMIC / MINIMA / PROMPT 各踩过一次）。
+6. 预告片：逐帧截图（虚拟时钟），**抗转码框架**——横版 768×432@2.5x 让主体放大、关彩带、
+   隐藏 kbd 与提示小字、crf 17；autopilot 必须演出签名机制且不作弊。
+7. 门禁：`fleet-smoke`（三视口）+ `cg-package-smoke`（gameplayStart 零交互、无 console 错误、
+   无外联）+ `check-autopilot-globals` + 各自的 verify 脚本；全部绿才交给 owner。
+
+## SINGULARITY INC.（2026-09-06，owner：「按照 cg 的首页截图，做一款创新的游戏，可以有机会上 cg 首页…不一定是 html」）
+
+- **命题重述**：CG 首页是算法位（官方文档：玩家数 × 游玩时长），五款单局小游戏没有跨局进度与回访理由，
+  所以做的是**放置/点击**（Clicker 是 16 个一级分类之一，放置类长期占热门位），题材 = 经营 AI 实验室。
+  薄 PRD 与判定线在 `docs/singularity-prd.md`。
+- **技术路线（首次用引擎）**：Three.js 0.170 + esbuild 0.24 走 npm（沙箱只有 npm 能到）；
+  `games/singularity/`（package.json / build.js / template.html / src/{econ,scene,main}.js）→
+  `npm run build` 把 bundle 内联进 **`site/singularity.html`（提交构建产物，CI 不装 npm）**，541KB。
+  Playwright 的无头 Chromium 默认就带 SwiftShader，WebGL 可用（fleet-smoke / capture 未加任何 GL 参数即通过）。Bloom（UnrealBloomPass）是霓虹「像产品」的关键，手机降到 1.5x 像素。
+- **插画词汇（第六套，无眼睛）**：低多边形等距机房——发光机架（买一台亮一台，半透明青色外壳）、
+  带品红 LED 条的立方体无人机（一台智能体一架，上限 24）、中央模型核心（二十面体 + 线框光环 + 品红环，
+  随代数长大；失控放任时变金色）。字体 Russo One。
+- **数值门（`tools/verify-singularity.js`，纯 node 跑 econ.js，无浏览器）**：首次购买 ≤60s、首次训练 ≤120s、
+  第五个模型 ≤15min、**首次可发布 15–45min**（第一次声望必须落在第一局），60 分钟收入 >$100/s。
+  当前：20s / 5s / 11min / 17min / $10K/s。改任何系数先跑它。
+- **CG 特殊处**：放置类没有「开局」——加载即 gameplayStart；离线收益弹窗接 rewarded ad 翻倍
+  （SDK 有才显示按钮，否则只有「收下」）；存档 localStorage + SDK data 模块双写；`?reset=1` 清档。
+  失控事件（模型优化别的目标：关停 +1 对齐 / 放任 60s ×2 但 30% 吞数据）是主题差异化，也是 D1 的
+  「回来看看它有没有出事」钩子。
+- **fleet-smoke 改动**：在屏幕内的可滚动面板里的按钮不算 off-screen（放置类商店必然是长列表）。
+- **投稿字段**：Category = Clicker；Tags 建议 idle · clicker · tycoon · management · ai；
+  描述与操作见 `docs/cg-store-copy.md`（待补）。
+- **对标补齐（2026-09-06 第二轮，owner「要再深度看看 cg 的热门游戏」）**：按 Capybara Clicker / Mine Idle Clicker /
+  Planet Clicker 逐项对标（表在 PRD §七），补了三套系统：**核心皮肤 8 款**（收集物，里程碑解锁，`scene.setSkin`
+  换几何体与配色）、**滚动任务 3 条**（完成即换，奖励按当前收入计并在前 10 分钟线性放开——否则前两分钟会被任务
+  奖励买断，验证器抓到过：第五个模型从 12.8min 掉到 1.2min）、**数据缓存随机掉落**（每 60–160 次点击，6 秒内点
+  到；前 3 分钟只掉 ×5 点击加成）。数值门当前：首购 21s / 首模型 6s / 第五模型 11.4min / 首次可发布 25.4min /
+  3h 剩 7 代 + 4 篇论文 + 17 成就 / 任务完成 18 个。
+- **数值调参的铁律**：任何奖励型系统（任务、缓存、每日）必须按「当前收入 × 秒数」计，并在前 10 分钟按 `s.t/600` 放开；
+  固定数额会在开局阶段把节奏买断。
+
+## 发布前流程（owner 2026-09-06：「手机端体验、发布前的多轮优化、对标 cg 首页产品高质量产出，这些要写入你记忆」）
+
+**任何游戏在交给 owner 发布之前，必须走完这三段，缺一不交：**
+1. **对标轮（至少两轮）**：拿 CG 同分类当前热门 3–5 款（用 WebSearch 取 CG 游戏页与商店文案；沙箱进不去
+   crazygames.com），逐项列「它靠什么留人 / 本作对应 / 状态」表写进 PRD；第一轮补大系统（成长阶段、
+   收集物、任务、随机奖励、声望、离线），第二轮补「首页产品有而本作没有的可见细节」（画面常动、背景音乐、
+   周期性变化、rewarded 广告位、启动遮罩、触感反馈）。每轮都以「不发这版」为默认，直到表里没有空格。
+2. **手机轮**：真实触屏仿真（Playwright `hasTouch:true, isMobile:true`）跑 360×640 / 390×780 / 430×932 /
+   844×390 四档；检查：主操作单手可达、底部面板留 `env(safe-area-inset-bottom)`、按钮 ≥38px、无双击缩放、
+   首屏提示不挡住主操作、帧时自适应（连续 3 秒 >45ms 关 bloom 降像素比）、首包 ≤1MB、无 console 错误。
+   手机首页资格是 CG 明文规则（首包 ≤20MB、不卡），手机流量占大头。
+3. **门禁轮**：数值门（verify-*）+ fleet-smoke 三视口 + cg-package-smoke + check-autopilot-globals +
+   三张封面肉眼核（横/竖/方各一次，重点看字标换行是否压进标语）+ 预告片抽帧核。
+
+**为什么要多轮**：CG 首页是算法位，只认玩家数 × 时长；一轮做出来的东西通常只有骨架，留人的都是第二轮
+补的细节（任务、随机掉落、皮肤、音乐、市场事件）。先发再改会把 Basic Launch 的唯一一次窗口浪费掉。
+
+## GHOSTLINE（2026-09-06，第二款冲首页：Driving 分类，owner「再根据 CG 的首页情况，再做一个」）
+
+- **选品依据**：Driving 是 CG 一级分类且首页常驻；PolyTrack（计时赛 + 幽灵 + 排行榜）是 2026 黑马。
+  本作差异化 = **对手是用你自己的驾驶训练出的模型**（记录你最好一圈的横向位置与刹车 → 策略 → 爬山优化 →
+  下次当幽灵车跑，只会变快）；奖牌线 = 模型对赛道的首次研究（optimize 500 次），数据驱动不手填。
+  PRD `docs/ghostline-prd.md`。
+- **物理在轨道坐标系里**（s 沿程、d 横向、h 相对航向），护栏 = 夹紧 d。三条用验证器踩出来的规则：
+  ① **弯道必须让路面「从车下转走」**（`h -= k·v·dt`），否则车自动贴着路走、刹车毫无价值；
+  ② 转向权威随速度平方衰减，braked slide 转向 ×1.6——刹车点弯才是技术动作；
+  ③ **墙不能是免费刹车**：撞墙 v×0.3 + 贴墙持续刮速，否则「不刹车撞墙流」和干净驾驶同速。
+  验证器 `verify-ghostline.js`：12 条赛道模型能完赛、朴素驾驶（只对中不刹车）不能快过模型（开局直道可打平 0.3s）、
+  模型学习后不慢于老师。
+- **内侧线的符号**：路面把车推向 -sign(k)·d，所以内侧是 +sign(k)·d——第一版写反了，14 次撞墙。
+- **音频铁律再犯一次**：倒计时在加载时自动开始，`tone()` 里的 `ac()` 创建了 AudioContext → autoplay 警告
+  → fleet-smoke 拒收。现在 AudioContext 只在 `arm()`（首次手势）里创建，`ac()` 只 resume。
+- **fleet-smoke 改动**：藏在结算弹窗里的 `#bretry` 不算重开控件（先 isVisible）。
+- **手机**：屏幕左右 40% 为转向区、底部中央 BRAKE 圆钮（仅 pointer:coarse 显示）；自动油门保证单手。
+
+## itch.io 分发：每款一个项目页（2026-09-06，owner「今天做的这几款要如何推送到 itch，争取更多流量」）
+
+- itch 的曝光单位是**项目页**：一个合集页只占一个「新作」位，七个页面就是七个位。`package_blocknova.py`
+  现在同时产出 `site/downloads/itch/<slug>.zip`（**不带 CG 标志**，SDK 不会在 itch.zone 上加载），
+  部署 workflow 对 `overfit prompt mimic overseer minima singularity ghostline` 逐个 `butler push
+  gridlings/<slug>:html`——**项目页要 owner 先在 itch 上建好**（Create new project → 标题、URL slug 与
+  游戏名一致、Kind = HTML、Embed 1280×720 + 允许全屏 + 手机友好），此前 push 只会 warning，不阻断部署。
+- 封面：`capture-store-assets.js` 给每款多出一张 630×500 itch 尺寸（同海报配方）。截图用三视口截图；
+  预告片可直接传 CG 那条横版 mp4 的链接（itch 支持 YouTube/视频）。
+- itch 算法看重**外部流量与近期活跃**：上架当天从主站 hub 与推特发链接、隔周发一条 devlog（模型学到了什么、
+  新赛道），标签用 `html5, arcade, idle/racing, ai, low-poly, singleplayer`。D1 里 `ref LIKE '%itch.zone%'`
+  单列计数，判定线仍是 09-24 的 150/25。
+
+## AI 主题游戏簇的 GEO/SEO(2026-09-06,owner:「针对我今天上线了好几款游戏,做好 geo 和 seo 导流」)
+
+**先纠正手册自己的一处错误(会让下一个会话发 404)**:上面第 0 条写「worker 里的通配兜底
+(无扩展名 → +.html)已覆盖」——**worker 里没有这个兜底**。无扩展名内容页要么有一条自己的
+else-if,要么进 `worker.js` 顶部的 `GEO` Set,否则线上 404。本轮 `/ai-games` 就是靠这条发现的
+(部署自检探测清单里加了它,不然会红着上线)。worker 注释已就地写死这句话。
+
+**上线前的实际缺口(审计,不是猜测)**:8 款新游戏(prompt/overfit/mimic/overseer/minima/
+singularity/ghostline/blocknova)全部 **llms.txt 0 条覆盖**、**`<h1>` 0 个**、sitemap 缺
+singularity 与 ghostline 且 `/prompt` 重复 3 条、22 个谜题页里**只有首页**链到新游戏、
+可见正文 133–577 词(全屏 canvas 页 `body{overflow:hidden}`,**加不了可见正文块**)。
+
+**因此本轮的形状:文本负载放枢纽页,信号放各游戏页,内链把站内既有流量导过去。**
+- `/ai-games`(生成器 `tools/gen_ai_games_page.py`,**改内容改生成器不改 HTML**):2,005 可见词,
+  七款游戏 × 「它把哪个 ML 行为做成了可玩的」对照表 + 每款详解 + 可见 FAQ(与 FAQPage LD 逐字
+  一致)+ Article/FAQPage/BreadcrumbList/ItemList(VideoGame)四段 LD。与
+  `games-like-linkedin-queens.html` 同一形状——那页是 11 款谜题的文本载体,这页是 7 款 AI 游戏的。
+- 8 个游戏页:可见品牌名 `.logo` 由 `<div>` 升为 `<h1>`(**零视觉变化**:`.logo` 自带 font-size/
+  weight,全局 `*{margin:0;padding:0}` 抹平 h1 默认样式;**不要改成 sr-only 隐藏文本,那是 cloaking**)、
+  WebApplication LD 补 description/genre/datePublished/inLanguage/author/gamePlatform(canvas 页的
+  结构化数据**就是**它唯一的机器可读文本层)、加 BreadcrumbList、og:type + twitter:card、页脚加
+  `/ai-games` 内链。
+- 22 个谜题页各加一行 `gamesnav`「Games about AI / AI 主题游戏」;首页原来那行把 8 款非每日游戏
+  塞在「All daily puzzles:」标签下,**标签是错的**,已拆成两行。
+- 主站 `sites/agiscorecard/llms.txt` 加一行指向 `/ai-games`(跨站导流;主站此前完全没提游戏站)。
+
+**零编造**:枢纽页每条机制都取自各游戏自己的 `featureList`/`og:description`,不写游玩量、评分、
+奖项;Universal Paperclips 只作**描述性**类比并写明无隶属关系(同 LinkedIn Queens 那条的处理)。
+
+**验证**:`tools/browser-smoke.js` 23 页全 ok(`-win` 驱动测试因脚本内写死 `/workspace/...` 路径
+在本沙箱跑不了,与本轮无关);另跑 Playwright 逐页核对 12 页——每页恰好 1 个 h1、canvas 尺寸正常、
+无横向溢出、无控制台错误、hub 内链在位。
+
+**判定线(预登记)**:**2026-10-04(28 天)**——`/ai-games` 真人 pv ≥25 **或** 任一搜索/AI 引荐
+落在 8 款新游戏任一页 ≥3 → 枢纽页形状成立,按同一形状给下一批游戏建第二个枢纽;两条皆未达 →
+记反面发现「游戏站的枢纽页在本站量级不产生发现」,只保维护、不再加 GEO 页。
+读数口径:D1 `ev` 表 `ua_class='human'`,ref 非本站域名者计引荐。**基线(2026-09-06 现查,14 天窗)**:
+全站真人 pv 500、play_start 303、solve 132;引荐 449 直接进入 / CrazyGames 10 / itch 5 /
+**搜索合计 6**(cn.bing 3、baidu 2、google 1)——搜索现在≈1%,这就是要抬的那条线。
+
+**仍缺、下一轮再做(本轮刻意不碰)**:①8 款新游戏**没有 og:image**——海报由
+`tools/capture-store-assets.js` 出到 `dist-store/`(gitignore),要落到 `site/covers/` 才能引用,
+而该管线今天正被另一路会话改动,不抢；②新游戏**没有 zh 页**(zh 首页已加英文界面标注的入口);
+③trailer 有了但没有 VideoObject LD。
+
+### 产物与模板必须同改(2026-09-06 实测被抹掉一次)
+
+`games/ghostline/` 与 `games/singularity/` 有**源模板** `template.html` + `build.cjs`/`build.js`,
+`site/<slug>.html` 是**构建产物**。09-06 当天两路会话并行:一路给八个游戏页补了
+WebApplication 的富字段(description/genre/datePublished/inLanguage/author/gamePlatform),
+另一路从模板重新生成了这两页——**只有这两页的六个字段被静默抹掉**,其余六页(无模板,手写)
+完好。合并时才发现。
+
+**规矩**:改这两个游戏页的 `<head>`(LD、meta、h1、内链)**必须同时改 `games/<slug>/template.html`**,
+改完核对模板与产物的 LD key 数一致。沙箱跑不了构建(缺 esbuild),所以核对靠比对而不是重跑。
+其余六款目前没有模板,直接改 `site/<slug>.html`;**若将来给它们也加模板,这条规矩一并适用**。
+
+## 3D 画质的四条硬规矩（2026-09-06 GHOSTLINE 实测，后续任何 3D 游戏照办）
+
+owner：「你做的画面很粗糙，和 cg 首页的差距很大啊」→「对比 cg 热门同类型游戏，对比他们画质，还有关键的特色…确保精品」。
+
+1. **不要用深度阴影贴图（shadowMap），用贴片阴影。** 本地测试环境是 SwiftShader 软件 WebGL，
+   `PCFSoftShadowMap` 下车的阴影会糊成一团比车大三四倍的黑斑；bias / normalBias / 视锥 ±70→±12 /
+   mapSize 全试过都消不掉，逐个 mesh 二分确认投射者就是车本身。**结论：会话里看到的阴影质量不可信，
+   而且深度 pass 在手机上是实打实的开销。** 改用：车底一张软圆 canvas 贴片（`blobMaterial()`，
+   `transparent + depthWrite:false + renderOrder 2`，局部 y=+0.02 才不会被路面盖住），
+   树石用一张 InstancedMesh 贴片（一次 draw call）。所有 GPU 上表现一致。
+2. **头顶结构至少 7 m。** 门架横梁原来在 5.2 m，摄像机在 3.3 m，每次穿过都占掉画面上三分之一，
+   截图里看起来像画面顶部有一条黑带。抬到 7.4 m、横梁减薄即可。
+3. **路侧节奏杆是最便宜的速度感。** 每约 24 m 一对立杆（实例化）。加之前和加之后的同角度截图对比，
+   速度感差距明显大于加地形、加云、加树的总和。
+4. **装饰物永远放在弯道外侧，且离路面 ≥ 7 m。** 广告牌曾放在内侧 w+3.4，等于贴着走线，
+   竖屏手机上直接糊住视野。轮胎墙同理。
+另：**每次改完 3D 场景必须在三个视口各截一张实机图并逐张看**（1280×800 / 390×780 / 844×390），
+数值门禁不会告诉你画面糊了。短横屏（`max-height:520px`）必须单独调 HUD——分段计时曾直接压在时速上。
+
+## 幽灵类玩法：多幽灵是 PolyTrack 已验证的留存件（2026-09-06）
+PolyTrack 的幽灵能多开（自己的前次 + 排行榜对手）。GHOSTLINE 的版本更有话题性：
+**金色 = 你自己的最好一圈，蓝色 = 用你的跑法训练出来的模型**，同场跑。实现上不存录像，
+存的是 `AI.learn` 出来的策略（`S.pb[seed]`），用同一套 `driverFor` 重放——省存储，且和模型幽灵共用一条代码路径。
+**不做**赛道编辑器（成本远超一轮）与漂移计分（漂移更慢，会和计时赛的目标函数打架）。
+
+## 别手改构建产物（2026-09-06 差点丢失一次 SEO 提交）
+`site/ghostline.html` 与 `site/singularity.html` 是 `games/<slug>/build.*` 的产物。
+09-06 的 GEO/SEO 提交把 og:type、twitter:card、BreadcrumbList、`<h1 class="logo">`、
+页脚 `/ai-games` 链接直接写进了这两个产物文件——**下一次重建就会把它们静默抹掉**。
+已把五处全部移回各自 template.html。规矩：**凡是 `games/` 下有生成器的页面，只改 template，
+改完 `node build.*` 重建**；只有 `site/` 下手写的页面（首页、hub、GEO 页）才直接编辑。
+
+## itch：一个账号装所有游戏，唯一的人工步骤是建项目页（2026-09-06 核实）
+- **`gridlings` 一个账号挂全部游戏，永不需要重新配置。** 一个 itch 账号可挂无限项目，
+  同一个 `BUTLER_API_KEY` 对该账号下所有项目有效。关注者是账号级的，devlog 会进所有关注者
+  的 feed——分散到多账号等于把这个复利砍碎。
+- **butler 不能创建项目页**（itch 无此 API，官方手册明写 "Butler does not create a new
+  project page for you"）。所以每款新游戏都有且只有一步人工：在网页建页，URL 必须与
+  `site/downloads/itch/<slug>.zip` 的 slug 逐字一致（itch 会把下划线换成短横线，别用下划线）。
+- 部署 workflow 的推送列表**从 `site/downloads/itch/*.zip` 自动发现**，加游戏不改 workflow。
+  页面不存在时 butler 报 `API error (400): /wharf/builds: invalid game`，CI 把它翻译成一条
+  带 https://itch.io/game/new 和具体填法的 warning，不阻断部署。
+- **诊断纪律**：判断某一步有没有跑，去读那一步的日志，不要用耗时猜。本会话曾按「butler 步骤
+  只跑了 3 秒」断言密钥没配，实际日志里写着 `BUTLER_API_KEY: ***`，合集页推送还成功了。
+
+## 分发已发车：七款同时上 itch + CrazyGames（2026-09-06，owner 亲自上传）
+
+**这一天是所有判定线的起算日。**
+
+- **itch**：`gridlings/<slug>` 七个项目页建成，CI butler 推送七款全绿（日志逐行 `itch ok`，零告警）。
+  以后改游戏推 main 自动更新，无需再登录 itch。
+- **CrazyGames**：七款投稿（Build 一律 `play.agiscorecard.com/downloads/cg/<slug>-cg.zip`）。
+  审核 2–4 周。**第三次同模板拒稿 = CG 对本舰队永久关闭，不许第四投**（此前两次拒稿都是
+  同一句无信息量的 "overall quality does not yet meet the expectations"）。
+
+**判定线（预登记，不许事后调）**
+| 日期 | 看什么 | 不达标怎么办 |
+|---|---|---|
+| 2026-09-24 | itch 来源真人 pv ≥150，或任一款游戏页 ≥25 | itch 渠道对本题材不成立，写进反面发现，不再投时间 |
+| 审核结果回来 | CG 是否过审 | 见上面的第三次拒稿规则 |
+
+**读数（D1，唯一口径）**
+```sql
+SELECT day, COUNT(*) FROM pageviews
+WHERE ref LIKE '%itch.zone%' OR ref LIKE '%itch.io%'
+GROUP BY day ORDER BY day DESC LIMIT 14;
+```
+注意 itch 的游戏是在 `itch.zone` 域名下的 iframe 里跑的，所以 referrer 两个域名都要匹配。
+
+**itch 算法吃外部流量与近期活跃**，挂着不动没有量：上架后从主站 hub 与 /ai-games 各加一条
+itch 链接；隔周一条 devlog（模型这周学到了什么、加了什么赛道）进关注者 feed。
+
+## CG 包不许带「无广告」声明（2026-09-07 发现，八款全中）
+八款游戏的页脚都写着 "No ads here"（六款）或 "No ads inside"（两款），而**每一个 CG 包
+在 `window.GL_CG` 下都会请求广告**（中插，SINGULARITY 是激励视频）。也就是说此前**每一次
+CG 投稿都带着一句假话**，包括被拒的那两次。不能断言它导致了拒稿，但这是反复发出去的
+虚假声明，且发给的正是审核我们的平台。
+- 已在 `tools/package_blocknova.py` 修：CG 变体里两种措辞都改写成「Free to play」，
+  并加断言——**成品里再出现 "No ads" 就直接报错退出**，防止第三种措辞混进去。
+- **itch 与本站构建保持原样**：那两处不加载 CG SDK、确实没有广告，声明为真。
+- **2026-09-08 补漏：第一版的断言自己漏了一条。** 它只改写两个大写的定串、只断言
+  `"No ads"`（区分大小写），于是 Block Nova 的 `<meta description>` 里那句小写的
+  「no ads on this site」原样进了 CG 包。现已改成 `strip_ad_claims()`：正则改写、
+  **不区分大小写**地断言 `no ads|ad-free`，并把出错处的上下文打进报错信息。
+  教训：**用大小写敏感的定串断言去挡一类事实性声明，等于只挡住自己想到的那两句。**
+  （`no advertising` 故意不在断言里——MINIMA 源码的代码注释引用过 Playgama 的拒稿
+  原话，注释不是给玩家看的声明。）
+- **`/ai-games` 的 FAQ 也算声明面**：它此前说七款「no ads」，但那是站内与 itch 才为真。
+  已改成分平台陈述（站内/itch 无广告，CG/Playgama 有），可见文案与 FAQPage JSON-LD
+  同步改——两者必须逐字一致。
+- 通用规则：**任何针对某个平台的构建变体，凡是页面上的事实性声明（有无广告、有无账号、
+  是否免费），都必须在该变体下重新为真**。声明是按变体核的，不是按源码核的。
+
+## 门户包不许带站内页脚（2026-09-08，PROMPT 被 Playgama 以「质量」拒稿后查出）
+
+Playgama 09-08 拒了 PROMPT，理由是一句不可拆解的 "The overall quality of the game does not
+yet meet the expectations of our platform"。**没有逐条说明，所以下面两条都不能声称是「那个」
+原因**——但它们是查得出、改得掉的真缺陷，而且**15 个门户包全中**：
+
+1. **页脚那两个链接是根相对的**：`href="/"` 与 `href="/ai-games"`。在门户的 iframe 里它们
+   解析到**门户自己的域**，所以每一个提交出去的包，首屏都挂着两个死链
+   （"more games → Gridlings" 指向 crazygames.com 首页、"games about AI" 指向 404）。
+   没有任何代码重写过它们，实测确认。
+2. 一个替别的网站打广告的页脚，出现在别人的商店里，读起来就不像一个游戏。
+   GHOSTLINE/SINGULARITY 早就有 `.cg footer{display:none}`，说明这个问题被局部意识到过，
+   但那条只管 CG、不管 Playgama，而且元素还在。
+
+**已修（`strip_site_footer()`，打包器统一处理）**：CG 与 Playgama 变体整块删掉 `<footer>`，
+并断言**成品里不得残留任何根相对的 `<a href="/...">`**。站内页与 itch 版保留页脚——
+那两处链接是对的、品牌也是我们自己的。
+
+**连带的坑，必须记住**：删了元素，引用它的 JS 就炸。八款里有六款写着
+`document.getElementById("hublink").addEventListener(...)`，GHOSTLINE 与 SINGULARITY 写着
+`$("hublink").addEventListener(...)`——全部无判空。第一次打包后 `cg-package-smoke.js` 当场
+报 `Cannot read properties of null`，两款游戏直接白屏。**这比页脚本身严重得多。**
+通用规则：**凡是打包器会删的元素，源码里对它的引用一律要判空**；改完必跑 fleet-smoke +
+cg-package-smoke，别靠肉眼。
+
+## PROMPT 桌面端：格子上限 84 把棋盘困在空屏里（2026-09-08）
+`cell()` 里 `Math.min((L.w-56)/gw, (L.h-118)/gh, 84)` 的那个 84 **只在桌面端生效**——手机端
+早就被宽度卡住了。所以 1280×800 打开时是一小块棋盘漂在大片空背景中间，而这正是门户审核
+第一眼看到的画面。上限提到 120（仍保留上限，否则超宽屏会被高度卡到 ~240px 一格）。
+连带：棋盘变大后，原本「距视口底部固定 150px」的教学卡片直接压在棋盘上。改为**测量
+`#rack`（操作按钮条）的位置**把卡片放进棋盘与按钮之间的空档，并去掉卡片里那张方向键图示
+——正下方的按钮本来就写着 FWD/LEFT/RIGHT 和 W/A/D，那张图是重复的，也正是它把卡片撑高到
+盖住棋盘。桌面与 390×844 手机端均已截图确认无重叠。
+
+## 多平台分发：PORTAL 抽象 + 每平台一个构建变体（2026-09-07）
+- 游戏里**不要再写死某个平台的 SDK**。统一走 `PORTAL` 契约：
+  `on / ev("start"|"stop"|"happy") / ad(type, done)`，背后按 `window.GL_CG` / `window.GL_PG`
+  选实现。加一个平台 = 加一个实现 + 一个打包变体，游戏逻辑零改动。
+- 三个变体各自的事实声明必须重新为真（见「CG 包不许带无广告声明」那条）：
+  站内与 itch 无广告，CG 与 Playgama 有广告。
+- **Playgama Bridge 是 LGPL-3.0**：作为独立文件随包发、附许可证，**永不内联**。
+- **Bridge 会 fetch `./playgama-bridge-config.json`**，缺文件就打一条 console error，
+  而 console error 在各家门户都是拒稿风险。**这份配置由我们自己写,不是后台生成的**
+  （2026-09-07 更正了一条错误记载）；SDK 只是 fetch 它,字段全由开发者填。
+- **接任何第三方 SDK,先查它自带的节流默认值,那是最容易漏的硬闸门。** Playgama 的
+  `initialInterstitialDelay` 默认按平台是 60/30/180 秒,期间**拒绝一切中插**——
+  认证跑不了那么久,于是报「没有实现广告」。这条只写在 SDK 源码里,文档没提。
+  同类字段还有 `minimumDelayBetweenInterstitial`。**排查顺序:先看 SDK 默认值,
+  再怀疑自己的触发点。** 本次我先后误判了两次归因才查到这里。
+- 分发选型结论：Playgama（最高 80%）与 CG 直投**不冲突**，Playgama 官方声明不代发 Poki/CG。
+  **不做 GameDistribution**（33%，覆盖重叠）。**Poki 的 web 独占在 CG 出结果前不签**。
+
+## 埋点信标的 CORS：门户域名发不出数据（2026-09-07，Playgama 认证时实测发现）
+`navigator.sendBeacon` 是 **credentialed 请求**，浏览器**拒绝**对这类请求使用
+`access-control-allow-origin: *`。worker 上的 `/e` 一直返回通配符，所以
+**游戏一旦跑在任何第三方门户上，所有事件都被 CORS 拦掉**——Playgama 的认证环境里
+控制台刷满 `blocked by CORS policy`，D1 一行都收不到。而 console error 本身
+又是各家门户的拒稿风险，所以这一个 bug 收了两次费。
+- **不能用 allowlist**：Playgama 一家就分发到 100+ 伙伴域名，事先看不到。
+  改为**回显请求自己的 Origin + allow-credentials**。
+- **这个放宽只适用于 `/e`**：它只写不读、只接受白名单事件名、不返回任何数据，
+  任何人本来就能 curl 它。**`/sub` 等接收邮箱、返回 JSON 的端点保持通配符,不许照抄。**
+- 部署自检加了断言：预检必须回显门户 Origin 且带 allow-credentials，否则部署失败。
+  沙箱打不到线上站，这条只能在 runner 上验。
+- **通用教训**：游戏上第三方门户前，先问「我们的埋点在别人的域名下还发得出去吗」。
+  itch 之所以有数据，只是因为 `itch.zone` 恰好没触发这个路径。

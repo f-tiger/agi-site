@@ -78,10 +78,13 @@ def main():
     watch = {w["appid"]: w for w in prev.get("watch", [])}
     for dd in discovered:
         watch[dd["appid"]] = {"appid": dd["appid"], "name": dd["name"], "first_seen": watch.get(dd["appid"], {}).get("first_seen", day)}
-    json.dump({"d": day, "hits": hits, "discovered": discovered,
-               "watch": list(watch.values())[-60:],
-               "note": "hits=in-pool trending; discovered=new games surfaced by trends via Steam official storesearch (>=0.85 name similarity); watch feeds the search pool only — verdict pages stay hand-curated."},
-              open(OUT, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    tmp = OUT + ".tmp"
+    with open(tmp, "w", encoding="utf-8") as fh:
+        json.dump({"d": day, "hits": hits, "discovered": discovered,
+                   "watch": list(watch.values())[-60:],
+                   "note": "hits=in-pool trending; discovered=new games surfaced by trends via Steam official storesearch (>=0.85 name similarity); watch feeds the search pool only — verdict pages stay hand-curated."},
+                  fh, ensure_ascii=False, indent=1)
+    os.replace(tmp, OUT)  # atomic: a crash mid-write never truncates the last good file
     print(f"day {day}: {len(hits)} pool hits, {len(discovered)} discovered, watch={len(watch)}")
 
 

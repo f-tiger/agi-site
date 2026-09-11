@@ -414,6 +414,7 @@
       <a href="/zh/agi-vs-superintelligence">AGI 和超级智能的区别</a> ·
       <a href="/zh/progress-index">AGI-2027 命题追踪指数</a> ·
       <a href="/zh/is-chatgpt-agi">ChatGPT 算 AGI 吗</a> ·
+      <a href="/zh/ai-and-your-job">该不该担心 AI 抢走你的工作</a> ·
       <a href="/zh/will-ai-cause-mass-unemployment">AI 会造成大规模失业吗</a> ·
       <a href="/zh/how-will-we-know-agi-arrived">我们怎么知道 AGI 到来了</a> ·
       <a href="/zh/who-is-building-agi">谁在造 AGI</a> ·
@@ -515,7 +516,7 @@
           +'<div class="viz-track"><div class="viz-fill" style="width:'+pct+'%;background:'+color+'"></div></div>'
           +'<div class="viz-val" style="color:'+color+'">'+label+'</div></div>';
       }).join('');
-      gtag('event','viz_switch',{side: side});
+      if(byUser) gtag('event','viz_switch',{side: side});
       // 参与峰值捕获：只在用户真的切换过之后出现，初始加载不弹
       if(byUser && !vizEngaged){
         vizEngaged = true;

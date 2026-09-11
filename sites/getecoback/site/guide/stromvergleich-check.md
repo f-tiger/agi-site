@@ -3,6 +3,9 @@
 > Vergleiche deinen Stromverbrauch in 10 Sekunden mit dem Stromspiegel-Durchschnitt für deine Haushaltsgröße — und sieh.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/stromvergleich-check.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
+
 Ist dein Stromverbrauch normal — oder verheizt du jedes Jahr Hunderte Euro mehr als vergleichbare Haushalte? Dieser Check vergleicht deinen Verbrauch mit den offiziellen Stromspiegel-Durchschnittswerten. Ohne Anmeldung, Ergebnis sofort.
 
 **Kurz gesagt:** Laut Stromspiegel 2025 (co2online, Daten aus 57.000 realen Haushalten) verbraucht in einer **Wohnung** ohne elektrische Warmwasserbereitung ein 1-Personen-Haushalt im Schnitt **~1.200 kWh**, 2 Personen **~1.900 kWh**, 3 Personen **~2.400 kWh**, 4 Personen **~2.600 kWh** pro Jahr. Bei ~37 ct/kWh bedeutet jede 500 kWh über dem Schnitt rund **185 € Mehrkosten pro Jahr**.

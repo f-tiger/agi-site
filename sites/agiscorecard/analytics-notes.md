@@ -1104,3 +1104,323 @@ agi 已于 08-29 按同一诊断改过一轮，判定日 11-15，**本周不加�
 workflow_dispatch 手动取到今天的读数（公开仓分钟免费，且为数据读取非外部副作用）。下周一若同样
 迟到再查。**操作失误自记**：本轮曾用 `git reset --hard` 同步，抹掉四份未提交改动并重做——
 有未提交改动时禁用 reset --hard。
+
+
+## 2026-08-31 追加：转化重做 + 内部跳转深度分析（owner 两问）
+
+**先纠我自己一个读数错误**：本页早些时候写的内部跳转数字用了 `COUNT(*)`，但 `pageviews`
+是聚合表、真实次数在 `hits` 列。正确口径（28 天，服务端 human，剔 /en/）：
+**无来源 18,639 · 站内跳转 1,358 · 外部来源 502**。
+
+**"用户留不住"——数据不支持，但也不能证实，因为仪器坏了。**
+带 referrer 的请求几乎必然是真实浏览器（爬虫一般不发 Referer），据此带来源的浏览约 1,860 次，
+其中 **73% 是站内跳转**——表面看人是在站内走动的。但落点清单
+（/ 77、ai-stock-exposure 46+15、two-year-scorecard 42、agi-test 40+28、**/search 39**、
+invest 17+12、future-bet 17+12、ai-tools 14+12、advertise 13）**几乎就是本站导航 + 目录块本身**，
+而"真实读者点导航"和"爬虫顺着导航爬"会产生完全一样的形状。**铁证**：`/search` 有 39 次内部
+到达，真实 `site_search` 事件却是 **0**（那 5 条全是 MCP 调用）。
+
+**根因（已修）**：`pageviews` 只存 `ref_host` 不存来源路径；`events` 存的也是 `ref_host`——
+信标其实一直在发完整 `document.referrer`，是 worker 落库时调 `refHost()` 主动把路径丢了。
+**所以"A 页→B 页"从来没有被记录过。** 今日改为：`page_view` 且 referrer 同源时，把来源
+**路径**存进 label（`from:/xxx`），跨域来源仍只留 host（绝不存陌生人的 URL）。
+JS 口径 = 爬虫排除在外，**下一轮起可以真正回答内部跳转问题**。
+
+**转化诊断：钱路全都装在没人到达的地方。**
+- 书籍联盟（唯一适配"信息意图"的钱路）只挂在 `/who-is-leopold-aschenbrenner`——**终身 6 次浏览**；
+  且 **`affiliate_click` 根本不在 D1 白名单**，点了也不记录。10-31 那条"全站 book_* <5 关
+  Associates"因此是**双重不可结算**：页面没人看 + 事件不记录。两处今日都已修。
+- SunWatch Pro ¥199（全站唯一带真实价格的链接）：**60 天 0 次点击**。9 次 `invest_tool_click`
+  全是导航（nav 4 / nav_compass 3 / cn_more 1 / starthere_compass 1），没有一次是付费面。
+- exposure 工具：16 次使用**全部集中在 08-11 一天**，此后 20 天零使用。
+- 意见钩子 `tool_click{opinion_*}`：60 天共 5 次（09-26 判定线需 ≥8）。
+
+**赢家形态已经被数据指出来了**：全站点击率最高的内部 CTA 是首页 `readnext_click`
+**28 天 13 次的纯文字块**，高于所有设计过的横幅（opinion_* 60 天合计 5 次）。
+因此本轮不再加第四块横幅，而是按 readnext 形态把书路装到 `/when-will-agi-arrive`
+（154 次 JS 确认浏览，全站第二）——两个免费原文排在前面且明说不赚钱，三本书标注联盟披露。
+
+**变现算术（诚实交底，别再画饼）**：按当前 921 次 JS 浏览/28 天 ≈ 每天 33 人——
+书籍联盟即使 5% 点击率、10% 下单率、$20 书 4% 佣金 ≈ **$1/月**；SunWatch Pro 需约 5 倍流量
+才有 1 单/月；订阅→Boosts 早已被算术判死（实测 1 订阅/368pv，可行线需 ~37 万 pv/28d）。
+**结论：在 33 人/天这个量级上，没有任何转化机制能产生有意义的收入——瓶颈是流量不是报价。**
+本轮的价值不在于"提高转化率"，而在于把每条钱路变成**可测量、判定线可结算**的状态，
+这样流量真的来的那天答案已经现成。
+
+## 2026-09-01（每日运行，月初）
+
+**昨日新装的仪器已确认工作。** JS 口径内部跳转配对首次产出：20 次，**来源 100% 是首页 `/`**，
+深页向外递送 **0**。落点：`/will-agi-arrive-2027` 4（首页 readnext 第二条）、`/` 4（锚点/重载）、
+其余 13 页各 1（about、what-is-agi、elon-musk、widget、zh/ai-job-risk-check…）。
+**样本 <24h、n=20，不下结论**——但方向已能看出「不是留不住，而是只有首页在循环」。
+读法已固化进 analytics-setup.md，09-14 正式读。
+
+**转化层**：28 天 JS 浏览 **1,004**（昨 921）；`sub_ok` 仍 **2**、`subscribe_click` 4，
+两者最后一次都停在 08-19（13 天零）。`affiliate_click`（昨日入白名单）与
+`calc_use{grade_game}`（昨日上线）目前 **均为 0**——上线仅约 14 小时，判定日分别是 10-31 与
+09-28，**不提前解读**。`slidein_show` 79 次仍 0 点击。
+
+**游戏层**：gridlings 今日 **play_start 8 / solve 1**（久违非零日）；28 天 **78 / 15**；
+**itch 累计 42 / 13 持平**——今天这 8 次不是 itch 来的，**itch 通道仍是死的**。
+09-24 判定线 150/25，剩 23 天需 +108 starts，按当前 itch 速率不可能达成；**但到日再裁，不提前**。
+
+**⓪+ 引用队列**：两项仍被自身前置条件挡住（英文 eu-ai-act 28 天浏览未过线；capex 引用趋势
+需 Bing 明细）。**今日起进入取数窗口（09-01~03），已在报告里向 owner 索取。**
+
+**本轮不改任何页面**：昨日一天已动 agi 三处（转化仪器 / 阅读钱路 / 首页游戏）并承诺静置，
+三条判定线都需要真实数据说话。按站规「没有信号就不硬凑」，今日只做监控 + 读法固化。
+
+## 2026-09-04（合并后的首条舰队日报）
+
+| 口径 | 28 天 | 7 天 |
+|---|---|---|
+| page_view（JS 真人） | 1042 | 262（≈37.4/日） |
+| vote_cast | 26 | 12 |
+| subscribe_click | 6 | 2 |
+| sub_open / sub_submit / sub_ok | 4 / 2 / **2** | 1 / 0 / 0 |
+| tool_click | 17 | **0** |
+| exposure_score | 16 | **0** |
+| affiliate_click（全站） | **0**（14 天口径亦为 0） | 0 |
+
+- **落地页第一名首次不是首页**：`/when-will-agi-arrive` 44 > `/` 28（7 天）。同页
+  `readnext_click` / `affiliate_click` 均为 0 —— 站内最大入口一个人也不往下送。
+  该页在 5-run 防翻炒窗口内，**本轮不动**；10-31 books 判定线按期结算。
+- **affiliate 埋点已实测在线**（Cloudflare 部署代码含 `affiliate_click` 白名单，
+  页面 onclick 三处齐全）→ 这个 0 是真需求信号，不是仪器故障。
+- **invest 工具近 7 天完全静默**（tool_click 0、exposure_score 0），
+  11-15 的 invest 判定线届时按 PRD §五 三条阈值结算。
+- **游戏层（gridlings，human 口径，28 天）**：play_start 269、solve 123、hint_used 166、
+  play_again 118；**itch 口径 play_start 42 / solve 13**，09-24 阈值 150/25 —— 仍差得远。
+  当日 0（查询时间 04:00 UTC，当日几乎未开始，非异常）。
+- **sourceradar（buysomething）**：7 天 page_view **5**，无 rising 信号 → 本轮不动工，
+  这正是它并入本条日报的原因。
+- **第①层 heartbeat**（09-04 04:00 UTC 首跑，19 秒 SUCCESS）：八站全 200；
+  gridlings 已 6 天未部署（阈值 7，明日会自动重发）。
+
+
+## 2026-09-05（周六舰队日报）
+
+- **agi 7 天真人 pv 299（≈42.7/日，环比 +14%）**；漏斗仍冷：subscribe_click 2、sub_open 1、
+  sub_ok 本周 0（累计 2，09-30 阈值 5）；vote_cast 13。
+- 昨夜另一会话（Fable 5.1）上线「客户视角簇」14 文件（/ai-and-your-job 等），当日读数
+  尚无意义，判定线以其 PRD（docs/agi-customer-lens-2026-09.md）为准；本 run 不叠加 ship
+  （防翻炒）。validate OK：228 页 / 210 URL。
+- **游戏层**：gridlings 28d play_start 276 / solve 123；itch 口径 43/13（09-24 阈值 150/25）。
+- **sourceradar**：28d pv 54，无信号，不动。
+- **第①层**：heartbeat 09-04 12:24 快照八站全 200；**gridlings 达到 7 天线被自动重发**
+  ——heartbeat 的自动兜底第一次真实触发，14:37 部署绿。
+- **第②层故障与处置**：换模后前两条新会话 run 卡死于 SSH 克隆权限提示
+  （详见 docs/fleet-automation-map.md §八）；已补跑 paid-monthly 并归档僵尸会话。
+
+## 2026-09-06（周日舰队日报，本会话被 owner 占用于 gridlings 美术，监控由子代理直读 D1）
+
+- **agi 7 天真人 pv 333（≈47.6/日，环比 +11%）**，28d 1087。漏斗仍冷：subscribe_click 2、
+  sub_open 1（09-03 /ai-2027-scenario-explained，未提交）、**sub_ok 已 18 天零**（累计 2，
+  09-30 阈值 5）。invest_tool_click 7d 1，无 sunwatch/tg_watch 点击。
+- 7d 外部来源（human hits）：google 73 · bing 16 · duckduckgo 13 · claude.ai 3 ·
+  forum.effectivealtruism.org 3 · chatgpt.com 2。**09-05 出现 D1 上线以来首次真人 site_search**
+  （US，EA 论坛引荐，label 为空——home_suggest 跳 /search 未带词），非里程碑，记一笔。
+  `site_search{mcp}` 7d 0 条，首个真实 agent 调用仍未发生。
+- **游戏层**：gridlings 28d play_start 291 / solve 124；7d 221 / 110（towers 09-01~03 三天
+  集中爆发后回落到个位数）；**itch 口径 43/13，7d 仅 +1/+0**，09-24 阈值 150/25 按当前速率
+  不会过线，到日再裁。**prompt / mimic / overseer / minima 在 D1 中 0 行**（尚未上 CG，仅挂
+  hub），overfit 6/0。
+- **sourceradar**：28d pv 66（human 50），7d human 9，其余事件全站累计 0，不动。
+- **第①层**：heartbeat 09-05 11:31Z 八站全 200，days_since_deploy 全 0。
+- **本日 ship（gridlings，见 OPT-LOG）**：OVERSEER 深度美术（无眼睛的一套新插画语言）、
+  五款商店视频改逐帧截图（根治 CG 预览模糊）、海报标语与字标重叠修复。agi 站内容零改动
+  （周日 + 客户视角簇判定期内）。
+
+## 2026-09-07（周一，舰队日报）
+
+**第①层 heartbeat**：8 站全 200，无一站 days_since_deploy ≥7。无告警。
+
+**agiscorecard**（D1 f84f9d29，真实读者只认 JS `events.page_view`）
+- 28 天真实 pv **1,102**（≈39/天）；昨日 50。订阅：累计 2，28 天内 sub_ok **2**、
+  sub_open 4、subscribe_click 6，全部停在 8-19，**18 天零新增**。`status='stored'` 积压 2（NO-API 模式下这是正常态）。
+- invest：`invest_tool_click` 28 天 9 次，**Pro 桥 `exposure_*_sunwatch` 仍为 0**。
+- **`site_search{location='mcp'}` 28 天 5 次 —— 按四条件判据全数不通过，不是 agent 采用**：
+  5 条全部 `ua_class='bot'`；08-30 三条间隔 430 毫秒、08-18 两条间隔 133 毫秒（批量）；
+  `tool:sunwatch_ledger` 跨日重复；一条标签直接是 `mcp-reputation-scanner-canary`。
+  且 8 天无新调用。**里程碑未达成，继续记零。**
+
+**gridlings**（D1 bd3b1ca9，表 ev）
+- 28 天 play_start 308、solve 132、play_again 127、hub_click 20。
+- **09-06 的 716 次浏览是 687 爬虫 + 29 真人**——七款上架 itch/CG 当天引来的抓取。
+  真人日线是平的：29 / 33 / 9 / 29 / 93 / 43 / 15。**投稿日的尖峰不算增长，写进反面记录。**
+- **itch 判定线（09-24）读数**：`ref LIKE '%itch.zone%'` 且 human，累计 **play_start 43 / 150、
+  solve 13 / 25**，覆盖 5 个活跃日（08-24 起）。七款新页 09-06 才上架，尚未进入这个读数。
+
+**四站对抗记分板**
+| 站 | 真人 pv/28d | 离钱最近的事件 | 备注 |
+|---|---|---|---|
+| agiscorecard | 1,102 | sub_ok 2（18 天零新增） | 引用型内容为主 |
+| baipiaoji | 1,603 | `go` 出站 49；subs 3 | 全舰队真人量最大 |
+| getecoback | 289 | **affiliate_click 40（人）**，昨日 3 | 转化率 13.8%，全舰队最高 |
+| gridlings | 见上 | hub_click 20 | 游戏层，不吃引用 |
+- **getecoback 的 mcp_call 437 次仍不可信**：只有 33 个不同 `meta`，重复约 13 倍，
+  与 08-16 判定的冒烟测试同签名。**不作为 agent 采用上报。**
+- 可移植的模式：eco 的 affiliate_click/pv = 13.8%，是舰队里唯一被验证的高转化钩子形状；
+  agi 侧订阅钩子 0.5% 差 27 倍。差别在于 eco 的动作与页面意图同向（找免费额度→点去用），
+  agi 的订阅与「读一个判定」不同向。
+
+**thedollscout**：`content/d1-snapshot.json` **仍不存在**。owner 待办未完成（Cloudflare →
+API Tokens → 部署用 token → 加 Account · D1 · Read，约 1 分钟）。按 09-02 判定线，
+此项每轮必须继续上报，不因「站点看起来正常」降级。
+
+**sourceradar / buysomething**：28 天真人 pv 50，`pick_open`/`out_click`/`calc_use`/`search_use`
+**全部为 0**。按低频站规矩：只报数字，不 bump、不造内容。
+
+**本周赔率**：Polymarket「OpenAI 在 2027 前宣布达成 AGI」→ Yes **27%** / No 73%，
+成交量 $194,567（2026-09-07 04:06:55 UTC 机读）。对照证据侧：Tracker 62.5/100、
+AGI-2027 判定 Open，均未动。
+
+## 2026-09-08（日结）
+
+**agiscorecard**（口径：真实读者只认 JS `events.page_view`）
+- JS pv **1147/28d**；后 14 天 628 vs 前 14 天 519（**+21%**）。服务端 `pageviews.human`
+  24,417 —— JS 占比仅 4.7%，那 24k 是含未识别爬虫的上限，**不作分母**。
+- 落地页：`/` 201 · **`/when-will-agi-arrive` 191**（全站第二，占总量 17%）·
+  `/situational-awareness-summary` 35 · `/how-close-is-agi` 31 · `/will-agi-arrive-2027` 30。
+- 来源：google 85 · duckduckgo 52 · bing 28 · **forum.effectivealtruism.org 11** ·
+  claude.ai 6 · chatgpt.com 6 · lesswrong 4 · copilot 3 · perplexity 2。
+  AI 引擎合计 后14天 9 vs 前14天 8（**持平，未翻倍**）；社区（EA+LW）6 vs 9。
+- 漏斗：`subscribe_click` 6 → `sub_open` 4 → `sub_submit` 2 → `sub_ok` **2**。
+  两次 sub_ok 都在首页（footer_cta / post_scorecard）。`subscribers` 表 **2 行 status='stored'**
+  （无 beehiiv key，这是正常态，非故障）。
+- **转化赛马的关键读数**：`/when-will-agi-arrive` 191 pv 产出 `subscribe_click` **0**；
+  而 `/ai-2027-scenario-explained` 仅 28 pv 却产出 2 次（`deep_scenario_mid` 形态）。
+  最大深页没有一个能被点的订阅钩 —— 这是下一个该做的事，但该页 09-06 刚动，冷却中。
+- `vote_cast` 39；`invest_tool_click` 13（全是导航位，**Pro 桥仍 0 点击**）；
+  `tool_click` 8；`index_click` 7；`embed_copy` 0；`affiliate_click` 0（10-31 判定线现读数 0/5）。
+- `calc_use{grade_game}` 表面 17，**真实为 1 人 4 次重算**（见 OPT-LOG 同日）；
+  `challenge_share{grade_game}` 0。09-28 判定线**未达标**。
+- **仪器事故（已修）**：`site_search` label 被结构字段正则洗成空串，中文全灭、
+  英文粘连；8-08 至今一个月的读者搜索词已永久丢失。详见 OPT-LOG 与 CLAUDE.md。
+
+**gridlings**（D1 bd3b1ca9，human 口径）
+- 28 天：pv 545 · play_start 325 · solve 135 · hint_used 182 · play_again 131。
+  今日：pv 3 · play_start 4 · solve 1 · hub_click 1。
+- **itch 判定线（09-24，需累计 play_start≥150 且 solve≥25）：现读数 43 / 13，
+  与 08-31 完全持平** —— itch 侧连续多日零新增，按现趋势判定日不会达标。
+- Playgama：七款包齐（09-07 SINGULARITY 收尾），GHOSTLINE 审核中；
+  CG 七款重传包审核中（2–4 周）。
+
+**sourceradar / buysomething**（低频站，规矩是无信号只报数字）
+- 28 天 human pv **50**（近 7 天仅 5），bot 32；`pick_open` / `out_click` / `calc_use` **全 0**。
+  队列无项、rising 无 v≥200 的真实产品需求 → **今日不动作、不 bump**。
+
+**第①层 heartbeat**（data/fleet-health.json，09-07 13:50Z）：八站全部 **200**，
+agiscorecard / baipiaoji / getecoback / gridlings / buysomething / gamesledger
+`days_since_deploy=0`，thedollscout 与 goldrush = 2。**无异常。**
+
+**里程碑**：无新达成。`/when-will-agi-arrive` 稳居第二深页（此前已记）；
+首个 agent MCP 调用**仍未成立** —— 28 天内 5 行 `location='mcp'` 全部是同秒批量、
+参数重复、且其中一行自带 `canary` 字样，四条件判据不过，按规矩不上报为里程碑。
+
+**owner 待办（沿用，未催）**：thedollscout `content/d1-snapshot.json` 仍缺
+（Cloudflare → API Tokens → deploy token → 加 `Account · D1 · Read`），自 09-02 挂起。
+
+## 2026-09-09（日结）
+
+**agiscorecard**（真实读者只认 JS `events.page_view`）
+- JS pv **1177/28d**；后 14 天 628 vs 前 14 天 549（**+14%**）。
+- 落地页：`/` 203 · **`/when-will-agi-arrive` 198** · `/situational-awareness-summary` 34 ·
+  `/how-close-is-agi` 32 · `/will-agi-arrive-2027` 30 · `/sam-altman-agi-prediction` 28 ·
+  `/ai-2027-scenario-explained` 28。
+- AI 引擎引荐 后14天 **9** vs 前14天 **9**（持平，未翻倍）；社区（EA Forum + LessWrong）7 vs 6。
+- 漏斗：`subscribe_click` 6 → `sub_open` 4 → `sub_submit` 2 → `sub_ok` **2**（均在首页）。
+  `subscribers` 仍 **2 行 status='stored'**（无 beehiiv key，正常态）。
+- `vote_cast` 44 · `calc_use` 21 · `invest_tool_click` 13（**Pro 桥仍 0**）· `tool_click` 8 ·
+  `index_click` 7 · `pick_ledger` 4 · `deeplink_pick` 2 · `affiliate_click` **0**（10-31 线 0/5）。
+- **两个数字必须按人读，不按事件读**：`calc_use{grade_game}` 17 次全部来自 09-07 一位读者
+  35 秒内的操作，其中 `complete:*` 5 次是同一人反复重算 → **09-28 判定线（≥10 次完成）未达标**；
+  `pick_ledger` 4 次全部来自同一个匿名 id `p_0368b360`，其中 3 次是同一个 pick。
+  `challenge_share` 仍为 **0**。
+- 站内搜索：修复上线后 24 小时内**尚无读者搜索**（唯一一行是 `location='mcp'` 的服务端写入）。
+  一天不构成证据，继续观察。
+
+**gridlings**（D1 bd3b1ca9，human 口径）
+- 28 天：pv 602 · play_start 342 · solve 135 · hint_used 182 · play_again 134。
+  今日：play_start 1，其余 0。
+- **itch 判定线（09-24，需累计 play_start≥150 且 solve≥25）：43 / 13，连续第 9 天零新增。**
+  按现趋势判定日不会达标。
+- **Playgama：PROMPT 09-08 被拒**（理由只有一句 "overall quality"，无逐条说明）。查出并已修两个
+  真缺陷：①门户包页脚那两个链接是根相对的，在 iframe 里指向门户自己的域 —— 15 个包全中；
+  ②PROMPT 桌面端格子上限 84px 把棋盘困在空屏里。连带修了删页脚导致 8 款 JS 空引用崩溃的坑
+  （smoke 测试当场抓到）。SINGULARITY 正在跑认证，其余六款审核中。
+
+**sourceradar / buysomething**：28 天 human pv **51**（近 7 天 6），bot 39；
+`pick_open` / `out_click` / `calc_use` 仍**全 0**。队列无项、rising 无 v≥200 的真实产品需求
+→ **今日不动作、不 bump**（连续第 6 天，符合低频站规矩）。
+
+**第①层 heartbeat**（09-08 12:27Z）：八站全部 **200**；thedollscout 与 goldrush
+`days_since_deploy=3`，其余 0。无异常。
+
+**里程碑**：无新达成。首个 agent MCP 调用仍不成立（`location='mcp'` 全是同秒批量、参数重复、
+含 canary 字样，四条件不过）。
+
+**owner 待办（沿用，未催）**：thedollscout `content/d1-snapshot.json` 仍缺
+（Cloudflare → API Tokens → deploy token → 加 `Account · D1 · Read`），自 09-02 挂起。
+
+## 2026-09-10（日结）
+
+**agiscorecard**：JS pv **1226/28d**；后 14 天 672 vs 前 14 天 560（**+20%**）。
+AI 引擎引荐 9 vs 10（**略降**，未翻倍）；社区 7 vs 6。
+- 落地页仍是 `/` 与 `/when-will-agi-arrive` 双头（约占全站 34%）。
+- 漏斗：`subscribe_click` 6 → `sub_open` 4 → `sub_submit` 2 → `sub_ok` **2**；
+  `subscribers` 2 行 status='stored'。Pro 桥 0，`affiliate_click` 0（10-31 线 0/5）。
+- 参与类明显上行：`vote_cast` 44→**63** · `deeplink_pick` 2→**7** · `tool_click` 8→**13** ·
+  `readnext_click` 13 · `pred_expand` 18 · `hot_topic_click` 7 · `agi_test_click` 6。
+  **全是页内、轻量、不跳转的东西在涨**，与 08-31 的结论一致。
+- 滑入框真实读数（排除 Compass 污染的 438 次）：展示 129 · 关闭 37 · 订阅点击 **0** ·
+  测试点击 1。**未拆除**——0/129 分辨不出「零」和「行业常见的 1–3%」。已补预登记杀线：
+  累计展示 300 次时结算（现 129/300）。
+- 站内搜索：修复上线三天，仍无读者搜索（唯一行是 `location='mcp'` 的服务端写入）。
+
+**gridlings**：28 天 pv 609 · play_start 349 · solve 135；**今日全 0**。
+**itch 判定线 43/13（09-24 需 150/25），连续第 10 天零新增。**
+CG 已按预登记线关闭（09-09）；拒稿原文仍未拿到，按「模板 = 关闭」执行中。
+Playgama：SINGULARITY 认证进行到激励广告一步，其余审核中。
+
+**sourceradar**：28 天真人 pv **52**（近 7 天 7），bot 46；交互事件仍全 0。
+连续第 7 天不动作、不 bump。
+
+**第①层 heartbeat**：读 data/fleet-health.json，八站全 200，无异常。
+
+**里程碑**：无新达成。
+
+**owner 待办（沿用，未催）**：thedollscout `content/d1-snapshot.json` 仍缺。
+
+## 2026-09-11(日结)
+
+**agiscorecard**:JS pv **1261/28d**;后 14 天 696 vs 前 14 天 565(**+23%**)。
+**AI 引擎引荐 12 vs 8(+50%)**——连续两天上行,但绝对值仍是个位数量级,未达「翻倍」里程碑。
+社区(EA+LW)6 vs 7。
+- 漏斗:`subscribe_click` 5 → `sub_open` 3 → `sub_submit` 1 → `sub_ok` **1**。
+  **注意:sub_ok 从 2 变 1 是 28 天窗口滚动导致旧的那条出窗,不是掉了一个订户。**
+  `subscribers` 表仍 2 行 status='stored'。
+- 参与类继续上行:`vote_cast` 63→**64** · `pred_expand` 18→**19** · `invest_tool_click` 13→**17** ·
+  `tool_click` 13→**14** · `deeplink_pick` 7→**8**。仍然是页内、轻量、不跳转的东西在涨。
+- `affiliate_click` 0(10-31 线 0/5)· Pro 桥 0 · `challenge_share` 0 · `embed_copy` 0。
+- 站内搜索:修复上线四天,仍无读者搜索(唯一行是 `location='mcp'` 的服务端写入)。
+- 活数字钩子:09-10 的 `sync_live_hooks` + validate 闸门已随部署上线,七个钩子一致。
+
+**gridlings**:28 天 pv 637 · play_start 350 · solve 135;今日 pv 4、其余 0。
+**itch 判定线 43/13(09-24 需 150/25),连续第 11 天零新增。**
+CG 已按预登记线关闭(09-09);拒稿原文仍未拿到,按「模板 = 关闭」执行中。
+
+**sourceradar**:28 天真人 pv **54**(近 7 天 9),bot 53;交互事件仍全 0。
+连续第 8 天不动作、不 bump。
+
+**第①层 heartbeat**(09-10 12:33Z):八站全 **200**,thedollscout / goldrush `days_since_deploy=5`,
+其余 0。无异常。**自查纠正一次**:本轮一开始误判 heartbeat 已停更两天,实为本地 clone 落后于
+origin/main,`git log` 读的是 HEAD 不是 origin/main。已对上,无事。
+
+**SunWatch 机械执行层**(09-10 上线,另一仓):三只持仓当日读数
+7709.HK 不新建 L4 · 2513.HK 清仓 R1(擦线 0.6%)· AXTI 减一档 R2。
+判定已改为只用走完的日线。**待 owner 确认一次**:20:30 那场简报最前面是否出现了【持仓执行】段。
+
+**里程碑**:无新达成。首个 agent MCP 调用仍不成立(四条件判据不过)。
+
+**owner 待办(沿用,未催)**:thedollscout `content/d1-snapshot.json` 仍缺。

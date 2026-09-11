@@ -24,9 +24,28 @@ jobs:
         with: { node-version: 22 }
       - working-directory: sites/agiscorecard
         run: node tools/fetch_odds.mjs
+      # ── AGI 行情板(2026-09-07)────────────────────────────────────────────────
+      # owner 问「能不能做个类 Polymarket 的抽佣平台」;裁定见
+      # docs/prediction-market-platform-2026-09.md:不做市场,做市场旁边那层。
+      # 搭载这条已有的周任务,**不新增 schedule**;增量 ~0.5 分钟/月。
+      # 取不到就跳过(continue-on-error):行情板是增量,不能拖累已经在跑的赔率快照。
+      - name: Fetch AGI market board
+        id: board
+        continue-on-error: true
+        working-directory: sites/agiscorecard
+        run: node tools/fetch_market_board.mjs
+      - name: Build /agi-prediction-markets
+        if: steps.board.outcome == 'success'
+        working-directory: sites/agiscorecard
+        run: |
+          python3 tools/gen_market_board.py
+          python3 tools/validate.py
       - name: Commit snapshot if changed
         run: |
           git config user.name 'Claude'
           git config user.email 'noreply@anthropic.com'
-          git add sites/agiscorecard/odds-snapshot.json
-          git diff --cached --quiet || { git commit -m "chore(odds): 预测市场赔率快照(runner 取,带 fetched 时间戳)"; git push; }
+          # 行情板那一步可能整步跳过,所以只 add 真的存在的文件
+          for f in odds-snapshot.json market-board.json agi-prediction-markets.html sitemap.xml llms.txt; do
+            [ -f "sites/agiscorecard/$f" ] && git add "sites/agiscorecard/$f" || true
+          done
+          git diff --cached --quiet || { git commit -m "chore(odds): 预测市场赔率快照 + AGI 行情板(runner 取,带 fetched 时间戳)"; git pull --rebase origin main; git push; }

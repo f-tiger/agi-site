@@ -3,6 +3,7 @@
 > Wie viel Watt braucht deine Infrarotheizung? Faustregel 60–100 W pro m² je nach Dämmung — für 20 qm also 1.200–2.000 Watt. Mit Rechner und Tabelle.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/infrarotheizung-watt-rechner.html
+
 Ob eine Infrarotheizung ihren Job macht, entscheidet fast nur eine Zahl: die Watt-Leistung im Verhältnis zur Raumgröße. Zu schwach dimensioniert läuft das Panel im Dauerbetrieb und der Raum wird trotzdem nicht warm, zu stark gekauft zahlst du unnötig drauf. Hier rechnest du deinen Bedarf in Sekunden aus — mit Rechner, Tabelle für 8 bis 30 m² und der Formel zum Selbstrechnen.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.

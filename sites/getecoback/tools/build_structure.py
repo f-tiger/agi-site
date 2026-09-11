@@ -24,7 +24,7 @@ GA4 = "G-E2V0Q9SJ9V"
 
 CATEGORIES = [
     ("klimaanlagen", "Klimaanlagen & Kühlen",
-     "Tragbare Klimaanlagen, Ventilatoren, Luftkühler und Kühlung ohne Installation — nach Raumgröße, Lautstärke und Budget."),
+     "Tragbare Klimaanlagen, Ventilatoren, Luftkühler und Kühlung ohne Bohren — für Mietwohnung und Altbau: nach Fenstertyp, Raumgröße und Budget."),
     ("heizen", "Heizen",
      "Effizient heizen: Klimaanlagen mit Heizfunktion, stromsparende Heizlüfter und Infrarotheizung."),
     ("luftqualitaet", "Luftqualität",
@@ -165,6 +165,19 @@ PERF_HINTS = ("<!--eb-perf-->"
 # inject_chrome) so new rules — e.g. the transaction layer below — propagate to
 # all already-built pages, not just freshly created ones.
 CHROME_STYLE = ("<style id=\"eb-chrome\">"
+              # Comparison tables overflowed a 390 px viewport (found 2026-08-31 on
+              # split-klimaanlage-ohne-kernbohrung: 412 px table, 390 px screen, so
+              # the whole page scrolled sideways). 45 pages carry table.cmp, and a
+              # comparison table is this site's most-cited element type — letting it
+              # scroll inside its own box beats letting it drag the page with it.
+              # .cmp itself is defined per page, so the fix belongs in the one
+              # stylesheet that is injected everywhere and replaced in place.
+              # ...and it is not only table.cmp: the most-cited page on the site
+              # (klimaanlage-reinigen, 109 citations) overflowed on an UNCLASSED
+              # maintenance table added on 08-28. This site has no layout tables,
+              # so every table is a content table and every one of them may scroll
+              # inside its own box rather than drag the page sideways.
+              "@media(max-width:560px){table{display:block;overflow-x:auto;max-width:100%}}"
               ".eb-nav{position:sticky;top:0;z-index:100;background:#0a4d7a}"
               ".eb-nav-in{max-width:1000px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px 16px}"
               ".eb-nav a{text-decoration:none}"
@@ -492,7 +505,10 @@ EN_STICKY = sticky_bar("Find the right unit", "Check price on Amazon →", en=Tr
 
 def crumb_trust(cat_key, title, en=False):
     """Visible breadcrumb + honest trust bar, injected right under the nav."""
-    t = re.sub(r'\s+', ' ', re.sub('<[^>]+>', '', title)).strip()
+    # h1() hands back the heading's inner HTML, entities included; unescape
+    # before re-escaping or "&amp;" in a heading shows up as a literal "&amp;"
+    # in the crumb (8 pages, caught by check_crumb_parity 2026-09-04).
+    t = htmllib.unescape(re.sub(r'\s+', ' ', re.sub('<[^>]+>', '', title)).strip())
     if en:
         crumb = ('<!--EB_CRUMB--><nav class="eb-crumb" aria-label="Breadcrumb">'
                  '<a href="/en/">Home</a><span>›</span><a href="/en/">All&nbsp;Guides</a>'
@@ -514,8 +530,10 @@ def crumb_trust(cat_key, title, en=False):
     return crumb + trust + "\n"
 
 
-def breadcrumb_jsonld(cat_key, title, url, en=False):
-    t = re.sub(r'\s+', ' ', re.sub('<[^>]+>', '', title)).strip()
+def breadcrumb_node(cat_key, title, url, en=False):
+    """The BreadcrumbList node alone (no @context), for splicing into a page
+    that already carries an @graph."""
+    t = htmllib.unescape(re.sub(r'\s+', ' ', re.sub('<[^>]+>', '', title)).strip())
     if en:
         items = ('{"@type":"ListItem","position":1,"name":"Home","item":"https://getecoback.com/en/"},'
                  f'{{"@type":"ListItem","position":2,"name":{jstr(t)},"item":{jstr(url)}}}')
@@ -523,9 +541,63 @@ def breadcrumb_jsonld(cat_key, title, url, en=False):
         items = ('{"@type":"ListItem","position":1,"name":"Startseite","item":"https://getecoback.com/"},'
                  f'{{"@type":"ListItem","position":2,"name":{jstr(CAT_SHORT[cat_key])},"item":"https://getecoback.com/kategorie/{cat_key}.html"}},'
                  f'{{"@type":"ListItem","position":3,"name":{jstr(t)},"item":{jstr(url)}}}')
+    return '{"@type":"BreadcrumbList","itemListElement":[' + items + ']}'
+
+
+def breadcrumb_jsonld(cat_key, title, url, en=False):
+    node = breadcrumb_node(cat_key, title, url, en)
+    # node starts with {"@type":…}; the standalone script carries @context first.
     return ('<script type="application/ld+json" id="eb-crumb-ld">'
-            '{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":['
-            + items + ']}</script>\n')
+            '{"@context":"https://schema.org",' + node[1:] + '</script>\n')
+
+
+LD_SCRIPT_RE = re.compile(r'<script\b[^>]*type="application/ld\+json"[^>]*>(.*?)</script>', re.S)
+
+
+def replace_breadcrumb_ld(html, cat_key, title, url, en=False):
+    """Replace-in-place, never insert-only (2026-09-04): the breadcrumb JSON-LD
+    was inserted once and then frozen, so 165 of 171 guide pages carried a
+    BreadcrumbList that disagreed with the visible crumb (old "Guides →
+    /en/#guides" trails, stale titles). Three shapes exist on the site:
+      1. our own <script … id="eb-crumb-ld"> → replaced whole;
+      2. a BreadcrumbList node inside a page's @graph (Article + FAQPage +
+         BreadcrumbList, 119 pages) → only that node is spliced, byte-for-byte
+         around it, so the Article/FAQ nodes and their formatting survive;
+      3. a standalone BreadcrumbList script without our id → replaced whole;
+      4. none → inserted before </head>.
+    check_crumb_parity.py asserts the result matches the visible nav."""
+    node = breadcrumb_node(cat_key, title, url, en)
+    m = re.search(r'<script\b[^>]*id="eb-crumb-ld"[^>]*>.*?</script>\n?', html, re.S)
+    if m:
+        return html[:m.start()] + breadcrumb_jsonld(cat_key, title, url, en) + html[m.end():]
+    for m in LD_SCRIPT_RE.finditer(html):
+        body = m.group(1)
+        if "BreadcrumbList" not in body:
+            continue
+        try:
+            data = json.loads(body)
+        except ValueError:
+            continue
+        if isinstance(data, dict) and isinstance(data.get("@graph"), list):
+            # Locate the node's exact text span: the nearest "{" before the
+            # "BreadcrumbList" literal that decodes to that node.
+            dec = json.JSONDecoder()
+            hit = body.find('"BreadcrumbList"')
+            pos = body.rfind("{", 0, hit)
+            while pos >= 0:
+                try:
+                    obj, end = dec.raw_decode(body, pos)
+                except ValueError:
+                    obj, end = None, None
+                if isinstance(obj, dict) and obj.get("@type") == "BreadcrumbList":
+                    new_body = body[:pos] + node + body[end:]
+                    start = m.start(1)
+                    return html[:start] + new_body + html[start + len(body):]
+                pos = body.rfind("{", 0, pos)
+            continue  # shape not understood — leave it, try the next script
+        if isinstance(data, dict) and data.get("@type") == "BreadcrumbList":
+            return html[:m.start()] + breadcrumb_jsonld(cat_key, title, url, en).rstrip("\n") + html[m.end():]
+    return html.replace("</head>", breadcrumb_jsonld(cat_key, title, url, en) + "</head>", 1)
 
 
 def jstr(s):
@@ -679,6 +751,12 @@ DEVICE_MODELS = {
  "dehum": [
    ("Comfee MDDF-20DEN7", "Preis-Leistung", "Bewährter Entfeuchter für Wohnräume.", "€€ · ca. 150–200 €", "Comfee+MDDF-20DEN7", "dehum"),
    ("MeacoDry Arete One 20L", "Leise & für Wäsche", "Herstellerangabe 20 l/Tag, HEPA-Filter und Wäschetrocknungs-Modus; in öffentlichen Tests vor allem für den leisen Betrieb gelobt.", "€€€ · Preis vor Ort prüfen", "MeacoDry+Arete+One+20L", "dehum"),
+   # Same line, one size up. "meacodry arete one 25l" is its own rising query
+   # (21.350, 09-11) and this shelf only offered the 20 L. Note that the 20 L
+   # above is the category's largest demand term this week (49.800) — its zero
+   # clicks over 60 days are an out-of-season zero, not a bad pick, which is why
+   # nothing was retired from this shelf.
+   ("MeacoDry Arete One 25L", "Dieselbe Reihe, größerer Raum", "Gleiche Baureihe wie oben, eine Stufe größer — eigener Nachfragebegriff in unserer Trends-Abfrage (Stand 11.09.). Nicht selbst getestet.", "Preis vor Ort prüfen", "MeacoDry+Arete+One+25L", "dehum"),
    ("Für den Keller", "Dauerbetrieb", "Modelle mit Ablaufschlauch für Dauerbetrieb.", "je nach Raumgröße", "luftentfeuchter+keller+ablaufschlauch", "dehum"),
  ],
  "purifier": [
@@ -688,7 +766,14 @@ DEVICE_MODELS = {
  "heater": [
    ("Schmidbauer Hybrid Pro 600 W", "Kleine Räume", "Infrarot plus Konvektion mit stufenlosem Thermostat; der Hersteller nennt 6–12 m² als Einsatzbereich.", "€€ · Preis vor Ort prüfen", "Schmidbauer+Hybrid+Pro+600+W+Infrarotheizung", "heater"),
    ("Schmidbauer ISP T 700 W", "Auch fürs Bad", "700 W, laut Hersteller für Feuchträume geeignet — die Antwort auf „Heizung fürs Bad“, ohne Heizlüfter-Dauerlauf.", "€€ · Preis vor Ort prüfen", "Schmidbauer+ISP+T+700+Infrarotheizung", "heater"),
-   ("Midea NTH20-17BR", "Schnell warm", "Keramik-Heizlüfter mit zwei Stufen (1.200 / 2.000 W) — für kurzes Aufheizen, nicht für den Dauerbetrieb.", "€ · Preis vor Ort prüfen", "Midea+NTH20-17BR+Heizl%C3%BCfter", "heater"),
+   # 2026-09-11 Nachfrage-Abgleich (data/trends-rising.json, geo=DE, 09-11,
+   # Seed nicht polluted): "heizlüfter 300 watt" ist mit 50.650 die größte
+   # produktförmige Anfrage beider Herbst-Seeds, und dieses Regal hatte nichts
+   # unter 600 W. Der ehrliche Eintrag ist nicht "hier ist ein billiger Heizer",
+   # sondern was 300 W leisten und was nicht — das kann diese Seite mit ihrer
+   # eigenen veröffentlichten Rechnung beantworten.
+   ("Heizlüfter 300 Watt", "Die meistgesuchte Kleinstklasse", "Meistgesuchte Leistungsklasse dieser Woche in unserer Google-Trends-Abfrage (Stand 11.09.) — Nachfrage-Signal, kein Testurteil, nicht selbst getestet. Ehrlich dazu: 300 W wärmen die Person davor, keinen Raum.", "Preis vor Ort prüfen", "heizl%C3%BCfter+300+watt", "heater"),
+   ("Midea NTH20-17BR", "Schnell warm, nicht sparsam", "Keramik-Heizlüfter mit zwei Stufen (1.200 / 2.000 W) — für kurzes Aufheizen, nicht für den Dauerbetrieb. Zur zweitgrößten Anfrage der Woche, „energiesparender Heizlüfter“ (48.600): sparsam macht ihn nicht das Gerät, sondern die Abschaltung — 2.000 W kosten 2.000 W, solange sie laufen.", "€ · Preis vor Ort prüfen", "Midea+NTH20-17BR+Heizl%C3%BCfter", "heater"),
    ("Klima mit Heizfunktion", "2-in-1", "Kühlt im Sommer, heizt im Winter.", "ab 300 €", "klimaanlage+mit+heizfunktion", "ac"),
  ],
  # Balcony storage is the highest-basket category on this site — and the one
@@ -758,6 +843,15 @@ def device_of(slug):
             # the usual tokens; without this it would fall through to "ac" and get
             # the cooling components on a page about a parked, unheated vehicle.
             or "feuchtigkeit-winter" in s
+            # Mould pages are humidity pages (2026-09-09). Without this the
+            # "schimmel-" family fell through to "ac": schimmel-im-keller-entfernen
+            # was live carrying the heatwave band and cooling products on a page
+            # about mould in an unheated cellar. Found while adding three more.
+            # Prefix, not substring: mobile-klimaanlage-stinkt-schimmel is a
+            # page about an air conditioner that smells, whose reader owns an AC
+            # and needs filters and cleaner. A substring test would have moved
+            # this site's best search-driven page into the wrong device family.
+            or s.startswith(("schimmel-", "stockflecken-"))
             # Humidifier pages live in the humidity family too: routing them to
             # "dehum" keeps every ac-only component (sizer, heat-energy box,
             # climate box) off the page; the card grid itself is overridden by
@@ -842,6 +936,51 @@ CONTEXT_MODELS = {
  # durables this site's A-grade data shows converting. One switch-instead-of-fix
  # chip stays, honestly labelled, because the page has an explicit
  # "Alternativen im Blick" section.
+ # Split-Cluster (2026-08-31). The site's highest-ticket path was selling the
+ # cheapest device on it. The BTU calculator's fourth tier routes every room
+ # above 13.500 BTU here because a monoblock is genuinely at its limit — and
+ # split-klimaanlage-ohne-kernbohrung, portasplit-vs-monoblock and
+ # midea-portasplit-kaufen then showed that reader the same monoblock cards as
+ # a 15 m² page (EX105 / PAC N90 / Comfee / Klarstein). The whole cluster is
+ # built around the Midea PortaSplit, which this site already documents as sold
+ # out, so its own premise had no current answer.
+ #
+ # Correction to a first reading of this cluster: the tower-fan and portable-AC
+ # links on midea-portasplit-kaufen are NOT a mis-sell. Both sit inside the
+ # "for whom is this not worth it" section ("only hot on a few days — then a fan
+ # is enough", "a portable at ~250 € is louder and less efficient but available
+ # today"). That is this site's honest ordering doing its job. Left alone.
+ #
+ # Two contradictions resolve at once: a CONTEXT_MODELS page also drops out of
+ # EB_SIZER, and the sizer's top band was recommending a monoblock on the page
+ # whose thesis is that a monoblock has run out of room.
+ #
+ # Quick-Connect is the German term for what this cluster is about: pre-filled,
+ # self-sealing lines, so no flaring tool and no vacuum pump. Models confirmed
+ # on amazon.de listings, with public comparison coverage (homeandsmart,
+ # klimaanlagentest.de; notebookcheck reported the 9.000 BTU set at 449 €).
+ # SEARCH LINKS BY NAME, NO ASIN — candidates exist (B0F7XDNQRN, B0F7XC611X)
+ # but today's EX105 closure is exactly why a listing title read through a
+ # search index is not verification. They go in when someone opens the listing.
+ #
+ # Honest order, not commission order: 9.000 BTU first because most readers of
+ # this site size below 25 m²; the 12.000 for the rooms the fourth tier sends
+ # here; KESSER third because two competing listings for the same model make it
+ # the least unambiguous of the three.
+ **{slug: [
+   ("TCL BreezeIn Quick Connect 9.000 BTU", "Quick-Connect, bis ca. 25 m²",
+    "Vorgefüllte Leitungen mit Schnellkupplung — kein Bördeln, kein Vakuumieren. 2,6 kW, R32, kühlt und heizt. In öffentlichen Vergleichen als besonders leise geführt.",
+    "€€€ · ab ca. 450 €", "TCL+BreezeIn+Quick+Connect+9000+BTU", "ac"),
+   ("TCL BreezeIn Quick Connect 12.000 BTU", "Für die großen Räume",
+    "3,4 kW — die Klasse, in die dich der BTU-Rechner oberhalb von 13.500 BTU schickt, weil ein Monoblock dort ausläuft. R32, App- und Sprachsteuerung.",
+    "€€€ · Preis vor Ort prüfen", "TCL+BreezeIn+Quick+Connect+12000+BTU", "ac"),
+   ("KESSER Split Quick Connect 12.000 BTU", "Mit Heizfunktion im Set",
+    "3,4 kW, R32, Montagematerial im Lieferumfang. Achte beim Kauf auf die Variante — von diesem Modell stehen mehrere Angebote nebeneinander.",
+    "€€€ · Preis vor Ort prüfen", "KESSER+Split+Klimaanlage+Quick+Connect+12000+BTU", "ac"),
+ ] for slug in ("split-klimaanlage-ohne-kernbohrung",
+                "portasplit-vs-monoblock",
+                "midea-portasplit-kaufen")},
+
  "growatt-noah-2000-probleme": [
    ("Energiemessgerät (Steckdose)", "Erst messen", "Zeigt, was der NOAH wirklich liefert — die Grundlage für jede Ausgangsleistungs-Diagnose, unabhängig von der App.", "€ · ca. 10–20 €", "energiekostenmessger%C3%A4t+steckdose", "battery"),
    ("WLAN-Messsteckdose", "App-unabhängig loggen", "Protokolliert die Einspeisung auch dann, wenn die Growatt-App gerade streikt — mit eigener Verlaufskurve.", "€ · ca. 15–30 €", "wlan+steckdose+strommessung", "battery"),
@@ -972,6 +1111,36 @@ CONTEXT_MODELS = {
    ("Infrarot-Heizstrahler (Wand/Decke)", "Punktwärme am Arbeitsplatz", "Wärmt dich und die Werkbank direkt statt der Garagenluft — der Einsatzfall, für den Infrarot in der ungedämmten Garage gebaut ist.", "Preis vor Ort prüfen", "infrarot+heizstrahler+werkstatt+wandmontage", "heater"),
    ("Frostwächter mit Thermostat", "Nur frostfrei halten", "Springt erst unterhalb der eingestellten Temperatur an — für reinen Frostschutz die sparsamere Lösung als ein Panel im Dauerbetrieb.", "Preis vor Ort prüfen", "frostw%C3%A4chter+thermostat", "heater"),
    ("Steckdosen-Thermostat", "Abschaltung nachrüsten", "Schaltet einen vorhandenen Strahler temperaturgesteuert — Dauerbetrieb ist laut der Rechnung auf dieser Seite der teuerste Fehler.", "Preis vor Ort prüfen", "steckdosen+thermostat+heizung", "heater"),
+ ],
+ "schimmel-wand-kommt-wieder": [
+   ("Hygrometer (innen)", "Die Zahl vor jedem Kauf", "Erst messen, dann kaufen: entscheidend ist der Wert an der kalten Stelle, nicht in der Raummitte. Rund 10 €.", "Preis vor Ort prüfen", "hygrometer+innen", "purifier"),
+   ("Infrarot-Thermometer", "Wie kalt ist die Ecke wirklich", "Misst die Oberflächentemperatur der Wand — genau die Größe, um die es auf dieser Seite geht.", "Preis vor Ort prüfen", "thermometer+infrarot+oberfl%C3%A4che", "purifier"),
+   ("Luftentfeuchter", "Vorbeugen, nicht heilen", "Hält die Raumfeuchte unten, damit an der kalten Stelle gar nichts kondensiert. Vorhandenen Bewuchs entfernt er nicht.", "Preis vor Ort prüfen", "luftentfeuchter", "dehum"),
+ ],
+ "schimmel-bad-fugen": [
+   ("Duschabzieher", "Die wirksamste Minute", "Das Wasser von Fliesen und Fuge zu ziehen ist laut dieser Seite der wirksamste Einzelschritt — und der billigste.", "Preis vor Ort prüfen", "duschabzieher+abzieher+dusche", "purifier"),
+   ("Sanitärsilikon", "Wenn die Fuge erneuert wird", "Sobald der Belag im Silikon sitzt, hilft kein Reiniger mehr — dann wird die Fuge gezogen und neu gesetzt.", "Preis vor Ort prüfen", "sanit%C3%A4r+silikon+schimmelresistent", "purifier"),
+   ("Hygrometer (innen)", "Der Spitzenwert nach dem Duschen", "Zeigt, ob die Feuchte in der halben Stunde danach wirklich runtergeht. Rund 10 €.", "Preis vor Ort prüfen", "hygrometer+innen", "purifier"),
+ ],
+ "schimmel-kleiderschrank": [
+   ("Hygrometer (innen)", "Messen, wo es zählt", "Der Wert hinter und im Schrank entscheidet, nicht der in der Raummitte. Rund 10 €.", "Preis vor Ort prüfen", "hygrometer+innen", "purifier"),
+   ("Luftentfeuchter-Granulat", "Für den Schrank selbst", "Passiv, klein, für ein geschlossenes Möbel — der elektrische Entfeuchter ist für den Raum, nicht für den Schrank.", "Preis vor Ort prüfen", "luftentfeuchter+granulat", "dehum"),
+   ("Granulat-Nachfüllpack", "Der laufende Posten", "Granulat ist ein Verbrauchsmaterial — das gehört in die Rechnung, bevor du dich dafür entscheidest.", "Preis vor Ort prüfen", "raumentfeuchter+granulat+nachf%C3%BCll", "dehum"),
+ ],
+ "infrarotheizung-badezimmer": [
+   ("Infrarotheizung fürs Bad", "Der Normalfall", "Panel auf die freie Wandfläche. Die Watt-Tabelle oben nennt für ein 6-m²-Bad je nach Dämmung 360 bis 600 W — nicht selbst getestet.", "Preis vor Ort prüfen", "infrarotheizung+bad", "heater"),
+   ("Spiegelheizung", "Wenn keine Wand frei ist", "Löst das eigentliche Bad-Problem, den Platz. Schutzart und Montage stehen in der Produktangabe und gehören dort geprüft.", "Preis vor Ort prüfen", "spiegelheizung+bad", "heater"),
+   ("Steckdosen-Thermostat mit Timer", "Damit es nur morgens läuft", "Die Gegenrechnung auf dieser Seite betrifft das vergessene Panel — die Abschaltung ist der billigste Schutz davor.", "Preis vor Ort prüfen", "steckdosen+thermostat+heizung", "heater"),
+ ],
+ "infrarotheizung-standgeraet": [
+   ("Infrarotheizung als Standgerät", "Ohne Bohren, ohne Erlaubnis", "Aufstellen, einstecken, beim Auszug rückstandslos mitnehmen — der eine echte Vorteil dieser Bauform.", "Preis vor Ort prüfen", "infrarotheizung+standger%C3%A4t", "heater"),
+   ("Steckdosen-Thermostat mit Timer", "Damit es nicht den Abend durchläuft", "Die Rechnung auf dieser Seite zeigt: teuer wird der Dauerbetrieb, nicht die Wattzahl.", "Preis vor Ort prüfen", "steckdosen+thermostat+heizung", "heater"),
+   ("Energiekostenmessgerät", "Erst messen, dann glauben", "Zeigt, was das Gerät wirklich zieht — glaub keiner Rechnung, auch unserer nicht.", "Preis vor Ort prüfen", "energiekostenmessger%C3%A4t+steckdose", "purifier"),
+ ],
+ "infrarotheizung-decke-oder-wand": [
+   ("Infrarotheizung zur Deckenmontage", "Wenn keine Wand mehr frei ist", "Strahlt nach unten auf die Zone darunter. Befestigungsmaterial und zulässiger Untergrund stehen in der Montageanleitung.", "Preis vor Ort prüfen", "infrarotheizung+deckenmontage", "heater"),
+   ("Bildheizung", "Dasselbe Gerät mit Motiv", "Reine Optikfrage — die Wattzahl entscheidet, nicht das Bild. Die Auswahl an Größen ist kleiner als bei schlichten Panels.", "Preis vor Ort prüfen", "infrarotheizung+bild", "heater"),
+   ("Infrarotheizung mit Thermostat", "Die sinnvolle Grundausstattung", "Ohne Thermostat läuft das Panel durch — egal, ob es an der Wand oder an der Decke hängt.", "Preis vor Ort prüfen", "infrarotheizung+mit+thermostat", "heater"),
  ],
  "infrarotheizung-ratgeber": [
    ("Schmidbauer Infrarotheizung", "Meistgesucht diese Woche", "Die aktuell meistgesuchte Marke in unserer täglichen Google-Trends-Abfrage (Stand 25.08.). Nachfrage-Signal, kein Testurteil — nicht selbst getestet.", "Preis vor Ort prüfen", "Schmidbauer+Infrarotheizung", "heater"),
@@ -1302,27 +1471,57 @@ def model_card(entry, en=False):
 
 def models_block(device, en=False, slug=None):
     table = DEVICE_MODELS_EN if en else DEVICE_MODELS
-    entries = context_entries(slug, en) or table.get(device) or table["ac"]
+    ctx = context_entries(slug, en)
+    entries = ctx or table.get(device) or table["ac"]
     cards = "".join(model_card(e, en=en) for e in entries)
+    # The "no drilling, no installer" line is true of the default monoblock
+    # grid only. CONTEXT grids (Quick-Connect split, camper, accessory sets)
+    # and the fan/shade/heater families get a neutral fallback instead —
+    # the split pages carry an F-Gas clause that says the opposite.
+    monoblock_grid = (device == "ac" and not ctx)
     # The single most common cause of "bringt nichts" disappointment in community
     # threads is an unsealed window: the exhaust builds negative pressure and pulls
     # the hot air straight back in. Say it at the buying moment, not three pages later.
-    if en:
+    if en and monoblock_grid:
         head, sub = ("Recommended models",
+                     "Every portable unit here: <strong>no drilling, no installer</strong>, usually "
+                     '<a href="/en/guide/portable-ac-rented-apartment.html">no landlord permission</a> — '
+                     "hose to the window, seal around it, running in about 10 minutes, and it moves out with you. "
+                     'The one condition: without a <a href="/en/guide/portable-ac-tilt-and-turn-windows.html">sealed window</a> '
+                     "every portable AC loses most of its effect — hot air gets pulled straight back in. "
                      "Compiled from public tests & customer reviews — not tested by us. "
                      "Prices vary; check the current price on Amazon. Illustrations, not product photos. "
-                     'One thing first: without a <a href="/en/guide/portable-ac-tilt-and-turn-windows.html">sealed window</a> '
-                     "every portable AC loses most of its effect — hot air gets pulled straight back in. "
                      # A third of all clicks come from outside the DACH region, and the
                      # EU-English readers among them often don't know amazon.de will
                      # serve them in English — that unknown is checkout friction.
                      "Amazon.de ships to most EU countries, with site and checkout available in English.")
-    else:
+    elif en:
+        head, sub = ("Recommended models",
+                     "Compiled from public tests & customer reviews — not tested by us. "
+                     "Prices vary; check the current price on Amazon. Illustrations, not product photos. "
+                     "Amazon.de ships to most EU countries, with site and checkout available in English.")
+    elif not monoblock_grid:
         head, sub = ("Empfohlene Modelle",
-                     "Aus öffentlichen Tests & Kundenbewertungen zusammengestellt — nicht selbst "
-                     "getestet. Preise schwanken, aktuellen Preis auf Amazon prüfen. Symbolbilder. "
-                     'Vorab das Wichtigste: Ohne <a href="/guide/klimaanlage-kippfenster.html">dichte Fensterabdichtung</a> '
-                     "verliert jeder Monoblock den Großteil seiner Wirkung — die warme Luft wird sonst direkt zurückgesaugt.")
+                     "Aus öffentlichen Tests & Kundenbewertungen zusammengestellt — nicht selbst getestet. "
+                     "Preise schwanken, aktuellen Preis auf Amazon prüfen. Symbolbilder.")
+    else:
+        # 2026-09-05, owner: "the real need behind an air conditioner is
+        # no installation." The site's own numbers agree — its top-earning
+        # pages are the camper, the tilt-and-turn window, the roof window, the
+        # split-without-drilling — yet this line opened with a WARNING about
+        # window sealing. Same facts, need first, condition second. Every
+        # figure and claim here is already published on the linked pages
+        # ("in 10 Minuten erledigt", "kein Bohren, rückstandslos", "mobil ohne
+        # Bohren geht ohne Erlaubnis"); nothing new is asserted.
+        head, sub = ("Empfohlene Modelle",
+                     "Alle Monoblöcke hier: <strong>kein Bohren, kein Installateur</strong>, in der Regel "
+                     '<a href="/guide/klimaanlage-mietwohnung.html">ohne Erlaubnis des Vermieters</a> — '
+                     "Schlauch ans Fenster, Abdichtung drum, in rund 10 Minuten läuft es, und beim Auszug "
+                     "nimmst du es rückstandslos mit. Die eine Bedingung: Ohne "
+                     '<a href="/guide/klimaanlage-kippfenster.html">dichte Fensterabdichtung</a> '
+                     "verliert jeder Monoblock den Großteil seiner Wirkung — die warme Luft wird sonst direkt zurückgesaugt. "
+                     "Aus öffentlichen Tests & Kundenbewertungen zusammengestellt — nicht selbst getestet. "
+                     "Preise schwanken, aktuellen Preis auf Amazon prüfen. Symbolbilder.")
     # The default sub warns about window sealing — right for every monoblock,
     # nonsense under battery cards. Storage gets the one sentence that actually
     # protects this buyer: most subsidy programmes void the grant if the
@@ -1458,9 +1657,17 @@ def qm_toppick(slug):
 
 def toppick_block(device, en=False, slug=None):
     table = DEVICE_MODELS_EN if en else DEVICE_MODELS
-    entries = (context_entries(slug, en) or (None if en else qm_toppick(slug))
+    ctx = context_entries(slug, en)
+    entries = (ctx or (None if en else qm_toppick(slug))
                or table.get(device) or table["ac"])[:3]
     head, more = TOPPICK_HEAD[en]
+    # Need-first framing (2026-09-05): every device in the default AC set is a
+    # monoblock or the Quick-Connect PortaSplit — "ohne Bohren" is true of all
+    # of them. CONTEXT pages are excluded on purpose: the split cluster's
+    # sets carry an installer clause, and a blanket promise there would
+    # contradict the page's own refrigerant section.
+    if device == "ac" and not ctx:
+        head = head + (" — all without drilling" if en else " — alle ohne Bohren")
     pills = ""
     for name, role, _why, _price, q, _svg in entries:
         url = amazon_url(q, name)
@@ -1917,7 +2124,10 @@ HEATENERGY_BOX = (
     # Twenty-one pages advise pre-cooling on a timer; none of the cooling
     # cluster linked the accessory that does it. With the honest catch stated:
     # a smart plug only works if the unit powers back on by itself.
-    '<p style="margin:10px 0 0;font-size:12.5px;color:#5a5340;">Vorkühlen automatisieren: eine '
+    # Werbekennzeichnung at the ad itself (check_adlabel.py, denylist since
+    # 2026-09-04 — this block shipped 69 pages without one).
+    f'<p style="margin:10px 0 0;font-size:11px;color:#8a99a6;">{AD_LABEL[False]}</p>'
+    '<p style="margin:4px 0 0;font-size:12.5px;color:#5a5340;">Vorkühlen automatisieren: eine '
     '<a href="https://www.amazon.de/s?k=wlan+steckdose+zeitschaltuhr&amp;tag=getecoback-21" target="_blank" '
     'rel="sponsored noopener" style="color:#0f6ba8;font-weight:700;">WLAN-Steckdose mit Timer</a> (ab ~10&nbsp;€) '
     'schaltet das Gerät mittags ein — <strong>funktioniert nur, wenn dein Gerät nach Stromzufuhr von selbst '
@@ -2043,7 +2253,7 @@ function calc(){
   var qp=qm<=12?10:qm<=17?15:qm<=22?20:qm<=27?25:qm<=35?30:40;
   r.innerHTML='<div style="font-size:13.5px;color:#4a5a67;">Empfohlene Kühlleistung für '+qm+' m²</div>'+
     '<div style="font-size:30px;font-weight:800;color:#0a4d7a;line-height:1.2;">ca. '+btu.toLocaleString("de-DE")+' BTU</div>'+
-    (model?'<div style="margin:8px 0 0;font-size:14.5px;">Passende Geräteklasse ('+label+'): <strong>'+model+'</strong></div>':'<div style="margin:8px 0 0;font-size:14.5px;">Klasse: <strong>'+label+'</strong> — hier ist ein tragbarer Monoblock am Limit. Ehrlich empfehlen können wir dafür keines unserer Geräte; realistisch sind ein <a href="/guide/split-klimaanlage-ohne-kernbohrung.html">Splitgerät ohne Kernbohrung</a> oder zwei kleinere Geräte.</div>')+
+    (model?'<div style="margin:8px 0 0;font-size:14.5px;">Passende Geräteklasse ('+label+'): <strong>'+model+'</strong> — kein Bohren: Schlauch ans Fenster, Abdichtung drum.</div>':'<div style="margin:8px 0 0;font-size:14.5px;">Klasse: <strong>'+label+'</strong> — hier ist ein tragbarer Monoblock am Limit. Ehrlich empfehlen können wir dafür keines unserer Geräte; realistisch sind ein <a href="/guide/split-klimaanlage-ohne-kernbohrung.html">Splitgerät ohne Kernbohrung</a> oder zwei kleinere Geräte.</div>')+
     '<div style="margin:12px 0 0;display:flex;gap:9px;flex-wrap:wrap;">'+
     (model?'<a href="'+url+'" target="_blank" rel="sponsored noopener" style="background:#f59e0b;color:#1a2733;font-weight:800;padding:10px 16px;border-radius:8px;text-decoration:none;font-size:14px;">Preis auf Amazon prüfen →</a>':'')+
     '<a href="/guide/klimaanlage-'+qp+'-qm.html" style="background:#fff;color:#0a4d7a;border:1px solid #cfe0ea;font-weight:700;padding:10px 16px;border-radius:8px;text-decoration:none;font-size:14px;">Alle Empfehlungen für '+qp+' m² →</a>'+
@@ -2381,26 +2591,123 @@ STROMNOW = ('<!--EB_STROMNOW--><div id="eb-stromnow"></div>\n<script>(function()
 # rewritten: searching "De'Longhi Pinguino" on amazon.com is a dead result, and
 # those visitors are already served named US models by the EB_USMARKET bridge.
 # GB stays unfixed (no .co.uk tag — owner side).
+# Wrapped in DOMContentLoaded (2026-09-04): the block is injected above
+# EB_TRACK, i.e. before the closing </body> but also before any block that a later
+# injector appends below it — and querySelectorAll at parse time cannot see
+# anchors the parser has not reached yet, so those links were never switched.
+US_TAG = "ecoback0d-20"
+
+# US marketplace switch. Measured defect (2026-09-06): 15 of 107 affiliate
+# clicks in 28 days came from the United States and every one of them landed on
+# amazon.de, where the visitor cannot buy — amazon.de prices in euro and ships
+# within the EU. The switch already existed but carried a hand-written map of
+# eleven German terms (dehumidifier and infrared-heater sizes only). It covered
+# 22 of the 398 Amazon links in the English section, and not one of the terms US
+# readers actually clicked: "De'Longhi Pinguino PAC EX105" (6 clicks), "Comfee
+# MPPH-09CRN7" (4), Klarstein, Midea PortaSplit, Fensterabdichtung,
+# Kondensatpumpe, Luftkühler. A fixed list of product names cannot keep up with
+# 252 distinct search terms across the site, so classification moves to ordered
+# keyword rules — specific accessory rules first, broad category rules last.
+#
+# The rules map to CATEGORIES, never to a substitute model. A reader who clicked
+# a named European unit is sent to the US category, not to some other maker's box
+# relabelled as their choice; naming US models is the job of the EB_USMARKET
+# bridge above, where every pick is attributed to a named US outlet. Terms with
+# no US counterpart — balcony solar plants, battery storage, cut-to-size acrylic
+# — deliberately match nothing and keep their amazon.de link.
+
+US_SWITCH_RULES = [
+    ('fensterabdichtung|fensterdichtung|abdichtung|abdicht|schaumstoffband|fensterabluft|kippfenster|hohlkammerplatte|xps platte|seal kit', 'portable ac window seal kit'),
+    ('abluftschlauch|isolierschlauch|abluft|schlauchadapter', 'portable ac exhaust hose'),
+    ('kondensatpumpe', 'condensate removal pump'),
+    ('kondensatschlauch|ablaufschlauch|mit schlauch|drain hose', 'dehumidifier drain hose'),
+    ('reiniger|verdampfer|schimmelentferner|coil cleaner', 'air conditioner coil cleaner'),
+    ('lamellenkamm|kühlrippen', 'air conditioner fin comb'),
+    ('ersatzfilter|filtermatte|hepa filter', 'replacement air filter'),
+    ('abdeckhaube', 'air conditioner cover'),
+    ('antivibrationsmatte|vibrationsd', 'anti vibration pad'),
+    ('kühlakku', 'cooler ice pack'),
+    ('antikalk|entkalker|zitronens', 'citric acid descaler'),
+    ('dachklimaanlage', 'rv rooftop air conditioner'),
+    ('thermomatte', 'rv windshield cover'),
+    ('granulat', 'moisture absorber'),
+    ('hygrometer|hygrostat', 'indoor hygrometer'),
+    ('thermometer', 'indoor outdoor thermometer'),
+    ('luftbefeuchter|verdunster', 'cool mist humidifier'),
+    ('luftreiniger|air purifier|ac2887', 'hepa air purifier'),
+    ('fenstersauger', 'window vacuum'),
+    ('dreame|bissel|saugwischer', 'wet dry vacuum'),
+    ('tineco', 'tineco filter'),
+    ('hitzeschutzfolie|sonnenschutzfolie|isolierfolie|reflektorfolie', 'window insulation film'),
+    ('rollo|jalousie', 'blackout roller shade'),
+    ('thermovorhang|verdunkelungsvorhang|hitzeschutz.*vorhang', 'thermal blackout curtain'),
+    ('türdichtung|zugluftstopper', 'door draft stopper'),
+    ('markise|sonnensegel|ampelschirm', 'patio shade sail'),
+    ('sonnenschutz.*(scheibe|auto)|auto sonnenschutz', 'car sun shade'),
+    ('sonnenschutz', 'sun shade'),
+    ('kühlmatte hund|kühlweste hund', 'dog cooling mat'),
+    ('trinkbrunnen katze', 'cat water fountain'),
+    ('wäscheständer|standtrockner|waeschest', 'clothes drying rack'),
+    ('heizdecke|heizkissen|wärmeunterbett|waermeunterbett', 'electric heated blanket'),
+    ('handtuchheizk', 'electric towel warmer'),
+    ('frostwächter', 'frost protection heater'),
+    ('heizstrahler|infrarot heiz|infrarotheizung|schmidbauer|spiegelheizung|bildheizung', 'infrared panel heater'),
+    ('heizlüfter|heizluefter|nth20', 'space heater'),
+    ('thermostat', 'plug in thermostat'),
+    ('energiekostenmess|strommessger|messfunktion|strommessung', 'electricity usage monitor'),
+    ('steckdose|steckdosenleiste|zeitschaltuhr', 'smart plug'),
+    ('wasserwaage', 'small spirit level'),
+    ('magnetband', 'self adhesive magnetic tape'),
+    ('klebeband', 'aluminum foil tape'),
+    ('fenstergriff|abus f', 'window security lock'),
+    ('adsorptionstrockner|luftentfeuchter|entfeuchter|meacodry|trotec ttk|pro breeze|dehumidifier', 'dehumidifier'),
+    ('luftkühler|luftkuehler|air cooler', 'evaporative air cooler'),
+    ('turmventilator|tower fan', 'tower fan'),
+    ('standventilator', 'pedestal fan'),
+    ('12v|campingventilator', '12v fan'),
+    ('deckenventilator', 'ceiling fan'),
+    ('ventilator|meacofan|rowenta', 'room fan'),
+    ('klimaanlage|klimager|pinguino|chillflex|portasplit|breezein|quick connect|suntec|bosch cool|remko|clima butler|air conditioner|split', 'portable air conditioner'),
+]
+
 USSWITCH = ('<!--EB_USSWITCH--><script>(function(){var tz="";'
-            'try{tz=Intl.DateTimeFormat().resolvedOptions().timeZone||"";}catch(e){return;}'
-            'if(tz.indexOf("America/")!==0)return;'
-            'var MAP={"luftentfeuchter":"dehumidifier",'
-            '"luftentfeuchter 10 liter":"dehumidifier","luftentfeuchter 12 liter":"dehumidifier",'
-            '"luftentfeuchter 20 liter":"dehumidifier","luftentfeuchter 25 liter":"dehumidifier",'
-            '"luftentfeuchter 30 liter":"dehumidifier",'
-            '"infrarotheizung 600 watt":"space heater","infrarotheizung 1000 watt":"space heater",'
-            '"infrarotheizung 1500 watt":"space heater","infrarotheizung 2000 watt":"space heater",'
-            '"infrarotheizung set":"space heater"};'
-            'document.querySelectorAll(\'a[href*="amazon.de/s?k="]\').forEach(function(a){'
-            'try{var u=new URL(a.href);var k=u.searchParams.get("k");if(!k)return;'
-            'var us=MAP[k.toLowerCase()];if(!us)return;'
-            'a.href="https://www.amazon.com/s?k="+encodeURIComponent(us)+"&tag=ecoback0d-20";'
-            'a.setAttribute("data-eb-ussw","1");}catch(e){}});'
+            'try{tz=Intl.DateTimeFormat().resolvedOptions().timeZone||"";}catch(e){tz="";}'
+            'var NA=["US","CA","MX","PR","BR","AR","CL","CO","PE"];'
+            # Rendered from US_SWITCH_RULES rather than duplicated here; the gate
+            # reads the Python list, so a second copy would be a gate that lies.
+            'var R=' + json.dumps([[a, b] for a, b in US_SWITCH_RULES],
+                                  ensure_ascii=True, separators=(',', ':')) + ';'
+            'var sw=function(a){if(!a||!a.href||a.href.indexOf("amazon.de/s?k=")<0)return;'
+            'try{var u=new URL(a.href);var k=(u.searchParams.get("k")||"").toLowerCase();if(!k)return;'
+            'for(var i=0;i<R.length;i++){if(R[i][0]&&R[i][0].test(k)){'
+            'a.href="https://www.amazon.com/s?k="+encodeURIComponent(R[i][1])+"&tag=ecoback0d-20";'
+            'a.setAttribute("data-eb-ussw","1");return;}}}catch(e){}};'
+            # Everything that touches the page happens here, so it runs once and only
+            # for a reader who can actually buy on amazon.com.
+            'var run=function(){'
+            'for(var i=0;i<R.length;i++){try{R[i][0]=new RegExp(R[i][0]);}catch(e){R[i][0]=null;}}'
+            'var pass=function(){try{document.querySelectorAll(\'a[href*="amazon.de/s?k="]\').forEach(sw);}catch(e){}};'
+            'if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",pass);else pass();'
+            # Several components build their Amazon links after load (the sticky bar, the
+            # sizer, the window calculator), so the sweep cannot see them. Catch those at
+            # click time in the capture phase: this block sits above EB_TRACK, so its
+            # listener runs first and the tracker records the rewritten URL.
+            'document.addEventListener("click",function(e){'
+            'try{var a=e.target&&e.target.closest&&e.target.closest(\'a[href*="amazon.de/s?k="]\');if(a)sw(a);}catch(err){}},true);};'
+            # Cheapest path first. America/* decides alone, no network. Europe/* is 84 % of
+            # this site's traffic and is decided the same way, so it never pays for a
+            # request. Everything else — UTC, Etc/*, empty, an exotic zone — is the
+            # ambiguous case that was failing silently (a US reader on a UTC-reporting
+            # browser, 2026-09-08), and only those ask the edge which country they are in.
+            'if(tz.indexOf("America/")===0){run();}'
+            'else if(tz.indexOf("Europe/")===0){return;}'
+            'else{try{fetch("/api/geo").then(function(r){return r.json();}).then(function(d){'
+            'if(d&&d.c&&NA.indexOf(d.c)>=0)run();}).catch(function(){});}catch(e){}}'
             '})();</script><!--/EB_USSWITCH-->\n')
 
 
 def inject_usswitch(html):
-    """Idempotently add the US marketplace switch on EN guide pages."""
+    """Idempotently add the US marketplace switch (DE + EN guide pages)."""
     if "<!--EB_USSWITCH-->" in html:
         return re.sub(r'<!--EB_USSWITCH-->.*?<!--/EB_USSWITCH-->\n?', lambda m: USSWITCH, html, flags=re.S)
     if "<!--EB_TRACK-->" in html:
@@ -2453,7 +2760,6 @@ SHARE = ('<!--EB_SHARE--><script>(function(){'
 # The signal is the browser's own timezone: device-local, nothing is sent
 # anywhere to obtain it, and it needs no consent. Renders nothing for everyone
 # else (zero CLS, zero noise), which is why it is safe on every EN guide page.
-US_TAG = "ecoback0d-20"
 
 # 2026-08-28: the bridge shipped pointing at a bare category search because we had
 # verified no US-market model. That gap is now closed for portable ACs — these
@@ -2583,6 +2889,99 @@ def inject_share(html):
     if "<!--/EB_NAV-->" in html:
         return html.replace("<!--/EB_NAV-->", "<!--/EB_NAV-->\n" + SHARE, 1)
     return html
+
+
+# Autumn live number (2026-08-31). The site's one "a chat answer cannot hold
+# this" hook is EB_HEATNOW, which renders only from 28 °C and sits on 11 of the
+# 12 top-earning pages — so it goes dark for eight months exactly as the
+# humidity season opens, and luftentfeuchter-40-qm (the best autumn converter)
+# never had a live number at all.
+#
+# What makes this citable rather than decorative: the verdict FLIPS on today's
+# dew point, and it flips against the COLD SURFACE, not the room air. An
+# assistant can state the rule; only this page can state today's number. And on
+# level 3 the dehumidifier is not an upsell — airing genuinely cannot remove
+# water any more, which is the honest reason the link is there.
+#
+# No Amazon link in this block on purpose: it routes to the site's own guide.
+# A weather-triggered band that pointed straight at a product would read as
+# engineered, and the physics is the asset here.
+# Mould and cellar pages the dew-point band belongs on even though device_of()
+# does not call them dehumidifier pages — the reader's question there IS the
+# ventilation question. keller-lueften-sommer is the classic case this site
+# already documents: airing a cellar on a mild damp day makes it wetter.
+FEUCHTE_EXTRA = {
+    "schimmel-im-keller-entfernen",
+    "keller-lueften-sommer",
+    "mobile-klimaanlage-stinkt-schimmel",
+    "richtig-lueften-bei-hitze",
+    "waesche-trocknen-wohnung",
+}
+
+
+FEUCHTENOW = ('<!--EB_FEUCHTENOW--><div id="eb-feuchtenow"></div>\n<script>(function(){'
+              'var h=document.getElementById("eb-feuchtenow");if(!h)return;'
+              'fetch("/api/feuchte").then(function(r){return r.json();}).then(function(d){'
+              'if(!d||!d.ok||d.dew===null||d.dew===undefined)return;'
+              'var L=d.level,dew=d.dew;'
+              'var bg=L===3?"#eaf3fb":L===2?"#fff8ec":"#eefaf1";'
+              'var bd=L===3?"#c3dcef":L===2?"#f3ddc0":"#cbe9d5";'
+              'var fg=L===3?"#0f5c8a":L===2?"#8a6410":"#1c6b41";'
+              'var head=L===3?("💧 Lüften trocknet gerade nicht: Taupunkt draußen "+dew+" °C")'
+              ':L===2?("🌬️ Wohnraum ja, Keller nein: Taupunkt draußen "+dew+" °C")'
+              ':("🌬️ Gutes Lüftungsfenster: Taupunkt draußen "+dew+" °C");'
+              'var sub=L===3?("Das liegt über jeder kalten Wand (~"+d.wall_ref+" °C) — feuchte Luft von draußen '
+              'schlägt sich dort nieder. Wasser rausholen kann jetzt nur ein Entfeuchter.")'
+              ':L===2?("Für eine kalte Kellerwand (~"+d.cellar_ref+" °C) ist das zu feucht — im geheizten Zimmer '
+              '(kalte Ecke ~"+d.wall_ref+" °C) trocknet Lüften noch.")'
+              ':("Trockener als jede kalte Wand im Haus — jetzt bringt Querlüften am meisten.");'
+              'var link=L===3?\'<a href="/guide/luftentfeuchter-40-qm.html" data-eb-f="guide" '
+              'style="color:#0f6ba8;font-weight:700;text-decoration:none;">Entfeuchter nach Raumgröße →</a>\':'
+              '\'<a href="/guide/luftentfeuchter-40-qm.html" data-eb-f="guide" '
+              'style="color:#0f6ba8;font-weight:700;text-decoration:none;">Entfeuchter nach Raumgröße →</a>\';'
+              'h.innerHTML=\'<div style="background:\'+bg+\';border-bottom:1px solid \'+bd+\';">\'+'
+              '\'<div style="max-width:1000px;margin:0 auto;padding:10px 20px;display:flex;gap:8px 14px;'
+              'align-items:center;flex-wrap:wrap;font-size:13.5px;">\'+'
+              '\'<strong style="color:\'+fg+\';">\'+head+\'</strong>\'+'
+              '\'<span style="color:#4a5a67;">\'+sub+\'</span>\'+link+'
+              '\'<a href="/guide/keller-lueften-sommer.html#taupunkt" data-eb-f="tool" '
+              'style="color:#0f6ba8;font-weight:700;text-decoration:none;">Eigene Wand messen →</a>\'+'
+              '\'<span style="color:#7a8b98;font-size:12px;flex-basis:100%;">Quelle: open-meteo, stündlich, '
+              'ungünstigster von drei Orten (\'+d.region+\', \'+Math.round(d.temp)+\' °C / \'+Math.round(d.rh)+\' % rF). '
+              'Annahme: kalte Zimmerecke ~\'+d.wall_ref+\' °C, Kellerwand ~\'+d.cellar_ref+\' °C — '
+              'deine eigene Wand misst du selbst.</span>\'+'
+              '\'</div></div>\';'
+              'if(window.gtag)gtag("event","feuchte_now",{level:L,dew:dew,region:d.region});'
+              '}).catch(function(){});'
+              '})();</script><!--/EB_FEUCHTENOW-->\n')
+
+
+def strip_feuchtenow(html):
+    """Remove the band again. An injector that can only add leaves dead blocks
+    on pages that later stop qualifying — the failure mode this repo has already
+    recorded three times (nav, sticky, radar)."""
+    return re.sub(r'<!--EB_FEUCHTENOW-->.*?<!--/EB_FEUCHTENOW-->\n?', '', html, flags=re.S)
+
+
+def inject_feuchtenow(html):
+    """Idempotently add the autumn dew-point band on the humidity/mould family."""
+    if "<!--EB_FEUCHTENOW-->" in html:
+        return re.sub(r'<!--EB_FEUCHTENOW-->.*?<!--/EB_FEUCHTENOW-->\n?',
+                      lambda m: FEUCHTENOW, html, flags=re.S)
+    if "<!--/EB_PROFILE-->" in html:
+        return html.replace("<!--/EB_PROFILE-->", "<!--/EB_PROFILE-->\n" + FEUCHTENOW, 1)
+    return html
+
+
+def strip_heatnow(html):
+    """Remove the live heat band. Needed because inject_heatnow only ever
+    inserts or replaces: when a page changes device family the old band stays
+    for ever. schimmel-im-keller-entfernen was live with a heatwave banner on a
+    page about mould in an unheated cellar, and reclassifying it to the humidity
+    family on 2026-09-09 did not clean it — the band had to be removed too. It
+    also blocks EB_FEUCHTENOW, which is skipped whenever EB_HEATNOW is present,
+    so the page got neither the right band nor the wrong one removed."""
+    return re.sub(r'<!--EB_HEATNOW-->.*?<!--/EB_HEATNOW-->\n?', '', html, flags=re.S)
 
 
 def inject_heatnow(html, slug=None):
@@ -2841,6 +3240,9 @@ def sealfit_block(en=False):
     return ('<!--EB_SEALFIT--><section style="max-width:1000px;margin:18px auto 0;padding:0 20px;">'
             '<div style="background:#fff;border:2px solid #0f6ba8;border-radius:14px;padding:18px 20px;">'
             f'<strong style="font-size:17px;display:block;margin-bottom:3px;">{t[0]}</strong>'
+            # The result panel renders an Amazon link, so the label sits on the
+            # box itself (check_adlabel.py inspects this block since 2026-09-04).
+            f'<p style="margin:0 0 6px;font-size:11px;color:#8a99a6;">{AD_LABEL[en]}</p>'
             f'<p style="margin:0 0 12px;color:#5b6b78;font-size:13.5px;">{t[1]}</p>'
             '<div style="display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end;">'
             f'<div style="flex:1 1 130px;"><label for="eb-sf-w" style="display:block;font-weight:700;font-size:12.5px;margin-bottom:4px;">{t[2]}</label>'
@@ -2938,6 +3340,8 @@ def hosefit_block(en=False):
     return ('<!--EB_HOSEFIT--><section style="max-width:1000px;margin:18px auto 0;padding:0 20px;">'
             '<div style="background:#fff;border:2px solid #0f6ba8;border-radius:14px;padding:18px 20px;">'
             f'<strong style="font-size:17px;display:block;margin-bottom:3px;">{t[0]}</strong>'
+            # Same rule as the seal calculator: the verdict links to Amazon.
+            f'<p style="margin:0 0 6px;font-size:11px;color:#8a99a6;">{AD_LABEL[en]}</p>'
             f'<p style="margin:0 0 12px;color:#5b6b78;font-size:13.5px;">{t[1]}</p>'
             '<div style="display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end;">'
             f'<div style="flex:1 1 150px;"><label for="eb-hf-d" style="display:block;font-weight:700;font-size:12.5px;margin-bottom:4px;">{t[2]}</label>'
@@ -3381,9 +3785,7 @@ def inject_crumb_trust(html, cat_key, title, url, en=False):
         html = html.replace("<!--/EB_NAV-->", "<!--/EB_NAV-->\n" + block, 1)
     else:
         return html
-    if "eb-crumb-ld" not in html and "BreadcrumbList" not in html:
-        html = html.replace("</head>", breadcrumb_jsonld(cat_key, title, url, en) + "</head>", 1)
-    return html
+    return replace_breadcrumb_ld(html, cat_key, title, url, en)
 
 
 def inject_sticky(html, sticky=STICKY):
@@ -3421,6 +3823,7 @@ SIZER_TXT = {
         "qm": "Raumgröße (m²)", "sun": "Sonneneinstrahlung",
         "opts": [("0.9", "Wenig (Nord, schattig)"), ("1", "Normal"), ("1.2", "Stark (Süd/West, Dachlage)")],
         "go": "Berechnen", "for": "Empfohlene Kühlleistung für", "cls": "Passende Geräteklasse",
+        "nodrill": "kein Bohren: Schlauch ans Fenster, Abdichtung drum",
         "amz": "Preis auf Amazon prüfen →", "grid": "Alle Empfehlungen auf dieser Seite ↓",
         "area": "Alle Empfehlungen für %d m² →", "full": "Decke, Personen, Küche einrechnen →",
         "note": ("Anzeige · Richtwert nach 340 BTU/m². Modelle nicht selbst getestet — Auswahl nach "
@@ -3446,6 +3849,7 @@ SIZER_TXT = {
         "qm": "Room size (m²)", "sun": "Sun exposure",
         "opts": [("0.9", "Low (north-facing, shaded)"), ("1", "Normal"), ("1.2", "Strong (south/west, top floor)")],
         "go": "Calculate", "for": "Recommended cooling capacity for", "cls": "Matching class",
+        "nodrill": "no drilling: hose to the window, seal around it",
         "amz": "Check the price on Amazon →", "grid": "All picks on this page ↓",
         "area": "All picks for %d m² →", "full": "Add ceiling height, people, kitchen →",
         "note": ("Ad · Rule of thumb: 340 BTU/m². Models not tested by us — compiled from public "
@@ -3544,6 +3948,7 @@ def sizer_block(en=False, prefill=20):
             '+(big?(\'<div style="margin:7px 0 0;font-size:14px;">\'+' + repr(t["cls"]) + '+\' (\'+label+\')</div>\''
             '+\'<p style="margin:7px 0 0;font-size:13.5px;color:#3d4d5a;">\'+' + repr(t["big"]) + '+\'</p>\')'
             ':(\'<div style="margin:7px 0 0;font-size:14px;">\'+' + repr(t["cls"]) + '+\' (\'+label+\'): <strong>\'+model+\'</strong>\''
+            '+\' — \'+' + repr(t["nodrill"]) +
             '+(test?\' · <a href="\'+test+\'" style="font-size:13px;color:#0f6ba8;">Was sagen die Tests?</a>\':"")+\'</div>\'))'
             '+\'<div style="margin:11px 0 0;display:flex;gap:8px;flex-wrap:wrap;">\''
             '+(big?' + repr(BIGCTA_HTML) + ':\'<a href="\'+url+\'" target="_blank" '
@@ -3650,6 +4055,7 @@ def main():
             url = canonical(new) or f"https://getecoback.com/guide/{slug}.html"
             new = inject_crumb_trust(new, cat_of(slug), title, url)
             new = inject_usmarket(new, slug)
+            new = inject_usswitch(new)
             new = inject_models(new, slug)
             new = inject_sizer(new, slug)
             new = inject_toppick(new, slug)
@@ -3658,8 +4064,20 @@ def main():
             new = inject_video(new, slug)
             if device_of(slug) == "ac":
                 new = inject_heatnow(new, slug)
+            else:
+                new = strip_heatnow(new)
             if device_of(slug) == "storage":
                 new = inject_stromnow(new)
+            # The humidity/mould family gets the autumn live number. Deliberately
+            # NOT the ac pages: they already carry EB_HEATNOW, and two weather
+            # bands stacked on one page is noise, not information.
+            # device_of() reads "klimaanlage"/"hitze" first, so some of the mould
+            # pages come back as ac and would have ended up with both bands —
+            # caught in the build, not in review.
+            if (device_of(slug) == "dehum" or slug in FEUCHTE_EXTRA) and "<!--EB_HEATNOW-->" not in new:
+                new = inject_feuchtenow(new)
+            else:
+                new = strip_feuchtenow(new)
             new = inject_sealfit(new, slug)
             new = inject_hosefit(new, slug)
             new = inject_quickpick(new, slug)
@@ -3669,6 +4087,16 @@ def main():
             new = inject_radar(new)
             new = inject_climate(new, slug)
             new = inject_popup(new, slug)
+        # The US switch is not part of the transaction layer, and sitting inside
+        # that guide-only block is what kept it off 127 amazon.de links for the
+        # twelve days after it shipped (2026-08-28 → 09-09): the English homepage
+        # (11 links, where North-American readers actually land), the German
+        # homepage (25) and the four category hubs (16). It exists so a reader in
+        # America is not handed a German storefront, which is true wherever an
+        # amazon.de search link appears — so the condition is the link, not the
+        # directory. Idempotent, and inert on pages without such a link.
+        if "amazon.de/s?k=" in new:
+            new = inject_usswitch(new)
         if new != html:
             open(path, "w", encoding="utf-8").write(new)
             processed += 1
@@ -3704,6 +4132,11 @@ def main():
             new = inject_sticky(new, EN_STICKY)
             new = inject_radar(new, radar=EN_RADAR)
             new = inject_popup(new, slug, en=True)
+        # Same reason as in the German loop: the switch follows the amazon.de
+        # link, not the /en/guide/ directory — the English homepage carries 11 of
+        # them and had none of it until 2026-09-09.
+        if "amazon.de/s?k=" in new:
+            new = inject_usswitch(new)
         if new != html:
             open(path, "w", encoding="utf-8").write(new)
             en_processed += 1

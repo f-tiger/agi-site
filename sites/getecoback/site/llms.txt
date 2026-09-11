@@ -8,7 +8,7 @@
 > Taupunkt mit offengelegten Formeln. Finanziert über Amazon-Affiliate-Links;
 > Empfehlungen fassen öffentliche Tests zusammen (kein eigenes Labor).
 
-Schwerpunkt in dieser Jahreszeit: Hitzewelle, mobile Klimaanlagen, Fensterabdichtung, Luftkühler.
+Schwerpunkt in dieser Jahreszeit: Feuchte und Schimmel, Luftentfeuchter nach Raumgröße, Klimagerät einlagern, Heiz-Check vor dem Winter.
 
 Sprachen: Deutsch (Hauptbereich, /guide/), Englisch (/en/guide/), Italienisch (/it/guide/).
 Volltext aller Ratgeber: https://getecoback.com/llms-full.txt
@@ -32,7 +32,7 @@ Volltext aller Ratgeber: https://getecoback.com/llms-full.txt
   dasselbe Markdown per Content Negotiation, wenn der Request `Accept: text/markdown` sendet
   (`Vary: Accept`).
   Beispiel: curl -H 'Accept: text/markdown' https://getecoback.com/guide/btu-rechner.html
-- Offene Aggregat-APIs (JSON, keine personenbezogenen Daten): https://getecoback.com/api/heat (Live-Hitze- und Frostvorschau DE: 3-Tage-Maximum und 7-Tage-Minimum, beides mit Warnstufen), https://getecoback.com/api/strom (heutige Börsen-Stundenpreise DE, EPEX über aWATTar/SMARD), https://getecoback.com/api/top (meistgelesene Ratgeber), https://getecoback.com/api/trend (Wochentrends), https://getecoback.com/search-index.json (Titel + Beschreibung + Sprache aller Seiten, ein Array).
+- Offene Aggregat-APIs (JSON, keine personenbezogenen Daten): https://getecoback.com/api/heat (Live-Hitze- und Frostvorschau DE: 3-Tage-Maximum und 7-Tage-Minimum, beides mit Warnstufen), https://getecoback.com/api/feuchte (aktueller Taupunkt DE, ungünstigster von drei Orten, stündlich, mit Lüftungsurteil gegen kalte Wand ~15 °C und Kellerwand ~13 °C; ok:false = keine Messung, nie geraten), https://getecoback.com/api/strom (heutige Börsen-Stundenpreise DE, EPEX über aWATTar/SMARD), https://getecoback.com/api/top (meistgelesene Ratgeber), https://getecoback.com/api/trend (Wochentrends), https://getecoback.com/search-index.json (Titel + Beschreibung + Sprache aller Seiten, ein Array).
 - Original-Datensatz (CC BY 4.0): https://getecoback.com/sizing-data.json — BTU-/Liter-/Watt-Größenleitern nach Raumgröße, identisch mit Rechnern und Ratgebern, mit dateModified.
 - Überblick aller Maschinen-Schnittstellen: https://getecoback.com/for-agents.html
 
@@ -85,8 +85,11 @@ Volltext aller Ratgeber: https://getecoback.com/llms-full.txt
 - [Hitze-Check: Wie stark heizt sich dein Zimmer auf? (2026)](https://getecoback.com/guide/hitze-check.html): Hitze-Check: In 20 Sekunden das Überhitzungs-Risiko deines Zimmers bestimmen — nach Lage, Fensterausrichtung, Fensterfläche und Dämmung.
 - [Hitzeschutz fürs Fenster: Räume kühl halten (Hitzewelle 2026)](https://getecoback.com/guide/hitzeschutz-fenster.html): Hitze am Fenster stoppen, bevor sie ins Zimmer kommt: Außenrollo, Sonnenschutzfolie und Thermo-Verdunkelungsrollo im Vergleich — der günstigste Kühl-Schritt zuerst.
 - [Homeoffice kühlen: Was bei 30 °C wirklich hilft (2026)](https://getecoback.com/guide/homeoffice-buero-kuehlen.html): Konzentriert arbeiten bei Hitze: Wie du Homeoffice und Büro auch ohne feste Klimaanlage kühl bekommst — von Tischventilator bis mobiler Klimaanlage. Ratgeber 2026.
+- [Infrarotheizung im Badezimmer: Watt, Kosten, Spiegelheizung (2026)](https://getecoback.com/guide/infrarotheizung-badezimmer.html): Infrarotheizung im Badezimmer: 60–100 W pro m² je nach Dämmung, was 20 Minuten Morgenwärme bei 0,30 €/kWh kosten – und wann ein Handtuchheizkörper reicht.
+- [Infrarotheizung: Decke oder Wand? Die Montage-Entscheidung (2026)](https://getecoback.com/guide/infrarotheizung-decke-oder-wand.html): Infrarotheizung an Decke oder Wand? Wand ist der Standard, Decke rettet zugestellte Räume, Bildheizung ist Optik. Dazu die Watt-Regel: 60–100 W pro m².
 - [Infrarotheizung für die Garage: sinnvoll oder nicht? (2026)](https://getecoback.com/guide/infrarotheizung-garage.html): Infrarotheizung in der Garage: sinnvoll als Punktwärme am Werktisch, teuer als Raumheizung ohne Dämmung. Mit Stromkosten-Formel & Frostschutz-Alternative.
 - [Infrarotheizung 2026: Lohnt sie sich? Kosten im Test](https://getecoback.com/guide/infrarotheizung-ratgeber.html): Infrarotheizung: Für wen sie sich lohnt, was ein 600-Watt-Panel im Betrieb kostet und wann eine Wärmepumpe die günstigere Wahl ist — ehrlich erklärt.
+- [Infrarotheizung als Standgerät: heizen ohne Bohren (2026)](https://getecoback.com/guide/infrarotheizung-standgeraet.html): Infrarotheizung als Standgerät: kein Bohren, keine Erlaubnis, keine Löcher. Zonenwärme statt Raumwärme, 800 W kosten 0,72 € pro 3-Stunden-Abend.
 - [Infrarotheizung Watt-Rechner 2026: 60–100 W pro m²](https://getecoback.com/guide/infrarotheizung-watt-rechner.html): Wie viel Watt braucht deine Infrarotheizung? Faustregel 60–100 W pro m² je nach Dämmung — für 20 qm also 1.200–2.000 Watt. Mit Rechner und Tabelle.
 - [Keller lüften im Sommer: Wann es hilft, wann es schadet](https://getecoback.com/guide/keller-lueften-sommer.html): Mittags lüften macht den Keller im Sommer feuchter — Sommerkondensation. Der Taupunkt-Check sagt dir in 20 Sekunden, ob du jetzt lüften darfst.
 - [Kinderzimmer & Babyzimmer kühlen bei Hitze: sicher (2026)](https://getecoback.com/guide/kinderzimmer-kuehlen.html): Kinderzimmer bei Hitze sicher kühlen: richtige Schlaftemperatur, keine Zugluft, Kindersicherung & sichere Aufstellung von Ventilator und Klimaanlage.
@@ -147,7 +150,10 @@ Volltext aller Ratgeber: https://getecoback.com/llms-full.txt
 - [Pro Breeze Luftentfeuchter: Was sagen die Tests?](https://getecoback.com/guide/pro-breeze-luftentfeuchter-test.html): Pro Breeze im Test-Überblick: Der 20L-Kompressor schafft bis 20 l/Tag und trocknet echte Räume — die Mini-Peltier-Geräte mit 250 ml/Tag nur den Schrank.
 - [Raum ohne Fenster kühlen: Diese Optionen gehen (2026)](https://getecoback.com/guide/raum-ohne-fenster-kuehlen.html): Raum ohne Fenster kühlen? Eine mobile Klimaanlage scheitert hier am Abluftschlauch. Welche Lösungen wirklich helfen — Luftkühler, Ventilator & Entfeuchter 2026.
 - [Richtig lüften bei Hitze: wann Fenster auf — und wann zu (2026)](https://getecoback.com/guide/richtig-lueften-bei-hitze.html): Richtig lüften bei Hitze: nur nachts und früh morgens lüften, tagsüber Fenster zu und verschatten. Stoßlüften statt kippen — so bleibt die Wohnung kühl.
+- [Schimmel in Badfugen entfernen: Mörtel oder Silikon? (2026)](https://getecoback.com/guide/schimmel-bad-fugen.html): Schimmel in Badfugen entfernen: Fugenmörtel lässt sich reinigen, Silikon oft nicht. Entscheidend ist die halbe Stunde nach dem Duschen — ab 70 % kritisch.
 - [Schimmel im Keller entfernen: was wirklich hilft (2026)](https://getecoback.com/guide/schimmel-im-keller-entfernen.html): Schimmel im Keller entfernen: kleinflächig selbst behandeln, großflächig Fachbetrieb — und warum er ohne Entfeuchtung wiederkommt. Ehrliche Anleitung.
+- [Schimmel im Kleiderschrank: die Ursache steht dahinter (2026)](https://getecoback.com/guide/schimmel-kleiderschrank.html): Schimmel im Kleiderschrank: Die Kleidung ist das Symptom, die kalte Außenwand die Ursache. Was mit den Textilien geht — und ab wann 70 % kritisch sind.
+- [Schimmel an der Wand kommt wieder: warum genau dort? (2026)](https://getecoback.com/guide/schimmel-wand-kommt-wieder.html): Schimmel an der Wand kommt wieder? Der Fleck sitzt auf einer kalten Fläche — ab etwa 70 % Luftfeuchte an der Oberfläche keimen die Sporen erneut.
 - [Schmidbauer Infrarotheizung: Was sagen die Tests?](https://getecoback.com/guide/schmidbauer-infrarotheizung-test.html): Schmidbauer Infrarotheizung im Überblick: Serien von 300 bis 1.400 W, Faustregel 60–100 W pro m², Betrieb ab 0,18 €/h — was sich wirklich belegen lässt.
 - [Split-Klimaanlage ohne Kernbohrung: So geht es (2026)](https://getecoback.com/guide/split-klimaanlage-ohne-kernbohrung.html): Split-Klimaanlage ohne Kernbohrung: Wie Quick-Connect-Systeme leise Split-Kühlung ohne Installateur liefern und rund 1.000 € Montagekosten sparen.
 - [Strom sparen im Haushalt: 14 Maßnahmen, die wirken](https://getecoback.com/guide/strom-sparen-haushalt.html): Strom sparen im Haushalt: 14 Maßnahmen mit echten Euro-Ersparnissen — Standby abschalten, Stromfresser finden, LED, Kühlschrank, Klima einstellen.
@@ -230,7 +236,7 @@ Volltext aller Ratgeber: https://getecoback.com/llms-full.txt
 
 - [Energie sparen: Ratgeber 2026 | EcoBack](https://getecoback.com/kategorie/energie-sparen.html): Stromkosten senken mit Balkonkraftwerk & Speicher, Hitzeschutz am Fenster und clevere Energiespar-Maßnahmen für den Haushalt.
 - [Heizen: Ratgeber 2026 | EcoBack](https://getecoback.com/kategorie/heizen.html): Effizient heizen: Klimaanlagen mit Heizfunktion, stromsparende Heizlüfter und Infrarotheizung.
-- [Klimaanlagen & Kühlen: Ratgeber 2026 | EcoBack](https://getecoback.com/kategorie/klimaanlagen.html): Tragbare Klimaanlagen, Ventilatoren, Luftkühler und Kühlung ohne Installation — nach Raumgröße, Lautstärke und Budget.
+- [Klimaanlagen & Kühlen: Ratgeber 2026 | EcoBack](https://getecoback.com/kategorie/klimaanlagen.html): Tragbare Klimaanlagen, Ventilatoren, Luftkühler und Kühlung ohne Bohren — für Mietwohnung und Altbau: nach Fenstertyp, Raumgröße und Budget.
 - [Luftqualität: Ratgeber 2026 | EcoBack](https://getecoback.com/kategorie/luftqualitaet.html): Luftentfeuchter gegen Schimmel, Luftreiniger gegen Pollen und Staub sowie die richtige Gerätepflege.
 
 ## Über die Website

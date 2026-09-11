@@ -3,6 +3,9 @@
 > Speicher ans bestehende Balkonkraftwerk nachrüsten: AC- oder DC-Kopplung, Schritt-für-Schritt-Anleitung, Kosten ab ca. 600 € und ehrliche Lohnt-sich-Rechnung.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/balkonkraftwerk-speicher-nachruesten.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/strom
+
 Dein Balkonkraftwerk läuft seit ein, zwei Sommern — und produziert ausgerechnet dann am meisten, wenn niemand zu Hause ist. Der Überschuss fließt unvergütet ins Netz. Die gute Nachricht: Du musst kein neues Komplettset kaufen. Ein Batteriespeicher lässt sich nachträglich anschließen, in den meisten Fällen in unter einer Stunde und ohne Fachbetrieb. Dieser Ratgeber zeigt, welche zwei Anschlusswege es gibt, was das kostet und für wen sich die Investition ehrlich gerechnet lohnt.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.

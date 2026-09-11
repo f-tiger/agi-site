@@ -1,0 +1,54 @@
+# 链上收款轮询 → 广告自动上架（2026-09-11，owner:「直接用我前面web3的地址做收款」）
+#
+# 为什么是 workflow 而不是 Worker：裸钱包地址不回调任何 URL，没有 webhook 可验签，
+# 只能主动去链上查。查数属于取数，按舰队纪律下沉到第①层（零 AI）——它不需要判断力，
+# 而且 AI 会话挂掉时它照样要跑。这也是「零人工」这句话唯一站得住的实现方式。
+#
+# 算账（按纪律必须写进来）：每次约 0.3 分钟 × 每 2 小时一次 = 12 次/天 ≈ 110 分钟/月。
+# 公开仓 Actions 免费，但仍按 0–3 笔/月的实际量级取 2 小时而不是更密——
+# 更密只是把「2 小时内上架」变成「10 分钟内上架」，对买家没有区别。
+#
+# 外部副作用只挂 schedule 绝不挂 push（CI 铁律）：这一条会读链上数据并改 D1。
+name: bpj ad watch
+
+on:
+  schedule:
+    - cron: '7 */2 * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: bpj-ad-watch
+  cancel-in-progress: false   # 两轮重叠会重复认领同一笔交易，宁可排队
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    # 钱包没配就整段跳过：未配置时这条任务什么都不做，也不报错
+    if: vars.ADS_WALLET_CHAIN != ''
+    defaults:
+      run:
+        working-directory: sites/baipiaoji
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Self-test the amount maths
+        run: node scripts/ad-watch.mjs --dry-run
+
+      - name: Match on-chain payments to pending ad slots
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          D1_DATABASE_ID: 1ee08cb8-a174-4ec3-8dbc-89ef5d28aa05
+          # 地址与合约走 Secrets/Variables，绝不进仓库（公开仓红线）
+          ADS_WALLET: ${{ secrets.ADS_WALLET }}
+          ADS_WALLET_CONTRACT: ${{ secrets.ADS_WALLET_CONTRACT }}
+          ADS_SCAN_API_KEY: ${{ secrets.ADS_SCAN_API_KEY }}
+          ADS_WALLET_CHAIN: ${{ vars.ADS_WALLET_CHAIN }}
+          ADS_WALLET_TOKEN: ${{ vars.ADS_WALLET_TOKEN }}
+          ADS_WALLET_DECIMALS: ${{ vars.ADS_WALLET_DECIMALS }}
+          ADS_MIN_CONFIRMATIONS: ${{ vars.ADS_MIN_CONFIRMATIONS }}
+          ADS_DAYS: ${{ vars.ADS_DAYS }}
+        run: node scripts/ad-watch.mjs

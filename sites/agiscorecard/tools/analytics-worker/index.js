@@ -33,6 +33,12 @@ const ALLOWED_EVENTS = new Set([
   'pred_expand', 'readnext_click', 'analysis_click', 'advertise_click', 'sponsor_click',
   'exposure_score',
   'retake_test', 'badge_copy',
+  // Amazon Associates book links have existed on /who-is-leopold-aschenbrenner since
+  // launch and fire gtag('event','affiliate_click'), but the name was never allowlisted,
+  // so every click was dropped here and only GA4 could have seen it. That made the
+  // pre-registered 10-31 books line ('site-wide book_* < 5 -> close Associates')
+  // impossible to resolve honestly: a zero could mean nobody clicked OR nothing recorded.
+  'affiliate_click',
   // 站内搜索(2026-08-08):label=搜索词(截 80 字符)。site_search=需求信号,
   // search_no_result=产品缺口——每日运行读这两个驱动选题,是搜索存在的主要意义。
   'site_search', 'search_no_result', 'search_click',
@@ -52,8 +58,42 @@ const ALLOWED_EVENTS = new Set([
 // people, which is exactly what the privacy promise rules out.
 const UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign'];
 
+// STRUCTURAL fields only — event name, location, path, lang, UTM, topic. Those are
+// OUR identifiers: always ASCII, always from a fixed vocabulary, so a strict allowlist
+// is the right shape and anything outside it is noise or an attack.
 const clean = (v, max) =>
   typeof v === 'string' && v ? v.replace(/[^\w:/?=&.-]/g, '').slice(0, max) : null;
+
+// READER-SUPPLIED TEXT — the site_search query above all. `clean` was being used for
+// this too, and it is the wrong filter twice over: it deletes spaces, and its \w is
+// ASCII-only without the u flag, so every CJK character is deleted as well.
+//
+// Evidence that this was not theoretical (2026-09-05, two rows): a reader arriving
+// from forum.effectivealtruism.org clicked the 巴菲特持仓 chip and then searched on
+// /search. Both rows stored an EMPTY label, because clean('巴菲特') === ''. Multi-word
+// English survived only as a fused blob — 'are we close to agi' -> 'areweclosetoagi'.
+// So the one loop whose entire purpose is to hear what readers ask for was deleting
+// the question and keeping the fact that a question was asked. Every zh reader's
+// search has been silently blank since /search shipped on 2026-08-08.
+//
+// This filter keeps words and spaces in any script, and strips what actually matters:
+// control characters, and the markup/quote characters that would make a stored label
+// dangerous when the ops dashboard prints the top queries back out.
+const cleanText = (v, max) => {
+  if (typeof v !== 'string' || !v) return null;
+  const out = v
+    .replace(/[\u0000-\u001f\u007f<>"'`\\]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .slice(0, max);
+  return out || null;
+};
+
+// The documented contract (CLAUDE.md, and index.html's own q.slice(0,80)) has always
+// said 80 characters. Storage truncated at 48, so the two disagreed; 80 is the number
+// that was promised, and a 48-char cut is short enough to lose the tail of a real
+// sentence-shaped query.
+const LABEL_MAX = 80;
 
 // Host only. A full referrer URL can carry query strings that identify people.
 const refHost = (r) => {
@@ -190,6 +230,9 @@ export default {
             { name: 'get_claim_ledger',
               description: 'Read a Claim Ledger Protocol v0.1 ledger — AI-era money-making claims graded with an evidence tier (verified/reported/self-reported), a dated verdict, and a written flip condition. With no arguments returns the reference ledger (goldrush.agiscorecard.com); pass url to read and validate any site\'s /claimledger.json. Spec: goldrush.agiscorecard.com/protocol',
               inputSchema: { type: 'object', properties: { url: { type: 'string', description: 'Optional: an https URL ending in /claimledger.json to read another site\'s ledger. Omit for the reference ledger.' } } } },
+            { name: 'get_invest_positions',
+              description: 'The Invest dataset: how the eight graded Situational Awareness predictions map onto 17 listed AI equities, how eight well-known investors are positioned per their public SEC 13F filings, and what copying them would have returned priced on the FILING DATE (not quarter end, which no real person could have traded). Educational only — never investment advice.',
+              inputSchema: { type: 'object', properties: {} } },
             { name: 'search_site',
               description: 'Search every page and tool on agiscorecard.com and its invest/compass sub-sites (English and Chinese). Returns titles, descriptions and URLs.',
               inputSchema: { type: 'object', properties: { query: { type: 'string', description: 'Search query' } }, required: ['query'] } },
@@ -225,7 +268,7 @@ export default {
             // The MCP-side consumer of the Claim Ledger Protocol. URL is constrained
             // to the protocol's well-known filename so this cannot be used as an
             // open proxy; body is size-capped before parsing.
-            let u = 'https://goldrush.agiscorecard.com/claimledger.json';
+            let u = 'https://goldrush.agiscorecard.com/claimledger.json?ci=1'; // fetchlog.json exclusion (c): our own MCP self-fetch must not count as adoption — the goldrush worker drops ?ci=1
             if (args.url) {
               let cand;
               try { cand = new URL(String(args.url)); } catch (e) { return mcpText(id, { error: 'invalid url' }); }
@@ -253,6 +296,13 @@ export default {
               validation: { entryCount: entries.length, invalidEntries: invalid, note: invalid ? 'entries missing required fields are flagged, per protocol admission rules' : 'all entries carry the five required fields' },
               entries: entries.slice(0, 50),
             });
+          }
+          if (tool === 'get_invest_positions') {
+            const d = await asset('/invest-data.json');
+            ctx.waitUntil(env.EVENTS.prepare(
+              "INSERT INTO events (ts, day, name, location, label, path, ua_class) VALUES (?,?,?,?,?,?,?)"
+            ).bind(Date.now(), new Date().toISOString().slice(0, 10), 'site_search', 'mcp', 'tool:invest_positions', '/mcp', 'bot').run().catch(function () { }));
+            return mcpText(id, d);
           }
           if (tool === 'search_site') {
             const q = String(args.query || '').toLowerCase().trim();
@@ -303,10 +353,10 @@ export default {
           .filter(function (r) { return r.h >= 5 && r.h >= 2 * Math.max(1, r.prev); })
           .slice(0, 5);
         return new Response(JSON.stringify({
-          searches: searches.results || [], zeroResults: zero.results || [], risingPages: rising,
+          ok: true, searches: searches.results || [], zeroResults: zero.results || [], risingPages: rising,
         }), { headers: { 'content-type': 'application/json', 'cache-control': 'public, max-age=1800', 'access-control-allow-origin': '*' } });
       } catch (e) {
-        return new Response(JSON.stringify({ searches: [], zeroResults: [], risingPages: [] }),
+        return new Response(JSON.stringify({ ok: false, searches: [], zeroResults: [], risingPages: [] }),
           { headers: { 'content-type': 'application/json' } });
       }
     }
@@ -494,12 +544,26 @@ export default {
         try { pageQuery = new URLSearchParams(String(body.u || '')); } catch (e) {}
         const [src, med, camp] = utmFrom(pageQuery);
 
+        // Internal-navigation instrument (2026-08-31). The beacon has always sent the
+        // full referrer, but it was reduced to a host before storage, so "which page
+        // sent this reader to that page" was unanswerable — and a real reader clicking
+        // an internal link looked identical to a crawler walking the nav. For
+        // page_view only, and ONLY when the referrer is same-origin, the referrer's
+        // PATH is kept in the otherwise-unused label column. Cross-origin referrers
+        // keep host-only treatment exactly as before: we never store a stranger's URL.
+        let label = cleanText(body.b, LABEL_MAX);
+        if (name === 'page_view' && !label) {
+          try {
+            const r = new URL(String(body.r || ''), url.origin);
+            if (r.hostname === url.hostname) label = clean('from:' + r.pathname, LABEL_MAX);
+          } catch (e) { /* no referrer, or unparseable — leave label null */ }
+        }
         const stmt = env.EVENTS.prepare(
           'INSERT INTO events (ts, day, name, location, label, path, ref_host, country, lang, ua_class,' +
           ' utm_source, utm_medium, utm_campaign) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)'
         ).bind(
           now, new Date(now).toISOString().slice(0, 10), name,
-          clean(body.l, 48), clean(body.b, 48), clean(body.p, 120),
+          clean(body.l, 48), label, clean(body.p, 120),
           refHost(body.r), (request.headers.get('cf-ipcountry') || '').slice(0, 2) || null,
           clean(body.g, 12), uaClass(request.headers.get('user-agent')),
           src, med, camp
@@ -646,7 +710,7 @@ export default {
       // them server-side so the 60-day adoption line has real numbers, and mark them
       // noindex — the HTML page stays the canonical and the citation surface. Both
       // steps are wrapped so they can never break serving.
-      if (request.method === 'GET' && res.status === 200 && url.pathname.endsWith('.md')) {
+      if (request.method === 'GET' && (res.status === 200 || res.status === 304) && url.pathname.endsWith('.md')) {
         try { recordView(env, ctx, request, url); } catch (e) {}
         try {
           const h = new Headers(res.headers);
@@ -654,10 +718,20 @@ export default {
           return new Response(res.body, { status: res.status, headers: h });
         } catch (e) {}
       }
+      // Share cards and badges are immutable per deploy and hot-linked from other
+      // sites: give them a week of edge/browser cache instead of the assets default.
+      // Wrapped like everything else here — a header failure must never break serving.
+      if (res.status === 200 && /^\/(share|badge)\//.test(url.pathname)) {
+        try {
+          const h = new Headers(res.headers);
+          h.set('cache-control', 'public, max-age=604800');
+          return new Response(res.body, { status: res.status, headers: h });
+        } catch (e) {}
+      }
       return res;
     }
 
-    if (request.method === 'GET' && res.status === 200) {
+    if (request.method === 'GET' && (res.status === 200 || res.status === 304)) {
       try { recordView(env, ctx, request, url); } catch (e) {}
     }
 
@@ -953,3 +1027,9 @@ const SLIDEIN = '<script>(function(){try{' +
     'if(left<=0){clearInterval(iv);show("timer");}' +
   '},1000);' +
 '}catch(e){}})();</script>';
+
+// Exported for tools/test_analytics_sanitiser.mjs only. The Workers runtime ignores
+// extra named exports; `export default` above stays the worker entrypoint. These two
+// functions decide what survives into D1, and a silent mistake in them looks exactly
+// like "nobody searched" — which is the failure that shipped for a month.
+export const __test = { clean, cleanText, LABEL_MAX };

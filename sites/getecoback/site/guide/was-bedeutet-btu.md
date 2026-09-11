@@ -3,6 +3,9 @@
 > BTU einfach erklärt: was die Zahl bei Klimaanlagen bedeutet, wie viel Watt 9.000 BTU sind und welche BTU-Klasse zu deiner Raumgröße passt — mit Tabelle.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/was-bedeutet-btu.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
+
 7.000 BTU, 9.000 BTU, 12.000 BTU — jede Klimaanlage trägt diese Zahl, aber kaum ein Datenblatt erklärt sie. Dabei ist BTU das wichtigste Kaufkriterium überhaupt: Es entscheidet, ob das Gerät deinen Raum wirklich kühlt oder nur teuer vor sich hin läuft. Hier die einfache Erklärung.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.

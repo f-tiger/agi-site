@@ -5,9 +5,9 @@ Exit code 0 = safe to ship. Checks:
   - every JSON-LD block parses on every page
   - template FAQ pages: visible .faq-q count == FAQPage mainEntity count
     (two-year-scorecard.html uses different markup; checked by text instead)
-  - no broken internal links (root-level clean URLs)
+  - no broken internal links (root-relative <a>/<link> hrefs at any depth)
   - <div> balance per page
-  - sitemap.xml well-formed; every sitemap root URL has a matching file
+  - sitemap.xml well-formed; every sitemap URL has a matching file
 """
 import glob
 import json
@@ -51,11 +51,20 @@ for f in PAGES:
             for q in faq_schema:
                 if q["name"] not in html:
                     problems.append(f"{name}: FAQ question not visible: {q['name'][:60]}")
-    for href in set(re.findall(r"href=[\"']/([a-z0-9\-]+)[\"']", html)):
-        if href in KNOWN_EXTENSIONLESS:
+    # Root-relative links at any depth (/zh/foo, /agi-type/, /data.json), scoped to
+    # <a>/<link> tags with <script> blocks stripped — JS string literals and regex
+    # sources otherwise produce false positives. Anchors/query strings never match
+    # the character class, so they are skipped rather than mis-resolved.
+    no_script = re.sub(r"<script\b.*?</script>", "", html, flags=re.S)
+    for href in set(re.findall(r"<(?:a|link)\b[^>]*?href=[\"']/([a-z0-9\-/\.]+?)[\"']", no_script)):
+        base = href[:-5] if href.endswith(".html") else href.rstrip("/")
+        if not base or base in KNOWN_EXTENSIONLESS:
             continue
-        if not os.path.exists(os.path.join(ROOT, href + ".html")):
-            problems.append(f"{name}: broken internal link /{href}")
+        if (os.path.exists(os.path.join(ROOT, base + ".html"))
+                or os.path.exists(os.path.join(ROOT, base, "index.html"))
+                or os.path.isfile(os.path.join(ROOT, href))):
+            continue
+        problems.append(f"{name}: broken internal link /{href}")
     if html.count("<div") != html.count("</div>"):
         problems.append(f"{name}: div imbalance {html.count('<div')}/{html.count('</div>')}")
 
@@ -66,10 +75,11 @@ try:
 except Exception as e:
     problems.append(f"sitemap.xml: not well-formed: {e}")
 for loc in re.findall(r"<loc>https://agiscorecard\.com/([^<]*)</loc>", sm):
-    if not loc or "/" in loc:  # homepage or language subdir (files live in repo subdirs)
+    if not loc:  # homepage
         continue
-    base = loc.replace(".html", "")
-    if not os.path.exists(os.path.join(ROOT, base + ".html")):
+    base = loc[:-5] if loc.endswith(".html") else loc.rstrip("/")
+    if not (os.path.exists(os.path.join(ROOT, base + ".html"))
+            or os.path.exists(os.path.join(ROOT, base, "index.html"))):
         problems.append(f"sitemap.xml: no file for URL /{loc}")
 
 count = sm.count("<loc>")
@@ -82,6 +92,17 @@ for _slug in ("situational-awareness-summary", "what-is-agi", "how-close-is-agi"
     _p = os.path.join(ROOT, _slug + ".html")
     if os.path.exists(_p) and "goes stale on" not in open(_p, encoding="utf-8").read():
         problems.append(f"{_slug}: 高引用页缺首屏活数字区块(定位深化第 ⑥ 条)")
+
+# 首屏「活数字」钩子必须与 data.json 一致(2026-09-10)。这些钩子存在的唯一理由就是
+# 「一个聊天答案装不下的、带日期会变的数」——所以一个自己过期了一个月的活数字比没有更糟,
+# 而且它过期时看起来完全正常。6/7 个钩子曾停在 2026-08-08 而 data.json 已是 2026-09-06。
+# 修法是 tools/sync_live_hooks.py(gen_index.py 每次调用),这里是让漂移无法悄悄发版的闸门。
+try:
+    import sync_live_hooks as _hooks
+    for _c in _hooks.check():
+        problems.append("活数字钩子过期 — " + _c)
+except Exception as _e:  # 缺文件/改名不该让整个校验静默通过
+    problems.append("活数字钩子检查无法运行: %r" % (_e,))
 
 # 可见「Last updated」必须与 JSON-LD 的 dateModified 一致。
 # 2026-08-18 实测有 7 页不一致,且**全部是可见日期更旧**——读者看到过期日期、

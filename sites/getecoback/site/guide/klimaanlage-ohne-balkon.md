@@ -3,6 +3,9 @@
 > Klimaanlage ohne Balkon und ohne Außeneinheit: Welche Optionen Mieter wirklich haben — Monoblock am Fenster, Fensterabdichtung und die ehrlichen Grenzen.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/klimaanlage-ohne-balkon.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
+
 Die meisten Kühl-Ratgeber gehen wie selbstverständlich davon aus, dass irgendwo eine Außeneinheit hängen kann — auf dem Balkon, an der Fassade, auf der Terrasse. In einer typischen deutschen Mietwohnung stimmt das oft nicht: kein Balkon, keine Erlaubnis zum Bohren, kein Platz für ein Gerät draußen. Die gute Nachricht: Du kannst trotzdem kühlen. Dieser Ratgeber zeigt dir ehrlich, welche Optionen ohne Balkon und ohne Außeneinheit wirklich funktionieren — und welche nur auf dem Papier.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.

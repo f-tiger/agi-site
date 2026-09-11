@@ -3,6 +3,7 @@
 > Condizionatore con finestra ad anta-ribalta: il kit in dotazione non sigilla — le 3 soluzioni da 15–30 € che chiudono lo spazio triangolare senza forare.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/it/guide/condizionatore-finestra-anta-ribalta.html
+
 **Dritti alle scelte**Annuncio · link affiliati — il prezzo per te non cambia
 
 Il pezzo che manca davveroGuarnizione per finestra (velcro, universale)→

@@ -3,6 +3,7 @@
 > Infrarotheizung: Für wen sie sich lohnt, was ein 600-Watt-Panel im Betrieb kostet und wann eine Wärmepumpe die günstigere Wahl ist — ehrlich erklärt.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/infrarotheizung-ratgeber.html
+
 Infrarotheizungen werden als schlanke, schnelle Wärmequelle für einzelne Räume beworben: Panel an die Wand, einschalten, sofort spürbare Wärme. Das stimmt — aber die Technik wird oft schöngerechnet, denn am Ende ist es eine elektrische Widerstandsheizung, und Strom ist teuer. Dieser Ratgeber erklärt ehrlich, wie Infrarot funktioniert, wo es sich lohnt, wo nicht — und wie du die Betriebskosten vorher abschätzt.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.

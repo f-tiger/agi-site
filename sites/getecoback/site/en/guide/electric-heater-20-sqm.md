@@ -3,6 +3,7 @@
 > What size electric heater for 20 m²? Recommended: 1,200–1,600 W (60–100 W per m²). Running cost about €0.42/h and the honest season maths.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/en/guide/electric-heater-20-sqm.html
+
 Heating a room of around 20 m² with an electric panel or infrared heater? It works — but only with the right wattage and honest expectations about the electricity bill. Here is the concrete recommendation for 20 m².
 
 As an Amazon Associate, EcoBack earns from qualifying purchases. Product links below are affiliate links — you pay the same price.

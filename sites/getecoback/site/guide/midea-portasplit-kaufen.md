@@ -3,6 +3,9 @@
 > Midea PortaSplit kaufen 2026: Warum der Bestseller ohne Installateur oft ausverkauft ist, für wen er sich lohnt — plus Alternativen bei Lieferengpass.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/midea-portasplit-kaufen.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
+
 Die Midea PortaSplit ist das Klimagerät der Hitzewelle 2026: bei vielen Händlern ausverkauft, gebraucht teils teurer als neu. Der Grund: Sie ist eine echte Split-Klimaanlage — leise und effizient — die du **ohne Installateur** selbst montierst. Hier der ehrliche Check, bevor du kaufst.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.

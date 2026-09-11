@@ -1,3 +1,39 @@
+## 2026-09-05(晚)— /ai-trading-ledger 上线(预登记纸面台账;owner 问「自动化交易子站?」)
+
+裁定不开子站(根仓 docs/auto-trading-research-2026-09.md)。建:`tools/paper_ledger.py` 六臂确定性
+重算 + `agi-paper-ledger.yml` 每交易日 22:40 UTC + `/ai-trading-ledger` 页(EN,`.md` 手写镜像)+
+占位 `paper-ledger.json`。接线:`/do-ai-trading-agents-work` 同一标准框、`/invest` 工具卡、
+`/agi-questions`、llms.txt、sitemap、search-index(+1)。validate.py OK、hreflang OK、Playwright
+用合成夹具渲染核对。规则/篮子/起始日已预登记,不得再改。
+
+
+## 2026-09-04（合并后的首条「舰队日报」，agi + sourceradar）
+
+- **spec（两轮）**：R1 四层监控 + 游戏层 + 新增第①层 heartbeat；R2 自我批判——今天
+  是周五（不做周一项），且本会话当日已推 3 次，按配额纪律只允许再合并一次 push。
+- **⓪+ 引用队列：两项都被自己的前置闸门挡着**（`datacenter-grid-cost-tracker` 与
+  `eu-ai-act-de` 都要 09-01~03 的 Bing 明细/英文版过线，owner 尚未提供）。
+  队列是**被闸门挡住**，不是空——按纪律不塞猜的选题，回到 ①。
+- **ship：PRD P5 `/invest-data.json`**（原创机器可读数据集 = 引用磁石）。8 条判定+权重、
+  17 票映射、8 人 13F 态度、2 人逐笔持仓、抄作业成绩单（申报日定价）。生成器
+  `tools/gen_invest_data.py` **一个数字都不手写**，任何一处解析不到就 exit(1)。
+  接线：llms.txt + /for-agents 表 + `/mcp` 新工具 `get_invest_positions`（挂既有端点，
+  零新增基建，埋点 `site_search{mcp, tool:invest_positions}`）。
+- **本轮最重要的不是 ship，是这个 bug**：`gen_lib.OUT` 自 08-19 迁库起指向**已归档
+  私有仓**，28 个生成器（含 gen_index/gen_odds）一直写去无人处并返回 0。判定翻转日
+  这会让线上分数悄悄不动。已修；连带发现 `gen_for_agents.py`（-46 行）与
+  `gen_invest_profiles.py`（回滚一个季度、import 即写）都已落后于自己的页面，
+  两处加了大写警告，规矩写进 CLAUDE.md 新增的「生成器漂移」一节。
+- **数据（28 天 / 7 天，JS 口径）**：page_view 1042 / 262（≈37.4 人/日）；vote_cast 26/12；
+  subscribe_click 6/2；sub_open 4、sub_submit 2、**sub_ok 2**（09-30 线阈值 5）；
+  `tool_click` 17/**0**、`exposure_score` 16/**0** —— invest 工具近 7 天完全静默。
+  落地页第一名首次不是首页：**/when-will-agi-arrive 44 > / 28**。
+- **反面记录（不越期结算）**：`affiliate_click` 全站 14 天 **0**，而埋点已实测在线
+  （worker 部署代码含 affiliate_click 白名单 + 页面 onclick 齐全）——**这是真零，
+  不是仪器问题**。10-31 的 books 判定线按期结算，今天不提前裁决，也不动那一页
+  （5-run 防翻炒窗口内）。
+- validate OK（225 页 / 207 URL）。
+
 ## 2026-08-30(每日 run 04:00)— 裁决日:*_live 判纯品牌资产;P4 中文判定页上线
 
 - **spec(三轮精简)**:今日双重身份——例行 run + `index_click{*_live}` 预登记裁决日。
@@ -2486,3 +2522,436 @@ validate 222 页 OK。种子在 content-backlog 打勾。
 - **游戏**：今日 0/0；28d 70/14；itch 累计 42/13 持平（09-24 线 150/25）。
 - **失误自记**：`git reset --hard` 抹掉四份未提交改动并重做；有未提交改动时禁用该命令。
 - 单次 push；validate 见下。
+
+## 2026-08-31(第二轮,owner:「agi 那么多流量竟然无法转化?重做转化方案,不一定是订阅,类似联盟?用户留不住」+ 中途追加「内部跳转深度分析」)
+- **先摆正前提**:921 次 JS 浏览/28 天 ≈ **每天 33 人**,这不是"那么多流量"。但 owner 第二句
+  「留不住」指向的地方是对的,只是**现有仪器根本答不了**——见下。
+- **两个仪器 bug(都已修,这才是本轮真正的产出)**:
+  ① `affiliate_click` 不在 D1 白名单 → 书籍联盟点击**从来没被记录过**;
+  ② `page_view` 落库时 `refHost()` 把来源路径丢掉 → **"A 页→B 页"从来没被记录过**
+  (信标其实一直在发完整 referrer)。改为同源 referrer 存路径进 label(`from:/xxx`),
+  跨域仍只留 host。JS 口径天然排除爬虫。
+- **内部跳转深度分析结论**:带 referrer 的浏览约 1,860 次、**73% 是站内跳转**,表面像"留得住";
+  但落点清单几乎等同导航+目录块,而**真读者点导航与爬虫爬导航形状完全相同**。铁证:`/search`
+  39 次内部到达、真实搜索事件 **0**。**故本轮不下"留得住/留不住"的结论**,先修仪器,下轮用
+  JS 口径的 from→to 真答。(另纠正自己:早先用 COUNT(*) 数聚合表,应为 SUM(hits)。)
+- **转化诊断**:钱路全装在没人到达的地方。书路只在 `/who-is-leopold-aschenbrenner`(终身 6 pv);
+  SunWatch Pro ¥199 桥 **60 天 0 点击**(9 次 invest_tool_click 全是导航);exposure 工具 16 次
+  使用**全在 08-11 一天**;opinion_* 60 天 5 次。
+- **ship(按赢家形态,不加第四块横幅)**:全站点击率最高的 CTA 是首页 readnext 纯文字块
+  (28 天 13 次) ≫ 所有横幅(opinion_* 60 天 5 次)。故在 `/when-will-agi-arrive`(154 pv,
+  全站第二)按同形态加「这些日期出自哪些文本」清单:**两个免费原文排前面并明说不赚钱**,
+  三本书带 Associates 披露。**显式引用 owner 指令覆盖 5 轮冷却**,理由:10-31 书单判定线在
+  书块只挂 6-pv 页面且事件不记录时**无法公正结算**,这与今早 sub_ok 的"仪器 vs 假设"同类。
+- **算术交底**:33 人/天量级下书籍联盟≈$1/月、Pro 需 ~5x 流量出 1 单/月、订阅→Boosts 已判死。
+  **瓶颈是流量不是报价**;本轮价值是让每条钱路可测量、判定线可结算,不是"提高转化率"。
+- **判定线(预登记)**:至 **2026-10-31**(沿用书单原判定日)——`affiliate_click{book_*}` 全站
+  累计 ≥5 → 阅读时刻钱路成立,复制到 `/situational-awareness-summary` 与 `/how-close-is-agi`;
+  <5 → 关闭 Associates 并拆除书块(furniture 当天拆,不赖着)。**该判定现在才第一次真正可结算。**
+- validate OK(225 页 / 207 URL);亚马逊链接零泄漏进 llms/.md(红线已核)。
+
+
+## 2026-08-31(第三轮,owner:「继续扩展丰富 agi,在首页设置可玩游戏,最终还是转化游戏营收?」)
+- **先回答那个问号(一手证据,不是意见)**:舰队已经在跑游戏营收实测 = gridlings
+  (无广告无账号,变现靠门户分成 + 订阅钩)。**至今 0 收入**;CrazyGames €100 起付、2-4 周
+  审核;itch 判定线 09-24 需 150/25,今日读数 **42/13 且多日持平**。加上站规硬结论
+  「游戏化页面 AI 引用为 0」。**结论:游戏不是本站的营收路径,是参与/分享路径**——
+  已写进 CLAUDE.md,防止后续会话把它当增长故事重提。
+- **但 owner 方向对了一半,而且有数据**:全站参与率最高的两件东西正是**页内、轻量、不跳转**
+  的首页投票(vote_cast 13/28d ≈6.5%)与 readnext(13),而"跳去玩工具"的横幅 60 天共 5 次。
+  **所以做页内可玩,不做又一个跳转入口。**
+- **ship:`index.html#grade-game` 分歧引擎。** 读者用本站公开权重自己给八条判定打分 →
+  当场出分 → 与 Tracker 对照 → 列出逐条分歧 → 一键复制分享。**刻意不做猜谜**:答案就在同页
+  上方的记分板里,藏答案不诚实;这个游戏卖的是**分歧**,那才是本站独有的东西。
+- **零硬同步负债**:全部实时读 `/data.json`(判定 + tracker 分数),一个数字都没写死,
+  反而消掉了 index.html 里一处写死的 62.5。自检通过:读者若与我们完全一致,**精确得 62.5**。
+- 埋点 `calc_use{grade_game}` / `challenge_share{grade_game}` / `index_click{grade_game}`,
+  **读数按 location 拆分**(Compass 污染 slidein_show 的教训)。位置在记分板表格之后、
+  对比区之前——不动首屏与 Dataset JSON-LD,引用资产不受影响。
+- **判定线(预登记)至 2026-09-28**:`calc_use{grade_game}` 完成事件 ≥10 → 页内游戏形态成立,
+  把同形态复制到 `/progress-index` 与 `/when-will-agi-arrive`;<10 → 拆除,记「首页读者不玩
+  页内游戏」为反面发现。**`challenge_share{grade_game}` ≥3 单独构成裂变信号**(现基线 0)。
+- validate OK(225 页 / 207 URL);游戏 JS 单独 node --check 通过。
+
+## 2026-09-01(每日 run,月初)— 只验仪器不动页面
+- **spec**:常规日更 + 月初两件(向 owner 要 Bing AI Performance 明细、核 Actions 额度重置)。
+  **自我批判并据此收手**:昨日一天已动 agi 三处并当面承诺静置,今日**不改任何页面**;
+  该做的是验证昨天装的仪器是否真在记录——那是验证,不是翻炒。
+- **仪器验证通过(本轮最重要产出)**:内部跳转配对上线不到 24 小时即产出 20 条 JS 口径记录,
+  **来源 100% 是首页,深页向外递送 0**;落点第一是 `/will-agi-arrive-2027`(4 次,正是首页
+  readnext 第二条,与"readnext 是全站最强 CTA"互证)。**n=20 且 <24h,按最小样本纪律不下结论**,
+  读法已固化进 analytics-setup.md(规范 SQL + 隐私边界:跨域来源永不存路径),09-14 正式读。
+- **不提前解读的两项**:`affiliate_click` 与 `calc_use{grade_game}` 均为 0,上线仅约 14 小时,
+  判定日 10-31 / 09-28。
+- **游戏**:今日 8/1(久违非零),28d 78/15,**itch 累计 42/13 持平——今天这 8 次不是 itch 来的**。
+- **⓪+ 队列**:两项仍被前置条件挡住;取数窗口今日开启,已向 owner 索取 Bing 两张明细。
+- ship:仅文档(analytics-setup.md 读法 + analytics-notes.md 日结 + 本文件)。**零页面改动。**
+
+## 2026-09-05(owner:「agi 时代…切换到客户视角:AI 焦虑 / AI 替代工作…做完整调研,前后全方面升级 agi 站点,包括子站点」)
+- **spec(第 3 轮)**:见根仓 `docs/agi-customer-lens-2026-09.md`——目标「让担心 AI 抢走工作的人第一次
+  能遇到本站,并得到带日期/信源/翻转条件的『该不该担心』判定」;范围主域;不做分享按钮/新工具/
+  新子域/恐吓数字/机器发帖/子站重定位。前两轮砍掉的正是这几样(各有本站或 eco 的一手证伪)。
+- **调研(三路并行)**:客户需求面(Gallup 79% / Pew 71% / APA 57%;类目搜索在裁员周 +233%;
+  四种 job:安抚/规划/争论/追踪;病毒内核 = 数字+日期+权威+查我的职业;竞品全缺带日期判定)、
+  站内盘点(工作簇 7 页六件套齐但 **0 意见钩、0 一手源外链、6–10 周未更新**;工具不问职业、
+  不记分数、分享链接不带结果;CITATION AMPLIFICATION 队列已空)、一手数据(28d 真人 JS pv ≈1,100,
+  工作簇合计 ≈20,搜索/AI 引荐 0)。
+- **shipped**:①`/ai-and-your-job` + zh(入口判定页:恐惧 vs 证据三行账、三信号表、翻转条件、
+  下次复核 10-03、意见钩 `opinion_ai_and_your_job`、活数字 `index_click{ai_and_your_job}`、goldrush 互链)
+  ②`/amodei-white-collar-bloodbath-prediction`(ClaimReview 2/5,检查点到 2030-05-28,预言者台账工作版:
+  Amodei/Huang/Karpathy/Gates/McCrory 逐条带日期链接)③工作簇 7 页 + 5 个 zh 页:意见钩、
+  「Status as of 2026-09-05」时效框(每页 ≥2 一手源)、入口页内链;programmers 页加五源对账卡
+  (BLS −6%/+15%、NY Fed「据报道」、Indeed 71% senior、Microsoft 0.31/0.278、Anthropic 49%/55%/42%)
+  ④`/ai-job-risk-check` v2(+zh):按职业查(Microsoft *Working with AI* CC-BY,785 SOC,
+  `ai-applicability-scores.json`;明写「观察到的适用性,不是你的失业风险」)、结果写进 URL
+  (`?o=&t=&s=`)、`vote_cast{job_check_<Tier>:<score>}`、`calc_use{job_lookup,<SOC>}`;Chromium 12/12 断言
+  ⑤首页热点横幅 → 入口页(原 7 月基金爆仓横幅已过时)、header「AI & your job」、目录/agi-questions/
+  cn/llms.txt/sitemap/feed/search-index/llms-full + .md 镜像 ⑥分发暂存包 W36 两条手答素材。
+- **子站**:不重定位——四站全部在 09-21→10-28 判定窗内(判定期内不改被测对象);只在入口页加
+  goldrush 读者相关互链。
+- **判定线(2026-10-03,预登记,见 CLAUDE.md「客户视角簇」)**:入口页+血洗页 JS pv ≥30 或
+  搜索/AI 引荐 ≥3;`calc_use{job_lookup}` ≥10 且 `vote_cast{job_check_*}` ≥10;工作簇 `tool_click{opinion_*}`
+  ≥3;下一次 Bing 明细任一工作簇页被引。全部未达即记反面发现、停扩只保维护。
+- **诚实边界**:所有数字来自事实表(带信源日期);[thin] 项只写「据报道」;WebFetch 对几乎所有
+  新闻域被代理拦截,[verify] 项靠 WebSearch 多源片段核实原话。validate OK 228 页 / 210 URL;
+  hreflang 门 OK。**破了「一次一改」的日常纪律——owner 明确要求「前后全方面升级」,记录在案。**
+
+## 2026-09-06 — gridlings：OVERSEER 深度美术 + 五款商店视频逐帧重录（agi 站零改动）
+
+- **OVERSEER**：Bungee 内嵌字体；无眼插画语言（显示器墙 / 巡检车 / 靶盘 / HALT 章）；`slots()`
+  半秒 CRT 关机保持网格不重排；音层 noise()+7 音；波次改为 intro 卡；pop 文字限幅、rover 随卡
+  片缩放、intro 卡片手机端换行。fleet-smoke 五款绿、cg-package-smoke 29.7KB gameplayStart 77ms。
+- **素材工具**：`capture-store-assets.js` 视频改虚拟时钟逐帧截图（根治 CG 预览模糊）；
+  `_poster.js` 标语从字标盒子推算位置（PROMPT 16:9 遮挡）；`build-fonts.sh` 重建字体模块。
+- 判定线不变；agi 内容在客户视角簇判定期内，本日不叠加 ship。
+- **同日追加**：MINIMA 深度美术（纸质测绘图：分层色 + 山体阴影 + 羽化揭示、测量钉、脚印虚线、HEAT 抛物线
+  跳跃、Rubik Mono One、音层）；L3 步数 1450→1750（确定性验证器下 explorer 由 2–5/12 升到 9/16，
+  不动井宽——加宽会合并盆地）；`verify-minima.js` 改虚拟时钟（结论不再随帧率漂移）；五款预告片抗转码
+  重录；MIMIC / MINIMA 海报主体收进画布；CG 16 项分类定案 + `docs/cg-store-copy.md`；质量基线入 CLAUDE.md。
+- **同日追加（gridlings）**：新游戏 **SINGULARITY INC.**（冲 CG 首页的放置类，Three.js + esbuild 单文件 568KB）：
+  4 生成器 × 5 里程碑、20 代模型带训练时长、研究树 16、成就 26、皮肤 8、任务 3 条滚动、数据缓存、每日连击、
+  离线报告、失控/对齐、声望；4 阶段 3D 机房；`verify-singularity.js` 数值门全绿；fleet-smoke / 包自检绿。
+  PRD `docs/singularity-prd.md`（含首页级验收线 §六、对标表 §七）。
+- **同日追加（gridlings）**：新游戏 **GHOSTLINE**（Driving 分类冲首页：低多边形计时赛，对手 = 用你自己驾驶训练的模型；
+  程序生成 12 条赛道 + 每日 + 随机、奖牌由模型参考圈设定、6 辆车、触屏转向区）；轨道坐标系物理由 `verify-ghostline.js`
+  证明可玩且刹车有价值；itch 分发改为每款一个项目页 + 部署时 butler 逐个推送（owner 需先建页）。
+
+## 2026-09-06 — 首屏活数字过期（最大深页），并修好让它持续过期的那个 bug
+
+**owner 问「流量增长后怎么转化为订阅/营收/广告」。先用 D1 算术排序，再动手。**
+28 天真实读者（JS `page_view`）1,115，约 40/天，比 8 月的约 17/天翻了一倍；同期新订阅 **0**
+（累计 2，最后一次 8-19）。三条路的单位流量产出：
+- **广告**：约 1,200 pv/月 × 偏高 $8 RPM ≈ **$10/月**，且拖慢靠「干净快权威」吃引用的页 → 排除，
+  等约 5 万 pv/月再谈。
+- **订阅**：Boosts 早已算死（1 订阅/368pv，差 950 倍），且当前发不出邮件 → 保留 CTA 作 2027-12
+  期权，**停止加码，不再新增订阅入口**。
+- **付费产品**：1 个 SunWatch Pro = ¥199/月 ≈ $28/月经常性，超过另外两条一年之和 → 唯一成立的。
+
+**但要如实记下**：按 40 人/日，最大页 181 pv/28d，钩子 CTR 即使 5% 也只有 9 次点击，
+一个月产不出 1 个付费用户。**瓶颈是流量不是转化**，唯一不受流量约束的杠杆仍是引用份额（阶梯 ⓪）。
+
+**诊断→本次唯一改动。** `/when-will-agi-arrive`（181 pv/28d，全站第二）首屏那个块标题是
+「The part a chat answer goes stale on」，自己却挂着四周前的数字：as of 2026-08-08、
+Status August 14、504 days（实为 482）、45 days without a verdict change（实为 68）。
+一个卖点是「我不会过期」的模块自己过期，是自我否定，且这页是高引用页。已全部更新，
+`Last updated` / JSON-LD dateModified / sitemap lastmod 同步到 2026-09-06。
+
+**根因（真 bug，不是忘了更新）**：`tools/gen_index.py:182` 把 `DATE_LONG` 写死成
+`"July 12, 2026"`，且用 `replace("Last updated: June 30, 2026", ...)` 这种字面量匹配——
+第二次运行起就再也匹配不上。结果 Tracker 页（本站旗舰差异化资产）**两个月来一直显示
+"Last updated: July 12, 2026"，而 JSON-LD 的 dateModified 一直在前进**。已改为从运行日期
+派生 + 正则替换。validate.py 正是靠「可见日期 vs dateModified 不一致」抓出来的。
+
+Tracker 今日读数：62.5/100，自 06-30 起 4 次读数无变化（68 天）。判定未变，故 gen_badges /
+gen_agi_exposure / widget 无需重算。
+
+## 2026-09-06（第二条）— invest PRD P3：`/invest` hub 再瞄准，队列自此清空
+
+**三门**
+- **数据门**：`/invest` 是 invest 簇里唯一有真实读者的页（JS `page_view` 7 次/28d；
+  服务端 human 66）。而 8-29 上线的两个判定页 `/does-copying-13f-work`、
+  `/is-nvidia-overvalued` **JS pv 均为 0**，服务端却每天都有 human 命中
+  （14 / 16）。按本仓既有口径，服务端 human 是 UA 正则的猜测、是上界，
+  JS pv 才是真人——**这两页的服务端流量绝大部分是没认出来的爬虫，真实读者是 0**。
+  全站 JS 份额约 14%，这两页约 0%，比例本身就是证据。（顺带排除了「埋点坏了」：
+  全站 JS `page_view` 今天 38、昨天 66，信道正常。）
+- **需求门**：标题原为 "AI Investing Hub — Who's Betting What on AI (2026)"，是品牌腔
+  不是问题本身；判定型页面的第一条站规就是「标题即那个问题」。
+- **商业门**：hub 是 P1/P2 的上游枢纽，也是 exposure→Pro 桥的入口。
+
+**改了什么（一处页面，不新增 URL）**
+- `<title>` → `How Are Top Investors Positioned on AI? (Q2 2026 13F)`（53 字符）；
+  meta description 重写为答案型（155 字符，卡满上限）；`<h1>` 改成同一个问题。
+  原来的编辑腔那句 "Predictions are cheap. Positions are not." 没有丢，前移进胶囊首句。
+- 首屏加**活数字**：`3 bull · 4 cautious · 1 bear`，标注持仓截至 6 月 30 日、8 月 14 日申报，
+  并给出 62.5/100 的同口径对照（同样八条判定，所以两个数可比）。
+  埋点 `index_click{invest_live}` 与 `{invest_live_tracker}`。
+- **零编造的做法**：capsule 里每个数字都从 `invest-data.json` 读出后用正则断言比对过
+  （3/4/1、held June 30、filed August 14、tracker 62.5），不是手打的。
+- 顺手修一个死链：活数字指向 `#legends`，而这页**原本一个 id 都没有**；已给
+  「How 8 investing legends are positioned on AI」补 id，并断言全页锚点无悬空。
+- `Last updated` / sitemap lastmod → 2026-09-06（sitemap 原为 2026-08-13）。
+
+**anti-churn 说明**：`/invest` 最近一次改动是 09-05，但那是给 `/ai-trading-ledger` 加一张
+工具卡的一行接线，不是同一个优化面；title/meta 自 08-17 起 20 天、32 个 run 未动，
+满足「5 个 run 窗口」。
+
+**PRD 状态**：P4 其实 8-30 就上线了、当时漏打勾，现已补。**P1–P6 全部完成，invest PRD 队列清空。**
+下一次 invest 侧的动作是 11 月的 Q3 13F 同步义务（含 invest.html / zh/invest.html / index.html /
+cn.html 四处写死数字的硬同步），以及 11-15 的判定日。
+
+**判定线提醒（11-15，不许事后调）**：invest 簇 JS pv ≥60/28d、Pro 桥点击累计 ≥5、TG 绑定 ≥1，
+三条中 <2 条达标即回归季度同步义务模式。**今天的读数：JS pv 约 25/28d、Pro 桥 0、绑定未知。**
+
+## 2026-09-07（周一深审计）— 「赔率 vs 证据」生成器每跑一次就毁掉台账
+
+**spec（两轮自批后）**：周一专项 = 赔率新一期 + 深审计一项。第一版规格是「跑 gen_odds.py
+出本期」；自批发现这等于闭眼执行——先看它生成了什么再决定，结果这一看就是今天的深审计项。
+
+**发现**：`tools/gen_odds.py` 把期号写死成 "Issue #1"，台账只渲染当前这一条快照。
+所以每跑一次，它就把过去所有期**整段删掉**。08-31 的 Issue #2（第一次实测移动，含
+逐项对比表）之所以还在，是因为它当时是**人手写进 HTML 的**——只要今天照常跑一次生成器，
+它就没了。我确实跑了一次，diff 显示净删 14 行、期号从 #2 退回 #1、08-24 与 08-31 两行台账
+被一行「首次机读」顶替。**已当场 revert，没有 ship 出去。**
+
+这违反站规里那条铁闸「台账不删失误」，而且是最隐蔽的一种违反：自动化每周执行一次，
+没人看 diff 就永远发现不了。
+
+**修法（结构性，不是打补丁）**
+- 新增 `odds-history.json`，累积每次机读读数；用已在案的三次真实读数播种
+  （08-24 8%/$95,951、08-31 18%/$103,282、09-07 27%/$194,567），**没有编造任何数字**。
+- `gen_odds.py` 改为：读历史 → 按日期幂等追加本次快照 → 期号 = 历史条数 →
+  **台账每一行都从历史渲染**，因此结构上不可能再丢历史。
+- 「本周移动」从人手写改为**算出来的**：自动对比最近两次读数（本期 18%→27%，
+  +9 pt、1.5 倍，成交量 +$91,285），并写明市场定价的是「宣布」不是「能力」，
+  证据侧 62.5/100 与 Open 均未动。
+- 加断言：每条历史读数的日期必须出现在成品里，且台账行数不得少于历史条数，
+  否则**报错退出**而不是安静地发一个更短的台账。
+
+**本期产出**：Issue #3，reviewed 2026-09-07。validate OK（229 页）、sitemap lastmod 同步。
+
+**未做（有闸门，按规矩不硬凑）**：CITATION AMPLIFICATION 队列 4 项全部有前置闸门未过
+（occupation 系列等 10-03、datacenter/eu-ai-act 8-31 复查未过、ai-jobs 是事件驱动）；
+strategy-2027 剩的 3 项全卡在 owner 的 Gateway waitlist。invest PRD 队列昨天 P3 完成后已清空。
+
+## 2026-09-08（每日 run）— 站内搜索一个月来一直在丢词，今天才被读数抓到
+
+**spec（两轮自批后）**：第一版是「读 D1 → 按阶梯挑一项 → ship」。自批第一轮：阶梯 ⓪
+（引用放大）队列 4 项闸门全未过、strategy 剩项卡 owner waitlist、invest PRD 已清空，
+所以今天必然落到 ① 或 ⑤ —— 而 ① 的最优目标 `/when-will-agi-arrive` 09-06 刚动过，
+**5-run 冷却内，不许碰**。自批第二轮：那就先把读数本身读干净，别急着改页面；
+结果这一读就读出了今天唯一该做的事。所调 skill：analytics（口径与漏斗）、
+citation-growth（判定型页面清单，本轮未触发发布）。
+
+**发现一：`site_search` 从来不是「没人搜」，是「搜了但被我们删了」。**
+28 天 7 行 `site_search`，其中 5 行是 MCP 端 worker 自己写的（`tool:sunwatch_ledger` 等，
+`location='mcp'`，**不是读者搜索，读需求信号时必须排除**）。剩下 2 行是真的：
+09-05 12:37:54/55，一位从 `forum.effectivealtruism.org` 来的真人（US/en-US）点了首页
+「巴菲特持仓」建议词，一秒后在 `/search` 又搜了一次 —— **两行的 label 都是空的**。
+- 根因：collector 用**结构字段**的正则去洗**读者输入的文本**。
+  `clean = v.replace(/[^\w:/?=&.-]/g,'')`：空格被删，而 JS 的 `\w`（无 u 标志）是纯 ASCII，
+  所以每个中文字被删光。`clean('巴菲特') === ''`。多词英文剩粘连一坨
+  （`are we close to agi` → `areweclosetoagi`）。
+- 影响面：**2026-08-08 /search 上线至今整整一个月，每一位 zh 读者的搜索词都被静默丢弃。**
+  站内有 /cn + 30 多个 zh 页，这不是边角。
+- 为什么一直没发现：**洗字段的函数出错时不报错，只让表看起来正常。**「没人搜」和
+  「搜了但被删了」在数据里长得一模一样。CLAUDE.md 里那句「site_search 一次都没触发过」
+  就是被这个 bug 喂出来的结论。
+
+**ship（唯一改动，全在仪器层，零页面改动 = 零 churn）**
+- `tools/analytics-worker/index.js`：拆成两个洗法。`clean()` 继续严格，只用于**我们自己的
+  标识符**（事件名 / location / path / lang / UTM / topic）；新增 `cleanText()` 用于**读者
+  输入的文本**——保留任意语种的词与空格，只剥控制字符和 `<>"'` 反引号反斜杠
+  （ops 面板会把热词打印回 HTML，这几个必须剥）。
+- label 上限 48 → **80**，对齐一直以来的文档承诺与 `index.html` 自己的 `q.slice(0,80)`；
+  此前两边不一致，GA4 收 80 字、D1 只存 48 字。
+- 新增 `tools/test_analytics_sanitiser.mjs`（16 条断言，含那两行真实样本），
+  **挂进 deploy-agiscorecard.yml 的 push 路径**——它是对已部署 worker 的正确性闸门，
+  几秒钟，不违反配额纪律（外部副作用类才只能挂 schedule）。
+- 未回填历史：那两行的原词**无法复原**，不编造。空 label 保持原样，作为事故留痕。
+
+**发现二（防止一次误判，未 ship）：`calc_use{grade_game}` = 17 不等于「完成 17 次」。**
+08-31 预登记的判定线是「至 09-28，完成事件 ≥10 → 复制到 `/progress-index` 与
+`/when-will-agi-arrive`」。今天读出 17，看着已达标 —— 但逐行看：**全部来自 09-07
+20:24:52–20:25:27 的同一个人、35 秒内**，其中 8 行是逐条打分（`knowledge-work:delivered` 等），
+只有 4 行是 `complete:*`，而那 4 行还是同一人来回改 compute-scaling / agi-2027 反复重算的结果。
+**真实读数 = 1 人、4 次重算，不是 17。判定线未达标。** `challenge_share{grade_game}` = 0。
+按站规「CI 自测会伪装成增长」的同一条反射（这次不是 CI，是单人重复操作），
+记在案，防止 09-28 那天有人拿 17 去结算。正确查询：
+`... WHERE name='calc_use' AND location='grade_game' AND label LIKE 'complete:%'`。
+
+**未做（有闸门，按规矩不硬凑）**：CITATION AMPLIFICATION 队列 4 项闸门仍未过；
+`/when-will-agi-arrive` 转化钩（191 pv/28d、全站第二、subscribe_click 0）是下一个该做的，
+但 09-06 刚动过，**冷却到 5 个 run 后再做，今天不碰**。
+
+**validate OK（229 页 / 211 URL）；sanitiser 测试 16/16 通过。**
+
+## 2026-09-09（每日 run）— 转化赛马：赢家和输家用的是同一段文案，差别只在位置
+
+**spec（两轮自批后）**：第一版「读 D1 → 按阶梯挑一项」。自批一：⓪ strategy 剩的 3 项
+全部卡在 owner 的 Gateway waitlist；⓪+ 引用队列 3 项闸门全未过（10-03 入口判定线 /
+事件驱动 / 08-31 复查未过）；invest PRD 已清空 —— 今天只能落 ①。自批二：① 的第一目标
+`/when-will-agi-arrive`（198 pv，全站第二，subscribe_click 0）**09-06 动过，5-run 冷却内
+不许碰**，所以要么换目标要么什么都不做。换目标之前先问一句「赢家到底赢在哪」——
+这一问改变了今天的动作。所调 skill：cro（位置 vs 文案的归因）、analytics（口径）。
+
+**诊断（这是今天真正的产出）。** 全站唯一在转化的深页是 `/ai-2027-scenario-explained`：
+**28 pv 出 2 次 `subscribe_click`**。而 `/situational-awareness-summary`（34 pv，且是 Bing
+引用榜第一、占 42%）**28 天 0 次**。原以为是后者缺钩子——**打开看才发现它一个不缺，
+而且用的是同一段文案、同一个按钮「Tell me when a verdict flips →」。**
+
+真正的差别是**位置**：
+- 赢家：该块在第一节正文之后（`<h2>What it is</h2>` → 一段 → 钩子 → 下一个 `<h2>`），
+  大约一屏内就出现。
+- 输家：该块虽然叫 `deep_sasummary_mid`，实际躺在 `<h2>The bottom line</h2>` 那一段之后、
+  FAQ 之前 —— **等于第二个页脚钩子**，而它下面紧跟着真正的 `deep_sasummary_foot`。
+  **两个 CTA 叠在文章末尾，阅读动线里一个都没有。**
+
+**ship（一处改动，只移动、不新增、不改文案）**：把 `deep_sasummary_mid` 整块从
+「The bottom line」之后移到「What the essay argues」正文之后（`<h2>The key predictions</h2>`
+之前），与赢家的位置逐字对齐。文案一个字没动 —— **本轮要检验的是位置这一个变量**，
+同时改文案就什么都归因不了。`deep_sasummary_foot` 保留在页脚不动。
+
+**刻意没做的事**：没有 bump `Last updated` / `dateModified` / sitemap lastmod。
+移动一个 CTA 不是内容更新，为它伪造新鲜度信号是骗 AI 引擎，而这一页正是全站引用第一的
+资产，不值得拿它冒险。
+
+**判定线（预登记，不许事后调）**：至 **2026-10-07**（28 天）——
+`subscribe_click{deep_sasummary_mid}` ≥1 → 「位置 > 文案」成立，把同样的上移动作
+复制到 `/how-close-is-agi` 与 `/will-agi-arrive-2027`；仍为 0 → 记一次反面发现
+「深页订阅钩与位置无关，34 pv 量级下这条路不成立」，并停止在深页上继续投入 CTA 位置实验。
+**注意分母**：34 pv/28d，赢家是 28 pv 出 2 次，所以 ≥1 是一个诚实的最小可判读阈值，
+不是「显著性」——样本本来就不支持显著性，别在判定日给它套统计检验。
+
+**validate OK（229 页 / 211 URL）；hreflang 图闭合。**
+
+## 2026-09-09（第二条，owner:「游戏cg全部拒绝了」）— 预登记判定线触发，CG 线关闭
+
+**不是今天的优化项，是一次判定结算。** 2026-09-05 预登记：「若 CG 第三次给同一句
+『overall quality』模板拒稿 → 结论性反面：CG 对本舰队关闭，不许第四投。」
+09-06 重传的七款今天一次性全拒 → **按原文结算，CG 线关闭**，判定线不改、不延、不加解释。
+
+**必须记下的一点**：第三次这一版**已经修掉了两个真缺陷**——所有 CG 包里那句虚假的
+「无广告」声明，以及页脚那两个在门户 iframe 里指向门户自己域的根相对死链。修完仍然全拒，
+所以**拒的不是这些**。这两个修复对 Playgama 与 itch 依然有效，不作废。
+
+**留一个口子（且只有一个）**：如果 CG 这次给的不是那句无信息量模板，而是具体可修的理由，
+就不属于预登记覆盖的情形。已请 owner 确认拒稿原文一次；确认前按「关闭」执行。
+
+**门户线剩余**：itch（09-24 判定线 43/13，连续 9 天零新增，大概率判负）·
+Playgama（PROMPT 已被同类模板拒一次，六款审核中，GHOSTLINE 已过认证进 review——
+唯一还活着的一支）。GameDistribution / GameMonetize / GamePix / Coolmath 早已排除，不回捡。
+
+**不下的结论**：不把「游戏线」判死。站内最强行为仍是「一坐下连玩 5–6 款」的跨游戏会话，
+发生在自有域、不依赖门户。**门户是分发假设，不是产品假设**；分发假设连挂三家，
+正确的动作是把投入从「求人上架」挪回自有域的留存与串联。
+
+## 2026-09-10（每日 run）— 七个「活数字」里有六个自己过期了一个月
+
+**spec（两轮自批后）**：⓪ strategy 三项仍卡 owner 的 Gateway waitlist；⓪+ 引用队列三项闸门
+未过；① 昨天刚动过 `/situational-awareness-summary`（判定线挂到 10-07，冷却中）；
+→ 落到 ⑤ GEO 底盘「刷新最陈旧页」。自批一：陈旧页里流量最高的是
+`/aschenbrenner-vs-metaculus`（9 pv，dateModified 停在 06-30，72 天），但它的核心数字是
+**Metaculus 社区中位数**，而沙箱对 metaculus.com 是 `connect_rejected`——**核不到就不能改**，
+零编造规则下这一页今天做不了实质刷新。自批二：那就先查一件更基础的事——**站上那些号称
+「活」的数字，自己是不是活的**。一查就是今天的全部产出。所调 skill：ai-seo（GEO 新鲜度）、
+analytics。
+
+**发现：七个首屏活数字钩子，六个停在 2026-08-08，而 data.json 已是 2026-09-06 —— 差 29 天。**
+
+| 页面 | 钩子写的 as-of | data.json |
+|---|---|---|
+| `/situational-awareness-summary`（引用榜第一，占 42%） | 2026-08-08 | 2026-09-06 |
+| `/what-is-agi`（Copilot 引用 91 次） | 2026-08-08 | 2026-09-06 |
+| `/how-close-is-agi` | 2026-08-08 | 2026-09-06 |
+| `/ai-orders-of-magnitude-explained` | 2026-08-08 | 2026-09-06 |
+| `/zh/situational-awareness-summary` | 2026-08-08 | 2026-09-06 |
+| `/zh/ai-orders-of-magnitude-explained` | 2026-08-08 | 2026-09-06 |
+| `/when-will-agi-arrive` | **2026-09-06** ✓ | 2026-09-06 |
+
+**为什么只有一个是对的**：09-06 那次 run 修了 `gen_index.py` 冻结可见日期的 bug，
+并顺手修了它当时正在看的那一页——但 **gen_index.py 从来只写 progress-index.html**，
+六个深页没有任何东西在扫。也就是说这不是一次性失误，**是一条注定会反复漂移的路径**。
+
+**为什么这条比它看起来严重**：这些钩子存在的唯一理由，是 CLAUDE.md 定的
+「首屏必须给出一个聊天答案装不下的、带日期会变的活数字」。**一个自己过期了一个月的
+活数字，比没有这个钩子更糟**——它对读者和引擎都在宣称新鲜，而且**过期时长得跟正常
+一模一样**。这与 09-08 那条洗字段的 bug 是同一类：静默、无报错、表面正常。
+
+**ship（一次改动，修 + 防）**
+- 新增 `tools/sync_live_hooks.py`：从 data.json 读 `thesisTracker.asOf` 与 `score`，
+  重写所有带钩子页面的日期与分数（EN `as of <strong>…` / zh `截至 <strong>…`）。
+  已跑，六页同步到 62.5/100 as of 2026-09-06。
+- `gen_index.py` 结尾调用它——分数变了，七个钩子在**同一次运行内**一起变。
+- `validate.py` 加闸门：任一钩子与 data.json 不一致即 **FAIL**。
+  **已实测**：把 `/what-is-agi` 的日期改成 2026-07-01 → validate 报
+  「活数字钩子过期 — what-is-agi.html: live hook says as-of 2026-07-01…」并**退出码 1**
+  （确认过退出码，不是只打印一行好看的字）。检查器本身缺失或改名也算失败，不静默放行。
+
+**刻意没做**：没有 bump 这六页的 `Last updated` / `dateModified` / sitemap lastmod。
+同步一个内嵌的数据字段不是编辑更新，为它一次性给六页伪造新鲜度信号，正是 Google 眼里的
+churn；钩子自己带着日期，那才是诚实的新鲜度信号。
+
+**未做且说明原因**：`/aschenbrenner-vs-metaculus`（72 天最陈旧、流量最高）本轮**不动**——
+它的关键数字要核 metaculus.com，沙箱出网被拒，核不到就不写。留在队列里等能核到的那天，
+不用「大概还是 2033」糊过去。
+
+**validate OK（229 页 / 211 URL）。**
+
+### 顺带查清的一件事：滑入框的真实读数（不改动，只记录）
+`slidein_show` 28 天 548 次看着很大，**其中 438 次是 Compass 子站的 `compass_popup`**
+（同名事件、不同 location，CLAUDE.md 早记过这个坑）。本站真实读数（08-06 至今累计）：
+**展示 129 · 关闭 37（29%）· `subscribe_click{slidein_*}` 0 · `agi_test_click{slidein}` 1**
+（09-09，DE，落在 `/when-will-agi-arrive`）。按页拆：`/` 73/20 · `/when-will-agi-arrive` 38/14 ·
+`/situational-awareness-summary` 10/3 · `/what-is-agi` 7/0 · `/ai-orders-of-magnitude-explained` 1/0。
+
+**没有据此拆掉它，理由是统计而不是舍不得**：0/129 对应的真实转化率 95% 上界约 2.3%,
+而弹窗订阅的行业常见区间就是 1–3%——**129 次展示根本分辨不出「正常」和「零」**。
+今天拿它判死，和昨天拿 17 次 `calc_use` 判活是同一种过度解读，只是方向相反。
+backlog 里原本只有「扩量闸门」没有「杀线」，现补一条：
+**判定线（预登记）：累计展示（排除 compass_popup）达 300 次时结算 —— `subscribe_click{slidein_*}`
++ `sub_open{slidein_*}` 合计仍为 0 → 全站移除滑入框，记反面发现；≥1 → 保留并按原闸门考虑扩量。**
+现读数 129/300。不因为等不及就提前判。
+
+## 2026-09-11（每日 run）— 「赢家」只有 2 个事件,而最大的那页是 0/198
+
+**spec（两轮自批后）**：⓪ strategy 三项仍卡 owner 的 Gateway waitlist;⓪+ 引用队列三项闸门
+未过;→ 落 ①。自批一:①的目标 `/when-will-agi-arrive`(198 pv,全站第二)09-06 动过,
+今天数 OPT-LOG 已有 5 个 run(09-06 第二条 / 09-07 / 09-08 / 09-09 ×2 / 09-10),**冷却已过**。
+自批二:动手前先核一件事——**这页到底有没有订阅钩**?查完把今天的结论整个改了。
+所调 skill:cro、analytics。
+
+**核出来的事实,与前天的假设冲突**
+| 页 | mid 钩子位置 | pv/28d | subscribe_click |
+|---|---|---|---|
+| `/ai-2027-scenario-explained`(所谓赢家) | 第 1 节之后 | 28 | **2** |
+| `/when-will-agi-arrive` | 第 3 节(共 4 节)之后,且与另两块堆在一起 | **198** | **0** |
+| `/situational-awareness-summary` | 原在最后一节之后(09-09 已上移) | 34 | 0 |
+
+**必须说清楚的一点,免得把自己骗了**:所谓「赢家」总共 **2 个事件**。而 0/198 才是
+样本量最大的那个读数——若真实转化率是赢家的 7%,198 pv 的期望是约 14 次,实测 0。
+**2/28 vs 0/198 的差异确实存在(Fisher 双尾 p≈0.02),但它可能来自页面/话题/受众,
+未必来自位置。** 前天我把它当「位置 > 文案」写进台账,今天补一句:**那是假设,不是结论。**
+
+**ship(一处移动,不改文案,不新增内容)**
+把 `/when-will-agi-arrive` 的 `deep_when_mid` 整块从第 3 节之后上移到第 1 节之后
+(表格 + 那段"定义各不相同"的正文之后、`<h2>The meta-trend` 之前),与赢家位置对齐。
+顺带解掉原处三块盒子连排的堆叠。`deep_when_foot` 不动。
+
+**为什么不等 10-07 再复制**:09-09 给 sasummary 预登记的是「10-07 判定后再复制到其他页」。
+今天提前动 `/when-will-agi-arrive` **不是抢跑那条结论,而是把同一个处理并行放到
+样本量大 6 倍的页上**——34 pv 的那一臂本来就判不出什么,198 pv 这一臂才有力量。
+两臂同日(10-07)一起结算,比先等小样本再推大样本严格。这个偏离写在这里,不藏。
+
+**判定线(预登记,10-07,不许事后调)**
+- `subscribe_click{deep_when_mid}` ≥2 → 位置假设成立,复制到 `/how-close-is-agi` 与
+  `/will-agi-arrive-2027`。
+- =0 → **位置假设判否**,并同时得出更重要的结论:**深页订阅钩在本站不成立**
+  (0/198 + 0/34 两臂合计,已经不是样本量问题),拆除所有深页 mid 钩,
+  只保留页脚,把转化投入整体移出深页。
+- =1 → 不下结论,延到 11-04 再读一次(只有这一种情况允许延期,且只延一次)。
+
+**刻意没做**:没 bump `Last updated` / `dateModified` / sitemap lastmod——移动一个 CTA
+不是内容更新,理由同 09-09。
+
+**validate OK(229 页 / 211 URL)。**

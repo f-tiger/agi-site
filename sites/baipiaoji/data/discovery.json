@@ -1,6 +1,56 @@
 {
   "items": [
     {
+      "name": "MultiMatte, a Promptable Image Background Removal Model",
+      "url": "https://usefeyn.com/blog/multimatte/",
+      "host": "usefeyn.com",
+      "src": "https://news.ycombinator.com/item?id=49645803",
+      "points": 43,
+      "comments": 8,
+      "found": "2026-09-11",
+      "status": "candidate"
+    },
+    {
+      "name": "Geiger – See every AI agent on your machine and what it can touch",
+      "url": "https://github.com/Atomburstofficial/geiger",
+      "host": "github.com",
+      "src": "https://news.ycombinator.com/item?id=49627646",
+      "points": 44,
+      "comments": 21,
+      "found": "2026-09-10",
+      "status": "candidate"
+    },
+    {
+      "name": "LLM Attention Visualization",
+      "url": "https://ishamf.dev/p/llm-attention-visualizer/",
+      "host": "ishamf.dev",
+      "src": "https://news.ycombinator.com/item?id=49613068",
+      "points": 147,
+      "comments": 23,
+      "found": "2026-09-09",
+      "status": "candidate"
+    },
+    {
+      "name": "Engrim – A universal, local-first SQLite memory engine for AI CLIs",
+      "url": "https://github.com/timgordontg/engrim",
+      "host": "github.com",
+      "src": "https://news.ycombinator.com/item?id=49594008",
+      "points": 85,
+      "comments": 50,
+      "found": "2026-09-08",
+      "status": "candidate"
+    },
+    {
+      "name": "FrontierHarness Eval – 9 harness, same model, cost per pass varies 17x",
+      "url": "https://frontierharness.org",
+      "host": "frontierharness.org",
+      "src": "https://news.ycombinator.com/item?id=49538490",
+      "points": 72,
+      "comments": 52,
+      "found": "2026-09-03",
+      "status": "candidate"
+    },
+    {
       "name": "We built open OpenRouter that turns usage into a better model",
       "url": "https://github.com/experientiallabs/experiential",
       "host": "github.com",
@@ -241,5 +291,5 @@
       "status": "candidate"
     }
   ],
-  "updated": "2026-08-31"
+  "updated": "2026-09-11"
 }

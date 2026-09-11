@@ -3,6 +3,9 @@
 > PC überhitzt im Sommer? Was wirklich hilft: Staub raus, Lüfterkurve, Airflow — und der unterschätzte Hebel Raumtemperatur. +5 °C Raum = ~5 °C heißere CPU.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/pc-ueberhitzt-sommer.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
+
 Sobald draußen die Hitzewelle rollt, drosselt der Gaming-PC im Benchmark, die Lüfter drehen auf Anschlag und im schlimmsten Fall stürzt das Spiel mitten im Match ab. Das ist normal — aber vermeidbar. Es gibt zwei Hebel: die Kühlung im Gehäuse und die Temperatur im Raum. Den zweiten unterschätzen fast alle, dabei ist er bei echter Hitze der entscheidende.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.

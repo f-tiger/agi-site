@@ -3,6 +3,9 @@
 > Börsenstrompreis heute im Live-Radar: aktueller Stundenpreis, günstigste Stunde und negative Strompreise.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/strompreis-radar.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
+
 Der Strompreis an der Börse ändert sich stündlich — mittags mit viel Sonne ist er oft spottbillig oder sogar **negativ**, abends teuer. Dieses Radar zeigt dir die heutigen Stundenpreise live, markiert die günstigste Stunde und zählt die negativen Stunden.
 
 **Kurz gesagt:** Der deutsche Börsenstrompreis (EPEX Day-Ahead) lag 2026 im Schnitt grob bei **10–15 Cent pro kWh** — dein Haushaltspreis von ~37 Cent besteht zu etwa zwei Dritteln aus Netzentgelten, Steuern und Umlagen. **Negative Strompreise** boomen: allein im April 2026 gab es **123 negative Stunden**, im Jahresverlauf bereits über **400** (Tiefstwert −500 €/MWh, Übersicht: stromauskunft.de). Profitieren kannst du direkt mit einem dynamischen Tarif — oder indirekt mit Balkonkraftwerk + Speicher.

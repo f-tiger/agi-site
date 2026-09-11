@@ -3,6 +3,9 @@
 > Which portable cooling setups need a landlord's permission in Europe and which don't, how to seal a window without losing your deposit — and the fallback.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/en/guide/portable-ac-rented-apartment.html
+
+Live data on this page (hourly, rendered in the browser, not included in this Markdown view): https://getecoback.com/api/heat
+
 **Short answer:** a free-standing monoblock unit vented through a window you already open, with a removable seal, changes nothing about the building and normally needs no permission. Drilling — for a split unit, a bracket or a condensate pipe — does. The real risk to your deposit is not the machine, it is **adhesive tape on the window frame**. Rules differ by country and contract; this is practical guidance, not legal advice.
 
 EcoBack is funded through Amazon affiliate links. We have not tested these machines ourselves; the recommendations summarise public reviews, and every number below is arithmetic you can redo with your own figures.

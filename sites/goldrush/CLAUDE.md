@@ -149,6 +149,22 @@ grade 的那类不可证伪主张);③**任何被点名方的判定页面旁不�
 若 E13 判死 audits,本路线随之转入档案,等真实需求信号再议——产品跟着需求走,
 不跟着愿景走。
 
+## 2026-09-04 舰队技术优化:信标结论 + 机制修补(详见根仓 docs/fleet-optimization-2026-09-04.md)
+
+- **JS 信标没坏,零是真零**:逐环核对(五页都带 `ev('page_view','js')`、路由/白名单/
+  ua_class='js' 写入/线上代码与仓库一致、08-29 有一条真人 fork_click 走通过同一路径)。
+  D1 里的 186 条「human」page_view 是整站 7 路径一秒扫完、ref="" 的扫描器
+  (uaClass 把带 Mozilla 的都算人)。**09-30 绊线按 0 诚实结算,不要把它读成仪器故障。**
+  uaClass 已补扫描器特征,只影响新行。
+- `/grader.html` 一直 307 到 `/grader`(assets 默认 auto-trailing-slash):D1 里 11 行落在
+  `/grader`、0 行在 `.html`。sitemap、canonical、5 处站内链接、llms.txt、SKILL.md 全改成
+  `/grader`。sitemap 三页 lastmod 改 08-30(与页内 dateModified 一致)。
+- fetchlog.json 排除项 (c) 此前没有代码:主站 MCP 的 get_claim_ledger 默认自取现在带
+  `?ci=1`;heartbeat 探活也带 `?ci=1`(此前 25 条「other」page_view 是它)。
+  `/fetchlog.json` 与 `/claimledger.schema.json` 补进服务端计数名单。
+- 部署自检从「sleep 20 + 单次 + 只 warning」改为 gridlings 形状:8 条路径 5 次重试,
+  任一非 200 打红。
+
 ## 判定线(预登记 2026-08-29,fork 线已按 owner 否决 + 调研裁决换轨)
 **(2026-08-30 改写:旧版两条都不可解——生存线依赖会话沙箱够不到的 Bing 明细,
 采用线的 grader_use 是单机虚荣指标。新版全部可由 D1 自查。)**

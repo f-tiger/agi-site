@@ -3,6 +3,9 @@
 > Portable AC smells musty or like mildew? Standing condensate and a damp coil grow mould. Here's the 5-step clean that removes the smell for good.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/en/guide/portable-ac-smells-musty.html
+
+Live data on this page (hourly, rendered in the browser, not included in this Markdown view): https://getecoback.com/api/heat
+
 You switch on your portable air conditioner expecting cool air — and get a waft of damp cellar instead. That musty, mildewy smell is one of the most common portable-AC complaints, yet most advice online covers car air-con or fixed split units. Here's what actually causes it in **portable monobloc units**, and how to clean yours without damaging it.
 
 As an Amazon Associate, EcoBack earns from qualifying purchases. Product links below are affiliate links — you pay the same price.

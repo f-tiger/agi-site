@@ -3,6 +3,9 @@
 > Nackenschmerzen durch die Klimaanlage? Warum 6 °C unter Außentemperatur die Grenze ist und wie du Luftstrom, Aufstellung und Timer richtig einstellst.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/klimaanlage-zugluft-nackenschmerzen.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
+
 Endlich kühl im Raum — und am nächsten Morgen ist der Nacken steif. Verspannungen durch Klimaanlagen sind so verbreitet, dass viele das Gerät wieder ausschalten und lieber schwitzen. Dabei ist die Ursache fast nie die kühle Luft selbst, sondern der **gerichtete kalte Luftstrom auf Nacken, Schultern oder Rücken**. Mit der richtigen Aufstellung und drei Einstellungen kühlst du ohne Zugluft-Probleme.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.

@@ -613,6 +613,7 @@
   </div>
   <nav>
     <a href="#predictions">Scorecard</a>
+    <a href="/ai-and-your-job" onclick="gtag('event','hot_topic_click',{location:'nav_job'});">💼 AI &amp; your job</a>
     <a href="/ai-tools" onclick="gtag('event','tool_click',{location:'nav'});">🎮 Play</a>
     <a href="/invest" onclick="gtag('event','invest_tool_click',{location:'nav'});">💰 Invest</a>
     <a href="https://compass.agiscorecard.com/en" onclick="gtag('event','invest_tool_click',{location:'nav_compass'});">🧭 13F Compass</a>
@@ -625,10 +626,10 @@
 </header>
 
 <main>
-  <a href="/aschenbrenner-fund-collapse" onclick="gtag('event','hot_topic_click',{location:'home_banner'});" style="display:flex; align-items:center; justify-content:center; gap:12px; max-width:860px; margin:14px auto 0; padding:11px 20px; background:linear-gradient(90deg,rgba(224,85,85,.14),rgba(232,160,64,.10)); border:1px solid rgba(224,85,85,.4); border-radius:12px; text-decoration:none; flex-wrap:wrap;">
-    <span style="font-size:12px; font-weight:800; letter-spacing:.08em; color:var(--danger); white-space:nowrap;">🔥 HOT · JULY 2026</span>
-    <span style="font-size:14px; color:var(--text); font-weight:600; text-align:center;">The AGI-2027 fund blew up — 439% YTD to −67% in one month. Did the thesis?</span>
-    <span style="font-size:13px; color:var(--danger); font-weight:700; white-space:nowrap;">Zero verdicts moved. See why →</span>
+  <a href="/ai-and-your-job" onclick="gtag('event','hot_topic_click',{location:'home_banner'});" style="display:flex; align-items:center; justify-content:center; gap:12px; max-width:860px; margin:14px auto 0; padding:11px 20px; background:linear-gradient(90deg,rgba(224,85,85,.14),rgba(232,160,64,.10)); border:1px solid rgba(224,85,85,.4); border-radius:12px; text-decoration:none; flex-wrap:wrap;">
+    <span style="font-size:12px; font-weight:800; letter-spacing:.08em; color:var(--danger); white-space:nowrap;">💼 NEW · SEP 2026</span>
+    <span style="font-size:14px; color:var(--text); font-weight:600; text-align:center;">Should you worry about AI taking your job? Fear 79%, observed disruption: none economy-wide — one concentrated early signal.</span>
+    <span style="font-size:13px; color:var(--danger); font-weight:700; white-space:nowrap;">Dated verdict + what would flip it →</span>
   </a>
   <div class="hero">
     <div class="hero-badge">
@@ -752,6 +753,8 @@
           <a href="/progress-index" onclick="gtag('event','index_click',{location:'directory'});">Thesis Tracker · 62.5/100</a>
           <a href="#predictions">The full scorecard</a>
           <a href="/agi-questions">All AGI questions</a>
+          <a href="/ai-and-your-job" onclick="gtag('event','hot_topic_click',{location:'directory_job'});">💼 Should you worry about AI &amp; your job?</a>
+          <a href="/amodei-white-collar-bloodbath-prediction">⏱ Amodei&#39;s &ldquo;bloodbath&rdquo; clock</a>
           <a href="/eu-ai-act-what-applies-now">⚖️ EU AI Act: applies vs. deferred</a>
           <a href="/which-agent-protocols-are-actually-used">Agent protocols: really used?</a>
           <a href="/prediction-receipts">📅 Prediction receipts</a>
@@ -1091,6 +1094,31 @@
         <p style="margin:4px 0 0; font-size:13px; color:var(--muted);">Get each verdict change the week it happens — free, no hype, just signal.</p>
       </div>
       <a href="https://agiscorecard.beehiiv.com/subscribe?utm_source=agiscorecard&utm_medium=post_scorecard" target="_blank" rel="noopener" onclick="gtag('event','subscribe_click',{location:'post_scorecard'});" style="display:inline-block; background:var(--accent); color:#fff; padding:11px 24px; border-radius:8px; font-size:14px; font-weight:500; text-decoration:none; white-space:nowrap;">Subscribe free →</a>
+    </div>
+  </div>
+
+  <!-- GRADE-IT-YOURSELF (in-page, no navigation, no sign-up — the pattern this site's own
+       data says works: the homepage vote and readnext outfire every banner CTA by ~3x.
+       Reads /data.json live, so verdicts and the tracker score can never drift from it.) -->
+  <div class="section" id="grade-game">
+    <div class="section-header">
+      <h2 class="section-title" style="font-size:1rem;">Your turn — score the thesis yourself</h2>
+      <div class="section-sub">Same eight predictions, same published weights (delivered&nbsp;=&nbsp;1, undecided&nbsp;=&nbsp;0.5, failed&nbsp;=&nbsp;0). <span style="color:var(--accent);">Our 62.5 is an editorial call — this is where you disagree with it.</span></div>
+    </div>
+    <div id="gg-wrap" style="background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:1rem 1.1rem;">
+      <div id="gg-rows"></div>
+      <div id="gg-live" style="margin-top:.9rem;font-size:14px;color:var(--muted);">Graded <strong id="gg-n">0</strong> of 8.</div>
+      <div id="gg-result" style="display:none;margin-top:.9rem;padding:.9rem 1rem;background:var(--bg3,rgba(255,255,255,.04));border:1px solid var(--border2,rgba(255,255,255,.12));border-radius:10px;">
+        <div style="font-size:1.05rem;font-weight:700;margin-bottom:.35rem;">You score it <span id="gg-score" style="color:var(--accent);"></span>/100. The ledger says <span id="gg-ours"></span>.</div>
+        <div id="gg-verdict-line" style="font-size:14px;color:var(--muted);margin-bottom:.6rem;"></div>
+        <div id="gg-diffs" style="font-size:13.5px;line-height:1.7;"></div>
+        <div style="margin-top:.8rem;display:flex;gap:8px;flex-wrap:wrap;">
+          <button id="gg-copy" style="background:var(--accent);color:#fff;border:0;padding:9px 18px;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;">Copy my score</button>
+          <a href="/progress-index" id="gg-tracker" style="background:var(--bg2);border:1px solid var(--border2,rgba(255,255,255,.12));color:var(--text);padding:9px 18px;border-radius:8px;font-size:14px;font-weight:600;text-decoration:none;">How the 62.5 is computed &rarr;</a>
+          <button id="gg-reset" style="background:transparent;border:1px solid var(--border);color:var(--muted);padding:9px 16px;border-radius:8px;font-size:14px;cursor:pointer;">Regrade</button>
+        </div>
+        <p style="margin:.7rem 0 0;font-size:12.5px;color:var(--muted);">Your grades stay in this browser. Nothing is sent anywhere and no sign-up is asked for.</p>
+      </div>
     </div>
   </div>
 
@@ -1553,6 +1581,88 @@ function dismissSlidein(){
   },1000);
 })();
 
+</script>
+<script>
+/* Grade-it-yourself. Data comes from /data.json at runtime so the game cannot drift
+   from the published verdicts — including the tracker score it compares against. */
+(function(){
+  var W={delivered:1,undecided:.5,failed:0};
+  var OURS={'On track':1,'Exceeded':1,'Open':.5,'Pending':.5,'Wrong':0};
+  var wrap=document.getElementById('gg-wrap'); if(!wrap) return;
+  var picks={},preds=[],ourScore=null;
+  function ev(n,l){try{gtag('event',n,{location:'grade_game',label:l});}catch(e){}}
+  fetch('/data.json').then(function(r){return r.json();}).then(function(d){
+    preds=(d.predictions||[]).slice(0,8);
+    ourScore=(d.thesisTracker&&d.thesisTracker.score);
+    if(!preds.length||ourScore==null){wrap.style.display='none';return;}
+    render();
+  }).catch(function(){wrap.style.display='none';});
+  function esc(t){var e=document.createElement('div');e.textContent=t==null?'':t;return e.innerHTML;}
+  function render(){
+    var rows=document.getElementById('gg-rows');
+    rows.innerHTML=preds.map(function(p,i){
+      return '<div style="padding:.6rem 0;border-bottom:1px solid var(--border);">'+
+        '<div style="font-size:14.5px;margin-bottom:.45rem;">'+esc(p.prediction)+'</div>'+
+        '<div style="display:flex;gap:6px;flex-wrap:wrap;">'+
+        ['delivered','undecided','failed'].map(function(g){
+          return '<button data-i="'+i+'" data-g="'+g+'" class="gg-b" style="background:var(--bg3,rgba(255,255,255,.05));border:1px solid var(--border2,rgba(255,255,255,.12));color:var(--text);padding:6px 13px;border-radius:8px;font-size:13.5px;cursor:pointer;">'+
+            (g==='delivered'?'Delivered':g==='undecided'?'Undecided':'Failed')+'</button>';
+        }).join('')+'</div></div>';
+    }).join('');
+    Array.prototype.forEach.call(rows.querySelectorAll('.gg-b'),function(b){
+      b.addEventListener('click',function(){
+        var i=b.getAttribute('data-i'),g=b.getAttribute('data-g');
+        picks[i]=g;
+        Array.prototype.forEach.call(rows.querySelectorAll('.gg-b[data-i="'+i+'"]'),function(o){
+          var on=o.getAttribute('data-g')===g;
+          o.style.background=on?'var(--accent)':'var(--bg3,rgba(255,255,255,.05))';
+          o.style.color=on?'#fff':'var(--text)';o.style.fontWeight=on?'700':'400';
+        });
+        ev('calc_use',(preds[i]&&preds[i].id||i)+':'+g);
+        update();
+      });
+    });
+  }
+  function update(){
+    var n=Object.keys(picks).length;
+    document.getElementById('gg-n').textContent=n;
+    if(n<preds.length) return;
+    var mine=0;preds.forEach(function(p,i){mine+=W[picks[i]];});
+    mine=Math.round(mine/preds.length*1000)/10;
+    document.getElementById('gg-score').textContent=mine;
+    document.getElementById('gg-ours').textContent=ourScore;
+    var d=Math.round((mine-ourScore)*10)/10;
+    document.getElementById('gg-verdict-line').textContent = d===0
+      ? 'Exactly the ledger\u2019s reading.'
+      : (d>0? 'You are '+d+' points more bullish than the evidence ledger.'
+            : 'You are '+Math.abs(d)+' points harsher than the evidence ledger.');
+    var diffs=preds.map(function(p,i){
+      var ourW=OURS[p.verdict], mineW=W[picks[i]];
+      if(ourW===mineW) return '';
+      return '<div>&bull; <strong>'+esc(p.prediction.slice(0,60))+'</strong> &mdash; you said <em>'+picks[i]+
+        '</em>, the ledger grades it <strong>'+esc(p.verdict)+'</strong>.</div>';
+    }).filter(Boolean);
+    document.getElementById('gg-diffs').innerHTML = diffs.length
+      ? '<div style="margin-bottom:.3rem;color:var(--muted);">Where you differ ('+diffs.length+' of 8):</div>'+diffs.join('')
+      : '<div style="color:var(--muted);">You graded all eight exactly as the ledger does.</div>';
+    document.getElementById('gg-result').style.display='block';
+    ev('calc_use','complete:'+mine);
+  }
+  document.addEventListener('click',function(e){
+    if(e.target&&e.target.id==='gg-copy'){
+      var t='I score the AGI-2027 thesis at '+document.getElementById('gg-score').textContent+
+        '/100. The evidence ledger says '+ourScore+'. Grade the same eight predictions yourself: https://agiscorecard.com/#grade-game';
+      var done=function(){e.target.textContent='Copied \u2713';setTimeout(function(){e.target.textContent='Copy my score';},1600);};
+      if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(done,done);}else{done();}
+      try{gtag('event','challenge_share',{location:'grade_game',label:'copy'});}catch(err){}
+    }
+    if(e.target&&e.target.id==='gg-reset'){
+      picks={};document.getElementById('gg-result').style.display='none';render();update();
+      document.getElementById('gg-n').textContent='0';
+    }
+    if(e.target&&e.target.id==='gg-tracker'){try{gtag('event','index_click',{location:'grade_game',label:'tracker'});}catch(err){}}
+  });
+})();
 </script>
 </body>
 </html>

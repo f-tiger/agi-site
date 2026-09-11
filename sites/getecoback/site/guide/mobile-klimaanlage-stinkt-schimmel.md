@@ -3,6 +3,9 @@
 > Muffiger Geruch aus der mobilen Klimaanlage? Meist ist es Biofilm auf dem Verdampfer. So wird das Gerät in 30 Minuten wieder frisch — Schritt für Schritt.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/mobile-klimaanlage-stinkt-schimmel.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
+
 Du schaltest deine mobile Klimaanlage ein — und statt kühler Frische kommt ein muffiger, kellerartiger Geruch aus dem Gerät. Das ist eines der häufigsten Probleme bei Monoblock-Klimageräten, wird aber in den meisten Ratgebern nur für Auto-Klimaanlagen oder fest installierte Split-Geräte erklärt. Hier geht es gezielt um **mobile Monoblock-Geräte**: warum sie riechen, wie du die Quelle findest und wie du das Gerät selbst reinigst, ohne es zu beschädigen.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.

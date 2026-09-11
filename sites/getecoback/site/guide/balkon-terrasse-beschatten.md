@@ -3,6 +3,7 @@
 > Balkon und Terrasse beschatten: Sonnensegel, Ampelschirm und Markise im Vergleich — windstabil, ohne Bohren für Mieter und kühlend auch fürs Zimmer.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/balkon-terrasse-beschatten.html
+
 Ein unbeschatteter Süd- oder Westbalkon wird in einer Hitzewelle schnell zur Wärmefalle: Der Belag speichert die Sonne, die Brüstung strahlt sie ab — und direkt dahinter liegt fast immer die größte Glasfläche der Wohnung, die Balkon- oder Terrassentür. Genau dort dringt am meisten Hitze in den Raum. Wer den Außenbereich klug beschattet, gewinnt also doppelt: einen nutzbaren Balkon und ein kühleres Zimmer. Dieser Ratgeber sortiert die Optionen nach Aufwand, Windstabilität und danach, ob du bohren darfst.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.

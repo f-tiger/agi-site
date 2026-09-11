@@ -216,7 +216,7 @@ def main():
   </footer>
 
 <script>
-function ev(n,l){{try{{fetch('/e',{{method:'POST',headers:{{'content-type':'application/json'}},body:JSON.stringify({{n:n,l:l,p:location.pathname}})}});}}catch(e){{}}}}
+function ev(n,l){{try{{var b=JSON.stringify({{n:n,l:(l||'').slice(0,80),v:0,p:location.pathname}});navigator.sendBeacon?navigator.sendBeacon('/e',b):fetch('/e',{{method:'POST',body:b,keepalive:true}});}}catch(e){{}}}}
 (function(){{
   var W={wjson}, B={bjson};
   function q(a,v){{var c=0;for(var i=0;i<a.length;i++)if(a[i]<=v)c++;return Math.round(100*c/a.length);}}

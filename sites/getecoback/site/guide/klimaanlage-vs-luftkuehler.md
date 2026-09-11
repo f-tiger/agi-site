@@ -3,6 +3,9 @@
 > Klimaanlage vs. Luftkühler: Kühlleistung, Stromkosten und Einsatzgebiete im ehrlichen Vergleich — welches Gerät für dein Zimmer und Budget wirklich passt.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/klimaanlage-vs-luftkuehler.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
+
 In der Hitzewelle sind tragbare Klimaanlagen und Verdunstungs-Luftkühler die meistgekauften Kühlgeräte. Sie werden oft verwechselt, funktionieren aber grundverschieden — und das falsche Gerät für deine Situation ist rausgeworfenes Geld. Hier der ehrliche Vergleich.
 
 **Kurze Antwort:** Im Betrieb ist der **Luftkühler klar günstiger** — er zieht nur **60–120 Watt** (wie ein Ventilator), eine tragbare Klimaanlage dagegen **800–1.400 Watt**. Sie leisten aber Unterschiedliches: Nur die Klimaanlage (ab ~250 €) senkt die Raumtemperatur wirklich; der Luftkühler (ab ~60 €) kühlt bloß den Luftstrom um ein paar Grad und bringt Feuchtigkeit in den Raum. Wer die Temperatur wirklich senken will, zahlt beim Strom mehr; wer nur eine günstige Abkühlung sucht, fährt mit Luftkühler oder Ventilator billiger.

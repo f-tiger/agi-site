@@ -3,6 +3,9 @@
 > Comfee MPPH-09CRN7 im Test-Überblick: 9.000 BTU für 15–20 m², ca. 250–320 € — was öffentliche Tests loben und wo der Budget-Preis ehrliche Grenzen hat.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/comfee-mpph-09crn7-test.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
+
 Das Comfee MPPH-09CRN7 ist das Gerät, das wir auf diesem Portal als Preis-Leistungs-Empfehlung für kleine Räume nennen — Grund genug, ihm eine eigene Seite zu geben. Wir testen nicht selbst: Diese Seite fasst zusammen, was öffentliche Tests, Käuferbewertungen und das Hersteller-Datenblatt zum MPPH-09CRN7 sagen, und ordnet die Zahlen ehrlich ein — inklusive der Frage, was man für den niedrigen Preis aufgibt.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.

@@ -3,6 +3,7 @@
 > Condizionatore portatile per 15 m²: servono 7.000–9.000 BTU (regola dei 340 BTU/m²). Modello consigliato, costi elettrici e consigli per la camera.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/it/guide/condizionatore-portatile-15-mq.html
+
 **Dritti alle scelte**Annuncio · link affiliati — il prezzo per te non cambia
 
 Giusto e convenienteComfee MPPH-09CRN7→

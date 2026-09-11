@@ -123,7 +123,7 @@ def game_page(g, rec):
 <div class="capsule" style="border-left-color:#6ea8fe;margin:.6rem 0 1rem"><strong>🔔 Verdict-flip alert</strong><br>
 <span class="muted">One email if {name} crosses a band on this ledger — nothing else, no newsletter noise.</span><br>
 <a href="https://agiscorecard.beehiiv.com/subscribe?utm_source=gamesledger&amp;utm_medium=game_page" target="_blank" rel="noopener" onclick="gev('subscribe_click','game_page','{slug}')" style="display:inline-block;margin-top:6px;background:#41d18f;color:#0b0c0e;font-weight:700;border-radius:8px;padding:7px 14px;font-size:13.5px">Get the flip alert →</a></div>
-<p style="margin:.2rem 0 1rem"><a href="{share_x}" rel="noopener" target="_blank" style="font-size:13px;border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:6px 12px;">Share the number →</a>
+<p style="margin:.2rem 0 1rem"><a href="{share_x}" rel="noopener" target="_blank" onclick="gev('share_click','game_page','{slug}')" style="font-size:13px;border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:6px 12px;">Share the number →</a>
 <a href="/dead-or-alive" style="font-size:13px;border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:6px 12px;margin-left:6px;">🎮 Play: guess 10 games dead-or-alive →</a></p>
 <h2>Recent official samples</h2>
 <table><thead><tr><th>Date (UTC)</th><th class="num">Concurrent players</th></tr></thead><tbody>{rows}</tbody></table>
@@ -137,9 +137,9 @@ editorial discretion involved.</p>
 <h2>Frequently asked questions</h2>{faq_html}
 <h2>Embed the live number</h2>
 <p class="muted">A live badge for your forum, Discord, wiki or README — updates every 10 minutes, always Valve's official number:</p>
-<div style="margin:.4rem 0"><img src="/badge/{g['appid']}.svg" alt="{html.escape(name)} live player badge"></div>
-<pre style="background:#121418;border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:10px;font-size:12px;overflow-x:auto">&lt;a href="{SITE_URL}/is-{slug}-dead?utm_source=badge"&gt;&lt;img src="{SITE_URL}/badge/{g['appid']}.svg" alt="{html.escape(name)} players right now"&gt;&lt;/a&gt;</pre>
-<pre style="background:#121418;border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:10px;font-size:12px;overflow-x:auto">[![{html.escape(name)} players right now]({SITE_URL}/badge/{g['appid']}.svg)]({SITE_URL}/is-{slug}-dead?utm_source=badge)</pre>
+<div style="margin:.4rem 0"><img src="/badge/{g['appid']}.svg" alt="{html.escape(name)} live player badge" height="26" loading="lazy"></div>
+<pre onclick="if(!window._ec){{window._ec=1;gev('embed_copy','snippet','{g['appid']}')}}" style="background:#121418;border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:10px;font-size:12px;overflow-x:auto">&lt;a href="{SITE_URL}/is-{slug}-dead?utm_source=badge"&gt;&lt;img src="{SITE_URL}/badge/{g['appid']}.svg" alt="{html.escape(name)} players right now"&gt;&lt;/a&gt;</pre>
+<pre onclick="if(!window._ec){{window._ec=1;gev('embed_copy','snippet','{g['appid']}')}}" style="background:#121418;border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:10px;font-size:12px;overflow-x:auto">[![{html.escape(name)} players right now]({SITE_URL}/badge/{g['appid']}.svg)]({SITE_URL}/is-{slug}-dead?utm_source=badge)</pre>
 <h2>More verdicts</h2><p><a href="/">All games on the ledger →</a></p>""" + FOOT
 
 
@@ -188,9 +188,9 @@ history.replaceState(null,'','?app='+a);
 live.innerHTML='<div style="font-size:30px;font-weight:800">'+d.n.toLocaleString()+'</div>'
 +'<div class="muted">'+name+' \u00b7 in-game on Steam right now \u00b7 official Valve API \u00b7 '+d.t+'</div>'
 +'<div style="margin-top:4px"><strong>'+band(d.n)+'</strong></div>'
-+'<div style="margin-top:8px"><a target="_blank" rel="noopener" style="font-size:13px;border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:5px 10px" href="https://twitter.com/intent/tweet?text='+encodeURIComponent(name+' right now on Steam: '+d.n.toLocaleString()+' in-game (official). '+location.origin+'/?app='+a)+'">Share \u2192</a>'
-+' <button onclick="navigator.clipboard.writeText(location.origin+\'/?app='+a+'\');this.textContent=\'copied\'" style="font-size:13px;background:none;border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:5px 10px;color:#e8e9ec;cursor:pointer">Copy link</button></div>'
-+'<div style="margin-top:8px;font-size:12.5px" class="muted"><a target="_blank" rel="noopener" onclick="gev(\'subscribe_click\',\'live_result\')" href="https://agiscorecard.beehiiv.com/subscribe?utm_source=gamesledger&utm_medium=live_result">🔔 One email if this game\'s verdict ever flips →</a></div>';}})
++'<div style="margin-top:8px"><a target="_blank" rel="noopener" onclick="gev(\\'share_click\\',\\'live_result\\',\\'x:'+a+'\\')" style="font-size:13px;border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:5px 10px" href="https://twitter.com/intent/tweet?text='+encodeURIComponent(name+' right now on Steam: '+d.n.toLocaleString()+' in-game (official). '+location.origin+'/?app='+a)+'">Share \u2192</a>'
++' <button onclick="gev(\\'share_click\\',\\'live_result\\',\\'copy:'+a+'\\');navigator.clipboard.writeText(location.origin+\\'/?app='+a+'\\');this.textContent=\\'copied\\'" style="font-size:13px;background:none;border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:5px 10px;color:#e8e9ec;cursor:pointer">Copy link</button></div>'
++'<div style="margin-top:8px;font-size:12.5px" class="muted"><a target="_blank" rel="noopener" onclick="gev(\\'subscribe_click\\',\\'live_result\\')" href="https://agiscorecard.beehiiv.com/subscribe?utm_source=gamesledger&utm_medium=live_result">🔔 One email if this game\\'s verdict ever flips →</a></div>';}})
 .catch(function(){{live.innerHTML='<span class="muted">API unreachable, try again.</span>';}});}}
 }})();
 </script>
@@ -291,16 +291,16 @@ def quiz_page():
 <h1>Dead or alive? Call it, then see the real number.</h1>
 <p class="muted" style="margin-bottom:1rem">10 games. For each: is it pulling <strong>&ge;2,000</strong> concurrent players on Steam right now?
 Answers are Valve's official numbers sampled today — no estimates, no vibes.</p>
-<div class="capsule" id="game"><button id="start" style="background:#41d18f;color:#0b0c0e;font-weight:700;border:none;border-radius:9px;padding:10px 18px;font-size:15px;cursor:pointer">Start →</button></div>
+<div class="capsule" id="game"><button id="start" disabled style="background:#41d18f;color:#0b0c0e;font-weight:700;border:none;border-radius:9px;padding:10px 18px;font-size:15px;cursor:pointer">Start →</button></div>
 <p class="muted">Numbers are the day's sample from Valve's public API (chart games: official Most Played chart). The 2,000 line matches this site's published verdict bands. <a href="/methodology">Methodology</a>.</p>
 <script>
 (function(){
 var P=[],i=0,score=0,cur=null,order=[];
-fetch('/quiz-pool.json').then(r=>r.json()).then(function(d){P=d.items;});
+fetch('/quiz-pool.json').then(r=>r.json()).then(function(d){P=d.items||[];if(P.length)document.getElementById('start').disabled=false;});
 var box=document.getElementById('game');
 document.getElementById('start').onclick=function(){gev('quiz_start','quiz');go();};
 function shuffle(a){for(var j=a.length-1;j>0;j--){var k=Math.floor(Math.random()*(j+1));var t=a[j];a[j]=a[k];a[k]=t;}return a;}
-function go(){var hi=shuffle(P.filter(g=>g.n>=2000)).slice(0,5),lo=shuffle(P.filter(g=>g.n<2000)).slice(0,5);order=shuffle(hi.concat(lo));i=0;score=0;next();}
+function go(){if(!P.length)return;var hi=shuffle(P.filter(g=>g.n>=2000)).slice(0,5),lo=shuffle(P.filter(g=>g.n<2000)).slice(0,5);order=shuffle(hi.concat(lo));i=0;score=0;next();}
 function next(){if(i>=order.length){return fin();}cur=order[i];
 box.innerHTML='<div class="muted">Round '+(i+1)+'/'+order.length+' · score '+score+'</div>'
 +'<div style="font-size:22px;font-weight:700;margin:6px 0 10px">'+cur.name+'</div>'
@@ -314,10 +314,10 @@ window._nx=next;
 function fin(){gev('quiz_done','quiz',String(score));var txt='I scored '+score+'/'+order.length+' guessing which Steam games are still alive — against real Valve numbers. Try it: '+location.origin+'/dead-or-alive';
 box.innerHTML='<div style="font-size:26px;font-weight:800">'+score+'/'+order.length+'</div>'
 +'<div class="muted" style="margin:4px 0 10px">'+(score>=8?'You know the graveyard.':score>=5?'Respectable read of the charts.':'The charts are weirder than they look.')+'</div>'
-+'<a target="_blank" rel="noopener" style="border:1px solid rgba(255,255,255,.25);border-radius:9px;padding:8px 13px;font-size:14px" href="https://twitter.com/intent/tweet?text='+encodeURIComponent(txt)+'">Share score →</a> '
-+'<button onclick="navigator.clipboard.writeText(window._txt);this.textContent=\\'copied\\'" style="border:1px solid rgba(255,255,255,.25);border-radius:9px;padding:8px 13px;font-size:14px;background:none;color:#e8e9ec;cursor:pointer">Copy</button> '
++'<a target="_blank" rel="noopener" onclick="gev(\\'share_click\\',\\'quiz\\',\\'x\\')" style="border:1px solid rgba(255,255,255,.25);border-radius:9px;padding:8px 13px;font-size:14px" href="https://twitter.com/intent/tweet?text='+encodeURIComponent(txt)+'">Share score →</a> '
++'<button onclick="gev(\\'share_click\\',\\'quiz\\',\\'copy\\');navigator.clipboard.writeText(window._txt);this.textContent=\\'copied\\'" style="border:1px solid rgba(255,255,255,.25);border-radius:9px;padding:8px 13px;font-size:14px;background:none;color:#e8e9ec;cursor:pointer">Copy</button> '
 +'<button onclick="window._go()" style="border:none;border-radius:9px;padding:8px 13px;font-size:14px;background:#41d18f;color:#0b0c0e;font-weight:700;cursor:pointer">Play again</button>'
-+'<div style="margin-top:12px;font-size:13px" class="muted">Want the day a big game\'s verdict flips? <a target="_blank" rel="noopener" onclick="gev(\'subscribe_click\',\'quiz_end\')" href="https://agiscorecard.beehiiv.com/subscribe?utm_source=gamesledger&utm_medium=quiz_end">One email per flip, nothing else →</a></div>';
++'<div style="margin-top:12px;font-size:13px" class="muted">Want the day a big game\\'s verdict flips? <a target="_blank" rel="noopener" onclick="gev(\\'subscribe_click\\',\\'quiz_end\\')" href="https://agiscorecard.beehiiv.com/subscribe?utm_source=gamesledger&utm_medium=quiz_end">One email per flip, nothing else →</a></div>';
 window._txt=txt;window._go=go;}
 })();
 </script>""" + FOOT

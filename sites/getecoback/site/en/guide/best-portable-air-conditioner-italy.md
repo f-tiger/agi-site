@@ -3,6 +3,9 @@
 > Which portable AC for Italy in 2026? Why Po Valley humidity changes the pick, De'Longhi's home advantage, historic-building rules and where to order.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/en/guide/best-portable-air-conditioner-italy.html
+
+Live data on this page (hourly, rendered in the browser, not included in this Markdown view): https://getecoback.com/api/heat
+
 If you live in Italy as an expat or student, you learn fast that Italian summer is not one climate: the north swelters under humid afa, while Rome and the south bake in drier heat. And the building you live in often makes a fixed split system impossible. Here is which portable air conditioner actually fits Italian conditions in 2026 — and where to buy it.
 
 As an Amazon Associate, EcoBack earns from qualifying purchases. Product links below are affiliate links — you pay the same price.

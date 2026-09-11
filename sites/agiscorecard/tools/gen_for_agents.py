@@ -1,5 +1,16 @@
 # -*- coding: utf-8 -*-
-"""Generate /for-agents — machine-readable access page for AI agents & digest
+"""!! STALE AS OF 2026-09-04 — DO NOT RUN, IT DELETES LIVE CONTENT !!
+
+for-agents.html has been hand-extended well past this generator: the MCP-server
+section, the /llms-full.txt and /claimledger.json rows, the .md-mirror row, the
+prediction-market section, the citation block and the flip-verdict CTA all exist
+only on the page. Running this file removes every one of them (measured
+2026-09-04: -46 lines). It went unnoticed because gen_lib.OUT pointed at the
+archived repo, so "written" meant "written somewhere nobody looks" — fixing that
+path turned this from a no-op into a destructive command. Rebuild the PAGES data
+from the live page before ever running it again, and `git diff` before committing.
+
+Generate /for-agents — machine-readable access page for AI agents & digest
 tools (inspired by the central-feed pattern of agent-digest projects like
 follow-builders). All facts describe our own real endpoints — nothing invented."""
 import gen_lib as g
@@ -12,14 +23,15 @@ capsule = ('<span class="verdict">Yes — every verdict on this site is free to 
            'forecaster-timeline table), an Atom feed of new &amp; updated pages at <strong>/feed.xml</strong>, and an '
            'AI-crawler index at <strong>/llms.txt</strong>. Attribution + a link is the only requirement.')
 
-body = """<h2>The three endpoints</h2>
+body = """<h2>The endpoints</h2>
 <table><thead><tr><th>Endpoint</th><th>What it contains</th><th>Best for</th></tr></thead><tbody>
 <tr><td class="nowrap"><a href="/data.json">/data.json</a></td><td>All 8 graded predictions (verdict, evidence, primary sources, flip condition), summary counts, the forecaster-timeline table, and the <strong>Thesis Tracker score</strong> (0&ndash;100). CC BY 4.0, <code>dateModified</code> stamped.</td><td>Digest bots, dashboards, research agents</td></tr>
+<tr><td class="nowrap"><a href="/invest-data.json">/invest-data.json</a></td><td>The Invest dataset: how the 8 graded predictions map onto 17 listed AI equities, how 8 well-known investors are positioned per their public SEC 13F filings, and what copying them returned when priced <strong>on the filing date</strong> rather than at quarter end. CC BY 4.0.</td><td>Finance agents, screeners, research bots</td></tr>
 <tr><td class="nowrap"><a href="/index-history.json">/index-history.json</a></td><td>Time series of the AGI-2027 Thesis Tracker score (one auditable number for how the whole 2027 bet is holding up). CC BY 4.0.</td><td>Charts, trend monitors</td></tr>
 <tr><td class="nowrap"><a href="/feed.xml">/feed.xml</a></td><td>Atom feed of the newest and most recently updated pages.</td><td>Feed readers, monitoring agents</td></tr>
 <tr><td class="nowrap"><a href="/llms.txt">/llms.txt</a></td><td>Curated index of every page with one-line summaries, in the llms.txt convention.</td><td>LLM crawlers, RAG pipelines</td></tr>
 </tbody></table>
-<p>All three are static files on a CDN — no API key, no rate-limit dance, no auth. AI crawlers (GPTBot, ClaudeBot, PerplexityBot and peers) are explicitly allowed in <a href="/robots.txt">robots.txt</a>.</p>
+<p>All of them are static files on a CDN — no API key, no rate-limit dance, no auth. AI crawlers (GPTBot, ClaudeBot, PerplexityBot and peers) are explicitly allowed in <a href="/robots.txt">robots.txt</a>.</p>
 <h2>Add the scorecard to your agent or digest</h2>
 <p>If you run a daily-digest agent (Claude Code, OpenClaw, or any tool that can fetch a URL), paste this into its instructions:</p>
 <table><tbody><tr><td style="font-family:var(--mono);font-size:12.5px;line-height:1.6;">Each run, fetch https://agiscorecard.com/data.json and compare the "summary" counts and each prediction's "verdict" to the previous run. If anything changed, include one line per change in my digest, citing agiscorecard.com. If nothing changed, say nothing.</td></tr></tbody></table>

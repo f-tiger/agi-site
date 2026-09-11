@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FZXLMBB5QB"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-FZXLMBB5QB');</script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a0a0b'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%234fc3a1'/%3E%3C/svg%3E">
+<title>AI Trading Ledger: Eleven Bots, One Pre-Registered Public Track Record</title>
+<meta name="description" content="A paper-trading ledger with rules fixed before the start: SPY/QQQ benchmarks, an AI basket, a Thesis-Tracker mix, Faber 200-day and GTAA-5, GEM dual momentum, vol targeting, 12-1 momentum and an LLM arm, recomputed daily in public. Not investment advice.">
+<link rel="canonical" href="https://agiscorecard.com/ai-trading-ledger">
+<meta property="og:title" content="AI Trading Ledger: eleven bots, one pre-registered public track record">
+<meta property="og:description" content="The live, falsifiable ledger we ask AI-trading vendors for — kept by us, in public, paper only. Read date 2027-03-08.">
+<meta property="og:url" content="https://agiscorecard.com/ai-trading-ledger">
+<meta property="og:type" content="article">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Dataset", "name": "AGI Scorecard AI trading ledger (paper)", "description": "Pre-registered paper-trading ledger: ten published rule-based arms and one LLM arm on US equities and ETFs, recomputed daily from adjusted closes on a public GitHub workflow. Educational; not investment advice.", "url": "https://agiscorecard.com/ai-trading-ledger", "license": "https://creativecommons.org/licenses/by/4.0/", "distribution": [{"@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "https://agiscorecard.com/paper-ledger.json"}], "creator": {"@type": "Organization", "name": "The AGI Scorecard", "url": "https://agiscorecard.com"}, "datePublished": "2026-09-05", "temporalCoverage": "2026-09-08/.."}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "AGI Scorecard", "item": "https://agiscorecard.com/"}, {"@type": "ListItem", "position": 2, "name": "Do AI trading agents make money?", "item": "https://agiscorecard.com/do-ai-trading-agents-work"}, {"@type": "ListItem", "position": 3, "name": "AI trading ledger", "item": "https://agiscorecard.com/ai-trading-ledger"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is the AI trading ledger investment advice or a signal service?", "acceptedAnswer": {"@type": "Answer", "text": "No. It is a paper-trading experiment with rules fixed before the start date. No security is recommended, nothing is executed for anyone, no real money is involved, and positions are shown only after the paper execution date. Nothing on this page is a recommendation to buy or sell anything."}}, {"@type": "Question", "name": "Why publish a paper ledger at all?", "acceptedAnswer": {"@type": "Answer", "text": "Because /do-ai-trading-agents-work holds vendors to a standard — positions timestamped before outcomes, every result graded, misses never deleted, methodology fixed in advance — and the only honest way to demand that standard is to meet it ourselves. The ledger is the demonstration, not a product."}}, {"@type": "Question", "name": "What happens if one arm beats the S&P 500?", "acceptedAnswer": {"@type": "Answer", "text": "Nothing automatic. The pre-registered read date is 2027-03-08 (six months). On that date every arm's return, maximum drawdown and excess versus SPY are published as they are. Six months of paper results in one market regime is not evidence of skill, and the page will say so."}}]}</script>
+<style>
+  :root{--bg:#0a0a0b;--bg2:#111114;--bg3:#18181d;--border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.12);--text:#e8e8ec;--muted:#8888a0;--accent:#7c6af5;--accent2:#4fc3a1;--warn:#e8a040;--danger:#e05555;--font:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;--mono:'JetBrains Mono',monospace;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:16px;line-height:1.75;}
+  a{color:var(--accent);text-decoration:none;}a:hover{opacity:.8;}
+  header{border-bottom:1px solid var(--border);padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:56px;position:sticky;top:0;background:rgba(10,10,11,.92);backdrop-filter:blur(12px);z-index:100;}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px;color:var(--text);}
+  .logo-dot{width:8px;height:8px;background:var(--accent2);border-radius:50%;}
+  .back-link{font-size:13px;color:var(--muted);}.back-link:hover{color:var(--text);opacity:1;}
+  article{max-width:720px;margin:0 auto;padding:2.5rem 1.5rem 4rem;}
+  .eyebrow{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem;}
+  h1{font-size:clamp(1.7rem,4vw,2.4rem);font-weight:700;letter-spacing:-.02em;line-height:1.18;margin-bottom:1.25rem;}
+  .capsule{background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent2);border-radius:0 10px 10px 0;padding:1.15rem 1.4rem;font-size:16px;margin-bottom:1.75rem;}
+  .capsule .verdict{font-weight:700;}
+  .v-ok{color:var(--accent2);}.v-wrong{color:var(--danger);}.v-open{color:var(--accent);}.v-pending{color:var(--muted);}
+  h2{font-size:1.25rem;font-weight:600;margin:2.25rem 0 .9rem;letter-spacing:-.01em;}
+  h3{font-size:1.05rem;font-weight:600;margin:1.5rem 0 .6rem;}
+  p{margin-bottom:1rem;}
+  ul{margin:0 0 1rem 1.3rem;}li{margin-bottom:.45rem;}
+  strong{color:#fff;}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;margin:1rem 0 1.4rem;background:var(--bg2);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+  th{text-align:left;padding:10px 12px;color:var(--muted);font-weight:500;font-size:11px;letter-spacing:.05em;text-transform:uppercase;border-bottom:1px solid var(--border);}
+  td{padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:top;}
+  tr:last-child td{border-bottom:none;}
+  .nowrap{white-space:nowrap;font-weight:600;}
+  .updated{font-size:12px;color:var(--muted);margin-bottom:1.5rem;}
+  footer{border-top:1px solid var(--border);padding:24px 0;font-size:12px;color:var(--muted);text-align:center;}
+@media(max-width:640px){table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;white-space:nowrap}table td,table th{white-space:normal;min-width:92px}}
+
+
+  .viz{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:1rem 1.1rem;margin:1rem 0 1.4rem;}
+  .viz svg{width:100%;height:auto;display:block;}
+  .legend{display:flex;flex-wrap:wrap;gap:.6rem 1.1rem;font-size:12.5px;color:var(--muted);margin-top:.6rem;}
+  .legend span{display:inline-flex;align-items:center;gap:6px;}
+  .sw{width:14px;height:3px;border-radius:2px;display:inline-block;}
+  .tip{position:absolute;pointer-events:none;background:#1c1c22;border:1px solid var(--border2);border-radius:8px;padding:6px 9px;font-size:12px;color:var(--text);display:none;white-space:nowrap;}
+  .num{font-variant-numeric:tabular-nums;text-align:right;}
+  .pill{display:inline-block;font-size:11px;padding:2px 8px;border-radius:999px;border:1px solid var(--border2);color:var(--muted);}
+  details{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:.7rem 1rem;margin-bottom:.6rem;}
+  summary{cursor:pointer;font-weight:600;}
+  details p{margin:.6rem 0 0;font-size:14.5px;}
+  .rule td:first-child{white-space:nowrap;}
+
+</style>
+</head>
+<body>
+<header>
+  <a href="/" class="logo"><span class="logo-dot"></span>AGI Scorecard</a>
+  <a href="/" class="back-link">← Live scorecard</a>
+</header>
+<main>
+<article>
+  <div class="eyebrow">Live ledger · The agent economy</div>
+  <h1>AI Trading Ledger: eleven bots, one pre-registered public track record</h1>
+  <div class="updated">Pre-registered September 5, 2026 · Paper only · Rules fixed before the start · Read date March 8, 2027 · Not investment advice</div>
+
+  <div class="capsule"><span class="verdict">Status: <span id="st-verdict">loading the ledger…</span></span>
+  <a href="/do-ai-trading-agents-work">Do AI trading agents make money?</a> answers "no audited public evidence" and tells vendors
+  what would flip it: positions timestamped before outcomes, every result graded, misses never deleted, methodology fixed in advance.
+  This page is that record, kept by us. Eleven arms start with the same <strong>$10,000 of paper money on September 8, 2026</strong>
+  and are recomputed every trading day from the same adjusted closes by a public workflow — no human, no discretion, no edits after the fact.</div>
+
+  <div id="ledger-viz" class="viz" style="position:relative;">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:.5rem;">
+      <strong style="font-size:14px;">Paper equity, indexed to 100 at start</strong>
+      <span class="pill" id="st-date">—</span>
+    </div>
+    <svg id="eq-svg" viewBox="0 0 720 300" role="img" aria-labelledby="eq-title"><title id="eq-title">Equity curves of the paper arms, indexed to 100</title></svg>
+    <div class="legend" id="eq-legend" aria-label="Toggle series"></div>
+    <div class="tip" id="eq-tip"></div>
+    <p id="eq-empty" style="font-size:13.5px;color:var(--muted);margin:.8rem 0 0;">The first trading day is September 8, 2026. Until then the chart is empty on purpose — nothing is backfilled.</p>
+  </div>
+
+  <table id="arm-table">
+    <thead><tr><th>Arm</th><th>Status</th><th class="num">Return</th><th class="num">Max drawdown</th><th class="num">vs SPY</th><th class="num">Trades</th></tr></thead>
+    <tbody><tr><td colspan="6" style="color:var(--muted);">Loading /paper-ledger.json…</td></tr></tbody>
+  </table>
+
+  <h2>The rules, fixed before the first trade</h2>
+  <table class="rule">
+    <thead><tr><th>Arm</th><th>Rule</th><th>Why it is here</th></tr></thead>
+    <tbody>
+      <tr><td><span class="sw" style="background:#e8e8ec"></span> SPY hold</td><td>Buy SPY at the first close, hold.</td><td>The benchmark every "AI trader" has to beat.</td></tr>
+      <tr><td><span class="sw" style="background:#8888a0"></span> QQQ hold</td><td>Buy QQQ at the first close, hold.</td><td>The benchmark our <a href="/does-copying-13f-work">13F copy-homework</a> page uses.</td></tr>
+      <tr><td><span class="sw" style="background:#8888a0"></span> 60/40</td><td>60% SPY, 40% AGG, rebalanced on the first trading day of each month. <em>Added 2026-09-05, before the start.</em></td><td>The static bar every timing rule has to clear — GEM's post-publication record (2014–2026) did not clear it.</td></tr>
+      <tr><td><span class="sw" style="background:#199e70"></span> AGI basket</td><td>Ten names from the <a href="/ai-stock-exposure">exposure tool's</a> two presets (NVDA, AMD, TSM, AVGO, MU, MSFT, GOOGL, AMZN, AAPL, META), equal weight, rebalanced on the first trading day of each month.</td><td>The naïve "buy the AI thesis" portfolio, with no stock picking after the start.</td></tr>
+      <tr><td><span class="sw" style="background:#c98500"></span> Tracker mix</td><td>Weight in the AGI basket = <a href="/progress-index" onclick="gtag('event','index_click',{location:'ledger_tracker'});">Thesis Tracker score</a> ÷ 100 (62.5% at start), remainder in SPY, rebalanced monthly.</td><td>The only arm that reads this site's own verdicts. If the scorecard has information, it should show here.</td></tr>
+      <tr><td><span class="sw" style="background:#d55181"></span> 200-day rule</td><td>Faber (2007): at each month-end close, hold SPY if it is above its 200-day average, otherwise cash. Executed at the next close.</td><td>The best-known published timing rule — a decades-old baseline, not a discovery.</td></tr>
+      <tr><td><span class="sw" style="background:#9085e9"></span> LLM agent</td><td>Once a week, a language model is shown the last 60 days of prices, the Tracker score and this site's llms.txt, and returns long-only weights across the ten names, SPY and cash. Executed at the next close; its stated rationale is logged. <strong>Not started until an API key exists</strong> — the arm shows "not started", never a backfill.</td><td>The actual experiment: the thing the funding wave is selling.</td></tr>
+
+      <tr><td><span class="sw" style="background:#3987e5"></span> GEM dual momentum</td><td>Antonacci (2014) Global Equities Momentum, monthly: if SPY's 12-month return beats T-bills (BIL), hold whichever of SPY or ex-US equity (VEU) has the higher 12-month return; otherwise hold US aggregate bonds (AGG). <em>Added 2026-09-05, before the start.</em></td><td>The most-followed published dual-momentum rule; its live record since publication is part of what the read date will test.</td></tr>
+      <tr><td><span class="sw" style="background:#d95926"></span> GTAA-5</td><td>Faber (2007/2013) five-asset version: SPY, VEU, IEF, VNQ, DBC at 20% each, held only while above the 200-day average, otherwise that slice sits in cash; monthly. <em>Added 2026-09-05.</em></td><td>The multi-asset form of the 200-day rule; historically the drawdown-cutting arm, not the return-maximising one.</td></tr>
+      <tr><td><span class="sw" style="background:#008300"></span> SPY vol target</td><td>Hold SPY at a weight of 10% ÷ realised 21-day volatility, capped at 100% (never levered), rest in cash; monthly. <em>Added 2026-09-05.</em></td><td>Moreira-Muir (2017) style volatility management, in the only form a cash account can run.</td></tr>
+      <tr><td><span class="sw" style="background:#e66767"></span> Basket momentum 5</td><td>Inside the same ten AI names: rank by 12-1 month momentum (Jegadeesh-Titman), hold the top five at 20% each; monthly. <em>Added 2026-09-05.</em></td><td>The one arm that picks stocks — with a published rule, not an opinion.</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:13.5px;color:var(--muted);">Shared assumptions: $10,000 paper per arm · adjusted closes (dividends included) · 5 basis points per side on every trade · signals computed at a close are executed at the <em>next</em> close · data from a public price API on a GitHub runner, cached ticker-by-ticker; a ticker that cannot be fetched keeps its last value and is flagged in the JSON, never invented. Machine-readable: <a href="/paper-ledger.json">/paper-ledger.json</a> (CC BY 4.0). Code: <code>tools/paper_ledger.py</code> in the public repository.</p>
+
+  <h2>LLM arm decisions</h2>
+  <div id="llm-box" style="font-size:14px;color:var(--muted);">Loading…</div>
+
+  <h2>Pre-registered judgement</h2>
+  <ul>
+    <li><strong>Read date: March 8, 2027</strong> (six months). Every arm's return, maximum drawdown and excess versus SPY are published as they stand. No arm is promoted, renamed, or quietly restarted.</li>
+    <li><strong>What would change the parent verdict:</strong> nothing on this page alone. Six months in one regime is a demonstration of method, not evidence of skill; the parent page's flip condition is <em>net user-level outperformance after costs, in a vendor's own audited ledger</em>.</li>
+    <li><strong>What this ledger will never become:</strong> a signal service, a subscription, a "connect your broker" button, or a page that tells you what to buy. Positions appear only after their paper execution date.</li>
+    <li><strong>Pipeline kill:</strong> more than five consecutive weekday runs without fresh prices turns the workflow red until fixed; the ledger is never advanced on stale data.</li>
+  </ul>
+
+  <h2>FAQ</h2>
+  <details><summary>Is the AI trading ledger investment advice or a signal service?</summary><p>No. It is a paper-trading experiment with rules fixed before the start date. No security is recommended, nothing is executed for anyone, no real money is involved, and positions are shown only after the paper execution date. Nothing on this page is a recommendation to buy or sell anything.</p></details>
+<details><summary>Why publish a paper ledger at all?</summary><p>Because /do-ai-trading-agents-work holds vendors to a standard — positions timestamped before outcomes, every result graded, misses never deleted, methodology fixed in advance — and the only honest way to demand that standard is to meet it ourselves. The ledger is the demonstration, not a product.</p></details>
+<details><summary>What happens if one arm beats the S&P 500?</summary><p>Nothing automatic. The pre-registered read date is 2027-03-08 (six months). On that date every arm's return, maximum drawdown and excess versus SPY are published as they are. Six months of paper results in one market regime is not evidence of skill, and the page will say so.</p></details>
+
+  <div style="margin:1.6rem 0;">
+    <a href="https://agiscorecard.beehiiv.com/subscribe?utm_source=agiscorecard&amp;utm_medium=deep_ledger" target="_blank" rel="noopener" onclick="gtag('event','subscribe_click',{location:'deep_ledger'});" style="display:inline-block;background:#6350d9;color:#fff;padding:9px 20px;border-radius:8px;font-size:14px;font-weight:600;">One email on the read date &rarr;</a>
+  </div>
+  <p style="font-size:13px;color:var(--muted);">Related: <a href="/do-ai-trading-agents-work">Do AI trading agents make money?</a> · <a href="/does-copying-13f-work">Does copying 13F filings work?</a> · <a href="/invest">AGI investing, mapped</a> · Browse all <a href="/agi-questions">AGI questions</a>. Educational information only; nothing here is investment advice or a recommendation to buy or sell any security.</p>
+</article>
+</main>
+<footer>By the <a href="/about" style="color:var(--muted);">AGI Scorecard team</a> · Independent tracker of <a href="https://situational-awareness.ai" style="color:var(--muted);">Situational Awareness</a> · Not affiliated with any lab or fund · <a href="/privacy" style="color:var(--muted);">Privacy</a> · <a href="/advertise" style="color:var(--muted);">Advertise</a></footer>
+<script>
+(function(){
+  var ARMS=[["spy_hold","SPY hold","#e8e8ec",""],["qqq_hold","QQQ hold","#8888a0","5 4"],["sixty_forty","60/40","#8888a0","2 3"],["agi_basket","AGI basket","#199e70",""],["tracker_mix","Tracker mix","#c98500",""],["sma200_spy","200-day rule","#d55181",""],["llm_agent","LLM agent","#9085e9",""],["gem_dual_momentum","GEM dual momentum","#3987e5",""],["gtaa5","GTAA-5","#d95926",""],["spy_voltarget","SPY vol target","#008300",""],["basket_mom5","Basket momentum 5","#e66767",""]];
+  var HIDDEN={}; try{HIDDEN=JSON.parse(localStorage.getItem("ledger-hidden")||"{}")||{};}catch(e){}
+  var STATUS={live:"Live",waiting_for_start:"Waiting for Sep 8, 2026",not_started:"Not started (no API key)"};
+  function fmt(x,d){return (x==null)?"—":(x>0?"+":"")+x.toFixed(d==null?2:d)+"%";}
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+  fetch("/paper-ledger.json",{cache:"no-cache"}).then(function(r){if(!r.ok)throw 0;return r.json();}).then(render).catch(function(){
+    document.getElementById("st-verdict").textContent="pre-registered; the first ledger file is written on the first trading day after September 8, 2026.";
+    document.querySelector("#arm-table tbody").innerHTML='<tr><td colspan="6" style="color:var(--muted);">No ledger yet — nothing is backfilled.</td></tr>';
+    document.getElementById("llm-box").textContent="Not started until an API key exists; no decisions recorded.";
+  });
+  function render(L){
+    var live=ARMS.filter(function(a){return L.arms[a[0]]&&L.arms[a[0]].status==="live";});
+    var shown=live.filter(function(a){return !HIDDEN[a[0]];});
+    document.getElementById("st-date").textContent=L.last_price_date?("prices through "+L.last_price_date+" · "+L.trading_days_since_start+" trading days"):"pre-registered 2026-09-05 · starts 2026-09-08";
+    var spy=L.arms.spy_hold&&L.arms.spy_hold.metrics;
+    document.getElementById("st-verdict").textContent = (live.length&&spy) ? (L.trading_days_since_start+" trading days in; SPY "+fmt(spy.return_pct)+". Read date March 8, 2027 — no arm is judged before then.") : "pre-registered; waiting for the first trading day (September 8, 2026).";
+    var tb=document.querySelector("#arm-table tbody"); tb.innerHTML="";
+    ARMS.forEach(function(a){var A=L.arms[a[0]]||{};var m=A.metrics||{};
+      tb.insertAdjacentHTML("beforeend",'<tr><td><span class="sw" style="background:'+a[2]+'"></span> '+a[1]+'</td><td>'+esc(STATUS[A.status]||A.status||"—")+'</td><td class="num">'+fmt(m.return_pct)+'</td><td class="num">'+fmt(m.max_drawdown_pct)+'</td><td class="num">'+(a[0]==="spy_hold"?"—":fmt(m.excess_vs_spy_pct))+'</td><td class="num">'+(A.trades==null?"—":A.trades)+'</td></tr>');
+    });
+    var box=document.getElementById("llm-box"); var D=L.llm_decisions||[];
+    if(!D.length){box.textContent="Not started until an API key exists; no decisions recorded."}else{
+      box.innerHTML=D.slice(-8).reverse().map(function(d){var w=Object.keys(d.weights).map(function(k){return k+" "+Math.round(d.weights[k]*100)+"%";}).join(", ");return '<div style="margin-bottom:.6rem;"><strong style="color:var(--text)">'+esc(d.as_of_close)+'</strong> → executed '+esc(d.execute_on||"pending")+' · '+esc(d.model)+'<br>'+esc(w)+(d.rationale?'<br><em>'+esc(d.rationale.slice(0,300))+'</em>':'')+'</div>';}).join("");
+    }
+    if(!live.length) return;
+    document.getElementById("eq-empty").style.display="none";
+    var days=Object.keys(L.arms.spy_hold.equity).sort(); var W=720,H=300,pl=44,pr=70,pt=14,pb=28;
+    var series=shown.map(function(a){var e=L.arms[a[0]].equity;var base=e[days[0]]||L.notional;return {k:a[0],n:a[1],c:a[2],dash:a[3],v:days.map(function(d){return e[d]!=null?e[d]/base*100:null;})};});
+    if(!series.length){series=live.slice(0,1).map(function(a){var e=L.arms[a[0]].equity;var base=e[days[0]]||L.notional;return {k:a[0],n:a[1],c:a[2],dash:a[3],v:days.map(function(d){return e[d]!=null?e[d]/base*100:null;})};});}
+    var all=[].concat.apply([],series.map(function(s){return s.v.filter(function(x){return x!=null;});}));
+    var lo=Math.min.apply(null,all.concat([98])),hi=Math.max.apply(null,all.concat([102]));var pad=(hi-lo)*0.08;lo-=pad;hi+=pad;
+    var X=function(i){return pl+(days.length<2?0:i*(W-pl-pr)/(days.length-1));}, Y=function(v){return pt+(hi-v)*(H-pt-pb)/(hi-lo);};
+    var svg=document.getElementById("eq-svg"); var g='';
+    var ticks=4; for(var t=0;t<=ticks;t++){var v=lo+(hi-lo)*t/ticks;g+='<line x1="'+pl+'" x2="'+(W-pr)+'" y1="'+Y(v)+'" y2="'+Y(v)+'" stroke="rgba(255,255,255,.07)"/><text x="'+(pl-6)+'" y="'+(Y(v)+4)+'" font-size="11" fill="#8888a0" text-anchor="end">'+v.toFixed(0)+'</text>';}
+    g+='<line x1="'+pl+'" x2="'+(W-pr)+'" y1="'+Y(100)+'" y2="'+Y(100)+'" stroke="rgba(255,255,255,.25)" stroke-dasharray="3 3"/>';
+    [0,days.length-1].forEach(function(i){if(i>=0)g+='<text x="'+X(i)+'" y="'+(H-8)+'" font-size="11" fill="#8888a0" text-anchor="'+(i===0?'start':'end')+'">'+days[i]+'</text>';});
+    var labels=[];
+    series.forEach(function(s){var d='';s.v.forEach(function(v,i){if(v==null)return;d+=(d?'L':'M')+X(i).toFixed(1)+' '+Y(v).toFixed(1)+' ';});g+='<path d="'+d+'" fill="none" stroke="'+s.c+'" stroke-width="2" stroke-linejoin="round"'+(s.dash?' stroke-dasharray="'+s.dash+'"':'')+'/>';var last=s.v.length-1;while(last>0&&s.v[last]==null)last--;labels.push({y:Y(s.v[last]),n:s.n,c:s.c});});
+    labels.sort(function(a,b){return a.y-b.y;});
+    for(var k=1;k<labels.length;k++){if(labels[k].y-labels[k-1].y<12)labels[k].y=labels[k-1].y+12;}
+    for(var k=labels.length-1;k>=0;k--){if(labels[k].y>H-pb-2){labels[k].y=H-pb-2;} if(k<labels.length-1&&labels[k+1].y-labels[k].y<12)labels[k].y=labels[k+1].y-12;}
+    labels.forEach(function(l){g+='<text x="'+(W-pr+6)+'" y="'+(l.y+4)+'" font-size="11" fill="#e8e8ec">'+esc(l.n)+'</text>';});
+    g+='<line id="xh" x1="0" x2="0" y1="'+pt+'" y2="'+(H-pb)+'" stroke="rgba(255,255,255,.35)" style="display:none"/>';
+    svg.innerHTML=g;
+    var lg=document.getElementById("eq-legend");
+    lg.innerHTML=live.map(function(a){var off=!!HIDDEN[a[0]];return '<button type="button" data-k="'+a[0]+'" aria-pressed="'+(!off)+'" style="all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:6px;opacity:'+(off?0.4:1)+';text-decoration:'+(off?'line-through':'none')+'"><i class="sw" style="background:'+a[2]+'"></i>'+esc(a[1])+'</button>';}).join("");
+    lg.onclick=function(ev){var b=ev.target.closest("button[data-k]");if(!b)return;var k=b.getAttribute("data-k");HIDDEN[k]=!HIDDEN[k];try{localStorage.setItem("ledger-hidden",JSON.stringify(HIDDEN));}catch(e){}render(L);};
+    var tip=document.getElementById("eq-tip"),xh=document.getElementById("xh"),box2=document.getElementById("ledger-viz");
+    svg.addEventListener("mousemove",function(ev){var r=svg.getBoundingClientRect();var x=(ev.clientX-r.left)*W/r.width;var i=Math.round((x-pl)/((W-pl-pr)/Math.max(1,days.length-1)));i=Math.max(0,Math.min(days.length-1,i));xh.setAttribute("x1",X(i));xh.setAttribute("x2",X(i));xh.style.display="";tip.style.display="block";tip.innerHTML='<strong>'+days[i]+'</strong><br>'+series.map(function(s){return '<span style="color:'+s.c+'">■</span> '+esc(s.n)+' '+(s.v[i]==null?'—':s.v[i].toFixed(1));}).join('<br>');var br=box2.getBoundingClientRect();tip.style.left=Math.min(ev.clientX-br.left+14,br.width-170)+'px';tip.style.top=(ev.clientY-br.top+10)+'px';});
+    svg.addEventListener("mouseleave",function(){tip.style.display="none";xh.style.display="none";});
+  }
+})();
+</script>
+</body>
+</html>

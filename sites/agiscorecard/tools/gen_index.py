@@ -13,6 +13,8 @@ and regenerates /progress-index.html. Honest by construction: a documented mean
 of verdict weights, never invented precision.
 """
 import json, os, sys, collections
+import re as _re
+import datetime as _dt
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATE = sys.argv[1] if len(sys.argv) > 1 else "2026-07-12"
@@ -179,8 +181,10 @@ html = g.build(
     h1="AGI-2027 Thesis Tracker: one score for the whole bet",
     capsule=capsule, body_html=body, faqs=faqs, related=related,
 )
-DATE_LONG = "July 12, 2026"
-html = html.replace("Last updated: June 30, 2026", f"Last updated: {DATE_LONG}")
+# Derived from the run date, never hardcoded: a literal here froze the visible
+# "Last updated" at 2026-07-12 for two months while dateModified moved on.
+DATE_LONG = _dt.date.fromisoformat(DATE).strftime("%B %-d, %Y")
+html = _re.sub(r"Last updated: [A-Z][a-z]+ \d{1,2}, \d{4}", f"Last updated: {DATE_LONG}", html)
 html = html.replace('"datePublished": "2026-06-30", "dateModified": "2026-06-30"',
                     f'"datePublished": "2026-07-12", "dateModified": "{DATE}"')
 html = html.replace(
@@ -304,3 +308,11 @@ zh_html = f"""<!DOCTYPE html>
 os.makedirs(os.path.join(ROOT, "zh"), exist_ok=True)
 open(os.path.join(ROOT, "zh", "progress-index.html"), "w").write(zh_html)
 print("zh/progress-index.html written")
+
+# --- keep the deep-page live hooks in sync (2026-09-10) ---
+# gen_index used to write only progress-index.html, so the seven deep pages carrying the
+# first-screen live number were never swept and silently drifted a month behind. They are
+# part of the same number; they get rewritten in the same run.
+import sync_live_hooks as _hooks
+_a, _s, _ch = _hooks.sync()
+print("live hooks synced to %s/100 as of %s%s" % (_s, _a, (" — " + ", ".join(_ch)) if _ch else " (already in sync)"))

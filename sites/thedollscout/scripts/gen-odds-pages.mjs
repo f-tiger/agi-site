@@ -56,59 +56,62 @@ const boxesFor = (n, p) => Math.ceil(Math.log(1 - p) / Math.log(1 - 1 / n));
 const pctEN = (x) => `${(x * 100).toFixed(1)}%`;
 const pctDE = (x) => `${(x * 100).toFixed(1).replace(".", ",")} %`;
 
-/* ---------- the ladder: only quantities people actually buy ---------- */
+/* ---------- the ladder: only quantities people actually buy ----------
+ * `h1` is the search-facing heading (always names the entity, "Labubu", plus the box
+ * count); `hook` is the older voice line, kept as the lede opener; `short` feeds the
+ * <title>. 2026-09-04 relevance pass — data/pull-math.json reads none of these. */
 const COUNTS = [
   {
     boxes: 1, slug: "one-box",
-    en: { unit: "a single blind box", h1: "One box.",
+    en: { unit: "a single blind box", short: "1 box", h1: "Labubu secret odds for one box", hook: "One box.",
       lede: "The atom of the whole hobby, and the number every other number on this site is built from.",
       claim: "“Someone pulled a secret on their first box, so it happens.”",
       correction: "It does happen — that is what a 1.4% chance means, not what it feels like. The mistake is reading a rare event that occurred as evidence the rate is higher than printed. A first-box secret is exactly as likely as a 72nd-box secret." },
-    de: { unit: "eine einzelne Blind Box", h1: "Eine Box.",
+    de: { unit: "eine einzelne Blind Box", short: "1 Box", h1: "Labubu-Secret-Chance bei 1 Box", hook: "Eine Box.",
       lede: "Das Atom des ganzen Hobbys — und die Zahl, aus der jede andere Zahl auf dieser Seite gebaut ist.",
       claim: "„Jemand hat bei der ersten Box ein Secret gezogen, es passiert also.“",
       correction: "Es passiert — genau das bedeutet eine Chance von 1,4 %, nicht mehr. Der Fehler ist, ein eingetretenes seltenes Ereignis als Beleg für eine höhere Rate zu lesen. Ein Secret in der ersten Box ist exakt so wahrscheinlich wie eines in der 72." },
   },
   {
     boxes: 6, slug: "six-boxes",
-    en: { unit: "six boxes", h1: "Six boxes — one of each regular?",
+    en: { unit: "six boxes", short: "6 boxes", h1: "Labubu secret odds for six boxes", hook: "Six boxes — one of each regular?",
       lede: "Six is the number of regular figures in a standard series, which is why so many people buy six and expect the set.",
       claim: "“Buy six and you get the complete set.”",
       correction: "Six boxes drawn independently do not produce six different figures — duplicates are the normal outcome, not bad luck. Six boxes buys you six draws, and the secret is a separate question with its own low rate." },
-    de: { unit: "sechs Boxen", h1: "Sechs Boxen — je eine pro Figur?",
+    de: { unit: "sechs Boxen", short: "6 Boxen", h1: "Labubu-Secret-Chance bei 6 Boxen", hook: "Sechs Boxen — je eine pro Figur?",
       lede: "Sechs ist die Anzahl der regulären Figuren einer Standard-Serie — deshalb kaufen so viele sechs und erwarten das komplette Set.",
       claim: "„Kauf sechs und du hast das komplette Set.“",
       correction: "Sechs unabhängig gezogene Boxen ergeben nicht sechs verschiedene Figuren — Dubletten sind der Normalfall, nicht Pech. Sechs Boxen kaufen sechs Ziehungen; das Secret ist eine separate Frage mit eigener, niedriger Rate." },
   },
   {
     boxes: 12, slug: "twelve-boxes-full-case",
-    en: { unit: "twelve boxes (a full case)", h1: "A full case of twelve. Does it guarantee a secret?",
+    en: { unit: "twelve boxes (a full case)", short: "12 boxes (full case)", h1: "Labubu secret odds for a full case of 12 boxes", hook: "A full case of twelve. Does it guarantee a secret?",
       lede: "This is the single most misreported number in the hobby, and the one worth getting right before you spend case money.",
       claim: "“A full case of twelve averages one secret.”",
       correction: "At 1:72 printed odds, twelve boxes average 0.17 secrets — about one secret per six cases, not one per case. A sealed case does typically guarantee one of each regular figure; that guarantee is about the regulars, and it has been widely repeated as though it covered the secret. It does not." },
-    de: { unit: "zwölf Boxen (ein ganzer Case)", h1: "Ein ganzer Case mit zwölf. Garantiert das ein Secret?",
+    de: { unit: "zwölf Boxen (ein ganzer Case)", short: "12 Boxen (1 Case)", h1: "Labubu-Secret-Chance bei einem ganzen Case (12 Boxen)", hook: "Ein ganzer Case mit zwölf. Garantiert das ein Secret?",
       lede: "Das ist die am häufigsten falsch berichtete Zahl des Hobbys — und die, die man kennen sollte, bevor man Case-Geld ausgibt.",
       claim: "„Ein ganzer Case mit zwölf enthält im Schnitt ein Secret.“",
       correction: "Bei aufgedruckten 1:72 enthalten zwölf Boxen im Schnitt 0,17 Secrets — also etwa ein Secret pro sechs Cases, nicht eines pro Case. Ein versiegelter Case garantiert typischerweise je eine reguläre Figur; diese Garantie betrifft die Regulären und wurde weithin so weitergegeben, als schlösse sie das Secret ein. Tut sie nicht." },
   },
   {
     boxes: 24, slug: "twenty-four-boxes",
-    en: { unit: "twenty-four boxes (two cases)", h1: "Two cases. Twice the boxes, not twice the odds.",
+    en: { unit: "twenty-four boxes (two cases)", short: "24 boxes (2 cases)", h1: "Labubu secret odds for 24 boxes (two cases)", hook: "Two cases. Twice the boxes, not twice the odds.",
       lede: "The tier people reach after one case disappointed them — and where the gambler's fallacy does its most expensive work.",
       claim: "“I went through a case already, so I'm due.”",
       correction: "The boxes you already opened change nothing about the ones you have not. Doubling from twelve to twenty-four boxes does not double your chance from 15.5% to 31% either — independent draws compound, they do not add." },
-    de: { unit: "vierundzwanzig Boxen (zwei Cases)", h1: "Zwei Cases. Doppelt so viele Boxen, nicht doppelte Chance.",
+    de: { unit: "vierundzwanzig Boxen (zwei Cases)", short: "24 Boxen (2 Cases)", h1: "Labubu-Secret-Chance bei 24 Boxen (zwei Cases)", hook: "Zwei Cases. Doppelt so viele Boxen, nicht doppelte Chance.",
       lede: "Die Stufe, die man erreicht, nachdem ein Case enttäuscht hat — und wo der Spielerfehlschluss am teuersten wird.",
       claim: "„Ich habe schon einen Case durch, ich bin also dran.“",
       correction: "Die bereits geöffneten Boxen ändern nichts an den noch ungeöffneten. Und die Verdopplung von zwölf auf vierundzwanzig verdoppelt die Chance nicht von 15,5 % auf 31 % — unabhängige Ziehungen multiplizieren sich, sie addieren sich nicht." },
   },
   {
     boxes: 72, slug: "seventy-two-boxes",
-    en: { unit: "seventy-two boxes", h1: "Seventy-two boxes. Surely by now?",
+    en: { unit: "seventy-two boxes", short: "72 boxes", h1: "Labubu secret odds for 72 boxes", hook: "Seventy-two boxes. Surely by now?",
       lede: "The number in the printed odds, which nearly everyone reads as the number of boxes that gets you there. It is the most counterintuitive result on this site.",
       claim: "“1:72 means the 72nd box is the one.”",
       correction: "Buying all seventy-two gives you a 63.5% chance — better than a coin flip, and still more than a one-in-three chance of ending with nothing. “1 in 72” describes the rate per box, never a countdown. The expected number of secrets in 72 boxes is exactly one, and expecting one is not the same as getting one." },
-    de: { unit: "zweiundsiebzig Boxen", h1: "Zweiundsiebzig Boxen. Jetzt aber, oder?",
+    de: { unit: "zweiundsiebzig Boxen", short: "72 Boxen", h1: "Labubu-Secret-Chance bei 72 Boxen", hook: "Zweiundsiebzig Boxen. Jetzt aber, oder?",
       lede: "Die Zahl aus der aufgedruckten Wahrscheinlichkeit — die fast alle als die Anzahl Boxen lesen, die einen ans Ziel bringt. Das kontraintuitivste Ergebnis dieser Seite.",
       claim: "„1:72 heißt, die 72. Box ist es dann.“",
       correction: "Alle zweiundsiebzig zu kaufen ergibt 63,5 % — besser als ein Münzwurf, und immer noch mehr als eine Chance von eins zu drei, mit nichts dazustehen. „1 zu 72“ beschreibt die Rate pro Box, nie einen Countdown. Der Erwartungswert bei 72 Boxen ist genau ein Secret — und einen Erwartungswert zu haben ist nicht dasselbe, wie ihn zu bekommen." },
@@ -118,6 +121,15 @@ const COUNTS = [
 /* ---------- template ---------- */
 const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 const jld = (o) => JSON.stringify(o, null, 2);
+/* Search-relevance floor (2026-09-04): every generated <title> names "Labubu", stays
+ * <= 65 chars, and every description stays <= 160 chars. Fail loudly, do not truncate. */
+function assertLengths(page, title, desc) {
+  const bad = [];
+  if (!/Labubu/.test(title)) bad.push(`title lacks "Labubu"`);
+  if (title.length > 65) bad.push(`title ${title.length} chars > 65`);
+  if (desc.length > 160) bad.push(`description ${desc.length} chars > 160`);
+  if (bad.length) { console.error(`::error::gen-odds-pages ${page}: ${bad.join("; ")}`); process.exit(1); }
+}
 
 function L(lang) {
   const de = lang === "de";
@@ -269,15 +281,18 @@ function countPage(c, lang) {
           a: `At 1:72 it takes ${boxesFor(72, 0.5)} boxes for 50 percent and ${boxesFor(72, 0.9)} for 90 percent. At 1:144 it is ${boxesFor(144, 0.5)} and ${boxesFor(144, 0.9)}; at 1:720 it is ${boxesFor(720, 0.5)} and ${boxesFor(720, 0.9)}.` },
       ];
 
+  /* <title> <= 65 chars, "Labubu" first; description <= 160 chars, keyword-first with the
+     page's own number as the anchor. Both asserted below so a future copy edit cannot regress. */
   const title = t.de
-    ? `${cp.h1.replace(/[.?]$/, "")} — echte Secret-Chance bei ${b} ${b === 1 ? "Box" : "Boxen"} | DollScout`
-    : `${cp.h1.replace(/[.?]$/, "")} — the real secret odds for ${b} ${b === 1 ? "box" : "boxes"} | DollScout`;
+    ? `Echte Labubu-Secret-Chance bei ${cp.short} | DollScout`
+    : `Labubu secret odds: ${cp.short} — the math | DollScout`;
   const desc = t.de
-    ? `${cp.unit.charAt(0).toUpperCase()}${cp.unit.slice(1)}: ${t.pct(p72)} Chance auf mindestens ein Secret bei 1:72, Erwartungswert ${expStr}. Volle Tabelle für alle Serienformate, Schwellen für 50 % und 90 %, und die kursierende Behauptung, die daran scheitert.`
-    : `${cp.unit.charAt(0).toUpperCase()}${cp.unit.slice(1)}: a ${t.pct(p72)} chance of at least one secret at 1:72, expected count ${expStr}. Full table across every reported series format, the 50% and 90% thresholds, and the circulating claim this disproves.`;
+    ? `Labubu-Secret-Chance bei ${cp.short}: ${t.pct(p72)} für mind. ein Secret bei 1:72, Erwartungswert ${expStr}. Alle Formate, 50/90-%-Schwellen, widerlegte Behauptung.`
+    : `Labubu secret odds for ${cp.short}: ${t.pct(p72)} chance of ≥1 secret at 1:72, expected ${expStr}. All formats, 50%/90% thresholds, the claim it disproves.`;
+  assertLengths(`${t.pre}/odds/${c.slug}`, title, desc);
 
   const body = `    <h1>${esc(cp.h1)}</h1>
-    <p class="meta" style="max-width:680px">${esc(cp.lede)} ${t.updated}</p>
+    <p class="meta" style="max-width:680px"><strong>${esc(cp.hook)}</strong> ${esc(cp.lede)} ${t.updated}</p>
 
     <div>
       <span class="odds-sticker">${t.pct(p72)}
@@ -374,14 +389,17 @@ function hubPage(lang) {
       ];
 
   const title = t.de
-    ? "Secret-Chance nach Boxenzahl — was jede Kaufmenge wirklich bringt | DollScout"
-    : "Secret odds by box count — what each purchase size actually buys | DollScout";
+    ? "Labubu-Secret-Chance nach Boxenzahl: 1 bis 72 Boxen | DollScout"
+    : "Labubu secret odds by box count: 1 to 72 boxes | DollScout";
   const desc = t.de
-    ? "Eine Box, sechs, ein ganzer Case, zwei Cases, zweiundsiebzig: die echte Chance auf ein Secret pro Kaufmenge, offen gerechnet, plus die kursierenden Behauptungen, die daran scheitern."
-    : "One box, six, a full case, two cases, seventy-two: the real chance of a secret at each purchase size, computed in the open, plus the circulating claims each one disproves.";
+    ? "Labubu-Secret-Chance bei 1, 6, 12 (ganzer Case), 24 und 72 Boxen: die echte Quote pro Kaufmenge, offen gerechnet, plus die Behauptungen, die daran scheitern."
+    : "Labubu secret odds for 1, 6, 12 (a full case), 24 and 72 boxes: the real chance at each purchase size, computed in the open, plus the claims each one disproves.";
+  assertLengths(`${t.pre}/odds/`, title, desc);
+  const h1 = t.de ? "Labubu-Secret-Chance nach Boxenzahl" : "Labubu secret odds by box count";
+  const hook = t.de ? "Was kauft eigentlich jede Kaufmenge?" : "What does each purchase size actually buy?";
 
-  const body = `    <h1>${t.de ? "Was kauft eigentlich jede Kaufmenge?" : "What does each purchase size actually buy?"}</h1>
-    <p class="meta" style="max-width:680px">${t.de
+  const body = `    <h1>${h1}</h1>
+    <p class="meta" style="max-width:680px"><strong>${hook}</strong> ${t.de
       ? "Fast jede Zahl, die in diesem Hobby weitergereicht wird, ist eine Chance pro Box — und fast jede Entscheidung wird in Kaufmengen getroffen: eine Box, ein Set, ein Case. Diese Seiten rechnen die eine in die andere um, für jedes berichtete Serienformat, offen und nachrechenbar."
       : "Almost every number passed around this hobby is a per-box rate — and almost every decision is made in purchase sizes: one box, a set, a case. These pages convert one into the other, for every reported series format, in the open where you can check the arithmetic."} ${t.updated}</p>
 
@@ -419,7 +437,7 @@ ${faq.map((f) => `    <p><strong>${esc(f.q)}</strong><br>${esc(f.a)}</p>`).join(
         { "@type": "ListItem", position: 1, name: t.home, item: `${BASE}${t.pre}/` },
         { "@type": "ListItem", position: 2, name: t.hub, item: url } ] },
       { "@type": "Article", image: `${BASE}/img/og.png`, datePublished: TODAY, dateModified: TODAY,
-        headline: t.hub, description: desc, url, publisher: { "@id": `${BASE}/#org` },
+        headline: h1, description: desc, url, publisher: { "@id": `${BASE}/#org` },
         inLanguage: lang, isAccessibleForFree: true },
       { "@type": "ItemList", name: t.hub, itemListElement: COUNTS.map((c, i) => ({
         "@type": "ListItem", position: i + 1, name: c[lang].h1.replace(/[.?]$/, ""),
@@ -429,7 +447,7 @@ ${faq.map((f) => `    <p><strong>${esc(f.q)}</strong><br>${esc(f.a)}</p>`).join(
         acceptedAnswer: { "@type": "Answer", text: f.a } })) },
     ],
   };
-  return shell({ lang, slug: "", title, desc, ogTitle: t.hub, breadcrumbName: "", ld, body });
+  return shell({ lang, slug: "", title, desc, ogTitle: h1, breadcrumbName: "", ld, body });
 }
 
 /* ---------- dataset #4 ---------- */

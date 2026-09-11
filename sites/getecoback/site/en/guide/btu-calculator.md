@@ -3,6 +3,9 @@
 > Free BTU calculator: enter room size, ceiling height, sun exposure and people — get the right cooling capacity (BTU) plus a matching portable AC model instantly.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/en/guide/btu-calculator.html
+
+Live data on this page (hourly, rendered in the browser, not included in this Markdown view): https://getecoback.com/api/heat
+
 Too few BTU and your room never gets cool; too many is wasted money and needlessly loud. Enter your room details and the calculator gives you the right cooling capacity plus a unit sized to match.
 
 As an Amazon Associate, EcoBack earns from qualifying purchases. The product links in the result are affiliate links — you pay the same price. The calculator is guidance, not a guarantee.

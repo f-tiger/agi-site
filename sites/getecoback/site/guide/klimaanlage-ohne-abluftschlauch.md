@@ -3,6 +3,9 @@
 > Klimaanlage ohne Abluftschlauch: Die ehrliche Antwort — echte Kühlung braucht Abluft, doch es gibt 3 gute Alternativen ohne Schlauch. Der Überblick 2026.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/klimaanlage-ohne-abluftschlauch.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
+
 Kurze, ehrliche Antwort: **Eine echte Klimaanlage ohne Abluftschlauch gibt es nicht.** Physik lässt sich nicht austricksen — wer einem Raum Wärme entzieht, muss sie irgendwohin abführen. Geräte, die als „Klimaanlage ohne Abluftschlauch" beworben werden, sind fast immer Verdunstungs-Luftkühler — nützlich, aber etwas völlig anderes. Hier erfährst du, was wirklich geht.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis.

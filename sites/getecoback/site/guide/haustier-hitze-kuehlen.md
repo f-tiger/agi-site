@@ -3,6 +3,9 @@
 > Hund und Katze bei Hitze kühlen: Schatten, Wasser, Kühlmatte, Trinkbrunnen, Ventilator und die wichtige Auto-Warnung — der Ratgeber für die Hitzewelle 2026.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/haustier-hitze-kuehlen.html
+
+Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser Markdown-Ansicht nicht enthalten): https://getecoback.com/api/heat
+
 Tiere leiden bei Hitze oft mehr als wir — sie können nicht schwitzen wie Menschen, kühlen sich fast nur übers Hecheln ab und tragen ihren Pelz dauerhaft. Wenn die Wohnung sich aufheizt, brauchen Hund und Katze deine Hilfe. Die gute Nachricht: Die wichtigsten Maßnahmen sind einfach und kosten wenig. Hier findest du, was in der Hitzewelle wirklich zählt — von Schatten und Wasser bis zu Kühlmatte, Trinkbrunnen und der richtigen Ventilator-Platzierung.
 
 Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks unten sind Affiliate-Links — du zahlst denselben Preis. Dieser Artikel ist kein Ersatz für tierärztlichen Rat.

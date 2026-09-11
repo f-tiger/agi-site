@@ -54,6 +54,15 @@ def to_markdown(src_html, path_url, lang):
     desc = H.unescape(m.group(1)).strip() if m else ""
     m = re.search(r"<article[^>]*>(.*?)</article>", src_html, re.S)
     body = m.group(1) if m else ""
+    # Detect the live-number bands BEFORE they are stripped below. They are
+    # JavaScript-rendered, so a crawler or this Markdown view sees an empty
+    # div — and the whole point of a live number (citation-growth item six:
+    # "a figure a chat answer cannot hold") is lost on exactly the reader it
+    # was meant for. One honest line tells the agent the number exists and
+    # where the JSON is. Added 2026-09-05.
+    live = [ep for marker, ep in (("<!--EB_FEUCHTENOW-->", "/api/feuchte"),
+                                  ("<!--EB_HEATNOW-->", "/api/heat"),
+                                  ("<!--EB_STROMNOW-->", "/api/strom")) if marker in src_html]
     for pat in (r"<!--EB_[A-Z_]+-->.*?<!--/EB_[A-Z_]+-->", r"<script\b.*?</script>",
                 r"<style\b.*?</style>", r"<nav\b.*?</nav>", r"<form\b.*?</form>"):
         body = re.sub(pat, " ", body, flags=re.S)
@@ -91,11 +100,25 @@ def to_markdown(src_html, path_url, lang):
     if desc:
         head += [f"> {desc}", ""]
     head += [f"Canonical (HTML, zitierfähig): {BASE}{path_url}", ""]
+    if live:
+        eps = " · ".join(f"{BASE}{e}" for e in live)
+        if lang == "de":
+            head += [f"Live-Daten auf dieser Seite (stündlich, JavaScript-gerendert, in dieser "
+                     f"Markdown-Ansicht nicht enthalten): {eps}", ""]
+        else:
+            head += [f"Live data on this page (hourly, rendered in the browser, not included in "
+                     f"this Markdown view): {eps}", ""]
     tail = ["", "---",
             f"Maschinenlesbare Übersicht: {BASE}/for-agents.html · Sizing-Datensatz (CC BY 4.0): {BASE}/sizing-data.json",
             f"MCP-Server für Assistenten: {BASE}/mcp",
             DISCLOSURE[lang]]
-    return "\n".join(head) + body + "\n" + "\n".join(tail) + "\n"
+    # The extra newline is the paragraph break between the header block and
+    # the body. It was missing since the mirrors were first built: the head
+    # list ends with "" so join() yields one trailing newline, and the body is
+    # strip()ped — so the canonical line ran straight into the first
+    # paragraph. Harmless to a human, but an assistant reading Markdown treats
+    # a missing blank line as "same paragraph". Fixed 2026-09-05.
+    return "\n".join(head) + "\n" + body + "\n" + "\n".join(tail) + "\n"
 
 
 MD_LINK_RE = re.compile(r'[ \t]*<link rel="alternate" type="text/markdown" href="[^"]*">\n?')
@@ -126,7 +149,7 @@ def build_dataset():
                         "nach Raumgröße — identisch mit den Rechnern und Ratgebern auf getecoback.com."),
         "license": "https://creativecommons.org/licenses/by/4.0/",
         "attribution": "EcoBack (getecoback.com)",
-        "dateModified": "2026-08-29",
+        "dateModified": "2026-08-31",
         "rules": {
             "cooling_btu_per_m2": 340,
             "heating_w_per_m2_insulated": [60, 100],
@@ -134,6 +157,18 @@ def build_dataset():
             "cost_basis_eur_per_kwh": 0.30,
             "dehumidifier_rating_note": ("Hersteller-Liter/Tag sind bei 30 °C/80 % rF gemessen; "
                                           "reale Entzugsleistung liegt typisch bei etwa der Hälfte."),
+            # Published 2026-08-31. This is the site's own decision rule and it
+            # existed only inside the calculator's JavaScript, where nothing
+            # could cite it. Above this cooling load no portable monoblock in
+            # our tables covers the room, so the honest answer stops being a
+            # model and becomes a device class.
+            "monoblock_ceiling_btu": 13500,
+            "monoblock_ceiling_note": ("Oberhalb von rund 13.500 BTU deckt kein tragbarer Monoblock "
+                                       "den Raum noch ab; ab dort ist die ehrliche Empfehlung eine "
+                                       "Quick-Connect-Splitanlage, nicht ein größeres mobiles Gerät. "
+                                       "Quick-Connect-Sets enthalten überwiegend das fluorierte "
+                                       "Kältemittel R32 — die Installationsklausel des Anbieters vor "
+                                       "dem Kauf lesen."),
         },
         "ladders": {
             "cooling_btu": [

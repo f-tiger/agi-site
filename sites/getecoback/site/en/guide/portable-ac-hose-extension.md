@@ -3,6 +3,9 @@
 > Can you extend a portable AC exhaust hose? Yes — up to about 2 m total, same diameter, insulated. Every extra metre and bend costs real cooling power.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/en/guide/portable-ac-hose-extension.html
+
+Live data on this page (hourly, rendered in the browser, not included in this Markdown view): https://getecoback.com/api/heat
+
 The exhaust hose that ships with a portable air conditioner is usually just 1.5 metres long — and the nearest window is rarely that close. So can you simply add a second hose? You can, but the hose length is not an arbitrary choice: it's part of the machine's design. Here's what an extension really costs you, how to do it with minimal loss, and when it's the wrong fix entirely.
 
 As an Amazon Associate, EcoBack earns from qualifying purchases. Product links below are affiliate links — you pay the same price.
