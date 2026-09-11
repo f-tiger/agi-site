@@ -1591,7 +1591,11 @@ function toolPage(tool) {
       <p class="limits-watch"><a href="${BASE}/watch.html?pick=${esc(tool.slug)}"
         onclick="try{if(window.bpjEv)bpjEv('calc','/calc/watch-hook/${esc(tool.slug)}')}catch(e){}">${LOCALE.code === 'zh'
         ? `这个数字一变就通知我（webhook，免费盯 3 个）→`
-        : `Ping me the day this number changes (webhook, 3 tools free) →`}</a></p>
+        : `Ping me the day this number changes (webhook, 3 tools free) →`}</a></p>${tool.limits.paid && tool.limits.paid.tiers && tool.limits.quota && tool.limits.wall && tool.limits.source && tool.limits.checked
+        ? `
+      <p class="coverage judge-link"><a href="${BASE}/is-${esc(tool.slug)}-still-free.html">${LOCALE.code === 'zh'
+          ? `${esc(tool.name)}还免费吗？免费档、付费档与变更史一页看完 →`
+          : `Is ${esc(tool.name)} still free? Free tier, paid tiers and change history on one page →`}</a></p>` : ''}
       ${upgradeOk(tool) ? `<p class="coverage"><a href="${BASE}/upgrade/${esc(tool.slug)}.html"><b>${LOCALE.code === 'zh' ? '免费额度不够用了？该买哪档、值不值，按用量算 →' : 'Outgrowing the free tier? Which paid tier is worth it →'}</b></a></p>` : ''}
     </section>
     ${(() => {
