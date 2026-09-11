@@ -1,5 +1,5 @@
 {
- "fetched": "2026-09-10",
+ "fetched": "2026-09-11",
  "seeds": {
   "electric spin scrubber": {
    "auto": [
@@ -465,16 +465,66 @@
   "rollator walker": {
    "rising": [
     {
-     "q": "knee scooter",
-     "v": 9650
-    },
-    {
-     "q": "rollator walker near me",
-     "v": 40
+     "q": "drive medical four wheel rollator walker with fold up removable back support",
+     "v": 61300
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-09-10"
+   "fetched": "2026-09-11"
+  },
+  "smart pill organizer": {
+   "auto": [
+    "smart pill organizer",
+    "smart pill organizer with alarm",
+    "smart pill organizer with app",
+    "smart pill organizer arduino",
+    "smart pill organizer a170",
+    "smart pill organizers with reminders",
+    "smart pill organizer reddit",
+    "smart medicine organizer",
+    "smart vitamin organizer",
+    "smart pill dispenser"
+   ],
+   "rising": [
+    {
+     "q": "smart pill organizer with alarm",
+     "v": "new"
+    },
+    {
+     "q": "smart pill organizer with app",
+     "v": "new"
+    },
+    {
+     "q": "smart pill organizer arduino",
+     "v": "new"
+    },
+    {
+     "q": "smart pill organizer a170",
+     "v": "new"
+    },
+    {
+     "q": "smart pill organizers with reminders",
+     "v": "new"
+    },
+    {
+     "q": "smart pill organizer reddit",
+     "v": "new"
+    },
+    {
+     "q": "smart medicine organizer",
+     "v": "new"
+    },
+    {
+     "q": "smart vitamin organizer",
+     "v": "new"
+    },
+    {
+     "q": "smart pill dispenser",
+     "v": "new"
+    }
+   ],
+   "source": "autocomplete-diff",
+   "fetched": "2026-09-11"
   }
  }
 }
