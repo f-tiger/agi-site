@@ -751,6 +751,12 @@ DEVICE_MODELS = {
  "dehum": [
    ("Comfee MDDF-20DEN7", "Preis-Leistung", "Bewährter Entfeuchter für Wohnräume.", "€€ · ca. 150–200 €", "Comfee+MDDF-20DEN7", "dehum"),
    ("MeacoDry Arete One 20L", "Leise & für Wäsche", "Herstellerangabe 20 l/Tag, HEPA-Filter und Wäschetrocknungs-Modus; in öffentlichen Tests vor allem für den leisen Betrieb gelobt.", "€€€ · Preis vor Ort prüfen", "MeacoDry+Arete+One+20L", "dehum"),
+   # Same line, one size up. "meacodry arete one 25l" is its own rising query
+   # (21.350, 09-11) and this shelf only offered the 20 L. Note that the 20 L
+   # above is the category's largest demand term this week (49.800) — its zero
+   # clicks over 60 days are an out-of-season zero, not a bad pick, which is why
+   # nothing was retired from this shelf.
+   ("MeacoDry Arete One 25L", "Dieselbe Reihe, größerer Raum", "Gleiche Baureihe wie oben, eine Stufe größer — eigener Nachfragebegriff in unserer Trends-Abfrage (Stand 11.09.). Nicht selbst getestet.", "Preis vor Ort prüfen", "MeacoDry+Arete+One+25L", "dehum"),
    ("Für den Keller", "Dauerbetrieb", "Modelle mit Ablaufschlauch für Dauerbetrieb.", "je nach Raumgröße", "luftentfeuchter+keller+ablaufschlauch", "dehum"),
  ],
  "purifier": [
@@ -760,7 +766,14 @@ DEVICE_MODELS = {
  "heater": [
    ("Schmidbauer Hybrid Pro 600 W", "Kleine Räume", "Infrarot plus Konvektion mit stufenlosem Thermostat; der Hersteller nennt 6–12 m² als Einsatzbereich.", "€€ · Preis vor Ort prüfen", "Schmidbauer+Hybrid+Pro+600+W+Infrarotheizung", "heater"),
    ("Schmidbauer ISP T 700 W", "Auch fürs Bad", "700 W, laut Hersteller für Feuchträume geeignet — die Antwort auf „Heizung fürs Bad“, ohne Heizlüfter-Dauerlauf.", "€€ · Preis vor Ort prüfen", "Schmidbauer+ISP+T+700+Infrarotheizung", "heater"),
-   ("Midea NTH20-17BR", "Schnell warm", "Keramik-Heizlüfter mit zwei Stufen (1.200 / 2.000 W) — für kurzes Aufheizen, nicht für den Dauerbetrieb.", "€ · Preis vor Ort prüfen", "Midea+NTH20-17BR+Heizl%C3%BCfter", "heater"),
+   # 2026-09-11 Nachfrage-Abgleich (data/trends-rising.json, geo=DE, 09-11,
+   # Seed nicht polluted): "heizlüfter 300 watt" ist mit 50.650 die größte
+   # produktförmige Anfrage beider Herbst-Seeds, und dieses Regal hatte nichts
+   # unter 600 W. Der ehrliche Eintrag ist nicht "hier ist ein billiger Heizer",
+   # sondern was 300 W leisten und was nicht — das kann diese Seite mit ihrer
+   # eigenen veröffentlichten Rechnung beantworten.
+   ("Heizlüfter 300 Watt", "Die meistgesuchte Kleinstklasse", "Meistgesuchte Leistungsklasse dieser Woche in unserer Google-Trends-Abfrage (Stand 11.09.) — Nachfrage-Signal, kein Testurteil, nicht selbst getestet. Ehrlich dazu: 300 W wärmen die Person davor, keinen Raum.", "Preis vor Ort prüfen", "heizl%C3%BCfter+300+watt", "heater"),
+   ("Midea NTH20-17BR", "Schnell warm, nicht sparsam", "Keramik-Heizlüfter mit zwei Stufen (1.200 / 2.000 W) — für kurzes Aufheizen, nicht für den Dauerbetrieb. Zur zweitgrößten Anfrage der Woche, „energiesparender Heizlüfter“ (48.600): sparsam macht ihn nicht das Gerät, sondern die Abschaltung — 2.000 W kosten 2.000 W, solange sie laufen.", "€ · Preis vor Ort prüfen", "Midea+NTH20-17BR+Heizl%C3%BCfter", "heater"),
    ("Klima mit Heizfunktion", "2-in-1", "Kühlt im Sommer, heizt im Winter.", "ab 300 €", "klimaanlage+mit+heizfunktion", "ac"),
  ],
  # Balcony storage is the highest-basket category on this site — and the one
