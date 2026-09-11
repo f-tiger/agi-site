@@ -243,7 +243,7 @@ agiscorecard 更隐蔽：它每天能重建**纯属副作用**（fleet-trends �
 ### 算账（纪律第 2 条）
 | 新增 | cron (UTC) | 单次 | 每月 |
 |---|---|---|---|
-| `fleet-autopilot.yml` | `40 2 * * *` | 实测 python 部分 <20 秒 → 计 1 分 | ≤30 分 |
+| `fleet-autopilot.yml` | `40 2 * * *` | **首跑实测 12 秒**（run 34608344914，SUCCESS）→ 按最小计费粒度计 1 分 | ≤30 分 |
 | `deploy-agiscorecard.yml` | `50 2 * * *` | ≈2 分 | ≈60 分 |
 | `deploy-thedollscout.yml` | `20 7 * * *` | ≈2 分 | ≈60 分 |
 | `deploy-goldrush.yml` | `35 7 * * *` | ≈1 分 | ≈30 分 |
@@ -262,3 +262,18 @@ agiscorecard 更隐蔽：它每天能重建**纯属副作用**（fleet-trends �
 **新纪律：任何设计都不许依赖两条 workflow 的先后顺序。** 消费者必须自己读输入文件的
 时间戳并对陈旧作出反应（autopilot 的 `demand.py` 就是按这条写的：逐 seed 卡 10 天，
 过期的丢掉并写明原因，绝不当新鲜的用）。
+
+
+### 2026-09-11 首跑实测（全部 workflow_dispatch，非计划）
+| run | 结果 | 耗时 |
+|---|---|---|
+| `fleet-autopilot` 34608344914 | ✅ SUCCESS | **12 秒** |
+| `deploy-goldrush` 34608334113 | ✅ SUCCESS | 31 秒 |
+| `deploy-gridlings` 34608334085 | ✅ SUCCESS | ~52 秒 |
+| `deploy-agiscorecard` 34608334017 | ✅ SUCCESS | ~80 秒 |
+| `deploy-thedollscout` 34608334005 | ✅ SUCCESS | ~81 秒（含 49 条线上自检） |
+| `fleet-heartbeat` 34608502800 | ✅ SUCCESS | 19 秒，**含新的「autopilot 是否还活着」断言** |
+
+autopilot 首跑**什么都没提交**——当天没有任何页面内容变化，所以没有 lastmod 该前进，
+也没有 URL 该进 IndexNow。这正是「平静的一天」该有的样子,proof-of-work 那一步确认了
+「声称有修正」与「什么都没 staged」没有同时为真。实际月成本据此从 ≈240 分下修到 **≈210 分**。
