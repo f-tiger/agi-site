@@ -1,0 +1,21 @@
+{
+  "site": "goldrush",
+  "url_base": "https://goldrush.agiscorecard.com",
+  "publish_root": "sites/goldrush/site",
+  "sitemap": "sites/goldrush/site/sitemap.xml",
+  "fix_sitemap": true,
+  "max_unresolved": 0,
+  "exclude": [],
+  "demand_files": [],
+  "demand_geo": "US",
+  "vocabulary": [
+    "agix",
+    "claim",
+    "ledger",
+    "verdict",
+    "provenance",
+    "attestation",
+    "agent",
+    "registry"
+  ]
+}

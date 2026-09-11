@@ -11,6 +11,12 @@ on:
     branches: [main]
     paths: ["sites/goldrush/**", ".github/workflows/deploy-goldrush.yml"]
   workflow_dispatch: {}
+  # 每日兜底部署(2026-09-11)。原注释说「无 schedule(进化循环搭舰队既有每日会话,
+  # 零新增 Actions 成本)」——而 2026-09-11 审计发现:本站没有生成器、没有数据输入、
+  # 也不在任何一条 Routine 的职责里,「搭既有会话」等于没有人负责,站点自 2026-08-30
+  # 起一个字节没动过。公开仓 Actions 免费,那句成本理由不成立。
+  schedule:
+    - cron: "35 7 * * *"
 
 concurrency:
   group: deploy-goldrush

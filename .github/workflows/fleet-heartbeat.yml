@@ -119,6 +119,58 @@ jobs:
             git fetch origin main -q && git rebase -q origin/main && git push -q origin HEAD:main && break || { git rebase --abort 2>/dev/null || true; sleep $((2**i)); }
           done
 
+      # autopilot 自己也会悄悄死。GitHub 的失败邮件是整条链上唯一不经过任何 AI 会话的
+
+      # 告警通道,所以「每日算法停了」这件事必须从这里发出来——否则它停了之后,
+
+      # 接下来的十二天看起来会和之前十二天一模一样(这正是 tds 的 D1 导出步骤连续
+
+      # 十二天全绿却一次都没成功的形状)。
+
+      - name: Assert the autopilot is still running
+
+        run: |
+
+          python3 - <<'PY'
+
+          import datetime, json, os, sys
+
+          p = 'data/autopilot/receipt.json'
+
+          if not os.path.isfile(p):
+
+              print('::warning::autopilot has never written a receipt yet — expected only '
+
+                    'before its first scheduled run')
+
+              sys.exit(0)
+
+          d = json.load(open(p))
+
+          day = datetime.date.fromisoformat(d['today'])
+
+          age = (datetime.datetime.utcnow().date() - day).days
+
+          failed = [r['site'] for r in d['runs'] if r.get('outcome') == 'failed']
+
+          print('autopilot receipt %s (%d days old), %d site runs' % (day, age, len(d['runs'])))
+
+          bad = False
+
+          if age > 3:
+
+              print('::error::autopilot last ran %s — %d days ago. The daily site update '
+
+                    'algorithm has stopped.' % (day, age)); bad = True
+
+          if failed:
+
+              print('::error::autopilot reported failure on: %s' % ', '.join(failed)); bad = True
+
+          sys.exit(1 if bad else 0)
+
+          PY
+
       - name: Fail the run if any site is down
         if: steps.probe.outputs.bad == '1'
         run: exit 1
