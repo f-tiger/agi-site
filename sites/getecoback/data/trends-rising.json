@@ -1,5 +1,5 @@
 {
- "fetched": "2026-09-11",
+ "fetched": "2026-09-12",
  "geo": "DE",
  "seeds": {
   "klimaanlage": {
@@ -192,62 +192,66 @@
    "rising": [
     {
      "q": "heizlüfter 300 watt",
-     "v": 50650
+     "v": 44900
+    },
+    {
+     "q": "dreo solaris slim h3",
+     "v": 29250
+    },
+    {
+     "q": "sparsamer heizlüfter",
+     "v": 28600
     },
     {
      "q": "energiesparender heizlüfter",
-     "v": 48600
+     "v": 28450
     },
     {
-     "q": "akku heizlüfter makita",
-     "v": 5700
+     "q": "keramik heizlüfter test",
+     "v": 20500
+    },
+    {
+     "q": "stromsparender heizlüfter",
+     "v": 15000
     },
     {
      "q": "heizlüfter garage",
-     "v": 4900
+     "v": 6750
     },
     {
-     "q": "heizlüfter baustelle",
-     "v": 3750
+     "q": "heizlüfter 400 watt",
+     "v": 4200
     },
     {
-     "q": "brandson heizlüfter test",
-     "v": 3150
+     "q": "heizlüfter bad testsieger",
+     "v": 4050
     },
     {
-     "q": "ventilator",
-     "v": 450
-    },
-    {
-     "q": "dyson ventilator",
-     "v": 190
-    },
-    {
-     "q": "dell",
-     "v": 70
-    },
-    {
-     "q": "philips heizlüfter",
-     "v": 60
+     "q": "dreo atom one",
+     "v": 3850
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-09-11",
+   "fetched": "2026-09-12",
    "polluted": false
   },
   "balkonkraftwerk": {
    "rising": [
     {
-     "q": "anker solix solarbank 4 e5000 pro",
-     "v": 24550
+     "q": "anker solix solarbank 4 e5000 pro,meter gen 2 ,5xbp5000 balkonkraftwerk",
+     "v": 8650
     },
     {
-     "q": "anker solix solarbank 4 e5000 pro,meter gen 2 ,5xbp5000 balkonkraftwerk",
-     "v": 8400
+     "q": "anker solix solarbank 4 e5000 pro",
+     "v": 1600
+    },
+    {
+     "q": "ecoflow stream 5000",
+     "v": 1150
     },
     {
      "q": "anker solarbank 4 pro",
-     "v": 500
+     "v": 450
     },
     {
      "q": "balkonkraftwerk klimaanlage",
@@ -255,31 +259,28 @@
     },
     {
      "q": "anker solix 4 pro",
-     "v": 450
+     "v": 400
     },
     {
-     "q": "anker solix 4",
+     "q": "split klimaanlage",
      "v": 350
     },
     {
-     "q": "bundesnetzagentur balkonkraftwerk anmelden",
-     "v": 60
+     "q": "anker solix 4",
+     "v": 300
     },
     {
-     "q": "balkonkraftwerk wie funktioniert das",
-     "v": 60
+     "q": "solarpanel kaufen",
+     "v": 90
     },
     {
-     "q": "solarmodul 500 watt",
-     "v": 60
-    },
-    {
-     "q": "marktstammregister balkonkraftwerk",
-     "v": 60
+     "q": "ecoflow stream",
+     "v": 50
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-09-03"
+   "fetched": "2026-09-12",
+   "polluted": true
   },
   "kaffeevollautomat": {
    "rising": [

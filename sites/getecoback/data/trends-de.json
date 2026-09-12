@@ -1,57 +1,51 @@
 {
  "ok": true,
- "fetched": "2026-09-11",
+ "fetched": "2026-09-12",
  "source": "https://trends.google.com/trending/rss?geo=DE",
  "matched": [],
  "top": [
   {
-   "title": "köhlbrandbrücke",
+   "title": "vermögen",
+   "traffic": "1000+"
+  },
+  {
+   "title": "gerichtssaal",
    "traffic": "200+"
   },
   {
-   "title": "joel mattli",
-   "traffic": "500+"
+   "title": "top agrar",
+   "traffic": "200+"
   },
   {
-   "title": "gladiators - die show der giganten",
+   "title": "straßenverkehr",
    "traffic": "100+"
   },
   {
-   "title": "sportgericht",
+   "title": "steuererhöhung",
    "traffic": "200+"
   },
   {
-   "title": "emma bonino",
-   "traffic": "200+"
+   "title": "afd berlin",
+   "traffic": "500+"
   },
   {
-   "title": "bodybuilder",
-   "traffic": "200+"
+   "title": "marius wörl",
+   "traffic": "100+"
   },
   {
-   "title": "румыния",
-   "traffic": "200+"
+   "title": "elversberg bayern",
+   "traffic": "500+"
   },
   {
-   "title": "die landarztpraxis",
-   "traffic": "1000+"
+   "title": "freital",
+   "traffic": "100+"
   },
   {
-   "title": "elektromobilität",
-   "traffic": "1000+"
-  },
-  {
-   "title": "bushido",
-   "traffic": "200+"
+   "title": "formel1",
+   "traffic": "500+"
   }
  ],
  "history": [
-  {
-   "d": "2026-08-28",
-   "matched": [
-    "sturm"
-   ]
-  },
   {
    "d": "2026-08-29",
    "matched": []
@@ -114,6 +108,10 @@
   },
   {
    "d": "2026-09-11",
+   "matched": []
+  },
+  {
+   "d": "2026-09-12",
    "matched": []
   }
  ]
