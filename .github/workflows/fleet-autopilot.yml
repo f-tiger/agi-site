@@ -72,6 +72,11 @@ jobs:
           python3 tools/autopilot/run.py --today "${{ steps.clock.outputs.today }}" $FLAGS \
             | tee "$GITHUB_STEP_SUMMARY"
 
+      # 四个需求仪器读成一页(零 AI):data/autopilot/demand-digest.md,随下面那步一起提交。
+      # owner 2026-09-12:「我发现最难在统计获取用户需求」——仪器早就有,缺的是一次读完。
+      - name: Write the demand digest (one page, zero AI)
+        run: python3 tools/fleet/demand_digest.py --today="${{ steps.clock.outputs.today }}"
+
       - name: Commit what actually changed
         if: inputs.dry_run != true
         run: |

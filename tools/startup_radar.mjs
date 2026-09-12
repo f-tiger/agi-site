@@ -57,9 +57,61 @@ async function fetchHN(tags, hours) {
   })).filter((i) => i.title);
 }
 
+
+// Reddit 的两个「求做」板块(2026-09-12 舰队进化,owner:「Reddit 有没有这种统计需求板块」)。
+// r/SomebodyMakeThis 与 r/AppIdeas 是专门让人贴「我希望有个 X」的地方;公开 .json 免鉴权。
+// 只读,永不发帖、永不回帖、永不注册(舰队铁律:机器绝不代发)。沙箱对 reddit 实测 000,
+// 只有 runner 能取;抓不到就 ok:false + 原因,绝不复用旧数据。
+// 口径提醒:这里出现 ≠ 有人在搜。它和 PH/HN 一样是选题输入,不是选题依据,仍要过三门。
+export function parseRedditListing(json, hours) {
+  const since = Math.floor(Date.now() / 1000) - hours * 3600;
+  const kids = json && json.data && Array.isArray(json.data.children) ? json.data.children : null;
+  if (!kids) throw new Error('no data.children');
+  return kids.map((c) => c.data || {}).filter((d) => d.title && (d.created_utc | 0) >= since).map((d) => ({
+    title: String(d.title).slice(0, 200),
+    blurb: String(d.selftext || '').replace(/\s+/g, ' ').slice(0, 200),
+    url: d.permalink ? `https://www.reddit.com${d.permalink}` : '',
+    points: d.ups | 0, comments: d.num_comments | 0,
+    sub: d.subreddit || '', published: new Date((d.created_utc | 0) * 1000).toISOString().slice(0, 10),
+  }));
+}
+
+async function fetchRedditRequests() {
+  const out = [];
+  for (const sub of ['SomebodyMakeThis', 'AppIdeas']) {
+    const r = await fetch(`https://www.reddit.com/r/${sub}/new.json?limit=50`, { headers: UA, signal: AbortSignal.timeout(20000) });
+    if (!r.ok) throw new Error(`r/${sub} HTTP ${r.status}`);
+    out.push(...parseRedditListing(await r.json(), 48));
+  }
+  if (!out.length) throw new Error('both listings parsed but zero posts in 48h');
+  return out.slice(0, 60);
+}
+
+
+if (process.argv.includes('--selftest')) {
+  const now = Math.floor(Date.now() / 1000);
+  const fx = { data: { children: [
+    { data: { title: 'Is there an app that tracks free tier limits of AI tools?', selftext: 'I keep hitting the ChatGPT free tier limit', ups: 41, num_comments: 9, permalink: '/r/SomebodyMakeThis/comments/x1/', subreddit: 'SomebodyMakeThis', created_utc: now - 3600 } },
+    { data: { title: 'A daily nonogram with a guarantee it never needs guessing', selftext: '', ups: 3, num_comments: 1, permalink: '/r/AppIdeas/comments/x2/', subreddit: 'AppIdeas', created_utc: now - 7200 } },
+    { data: { title: 'too old to count', selftext: '', ups: 999, num_comments: 0, permalink: '/r/AppIdeas/comments/x3/', subreddit: 'AppIdeas', created_utc: now - 400 * 3600 } },
+    { data: { selftext: 'no title, must be dropped', created_utc: now } },
+  ] } };
+  const items = parseRedditListing(fx, 48);
+  const checks = [
+    ['48h 窗口 + 无标题过滤 → 2 条', items.length === 2],
+    ['permalink 拼成绝对地址', items[0].url === 'https://www.reddit.com/r/SomebodyMakeThis/comments/x1/'],
+    ['bpj 词表命中 free tier / chatgpt', NICHES.baipiaoji.some((k) => hit(`${items[0].title} ${items[0].blurb}`, k))],
+    ['gridlings 词表命中 nonogram', NICHES.gridlings.some((k) => hit(items[1].title, k))],
+    ['坏 JSON 抛错而不是静默空数组', (() => { try { parseRedditListing({}, 48); return false; } catch { return true; } })()],
+  ];
+  for (const [n, ok] of checks) console.log((ok ? '  ok   ' : '  FAIL ') + n);
+  process.exit(checks.every((c) => c[1]) ? 0 : 1);
+}
+
 const sources = {};
 for (const [name, fn] of [
   ['producthunt', fetchProductHunt],
+  ['reddit_requests', fetchRedditRequests],
   ['hn_show', () => fetchHN('show_hn', 36)],
   ['hn_top_ai', async () => (await fetchHN('story', 36)).filter((i) => NICHES.agiscorecard.some((k) => hit(i.title, k))).slice(0, 20)],
 ]) {
@@ -85,7 +137,8 @@ try {
 } catch (e) { /* 坏文件不阻塞今天 */ }
 const cutoff = new Date(Date.now() - 14 * 864e5).toISOString().slice(0, 10);
 history = history.filter((h) => h.d >= cutoff && h.d !== today);
-history.push({ d: today, ph_titles: (sources.producthunt.items || []).map((i) => i.title).slice(0, 30) });
+history.push({ d: today, ph_titles: (sources.producthunt.items || []).map((i) => i.title).slice(0, 30),
+  reddit_titles: ((sources.reddit_requests || {}).items || []).map((i) => i.title).slice(0, 30) });
 
 mkdirSync('data', { recursive: true });
 writeFileSync(OUT, JSON.stringify({ fetched: today, sources, niche_hits: nicheHits, history }, null, 1));
