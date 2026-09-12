@@ -42,7 +42,13 @@ const daysBetween = (a, b) => Math.round((Date.parse(a) - Date.parse(b)) / 86400
 // 包含匹配会把「Ante」误伤成任何含 ante 的名字，宁可漏退休也不能错杀候选。
 const headName = (n) => String(n || '').split(/[,，:：\u2013\u2014—-]/)[0].trim().toLowerCase();
 const knownNames = new Set(tools.flatMap((t) => [String(t.name || '').toLowerCase(), String(t.slug || '').toLowerCase()]));
-for (const c of discovery.items.filter((x) => x.status === 'candidate' && !knownNames.has(headName(x.name)))) {
+// 2026-09-12 修正:候选一律 47–60 分,29 条候选把 12 条队列占掉 8 条,按真实触达排出的 paid_gap(44)
+// 与其他信号被整体挤出——HN 热度是最弱、转化最低的信号,却因为数量最多而霸榜。每轮只放前 3 条,
+// 其余仍在 discovery.json 里,谁都不丢;队列要的是形状不是数量。
+const candTop = discovery.items.filter((x) => x.status === 'candidate' && !knownNames.has(headName(x.name)))
+  .sort((a, b) => ((b.points || 0) + 2 * (b.comments || 0)) - ((a.points || 0) + 2 * (a.comments || 0)))
+  .slice(0, 3);
+for (const c of candTop) {
   items.push({
     id: `candidate:${c.host}`,
     type: 'verify_candidate',

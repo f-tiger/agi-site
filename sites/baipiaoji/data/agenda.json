@@ -1,8 +1,8 @@
 {
-  "generated": "2026-09-11",
+  "generated": "2026-09-12",
   "note": "由 scripts/trend-radar.mjs 每日聚合五路站内信号生成。只排队不写事实；核实动作按硬规则执行。分数是领先指标的相对排序，不是预测。",
   "counts": {
-    "candidate": 29,
+    "candidate": 30,
     "category_hot": 0,
     "stale": 5,
     "demand": 0
@@ -36,22 +36,22 @@
         "/en/c/image",
         "/en/c/video",
         "/en/vs/dify-vs-n8n",
-        "/en/tools/zhiying",
         "/",
+        "/en/tools/zhiying",
         "/en/tools/guojia-fanzha",
-        "/en/vs/openrouter-vs-zhipu-glm"
+        "/en/c/coding"
       ],
       "score": 70
     },
     {
-      "id": "candidate:github.com",
+      "id": "candidate:simedw.com",
       "type": "verify_candidate",
-      "title": "核实候选：We built open OpenRouter that turns usage into a better model",
-      "why": "HN 189 分 / 37 评论（2026-08-28 发现）——外部热度已验证，站内尚未收录",
-      "action": "按收录标准核实 https://github.com/experientiallabs/experiential；合格则中英同步入库，limits 走 limits-edit.mjs",
+      "title": "核实候选：I trained a 125M model to autocomplete piano on-device",
+      "why": "HN 507 分 / 106 评论（2026-08-21 发现）——外部热度已验证，站内尚未收录",
+      "action": "按收录标准核实 https://simedw.com/2026/08/20/midi-autocomplete/；合格则中英同步入库，limits 走 limits-edit.mjs",
       "refs": [
-        "https://github.com/experientiallabs/experiential",
-        "https://news.ycombinator.com/item?id=49471407"
+        "https://simedw.com/2026/08/20/midi-autocomplete/",
+        "https://news.ycombinator.com/item?id=49373456"
       ],
       "score": 60
     },
@@ -68,18 +68,6 @@
       "score": 60
     },
     {
-      "id": "candidate:simedw.com",
-      "type": "verify_candidate",
-      "title": "核实候选：I trained a 125M model to autocomplete piano on-device",
-      "why": "HN 507 分 / 106 评论（2026-08-21 发现）——外部热度已验证，站内尚未收录",
-      "action": "按收录标准核实 https://simedw.com/2026/08/20/midi-autocomplete/；合格则中英同步入库，limits 走 limits-edit.mjs",
-      "refs": [
-        "https://simedw.com/2026/08/20/midi-autocomplete/",
-        "https://news.ycombinator.com/item?id=49373456"
-      ],
-      "score": 60
-    },
-    {
       "id": "candidate:cactuscompute.com",
       "type": "verify_candidate",
       "title": "核实候选：Needle2: 14MB agentic LLM for phones, wearables, smart home and robots",
@@ -90,54 +78,6 @@
         "https://news.ycombinator.com/item?id=49246804"
       ],
       "score": 60
-    },
-    {
-      "id": "candidate:whodunnitai.com",
-      "type": "verify_candidate",
-      "title": "核实候选：Voice driven murder mystery, Interview AI suspects with your voice",
-      "why": "HN 190 分 / 81 评论（2026-08-11 发现）——外部热度已验证，站内尚未收录",
-      "action": "按收录标准核实 https://www.whodunnitai.com/；合格则中英同步入库，limits 走 limits-edit.mjs",
-      "refs": [
-        "https://www.whodunnitai.com/",
-        "https://news.ycombinator.com/item?id=49238851"
-      ],
-      "score": 60
-    },
-    {
-      "id": "candidate:ishamf.dev",
-      "type": "verify_candidate",
-      "title": "核实候选：LLM Attention Visualization",
-      "why": "HN 147 分 / 23 评论（2026-09-09 发现）——外部热度已验证，站内尚未收录",
-      "action": "按收录标准核实 https://ishamf.dev/p/llm-attention-visualizer/；合格则中英同步入库，limits 走 limits-edit.mjs",
-      "refs": [
-        "https://ishamf.dev/p/llm-attention-visualizer/",
-        "https://news.ycombinator.com/item?id=49613068"
-      ],
-      "score": 54
-    },
-    {
-      "id": "candidate:speko.ai",
-      "type": "verify_candidate",
-      "title": "核实候选：Launch HN: Speko (YC S26) – OpenRouter for Voice AI",
-      "why": "HN 117 分 / 67 评论（2026-08-20 发现）——外部热度已验证，站内尚未收录",
-      "action": "按收录标准核实 https://speko.ai/；合格则中英同步入库，limits 走 limits-edit.mjs",
-      "refs": [
-        "https://speko.ai/",
-        "https://news.ycombinator.com/item?id=49332751"
-      ],
-      "score": 52
-    },
-    {
-      "id": "candidate:github.com",
-      "type": "verify_candidate",
-      "title": "核实候选：Fine-tune an 8B model on a 4 GB laptop GPU",
-      "why": "HN 137 分 / 28 评论（2026-08-09 发现）——外部热度已验证，站内尚未收录",
-      "action": "按收录标准核实 https://github.com/MakazhanAlpamys/Soup；合格则中英同步入库，limits 走 limits-edit.mjs",
-      "refs": [
-        "https://github.com/MakazhanAlpamys/Soup",
-        "https://news.ycombinator.com/item?id=49166984"
-      ],
-      "score": 52
     },
     {
       "id": "mcpsurface:bad",
@@ -152,18 +92,6 @@
       "score": 50
     },
     {
-      "id": "candidate:github.com",
-      "type": "verify_candidate",
-      "title": "核实候选：Nightcrawler – A local AI pentesting agent running on a smartphone",
-      "why": "HN 119 分 / 35 评论（2026-08-09 发现）——外部热度已验证，站内尚未收录",
-      "action": "按收录标准核实 https://github.com/garagehq/nightcrawler/；合格则中英同步入库，limits 走 limits-edit.mjs",
-      "refs": [
-        "https://github.com/garagehq/nightcrawler/",
-        "https://news.ycombinator.com/item?id=49154127"
-      ],
-      "score": 47
-    },
-    {
       "id": "factory:study",
       "type": "factory",
       "title": "工厂推进：结构化 study 类 limits 数值（3 条）",
@@ -175,6 +103,72 @@
         "doubao-aixue"
       ],
       "score": 45
+    },
+    {
+      "id": "paidgap:kimi",
+      "type": "paid_gap",
+      "title": "补付费档：Kimi（月之暗面）（工具页 28 天带来源真人 11 次，无付费档）",
+      "why": "有需求、无判定页：is-kimi-still-free 因缺 limits.paid.tiers 未生成；grok 先例 09-11",
+      "action": "核实官方定价页写入 limits.paid（形状照 claude/grok），两步写入后判定页自动生成并进 sitemap",
+      "refs": [
+        "kimi"
+      ],
+      "score": 41
+    },
+    {
+      "id": "paidgap:haiper",
+      "type": "paid_gap",
+      "title": "补付费档：Haiper（工具页 28 天带来源真人 8 次，无付费档）",
+      "why": "有需求、无判定页：is-haiper-still-free 因缺 limits.paid.tiers 未生成；grok 先例 09-11",
+      "action": "核实官方定价页写入 limits.paid（形状照 claude/grok），两步写入后判定页自动生成并进 sitemap",
+      "refs": [
+        "haiper"
+      ],
+      "score": 38
+    },
+    {
+      "id": "paidgap:feishu-miaoji",
+      "type": "paid_gap",
+      "title": "补付费档：飞书妙记（工具页 28 天带来源真人 7 次，无付费档）",
+      "why": "有需求、无判定页：is-feishu-miaoji-still-free 因缺 limits.paid.tiers 未生成；grok 先例 09-11",
+      "action": "核实官方定价页写入 limits.paid（形状照 claude/grok），两步写入后判定页自动生成并进 sitemap",
+      "refs": [
+        "feishu-miaoji"
+      ],
+      "score": 37
+    },
+    {
+      "id": "stale:zhipu-glm",
+      "type": "refresh",
+      "title": "复核过期：智谱开放平台（42 天未核实）",
+      "why": "核实日期是判定的保质期，本站卖的就是新鲜度",
+      "action": "复核官方页面，走 limits-edit.mjs 两步写入；数字未变也要刷新 checked",
+      "refs": [
+        "zhipu-glm"
+      ],
+      "score": 12
+    },
+    {
+      "id": "stale:cloudflare-workers-ai",
+      "type": "refresh",
+      "title": "复核过期：Cloudflare Workers AI（42 天未核实）",
+      "why": "核实日期是判定的保质期，本站卖的就是新鲜度",
+      "action": "复核官方页面，走 limits-edit.mjs 两步写入；数字未变也要刷新 checked",
+      "refs": [
+        "cloudflare-workers-ai"
+      ],
+      "score": 12
+    },
+    {
+      "id": "stale:nvidia-nim",
+      "type": "refresh",
+      "title": "复核过期：NVIDIA NIM（42 天未核实）",
+      "why": "核实日期是判定的保质期，本站卖的就是新鲜度",
+      "action": "复核官方页面，走 limits-edit.mjs 两步写入；数字未变也要刷新 checked",
+      "refs": [
+        "nvidia-nim"
+      ],
+      "score": 12
     }
   ]
 }

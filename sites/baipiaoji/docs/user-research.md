@@ -3014,3 +3014,25 @@ Google 141 / cn.bing 44 / Perplexity 20 / ChatGPT 12;AI 引荐 34,ChatGPT→/c/a
 
 ### 判定线
 09-25 drift 覆盖率与首条真漂移;10-09 `ad/house` 点击 ≥5。详见文档 §四。
+
+
+## 2026-09-12 · 自扩展层首日读数 + fireworks 付费档 + 雷达挤出修正
+
+- **第①层首跑成功**（run #54，schedule）：source-drift 抓到 **102/124** 条来源页（59 秒），
+  pending 0、确认 0（基线日）；reach-export 从线上 /api/reach 取数落库（264 真人/28d，9.4/日）；
+  `st_reach` 自测通过并入链。09-25 判定线的第一项（fetched_ok ≥60）首日即达标，第二项等真漂移。
+- **AI 层昨晚空转**：Routine v6.1 22:02 触发，平台记 SUCCEEDED，但 **113 秒结束、零提交**
+  （74k 上下文、4k 输出）。会话转录本会话读不到；按舰队规程「几十秒 = 空转」记录，不重建，
+  看今晚第二次；连续两次空转再按 08-25 流程处理。今日的 AI 层动作由本会话代做。
+- **fireworks 付费档写入**（limits-edit 两步，免费档旧文保留并加 2026-07-01 预付费改制一句）：
+  官方域搜索引文（fireworks.ai/pricing、docs 两页、预付费博客）一致：无订阅档纯按量、
+  Standard/Priority 两级（≈1.5×）、Serverless 从 $0.10/M 起、DeepSeek-V3.1 $0.56/$0.28/$1.68；
+  GPU 时价仅 costbench 单源，写明不作主数；余额有效期未核实不写。`is-fireworks-still-free` 中英生成。
+- **雷达挤出修正**：29 条 HN 候选各 47–60 分占了 12 条队列里 8 条，把按触达排的 `paid_gap`（44）
+  整体挤出——最弱的信号因为数量最多而霸榜。改为每轮只放前 3 条候选（其余仍在 discovery.json）。
+  修后队列：AI 引流 70 / 候选 ×3 / MCP 发现面 50 / 工厂 45 / paid_gap ×3（fireworks→kimi→haiper）/ 过期 ×3。
+- **MCP 发现面异常是旧伤**：bpj-mcp-publish 08-19 迁仓后跑过一次即失败
+  （registry 400 "cannot publish duplicate version"），此后 `registry_listed:false` 持续 23 天，
+  雷达每天报 50 分没人接。修法是 server.json 版本号递增再发布；本轮未动，登记为下一项。
+- **教训一条**：本轮一次 `checkout && … || reset --hard` 的链式命令在 checkout 失败时把工作区整个
+  重置了一遍，全部改动靠留在草稿区的 payload 重放回来。破坏性命令永远不放在 `||` 右边。

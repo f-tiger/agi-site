@@ -2898,10 +2898,20 @@
     "hot": false,
     "last_verified": "2026-09-12",
     "limits": {
-      "quota": "新用户注册自动获得 $1 免费额度（约合 70B 级模型 100 万 token），无需绑卡即可开始调用。",
+      "quota": "新用户注册自动获得 $1 免费额度（约合 70B 级模型 100 万 token），无需绑卡即可开始调用。 2026-09-12 复核：官方文档仍写新账户自动获得 $1 免费额度；另据官方博客，2026-07-01 起自助账户已改为预付费（按余额扣减），$1 启动额度不变、用完即按余额计费，它是一次性启动金，不是持续免费层。",
       "wall": "没有长期免费档——$1 是一次性试用金，用完后按 token 计费（小模型约 $0.10/百万 token 起）。",
       "source": "Fireworks 官方文档 docs.fireworks.ai/faq-new/billing-pricing/how-much-does-fireworks-cost（$1 数额经多个独立来源交叉印证）",
-      "checked": "2026-08-02"
+      "checked": "2026-09-12",
+      "paid": {
+        "tiers": "无订阅档，纯按量：Serverless 按 token 计费，分 Standard 与 Priority 两个服务级别（Priority 约为 Standard 的 1.5 倍）；On-demand GPU 按小时计费；Enterprise 另议。2026-07-01 起自助账户改为预付费（先充值、按余额扣减）",
+        "unit_cost": "Serverless 从 $0.10/百万 tokens 起（<4B 参数的文本/视觉模型）；按模型定价的官方示例：DeepSeek-V3.1 输入 $0.56、缓存输入 $0.28、输出 $1.68 每百万 tokens；微调 $0.50/百万训练 tokens 起（≤16B LoRA）；embeddings $0.008/百万输入 tokens 起；语音转文字 $0.0009/分钟起。GPU 按时价 $2.90（A100）至 $9.00（B200）/小时为第三方口径（costbench），官方页未直抓，本站不作为主数",
+        "quota_included": "false——$1 新户额度是一次性启动金，用完后所有调用均从预付余额扣费；没有按月赠送的免费 token",
+        "rollover": "预付余额按扣减制；余额有效期与退款条款未在官方引文中核实，本站不写",
+        "effective": "2026-09-12（=核实日；预付费改制 2026-07-01 生效，$1 启动额度自 2026-08-02 核实以来未变）",
+        "prev": "2026-07-01 前自助账户为后付费按量（用后结算）；改制后价格表本身未见变动，变的是付款方式",
+        "source": "https://fireworks.ai/pricing 与 docs.fireworks.ai/serverless/pricing、docs.fireworks.ai/faq-new/billing-pricing/how-much-does-fireworks-cost、fireworks.ai/blog/billing-migration-to-prepaid（官方；代理拦截未直抓，经搜索索引引文核实，[非官方口径]）",
+        "checked": "2026-09-12"
+      }
     }
   },
   {

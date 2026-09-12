@@ -2662,10 +2662,20 @@
       "free": "Signup grants free credits, with fast inference and OpenAI-SDK compatibility.",
       "how": "Email signup. Requires access outside mainland China.",
       "limits": {
-        "quota": "New accounts automatically receive $1 in free credits (roughly 1M tokens on a 70B-class model), no card required to start calling.",
+        "quota": "New accounts automatically receive $1 in free credits (roughly 1M tokens on a 70B-class model), no card required to start calling. Re-checked 2026-09-12: the official docs still state the automatic $1 credit; per the official blog, self-serve accounts moved to prepaid billing on 2026-07-01 (balance draw-down). The $1 is a one-off starter credit, not an ongoing free tier.",
         "wall": "There is no permanent free tier — the $1 is a one-off trial credit; after that it is pay-per-token (from about $0.10 per million tokens for small models).",
         "source": "Fireworks official docs, docs.fireworks.ai/faq-new/billing-pricing (the $1 figure cross-checked across independent sources)",
-        "checked": "2026-08-02"
+        "checked": "2026-09-12",
+        "paid": {
+          "tiers": "No subscription tiers, pure usage: serverless is billed per token in two service tiers, Standard and Priority (Priority ≈ 1.5× Standard); on-demand GPUs are billed per hour; Enterprise is negotiated. Since 2026-07-01 self-serve accounts are prepaid (top up first, balance draws down)",
+          "unit_cost": "Serverless from $0.10 per 1M tokens (text/vision models under 4B parameters); official per-model example: DeepSeek-V3.1 at $0.56 input, $0.28 cached input, $1.68 output per 1M tokens; fine-tuning from $0.50 per 1M training tokens (LoRA, ≤16B); embeddings from $0.008 per 1M input tokens; speech-to-text from $0.0009 per audio minute. GPU hourly rates of $2.90 (A100) to $9.00 (B200) are a third-party figure (costbench), not fetched from the official page, so not used as a headline number here",
+          "quota_included": "false — the $1 is a one-off starter credit; every call after that draws from the prepaid balance, with no monthly free tokens",
+          "rollover": "Prepaid balance draws down; expiry and refund terms were not verifiable from official quotes, so not stated",
+          "effective": "2026-09-12 (=verification date; prepaid billing took effect 2026-07-01; the $1 starter credit unchanged since our 2026-08-02 check)",
+          "prev": "Before 2026-07-01 self-serve accounts were postpaid pay-as-you-go; the price list itself did not visibly change, only the payment model",
+          "source": "https://fireworks.ai/pricing plus docs.fireworks.ai/serverless/pricing, docs.fireworks.ai/faq-new/billing-pricing/how-much-does-fireworks-cost and fireworks.ai/blog/billing-migration-to-prepaid (official; proxy-blocked, verified via search-index quotes [unofficial])",
+          "checked": "2026-09-12"
+        }
       }
     },
     "bailian": {
