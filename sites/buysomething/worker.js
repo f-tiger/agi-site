@@ -4,9 +4,23 @@ const ALLOWED = new Set(["pick_open", "calc_use", "out_click", "search_use"]);
 
 function uaClass(ua) {
   if (!ua) return "none";
-  if (/bot|crawl|spider|slurp|gptbot|claude|perplexity|bingpreview|headless/i.test(ua)) return "bot";
+  if (/bot|crawler|spider|slurp|scrap|crawl|fetch|monitor|uptime|lighthouse|pagespeed|preview|headless|phantom|selenium|puppeteer|playwright|curl|wget|python|java|go-http|okhttp|libwww|httpclient|http-client|axios|node-fetch|undici|^node$|^node\/|feed|rss|validator|archive|semrush|ahrefs|dataforseo|mj12|dotbot|bytespider|petalbot|applebot|amazonbot|facebookexternalhit|embedly|gptbot|chatgpt|oai-search|claude|perplexity|ccbot|google-extended|panscient|censys|inspect|shodan|expanse|masscan|zgrab|scan|probe/i.test(ua)) return "bot";
   if (/mozilla/i.test(ua)) return "human";
   return "other";
+}
+
+// UA 家族留痕(2026-09-12 舰队进化,从 agiscorecard 移植)。只存 UA 前 48 字符 + 分类 + 计数;
+// 不存完整 UA、不存 IP、不存任何能指到个人的东西。用途只有一个:像 09-12 那次一样,事后能回答
+// 「这 288 次 human 到底是谁」,而不是猜。此前只有 agi 留这个痕,同一只探针在这里会以「增长」入日报。
+// 写失败静默——统计永远不能影响访问;表由 CREATE TABLE IF NOT EXISTS 幂等建好,缺表也只是丢审计行。
+function auditUa(env, ctx, ua, cls) {
+  const db = env.EV;
+  if (!db) return;
+  const p = db.prepare(
+    "INSERT INTO ua_audit (day, ua_prefix, ua_class, hits) VALUES (date('now'), ?, ?, 1)" +
+    " ON CONFLICT(day, ua_prefix, ua_class) DO UPDATE SET hits = hits + 1"
+  ).bind((ua || "").slice(0, 48) || "(none)", cls).run().catch(() => {});
+  if (ctx && ctx.waitUntil) ctx.waitUntil(p);
 }
 
 async function logRow(env, ctx, row) {
@@ -101,13 +115,16 @@ export default {
       res.headers.set("cache-control", ctype.includes("json") ? "public, max-age=600" : "public, max-age=86400");
     }
     if (request.method === "GET" && accept.includes("text/html") && res.status === 200) {
+      const pvUa = request.headers.get("user-agent") || "";
+      const pvCls = uaClass(pvUa);
+      auditUa(env, ctx, pvUa, pvCls);
       await logRow(env, ctx, {
         name: "page_view",
         label: "",
         value: 0,
         path: url.pathname.slice(0, 80),
         ref: (request.headers.get("referer") || "").slice(0, 120),
-        ua_class: uaClass(request.headers.get("user-agent")),
+        ua_class: pvCls,
         country: request.cf && request.cf.country || ""
       });
     }

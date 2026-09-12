@@ -363,6 +363,22 @@ owner 决策卡、事实表)。
   Metaculus FutureEval(每季 $50k 奖池、按准确度付钱、零访客需求),只差 owner 拿 token +
   设 `METACULUS_BOT_ENABLED=1`。每次报告都要带出这一条,直到它被打开或被 owner 明确否掉。
 
+## 舰队整体进化 2026-09-12(owner:「舰队整体进化一次」;全文 `docs/fleet-evolution-2026-09-12.md`)
+
+- **六个 worker 六份 bot 正则,token 数 9→55 不等** —— 同一只爬虫一站算 bot、五站算真人,各站人类 pv
+  因此不可比且系统性多报。现在 **`tools/fleet/bot_ua.txt` 是唯一权威**(62 token,只收自报家门的
+  爬虫/扫描器,**主流浏览器 UA 永远不进**),`tools/fleet/check_bot_ua.py` 断言六站字面量逐字相同
+  并用真实 UA 样本测两个方向,挂在 `fleet-heartbeat.yml`。**改正则只改那个文件,然后同步六站**,
+  否则 heartbeat 红。bpj/tds 是 JS beacon、无 ua_class 列,不在此列;它们靠 09-12 的行为 SQL 扣探针。
+  **口径提醒**:六站自本次部署起 human 变严,跨窗对比人类 pv 下降是修正不是流失。
+- **纸面台账 09-11 那次红是潜伏 bug 不是偶发**:权重先归一化再逐个 round(4) 可把和推到 >1.0001。
+  已在 `paper_ledger.py` 加 `unlever()` 于 `target` 唯一出口;执行器侧的拒绝保留(两道线各管各的)。
+- **`ua_audit` 现已在六个 worker 上**(agi + gridlings / goldrush / buysomething / gamesledger / eco,
+  owner「继续做」后同日完成;五张表 DDL 与 agi 逐字相同,幂等建表,page_view 处写 UA 前 48 字符 + 分类
+  计数,零 PII)。**以后任何一站的人类 pv 单日翻倍,先查该站 `ua_audit` 再查 09-12 那条行为 SQL**,
+  不再靠猜。bpj / tds 未加(JS beacon、hits 表结构不同),要加是另一次 schema 决定。
+- 仪表盘与判定线复核见文档 §一、§四;本轮不开新线、不加 cron、不建页。
+
 ## 手发文案的反 AI 味规则(2026-09-06,owner:「提示内容是AI生成,你要人性化的表达,不然被封了」)
 
 **适用范围:`docs/distribution-staging/` 里所有给 owner 手发的稿子,以及周任务「舰队每周分发

@@ -62,6 +62,25 @@ NYSE_HOLIDAYS = {
 }
 
 
+
+def unlever(weights: dict) -> dict:
+    """Guarantee sum(weights) <= 1.0 after per-ticker rounding.
+
+    2026-09-11 run went red on `agi_basket: levered target`: cur_w is normalised to
+    <= 1.0 *before* rounding, then ten weights are each rounded to 4 dp, and ten
+    round-ups add back as much as +0.0005 — more than the 1.0001 the self-check (and
+    the mirror executor) tolerate. It passed again on 09-12 by luck of the rounding,
+    so it was latent, not fixed. Shave the excess off the largest weight so the dict
+    still carries 4 dp and sums to exactly <= 1.0. This is a producer-side fix for a
+    float artefact; the executor keeps its own refusal as a second line, on purpose.
+    """
+    w = {k: round(float(v), 4) for k, v in (weights or {}).items()}
+    excess = round(sum(w.values()) - 1.0, 4)
+    if excess > 0 and w:
+        big = max(w, key=w.get)
+        w[big] = round(w[big] - excess, 4)
+    return w
+
 def next_session(d: str) -> str:
     x = date.fromisoformat(d)
     while True:
@@ -430,7 +449,7 @@ def run_arm(name: str, prices: dict, days: list[str], ledger: dict) -> dict:
             weights = {"SPY": 1.0} if (s200 is None or prices["SPY"][last] > s200) else {}
         elif name in MONTHLY_ARMS:
             weights = signal_for(name, last, prices) or {}
-    target = {"as_of": last, "execute_on": nxt, "action": action, "weights": weights}
+    target = {"as_of": last, "execute_on": nxt, "action": action, "weights": unlever(weights)}
     return {"status": status, "equity": eq, "trades": pf.trades, "turnover": round(pf.turnover, 2), "target": target}
 
 

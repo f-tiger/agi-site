@@ -66,8 +66,19 @@ jobs:
                      --max-time 25 -A 'agi-site-fleet-heartbeat' "$url" || echo 000)
 
             # ② 最近一次成功部署的年龄。
-            last=$(gh api "repos/$REPO/actions/workflows/$wf/runs?status=success&per_page=1" \
-                     --jq '.workflow_runs[0].updated_at // ""' 2>/dev/null || echo "")
+            #
+            # 2026-09-11 实测异常:这一步给 agiscorecard 报了 6 天,而当时它当天已经
+            # 成功部署过两次(04:07 与 14:09,快照生成于 14:10)。事后用同样的查询串
+            # 复查,四种变体全部返回正确的最新一条——也就是说**当时那次读取拿到了
+            # 过期结果**,原因无法事后确证(最可能是 API 读副本的短暂不一致)。
+            #
+            # 根因查不出来就不猜。改成对这类读取本身免疫:
+            #   · 取最近 5 条成功 run 的 updated_at **最大值**,而不是盲信 [0];
+            #   · 把拿到的原始值打进日志,下次再出就是可诊断的,而不是靠推。
+            # (教训同源:此前 itch 那次也是靠"步骤耗时"去推断而不是读日志,推错了。)
+            last=$(gh api "repos/$REPO/actions/workflows/$wf/runs?status=success&per_page=5" \
+                     --jq '[.workflow_runs[].updated_at] | max // ""' 2>/dev/null || echo "")
+            echo "  probe $name: http=$code last_success=${last:-<none>}"
             if [ -n "$last" ]; then
               age=$(( (NOW - $(date -u -d "$last" +%s)) / 86400 ))
             else
@@ -76,11 +87,24 @@ jobs:
 
             # ③ 超过 7 天没有成功部署 → 自动重新部署一次(幂等:部署链是「按当前
             #    源码重建并发布」,重跑不会改变内容,只保证线上不是陈年产物)。
+            #
+            # **必须连续两次读到才动手**(2026-09-11 加)。上面那次误读证明单次读数
+            # 可能是假的,而这一步是有外部副作用的:凭一次假读数派发部署,既浪费一次
+            # 构建,更糟的是会把这个字段训练成"经常乱报、可以无视"——一个被无视的
+            # 健康信号等于没有。两次连读把瞬时抖动挡掉,代价只是真停摆时晚一天发现。
+            prev=$(jq -r --arg s "$name" \
+                     '.sites[]? | select(.site==$s) | .days_since_deploy' \
+                     data/fleet-health.json 2>/dev/null || echo "")
+            case "$prev" in ''|*[!0-9-]*) prev="" ;; esac
             redeployed=false
             if [ "$age" -ge 7 ] || [ "$age" -eq -1 ]; then
-              if gh workflow run "$wf" --ref main >/dev/null 2>&1; then
-                redeployed=true
-                echo "::warning::$name 已 ${age} 天没有成功部署,已自动派发 $wf"
+              if [ -n "$prev" ] && { [ "$prev" -ge 7 ] || [ "$prev" -eq -1 ]; }; then
+                if gh workflow run "$wf" --ref main >/dev/null 2>&1; then
+                  redeployed=true
+                  echo "::warning::$name 连续两次读到已 ${age} 天没有成功部署,已自动派发 $wf"
+                fi
+              else
+                echo "::warning::$name 本次读到 ${age} 天未部署,但上一次快照是 ${prev:-<无>} —— 按两次连读规则先不派发,明天复核"
               fi
             fi
 
@@ -170,6 +194,13 @@ jobs:
           sys.exit(1 if bad else 0)
 
           PY
+
+      # 六个 worker 各有一份 bot UA 正则,09-12 之前从 9 到 55 个 token 不等——同一只爬虫
+      # 在一站算 bot、在另外五站算「真人」,台账各站人类 pv 因此不可比。现在只有一份权威
+      # (tools/fleet/bot_ua.txt),这里断言每个 worker 的字面量与它逐字相同,并用真实 UA 样本
+      # 测两个方向(爬虫必中、浏览器必不中)。漂移 → 本 run 红 → GitHub 邮件。零外部副作用。
+      - name: Assert bot-UA classifier parity across workers
+        run: python3 tools/fleet/check_bot_ua.py
 
       - name: Fail the run if any site is down
         if: steps.probe.outputs.bad == '1'

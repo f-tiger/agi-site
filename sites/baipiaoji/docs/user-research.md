@@ -2950,3 +2950,67 @@ playwright 真机中英各 0 page error、EN 页零中文、默认选中与瓶�
 
 带来源到达 ≥20 / `calc` 事件 ≥50 / 由本页跳 `/upgrade/` 或 `/for-vendors.html` ≥5。
 三门全不达标 → 降级为静态对照板，**不复制到 coding/image**；任一门达标 → 按同模板做第二条链路。
+
+
+## 2026-09-11 · 扩张令:流量最大的那个问题本站没回答(grok)
+
+owner:「我觉得bpj要充分扩大站点流量,与营收」。09-08 保活令的解除条件第三项(owner 明确指令)
+触发;同时 09-10/09-11 已建成厂商加急入口与自助广告位,保活令 a)「变现面结构性不存在」不再成立。
+
+### 证据(D1 28 天,剔 CI,带引荐真人)
+
+工具页需求分布:grok **66(Google 63 = 本站 Google 引荐 135 的 47%)**、fireworks 13、kimi 9、
+haiper 8、feishu-miaoji 7、pixverse 5,其余 ≤3。`is-X-still-free` 判定系列原有 14 页,
+grok 因 `limits.paid.tiers` 为空被生成器的 `okTool && paid.tiers` 条件排除——需求最集中的
+查询没有一页正面回答。
+
+### 做了什么
+
+- grok 付费档经 `limits-edit.mjs` 两步写入(旧 quota/wall/source/checked 全部保留,只增 paid 组)。
+  x.ai/pricing、docs.x.ai 沙箱均 EGRESS_BLOCKED;cloudzero / felloai / whichai.fyi 三源搜索引文
+  一致:Lite $10、SuperGrok $30(年付 $300)、Heavy $300;2026-06 起共享周用量池;Extra Usage
+  Credits / Auto Top Up。单源出现的「SuperGrok Plus $100」**未采信**并在页面写明。来源字段标
+  [非官方口径],待 Routine 在 runner 侧直抓官方页后升级。
+- 重建后 `is-grok-still-free` 中英生成(1552 页 → 1569 项含镜像),十道门全零,sitemap 含两条。
+- CLAUDE.md 新增执行令 #13(扩张令,取代 #12 的停止条款、保留其事实),预登记 10-09 两条判定线。
+- Routine 白嫖计循环由每周一改回每日,prompt 加入 #13 的需求序与「变现链路已存在但未通电」的口径。
+
+### 判定线
+
+- 2026-10-09:`is-grok-still-free` 中英 pv ≥30 或从 grok 工具页分流 ≥10 → 系列成立;
+  否则停止为 SEO 目的补付费档。
+- 2026-10-09:带引荐真人 ≥14/日(本期 8.9)才算扩流成立,否则回到保活白名单,不再第三次翻转。
+- 营收线:密钥通电后 28 天 `ad_live` ≥1 或加急收款 ≥1;09-30 密钥仍未设 → 记「已建未通电」。
+
+### 没做 / 待 owner
+
+fireworks / kimi / haiper 付费档本轮未补(每个都要独立核实来源,交给每日循环按需求序做)。
+owner 侧:Bing Webmaster 验证 + sitemap;收款密钥二选一;手发 7 封厂商回复。
+
+
+## 2026-09-11 · 自扩展层:/api/reach + 来源页漂移监测 + 空位自售(执行令 #14)
+
+owner:「先完善几轮prompt再执行:充分利用你的能力,让bpj站点可以自我扩展,并探索打造工具,为站点
+构建算法的后端能力,可以更新工具,并且创造营收」。三轮 prompt 收紧过程与裁定全文
+`docs/self-expansion-2026-09.md`。核心裁定:站点早就会从数据长页面,瓶颈是**核实吞吐**
+(129 条里 106 条超 30 天未复核),所以第①层该做的是「看见流量 + 发现过时 + 排好顺序」,
+而不是写内容。
+
+### 做了什么(全部零 AI,挂已有 schedule)
+- `functions/api/reach.js`:聚合触达端点,只出计数(路径/来源域/AI 引荐/事件/投稿数/广告状态),
+  SQL 已在 D1 现查验证(28 天带来源真人 260、events 301、投稿 new 7)。
+- `scripts/reach-export.mjs`(+`--selftest`,+`REACH_FROM_FILE` 离线播种):中英同页合并计数,
+  映射到工具/类目/判定页。首份 `data/reach.json` 用 D1 现查播种,部署后由 CI 每日刷新。
+- `scripts/source-drift.mjs`(+`--selftest`:URL 提取/令牌/防抖状态机/自愈/失败放行):
+  沙箱试抓 4 条全 403 → 全部放行、零误报,基线待 runner 首跑建立。
+- 接线:build.mjs(工具页漂移提示、广告页触达表、空广告位自售行)、trend-radar(两个新信号,
+  并修好一条三周哑掉的 AI 引流信号——它读的 traffic-snapshot.json 从未存在)、recheck-queue 置顶、
+  deploy workflow 两步 + `st_reach` 自测入链。
+- 十道门全零;lastmod 只动 advertise 中英两页。
+
+### 首份 reach 读数(28 天)
+Google 141 / cn.bing 44 / Perplexity 20 / ChatGPT 12;AI 引荐 34,ChatGPT→/c/api 10 次最大。
+工具页:grok 69、fireworks 13、kimi 9、haiper 8、feishu-miaoji 7 → `paid_gap` 已排 fireworks/kimi/haiper。
+
+### 判定线
+09-25 drift 覆盖率与首条真漂移;10-09 `ad/house` 点击 ≥5。详见文档 §四。

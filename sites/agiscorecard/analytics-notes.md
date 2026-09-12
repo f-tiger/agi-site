@@ -1424,3 +1424,34 @@ origin/main,`git log` 读的是 HEAD 不是 origin/main。已对上,无事。
 **里程碑**:无新达成。首个 agent MCP 调用仍不成立(四条件判据不过)。
 
 **owner 待办(沿用,未催)**:thedollscout `content/d1-snapshot.json` 仍缺。
+
+## 2026-09-12(日结)
+
+**先更正昨天的日报**:09-11 我报的「JS pv +23%」**不成立**。当天 231 次里有 **182 次**
+来自一台每 6 分钟敲 `/amodei-white-collar-bloodbath-prediction`、`/about`、`/progress-index`
+三个固定路径、连敲三小时的探针(详见 OPT-LOG 同日)。扣除后当天约 **49**,与基线持平。
+**28 天真实 JS pv 约 1259**(原始 1441 − 182),与前天的 1261 基本持平——**本周没有增长,
+也没有下滑**。AI 引擎引荐 12 vs 8 这一条不受影响(探针无 referrer/内部 referrer),仍然成立。
+
+- 漏斗:`subscribe_click` 4 → `sub_open` 2 → `sub_submit` 1 → `sub_ok` **1**(窗口滚动,非流失)。
+  `subscribers` 仍 2 行 status='stored'。
+- `vote_cast` 64 · `calc_use` 21 · `pred_expand` 19 · `invest_tool_click` 15 · `tool_click` 12 ·
+  `readnext_click` 10 · `deeplink_pick` 8 · `index_click` 8。`affiliate_click` / Pro 桥 /
+  `challenge_share` / `embed_copy` 仍全 **0**。
+- 两条转化实验都在跑,判定日 10-07:`deep_sasummary_mid`(09-09 上移)、
+  `deep_when_mid`(09-11 上移)。**今日都还是 0,这是预期内的,不动它。**
+- 站内搜索:修复上线五天,仍无读者搜索。
+
+**gridlings**:28 天 pv 641 · play_start 354 · solve 135;今日全 0。
+**itch:play_start 43→44(11 天来第一次动),solve 仍 13。** 判定线 09-24 需 150/25,
+剩 12 天,**按现速不可能达标**,届时按预登记判负。
+
+**sourceradar**:28 天真人 pv 56(近 7 天 6),bot 60;交互事件仍全 0。
+连续第 9 天不动作、不 bump。
+
+**第①层 heartbeat**:八站全 200。**但这份快照本身有一条错值**(agiscorecard 报 6 天未部署,
+实为当天两次),已修工具链,见 OPT-LOG。
+
+**里程碑**:无新达成。
+
+**owner 待办(沿用,未催)**:thedollscout `content/d1-snapshot.json` 仍缺。

@@ -125,6 +125,45 @@ for (const t of stale) {
   });
 }
 
+// ── 3b. 来源页漂移（2026-09-11 自扩展层）──
+// scripts/source-drift.mjs 每日比对官方来源页的「数字+单位」令牌集合,连续两日不同才确认。
+// 这是比 30 天阈值早得多的复核触发器:厂商改了页面当天就进队列,而不是等保质期到。
+// 信号退休规则内建在 drift.json 里（limits.checked ≥ 确认日即撤下）,这里不必再判。
+const drift = read('data/drift.json', { items: [] });
+for (const d of (drift.items || []).slice(0, 6)) {
+  const t = bySlug.get(d.slug);
+  if (!t) continue;
+  items.push({
+    id: `drift:${d.slug}`,
+    type: 'source_drift',
+    title: `来源页变动：${t.name}（${d.confirmed} 确认）`,
+    why: `官方来源页的数字令牌变了——新增 ${(d.added || []).slice(0, 4).join(' / ') || '无'}；消失 ${(d.removed || []).slice(0, 4).join(' / ') || '无'}。本站条目仍是 ${d.checked_then || t.limits?.checked} 的版本`,
+    action: `打开 ${d.url} 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）`,
+    refs: [d.slug, d.url],
+    score: 65 + (t.hot ? 10 : 0),
+  });
+}
+
+// ── 3c. 付费档缺口按真实触达排序（执行令 #13）──
+// is-X-still-free 判定页只对有已核实付费档的工具生成;哪个先补,按 reach.json 里工具页的
+// 带来源真人浏览降序——需求最集中的问题先回答。只排队,付费档数字仍须官方来源两步写入。
+const reach = read('data/reach.json', null);
+if (reach && Array.isArray(reach.tools)) {
+  const gaps = reach.tools.filter((x) => { const t = bySlug.get(x.slug); return t && t.limits && t.limits.quota && !(t.limits.paid && t.limits.paid.tiers) && x.n >= 3; }).slice(0, 3);
+  for (const g of gaps) {
+    const t = bySlug.get(g.slug);
+    items.push({
+      id: `paidgap:${g.slug}`,
+      type: 'paid_gap',
+      title: `补付费档：${t.name}（工具页 ${reach.window_days} 天带来源真人 ${g.n} 次，无付费档）`,
+      why: `有需求、无判定页：is-${g.slug}-still-free 因缺 limits.paid.tiers 未生成；grok 先例 09-11`,
+      action: `核实官方定价页写入 limits.paid（形状照 claude/grok），两步写入后判定页自动生成并进 sitemap`,
+      refs: [g.slug],
+      score: Math.min(60, 30 + g.n),
+    });
+  }
+}
+
 // ── 4. 需求缺口：搜过但没有 ──
 for (const b of (backlog.items || []).filter((x) => x.status === 'todo' && x.term)) {
   items.push({
@@ -164,8 +203,12 @@ if (nosrc.items?.length) {
 // 本站 Google 线已通、AI 助手线为零——第一个 AI 引流点击是重要的转折信号，
 // 出现即置顶提醒（数据来自 CI 每日导出的流量快照；快照断供时静默跳过）。
 const AI_REF = /chatgpt\.com|openai\.com|perplexity\.ai|claude\.ai|gemini\.google|copilot\.microsoft|bing\.com\/chat|you\.com|phind\.com|kagi\.com/i;
+// 2026-09-11:数据源改为 reach.json（/api/reach 每日落库）。原 traffic-snapshot.json 从未存在过——
+// 这条信号此前三周一直是哑的,而没有任何东西告诉我们它哑了。旧文件名保留为兜底。
 const snap = read('data/traffic-snapshot.json', null);
-const snapRows = Array.isArray(snap) ? snap : (snap?.[0]?.results || snap?.results || []);
+const snapRows = (reach && Array.isArray(reach.ai_referrals) && reach.ai_referrals.length)
+  ? reach.ai_referrals
+  : (Array.isArray(snap) ? snap : (snap?.[0]?.results || snap?.results || []));
 const aiRefs = (snapRows || []).filter((r) => r.ref && AI_REF.test(r.ref));
 if (aiRefs.length) {
   const by = {};
