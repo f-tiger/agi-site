@@ -39,5 +39,10 @@
     "staubsauger",
     "saugwischer",
     "lüften"
-  ]
+  ],
+  "measure": {
+    "kind": "eco-trend",
+    "url": "https://getecoback.com/api/trend"
+  },
+  "indexnow": false
 }

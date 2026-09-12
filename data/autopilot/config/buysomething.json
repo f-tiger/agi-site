@@ -26,5 +26,9 @@
     "dropship",
     "factory",
     "china"
-  ]
+  ],
+  "measure": {
+    "kind": "sr-pop",
+    "url": "https://source.agiscorecard.com/api/pop"
+  }
 }

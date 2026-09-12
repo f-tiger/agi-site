@@ -40,5 +40,9 @@
     "stock",
     "etf",
     "capex"
-  ]
+  ],
+  "measure": {
+    "kind": "agi-trends",
+    "url": "https://agiscorecard.com/api/trends"
+  }
 }
