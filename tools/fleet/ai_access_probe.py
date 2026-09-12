@@ -150,7 +150,7 @@ def main(argv):
         mark = "⚠️ " if not valid else ("🚫" if blocked else "✅")
         print(f"{mark} {r['site']:<13} control={flat[CONTROL[0]]}  " + (f"BLOCKED {blocked}" if blocked else ""))
     snap = {
-        "checked": dt.datetime.utcnow().replace(microsecond=0).isoformat() + "Z",
+        "checked": dt.datetime.now(dt.timezone.utc).replace(microsecond=0, tzinfo=None).isoformat() + "Z",
         "paths": PATHS,
         "agents": [a for a, _ in AGENTS],
         "invalid_sites": invalid,

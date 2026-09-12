@@ -437,3 +437,7 @@ owner 决策卡、事实表)。
 - **判定线**:**2026-10-24** 舰队 AI 引荐 ≥138/28d 或五个 0 站 ≥2 个转正,否则 AI 读者面只维护不扩建;
   **2026-09-16** 读 `data/fleet-ai-access.json`,任一站被拦 → owner 关 Cloudflare 开关(会话不能代做)。
 - **已知噪音**:探针带 `?__probe=1`(bpj 中间件不记账),其余 worker 按 bot 记 ≤8 行/站/日,08:00 UTC。
+- **首跑(09-12 run 34725258191)**:探针 128 个请求全 200、零拦截;**D1 读数 403**——仓里两个 Cloudflare
+  token 都没有 D1 read 权限(tds-traffic 的 D1 导出 09-04 起因此从未成功,`d1-snapshot.json` 不存在)。
+  **owner 一分钟待办**:给 token 加 `Account · D1 · Read` 或新建存为 `CF_API_TOKEN`;**09-16 起未做则 heartbeat 每日红**。
+  每次报告带出这一条直到解决;在此之前 AI 引荐只能由会话经 MCP 手查(SQL 在 `tools/fleet/ai_referrals.py`)。

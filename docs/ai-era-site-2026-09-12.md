@@ -105,6 +105,15 @@ bot 计数、发生在 08:00 UTC。不影响 human 口径。
 - **2026-09-16(Pay-Per-Crawl 生效次日)**:读 `data/fleet-ai-access.json`,任一站被拦即
   owner 在 Cloudflare 控制台关开关(1 分钟),会话不能代做。
 
-## 七、首跑记录
+## 七、首跑记录(2026-09-12 23:23 UTC,heartbeat run 34725258191,workflow_dispatch,SUCCESS 18 秒)
 
-(runner 首跑后填写)
+- **探针**:八站对照组 `/` 与 `/llms.txt` 全 200;8 个 AI 爬虫 UA × 2 路径 × 8 站 = **128 个请求全部 200,
+  零拦截**(`data/fleet-ai-access.json` 已由 runner 回仓)。探针步骤 2 秒。结论:截至 09-12,五个
+  AI 引荐为 0 的站**不是被拦**——是没被引用或被答完;Pay-Per-Crawl 09-15 生效后这份文件才开始有意义。
+- **AI 引荐读数**:仓里两个 Cloudflare token(`CLOUDFLARE_API_TOKEN_ZONE`、`CLOUDFLARE_API_TOKEN`)对 D1
+  query 端点都是 **HTTP 403**,`CF_API_TOKEN` 未设。脚本按设计写了带日期的 stub、步骤黄不红,
+  **2026-09-16 起若仍读不到,heartbeat 每日红一次**(GitHub 邮件)。旁证:`tds-traffic.yml` 自 09-04 起
+  同样逐 token 试 D1,`sites/thedollscout/content/d1-snapshot.json` **至今不存在**——同一个根因。
+  **owner 一分钟待办**:Cloudflare → My Profile → API Tokens,给现有 token 加 `Account · D1 · Read`,
+  或新建只含该权限的 token 存为 `CF_API_TOKEN`(三个名字脚本都会试)。做完后 tds 那条 12 天没成功过的
+  导出也会一起活过来。会话不能代做(无控制台权限)。在此之前,AI 引荐数字只能像 §三那样由会话经 MCP 手查。

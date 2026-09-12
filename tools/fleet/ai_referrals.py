@@ -140,7 +140,7 @@ def selftest():
 def main(argv):
     if "--selftest" in argv:
         return selftest()
-    today = dt.datetime.utcnow().date()
+    today = dt.datetime.now(dt.timezone.utc).date()
     last = load_last()
     names = ["CLOUDFLARE_API_TOKEN_ZONE", "CLOUDFLARE_API_TOKEN", "CF_API_TOKEN"]
     seen, winner, acct = set(), None, None
@@ -175,7 +175,7 @@ def main(argv):
     if not sites:
         return fail(last, today, "every site query failed: " + " | ".join(errors))
     snap = {
-        "generated": dt.datetime.utcnow().replace(microsecond=0).isoformat() + "Z",
+        "generated": dt.datetime.now(dt.timezone.utc).replace(microsecond=0, tzinfo=None).isoformat() + "Z",
         "window_days": WINDOW, "ok": not errors, "token_env": winner, "errors": errors,
         "baseline_2026_09_12": {"fleet_ai_ref": 69, "note": "hand-measured; agi 20, bpj 33, eco 16, others 0"},
         "fleet_ai_ref": sum(x["ai_ref"] for x in sites),
