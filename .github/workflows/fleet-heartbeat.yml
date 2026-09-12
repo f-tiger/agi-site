@@ -129,6 +129,34 @@ jobs:
           cat data/fleet-health.json
           echo "bad=$BAD" >> "$GITHUB_OUTPUT"
 
+      # ── AI 时代的两块仪表(2026-09-12,docs/ai-era-site-2026-09-12.md)──
+      # ① 八站 AI 爬虫可达性。robots.txt 放行 ≠ 边缘放行:Cloudflare 的 Bot Fight /
+      #    Block AI Scrapers / Pay-Per-Crawl(2026-09-15 起默认)在 robots 之上生效,被拦的
+      #    爬虫在任何一站的 D1 里都留不下痕迹。此前只有 bpj 自己探(scripts/ai-crawler-probe.mjs),
+      #    舰队手册却写着「heartbeat 看到 403 先解封」——它从来没看过。现在每天看:
+      #    8 站 × 8 个 AI UA × (/ 与 /llms.txt),对照组是普通浏览器 UA(对照拿不到 200 就不判)。
+      #    任一站把任一 AI 爬虫 403/429/503 → 本 run 红 → GitHub 邮件。零外部副作用
+      #    (只 GET 自己的站;请求带 ?__probe=1,bpj 中间件据此不计账;其余站按 bot 记 ≤1 行/日)。
+      - name: Probe AI-crawler reachability on all eight sites
+        id: aiprobe
+        continue-on-error: true
+        run: python3 tools/fleet/ai_access_probe.py
+
+      # ② 八站 28 天「AI 助手引荐」(真人 pv 里 referrer 是 chatgpt/perplexity/claude/copilot…)。
+      #    这是舰队唯一不靠 Google 的分发面,09-12 手测基线:全舰队 69 次/28d,五个站是 0。
+      #    D1 REST 直连,三个 token secret 逐个试(承 tds-traffic.yml 纪律),只打印生效的 env 名;
+      #    读失败保留上一份快照,连续 >3 天读不到才红(不做每天一封的噪音)。快照写回
+      #    data/fleet-ai-referrals.json,autopilot 的 demand-digest 次日读它。
+      - name: Read AI-assistant referrals (28d) from every site's D1
+        id: airef
+        continue-on-error: true
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_API_TOKEN_ZONE: ${{ secrets.CLOUDFLARE_API_TOKEN_ZONE }}
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: python3 tools/fleet/ai_referrals.py
+
       # 快照回仓:任何后续会话(哪怕没有 Cloudflare/GitHub MCP)都能 cat 一下就
       # 知道舰队是不是活着。data/ 不在任何站点的部署 path 过滤里,不会烧部署。
       - name: Commit health snapshot
@@ -137,6 +165,7 @@ jobs:
           git config user.email noreply@anthropic.com
           git config user.name Claude
           git add data/fleet-health.json
+          git add data/fleet-ai-access.json data/fleet-ai-referrals.json 2>/dev/null || true
           git diff --cached --quiet && { echo "无变化"; exit 0; }
           git commit -m "chore(fleet): heartbeat 健康快照 $(date -u +%F)"
           for i in 1 2 3 4; do
@@ -202,6 +231,8 @@ jobs:
       - name: Assert bot-UA classifier parity across workers
         run: python3 tools/fleet/check_bot_ua.py
 
-      - name: Fail the run if any site is down
-        if: steps.probe.outputs.bad == '1'
-        run: exit 1
+      - name: Fail the run if any site is down, blocks AI crawlers, or the referral read is stale
+        if: steps.probe.outputs.bad == '1' || steps.aiprobe.outcome == 'failure' || steps.airef.outcome == 'failure'
+        run: |
+          echo "site-down=${{ steps.probe.outputs.bad }} ai-crawler-blocked=${{ steps.aiprobe.outcome }} ai-referrals=${{ steps.airef.outcome }}"
+          exit 1

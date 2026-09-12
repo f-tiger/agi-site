@@ -125,6 +125,23 @@ def main():
             out.append("**autopilot 需求队列**:该站未纳入 autopilot")
         out.append("")
 
+    # AI 助手引荐(舰队唯一不靠 Google 的分发面;读 heartbeat 写的快照)
+    ar = load(os.path.join(ROOT, "data/fleet-ai-referrals.json"))
+    out.append("## AI 助手引荐(28 天窗,真人 pv 里 referrer 是 ChatGPT/Perplexity/Claude/Copilot 等)")
+    if "__error__" in ar or ar.get("stub"):
+        out.append("- 快照不可用:" + str(ar.get("__error__") or ar.get("reason") or "stub") + "(heartbeat 的 D1 读步骤还没成功过)")
+    else:
+        aa = age_days(today, ar.get("generated", ""))
+        stale = " **STALE**" if (aa is None or aa > 3) else ""
+        base = (ar.get("baseline_2026_09_12") or {}).get("fleet_ai_ref")
+        out.append(f"- 舰队合计 **{ar.get('fleet_ai_ref')}** 次 / 真人 pv {ar.get('fleet_human_pv')}(快照 {ar.get('generated','?')[:10]}{stale};09-12 手测基线 {base})")
+        for s_ in sorted(ar.get("sites", []), key=lambda x: -x.get("ai_ref", 0)):
+            hosts = ", ".join(f"{h} {n}" for h, n in sorted(s_.get("by_host", {}).items(), key=lambda kv: -kv[1])) or "—"
+            out.append(f"- {s_['site']}: {s_.get('ai_ref', 0)} / {s_.get('human_pv', 0)} pv · {hosts}")
+        if ar.get("errors"):
+            out.append("- 未读到:" + " | ".join(ar["errors"]))
+    out.append("")
+
     out.append("---")
     out.append("读法:gaps>0 且对应 rising 不是 STALE,才值得进第②层选题;Reddit 命中要再查搜索需求;")
     out.append("PH/HN 命中里的产品名不是需求词。三门(数据/需求/变现)不变。")
