@@ -195,6 +195,13 @@ jobs:
 
           PY
 
+      # 六个 worker 各有一份 bot UA 正则,09-12 之前从 9 到 55 个 token 不等——同一只爬虫
+      # 在一站算 bot、在另外五站算「真人」,台账各站人类 pv 因此不可比。现在只有一份权威
+      # (tools/fleet/bot_ua.txt),这里断言每个 worker 的字面量与它逐字相同,并用真实 UA 样本
+      # 测两个方向(爬虫必中、浏览器必不中)。漂移 → 本 run 红 → GitHub 邮件。零外部副作用。
+      - name: Assert bot-UA classifier parity across workers
+        run: python3 tools/fleet/check_bot_ua.py
+
       - name: Fail the run if any site is down
         if: steps.probe.outputs.bad == '1'
         run: exit 1

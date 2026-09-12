@@ -272,7 +272,7 @@ agiscorecard 更隐蔽：它每天能重建**纯属副作用**（fleet-trends �
 | `deploy-gridlings` 34608334085 | ✅ SUCCESS | ~52 秒 |
 | `deploy-agiscorecard` 34608334017 | ✅ SUCCESS | ~80 秒 |
 | `deploy-thedollscout` 34608334005 | ✅ SUCCESS | ~81 秒（含 49 条线上自检） |
-| `fleet-heartbeat` 34608502800 | ✅ SUCCESS | 19 秒，**含新的「autopilot 是否还活着」断言** |
+| `fleet-heartbeat` 34608502800 | ✅ SUCCESS | 19 秒，**含新的「autopilot 是否还活着」断言**;**2026-09-12 再加「六站 bot-UA 正则一致」断言**(`tools/fleet/check_bot_ua.py`,零外部副作用,秒级) |
 
 autopilot 首跑**什么都没提交**——当天没有任何页面内容变化，所以没有 lastmod 该前进，
 也没有 URL 该进 IndexNow。这正是「平静的一天」该有的样子,proof-of-work 那一步确认了

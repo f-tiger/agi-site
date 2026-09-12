@@ -2,7 +2,7 @@
 // 埋点铁律(与 agi 同):写库全部 try/catch + waitUntil,绝不允许把站点打到 500。
 const STEAM = "https://api.steampowered.com/ISteamUserStats/GetNumberOfCurrentPlayers/v1/?appid=";
 const ALLOWED = new Set(["quiz_start", "quiz_done", "live_check", "subscribe_click", "embed_copy", "share_click"]);
-const BOT = /bot|crawl|spider|slurp|fetch|gpt|claude|perplexi|curl|python|wget|headless/i;
+const BOT = /bot|crawler|spider|slurp|scrap|crawl|fetch|monitor|uptime|lighthouse|pagespeed|preview|headless|phantom|selenium|puppeteer|playwright|curl|wget|python|java|go-http|okhttp|libwww|httpclient|http-client|axios|node-fetch|undici|^node$|^node\/|feed|rss|validator|archive|semrush|ahrefs|dataforseo|mj12|dotbot|bytespider|petalbot|applebot|amazonbot|facebookexternalhit|embedly|gptbot|chatgpt|oai-search|claude|perplexity|ccbot|google-extended|panscient|censys|inspect|shodan|expanse|masscan|zgrab|scan|probe/i;
 
 function log(env, ctx, req, name, location, label) {
   try {
