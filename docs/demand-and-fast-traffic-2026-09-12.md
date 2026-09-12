@@ -106,3 +106,40 @@ redship.io、panegains.com、painonsocial.com、capterra;
 API 转售 ToS 与封禁阶梯、Anthropic 中国政策、蒸馏行动数字:cnbc.com(2026-07-06)、tomshardware、
 cryptobriefing、itlibra;短剧 CPS(+128%、微信 2026-04 开放 60–70%、番茄 30–50%):sohu、zhihu、
 022999.com;AI 小说与搜索引荐下滑(番茄日均 ~2 000 本、AIO −1/3 CTR、引荐 −34%):36kr(eu)、evadav。
+
+## 五、Reddit 侧再看一层(owner 同日追问:「Reddit 侧再看用户需求」)
+
+**先说读不到的部分,不假装读过**:本会话对 Reddit 是双向封死的——沙箱代理对
+`www.reddit.com` / `old.reddit.com` / `api.reddit.com` 的 JSON 与 RSS 全部 `000`;网页搜索工具
+被 reddit.com 明确拒绝抓取。所以**Reddit 原帖只有两处能读:runner(每日 04:20 UTC 的雷达)
+和 owner 自己的浏览器。** 下面的「间接信号」来自第三方转述,可信度低于原帖,已标明。
+
+### 1. 加了第二个 Reddit 源:垂直板块 + 「每隔几周又问」的重现计数
+- `startup_radar.mjs` 新增 `reddit_vertical`:按站配一组板块与一组句式(`VERTICAL`),走公开
+  `search.json`(`restrict_sr=1`、按新、月窗)。**板块名若写错会以 HTTP 404 暴露在 `ok:false`
+  里**,不会静默——getecoback 那两个德语板块是我最没把握的,首轮结果会说话。
+- **重现计数**是这条源的真正产出:标题归一化(小写、去标点、压空白,**不做语义合并**)后,
+  14 天 history 里出现在 **≥2 个不同日期** 的问题才进 `reddit_recurring`。单日一条热帖不算需求。
+- 摘要 `demand-digest.md` 新增「14 天内重现的问题」一节。首轮数据落库前它显示为空,这是诚实状态。
+- 自测 7 条全过(含配置形状与归一化);只读,永不发帖。
+
+### 2. 间接信号(第三方转述,2026-09-12 检索;不是原帖)
+| 站 | 读到什么 | 我的读法 |
+|---|---|---|
+| thedollscout | 「真假 Labubu」是该圈**最常被问的问题**(九颗牙、QR 码、UV 印章、包装哑光);**美国 CPSC 与英国多个地方政府 2026 年发布假货警告** | **三站里最强**:需求已强到监管机构介入;而 tds 的整站命题正是真伪导购。要盯的是 tds 那页能否被搜到,不是有没有需求 |
+| baipiaoji | 「AI 免费额度追踪」这个查询真实到**有两家站按月维护同一张表**(Plugsky 2026-07、PE Collective 2026-09) | 需求存在,但**供给已满**;bpj 的 `limits` 数据就是同一产品。差异只能来自更新频率与 zh/en 双语,不是「有没有」 |
+| gridlings | 找到的是**供给**(多家「无需猜测」的每日数织站),**没找到 Reddit 侧的求做帖** | 与站内 341 次历史游玩一致:这个 niche 的需求没有读数 |
+| agiscorecard | 未另查:「when will AGI」类需求已由 Trends rising 与 33–37,5% 引用份额证实 | 不变 |
+
+### 3. 你自己五分钟能读到、而我读不到的原帖(按站的搜索 URL)
+打开后看两件事:①**同一个问题是不是每隔几周又出现**;②提问者要的东西站内**有没有一页接得住**。
+- thedollscout:`https://www.reddit.com/r/labubu/search?q=fake+OR+%22is+this+real%22&restrict_sr=1&sort=new&t=month`
+- baipiaoji:`https://www.reddit.com/r/ChatGPT/search?q=%22free+tier%22+limit&restrict_sr=1&sort=new&t=month`
+  与 `https://www.reddit.com/r/ClaudeAI/search?q=%22rate+limit%22+free&restrict_sr=1&sort=new&t=month`
+- gridlings:`https://www.reddit.com/r/puzzles/search?q=%22is+there+a%22+daily&restrict_sr=1&sort=new&t=month`
+- agiscorecard:`https://www.reddit.com/r/singularity/search?q=%22when+will+agi%22&restrict_sr=1&sort=new&t=month`
+- buysomething:`https://www.reddit.com/r/ecommerce/search?q=%22landed+cost%22&restrict_sr=1&sort=new&t=month`
+- 通用求做板块:`https://www.reddit.com/r/SomebodyMakeThis/new/`、`https://www.reddit.com/r/AppIdeas/new/`
+
+**判定线补充(并入 2026-10-10 那条)**:`reddit_recurring` 五站合计 **≥3 条**且其中任一条站内确实
+没有页面接住 → 进第②层选题;否则记「垂直板块对本舰队 niche 无重现信号」。

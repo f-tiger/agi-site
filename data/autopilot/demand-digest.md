@@ -12,6 +12,10 @@
 只读,机器永不发帖。出现在这里 ≠ 有人在搜它。
 - (本次无数据:源不可用或 48h 内无帖)
 
+## Reddit 垂直板块 · 14 天内重现的问题(这才是需求信号)
+按站给定板块 + 句式(startup_radar.mjs 的 VERTICAL),只读。同一标题出现在 ≥2 个不同日期才列。
+- (尚无重现:源刚接入或 14 天内没有重复出现的问题)
+
 ## agiscorecard
 **Trends rising(逐 seed 时效)**
 - [8d] **artificial general intelligence** → artificial general intelligence developments (new)

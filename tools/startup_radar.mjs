@@ -76,6 +76,41 @@ export function parseRedditListing(json, hours) {
   }));
 }
 
+
+// 垂直板块里的「求做/求推荐」句式(2026-09-12,owner:「Reddit 侧再看用户需求」)。
+// 业内共识:比 r/SomebodyMakeThis 更强的信号在**小型垂直板块**里搜 "is there an app/site that",
+// 且**同一问题每隔几周重现**才算需求。这里按站给一组板块 + 一组句式,走公开 search.json,
+// restrict_sr=1、按新、月窗。板块名若不存在会以 HTTP 404 / 空列表暴露在 ok:false 里,不会静默。
+// 只读;永不发帖、永不回帖、永不注册。
+export const normTitle = (t) => String(t || '').toLowerCase().replace(/[^a-z0-9äöüß\s]/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 80);
+const VERTICAL = {
+  agiscorecard: { subs: ['singularity', 'artificial'], q: ['"when will agi"', '"agi timeline"', '"is agi close"'] },
+  baipiaoji:    { subs: ['ChatGPT', 'ClaudeAI', 'LocalLLaMA'], q: ['"free tier" limit', '"is there a" tool free', '"rate limit" free plan'] },
+  gridlings:    { subs: ['puzzles', 'sudoku', 'nonograms', 'incremental_games'], q: ['"is there a" daily', '"no guessing"', '"unique solution"'] },
+  thedollscout: { subs: ['labubu', 'PopMart'], q: ['fake OR real "how to tell"', '"is this real"', 'authentic check'] },
+  buysomething: { subs: ['ecommerce', 'dropship', 'Entrepreneur'], q: ['"landed cost"', '"is there a" sourcing', 'alibaba "how do i"'] },
+  getecoback:   { subs: ['de', 'Finanzen'], q: ['Klimaanlage Mietwohnung', 'Luftentfeuchter Empfehlung', 'Heizlüfter Stromkosten'] },
+};
+
+async function fetchRedditVertical() {
+  const out = [];
+  const errors = [];
+  for (const [site, cfg] of Object.entries(VERTICAL)) {
+    for (const sub of cfg.subs) {
+      const q = encodeURIComponent(cfg.q.join(' OR '));
+      const u = `https://www.reddit.com/r/${sub}/search.json?q=${q}&restrict_sr=1&sort=new&t=month&limit=25`;
+      try {
+        const r = await fetch(u, { headers: UA, signal: AbortSignal.timeout(20000) });
+        if (!r.ok) { errors.push(`r/${sub} HTTP ${r.status}`); continue; }
+        for (const it of parseRedditListing(await r.json(), 24 * 31)) out.push({ ...it, site });
+      } catch (e) { errors.push(`r/${sub} ${String(e.message || e).slice(0, 60)}`); }
+    }
+  }
+  if (!out.length) throw new Error(errors.length ? errors.join('; ').slice(0, 160) : 'zero posts across all vertical searches');
+  if (errors.length) out.errors = errors;   // 部分板块失败也要留痕,不吞
+  return out;
+}
+
 async function fetchRedditRequests() {
   const out = [];
   for (const sub of ['SomebodyMakeThis', 'AppIdeas']) {
@@ -103,6 +138,8 @@ if (process.argv.includes('--selftest')) {
     ['bpj 词表命中 free tier / chatgpt', NICHES.baipiaoji.some((k) => hit(`${items[0].title} ${items[0].blurb}`, k))],
     ['gridlings 词表命中 nonogram', NICHES.gridlings.some((k) => hit(items[1].title, k))],
     ['坏 JSON 抛错而不是静默空数组', (() => { try { parseRedditListing({}, 48); return false; } catch { return true; } })()],
+    ['垂直板块配置:每站至少一个板块与一条句式', Object.values(VERTICAL).every((c) => c.subs.length && c.q.length)],
+    ['标题归一化:大小写/标点/空白不影响重现匹配', normTitle('Is there an App that…?') === normTitle('is there an app that')],
   ];
   for (const [n, ok] of checks) console.log((ok ? '  ok   ' : '  FAIL ') + n);
   process.exit(checks.every((c) => c[1]) ? 0 : 1);
@@ -112,6 +149,7 @@ const sources = {};
 for (const [name, fn] of [
   ['producthunt', fetchProductHunt],
   ['reddit_requests', fetchRedditRequests],
+  ['reddit_vertical', fetchRedditVertical],
   ['hn_show', () => fetchHN('show_hn', 36)],
   ['hn_top_ai', async () => (await fetchHN('story', 36)).filter((i) => NICHES.agiscorecard.some((k) => hit(i.title, k))).slice(0, 20)],
 ]) {
@@ -138,9 +176,23 @@ try {
 const cutoff = new Date(Date.now() - 14 * 864e5).toISOString().slice(0, 10);
 history = history.filter((h) => h.d >= cutoff && h.d !== today);
 history.push({ d: today, ph_titles: (sources.producthunt.items || []).map((i) => i.title).slice(0, 30),
-  reddit_titles: ((sources.reddit_requests || {}).items || []).map((i) => i.title).slice(0, 30) });
+  reddit_titles: ((sources.reddit_requests || {}).items || []).map((i) => i.title).slice(0, 30),
+  vertical: ((sources.reddit_vertical || {}).items || []).map((i) => ({ s: i.site, t: i.title })).slice(0, 60) });
+
+// 重现计数:同一问题(标题归一化后)在 14 天 history 里出现于 ≥2 个不同日期 = 「每隔几周又问」。
+// 这才是需求;单日一条热帖不是。归一化只做小写 + 去标点 + 压空白,不做语义合并——宁可漏,不硬凑。
+const seen = {};
+for (const h of history) for (const v of (h.vertical || [])) {
+  const k = `${v.s}|${normTitle(v.t)}`;
+  (seen[k] ||= new Set()).add(h.d);
+}
+const redditRecurring = {};
+for (const [k, days] of Object.entries(seen)) if (days.size >= 2) {
+  const [site, t] = k.split('|');
+  (redditRecurring[site] ||= []).push({ title: t, days: [...days].sort() });
+}
 
 mkdirSync('data', { recursive: true });
-writeFileSync(OUT, JSON.stringify({ fetched: today, sources, niche_hits: nicheHits, history }, null, 1));
+writeFileSync(OUT, JSON.stringify({ fetched: today, sources, niche_hits: nicheHits, reddit_recurring: redditRecurring, history }, null, 1));
 const oks = Object.entries(sources).map(([k, v]) => `${k}:${v.ok ? v.items.length : 'FAIL ' + v.reason}`).join(' | ');
 console.log(`startup-radar ${today} → ${oks}`);

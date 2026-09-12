@@ -86,6 +86,19 @@ def main():
         out.append("- (本次无数据:源不可用或 48h 内无帖)")
     out.append("")
 
+    # 垂直板块的「重现」信号:同一问题 14 天内出现在 ≥2 个不同日期。单日热帖不算。
+    rec = radar.get("reddit_recurring", {}) if "__error__" not in radar else {}
+    out.append("## Reddit 垂直板块 · 14 天内重现的问题(这才是需求信号)")
+    out.append("按站给定板块 + 句式(startup_radar.mjs 的 VERTICAL),只读。同一标题出现在 ≥2 个不同日期才列。")
+    any_rec = False
+    for site, rows in (rec or {}).items():
+        for r in sorted(rows, key=lambda x: -len(x.get("days", [])))[:5]:
+            any_rec = True
+            out.append(f"- **{site}** · ×{len(r.get('days', []))} 天({', '.join(r.get('days', [])[-3:])}) · {r.get('title', '')}")
+    if not any_rec:
+        out.append("- (尚无重现:源刚接入或 14 天内没有重复出现的问题)")
+    out.append("")
+
     # 按站
     hits = radar.get("niche_hits", {}) if "__error__" not in radar else {}
     for site in SITES:

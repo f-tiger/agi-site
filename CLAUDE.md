@@ -386,7 +386,9 @@ owner 决策卡、事实表)。
   28 天 7 条**(供给侧)。问题不是测不到,是测到了薄然后照建。
 - **现在一页读完**:`data/autopilot/demand-digest.md`(零 AI,随 autopilot 每日生成,带日期与 STALE)。
   **任何选题讨论先打开它。**
-- **Reddit 求做板块已接进雷达**(r/SomebodyMakeThis、r/AppIdeas,公开 JSON,只读;**机器永不发帖**);
+- **本会话对 Reddit 双向封死**(沙箱 000 + 搜索工具被 reddit.com 拒绝):**原帖只有 runner 与 owner 浏览器能读**,
+  别假装读过。**Reddit 两个源已接进雷达**(求做板块 r/SomebodyMakeThis、r/AppIdeas;垂直板块按站 `VERTICAL`
+  配置 + 14 天**重现计数** `reddit_recurring`,同一问题 ≥2 个不同日期才算需求;公开 JSON,只读;**机器永不发帖**);
   更强的信号在垂直小板块里搜 "is there an app that" 且**同一问题每隔几周重现**。判定线 2026-10-10。
 - **四个方向裁定**:AI 中转站 **永久归档**(转售密钥被明禁、Anthropic 不允许中国公司、2026 执法最严);
   AI 短剧推荐 **不建**(分发在抖音/微信小程序生态,且是非 Amazon 联盟——若做属 owner 破例决定,形态也
