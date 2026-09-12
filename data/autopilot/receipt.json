@@ -8,13 +8,16 @@
     "covered": 1,
     "demand_terms": 2,
     "gaps": 0,
+    "hot_pages": 2,
     "lastmod_updated": 0,
     "offtopic": 1,
     "pages": 211,
-    "undatable": 0
+    "undatable": 0,
+    "underserved": 0
    },
    "notes": [
-    "sites/agiscorecard/trends-rising.json: 2 seed(s) are on the AUTOCOMPLETE FALLBACK, not Google Trends rising (agi timeline, artificial general intelligence). Those rows are scored 1, not ranked against real volume — the demand face for them is degraded, not working."
+    "sites/agiscorecard/trends-rising.json: 2 seed(s) are on the AUTOCOMPLETE FALLBACK, not Google Trends rising (agi timeline, artificial general intelligence). Those rows are scored 1, not ranked against real volume — the demand face for them is degraded, not working.",
+    "heat: measured 2026-09-12 (2 pages); no notes"
    ],
    "outcome": "ok",
    "site": "agiscorecard",
@@ -32,14 +35,17 @@
     "covered": 0,
     "demand_terms": 42,
     "gaps": 1,
+    "hot_pages": 0,
     "lastmod_updated": 0,
     "offtopic": 41,
     "pages": 4,
-    "undatable": 0
+    "undatable": 0,
+    "underserved": 0
    },
    "notes": [
-    "sites/buysomething/site/rising.json: 3 seed(s) are on the AUTOCOMPLETE FALLBACK, not Google Trends rising (chinese style shirt, portable blender, smart pill organizer). Those rows are scored 1, not ranked against real volume — the demand face for them is degraded, not working.",
-    "sites/buysomething/site/rising.json: 11 fresh seed(s) used; 8 stale and 0 undated dropped"
+    "sites/buysomething/site/rising.json: 2 seed(s) are on the AUTOCOMPLETE FALLBACK, not Google Trends rising (chinese style shirt, portable blender). Those rows are scored 1, not ranked against real volume — the demand face for them is degraded, not working.",
+    "sites/buysomething/site/rising.json: 12 fresh seed(s) used; 8 stale and 0 undated dropped",
+    "heat: measured 2026-09-12 (0 pages); no notes"
    ],
    "outcome": "ok",
    "site": "buysomething",
@@ -50,45 +56,23 @@
    ]
   },
   {
-   "changed_urls": [
-    "https://getecoback.com/guide/heizkosten-vergleich-rechner.html",
-    "https://getecoback.com/guide/heizluefter-stromverbrauch.html",
-    "https://getecoback.com/guide/heizung-10-qm.html",
-    "https://getecoback.com/guide/heizung-15-qm.html",
-    "https://getecoback.com/guide/heizung-20-qm.html",
-    "https://getecoback.com/guide/heizung-25-qm.html",
-    "https://getecoback.com/guide/heizung-30-qm.html",
-    "https://getecoback.com/guide/heizung-40-qm.html",
-    "https://getecoback.com/guide/heizung-50-qm.html",
-    "https://getecoback.com/guide/heizung-tauschen-oder-warten-gmodg.html",
-    "https://getecoback.com/guide/keller-lueften-sommer.html",
-    "https://getecoback.com/guide/klimaanlage-mit-heizfunktion.html",
-    "https://getecoback.com/guide/luftentfeuchter-10-qm.html",
-    "https://getecoback.com/guide/luftentfeuchter-15-qm.html",
-    "https://getecoback.com/guide/luftentfeuchter-20-qm.html",
-    "https://getecoback.com/guide/luftentfeuchter-25-qm.html",
-    "https://getecoback.com/guide/luftentfeuchter-30-qm.html",
-    "https://getecoback.com/guide/luftentfeuchter-40-qm.html",
-    "https://getecoback.com/guide/luftentfeuchter-dauerbetrieb-stromkosten.html",
-    "https://getecoback.com/guide/luftentfeuchter-oder-luftreiniger.html",
-    "https://getecoback.com/guide/pro-breeze-luftentfeuchter-test.html",
-    "https://getecoback.com/guide/schmidbauer-infrarotheizung-test.html",
-    "https://getecoback.com/guide/trotec-luftentfeuchter-test.html",
-    "https://getecoback.com/index.html"
-   ],
+   "changed_urls": [],
    "counts": {
     "bootstrapped": 0,
-    "changed": 24,
-    "covered": 35,
-    "demand_terms": 78,
-    "gaps": 31,
-    "offtopic": 12,
+    "changed": 0,
+    "covered": 33,
+    "demand_terms": 68,
+    "gaps": 25,
+    "hot_pages": 15,
+    "offtopic": 10,
     "pages": 204,
-    "undatable": 0
+    "undatable": 0,
+    "underserved": 12
    },
    "notes": [
     "sitemap owned by this site's own generator — not touched",
-    "sites/getecoback/data/trends-rising.json: 2 seed(s) are on the AUTOCOMPLETE FALLBACK, not Google Trends rising (infrarotheizung, klimaanlage). Those rows are scored 1, not ranked against real volume — the demand face for them is degraded, not working."
+    "sites/getecoback/data/trends-rising.json: 2 seed(s) are on the AUTOCOMPLETE FALLBACK, not Google Trends rising (infrarotheizung, klimaanlage). Those rows are scored 1, not ranked against real volume — the demand face for them is degraded, not working.",
+    "heat: measured 2026-09-12 (23 pages); no notes"
    ],
    "outcome": "ok",
    "site": "getecoback",
@@ -106,12 +90,16 @@
     "covered": 0,
     "demand_terms": 0,
     "gaps": 0,
+    "hot_pages": 0,
     "lastmod_updated": 0,
     "offtopic": 0,
     "pages": 5,
-    "undatable": 0
+    "undatable": 0,
+    "underserved": 0
    },
-   "notes": [],
+   "notes": [
+    "heat: no public aggregate endpoint on this site — heat needs either a Worker /api/* aggregate route or the D1 read permission on the deploy token"
+   ],
    "outcome": "ok",
    "site": "goldrush",
    "today": "2026-09-12",
@@ -128,12 +116,16 @@
     "covered": 0,
     "demand_terms": 0,
     "gaps": 0,
+    "hot_pages": 0,
     "lastmod_updated": 0,
     "offtopic": 0,
     "pages": 45,
-    "undatable": 0
+    "undatable": 0,
+    "underserved": 0
    },
-   "notes": [],
+   "notes": [
+    "heat: no public aggregate endpoint on this site — heat needs either a Worker /api/* aggregate route or the D1 read permission on the deploy token"
+   ],
    "outcome": "ok",
    "site": "gridlings",
    "today": "2026-09-12",
@@ -150,12 +142,16 @@
     "covered": 3,
     "demand_terms": 18,
     "gaps": 13,
+    "hot_pages": 0,
     "lastmod_updated": 0,
     "offtopic": 2,
     "pages": 39,
-    "undatable": 0
+    "undatable": 0,
+    "underserved": 0
    },
-   "notes": [],
+   "notes": [
+    "heat: no public aggregate endpoint on this site — heat needs either a Worker /api/* aggregate route or the D1 read permission on the deploy token"
+   ],
    "outcome": "ok",
    "site": "thedollscout",
    "today": "2026-09-12",
