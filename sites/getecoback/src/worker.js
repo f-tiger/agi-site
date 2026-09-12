@@ -56,6 +56,20 @@ function crawlerName(ua) {
 }
 
 
+// UA 家族留痕(2026-09-12 舰队进化,从 agiscorecard 移植)。只存 UA 前 48 字符 + 分类 + 计数;
+// 不存完整 UA、不存 IP、不存任何能指到个人的东西。用途只有一个:像 09-12 那次一样,事后能回答
+// 「这 288 次 human 到底是谁」,而不是猜。此前只有 agi 留这个痕,同一只探针在这里会以「增长」入日报。
+// 写失败静默——统计永远不能影响访问;表由 CREATE TABLE IF NOT EXISTS 幂等建好,缺表也只是丢审计行。
+function auditUa(env, ctx, ua, cls) {
+  const db = env.EVENTS;
+  if (!db) return;
+  const p = db.prepare(
+    "INSERT INTO ua_audit (day, ua_prefix, ua_class, hits) VALUES (date('now'), ?, ?, 1)" +
+    " ON CONFLICT(day, ua_prefix, ua_class) DO UPDATE SET hits = hits + 1"
+  ).bind((ua || "").slice(0, 48) || "(none)", cls).run().catch(() => {});
+  if (ctx && ctx.waitUntil) ctx.waitUntil(p);
+}
+
 function evUaClass(ua) {
   if (!ua) return "none";
   if (/^getecoback-ci\b/i.test(ua) || /^curl\//i.test(ua) || /^Wget\//i.test(ua)) return "ci";
@@ -708,7 +722,7 @@ async function handleStrom() {
   return resp;
 }
 
-async function handleEvent(request, env) {
+async function handleEvent(request, env, ctx) {
   // Embeds live on other people's sites, so this endpoint accepts any origin.
   // Safe because it stores no personal data and only whitelisted event names.
   const cors = {
@@ -735,11 +749,13 @@ async function handleEvent(request, env) {
   const country = request.headers.get("CF-IPCountry") || "";
   const day = new Date().toISOString().slice(0, 10);
 
+  const evUa = request.headers.get("user-agent") || "";
+  const evCls = evUaClass(evUa);
+  if (name === "page_view") auditUa(env, ctx, evUa, evCls);
   try {
     await env.EVENTS.prepare(
       "INSERT INTO ev (day, name, page, ref, meta, country, ua_class) VALUES (?, ?, ?, ?, ?, ?, ?)"
-    ).bind(day, name, page, ref, meta, country,
-      evUaClass(request.headers.get("user-agent") || "")).run();
+    ).bind(day, name, page, ref, meta, country, evCls).run();
   } catch (e) {
     return json({ ok: false }, 200, cors);
   }
@@ -1421,7 +1437,7 @@ export default {
       return handleStrom();
     }
     if (url.pathname === "/api/ev") {
-      return handleEvent(request, env);
+      return handleEvent(request, env, ctx);
     }
 
     let changed = false;

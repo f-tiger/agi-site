@@ -59,7 +59,7 @@ CrazyGames 已关;Playgama 认证中。
 - **口径说明**:六站从本次部署起「human」变严,新旧窗口对比时人类 pv 会**下降**,这是修正不是流失。
   各站正在跑的判定线不改阈值(阈值本来就是按真人定的)。
 
-**同时暴露的下一层缺口(本轮只记不做,成本先算)**:只有 agi 有 `ua_audit`(UA 家族留痕)。
+**同一轮的第二步(owner「继续做」后完成)**:`ua_audit` 已移植到其余五个有 D1 的 worker(gridlings / goldrush / buysomething / gamesledger / getecoback)。五张表用与 agi 逐字相同的 DDL `CREATE TABLE IF NOT EXISTS` 幂等建好(D1 直写,可重复执行);每站在 page_view 落库处同步写一行 `(day, ua 前 48 字符, 分类)` 计数,写失败静默,goldrush 的 `?ci=1` 探针不进审计。eco 的 `handleEvent` 此前没有 `ctx`,已把 `ctx` 从 `fetch` 穿进去;`auditUa` 在无 ctx 时退化为不挂 waitUntil 的写入而不是抛错。**bpj / tds 仍未加**(hits 表结构不同、是 JS beacon),如需加是另一次 schema 决定。原始记录保留:只有 agi 有 `ua_audit`(UA 家族留痕)。
 09-12 那次探针只在 agi 能被诊断,在其他七站会以「+23% 增长」的样子写进日报。补法是给其余 worker
 加一列 UA 家族(不存完整 UA、不存 PII),涉及 6 个 worker + 6 个 D1 schema 迁移,不是顺手的活,
 等 owner 点头。

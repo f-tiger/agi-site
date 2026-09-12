@@ -4,6 +4,20 @@ const STEAM = "https://api.steampowered.com/ISteamUserStats/GetNumberOfCurrentPl
 const ALLOWED = new Set(["quiz_start", "quiz_done", "live_check", "subscribe_click", "embed_copy", "share_click"]);
 const BOT = /bot|crawler|spider|slurp|scrap|crawl|fetch|monitor|uptime|lighthouse|pagespeed|preview|headless|phantom|selenium|puppeteer|playwright|curl|wget|python|java|go-http|okhttp|libwww|httpclient|http-client|axios|node-fetch|undici|^node$|^node\/|feed|rss|validator|archive|semrush|ahrefs|dataforseo|mj12|dotbot|bytespider|petalbot|applebot|amazonbot|facebookexternalhit|embedly|gptbot|chatgpt|oai-search|claude|perplexity|ccbot|google-extended|panscient|censys|inspect|shodan|expanse|masscan|zgrab|scan|probe/i;
 
+// UA 家族留痕(2026-09-12 舰队进化,从 agiscorecard 移植)。只存 UA 前 48 字符 + 分类 + 计数;
+// 不存完整 UA、不存 IP、不存任何能指到个人的东西。用途只有一个:像 09-12 那次一样,事后能回答
+// 「这 288 次 human 到底是谁」,而不是猜。此前只有 agi 留这个痕,同一只探针在这里会以「增长」入日报。
+// 写失败静默——统计永远不能影响访问;表由 CREATE TABLE IF NOT EXISTS 幂等建好,缺表也只是丢审计行。
+function auditUa(env, ctx, ua, cls) {
+  const db = env.EV;
+  if (!db) return;
+  const p = db.prepare(
+    "INSERT INTO ua_audit (day, ua_prefix, ua_class, hits) VALUES (date('now'), ?, ?, 1)" +
+    " ON CONFLICT(day, ua_prefix, ua_class) DO UPDATE SET hits = hits + 1"
+  ).bind((ua || "").slice(0, 48) || "(none)", cls).run().catch(() => {});
+  if (ctx && ctx.waitUntil) ctx.waitUntil(p);
+}
+
 function log(env, ctx, req, name, location, label) {
   try {
     const ua = req.headers.get("user-agent") || "";
@@ -17,6 +31,7 @@ function log(env, ctx, req, name, location, label) {
             (label || "").slice(0, 80) || null, url.pathname.slice(0, 120), refHost,
             (req.cf && req.cf.country) || null, BOT.test(ua) ? "bot" : "human");
     ctx.waitUntil(stmt.run().catch(() => {}));
+    if (name === "page_view") auditUa(env, ctx, ua, BOT.test(ua) ? "bot" : "human");
   } catch (e) {}
 }
 
