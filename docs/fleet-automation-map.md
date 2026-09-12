@@ -47,7 +47,7 @@ thedollscout 冻结约 **86 小时**——它的部署是纯 push 触发，没�
 | workflow | cron (UTC) | 作用 |
 |---|---|---|
 | **`fleet-heartbeat.yml`** | `0 8 * * *` | **新增 2026-09-04**：八站探活 + 超 7 天未部署自动重发 + 快照写回 `data/fleet-health.json` + 站点非 200 直接把 run 打红（GitHub 邮件是唯一不经过任何 AI 会话的告警通道） |
-| `fleet-trends.yml` | `45 3 * * *` | 全舰队趋势快照 |
+| `fleet-trends.yml` | `45 3 * * *` | 全舰队趋势快照 **2026-09-12 雷达加 Reddit 求做板块源**(r/SomebodyMakeThis + r/AppIdeas 公开 JSON,只读,增量 <0,2 分/月)。 |
 | `eco-trends.yml` | `30 4 * * *` | 德国热搜触发器 |
 | `eco-health.yml` | `0 5 * * *` | eco 站健康 |
 | `eco-heat-alert.yml` | `0 6 * * *` | eco 热度告警 |
@@ -58,7 +58,7 @@ thedollscout 冻结约 **86 小时**——它的部署是纯 push 触发，没�
 | `agi-trader.yml` | `45 18` / `15 19` / `45 19` / `15 20 * * 1-5` | **新增 2026-09-05**:owner 自用镜像交易器(Alpaca,缺省纸面;整股 market-on-close + 零股 day;四条错峰 cron 抗 GitHub 延迟,幂等读当日订单);job 级门 `vars.TRADER_ENABLED=='1'`,未设 = 0 分钟;≈90 分钟/月(多数秒退);日志只打印计数;详见 `tools/trader/README.md` |
 | `agi-paper-ledger.yml` | `40 22 * * 1-5` | **新增 2026-09-05**:预登记纸面交易台账,十一臂确定性重算 → `sites/agiscorecard/paper-ledger.json`;≈22 分钟/月 + 触发 agi 部署 ≈66 分钟/月;取不到 SPY 即红;**2026-09-06 追加一步**:`tools/trader/test_mirror.py` 20 场景对本地 mock 券商跑执行器(~4 秒/次 ≈ 1.5 分钟/月,不新增 schedule,放在 commit 之后以免连坐);详见 `docs/auto-trading-research-2026-09.md`、`tools/trader/README.md` |
 | `agi-indexnow.yml` | `17 3 * * 1` | sitemap 提交（周一） |
-| **`fleet-autopilot.yml`** | `40 2 * * *` | **新增 2026-09-11：站点自治升级算法**（零 AI）。内容哈希记账 → sitemap `<lastmod>` 变成可计算的事实；只对内容真变了的 URL 打 IndexNow；当日 rising 需求对着站内已有页面匹配，写出排序过的缺口队列给第②层。**不写一个字正文。** 自检 20 条红色夹具跑在最前面。**09-12 加度量层**：抓 eco/agi/buysomething 的公开聚合端点（零密钥），队列新增 underserved / hot_pages / first_party_demand。全文 `docs/site-autopilot-2026-09.md` |
+| **`fleet-autopilot.yml`** | `40 2 * * *` | **新增 2026-09-11：站点自治升级算法**（零 AI）。内容哈希记账 → sitemap `<lastmod>` 变成可计算的事实；只对内容真变了的 URL 打 IndexNow；当日 rising 需求对着站内已有页面匹配，写出排序过的缺口队列给第②层。**不写一个字正文。** 自检 20 条红色夹具跑在最前面。**09-12 加度量层**：抓 eco/agi/buysomething 的公开聚合端点（零密钥），队列新增 underserved / hot_pages / first_party_demand。全文 `docs/site-autopilot-2026-09.md` **2026-09-12 加一步「需求摘要」**:`tools/fleet/demand_digest.py` 把 rising / 雷达(含 Reddit 求做板块)/ autopilot gaps / 第一方信号读成一页 `data/autopilot/demand-digest.md`,秒级,零外部副作用。 |
 | `tds-indexnow.yml` | `20 6 * * 3` | tds IndexNow（周三） |
 
 **成本**：heartbeat **实测 19 秒/次**（2026-09-04 首跑，run 33835200197），按 Actions
