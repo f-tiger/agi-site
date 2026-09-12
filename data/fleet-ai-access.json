@@ -1,0 +1,373 @@
+{
+ "checked": "2026-09-12T23:23:04Z",
+ "paths": [
+  "/",
+  "/llms.txt"
+ ],
+ "agents": [
+  "GPTBot",
+  "OAI-SearchBot",
+  "ChatGPT-User",
+  "PerplexityBot",
+  "Perplexity-User",
+  "ClaudeBot",
+  "Claude-User",
+  "Bingbot"
+ ],
+ "invalid_sites": [],
+ "blocked_sites": [],
+ "sites": [
+  {
+   "site": "agiscorecard",
+   "origin": "https://agiscorecard.com",
+   "valid": true,
+   "blocked": [],
+   "status": {
+    "(browser)": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "GPTBot": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "OAI-SearchBot": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "ChatGPT-User": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "PerplexityBot": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "Perplexity-User": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "ClaudeBot": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "Claude-User": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "Bingbot": {
+     "/": 200,
+     "/llms.txt": 200
+    }
+   }
+  },
+  {
+   "site": "baipiaoji",
+   "origin": "https://baipiaoji.com",
+   "valid": true,
+   "blocked": [],
+   "status": {
+    "(browser)": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "GPTBot": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "OAI-SearchBot": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "ChatGPT-User": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "PerplexityBot": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "Perplexity-User": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "ClaudeBot": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "Claude-User": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "Bingbot": {
+     "/": 200,
+     "/llms.txt": 200
+    }
+   }
+  },
+  {
+   "site": "getecoback",
+   "origin": "https://getecoback.com",
+   "valid": true,
+   "blocked": [],
+   "status": {
+    "(browser)": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "GPTBot": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "OAI-SearchBot": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "ChatGPT-User": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "PerplexityBot": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "Perplexity-User": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "ClaudeBot": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "Claude-User": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "Bingbot": {
+     "/": 200,
+     "/llms.txt": 200
+    }
+   }
+  },
+  {
+   "site": "thedollscout",
+   "origin": "https://thedollscout.com",
+   "valid": true,
+   "blocked": [],
+   "status": {
+    "(browser)": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "GPTBot": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "OAI-SearchBot": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "ChatGPT-User": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "PerplexityBot": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "Perplexity-User": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "ClaudeBot": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "Claude-User": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "Bingbot": {
+     "/": 200,
+     "/llms.txt": 200
+    }
+   }
+  },
+  {
+   "site": "goldrush",
+   "origin": "https://goldrush.agiscorecard.com",
+   "valid": true,
+   "blocked": [],
+   "status": {
+    "(browser)": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "GPTBot": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "OAI-SearchBot": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "ChatGPT-User": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "PerplexityBot": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "Perplexity-User": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "ClaudeBot": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "Claude-User": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "Bingbot": {
+     "/": 200,
+     "/llms.txt": 200
+    }
+   }
+  },
+  {
+   "site": "gridlings",
+   "origin": "https://play.agiscorecard.com",
+   "valid": true,
+   "blocked": [],
+   "status": {
+    "(browser)": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "GPTBot": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "OAI-SearchBot": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "ChatGPT-User": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "PerplexityBot": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "Perplexity-User": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "ClaudeBot": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "Claude-User": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "Bingbot": {
+     "/": 200,
+     "/llms.txt": 200
+    }
+   }
+  },
+  {
+   "site": "buysomething",
+   "origin": "https://source.agiscorecard.com",
+   "valid": true,
+   "blocked": [],
+   "status": {
+    "(browser)": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "GPTBot": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "OAI-SearchBot": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "ChatGPT-User": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "PerplexityBot": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "Perplexity-User": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "ClaudeBot": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "Claude-User": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "Bingbot": {
+     "/": 200,
+     "/llms.txt": 200
+    }
+   }
+  },
+  {
+   "site": "gamesledger",
+   "origin": "https://games.agiscorecard.com",
+   "valid": true,
+   "blocked": [],
+   "status": {
+    "(browser)": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "GPTBot": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "OAI-SearchBot": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "ChatGPT-User": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "PerplexityBot": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "Perplexity-User": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "ClaudeBot": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "Claude-User": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "Bingbot": {
+     "/": 200,
+     "/llms.txt": 200
+    }
+   }
+  }
+ ]
+}
