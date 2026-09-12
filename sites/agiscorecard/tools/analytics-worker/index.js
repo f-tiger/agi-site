@@ -110,13 +110,15 @@ const refHost = (r) => {
 // themselves, so the list below is deliberately wide — but the honest split comes from
 // events.page_view (JS ran, so a browser was really there), not from this label.
 const uaClass = (ua) => (
+  // 2026-09-12: 加 `panscient` — ua_audit 09-11 记到它 288 次，却被判成 human。
+  // 它的整条 UA 就是 `panscient.com`，自报家门的爬虫，属于可以放心加的那一类。
   // 2026-08-11: `censys|inspect|scan|expanse|shodan` added from ua_audit evidence —
   // CensysInspect was being counted as human. Only names that self-identify as
   // scanners get added; mainstream browser UAs are NEVER pattern-matched into `bot`,
   // even when they look like disguised crawlers, because that error runs the other
   // way and would silently erase real readers. The ua_class='js' rows are the
   // instrument for that case — no guessing required.
-  /bot|crawler|spider|slurp|scrap|crawl|fetch|monitor|uptime|lighthouse|pagespeed|preview|headless|phantom|selenium|puppeteer|playwright|curl|wget|python|java|go-http|okhttp|libwww|httpclient|axios|node-fetch|feed|rss|validator|archive|semrush|ahrefs|dataforseo|mj12|dotbot|bytespider|petalbot|applebot|amazonbot|facebookexternalhit|embedly|gptbot|oai-search|claude|perplexity|ccbot|google-extended|censys|inspect|shodan|expanse|masscan|zgrab/i
+  /bot|crawler|spider|slurp|scrap|crawl|fetch|monitor|uptime|lighthouse|pagespeed|preview|headless|phantom|selenium|puppeteer|playwright|curl|wget|python|java|go-http|okhttp|libwww|httpclient|axios|node-fetch|feed|rss|validator|archive|semrush|ahrefs|dataforseo|mj12|dotbot|bytespider|petalbot|applebot|amazonbot|facebookexternalhit|embedly|gptbot|oai-search|claude|perplexity|ccbot|google-extended|panscient|censys|inspect|shodan|expanse|masscan|zgrab/i
     .test(ua || '') ? 'bot' : 'human');
 
 // Empty string rather than NULL: SQLite treats NULLs in a primary key as distinct, so

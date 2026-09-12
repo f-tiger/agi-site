@@ -657,6 +657,23 @@ milestone lands (subscribers ≥ 50), because Boosts stays closed until verified
 Funnel reading: `sub_open → sub_submit → sub_ok` (and `sub_fail`). All four are needed —
 a form nobody opens and a form that errors on submit look identical without them.
 
+**JS 口径也会被伪装成增长(2026-09-12,实测一次)。** 09-11 的 `events.page_view` 是 231,
+前十天基线 49–70,看上去是 +3.5 倍。逐行拆开:**其中 182 次是同一个东西**——
+`/amodei-white-collar-bloodbath-prediction`、`/about`、`/progress-index` **三个固定路径**,
+12:12–15:12 UTC 三小时,**每条约 30 次 = 每 6 分钟一次,三条完全同步**,且每次同时以
+「有内部 referrer」和「无 referrer」各记一条(所以是 91×2)。UA 是一条普通的 Windows Chrome,
+**按 UA 分不出来**;能分出来的只有行为:固定路径 + 固定间隔 + 整点段落。
+扣掉之后 09-11 真实约 **49**,与基线一致——**那天没有增长**。
+- **规则**:任何单日 JS pv 跳升 ≥2 倍,先跑这条再下结论,别直接写进日报:
+  `SELECT path, country, COUNT(*) n, MIN(strftime('%H:%M',ts/1000,'unixepoch')) t0,
+   MAX(strftime('%H:%M',ts/1000,'unixepoch')) t1 FROM events WHERE name='page_view'
+   AND day='<那天>' GROUP BY path, country ORDER BY n DESC;`
+  **少数路径 × 均匀间隔 × 同一国家 = 探针,不是读者。**
+- **不要据此把这类 UA 写进 bot 正则**:它长得就是普通浏览器,按 UA 封会误杀真读者
+  (站规原文:那个方向的错会静默抹掉真实读者)。行为特征只用来**读数时扣除**,不用来分类。
+- 同日顺带修了一条真能按 UA 判的:`panscient`(整条 UA 就是 `panscient.com`,09-11 敲 288 次
+  却被算 human)已加进正则。
+
 **Traffic reading — the ONLY honest denominator (rule set 2026-08-10 after a misread).**
 `pageviews.ua_class='human'` is a UA-regex guess and it has been wrong twice. On 2026-08-08/09
 it tripled (162 → 521/539) while JS-executed `events.page_view` stayed flat (35 → 38-43) —
