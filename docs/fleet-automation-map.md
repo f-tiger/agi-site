@@ -58,7 +58,7 @@ thedollscout 冻结约 **86 小时**——它的部署是纯 push 触发，没�
 | `agi-trader.yml` | `45 18` / `15 19` / `45 19` / `15 20 * * 1-5` | **新增 2026-09-05**:owner 自用镜像交易器(Alpaca,缺省纸面;整股 market-on-close + 零股 day;四条错峰 cron 抗 GitHub 延迟,幂等读当日订单);job 级门 `vars.TRADER_ENABLED=='1'`,未设 = 0 分钟;≈90 分钟/月(多数秒退);日志只打印计数;详见 `tools/trader/README.md` |
 | `agi-paper-ledger.yml` | `40 22 * * 1-5` | **新增 2026-09-05**:预登记纸面交易台账,十一臂确定性重算 → `sites/agiscorecard/paper-ledger.json`;≈22 分钟/月 + 触发 agi 部署 ≈66 分钟/月;取不到 SPY 即红;**2026-09-06 追加一步**:`tools/trader/test_mirror.py` 20 场景对本地 mock 券商跑执行器(~4 秒/次 ≈ 1.5 分钟/月,不新增 schedule,放在 commit 之后以免连坐);详见 `docs/auto-trading-research-2026-09.md`、`tools/trader/README.md` |
 | `agi-indexnow.yml` | `17 3 * * 1` | sitemap 提交（周一） |
-| **`fleet-autopilot.yml`** | `40 2 * * *` | **新增 2026-09-11：站点自治升级算法**（零 AI）。内容哈希记账 → sitemap `<lastmod>` 变成可计算的事实；只对内容真变了的 URL 打 IndexNow；当日 rising 需求对着站内已有页面匹配，写出排序过的缺口队列给第②层。**不写一个字正文。** 自检 15 条红色夹具跑在最前面。全文 `docs/site-autopilot-2026-09.md` |
+| **`fleet-autopilot.yml`** | `40 2 * * *` | **新增 2026-09-11：站点自治升级算法**（零 AI）。内容哈希记账 → sitemap `<lastmod>` 变成可计算的事实；只对内容真变了的 URL 打 IndexNow；当日 rising 需求对着站内已有页面匹配，写出排序过的缺口队列给第②层。**不写一个字正文。** 自检 20 条红色夹具跑在最前面。**09-12 加度量层**：抓 eco/agi/buysomething 的公开聚合端点（零密钥），队列新增 underserved / hot_pages / first_party_demand。全文 `docs/site-autopilot-2026-09.md` |
 | `tds-indexnow.yml` | `20 6 * * 3` | tds IndexNow（周三） |
 
 **成本**：heartbeat **实测 19 秒/次**（2026-09-04 首跑，run 33835200197），按 Actions

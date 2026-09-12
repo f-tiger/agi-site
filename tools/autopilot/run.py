@@ -32,6 +32,7 @@ sys.path.insert(0, HERE)
 import config      # noqa: E402
 import demand      # noqa: E402
 import ledger      # noqa: E402
+import measure     # noqa: E402
 import pagemap     # noqa: E402
 import sitemapfix  # noqa: E402
 
@@ -122,6 +123,48 @@ def run_site(site, today, check=False, verbose=True):
     covered, gaps, offtopic = demand.analyse(cfg, index, terms)
     receipt["counts"].update(demand_terms=len(terms), covered=len(covered),
                              gaps=len(gaps), offtopic=len(offtopic))
+
+    # --- heat: join measured reader behaviour onto the demand rows ----------
+    # Nothing here re-ranks a page or writes into one. It adds a fact per row
+    # (how many humans actually arrived in the last 7 days) so the judgement
+    # layer can tell "no page" (a gap) from "page nobody finds" (underserved).
+    if cfg.raw.get("measure"):
+        snap, why = measure.load_fresh(cfg.site, today)
+        heat_note = why
+    else:
+        snap, heat_note = None, ("no public aggregate endpoint on this site — heat needs "
+                                 "either a Worker /api/* aggregate route or the D1 read "
+                                 "permission on the deploy token")
+    underserved, hot_pages, first_party = [], [], {}
+    if snap:
+        pages = snap.get("pages") or {}
+        def heat_of(rel):
+            """Measured row for a publish-root-relative file, trying the URL shapes a
+            site actually serves: /x.html, /x (extensionless), /dir/ (index)."""
+            cands = ["/" + rel]
+            if rel.endswith(".html"):
+                cands.append("/" + rel[:-5])
+            if rel.endswith("index.html"):
+                cands.append("/" + rel[:-len("index.html")])
+            for c in cands:
+                if c in pages:
+                    return pages[c]
+            return None
+        for row in covered:
+            h = heat_of(row["page"]) if row.get("page") else None
+            row["heat"] = h
+            # A real-volume demand term (not the score-1 autocomplete fallback) that
+            # maps to an existing page no human reached this week.
+            if row.get("kind") == "value" and row["v"] >= 200 and (not h or h.get("n7", 0) == 0):
+                underserved.append(row)
+        hot_pages = sorted(({"page": k, **v} for k, v in pages.items()),
+                           key=lambda r: -r.get("n7", 0))[:15]
+        first_party = {k: v for k, v in (snap.get("extra") or {}).items()
+                       if k in ("site_search", "search_no_result", "picks", "zero_hits")}
+        heat_note = "measured %s (%d pages); %s" % (snap["fetched"], len(pages),
+                    "; ".join(snap.get("notes") or []) or "no notes")
+    receipt["counts"].update(underserved=len(underserved), hot_pages=len(hot_pages))
+    receipt["notes"].append("heat: " + heat_note)
     queue = {
         "site": site, "generated": today, "geo": cfg.demand_geo,
         "note": ("选题输入,不是选题依据。任何由它引出的页面仍要过本站三门与硬内容规则。"
@@ -133,9 +176,18 @@ def run_site(site, today, check=False, verbose=True):
             "自己的 rail 把这条问句路由到 luftentfeuchter-ratgeber 的「它不制冷」那一节。"
             "所以 page 只当线索用,别当结论。v 是 Google 的增长值,不是搜索量;"
             "kind=autocomplete-new 的行来自配额用尽后的兜底,分值恒为 1,不可与真实增长值比较。"
+            "**underserved** = 有真实增长值(v≥200、非兜底)的需求词、站内有页面接得住、但过去 7 天"
+            "零真人到达 —— 这不是缺内容,是标题/首屏/内链让人找不到,是判断层最该动手的一类。"
+            "hot_pages = 实测 7 天真人到达最多的页(n7)与前 7 天(p7);first_party_demand = "
+            "读者在站内亲手输入的搜索词(site_search / search_no_result),对 Google 面降级的站,"
+            "它是主信号不是补充。heat_source 写着度量的日期与状态;读不到就如实写读不到。"
         ) % demand.COVERED,
         "sources": cfg.demand_files, "source_notes": notes,
         "gaps": gaps[:40], "covered": covered[:40], "offtopic_dropped": offtopic[:40],
+        "underserved": underserved[:20],
+        "hot_pages": hot_pages,
+        "first_party_demand": first_party,
+        "heat_source": heat_note,
     }
     if not check:
         os.makedirs(RECEIPTS, exist_ok=True)
@@ -149,9 +201,9 @@ def run_site(site, today, check=False, verbose=True):
 
     if verbose:
         print("[%s] pages=%d changed=%d bootstrapped=%d | demand: %d terms, "
-              "%d covered, %d gaps, %d off-topic" %
+              "%d covered, %d gaps, %d off-topic | heat: %d underserved, %d hot" %
               (site, len(rels), len(changed), len(boot), len(terms),
-               len(covered), len(gaps), len(offtopic)))
+               len(covered), len(gaps), len(offtopic), len(underserved), len(hot_pages)))
         for n in receipt["notes"]:
             print("    note: %s" % n)
     return receipt

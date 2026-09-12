@@ -14,7 +14,7 @@ import tempfile
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
-import config, demand, ledger, pagemap, sitemapfix  # noqa: E402
+import config, demand, ledger, measure, pagemap, sitemapfix  # noqa: E402
 
 FAILED = []
 
@@ -158,6 +158,31 @@ def main():
     check("an off-vocabulary term is dropped, never queued as a gap",
           not gaps and off == ["belstaff jacket"])
     f2.close()
+
+    # 10. Measurement: a wrong shape is REJECTED whole, never half-parsed; a fetch
+    #     failure is a field, never a reuse of the last good numbers.
+    fx = tempfile.mkdtemp(prefix="autopilot-measure-")
+    good = os.path.join(fx, "good.json"); bad = os.path.join(fx, "bad.json")
+    json.dump({"pages": [{"page": "/guide/a.html", "n7": 12, "p7": 3}],
+               "events": [{"name": "affiliate_click", "n7": 4, "p7": 1}]}, open(good, "w"))
+    json.dump({"pages": [{"page": "/guide/a.html", "n7": "twelve"}]}, open(bad, "w"))
+    ok = measure.measure("fx", {"kind": "eco-trend", "url": "file://" + good}, "2026-09-12")
+    check("a well-formed measurement is accepted with its pages",
+          ok["ok"] and ok["pages"]["/guide/a.html"]["n7"] == 12)
+    rej = measure.measure("fx", {"kind": "eco-trend", "url": "file://" + bad}, "2026-09-12")
+    check("a malformed measurement is rejected whole, not half-parsed",
+          not rej["ok"] and rej["pages"] == {} and "shape rejected" in rej.get("reason", ""),
+          "got %r" % rej.get("reason"))
+    gone = measure.measure("fx", {"kind": "eco-trend", "url": "file://" + fx + "/missing.json"}, "2026-09-12")
+    check("a failed fetch is ok:false with a reason, and carries no pages",
+          not gone["ok"] and gone["pages"] == {} and "fetch failed" in gone.get("reason", ""))
+    agi = measure.measure("fx", {"kind": "agi-trends", "url": "file://" + good}, "2026-09-12")
+    check("an endpoint without ok:true is not trusted", not agi["ok"])
+    empty = os.path.join(fx, "empty.json"); json.dump({"pages": [], "events": []}, open(empty, "w"))
+    sus = measure.measure("fx", {"kind": "eco-trend", "url": "file://" + empty}, "2026-09-12")
+    check("an all-empty eco trend is flagged suspect_outage, not read as zero readers",
+          sus["ok"] and any("suspect_outage" in n for n in sus["notes"]))
+    shutil.rmtree(fx, ignore_errors=True)
 
     if FAILED:
         print("::error::autopilot self-test FAILED: %s" % ", ".join(FAILED))

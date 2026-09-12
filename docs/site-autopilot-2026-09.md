@@ -107,10 +107,41 @@ lastmod 是可计算的事实，**autopilot 只碰事实那一半**。
 
 ---
 
+## 二½、2026-09-12 追加：度量层接上了（不等 D1 权限）
+
+昨天说「bandit 重排序喂不进数据」。今天换了条路：三个站的 Worker 早就用自己的 D1 binding
+对外发着聚合 JSON——**一把密钥都不要**。`tools/autopilot/measure.py` 每天抓：
+
+| 站 | 端点 | 拿到什么 |
+|---|---|---|
+| getecoback | `/api/trend` | 真人 7 天 vs 前 7 天，按页（n7/p7，≥2 才出）+ 事件计数 |
+| agiscorecard | `/api/trends` | 真人 7 天 rising 页 + **读者亲手输入的站内搜索词与零结果词** |
+| buysomething | `/api/pop` | 28 天每条 pick 的 open / out_click |
+
+落 `data/autopilot/measure/<site>.json`。抓不到 → `ok:false` + 原因，**不沿用昨天的数**；
+形状不对 → 整份拒绝，不「能解析多少算多少」（半份数据会让下游把「读不到」当「零流量」）。
+eco 的 `/api/trend` 失败时返回全空数组且没有错误标记，和「真没人来」分不开——对一个已知有
+流量的站，全空记为 `suspect_outage`，不当成零。5 条红色夹具进了自检（20 条全过）。
+
+**接到需求队列上的三样东西**（仍然不改任何页面、不重排任何模块）：
+- **`underserved`** ＝ 有真实增长值（v≥200、非兜底）的需求词、站内有页面接得住、但过去 7 天
+  **零真人到达**。这不是缺内容，是标题/首屏/内链让人找不到——判断层最该动手的一类，
+  比 gaps 更值钱：gaps 要写新页，underserved 只要修一个已有页。
+- **`hot_pages`** ＝ 实测到达最多的页，带 n7/p7。判断层加钩子、加内链先看这里。
+- **`first_party_demand`** ＝ agi 读者在站内输入的搜索词与零结果词。agi 的 Google rising 面
+  长期落在 autocomplete 兜底上（分值恒为 1），**站内搜索是它的主需求信号，不是补充**。
+
+其余五站没有公开聚合端点：goldrush / gridlings / tds / bpj 的 heat 一栏如实写「没端点」。
+补法有两条，都不是本层能替 owner 做的：deploy token 加 `Account · D1 · Read`（一分钟），或
+照 buysomething 那 15 行给各站 Worker 加一条 `/api/*` 聚合路由。
+
+顺手改掉一个双写：eco 自己的 deploy 已经按 git diff 打 IndexNow，autopilot 再按哈希差打一次
+＝ 同一批 24 条 URL 一早两次。eco 的 `indexnow` 关掉，一个通道一个写手。
+
 ## 三、这一轮没做的，和为什么
 
 - **没做 bandit 重排序**（按实测点击自动调整页面上模块的顺序）。设计已经有了，但
-  **喂不进数据**：8 个站里 7 个没有任何机器可读的已提交度量快照，D1 REST 导出卡在一个
+  **喂不进数据**（09-12 起三个站有度量了，见二½；但 130 pv/周的样本上重排仍是表演，等 28 天读数）：8 个站里 7 个没有任何机器可读的已提交度量快照，D1 REST 导出卡在一个
   Cloudflare token 权限上（`Account · D1 · Read`），**三个 token 全试过，全是 403 / 7403**。
   在 5 个 pv/周的样本上跑排序优化不是算法，是表演。
   → **owner 一分钟动作**：Cloudflare → API Tokens → 那个部署 token → 加 `Account · D1 · Read` → 保存。

@@ -55,6 +55,14 @@ jobs:
       - name: Self-test the invariants (red fixtures)
         run: python3 tools/autopilot/selftest.py
 
+      # Reader heat from each site's own PUBLIC aggregate endpoint (eco /api/trend,
+      # agi /api/trends, buysomething /api/pop). No secret involved: the Worker reads
+      # its own D1 binding and publishes the aggregate. A failed fetch writes
+      # ok:false + the reason and the algorithm degrades to demand-only — it never
+      # reuses yesterday's numbers as if they were today's, and it never blocks.
+      - name: Measure reader heat (public aggregates, no credentials)
+        run: python3 tools/autopilot/measure.py --today "${{ steps.clock.outputs.today }}"
+
       - name: Run the algorithm
         id: run
         run: |
