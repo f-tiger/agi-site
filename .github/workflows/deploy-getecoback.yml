@@ -79,6 +79,24 @@ jobs:
       - name: Refresh the homepage rising-demand rail (idempotent, honest-map)
         run: python3 tools/build_rising_rail.py
 
+      # Live prices + ASINs from Amazon's own API (tools/product_intel/). Gate is
+      # the repository variable, same pattern as the Metaculus bot: unset = this
+      # step is skipped, zero minutes, pages identical. A manual dispatch runs it
+      # as --dry-run so the owner can prove the credentials before opening the
+      # gate, without writing anything. No secret is ever echoed.
+      - name: Refresh live prices from PA-API (gated; dry-run on manual dispatch)
+        if: ${{ vars.PAAPI_ENABLED == '1' || github.event_name == 'workflow_dispatch' }}
+        env:
+          PAAPI_ACCESS_KEY: ${{ secrets.PAAPI_ACCESS_KEY }}
+          PAAPI_SECRET_KEY: ${{ secrets.PAAPI_SECRET_KEY }}
+          PAAPI_PARTNER_TAG: ${{ secrets.PAAPI_PARTNER_TAG }}
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ vars.PAAPI_ENABLED }}" != "1" ]; then
+            node tools/product_intel/refresh.mjs --dry-run || true
+          else
+            node tools/product_intel/refresh.mjs || echo "::warning::price refresh failed — pages fall back to search links and static price text"
+          fi
+
       - name: Inject site chrome (nav/footer/radar; idempotent, covers new pages)
         run: python3 tools/build_structure.py
 
@@ -135,6 +153,12 @@ jobs:
 
       - name: Check the crawler allowlist still matches real user agents
         run: node tools/test_crawler_ua.mjs
+
+      - name: Check the price engine (SigV4 vector, refresher vs mock, built pages vs data)
+        run: |
+          node tools/product_intel/paapi.mjs --selftest
+          node tools/product_intel/test_refresh.mjs
+          python3 tools/check_products.py
 
       - name: Deploy to Cloudflare Workers
         uses: cloudflare/wrangler-action@v3

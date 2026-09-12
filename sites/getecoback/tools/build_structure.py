@@ -681,8 +681,58 @@ MODEL_ASIN = {
 ASIN_RE = re.compile(r"^B[0-9A-Z]{9}$")
 
 
+# Live product data from Amazon's own API (tools/product_intel/, 2026-09-11).
+# Absent or stale, every page renders exactly as before — the file is an
+# overlay, never a dependency. An entry is used only when its status is "ok"
+# (the listing title contained the model token, see refresh.mjs TITLE MATCH)
+# and it is younger than 24 h, which is both Amazon's display rule for prices
+# and the honest minimum: a price the reader cannot still get is not a price.
+LIVE_PRODUCTS = {}
+LIVE_MAX_AGE_H = 24
+try:
+    import datetime as _dt
+    _pj = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "data", "products.json")
+    if os.path.exists(_pj):
+        _raw = json.load(open(_pj, encoding="utf-8"))
+        _now = _dt.datetime.now(_dt.timezone.utc)
+        for _term, _e in (_raw.get("items") or {}).items():
+            if _e.get("status") != "ok" or not _e.get("fetched_at"):
+                continue
+            _t = _dt.datetime.fromisoformat(_e["fetched_at"].replace("Z", "+00:00"))
+            if (_now - _t).total_seconds() <= LIVE_MAX_AGE_H * 3600:
+                LIVE_PRODUCTS[_term] = _e
+except Exception:
+    LIVE_PRODUCTS = {}
+
+
+def live_product(q):
+    """Fresh, title-verified live entry for a shelf search term, or None."""
+    return LIVE_PRODUCTS.get(urllib.parse.unquote_plus(q or ""))
+
+
+def live_price_text(e, en=False):
+    """'289,99 € · Stand 11.09.' — the amount and the day it was true."""
+    if not e or e.get("price_cents") is None:
+        return ""
+    amt = e["price_cents"] / 100
+    cur = "€" if (e.get("currency") or "EUR") == "EUR" else (e.get("currency") or "")
+    d = e["fetched_at"][:10]
+    day = f"{d[8:10]}.{d[5:7]}."
+    if en:
+        return f"{cur}{amt:,.2f} · as of {day}".replace(",", "X").replace(".", ",").replace("X", ".") if cur != "€" else f"{amt:.2f} € · as of {day}"
+    return f"{amt:.2f}".replace(".", ",") + f" {cur} · Stand {day}"
+
+
 def amazon_url(q, name=None):
-    """Product page when we know the ASIN, search by model name otherwise."""
+    """Product page when we know the ASIN, search by model name otherwise.
+
+    Order: a fresh, title-verified ASIN from Amazon's API beats the hand-kept
+    MODEL_ASIN, which beats the search link. The live one wins because it is
+    re-verified every run against the listing title — the static list is what
+    let the EX105 point at a different product for weeks."""
+    live = live_product(q)
+    if live and ASIN_RE.match((live.get("asin") or "").upper()):
+        return f"https://www.amazon.de/dp/{live['asin'].upper()}?tag=getecoback-21"
     asin = (MODEL_ASIN.get(name or "") or "").strip().upper()
     if ASIN_RE.match(asin):
         return f"https://www.amazon.de/dp/{asin}?tag=getecoback-21"
@@ -1450,6 +1500,9 @@ MODEL_PROCON_EN = {
 def model_card(entry, en=False):
     name, role, why, price, q, svg_key = entry
     url = amazon_url(q, name)
+    live_txt = live_price_text(live_product(q), en=en)
+    if live_txt:
+        price = f'<span data-eb-live="1">{live_txt}</span>'
     grad = SVG_GRAD.get(svg_key, "#eaf6ff,#cfe6f7")
     pc = (MODEL_PROCON_EN if en else MODEL_PROCON).get(name)
     pcline = ""
