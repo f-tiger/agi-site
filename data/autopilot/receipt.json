@@ -18,7 +18,7 @@
    ],
    "outcome": "ok",
    "site": "agiscorecard",
-   "today": "2026-09-11",
+   "today": "2026-09-12",
    "wrote": [
     "data/autopilot/agiscorecard.json",
     "data/autopilot/agiscorecard-demand.json"
@@ -39,24 +39,49 @@
    },
    "notes": [
     "sites/buysomething/site/rising.json: 3 seed(s) are on the AUTOCOMPLETE FALLBACK, not Google Trends rising (chinese style shirt, portable blender, smart pill organizer). Those rows are scored 1, not ranked against real volume — the demand face for them is degraded, not working.",
-    "sites/buysomething/site/rising.json: 12 fresh seed(s) used; 7 stale and 0 undated dropped"
+    "sites/buysomething/site/rising.json: 11 fresh seed(s) used; 8 stale and 0 undated dropped"
    ],
    "outcome": "ok",
    "site": "buysomething",
-   "today": "2026-09-11",
+   "today": "2026-09-12",
    "wrote": [
     "data/autopilot/buysomething.json",
     "data/autopilot/buysomething-demand.json"
    ]
   },
   {
-   "changed_urls": [],
+   "changed_urls": [
+    "https://getecoback.com/guide/heizkosten-vergleich-rechner.html",
+    "https://getecoback.com/guide/heizluefter-stromverbrauch.html",
+    "https://getecoback.com/guide/heizung-10-qm.html",
+    "https://getecoback.com/guide/heizung-15-qm.html",
+    "https://getecoback.com/guide/heizung-20-qm.html",
+    "https://getecoback.com/guide/heizung-25-qm.html",
+    "https://getecoback.com/guide/heizung-30-qm.html",
+    "https://getecoback.com/guide/heizung-40-qm.html",
+    "https://getecoback.com/guide/heizung-50-qm.html",
+    "https://getecoback.com/guide/heizung-tauschen-oder-warten-gmodg.html",
+    "https://getecoback.com/guide/keller-lueften-sommer.html",
+    "https://getecoback.com/guide/klimaanlage-mit-heizfunktion.html",
+    "https://getecoback.com/guide/luftentfeuchter-10-qm.html",
+    "https://getecoback.com/guide/luftentfeuchter-15-qm.html",
+    "https://getecoback.com/guide/luftentfeuchter-20-qm.html",
+    "https://getecoback.com/guide/luftentfeuchter-25-qm.html",
+    "https://getecoback.com/guide/luftentfeuchter-30-qm.html",
+    "https://getecoback.com/guide/luftentfeuchter-40-qm.html",
+    "https://getecoback.com/guide/luftentfeuchter-dauerbetrieb-stromkosten.html",
+    "https://getecoback.com/guide/luftentfeuchter-oder-luftreiniger.html",
+    "https://getecoback.com/guide/pro-breeze-luftentfeuchter-test.html",
+    "https://getecoback.com/guide/schmidbauer-infrarotheizung-test.html",
+    "https://getecoback.com/guide/trotec-luftentfeuchter-test.html",
+    "https://getecoback.com/index.html"
+   ],
    "counts": {
     "bootstrapped": 0,
-    "changed": 0,
-    "covered": 34,
+    "changed": 24,
+    "covered": 35,
     "demand_terms": 78,
-    "gaps": 32,
+    "gaps": 31,
     "offtopic": 12,
     "pages": 204,
     "undatable": 0
@@ -67,7 +92,7 @@
    ],
    "outcome": "ok",
    "site": "getecoback",
-   "today": "2026-09-11",
+   "today": "2026-09-12",
    "wrote": [
     "data/autopilot/getecoback.json",
     "data/autopilot/getecoback-demand.json"
@@ -89,7 +114,7 @@
    "notes": [],
    "outcome": "ok",
    "site": "goldrush",
-   "today": "2026-09-11",
+   "today": "2026-09-12",
    "wrote": [
     "data/autopilot/goldrush.json",
     "data/autopilot/goldrush-demand.json"
@@ -111,7 +136,7 @@
    "notes": [],
    "outcome": "ok",
    "site": "gridlings",
-   "today": "2026-09-11",
+   "today": "2026-09-12",
    "wrote": [
     "data/autopilot/gridlings.json",
     "data/autopilot/gridlings-demand.json"
@@ -133,12 +158,12 @@
    "notes": [],
    "outcome": "ok",
    "site": "thedollscout",
-   "today": "2026-09-11",
+   "today": "2026-09-12",
    "wrote": [
     "data/autopilot/thedollscout.json",
     "data/autopilot/thedollscout-demand.json"
    ]
   }
  ],
- "today": "2026-09-11"
+ "today": "2026-09-12"
 }
