@@ -143,10 +143,21 @@ PASSPORTS = {}
 RECALLS = {}
 
 
+def sellable(o):
+    """A dossier is sellable only with evidence beyond one post: rising demand confirmed AND (recurred on >=2 days,
+    or existing supply found, or a curated pick matched). 2026-09-13: the first auto-built pack was 9 one-off HN
+    questions out of 10 — withdrawn; this rule is the fix, not a bigger number."""
+    return o.get("state") == "demand-confirmed" and (len(o.get("days_seen") or []) >= 2 or bool(o.get("supply")) or bool(o.get("_pick")))
+
+
 def build(opps, picks, trends, today, min_items=MIN_ITEMS):
     global PASSPORTS, RECALLS
     PASSPORTS = load_json(os.path.join(SITE, "passports.json")); RECALLS = load_json(os.path.join(SITE, "recalls.json"))
     rows = sorted(opps, key=lambda o: -(o.get("score") or 0))
+    for o in rows:
+        d = (o.get("demand") or [{}])[0]
+        o["_pick"] = match_pick(tokens(o.get("theme")) + tokens(d.get("q") or ""), picks)[0]
+    rows = [o for o in rows if sellable(o)]
     dossiers = [dossier(o, picks, trends, today) for o in rows[:40]]
     sample = dossiers[0] if dossiers else None
     pack = None
@@ -181,14 +192,17 @@ def write_all(pack, sample, today, existing_index):
 def selftest():
     T = dt.date(2026, 9, 13)
     picks = [{"id": "pet-fountain", "name": "Wireless-Pump Pet Water Fountain", "track": "Pet", "tier": "profit", "price1688": [8, 14], "priceAlibaba": [12, 20], "retailPrice": [39, 79], "moq": 200, "tariffUS": 0.33, "compliance": {"difficulty": "medium"}, "risks": "r", "buyerTip": "t", "trendQuery": "cat water fountain"}]
-    mk = lambda i, days=("2026-09-01", "2026-09-09"): {"theme": f"is there a quiet cat water fountain {i}", "state": "demand-confirmed", "days_seen": list(days), "subreddit": "cats", "score": 10 - i * 0.1,
-                                                        "demand": [{"q": f"quiet cat water fountain {i}", "v": 900, "seed": "pet"}], "supply": [], "fleet_pages": []}
+    mk = lambda i, days=("2026-09-01", "2026-09-09"), st="demand-confirmed": {"theme": f"is there a quiet cat water fountain {i}", "state": st, "days_seen": list(days), "subreddit": "cats", "score": 10 - i * 0.1,
+                                                        "demand": [{"q": f"quiet cat water fountain {i}", "v": 900, "seed": "pet"}] if st == "demand-confirmed" else [], "supply": [], "fleet_pages": []}
     pack, sample = build([mk(i) for i in range(10)], picks, {}, T)
     pack2, _ = build([mk(i) for i in range(3)], picks, {}, T)
+    scouts, _ = build([mk(i, st="scout") for i in range(12)], picks, {}, T)
     live = load_picks()
     checks = [
         ("pack built at >= MIN_ITEMS", pack is not None and pack["count"] == 10 and pack["week"] == "2026-W37"),
         ("no pack below MIN_ITEMS, sample still exists", pack2 is None and sample is not None),
+        ("12 one-off scouts never make a pack (2026-09-13 lesson)", scouts is None),
+        ("sellable: confirmed + one-day + no supply + no pick → not sellable", not sellable({"state": "demand-confirmed", "days_seen": ["2026-09-01"], "supply": [], "_pick": None})),
         ("dossier headline is the Google query", sample["headline"].startswith("quiet cat water fountain")),
         ("pick matched by token overlap", sample["matched_pick"] and sample["matched_pick"]["id"] == "pet-fountain" and sample["matched_pick"]["spread_range"] == [2.8, 9.9]),
         ("no reddit permalink anywhere", "/comments/" not in json.dumps(pack)),

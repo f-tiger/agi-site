@@ -51,14 +51,11 @@ def tokens(text):
 
 
 def overlap(a, b):
-    """Content-token overlap that counts as 'the same need': ≥2 shared tokens, or one shared token ≥6 chars."""
-    sa, sb = set(a), set(b)
-    common = sa & sb
-    if len(common) >= 2:
-        return sorted(common)
-    if len(common) == 1 and len(next(iter(common))) >= 6:
-        return sorted(common)
-    return []
+    """Content-token overlap that counts as 'the same need': >=2 shared tokens.
+    2026-09-13 first pack: a single long token ("desktop") matched an HN question to an unrelated rising query,
+    so the one-token rule is gone — one word is a coincidence, two is a topic."""
+    common = set(a) & set(b)
+    return sorted(common) if len(common) >= 2 else []
 
 
 def load(p):
@@ -183,7 +180,7 @@ def selftest():
         ("request: supplied by PH item", req and req["supplied"] and req["supply"][0]["src"] == "producthunt"),
         ("request: not demand-confirmed (no rising overlap)", req and req["state"] == "scout"),
         ("stopwords stripped", tokens("is there an app that tracks free tier limits") == ["tracks", "tier", "limits"]),
-        ("overlap needs 2 tokens or one ≥6", overlap(["keller", "test"], ["keller", "abc"]) == ["keller"] and overlap(["tier", "abc"], ["tier", "xyz"]) == []),
+        ("overlap needs 2 shared tokens; one is a coincidence", overlap(["keller", "test"], ["keller", "abc"]) == [] and overlap(["keller", "test"], ["keller", "test", "x"]) == ["keller", "test"]),
         ("eco outranks request", out[0]["theme"] == eco["theme"]),
         ("counts", counts["candidates"] == 2 and counts["demand_confirmed"] == 1 and counts["supplied"] == 1),
     ]
