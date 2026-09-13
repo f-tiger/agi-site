@@ -74,8 +74,12 @@ jobs:
           git add sites/getecoback/data/trends-rising-us.json 2>/dev/null || true
           git add sites/getecoback/data/trends-rising-it.json 2>/dev/null || true
           git add data/startup-radar.json 2>/dev/null || true
-          git add data/autopilot/opportunities.json sites/buysomething/site/demand-board.html sites/buysomething/site/sitemap.xml sites/buysomething/site/llms.txt 2>/dev/null || true
-          git add sites/buysomething/site/packs/index.json sites/buysomething/site/packs/sample.json 2>/dev/null || true
+          # 逐文件 add(本文件上面的教训再犯了一次:demand-board.html 不存在时,同一行里的 opportunities.json
+          # 也没被 stage,撮合结果两次运行都没回仓——2026-09-13 18:40 发现)
+          for f in data/autopilot/opportunities.json sites/buysomething/site/demand-board.html sites/buysomething/site/sitemap.xml \
+                   sites/buysomething/site/llms.txt sites/buysomething/site/packs/index.json sites/buysomething/site/packs/sample.json; do
+            git add "$f" 2>/dev/null || true
+          done
           git add sites/buysomething/site/packs/*-W*.json 2>/dev/null || true
           git add data/probes-rising.json 2>/dev/null || true
           git add data/probes-de-rising.json 2>/dev/null || true
