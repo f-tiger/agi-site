@@ -1421,6 +1421,29 @@ export default {
     if (url.pathname === "/api/top") {
       return handleTop(env);
     }
+    // /api/pulse (2026-09-13, fleet "AI 时代的站点" flywheel read-side): 28-day human page
+    // views and how many arrived from an AI assistant, by referrer host. Aggregate counts
+    // only — no paths, no countries, no UA, no row-level data. Worker reads its own D1
+    // binding, so the fleet heartbeat needs no token (the repo's tokens lack D1 read).
+    // Same host list as tools/fleet/ai_referrals.py; cached an hour at the edge.
+    if (url.pathname === "/api/pulse" && request.method === "GET") {
+      const headers = { "content-type": "application/json; charset=utf-8", "cache-control": "public, max-age=3600", "access-control-allow-origin": "*" };
+      if (!env.EVENTS) return new Response(JSON.stringify({ ok: false, error: "no_db" }), { status: 503, headers });
+      try {
+        const q = await env.EVENTS.prepare(
+          "SELECT '_total' AS host, COUNT(*) AS n FROM ev WHERE name='page_view' AND (ua_class IS NULL OR ua_class='human') AND page NOT LIKE '/__ci%' AND day >= date('now','-28 days') UNION ALL SELECT ref AS host, COUNT(*) AS n FROM ev WHERE name='page_view' AND (ua_class IS NULL OR ua_class='human') AND page NOT LIKE '/__ci%' AND day >= date('now','-28 days') AND (ref LIKE '%chatgpt%' OR ref LIKE '%chat.openai%' OR ref LIKE '%perplexity%' OR ref LIKE '%claude.ai%' OR ref LIKE '%copilot%' OR ref LIKE '%gemini.google%' OR ref LIKE '%you.com%' OR ref LIKE '%kagi%' OR ref LIKE '%poe.com%' OR ref LIKE '%mistral%' OR ref LIKE '%deepseek%' OR ref LIKE '%kimi%' OR ref LIKE '%doubao%' OR ref LIKE '%yiyan%' OR ref LIKE '%metaso%') GROUP BY ref ORDER BY n DESC"
+        ).all();
+        let human_pv = 0; const by_host = {};
+        for (const r of (q.results || [])) {
+          if (r.host === "_total") human_pv = r.n | 0; else if (r.host) by_host[r.host] = r.n | 0;
+        }
+        const ai_ref = Object.values(by_host).reduce((a, b) => a + b, 0);
+        return new Response(JSON.stringify({ ok: true, days: 28, human_pv, ai_ref, by_host, generated: new Date().toISOString() }), { headers });
+      } catch (e) {
+        return new Response(JSON.stringify({ ok: false, error: "query_failed" }), { status: 500, headers });
+      }
+    }
+
     if (url.pathname === "/api/trend") {
       return handleTrend(env);
     }

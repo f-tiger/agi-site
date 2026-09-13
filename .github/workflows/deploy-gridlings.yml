@@ -167,4 +167,10 @@ jobs:
               fail=1
             fi
           done
+          # /api/pulse (2026-09-13): token-free AI-referral aggregate read by the fleet heartbeat
+          pulse=$(curl -s --max-time 20 -A 'gridlings-deploy-smoke-bot (+ci; classified as bot by design)' "https://play.agiscorecard.com/api/pulse" || echo "")
+          case "$pulse" in
+            *'"ok":true'*'"ai_ref"'*) echo "OK    /api/pulse" ;;
+            *) echo "::error::/api/pulse broken: ${pulse:0:120}"; fail=1 ;;
+          esac
           [ "$fail" = "0" ] || exit 1

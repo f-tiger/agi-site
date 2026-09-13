@@ -214,6 +214,19 @@ jobs:
           echo "beacon self-test HTTP $code"
           [ "$code" = "204" ] || echo "::warning::beacon endpoint returned $code (expected 204) — D1 binding may be missing"
 
+      # /api/pulse (2026-09-13): token-free AI-referral aggregate read by the fleet heartbeat.
+      # Hard assertion (not a warning): a missing HITS binding or a broken query is exactly
+      # the shape this should catch — the beacon test above only warns.
+      - name: Assert /api/pulse serves the aggregate
+        run: |
+          ok=0
+          for try in 1 2 3 4 5; do
+            pulse=$(curl -s --max-time 20 "https://thedollscout.com/api/pulse" || echo "")
+            case "$pulse" in *'"ok":true'*'"ai_ref"'*) ok=1; break;; esac
+            sleep 5
+          done
+          [ "$ok" = "1" ] && echo "OK /api/pulse" || { echo "::error::/api/pulse broken: ${pulse:0:120}"; exit 1; }
+
 concurrency:
   group: deploy-thedollscout
   cancel-in-progress: true

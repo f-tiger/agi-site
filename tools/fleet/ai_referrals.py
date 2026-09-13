@@ -10,7 +10,11 @@ Doubao, Yiyan, Metaso). Baseline measured by hand on 2026-09-12 (28 d, human onl
 agi 20 / 27 662 pv, bpj 33 / 1 888, eco 16 / 381, five other sites 0 → fleet 69.
 
 Mechanics:
-  * Cloudflare D1 REST API, one query per site. Tokens are tried in order
+  * 2026-09-13: every site now serves a public, zero-PII aggregate — /api/pulse on the seven
+    workers/functions and /api/reach on baipiaoji — computed from its own D1 binding. That is
+    the primary read: no token, no owner action. D1 REST stays as the fallback for any site
+    whose endpoint fails, and only runs if a token with D1 read scope exists.
+  * Cloudflare D1 REST API, one query per site (fallback). Tokens are tried in order
     CLOUDFLARE_API_TOKEN_ZONE, CLOUDFLARE_API_TOKEN, CF_API_TOKEN (same discipline as
     tds-traffic.yml: every secret gets tried, the winning *name* is recorded, never a value).
   * Each site's schema differs (pageviews/ev/hits, ref/ref_host, d/day) — see SITES.
@@ -55,6 +59,38 @@ SITES = [
     ("gamesledger", "2bebbaef-aa46-4b75-89ca-77920ad4f863", "ev", "ref_host",
      "name='page_view' AND ua_class='human' AND day>=date('now','-{w} days')", "COUNT(*)"),
 ]
+
+
+ENDPOINTS = {
+    "agiscorecard": "https://agiscorecard.com/api/pulse",
+    "baipiaoji": "https://baipiaoji.com/api/reach?days=28",
+    "getecoback": "https://getecoback.com/api/pulse",
+    "thedollscout": "https://thedollscout.com/api/pulse",
+    "goldrush": "https://goldrush.agiscorecard.com/api/pulse",
+    "gridlings": "https://play.agiscorecard.com/api/pulse",
+    "buysomething": "https://source.agiscorecard.com/api/pulse",
+    "gamesledger": "https://games.agiscorecard.com/api/pulse",
+}
+
+
+def parse_endpoint(site, body):
+    """Pure: an endpoint's JSON → (human_pv, ai_ref, by_host). Raises on a bad shape."""
+    if not isinstance(body, dict) or not body.get("ok"):
+        raise ValueError("endpoint not ok: " + str((body or {}).get("error") or (body or {}).get("code") or "?"))
+    if site == "baipiaoji":
+        # /api/reach: humans_referred = referred human views (its human line A), ai_referrals rows (ref, path, n)
+        by = {}
+        for r in body.get("ai_referrals") or []:
+            by[r["ref"]] = by.get(r["ref"], 0) + int(r.get("n") or 0)
+        return int(body.get("humans_referred") or 0), sum(by.values()), by
+    by = {k: int(v) for k, v in (body.get("by_host") or {}).items()}
+    return int(body.get("human_pv") or 0), int(body.get("ai_ref") or sum(by.values())), by
+
+
+def fetch_endpoint(site):
+    req = urllib.request.Request(ENDPOINTS[site], headers={"User-Agent": "fleet-heartbeat/ai_referrals (+https://github.com/f-tiger/agi-site)", "Accept": "application/json"})
+    with urllib.request.urlopen(req, timeout=20) as r:
+        return parse_endpoint(site, json.load(r))
 
 
 def ai_pred(col):
@@ -117,6 +153,14 @@ def snapshot_age_days(snap, today):
         return 10 ** 6
 
 
+def _raises(fn):
+    try:
+        fn()
+    except Exception:
+        return True
+    return False
+
+
 def selftest():
     rows = [{"host": "_total", "n": 381}, {"host": "chatgpt.com", "n": 12}, {"host": "www.perplexity.ai", "n": 4}]
     checks = [
@@ -131,6 +175,10 @@ def selftest():
         ("age: missing snapshot is ancient", snapshot_age_days(None, dt.date(2026, 9, 12)) > 1000),
         ("age: 2-day-old snapshot", snapshot_age_days({"generated": "2026-09-10T08:00:00Z"}, dt.date(2026, 9, 12)) == 2),
         ("eight sites", len(SITES) == 8 and len({s[1] for s in SITES}) == 8),
+        ("endpoint: pulse shape", parse_endpoint("gridlings", {"ok": True, "human_pv": 658, "ai_ref": 3, "by_host": {"chatgpt.com": 3}}) == (658, 3, {"chatgpt.com": 3})),
+        ("endpoint: bpj reach shape sums per ref", parse_endpoint("baipiaoji", {"ok": True, "humans_referred": 900, "ai_referrals": [{"ref": "www.perplexity.ai", "path": "/a", "n": 12}, {"ref": "www.perplexity.ai", "path": "/b", "n": 8}, {"ref": "chatgpt.com", "path": "/", "n": 12}]}) == (900, 32, {"www.perplexity.ai": 20, "chatgpt.com": 12})),
+        ("endpoint: not ok raises", (lambda: (_raises(lambda: parse_endpoint("goldrush", {"ok": False, "error": "no_db"}))))()),
+        ("endpoint map covers all eight sites", set(ENDPOINTS) == {s[0] for s in SITES}),
     ]
     for n, ok in checks:
         print(("✅ " if ok else "❌ ") + n)
@@ -142,6 +190,18 @@ def main(argv):
         return selftest()
     today = dt.datetime.now(dt.timezone.utc).date()
     last = load_last()
+    sites, errors, via = [], [], {}
+    for s in SITES:
+        try:
+            pv, ai, by = fetch_endpoint(s[0])
+            sites.append({"site": s[0], "human_pv": pv, "ai_ref": ai, "by_host": by, "via": "endpoint"})
+            print(f"  {s[0]:<13} endpoint  human_pv={pv:<6} ai_ref={ai:<4} {by}")
+        except Exception as e:
+            via[s[0]] = str(e)[:100]
+            print(f"  {s[0]:<13} endpoint failed ({str(e)[:100]}) — will try D1 REST")
+    leftovers = [s for s in SITES if s[0] in via]
+    if not leftovers:
+        return write(sites, errors, "endpoints")
     names = ["CLOUDFLARE_API_TOKEN_ZONE", "CLOUDFLARE_API_TOKEN", "CF_API_TOKEN"]
     seen, winner, acct = set(), None, None
     for n in names:
@@ -162,21 +222,28 @@ def main(argv):
         except Exception as e:
             print(f"  {n}: D1 read refused ({str(e)[:100]})")
     if not winner:
-        return fail(last, today, "no token with D1 read scope")
-    sites, errors = [], []
-    for s in SITES:
+        errors = [f"{s[0]}: endpoint {via[s[0]]}; no token with D1 read scope for the fallback" for s in leftovers]
+        if not sites:
+            return fail(last, today, "every endpoint failed and no token with D1 read scope: " + " | ".join(errors))
+        return write(sites, errors, "endpoints (partial)")
+    for s in leftovers:
         try:
             pv, ai, by = parse_rows(d1_query(acct, token, s[1], sql_for(s)))
-            sites.append({"site": s[0], "human_pv": pv, "ai_ref": ai, "by_host": by})
+            sites.append({"site": s[0], "human_pv": pv, "ai_ref": ai, "by_host": by, "via": "d1-rest"})
             print(f"  {s[0]:<13} human_pv={pv:<6} ai_ref={ai:<4} {by}")
         except Exception as e:
             errors.append(f"{s[0]}: {str(e)[:100]}")
             print(f"  {s[0]:<13} ERROR {str(e)[:100]}")
     if not sites:
         return fail(last, today, "every site query failed: " + " | ".join(errors))
+    return write(sites, errors, f"endpoints + d1-rest via {winner}")
+
+
+def write(sites, errors, how):
+    sites = sorted(sites, key=lambda x: [s[0] for s in SITES].index(x["site"]))
     snap = {
         "generated": dt.datetime.now(dt.timezone.utc).replace(microsecond=0, tzinfo=None).isoformat() + "Z",
-        "window_days": WINDOW, "ok": not errors, "token_env": winner, "errors": errors,
+        "window_days": WINDOW, "ok": not errors, "read_via": how, "errors": errors,
         "baseline_2026_09_12": {"fleet_ai_ref": 69, "note": "hand-measured; agi 20, bpj 33, eco 16, others 0"},
         "fleet_ai_ref": sum(x["ai_ref"] for x in sites),
         "fleet_human_pv": sum(x["human_pv"] for x in sites),

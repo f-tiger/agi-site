@@ -86,5 +86,11 @@ jobs:
             done
             if [ "$ok" = "1" ]; then echo "OK    $p -> 200"; else echo "::error::$p -> HTTP $code after 5 tries"; fail=1; fi
           done
+          # /api/pulse (2026-09-13): token-free AI-referral aggregate read by the fleet heartbeat
+          pulse=$(curl -s --max-time 20 -A 'goldrush-deploy-smoke-bot (+ci)' "https://goldrush.agiscorecard.com/api/pulse" || echo "")
+          case "$pulse" in
+            *'"ok":true'*'"ai_ref"'*) echo "OK    /api/pulse" ;;
+            *) echo "::error::/api/pulse broken: ${pulse:0:120}"; fail=1 ;;
+          esac
           [ "$fail" = "0" ] || exit 1
           echo "self-check ok"

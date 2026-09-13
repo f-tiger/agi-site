@@ -140,6 +140,8 @@ jobs:
           }
           check_json /trends.json 'True'
           check_json /api/pop '"picks" in j and "degraded" not in j'
+          # /api/pulse (2026-09-13): token-free AI-referral aggregate read by the fleet heartbeat
+          check_json /api/pulse 'j.get("ok") is True and isinstance(j.get("ai_ref"), int) and j.get("days") == 28'
           rm -f body.json
           # 4) real 404
           code=$(curl -s -o /dev/null -w '%{http_code}' -A "$UA" "$BASE/no-such-page-xyz" || echo 000)
