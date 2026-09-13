@@ -37,7 +37,7 @@ thedollscout 冻结约 **86 小时**——它的部署是纯 push 触发，没�
 | `deploy-agiscorecard.yml` | agiscorecard.com | **`50 2 * * *`（2026-09-11 新增）** |
 | `deploy-baipiaoji.yml` | baipiaoji.com | `30 0 * * *` |
 | `deploy-getecoback.yml` | getecoback.com | `17 3 * * *` |
-| `deploy-buysomething.yml` | source.agiscorecard.com | `20 5 * * *` |
+| `deploy-buysomething.yml` | source.agiscorecard.com | `20 5 * * *`(**09-13 加**:官方源探针 + 付费包生成 + 信标真值测试 + picks 来源校验;schedule 分支 +≈1 分) |
 | `deploy-gamesledger.yml` | games.agiscorecard.com | `10 6 * * *` |
 | `deploy-thedollscout.yml` | thedollscout.com | **`20 7 * * *`（2026-09-11 新增）** |
 | `deploy-goldrush.yml` | goldrush.agiscorecard.com | **`35 7 * * *`（2026-09-11 新增）** |

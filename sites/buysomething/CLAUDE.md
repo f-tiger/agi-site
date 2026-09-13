@@ -155,3 +155,22 @@ Minea 们拿走广告情报,唯一空位是「可核对的中立判定」;**`lan
 判决与 2026-06-24 CBP 规则改掉,P0 重写为官方来源版**;三个免费官方 API(USITC HTS / CPSC / EU Safety Gate)
 先探针再用。P0 四项、P1 四项、判定线 2026-11-15(台账 `sr-core-tool-p1-1115`)。不做订阅、代采、供应商库、
 TikTok/1688 抓取、付费数据源。
+
+## 付费 Opportunity Packs(2026-09-13,owner /goal:「构建撮合网站,网站可以提供付费的包,用户购买,可以获取 idea…营收…规模化」)
+
+- **owner 的决定覆盖 08-31「零读者不装转化件」**:付费包已建,收款开关见 `docs/PACKS-OWNER-SETUP.md`(五个
+  Secrets/Vars,没设之前所有付费路由 503、页面明示未开售)。
+- **链路**:Stripe Payment Link → `/api/pack/webhook`(原始 body 验签、只认 `checkout.session.completed` 且
+  `paid`、金额须等于 `PACK_PRICE_CENTS`、按 session 幂等)→ D1 `pack_orders`(session/event/金额/周,**零 PII**)
+  → `/packs-thanks?session_id=` 调 `/api/pack/claim` 换 token(`<session>.<HMAC>`,无状态验签 + 查行未退款)
+  → `GET /packs/<week>.json` 带 Bearer 才放行;`index.json` / `sample.json` 公开。
+- **产品**:`tools/gen_idea_packs.py` 从 `data/autopilot/opportunities.json` × `data.js` picks × trends.json 确定性
+  生成周包,**≥10 条才写**;dossier 只含派生事实(Google rising 查询、请求重现天数与板块、PH/HN 供给、匹配的
+  pick 与价差/MOQ/合规难度、模板句 our_take);duty_stack / recall_radar 在 P1 前写 `pending-P1`。**不存不卖
+  Reddit 帖文**。
+- **P0 已做**:信标真值测试(deploy 自检 POST `/e` 并经 `/api/selftest` 读回,读不回即红);`landed-cost` 改为
+  官方来源版(SCOTUS 2026-02-20 / FR 2026-06-24 / 邮政固定税 02-28 到期;旧口径只留在 `.expired` 块,gate 断言);
+  `tools/probe_sources.py` 在 schedule 探三个官方源写 `data/sr-source-probe.json`;`data.js` 加 `DATA_PROVENANCE`
+  + `tools/validate_picks.py`(首读:155 个数字 100% 编辑估算,as of 2026-08-22,卡片已标注)。
+- **判定线**:台账 `sr-packs-first-order-1112`(2026-11-12:≥1 笔真实付费,否则包退为免费样本 + 记反面发现)、
+  `sr-core-tool-p1-1115`(已登记)。

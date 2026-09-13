@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#128225;</text></svg>">
+  <link rel="stylesheet" href="styles.css">
+  <title>Opportunity Packs: dated sourcing dossiers, ten at a time</title>
+  <meta name="description" content="Weekly packs of product-opportunity dossiers: a rising Google query, how often the same request recurred on Reddit, whether someone already built it, the closest curated pick with price spread and compliance difficulty. Derived data only, every item dated.">
+  <link rel="canonical" href="https://source.agiscorecard.com/packs">
+  <meta property="og:title" content="Opportunity Packs — SourceRadar">
+  <meta property="og:url" content="https://source.agiscorecard.com/packs">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"SourceRadar Opportunity Pack","description":"Weekly JSON pack of product-opportunity dossiers built from public demand and supply signals; derived data only.","brand":{"@type":"Brand","name":"SourceRadar"},"url":"https://source.agiscorecard.com/packs"}</script>
+  <style>.dossier{border:1px solid rgba(0,0,0,.1);border-radius:10px;padding:1rem 1.2rem;margin:1rem 0}.dossier h3{margin:.2rem 0 .6rem}.dossier ul{margin:.3rem 0 .6rem 1.1rem}.muted{opacity:.7}.buy{display:inline-block;padding:.7rem 1.2rem;border-radius:8px;background:#1d4ed8;color:#fff;font-weight:600;text-decoration:none}.buy[aria-disabled="true"]{background:#999;pointer-events:none}</style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="/"><span class="brand-mark">&#128225;</span><span class="brand-text">Source<em>Radar</em></span></a>
+      <nav class="main-nav">
+        <a href="/#picks">Radar Picks</a>
+        <a href="/landed-cost">Landed Cost</a>
+        <a href="/is-alibaba-legit">Alibaba Risk</a>
+        <a href="/sourcing-margins">Margins</a>
+        <a href="/packs">Packs</a>
+      </nav>
+    </div>
+  </header>
+  <section class="hero">
+    <div class="container">
+      <h1>Opportunity packs:<br><span class="accent">ten dated dossiers a week, derived from public demand and supply signals</span></h1>
+      <p class="hero-sub">Each dossier pairs one <strong>rising Google query</strong> with how many separate days the same request came back on
+      Reddit, whether a matching launch already exists on Product Hunt or Hacker News, and the closest curated pick from this site with its
+      three-tier price spread, MOQ, compliance difficulty and known risks. Counts and query strings only — <strong>no Reddit posts are stored or resold</strong>.</p>
+      <p class="hero-sub muted" id="packStatus">Checking availability…</p>
+      <p><a class="buy" id="buyBtn" href="#" aria-disabled="true">Buy the current pack</a> <span class="muted" id="priceNote"></span></p>
+    </div>
+  </section>
+
+  <section class="container" style="padding:1.5rem 0">
+    <h2>What is inside (free sample below is a real item from the live pipeline)</h2>
+    <ul>
+      <li><strong>Demand</strong>: the Google Trends rising query and growth value, plus the recurrence count of the same request across distinct days and which subreddits — with a link to Reddit's own search so you can read the threads yourself.</li>
+      <li><strong>Supply</strong>: matching Product Hunt / Show HN launches in the radar window, and any page on this site that already answers the need.</li>
+      <li><strong>Matched pick</strong>: when the theme overlaps a curated pick — 1688 / Alibaba / retail ranges, spread, MOQ, US tariff estimate, compliance difficulty, risks and the buyer tip. Figures are labelled editorial estimates until a sourced observation replaces them.</li>
+      <li><strong>Duty stack and recall radar</strong>: filled from USITC HTS and CPSC / EU Safety Gate once those official feeds pass our probe (PRD P1). Until then each dossier says <em>pending</em> rather than guessing.</li>
+      <li><strong>Our take</strong>: template sentences over the numbers above — no generated prose, no invented facts.</li>
+    </ul>
+    <h2>What is not inside</h2>
+    <p>No supplier contacts, no Reddit text, no sales estimates for Amazon, no guarantees. A dossier is evidence, not a verdict; the importing decision and its compliance stay with you.</p>
+    <h2>Sample dossier</h2>
+    <div id="sample" class="dossier"><p class="muted">Loading sample…</p></div>
+    <h2>How buying works</h2>
+    <ol>
+      <li>Stripe checkout (card). You are redirected back here with your session id.</li>
+      <li>The page exchanges it for an access token stored only in your browser; the pack JSON downloads instantly.</li>
+      <li>Digital goods, delivered immediately. If the download fails, reply to the Stripe receipt and it is refunded.</li>
+    </ol>
+  </section>
+  <script>
+  (function () {
+    var $ = function (id) { return document.getElementById(id); };
+    function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"})[c]; }); }
+    fetch("/api/pack/status").then(function (r) { return r.json(); }).then(function (s) {
+      if (s.configured && s.payment_link) {
+        $("buyBtn").href = s.payment_link; $("buyBtn").removeAttribute("aria-disabled");
+        $("priceNote").textContent = s.price_cents ? (s.currency || "USD") + " " + (s.price_cents / 100).toFixed(2) + " · latest pack " + (s.latest || "pending") : "";
+        $("packStatus").textContent = s.latest ? "Current pack: " + s.latest + ". New pack whenever ten or more dossiers clear the bar." : "Checkout is open; the first pack publishes when ten dossiers clear the bar.";
+      } else {
+        $("packStatus").textContent = "Checkout is not open yet" + (s.latest ? " (latest pack built: " + s.latest + ")" : "") + ". The free sample below is live.";
+      }
+    }).catch(function () { $("packStatus").textContent = "Status unavailable."; });
+    fetch("/packs/sample.json").then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function (j) {
+      var d = j.item || {}; var dm = d.demand || {}; var g = dm.google_rising || {}; var rr = dm.request_recurrence || {}; var mp = d.matched_pick;
+      var h = "<h3>" + esc(d.headline) + "</h3>";
+      h += "<p><strong>Demand</strong>: " + (g.q ? "rising query “" + esc(g.q) + "” (v " + esc(g.v) + ", seed " + esc(g.seed) + ")" : "no rising query yet") + "; recurred on " + esc(rr.days) + " day(s)" + (rr.subreddit ? " in r/" + esc(rr.subreddit) : "") + ". <a rel=\"nofollow noopener\" target=\"_blank\" href=\"" + esc(rr.reddit_search) + "\">Reddit search →</a></p>";
+      h += "<p><strong>Supply</strong>: " + ((d.supply || {}).already_built || []).length + " matching launch(es).</p>";
+      if (mp) h += "<p><strong>Matched pick</strong>: " + esc(mp.name) + " — 1688 $" + esc((mp.price1688 || []).join("–")) + ", retail $" + esc((mp.retailPrice || []).join("–")) + ", spread ×" + esc((mp.spread_range || []).join("–")) + ", MOQ " + esc(mp.moq) + ", compliance " + esc((mp.compliance || {}).difficulty) + ".</p>";
+      h += "<ul>" + (d.our_take || []).map(function (t) { return "<li>" + esc(t) + "</li>"; }).join("") + "</ul>";
+      h += "<p class=\"muted\">Evidence dates: " + esc((d.evidence_dates || []).join(", ")) + " · duty stack: " + esc((d.duty_stack || {}).status) + " · recall radar: " + esc((d.recall_radar || {}).status) + "</p>";
+      $("sample").innerHTML = h;
+    }).catch(function () { $("sample").innerHTML = "<p class=\"muted\">No sample yet — the pipeline has not produced a dossier that clears the bar. That is the honest state, not a placeholder.</p>"; });
+  })();
+  </script>
+  <footer class="site-footer"><div class="container footer-inner"><p class="footer-note">For informational purposes only — not customs, legal, tax or financial advice. Confirm classification and rates with a licensed customs broker or CBP before committing money. Brand and agency names are used nominatively.</p></div></footer>
+</body>
+</html>

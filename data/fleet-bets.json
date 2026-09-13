@@ -486,6 +486,17 @@
    "lose": "SR 连舰队自己都不用 → 最低维护,结论写进 CLAUDE.md",
    "source": "sites/buysomething/docs/PRD-core-tool-2026-09-13.md §六",
    "status": "open"
+  },
+  {
+   "id": "sr-packs-first-order-1112",
+   "site": "buysomething",
+   "due": "2026-11-12",
+   "metric": "D1 pack_orders 真实付费行数(剔测试模式)+ /packs 真人 pv",
+   "threshold": "≥1 笔付费",
+   "win": "继续:周包稳定出,加 P1 的关税栈/召回字段进 dossier,考虑月订阅",
+   "lose": "包退为免费样本,记反面发现「派生 idea 包无人付费」;撮合线只留内部用途",
+   "source": "sites/buysomething/docs/PACKS-OWNER-SETUP.md + CLAUDE.md",
+   "status": "open"
   }
  ]
 }

@@ -34,9 +34,113 @@ async function logRow(env, ctx, row) {
   })());
 }
 
+// ── Opportunity packs (2026-09-13, owner: 付费的包 → 营收) ──────────────────────────
+// Stripe Payment Link → Stripe webhook here → order row + HMAC token → gated pack JSON.
+// Zero PII: we store the Stripe session id, event id, amount and week — never an email.
+// Fails closed: without PACK_TOKEN_SECRET / STRIPE_WEBHOOK_SECRET every paid route is 503.
+const enc = new TextEncoder();
+const hex = (buf) => [...new Uint8Array(buf)].map((b) => b.toString(16).padStart(2, "0")).join("");
+async function hmacHex(secret, msg) {
+  const key = await crypto.subtle.importKey("raw", enc.encode(secret), { name: "HMAC", hash: "SHA-256" }, false, ["sign"]);
+  return hex(await crypto.subtle.sign("HMAC", key, enc.encode(msg)));
+}
+function tEqual(a, b) { if (a.length !== b.length) return false; let d = 0; for (let i = 0; i < a.length; i++) d |= a.charCodeAt(i) ^ b.charCodeAt(i); return d === 0; }
+async function stripeVerify(secret, header, raw) {
+  const parts = Object.fromEntries(String(header || "").split(",").map((p) => p.split("=")).filter((p) => p.length === 2));
+  if (!parts.t || !parts.v1) return false;
+  const age = Math.abs(Math.floor(Date.now() / 1000) - Number(parts.t));
+  if (!Number.isFinite(age) || age > 300) return false;
+  return tEqual(await hmacHex(secret, `${parts.t}.${raw}`), parts.v1);
+}
+const jsonNoStore = (o, status = 200) => new Response(JSON.stringify(o), { status, headers: { "content-type": "application/json; charset=utf-8", "cache-control": "no-store", "access-control-allow-origin": "*" } });
+async function ensurePackTable(env) {
+  await env.EV.prepare("CREATE TABLE IF NOT EXISTS pack_orders (session TEXT PRIMARY KEY, event_id TEXT, paid_at TEXT, amount TEXT, week TEXT, refunded INTEGER DEFAULT 0)").run();
+}
+// token = <session>.<hmac(secret, session)>; verified statelessly, then the order row must exist and not be refunded.
+async function packToken(env, session) { return `${session}.${await hmacHex(env.PACK_TOKEN_SECRET, session)}`; }
+async function packTokenValid(env, token) {
+  const i = String(token || "").lastIndexOf(".");
+  if (i < 1) return false;
+  const session = token.slice(0, i), sig = token.slice(i + 1);
+  if (!tEqual(sig, await hmacHex(env.PACK_TOKEN_SECRET, session))) return false;
+  const row = await env.EV.prepare("SELECT refunded FROM pack_orders WHERE session = ?").bind(session).first().catch(() => null);
+  return !!row && !row.refunded;
+}
+const PACK_PUBLIC = new Set(["/packs/index.json", "/packs/sample.json"]);
+
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
+
+    // Beacon truth test (PRD P0-1): the deploy self-check POSTs /e with label "__ci" and reads it back here.
+    // Aggregate count only; CI rows are excluded from /api/pop by label below.
+    if (url.pathname === "/api/selftest" && request.method === "GET") {
+      const label = (url.searchParams.get("label") || "").slice(0, 40);
+      if (!label || !env.EV) return jsonNoStore({ ok: false, error: "no label or no db" }, 400);
+      try {
+        const r = await env.EV.prepare("SELECT COUNT(*) n FROM ev WHERE label = ? AND day >= date('now','-2 days')").bind(label).first();
+        return jsonNoStore({ ok: true, label, n: (r && r.n) | 0 });
+      } catch (e) { return jsonNoStore({ ok: false, error: "query_failed" }, 500); }
+    }
+
+    // Public status for the sales page: is checkout configured, what does it cost, which week is current.
+    if (url.pathname === "/api/pack/status" && request.method === "GET") {
+      let latest = null;
+      try { const r = await env.ASSETS.fetch(new Request(url.origin + "/packs/index.json")); if (r.ok) latest = (await r.json()).latest || null; } catch (e) {}
+      return jsonNoStore({ ok: true, configured: !!(env.PACK_PAYMENT_LINK && env.STRIPE_WEBHOOK_SECRET && env.PACK_TOKEN_SECRET),
+        payment_link: env.PACK_PAYMENT_LINK || null, price_cents: Number(env.PACK_PRICE_CENTS || 0) || null, currency: env.PACK_CURRENCY || "USD", latest });
+    }
+
+    // Stripe → paid. Verified on the raw body; idempotent on session id; amount must match PACK_PRICE_CENTS.
+    if (url.pathname === "/api/pack/webhook" && request.method === "POST") {
+      if (!env.STRIPE_WEBHOOK_SECRET || !env.PACK_TOKEN_SECRET || !env.EV) return jsonNoStore({ ok: false, code: "not_configured" }, 503);
+      const raw = await request.text();
+      if (!(await stripeVerify(env.STRIPE_WEBHOOK_SECRET, request.headers.get("Stripe-Signature"), raw).catch(() => false))) return jsonNoStore({ ok: false, code: "badsig" }, 400);
+      let ev; try { ev = JSON.parse(raw); } catch (e) { return jsonNoStore({ ok: false, code: "badjson" }, 400); }
+      if (ev.type !== "checkout.session.completed") return jsonNoStore({ ok: true, code: "ignored" });
+      const so = (ev.data && ev.data.object) || {};
+      const session = String(so.id || "").slice(0, 80);
+      if (!session) return jsonNoStore({ ok: true, code: "nosession" });
+      if (so.payment_status && so.payment_status !== "paid") return jsonNoStore({ ok: true, code: "unpaid" });
+      const want = Number(env.PACK_PRICE_CENTS || 0);
+      if (want && Number(so.amount_total) !== want) return jsonNoStore({ ok: true, code: "amount_mismatch" });
+      try {
+        await ensurePackTable(env);
+        let week = null;
+        try { const r = await env.ASSETS.fetch(new Request(url.origin + "/packs/index.json")); if (r.ok) week = (await r.json()).latest || null; } catch (e) {}
+        const amount = so.amount_total != null ? `${so.amount_total} ${String(so.currency || "").toUpperCase()}` : "";
+        await env.EV.prepare("INSERT OR IGNORE INTO pack_orders (session, event_id, paid_at, amount, week) VALUES (?,?,?,?,?)")
+          .bind(session, String(ev.id || "").slice(0, 80), new Date().toISOString(), amount, week).run();
+        logRow(env, ctx, { name: "pack_paid", label: week || "", value: 0, path: "/api/pack/webhook", ref: "", ua_class: "human", country: "" });
+        return jsonNoStore({ ok: true, code: "recorded" });
+      } catch (e) { return jsonNoStore({ ok: false, code: "db_failed" }, 500); }
+    }
+
+    // Success page exchanges the Stripe session id for the token. Only works once the webhook has landed.
+    if (url.pathname === "/api/pack/claim" && request.method === "GET") {
+      if (!env.PACK_TOKEN_SECRET || !env.EV) return jsonNoStore({ ok: false, code: "not_configured" }, 503);
+      const session = (url.searchParams.get("session") || "").replace(/[^A-Za-z0-9_]/g, "").slice(0, 80);
+      if (!session) return jsonNoStore({ ok: false, code: "nosession" }, 400);
+      try {
+        await ensurePackTable(env);
+        const row = await env.EV.prepare("SELECT week, refunded FROM pack_orders WHERE session = ?").bind(session).first();
+        if (!row) return jsonNoStore({ ok: false, code: "pending" }, 404);
+        if (row.refunded) return jsonNoStore({ ok: false, code: "refunded" }, 403);
+        return jsonNoStore({ ok: true, token: await packToken(env, session), week: row.week });
+      } catch (e) { return jsonNoStore({ ok: false, code: "db_failed" }, 500); }
+    }
+
+    // Pack files are static assets, but only index.json and sample.json are public; everything else needs a token.
+    if (url.pathname.startsWith("/packs/") && url.pathname.endsWith(".json") && !PACK_PUBLIC.has(url.pathname)) {
+      const auth = request.headers.get("authorization") || "";
+      const token = auth.startsWith("Bearer ") ? auth.slice(7) : (url.searchParams.get("t") || "");
+      if (!env.PACK_TOKEN_SECRET || !env.EV) return jsonNoStore({ ok: false, code: "not_configured" }, 503);
+      if (!(await packTokenValid(env, token).catch(() => false))) return jsonNoStore({ ok: false, code: "forbidden" }, 403);
+      const r = await env.ASSETS.fetch(new Request(url.origin + url.pathname));
+      if (!r.ok) return jsonNoStore({ ok: false, code: "no_such_pack" }, 404);
+      logRow(env, ctx, { name: "pack_open", label: url.pathname.slice(7, 30), value: 0, path: url.pathname.slice(0, 80), ref: "", ua_class: "human", country: request.cf && request.cf.country || "" });
+      return new Response(r.body, { headers: { "content-type": "application/json; charset=utf-8", "cache-control": "private, no-store" } });
+    }
 
     if (url.pathname === "/e" && request.method === "POST") {
       // Cross-origin POSTs are answered but never written: sendBeacon sends an
@@ -117,7 +221,7 @@ export default {
         const q = await env.EV.prepare(
           "SELECT label, SUM(name='pick_open') o, SUM(name='out_click') x FROM ev " +
           "WHERE name IN ('pick_open','out_click') AND ts > datetime('now','-28 days') " +
-          "AND label != '' GROUP BY label"
+          "AND label != '' AND label != '__ci' GROUP BY label"
         ).all();
         const picks = {};
         for (const r of q.results) picks[r.label] = { o: r.o | 0, x: r.x | 0 };

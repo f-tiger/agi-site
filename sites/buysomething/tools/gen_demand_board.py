@@ -85,6 +85,7 @@ def render(snap, today):
         <a href="/is-alibaba-legit">Alibaba Risk</a>
         <a href="/sourcing-margins">Margins</a>
         <a href="/demand-board">Demand Board</a>
+        <a href="/packs">Packs</a>
       </nav>
     </div>
   </header>

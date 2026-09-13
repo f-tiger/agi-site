@@ -48,6 +48,7 @@ jobs:
         run: |
           python3 tools/fleet/opportunity_match.py || echo "::warning::opportunity match failed"
           python3 sites/buysomething/tools/gen_demand_board.py || echo "::warning::demand board generation failed"
+          python3 sites/buysomething/tools/gen_idea_packs.py || echo "::warning::pack generation failed"
       - name: Commit snapshots if changed
         run: |
           git config user.name 'Claude'
@@ -69,6 +70,8 @@ jobs:
           git add sites/getecoback/data/trends-rising-it.json 2>/dev/null || true
           git add data/startup-radar.json 2>/dev/null || true
           git add data/autopilot/opportunities.json sites/buysomething/site/demand-board.html sites/buysomething/site/sitemap.xml sites/buysomething/site/llms.txt 2>/dev/null || true
+          git add sites/buysomething/site/packs/index.json sites/buysomething/site/packs/sample.json 2>/dev/null || true
+          git add sites/buysomething/site/packs/*-W*.json 2>/dev/null || true
           git add data/probes-rising.json 2>/dev/null || true
           git add data/probes-de-rising.json 2>/dev/null || true
           git diff --cached --quiet || { git commit -m "chore(trends): 美国区触发器+创业雷达快照 $(date -u +%F)"; git pull --rebase origin main; git push origin main; }

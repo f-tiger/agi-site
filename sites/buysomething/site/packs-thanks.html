@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#128225;</text></svg>">
+  <link rel="stylesheet" href="styles.css">
+  <title>Your pack</title>
+  <meta name="robots" content="noindex">
+  <style>.dossier{border:1px solid rgba(0,0,0,.1);border-radius:10px;padding:1rem 1.2rem;margin:1rem 0}.muted{opacity:.7}pre{white-space:pre-wrap;font-size:.8rem}</style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="/"><span class="brand-mark">&#128225;</span><span class="brand-text">Source<em>Radar</em></span></a>
+      <nav class="main-nav">
+        <a href="/#picks">Radar Picks</a>
+        <a href="/landed-cost">Landed Cost</a>
+        <a href="/is-alibaba-legit">Alibaba Risk</a>
+        <a href="/sourcing-margins">Margins</a>
+        <a href="/packs">Packs</a>
+      </nav>
+    </div>
+  </header>
+  <section class="container" style="padding:2rem 0">
+    <h1>Your opportunity pack</h1>
+    <p id="msg" class="muted">Confirming payment…</p>
+    <p id="dl"></p>
+    <div id="items"></div>
+  </section>
+  <script>
+  (function () {
+    var $ = function (id) { return document.getElementById(id); };
+    function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"})[c]; }); }
+    var q = new URLSearchParams(location.search); var session = q.get("session_id") || "";
+    var token = null, week = null;
+    try { token = localStorage.getItem("sr_pack_token"); week = localStorage.getItem("sr_pack_week"); } catch (e) {}
+    function render(pack) {
+      $("msg").textContent = "Pack " + pack.week + " · " + pack.count + " dossiers · generated " + pack.generated;
+      var blob = new Blob([JSON.stringify(pack, null, 1)], { type: "application/json" });
+      var a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = "sourceradar-pack-" + pack.week + ".json"; a.textContent = "Download JSON"; $("dl").appendChild(a);
+      $("items").innerHTML = (pack.items || []).map(function (d) {
+        var g = (d.demand || {}).google_rising || {}; var rr = (d.demand || {}).request_recurrence || {}; var mp = d.matched_pick;
+        return "<div class=\"dossier\"><h3>" + esc(d.headline) + "</h3><p>" + (g.q ? "Rising: " + esc(g.q) + " (v " + esc(g.v) + ")" : "") + " · recurred " + esc(rr.days) + " day(s)" + (rr.subreddit ? " in r/" + esc(rr.subreddit) : "") + " · <a rel=\"nofollow noopener\" target=\"_blank\" href=\"" + esc(rr.reddit_search) + "\">Reddit search</a></p>" +
+          (mp ? "<p>Pick: " + esc(mp.name) + " — spread ×" + esc((mp.spread_range || []).join("–")) + ", MOQ " + esc(mp.moq) + ", compliance " + esc((mp.compliance || {}).difficulty) + "</p>" : "") +
+          "<ul>" + (d.our_take || []).map(function (t) { return "<li>" + esc(t) + "</li>"; }).join("") + "</ul></div>";
+      }).join("");
+    }
+    function fetchPack() {
+      if (!token || !week) { $("msg").textContent = "No pack token in this browser. Open the link from your Stripe receipt again."; return; }
+      fetch("/packs/" + week + ".json", { headers: { Authorization: "Bearer " + token } }).then(function (r) { if (!r.ok) throw r.status; return r.json(); }).then(render)
+        .catch(function (st) { $("msg").textContent = st === 404 ? "Your pack week is not published yet — it appears here automatically once ten dossiers clear the bar." : "Could not load the pack (" + st + ")."; });
+    }
+    function claim(tries) {
+      fetch("/api/pack/claim?session=" + encodeURIComponent(session)).then(function (r) { return r.json(); }).then(function (j) {
+        if (j.ok) { token = j.token; week = j.week; try { localStorage.setItem("sr_pack_token", token); localStorage.setItem("sr_pack_week", week || ""); } catch (e) {} fetchPack(); }
+        else if (j.code === "pending" && tries < 12) { $("msg").textContent = "Waiting for Stripe to confirm (" + (tries + 1) + "/12)…"; setTimeout(function () { claim(tries + 1); }, 5000); }
+        else { $("msg").textContent = "Payment not confirmed yet (" + j.code + "). Keep this page open or reopen it in a minute."; }
+      }).catch(function () { $("msg").textContent = "Claim failed; try again."; });
+    }
+    if (session) claim(0); else fetchPack();
+  })();
+  </script>
+  <footer class="site-footer"><div class="container footer-inner"><p class="footer-note">For informational purposes only — not customs, legal, tax or financial advice. Confirm classification and rates with a licensed customs broker or CBP before committing money. Brand and agency names are used nominatively.</p></div></footer>
+</body>
+</html>

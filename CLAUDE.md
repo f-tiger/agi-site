@@ -498,3 +498,14 @@ owner 决策卡、事实表)。
   会话来删并记进 watchlist**;404 原样记录,不猜名字。创业站 idea 源:PH featured + HN Show/AI 已有,
   **新增 Ask HN「is there a」周窗**;BetaList / Indie Hackers / PH 主题 feed / YC RFS 只做**探针**
   (`feed_probes`,报状态不入库),runner 读到 200 再写解析器——不假设 feed 存在。
+
+## SourceRadar 核心工具 + 付费 Opportunity Packs(2026-09-13,owner /goal:「把 SourceRadar 工具完善,然后构建撮合网站…付费的包…营收…规模化」)
+
+- **PRD**:`sites/buysomething/docs/PRD-core-tool-2026-09-13.md`(三轮 prompt、竞争图谱、官方数据源、P0/P1/P2)。
+  **owner 的 /goal 明确要付费包,覆盖了 08-31 的「零读者不装转化件」**——已按其决定建完整链路,收款开关在 owner
+  手里(`docs/PACKS-OWNER-SETUP.md`:Stripe Payment Link + webhook + 5 个 Secrets/Vars;未设即 503、页面明示未开售)。
+- **P0 已落地**(同日):信标真值测试、`landed-cost` 官方来源重写(旧口径只留 `.expired` 块,gate 断言)、
+  三个官方 API 探针(runner 下次 schedule 写 `data/sr-source-probe.json`)、`data.js` 来源标注与校验(100% 编辑估算,
+  已在卡片标明)。P1(关税栈护照、召回雷达、逐品页、eco/tds 消费)等探针 200 后做。
+- **包的红线**:只含派生事实与公开 feed,不存不卖 Reddit 帖文;金额不符不发包;零 PII;≥10 条才出包,
+  不够就不卖(页面明说)。判定线:`sr-packs-first-order-1112`、`sr-core-tool-p1-1115`。

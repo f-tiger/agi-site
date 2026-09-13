@@ -3,6 +3,10 @@
 // Alibaba listing, retailPrice = US/EU street price. tariffUS = combined ad-valorem
 // estimate for 2026 (MFN + S301 + baseline layers). freightUnit = est. sea freight
 // per unit (USD). lifecycle: early | growth | saturated (vs Western market).
+// Provenance (PRD P0-4, 2026-09-13): unless a pick carries `prov: { field: { source, asOf } }`,
+// every price / tariff / MOQ number below is an EDITORIAL ESTIMATE compiled for the 2026-08-22 strategy
+// round, not an observed listing. The site labels them as such; tools/validate_picks.py enforces it.
+const DATA_PROVENANCE = { basis: "editorial-estimate", asOf: "2026-08-22", note: "docs/STRATEGY.md round; sourced fields override per pick" };
 const PRODUCTS = [
   // ── PROFIT TIER ─────────────────────────────────────────────
   {

@@ -150,6 +150,7 @@
           <div class="price-block"><span class="price-label">Alibaba</span><span class="price-value">${rangeStr(p.priceAlibaba)}</span></div>
           <div class="price-block"><span class="price-label">US/EU retail</span><span class="price-value retail">${rangeStr(p.retailPrice)}</span></div>
           <div class="price-block"><span class="price-label">Spread</span><span class="margin-value">×${spread(p).toFixed(1)}</span></div>
+          <div class="price-note" style="grid-column:1/-1;font-size:.72rem;opacity:.7">${(typeof DATA_PROVENANCE !== "undefined" && DATA_PROVENANCE.basis === "editorial-estimate" && !p.prov) ? "Editorial estimates as of " + DATA_PROVENANCE.asOf + " — not observed listings" : "Sourced figures; see item"}</div>
         </div>
         <div class="card-badges">
           <span class="badge ${lc.cls}">${lc.label}</span>
