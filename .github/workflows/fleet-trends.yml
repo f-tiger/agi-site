@@ -41,6 +41,13 @@ jobs:
         run: |
           pip install -q trendspy
           python3 tools/fleet_trends_rising.py || echo "::warning::fleet rising fetch failed — keep last good"
+      # 机会撮合层(2026-09-13,owner「挖掘 Reddit 需求,匹配产品机会」):零 AI,只产派生事实
+      # (主题、重现天数、Trends rising 是否同向、PH/HN 是否已有人做、舰队是否已有页),永不转载
+      # Reddit 内容。demand board 有出页门:≥3 条「已确认需求且重现 ≥2 天」才写页,否则不写。
+      - name: Match opportunities (Reddit requests × rising demand × existing supply)
+        run: |
+          python3 tools/fleet/opportunity_match.py || echo "::warning::opportunity match failed"
+          python3 sites/buysomething/tools/gen_demand_board.py || echo "::warning::demand board generation failed"
       - name: Commit snapshots if changed
         run: |
           git config user.name 'Claude'
@@ -61,6 +68,7 @@ jobs:
           git add sites/getecoback/data/trends-rising-us.json 2>/dev/null || true
           git add sites/getecoback/data/trends-rising-it.json 2>/dev/null || true
           git add data/startup-radar.json 2>/dev/null || true
+          git add data/autopilot/opportunities.json sites/buysomething/site/demand-board.html sites/buysomething/site/sitemap.xml sites/buysomething/site/llms.txt 2>/dev/null || true
           git add data/probes-rising.json 2>/dev/null || true
           git add data/probes-de-rising.json 2>/dev/null || true
           git diff --cached --quiet || { git commit -m "chore(trends): 美国区触发器+创业雷达快照 $(date -u +%F)"; git pull --rebase origin main; git push origin main; }

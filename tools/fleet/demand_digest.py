@@ -125,6 +125,24 @@ def main():
             out.append("**autopilot 需求队列**:该站未纳入 autopilot")
         out.append("")
 
+    # 机会撮合(Reddit 请求 × rising 需求 × 已有供给;零 AI,派生事实,不转载帖子)
+    op = load(os.path.join(ROOT, "data/autopilot/opportunities.json"))
+    out.append("## 机会撮合(reddit 请求 × Trends rising × PH/HN 供给;data/autopilot/opportunities.json)")
+    if "__error__" in op:
+        out.append(f"- 不可用:{op['__error__']}")
+    else:
+        oc = op.get("counts") or {}
+        out.append(f"- 候选 {oc.get('candidates', 0)} · 已确认需求 {oc.get('demand_confirmed', 0)} · 重现 {oc.get('recurring', 0)} · 已有人做 {oc.get('supplied', 0)}(生成 {op.get('generated', '?')};Reddit 源 ok:{op.get('reddit_sources_ok')})")
+        for o in (op.get("opportunities") or [])[:8]:
+            dm = (o.get("demand") or [{}])[0]
+            out.append(f"- [{o.get('state')}] {o.get('theme')} · {len(o.get('days_seen') or [])} 天 · 站 {o.get('site') or '-'}"
+                       + (f" · rising「{dm.get('q')}」({dm.get('v')})" if dm.get("q") else "")
+                       + (" · 已有人做" if o.get("supplied") else "")
+                       + (f" · 舰队页 {o['fleet_pages'][0]['page']}" if o.get("fleet_pages") else ""))
+        if not op.get("opportunities"):
+            out.append("- (无候选:Reddit 源尚未落数据或今日无请求)")
+    out.append("")
+
     # AI 助手引荐(舰队唯一不靠 Google 的分发面;读 heartbeat 写的快照)
     ar = load(os.path.join(ROOT, "data/fleet-ai-referrals.json"))
     out.append("## AI 助手引荐(28 天窗,真人 pv 里 referrer 是 ChatGPT/Perplexity/Claude/Copilot 等)")

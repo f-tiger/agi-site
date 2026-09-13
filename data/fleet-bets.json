@@ -464,6 +464,17 @@
    "lose": "未进前 1/3 下季不续",
    "source": "CLAUDE.md:营收突破线 判定线",
    "status": "open"
+  },
+  {
+   "id": "fleet-opportunity-engine-1011",
+   "site": "fleet",
+   "due": "2026-10-11",
+   "metric": "data/autopilot/opportunities.json 累计 demand-confirmed 且重现 ≥2 天的条数(= /demand-board 是否出页)",
+   "threshold": "≥3",
+   "win": "撮合层成立;页面出后预登记 28 天读者线(pv ≥10 或任一引荐)",
+   "lose": "「Reddit 请求与可测需求不同向」记反面发现;匹配器退化为摘要一行,页面不建",
+   "source": "docs/reddit-opportunity-board-2026-09-13.md §四",
+   "status": "open"
   }
  ]
 }

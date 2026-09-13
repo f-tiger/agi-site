@@ -473,3 +473,19 @@ owner 决策卡、事实表)。
   一寸,已在 bpj 队列里。**每次报告的台账栏从此加一行:开放/已结/本期 won-lost 计数。**
 - 09-13 明确**不做**的:eco 12 条 underserved 的标题改写——eco 自己 09-11 诊断是 Google 没在抓
   (`googlebot=0`,09-18 线),改标题在没有抓取的站上是零读数动作;等 09-18 结算再定。
+
+## Reddit 需求撮合站?——不开子域;撮合层已建,公开页有门(2026-09-13,owner:「做一个子站点,挖掘爬取Reddit用户需求,并匹配产品机会点,变成一个机会撮合网站」;全文 `docs/reddit-opportunity-board-2026-09-13.md`)
+
+- **裁定**:子域三条铁律全不中(不需独立形态、受众与 SR 重叠、「撮合」= 双边冷启动);且 **Reddit 商业数据
+  需付费书面许可(2026 报价约 $12k/月起)、领头羊 GummySearch 2025-11-30 因拿不到许可停服、Reddit 2025-06 诉
+  Anthropic、2025-10-22 诉 Perplexity/SerpApi**——公开转载 Reddit 帖文的站点是这三件事的交集,不做。
+- **已建(零 AI,搭 fleet-trends,零新 cron)**:`tools/fleet/opportunity_match.py` → `data/autopilot/opportunities.json`
+  (主题只作匹配键、重现天数、同向 Trends rising、PH/HN 已有供给、舰队已有页、确定性分数、状态机)+
+  `sites/buysomething/tools/gen_demand_board.py` → SR `/demand-board`(**标题用 Google rising 查询,不存不发帖文/
+  permalink,只链 Reddit 自己的搜索,外链 nofollow,无联盟**;出页门 ≥3 条 demand-confirmed 且重现 ≥2 天,
+  否则不写页)+ demand-digest 新节「机会撮合」。判定线 **2026-10-11** 已进台账。
+- **必须知道的一条**:reddit.com/robots.txt 自 2024-07 对所有未授权爬虫 `Disallow: /`;雷达的 Reddit 读取
+  (公开 JSON、未登录、不绕过、约 20 次/日)技术上违反该 opt-out——与 SR 法律底稿对 Google Trends 的判断
+  同类(小体量内部指标化,风险是限流不是诉讼)。**处置:内部读取保留、永不转载;owner 若要连内部读取也关,
+  删 `startup_radar.mjs` 的两个 reddit 源即可,匹配器自动退化。** Reddit 源连续 14 天 ok:false → 直接停,不绕过。
+- **别再提**:Reddit 撮合子域、转载帖文、真人撮合/联系双方、付费 listing、AI 生成商业计划、请求→商品的联盟映射。
