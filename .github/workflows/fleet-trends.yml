@@ -30,7 +30,12 @@ jobs:
       - run: node tools/fleet_trends.mjs
       # 创业产品雷达(2026-08-24 owner 指令:输入层不能只依赖 Google Trends)。
       # PH 公开 Atom + HN Algolia,免鉴权;搭载本 schedule,增量 ~10s/天 ≈ 0.3 分/月。
+      # 2026-09-13:Reddit 官方 OAuth 通道——owner 注册 script app 后填两个 Secret 即走 oauth.reddit.com;
+      # 未设则仍走公开 JSON(runner 逐板 403,原样记录)。绝不换 UA 伪装、不换 IP、不走代理。
       - run: node tools/startup_radar.mjs
+        env:
+          REDDIT_CLIENT_ID: ${{ secrets.REDDIT_CLIENT_ID }}
+          REDDIT_CLIENT_SECRET: ${{ secrets.REDDIT_CLIENT_SECRET }}
       # 舰队 rising 关联查询(2026-08-25 owner:「bpj 按谷歌趋势优化」+「其他站点也要
       # 检查」)。当日热搜 RSS 对 bpj/agi/tds 三站 niche 词连续 6 天 matched:[],rising
       # 才是需求面。一次服务三站,全池 2 种子/次(配额纪律),搭载本 schedule 不新增

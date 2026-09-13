@@ -19,11 +19,36 @@ export const WISH_RE = /\b(is there (a|an|any)\b|i wish (there was|someone)|does
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 let lastReq = 0;
 // Reddit 未鉴权公开 JSON 的限速很紧;所有 reddit 请求串行并保持 throttle_ms 间隔,绝不并发、绝不换 IP。
+// Reddit access path (2026-09-13, owner: 「不用等 14 天,直接测试或者更换方法」):
+//   * With REDDIT_CLIENT_ID + REDDIT_CLIENT_SECRET (a Reddit "script" app the owner registers), we use the
+//     official Data API: app-only OAuth token → oauth.reddit.com. That is the sanctioned route and the only
+//     one that is not affected by Reddit's datacenter-IP 403 on public .json (first run 2026-09-13: every
+//     board 403). Free tier: non-commercial, 100 QPM per client — our ~36 requests/day is far below.
+//   * Without them we still try the public .json path so the 403 stays visible in board_stats, but we never
+//     change UA to look like a browser, never rotate IPs, never use a proxy — that would be circumvention.
+let REDDIT = { base: 'https://www.reddit.com', headers: UA, mode: 'public-json' };
+export async function redditAuth() {
+  const id = process.env.REDDIT_CLIENT_ID, secret = process.env.REDDIT_CLIENT_SECRET;
+  if (!id || !secret) return REDDIT;
+  try {
+    const r = await fetch('https://www.reddit.com/api/v1/access_token', {
+      method: 'POST',
+      headers: { ...UA, Authorization: 'Basic ' + Buffer.from(`${id}:${secret}`).toString('base64'), 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: 'grant_type=client_credentials', signal: AbortSignal.timeout(20000),
+    });
+    if (!r.ok) { REDDIT.mode = `oauth-failed HTTP ${r.status}`; return REDDIT; }
+    const d = await r.json();
+    if (!d.access_token) { REDDIT.mode = 'oauth-failed no token'; return REDDIT; }
+    REDDIT = { base: 'https://oauth.reddit.com', headers: { ...UA, Authorization: `bearer ${d.access_token}` }, mode: 'oauth' };
+  } catch (e) { REDDIT.mode = `oauth-failed ${String(e.message || e).slice(0, 40)}`; }
+  return REDDIT;
+}
 async function rfetch(u) {
   const wait = lastReq + (WL.throttle_ms || 6500) - Date.now();
   if (wait > 0) await sleep(wait);
   lastReq = Date.now();
-  return fetch(u, { headers: UA, signal: AbortSignal.timeout(20000) });
+  const url = u.replace('https://www.reddit.com', REDDIT.base).replace(/\.json(\?|$)/, REDDIT.mode === 'oauth' ? '$1' : '.json$1');
+  return fetch(url, { headers: REDDIT.headers, signal: AbortSignal.timeout(20000) });
 }
 export const boardStats = {};   // sub → { list, ok, status, items, requests }
 const noteBoard = (sub, list, ok, status, items) => {
@@ -88,6 +113,45 @@ async function fetchHNAsk(hours) {
     points: h.points | 0, comments: h.num_comments | 0, sub: 'ask_hn', published: (h.created_at || '').slice(0, 10) })).filter((i) => i.title);
 }
 
+
+// 允许自动访问的「求做」源(2026-09-13,替代/补充 Reddit):
+// ① Software Recommendations Stack Exchange:整站就是「有没有一个工具能…」;官方 API v2.3,免密钥 300 次/日,
+//    内容 CC BY-SA(我们只做内部计数与匹配,不转载)。响应 gzip,Node fetch 自动解压。
+async function fetchSoftwareRecs() {
+  const r = await fetch('https://api.stackexchange.com/2.3/questions?order=desc&sort=creation&site=softwarerecs&pagesize=50&filter=default', { headers: UA, signal: AbortSignal.timeout(20000) });
+  if (!r.ok) throw new Error(`HTTP ${r.status}`);
+  const d = await r.json();
+  if (!Array.isArray(d.items)) throw new Error('no items array');
+  const since = Math.floor(Date.now() / 1000) - 8 * 24 * 3600;
+  return d.items.filter((q) => (q.creation_date | 0) >= since).map((q) => ({
+    title: String(q.title || '').replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&amp;/g, '&').slice(0, 200),
+    url: q.link || '', points: q.score | 0, comments: q.answer_count | 0, sub: 'softwarerecs',
+    tags: (q.tags || []).slice(0, 6), published: new Date((q.creation_date | 0) * 1000).toISOString().slice(0, 10),
+  })).filter((i) => i.title);
+}
+// ② Bluesky 公开搜索(public.api.bsky.app,无需登录;帖子本就公开且 AT 协议为此设计)。只搜求做句式,周窗。
+async function fetchBlueskyWish() {
+  const out = [];
+  const errors = [];
+  for (const q of ['"is there an app that"', '"is there a tool that"', '"i wish there was an app"']) {
+    try {
+      const r = await fetch(`https://public.api.bsky.app/xrpc/app.bsky.feed.searchPosts?q=${encodeURIComponent(q)}&sort=latest&limit=25`, { headers: UA, signal: AbortSignal.timeout(20000) });
+      if (!r.ok) { errors.push(`${q} HTTP ${r.status}`); continue; }
+      const d = await r.json();
+      const since = Date.now() - 8 * 24 * 3600 * 1000;
+      for (const p of (d.posts || [])) {
+        const rec = p.record || {};
+        const t = String(rec.text || '').replace(/\s+/g, ' ').trim();
+        if (!t || Date.parse(rec.createdAt || 0) < since || !WISH_RE.test(t)) continue;
+        out.push({ title: t.slice(0, 200), url: p.uri || '', points: p.likeCount | 0, comments: p.replyCount | 0, sub: 'bluesky', published: String(rec.createdAt || '').slice(0, 10) });
+      }
+      await sleep(1500);
+    } catch (e) { errors.push(`${q} ${String(e.message || e).slice(0, 50)}`); }
+  }
+  if (!out.length) throw new Error(errors.length ? errors.join('; ').slice(0, 160) : 'zero request-shaped posts this week');
+  if (errors.length) out.errors = errors;
+  return out;
+}
 
 // Reddit 的两个「求做」板块(2026-09-12 舰队进化,owner:「Reddit 有没有这种统计需求板块」)。
 // r/SomebodyMakeThis 与 r/AppIdeas 是专门让人贴「我希望有个 X」的地方;公开 .json 免鉴权。
@@ -205,8 +269,11 @@ if (process.argv.includes('--selftest')) {
   process.exit(checks.every((c) => c[1]) ? 0 : 1);
 }
 
+await redditAuth();
 const sources = {};
 for (const [name, fn] of [
+  ['softwarerecs', fetchSoftwareRecs],
+  ['bluesky_wish', fetchBlueskyWish],
   ['producthunt', fetchProductHunt],
   ['reddit_requests', fetchRedditRequests],
   ['reddit_vertical', fetchRedditVertical],
@@ -250,7 +317,7 @@ try {
 const cutoff = new Date(Date.now() - 14 * 864e5).toISOString().slice(0, 10);
 history = history.filter((h) => h.d >= cutoff && h.d !== today);
 history.push({ d: today, ph_titles: (sources.producthunt.items || []).map((i) => i.title).slice(0, 30),
-  reddit_titles: [...((sources.reddit_requests || {}).items || []), ...((sources.reddit_wish || {}).items || [])].map((i) => i.title).slice(0, 60),
+  reddit_titles: [...((sources.reddit_requests || {}).items || []), ...((sources.reddit_wish || {}).items || []), ...((sources.softwarerecs || {}).items || []), ...((sources.bluesky_wish || {}).items || [])].map((i) => i.title).slice(0, 100),
   vertical: ((sources.reddit_vertical || {}).items || []).map((i) => ({ s: i.site, t: i.title, b: i.sub })).slice(0, 80),
   boards: Object.fromEntries(Object.entries(boardStats).map(([k, v]) => [k, { ok: v.ok, n: v.items, r: v.requests }])) });
 
@@ -285,6 +352,6 @@ export function rollupBoards(history, stats, recurringByBoard) {
 const boardRollup = rollupBoards(history, boardStats, recurringByBoard);
 
 mkdirSync('data', { recursive: true });
-writeFileSync(OUT, JSON.stringify({ fetched: today, sources, niche_hits: nicheHits, reddit_recurring: redditRecurring, board_stats: boardRollup, feed_probes: feedProbes, watchlist_updated: WL.updated, history }, null, 1));
+writeFileSync(OUT, JSON.stringify({ fetched: today, sources, reddit_access: REDDIT.mode, niche_hits: nicheHits, reddit_recurring: redditRecurring, board_stats: boardRollup, feed_probes: feedProbes, watchlist_updated: WL.updated, history }, null, 1));
 const oks = Object.entries(sources).map(([k, v]) => `${k}:${v.ok ? v.items.length : 'FAIL ' + v.reason}`).join(' | ');
 console.log(`startup-radar ${today} → ${oks}`);
