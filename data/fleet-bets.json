@@ -475,6 +475,17 @@
    "lose": "「Reddit 请求与可测需求不同向」记反面发现;匹配器退化为摘要一行,页面不建",
    "source": "docs/reddit-opportunity-board-2026-09-13.md §四",
    "status": "open"
+  },
+  {
+   "id": "sr-core-tool-p1-1115",
+   "site": "buysomething",
+   "due": "2026-11-15",
+   "metric": "PRD §六:recalls.json 被 eco/tds 流程读取次数(CI 日志)/ picks 或 landed-cost 的搜索·AI 引荐 / calc_use",
+   "threshold": "读取 ≥20 且(引荐 ≥3 或 calc_use ≥5)",
+   "win": "进 P2(EU TARIC、召回问题页簇、综合评分)",
+   "lose": "SR 连舰队自己都不用 → 最低维护,结论写进 CLAUDE.md",
+   "source": "sites/buysomething/docs/PRD-core-tool-2026-09-13.md §六",
+   "status": "open"
   }
  ]
 }
