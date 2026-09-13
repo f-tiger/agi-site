@@ -59,6 +59,18 @@ Reddit 读取(公开 `.json`,未登录,不绕过任何技术措施,约 20 次/�
 首跑(沙箱,09-13 实际雷达数据):候选 0——**Reddit 两个源今天的 runner 还没跑**(fleet-trends 实际
 在 ~08:00 UTC 触发),`reddit_sources_ok` 双 false 如实写出。第一份真实读数在今天的 run 之后。
 
+
+**首跑记录(2026-09-13,fleet-trends 计划运行 08:32 UTC,run 34747944935)**:两个 Reddit 源全部 `ok:false`,原样记录:
+- `reddit_requests`: `r/SomebodyMakeThis HTTP 403`
+- `reddit_vertical`: `r/singularity HTTP 403; r/artificial HTTP 403; r/ChatGPT HTTP 403; r/ClaudeAI HTTP 403; r/LocalLLaMA HTTP 403; r/puzzles`
+即 **Reddit 对 GitHub runner 的未鉴权公开 JSON 请求返回 HTTP 403**(每个板块都是 403,不是 404 或限流 429)。
+这与 §二 的 robots.txt `Disallow: /` 一致:Reddit 在边缘层拒绝无授权自动访问。`board_stats` 为空、
+`watchlist_updated` 为空——该运行的 head 早于/未含板块名单提交与否见同日 git 记录;**无论哪种,403 是网络层
+事实,换代码不会改变它**。预登记规则不变:Reddit 源连续 14 天 ok:false → 直接停,不换 IP、不换 UA、不绕过。
+匹配器在无 Reddit 数据时自动退化为 Trends × PH/HN/Ask HN;`hn_ask` 与 `reddit_wish` 首次运行要等含
+新代码的下一次计划运行。撮合层的判定线(2026-10-11)照旧,只是 Reddit 这一路大概率归零,
+到期如实按「可测需求同向」的定义结算。
+
 ## 四、判定线(预登记,已进 `data/fleet-bets.json`)
 
 - **2026-10-11(28 天)**:`opportunities.json` 累计出现 ≥3 条 demand-confirmed 且重现 ≥2 天(= 页面已出)
