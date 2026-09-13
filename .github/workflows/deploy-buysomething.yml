@@ -116,7 +116,7 @@ jobs:
           command: deploy
       # Post-deploy self-check (2026-09-04): asserts the shape of a working deploy —
       # routing, sitemap/robots/llms discovery files, the IndexNow key, JSON feeds
-      # and a real 404. Read-only: never POSTs to /e or /subscribe.
+      # and a real 404. One deliberate POST to /e with label "__ci" (beacon truth test); never /subscribe.
       - name: Post-deploy self-check
         run: |
           set -u

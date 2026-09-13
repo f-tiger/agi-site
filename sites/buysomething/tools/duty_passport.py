@@ -32,14 +32,25 @@ def fetch_heading(h):
         return json.loads(r.read().decode("utf-8", "replace")), (r.headers.get("x-hts-release") or "")
 
 
+def rate_key(rows):
+    """The USITC export names the MFN column 'general'; be tolerant to casing/prefix and record what we saw."""
+    for r in rows:
+        for k in r.keys():
+            if "general" in k.lower():
+                return k
+    return "general"
+
+
 def summarise(rows, candidate):
     """Pure: rows from the export → {candidate_row, general_rates_in_heading}."""
+    gk = rate_key(rows)
     def rate(r):
-        return (r.get("general") or "").strip()
+        return str(r.get(gk) or "").strip()
     cand = [r for r in rows if str(r.get("htsno", "")).startswith(candidate) and rate(r)]
     cand_row = cand[0] if cand else None
     rates = sorted({rate(r) for r in rows if rate(r)})
-    return {"candidate_htsno": cand_row.get("htsno") if cand_row else None,
+    return {"rate_column": gk, "columns_seen": sorted({k for r in rows[:3] for k in r.keys()})[:16],
+            "candidate_htsno": cand_row.get("htsno") if cand_row else None,
             "candidate_description": (cand_row.get("description") or "")[:160] if cand_row else None,
             "general_rate": rate(cand_row) if cand_row else None,
             "heading_general_rates": rates[:12], "rows_in_heading": len(rows)}
