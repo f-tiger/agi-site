@@ -23,7 +23,7 @@
 <meta property="og:image" content="https://agiscorecard.com/scorecard-summary.png">
 <meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "AGI Scorecard", "item": "https://agiscorecard.com/"}, {"@type": "ListItem", "position": 2, "name": "AGI questions, answered", "item": "https://agiscorecard.com/agi-questions"}, {"@type": "ListItem", "position": 3, "name": "Aschenbrenner vs Metaculus on AGI timing", "item": "https://agiscorecard.com/aschenbrenner-vs-metaculus"}]}</script>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Aschenbrenner vs Metaculus on AGI timing", "datePublished": "2026-06-30", "dateModified": "2026-06-30", "author": {"@type": "Organization", "name": "The AGI Scorecard"}, "publisher": {"@type": "Organization", "name": "The AGI Scorecard", "url": "https://agiscorecard.com/"}, "description": "Aschenbrenner predicts AGI by 2027; the Metaculus community median is 50% by 2033. A side-by-side of how the two forecasts differ and why — updated mid-2026."}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Aschenbrenner vs Metaculus on AGI timing", "datePublished": "2026-06-30", "dateModified": "2026-09-13", "author": {"@type": "Organization", "name": "The AGI Scorecard"}, "publisher": {"@type": "Organization", "name": "The AGI Scorecard", "url": "https://agiscorecard.com/"}, "description": "Aschenbrenner predicts AGI by 2027; the Metaculus community median is 50% by 2033. A side-by-side of how the two forecasts differ and why — updated mid-2026."}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is the difference between Aschenbrenner and Metaculus on AGI?", "acceptedAnswer": {"@type": "Answer", "text": "Aschenbrenner predicts AGI by 2027; the Metaculus community median is 50% by 2033 (25% by 2029). Aschenbrenner is roughly six years more aggressive than the aggregated crowd."}}, {"@type": "Question", "name": "Is Metaculus or Aschenbrenner more reliable on AGI timing?", "acceptedAnswer": {"@type": "Answer", "text": "Metaculus aggregates ~2,000 forecasters and updates continuously, making it better calibrated as a crowd. Aschenbrenner is a single, internally-consistent but front-loaded extrapolation. On compute trends he's been closer; on diffusion the crowd has."}}, {"@type": "Question", "name": "What does Metaculus predict for AGI?", "acceptedAnswer": {"@type": "Answer", "text": "As of early 2026, the Metaculus community gives roughly 25% by 2029 and 50% by 2033."}}]}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -74,9 +74,24 @@
 <article>
   <div class="eyebrow">Comparison</div>
   <h1>Aschenbrenner vs Metaculus on AGI timing</h1>
-  <div class="updated">Last updated: June 30, 2026 · Updated as verdicts change</div>
+  <div class="updated">Last updated: September 13, 2026 · Updated as verdicts change</div>
   <div class="byline" style="font-size:12px;color:var(--muted);margin:-0.9rem 0 1.5rem;">By the AGI Scorecard team · <a href="/about">methodology &amp; independence</a></div>
   <div class="capsule"><span class="verdict">A six-year gap.</span> Aschenbrenner predicts AGI by <strong>2027</strong>. The Metaculus community median is <strong>50% by 2033</strong> (25% by 2029, as of early 2026). Aschenbrenner is far more aggressive than the aggregated forecaster crowd, though both have moved earlier over time.</div>
+<!-- 活数字钩子(2026-09-13)。本页缺 CLAUDE.md 判定型页清单的第 ⑥ 条:
+     首屏要有一个聊天答案装不下的、带日期会变的数。这一页正好是对比型——
+     两边都是"某人说某年",而本站能给的第三样东西是**两边共同的赌注今天兑现到哪了**。
+     数值全部由 tools/sync_live_hooks.py 从 data.json 同步,validate.py 有闸门。 -->
+<div style="margin:0 0 1.6rem;background:var(--bg2);border:1px solid var(--border2);border-left:3px solid var(--accent);border-radius:0 12px 12px 0;padding:14px 18px;">
+  <div style="font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);">Neither forecast is graded. This is.</div>
+  <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:baseline;margin-top:6px;">
+    <a href="/progress-index" onclick="gtag('event','index_click',{location:'metaculus_live'});" style="font-size:28px;font-weight:800;font-variant-numeric:tabular-nums;text-decoration:none;">62.5<span style="font-size:16px;color:var(--muted);">/100</span></a>
+    <span style="font-size:14px;color:var(--muted);">how much of the 2027 thesis is still standing &mdash; recomputed from eight graded predictions, as of <strong>2026-09-06</strong></span>
+  </div>
+  <div style="margin-top:9px;font-size:14px;">
+    <a href="/progress-index" onclick="gtag('event','index_click',{location:'metaculus_live_link'});" style="font-weight:600;">See all eight verdicts and what would flip them &rarr;</a>
+    <span style="color:var(--muted);"> &middot; 4 of the 8 are still open.</span>
+  </div>
+</div>
   <h2>Side by side</h2>
 <table><thead><tr><th>Dimension</th><th>Aschenbrenner</th><th>Metaculus community</th></tr></thead><tbody>
 <tr><td>Central AGI date</td><td>2027</td><td>50% by 2033</td></tr>

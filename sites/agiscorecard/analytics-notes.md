@@ -1455,3 +1455,36 @@ origin/main,`git log` 读的是 HEAD 不是 origin/main。已对上,无事。
 **里程碑**:无新达成。
 
 **owner 待办(沿用,未催)**:thedollscout `content/d1-snapshot.json` 仍缺。
+
+## 2026-09-13(日结)
+
+**agiscorecard**:09-12 已回到正常形态(50 pv / 25 路径 / 14 国家 / 单路径最高 14),
+**09-11 那台探针没有复现,确认是一次性的**。近六日真实日读数 49 / 70 / 64 / **231(含 182 探针)**
+/ 50 / 今日 7(当日未过完)。扣除探针后的 28 天真实 JS pv 约 **1280**,与前两日持平。
+- 漏斗:`subscribe_click` 4 → `sub_open` 2 → `sub_submit` 1 → `sub_ok` **1**;subscribers 2 行 stored。
+- `vote_cast` 65 · `calc_use` 21 · `pred_expand` 19 · `invest_tool_click` 14 · `tool_click` 13 ·
+  `readnext_click` 10 · `deeplink_pick` 9 · `index_click` 7。
+  `affiliate_click` / Pro 桥 / `challenge_share` / `embed_copy` 仍全 **0**。
+- 滑入框 `slidein_show` 554(含 Compass 的 `compass_popup` 污染),本站口径累计仍在 129/300 一线,
+  **未到 09-10 预登记的 300 次结算点**。
+- 两条转化实验(10-07 判定)今日仍为 0,预期内。
+- 站内搜索:第六天,仍无读者搜索。
+
+**gridlings**:28 天 pv 641 · play_start 354 · solve 135(与昨日持平)。
+**itch 44/13**,判定线 09-24 需 150/25,剩 11 天,按现速判负已无悬念。
+
+**sourceradar**:28 天真人 pv 56,交互事件全 0,连续第 10 天不动作、不 bump。
+**明天(09-14)有一条 sourceradar 判定线到期**(内链读数),按期结算。
+
+**第①层 heartbeat**(09-13 00:09Z):八站全 **200**,全部 `d0`。
+**昨天那条误报已修复并复验**:agiscorecard 从 `6` 回到 `0`。
+
+**舰队赌注台账**(`data/fleet-bets.json`,本轮才注意到):**42 条 open / 0 条已结算**。
+最近到期:`fleet-ai-access-0916`(3 天后)、`bpj-freetier-cut-0918`、`eco-googlebot-0918`、
+`gridlings-itch-0924`。**0 结算是个需要注意的状态**——台账立了却从没到期结算过,
+和「活数字过期」是同一类风险。已向 owner 点名,本会话不代改别的会话立的判定线。
+
+**里程碑**:无新达成。
+
+**owner 待办**:① thedollscout `content/d1-snapshot.json` 仍缺(自 09-02);
+② `fleet-ai-access-0916` 若判负,需 owner 去关 Cloudflare Bots 开关(会话做不了)。
