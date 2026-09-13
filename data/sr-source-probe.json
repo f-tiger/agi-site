@@ -1,0 +1,40 @@
+{
+ "checked": "2026-09-13T14:08:00Z",
+ "endpoints": {
+  "usitc_hts_search": {
+   "url": "https://hts.usitc.gov/reststop/search?keyword=water%20fountain",
+   "status": 200,
+   "type": "application/json;charset=UTF-8",
+   "bytes": 157641,
+   "head": "[ {\n  \"htsno\" : \"0302.89.50.07\",\n  \"statisticalSuffix\" : \"07\",\n  \"description\" : \"Pike\",\n  \"htscode\" : null,\n  \"indent\" "
+  },
+  "usitc_hts_export": {
+   "url": "https://hts.usitc.gov/reststop/exportList?from=8509&to=8510&format=JSON&styles=false",
+   "status": 200,
+   "type": "application/octet-stream",
+   "bytes": 7990,
+   "head": "[ {\n  \"htsno\" : \"8509\",\n  \"indent\" : \"0\",\n  \"description\" : \"Electromechanical domestic appliances, with self-contained "
+  },
+  "cpsc_recalls": {
+   "url": "https://www.saferproducts.gov/RestWebServices/Recall?format=json&RecallTitle=fountain",
+   "status": 200,
+   "type": "application/json; charset=utf-8",
+   "bytes": 11594,
+   "head": "[{\"RecallID\":7782,\"RecallNumber\":\"16207\",\"RecallDate\":\"2016-07-01T00:00:00\",\"Description\":\"This recall involves Black Ca"
+  },
+  "eu_safety_gate": {
+   "url": "https://ec.europa.eu/safety-gate-alerts/screen/webReport/alertsSearch",
+   "status": 200,
+   "type": "text/html;charset=UTF-8",
+   "bytes": 2271,
+   "head": "<!doctype html>\n<html>\n<head>\n    <meta charset=\"utf-8\">\n    <title>Safety Gate: the EU rapid alert system for dangerous"
+  },
+  "ustr_301_lists": {
+   "url": "https://ustr.gov/issue-areas/enforcement/section-301-investigations/tariff-actions",
+   "status": 200,
+   "type": "text/html; charset=UTF-8",
+   "bytes": 30882,
+   "head": "<!DOCTYPE html>\n<html lang=\"en\" dir=\"ltr\" prefix=\"content: http://purl.org/rss/1.0/modules/content/  dc: http://purl.org"
+  }
+ }
+}
