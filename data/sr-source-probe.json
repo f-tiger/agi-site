@@ -1,5 +1,5 @@
 {
- "checked": "2026-09-13T14:17:26Z",
+ "checked": "2026-09-13T14:24:04Z",
  "endpoints": {
   "usitc_hts_search": {
    "url": "https://hts.usitc.gov/reststop/search?keyword=water%20fountain",
@@ -26,7 +26,7 @@
    "url": "https://ec.europa.eu/safety-gate-alerts/screen/webReport/alertsSearch",
    "status": 200,
    "type": "text/html;charset=UTF-8",
-   "bytes": 2269,
+   "bytes": 2270,
    "head": "<!doctype html>\n<html>\n<head>\n    <meta charset=\"utf-8\">\n    <title>Safety Gate: the EU rapid alert system for dangerous"
   },
   "ustr_301_lists": {
