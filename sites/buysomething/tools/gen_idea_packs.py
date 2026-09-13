@@ -106,6 +106,12 @@ def dossier(o, picks, trends, today):
                     "Not purchasing, legal or financial advice."],
     }
     if pick:
+        pp = (PASSPORTS.get("picks") or {}).get(pick.get("id"))
+        if pp and pp.get("general_rate"):
+            out["duty_stack"] = {"status": "usitc", "candidate_htsno": pp.get("candidate_htsno"), "general_rate": pp.get("general_rate"), "heading_general_rates": pp.get("heading_general_rates"), "as_of": pp.get("as_of"), "s301": pp.get("s301"), "note": PASSPORTS.get("disclaimer")}
+        rc = (RECALLS.get("picks") or {}).get(pick.get("id"))
+        if rc and rc.get("n") is not None:
+            out["recall_radar"] = {"status": "cpsc", "n_12mo": rc.get("n"), "latest": rc.get("latest"), "items": rc.get("items"), "keywords": rc.get("keywords"), "as_of": RECALLS.get("generated")}
         out["matched_pick"] = {"id": pick.get("id"), "name": pick.get("name"), "track": pick.get("track"), "tier": pick.get("tier"),
                                "price1688": pick.get("price1688"), "priceAlibaba": pick.get("priceAlibaba"), "retailPrice": pick.get("retailPrice"),
                                "spread_range": spread(pick), "moq": pick.get("moq"), "tariffUS_estimate": pick.get("tariffUS"),
@@ -133,7 +139,13 @@ def week_id(today):
     return f"{y}-W{w:02d}"
 
 
+PASSPORTS = {}
+RECALLS = {}
+
+
 def build(opps, picks, trends, today, min_items=MIN_ITEMS):
+    global PASSPORTS, RECALLS
+    PASSPORTS = load_json(os.path.join(SITE, "passports.json")); RECALLS = load_json(os.path.join(SITE, "recalls.json"))
     rows = sorted(opps, key=lambda o: -(o.get("score") or 0))
     dossiers = [dossier(o, picks, trends, today) for o in rows[:40]]
     sample = dossiers[0] if dossiers else None

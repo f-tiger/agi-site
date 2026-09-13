@@ -237,6 +237,10 @@ jobs:
       - name: Assert no judgment line is overdue and unsettled
         run: python3 tools/fleet/check_bets.py
 
+      # SourceRadar 的官方召回雷达是 eco/tds 货架的门(PRD P1-4);存在但 >14 天没刷新 → 红。
+      - name: Assert the recall radar the shelves gate on is fresh
+        run: python3 tools/fleet/recall_gate.py --check
+
       - name: Fail the run if any site is down, blocks AI crawlers, or the referral read is stale
         if: steps.probe.outputs.bad == '1' || steps.aiprobe.outcome == 'failure' || steps.airef.outcome == 'failure'
         run: |

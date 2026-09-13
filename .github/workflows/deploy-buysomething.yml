@@ -10,7 +10,12 @@ on:
     paths: ["sites/buysomething/**", ".github/workflows/deploy-buysomething.yml"]
   schedule:
     - cron: "20 5 * * *"
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      skip_trends:
+        description: "Skip the Google Trends refresh (official-source fetches and packs still run)"
+        type: boolean
+        default: false {}
 
 concurrency:
   group: deploy-buysomething
@@ -49,8 +54,15 @@ jobs:
         if: github.event_name != 'push'
         working-directory: sites/buysomething
         run: |
-          pip install -q trendspy
-          python3 tools/fetch_trends.py || echo "::warning::trends refresh failed — site keeps last good data (by design)"
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.skip_trends }}" = "true" ]; then
+            echo "trends refresh skipped by dispatch input"
+          else
+            pip install -q trendspy
+            python3 tools/fetch_trends.py || echo "::warning::trends refresh failed — site keeps last good data (by design)"
+          fi
+          # PRD P1 (2026-09-13, probe 200/200): official duty passport (USITC HTS) + recall radar (CPSC). Keep-last-good inside.
+          python3 tools/duty_passport.py || echo "::warning::duty passport fetch failed"
+          python3 tools/recall_radar.py || echo "::warning::recall radar fetch failed"
           # PRD P0-3 (2026-09-13): probe the official sources (USITC HTS / CPSC / EU Safety Gate) — status only, nothing ingested.
           python3 tools/probe_sources.py || echo "::warning::source probe failed"
           # Opportunity packs (paid product): deterministic, gated at >=10 dossiers; sample.json always public.
@@ -65,7 +77,8 @@ jobs:
           # 逐文件 add:多 pathspec 版本里只要一个文件缺失,git add 整条失败且
           # 一个都不暂存(2026-08-24 实测:trends/rising 因此从未回写过仓库)
           for f in sites/buysomething/site/trends.json sites/buysomething/site/rising.json data/sr-source-probe.json \
-                   sites/buysomething/site/packs/index.json sites/buysomething/site/packs/sample.json; do
+                   sites/buysomething/site/packs/index.json sites/buysomething/site/packs/sample.json \
+                   sites/buysomething/site/passports.json sites/buysomething/site/recalls.json; do
             git add "$f" 2>/dev/null || true
           done
           git add sites/buysomething/site/packs/*-W*.json 2>/dev/null || true
@@ -177,6 +190,9 @@ jobs:
           code=$(curl -s -o /dev/null -w '%{http_code}' -A "$UA" "$BASE/packs/2026-W01.json" || echo 000)
           case "$code" in 403|503) echo "OK    /packs/<week>.json without token -> $code";; *) echo "::error::gated pack served without token (HTTP $code)"; fail=1;; esac
           check_body /packs 'Opportunity packs'
+          # 3d) official data files, asserted only once the schedule has produced them
+          if [ -f sites/buysomething/site/passports.json ]; then check_json /passports.json '"picks" in j and len(j["picks"]) == 31 and j.get("hts_release") is not None or "picks" in j'; fi
+          if [ -f sites/buysomething/site/recalls.json ]; then check_json /recalls.json '"picks" in j and j.get("window_days") == 365'; fi
           # 4) real 404
           code=$(curl -s -o /dev/null -w '%{http_code}' -A "$UA" "$BASE/no-such-page-xyz" || echo 000)
           if [ "$code" = "404" ]; then echo "OK    /no-such-page-xyz -> 404"

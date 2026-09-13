@@ -15,6 +15,18 @@
   // clicks straight from D1 at /api/pop (cached 1h); when the sample is big
   // enough the default order switches from editorial trendScore to reader heat.
   let POP = null;
+  // PRD P1 (2026-09-13): official duty passport (USITC HTS) and recall radar (CPSC) per pick, when published.
+  var PASSPORTS = null, RECALLS = null;
+  fetch("/passports.json").then(r => r.ok ? r.json() : null).then(j => { PASSPORTS = j; }).catch(() => {});
+  fetch("/recalls.json").then(r => r.ok ? r.json() : null).then(j => { RECALLS = j; }).catch(() => {});
+  window.officialBlock = function (id) {
+    var out = "";
+    var pp = PASSPORTS && PASSPORTS.picks && PASSPORTS.picks[id];
+    if (pp && pp.general_rate) out += '<span class="badge" title="Candidate heading, not a ruling; USITC HTS general rate as of ' + (pp.as_of || PASSPORTS.generated) + '">🛃 HTS ' + pp.candidate_htsno + ' · general ' + pp.general_rate + (pp.stale ? " (stale)" : "") + '</span> <a class="ext-link" rel="noopener" target="_blank" href="' + PASSPORTS.s301_lookup + '">§301: verify on USTR</a>';
+    var rc = RECALLS && RECALLS.picks && RECALLS.picks[id];
+    if (rc && rc.n != null) out += ' <span class="badge" title="CPSC recall titles matching this category in the last ' + RECALLS.window_days + ' days">' + (rc.n > 0 ? "⚠️ " : "✅ ") + rc.n + ' CPSC recall' + (rc.n === 1 ? "" : "s") + ' / 12 mo' + (rc.latest ? " · latest " + rc.latest : "") + (rc.stale ? " (stale)" : "") + '</span>';
+    return out || '<span class="badge" style="opacity:.6">official duty / recall data: pending first fetch</span>';
+  };
   fetch("/api/pop").then(r => r.ok ? r.json() : null).then(j => {
     if (!j || !j.picks) return;
     const total = Object.values(j.picks).reduce((a, v) => a + (v.o || 0), 0);
@@ -222,6 +234,7 @@
         <p><strong>US:</strong></p><div class="taglist">${certList(p.compliance.us)}</div>
         <p style="margin-top:6px"><strong>EU:</strong></p><div class="taglist">${certList(p.compliance.eu)}</div>
         <p style="margin-top:8px">${p.compliance.note}</p>
+        <div id="official-${p.id}" class="taglist" style="margin-top:8px">${officialBlock(p.id)}</div>
         <p class="spark-note" style="margin-top:8px">Importing this category typically involves the certifications above; requirements vary by state and member state. Verify supplier certificates and your local import requirements independently — as the importer of record, compliance responsibility is yours.</p>
       </div>
 
