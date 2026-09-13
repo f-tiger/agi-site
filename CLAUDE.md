@@ -441,3 +441,31 @@ owner 决策卡、事实表)。
   token 都没有 D1 read 权限(tds-traffic 的 D1 导出 09-04 起因此从未成功,`d1-snapshot.json` 不存在)。
   **owner 一分钟待办**:给 token 加 `Account · D1 · Read` 或新建存为 `CF_API_TOKEN`;**09-16 起未做则 heartbeat 每日红**。
   每次报告带出这一条直到解决;在此之前 AI 引荐只能由会话经 MCP 手查(SQL 在 `tools/fleet/ai_referrals.py`)。
+
+## 固定循环:持续优化 · 探索 · 扩张(2026-09-13,owner:「目标是持续优化,探索,扩张。成长为这类型」)
+
+**owner 的目标是长期方向,不是一次任务。** 字节/阿里能被 solo 舰队照抄的只有一个机制:**应用工厂**
+——小赌注、预登记杀线、到期按数字加码或杀掉、永不遗忘。此前 ~40 条判定线散在九份 CLAUDE.md 里,
+没有任何东西保证它们到期被读。现在:
+- **`data/fleet-bets.json` 是舰队唯一的赌注台账**(09-13 建,42 条开放线,每条带 due / metric / threshold /
+  win / lose / source)。`tools/fleet/check_bets.py` 挂 heartbeat:到期 3 天内 warning,**过期 >7 天仍 open 即红**。
+  **新增任何判定线必须同时加一行进台账,否则等于没预登记**;结算时把 status 改为 won/lost/insufficient
+  并写 settled + reading,再把结论写回对应站的 CLAUDE.md。
+- **每次会话开场的三步(不问 owner,直接做)**:①`python3 tools/fleet/check_bets.py` 看谁到期,到期的先结算
+  (D1 现查,读数进台账);②读 `data/autopilot/demand-digest.md` 与 `data/fleet-ai-referrals.json`;
+  ③按下表各投**一件**,做完写判定线进台账。三门/零编造/防翻炒/隐私红线全部不变。
+
+| 槽 | 定义 | 数据来源 | 允许的动作 | 不允许 |
+|---|---|---|---|---|
+| **优化** | 已有页面/机制的转化与发现 | autopilot `underserved`、hot_pages、eco 钱线仪表盘 | 标题/首屏/内链/货架重选、修自检、修分类器 | 翻炒(近 5 次改过的页不动)、没有读数的「优化」 |
+| **探索** | 一个新假设,一张页/一个组件 | rising、雷达、`reddit_recurring`、第一方搜索 | 主域集群内加一页或一块,预登记 28 天线 | 新站/新子域(三条铁律)、非 Amazon 联盟、未过三门 |
+| **扩张** | 已验证模式复制到相邻位置 | 台账里 **won** 的行 | 同站第二页 / 跨站移植已验证模式 | 把 lost/insufficient 的模式复制、按「客单高」再试第三次 |
+
+- **扩张只从 won 的行长出来**:台账现在 0 条 won,所以本周期扩张槽为空——这是事实,不是懒。第一批到期
+  是 09-18(bpj ×2、eco googlebot)、09-21(gridlings)、09-24(itch)、09-25(eco ×5)。
+- **当前读数(09-13)**:舰队真人 pv 31 763/28d、eco 联盟 €10,26/30d(至 08-30)、AI 引荐 69/28d、Metaculus 关着等额度。
+  「成长为那类型」的诚实距离:那两家的起点是**供给侧先免费聚合**(1999 阿里免费挂牌、2003 淘宝免费)与
+  **推荐引擎按数据杀 app**;舰队里唯一有供给侧敲门的是 bpj 厂商投稿(28 天 7 条),它是最像「平台」的
+  一寸,已在 bpj 队列里。**每次报告的台账栏从此加一行:开放/已结/本期 won-lost 计数。**
+- 09-13 明确**不做**的:eco 12 条 underserved 的标题改写——eco 自己 09-11 诊断是 Google 没在抓
+  (`googlebot=0`,09-18 线),改标题在没有抓取的站上是零读数动作;等 09-18 结算再定。

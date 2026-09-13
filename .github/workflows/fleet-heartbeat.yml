@@ -231,6 +231,12 @@ jobs:
       - name: Assert bot-UA classifier parity across workers
         run: python3 tools/fleet/check_bot_ua.py
 
+      # 舰队的「赌注台账」(2026-09-13,owner:「持续优化,探索,扩张」):每条预登记判定线一行,
+      # 到期 3 天内提醒,过期 >7 天仍未结算 → 红 → GitHub 邮件。判定线可以判负,不可以被遗忘;
+      # 这是字节「应用工厂」里唯一能被 solo 舰队照抄的机制:按日期结算,按数字加码或杀掉。
+      - name: Assert no judgment line is overdue and unsettled
+        run: python3 tools/fleet/check_bets.py
+
       - name: Fail the run if any site is down, blocks AI crawlers, or the referral read is stale
         if: steps.probe.outputs.bad == '1' || steps.aiprobe.outcome == 'failure' || steps.airef.outcome == 'failure'
         run: |
