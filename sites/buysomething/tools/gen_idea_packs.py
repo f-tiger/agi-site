@@ -206,7 +206,7 @@ def selftest():
         ("dossier headline is the Google query", sample["headline"].startswith("quiet cat water fountain")),
         ("pick matched by token overlap", sample["matched_pick"] and sample["matched_pick"]["id"] == "pet-fountain" and sample["matched_pick"]["spread_range"] == [2.8, 9.9]),
         ("no reddit permalink anywhere", "/comments/" not in json.dumps(pack)),
-        ("P1 fields honest", sample["duty_stack"]["status"] == "pending-P1" and sample["recall_radar"]["status"] == "pending-P1"),
+        ("P1 fields honest: pending until the official files exist, then their source name", sample["duty_stack"]["status"] in ("pending-P1", "usitc") and sample["recall_radar"]["status"] in ("pending-P1", "cpsc")),
         ("our_take mentions recurrence", any("recurred" in t for t in sample["our_take"])),
         ("live data.js parses (31 picks)", len(live) == 31),
     ]

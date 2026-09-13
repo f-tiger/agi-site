@@ -1,13 +1,7 @@
 {
  "generated": "2026-09-13",
- "latest": "2026-W37",
- "weeks": [
-  {
-   "week": "2026-W37",
-   "generated": "2026-09-13",
-   "count": 10
-  }
- ],
+ "latest": null,
+ "weeks": [],
  "min_items": 10,
- "note": "A pack is published only with >= min_items dossiers; buyers get the latest week at purchase time."
+ "note": "A pack is published only with >= min_items dossiers; buyers get the latest week at purchase time. 2026-W37 was auto-built from 9 one-off questions and withdrawn the same day before checkout opened; the sellable() rule in gen_idea_packs.py now requires confirmed demand plus recurrence, supply or a matched pick."
 }

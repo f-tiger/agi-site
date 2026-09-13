@@ -180,3 +180,12 @@ TikTok/1688 抓取、付费数据源。
   schedule/dispatch 分支跑并回仓(dispatch 可 `skip_trends=true`);弹窗合规区显示 HTS 税率与 12 个月召回数;
   包 dossier 用同两份文件。**首读**:31/31 有税率;12 个品类 12 个月内有 CPSC 召回(power bank 7 起最多)。
   **舰队门**:`tools/fleet/recall_gate.py`,heartbeat 断言雷达 ≤14 天;eco/tds 货架脚本接入是下一步。
+- **09-13 首包撤回(重要)**:runner 18:40 UTC 自动生成的 `2026-W37.json` 十条里九条是一次性的 HN 提问
+  (「youtube 2006 的 DES key」「有没有值得用 AI 开发的东西」…),唯一一条「已确认需求」是单个词「desktop」
+  的巧合匹配。**当日撤回,收款尚未开通所以零买家受影响。** 改法:①匹配器 overlap 一律 ≥2 个共享实词
+  (单词巧合不算需求);②`sellable()`:只有「已确认需求 且(重现 ≥2 天 或 有供给证据 或 匹配到策展 pick)」
+  的 dossier 才计入出包门。宁可长期不出包,不出垃圾包。
+- **Reddit 测试结论(09-13 两次 dispatch)**:公开 RSS 403、公开 JSON 403(36 个板块全部)、OAuth 端点可达
+  (无凭证 401 = 端点正常),Bluesky 公开搜索两个主机都 403,Lemmy 搜索 200 但本周零求做帖,Software
+  Recommendations SE 通(3 条/8 天),Ask HN 四句式通(8 条)。**Reddit 唯一正规路径 = owner 注册 app
+  (`docs/REDDIT-OAUTH-OWNER-SETUP.md`,两个 Secret)**;不换 UA/IP/代理。
