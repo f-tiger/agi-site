@@ -168,6 +168,8 @@
   "reddit_json_public": "https://www.reddit.com/r/SomebodyMakeThis/new.json?limit=5",
   "reddit_oauth_endpoint": "https://www.reddit.com/api/v1/access_token",
   "stackexchange_softwarerecs": "https://api.stackexchange.com/2.3/info?site=softwarerecs",
-  "bluesky_public_search": "https://public.api.bsky.app/xrpc/app.bsky.feed.searchPosts?q=%22is%20there%20an%20app%20that%22&limit=1"
+  "bluesky_public_search": "https://public.api.bsky.app/xrpc/app.bsky.feed.searchPosts?q=%22is%20there%20an%20app%20that%22&limit=1",
+  "bluesky_alt_host": "https://api.bsky.app/xrpc/app.bsky.feed.searchPosts?q=%22is%20there%20an%20app%20that%22&limit=1",
+  "lemmy_world_search": "https://lemmy.world/api/v3/search?q=is%20there%20a%20tool&type_=Posts&sort=New&limit=1"
  }
 }

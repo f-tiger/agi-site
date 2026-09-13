@@ -104,13 +104,47 @@ async function fetchHN(tags, hours) {
 // Ask HN 里的「is there a tool」:与 Reddit 求做板同形态,Algolia 免鉴权,runner 稳定可达。
 async function fetchHNAsk(hours) {
   const since = Math.floor(Date.now() / 1000) - hours * 3600;
-  const u = `https://hn.algolia.com/api/v1/search_by_date?tags=ask_hn&query=${encodeURIComponent('"is there a"')}&numericFilters=created_at_i>${since}&hitsPerPage=30`;
-  const r = await fetch(u, { headers: UA, signal: AbortSignal.timeout(20000) });
-  if (!r.ok) throw new Error(`HTTP ${r.status}`);
-  const d = await r.json();
-  if (!Array.isArray(d.hits)) throw new Error('no hits array');
-  return d.hits.map((h) => ({ title: (h.title || '').replace(/^Ask HN:\s*/i, ''), url: `https://news.ycombinator.com/item?id=${h.objectID}`,
-    points: h.points | 0, comments: h.num_comments | 0, sub: 'ask_hn', published: (h.created_at || '').slice(0, 10) })).filter((i) => i.title);
+  const seen = new Set(); const out = [];
+  for (const q of ['"is there a"', '"looking for a tool"', '"does anyone know"', '"recommend a"']) {
+    const u = `https://hn.algolia.com/api/v1/search_by_date?tags=ask_hn&query=${encodeURIComponent(q)}&numericFilters=created_at_i>${since}&hitsPerPage=30`;
+    const r = await fetch(u, { headers: UA, signal: AbortSignal.timeout(20000) });
+    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+    const d = await r.json();
+    if (!Array.isArray(d.hits)) throw new Error('no hits array');
+    for (const h of d.hits) {
+      if (!h.title || seen.has(h.objectID)) continue;
+      seen.add(h.objectID);
+      out.push({ title: h.title.replace(/^Ask HN:\s*/i, ''), url: `https://news.ycombinator.com/item?id=${h.objectID}`,
+        points: h.points | 0, comments: h.num_comments | 0, sub: 'ask_hn', published: (h.created_at || '').slice(0, 10) });
+    }
+    await sleep(600);
+  }
+  return out;
+}
+
+// ③ Lemmy(联邦制 Reddit 替代品,开源;lemmy.world 公开 API 明确允许读取)。搜求做句式,按新。
+async function fetchLemmyWish() {
+  const out = [];
+  const errors = [];
+  for (const q of ['is there a tool', 'is there an app', 'looking for a tool']) {
+    try {
+      const r = await fetch(`https://lemmy.world/api/v3/search?q=${encodeURIComponent(q)}&type_=Posts&sort=New&limit=20`, { headers: { ...UA, Accept: 'application/json' }, signal: AbortSignal.timeout(20000) });
+      if (!r.ok) { errors.push(`${q} HTTP ${r.status}`); continue; }
+      const d = await r.json();
+      const since = Date.now() - 8 * 24 * 3600 * 1000;
+      for (const p of (d.posts || [])) {
+        const post = p.post || {};
+        const t = String(post.name || '').trim();
+        if (!t || Date.parse(post.published || 0) < since || !WISH_RE.test(t)) continue;
+        out.push({ title: t.slice(0, 200), url: post.ap_id || '', points: (p.counts || {}).score | 0, comments: (p.counts || {}).comments | 0,
+          sub: 'lemmy:' + ((p.community || {}).name || ''), published: String(post.published || '').slice(0, 10) });
+      }
+      await sleep(1500);
+    } catch (e) { errors.push(`${q} ${String(e.message || e).slice(0, 50)}`); }
+  }
+  if (!out.length) throw new Error(errors.length ? errors.join('; ').slice(0, 160) : 'zero request-shaped posts this week');
+  if (errors.length) out.errors = errors;
+  return out;
 }
 
 
@@ -274,6 +308,7 @@ const sources = {};
 for (const [name, fn] of [
   ['softwarerecs', fetchSoftwareRecs],
   ['bluesky_wish', fetchBlueskyWish],
+  ['lemmy_wish', fetchLemmyWish],
   ['producthunt', fetchProductHunt],
   ['reddit_requests', fetchRedditRequests],
   ['reddit_vertical', fetchRedditVertical],
@@ -317,7 +352,7 @@ try {
 const cutoff = new Date(Date.now() - 14 * 864e5).toISOString().slice(0, 10);
 history = history.filter((h) => h.d >= cutoff && h.d !== today);
 history.push({ d: today, ph_titles: (sources.producthunt.items || []).map((i) => i.title).slice(0, 30),
-  reddit_titles: [...((sources.reddit_requests || {}).items || []), ...((sources.reddit_wish || {}).items || []), ...((sources.softwarerecs || {}).items || []), ...((sources.bluesky_wish || {}).items || [])].map((i) => i.title).slice(0, 100),
+  reddit_titles: [...((sources.reddit_requests || {}).items || []), ...((sources.reddit_wish || {}).items || []), ...((sources.softwarerecs || {}).items || []), ...((sources.bluesky_wish || {}).items || []), ...((sources.lemmy_wish || {}).items || [])].map((i) => i.title).slice(0, 100),
   vertical: ((sources.reddit_vertical || {}).items || []).map((i) => ({ s: i.site, t: i.title, b: i.sub })).slice(0, 80),
   boards: Object.fromEntries(Object.entries(boardStats).map(([k, v]) => [k, { ok: v.ok, n: v.items, r: v.requests }])) });
 

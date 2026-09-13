@@ -93,7 +93,7 @@ def main():
         out.append("")
 
     # Reddit 求做板块 + 大板块求做句式 + Ask HN(跨站;这里列原始前 10 条供人读)
-    rr = [*(((srcs.get("reddit_requests") or {}).get("items") or [])), *(((srcs.get("reddit_wish") or {}).get("items") or [])), *(((srcs.get("hn_ask") or {}).get("items") or [])), *(((srcs.get("softwarerecs") or {}).get("items") or [])), *(((srcs.get("bluesky_wish") or {}).get("items") or []))]
+    rr = [*(((srcs.get("reddit_requests") or {}).get("items") or [])), *(((srcs.get("reddit_wish") or {}).get("items") or [])), *(((srcs.get("hn_ask") or {}).get("items") or [])), *(((srcs.get("softwarerecs") or {}).get("items") or [])), *(((srcs.get("bluesky_wish") or {}).get("items") or [])), *(((srcs.get("lemmy_wish") or {}).get("items") or []))]
     out.append(f"- Reddit 访问通道:{radar.get('reddit_access', '?')}(oauth = owner 已注册官方 app;public-json = 未鉴权,runner 09-13 起逐板 403)")
     out.append("## 求做帖(Reddit request 板 + wish 句式 + Ask HN + Software Recommendations SE + Bluesky 求做搜索)")
     out.append("只读,机器永不发帖。出现在这里 ≠ 有人在搜它。")
