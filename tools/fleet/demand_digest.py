@@ -76,9 +76,25 @@ def main():
     out.append(f"- 雷达快照日期:{radar.get('fetched', '?')}" + (f"({ra} 天前)" if ra is not None else "") + "")
     out.append("")
 
-    # Reddit 求做板块(跨站,按各站词表已在 niche_hits 里;这里再列原始前 10 条供人读)
-    rr = (srcs.get("reddit_requests") or {}).get("items") or []
-    out.append("## Reddit 求做板块(r/SomebodyMakeThis + r/AppIdeas,48h)")
+    # 板块产出榜(owner 09-13:「监控好板块比什么都合适」):按 14 天产出看名单,demote 是机器标记、会话来删
+    bs = radar.get("board_stats") or {}
+    if bs:
+        out.append("## 板块产出榜(14 天;名单 tools/fleet/reddit_watchlist.json,更新 " + str(radar.get("watchlist_updated", "?")) + ")")
+        out.append("| 板块 | 名单 | 今日 | ok 天数 | 帖子 | 求做形 | 重现主题 | 标记 |")
+        out.append("|---|---|---|---|---|---|---|---|")
+        for sub, v in sorted(bs.items(), key=lambda kv: (-kv[1].get("recurring_14d", 0), -kv[1].get("requests_14d", 0))):
+            out.append(f"| r/{sub} | {v.get('list')} | {'ok' if v.get('today_ok') else 'HTTP ' + str(v.get('today_status'))} | {v.get('days_ok_14d')} | {v.get('items_14d')} | {v.get('requests_14d')} | {v.get('recurring_14d')} | {'**demote**' if v.get('demote') else ''} |")
+        out.append("")
+    fp = radar.get("feed_probes") or {}
+    if fp:
+        out.append("## 候选 idea 源探针(只报状态,200 且有内容才值得写解析器)")
+        for name, v in fp.items():
+            out.append(f"- {name}: HTTP {v.get('status')} {v.get('type', '')} {v.get('bytes', '')}B {v.get('error', '')}".rstrip())
+        out.append("")
+
+    # Reddit 求做板块 + 大板块求做句式 + Ask HN(跨站;这里列原始前 10 条供人读)
+    rr = [*(((srcs.get("reddit_requests") or {}).get("items") or [])), *(((srcs.get("reddit_wish") or {}).get("items") or [])), *(((srcs.get("hn_ask") or {}).get("items") or []))]
+    out.append("## 求做帖(request 板 48h + 大板块 wish 句式周窗 + Ask HN 周窗)")
     out.append("只读,机器永不发帖。出现在这里 ≠ 有人在搜它。")
     for i in sorted(rr, key=lambda x: -(x.get("points") or 0))[:10]:
         out.append(f"- ↑{i.get('points',0)} · {i.get('sub','')} · {i.get('title','')}" + (f" — {i['url']}" if i.get("url") else ""))

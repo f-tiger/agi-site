@@ -1,0 +1,35 @@
+{
+ "updated": "2026-09-13",
+ "note": "Reddit watchlist for tools/startup_radar.mjs (owner 2026-09-13: 监控好板块比什么都合适). Public JSON, read-only, never posts. Every board's daily yield lands in startup-radar.json board_stats so the list is pruned by data, not taste: a board that has been fetched ok on >=14 days and produced 0 recurring themes and <10 request-shaped posts is flagged demote (the machine flags, a session removes). A board that 404s is left in until a session confirms the name; 404 is recorded as-is, never guessed around. Budget: ~32 requests/day, 6.5 s apart.",
+ "throttle_ms": 6500,
+ "wish_phrases": ["\"is there a tool\"", "\"is there an app\"", "\"is there a website\"", "\"i wish there was\"", "\"does anyone know a tool\"", "\"looking for a tool that\"", "\"someone should build\"", "\"why doesn't\" exist"],
+ "request_boards": [
+  {"sub": "SomebodyMakeThis", "mode": "new", "hours": 48, "why": "dedicated 'I wish this existed' board; every post is a request by construction"},
+  {"sub": "AppIdeas", "mode": "new", "hours": 48, "why": "dedicated app-request board"},
+  {"sub": "Lightbulb", "mode": "new", "hours": 48, "why": "ideas board; mixed quality, kept for the request-shaped subset"},
+  {"sub": "software", "mode": "new", "hours": 48, "why": "'looking for a program that…' is the dominant post form; the oldest request board on Reddit"}
+ ],
+ "wish_boards": [
+  {"sub": "Entrepreneur", "why": "largest founder board; wish-phrase search surfaces buyer-side gaps"},
+  {"sub": "smallbusiness", "why": "operators asking for tools they cannot find; paying intent"},
+  {"sub": "startups", "why": "founders asking 'is there a tool' before building"},
+  {"sub": "SaaS", "why": "tool gaps from people who buy SaaS"},
+  {"sub": "SideProject", "why": "builders; 'someone should build' and validation asks"},
+  {"sub": "indiehackers", "why": "same audience as PH launches; requests here are close to the supply side"}
+ ],
+ "vertical": {
+  "agiscorecard": {"subs": ["singularity", "artificial", "agi", "ControlProblem"], "q": ["\"when will agi\"", "\"agi timeline\"", "\"is agi close\"", "\"how close are we\""], "why": "verdict-question demand for the citation pages"},
+  "baipiaoji":    {"subs": ["ChatGPT", "ClaudeAI", "LocalLLaMA", "OpenAI", "DeepSeek"], "q": ["\"free tier\" limit", "\"is there a\" tool free", "\"rate limit\" free plan", "\"free alternative\""], "why": "free-tier limit questions = the site's core dataset"},
+  "gridlings":    {"subs": ["puzzles", "sudoku", "nonograms", "incremental_games", "WebGames"], "q": ["\"is there a\" daily", "\"no guessing\"", "\"unique solution\"", "\"browser game\" like"], "why": "daily-puzzle and browser-game requests"},
+  "thedollscout": {"subs": ["labubu", "PopMart", "Designertoys"], "q": ["fake OR real \"how to tell\"", "\"is this real\"", "authentic check", "\"where to buy\""], "why": "authenticity and buying-intent questions"},
+  "buysomething": {"subs": ["ecommerce", "dropship", "FulfillmentByAmazon", "AmazonSeller", "shopify"], "q": ["\"landed cost\"", "\"is there a\" sourcing", "alibaba \"how do i\"", "\"product research\" tool"], "why": "sourcing and product-research tool gaps"},
+  "getecoback":   {"subs": ["de", "Finanzen", "wohnen", "heimwerken"], "q": ["Klimaanlage Mietwohnung", "Luftentfeuchter Empfehlung", "Heizlüfter Stromkosten", "Schimmel Wohnung was tun"], "why": "German household energy/climate questions = the affiliate catalogue"}
+ },
+ "feed_probes": {
+  "note": "Candidate idea feeds probed with one GET per run and reported as status only; nothing is ingested until a session reads the probe result and adds a parser. Zero-fabrication: we do not assume a feed exists.",
+  "betalist": "https://betalist.com/feed",
+  "indiehackers_rss": "https://www.indiehackers.com/feed.xml",
+  "producthunt_topic_ai": "https://www.producthunt.com/topics/artificial-intelligence/feed",
+  "yc_rfs": "https://www.ycombinator.com/rfs"
+ }
+}

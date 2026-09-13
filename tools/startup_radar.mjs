@@ -11,6 +11,25 @@ const OUT = 'data/startup-radar.json';
 const today = new Date().toISOString().slice(0, 10);
 const UA = { 'User-Agent': 'Mozilla/5.0 (compatible; agi-site-startup-radar; +https://github.com/f-tiger/agi-site)' };
 
+// 板块名单外置(2026-09-13,owner:「监控好板块比什么都合适」):tools/fleet/reddit_watchlist.json。
+// 每个板块每天的产出落到 board_stats,名单按产出淘汰(机器只标 demote,会话来删);404 原样记录不猜。
+export const WL = JSON.parse(readFileSync('tools/fleet/reddit_watchlist.json', 'utf8'));
+// 「求做」句式:用来数每个板块里真正是请求的帖子(不是晒作品、不是新闻)。只用于计数与摘要,不做判断。
+export const WISH_RE = /\b(is there (a|an|any)\b|i wish (there was|someone)|does anyone know (a|an|of)|looking for (a|an) (tool|app|site|website|program|service)|someone should (build|make)|why (isn'?t|doesn'?t) there|anyone know (a|an) (tool|app|site)|recommend (a|an) (tool|app|site))/i;
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+let lastReq = 0;
+// Reddit 未鉴权公开 JSON 的限速很紧;所有 reddit 请求串行并保持 throttle_ms 间隔,绝不并发、绝不换 IP。
+async function rfetch(u) {
+  const wait = lastReq + (WL.throttle_ms || 6500) - Date.now();
+  if (wait > 0) await sleep(wait);
+  lastReq = Date.now();
+  return fetch(u, { headers: UA, signal: AbortSignal.timeout(20000) });
+}
+export const boardStats = {};   // sub → { list, ok, status, items, requests }
+const noteBoard = (sub, list, ok, status, items) => {
+  boardStats[sub] = { list, ok, status, items: items.length, requests: items.filter((i) => WISH_RE.test(i.title)).length };
+};
+
 // 站点匹配词表:只是给每日循环省一眼的便签,判断(三门)仍在会话侧。
 const NICHES = {
   agiscorecard: ['agi', 'llm', 'agent', 'trading', 'benchmark', 'eval', 'anthropic', 'openai', 'claude', 'gpt', 'gemini', 'superintelligence', 'quant'],
@@ -57,6 +76,18 @@ async function fetchHN(tags, hours) {
   })).filter((i) => i.title);
 }
 
+// Ask HN 里的「is there a tool」:与 Reddit 求做板同形态,Algolia 免鉴权,runner 稳定可达。
+async function fetchHNAsk(hours) {
+  const since = Math.floor(Date.now() / 1000) - hours * 3600;
+  const u = `https://hn.algolia.com/api/v1/search_by_date?tags=ask_hn&query=${encodeURIComponent('"is there a"')}&numericFilters=created_at_i>${since}&hitsPerPage=30`;
+  const r = await fetch(u, { headers: UA, signal: AbortSignal.timeout(20000) });
+  if (!r.ok) throw new Error(`HTTP ${r.status}`);
+  const d = await r.json();
+  if (!Array.isArray(d.hits)) throw new Error('no hits array');
+  return d.hits.map((h) => ({ title: (h.title || '').replace(/^Ask HN:\s*/i, ''), url: `https://news.ycombinator.com/item?id=${h.objectID}`,
+    points: h.points | 0, comments: h.num_comments | 0, sub: 'ask_hn', published: (h.created_at || '').slice(0, 10) })).filter((i) => i.title);
+}
+
 
 // Reddit 的两个「求做」板块(2026-09-12 舰队进化,owner:「Reddit 有没有这种统计需求板块」)。
 // r/SomebodyMakeThis 与 r/AppIdeas 是专门让人贴「我希望有个 X」的地方;公开 .json 免鉴权。
@@ -83,14 +114,7 @@ export function parseRedditListing(json, hours) {
 // restrict_sr=1、按新、月窗。板块名若不存在会以 HTTP 404 / 空列表暴露在 ok:false 里,不会静默。
 // 只读;永不发帖、永不回帖、永不注册。
 export const normTitle = (t) => String(t || '').toLowerCase().replace(/[^a-z0-9äöüß\s]/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 80);
-const VERTICAL = {
-  agiscorecard: { subs: ['singularity', 'artificial'], q: ['"when will agi"', '"agi timeline"', '"is agi close"'] },
-  baipiaoji:    { subs: ['ChatGPT', 'ClaudeAI', 'LocalLLaMA'], q: ['"free tier" limit', '"is there a" tool free', '"rate limit" free plan'] },
-  gridlings:    { subs: ['puzzles', 'sudoku', 'nonograms', 'incremental_games'], q: ['"is there a" daily', '"no guessing"', '"unique solution"'] },
-  thedollscout: { subs: ['labubu', 'PopMart'], q: ['fake OR real "how to tell"', '"is this real"', 'authentic check'] },
-  buysomething: { subs: ['ecommerce', 'dropship', 'Entrepreneur'], q: ['"landed cost"', '"is there a" sourcing', 'alibaba "how do i"'] },
-  getecoback:   { subs: ['de', 'Finanzen'], q: ['Klimaanlage Mietwohnung', 'Luftentfeuchter Empfehlung', 'Heizlüfter Stromkosten'] },
-};
+const VERTICAL = WL.vertical;   // 名单在 tools/fleet/reddit_watchlist.json,含每个板块的 why
 
 async function fetchRedditVertical() {
   const out = [];
@@ -100,10 +124,12 @@ async function fetchRedditVertical() {
       const q = encodeURIComponent(cfg.q.join(' OR '));
       const u = `https://www.reddit.com/r/${sub}/search.json?q=${q}&restrict_sr=1&sort=new&t=month&limit=25`;
       try {
-        const r = await fetch(u, { headers: UA, signal: AbortSignal.timeout(20000) });
-        if (!r.ok) { errors.push(`r/${sub} HTTP ${r.status}`); continue; }
-        for (const it of parseRedditListing(await r.json(), 24 * 31)) out.push({ ...it, site });
-      } catch (e) { errors.push(`r/${sub} ${String(e.message || e).slice(0, 60)}`); }
+        const r = await rfetch(u);
+        if (!r.ok) { errors.push(`r/${sub} HTTP ${r.status}`); noteBoard(sub, `vertical:${site}`, false, r.status, []); continue; }
+        const items = parseRedditListing(await r.json(), 24 * 31);
+        noteBoard(sub, `vertical:${site}`, true, r.status, items);
+        for (const it of items) out.push({ ...it, site });
+      } catch (e) { errors.push(`r/${sub} ${String(e.message || e).slice(0, 60)}`); noteBoard(sub, `vertical:${site}`, false, 0, []); }
     }
   }
   if (!out.length) throw new Error(errors.length ? errors.join('; ').slice(0, 160) : 'zero posts across all vertical searches');
@@ -113,13 +139,39 @@ async function fetchRedditVertical() {
 
 async function fetchRedditRequests() {
   const out = [];
-  for (const sub of ['SomebodyMakeThis', 'AppIdeas']) {
-    const r = await fetch(`https://www.reddit.com/r/${sub}/new.json?limit=50`, { headers: UA, signal: AbortSignal.timeout(20000) });
-    if (!r.ok) throw new Error(`r/${sub} HTTP ${r.status}`);
-    out.push(...parseRedditListing(await r.json(), 48));
+  const errors = [];
+  for (const b of WL.request_boards) {
+    try {
+      const r = await rfetch(`https://www.reddit.com/r/${b.sub}/new.json?limit=50`);
+      if (!r.ok) { errors.push(`r/${b.sub} HTTP ${r.status}`); noteBoard(b.sub, 'request', false, r.status, []); continue; }
+      const items = parseRedditListing(await r.json(), b.hours || 48);
+      noteBoard(b.sub, 'request', true, r.status, items);
+      out.push(...items);
+    } catch (e) { errors.push(`r/${b.sub} ${String(e.message || e).slice(0, 60)}`); noteBoard(b.sub, 'request', false, 0, []); }
   }
-  if (!out.length) throw new Error('both listings parsed but zero posts in 48h');
-  return out.slice(0, 60);
+  if (!out.length) throw new Error(errors.length ? errors.join('; ').slice(0, 160) : 'listings parsed but zero posts in window');
+  if (errors.length) out.errors = errors;
+  return out.slice(0, 120);
+}
+
+// 大板块里用「求做」句式搜(2026-09-13):r/Entrepreneur 这类板块本身不是请求板,但
+// 「is there a tool that…」这种帖子是最接近购买意图的需求形态。周窗、按新、每板一次请求。
+async function fetchRedditWish() {
+  const out = [];
+  const errors = [];
+  const q = encodeURIComponent(WL.wish_phrases.join(' OR '));
+  for (const b of WL.wish_boards) {
+    try {
+      const r = await rfetch(`https://www.reddit.com/r/${b.sub}/search.json?q=${q}&restrict_sr=1&sort=new&t=week&limit=25`);
+      if (!r.ok) { errors.push(`r/${b.sub} HTTP ${r.status}`); noteBoard(b.sub, 'wish', false, r.status, []); continue; }
+      const items = parseRedditListing(await r.json(), 24 * 8).filter((i) => WISH_RE.test(i.title));
+      noteBoard(b.sub, 'wish', true, r.status, items);
+      out.push(...items);
+    } catch (e) { errors.push(`r/${b.sub} ${String(e.message || e).slice(0, 60)}`); noteBoard(b.sub, 'wish', false, 0, []); }
+  }
+  if (!out.length) throw new Error(errors.length ? errors.join('; ').slice(0, 160) : 'zero request-shaped posts across wish boards this week');
+  if (errors.length) out.errors = errors;
+  return out.slice(0, 120);
 }
 
 
@@ -132,7 +184,15 @@ if (process.argv.includes('--selftest')) {
     { data: { selftext: 'no title, must be dropped', created_utc: now } },
   ] } };
   const items = parseRedditListing(fx, 48);
+  const allSubs = [...WL.request_boards.map((b) => b.sub), ...WL.wish_boards.map((b) => b.sub), ...Object.values(WL.vertical).flatMap((v) => v.subs)];
+  const rollup = rollupBoards([{ d: '2026-09-01', boards: { X: { ok: true, n: 5, r: 1 } } }, { d: '2026-09-02', boards: { X: { ok: true, n: 3, r: 0 } } }], { X: { list: 'wish', ok: true, status: 200, items: 3, requests: 0 } }, {});
   const checks = [
+    ['watchlist: 名单加载且板块名不重复', allSubs.length > 10 && new Set(allSubs).size === allSubs.length],
+    ['watchlist: 每个 vertical 站有 subs 与 q', Object.values(WL.vertical).every((v) => v.subs.length && v.q.length && v.why)],
+    ['watchlist: wish 句式非空', WL.wish_phrases.length >= 5],
+    ['WISH_RE: 命中求做句式', WISH_RE.test('Is there a tool that tracks free tier limits?') && WISH_RE.test('I wish there was an app for this')],
+    ['WISH_RE: 不命中晒作品', !WISH_RE.test('I built a tool that tracks free tier limits') && !WISH_RE.test('Show HN: my new app')],
+    ['rollup: 14 天累计与 demote 门(2 天不够 14 → 不 demote)', rollup.X.days_ok_14d === 2 && rollup.X.items_14d === 8 && rollup.X.requests_14d === 1 && rollup.X.demote === false],
     ['48h 窗口 + 无标题过滤 → 2 条', items.length === 2],
     ['permalink 拼成绝对地址', items[0].url === 'https://www.reddit.com/r/SomebodyMakeThis/comments/x1/'],
     ['bpj 词表命中 free tier / chatgpt', NICHES.baipiaoji.some((k) => hit(`${items[0].title} ${items[0].blurb}`, k))],
@@ -150,6 +210,8 @@ for (const [name, fn] of [
   ['producthunt', fetchProductHunt],
   ['reddit_requests', fetchRedditRequests],
   ['reddit_vertical', fetchRedditVertical],
+  ['reddit_wish', fetchRedditWish],
+  ['hn_ask', () => fetchHNAsk(7 * 24)],
   ['hn_show', () => fetchHN('show_hn', 36)],
   ['hn_top_ai', async () => (await fetchHN('story', 36)).filter((i) => NICHES.agiscorecard.some((k) => hit(i.title, k))).slice(0, 20)],
 ]) {
@@ -158,6 +220,18 @@ for (const [name, fn] of [
   } catch (e) {
     sources[name] = { ok: false, reason: String(e.message || e).slice(0, 120), items: [] };
   }
+}
+
+// 候选 idea 源探针(2026-09-13,owner:「producthunt 等创业网站 idea?」):只报状态不入库。
+// 会话读到 200 后再写解析器;零编造——不假设某个 feed 存在。
+const feedProbes = {};
+for (const [name, u] of Object.entries(WL.feed_probes || {})) {
+  if (name === 'note') continue;
+  try {
+    const r = await fetch(u, { headers: UA, signal: AbortSignal.timeout(15000), redirect: 'follow' });
+    const ct = r.headers.get('content-type') || '';
+    feedProbes[name] = { url: u, status: r.status, type: ct.slice(0, 40), bytes: (await r.text()).length };
+  } catch (e) { feedProbes[name] = { url: u, status: 0, error: String(e.message || e).slice(0, 60) }; }
 }
 
 // 便签:各站词表命中(仅扫标题+简介;空命中很正常,不硬凑)
@@ -176,23 +250,41 @@ try {
 const cutoff = new Date(Date.now() - 14 * 864e5).toISOString().slice(0, 10);
 history = history.filter((h) => h.d >= cutoff && h.d !== today);
 history.push({ d: today, ph_titles: (sources.producthunt.items || []).map((i) => i.title).slice(0, 30),
-  reddit_titles: ((sources.reddit_requests || {}).items || []).map((i) => i.title).slice(0, 30),
-  vertical: ((sources.reddit_vertical || {}).items || []).map((i) => ({ s: i.site, t: i.title })).slice(0, 60) });
+  reddit_titles: [...((sources.reddit_requests || {}).items || []), ...((sources.reddit_wish || {}).items || [])].map((i) => i.title).slice(0, 60),
+  vertical: ((sources.reddit_vertical || {}).items || []).map((i) => ({ s: i.site, t: i.title, b: i.sub })).slice(0, 80),
+  boards: Object.fromEntries(Object.entries(boardStats).map(([k, v]) => [k, { ok: v.ok, n: v.items, r: v.requests }])) });
 
 // 重现计数:同一问题(标题归一化后)在 14 天 history 里出现于 ≥2 个不同日期 = 「每隔几周又问」。
 // 这才是需求;单日一条热帖不是。归一化只做小写 + 去标点 + 压空白,不做语义合并——宁可漏,不硬凑。
 const seen = {};
+const boardOf = {};
 for (const h of history) for (const v of (h.vertical || [])) {
   const k = `${v.s}|${normTitle(v.t)}`;
   (seen[k] ||= new Set()).add(h.d);
+  if (v.b) boardOf[k] = v.b;
 }
 const redditRecurring = {};
+const recurringByBoard = {};
 for (const [k, days] of Object.entries(seen)) if (days.size >= 2) {
   const [site, t] = k.split('|');
-  (redditRecurring[site] ||= []).push({ title: t, days: [...days].sort() });
+  (redditRecurring[site] ||= []).push({ title: t, days: [...days].sort(), sub: boardOf[k] || '' });
+  if (boardOf[k]) recurringByBoard[boardOf[k]] = (recurringByBoard[boardOf[k]] || 0) + 1;
 }
+// 板块产出榜(14 天 history):按数据淘汰名单。demote 只是标记,删除由会话执行并记进 watchlist。
+export function rollupBoards(history, stats, recurringByBoard) {
+  const out = {};
+  for (const [sub, v] of Object.entries(stats)) {
+    let daysOk = 0, items = 0, requests = 0;
+    for (const h of history) { const b = (h.boards || {})[sub]; if (b && b.ok) { daysOk++; items += b.n | 0; requests += b.r | 0; } }
+    const rec = recurringByBoard[sub] || 0;
+    out[sub] = { list: v.list, today_ok: v.ok, today_status: v.status, days_ok_14d: daysOk, items_14d: items, requests_14d: requests, recurring_14d: rec,
+      demote: daysOk >= 14 && rec === 0 && requests < 10 };
+  }
+  return out;
+}
+const boardRollup = rollupBoards(history, boardStats, recurringByBoard);
 
 mkdirSync('data', { recursive: true });
-writeFileSync(OUT, JSON.stringify({ fetched: today, sources, niche_hits: nicheHits, reddit_recurring: redditRecurring, history }, null, 1));
+writeFileSync(OUT, JSON.stringify({ fetched: today, sources, niche_hits: nicheHits, reddit_recurring: redditRecurring, board_stats: boardRollup, feed_probes: feedProbes, watchlist_updated: WL.updated, history }, null, 1));
 const oks = Object.entries(sources).map(([k, v]) => `${k}:${v.ok ? v.items.length : 'FAIL ' + v.reason}`).join(' | ');
 console.log(`startup-radar ${today} → ${oks}`);

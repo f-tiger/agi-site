@@ -109,7 +109,7 @@ def match(radar, rising, covered, supply, today):
     for it in ((src.get("reddit_vertical") or {}).get("items") or []):
         cands.append({"theme": norm(it.get("title")), "site": it.get("site") or "", "kind": "vertical", "sub": it.get("sub") or "",
                       "points": it.get("points") or 0, "comments": it.get("comments") or 0, "published": it.get("published") or ""})
-    for it in ((src.get("reddit_requests") or {}).get("items") or []):
+    for it in [*(((src.get("reddit_requests") or {}).get("items") or [])), *(((src.get("reddit_wish") or {}).get("items") or [])), *(((src.get("hn_ask") or {}).get("items") or []))]:
         cands.append({"theme": norm(it.get("title")), "site": "", "kind": "request-board", "sub": it.get("sub") or "",
                       "points": it.get("points") or 0, "comments": it.get("comments") or 0, "published": it.get("published") or ""})
     for site, rows in recurring.items():  # recurring themes that are not in today's listing still count
@@ -209,7 +209,7 @@ def main(argv):
             supply.append({"title": it.get("title"), "url": it.get("url"), "src": name})
     rising = {s: rising_rows(s) for s in SITES}
     covered = {s: covered_rows(s) for s in SITES}
-    reddit_ok = {k: bool((src.get(k) or {}).get("ok")) for k in ("reddit_requests", "reddit_vertical")}
+    reddit_ok = {k: bool((src.get(k) or {}).get("ok")) for k in ("reddit_requests", "reddit_wish", "reddit_vertical", "hn_ask")}
     out, counts = match(radar, rising, covered, supply, today)
     snap = {"generated": today.isoformat(), "radar_fetched": radar.get("fetched"), "reddit_sources_ok": reddit_ok,
             "note": "Derived facts only: no Reddit post text, bodies or permalinks are stored here or published. "

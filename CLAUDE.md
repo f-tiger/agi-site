@@ -489,3 +489,12 @@ owner 决策卡、事实表)。
   同类(小体量内部指标化,风险是限流不是诉讼)。**处置:内部读取保留、永不转载;owner 若要连内部读取也关,
   删 `startup_radar.mjs` 的两个 reddit 源即可,匹配器自动退化。** Reddit 源连续 14 天 ok:false → 直接停,不绕过。
 - **别再提**:Reddit 撮合子域、转载帖文、真人撮合/联系双方、付费 listing、AI 生成商业计划、请求→商品的联盟映射。
+- **板块名单(owner 同日:「监控好 Reddit 合适的板块,监控好板块比什么都合适」)**:名单外置到
+  **`tools/fleet/reddit_watchlist.json`**(每个板块带 why),三层:①request 板(SomebodyMakeThis / AppIdeas /
+  Lightbulb / software,48h 新帖)②大板块 wish 句式搜索(Entrepreneur / smallbusiness / startups / SaaS /
+  SideProject / indiehackers,周窗,只留 `WISH_RE` 命中的求做帖)③六站垂直板块(共 26 个)。**~36 次请求/日,
+  串行 6.5 s 间隔,绝不并发绝不换 IP**。每板每日产出进 `startup-radar.json.board_stats`(14 天:ok 天数、帖子、
+  求做形、贡献的重现主题),摘要里有「板块产出榜」;**ok ≥14 天且 0 重现且求做帖 <10 → 机器标 demote,
+  会话来删并记进 watchlist**;404 原样记录,不猜名字。创业站 idea 源:PH featured + HN Show/AI 已有,
+  **新增 Ask HN「is there a」周窗**;BetaList / Indie Hackers / PH 主题 feed / YC RFS 只做**探针**
+  (`feed_probes`,报状态不入库),runner 读到 200 再写解析器——不假设 feed 存在。

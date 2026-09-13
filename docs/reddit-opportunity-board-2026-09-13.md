@@ -72,3 +72,12 @@ Reddit 读取(公开 `.json`,未登录,不绕过任何技术措施,约 20 次/�
 - GummySearch 2025-11-30 停服:[reddily.io](https://reddily.io/blog/gummysearch-alternatives)、[painmap.io](https://painmap.io/blog/gummysearch-alternatives-2026/)。
 - Reddit 诉 Perplexity/SerpApi/Oxylabs/AWMProxy(2025-10-22)与诉 Anthropic(2025-06):[CNBC](https://www.cnbc.com/2025/10/23/reddit-user-data-battle-ai-industry-sues-perplexity-scraping-posts-openai-chatgpt-google-gemini-lawsuit.html)、[Search Engine Land](https://searchengineland.com/reddit-sues-perplexity-serpapi-scraping-google-463681)、[Built In](https://builtin.com/articles/reddit-perplexity-data-scraping-lawsuit)。
 - 同类工具现状(PainOnSocial / BigIdeasDB / Trend Seeker / IdeaPicker,全部 AI 摘要 + 付费):[topai.tools](https://topai.tools/alternatives/gummysearch)、[painonsocial.com](https://painonsocial.com/blog/gummysearch-alternative)。
+
+## 六、同日追加:板块名单本身成为数据(owner:「监控好板块比什么都合适」)
+
+名单外置到 `tools/fleet/reddit_watchlist.json`,每个板块写明 why;三层共 36 个板块/日,串行 6.5 s 间隔。
+每板每日产出写进 `board_stats`(14 天 ok 天数、帖子、求做形帖子、贡献的重现主题),摘要出「板块产出榜」。
+淘汰规则预登记:ok ≥14 天且重现 0 且求做帖 <10 → 标 demote(机器只标,会话删并记录);404 原样记录。
+创业站 idea 源:新增 Ask HN「is there a」周窗(Algolia,稳定);BetaList / Indie Hackers / PH 主题 feed /
+YC RFS 只探针不入库。**首份 board_stats 在今天 fleet-trends 计划运行之后**;14 天后(2026-09-27)第一次能按
+数据谈「哪些板块值得留」,在此之前名单是假设不是结论。
