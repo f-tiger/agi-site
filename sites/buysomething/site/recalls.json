@@ -1,0 +1,544 @@
+{
+ "generated": "2026-09-13",
+ "window_days": 365,
+ "since": "2025-09-13",
+ "sources": {
+  "cpsc": "https://www.saferproducts.gov/RestWebServices/Recall (official CPSC API)",
+  "eu_safety_gate": "not wired: probed URL serves HTML, JSON endpoint unconfirmed (2026-09-13)"
+ },
+ "note": "Official records only, matched by title keyword; a hit means the keyword appears in a recall title in the window, not that a specific supplier or SKU is affected.",
+ "picks": {
+  "led-mask": {
+   "n": 0,
+   "latest": null,
+   "items": [],
+   "keywords": [
+    "light therapy",
+    "LED mask"
+   ],
+   "stale": false
+  },
+  "pet-fountain": {
+   "n": 0,
+   "latest": null,
+   "items": [],
+   "keywords": [
+    "pet fountain",
+    "water fountain"
+   ],
+   "stale": false
+  },
+  "pet-feeder": {
+   "n": 0,
+   "latest": null,
+   "items": [],
+   "keywords": [
+    "pet feeder",
+    "automatic feeder"
+   ],
+   "stale": false
+  },
+  "litter-box": {
+   "n": 0,
+   "latest": null,
+   "items": [],
+   "keywords": [
+    "litter box"
+   ],
+   "stale": false
+  },
+  "robot-pet": {
+   "n": 2,
+   "latest": "2026-01-29",
+   "items": [
+    {
+     "id": 10584,
+     "date": "2026-01-29",
+     "title": "Hobby Lobby Recalls Giraffe and Llama Plush Toys with Clips Due to Choking Hazard",
+     "hazard": "The legs of the plush toy can detach from the body allowing the release of small beads that are on the legs, posing a ch",
+     "url": "https://www.cpsc.gov/Recalls/2026/Hobby-Lobby-Recalls-Giraffe-and-Llama-Plush-Toys-with-Clips-Due-to-Choking-Hazard"
+    },
+    {
+     "id": 10585,
+     "date": "2026-01-29",
+     "title": "Hobby Lobby Recalls Giraffe and Llama Plush Toys with Clips Due to Drowning Hazard; Manufactured by Starmatrix Group Drowning Hazard; Manufa",
+     "hazard": "The compression strap that surrounds the outside of the pool legs may create a foothold, allowing a child access to the ",
+     "url": "https://www.cpsc.gov/Recalls/2026/Sunneday-and-Blue-Bay-Above-Ground-Pools-48-Inches-and-Taller-Recalled-Due-to-Drowning-Hazard-Manufactured-by-Starmatrix-Group"
+    }
+   ],
+   "keywords": [
+    "robot toy",
+    "plush toy",
+    "companion robot"
+   ],
+   "stale": false
+  },
+  "solar-storage": {
+   "n": 0,
+   "latest": null,
+   "items": [],
+   "keywords": [
+    "portable power station",
+    "lithium battery"
+   ],
+   "stale": false
+  },
+  "smart-plug": {
+   "n": 3,
+   "latest": "2026-03-26",
+   "items": [
+    {
+     "id": 10676,
+     "date": "2026-03-26",
+     "title": "CCCEI Brand Power Strips Recalled Due to Risk of Serious Injury or Death from Fire; Sold by Middle Way Electronics",
+     "hazard": "The power strips do not contain supplementary overcurrent protection, which creates a risk of fire if the power strips a",
+     "url": "https://www.cpsc.gov/Recalls/2026/CCCEI-Brand-Power-Strips-Recalled-Due-to-Risk-of-Serious-Injury-or-Death-from-Fire-Sold-by-Middle-Way-Electronics"
+    },
+    {
+     "id": 10563,
+     "date": "2026-01-15",
+     "title": "HEZI Brand Power Strips Recalled Due to Risk of Serious Injury or Death from Electrocution; Sold by HEZI HOME",
+     "hazard": "The power strips have an ungrounded metal enclosure that poses an electrocution hazard if energized, resulting in seriou",
+     "url": "https://www.cpsc.gov/Recalls/2026/HEZI-Brand-Power-Strips-Recalled-Due-to-Risk-of-Serious-Injury-or-Death-from-Electrocution-Sold-by-HEZI-HOME"
+    },
+    {
+     "id": 10536,
+     "date": "2025-12-18",
+     "title": "ANNQUAN Brand Power Strips Recalled Due to Risk of Serious Injury or Death from Fire; Sold on Amazon by Hefei Juyuan Sporting Development",
+     "hazard": "The power strips do not contain supplementary overcurrent protection, which creates a risk of fire if the power strips a",
+     "url": "https://www.cpsc.gov/Recalls/2026/ANNQUAN-Brand-Power-Strips-Recalled-Due-to-Risk-of-Serious-Injury-or-Death-from-Fire-Sold-on-Amazon-by-Hefei-Juyuan-Sporting-Development"
+    }
+   ],
+   "keywords": [
+    "smart plug",
+    "power strip"
+   ],
+   "stale": false
+  },
+  "spin-scrubber": {
+   "n": 0,
+   "latest": null,
+   "items": [],
+   "keywords": [
+    "spin scrubber",
+    "electric scrubber"
+   ],
+   "stale": false
+  },
+  "carpet-cleaner": {
+   "n": 0,
+   "latest": null,
+   "items": [],
+   "keywords": [
+    "carpet cleaner",
+    "spot cleaner"
+   ],
+   "stale": false
+  },
+  "flip-straw-bottle": {
+   "n": 1,
+   "latest": "2026-05-07",
+   "items": [
+    {
+     "id": 10763,
+     "date": "2026-05-07",
+     "title": "Analemma Water Bottles Recalled Due to Risk of Serious Injury or Death from Laceration and Ingestion Hazards; Imported by New Earth Technolo",
+     "hazard": "The recalled water bottle's inner glass liner can break, posing a risk of serious injury or death from laceration and in",
+     "url": "https://www.cpsc.gov/Recalls/2026/Analemma-Water-Bottles-Recalled-Due-to-Risk-of-Serious-Injury-or-Death-from-Laceration-and-Ingestion-Hazards-Imported-by-New-Earth-Technologies-d-o-o"
+    }
+   ],
+   "keywords": [
+    "water bottle",
+    "tumbler lid"
+   ],
+   "stale": false
+  },
+  "heatless-curler": {
+   "n": 1,
+   "latest": "2025-10-23",
+   "items": [
+    {
+     "id": 10447,
+     "date": "2025-10-23",
+     "title": "J & D Brush Recalls Bio Ionic Hair Curling Irons Due to Burn Hazard",
+     "hazard": "The barrel of the curling iron can snap and detach, posing a burn hazard to consumers.",
+     "url": "https://www.cpsc.gov/Recalls/2026/J-D-Brush-Recalls-Bio-Ionic-Hair-Curling-Irons-Due-to-Burn-Hazard"
+    }
+   ],
+   "keywords": [
+    "hair curler",
+    "curling"
+   ],
+   "stale": false
+  },
+  "hair-dryer": {
+   "n": 3,
+   "latest": "2026-09-10",
+   "items": [
+    {
+     "id": 10970,
+     "date": "2026-09-10",
+     "title": "Guang Zhou Recalls Wantefully Hair Dryer Brushes Due to Risk of Serious Injury or Death from Electrocution, Shock and Burn Hazards; Violate ",
+     "hazard": "The recalled hair dryer brushes are in violation of federal regulations for hair dryers as they lack an integrated immer",
+     "url": "https://www.cpsc.gov/Recalls/2026/Guang-Zhou-Recalls-Wantefully-Hair-Dryer-Brushes-Due-to-Risk-of-Serious-Injury-or-Death-from-Electrocution-Shock-and-Burn-Hazards-Violate-Federal-Regulations"
+    },
+    {
+     "id": 10974,
+     "date": "2026-09-10",
+     "title": "Junkins Recalls DHASUWT Hair Dryer Brushes Due to Risk of Serious Injury or Death from Electrocution, and Shock Hazards; Violate Federal Reg",
+     "hazard": "The recalled hair dryer brushes lack an integrated immersion protection device, which presents a substantial product haz",
+     "url": "https://www.cpsc.gov/Recalls/2026/Junkins-Recalls-DHASUWT-Hair-Dryer-Brushes-Due-to-Risk-of-Serious-Injury-or-Death-from-Electrocution-and-Shock-Hazards-Violate-Federal-Regulations-Smoking-and-Fire-Hazards"
+    },
+    {
+     "id": 10506,
+     "date": "2025-11-26",
+     "title": "McLee Creations Recalls MyOnlyStyler Root Booster Hair Dryers Due to Risk of Serious Injury or Death from Electrocution and Shock Hazards",
+     "hazard": "The handheld hair dryers lack an immersion protection device, which presents a substantial product hazard to consumers, ",
+     "url": "https://www.cpsc.gov/Recalls/2026/McLee-Creations-Recalls-MyOnlyStyler-Root-Booster-Hair-Dryers-Due-to-Risk-of-Serious-Injury-or-Death-from-Electrocution-and-Shock-Hazards"
+    }
+   ],
+   "keywords": [
+    "hair dryer"
+   ],
+   "stale": false
+  },
+  "massage-gun": {
+   "n": 0,
+   "latest": null,
+   "items": [],
+   "keywords": [
+    "massage gun",
+    "massager"
+   ],
+   "stale": false
+  },
+  "leg-boots": {
+   "n": 0,
+   "latest": null,
+   "items": [],
+   "keywords": [
+    "compression",
+    "leg massager"
+   ],
+   "stale": false
+  },
+  "solar-camp-lights": {
+   "n": 1,
+   "latest": "2026-01-15",
+   "items": [
+    {
+     "id": 10557,
+     "date": "2026-01-15",
+     "title": "Energizer Recalls Rechargeable Lanterns Due to Overheating",
+     "hazard": "The lithium-ion batteries installed in the lanterns can overheat, posing a burn hazard to consumers.",
+     "url": "https://www.cpsc.gov/Recalls/2026/Energizer-Recalls-Rechargeable-Lanterns-Due-to-Overheating"
+    }
+   ],
+   "keywords": [
+    "solar light",
+    "string light",
+    "lantern"
+   ],
+   "stale": false
+  },
+  "moon-chair": {
+   "n": 0,
+   "latest": null,
+   "items": [],
+   "keywords": [
+    "camping chair",
+    "folding chair"
+   ],
+   "stale": false
+  },
+  "blender-bottle": {
+   "n": 0,
+   "latest": null,
+   "items": [],
+   "keywords": [
+    "portable blender",
+    "blender"
+   ],
+   "stale": false
+  },
+  "veg-chopper": {
+   "n": 0,
+   "latest": null,
+   "items": [],
+   "keywords": [
+    "vegetable chopper",
+    "slicer"
+   ],
+   "stale": false
+  },
+  "cable-powerbank": {
+   "n": 7,
+   "latest": "2026-09-03",
+   "items": [
+    {
+     "id": 10939,
+     "date": "2026-09-03",
+     "title": "Truststone Group Recalls XO Poppy Power Trip Magnetic Wireless Power Banks Due to Fire and Burn Hazards; Sold Exclusively at TJX and Marshal",
+     "hazard": "The lithium-ion battery in the recalled power banks can overheat and ignite, posing fire and burn hazards to consumers.",
+     "url": "https://www.cpsc.gov/Recalls/2026/Truststone-Group-Recalls-XO-Poppy-Power-Trip-Magnetic-Wireless-Power-Banks-Due-to-Fire-and-Burn-Hazards-Sold-Exclusively-at-TJX-and-Marshalls-Stores"
+    },
+    {
+     "id": 10833,
+     "date": "2026-06-25",
+     "title": "Super Off-Road Solar Power Banks Recalled Due to Overheating; Imported by Spector & Co.",
+     "hazard": "The solar power bank's lithium-ion battery can swell and overheat, posing a burn hazard to consumers.",
+     "url": "https://www.cpsc.gov/Recalls/2026/Super-Off-Road-Solar-Power-Banks-Recalled-Due-to-Overheating-Imported-by-Spector-Co"
+    },
+    {
+     "id": 10706,
+     "date": "2026-04-09",
+     "title": "Shenzhen Baihang Recalls VEEKTOMX Mini Power Banks, Due to Fire and Burn Hazards; Sold on Amazon",
+     "hazard": "The lithium-ion battery in the recalled power banks can overheat and ignite, posing fire and burn hazards to consumers.",
+     "url": "https://www.cpsc.gov/Recalls/2026/Shenzhen-Baihang-Recalls-VEEKTOMX-Mini-Power-Banks-Due-to-Fire-and-Burn-Hazards-Sold-on-Amazon"
+    },
+    {
+     "id": 10516,
+     "date": "2025-12-05",
+     "title": "INIU Recalls Power Banks Due to Fire and Burn Hazards; Sold on Amazon",
+     "hazard": "The lithium-ion battery in the recalled power banks can overheat and ignite, posing fire and burn hazards to consumers.",
+     "url": "https://www.cpsc.gov/Recalls/2026/INIU-Recalls-Power-Banks-Due-to-Fire-and-Burn-Hazards-Sold-on-Amazon"
+    },
+    {
+     "id": 10484,
+     "date": "2025-11-13",
+     "title": "Belkin Recalls Portable Power Banks and Wireless Charging Stands Due to Fire and Burn Hazards",
+     "hazard": "The lithium-ion battery in the power banks and charging stands can overheat, posing fire and burn hazards to consumers.",
+     "url": "https://www.cpsc.gov/Recalls/2026/Belkin-Recalls-Portable-Power-Banks-and-Wireless-Charging-Stands-Due-to-Fire-and-Burn-Hazards"
+    }
+   ],
+   "keywords": [
+    "power bank",
+    "portable charger"
+   ],
+   "stale": false
+  },
+  "cosmetic-organizer": {
+   "n": 0,
+   "latest": null,
+   "items": [],
+   "keywords": [
+    "organizer",
+    "cosmetic"
+   ],
+   "stale": false
+  },
+  "mamian-skirt": {
+   "n": 1,
+   "latest": "2025-10-09",
+   "items": [
+    {
+     "id": 10430,
+     "date": "2025-10-09",
+     "title": "Children's LED Tutu Skirts Recalled Due to Risk of Serious Injury or Death from Battery Ingestion; Violates Mandatory Standard for Consumer ",
+     "hazard": "The recalled LED tutu skirts violate the mandatory standard for consumer products containing button cell or coin batteri",
+     "url": "https://www.cpsc.gov/Recalls/2026/Childrens-LED-Tutu-Skirts-Recalled-Due-to-Risk-of-Serious-Injury-or-Death-from-Battery-Ingestion-Violates-Mandatory-Standard-for-Consumer-Products-with-Coin-Batteries-Sold-on-Amazon-by-Bmrwtg"
+    }
+   ],
+   "keywords": [
+    "skirt",
+    "children's clothing"
+   ],
+   "stale": false
+  },
+  "panku-shirt": {
+   "n": 1,
+   "latest": "2026-05-07",
+   "items": [
+    {
+     "id": 10764,
+     "date": "2026-05-07",
+     "title": "Allura Imports Recalls Youth Sweatshirts with Bobcat Logo and Drawstrings Due to Risk of Serious Injury or Death from Strangulation Hazard; ",
+     "hazard": "The drawstrings in the recalled clothing can get caught on objects and cause death or serious injury to children from st",
+     "url": "https://www.cpsc.gov/Recalls/2026/Allura-Imports-Recalls-Youth-Sweatshirts-with-Bobcat-Logo-and-Drawstrings-Due-to-Risk-of-Serious-Injury-or-Death-from-Strangulation-Hazard-Violates-Federal-Regulations-for-Childrens-Upper-Outerwear"
+    }
+   ],
+   "keywords": [
+    "shirt",
+    "blouse"
+   ],
+   "stale": false
+  },
+  "tea-set": {
+   "n": 0,
+   "latest": null,
+   "items": [],
+   "keywords": [
+    "tea set",
+    "teapot",
+    "ceramic mug"
+   ],
+   "stale": false
+  },
+  "car-fridge": {
+   "n": 2,
+   "latest": "2026-06-11",
+   "items": [
+    {
+     "id": 10818,
+     "date": "2026-06-11",
+     "title": "Arctic Zone Titan Pro Coolers Recalled Due to Risk of Serious Injury or Death from Burn Hazard; Violates Mandatory Flammability Standards fo",
+     "hazard": "The recalled children's pajamas violate the mandatory flammability safety standard for children's sleepwear, posing a ri",
+     "url": "https://www.cpsc.gov/Recalls/2026/The-Black-Sheep-Fam-Recalls-Childrens-Pajamas-Due-to-Risk-of-Serious-Injury-or-Death-from-Burn-Hazard-Violates-Mandatory-Flammability-Standards-for-Childrens-Sleepwear"
+    },
+    {
+     "id": 10817,
+     "date": "2026-06-11",
+     "title": "Arctic Zone Titan Pro Coolers Recalled Due to Risk of Serious Injury or Death from Choking Hazard; Imported by California Innovations and So",
+     "hazard": "The recalled coolers' latch magnet can detach, posing risk of serious injury or death from a choking hazard.",
+     "url": "https://www.cpsc.gov/Recalls/2026/Arctic-Zone-Titan-Pro-Coolers-Recalled-Due-to-Risk-of-Serious-Injury-or-Death-from-Choking-Hazard-Imported-by-California-Innovations-and-Sold-at-Costco"
+    }
+   ],
+   "keywords": [
+    "portable refrigerator",
+    "car fridge",
+    "cooler"
+   ],
+   "stale": false
+  },
+  "rollator": {
+   "n": 5,
+   "latest": "2026-08-27",
+   "items": [
+    {
+     "id": 10962,
+     "date": "2026-08-27",
+     "title": "Kmaier Recalls Infant Walkers Due to Risk of Serious Injury or Death from Fall Hazard; Violate Mandatory Standard for Infant Walkers",
+     "hazard": "The recalled walkers violate the mandatory standard for infant walkers because they can fit through a standard doorway a",
+     "url": "https://www.cpsc.gov/Recalls/2026/Kmaier-Recalls-Infant-Walkers-Due-to-Risk-of-Serious-Injury-or-Death-from-Fall-Hazard-Violate-Mandatory-Standard-for-Infant-Walkers?utm_campaign=&utm_content=&utm_medium=email&utm_source=govdelivery&utm_term=20260827"
+    },
+    {
+     "id": 10901,
+     "date": "2026-08-06",
+     "title": "Wnttmt Baby Walkers Recalled Due to Risk of Serious Injury or Death from Fall and Entrapment Hazards; Violate Mandatory Standard for Infant ",
+     "hazard": "The recalled infant walkers violate the mandatory standard for infant walkers because they can fit through a standard do",
+     "url": "https://www.cpsc.gov/Recalls/2026/Wnttmt-Baby-Walkers-Recalled-Due-to-Risk-of-Serious-Injury-or-Death-from-Fall-and-Entrapment-Hazards-Violate-Mandatory-Standard-for-Infant-Walkers-Sold-on-Amazon-by-WURUI-BABY"
+    },
+    {
+     "id": 10857,
+     "date": "2026-07-09",
+     "title": "WonderStone Infant Walkers Recalled Due to Risk of Serious Injury or Death from Fall Hazard; Violate Mandatory Standard for Infant Walkers; ",
+     "hazard": "The recalled infant walkers violate the mandatory standard for infant walkers because they can fit through a standard do",
+     "url": "https://www.cpsc.gov/Recalls/2026/WonderStone-Infant-Walkers-Recalled-Due-to-Risk-of-Serious-Injury-or-Death-from-Fall-Hazard-Violate-Mandatory-Standard-for-Infant-Walkers-Sold-on-Walmart-com-by-Wonder-Stone-Toys"
+    },
+    {
+     "id": 10665,
+     "date": "2026-03-19",
+     "title": "Infant Walkers Recalled Due to Risk of Serious Injury or Death from Fall Hazard; Violate Mandatory Standard for Infant Walkers; Sold on Amaz",
+     "hazard": "The recalled infant walkers violate the mandatory standard for infant walkers because they can fit through a standard do",
+     "url": "https://www.cpsc.gov/Recalls/2026/Infant-Walkers-Recalled-Due-to-Risk-of-Serious-Injury-or-Death-from-Fall-Hazard-Violate-Mandatory-Standard-for-Infant-Walkers-Sold-on-Amazon-by-Goregent-Official-Store"
+    },
+    {
+     "id": 10520,
+     "date": "2025-12-11",
+     "title": "Uuoeebb Infant Walkers Recalled Due to Risk of Serious Injury or Death from Fall and Entrapment Hazards; Violate Mandatory Standard for Infa",
+     "hazard": "The recalled infant walkers violate the mandatory standard for infant walkers because they can fit through a standard do",
+     "url": "https://www.cpsc.gov/Recalls/2026/Uuoeebb-Infant-Walkers-Recalled-Due-to-Risk-of-Serious-Injury-or-Death-from-Fall-and-Entrapment-Hazards-Violate-Mandatory-Standard-for-Infant-Walkers-Sold-on-Amazon-by-BaoD"
+    }
+   ],
+   "keywords": [
+    "rollator",
+    "walker"
+   ],
+   "stale": false
+  },
+  "pill-organizer": {
+   "n": 0,
+   "latest": null,
+   "items": [],
+   "keywords": [
+    "pill organizer",
+    "pill dispenser"
+   ],
+   "stale": false
+  },
+  "walking-pad": {
+   "n": 1,
+   "latest": "2026-01-22",
+   "items": [
+    {
+     "id": 10569,
+     "date": "2026-01-22",
+     "title": "Johnson Health Tech Expands Recall to Include Matrix Retail and Vision Treadmills Due to Fire Hazard",
+     "hazard": "The power cord can become loose from the treadmill's power socket, posing a fire hazard.",
+     "url": "https://www.cpsc.gov/Recalls/2026/Johnson-Health-Tech-Expands-Recall-to-Include-Matrix-Retail-and-Vision-Treadmills-Due-to-Fire-Hazard"
+    }
+   ],
+   "keywords": [
+    "treadmill",
+    "walking pad"
+   ],
+   "stale": false
+  },
+  "bottle-warmer": {
+   "n": 1,
+   "latest": "2026-06-04",
+   "items": [
+    {
+     "id": 10803,
+     "date": "2026-06-04",
+     "title": "TOMY Recalls Boon NURSH 8 oz Reusable Baby Bottles Due to Choking Hazard; Sold at Walmart",
+     "hazard": "The hard plastic outer shell can bubble or partially peel off, resulting in loose pieces of film-like plastic that pose ",
+     "url": "https://www.cpsc.gov/Recalls/2026/TOMY-Recalls-Boon-NURSH-8-oz-Reusable-Baby-Bottles-Due-to-Choking-Hazard-Sold-at-Walmart"
+    }
+   ],
+   "keywords": [
+    "bottle warmer",
+    "baby bottle"
+   ],
+   "stale": false
+  },
+  "pruning-set": {
+   "n": 1,
+   "latest": "2025-10-30",
+   "items": [
+    {
+     "id": 10464,
+     "date": "2025-10-30",
+     "title": "Milwaukee Tool Recalls M18 FUEL 14\" and 12\" Top Handle Chainsaws Due to Laceration Hazard",
+     "hazard": "The recalled chainsaw's chain brake may not activate, posing a laceration hazard.",
+     "url": "https://www.cpsc.gov/Recalls/2026/Milwaukee-Tool-Recalls-M18-FUEL-14-and-12-Top-Handle-Chainsaws-Due-to-Laceration-Hazard"
+    }
+   ],
+   "keywords": [
+    "pruning",
+    "chainsaw",
+    "mini saw"
+   ],
+   "stale": false
+  },
+  "aroma-diffuser": {
+   "n": 0,
+   "latest": null,
+   "items": [],
+   "keywords": [
+    "diffuser",
+    "aroma"
+   ],
+   "stale": false
+  },
+  "vac-consumables": {
+   "n": 1,
+   "latest": "2026-07-02",
+   "items": [
+    {
+     "id": 10845,
+     "date": "2026-07-02",
+     "title": "Rowenta Recalls Cordless Vacuum Cleaners Due to Risk of Serious Injury from Fire and Burn Hazards",
+     "hazard": "The recalled lithium-ion battery in the vacuum cleaner can overheat and ignite, posing a risk of serious injury from fir",
+     "url": "https://www.cpsc.gov/Recalls/2026/Rowenta-Recalls-Cordless-Vacuum-Cleaners-Due-to-Risk-of-Serious-Injury-from-fire-and-Burn-Hazards"
+    }
+   ],
+   "keywords": [
+    "vacuum filter",
+    "vacuum cleaner"
+   ],
+   "stale": false
+  }
+ },
+ "failed_keywords": []
+}

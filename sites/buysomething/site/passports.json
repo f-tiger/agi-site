@@ -1,0 +1,506 @@
+{
+ "generated": "2026-09-13",
+ "source": "https://hts.usitc.gov/reststop (official USITC HTS REST API)",
+ "s301_lookup": "https://ustr.gov/issue-areas/enforcement/section-301-investigations/tariff-actions",
+ "disclaimer": "Candidate headings chosen by category reading; not a classification ruling. The importer of record classifies; confirm with a licensed broker.",
+ "picks": {
+  "led-mask": {
+   "heading": "9018",
+   "candidate": "9018.20",
+   "alt": "8543.70",
+   "candidate_htsno": null,
+   "candidate_description": null,
+   "general_rate": null,
+   "heading_general_rates": [],
+   "rows_in_heading": 1,
+   "s301": {
+    "status": "verify-on-ustr",
+    "url": "https://ustr.gov/issue-areas/enforcement/section-301-investigations/tariff-actions"
+   },
+   "as_of": "2026-09-13",
+   "stale": false
+  },
+  "pet-fountain": {
+   "heading": "8509",
+   "candidate": "8509.80",
+   "alt": "8413.70",
+   "candidate_htsno": null,
+   "candidate_description": null,
+   "general_rate": null,
+   "heading_general_rates": [],
+   "rows_in_heading": 1,
+   "s301": {
+    "status": "verify-on-ustr",
+    "url": "https://ustr.gov/issue-areas/enforcement/section-301-investigations/tariff-actions"
+   },
+   "as_of": "2026-09-13",
+   "stale": false
+  },
+  "pet-feeder": {
+   "heading": "8509",
+   "candidate": "8509.80",
+   "alt": "8543.70",
+   "candidate_htsno": null,
+   "candidate_description": null,
+   "general_rate": null,
+   "heading_general_rates": [],
+   "rows_in_heading": 1,
+   "s301": {
+    "status": "verify-on-ustr",
+    "url": "https://ustr.gov/issue-areas/enforcement/section-301-investigations/tariff-actions"
+   },
+   "as_of": "2026-09-13",
+   "stale": false
+  },
+  "litter-box": {
+   "heading": "8509",
+   "candidate": "8509.80",
+   "alt": "3924.90",
+   "candidate_htsno": null,
+   "candidate_description": null,
+   "general_rate": null,
+   "heading_general_rates": [],
+   "rows_in_heading": 1,
+   "s301": {
+    "status": "verify-on-ustr",
+    "url": "https://ustr.gov/issue-areas/enforcement/section-301-investigations/tariff-actions"
+   },
+   "as_of": "2026-09-13",
+   "stale": false
+  },
+  "robot-pet": {
+   "heading": "9503",
+   "candidate": "9503.00",
+   "alt": "8543.70",
+   "candidate_htsno": null,
+   "candidate_description": null,
+   "general_rate": null,
+   "heading_general_rates": [],
+   "rows_in_heading": 0,
+   "s301": {
+    "status": "verify-on-ustr",
+    "url": "https://ustr.gov/issue-areas/enforcement/section-301-investigations/tariff-actions"
+   },
+   "as_of": "2026-09-13",
+   "stale": false
+  },
+  "solar-storage": {
+   "heading": "8507",
+   "candidate": "8507.60",
+   "alt": "8504.40",
+   "candidate_htsno": null,
+   "candidate_description": null,
+   "general_rate": null,
+   "heading_general_rates": [],
+   "rows_in_heading": 1,
+   "s301": {
+    "status": "verify-on-ustr",
+    "url": "https://ustr.gov/issue-areas/enforcement/section-301-investigations/tariff-actions"
+   },
+   "as_of": "2026-09-13",
+   "stale": false
+  },
+  "smart-plug": {
+   "heading": "8536",
+   "candidate": "8536.69",
+   "alt": "8536.50",
+   "candidate_htsno": null,
+   "candidate_description": null,
+   "general_rate": null,
+   "heading_general_rates": [],
+   "rows_in_heading": 1,
+   "s301": {
+    "status": "verify-on-ustr",
+    "url": "https://ustr.gov/issue-areas/enforcement/section-301-investigations/tariff-actions"
+   },
+   "as_of": "2026-09-13",
+   "stale": false
+  },
+  "spin-scrubber": {
+   "heading": "8509",
+   "candidate": "8509.80",
+   "alt": "8467.29",
+   "candidate_htsno": null,
+   "candidate_description": null,
+   "general_rate": null,
+   "heading_general_rates": [],
+   "rows_in_heading": 1,
+   "s301": {
+    "status": "verify-on-ustr",
+    "url": "https://ustr.gov/issue-areas/enforcement/section-301-investigations/tariff-actions"
+   },
+   "as_of": "2026-09-13",
+   "stale": false
+  },
+  "carpet-cleaner": {
+   "heading": "8509",
+   "candidate": "8509.80",
+   "alt": "8508.11",
+   "candidate_htsno": null,
+   "candidate_description": null,
+   "general_rate": null,
+   "heading_general_rates": [],
+   "rows_in_heading": 1,
+   "s301": {
+    "status": "verify-on-ustr",
+    "url": "https://ustr.gov/issue-areas/enforcement/section-301-investigations/tariff-actions"
+   },
+   "as_of": "2026-09-13",
+   "stale": false
+  },
+  "flip-straw-bottle": {
+   "heading": "3924",
+   "candidate": "3924.10",
+   "alt": "7323.93",
+   "candidate_htsno": null,
+   "candidate_description": null,
+   "general_rate": null,
+   "heading_general_rates": [],
+   "rows_in_heading": 1,
+   "s301": {
+    "status": "verify-on-ustr",
+    "url": "https://ustr.gov/issue-areas/enforcement/section-301-investigations/tariff-actions"
+   },
+   "as_of": "2026-09-13",
+   "stale": false
+  },
+  "heatless-curler": {
+   "heading": "9615",
+   "candidate": "9615.90",
+   "alt": "6307.90",
+   "candidate_htsno": null,
+   "candidate_description": null,
+   "general_rate": null,
+   "heading_general_rates": [],
+   "rows_in_heading": 1,
+   "s301": {
+    "status": "verify-on-ustr",
+    "url": "https://ustr.gov/issue-areas/enforcement/section-301-investigations/tariff-actions"
+   },
+   "as_of": "2026-09-13",
+   "stale": false
+  },
+  "hair-dryer": {
+   "heading": "8516",
+   "candidate": "8516.31",
+   "alt": "8516.32",
+   "candidate_htsno": null,
+   "candidate_description": null,
+   "general_rate": null,
+   "heading_general_rates": [],
+   "rows_in_heading": 1,
+   "s301": {
+    "status": "verify-on-ustr",
+    "url": "https://ustr.gov/issue-areas/enforcement/section-301-investigations/tariff-actions"
+   },
+   "as_of": "2026-09-13",
+   "stale": false
+  },
+  "massage-gun": {
+   "heading": "9019",
+   "candidate": "9019.10",
+   "alt": "8509.80",
+   "candidate_htsno": null,
+   "candidate_description": null,
+   "general_rate": null,
+   "heading_general_rates": [],
+   "rows_in_heading": 1,
+   "s301": {
+    "status": "verify-on-ustr",
+    "url": "https://ustr.gov/issue-areas/enforcement/section-301-investigations/tariff-actions"
+   },
+   "as_of": "2026-09-13",
+   "stale": false
+  },
+  "leg-boots": {
+   "heading": "9019",
+   "candidate": "9019.10",
+   "alt": "9021.10",
+   "candidate_htsno": null,
+   "candidate_description": null,
+   "general_rate": null,
+   "heading_general_rates": [],
+   "rows_in_heading": 1,
+   "s301": {
+    "status": "verify-on-ustr",
+    "url": "https://ustr.gov/issue-areas/enforcement/section-301-investigations/tariff-actions"
+   },
+   "as_of": "2026-09-13",
+   "stale": false
+  },
+  "solar-camp-lights": {
+   "heading": "9405",
+   "candidate": "9405.41",
+   "alt": "9405.49",
+   "candidate_htsno": null,
+   "candidate_description": null,
+   "general_rate": null,
+   "heading_general_rates": [],
+   "rows_in_heading": 1,
+   "s301": {
+    "status": "verify-on-ustr",
+    "url": "https://ustr.gov/issue-areas/enforcement/section-301-investigations/tariff-actions"
+   },
+   "as_of": "2026-09-13",
+   "stale": false
+  },
+  "moon-chair": {
+   "heading": "9401",
+   "candidate": "9401.79",
+   "alt": "9401.71",
+   "candidate_htsno": null,
+   "candidate_description": null,
+   "general_rate": null,
+   "heading_general_rates": [],
+   "rows_in_heading": 1,
+   "s301": {
+    "status": "verify-on-ustr",
+    "url": "https://ustr.gov/issue-areas/enforcement/section-301-investigations/tariff-actions"
+   },
+   "as_of": "2026-09-13",
+   "stale": false
+  },
+  "blender-bottle": {
+   "heading": "8509",
+   "candidate": "8509.40",
+   "alt": "8509.80",
+   "candidate_htsno": null,
+   "candidate_description": null,
+   "general_rate": null,
+   "heading_general_rates": [],
+   "rows_in_heading": 1,
+   "s301": {
+    "status": "verify-on-ustr",
+    "url": "https://ustr.gov/issue-areas/enforcement/section-301-investigations/tariff-actions"
+   },
+   "as_of": "2026-09-13",
+   "stale": false
+  },
+  "veg-chopper": {
+   "heading": "8210",
+   "candidate": "8210.00",
+   "alt": "8205.51",
+   "candidate_htsno": null,
+   "candidate_description": null,
+   "general_rate": null,
+   "heading_general_rates": [],
+   "rows_in_heading": 0,
+   "s301": {
+    "status": "verify-on-ustr",
+    "url": "https://ustr.gov/issue-areas/enforcement/section-301-investigations/tariff-actions"
+   },
+   "as_of": "2026-09-13",
+   "stale": false
+  },
+  "cable-powerbank": {
+   "heading": "8507",
+   "candidate": "8507.60",
+   "alt": "8504.40",
+   "candidate_htsno": null,
+   "candidate_description": null,
+   "general_rate": null,
+   "heading_general_rates": [],
+   "rows_in_heading": 1,
+   "s301": {
+    "status": "verify-on-ustr",
+    "url": "https://ustr.gov/issue-areas/enforcement/section-301-investigations/tariff-actions"
+   },
+   "as_of": "2026-09-13",
+   "stale": false
+  },
+  "cosmetic-organizer": {
+   "heading": "3924",
+   "candidate": "3924.90",
+   "alt": "3926.90",
+   "candidate_htsno": null,
+   "candidate_description": null,
+   "general_rate": null,
+   "heading_general_rates": [],
+   "rows_in_heading": 1,
+   "s301": {
+    "status": "verify-on-ustr",
+    "url": "https://ustr.gov/issue-areas/enforcement/section-301-investigations/tariff-actions"
+   },
+   "as_of": "2026-09-13",
+   "stale": false
+  },
+  "mamian-skirt": {
+   "heading": "6204",
+   "candidate": "6204.59",
+   "alt": "6204.53",
+   "candidate_htsno": null,
+   "candidate_description": null,
+   "general_rate": null,
+   "heading_general_rates": [],
+   "rows_in_heading": 1,
+   "s301": {
+    "status": "verify-on-ustr",
+    "url": "https://ustr.gov/issue-areas/enforcement/section-301-investigations/tariff-actions"
+   },
+   "as_of": "2026-09-13",
+   "stale": false
+  },
+  "panku-shirt": {
+   "heading": "6206",
+   "candidate": "6206.40",
+   "alt": "6205.30",
+   "candidate_htsno": null,
+   "candidate_description": null,
+   "general_rate": null,
+   "heading_general_rates": [],
+   "rows_in_heading": 1,
+   "s301": {
+    "status": "verify-on-ustr",
+    "url": "https://ustr.gov/issue-areas/enforcement/section-301-investigations/tariff-actions"
+   },
+   "as_of": "2026-09-13",
+   "stale": false
+  },
+  "tea-set": {
+   "heading": "6912",
+   "candidate": "6912.00",
+   "alt": "6911.10",
+   "candidate_htsno": null,
+   "candidate_description": null,
+   "general_rate": null,
+   "heading_general_rates": [],
+   "rows_in_heading": 0,
+   "s301": {
+    "status": "verify-on-ustr",
+    "url": "https://ustr.gov/issue-areas/enforcement/section-301-investigations/tariff-actions"
+   },
+   "as_of": "2026-09-13",
+   "stale": false
+  },
+  "car-fridge": {
+   "heading": "8418",
+   "candidate": "8418.69",
+   "alt": "8418.50",
+   "candidate_htsno": null,
+   "candidate_description": null,
+   "general_rate": null,
+   "heading_general_rates": [],
+   "rows_in_heading": 1,
+   "s301": {
+    "status": "verify-on-ustr",
+    "url": "https://ustr.gov/issue-areas/enforcement/section-301-investigations/tariff-actions"
+   },
+   "as_of": "2026-09-13",
+   "stale": false
+  },
+  "rollator": {
+   "heading": "9021",
+   "candidate": "9021.10",
+   "alt": "8713.10",
+   "candidate_htsno": null,
+   "candidate_description": null,
+   "general_rate": null,
+   "heading_general_rates": [],
+   "rows_in_heading": 1,
+   "s301": {
+    "status": "verify-on-ustr",
+    "url": "https://ustr.gov/issue-areas/enforcement/section-301-investigations/tariff-actions"
+   },
+   "as_of": "2026-09-13",
+   "stale": false
+  },
+  "pill-organizer": {
+   "heading": "3924",
+   "candidate": "3924.90",
+   "alt": "8543.70",
+   "candidate_htsno": null,
+   "candidate_description": null,
+   "general_rate": null,
+   "heading_general_rates": [],
+   "rows_in_heading": 1,
+   "s301": {
+    "status": "verify-on-ustr",
+    "url": "https://ustr.gov/issue-areas/enforcement/section-301-investigations/tariff-actions"
+   },
+   "as_of": "2026-09-13",
+   "stale": false
+  },
+  "walking-pad": {
+   "heading": "9506",
+   "candidate": "9506.91",
+   "alt": "9506.99",
+   "candidate_htsno": null,
+   "candidate_description": null,
+   "general_rate": null,
+   "heading_general_rates": [],
+   "rows_in_heading": 1,
+   "s301": {
+    "status": "verify-on-ustr",
+    "url": "https://ustr.gov/issue-areas/enforcement/section-301-investigations/tariff-actions"
+   },
+   "as_of": "2026-09-13",
+   "stale": false
+  },
+  "bottle-warmer": {
+   "heading": "8516",
+   "candidate": "8516.79",
+   "alt": "8516.71",
+   "candidate_htsno": null,
+   "candidate_description": null,
+   "general_rate": null,
+   "heading_general_rates": [],
+   "rows_in_heading": 1,
+   "s301": {
+    "status": "verify-on-ustr",
+    "url": "https://ustr.gov/issue-areas/enforcement/section-301-investigations/tariff-actions"
+   },
+   "as_of": "2026-09-13",
+   "stale": false
+  },
+  "pruning-set": {
+   "heading": "8467",
+   "candidate": "8467.29",
+   "alt": "8467.89",
+   "candidate_htsno": null,
+   "candidate_description": null,
+   "general_rate": null,
+   "heading_general_rates": [],
+   "rows_in_heading": 1,
+   "s301": {
+    "status": "verify-on-ustr",
+    "url": "https://ustr.gov/issue-areas/enforcement/section-301-investigations/tariff-actions"
+   },
+   "as_of": "2026-09-13",
+   "stale": false
+  },
+  "aroma-diffuser": {
+   "heading": "8509",
+   "candidate": "8509.80",
+   "alt": "8543.70",
+   "candidate_htsno": null,
+   "candidate_description": null,
+   "general_rate": null,
+   "heading_general_rates": [],
+   "rows_in_heading": 1,
+   "s301": {
+    "status": "verify-on-ustr",
+    "url": "https://ustr.gov/issue-areas/enforcement/section-301-investigations/tariff-actions"
+   },
+   "as_of": "2026-09-13",
+   "stale": false
+  },
+  "vac-consumables": {
+   "heading": "8508",
+   "candidate": "8508.70",
+   "alt": "5911.90",
+   "candidate_htsno": null,
+   "candidate_description": null,
+   "general_rate": null,
+   "heading_general_rates": [],
+   "rows_in_heading": 1,
+   "s301": {
+    "status": "verify-on-ustr",
+    "url": "https://ustr.gov/issue-areas/enforcement/section-301-investigations/tariff-actions"
+   },
+   "as_of": "2026-09-13",
+   "stale": false
+  }
+ },
+ "hts_release": null,
+ "failed_headings": []
+}
