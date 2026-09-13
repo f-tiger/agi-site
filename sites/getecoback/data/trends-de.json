@@ -1,55 +1,51 @@
 {
  "ok": true,
- "fetched": "2026-09-12",
+ "fetched": "2026-09-13",
  "source": "https://trends.google.com/trending/rss?geo=DE",
  "matched": [],
  "top": [
   {
-   "title": "vermögen",
+   "title": "wirtschaftswoche",
+   "traffic": "500+"
+  },
+  {
+   "title": "aufstand",
+   "traffic": "200+"
+  },
+  {
+   "title": "yasin mohamed",
+   "traffic": "200+"
+  },
+  {
+   "title": "u-boot",
+   "traffic": "500+"
+  },
+  {
+   "title": "schwarzes meer",
    "traffic": "1000+"
   },
   {
-   "title": "gerichtssaal",
+   "title": "sport1 live",
+   "traffic": "1000+"
+  },
+  {
+   "title": "aktienwelt360",
    "traffic": "200+"
   },
   {
-   "title": "top agrar",
+   "title": "dakota johnson",
    "traffic": "200+"
   },
   {
-   "title": "straßenverkehr",
-   "traffic": "100+"
-  },
-  {
-   "title": "steuererhöhung",
+   "title": "raphinha",
    "traffic": "200+"
   },
   {
-   "title": "afd berlin",
-   "traffic": "500+"
-  },
-  {
-   "title": "marius wörl",
-   "traffic": "100+"
-  },
-  {
-   "title": "elversberg bayern",
-   "traffic": "500+"
-  },
-  {
-   "title": "freital",
-   "traffic": "100+"
-  },
-  {
-   "title": "formel1",
-   "traffic": "500+"
+   "title": "zug",
+   "traffic": "1000+"
   }
  ],
  "history": [
-  {
-   "d": "2026-08-29",
-   "matched": []
-  },
   {
    "d": "2026-08-30",
    "matched": []
@@ -112,6 +108,10 @@
   },
   {
    "d": "2026-09-12",
+   "matched": []
+  },
+  {
+   "d": "2026-09-13",
    "matched": []
   }
  ]
