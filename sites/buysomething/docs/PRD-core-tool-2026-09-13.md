@@ -140,3 +140,17 @@ P0/P1 全部零 AI、零新 cron(挂 deploy-buysomething 每日 05:20 与 heartb
 - de minimis 无限期暂停两份规则(2026-06-24)与邮政固定税 02-28 到期:[Federal Register 2026-12670](https://www.federalregister.gov/documents/2026/06/24/2026-12670/indefinite-suspension-of-the-de-minimis-exemption-for-merchandise-arriving-through-all-modes-other)、[Federal Register 2026-12669](https://regulations.justia.com/regulations/fedreg/2026/06/24/2026-12669.html)、[gettransport.com](https://blog.gettransport.com/logistics-guide/us-de-minimis-suspension-2026-importer-status-guide/)
 - USITC HTS REST API(免鉴权 JSON):[USITC 用户指南 PDF](https://www.usitc.gov/documents/hts/hts_external_user_guide.pdf)、[usitc.gov](https://www.usitc.gov/faq_subsection/querying_and_downloading_data)
 - CPSC SaferProducts.gov REST 与 EU Safety Gate 公开 JSON(第三方整理,官方端点待 runner 探针确认):[apify.com/datadeltas](https://apify.com/datadeltas/recalls-monitor/api/openapi)、[apify.com/devilscrapes](https://apify.com/devilscrapes/cpsc-product-recalls-scraper/api/openapi)
+
+## 十、执行状态(2026-09-13 当日,owner /goal 后)
+
+| 项 | 状态 | 证据 |
+|---|---|---|
+| P0-1 信标真值测试 | ✅ | deploy run 34760827955 自检 `beacon /e → D1 → /api/selftest (n=1)`;**56 天 0 互动是真的,不是管道坏** |
+| P0-2 landed-cost 官方版 | ✅ | 页面重写;gate 断言旧口径只在 `.expired` 块 |
+| P0-3 官方源探针 | ✅ | `data/sr-source-probe.json`:USITC search/export **200 JSON**、CPSC **200 JSON**、EU Safety Gate **200 但 HTML**(未接入)、USTR HTML |
+| P0-4 来源与日期 | ✅ | `DATA_PROVENANCE` + `validate_picks.py`:155 个数字 100% 编辑估算(2026-08-22),卡片标注 |
+| P1-1 关税栈护照 | ✅ 首读 | `site/passports.json`:31/31 从 USITC 取到 general 税率(如 hair dryer 8516.31 **3.9%**、锂电 8507.60 **3.4%**、走步机 9506.91 **4.6%**、LED 面罩 9018.20 **Free**);候选非裁定;S301 只给 USTR 核对链接 |
+| P1-2 召回雷达 | ✅ 首读 | `site/recalls.json`(CPSC 365 天):power bank **7 起**(最近 2026-09-03)、smart plug 3、hair dryer 3(最近 09-10)、robot-pet 2、solar lantern 1、walking pad 1、bottle warmer 1…;关键词匹配标题,已收紧 walker/cooler/shirt 误命中 |
+| P1-3 逐品 JSON/问题页 | ⏳ | 未做;弹窗已显示护照与召回徽章 |
+| P1-4 舰队消费 | 🟡 | `tools/fleet/recall_gate.py`(blocked(keywords))+ heartbeat ≤14 天断言已上;**eco/tds 货架脚本尚未调用**——下一步 |
+| 付费包链路 | ✅ 代码 / ⏸ 收款 | Stripe webhook / claim / 门禁全部自检通过(无 token → 503);**五个 Secrets/Vars 待 owner**(`docs/PACKS-OWNER-SETUP.md`);首包待 ≥10 条 dossier |

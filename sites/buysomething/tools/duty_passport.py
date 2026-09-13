@@ -52,9 +52,14 @@ def summarise(rows, candidate):
     def rate(r):
         return str(r.get(gk) or "").strip()
     cand = [r for r in rows if str(r.get("htsno", "")).startswith(candidate) and rate(r)]
-    cand_row = cand[0] if cand else None
+    # A 6-digit candidate usually spans several rated lines; prefer the residual "Other" line (the
+    # usual home of a generic consumer article) and expose every option so the reader sees the spread.
+    others = [r for r in cand if str(r.get("description") or "").strip().lower().startswith("other")]
+    cand_row = (others[0] if others else (cand[0] if cand else None))
     rates = sorted({rate(r) for r in rows if rate(r)})
     return {"rate_column": gk, "columns_seen": sorted({k for r in rows[:3] for k in r.keys()})[:16],
+            "options": [{"htsno": r.get("htsno"), "description": (r.get("description") or "")[:90], "general": rate(r)} for r in cand[:8]],
+            "selection_rule": "residual 'Other' line under the candidate prefix if present, else the first rated line; options list every rated line",
             "candidate_htsno": cand_row.get("htsno") if cand_row else None,
             "candidate_description": (cand_row.get("description") or "")[:160] if cand_row else None,
             "general_rate": rate(cand_row) if cand_row else None,
@@ -68,7 +73,7 @@ def selftest():
             {"htsno": "8509.80.50", "description": "Other", "general": "4.2%"}]
     s = summarise(rows, "8509.80")
     cands = json.load(open(CAND, encoding="utf-8"))["picks"]
-    checks = [("candidate row picked (first rated row under prefix)", s["candidate_htsno"] == "8509.80.10" and s["general_rate"] == "Free"),
+    checks = [("residual 'Other' line preferred under a 6-digit candidate", s["candidate_htsno"] == "8509.80.50" and s["general_rate"] == "4.2%" and len(s["options"]) == 2),
               ("heading rate set", s["heading_general_rates"] == ["4.2%", "Free"]),
               ("no match → None, never invented", summarise(rows, "8510.10")["general_rate"] is None),
               ("31 candidates, all with heading/candidate/recall_kw", len(cands) == 31 and all(v.get("heading") and v.get("candidate", "").startswith(v["heading"]) and v.get("recall_kw") for v in cands.values()))]
@@ -104,7 +109,7 @@ def main(argv):
             continue
         out["picks"][pid] = {"heading": h, "candidate": c["candidate"], "alt": c.get("alt"), **summarise(rows, c["candidate"]),
                              "s301": {"status": "verify-on-ustr", "url": USTR}, "as_of": today, "stale": False}
-    out["hts_release"] = release or None
+    out["hts_release"] = release or f"current release as served by hts.usitc.gov on {today}"
     out["failed_headings"] = failed
     os.makedirs(SITE, exist_ok=True)
     json.dump(out, open(OUT, "w", encoding="utf-8"), ensure_ascii=False, indent=1)

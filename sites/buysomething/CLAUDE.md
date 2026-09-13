@@ -174,3 +174,9 @@ TikTok/1688 抓取、付费数据源。
   + `tools/validate_picks.py`(首读:155 个数字 100% 编辑估算,as of 2026-08-22,卡片已标注)。
 - **判定线**:台账 `sr-packs-first-order-1112`(2026-11-12:≥1 笔真实付费,否则包退为免费样本 + 记反面发现)、
   `sr-core-tool-p1-1115`(已登记)。
+- **P1-1/P1-2 同日上线(探针 200 后)**:`tools/hts_candidates.json`(31 条候选章节 + 召回关键词)→ `tools/duty_passport.py`
+  (USITC 官方 general 税率,取到下一章节再按前缀过滤,优先残余「Other」行,`options` 列出全部税率行)→ `site/passports.json`;
+  `tools/recall_radar.py`(CPSC 365 天,标题关键词,只转述官方记录)→ `site/recalls.json`;两者在 deploy 的
+  schedule/dispatch 分支跑并回仓(dispatch 可 `skip_trends=true`);弹窗合规区显示 HTS 税率与 12 个月召回数;
+  包 dossier 用同两份文件。**首读**:31/31 有税率;12 个品类 12 个月内有 CPSC 召回(power bank 7 起最多)。
+  **舰队门**:`tools/fleet/recall_gate.py`,heartbeat 断言雷达 ≤14 天;eco/tds 货架脚本接入是下一步。
