@@ -65,8 +65,8 @@ Reddit 读取(公开 `.json`,未登录,不绕过任何技术措施,约 20 次/�
 - `reddit_vertical`: `r/singularity HTTP 403; r/artificial HTTP 403; r/ChatGPT HTTP 403; r/ClaudeAI HTTP 403; r/LocalLLaMA HTTP 403; r/puzzles`
 即 **Reddit 对 GitHub runner 的未鉴权公开 JSON 请求返回 HTTP 403**(每个板块都是 403,不是 404 或限流 429)。
 这与 §二 的 robots.txt `Disallow: /` 一致:Reddit 在边缘层拒绝无授权自动访问。`board_stats` 为空、
-`watchlist_updated` 为空——该运行的 head 早于/未含板块名单提交与否见同日 git 记录;**无论哪种,403 是网络层
-事实,换代码不会改变它**。预登记规则不变:Reddit 源连续 14 天 ok:false → 直接停,不换 IP、不换 UA、不绕过。
+`watchlist_updated` 为空——该运行的 head(540b477,08:22 UTC)**早于**板块名单提交(f0d6dfa,13:30 UTC),所以
+跑的还是两板块旧代码;**但 403 是网络层事实,新代码不会改变它**,只会把 36 个板块的 403 都记进 board_stats。预登记规则不变:Reddit 源连续 14 天 ok:false → 直接停,不换 IP、不换 UA、不绕过。
 匹配器在无 Reddit 数据时自动退化为 Trends × PH/HN/Ask HN;`hn_ask` 与 `reddit_wish` 首次运行要等含
 新代码的下一次计划运行。撮合层的判定线(2026-10-11)照旧,只是 Reddit 这一路大概率归零,
 到期如实按「可测需求同向」的定义结算。
