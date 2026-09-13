@@ -27,9 +27,14 @@ USTR = "https://ustr.gov/issue-areas/enforcement/section-301-investigations/tari
 
 
 def fetch_heading(h):
-    u = f"https://hts.usitc.gov/reststop/exportList?from={h}&to={h}&format=JSON&styles=false"
+    # from=H&to=H returns only the heading row itself (2026-09-13 first run: rows_in_heading=1);
+    # the export range must reach the next heading, then rows are filtered back to the H prefix.
+    nxt = str(int(h) + 1).zfill(4)
+    u = f"https://hts.usitc.gov/reststop/exportList?from={h}&to={nxt}&format=JSON&styles=false"
     with urllib.request.urlopen(urllib.request.Request(u, headers=UA), timeout=30) as r:
-        return json.loads(r.read().decode("utf-8", "replace")), (r.headers.get("x-hts-release") or "")
+        rows = json.loads(r.read().decode("utf-8", "replace"))
+    rows = [x for x in rows if str(x.get("htsno", "")).replace(".", "").startswith(h)]
+    return rows, (r.headers.get("x-hts-release") or "")
 
 
 def rate_key(rows):
