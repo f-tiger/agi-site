@@ -187,88 +187,88 @@
    "fetched": "2026-09-12"
   },
   "gemini": {
-   "auto": [
-    "gemini",
-    "gemini ai",
-    "gemini notebook",
-    "gemini google",
-    "gemini dc",
-    "gemini dates",
-    "gemini horoscope",
-    "gemini sign",
-    "gemini pro",
-    "gemini zodiac"
-   ],
    "rising": [
     {
-     "q": "gemini ai",
-     "v": "new"
+     "q": "gemini 3.8 flash",
+     "v": 5650
+    },
+    {
+     "q": "gemini 3.8",
+     "v": 1150
+    },
+    {
+     "q": "gemini live features google keep",
+     "v": 400
     },
     {
      "q": "gemini notebook",
-     "v": "new"
+     "v": 350
     },
     {
-     "q": "gemini google",
-     "v": "new"
+     "q": "gemini 3.8 flash cyber",
+     "v": 350
     },
     {
-     "q": "gemini dc",
-     "v": "new"
+     "q": "gemini 3.5 pro",
+     "v": 200
     },
     {
-     "q": "gemini dates",
-     "v": "new"
+     "q": "google gemini workspace app integration",
+     "v": 110
     },
     {
-     "q": "gemini horoscope",
-     "v": "new"
+     "q": "gemini notebook lm",
+     "v": 90
     },
     {
-     "q": "gemini sign",
-     "v": "new"
+     "q": "notebook lm",
+     "v": 90
     },
     {
-     "q": "gemini pro",
-     "v": "new"
-    },
-    {
-     "q": "gemini zodiac",
-     "v": "new"
+     "q": "gemini jewels",
+     "v": 80
     }
    ],
-   "source": "autocomplete-diff",
+   "source": "related-queries",
    "fetched": "2026-09-13"
   },
   "perplexity": {
    "rising": [
     {
-     "q": "chatgpt claude perplexity financial advice",
-     "v": 12550
+     "q": "perplexity nvidia local ai agent",
+     "v": 2350
     },
     {
-     "q": "perplexity ai ceo startup strategy",
-     "v": 7900
+     "q": "openai gpt-6 astra perplexity",
+     "v": 180
     },
     {
-     "q": "glm 5.2",
-     "v": 4000
+     "q": "perplexity open source lily rust metal",
+     "v": 170
     },
     {
-     "q": "perplexity brain ai memory system",
-     "v": 2100
+     "q": "perple",
+     "v": 110
     },
     {
      "q": "perplexed",
-     "v": 90
+     "v": 110
     },
     {
-     "q": "gemeni",
+     "q": "cluade",
      "v": 80
     },
     {
-     "q": "perplexity nvidia local ai agent",
+     "q": "is perplexity ai better than chatgpt",
      "v": 60
+    },
+    {
+     "q": "perplex",
+     "v": 50
+    },
+    {
+     "q": "calude",
+     "v": 50
     }
    ],
    "source": "related-queries",
