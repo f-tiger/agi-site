@@ -79,4 +79,7 @@ jobs:
           git add sites/buysomething/site/packs/*-W*.json 2>/dev/null || true
           git add data/probes-rising.json 2>/dev/null || true
           git add data/probes-de-rising.json 2>/dev/null || true
-          git diff --cached --quiet || { git commit -m "chore(trends): 美国区触发器+创业雷达快照 $(date -u +%F)"; git pull --rebase origin main; git push origin main; }
+          # 2026-09-13 18:30 UTC 那次:commit 成功后 `pull --rebase` 因「unstaged changes」失败,整份雷达数据没回仓。
+          # 先把未暂存的改动打印出来(诊断),再用 --autostash 让 rebase 不被它们挡住。
+          git status --porcelain | sed 's/^/  unstaged: /' || true
+          git diff --cached --quiet || { git commit -m "chore(trends): 美国区触发器+创业雷达快照 $(date -u +%F)"; git pull --rebase --autostash origin main; git push origin main; }
