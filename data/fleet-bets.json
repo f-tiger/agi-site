@@ -358,12 +358,13 @@
    "id": "fleet-ai-referrals-1024",
    "site": "fleet",
    "due": "2026-10-24",
-   "metric": "data/fleet-ai-referrals.json fleet_ai_ref /28d(基线 69)或五个 0 站转正数",
-   "threshold": "≥138 或 ≥2 站",
+   "metric": "data/fleet-ai-referrals.json fleet_ai_ref /28d(仪器口径;09-13 首读 78,手测口径 69)或五个 0 站转正数",
+   "threshold": "≥156(2× 仪器基线 78)或 ≥2 站",
    "win": "补 llms-full 与 JSON-LD 到四个只有 llms.txt 的站",
    "lose": "AI 读者面只维护不扩建",
    "source": "CLAUDE.md:437",
-   "status": "open"
+   "status": "open",
+   "baseline_instrument_2026_09_13": 78
   },
   {
    "id": "bpj-md-mirror-1028",

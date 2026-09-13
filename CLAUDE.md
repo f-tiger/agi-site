@@ -439,8 +439,12 @@ owner 决策卡、事实表)。
 - **已知噪音**:探针带 `?__probe=1`(bpj 中间件不记账),其余 worker 按 bot 记 ≤8 行/站/日,08:00 UTC。
 - **首跑(09-12 run 34725258191)**:探针 128 个请求全 200、零拦截;**D1 读数 403**——仓里两个 Cloudflare
   token 都没有 D1 read 权限(tds-traffic 的 D1 导出 09-04 起因此从未成功,`d1-snapshot.json` 不存在)。
-  **owner 一分钟待办**:给 token 加 `Account · D1 · Read` 或新建存为 `CF_API_TOKEN`;**09-16 起未做则 heartbeat 每日红**。
-  每次报告带出这一条直到解决;在此之前 AI 引荐只能由会话经 MCP 手查(SQL 在 `tools/fleet/ai_referrals.py`)。
+  ~~owner 一分钟待办:给 token 加 D1 Read~~ **→ 09-13 已绕开,不再需要 owner 动作**:八站各加公开零 PII 聚合端点
+  `/api/pulse`(bpj 沿用 `/api/reach`),worker 读自己的 D1 绑定,`ai_referrals.py` 端点优先、D1 REST 只兜底;
+  七条 deploy 自检各加一条 `/api/pulse` 硬断言。**首读(09-13 06:01 UTC,heartbeat run 34741697973,八站全经端点)**:
+  舰队 AI 引荐 **78**/28d(agi 20、bpj 33、eco 25、其余五站 0)。**口径差**:eco 端点按该站 `/api/trend` 惯例计
+  `ua_class IS NULL OR 'human'`(手测 16 是严格 human),bpj 的 pv 列是「有来源的真人」不是全部 pv——**判定线
+  10-24 以仪器口径为准,阈值改为 ≥156(2×78)**,台账已同步。D1 token 仍缺 read 权限,只影响 tds 那条历史导出。
 
 ## 固定循环:持续优化 · 探索 · 扩张(2026-09-13,owner:「目标是持续优化,探索,扩张。成长为这类型」)
 

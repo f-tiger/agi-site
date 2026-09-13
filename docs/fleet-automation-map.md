@@ -46,7 +46,7 @@ thedollscout 冻结约 **86 小时**——它的部署是纯 push 触发，没�
 ### 数据与维护（外部副作用一律只挂 schedule，绝不挂 push）
 | workflow | cron (UTC) | 作用 |
 |---|---|---|
-| **`fleet-heartbeat.yml`** | `0 8 * * *` | **新增 2026-09-04**：八站探活 + 超 7 天未部署自动重发 + 快照写回 `data/fleet-health.json` + 站点非 200 直接把 run 打红（GitHub 邮件是唯一不经过任何 AI 会话的告警通道）**2026-09-12 加两块「AI 时代」仪表**:`tools/fleet/ai_access_probe.py`(8 站 × 8 个 AI 爬虫 UA × / 与 /llms.txt,任一 403/429/503 即红——Cloudflare Pay-Per-Crawl 09-15 起默认拦截,此前手册承诺的「heartbeat 看到 403」从未真的在看)+ `tools/fleet/ai_referrals.py`(D1 REST 读八站 28 天 AI 助手引荐 → `data/fleet-ai-referrals.json`,>3 天读不到才红;基线 69/28d)。增量 ≈10 秒,仍在 1 分钟粒度内。全文 `docs/ai-era-site-2026-09-12.md`**2026-09-13 加赌注台账断言**:`tools/fleet/check_bets.py` 读 `data/fleet-bets.json`(42 条预登记判定线),到期 3 天内 warning、过期 >7 天未结算即红;秒级,零副作用。 |
+| **`fleet-heartbeat.yml`** | `0 8 * * *` | **新增 2026-09-04**：八站探活 + 超 7 天未部署自动重发 + 快照写回 `data/fleet-health.json` + 站点非 200 直接把 run 打红（GitHub 邮件是唯一不经过任何 AI 会话的告警通道）**2026-09-12 加两块「AI 时代」仪表**:`tools/fleet/ai_access_probe.py`(8 站 × 8 个 AI 爬虫 UA × / 与 /llms.txt,任一 403/429/503 即红——Cloudflare Pay-Per-Crawl 09-15 起默认拦截,此前手册承诺的「heartbeat 看到 403」从未真的在看)+ `tools/fleet/ai_referrals.py`(读八站 28 天 AI 助手引荐 → `data/fleet-ai-referrals.json`;**09-13 改为各站公开 `/api/pulse` 端点优先、D1 REST 只兜底,零 token,首读 78/28d**;>3 天读不到才红)。增量 ≈10 秒,仍在 1 分钟粒度内。全文 `docs/ai-era-site-2026-09-12.md`**2026-09-13 加赌注台账断言**:`tools/fleet/check_bets.py` 读 `data/fleet-bets.json`(42 条预登记判定线),到期 3 天内 warning、过期 >7 天未结算即红;秒级,零副作用。 |
 | `fleet-trends.yml` | `45 3 * * *` | 全舰队趋势快照 **2026-09-12 雷达加 Reddit 求做板块源**(r/SomebodyMakeThis + r/AppIdeas 公开 JSON,只读,增量 <0,2 分/月)。 |
 | `eco-trends.yml` | `30 4 * * *` | 德国热搜触发器 |
 | `eco-health.yml` | `0 5 * * *` | eco 站健康 |

@@ -117,3 +117,24 @@ bot 计数、发生在 08:00 UTC。不影响 human 口径。
   **owner 一分钟待办**:Cloudflare → My Profile → API Tokens,给现有 token 加 `Account · D1 · Read`,
   或新建只含该权限的 token 存为 `CF_API_TOKEN`(三个名字脚本都会试)。做完后 tds 那条 12 天没成功过的
   导出也会一起活过来。会话不能代做(无控制台权限)。在此之前,AI 引荐数字只能像 §三那样由会话经 MCP 手查。
+
+## 八、09-13 追加:飞轮读侧不再依赖 owner(八站公开 /api/pulse)
+
+§七的 D1 403 本可等 owner 加权限;但舰队里已有两个验证过的先例把取数搬回 worker(bpj `/api/reach`
+09-11、SR `/api/pop`),照抄即可。六个 D1 worker + tds Pages function 各加 `GET /api/pulse`:28 天真人
+pv、AI 助手引荐、按来源域计数;只出聚合(无路径/国家/UA/行级);边缘缓存 1 小时。`ai_referrals.py`
+端点优先,D1 REST 只兜底。七条 deploy 自检各加 `/api/pulse` 硬断言(ok:true + ai_ref),能红——agi 那条
+在部署前测试就拦下了一次我自己的引号错误,线上零影响。
+
+**首读(heartbeat run 34741697973,06:01 UTC,`read_via: endpoints`,errors 空)**:
+
+| 站 | pv/28d(仪器口径) | AI 引荐 |
+|---|---|---|
+| agiscorecard | 27 298 | 20 |
+| baipiaoji(有来源真人) | 274 | 33 |
+| getecoback(NULL∪human) | 598 | 25 |
+| 其余五站 | 1 891 | 0 |
+| **舰队** | **30 061** | **78** |
+
+口径差与判定线阈值调整见 CLAUDE.md;§六的 10-24 线改按仪器口径 ≥156。D1 token 权限从「挡住仪表」降为
+「只影响 tds 历史导出」。
