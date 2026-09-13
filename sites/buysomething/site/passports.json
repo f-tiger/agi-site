@@ -23,6 +23,14 @@
     "superior",
     "units"
    ],
+   "options": [
+    {
+     "htsno": "9018.20.00",
+     "description": "Ultraviolet or infrared ray apparatus, and parts and accessories thereof",
+     "general": "Free"
+    }
+   ],
+   "selection_rule": "residual 'Other' line under the candidate prefix if present, else the first rated line; options list every rated line",
    "candidate_htsno": "9018.20.00",
    "candidate_description": "Ultraviolet or infrared ray apparatus, and parts and accessories thereof",
    "general_rate": "Free",
@@ -56,9 +64,27 @@
     "superior",
     "units"
    ],
-   "candidate_htsno": "8509.80.10.00",
-   "candidate_description": "Floor polishers",
-   "general_rate": "Free",
+   "options": [
+    {
+     "htsno": "8509.80.10.00",
+     "description": "Floor polishers",
+     "general": "Free"
+    },
+    {
+     "htsno": "8509.80.20.00",
+     "description": "Kitchen waste disposers (disposals)",
+     "general": "Free"
+    },
+    {
+     "htsno": "8509.80.50",
+     "description": "Other",
+     "general": "4.2%"
+    }
+   ],
+   "selection_rule": "residual 'Other' line under the candidate prefix if present, else the first rated line; options list every rated line",
+   "candidate_htsno": "8509.80.50",
+   "candidate_description": "Other",
+   "general_rate": "4.2%",
    "heading_general_rates": [
     "3.4%",
     "4.2%",
@@ -91,9 +117,27 @@
     "superior",
     "units"
    ],
-   "candidate_htsno": "8509.80.10.00",
-   "candidate_description": "Floor polishers",
-   "general_rate": "Free",
+   "options": [
+    {
+     "htsno": "8509.80.10.00",
+     "description": "Floor polishers",
+     "general": "Free"
+    },
+    {
+     "htsno": "8509.80.20.00",
+     "description": "Kitchen waste disposers (disposals)",
+     "general": "Free"
+    },
+    {
+     "htsno": "8509.80.50",
+     "description": "Other",
+     "general": "4.2%"
+    }
+   ],
+   "selection_rule": "residual 'Other' line under the candidate prefix if present, else the first rated line; options list every rated line",
+   "candidate_htsno": "8509.80.50",
+   "candidate_description": "Other",
+   "general_rate": "4.2%",
    "heading_general_rates": [
     "3.4%",
     "4.2%",
@@ -126,9 +170,27 @@
     "superior",
     "units"
    ],
-   "candidate_htsno": "8509.80.10.00",
-   "candidate_description": "Floor polishers",
-   "general_rate": "Free",
+   "options": [
+    {
+     "htsno": "8509.80.10.00",
+     "description": "Floor polishers",
+     "general": "Free"
+    },
+    {
+     "htsno": "8509.80.20.00",
+     "description": "Kitchen waste disposers (disposals)",
+     "general": "Free"
+    },
+    {
+     "htsno": "8509.80.50",
+     "description": "Other",
+     "general": "4.2%"
+    }
+   ],
+   "selection_rule": "residual 'Other' line under the candidate prefix if present, else the first rated line; options list every rated line",
+   "candidate_htsno": "8509.80.50",
+   "candidate_description": "Other",
+   "general_rate": "4.2%",
    "heading_general_rates": [
     "3.4%",
     "4.2%",
@@ -161,6 +223,14 @@
     "superior",
     "units"
    ],
+   "options": [
+    {
+     "htsno": "9503.00.00",
+     "description": "Tricycles, scooters, pedal cars and similar wheeled toys; dollsʼ carriages; dolls, other t",
+     "general": "Free"
+    }
+   ],
+   "selection_rule": "residual 'Other' line under the candidate prefix if present, else the first rated line; options list every rated line",
    "candidate_htsno": "9503.00.00",
    "candidate_description": "Tricycles, scooters, pedal cars and similar wheeled toys; dollsʼ carriages; dolls, other toys; reduced-scale (“scaleˮ) models and similar recreational models, w",
    "general_rate": "Free",
@@ -194,6 +264,14 @@
     "superior",
     "units"
    ],
+   "options": [
+    {
+     "htsno": "8507.60.00",
+     "description": "Lithium-ion batteries",
+     "general": "3.4%"
+    }
+   ],
+   "selection_rule": "residual 'Other' line under the candidate prefix if present, else the first rated line; options list every rated line",
    "candidate_htsno": "8507.60.00",
    "candidate_description": "Lithium-ion batteries",
    "general_rate": "3.4%",
@@ -229,9 +307,22 @@
     "superior",
     "units"
    ],
-   "candidate_htsno": "8536.69.40",
-   "candidate_description": "Coaxial connectors; cylindrical multicontact connectors; rack and panel connectors; printed circuit connectors; ribbon or flat cable connectors",
-   "general_rate": "Free",
+   "options": [
+    {
+     "htsno": "8536.69.40",
+     "description": "Coaxial connectors; cylindrical multicontact connectors; rack and panel connectors; printe",
+     "general": "Free"
+    },
+    {
+     "htsno": "8536.69.80.00",
+     "description": "Other",
+     "general": "2.7%"
+    }
+   ],
+   "selection_rule": "residual 'Other' line under the candidate prefix if present, else the first rated line; options list every rated line",
+   "candidate_htsno": "8536.69.80.00",
+   "candidate_description": "Other",
+   "general_rate": "2.7%",
    "heading_general_rates": [
     "2.7%",
     "Free"
@@ -263,9 +354,27 @@
     "superior",
     "units"
    ],
-   "candidate_htsno": "8509.80.10.00",
-   "candidate_description": "Floor polishers",
-   "general_rate": "Free",
+   "options": [
+    {
+     "htsno": "8509.80.10.00",
+     "description": "Floor polishers",
+     "general": "Free"
+    },
+    {
+     "htsno": "8509.80.20.00",
+     "description": "Kitchen waste disposers (disposals)",
+     "general": "Free"
+    },
+    {
+     "htsno": "8509.80.50",
+     "description": "Other",
+     "general": "4.2%"
+    }
+   ],
+   "selection_rule": "residual 'Other' line under the candidate prefix if present, else the first rated line; options list every rated line",
+   "candidate_htsno": "8509.80.50",
+   "candidate_description": "Other",
+   "general_rate": "4.2%",
    "heading_general_rates": [
     "3.4%",
     "4.2%",
@@ -298,9 +407,27 @@
     "superior",
     "units"
    ],
-   "candidate_htsno": "8509.80.10.00",
-   "candidate_description": "Floor polishers",
-   "general_rate": "Free",
+   "options": [
+    {
+     "htsno": "8509.80.10.00",
+     "description": "Floor polishers",
+     "general": "Free"
+    },
+    {
+     "htsno": "8509.80.20.00",
+     "description": "Kitchen waste disposers (disposals)",
+     "general": "Free"
+    },
+    {
+     "htsno": "8509.80.50",
+     "description": "Other",
+     "general": "4.2%"
+    }
+   ],
+   "selection_rule": "residual 'Other' line under the candidate prefix if present, else the first rated line; options list every rated line",
+   "candidate_htsno": "8509.80.50",
+   "candidate_description": "Other",
+   "general_rate": "4.2%",
    "heading_general_rates": [
     "3.4%",
     "4.2%",
@@ -333,8 +460,31 @@
     "superior",
     "units"
    ],
-   "candidate_htsno": "3924.10.10.00",
-   "candidate_description": "Salt, pepper, mustard and ketchup dispensers and similar dispensers",
+   "options": [
+    {
+     "htsno": "3924.10.10.00",
+     "description": "Salt, pepper, mustard and ketchup dispensers and similar dispensers",
+     "general": "3.4%"
+    },
+    {
+     "htsno": "3924.10.20.00",
+     "description": "Plates, cups, saucers, soup bowls, cereal bowls, sugar bowls, creamers, gravy boats, servi",
+     "general": "6.5%"
+    },
+    {
+     "htsno": "3924.10.30.00",
+     "description": "Trays",
+     "general": "5.3%"
+    },
+    {
+     "htsno": "3924.10.40.00",
+     "description": "Other",
+     "general": "3.4%"
+    }
+   ],
+   "selection_rule": "residual 'Other' line under the candidate prefix if present, else the first rated line; options list every rated line",
+   "candidate_htsno": "3924.10.40.00",
+   "candidate_description": "Other",
    "general_rate": "3.4%",
    "heading_general_rates": [
     "3.1%",
@@ -370,9 +520,32 @@
     "superior",
     "units"
    ],
-   "candidate_htsno": "9615.90.20.00",
-   "candidate_description": "Nonthermic, nonornamental devices for curling the hair",
-   "general_rate": "8.1%",
+   "options": [
+    {
+     "htsno": "9615.90.20.00",
+     "description": "Nonthermic, nonornamental devices for curling the hair",
+     "general": "8.1%"
+    },
+    {
+     "htsno": "9615.90.30.00",
+     "description": "Hair pins",
+     "general": "5.1%"
+    },
+    {
+     "htsno": "9615.90.40.00",
+     "description": "Of rubber or plastics, not set with imitation pearls or imitation gemstones",
+     "general": "5.3%"
+    },
+    {
+     "htsno": "9615.90.60.00",
+     "description": "Other",
+     "general": "11%"
+    }
+   ],
+   "selection_rule": "residual 'Other' line under the candidate prefix if present, else the first rated line; options list every rated line",
+   "candidate_htsno": "9615.90.60.00",
+   "candidate_description": "Other",
+   "general_rate": "11%",
    "heading_general_rates": [
     "11%",
     "14.4¢/gross + 2%",
@@ -411,6 +584,14 @@
     "superior",
     "units"
    ],
+   "options": [
+    {
+     "htsno": "8516.31.00.00",
+     "description": "Hair dryers",
+     "general": "3.9%"
+    }
+   ],
+   "selection_rule": "residual 'Other' line under the candidate prefix if present, else the first rated line; options list every rated line",
    "candidate_htsno": "8516.31.00.00",
    "candidate_description": "Hair dryers",
    "general_rate": "3.9%",
@@ -450,8 +631,26 @@
     "superior",
     "units"
    ],
-   "candidate_htsno": "9019.10.20",
-   "candidate_description": "Mechano-therapy appliances and massage apparatus; parts and accessories thereof",
+   "options": [
+    {
+     "htsno": "9019.10.20",
+     "description": "Mechano-therapy appliances and massage apparatus; parts and accessories thereof",
+     "general": "Free"
+    },
+    {
+     "htsno": "9019.10.40.00",
+     "description": "Electrically operated apparatus and parts thereof",
+     "general": "Free"
+    },
+    {
+     "htsno": "9019.10.60.00",
+     "description": "Other",
+     "general": "Free"
+    }
+   ],
+   "selection_rule": "residual 'Other' line under the candidate prefix if present, else the first rated line; options list every rated line",
+   "candidate_htsno": "9019.10.60.00",
+   "candidate_description": "Other",
    "general_rate": "Free",
    "heading_general_rates": [
     "Free"
@@ -483,8 +682,26 @@
     "superior",
     "units"
    ],
-   "candidate_htsno": "9019.10.20",
-   "candidate_description": "Mechano-therapy appliances and massage apparatus; parts and accessories thereof",
+   "options": [
+    {
+     "htsno": "9019.10.20",
+     "description": "Mechano-therapy appliances and massage apparatus; parts and accessories thereof",
+     "general": "Free"
+    },
+    {
+     "htsno": "9019.10.40.00",
+     "description": "Electrically operated apparatus and parts thereof",
+     "general": "Free"
+    },
+    {
+     "htsno": "9019.10.60.00",
+     "description": "Other",
+     "general": "Free"
+    }
+   ],
+   "selection_rule": "residual 'Other' line under the candidate prefix if present, else the first rated line; options list every rated line",
+   "candidate_htsno": "9019.10.60.00",
+   "candidate_description": "Other",
    "general_rate": "Free",
    "heading_general_rates": [
     "Free"
@@ -516,9 +733,32 @@
     "superior",
     "units"
    ],
-   "candidate_htsno": "9405.41.40.00",
-   "candidate_description": "Of brass",
-   "general_rate": "4.7%",
+   "options": [
+    {
+     "htsno": "9405.41.40.00",
+     "description": "Of brass",
+     "general": "4.7%"
+    },
+    {
+     "htsno": "9405.41.60.00",
+     "description": "Other",
+     "general": "6%"
+    },
+    {
+     "htsno": "9405.41.82.00",
+     "description": "Light-emitting diode (LED) backlights modules, the foregoing which are lighting sources th",
+     "general": "Free"
+    },
+    {
+     "htsno": "9405.41.84",
+     "description": "Other",
+     "general": "3.9%"
+    }
+   ],
+   "selection_rule": "residual 'Other' line under the candidate prefix if present, else the first rated line; options list every rated line",
+   "candidate_htsno": "9405.41.60.00",
+   "candidate_description": "Other",
+   "general_rate": "6%",
    "heading_general_rates": [
     "12%",
     "2.9%",
@@ -560,6 +800,14 @@
     "superior",
     "units"
    ],
+   "options": [
+    {
+     "htsno": "9401.79.00",
+     "description": "Other",
+     "general": "Free"
+    }
+   ],
+   "selection_rule": "residual 'Other' line under the candidate prefix if present, else the first rated line; options list every rated line",
    "candidate_htsno": "9401.79.00",
    "candidate_description": "Other",
    "general_rate": "Free",
@@ -593,6 +841,14 @@
     "superior",
     "units"
    ],
+   "options": [
+    {
+     "htsno": "8509.40.00",
+     "description": "Food grinders, processors and mixers; fruit or vegetable juice extractors",
+     "general": "4.2%"
+    }
+   ],
+   "selection_rule": "residual 'Other' line under the candidate prefix if present, else the first rated line; options list every rated line",
    "candidate_htsno": "8509.40.00",
    "candidate_description": "Food grinders, processors and mixers; fruit or vegetable juice extractors",
    "general_rate": "4.2%",
@@ -628,6 +884,14 @@
     "superior",
     "units"
    ],
+   "options": [
+    {
+     "htsno": "8210.00.00.00",
+     "description": "Hand-operated mechanical appliances, weighing 10 kg or less, used in the preparation, cond",
+     "general": "3.7%"
+    }
+   ],
+   "selection_rule": "residual 'Other' line under the candidate prefix if present, else the first rated line; options list every rated line",
    "candidate_htsno": "8210.00.00.00",
    "candidate_description": "Hand-operated mechanical appliances, weighing 10 kg or less, used in the preparation, conditioning or serving of food or drink, and base metal parts thereof",
    "general_rate": "3.7%",
@@ -661,6 +925,14 @@
     "superior",
     "units"
    ],
+   "options": [
+    {
+     "htsno": "8507.60.00",
+     "description": "Lithium-ion batteries",
+     "general": "3.4%"
+    }
+   ],
+   "selection_rule": "residual 'Other' line under the candidate prefix if present, else the first rated line; options list every rated line",
    "candidate_htsno": "8507.60.00",
    "candidate_description": "Lithium-ion batteries",
    "general_rate": "3.4%",
@@ -696,9 +968,32 @@
     "superior",
     "units"
    ],
-   "candidate_htsno": "3924.90.05.00",
-   "candidate_description": "Nursing nipples and finger cots",
-   "general_rate": "3.1%",
+   "options": [
+    {
+     "htsno": "3924.90.05.00",
+     "description": "Nursing nipples and finger cots",
+     "general": "3.1%"
+    },
+    {
+     "htsno": "3924.90.10",
+     "description": "Curtains and drapes, including panels and valances; napkins, table covers, mats, scarves, ",
+     "general": "3.3%"
+    },
+    {
+     "htsno": "3924.90.20.00",
+     "description": "Picture frames",
+     "general": "3.4%"
+    },
+    {
+     "htsno": "3924.90.56",
+     "description": "Other",
+     "general": "3.4%"
+    }
+   ],
+   "selection_rule": "residual 'Other' line under the candidate prefix if present, else the first rated line; options list every rated line",
+   "candidate_htsno": "3924.90.56",
+   "candidate_description": "Other",
+   "general_rate": "3.4%",
    "heading_general_rates": [
     "3.1%",
     "3.3%",
@@ -733,9 +1028,32 @@
     "superior",
     "units"
    ],
-   "candidate_htsno": "6204.59.10.00",
-   "candidate_description": "Certified hand-loomed and folklore products (642)",
-   "general_rate": "11.3%",
+   "options": [
+    {
+     "htsno": "6204.59.10.00",
+     "description": "Certified hand-loomed and folklore products (642)",
+     "general": "11.3%"
+    },
+    {
+     "htsno": "6204.59.20",
+     "description": "Containing 36 percent or more by weight of wool or fine animal hair",
+     "general": "14.9%"
+    },
+    {
+     "htsno": "6204.59.30",
+     "description": "Other",
+     "general": "16%"
+    },
+    {
+     "htsno": "6204.59.40",
+     "description": "Other",
+     "general": "6.6%"
+    }
+   ],
+   "selection_rule": "residual 'Other' line under the candidate prefix if present, else the first rated line; options list every rated line",
+   "candidate_htsno": "6204.59.30",
+   "candidate_description": "Other",
+   "general_rate": "16%",
    "heading_general_rates": [
     "1%",
     "1.1%",
@@ -777,9 +1095,32 @@
     "superior",
     "units"
    ],
-   "candidate_htsno": "6206.40.10.00",
-   "candidate_description": "Certified hand-loomed and folklore products (641)",
-   "general_rate": "11.3%",
+   "options": [
+    {
+     "htsno": "6206.40.10.00",
+     "description": "Certified hand-loomed and folklore products (641)",
+     "general": "11.3%"
+    },
+    {
+     "htsno": "6206.40.20.00",
+     "description": "Containing 30 percent or more by weight of silk or silk waste (641)",
+     "general": "4%"
+    },
+    {
+     "htsno": "6206.40.25",
+     "description": "Containing 36 percent or more by weight of wool or fine animal hair",
+     "general": "56.3¢/kg + 14.3%"
+    },
+    {
+     "htsno": "6206.40.30",
+     "description": "Other",
+     "general": "26.9%"
+    }
+   ],
+   "selection_rule": "residual 'Other' line under the candidate prefix if present, else the first rated line; options list every rated line",
+   "candidate_htsno": "6206.40.30",
+   "candidate_description": "Other",
+   "general_rate": "26.9%",
    "heading_general_rates": [
     "11.3%",
     "15.4%",
@@ -821,9 +1162,52 @@
     "superior",
     "units"
    ],
-   "candidate_htsno": "6912.00.10.00",
-   "candidate_description": "Of coarse-grained earthenware, or of coarse- grained stoneware; of fine-grained earthenware, whether or not decorated, having a reddish-colored body and a lustr",
-   "general_rate": "0.7%",
+   "options": [
+    {
+     "htsno": "6912.00.10.00",
+     "description": "Of coarse-grained earthenware, or of coarse- grained stoneware; of fine-grained earthenwar",
+     "general": "0.7%"
+    },
+    {
+     "htsno": "6912.00.20.00",
+     "description": "Hotel or restaurant ware and other ware not household ware",
+     "general": "28%"
+    },
+    {
+     "htsno": "6912.00.35",
+     "description": "In any pattern for which the aggregate value of the articles listed in additional U.S. not",
+     "general": "9.8%"
+    },
+    {
+     "htsno": "6912.00.39",
+     "description": "In any pattern for which the aggregate value of the articles listed in additional U.S. not",
+     "general": "4.5%"
+    },
+    {
+     "htsno": "6912.00.41.00",
+     "description": "Steins with permanently attached pewter lids; candy boxes, decanters, punch bowls, pretzel",
+     "general": "3.9%"
+    },
+    {
+     "htsno": "6912.00.44.00",
+     "description": "Mugs and other steins",
+     "general": "10%"
+    },
+    {
+     "htsno": "6912.00.45.00",
+     "description": "Cups valued over $5.25 per dozen; saucers valued over $3 per dozen; soups, oatmeals and ce",
+     "general": "4.5%"
+    },
+    {
+     "htsno": "6912.00.46.00",
+     "description": "Serviette rings",
+     "general": "9.8%"
+    }
+   ],
+   "selection_rule": "residual 'Other' line under the candidate prefix if present, else the first rated line; options list every rated line",
+   "candidate_htsno": "6912.00.48",
+   "candidate_description": "Other",
+   "general_rate": "9.8%",
    "heading_general_rates": [
     "0.7%",
     "10%",
@@ -860,6 +1244,14 @@
     "superior",
     "units"
    ],
+   "options": [
+    {
+     "htsno": "8418.69.01",
+     "description": "Other",
+     "general": "Free"
+    }
+   ],
+   "selection_rule": "residual 'Other' line under the candidate prefix if present, else the first rated line; options list every rated line",
    "candidate_htsno": "8418.69.01",
    "candidate_description": "Other",
    "general_rate": "Free",
@@ -895,6 +1287,14 @@
     "superior",
     "units"
    ],
+   "options": [
+    {
+     "htsno": "9021.10.00",
+     "description": "Orthopedic or fracture appliances, and parts and accessories thereof",
+     "general": "Free"
+    }
+   ],
+   "selection_rule": "residual 'Other' line under the candidate prefix if present, else the first rated line; options list every rated line",
    "candidate_htsno": "9021.10.00",
    "candidate_description": "Orthopedic or fracture appliances, and parts and accessories thereof",
    "general_rate": "Free",
@@ -928,9 +1328,32 @@
     "superior",
     "units"
    ],
-   "candidate_htsno": "3924.90.05.00",
-   "candidate_description": "Nursing nipples and finger cots",
-   "general_rate": "3.1%",
+   "options": [
+    {
+     "htsno": "3924.90.05.00",
+     "description": "Nursing nipples and finger cots",
+     "general": "3.1%"
+    },
+    {
+     "htsno": "3924.90.10",
+     "description": "Curtains and drapes, including panels and valances; napkins, table covers, mats, scarves, ",
+     "general": "3.3%"
+    },
+    {
+     "htsno": "3924.90.20.00",
+     "description": "Picture frames",
+     "general": "3.4%"
+    },
+    {
+     "htsno": "3924.90.56",
+     "description": "Other",
+     "general": "3.4%"
+    }
+   ],
+   "selection_rule": "residual 'Other' line under the candidate prefix if present, else the first rated line; options list every rated line",
+   "candidate_htsno": "3924.90.56",
+   "candidate_description": "Other",
+   "general_rate": "3.4%",
    "heading_general_rates": [
     "3.1%",
     "3.3%",
@@ -965,6 +1388,14 @@
     "superior",
     "units"
    ],
+   "options": [
+    {
+     "htsno": "9506.91.00",
+     "description": "Articles and equipment for general physical exercise, gymnastics or athletics; parts and a",
+     "general": "4.6%"
+    }
+   ],
+   "selection_rule": "residual 'Other' line under the candidate prefix if present, else the first rated line; options list every rated line",
    "candidate_htsno": "9506.91.00",
    "candidate_description": "Articles and equipment for general physical exercise, gymnastics or athletics; parts and accessories thereof",
    "general_rate": "4.6%",
@@ -1009,6 +1440,14 @@
     "superior",
     "units"
    ],
+   "options": [
+    {
+     "htsno": "8516.79.00.00",
+     "description": "Other",
+     "general": "2.7%"
+    }
+   ],
+   "selection_rule": "residual 'Other' line under the candidate prefix if present, else the first rated line; options list every rated line",
    "candidate_htsno": "8516.79.00.00",
    "candidate_description": "Other",
    "general_rate": "2.7%",
@@ -1048,6 +1487,14 @@
     "superior",
     "units"
    ],
+   "options": [
+    {
+     "htsno": "8467.29.00",
+     "description": "Other",
+     "general": "Free"
+    }
+   ],
+   "selection_rule": "residual 'Other' line under the candidate prefix if present, else the first rated line; options list every rated line",
    "candidate_htsno": "8467.29.00",
    "candidate_description": "Other",
    "general_rate": "Free",
@@ -1083,9 +1530,27 @@
     "superior",
     "units"
    ],
-   "candidate_htsno": "8509.80.10.00",
-   "candidate_description": "Floor polishers",
-   "general_rate": "Free",
+   "options": [
+    {
+     "htsno": "8509.80.10.00",
+     "description": "Floor polishers",
+     "general": "Free"
+    },
+    {
+     "htsno": "8509.80.20.00",
+     "description": "Kitchen waste disposers (disposals)",
+     "general": "Free"
+    },
+    {
+     "htsno": "8509.80.50",
+     "description": "Other",
+     "general": "4.2%"
+    }
+   ],
+   "selection_rule": "residual 'Other' line under the candidate prefix if present, else the first rated line; options list every rated line",
+   "candidate_htsno": "8509.80.50",
+   "candidate_description": "Other",
+   "general_rate": "4.2%",
    "heading_general_rates": [
     "3.4%",
     "4.2%",
@@ -1118,6 +1583,14 @@
     "superior",
     "units"
    ],
+   "options": [
+    {
+     "htsno": "8508.70.00.00",
+     "description": "Parts",
+     "general": "Free"
+    }
+   ],
+   "selection_rule": "residual 'Other' line under the candidate prefix if present, else the first rated line; options list every rated line",
    "candidate_htsno": "8508.70.00.00",
    "candidate_description": "Parts",
    "general_rate": "Free",
@@ -1133,6 +1606,6 @@
    "stale": false
   }
  },
- "hts_release": null,
+ "hts_release": "current release as served by hts.usitc.gov on 2026-09-13",
  "failed_headings": []
 }
