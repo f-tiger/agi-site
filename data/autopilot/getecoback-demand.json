@@ -204,7 +204,7 @@
   {
    "heat": {
     "n7": 2,
-    "p7": 0
+    "p7": 1
    },
    "kind": "autocomplete-new",
    "match": 1.0,
@@ -625,19 +625,24 @@
    "v": 1
   }
  ],
- "generated": "2026-09-12",
+ "generated": "2026-09-13",
  "geo": "DE",
- "heat_source": "measured 2026-09-12 (23 pages); no notes",
+ "heat_source": "measured 2026-09-13 (19 pages); no notes",
  "hot_pages": [
   {
-   "n7": 13,
+   "n7": 10,
    "p7": 7,
    "page": "/"
   },
   {
-   "n7": 9,
+   "n7": 8,
    "p7": 8,
    "page": "/guide/midea-portasplit-ausverkauft-alternativen.html"
+  },
+  {
+   "n7": 7,
+   "p7": 6,
+   "page": "/en/guide/portable-ac-tilt-and-turn-windows.html"
   },
   {
    "n7": 7,
@@ -646,7 +651,7 @@
   },
   {
    "n7": 7,
-   "p7": 22,
+   "p7": 14,
    "page": "/guide/klimaanlage-wohnmobil.html"
   },
   {
@@ -656,32 +661,27 @@
   },
   {
    "n7": 6,
-   "p7": 1,
-   "page": "/en/guide/best-portable-air-conditioner-europe-heatwave.html"
-  },
-  {
-   "n7": 6,
-   "p7": 7,
-   "page": "/en/guide/portable-ac-tilt-and-turn-windows.html"
-  },
-  {
-   "n7": 6,
    "p7": 0,
    "page": "/guide/heizluefter-stromsparend.html"
   },
   {
-   "n7": 5,
-   "p7": 6,
+   "n7": 6,
+   "p7": 4,
    "page": "/guide/klimaanlage-kippfenster.html"
   },
   {
    "n7": 5,
-   "p7": 9,
+   "p7": 8,
    "page": "/guide/mobile-klimaanlage-ueberwintern.html"
   },
   {
-   "n7": 4,
-   "p7": 2,
+   "n7": 3,
+   "p7": 4,
+   "page": "/en/guide/best-portable-air-conditioner-europe-heatwave.html"
+  },
+  {
+   "n7": 3,
+   "p7": 3,
    "page": "/en/guide/portable-ac-leaking-water.html"
   },
   {
