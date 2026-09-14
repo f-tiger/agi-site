@@ -1,5 +1,5 @@
 {
- "fetched": "2026-09-13",
+ "fetched": "2026-09-14",
  "seeds": {
   "electric spin scrubber": {
    "auto": [
@@ -539,34 +539,26 @@
    "rising": [
     {
      "q": "befano portable bottle warmer",
-     "v": 1650
+     "v": 2150
     },
     {
      "q": "momcozy bottle warmer instructions",
-     "v": 550
+     "v": 500
     },
     {
-     "q": "momcozy portable breast milk cooler",
-     "v": 350
+     "q": "how to use baby brezza bottle warmer",
+     "v": 190
     },
     {
      "q": "how to use momcozy bottle warmer",
-     "v": 200
-    },
-    {
-     "q": "breast milk cooler",
-     "v": 200
-    },
-    {
-     "q": "momcozy bottle washer",
-     "v": 180
+     "v": 160
     },
     {
      "q": "grownsy bottle warmer",
      "v": 120
     },
     {
-     "q": "mom cozy",
+     "q": "momcozy milk warmer",
      "v": 110
     },
     {
@@ -574,12 +566,70 @@
      "v": 100
     },
     {
-     "q": "momcozy milk warmer",
-     "v": 100
+     "q": "mom cozy",
+     "v": 90
+    },
+    {
+     "q": "momcozy bottle warmer",
+     "v": 40
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-09-13"
+   "fetched": "2026-09-14"
+  },
+  "electric pruning shears": {
+   "auto": [
+    "electric pruning shears",
+    "electric pruning shears with extension pole",
+    "electric pruning shears harbor freight",
+    "electric pruning shears cordless",
+    "electric pruning shears home depot",
+    "electric pruning shears reviews",
+    "electric pruning shears dewalt",
+    "electric pruning shears amazon",
+    "electric pruning shears makita",
+    "electric pruning shears ryobi"
+   ],
+   "rising": [
+    {
+     "q": "electric pruning shears with extension pole",
+     "v": "new"
+    },
+    {
+     "q": "electric pruning shears harbor freight",
+     "v": "new"
+    },
+    {
+     "q": "electric pruning shears cordless",
+     "v": "new"
+    },
+    {
+     "q": "electric pruning shears home depot",
+     "v": "new"
+    },
+    {
+     "q": "electric pruning shears reviews",
+     "v": "new"
+    },
+    {
+     "q": "electric pruning shears dewalt",
+     "v": "new"
+    },
+    {
+     "q": "electric pruning shears amazon",
+     "v": "new"
+    },
+    {
+     "q": "electric pruning shears makita",
+     "v": "new"
+    },
+    {
+     "q": "electric pruning shears ryobi",
+     "v": "new"
+    }
+   ],
+   "source": "autocomplete-diff",
+   "fetched": "2026-09-14"
   }
  }
 }
