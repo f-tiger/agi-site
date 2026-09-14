@@ -1,5 +1,5 @@
 {
- "checked": "2026-09-13T13:00:04Z",
+ "checked": "2026-09-14T14:36:39Z",
  "paths": [
   "/",
   "/llms.txt"
@@ -328,6 +328,50 @@
   {
    "site": "gamesledger",
    "origin": "https://games.agiscorecard.com",
+   "valid": true,
+   "blocked": [],
+   "status": {
+    "(browser)": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "GPTBot": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "OAI-SearchBot": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "ChatGPT-User": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "PerplexityBot": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "Perplexity-User": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "ClaudeBot": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "Claude-User": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "Bingbot": {
+     "/": 200,
+     "/llms.txt": 200
+    }
+   }
+  },
+  {
+   "site": "after35",
+   "origin": "https://35.agiscorecard.com",
    "valid": true,
    "blocked": [],
    "status": {

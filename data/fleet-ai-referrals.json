@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-13T13:00:05Z",
+ "generated": "2026-09-14T14:36:41Z",
  "window_days": 28,
  "ok": true,
  "read_via": "endpoints",
@@ -8,25 +8,25 @@
   "fleet_ai_ref": 69,
   "note": "hand-measured; agi 20, bpj 33, eco 16, others 0"
  },
- "fleet_ai_ref": 78,
- "fleet_human_pv": 30304,
+ "fleet_ai_ref": 80,
+ "fleet_human_pv": 31030,
  "sites": [
   {
    "site": "agiscorecard",
-   "human_pv": 27509,
-   "ai_ref": 20,
+   "human_pv": 28142,
+   "ai_ref": 22,
    "by_host": {
-    "chatgpt.com": 7,
+    "chatgpt.com": 8,
     "claude.ai": 6,
     "copilot.microsoft.com": 4,
-    "www.perplexity.ai": 2,
+    "www.perplexity.ai": 3,
     "kagi.com": 1
    },
    "via": "endpoint"
   },
   {
    "site": "baipiaoji",
-   "human_pv": 280,
+   "human_pv": 288,
    "ai_ref": 33,
    "by_host": {
     "chatgpt.com": 12,
@@ -37,7 +37,7 @@
   },
   {
    "site": "getecoback",
-   "human_pv": 602,
+   "human_pv": 574,
    "ai_ref": 25,
    "by_host": {
     "chatgpt.com": 18,
@@ -49,35 +49,42 @@
   },
   {
    "site": "thedollscout",
-   "human_pv": 225,
+   "human_pv": 231,
    "ai_ref": 0,
    "by_host": {},
    "via": "endpoint"
   },
   {
    "site": "goldrush",
-   "human_pv": 293,
+   "human_pv": 313,
    "ai_ref": 0,
    "by_host": {},
    "via": "endpoint"
   },
   {
    "site": "gridlings",
-   "human_pv": 678,
+   "human_pv": 695,
    "ai_ref": 0,
    "by_host": {},
    "via": "endpoint"
   },
   {
    "site": "buysomething",
-   "human_pv": 67,
+   "human_pv": 74,
    "ai_ref": 0,
    "by_host": {},
    "via": "endpoint"
   },
   {
    "site": "gamesledger",
-   "human_pv": 650,
+   "human_pv": 661,
+   "ai_ref": 0,
+   "by_host": {},
+   "via": "endpoint"
+  },
+  {
+   "site": "after35",
+   "human_pv": 52,
    "ai_ref": 0,
    "by_host": {},
    "via": "endpoint"
