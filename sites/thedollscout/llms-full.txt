@@ -10,7 +10,7 @@
 > Link targets are kept inline in parentheses so every cited source stays
 > checkable from this file alone. Conditional UI states (a tool's unshown
 > verdicts) are omitted rather than dumped as contradictory text.
-> Generated 2026-08-31. Index: https://thedollscout.com/llms.txt
+> Generated 2026-09-14. Index: https://thedollscout.com/llms.txt
 > Datasets (CC-BY 4.0, 4): https://thedollscout.com/data/labubu-fake-signals.json , https://thedollscout.com/data/labubu-glossary.json , https://thedollscout.com/data/pull-math.json , https://thedollscout.com/data/rarity-odds.json
 > MCP endpoint https://thedollscout.com/mcp — 4 read-only tools: labubu_rarity_odds, labubu_fake_signals, secret_pull_probability, define_labubu_term
 
@@ -18,9 +18,9 @@
 ========================================================================
 URL: https://thedollscout.com/
 Title: DollScout — Labubu Rarity, Odds & Buyer's Guide
-Description: Which Labubu is actually rare, how rare, and what your blind-box odds really are — with a pull calculator, the real-vs-fake check and the official channels. Every claim sourced.
+Description: Which Labubu is actually rare, how rare, and what your blind-box odds really are — pull calculator, 8-point real-vs-fake check, official channels. All sourced.
 ========================================================================
-# Which one is actually rare — and how rare?
+# Which Labubu is actually rare — and how rare?
 
 1 : 72
 the most commonly reported secret rate for a 6-figure series — if the box says so (https://thedollscout.com/rarity)
@@ -63,6 +63,10 @@ Odds by box count One box, six, a full case, seventy-two — what each purchase 
 Real vs fake (Lafufu) The rarer the figure, the more it's faked. The 8-point check — teeth, box, seal, markings, price floor — each with its source. (https://thedollscout.com/fake-check)
 Where to buy The official channels, ranked by how structurally hard it is for a fake — or a rigged "guaranteed secret" — to reach you. (https://thedollscout.com/where-to-buy)
 
+### Labubu secret odds by box count
+
+1 box (https://thedollscout.com/odds/one-box) · 6 boxes (https://thedollscout.com/odds/six-boxes) · 12 boxes (full case) (https://thedollscout.com/odds/twelve-boxes-full-case) · 24 boxes (https://thedollscout.com/odds/twenty-four-boxes) · 72 boxes (https://thedollscout.com/odds/seventy-two-boxes) — the real chance of a secret at each purchase size, all five compared (https://thedollscout.com/odds/).
+
 How blind boxes actually work Series structure, the secret, cases vs loose boxes, the buying formats and the traps — the whole mechanism in one page. (https://thedollscout.com/how-blind-boxes-work)
 The glossary Secret, chase, case, printed odds, glow, Lafufu — every term of the hunt, defined in plain language. (https://thedollscout.com/glossary)
 Your first Labubu Format, series, channel — the three decisions of a good first buy, plus the parents' section. (https://thedollscout.com/start)
@@ -102,12 +106,12 @@ Labubu was created by Hong Kong-born artist Kasing Lung (https://en.wikipedia.or
 
 ========================================================================
 URL: https://thedollscout.com/start
-Title: Your First Labubu: Beginner's Guide to Formats, Series & Channels
-Description: How to buy your first Labubu without regret: the three decisions (format, series, channel), what each format actually is, a first-buy checklist, and a straight-talk section for parents.
+Title: Your First Labubu: Beginner's Guide (Format, Series, Channel)
+Description: How to buy your first Labubu without regret: the three decisions (format, series, channel), a first-buy checklist and a straight-talk section for parents.
 ========================================================================
 Home (https://thedollscout.com/) / Your First Labubu
 
-# Your first one, bought well.
+# Your first Labubu, bought well.
 
 A first Labubu is three decisions, made in the right order — format, series, channel. Get those right and everything else on this site is just backup. Last updated 2026-08-30.
 
@@ -188,7 +192,7 @@ The psychology of the pull Why the opening feels like this — and the chase-cos
 ========================================================================
 URL: https://thedollscout.com/rarity
 Title: Labubu Rarity Guide: Secret Odds + Pull Calculator
-Description: How rare is a secret Labubu really? The reported odds per series format (1:72, 1:144, rarer for collabs and glow variants), what
+Description: How rare is a secret Labubu? Reported odds per series format (1:72, 1:144, rarer for collabs and glow), what
 ========================================================================
 Home (https://thedollscout.com/) / Rarity & Odds
 
@@ -283,6 +287,10 @@ Treat it as a counterfeit signal. The blind-box economics only work because the 
 
 ## Keep reading
 
+### Labubu secret odds by box count
+
+1 box (https://thedollscout.com/odds/one-box) · 6 boxes (https://thedollscout.com/odds/six-boxes) · 12 boxes (full case) (https://thedollscout.com/odds/twelve-boxes-full-case) · 24 boxes (https://thedollscout.com/odds/twenty-four-boxes) · 72 boxes (https://thedollscout.com/odds/seventy-two-boxes) — the real chance of a secret at each purchase size, all five compared (https://thedollscout.com/odds/).
+
 Real vs Fake: the 8-point check The rarer the figure, the more it gets faked. The checks, each with its source. (https://thedollscout.com/fake-check)
 Where to actually buy one The official channels where the odds you're paying for are the odds you get. (https://thedollscout.com/where-to-buy)
 🔍 Lafufu Checker The rarer the figure, the harder it is faked — run the 8 authenticity checks interactively. (https://thedollscout.com/checker)
@@ -290,12 +298,12 @@ Where to actually buy one The official channels where the odds you're paying for
 
 ========================================================================
 URL: https://thedollscout.com/how-blind-boxes-work
-Title: How Labubu Blind Boxes Actually Work: Series, Secrets, Cases, Math
-Description: The mechanics of a Labubu blind box: how series are structured, how the secret works, what a case changes, what the printed odds mean across multiple boxes — and how to buy without fooling yourself.
+Title: How Labubu Blind Boxes Work: Series, Secrets, Cases, Odds
+Description: How a Labubu blind box works: how series are structured, how the secret works, what a case changes, what the printed odds mean across several boxes. Sourced.
 ========================================================================
 Home (https://thedollscout.com/) / How Blind Boxes Work
 
-# How the machine actually works.
+# How Labubu blind boxes actually work: series, secret, case, odds.
 
 The blind box is a beautifully simple machine, and most of the money lost around it is lost by not understanding three of its parts: the series, the secret, and the case. This is the whole mechanism in one page, every number sourced. Last updated 2026-08-30.
 
@@ -351,12 +359,12 @@ Where to buy The channels where the printed odds are the odds you actually get. 
 
 ========================================================================
 URL: https://thedollscout.com/psychology
-Title: The Psychology of the Pull: Why Labubu Blind Boxes Feel Like This
-Description: Why opening a Labubu blind box feels so good, why stopping is hard, and how to collect without regret — variable rewards, the near-miss effect, and a chase-cost calculator, every claim sourced.
+Title: Labubu Psychology: Why Blind Box Pulls Feel Like This
+Description: Why opening a Labubu blind box feels so good, why stopping is hard, how to collect without regret — variable rewards, near-miss effect, chase-cost calculator.
 ========================================================================
 Home (https://thedollscout.com/) / Psychology
 
-# Why the pull feels like this.
+# Labubu psychology: why the pull feels like this.
 
 The blind box is engineered to be felt, not reasoned about — and that's not a scandal, it's a design. This page explains the machinery honestly, names its sources, and then does the one thing the machinery never does: the math, before you pay. Last updated 2026-08-30.
 
@@ -457,7 +465,7 @@ Your first Labubu The beginner's path through formats, series and channels. (htt
 ========================================================================
 URL: https://thedollscout.com/fake-check
 Title: Real vs Fake Labubu: The 8-Point Check (Spot a Lafufu)
-Description: How to tell if a Labubu is real or fake: the nine-teeth rule, the matte box, the QR anti-counterfeit seal, the foot marking, the price floor — every check sourced.
+Description: How to tell if a Labubu is real or fake: the nine-teeth rule, the matte box, the scratch-code QR seal, the foot marking, the price floor — every check sourced.
 ========================================================================
 Home (https://thedollscout.com/) / Real vs Fake
 
@@ -477,9 +485,9 @@ The short answer: count the teeth first — a real Labubu has exactly nine , dis
 
 | 3. Box finish | Matte, muted pastels, embossed series name, clean print | Glossy, uneven surface, washed-out or over-saturated print | SNKRDUNK (https://snkrdunk.com/en/magazine/2024/12/04/real-vs-fake-labubu-tips-to-ensure-your-collection-is-authentic/) (2024-12)
 
-| 4. Anti-counterfeit seal | QR seal resolving to popmart.com verification | No seal — or a QR that lands on a lookalike domain | Izoate (https://www.izoate.com/blog/how-to-tell-if-a-labubu-is-real-or-fake-in-2026-8-authenticity-checks/) (2026)
+| 4. Anti-counterfeit seal | Silver scratch label + QR; the revealed code verifies on Pop Mart's page (fwsy.popmart.com) | No seal, a QR that lands on a lookalike domain, or a code that comes back invalid / already used | Pop Mart help (https://www.popmart.com/us/help/authenticity-check) (official), Feltify (https://www.feltify.com/blogs/all-about-labubu/how-to-check-labubu-authenticity-qr-code) (2025), Izoate (https://www.izoate.com/blog/how-to-tell-if-a-labubu-is-real-or-fake-in-2026-8-authenticity-checks/) (2026)
 
-| 5. Figure markings | Pop Mart engraving / artist name on the foot on 2024+ releases | Missing or mushy markings on recent series | ABC News (https://abcnews.com/GMA/Living/how-to-spot-fake-labubu/story?id=124575764)
+| 5. Figure markings | Pop Mart engraving / artist name on the foot on 2024+ releases; newer editions also carry a UV-reactive mark on the underside of the right foot | Missing or mushy markings on recent series — or no glow / a smudge under a UV torch on a series that should have one | ABC News (https://abcnews.com/GMA/Living/how-to-spot-fake-labubu/story?id=124575764), GamesRadar+ (https://www.gamesradar.com/toys-collectibles/how-to-tell-if-a-labubu-is-real-or-fake/) (2025), Double Boxed (https://www.doubleboxed.co.uk/blogs/news/real-vs-fake-labubu-authentication-guide) (2026)
 
 | 6. Build quality | Even fur, clean seams, crisp paint edges, substantial feel | Rough seams, grainy patches, mismatched gloss, light hollow plastic | Gulf News (https://gulfnews.com/amp/story/lifestyle/bought-a-labubu-learn-the-crucial-signs-that-reveal-if-its-a-genuine-or-a-lafufu-1.500206668)
 
@@ -499,7 +507,7 @@ Nine. The nine-teeth count is the most widely reported single check, cited both 
 
 ## Does a real Labubu box have a QR code?
 
-Recent authentic packaging carries an anti-counterfeit seal with a QR code that should resolve to Pop Mart's own verification. Two cautions reported by collector guides: counterfeiters also print QR stickers, so what matters is not that a code exists but where it leads — check that the domain you land on is popmart.com , not a lookalike. And an older or re-sealed box is a question in itself. We could not verify the exact seal design for every series and year, so treat the seal as one check among eight, not a verdict.
+Recent authentic packaging carries an anti-counterfeit seal with a QR code and a silver scratch-off label. Pop Mart publishes its own authenticity-check help page, and collector guides describe the steps the same way: scratch the label to reveal the code, scan the QR (it should open Pop Mart's verification page, fwsy.popmart.com) and enter the code. A valid code returns a confirmation; a result of invalid, not found or already verified is a warning sign, and a label that was scratched before you bought the box is a question in itself. Counterfeiters also print QR stickers, so what matters is not that a code exists but where it leads — check that the domain you land on is popmart.com , not a lookalike. Older series predate the seal, so its absence on an old box proves nothing. We could not verify the exact seal design for every series and year, so treat the seal as one check among eight, not a verdict.
 
 ## What does a fake Labubu (Lafufu) usually get wrong?
 
@@ -527,7 +535,7 @@ Nine. The nine-teeth count is the most widely reported single check, cited both 
 
 ### Does a real Labubu box have a QR code?
 
-Recent authentic packaging carries an anti-counterfeit seal with a QR code that should resolve to Pop Mart's own verification. Two cautions reported by collector guides: counterfeiters also print QR stickers, so what matters is not that a code exists but where it leads — check that the domain you land on is popmart.com, not a lookalike. And an older or re-sealed box is a question in itself. We could not verify the exact seal design for every series and year, so treat the seal as one check among eight, not a verdict.
+Recent authentic packaging carries an anti-counterfeit seal with a QR code and a silver scratch-off label. Pop Mart publishes its own authenticity-check help page, and collector guides describe the steps the same way: scratch the label to reveal the code, scan the QR (it should open Pop Mart's verification page, fwsy.popmart.com) and enter the code. A valid code returns a confirmation; a result of invalid, not found or already verified is a warning sign, and a label that was scratched before you bought the box is a question in itself. Counterfeiters also print QR stickers, so what matters is not that a code exists but where it leads — check that the domain you land on is popmart.com, not a lookalike. Older series predate the seal, so its absence on an old box proves nothing. We could not verify the exact seal design for every series and year, so treat the seal as one check among eight, not a verdict.
 
 ### What does a fake Labubu (Lafufu) usually get wrong?
 
@@ -545,11 +553,11 @@ Where to actually buy one The official channel list — the check that makes the
 ========================================================================
 URL: https://thedollscout.com/where-to-buy
 Title: Where to Buy a Real Labubu: Official Channels, Ranked
-Description: Where to buy an authentic Labubu: Pop Mart
+Description: Where to buy a real Labubu: Pop Mart
 ========================================================================
 Home (https://thedollscout.com/) / Where to Buy
 
-# Where to buy a real one.
+# Where to buy a real Labubu.
 
 Every authenticity check on the 8-point list (https://thedollscout.com/fake-check) exists because somebody bought from the wrong place. The channel decides how much checking you owe: where Pop Mart is the seller of record, a counterfeit structurally cannot reach the shelf. Channel list per press coverage of Pop Mart's own advice (ABC News (https://abcnews.com/GMA/Living/how-to-spot-fake-labubu/story?id=124575764)); recorded 2026-08-30.
 
@@ -617,11 +625,11 @@ Real vs Fake: the 8-point check For everything you buy off the official list —
 ========================================================================
 URL: https://thedollscout.com/glossary
 Title: Labubu & Blind Box Glossary: Secret, Chase, Case, Lafufu
-Description: What secret, chase, case, printed odds, glow edition, vinyl plush and Lafufu actually mean in Labubu collecting — every term defined in plain language, cross-linked to the evidence pages.
+Description: Labubu glossary: what secret, chase, case, printed odds, glow edition, vinyl plush and Lafufu actually mean — every term in plain language, with sources.
 ========================================================================
 Home (https://thedollscout.com/) / Glossary
 
-# The words of the hunt, defined.
+# Labubu glossary: every term of the hunt, defined.
 
 Collecting has its own vocabulary, and half the confusion (and some of the scams) lives in it. Plain-language definitions, cross-linked to the evidence pages where the numbers behind them live. Last updated 2026-08-30.
 
@@ -674,12 +682,12 @@ Real vs Fake The 8-point Lafufu check, each line with its source. (https://thedo
 
 ========================================================================
 URL: https://thedollscout.com/data/
-Title: Open Data — DollScout
-Description: DollScout
+Title: Labubu Open Data: Odds, Fake Signals, Glossary — DollScout
+Description: Four CC-BY Labubu datasets: secret rarity odds per series format, 8 real-vs-fake signals, glossary, pull-probability table — sourced JSON, callable over MCP.
 ========================================================================
 Home (https://thedollscout.com/) / Data
 
-# Open data.
+# Labubu open data: rarity odds, fake signals, glossary, pull math.
 
 The evidence behind our pages, published as machine-readable JSON under CC-BY 4.0. Quote freely with attribution; assistants and crawlers welcome. Where Pop Mart's own current guidance disagrees with a dataset, follow Pop Mart's.
 
@@ -700,11 +708,11 @@ These datasets are also callable: the site runs an MCP endpoint at https://thedo
 ========================================================================
 URL: https://thedollscout.com/checker
 Title: Interactive Lafufu Checker: Test Your Labubu in 8 Answers
-Description: Answer the 8 authenticity checks — teeth, face, box, seal, markings, build, price, seller — and get an honest verdict: red flags listed, or 
+Description: Labubu checker: answer the 8 authenticity checks — teeth, face, box, seal, markings, build, price, seller — and get an honest verdict, never a fake guarantee.
 ========================================================================
 Home (https://thedollscout.com/) / Lafufu Checker
 
-# Run the checks. Get a straight answer.
+# Labubu checker: run the 8 checks, get a straight answer.
 
 The same 8 sourced authenticity checks (https://thedollscout.com/fake-check) as our guide — but as a tool: answer what you see on your figure, and the verdict names exactly which checks failed. Everything runs in your browser; nothing is uploaded. Last updated 2026-08-30.
 
@@ -732,14 +740,14 @@ Glossy / uneven / bad print
 No box / can't tell
 
 4. Anti-counterfeit seal
-Authentic: QR seal that resolves to verification on popmart.com. Counterfeit tell: no seal, or a QR landing on a lookalike domain — check the domain in your browser's address bar.
+Authentic: silver scratch label + QR; scratch, scan (it should open fwsy.popmart.com) and enter the code — a valid code confirms. Counterfeit tell: no seal, a QR landing on a lookalike domain, or a code that comes back invalid / already used — check the domain in your browser's address bar.
 
 QR verifies on popmart.com
 No seal / QR goes elsewhere
 Haven't scanned
 
 5. Figure markings
-Authentic: Pop Mart engraving / artist name on the foot on 2024+ releases. Counterfeit tell: missing or mushy markings on recent series. On older series, absence is a question, not a verdict — answer "can't tell".
+Authentic: Pop Mart engraving / artist name on the foot on 2024+ releases; newer editions also show a UV-reactive mark under the right foot with a UV torch. Counterfeit tell: missing or mushy markings on recent series, or no glow / a smudge under UV where the series should have one. On older series, absence is a question, not a verdict — answer "can't tell".
 
 Crisp foot markings (recent series)
 Missing/mushy markings on a recent series
@@ -777,11 +785,11 @@ Rarity & odds Why the rare ones are the faked ones — and the real math. (https
 ========================================================================
 URL: https://thedollscout.com/finder
 Title: Labubu Series Finder: Which Series Fits You, in 3 Answers
-Description: Bag or shelf, cozy or bold or sparkly, happy with regulars or chasing the secret — three answers point you at the official series that fits, linked straight to Pop Mart
+Description: Labubu series finder: bag or shelf, cozy, bold or sparkly, regulars or chasing the secret — 3 answers point you at the official Pop Mart series that fits.
 ========================================================================
 Home (https://thedollscout.com/) / Series Finder
 
-# Three answers. One good starting series.
+# Labubu series finder: three answers, one good starting series.
 
 Collector directories count dozens of Labubu series — a figure we have not independently verified — and you need one to start with. This finder maps what you actually want — where it lives, what it looks like, how much chase you're signing up for — to a current official series, linked straight to Pop Mart's own listing. Last updated 2026-08-30; series rotate, the live listing always wins.
 
@@ -839,12 +847,12 @@ Lafufu Checker After you buy: the 8 checks as an interactive tool. (https://thed
 
 ========================================================================
 URL: https://thedollscout.com/lookup
-Title: Labubu Model Lookup: Which Character, Series or Format Is This?
-Description: Type a name — Labubu, Zimomo, Mokoko, Have a Seat, Big Into Energy, secret, Lafufu — and get the sourced identity card: what it is, how to tell it apart, where the evidence lives.
+Title: Labubu Model Lookup: Which Character, Series or Format?
+Description: Labubu model lookup: type a name — Zimomo, Mokoko, Have a Seat, Big Into Energy, secret, Lafufu — and get the sourced identity card and how to tell it apart.
 ========================================================================
 Home (https://thedollscout.com/) / Model Lookup
 
-# Which one is this?
+# Labubu lookup: which character, series or format is this?
 
 The identities that actually get confused — characters, current series, formats, collector terms — as an instant lookup. Every entry states only what its named sources support. Not in the index doesn't mean it doesn't exist: this is a curated evidence index, not a catalog of every series. Last updated 2026-08-30.
 
@@ -906,14 +914,14 @@ Series Finder No model yet? Three answers to a good starting series. (https://th
 
 ========================================================================
 URL: https://thedollscout.com/odds/
-Title: Secret odds by box count — what each purchase size actually buys | DollScout
-Description: One box, six, a full case, two cases, seventy-two: the real chance of a secret at each purchase size, computed in the open, plus the circulating claims each one disproves.
+Title: Labubu secret odds by box count: 1 to 72 boxes | DollScout
+Description: Labubu secret odds for 1, 6, 12 (a full case), 24 and 72 boxes: the real chance at each purchase size, computed in the open, plus the claims each one disproves.
 ========================================================================
 Home (https://thedollscout.com/) / Odds by box count (https://thedollscout.com/odds/)
 
-# What does each purchase size actually buy?
+# Labubu secret odds by box count
 
-Almost every number passed around this hobby is a per-box rate — and almost every decision is made in purchase sizes: one box, a set, a case. These pages convert one into the other, for every reported series format, in the open where you can check the arithmetic. Last updated 2026-08-31.
+What does each purchase size actually buy? Almost every number passed around this hobby is a per-box rate — and almost every decision is made in purchase sizes: one box, a set, a case. These pages convert one into the other, for every reported series format, in the open where you can check the arithmetic. Last updated 2026-08-31.
 
 | | Purchase size | Chance of ≥1 secret (1:72) | Expected secrets
 
@@ -945,14 +953,14 @@ How blind boxes work Series, secret, case — the mechanism in one page. (https:
 
 ========================================================================
 URL: https://thedollscout.com/odds/one-box
-Title: One box — the real secret odds for 1 box | DollScout
-Description: A single blind box: a 1.4% chance of at least one secret at 1:72, expected count 0.01. Full table across every reported series format, the 50% and 90% thresholds, and the circulating claim this disproves.
+Title: Labubu secret odds: 1 box — the math | DollScout
+Description: Labubu secret odds for 1 box: 1.4% chance of ≥1 secret at 1:72, expected 0.01. All formats, 50%/90% thresholds, the claim it disproves.
 ========================================================================
-Home (https://thedollscout.com/) / Odds by box count (https://thedollscout.com/odds/) / One box
+Home (https://thedollscout.com/) / Odds by box count (https://thedollscout.com/odds/) / Labubu secret odds for one box
 
-# One box.
+# Labubu secret odds for one box
 
-The atom of the whole hobby, and the number every other number on this site is built from. Last updated 2026-08-31.
+One box. The atom of the whole hobby, and the number every other number on this site is built from. Last updated 2026-08-31.
 
 1.4%
 chance of at least one secret from a single blind box — at 1:72 printed odds
@@ -1011,14 +1019,14 @@ Where to Buy Once the math has decided: where the printed odds are the real odds
 
 ========================================================================
 URL: https://thedollscout.com/odds/six-boxes
-Title: Six boxes — one of each regular — the real secret odds for 6 boxes | DollScout
-Description: Six boxes: a 8.0% chance of at least one secret at 1:72, expected count 0.08. Full table across every reported series format, the 50% and 90% thresholds, and the circulating claim this disproves.
+Title: Labubu secret odds: 6 boxes — the math | DollScout
+Description: Labubu secret odds for 6 boxes: 8.0% chance of ≥1 secret at 1:72, expected 0.08. All formats, 50%/90% thresholds, the claim it disproves.
 ========================================================================
-Home (https://thedollscout.com/) / Odds by box count (https://thedollscout.com/odds/) / Six boxes — one of each regular
+Home (https://thedollscout.com/) / Odds by box count (https://thedollscout.com/odds/) / Labubu secret odds for six boxes
 
-# Six boxes — one of each regular?
+# Labubu secret odds for six boxes
 
-Six is the number of regular figures in a standard series, which is why so many people buy six and expect the set. Last updated 2026-08-31.
+Six boxes — one of each regular? Six is the number of regular figures in a standard series, which is why so many people buy six and expect the set. Last updated 2026-08-31.
 
 8.0%
 chance of at least one secret from six boxes — at 1:72 printed odds
@@ -1077,14 +1085,14 @@ Where to Buy Once the math has decided: where the printed odds are the real odds
 
 ========================================================================
 URL: https://thedollscout.com/odds/twelve-boxes-full-case
-Title: A full case of twelve. Does it guarantee a secret — the real secret odds for 12 boxes | DollScout
-Description: Twelve boxes (a full case): a 15.5% chance of at least one secret at 1:72, expected count 0.17. Full table across every reported series format, the 50% and 90% thresholds, and the circulating claim this disproves.
+Title: Labubu secret odds: 12 boxes (full case) — the math | DollScout
+Description: Labubu secret odds for 12 boxes (full case): 15.5% chance of ≥1 secret at 1:72, expected 0.17. All formats, 50%/90% thresholds, the claim it disproves.
 ========================================================================
-Home (https://thedollscout.com/) / Odds by box count (https://thedollscout.com/odds/) / A full case of twelve. Does it guarantee a secret
+Home (https://thedollscout.com/) / Odds by box count (https://thedollscout.com/odds/) / Labubu secret odds for a full case of 12 boxes
 
-# A full case of twelve. Does it guarantee a secret?
+# Labubu secret odds for a full case of 12 boxes
 
-This is the single most misreported number in the hobby, and the one worth getting right before you spend case money. Last updated 2026-08-31.
+A full case of twelve. Does it guarantee a secret? This is the single most misreported number in the hobby, and the one worth getting right before you spend case money. Last updated 2026-08-31.
 
 15.5%
 chance of at least one secret from twelve boxes (a full case) — at 1:72 printed odds
@@ -1143,14 +1151,14 @@ Where to Buy Once the math has decided: where the printed odds are the real odds
 
 ========================================================================
 URL: https://thedollscout.com/odds/twenty-four-boxes
-Title: Two cases. Twice the boxes, not twice the odds — the real secret odds for 24 boxes | DollScout
-Description: Twenty-four boxes (two cases): a 28.5% chance of at least one secret at 1:72, expected count 0.33. Full table across every reported series format, the 50% and 90% thresholds, and the circulating claim this disproves.
+Title: Labubu secret odds: 24 boxes (2 cases) — the math | DollScout
+Description: Labubu secret odds for 24 boxes (2 cases): 28.5% chance of ≥1 secret at 1:72, expected 0.33. All formats, 50%/90% thresholds, the claim it disproves.
 ========================================================================
-Home (https://thedollscout.com/) / Odds by box count (https://thedollscout.com/odds/) / Two cases. Twice the boxes, not twice the odds
+Home (https://thedollscout.com/) / Odds by box count (https://thedollscout.com/odds/) / Labubu secret odds for 24 boxes (two cases)
 
-# Two cases. Twice the boxes, not twice the odds.
+# Labubu secret odds for 24 boxes (two cases)
 
-The tier people reach after one case disappointed them — and where the gambler's fallacy does its most expensive work. Last updated 2026-08-31.
+Two cases. Twice the boxes, not twice the odds. The tier people reach after one case disappointed them — and where the gambler's fallacy does its most expensive work. Last updated 2026-08-31.
 
 28.5%
 chance of at least one secret from twenty-four boxes (two cases) — at 1:72 printed odds
@@ -1209,14 +1217,14 @@ Where to Buy Once the math has decided: where the printed odds are the real odds
 
 ========================================================================
 URL: https://thedollscout.com/odds/seventy-two-boxes
-Title: Seventy-two boxes. Surely by now — the real secret odds for 72 boxes | DollScout
-Description: Seventy-two boxes: a 63.5% chance of at least one secret at 1:72, expected count 1.00. Full table across every reported series format, the 50% and 90% thresholds, and the circulating claim this disproves.
+Title: Labubu secret odds: 72 boxes — the math | DollScout
+Description: Labubu secret odds for 72 boxes: 63.5% chance of ≥1 secret at 1:72, expected 1.00. All formats, 50%/90% thresholds, the claim it disproves.
 ========================================================================
-Home (https://thedollscout.com/) / Odds by box count (https://thedollscout.com/odds/) / Seventy-two boxes. Surely by now
+Home (https://thedollscout.com/) / Odds by box count (https://thedollscout.com/odds/) / Labubu secret odds for 72 boxes
 
-# Seventy-two boxes. Surely by now?
+# Labubu secret odds for 72 boxes
 
-The number in the printed odds, which nearly everyone reads as the number of boxes that gets you there. It is the most counterintuitive result on this site. Last updated 2026-08-31.
+Seventy-two boxes. Surely by now? The number in the printed odds, which nearly everyone reads as the number of boxes that gets you there. It is the most counterintuitive result on this site. Last updated 2026-08-31.
 
 63.5%
 chance of at least one secret from seventy-two boxes — at 1:72 printed odds
@@ -1276,9 +1284,9 @@ Where to Buy Once the math has decided: where the printed odds are the real odds
 ========================================================================
 URL: https://thedollscout.com/de/
 Title: DollScout — Labubu Seltenheit, Quoten & Kaufberater
-Description: Welcher Labubu ist wirklich selten, wie selten, und wie stehen deine Blindbox-Chancen wirklich? Mit Pull-Rechner, Echt-vs-Fälschung-Check und den offiziellen Kanälen. Jede Aussage mit Quelle.
+Description: Welcher Labubu ist wirklich selten, wie selten, und wie stehen deine Blindbox-Chancen? Pull-Rechner, 8-Punkte-Echtheitscheck, offizielle Kanäle. Mit Quellen.
 ========================================================================
-# Welcher ist wirklich selten — und wie selten?
+# Welcher Labubu ist wirklich selten — und wie selten?
 
 1 : 72
 die am häufigsten berichtete Secret-Quote einer 6-Figuren-Serie — wenn die Box es sagt (https://thedollscout.com/de/rarity)
@@ -1321,6 +1329,10 @@ Chancen pro Boxenzahl Eine Box, sechs, ein ganzer Case, zweiundsiebzig — was j
 Echt vs. Fälschung (Lafufu) Je seltener die Figur, desto häufiger die Fälschung. Der 8-Punkte-Check — Zähne, Box, Siegel, Prägung, Preisboden — jeder mit Quelle. (https://thedollscout.com/de/fake-check)
 Wo kaufen Die offiziellen Kanäle — sortiert danach, wie schwer eine Fälschung oder ein manipuliertes "Secret garantiert" dich erreichen kann. (https://thedollscout.com/de/where-to-buy)
 
+### Labubu-Secret-Chance nach Boxenzahl
+
+1 Box (https://thedollscout.com/de/odds/one-box) · 6 Boxen (https://thedollscout.com/de/odds/six-boxes) · 12 Boxen (ganzer Case) (https://thedollscout.com/de/odds/twelve-boxes-full-case) · 24 Boxen (https://thedollscout.com/de/odds/twenty-four-boxes) · 72 Boxen (https://thedollscout.com/de/odds/seventy-two-boxes) — die echte Chance auf ein Secret pro Kaufmenge, alle fünf im Vergleich (https://thedollscout.com/de/odds/).
+
 Wie Blindboxen wirklich funktionieren Serienstruktur, das Secret, Cases vs. lose Boxen, die Kaufformate und die Fallen — der ganze Mechanismus auf einer Seite. (https://thedollscout.com/de/how-blind-boxes-work)
 Das Glossar Secret, Chase, Case, gedruckte Quote, Glow, Lafufu — jeder Begriff der Jagd, in Klartext definiert. (https://thedollscout.com/de/glossary)
 Dein erster Labubu Format, Serie, Kanal — die drei Entscheidungen eines guten Erstkaufs, plus Eltern-Abschnitt. (https://thedollscout.com/de/start)
@@ -1358,12 +1370,12 @@ Labubu wurde vom in Hongkong geborenen Künstler Kasing Lung (https://en.wikiped
 
 ========================================================================
 URL: https://thedollscout.com/de/start
-Title: Dein erster Labubu: Einsteiger-Guide zu Formaten, Serien & Kanälen
-Description: Wie du deinen ersten Labubu ohne Reue kaufst: die drei Entscheidungen (Format, Serie, Kanal), was jedes Format wirklich ist, die Erstkauf-Checkliste und ein Klartext-Abschnitt für Eltern.
+Title: Dein erster Labubu: Einsteiger-Guide zu Format, Serie & Kanal
+Description: Wie du deinen ersten Labubu ohne Reue kaufst: die drei Entscheidungen (Format, Serie, Kanal), die Erstkauf-Checkliste und ein Klartext-Abschnitt für Eltern.
 ========================================================================
 Start (https://thedollscout.com/de/) / Dein erster Labubu
 
-# Dein erster — gut gekauft.
+# Dein erster Labubu — gut gekauft.
 
 Ein erster Labubu ist drei Entscheidungen in der richtigen Reihenfolge — Format, Serie, Kanal. Sitzen die, ist alles andere auf dieser Website nur Rückendeckung. Stand 2026-08-30.
 
@@ -1444,7 +1456,7 @@ Die Psychologie des Ziehens Warum das Öffnen sich so anfühlt — und der Jagdk
 ========================================================================
 URL: https://thedollscout.com/de/rarity
 Title: Labubu Seltenheit: Secret-Quoten + Pull-Rechner
-Description: Wie selten ist ein Secret-Labubu wirklich? Die berichteten Quoten je Serienformat (1:72, 1:144, seltener bei Collabs und Glow-Varianten), was auf der Box steht — und ein Rechner für deine echten Chancen über mehrere Boxen.
+Description: Wie selten ist ein Secret-Labubu wirklich? Berichtete Quoten je Serienformat (1:72, 1:144, seltener bei Collabs und Glow), was auf der Box steht, plus Rechner.
 ========================================================================
 Start (https://thedollscout.com/de/) / Seltenheit & Quoten
 
@@ -1539,6 +1551,10 @@ Behandle es als Fälschungssignal. Die Blindbox-Ökonomie funktioniert nur, weil
 
 ## Weiterlesen
 
+### Labubu-Secret-Chance nach Boxenzahl
+
+1 Box (https://thedollscout.com/de/odds/one-box) · 6 Boxen (https://thedollscout.com/de/odds/six-boxes) · 12 Boxen (ganzer Case) (https://thedollscout.com/de/odds/twelve-boxes-full-case) · 24 Boxen (https://thedollscout.com/de/odds/twenty-four-boxes) · 72 Boxen (https://thedollscout.com/de/odds/seventy-two-boxes) — die echte Chance auf ein Secret pro Kaufmenge, alle fünf im Vergleich (https://thedollscout.com/de/odds/).
+
 Echt vs. Fälschung: der 8-Punkte-Check Je seltener die Figur, desto häufiger die Fälschung. Die Checks, jeder mit Quelle. (https://thedollscout.com/de/fake-check)
 Wo du wirklich einen kaufst Die offiziellen Kanäle, wo die bezahlte Quote auch die echte ist. (https://thedollscout.com/de/where-to-buy)
 🔍 Lafufu-Checker Je seltener die Figur, desto härter gefälscht — die 8 Checks interaktiv. (https://thedollscout.com/de/checker)
@@ -1546,12 +1562,12 @@ Wo du wirklich einen kaufst Die offiziellen Kanäle, wo die bezahlte Quote auch 
 
 ========================================================================
 URL: https://thedollscout.com/de/how-blind-boxes-work
-Title: Wie Labubu-Blindboxen wirklich funktionieren: Serie, Secret, Case, Mathe
-Description: Die Mechanik einer Labubu-Blindbox: wie Serien aufgebaut sind, wie das Secret funktioniert, was ein Case ändert, was die gedruckte Quote über mehrere Boxen bedeutet — und wie man kauft, ohne sich selbst zu täuschen.
+Title: Wie Labubu-Blindboxen funktionieren: Serie, Secret, Case, Mathe
+Description: Die Mechanik einer Labubu-Blindbox: wie Serien aufgebaut sind, wie das Secret funktioniert, was ein Case ändert, was die Quote über mehrere Boxen bedeutet.
 ========================================================================
 Start (https://thedollscout.com/de/) / Wie Blindboxen funktionieren
 
-# Wie die Maschine wirklich läuft.
+# Wie Labubu-Blindboxen wirklich funktionieren: Serie, Secret, Case, Quote.
 
 Die Blindbox ist eine wunderbar einfache Maschine, und das meiste Geld drumherum geht verloren, weil drei ihrer Teile nicht verstanden werden: die Serie, das Secret und der Case. Hier ist der ganze Mechanismus auf einer Seite, jede Zahl mit Quelle. Stand 2026-08-30.
 
@@ -1607,12 +1623,12 @@ Wo kaufen Die Kanäle, in denen die gedruckte Quote auch die Quote ist, die du b
 
 ========================================================================
 URL: https://thedollscout.com/de/psychology
-Title: Die Psychologie des Ziehens: Warum Labubu-Blindboxen sich so anfühlen
-Description: Warum das Öffnen einer Labubu-Blindbox sich so gut anfühlt, warum Aufhören schwer ist, und wie man ohne Reue sammelt — variable Belohnung, Near-Miss-Effekt und ein Jagdkosten-Rechner, jede Aussage mit Quelle.
+Title: Labubu-Psychologie: Warum Blindbox-Ziehen sich so anfühlt
+Description: Warum eine Labubu-Blindbox sich so gut anfühlt, warum Aufhören schwer ist, wie man ohne Reue sammelt — variable Belohnung, Near-Miss-Effekt, Jagdkosten-Rechner.
 ========================================================================
 Start (https://thedollscout.com/de/) / Psychologie
 
-# Warum das Ziehen sich so anfühlt.
+# Labubu-Psychologie: warum das Ziehen sich so anfühlt.
 
 Die Blindbox ist gebaut, um gefühlt zu werden, nicht durchdacht — und das ist kein Skandal, sondern ein Design. Diese Seite erklärt die Maschinerie ehrlich, nennt ihre Quellen und tut dann das eine, was die Maschinerie nie tut: die Mathematik, bevor du zahlst. Stand 2026-08-30.
 
@@ -1713,7 +1729,7 @@ Dein erster Labubu Der Einsteiger-Pfad durch Formate, Serien und Kanäle. (https
 ========================================================================
 URL: https://thedollscout.com/de/fake-check
 Title: Labubu echt oder Fälschung? Der 8-Punkte-Check (Lafufu erkennen)
-Description: Woran du einen echten Labubu erkennst: die Neun-Zähne-Regel, die matte Box, das QR-Anti-Fälschungs-Siegel, die Fußprägung, der Preisboden — jeder Check mit Quelle.
+Description: Woran du einen echten Labubu erkennst: die Neun-Zähne-Regel, die matte Box, das Rubbelcode-QR-Siegel, die Fußprägung, der Preisboden — jeder Check mit Quelle.
 ========================================================================
 Start (https://thedollscout.com/de/) / Echt vs. Fälschung
 
@@ -1733,9 +1749,9 @@ Die kurze Antwort: zähl zuerst die Zähne — ein echter Labubu hat genau neun 
 
 | 3. Box-Finish | Matt, gedeckte Pastelltöne, geprägter Serienname, sauberer Druck | Glänzend, unebene Oberfläche, blasser oder übersättigter Druck | SNKRDUNK (https://snkrdunk.com/en/magazine/2024/12/04/real-vs-fake-labubu-tips-to-ensure-your-collection-is-authentic/) (2024-12)
 
-| 4. Anti-Fälschungs-Siegel | QR-Siegel, das auf popmart.com-Verifizierung führt | Kein Siegel — oder ein QR, der auf einer Nachahmer-Domain landet | Izoate (https://www.izoate.com/blog/how-to-tell-if-a-labubu-is-real-or-fake-in-2026-8-authenticity-checks/) (2026)
+| 4. Anti-Fälschungs-Siegel | Silbernes Rubbelfeld + QR; der freigelegte Code verifiziert auf Pop Marts Seite (fwsy.popmart.com) | Kein Siegel, ein QR auf einer Nachahmer-Domain oder ein Code, der als ungültig / bereits verwendet zurückkommt | Pop-Mart-Hilfe (https://www.popmart.com/us/help/authenticity-check) (offiziell), Feltify (https://www.feltify.com/blogs/all-about-labubu/how-to-check-labubu-authenticity-qr-code) (2025), Izoate (https://www.izoate.com/blog/how-to-tell-if-a-labubu-is-real-or-fake-in-2026-8-authenticity-checks/) (2026)
 
-| 5. Figurenprägung | Pop-Mart-Prägung / Künstlername am Fuß bei Releases ab 2024 | Fehlende oder verwaschene Prägung bei neuen Serien | ABC News (https://abcnews.com/GMA/Living/how-to-spot-fake-labubu/story?id=124575764)
+| 5. Figurenprägung | Pop-Mart-Prägung / Künstlername am Fuß bei Releases ab 2024; neuere Editionen tragen zusätzlich eine UV-reaktive Markierung unter dem rechten Fuß | Fehlende oder verwaschene Prägung bei neuen Serien — oder kein Leuchten / ein Fleck unter der UV-Lampe bei einer Serie, die eine haben sollte | ABC News (https://abcnews.com/GMA/Living/how-to-spot-fake-labubu/story?id=124575764), GamesRadar+ (https://www.gamesradar.com/toys-collectibles/how-to-tell-if-a-labubu-is-real-or-fake/) (2025), Double Boxed (https://www.doubleboxed.co.uk/blogs/news/real-vs-fake-labubu-authentication-guide) (2026)
 
 | 6. Verarbeitung | Gleichmäßiges Fell, saubere Nähte, scharfe Farbkanten, substanzielles Gewicht | Grobe Nähte, körnige Stellen, gemischter Glanz, leichtes Hohlplastik | Gulf News (https://gulfnews.com/amp/story/lifestyle/bought-a-labubu-learn-the-crucial-signs-that-reveal-if-its-a-genuine-or-a-lafufu-1.500206668)
 
@@ -1755,7 +1771,7 @@ Neun. Die Neun-Zähne-Regel ist der am breitesten berichtete Einzelcheck, genann
 
 ## Hat eine echte Labubu-Box einen QR-Code?
 
-Neuere Originalverpackungen tragen ein Anti-Fälschungs-Siegel mit QR-Code, der zu Pop Marts eigener Verifizierung führen sollte. Zwei Warnungen aus Sammler-Guides: Fälscher drucken ebenfalls QR-Sticker — entscheidend ist nicht, dass ein Code existiert, sondern wohin er führt. Prüfe, dass die Domain, auf der du landest, popmart.com ist und keine Nachahmung. Und eine ältere oder neu versiegelte Box ist selbst eine offene Frage. Wir konnten das genaue Siegeldesign nicht für jede Serie und jedes Jahr verifizieren — behandle das Siegel als einen Check von acht, nicht als Urteil.
+Neuere Originalverpackungen tragen ein Anti-Fälschungs-Siegel mit QR-Code und einem silbernen Rubbelfeld. Pop Mart hat dazu eine eigene Hilfeseite, und Sammler-Guides beschreiben den Ablauf gleich: Rubbelfeld freilegen, QR scannen (er sollte Pop Marts Verifizierungsseite fwsy.popmart.com öffnen) und den Code eingeben. Ein gültiger Code liefert eine Bestätigung; ungültig, nicht gefunden oder bereits verifiziert sind Warnsignale, und ein schon vor dem Kauf freigerubbeltes Feld ist selbst eine offene Frage. Fälscher drucken ebenfalls QR-Sticker — entscheidend ist nicht, dass ein Code existiert, sondern wohin er führt. Prüfe, dass die Domain, auf der du landest, popmart.com ist und keine Nachahmung. Ältere Serien haben das Siegel noch nicht; sein Fehlen auf einer alten Box beweist nichts. Wir konnten das genaue Siegeldesign nicht für jede Serie und jedes Jahr verifizieren — behandle das Siegel als einen Check von acht, nicht als Urteil.
 
 ## Was macht ein gefälschter Labubu (Lafufu) typischerweise falsch?
 
@@ -1783,7 +1799,7 @@ Neun. Die Neun-Zähne-Regel ist der am breitesten berichtete Einzelcheck, genann
 
 ### Hat eine echte Labubu-Box einen QR-Code?
 
-Neuere Originalverpackungen tragen ein Anti-Fälschungs-Siegel mit QR-Code, der zu Pop Marts eigener Verifizierung führen sollte. Zwei Warnungen aus Sammler-Guides: Fälscher drucken ebenfalls QR-Sticker — entscheidend ist nicht, dass ein Code existiert, sondern wohin er führt. Prüfe, dass die Domain, auf der du landest, popmart.com ist und keine Nachahmung. Und eine ältere oder neu versiegelte Box ist selbst eine offene Frage. Wir konnten das genaue Siegeldesign nicht für jede Serie und jedes Jahr verifizieren — behandle das Siegel als einen Check von acht, nicht als Urteil.
+Neuere Originalverpackungen tragen ein Anti-Fälschungs-Siegel mit QR-Code und einem silbernen Rubbelfeld. Pop Mart hat dazu eine eigene Hilfeseite, und Sammler-Guides beschreiben den Ablauf gleich: Rubbelfeld freilegen, QR scannen (er sollte Pop Marts Verifizierungsseite fwsy.popmart.com öffnen) und den Code eingeben. Ein gültiger Code liefert eine Bestätigung; ungültig, nicht gefunden oder bereits verifiziert sind Warnsignale, und ein schon vor dem Kauf freigerubbeltes Feld ist selbst eine offene Frage. Fälscher drucken ebenfalls QR-Sticker — entscheidend ist nicht, dass ein Code existiert, sondern wohin er führt. Prüfe, dass die Domain, auf der du landest, popmart.com ist und keine Nachahmung. Ältere Serien haben das Siegel noch nicht; sein Fehlen auf einer alten Box beweist nichts. Wir konnten das genaue Siegeldesign nicht für jede Serie und jedes Jahr verifizieren — behandle das Siegel als einen Check von acht, nicht als Urteil.
 
 ### Was macht ein gefälschter Labubu (Lafufu) typischerweise falsch?
 
@@ -1802,11 +1818,11 @@ DollScout Start Was diese Seite ist, wer Labubu macht, und warum die Fälschunge
 ========================================================================
 URL: https://thedollscout.com/de/where-to-buy
 Title: Wo einen echten Labubu kaufen? Offizielle Kanäle im Ranking
-Description: Wo du einen echten Labubu kaufst: Pop Marts offizielle Kanäle (Website, App, Stores, TikTok Shop, Amazon-Markenshop) nach Fälschungsrisiko sortiert — und welche Kanäle du meidest.
+Description: Wo du einen echten Labubu kaufst: Pop Marts offizielle Kanäle (Website, App, Stores, TikTok Shop, Amazon) nach Fälschungsrisiko sortiert — und was du meidest.
 ========================================================================
 Start (https://thedollscout.com/de/) / Wo kaufen
 
-# Wo du einen echten kaufst.
+# Wo du einen echten Labubu kaufst.
 
 Jeder Echtheitscheck auf der 8-Punkte-Liste (https://thedollscout.com/de/fake-check) existiert, weil jemand am falschen Ort gekauft hat. Der Kanal entscheidet, wie viel Prüfen du schuldest: Wo Pop Mart selbst der Verkäufer ist, kann eine Fälschung das Regal strukturell nicht erreichen. Kanalliste laut Pressebericht über Pop Marts eigenen Rat (ABC News (https://abcnews.com/GMA/Living/how-to-spot-fake-labubu/story?id=124575764)); Stand 2026-08-30.
 
@@ -1873,11 +1889,11 @@ DollScout Start Was diese Seite ist, wer Labubu macht, und warum die Fälschunge
 ========================================================================
 URL: https://thedollscout.com/de/glossary
 Title: Labubu- & Blindbox-Glossar: Secret, Chase, Case, Lafufu
-Description: Was Secret, Chase, Case, gedruckte Quote, Glow-Edition, Vinyl-Plüsch und Lafufu beim Labubu-Sammeln wirklich bedeuten — jeder Begriff in Klartext, verlinkt auf die Beleg-Seiten.
+Description: Labubu-Glossar: was Secret, Chase, Case, gedruckte Quote, Glow-Edition, Vinyl-Plüsch und Lafufu wirklich bedeuten — jeder Begriff in Klartext, mit Belegen.
 ========================================================================
 Start (https://thedollscout.com/de/) / Glossar
 
-# Die Wörter der Jagd, definiert.
+# Labubu-Glossar: die Wörter der Jagd, definiert.
 
 Sammeln hat sein eigenes Vokabular, und die halbe Verwirrung (und mancher Betrug) wohnt darin. Klartext-Definitionen, verlinkt auf die Beleg-Seiten, auf denen die Zahlen dahinter leben. Stand 2026-08-30.
 
@@ -1931,11 +1947,11 @@ Echt vs. Fälschung Der 8-Punkte-Lafufu-Check, jede Zeile mit Quelle. (https://t
 ========================================================================
 URL: https://thedollscout.com/de/checker
 Title: Interaktiver Lafufu-Checker: Teste deinen Labubu in 8 Antworten
-Description: Beantworte die 8 Echtheits-Checks — Zähne, Gesicht, Box, Siegel, Prägung, Verarbeitung, Preis, Verkäufer — und erhalte ein ehrliches Urteil: Red Flags benannt, oder 
+Description: Labubu-Checker: beantworte die 8 Echtheits-Checks — Zähne, Gesicht, Box, Siegel, Prägung, Verarbeitung, Preis, Verkäufer — und bekomm ein ehrliches Urteil.
 ========================================================================
 Start (https://thedollscout.com/de/) / Lafufu-Checker
 
-# Checks durchgehen. Klare Antwort bekommen.
+# Labubu-Checker: die 8 Checks durchgehen, klare Antwort bekommen.
 
 Dieselben 8 belegten Echtheits-Checks (https://thedollscout.com/de/fake-check) wie im Guide — aber als Werkzeug: beantworte, was du an deiner Figur siehst, und das Urteil nennt genau die Checks, die durchgefallen sind. Alles läuft in deinem Browser; nichts wird hochgeladen. Stand 2026-08-30.
 
@@ -1963,14 +1979,14 @@ Glänzend / uneben / schlechter Druck
 Keine Box / kann ich nicht erkennen
 
 4. Echtheitssiegel
-Echt: QR-Siegel, das zur Verifizierung auf popmart.com führt. Fälschungs-Verräter: kein Siegel, oder ein QR auf einer Lookalike-Domain — prüfe die Domain in der Adresszeile.
+Echt: silbernes Rubbelfeld + QR; freirubbeln, scannen (sollte fwsy.popmart.com öffnen) und Code eingeben — ein gültiger Code bestätigt. Fälschungs-Verräter: kein Siegel, ein QR auf einer Lookalike-Domain oder ein Code, der als ungültig / bereits verwendet zurückkommt — prüfe die Domain in der Adresszeile.
 
 QR verifiziert auf popmart.com
 Kein Siegel / QR führt woandershin
 Noch nicht gescannt
 
 5. Figuren-Prägung
-Echt: Pop-Mart-Gravur / Künstlername am Fuß bei Releases ab 2024. Fälschungs-Verräter: fehlende oder matschige Prägung bei neuen Serien. Bei älteren Serien ist Fehlen eine Frage, kein Urteil — antworte "kann ich nicht erkennen".
+Echt: Pop-Mart-Gravur / Künstlername am Fuß bei Releases ab 2024; neuere Editionen zeigen unter der UV-Lampe zusätzlich eine UV-reaktive Markierung unter dem rechten Fuß. Fälschungs-Verräter: fehlende oder matschige Prägung bei neuen Serien, oder kein Leuchten / ein Fleck unter UV, wo die Serie eine haben sollte. Bei älteren Serien ist Fehlen eine Frage, kein Urteil — antworte "kann ich nicht erkennen".
 
 Saubere Fußprägung (neue Serie)
 Fehlend/matschig bei einer neuen Serie
@@ -2007,12 +2023,12 @@ Seltenheit & Quoten Warum die seltenen die gefälschten sind — und die echte M
 
 ========================================================================
 URL: https://thedollscout.com/de/finder
-Title: Labubu-Serien-Finder: Welche Serie passt zu dir — in 3 Antworten
-Description: Tasche oder Regal, gemütlich oder knallig oder glitzernd, zufrieden mit Regulars oder auf Secret-Jagd — drei Antworten zeigen dir die offizielle Serie, die passt, direkt zu Pop Marts eigenen Produktseiten verlinkt.
+Title: Labubu-Serien-Finder: Welche Serie passt zu dir? (3 Antworten)
+Description: Labubu-Serien-Finder: Tasche oder Regal, gemütlich, knallig oder glitzernd, Regulars oder Secret-Jagd — 3 Antworten zeigen dir die offizielle Serie, die passt.
 ========================================================================
 Start (https://thedollscout.com/de/) / Serien-Finder
 
-# Drei Antworten. Eine gute Start-Serie.
+# Labubu-Serien-Finder: drei Antworten, eine gute Start-Serie.
 
 Sammler-Verzeichnisse zählen Dutzende Labubu-Serien — eine Zahl, die wir nicht unabhängig verifiziert haben — und du brauchst eine zum Anfangen. Dieser Finder bildet ab, was du wirklich willst — wo sie lebt, wie sie aussieht, wie viel Jagd du dir zumutest — auf eine aktuelle offizielle Serie, direkt zu Pop Marts eigener Produktseite verlinkt. Stand 2026-08-30; Serien rotieren, die Live-Seite gewinnt immer.
 
@@ -2070,12 +2086,12 @@ Lafufu-Checker Nach dem Kauf: die 8 Checks als interaktives Werkzeug. (https://t
 
 ========================================================================
 URL: https://thedollscout.com/de/lookup
-Title: Labubu-Modell-Suche: Welcher Charakter, welche Serie, welches Format?
-Description: Tipp einen Namen — Labubu, Zimomo, Mokoko, Have a Seat, Big Into Energy, Secret, Lafufu — und bekomm die belegte Identitätskarte: was es ist, woran man es unterscheidet, wo die Belege liegen.
+Title: Labubu-Modell-Suche: Charakter, Serie oder Format?
+Description: Labubu-Modell-Suche: tipp einen Namen — Zimomo, Mokoko, Have a Seat, Big Into Energy, Secret, Lafufu — und bekomm die belegte Identitätskarte.
 ========================================================================
 Start (https://thedollscout.com/de/) / Modell-Suche
 
-# Welcher ist das?
+# Labubu-Suche: welcher Charakter, welche Serie, welches Format?
 
 Die Identitäten, die wirklich verwechselt werden — Charaktere, aktuelle Serien, Formate, Sammlerbegriffe — als Sofort-Suche. Jeder Eintrag sagt nur, was seine benannten Quellen tragen. Nicht im Index heißt nicht, dass es nicht existiert: das ist ein kuratierter Beleg-Index, kein Katalog aller Serien. Stand 2026-08-30.
 
@@ -2283,14 +2299,14 @@ Description: Labubu ตัวไหนหายากจริง โอกา�
 
 ========================================================================
 URL: https://thedollscout.com/de/odds/
-Title: Secret-Chance nach Boxenzahl — was jede Kaufmenge wirklich bringt | DollScout
-Description: Eine Box, sechs, ein ganzer Case, zwei Cases, zweiundsiebzig: die echte Chance auf ein Secret pro Kaufmenge, offen gerechnet, plus die kursierenden Behauptungen, die daran scheitern.
+Title: Labubu-Secret-Chance nach Boxenzahl: 1 bis 72 Boxen | DollScout
+Description: Labubu-Secret-Chance bei 1, 6, 12 (ganzer Case), 24 und 72 Boxen: die echte Quote pro Kaufmenge, offen gerechnet, plus die Behauptungen, die daran scheitern.
 ========================================================================
 Start (https://thedollscout.com/de/) / Chancen pro Boxenzahl (https://thedollscout.com/de/odds/)
 
-# Was kauft eigentlich jede Kaufmenge?
+# Labubu-Secret-Chance nach Boxenzahl
 
-Fast jede Zahl, die in diesem Hobby weitergereicht wird, ist eine Chance pro Box — und fast jede Entscheidung wird in Kaufmengen getroffen: eine Box, ein Set, ein Case. Diese Seiten rechnen die eine in die andere um, für jedes berichtete Serienformat, offen und nachrechenbar. Zuletzt aktualisiert 2026-08-31.
+Was kauft eigentlich jede Kaufmenge? Fast jede Zahl, die in diesem Hobby weitergereicht wird, ist eine Chance pro Box — und fast jede Entscheidung wird in Kaufmengen getroffen: eine Box, ein Set, ein Case. Diese Seiten rechnen die eine in die andere um, für jedes berichtete Serienformat, offen und nachrechenbar. Zuletzt aktualisiert 2026-08-31.
 
 | | Kaufmenge | Chance auf mind. ein Secret (1:72) | Erwartungswert
 
@@ -2322,14 +2338,14 @@ Wie Blind Boxes funktionieren Serie, Secret, Case — die Mechanik auf einer Sei
 
 ========================================================================
 URL: https://thedollscout.com/de/odds/one-box
-Title: Eine Box — echte Secret-Chance bei 1 Box | DollScout
-Description: Eine einzelne Blind Box: 1,4 % Chance auf mindestens ein Secret bei 1:72, Erwartungswert 0,01. Volle Tabelle für alle Serienformate, Schwellen für 50 % und 90 %, und die kursierende Behauptung, die daran scheitert.
+Title: Echte Labubu-Secret-Chance bei 1 Box | DollScout
+Description: Labubu-Secret-Chance bei 1 Box: 1,4 % für mind. ein Secret bei 1:72, Erwartungswert 0,01. Alle Formate, 50/90-%-Schwellen, widerlegte Behauptung.
 ========================================================================
-Start (https://thedollscout.com/de/) / Chancen pro Boxenzahl (https://thedollscout.com/de/odds/) / Eine Box
+Start (https://thedollscout.com/de/) / Chancen pro Boxenzahl (https://thedollscout.com/de/odds/) / Labubu-Secret-Chance bei 1 Box
 
-# Eine Box.
+# Labubu-Secret-Chance bei 1 Box
 
-Das Atom des ganzen Hobbys — und die Zahl, aus der jede andere Zahl auf dieser Seite gebaut ist. Zuletzt aktualisiert 2026-08-31.
+Eine Box. Das Atom des ganzen Hobbys — und die Zahl, aus der jede andere Zahl auf dieser Seite gebaut ist. Zuletzt aktualisiert 2026-08-31.
 
 1,4 %
 Chance auf mindestens ein Secret aus eine einzelne Blind Box — bei aufgedruckten 1:72
@@ -2388,14 +2404,14 @@ Wo kaufen Wenn die Mathematik entschieden hat: wo die aufgedruckte Chance auch d
 
 ========================================================================
 URL: https://thedollscout.com/de/odds/six-boxes
-Title: Sechs Boxen — je eine pro Figur — echte Secret-Chance bei 6 Boxen | DollScout
-Description: Sechs Boxen: 8,0 % Chance auf mindestens ein Secret bei 1:72, Erwartungswert 0,08. Volle Tabelle für alle Serienformate, Schwellen für 50 % und 90 %, und die kursierende Behauptung, die daran scheitert.
+Title: Echte Labubu-Secret-Chance bei 6 Boxen | DollScout
+Description: Labubu-Secret-Chance bei 6 Boxen: 8,0 % für mind. ein Secret bei 1:72, Erwartungswert 0,08. Alle Formate, 50/90-%-Schwellen, widerlegte Behauptung.
 ========================================================================
-Start (https://thedollscout.com/de/) / Chancen pro Boxenzahl (https://thedollscout.com/de/odds/) / Sechs Boxen — je eine pro Figur
+Start (https://thedollscout.com/de/) / Chancen pro Boxenzahl (https://thedollscout.com/de/odds/) / Labubu-Secret-Chance bei 6 Boxen
 
-# Sechs Boxen — je eine pro Figur?
+# Labubu-Secret-Chance bei 6 Boxen
 
-Sechs ist die Anzahl der regulären Figuren einer Standard-Serie — deshalb kaufen so viele sechs und erwarten das komplette Set. Zuletzt aktualisiert 2026-08-31.
+Sechs Boxen — je eine pro Figur? Sechs ist die Anzahl der regulären Figuren einer Standard-Serie — deshalb kaufen so viele sechs und erwarten das komplette Set. Zuletzt aktualisiert 2026-08-31.
 
 8,0 %
 Chance auf mindestens ein Secret aus sechs Boxen — bei aufgedruckten 1:72
@@ -2454,14 +2470,14 @@ Wo kaufen Wenn die Mathematik entschieden hat: wo die aufgedruckte Chance auch d
 
 ========================================================================
 URL: https://thedollscout.com/de/odds/twelve-boxes-full-case
-Title: Ein ganzer Case mit zwölf. Garantiert das ein Secret — echte Secret-Chance bei 12 Boxen | DollScout
-Description: Zwölf Boxen (ein ganzer Case): 15,5 % Chance auf mindestens ein Secret bei 1:72, Erwartungswert 0,17. Volle Tabelle für alle Serienformate, Schwellen für 50 % und 90 %, und die kursierende Behauptung, die daran scheitert.
+Title: Echte Labubu-Secret-Chance bei 12 Boxen (1 Case) | DollScout
+Description: Labubu-Secret-Chance bei 12 Boxen (1 Case): 15,5 % für mind. ein Secret bei 1:72, Erwartungswert 0,17. Alle Formate, 50/90-%-Schwellen, widerlegte Behauptung.
 ========================================================================
-Start (https://thedollscout.com/de/) / Chancen pro Boxenzahl (https://thedollscout.com/de/odds/) / Ein ganzer Case mit zwölf. Garantiert das ein Secret
+Start (https://thedollscout.com/de/) / Chancen pro Boxenzahl (https://thedollscout.com/de/odds/) / Labubu-Secret-Chance bei einem ganzen Case (12 Boxen)
 
-# Ein ganzer Case mit zwölf. Garantiert das ein Secret?
+# Labubu-Secret-Chance bei einem ganzen Case (12 Boxen)
 
-Das ist die am häufigsten falsch berichtete Zahl des Hobbys — und die, die man kennen sollte, bevor man Case-Geld ausgibt. Zuletzt aktualisiert 2026-08-31.
+Ein ganzer Case mit zwölf. Garantiert das ein Secret? Das ist die am häufigsten falsch berichtete Zahl des Hobbys — und die, die man kennen sollte, bevor man Case-Geld ausgibt. Zuletzt aktualisiert 2026-08-31.
 
 15,5 %
 Chance auf mindestens ein Secret aus zwölf Boxen (ein ganzer Case) — bei aufgedruckten 1:72
@@ -2520,14 +2536,14 @@ Wo kaufen Wenn die Mathematik entschieden hat: wo die aufgedruckte Chance auch d
 
 ========================================================================
 URL: https://thedollscout.com/de/odds/twenty-four-boxes
-Title: Zwei Cases. Doppelt so viele Boxen, nicht doppelte Chance — echte Secret-Chance bei 24 Boxen | DollScout
-Description: Vierundzwanzig Boxen (zwei Cases): 28,5 % Chance auf mindestens ein Secret bei 1:72, Erwartungswert 0,33. Volle Tabelle für alle Serienformate, Schwellen für 50 % und 90 %, und die kursierende Behauptung, die daran scheitert.
+Title: Echte Labubu-Secret-Chance bei 24 Boxen (2 Cases) | DollScout
+Description: Labubu-Secret-Chance bei 24 Boxen (2 Cases): 28,5 % für mind. ein Secret bei 1:72, Erwartungswert 0,33. Alle Formate, 50/90-%-Schwellen, widerlegte Behauptung.
 ========================================================================
-Start (https://thedollscout.com/de/) / Chancen pro Boxenzahl (https://thedollscout.com/de/odds/) / Zwei Cases. Doppelt so viele Boxen, nicht doppelte Chance
+Start (https://thedollscout.com/de/) / Chancen pro Boxenzahl (https://thedollscout.com/de/odds/) / Labubu-Secret-Chance bei 24 Boxen (zwei Cases)
 
-# Zwei Cases. Doppelt so viele Boxen, nicht doppelte Chance.
+# Labubu-Secret-Chance bei 24 Boxen (zwei Cases)
 
-Die Stufe, die man erreicht, nachdem ein Case enttäuscht hat — und wo der Spielerfehlschluss am teuersten wird. Zuletzt aktualisiert 2026-08-31.
+Zwei Cases. Doppelt so viele Boxen, nicht doppelte Chance. Die Stufe, die man erreicht, nachdem ein Case enttäuscht hat — und wo der Spielerfehlschluss am teuersten wird. Zuletzt aktualisiert 2026-08-31.
 
 28,5 %
 Chance auf mindestens ein Secret aus vierundzwanzig Boxen (zwei Cases) — bei aufgedruckten 1:72
@@ -2586,14 +2602,14 @@ Wo kaufen Wenn die Mathematik entschieden hat: wo die aufgedruckte Chance auch d
 
 ========================================================================
 URL: https://thedollscout.com/de/odds/seventy-two-boxes
-Title: Zweiundsiebzig Boxen. Jetzt aber, oder — echte Secret-Chance bei 72 Boxen | DollScout
-Description: Zweiundsiebzig Boxen: 63,5 % Chance auf mindestens ein Secret bei 1:72, Erwartungswert 1,00. Volle Tabelle für alle Serienformate, Schwellen für 50 % und 90 %, und die kursierende Behauptung, die daran scheitert.
+Title: Echte Labubu-Secret-Chance bei 72 Boxen | DollScout
+Description: Labubu-Secret-Chance bei 72 Boxen: 63,5 % für mind. ein Secret bei 1:72, Erwartungswert 1,00. Alle Formate, 50/90-%-Schwellen, widerlegte Behauptung.
 ========================================================================
-Start (https://thedollscout.com/de/) / Chancen pro Boxenzahl (https://thedollscout.com/de/odds/) / Zweiundsiebzig Boxen. Jetzt aber, oder
+Start (https://thedollscout.com/de/) / Chancen pro Boxenzahl (https://thedollscout.com/de/odds/) / Labubu-Secret-Chance bei 72 Boxen
 
-# Zweiundsiebzig Boxen. Jetzt aber, oder?
+# Labubu-Secret-Chance bei 72 Boxen
 
-Die Zahl aus der aufgedruckten Wahrscheinlichkeit — die fast alle als die Anzahl Boxen lesen, die einen ans Ziel bringt. Das kontraintuitivste Ergebnis dieser Seite. Zuletzt aktualisiert 2026-08-31.
+Zweiundsiebzig Boxen. Jetzt aber, oder? Die Zahl aus der aufgedruckten Wahrscheinlichkeit — die fast alle als die Anzahl Boxen lesen, die einen ans Ziel bringt. Das kontraintuitivste Ergebnis dieser Seite. Zuletzt aktualisiert 2026-08-31.
 
 63,5 %
 Chance auf mindestens ein Secret aus zweiundsiebzig Boxen — bei aufgedruckten 1:72

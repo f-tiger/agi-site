@@ -3036,3 +3036,13 @@ Google 141 / cn.bing 44 / Perplexity 20 / ChatGPT 12;AI 引荐 34,ChatGPT→/c/a
   雷达每天报 50 分没人接。修法是 server.json 版本号递增再发布；本轮未动，登记为下一项。
 - **教训一条**：本轮一次 `checkout && … || reset --hard` 的链式命令在 checkout 失败时把工作区整个
   重置了一遍，全部改动靠留在草稿区的 payload 重放回来。破坏性命令永远不放在 `||` 右边。
+
+## 2026-09-14(总任务首轮,bpj 块)
+- 三份机器产出:reach 09-13 / drift 09-13 / agenda 09-12。**drift items = 0、agenda paid_gap = 空**
+  → 每日动作 1(漂移复核)与 2(付费档补齐)今天没有工作可做,不硬凑。
+- reach:带引荐真人 per_day **9.8**(10-09 线 ≥14);`judgement` 为空列表——is-*-still-free
+  的判定页读数没有进 reach.json,**下轮查 reach-export 为什么没写这一块**(可能是无 pv 就不输出,
+  也可能是导出缺字段;先别当成 0)。
+- **submissions.new = 7**:厂商入流待 owner 手发回复,草稿在
+  docs/distribution-staging/bpj-vendor-replies-2026-09-10.md。不自行发邮件。
+- 本轮零提交。

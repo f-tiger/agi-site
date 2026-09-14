@@ -3086,3 +3086,25 @@ AI models",另一版 "We must slow down the pace at which we improve AI model ca
 **已接线**:sitemap(lastmod 2026-09-14)· llms.txt · `/agi-questions` 支柱页 · 首页两处 ·
 changelog.json · gen_feed / gen_search / gen_agent_surfaces 全部重跑。
 **validate OK(230 页 / 212 URL)**、hreflang 闭合、活数字钩八页一致。
+
+## 2026-09-14(每日 run · 舰队总任务首轮,周一)— 不再动页面;把「CI 行冒充读者」这条审计做实
+
+**先说没做什么。** 今天 agiscorecard 的「一次改动」已经被上面那条快反判定页用掉了
+(`/does-ai-slowdown-change-agi-2027`,站长指令),按 anti-churn 规则本轮**不再改任何页面**,
+也不 bump 任何 lastmod。周一的「赔率 vs 证据」issue **顺延**:`agi-odds.yml` 上次跑是 09-07,
+今天 04:00Z 之前没有新的抓取,没有新数据就没有 issue,不拿旧数据硬写。
+
+**周一深审计(做实了一条):CI 行冒充交互。** sourceradar 的 D1 今天差点被我报成
+「首批 10 次真实交互」——全部是 `label='__ci'` / `path LIKE '/__ci%'` 的部署自检行(全在 09-13)。
+扣除后 sourceradar 28 天真人 pv **68**(近 7 天 18),交互仍 **0**。这与 CLAUDE.md 里 eco 的
+`mcp_call/md_serve` 冒烟测试、bpj 的每日 curl 自测是同一类陷阱;buysomething 的 CLAUDE.md
+已记录 `/__ci_healthcheck` 污染。**规则(舰队通用,已写进总任务上下文)**:任何 D1 读数先排除
+`__ci` 行,再谈「用户」。
+
+**周一分发暂存**:`docs/distribution-staging/2026-W38.md` 已落盘(HN 标题+作者评论、X 主帖+回复、
+Reddit 答题素材,全部围绕新页;只暂存,不外发)。
+
+**转化实验读数(不判定,10-07 结算)**:两臂 `deep_sasummary_*`(09-09)/ `deep_when_*`(09-11)
+`subscribe_click` 仍 **0**;`tool_click` 28 天 14(realist 4 · skeptic 3 · accelerationist 3 ·
+true-believer 2 · contrarian 2)。新页的 `deep_pacing_mid` / `hot_topic_click{*_pacing}` 从今天起
+计数,基线为 0。

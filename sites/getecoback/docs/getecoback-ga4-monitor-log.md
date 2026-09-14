@@ -910,3 +910,10 @@ owner 指令"用户重点关注配件,扩展丰富配件产品"。**先盘点类
   睡眠簇自然延伸(€12-30/单)。落地:rising SEEDS 6→9(+kaffeevollautomat/
   akku staubsauger/matratze),需求验证自动化,4,5 天出首批数据,过快反判据+KGR
   才建页;工具导流与 GEO 判定页设计已入 memo,按 rising 结果排产。
+
+- 2026-09-14(总任务首轮,eco 块)**健康行,本轮不动内容。** D1 28d:page_view 792、affiliate_click 93
+  (近 7 天 28)。autopilot 收据 09-13 outcome ok;demand 09-13 有 25 条 gap,但 source_notes 明写
+  两个 seed(infrarotheizung / klimaanlage)落在 autocomplete 兜底、分值为 1,不可与真实量比。
+  **明日候选(未过三门,只登记)**:`sparsamer heizlüfter` v=28,600(related-queries,stand 09-12)
+  落在取暖簇、demand 把它指到 heizkosten-vergleich-rechner(match 0.5,只当线索);出页前须查
+  14 天同词冷却与 KGR。`bester saugwischer roboto` v=62,450 更大但不在秋冬簇,按品类罗盘不追。

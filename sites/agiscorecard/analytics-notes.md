@@ -1488,3 +1488,31 @@ origin/main,`git log` 读的是 HEAD 不是 origin/main。已对上,无事。
 
 **owner 待办**:① thedollscout `content/d1-snapshot.json` 仍缺(自 09-02);
 ② `fleet-ai-access-0916` 若判负,需 owner 去关 Cloudflare Bots 开关(会话做不了)。
+
+## 2026-09-14(日结 · 舰队总任务首轮)
+
+**agiscorecard**(D1 `events.page_view`,JS 口径):28 天 **1444**(含 09-11 的 182 行探针,
+扣除后约 **1262**);近七日 49 / 70 / 64 / 231(含探针)/ 50 / 39 / 今日 7(04:17Z 未过完)。
+09-13 的 39 是近 14 天最低的完整日,单日读数,不下结论。
+- 漏斗 28 天:`subscribe_click` 4(最近一次 09-03)→ `sub_open` 2 → `sub_submit` 1 → `sub_ok` 1;
+  subscribers 2 行 `stored`(正常态)。近 7 天 `subscribe_click` **0**。
+- `vote_cast` 73(上期 65)· `tool_click` 14 · `invest_tool_click` 12 · `index_click` 7 ·
+  `hot_topic_click` 7(最近一次 09-06)· `site_search` 8(仍是 CI/自测口径,无读者搜索)。
+  `challenge_share` / `embed_copy` / Pro 桥 仍全 **0**。
+- 滑入框 `slidein_show` 554(含 Compass 污染),本站口径仍在 129/300 一线,未到结算点。
+- 今日 ship:`/does-ai-slowdown-change-agi-2027`(见 OPT-LOG 09-14 上一条),deploy 绿。
+  W38 分发暂存已落盘。赔率 issue 顺延(agi-odds.yml 无新抓取)。
+
+**sourceradar**:28 天真人 pv **68**(近 7 天 18),**交互 0**——今天核出 D1 里 `label='__ci'`
+的部署自检行(全在 09-13),排除前会被误读成「首批交互」。规则:先排 `__ci` 再读数。
+
+**sellSomething**(周一块,首次真正落盘 `docs/ops/revenue-loop-log.md`):Superteam W36/W37
+各扫 16 条、0 过阈;ops report 09-07 绿,五站 200,AgentReady KV 漏斗全 0;trend digest 连续绿。
+非本月首个周一,哨兵不跑。
+
+**SunWatch**(周一块 F):本周已在 09-10 上线机械执行层(持仓判定 + 状态翻转提醒),BACKLOG #17
+(定价卡引 2–3 条带日期的已验证触发线结果)**本轮明确顺延**——同周不叠两次产品改动,且需先从
+FORECASTS 的 `verdict:"hit"` 条目逐条核 `date/call/outcome` 再搬,不做一半。
+
+**里程碑**:无新达成。**owner 待办**(不重复催):tds `d1-snapshot.json` 仍缺;
+`fleet-ai-access-0916` 两天后到期。

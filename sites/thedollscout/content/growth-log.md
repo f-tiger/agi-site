@@ -2431,3 +2431,14 @@ workflow 会产生它。**归因不明,不许当需求读。**
 预登记的三选一里,「search/assistant 引荐 ≥5」**已经达标**(bing 5 + ddg 1 = 6)。
 但 3.7 pv/天不是生意。**诚实结论:这条线我当初定得太松,达标不构成「转向成立」。**
 10-29 复核时以 28 天窗真人 pv 为准,不拿这个 6 去交差。
+
+### 2026-09-14(总任务首轮,偶数日 tds 块)
+- 机制体检:`check-structured-data.mjs` **92 条 FAQ/DefinedTerm,0 条不可见**;`build-llms-full.mjs`
+  正常产出 37 页 205,569 字节(非降级)。autopilot 收据 09-13 本站 ok。线上 curl 实探与
+  IndexNow/部署自检:本轮未验证(总任务在常驻会话跑,线上域被代理挡;部署自检以 Actions 为准)。
+- `content/d1-snapshot.json` **仍不存在**(自 09-02)。机制故障,不是没数据;需 owner 给 deploy
+  token 加 `Account · D1 · Read`。
+- demand 09-13 gaps 13 条;top `monster hunter pop mart` v=25,850 指到 fake-check(match 0.5),
+  `crumbl labubu ube dot cake` v=24,900。**本轮不出页**:前者是 Pop Mart 的另一 IP 联名,不在
+  Labubu/The Monsters 稀有度定位内;后者是联名甜品热点,与 competitive-gaps 五个缺口都不对应。
+- 本轮零新页;llms-full.txt 随构建更新一并提交。
