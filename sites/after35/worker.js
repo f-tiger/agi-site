@@ -4,7 +4,7 @@
 // 隐私:不存 IP(只存当日 salt 过的 8 位哈希做限速)、不存完整 UA(48 字符前缀 + 分类)。
 // 联系方式由发卡人自愿公开,列表接口不返回,点「查看联系方式」才逐张取(并计数)。
 
-const ALLOWED = new Set(["page_view", "card_view", "contact_reveal", "post_open", "post_submit", "post_ok", "post_fail", "path_result", "checklist_click", "share_click", "filter_use", "withdraw_ok", "bridge_click", "restart_plan", "my_open", "match_click", "live_click"]);
+const ALLOWED = new Set(["page_view", "card_view", "contact_reveal", "post_open", "post_submit", "post_ok", "post_fail", "path_result", "checklist_click", "share_click", "filter_use", "withdraw_ok", "bridge_click", "restart_plan", "my_open", "match_click", "live_click", "ai_match", "ai_match_open"]);
 const KINDS = new Set(["offer", "need", "team"]);
 // 组队帖(kind=team,2026-09-14 v4,owner:「志同道合人发帖,然后一起创业」):offers 列存「需要的合伙人角色」。
 const ROLES = ["技术", "销售", "运营", "资金", "行业资源", "设计", "财务法务", "产品"];
@@ -28,7 +28,7 @@ async function ensureSchema(db) {
     db.prepare("CREATE TABLE IF NOT EXISTS ua_audit (day TEXT, ua_prefix TEXT, ua_class TEXT, hits INTEGER, PRIMARY KEY (day, ua_prefix, ua_class))"),
   ]);
   // v2(2026-09-14 当日二次迭代)加列:行业标签 + 「先免费聊半小时」。ALTER 不幂等,单独 try。
-  for (const ddl of ["ALTER TABLE cards ADD COLUMN industry TEXT DEFAULT ''", "ALTER TABLE cards ADD COLUMN intro INTEGER DEFAULT 0", "ALTER TABLE cards ADD COLUMN stage TEXT DEFAULT ''", "ALTER TABLE cards ADD COLUMN commitment TEXT DEFAULT ''"]) {
+  for (const ddl of ["ALTER TABLE cards ADD COLUMN industry TEXT DEFAULT ''", "ALTER TABLE cards ADD COLUMN intro INTEGER DEFAULT 0", "ALTER TABLE cards ADD COLUMN stage TEXT DEFAULT ''", "ALTER TABLE cards ADD COLUMN commitment TEXT DEFAULT ''", "ALTER TABLE cards ADD COLUMN emb TEXT DEFAULT ''"]) {
     try { await db.prepare(ddl).run(); } catch (e) { /* column exists */ }
   }
   schemaReady = true;
@@ -81,6 +81,71 @@ function newCode() {
 }
 function publicCard(r) {
   return { id: r.id, kind: r.kind, nick: r.nick, age: r.age, city: r.city, years: r.years, field: r.field, industry: r.industry || "", intro: (r.intro | 0) === 1, stage: r.stage || "", commit: r.commitment || "", offers: r.offers.split("|").filter(Boolean), headline: r.headline, body: r.body, pay: r.pay, created: r.created, reveals: r.reveals | 0 };
+}
+
+// ---------- v5 AI 撮合 ----------
+// 语义向量:Workers AI bge-m3(多语,1024 维)。失败即 null——撮合退化为标签/行业/双字重叠,永不影响发卡。
+const EMB_MODEL = "@cf/baai/bge-m3";
+function cardText(c) { return [c.headline, c.body, c.field, c.industry, String(c.offers || "").replace(/\|/g, " ")].filter(Boolean).join("。"); }
+async function embed(env, text) {
+  if (!env.AI || !text) return null;
+  try {
+    const out = await env.AI.run(EMB_MODEL, { text: [String(text).slice(0, 1500)] });
+    const v = out && out.data && out.data[0];
+    if (!Array.isArray(v) || v.length < 8) return null;
+    return v.map(x => Math.round(x * 10000) / 10000);
+  } catch (e) { return null; }
+}
+function cosine(a, b) {
+  if (!a || !b || a.length !== b.length) return 0;
+  let d = 0, na = 0, nb = 0;
+  for (let i = 0; i < a.length; i++) { d += a[i] * b[i]; na += a[i] * a[i]; nb += b[i] * b[i]; }
+  return na && nb ? d / Math.sqrt(na * nb) : 0;
+}
+function parseEmb(s) { try { const v = JSON.parse(s); return Array.isArray(v) ? v : null; } catch (e) { return null; } }
+// 无 AI 时的兜底:中文双字重叠(Jaccard)。粗,但零依赖、可解释。
+function bigrams(s) { const t = String(s || "").replace(/[\s,。;:、!?()()「」\-]/g, ""); const out = new Set(); for (let i = 0; i < t.length - 1; i++) out.add(t.slice(i, i + 2)); return out; }
+function lexical(a, b) { const A = bigrams(a), B = bigrams(b); if (!A.size || !B.size) return 0; let n = 0; for (const g of A) if (B.has(g)) n++; return n / Math.sqrt(A.size * B.size); }
+const ROLE_RX = { "技术": /技术|程序|软件|开发|工程|架构|IT|系统|AI 落地/i, "产品": /产品/, "销售": /销售|BD|客户|渠道|大客户/i, "运营": /运营|市场|增长|内容/, "设计": /设计|视觉|UI|品牌/i, "资金": /投资|资金|出资/, "行业资源": /资源|人脉|渠道|供应商|客户/, "财务法务": /财务|会计|法务|律师|税/ };
+function complementary(a, b) {
+  if (a.id === b.id) return false;
+  if (a.kind === "offer") return b.kind === "need" || b.kind === "team";
+  if (a.kind === "need") return b.kind === "offer";
+  if (a.kind === "team") return b.kind === "offer";
+  return false;
+}
+// 分数 = 0.55 语义(或双字兜底) + 0.25 行业相同 + 0.20 角色/方式对上 + 0.05 先免费聊。每一项都给出可读理由。
+function scorePair(a, b, ea, eb, aiOn) {
+  const reasons = [];
+  let sem = 0;
+  if (aiOn && ea && eb) { sem = Math.max(0, cosine(ea, eb)); if (sem >= 0.55) reasons.push("描述语义相近 " + Math.round(sem * 100) + "%"); }
+  else { sem = lexical(cardText(a), cardText(b)); if (sem >= 0.12) reasons.push("用词重叠"); }
+  let ind = 0; if (a.industry && a.industry === b.industry) { ind = 1; reasons.push("同行业:" + a.industry); }
+  let role = 0;
+  const need = a.kind === "offer" ? b : a, offer = a.kind === "offer" ? a : b;
+  const needTags = String(need.offers || "").split("|").filter(Boolean), offerTags = String(offer.offers || "").split("|").filter(Boolean);
+  if (need.kind === "need") {
+    const hit = needTags.filter(t => offerTags.includes(t));
+    if (hit.length) { role = hit.length / needTags.length; reasons.push("方式对上:" + hit.join("、")); }
+  } else if (need.kind === "team") {
+    const txt = cardText(offer);
+    const hit = needTags.filter(t => ROLE_RX[t] && ROLE_RX[t].test(txt));
+    if (hit.length) { role = hit.length / needTags.length; reasons.push("缺的角色对上:" + hit.join("、")); }
+  }
+  let intro = 0; if ((offer.intro | 0) === 1) { intro = 1; reasons.push("先免费聊半小时"); }
+  const score = 0.55 * sem + 0.25 * ind + 0.2 * role + 0.05 * intro;
+  return { score: Math.round(score * 1000) / 1000, reasons };
+}
+async function liveRows(db, kinds) {
+  const q = "SELECT * FROM cards WHERE status='live'" + (kinds && kinds.length ? " AND kind IN (" + kinds.map(() => "?").join(",") + ")" : "") + " ORDER BY id DESC LIMIT 500";
+  return (await db.prepare(q).bind(...(kinds || [])).all()).results || [];
+}
+async function ensureEmb(env, ctx, row) {
+  let e = parseEmb(row.emb);
+  if (e) return e;
+  e = await embed(env, cardText(row));
+  if (e && ctx) ctx.waitUntil(env.EV.prepare("UPDATE cards SET emb=? WHERE id=?").bind(JSON.stringify(e), row.id).run().catch(() => {}));
+  return e;
 }
 
 async function handlePost(request, env, ctx) {
@@ -146,6 +211,8 @@ async function handlePost(request, env, ctx) {
   const r = await db.prepare("INSERT INTO cards (kind, nick, age, city, years, field, offers, headline, body, pay, contact, code, status, flag, country, created, industry, intro, stage, commitment) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) RETURNING id")
     .bind(kind, nick, age, city, years, field, offers.join("|"), headline, body, pay || "面议", contact, code, status, flag, country, created, industry, intro, stage, commit).first();
   logRow(env, ctx, { name: "post_ok", label: kind + ":" + status, path: "/api/card", ua_class: "api", country });
+  // 语义向量后台算,失败静默;下一次 /api/match 会补算。
+  ctx.waitUntil((async () => { try { const e = await embed(env, cardText({ headline, body, field, industry, offers: offers.join("|") })); if (e) await db.prepare("UPDATE cards SET emb=? WHERE id=?").bind(JSON.stringify(e), r.id).run(); } catch (x) { /* never */ } })());
   return json({ ok: true, code: "ok", id: r.id, status, secret: code });
 }
 
@@ -199,6 +266,58 @@ export default {
           ctx.waitUntil(env.EV.prepare("UPDATE cards SET reveals = reveals + 1 WHERE id=?").bind(r.id).run().catch(() => {}));
           logRow(env, ctx, { ci, name: "contact_reveal", label: r.kind + ":" + r.id, path: "/api/card/contact", ua_class: "api", country: (request.cf && request.cf.country) || "" });
           return json({ ok: true, contact: r.contact });
+        }
+        if (p === "/api/match" && request.method === "GET") {
+          // 给一张卡找互补的卡:offer ↔ need/team,need → offer,team → offer。只回公开字段 + 分数 + 理由。
+          const id = parseInt(url.searchParams.get("id"), 10) || 0;
+          if (!id) return json({ ok: false, code: "bad" }, 400);
+          const me = await env.EV.prepare("SELECT * FROM cards WHERE id=? AND status='live'").bind(id).first();
+          if (!me) return json({ ok: false, code: "notfound" }, 404);
+          const kinds = me.kind === "offer" ? ["need", "team"] : ["offer"];
+          const rows = await liveRows(env.EV, kinds);
+          const aiOn = !!env.AI;
+          const ea = aiOn ? await ensureEmb(env, ctx, me) : null;
+          const out = [];
+          for (const r of rows) {
+            if (!complementary(me, r)) continue;
+            const eb = aiOn && ea ? await ensureEmb(env, ctx, r) : null;
+            const s = scorePair(me, r, ea, eb, aiOn && !!ea);
+            if (s.score > 0.08) out.push({ ...publicCard(r), score: s.score, reasons: s.reasons });
+          }
+          out.sort((x, y) => y.score - x.score);
+          logRow(env, ctx, { ci, name: "ai_match", label: "card:" + me.kind + ":" + out.length, path: "/api/match", ua_class: "api" });
+          return json({ ok: true, ai: aiOn && !!ea, for: { id: me.id, kind: me.kind }, matches: out.slice(0, 6), pool: rows.length }, 200, { "cache-control": "no-store" });
+        }
+        if (p === "/api/match/text" && request.method === "GET") {
+          // 一句话找人:访客不必先发卡。限速 40 次/来源/天(与发卡限速同一张表,前缀区分)。
+          const q = clean(url.searchParams.get("q"), 200);
+          if (q.length < 4) return json({ ok: false, code: "short" }, 400);
+          const ip = request.headers.get("cf-connecting-ip") || "0";
+          const day = new Date().toISOString().slice(0, 10);
+          const iph = "q|" + await sha8(day + "|" + ip + "|after35q");
+          const rl = await env.EV.prepare("INSERT INTO ratelimit (day, iph, n) VALUES (?, ?, 1) ON CONFLICT(day, iph) DO UPDATE SET n = n + 1 RETURNING n").bind(day, iph).first();
+          if (rl && rl.n > 40) return json({ ok: false, code: "ratelimit" }, 429);
+          const want = url.searchParams.get("kind");
+          const kinds = want === "team" ? ["team"] : want === "need" ? ["need"] : want === "offer" ? ["offer"] : ["offer", "team", "need"];
+          const rows = await liveRows(env.EV, kinds);
+          const aiOn = !!env.AI;
+          const eq = aiOn ? await embed(env, q) : null;
+          const out = [];
+          for (const r of rows) {
+            let sem;
+            if (eq) { const er = await ensureEmb(env, ctx, r); sem = er ? Math.max(0, cosine(eq, er)) : 0; }
+            else sem = lexical(q, cardText(r));
+            const ind = INDUSTRIES.find(i => q.includes(i.replace(/与.*$/, "")) && r.industry === i) ? 0.15 : 0;
+            const score = Math.round((sem + ind) * 1000) / 1000;
+            const reasons = [];
+            if (eq && sem >= 0.5) reasons.push("语义相近 " + Math.round(sem * 100) + "%"); else if (!eq && sem >= 0.12) reasons.push("用词重叠");
+            if (ind) reasons.push("行业对上");
+            if ((r.intro | 0) === 1) reasons.push("先免费聊半小时");
+            if (score > (eq ? 0.3 : 0.08)) out.push({ ...publicCard(r), score, reasons });
+          }
+          out.sort((x, y) => y.score - x.score);
+          logRow(env, ctx, { ci, name: "ai_match", label: ("text:" + q).slice(0, 80), path: "/api/match/text", ua_class: "api" });
+          return json({ ok: true, ai: !!eq, q, matches: out.slice(0, 8), pool: rows.length }, 200, { "cache-control": "no-store" });
         }
         if (p === "/api/my" && request.method === "GET") {
           // 「我的卡」:卡号 + 撤卡码 = 唯一身份。回状态与被查看次数,不回联系方式以外的任何他人数据。

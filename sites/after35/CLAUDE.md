@@ -61,6 +61,17 @@ offer 类型互斥校验)、新列 `stage`(idea/validated/revenue)与 `commit`(p
 页面写明三条红线(先聊三次、不先注册公司、一页协议)且「不做尽调、不担保」。审核块 G 对 team 帖
 多看一眼「资金」角色的帖子。判定线随撮合支柱(10-14 / 12-14)一起结算,team 帖单列计数。
 
+## v5 AI 撮合(同日,owner:「ai 撮合平台再优化一轮」)
+**Workers AI 内建绑定**(`wrangler.jsonc` `"ai": {"binding":"AI"}`,无外部密钥;免费 10,000 Neurons/天),
+模型 `@cf/baai/bge-m3`(多语向量)。发卡后台算一次向量存 `cards.emb`(JSON,4 位小数);
+`GET /api/match?id=`(给一张卡找互补卡:offer↔need/team、need→offer、team→offer)与
+`GET /api/match/text?q=`(一句话找人,不必先发卡;40 次/来源/天)。分数 = 0.55 语义 + 0.25 同行业 +
+0.20 角色/方式对上 + 0.05 先免费聊,**每一项都给可读理由**,分数只用来排序。
+**降级**:`env.AI` 缺失或调用失败 → 双字重叠(Jaccard)兜底,响应里 `ai:false`;发卡永不受影响
+(向量在 waitUntil 里算,失败下次 /api/match 补算)。部署冒烟把 `ai` 标志打进日志,false 即查绑定。
+向量、联系方式、撤卡码永不进任何公开响应。事件:`ai_match`(服务端,label=card:kind:n / text:q)、
+`ai_match_open`(前端,card/text/my)。判定线:10-14 另看 `ai_match_open` ≥ 30——撮合支柱是否有人用。
+
 ## 审核义务(舰队总任务每日块 G)
 每日 run 读:
 ```sql

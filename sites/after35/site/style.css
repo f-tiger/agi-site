@@ -65,6 +65,15 @@ main { padding-block: 32px 48px; }
 .pillar a.go { font-weight: 600; }
 @media (max-width: 960px) { .pillars { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 640px) { .pillars { grid-template-columns: 1fr; } }
+.card .aimatch { min-height: 44px; padding: 0 12px; border-radius: 6px; border: 1px solid var(--rule); background: var(--bg2); color: var(--ink2); font-size: 15px; cursor: pointer; }
+.card .mbox { border-top: 1px dashed var(--rule); padding-top: 10px; margin-top: 6px; }
+.mrow { padding: 8px 0; border-bottom: 1px solid var(--rule); }
+.mrow:last-child { border-bottom: 0; }
+.mrow .reasons span { display: inline-block; background: var(--accent2); color: var(--accent); border-radius: 4px; padding: 1px 8px; font-size: 13.5px; margin: 4px 6px 0 0; }
+.aibox { border: 1.5px solid var(--accent); border-radius: 12px; padding: 16px 18px; margin: 18px 0; background: #fff; }
+.aibox form { display: flex; gap: 10px; flex-wrap: wrap; }
+.aibox input { flex: 1 1 260px; min-height: 50px; padding: 0 14px; border: 1px solid #c9ccd4; border-radius: 8px; font: inherit; }
+.aibox .k { color: var(--accent); font-weight: 700; font-size: 15px; letter-spacing: .04em; }
 .card .foot { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; border-top: 1px solid var(--rule); padding-top: 10px; margin-top: 4px; }
 .card .pay { font-weight: 600; }
 .card .reveal { min-height: 44px; padding: 0 14px; border-radius: 6px; border: 1.5px solid var(--accent); background: #fff; color: var(--accent); font-weight: 600; font-size: 16px; cursor: pointer; }

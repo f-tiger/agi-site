@@ -22,13 +22,36 @@
       '<div class="body">' + esc(c.body) + "</div>" +
       '<div class="tags">' + intro + (c.kind === "team" ? '<span class="need-role">找:</span>' : "") + c.offers.map(function (o) { return "<span>" + esc(o) + "</span>"; }).join("") + "</div>" +
       (match ? '<div class="small">' + match + "</div>" : "") +
-      '<div class="foot"><span class="pay">' + esc(c.pay) + '</span><span class="muted small">' + esc(c.nick) + " · " + esc(String(c.created).slice(0, 10)) + '</span><button class="reveal" type="button">查看联系方式</button></div>' +
+      '<div class="foot"><span class="pay">' + esc(c.pay) + '</span><span class="muted small">' + esc(c.nick) + " · " + esc(String(c.created).slice(0, 10)) + '</span><button class="aimatch" type="button">AI 找匹配</button><button class="reveal" type="button">查看联系方式</button></div>' +
+      '<div class="mbox" hidden></div>' +
       "</article>";
   }
+
+  function renderMatches(box, j, forKind) {
+    if (!j || !j.ok) { box.innerHTML = '<div class="small muted">暂时算不出来,稍后再试。</div>'; return; }
+    if (!j.matches.length) { box.innerHTML = '<div class="small muted">' + (j.pool ? "现有的 " + j.pool + " 张卡里没有足够接近的。" : "对面还没有卡。") + ' 卡越多匹配越准——把这个站发给同行。' + (j.ai ? "" : "(语义匹配暂不可用,按用词重叠排)") + "</div>"; return; }
+    box.innerHTML = '<div class="small muted" style="margin-bottom:6px">' + (j.ai ? "AI 语义匹配" : "按用词重叠") + ',按接近程度排,理由逐条列出:</div>' +
+      j.matches.map(function (m) {
+        return '<div class="mrow"><a href="/cards?focus=' + m.id + '" data-ev="match_click" data-l="ai:' + esc(forKind) + '"><b>' + esc(m.headline) + "</b></a><div class='small muted'>" + esc(m.kind === "need" ? "找有经验的人" : m.kind === "team" ? "找合伙人" : "我有经验") + " · " + esc(m.city) + (m.industry ? " · " + esc(m.industry) : "") + "</div><div class='reasons'>" + m.reasons.map(function (r) { return "<span>" + esc(r) + "</span>"; }).join("") + "</div></div>";
+      }).join("");
+  }
+  window.a35renderMatches = renderMatches;
+  window.a35matchText = function (q, box, kind) {
+    box.innerHTML = '<div class="small muted">AI 在读现有的卡…</div>';
+    return fetch("/api/match/text?q=" + encodeURIComponent(q) + (kind ? "&kind=" + kind : "")).then(function (r) { return r.json(); }).then(function (j) { ev("ai_match_open", "text"); renderMatches(box, j, "text"); return j; }).catch(function () { renderMatches(box, null); });
+  };
 
   function mountCards(el, cards, emptyHtml) {
     if (!cards.length) { el.innerHTML = emptyHtml; return; }
     el.innerHTML = cards.map(renderCard).join("");
+    el.querySelectorAll(".aimatch").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        const art = btn.closest(".card"); const id = art.getAttribute("data-id"); const box = art.querySelector(".mbox");
+        if (!box.hidden) { box.hidden = true; btn.textContent = "AI 找匹配"; return; }
+        box.hidden = false; box.innerHTML = '<div class="small muted">AI 在读现有的卡…</div>'; btn.textContent = "收起";
+        fetch("/api/match?id=" + id).then(function (r) { return r.json(); }).then(function (j) { ev("ai_match_open", "card"); renderMatches(box, j, j && j.for ? j.for.kind : ""); }).catch(function () { renderMatches(box, null); });
+      });
+    });
     el.querySelectorAll(".reveal").forEach(function (btn) {
       btn.addEventListener("click", function () {
         const art = btn.closest(".card"); const id = art.getAttribute("data-id");
@@ -49,6 +72,8 @@
     return fetch("/api/cards" + (q.length ? "?" + q.join("&") : "")).then(function (r) { return r.json(); }).then(function (j) {
       let cards = (j && j.cards) || [];
       if (opts.filter) cards = cards.filter(opts.filter);
+      const focus = new URLSearchParams(location.search).get("focus");
+      if (focus && cards.some(function (c) { return String(c.id) === focus; })) { cards = cards.filter(function (c) { return String(c.id) === focus; }).concat(cards.filter(function (c) { return String(c.id) !== focus; })); }
       mountCards(el, cards, opts.empty || '<div class="empty"><b>这里还没有第一张卡。</b>没有一张是编出来的——你可以成为第一个。<br><a class="cta primary" style="margin-top:14px" href="/post">发一张经验卡</a></div>');
       return cards;
     }).catch(function () {

@@ -16,6 +16,10 @@
 - 我的卡(卡号 + 撤卡码查看在线状态与被查看次数): https://35.agiscorecard.com/my
 - 关于、隐私、撤卡: https://35.agiscorecard.com/about
 
+## AI 撮合(Workers AI bge-m3 语义向量 + 行业/角色规则,每条匹配附可读理由;无向量时退化为用词重叠并标明)
+- 给一张卡找互补卡: https://35.agiscorecard.com/api/match?id=<卡号>
+- 一句话找人(不必先发卡): https://35.agiscorecard.com/api/match/text?q=<描述>
+
 ## 机器可读接口(只读,CORS 开放)
 - 在线经验卡 JSON(不含联系方式;kind = offer|need|team;字段含 industry 行业大类、intro「先免费聊半小时」、组队帖的 stage/commit): https://35.agiscorecard.com/api/cards
 - 计数: https://35.agiscorecard.com/api/stats

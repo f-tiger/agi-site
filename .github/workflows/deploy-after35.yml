@@ -97,6 +97,10 @@ jobs:
           dry=$(curl -s --max-time 20 -A 'after35-deploy-smoke-bot (+ci)' -H 'content-type: application/json' -X POST "https://35.agiscorecard.com/api/card?dry=1&ci=1" \
                 --data '{"kind":"team","nick":"ci","age":"45-49","city":"ci","years":0,"field":"ci","industry":"其他","offers":["技术"],"stage":"idea","commit":"parttime","headline":"部署冒烟测试组队帖不入库","body":"这是部署流水线的干跑请求,走完全部校验但不写入数据库,用来证明列名与绑定在线上是对的。","pay":"面议","contact":"ci@example","consent":true}' || echo "")
           case "$dry" in *'"dry":true'*) echo "OK    /api/card?dry=1 (team)";; *) echo "::error::dry post broken: ${dry:0:160}"; fail=1;; esac
+          # AI 撮合冒烟:必须 ok:true;顺便把 ai 标志打进日志(false = Workers AI 绑定没生效,要查)
+          mt=$(curl -s --max-time 30 -A 'after35-deploy-smoke-bot (+ci)' "https://35.agiscorecard.com/api/match/text?q=%E6%89%BE%E4%B8%80%E4%B8%AA%E6%87%82%E5%B7%A5%E5%8E%82%E9%87%87%E8%B4%AD%E7%9A%84%E4%BA%BA&ci=1" || echo "")
+          case "$mt" in *'"ok":true'*) echo "OK    /api/match/text -> ${mt:0:60}";; *) echo "::error::match/text broken: ${mt:0:160}"; fail=1;; esac
+          case "$mt" in *'"ai":true'*) echo "OK    Workers AI embedding live";; *) echo "::warning::Workers AI returned no embedding — matching is running in lexical fallback";; esac
           for a in /api/cards /api/stats /api/pulse; do
             body=$(curl -s --max-time 20 -A 'after35-deploy-smoke-bot (+ci)' "https://35.agiscorecard.com$a?ci=1" || echo "")
             case "$body" in

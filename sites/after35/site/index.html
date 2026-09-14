@@ -41,6 +41,13 @@
   </div>
   <p class="small muted">四个数字直接读自数据库,没有一个是填的。站点刚上线时它们就是 0——我们不会为了好看编一张卡。</p>
 
+  <div class="aibox">
+    <div class="k">AI 撮合 · 一句话找人</div>
+    <p style="margin:6px 0 10px">不用先发卡。说清你要找谁或什么项目,AI 读一遍现有的卡,按接近程度排,理由逐条给。</p>
+    <form id="aif"><input type="search" id="aiq" maxlength="200" placeholder="例如:找一个做过跨境电商合规的人 / 想找销售合伙人做工厂 AI 质检"><button class="cta primary" type="submit">找</button></form>
+    <div id="aiout" style="margin-top:10px"></div>
+  </div>
+
   <h2>差异化只有一条:经验 × AI</h2>
   <p>别的平台问你多少岁;这里问你以前是干什么的——因为 AI 让每个岗位都多出了三件以前做不到的事。程序员现在一个人能交付整个产品,还能替「AI 写的代码」把关;财务能做几家小公司的兼职 CFO;教师一个人能做完整门课。选你以前的岗位,看这三件事和一周能做出来的第一个东西。</p>
   <div class="filters" style="margin-bottom:8px">
@@ -113,6 +120,7 @@
   <div>三十五后 · <a href="https://agiscorecard.com/">AGI Scorecard</a> 网络的中文子站 · 不提供就业中介服务,不构成法律或财务建议 · 不存 IP、不存完整浏览器标识</div>
 </div></footer>
 <script src="/app.js"></script>
-<script>a35stats(); a35loadCards(document.getElementById("latest"), { limit: 6 });</script>
+<script>a35stats(); a35loadCards(document.getElementById("latest"), { limit: 6 });
+document.getElementById("aif").addEventListener("submit", function(e){ e.preventDefault(); var v = document.getElementById("aiq").value.trim(); if (v.length < 4) return; a35matchText(v, document.getElementById("aiout")); });</script>
 </body>
 </html>

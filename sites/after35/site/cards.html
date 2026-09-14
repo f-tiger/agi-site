@@ -16,6 +16,12 @@
 <main class="wrap">
   <h1>经验卡</h1>
   <p class="lead muted">在线 <strong data-stat="offer">–</strong> 张经验卡,<strong data-stat="need">–</strong> 条需求,<strong data-stat="team">–</strong> 个在找合伙人的项目(<a href="/team">组队页</a>)。点「查看联系方式」直接联系对方;我们不做中介。</p>
+  <div class="aibox">
+    <div class="k">AI 撮合</div>
+    <p style="margin:6px 0 10px">一句话说你要找什么人或什么项目,AI 读一遍现有的卡,按接近程度给你排,理由逐条列出。不用先发卡。</p>
+    <form id="aif"><input type="search" id="aiq" maxlength="200" placeholder="例如:找一个懂工厂采购的人帮我们压成本 / 想找技术合伙人做 AI 质检"><button class="cta primary" type="submit">找</button></form>
+    <div id="aiout" style="margin-top:10px"></div>
+  </div>
   <div class="filters" id="filters">
     <button type="button" data-kind="" aria-pressed="true">全部</button>
     <button type="button" data-kind="offer" aria-pressed="false">我有经验</button>
@@ -58,6 +64,8 @@
   document.querySelectorAll("#ind button").forEach(function(b){ b.addEventListener("click", function(){ press("#ind button", "data-ind", b.getAttribute("data-ind")); ind = b.getAttribute("data-ind"); a35ev("filter_use", "ind:" + (ind || "all")); apply(); }); });
   var tm; q.addEventListener("input", function(){ clearTimeout(tm); tm = setTimeout(apply, 250); });
   a35stats(); apply();
+  document.getElementById("aif").addEventListener("submit", function(e){ e.preventDefault(); var v = document.getElementById("aiq").value.trim(); if (v.length < 4) return; a35matchText(v, document.getElementById("aiout"), kind); history.replaceState(null, "", "/cards?" + (kind ? "kind=" + kind + "&" : "") + "q=" + encodeURIComponent(v)); });
+  if (qs.get("q")) { document.getElementById("aiq").value = qs.get("q"); a35matchText(qs.get("q"), document.getElementById("aiout"), kind); }
 })();
 </script>
 </body>
