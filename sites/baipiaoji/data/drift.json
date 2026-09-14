@@ -1,8 +1,59 @@
 {
-  "generated": "2026-09-13",
+  "generated": "2026-09-14",
   "note": "官方来源页令牌集合连续两日与基线不同 = 漂移确认。只是「该去核」的信号,不是事实;limits.checked 推进到确认日后自动撤下。",
-  "fetched_ok": 100,
-  "fetched_fail": 24,
-  "pending": 8,
-  "items": []
+  "fetched_ok": 101,
+  "fetched_fail": 23,
+  "pending": 7,
+  "items": [
+    {
+      "slug": "ollama",
+      "url": "https://github.com/ollama/ollama",
+      "confirmed": "2026-09-14",
+      "first_seen": "2026-09-13",
+      "added": [
+        "180.8k"
+      ],
+      "removed": [
+        "180.7k"
+      ],
+      "checked_then": "2026-08-04"
+    },
+    {
+      "slug": "elevenlabs",
+      "url": "https://elevenlabs.io/pricing",
+      "confirmed": "2026-09-14",
+      "first_seen": "2026-09-13",
+      "added": [
+        "30b",
+        "8b"
+      ],
+      "removed": [
+        "373b",
+        "74b"
+      ],
+      "checked_then": "2026-08-02"
+    },
+    {
+      "slug": "cursor",
+      "url": "https://cursor.com",
+      "confirmed": "2026-09-14",
+      "first_seen": "2026-09-13",
+      "added": [],
+      "removed": [
+        "$3,000",
+        "0032b",
+        "00810b",
+        "00b",
+        "011b",
+        "01237b",
+        "01358061b",
+        "01b",
+        "03024b",
+        "031b",
+        "03b",
+        "04380b"
+      ],
+      "checked_then": "2026-08-03"
+    }
+  ]
 }

@@ -1,44 +1,44 @@
 {
-  "generated": "2026-09-13",
+  "generated": "2026-09-14",
   "source": "/api/reach",
   "window_days": 28,
-  "since": "2026-08-16",
-  "until": "2026-09-13",
+  "since": "2026-08-17",
+  "until": "2026-09-14",
   "definition": "ev='' AND ref != '' — referred human page views (traffic-truth.mjs human line A); direct/no-referrer visits and /__ self-test paths excluded; counts only, no row-level data",
-  "humans_referred": 274,
-  "per_day": 9.8,
+  "humans_referred": 286,
+  "per_day": 10.2,
   "by_kind": {
-    "tool": 176,
-    "category": 51,
+    "tool": 188,
+    "category": 52,
     "page": 35,
     "plans": 4,
-    "vs": 7,
+    "vs": 6,
     "alternatives": 1
   },
   "categories": [
     {
       "cat": "chat",
-      "n": 85
+      "n": 90
+    },
+    {
+      "cat": "coding",
+      "n": 43
     },
     {
       "cat": "api",
       "n": 43
     },
     {
-      "cat": "coding",
-      "n": 41
-    },
-    {
       "cat": "video",
-      "n": 24
+      "n": 26
     },
     {
       "cat": "image",
-      "n": 13
+      "n": 14
     },
     {
       "cat": "office",
-      "n": 7
+      "n": 8
     },
     {
       "cat": "local",
@@ -54,7 +54,7 @@
     },
     {
       "cat": "writing",
-      "n": 3
+      "n": 4
     },
     {
       "cat": "study",
@@ -77,7 +77,7 @@
     {
       "slug": "grok",
       "cat": "chat",
-      "n": 68
+      "n": 73
     },
     {
       "slug": "fireworks",
@@ -87,17 +87,17 @@
     {
       "slug": "kimi",
       "cat": "chat",
-      "n": 11
+      "n": 12
     },
     {
       "slug": "haiper",
       "cat": "video",
-      "n": 8
+      "n": 9
     },
     {
       "slug": "feishu-miaoji",
       "cat": "office",
-      "n": 7
+      "n": 8
     },
     {
       "slug": "pixverse",
@@ -155,6 +155,16 @@
       "n": 2
     },
     {
+      "slug": "google-ai-studio",
+      "cat": "api",
+      "n": 2
+    },
+    {
+      "slug": "quillbot",
+      "cat": "writing",
+      "n": 2
+    },
+    {
       "slug": "canva",
       "cat": "image",
       "n": 2
@@ -192,11 +202,6 @@
     {
       "slug": "guojia-fanzha",
       "cat": "safety",
-      "n": 1
-    },
-    {
-      "slug": "hunyuan",
-      "cat": "chat",
       "n": 1
     },
     {
@@ -250,8 +255,8 @@
       "n": 1
     },
     {
-      "slug": "google-ai-studio",
-      "cat": "api",
+      "slug": "hailuo",
+      "cat": "video",
       "n": 1
     },
     {
@@ -268,22 +273,17 @@
       "slug": "liblib",
       "cat": "image",
       "n": 1
-    },
-    {
-      "slug": "lovable",
-      "cat": "coding",
-      "n": 1
     }
   ],
   "judgement": [],
   "pages": [
     {
       "path": "grok",
-      "n": 68
+      "n": 73
     },
     {
       "path": "coding",
-      "n": 33
+      "n": 34
     },
     {
       "path": "/",
@@ -295,39 +295,39 @@
     },
     {
       "path": "kimi",
-      "n": 11
+      "n": 12
     },
     {
       "path": "api",
       "n": 10
     },
     {
+      "path": "haiper",
+      "n": 9
+    },
+    {
       "path": "/report",
       "n": 8
     },
     {
-      "path": "haiper",
+      "path": "feishu-miaoji",
       "n": 8
     },
     {
-      "path": "feishu-miaoji",
-      "n": 7
+      "path": "image",
+      "n": 5
     },
     {
       "path": "pixverse",
       "n": 5
     },
     {
-      "path": "image",
+      "path": "civitai",
       "n": 4
     },
     {
       "path": "video",
-      "n": 4
-    },
-    {
-      "path": "civitai",
-      "n": 4
+      "n": 3
     },
     {
       "path": "cline",
@@ -371,6 +371,14 @@
     },
     {
       "path": "fish-audio",
+      "n": 2
+    },
+    {
+      "path": "google-ai-studio",
+      "n": 2
+    },
+    {
+      "path": "quillbot",
       "n": 2
     },
     {
@@ -418,10 +426,6 @@
       "n": 1
     },
     {
-      "path": "hunyuan",
-      "n": 1
-    },
-    {
       "path": "krea",
       "n": 1
     },
@@ -458,10 +462,6 @@
       "n": 1
     },
     {
-      "path": "/vs/openrouter-vs-zhipu-glm",
-      "n": 1
-    },
-    {
       "path": "connectedpapers",
       "n": 1
     },
@@ -482,7 +482,7 @@
       "n": 1
     },
     {
-      "path": "google-ai-studio",
+      "path": "hailuo",
       "n": 1
     },
     {
@@ -502,6 +502,10 @@
       "n": 1
     },
     {
+      "path": "marscode",
+      "n": 1
+    },
+    {
       "path": "mistral",
       "n": 1
     },
@@ -510,22 +514,18 @@
       "n": 1
     },
     {
-      "path": "quillbot",
-      "n": 1
-    },
-    {
-      "path": "replit",
+      "path": "qingying",
       "n": 1
     }
   ],
   "referrers": [
     {
       "ref": "www.google.com",
-      "n": 146
+      "n": 152
     },
     {
       "ref": "cn.bing.com",
-      "n": 49
+      "n": 54
     },
     {
       "ref": "www.perplexity.ai",
@@ -540,12 +540,12 @@
       "n": 8
     },
     {
-      "ref": "m.facebook.com",
+      "ref": "www.bing.com",
       "n": 8
     },
     {
-      "ref": "www.bing.com",
-      "n": 6
+      "ref": "m.facebook.com",
+      "n": 8
     },
     {
       "ref": "m.baidu.com",
@@ -553,7 +553,7 @@
     },
     {
       "ref": "yandex.com",
-      "n": 5
+      "n": 4
     },
     {
       "ref": "www.baidu.com",
@@ -597,7 +597,7 @@
     {
       "ref": "www.perplexity.ai",
       "path": "/en/c/image",
-      "n": 4
+      "n": 5
     },
     {
       "ref": "www.perplexity.ai",
@@ -673,16 +673,11 @@
       "ref": "www.perplexity.ai",
       "path": "/en/vs/google-ai-studio-vs-openrouter",
       "n": 1
-    },
-    {
-      "ref": "www.perplexity.ai",
-      "path": "/en/vs/openrouter-vs-zhipu-glm",
-      "n": 1
     }
   ],
   "events": {
-    "sub_view": 237,
-    "go": 59,
+    "sub_view": 248,
+    "go": 58,
     "sub_submit": 4,
     "sheet_dl": 4,
     "sub_ok": 3,
