@@ -28,7 +28,7 @@ async function ensureSchema(db) {
     db.prepare("CREATE TABLE IF NOT EXISTS ua_audit (day TEXT, ua_prefix TEXT, ua_class TEXT, hits INTEGER, PRIMARY KEY (day, ua_prefix, ua_class))"),
   ]);
   // v2(2026-09-14 当日二次迭代)加列:行业标签 + 「先免费聊半小时」。ALTER 不幂等,单独 try。
-  for (const ddl of ["ALTER TABLE cards ADD COLUMN industry TEXT DEFAULT ''", "ALTER TABLE cards ADD COLUMN intro INTEGER DEFAULT 0", "ALTER TABLE cards ADD COLUMN stage TEXT DEFAULT ''", "ALTER TABLE cards ADD COLUMN commit TEXT DEFAULT ''"]) {
+  for (const ddl of ["ALTER TABLE cards ADD COLUMN industry TEXT DEFAULT ''", "ALTER TABLE cards ADD COLUMN intro INTEGER DEFAULT 0", "ALTER TABLE cards ADD COLUMN stage TEXT DEFAULT ''", "ALTER TABLE cards ADD COLUMN commitment TEXT DEFAULT ''"]) {
     try { await db.prepare(ddl).run(); } catch (e) { /* column exists */ }
   }
   schemaReady = true;
@@ -80,7 +80,7 @@ function newCode() {
   return [...a].map(b => alpha[b % alpha.length]).join("");
 }
 function publicCard(r) {
-  return { id: r.id, kind: r.kind, nick: r.nick, age: r.age, city: r.city, years: r.years, field: r.field, industry: r.industry || "", intro: (r.intro | 0) === 1, stage: r.stage || "", commit: r.commit || "", offers: r.offers.split("|").filter(Boolean), headline: r.headline, body: r.body, pay: r.pay, created: r.created, reveals: r.reveals | 0 };
+  return { id: r.id, kind: r.kind, nick: r.nick, age: r.age, city: r.city, years: r.years, field: r.field, industry: r.industry || "", intro: (r.intro | 0) === 1, stage: r.stage || "", commit: r.commitment || "", offers: r.offers.split("|").filter(Boolean), headline: r.headline, body: r.body, pay: r.pay, created: r.created, reveals: r.reveals | 0 };
 }
 
 async function handlePost(request, env, ctx) {
@@ -124,6 +124,9 @@ async function handlePost(request, env, ctx) {
   if (contact.length < 4) return json({ ok: false, code: "contact" }, 400);
   if (!consent) return json({ ok: false, code: "consent" }, 400);
 
+  // 部署冒烟(?dry=1):走完全部校验但不入库、不计限速——线上永远不留测试卡。
+  if (new URL(request.url).searchParams.get("dry") === "1") return json({ ok: true, code: "dry", dry: true, kind, offers, stage, commit });
+
   // 限速:同一来源当日最多 3 张。只存当日 salt 的 8 位哈希,不存 IP。
   const ip = request.headers.get("cf-connecting-ip") || "0";
   const day = new Date().toISOString().slice(0, 10);
@@ -140,7 +143,7 @@ async function handlePost(request, env, ctx) {
   const code = newCode();
   const country = (request.cf && request.cf.country) || "";
   const created = new Date().toISOString().replace("T", " ").slice(0, 16);
-  const r = await db.prepare("INSERT INTO cards (kind, nick, age, city, years, field, offers, headline, body, pay, contact, code, status, flag, country, created, industry, intro, stage, commit) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) RETURNING id")
+  const r = await db.prepare("INSERT INTO cards (kind, nick, age, city, years, field, offers, headline, body, pay, contact, code, status, flag, country, created, industry, intro, stage, commitment) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) RETURNING id")
     .bind(kind, nick, age, city, years, field, offers.join("|"), headline, body, pay || "面议", contact, code, status, flag, country, created, industry, intro, stage, commit).first();
   logRow(env, ctx, { name: "post_ok", label: kind + ":" + status, path: "/api/card", ua_class: "api", country });
   return json({ ok: true, code: "ok", id: r.id, status, secret: code });

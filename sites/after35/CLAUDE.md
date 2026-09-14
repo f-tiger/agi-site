@@ -40,6 +40,10 @@ AGI 时代 AI 冲击的**承接站**。主站 agiscorecard.com 记录 AI 走到�
 **二次启动** = /checklist + **判定页 /after-35-restart**(六件套,活数字读 /api/stats)。
 **刻意不做**(理由见调研 §六):LLM 生成建议、账号、种子卡/成功故事、岗位聚合、任何收费。
 表结构变更只能走 `ensureSchema` 里 try 包裹的 `ALTER TABLE ADD COLUMN`(D1 无 IF NOT EXISTS)。
+**列名踩坑(2026-09-14 v4 首发就中):`commit` 是 SQLite 关键字,ALTER 被 try 静默吞掉、INSERT 会 500,
+假 D1 单测测不出来。**列已改名 `commitment`(API 字段名仍叫 `commit`)。规则:①新列名先查 SQLite
+关键字表;②部署冒烟必须走一次真实写路径——`POST /api/card?dry=1` 走完全部校验与列绑定但不入库,
+线上永远不留测试卡;③改列后用 MCP `pragma_table_info('cards')` 核一次列真的在。
 
 ## v3(同日,owner:「要打出差异化,譬如程序员失业,可以用 AI 做以前很多做不到事情」)
 差异化定为**经验 × AI**:别的平台问年龄,这里问「以前干什么」。`/ai-leverage` 十个岗位 × 三件

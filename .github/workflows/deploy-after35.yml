@@ -93,6 +93,10 @@ jobs:
             done
             if [ "$ok" = "1" ]; then echo "OK    $p -> 200"; else echo "::error::$p -> HTTP $code after 5 tries"; fail=1; fi
           done
+          # 真实写路径冒烟:dry=1 走完全部校验与列名绑定,不入库(组队帖含全部新列)
+          dry=$(curl -s --max-time 20 -A 'after35-deploy-smoke-bot (+ci)' -H 'content-type: application/json' -X POST "https://35.agiscorecard.com/api/card?dry=1&ci=1" \
+                --data '{"kind":"team","nick":"ci","age":"45-49","city":"ci","years":0,"field":"ci","industry":"其他","offers":["技术"],"stage":"idea","commit":"parttime","headline":"部署冒烟测试组队帖不入库","body":"这是部署流水线的干跑请求,走完全部校验但不写入数据库,用来证明列名与绑定在线上是对的。","pay":"面议","contact":"ci@example","consent":true}' || echo "")
+          case "$dry" in *'"dry":true'*) echo "OK    /api/card?dry=1 (team)";; *) echo "::error::dry post broken: ${dry:0:160}"; fail=1;; esac
           for a in /api/cards /api/stats /api/pulse; do
             body=$(curl -s --max-time 20 -A 'after35-deploy-smoke-bot (+ci)' "https://35.agiscorecard.com$a?ci=1" || echo "")
             case "$body" in
