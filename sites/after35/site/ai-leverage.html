@@ -29,7 +29,7 @@
 <body>
 <header class="top"><div class="wrap">
   <a class="brand" href="/">三十五<b>后</b></a>
-  <nav class="main"><a href="/cards">经验卡</a><a href="/post">发一张</a><a href="/paths">变现路径</a><a href="/ai-leverage" aria-current="page">经验×AI</a><a href="/restart">二次启动</a><a href="/checklist">失业第一周</a><a href="/about">关于</a></nav>
+  <nav class="main"><a href="/cards">经验卡</a><a href="/post">发一张</a><a href="/team">组队</a><a href="/paths">变现路径</a><a href="/ai-leverage" aria-current="page">经验×AI</a><a href="/restart">二次启动</a><a href="/checklist">失业第一周</a><a href="/about">关于</a></nav>
 </div></header>
 <main class="wrap">
   <h1>以前要一个团队,<br>现在你一个人。</h1>
@@ -135,7 +135,7 @@
       "<h2>一周能做出来的第一个东西</h2><p>" + esc(r.first) + "</p>" +
       '<div class="tools"><span class="small muted">用得上的工具(免费额度看白嫖计核实版):</span><br>' + r.tools.map(function(t){ return T(t[0], t[1]); }).join("") + "</div>" +
       '<h2>AI 替不了的那部分——也就是你值钱的部分</h2><div class="keep">' + esc(r.keep) + "</div>" +
-      '<p class="cta-row" style="margin-top:22px"><a class="cta primary" href="/post?kind=offer&offer=' + encodeURIComponent(r.offer) + '" data-ev="post_open" data-l="lev_' + k + '">把这条写成经验卡</a><a class="cta" href="/restart">先算现金红线</a>' + (r.judge ? '<a class="cta" href="' + r.judge + '">看完整判定 →</a>' : "") + "</p>";
+      '<p class="cta-row" style="margin-top:22px"><a class="cta primary" href="/post?kind=offer&offer=' + encodeURIComponent(r.offer) + '" data-ev="post_open" data-l="lev_' + k + '">把这条写成经验卡</a><a class="cta" href="/restart">先算现金红线</a><a class="cta" href="/post?kind=team">找人一起做</a>' + (r.judge ? '<a class="cta" href="' + r.judge + '">看完整判定 →</a>' : "") + "</p>";
   }
   render(cur);
 })();

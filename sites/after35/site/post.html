@@ -12,7 +12,7 @@
 <body>
 <header class="top"><div class="wrap">
   <a class="brand" href="/">三十五<b>后</b></a>
-  <nav class="main"><a href="/cards">经验卡</a><a href="/post" aria-current="page">发一张</a><a href="/paths">变现路径</a><a href="/ai-leverage">经验×AI</a><a href="/restart">二次启动</a><a href="/checklist">失业第一周</a><a href="/about">关于</a></nav>
+  <nav class="main"><a href="/cards">经验卡</a><a href="/post" aria-current="page">发一张</a><a href="/team">组队</a><a href="/paths">变现路径</a><a href="/ai-leverage">经验×AI</a><a href="/restart">二次启动</a><a href="/checklist">失业第一周</a><a href="/about">关于</a></nav>
 </div></header>
 <main class="wrap">
   <h1 id="title">发一张经验卡</h1>
@@ -23,6 +23,7 @@
     <div class="choices" id="kindc">
       <label><input type="radio" name="kind" value="offer" checked> 我有经验,想发挥</label>
       <label><input type="radio" name="kind" value="need"> 我需要一个有经验的人</label>
+      <label><input type="radio" name="kind" value="team"> 我想找人一起创业(组队)</label>
     </div>
 
     <label for="nick">怎么称呼你 <span class="hint">姓氏或昵称都行,例如「老陈」「王工」</span></label>
@@ -54,6 +55,24 @@
       <input type="number" id="years" min="1" max="45" inputmode="numeric" style="max-width:160px">
     </div>
 
+    <div id="teamw" hidden>
+      <label>项目阶段</label>
+      <div class="choices">
+        <label><input type="radio" name="stage" value="idea"> 想法阶段</label>
+        <label><input type="radio" name="stage" value="validated"> 已有人付钱(哪怕一个)</label>
+        <label><input type="radio" name="stage" value="revenue"> 已有持续收入</label>
+      </div>
+      <label>投入方式</label>
+      <div class="choices">
+        <label><input type="radio" name="commit" value="parttime"> 兼职起步</label>
+        <label><input type="radio" name="commit" value="fulltime"> 全职</label>
+      </div>
+      <label>需要什么样的合伙人 <span class="hint">可多选</span></label>
+      <div class="choices" id="roles">
+        <label><input type="checkbox" value="技术"> 技术</label><label><input type="checkbox" value="产品"> 产品</label><label><input type="checkbox" value="销售"> 销售</label><label><input type="checkbox" value="运营"> 运营</label><label><input type="checkbox" value="设计"> 设计</label><label><input type="checkbox" value="资金"> 资金</label><label><input type="checkbox" value="行业资源"> 行业资源</label><label><input type="checkbox" value="财务法务"> 财务法务</label>
+      </div>
+    </div>
+    <div id="offersw">
     <label id="offersl">你能提供的方式 <span class="hint">可多选</span></label>
     <div class="choices" id="offers">
       <label><input type="checkbox" value="咨询顾问"> 咨询顾问</label>
@@ -63,6 +82,7 @@
       <label><input type="checkbox" value="合伙创业"> 合伙创业</label>
       <label><input type="checkbox" value="志愿公益"> 志愿公益</label>
       <label><input type="checkbox" value="AI 落地"> AI 落地(帮小公司把 AI 用起来)</label>
+    </div>
     </div>
 
     <label for="headline" id="headl">一句话:你能替谁解决什么问题 <span class="hint">8–60 字。例如「帮 50 人以下的工厂把采购成本压下来」</span></label>
@@ -105,9 +125,22 @@
 (function(){
   var f = document.getElementById("f"); var err = document.getElementById("err");
   var qs = new URLSearchParams(location.search);
-  var MSG = { industry:"请选行业大类", kind:"请选择这张卡的类型", nick:"请填怎么称呼你", age:"请选年龄段", city:"请填所在城市", field:"请填行业或岗位", years:"请填干了多少年(至少 1 年)", offers:"至少选一种方式", headline:"一句话请写 8 字以上", body:"具体说说至少 30 字", contact:"请留一个联系方式", consent:"请勾选同意公开", ratelimit:"今天发得太多了,明天再来", no_db:"服务暂时不可用,请稍后再试", error:"发布失败,请稍后再试" };
+  var MSG = { industry:"请选行业大类", stage:"请选项目阶段", commit:"请选投入方式", kind:"请选择这张卡的类型", nick:"请填怎么称呼你", age:"请选年龄段", city:"请填所在城市", field:"请填行业或岗位", years:"请填干了多少年(至少 1 年)", offers:"至少选一种方式", headline:"一句话请写 8 字以上", body:"具体说说至少 30 字", contact:"请留一个联系方式", consent:"请勾选同意公开", ratelimit:"今天发得太多了,明天再来", no_db:"服务暂时不可用,请稍后再试", error:"发布失败,请稍后再试" };
   function setKind(k){
-    var need = k === "need";
+    var need = k === "need", team = k === "team";
+    document.getElementById("teamw").hidden = !team; document.getElementById("offersw").hidden = team;
+    if (team) {
+      document.getElementById("title").textContent = "找人一起创业";
+      document.getElementById("lead").textContent = "一句话说清做什么、给谁、怎么收钱;写明阶段和缺什么人。本站不做尽调、不担保——先聊三次再谈合作,付费之前一切都是假设。";
+      document.getElementById("fieldl").firstChild.textContent = "你在项目里的角色 ";
+      document.getElementById("yearsw").hidden = false; document.querySelector("#yearsw label").textContent = "相关经验年数(没有填 0)";
+      document.getElementById("headl").firstChild.textContent = "项目一句话:做什么、给谁、怎么收钱 ";
+      document.getElementById("bodyl").firstChild.textContent = "具体说说:已经有什么、验证到哪一步、找什么人、打算怎么分 ";
+      document.getElementById("payl").firstChild.textContent = "合作方式(股权 / 工资 / 面议) ";
+      document.getElementById("introl").textContent = "我愿意先免费聊半小时。找合伙人第一次见面本来就不该谈钱。";
+      return;
+    }
+    document.querySelector("#yearsw label").textContent = "干了多少年";
     document.getElementById("title").textContent = need ? "我需要一个有经验的人" : "发一张经验卡";
     document.getElementById("lead").textContent = need ? "说清你要解决什么问题、要什么样的人、给多少。发出去的是需求,不是招聘启事。" : "写给需要你的人看,不是写给 HR 看。一句话说清你能替谁解决什么问题。";
     document.getElementById("fieldl").firstChild.textContent = need ? "你在哪个行业、什么角色 " : "你做了多年的行业或岗位 ";
@@ -118,8 +151,9 @@
     document.getElementById("payl").firstChild.textContent = need ? "你能给的报酬 " : "报酬 ";
     document.getElementById("introl").textContent = need ? "我愿意先免费聊半小时。让有经验的人不用担心「聊了就得收钱」。" : "先免费聊半小时。对方看到这个标记更敢开口,你也更容易拿到第一个案例。";
   }
-  var k0 = qs.get("kind") === "need" ? "need" : "offer";
+  var k0 = qs.get("kind") === "need" ? "need" : qs.get("kind") === "team" ? "team" : "offer";
   f.querySelector('input[name=kind][value=' + k0 + ']').checked = true; setKind(k0);
+  var preRole = qs.get("role"); if (preRole) { var rb = f.querySelector('#roles input[value="' + preRole + '"]'); if (rb) rb.checked = true; }
   var pre = qs.get("offer"); if (pre) { var cb = f.querySelector('#offers input[value="' + pre + '"]'); if (cb) cb.checked = true; }
   f.querySelectorAll('input[name=kind]').forEach(function(r){ r.addEventListener("change", function(){ setKind(r.value); }); });
   a35ev("post_open", k0);
@@ -127,8 +161,9 @@
     e.preventDefault(); err.hidden = true;
     var kind = (f.querySelector('input[name=kind]:checked')||{}).value;
     var age = (f.querySelector('input[name=age]:checked')||{}).value || "";
-    var offers = Array.prototype.map.call(f.querySelectorAll('#offers input:checked'), function(c){ return c.value; });
-    var b = { kind: kind, nick: f.nick.value, age: age, city: f.city.value, field: f.field.value, industry: f.industry.value, intro: f.intro.checked, years: kind === "need" ? 0 : f.years.value, offers: offers, headline: f.headline.value, body: f.body.value, pay: f.pay.value, contact: f.contact.value, consent: f.consent.checked, website: f.website.value };
+    var offers = Array.prototype.map.call(f.querySelectorAll(kind === "team" ? '#roles input:checked' : '#offers input:checked'), function(c){ return c.value; });
+    var stage = (f.querySelector('input[name=stage]:checked')||{}).value || "", commit = (f.querySelector('input[name=commit]:checked')||{}).value || "";
+    var b = { kind: kind, stage: stage, commit: commit, nick: f.nick.value, age: age, city: f.city.value, field: f.field.value, industry: f.industry.value, intro: f.intro.checked, years: kind === "need" ? 0 : f.years.value, offers: offers, headline: f.headline.value, body: f.body.value, pay: f.pay.value, contact: f.contact.value, consent: f.consent.checked, website: f.website.value };
     var btn = document.getElementById("submit"); btn.disabled = true; btn.textContent = "发布中…";
     a35ev("post_submit", kind);
     fetch("/api/card", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(b) })

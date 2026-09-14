@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>组队:找志同道合的人一起创业 — 三十五后</title>
+<meta name="description" content="失业中年人的组队板:发一个组队帖,写清做什么、给谁、怎么收钱、到哪一步、缺什么人;按行业和角色互相找。不做尽调、不抽成、不担保,合伙前三条红线写在页面上。">
+<link rel="canonical" href="https://35.agiscorecard.com/team">
+<meta property="og:title" content="组队:找志同道合的人一起创业">
+<meta property="og:description" content="发一个组队帖:做什么、给谁、怎么收钱、到哪一步、缺什么人。按行业和角色互相找。">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="/">三十五<b>后</b></a>
+  <nav class="main"><a href="/cards">经验卡</a><a href="/post">发一张</a><a href="/team" aria-current="page">组队</a><a href="/paths">变现路径</a><a href="/ai-leverage">经验×AI</a><a href="/restart">二次启动</a><a href="/checklist">失业第一周</a><a href="/about">关于</a></nav>
+</div></header>
+<main class="wrap">
+  <h1>组队:志同道合的人,一起做一件事</h1>
+  <p class="lead muted">一个人有二十年经验,两个互补的人加上 AI 就是一家公司。这里 <strong data-stat="team">–</strong> 个项目在找合伙人;发帖免费、不用注册,联系方式只在有人点开时显示。</p>
+
+  <div class="notice"><strong>合伙前三条红线(本站不做尽调、不担保,这三条是你自己的护栏):</strong> ①先聊三次再谈合作,付费之前一切都是假设;②不先注册公司、不先租办公室、不先做 App——先用一万块以内验证有没有人肯付钱;③两个人各自的钱、时间、退出条件写成一页协议再动手。</div>
+
+  <div class="filters" id="stage">
+    <button type="button" data-stage="" aria-pressed="true">全部阶段</button>
+    <button type="button" data-stage="idea" aria-pressed="false">想法阶段</button>
+    <button type="button" data-stage="validated" aria-pressed="false">已有人付钱</button>
+    <button type="button" data-stage="revenue" aria-pressed="false">已有收入</button>
+  </div>
+  <div class="filters" id="role">
+    <button type="button" data-role="" aria-pressed="true">缺任何角色</button>
+    <button type="button" data-role="技术">缺技术</button><button type="button" data-role="产品">缺产品</button><button type="button" data-role="销售">缺销售</button><button type="button" data-role="运营">缺运营</button><button type="button" data-role="设计">缺设计</button><button type="button" data-role="资金">缺资金</button><button type="button" data-role="行业资源">缺行业资源</button><button type="button" data-role="财务法务">缺财务法务</button>
+    <input type="search" id="q" placeholder="搜行业、城市、关键词" aria-label="搜索">
+  </div>
+  <div id="list" class="cards"><div class="empty">读取中…</div></div>
+
+  <p class="cta-row" style="margin-top:22px"><a class="cta primary" href="/post?kind=team" data-ev="post_open" data-l="team_page">发一个组队帖</a><a class="cta" href="/cards?kind=offer">我不发项目,看看有经验的人</a></p>
+
+  <hr class="rule">
+  <h2>怎么写一个会有人回的组队帖</h2>
+  <div class="tbl"><table>
+    <tr><th>写什么</th><th>为什么</th></tr>
+    <tr><td><b>一句话</b>:做什么、给谁、怎么收钱</td><td>三样缺一样,看的人不知道该不该来。「AI 赋能中小企业」不是一句话,「给 50 人以下工厂做 AI 质检小工具,按台收」才是</td></tr>
+    <tr><td><b>阶段</b>:想法 / 已有人付钱 / 已有收入</td><td>「已有人付钱」哪怕只有一个,就和「想法」是两个世界。诚实写,对方会自己判断</td></tr>
+    <tr><td><b>你带什么来</b>:角色 + 年数</td><td>你在项目里是技术、行业、还是销售?二十年在哪个行业?这决定你缺的是谁</td></tr>
+    <tr><td><b>缺什么人</b>:角色,不是形容词</td><td>「靠谱的人」没法筛,「懂工厂销售、有 20 家客户关系的人」可以</td></tr>
+    <tr><td><b>怎么分</b>:股权 / 工资 / 面议</td><td>不写等于「面议」;写了,能省掉一半没意义的第一次聊天</td></tr>
+  </table></div>
+  <p class="small muted">组队帖也走同样的复核规则:含网址或敏感词先人工复核;「资金」类帖子如果出现「投资回报」「保本」等词会被拦下。本站不撮合任何投资,只撮合人。</p>
+</main>
+<footer><div class="wrap">
+  <div class="links"><a href="/">首页</a><a href="/cards">经验卡</a><a href="/post">发一张</a><a href="/paths">变现路径</a><a href="/restart">二次启动</a><a href="/about">关于与撤卡</a></div>
+  <div>三十五后 · <a href="https://agiscorecard.com/">AGI Scorecard</a> 网络的中文子站 · 不做尽调、不担保、不构成投资建议</div>
+</div></footer>
+<script src="/app.js"></script>
+<script>
+(function(){
+  var stage = "", role = "", list = document.getElementById("list"), q = document.getElementById("q");
+  function press(sel, attr, val){ document.querySelectorAll(sel).forEach(function(x){ x.setAttribute("aria-pressed", x.getAttribute(attr) === val ? "true" : "false"); }); }
+  function apply(){
+    var t = q.value.trim().toLowerCase();
+    a35loadCards(list, { kind: "team", limit: 200, filter: function(c){
+      if (stage && c.stage !== stage) return false;
+      if (role && c.offers.indexOf(role) < 0) return false;
+      if (!t) return true;
+      return [c.city, c.field, c.industry, c.headline, c.body, c.offers.join(" "), c.pay].join(" ").toLowerCase().indexOf(t) >= 0;
+    }, empty: '<div class="empty"><b>还没有第一个组队帖。</b>没有一个是编出来的——第一个发的人,会被后面每个来的人看到。<br><a class="cta primary" style="margin-top:14px" href="/post?kind=team">发第一个组队帖</a></div>' });
+  }
+  document.querySelectorAll("#stage button").forEach(function(b){ b.addEventListener("click", function(){ press("#stage button", "data-stage", b.getAttribute("data-stage")); stage = b.getAttribute("data-stage"); a35ev("filter_use", "stage:" + (stage || "all")); apply(); }); });
+  document.querySelectorAll("#role button").forEach(function(b){ b.addEventListener("click", function(){ press("#role button", "data-role", b.getAttribute("data-role")); role = b.getAttribute("data-role"); a35ev("filter_use", "role:" + (role || "all")); apply(); }); });
+  var tm; q.addEventListener("input", function(){ clearTimeout(tm); tm = setTimeout(apply, 250); });
+  a35stats(); apply();
+})();
+</script>
+</body>
+</html>

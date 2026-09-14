@@ -48,7 +48,7 @@ jobs:
       - name: Gate — files present, worker parses, unit test passes
         working-directory: sites/after35
         run: |
-          for f in site/index.html site/cards.html site/post.html site/paths.html site/restart.html site/my.html site/after-35-restart.html site/ai-leverage.html site/laid-off-programmer-ai.html site/checklist.html site/about.html site/style.css site/app.js site/llms.txt site/robots.txt site/sitemap.xml worker.js wrangler.jsonc; do
+          for f in site/index.html site/cards.html site/post.html site/paths.html site/restart.html site/my.html site/after-35-restart.html site/ai-leverage.html site/laid-off-programmer-ai.html site/team.html site/checklist.html site/about.html site/style.css site/app.js site/llms.txt site/robots.txt site/sitemap.xml worker.js wrangler.jsonc; do
             [ -f "$f" ] || { echo "::error::missing $f"; exit 1; }
           done
           node --check worker.js
@@ -82,7 +82,7 @@ jobs:
         run: |
           set -u
           fail=0
-          for p in / /cards /post /paths /ai-leverage /laid-off-programmer-ai /restart /my /after-35-restart /checklist /about /llms.txt /sitemap.xml; do
+          for p in / /cards /post /team /paths /ai-leverage /laid-off-programmer-ai /restart /my /after-35-restart /checklist /about /llms.txt /sitemap.xml; do
             url="https://35.agiscorecard.com$p?ci=1"
             ok=0; code=000
             for try in 1 2 3 4 5; do

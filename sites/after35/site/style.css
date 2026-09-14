@@ -47,19 +47,24 @@ main { padding-block: 32px 48px; }
 .card .meta { color: var(--ink3); font-size: 15px; display: flex; gap: 10px; flex-wrap: wrap; }
 .card .meta .kind { color: #fff; background: var(--accent); border-radius: 4px; padding: 0 8px; font-size: 14px; line-height: 24px; }
 .card .meta .kind.need { background: var(--ok); }
+.card .meta .kind.team { background: #7a3e9d; }
+.card .tags .need-role { background: none; color: var(--ink3); padding-left: 0; }
+.stats.four { grid-template-columns: repeat(4, 1fr); }
+@media (max-width: 720px) { .stats.four { grid-template-columns: 1fr 1fr; } }
 .card h3 { margin: 0; font-size: 19px; }
 .card .body { color: var(--ink2); font-size: 16.5px; white-space: pre-line; }
 .card .tags { display: flex; gap: 6px; flex-wrap: wrap; }
 .card .tags span { background: var(--bg3); border-radius: 4px; padding: 2px 8px; font-size: 14px; color: var(--ink2); }
 .card .tags .intro { background: #e7f4ee; color: var(--ok); font-weight: 600; }
 .card .match { font-size: 15px; }
-.pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 8px 0 24px; }
+.pillars { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 8px 0 24px; }
 .pillar { border: 1px solid var(--rule); border-radius: 12px; padding: 20px 18px; }
 .pillar .k { color: var(--accent); font-weight: 700; font-size: 15px; letter-spacing: .04em; }
 .pillar h3 { margin: 6px 0 8px; font-size: 21px; }
 .pillar p { color: var(--ink2); font-size: 16.5px; margin-bottom: 10px; }
 .pillar a.go { font-weight: 600; }
-@media (max-width: 760px) { .pillars { grid-template-columns: 1fr; } }
+@media (max-width: 960px) { .pillars { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 640px) { .pillars { grid-template-columns: 1fr; } }
 .card .foot { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; border-top: 1px solid var(--rule); padding-top: 10px; margin-top: 4px; }
 .card .pay { font-weight: 600; }
 .card .reveal { min-height: 44px; padding: 0 14px; border-radius: 6px; border: 1.5px solid var(--accent); background: #fff; color: var(--accent); font-weight: 600; font-size: 16px; cursor: pointer; }

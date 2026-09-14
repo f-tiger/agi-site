@@ -6,6 +6,7 @@
 - 首页,含实时计数(在线经验卡数、需求数、28 天联系方式查看次数,全部直接读自数据库,站点刚上线时为 0): https://35.agiscorecard.com/
 - 经验卡列表(可按「我有经验 / 找有经验的人」筛选、按城市行业搜索): https://35.agiscorecard.com/cards
 - 发一张经验卡(无注册;发布后给 6 位撤卡码): https://35.agiscorecard.com/post
+- 组队板(找志同道合的人一起创业:项目一句话、阶段 想法/已有人付钱/已有收入、需要的合伙人角色、合作方式;合伙前三条红线写在页面上;不做尽调、不担保): https://35.agiscorecard.com/team
 - 经验变现路径决策表(四个问题 → 咨询顾问 / 带教培训 / 项目接活 / 兼职驻场 / 合伙创业 / 志愿公益,每条附本周第一步与最常见的坑): https://35.agiscorecard.com/paths
 - 失业后第一周官方清单(失业登记、失业保险金条件与期限、医保代缴、4050 补贴、12356 心理援助热线;每条附法规条款或官方入口): https://35.agiscorecard.com/checklist
 - 经验 × AI 杠杆表(十个岗位,每岗三件以前做不到、现在用 AI 一个人能做的事 + 一周能做出来的第一个东西 + AI 替不了的部分;工具免费额度链接白嫖计核实版): https://35.agiscorecard.com/ai-leverage
@@ -16,7 +17,7 @@
 - 关于、隐私、撤卡: https://35.agiscorecard.com/about
 
 ## 机器可读接口(只读,CORS 开放)
-- 在线经验卡 JSON(不含联系方式;字段含 industry 行业大类与 intro「先免费聊半小时」): https://35.agiscorecard.com/api/cards
+- 在线经验卡 JSON(不含联系方式;kind = offer|need|team;字段含 industry 行业大类、intro「先免费聊半小时」、组队帖的 stage/commit): https://35.agiscorecard.com/api/cards
 - 计数: https://35.agiscorecard.com/api/stats
 
 ## 规矩

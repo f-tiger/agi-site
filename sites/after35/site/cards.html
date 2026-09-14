@@ -15,11 +15,12 @@
 </div></header>
 <main class="wrap">
   <h1>经验卡</h1>
-  <p class="lead muted">在线 <strong data-stat="offer">–</strong> 张经验卡,<strong data-stat="need">–</strong> 条需求。点「查看联系方式」直接联系对方;我们不做中介。</p>
+  <p class="lead muted">在线 <strong data-stat="offer">–</strong> 张经验卡,<strong data-stat="need">–</strong> 条需求,<strong data-stat="team">–</strong> 个在找合伙人的项目(<a href="/team">组队页</a>)。点「查看联系方式」直接联系对方;我们不做中介。</p>
   <div class="filters" id="filters">
     <button type="button" data-kind="" aria-pressed="true">全部</button>
     <button type="button" data-kind="offer" aria-pressed="false">我有经验</button>
     <button type="button" data-kind="need" aria-pressed="false">找有经验的人</button>
+    <button type="button" data-kind="team" aria-pressed="false">找合伙人</button>
     <input type="search" id="q" placeholder="搜城市、行业、关键词" aria-label="搜索">
   </div>
   <div class="filters" id="ind">
@@ -38,7 +39,7 @@
 <script>
 (function(){
   var qs = new URLSearchParams(location.search);
-  var kind = qs.get("kind") === "offer" || qs.get("kind") === "need" ? qs.get("kind") : ""; var ind = qs.get("industry") || ""; var list = document.getElementById("list"); var q = document.getElementById("q");
+  var kind = ["offer","need","team"].indexOf(qs.get("kind")) >= 0 ? qs.get("kind") : ""; var ind = qs.get("industry") || ""; var list = document.getElementById("list"); var q = document.getElementById("q");
   function press(sel, attr, val){ document.querySelectorAll(sel).forEach(function(x){ x.setAttribute("aria-pressed", x.getAttribute(attr) === val ? "true" : "false"); }); }
   press("#filters button", "data-kind", kind); press("#ind button", "data-ind", ind);
   function apply(){
