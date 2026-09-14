@@ -48,7 +48,8 @@ jobs:
           goldrush|https://goldrush.agiscorecard.com/?ci=1|deploy-goldrush.yml
           gridlings|https://play.agiscorecard.com/|deploy-gridlings.yml
           buysomething|https://source.agiscorecard.com/|deploy-buysomething.yml
-          gamesledger|https://games.agiscorecard.com/|deploy-gamesledger.yml'
+          gamesledger|https://games.agiscorecard.com/|deploy-gamesledger.yml
+          after35|https://35.agiscorecard.com/?ci=1|deploy-after35.yml'
 
           NOW=$(date -u +%s)
           BAD=0

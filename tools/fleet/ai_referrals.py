@@ -58,6 +58,8 @@ SITES = [
      "name='page_view' AND ua_class='human' AND day>=date('now','-{w} days')", "COUNT(*)"),
     ("gamesledger", "2bebbaef-aa46-4b75-89ca-77920ad4f863", "ev", "ref_host",
      "name='page_view' AND ua_class='human' AND day>=date('now','-{w} days')", "COUNT(*)"),
+    ("after35", "6109b81e-c970-47d7-b7fc-3a2a15f68ed2", "ev", "ref",
+     "name='page_view' AND ua_class='human' AND day>=date('now','-{w} days')", "COUNT(*)"),
 ]
 
 
@@ -70,6 +72,7 @@ ENDPOINTS = {
     "gridlings": "https://play.agiscorecard.com/api/pulse",
     "buysomething": "https://source.agiscorecard.com/api/pulse",
     "gamesledger": "https://games.agiscorecard.com/api/pulse",
+    "after35": "https://35.agiscorecard.com/api/pulse",
 }
 
 

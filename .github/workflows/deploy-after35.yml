@@ -1,0 +1,100 @@
+name: Deploy after35
+
+# 三十五后 · 35.agiscorecard.com — 2026-09-14 建站(owner 指令:「要做一个给失业中年人用的
+# 平台,让他们可以发挥价值」「应该成为 agi 时代,ai 冲击的最好承载子站点」)。
+# 成本核算:push ~0.7 分/次;schedule 每日一次兜底部署 ≈ 0.7 × 30 = 21 分/月;公开仓免费。
+# Owner 一键停止:仓里存在 sites/after35/KILLED 文件 → 本流水线拒绝部署,线上冻结在最后版本。
+on:
+  push:
+    branches: [main]
+    paths: ["sites/after35/**", ".github/workflows/deploy-after35.yml"]
+  workflow_dispatch: {}
+  schedule:
+    - cron: "50 7 * * *"
+
+concurrency:
+  group: deploy-after35
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Guard — a replayed/stale push deploys main's tip, never rolls back
+        if: github.event_name == 'push'
+        run: |
+          git fetch origin main -q || { echo "::warning::fetch failed — stale-run guard skipped"; exit 0; }
+          TIP=$(git rev-parse origin/main 2>/dev/null || true)
+          case "$TIP" in
+            "" | *[!0-9a-f]* ) echo "::warning::main tip unresolvable — stale-run guard skipped"; exit 0 ;;
+          esac
+          if [ "$(git rev-parse HEAD)" != "$TIP" ]; then
+            echo "::warning::stale run — deploying main tip instead of rolling back"
+            git reset --hard "$TIP"
+          fi
+      - name: Owner kill switch
+        run: |
+          if [ -f sites/after35/KILLED ]; then
+            echo "::notice::KILLED file present — owner has frozen this site; skipping deploy."
+            exit 1
+          fi
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Gate — files present, worker parses, unit test passes
+        working-directory: sites/after35
+        run: |
+          for f in site/index.html site/cards.html site/post.html site/paths.html site/checklist.html site/about.html site/style.css site/app.js site/llms.txt site/robots.txt site/sitemap.xml worker.js wrangler.jsonc; do
+            [ -f "$f" ] || { echo "::error::missing $f"; exit 1; }
+          done
+          node --check worker.js
+          node tools/test_worker.mjs
+          # 零编造闸门:页面上不许出现写死的「中年失业率」类统计数字(全部数字必须来自 D1 或法规条款)
+          if grep -nE '失业率[^。]{0,12}[0-9]+(\.[0-9]+)?%' site/*.html; then echo "::error::hardcoded unemployment-rate statistic found"; exit 1; fi
+          # FAQ 可见问答与 FAQPage JSON-LD 逐条一致
+          node -e '
+            const fs=require("fs");const h=fs.readFileSync("site/checklist.html","utf8");
+            const ld=JSON.parse(h.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1]);
+            const vis=[...h.matchAll(/<summary>(.*?)<\/summary><p>(.*?)<\/p>/g)].map(m=>[m[1],m[2]]);
+            if(vis.length!==ld.mainEntity.length) throw new Error("faq count mismatch "+vis.length+" vs "+ld.mainEntity.length);
+            ld.mainEntity.forEach((q,i)=>{ if(q.name!==vis[i][0]||q.acceptedAnswer.text!==vis[i][1]) throw new Error("faq "+i+" differs"); });
+            console.log("faq ok",vis.length);'
+          echo "gate ok"
+      - name: Deploy worker
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          wranglerVersion: "4"
+          workingDirectory: sites/after35
+          command: deploy
+      - name: Post-deploy self-check
+        # 全部带 ?ci=1,worker 把自测排除在 D1 之外。/api/cards 与 /api/stats 必须回 ok:true——
+        # 它们是 D1 绑定是否生效的唯一线上证据。
+        run: |
+          set -u
+          fail=0
+          for p in / /cards /post /paths /checklist /about /llms.txt /sitemap.xml; do
+            url="https://35.agiscorecard.com$p?ci=1"
+            ok=0; code=000
+            for try in 1 2 3 4 5; do
+              code=$(curl -s -o /dev/null -w '%{http_code}' -L --max-redirs 5 --max-time 20 \
+                     -A 'after35-deploy-smoke-bot (+ci)' "$url" || echo 000)
+              if [ "$code" = "200" ]; then ok=1; break; fi
+              sleep 5
+            done
+            if [ "$ok" = "1" ]; then echo "OK    $p -> 200"; else echo "::error::$p -> HTTP $code after 5 tries"; fail=1; fi
+          done
+          for a in /api/cards /api/stats /api/pulse; do
+            body=$(curl -s --max-time 20 -A 'after35-deploy-smoke-bot (+ci)' "https://35.agiscorecard.com$a?ci=1" || echo "")
+            case "$body" in
+              *'"ok":true'*) echo "OK    $a" ;;
+              *) echo "::error::$a broken: ${body:0:120}"; fail=1 ;;
+            esac
+          done
+          [ "$fail" = "0" ] || exit 1
+          echo "self-check ok"

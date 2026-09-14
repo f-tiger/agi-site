@@ -1,0 +1,11 @@
+{
+  // 三十五后 · 35.agiscorecard.com — 2026-09-14 owner 指令建站:
+  // 「要做一个给失业中年人用的平台,让他们可以发挥价值」+「应该成为 agi 时代,ai 冲击的最好承载子站点」。
+  // 舰队标准形态(同 goldrush/gamesledger):静态资产 + worker(API + 服务端 page_view)。
+  "name": "after35",
+  "main": "worker.js",
+  "compatibility_date": "2026-08-01",
+  "assets": { "directory": "site", "binding": "ASSETS", "run_worker_first": true },
+  "routes": [{ "pattern": "35.agiscorecard.com", "custom_domain": true }],
+  "d1_databases": [{ "binding": "EV", "database_name": "after35-events", "database_id": "6109b81e-c970-47d7-b7fc-3a2a15f68ed2" }]
+}

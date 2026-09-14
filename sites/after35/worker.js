@@ -1,0 +1,218 @@
+// 三十五后 worker — 经验卡 API + 事件白名单 + 服务端 page_view。
+// 舰队铁律:每一次统计类 D1 写都 try/catch + waitUntil,统计永远不能 500 站点;
+// 唯一例外是发卡/撤卡两个写接口,它们的失败要如实返回给用户。
+// 隐私:不存 IP(只存当日 salt 过的 8 位哈希做限速)、不存完整 UA(48 字符前缀 + 分类)。
+// 联系方式由发卡人自愿公开,列表接口不返回,点「查看联系方式」才逐张取(并计数)。
+
+const ALLOWED = new Set(["page_view", "card_view", "contact_reveal", "post_open", "post_submit", "post_ok", "post_fail", "path_result", "checklist_click", "share_click", "filter_use", "withdraw_ok", "bridge_click"]);
+const KINDS = new Set(["offer", "need"]);
+const AGES = new Set(["35-39", "40-44", "45-49", "50-54", "55+"]);
+const OFFERS = ["咨询顾问", "带教培训", "项目接活", "兼职驻场", "合伙创业", "志愿公益"];
+// 命中即转人工复核(status=pending),不拒绝——误伤的真人第二天就会被放出来。
+const RISK = /贷款|刷单|日结|返利|博彩|彩票|虚拟币|USDT|数字货币|带单|荐股|保本|高收益|加微信领|免费领取|裸聊|代孕|办证|发票|走私|洗钱|色情|约炮/i;
+const URLISH = /https?:\/\/|www\.|\.com\b|\.cn\b|\.net\b/i;
+
+let schemaReady = false;
+async function ensureSchema(db) {
+  if (schemaReady || !db) return;
+  await db.batch([
+    db.prepare("CREATE TABLE IF NOT EXISTS cards (id INTEGER PRIMARY KEY AUTOINCREMENT, kind TEXT NOT NULL, nick TEXT NOT NULL, age TEXT NOT NULL, city TEXT NOT NULL, years INTEGER NOT NULL, field TEXT NOT NULL, offers TEXT NOT NULL, headline TEXT NOT NULL, body TEXT NOT NULL, pay TEXT NOT NULL, contact TEXT NOT NULL, code TEXT NOT NULL, status TEXT NOT NULL DEFAULT 'live', flag TEXT DEFAULT '', country TEXT DEFAULT '', created TEXT NOT NULL, reviewed TEXT DEFAULT '', reveals INTEGER DEFAULT 0)"),
+    db.prepare("CREATE INDEX IF NOT EXISTS cards_status ON cards (status, kind, created)"),
+    db.prepare("CREATE TABLE IF NOT EXISTS ratelimit (day TEXT NOT NULL, iph TEXT NOT NULL, n INTEGER DEFAULT 0, PRIMARY KEY (day, iph))"),
+    db.prepare("CREATE TABLE IF NOT EXISTS ev (day TEXT, ts TEXT, name TEXT, label TEXT, value INTEGER, path TEXT, ref TEXT, ua_class TEXT, country TEXT)"),
+    db.prepare("CREATE TABLE IF NOT EXISTS ua_audit (day TEXT, ua_prefix TEXT, ua_class TEXT, hits INTEGER, PRIMARY KEY (day, ua_prefix, ua_class))"),
+  ]);
+  schemaReady = true;
+}
+
+function uaClass(ua) {
+  if (!ua) return "none";
+  if (/bot|crawler|spider|slurp|scrap|crawl|fetch|monitor|uptime|lighthouse|pagespeed|preview|headless|phantom|selenium|puppeteer|playwright|curl|wget|python|java|go-http|okhttp|libwww|httpclient|http-client|axios|node-fetch|undici|^node$|^node\/|feed|rss|validator|archive|semrush|ahrefs|dataforseo|mj12|dotbot|bytespider|petalbot|applebot|amazonbot|facebookexternalhit|embedly|gptbot|chatgpt|oai-search|claude|perplexity|ccbot|google-extended|panscient|censys|inspect|shodan|expanse|masscan|zgrab|scan|probe/i.test(ua)) return "bot";
+  if (/mozilla/i.test(ua)) return "human";
+  return "other";
+}
+
+function auditUa(env, ctx, ua, cls) {
+  if (!env.EV) return;
+  const p = env.EV.prepare("INSERT INTO ua_audit (day, ua_prefix, ua_class, hits) VALUES (date('now'), ?, ?, 1) ON CONFLICT(day, ua_prefix, ua_class) DO UPDATE SET hits = hits + 1")
+    .bind((ua || "").slice(0, 48) || "(none)", cls).run().catch(() => {});
+  ctx.waitUntil(p);
+}
+
+function logRow(env, ctx, row) {
+  if (row && row.ci) return;
+  if (!env.EV) return;
+  ctx.waitUntil((async () => {
+    try {
+      await ensureSchema(env.EV);
+      await env.EV.prepare("INSERT INTO ev (day, ts, name, label, value, path, ref, ua_class, country) VALUES (date('now'), datetime('now'), ?, ?, ?, ?, ?, ?, ?)")
+        .bind(row.name, row.label || "", row.value | 0, row.path || "", row.ref || "", row.ua_class || "", row.country || "").run();
+    } catch (e) { /* analytics must never break the site */ }
+  })());
+}
+
+const JSONH = { "content-type": "application/json; charset=utf-8", "cache-control": "no-store", "access-control-allow-origin": "*" };
+const json = (o, status = 200, extra = {}) => new Response(JSON.stringify(o), { status, headers: { ...JSONH, ...extra } });
+
+// 只保留文字:去控制字符与尖括号、压缩空白。中文原样保留(舰队 09-12 的教训:别把 CJK 洗掉)。
+function clean(s, max) {
+  return String(s == null ? "" : s).replace(/[\x00-\x1f\x7f<>]/g, " ").replace(/\s+/g, " ").trim().slice(0, max);
+}
+// 联系方式允许 @ . _ - + 与数字字母中文(微信号/邮箱/手机/Telegram 都装得下)
+function cleanContact(s) { return clean(s, 60).replace(/[^\w@.+\-一-鿿\s:：（）()]/g, ""); }
+
+async function sha8(s) {
+  const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(s));
+  return [...new Uint8Array(buf)].slice(0, 4).map(b => b.toString(16).padStart(2, "0")).join("");
+}
+function newCode() {
+  const a = new Uint8Array(6); crypto.getRandomValues(a);
+  const alpha = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+  return [...a].map(b => alpha[b % alpha.length]).join("");
+}
+function publicCard(r) {
+  return { id: r.id, kind: r.kind, nick: r.nick, age: r.age, city: r.city, years: r.years, field: r.field, offers: r.offers.split("|").filter(Boolean), headline: r.headline, body: r.body, pay: r.pay, created: r.created, reveals: r.reveals | 0 };
+}
+
+async function handlePost(request, env, ctx) {
+  const db = env.EV;
+  if (!db) return json({ ok: false, code: "no_db" }, 503);
+  await ensureSchema(db);
+  const b = await request.json().catch(() => ({}));
+  // 蜜罐:真人看不见 website 字段。静默「成功」,不给机器人调参的反馈。
+  if (String(b.website || "").trim()) return json({ ok: true, code: "ok", id: 0, status: "live", secret: "XXXXXX" });
+
+  const kind = KINDS.has(b.kind) ? b.kind : "";
+  const nick = clean(b.nick, 20);
+  const age = AGES.has(b.age) ? b.age : "";
+  const city = clean(b.city, 20);
+  const years = Math.max(0, Math.min(45, parseInt(b.years, 10) || 0));
+  const field = clean(b.field, 40);
+  const offers = (Array.isArray(b.offers) ? b.offers : []).filter(o => OFFERS.includes(o)).slice(0, 6);
+  const headline = clean(b.headline, 60);
+  const body = clean(b.body, 600);
+  const pay = clean(b.pay, 30);
+  const contact = cleanContact(b.contact);
+  const consent = b.consent === true;
+
+  if (!kind) return json({ ok: false, code: "kind" }, 400);
+  if (!nick) return json({ ok: false, code: "nick" }, 400);
+  if (!age) return json({ ok: false, code: "age" }, 400);
+  if (!city) return json({ ok: false, code: "city" }, 400);
+  if (!field) return json({ ok: false, code: "field" }, 400);
+  if (kind === "offer" && years < 1) return json({ ok: false, code: "years" }, 400);
+  if (!offers.length) return json({ ok: false, code: "offers" }, 400);
+  if (headline.length < 8) return json({ ok: false, code: "headline" }, 400);
+  if (body.length < 30) return json({ ok: false, code: "body" }, 400);
+  if (contact.length < 4) return json({ ok: false, code: "contact" }, 400);
+  if (!consent) return json({ ok: false, code: "consent" }, 400);
+
+  // 限速:同一来源当日最多 3 张。只存当日 salt 的 8 位哈希,不存 IP。
+  const ip = request.headers.get("cf-connecting-ip") || "0";
+  const day = new Date().toISOString().slice(0, 10);
+  const iph = await sha8(day + "|" + ip + "|after35");
+  const rl = await db.prepare("INSERT INTO ratelimit (day, iph, n) VALUES (?, ?, 1) ON CONFLICT(day, iph) DO UPDATE SET n = n + 1 RETURNING n").bind(day, iph).first();
+  if (rl && rl.n > 3) return json({ ok: false, code: "ratelimit" }, 429);
+
+  // 风险词与网址:不拒绝,转人工复核。舰队每日 run 读 status='pending' 放行或拒绝。
+  const text = [headline, body, field, pay].join(" ");
+  let status = "live", flag = "";
+  if (RISK.test(text)) { status = "pending"; flag = "risk"; }
+  else if (URLISH.test(text)) { status = "pending"; flag = "url"; }
+
+  const code = newCode();
+  const country = (request.cf && request.cf.country) || "";
+  const created = new Date().toISOString().replace("T", " ").slice(0, 16);
+  const r = await db.prepare("INSERT INTO cards (kind, nick, age, city, years, field, offers, headline, body, pay, contact, code, status, flag, country, created) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) RETURNING id")
+    .bind(kind, nick, age, city, years, field, offers.join("|"), headline, body, pay || "面议", contact, code, status, flag, country, created).first();
+  logRow(env, ctx, { name: "post_ok", label: kind + ":" + status, path: "/api/card", ua_class: "api", country });
+  return json({ ok: true, code: "ok", id: r.id, status, secret: code });
+}
+
+export default {
+  async fetch(request, env, ctx) {
+    const url = new URL(request.url);
+    const p = url.pathname;
+    const ci = url.searchParams.get("ci") === "1";
+
+    if (request.method === "OPTIONS") {
+      return new Response(null, { headers: { "access-control-allow-origin": "*", "access-control-allow-methods": "GET,POST", "access-control-allow-headers": "content-type" } });
+    }
+
+    if (p === "/e" && request.method === "POST") {
+      try {
+        const b = await request.json();
+        if (ALLOWED.has(b.n)) {
+          logRow(env, ctx, { name: b.n, label: String(b.l || "").slice(0, 80), path: String(b.p || "").slice(0, 80), ref: (request.headers.get("referer") || "").slice(0, 120), ua_class: "js", country: (request.cf && request.cf.country) || "" });
+        }
+      } catch (e) { /* ignore malformed */ }
+      return new Response("ok", { headers: { "access-control-allow-origin": "*" } });
+    }
+
+    if (p.startsWith("/api/")) {
+      try {
+        if (p === "/api/card" && request.method === "POST") return await handlePost(request, env, ctx);
+        if (!env.EV) return json({ ok: false, code: "no_db" }, 503);
+        await ensureSchema(env.EV);
+
+        if (p === "/api/cards" && request.method === "GET") {
+          const kind = KINDS.has(url.searchParams.get("kind")) ? url.searchParams.get("kind") : "";
+          const limit = Math.min(200, Math.max(1, parseInt(url.searchParams.get("limit"), 10) || 60));
+          const q = kind
+            ? env.EV.prepare("SELECT * FROM cards WHERE status='live' AND kind=? ORDER BY id DESC LIMIT ?").bind(kind, limit)
+            : env.EV.prepare("SELECT * FROM cards WHERE status='live' ORDER BY id DESC LIMIT ?").bind(limit);
+          const rows = (await q.all()).results || [];
+          return json({ ok: true, cards: rows.map(publicCard), generated: new Date().toISOString() }, 200, { "cache-control": "public, max-age=60" });
+        }
+        if (p === "/api/stats" && request.method === "GET") {
+          const rows = (await env.EV.prepare("SELECT kind, status, COUNT(*) n FROM cards GROUP BY kind, status").all()).results || [];
+          const s = { offer: 0, need: 0, pending: 0, reveals28: 0 };
+          for (const r of rows) { if (r.status === "live") s[r.kind] = r.n; else if (r.status === "pending") s.pending += r.n; }
+          const rv = await env.EV.prepare("SELECT COUNT(*) n FROM ev WHERE name='contact_reveal' AND day >= date('now','-28 days')").first();
+          s.reveals28 = (rv && rv.n) | 0;
+          return json({ ok: true, ...s, generated: new Date().toISOString() }, 200, { "cache-control": "public, max-age=60" });
+        }
+        const m = p.match(/^\/api\/card\/(\d+)\/contact$/);
+        if (m && request.method === "GET") {
+          const r = await env.EV.prepare("SELECT id, contact, kind FROM cards WHERE id=? AND status='live'").bind(m[1]).first();
+          if (!r) return json({ ok: false, code: "notfound" }, 404);
+          ctx.waitUntil(env.EV.prepare("UPDATE cards SET reveals = reveals + 1 WHERE id=?").bind(r.id).run().catch(() => {}));
+          logRow(env, ctx, { ci, name: "contact_reveal", label: r.kind + ":" + r.id, path: "/api/card/contact", ua_class: "api", country: (request.cf && request.cf.country) || "" });
+          return json({ ok: true, contact: r.contact });
+        }
+        if (p === "/api/withdraw" && request.method === "POST") {
+          const b = await request.json().catch(() => ({}));
+          const id = parseInt(b.id, 10) || 0; const code = clean(b.code, 12).toUpperCase();
+          if (!id || code.length !== 6) return json({ ok: false, code: "bad" }, 400);
+          const r = await env.EV.prepare("UPDATE cards SET status='withdrawn' WHERE id=? AND code=? AND status IN ('live','pending') RETURNING id").bind(id, code).first();
+          if (!r) return json({ ok: false, code: "notfound" }, 404);
+          logRow(env, ctx, { name: "withdraw_ok", label: String(id), path: "/api/withdraw", ua_class: "api" });
+          return json({ ok: true });
+        }
+        if (p === "/api/pulse" && request.method === "GET") {
+          // 舰队 heartbeat 读侧(同 goldrush):28 天真人 pv + AI 助手引荐,只给聚合数。
+          const q = await env.EV.prepare("SELECT '_total' AS host, COUNT(*) AS n FROM ev WHERE name='page_view' AND ua_class='human' AND day >= date('now','-28 days') UNION ALL SELECT ref AS host, COUNT(*) AS n FROM ev WHERE name='page_view' AND ua_class='human' AND day >= date('now','-28 days') AND (ref LIKE '%chatgpt%' OR ref LIKE '%chat.openai%' OR ref LIKE '%perplexity%' OR ref LIKE '%claude.ai%' OR ref LIKE '%copilot%' OR ref LIKE '%gemini.google%' OR ref LIKE '%you.com%' OR ref LIKE '%kagi%' OR ref LIKE '%poe.com%' OR ref LIKE '%mistral%' OR ref LIKE '%deepseek%' OR ref LIKE '%kimi%' OR ref LIKE '%doubao%' OR ref LIKE '%yiyan%' OR ref LIKE '%metaso%') GROUP BY ref ORDER BY n DESC").all();
+          let human_pv = 0; const by_host = {};
+          for (const r of (q.results || [])) { if (r.host === "_total") human_pv = r.n | 0; else if (r.host) by_host[r.host] = r.n | 0; }
+          const ai_ref = Object.values(by_host).reduce((a, b) => a + b, 0);
+          return json({ ok: true, days: 28, human_pv, ai_ref, by_host, generated: new Date().toISOString() }, 200, { "cache-control": "public, max-age=3600" });
+        }
+        return json({ ok: false, code: "notfound" }, 404);
+      } catch (e) {
+        return json({ ok: false, code: "error" }, 500);
+      }
+    }
+
+    const res = await env.ASSETS.fetch(request);
+    if (request.method === "GET" && res.status === 200) {
+      const type = res.headers.get("content-type") || "";
+      if (type.includes("text/html") || ["/llms.txt", "/sitemap.xml"].includes(p)) {
+        const ua = request.headers.get("user-agent") || "";
+        const cls = uaClass(ua);
+        if (!ci) auditUa(env, ctx, ua, cls);
+        logRow(env, ctx, { ci, name: "page_view", path: p.slice(0, 80), ref: (request.headers.get("referer") || "").slice(0, 120), ua_class: cls, country: (request.cf && request.cf.country) || "" });
+      }
+    }
+    return res;
+  },
+};

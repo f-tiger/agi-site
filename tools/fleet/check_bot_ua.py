@@ -25,6 +25,7 @@ WORKERS = [
     "sites/getecoback/src/worker.js",
     "sites/buysomething/worker.js",
     "sites/gamesledger/worker.js",
+    "sites/after35/worker.js",
 ]
 
 BOTS = [

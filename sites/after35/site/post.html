@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>发一张经验卡 — 三十五后</title>
+<meta name="description" content="三分钟发一张经验卡:行业、年限、能提供什么、报价、联系方式。不用注册,发完给你一个撤卡码,随时下线。">
+<link rel="canonical" href="https://35.agiscorecard.com/post">
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="/">三十五<b>后</b></a>
+  <nav class="main"><a href="/cards">经验卡</a><a href="/post" aria-current="page">发一张</a><a href="/paths">变现路径</a><a href="/checklist">失业第一周</a><a href="/about">关于</a></nav>
+</div></header>
+<main class="wrap">
+  <h1 id="title">发一张经验卡</h1>
+  <p class="lead muted" id="lead">写给需要你的人看,不是写给 HR 看。一句话说清你能替谁解决什么问题。</p>
+
+  <form class="post" id="f" novalidate>
+    <label>这张卡是</label>
+    <div class="choices" id="kindc">
+      <label><input type="radio" name="kind" value="offer" checked> 我有经验,想发挥</label>
+      <label><input type="radio" name="kind" value="need"> 我需要一个有经验的人</label>
+    </div>
+
+    <label for="nick">怎么称呼你 <span class="hint">姓氏或昵称都行,例如「老陈」「王工」</span></label>
+    <input type="text" id="nick" maxlength="20" required>
+
+    <label>年龄段</label>
+    <div class="choices">
+      <label><input type="radio" name="age" value="35-39"> 35–39</label>
+      <label><input type="radio" name="age" value="40-44"> 40–44</label>
+      <label><input type="radio" name="age" value="45-49"> 45–49</label>
+      <label><input type="radio" name="age" value="50-54"> 50–54</label>
+      <label><input type="radio" name="age" value="55+"> 55 以上</label>
+    </div>
+
+    <label for="city">所在城市 <span class="hint">远程也行的话写「远程」或「全国」</span></label>
+    <input type="text" id="city" maxlength="20" required>
+
+    <label for="field" id="fieldl">你做了多年的行业或岗位 <span class="hint">例如「制造业供应链」「基层公务员」「培训机构校长」</span></label>
+    <input type="text" id="field" maxlength="40" required>
+
+    <div id="yearsw">
+      <label for="years">干了多少年</label>
+      <input type="number" id="years" min="1" max="45" inputmode="numeric" style="max-width:160px">
+    </div>
+
+    <label id="offersl">你能提供的方式 <span class="hint">可多选</span></label>
+    <div class="choices" id="offers">
+      <label><input type="checkbox" value="咨询顾问"> 咨询顾问</label>
+      <label><input type="checkbox" value="带教培训"> 带教培训</label>
+      <label><input type="checkbox" value="项目接活"> 项目接活</label>
+      <label><input type="checkbox" value="兼职驻场"> 兼职驻场</label>
+      <label><input type="checkbox" value="合伙创业"> 合伙创业</label>
+      <label><input type="checkbox" value="志愿公益"> 志愿公益</label>
+    </div>
+
+    <label for="headline" id="headl">一句话:你能替谁解决什么问题 <span class="hint">8–60 字。例如「帮 50 人以下的工厂把采购成本压下来」</span></label>
+    <input type="text" id="headline" maxlength="60" required>
+
+    <label for="body" id="bodyl">具体说说 <span class="hint">30–600 字。做过什么、拿到过什么结果、擅长和不擅长什么。别写网址。</span></label>
+    <textarea id="body" maxlength="600" required></textarea>
+
+    <label for="pay" id="payl">报酬 <span class="hint">例如「面议」「800 元/天」「先免费聊半小时」</span></label>
+    <input type="text" id="pay" maxlength="30" placeholder="面议">
+
+    <label for="contact">联系方式 <span class="hint">微信号、邮箱、手机或 Telegram。只在别人点「查看联系方式」时才显示。</span></label>
+    <input type="text" id="contact" maxlength="60" required autocomplete="off">
+
+    <div class="hp" aria-hidden="true"><label>website<input type="text" id="website" tabindex="-1" autocomplete="off"></label></div>
+
+    <label class="consent"><input type="checkbox" id="consent"> <span>我同意把以上信息(含联系方式)公开在本站,供需要的人联系我;我知道发卡后会得到一个撤卡码,可以随时下线这张卡。</span></label>
+
+    <div id="err" class="notice warn" hidden></div>
+    <p style="margin-top:22px"><button class="cta primary" type="submit" id="submit">发布这张卡</button></p>
+    <p class="small muted">发布即时生效。含网址或可疑词(贷款、刷单等)的卡会先进人工复核,通常一天内处理。同一来源每天最多发 3 张。</p>
+  </form>
+
+  <div id="done" hidden>
+    <div class="notice ok"><strong id="donemsg">发布成功。</strong></div>
+    <p>这是你的撤卡码,<strong>只显示这一次</strong>,请截图或抄下来。想下线这张卡时,到 <a href="/about#withdraw">关于页</a> 输入卡号和撤卡码即可。</p>
+    <p>卡号 <strong id="doneid"></strong> · 撤卡码 <span class="secret" id="donecode"></span></p>
+    <p class="cta-row"><a class="cta primary" href="/cards">去看我的卡</a><button class="cta" type="button" onclick="a35share('三十五后 — 我的经验卡')">分享这个站给同龄人</button></p>
+  </div>
+</main>
+<footer><div class="wrap">
+  <div class="links"><a href="/">首页</a><a href="/cards">经验卡</a><a href="/paths">变现路径</a><a href="/checklist">失业第一周</a><a href="/about">关于与撤卡</a></div>
+  <div>三十五后 · <a href="https://agiscorecard.com/">AGI Scorecard</a> 网络的中文子站 · 不提供就业中介服务</div>
+</div></footer>
+<script src="/app.js"></script>
+<script>
+(function(){
+  var f = document.getElementById("f"); var err = document.getElementById("err");
+  var qs = new URLSearchParams(location.search);
+  var MSG = { kind:"请选择这张卡的类型", nick:"请填怎么称呼你", age:"请选年龄段", city:"请填所在城市", field:"请填行业或岗位", years:"请填干了多少年(至少 1 年)", offers:"至少选一种方式", headline:"一句话请写 8 字以上", body:"具体说说至少 30 字", contact:"请留一个联系方式", consent:"请勾选同意公开", ratelimit:"今天发得太多了,明天再来", no_db:"服务暂时不可用,请稍后再试", error:"发布失败,请稍后再试" };
+  function setKind(k){
+    var need = k === "need";
+    document.getElementById("title").textContent = need ? "我需要一个有经验的人" : "发一张经验卡";
+    document.getElementById("lead").textContent = need ? "说清你要解决什么问题、要什么样的人、给多少。发出去的是需求,不是招聘启事。" : "写给需要你的人看,不是写给 HR 看。一句话说清你能替谁解决什么问题。";
+    document.getElementById("fieldl").firstChild.textContent = need ? "你在哪个行业、什么角色 " : "你做了多年的行业或岗位 ";
+    document.getElementById("yearsw").hidden = need;
+    document.getElementById("offersl").firstChild.textContent = need ? "你希望对方以什么方式参与 " : "你能提供的方式 ";
+    document.getElementById("headl").firstChild.textContent = need ? "一句话:你要解决什么问题 " : "一句话:你能替谁解决什么问题 ";
+    document.getElementById("bodyl").firstChild.textContent = need ? "具体说说:背景、要什么样的人、怎么合作 " : "具体说说 ";
+    document.getElementById("payl").firstChild.textContent = need ? "你能给的报酬 " : "报酬 ";
+  }
+  var k0 = qs.get("kind") === "need" ? "need" : "offer";
+  f.querySelector('input[name=kind][value=' + k0 + ']').checked = true; setKind(k0);
+  var pre = qs.get("offer"); if (pre) { var cb = f.querySelector('#offers input[value="' + pre + '"]'); if (cb) cb.checked = true; }
+  f.querySelectorAll('input[name=kind]').forEach(function(r){ r.addEventListener("change", function(){ setKind(r.value); }); });
+  a35ev("post_open", k0);
+  f.addEventListener("submit", function(e){
+    e.preventDefault(); err.hidden = true;
+    var kind = (f.querySelector('input[name=kind]:checked')||{}).value;
+    var age = (f.querySelector('input[name=age]:checked')||{}).value || "";
+    var offers = Array.prototype.map.call(f.querySelectorAll('#offers input:checked'), function(c){ return c.value; });
+    var b = { kind: kind, nick: f.nick.value, age: age, city: f.city.value, field: f.field.value, years: kind === "need" ? 0 : f.years.value, offers: offers, headline: f.headline.value, body: f.body.value, pay: f.pay.value, contact: f.contact.value, consent: f.consent.checked, website: f.website.value };
+    var btn = document.getElementById("submit"); btn.disabled = true; btn.textContent = "发布中…";
+    a35ev("post_submit", kind);
+    fetch("/api/card", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(b) })
+      .then(function(r){ return r.json(); })
+      .then(function(j){
+        if (!j.ok) { err.textContent = MSG[j.code] || MSG.error; err.hidden = false; btn.disabled = false; btn.textContent = "发布这张卡"; a35ev("post_fail", j.code || "err"); window.scrollTo({ top: err.offsetTop - 80, behavior: "smooth" }); return; }
+        f.hidden = true; document.getElementById("done").hidden = false;
+        document.getElementById("doneid").textContent = j.id; document.getElementById("donecode").textContent = j.secret;
+        document.getElementById("donemsg").textContent = j.status === "pending" ? "已收到。这张卡含网址或敏感词,会先人工复核,通常一天内上线。" : "发布成功,已经在线。";
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      })
+      .catch(function(){ err.textContent = MSG.error; err.hidden = false; btn.disabled = false; btn.textContent = "发布这张卡"; a35ev("post_fail", "network"); });
+  });
+})();
+</script>
+</body>
+</html>

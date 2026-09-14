@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>经验卡 — 三十五后</title>
+<meta name="description" content="失业中年人发出的经验卡与找人的需求:行业、年限、能提供什么、报价。点「查看联系方式」直接联系,没有中介。">
+<link rel="canonical" href="https://35.agiscorecard.com/cards">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="/">三十五<b>后</b></a>
+  <nav class="main"><a href="/cards" aria-current="page">经验卡</a><a href="/post">发一张</a><a href="/paths">变现路径</a><a href="/checklist">失业第一周</a><a href="/about">关于</a></nav>
+</div></header>
+<main class="wrap">
+  <h1>经验卡</h1>
+  <p class="lead muted">在线 <strong data-stat="offer">–</strong> 张经验卡,<strong data-stat="need">–</strong> 条需求。点「查看联系方式」直接联系对方;我们不做中介。</p>
+  <div class="filters" id="filters">
+    <button type="button" data-kind="" aria-pressed="true">全部</button>
+    <button type="button" data-kind="offer" aria-pressed="false">我有经验</button>
+    <button type="button" data-kind="need" aria-pressed="false">找有经验的人</button>
+    <input type="search" id="q" placeholder="搜城市、行业、关键词" aria-label="搜索">
+  </div>
+  <div id="list" class="cards"><div class="empty">读取中…</div></div>
+  <p style="margin-top:20px"><a class="cta primary" href="/post" data-ev="post_open" data-l="cards_page">发一张我的卡</a></p>
+  <p class="small muted">看到可疑内容(贷款、刷单、收费培训之类)?这些卡在发布时就会被拦下人工复核;漏网的请到 <a href="/about">关于页</a> 按说明反馈。</p>
+</main>
+<footer><div class="wrap">
+  <div class="links"><a href="/">首页</a><a href="/post">发一张</a><a href="/paths">变现路径</a><a href="/checklist">失业第一周</a><a href="/about">关于与撤卡</a></div>
+  <div>三十五后 · <a href="https://agiscorecard.com/">AGI Scorecard</a> 网络的中文子站 · 不提供就业中介服务</div>
+</div></footer>
+<script src="/app.js"></script>
+<script>
+(function(){
+  var all = []; var kind = ""; var list = document.getElementById("list"); var q = document.getElementById("q");
+  function apply(){
+    var t = q.value.trim().toLowerCase();
+    a35loadCards(list, { limit: 200, filter: function(c){
+      if (kind && c.kind !== kind) return false;
+      if (!t) return true;
+      return [c.city, c.field, c.headline, c.body, c.offers.join(" "), c.pay].join(" ").toLowerCase().indexOf(t) >= 0;
+    }});
+  }
+  document.querySelectorAll("#filters button").forEach(function(b){ b.addEventListener("click", function(){
+    document.querySelectorAll("#filters button").forEach(function(x){ x.setAttribute("aria-pressed","false"); });
+    b.setAttribute("aria-pressed","true"); kind = b.getAttribute("data-kind"); a35ev("filter_use", kind || "all"); apply();
+  }); });
+  var tm; q.addEventListener("input", function(){ clearTimeout(tm); tm = setTimeout(apply, 250); });
+  a35stats(); apply();
+})();
+</script>
+</body>
+</html>

@@ -44,6 +44,7 @@ SITES = [
     ("gridlings", "https://play.agiscorecard.com"),
     ("buysomething", "https://source.agiscorecard.com"),
     ("gamesledger", "https://games.agiscorecard.com"),
+    ("after35", "https://35.agiscorecard.com"),
 ]
 PATHS = ["/", "/llms.txt"]
 

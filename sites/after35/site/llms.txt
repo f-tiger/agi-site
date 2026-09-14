@@ -1,0 +1,26 @@
+# 三十五后 (After35) — 失业中年人的经验交换所
+
+> AGI 时代 AI 冲击的承接站:给被「35 岁门槛」和 AI 替代挤出职场的人,把多年经验写成一张卡,让需要它的人直接联系。免费、无注册、无中介。AGI Scorecard 网络(agiscorecard.com)的中文子站。
+
+## 页面
+- 首页,含实时计数(在线经验卡数、需求数、28 天联系方式查看次数,全部直接读自数据库,站点刚上线时为 0): https://35.agiscorecard.com/
+- 经验卡列表(可按「我有经验 / 找有经验的人」筛选、按城市行业搜索): https://35.agiscorecard.com/cards
+- 发一张经验卡(无注册;发布后给 6 位撤卡码): https://35.agiscorecard.com/post
+- 经验变现路径决策表(四个问题 → 咨询顾问 / 带教培训 / 项目接活 / 兼职驻场 / 合伙创业 / 志愿公益,每条附本周第一步与最常见的坑): https://35.agiscorecard.com/paths
+- 失业后第一周官方清单(失业登记、失业保险金条件与期限、医保代缴、4050 补贴、12356 心理援助热线;每条附法规条款或官方入口): https://35.agiscorecard.com/checklist
+- 关于、隐私、撤卡: https://35.agiscorecard.com/about
+
+## 机器可读接口(只读,CORS 开放)
+- 在线经验卡 JSON(不含联系方式): https://35.agiscorecard.com/api/cards
+- 计数: https://35.agiscorecard.com/api/stats
+
+## 规矩
+- 不编一张卡:页面上的每个数字都来自数据库,空就是空。
+- 不做中介、不抽成、不卖名单;联系方式只在读者按「查看联系方式」时逐张取回。
+- 不存 IP、不存完整浏览器标识;无第三方脚本。
+- 法规引用:《失业保险条例》第十四条、第十七条;《社会保险法》第四十八条;国家卫健委 12356 热线通知(2024-12)。4050 补贴只给全国常见口径,各地数字不引。
+
+## 相关(主站)
+- AGI-2027 论题追踪器(62.5/100,八条预测逐条判定): https://agiscorecard.com/progress-index
+- 该不该担心 AI 抢走你的工作: https://agiscorecard.com/zh/ai-and-your-job
+- 哪些工作相对安全: https://agiscorecard.com/zh/what-jobs-are-safe-from-ai

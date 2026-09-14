@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>关于三十五后:规矩、隐私、撤卡</title>
+<meta name="description" content="三十五后是 AGI Scorecard 网络的中文子站,给被 35 岁门槛和 AI 替代挤出职场的人用。不编一张卡、不做中介、不存 IP。这里可以用撤卡码下线你的卡。">
+<link rel="canonical" href="https://35.agiscorecard.com/about">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="/">三十五<b>后</b></a>
+  <nav class="main"><a href="/cards">经验卡</a><a href="/post">发一张</a><a href="/paths">变现路径</a><a href="/checklist">失业第一周</a><a href="/about" aria-current="page">关于</a></nav>
+</div></header>
+<main class="wrap">
+  <h1>关于三十五后</h1>
+  <p class="lead">主站 <a href="https://agiscorecard.com/">AGI Scorecard</a> 逐条给「2027 年到达 AGI」的预言打分,记录 AI 到底走到了哪一步。这个子站负责另一半:<strong>被 AI 和「35 岁门槛」挤出职场的人,往哪里去。</strong>它是 AGI 时代 AI 冲击的承接站——不讨论 AI 会不会替代你,只解决替代已经发生之后的那一步。</p>
+
+  <h2>它是什么,不是什么</h2>
+  <div class="tbl"><table>
+    <tr><th style="width:30%">是</th><td>一个经验卡布告板:你能替谁解决什么问题、报价、联系方式。需要的人直接联系你。</td></tr>
+    <tr><th>不是</th><td>招聘网站、猎头、中介、培训机构、贷款入口。我们不撮合、不抽成、不卖任何东西给你。</td></tr>
+    <tr><th>免费到什么程度</th><td>发卡、看卡、查看联系方式、撤卡全部免费,不注册、不留手机号也能用。</td></tr>
+    <tr><th>谁在审核</th><td>含网址或可疑词的卡先进人工复核队列,由维护本站的自动化每日处理一次;其余即时上线。被误拦的卡通常一天内放出。</td></tr>
+  </table></div>
+
+  <h2>隐私</h2>
+  <ul>
+    <li>不存 IP。限速只用当天加盐后的 8 位哈希,第二天就对不上。</li>
+    <li>不存完整浏览器标识,只存 48 字符前缀和一个「人/爬虫」分类,用来事后核对流量真假。</li>
+    <li>联系方式只在有人按下「查看联系方式」时逐张取回,我们记一次计数,从不导出、从不转卖、从不用来给你发消息。</li>
+    <li>没有第三方统计脚本、没有广告代码。</li>
+  </ul>
+
+  <h2 id="withdraw">撤卡</h2>
+  <p>输入发卡时给你的卡号和 6 位撤卡码,这张卡立刻下线。撤卡码丢了?这张卡我们无法替你下线——这是「不注册、不留手机号」的代价,请在发卡时截图保存。</p>
+  <form class="post" id="wf" style="max-width:420px">
+    <label for="wid">卡号</label><input type="number" id="wid" min="1" inputmode="numeric" required>
+    <label for="wcode">撤卡码</label><input type="text" id="wcode" maxlength="6" autocapitalize="characters" autocomplete="off" required>
+    <div id="werr" class="notice warn" hidden></div>
+    <div id="wok" class="notice ok" hidden>已下线。</div>
+    <p><button class="cta" type="submit">下线这张卡</button></p>
+  </form>
+
+  <h2>反馈可疑内容</h2>
+  <p>看到贷款、刷单、收费培训之类的卡,记下卡号,到主站 <a href="https://agiscorecard.com/about">AGI Scorecard 关于页</a> 的联系方式反馈;每日复核也会主动扫描。</p>
+
+  <h2>数据与来源</h2>
+  <p>首页三个数字直接读自数据库;<a href="/checklist">失业第一周</a>页的每一条都附法规条款或官方入口;<a href="/paths">变现路径</a>是一张决策表,不是统计结论。本站不引用任何未经核实的「中年失业率」数字——网上流传的那些,多数追不到出处。</p>
+  <p class="small muted">机器可读说明:<a href="/llms.txt">/llms.txt</a> · 源码与方法:<a href="https://github.com/f-tiger/agi-site/tree/main/sites/after35" rel="noopener">github.com/f-tiger/agi-site</a></p>
+</main>
+<footer><div class="wrap">
+  <div class="links"><a href="/">首页</a><a href="/cards">经验卡</a><a href="/post">发一张</a><a href="/paths">变现路径</a><a href="/checklist">失业第一周</a></div>
+  <div>三十五后 · <a href="https://agiscorecard.com/">AGI Scorecard</a> 网络的中文子站</div>
+</div></footer>
+<script src="/app.js"></script>
+<script>
+document.getElementById("wf").addEventListener("submit", function(e){
+  e.preventDefault(); var err = document.getElementById("werr"), ok = document.getElementById("wok"); err.hidden = true; ok.hidden = true;
+  fetch("/api/withdraw", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ id: document.getElementById("wid").value, code: document.getElementById("wcode").value }) })
+    .then(function(r){ return r.json(); }).then(function(j){ if (j.ok) { ok.hidden = false; } else { err.textContent = j.code === "notfound" ? "卡号或撤卡码不对,或这张卡已经不在线。" : "没成功,请稍后再试。"; err.hidden = false; } })
+    .catch(function(){ err.textContent = "网络错误,请稍后再试。"; err.hidden = false; });
+});
+</script>
+</body>
+</html>
