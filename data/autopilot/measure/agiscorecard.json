@@ -5,25 +5,37 @@
    {
     "n": 1,
     "q": "tool:sunwatch_ledger"
+   },
+   {
+    "n": 1,
+    "q": "tool:claim_ledger https://goldrush.agiscorecard."
    }
   ]
  },
- "fetched": "2026-09-13",
+ "fetched": "2026-09-14",
  "kind": "agi-trends",
  "notes": [],
  "ok": true,
  "pages": {
-  "/ai-and-your-job": {
-   "n7": 28,
-   "p7": 10
-  },
   "/amodei-white-collar-bloodbath-prediction": {
+   "n7": 66,
+   "p7": 8
+  },
+  "/cn": {
    "n7": 67,
-   "p7": 5
+   "p7": 18
+  },
+  "/is-the-ai-capex-a-bubble": {
+   "n7": 39,
+   "p7": 17
   },
   "/progress-index": {
-   "n7": 84,
-   "p7": 35
+   "n7": 85,
+   "p7": 27
+  },
+  "/will-ai-replace-programmers": {
+   "n7": 54,
+   "p7": 21
   }
  },
  "site": "agiscorecard",

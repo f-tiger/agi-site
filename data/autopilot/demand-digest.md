@@ -1,16 +1,86 @@
-# 舰队需求摘要 · 2026-09-13
+# 舰队需求摘要 · 2026-09-14
 
 零 AI 汇总;每条带日期;它是**选题输入不是选题依据**,任何由此引出的页面仍过三门(数据/需求/变现)。
 
 ## 源状态(抓不到就写出来,不复用旧数据)
+- softwarerecs: ok, 3 条
+- bluesky_wish: **不可用** — "is there an app that" HTTP 403; "is there a tool that" HTTP 403; "i wish there was an app" HTTP 403
+- lemmy_wish: **不可用** — zero request-shaped posts this week
 - producthunt: ok, 30 条
+- reddit_requests: **不可用** — r/SomebodyMakeThis HTTP 403; r/AppIdeas HTTP 403; r/Lightbulb HTTP 403; r/software HTTP 403
+- reddit_vertical: **不可用** — r/singularity HTTP 403; r/artificial HTTP 403; r/agi HTTP 403; r/ControlProblem HTTP 403; r/ChatGPT HTTP 403; r/ClaudeAI
+- reddit_wish: **不可用** — r/Entrepreneur HTTP 403; r/smallbusiness HTTP 403; r/startups HTTP 403; r/SaaS HTTP 403; r/SideProject HTTP 403; r/indie
+- hn_ask: ok, 8 条
 - hn_show: ok, 30 条
 - hn_top_ai: ok, 4 条
-- 雷达快照日期:2026-09-12(1 天前)
+- 雷达快照日期:2026-09-13(1 天前)
 
-## Reddit 求做板块(r/SomebodyMakeThis + r/AppIdeas,48h)
+## 板块产出榜(14 天;名单 tools/fleet/reddit_watchlist.json,更新 2026-09-13)
+| 板块 | 名单 | 今日 | ok 天数 | 帖子 | 求做形 | 重现主题 | 标记 |
+|---|---|---|---|---|---|---|---|
+| r/SomebodyMakeThis | request | HTTP 403 | 0 | 0 | 0 | 0 |  |
+| r/AppIdeas | request | HTTP 403 | 0 | 0 | 0 | 0 |  |
+| r/Lightbulb | request | HTTP 403 | 0 | 0 | 0 | 0 |  |
+| r/software | request | HTTP 403 | 0 | 0 | 0 | 0 |  |
+| r/singularity | vertical:agiscorecard | HTTP 403 | 0 | 0 | 0 | 0 |  |
+| r/artificial | vertical:agiscorecard | HTTP 403 | 0 | 0 | 0 | 0 |  |
+| r/agi | vertical:agiscorecard | HTTP 403 | 0 | 0 | 0 | 0 |  |
+| r/ControlProblem | vertical:agiscorecard | HTTP 403 | 0 | 0 | 0 | 0 |  |
+| r/ChatGPT | vertical:baipiaoji | HTTP 403 | 0 | 0 | 0 | 0 |  |
+| r/ClaudeAI | vertical:baipiaoji | HTTP 403 | 0 | 0 | 0 | 0 |  |
+| r/LocalLLaMA | vertical:baipiaoji | HTTP 403 | 0 | 0 | 0 | 0 |  |
+| r/OpenAI | vertical:baipiaoji | HTTP 403 | 0 | 0 | 0 | 0 |  |
+| r/DeepSeek | vertical:baipiaoji | HTTP 403 | 0 | 0 | 0 | 0 |  |
+| r/puzzles | vertical:gridlings | HTTP 403 | 0 | 0 | 0 | 0 |  |
+| r/sudoku | vertical:gridlings | HTTP 403 | 0 | 0 | 0 | 0 |  |
+| r/nonograms | vertical:gridlings | HTTP 403 | 0 | 0 | 0 | 0 |  |
+| r/incremental_games | vertical:gridlings | HTTP 403 | 0 | 0 | 0 | 0 |  |
+| r/WebGames | vertical:gridlings | HTTP 403 | 0 | 0 | 0 | 0 |  |
+| r/labubu | vertical:thedollscout | HTTP 403 | 0 | 0 | 0 | 0 |  |
+| r/PopMart | vertical:thedollscout | HTTP 403 | 0 | 0 | 0 | 0 |  |
+| r/Designertoys | vertical:thedollscout | HTTP 403 | 0 | 0 | 0 | 0 |  |
+| r/ecommerce | vertical:buysomething | HTTP 403 | 0 | 0 | 0 | 0 |  |
+| r/dropship | vertical:buysomething | HTTP 403 | 0 | 0 | 0 | 0 |  |
+| r/FulfillmentByAmazon | vertical:buysomething | HTTP 403 | 0 | 0 | 0 | 0 |  |
+| r/AmazonSeller | vertical:buysomething | HTTP 403 | 0 | 0 | 0 | 0 |  |
+| r/shopify | vertical:buysomething | HTTP 403 | 0 | 0 | 0 | 0 |  |
+| r/de | vertical:getecoback | HTTP 403 | 0 | 0 | 0 | 0 |  |
+| r/Finanzen | vertical:getecoback | HTTP 403 | 0 | 0 | 0 | 0 |  |
+| r/wohnen | vertical:getecoback | HTTP 403 | 0 | 0 | 0 | 0 |  |
+| r/heimwerken | vertical:getecoback | HTTP 403 | 0 | 0 | 0 | 0 |  |
+| r/Entrepreneur | wish | HTTP 403 | 0 | 0 | 0 | 0 |  |
+| r/smallbusiness | wish | HTTP 403 | 0 | 0 | 0 | 0 |  |
+| r/startups | wish | HTTP 403 | 0 | 0 | 0 | 0 |  |
+| r/SaaS | wish | HTTP 403 | 0 | 0 | 0 | 0 |  |
+| r/SideProject | wish | HTTP 403 | 0 | 0 | 0 | 0 |  |
+| r/indiehackers | wish | HTTP 403 | 0 | 0 | 0 | 0 |  |
+
+## 候选 idea 源探针(只报状态,200 且有内容才值得写解析器)
+- betalist: HTTP 404 text/html; charset=UTF-8 1722B
+- indiehackers_rss: HTTP 200 text/html; charset=utf-8 188842B
+- producthunt_topic_ai: HTTP 403 text/html; charset=UTF-8 5770B
+- yc_rfs: HTTP 200 text/html; charset=utf-8 92315B
+- reddit_rss_public: HTTP 403 text/html 189906B
+- reddit_json_public: HTTP 403 text/html 190238B
+- reddit_oauth_endpoint: HTTP 401 application/json; charset=UTF-8 41B
+- stackexchange_softwarerecs: HTTP 200 application/json; charset=utf-8 379B
+- bluesky_public_search: HTTP 403 text/html 2334B
+- bluesky_alt_host: HTTP 403 text/html 94B
+- lemmy_world_search: HTTP 200 application/json 4517B
+
+- Reddit 访问通道:public-json(oauth = owner 已注册官方 app;public-json = 未鉴权,runner 09-13 起逐板 403)
+## 求做帖(Reddit request 板 + wish 句式 + Ask HN + Software Recommendations SE + Bluesky 求做搜索)
 只读,机器永不发帖。出现在这里 ≠ 有人在搜它。
-- (本次无数据:源不可用或 48h 内无帖)
+- ↑5 · ask_hn · Does anyone know YouTube's pre-2006's des key? — https://news.ycombinator.com/item?id=49616632
+- ↑4 · ask_hn · Is there a way to do GPL anymore? — https://news.ycombinator.com/item?id=49609218
+- ↑3 · ask_hn · Is there a genuine space for the Desktop AI assistant, or its solved? — https://news.ycombinator.com/item?id=49645248
+- ↑3 · ask_hn · Is there a need for a new kind of antivirus or security application? — https://news.ycombinator.com/item?id=49639137
+- ↑2 · ask_hn · Does each frontier model have its own unique taste? — https://news.ycombinator.com/item?id=49669909
+- ↑2 · ask_hn · Is there anything worth developing with AI? — https://news.ycombinator.com/item?id=49613990
+- ↑2 · ask_hn · Tagging AI-Related Posts — https://news.ycombinator.com/item?id=49607487
+- ↑1 · ask_hn · What LLM are you using? — https://news.ycombinator.com/item?id=49600138
+- ↑1 · softwarerecs · Extension for coloring fixed-width files — https://softwarerecs.stackexchange.com/questions/95572/extension-for-coloring-fixed-width-files
+- ↑0 · softwarerecs · PDF printer on Windows, non AGPL licensed — https://softwarerecs.stackexchange.com/questions/95580/pdf-printer-on-windows-non-agpl-licensed
 
 ## Reddit 垂直板块 · 14 天内重现的问题(这才是需求信号)
 按站给定板块 + 句式(startup_radar.mjs 的 VERTICAL),只读。同一标题出现在 ≥2 个不同日期才列。
@@ -18,46 +88,45 @@
 
 ## agiscorecard
 **Trends rising(逐 seed 时效)**
-- [9d] **artificial general intelligence** → artificial general intelligence developments (new)
-- [9d] **agi timeline** → agi timeline sam altman (new)
+- [10d] **artificial general intelligence** → artificial general intelligence developments (new)
+- [10d] **agi timeline** → agi timeline sam altman (new)
 **创业雷达词表命中(PH/HN/Reddit)**
 - QApilot MCP for Android
-- Spaces
-- Jackalope
-- Anysite.io
-- Show HN: Graphify C# – Compiler-accurate Find Usages for coding agents
-- Show HN: ClaudeStatsBar: your session is 486k deep and nothing told you
-- Show HN: Extension to filter LLM written articles
-- Show HN: Clawfight.ai MCP-driven agentic game play
-**autopilot 需求队列**:gaps **0** / covered 1 · heat: measured 2026-09-13 (3 pages); no notes
-**第一方需求**:`{"search_no_result": [], "site_search": [{"n": 1, "q": "tool:sunwatch_ledger"}]}`
+- What LLM are you using?
+- Show HN: Determinstic LLM inference for lowest price Gemma 4, with Windows XP
+- Show HN: Come prove the Berge Fulkerson conjecture with a swarm of agents
+- Show HN: We built a local-first Android agent. Then Meta launched Muse
+- Show HN: Agentic Deployment and Hosting
+- Show HN: Give Claude Code / Cursor a real eng team (tiers, roles, escalation)
+- Why are AI agents lying, cheating and coordinating?
+**autopilot 需求队列**:gaps **0** / covered 1 · heat: measured 2026-09-14 (5 pages); no notes
+**第一方需求**:`{"search_no_result": [], "site_search": [{"n": 1, "q": "tool:sunwatch_ledger"}, {"n": 1, "q": "tool:claim_ledger https://goldrush.agiscorecard."}]}`
 
 ## baipiaoji
 **Trends rising(逐 seed 时效)**
-- [2d] **deepseek** → deepseek v4 flash 0731 (82350), deepseek dspark (45300), dsh deepseek (30900), deepseek v4 pro 0813 (28750)
-- [2d] **midjourney** → midjourney medical scanner (57050), midjourney body scanner (35350), bfly stock (7450), what does upscale mean in midjourney (6600)
-- [1d] **suno** → bmg suno (14750), jason isbell suno lawsuit (9950), suno artist incubator program (7150), treblo (5250)
-- [1d] **sora** → sora release date fortnite speculation (8600), when will sora be in fortnite (6450), sora dora raphael (3400), sora no manimani (2200)
-- [10d] **gemini** → sony bravia 9 ii true rgb 4k hdr google tv with gemini (3250), gemini 3.7 flash (3200), sergey brin google gemini ban (2900), gemini season kanye (1250)
-- [10d] **perplexity** → glm 5.2 (9550), perplexity ai ceo startup strategy (6950), perplexity brain ai memory system (2050), perplexity nvidia local ai agent (200)
+- [3d] **deepseek** → deepseek v4 flash 0731 (82350), deepseek dspark (45300), dsh deepseek (30900), deepseek v4 pro 0813 (28750)
+- [3d] **midjourney** → midjourney medical scanner (57050), midjourney body scanner (35350), bfly stock (7450), what does upscale mean in midjourney (6600)
+- [2d] **suno** → bmg suno (14750), jason isbell suno lawsuit (9950), suno artist incubator program (7150), treblo (5250)
+- [2d] **sora** → sora release date fortnite speculation (8600), when will sora be in fortnite (6450), sora dora raphael (3400), sora no manimani (2200)
+- [1d] **gemini** → gemini 3.8 flash (5650), gemini 3.7 flash (3750), sergey brin google gemini ban (2750), gemini the janus cat (2050)
+- [1d] **perplexity** → glm 5.2 (11050), perplexity ai ceo startup strategy (7600), perplexity nvidia local ai agent (2350), perplexity brain ai memory system (2100)
 **创业雷达词表命中(PH/HN/Reddit)**
-- TIM PG
-- Show HN: KnowMeNot – your ChatGPT vs. a ChatGPT that has never met you
+- (无)
 **autopilot 需求队列**:该站未纳入 autopilot
 
 ## getecoback
 **Trends rising(逐 seed 时效)**
-- [9d] **klimaanlage** → klimaanlage englisch (new), klimaanlage kaufen (new), klimaanlage mobil (new), klimaanlage splitgerät (new)
-- [8d] **schimmel entfernen** → schimmel aus kleidung entfernen (300), schwarzen schimmel entfernen (120), schimmel an der wand dauerhaft entfernen (80), schimmel entfernen kosten (80)
-- [7d] **infrarotheizung** → infrarotheizung wand (new), infrarotheizung decke (new), infrarotheizung badezimmer (new), infrarotheizung bild (new)
-- [2d] **luftentfeuchter** → meaco arete one 20l (49800), luftentfeuchter keller test (48200), luftfeuchtigkeit senken (46700), split klimaanlage (41150)
-- [1d] **heizlüfter** → heizlüfter 300 watt (44900), dreo solaris slim h3 (29250), sparsamer heizlüfter (28600), energiesparender heizlüfter (28450)
-- [1d] **balkonkraftwerk** → anker solix solarbank 4 e5000 pro,meter gen 2 ,5xbp5000 balkonkraftwerk (8650), anker solix solarbank 4 e5000 pro (1600), ecoflow stream 5000 (1150), anker solarbank 4 pro (450)
-- [6d] **kaffeevollautomat** → krups kaffeevollautomat intensity milk (16350), siemens kaffeevollautomat eq.6 plus s400 te654509de (9100), siemens kaffeevollautomat eq.6 plus s300 te653501de (1750), kaffeevollautomat mit 2 bohnenbehälter testsieger (250)
-- [5d] **akku staubsauger** → lululemon shorts (36300), belstaff jacke herren (26950), new balance hierro (15050), belstaff (850)
+- [1d] **klimaanlage** → coolizi (24800), air zuma klimaanlage (15650), bgh urteil klimaanlage (6750), air zuma klimaanlage erfahrungen (5200)
+- [9d] **schimmel entfernen** → schimmel aus kleidung entfernen (300), schwarzen schimmel entfernen (120), schimmel an der wand dauerhaft entfernen (80), schimmel entfernen kosten (80)
+- [8d] **infrarotheizung** → infrarotheizung wand (new), infrarotheizung decke (new), infrarotheizung badezimmer (new), infrarotheizung bild (new)
+- [3d] **luftentfeuchter** → meaco arete one 20l (49800), luftentfeuchter keller test (48200), luftfeuchtigkeit senken (46700), split klimaanlage (41150)
+- [2d] **heizlüfter** → heizlüfter 300 watt (44900), dreo solaris slim h3 (29250), sparsamer heizlüfter (28600), energiesparender heizlüfter (28450)
+- [1d] **balkonkraftwerk** → ecoflow stream 5000 (8800), anker solix solarbank 4 e5000 pro,meter gen 2 ,5xbp5000 balkonkraftwerk (4400), anker solix solarbank 4 e5000 pro (700), split klimaanlage (450)
+- [7d] **kaffeevollautomat** → krups kaffeevollautomat intensity milk (16350), siemens kaffeevollautomat eq.6 plus s400 te654509de (9100), siemens kaffeevollautomat eq.6 plus s300 te653501de (1750), kaffeevollautomat mit 2 bohnenbehälter testsieger (250)
+- [6d] **akku staubsauger** → lululemon shorts (36300), belstaff jacke herren (26950), new balance hierro (15050), belstaff (850)
 **创业雷达词表命中(PH/HN/Reddit)**
 - (无)
-**autopilot 需求队列**:gaps **25** / covered 33 · heat: measured 2026-09-13 (19 pages); no notes
+**autopilot 需求队列**:gaps **31** / covered 32 · heat: measured 2026-09-14 (21 pages); no notes
 - kind=value · match=0.333 · page=guide/bester-luftkuehler.html · q=bester saugwischer roboter
 - kind=value · match=0.0 · page=None · q=dreo solaris slim h3
 - kind=value · match=0.5 · page=guide/heizkosten-vergleich-rechner.html · q=sparsamer heizlüfter
@@ -75,7 +144,7 @@
 - [STALE] **solar camping lights** → (空)
 **创业雷达词表命中(PH/HN/Reddit)**
 - (无)
-**autopilot 需求队列**:gaps **1** / covered 0 · heat: measured 2026-09-13 (0 pages); no notes
+**autopilot 需求队列**:gaps **1** / covered 0 · heat: measured 2026-09-14 (0 pages); no notes
 - kind=value · match=0.5 · page=sourcing-margins.html · q=costco vegetable chopper
 **第一方需求**:`{"picks": {}}`
 
@@ -83,15 +152,14 @@
 **Trends rising(逐 seed 时效)**
 - (无 rising 文件)
 **创业雷达词表命中(PH/HN/Reddit)**
-- Show HN: Hopera, a free musical soothing rhythmic game
-- Show HN: Clawfight.ai MCP-driven agentic game play
+- (无)
 **autopilot 需求队列**:gaps **0** / covered 0 · heat: no public aggregate endpoint on this site — heat needs eithe
 
 ## thedollscout
 **Trends rising(逐 seed 时效)**
-- [8d] **labubu** → crumbl labubu ube dot cake (24900), lets try the viral crumbl labubu (7600), labubu salon (1250), labubu fifa world cup 2026 (950)
-- [8d] **fake labubu** → popmart (60)
-- [7d] **pop mart** → monster hunter pop mart (25850), pop mart international dessert expansion (5300), pop mart overwatch (550), hirono mist walker (500)
+- [9d] **labubu** → crumbl labubu ube dot cake (24900), lets try the viral crumbl labubu (7600), labubu salon (1250), labubu fifa world cup 2026 (950)
+- [9d] **fake labubu** → popmart (60)
+- [8d] **pop mart** → monster hunter pop mart (25850), pop mart international dessert expansion (5300), pop mart overwatch (550), hirono mist walker (500)
 **创业雷达词表命中(PH/HN/Reddit)**
 - (无)
 **autopilot 需求队列**:gaps **13** / covered 3 · heat: no public aggregate endpoint on this site — heat needs eithe
@@ -113,16 +181,27 @@
 - (无)
 **autopilot 需求队列**:该站未纳入 autopilot
 
+## 机会撮合(reddit 请求 × Trends rising × PH/HN 供给;data/autopilot/opportunities.json)
+- 候选 10 · 已确认需求 0 · 重现 0 · 已有人做 0(生成 2026-09-13;Reddit 源 ok:{'reddit_requests': False, 'reddit_wish': False, 'reddit_vertical': False, 'hn_ask': True, 'softwarerecs': True, 'bluesky_wish': False, 'lemmy_wish': False, 'reddit_access': 'public-json'})
+- [scout] does anyone know youtube s pre 2006 s des key · 1 天 · 站 -
+- [scout] is there anything worth developing with ai · 1 天 · 站 -
+- [scout] is there a way to do gpl anymore · 1 天 · 站 -
+- [scout] is there a genuine space for the desktop ai assistant or its solved · 1 天 · 站 -
+- [scout] is there a need for a new kind of antivirus or security application · 1 天 · 站 -
+- [scout] does each frontier model have its own unique taste · 1 天 · 站 -
+- [scout] tagging ai related posts · 1 天 · 站 -
+- [scout] extension for coloring fixed width files · 1 天 · 站 -
+
 ## AI 助手引荐(28 天窗,真人 pv 里 referrer 是 ChatGPT/Perplexity/Claude/Copilot 等)
-- 舰队合计 **78** 次 / 真人 pv 30061(快照 2026-09-13;09-12 手测基线 69)
-- baipiaoji: 33 / 274 pv · www.perplexity.ai 20, chatgpt.com 12, kagi.com 1
-- getecoback: 25 / 598 pv · chatgpt.com 18, www.perplexity.ai 5, kagi.com 1, copilot.microsoft.com 1
-- agiscorecard: 20 / 27298 pv · chatgpt.com 7, claude.ai 6, copilot.microsoft.com 4, www.perplexity.ai 2, kagi.com 1
-- thedollscout: 0 / 223 pv · —
-- goldrush: 0 / 292 pv · —
-- gridlings: 0 / 671 pv · —
-- buysomething: 0 / 64 pv · —
-- gamesledger: 0 / 641 pv · —
+- 舰队合计 **78** 次 / 真人 pv 30304(快照 2026-09-13;09-12 手测基线 69)
+- baipiaoji: 33 / 280 pv · www.perplexity.ai 20, chatgpt.com 12, kagi.com 1
+- getecoback: 25 / 602 pv · chatgpt.com 18, www.perplexity.ai 5, kagi.com 1, copilot.microsoft.com 1
+- agiscorecard: 20 / 27509 pv · chatgpt.com 7, claude.ai 6, copilot.microsoft.com 4, www.perplexity.ai 2, kagi.com 1
+- thedollscout: 0 / 225 pv · —
+- goldrush: 0 / 293 pv · —
+- gridlings: 0 / 678 pv · —
+- buysomething: 0 / 67 pv · —
+- gamesledger: 0 / 650 pv · —
 
 ---
 读法:gaps>0 且对应 rising 不是 STALE,才值得进第②层选题;Reddit 命中要再查搜索需求;

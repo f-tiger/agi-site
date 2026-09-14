@@ -2,11 +2,11 @@
  "extra": {
   "events": {
    "affiliate_click": {
-    "n7": 10,
-    "p7": 22
+    "n7": 15,
+    "p7": 19
    },
    "btu_calc": {
-    "n7": 2,
+    "n7": 7,
     "p7": 2
    },
    "feuchte_now": {
@@ -14,32 +14,32 @@
     "p7": 1
    },
    "heat_now": {
-    "n7": 39,
-    "p7": 50
+    "n7": 18,
+    "p7": 71
    },
    "page_view": {
-    "n7": 125,
-    "p7": 121
+    "n7": 115,
+    "p7": 128
    },
    "popup_click": {
-    "n7": 4,
+    "n7": 6,
     "p7": 1
    },
    "popup_close": {
     "n7": 16,
-    "p7": 21
+    "p7": 19
    },
    "popup_view": {
-    "n7": 44,
-    "p7": 39
+    "n7": 47,
+    "p7": 36
    },
    "standort_check": {
     "n7": 3,
     "p7": 0
    },
    "strom_now": {
-    "n7": 10,
-    "p7": 7
+    "n7": 7,
+    "p7": 8
    },
    "strompreis_api": {
     "n7": 0,
@@ -56,21 +56,17 @@
   },
   "zero_hits": []
  },
- "fetched": "2026-09-13",
+ "fetched": "2026-09-14",
  "kind": "eco-trend",
  "notes": [],
  "ok": true,
  "pages": {
-  "/": {
-   "n7": 10,
-   "p7": 7
-  },
   "/en/guide/best-portable-air-conditioner-europe-heatwave.html": {
-   "n7": 3,
-   "p7": 4
+   "n7": 2,
+   "p7": 5
   },
   "/en/guide/portable-ac-leaking-water.html": {
-   "n7": 3,
+   "n7": 2,
    "p7": 3
   },
   "/en/guide/portable-ac-not-cooling.html": {
@@ -81,41 +77,53 @@
    "n7": 7,
    "p7": 6
   },
+  "/en/guide/portable-air-conditioner-france.html": {
+   "n7": 2,
+   "p7": 1
+  },
+  "/guide/beste-tragbare-klimaanlage-schlafzimmer.html": {
+   "n7": 2,
+   "p7": 0
+  },
   "/guide/growatt-noah-2000-probleme.html": {
-   "n7": 7,
-   "p7": 5
+   "n7": 6,
+   "p7": 6
   },
   "/guide/heizluefter-stromsparend.html": {
    "n7": 6,
-   "p7": 0
-  },
-  "/guide/heizung-15-qm.html": {
-   "n7": 2,
    "p7": 0
   },
   "/guide/klimaanlage-25-qm.html": {
    "n7": 3,
    "p7": 4
   },
+  "/guide/klimaanlage-30-qm.html": {
+   "n7": 2,
+   "p7": 1
+  },
+  "/guide/klimaanlage-40-qm.html": {
+   "n7": 2,
+   "p7": 1
+  },
   "/guide/klimaanlage-50-qm.html": {
-   "n7": 3,
+   "n7": 2,
    "p7": 2
   },
   "/guide/klimaanlage-kippfenster.html": {
-   "n7": 6,
-   "p7": 4
+   "n7": 7,
+   "p7": 6
   },
   "/guide/klimaanlage-mit-heizfunktion.html": {
    "n7": 3,
    "p7": 2
   },
-  "/guide/klimaanlage-wann-kaufen.html": {
+  "/guide/klimaanlage-ohne-balkon.html": {
    "n7": 2,
-   "p7": 1
+   "p7": 0
   },
   "/guide/klimaanlage-wohnmobil.html": {
    "n7": 7,
-   "p7": 14
+   "p7": 12
   },
   "/guide/luftentfeuchter-20-qm.html": {
    "n7": 2,
@@ -131,11 +139,11 @@
   },
   "/guide/mobile-klimaanlage-ueberwintern.html": {
    "n7": 5,
-   "p7": 8
+   "p7": 7
   },
   "/guide/was-bedeutet-btu.html": {
-   "n7": 7,
-   "p7": 1
+   "n7": 6,
+   "p7": 2
   }
  },
  "site": "getecoback",
