@@ -74,6 +74,10 @@ jobs:
           EXA_API_KEY: ${{ secrets.EXA_API_KEY }}
           ASKNEWS_CLIENT_ID: ${{ secrets.ASKNEWS_CLIENT_ID }}
           ASKNEWS_SECRET: ${{ secrets.ASKNEWS_SECRET }}
+          # 2026-09-14:赛季 id 与每次花费上限走仓库 Variables(换季改变量不改代码;缺省 Fall 2026 = 33121,上限 $3/次)
+          BOT_TOURNAMENT_ID: ${{ vars.BOT_TOURNAMENT_ID }}
+          BOT_MINIBENCH_ID: ${{ vars.BOT_MINIBENCH_ID }}
+          BOT_MAX_USD_PER_RUN: ${{ vars.BOT_MAX_USD_PER_RUN }}
         run: |
           MODE="${{ github.event.inputs.mode || 'tournament' }}"
           DRY=""

@@ -616,11 +616,15 @@ def _llm_config() -> dict:
     """
     if _real_env("BOT_MODEL"):
         model = os.environ["BOT_MODEL"].strip()
+    elif _real_env("ANTHROPIC_API_KEY"):
+        # 2026-09-14: owner's own key beats waiting for sponsored credits. Sonnet for the forecast,
+        # Haiku for parsing/summaries; both overridable via BOT_MODEL / BOT_PARSER_MODEL.
+        model = "anthropic/claude-sonnet-5"
     elif _real_env("OPENROUTER_API_KEY"):
         model = "openrouter/openai/gpt-4o"
     else:
         model = DEFAULT_PROXY_MODEL
-    small = (os.getenv("BOT_PARSER_MODEL") or "").strip() or model
+    small = (os.getenv("BOT_PARSER_MODEL") or "").strip() or ("anthropic/claude-haiku-4-5-20251001" if model.startswith("anthropic/") else model)
     researcher = (os.getenv("BOT_RESEARCHER") or "").strip() or model
     logger.info("llms: default=%s parser=%s researcher=%s", model, small, researcher)
     return {
@@ -675,6 +679,38 @@ def summarize(reports: list, publish: bool, mode: str) -> int:
     return 0
 
 
+def _tournament_id(env_name: str, default):
+    v = (os.getenv(env_name) or "").strip()
+    if not v:
+        return default
+    return int(v) if v.isdigit() else v
+
+
+class _NoCap:
+    current_usage = None
+    def __enter__(self): return self
+    def __exit__(self, *a): return False
+
+
+def _spend_cap(max_usd: float):
+    """forecasting-tools' MonetaryCostManager raises once tracked LLM spend passes max_usd — the hard stop
+    that makes running on the owner's own key safe on a 2-hourly cron. Falls back to no cap (with a log
+    line) if the library version lacks it; never silently."""
+    try:
+        from forecasting_tools import MonetaryCostManager  # type: ignore
+        return MonetaryCostManager(max_usd)
+    except Exception as e:  # pragma: no cover
+        logger.warning("MonetaryCostManager unavailable (%s) — running WITHOUT a spend cap", e)
+        return _NoCap()
+
+
+def _spend_str(cm) -> str:
+    try:
+        return "$%.4f" % float(cm.current_usage)
+    except Exception:
+        return "untracked"
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Fleet Metaculus forecasting bot")
     parser.add_argument("--mode", choices=["tournament", "metaculus_cup", "test_questions"], default="tournament")
@@ -705,9 +741,22 @@ def main() -> int:
     )
 
     client = MetaculusClient()
+    # 2026-09-14: the pinned forecasting-tools (0.2.92) still points CURRENT_AI_COMPETITION_ID at the
+    # Summer 2026 season (33022), which stopped opening questions before 2026-09-01. The live season is
+    # Fall 2026 = project 33121 (slug fall-futureeval-2026). Ids are env-overridable so a new season is a
+    # variable change, not a code change; MiniBench keeps the library constant unless overridden.
+    main_id = _tournament_id("BOT_TOURNAMENT_ID", 33121)
+    mini_id = _tournament_id("BOT_MINIBENCH_ID", client.CURRENT_MINIBENCH_ID)
+    cap = float(os.getenv("BOT_MAX_USD_PER_RUN") or "3")
+    logger.info("tournaments: main=%s minibench=%s; spend cap per run: $%.2f", main_id, mini_id, cap)
     if run_mode == "tournament":
-        reports = asyncio.run(bot.forecast_on_tournament(client.CURRENT_AI_COMPETITION_ID, return_exceptions=True))
-        reports += asyncio.run(bot.forecast_on_tournament(client.CURRENT_MINIBENCH_ID, return_exceptions=True))
+        with _spend_cap(cap) as cm:
+            reports = asyncio.run(bot.forecast_on_tournament(main_id, return_exceptions=True))
+            n_main = len(reports)
+            reports += asyncio.run(bot.forecast_on_tournament(mini_id, return_exceptions=True))
+        logger.info("questions touched: main=%d minibench=%d; spend this run: %s", n_main, len(reports) - n_main, _spend_str(cm))
+        if n_main == 0:
+            print("::warning::0 questions came back for the main tournament id %s — either nothing new (skip_previously_forecasted) or the season id is stale; check BOT_TOURNAMENT_ID" % main_id)
     elif run_mode == "metaculus_cup":
         reports = asyncio.run(bot.forecast_on_tournament(client.CURRENT_METACULUS_CUP_ID, return_exceptions=True))
     else:

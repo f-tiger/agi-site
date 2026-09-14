@@ -513,3 +513,16 @@ owner 决策卡、事实表)。
   已在卡片标明)。P1(关税栈护照、召回雷达、逐品页、eco/tds 消费)等探针 200 后做。
 - **包的红线**:只含派生事实与公开 feed,不存不卖 Reddit 帖文;金额不符不发包;零 PII;≥10 条才出包,
   不够就不卖(页面明说)。判定线:`sr-packs-first-order-1112`、`sr-core-tool-p1-1115`。
+
+## AI 时代赚钱通道复核(2026-09-14,owner /goal:「调研分析并完善 ai 时代赚钱通道,现在 agi 站点赚不了钱,目标是赚钱」;全文 `docs/ai-money-channels-2026-09-14.md`)
+
+- **agi 赚不了钱的数字**:JS 真人 pv **1 157/28d**(≈40 人/天)vs 服务端 human 27 550——差 24 倍,后者含不自报的爬虫。
+  按流量计价的通道在此体量都是 €0–5/月,与方案无关;agi 的资产是 AI 引用份额,而引用不付钱。**报告 agi 流量以后用 JS 口径。**
+- **不找新通道,解堵已建的**:六条通道里五条的下一步在 owner 手里(分钟级);代码侧今天已无堵点。
+- **Metaculus 第二个坑(09-14 发现)**:库 0.2.92 的 `CURRENT_AI_COMPETITION_ID` 指向已结束的 Summer 2026(33022),
+  Fall 2026 = **33121** 已开赛——有额度也会打空。已改:`BOT_TOURNAMENT_ID` 变量覆盖、缺省 33121;
+  `BOT_MAX_USD_PER_RUN` 硬停(缺省 $3);`ANTHROPIC_API_KEY` 存在即用 Claude 5(Sonnet 预测 / Haiku 解析)。
+  **owner 不必等赞助额度**:加自己的 key + `METACULUS_BOT_ENABLED=1` 即开跑;先 dispatch `dry_run=true` 看
+  `questions touched: main=N`。
+- **owner 四件事按每分钟产出排序**:①eco 付款/税务信息(2 分钟,唯一已发生的营收到账)②Metaculus key + 变量(3 分钟)
+  ③Stripe 五个值(10 分钟)④Reddit app 两个 Secret(5 分钟)。

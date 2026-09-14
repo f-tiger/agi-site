@@ -67,6 +67,21 @@ API 通、成功拉到 10 道题,但 10 道全挂在同一个错上:
 于是我们自己的 red-on-empty 与失败诊断永远轮不到跑 —— 首跑看到的是一屏 traceback 而不是
 一行「问题在这」。现在它被 try 包住,**它只是打印器,不该决定命运**。
 
+## 不等赞助额度:用自己的 key 今天就开跑(2026-09-14,owner:「目标是赚钱」)
+
+赞助额度(Anthropic/Google/OpenAI 捐赠,经 Metaculus 代理)的申请 09-07 已交、周期未知。**这条线不必等它**:
+1. 仓库 Secret 加 **`ANTHROPIC_API_KEY`**(或 `OPENROUTER_API_KEY`)。有 Anthropic key 时缺省模型 =
+   `anthropic/claude-sonnet-5` 预测 + `anthropic/claude-haiku-4-5-20251001` 解析/摘要;可用变量 `BOT_MODEL` /
+   `BOT_PARSER_MODEL` 改。
+2. 仓库 Variables:`METACULUS_BOT_ENABLED = 1`;可选 `BOT_MAX_USD_PER_RUN`(缺省 **$3**,由库的
+   `MonetaryCostManager` 硬停;每 2 小时一跑,最坏 $36/天,实际远低——只有新题才会被算,已答过的题跳过)。
+3. **赛季 id**:代码缺省 **Fall 2026 = 33121**(库 0.2.92 的常量还指向已结束的 Summer 33022,这是 09-14 发现的
+   第二个「有额度也拿不到钱」的坑);换季只改变量 `BOT_TOURNAMENT_ID`;MiniBench 用 `BOT_MINIBENCH_ID`。
+4. 先 `workflow_dispatch` 一次 `dry_run=true` 看日志里 `questions touched: main=N`——N>0 才说明打对了赛季;
+   再开变量。**费用口径**:每题约 5 次预测 + 1 次研究,Sonnet 级别估 $0,05–0,20/题;一季 300–500 题 + MiniBench
+   8 期×60 题 ≈ $50–150/季,对应奖池 $50k + $8k;2026 Q2 冠军 $7 550、按人头中位数≈$0——**这是右偏彩票,
+   不是工资**,判定线「未进前 1/3 下季不续」不改。
+
 ## 本地冒烟(可选)
 
 ```
