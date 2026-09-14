@@ -1,35 +1,43 @@
 {
- "fetched": "2026-09-13",
+ "fetched": "2026-09-14",
  "geo": "US",
  "seeds": {
   "artificial general intelligence": {
-   "auto": [
-    "artificial general intelligence",
-    "artificial general intelligence (agi)",
-    "artificial general intelligence definition",
-    "artificial general intelligence examples",
-    "artificial general intelligence stocks",
-    "artificial general intelligence meaning",
-    "artificial general intelligence companies",
-    "artificial general intelligence timeline",
-    "artificial general intelligence developments",
-    "artificial general intelligence vs artificial intelligence"
-   ],
    "rising": [
     {
-     "q": "artificial general intelligence developments",
-     "v": "new"
+     "q": "general donahue",
+     "v": 6650
+    },
+    {
+     "q": "gpt 6 astra",
+     "v": 4600
+    },
+    {
+     "q": "singularity",
+     "v": 650
+    },
+    {
+     "q": "agi vs ai",
+     "v": 90
+    },
+    {
+     "q": "astra",
+     "v": 70
+    },
+    {
+     "q": "asi",
+     "v": 60
     }
    ],
-   "source": "autocomplete-diff",
-   "fetched": "2026-09-04"
+   "source": "related-queries",
+   "fetched": "2026-09-14"
   },
   "agi timeline": {
    "auto": [
     "agi timeline",
     "agi timeline prediction",
-    "agi timeline prediction market",
     "agi timeline reddit",
+    "agi timeline prediction market",
     "agi timeline metaculus",
     "agi timeline meaning",
     "agi timeline expert predictions",
@@ -37,14 +45,9 @@
     "agi timeline polymarket",
     "agi timeline sam altman"
    ],
-   "rising": [
-    {
-     "q": "agi timeline sam altman",
-     "v": "new"
-    }
-   ],
+   "rising": [],
    "source": "autocomplete-diff",
-   "fetched": "2026-09-04"
+   "fetched": "2026-09-14"
   }
  }
 }

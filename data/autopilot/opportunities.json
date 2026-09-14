@@ -1,6 +1,6 @@
 {
- "generated": "2026-09-13",
- "radar_fetched": "2026-09-13",
+ "generated": "2026-09-14",
+ "radar_fetched": "2026-09-14",
  "reddit_sources_ok": {
   "reddit_requests": false,
   "reddit_wish": false,
@@ -141,27 +141,27 @@
    "fleet_pages": []
   },
   {
-   "theme": "cli tool to interactively fill a json yaml schema and produce a project local to",
-   "site": "",
-   "kind": "request-board",
-   "subreddit": "softwarerecs",
-   "days_seen": [
-    "2026-09-10"
-   ],
-   "state": "scout",
-   "supplied": false,
-   "score": 2.0,
-   "demand": [],
-   "supply": [],
-   "fleet_pages": []
-  },
-  {
    "theme": "pdf printer on windows non agpl licensed",
    "site": "",
    "kind": "request-board",
    "subreddit": "softwarerecs",
    "days_seen": [
     "2026-09-11"
+   ],
+   "state": "scout",
+   "supplied": false,
+   "score": 2.02,
+   "demand": [],
+   "supply": [],
+   "fleet_pages": []
+  },
+  {
+   "theme": "cli tool to interactively fill a json yaml schema and produce a project local to",
+   "site": "",
+   "kind": "request-board",
+   "subreddit": "softwarerecs",
+   "days_seen": [
+    "2026-09-10"
    ],
    "state": "scout",
    "supplied": false,
