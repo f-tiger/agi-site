@@ -7,7 +7,7 @@
 const ALLOWED = new Set(["page_view", "card_view", "contact_reveal", "post_open", "post_submit", "post_ok", "post_fail", "path_result", "checklist_click", "share_click", "filter_use", "withdraw_ok", "bridge_click", "restart_plan", "my_open", "match_click", "live_click"]);
 const KINDS = new Set(["offer", "need"]);
 const AGES = new Set(["35-39", "40-44", "45-49", "50-54", "55+"]);
-const OFFERS = ["咨询顾问", "带教培训", "项目接活", "兼职驻场", "合伙创业", "志愿公益"];
+const OFFERS = ["咨询顾问", "带教培训", "项目接活", "兼职驻场", "合伙创业", "志愿公益", "AI 落地"];
 const INDUSTRIES = ["制造与供应链", "互联网与软件", "零售与电商", "金融与财务", "教育与培训", "医疗与健康", "建筑与地产", "物流与运输", "政府与事业单位", "媒体与广告", "餐饮与服务业", "其他"];
 // 命中即转人工复核(status=pending),不拒绝——误伤的真人第二天就会被放出来。
 const RISK = /贷款|刷单|日结|返利|博彩|彩票|虚拟币|USDT|数字货币|带单|荐股|保本|高收益|加微信领|免费领取|裸聊|代孕|办证|发票|走私|洗钱|色情|约炮/i;

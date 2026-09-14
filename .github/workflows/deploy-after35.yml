@@ -48,7 +48,7 @@ jobs:
       - name: Gate — files present, worker parses, unit test passes
         working-directory: sites/after35
         run: |
-          for f in site/index.html site/cards.html site/post.html site/paths.html site/restart.html site/my.html site/after-35-restart.html site/checklist.html site/about.html site/style.css site/app.js site/llms.txt site/robots.txt site/sitemap.xml worker.js wrangler.jsonc; do
+          for f in site/index.html site/cards.html site/post.html site/paths.html site/restart.html site/my.html site/after-35-restart.html site/ai-leverage.html site/laid-off-programmer-ai.html site/checklist.html site/about.html site/style.css site/app.js site/llms.txt site/robots.txt site/sitemap.xml worker.js wrangler.jsonc; do
             [ -f "$f" ] || { echo "::error::missing $f"; exit 1; }
           done
           node --check worker.js
@@ -58,7 +58,7 @@ jobs:
           # FAQ 可见问答与 FAQPage JSON-LD 逐条一致
           node -e '
             const fs=require("fs");
-            for (const f of ["site/checklist.html","site/after-35-restart.html"]) {
+            for (const f of ["site/checklist.html","site/after-35-restart.html","site/laid-off-programmer-ai.html"]) {
               const h=fs.readFileSync(f,"utf8");
               const blocks=[...h.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map(m=>JSON.parse(m[1]));
               const ld=blocks.find(b=>b["@type"]==="FAQPage"); if(!ld) throw new Error(f+": no FAQPage");
@@ -82,7 +82,7 @@ jobs:
         run: |
           set -u
           fail=0
-          for p in / /cards /post /paths /restart /my /after-35-restart /checklist /about /llms.txt /sitemap.xml; do
+          for p in / /cards /post /paths /ai-leverage /laid-off-programmer-ai /restart /my /after-35-restart /checklist /about /llms.txt /sitemap.xml; do
             url="https://35.agiscorecard.com$p?ci=1"
             ok=0; code=000
             for try in 1 2 3 4 5; do

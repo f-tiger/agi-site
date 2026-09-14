@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>经验 × AI:以前要一个团队,现在你一个人 — 三十五后</title>
+<meta name="description" content="选你以前的岗位(程序员、产品、销售、财务、HR、供应链、教师、设计、运营、中层),看三件以前做不到、现在用 AI 一个人能做的事,一周能做出来的第一个东西,和 AI 替不了你的那部分。工具免费额度链接白嫖计核实版。">
+<link rel="canonical" href="https://35.agiscorecard.com/ai-leverage">
+<meta property="og:title" content="经验 × AI:以前要一个团队,现在你一个人">
+<meta property="og:description" content="按你以前的岗位,看三件以前做不到、现在用 AI 一个人能做的事,和一周能做出来的第一个东西。">
+<link rel="stylesheet" href="/style.css">
+<style>
+  .roles { display: flex; gap: 8px; flex-wrap: wrap; margin: 14px 0 22px; }
+  .roles button { min-height: 48px; padding: 0 16px; border-radius: 24px; border: 1px solid var(--rule); background: #fff; font: inherit; font-size: 17px; cursor: pointer; color: var(--ink2); }
+  .roles button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .lev h2 { margin-top: 1.2em; }
+  .three { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .three div { border: 1px solid var(--rule); border-radius: 10px; padding: 16px; }
+  .three b { display: block; font-size: 18px; margin-bottom: 6px; }
+  .three .was { color: var(--ink3); font-size: 15px; text-decoration: line-through; display: block; margin-bottom: 4px; }
+  @media (max-width: 760px) { .three { grid-template-columns: 1fr; } }
+  .tools a { display: inline-block; margin: 4px 8px 4px 0; padding: 6px 12px; border: 1px solid var(--rule); border-radius: 6px; font-size: 15px; }
+  .keep { border-left: 4px solid var(--ok); padding: 12px 16px; background: #e7f4ee; border-radius: 0 8px 8px 0; }
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"经验 × AI 杠杆表","url":"https://35.agiscorecard.com/ai-leverage","applicationCategory":"BusinessApplication","operatingSystem":"Web","inLanguage":"zh-CN","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"CNY"},"featureList":["十个岗位","每岗三件以前做不到、现在一个人能做的事","一周能做出来的第一个东西","AI 替不了的那部分","工具免费额度链接(白嫖计核实)"],"isPartOf":{"@type":"WebSite","name":"三十五后","url":"https://35.agiscorecard.com/"}}
+</script>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="/">三十五<b>后</b></a>
+  <nav class="main"><a href="/cards">经验卡</a><a href="/post">发一张</a><a href="/paths">变现路径</a><a href="/ai-leverage" aria-current="page">经验×AI</a><a href="/restart">二次启动</a><a href="/checklist">失业第一周</a><a href="/about">关于</a></nav>
+</div></header>
+<main class="wrap">
+  <h1>以前要一个团队,<br>现在你一个人。</h1>
+  <p class="lead muted">AI 拿走岗位的同时,也把以前雇不起的人给了你:前端、设计、文案、剪辑、分析。二十年经验加上这些,能做的事和三年前完全不同。选你以前的岗位,看三件以前做不到、现在能做的事——每一件都附一周能做出来的第一个东西,因为<strong>做出来</strong>才算数。</p>
+
+  <div class="roles" id="roles"></div>
+  <div class="lev" id="lev"></div>
+
+  <hr class="rule">
+  <p class="small muted">这一页写的是「能做」,不是「能赚」。能不能赚看两件事:有没有人为它付钱,和你一周内有没有把第一个东西做出来。工具的免费额度随时会变,链接到的是舰队姊妹站 <a href="https://baipiaoji.com/" rel="noopener">白嫖计</a> 逐条核实的版本;本站不替任何工具背书。</p>
+</main>
+<footer><div class="wrap">
+  <div class="links"><a href="/">首页</a><a href="/cards">经验卡</a><a href="/paths">变现路径</a><a href="/restart">二次启动</a><a href="/checklist">失业第一周</a><a href="/about">关于</a></div>
+  <div>三十五后 · <a href="https://agiscorecard.com/">AGI Scorecard</a> 网络的中文子站</div>
+</div></footer>
+<script src="/app.js"></script>
+<script>
+(function(){
+  var T = function(slug, name){ return '<a href="https://baipiaoji.com/tools/' + slug + '.html" rel="noopener" data-ev="bridge_click" data-l="bpj_' + slug + '">' + name + '</a>'; };
+  var R = {
+    dev: { name:"程序员 / 工程师", three:[
+        ["要前端、设计、文案、运营各一个人才能上线一个产品","一个人交付完整产品:界面、文案、上架、客服话术,全部自己出"],
+        ["行业定制的小工具「不值得开发」,报价没人接","给认识的小老板做他那一个痛点的小工具,一周一个,按件收"],
+        ["架构经验只在大公司里值钱","替「AI 写的代码」把关:审核、重构、上线前的安全与边界——生成代码的团队正缺这个人"]],
+      first:"找一个认识的小老板,问他每天最烦的一件重复事,一周内做一个能用的小工具部署给他。哪怕他不付钱,你有了第一个案例和第一句「帮谁把什么搞定」。",
+      tools:[["cursor","Cursor"],["claude","Claude"],["cline","Cline"],["bolt","Bolt"],["v0","v0"],["tongyi-lingma","通义灵码"]],
+      keep:"判断哪段代码不能上线、系统边界在哪、数据放哪合规、客户没说出口的需求是什么。这些 AI 给不了,二十年给得了。",
+      offer:"AI 落地", judge:"/laid-off-programmer-ai" },
+    pm: { name:"产品经理", three:[
+        ["没有工程师,想法只能停在 PRD 里","自己做出能点、能用的 MVP,让 5 个人先用起来"],
+        ["调研、原型、文案、落地页要四个人","一个人从调研跑到落地页,一周闭环"],
+        ["传统小企业请不起产品经理","做他们的「数字化产品经理」:把业务变成一个能用的小系统"]],
+      first:"把你最想做的一个想法做成网页版,一周内让 5 个真实用户用一遍,记下他们卡在哪。",
+      tools:[["bolt","Bolt"],["lovable","Lovable"],["v0","v0"],["claude","Claude"],["figma","Figma"]],
+      keep:"该做什么、不该做什么、先做哪个。AI 什么都能做,所以「不做」的判断更值钱了。", offer:"AI 落地" },
+    sales: { name:"销售 / BD", three:[
+        ["方案、PPT、演示视频要靠市场部排期","整套销售物料自己出,当天就能发给客户"],
+        ["每个客户只能了解个大概","见每个客户前,用 AI 把他的行业、动态、痛点研究透"],
+        ["小公司的跟进流程全靠人记","替小公司搭起线索跟进与邮件流程,按月收"]],
+      first:"挑 3 个老客户,各做一份针对他当前处境的定制方案,一周内发出去。",
+      tools:[["claude","Claude"],["gamma","Gamma"],["kimi","Kimi"],["n8n","n8n"],["activepieces","Activepieces"]],
+      keep:"信任。客户买的是你这个人二十年没骗过人,AI 做不出这个。", offer:"咨询顾问" },
+    fin: { name:"财务 / 会计", three:[
+        ["对账、报表、分析吃掉全部时间","重复对账与报表交给 AI + 表格,你只看异常"],
+        ["小企业请不起 CFO","做几家小公司的兼职 CFO:现金流预测、成本结构、融资前整理"],
+        ["内控经验只在一家公司里用","把内控经验做成小企业能照着做的清单与模板"]],
+      first:"给一家认识的小公司做一份 90 天现金流预测,一周内交给老板,看他会不会追问。",
+      tools:[["claude","Claude"],["chatgpt","ChatGPT"],["deepseek","DeepSeek"],["kimi","Kimi"]],
+      keep:"哪个数不对劲、哪笔钱不能动、老板哪句话有风险。责任是你签的,不是 AI。", offer:"兼职驻场" },
+    hr: { name:"HR / 行政", three:[
+        ["JD、题库、手册、课程要一个部门","一个人把招聘到培训的全套文件做出来"],
+        ["小公司没有 HR","做几家小公司的兼职 HR 顾问:招聘、合规、员工问题"],
+        ["管理经验没法「交付」","把它录成课、写成手册,卖给需要的小公司"]],
+      first:"给一家 20 人的公司写一份员工手册,一周内交付,顺便发现他们真正缺的是什么。",
+      tools:[["claude","Claude"],["gamma","Gamma"],["jianying","剪映"],["doubao","豆包"]],
+      keep:"人。谁能用、谁在撒谎、这事该不该开除——AI 给建议,你负责。", offer:"咨询顾问" },
+    supply: { name:"供应链 / 制造管理", three:[
+        ["供应商分析、报价对比、合同审阅靠熬夜","AI 先过一遍,你只做判断"],
+        ["小工厂请不起精益顾问","做小厂的精益/采购顾问,方案与培训材料 AI 帮你出"],
+        ["行业 know-how 只在脑子里","写成 SOP、检查表、培训课,变成可交付的产品"]],
+      first:"给一家小厂做一次采购成本诊断:三天看数据,两天出报告,报告里必须有一个能立刻省钱的动作。",
+      tools:[["claude","Claude"],["deepseek","DeepSeek"],["kimi","Kimi"],["gamma","Gamma"]],
+      keep:"哪家供应商靠谱、哪个环节会出事故、哪个数字是编的。二十年现场经验 AI 没有。", offer:"咨询顾问" },
+    teacher: { name:"教师 / 培训师", three:[
+        ["做一门课要课件、视频、配音、题库四个工种","一个人做完整门课"],
+        ["一对一带教收入有上限","带教 + AI 助教:你负责判断和纠错,AI 负责重复讲解"],
+        ["教学经验只面向学生","做成家长课、成人课、企业内训"]],
+      first:"做完 6 节课的课件和第一节视频,让一个人免费上第一节,听他哪里没懂。",
+      tools:[["gamma","Gamma"],["jianying","剪映"],["fish-audio","Fish Audio"],["elevenlabs","ElevenLabs"],["canva","Canva"]],
+      keep:"看出一个人卡在哪、什么时候该逼一下、什么时候该放过。", offer:"带教培训" },
+    design: { name:"设计 / 创意", three:[
+        ["整案要品牌、网站、视频、文案一个团队","一个人接整案:草稿 AI 出,判断和客户沟通你做"],
+        ["时间全花在改稿","AI 出十版,你选和改,时间放在客户身上"],
+        ["传统企业不会用 AI 做设计","教他们用,按月收顾问费"]],
+      first:"给一家小店做整套视觉并把网站上线,一周内完成,拍下前后对比。",
+      tools:[["canva","Canva"],["figma","Figma"],["claude","Claude"],["jianying","剪映"],["hailuo","海螺"]],
+      keep:"审美与取舍。AI 出的十版里哪版对、为什么对,只有你能说。", offer:"项目接活" },
+    ops: { name:"运营 / 市场", three:[
+        ["一个人只能顾一个平台","选题、写作、剪辑、排期 AI 帮你出,一人多平台"],
+        ["小企业没有运营","做代运营,按月按效果收"],
+        ["投放数据看不过来","AI 帮你做数据分析,你做决策"]],
+      first:"帮一家店 7 天做 14 条内容并看数据,把有效的那两条复制。",
+      tools:[["claude","Claude"],["doubao","豆包"],["jianying","剪映"],["canva","Canva"],["kimi","Kimi"]],
+      keep:"什么内容会让这个城市的这群人动手,AI 猜,你知道。", offer:"项目接活" },
+    mgr: { name:"中层管理者", three:[
+        ["管理方法没法「卖」","把流程、培训、复盘模板做成可交付物"],
+        ["小公司请不起总经理","做几家小公司的兼职总经理/管理顾问"],
+        ["行业研究要团队","一个人用 AI 出行业报告,卖给需要判断的人"]],
+      first:"给一家小公司做一次 2 小时管理诊断,一周内写成报告,报告里有三个下周就能做的动作。",
+      tools:[["claude","Claude"],["kimi","Kimi"],["gamma","Gamma"],["deepseek","DeepSeek"]],
+      keep:"看人、定优先级、在不确定里拍板。管理的核心从来不是文件。", offer:"咨询顾问" }
+  };
+  var order = ["dev","pm","sales","fin","hr","supply","teacher","design","ops","mgr"];
+  var rolesEl = document.getElementById("roles"), levEl = document.getElementById("lev");
+  var qs = new URLSearchParams(location.search); var cur = R[qs.get("role")] ? qs.get("role") : "dev";
+  function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+  function render(k){
+    cur = k; var r = R[k];
+    rolesEl.innerHTML = order.map(function(o){ return '<button type="button" data-k="' + o + '" aria-pressed="' + (o === k) + '">' + R[o].name + "</button>"; }).join("");
+    rolesEl.querySelectorAll("button").forEach(function(b){ b.addEventListener("click", function(){ render(b.getAttribute("data-k")); history.replaceState(null, "", "/ai-leverage?role=" + b.getAttribute("data-k")); a35ev("path_result", "lev:" + b.getAttribute("data-k")); }); });
+    levEl.innerHTML = "<h2>" + esc(r.name) + ":三件以前做不到的事</h2>" +
+      '<div class="three">' + r.three.map(function(t){ return '<div><span class="was">' + esc(t[0]) + "</span><b>" + esc(t[1]) + "</b></div>"; }).join("") + "</div>" +
+      "<h2>一周能做出来的第一个东西</h2><p>" + esc(r.first) + "</p>" +
+      '<div class="tools"><span class="small muted">用得上的工具(免费额度看白嫖计核实版):</span><br>' + r.tools.map(function(t){ return T(t[0], t[1]); }).join("") + "</div>" +
+      '<h2>AI 替不了的那部分——也就是你值钱的部分</h2><div class="keep">' + esc(r.keep) + "</div>" +
+      '<p class="cta-row" style="margin-top:22px"><a class="cta primary" href="/post?kind=offer&offer=' + encodeURIComponent(r.offer) + '" data-ev="post_open" data-l="lev_' + k + '">把这条写成经验卡</a><a class="cta" href="/restart">先算现金红线</a>' + (r.judge ? '<a class="cta" href="' + r.judge + '">看完整判定 →</a>' : "") + "</p>";
+  }
+  render(cur);
+})();
+</script>
+</body>
+</html>
