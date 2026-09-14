@@ -277,3 +277,37 @@ agiscorecard 更隐蔽：它每天能重建**纯属副作用**（fleet-trends �
 autopilot 首跑**什么都没提交**——当天没有任何页面内容变化，所以没有 lastmod 该前进，
 也没有 URL 该进 IndexNow。这正是「平静的一天」该有的样子,proof-of-work 那一步确认了
 「声称有修正」与「什么都没 staged」没有同时为真。实际月成本据此从 ≈240 分下修到 **≈210 分**。
+
+---
+
+## 十、2026-09-14：owner 令「全部删除，重建一个总任务」——执行结果（实测）
+
+owner 原话：「现在舰队你的定时运行任务各种出错，你帮我全部删除，然后重建一个总任务」。
+
+### 先查清「各种出错」到底是几种（不是一种，处置各异）
+| Routine | 表现 | 查明原因 |
+|---|---|---|
+| Weekly AI & Tech News Roundup | 09-07 FAILED，8 秒退出 | **真失败**：`You've reached your Fable limit. Switch to another model to continue.` 它是 Cowork-remote 建法（另一个 environment），`configured_model` 仍是 `claude-fable-5-1`——第七节那次「全部改回 opus-5」没改到它，因为它的 `session_request` 没有 `config`（第七节坑 1 的又一次） |
+| sellSomething 周循环 | 09-07 FAILED | **假失败**：会话本身跑了 13 小时、输出 18.6k tokens、结束于 REVIEW_READY，工作做了；FAILED 是 Routine 包装层的判定 |
+| 10万实验月度复核 | `last_run` 为空 | **静默未触发**：08-23 建、每月 5 日 06:00，09-05 那轮没有任何唤醒到达绑定会话，`next_run_at` 却已排到 10-05。自绑定 Routine 在 09-03 被平台挂起过（第一节），这条很可能同批但没被发现 |
+| 其余 6 条 | SUCCEEDED | 正常 |
+
+### 处置（按「合并优先于删除」，第四节第 3 条）
+1. **新建总任务 `trig_012kK8KVg4WYD4g6Y6wEiXet`**，`0 4 * * *`，自绑定常驻会话，prompt 全文
+   `docs/fleet-master-routine.md`。它把 10 条职责按 **每日 / 周一 / 每月 5 日** 三档路由，
+   各站细则仍以各自 CLAUDE.md 为准（prompt 只做路由，不复制规则）。
+   顺带把已丢失的 SunWatch 每日优化 Routine（sunPredition 仓 CLAUDE.md 提到的
+   `trig_01PiwKEK…`，本账号列表里已不存在）以**周一一件**的频率接回来。
+2. **旧 10 条全部 `enabled=false` 并改名 `[已并入总任务 09-14·勿启用]`，未删除。**
+   prompt 全文存档 `docs/routines-archive-2026-09-14/`（文件名 = trigger id）。
+   不删的理由是有事故背书的：7/17–19 触发器丢失导致循环中断三天；总任务第一轮跑通之前
+   删掉旧的，等于把 10 条职责押在一条没跑过的新链上。**owner 确认第一轮成功后，删除是一句话的事。**
+3. 汇报密度：owner 每周收到的报告从 ≈28 条降到 **7 条**（一条总日报覆盖全部）+ 周一/月度附加段落。
+
+### 两个必须盯住的风险（写在这里，不写在报告里就会被忘）
+- **模型**：自绑定 Routine 跑在绑定会话的当前模型上。重建当天 owner 已把常驻会话切到
+  `claude-fable-5-1`，而 09-07 唯一一条真失败的原因正是 Fable 用量上限。
+  第一轮（09-14 04:06 UTC）若同样撞墙，唯一的修法是 owner 在会话里切回 opus-5——
+  会话侧改不了自己的模型，也不许自作主张改 Routine 的 model 字段。
+- **单会话承载**：一轮要过 5 个站 + 周一 4 项。prompt 里写了优先级截断规则
+  （A 健康 → B agi → C eco → D bpj → E tds → F SunWatch），截断时必须在报告里写明哪块没做。

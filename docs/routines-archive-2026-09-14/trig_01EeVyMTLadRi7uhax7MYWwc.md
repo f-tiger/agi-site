@@ -1,0 +1,3 @@
+# 10万实验月度复核
+
+10万实验月度复核(owner 2026-08-23「全面启动」+「挂靠网站」授权)。①读 D1 agiscorecard-events 表 experiment_ledger 全部 open/watch 行;②逐条核证伪线:TAO=公开渠道查排放/收入比与量/关注/开发活动趋势;x402=真实商业量级与费用捕获资产是否出现;机器人ETF=成分与溢价状态;③有触发→提醒 owner + 台账记 falsifier_check 行 + **同一轮更新公开台账页 /paradigm-experiment 与 /zh/paradigm-experiment(状态列+带日期审计注记+bump dateModified/sitemap lastmod)**;无触发→台账记安静行,页面每月至少 bump 一次「最后审计」日期(诚实新鲜度);④owner 报告的真实买卖按口述记 buy/sell 行并同步页面状态列(机器绝不代办交易,页面永不出现金额)。红线:不构成投资建议,扣扳机=owner,零编造。
