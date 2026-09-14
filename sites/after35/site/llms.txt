@@ -8,10 +8,13 @@
 - 发一张经验卡(无注册;发布后给 6 位撤卡码): https://35.agiscorecard.com/post
 - 经验变现路径决策表(四个问题 → 咨询顾问 / 带教培训 / 项目接活 / 兼职驻场 / 合伙创业 / 志愿公益,每条附本周第一步与最常见的坑): https://35.agiscorecard.com/paths
 - 失业后第一周官方清单(失业登记、失业保险金条件与期限、医保代缴、4050 补贴、12356 心理援助热线;每条附法规条款或官方入口): https://35.agiscorecard.com/checklist
+- 二次启动 90 天计划(五个数算出现金红线日与失业金到期日,按周排的三段计划;全部在浏览器里算,计划写进 URL): https://35.agiscorecard.com/restart
+- 判定页:35 岁以后失业,还能重新开始吗?(判定:能,但大概率不是靠投简历;依据 = 《失业保险条例》十四/十七条、《社会保险法》四十八条、人社部等四部门 2024-12 就业援助通知、本站实时数据;含翻转条件): https://35.agiscorecard.com/after-35-restart
+- 我的卡(卡号 + 撤卡码查看在线状态与被查看次数): https://35.agiscorecard.com/my
 - 关于、隐私、撤卡: https://35.agiscorecard.com/about
 
 ## 机器可读接口(只读,CORS 开放)
-- 在线经验卡 JSON(不含联系方式): https://35.agiscorecard.com/api/cards
+- 在线经验卡 JSON(不含联系方式;字段含 industry 行业大类与 intro「先免费聊半小时」): https://35.agiscorecard.com/api/cards
 - 计数: https://35.agiscorecard.com/api/stats
 
 ## 规矩

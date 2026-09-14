@@ -4,10 +4,11 @@
 // 隐私:不存 IP(只存当日 salt 过的 8 位哈希做限速)、不存完整 UA(48 字符前缀 + 分类)。
 // 联系方式由发卡人自愿公开,列表接口不返回,点「查看联系方式」才逐张取(并计数)。
 
-const ALLOWED = new Set(["page_view", "card_view", "contact_reveal", "post_open", "post_submit", "post_ok", "post_fail", "path_result", "checklist_click", "share_click", "filter_use", "withdraw_ok", "bridge_click"]);
+const ALLOWED = new Set(["page_view", "card_view", "contact_reveal", "post_open", "post_submit", "post_ok", "post_fail", "path_result", "checklist_click", "share_click", "filter_use", "withdraw_ok", "bridge_click", "restart_plan", "my_open", "match_click", "live_click"]);
 const KINDS = new Set(["offer", "need"]);
 const AGES = new Set(["35-39", "40-44", "45-49", "50-54", "55+"]);
 const OFFERS = ["咨询顾问", "带教培训", "项目接活", "兼职驻场", "合伙创业", "志愿公益"];
+const INDUSTRIES = ["制造与供应链", "互联网与软件", "零售与电商", "金融与财务", "教育与培训", "医疗与健康", "建筑与地产", "物流与运输", "政府与事业单位", "媒体与广告", "餐饮与服务业", "其他"];
 // 命中即转人工复核(status=pending),不拒绝——误伤的真人第二天就会被放出来。
 const RISK = /贷款|刷单|日结|返利|博彩|彩票|虚拟币|USDT|数字货币|带单|荐股|保本|高收益|加微信领|免费领取|裸聊|代孕|办证|发票|走私|洗钱|色情|约炮/i;
 const URLISH = /https?:\/\/|www\.|\.com\b|\.cn\b|\.net\b/i;
@@ -22,6 +23,10 @@ async function ensureSchema(db) {
     db.prepare("CREATE TABLE IF NOT EXISTS ev (day TEXT, ts TEXT, name TEXT, label TEXT, value INTEGER, path TEXT, ref TEXT, ua_class TEXT, country TEXT)"),
     db.prepare("CREATE TABLE IF NOT EXISTS ua_audit (day TEXT, ua_prefix TEXT, ua_class TEXT, hits INTEGER, PRIMARY KEY (day, ua_prefix, ua_class))"),
   ]);
+  // v2(2026-09-14 当日二次迭代)加列:行业标签 + 「先免费聊半小时」。ALTER 不幂等,单独 try。
+  for (const ddl of ["ALTER TABLE cards ADD COLUMN industry TEXT DEFAULT ''", "ALTER TABLE cards ADD COLUMN intro INTEGER DEFAULT 0"]) {
+    try { await db.prepare(ddl).run(); } catch (e) { /* column exists */ }
+  }
   schemaReady = true;
 }
 
@@ -71,7 +76,7 @@ function newCode() {
   return [...a].map(b => alpha[b % alpha.length]).join("");
 }
 function publicCard(r) {
-  return { id: r.id, kind: r.kind, nick: r.nick, age: r.age, city: r.city, years: r.years, field: r.field, offers: r.offers.split("|").filter(Boolean), headline: r.headline, body: r.body, pay: r.pay, created: r.created, reveals: r.reveals | 0 };
+  return { id: r.id, kind: r.kind, nick: r.nick, age: r.age, city: r.city, years: r.years, field: r.field, industry: r.industry || "", intro: (r.intro | 0) === 1, offers: r.offers.split("|").filter(Boolean), headline: r.headline, body: r.body, pay: r.pay, created: r.created, reveals: r.reveals | 0 };
 }
 
 async function handlePost(request, env, ctx) {
@@ -88,6 +93,8 @@ async function handlePost(request, env, ctx) {
   const city = clean(b.city, 20);
   const years = Math.max(0, Math.min(45, parseInt(b.years, 10) || 0));
   const field = clean(b.field, 40);
+  const industry = INDUSTRIES.includes(b.industry) ? b.industry : "";
+  const intro = b.intro === true ? 1 : 0;
   const offers = (Array.isArray(b.offers) ? b.offers : []).filter(o => OFFERS.includes(o)).slice(0, 6);
   const headline = clean(b.headline, 60);
   const body = clean(b.body, 600);
@@ -100,6 +107,7 @@ async function handlePost(request, env, ctx) {
   if (!age) return json({ ok: false, code: "age" }, 400);
   if (!city) return json({ ok: false, code: "city" }, 400);
   if (!field) return json({ ok: false, code: "field" }, 400);
+  if (!industry) return json({ ok: false, code: "industry" }, 400);
   if (kind === "offer" && years < 1) return json({ ok: false, code: "years" }, 400);
   if (!offers.length) return json({ ok: false, code: "offers" }, 400);
   if (headline.length < 8) return json({ ok: false, code: "headline" }, 400);
@@ -123,8 +131,8 @@ async function handlePost(request, env, ctx) {
   const code = newCode();
   const country = (request.cf && request.cf.country) || "";
   const created = new Date().toISOString().replace("T", " ").slice(0, 16);
-  const r = await db.prepare("INSERT INTO cards (kind, nick, age, city, years, field, offers, headline, body, pay, contact, code, status, flag, country, created) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) RETURNING id")
-    .bind(kind, nick, age, city, years, field, offers.join("|"), headline, body, pay || "面议", contact, code, status, flag, country, created).first();
+  const r = await db.prepare("INSERT INTO cards (kind, nick, age, city, years, field, offers, headline, body, pay, contact, code, status, flag, country, created, industry, intro) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) RETURNING id")
+    .bind(kind, nick, age, city, years, field, offers.join("|"), headline, body, pay || "面议", contact, code, status, flag, country, created, industry, intro).first();
   logRow(env, ctx, { name: "post_ok", label: kind + ":" + status, path: "/api/card", ua_class: "api", country });
   return json({ ok: true, code: "ok", id: r.id, status, secret: code });
 }
@@ -179,6 +187,14 @@ export default {
           ctx.waitUntil(env.EV.prepare("UPDATE cards SET reveals = reveals + 1 WHERE id=?").bind(r.id).run().catch(() => {}));
           logRow(env, ctx, { ci, name: "contact_reveal", label: r.kind + ":" + r.id, path: "/api/card/contact", ua_class: "api", country: (request.cf && request.cf.country) || "" });
           return json({ ok: true, contact: r.contact });
+        }
+        if (p === "/api/my" && request.method === "GET") {
+          // 「我的卡」:卡号 + 撤卡码 = 唯一身份。回状态与被查看次数,不回联系方式以外的任何他人数据。
+          const id = parseInt(url.searchParams.get("id"), 10) || 0; const code = clean(url.searchParams.get("code"), 12).toUpperCase();
+          if (!id || code.length !== 6) return json({ ok: false, code: "bad" }, 400);
+          const r = await env.EV.prepare("SELECT id, kind, status, flag, headline, created, reveals, reviewed FROM cards WHERE id=? AND code=?").bind(id, code).first();
+          if (!r) return json({ ok: false, code: "notfound" }, 404);
+          return json({ ok: true, card: { id: r.id, kind: r.kind, status: r.status, flag: r.flag || "", headline: r.headline, created: r.created, reveals: r.reveals | 0, reviewed: r.reviewed || "" } });
         }
         if (p === "/api/withdraw" && request.method === "POST") {
           const b = await request.json().catch(() => ({}));

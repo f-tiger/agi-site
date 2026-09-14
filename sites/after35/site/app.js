@@ -11,11 +11,15 @@
   function renderCard(c) {
     const kindLabel = c.kind === "need" ? "找有经验的人" : "我有经验";
     const yrs = c.kind === "offer" ? "<span>" + esc(c.years) + " 年 · " + esc(c.field) + "</span>" : "<span>" + esc(c.field) + "</span>";
-    return '<article class="card" data-id="' + c.id + '">' +
-      '<div class="meta"><span class="kind ' + esc(c.kind) + '">' + kindLabel + "</span>" + yrs + "<span>" + esc(c.city) + "</span><span>" + esc(c.age) + " 岁</span></div>" +
+    const ind = c.industry ? "<span>" + esc(c.industry) + "</span>" : "";
+    const intro = c.intro ? '<span class="intro">先免费聊半小时</span>' : "";
+    const match = c.industry ? '<a class="match" href="/cards?kind=' + (c.kind === "need" ? "offer" : "need") + "&industry=" + encodeURIComponent(c.industry) + '" data-ev="match_click" data-l="' + esc(c.kind) + '">' + (c.kind === "need" ? "看同行业能帮忙的人 →" : "看同行业在找人的需求 →") + "</a>" : "";
+    return '<article class="card" data-id="' + c.id + '" data-industry="' + esc(c.industry) + '">' +
+      '<div class="meta"><span class="kind ' + esc(c.kind) + '">' + kindLabel + "</span>" + yrs + ind + "<span>" + esc(c.city) + "</span><span>" + esc(c.age) + " 岁</span></div>" +
       "<h3>" + esc(c.headline) + "</h3>" +
       '<div class="body">' + esc(c.body) + "</div>" +
-      '<div class="tags">' + c.offers.map(function (o) { return "<span>" + esc(o) + "</span>"; }).join("") + "</div>" +
+      '<div class="tags">' + intro + c.offers.map(function (o) { return "<span>" + esc(o) + "</span>"; }).join("") + "</div>" +
+      (match ? '<div class="small">' + match + "</div>" : "") +
       '<div class="foot"><span class="pay">' + esc(c.pay) + '</span><span class="muted small">' + esc(c.nick) + " · " + esc(String(c.created).slice(0, 10)) + '</span><button class="reveal" type="button">查看联系方式</button></div>' +
       "</article>";
   }

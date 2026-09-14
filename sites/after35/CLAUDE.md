@@ -33,6 +33,14 @@ AGI 时代 AI 冲击的**承接站**。主站 agiscorecard.com 记录 AI 走到�
 5. zh 设计系统 Swiss anchor:白底、一个蓝 `#002FA7`、细线、大数字;为 40–55 岁读者正文 18px、
    点击目标 ≥48px。不用暗色主题。
 
+## v2(同日二次迭代,owner:「成为 AI 时代最强的建议、撮合、二次启动网站」)
+调研全文 `docs/research-2026-09-14.md`。三支柱:**建议** = /paths + **/restart**(现金红线 + 90 天计划,
+纯算术,URL 即存档);**撮合** = 卡 + **行业大类标签**(12 类白名单,worker `INDUSTRIES`)+ 同行业匹配
+链接(`match_click`)+ **「先免费聊半小时」intro 标记** + **/my**(卡号+撤卡码看被查看次数);
+**二次启动** = /checklist + **判定页 /after-35-restart**(六件套,活数字读 /api/stats)。
+**刻意不做**(理由见调研 §六):LLM 生成建议、账号、种子卡/成功故事、岗位聚合、任何收费。
+表结构变更只能走 `ensureSchema` 里 try 包裹的 `ALTER TABLE ADD COLUMN`(D1 无 IF NOT EXISTS)。
+
 ## 审核义务(舰队总任务每日块 G)
 每日 run 读:
 ```sql
@@ -49,6 +57,8 @@ reviewed=date('now') WHERE id=?`;确为贷款/刷单/收费培训/色情 → `st
 - **2026-12-14(90 天)**:累计 `contact_reveal` ≥ 30 或任一张卡 `reveals` ≥ 5 → 立项第二期
   (按需求侧反馈决定:城市分频道 / 行业标签 / Telegram 绑定「有人看了你的卡」提醒)。
 - 分母:`ev.page_view` `ua_class='human'` 且 `path` 不含 `ci`;探针按舰队规则先拆。
+- **v2 补登(2026-09-14)**:10-14 另看 `restart_plan` ≥ 20 且 `match_click` ≥ 5(建议/撮合两支柱有人用);
+  12-14 另看 /after-35-restart 在 Bing AI Performance 明细里 ≥1 次引用(0 引用 → 记入反面发现,不再投中文判定页)。
 
 ## 分发(owner 手发,本站不自动外发)
 目标社区是中文的:知乎「35 岁失业」话题、脉脉、小红书、微信群。每周一的分发暂存循环把本站素材

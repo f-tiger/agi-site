@@ -12,7 +12,7 @@
 <body>
 <header class="top"><div class="wrap">
   <a class="brand" href="/">三十五<b>后</b></a>
-  <nav class="main"><a href="/cards">经验卡</a><a href="/post" aria-current="page">发一张</a><a href="/paths">变现路径</a><a href="/checklist">失业第一周</a><a href="/about">关于</a></nav>
+  <nav class="main"><a href="/cards">经验卡</a><a href="/post" aria-current="page">发一张</a><a href="/paths">变现路径</a><a href="/restart">二次启动</a><a href="/checklist">失业第一周</a><a href="/about">关于</a></nav>
 </div></header>
 <main class="wrap">
   <h1 id="title">发一张经验卡</h1>
@@ -43,6 +43,12 @@
     <label for="field" id="fieldl">你做了多年的行业或岗位 <span class="hint">例如「制造业供应链」「基层公务员」「培训机构校长」</span></label>
     <input type="text" id="field" maxlength="40" required>
 
+    <label for="industry">行业大类 <span class="hint">用来让需要的人筛到你</span></label>
+    <select id="industry" required>
+      <option value="">请选择</option>
+      <option>制造与供应链</option><option>互联网与软件</option><option>零售与电商</option><option>金融与财务</option><option>教育与培训</option><option>医疗与健康</option><option>建筑与地产</option><option>物流与运输</option><option>政府与事业单位</option><option>媒体与广告</option><option>餐饮与服务业</option><option>其他</option>
+    </select>
+
     <div id="yearsw">
       <label for="years">干了多少年</label>
       <input type="number" id="years" min="1" max="45" inputmode="numeric" style="max-width:160px">
@@ -67,6 +73,8 @@
     <label for="pay" id="payl">报酬 <span class="hint">例如「面议」「800 元/天」「先免费聊半小时」</span></label>
     <input type="text" id="pay" maxlength="30" placeholder="面议">
 
+    <label class="consent" style="margin-top:14px"><input type="checkbox" id="intro"> <span id="introl">先免费聊半小时。对方看到这个标记更敢开口,你也更容易拿到第一个案例。</span></label>
+
     <label for="contact">联系方式 <span class="hint">微信号、邮箱、手机或 Telegram。只在别人点「查看联系方式」时才显示。</span></label>
     <input type="text" id="contact" maxlength="60" required autocomplete="off">
 
@@ -83,6 +91,7 @@
     <div class="notice ok"><strong id="donemsg">发布成功。</strong></div>
     <p>这是你的撤卡码,<strong>只显示这一次</strong>,请截图或抄下来。想下线这张卡时,到 <a href="/about#withdraw">关于页</a> 输入卡号和撤卡码即可。</p>
     <p>卡号 <strong id="doneid"></strong> · 撤卡码 <span class="secret" id="donecode"></span></p>
+    <p>随时到 <a id="donemy" href="/my">我的卡</a> 看它被查看了几次(链接里已带卡号和撤卡码,收藏它)。</p>
     <p class="cta-row"><a class="cta primary" href="/cards">去看我的卡</a><button class="cta" type="button" onclick="a35share('三十五后 — 我的经验卡')">分享这个站给同龄人</button></p>
   </div>
 </main>
@@ -95,7 +104,7 @@
 (function(){
   var f = document.getElementById("f"); var err = document.getElementById("err");
   var qs = new URLSearchParams(location.search);
-  var MSG = { kind:"请选择这张卡的类型", nick:"请填怎么称呼你", age:"请选年龄段", city:"请填所在城市", field:"请填行业或岗位", years:"请填干了多少年(至少 1 年)", offers:"至少选一种方式", headline:"一句话请写 8 字以上", body:"具体说说至少 30 字", contact:"请留一个联系方式", consent:"请勾选同意公开", ratelimit:"今天发得太多了,明天再来", no_db:"服务暂时不可用,请稍后再试", error:"发布失败,请稍后再试" };
+  var MSG = { industry:"请选行业大类", kind:"请选择这张卡的类型", nick:"请填怎么称呼你", age:"请选年龄段", city:"请填所在城市", field:"请填行业或岗位", years:"请填干了多少年(至少 1 年)", offers:"至少选一种方式", headline:"一句话请写 8 字以上", body:"具体说说至少 30 字", contact:"请留一个联系方式", consent:"请勾选同意公开", ratelimit:"今天发得太多了,明天再来", no_db:"服务暂时不可用,请稍后再试", error:"发布失败,请稍后再试" };
   function setKind(k){
     var need = k === "need";
     document.getElementById("title").textContent = need ? "我需要一个有经验的人" : "发一张经验卡";
@@ -106,6 +115,7 @@
     document.getElementById("headl").firstChild.textContent = need ? "一句话:你要解决什么问题 " : "一句话:你能替谁解决什么问题 ";
     document.getElementById("bodyl").firstChild.textContent = need ? "具体说说:背景、要什么样的人、怎么合作 " : "具体说说 ";
     document.getElementById("payl").firstChild.textContent = need ? "你能给的报酬 " : "报酬 ";
+    document.getElementById("introl").textContent = need ? "我愿意先免费聊半小时。让有经验的人不用担心「聊了就得收钱」。" : "先免费聊半小时。对方看到这个标记更敢开口,你也更容易拿到第一个案例。";
   }
   var k0 = qs.get("kind") === "need" ? "need" : "offer";
   f.querySelector('input[name=kind][value=' + k0 + ']').checked = true; setKind(k0);
@@ -117,7 +127,7 @@
     var kind = (f.querySelector('input[name=kind]:checked')||{}).value;
     var age = (f.querySelector('input[name=age]:checked')||{}).value || "";
     var offers = Array.prototype.map.call(f.querySelectorAll('#offers input:checked'), function(c){ return c.value; });
-    var b = { kind: kind, nick: f.nick.value, age: age, city: f.city.value, field: f.field.value, years: kind === "need" ? 0 : f.years.value, offers: offers, headline: f.headline.value, body: f.body.value, pay: f.pay.value, contact: f.contact.value, consent: f.consent.checked, website: f.website.value };
+    var b = { kind: kind, nick: f.nick.value, age: age, city: f.city.value, field: f.field.value, industry: f.industry.value, intro: f.intro.checked, years: kind === "need" ? 0 : f.years.value, offers: offers, headline: f.headline.value, body: f.body.value, pay: f.pay.value, contact: f.contact.value, consent: f.consent.checked, website: f.website.value };
     var btn = document.getElementById("submit"); btn.disabled = true; btn.textContent = "发布中…";
     a35ev("post_submit", kind);
     fetch("/api/card", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(b) })
@@ -125,7 +135,7 @@
       .then(function(j){
         if (!j.ok) { err.textContent = MSG[j.code] || MSG.error; err.hidden = false; btn.disabled = false; btn.textContent = "发布这张卡"; a35ev("post_fail", j.code || "err"); window.scrollTo({ top: err.offsetTop - 80, behavior: "smooth" }); return; }
         f.hidden = true; document.getElementById("done").hidden = false;
-        document.getElementById("doneid").textContent = j.id; document.getElementById("donecode").textContent = j.secret;
+        document.getElementById("doneid").textContent = j.id; document.getElementById("donecode").textContent = j.secret; document.getElementById("donemy").href = "/my?id=" + j.id + "&code=" + j.secret;
         document.getElementById("donemsg").textContent = j.status === "pending" ? "已收到。这张卡含网址或敏感词,会先人工复核,通常一天内上线。" : "发布成功,已经在线。";
         window.scrollTo({ top: 0, behavior: "smooth" });
       })

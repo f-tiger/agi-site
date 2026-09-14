@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>我的卡:状态与被查看次数 — 三十五后</title>
+<meta name="description" content="输入卡号和撤卡码,看这张经验卡是否在线、被查看了多少次;也可以在这里下线它。">
+<link rel="canonical" href="https://35.agiscorecard.com/my">
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="/">三十五<b>后</b></a>
+  <nav class="main"><a href="/cards">经验卡</a><a href="/post">发一张</a><a href="/paths">变现路径</a><a href="/restart">二次启动</a><a href="/checklist">失业第一周</a><a href="/about">关于</a></nav>
+</div></header>
+<main class="wrap">
+  <h1>我的卡</h1>
+  <p class="lead muted">没有账号,卡号 + 撤卡码就是你的身份。这里能看到卡是否在线、联系方式被查看了几次。</p>
+  <form class="post" id="mf" style="max-width:420px">
+    <label for="mid">卡号</label><input type="number" id="mid" min="1" inputmode="numeric" required>
+    <label for="mcode">撤卡码</label><input type="text" id="mcode" maxlength="6" autocapitalize="characters" autocomplete="off" required>
+    <div id="merr" class="notice warn" hidden></div>
+    <p><button class="cta primary" type="submit">查看</button></p>
+  </form>
+  <div id="mout" hidden>
+    <div class="stats">
+      <div><span class="n" id="mreveals">–</span><span class="l">次联系方式被查看</span></div>
+      <div><span class="n" id="mstatus" style="font-size:26px">–</span><span class="l">状态</span></div>
+      <div><span class="n" id="mcreated" style="font-size:22px">–</span><span class="l">发布于</span></div>
+    </div>
+    <h3 id="mhead"></h3>
+    <p id="mtip" class="muted"></p>
+    <p class="cta-row"><a class="cta" href="/cards">看看别人的卡</a><button class="cta" type="button" id="mwithdraw" style="border-color:var(--warn);color:var(--warn)">下线这张卡</button></p>
+    <div id="mok" class="notice ok" hidden>已下线。</div>
+  </div>
+</main>
+<footer><div class="wrap">
+  <div class="links"><a href="/">首页</a><a href="/cards">经验卡</a><a href="/post">发一张</a><a href="/about">关于与撤卡</a></div>
+  <div>三十五后 · <a href="https://agiscorecard.com/">AGI Scorecard</a> 网络的中文子站</div>
+</div></footer>
+<script src="/app.js"></script>
+<script>
+(function(){
+  var qs = new URLSearchParams(location.search); if (qs.get("id")) document.getElementById("mid").value = qs.get("id"); if (qs.get("code")) document.getElementById("mcode").value = qs.get("code");
+  var ST = { live: "在线", pending: "人工复核中", withdrawn: "已下线", rejected: "未通过复核" };
+  function load(){
+    var id = document.getElementById("mid").value, code = document.getElementById("mcode").value.trim().toUpperCase(), err = document.getElementById("merr"); err.hidden = true;
+    fetch("/api/my?id=" + encodeURIComponent(id) + "&code=" + encodeURIComponent(code)).then(function(r){ return r.json(); }).then(function(j){
+      if (!j.ok) { err.textContent = j.code === "notfound" ? "卡号或撤卡码不对。" : "没查到,请稍后再试。"; err.hidden = false; return; }
+      var c = j.card; document.getElementById("mreveals").textContent = c.reveals; document.getElementById("mstatus").textContent = ST[c.status] || c.status; document.getElementById("mcreated").textContent = String(c.created).slice(0, 10);
+      document.getElementById("mhead").textContent = c.headline;
+      document.getElementById("mtip").textContent = c.status === "live" ? (c.reveals === 0 ? "还没有人查看联系方式。卡刚上线时这很正常;把链接发给同行群比等待更有用。" : "有人看过了。被看不等于会联系——但至少你的卡在被看。") : c.status === "pending" ? "这张卡含网址或敏感词,正在人工复核,通常一天内处理" + (c.flag ? "(原因:" + (c.flag === "url" ? "含网址" : "含敏感词") + ")" : "") + "。" : "";
+      document.getElementById("mout").hidden = false; a35ev("my_open", c.status);
+      history.replaceState(null, "", "/my?id=" + encodeURIComponent(id) + "&code=" + encodeURIComponent(code));
+    }).catch(function(){ err.textContent = "网络错误。"; err.hidden = false; });
+  }
+  document.getElementById("mf").addEventListener("submit", function(e){ e.preventDefault(); load(); });
+  document.getElementById("mwithdraw").addEventListener("click", function(){
+    if (!confirm("确定下线这张卡?下线后不能恢复。")) return;
+    fetch("/api/withdraw", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ id: document.getElementById("mid").value, code: document.getElementById("mcode").value }) }).then(function(r){ return r.json(); }).then(function(j){ if (j.ok) { document.getElementById("mok").hidden = false; document.getElementById("mstatus").textContent = "已下线"; } else alert("没成功:" + (j.code || "")); });
+  });
+  if (qs.get("id") && qs.get("code")) load();
+})();
+</script>
+</body>
+</html>

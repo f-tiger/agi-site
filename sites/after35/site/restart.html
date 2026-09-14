@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>二次启动 90 天计划:失业后的现金红线与三段行动表 — 三十五后</title>
+<meta name="description" content="填五个数,得到你的现金红线日期、失业金能撑到哪天,和一张按周排好的 90 天二次启动计划。全部在你手机里算,不上传;计划写进链接,可存可分享可打印。">
+<link rel="canonical" href="https://35.agiscorecard.com/restart">
+<meta property="og:title" content="二次启动 90 天计划:失业后的现金红线与三段行动表">
+<meta property="og:description" content="五个数算出现金红线日期,再给你一张按周排好的 90 天计划。不上传、可分享、可打印。">
+<link rel="stylesheet" href="/style.css">
+<style>
+  .num { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; }
+  .num label { display: block; font-weight: 600; margin-bottom: 4px; }
+  .num input, .num select { width: 100%; font: inherit; padding: 12px 14px; border: 1px solid #c9ccd4; border-radius: 8px; min-height: 50px; }
+  .line { display: grid; grid-template-columns: 1fr 1fr 1fr; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); margin: 22px 0; }
+  .line div { padding: 14px 8px; border-right: 1px solid var(--rule); }
+  .line div:last-child { border-right: 0; }
+  .line .n { font-size: clamp(26px, 5vw, 38px); font-weight: 700; display: block; line-height: 1.1; }
+  .line .n.red { color: var(--warn); }
+  .line .l { color: var(--ink3); font-size: 15px; }
+  @media (max-width: 640px) { .line { grid-template-columns: 1fr; } .line div { border-right: 0; border-bottom: 1px solid var(--rule); } }
+  .plan h3 { margin-top: 26px; border-left: 4px solid var(--accent); padding-left: 12px; }
+  .plan ul { padding-left: 22px; }
+  .plan li { margin: 6px 0; }
+  .plan .chk { list-style: none; padding: 0; }
+  .plan .chk li { display: flex; gap: 10px; align-items: flex-start; padding: 8px 0; border-bottom: 1px solid var(--rule); }
+  .plan .chk input { width: 22px; height: 22px; margin-top: 4px; flex: none; }
+  @media print { header, footer, .cta-row, .filters, .noprint { display: none !important; } body { font-size: 14px; } }
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="/">三十五<b>后</b></a>
+  <nav class="main"><a href="/cards">经验卡</a><a href="/post">发一张</a><a href="/paths">变现路径</a><a href="/restart" aria-current="page">二次启动</a><a href="/checklist">失业第一周</a><a href="/about">关于</a></nav>
+</div></header>
+<main class="wrap">
+  <h1>二次启动 90 天计划</h1>
+  <p class="lead muted">失业后最常见的错误不是选错方向,是<strong>没有红线</strong>:不知道哪一天必须切换到「什么都接」模式。先算红线,再排 90 天。所有数字只在你的手机里算,不上传。</p>
+
+  <form id="f" class="post" novalidate>
+    <div class="num">
+      <div><label for="cash">手头现金(元)<span class="hint"> 能动用的存款</span></label><input type="number" id="cash" inputmode="numeric" min="0" placeholder="例如 80000"></div>
+      <div><label for="burn">每月必须支出(元)<span class="hint"> 房贷房租、社保、家用</span></label><input type="number" id="burn" inputmode="numeric" min="0" placeholder="例如 9000"></div>
+      <div><label for="ui">失业金每月(元)<span class="hint"> 不确定填 0</span></label><input type="number" id="ui" inputmode="numeric" min="0" placeholder="例如 2000"></div>
+      <div><label for="uim">失业金还能领几个月</label><input type="number" id="uim" inputmode="numeric" min="0" max="24" placeholder="例如 12"></div>
+      <div><label for="path">主路径<span class="hint"> 不确定先做 <a href="/paths">决策表</a></span></label>
+        <select id="path"><option value="consult">咨询顾问</option><option value="mentor">带教培训</option><option value="gig">项目接活</option><option value="parttime">兼职驻场</option><option value="partner">合伙创业</option><option value="volunteer">志愿公益</option></select></div>
+      <div><label for="start">起算日</label><input type="date" id="start"></div>
+    </div>
+    <p class="cta-row"><button class="cta primary" type="submit">算红线,排计划</button></p>
+  </form>
+
+  <div id="out" hidden>
+    <div class="line">
+      <div><span class="n" id="runway">–</span><span class="l">个月:现金能撑多久(含失业金)</span></div>
+      <div><span class="n red" id="redline">–</span><span class="l">现金红线日:这天之前没有收入,就切到「什么都接」</span></div>
+      <div><span class="n" id="uiend">–</span><span class="l">失业金领完的日子</span></div>
+    </div>
+    <div class="notice" id="verdict"></div>
+    <div class="plan" id="plan"></div>
+    <p class="cta-row noprint"><button class="cta primary" type="button" id="share">复制我的计划链接</button><button class="cta" type="button" onclick="window.print()">打印 / 存成 PDF</button><a class="cta" href="/post?kind=offer" data-ev="post_open" data-l="restart_page">顺手发一张经验卡</a></p>
+    <p class="small muted">计划写在链接里(不含任何存到服务器的东西);换手机打开同一个链接就是同一份计划。红线算法:现金 ÷(每月支出 − 失业金),失业金到期后按全额支出算。它是算术,不是建议。</p>
+  </div>
+</main>
+<footer><div class="wrap">
+  <div class="links"><a href="/">首页</a><a href="/cards">经验卡</a><a href="/paths">变现路径</a><a href="/checklist">失业第一周</a><a href="/about">关于与撤卡</a></div>
+  <div>三十五后 · <a href="https://agiscorecard.com/">AGI Scorecard</a> 网络的中文子站 · 不构成财务建议</div>
+</div></footer>
+<script src="/app.js"></script>
+<script>
+(function(){
+  var P = {
+    consult: { name:"咨询顾问", w1:["把过去三年替公司解决过的 5 个具体问题写成「问题→做法→结果」,每条不超过三行","列出 20 个可能需要这些的人:前同事、前客户、供应商、同行","给其中 3 个人发一句话:「你们现在 X 这事谁在管?」——不推销,只问"], m1:["接一个半天到两天的付费诊断,收费可以低,但必须收","把第一单写成一页案例,替换掉经验卡上的空话","每周新增 5 个联系,记在一张表里:名字 / 聊了什么 / 下次什么时候"], m23:["把诊断打包成固定产品:名字、时长、价格、交付物","第二单要来自第一单的介绍,否则回头看第一单哪里没做好","月底盘点:付费客户数、平均单价、来源——三个数决定第四个月继续还是换路"] },
+    mentor: { name:"带教培训", w1:["把你会的拆成 6 节课的大纲,每节写清「学完能做什么」","找一个人免费上第一节,让他说哪里没听懂","把「不懂的人」的原话记下来,那是你的招生文案"], m1:["收费带 1–3 个人,按次收,别卖套餐","每次课后问一句:值不值这个钱?为什么?","把三个人的问题合成一份 FAQ"], m23:["把 6 节课固定成一期,定价、定人数、定开课日","第二期至少一个人来自第一期的介绍","考虑一次 20 人以内的小群课——先验证一对多能不能讲"] },
+    gig: { name:"项目接活", w1:["写清「我接什么、多久、多少钱」三行,发给 10 个认识的人","开一个只放三样东西的作品页:做过的、能做的、报价","把「免费试做」四个字从你的字典里删掉"], m1:["接下第一单,再小也算;交付后当天要评价","按小时记录实际工时,校准报价","把第一单变成一条可以转发的案例"], m23:["报价上调一次,看有没有人走","把常接的活做成固定套餐","每周至少两个新询价——没有就回到第一周的动作"] },
+    parttime: { name:"兼职驻场", w1:["问 5 家小公司老板:「你们最缺一个什么样的人每周来两天?」","写一张只有半页的介绍:能顶什么位置、每周几天、要多少","把介绍发给这 5 家,不投任何招聘网站"], m1:["试一周,双方都满意再谈长期","记下每天实际做的事,下周据此谈价","同时保留另外两家的联系"], m23:["把兼职稳定到每周 2–3 天,剩下的时间给第二条路","看清这家公司缺的是「人」还是「你」——后者才有议价权","三个月末决定:转全职、转顾问、还是换一家"] },
+    partner: { name:"合伙创业", w1:["找一个和你互补的人,先聊三次再谈合作","写一页:客户是谁、付什么钱、你们各出什么","本周不注册公司、不租办公室、不做 App"], m1:["用一万块以内验证有没有人肯付钱","拿到第一个付费承诺(哪怕预付定金)再谈分工","每周复盘一次:假设对了几条,错了几条"], m23:["付费客户 ≥3 再考虑注册主体","把两人各自的钱、时间、退出条件写成一页协议","三个月没人付钱就停,这不是失败,是省下了一年"] },
+    volunteer: { name:"志愿公益", w1:["找一个社区组织或行业协会,问「每周 4 小时能帮上什么」","挑一件有明确交付的事,不做「有空来帮忙」","把在那里认识的每个人记下来"], m1:["做出一件能展示的事:一次活动、一份材料、一个被采纳的建议","从这里认识的人里,找出谁有前面五条路的需求","每周仍留一天给现金流路径"], m23:["把公益里做的事写进经验卡,那是最近、最真的案例","从这里的人脉里拿到第一个付费机会","三个月末问自己:价值感回来了吗?现金红线还剩多久?"] }
+  };
+  var f = document.getElementById("f"), qs = new URLSearchParams(location.search);
+  function fmt(d){ return d.getFullYear() + "-" + String(d.getMonth()+1).padStart(2,"0") + "-" + String(d.getDate()).padStart(2,"0"); }
+  function addM(d, m){ var x = new Date(d); x.setMonth(x.getMonth() + Math.floor(m)); x.setDate(x.getDate() + Math.round((m - Math.floor(m)) * 30)); return x; }
+  function addD(d, n){ var x = new Date(d); x.setDate(x.getDate() + n); return x; }
+  ["cash","burn","ui","uim","path","start"].forEach(function(k){ if (qs.get(k)) document.getElementById(k).value = qs.get(k); });
+  if (!document.getElementById("start").value) document.getElementById("start").value = fmt(new Date());
+  function run(push){
+    var cash = +document.getElementById("cash").value || 0, burn = +document.getElementById("burn").value || 0, ui = +document.getElementById("ui").value || 0, uim = +document.getElementById("uim").value || 0;
+    var path = document.getElementById("path").value, start = new Date(document.getElementById("start").value || fmt(new Date()));
+    if (!burn) { alert("每月必须支出不能为 0——它是红线的分母。"); return; }
+    // 红线:失业金期内按 (burn-ui) 消耗,之后按 burn
+    var months = 0, c = cash, m = 0;
+    while (c > 0 && m < 600) { var need = m < uim ? Math.max(0, burn - ui) : burn; if (need === 0) { months = 99; break; } if (c < need) { months = m + c / need; break; } c -= need; m++; months = m; }
+    var runway = months >= 99 ? "∞" : (Math.round(months * 10) / 10);
+    document.getElementById("runway").textContent = runway;
+    var red = months >= 99 ? null : addM(start, Math.max(0, months - 1));
+    document.getElementById("redline").textContent = red ? fmt(red) : "无";
+    document.getElementById("uiend").textContent = uim > 0 ? fmt(addM(start, uim)) : "未领";
+    var v;
+    if (months >= 99) v = "失业金已经覆盖必须支出,现金不减少。你有时间走慢路径,但别把「不减少」当成「有收入」。";
+    else if (months < 3) v = "红线在三个月内。主路径不管选的什么,第一个月都必须并行一条能立刻收钱的路(接活或兼职驻场);「什么都接」模式从红线日起,不是从没钱那天起。";
+    else if (months < 6) v = "三到六个月。够走一条路,不够试两条。计划里第一个月就要见到第一笔钱,否则第二个月改走接活。";
+    else v = "六个月以上。可以走咨询、带教、合伙这类慢路径,但每个月末都对照红线日看一眼——余地最容易在「还早」里被花掉。";
+    document.getElementById("verdict").innerHTML = "<strong>红线判断:</strong>" + v;
+    var p = P[path]; var w = function(n){ return fmt(addD(start, n)); };
+    function ul(items){ return '<ul class="chk">' + items.map(function(t){ return "<li><input type='checkbox'><span>" + t + "</span></li>"; }).join("") + "</ul>"; }
+    document.getElementById("plan").innerHTML =
+      "<h3>第一周(" + w(0) + " – " + w(6) + "):先把该领的领了 + " + p.name + "的第一步</h3>" + ul(["办失业登记、申领失业保险金、确认医保不断(<a href='/checklist'>清单</a>)", "把这一页打印出来贴在看得见的地方,红线日用红笔圈住"].concat(p.w1)) +
+      "<h3>第一个月(到 " + w(30) + "):见到第一笔钱</h3>" + ul(p.m1.concat(["月末对照:第一笔钱来了吗?没来,下个月并行接活或兼职"])) +
+      "<h3>第二、三个月(到 " + w(90) + "):把偶然变成固定</h3>" + ul(p.m23.concat(["第 90 天:收入 ÷ 每月支出 = ?  ≥1 继续;<0.5 换路;之间再给 30 天"]));
+    document.getElementById("out").hidden = false;
+    var u = new URL(location.href); [["cash",cash],["burn",burn],["ui",ui],["uim",uim],["path",path],["start",fmt(start)]].forEach(function(kv){ u.searchParams.set(kv[0], kv[1]); });
+    if (push) history.replaceState(null, "", u.toString());
+    a35ev("restart_plan", path + ":" + (months >= 99 ? "inf" : Math.round(months)));
+    document.getElementById("out").scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+  f.addEventListener("submit", function(e){ e.preventDefault(); run(true); });
+  document.getElementById("share").addEventListener("click", function(){ (navigator.clipboard ? navigator.clipboard.writeText(location.href) : Promise.reject()).then(function(){ a35ev("share_click","restart"); alert("已复制,发给自己或家人都行。"); }).catch(function(){ prompt("复制这个链接:", location.href); }); });
+  if (qs.get("cash") && qs.get("burn")) run(false);
+})();
+</script>
+</body>
+</html>

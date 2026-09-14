@@ -11,7 +11,7 @@
 <body>
 <header class="top"><div class="wrap">
   <a class="brand" href="/">三十五<b>后</b></a>
-  <nav class="main"><a href="/cards" aria-current="page">经验卡</a><a href="/post">发一张</a><a href="/paths">变现路径</a><a href="/checklist">失业第一周</a><a href="/about">关于</a></nav>
+  <nav class="main"><a href="/cards" aria-current="page">经验卡</a><a href="/post">发一张</a><a href="/paths">变现路径</a><a href="/restart">二次启动</a><a href="/checklist">失业第一周</a><a href="/about">关于</a></nav>
 </div></header>
 <main class="wrap">
   <h1>经验卡</h1>
@@ -21,6 +21,10 @@
     <button type="button" data-kind="offer" aria-pressed="false">我有经验</button>
     <button type="button" data-kind="need" aria-pressed="false">找有经验的人</button>
     <input type="search" id="q" placeholder="搜城市、行业、关键词" aria-label="搜索">
+  </div>
+  <div class="filters" id="ind">
+    <button type="button" data-ind="" aria-pressed="true">全部行业</button>
+    <button type="button" data-ind="制造与供应链">制造与供应链</button><button type="button" data-ind="互联网与软件">互联网与软件</button><button type="button" data-ind="零售与电商">零售与电商</button><button type="button" data-ind="金融与财务">金融与财务</button><button type="button" data-ind="教育与培训">教育与培训</button><button type="button" data-ind="医疗与健康">医疗与健康</button><button type="button" data-ind="建筑与地产">建筑与地产</button><button type="button" data-ind="物流与运输">物流与运输</button><button type="button" data-ind="政府与事业单位">政府与事业单位</button><button type="button" data-ind="媒体与广告">媒体与广告</button><button type="button" data-ind="餐饮与服务业">餐饮与服务业</button><button type="button" data-ind="其他">其他</button>
   </div>
   <div id="list" class="cards"><div class="empty">读取中…</div></div>
   <p style="margin-top:20px"><a class="cta primary" href="/post" data-ev="post_open" data-l="cards_page">发一张我的卡</a></p>
@@ -33,11 +37,15 @@
 <script src="/app.js"></script>
 <script>
 (function(){
-  var all = []; var kind = ""; var list = document.getElementById("list"); var q = document.getElementById("q");
+  var qs = new URLSearchParams(location.search);
+  var kind = qs.get("kind") === "offer" || qs.get("kind") === "need" ? qs.get("kind") : ""; var ind = qs.get("industry") || ""; var list = document.getElementById("list"); var q = document.getElementById("q");
+  function press(sel, attr, val){ document.querySelectorAll(sel).forEach(function(x){ x.setAttribute("aria-pressed", x.getAttribute(attr) === val ? "true" : "false"); }); }
+  press("#filters button", "data-kind", kind); press("#ind button", "data-ind", ind);
   function apply(){
     var t = q.value.trim().toLowerCase();
     a35loadCards(list, { limit: 200, filter: function(c){
       if (kind && c.kind !== kind) return false;
+      if (ind && c.industry !== ind) return false;
       if (!t) return true;
       return [c.city, c.field, c.headline, c.body, c.offers.join(" "), c.pay].join(" ").toLowerCase().indexOf(t) >= 0;
     }});
@@ -46,6 +54,7 @@
     document.querySelectorAll("#filters button").forEach(function(x){ x.setAttribute("aria-pressed","false"); });
     b.setAttribute("aria-pressed","true"); kind = b.getAttribute("data-kind"); a35ev("filter_use", kind || "all"); apply();
   }); });
+  document.querySelectorAll("#ind button").forEach(function(b){ b.addEventListener("click", function(){ press("#ind button", "data-ind", b.getAttribute("data-ind")); ind = b.getAttribute("data-ind"); a35ev("filter_use", "ind:" + (ind || "all")); apply(); }); });
   var tm; q.addEventListener("input", function(){ clearTimeout(tm); tm = setTimeout(apply, 250); });
   a35stats(); apply();
 })();
