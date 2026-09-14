@@ -3040,3 +3040,49 @@ agiscorecard 读回 `d0`(昨天误报 6)。09-12 也没有再出现 09-11 那台
 「owner 关 Cloudflare Bots 开关,会话不能代做」。本条 Routine 的优先级清单里没有这张表,
 但它每天在 heartbeat 里打印警告。已在日报里向 owner 点名那一条;**不自行改它,也不代结算**
 ——它是别的会话立的规矩,擅自动等于改别人的判定线。
+
+## 2026-09-14(站长指令:「Amodei最新的放缓ai研发文章作为热点加上」)— 快反判定页
+
+**先核实,再动手。** 事实经两轮独立检索交叉确认:Dario Amodei 于 **2026-09-12** 发表
+《We Must Pace the Frontier》,主张行业主动放慢能力提升速度;三步结构(①第三方评估者获得
+常驻的、与员工同级的访问权 ②民主国家的前沿实验室就安全标准与能力增速上限达成共识
+③与威权政府就窄口径禁令协调,自生物武器起);Anthropic 单边承诺第一步(点名 METR);
+**Sam Altman 同日在 X 表态认同并称 OpenAI 会跟进第一步**。
+
+**零编造边界(这一页最关键的约束,写在生成器注释里)**:原文 `darioamodei.com` 与
+CNN / Axios / NBC / explainx 今天在本沙箱**全部 EGRESS_BLOCKED**,而两轮检索摘要给出的
+核心句**措辞互相打架**(一版 "We must slow the pace at which we improve the capabilities of
+AI models",另一版 "We must slow down the pace at which we improve AI model capabilities")。
+**核不到原文就不印逐字引语**——全页一句直接引语都没有,只做转述 + 给出原文链接让读者自己核,
+并在 Sources 段把这件事明说。处理方式与 09-13 的 Metaculus 那页一致。
+
+**为什么不是复述新闻。** 满屏都在报「CEO 说要放缓」,复述毫无价值。本站唯一能加的第三样
+东西是那个别人答不了的问题:**这篇文章把八条判定里的哪一条动了?** 诚实答案是**一条都没动**
+——本站评的是证据不是声明,一个放慢的意向不等于一个被测到的速率变化,Tracker 仍是 62.5/100。
+真正的资产是**说清楚什么才算动了**。
+
+**ship**:新页 `/does-ai-slowdown-change-agi-2027`(生成器 `tools/gen_amodei_pacing.py`)。
+六件套齐:①标题即那个问题 ②首屏答案胶囊先给结论 ③两张表(三步各自「谁得动手/今天什么状态」
++ 六条判定各自「真放缓在这里会长什么样」)④5 条可见 FAQ 与 FAQPage JSON-LD 逐字一致(已断言)
+⑤带日期的一手判定 + 原文外链 ⑥首屏活数字 62.5/100(埋点 `index_click{pacing_live}`)。
+另有 Article / BreadcrumbList JSON-LD、canonical、单 h1、byline。
+**正文写死的六条判定全部与 data.json 断言比对过**,对不上就报错退出。
+
+**一个实质性的独立观点(不是新闻里有的)**:民主国家实验室之间的「限速协议」有个洞,
+而这个洞正是本站八条里已经翻掉的那条——**开源权重的发布方不在谈判桌上**。
+若前沿自我限速而开源持续追赶,差距是从下方收窄,而不是上方停滞。所以第二步单独不可判为「放缓」。
+
+**三条预登记的翻转观察项**(写在页面上,可事后核):评估者访问产生可见产出 / 前沿发布间隔拉长
+**且**基准增益同步走平、连续两季 / 有实验室公布并守住一个具名的能力上限。三条都未发生。
+
+**位置选择上做了一个克制的决定**:没有占用首页横幅。那条横幅现在挂着 `/ai-and-your-job`,
+而那一簇有 **10-03 的预登记判定线**(入口页+血洗页 JS pv ≥30);为给新热点腾位置去掐掉一个
+正在跑的实验,等于自己毁掉自己的判定。改为进 directory 文字行 + 导航 chip
+(`hot_topic_click{directory_pacing|nav_pacing}`)——而且 08-31 实测本来就是**文字行点击率
+远高于横幅**(readnext 13 vs opinion_* 5),所以这是更好的位置,不是退让。
+订阅钩用**新 location `deep_pacing_mid`**,不复用 09-09/09-11 两臂的名字,避免把一个没有基线
+的新页混进 10-07 的位置实验读数里。
+
+**已接线**:sitemap(lastmod 2026-09-14)· llms.txt · `/agi-questions` 支柱页 · 首页两处 ·
+changelog.json · gen_feed / gen_search / gen_agent_surfaces 全部重跑。
+**validate OK(230 页 / 212 URL)**、hreflang 闭合、活数字钩八页一致。

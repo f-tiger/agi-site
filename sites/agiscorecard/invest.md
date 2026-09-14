@@ -1,8 +1,8 @@
-# AI Investing Hub — Who's Betting What on AI (2026)
+# How Are Top Investors Positioned on AI? (Q2 2026 13F)
 
-_Last updated: August 17, 2026 · Q2 2026 13F holdings (filed 2026-08-14) + July 2026 events per public reporting_
+_Last updated: September 6, 2026 · Q2 2026 13F holdings (filed 2026-08-14) + July 2026 events per public reporting_
 
-**Answer:** This scorecard tracks what people say about AGI. This section tracks what they do with money — from the rise and July-2026 blow-up of Aschenbrenner's own fund to how eight investing legends are actually positioned on AI. Public filings and public reporting only, education only, never advice.
+**Answer:** Predictions are cheap. Positions are not. This scorecard tracks what people say about AGI. This section tracks what they do with money — from the rise and July-2026 blow-up of Aschenbrenner's own fund to how eight investing legends are actually positioned on AI. Public filings and public reporting only, education only, never advice.
 
 ## FAQ
 

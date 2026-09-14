@@ -3,7 +3,7 @@
 > Independent tracker of the predictions in Leopold Aschenbrenner's "Situational
 > Awareness". Every page below: title, dated answer capsule, FAQ. Full dataset with
 > verdicts, evidence and flip conditions: https://agiscorecard.com/data.json (CC BY 4.0).
-> Thesis Tracker: 62.5/100 as of 2026-08-08. Index: https://agiscorecard.com/llms.txt
+> Thesis Tracker: 62.5/100 as of 2026-09-06. Index: https://agiscorecard.com/llms.txt
 > Each page also has a Markdown mirror at its URL + ".md"
 > (e.g. https://agiscorecard.com/what-is-agi.md).
 
@@ -21,6 +21,30 @@ URL: https://agiscorecard.com/agi-questions
 Every question the scorecard answers, in one place · Updated as verdicts change
 
 The AGI Scorecard grades every major prediction from Leopold Aschenbrenner's Situational Awareness against reality — and answers the questions people actually ask about AGI. Here's the full index.
+
+---
+
+## Does Amodei's AI slowdown change the 2027 AGI odds?
+
+URL: https://agiscorecard.com/does-ai-slowdown-change-agi-2027
+Last updated: September 14, 2026 · Updated as verdicts change
+
+No — as of September 14, 2026, none of the eight graded predictions moved. On September 12 Anthropic CEO Dario Amodei published We Must Pace the Frontier, arguing the industry should deliberately slow how fast model capabilities advance; Sam Altman endorsed it the same day. This site grades evidence, not announcements. A stated intention to pace the frontier is not a measured change in the rate of capability gain, so the Thesis Tracker still reads 62.5/100. What follows is the part the news coverage skips: exactly what would have to show up in the data for this to move a verdict.
+
+Q: Does Amodei's slowdown essay change the odds of AGI by 2027?
+A: Not yet. As of September 14, 2026 none of the eight graded predictions moved and the Thesis Tracker still reads 62.5/100. The essay states an intention to pace capability growth; the scorecard grades measured evidence, and no measured rate has changed.
+
+Q: What did Dario Amodei actually propose?
+A: A three-part plan published September 12, 2026: give third-party evaluators permanent employee-level access; agree common safety standards and limits on unchecked capability gain among labs in democracies; and negotiate narrow prohibitions with authoritarian governments, starting with bioweapons.
+
+Q: Did OpenAI agree?
+A: Sam Altman endorsed the essay the same day and said OpenAI would also give independent evaluators employee-like access. That matches step one, the unilateral part. Steps two and three remain proposals.
+
+Q: Is the AI industry actually slowing down?
+A: No measurement shows it. Compute is still scaling at roughly 0.5 orders of magnitude per year and capex has exceeded the original forecast. A slowdown would show as release cadence stretching and benchmark gains flattening together, for consecutive quarters — which has not happened.
+
+Q: Why doesn't an announcement move a verdict on this site?
+A: Because every verdict has a published flip condition tied to observable evidence. If statements of intent could move the score, the score would track press releases rather than capability, and its history would stop being auditable.
 
 ---
 
@@ -87,12 +111,12 @@ A: Yes — free for any use, commercial or not. The underlying dataset is CC BY 
 ## AGI-2027 Thesis Tracker: One Score for the 2027 Bet
 
 URL: https://agiscorecard.com/progress-index
-Last updated: August 8, 2026 · Updated as verdicts change
+Last updated: September 6, 2026 · Updated as verdicts change
 
 The AGI-2027 thesis is currently tracking at 62.5/100. The Thesis Tracker is a single number for how much of Leopold Aschenbrenner’s Situational Awareness is holding up — a transparent mean of the 8 graded verdicts. It moves only when a verdict changes, and every verdict carries a pre-registered flip condition. No probability is claimed; it is an editorial composite you can audit line by line below.
 
 Q: What is the AGI-2027 Thesis Tracker?
-A: A single 0-100 score of how much of Aschenbrenner's Situational Awareness thesis is holding up, computed as the mean of the 8 graded verdict weights. As of 2026-08-08 it is 62.5/100. It is an editorial composite of published verdicts, not a probability of AGI.
+A: A single 0-100 score of how much of Aschenbrenner's Situational Awareness thesis is holding up, computed as the mean of the 8 graded verdict weights. As of 2026-09-06 it is 62.5/100. It is an editorial composite of published verdicts, not a probability of AGI.
 
 Q: How is the score calculated?
 A: Each of the 8 predictions contributes by verdict: supporting (On track/Exceeded/Holding) = 1.0, unresolved (Open/Pending) = 0.5, refuting (Wrong) = 0.0. The mean times 100 is the score. The full breakdown and machine-readable data are public.
@@ -170,7 +194,7 @@ A: Roughly a third of Situational Awareness's policy program ('Lock Down the Lab
 ## Aschenbrenner vs Metaculus: AGI Timeline Comparison (2026)
 
 URL: https://agiscorecard.com/aschenbrenner-vs-metaculus
-Last updated: June 30, 2026 · Updated as verdicts change
+Last updated: September 13, 2026 · Updated as verdicts change
 
 A six-year gap. Aschenbrenner predicts AGI by 2027. The Metaculus community median is 50% by 2033 (25% by 2029, as of early 2026). Aschenbrenner is far more aggressive than the aggregated forecaster crowd, though both have moved earlier over time.
 
@@ -206,7 +230,7 @@ A: Partly. Its compute, capex, and capability predictions have largely held; its
 ## When Will AGI Arrive? Every Major Forecast Compared (2026)
 
 URL: https://agiscorecard.com/when-will-agi-arrive
-Last updated: August 29, 2026 · Updated as verdicts change
+Last updated: September 6, 2026 · Updated as verdicts change
 
 No consensus — but the range has narrowed sharply. Public AGI forecasts now cluster between 2026 and 2047: Musk says 2026, Aschenbrenner 2027, Hassabis ~50% by 2030, Metaculus 50% by 2033, and academic surveys 50% by 2047. Expert medians have compressed from roughly 2060 to roughly 2033 in about six years.
 
@@ -1418,9 +1442,9 @@ A: Prediction markets price announcement events (e.g. 'OpenAI announces AGI'). T
 ## AGI Timeline: Prediction Markets vs Evidence
 
 URL: https://agiscorecard.com/agi-odds-vs-evidence
-Last updated: August 31, 2026 · Updated as verdicts change
+Last updated: September 7, 2026 · Updated as verdicts change
 
-Prediction markets and this scorecard are measuring different things — and the difference is the insight. Polymarket prices an announcement event; the scorecard grades a capability claim against pre-registered criteria. Issue #2: in the first week both sides were measured with timestamps, the market's Yes side more than doubled — 7.5% → 18.0% — while the evidence composite did not move at all (62.5/100). That divergence is the story.
+Prediction markets and this scorecard are measuring different things — and the difference is the insight. Polymarket prices an announcement event; the scorecard grades a capability claim against pre-registered criteria. Issue #3 of a running comparison: the market's AGI-by-2027 contract vs the Thesis Tracker's 62.5/100 evidence read.
 
 Q: Is the Thesis Tracker score a probability of AGI?
 A: No. 62.5/100 is the mean of 8 graded verdict weights — an auditable evidence composite, not a forecast. Prediction-market prices are crowd probabilities of specific contract wordings. The two answer different questions.
@@ -1429,7 +1453,7 @@ Q: Why compare them at all?
 A: Because the gap is informative. An announcement-priced market and a capability-graded ledger diverging tells you the crowd expects labeling to run ahead of substance (or behind it). Traders need pre-registered resolution criteria; that is exactly what this site publishes.
 
 Q: How current are the odds shown?
-A: Each issue quotes a dated snapshot with a link to the live market — never a 'current' price. Since 2026-08-24 the odds are fetched automatically once a week and carry an exact UTC timestamp and the market's traded volume, so a reading can no longer drift into being quoted as if it were live. The series is reviewed weekly but only publishes a new issue when one side actually moves; every review, including the quiet ones, is logged on the page.
+A: Each issue quotes a dated snapshot with a link to the live market — never a 'current' price. Since 2026-09-07 the odds are fetched automatically once a week and carry an exact UTC timestamp and the market's traded volume, so a reading can no longer drift into being quoted as if it were live. The series is reviewed weekly but only publishes a new issue when one side actually moves; every review, including the quiet ones, is logged on the page.
 
 ---
 
@@ -1522,12 +1546,12 @@ You almost certainly cannot buy the AGI-2027 thesis. It scores 62.5/100 today. A
 
 ---
 
-## AI Investing Hub — Who's Betting What on AI (2026)
+## How Are Top Investors Positioned on AI? (Q2 2026 13F)
 
 URL: https://agiscorecard.com/invest
-Last updated: August 17, 2026 · Q2 2026 13F holdings (filed 2026-08-14) + July 2026 events per public reporting
+Last updated: September 6, 2026 · Q2 2026 13F holdings (filed 2026-08-14) + July 2026 events per public reporting
 
-This scorecard tracks what people say about AGI. This section tracks what they do with money — from the rise and July-2026 blow-up of Aschenbrenner's own fund to how eight investing legends are actually positioned on AI. Public filings and public reporting only, education only, never advice.
+Predictions are cheap. Positions are not. This scorecard tracks what people say about AGI. This section tracks what they do with money — from the rise and July-2026 blow-up of Aschenbrenner's own fund to how eight investing legends are actually positioned on AI. Public filings and public reporting only, education only, never advice.
 
 Q: How are the biggest investors positioned on AI in 2026?
 A: Per Q2 2026 SEC 13F filings (holdings as of June 30, filed August 14): Warren Buffett's Berkshire added Alphabet again — now 12.6% of the book across both share classes, its clearest AI bet — while staying out of Amazon; Cathie Wood is aggressively long AI infrastructure and next-gen compute; David Tepper leans bullish with Amazon at 15.4% his largest position; Bill Ackman remains bullish per his latest Q1 filing; Druckenmiller, Duan Yongping and Philippe Laffont are cautious; Michael Burry is the clearest bear.
@@ -1564,6 +1588,15 @@ URL: https://agiscorecard.com/do-ai-trading-agents-work
 Last updated: August 24, 2026 · Base rates, dated sources, and a written flip condition · Not investment advice
 
 No audited public evidence that they do — and every documented base rate puts the burden of proof on the vendor. 2026's funding wave into "natural language → strategy → backtest → execution" platforms is real. But as of August 2026 no retail AI-trading-agent vendor publishes an independently verifiable live track record of user returns. What the literature documents instead: active retail traders overwhelmingly lose money, published strategies decay once known, and backtests — the industry's main sales exhibit — can be manufactured by trying enough variants. This page states exactly what evidence would flip that verdict.
+
+---
+
+## AI Trading Ledger: Eleven Bots, One Pre-Registered Public Track Record
+
+URL: https://agiscorecard.com/ai-trading-ledger
+Pre-registered September 5, 2026 · Paper only · Rules fixed before the start · Read date March 8, 2027 · Not investment advice
+
+Status: loading the ledger… Do AI trading agents make money? answers "no audited public evidence" and tells vendors what would flip it: positions timestamped before outcomes, every result graded, misses never deleted, methodology fixed in advance. This page is that record, kept by us. Eleven arms start with the same $10,000 of paper money on September 8, 2026 and are recomputed every trading day from the same adjusted closes by a public workflow — no human, no discretion, no edits after the fact.
 
 ---
 
@@ -1606,7 +1639,7 @@ The market sells AI-visibility audits for $1,500–$15,000 — and admits many a
 ## The Paradigm Bet: A Public, Pre-Registered Experiment
 
 URL: https://agiscorecard.com/paradigm-experiment
-Opened: August 23, 2026 · Audited monthly (5th) · Entries only change with a dated note
+Opened: August 23, 2026 · Audited monthly (5th) — last audit 2026-09-05, no falsifier triggered · Entries only change with a dated note
 
 This page is an anti-hindsight device. Every "I bought early" legend is written after the fact — including the most famous one, which our audit found unverifiable. So we are running the experiment the opposite way: a small, fixed experimental allocation; candidates screened by six pre-registered criteria; kill conditions filed here before entry; monthly audits with dated notes. The honest base rates say the modal outcome is a loss — per-cohort data shows winners were category leaders, NFT-2021 produced zero, and 73–81% of retail lost money even in the winning asset (BIS). If this ledger ends red, that is a result, not an embarrassment. Nothing here is investment advice.
 

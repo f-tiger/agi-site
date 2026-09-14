@@ -1,6 +1,6 @@
 # Aschenbrenner vs Metaculus: AGI Timeline Comparison (2026)
 
-_Last updated: June 30, 2026 · Updated as verdicts change_
+_Last updated: September 13, 2026 · Updated as verdicts change_
 
 **Answer:** A six-year gap. Aschenbrenner predicts AGI by 2027. The Metaculus community median is 50% by 2033 (25% by 2029, as of early 2026). Aschenbrenner is far more aggressive than the aggregated forecaster crowd, though both have moved earlier over time.
 

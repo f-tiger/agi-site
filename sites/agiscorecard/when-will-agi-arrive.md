@@ -1,6 +1,6 @@
 # When Will AGI Arrive? Every Major Forecast Compared (2026)
 
-_Last updated: August 29, 2026 · Updated as verdicts change_
+_Last updated: September 6, 2026 · Updated as verdicts change_
 
 **Answer:** No consensus — but the range has narrowed sharply. Public AGI forecasts now cluster between 2026 and 2047: Musk says 2026, Aschenbrenner 2027, Hassabis ~50% by 2030, Metaculus 50% by 2033, and academic surveys 50% by 2047. Expert medians have compressed from roughly 2060 to roughly 2033 in about six years.
 
