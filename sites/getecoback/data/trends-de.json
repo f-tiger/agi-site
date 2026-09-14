@@ -1,55 +1,56 @@
 {
  "ok": true,
- "fetched": "2026-09-13",
+ "fetched": "2026-09-14",
  "source": "https://trends.google.com/trending/rss?geo=DE",
- "matched": [],
+ "matched": [
+  {
+   "title": "ölpreis",
+   "traffic": "5000+"
+  }
+ ],
  "top": [
   {
-   "title": "wirtschaftswoche",
+   "title": "meghan, duchess of sussex",
+   "traffic": "2000+"
+  },
+  {
+   "title": "sensor",
+   "traffic": "200+"
+  },
+  {
+   "title": "ölpreis",
+   "traffic": "5000+"
+  },
+  {
+   "title": "bennet wiegert",
+   "traffic": "2000+"
+  },
+  {
+   "title": "деньги",
    "traffic": "500+"
   },
   {
-   "title": "aufstand",
+   "title": "joelina drews",
+   "traffic": "2000+"
+  },
+  {
+   "title": "spieltag",
+   "traffic": "2000+"
+  },
+  {
+   "title": "brian hickerson",
    "traffic": "200+"
   },
   {
-   "title": "yasin mohamed",
+   "title": "verbraucher",
    "traffic": "200+"
   },
   {
-   "title": "u-boot",
-   "traffic": "500+"
-  },
-  {
-   "title": "schwarzes meer",
-   "traffic": "1000+"
-  },
-  {
-   "title": "sport1 live",
-   "traffic": "1000+"
-  },
-  {
-   "title": "aktienwelt360",
+   "title": "explosion",
    "traffic": "200+"
-  },
-  {
-   "title": "dakota johnson",
-   "traffic": "200+"
-  },
-  {
-   "title": "raphinha",
-   "traffic": "200+"
-  },
-  {
-   "title": "zug",
-   "traffic": "1000+"
   }
  ],
  "history": [
-  {
-   "d": "2026-08-30",
-   "matched": []
-  },
   {
    "d": "2026-08-31",
    "matched": []
@@ -113,6 +114,12 @@
   {
    "d": "2026-09-13",
    "matched": []
+  },
+  {
+   "d": "2026-09-14",
+   "matched": [
+    "ölpreis"
+   ]
   }
  ]
 }
