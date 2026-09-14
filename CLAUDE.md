@@ -524,5 +524,7 @@ owner 决策卡、事实表)。
   `BOT_MAX_USD_PER_RUN` 硬停(缺省 $3);`ANTHROPIC_API_KEY` 存在即用 Claude 5(Sonnet 预测 / Haiku 解析)。
   **owner 不必等赞助额度**:加自己的 key + `METACULUS_BOT_ENABLED=1` 即开跑;先 dispatch `dry_run=true` 看
   `questions touched: main=N`。
+  **09-14 干跑已验证**:33121 拉到 1 题、花费上限生效、LLM 在代理额度上按预期失败;第三方时间表:热身 MiniBench 09-21、
+  Fall 主赛题 09-28 起开放——**owner 在 09-28 前把 key 加好,赛季一开题就在场**。
 - **owner 四件事按每分钟产出排序**:①eco 付款/税务信息(2 分钟,唯一已发生的营收到账)②Metaculus key + 变量(3 分钟)
   ③Stripe 五个值(10 分钟)④Reddit app 两个 Secret(5 分钟)。

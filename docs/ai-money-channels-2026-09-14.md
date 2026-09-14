@@ -49,6 +49,15 @@ owner 原话:「你调研分析并完善 ai 时代赚钱通道,现在 agi 站点
   日志打印 `questions touched: main=N minibench=M; spend this run: $x`;main=0 时打 warning 提示赛季 id。
 - `metaculus-bot.yml`:三个变量透传。README 新节「不等赞助额度」。
 
+## 三·五、干跑验证(2026-09-14 04:17 UTC,run 34805385626,dry_run)
+
+- 日志:`tournaments: main=33121 minibench=minibench; spend cap per run: $3.00` → 花费上限的库类存在,硬停生效。
+- `Retrieved 1 questions from tournament 33121` → **Fall 2026 赛季已能拉到题**(此时只有 1 道:第三方整理的时间表说
+  Fall 主赛题从 **2026-09-28** 起批量开放,热身 MiniBench **2026-09-21** 开放;以 Metaculus 官方页为准,沙箱打不开它)。
+- `minibench` 常量返回 0 题 → 热身轮未开;若 09-21 后仍为 0,把变量 `BOT_MINIBENCH_ID` 设为当期轮次的 project id
+  (搜索结果里出现过 33122,**未核实**,不写进缺省)。
+- LLM 步骤按预期在代理额度上失败(`no allowance for model gpt-4o`)——这正是 owner 加自己 key 要解决的那一步。
+
 ## 四、owner 今天能做的四件事,按每分钟产出排序
 
 1. **eco PartnerNet / US Associates 的付款与税务信息**(2 分钟)——唯一已经发生的营收从「累计中」变成「到账」。

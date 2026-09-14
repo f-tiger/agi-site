@@ -77,7 +77,9 @@ API 通、成功拉到 10 道题,但 10 道全挂在同一个错上:
    `MonetaryCostManager` 硬停;每 2 小时一跑,最坏 $36/天,实际远低——只有新题才会被算,已答过的题跳过)。
 3. **赛季 id**:代码缺省 **Fall 2026 = 33121**(库 0.2.92 的常量还指向已结束的 Summer 33022,这是 09-14 发现的
    第二个「有额度也拿不到钱」的坑);换季只改变量 `BOT_TOURNAMENT_ID`;MiniBench 用 `BOT_MINIBENCH_ID`。
-4. 先 `workflow_dispatch` 一次 `dry_run=true` 看日志里 `questions touched: main=N`——N>0 才说明打对了赛季;
+4. 先 `workflow_dispatch` 一次 `dry_run=true` 看日志里 `questions touched: main=N`——N>0 才说明打对了赛季
+   (09-14 干跑:main=1、minibench=0;第三方时间表:热身 MiniBench 09-21 开、Fall 主赛题 09-28 起批量开;
+   MiniBench 若一直 0,把变量 `BOT_MINIBENCH_ID` 设成当期轮次 id);
    再开变量。**费用口径**:每题约 5 次预测 + 1 次研究,Sonnet 级别估 $0,05–0,20/题;一季 300–500 题 + MiniBench
    8 期×60 题 ≈ $50–150/季,对应奖池 $50k + $8k;2026 Q2 冠军 $7 550、按人头中位数≈$0——**这是右偏彩票,
    不是工资**,判定线「未进前 1/3 下季不续」不改。
