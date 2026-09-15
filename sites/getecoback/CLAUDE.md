@@ -1853,3 +1853,70 @@ ersatzteileshop.de、sos-zubehoer.de)、厂商(Bosch)、论坛(HaustechnikDialog
 8% 走 /en/ 为远期(需先改「EN 区一贯 amazon.de」契约,按页切 ecoback0d-20,探针过线出薄
 PRD 再动)。手表/美妆因品牌不搭**不进本站**。纪律:探针(probes-de-rising.json)过线 →
 KGR → 薄 PRD → 快反规则建面;板块提权为一级导航仍按舰队规则等首个真实转化。
+
+## 冬季通风对页:把全站最强 AI 资产复制到下一个季节(2026-09-15,owner:「已开通全权限网络访问,再做一次升级」)
+
+**先说网络这件事,免得下一轮再试一遍**:全权限确实打开了一些东西,但**没有打开最想要的那扇门**。
+实测(会话沙箱,2026-09-15):
+- ❌ **amazon.de 商品页仍读不到**——`/dp/B0BZWP26GD` 返回 **HTTP 200 但是 captcha 墙**(`productTitle` 不存在,
+  页面含 "automated access")。**EX105 那条 owner 待办没有被解掉,别以为拿到网络就能自助核验 ASIN。**
+  camelcamelcamel 403、Geizhals 403、idealo 403,同一堵墙。
+- ❌ **搜索引擎结果不可用且会骗人**:`bing.com/search` 返回 200,但**内容与查询无关** ——
+  `site:getecoback.com` 给的是某教堂网站、`site:hausjournal.net` 给的是 calguns.net、
+  德语钱线词给的是 support.google.com。**是对照组测出来的**(连查四条,每条都换一个不相干域)。
+  → **Bing 收录率仍然只能靠 owner 的 Bing WMT**,`eco-en-qm-bing-1012` / `eco-it-pilot-1027` 的口径不变。
+  这也再次坐实 08-31 那句「`site:` 运算符在本工具不可靠,未当证据」。
+- ✅ 真打开的两样:**Google Trends RSS**(21 KB 真数据,当日德国热搜含 `kaltfront`)、
+  **Cloudflare MCP 的 D1 直查**——`d1_database_query` 能读 `ecoback-events`,
+  **根手册那句「仓里两个 token 都没有 D1 read 权限」对 MCP 这条路不成立**,本轮钱线数字全部是 D1 现查。
+
+**D1 现查(28 天,`ua_class='human'`,2026-09-15)**:真人 pv 532 · affiliate_click 55 ·
+`/dp/` 6 = **10,9%**(t0 ~1%,判定线 09-28 ≥15%,已远离 <5% 的判负线)· amazon.de 53 / amazon.com 1 ·
+国家 DE 37 / US 4 / AT 4 / ES 3 / PT 2 / IT 2。**季节正在翻面**:7 天对比 `heat_now` 76→12、
+`feuchte_now` 1→9、`btu_calc` 2→7。
+
+**本轮的真发现(一条,决定了做什么)**:**`/en/guide/portable-ac-tilt-and-turn-windows.html`
+一页吃掉全站 AI 引荐的 52%**(23 条里 12 条,全部来自 chatgpt.com)。而且它**没有随季节衰减**——
+8 月 7 条、9 月前半月已 9 条。它是一张**问题形状 + 欧洲专属实物 + 物理可答**的英文页;
+**它讲的 Kipp 位在冬天恰恰是反面教材**(持续小开口 + 把窗框/洞口凉透 = 霉点长在洞口),
+而全站(德语英语都算)**没有一张冬季通风页**:只有 `richtig-lueften-bei-hitze`(夏)与
+`keller-lueften-sommer`(夏)。EN 面的取暖/潮湿侧只有 08-28 那 13 张 qm 模板梯,**一张问题页都没有**。
+
+**做了什么**:上线**德英对页**(hreflang 成组,不做 it):
+`/guide/richtig-lueften-im-winter.html` + `/en/guide/tilt-and-turn-windows-winter-condensation.html`。
+- **每个数字都溯源或可复算**:40–60 / 60–70 / >70 三档、表面 70–80% 起霉、20 °C+60% 露点 12 °C、
+  16 °C 卧室线,全部取自站内已发布且互相一致的 `fenster-beschlagen-innen` / `schimmel-wand-kommt-wieder` /
+  `luftentfeuchter-gegen-schimmel`;新增的两个数由 Magnus 公式现算并在页上写明算法。
+- **页面的脊梁是这一条**:`20 °C / 50% 的舒适房间,碰到 14 °C 的墙面,墙面处是 73%` —— 已过站内自己的
+  70% 起霉线。**「湿度计显示 50% 为什么还长霉」这个问题第一次在站内有了数字答案。**
+- **复用而非新造**:露点计算器沿用 `keller-lueften-sommer` 的 `dew()` 与**已在白名单的
+  `taupunkt_check` 事件**(冬季版改问「房间空气 vs 最冷表面」),零新事件、零 worker 改动。
+- 双向挂上夏季那张页(同一扇窗、相反季节),两页互链。
+
+**一个必须记下来的自我纠正(方法论,不只是这次)**:初稿把「墙面相对湿度」按**绝对湿度比**算成 **72%**,
+浏览器实跑计算器返回 **73%** —— **计算器是对的,我的正文是错的**:相对湿度的定义是
+**水汽分压比 `e/es(T)`**,不是 g/m³ 之比。同一个错误还污染了「冷空气进屋后的湿度」整张表
+(18/22/31/43 → 正确值 **16/21/30/42**)。两页正文 + 可见 FAQ + JSON-LD 已逐处改正,零残留。
+**教训:页面上的数字必须和页面上的计算器同一套定义;是 Playwright 实跑而不是审稿抓到的。**
+
+**验证**:13 步流水线 + 11 道闸门全绿(faq/crumb parity、adlabel、meta、usswitch/usshelf、cited_figures…);
+Playwright 实跑两页 —— **pageerror 0、390px 零横滚、计算器 73% 与正文一致、`taupunkt_check` 正常入 dataLayer**。
+`device_of()` 加了 `lueften-im-winter` / `winter-condensation` 两个 token(否则落 "ac",
+就是 08-28「EN drying-clothes 挂 AC toppick + 制冷 sizer」那个原样复现的坑);
+两页实测拿到的是**除湿货架(Comfee MDDF-20DEN7 / MeacoDry Arete One 20L·25L)**,
+正文零 BTU 零 heatwave。**部署自检加了「事故形状」断言**:两页必须含 `MeacoDry` 且**必须不含 `EB_SIZER`**。
+巧合但值得记:货架上的 MeacoDry 20L/25L 正是本周 rising 里的 `meaco arete one 20l`(v=49800)与
+`meacodry arete one 25l`(v=21350)。
+
+**判定线(已进 `data/fleet-bets.json`:`eco-ai-twin-1013`,2026-10-13,28 天)**:
+两页合计 **AI 引荐 ≥1 或 真人 pv ≥15**(t0 = 0/0)→「同一读者、同一页型、下一个季节」能继承 AI 引用,
+按同法做第二对;**AI 引荐 =0 且 pv <5 → tilt-and-turn 那 52% 是该页自身的年龄/运气,不是可复制的页型,
+停止造「AI 形状」的孪生页**。
+
+**刻意没做,别在下一轮重做**:
+- **不出 `infrarotheizung lüge` 页**(rising v=15850,很诱人)——站内 `infrarotheizung-ratgeber`
+  已经把这件事讲对了(「100% 转成热 = 每度热付一度电」,3.279 词,07-10 发布),再开一张就是翻炒。
+- **不做 /it/ 第三语**:意大利语试点判死线 10-27 还没到,先出结果再谈扩。
+- **不碰 eco 12 条 underserved 的标题改写**:09-15 的结论没变(Google 28 天引荐 = 0)。
+- **不因为 per-page 转化率差异动页**:55 次点击的盘子里,`klimaanlage-dachfenster` 的「71,4% 转化」
+  是 7 次 pv 撑的,属噪声,不是信号。

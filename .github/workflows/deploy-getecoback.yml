@@ -235,6 +235,25 @@ jobs:
             *) echo "::error::/api/geo must be no-store, got: ${geo_cc:-<none>}"; fail=1 ;;
           esac
           check "https://getecoback.com/guide/klimaanlage-wohnmobil.html" "EB_USSWITCH"
+          # Winter-airing pair (2026-09-15). Both URLs are new, so a plain 200
+          # here is already red against the previous build. The assertion that
+          # matters is the classification, not the 200: these are humidity pages
+          # whose slugs name a window and a season, and the documented failure
+          # mode for exactly that shape is falling through device_of() to "ac" —
+          # which would put a cooling sizer and an air-conditioner shelf on a
+          # page about condensation in January. Assert the dehumidifier shelf is
+          # there AND the cooling sizer is not.
+          check "https://getecoback.com/guide/richtig-lueften-im-winter.html" "MeacoDry"
+          check "https://getecoback.com/en/guide/tilt-and-turn-windows-winter-condensation.html" "MeacoDry"
+          for u in "https://getecoback.com/guide/richtig-lueften-im-winter.html" \
+                   "https://getecoback.com/en/guide/tilt-and-turn-windows-winter-condensation.html"; do
+            if curl -sL --max-time 20 "$u" | grep -q "EB_SIZER"; then
+              echo "::error::$u carries the cooling sizer — it has been misfiled as an 'ac' page"
+              fail=1
+            else
+              echo "OK $u has no cooling sizer"
+            fi
+          done
           # US shelf (2026-09-15). Both strings are absent from the previous
           # build, so both can actually fail. "Midea Duo" was the obvious second
           # assertion and was rejected: the EB_USMARKET bridge already names it,

@@ -55,6 +55,7 @@ CAT_OF = {
     "luftentfeuchter-ratgeber": "luftqualitaet",
     "wohnmobil-feuchtigkeit-winter": "luftqualitaet",
     "fenster-beschlagen-innen": "luftqualitaet",
+    "richtig-lueften-im-winter": "luftqualitaet",
     "luftreiniger-ratgeber": "luftqualitaet",
     "klimaanlage-reinigen": "luftqualitaet",
     "klimaanlage-stromkosten": "energie-sparen",
@@ -902,6 +903,13 @@ def device_of(slug):
             # and needs filters and cleaner. A substring test would have moved
             # this site's best search-driven page into the wrong device family.
             or s.startswith(("schimmel-", "stockflecken-"))
+            # Winter-airing pair (2026-09-15). Both slugs are humidity pages
+            # whose tokens name a window and a season, so without this they
+            # fall through to "ac" and a page about condensation in January
+            # would carry the heatwave band and cooling products — the same
+            # misfile that put an AC sizer on the EN drying-clothes page.
+            or "lueften-im-winter" in s
+            or "winter-condensation" in s
             # Humidifier pages live in the humidity family too: routing them to
             # "dehum" keeps every ac-only component (sizer, heat-energy box,
             # climate box) off the page; the card grid itself is overridden by
