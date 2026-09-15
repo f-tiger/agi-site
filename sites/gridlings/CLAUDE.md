@@ -1120,8 +1120,9 @@ lagged / vk / ok / xiaomi / microsoft_store / huawei / jio_games)。三条硬结
 
 ## Playgama 把我们分流到 MCP 沙盒通道(2026-09-15,owner 发来后台截图)
 
-**七款全部被拒出主目录**(GHOSTLINE 的 Active Platforms:`Playgama · Rejected · Updated 1d ago`),
-但 09-14 的评论**不是**那句无信息量的 "overall quality" 模板,而是按类别分流:
+**GHOSTLINE 与 SINGULARITY 两款被拒,其余五款仍在 `NEW` 队列、零评论**——09-15 拿到后台读取权限后
+更正:**先前据两张截图写成「七款全部被拒」是错的**(拿两个样本当全集)。09-14 那条评论**不是**
+那句无信息量的 "overall quality" 模板,而是按类别分流:
 
 > For games created with AI, we offer a dedicated way to test them on Playgama before they can
 > be considered for our main catalog. Publishing through Playgama MCP allows you to get your
@@ -1151,3 +1152,32 @@ CG」的全部理由就是这个);这一次**闸门从审美判断换成了可�
 **判定线**`gridlings-playgama-mcp-1027` 已进 `data/fleet-bets.json`,取代 09-08 那条 10-06
 「七款至少一款上线主目录」(已被 09-14 否定地回答)。**owner 未授权 OAuth 则到期记 insufficient,
 不记 lost**——那是没开始,不是输了。
+
+## 投稿表单也是产物:后台实读查出两个我们自己的缺陷(2026-09-15)
+
+owner 授权 Playgama 连接器后第一次读到后台本身。**先前只看截图就把「两款被拒」推断成「七款全拒」,
+这是拿两个样本当全集**——后台实读是 GHOSTLINE / SINGULARITY 两款 REJECTED,PROMPT / OVERFIT /
+MIMIC / OVERSEER / MINIMA 五款仍是 `NEW` 且**零评论**。截图时间与后台 UTC 差 4 小时是面板本地时区,
+**同一个事件不是两轮**。
+
+**查出的两个缺陷都不是平台的问题,是我们发出去的:**
+1. **SINGULARITY 的 `howToPlayText` 是 PROMPT 的操作说明,一字不差**——一个放置类经营游戏的表单里
+   写着「写程序收集宝石抵达出口 / FWD、LEFT、RIGHT / 按 RUN」。**不能声称它导致了拒稿**(理由白纸
+   黑字是 AI 分流),但它正是本手册 09-05/06 审计里「文案与实现不符」那一类,**上次是在页面上抓到的,
+   这次它一路发到了平台表单里**。已按游戏自己的可见 UI 重写,并核实 SINGULARITY **没有任何 keydown
+   处理器**,如实写「只有触控与鼠标,没有键盘」。
+2. **七款的 `engine` 全填 `unity`,而它们全是纯 JavaScript**(平台 bridge 自己上报
+   `bridgeEngine: "javascript"`,表单 enum 里有 `js`)。两款被拒的已改 `js`。
+
+**由此固定两条纪律:**
+- **投稿表单与商店文案是对外产物,零编造与「逐句能指出源码出处」照样适用**;发之前把
+  `howToPlayText` 与游戏的可见 UI、按钮标签、`e.code` 分支逐条对一遍。**跨游戏复制粘贴表单是
+  这类错误的唯一来源。**
+- **在审(`NEW`)的表单一律不碰**:`update_application_form` 虽是部分保存且不会自动提交,但改表单
+  等于改审核对象,而 `confirm_archive_upload` 会把新包放进表单。要改等结果出来。被拒的可以改。
+
+**沙盒发布不需要重新上传**:两款被拒的游戏包与三个封面槽 09-07/09-08 就在后台了
+(GHOSTLINE `cmtrgnt5o3mudhg0hqw6icbti` 218 KB / SINGULARITY `cmtsqomzh05dhmn0hpvax0me8` 213 KB,
+均 DONE,`preview` / `preview_vertical` / `icon` 齐全),`get_sandbox_state` 查到两款都是
+`publish.allowed: true`、`site: null`。**但封面必须在发布前就位这条不变,理由比想象的硬**:
+分享链接的预览图**由第一个打开它的人缓存,之后谁也刷新不了**;缺封面不拒绝发布,只是永久难看。

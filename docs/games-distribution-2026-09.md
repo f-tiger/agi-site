@@ -289,8 +289,9 @@ SINGULARITY;GHOSTLINE 的 Active Platforms 显示 `Playgama · Rejected · Updat
 ## 对 09-08 判断的更正
 
 那份文档把 Playgama 称作「全舰队优先级最高的一条渠道」,并预登记 10-06「七款里至少一款上线」。
-**这条线已被提前、否定地回答**:七款全部被分流出主目录。渠道没死,但形状变了——**主目录不是
-入口,沙盒才是**;判定线相应换成台账里的 `gridlings-playgama-mcp-1027`。
+**这条线已被提前、否定地回答**(见下面第十节的更正:是两款被拒、五款仍在队列,不是七款全拒)。
+渠道没死,但形状变了——**主目录不是入口,沙盒才是**;判定线相应换成台账里的
+`gridlings-playgama-mcp-1027`。
 09-08 那节第二条杠杆(一个 Bridge 构建 = 19 个平台)**不受影响**:Bridge 判定表是 SDK 源码里的
 事实,与 Playgama 收不收我们的主目录无关。
 
@@ -315,3 +316,63 @@ SINGULARITY;GHOSTLINE 的 Active Platforms 显示 `Playgama · Rejected · Updat
   它根本用不到的依赖而失败,并且**退出码 0、`dist-store/<slug>/` 是空的**——一个"成功了但什么都
   没产出"的命令。现在只有真要编码视频时才解析 ffmpeg。已实测 PROMPT 出四张封面
   (1920×1080 / 1080×1920 / 800×800 / 630×500,最大 0.64 MB,全部远低于 10 MB 限制)。
+
+---
+
+# 十、更正与后台实读:不是七款全拒,是两款被拒、五款还在队列(2026-09-15)
+
+owner 授权 Playgama Developer Cabinet 连接器后,**第一次读到后台本身**,而不是只看截图。
+**上一节里"七款全部被分流出主目录"这句话是错的,由本节取代。** 截图只拍到了收到评论的那两款,
+我据此推断到了全部七款——**这是拿两个样本当全集,不该发生**。
+
+## 后台实读(`list_applications` + 逐款 `list_moderation_comments`,2026-09-15)
+
+| 游戏 | 应用状态 | 审核任务 | 评论 |
+|---|---|---|---|
+| GHOSTLINE | **REJECTED** | MOD-7343 REJECTED | AI 分流那条,2026-09-14 13:02 UTC |
+| SINGULARITY | **REJECTED** | MOD-7380 REJECTED | 同一条,2026-09-14 13:39 UTC |
+| PROMPT | NEW | MOD-7381 **NEW** | **0 条** |
+| OVERFIT | NEW | MOD-7382 **NEW** | **0 条** |
+| MIMIC / OVERSEER / MINIMA | NEW | 各自 **NEW** | **0 条** |
+
+**所以现状是:两款被明确分流到 MCP 沙盒通道,五款仍在主目录队列里、一句话都还没说。**
+截图里的时间(09:02 / 09:39)与后台 UTC(13:02 / 13:39)差 4 小时,是面板按本地时区显示
+——**同一个事件,不是两轮**。五款的 `updatedAt` 都是 09-14 11:18,彼此相差几秒,像是一次批量
+操作把它们放回队列;**但这是推测,后台没有给出说明,不要当结论引用。**
+
+## 顺带查出两个我们自己的投稿缺陷(都不是平台的问题,是我们发出去的)
+
+1. **SINGULARITY 的 `howToPlayText` 是 PROMPT 的操作说明,一字不差。** 一个放置类 AI 实验室经营
+   游戏,表单里写着"写一段程序收集宝石抵达出口 / FWD、LEFT、RIGHT / 按 RUN"。审核员打开
+   SINGULARITY 读到的是另一款游戏的玩法。**不能声称它导致了这次拒稿**(拒稿理由白纸黑字是 AI 分流),
+   但它是查得出、改得掉的真缺陷,而且**正是本仓 09-05/06 审计早就列过的"文案与实现不符"那一类**
+   ——那次是在页面上抓到的,这次它一路发到了平台的表单里。已按游戏自己的可见 UI 重写
+   (LABEL DATA / TRAIN / SHIP MODEL / ALIGNMENT / 离线收益 / prestige 到 ASI),并核实
+   **SINGULARITY 没有任何 keydown 处理器**,所以如实写"只有触控与鼠标,没有键盘"。
+2. **七款的 `engine` 全部填着 `unity`,而它们全是纯 JavaScript。** 平台自己的 bridge 上报的是
+   `bridgeEngine: "javascript"`,表单的 enum 里有 `js`(plain JavaScript, no engine)。
+   两款被拒的已改成 `js`;**五款在审的没动**(见下面的纪律)。
+
+## 一条纪律:在审的表单不要碰
+
+`update_application_form` 是部分保存、且不会自动提交审核,所以改**被拒**的那两款是安全的。
+但五款正在 `NEW` 队列里,**改表单等于改审核对象**,而且 `confirm_archive_upload` 会把新包放进
+表单——**在审期间一律不动表单、不换包**。要改等结果出来。
+
+## 沙盒发布的现成条件(不需要再上传任何东西)
+
+两款被拒的游戏,包和封面**早就在后台了**:
+
+| 游戏 | archive | 状态 | 初始体积 / 载入 | 三个封面槽 |
+|---|---|---|---|---|
+| GHOSTLINE | `cmtrgnt5o3mudhg0hqw6icbti` | DONE | 218 KB / 5 143 ms | preview · preview_vertical · icon 全有 |
+| SINGULARITY | `cmtsqomzh05dhmn0hpvax0me8` | DONE | 213 KB / 4 589 ms | 同上,全有 |
+
+`get_sandbox_state` 带 archiveId 查:两款都是 **`publish.allowed: true`、`site: null`**
+(从没发过沙盒)。**所以发布是一次调用的事,不用重新打包、不用重新生成封面。**
+上一节写的"发布前现生成封面"对这两款不适用——**它们的封面 09-07/09-08 就传上去了**;
+那条对将来新建的应用仍然成立。
+
+**封面必须在发布之前就位这一点不变,而且理由比想象的硬**:`get_sandbox_state` 的说明写着
+分享链接的预览图**由第一个打开它的人缓存,之后谁也刷新不了**。缺封面不会拒绝发布,但会永久
+留下一个没有预览图的链接。
