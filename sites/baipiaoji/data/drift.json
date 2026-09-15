@@ -1,10 +1,22 @@
 {
-  "generated": "2026-09-14",
+  "generated": "2026-09-15",
   "note": "官方来源页令牌集合连续两日与基线不同 = 漂移确认。只是「该去核」的信号,不是事实;limits.checked 推进到确认日后自动撤下。",
-  "fetched_ok": 101,
-  "fetched_fail": 23,
-  "pending": 7,
+  "fetched_ok": 102,
+  "fetched_fail": 22,
+  "pending": 11,
   "items": [
+    {
+      "slug": "bailian",
+      "url": "https://aliyun.com",
+      "confirmed": "2026-09-15",
+      "first_seen": "2026-09-14",
+      "added": [
+        "10k",
+        "1mo"
+      ],
+      "removed": [],
+      "checked_then": "2026-08-03"
+    },
     {
       "slug": "ollama",
       "url": "https://github.com/ollama/ollama",

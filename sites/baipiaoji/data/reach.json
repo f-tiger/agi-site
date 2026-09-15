@@ -1,32 +1,32 @@
 {
-  "generated": "2026-09-14",
+  "generated": "2026-09-15",
   "source": "/api/reach",
   "window_days": 28,
-  "since": "2026-08-17",
-  "until": "2026-09-14",
+  "since": "2026-08-18",
+  "until": "2026-09-15",
   "definition": "ev='' AND ref != '' — referred human page views (traffic-truth.mjs human line A); direct/no-referrer visits and /__ self-test paths excluded; counts only, no row-level data",
-  "humans_referred": 286,
-  "per_day": 10.2,
+  "humans_referred": 297,
+  "per_day": 10.6,
   "by_kind": {
-    "tool": 188,
-    "category": 52,
+    "tool": 199,
+    "category": 51,
     "page": 35,
     "plans": 4,
     "vs": 6,
-    "alternatives": 1
+    "alternatives": 2
   },
   "categories": [
     {
       "cat": "chat",
-      "n": 90
-    },
-    {
-      "cat": "coding",
-      "n": 43
+      "n": 94
     },
     {
       "cat": "api",
-      "n": 43
+      "n": 46
+    },
+    {
+      "cat": "coding",
+      "n": 44
     },
     {
       "cat": "video",
@@ -38,11 +38,11 @@
     },
     {
       "cat": "office",
-      "n": 8
+      "n": 9
     },
     {
       "cat": "local",
-      "n": 5
+      "n": 7
     },
     {
       "cat": "agent",
@@ -77,17 +77,17 @@
     {
       "slug": "grok",
       "cat": "chat",
-      "n": 73
+      "n": 76
     },
     {
       "slug": "fireworks",
       "cat": "api",
-      "n": 16
+      "n": 17
     },
     {
       "slug": "kimi",
       "cat": "chat",
-      "n": 12
+      "n": 13
     },
     {
       "slug": "haiper",
@@ -97,7 +97,12 @@
     {
       "slug": "feishu-miaoji",
       "cat": "office",
-      "n": 8
+      "n": 9
+    },
+    {
+      "slug": "cline",
+      "cat": "coding",
+      "n": 5
     },
     {
       "slug": "pixverse",
@@ -108,11 +113,6 @@
       "slug": "civitai",
       "cat": "image",
       "n": 4
-    },
-    {
-      "slug": "cline",
-      "cat": "coding",
-      "n": 3
     },
     {
       "slug": "google-flow",
@@ -130,6 +130,11 @@
       "n": 3
     },
     {
+      "slug": "comfyui",
+      "cat": "local",
+      "n": 3
+    },
+    {
       "slug": "openrouter",
       "cat": "api",
       "n": 3
@@ -142,11 +147,6 @@
     {
       "slug": "tongyi",
       "cat": "chat",
-      "n": 2
-    },
-    {
-      "slug": "comfyui",
-      "cat": "local",
       "n": 2
     },
     {
@@ -230,6 +230,11 @@
       "n": 1
     },
     {
+      "slug": "cohere",
+      "cat": "api",
+      "n": 1
+    },
+    {
       "slug": "connectedpapers",
       "cat": "study",
       "n": 1
@@ -268,22 +273,17 @@
       "slug": "jianying",
       "cat": "video",
       "n": 1
-    },
-    {
-      "slug": "liblib",
-      "cat": "image",
-      "n": 1
     }
   ],
   "judgement": [],
   "pages": [
     {
       "path": "grok",
-      "n": 73
+      "n": 76
     },
     {
       "path": "coding",
-      "n": 34
+      "n": 33
     },
     {
       "path": "/",
@@ -291,11 +291,11 @@
     },
     {
       "path": "fireworks",
-      "n": 16
+      "n": 17
     },
     {
       "path": "kimi",
-      "n": 12
+      "n": 13
     },
     {
       "path": "api",
@@ -306,15 +306,19 @@
       "n": 9
     },
     {
+      "path": "feishu-miaoji",
+      "n": 9
+    },
+    {
       "path": "/report",
       "n": 8
     },
     {
-      "path": "feishu-miaoji",
-      "n": 8
+      "path": "image",
+      "n": 5
     },
     {
-      "path": "image",
+      "path": "cline",
       "n": 5
     },
     {
@@ -330,10 +334,6 @@
       "n": 3
     },
     {
-      "path": "cline",
-      "n": 3
-    },
-    {
       "path": "google-flow",
       "n": 3
     },
@@ -343,6 +343,10 @@
     },
     {
       "path": "lm-studio",
+      "n": 3
+    },
+    {
+      "path": "comfyui",
       "n": 3
     },
     {
@@ -363,10 +367,6 @@
     },
     {
       "path": "/vs/dify-vs-n8n",
-      "n": 2
-    },
-    {
-      "path": "comfyui",
       "n": 2
     },
     {
@@ -391,6 +391,10 @@
     },
     {
       "path": "/alternatives/grammarly",
+      "n": 1
+    },
+    {
+      "path": "/alternatives/openrouter",
       "n": 1
     },
     {
@@ -462,6 +466,10 @@
       "n": 1
     },
     {
+      "path": "cohere",
+      "n": 1
+    },
+    {
       "path": "connectedpapers",
       "n": 1
     },
@@ -508,24 +516,16 @@
     {
       "path": "mistral",
       "n": 1
-    },
-    {
-      "path": "opusclip",
-      "n": 1
-    },
-    {
-      "path": "qingying",
-      "n": 1
     }
   ],
   "referrers": [
     {
       "ref": "www.google.com",
-      "n": 152
+      "n": 155
     },
     {
       "ref": "cn.bing.com",
-      "n": 54
+      "n": 59
     },
     {
       "ref": "www.perplexity.ai",
@@ -536,11 +536,11 @@
       "n": 12
     },
     {
-      "ref": "www.facebook.com",
-      "n": 8
+      "ref": "www.bing.com",
+      "n": 10
     },
     {
-      "ref": "www.bing.com",
+      "ref": "www.facebook.com",
       "n": 8
     },
     {
@@ -560,15 +560,15 @@
       "n": 3
     },
     {
+      "ref": "duckduckgo.com",
+      "n": 3
+    },
+    {
       "ref": "baidu.com",
       "n": 3
     },
     {
       "ref": "www.google.com.hk",
-      "n": 2
-    },
-    {
-      "ref": "duckduckgo.com",
       "n": 2
     },
     {
@@ -676,8 +676,8 @@
     }
   ],
   "events": {
-    "sub_view": 248,
-    "go": 58,
+    "sub_view": 262,
+    "go": 63,
     "sub_submit": 4,
     "sheet_dl": 4,
     "sub_ok": 3,
