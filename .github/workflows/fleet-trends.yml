@@ -36,6 +36,9 @@ jobs:
         env:
           REDDIT_CLIENT_ID: ${{ secrets.REDDIT_CLIENT_ID }}
           REDDIT_CLIENT_SECRET: ${{ secrets.REDDIT_CLIENT_SECRET }}
+          # 可选:Reddit 推荐的 `<app>/<ver> (by /u/<用户名>)` 形式。未设用不含用户名的缺省值。
+          # 走 Secret 是因为 Reddit 用户名属个人信息(公开仓隐私红线),不入仓不入日志。
+          REDDIT_USER_AGENT: ${{ secrets.REDDIT_USER_AGENT }}
       # 舰队 rising 关联查询(2026-08-25 owner:「bpj 按谷歌趋势优化」+「其他站点也要
       # 检查」)。当日热搜 RSS 对 bpj/agi/tds 三站 niche 词连续 6 天 matched:[],rising
       # 才是需求面。一次服务三站,全池 2 种子/次(配额纪律),搭载本 schedule 不新增

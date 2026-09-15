@@ -10,6 +10,13 @@ import { writeFileSync, readFileSync, existsSync, mkdirSync } from 'node:fs';
 const OUT = 'data/startup-radar.json';
 const today = new Date().toISOString().slice(0, 10);
 const UA = { 'User-Agent': 'Mozilla/5.0 (compatible; agi-site-startup-radar; +https://github.com/f-tiger/agi-site)' };
+// Reddit 专用 UA(2026-09-15,owner 注册 app 当天):Reddit 的 API 规则要求 UA 描述自己、
+// 明确禁止伪装流行浏览器 —— 上面那个 `Mozilla/5.0 (compatible; …)` 是爬虫惯例写法,不算伪装,
+// 但走官方 Data API 时用一个不带 Mozilla 前缀的名字更贴规则,也更不容易被限速。
+// owner 可用 secret REDDIT_USER_AGENT 覆盖成 Reddit 推荐的 `<app>/<ver> (by /u/<用户名>)` 形式;
+// 用户名属个人信息,只进 Secrets、永不进仓、永不写进 startup-radar.json。
+export const buildRedditUA = (v) => ({ 'User-Agent': (v || '').trim() || 'agi-site-startup-radar/1.0 (+https://github.com/f-tiger/agi-site)' });
+const RUA = buildRedditUA(process.env.REDDIT_USER_AGENT);
 
 // 板块名单外置(2026-09-13,owner:「监控好板块比什么都合适」):tools/fleet/reddit_watchlist.json。
 // 每个板块每天的产出落到 board_stats,名单按产出淘汰(机器只标 demote,会话来删);404 原样记录不猜。
@@ -26,20 +33,20 @@ let lastReq = 0;
 //     board 403). Free tier: non-commercial, 100 QPM per client — our ~36 requests/day is far below.
 //   * Without them we still try the public .json path so the 403 stays visible in board_stats, but we never
 //     change UA to look like a browser, never rotate IPs, never use a proxy — that would be circumvention.
-let REDDIT = { base: 'https://www.reddit.com', headers: UA, mode: 'public-json' };
+let REDDIT = { base: 'https://www.reddit.com', headers: RUA, mode: 'public-json' };
 export async function redditAuth() {
   const id = process.env.REDDIT_CLIENT_ID, secret = process.env.REDDIT_CLIENT_SECRET;
   if (!id || !secret) return REDDIT;
   try {
     const r = await fetch('https://www.reddit.com/api/v1/access_token', {
       method: 'POST',
-      headers: { ...UA, Authorization: 'Basic ' + Buffer.from(`${id}:${secret}`).toString('base64'), 'Content-Type': 'application/x-www-form-urlencoded' },
+      headers: { ...RUA, Authorization: 'Basic ' + Buffer.from(`${id}:${secret}`).toString('base64'), 'Content-Type': 'application/x-www-form-urlencoded' },
       body: 'grant_type=client_credentials', signal: AbortSignal.timeout(20000),
     });
     if (!r.ok) { REDDIT.mode = `oauth-failed HTTP ${r.status}`; return REDDIT; }
     const d = await r.json();
     if (!d.access_token) { REDDIT.mode = 'oauth-failed no token'; return REDDIT; }
-    REDDIT = { base: 'https://oauth.reddit.com', headers: { ...UA, Authorization: `bearer ${d.access_token}` }, mode: 'oauth' };
+    REDDIT = { base: 'https://oauth.reddit.com', headers: { ...RUA, Authorization: `bearer ${d.access_token}` }, mode: 'oauth' };
   } catch (e) { REDDIT.mode = `oauth-failed ${String(e.message || e).slice(0, 40)}`; }
   return REDDIT;
 }
@@ -298,6 +305,9 @@ if (process.argv.includes('--selftest')) {
     ['坏 JSON 抛错而不是静默空数组', (() => { try { parseRedditListing({}, 48); return false; } catch { return true; } })()],
     ['垂直板块配置:每站至少一个板块与一条句式', Object.values(VERTICAL).every((c) => c.subs.length && c.q.length)],
     ['标题归一化:大小写/标点/空白不影响重现匹配', normTitle('Is there an App that…?') === normTitle('is there an app that')],
+    ['Reddit UA:不伪装浏览器', !/mozilla|chrome|safari|gecko/i.test(buildRedditUA('')['User-Agent'])],
+    ['Reddit UA:自报家门且带联系地址', /agi-site-startup-radar/.test(buildRedditUA('')['User-Agent']) && buildRedditUA('')['User-Agent'].includes('github.com/f-tiger/agi-site')],
+    ['Reddit UA:owner 可覆盖并去空白', buildRedditUA('  radar/2.0 (by /u/example)  ')['User-Agent'] === 'radar/2.0 (by /u/example)'],
   ];
   for (const [n, ok] of checks) console.log((ok ? '  ok   ' : '  FAIL ') + n);
   process.exit(checks.every((c) => c[1]) ? 0 : 1);

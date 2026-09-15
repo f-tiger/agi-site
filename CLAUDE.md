@@ -503,6 +503,14 @@ owner 决策卡、事实表)。
   **新增 Ask HN「is there a」周窗**;BetaList / Indie Hackers / PH 主题 feed / YC RFS 只做**探针**
   (`feed_probes`,报状态不入库),runner 读到 200 再写解析器——不假设 feed 存在。
 
+- **owner 2026-09-15 在注册 Reddit app**(截图停在 create application 页)。三件事记死:①**script 与 web app 都行,
+  installed app 不行**——`redditAuth()` 走 HTTP Basic + `grant_type=client_credentials`,没有 secret 的类型拿不到 token;
+  已选 web app 不必重建。②Reddit 请求改用**专属 UA**(`agi-site-startup-radar/1.0 (+repo)`,不带 `Mozilla/` 前缀),
+  非 Reddit 源沿用原 UA;可选 secret `REDDIT_USER_AGENT` 覆盖成 Reddit 推荐的 `(by /u/用户名)` 形式——**用户名属个人
+  信息,只进 Secrets,不入仓不入日志不进 `startup-radar.json`**(输出里只有 `reddit_access` 这个状态字符串)。
+  ③设好后手动跑 fleet-trends 看 `reddit_access`:`oauth` 通了 / `401` id·secret 错 / `403` 是审批门(创建页那句
+  "You must also register to use the API")。**403 不绕过**:不换 IP、不伪装 UA,雷达退化为 SE·Bluesky·Ask HN。
+
 ## SourceRadar 核心工具 + 付费 Opportunity Packs(2026-09-13,owner /goal:「把 SourceRadar 工具完善,然后构建撮合网站…付费的包…营收…规模化」)
 
 - **PRD**:`sites/buysomething/docs/PRD-core-tool-2026-09-13.md`(三轮 prompt、竞争图谱、官方数据源、P0/P1/P2)。
