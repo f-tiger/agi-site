@@ -1,60 +1,51 @@
 {
  "ok": true,
- "fetched": "2026-09-14",
+ "fetched": "2026-09-15",
  "source": "https://trends.google.com/trending/rss?geo=DE",
- "matched": [
-  {
-   "title": "ölpreis",
-   "traffic": "5000+"
-  }
- ],
+ "matched": [],
  "top": [
   {
-   "title": "meghan, duchess of sussex",
+   "title": "frauenfußball",
+   "traffic": "1000+"
+  },
+  {
+   "title": "yougov",
    "traffic": "2000+"
   },
   {
-   "title": "sensor",
-   "traffic": "200+"
-  },
-  {
-   "title": "ölpreis",
-   "traffic": "5000+"
-  },
-  {
-   "title": "bennet wiegert",
-   "traffic": "2000+"
-  },
-  {
-   "title": "деньги",
+   "title": "ea fc 27",
    "traffic": "500+"
   },
   {
-   "title": "joelina drews",
-   "traffic": "2000+"
+   "title": "arbeitsmarkt",
+   "traffic": "500+"
   },
   {
-   "title": "spieltag",
-   "traffic": "2000+"
+   "title": "gavin newsom",
+   "traffic": "500+"
   },
   {
-   "title": "brian hickerson",
+   "title": "australia vs zimbabwe",
    "traffic": "200+"
   },
   {
-   "title": "verbraucher",
+   "title": "daniel brinkmann",
    "traffic": "200+"
   },
   {
-   "title": "explosion",
+   "title": "ea sports fc 27",
+   "traffic": "200+"
+  },
+  {
+   "title": "boris becker",
+   "traffic": "1000+"
+  },
+  {
+   "title": "fc tickets",
    "traffic": "200+"
   }
  ],
  "history": [
-  {
-   "d": "2026-08-31",
-   "matched": []
-  },
   {
    "d": "2026-09-01",
    "matched": []
@@ -120,6 +111,10 @@
    "matched": [
     "ölpreis"
    ]
+  },
+  {
+   "d": "2026-09-15",
+   "matched": []
   }
  ]
 }

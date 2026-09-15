@@ -1,5 +1,5 @@
 {
- "fetched": "2026-09-14",
+ "fetched": "2026-09-15",
  "geo": "DE",
  "seeds": {
   "klimaanlage": {
@@ -52,103 +52,64 @@
   "schimmel entfernen": {
    "rising": [
     {
-     "q": "weißer schimmel",
-     "v": 47800
-    },
-    {
-     "q": "schimmel mit wasserstoffperoxid entfernen",
-     "v": 39250
-    },
-    {
-     "q": "schimmel englisch",
-     "v": 19750
-    },
-    {
-     "q": "schimmel mit spiritus entfernen",
-     "v": 7000
-    },
-    {
-     "q": "schimmel ex",
-     "v": 5600
-    },
-    {
      "q": "schimmel auf leder entfernen",
-     "v": 1750
-    },
-    {
-     "q": "schimmel im keller entfernen",
-     "v": 180
+     "v": 50700
     },
     {
      "q": "schimmel aus kleidung entfernen",
-     "v": 70
-    },
-    {
-     "q": "schimmel in der dusche entfernen",
-     "v": 60
-    },
-    {
-     "q": "schwarzen schimmel entfernen",
-     "v": 40
+     "v": 400
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-09-14",
+   "fetched": "2026-09-15",
    "polluted": false
   },
   "infrarotheizung": {
-   "auto": [
-    "infrarotheizung",
-    "infrarotheizung wand",
-    "infrarotheizung decke",
-    "infrarotheizung badezimmer",
-    "infrarotheizung bild",
-    "infrarotheizung test",
-    "infrarotheizungen",
-    "infrarotheizung standgerät",
-    "infrarotheizung stromverbrauch",
-    "infrarotheizung spiegel"
-   ],
    "rising": [
     {
-     "q": "infrarotheizung wand",
-     "v": "new"
+     "q": "infrarotheizung günstig",
+     "v": 64150
     },
     {
-     "q": "infrarotheizung decke",
-     "v": "new"
+     "q": "infrarotheizung mit fernbedienung",
+     "v": 43200
     },
     {
-     "q": "infrarotheizung badezimmer",
-     "v": "new"
+     "q": "heizen mit strom",
+     "v": 39850
     },
     {
-     "q": "infrarotheizung bild",
-     "v": "new"
+     "q": "diesel infrarotheizung",
+     "v": 38800
     },
     {
-     "q": "infrarotheizung test",
-     "v": "new"
+     "q": "konvektorheizung",
+     "v": 31700
     },
     {
-     "q": "infrarotheizungen",
-     "v": "new"
+     "q": "infrarotheizung test stiftung warentest",
+     "v": 31500
     },
     {
-     "q": "infrarotheizung standgerät",
-     "v": "new"
+     "q": "infrarotheizung werkstatt",
+     "v": 30200
     },
     {
-     "q": "infrarotheizung stromverbrauch",
-     "v": "new"
+     "q": "durchlauferhitzer",
+     "v": 24100
     },
     {
-     "q": "infrarotheizung spiegel",
-     "v": "new"
+     "q": "vasner konvi hybrid infrarotheizung",
+     "v": 21500
+    },
+    {
+     "q": "infrarotheizung lüge",
+     "v": 15850
     }
    ],
-   "source": "autocomplete-diff",
-   "fetched": "2026-09-06"
+   "source": "related-queries",
+   "fetched": "2026-09-15",
+   "polluted": false
   },
   "luftentfeuchter": {
    "rising": [
