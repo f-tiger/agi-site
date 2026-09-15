@@ -2791,6 +2791,85 @@ STROMNOW = ('<!--EB_STROMNOW--><div id="eb-stromnow"></div>\n<script>(function()
             '})();</script><!--/EB_STROMNOW-->\n')
 
 
+# The same live EPEX feed as STROMNOW, framed for the other side of the meter.
+# STROMNOW sits on the balcony-solar pages, where the exchange price is what a
+# self-generated kWh replaces. The winter cluster is the opposite case: these
+# readers BUY every kilowatt-hour a heater or a dehumidifier burns, and the
+# page's whole economics is the price of it. A page titled
+# "Luftentfeuchter im Dauerbetrieb: Stromkosten" was quoting a static band while
+# this site already served today's real price two routes away.
+#
+# It is also the one number a chat answer cannot carry. Over five days the AI
+# crawlers read this site harder than bingbot did (chatgpt-user 128 +
+# oai-searchbot 119 + perplexity 37 against 241) and returned 23 visits in 28
+# days. A figure that changes every hour and has to be read here is the
+# documented way that asymmetry turns into a click.
+#
+# Honesty constraints, all load-bearing: the exchange price is NOT what a
+# household pays, so the band says so in the same breath and names the 0,30
+# €/kWh this site assumes everywhere else rather than implying the exchange
+# figure is a tariff. Renders nothing when the feed is down — no stale price, no
+# fabricated one, no layout shift.
+STROMNOW_HEAT = ('<!--EB_STROMHEAT--><div id="eb-stromheat"></div>\n<script>(function(){'
+                 'var h=document.getElementById("eb-stromheat");if(!h)return;'
+                 'fetch("/api/strom").then(function(r){return r.json();}).then(function(d){'
+                 'if(!d||!d.ok||!d.hours||d.hours.length<6)return;'
+                 'var sum=0;for(var i=0;i<d.hours.length;i++){sum+=d.hours[i].ct;}'
+                 'var avg=sum/d.hours.length;'
+                 'var nowH=new Date().getUTCHours(),cur=null;'
+                 'for(var k=0;k<d.hours.length;k++){if(d.hours[k].h===nowH){cur=d.hours[k].ct;break;}}'
+                 'function f(x){return (Math.round(x*10)/10).toLocaleString("de-DE",{minimumFractionDigits:1,maximumFractionDigits:1});}'
+                 'var head="\\u26a1 B\\u00f6rsenstrom heute: \\u00d8 "+f(avg)+" ct/kWh"+(cur===null?"":" \\u00b7 jetzt "+f(cur)+" ct/kWh");'
+                 'h.innerHTML=\'<div style="background:#fff8ec;border-bottom:1px solid #f3ddc0;">\'+'
+                 '\'<div style="max-width:1000px;margin:0 auto;padding:10px 20px;display:flex;gap:8px 14px;'
+                 'align-items:center;flex-wrap:wrap;font-size:13.5px;">\'+'
+                 '\'<strong style="color:#8a6410;">\'+head+\'</strong>\'+'
+                 '\'<span style="color:#5a5340;">B\\u00f6rsenpreis ohne Steuern und Abgaben (EPEX) \\u2014 <strong>nicht</strong> dein '
+                 'Haushaltstarif. Die Rechnungen auf dieser Seite nutzen 0,30 \\u20ac/kWh; nimm deinen eigenen Preis vom letzten Bescheid.</span>\'+'
+                 '\'<a href="/guide/stromkosten-rechner.html" data-eb-sh="rechner" style="color:#0f6ba8;font-weight:700;text-decoration:none;">Mit deinem Tarif rechnen \\u2192</a>\'+'
+                 '\'<a href="/guide/heizkosten-vergleich-rechner.html" data-eb-sh="heizkosten" style="color:#0f6ba8;font-weight:700;text-decoration:none;">Heizarten vergleichen \\u2192</a>\'+'
+                 '\'</div></div>\';'
+                 'if(window.gtag)gtag("event","strom_now",{src:"heat",avg:Math.round(avg*10)/10});'
+                 'h.querySelectorAll("[data-eb-sh]").forEach(function(a){a.addEventListener("click",function(){'
+                 'if(window.gtag)gtag("event","strom_now",{src:"heat",click:a.getAttribute("data-eb-sh")});});});'
+                 '}).catch(function(){});'
+                 '})();</script><!--/EB_STROMHEAT-->\n')
+
+
+# The cluster whose economics IS the price of a bought kilowatt-hour. Deliberately
+# not the mould pages (their subject is humidity, not tariffs) and never a page
+# that already carries EB_STROMNOW — the balcony band says the opposite thing
+# about the same number, and two contradictory framings on one page is worse
+# than neither. check_stromheat asserts that disjointness.
+STROMHEAT_PAGES = (
+    "heizluefter-stromsparend", "heizluefter-stromverbrauch", "heizdecke-stromverbrauch",
+    "infrarotheizung-ratgeber", "infrarotheizung-watt-rechner", "infrarotheizung-badezimmer",
+    "infrarotheizung-standgeraet", "infrarotheizung-decke-oder-wand", "infrarotheizung-garage",
+    "schmidbauer-infrarotheizung-test",
+    "heizung-10-qm", "heizung-15-qm", "heizung-20-qm", "heizung-25-qm",
+    "heizung-30-qm", "heizung-40-qm", "heizung-50-qm",
+    "heizkosten-senken-als-mieter", "heizkosten-vergleich-rechner",
+    "luftentfeuchter-dauerbetrieb-stromkosten", "luftbefeuchter-stromverbrauch",
+    "waesche-trocknen-wohnung", "klimaanlage-mit-heizfunktion",
+    "klimaanlage-stromkosten", "strom-sparen-haushalt", "stromkosten-rechner",
+)
+
+
+def inject_stromheat(html, slug):
+    """Idempotently add the winter price band on the electricity-cost cluster."""
+    if "<!--EB_STROMHEAT-->" in html:
+        if slug in STROMHEAT_PAGES and "<!--EB_STROMNOW-->" not in html:
+            return re.sub(r'<!--EB_STROMHEAT-->.*?<!--/EB_STROMHEAT-->\n?',
+                          lambda m: STROMNOW_HEAT, html, flags=re.S)
+        # Left the cluster, or gained the balcony band: remove, do not strand.
+        return re.sub(r'<!--EB_STROMHEAT-->.*?<!--/EB_STROMHEAT-->\n?', '', html, flags=re.S)
+    if slug not in STROMHEAT_PAGES or "<!--EB_STROMNOW-->" in html:
+        return html
+    if "<!--/EB_PROFILE-->" in html:
+        return html.replace("<!--/EB_PROFILE-->", "<!--/EB_PROFILE-->\n" + STROMNOW_HEAT, 1)
+    return html
+
+
 # US-visitor marketplace switch on EN pages (上量队列⑥ 2026-08-28; owner added
 # getecoback.com to the US Associates site list the same day, which un-gates
 # this). 28-day D1: 24 of 95 affiliate clicks came from US+GB and went to
@@ -4280,6 +4359,11 @@ def main():
                 new = strip_heatnow(new)
             if device_of(slug) == "storage":
                 new = inject_stromnow(new)
+            # Runs after inject_stromnow so the disjointness test sees the
+            # balcony band if this page just gained one, and unconditionally so
+            # a page leaving the cluster loses its band instead of stranding it
+            # (the lesson inject_heatnow taught on 09-15).
+            new = inject_stromheat(new, slug)
             # The humidity/mould family gets the autumn live number. Deliberately
             # NOT the ac pages: they already carry EB_HEATNOW, and two weather
             # bands stacked on one page is noise, not information.

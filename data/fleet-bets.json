@@ -367,6 +367,17 @@
       "status": "open"
     },
     {
+      "id": "eco-stromheat-1020",
+      "site": "getecoback",
+      "due": "2026-10-20",
+      "metric": "strom_now{src:\"heat\"} 28d:渲染次数 + 两个计算器链接的点击数(D1 ev,真人剔 CI)",
+      "threshold": "渲染 ≥15 且点击 ≥3",
+      "win": "「首屏活数字」把 AI/Bing 读者转成站内点击 → 推广到湿度簇与 EN 冬季页",
+      "lose": "渲染 ≥15 而点击 0 = 这条带是装饰,从非计算器页撤掉只留三张 Rechner 页;渲染 <15 = 冬季簇本身还没到季,顺延 11-20 再判,不得当作带子的失败",
+      "source": "sites/getecoback/CLAUDE.md(2026-09-15 冬季电价带)",
+      "status": "open"
+    },
+    {
       "id": "gamesledger-60d-1021",
       "site": "gamesledger",
       "due": "2026-10-21",

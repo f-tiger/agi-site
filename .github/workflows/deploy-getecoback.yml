@@ -157,6 +157,9 @@ jobs:
       - name: Check the US shelf is hidden by default and tagged to the right market
         run: python3 tools/check_usshelf.py
 
+      - name: Check the winter price band is on the cost cluster and still honest
+        run: python3 tools/check_stromheat.py
+
       - name: Check the price engine (SigV4 vector, refresher vs mock, built pages vs data)
         run: |
           node tools/product_intel/paapi.mjs --selftest
@@ -250,6 +253,29 @@ jobs:
             echo "OK Spain page carries no US surface"
           fi
           check "https://getecoback.com/guide/klimaanlage-wohnmobil.html" "rv rooftop air conditioner"
+          # Winter exchange-price band (2026-09-15). eb-stromheat is absent from
+          # the previous build, so this can fail. The disclaimer is asserted
+          # separately because it is the part that makes the band safe: without
+          # it the exchange price reads as a household tariff on a page about
+          # what a heater costs.
+          check "https://getecoback.com/guide/heizluefter-stromsparend.html" "eb-stromheat"
+          check "https://getecoback.com/guide/heizluefter-stromsparend.html" "Haushaltstarif"
+          # /api/strom is what the band renders from; a dead feed means every
+          # band on 26 pages silently renders nothing.
+          strom=$(curl -sL --max-time 20 "https://getecoback.com/api/strom" || true)
+          if echo "$strom" | grep -q '"ok":true'; then
+            echo "OK /api/strom serving prices"
+          else
+            echo "::error::/api/strom is not serving (the winter band renders nothing on 26 pages)"; fail=1
+          fi
+          # A cooling page must NOT carry the winter band: it would put the
+          # buy-side framing on a page that already runs the weather band.
+          wo_body=$(curl -sL --max-time 20 "https://getecoback.com/guide/klimaanlage-wohnmobil.html" || true)
+          if echo "$wo_body" | grep -q "eb-stromheat"; then
+            echo "::error::klimaanlage-wohnmobil carries the winter price band"; fail=1
+          else
+            echo "OK cooling page carries no winter band"
+          fi
           # not_found_handling regression guard (2026-09-04): an unknown path must
           # be a real 404, not a 200 fallback that would let search engines index
           # every typo. The canonical middleware first 301s the extensionless

@@ -1043,6 +1043,71 @@ GB 8 次(德国 tag 在 .co.uk 不计佣,已记录);CH/IN/AU 7 次无现实路�
 `/api/geo` 是否被调用),**别直接归因为「美国人不买」**;美国 pv 跌破 50 → 样本不足,顺延到 11-15。
 **这条线不跟 PartnerNet 混**:US 账号税务信息未填完,佣金会累计但付不出来,那是 owner 侧待办。
 
+## 「大提升流量」那一轮:先查了六件事,五件是好的(2026-09-15,owner:「进行一次大提升，使得流量增加」)
+
+**这一轮最有价值的是否定结论。后续会话别再去修下面这些东西,它们没坏。**
+
+**① 流量没有在跌,在涨。** 28 天真人 pv **369 → 533(+44%)**,搜索引荐 **144 → 229(+59%)**。
+(09-10 那次「流量越来越低」是制冷季的口径,和这次窗口不是一回事;而且 09-12 六站 human
+判定变严之后这个涨幅只会被低估。)**不要再按「救流量下滑」来立项。**
+
+**② Google 不是没抓,是抓了不给量。** 爬虫日志:googlebot 19 次 / 15 个页面(5 天),
+路径分布正常、无错误形态,连 `/it/` 都碰了。但 **28 天 Google 引荐 = 0**。`site:` 查得到
+真实页面和标题,**不是被 deindex、不是惩罚**。所以这是**权威度/年龄问题,是时间不是 bug**,
+会话侧没有杠杆。**别再为 Google 做技术性「修复」。**
+
+**③ 没有站级技术缺陷。** 逐页查了 212 个页面:canonical 零缺失零重复零错指(三处
+「不符」是 `/`、`/en/`、`/it/` 的目录索引写法,正确);`noindex` 只在 datenschutz /
+impressum / 404 / 三个 widget 等 9 个该有的地方。robots、hreflang 有各自的 gate。
+
+**④ 冬季页没有写坏,也没有标题问题——它们只是还没到季。** 本来的假设是「零 pv 的页
+标题不对」,**查完推翻了**:`luftentfeuchter-dauerbetrieb-stromkosten`(「0,09–0,21 €/h」)、
+`luftbefeuchter-stromverbrauch`(「Kosten pro Nacht」)、`fenster-beschlagen-innen`
+(「3 Ursachen, 1 Diagnose」)全都已经是首屏给答案 + 带数字的赢家句式。真正的区别是
+**赢家全是夏季词、零 pv 的全是冬季词,而今天是 9 月 15 日**。`heizluefter-stromsparend`
+14 天内 **0 → 6 pv** 就是第一张醒过来的冬季页。**所以没有改标题,改了等于翻炒。**
+
+**⑤ 不是孤岛。** 那批冬季页各有 2–14 条编辑内链,`/kategorie/heizen.html` 链了 20 张。
+
+**⑥ 也不是没被抓。** `waesche-trocknen-wohnung` 是冬季页里被 bingbot 抓得最多的
+(5 天 4 次)而 pv = 0 —— **发现没问题,是还没到季 + 排不上**。
+
+**⑦ 供给门当场否掉了两个选题**(这就是门的价值):`konvektorheizung vs infrarotheizung`
+被 **ADAC / energie-experten / heizsparer** 占屏,弃;`Wohnmobil Feuchtigkeit Winter` 被
+**promobil / vanlifemag / campingwagner** 占屏,弃。而 `Wäsche trocknen mit Luftentfeuchter`
+只有小站(haus-garten-test / raumluft-helden / raumklimatest / drycheck)**过门**——
+但那张页**已经存在**,所以也不用新建。**结论:这一轮一张新页都不该写。**
+
+**⑧ 唯一真的缺口,也是这轮实际做的事。**
+- **市场结构**:这个站 100% 活在 Bing 索引家族上(DDG 112 + Bing 71 + Yahoo 18 + Ecosia 2),
+  外加 **AI 引荐 23**(chatgpt.com 16,其中 15 落 `/en/`;perplexity 7,全落德语页)。
+- **不对称**:5 天里 **AI 爬虫读得比 bingbot 还多**(chatgpt-user 128 + oai-searchbot 119 +
+  perplexity 37 + claudebot 13 + gptbot 7,对 bingbot 241),**却只换回 23 次访问**。
+  这正是 citation-growth 记的零点击问题,它的处方是第⑥件套:**首屏放一个聊天答案装不下的活数字**。
+- **缺口**:`EB_STROMNOW`(`/api/strom` 的 EPEX 实时电价带)**早就建好并上线**,却只挂在
+  9 张阳台光伏页上——那边电价是「自发一度替掉的钱」。**冬季簇是硬币的另一面**:这些读者
+  **买**下暖风机和除湿机烧的每一度电,页面的全部经济学就是那个价格,而
+  「Luftentfeuchter im Dauerbetrieb: **Stromkosten**」这种标题的页在用写死的区间,
+  **真实价格就在两个路由之外没接上**。
+- **做法**:新增 `EB_STROMHEAT`,同一个 feed、买方口径,挂 **26 张电费页**;feed 挂了就
+  **什么都不渲染**(不拿旧价冒充新鲜,不编)。
+- **一条不能丢的诚实句**:交易所电价**不是**家庭电价(差约三倍)。带子里明写
+  「Börsenpreis ohne Steuern und Abgaben (EPEX) — **nicht** dein Haushaltstarif」并点名
+  本站到处在用的 0,30 €/kWh 假设。**没有这句,带子就在一张讲暖风机花多少钱的页上
+  暗示「电 8 ct/kWh」,比不放还糟**——`check_stromheat.py` 因此把这句当硬断言。
+- **两条带子互斥**:同一个数字,一边说「替掉」一边说「买入」,同页给两种口径等于没说;
+  gate 断言 `EB_STROMHEAT` 与 `EB_STROMNOW` 永不同页。
+- **负向测试三种事故形态各红一次**(删免责句 / 挂到簇外的页 / 同页两条带),复原后绿。
+
+**判定线 2026-10-20(已进台账 `eco-stromheat-1020`)**:`strom_now{src:"heat"}` 28 天
+**渲染 ≥15 且计算器链接点击 ≥3** → 「首屏活数字」成立,推广到湿度簇与 EN 冬季页;
+**渲染够而点击 0** = 装饰,从非计算器页撤掉;**渲染 <15** = 冬季簇还没到季,**顺延 11-20,
+不得记成带子的失败**。
+
+**一句给 owner 的实话**:这一轮没有、也不可能有「让流量翻倍」的动作。流量的天花板是
+Google 那 0,而那是时间。能做的是把已经在读这个站的那批读者(AI 助手读得比 Bing 还凶)
+换成点击,以及让 60 多张已经建好的冬季页在季节到来时手里有一个别人抄不走的数字。
+
 ## 这个站活在 Bing 的索引上,Google 送来的人是 0(2026-09-15,爬虫日志上线后的第一次对账)
 
 **为查 09-18 那条 googlebot 判定线而做的提前读数,结果比那条线本身重要得多。**
