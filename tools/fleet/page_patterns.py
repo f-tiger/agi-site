@@ -52,8 +52,16 @@ SITES = {
 }
 OWN = re.compile(r"(^|\.)(agiscorecard|getecoback|baipiaoji|thedollscout)\.com$")
 SKIP = re.compile(r"(schema\.org|w3\.org|creativecommons|gstatic|googletagmanager|google-analytics|fonts\.|beehiiv)")
-FRESH_WORD = re.compile(r"(核实|更新于|最后更新|更新日期|截至|Last updated|Updated|Verified|verified|checked|Stand|Aktualisiert|geprüft)")
+FRESH_WORD = re.compile(r"(核实|更新于|最后更新|更新日期|截至|最終更新|최종|Last updated|Updated|Verified|verified|checked|Stand|Aktualisiert|geprüft|Última|Dernière|Ultima|Última atualização)")
 DATE = re.compile(r"(20\d{2}[-/年.]\s?\d{1,2}[-/月.]\s?\d{1,2}|\d{1,2}\.\s?\d{1,2}\.\s?20\d{2}|[A-Z][a-z]{2,8}\s+\d{1,2},\s*20\d{2})")
+# 月份词(en/de/es/fr/it/pt);ja/ko/zh 用数字月,由月份数字那一支覆盖。
+MONTH_WORD = re.compile(
+    r"(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec"
+    r"|januar|februar|märz|maerz|april|mai|juni|juli|august|september|oktober|november|dezember"
+    r"|enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre"
+    r"|janvier|février|mars|avril|juin|juillet|août|septembre|octobre|décembre"
+    r"|gennaio|febbraio|marzo|aprile|maggio|giugno|luglio|agosto|settembre|ottobre|dicembre"
+    r"|janeiro|fevereiro|março|abril|maio|junho|julho|agosto|setembro|outubro|dezembro)", re.I)
 
 
 def fetch(url, timeout=25):
@@ -78,9 +86,31 @@ def ext_hosts(html):
 
 
 def dated_fresh(html):
-    """新鲜度词必须与一个真日期同屏才算数。"""
+    """页面有没有把自己声明的 `dateModified` **显示给人看**。
+
+    **判据是语言无关的,这是 09-15 花了四次才学会的事。** 按「最后更新」这类词表去找,
+    会在一个多语言站上系统性漏报:agiscorecard 的 8 个语言目录用了 5 种日期格式
+    (`30 de junio de 2026` / `2026年6月30日` / `2026년 6월 30일` / `30. Juni 2026` /
+    `August 26, 2026`),而中文那行还用的是**全角冒号**——词表版把 220 页里的 116 页
+    读成了「没有日期」,实际仓库里只有 4 页真缺。
+
+    所以改成:取页面自己 JSON-LD 里的 `dateModified`,看它的**年与日**有没有出现在同一个
+    40 字符窗口里,且窗口内有月份(数字或任一语言的月份词)。这样任何语言、任何格式都认得。
+    页面没有 `dateModified` 时才退回旧的词表口径(bpj 的「核实于」属这一支)。
+    """
     body = re.sub(r"<script.*?</script>|<style.*?</style>", "", html, flags=re.S | re.I)
     text = re.sub(r"<[^>]+>", " ", body)
+    dm = re.search(r'"dateModified"\s*:\s*"(\d{4})-(\d{2})-(\d{2})', html)
+    if dm:
+        y, mo, d = dm.group(1), int(dm.group(2)), int(dm.group(3))
+        for hit in re.finditer(re.escape(y), text):
+            w = text[max(0, hit.start() - 40):hit.start() + 40]
+            # 允许零填充:德语页写的是 `Zuletzt aktualisiert: 2026-07-16`,不带 0 的正则认不出 07。
+            if not re.search(rf"(?<!\d)0?{d}(?!\d)", w):
+                continue
+            if re.search(rf"(?<!\d)0?{mo}(?!\d)", w) or MONTH_WORD.search(w):
+                return True
+        return False
     for m in FRESH_WORD.finditer(text):
         if DATE.search(text[max(0, m.start() - 40):m.start() + 60]):
             return True
@@ -150,6 +180,7 @@ def table(sites):
 
 def selftest():
     ok = True
+    LD = '<script type="application/ld+json">{"dateModified": "2026-06-30"}</script>'  # noqa: N806
     cases = [
         ("分层抽样不会只抽开头",
          set(stratify([f"https://h/vs/{i}" for i in range(20)] + ["https://h/tools/a", "https://h/wall/b"])[0])
@@ -160,11 +191,24 @@ def selftest():
          ext_hosts('<a href="https://www.moyin.com/?utm_source=baipiaoji">x</a>') == {"moyin.com"}),
         ("自家域不算外链", ext_hosts('<a href="https://play.agiscorecard.com/a">x</a>') == set()),
         ("分析/字体域不算一手源", ext_hosts('<a href="https://fonts.googleapis.com/x">x</a>') == set()),
-        ("核实于 <日期> 算新鲜度", dated_fresh("<p>该信息于 2026-09-15 核实。</p>")),
+        ("核实于 <日期> 算新鲜度(无 dateModified,走词表支)", dated_fresh("<p>该信息于 2026-09-15 核实。</p>")),
         ("Last updated 算", dated_fresh("<p>Last updated: March 3, 2026</p>")),
         ("德语 Stand: 算", dated_fresh("<p>Stand: 14.09.2026</p>")),
         ("光有「更新」没日期不算", not dated_fresh("<p>我们会持续更新这个列表</p>")),
         ("日期离得太远不算", not dated_fresh("<p>更新</p>" + "x" * 200 + "<p>2026-09-15</p>")),
+        # 下面八条是 09-15 实测漏报的真实渲染,八种语言五种格式,一条都不许再漏
+        ("EN 渲染 dateModified", dated_fresh(LD + '<div>Last updated: June 30, 2026</div>')),
+        ("ES 渲染", dated_fresh(LD + '<div>Última actualización: 30 de junio de 2026</div>')),
+        ("DE 渲染", dated_fresh(LD + '<div>Zuletzt aktualisiert: 30. Juni 2026</div>')),
+        ("JA 渲染", dated_fresh(LD + '<div>最終更新：2026年6月30日</div>')),
+        ("KO 渲染", dated_fresh(LD + '<div>최종 업데이트: 2026년 6월 30일</div>')),
+        ("ZH 全角冒号渲染", dated_fresh(LD + '<div>最后更新：2026年6月30日</div>')),
+        ("FR 渲染", dated_fresh(LD + '<div>Dernière mise à jour : 30 juin 2026</div>')),
+        ("声明了 dateModified 却没显示 → 不算", not dated_fresh(LD + '<div>关于本站</div>')),
+        ("显示的是别的日期 → 不算", not dated_fresh(LD + '<div>Last updated: January 2, 2026</div>')),
+        ("零填充 ISO 算(de 页真实写法)", dated_fresh(LD + '<div>Zuletzt aktualisiert: 2026-06-30</div>')),
+        ("「Updated as verdicts change」这种无日期的话不算",
+         not dated_fresh(LD + '<div class="updated">Updated as verdicts change</div>')),
         ("ld 类型解析", ld_types('<script type="application/ld+json">{"@type":"FAQPage"}</script>') == {"FAQPage"}),
         ("14 个站", len(SITES) == 14),
     ]

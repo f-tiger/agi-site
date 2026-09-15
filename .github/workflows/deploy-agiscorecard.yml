@@ -59,6 +59,13 @@ jobs:
         working-directory: sites/agiscorecard
         run: python3 tools/check_hreflang.py
 
+      # 站规写着「每个新页都要有 BreadcrumbList JSON-LD」,但 2026-09-15 实测:英文根目录
+      # 85/99 做到了,zh 只有 10/44,de/es/fr/it/ja/ko/pt 各 0/10 —— 104 页缺。补完之后
+      # 加这道门,免得下一批多语言页又漏。纯正确性校验,零外部副作用,可以挂 push 路径。
+      - name: Every multilingual page carries a BreadcrumbList
+        working-directory: sites/agiscorecard
+        run: python3 tools/add_breadcrumbs.py --check
+
       # The collector's field sanitisers decide what survives into D1. When they are
       # wrong they are wrong SILENTLY: from 2026-08-08 to 2026-09-08 every reader's
       # search query was stored as an empty label, and the table looked fine. Runs on

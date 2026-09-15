@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-15T15:55:13Z",
+ "generated": "2026-09-15T16:26:01Z",
  "note": "同一套判据打在所有站上;分母是分层抽样的页数,不是全站。判据与采样纪律见脚本 docstring。",
  "errors": [],
  "sites": [
@@ -8,7 +8,7 @@
    "pages": 212,
    "path_groups": 10,
    "sampled": 16,
-   "dated_fresh": 4,
+   "dated_fresh": 15,
    "has_source": 16,
    "faq_ld": 16,
    "breadcrumb": 3
@@ -25,10 +25,10 @@
   },
   {
    "site": "getecoback",
-   "pages": 206,
+   "pages": 207,
    "path_groups": 5,
    "sampled": 9,
-   "dated_fresh": 2,
+   "dated_fresh": 5,
    "has_source": 9,
    "faq_ld": 6,
    "breadcrumb": 6
@@ -38,7 +38,7 @@
    "pages": 39,
    "path_groups": 7,
    "sampled": 11,
-   "dated_fresh": 4,
+   "dated_fresh": 6,
    "has_source": 6,
    "faq_ld": 4,
    "breadcrumb": 5
@@ -58,7 +58,7 @@
    "pages": 5,
    "path_groups": 1,
    "sampled": 2,
-   "dated_fresh": 0,
+   "dated_fresh": 1,
    "has_source": 1,
    "faq_ld": 1,
    "breadcrumb": 0
@@ -78,7 +78,7 @@
    "pages": 5,
    "path_groups": 1,
    "sampled": 2,
-   "dated_fresh": 1,
+   "dated_fresh": 2,
    "has_source": 2,
    "faq_ld": 1,
    "breadcrumb": 0

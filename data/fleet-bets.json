@@ -580,12 +580,13 @@
       "id": "fleet-xlearn-matrix-1013",
       "site": "fleet",
       "due": "2026-10-13",
-      "metric": "data/fleet-page-patterns.json:agi 或 eco 的 dated_fresh 命中率(09-15 基线 agi 4/16、eco 2/9)",
-      "threshold": "任一站 ≥50%",
-      "win": "互学矩阵能真的驱动移植,保留每周一的取数",
-      "lose": "记反面发现「矩阵产出为 0」,降为季度一次,不再每周取数",
+      "metric": "data/fleet-page-patterns.json:eco 的 dated_fresh 命中率(09-15 **修正后**基线 5/9;初版记的 agi 4/16 与 eco 2/9 是探测器词表缺陷,已作废)",
+      "threshold": "eco ≥8/9",
+      "win": "新鲜度标注移植到 eco 完成,矩阵能驱动移植,保留每周一取数",
+      "lose": "记反面发现「eco 的德语指南不需要可见日期」,该列对 eco 无效,矩阵降为季度一次",
       "source": "docs/fleet-cross-learning-2026-09-15.md",
-      "status": "open"
+      "status": "open",
+      "note": "基线于 2026-09-15 当天更正:探测器改为语言无关后 agi 实为 15/16(全舰队最好),原判定对象失效"
     }
   ]
 }
