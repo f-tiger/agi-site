@@ -2,29 +2,28 @@
  "runs": [
   {
    "changed_urls": [
-    "https://agiscorecard.com/agi-questions.html",
-    "https://agiscorecard.com/index.html"
+    "https://agiscorecard.com/agi-odds-vs-evidence.html",
+    "https://agiscorecard.com/cn.html"
    ],
    "counts": {
-    "bootstrapped": 1,
+    "bootstrapped": 0,
     "changed": 2,
-    "covered": 1,
-    "demand_terms": 2,
+    "covered": 2,
+    "demand_terms": 6,
     "gaps": 0,
-    "hot_pages": 5,
+    "hot_pages": 4,
     "lastmod_updated": 2,
-    "offtopic": 1,
+    "offtopic": 4,
     "pages": 212,
     "undatable": 0,
     "underserved": 0
    },
    "notes": [
-    "sites/agiscorecard/trends-rising.json: 2 seed(s) are on the AUTOCOMPLETE FALLBACK, not Google Trends rising (agi timeline, artificial general intelligence). Those rows are scored 1, not ranked against real volume — the demand face for them is degraded, not working.",
-    "heat: measured 2026-09-14 (5 pages); no notes"
+    "heat: measured 2026-09-15 (4 pages); no notes"
    ],
    "outcome": "ok",
    "site": "agiscorecard",
-   "today": "2026-09-14",
+   "today": "2026-09-15",
    "wrote": [
     "sites/agiscorecard/sitemap.xml",
     "data/autopilot/agiscorecard.json",
@@ -32,59 +31,57 @@
    ]
   },
   {
-   "changed_urls": [
-    "https://source.agiscorecard.com/index.html",
-    "https://source.agiscorecard.com/landed-cost.html"
-   ],
+   "changed_urls": [],
    "counts": {
-    "bootstrapped": 1,
-    "changed": 2,
+    "bootstrapped": 0,
+    "changed": 0,
     "covered": 0,
-    "demand_terms": 43,
+    "demand_terms": 45,
     "gaps": 1,
     "hot_pages": 0,
-    "lastmod_updated": 2,
-    "offtopic": 42,
+    "lastmod_updated": 0,
+    "offtopic": 44,
     "pages": 5,
     "undatable": 0,
     "underserved": 0
    },
    "notes": [
-    "sites/buysomething/site/rising.json: 1 seed(s) are on the AUTOCOMPLETE FALLBACK, not Google Trends rising (chinese style shirt). Those rows are scored 1, not ranked against real volume — the demand face for them is degraded, not working.",
-    "sites/buysomething/site/rising.json: 11 fresh seed(s) used; 10 stale and 0 undated dropped",
-    "heat: measured 2026-09-14 (0 pages); no notes"
+    "sites/buysomething/site/rising.json: 2 seed(s) are on the AUTOCOMPLETE FALLBACK, not Google Trends rising (chinese style shirt, electric pruning shears). Those rows are scored 1, not ranked against real volume — the demand face for them is degraded, not working.",
+    "sites/buysomething/site/rising.json: 11 fresh seed(s) used; 11 stale and 0 undated dropped",
+    "heat: measured 2026-09-15 (0 pages); no notes"
    ],
    "outcome": "ok",
    "site": "buysomething",
-   "today": "2026-09-14",
+   "today": "2026-09-15",
    "wrote": [
-    "sites/buysomething/site/sitemap.xml",
     "data/autopilot/buysomething.json",
     "data/autopilot/buysomething-demand.json"
    ]
   },
   {
-   "changed_urls": [],
+   "changed_urls": [
+    "https://getecoback.com/guide/heizluefter-stromsparend.html"
+   ],
    "counts": {
     "bootstrapped": 0,
-    "changed": 0,
-    "covered": 32,
-    "demand_terms": 78,
-    "gaps": 31,
+    "changed": 1,
+    "covered": 38,
+    "demand_terms": 82,
+    "gaps": 30,
     "hot_pages": 15,
-    "offtopic": 15,
+    "offtopic": 14,
     "pages": 204,
     "undatable": 0,
-    "underserved": 19
+    "underserved": 24
    },
    "notes": [
     "sitemap owned by this site's own generator — not touched",
     "sites/getecoback/data/trends-rising.json: 1 seed(s) are on the AUTOCOMPLETE FALLBACK, not Google Trends rising (infrarotheizung). Those rows are scored 1, not ranked against real volume — the demand face for them is degraded, not working.",
-    "heat: measured 2026-09-14 (21 pages); no notes"
+    "heat: measured 2026-09-15 (20 pages); no notes"
    ],
    "outcome": "ok",
    "site": "getecoback",
-   "today": "2026-09-14",
+   "today": "2026-09-15",
    "wrote": [
     "data/autopilot/getecoback.json",
     "data/autopilot/getecoback-demand.json"
@@ -110,7 +107,7 @@
    ],
    "outcome": "ok",
    "site": "goldrush",
-   "today": "2026-09-14",
+   "today": "2026-09-15",
    "wrote": [
     "data/autopilot/goldrush.json",
     "data/autopilot/goldrush-demand.json"
@@ -136,7 +133,7 @@
    ],
    "outcome": "ok",
    "site": "gridlings",
-   "today": "2026-09-14",
+   "today": "2026-09-15",
    "wrote": [
     "data/autopilot/gridlings.json",
     "data/autopilot/gridlings-demand.json"
@@ -162,12 +159,12 @@
    ],
    "outcome": "ok",
    "site": "thedollscout",
-   "today": "2026-09-14",
+   "today": "2026-09-15",
    "wrote": [
     "data/autopilot/thedollscout.json",
     "data/autopilot/thedollscout-demand.json"
    ]
   }
  ],
- "today": "2026-09-14"
+ "today": "2026-09-15"
 }
