@@ -1,5 +1,5 @@
 {
- "fetched": "2026-09-14",
+ "fetched": "2026-09-15",
  "seeds": {
   "electric spin scrubber": {
    "auto": [
@@ -578,58 +578,48 @@
    "fetched": "2026-09-14"
   },
   "electric pruning shears": {
-   "auto": [
-    "electric pruning shears",
-    "electric pruning shears with extension pole",
-    "electric pruning shears harbor freight",
-    "electric pruning shears cordless",
-    "electric pruning shears home depot",
-    "electric pruning shears reviews",
-    "electric pruning shears dewalt",
-    "electric pruning shears amazon",
-    "electric pruning shears makita",
-    "electric pruning shears ryobi"
-   ],
    "rising": [
     {
-     "q": "electric pruning shears with extension pole",
-     "v": "new"
-    },
-    {
-     "q": "electric pruning shears harbor freight",
-     "v": "new"
-    },
-    {
-     "q": "electric pruning shears cordless",
-     "v": "new"
-    },
-    {
-     "q": "electric pruning shears home depot",
-     "v": "new"
-    },
-    {
-     "q": "electric pruning shears reviews",
-     "v": "new"
-    },
-    {
-     "q": "electric pruning shears dewalt",
-     "v": "new"
-    },
-    {
-     "q": "electric pruning shears amazon",
-     "v": "new"
-    },
-    {
-     "q": "electric pruning shears makita",
-     "v": "new"
-    },
-    {
-     "q": "electric pruning shears ryobi",
-     "v": "new"
+     "q": "hedge trimmer",
+     "v": 120
     }
    ],
-   "source": "autocomplete-diff",
-   "fetched": "2026-09-14"
+   "source": "related-queries",
+   "fetched": "2026-09-15"
+  },
+  "aroma diffuser": {
+   "rising": [
+    {
+     "q": "pura car diffuser",
+     "v": 2000
+    },
+    {
+     "q": "aroma 360 scents",
+     "v": 550
+    },
+    {
+     "q": "aroma 360 diffuser",
+     "v": 160
+    },
+    {
+     "q": "aroma 360",
+     "v": 160
+    },
+    {
+     "q": "hotel aroma diffuser",
+     "v": 70
+    },
+    {
+     "q": "hotel diffuser",
+     "v": 60
+    },
+    {
+     "q": "best aroma diffuser",
+     "v": 40
+    }
+   ],
+   "source": "related-queries",
+   "fetched": "2026-09-15"
   }
  }
 }
