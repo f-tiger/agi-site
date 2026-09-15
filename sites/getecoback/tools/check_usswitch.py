@@ -16,7 +16,15 @@ Fails when:
   * a US target term is empty or non-ASCII (it goes into an amazon.com query);
   * fewer than MIN_COVER per cent of the site's Amazon search links resolve to
     a US term;
-  * the emitted block links to any tag other than the US associates tag.
+  * the emitted block links to any tag other than the US associates tag;
+  * a term that names a part, a consumable or an accessory resolves to a whole
+    appliance. Found 2026-09-15 on portable-ac-leaking-water, the page that
+    takes more of its views from US search than any other here: a reader
+    looking for a condensate hose was sent to shop for an air conditioner,
+    because the generic 'klimaanlage' rule fired before any hose rule did.
+    Coverage alone cannot see this — the term was mapped, just mapped to the
+    wrong thing — so the ordering of the rule list is now asserted rather than
+    trusted.
 """
 import os, re, sys, urllib.parse, collections
 
@@ -87,6 +95,28 @@ def main():
             print(f"  unmapped  {n:4d}x  {t}")
         if pct < MIN_COVER:
             bad.append(f"coverage {pct:.1f}% is below the {MIN_COVER}% floor")
+
+    # --- parts must not resolve to appliances -------------------------------
+    # The rule list is ordered and first match wins, so a broad appliance
+    # pattern placed above a narrow part pattern silently swallows it. Every
+    # term the site actually links to is re-classified here from its German
+    # wording, and a part that lands on an appliance is an error.
+    PART_RE = re.compile(
+        r"schlauch|filter|dichtung|abdicht|adapter|reiniger|lamellenkamm|"
+        r"k\u00fchlrippen|entkalker|schaumstoffband|hohlkammerplatte|xps platte|"
+        r"kondensatpumpe|ersatz|klett|abluftd\u00fcse|abdeckhaube|antivibrationsmatte|"
+        r"k\u00fchlakku|zubeh\u00f6r")
+    APPLIANCE = {
+        "portable air conditioner", "dehumidifier", "space heater", "room fan",
+        "air purifier", "window air conditioner", "tower fan", "pedestal fan",
+        "ceiling fan", "12v fan", "evaporative air cooler",
+        "ductless mini split heat pump", "rv rooftop air conditioner",
+    }
+    for term in sorted(counts):
+        us = us_term_for(term)
+        if us in APPLIANCE and PART_RE.search(term.lower()):
+            bad.append(f"part term {term!r} resolves to the appliance {us!r} "
+                       f"— move its rule above the appliance rule")
 
     if bad:
         print("\nFAIL check_usswitch:")

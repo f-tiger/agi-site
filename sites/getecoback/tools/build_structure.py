@@ -2831,7 +2831,7 @@ US_SWITCH_RULES = [
     ('fensterabdichtung|fensterdichtung|abdichtung|abdicht|schaumstoffband|fensterabluft|kippfenster|hohlkammerplatte|xps platte|seal kit', 'portable ac window seal kit'),
     ('abluftschlauch|isolierschlauch|abluft|schlauchadapter', 'portable ac exhaust hose'),
     ('kondensatpumpe', 'condensate removal pump'),
-    ('kondensatschlauch|ablaufschlauch|mit schlauch|drain hose', 'dehumidifier drain hose'),
+    ('kondensatschlauch|kondenswasserschlauch|kondenswasser|ablaufschlauch|mit schlauch|drain hose', 'dehumidifier drain hose'),
     ('reiniger|verdampfer|schimmelentferner|coil cleaner', 'air conditioner coil cleaner'),
     ('lamellenkamm|kühlrippen', 'air conditioner fin comb'),
     ('ersatzfilter|filtermatte|hepa filter', 'replacement air filter'),
@@ -2878,6 +2878,7 @@ US_SWITCH_RULES = [
     ('12v|campingventilator', '12v fan'),
     ('deckenventilator', 'ceiling fan'),
     ('ventilator|meacofan|rowenta', 'room fan'),
+    ('split klimaanlage|splitklimaanlage|multisplit|mini.?split|klimaanlage wärmepumpe', 'ductless mini split heat pump'),
     ('klimaanlage|klimager|pinguino|chillflex|portasplit|breezein|quick connect|suntec|bosch cool|remko|clima butler|air conditioner|split', 'portable air conditioner'),
 ]
 
