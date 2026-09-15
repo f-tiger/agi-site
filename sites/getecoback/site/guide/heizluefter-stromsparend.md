@@ -1,6 +1,6 @@
 # Heizlüfter stromsparend 2026: Welcher lohnt sich?
 
-> Heizlüfter stromsparend nutzen: Stromkosten bei 0,30 €/kWh, Keramik vs. Draht, Sicherheit — und wann sich ein Heizlüfter lohnt und wann nicht.
+> Sparsamer Heizlüfter gesucht? Stromkosten bei 0,30 €/kWh, Keramik vs. Draht, Sicherheit — und wann sich ein Heizlüfter lohnt und wann nicht.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/heizluefter-stromsparend.html
 

@@ -1497,9 +1497,11 @@ MODEL_PROCON_EN = {
 }
 
 
-def model_card(entry, en=False):
+def model_card(entry, en=False, url=None):
+    """`url` overrides the marketplace. The US shelf passes an amazon.com link
+    with the US associates tag; everything else keeps the .de default."""
     name, role, why, price, q, svg_key = entry
-    url = amazon_url(q, name)
+    url = url or amazon_url(q, name)
     live_txt = live_price_text(live_product(q), en=en)
     if live_txt:
         price = f'<span data-eb-live="1">{live_txt}</span>'
@@ -1633,6 +1635,101 @@ def models_block(device, en=False, slug=None):
             f'{AD_LABEL[en]}</span></p>'
             f'<p class="eb-shop-sub">{sub}</p>'
             f'<div class="eb-shop-grid">{cards}</div></section><!--/EB_MODELS-->\n')
+
+
+# The English pages sell the wrong country's goods (2026-09-15, owner: expand
+# the German vertical into other countries and sell different goods there,
+# "especially the US side where the traffic is largest").
+#
+# Measured: over 28 days the United States is the second country on this site,
+# 124 human page views against Germany's 280, and the English troubleshooting
+# pages are where its search traffic actually lands (portable-ac-leaking-water
+# 8 of 10 views from search). Yet an American on those pages meets a grid of
+# De'Longhi, AEG, Klarstein and Schmidbauer — European machines. Since 09-06
+# the switch rewrites the LINK to a US category, so the card promises a named
+# model and delivers a category page. US converts at 6.5 % against Germany's
+# 15.4 %, and this is the most obvious reason why.
+#
+# US_MODELS already holds picks cross-verified against named US outlets, but
+# only inside the EB_USMARKET text bridge — never in the grid, which is what
+# actually converts (the German grid runs 37.8 clicks per 100 pages).
+#
+# So the grid itself changes country. Both grids ship; the European one is
+# visible by default, which is correct with no JS and for the EU majority, and
+# the same three-path geo gate as the switch reveals the US one. When it does,
+# the bridge is hidden too: its text says "the units below are the European
+# models", and that sentence becomes false the moment the swap happens.
+US_SHELF_TERM = {"ac": "portable air conditioner", "dehum": "dehumidifier", "heater": "space heater"}
+US_SHELF_SVG = {"ac": "ac", "dehum": "dehum", "heater": "heater"}
+
+
+def us_shelf_block(device):
+    """Hidden US grid for an English page whose default shelf is European."""
+    term = US_SHELF_TERM.get(device)
+    picks = US_MODELS.get(term) or []
+    if not picks:
+        return ""
+    svg = US_SHELF_SVG.get(device, "ac")
+    cards = "".join(
+        model_card((name, role, note, "Check the current price", urllib.parse.quote_plus(name), svg),
+                   en=True,
+                   # By-name search on the US marketplace with the US tag. No
+                   # ASIN: this site has verified none on amazon.com, and a
+                   # guessed one is the EX105 mistake in a new country.
+                   url=f"https://www.amazon.com/s?k={urllib.parse.quote_plus(name)}&tag={US_TAG}")
+        for name, role, note in picks)
+    # Same honesty as every other shelf on this site, in the US register: these
+    # are what named US outlets keep picking, not anything we tested.
+    sub = ("These are the models US reviewers keep picking — compiled from public "
+           "tests, not tested by us. Prices change; check the current price on "
+           "Amazon. Illustrations, not product photos.")
+    return (f'<!--EB_USSHELF--><section class="eb-shop eb-models" id="eb-usshelf" hidden>'
+            f'<div class="eb-shop-h">Recommended in the US</div>'
+            f'<p class="eb-shop-sub" style="margin-bottom:6px;"><span style="font-size:11px;color:#8a99a6;">'
+            f'{AD_LABEL[True]}</span></p>'
+            f'<p class="eb-shop-sub">{sub}</p>'
+            f'<div class="eb-shop-grid">{cards}</div></section>'
+            + US_SHELF_JS + '<!--/EB_USSHELF-->\n')
+
+
+# Reuses the switch's gate verbatim in shape: America/* decides with no network,
+# Europe/* (the majority here) decides with no network, and only an ambiguous
+# clock asks the edge. Clicks in this grid report source "us-shelf" so the kill
+# line can be read without guessing which grid produced them.
+US_SHELF_JS = (
+    '<script>(function(){var tz="";'
+    'try{tz=Intl.DateTimeFormat().resolvedOptions().timeZone||"";}catch(e){tz="";}'
+    'var NA=["US","CA","MX","PR"];'
+    'var swap=function(){'
+    'var us=document.getElementById("eb-usshelf");if(!us)return;'
+    'var eu=document.getElementById("eb-models");if(eu)eu.hidden=true;'
+    'var br=document.getElementById("eb-usmarket");if(br)br.hidden=true;'
+    'us.hidden=false;'
+    'us.addEventListener("click",function(e){'
+    'var a=e.target&&e.target.closest&&e.target.closest(\'a[href*="amazon."]\');if(!a)return;'
+    'if(window.gtag)gtag("event","affiliate_click",{source:"us-shelf",page:location.pathname,link_url:a.href});},true);};'
+    'if(tz.indexOf("America/")===0){swap();}'
+    'else if(tz.indexOf("Europe/")===0){return;}'
+    'else{try{fetch("/api/geo").then(function(r){return r.json();}).then(function(d){'
+    'if(d&&d.c&&NA.indexOf(d.c)>=0)swap();}).catch(function(){});}catch(e){}}'
+    '})();</script>')
+
+
+def inject_us_shelf(html, slug):
+    """English default-shelf pages only. A CONTEXT page sells parts for the
+    problem on that page (a drain hose, a spirit level) and those are already
+    switched to US search terms by EB_USSWITCH — swapping in whole appliances
+    there would answer a question the reader did not ask."""
+    if context_entries(slug, en=True):
+        return re.sub(r'<!--EB_USSHELF-->.*?<!--/EB_USSHELF-->\n?', '', html, flags=re.S)
+    blk = us_shelf_block(device_of(slug))
+    if not blk:
+        return re.sub(r'<!--EB_USSHELF-->.*?<!--/EB_USSHELF-->\n?', '', html, flags=re.S)
+    if "<!--EB_USSHELF-->" in html:
+        return re.sub(r'<!--EB_USSHELF-->.*?<!--/EB_USSHELF-->\n?', lambda m: blk, html, flags=re.S)
+    if "<!--/EB_MODELS-->" in html:
+        return html.replace("<!--/EB_MODELS-->\n", "<!--/EB_MODELS-->\n" + blk, 1)
+    return html
 
 
 def inject_models(html, slug, en=False):
@@ -4175,6 +4272,7 @@ def main():
             new = inject_usmarket(new, slug)
             new = inject_usswitch(new)
             new = inject_models(new, slug, en=True)
+            new = inject_us_shelf(new, slug)
             new = inject_sizer(new, slug, en=True)
             new = inject_toppick(new, slug, en=True)
             new = inject_explainer(new, slug, en=True)

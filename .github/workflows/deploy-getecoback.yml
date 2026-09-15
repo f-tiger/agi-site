@@ -154,6 +154,9 @@ jobs:
       - name: Check the crawler allowlist still matches real user agents
         run: node tools/test_crawler_ua.mjs
 
+      - name: Check the US shelf is hidden by default and tagged to the right market
+        run: python3 tools/check_usshelf.py
+
       - name: Check the price engine (SigV4 vector, refresher vs mock, built pages vs data)
         run: |
           node tools/product_intel/paapi.mjs --selftest
@@ -229,6 +232,12 @@ jobs:
             *) echo "::error::/api/geo must be no-store, got: ${geo_cc:-<none>}"; fail=1 ;;
           esac
           check "https://getecoback.com/guide/klimaanlage-wohnmobil.html" "EB_USSWITCH"
+          # US shelf (2026-09-15). Both strings are absent from the previous
+          # build, so both can actually fail. "Midea Duo" was the obvious second
+          # assertion and was rejected: the EB_USMARKET bridge already names it,
+          # so it would have passed against the old build and proved nothing.
+          check "https://getecoback.com/en/guide/portable-ac-rented-apartment.html" "eb-usshelf"
+          check "https://getecoback.com/en/guide/portable-ac-rented-apartment.html" "Recommended in the US"
           check "https://getecoback.com/guide/klimaanlage-wohnmobil.html" "rv rooftop air conditioner"
           # not_found_handling regression guard (2026-09-04): an unknown path must
           # be a real 404, not a 200 fallback that would let search engines index
