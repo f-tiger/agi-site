@@ -400,3 +400,37 @@ Bridge 初始化 ✓ · 49 格渲染 ✓ · 三个断点**可见** ✓ · 无交
 
 **没做也不该现在做的**:没有在 Playgama 后台建应用、没有上传、没有发布 sandbox、没有开投放。
 那些都是对外动作,等 owner 说了算。
+
+### 十、MCP 没有展示数/收入接口——但 `get_application` 里藏着两个我们从没看过的真指标（2026-09-15）
+
+**先回答「能不能获取」：不能，而且是核对过的。** 22 个工具全是表单/上传/沙盒/排行榜/内购/审核；
+`get_sandbox_state` 与 `get_application` 的**完整返回**里没有任何 visits / plays / impressions /
+revenue 字段。后台网页能看(owner 的截图)，但那走 cabinet 的网页 API + 登录态，token 在 MCP 服务端，
+会话这边拿不到，**也不去逆向他们的私有接口**。**要它就直接问他们**(后台右下角对话气泡)，
+两个问题一起问：① sandbox 的展示/收入能否给只读接口 ② **sandbox 阶段到底分不分成**。
+
+**但那次调用顺手挖出两个东西，都可直接行动：**
+
+**① 他们记录了我们每个包的载入时间(`archives[].archiveData.loadingTime`)**
+
+| 游戏 | loadingTime | initialSize | 表单 engine | 实际 bridgeEngine |
+|---|---|---|---|---|
+| GHOSTLINE | **5 143 ms** | 217 KB | js | javascript |
+| SINGULARITY | **4 589 ms** | 212 KB | js | javascript |
+| PROMPT | 387 ms | 99 KB | **unity** ✗ | javascript |
+| OVERFIT | 474 ms | 97 KB | **unity** ✗ | javascript |
+| MINIMA | 313 ms | 93 KB | **unity** ✗ | javascript |
+
+GHOSTLINE 与 SINGULARITY 比另外三款慢 **10–15 倍**。CLAUDE.md 记着 CG 第一次拒稿正是
+「BN，**载入 4.7 秒**那版」——这两款就落在那个已知的坏区间里。**注意别过度归因**：
+09-14 那两条拒稿写的是 AI 游戏分流政策，不是速度；但这是一个我们控制得了、且此前完全没看过的质量指标。
+
+**② 五款里至少三款的表单 `engine` 填成了 `unity`，而包是 JavaScript。**
+PROMPT / OVERFIT / MINIMA 全是 `engine:"unity"` + `bridgeEngine:"javascript"`(MIMIC / OVERSEER 是
+同一批 09-08 建的，大概率同样)。GHOSTLINE 与 SINGULARITY 填的是 `js`，是对的。
+**审核员打开一个声称 Unity 的游戏却看到 JS canvas，「表单与包对不上」正是会变成一句
+不可拆解的 "overall quality" 的那类问题——而 PROMPT 09-08 拿到的就是那一句。**
+
+**本会话没有改任何表单**：`update_application_form` 能改，但 PROMPT 此刻正在 `MODERATION`
+(15:45 更新)，OVERFIT/MINIMA 等四款在队列里。**改一个正在审的表单是对外动作，等 owner 说了算。**
+建议顺序：先改没在审的，PROMPT 等这一轮审完再说。
