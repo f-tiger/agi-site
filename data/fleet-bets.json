@@ -507,7 +507,7 @@
       "win": "Playgama 通道成立,按其反馈推主目录;游戏线维持投入",
       "lose": "通道判负,游戏线只维护不新增;不再为 Playgama 做任何构建工作",
       "source": "docs/games-distribution-2026-09.md 第九节",
-      "note": "2026-09-15 已发布:七款全部 publish_sandbox → PUBLISHED/ACTIVE,所以门槛的「≥3 款沙盒可玩」这一半已满足,剩下的是 ≥200 次真人 play_start。读数用 ref LIKE '%playgama.ai%'(沙盒主机,与审核容器 *.games.playgama.net 天然分开)。链接七条记在 sites/gridlings/CLAUDE.md。沙盒零收入,本条永不进钱线。start_sandbox_traffic 未调用——对外投放需 owner 明确同意。取代 09-08 预登记的 10-06「七款至少一款上线主目录」(09-14 已被否定地回答:两款被拒)。",
+      "note": "2026-09-15 已发布:七款全部 publish_sandbox → PUBLISHED/ACTIVE,所以门槛的「≥3 款沙盒可玩」这一半已满足,剩下的是 ≥200 次真人 play_start。读数用 ref LIKE '%playgama.ai%'(沙盒主机,与审核容器 *.games.playgama.net 天然分开)。链接七条记在 sites/gridlings/CLAUDE.md。沙盒零收入,本条永不进钱线。start_sandbox_traffic 未调用——对外投放需 owner 明确同意。取代 09-08 预登记的 10-06「七款至少一款上线主目录」(09-14 已被否定地回答:两款被拒)。 2026-09-15 投放:免费额度是**按组织三次**不是按游戏(文档与预检都说按游戏,实测 429),已跑 GHOSTLINE/SINGULARITY/PROMPT 三条($2·7天·各约100次游玩,至 09-22),OVERFIT/MIMIC/OVERSEER/MINIMA 吃 ORG_LIMIT 无投放。所以到期读数要分开看:三款有投放、四款纯自然流量。",
       "status": "open"
     },
     {

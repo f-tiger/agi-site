@@ -1214,3 +1214,34 @@ WHERE ua_class='human' AND name='play_start' AND ref LIKE '%playgama.ai%'
 GROUP BY day ORDER BY day DESC;
 ```
 **`start_sandbox_traffic` 至今一次都没调过**——那是对外投放,要 owner 明确同意才跑。
+
+## 免费投放是**按组织**不是按游戏:三条跑起来了,四款吃到 ORG_LIMIT(2026-09-15)
+
+owner 选「七款全投」。实际只投出去三条,第四次调用直接
+`HTTP 429: The free traffic limit for this organization is used up`。
+
+| 游戏 | 投放 | 状态 |
+|---|---|---|
+| GHOSTLINE | run `cmu2skueg…` | **RUNNING**,6 条素材,$2,至 2026-09-22 |
+| SINGULARITY | run `cmu2skwv9…` | **RUNNING**,6 条素材,$2,至 2026-09-22 |
+| PROMPT | run `cmu2skzdg…` | **RUNNING**,6 条素材,$2,至 2026-09-22 |
+| OVERFIT / MIMIC / OVERSEER / MINIMA | 无 | `verdict.reason: ORG_LIMIT`,`offer.available: false` |
+
+**这是一条文档与实际不符,后续会话必须知道**:`start_sandbox_traffic` 的工具说明与官方 README
+都写「**The first run per game is free**」,而真实额度是**每个组织三次**。更要命的是
+**`get_sandbox_traffic` 的预检也是错的**:在 429 之前,我逐款查过,每款都返回
+`verdict.allowed: true` + `offer: {kind: FREE, available: true}`。**平台自己的预检不包含组织级配额。**
+
+**通用教训(适用于舰队所有第三方配额)**:**按条目返回的预检不能证明组织级配额还有余量。**
+稀缺且不可撤销的名额,要么先用一次调用探明真实上限,要么**按想清楚的优先级顺序一条一条发**
+——因为**用完的那一刻,分配就由调用顺序决定了**。本次三个名额落在 GHOSTLINE / SINGULARITY /
+PROMPT 身上,**就是我循环里的前三个,不是挑出来的**;这一点已如实报给 owner,且不可撤销。
+
+**其他实测事实**:
+- 投放素材由**封面裁出来**(`creativeCount: 6`)——所以「发布前封面必须就位」不只是分享预览图的事,
+  没有封面会以 `NO_COVERS` 直接拒绝投放。
+- 付费档**已经有价**:`offer: {kind: PAID, priceUsd: 20, budgetUsd: 2, durationDays: 7,
+  expectedGameplays: 100}` —— 即 **$20 买一次 ≈100 次游玩**(约 $0.2/次游玩)。文档说「paid runs are
+  not sold yet」,实际字段里有价格但 `available: false`(在跑的时候不能再买)。**要不要花这 $20
+  是 owner 的钱,会话永不代决。**
+- 一款同时只能有一条投放(`RUN_IN_PROGRESS`)。
