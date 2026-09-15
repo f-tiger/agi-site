@@ -48,7 +48,7 @@ jobs:
       - name: Gate — files present, worker parses, unit test passes
         working-directory: sites/after35
         run: |
-          for f in site/index.html site/cards.html site/post.html site/paths.html site/restart.html site/my.html site/after-35-restart.html site/ai-leverage.html site/laid-off-programmer-ai.html site/easier-or-harder-after-35.html site/team.html site/16507d8e1997c4be371f5fbaf7ac1985.txt site/checklist.html site/about.html site/style.css site/app.js site/llms.txt site/robots.txt site/sitemap.xml worker.js wrangler.jsonc; do
+          for f in site/index.html site/cards.html site/post.html site/paths.html site/restart.html site/my.html site/after-35-restart.html site/ai-leverage.html site/laid-off-programmer-ai.html site/easier-or-harder-after-35.html site/screen.html site/referral.html site/team.html site/16507d8e1997c4be371f5fbaf7ac1985.txt site/checklist.html site/about.html site/style.css site/app.js site/llms.txt site/robots.txt site/sitemap.xml worker.js wrangler.jsonc; do
             [ -f "$f" ] || { echo "::error::missing $f"; exit 1; }
           done
           node --check worker.js
@@ -85,7 +85,7 @@ jobs:
         run: |
           set -u
           fail=0
-          for p in / /cards /post /team /paths /ai-leverage /laid-off-programmer-ai /easier-or-harder-after-35 /restart /my /after-35-restart /checklist /about /llms.txt /llms-full.txt /after-35-restart.md /sitemap.xml /robots.txt /16507d8e1997c4be371f5fbaf7ac1985.txt; do
+          for p in / /cards /post /team /screen /referral /paths /ai-leverage /laid-off-programmer-ai /easier-or-harder-after-35 /restart /my /after-35-restart /checklist /about /llms.txt /llms-full.txt /after-35-restart.md /sitemap.xml /robots.txt /16507d8e1997c4be371f5fbaf7ac1985.txt; do
             url="https://35.agiscorecard.com$p?ci=1"
             ok=0; code=000
             for try in 1 2 3 4 5; do

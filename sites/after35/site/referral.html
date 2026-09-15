@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>内推信生成器:35 岁以后找工作,从这条微信开始 — 三十五后</title>
+<meta name="description" content="过了 35 岁,工作大多来自熟人内推而不是招聘网站。填五个空,生成三条能直接发的微信:开口版、详细版、五天后跟进版;再给你一张「先联系哪 10 个人」的名单表。不上传。">
+<link rel="canonical" href="https://35.agiscorecard.com/referral">
+<meta property="og:title" content="内推信生成器:35 岁以后找工作,从这条微信开始">
+<meta property="og:description" content="填五个空,生成三条能直接发的微信:开口版、详细版、跟进版。不上传。">
+<link rel="stylesheet" href="/style.css">
+<style>
+  .msg { border: 1px solid var(--rule); border-radius: 10px; padding: 16px; margin: 12px 0; background: var(--bg2); }
+  .msg h3 { margin: 0 0 8px; font-size: 17px; display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+  .msg pre { white-space: pre-wrap; font: inherit; margin: 0; background: #fff; border-radius: 8px; padding: 12px 14px; border: 1px solid var(--rule); }
+  .msg button { min-height: 40px; padding: 0 12px; border-radius: 6px; border: 1.5px solid var(--accent); background: #fff; color: var(--accent); font-weight: 600; cursor: pointer; }
+  .ten { width: 100%; border-collapse: collapse; }
+  .ten td, .ten th { border: 1px solid var(--rule); padding: 8px; height: 40px; }
+  @media print { header, footer, .cta-row, .noprint, form { display: none !important; } }
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"内推信生成器","url":"https://35.agiscorecard.com/referral","applicationCategory":"BusinessApplication","operatingSystem":"Web","inLanguage":"zh-CN","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"CNY"},"featureList":["三条可直接发送的微信:开口版、详细版、五天后跟进版","按关系(前同事/前客户/同学/朋友)与目的(内推/介绍/接活/兼职)变化措辞","「先联系哪 10 个人」名单表","可附你的经验卡链接","不上传任何数据"],"isPartOf":{"@type":"WebSite","name":"三十五后","url":"https://35.agiscorecard.com/"}}
+</script>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="/">三十五<b>后</b></a>
+  <nav class="main"><a href="/cards">经验卡</a><a href="/post">发一张</a><a href="/team">组队</a><a href="/screen">合理吗</a><a href="/referral" aria-current="page">内推信</a><a href="/paths">变现路径</a><a href="/ai-leverage">经验×AI</a><a href="/restart">二次启动</a><a href="/checklist">失业第一周</a><a href="/about">关于</a></nav>
+</div></header>
+<main class="wrap">
+  <h1>内推信生成器</h1>
+  <p class="lead muted">投简历是把缓冲期交给最看年龄的渠道;过了 35 岁,工作大多来自认识你的人。难的不是没人脉,是<strong>开不了口</strong>。填五个空,给你三条能直接发的微信——开口版、详细版、五天后的跟进版——和一张「先联系哪 10 个人」的表。</p>
+
+  <form class="post" id="f" novalidate>
+    <label for="to">对方怎么称呼 <span class="hint">例如「王总」「李姐」「老张」</span></label>
+    <input type="text" id="to" maxlength="12" placeholder="王总">
+    <label>你们的关系</label>
+    <div class="choices" id="rel">
+      <label><input type="radio" name="rel" value="colleague" checked> 前同事</label>
+      <label><input type="radio" name="rel" value="client"> 前客户 / 供应商</label>
+      <label><input type="radio" name="rel" value="classmate"> 同学 / 老朋友</label>
+      <label><input type="radio" name="rel" value="weak"> 只见过几次</label>
+    </div>
+    <label for="what">你能替谁把什么问题搞定 <span class="hint">一句话,越具体越好。例如「帮 50 人以下的工厂把采购成本压下来」</span></label>
+    <input type="text" id="what" maxlength="60" placeholder="帮 50 人以下的工厂把采购成本压下来">
+    <label>你想要什么</label>
+    <div class="choices" id="goal">
+      <label><input type="radio" name="goal" value="intro" checked> 介绍认识需要这个的人</label>
+      <label><input type="radio" name="goal" value="job"> 内推一个岗位</label>
+      <label><input type="radio" name="goal" value="gig"> 接一个项目</label>
+      <label><input type="radio" name="goal" value="part"> 每周去两三天的兼职</label>
+    </div>
+    <label for="where">城市 / 远程 <span class="hint">可留空</span></label>
+    <input type="text" id="where" maxlength="20" placeholder="苏州,远程也行">
+    <label for="card">你的经验卡链接 <span class="hint">可留空;发了卡会有 /c/卡号</span></label>
+    <input type="text" id="card" maxlength="60" placeholder="https://35.agiscorecard.com/c/12">
+    <p class="cta-row"><button class="cta primary" type="submit">生成三条微信</button></p>
+  </form>
+
+  <div id="out" hidden>
+    <div class="msg"><h3>① 开口版(先发这条,别一上来就长篇)<button type="button" data-copy="m1">复制</button></h3><pre id="m1"></pre></div>
+    <div class="msg"><h3>② 详细版(对方回了再发)<button type="button" data-copy="m2">复制</button></h3><pre id="m2"></pre></div>
+    <div class="msg"><h3>③ 五天后跟进版(没回也发,只发一次)<button type="button" data-copy="m3">复制</button></h3><pre id="m3"></pre></div>
+    <p class="small muted">三条里没有一句「我失业了」——不是要瞒,是这句话让对方不知道怎么接。你要的是一个具体的动作,不是安慰。</p>
+    <p class="cta-row noprint"><a class="cta primary" href="/post?kind=offer" data-ev="post_open" data-l="referral_page">还没有经验卡?先发一张,链接放进去</a><button class="cta" type="button" onclick="window.print()">打印名单表</button></p>
+
+    <h2>先联系哪 10 个人</h2>
+    <p class="muted">规则只有一条:每天发 2 条,五天发完;谁回了就记下次跟进日。不要一天群发 10 条。</p>
+    <div class="tbl"><table class="ten">
+      <tr><th style="width:5%">#</th><th style="width:20%">名字</th><th style="width:20%">关系 / 他在哪</th><th style="width:15%">发送日</th><th style="width:20%">回了吗 / 说了什么</th><th style="width:20%">下次跟进</th></tr>
+      <tr><td>1</td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>2</td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>3</td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>4</td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>5</td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>6</td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>7</td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>8</td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>9</td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>10</td><td></td><td></td><td></td><td></td><td></td></tr>
+    </table></div>
+    <p class="small muted">先写前同事、前客户、供应商,再写同学和朋友——前三类知道你能干什么,后两类只知道你是谁。</p>
+  </div>
+
+  <hr class="rule">
+  <h2>为什么是这三条,不是简历</h2>
+  <div class="tbl"><table>
+    <tr><th>简历</th><th>这三条微信</th></tr>
+    <tr><td>给筛选系统看,年龄栏在第一页</td><td>给认识你的人看,他早就知道你多大</td></tr>
+    <tr><td>写你做过什么</td><td>写你能替谁把什么搞定,和你要一个什么具体动作</td></tr>
+    <tr><td>发出去等</td><td>五天后跟进一次,只一次</td></tr>
+  </table></div>
+
+  <hr class="rule">
+  <h2>判定与依据</h2>
+  <ul>
+    <li><a href="/after-35-restart">35 岁以后失业,还能重新开始吗?</a> — 能,但大概率不是靠投简历。</li>
+    <li><a href="/easier-or-harder-after-35">中年失业后重新开始,现在比五年前更容易还是更难?</a> — 渠道更难,所以走熟人。</li>
+    <li><a href="/paths">六条变现路径决策表</a> · <a href="/screen">这个创业项目合理吗?</a></li>
+  </ul>
+</main>
+<footer><div class="wrap">
+  <div class="links"><a href="/">首页</a><a href="/cards">经验卡</a><a href="/team">组队</a><a href="/screen">合理吗</a><a href="/restart">二次启动</a><a href="/about">关于</a></div>
+  <div>三十五后 · <a href="https://agiscorecard.com/">AGI Scorecard</a> 网络的中文子站</div>
+</div></footer>
+<script src="/app.js"></script>
+<script>
+(function(){
+  var f = document.getElementById("f"), qs = new URLSearchParams(location.search);
+  ["to","what","where","card"].forEach(function(k){ if (qs.get(k)) document.getElementById(k).value = qs.get(k); });
+  if (qs.get("rel")) { var r = f.querySelector('input[name=rel][value="' + qs.get("rel") + '"]'); if (r) r.checked = true; }
+  if (qs.get("goal")) { var g = f.querySelector('input[name=goal][value="' + qs.get("goal") + '"]'); if (g) g.checked = true; }
+  var GOAL = {
+    intro: { ask: "如果你身边有人正在为这事头疼,能不能帮我介绍认识一下?", ask2: "不用你出面,给我一个名字和一句「这是我朋友」就够了。", follow: "上次说的事不急,如果这两天有想到谁,随时给我个名字。" },
+    job: { ask: "你们那边或你知道的公司,如果有这方面的位置,能不能帮我递一下?", ask2: "我不挑头衔,合同工、项目制都可以,先干出结果再说。", follow: "上次说的岗位不急,如果有合适的随时叫我;没有也没关系,谢谢你。" },
+    gig: { ask: "如果你或你认识的人有这类活,我可以按项目接,报价按件算。", ask2: "小活也接,先做出一个案例最重要。", follow: "上次说的活不急,手头有合适的随时想起我就行。" },
+    part: { ask: "如果有公司缺一个这样的人每周去两三天,能不能帮我问问?", ask2: "不用全职,兼职驻场就行,先试一周双方再定。", follow: "上次说的兼职不急,遇到合适的随时叫我。" }
+  };
+  var REL = {
+    colleague: { open: "好久不见,最近怎么样?", ctx: "我从公司出来了,现在自己接事情做。" },
+    client: { open: "好久没联系,你们那边一切都好吧?", ctx: "我现在不在原来的公司了,自己独立做。" },
+    classmate: { open: "好久不见!最近忙什么?", ctx: "我最近换了个活法,自己做。" },
+    weak: { open: "冒昧打扰,我是之前在某某场合见过的某某,不知道你还有没有印象。", ctx: "我现在自己独立做事。" }
+  };
+  function gen(){
+    var to = document.getElementById("to").value.trim() || "您好", what = document.getElementById("what").value.trim(), where = document.getElementById("where").value.trim(), card = document.getElementById("card").value.trim();
+    var rel = REL[(f.querySelector("input[name=rel]:checked")||{}).value || "colleague"], goal = GOAL[(f.querySelector("input[name=goal]:checked")||{}).value || "intro"];
+    if (what.length < 6) { alert("先写一句「你能替谁把什么搞定」,这是三条微信的核心。"); return; }
+    var m1 = to + ",\n" + rel.open + "\n" + rel.ctx + "主要做一件事:" + what + "。\n" + goal.ask;
+    var m2 = to + ",谢谢你回我。\n具体说一下:我做的是「" + what + "」" + (where ? ",在" + where : "") + "。\n" + goal.ask2 + "\n" + (card ? "我的情况都在这一页,一分钟能看完:" + card + "\n" : "") + "不管成不成,先谢谢你。";
+    var m3 = to + ",\n" + goal.follow + "\n" + (card ? "这一页我更新过了,方便的话再看一眼:" + card : "有空一起喝杯茶。");
+    document.getElementById("m1").textContent = m1; document.getElementById("m2").textContent = m2; document.getElementById("m3").textContent = m3;
+    document.getElementById("out").hidden = false;
+    var u = new URL(location.href); [["to",to],["what",what],["where",where],["card",card],["rel",(f.querySelector("input[name=rel]:checked")||{}).value],["goal",(f.querySelector("input[name=goal]:checked")||{}).value]].forEach(function(kv){ if (kv[1]) u.searchParams.set(kv[0], kv[1]); else u.searchParams.delete(kv[0]); });
+    history.replaceState(null, "", u.toString());
+    a35ev("path_result", "referral:" + ((f.querySelector("input[name=goal]:checked")||{}).value));
+    document.getElementById("out").scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+  f.addEventListener("submit", function(e){ e.preventDefault(); gen(); });
+  document.querySelectorAll("[data-copy]").forEach(function(b){ b.addEventListener("click", function(){ var t = document.getElementById(b.getAttribute("data-copy")).textContent; (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).then(function(){ b.textContent = "已复制"; a35ev("share_click", "referral_" + b.getAttribute("data-copy")); setTimeout(function(){ b.textContent = "复制"; }, 1500); }).catch(function(){ prompt("复制这段:", t); }); }); });
+  if (qs.get("what")) gen();
+})();
+</script>
+</body>
+</html>

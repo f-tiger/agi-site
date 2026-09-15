@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>这个创业项目合理吗?加盟、代理、副业机会筛选器 — 三十五后</title>
+<meta name="description" content="有人拉你加盟、入伙、做代理、买课程?12 个问题两分钟给判定:远离 / 谨慎 / 合理。红旗对照《禁止传销条例》《商业特许经营管理条例》原文条款,再用你自己的数字算盈亏平衡和回本月数。不上传、可分享给家人。">
+<link rel="canonical" href="https://35.agiscorecard.com/screen">
+<meta property="og:title" content="这个创业项目合理吗?12 个问题两分钟给判定">
+<meta property="og:description" content="加盟、代理、副业、入伙——红旗对照法规条款,盈亏平衡自己算。远离 / 谨慎 / 合理。">
+<link rel="stylesheet" href="/style.css">
+<style>
+  .qq { border: 1px solid var(--rule); border-radius: 10px; padding: 14px 16px; margin: 10px 0; display: grid; grid-template-columns: 1fr auto; gap: 10px 14px; align-items: center; }
+  .qq .t { font-weight: 600; }
+  .qq .h { grid-column: 1 / -1; color: var(--ink3); font-size: 15px; }
+  .yn { display: flex; gap: 6px; }
+  .yn button { min-height: 44px; min-width: 64px; padding: 0 14px; border-radius: 8px; border: 1px solid var(--rule); background: #fff; font: inherit; font-size: 16px; cursor: pointer; }
+  .yn button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+  @media (max-width: 560px) { .qq { grid-template-columns: 1fr; } }
+  .verdict { border-radius: 12px; padding: 22px; margin: 22px 0; border: 2px solid var(--rule); }
+  .verdict.red { border-color: var(--warn); background: #fbeaec; }
+  .verdict.amber { border-color: #b7791f; background: #fdf3e2; }
+  .verdict.green { border-color: var(--ok); background: #e7f4ee; }
+  .verdict h2 { margin-top: 0; }
+  .flag { padding: 8px 0; border-bottom: 1px solid var(--rule); }
+  .flag b { display: block; }
+  .flag small { color: var(--ink3); }
+  .calc { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; }
+  .calc label { display: block; font-weight: 600; font-size: 16px; margin-bottom: 4px; }
+  .calc input { width: 100%; font: inherit; min-height: 50px; padding: 0 12px; border: 1px solid #c9ccd4; border-radius: 8px; }
+  @media print { header, footer, .cta-row, .noprint { display: none !important; } }
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"创业与副业机会筛选器","url":"https://35.agiscorecard.com/screen","applicationCategory":"BusinessApplication","operatingSystem":"Web","inLanguage":"zh-CN","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"CNY"},"featureList":["12 个是非题两分钟出判定(远离/谨慎/合理)","红旗逐条对照《禁止传销条例》《商业特许经营管理条例》条款","盈亏平衡客户数与回本月数计算","判定写进链接可分享给家人","不上传任何数据"],"isPartOf":{"@type":"WebSite","name":"三十五后","url":"https://35.agiscorecard.com/"}}
+</script>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="/">三十五<b>后</b></a>
+  <nav class="main"><a href="/cards">经验卡</a><a href="/post">发一张</a><a href="/team">组队</a><a href="/screen" aria-current="page">合理吗</a><a href="/referral">内推信</a><a href="/paths">变现路径</a><a href="/ai-leverage">经验×AI</a><a href="/restart">二次启动</a><a href="/checklist">失业第一周</a><a href="/about">关于</a></nav>
+</div></header>
+<main class="wrap">
+  <h1>这个创业项目合理吗?</h1>
+  <p class="lead muted">失业的人是加盟、代理、「副业课程」和「入伙项目」最爱找的对象——因为手里有赔偿金,心里有急。12 个问题,两分钟,先把红旗数清楚;再用你自己的数字算一遍盈亏平衡。<strong>不上传任何东西,判定写进链接,发给家人一起看。</strong></p>
+
+  <div id="qs"></div>
+
+  <div id="out" hidden>
+    <div class="verdict" id="vbox"><h2 id="vtitle"></h2><p id="vtext"></p><div id="flags"></div></div>
+    <p class="cta-row noprint"><button class="cta primary" type="button" id="share">复制判定链接给家人</button><button class="cta" type="button" onclick="window.print()">打印</button></p>
+  </div>
+
+  <hr class="rule">
+  <h2>第二步:用你自己的数字算盈亏平衡</h2>
+  <p class="muted">对方的宣传册不会给你这三个数,你自己填。算术不是建议,但算不过来的项目,再合理也不该做。</p>
+  <div class="calc">
+    <div><label for="c_start">一次性投入(元)</label><input type="number" id="c_start" inputmode="numeric" placeholder="加盟费 + 装修 + 设备 + 首批货"></div>
+    <div><label for="c_fixed">每月固定支出(元)</label><input type="number" id="c_fixed" inputmode="numeric" placeholder="房租 + 人工 + 平台费 + 你自己的工资"></div>
+    <div><label for="c_margin">每个客户平均毛利(元)</label><input type="number" id="c_margin" inputmode="numeric" placeholder="客单价 − 进货/成本"></div>
+    <div><label for="c_cust">你有把握每月做到多少客户?</label><input type="number" id="c_cust" inputmode="numeric" placeholder="按最保守估"></div>
+  </div>
+  <p class="cta-row"><button class="cta" type="button" id="calcbtn">算</button></p>
+  <div id="cout" class="notice" hidden></div>
+
+  <hr class="rule">
+  <h2>红旗背后的条款(自己去核,别信我们)</h2>
+  <div class="tbl"><table>
+    <tr><th>红旗</th><th>依据</th></tr>
+    <tr><td>先交钱才能加入 / 靠拉人头拿钱 / 按下线业绩计酬</td><td>《禁止传销条例》第七条列举的三种传销形式:「拉人头」「入门费」「团队计酬」——<a href="https://xzfg.moj.gov.cn/front/law/detail?LawID=148" rel="noopener">司法部行政法规库原文</a></td></tr>
+    <tr><td>加盟品牌拿不出至少 2 家经营满 1 年的直营店</td><td>《商业特许经营管理条例》第七条(俗称「两店一年」)——<a href="https://www.gov.cn/gongbao/content/2007/content_564109.htm" rel="noopener">国务院令第 485 号,中国政府网</a></td></tr>
+    <tr><td>签约前 30 天拿不到书面信息披露与合同文本</td><td>同条例第二十一条:特许人应当在订立合同之日前至少 30 日以书面形式提供第二十二条规定的信息与合同文本</td></tr>
+    <tr><td>没在商务主管部门备案</td><td>同条例第八条:特许人应当向商务主管部门备案。商务部特许经营备案系统可查</td></tr>
+    <tr><td>合同里没有「订立后一定期限内可单方解除」</td><td>同条例第十二条:合同应约定被特许人在合同订立后一定期限内可以单方解除合同</td></tr>
+    <tr><td>承诺保本、固定回报、「稳赚」</td><td>本站不给法条,只给常识:能保本的生意不需要你的加盟费</td></tr>
+  </table></div>
+  <p class="small muted">本页不构成法律意见。条款以官方原文为准;遇到具体合同,花几百块找律师看一遍,比赔偿金便宜。</p>
+
+  <hr class="rule">
+  <h2>判定与依据</h2>
+  <ul>
+    <li><a href="/easier-or-harder-after-35">中年失业后重新开始,现在比五年前更容易还是更难?</a></li>
+    <li><a href="/after-35-restart">35 岁以后失业,还能重新开始吗?</a></li>
+    <li><a href="/paths">六条变现路径决策表</a> · <a href="/restart">现金红线与 90 天计划</a></li>
+  </ul>
+</main>
+<footer><div class="wrap">
+  <div class="links"><a href="/">首页</a><a href="/cards">经验卡</a><a href="/team">组队</a><a href="/referral">内推信</a><a href="/restart">二次启动</a><a href="/about">关于</a></div>
+  <div>三十五后 · <a href="https://agiscorecard.com/">AGI Scorecard</a> 网络的中文子站 · 不构成法律或投资建议</div>
+</div></footer>
+<script src="/app.js"></script>
+<script>
+(function(){
+  // 12 题。w:红旗权重(3 = 单条即「远离」,2 = 重,1 = 轻);g:答「是」为好事(绿旗)。
+  var Q = [
+    { k:"pay", t:"加入之前要先交钱吗?(加盟费、保证金、培训费、进货款、会员费)", h:"《禁止传销条例》第七条「入门费」;特许经营里加盟费本身合法,但要和后面几条一起看", w:3 },
+    { k:"head", t:"收入主要靠你再拉人进来吗?", h:"《禁止传销条例》第七条「拉人头」——单条即远离", w:3 },
+    { k:"team", t:"报酬按你下线的业绩计算吗?", h:"《禁止传销条例》第七条「团队计酬」——单条即远离", w:3 },
+    { k:"guar", t:"对方承诺保本、固定回报或「稳赚」吗?", h:"能保本的生意不需要你的钱", w:3 },
+    { k:"store", t:"如果是加盟:品牌能拿出至少 2 家经营满 1 年的直营店吗?", h:"《商业特许经营管理条例》第七条「两店一年」", w:2, g:true, opt:true },
+    { k:"disc", t:"签约前 30 天能拿到书面信息披露和合同文本吗?", h:"同条例第二十一条", w:2, g:true, opt:true },
+    { k:"reg", t:"品牌在商务部特许经营备案系统里查得到吗?", h:"同条例第八条;自己去查,不要只看对方给的截图", w:2, g:true, opt:true },
+    { k:"home", t:"合同能带回家看三天再签吗?", h:"催你当场签的,理由只有一个", w:2, g:true },
+    { k:"cust", t:"你能说出 3 个会为它付钱的具体客户吗?(名字或明确的一类人)", h:"说不出来,说明需求还是对方讲的,不是你看见的", w:2, g:true },
+    { k:"exp", t:"它用得上你过去的经验吗?", h:"用不上经验的项目,你和 22 岁的人站在同一起跑线,而他们更便宜", w:1, g:true },
+    { k:"cash", t:"一次性投入超过你手头现金的三分之一吗?", h:"超过就没有第二次机会;先去算现金红线", w:2 },
+    { k:"test", t:"能先用一万块以内、三个月以内验证有人付钱吗?", h:"不能小步验证的项目,风险全在你这边", w:1, g:true }
+  ];
+  var qs = new URLSearchParams(location.search); var a = {}; var pre = qs.get("a") || "";
+  Q.forEach(function(q, i){ var c = pre[i]; if (c === "1" || c === "0" || c === "x") a[q.k] = c; });
+  var box = document.getElementById("qs");
+  function render(){
+    box.innerHTML = Q.map(function(q, i){
+      return '<div class="qq"><div><div class="t">' + (i+1) + ". " + q.t + '</div></div><div class="yn">' +
+        '<button type="button" data-k="' + q.k + '" data-v="1" aria-pressed="' + (a[q.k] === "1") + '">是</button>' +
+        '<button type="button" data-k="' + q.k + '" data-v="0" aria-pressed="' + (a[q.k] === "0") + '">否</button>' +
+        (q.opt ? '<button type="button" data-k="' + q.k + '" data-v="x" aria-pressed="' + (a[q.k] === "x") + '">不是加盟</button>' : "") +
+        '</div><div class="h">' + q.h + "</div></div>";
+    }).join("");
+    box.querySelectorAll("button").forEach(function(b){ b.addEventListener("click", function(){ a[b.getAttribute("data-k")] = b.getAttribute("data-v"); render(); judge(); }); });
+  }
+  function judge(){
+    var answered = Q.filter(function(q){ return a[q.k] !== undefined; }).length;
+    if (answered < Q.length) return;
+    var red = [], green = [], score = 0, fatal = false;
+    Q.forEach(function(q){
+      var v = a[q.k]; if (v === "x") return;
+      if (q.g) { if (v === "1") green.push(q); else { red.push(q); score += q.w; } }
+      else { if (v === "1") { red.push(q); score += q.w; if (q.w === 3) fatal = true; } else green.push(q); }
+    });
+    var cls, title, text;
+    if (fatal) { cls = "red"; title = "判定:远离"; text = "至少有一条触及《禁止传销条例》第七条列举的形式,或对方承诺保本。这类项目对失业的人尤其危险,因为它要的正是你的赔偿金和你的急。别再往下算盈亏,把这一页发给家里人。"; }
+    else if (score >= 5) { cls = "red"; title = "判定:远离"; text = "红旗太多。不是每一条都致命,但加起来说明信息不对称全在对方那边。"; }
+    else if (score >= 2) { cls = "amber"; title = "判定:谨慎"; text = "有几条没过。把下面每一条红旗变成一个问题去问对方,问不出书面答案的就当没过。然后用第二步的算术再筛一遍。"; }
+    else { cls = "green"; title = "判定:合理,可以进入算术"; text = "红旗基本没有。「合理」不等于「会赚」——现在用你自己的数字算盈亏平衡,再决定投多少、投多久。"; }
+    var vb = document.getElementById("vbox"); vb.className = "verdict " + cls;
+    document.getElementById("vtitle").textContent = title; document.getElementById("vtext").textContent = text;
+    document.getElementById("flags").innerHTML = red.map(function(q){ return '<div class="flag"><b>红旗:' + q.t + "</b><small>" + q.h + "</small></div>"; }).join("") + (green.length ? '<div class="small muted" style="margin-top:8px">绿旗 ' + green.length + " 条:" + green.map(function(q){ return q.t.split("?")[0].split("(")[0]; }).join("、") + "</div>" : "");
+    document.getElementById("out").hidden = false;
+    var code = Q.map(function(q){ return a[q.k] === undefined ? "-" : a[q.k]; }).join("");
+    history.replaceState(null, "", "/screen?a=" + code);
+    a35ev("path_result", "screen:" + cls + ":" + score);
+    document.getElementById("out").scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+  render(); judge();
+  document.getElementById("share").addEventListener("click", function(){ (navigator.clipboard ? navigator.clipboard.writeText(location.href) : Promise.reject()).then(function(){ a35ev("share_click", "screen"); alert("已复制。发给家人一起看。"); }).catch(function(){ prompt("复制这个链接:", location.href); }); });
+  document.getElementById("calcbtn").addEventListener("click", function(){
+    var s = +document.getElementById("c_start").value || 0, f = +document.getElementById("c_fixed").value || 0, m = +document.getElementById("c_margin").value || 0, c = +document.getElementById("c_cust").value || 0;
+    var o = document.getElementById("cout"); o.hidden = false;
+    if (!m) { o.innerHTML = "每个客户的毛利不能为 0——它是全部算术的分母。"; return; }
+    var be = Math.ceil(f / m); var monthly = c * m - f; var payback = monthly > 0 ? Math.ceil(s / monthly) : null;
+    o.innerHTML = "<strong>盈亏平衡:每月需要 " + be + " 个客户</strong>才能覆盖固定支出。" +
+      (c ? " 按你最保守的 " + c + " 个客户算,每月" + (monthly >= 0 ? "净剩 " + monthly + " 元" : "亏 " + (-monthly) + " 元") + (payback ? ",一次性投入 " + s + " 元要 <strong>" + payback + " 个月</strong>回本" : (s ? ",一次性投入永远回不了本" : "")) + "。" : "") +
+      "<br><span class='small muted'>把这两个数放进 <a href='/restart'>现金红线</a> 里看:回本月数比现金能撑的月数长,就不该做。</span>";
+    a35ev("path_result", "screen_calc:" + (payback === null ? "never" : payback));
+  });
+})();
+</script>
+</body>
+</html>
