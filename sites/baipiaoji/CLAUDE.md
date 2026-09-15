@@ -345,3 +345,21 @@ GEO / 设计类任务前，先查技能库是否覆盖，覆盖则按其框架�
 补充（owner 2026-08-17 确认闭环）：三门之上执行五步闭环——信号→薄 PRD（一页：三门
 证据+判定线）→上线（PRD 过三门即自动实施，定稿不是里程碑、上线才是）→收数→判定日
 放大或杀死。变现类需求 Working Backwards 起手。
+
+## 对外声明的 URL 不带 `.html`(2026-09-15,别改回去)
+
+Cloudflare Pages 把 `/x.html` **308** 跳到 `/x`。在此之前本站的 sitemap(1558 条)、每页的
+`canonical` / `og:url` / `hreflang`、以及 `llms.txt` 全部声明 `.html` 版本 —— **canonical 指向一个
+非 200 的地址**,爬虫抓每一条都多一跳,IndexNow 每次推的也是跳转地址。同日抽样实测:本站 6/6
+重定向,舰队另外 13 个站 0/6。
+
+- 实现:`scripts/build.mjs` 里的 `pub()`(去掉 `.html`,`/index.html`→`/`,`/404.html` 保留原样)与
+  `pubText()`(只剥 URL 里的 `.html`,所以「`.html` 换 `.md`」那句镜像说明不受影响)。
+- **只作用于对外声明的四处**:`canonical`/`og:url`、`hreflang`、sitemap 的 `<loc>`、`llms.txt` 与
+  `llms-full.txt`。**站内 `href` 与构建期路径一律不动** —— 它们是 `.md` 镜像与 dist 落盘的键,
+  动了收益小、面大;而且 `<loc>` 的变换只在输出处做,`lmNow[u]` 仍按原 URL 作键,lastmod 清单不失效。
+- 首次部署会判定 **1546/1558 页内容有变**(canonical 在每一页上),lastmod 全站刷新 + IndexNow 整站推
+  一次。**这是一次性的、且是诚实的**(抓取语义确实变了),不要据此以为「每天声明全站都变了」的老毛病
+  回来了;第二次构建起恢复正常。
+- 守卫:部署自检有一条硬断言(sitemap 零 `.html` + 抽样页直接 200 + canonical 自指),
+  舰队 heartbeat 另有 `tools/fleet/sitemap_guard.py`。判定线 `bpj-canonical-fix-1013`(10-13)。

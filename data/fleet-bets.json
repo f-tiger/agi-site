@@ -564,6 +564,28 @@
       "lose": "Google = bpj 专属;其余站一律按 Bing 家族与 AI 引荐口径优化,永不再为 Google 改标题",
       "source": "docs/fleet-traffic-sources-2026-09-15.md",
       "status": "open"
+    },
+    {
+      "id": "bpj-canonical-fix-1013",
+      "site": "baipiaoji",
+      "due": "2026-10-13",
+      "metric": "data/fleet-traffic-sources.json 里 bpj 的 by_search google.* /28d(09-15 基线 157)",
+      "threshold": "≥180(+15%)",
+      "win": "sitemap/canonical 卫生对 Google 通道有效;sitemap_guard 留作常驻守卫",
+      "lose": "记反面发现「canonical 卫生不是 bpj 的瓶颈」,不再往这个方向投,守卫保留但不再据此改站",
+      "source": "docs/fleet-cross-learning-2026-09-15.md",
+      "status": "open"
+    },
+    {
+      "id": "fleet-xlearn-matrix-1013",
+      "site": "fleet",
+      "due": "2026-10-13",
+      "metric": "data/fleet-page-patterns.json:agi 或 eco 的 dated_fresh 命中率(09-15 基线 agi 4/16、eco 2/9)",
+      "threshold": "任一站 ≥50%",
+      "win": "互学矩阵能真的驱动移植,保留每周一的取数",
+      "lose": "记反面发现「矩阵产出为 0」,降为季度一次,不再每周取数",
+      "source": "docs/fleet-cross-learning-2026-09-15.md",
+      "status": "open"
     }
   ]
 }

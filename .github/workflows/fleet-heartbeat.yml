@@ -181,7 +181,7 @@ jobs:
           git config user.email noreply@anthropic.com
           git config user.name Claude
           git add data/fleet-health.json
-          git add data/fleet-ai-access.json data/fleet-ai-referrals.json data/fleet-traffic-sources.json 2>/dev/null || true
+          git add data/fleet-ai-access.json data/fleet-ai-referrals.json data/fleet-traffic-sources.json data/fleet-page-patterns.json 2>/dev/null || true
           git diff --cached --quiet && { echo "无变化"; exit 0; }
           git commit -m "chore(fleet): heartbeat 健康快照 $(date -u +%F)"
           for i in 1 2 3 4; do
@@ -253,6 +253,22 @@ jobs:
       - name: Assert referrer-source classifier parity across workers
         run: python3 tools/fleet/check_ref_sources.py
 
+      # sitemap 里的 URL 必须是终点。这类缺陷不跟随跳转就看不见:站是 200、sitemap 是 200,
+      # 唯独每条 loc 都多一跳。实测 bpj 1558 条全中(canonical 也指向非 200),另外 13 站为 0。
+      # 抽样 4 条/站,只打自家站,零外部副作用。3xx 才红;取不到只 warning。
+      - name: Assert every sitemap URL is a destination, not a redirect
+        id: smguard
+        continue-on-error: true
+        run: python3 tools/fleet/sitemap_guard.py
+
+      # 舰队互学矩阵(每周一,脚本自己判星期,不新增 cron):同一套判据打在 14 个站上,
+      # 谁在哪条已验证做法上最好、谁缺它,一张表看完。第一次跑就推翻了直觉——
+      # 带日期的新鲜度标注 bpj 12/16 是全舰队最好,agi 只有 4/16(而它站规里写着这条)。
+      # 只读自家页面,零外部副作用;测不到只 warning,不红(它是选题输入,不是告警器)。
+      - name: Weekly cross-site pattern matrix
+        continue-on-error: true
+        run: python3 tools/fleet/page_patterns.py
+
       # 舰队的「赌注台账」(2026-09-13,owner:「持续优化,探索,扩张」):每条预登记判定线一行,
       # 到期 3 天内提醒,过期 >7 天仍未结算 → 红 → GitHub 邮件。判定线可以判负,不可以被遗忘;
       # 这是字节「应用工厂」里唯一能被 solo 舰队照抄的机制:按日期结算,按数字加码或杀掉。
@@ -264,7 +280,7 @@ jobs:
         run: python3 tools/fleet/recall_gate.py --check
 
       - name: Fail the run if any site is down, blocks AI crawlers, or a traffic read is stale
-        if: steps.probe.outputs.bad == '1' || steps.aiprobe.outcome == 'failure' || steps.airef.outcome == 'failure' || steps.srcmix.outcome == 'failure'
+        if: steps.probe.outputs.bad == '1' || steps.aiprobe.outcome == 'failure' || steps.airef.outcome == 'failure' || steps.srcmix.outcome == 'failure' || steps.smguard.outcome == 'failure'
         run: |
-          echo "site-down=${{ steps.probe.outputs.bad }} ai-crawler-blocked=${{ steps.aiprobe.outcome }} ai-referrals=${{ steps.airef.outcome }} source-mix=${{ steps.srcmix.outcome }}"
+          echo "site-down=${{ steps.probe.outputs.bad }} ai-crawler-blocked=${{ steps.aiprobe.outcome }} ai-referrals=${{ steps.airef.outcome }} source-mix=${{ steps.srcmix.outcome }} sitemap=${{ steps.smguard.outcome }}"
           exit 1

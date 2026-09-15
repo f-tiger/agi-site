@@ -589,3 +589,32 @@ owner 决策卡、事实表)。
   退回只看 AI 引荐)、`fleet-google-channel-1013`(除 bpj 外 ≥2 站 `google.*` ≥10/28d,否则
   **Google = bpj 专属,其余站一律按 Bing 家族与 AI 引荐口径优化,永不再为 Google 改标题**)。
 - **每次报告的台账从此多一行**:舰队渠道构成(search / ai / fleet / social / direct),各站 Google 数单列。
+
+## 舰队互学矩阵:逐条量,不靠读散文(2026-09-15,owner:「我不是让你详细相互学习?」;全文 `docs/fleet-cross-learning-2026-09-15.md`)
+
+**互相学习此前靠人读 14 份 CLAUDE.md 的散文,于是永远停在「谁看过谁的日志」。** 现在有仪器:
+`tools/fleet/page_patterns.py`(每周一随 heartbeat 取数,**零新 cron**)→ `data/fleet-page-patterns.json`,
+同一套判据打在 14 个站的**线上页面**上。第一次跑就推翻了直觉:
+
+- **带日期的新鲜度标注:bpj 12/16 是全舰队最好(1558 页规模),agi 只有 4/16、eco 2/9。**
+  而 agi 站规里写着判定页六件套第 ⑤ 条「带日期的一手判定」、GEO「带日期统计 +37%」——**规则写了,页面没做到。**
+  移植方向是 **bpj → agi/eco**,不是反过来。**但本轮不批量改 agi 的 212 页**:防翻炒 + 生成器落后于页面
+  (站规自己警告过的事故形状),该由在 agi 目录内跑 `git diff` 逐个确认的那次会话做。
+- **一手源外链:agi 16/16、eco 9/9(每页都有),bpj 7/16、tds 6/11。** GEO 排第一的技术(+40%)。
+  bpj 的 `/tools/` 页每页都有厂商官网链接,缺的是 `/vs/` 对比页——加谁的链接是内容判断,不机械补洞。
+- **面包屑:bpj 16/16,agi 3/16**(agi 站规同样写着每页都要有)。
+
+**本轮修掉的硬缺陷(唯一一个「13 站做对、1 站做错」的)**:**bpj 的 1558 条 sitemap URL 全部 308 跳转。**
+Cloudflare Pages 把 `/x.html` 308 到 `/x`,而 bpj 的 sitemap / `canonical` / `og:url` / `hreflang` / `llms.txt`
+全部声明 `.html` 版本 —— **canonical 指向一个非 200 的地址**,爬虫每条多一跳,IndexNow 每次推的也是跳转地址。
+抽样:bpj 6/6 重定向,另外 13 站 0/6。而它恰是页数最多、且唯一有真实 Google 引荐(157/28d)的站。
+改法只动**对外声明**的四处,站内 href 与构建期路径不动。**部署时会一次性判定 1546/1558 页「内容有变」
+(canonical 在每页上),lastmod 全站刷新 + IndexNow 整站推一次——这是诚实的一次性事件,别误读成老毛病。**
+守卫:`tools/fleet/sitemap_guard.py` 挂 heartbeat(14 站各抽 4 条,3xx 即红)+ bpj 部署自检加硬断言。
+
+**三个测量错误,比结论更该记住**(全部已写成 `page_patterns.py` 的自检用例):①只抽 sitemap 开头 =
+把整站当成一种页面(bpj 前 16 条全是 `/vs/`,据此误判「全站零一手源」);②判外链前没剥 query,
+`?utm_source=baipiaoji` 让**每一条外链都被当成站内链接**;③新鲜度词表漏了「核实于」,把全舰队做得
+最好的站读成 0。**跨站比较最容易死在「我的尺子对 A 站有效、对 B 站无效」上,而它不会报错,
+只会给你一张看起来很整齐的表。每条判据都要先在「已知有」和「已知没有」的两个站上各验一次。**
+判定线:`bpj-canonical-fix-1013`(google 引荐 ≥180/28d)、`fleet-xlearn-matrix-1013`(agi 或 eco 新鲜度 ≥50%)。
