@@ -239,3 +239,79 @@ Discord / Telegram / TikTok / GameSnacks …,一手证据在下面第二节),我
 | Playgama Bridge 开发者 80%;YouTube Playables + MSN + 100+ 伙伴;4.5 亿+ 玩家 | playgama.com/developers |
 | **Bridge 2.1.0 的 28 个平台 id 与 19 条判定谓词** | **一手:本仓 `sites/gridlings/vendor/playgama/playgama-bridge.js`** |
 | **各渠道真人局次** | **一手:D1 `gridlings-events`,14 天窗,`ua_class='human'`** |
+
+---
+
+# 九、Playgama 回复了:七款全部分流出主目录,但给了一条我们能自己驱动的路(2026-09-15)
+
+**事实**(owner 后台截图两张,09-14 09:02 与 09:39 各一条同文评论,分别挂在 GHOSTLINE 与
+SINGULARITY;GHOSTLINE 的 Active Platforms 显示 `Playgama · Rejected · Updated 1d ago`):
+
+> For games created with AI, we offer a dedicated way to test them on Playgama before they can
+> be considered for our main catalog. Publishing through Playgama MCP allows you to get your
+> first players and see how the game performs. At the same time, it gives our team real
+> performance data that we can use to identify the strongest games for potential placement in
+> the main Playgama catalog.
+
+**这和 08-27 那种拒稿不是一回事,区别是本方向最要紧的那个区别。** CG 两次与 Playgama 09-08 那次
+都是同一句无信息量的 "overall quality",**没有可迭代回路**——08-27 判定「停止追 CG」的理由正是
+这个。这一次是**按类别分流**:平台认定我们的游戏是 AI 做的(**确实是**),于是把主目录入口换成
+一条「先拿数据、再谈上架」的测试通道。**闸门从审美判断变成了可测量的表现**,而且平台自己提供
+产生这份测量所需的流量。
+
+## Playgama MCP 是什么(一手:`github.com/Playgama/developer-cabinet-mcp` README,读取日 2026-09-15;playgama.com 本体在沙箱内仍被出网代理拦截)
+
+- 远程 MCP 服务器 **`https://developer.playgama.com/api/mcp`**,**OAuth 2.1 浏览器登录,不需要
+  复制任何 token**;已连接的 agent 在 developer.playgama.com/mcp 管理。
+- v1.1.0 共 **20 个工具**:应用(`list_applications` / `create_application` / `get_application` /
+  `update_application_form` / `get_submission_state` / `list_moderation_comments`)、构建上传
+  (`start_archive_upload` / `confirm_archive_upload` / `get_archive_status`)、封面
+  (`start_cover_upload` / `confirm_cover_upload`)、内购、排行榜、QA(`get_archive_qa_tool_link` /
+  `get_local_game_qa_tool_link`)、**沙盒(`get_sandbox_state` / `publish_sandbox` /
+  `get_sandbox_traffic` / `start_sandbox_traffic`)**。
+- **刻意留给人的动作**:提交审核、删除、回滚、读结算、**上传截图与视频**。
+- 限制:压缩包 **≤300 MB**(我们最大 236 KB)、封面 **≤10 MB**、**沙盒发布每款每滚动小时 3 次**。
+- **沙盒 = 任何拿到链接的人都能玩,不过审核。**
+- **沙盒里的游玩不产生收入。**
+- `start_sandbox_traffic` 起 DSP 投放把玩家送进沙盒,**每款第一次免费**。
+
+## 诚实的两面
+
+**正面**(这是游戏方向两个月来第一扇推得动的门):①绕开审核直接可玩;②平台自己送第一批玩家,
+首轮免费;③产出的是**可判定的数据**,而不是又一次无解释的否决;④09-07 修的信标 CORS 意味着
+我们在 playgama 域名下**有自己的读数**,不必只信对方面板。
+
+**反面**(一条都不许写进钱线):①**沙盒零收入**——这是试镜不是渠道,€1.2–1.4/千次那套换算在这里
+完全不适用;②「AI 做的」现在是平台给我们贴上的标签,可能在该平台长期带着;③我们自己的 D1 早就
+显示通关率薄(08-28 那张表:Star Battle 0/9、点点 0/3、摩天楼 0/3),**如果这次测的是留存与时长,
+数据很可能说不**。但这正是应该承担的风险:它把一个无法回答的问题换成一个可以回答的问题。
+
+## 对 09-08 判断的更正
+
+那份文档把 Playgama 称作「全舰队优先级最高的一条渠道」,并预登记 10-06「七款里至少一款上线」。
+**这条线已被提前、否定地回答**:七款全部被分流出主目录。渠道没死,但形状变了——**主目录不是
+入口,沙盒才是**;判定线相应换成台账里的 `gridlings-playgama-mcp-1027`。
+09-08 那节第二条杠杆(一个 Bridge 构建 = 19 个平台)**不受影响**:Bridge 判定表是 SDK 源码里的
+事实,与 Playgama 收不收我们的主目录无关。
+
+## owner 只有一步
+
+仓库已加 `.mcp.json`,所以是:`/mcp` → 选 `playgama-developer-cabinet` → 浏览器里授权。
+之后这个会话可以自己建应用、传构建、传封面、拿 QA 链接、发沙盒。
+
+## 会话的自我约束(写死,后续会话照办)
+
+- **`start_sandbox_traffic` 是对外投放**,哪怕首轮免费:**不经 owner 明确同意不跑**。
+- 提交审核 / 删除 / 回滚 / 读结算本来就是人的动作,MCP 里也没有这些工具。
+- 沙盒发布有每小时 3 次的限额:**别把它当保存键用**,本地 `fleet-smoke` + `cg-package-smoke`
+  先过,再发沙盒。
+
+## 发布用哪个包,封面从哪来
+
+- 包:**`site/downloads/playgama/<slug>.zip`**(Bridge 构建,七款齐备,0.10–0.24 MB)。
+- 封面**不在仓里**——8 款画布游戏的海报出到 gitignore 的 `dist-store/`,发布前现生成:
+  `ONLY=covers NODE_PATH=/opt/node22/lib/node_modules node tools/capture-store-assets.js <slug>`。
+- **本轮顺手修了这条路上的一个坑**:那个脚本**无条件**解析 ffmpeg,于是 `ONLY=covers` 会因为一个
+  它根本用不到的依赖而失败,并且**退出码 0、`dist-store/<slug>/` 是空的**——一个"成功了但什么都
+  没产出"的命令。现在只有真要编码视频时才解析 ffmpeg。已实测 PROMPT 出四张封面
+  (1920×1080 / 1080×1920 / 800×800 / 630×500,最大 0.64 MB,全部远低于 10 MB 限制)。

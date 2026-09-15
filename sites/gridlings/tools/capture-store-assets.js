@@ -73,7 +73,14 @@ function sizeOf(f) {
   fs.mkdirSync(OUT, { recursive: true });
   const { srv, port } = await serve(SITE);
   const base = `http://127.0.0.1:${port}/${slug}.html`;
-  const FF = ffmpegPath();
+  /* Resolve ffmpeg only when a video is actually going to be encoded. Covers are
+     Playwright screenshots and need nothing else, but this used to be an unconditional
+     call — so `ONLY=covers` died on a dependency it never uses, printed an install hint,
+     and exited 0 with an EMPTY dist-store/<slug>/. Playgama's MCP uploads covers from
+     the agent while screenshots and videos stay human actions, so covers-on-their-own is
+     the path that now matters most. */
+  const wantsVideo = process.env.ONLY !== "covers" && !!(cfg.videos && cfg.videos.length);
+  const FF = wantsVideo ? ffmpegPath() : null;
   const browser = await chromium.launch({ args: ["--autoplay-policy=no-user-gesture-required"] });
   const report = [];
 

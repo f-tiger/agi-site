@@ -1117,3 +1117,37 @@ lagged / vk / ok / xiaomi / microsoft_store / huawei / jio_games)。三条硬结
 审我们的平台听的。
 顺带修了一处源码与运行时不一致:MINIMA 的 HEAT 按钮静态写 "costs 90 steps",而 `HEAT_COST = 75`
 在运行时把它改写掉 —— 静态值已改成 75。
+
+## Playgama 把我们分流到 MCP 沙盒通道(2026-09-15,owner 发来后台截图)
+
+**七款全部被拒出主目录**(GHOSTLINE 的 Active Platforms:`Playgama · Rejected · Updated 1d ago`),
+但 09-14 的评论**不是**那句无信息量的 "overall quality" 模板,而是按类别分流:
+
+> For games created with AI, we offer a dedicated way to test them on Playgama before they can
+> be considered for our main catalog. Publishing through Playgama MCP allows you to get your
+> first players and see how the game performs.
+
+**这个区别是本方向最要紧的区别**:CG 两次 + Playgama 09-08 那次都没有可迭代回路(08-27「停止追
+CG」的全部理由就是这个);这一次**闸门从审美判断换成了可测量的表现**,而且平台自己送产生这份
+测量所需的流量。全文与一手出处在根仓 `docs/games-distribution-2026-09.md` 第九节。
+
+**后续会话必须知道的几条硬事实**(一手:`github.com/Playgama/developer-cabinet-mcp` README):
+- 服务器 `https://developer.playgama.com/api/mcp`,**OAuth 2.1 浏览器授权,没有 token 要存**
+  ——所以**不存在任何密钥入仓的问题**,`.mcp.json` 里只有 URL。
+- **沙盒 = 不过审核、拿到链接就能玩**;**沙盒里的游玩不产生收入**。
+  **这是试镜不是渠道,永远不许写进钱线**;€1.2–1.4/千次那套换算在这里完全不适用。
+- **沙盒发布每款每滚动小时只有 3 次**——别当保存键用,先过 `fleet-smoke` 与 `cg-package-smoke`。
+- 包 ≤300 MB(我们最大 236 KB)、封面 ≤10 MB。发布用 `site/downloads/playgama/<slug>.zip`。
+- **提交审核、删除、回滚、读结算、传截图与视频**在 MCP 里**没有工具**,是人的动作。
+- **`start_sandbox_traffic` 是对外投放**(首轮每款免费):**不经 owner 明确同意不跑。**
+
+**封面不在仓里**,发布前现生成:
+`ONLY=covers NODE_PATH=/opt/node22/lib/node_modules node tools/capture-store-assets.js <slug>`。
+**本轮修了这条路上的一个坑**:`capture-store-assets.js` 此前**无条件**解析 ffmpeg,于是
+`ONLY=covers` 会因为一个它根本用不到的依赖而失败,而且**退出码 0、`dist-store/<slug>/` 是空的**
+——一个「成功了但什么都没产出」的命令,正是自检纪律里最该被打红的形状。现在只有真要编码视频时
+才解析 ffmpeg;PROMPT 已实测出四张封面(最大 0.64 MB)。
+
+**判定线**`gridlings-playgama-mcp-1027` 已进 `data/fleet-bets.json`,取代 09-08 那条 10-06
+「七款至少一款上线主目录」(已被 09-14 否定地回答)。**owner 未授权 OAuth 则到期记 insufficient,
+不记 lost**——那是没开始,不是输了。
