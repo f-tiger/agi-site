@@ -52,7 +52,9 @@ jobs:
           after35|https://35.agiscorecard.com/?ci=1|deploy-after35.yml
           learn|https://learn.agiscorecard.com/?ci=1|deploy-learn.yml
           fanzha|https://fanzha.agiscorecard.com/?ci=1|deploy-fanzha.yml
-          firstjob|https://firstjob.agiscorecard.com/?ci=1|deploy-firstjob.yml'
+          firstjob|https://firstjob.agiscorecard.com/?ci=1|deploy-firstjob.yml
+          codeword|https://codeword.agiscorecard.com/?ci=1|deploy-codeword.yml
+          powerbill|https://powerbill.agiscorecard.com/?ci=1|deploy-powerbill.yml'
 
           NOW=$(date -u +%s)
           BAD=0

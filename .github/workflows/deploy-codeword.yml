@@ -1,0 +1,115 @@
+name: Deploy codeword
+
+# Code Word · codeword.agiscorecard.com — built 2026-09-15 (owner: 扩展几个适配欧洲、美国的站点).
+# US-first scam judgement desk with an EU section; English sibling of the Chinese site 识骗 (sites/fanzha).
+# Research: sites/codeword/docs/research-2026-09-15.md
+# Cost: ~0.7 min per push; one daily fallback deploy ≈ 0.7 × 30 = 21 min/month; free on a public repo.
+# Owner kill switch: if sites/codeword/KILLED exists, this pipeline refuses to deploy and the live site freezes.
+on:
+  push:
+    branches: [main]
+    paths: ["sites/codeword/**", ".github/workflows/deploy-codeword.yml"]
+  workflow_dispatch: {}
+  schedule:
+    - cron: "50 8 * * *"
+
+concurrency:
+  group: deploy-codeword
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Guard — a replayed/stale push deploys main's tip, never rolls back
+        if: github.event_name == 'push'
+        run: |
+          git fetch origin main -q || { echo "::warning::fetch failed — stale-run guard skipped"; exit 0; }
+          TIP=$(git rev-parse origin/main 2>/dev/null || true)
+          case "$TIP" in
+            "" | *[!0-9a-f]* ) echo "::warning::main tip unresolvable — stale-run guard skipped"; exit 0 ;;
+          esac
+          if [ "$(git rev-parse HEAD)" != "$TIP" ]; then
+            echo "::warning::stale run — deploying main tip instead of rolling back"
+            git reset --hard "$TIP"
+          fi
+      - name: Owner kill switch
+        run: |
+          if [ -f sites/codeword/KILLED ]; then
+            echo "::notice::KILLED file present — owner has frozen this site; skipping deploy."
+            exit 1
+          fi
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Gate — files present, worker parses, unit test passes
+        working-directory: sites/codeword
+        run: |
+          for f in site/index.html site/ai-voice-clone-detection.html site/are-ai-robocalls-illegal.html site/already-paid-what-now.html site/code-word.html site/before-you-pay.html site/scam-check.html site/resources.html site/about.html site/style.css site/app.js site/llms.txt site/robots.txt site/sitemap.xml site/16507d8e1997c4be371f5fbaf7ac1985.txt worker.js wrangler.jsonc; do
+            [ -f "$f" ] || { echo "::error::missing $f"; exit 1; }
+          done
+          node --check worker.js
+          node tools/test_worker.mjs
+          # GEO 层:判定页 → Markdown 孪生 + llms-full.txt(页面为唯一真源,每次部署重新生成)
+          python3 tools/gen_md.py
+          for f in site/ai-voice-clone-detection.md site/are-ai-robocalls-illegal.md site/already-paid-what-now.md site/resources.md site/llms-full.txt; do [ -s "$f" ] || { echo "::error::gen_md produced empty $f"; exit 1; }; done
+          # Zero-fabrication gate: no loss/recovery statistic may sit on a page without its source
+          if grep -nE '(scams? (?:rose|jumped|surged|increased)|losses (?:rose|jumped|surged))[^.]{0,20}[0-9]+(\.[0-9]+)?%' site/*.html; then echo "::error::unsourced scam statistic found"; exit 1; fi
+          # Source anchors: the dated claims must keep their citation on the same page
+          grep -q '8 February 2024' site/are-ai-robocalls-illegal.html || { echo "::error::FCC ruling date lost"; exit 1; }
+          grep -q '1 April 2024' site/are-ai-robocalls-illegal.html || { echo "::error::FTC rule date lost"; exit 1; }
+          grep -q '2026/1744' site/are-ai-robocalls-illegal.html || { echo "::error::EU omnibus citation lost"; exit 1; }
+          grep -q 'IC3 2025 Internet Crime Report' site/already-paid-what-now.html || { echo "::error::IC3 attribution lost"; exit 1; }
+          # The code word must never leave the browser: that page may not contain a network call
+          if grep -nE 'fetch\(|sendBeacon|XMLHttpRequest|new WebSocket' site/code-word.html; then echo "::error::code-word page must not make network calls"; exit 1; fi
+          # FAQ 可见问答与 FAQPage JSON-LD 逐条一致
+          node -e '
+            const fs=require("fs");
+            for (const f of ["site/ai-voice-clone-detection.html","site/are-ai-robocalls-illegal.html","site/already-paid-what-now.html"]) {
+              const h=fs.readFileSync(f,"utf8");
+              const blocks=[...h.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map(m=>JSON.parse(m[1]));
+              const ld=blocks.find(b=>b["@type"]==="FAQPage"); if(!ld) throw new Error(f+": no FAQPage");
+              const vis=[...h.matchAll(/<summary>(.*?)<\/summary><p>(.*?)<\/p>/g)].map(m=>[m[1],m[2]]);
+              if(vis.length!==ld.mainEntity.length) throw new Error(f+": faq count mismatch "+vis.length+" vs "+ld.mainEntity.length);
+              ld.mainEntity.forEach((q,i)=>{ if(q.name!==vis[i][0]||q.acceptedAnswer.text!==vis[i][1]) throw new Error(f+": faq "+i+" differs"); });
+              console.log("faq ok",f,vis.length);
+            }'
+          echo "gate ok"
+      - name: Deploy worker
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          wranglerVersion: "4"
+          workingDirectory: sites/codeword
+          command: deploy
+      - name: Post-deploy self-check
+        # Every probe carries ?ci=1 so the worker keeps smoke traffic out of D1.
+        # /api/pulse returning ok:true is the only live proof that the D1 binding works.
+        run: |
+          set -u
+          fail=0
+          for p in / /ai-voice-clone-detection /are-ai-robocalls-illegal /already-paid-what-now /code-word /before-you-pay /scam-check /resources /about /llms.txt /llms-full.txt /ai-voice-clone-detection.md /sitemap.xml /robots.txt /16507d8e1997c4be371f5fbaf7ac1985.txt; do
+            url="https://codeword.agiscorecard.com$p?ci=1"
+            ok=0; code=000
+            for try in 1 2 3 4 5; do
+              code=$(curl -s -o /dev/null -w '%{http_code}' -L --max-redirs 5 --max-time 20 \
+                     -A 'codeword-deploy-smoke-bot (+ci)' "$url" || echo 000)
+              if [ "$code" = "200" ]; then ok=1; break; fi
+              sleep 5
+            done
+            if [ "$ok" = "1" ]; then echo "OK    $p -> 200"; else echo "::error::$p -> HTTP $code after 5 tries"; fail=1; fi
+          done
+          for a in /api/pulse; do
+            body=$(curl -s --max-time 20 -A 'codeword-deploy-smoke-bot (+ci)' "https://codeword.agiscorecard.com$a?ci=1" || echo "")
+            case "$body" in
+              *'"ok":true'*) echo "OK    $a" ;;
+              *) echo "::error::$a broken: ${body:0:120}"; fail=1 ;;
+            esac
+          done
+          [ "$fail" = "0" ] || exit 1
+          echo "self-check ok"

@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Which Rules Decide Your Exposure? 8 Questions — The Power Bill</title>
+<meta name="description" content="Eight questions about where you live and how you buy power, and you get the mechanisms that actually decide whether new data centre load can land on your bill — plus the exact filings to search for and where to comment. Editorial judgement, clearly labelled, nothing uploaded.">
+<link rel="canonical" href="https://powerbill.agiscorecard.com/who-pays-check">
+<meta property="og:title" content="Which rules decide your exposure? 8 questions">
+<meta property="og:description" content="Which mechanisms can put data centre costs on your bill, and which filing to go read.">
+<link rel="stylesheet" href="/style.css">
+<style>
+  .yn { display: flex; gap: 6px; flex-wrap: wrap; }
+  .yn button { min-height: 44px; min-width: 64px; padding: 0 14px; border-radius: 8px; border: 1px solid var(--rule); background: #fff; font: inherit; font-size: 16px; cursor: pointer; }
+  .yn button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .qq { display: grid; grid-template-columns: 1fr auto; gap: 8px 14px; align-items: center; padding: 6px 0; }
+  .qq .h { grid-column: 1 / -1; color: var(--ink3); font-size: 15px; }
+  @media (max-width: 620px) { .qq { grid-template-columns: 1fr; } }
+  .verdict { border-radius: 12px; padding: 22px; margin: 22px 0; border: 2px solid var(--rule); }
+  .verdict.high { border-color: var(--warn); background: #fbeaec; }
+  .verdict.mid { border-color: #b7791f; background: #fdf3e2; }
+  .verdict.low { border-color: var(--ok); background: #e7f4ee; }
+  .mech { padding: 10px 0; border-bottom: 1px solid var(--rule); }
+  .mech b { display: block; }
+  .mech small { color: var(--ink3); }
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Which rules decide your exposure","url":"https://powerbill.agiscorecard.com/who-pays-check","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","inLanguage":"en","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["Eight questions about your region and supply","Names the mechanisms that can put data centre cost on your bill","Tells you which filing to search for and where to comment","Editorial judgement, labelled as such; nothing uploaded"],"isPartOf":{"@type":"WebSite","name":"The Power Bill","url":"https://powerbill.agiscorecard.com/"}}
+</script>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="/">The Power<b>Bill</b></a>
+  <nav class="main"><a href="/is-ai-raising-your-electricity-bill">Is AI raising it?</a><a href="/who-decides-who-pays">Who decides who pays</a><a href="/bill-decomposer">Bill decomposer</a><a href="/who-pays-check" aria-current="page">Which rules apply</a><a href="/resources">Data sources</a><a href="/about">About</a></nav>
+</div></header>
+<main class="wrap">
+  <h1>Which rules decide your exposure?</h1>
+  <p class="lead muted">Whether a new data centre can push cost onto your bill is decided by a handful of mechanisms, and which ones apply depends on where you live and how you buy power. Answer eight questions and this names them, and tells you which filing to go and read.</p>
+  <div class="notice"><strong>What this is:</strong> an editorial mapping from your answers to the mechanisms described on <a href="/who-decides-who-pays">who decides who pays</a>. <strong>It is not legal or regulatory advice, and it does not know your utility.</strong> Its job is to make your next search a specific one instead of a vague one. Nothing is uploaded.</p>
+  <div id="qs"></div>
+  <div id="out" hidden>
+    <div class="verdict" id="vbox">
+      <h2 id="vtitle"></h2>
+      <p id="vtext"></p>
+      <div id="mechs"></div>
+      <p style="margin:14px 0 0"><strong>Search for this:</strong> <span id="search"></span></p>
+    </div>
+    <p class="cta-row"><button class="cta primary" type="button" id="share">Copy this result</button><a class="cta" href="/bill-decomposer">Split my own bill first</a></p>
+  </div>
+  <hr class="rule">
+  <h2>The mechanisms in one table</h2>
+  <div class="tbl"><table>
+    <tr><th style="width:26%">Mechanism</th><th>Puts cost on households?</th></tr>
+    <tr><td>Capacity market</td><td>Yes by design — the clearing price is recovered across the footprint</td></tr>
+    <tr><td>Large-load / data centre tariff</td><td>No, when it holds — the point is to make the new load carry its own cost</td></tr>
+    <tr><td>Connection and reinforcement charges</td><td>Depends on whether the cost is attributed or socialised</td></tr>
+    <tr><td>General rate case</td><td>Indirectly — and it is where you can file a comment</td></tr>
+  </table></div>
+  <p class="small muted">Full explanation, including where the decision sits in the US and the EU: <a href="/who-decides-who-pays">who decides who pays</a>. The evidence on whether any of this is actually moving bills: <a href="/is-ai-raising-your-electricity-bill">the judgement page</a>.</p>
+</main>
+<footer><div class="wrap">
+  <div class="links"><a href="/">Home</a><a href="/is-ai-raising-your-electricity-bill">Is AI raising it?</a><a href="/bill-decomposer">Bill decomposer</a><a href="/resources">Data sources</a><a href="/about">About</a></div>
+  <div>The Power Bill · a site in the <a href="https://agiscorecard.com/">AGI Scorecard</a> network</div>
+</div></footer>
+<script src="/app.js"></script>
+<script>
+(function(){
+  var Q = [
+    { k:"us", t:"Are you in the United States?", h:"Retail rates are set state by state; wholesale markets are federal" },
+    { k:"rto", t:"Is your grid run by a regional transmission organisation with a capacity auction? (PJM, ISO-NE, MISO, NYISO — answer no if unsure or if you are outside the US)", h:"Capacity auction costs are recovered across the whole footprint" },
+    { k:"regulated", t:"Is your electricity supplied by a single regulated utility rather than a supplier you chose?", h:"Regulated utilities recover investment through rate cases at the commission" },
+    { k:"datacentre", t:"Has a large data centre been announced, built or proposed in your utility's service area in the last two years?", h:"This is what puts a specific filing on the docket" },
+    { k:"ratecase", t:"Has your utility filed for a rate increase recently, or is one pending?", h:"The rate case is the moment the numbers get decided, and comment is open" },
+    { k:"tariff", t:"Do you know whether your utility has a large-load or data centre tariff?", h:"Answer no if you do not know — that is the most common and most useful answer here" },
+    { k:"eu", t:"Are you in the EU or the UK?", h:"Network tariffs and connection queues do the work that capacity auctions do in the US" },
+    { k:"fixed", t:"Are you on a fixed-price contract that still has more than a year to run?", h:"A fixed contract delays exposure; it does not remove it" }
+  ];
+  var qs = new URLSearchParams(location.search); var a = {}; var pre = qs.get("a") || "";
+  Q.forEach(function(q, i){ var c = pre[i]; if (c === "1" || c === "0") a[q.k] = c; });
+  var box = document.getElementById("qs");
+  function render(){
+    box.innerHTML = Q.map(function(q, i){ return '<div class="qq"><div class="t">' + (i+1) + ". " + q.t + '</div><div class="yn"><button type="button" data-k="' + q.k + '" data-v="1" aria-pressed="' + (a[q.k] === "1") + '">Yes</button><button type="button" data-k="' + q.k + '" data-v="0" aria-pressed="' + (a[q.k] === "0") + '">No</button></div><div class="h">' + q.h + "</div></div>"; }).join("");
+    box.querySelectorAll("button").forEach(function(b){ b.addEventListener("click", function(){ a[b.getAttribute("data-k")] = b.getAttribute("data-v"); render(); judge(); }); });
+  }
+  function judge(){
+    if (Q.some(function(q){ return a[q.k] === undefined; })) return;
+    var yes = function(k){ return a[k] === "1"; };
+    var mechs = [], score = 0, search = [];
+
+    if (yes("rto")) { mechs.push(["Capacity market", "Your region procures capacity in an auction and recovers the clearing price across the footprint. This is the most direct route from data centre demand to a household bill, and it does not require your utility to do anything at all."]); score += 3; search.push("your RTO's latest capacity auction results and its independent market monitor report"); }
+    if (yes("datacentre") && yes("regulated")) { mechs.push(["Connection and reinforcement cost recovery", "A large new load in a regulated utility's territory raises the question of who funds the wires. If those costs are socialised rather than attributed, they reach your bill through network charges."]); score += 2; search.push("the connection agreement or reinforcement cost filing for that project"); }
+    if (yes("ratecase")) { mechs.push(["A live rate case", "This is the proceeding where it is actually decided, and where written public comment is normally accepted. It is the single most useful thing on this list."]); score += 2; search.push("your regulator's docket for the pending rate case, and its comment deadline"); }
+    if (!yes("tariff")) { mechs.push(["Large-load tariff — status unknown", "The one mechanism designed to keep this off household bills, and you do not currently know whether you have one. Finding out is a single question to your regulator or a docket search."]); score += 1; search.push("\"large load tariff\" or \"data center tariff\" plus your utility's name"); }
+    else { mechs.push(["Large-load tariff — exists", "Good, but check the terms: minimum take, contract length, exit fees, and what happens if the project is cancelled or restructured. A weak tariff protects nobody."]); }
+    if (yes("eu")) { mechs.push(["Network tariffs and the connection queue", "In Europe the fight is about grid access and how reinforcement is recovered through regulated tariffs. Your national regulator's tariff consultation is the place where household share is set."]); score += 2; search.push("your national regulator's network tariff consultation and connection policy"); }
+    if (yes("fixed")) { mechs.push(["Fixed contract", "It delays your exposure rather than removing it. The mechanisms above continue to operate; you meet them at renewal."]); score -= 1; }
+    if (!yes("us") && !yes("eu")) { mechs.push(["Outside our coverage", "This site covers the US and the EU/UK. The four mechanisms usually have local equivalents, but we will not guess at your regulator's name."]); }
+
+    var cls = score >= 5 ? "high" : score >= 2 ? "mid" : "low";
+    var title = cls === "high" ? "Several live routes to your bill" : cls === "mid" ? "One or two routes, worth checking" : "Limited direct exposure, on these answers";
+    var text = cls === "high"
+      ? "More than one mechanism can put new industrial load onto residential rates where you are, and at least one decision point is live now. The specific filings are named below."
+      : cls === "mid"
+      ? "There is a plausible route, but it depends on decisions you can go and read. Start with the search terms below."
+      : "Nothing here points to a strong direct route on the answers you gave. Check again if a large project is announced nearby or when your contract renews.";
+    document.getElementById("vbox").className = "verdict " + cls;
+    document.getElementById("vtitle").textContent = title;
+    document.getElementById("vtext").textContent = text;
+    document.getElementById("mechs").innerHTML = mechs.map(function(m){ return '<div class="mech"><b>' + m[0] + "</b><small>" + m[1] + "</small></div>"; }).join("");
+    document.getElementById("search").textContent = search.length ? search.join("; ") + "." : "your regulator's docket search, for your utility's name.";
+    document.getElementById("out").hidden = false;
+    history.replaceState(null, "", "/who-pays-check?a=" + Q.map(function(q){ return a[q.k]; }).join(""));
+    pbev("tool_result", "whopays:" + cls + ":" + score);
+    document.getElementById("out").scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+  render(); judge();
+  document.getElementById("share").addEventListener("click", function(){ pbshare("Which rules decide my exposure"); });
+})();
+</script>
+</body>
+</html>

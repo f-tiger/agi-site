@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bill Decomposer: Is It the Rate or Your Usage? — The Power Bill</title>
+<meta name="description" content="Your bill went up. Enter two bills — amount and kilowatt hours — and see exactly how much of the change came from the rate and how much from usage. Arithmetic only, no assumptions, no external data, nothing uploaded. Results permalink so you can send them on.">
+<link rel="canonical" href="https://powerbill.agiscorecard.com/bill-decomposer">
+<meta property="og:title" content="Bill decomposer: is it the rate or your usage?">
+<meta property="og:description" content="Two bills in, a clean split out. Arithmetic only, nothing uploaded.">
+<link rel="stylesheet" href="/style.css">
+<style>
+  .grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; }
+  .out { border: 2px solid var(--rule); border-radius: 12px; padding: 20px; margin: 20px 0; }
+  .out.up { border-color: var(--warn); background: #fbeaec; }
+  .out.down { border-color: var(--ok); background: #e7f4ee; }
+  .big-n { font-size: clamp(28px, 6.5vw, 40px); font-weight: 700; font-variant-numeric: tabular-nums; line-height: 1.15; }
+  .kv { display: flex; justify-content: space-between; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--rule); font-size: 17px; }
+  .kv b { font-variant-numeric: tabular-nums; }
+  fieldset { border: 1px solid var(--rule); border-radius: 10px; padding: 14px 16px; margin: 0 0 14px; }
+  legend { font-weight: 700; padding: 0 6px; }
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Electricity bill decomposer","url":"https://powerbill.agiscorecard.com/bill-decomposer","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","inLanguage":"en","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["Splits a bill change into rate effect and usage effect","Works in any currency","Arithmetic only — no external data, no assumptions","Nothing uploaded; result permalinked"],"isPartOf":{"@type":"WebSite","name":"The Power Bill","url":"https://powerbill.agiscorecard.com/"}}
+</script>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="/">The Power<b>Bill</b></a>
+  <nav class="main"><a href="/is-ai-raising-your-electricity-bill">Is AI raising it?</a><a href="/who-decides-who-pays">Who decides who pays</a><a href="/bill-decomposer" aria-current="page">Bill decomposer</a><a href="/who-pays-check">Which rules apply</a><a href="/resources">Data sources</a><a href="/about">About</a></nav>
+</div></header>
+<main class="wrap">
+  <h1>Is it the rate, or is it you?</h1>
+  <p class="lead muted">A bill going up says nothing on its own: the price per unit may have risen, or you may have used more, or both — and people routinely blame the wrong one. Enter two bills and this splits the change cleanly. <strong>It uses only the four numbers you type.</strong> No national averages, no assumptions, nothing uploaded.</p>
+
+  <form class="post" id="f" novalidate>
+    <div class="grid2">
+      <fieldset><legend>Earlier bill</legend>
+        <label for="a_amt">Total amount</label>
+        <input type="number" id="a_amt" min="0" step="0.01" placeholder="e.g. 96.40">
+        <label for="a_kwh">Kilowatt hours (kWh)</label>
+        <input type="number" id="a_kwh" min="0" step="0.01" placeholder="e.g. 620">
+      </fieldset>
+      <fieldset><legend>Later bill</legend>
+        <label for="b_amt">Total amount</label>
+        <input type="number" id="b_amt" min="0" step="0.01" placeholder="e.g. 118.75">
+        <label for="b_kwh">Kilowatt hours (kWh)</label>
+        <input type="number" id="b_kwh" min="0" step="0.01" placeholder="e.g. 680">
+      </fieldset>
+    </div>
+    <p class="small muted" style="margin:.2em 0 1em">Any currency — the split is proportional. Compare like with like where you can: the same month last year beats last month, because heating and cooling swamp everything else.</p>
+    <p class="cta-row"><button class="cta primary" type="submit">Split the change</button></p>
+  </form>
+
+  <div id="out" hidden>
+    <div class="out" id="obox">
+      <div class="big-n" id="headline"></div>
+      <p id="verdict" style="margin:10px 0 14px"></p>
+      <div class="kv"><span>Change in total</span><b id="k_total"></b></div>
+      <div class="kv"><span>Because the unit price changed</span><b id="k_rate"></b></div>
+      <div class="kv"><span>Because usage changed</span><b id="k_usage"></b></div>
+      <div class="kv"><span>Combined effect of both moving</span><b id="k_cross"></b></div>
+      <div class="kv"><span>Unit price: earlier → later</span><b id="k_prices"></b></div>
+      <div class="kv"><span>Usage: earlier → later</span><b id="k_kwh"></b></div>
+    </div>
+    <p class="cta-row"><button class="cta primary" type="button" id="share">Copy this result</button><a class="cta" href="/who-pays-check">Which rules apply where I live</a></p>
+    <p class="small muted" id="method"></p>
+  </div>
+
+  <hr class="rule">
+  <h2>How the split is calculated</h2>
+  <p>With earlier price <b>p₀</b> and usage <b>q₀</b>, and later price <b>p₁</b> and usage <b>q₁</b>, the change in the total is split three ways:</p>
+  <div class="tbl"><table>
+    <tr><th style="width:32%">Component</th><th>Formula</th><th>Reads as</th></tr>
+    <tr><td>Rate effect</td><td>(p₁ − p₀) × q₀</td><td>What the new price would have cost you at your old usage</td></tr>
+    <tr><td>Usage effect</td><td>(q₁ − q₀) × p₀</td><td>What your new usage would have cost at the old price</td></tr>
+    <tr><td>Combined</td><td>(p₁ − p₀) × (q₁ − q₀)</td><td>The part that exists only because both moved together</td></tr>
+  </table></div>
+  <p class="small muted">The three add up to the whole change, exactly. Unit price here is your <em>all-in</em> price — total bill divided by kilowatt hours — so it includes standing charges, network fees and taxes. That is the number that matters to a household, and it is also why your all-in price can rise while the advertised energy rate does not.</p>
+
+  <h2>Reading the result</h2>
+  <div class="tbl"><table>
+    <tr><th>If most of it is…</th><th>Then</th></tr>
+    <tr><td>Rate effect</td><td>The decision that moved your bill was made somewhere — a tariff change, a rate case, a capacity cost pass-through. <a href="/who-decides-who-pays">Find out who decided</a></td></tr>
+    <tr><td>Usage effect</td><td>Your bill moved for reasons inside your own home — weather, occupancy, a new appliance. National headlines about data centres are not the explanation for your number</td></tr>
+    <tr><td>Both</td><td>Normal, especially across seasons. Compare the same month a year apart to strip the weather out</td></tr>
+  </table></div>
+  <p class="small muted">This tool attributes nothing to AI or data centres, and it cannot: your two bills do not contain that information. It exists so the attribution question starts from an honest number. The evidence on the wider question is in <a href="/is-ai-raising-your-electricity-bill">Is AI raising your electricity bill?</a></p>
+</main>
+<footer><div class="wrap">
+  <div class="links"><a href="/">Home</a><a href="/is-ai-raising-your-electricity-bill">Is AI raising it?</a><a href="/who-decides-who-pays">Who decides who pays</a><a href="/resources">Data sources</a><a href="/about">About</a></div>
+  <div>The Power Bill · a site in the <a href="https://agiscorecard.com/">AGI Scorecard</a> network</div>
+</div></footer>
+<script src="/app.js"></script>
+<script>
+(function(){
+  var el = function(id){ return document.getElementById(id); };
+  var qs = new URLSearchParams(location.search);
+  ["a_amt","a_kwh","b_amt","b_kwh"].forEach(function(k){ var v = qs.get(k); if (v !== null && v !== "") el(k).value = v; });
+
+  function money(n){ var s = (Math.abs(n) >= 100 ? Math.round(n) : Math.round(n * 100) / 100); return (n > 0 ? "+" : n < 0 ? "-" : "") + Math.abs(s).toLocaleString("en-US", { maximumFractionDigits: 2 }); }
+  function unit(n){ return (Math.round(n * 10000) / 10000).toLocaleString("en-US", { maximumFractionDigits: 4 }); }
+  function pct(n){ return (Math.round(n * 10) / 10).toLocaleString("en-US", { maximumFractionDigits: 1 }) + "%"; }
+
+  function run(){
+    var a0 = parseFloat(el("a_amt").value), q0 = parseFloat(el("a_kwh").value);
+    var a1 = parseFloat(el("b_amt").value), q1 = parseFloat(el("b_kwh").value);
+    if ([a0, q0, a1, q1].some(function(x){ return isNaN(x); }) || q0 <= 0 || q1 <= 0) { alert("Fill in all four numbers; kilowatt hours must be above zero."); return; }
+    var p0 = a0 / q0, p1 = a1 / q1;
+    var total = a1 - a0, rate = (p1 - p0) * q0, usage = (q1 - q0) * p0, cross = (p1 - p0) * (q1 - q0);
+    var domRate = Math.abs(rate) >= Math.abs(usage);
+    var share = Math.abs(total) > 0 ? Math.abs(domRate ? rate : usage) / Math.abs(total) * 100 : 0;
+
+    el("obox").className = "out " + (total > 0 ? "up" : total < 0 ? "down" : "");
+    el("headline").textContent = (total > 0 ? "Up " : total < 0 ? "Down " : "Flat ") + money(total).replace(/^\+/, "") + (Math.abs(total) > 0 ? "  (" + pct(Math.abs(total) / a0 * 100) + ")" : "");
+    el("verdict").textContent = Math.abs(total) < 0.005
+      ? "The total barely moved. Price and usage may still have moved in opposite directions — see the lines below."
+      : (domRate
+        ? "Mostly the rate: about " + pct(share) + " of the change comes from the unit price, not from how much you used."
+        : "Mostly usage: about " + pct(share) + " of the change comes from kilowatt hours used, not from the unit price.");
+    el("k_total").textContent = money(total);
+    el("k_rate").textContent = money(rate);
+    el("k_usage").textContent = money(usage);
+    el("k_cross").textContent = money(cross);
+    el("k_prices").textContent = unit(p0) + " → " + unit(p1) + " per kWh (" + (p0 > 0 ? pct((p1 - p0) / p0 * 100) : "n/a") + ")";
+    el("k_kwh").textContent = Math.round(q0).toLocaleString("en-US") + " → " + Math.round(q1).toLocaleString("en-US") + " kWh (" + pct((q1 - q0) / q0 * 100) + ")";
+    el("method").textContent = "Rate effect = (" + unit(p1) + " − " + unit(p0) + ") × " + Math.round(q0) + ". Usage effect = (" + Math.round(q1) + " − " + Math.round(q0) + ") × " + unit(p0) + ". The three components add to the total change exactly.";
+    el("out").hidden = false;
+    history.replaceState(null, "", "/bill-decomposer?" + new URLSearchParams({ a_amt: a0, a_kwh: q0, b_amt: a1, b_kwh: q1 }).toString());
+    pbev("calc_run", "decompose:" + (domRate ? "rate" : "usage"));
+  }
+  el("f").addEventListener("submit", function(e){ e.preventDefault(); run(); el("out").scrollIntoView({ behavior: "smooth", block: "start" }); });
+  el("share").addEventListener("click", function(){ pbshare("Electricity bill: rate vs usage"); });
+  if (qs.get("a_amt") && qs.get("b_amt")) run();
+})();
+</script>
+</body>
+</html>

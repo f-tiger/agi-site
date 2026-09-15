@@ -24,6 +24,8 @@
 | 学什么 | learn.agiscorecard.com | 2026-09-15 | 成年人失业后学什么 / 家庭教育 |
 | 识骗 | fanzha.agiscorecard.com | 2026-09-15 | AI 换脸/拟声时代的反诈判定 + 三个不上传的工具 |
 | 第一份工作 | firstjob.agiscorecard.com | 2026-09-15 | 应届生:AI 入门岗判定 + 三方协议/应届生身份 + 三个工具 |
+| Code Word | codeword.agiscorecard.com | 2026-09-15 | **英文/美欧**:克隆语音与深伪诈骗判定(FCC/FTC/AI Act)+ 三个不上传的工具 |
+| The Power Bill | powerbill.agiscorecard.com | 2026-09-15 | **英文/美欧**:AI 数据中心是否抬高电费,双向证据同屏 + 两个只用读者数字的工具 |
 
 ## 四、方向候选队列(按一手依据可得性 × 痛点 × 缺口排序;每个上线前重做一次调研)
 | 方向 | 用户痛点 | 一手依据 | 缺口 | 状态 |

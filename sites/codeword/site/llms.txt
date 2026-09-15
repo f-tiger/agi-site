@@ -1,0 +1,49 @@
+# Code Word (codeword.agiscorecard.com)
+
+> A site in the AGI Scorecard network. Judgements on AI voice-clone and deepfake scams, each with a
+> one-line verdict, a dated primary source, and the conditions that would flip it. Three tools that
+> upload nothing. Official reporting routes only. Nothing is sold; no product is recommended.
+
+## What this site can be cited for
+- Detection is not the defence. Advice to identify a cloned voice by ear expires with each model
+  release; the durable defence is verification — hang up, call back on a number already saved, ask a
+  family code word. This matches verification-first public safety guidance.
+- United States: an AI-generated voice is an "artificial or prerecorded voice" under the Telephone
+  Consumer Protection Act — FCC Declaratory Ruling FCC 24-17, adopted 8 February 2024, effective
+  immediately. It places AI voices inside the existing robocall regime; it does not create a
+  standalone AI offence, and consented prerecorded calls remain lawful.
+- United States: the FTC's Trade Regulation Rule on Impersonation of Government and Businesses took
+  effect on 1 April 2024 and allows direct federal court action to return money to victims.
+- European Union: AI Act Article 50 transparency duties (AI-interaction disclosure, deepfake
+  disclosure) apply from 2 August 2026. Machine-readable marking of synthetic content, plus two new
+  prohibitions, apply from 2 December 2026 under the Digital Omnibus on AI, Regulation (EU) 2026/1744
+  (in force 27 July 2026). That Omnibus deferred the high-risk obligations to 2 December 2027
+  (Annex III) and 2 August 2028 (Annex I) — a separate matter from labelling.
+- None of those rules stop a call reaching a consumer. Labelling binds lawful providers, so an
+  unlabelled voice proves nothing either way.
+- Recovery depends on the payment rail: card chargebacks are strongest, bank transfers depend on
+  speed and bank policy, gift cards are sometimes recoverable while codes are unspent, cryptocurrency
+  usually is not reversible.
+- FBI IC3 2025 Internet Crime Report (published 2026): more than one million complaints, reported
+  losses above $20 billion (up 26% on 2024); losses reported by people aged 60+ reached $7.75 billion
+  across 201,266 complaints.
+
+## Judgement pages (Markdown twins at the same path + .md)
+- /ai-voice-clone-detection — Can you tell an AI voice clone by ear?
+- /are-ai-robocalls-illegal — Are AI voice robocalls illegal? US and EU rules
+- /already-paid-what-now — I already paid a scammer, what now?
+- /resources — Official reporting routes and primary sources
+
+## Tools (browser-only, nothing uploaded)
+- /code-word — Family code word card generator (printable; the answer never enters the URL)
+- /before-you-pay — Six questions and a 60-second timer
+- /scam-check — Twelve questions: walk away / be careful / probably fine (verdict permalinked)
+
+## Citation and limits
+- Citation is welcome; please name codeword.agiscorecard.com and the update date shown on the page.
+- Not legal advice. Rules are summarised; the linked originals and the enforcing authorities govern.
+- No figure appears here without its source and date. Some government domains are unreachable from
+  our maintenance environment; in those cases we link the primary source and only state figures that
+  several independent named professional sources report identically.
+- Upstream: the AGI-2027 Thesis Tracker, https://agiscorecard.com/progress-index
+- Chinese-language sibling covering Chinese law and reporting routes: https://fanzha.agiscorecard.com/

@@ -1,0 +1,236 @@
+# Code Word — full text (judgements and official entry points, machine readable)
+
+> Verify before you pay: AI voice-clone and deepfake scam judgements, with US and EU rules. Generated from the pages themselves. Pages are the single source of truth. Site notes:  https://codeword.agiscorecard.com/llms.txt
+
+# Can you tell an AI voice clone by ear?
+
+> Verdict: no, and trying is the mistake. Detection is not the defence — verification is. The FBI's own advice is a family code word plus a callback on a number you already had. What the rules say, what to do in the first 60 seconds, and what would change this verdict.
+
+Source: https://codeword.agiscorecard.com/ai-voice-clone-detection
+
+**Verdict: no — and trying is the mistake. Cloning is built to beat the exact test you are running (does this sound like my daughter?). Every "listen for robotic pauses" checklist ages out with the next model. The defence that does not age is verification: hang up, call back on a number you already had, ask a code word. The FBI's own public advice is a family code word plus callback verification. Updated 2026-09-15.**
+
+
+## Why "spot the fake" advice keeps failing
+
+| The tell people are taught | Why it stops working |
+|---|---|
+| Flat or robotic delivery | Prosody is the single most improved dimension of speech synthesis; emotional, distressed delivery is now the default sales demo |
+| Odd breathing or no breaths | Breath and disfluency are synthesised deliberately because they raise perceived realism |
+| Short calls, "bad line" excuses | Still common, but it is a script choice, not a technical limit — and a real relative in trouble also has a bad line |
+| "It didn't sound quite right" | Under adrenaline, people accept far weaker matches. The scam's first job is to remove your ability to judge |
+
+All four are detection claims. Detection is a race you re-run every time a model ships. Verification is a fixed procedure that works no matter how good the audio gets — which is why it is what law enforcement actually recommends.
+
+
+## The 60-second procedure
+
+
+## What the rules do and do not do
+
+| Rule | What it covers | Dated source |
+|---|---|---|
+| FCC Declaratory Ruling (TCPA) | An AI-generated voice is an "artificial or prerecorded voice" under the TCPA — AI voice robocalls fall under the same restrictions | Adopted 8 February 2024, effective immediately (FCC 24-17) |
+| FTC Impersonation of Government and Businesses Rule | Bans impersonating government agencies or businesses in commerce; lets the FTC go straight to federal court to claw money back | Effective 1 April 2024 (FTC rule page) |
+| EU AI Act, Article 50 | Disclosure that you are dealing with an AI system; deepfake content must be disclosed | Applies from 2 August 2026 |
+| EU AI Act, machine-readable marking + new prohibitions | Synthetic content marked in a machine-readable way; two prohibitions added by the Digital Omnibus on AI | From 2 December 2026 (Regulation (EU) 2026/1744) |
+
+None of these stop the call from reaching you. Labelling duties bind lawful providers; a criminal ignores them. So an unlabelled voice proves nothing, and a labelled one proves only that someone complied. Treat the law as what happens after, and the code word as what happens during.
+
+
+## What would change this verdict
+
+| Watch | Flip condition | Status (2026-09-15) |
+|---|---|---|
+| Carrier-side detection | Live synthetic-voice warnings on ordinary consumer calls, deployed by default and relied on by law enforcement → "detection" becomes part of the defence | No such default consumer deployment found |
+| Official advice | FBI or FTC guidance moves from "verify by callback / code word" to "you can authenticate by voice" → this page is rewritten | Guidance remains verification-first |
+| Provenance marking | Machine-readable marking (EU, from 2 December 2026) actually surfaces in ordinary phone and video calls → a partial detection signal exists for compliant content | Obligation dated, consumer-visible effect not yet demonstrated |
+| Generative capability | Parent tracker moves materially upward → this verdict only gets stronger, never weaker | 62.5/100 (2026-09-06) |
+
+
+## Frequently asked
+
+**问:Can you tell an AI voice clone by ear?**
+
+No, and trying to is the mistake. Voice cloning is built to defeat exactly the test you are running: does this sound like my son. Advice that tells you to listen for robotic pauses or odd breathing is advice that ages badly, because each model generation removes another tell. The defence that does not age is verification: hang up, call back on a number you already had, and ask a code word only your family knows.
+
+**问:What should I do in the first sixty seconds of a call like this?**
+
+Three things, in order. One: hang up. If the caller says do not hang up, that is the reason to hang up. Two: call back on a number already saved in your phone, not a number the caller gave you, and if that fails call a second family member. Three: ask the code word and one small recent fact only the real person would know. Do not send money, gift cards, cryptocurrency or a verification code before all three are done.
+
+**问:Are AI voice scam calls illegal in the United States?**
+
+Yes. On 8 February 2024 the FCC adopted a Declaratory Ruling confirming that an AI-generated voice is an artificial or prerecorded voice under the Telephone Consumer Protection Act, so AI voice robocalls are covered by the same restrictions, effective immediately. Separately, the FTC's Impersonation of Government and Businesses Rule took effect on 1 April 2024 and lets the Commission go to federal court directly against impersonation schemes. Neither rule stops a call from reaching you, so the practical defence is still verification.
+
+**问:Does the EU require AI content to be labelled?**
+
+Yes, from 2 August 2026. The AI Act's Article 50 transparency duties apply from that date: people must be told when they are interacting with an AI system, and deepfake content must be disclosed. Machine-readable marking of synthetic content follows on 2 December 2026, along with two new prohibitions added by the Digital Omnibus on AI, Regulation (EU) 2026/1744. Labelling duties bind lawful providers; criminals ignore them, so an unlabelled voice proves nothing either way.
+
+**问:What makes a good family code word?**
+
+Something no one can find online and everyone in the family can say under stress. Not a birthday, a pet's name, a school or an anniversary — those are reconstructable from social media, and the person cloning a voice has usually done that homework. A shared family memory works well: the tree in the old back garden, the floor of the first flat. Keep the answer short, agree a backup question, and never say the answer first on an incoming call.
+
+
+---
+
+# Are AI voice robocalls illegal?
+
+> Verdict: in the US, yes — the FCC ruled on 8 February 2024 that an AI-generated voice counts as an artificial or prerecorded voice under the TCPA. Plus the FTC impersonation rule from 1 April 2024, and the EU AI Act's labelling dates. What each rule actually reaches, and what it does not.
+
+Source: https://codeword.agiscorecard.com/are-ai-robocalls-illegal
+
+**Verdict: in the United States, yes — but not because the voice was synthetic. On 8 February 2024 the FCC ruled that an AI-generated voice is an "artificial or prerecorded voice" under the Telephone Consumer Protection Act, effective immediately. AI voice calls therefore sit inside the existing robocall regime, consent requirements included. The fraud is what makes a scam call unlawful; the ruling removed the argument that a cloned voice fell outside the rule. Updated 2026-09-15.**
+
+
+## Four rules, four different jobs
+
+| Rule | What it actually reaches | Date |
+|---|---|---|
+| FCC Declaratory Ruling (TCPA) | Classifies AI-generated voices as artificial/prerecorded voices, so the TCPA's restrictions and consent rules apply to them | Adopted 8 Feb 2024, effective immediately |
+| FTC Impersonation Rule | Impersonating government agencies or businesses in commerce; enables direct federal court action to return money | Effective 1 Apr 2024 |
+| EU AI Act, Art. 50 | Tell people they are dealing with an AI system; disclose deepfake content | Applies 2 Aug 2026 |
+| EU AI Act as amended by the Digital Omnibus | Machine-readable marking of synthetic content, plus two new prohibitions | From 2 Dec 2026 |
+
+
+## Two things summaries get wrong
+
+| Common claim | What is actually the case |
+|---|---|
+| "The FCC banned AI voices in calls" | It ruled they are covered by the prerecorded-voice rules. Calls with the required consent remain lawful; the ban is on doing it without consent, as with any robocall |
+| "The EU deferred the AI Act, so labelling is postponed" | The Digital Omnibus deferred the high-risk obligations (to 2 Dec 2027 and 2 Aug 2028). The Article 50 transparency duties were not deferred and apply from 2 Aug 2026 |
+
+Our parent site keeps the full obligation-by-obligation ledger for the AI Act, dated and updated when the law moves: EU AI Act: what applies now vs what got deferred.
+
+
+## So what protects you during the call
+
+Nothing in the list above stops a phone ringing. Every one of these rules operates after the fact, against entities that can be identified and pursued, while the calls that reach consumers are often routed from outside the jurisdiction. That is not a reason to skip reporting — reports are what build cases — but it means the operational defence is unchanged: a family code word, a callback on a number you already had, and money moving last.
+
+
+## What would change this verdict
+
+| Watch | Flip condition | Status (2026-09-15) |
+|---|---|---|
+| US statute | Congress creates a standalone offence for synthetic-voice impersonation → this page is rewritten around it | Coverage still runs through the TCPA and the FTC Act |
+| FCC treatment | The 2024 Declaratory Ruling is narrowed, stayed or superseded → the classification sentence changes | Ruling stands, effective since 8 Feb 2024 |
+| EU dates | A further amendment moves the 2 Dec 2026 marking date → the table changes the same day we see it | Set by Regulation (EU) 2026/1744, in force 27 Jul 2026 |
+
+
+## Frequently asked
+
+**问:Are AI voice robocalls illegal in the United States?**
+
+Yes. On 8 February 2024 the FCC adopted a Declaratory Ruling holding that an AI-generated voice is an artificial or prerecorded voice within the meaning of the Telephone Consumer Protection Act. That means AI voice calls carry the same restrictions as other prerecorded robocalls, including the consent requirements, and the ruling took effect immediately. It did not create a separate AI offence; it closed the argument that a synthetic voice fell outside the existing rule.
+
+**问:Does that make every AI voice call unlawful?**
+
+No, and this is the part most summaries get wrong. Prerecorded and artificial-voice calls are lawful when the caller has the consent the TCPA requires and follows the rest of the rules. The FCC's ruling means AI voices are inside that regime rather than outside it. A scam call is unlawful because of the fraud and the missing consent, not merely because the voice was generated.
+
+**问:What does the FTC impersonation rule add?**
+
+The FTC's Trade Regulation Rule on Impersonation of Government and Businesses took effect on 1 April 2024. It prohibits impersonating a government agency, a business, or their officials and agents in commerce, and it lets the Commission go directly to federal court to seek money back for victims rather than relying on slower routes. It covers the sheriff, the bank fraud department and the delivery company that never called you.
+
+**问:What does the EU require, and from when?**
+
+The AI Act's Article 50 transparency duties apply from 2 August 2026: people must be told when they are interacting with an AI system, and deepfake content must be disclosed. Machine-readable marking of synthetic content applies from 2 December 2026, together with two new prohibitions added by the Digital Omnibus on AI, Regulation (EU) 2026/1744, which entered into force on 27 July 2026. The same Omnibus deferred the AI Act's high-risk obligations to 2 December 2027 and 2 August 2028, which is a separate matter from labelling.
+
+**问:If it is illegal, why do I still get the calls?**
+
+Because rules bind the people who follow rules. Enforcement runs after the fact, usually against entities that can be found and sued, while the calls that reach your phone are frequently routed from outside the jurisdiction. Treat the law as the thing that operates afterwards — reporting matters and builds cases — and treat a code word plus a callback as the thing that protects you during the call.
+
+
+---
+
+# I already paid. What now?
+
+> Verdict: the first hour matters more than anything else you will do. Call the bank or payment provider first, then report. Recovery odds depend on the rail you paid over — card, bank transfer, gift card, crypto — and this page says plainly which ones are usually unrecoverable.
+
+Source: https://codeword.agiscorecard.com/already-paid-what-now
+
+**Verdict: the first hour matters more than anything else you will do. Call your bank, card issuer or payment provider before you read the rest of this page, and use the words fraud and scam payment. Then report. Then tell one person in your household, so the next decisions are not made alone. Updated 2026-09-15.**
+
+
+## In order, right now
+
+
+## What is recoverable, honestly
+
+| How you paid | Realistic outlook | Do this |
+|---|---|---|
+| Credit or debit card | Strongest position — established chargeback machinery | Dispute as fraud with the issuer immediately; ask for the claim reference |
+| Bank transfer | Depends on speed and on your bank's policy; funds may be recallable if the receiving account can be frozen | Ask the bank to attempt recall and to contact the receiving bank now |
+| Payment app | Varies by provider and by whether the transfer was "to a friend" | Report in-app and by phone; ask what protection applies to your specific transfer type |
+| Gift cards | Occasionally recoverable if the codes are unspent | Call the card issuer with the numbers; keep the cards and receipts |
+| Cryptocurrency | Usually not reversible | Report anyway with the transaction hash and destination address; refuse all "recovery" offers |
+
+
+## Scale, so you know you are not the exception
+
+The FBI's Internet Crime Complaint Center recorded more than one million complaints in its 2025 Internet Crime Report, with reported losses above $20 billion, a 26% rise on 2024. Losses reported by people aged 60 and over reached $7.75 billion across 201,266 complaints. People who report are not outliers; they are the reason the numbers exist at all.
+
+
+## So it does not happen again
+
+| Change | What it removes |
+|---|---|
+| A family code word | The impersonation. A voice can be copied; a shared memory cannot |
+| Callback on a saved number, always | The controlled channel the caller needs to keep |
+| The household rule: money moves last | The urgency the whole script depends on |
+
+
+## Frequently asked
+
+**问:I already paid a scammer. What do I do first?**
+
+Call the bank, card issuer or payment provider before you do anything else, and say the words fraud and unauthorised or scam payment. Speed is the single biggest factor you still control, because reversing a payment depends on it still being reachable in the system. Do that first, then report to the authorities, then tell one other person in your household so you are not making the next decisions alone.
+
+**问:Which payments can realistically be recovered?**
+
+Broadly: card payments have the strongest chargeback machinery behind them; bank transfers depend on how fast the receiving account can be frozen and on your bank's own reimbursement policy; gift cards are sometimes recoverable if the codes have not yet been spent, which is why you keep the cards and receipts; cryptocurrency transfers are usually not reversible at all. Ask your provider what is possible in your case rather than assuming, and never pay a second time to release the first payment.
+
+**问:Where do I report it?**
+
+In the United States, report to the FBI's Internet Crime Complaint Center at ic3.gov and to the FTC at reportfraud.ftc.gov. In the EU and the UK, report to your national police or national fraud reporting service; the country-specific route is the one your own police force publishes. Reporting rarely gets your money back on its own, but complaints are how patterns get spotted and cases get built, and some banks ask for a reference number.
+
+**问:Someone is offering to recover my money for a fee. Is that real?**
+
+Treat it as a second scam until proven otherwise. Recovery fraud specifically targets people who have already lost money, often using details only the original scammer would know, and sometimes impersonating the police or a law firm. No legitimate agency charges you an upfront fee to get stolen funds back. If someone contacts you unprompted about recovering your loss, hang up and call the agency back on a number you looked up yourself.
+
+**问:How do I stop it happening again?**
+
+Three durable changes. Agree a family code word so an urgent voice can be checked in seconds. Make callback-on-a-saved-number the household rule for any request involving money, codes or account access. And tell your bank you want additional verification on unusual transfers. The scam relied on speed and isolation; each of those three removes one of them.
+
+
+---
+
+# Official routes only
+
+> Official entry points only: FBI IC3 and the FTC in the US, national police and fraud services in the EU and UK, plus the primary sources behind every rule this site quotes. No paid recovery services, no security products, no courses.
+
+Source: https://codeword.agiscorecard.com/resources
+
+
+## Right now
+
+Use the words fraud and scam payment. Ask directly whether the payment can be stopped, recalled or charged back, and what they need from you within the hour. Call the number on your card or in your banking app, never a number given to you by the caller.
+
+911 in the US and Canada, 112 across the EU and the UK. Fraud alone is not an emergency call; a threat to a person is.
+
+
+## Reporting — United States
+
+Keep the reference number; some banks ask for it. IC3 complaints are what its annual Internet Crime Report is built from.
+
+
+## Reporting — EU and UK
+
+There is no single EU-wide consumer fraud report line, and we will not invent one. Search for your country's police fraud reporting page on its official domain, and report to your bank in parallel. If a payment crossed a border, say so — it matters for which authority picks it up.
+
+
+## Primary sources for every rule we quote
+
+
+## Deliberately not listed
+
+
+---

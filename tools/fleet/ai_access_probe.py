@@ -48,6 +48,8 @@ SITES = [
     ("learn", "https://learn.agiscorecard.com"),
     ("fanzha", "https://fanzha.agiscorecard.com"),
     ("firstjob", "https://firstjob.agiscorecard.com"),
+    ("codeword", "https://codeword.agiscorecard.com"),
+    ("powerbill", "https://powerbill.agiscorecard.com"),
 ]
 PATHS = ["/", "/llms.txt"]
 

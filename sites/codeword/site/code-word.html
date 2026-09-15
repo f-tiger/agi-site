@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Family Code Word Card Generator — Code Word</title>
+<meta name="description" content="AI can copy a face and a voice. It cannot copy what your family remembers. Agree one question only your household can answer, add the two-questions-and-a-callback rule, and print a card. Nothing is uploaded and the answer never goes into the link.">
+<link rel="canonical" href="https://codeword.agiscorecard.com/code-word">
+<meta property="og:title" content="Family Code Word Card Generator">
+<meta property="og:description" content="AI can copy a voice. It cannot copy what your family remembers. Two minutes, one printable card.">
+<link rel="stylesheet" href="/style.css">
+<style>
+  .card-print { border: 2px solid var(--ink); border-radius: 12px; padding: 22px 24px; max-width: 580px; margin: 18px 0; background: #fff; }
+  .card-print h3 { margin: 0 0 10px; font-size: 22px; }
+  .card-print .row { display: flex; justify-content: space-between; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--rule); font-size: 18px; }
+  .card-print .row b { flex: none; }
+  .card-print .rule3 { margin-top: 12px; font-size: 16px; }
+  .card-print .rule3 li { margin: 4px 0; }
+  @media print { header, footer, .cta-row, .noprint, form, .lead, h1, .rule, h2, .tbl, .small, .notice { display: none !important; } .card-print { border-width: 1px; page-break-inside: avoid; } main { padding: 0; } }
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Family Code Word Card Generator","url":"https://codeword.agiscorecard.com/code-word","applicationCategory":"SecurityApplication","operatingSystem":"Web","inLanguage":"en","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["Agree a question only your family can answer","Two questions and a callback rule","Printable card, one per person","Nothing uploaded, nothing written into the link"],"isPartOf":{"@type":"WebSite","name":"Code Word","url":"https://codeword.agiscorecard.com/"}}
+</script>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="/">Code<b>Word</b></a>
+  <nav class="main"><a href="/ai-voice-clone-detection">Voice clones</a><a href="/are-ai-robocalls-illegal">Is it illegal?</a><a href="/already-paid-what-now">Already paid?</a><a href="/code-word" aria-current="page">Code word card</a><a href="/before-you-pay">Before you pay</a><a href="/scam-check">Scam check</a><a href="/resources">Official help</a><a href="/about">About</a></nav>
+</div></header>
+<main class="wrap">
+  <h1>Family code word card</h1>
+  <p class="lead muted">AI can copy a face and a voice. It cannot copy what your family remembers. Agree one question only your household can answer, then agree the rule: <strong>two questions and a callback</strong> — ask the code word, ask one small recent thing, then hang up and call back on the number you already had. Print a card; one per person. <strong>Nothing is uploaded, and the answer is never written into the link.</strong></p>
+
+  <form class="post" id="f" novalidate>
+    <label for="fam">Who is this card for? <span class="hint">e.g. "Mum and Dad", "the whole family", "Grandma"</span></label>
+    <input type="text" id="fam" maxlength="24" placeholder="The whole family">
+    <label for="q">Code word question <span class="hint">Something nobody can look up. Not a birthday, pet, school or anniversary — those are all reconstructable from social media</span></label>
+    <input type="text" id="q" maxlength="70" placeholder="e.g. What tree was in the back garden at the old house?">
+    <label for="a">Answer <span class="hint">Short enough to say under stress. It stays on the printed card, at home</span></label>
+    <input type="text" id="a" maxlength="40" placeholder="e.g. the plum tree">
+    <label for="q2">Backup question <span class="hint">For when the first one may have been overheard</span></label>
+    <input type="text" id="q2" maxlength="70" placeholder="e.g. Which relative were you scared of as a kid?">
+    <label for="a2">Backup answer</label>
+    <input type="text" id="a2" maxlength="40" placeholder="">
+    <label for="nums">Callback numbers <span class="hint">The numbers already saved in your phone. Write the relationship, not full names</span></label>
+    <input type="text" id="nums" maxlength="90" placeholder="Son 555-01.. · Daughter 555-02..">
+    <p class="cta-row"><button class="cta primary" type="submit">Make the card</button></p>
+  </form>
+
+  <div id="out" hidden>
+    <div class="card-print" id="card">
+      <h3>Family code word · <span id="cfam"></span></h3>
+      <div class="row"><b>Question</b><span id="cq"></span></div>
+      <div class="row"><b>Answer</b><span id="ca"></span></div>
+      <div class="row"><b>Backup question</b><span id="cq2"></span></div>
+      <div class="row"><b>Backup answer</b><span id="ca2"></span></div>
+      <div class="row"><b>Call back on</b><span id="cnums"></span></div>
+      <ol class="rule3">
+        <li><b>Two questions.</b> Ask the code word, then ask one small recent thing ("what did we eat on Sunday?").</li>
+        <li><b>One callback.</b> Answered or not, hang up and call the number above. Not the number that called you.</li>
+        <li><b>Three nevers.</b> Never say the answer first. Never skip the callback because it is urgent. Never send money, codes or gift cards before both questions and the callback are done.</li>
+      </ol>
+      <p class="small" style="margin:10px 0 0">If money has already moved: call your bank now, then report (US: ic3.gov and reportfraud.ftc.gov; EU/UK: your national police or fraud reporting service).</p>
+    </div>
+    <p class="cta-row noprint"><button class="cta primary" type="button" onclick="cwev('card_print','family'); window.print()">Print (one per person)</button><a class="cta" href="/before-you-pay">60-second checklist</a></p>
+    <p class="small muted">This page stores nothing: refresh and it is gone, and none of it is in the URL. Print it, keep it somewhere fixed at home, and hand-write a copy for anyone who does not use a smartphone.</p>
+  </div>
+
+  <hr class="rule">
+  <h2>Three rules for choosing one</h2>
+  <div class="tbl"><table>
+    <tr><th>Rule</th><th>Why</th></tr>
+    <tr><td>Not findable online</td><td>Birthdays, schools, pet names and anniversaries can be assembled from social media, and whoever cloned the voice has usually done that homework first</td></tr>
+    <tr><td>Everyone in the family knows it; nobody outside does</td><td>Shared household memories work best — the tree in the old garden, which floor the first flat was on, the name of the car</td></tr>
+    <tr><td>Short and sayable</td><td>It has to come out under adrenaline. Long phrases and numbers get fumbled exactly when it matters</td></tr>
+  </table></div>
+  <p class="small muted">A family code word plus callback verification is the defence public safety agencies actually recommend, because it does not depend on hearing the difference. Why "spot the fake" advice fails is set out in <a href="/ai-voice-clone-detection">Can you tell an AI voice clone by ear?</a></p>
+</main>
+<footer><div class="wrap">
+  <div class="links"><a href="/">Home</a><a href="/ai-voice-clone-detection">Voice clones</a><a href="/before-you-pay">Before you pay</a><a href="/scam-check">Scam check</a><a href="/resources">Official help</a><a href="/about">About</a></div>
+  <div>Code Word · a site in the <a href="https://agiscorecard.com/">AGI Scorecard</a> network · In immediate danger, call your local emergency number</div>
+</div></footer>
+<script src="/app.js"></script>
+<script>
+(function(){
+  var f = document.getElementById("f");
+  f.addEventListener("submit", function(e){
+    e.preventDefault();
+    var q = document.getElementById("q").value.trim(), a = document.getElementById("a").value.trim();
+    if (q.length < 4 || a.length < 1) { alert("Write a code word question and its answer first."); return; }
+    document.getElementById("cfam").textContent = document.getElementById("fam").value.trim() || "The whole family";
+    document.getElementById("cq").textContent = q; document.getElementById("ca").textContent = a;
+    document.getElementById("cq2").textContent = document.getElementById("q2").value.trim() || "-";
+    document.getElementById("ca2").textContent = document.getElementById("a2").value.trim() || "-";
+    document.getElementById("cnums").textContent = document.getElementById("nums").value.trim() || "(the numbers already in your phone)";
+    document.getElementById("out").hidden = false; cwev("tool_result", "codeword:generated");
+    document.getElementById("out").scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+})();
+</script>
+</body>
+</html>

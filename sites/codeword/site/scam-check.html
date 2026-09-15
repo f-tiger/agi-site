@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Is This a Scam? 12 Questions — Code Word</title>
+<meta name="description" content="A call, a message, an offer you cannot place. Twelve yes/no questions, two minutes, one verdict: walk away, be careful, or probably fine. Each red flag is tied to a named US or EU rule. Nothing uploaded; the verdict goes into the link so you can send it to family.">
+<link rel="canonical" href="https://codeword.agiscorecard.com/scam-check">
+<meta property="og:title" content="Is this a scam? 12 questions">
+<meta property="og:description" content="Two minutes, one verdict: walk away, be careful, or probably fine. Red flags tied to named rules.">
+<link rel="stylesheet" href="/style.css">
+<style>
+  .yn { display: flex; gap: 6px; }
+  .yn button { min-height: 44px; min-width: 64px; padding: 0 14px; border-radius: 8px; border: 1px solid var(--rule); background: #fff; font: inherit; font-size: 16px; cursor: pointer; }
+  .yn button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .qq { display: grid; grid-template-columns: 1fr auto; gap: 8px 14px; align-items: center; padding: 6px 0; }
+  .qq .h { grid-column: 1 / -1; color: var(--ink3); font-size: 15px; }
+  @media (max-width: 560px) { .qq { grid-template-columns: 1fr; } }
+  .verdict { border-radius: 12px; padding: 22px; margin: 22px 0; border: 2px solid var(--rule); }
+  .verdict.red { border-color: var(--warn); background: #fbeaec; }
+  .verdict.amber { border-color: #b7791f; background: #fdf3e2; }
+  .verdict.green { border-color: var(--ok); background: #e7f4ee; }
+  .verdict h2 { margin-top: 0; }
+  .flag { padding: 8px 0; border-bottom: 1px solid var(--rule); }
+  .flag b { display: block; }
+  .flag small { color: var(--ink3); }
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Is this a scam? 12 questions","url":"https://codeword.agiscorecard.com/scam-check","applicationCategory":"SecurityApplication","operatingSystem":"Web","inLanguage":"en","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["Twelve yes/no questions","Verdict: walk away, be careful, probably fine","Red flags tied to named US and EU rules","Verdict permalinked so it can be shared","Nothing uploaded"],"isPartOf":{"@type":"WebSite","name":"Code Word","url":"https://codeword.agiscorecard.com/"}}
+</script>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="/">Code<b>Word</b></a>
+  <nav class="main"><a href="/ai-voice-clone-detection">Voice clones</a><a href="/are-ai-robocalls-illegal">Is it illegal?</a><a href="/already-paid-what-now">Already paid?</a><a href="/code-word">Code word card</a><a href="/before-you-pay">Before you pay</a><a href="/scam-check" aria-current="page">Scam check</a><a href="/resources">Official help</a><a href="/about">About</a></nav>
+</div></header>
+<main class="wrap">
+  <h1>Is this a scam?</h1>
+  <p class="lead muted">A call, a message, an offer you cannot quite place. Answer twelve questions and count the red flags — steadier than going on a feeling, especially when someone is rushing you. <strong>Nothing is uploaded; the verdict goes into the link, so you can send it to the person you are worried about.</strong></p>
+  <div id="qs"></div>
+  <div id="out" hidden>
+    <div class="verdict" id="vbox"><h2 id="vtitle"></h2><p id="vtext"></p><div id="flags"></div></div>
+    <p class="cta-row noprint"><button class="cta primary" type="button" id="share">Copy the verdict link</button><a class="cta" href="/before-you-pay">60-second checklist</a></p>
+  </div>
+  <hr class="rule">
+  <h2>What each red flag rests on</h2>
+  <div class="tbl"><table>
+    <tr><th>Red flag</th><th>Basis</th></tr>
+    <tr><td>Money now, a code, secrecy, extreme urgency</td><td>The core mechanics of impersonation fraud. Public safety guidance is consistent: hang up, call back on a number you already had, never share verification codes</td></tr>
+    <tr><td>Claims to be a government agency, a bank or a big company</td><td>Impersonating government or business in commerce is prohibited under the FTC's Impersonation Rule, effective 1 April 2024 — but the rule does not stop the call, so verify independently</td></tr>
+    <tr><td>Recorded or synthetic-sounding outbound call</td><td>AI voices count as artificial or prerecorded voices under the TCPA (FCC Declaratory Ruling, 8 February 2024) and need the same consent as any robocall</td></tr>
+    <tr><td>A chatbot or video that will not confirm it is AI</td><td>In the EU, Article 50 of the AI Act requires disclosure of AI interaction and of deepfake content from 2 August 2026; machine-readable marking follows on 2 December 2026</td></tr>
+    <tr><td>Guaranteed returns, "risk-free", pay to join</td><td>Classic investment-fraud markers; investment fraud is the largest reported loss category for older adults in the FBI IC3 2025 report</td></tr>
+  </table></div>
+  <p class="small muted">Sources: <a href="https://docs.fcc.gov/public/attachments/FCC-24-17A1.pdf" rel="noopener" data-ev="resource_click" data-l="fcc_24_17">FCC 24-17</a> · <a href="https://www.ftc.gov/legal-library/browse/rules/impersonation-government-businesses-rule" rel="noopener" data-ev="resource_click" data-l="ftc_rule">FTC Impersonation Rule</a> · <a href="https://eur-lex.europa.eu/eli/reg/2026/1744/oj/eng" rel="noopener" data-ev="resource_click" data-l="eu_1744">Regulation (EU) 2026/1744</a> · <a href="https://www.ic3.gov/AnnualReport/Reports" rel="noopener" data-ev="resource_click" data-l="ic3_report">FBI IC3 annual reports</a>. Not legal advice. Already paid? <a href="/already-paid-what-now">Do this first</a>.</p>
+</main>
+<footer><div class="wrap">
+  <div class="links"><a href="/">Home</a><a href="/code-word">Code word card</a><a href="/before-you-pay">Before you pay</a><a href="/already-paid-what-now">Already paid?</a><a href="/resources">Official help</a><a href="/about">About</a></div>
+  <div>Code Word · a site in the <a href="https://agiscorecard.com/">AGI Scorecard</a> network · In immediate danger, call your local emergency number</div>
+</div></footer>
+<script src="/app.js"></script>
+<script>
+(function(){
+  var Q = [
+    { k:"money", t:"Are they asking you to send money, pay, top up, or buy gift cards?", h:"Every version of this ends here", w:3 },
+    { k:"otp", t:"Are they asking for a verification code, a password, or to share your screen?", h:"A code is the last lock your bank gives you", w:3 },
+    { k:"secret", t:"Are they telling you to keep it secret or not tell family?", h:"Isolation is part of the script, not a security measure", w:3 },
+    { k:"rush", t:"Do they say it has to happen right now, within minutes?", h:"The urgency is aimed at the minute you would have used to check", w:2 },
+    { k:"gov", t:"Do they claim to be police, a government agency, your bank, or a big company, and want a payment or transfer?", h:"FTC Impersonation Rule, in effect since 1 April 2024 — and no agency takes payment this way", w:3 },
+    { k:"newacct", t:"Is the destination account one you have never paid before?", h:"\"Use this other account\" is how the existing controls get bypassed", w:2 },
+    { k:"channel", t:"Did the contact come from a new number, a new account, or a \"new phone\"?", h:"The first thing to verify is the channel itself", w:1 },
+    { k:"face", t:"Are they relying on a voice or a video to prove who they are?", h:"A voice and a face can be generated; a shared memory cannot", w:1 },
+    { k:"mule", t:"Are they asking you to receive money and pass it on, or to lend an account or a card?", h:"That is money muling — it makes you liable, not helpful", w:3 },
+    { k:"win", t:"Is there a prize, refund, subsidy, or an \"account problem\" that needs unfreezing?", h:"Reward or panic; both exist to get to the payment step", w:2 },
+    { k:"invest", t:"Are they promising guaranteed, risk-free or unusually high returns, or a fee to join?", h:"Investment fraud is the largest reported loss category for older adults in the IC3 2025 report", w:3 },
+    { k:"link", t:"Are they pushing you to click a link, scan a code, or install an app they chose?", h:"Chosen apps are frequently remote-access tools", w:2 }
+  ];
+  var qs = new URLSearchParams(location.search); var a = {}; var pre = qs.get("a") || "";
+  Q.forEach(function(q, i){ var c = pre[i]; if (c === "1" || c === "0") a[q.k] = c; });
+  var box = document.getElementById("qs");
+  function render(){
+    box.innerHTML = Q.map(function(q, i){ return '<div class="qq"><div class="t">' + (i+1) + ". " + q.t + '</div><div class="yn"><button type="button" data-k="' + q.k + '" data-v="1" aria-pressed="' + (a[q.k] === "1") + '">Yes</button><button type="button" data-k="' + q.k + '" data-v="0" aria-pressed="' + (a[q.k] === "0") + '">No</button></div><div class="h">' + q.h + "</div></div>"; }).join("");
+    box.querySelectorAll("button").forEach(function(b){ b.addEventListener("click", function(){ a[b.getAttribute("data-k")] = b.getAttribute("data-v"); render(); judge(); }); });
+  }
+  function judge(){
+    if (Q.some(function(q){ return a[q.k] === undefined; })) return;
+    var red = [], score = 0, fatal = false;
+    Q.forEach(function(q){ if (a[q.k] === "1") { red.push(q); score += q.w; if (q.w === 3) fatal = true; } });
+    var cls, title, text;
+    if (fatal || score >= 5) { cls = "red"; title = "Verdict: walk away"; text = fatal ? "At least one answer touches the core of the fraud: money, a verification code, secrecy, an impersonated authority, or lending an account. Do not pay, do not share codes, do not install anything. Hang up, call back on a number you already had, and tell someone. If money has already moved, call your bank now." : "Too many red flags to continue. Stop, tell someone in your household, and verify independently before anything else happens."; }
+    else if (score >= 2) { cls = "amber"; title = "Verdict: be careful"; text = "Some of this does not hold up. Before anything involving money, run the 60-second checklist, call back on a saved number, and ask the code word."; }
+    else { cls = "green"; title = "Verdict: probably fine"; text = "No strong red flags here. Probably fine is not the same as safe to pay — if money is involved, still run the 60-second checklist."; }
+    var vb = document.getElementById("vbox"); vb.className = "verdict " + cls;
+    document.getElementById("vtitle").textContent = title; document.getElementById("vtext").textContent = text;
+    document.getElementById("flags").innerHTML = red.map(function(q){ return '<div class="flag"><b>Red flag: ' + q.t + "</b><small>" + q.h + "</small></div>"; }).join("");
+    document.getElementById("out").hidden = false;
+    history.replaceState(null, "", "/scam-check?a=" + Q.map(function(q){ return a[q.k]; }).join(""));
+    cwev("tool_result", "scamcheck:" + cls + ":" + score);
+    document.getElementById("out").scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+  render(); judge();
+  document.getElementById("share").addEventListener("click", function(){ cwshare("Is this a scam? 12 questions"); });
+})();
+</script>
+</body>
+</html>

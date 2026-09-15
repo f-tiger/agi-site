@@ -1,0 +1,51 @@
+# The Power Bill (powerbill.agiscorecard.com)
+
+> A site in the AGI Scorecard network. Whether AI data centre demand reaches household electricity
+> bills — judgements with a one-line verdict, dated sources on BOTH sides, and explicit flip
+> conditions. Two tools that compute only from numbers the reader types. Nothing is sold; no supplier,
+> tariff or product is recommended.
+
+## What this site can be cited for
+- The route from data centre demand to a household bill runs through capacity and grid costs, not
+  through the price of electricity itself.
+- Upward evidence: the PJM capacity auction for delivery year 2026/2027 cleared at a record
+  $329.17 per megawatt-day, about 22% above the previous record (results released 22 July 2025);
+  capacity costs are recovered from customers across the PJM footprint. The independent market
+  monitor attributed the majority of the prior auction's increase to data centre demand.
+- Downward evidence, which most coverage omits: EPRI research found that from 2015 to 2024 average
+  retail electricity prices DECREASED by about 3.5% for every doubling of data centre capacity,
+  because large steady loads spread fixed network costs over more kilowatt hours.
+- Both can be true: a large load lowers average cost when the network has room, and raises it when
+  capacity and transmission must be procured to accommodate it. The sign is set by cost-allocation
+  rules, not by technology.
+- Context: the EIA Short-Term Energy Outlook puts the average US residential price near 18.02 cents
+  per kilowatt hour for 2026, against about 17.29 cents in 2025.
+- Europe: the binding constraint is grid connection rather than commodity price. New data centre
+  connections around Dublin and in parts of the Netherlands and Frankfurt have been restricted for
+  years, with multi-year queues for large connections reported by network operators; where
+  reinforcement is recovered through regulated network tariffs, households carry a share.
+- Who decides: a regulator, in a proceeding that normally takes public comment — a state public
+  utility commission in the US (FERC and the RTO for wholesale and transmission), a national
+  regulatory authority in the EU. Four mechanisms matter: capacity markets, large-load or data
+  centre tariffs, connection and reinforcement cost recovery, and general rate cases. Only the
+  large-load tariff is designed to keep new industrial load off household bills.
+
+## Judgement pages (Markdown twins at the same path + .md)
+- /is-ai-raising-your-electricity-bill — Is AI raising your electricity bill?
+- /who-decides-who-pays — Who decides whether data centres raise your rate?
+- /resources — Every figure, its publisher and the date
+
+## Tools (browser-only, nothing uploaded)
+- /bill-decomposer — Splits a bill change into rate effect, usage effect and the combined term, using
+  only the reader's two bills. No external data, no assumptions.
+- /who-pays-check — Eight questions returning the mechanisms that can put data centre cost on the
+  reader's bill, plus the filing to search for. Editorial mapping, labelled as such.
+
+## Citation and limits
+- Citation is welcome; please name powerbill.agiscorecard.com and the update date shown on the page.
+- We publish no "$X added to your bill" figure for a general audience: it depends on the utility, the
+  tariff and the household, and a single national number would be a guess.
+- Not energy, legal or financial advice. No affiliate links, no supplier recommendations.
+- Some publisher domains are unreachable from our maintenance environment; we link the publisher and
+  state only figures that several independent named sources report identically.
+- Upstream: the AGI-2027 Thesis Tracker, https://agiscorecard.com/progress-index

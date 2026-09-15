@@ -1,0 +1,176 @@
+# The Power Bill — full text (judgements and official entry points, machine readable)
+
+> Is AI raising your electricity bill? Dated evidence on both sides, US and EU. Generated from the pages themselves. Pages are the single source of truth. Site notes:  https://powerbill.agiscorecard.com/llms.txt
+
+# Is AI raising your electricity bill?
+
+> Verdict: in some places yes, and the mechanism is capacity and grid costs rather than the electricity itself — but the honest answer includes the counter-evidence, which most pages leave out. PJM, EIA, EPRI and Eurostat numbers with dates, plus what would flip this verdict.
+
+Source: https://powerbill.agiscorecard.com/is-ai-raising-your-electricity-bill
+
+**Verdict: in some places yes — through capacity and grid costs, not through the price of electricity itself. The clearest single number: the PJM capacity auction for delivery year 2026/2027 cleared at a record $329.17/MW-day, roughly 22% above the prior record, and those costs are recovered from customers across the PJM footprint. But the counter-evidence is real and most pages hide it: EPRI found that from 2015 to 2024 average retail prices fell about 3.5% for every doubling of data centre capacity. Which way it goes for you is decided by rules, not by technology. Updated 2026-09-15.**
+
+
+## The evidence, both directions, with dates
+
+| Finding | Direction | Source and date |
+|---|---|---|
+| PJM capacity auction, delivery year 2026/2027, cleared at $329.17/MW-day — about 22% above the previous record | Upward pressure | PJM auction results, released 22 July 2025 |
+| Independent market monitor attributed a majority share of the prior auction's increase to data centre demand, in the billions of dollars recovered from customers | Upward pressure | Monitoring Analytics analysis of the 2025/2026 auction |
+| US average residential price about 18.02 ¢/kWh in 2026 vs about 17.29 ¢ in 2025 | Context, not attribution | EIA Short-Term Energy Outlook |
+| From 2015 to 2024, average retail prices decreased about 3.5% for every doubling of data centre capacity | Downward pressure | Electric Power Research Institute |
+| Connection queues effectively closed around several European hubs; multi-year waits for large connections reported by network operators | Cost shifts into network tariffs | European grid operators and regulators, 2025–2026 |
+
+
+## Why both things can be true
+
+A large, steady customer can lower everyone's average cost, because the fixed cost of poles, wires and substations gets spread across more kilowatt hours. That is the EPRI finding, and it describes a decade when the grid had room.
+
+The same customer raises everyone's cost when it arrives faster than the system can absorb: capacity has to be procured at a higher clearing price, new transmission has to be built, and the question of who pays for the connection gets settled by tariff design and regulatory proceedings. That is the PJM picture.
+
+So the real variable is the rulebook in your region — whether large loads pay their own way, and whether the capacity cost lands on residential customers. That is a decision made in dockets, and it is the subject of the second judgement on this site.
+
+
+## Europe: a grid access story
+
+In Europe the binding constraint has been connection rather than commodity price. New data centre connections around Dublin and in parts of the Netherlands and Frankfurt have been restricted for years, and operators report multi-year queues for large connections. Where reinforcement is funded through regulated network tariffs, households carry a share. Ireland is the most studied case and the one with the sharpest political argument attached.
+
+
+## What would change this verdict
+
+| Watch | Flip condition | Status (2026-09-15) |
+|---|---|---|
+| Capacity clearing prices | PJM and neighbouring markets clear materially lower for two consecutive auctions → "upward pressure" is downgraded to a one-off | 2026/2027 cleared at a record $329.17/MW-day |
+| Cost allocation rules | Large-load tariffs that make data centres carry their own capacity and connection costs become the norm → the household link is cut at the source | Being litigated and legislated region by region |
+| Retail price data | EIA and Eurostat series show residential prices flat or falling while data centre load keeps growing → the EPRI mechanism is winning again | US residential average projected up about 4% for 2026 |
+| Demand itself | The build-out slows materially → this whole page becomes historical | Parent tracker at 62.5/100; capex still expanding |
+
+
+## Frequently asked
+
+**问:Is AI raising my electricity bill?**
+
+In some regions yes, and the route is indirect. Data centre demand shows up first in capacity and grid costs rather than in the price of electricity itself. The clearest single data point is the PJM capacity auction for the 2026/2027 delivery year, which cleared at a record $329.17 per megawatt-day, about 22% above the previous record. Those capacity costs are recovered from customers across the PJM footprint. Outside such regions the effect on a household bill can be small or hard to separate from fuel prices, weather and utility investment that would have happened anyway.
+
+**问:Is there evidence pointing the other way?**
+
+Yes, and pages that hide it are not being straight with you. Research from the Electric Power Research Institute found that from 2015 to 2024 average retail electricity prices decreased by about 3.5% for every doubling of data centre capacity, because large steady loads can spread fixed network costs over more kilowatt hours. The honest reading is that the sign of the effect depends on whether new load arrives with the network investment already paid for, and on who is made to pay for the new capacity. That is a rules question, not a technology question.
+
+**问:How much are US electricity prices actually going up?**
+
+The US Energy Information Administration's Short-Term Energy Outlook put the average US residential price at about 18.02 cents per kilowatt hour for 2026, up from about 17.29 cents in 2025 — roughly a 4% rise. That is an average across a country where regional differences are large, so your own bill can move very differently. This site's bill decomposer exists precisely because a national average tells you nothing about your own two bills.
+
+**问:What is happening in Europe?**
+
+The European picture is about grid access more than wholesale price. Several hubs have effectively closed the queue: new data centre connections around Dublin and in parts of the Netherlands and Frankfurt have been restricted for years, and network operators report multi-year waits for large connections. Where network reinforcement is paid for through regulated tariffs, households carry a share of it. Ireland is the most studied case, and Eurostat's household electricity price series is the neutral place to check any country's level rather than a campaign figure.
+
+**问:What can I actually do about my own bill?**
+
+Three things, in order. First, separate price from usage: take your last two bills and work out how much of the change came from the rate and how much from kilowatt hours used, because people routinely blame the wrong one. Second, find out which mechanism governs your area — a capacity market, a large load tariff, or a pending rate case — because that determines whether new data centre load can be charged to you at all. Third, put your objection where it counts: rate cases and tariff dockets at your state or national regulator are the decision point, and they take public comment.
+
+
+---
+
+# Who decides whether data centres raise your rate?
+
+> Verdict: not the data centre and not your utility alone — a regulator, in a proceeding that takes public comment. Capacity markets, large-load tariffs, connection charges and rate cases explained, plus where the decision is actually made in the US and the EU.
+
+Source: https://powerbill.agiscorecard.com/who-decides-who-pays
+
+**Verdict: a regulator does — in a proceeding that takes public comment. Not the data centre, and not your utility acting alone: the utility proposes, the regulator decides. In the US that is your state public utility commission for retail rates, with FERC over wholesale markets and transmission. In the EU it is your national regulatory authority setting network tariffs and connection rules. Updated 2026-09-15.**
+
+
+## The four mechanisms
+
+| Mechanism | What it does | Does it protect households? |
+|---|---|---|
+| Capacity market | Auctions the cost of keeping enough generation available; the clearing price is recovered from customers across the footprint | No — by design it spreads the cost. This is the route by which a record auction reaches a household bill |
+| Large-load / data centre tariff | A separate rate class for very large new customers, typically with minimum take, long terms and exit fees | Yes, when written well. The only one of the four aimed squarely at this problem |
+| Connection and reinforcement charges | Decides who pays for the wires and substations, and over how many years | Depends entirely on whether costs are attributed to the new load or socialised |
+| General rate case | The periodic proceeding setting rates to recover utility investment | Indirectly — it is where the bill for everything else is settled, and where you can file comment |
+
+
+## Where the decision is actually made
+
+| Region | Who | What to look for |
+|---|---|---|
+| United States, retail rates | State public utility / public service commission | Docket search; your utility's pending rate case; any large-load tariff filing; comment deadlines |
+| United States, wholesale and transmission | Federal Energy Regulatory Commission; the regional transmission organisation (e.g. PJM) | Capacity auction results and market monitor reports; interconnection and large-load proposals |
+| European Union | National regulatory authority; the transmission and distribution operators | Network tariff consultations; connection policy and queue rules; reinforcement cost recovery |
+| Anywhere, for one specific site | Often a local planning body, separately from the energy regulator | Grid connection agreement, planning consent, any community benefit conditions |
+
+
+## What this means in practice
+
+
+## What would change this verdict
+
+| Watch | Flip condition | Status (2026-09-15) |
+|---|---|---|
+| Where authority sits | Federal or EU-level pre-emption of large-load cost allocation → the "your regulator decides" answer changes | Retail cost allocation remains state / national |
+| Large-load tariffs | They become standard and demonstrably hold under cancellation and restructuring → household exposure falls structurally | Spreading, contested case by case |
+| Public participation | Commissions restrict public comment in these dockets → the practical advice on this page changes | Comment remains open in the ordinary course |
+
+
+## Frequently asked
+
+**问:Who decides whether data centres raise my electricity rate?**
+
+A regulator does, in a proceeding that is usually open to public comment. In the United States that is generally your state public utility commission for retail rates, with the Federal Energy Regulatory Commission overseeing wholesale markets and transmission. In the European Union it is your national regulatory authority setting network tariffs and connection rules. The data centre does not set your rate and neither does your utility on its own — the utility proposes, the regulator decides.
+
+**问:What are the four mechanisms that matter?**
+
+One, capacity markets: in regions that run them, the price of keeping enough generation available is procured in an auction and recovered from customers. Two, large-load or data centre tariffs: a special rate class that can require big new customers to cover their own capacity and infrastructure. Three, connection and network reinforcement charges: who pays for the wires, and over how many years. Four, general rate cases: the periodic proceeding where a utility asks to recover investment and set new rates. Only the second one is designed specifically to keep new industrial load off household bills.
+
+**问:How do I find the proceeding that affects me?**
+
+In the US, search for your state's public utility or public service commission and look for its docket search, then for your utility's pending rate case or any large-load tariff filing. Most commissions accept written public comment and hold hearings. In the EU, start at your national regulatory authority's site and look for network tariff consultations and connection policy. If a specific data centre is the issue, the planning or grid connection decision may sit with a different body again, often local.
+
+**问:Do large-load tariffs actually work?**
+
+They are the most direct tool available, because they attach the cost to the customer that caused it, usually through minimum take provisions, long contract terms and exit fees. Whether a given one works depends on details that are fought over line by line: how long the commitment runs, what happens if the project is cancelled, and whether the charges survive a corporate restructuring. Treat any claim that a tariff has solved the problem as a claim to check in the filing, not a conclusion.
+
+**问:Is this different in Europe?**
+
+The mechanism is different, the question is the same. Europe's binding constraint has been connection capacity rather than a capacity auction, so the fight is about queue access and about how network reinforcement is recovered through regulated tariffs. Several hubs including Dublin and parts of the Netherlands and Frankfurt have effectively restricted new data centre connections for years. Where reinforcement costs are socialised into network tariffs, households carry a share, which is why the tariff consultation is the place to look.
+
+
+---
+
+# Where these numbers come from
+
+> Every figure this site uses, with the body that published it and the date: PJM capacity auction results, the independent market monitor, EIA Short-Term Energy Outlook, EPRI's opposite finding, and Eurostat household prices. Plus what we deliberately refuse to publish.
+
+Source: https://powerbill.agiscorecard.com/resources
+
+
+## United States
+
+Delivery year 2026/2027 cleared at a record $329.17 per megawatt-day, roughly 22% above the previous record, announced 22 July 2025. Capacity costs are recovered from customers across the footprint, which is why this number reaches households without any action by your own utility.
+
+The monitor's analysis of the 2025/2026 auction attributed the majority of the increase to data centre load, amounting to billions of dollars recovered from customers in a single year. We cite the direction and the order of magnitude; the exact figure belongs in the monitor's own report.
+
+Average US residential price around 18.02 cents per kilowatt hour for 2026, against about 17.29 cents for 2025. A national average — your own region can move very differently, which is what the decomposer is for.
+
+Docket search, pending rate cases, and any large-load or data centre tariff filing. This is the single most useful link on the page and it is different for every reader, so we point rather than guess.
+
+
+## The counter-evidence
+
+From 2015 to 2024, average retail electricity prices decreased by about 3.5% for every doubling of data centre capacity — large steady loads spread fixed network costs across more kilowatt hours. We print this alongside the PJM number because a page that shows only one of them is arguing, not reporting.
+
+
+## Europe
+
+Published half-yearly. We link the series rather than reprinting figures that change every six months, and we prefer it to campaign numbers from any side of the argument.
+
+Connection access has been the binding constraint in Europe: new data centre connections around Dublin and in parts of the Netherlands and Frankfurt have been restricted for years, and operators report multi-year queues for large connections. The tariff consultation is where the household share is decided.
+
+
+## Upstream
+
+
+## Deliberately not published
+
+
+---

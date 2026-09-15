@@ -1,0 +1,12 @@
+{
+  // The Power Bill · powerbill.agiscorecard.com — built 2026-09-15 (owner: 扩展几个适配欧洲、美国的站点).
+  // Fleet standard shape: static assets + worker (allow-listed events, server-side page_view, /api/pulse).
+  // D1: account is at the 10-database limit (create returns 7406), so this reuses after35-events
+  // with table prefix "p" (pev / pua_audit). Sites never share a table.
+  "name": "powerbill",
+  "main": "worker.js",
+  "compatibility_date": "2026-08-01",
+  "assets": { "directory": "site", "binding": "ASSETS", "run_worker_first": true },
+  "routes": [{ "pattern": "powerbill.agiscorecard.com", "custom_domain": true }],
+  "d1_databases": [{ "binding": "EV", "database_name": "after35-events", "database_id": "6109b81e-c970-47d7-b7fc-3a2a15f68ed2" }]
+}

@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Before You Pay: The 60-Second Checklist — Code Word</title>
+<meta name="description" content="Someone urgent wants money, a code, or a transfer to a new account. Give yourself 60 seconds and answer six questions. If any one of them is unanswered, do not pay. Runs in your browser, nothing uploaded, printable for the back of a phone.">
+<link rel="canonical" href="https://codeword.agiscorecard.com/before-you-pay">
+<meta property="og:title" content="Before You Pay: the 60-second checklist">
+<meta property="og:description" content="Six questions and a timer. If one is unanswered, do not pay.">
+<link rel="stylesheet" href="/style.css">
+<style>
+  .timer { font-size: clamp(56px, 14vw, 96px); font-weight: 700; line-height: 1; text-align: center; margin: 10px 0; font-variant-numeric: tabular-nums; }
+  .timer.red { color: var(--warn); }
+  .chk { list-style: none; padding: 0; margin: 0; }
+  .chk li { display: flex; gap: 12px; align-items: flex-start; padding: 14px 0; border-bottom: 1px solid var(--rule); font-size: 19px; }
+  .chk input { width: 26px; height: 26px; margin-top: 6px; flex: none; }
+  .chk small { display: block; color: var(--ink3); font-size: 15px; }
+  .big { font-size: 22px; font-weight: 700; }
+  @media print { header, footer, .cta-row, .noprint, .timer { display: none !important; } .chk li { font-size: 16px; } }
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Before You Pay: 60-second checklist","url":"https://codeword.agiscorecard.com/before-you-pay","applicationCategory":"SecurityApplication","operatingSystem":"Web","inLanguage":"en","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["Six yes/no questions","60-second timer","Printable for the back of a phone","Nothing uploaded"],"isPartOf":{"@type":"WebSite","name":"Code Word","url":"https://codeword.agiscorecard.com/"}}
+</script>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="/">Code<b>Word</b></a>
+  <nav class="main"><a href="/ai-voice-clone-detection">Voice clones</a><a href="/are-ai-robocalls-illegal">Is it illegal?</a><a href="/already-paid-what-now">Already paid?</a><a href="/code-word">Code word card</a><a href="/before-you-pay" aria-current="page">Before you pay</a><a href="/scam-check">Scam check</a><a href="/resources">Official help</a><a href="/about">About</a></nav>
+</div></header>
+<main class="wrap">
+  <h1>Before you pay: 60 seconds</h1>
+  <p class="lead muted">Every version of this scam needs one thing: that you act <strong>now</strong>. So you only have to do one thing: take 60 seconds. Answer six questions in that minute. If any one of them is unanswered, do not pay. A genuine emergency is still genuine one minute later.</p>
+
+  <div class="timer" id="t">60</div>
+  <p class="cta-row noprint" style="justify-content:center"><button class="cta primary" type="button" id="start">Start the 60 seconds</button><button class="cta" type="button" onclick="window.print()">Print for the back of a phone</button></p>
+
+  <ul class="chk" id="list">
+    <li><input type="checkbox"><span><span class="big">Have I ended the call or closed the chat?</span><small>Hang up first, think second. "Don't hang up" is the reason to hang up.</small></span></li>
+    <li><input type="checkbox"><span><span class="big">Did I call back on a number already saved in my phone?</span><small>Not the number that called. Not a number they read out. If there is no answer, call another family member.</small></span></li>
+    <li><input type="checkbox"><span><span class="big">Did they answer the code word?</span><small>No code word yet? <a href="/code-word">Make one</a> — it takes two minutes.</small></span></li>
+    <li><input type="checkbox"><span><span class="big">Is this an account I have paid before?</span><small>"Use this other account", "our usual one is frozen", "pay into the safe account" — a new account is a stop sign.</small></span></li>
+    <li><input type="checkbox"><span><span class="big">Has nobody asked me for a code, a password, or screen sharing?</span><small>A verification code is the last lock your bank gives you. It is never read aloud — not to "support", not to "the police".</small></span></li>
+    <li><input type="checkbox"><span><span class="big">Have I told one other person?</span><small>"Don't tell anyone" is part of the script. Saying it out loud ends half of these calls.</small></span></li>
+  </ul>
+  <div class="notice" id="verdict" style="margin-top:18px">Pay only with all six ticked. Any box unticked means do not pay.</div>
+
+  <hr class="rule">
+  <h2>Why these six</h2>
+  <div class="tbl"><table>
+    <tr><th>Item</th><th>What it is for</th></tr>
+    <tr><td>Hang up, call back on a saved number, tell someone</td><td>Breaks the controlled channel and the isolation the script needs. Callback verification is the defence public safety agencies actually recommend</td></tr>
+    <tr><td>Code word</td><td>A voice and a face can be generated; a shared family memory cannot. See <a href="/ai-voice-clone-detection">why "spot the fake" advice fails</a></td></tr>
+    <tr><td>New account, codes, screen sharing</td><td>The three routes around your bank's own controls. A verification code handed over defeats the protection it exists to provide</td></tr>
+  </table></div>
+  <p class="small muted">Nothing on this page is uploaded; the ticks stay in your browser. Already paid? Call your bank now, then read <a href="/already-paid-what-now">what to do in the first hour</a>.</p>
+</main>
+<footer><div class="wrap">
+  <div class="links"><a href="/">Home</a><a href="/code-word">Code word card</a><a href="/scam-check">Scam check</a><a href="/already-paid-what-now">Already paid?</a><a href="/resources">Official help</a><a href="/about">About</a></div>
+  <div>Code Word · a site in the <a href="https://agiscorecard.com/">AGI Scorecard</a> network · In immediate danger, call your local emergency number</div>
+</div></footer>
+<script src="/app.js"></script>
+<script>
+(function(){
+  var t = document.getElementById("t"), h = null, left = 60;
+  document.getElementById("start").addEventListener("click", function(){
+    if (h) { clearInterval(h); h = null; }
+    left = 60; t.textContent = left; t.className = "timer"; cwev("tool_result", "beforepay:start");
+    h = setInterval(function(){ left--; t.textContent = left; if (left <= 10) t.className = "timer red"; if (left <= 0) { clearInterval(h); h = null; t.textContent = "0"; } }, 1000);
+  });
+  var boxes = document.querySelectorAll("#list input"), v = document.getElementById("verdict");
+  boxes.forEach(function(b){ b.addEventListener("change", function(){
+    var n = Array.prototype.filter.call(boxes, function(x){ return x.checked; }).length;
+    if (n === boxes.length) { v.className = "notice ok"; v.textContent = "All six done. If you pay now, it is a decision you verified yourself."; cwev("tool_result", "beforepay:all6"); }
+    else { v.className = "notice"; v.textContent = (boxes.length - n) + " still unanswered — do not pay yet."; }
+  }); });
+})();
+</script>
+</body>
+</html>
