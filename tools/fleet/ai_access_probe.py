@@ -47,6 +47,7 @@ SITES = [
     ("after35", "https://35.agiscorecard.com"),
     ("learn", "https://learn.agiscorecard.com"),
     ("fanzha", "https://fanzha.agiscorecard.com"),
+    ("firstjob", "https://firstjob.agiscorecard.com"),
 ]
 PATHS = ["/", "/llms.txt"]
 

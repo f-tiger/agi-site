@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>岗位 AI 暴露自查:替代型还是增强型 — 第一份工作</title>
+<meta name="description" content="斯坦福研究发现,入门级岗位的就业缺口集中在 AI 更可能「替代」而非「增强」人力的职业。8 个问题判断你的目标岗位落在哪一边,并给出对应动作。这是本站的编辑判断,不是官方分类,页面写明了它的边界。">
+<link rel="canonical" href="https://firstjob.agiscorecard.com/ai-exposure">
+<meta property="og:title" content="岗位 AI 暴露自查:替代型还是增强型">
+<meta property="og:description" content="8 个问题判断目标岗位落在替代侧还是增强侧,对应三条可执行动作。">
+<link rel="stylesheet" href="/style.css">
+<style>
+  .yn { display: flex; gap: 6px; }
+  .yn button { min-height: 44px; min-width: 64px; padding: 0 14px; border-radius: 8px; border: 1px solid var(--rule); background: #fff; font: inherit; font-size: 16px; cursor: pointer; }
+  .yn button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .qq { display: grid; grid-template-columns: 1fr auto; gap: 8px 14px; align-items: center; padding: 6px 0; }
+  .qq .h { grid-column: 1 / -1; color: var(--ink3); font-size: 15px; }
+  @media (max-width: 560px) { .qq { grid-template-columns: 1fr; } }
+  .verdict { border-radius: 12px; padding: 22px; margin: 22px 0; border: 2px solid var(--rule); }
+  .verdict.red { border-color: var(--warn); background: #fbeaec; }
+  .verdict.amber { border-color: #b7791f; background: #fdf3e2; }
+  .verdict.green { border-color: var(--ok); background: #e7f4ee; }
+  .verdict h2 { margin-top: 0; }
+  .bar { height: 14px; border-radius: 7px; background: var(--bg3); overflow: hidden; margin: 12px 0 6px; }
+  .bar i { display: block; height: 100%; background: var(--accent); }
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"岗位 AI 暴露自查","url":"https://firstjob.agiscorecard.com/ai-exposure","applicationCategory":"BusinessApplication","operatingSystem":"Web","inLanguage":"zh-CN","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"CNY"},"featureList":["8 个问题分辨替代型与增强型岗位","按斯坦福研究的自动化/增强区分设计","给出对应的三条动作","不上传,结果可分享"],"isPartOf":{"@type":"WebSite","name":"第一份工作","url":"https://firstjob.agiscorecard.com/"}}
+</script>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="/">第一份<b>工作</b></a>
+  <nav class="main"><a href="/ai-entry-level-jobs">AI 在砍入门岗吗</a><a href="/sanfang-agreement">三方协议</a><a href="/yingjie-status">应届生身份</a><a href="/before-signing">签约前 12 问</a><a href="/probation-check">试用期自查</a><a href="/ai-exposure" aria-current="page">岗位暴露自查</a><a href="/resources">官方入口</a><a href="/about">关于</a></nav>
+</div></header>
+<main class="wrap">
+  <h1>你的目标岗位在哪一边?</h1>
+  <p class="lead muted">斯坦福数字经济实验室 2026 年 8 月的更新发现:年轻人的就业缺口集中在 AI 更可能<strong>替代</strong>而不是<strong>增强</strong>人力的职业。这 8 个问题就是照这条区分写的——想着你要投的那个具体岗位,一天里的活是什么样,然后回答。</p>
+  <div class="notice"><strong>先说清楚这是什么:</strong>本工具给出的是<strong>本站的编辑判断</strong>,依据是上面那份研究的区分方式,<strong>不是官方职业分类,也不是对某个岗位的预测</strong>。它的用处是让你在投递之前把问题问对,不是给你一个分数去相信。判定依据与原始论文见<a href="/ai-entry-level-jobs">AI 是不是在砍应届生的入门岗位</a>。</p>
+  <div id="qs"></div>
+  <div id="out" hidden>
+    <div class="verdict" id="vbox">
+      <h2 id="vtitle"></h2>
+      <div class="bar"><i id="bar" style="width:0"></i></div>
+      <p class="small muted" id="score"></p>
+      <p id="vtext"></p>
+      <div id="acts"></div>
+    </div>
+    <p class="cta-row"><button class="cta primary" type="button" id="share">复制结果链接</button><a class="cta" href="/resources">官方免费投递渠道</a></p>
+  </div>
+  <hr class="rule">
+  <h2>为什么是这 8 问</h2>
+  <div class="tbl"><table>
+    <tr><th>研究结论</th><th>本站把它翻成的问题</th></tr>
+    <tr><td>降幅集中在 AI 更可能「替代」而非「增强」人力的职业</td><td>第 1–4 问:产出是不是标准答案、多少时间在整理与套模板、是不是全程在屏幕前、有没有现成正确答案可比对</td></tr>
+    <tr><td>缺口来自<strong>少招</strong>而非裁员,年长同岗者仍在增长</td><td>第 5–6 问:这个岗位是不是「在岗培养」型、有没有非你不可的现场或担责环节</td></tr>
+    <tr><td>受影响的是入门级台阶本身</td><td>第 7–8 问:有没有真实交付物、能不能把 AI 当工具用进产出里</td></tr>
+  </table></div>
+  <p class="small muted">一手来源:<a href="https://digitaleconomy.stanford.edu/publication/canaries-in-the-coal-mine-six-facts-about-the-recent-employment-effects-of-artificial-intelligence/" rel="noopener" data-ev="resource_click" data-l="stanford_paper">Stanford Digital Economy Lab · Canaries in the Coal Mine?</a>(Brynjolfsson / Chandar / Chen,2026 年 8 月更新,数据源 ADP)。本页不把该研究的美国数字套到中国岗位上,只迁移它的区分方式。</p>
+</main>
+<footer><div class="wrap">
+  <div class="links"><a href="/">首页</a><a href="/ai-entry-level-jobs">AI 在砍入门岗吗</a><a href="/before-signing">签约前 12 问</a><a href="/probation-check">试用期自查</a><a href="/resources">官方入口</a><a href="/about">关于</a></div>
+  <div>第一份工作 · <a href="https://agiscorecard.com/">AGI Scorecard</a> 网络的中文子站</div>
+</div></footer>
+<script src="/app.js"></script>
+<script>
+(function(){
+  var Q = [
+    { k:"std", t:"这份工作的产出,大多是「给定输入就有标准答案」的吗?", h:"报表、录入、转写、模板化文书 → 替代侧", w:2, side:"auto" },
+    { k:"tidy", t:"一天里超过一半时间花在整理、转录、套模板、写初稿上吗?", h:"这正是生成式工具最先接手的部分", w:2, side:"auto" },
+    { k:"screen", t:"工作几乎全程在屏幕前完成,不需要到现场?", h:"纯数字化流程更容易被端到端接管", w:1, side:"auto" },
+    { k:"check", t:"产出有现成的正确答案可以比对(对不对一眼能判)?", h:"可自动校验 = 可自动生成", w:1, side:"auto" },
+    { k:"train", t:"这个岗位主要靠「进来慢慢带」,而不是招进来就能干?", h:"企业转向买成熟的人时,这类入口最先收窄", w:2, side:"auto" },
+    { k:"onsite", t:"有没有必须由人到场、动手、或签字担责的环节?", h:"现场协调、操作、担责 → 增强侧", w:2, side:"aug" },
+    { k:"deliver", t:"干满一年,你能拿出可展示的真实交付物吗?(作品、案子、上线的东西)", h:"交付物是你证明能干活的唯一硬通货", w:2, side:"aug" },
+    { k:"tool", t:"这个岗位允许并鼓励你把 AI 当工具用进产出里吗?", h:"能用工具放大产出的岗位,是增强侧", w:2, side:"aug" }
+  ];
+  var qs = new URLSearchParams(location.search); var a = {}; var pre = qs.get("a") || "";
+  Q.forEach(function(q, i){ var c = pre[i]; if (c === "1" || c === "0") a[q.k] = c; });
+  var box = document.getElementById("qs");
+  function render(){
+    box.innerHTML = Q.map(function(q, i){ return '<div class="qq"><div class="t">' + (i+1) + ". " + q.t + '</div><div class="yn"><button type="button" data-k="' + q.k + '" data-v="1" aria-pressed="' + (a[q.k] === "1") + '">是</button><button type="button" data-k="' + q.k + '" data-v="0" aria-pressed="' + (a[q.k] === "0") + '">否</button></div><div class="h">' + q.h + "</div></div>"; }).join("");
+    box.querySelectorAll("button").forEach(function(b){ b.addEventListener("click", function(){ a[b.getAttribute("data-k")] = b.getAttribute("data-v"); render(); judge(); }); });
+  }
+  var ACTS = {
+    auto: ["把投递面铺开,别把全部简历压在同一类岗位上——教育部的国家 24365 平台是免费渠道,央国企与基层岗位集中。","在这类岗位里挑「有交付物」的那一个:能写进简历的上线成果,比岗位名称值钱。","把 AI 当工具用进作品里,让作品替你证明你能干活,而不是等公司来带。"],
+    mid: ["先确认这个岗位一年后你手里会有什么——说不出交付物,就当替代侧对待。","面试时直接问:这个岗位现在用 AI 做哪些事?对方答得含糊,说明还没想清楚,风险归你。","同时走一条官方免费渠道投递,别只依赖一个平台。"],
+    aug: ["这类岗位受冲击较小,但入口仍然变窄——早投、多投,秋招窗口就这几个月。","把「必须由人做」的那一环练成你的核心:现场、担责、协调、客户关系。","仍然把 AI 用起来:增强侧的人用工具会拉开差距,不用工具的会被同侧的人超过。"]
+  };
+  function judge(){
+    if (Q.some(function(q){ return a[q.k] === undefined; })) return;
+    var auto = 0, aug = 0, maxAuto = 0, maxAug = 0;
+    Q.forEach(function(q){
+      if (q.side === "auto") { maxAuto += q.w; if (a[q.k] === "1") auto += q.w; }
+      else { maxAug += q.w; if (a[q.k] === "1") aug += q.w; }
+    });
+    var net = auto - aug, pct = Math.round((auto / maxAuto) * 100);
+    var cls, title, text, acts;
+    if (net >= 3) { cls = "red"; title = "偏替代侧"; text = "这个岗位的日常活,多数落在 AI 更可能直接接手的那一类。不是说不能投,是说你要知道入口在变窄,并且必须靠交付物而不是靠「进来慢慢带」。"; acts = ACTS.auto; }
+    else if (net <= -2) { cls = "green"; title = "偏增强侧"; text = "这个岗位有必须由人完成的环节,AI 更可能成为你的工具而不是替身。受冲击相对小,但入口一样变窄——该早投还是早投。"; acts = ACTS.aug; }
+    else { cls = "amber"; title = "两边都占一点"; text = "替代与增强的特征混在一起。这种岗位的结果差异,往往取决于你在里面具体做哪一块——问清楚一年后你手里会有什么。"; acts = ACTS.mid; }
+    var vb = document.getElementById("vbox"); vb.className = "verdict " + cls;
+    document.getElementById("vtitle").textContent = "判定:" + title;
+    document.getElementById("bar").style.width = pct + "%";
+    document.getElementById("score").textContent = "替代侧特征 " + auto + "/" + maxAuto + " · 增强侧特征 " + aug + "/" + maxAug + "(本站编辑判断,非官方分类)";
+    document.getElementById("vtext").textContent = text;
+    document.getElementById("acts").innerHTML = "<ol>" + acts.map(function(s){ return "<li>" + s + "</li>"; }).join("") + "</ol>";
+    document.getElementById("out").hidden = false;
+    history.replaceState(null, "", "/ai-exposure?a=" + Q.map(function(q){ return a[q.k]; }).join(""));
+    jbev("tool_result", "exposure:" + cls + ":" + net);
+    document.getElementById("out").scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+  render(); judge();
+  document.getElementById("share").addEventListener("click", function(){ jbshare("岗位 AI 暴露自查"); });
+})();
+</script>
+</body>
+</html>

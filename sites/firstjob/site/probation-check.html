@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>试用期自查:法定上限与工资下限 — 第一份工作</title>
+<meta name="description" content="输入合同期限与约定工资,当场算出《劳动合同法》第十九条的试用期法定上限、第二十条的试用期工资下限,并判断你这份合同的试用期是否超期。纯前端,不上传,结果可分享。">
+<link rel="canonical" href="https://firstjob.agiscorecard.com/probation-check">
+<meta property="og:title" content="试用期自查:法定上限与工资下限">
+<meta property="og:description" content="合同签几年,试用期最多能约多久?试用期工资最低多少?按法条当场算。">
+<link rel="stylesheet" href="/style.css">
+<style>
+  .grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+  .out { border: 2px solid var(--rule); border-radius: 12px; padding: 20px; margin: 20px 0; }
+  .out.ok { border-color: var(--ok); background: #e7f4ee; }
+  .out.bad { border-color: var(--warn); background: #fbeaec; }
+  .big-n { font-size: clamp(30px, 7vw, 44px); font-weight: 700; font-variant-numeric: tabular-nums; line-height: 1.1; }
+  .kv { display: flex; justify-content: space-between; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--rule); font-size: 17px; }
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"试用期自查(法定上限与工资下限)","url":"https://firstjob.agiscorecard.com/probation-check","applicationCategory":"BusinessApplication","operatingSystem":"Web","inLanguage":"zh-CN","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"CNY"},"featureList":["按《劳动合同法》第十九条算试用期法定上限","按第二十条算试用期工资下限","判断这份合同的试用期是否超期","纯前端,不上传","结果写进链接可分享"],"isPartOf":{"@type":"WebSite","name":"第一份工作","url":"https://firstjob.agiscorecard.com/"}}
+</script>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="/">第一份<b>工作</b></a>
+  <nav class="main"><a href="/ai-entry-level-jobs">AI 在砍入门岗吗</a><a href="/sanfang-agreement">三方协议</a><a href="/yingjie-status">应届生身份</a><a href="/before-signing">签约前 12 问</a><a href="/probation-check" aria-current="page">试用期自查</a><a href="/ai-exposure">岗位暴露自查</a><a href="/resources">官方入口</a><a href="/about">关于</a></nav>
+</div></header>
+<main class="wrap">
+  <h1>试用期自查</h1>
+  <p class="lead muted">试用期多长、工资多低,不是公司说了算,是《劳动合同法》第十九条和第二十条定的。填三个数,当场知道你这份合同合不合规。<strong>纯前端,不上传;结果写进链接,可以发给同学或家里人。</strong></p>
+
+  <form class="post" id="f" novalidate>
+    <div class="grid2">
+      <div>
+        <label for="term">劳动合同期限</label>
+        <select id="term">
+          <option value="lt3m">不满 3 个月(或以完成一定工作任务为期限)</option>
+          <option value="3m-1y">3 个月以上不满 1 年</option>
+          <option value="1y-3y" selected>1 年以上不满 3 年</option>
+          <option value="ge3y">3 年以上固定期限</option>
+          <option value="open">无固定期限</option>
+        </select>
+      </div>
+      <div>
+        <label for="prob">合同里写的试用期(月)</label>
+        <input type="number" id="prob" min="0" max="24" step="0.5" placeholder="例如 3">
+      </div>
+      <div>
+        <label for="wage">转正后月工资(元)<span class="hint">或同岗位最低档工资</span></label>
+        <input type="number" id="wage" min="0" step="100" placeholder="例如 8000">
+      </div>
+      <div>
+        <label for="pwage">试用期月工资(元)<span class="hint">合同里写的那个数</span></label>
+        <input type="number" id="pwage" min="0" step="100" placeholder="例如 6000">
+      </div>
+    </div>
+    <p class="cta-row"><button class="cta primary" type="submit">按法条算一遍</button></p>
+  </form>
+
+  <div id="out" hidden>
+    <div class="out" id="obox">
+      <div class="big-n" id="verdict"></div>
+      <p id="vtext" style="margin:10px 0 14px"></p>
+      <div class="kv"><span>法定试用期上限(第十九条)</span><b id="kmax"></b></div>
+      <div class="kv"><span>你合同里写的试用期</span><b id="kprob"></b></div>
+      <div class="kv"><span>试用期工资下限(第二十条,不低于 80%)</span><b id="kwage"></b></div>
+      <div class="kv"><span>你合同里写的试用期工资</span><b id="kpwage"></b></div>
+    </div>
+    <p class="cta-row"><button class="cta primary" type="button" id="share">复制结果链接</button><a class="cta" href="/before-signing">再过一遍签约前 12 问</a></p>
+    <p class="small muted">另有两条常被忽略:<strong>同一用人单位与同一劳动者只能约定一次试用期</strong>;<strong>劳动合同仅约定试用期的,试用期不成立,该期限即为劳动合同期限</strong>(均为第十九条)。试用期工资还<strong>不得低于用人单位所在地的最低工资标准</strong>(第二十条),各地标准不同,本工具不代填——到当地人力资源社会保障部门官网或拨 12333 查当期标准。</p>
+  </div>
+
+  <hr class="rule">
+  <h2>法条原文(只摘要点)</h2>
+  <div class="tbl"><table>
+    <tr><th style="width:26%">条款</th><th>内容</th></tr>
+    <tr><td>第十九条</td><td>合同期限 3 个月以上不满 1 年的,试用期不超过 1 个月;1 年以上不满 3 年的,不超过 2 个月;3 年以上固定期限和无固定期限的,不超过 6 个月。以完成一定工作任务为期限或期限不满 3 个月的,<strong>不得约定试用期</strong>。同一用人单位与同一劳动者只能约定一次试用期。试用期包含在劳动合同期限内;仅约定试用期的,试用期不成立。</td></tr>
+    <tr><td>第二十条</td><td>试用期工资不得低于本单位相同岗位最低档工资或劳动合同约定工资的 <strong>80%</strong>,并不得低于用人单位所在地的最低工资标准。</td></tr>
+    <tr><td>第九条</td><td>用人单位招用劳动者,<strong>不得扣押</strong>居民身份证和其他证件,<strong>不得要求提供担保或以其他名义收取财物</strong>。</td></tr>
+  </table></div>
+  <p class="small muted">原文出处:<a href="https://www.samr.gov.cn/zw/zfxxgk/fdzdgknr/bgt/art/2023/art_0abfdd261c03417b949df19d869add8d.html" rel="noopener" data-ev="resource_click" data-l="labour_law">《中华人民共和国劳动合同法》全文(国家市场监督管理总局门户)</a>。本页只概括不解释,以原文与执行机关为准;本页不构成法律意见。遇到超期试用、试用期工资过低,可向当地人力资源社会保障部门反映(12333)。</p>
+  <p class="small muted">注意:试用期规则适用于<strong>劳动合同</strong>。三方协议不是劳动合同,不适用这些条款——区别见<a href="/sanfang-agreement">三方协议是劳动合同吗</a>。</p>
+</main>
+<footer><div class="wrap">
+  <div class="links"><a href="/">首页</a><a href="/sanfang-agreement">三方协议</a><a href="/before-signing">签约前 12 问</a><a href="/yingjie-status">应届生身份</a><a href="/resources">官方入口</a><a href="/about">关于</a></div>
+  <div>第一份工作 · <a href="https://agiscorecard.com/">AGI Scorecard</a> 网络的中文子站</div>
+</div></footer>
+<script src="/app.js"></script>
+<script>
+(function(){
+  var MAX = { "lt3m": 0, "3m-1y": 1, "1y-3y": 2, "ge3y": 6, "open": 6 };
+  var LABEL = { "lt3m": "不得约定试用期", "3m-1y": "1 个月", "1y-3y": "2 个月", "ge3y": "6 个月", "open": "6 个月" };
+  var qs = new URLSearchParams(location.search);
+  var el = function(id){ return document.getElementById(id); };
+  ["term","prob","wage","pwage"].forEach(function(k){ var v = qs.get(k); if (v !== null && v !== "") el(k).value = v; });
+
+  function money(n){ return n ? Math.round(n).toLocaleString("zh-CN") + " 元" : "—"; }
+
+  function run(){
+    var term = el("term").value, prob = parseFloat(el("prob").value), wage = parseFloat(el("wage").value), pwage = parseFloat(el("pwage").value);
+    var max = MAX[term], floor = wage > 0 ? wage * 0.8 : 0;
+    var problems = [];
+    if (!isNaN(prob)) {
+      if (term === "lt3m" && prob > 0) problems.push("这类合同<strong>不得约定试用期</strong>(第十九条),而合同里约了 " + prob + " 个月。");
+      else if (prob > max) problems.push("试用期 " + prob + " 个月<strong>超过法定上限 " + LABEL[term] + "</strong>(第十九条)。");
+    }
+    if (!isNaN(pwage) && floor > 0 && pwage < floor) problems.push("试用期工资低于约定工资的 80%(第二十条下限 " + money(floor) + ")。");
+    var box = el("obox");
+    if (isNaN(prob) && isNaN(pwage)) { box.className = "out"; el("verdict").textContent = "先填试用期或试用期工资"; el("vtext").innerHTML = "上面的期限已经给出法定上限,填入你合同里的数字才能判断是否超标。"; }
+    else if (problems.length) { box.className = "out bad"; el("verdict").textContent = "这份合同有问题"; el("vtext").innerHTML = problems.join(" "); }
+    else { box.className = "out ok"; el("verdict").textContent = "这两项没超标"; el("vtext").innerHTML = "试用期与试用期工资都在法定范围内。仍要确认:试用期工资<strong>不低于当地最低工资标准</strong>,且同一单位<strong>只能约定一次</strong>试用期。"; }
+    el("kmax").textContent = LABEL[term];
+    el("kprob").textContent = isNaN(prob) ? "—" : prob + " 个月";
+    el("kwage").textContent = floor > 0 ? "不低于 " + money(floor) : "—";
+    el("kpwage").textContent = isNaN(pwage) ? "—" : money(pwage);
+    el("out").hidden = false;
+    var p = new URLSearchParams({ term: term });
+    if (!isNaN(prob)) p.set("prob", prob);
+    if (!isNaN(wage)) p.set("wage", wage);
+    if (!isNaN(pwage)) p.set("pwage", pwage);
+    history.replaceState(null, "", "/probation-check?" + p.toString());
+    jbev("calc_run", "probation:" + (problems.length ? "bad" : "ok"));
+  }
+  el("f").addEventListener("submit", function(e){ e.preventDefault(); run(); el("out").scrollIntoView({ behavior: "smooth", block: "start" }); });
+  el("share").addEventListener("click", function(){ jbshare("试用期自查结果"); });
+  if (qs.get("prob") || qs.get("pwage")) run();
+})();
+</script>
+</body>
+</html>
