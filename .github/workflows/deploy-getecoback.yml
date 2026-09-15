@@ -206,6 +206,7 @@ jobs:
           check "https://getecoback.com/en/" "tag=getecoback-21"
           # /api/pulse (2026-09-13): token-free AI-referral aggregate read by the fleet heartbeat
           check "https://getecoback.com/api/pulse" '"ai_ref"' 
+          check "https://getecoback.com/api/pulse" '"by_source"' 
           check "https://getecoback.com/it/guide/miglior-condizionatore-portatile-italia.html" "tag=getecoback-21"
           check "https://getecoback.com/guide/btu-rechner.md" "Canonical (HTML"
           check "https://getecoback.com/sizing-data.json" "creativecommons"

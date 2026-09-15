@@ -190,6 +190,41 @@ const mcpErr = (id, code, message) => new Response(JSON.stringify({ jsonrpc: '2.
   { headers: { 'content-type': 'application/json', 'access-control-allow-origin': '*' } });
 const mcpText = (id, obj) => mcpOk(id, { content: [{ type: 'text', text: JSON.stringify(obj, null, 1) }], isError: false });
 
+// 引荐来源分类(2026-09-15「舰队相互学习」):tools/fleet/ref_sources.txt 是唯一权威,
+// 每个 worker 里的字面量必须与它逐字相同——check_ref_sources.py 挂在 fleet-heartbeat 上断言,
+// 漂了就走 GitHub 失败邮件。教训与 bot_ua.txt 同源:各自演化的分类器 = 各站台账不可比。
+// 读的是已入库的来源域名,出的仍是聚合计数:无路径、无国家、无 UA、无行级数据。
+const REF_SRC = 'ai:chatgpt|chat.openai|perplexity|claude.ai|copilot.microsoft|copilot.cloud.microsoft|copilot|gemini.google|you.com|kagi|poe.com|mistral|deepseek|kimi|doubao|yiyan.baidu|yiyan|metaso|phind|felo.ai|genspark|monica.im|tiangong|chatglm|moonshot;;search:google.|bing.|duckduckgo|search.yahoo|yahoo.co|ecosia|yandex|baidu.|sogou|so.com|startpage|brave.com|qwant|naver|seznam|petalsearch|mojeek|lycos|ask.com;;fleet:agiscorecard.com|getecoback.com|baipiaoji.com|thedollscout.com;;social:t.co|twitter.com|x.com|reddit.com|facebook|instagram|linkedin|lnkd.in|news.ycombinator|producthunt|weibo|zhihu|douban|xiaohongshu|telegram|t.me|pinterest|youtube|tiktok|douyin|discord|substack|medium.com|tumblr|vk.com|line.me|whatsapp|quora|mastodon|bsky';
+const srcHost = (r) => {
+  let h = String(r == null ? '' : r).trim().toLowerCase();
+  if (!h) return '';
+  h = h.replace(/^[a-z][a-z0-9+.-]*:\/\//, '');
+  h = h.split('/')[0].split('?')[0].split('#')[0].split('@').pop().split(':')[0];
+  return h.replace(/^www\./, '');
+};
+// self 只认完全相同的主机名:play.agiscorecard.com 对主域是兄弟站(fleet),不是自己。
+const srcBucket = (host, self) => {
+  if (!host) return 'direct';
+  if (self && host === self) return 'self';
+  // 标签对齐 + 尾部只许 TLD 段。两个方向的错都真发生过:裸 includes 会把 netflix.com
+  // 判成 x.com(social);只做前缀对齐又会把 agiscorecard.com.spam.example 判成 fleet
+  // ——那正是引荐垃圾的常见形状。
+  const tld = (rest) => rest === '' || rest.split('.').every((l) => l.length > 0 && l.length <= 4 && /^[a-z]+$/.test(l));
+  const dotted = '.' + host;
+  for (const grp of REF_SRC.split(';;')) {
+    const i = grp.indexOf(':');
+    for (const t of grp.slice(i + 1).split('|')) {
+      if (!t) continue;
+      const at = dotted.indexOf('.' + t);
+      if (at < 0) continue;
+      let rest = dotted.slice(at + t.length + 1);
+      if (rest.startsWith('.')) rest = rest.slice(1);
+      if (tld(rest)) return grp.slice(0, i);
+    }
+  }
+  return 'other';
+};
+
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
@@ -354,7 +389,22 @@ export default {
           if (r.host === '_total') human_pv = r.n | 0; else if (r.host) by_host[r.host] = r.n | 0;
         }
         const ai_ref = Object.values(by_host).reduce((a, b) => a + b, 0);
-        return new Response(JSON.stringify({ ok: true, days: 28, human_pv, ai_ref, by_host, generated: new Date().toISOString() }), { headers });
+        // 渠道构成(2026-09-15):同一个 human 谓词再 group 一次 ref,在 worker 里按
+        // tools/fleet/ref_sources.txt 分桶。sum(by_source) 应等于 human_pv —— 对不上就是
+        // 有站把 ref 存成了整条 URL 或分类器漂了,读侧 traffic_sources.py 会把差额打出来。
+        const q2 = await env.EVENTS.prepare(
+          `SELECT ref_host AS host, SUM(hits) AS n FROM pageviews WHERE ua_class='human' AND day >= date('now','-28 days') GROUP BY ref_host ORDER BY n DESC LIMIT 1000`
+        ).all();
+        const self_host = srcHost(url.hostname);
+        const by_source = { search: 0, ai: 0, fleet: 0, social: 0, self: 0, direct: 0, other: 0 };
+        const by_search = {}; const by_fleet = {};
+        for (const r of (q2.results || [])) {
+          const h = srcHost(r.host); const n = r.n | 0; const b = srcBucket(h, self_host);
+          by_source[b] += n;
+          if (b === 'search') by_search[h] = (by_search[h] || 0) + n;
+          else if (b === 'fleet') by_fleet[h] = (by_fleet[h] || 0) + n;
+        }
+        return new Response(JSON.stringify({ ok: true, days: 28, human_pv, ai_ref, by_host, by_source, by_search, by_fleet, generated: new Date().toISOString() }), { headers });
       } catch (e) {
         return new Response(JSON.stringify({ ok: false, error: 'query_failed' }), { status: 500, headers });
       }

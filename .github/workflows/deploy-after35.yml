@@ -111,5 +111,11 @@ jobs:
               *) echo "::error::$a broken: ${body:0:120}"; fail=1 ;;
             esac
           done
+          # 渠道构成(2026-09-15):/api/pulse 多返回 by_source —— 舰队 heartbeat 靠它回答
+          # 「这个站的读者从哪来」。少了这个键就是 worker 没带上本次改动,必须红。
+          case "$(curl -s --max-time 20 -A 'after35-deploy-smoke-bot (+ci)' 'https://35.agiscorecard.com/api/pulse?ci=1')" in
+            *'"ok":true'*'"by_source"'*) echo "OK    /api/pulse by_source" ;;
+            *) echo "::error::/api/pulse 缺 by_source"; fail=1 ;;
+          esac
           [ "$fail" = "0" ] || exit 1
           echo "self-check ok"

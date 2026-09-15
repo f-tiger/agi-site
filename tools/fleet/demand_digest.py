@@ -177,6 +177,32 @@ def main():
             out.append("- 未读到:" + " | ".join(ar["errors"]))
     out.append("")
 
+    # 渠道构成(2026-09-15):每个站的读者从哪来。在这之前只有 eco 被手查过,而同日手查 bpj
+    # 的答案与 eco 正相反(bpj 第一大来源是 Google,eco 的 Google 是 0)——所以"按 Google 优化"
+    # 这件事,每个站必须先看自己的这一行再决定。
+    ts = load(os.path.join(ROOT, "data/fleet-traffic-sources.json"))
+    out.append("## 渠道构成(28 天窗;`search` 指真正的搜索引擎引荐,不是排名)")
+    if "__error__" in ts or not ts.get("sites"):
+        out.append("- 快照不可用:" + str(ts.get("__error__") or "尚无数据")
+                   + "(worker 的 /api/pulse 要先部署 2026-09-15 的 by_source 才有读数)")
+    else:
+        ta = age_days(today, ts.get("generated", ""))
+        stale = " **STALE**" if (ta is None or ta > 3) else ""
+        f = ts.get("fleet") or {}
+        out.append(f"- 舰队合计(快照 {ts.get('generated','?')[:10]}{stale}):"
+                   + " · ".join(f"{k} {f.get(k, 0)}" for k in ["search", "ai", "fleet", "social", "self", "direct", "other"]))
+        for s_ in sorted(ts.get("sites", []), key=lambda x: -(x.get("by_source", {}).get("search", 0))):
+            b = s_.get("by_source", {})
+            eng = ", ".join(f"{h} {n}" for h, n in list(s_.get("by_search", {}).items())[:3]) or "—"
+            g = sum(n for h, n in s_.get("by_search", {}).items() if h.startswith("google.") or ".google." in h or h == "google.com")
+            out.append(f"- {s_['site']}: 搜索 {b.get('search', 0)} / AI {b.get('ai', 0)} / 舰队内 {b.get('fleet', 0)}"
+                       f" / 社交 {b.get('social', 0)} / 直接 {b.get('direct', 0)} · Google {g} · 前三 {eng}")
+        if ts.get("errors"):
+            out.append("- 未读到:" + " | ".join(ts["errors"]))
+        out.append("- **读法**:自己这一行 Google = 0,就不要做「给 Google 看」的优化(eco 09-15 的教训);"
+                   "`舰队内` 是兄弟站互链真的送来的人,不是链接数。")
+    out.append("")
+
     out.append("---")
     out.append("读法:gaps>0 且对应 rising 不是 STALE,才值得进第②层选题;Reddit 命中要再查搜索需求;")
     out.append("PH/HN 命中里的产品名不是需求词。三门(数据/需求/变现)不变。")

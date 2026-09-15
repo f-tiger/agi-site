@@ -10,10 +10,10 @@
 - reddit_requests: **不可用** — r/SomebodyMakeThis HTTP 403; r/AppIdeas HTTP 403; r/Lightbulb HTTP 403; r/software HTTP 403
 - reddit_vertical: **不可用** — r/singularity HTTP 403; r/artificial HTTP 403; r/agi HTTP 403; r/ControlProblem HTTP 403; r/ChatGPT HTTP 403; r/ClaudeAI
 - reddit_wish: **不可用** — r/Entrepreneur HTTP 403; r/smallbusiness HTTP 403; r/startups HTTP 403; r/SaaS HTTP 403; r/SideProject HTTP 403; r/indie
-- hn_ask: ok, 8 条
+- hn_ask: ok, 6 条
 - hn_show: ok, 30 条
 - hn_top_ai: ok, 3 条
-- 雷达快照日期:2026-09-14(1 天前)
+- 雷达快照日期:2026-09-15(0 天前)
 
 ## 板块产出榜(14 天;名单 tools/fleet/reddit_watchlist.json,更新 2026-09-13)
 | 板块 | 名单 | 今日 | ok 天数 | 帖子 | 求做形 | 重现主题 | 标记 |
@@ -57,16 +57,16 @@
 
 ## 候选 idea 源探针(只报状态,200 且有内容才值得写解析器)
 - betalist: HTTP 404 text/html; charset=UTF-8 1722B
-- indiehackers_rss: HTTP 200 text/html; charset=utf-8 174236B
-- producthunt_topic_ai: HTTP 403 text/html; charset=UTF-8 5770B
-- yc_rfs: HTTP 200 text/html; charset=utf-8 92315B
-- reddit_rss_public: HTTP 200 application/atom+xml; charset=UTF-8 47262B
+- indiehackers_rss: HTTP 200 text/html; charset=utf-8 182987B
+- producthunt_topic_ai: HTTP 403 text/html; charset=UTF-8 5792B
+- yc_rfs: HTTP 200 text/html; charset=utf-8 92458B
+- reddit_rss_public: HTTP 200 application/atom+xml; charset=UTF-8 49999B
 - reddit_json_public: HTTP 403 text/html 190238B
 - reddit_oauth_endpoint: HTTP 401 application/json; charset=UTF-8 41B
 - stackexchange_softwarerecs: HTTP 200 application/json; charset=utf-8 379B
 - bluesky_public_search: HTTP 403 text/html 2334B
 - bluesky_alt_host: HTTP 403 text/html 94B
-- lemmy_world_search: HTTP 200 application/json 43087B
+- lemmy_world_search: HTTP 200 application/json 15455B
 
 - Reddit 访问通道:public-json(oauth = owner 已注册官方 app;public-json = 未鉴权,runner 09-13 起逐板 403)
 ## 求做帖(Reddit request 板 + wish 句式 + Ask HN + Software Recommendations SE + Bluesky 求做搜索)
@@ -77,10 +77,9 @@
 - ↑3 · ask_hn · Is there a need for a new kind of antivirus or security application? — https://news.ycombinator.com/item?id=49639137
 - ↑2 · ask_hn · Does each frontier model have its own unique taste? — https://news.ycombinator.com/item?id=49669909
 - ↑2 · ask_hn · Is there anything worth developing with AI? — https://news.ycombinator.com/item?id=49613990
-- ↑2 · ask_hn · Tagging AI-Related Posts — https://news.ycombinator.com/item?id=49607487
-- ↑1 · ask_hn · What LLM are you using? — https://news.ycombinator.com/item?id=49600138
 - ↑1 · softwarerecs · PDF printer on Windows, non AGPL licensed — https://softwarerecs.stackexchange.com/questions/95580/pdf-printer-on-windows-non-agpl-licensed
 - ↑1 · softwarerecs · Extension for coloring fixed-width files — https://softwarerecs.stackexchange.com/questions/95572/extension-for-coloring-fixed-width-files
+- ↑0 · softwarerecs · CLI tool to interactively fill a JSON/YAML schema and produce a project-local TOML config + shell env (Linux) — https://softwarerecs.stackexchange.com/questions/95578/cli-tool-to-interactively-fill-a-json-yaml-schema-and-produce-a-project-local-to
 
 ## Reddit 垂直板块 · 14 天内重现的问题(这才是需求信号)
 按站给定板块 + 句式(startup_radar.mjs 的 VERTICAL),只读。同一标题出现在 ≥2 个不同日期才列。
@@ -91,14 +90,14 @@
 - [1d] **artificial general intelligence** → general donahue (6650), gpt 6 astra (4600), singularity (650), agi vs ai (90)
 - [1d] **agi timeline** → (空)
 **创业雷达词表命中(PH/HN/Reddit)**
-- OzBrain
-- Naoma AI Demo Agent V2
-- Web Search Agents by Nimble
-- What LLM are you using?
-- Show HN: Give Claude Code / Cursor a real eng team (tiers, roles, escalation)
-- Show HN: Lumae Native macOS screen-demo recorder that agents can edit over MCP
-- Why are AI agents lying, cheating and coordinating?
-- Astra and Fable still hack on simple variants of alignment evals from 2025
+- jurniti
+- Buddy AI Access (MCP)
+- The Minimalist Entrepreneur Skills
+- is.team
+- Multimodal Agents by Sierra
+- OpenAI Agents API
+- Kilo Code for iOS and Android
+- Show HN: Sunk Cost – How long until a local LLM rig pays for itself?
 **autopilot 需求队列**:gaps **0** / covered 2 · heat: measured 2026-09-15 (4 pages); no notes
 **第一方需求**:`{"search_no_result": [], "site_search": [{"n": 1, "q": "tool:sunwatch_ledger"}, {"n": 1, "q": "tool:claim_ledger https://goldrush.agiscorecard."}]}`
 
@@ -111,14 +110,14 @@
 - [2d] **gemini** → gemini 3.8 flash (5650), gemini 3.7 flash (3750), sergey brin google gemini ban (2750), gemini the janus cat (2050)
 - [2d] **perplexity** → glm 5.2 (11050), perplexity ai ceo startup strategy (7600), perplexity nvidia local ai agent (2350), perplexity brain ai memory system (2100)
 **创业雷达词表命中(PH/HN/Reddit)**
-- (无)
+- Apple's Siri AI Can Be Swapped Out for Claude, ChatGPT, Code Shows
 **autopilot 需求队列**:该站未纳入 autopilot
 
 ## getecoback
 **Trends rising(逐 seed 时效)**
 - [1d] **klimaanlage** → coolizi (25150), air zuma klimaanlage (15650), bgh urteil klimaanlage (6600), beste klimaanlage für mietwohnung (6600)
-- [1d] **schimmel entfernen** → weißer schimmel (47800), schimmel mit wasserstoffperoxid entfernen (39250), schimmel englisch (19750), schimmel mit spiritus entfernen (7000)
-- [9d] **infrarotheizung** → infrarotheizung wand (new), infrarotheizung decke (new), infrarotheizung badezimmer (new), infrarotheizung bild (new)
+- [0d] **schimmel entfernen** → schimmel auf leder entfernen (50700), schimmel aus kleidung entfernen (400)
+- [0d] **infrarotheizung** → infrarotheizung günstig (64150), infrarotheizung mit fernbedienung (43200), heizen mit strom (39850), diesel infrarotheizung (38800)
 - [4d] **luftentfeuchter** → meaco arete one 20l (49800), luftentfeuchter keller test (48200), luftfeuchtigkeit senken (46700), split klimaanlage (41150)
 - [3d] **heizlüfter** → heizlüfter 300 watt (44900), dreo solaris slim h3 (29250), sparsamer heizlüfter (28600), energiesparender heizlüfter (28450)
 - [2d] **balkonkraftwerk** → ecoflow stream 5000 (8800), anker solix solarbank 4 e5000 pro,meter gen 2 ,5xbp5000 balkonkraftwerk (4400), anker solix solarbank 4 e5000 pro (700), split klimaanlage (450)
@@ -157,8 +156,8 @@
 
 ## thedollscout
 **Trends rising(逐 seed 时效)**
-- [10d] **labubu** → crumbl labubu ube dot cake (24900), lets try the viral crumbl labubu (7600), labubu salon (1250), labubu fifa world cup 2026 (950)
-- [10d] **fake labubu** → popmart (60)
+- [0d] **labubu** → crumbl labubu ube dot cake (30400), savannah guthrie (7050), fugler (6300), labubu salon (1300)
+- [0d] **fake labubu** → fake labubu dolls (new), fake labubu name (new), fake labubu amazon (new), fake labubu feet (new)
 - [9d] **pop mart** → monster hunter pop mart (25850), pop mart international dessert expansion (5300), pop mart overwatch (550), hirono mist walker (500)
 **创业雷达词表命中(PH/HN/Reddit)**
 - (无)
@@ -182,27 +181,36 @@
 **autopilot 需求队列**:该站未纳入 autopilot
 
 ## 机会撮合(reddit 请求 × Trends rising × PH/HN 供给;data/autopilot/opportunities.json)
-- 候选 10 · 已确认需求 0 · 重现 0 · 已有人做 0(生成 2026-09-14;Reddit 源 ok:{'reddit_requests': False, 'reddit_wish': False, 'reddit_vertical': False, 'hn_ask': True, 'softwarerecs': True, 'bluesky_wish': False, 'lemmy_wish': False, 'reddit_access': 'public-json'})
+- 候选 9 · 已确认需求 0 · 重现 0 · 已有人做 0(生成 2026-09-15;Reddit 源 ok:{'reddit_requests': False, 'reddit_wish': False, 'reddit_vertical': False, 'hn_ask': True, 'softwarerecs': True, 'bluesky_wish': False, 'lemmy_wish': False, 'reddit_access': 'public-json'})
 - [scout] does anyone know youtube s pre 2006 s des key · 1 天 · 站 -
 - [scout] is there anything worth developing with ai · 1 天 · 站 -
 - [scout] is there a way to do gpl anymore · 1 天 · 站 -
 - [scout] is there a genuine space for the desktop ai assistant or its solved · 1 天 · 站 -
 - [scout] is there a need for a new kind of antivirus or security application · 1 天 · 站 -
 - [scout] does each frontier model have its own unique taste · 1 天 · 站 -
-- [scout] tagging ai related posts · 1 天 · 站 -
 - [scout] extension for coloring fixed width files · 1 天 · 站 -
+- [scout] pdf printer on windows non agpl licensed · 1 天 · 站 -
 
 ## AI 助手引荐(28 天窗,真人 pv 里 referrer 是 ChatGPT/Perplexity/Claude/Copilot 等)
-- 舰队合计 **80** 次 / 真人 pv 31030(快照 2026-09-14;09-12 手测基线 69)
-- baipiaoji: 33 / 288 pv · www.perplexity.ai 20, chatgpt.com 12, kagi.com 1
-- getecoback: 25 / 574 pv · chatgpt.com 18, www.perplexity.ai 5, kagi.com 1, copilot.microsoft.com 1
-- agiscorecard: 22 / 28142 pv · chatgpt.com 8, claude.ai 6, copilot.microsoft.com 4, www.perplexity.ai 3, kagi.com 1
-- thedollscout: 0 / 231 pv · —
-- goldrush: 0 / 313 pv · —
-- gridlings: 0 / 695 pv · —
-- buysomething: 0 / 74 pv · —
-- gamesledger: 0 / 661 pv · —
-- after35: 0 / 52 pv · —
+- 舰队合计 **81** 次 / 真人 pv 32267(快照 2026-09-15;09-12 手测基线 69)
+- baipiaoji: 34 / 302 pv · www.perplexity.ai 20, chatgpt.com 13, kagi.com 1
+- agiscorecard: 24 / 29007 pv · chatgpt.com 8, claude.ai 6, copilot.microsoft.com 4, www.perplexity.ai 4, kagi.com 2
+- getecoback: 23 / 532 pv · chatgpt.com 16, www.perplexity.ai 7
+- thedollscout: 0 / 234 pv · —
+- goldrush: 0 / 330 pv · —
+- gridlings: 0 / 723 pv · —
+- buysomething: 0 / 76 pv · —
+- gamesledger: 0 / 701 pv · —
+- after35: 0 / 217 pv · —
+- learn: 0 / 93 pv · —
+- fanzha: 0 / 52 pv · —
+- 未读到:firstjob: endpoint HTTP Error 500: Internal Server Error; no token with D1 read scope for the fallback
+
+## 渠道构成(28 天窗;`search` 指真正的搜索引擎引荐,不是排名)
+- 舰队合计(快照 2026-09-15):search 254 · ai 34 · fleet 0 · social 16 · self 0 · direct 0 · other 1
+- baipiaoji: 搜索 254 / AI 34 / 舰队内 0 / 社交 16 / 直接 0 · Google 157 · 前三 google.com 155, cn.bing.com 65, bing.com 11
+- 未读到:agiscorecard: no by_source yet (worker 未部署 2026-09-15 的渠道构成) | getecoback: no by_source yet (worker 未部署 2026-09-15 的渠道构成) | thedollscout: no by_source yet (worker 未部署 2026-09-15 的渠道构成) | goldrush: no by_source yet (worker 未部署 2026-09-15 的渠道构成) | gridlings: no by_source yet (worker 未部署 2026-09-15 的渠道构成) | buysomething: no by_source yet (worker 未部署 2026-09-15 的渠道构成) | gamesledger: no by_source yet (worker 未部署 2026-09-15 的渠道构成) | after35: no by_source yet (worker 未部署 2026-09-15 的渠道构成) | learn: no by_source yet (worker 未部署 2026-09-15 的渠道构成) | fanzha: no by_source yet (worker 未部署 2026-09-15 的渠道构成) | firstjob: no by_source yet (worker 未部署 2026-09-15 的渠道构成) | codeword: no by_source yet (worker 未部署 2026-09-15 的渠道构成) | powerbill: no by_source yet (worker 未部署 2026-09-15 的渠道构成)
+- **读法**:自己这一行 Google = 0,就不要做「给 Google 看」的优化(eco 09-15 的教训);`舰队内` 是兄弟站互链真的送来的人,不是链接数。
 
 ---
 读法:gaps>0 且对应 rising 不是 STALE,才值得进第②层选题;Reddit 命中要再查搜索需求;

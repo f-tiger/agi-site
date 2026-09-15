@@ -558,3 +558,34 @@ owner 决策卡、事实表)。
   Fall 主赛题 09-28 起开放——**owner 在 09-28 前把 key 加好,赛季一开题就在场**。
 - **owner 四件事按每分钟产出排序**:①eco 付款/税务信息(2 分钟,唯一已发生的营收到账)②Metaculus key + 变量(3 分钟)
   ③Stripe 五个值(10 分钟)④Reddit app 两个 Secret(5 分钟)。
+
+## 渠道构成:每个站的读者从哪来(2026-09-15,owner:「整个舰队相互学习，流量增长」;全文 `docs/fleet-traffic-sources-2026-09-15.md`)
+
+**本轮先做了一次全舰队实测,结论要记死,免得后续会话重跑一遍**:sitemap 抽样 155 条**非 200 = 0**、
+重复标题 0、meta description 缺失 0、lastmod 100%、**IndexNow 全覆盖**(主域 + 9 子域走
+`tools/indexnow-subdomains.mjs`,gamesledger/bpj/tds 各有自己的推送)、**llms.txt 14 站全有**。
+**8 个 AI 引荐为 0 的站不是缺件,是只有 7–13 页且刚上线** —— 没有可移植的机制缺口,别做「把 X 抄给 Y」的假动作。
+
+真正的缺口只有一个:**14 个站每次 page_view 都存了 `ref`,读侧却只有 `ai_referrals.py` 只数 AI 主机,
+于是除 eco 外没有一个站知道自己的读者从哪来。** 同日手查两站给出**相反**的答案:
+**eco 的 Google 引荐 = 0**(搜索全部来自 Bing 家族),**bpj 的 Google = 157/305 = 51%,是第一大来源**。
+移植一个「在 eco 有效」的做法到 bpj,如果两站渠道相反,就是把运气当规律 —— **互相学习的前提是各站先看得见自己。**
+
+- **已建(零新 cron,搭 heartbeat)**:`tools/fleet/ref_sources.txt`(引荐来源分类表,**唯一权威**,
+  五桶 ai/search/fleet/social/other + direct + self)→ 13 份 `/api/pulse` 多返回
+  `by_source`/`by_search`/`by_fleet`(**旧键一个没动**,ai_referrals.py 不受影响)→
+  `tools/fleet/traffic_sources.py` 写 `data/fleet-traffic-sources.json` → demand-digest 新增「渠道构成」节。
+- **纪律同 `bot_ua.txt`**:改分类只改那个 txt,然后 `python3 tools/fleet/check_ref_sources.py --sync`;
+  **绝不手改 worker**。checker 挂 heartbeat,不只比字面量,还把每个 worker 里真正那段代码抠出来交给 node
+  跑两个方向的用例。13 条部署自检各加一条 `by_source` 硬断言(buysomething/gamesledger 另断言
+  `sum(by_source) == human_pv`)。
+- **两个被测试抓出的真缺陷(上线前已修)**:裸 `includes` 把 `netflix.com` 判成 `x.com`(social);
+  只做标签对齐又把 `agiscorecard.com.spam.example` 判成 fleet(引荐垃圾的常见形状)。现在是
+  **标签对齐 + 尾部只许 TLD 段**,五个小站单测各有一条断言钉住这两个方向。
+- **`self` 与 `fleet` 严格分开**:本域跳转是 self,兄弟站才是 fleet —— 不分开的话「兄弟站互链到底
+  送来几个人」这个问题永远问不出来。`source.agiscorecard.com` 目前主域一条入链都没有,
+  **但先等 `by_fleet` 读数再决定加不加,不靠猜加互链**。
+- **判定线(预登记)**:`fleet-source-mix-1013`(10-13 前 ≥13 站有读数且 unattributed ≤5%,否则读侧
+  退回只看 AI 引荐)、`fleet-google-channel-1013`(除 bpj 外 ≥2 站 `google.*` ≥10/28d,否则
+  **Google = bpj 专属,其余站一律按 Bing 家族与 AI 引荐口径优化,永不再为 Google 改标题**)。
+- **每次报告的台账从此多一行**:舰队渠道构成(search / ai / fleet / social / direct),各站 Google 数单列。

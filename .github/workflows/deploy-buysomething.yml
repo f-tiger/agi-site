@@ -172,7 +172,7 @@ jobs:
           check_json /trends.json 'True'
           check_json /api/pop '"picks" in j and "degraded" not in j'
           # /api/pulse (2026-09-13): token-free AI-referral aggregate read by the fleet heartbeat
-          check_json /api/pulse 'j.get("ok") is True and isinstance(j.get("ai_ref"), int) and j.get("days") == 28'
+          check_json /api/pulse 'j.get("ok") is True and isinstance(j.get("ai_ref"), int) and j.get("days") == 28 and isinstance(j.get("by_source"), dict) and sum(j["by_source"].values()) == j["human_pv"]'
           rm -f body.json
           # 3b) PRD P0-1 beacon truth test: POST a CI-labelled event, then read it back through the aggregate endpoint.
           curl -s -o /dev/null -X POST "$BASE/e" -H 'content-type: text/plain' --data '{"n":"calc_use","l":"__ci","p":"/__ci"}' || true

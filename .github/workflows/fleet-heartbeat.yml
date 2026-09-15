@@ -163,6 +163,16 @@ jobs:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: python3 tools/fleet/ai_referrals.py
 
+      # ③ 每个站的读者从哪来(2026-09-15「舰队相互学习」)。此前读侧只数 AI 主机,于是
+      #    除 eco 外没有一个站知道自己的渠道构成——而同日手查发现 bpj 的第一大来源是
+      #    Google(157/305),eco 的 Google 却是 0。两个相反的答案,谁都看不见自己属于哪种。
+      #    端点优先(/api/pulse 自本日起多返回 by_source/by_search/by_fleet),分桶表是
+      #    tools/fleet/ref_sources.txt。读失败保留上一份,连续 >3 天读不到才红。
+      - name: Read where each site's readers come from (28d)
+        id: srcmix
+        continue-on-error: true
+        run: python3 tools/fleet/traffic_sources.py
+
       # 快照回仓:任何后续会话(哪怕没有 Cloudflare/GitHub MCP)都能 cat 一下就
       # 知道舰队是不是活着。data/ 不在任何站点的部署 path 过滤里,不会烧部署。
       - name: Commit health snapshot
@@ -171,7 +181,7 @@ jobs:
           git config user.email noreply@anthropic.com
           git config user.name Claude
           git add data/fleet-health.json
-          git add data/fleet-ai-access.json data/fleet-ai-referrals.json 2>/dev/null || true
+          git add data/fleet-ai-access.json data/fleet-ai-referrals.json data/fleet-traffic-sources.json 2>/dev/null || true
           git diff --cached --quiet && { echo "无变化"; exit 0; }
           git commit -m "chore(fleet): heartbeat 健康快照 $(date -u +%F)"
           for i in 1 2 3 4; do
@@ -237,6 +247,12 @@ jobs:
       - name: Assert bot-UA classifier parity across workers
         run: python3 tools/fleet/check_bot_ua.py
 
+      # 同一个教训的第二次应用:13 份引荐来源分类器必须与 tools/fleet/ref_sources.txt 逐字相同。
+      # 这里不只比字面量,还把每个 worker 里**真正那段代码**抠出来交给 node 跑一组用例
+      # (两个方向:该命中的必中,netflix.com / agiscorecard.com.spam.example 这类必不误判)。
+      - name: Assert referrer-source classifier parity across workers
+        run: python3 tools/fleet/check_ref_sources.py
+
       # 舰队的「赌注台账」(2026-09-13,owner:「持续优化,探索,扩张」):每条预登记判定线一行,
       # 到期 3 天内提醒,过期 >7 天仍未结算 → 红 → GitHub 邮件。判定线可以判负,不可以被遗忘;
       # 这是字节「应用工厂」里唯一能被 solo 舰队照抄的机制:按日期结算,按数字加码或杀掉。
@@ -247,8 +263,8 @@ jobs:
       - name: Assert the recall radar the shelves gate on is fresh
         run: python3 tools/fleet/recall_gate.py --check
 
-      - name: Fail the run if any site is down, blocks AI crawlers, or the referral read is stale
-        if: steps.probe.outputs.bad == '1' || steps.aiprobe.outcome == 'failure' || steps.airef.outcome == 'failure'
+      - name: Fail the run if any site is down, blocks AI crawlers, or a traffic read is stale
+        if: steps.probe.outputs.bad == '1' || steps.aiprobe.outcome == 'failure' || steps.airef.outcome == 'failure' || steps.srcmix.outcome == 'failure'
         run: |
-          echo "site-down=${{ steps.probe.outputs.bad }} ai-crawler-blocked=${{ steps.aiprobe.outcome }} ai-referrals=${{ steps.airef.outcome }}"
+          echo "site-down=${{ steps.probe.outputs.bad }} ai-crawler-blocked=${{ steps.aiprobe.outcome }} ai-referrals=${{ steps.airef.outcome }} source-mix=${{ steps.srcmix.outcome }}"
           exit 1
