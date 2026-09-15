@@ -207,3 +207,89 @@ SDK 缺失时页面底部红色横幅）。
 门禁：fleet-smoke / cg-package-smoke（157.8KB，gameplayStart 1379ms）/ verify-singularity 全绿。
 
 **自我声明**：Rewarded = **Yes**，Interstitial = **No**。与另外六款相反，别填错。
+
+## 2026-09-15：主目录对「AI 做的游戏」另开一条路；七款首次在真实平台上被实测
+
+owner 当天开通了会话的全权限出网，于是三件从 09-07 起一直只能当假设背着的事，今天第一次
+有了实测答案。下面每一条都带取数方式，后续会话可以自己重跑。
+
+### 一、两款被拒，但**这次不是那句无信息量的模板**
+GHOSTLINE(09-14 13:02 UTC)与 SINGULARITY(09-14 13:39 UTC)的审核结论原文一字不改：
+
+> For games created with AI, we offer a dedicated way to test them on Playgama before they
+> can be considered for our main catalog. Publishing through Playgama MCP allows you to get
+> your first players and see how the game performs. At the same time, it gives our team real
+> performance data that we can use to identify the strongest games for potential placement
+> in the main Playgama catalog. Learn more: https://playgama.com/mcp/
+
+**这是分流，不是质量判决。** 它和 CG 三连拒的「overall quality」是两种东西：CG 那句不可
+拆解、无法行动；这句给了确定的下一步——**先进 sandbox 跑出真实数据，再拿数据回主目录**。
+所以 09-09 记的「Playgama 是门户线唯一还活着的一支」仍然成立，只是路径换了。
+
+**别自作主张重投**：两款的 `get_submission_state` 都是 `allowed:true` / `failedAttempts:1`，
+技术上随时能再交，但空手再交只会拿到同一条回复。**要等 sandbox 的 performance data。**
+
+其余五款(PROMPT / OVERFIT / MIMIC / OVERSEER / MINIMA)状态 `PROCESSING`、审核任务 `NEW`、
+零评论 —— 还在队列里没被人看过。PROMPT 09-08 那次「overall quality」拒稿已被重新提交覆盖。
+
+### 二、七款全部进了 sandbox，三个免费流量轮在跑
+七款于 09-15 14:49–14:50 UTC 各自发布到 sandbox，都有公开可玩链接(链接一律从
+`get_sandbox_state` 取，**永远不要自己拼**，地址随部署变)。
+
+免费流量轮(Playgama DSP 广告投放)14:53 起跑，**只跑起来三个**：GHOSTLINE、SINGULARITY、
+PROMPT。每轮 **$2 / 7 天 / 预期 ~100 次 gameplay / 6 条创意**，素材是从封面裁的。
+另外四款一律被拒为 **`ORG_LIMIT`** —— 整个组织同时只能有三轮。免费额度用完后是
+**$20 买同样的 $2/7 天/100 gameplay 包**，现在 `available:false`，**买不买是 owner 的决定，
+会话不代花钱**。
+
+### 三、真实平台实测：三个假设全部成立(新工具 `tools/verify-playgama-live.js`)
+```
+node tools/verify-playgama-live.js <siteId> ...        # 七款健康检查
+node tools/verify-playgama-live.js --ad <siteId>       # 外加一次中插实拨
+```
+七款逐个跑完，结果一致：Bridge 2.1.0 已初始化、**`platform.id = "playgama"`**(离线一直是
+`mock`，平台识别到底生不生效此前无从得知)、无 SDK 缺失横幅、`GL_PG_ERR` 与 `GL_AD_ERR` 均为
+null、**console error 0 条**。
+
+**广告真的有填充**：在 GHOSTLINE 上实拨一次 `showInterstitial()`，状态链是
+**`loading → opened → closed`**。09-07 以来所有离线测试都停在 `loading → failed`，那只说明
+本地没库存，**从来不构成任何关于填充的证据**。这是变现链路第一次被端到端证明走得通。
+(只拨了这一次，是诊断不是刷量；别把它变成习惯。)
+
+**09-07 的 CORS 修复在生产上确认有效**：从 `sb-*.games.playgama.net` 发出的
+`POST play.agiscorecard.com/e` 返回 **200**，D1 里能查到对应行。此前这条只能在 runner 的
+部署自检里断言，沙箱打不到。
+
+### 四、舰队史上第一批真实门户玩家：16 次开局，0 次二次事件
+D1 `gridlings-events` 现查(14:53→15:19 UTC，**26 分钟窗**)：
+- **非 US 的 `play_start` 共 19 次**，十个国家：AM 8 / EG 2 / IN 2 / DE·GA·JO·NA·TR·VN·ZA 各 1。
+  集中在 SINGULARITY，其次 GHOSTLINE 与 PROMPT。
+- **别把它读成 19 个玩家**：AM 一国占 8 次，可能是同一人反复开局，也可能是低质流量。
+  DSP 买来的量要按国家分布看一眼再引用。
+- 同窗 US 行恰好 9 条 = 本会话 9 次探针页面加载，**全部剔除**(口径保守，宁可少算)。
+- **solve / play_again / game_over / hint_used 全部为 0。**
+
+**这就是当前读数：流量进得来，人留不住。** 40 分钟的快照不是判决——有些二次事件本来就要玩
+更久才触发——但它指向的问题跟站内那条「一坐下连玩 5–6 款」的强行为完全相反，值得在 09-22
+结算时认真看。
+
+取数 SQL(后续会话照抄)：
+```sql
+SELECT name, COUNT(*) n FROM ev
+WHERE ts >= '2026-09-15 14:53' AND ref LIKE '%games.playgama.net%' AND country <> 'US'
+GROUP BY name ORDER BY n DESC;
+```
+
+### 五、判定线(已进 `data/fleet-bets.json`)
+- **`gridlings-playgama-traffic-0922`**：三轮免费流量结束时，非 US `play_start` 累计 ≥150
+  且二次事件 ≥15 → 拿这批数据回投主目录，并评估 $20 付费轮；否则门户线判负，游戏降为只维护，
+  **不买付费流量**。
+- **`gridlings-playgama-five-0925`**：排队中的五款是否有任何一款进主目录。全部拿到同一条
+  AI 分流回复 = 主目录对本舰队的 AI 游戏关门，此后只经营 sandbox 面。
+
+### 六、会话侧操作纪律
+- `publish_sandbox` 与 `start_sandbox_traffic` 都是**立即对外生效**的动作(前者无审核即公开，
+  后者花钱且不可撤销)。**发布与投流之前先问 owner**；本会话只做只读检查与一次广告实拨。
+- 提交审核、上传截图、回滚到上一版 —— MCP 里都没有，只能 owner 在后台做。
+- 排行榜 / 内购 / 封面上传的工具都在，但**在留存问题解决之前不碰**：没人玩完第一局，
+  排行榜是空的。

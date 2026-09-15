@@ -542,6 +542,28 @@
       "lose": "未进前 1/3 下季不续",
       "source": "CLAUDE.md:营收突破线 判定线",
       "status": "open"
+    },
+    {
+      "id": "gridlings-playgama-traffic-0922",
+      "site": "gridlings",
+      "due": "2026-09-22",
+      "metric": "D1 gridlings-events: ts>='2026-09-15 14:53' AND ref LIKE '%games.playgama.net%' AND country<>'US' 的 play_start 累计 / 二次事件(solve+play_again+game_over+hint_used)。剔 US 因为会话探针从 US 出网,口径保守",
+      "threshold": "≥150 / ≥15",
+      "win": "拿这批 performance data 回投主目录(重交 GHOSTLINE+SINGULARITY),并把 $20 付费轮作为 owner 决策提出",
+      "lose": "门户线判负(CG 已关、itch 大概率同判):游戏降为只维护,不买付费流量,人力回自有域留存",
+      "source": "sites/gridlings/docs/playgama-setup.md(2026-09-15 节)",
+      "status": "open"
+    },
+    {
+      "id": "gridlings-playgama-five-0925",
+      "site": "gridlings",
+      "due": "2026-09-25",
+      "metric": "list_moderation_comments:排队五款(PROMPT/OVERFIT/MIMIC/OVERSEER/MINIMA)进主目录的数量",
+      "threshold": "≥1",
+      "win": "主目录未对 AI 游戏关门,按过审那款的形状复制",
+      "lose": "确认主目录对本舰队的 AI 游戏关闭,此后只经营 sandbox 面,不再空手重投",
+      "source": "sites/gridlings/docs/playgama-setup.md(2026-09-15 节)",
+      "status": "open"
     }
   ]
 }

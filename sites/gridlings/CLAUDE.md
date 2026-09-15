@@ -519,10 +519,39 @@ Playgama 变体共用同一套「门户构建」清洗逻辑（剥无广告声�
 - 已排除且不许回捡：GameDistribution / GameMonetize / GamePix（强制其广告 SDK）、
   Coolmath（禁外链 + 禁统计信标）。
 
+
 **别急着下「游戏线失败」的总结论**：站内观测到的最强行为仍然是 CLAUDE.md 上面记的
 「一坐下连玩 5–6 款」的跨游戏会话，那是在**我们自己的域**上发生的，不依赖任何门户。
 门户是分发假设，不是产品假设；分发假设连挂三家，正确的动作是把投入从「求人上架」
 挪回「自有域的留存与串联」，而不是把游戏本身判死。
+
+## Playgama 主目录对「AI 做的游戏」另开一条路（2026-09-15，全权限出网后首次真实平台实测）
+
+**上面 09-09 那段里「Playgama 是唯一还活着的一支」仍然成立，但路径变了。**
+详情与取数方式全在 `docs/playgama-setup.md` 最后一节；这里只留必须记死的几条。
+
+- **GHOSTLINE 与 SINGULARITY 09-14 被拒，但不是 CG 那种无信息量模板**：审核原话是
+  「AI 做的游戏先经 Playgama MCP 发布拿真实数据，再由他们挑进主目录」。**这是分流不是判死。**
+  两款 `allowed:true`，但**空手重投只会拿到同一条回复——必须先有 sandbox 的 performance data**。
+  其余五款仍在队列(`PROCESSING` / 审核任务 `NEW` / 零评论)。
+- **七款已全部进 sandbox**，三个免费 DSP 流量轮(**$2 / 7 天 / ~100 gameplay**)09-15 14:53 起跑：
+  GHOSTLINE、SINGULARITY、PROMPT。另外四款被拒为 `ORG_LIMIT` —— **全组织同时只能三轮**。
+  免费轮之后是 **$20 买同样的包**。**花钱与发布都是 owner 的决定，会话不代做**
+  (`publish_sandbox` 无审核即公开、`start_sandbox_traffic` 不可撤销)。
+- **三个只能靠真实账号验证的假设，今天全部证实**(工具 `tools/verify-playgama-live.js`)：
+  ① `platform.id` 真的是 `playgama`(离线永远是 `mock`)；
+  ② **广告真的有填充**：实拨一次中插得到 `loading → opened → closed`，
+  09-07 以来所有 `loading → failed` 只代表本地无库存、**从不构成填充的证据**；
+  ③ **09-07 的 `/e` CORS 修复在生产上有效**：门户域名发出的信标回 200，D1 收得到行。
+  七款一致：Bridge 已初始化、无 SDK 缺失横幅、`GL_PG_ERR`/`GL_AD_ERR` 为 null、**console error 0**。
+- **第一批真实门户玩家的读数(26 分钟窗)：非 US `play_start` 19 次、十个国家、
+  二次事件(solve/play_again/game_over/hint_used)全 0。** 同窗 9 条 US 行恰好等于本会话 9 次探针
+  加载，已全部剔除；**AM 一国占 8 次,别当成 19 个独立玩家**。**流量进得来，人留不住** —— 与站内「一坐下连玩 5–6 款」的强行为正相反，
+  09-22 结算时这是要认真看的那一条，不是可以略过的噪音。
+- **判定线(已进 `data/fleet-bets.json`)**：`gridlings-playgama-traffic-0922`(≥150 非 US
+  play_start 且二次事件 ≥15 → 拿数据回投主目录并评估付费轮；否则门户线判负、不买流量)、
+  `gridlings-playgama-five-0925`(排队五款是否有一款进主目录)。
+- **留存没解决之前不碰排行榜/内购/封面重做**：没人玩完第一局，排行榜是空的。
 
 # 做门户游戏的要素清单（owner 2026-09-05「以后记得做 crazygame 游戏的要素」）
 
