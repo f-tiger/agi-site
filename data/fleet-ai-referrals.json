@@ -1,35 +1,37 @@
 {
- "generated": "2026-09-14T14:36:41Z",
+ "generated": "2026-09-15T13:01:34Z",
  "window_days": 28,
- "ok": true,
- "read_via": "endpoints",
- "errors": [],
+ "ok": false,
+ "read_via": "endpoints (partial)",
+ "errors": [
+  "firstjob: endpoint HTTP Error 500: Internal Server Error; no token with D1 read scope for the fallback"
+ ],
  "baseline_2026_09_12": {
   "fleet_ai_ref": 69,
   "note": "hand-measured; agi 20, bpj 33, eco 16, others 0"
  },
- "fleet_ai_ref": 80,
- "fleet_human_pv": 31030,
+ "fleet_ai_ref": 81,
+ "fleet_human_pv": 32267,
  "sites": [
   {
    "site": "agiscorecard",
-   "human_pv": 28142,
-   "ai_ref": 22,
+   "human_pv": 29007,
+   "ai_ref": 24,
    "by_host": {
     "chatgpt.com": 8,
     "claude.ai": 6,
     "copilot.microsoft.com": 4,
-    "www.perplexity.ai": 3,
-    "kagi.com": 1
+    "www.perplexity.ai": 4,
+    "kagi.com": 2
    },
    "via": "endpoint"
   },
   {
    "site": "baipiaoji",
-   "human_pv": 288,
-   "ai_ref": 33,
+   "human_pv": 302,
+   "ai_ref": 34,
    "by_host": {
-    "chatgpt.com": 12,
+    "chatgpt.com": 13,
     "www.perplexity.ai": 20,
     "kagi.com": 1
    },
@@ -37,53 +39,65 @@
   },
   {
    "site": "getecoback",
-   "human_pv": 574,
-   "ai_ref": 25,
+   "human_pv": 532,
+   "ai_ref": 23,
    "by_host": {
-    "chatgpt.com": 18,
-    "www.perplexity.ai": 5,
-    "kagi.com": 1,
-    "copilot.microsoft.com": 1
+    "chatgpt.com": 16,
+    "www.perplexity.ai": 7
    },
    "via": "endpoint"
   },
   {
    "site": "thedollscout",
-   "human_pv": 231,
+   "human_pv": 234,
    "ai_ref": 0,
    "by_host": {},
    "via": "endpoint"
   },
   {
    "site": "goldrush",
-   "human_pv": 313,
+   "human_pv": 330,
    "ai_ref": 0,
    "by_host": {},
    "via": "endpoint"
   },
   {
    "site": "gridlings",
-   "human_pv": 695,
+   "human_pv": 723,
    "ai_ref": 0,
    "by_host": {},
    "via": "endpoint"
   },
   {
    "site": "buysomething",
-   "human_pv": 74,
+   "human_pv": 76,
    "ai_ref": 0,
    "by_host": {},
    "via": "endpoint"
   },
   {
    "site": "gamesledger",
-   "human_pv": 661,
+   "human_pv": 701,
    "ai_ref": 0,
    "by_host": {},
    "via": "endpoint"
   },
   {
    "site": "after35",
+   "human_pv": 217,
+   "ai_ref": 0,
+   "by_host": {},
+   "via": "endpoint"
+  },
+  {
+   "site": "learn",
+   "human_pv": 93,
+   "ai_ref": 0,
+   "by_host": {},
+   "via": "endpoint"
+  },
+  {
+   "site": "fanzha",
    "human_pv": 52,
    "ai_ref": 0,
    "by_host": {},
