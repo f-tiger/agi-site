@@ -34,6 +34,7 @@ D. **baipiaoji**（存档 trig_014Ytq7zLsYbtPgsoc1CftKo.md）：读 sites/baipia
 E. **thedollscout**（仅 UTC 日期为偶数时执行；存档 trig_01VSh8sktmpuMndDpAKJcuR5.md）：读 sites/thedollscout/CLAUDE.md + growth-log 末两轮 + data/autopilot/thedollscout-demand.json + content/d1-snapshot.json（缺失或 >48h = 机制故障，不是没数据；该文件自 09-02 起缺失需 owner 给 deploy token 加 D1 Read，每轮提一句不催）；机制体检（结构化数据闸门、llms-full、MCP 冒烟）；每轮最多 1 页，宁少勿滥；growth-log 追加。
 F. **SunWatch**（仓 f-tiger/sunPredition 分支 claude/sun-yuchen-investment-research-yzz9mx，/home/user/sunpredition；原每日优化 Routine 已丢失，此处以周频接管）：仅周一执行——读其 CLAUDE.md + BACKLOG.md 取一件；核对 /api/holdings 三只持仓的规则读数是否随日线在变（部署日志是唯一通道）；改动先过 node test/rules.test.mjs；push 该分支 = 部署。
 G. **三十五后 / after35**（35.agiscorecard.com，sites/after35，D1 6109b81e-c970-47d7-b7fc-3a2a15f68ed2；owner 2026-09-14 指令「给失业中年人用的平台，让他们可以发挥价值」「agi 时代 ai 冲击的最好承载子站点」）：每日必做审核——`SELECT id, kind, flag, headline, created FROM cards WHERE status='pending'`，误拦放行（status='live', reviewed=date）、确为贷款/刷单/收费培训则 rejected；再扫当日新 live 卡有无漏网。报数：live offer/need、pending 处理数、28 天 contact_reveal、真人 pv（ev.page_view human）。**永不在报告里贴联系方式；永不放种子卡/示例卡；页面不引未核实统计**。判定线 10-14 / 12-14 见其 CLAUDE.md。优化只在有真人信号时做一件，冷启动期正确动作是「报 0 + 分发素材进周一暂存」。
+H. **学什么 / learn**（learn.agiscorecard.com，sites/learn；D1 复用 after35-events 6109b81e-…，表 `lev` / `lua_audit`；owner 2026-09-15 指令「做一个教育子网站…成年人失业，家庭教育等」）：只报数——`lev` 真人 page_view（28d/7d）、`tool_result`、`resource_click`；无用户内容无需审核。优化只在有真人信号或一手依据变更（教育部指南改版、技能照亮前程行动到期、家庭教育法修订）时做一件；候选队列在其 docs/research-2026-09-15.md §五，未过三门不上。判定线 10-15 / 12-15 见其 CLAUDE.md。
 
 ## 3. 周一附加
 - agiscorecard 深审计一项 + 「赔率 vs 证据」新一期（gen_odds.py 读 odds-history.json，绝不丢台账）。
@@ -49,4 +50,4 @@ G. **三十五后 / after35**（35.agiscorecard.com，sites/after35，D1 6109b81
 首个 agent MCP 调用（四条件判据）、首个真实订户、subscribers≥10/50、首笔 x402/Boosts/联盟收入、Organic≥10/50/200、AI 引荐周环比翻倍、任一工具进 top-5 落地页、首笔赞助询盘、Bing 引用份额显著变化、eco affiliate_click≥20/28d、bpj 判定线 10-09、tds 60 天线 10-29。
 
 ## 6. 汇报（一条中文总日报覆盖全部站点）
-按 A→G 每块 2–6 行：一手数字（带日期与口径）、本轮 ship、deploy 是否绿、机制体检（哪些验了、哪些「本轮未验证」）、owner 待办（同一条不催第二遍以上）。无实质变化就短。任何一块出错不影响其它块，错误原文写进对应站的日志与总日报。
+按 A→H 每块 2–6 行：一手数字（带日期与口径）、本轮 ship、deploy 是否绿、机制体检（哪些验了、哪些「本轮未验证」）、owner 待办（同一条不催第二遍以上）。无实质变化就短。任何一块出错不影响其它块，错误原文写进对应站的日志与总日报。

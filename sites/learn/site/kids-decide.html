@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>孩子学什么决策表:四个问题,一件本周能做的免费事 — 学什么</title>
+<meta name="description" content="学段、现在最缺什么、每周家里能给多少时间、预算——四个问题,按教育部 2025 年 AI 通识教育指南的学段重点给出一件本周就能做的免费事,和一个「别花钱的地方」。不上传,结果可分享。">
+<link rel="canonical" href="https://learn.agiscorecard.com/kids-decide">
+<meta property="og:title" content="孩子学什么决策表:四个问题,一件本周能做的免费事">
+<meta property="og:description" content="按教育部 2025 年指南的学段重点,四个问题给一件本周能做的免费事。">
+<link rel="stylesheet" href="/style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"孩子学什么决策表","url":"https://learn.agiscorecard.com/kids-decide","applicationCategory":"EducationalApplication","operatingSystem":"Web","inLanguage":"zh-CN","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"CNY"},"featureList":["四个问题","按学段对应教育部 2025 年指南重点","一件本周能做的免费事","别花钱的地方","结果写进链接"],"isPartOf":{"@type":"WebSite","name":"学什么","url":"https://learn.agiscorecard.com/"}}
+</script>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="/">学<b>什么</b></a>
+  <nav class="main"><a href="/adult-what-to-learn">成年人</a><a href="/kids-coding">家庭教育</a><a href="/worth">值不值</a><a href="/kids-decide" aria-current="page">孩子学什么</a><a href="/free">免费学</a><a href="/about">关于</a></nav>
+</div></header>
+<main class="wrap">
+  <span class="lane">家庭教育 · 工具</span>
+  <h1>孩子学什么决策表</h1>
+  <p class="lead muted">不是测评,是一张决策表:四个问题,按教育部《中小学人工智能通识教育指南(2025 年版)》的学段重点,给你<strong>一件本周就能在家做的免费事</strong>,和一个<strong>别花钱的地方</strong>。所有推荐都能追到那份指南或国家平台,追不到的本站不写。</p>
+
+  <div class="qq" data-q="stage"><div class="t">1. 孩子在哪个学段?</div><div class="opts"><button type="button" data-v="p">小学</button><button type="button" data-v="j">初中</button><button type="button" data-v="s">高中</button></div></div>
+  <div class="qq" data-q="lack"><div class="t">2. 现在最缺的是哪一样?</div><div class="opts"><button type="button" data-v="interest">对这些东西没兴趣</button><button type="button" data-v="why">会用但说不出为什么</button><button type="button" data-v="do">想法多但做不出东西</button><button type="button" data-v="judge">什么都信 AI 说的</button></div></div>
+  <div class="qq" data-q="time"><div class="t">3. 每周家里能一起投入多少时间?</div><div class="opts"><button type="button" data-v="1">不到 1 小时</button><button type="button" data-v="3">1–3 小时</button><button type="button" data-v="5">3 小时以上</button></div></div>
+  <div class="qq" data-q="budget"><div class="t">4. 预算?</div><div class="opts"><button type="button" data-v="0">0</button><button type="button" data-v="low">几百块以内</button><button type="button" data-v="high">几千块以上</button></div></div>
+
+  <div id="out" class="result" hidden></div>
+
+  <hr class="rule">
+  <h2>这张表的依据</h2>
+  <ul class="small">
+    <li>学段重点:教育部基础教育教学指导委员会《中小学人工智能通识教育指南(2025 年版)》——小学兴趣与基础认知,初中技术原理与基础应用,高中系统思维与创新实践(<a href="https://www.edu.cn/xxh/focus/zc/202505/t20250513_2667990.shtml" rel="noopener">CERNET 发布稿</a>)</li>
+    <li>免费资源:国家智慧教育公共服务平台 <a href="https://www.smartedu.cn/" rel="noopener">smartedu.cn</a>(含人工智能教育与家庭教育资源);AI 工具免费额度看 <a href="https://baipiaoji.com/" rel="noopener">白嫖计</a></li>
+    <li>家长的责任边界:<a href="/family-education-law">家庭教育促进法第十四、十八条</a></li>
+    <li>判定:<a href="/kids-coding">AI 时代孩子还要学编程吗?</a></li>
+  </ul>
+</main>
+<footer><div class="wrap">
+  <div class="links"><a href="/">首页</a><a href="/kids-coding">家庭教育</a><a href="/family-education-law">家庭教育法</a><a href="/free">免费学</a><a href="/about">关于</a></div>
+  <div>学什么 · <a href="https://agiscorecard.com/">AGI Scorecard</a> 网络的中文子站 · 不卖课、不推荐机构</div>
+</div></footer>
+<script src="/app.js"></script>
+<script>
+(function(){
+  var STAGE = { p: { name: "小学", focus: "兴趣培养与基础认知", nopay: "考级班、拖积木刷题班——这一层免费资源足够,而且指南在小学阶段要的是兴趣,不是分数" },
+                j: { name: "初中", focus: "技术原理与基础应用", nopay: "「AI 竞赛保过」——竞赛可以参加,「保过」不可能" },
+                s: { name: "高中", focus: "系统思维与创新实践", nopay: "为了简历而学的证书——高中阶段一个真做出来的项目比任何证书有说服力" } };
+  var LACK = {
+    interest: { name: "没兴趣", act: "让孩子挑一件他自己想要的东西(一个小游戏、一张海报、一段配乐),用免费 AI 工具一起做出来。做完让他讲给你听——讲得出来就是兴趣的开始。别选你想要的,选他想要的。" },
+    why: { name: "会用但说不出为什么", act: "选一个孩子已经会用的功能,让他给你解释「它是怎么做到的」;答不上来就一起查国家智慧教育平台的人工智能课。目标不是答案,是「问为什么」这个习惯。" },
+    do: { name: "想法多但做不出东西", act: "把他最想做的一个想法拆成三步,每步不超过一小时,用 AI 工具做第一步。本周只要求做完第一步——「做完」比「做好」重要。" },
+    judge: { name: "什么都信 AI 说的", act: "让孩子给 AI 出 10 道他自己会的题,检查 AI 的答案,把错的找出来并说明为什么错。这是「判断」的训练,也是指南从初中起就强调的东西。" } };
+  var TIME = { "1": "每周不到 1 小时:只做「一件事」,不加任何课;做不完就下周接着做。", "3": "每周 1–3 小时:一件事 + 一次一起看国家智慧教育平台上的一节课。", "5": "每周 3 小时以上:一件事 + 一个持续两周的小项目,项目结束让孩子做一次 5 分钟的「汇报」。" };
+  var BUDGET = { "0": "预算 0:上面所有动作都不需要花钱。", low: "几百块以内:先花 0 元做上面的事,两周后如果孩子还在做,再考虑一本书或一次线下活动。", high: "几千块以上:先别付。用「学它值不值」的思路问机构三个问题——完整大纲、就业率或效果的分母、免费资源里有没有同样的东西。两周免费做完再决定。" };
+  var a = {}, qs = new URLSearchParams(location.search);
+  ["stage","lack","time","budget"].forEach(function(k){ if (qs.get(k)) a[k] = qs.get(k); });
+  function paint(){ document.querySelectorAll(".qq").forEach(function(q){ var k = q.getAttribute("data-q"); q.querySelectorAll("button").forEach(function(b){ b.setAttribute("aria-pressed", a[k] === b.getAttribute("data-v")); }); }); }
+  document.querySelectorAll(".qq button").forEach(function(b){ b.addEventListener("click", function(){ a[b.closest(".qq").getAttribute("data-q")] = b.getAttribute("data-v"); paint(); show(); }); });
+  function show(){
+    if (!(a.stage && a.lack && a.time && a.budget)) return;
+    var s = STAGE[a.stage], l = LACK[a.lack];
+    var el = document.getElementById("out");
+    el.innerHTML = "<h3>" + s.name + " · 现在最缺:" + l.name + "</h3>" +
+      "<p><b>指南在这个学段的重点</b><br>" + s.focus + "(教育部 2025 年版指南)</p>" +
+      "<p><b>本周在家做的一件免费事</b><br>" + l.act + "</p>" +
+      "<p><b>时间怎么排</b><br>" + TIME[a.time] + "</p>" +
+      "<p><b>钱怎么花</b><br>" + BUDGET[a.budget] + "</p>" +
+      "<p><b>别花钱的地方</b><br>" + s.nopay + "</p>" +
+      '<p class="cta-row"><button class="cta primary" type="button" onclick="lxshare(\'孩子学什么决策表\')">复制给另一半</button><a class="cta" href="/kids-coding">看完整判定</a><a class="cta" href="/free">免费资源</a></p>';
+    el.hidden = false;
+    var u = new URL(location.href); ["stage","lack","time","budget"].forEach(function(k){ u.searchParams.set(k, a[k]); }); history.replaceState(null, "", u.toString());
+    lxev("tool_result", "kids:" + a.stage + ":" + a.lack + ":" + a.budget);
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+  paint(); show();
+})();
+</script>
+</body>
+</html>

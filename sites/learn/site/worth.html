@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>学它值不值:课程回本月数计算器 — 学什么</title>
+<meta name="description" content="课程费 + 你的时间成本,除以学完后每月多赚的钱,算出回本月数;再对照你现金能撑的月数。四个数,全在你手机里算,不上传;结果写进链接可分享。">
+<link rel="canonical" href="https://learn.agiscorecard.com/worth">
+<meta property="og:title" content="学它值不值:课程回本月数计算器">
+<meta property="og:description" content="课程费加时间成本,除以每月多赚的钱,得到回本月数。回本比现金能撑的时间长,就先别学。">
+<link rel="stylesheet" href="/style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"学它值不值 · 课程回本计算器","url":"https://learn.agiscorecard.com/worth","applicationCategory":"BusinessApplication","operatingSystem":"Web","inLanguage":"zh-CN","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"CNY"},"featureList":["课程费 + 时间成本 → 总成本","回本月数","对照现金能撑的月数","结果写进链接","不上传"],"isPartOf":{"@type":"WebSite","name":"学什么","url":"https://learn.agiscorecard.com/"}}
+</script>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="/">学<b>什么</b></a>
+  <nav class="main"><a href="/adult-what-to-learn">成年人</a><a href="/kids-coding">家庭教育</a><a href="/worth" aria-current="page">值不值</a><a href="/kids-decide">孩子学什么</a><a href="/free">免费学</a><a href="/about">关于</a></nav>
+</div></header>
+<main class="wrap">
+  <span class="lane">成年人 · 工具</span>
+  <h1>学它值不值</h1>
+  <p class="lead muted">课程销售给你的是「学完能赚多少」,不给你的是「学完之前要花多少」。把两边都放进同一个算式:<strong>回本月数 = (课程费 + 学习小时 × 你的时薪) ÷ 学完后每月多赚的钱</strong>,再和你现金能撑的月数比。算术不是建议,但算不过来的课再好也不该现在学。</p>
+
+  <div class="calc">
+    <div><label for="fee">课程费(元)</label><input type="number" id="fee" inputmode="numeric" placeholder="例如 6800"></div>
+    <div><label for="hours">总学习小时</label><input type="number" id="hours" inputmode="numeric" placeholder="课时 + 作业,例如 120"></div>
+    <div><label for="wage">你的时薪(元)<span class="small muted"> 失业中就填上一份工作的时薪</span></label><input type="number" id="wage" inputmode="numeric" placeholder="例如 80"></div>
+    <div><label for="gain">学完后每月多赚(元)<span class="small muted"> 按最保守估,不是宣传册的数</span></label><input type="number" id="gain" inputmode="numeric" placeholder="例如 2000"></div>
+    <div><label for="lag">学完到见钱要几个月</label><input type="number" id="lag" inputmode="numeric" placeholder="例如 3"></div>
+    <div><label for="runway">现金还能撑几个月<span class="small muted"> 不知道先去三十五后算红线</span></label><input type="number" id="runway" inputmode="numeric" placeholder="例如 8"></div>
+  </div>
+  <p class="cta-row"><button class="cta primary" type="button" id="go">算</button></p>
+
+  <div id="out" hidden>
+    <div class="stats">
+      <div><span class="n" id="cost">–</span><span class="l">元:真实总成本(费 + 时间)</span></div>
+      <div><span class="n" id="months">–</span><span class="l">个月回本(含见钱延迟)</span></div>
+      <div><span class="n" id="ratio">–</span><span class="l">回本月数 ÷ 现金能撑的月数</span></div>
+    </div>
+    <div class="notice" id="verdict"></div>
+    <p class="cta-row noprint"><button class="cta" type="button" id="share">复制结果链接</button><a class="cta" href="/free">先看免费的</a><a class="cta" href="https://35.agiscorecard.com/restart" data-ev="bridge_click" data-l="restart">算现金红线(三十五后)</a></p>
+    <p class="small muted">时间成本用的是你的时薪,因为那是你本可以用来接活的小时。「每月多赚」请按最保守估——课程宣传册上的数字是他们的营销,不是你的收入。</p>
+  </div>
+
+  <hr class="rule">
+  <h2>三个先问对方的问题</h2>
+  <div class="tbl"><table>
+    <tr><th>问</th><th>为什么</th></tr>
+    <tr><td>能不能先看完整大纲和一节正课?</td><td>先交钱才能看的,大纲往往经不起看</td></tr>
+    <tr><td>你们的「就业率 / 接单率」怎么算的,分母是谁?</td><td>答不出分母的数字,当它不存在</td></tr>
+    <tr><td>同样的东西,国家智慧教育平台或补贴培训里有没有?</td><td>有免费的,付费的必须给出「多出来的那一层」是什么</td></tr>
+  </table></div>
+
+  <hr class="rule">
+  <h2>判定与依据</h2>
+  <ul>
+    <li><a href="/adult-what-to-learn">35 岁失业后,该去学什么?</a> — 先做,再免费学,最后才付费。</li>
+    <li><a href="/free">免费学清单</a> — 只列核实过的。</li>
+  </ul>
+</main>
+<footer><div class="wrap">
+  <div class="links"><a href="/">首页</a><a href="/adult-what-to-learn">成年人</a><a href="/free">免费学</a><a href="/about">关于</a></div>
+  <div>学什么 · <a href="https://agiscorecard.com/">AGI Scorecard</a> 网络的中文子站 · 不构成财务建议</div>
+</div></footer>
+<script src="/app.js"></script>
+<script>
+(function(){
+  var qs = new URLSearchParams(location.search);
+  ["fee","hours","wage","gain","lag","runway"].forEach(function(k){ if (qs.get(k)) document.getElementById(k).value = qs.get(k); });
+  function run(){
+    var fee = +document.getElementById("fee").value || 0, hours = +document.getElementById("hours").value || 0, wage = +document.getElementById("wage").value || 0, gain = +document.getElementById("gain").value || 0, lag = +document.getElementById("lag").value || 0, runway = +document.getElementById("runway").value || 0;
+    if (!gain) { alert("「学完后每月多赚」不能为 0——它是算式的分母。填不出来,本身就是答案。"); return; }
+    var cost = fee + hours * wage; var months = Math.ceil(cost / gain) + lag; var ratio = runway ? Math.round(months / runway * 10) / 10 : null;
+    document.getElementById("cost").textContent = cost.toLocaleString("zh-CN"); document.getElementById("months").textContent = months; document.getElementById("ratio").textContent = ratio === null ? "填现金" : ratio;
+    var v;
+    if (ratio !== null && ratio > 1) v = "<strong>先别学。</strong>回本要 " + months + " 个月,现金只能撑 " + runway + " 个月——学到一半就得停。先用免费的那一层,或先接活把现金撑长。";
+    else if (months > 12) v = "<strong>谨慎。</strong>回本超过一年。这么长的周期里,课程内容和市场都可能变;先用免费资源验证你真的需要它,再付费。";
+    else if (months > 6) v = "<strong>可以考虑,但先过三个问题。</strong>回本半年到一年;先看完整大纲、问清就业率分母、确认免费资源里没有同样的东西。";
+    else v = "<strong>算术上过关。</strong>回本 " + months + " 个月以内。剩下的问题只有一个:「每月多赚」这个数是你估的还是他们说的?";
+    document.getElementById("verdict").innerHTML = v; document.getElementById("out").hidden = false;
+    var u = new URL(location.href); [["fee",fee],["hours",hours],["wage",wage],["gain",gain],["lag",lag],["runway",runway]].forEach(function(kv){ u.searchParams.set(kv[0], kv[1]); }); history.replaceState(null, "", u.toString());
+    lxev("tool_result", "worth:" + months + ":" + (ratio === null ? "na" : ratio));
+    document.getElementById("out").scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+  document.getElementById("go").addEventListener("click", run);
+  document.getElementById("share").addEventListener("click", function(){ lxshare("学它值不值:回本 " + document.getElementById("months").textContent + " 个月"); });
+  if (qs.get("gain")) run();
+})();
+</script>
+</body>
+</html>

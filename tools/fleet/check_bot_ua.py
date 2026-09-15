@@ -26,6 +26,7 @@ WORKERS = [
     "sites/buysomething/worker.js",
     "sites/gamesledger/worker.js",
     "sites/after35/worker.js",
+    "sites/learn/worker.js",
 ]
 
 BOTS = [

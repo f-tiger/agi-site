@@ -1,0 +1,12 @@
+{
+  // 学什么 · learn.agiscorecard.com — 2026-09-15 owner 指令建站:「做一个教育子网站吧,各个方向我都希望你
+  // 主动尝试,成年人失业,家庭教育等。做下调研再做这个教育子站点」。
+  // 舰队标准形态:静态资产 + worker(白名单事件 + 服务端 page_view + /api/pulse)。
+  // D1:账号已到 10 库上限(建库返回 7406),故复用 after35-events 库,表名前缀 l(lev / lua_audit)。
+  "name": "learn",
+  "main": "worker.js",
+  "compatibility_date": "2026-08-01",
+  "assets": { "directory": "site", "binding": "ASSETS", "run_worker_first": true },
+  "routes": [{ "pattern": "learn.agiscorecard.com", "custom_domain": true }],
+  "d1_databases": [{ "binding": "EV", "database_name": "after35-events", "database_id": "6109b81e-c970-47d7-b7fc-3a2a15f68ed2" }]
+}

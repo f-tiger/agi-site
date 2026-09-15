@@ -42,6 +42,7 @@ thedollscout 冻结约 **86 小时**——它的部署是纯 push 触发，没�
 | `deploy-thedollscout.yml` | thedollscout.com | **`20 7 * * *`（2026-09-11 新增）** |
 | `deploy-goldrush.yml` | goldrush.agiscorecard.com | **`35 7 * * *`（2026-09-11 新增）** |
 | `deploy-gridlings.yml` | play.agiscorecard.com | **`50 7 * * *`（2026-09-11 新增）** |
+| `deploy-learn.yml` | learn.agiscorecard.com | **`5 8 * * *`（2026-09-15 建站，owner 指令「做一个教育子网站」）** |
 | `deploy-after35.yml` | 35.agiscorecard.com | **`50 7 * * *`（2026-09-14 建站，owner 指令「给失业中年人用的平台」）** |
 
 ### 数据与维护（外部副作用一律只挂 schedule，绝不挂 push）
