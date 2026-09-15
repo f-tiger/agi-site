@@ -4,7 +4,7 @@
 // 隐私:不存 IP(只存当日 salt 过的 8 位哈希做限速)、不存完整 UA(48 字符前缀 + 分类)。
 // 联系方式由发卡人自愿公开,列表接口不返回,点「查看联系方式」才逐张取(并计数)。
 
-const ALLOWED = new Set(["page_view", "card_view", "contact_reveal", "post_open", "post_submit", "post_ok", "post_fail", "path_result", "checklist_click", "share_click", "filter_use", "withdraw_ok", "bridge_click", "restart_plan", "my_open", "match_click", "live_click", "ai_match", "ai_match_open"]);
+const ALLOWED = new Set(["page_view", "card_view", "contact_reveal", "post_open", "post_submit", "post_ok", "post_fail", "path_result", "checklist_click", "share_click", "filter_use", "withdraw_ok", "bridge_click", "restart_plan", "my_open", "match_click", "live_click", "ai_match", "ai_match_open", "done_ok", "share_card"]);
 const KINDS = new Set(["offer", "need", "team"]);
 // 组队帖(kind=team,2026-09-14 v4,owner:「志同道合人发帖,然后一起创业」):offers 列存「需要的合伙人角色」。
 const ROLES = ["技术", "销售", "运营", "资金", "行业资源", "设计", "财务法务", "产品"];
@@ -253,8 +253,8 @@ export default {
         }
         if (p === "/api/stats" && request.method === "GET") {
           const rows = (await env.EV.prepare("SELECT kind, status, COUNT(*) n FROM cards GROUP BY kind, status").all()).results || [];
-          const s = { offer: 0, need: 0, team: 0, pending: 0, reveals28: 0 };
-          for (const r of rows) { if (r.status === "live") s[r.kind] = r.n; else if (r.status === "pending") s.pending += r.n; }
+          const s = { offer: 0, need: 0, team: 0, pending: 0, done: 0, reveals28: 0 };
+          for (const r of rows) { if (r.status === "live") s[r.kind] = r.n; else if (r.status === "pending") s.pending += r.n; else if (r.status === "done") s.done += r.n; }
           const rv = await env.EV.prepare("SELECT COUNT(*) n FROM ev WHERE name='contact_reveal' AND day >= date('now','-28 days')").first();
           s.reveals28 = (rv && rv.n) | 0;
           return json({ ok: true, ...s, generated: new Date().toISOString() }, 200, { "cache-control": "public, max-age=60" });
@@ -331,10 +331,12 @@ export default {
           const b = await request.json().catch(() => ({}));
           const id = parseInt(b.id, 10) || 0; const code = clean(b.code, 12).toUpperCase();
           if (!id || code.length !== 6) return json({ ok: false, code: "bad" }, 400);
-          const r = await env.EV.prepare("UPDATE cards SET status='withdrawn' WHERE id=? AND code=? AND status IN ('live','pending') RETURNING id").bind(id, code).first();
+          // reason=done:「找到了」——下线并计入站点的真实结果数(首页「已标记找到了」)。这是本站唯一的成功数字,只能由发卡人自己按。
+          const done = b.reason === "done";
+          const r = await env.EV.prepare("UPDATE cards SET status=?, reviewed=date('now') WHERE id=? AND code=? AND status IN ('live','pending') RETURNING id, kind").bind(done ? "done" : "withdrawn", id, code).first();
           if (!r) return json({ ok: false, code: "notfound" }, 404);
-          logRow(env, ctx, { name: "withdraw_ok", label: String(id), path: "/api/withdraw", ua_class: "api" });
-          return json({ ok: true });
+          logRow(env, ctx, { name: done ? "done_ok" : "withdraw_ok", label: r.kind + ":" + id, path: "/api/withdraw", ua_class: "api" });
+          return json({ ok: true, status: done ? "done" : "withdrawn" });
         }
         if (p === "/api/pulse" && request.method === "GET") {
           // 舰队 heartbeat 读侧(同 goldrush):28 天真人 pv + AI 助手引荐,只给聚合数。
@@ -348,6 +350,32 @@ export default {
       } catch (e) {
         return json({ ok: false, code: "error" }, 500);
       }
+    }
+
+    // /c/<id>:一张卡的永久链接,服务端渲染(微信/微博分享时有标题与摘要)。noindex——用户内容不进索引,
+    // 避免薄页与垃圾 SEO;联系方式不在页面上,仍要点按钮取。
+    const cm = p.match(/^\/c\/(\d+)$/);
+    if (cm && request.method === "GET") {
+      let card = null;
+      try { if (env.EV) { await ensureSchema(env.EV); card = await env.EV.prepare("SELECT * FROM cards WHERE id=? AND status='live'").bind(cm[1]).first(); } } catch (e) { card = null; }
+      const h = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+      const ua = request.headers.get("user-agent") || ""; const cls = uaClass(ua);
+      if (!ci) auditUa(env, ctx, ua, cls);
+      logRow(env, ctx, { ci, name: "page_view", path: ("/c/" + cm[1]).slice(0, 80), ref: (request.headers.get("referer") || "").slice(0, 120), ua_class: cls, country: (request.cf && request.cf.country) || "" });
+      const nav = '<header class="top"><div class="wrap"><a class="brand" href="/">三十五<b>后</b></a><nav class="main"><a href="/cards">经验卡</a><a href="/post">发一张</a><a href="/team">组队</a><a href="/paths">变现路径</a><a href="/ai-leverage">经验×AI</a><a href="/restart">二次启动</a><a href="/checklist">失业第一周</a><a href="/about">关于</a></nav></div></header>';
+      const foot = '<footer><div class="wrap"><div class="links"><a href="/">首页</a><a href="/cards">经验卡</a><a href="/post">发一张</a><a href="/about">关于与撤卡</a></div><div>三十五后 · <a href="https://agiscorecard.com/">AGI Scorecard</a> 网络的中文子站 · 不做中介、不抽成</div></div></footer>';
+      if (!card) {
+        return new Response('<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>这张卡不在线了 — 三十五后</title><meta name="robots" content="noindex"><link rel="stylesheet" href="/style.css"></head><body>' + nav + '<main class="wrap"><h1>这张卡不在线了</h1><p class="lead muted">可能已被发卡人下线,或标记为「找到了」。</p><p class="cta-row"><a class="cta primary" href="/cards">看在线的卡</a><a class="cta" href="/post">发一张我的</a></p></main>' + foot + '</body></html>', { status: 404, headers: { "content-type": "text/html; charset=utf-8", "cache-control": "no-store" } });
+      }
+      const c = publicCard(card);
+      const kindLabel = c.kind === "need" ? "找有经验的人" : c.kind === "team" ? "找合伙人" : "我有经验";
+      const desc = (c.body || "").slice(0, 120);
+      const html = '<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>' + h(c.headline) + ' — 三十五后</title><meta name="description" content="' + h(desc) + '"><meta name="robots" content="noindex,follow"><link rel="canonical" href="https://35.agiscorecard.com/c/' + c.id + '"><meta property="og:title" content="' + h(kindLabel + ":" + c.headline) + '"><meta property="og:description" content="' + h(desc) + '"><meta property="og:url" content="https://35.agiscorecard.com/c/' + c.id + '"><meta property="og:type" content="article"><link rel="stylesheet" href="/style.css"></head><body>' + nav +
+        '<main class="wrap"><p class="small muted"><a href="/">三十五后</a> › <a href="/cards">经验卡</a> › 卡 #' + c.id + '</p><div id="one" class="cards" style="grid-template-columns:1fr;max-width:720px"></div>' +
+        '<p class="cta-row" style="margin-top:18px"><button class="cta" type="button" onclick="a35share(document.title)">分享这张卡</button><a class="cta primary" href="/post?kind=' + (c.kind === "offer" ? "need" : "offer") + '" data-ev="post_open" data-l="permalink">我也发一张</a></p>' +
+        '<p class="small muted">联系方式只在点「查看联系方式」时显示;本站不做中介、不抽成。发卡人可用撤卡码随时下线。</p></main>' + foot +
+        '<script src="/app.js"></script><script>a35mountOne(document.getElementById("one"), ' + JSON.stringify(c).replace(/</g, "\\u003c") + ');</script></body></html>';
+      return new Response(html, { headers: { "content-type": "text/html; charset=utf-8", "cache-control": "public, max-age=60" } });
     }
 
     const res = await env.ASSETS.fetch(request);

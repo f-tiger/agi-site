@@ -31,7 +31,8 @@
     </div>
     <h3 id="mhead"></h3>
     <p id="mtip" class="muted"></p>
-    <p class="cta-row"><a class="cta" href="/cards">看看别人的卡</a><button class="cta" type="button" id="mwithdraw" style="border-color:var(--warn);color:var(--warn)">下线这张卡</button></p>
+    <p class="cta-row"><a class="cta" href="/cards">看看别人的卡</a><button class="cta" type="button" id="mdone" style="border-color:var(--ok);color:var(--ok)">找到了,下线并计入</button><button class="cta" type="button" id="mwithdraw" style="border-color:var(--warn);color:var(--warn)">只下线</button></p>
+    <p class="small muted">「找到了」会把这张卡下线,并让首页的「已标记找到了」加一——那是本站唯一的成功数字,只有发卡人自己能按,我们不会替你按。</p>
     <div id="mok" class="notice ok" hidden>已下线。</div>
     <h2>AI 为这张卡找到的对面</h2>
     <p class="small muted">对面是指:你有经验 → 在找人的需求与项目;你在找人 → 有经验的人。分数只是排序,理由才是判断依据。</p>
@@ -46,7 +47,7 @@
 <script>
 (function(){
   var qs = new URLSearchParams(location.search); if (qs.get("id")) document.getElementById("mid").value = qs.get("id"); if (qs.get("code")) document.getElementById("mcode").value = qs.get("code");
-  var ST = { live: "在线", pending: "人工复核中", withdrawn: "已下线", rejected: "未通过复核" };
+  var ST = { live: "在线", pending: "人工复核中", withdrawn: "已下线", rejected: "未通过复核", done: "找到了" };
   function load(){
     var id = document.getElementById("mid").value, code = document.getElementById("mcode").value.trim().toUpperCase(), err = document.getElementById("merr"); err.hidden = true;
     fetch("/api/my?id=" + encodeURIComponent(id) + "&code=" + encodeURIComponent(code)).then(function(r){ return r.json(); }).then(function(j){
@@ -62,6 +63,10 @@
     }).catch(function(){ err.textContent = "网络错误。"; err.hidden = false; });
   }
   document.getElementById("mf").addEventListener("submit", function(e){ e.preventDefault(); load(); });
+  document.getElementById("mdone").addEventListener("click", function(){
+    if (!confirm("确认这张卡的事已经找到人/找到活了?下线后不能恢复,会计入首页的「找到了」。")) return;
+    fetch("/api/withdraw", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ id: document.getElementById("mid").value, code: document.getElementById("mcode").value, reason: "done" }) }).then(function(r){ return r.json(); }).then(function(j){ if (j.ok) { document.getElementById("mok").textContent = "已标记「找到了」并下线。谢谢你告诉我们——这一下会出现在首页的数字里。"; document.getElementById("mok").hidden = false; document.getElementById("mstatus").textContent = "找到了"; } else alert("没成功:" + (j.code || "")); });
+  });
   document.getElementById("mwithdraw").addEventListener("click", function(){
     if (!confirm("确定下线这张卡?下线后不能恢复。")) return;
     fetch("/api/withdraw", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ id: document.getElementById("mid").value, code: document.getElementById("mcode").value }) }).then(function(r){ return r.json(); }).then(function(j){ if (j.ok) { document.getElementById("mok").hidden = false; document.getElementById("mstatus").textContent = "已下线"; } else alert("没成功:" + (j.code || "")); });

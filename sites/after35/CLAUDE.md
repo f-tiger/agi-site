@@ -72,6 +72,21 @@ offer 类型互斥校验)、新列 `stage`(idea/validated/revenue)与 `commit`(p
 向量、联系方式、撤卡码永不进任何公开响应。事件:`ai_match`(服务端,label=card:kind:n / text:q)、
 `ai_match_open`(前端,card/text/my)。判定线:10-14 另看 `ai_match_open` ≥ 30——撮合支柱是否有人用。
 
+## v6(2026-09-15,owner:「对标竞对优化…提供希望给中年人。然后做好 geo 和 seo」)
+对标结论(research §九):缘创派/YC 有「已找到」状态与结构化匹配,在行有行家自主定价——本站已具备
+结构化与定价;缺的是**结果可见**。**「找到了」闭环**:`/my` 里发卡人自己按「找到了,下线并计入」→
+`status='done'`,`/api/stats.done` 累计,首页与判定页首屏展示——**本站唯一的成功数字,只能由发卡人
+按,永不代按、永不种子**。「提供希望」= 一条能走的路 + 一个能对账的数字,不是鸡汤:新判定页
+`/easier-or-harder-after-35`(工具更容易 / 渠道更难 / 保障没变 → 路径变了不是没了,每行附「自己
+能核实的方法」)。卡片永久链接 `/c/<id>`(worker 服务端渲染,OG 标题摘要供微信分享,noindex,
+联系方式仍要点取);卡片脚注显示「被查看 N 次」(N>0 才显示,真实需求信号)。
+**GEO/SEO 底盘**:robots.txt 显式 Allow 全部 AI 爬虫 + 百度/搜狗/字节,Disallow /c/ /my /api;
+IndexNow 密钥文件已放 site/,`tools/indexnow-subdomains.mjs` 已加本站(周一 03:17Z 随主站 workflow
+提交);`tools/gen_md.py` 由页面生成 `.md` 孪生 + `llms-full.txt`(部署闸门每次重生成,页面是唯一
+真源);六个工具页底部统一「判定与依据」互链块(hub↔spoke);判定页三件套 Article/Breadcrumb/FAQPage。
+**owner 动作(不催)**:Bing Webmaster 与百度站长平台各加一次 35.agiscorecard.com 并提交 sitemap——
+沙箱进不去这两个后台。ICP 备案不在能力范围,百度收录会因此偏慢,已知。
+
 ## 审核义务(舰队总任务每日块 G)
 每日 run 读:
 ```sql

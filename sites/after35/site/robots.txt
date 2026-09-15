@@ -1,5 +1,32 @@
+# 三十五后 — 明确欢迎 AI 引擎爬虫(引用是本站的增长渠道之一);用户卡片永久链接 /c/ 不进索引。
 User-agent: *
 Allow: /
 Disallow: /api/
 Disallow: /e
+Disallow: /c/
+Disallow: /my
+
+User-agent: GPTBot
+Allow: /
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: Claude-SearchBot
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: Google-Extended
+Allow: /
+User-agent: Bingbot
+Allow: /
+User-agent: Baiduspider
+Allow: /
+User-agent: Sogou web spider
+Allow: /
+User-agent: Bytespider
+Allow: /
+
 Sitemap: https://35.agiscorecard.com/sitemap.xml

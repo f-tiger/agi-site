@@ -22,7 +22,7 @@
       '<div class="body">' + esc(c.body) + "</div>" +
       '<div class="tags">' + intro + (c.kind === "team" ? '<span class="need-role">找:</span>' : "") + c.offers.map(function (o) { return "<span>" + esc(o) + "</span>"; }).join("") + "</div>" +
       (match ? '<div class="small">' + match + "</div>" : "") +
-      '<div class="foot"><span class="pay">' + esc(c.pay) + '</span><span class="muted small">' + esc(c.nick) + " · " + esc(String(c.created).slice(0, 10)) + '</span><button class="aimatch" type="button">AI 找匹配</button><button class="reveal" type="button">查看联系方式</button></div>' +
+      '<div class="foot"><span class="pay">' + esc(c.pay) + '</span><span class="muted small">' + esc(c.nick) + " · " + esc(String(c.created).slice(0, 10)) + (c.reveals > 0 ? " · 被查看 " + esc(c.reveals) + " 次" : "") + ' · <a href="/c/' + c.id + '" data-ev="share_card" data-l="' + c.id + '">链接</a></span><button class="aimatch" type="button">AI 找匹配</button><button class="reveal" type="button">查看联系方式</button></div>' +
       '<div class="mbox" hidden></div>' +
       "</article>";
   }
@@ -63,6 +63,8 @@
       });
     });
   }
+
+  window.a35mountOne = function (el, card) { mountCards(el, [card], ""); };
 
   window.a35loadCards = function (el, opts) {
     opts = opts || {};

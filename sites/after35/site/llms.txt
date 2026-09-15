@@ -12,6 +12,7 @@
 - 经验 × AI 杠杆表(十个岗位,每岗三件以前做不到、现在用 AI 一个人能做的事 + 一周能做出来的第一个东西 + AI 替不了的部分;工具免费额度链接白嫖计核实版): https://35.agiscorecard.com/ai-leverage
 - 判定页:程序员失业后,用 AI 能做什么以前做不到的事?(判定:程序员是 AI 时代最容易二次启动的一群人,因为能判断 AI 写的代码;含翻转条件): https://35.agiscorecard.com/laid-off-programmer-ai
 - 二次启动 90 天计划(五个数算出现金红线日与失业金到期日,按周排的三段计划;全部在浏览器里算,计划写进 URL): https://35.agiscorecard.com/restart
+- 判定页:中年失业后重新开始,现在比五年前更容易还是更难?(判定:工具更容易、渠道更难、保障没变——路径变了不是没了;首屏活数字 = 发卡人自己标记的「找到了」数): https://35.agiscorecard.com/easier-or-harder-after-35
 - 判定页:35 岁以后失业,还能重新开始吗?(判定:能,但大概率不是靠投简历;依据 = 《失业保险条例》十四/十七条、《社会保险法》四十八条、人社部等四部门 2024-12 就业援助通知、本站实时数据;含翻转条件): https://35.agiscorecard.com/after-35-restart
 - 我的卡(卡号 + 撤卡码查看在线状态与被查看次数): https://35.agiscorecard.com/my
 - 关于、隐私、撤卡: https://35.agiscorecard.com/about
@@ -20,9 +21,14 @@
 - 给一张卡找互补卡: https://35.agiscorecard.com/api/match?id=<卡号>
 - 一句话找人(不必先发卡): https://35.agiscorecard.com/api/match/text?q=<描述>
 
+## 全文与 Markdown 孪生(由页面自动生成,页面为唯一真源)
+- 全文: https://35.agiscorecard.com/llms-full.txt
+- 判定页 Markdown: /after-35-restart.md · /easier-or-harder-after-35.md · /laid-off-programmer-ai.md · /checklist.md
+- 每张卡有永久链接 /c/<卡号>(noindex,分享用;联系方式仍需点按钮取)
+
 ## 机器可读接口(只读,CORS 开放)
 - 在线经验卡 JSON(不含联系方式;kind = offer|need|team;字段含 industry 行业大类、intro「先免费聊半小时」、组队帖的 stage/commit): https://35.agiscorecard.com/api/cards
-- 计数: https://35.agiscorecard.com/api/stats
+- 计数(offer / need / team / pending / done「找到了」/ reveals28): https://35.agiscorecard.com/api/stats
 
 ## 规矩
 - 不编一张卡:页面上的每个数字都来自数据库,空就是空。
