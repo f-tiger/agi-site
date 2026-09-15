@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>签约前 12 问:这份工作能不能签 — 第一份工作</title>
+<meta name="description" content="拿到 offer、要签三方或劳动合同之前,12 个是非题两分钟出判定:别签 / 先谈 / 可以签。每面红旗对照《劳动合同法》条款或官方规定。不上传,判定写进链接可发给家里人。">
+<link rel="canonical" href="https://firstjob.agiscorecard.com/before-signing">
+<meta property="og:title" content="签约前 12 问:这份工作能不能签">
+<meta property="og:description" content="12 个是非题,两分钟出判定:别签 / 先谈 / 可以签。红旗逐条对照劳动合同法条款。">
+<link rel="stylesheet" href="/style.css">
+<style>
+  .yn { display: flex; gap: 6px; }
+  .yn button { min-height: 44px; min-width: 64px; padding: 0 14px; border-radius: 8px; border: 1px solid var(--rule); background: #fff; font: inherit; font-size: 16px; cursor: pointer; }
+  .yn button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .qq { display: grid; grid-template-columns: 1fr auto; gap: 8px 14px; align-items: center; padding: 6px 0; }
+  .qq .h { grid-column: 1 / -1; color: var(--ink3); font-size: 15px; }
+  @media (max-width: 560px) { .qq { grid-template-columns: 1fr; } }
+  .verdict { border-radius: 12px; padding: 22px; margin: 22px 0; border: 2px solid var(--rule); }
+  .verdict.red { border-color: var(--warn); background: #fbeaec; }
+  .verdict.amber { border-color: #b7791f; background: #fdf3e2; }
+  .verdict.green { border-color: var(--ok); background: #e7f4ee; }
+  .verdict h2 { margin-top: 0; }
+  .flag { padding: 8px 0; border-bottom: 1px solid var(--rule); }
+  .flag b { display: block; }
+  .flag small { color: var(--ink3); }
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"签约前 12 问","url":"https://firstjob.agiscorecard.com/before-signing","applicationCategory":"BusinessApplication","operatingSystem":"Web","inLanguage":"zh-CN","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"CNY"},"featureList":["12 个是非题","别签 / 先谈 / 可以签","红旗逐条对照劳动合同法条款","判定写进链接可分享","不上传"],"isPartOf":{"@type":"WebSite","name":"第一份工作","url":"https://firstjob.agiscorecard.com/"}}
+</script>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="/">第一份<b>工作</b></a>
+  <nav class="main"><a href="/ai-entry-level-jobs">AI 在砍入门岗吗</a><a href="/sanfang-agreement">三方协议</a><a href="/yingjie-status">应届生身份</a><a href="/before-signing" aria-current="page">签约前 12 问</a><a href="/probation-check">试用期自查</a><a href="/ai-exposure">岗位暴露自查</a><a href="/resources">官方入口</a><a href="/about">关于</a></nav>
+</div></header>
+<main class="wrap">
+  <h1>这份工作能不能签?</h1>
+  <p class="lead muted">要签三方、要签劳动合同、或者对方催你「今天就定」——先回答 12 个问题。它不替你判断这家公司好不好,只把<strong>违法和高风险的条款</strong>数清楚。<strong>不上传;判定写进链接,可以发给家里人一起看。</strong></p>
+  <div id="qs"></div>
+  <div id="out" hidden>
+    <div class="verdict" id="vbox"><h2 id="vtitle"></h2><p id="vtext"></p><div id="flags"></div></div>
+    <p class="cta-row noprint"><button class="cta primary" type="button" id="share">复制判定链接</button><a class="cta" href="/probation-check">算一下试用期合不合法</a></p>
+  </div>
+  <hr class="rule">
+  <h2>红旗背后的依据</h2>
+  <div class="tbl"><table>
+    <tr><th>红旗</th><th>依据</th></tr>
+    <tr><td>入职前要交钱(培训费、押金、保证金、服装费、工装押金)</td><td>《劳动合同法》第九条:不得要求劳动者提供担保或者以其他名义向劳动者收取财物——<strong>换任何名目都一样</strong></td></tr>
+    <tr><td>要扣押身份证、毕业证、学位证原件</td><td>同第九条:不得扣押居民身份证和其他证件</td></tr>
+    <tr><td>试用期超过法定上限</td><td>第十九条:1 年以上不满 3 年的合同,试用期不超过 2 个月;3 年以上与无固定期限不超过 6 个月;不满 3 个月的合同不得约定试用期。用<a href="/probation-check">试用期自查</a>算</td></tr>
+    <tr><td>试用期工资低于约定工资的 80%</td><td>第二十条:不低于本单位同岗位最低档工资或约定工资的 80%,且不低于当地最低工资标准</td></tr>
+    <tr><td>不签书面劳动合同 / 只签「实习协议」长期干</td><td>建立劳动关系应当订立书面劳动合同;把正式用工长期挂在实习或劳务名义下,是常见的规避手法</td></tr>
+    <tr><td>三方协议的关键栏留空让你先签字</td><td>三方协议是民事合同,空白栏由对方事后填写,风险全在你这边。见<a href="/sanfang-agreement">三方协议是劳动合同吗</a></td></tr>
+  </table></div>
+  <p class="small muted">本页不构成法律意见,法条只概括,以<a href="https://www.samr.gov.cn/zw/zfxxgk/fdzdgknr/bgt/art/2023/art_0abfdd261c03417b949df19d869add8d.html" rel="noopener" data-ev="resource_click" data-l="labour_law">原文</a>与执行机关为准。遇到违法条款,向当地人力资源社会保障部门反映(12333)。<strong>对方让你转账、报验证码、或自称公检法</strong>?那不是坏工作,是诈骗——走姊妹站<a href="https://fanzha.agiscorecard.com/check" rel="noopener" data-ev="bridge_click" data-l="fanzha_check">识骗的 12 问筛查</a>。</p>
+</main>
+<footer><div class="wrap">
+  <div class="links"><a href="/">首页</a><a href="/sanfang-agreement">三方协议</a><a href="/probation-check">试用期自查</a><a href="/yingjie-status">应届生身份</a><a href="/resources">官方入口</a><a href="/about">关于</a></div>
+  <div>第一份工作 · <a href="https://agiscorecard.com/">AGI Scorecard</a> 网络的中文子站</div>
+</div></footer>
+<script src="/app.js"></script>
+<script>
+(function(){
+  var Q = [
+    { k:"pay", t:"入职前要你交钱吗?(培训费、押金、保证金、服装费、体检指定机构代收)", h:"《劳动合同法》第九条:不得以任何名义收取财物——单条即别签", w:3 },
+    { k:"doc", t:"要扣押你的身份证、毕业证、学位证原件吗?", h:"同第九条:不得扣押居民身份证和其他证件——单条即别签", w:3 },
+    { k:"nocontract", t:"入职后不签书面劳动合同,或只让你签「实习协议」长期干?", h:"建立劳动关系应当订立书面劳动合同;长期挂实习名义是规避手法", w:3 },
+    { k:"probover", t:"试用期超过法定上限吗?(1–3 年合同超过 2 个月,3 年以上超过 6 个月)", h:"第十九条;拿不准先用试用期自查算", w:2 },
+    { k:"probwage", t:"试用期工资低于转正工资的 80% 吗?", h:"第二十条下限", w:2 },
+    { k:"blank", t:"三方协议或合同上有空白栏,对方让你先签字?", h:"空白处事后由对方填,风险全在你", w:3 },
+    { k:"nowrite", t:"薪资构成、工作地点、岗位,合同里没写清楚吗?", h:"「按公司规定」等于什么都没写,入职后你没有抓手", w:2 },
+    { k:"rush", t:"对方催你「今天必须定」「名额马上没了」吗?", h:"催的是你核实的时间;正规单位给你看条款的时间", w:1 },
+    { k:"nosocial", t:"明确说不交社保,或让你签「自愿放弃社保」吗?", h:"社保是法定义务,自愿放弃的承诺不能免除单位责任", w:2 },
+    { k:"penalty", t:"合同里给你设了违约金,但不是培训服务期或竞业限制?", h:"劳动合同中约定违约金的情形法律有限定,乱设的条款要问清楚", w:2 },
+    { k:"unclear", t:"这家单位的名称、地址、统一社会信用代码,你核过吗?(没核=是)", h:"用国家企业信用信息公示系统查一遍,两分钟", w:1 },
+    { k:"promise", t:"关键承诺只有口头,没落到纸上吗?", h:"「转正就加」「年底一定有」——不写进合同就不存在", w:2 }
+  ];
+  var qs = new URLSearchParams(location.search); var a = {}; var pre = qs.get("a") || "";
+  Q.forEach(function(q, i){ var c = pre[i]; if (c === "1" || c === "0") a[q.k] = c; });
+  var box = document.getElementById("qs");
+  function render(){
+    box.innerHTML = Q.map(function(q, i){ return '<div class="qq"><div class="t">' + (i+1) + ". " + q.t + '</div><div class="yn"><button type="button" data-k="' + q.k + '" data-v="1" aria-pressed="' + (a[q.k] === "1") + '">是</button><button type="button" data-k="' + q.k + '" data-v="0" aria-pressed="' + (a[q.k] === "0") + '">否</button></div><div class="h">' + q.h + "</div></div>"; }).join("");
+    box.querySelectorAll("button").forEach(function(b){ b.addEventListener("click", function(){ a[b.getAttribute("data-k")] = b.getAttribute("data-v"); render(); judge(); }); });
+  }
+  function judge(){
+    if (Q.some(function(q){ return a[q.k] === undefined; })) return;
+    var red = [], score = 0, fatal = false;
+    Q.forEach(function(q){ if (a[q.k] === "1") { red.push(q); score += q.w; if (q.w === 3) fatal = true; } });
+    var cls, title, text;
+    if (fatal) { cls = "red"; title = "判定:别签"; text = "至少有一条触及法律明确禁止的做法(收钱、扣证件、不签书面合同、空白栏先签字)。不交钱、不交证件、不签字;要材料就要复印件并注明用途。可向当地人力资源社会保障部门反映(12333)。"; }
+    else if (score >= 4) { cls = "amber"; title = "判定:先谈,别急着签"; text = "没有触及红线,但有几条要先谈清楚并写进合同:把薪资构成、工作地、岗位、试用期逐条落到纸上,再签。"; }
+    else if (score >= 1) { cls = "amber"; title = "判定:小问题,谈完再签"; text = "问题不大,但把标红的几条问清楚,并要求写进合同文本,不要停在口头。"; }
+    else { cls = "green"; title = "判定:这几项没问题"; text = "违法与高风险条款这一关过了。本工具只看条款,不评价这家公司的前景——那部分自己判断。"; }
+    var vb = document.getElementById("vbox"); vb.className = "verdict " + cls;
+    document.getElementById("vtitle").textContent = title; document.getElementById("vtext").textContent = text;
+    document.getElementById("flags").innerHTML = red.map(function(q){ return '<div class="flag"><b>红旗:' + q.t + "</b><small>" + q.h.replace(/<[^>]+>/g, "") + "</small></div>"; }).join("");
+    document.getElementById("out").hidden = false;
+    history.replaceState(null, "", "/before-signing?a=" + Q.map(function(q){ return a[q.k]; }).join(""));
+    jbev("tool_result", "signing:" + cls + ":" + score);
+    document.getElementById("out").scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+  render(); judge();
+  document.getElementById("share").addEventListener("click", function(){ jbshare("签约前 12 问"); });
+})();
+</script>
+</body>
+</html>

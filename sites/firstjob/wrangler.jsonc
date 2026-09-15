@@ -1,0 +1,12 @@
+{
+  // 第一份工作 · firstjob.agiscorecard.com — 2026-09-15 建站(owner /goal「持续做新站点…调研再做」;
+  // 方向候选 #2 毕业生就业,调研 docs/research-2026-09-15.md)。
+  // 舰队标准形态:静态资产 + worker(白名单事件 + 服务端 page_view + /api/pulse)。
+  // D1:账号已到 10 库上限(建库返回 7406),故复用 after35-events 库,表名前缀 j(jev / jua_audit)。
+  "name": "firstjob",
+  "main": "worker.js",
+  "compatibility_date": "2026-08-01",
+  "assets": { "directory": "site", "binding": "ASSETS", "run_worker_first": true },
+  "routes": [{ "pattern": "firstjob.agiscorecard.com", "custom_domain": true }],
+  "d1_databases": [{ "binding": "EV", "database_name": "after35-events", "database_id": "6109b81e-c970-47d7-b7fc-3a2a15f68ed2" }]
+}
