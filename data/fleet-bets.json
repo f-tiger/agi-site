@@ -547,12 +547,16 @@
       "id": "gridlings-playgama-traffic-0922",
       "site": "gridlings",
       "due": "2026-09-22",
-      "metric": "D1 gridlings-events: ts>='2026-09-15 14:53' AND ref LIKE '%games.playgama.net%' AND country<>'US' 的 play_start 累计 / 二次事件(solve+play_again+game_over+hint_used)。剔 US 因为会话探针从 US 出网,口径保守",
-      "threshold": "≥150 / ≥15",
+      "metric": "① D1: ts>='2026-09-15 14:53' AND ref LIKE '%games.playgama.net%' AND country<>'US' 的 play_start 累计;② Playgama 后台 Overview 的 VISITS / PLAYS 60S(只有 owner 能读,报告时须附截图日期)",
+      "threshold": "① ≥150 ② PLAYS 60S ÷ VISITS ≥15%",
       "win": "拿这批 performance data 回投主目录(重交 GHOSTLINE+SINGULARITY),并把 $20 付费轮作为 owner 决策提出",
-      "lose": "门户线判负(CG 已关、itch 大概率同判):游戏降为只维护,不买付费流量,人力回自有域留存",
+      "lose": "门户线判负:游戏降为只维护,不买付费流量,人力回自有域留存",
       "source": "sites/gridlings/docs/playgama-setup.md(2026-09-15 节)",
-      "status": "open"
+      "status": "open",
+      "metric_original": "D1 gridlings-events: ts>='2026-09-15 14:53' AND ref LIKE '%games.playgama.net%' AND country<>'US' 的 play_start 累计 / 二次事件(solve+play_again+game_over+hint_used)。剔 US 因为会话探针从 US 出网,口径保守",
+      "threshold_original": "≥150 / ≥15",
+      "revised": "2026-09-15",
+      "revised_reason": "原口径的「二次事件」测的是这些游戏不发的东西:D1 只记 solve/play_again/game_over 这类离散里程碑,而门户玩家在开局与跑完一局之间什么都不触发。owner 后台截图给了正确指标(停留时长):35 visits → 11 玩过 30s → 6 玩过 60s。阈值改为按他们的口径,原文保留在 *_original。"
     },
     {
       "id": "gridlings-playgama-five-0925",
@@ -563,6 +567,17 @@
       "win": "主目录未对 AI 游戏关门,按过审那款的形状复制",
       "lose": "确认主目录对本舰队的 AI 游戏关闭,此后只经营 sandbox 面,不再空手重投",
       "source": "sites/gridlings/docs/playgama-setup.md(2026-09-15 节)",
+      "status": "open"
+    },
+    {
+      "id": "gridlings-puzzle-portal-1013",
+      "site": "gridlings",
+      "due": "2026-10-13",
+      "metric": "towers 门户包:是否过 Playgama 认证并进 sandbox,以及 Playgama Overview 的 PLAYS 60S ÷ VISITS",
+      "threshold": "过认证 且 ≥15%(与那七款同口径)",
+      "win": "按 PUZZLE_PLAYGAMA 逐款扩到十款拼图;这是台账里第一条能长出扩张的行",
+      "lose": "拼图与 AI 主题游戏在门户上没有差别,门户线整体只维护;不再为门户改打包器",
+      "source": "sites/gridlings/docs/playgama-setup.md(2026-09-15 第九节)",
       "status": "open"
     }
   ]

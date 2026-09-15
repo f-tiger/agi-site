@@ -334,3 +334,69 @@ towers 是 8KB 页 + `app-towers.js` + 两个 JSON，依赖全是根相对路径
 
 **itch 顺带一读(09-24 判定线)**：累计 44 play_start / 13 solve，判定线要 150 / 25；
 最后一次开局 09-11、最后一次 solve **08-27**。**大概率判负，到期照原文结算。**
+
+### 八、owner 的后台截图推翻了「人留不住」（2026-09-15，三张 Overview 截图）
+
+**这是本轮第三次纠正，也是唯一一次由外部数据推翻的。** 我们的 D1 只记离散里程碑
+(`solve` / `play_again` / `game_over`)，而这些游戏在「开局」与「跑完一整局」之间**什么都不发**。
+Playgama 量的是**停留时长**，那才是这类游戏的正确指标。他们的数字：
+
+| 游戏 | VISITS | PLAYS 30S | PLAYS 60S | >30s | >60s |
+|---|---|---|---|---|---|
+| GHOSTLINE | 16 | 6 | 3 | **38%** | **19%** |
+| SINGULARITY | 13 | 4 | 2 | **31%** | **15%** |
+| PROMPT | 6 | 1 | 1 | 17% | 17% |
+| **合计** | **35** | **11** | **6** | **31%** | **17%** |
+
+**三分之一的访客玩过 30 秒，六分之一玩过一分钟。** 这不是「没人留」。此前那句
+「23 次开局 0 次二次事件 = 流量进得来人留不住」**作废** —— 它测的是我们没埋的东西。
+
+**顺带校准了埋点的漏率**：同窗我们的 D1 记到 GHOSTLINE 10 / SINGULARITY 13 / PROMPT 3 = **26**，
+他们记 35。SINGULARITY 两边完全一致，另两款各差 6 和 3。**D1 约少 26%** —— 合理解释是有人落到
+sandbox 页但游戏 iframe 还没跑起来就走了(那种没有 play_start)。**以后报门户人数用他们的 VISITS，
+用 D1 做分国家与行为归因。**
+
+**另外两条截图里的事实**
+- **PROMPT 已从队列进入 `Moderation`(截图时 12 分钟前更新)** —— 五款排队的那条线在动。
+- 平台那一栏的 PLAYS / REVENUE / AVG PLAYTIME 全是 **`—` 而不是 `$0.00`**：主目录没上架，
+  所以根本没有收入行。**sandbox 本身是否分成，后台没给答案,也没有任何 MCP 接口能读** ——
+  这是「80% 分成」到底适用于哪一层的关键问题,**建议 owner 用后台那个对话气泡直接问他们**。
+- 投放结束时间 22 Sep 22:53(owner 本地时区)= 14:53 UTC,与 MCP 读到的完全对得上。
+
+### 九、towers 门户包已建并通过认证前自检（2026-09-15，试点）
+
+**为什么是 towers 而不是第 11 款拼图**：`towers / trail / starbattle / futoshiki / kropki /
+minisudoku / nonogram / sandwich / thermo / balance` **十款题库完全相同**(各 320 池 + 450 日题),
+再做一款是翻炒;而这十款**从来没有被打包上任何门户**——`PLAYGAMA` / `ITCH` 列表里全是那七款
+AI 主题游戏。28 天里这十款拿到的外部访问约 200 次 page_view,而 Playgama 免费投放 47 分钟就给了
+23 次开局。**缺的是分发不是品类。**
+
+**做法：零引擎改动。** 七个引擎服务十款(`app-latin.js` 一个管 kropki/minisudoku/sandwich),
+逐个改它们等于改线上站。改为新增 `tools/portal/puzzle-portal.js`,只绑十款**都已有**的标记:
+`#d-easy/#d-medium/#d-hard`(广告断点)、`#grid`(渲染即 gameplay_started)、`#win`(解开即 stopped)。
+扩到第二款只改 `PUZZLE_PLAYGAMA` 一行。
+
+**打包时改写的三处(单文件游戏没有这些问题,所以这是新的)**
+1. **信标**:每个引擎都是 `sendBeacon("/e")` **根相对** —— 在 `sb-xxx.games.playgama.net` 上会 POST 到
+   **Playgama 自己的域**,数据一行都收不到。而「收数据」正是把它送上门户的全部理由。已改写为绝对 URL,
+   断言必须改到 2 处。
+2. `/sub.js`、`/embed.js`、`/manifest.webmanifest`、`registerServiceWorker("/sw.js")` 全是根相对的站内件,
+   在门户上 404。**sw 那条尤其隐蔽**:它自带 `.catch(){}`,对游戏无害,但 Chromium 照样打一条 console error,
+   而 console error 是每一家门户的拒稿风险。
+3. 剩余根相对 `<a>`(规则页、兄弟拼图)拆成纯文字;header/footer/beehiiv 订阅链接整块删。
+   `strip_site_footer` 原有的那条断言当场抓到了 `/skyscraper-puzzle-rules`,守卫是有效的。
+
+**`tools/verify-puzzle-portal.js`（新增，能红）**
+```
+PW_SPKI=<代理CA的SPKI> node tools/verify-puzzle-portal.js site/downloads/playgama/towers.zip
+```
+**它存在的唯一理由**:我第一版测试用 `document.getElementById("again").click()` 在 JS 里点,**通过了**;
+换成真实点击才发现 **`#again` 藏在 `#win` 里,不解开题根本不可见**。认证只点可见控件、又解不开
+Skyscrapers —— 这正是 GHOSTLINE 第一次认证「No advertising is implemented」的同一个坑,**差一点原样再踩一次**。
+所以断言写的是「**从一次真实点击、在未解题状态下**能不能观察到广告」。当前全绿:
+Bridge 初始化 ✓ · 49 格渲染 ✓ · 三个断点**可见** ✓ · 无交互不出广告 ✓ ·
+一次真实点击 → `loading → failed`(离线无库存,到 `loading` 即证明请求发出去了)✓ ·
+90 秒冷却拦住第二次点击 ✓ · console error **0** ✓。
+
+**没做也不该现在做的**:没有在 Playgama 后台建应用、没有上传、没有发布 sandbox、没有开投放。
+那些都是对外动作,等 owner 说了算。
