@@ -1305,6 +1305,17 @@ CONTEXT_MODELS = {
  # the hygrometer before any purchase), then the two build types the article
  # itself recommends. No named models — no public-test consensus verified, so
  # honest category searches. Prices only where the page states them.
+ # The humidifier buyer's guide (2026-09-15). Same three-card shape as the cost
+ # page, but ordered by that page's own argument: measure, then the build type
+ # that cannot over-humidify, then the two that can. The device family is
+ # "dehum" only because that is the humidity table's key — inject_quickpick
+ # blocks the dehumidifier router on luftbefeuchter slugs by keyword, so a
+ # reader whose air is too DRY is never routed to an entfeuchter picker.
+ "luftbefeuchter-ratgeber": [
+   ("Hygrometer (innen, Min/Max)", "Erst messen", "Unter 40 % über mehrere Tage ist der einzige Fall, der ein Gerät rechtfertigt — und es zeigt, ob der Zielwert gehalten wird.", "ab 10 €", "hygrometer+innen+min+max", "dehum"),
+   ("Verdunster mit Hygrostat", "Dauerbetrieb", "Kaltverdunstung: je feuchter die Luft, desto weniger nimmt sie auf — überfeuchtet konstruktionsbedingt kaum. Matten sind Verschleißteil.", "Preis vor Ort prüfen", "luftbefeuchter+verdunster+hygrostat", "dehum"),
+   ("Infrarot-Thermometer", "Kälteste Fläche finden", "Der Zielwert hängt an der kältesten Wand — ohne diese Messung stellst du den Hygrostat blind ein.", "ab ca. 20 €", "infrarot+thermometer", "dehum"),
+ ],
  "luftbefeuchter-stromverbrauch": [
    ("Hygrometer (innen, Min/Max)", "Erst messen", "Zeigt in zwei Tagen, ob die Luft wirklich dauerhaft unter 40 % liegt — ohne Messung ist jeder Befeuchter geraten.", "ab 10 €", "hygrometer+innen+min+max", "dehum"),
    ("Verdunster-Luftbefeuchter", "Sparsam im Dauerbetrieb", "Kaltverdunstung mit Lüfter, wenige Watt — überfeuchtet konstruktionsbedingt kaum.", "Preis vor Ort prüfen", "luftbefeuchter+verdunster+leise", "dehum"),
@@ -1390,6 +1401,8 @@ CONTEXT_SUB = {
                             "Luftbewegung statt auf Kältegeräte. Nicht selbst getestet. Symbolbilder."),
  "heizdecke-stromverbrauch": ("Wärme zum Körper statt in den Raum — alle drei arbeiten mit einem Bruchteil "
                               "der Leistung eines Heizlüfters. Nicht selbst getestet. Symbolbilder."),
+ "luftbefeuchter-ratgeber": ("Erst messen, dann den Zielwert an der kältesten Wand festlegen — "
+                             "nicht pauschal 50 %. Nicht selbst getestet. Symbolbilder."),
  "luftbefeuchter-stromverbrauch": ("Erst messen, dann befeuchten — der echte Fall ist dauerhaft unter 40 %. "
                                    "Über 60 %? Dann brauchst du das Gegenteil: einen Entfeuchter. "
                                    "Nicht selbst getestet. Symbolbilder."),

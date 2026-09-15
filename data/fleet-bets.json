@@ -566,6 +566,17 @@
    "lose": "28d pv <15 → 词选对了但本站拿不到这块需求(实体档次,08-31 已判),不再按季节性峰值加页,改投已有页的发现面",
    "source": "sites/getecoback/data/seasonality-de.json(单一锚 heizlüfter:schimmel fenster 峰值 4,8 / 12 月 / 冬季 3,74×;与站内已有的 fenster beschlagen 峰值 5,6 同量级;站内零标题覆盖)",
    "status": "open"
+  },
+  {
+   "id": "eco-luftbefeuchter-1220",
+   "site": "getecoback",
+   "due": "2026-12-20",
+   "metric": "/guide/luftbefeuchter-ratgeber.html 28d 真人 pv + affiliate_click(窗口覆盖该词 12 月峰值)",
+   "threshold": "真人 pv ≥50 或 affiliate_click ≥5",
+   "win": "「补齐已验证品类的季节性反面」成立 → 按同法补 luftbefeuchter 的尺寸/房间页(站内除湿侧有 14 页,加湿侧只有 2 页)",
+   "lose": "pv <20 → 加湿不是本站能拿的需求,维持 2 页不再扩;并据此推翻「品类对称即机会」这条假设",
+   "source": "sites/getecoback/data/seasonality-de.json(luftbefeuchter 峰值 22,7 / 12 月 / 冬季 2,81× = 全部实测词里季节拉升最大;luftentfeuchter 峰值 32,0 却有 14 页,加湿侧仅 1 页)",
+   "status": "open"
   }
  ]
 }

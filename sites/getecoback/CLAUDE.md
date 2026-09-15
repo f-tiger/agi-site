@@ -2009,3 +2009,62 @@ Playwright 实跑两页 —— **pageerror 0、390px 零横滚、计算器 73% �
   niche 命中 0——与 `fetch_trends_rising.py` 文档那句话一致,别再指望它。
 - **取暖簇不缺页**:infrarotheizung 6 页、heizlüfter 2 页、heizung-qm 7 页,而这些词 11 月见顶、
   冬÷九月全部 ≤1,0(infrarotheizung 0,71)——**它们的问题不是覆盖,是发现面。**
+
+## 「其他热门产品」——实测后只建了一页,三个候选被数字杀掉(2026-09-15 第三轮)
+
+**用刚建的 `data/seasonality-de.json`(锚 heizlüfter)量了候选品类,结论和 rising 面给的印象相反。**
+
+| 词 | 九月 | 峰值 | 峰值月 | 冬÷九月 | 裁定 |
+|---|---|---|---|---|---|
+| matratze | 70,2 | **76,3** | 1 月 | 1,01 | **不做**:量最大但完全在 niche 外,且 08-31 已判「断点在实体不在内容」——越大的词越轮不到本站 |
+| kaffeevollautomat | 32,5 | **59,5** | **11 月** | 1,36 | **不做**:黑五/圣诞礼品大词,高客单,但与 Raumklima 无关 |
+| akku staubsauger | 15,8 | 26,5 | 11 月 | 1,32 | 不做(见下) |
+| saugroboter | 12,7 | 23,6 | 11 月 | 1,30 | 不做(见下) |
+| **luftbefeuchter** | 7,2 | **22,7** | **12 月** | **2,81** | **✅ 建了**:全部实测词里**季节拉升最大**,且在 niche 正中 |
+| fussbodenheizung | 11,1 | 16,1 | 11 月 | 1,24 | 不做:装修题,非本站可变现形态 |
+| luftreiniger | 7,1 | 11,1 | **6 月** | 1,38 | 不做:峰值在**夏天**(花粉),不是冬季题;站内已有 ratgeber |
+| **saugwischer** | 2,5 | **3,2** | 11 月 | 1,16 | **反面发现,见下** |
+
+**最重要的一条是负面的:Bodenpflege 这条垂直建错了。** 08-28 以「floor dust IS indoor air quality」
+为桥接开的 Bodenpflege 线,其种子词 `saugwischer` 的 5 年峰值只有 **3,2**(锚 heizlüfter 是 29,4),
+而它在 rising 面上显示 `bester saugwischer roboter` **62.450**,看着像整组探针里最强的信号。
+**D1 实查:全部 staubsauger/saugwischer/tineco/dreame 页 56 天合计真人 pv = 1。**
+数字和页面互相印证。**这是 rising % 第三次骗人了**(前两次:konvektorheizung、我自己混刻度),
+`akku staubsauger` / `saugroboter` 虽然比它大一个量级,但**同一条垂直已经空过一次,不试第二次**
+(舰队规矩:lost 的模式不复制)。
+
+**rising 面的污染检测有个已知漏洞,而且「显而易见的修法」是错的——别再修。**
+`matratze` 那一栏的**第一名是 `fluss durch riga`(拉脱维亚的一条河)**,却没被标 polluted:
+检测是「少于 1/3 的行不含种子词才报警」,而 matratze 有 7/10 行含词,顺利过关。
+我加了「最高值那行离题就报警」,**当场用当天真实数据回放,它把三个好种子误杀**:
+`klimaanlage`(第一名 `coolizi`)、`luftentfeuchter`(第一名 `meaco arete one 20l`——本站货架上就有这台)、
+`balkonkraftwerk`(第一名 `ecoflow stream 5000`)。**品牌/型号词是 rising 面最值钱的行,
+而词法匹配分不清「本品类的品牌」和「拉脱维亚的河」。** 已回滚,原因写进代码注释:
+真修需要这份文件里没有的信号(按种子的品牌名单,或裸种子的绝对量做对照)。**读的人自己看第一行。**
+
+**建的页:`/guide/luftbefeuchter-ratgeber.html`**(约 1.500 词)。
+**理由是对称性**:站内 `luftentfeuchter` 峰值 32,0 有 **14 页**,`luftbefeuchter` 峰值 22,7(71%)
+**只有 1 页**(stromverbrauch);而后者冬季拉升 **2,81×** 是全表最高,12 月见顶。
+子词全部很小(最大 `luftbefeuchter test` 6,7),**量在头部词上,所以建的是 Ratgeber 不是长尾页**——
+与 `schimmel` 那轮同一个形状。
+- **脊梁是一张没人发的表**:相对湿度按分压比换算到冷表面,**14 °C 外墙下,房间 48% 就把墙面推到 70%**
+  (起霉线)。所以通行的「加湿到 50%」在**有冷墙的老房子里是错的数字**。这条把加湿页和本轮前两页
+  (通风 / 窗霉)扣成一个闭环:**加湿器是唯一一个能主动把读者推过起霉线的家电。**
+- 三种工作原理据实拆开(Verdunster 构造上几乎不会过加湿 / Verdampfer 卫生最好但**耗电最高,烧水就是加热** /
+  Ultraschall 便宜安静但硬水喷白粉、脏水箱就是把里面长的东西雾化出来)。
+- 卫生与安全**逐字沿用**站内既有规矩:不给具体配比浓度、含氯的绝不与醋/除垢剂混。
+- **货架是本轮最容易出事的一处**:`device_of()` 把 luftbefeuchter 归在 `dehum`(湿度表的键),
+  默认货架会给**除湿机**——正好推荐与建议相反的东西。用 `CONTEXT_MODELS` 覆盖为
+  湿度计 / Verdunster+Hygrostat / 红外测温枪;**实测该页 MeacoDry、Comfee MDDF、Pro Breeze、Trotec 全为 0**,
+  部署自检加了**双向断言**(必须含 "Verdunster mit Hygrostat",且**必须不含** MeacoDry / Comfee MDDF)。
+
+**验证**:13 步 + 11 闸门全绿;Playwright pageerror 0、390px 零横滚、10 条链接 tag 全对、
+三个搜索词全部是加湿侧(hygrometer / luftbefeuchter+verdunster+hygrostat / infrarot+thermometer)。
+
+**判定线 `eco-luftbefeuchter-1220`(2026-12-20,窗口覆盖 12 月峰值)**:
+28 天真人 pv **≥50** 或 affiliate_click **≥5** → 「补齐已验证品类的季节性反面」成立,按同法补加湿侧尺寸页;
+**pv <20 → 推翻「品类对称即机会」这条假设,维持 2 页不再扩。**
+
+**别再提**:matratze / kaffeevollautomat / 任何礼品季大词(niche 外)、saugwischer 及整条 Bodenpflege
+扩张(峰值 3,2 + 56 天 1 pv,已判负)、luftreiniger 当冬季题(峰值在 6 月)、
+rising 污染检测的「最高行离题」修法(已实测误杀好种子)。
