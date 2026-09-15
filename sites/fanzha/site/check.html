@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>这是不是骗局?12 问筛查 — 识骗</title>
+<meta name="description" content="拿不准一通电话、一条消息、一个「项目」是不是骗局?12 个是非题两分钟出判定:远离 / 警惕 / 大概率正常。每面红旗对照公安部提示或《反电信网络诈骗法》条款。不上传,判定写进链接可发给家人。">
+<link rel="canonical" href="https://fanzha.agiscorecard.com/check">
+<meta property="og:title" content="这是不是骗局?12 问筛查">
+<meta property="og:description" content="12 个是非题,两分钟出判定:远离 / 警惕 / 大概率正常。红旗对照官方提示与法律条款。">
+<link rel="stylesheet" href="/style.css">
+<style>
+  .yn { display: flex; gap: 6px; }
+  .yn button { min-height: 44px; min-width: 64px; padding: 0 14px; border-radius: 8px; border: 1px solid var(--rule); background: #fff; font: inherit; font-size: 16px; cursor: pointer; }
+  .yn button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .qq { display: grid; grid-template-columns: 1fr auto; gap: 8px 14px; align-items: center; }
+  .qq .h { grid-column: 1 / -1; color: var(--ink3); font-size: 15px; }
+  @media (max-width: 560px) { .qq { grid-template-columns: 1fr; } }
+  .verdict { border-radius: 12px; padding: 22px; margin: 22px 0; border: 2px solid var(--rule); }
+  .verdict.red { border-color: var(--warn); background: #fbeaec; }
+  .verdict.amber { border-color: #b7791f; background: #fdf3e2; }
+  .verdict.green { border-color: var(--ok); background: #e7f4ee; }
+  .verdict h2 { margin-top: 0; }
+  .flag { padding: 8px 0; border-bottom: 1px solid var(--rule); }
+  .flag b { display: block; }
+  .flag small { color: var(--ink3); }
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"骗局筛查 12 问","url":"https://fanzha.agiscorecard.com/check","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","inLanguage":"zh-CN","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"CNY"},"featureList":["12 个是非题","远离 / 警惕 / 大概率正常","红旗逐条对照官方提示与法律条款","判定写进链接可分享","不上传"],"isPartOf":{"@type":"WebSite","name":"识骗","url":"https://fanzha.agiscorecard.com/"}}
+</script>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="/">识<b>骗</b></a>
+  <nav class="main"><a href="/before-transfer">转账前 60 秒</a><a href="/family-code">家庭暗号</a><a href="/check" aria-current="page">骗局筛查</a><a href="/ai-face-voice-scam">AI 换脸怎么识别</a><a href="/anti-fraud-law">反诈法</a><a href="/resources">官方入口</a><a href="/about">关于</a></nav>
+</div></header>
+<main class="wrap">
+  <h1>这是不是骗局?</h1>
+  <p class="lead muted">一通电话、一条消息、一个「项目」,拿不准的时候,回答 12 个问题。把红旗数清楚,比凭感觉稳。<strong>不上传;判定写进链接,可以发给家人一起看。</strong></p>
+  <div id="qs"></div>
+  <div id="out" hidden>
+    <div class="verdict" id="vbox"><h2 id="vtitle"></h2><p id="vtext"></p><div id="flags"></div></div>
+    <p class="cta-row noprint"><button class="cta primary" type="button" id="share">复制判定链接给家人</button><a class="cta" href="/before-transfer">转账前 60 秒</a></p>
+  </div>
+  <hr class="rule">
+  <h2>红旗背后的依据</h2>
+  <div class="tbl"><table>
+    <tr><th>红旗</th><th>依据</th></tr>
+    <tr><td>要转账、要验证码、要求保密、催「马上」</td><td>公安部网安局提示(2026-03-17):涉及资金转账务必二次核实;「不许告诉家人」「立刻马上转账」是危险信号</td></tr>
+    <tr><td>自称公检法、要求转到「安全账户」</td><td>公安机关反复公开提示:公检法不通过电话办案、不设「安全账户」</td></tr>
+    <tr><td>要你出租、出借银行卡或电话卡</td><td>《反电信网络诈骗法》第三十一条:不得买卖、出租、出借电话卡、银行账户、支付账户</td></tr>
+    <tr><td>先交钱才能加入 / 靠拉人拿钱 / 保本高收益</td><td>《禁止传销条例》第七条;详见姊妹站<a href="https://35.agiscorecard.com/screen" rel="noopener">创业机会筛选器</a></td></tr>
+  </table></div>
+  <p class="small muted">本页不构成法律意见。已经转了?立刻拨打 110 并联系转出银行(《反电信网络诈骗法》第十八条要求银行对可疑交易采取延迟支付结算等措施)。</p>
+</main>
+<footer><div class="wrap">
+  <div class="links"><a href="/">首页</a><a href="/before-transfer">转账前 60 秒</a><a href="/family-code">家庭暗号</a><a href="/resources">官方入口</a><a href="/about">关于</a></div>
+  <div>识骗 · <a href="https://agiscorecard.com/">AGI Scorecard</a> 网络的中文子站 · 遇到诈骗请立即拨打 110</div>
+</div></footer>
+<script src="/app.js"></script>
+<script>
+(function(){
+  var Q = [
+    { k:"money", t:"对方要你转账、付款、充值或买卡(购物卡、点卡)?", h:"一切诈骗的终点都是这一步", w:3 },
+    { k:"otp", t:"对方要你提供验证码、密码,或打开屏幕共享?", h:"验证码是银行给你的最后一道锁", w:3 },
+    { k:"secret", t:"对方要你保密、不要告诉家人或同事?", h:"公安部提示列为危险信号", w:3 },
+    { k:"rush", t:"对方说必须现在、马上、几分钟内办?", h:"催的是你思考的 60 秒", w:2 },
+    { k:"gov", t:"对方自称公检法、银行、平台客服、领导,并要求转账到某个账户?", h:"公检法不电话办案,不设「安全账户」", w:3 },
+    { k:"newacct", t:"收款账户是你从没转过、不认识的账户?", h:"「换个账户打」是绕开拦截的常用话术", w:2 },
+    { k:"channel", t:"这次联系用的是新号码、新账号、或「换了手机」?", h:"原号码打不通才是核实的起点", w:1 },
+    { k:"face", t:"对方靠视频里的脸或语音来证明身份?", h:"AI 换脸拟声让脸和声音不再是证据", w:1 },
+    { k:"card", t:"对方要你出租、出借银行卡、电话卡或帮忙「走个账」?", h:"《反电信网络诈骗法》第三十一条", w:3 },
+    { k:"win", t:"对方说你中奖、退款、有补贴、账户异常需要「解冻」?", h:"给好处或制造恐慌,都是为了下一步要钱", w:2 },
+    { k:"invest", t:"对方承诺保本、高收益、稳赚,或要你先交钱才能参加?", h:"《禁止传销条例》第七条;能保本的项目不需要你的钱", w:3 },
+    { k:"link", t:"对方让你点陌生链接、下载指定 App 或扫码?", h:"指定 App 常是屏幕控制或木马", w:2 }
+  ];
+  var qs = new URLSearchParams(location.search); var a = {}; var pre = qs.get("a") || "";
+  Q.forEach(function(q, i){ var c = pre[i]; if (c === "1" || c === "0") a[q.k] = c; });
+  var box = document.getElementById("qs");
+  function render(){
+    box.innerHTML = Q.map(function(q, i){ return '<div class="qq"><div class="t">' + (i+1) + ". " + q.t + '</div><div class="yn"><button type="button" data-k="' + q.k + '" data-v="1" aria-pressed="' + (a[q.k] === "1") + '">是</button><button type="button" data-k="' + q.k + '" data-v="0" aria-pressed="' + (a[q.k] === "0") + '">否</button></div><div class="h">' + q.h + "</div></div>"; }).join("");
+    box.querySelectorAll("button").forEach(function(b){ b.addEventListener("click", function(){ a[b.getAttribute("data-k")] = b.getAttribute("data-v"); render(); judge(); }); });
+  }
+  function judge(){
+    if (Q.some(function(q){ return a[q.k] === undefined; })) return;
+    var red = [], score = 0, fatal = false;
+    Q.forEach(function(q){ if (a[q.k] === "1") { red.push(q); score += q.w; if (q.w === 3) fatal = true; } });
+    var cls, title, text;
+    if (fatal || score >= 5) { cls = "red"; title = "判定:远离"; text = fatal ? "至少有一条触及诈骗的核心动作(要钱、要验证码、要保密、假冒公检法、借卡、保本高收益)。不转、不给、不下载;挂断,用原号码回拨核实;怀疑已被骗立刻拨打 110。" : "红旗太多,不要继续。挂断,告诉家人,拨打 110 或用国家反诈中心 APP 识别。"; }
+    else if (score >= 2) { cls = "amber"; title = "判定:警惕"; text = "有几条没过。在做任何涉及钱的动作之前,走一遍转账前 60 秒清单;用原号码回拨;问暗号。"; }
+    else { cls = "green"; title = "判定:大概率正常"; text = "没有明显红旗。但「正常」不等于「可以转账」——只要涉及钱,仍然走转账前 60 秒清单。"; }
+    var vb = document.getElementById("vbox"); vb.className = "verdict " + cls;
+    document.getElementById("vtitle").textContent = title; document.getElementById("vtext").textContent = text;
+    document.getElementById("flags").innerHTML = red.map(function(q){ return '<div class="flag"><b>红旗:' + q.t + "</b><small>" + q.h + "</small></div>"; }).join("");
+    document.getElementById("out").hidden = false;
+    history.replaceState(null, "", "/check?a=" + Q.map(function(q){ return a[q.k]; }).join(""));
+    fzev("tool_result", "check:" + cls + ":" + score);
+    document.getElementById("out").scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+  render(); judge();
+  document.getElementById("share").addEventListener("click", function(){ fzshare("这是不是骗局?12 问筛查"); });
+})();
+</script>
+</body>
+</html>

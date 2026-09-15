@@ -62,6 +62,8 @@ SITES = [
      "name='page_view' AND ua_class='human' AND day>=date('now','-{w} days')", "COUNT(*)"),
     ("learn", "6109b81e-c970-47d7-b7fc-3a2a15f68ed2", "lev", "ref",
      "name='page_view' AND ua_class='human' AND day>=date('now','-{w} days')", "COUNT(*)"),
+    ("fanzha", "6109b81e-c970-47d7-b7fc-3a2a15f68ed2", "fev", "ref",
+     "name='page_view' AND ua_class='human' AND day>=date('now','-{w} days')", "COUNT(*)"),
 ]
 
 
@@ -76,6 +78,7 @@ ENDPOINTS = {
     "gamesledger": "https://games.agiscorecard.com/api/pulse",
     "after35": "https://35.agiscorecard.com/api/pulse",
     "learn": "https://learn.agiscorecard.com/api/pulse",
+    "fanzha": "https://fanzha.agiscorecard.com/api/pulse",
 }
 
 

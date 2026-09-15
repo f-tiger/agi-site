@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>转账前 60 秒清单:六个问题,一个倒计时 — 识骗</title>
+<meta name="description" content="任何人让你转账、报验证码、换账户之前,先花 60 秒回答六个问题。任何一条答不上来,就不转。倒计时在你手机里跑,可打印贴在手机背面。不上传。">
+<link rel="canonical" href="https://fanzha.agiscorecard.com/before-transfer">
+<meta property="og:title" content="转账前 60 秒清单">
+<meta property="og:description" content="六个问题,一个倒计时。任何一条答不上来,就不转。">
+<link rel="stylesheet" href="/style.css">
+<style>
+  .timer { font-size: clamp(56px, 14vw, 96px); font-weight: 700; line-height: 1; text-align: center; margin: 10px 0; font-variant-numeric: tabular-nums; }
+  .timer.red { color: var(--warn); }
+  .chk { list-style: none; padding: 0; margin: 0; }
+  .chk li { display: flex; gap: 12px; align-items: flex-start; padding: 14px 0; border-bottom: 1px solid var(--rule); font-size: 19px; }
+  .chk input { width: 26px; height: 26px; margin-top: 6px; flex: none; }
+  .chk small { display: block; color: var(--ink3); font-size: 15px; }
+  .big { font-size: 22px; font-weight: 700; }
+  @media print { header, footer, .cta-row, .noprint, .timer { display: none !important; } .chk li { font-size: 16px; } }
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"转账前 60 秒清单","url":"https://fanzha.agiscorecard.com/before-transfer","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","inLanguage":"zh-CN","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"CNY"},"featureList":["六个是非题","60 秒倒计时","可打印贴手机背面","不上传"],"isPartOf":{"@type":"WebSite","name":"识骗","url":"https://fanzha.agiscorecard.com/"}}
+</script>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="/">识<b>骗</b></a>
+  <nav class="main"><a href="/before-transfer" aria-current="page">转账前 60 秒</a><a href="/family-code">家庭暗号</a><a href="/check">骗局筛查</a><a href="/ai-face-voice-scam">AI 换脸怎么识别</a><a href="/anti-fraud-law">反诈法</a><a href="/resources">官方入口</a><a href="/about">关于</a></nav>
+</div></header>
+<main class="wrap">
+  <h1>转账前 60 秒</h1>
+  <p class="lead muted">骗子要的只有一样东西:让你<strong>现在</strong>就转。所以你只要做一件事:给自己 60 秒。这 60 秒里回答六个问题,任何一条答不上来,就不转。真的急事,不会因为这 60 秒变成假的。</p>
+
+  <div class="timer" id="t">60</div>
+  <p class="cta-row noprint" style="justify-content:center"><button class="cta primary" type="button" id="start">开始 60 秒</button><button class="cta" type="button" onclick="window.print()">打印贴手机背面</button></p>
+
+  <ul class="chk" id="list">
+    <li><input type="checkbox"><span><span class="big">我挂断了这通电话 / 关掉了这个聊天窗口吗?</span><small>先挂,再想。对方说「别挂」,就更要挂。</small></span></li>
+    <li><input type="checkbox"><span><span class="big">我用手机里原来存的号码打回去了吗?</span><small>不是回拨来电号,是打你早就存着的那个号。打不通就打另一个家人。</small></span></li>
+    <li><input type="checkbox"><span><span class="big">对方答出了家庭暗号吗?</span><small>没约过暗号?现在去<a href="/family-code">做一张</a>,两分钟。</small></span></li>
+    <li><input type="checkbox"><span><span class="big">这个收款账户是我以前转过的、认识的账户吗?</span><small>「换个账户打」「打到安全账户」——陌生账户一律不转。</small></span></li>
+    <li><input type="checkbox"><span><span class="big">没有人向我要验证码、密码、屏幕共享吧?</span><small>验证码是银行给你的最后一道锁,不念给任何人,包括「客服」和「公安」。</small></span></li>
+    <li><input type="checkbox"><span><span class="big">我告诉了至少一个家里人吗?</span><small>「不要告诉家里人」是公安部提示里的危险信号。说出来,骗局就散了一半。</small></span></li>
+  </ul>
+  <div class="notice" id="verdict" style="margin-top:18px">六条全勾上才转。任何一条没勾——不转,拨打 110 或用国家反诈中心 APP 识别。</div>
+
+  <hr class="rule">
+  <h2>为什么是这六条</h2>
+  <div class="tbl"><table>
+    <tr><th>条</th><th>依据</th></tr>
+    <tr><td>挂断、原号回拨、告诉家人</td><td>公安部网安局提示(2026-03-17):涉及资金转账务必通过原有联系方式或多渠道二次核实;「不许告诉家人」「立刻马上转账」是危险信号</td></tr>
+    <tr><td>暗号</td><td>AI 换脸与拟声让脸和声音不再是证据;只有你们才知道的事才是。见<a href="/ai-face-voice-scam">判定</a></td></tr>
+    <tr><td>陌生账户、验证码</td><td>《反电信网络诈骗法》把拦截放在银行和支付机构一端(第十八条);验证码和陌生账户是绕过拦截的两条路</td></tr>
+  </table></div>
+  <p class="small muted">这一页不上传任何东西;勾选只在你的手机里。已经转了?立刻拨打 110 并联系转出银行。</p>
+</main>
+<footer><div class="wrap">
+  <div class="links"><a href="/">首页</a><a href="/family-code">家庭暗号</a><a href="/check">骗局筛查</a><a href="/resources">官方入口</a><a href="/about">关于</a></div>
+  <div>识骗 · <a href="https://agiscorecard.com/">AGI Scorecard</a> 网络的中文子站 · 遇到诈骗请立即拨打 110</div>
+</div></footer>
+<script src="/app.js"></script>
+<script>
+(function(){
+  var t = document.getElementById("t"), h = null, left = 60;
+  document.getElementById("start").addEventListener("click", function(){
+    if (h) { clearInterval(h); h = null; }
+    left = 60; t.textContent = left; t.className = "timer"; fzev("tool_result", "transfer:start");
+    h = setInterval(function(){ left--; t.textContent = left; if (left <= 10) t.className = "timer red"; if (left <= 0) { clearInterval(h); h = null; t.textContent = "0"; } }, 1000);
+  });
+  var boxes = document.querySelectorAll("#list input"), v = document.getElementById("verdict");
+  boxes.forEach(function(b){ b.addEventListener("change", function(){
+    var n = Array.prototype.filter.call(boxes, function(x){ return x.checked; }).length;
+    if (n === boxes.length) { v.className = "notice ok"; v.textContent = "六条都过了。这时候转账,是你自己核实过的决定。"; fzev("tool_result", "transfer:all6"); }
+    else { v.className = "notice"; v.textContent = "还有 " + (boxes.length - n) + " 条没过——不转。拨打 110 或用国家反诈中心 APP 识别。"; }
+  }); });
+})();
+</script>
+</body>
+</html>

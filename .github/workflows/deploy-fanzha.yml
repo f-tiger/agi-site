@@ -1,0 +1,107 @@
+name: Deploy fanzha
+
+# 识骗 · fanzha.agiscorecard.com — 2026-09-15 建站(owner /goal「持续做新站点,新站点方向你做好调研再做,
+# 包括工具做好,seo,geo等都做好」;方向候选 #1 识骗,调研见 sites/fanzha/docs)。
+# 成本核算:push ~0.7 分/次;schedule 每日一次兜底部署 ≈ 0.7 × 30 = 21 分/月;公开仓免费。
+# Owner 一键停止:仓里存在 sites/fanzha/KILLED 文件 → 本流水线拒绝部署,线上冻结在最后版本。
+on:
+  push:
+    branches: [main]
+    paths: ["sites/fanzha/**", ".github/workflows/deploy-fanzha.yml"]
+  workflow_dispatch: {}
+  schedule:
+    - cron: "20 8 * * *"
+
+concurrency:
+  group: deploy-fanzha
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Guard — a replayed/stale push deploys main's tip, never rolls back
+        if: github.event_name == 'push'
+        run: |
+          git fetch origin main -q || { echo "::warning::fetch failed — stale-run guard skipped"; exit 0; }
+          TIP=$(git rev-parse origin/main 2>/dev/null || true)
+          case "$TIP" in
+            "" | *[!0-9a-f]* ) echo "::warning::main tip unresolvable — stale-run guard skipped"; exit 0 ;;
+          esac
+          if [ "$(git rev-parse HEAD)" != "$TIP" ]; then
+            echo "::warning::stale run — deploying main tip instead of rolling back"
+            git reset --hard "$TIP"
+          fi
+      - name: Owner kill switch
+        run: |
+          if [ -f sites/fanzha/KILLED ]; then
+            echo "::notice::KILLED file present — owner has frozen this site; skipping deploy."
+            exit 1
+          fi
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Gate — files present, worker parses, unit test passes
+        working-directory: sites/fanzha
+        run: |
+          for f in site/index.html site/ai-face-voice-scam.html site/anti-fraud-law.html site/what-is-96110.html site/check.html site/before-transfer.html site/family-code.html site/resources.html site/about.html site/style.css site/app.js site/llms.txt site/robots.txt site/sitemap.xml site/16507d8e1997c4be371f5fbaf7ac1985.txt worker.js wrangler.jsonc; do
+            [ -f "$f" ] || { echo "::error::missing $f"; exit 1; }
+          done
+          node --check worker.js
+          node tools/test_worker.mjs
+          # GEO 层:判定页 → Markdown 孪生 + llms-full.txt(页面为唯一真源,每次部署重新生成)
+          python3 tools/gen_md.py
+          for f in site/ai-face-voice-scam.md site/anti-fraud-law.md site/what-is-96110.md site/resources.md site/llms-full.txt; do [ -s "$f" ] || { echo "::error::gen_md produced empty $f"; exit 1; }; done
+          # 零编造闸门:页面上不许出现「就业率/成功率/通过率 xx%」类写死统计
+          if grep -nE '(激增|暴涨|占比|受骗率|案件数量)[^。]{0,12}[0-9]+(\.[0-9]+)?%' site/*.html; then echo "::error::hardcoded scam statistic found"; exit 1; fi
+          # FAQ 可见问答与 FAQPage JSON-LD 逐条一致
+          node -e '
+            const fs=require("fs");
+            for (const f of ["site/ai-face-voice-scam.html","site/anti-fraud-law.html","site/what-is-96110.html"]) {
+              const h=fs.readFileSync(f,"utf8");
+              const blocks=[...h.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map(m=>JSON.parse(m[1]));
+              const ld=blocks.find(b=>b["@type"]==="FAQPage"); if(!ld) throw new Error(f+": no FAQPage");
+              const vis=[...h.matchAll(/<summary>(.*?)<\/summary><p>(.*?)<\/p>/g)].map(m=>[m[1],m[2]]);
+              if(vis.length!==ld.mainEntity.length) throw new Error(f+": faq count mismatch "+vis.length+" vs "+ld.mainEntity.length);
+              ld.mainEntity.forEach((q,i)=>{ if(q.name!==vis[i][0]||q.acceptedAnswer.text!==vis[i][1]) throw new Error(f+": faq "+i+" differs"); });
+              console.log("faq ok",f,vis.length);
+            }'
+          echo "gate ok"
+      - name: Deploy worker
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          wranglerVersion: "4"
+          workingDirectory: sites/fanzha
+          command: deploy
+      - name: Post-deploy self-check
+        # 全部带 ?ci=1,worker 把自测排除在 D1 之外。/api/pulse 必须回 ok:true——
+        # 它是 D1 绑定是否生效的唯一线上证据。
+        run: |
+          set -u
+          fail=0
+          for p in / /ai-face-voice-scam /anti-fraud-law /what-is-96110 /before-transfer /family-code /check /resources /about /llms.txt /llms-full.txt /ai-face-voice-scam.md /sitemap.xml /robots.txt /16507d8e1997c4be371f5fbaf7ac1985.txt; do
+            url="https://fanzha.agiscorecard.com$p?ci=1"
+            ok=0; code=000
+            for try in 1 2 3 4 5; do
+              code=$(curl -s -o /dev/null -w '%{http_code}' -L --max-redirs 5 --max-time 20 \
+                     -A 'fanzha-deploy-smoke-bot (+ci)' "$url" || echo 000)
+              if [ "$code" = "200" ]; then ok=1; break; fi
+              sleep 5
+            done
+            if [ "$ok" = "1" ]; then echo "OK    $p -> 200"; else echo "::error::$p -> HTTP $code after 5 tries"; fail=1; fi
+          done
+          for a in /api/pulse; do
+            body=$(curl -s --max-time 20 -A 'fanzha-deploy-smoke-bot (+ci)' "https://fanzha.agiscorecard.com$a?ci=1" || echo "")
+            case "$body" in
+              *'"ok":true'*) echo "OK    $a" ;;
+              *) echo "::error::$a broken: ${body:0:120}"; fail=1 ;;
+            esac
+          done
+          [ "$fail" = "0" ] || exit 1
+          echo "self-check ok"

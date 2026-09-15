@@ -1,0 +1,30 @@
+# 识骗 — 明确欢迎 AI 引擎爬虫;无用户内容。
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /e
+
+User-agent: GPTBot
+Allow: /
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: Claude-SearchBot
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: Google-Extended
+Allow: /
+User-agent: Bingbot
+Allow: /
+User-agent: Baiduspider
+Allow: /
+User-agent: Sogou web spider
+Allow: /
+User-agent: Bytespider
+Allow: /
+
+Sitemap: https://fanzha.agiscorecard.com/sitemap.xml

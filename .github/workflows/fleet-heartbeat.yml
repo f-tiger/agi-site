@@ -50,7 +50,8 @@ jobs:
           buysomething|https://source.agiscorecard.com/|deploy-buysomething.yml
           gamesledger|https://games.agiscorecard.com/|deploy-gamesledger.yml
           after35|https://35.agiscorecard.com/?ci=1|deploy-after35.yml
-          learn|https://learn.agiscorecard.com/?ci=1|deploy-learn.yml'
+          learn|https://learn.agiscorecard.com/?ci=1|deploy-learn.yml
+          fanzha|https://fanzha.agiscorecard.com/?ci=1|deploy-fanzha.yml'
 
           NOW=$(date -u +%s)
           BAD=0
