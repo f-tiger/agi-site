@@ -3046,3 +3046,18 @@ Google 141 / cn.bing 44 / Perplexity 20 / ChatGPT 12;AI 引荐 34,ChatGPT→/c/a
 - **submissions.new = 7**:厂商入流待 owner 手发回复,草稿在
   docs/distribution-staging/bpj-vendor-replies-2026-09-10.md。不自行发邮件。
 - 本轮零提交。
+
+## 2026-09-15(总任务第二轮,bpj 块)
+- **漂移复核(drift items = 3,均 09-14 确认)**:ollama 是 GitHub star 数变动(180.7k→180.8k),
+  非额度信息;elevenlabs / cursor 官方页在沙箱均 EGRESS_BLOCKED,无法按「官方源」规则复核——二手源
+  (2026-08/09 的多家定价综述)显示 ElevenLabs 免费档仍为 10,000 credits/月、Cursor Hobby 官方页
+  仍不公布具体数额,与 tools.json 现状一致。**不改 limits、不推进 checked**(规则:只认官方源);
+  三条 drift 保持 pending,等 runner 侧或 owner 侧能打开官方页时再确认。
+- **机制修复:MCP 发布面 registry_listed:false 已 27 天。** 唯一一次运行(08-19)失败原文
+  `invalid version: cannot publish duplicate version`——registry 已有 1.10.0。server.json 版本
+  1.10.0→1.10.1,push 即触发 bpj-mcp-publish(该 workflow 只在 server.json 变更时跑,属发布动作,
+  不是每日维护挂 push)。结果见本轮总日报。
+- reach 09-14:humans_referred 286/28d,per_day 10.2(10-09 线 ≥14);`judgement: 0`——已读
+  reach-export.mjs,判定页只在有引荐真人 pv 时才计入,0 表示 28 天内 is-*-still-free 页没有带引荐
+  的真人访问,不是导出缺字段。paid_gap 空、agenda 09-12 未更新(radar 挂在 bpj-ad-watch 每 2 小时,
+  09-12 之后 agenda.json 未变——下轮查)。submissions.new 仍 7(owner)。

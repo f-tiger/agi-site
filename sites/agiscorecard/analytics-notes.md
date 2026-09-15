@@ -1516,3 +1516,18 @@ FORECASTS 的 `verdict:"hit"` 条目逐条核 `date/call/outcome` 再搬,不做�
 
 **里程碑**:无新达成。**owner 待办**(不重复催):tds `d1-snapshot.json` 仍缺;
 `fleet-ai-access-0916` 两天后到期。
+
+## 2026-09-15(日结 · 总任务第二轮,周二)
+
+**agiscorecard**(D1 `events.page_view`,JS 口径):28 天 **1468**(含 09-11 探针 182,扣除约 1286);
+近七日 70 / 64 / 231(探针)/ 50 / 39 / 55 / 今日 10(04:00Z 未过完)。近 7 天 `subscribe_click` **0**,
+`vote_cast` 31、`tool_click` 11、`invest_tool_click` 4。两条 CTA 位置实验仍 0(10-07 结算)。
+ship:赔率期刊第 3 期(见 OPT-LOG)。**sourceradar**:28 天真人 pv 74(近 7 天 23),交互 0,不动。
+**gridlings**:28 天真人 pv 704、play_start 370、solve 135;**itch 引荐 28 天 0**——09-24 判定线
+(150/25)按现速判负无悬念。
+**after35(块 G)**:pending 0、live 0、done 0;`ev` 自上线 page_view human 88 / bot 87(含建站期
+自测与 owner 浏览,不当增长读)。无卡可审,冷启动期正确动作是报 0。
+**eco / bpj**:见各自日志(eco 一件:候选词并入已有取暖页;bpj 一件:MCP 发布面版本号修复)。
+**舰队台账**:`fleet-ai-access-0916` 明日到期(现读数 blocked_sites 为空 → 明天按原文结算);
+bpj-freetier-cut / bpj-crawler-observed / eco-googlebot 三条 09-18 到期。heartbeat 09-14 14:36Z 九站 200、d0。
+**里程碑**:无。**owner 待办**(不重复催):tds d1-snapshot;bpj 7 条投稿;Bing/百度站长加 35 子站。

@@ -11,6 +11,13 @@
   <author><name>The AGI Scorecard</name></author>
   <rights>CC BY 4.0 — reuse with attribution and a link to https://agiscorecard.com</rights>
   <entry>
+    <title>AGI Questions, Answered — The Full Scorecard Index</title>
+    <link href="https://agiscorecard.com/agi-questions"/>
+    <id>https://agiscorecard.com/agi-questions</id>
+    <updated>2026-09-14T00:00:00Z</updated>
+    <summary>Every question the AGI Scorecard answers: was Aschenbrenner right, when will AGI arrive, is AGI hype, forecaster comparisons.</summary>
+  </entry>
+  <entry>
     <title>Does Amodei&#x27;s AI slowdown change the 2027 AGI odds?</title>
     <link href="https://agiscorecard.com/does-ai-slowdown-change-agi-2027"/>
     <id>https://agiscorecard.com/does-ai-slowdown-change-agi-2027</id>
@@ -29,7 +36,7 @@
     <link href="https://agiscorecard.com/agi-odds-vs-evidence"/>
     <id>https://agiscorecard.com/agi-odds-vs-evidence</id>
     <updated>2026-09-07T00:00:00Z</updated>
-    <summary>Polymarket&#x27;s AGI-by-2027 contract vs the evidence: the market prices an announcement, the scorecard grades capability (62.5/100). Issue #3 of a running comparison.</summary>
+    <summary>Polymarket&#x27;s AGI-by-2027 contract vs the evidence: the market prices an announcement, the scorecard grades capability (62.5/100). Issue #4 of a running comparison.</summary>
   </entry>
   <entry>
     <title>When Will AGI Arrive? Every Major Forecast Compared (2026)</title>
@@ -142,12 +149,5 @@
     <id>https://agiscorecard.com/for-agents</id>
     <updated>2026-09-04T00:00:00Z</updated>
     <summary>Free, machine-readable AGI verdict data: /data.json (CC BY 4.0), an Atom feed, and llms.txt. Copy-paste prompt to add verdict-change alerts to any AI agent.</summary>
-  </entry>
-  <entry>
-    <title>Will AGI Arrive by 2027? Aschenbrenner&amp;#x27;s Prediction</title>
-    <link href="https://agiscorecard.com/will-agi-arrive-2027"/>
-    <id>https://agiscorecard.com/will-agi-arrive-2027</id>
-    <updated>2026-08-29T00:00:00Z</updated>
-    <summary>Aschenbrenner predicted AGI by 2027. As of mid-2026 it&amp;#x27;s graded Open — 18 months left. How his timeline compares to Metaculus (2033), Hassabis (2030).</summary>
   </entry>
 </feed>

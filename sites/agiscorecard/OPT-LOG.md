@@ -3108,3 +3108,11 @@ Reddit 答题素材,全部围绕新页;只暂存,不外发)。
 `subscribe_click` 仍 **0**;`tool_click` 28 天 14(realist 4 · skeptic 3 · accelerationist 3 ·
 true-believer 2 · contrarian 2)。新页的 `deep_pacing_mid` / `hot_topic_click{*_pacing}` 从今天起
 计数,基线为 0。
+
+## 2026-09-15(每日 run · 总任务第二轮)— 补发「赔率 vs 证据」第 3 期;别的不动
+
+`agi-odds.yml` 在 09-14 09:08Z 抓到新快照(Polymarket Yes **0.225**,09-07 为 0.27,量 194,567→见快照),
+昨天 04:00Z 的周一 run 早于它,所以今天补发:`gen_odds.py` 追加 odds-history 第 4 条并重写
+`/agi-odds-vs-evidence`(台账累积,不覆盖);Tracker 侧仍 62.5/100,无判定翻转——**赔率跌了 4.5 个点,
+证据没动**,这正是这个栏目要写的差距。feed / search-index 重生成,validate OK(230 页 / 212 URL)。
+引用放大队列三项均带闸门未开,常规阶梯不动页面(昨天已发一页,anti-churn)。

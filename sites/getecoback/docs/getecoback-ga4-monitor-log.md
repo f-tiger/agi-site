@@ -917,3 +917,11 @@ owner 指令"用户重点关注配件,扩展丰富配件产品"。**先盘点类
   **明日候选(未过三门,只登记)**:`sparsamer heizlüfter` v=28,600(related-queries,stand 09-12)
   落在取暖簇、demand 把它指到 heizkosten-vergleich-rechner(match 0.5,只当线索);出页前须查
   14 天同词冷却与 KGR。`bester saugwischer roboto` v=62,450 更大但不在秋冬簇,按品类罗盘不追。
+
+- 2026-09-15(总任务第二轮,eco 块)**一件:候选词进已有页,不开新页。** D1 28d:human page_view 409
+  (近 7 天 96)、affiliate_click 95(近 7 天 29,日均 4)。09-14 登记的 `sparsamer heizlüfter`(v=28,600)
+  按本手册「扩品类只能扩到已有流量的页面上」处理:取暖簇 28d 真人 pv 最高的正是
+  `/guide/heizluefter-stromsparend.html`(6 pv),description 首句改为该查询、正文补一句
+  「真正省电只靠恒温器+短时运行」、可见日期与 dateModified 同步到 09-15;标题与 h1 不动(有排名
+  的页不换标题)。五个 check_* 本地全过,build 链由部署跑。KGR 与 SERP 在沙箱核不到,写明「本轮未验证」。
+  三条 09-18 判定线(eco-googlebot)按原文到期结算。
