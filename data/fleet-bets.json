@@ -507,7 +507,7 @@
       "win": "Playgama 通道成立,按其反馈推主目录;游戏线维持投入",
       "lose": "通道判负,游戏线只维护不新增;不再为 Playgama 做任何构建工作",
       "source": "docs/games-distribution-2026-09.md 第九节",
-      "note": "取代 09-08 预登记的 10-06「七款至少一款上线主目录」——那条已于 09-14 被否定地回答(七款全部分流)。本条依赖 owner 完成一次 OAuth 授权;到期仍未授权则记 insufficient,不记 lost。沙盒零收入,本条永不进钱线。",
+      "note": "2026-09-15 已发布:七款全部 publish_sandbox → PUBLISHED/ACTIVE,所以门槛的「≥3 款沙盒可玩」这一半已满足,剩下的是 ≥200 次真人 play_start。读数用 ref LIKE '%playgama.ai%'(沙盒主机,与审核容器 *.games.playgama.net 天然分开)。链接七条记在 sites/gridlings/CLAUDE.md。沙盒零收入,本条永不进钱线。start_sandbox_traffic 未调用——对外投放需 owner 明确同意。取代 09-08 预登记的 10-06「七款至少一款上线主目录」(09-14 已被否定地回答:两款被拒)。",
       "status": "open"
     },
     {

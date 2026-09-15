@@ -1181,3 +1181,36 @@ MIMIC / OVERSEER / MINIMA 五款仍是 `NEW` 且**零评论**。截图时间与�
 均 DONE,`preview` / `preview_vertical` / `icon` 齐全),`get_sandbox_state` 查到两款都是
 `publish.allowed: true`、`site: null`。**但封面必须在发布前就位这条不变,理由比想象的硬**:
 分享链接的预览图**由第一个打开它的人缓存,之后谁也刷新不了**;缺封面不拒绝发布,只是永久难看。
+
+## 七款已全部发到 Playgama 沙盒(2026-09-15,owner 选「七款全发」)
+
+`publish_sandbox` 七次全部 `outcome: PUBLISHED` / `status: ACTIVE`,**不需要重新打包或重传封面**
+——包与三个封面槽 09-07/09-08 就在后台。
+
+| 游戏 | 沙盒链接 | 当时的应用状态 |
+|---|---|---|
+| GHOSTLINE | https://playgama.ai/play/z46oks7g4u | REJECTED |
+| SINGULARITY | https://playgama.ai/play/ewn56p3hjp | REJECTED |
+| PROMPT | https://playgama.ai/play/p73ee5ls57 | NEW |
+| OVERFIT | https://playgama.ai/play/gdzylsey5i | NEW |
+| MIMIC | https://playgama.ai/play/x4ipjy6x2t | PROCESSING |
+| OVERSEER | https://playgama.ai/play/7cunyvr2a2 | PROCESSING |
+| MINIMA | https://playgama.ai/play/fs6f523iyl | PROCESSING |
+
+**发布当时观察到的一件事**:MIMIC / OVERSEER / MINIMA 三款的 `status` 在本会话进行中
+(14:47–14:48 UTC)从 `NEW` 翻成 `PROCESSING`——**主目录审核队列正在实时推进**。沙盒与审核是两条
+独立的线,`publish_sandbox` 不改表单也不动审核任务,所以两者不冲突;但**这说明五款的审核结果随时
+会来**,下次会话开场先 `list_applications` 看状态,别拿本表当最新。
+
+**链接本会话验证不了**:`playgama.ai` 与 `playgama.com` 一样被出网代理拦截(curl 000,对照站点
+正常应答)。**唯一的证据是平台自己的 `PUBLISHED`/`ACTIVE` 应答**,真正打开过一次的只有 owner。
+后续会话不许把「发布成功」写成「已验证可玩」。
+
+**读数口径(判定线 `gridlings-playgama-mcp-1027` 用这个)**:沙盒流量的 referrer 是
+**`playgama.ai`**,与审核容器的 `*.games.playgama.net` 是不同主机,所以天然分得开:
+```sql
+SELECT day, COUNT(*) FROM ev
+WHERE ua_class='human' AND name='play_start' AND ref LIKE '%playgama.ai%'
+GROUP BY day ORDER BY day DESC;
+```
+**`start_sandbox_traffic` 至今一次都没调过**——那是对外投放,要 owner 明确同意才跑。
