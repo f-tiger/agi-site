@@ -434,3 +434,25 @@ PROMPT / OVERFIT / MINIMA 全是 `engine:"unity"` + `bridgeEngine:"javascript"`(
 **本会话没有改任何表单**：`update_application_form` 能改，但 PROMPT 此刻正在 `MODERATION`
 (15:45 更新)，OVERFIT/MINIMA 等四款在队列里。**改一个正在审的表单是对外动作，等 owner 说了算。**
 建议顺序：先改没在审的，PROMPT 等这一轮审完再说。
+
+### 十一、四款的 `engine` 已改正（2026-09-15 16:11 UTC，owner 授权）
+
+owner：「改掉那四款的 engine，PROMPT 等审完」。已执行并**逐个读回核对**。
+
+| 游戏 | MOD | 改前 | 改后 | 审核任务 | loadingTime |
+|---|---|---|---|---|---|
+| OVERFIT | MOD-7382 | unity | **js** ✓ | `NEW`(09-08 未变) | 474 ms |
+| MIMIC | MOD-7383 | unity | **js** ✓ | `NEW`(09-08 未变) | 435 ms |
+| OVERSEER | MOD-7384 | unity | **js** ✓ | `NEW`(09-08 未变) | 353 ms |
+| MINIMA | MOD-7385 | unity | **js** ✓ | `NEW`(09-08 未变) | 313 ms |
+
+**`update_application_form` 是部分保存**——只发了 `applicationId` + `engine`，没带其它字段。
+读回确认 description / howToPlayText / supportedLanguages / supportedDevices / link /
+isHorizontal / isVertical / distributeEverywhere / archives / media **全部逐字未变**；
+只有 `updatedAt` 与 `checksum`(表单哈希)变了,这是预期的。**四个审核任务的 `updatedAt` 仍是
+09-08 原值,队列没有被扰动**,也没有任何东西被提交到审核(该工具本身不提交)。
+
+**⏳ 未做，下次会话必须接手：PROMPT(MOD-7381)仍是 `engine:"unity"`。**
+它 09-15 15:45 进入 `MODERATION`,按 owner 的话等这一轮审完再改。
+**判断依据**:`list_moderation_comments` 或 `get_application` 里 MOD-7381 的 status 离开
+`MODERATION`(变成 REJECTED / 通过)之后,立刻改成 `js`——它是七款里唯一还填错的。
