@@ -244,6 +244,18 @@ jobs:
           # page about condensation in January. Assert the dehumidifier shelf is
           # there AND the cooling sizer is not.
           check "https://getecoback.com/guide/schimmel-am-fenster.html" "MeacoDry"
+          # Humidifier guide (2026-09-15). Its device family is "dehum" because
+          # that is the humidity table's key, so the default shelf would offer
+          # dehumidifiers to a reader whose air is too DRY — the page would sell
+          # the opposite of what it advises. CONTEXT_MODELS overrides it; assert
+          # both directions, since a silent override failure looks like nothing.
+          check "https://getecoback.com/guide/luftbefeuchter-ratgeber.html" "Verdunster mit Hygrostat"
+          if curl -sL --max-time 20 "https://getecoback.com/guide/luftbefeuchter-ratgeber.html" | grep -q "MeacoDry\|Comfee MDDF"; then
+            echo "::error::the humidifier guide is showing dehumidifiers — CONTEXT_MODELS override lost"
+            fail=1
+          else
+            echo "OK humidifier guide shows no dehumidifier cards"
+          fi
           check "https://getecoback.com/guide/richtig-lueften-im-winter.html" "MeacoDry"
           check "https://getecoback.com/en/guide/tilt-and-turn-windows-winter-condensation.html" "MeacoDry"
           for u in "https://getecoback.com/guide/richtig-lueften-im-winter.html" \

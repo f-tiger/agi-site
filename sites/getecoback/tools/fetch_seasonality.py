@@ -70,6 +70,15 @@ BATCHES = [
     # back to the global anchor through "schimmel" in batch 2.
     ["schimmel wand", "schimmel fenster", "schimmel schlafzimmer"],
     ["schimmel wand", "schwarzer schimmel", "schimmel tapete"],
+    # Candidate product categories, measured 2026-09-15 when asked "what other
+    # hot products". Kept in the tool because the answer was mostly negative and
+    # the next session should not have to re-derive it: saugwischer peaks at 3,2
+    # — the Bodenpflege vertical was built on it and has 1 page view in 56 days.
+    # matratze (76,3) and kaffeevollautomat (59,5) are genuinely large and
+    # genuinely outside this site's subject.
+    ["saugwischer", "saugroboter", "kaffeevollautomat"],
+    ["matratze", "luftreiniger", "akku staubsauger"],
+    ["luftbefeuchter", "heizkörper thermostat", "fussbodenheizung"],
 ]
 
 

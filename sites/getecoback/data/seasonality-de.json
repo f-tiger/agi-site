@@ -7,12 +7,28 @@
  "weeks": 262,
  "terms": [
   {
+   "term": "matratze",
+   "sep": 70.2,
+   "peak": 76.3,
+   "peak_month": 1,
+   "winter_mean": 70.9,
+   "win_over_sep": 1.01
+  },
+  {
    "term": "schimmel",
    "sep": 44.4,
    "peak": 68.5,
    "peak_month": 1,
    "winter_mean": 63.7,
    "win_over_sep": 1.43
+  },
+  {
+   "term": "kaffeevollautomat",
+   "sep": 32.5,
+   "peak": 59.5,
+   "peak_month": 11,
+   "winter_mean": 44.2,
+   "win_over_sep": 1.36
   },
   {
    "term": "luftentfeuchter",
@@ -39,12 +55,44 @@
    "win_over_sep": 0.71
   },
   {
+   "term": "akku staubsauger",
+   "sep": 15.8,
+   "peak": 26.5,
+   "peak_month": 11,
+   "winter_mean": 20.9,
+   "win_over_sep": 1.32
+  },
+  {
+   "term": "saugroboter",
+   "sep": 12.7,
+   "peak": 23.6,
+   "peak_month": 11,
+   "winter_mean": 16.5,
+   "win_over_sep": 1.3
+  },
+  {
+   "term": "luftbefeuchter",
+   "sep": 7.2,
+   "peak": 22.7,
+   "peak_month": 12,
+   "winter_mean": 20.2,
+   "win_over_sep": 2.81
+  },
+  {
    "term": "heizstrahler",
    "sep": 17.7,
    "peak": 19.9,
    "peak_month": 11,
    "winter_mean": 14.3,
    "win_over_sep": 0.8
+  },
+  {
+   "term": "fussbodenheizung",
+   "sep": 11.1,
+   "peak": 16.1,
+   "peak_month": 11,
+   "winter_mean": 13.8,
+   "win_over_sep": 1.24
   },
   {
    "term": "schimmel wand",
@@ -63,12 +111,28 @@
    "win_over_sep": 1.48
   },
   {
+   "term": "luftreiniger",
+   "sep": 7.1,
+   "peak": 11.1,
+   "peak_month": 6,
+   "winter_mean": 9.8,
+   "win_over_sep": 1.38
+  },
+  {
    "term": "heizung einstellen",
    "sep": 5.7,
    "peak": 8.5,
    "peak_month": 11,
    "winter_mean": 5.8,
    "win_over_sep": 1.03
+  },
+  {
+   "term": "heizkörper thermostat",
+   "sep": 3.9,
+   "peak": 6.0,
+   "peak_month": 11,
+   "winter_mean": 4.3,
+   "win_over_sep": 1.09
   },
   {
    "term": "fenster beschlagen",
@@ -109,6 +173,14 @@
    "peak_month": 11,
    "winter_mean": 2.7,
    "win_over_sep": 1.06
+  },
+  {
+   "term": "saugwischer",
+   "sep": 2.5,
+   "peak": 3.2,
+   "peak_month": 11,
+   "winter_mean": 2.9,
+   "win_over_sep": 1.16
   },
   {
    "term": "schwarzer schimmel",
@@ -175,5 +247,6 @@
    "win_over_sep": 0.34
   }
  ],
- "errors": []
+ "errors": [],
+ "note_products": "Product-category batch measured 2026-09-15 on the same heizlüfter anchor, when asked what other products are hot. Recorded so the negative result is not re-derived: saugwischer peaks at 3,2 and the Bodenpflege vertical built on it has 1 human page view in 56 days."
 }
