@@ -56,6 +56,7 @@ CAT_OF = {
     "wohnmobil-feuchtigkeit-winter": "luftqualitaet",
     "fenster-beschlagen-innen": "luftqualitaet",
     "richtig-lueften-im-winter": "luftqualitaet",
+    "schimmel-am-fenster": "luftqualitaet",
     "luftreiniger-ratgeber": "luftqualitaet",
     "klimaanlage-reinigen": "luftqualitaet",
     "klimaanlage-stromkosten": "energie-sparen",

@@ -243,9 +243,11 @@ jobs:
           # which would put a cooling sizer and an air-conditioner shelf on a
           # page about condensation in January. Assert the dehumidifier shelf is
           # there AND the cooling sizer is not.
+          check "https://getecoback.com/guide/schimmel-am-fenster.html" "MeacoDry"
           check "https://getecoback.com/guide/richtig-lueften-im-winter.html" "MeacoDry"
           check "https://getecoback.com/en/guide/tilt-and-turn-windows-winter-condensation.html" "MeacoDry"
           for u in "https://getecoback.com/guide/richtig-lueften-im-winter.html" \
+                   "https://getecoback.com/guide/schimmel-am-fenster.html" \
                    "https://getecoback.com/en/guide/tilt-and-turn-windows-winter-condensation.html"; do
             if curl -sL --max-time 20 "$u" | grep -q "EB_SIZER"; then
               echo "::error::$u carries the cooling sizer — it has been misfiled as an 'ac' page"

@@ -1920,3 +1920,92 @@ Playwright 实跑两页 —— **pageerror 0、390px 零横滚、计算器 73% �
 - **不碰 eco 12 条 underserved 的标题改写**:09-15 的结论没变(Google 28 天引荐 = 0)。
 - **不因为 per-page 转化率差异动页**:55 次点击的盘子里,`klimaanlage-dachfenster` 的「71,4% 转化」
   是 7 次 pv 撑的,属噪声,不是信号。
+
+## 用「季节性峰值」而不是「rising %」选题(2026-09-15 第二轮,owner:「冬季的热门谷歌趋势,升级网站,而不是随便升级」)
+
+**owner 的批评成立**:同日第一轮(冬季通风对页)是从 AI 引荐数据推出来的,**没查谷歌趋势**。
+这一轮先把趋势查清楚再决定建什么——过程里踩了三个坑,全部记下来。
+
+**⚠️ 坑一:九月读 rising 读到的是夏天。** `fetch_trends_rising.py` 的窗口是 `today 3-m`,
+九月中旬覆盖 **6 月中→9 月中**。实测 `lüften` 种子,rising 前三是
+`wie lüften bei hitze` **153.950**、`richtig lüften bei hitze` **128.800**、`wann lüften bei hitze` **107.050**
+——全部属实、全部是夏天、对「十月该发什么」毫无用处。**九月不要用 3 个月 rising 面判断冬季需求。**
+
+**⚠️ 坑二:rising 是百分比,不是量。** `konvektorheizung` 在 rising 面上 **31.700**,站内又确实零覆盖,
+看着像大缺口;拉 5 年绝对值一看 **峰值 1,2**。**差点为一个几乎没有搜索量的词建页。**
+
+**⚠️ 坑三(我自己当场踩的,最该记):Google Trends 只在一次比较内部归一化,跨批数字不可比。**
+我先用 `schimmel wand` 当锚跑了一批霉类词,读出 `schimmel fenster` = 25,2,写进了初稿;
+换成全局锚 `heizlüfter` 重跑,同一个词是 **4,8**。**两次的相对关系一致(4,8/12,4 ≈ 25,2/65),
+错的是我把两套刻度并排放进了同一张表。** 新工具的 docstring 里写着这条警告,而我照样犯了——
+**所以表里每个数必须来自同一个锚,下面这张表是重跑后的单一刻度。**
+
+**新仪器(手动跑,不加 cron)**:`tools/fetch_seasonality.py` → **`data/seasonality-de.json`**。
+5 年周数据 `interest_over_time`,每批都带同一个锚词 `heizlüfter` 所以跨批可比;输出
+**九月值 / 峰值 / 峰值月 / 冬季均值÷九月**。**与 rising 文件不可混用**(一个是相对水平、一个是百分比增长)。
+不挂 schedule 是刻意的:related_queries 与 interest_over_time 配额分开,而前者当天已被打爆
+(6 个种子 **3 个 `API quota exceeded`**,如实记录未静默丢弃)。本次 21 词 / 262 周 / 0 失败批。
+
+**读数(5 年,锚 heizlüfter,2026-09-15,单一刻度)**:
+
+| 词 | 九月 | 峰值 | 峰值月 | 冬÷九月 |
+|---|---|---|---|---|
+| **schimmel** | 44,4 | **68,5** | **1 月** | 1,43 |
+| luftentfeuchter | 19,5 | 32,0 | 11 月 | 1,19 |
+| heizlüfter | 23,9 | 29,4 | 11 月 | 0,89 |
+| infrarotheizung | 29,2 | 29,2 | 11 月 | 0,71 |
+| heizstrahler | 17,7 | 19,9 | 11 月 | 0,80 |
+| schimmel wand | 4,1 | 12,4 | 12 月 | 2,59 |
+| heizdecke | 5,9 | 12,1 | 12 月 | 1,48 |
+| heizung einstellen | 5,7 | 8,5 | 11 月 | 1,03 |
+| fenster beschlagen | 1,6 | 5,6 | 11 月 | 1,94 |
+| **schimmel fenster** | 1,1 | **4,8** | **12 月** | **3,74** |
+| schwarzer schimmel | 1,7 | 3,1 | 12 月 | 1,60 |
+| schimmel schlafzimmer | 0,5 | 2,4 | 11 月 | 4,84 |
+| schimmel tapete | 1,0 | 2,4 | 12 月 | 2,10 |
+| konvektorheizung | 1,0 | 1,2 | 7 月 | 0,80 |
+
+**三条结论**:
+1. **霉是本站冬季最大的题,不是取暖**:`schimmel` 峰值 **68,5** 是最大取暖词(heizlüfter 29,4)的 **2,3 倍**。
+2. **取暖 11 月见顶,霉 12 月/1 月见顶**——取暖是入冬、霉是深冬,**排期不一样**。
+3. **但霉的量集中在宽词上**:`schimmel` 68,5,而拆开的子词都不大(wand 12,4、fenster 4,8)。
+   **别拿「霉是最大的题」去论证任何一个具体子词很大**——这正是坑三的教训。
+
+**覆盖审计(标题级)**:站内霉页有 Badfugen / Keller / Kleiderschrank / Wand,**唯独没有「窗」**,
+而窗是冬季霉的第一现场。`schimmel fenster` 零标题覆盖;`schwarzer schimmel` / `schimmel schlafzimmer` /
+`schimmel tapete` 同样零覆盖。
+
+**顺带照出我上一轮的偏差(不粉饰)**:同批测量里 `schimmel fenster` 约是 `richtig lüften` 的 **2 倍**,
+而我给第一轮那页起的标题正是后者。**内容写对了,名字起错了。** 没有改名(上线 1 天、防翻炒;
+且它作为**预防**页是对的),改为新建页去接那个词,两页双向互链。
+
+**新页 `/guide/schimmel-am-fenster.html`**(1.251 词,DE-only,站内已有 5 张 DE-only 页先例)。
+**建它的诚实理由**:峰值 4,8 不大,但**冬季拉升 3,74×、12 月见顶、站内零覆盖**,
+且**与站内已有的 `fenster-beschlagen-innen`(峰值 5,6)同量级**——那页本站早就认为值得有。
+差异化在**「四个面、四个答案」**:窗上的霉长在 **硅胶缝 / 橡胶密封条 / 框 / 洞口(Laibung)** 四种材料上。
+- **橡胶密封条那段是全 SERP 没人讲的**:强力清洁剂让它变硬开裂 → 窗关不严 →
+  **冷面变大而不是变小**,读者自己把问题做大了。
+- **硅胶缝**沿用站内 `schimmel-bad-fugen` 已有的「擦完是均匀变白还是留暗影」判据(**链接过去不重写**),
+  并给出顺序纪律:**先把湿度压住再换缝,否则活干两遍**。
+- 安全口径**逐字沿用** bad-fugen 的规矩:只用一种清洁剂、含氯的绝不与醋/除垢剂混用、
+  **不给具体配比和浓度**、明写不是建筑鉴定也不给法律意见。
+- 物理段复用本站数字(20 °C/50% 碰 14 °C = **73%**、70–80% 起霉、露点 12 °C);`schimmel-` 前缀让
+  `device_of()` 自动落 dehum,货架自动是除湿机,**正文零 BTU 零 Hitzewelle**。
+
+**验证**:13 步流水线 + 11 道闸门全绿;Playwright 实跑 pageerror 0、390px 页面级零横滚
+(4 列表格在自己的框里滚,属设计行为)、**10 条 Amazon 链接 tag 全对**。部署自检把新页加进
+「事故形状」断言(必须含 MeacoDry、必须不含 `EB_SIZER`)。
+
+**判定线(`eco-schimmel-fenster-1213`,2026-12-13,读数日刻意落在该词 12 月峰值内)**:
+28 天真人 pv **≥40** 或 affiliate_click **≥4** → 「按 5 年季节性峰值选题」成立,
+按同法补 schwarzer schimmel / schimmel schlafzimmer / schimmel tapete;
+**pv <15 → 词选对了但本站拿不到这块需求(实体档次问题,08-31 已判),不再按峰值加页。**
+
+**别再做(这一轮查过了)**:
+- **konvektorheizung 不建页**(rising 31.700 是假象,5 年峰值 1,2)。
+- **`infrarotheizung test stiftung warentest`(rising 31.500)不碰**:SW 结果不能转载,站内无法核实。
+- **`schimmel mietminderung` 不碰**:法律题,本站规矩是不给法律意见。
+- **每日热搜 RSS 再次确认无用**:09-15 实拉 10 条全是明星/球赛/星座(sally field、ballon d'or…),
+  niche 命中 0——与 `fetch_trends_rising.py` 文档那句话一致,别再指望它。
+- **取暖簇不缺页**:infrarotheizung 6 页、heizlüfter 2 页、heizung-qm 7 页,而这些词 11 月见顶、
+  冬÷九月全部 ≤1,0(infrarotheizung 0,71)——**它们的问题不是覆盖,是发现面。**

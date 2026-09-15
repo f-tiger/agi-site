@@ -555,6 +555,17 @@
    "lose": "AI 引荐 =0 且 pv <5 → tilt-and-turn 那页 52% 的引用份额是该页自身的年龄/运气,不是可复制的页型;停止造「AI 形状」的孪生页",
    "source": "sites/getecoback/CLAUDE.md（2026-09-15 冬季通风对页）",
    "status": "open"
+  },
+  {
+   "id": "eco-schimmel-fenster-1213",
+   "site": "getecoback",
+   "due": "2026-12-13",
+   "metric": "/guide/schimmel-am-fenster.html 28d 真人 pv + affiliate_click(读数日落在该词的 12 月峰值内)",
+   "threshold": "真人 pv ≥40 或 affiliate_click ≥4",
+   "win": "「按 5 年季节性峰值选题」成立 → 按同法补 schwarzer schimmel(峰值 16)/ schimmel schlafzimmer(13)/ schimmel tapete(13)",
+   "lose": "28d pv <15 → 词选对了但本站拿不到这块需求(实体档次,08-31 已判),不再按季节性峰值加页,改投已有页的发现面",
+   "source": "sites/getecoback/data/seasonality-de.json(单一锚 heizlüfter:schimmel fenster 峰值 4,8 / 12 月 / 冬季 3,74×;与站内已有的 fenster beschlagen 峰值 5,6 同量级;站内零标题覆盖)",
+   "status": "open"
   }
  ]
 }
