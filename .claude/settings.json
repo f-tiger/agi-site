@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__Playgama_Developer_Cabinet__list_applications",
+      "mcp__Playgama_Developer_Cabinet__get_application",
+      "mcp__Playgama_Developer_Cabinet__get_submission_state",
+      "mcp__Playgama_Developer_Cabinet__list_moderation_comments",
+      "mcp__Playgama_Developer_Cabinet__get_archive_status",
+      "mcp__Playgama_Developer_Cabinet__get_archive_qa_tool_link",
+      "mcp__Playgama_Developer_Cabinet__get_local_game_qa_tool_link",
+      "mcp__Playgama_Developer_Cabinet__get_sandbox_state",
+      "mcp__Playgama_Developer_Cabinet__get_sandbox_traffic",
+      "mcp__Playgama_Developer_Cabinet__list_leaderboards",
+      "mcp__Playgama_Developer_Cabinet__list_in_app_products",
+      "mcp__Cloudflare_Developer_Platform__d1_databases_list",
+      "Bash(python3 tools/build_packages.py)",
+      "Bash(python3 tools/package_blocknova.py)",
+      "Bash(python3 tools/fleet/check_bets.py)"
+    ]
+  }
+}
