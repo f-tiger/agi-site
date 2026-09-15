@@ -238,6 +238,17 @@ jobs:
           # so it would have passed against the old build and proved nothing.
           check "https://getecoback.com/en/guide/portable-ac-rented-apartment.html" "eb-usshelf"
           check "https://getecoback.com/en/guide/portable-ac-rented-apartment.html" "Recommended in the US"
+          # The strip is the surface above the fold and ships on more pages than
+          # the shelf, including ones that have no shelf at all.
+          check "https://getecoback.com/en/guide/btu-calculator.html" "eb-ustop"
+          # A European-location page must carry NO US surface: a US portable AC
+          # is 115 V and will not run on a 230 V socket in Spain.
+          es_body=$(curl -sL --max-time 20 "https://getecoback.com/en/guide/best-portable-air-conditioner-spain.html" || true)
+          if echo "$es_body" | grep -q "eb-ustop\|eb-usshelf"; then
+            echo "::error::Spain page carries a US surface (115 V goods for 230 V readers)"; fail=1
+          else
+            echo "OK Spain page carries no US surface"
+          fi
           check "https://getecoback.com/guide/klimaanlage-wohnmobil.html" "rv rooftop air conditioner"
           # not_found_handling regression guard (2026-09-04): an unknown path must
           # be a real 404, not a 200 fallback that would let search engines index

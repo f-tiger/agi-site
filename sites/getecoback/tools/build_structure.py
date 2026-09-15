@@ -1659,6 +1659,13 @@ def models_block(device, en=False, slug=None):
 # the same three-path geo gate as the switch reveals the US one. When it does,
 # the bridge is hidden too: its text says "the units below are the European
 # models", and that sentence becomes false the moment the swap happens.
+# Pages about cooling a room in a European country never swap, whatever the
+# reader's own country is. A US-market portable air conditioner is 115 V / 60 Hz
+# and simply does not run on a European 230 V / 50 Hz socket, so recommending
+# one to somebody furnishing a flat in Spain is not a marketing mismatch, it is
+# a machine that will not work. Caught by reading the built pages after the
+# strip shipped, not by the gates.
+US_SWAP_NEVER = ("italy", "spain", "france", "europe", "germany", "portugal", "greece")
 US_SHELF_TERM = {"ac": "portable air conditioner", "dehum": "dehumidifier", "heater": "space heater"}
 US_SHELF_SVG = {"ac": "ac", "dehum": "dehum", "heater": "heater"}
 
@@ -1689,7 +1696,7 @@ def us_shelf_block(device):
             f'{AD_LABEL[True]}</span></p>'
             f'<p class="eb-shop-sub">{sub}</p>'
             f'<div class="eb-shop-grid">{cards}</div></section>'
-            + US_SHELF_JS + '<!--/EB_USSHELF-->\n')
+            + '<!--/EB_USSHELF-->\n')
 
 
 # Reuses the switch's gate verbatim in shape: America/* decides with no network,
@@ -1697,22 +1704,74 @@ def us_shelf_block(device):
 # clock asks the edge. Clicks in this grid report source "us-shelf" so the kill
 # line can be read without guessing which grid produced them.
 US_SHELF_JS = (
-    '<script>(function(){var tz="";'
+    '<script>(function(){if(window.__ebUsSwap)return;window.__ebUsSwap=1;var tz="";'
     'try{tz=Intl.DateTimeFormat().resolvedOptions().timeZone||"";}catch(e){tz="";}'
     'var NA=["US","CA","MX","PR"];'
-    'var swap=function(){'
-    'var us=document.getElementById("eb-usshelf");if(!us)return;'
-    'var eu=document.getElementById("eb-models");if(eu)eu.hidden=true;'
-    'var br=document.getElementById("eb-usmarket");if(br)br.hidden=true;'
-    'us.hidden=false;'
+    'var swap=function(){var shown=0;'
+    'var pairs=[["eb-models","eb-usshelf"],["eb-toppick","eb-ustop"]];'
+    'for(var i=0;i<pairs.length;i++){'
+    'var eu=document.getElementById(pairs[i][0]),us=document.getElementById(pairs[i][1]);'
+    'if(!us)continue;if(eu)eu.hidden=true;us.hidden=false;shown++;'
     'us.addEventListener("click",function(e){'
     'var a=e.target&&e.target.closest&&e.target.closest(\'a[href*="amazon."]\');if(!a)return;'
-    'if(window.gtag)gtag("event","affiliate_click",{source:"us-shelf",page:location.pathname,link_url:a.href});},true);};'
-    'if(tz.indexOf("America/")===0){swap();}'
+    'if(window.gtag)gtag("event","affiliate_click",{source:this.id==="eb-ustop"?"us-toppick":"us-shelf",'
+    'page:location.pathname,link_url:a.href});},true);}'
+    'if(shown){var br=document.getElementById("eb-usmarket");if(br)br.hidden=true;}};'
+    # The script rides with the strip, which sits near the top of the document,
+    # so at execution time the shelf and the bridge further down are not parsed
+    # yet and getElementById returns null for them. Running immediately swapped
+    # the strip and silently left the European shelf and the bridge on screen —
+    # found in the browser, invisible to every static gate. Wait for the DOM.
+    'var ready=function(fn){if(document.readyState==="loading")'
+    'document.addEventListener("DOMContentLoaded",fn);else fn();};'
+    'if(tz.indexOf("America/")===0){ready(swap);}'
     'else if(tz.indexOf("Europe/")===0){return;}'
     'else{try{fetch("/api/geo").then(function(r){return r.json();}).then(function(d){'
-    'if(d&&d.c&&NA.indexOf(d.c)>=0)swap();}).catch(function(){});}catch(e){}}'
+    'if(d&&d.c&&NA.indexOf(d.c)>=0)ready(swap);}).catch(function(){});}catch(e){}}'
     '})();</script>')
+
+
+def us_toppick_block(device):
+    """US twin of the buying strip. Added right after shipping the shelf swap
+    and then actually looking at the page: the strip sits ABOVE the shelf and
+    still named De'Longhi, Comfee and AEG, so an American met European pills
+    first and American cards further down. Swapping only what is below the fold
+    is worse than not swapping — the page recommends two countries at once."""
+    term = US_SHELF_TERM.get(device)
+    picks = (US_MODELS.get(term) or [])[:3]
+    if not picks:
+        return ""
+    head, _more = TOPPICK_HEAD[True]
+    pills = ""
+    for name, role, _note in picks:
+        url = "https://www.amazon.com/s?k=" + urllib.parse.quote_plus(name) + "&tag=" + US_TAG
+        pills += ('<a href="' + url + '" target="_blank" rel="sponsored noopener" data-eb-tp="1" '
+                  'style="display:inline-flex;align-items:center;gap:7px;background:#fff;border:1px solid #cfe0ea;'
+                  'border-radius:22px;padding:6px 13px;margin:0 7px 7px 0;text-decoration:none;font-size:13.5px;">'
+                  '<span style="background:#0f6ba8;color:#fff;font-size:11px;font-weight:800;border-radius:12px;'
+                  'padding:2px 8px;">' + role + '</span>'
+                  '<strong style="color:#0a4d7a;">' + name + '</strong>'
+                  '<span style="color:#7a8b98;">\u2192</span></a>')
+    return ('<!--EB_USTOP--><section id="eb-ustop" hidden style="max-width:1000px;margin:0 auto 4px;padding:0 20px;">'
+            '<div style="background:#f7fafc;border:1px solid #e4ebf0;border-radius:12px;padding:12px 15px;">'
+            '<div style="display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin-bottom:8px;">'
+            '<strong style="font-size:12.5px;text-transform:uppercase;letter-spacing:.4px;color:#5b6b78;">'
+            + head + ' \u2014 picked in the US</strong>'
+            '<span style="font-size:11px;color:#8a99a6;">' + AD_LABEL[True] + '</span></div>'
+            + pills + '</div></section>' + US_SHELF_JS + '<!--/EB_USTOP-->\n')
+
+
+def inject_us_toppick(html, slug):
+    if any(w in slug for w in US_SWAP_NEVER):
+        return re.sub(r'<!--EB_USTOP-->.*?<!--/EB_USTOP-->\n?', '', html, flags=re.S)
+    if context_entries(slug, en=True) or "<!--EB_TOPPICK-->" not in html:
+        return re.sub(r'<!--EB_USTOP-->.*?<!--/EB_USTOP-->\n?', '', html, flags=re.S)
+    blk = us_toppick_block(device_of(slug))
+    if not blk:
+        return re.sub(r'<!--EB_USTOP-->.*?<!--/EB_USTOP-->\n?', '', html, flags=re.S)
+    if "<!--EB_USTOP-->" in html:
+        return re.sub(r'<!--EB_USTOP-->.*?<!--/EB_USTOP-->\n?', lambda m: blk, html, flags=re.S)
+    return html.replace("<!--/EB_TOPPICK-->\n", "<!--/EB_TOPPICK-->\n" + blk, 1)
 
 
 def inject_us_shelf(html, slug):
@@ -1720,6 +1779,8 @@ def inject_us_shelf(html, slug):
     problem on that page (a drain hose, a spirit level) and those are already
     switched to US search terms by EB_USSWITCH — swapping in whole appliances
     there would answer a question the reader did not ask."""
+    if any(w in slug for w in US_SWAP_NEVER):
+        return re.sub(r'<!--EB_USSHELF-->.*?<!--/EB_USSHELF-->\n?', '', html, flags=re.S)
     if context_entries(slug, en=True):
         return re.sub(r'<!--EB_USSHELF-->.*?<!--/EB_USSHELF-->\n?', '', html, flags=re.S)
     blk = us_shelf_block(device_of(slug))
@@ -1832,7 +1893,7 @@ def toppick_block(device, en=False, slug=None):
     # own Werbekennzeichnung. That is the stricter reading anyway: the label
     # belongs at the ad, not 600 px further down the page.
     ad = AD_LABEL[en]
-    return ('<!--EB_TOPPICK--><section style="max-width:1000px;margin:0 auto 4px;padding:0 20px;">'
+    return ('<!--EB_TOPPICK--><section id="eb-toppick" style="max-width:1000px;margin:0 auto 4px;padding:0 20px;">'
             '<div style="background:#f7fafc;border:1px solid #e4ebf0;border-radius:12px;padding:12px 15px;">'
             '<div style="display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin-bottom:8px;">'
             '<strong style="font-size:12.5px;text-transform:uppercase;letter-spacing:.4px;color:#5b6b78;">'
@@ -4272,6 +4333,7 @@ def main():
             new = inject_usmarket(new, slug)
             new = inject_usswitch(new)
             new = inject_models(new, slug, en=True)
+            new = inject_us_toppick(new, slug)
             new = inject_us_shelf(new, slug)
             new = inject_sizer(new, slug, en=True)
             new = inject_toppick(new, slug, en=True)
