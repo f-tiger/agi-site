@@ -3,44 +3,42 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Raumklima-MCP-Server: KI-Tools für BTU, Fensterabdichtung & Hitze</title>
-<meta name="description" content="Offener MCP-Server von getecoback.com: BTU-Empfehlung, Fensterabdichtung, Hitzevorschau, Stromkosten und Ratgeber-Suche — für Claude, Cursor & Co.">
-<link rel="canonical" href="https://getecoback.com/mcp.html">
-<link rel="alternate" hreflang="de" href="https://getecoback.com/mcp.html">
+<title>Raumklima-Dimensionierungsdaten als offener Datensatz</title>
+<meta name="description" content="Die Faustregeln und Größenleitern von getecoback.com als offener Datensatz: BTU je m², Watt je m², Liter pro Tag, Schimmel-Schwelle. CC BY 4.0, als JSON.">
+<link rel="canonical" href="https://getecoback.com/daten.html">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Raumklima-MCP-Server — KI-Agenten-Tools von EcoBack">
-<meta property="og:description" content="BTU-Empfehlung, Fensterabdichtungs-Länge, Live-Hitzevorschau, Stromkosten, Heizleistung, Taupunkt — als MCP-Tools für jeden KI-Client. Formeln identisch mit den Rechnern der Website.">
-<meta property="og:url" content="https://getecoback.com/mcp.html">
+<meta property="og:title" content="Raumklima-Dimensionierungsdaten als offener Datensatz">
+<meta property="og:description" content="Die Faustregeln und Größenleitern von getecoback.com als offener Datensatz: BTU je m², Watt je m², Liter pro Tag, Schimmel-Schwelle. CC BY 4.0, als JSON.">
+<meta property="og:url" content="https://getecoback.com/daten.html">
 <!-- Google Analytics (GA4) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-E2V0Q9SJ9V"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-E2V0Q9SJ9V');</script>
 <style>
   * { box-sizing:border-box; margin:0; padding:0; }
   body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; color:#1a2733; line-height:1.65; background:#f7fafc; }
-  .wrap { max-width:760px; margin:0 auto; padding:0 20px; }
+  .wrap { max-width:820px; margin:0 auto; padding:0 20px; }
   header { background:linear-gradient(135deg,#0f6ba8,#0a4d7a); color:#fff; padding:40px 0 34px; }
-  header a { color:rgba(255,255,255,0.85); font-size:14px; text-decoration:none; }
+  header a { color:rgba(255,255,255,.85); font-size:14px; text-decoration:none; }
   header h1 { font-size:clamp(24px,4vw,34px); margin:14px 0 8px; }
-  header p { color:rgba(255,255,255,0.9); }
+  header p { color:rgba(255,255,255,.9); }
   article { padding:36px 0 20px; }
-  article h2 { font-size:21px; margin:28px 0 10px; }
-  article h3 { font-size:16px; margin:18px 0 6px; }
+  article h2 { font-size:21px; margin:30px 0 10px; }
   article p { margin-bottom:14px; color:#26333d; }
-  article ul { margin:0 0 14px 20px; color:#26333d; }
+  article ul { margin:0 0 16px 22px; color:#26333d; }
   article li { margin-bottom:8px; }
-  pre { background:#0d2438; color:#dbeafe; border-radius:10px; padding:14px 16px; font-size:13px; overflow-x:auto; margin:10px 0 16px; }
-  code { font-family:ui-monospace,SFMono-Regular,Menlo,monospace; }
-  p code, li code { background:#eaf2f7; color:#0a4d7a; padding:1px 6px; border-radius:5px; font-size:13.5px; }
-  .answer { background:#eaf6ff; border:1px solid #cfe6fa; border-radius:10px; padding:16px 18px; margin:18px 0; }
-  .tool { background:#fff; border:1px solid #e4ebf0; border-radius:12px; padding:14px 16px; margin:10px 0; }
-  .tool strong { color:#0a4d7a; }
-  .tool p { margin:4px 0 0; font-size:14px; color:#5b6b78; }
-  .related { background:#fff; border:1px solid #e4ebf0; border-radius:12px; padding:18px 20px; margin:26px 0; }
-  .related a { display:block; margin:6px 0; }
+  a { color:#0f6ba8; }
+  table.ds { width:100%; border-collapse:collapse; margin:14px 0; font-size:14.5px; }
+  table.ds th, table.ds td { border:1px solid #e4ebf0; padding:8px 11px; text-align:left; }
+  table.ds th { background:#eef4f8; font-weight:800; }
+  .lic { background:#eefaf3; border:1px solid #cdeede; border-radius:10px; padding:14px 18px; margin:18px 0; font-size:14.5px; }
+  .cite { background:#fff; border:1px solid #e4ebf0; border-radius:10px; padding:14px 18px; margin:14px 0; font-size:14px; font-family:ui-monospace,SFMono-Regular,Menlo,monospace; overflow-x:auto; }
   footer { text-align:center; color:#5b6b78; font-size:13px; padding:30px 20px 50px; }
-  footer a, a { color:#0f6ba8; }
+  @media(max-width:560px){ table{display:block;overflow-x:auto;max-width:100%} }
 </style>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebAPI","name":"EcoBack Raumklima MCP Server","description":"Offener Model-Context-Protocol-Server mit neun Raumklima-Tools: BTU-Empfehlung, Fensterabdichtungs-Länge, Live-Hitzevorschau für Deutschland, Klimaanlagen-Stromkosten, Heizleistung in Watt, Taupunkt/Lüften, Balkonspeicher-Förderung sowie Volltextsuche und Volltext-Abruf der 133 Ratgeber. Ohne Authentifizierung, ohne personenbezogene Daten.","documentation":"https://getecoback.com/mcp.html","termsOfService":"https://getecoback.com/datenschutz.html","provider":{"@type":"Organization","@id":"https://getecoback.com/#org","name":"EcoBack","url":"https://getecoback.com/"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Dataset", "name": "EcoBack Raumklima-Dimensionierungsdaten", "description": "Faustregeln und Größenleitern für mobile Klimageräte (BTU), Luftentfeuchter (Liter/Tag) und elektrische Heizpaneele (Watt) nach Raumgröße — identisch mit den Rechnern und Ratgebern auf getecoback.com.", "url": "https://getecoback.com/daten.html", "license": "https://creativecommons.org/licenses/by/4.0/", "isAccessibleForFree": true, "dateModified": "2026-08-31", "inLanguage": "de", "creator": {"@type": "Organization", "@id": "https://getecoback.com/#org", "name": "EcoBack", "url": "https://getecoback.com/"}, "publisher": {"@type": "Organization", "@id": "https://getecoback.com/#org", "name": "EcoBack", "url": "https://getecoback.com/"}, "distribution": [{"@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "https://getecoback.com/sizing-data.json"}, {"@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": "https://getecoback.com/sizing-data.csv"}], "keywords": ["Klimaanlage", "BTU", "Luftentfeuchter", "Heizleistung", "Raumklima", "Schimmel", "Dimensionierung", "Raumgröße"], "variableMeasured": [{"@type": "PropertyValue", "name": "cooling_btu_per_m2", "value": 340, "unitText": "BTU/h je m²"}, {"@type": "PropertyValue", "name": "heating_w_per_m2_insulated", "value": "60 bis 100", "unitText": "W je m²"}, {"@type": "PropertyValue", "name": "mould_threshold_rh_percent", "value": 60, "unitText": "% relative Luftfeuchte"}, {"@type": "PropertyValue", "name": "monoblock_ceiling_btu", "value": 13500, "unitText": "BTU/h"}, {"@type": "PropertyValue", "name": "cost_basis_eur_per_kwh", "value": 0.3, "unitText": "EUR je kWh"}]}</script>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#0a4d7a">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="alternate" type="application/rss+xml" title="EcoBack Ratgeber" href="/feed.xml">
@@ -61,73 +59,66 @@
 
 <header>
   <div class="wrap">
-    <a href="/">← EcoBack Raumklima-Ratgeber</a>
-    <h1>Raumklima-Tools für KI-Agenten (MCP-Server)</h1>
-    <p>Acht Werkzeuge dieser Website — direkt nutzbar in Claude, Cursor und jedem MCP-Client. Ohne Anmeldung, ohne personenbezogene Daten.</p>
+    <a href="/">← EcoBack</a>
+    <h1>Dimensionierungsdaten als offener Datensatz</h1>
+    <p>Die Faustregeln hinter unseren Rechnern — nachnutzbar unter CC BY 4.0, als JSON und als Tabelle.</p>
   </div>
 </header>
 
 <div class="wrap">
 <article>
-  <div class="answer"><strong>Endpoint:</strong> <code>https://getecoback.com/mcp</code> (Model Context Protocol, Streamable HTTP, keine Authentifizierung). Die Formeln sind identisch mit den <a href="/tools.html">Rechnern dieser Website</a> — dein KI-Assistent und diese Seite geben nie unterschiedliche Antworten. Jedes Ergebnis nennt seine Quelle und unsere Finanzierung (Affiliate-Links, nicht selbst getestet).</div>
 
-  <h2 id="tools">Die neun Tools</h2>
-  <div class="tool"><strong>geraet_wahl</strong><p>Die Entscheidungsebene über den Rechnern: welches Gerät löst mein Problem (zu heiß / feucht &amp; Schimmel / zu kalt / stickige Luft)? Antwort mit ehrlicher Physik, Größen-Faustregel für den Raum und dem passenden Ratgeber.</p></div>
-  <div class="tool"><strong>btu_empfehlung</strong><p>Empfohlene Kühlleistung (BTU) für einen Raum aus m² und Sonneneinstrahlung, mit passender Geräteklasse. Formel: 340 BTU/m² × Sonnenfaktor.</p></div>
-  <div class="tool"><strong>fensterabdichtung_laenge</strong><p>Benötigte Länge einer Fensterabdichtung aus den Flügelmaßen (Umfang = 2 × (Breite + Höhe)), plus passende Konfektionsgröße — für Kipp-, Drehkipp- und Dachfenster.</p></div>
-  <div class="tool"><strong>hitzewelle_vorschau</strong><p>Live-Maximaltemperatur der nächsten 3 Tage für Berlin/Frankfurt/München (open-meteo), mit Einordnung ab 28 °C / 32 °C — dieselbe Datenquelle wie das Hitzeband dieser Website.</p></div>
-  <div class="tool"><strong>klimaanlage_stromkosten</strong><p>Stromkosten eines Klimageräts: Watt × Stunden × Arbeitspreis × Kompressor-Auslastung.</p></div>
-  <div class="tool"><strong>heizleistung_watt</strong><p>Benötigte Heizleistung in Watt für einen Raum (Infrarot/Elektro) aus Fläche und Dämmstandard — 60 W/m² Neubau, 80 Bestand, 100 Altbau — inklusive Betriebskosten pro Volllaststunde und Hinweis, ab wann zwei Panels sinnvoller sind.</p></div>
-  <div class="tool"><strong>ratgeber_suche</strong><p>Durchsucht die 133 Ratgeber dieser Website und liefert Titel, URL und Kurzbeschreibung — damit dein Assistent zur Antwort auch die Quelle nennen kann. Optional auf Deutsch oder Englisch eingegrenzt.</p></div>
-  <div class="tool"><strong>ratgeber_lesen</strong><p>Volltext eines einzelnen Ratgebers als Klartext (ohne Navigation, Shop-Karten und Skripte), inklusive zitierfähiger Quell-URL.</p></div>
-  <div class="tool"><strong>taupunkt_lueften</strong><p>Taupunkt der Außenluft (Magnus-Formel) und die Antwort auf „darf ich jetzt lüften?" für Keller und feuchte Räume — Wände werden 2 °C unter Raumtemperatur gerechnet.</p></div>
-  <div class="tool"><strong>balkonspeicher_foerderung</strong><p>Balkonkraftwerk-/Speicher-Förderung in Deutschland (Stand 08/2026): welche Landesprogramme es gibt, der ~100-€-Speicher-Bonus, die „erst Antrag, dann kaufen"-Regel — und auf Wunsch die Amortisationsrechnung mit und ohne Zuschuss.</p></div>
+  <p>Jeder Rechner und jede Größenleiter auf dieser Website rechnet mit denselben Regeln. Sie stehen hier vollständig, mit Einheiten und Stand, und liegen zusätzlich als maschinenlesbare Datei bereit: <a href="/sizing-data.json">sizing-data.json</a>. Stand der Daten: 2026-08-31.</p>
 
-  <h2 id="einrichten">In deinem Client einrichten</h2>
-
-  <p><strong>Mit einem Klick</strong> (öffnet den Installationsdialog deines Editors — die Konfiguration darunter
-  ist dieselbe, falls dein Client keine Links unterstützt):</p>
-  <p style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px;">
-    <a href="cursor://anysphere.cursor-deeplink/mcp/install?name=getecoback-raumklima&amp;config=eyJ0eXBlIjoiaHR0cCIsInVybCI6Imh0dHBzOi8vZ2V0ZWNvYmFjay5jb20vbWNwIn0=" data-eb-mcp="cursor" style="display:inline-block;background:#0f6ba8;color:#fff;font-weight:800;padding:10px 16px;border-radius:8px;text-decoration:none;font-size:14px;">In Cursor installieren</a>
-    <a href="vscode:mcp/install?%7B%22name%22%3A%22getecoback-raumklima%22%2C%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fgetecoback.com%2Fmcp%22%7D" data-eb-mcp="vscode" style="display:inline-block;background:#0f6ba8;color:#fff;font-weight:800;padding:10px 16px;border-radius:8px;text-decoration:none;font-size:14px;">In VS Code installieren</a>
-  </p>
-
-  <h3>Claude (claude.ai / Desktop) — als Connector</h3>
-  <p>Einstellungen → Connectors → „Custom Connector" hinzufügen und diese URL eintragen:</p>
-  <pre><code>https://getecoback.com/mcp</code></pre>
-
-  <h3>Claude Code / Cursor / VS Code (mcp.json)</h3>
-  <pre><code>{
-  "mcpServers": {
-    "getecoback-raumklima": {
-      "type": "streamable-http",
-      "url": "https://getecoback.com/mcp"
-    }
-  }
-}</code></pre>
-
-  <h3>Offizieller MCP-Registry-Eintrag</h3>
-  <p>Der Server ist im offiziellen MCP Registry als <code>io.github.f-tiger/hvac-btu-heat-klimaanlage</code> gelistet
-  (Suchbegriffe dort: <code>btu</code>, <code>hvac</code>, <code>heat</code>, <code>klima</code>). Der Registry-Eintrag zeigt
-  auf <code>https://getecoback.com/mcp/v1</code> — das ist derselbe Server wie <code>https://getecoback.com/mcp</code>;
-  die zweite Adresse existiert nur, weil das Registry jede Remote-URL global nur einmal vergibt. Discovery-Datei:
-  <code>https://getecoback.com/.well-known/mcp.json</code></p>
-
-  <h2 id="warum">Warum wir das anbieten — ehrlich</h2>
-  <p>Diese Website lebt davon, zitiert zu werden. Wenn dein KI-Assistent unsere Tools nutzt, bekommt er geprüfte Formeln statt geratener Zahlen — und nennt dabei die Quelle. Wir erfassen pro Aufruf nur den Tool-Namen (keine Argumente, keine IP, keine Nutzerkennung), Details in der <a href="/datenschutz.html">Datenschutzerklärung</a>. Die Website finanziert sich über Amazon-Affiliate-Links; Empfehlungen fassen öffentliche Tests zusammen, wir testen nicht selbst.</p>
-
-  <div class="related">
-    <strong>Für Menschen statt Maschinen</strong>
-    <a href="/tools.html">Alle Rechner & Checks im Browser →</a>
-    <a href="/widgets.html">Rechner als Widget für deine Website →</a>
-    <a href="/llms.txt">llms.txt — Maschinenlesbare Übersicht dieser Website →</a>
+  <div class="lic">
+    <strong>Lizenz: <a href="https://creativecommons.org/licenses/by/4.0/" rel="license">CC BY 4.0</a>.</strong>
+    Nutzung, Veränderung und Weitergabe sind erlaubt, auch kommerziell — die einzige Bedingung ist die Nennung der Quelle. Es ist kein Konto nötig, es gibt keine Abfrage&shy;begrenzung, und es kostet nichts.
   </div>
-<script>(function(){document.querySelectorAll("[data-eb-mcp]").forEach(function(a){a.addEventListener("click",function(){if(window.gtag)gtag("event","mcp_install_click",{client:a.getAttribute("data-eb-mcp")});});});})();</script>
+
+  <h2>Die Regeln</h2>
+  <table class="ds">
+    <tr><th>Regel</th><th>Wert</th><th>Einheit</th></tr>
+    <tr><td>Kühlleistung je Fläche</td><td>340</td><td>BTU/h je m²</td></tr>
+    <tr><td>Heizleistung je Fläche (gedämmt)</td><td>60–100</td><td>W je m²</td></tr>
+    <tr><td>Schimmel-Schwelle</td><td>60</td><td>% relative Luftfeuchte</td></tr>
+    <tr><td>Obergrenze Monoblock</td><td>13500</td><td>BTU/h</td></tr>
+    <tr><td>Strompreis-Annahme</td><td>0.3</td><td>EUR je kWh</td></tr>
+  </table>
+
+  <p><strong>Zur Obergrenze:</strong> Oberhalb von rund 13.500 BTU deckt kein tragbarer Monoblock den Raum noch ab; ab dort ist die ehrliche Empfehlung eine Quick-Connect-Splitanlage, nicht ein größeres mobiles Gerät. Quick-Connect-Sets enthalten überwiegend das fluorierte Kältemittel R32 — die Installationsklausel des Anbieters vor dem Kauf lesen.</p>
+  <p><strong>Zu den Liter-Angaben:</strong> Hersteller-Liter/Tag sind bei 30 °C/80 % rF gemessen; reale Entzugsleistung liegt typisch bei etwa der Hälfte.</p>
+
+  <h2>Leiter 1 — Kühlleistung nach Raumgröße</h2>
+  <table class="ds"><tr><th>Raumgröße</th><th>Kühlleistung</th><th>Typischer Raum</th><th>Ratgeber</th></tr><tr><td>10 m²</td><td>5.000–7.000</td><td></td><td><a href="https://getecoback.com/guide/klimaanlage-10-qm.html">Seite</a></td></tr><tr><td>15 m²</td><td>7.000–9.000</td><td></td><td><a href="https://getecoback.com/guide/klimaanlage-15-qm.html">Seite</a></td></tr><tr><td>20 m²</td><td>9.000</td><td></td><td><a href="https://getecoback.com/guide/klimaanlage-20-qm.html">Seite</a></td></tr><tr><td>25 m²</td><td>10.000–12.000</td><td></td><td><a href="https://getecoback.com/guide/klimaanlage-25-qm.html">Seite</a></td></tr><tr><td>30 m²</td><td>12.000–13.000</td><td></td><td><a href="https://getecoback.com/guide/klimaanlage-30-qm.html">Seite</a></td></tr><tr><td>40 m²</td><td>14.000+ / Split</td><td></td><td><a href="https://getecoback.com/guide/klimaanlage-40-qm.html">Seite</a></td></tr></table>
+
+  <h2>Leiter 2 — Entfeuchtung nach Raumgröße</h2>
+  <table class="ds"><tr><th>Raumgröße</th><th>Liter pro Tag</th><th>Typischer Raum</th><th>Ratgeber</th></tr><tr><td>10 m²</td><td>10–12</td><td>Bad oder kleiner Raum</td><td><a href="https://getecoback.com/guide/luftentfeuchter-10-qm.html">Seite</a></td></tr><tr><td>15 m²</td><td>12–16</td><td>Schlaf- oder Arbeitszimmer</td><td><a href="https://getecoback.com/guide/luftentfeuchter-15-qm.html">Seite</a></td></tr><tr><td>20 m²</td><td>16–20</td><td>Wohnzimmer oder Schlafzimmer</td><td><a href="https://getecoback.com/guide/luftentfeuchter-20-qm.html">Seite</a></td></tr><tr><td>25 m²</td><td>20</td><td>größeres Wohnzimmer</td><td><a href="https://getecoback.com/guide/luftentfeuchter-25-qm.html">Seite</a></td></tr><tr><td>30 m²</td><td>20–25</td><td>offener Wohnbereich</td><td><a href="https://getecoback.com/guide/luftentfeuchter-30-qm.html">Seite</a></td></tr><tr><td>40 m²</td><td>25–30</td><td>Keller oder sehr großer Raum</td><td><a href="https://getecoback.com/guide/luftentfeuchter-40-qm.html">Seite</a></td></tr></table>
+
+  <h2>Leiter 3 — Heizleistung nach Raumgröße</h2>
+  <table class="ds"><tr><th>Raumgröße</th><th>Watt</th><th>Typischer Raum</th><th>Ratgeber</th></tr><tr><td>10 m²</td><td>600–800</td><td>kleines Büro oder Badezimmer</td><td><a href="https://getecoback.com/guide/heizung-10-qm.html">Seite</a></td></tr><tr><td>15 m²</td><td>900–1.200</td><td>Arbeitszimmer oder kleines Wohnzimmer</td><td><a href="https://getecoback.com/guide/heizung-15-qm.html">Seite</a></td></tr><tr><td>20 m²</td><td>1.200–1.600</td><td>Wohnzimmer oder Schlafzimmer</td><td><a href="https://getecoback.com/guide/heizung-20-qm.html">Seite</a></td></tr><tr><td>25 m²</td><td>1.500–2.000</td><td>größeres Wohnzimmer</td><td><a href="https://getecoback.com/guide/heizung-25-qm.html">Seite</a></td></tr><tr><td>30 m²</td><td>1.800–2.400</td><td>offener Wohnbereich</td><td><a href="https://getecoback.com/guide/heizung-30-qm.html">Seite</a></td></tr><tr><td>40 m²</td><td>2.400–3.200</td><td>sehr großer oder offener Raum</td><td><a href="https://getecoback.com/guide/heizung-40-qm.html">Seite</a></td></tr><tr><td>50 m²</td><td>3.000–4.000</td><td>sehr großer offener Bereich</td><td><a href="https://getecoback.com/guide/heizung-50-qm.html">Seite</a></td></tr></table>
+
+  <h2>So zitierst du den Datensatz</h2>
+  <p>CC BY 4.0 verlangt genau eine Sache: die Quelle nennen. Fertig zum Kopieren, für eine Website:</p>
+  <pre>&lt;p&gt;Daten: &lt;a href="https://getecoback.com/daten.html"&gt;EcoBack Raumklima-Dimensionierungsdaten&lt;/a&gt;,
+Stand 2026-08-31, &lt;a href="https://creativecommons.org/licenses/by/4.0/"&gt;CC BY 4.0&lt;/a&gt;&lt;/p&gt;</pre>
+  <p>Und als Textzeile, für alles andere:</p>
+  <div class="cite">EcoBack (getecoback.com): EcoBack Raumklima-Dimensionierungsdaten. Stand 2026-08-31. CC BY 4.0. https://getecoback.com/daten.html</div>
+
+  <h2>Download</h2>
+  <ul>
+    <li><a href="/sizing-data.json"><code>https://getecoback.com/sizing-data.json</code></a> — JSON, vollständig, mit den Hinweistexten</li>
+    <li><a href="/sizing-data.csv"><code>https://getecoback.com/sizing-data.csv</code></a> — CSV im Langformat (24 Zeilen), direkt in Tabellen&shy;kalkulation und Pandas</li>
+  </ul>
+  <p>Beides ohne Schlüssel, ohne Anmeldung, ohne Abfrage&shy;begrenzung.</p>
+
+  <h2>Woher die Zahlen kommen, und was sie nicht sind</h2>
+  <p>Es sind <strong>Faustregeln</strong>, keine Messwerte und keine Norm. Sie stammen aus den Ratgebern dieser Website und sind dort jeweils hergeleitet; die Rechner benutzen exakt dieselben Werte, damit Seite und Datei nie auseinanderlaufen können. Wer eine belastbare Auslegung für ein konkretes Gebäude braucht, rechnet nach Norm oder fragt einen Fachbetrieb — dafür sind Faustregeln nicht gedacht.</p>
+  <p>Wir testen keine Geräte selbst und geben keine Rechtsberatung. Wie wir arbeiten und womit wir Geld verdienen, steht auf <a href="/wie-wir-empfehlen.html">Wie wir empfehlen</a> und <a href="/ueber-uns.html">Über uns</a>.</p>
+
 </article>
 </div>
 
 <!--EB_FOOTER--><footer class="eb-footer"><div class="eb-footer-in"><div><strong>Kategorien</strong><a href="/kategorie/heizen.html">Heizen</a><a href="/kategorie/luftqualitaet.html">Luftqualität</a><a href="/kategorie/klimaanlagen.html">Klimaanlagen &amp; Kühlen</a><a href="/kategorie/energie-sparen.html">Energie sparen</a></div><div><strong>EcoBack</strong><a href="/tools.html">🧮 Alle Rechner &amp; Checks</a><a href="/widgets.html">🧩 Widgets für deine Website</a><a href="/daten.html">📊 Offene Daten (CC BY 4.0)</a><a href="/hitze-radar.html">🌡️ Hitze-Radar</a><a href="/ueber-uns.html">Über uns</a><a href="/wie-wir-empfehlen.html">Wie wir empfehlen</a><a href="/kontakt.html">Kontakt</a></div><div><strong>Rechtliches</strong><a href="/impressum.html">Impressum</a><a href="/datenschutz.html">Datenschutz</a></div></div><div class="eb-footer-legal">Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks sind Affiliate-Links — du zahlst denselben Preis. © 2026 EcoBack</div></footer><!--/EB_FOOTER-->
-
 <!--EB_USSWITCH--><script>(function(){var tz="";try{tz=Intl.DateTimeFormat().resolvedOptions().timeZone||"";}catch(e){tz="";}var NA=["US","CA","MX","PR","BR","AR","CL","CO","PE"];var R=[["fensterabdichtung|fensterdichtung|abdichtung|abdicht|schaumstoffband|fensterabluft|kippfenster|hohlkammerplatte|xps platte|seal kit","portable ac window seal kit"],["abluftschlauch|isolierschlauch|abluft|schlauchadapter","portable ac exhaust hose"],["kondensatpumpe","condensate removal pump"],["kondensatschlauch|kondenswasserschlauch|kondenswasser|ablaufschlauch|mit schlauch|drain hose","dehumidifier drain hose"],["reiniger|verdampfer|schimmelentferner|coil cleaner","air conditioner coil cleaner"],["lamellenkamm|k\u00fchlrippen","air conditioner fin comb"],["ersatzfilter|filtermatte|hepa filter","replacement air filter"],["abdeckhaube","air conditioner cover"],["antivibrationsmatte|vibrationsd","anti vibration pad"],["k\u00fchlakku","cooler ice pack"],["antikalk|entkalker|zitronens","citric acid descaler"],["dachklimaanlage","rv rooftop air conditioner"],["thermomatte","rv windshield cover"],["granulat","moisture absorber"],["hygrometer|hygrostat","indoor hygrometer"],["thermometer","indoor outdoor thermometer"],["luftbefeuchter|verdunster","cool mist humidifier"],["luftreiniger|air purifier|ac2887","hepa air purifier"],["fenstersauger","window vacuum"],["dreame|bissel|saugwischer","wet dry vacuum"],["tineco","tineco filter"],["hitzeschutzfolie|sonnenschutzfolie|isolierfolie|reflektorfolie","window insulation film"],["rollo|jalousie","blackout roller shade"],["thermovorhang|verdunkelungsvorhang|hitzeschutz.*vorhang","thermal blackout curtain"],["t\u00fcrdichtung|zugluftstopper","door draft stopper"],["markise|sonnensegel|ampelschirm","patio shade sail"],["sonnenschutz.*(scheibe|auto)|auto sonnenschutz","car sun shade"],["sonnenschutz","sun shade"],["k\u00fchlmatte hund|k\u00fchlweste hund","dog cooling mat"],["trinkbrunnen katze","cat water fountain"],["w\u00e4schest\u00e4nder|standtrockner|waeschest","clothes drying rack"],["heizdecke|heizkissen|w\u00e4rmeunterbett|waermeunterbett","electric heated blanket"],["handtuchheizk","electric towel warmer"],["frostw\u00e4chter","frost protection heater"],["heizstrahler|infrarot heiz|infrarotheizung|schmidbauer|spiegelheizung|bildheizung","infrared panel heater"],["heizl\u00fcfter|heizluefter|nth20","space heater"],["thermostat","plug in thermostat"],["energiekostenmess|strommessger|messfunktion|strommessung","electricity usage monitor"],["steckdose|steckdosenleiste|zeitschaltuhr","smart plug"],["wasserwaage","small spirit level"],["magnetband","self adhesive magnetic tape"],["klebeband","aluminum foil tape"],["fenstergriff|abus f","window security lock"],["adsorptionstrockner|luftentfeuchter|entfeuchter|meacodry|trotec ttk|pro breeze|dehumidifier","dehumidifier"],["luftk\u00fchler|luftkuehler|air cooler","evaporative air cooler"],["turmventilator|tower fan","tower fan"],["standventilator","pedestal fan"],["12v|campingventilator","12v fan"],["deckenventilator","ceiling fan"],["ventilator|meacofan|rowenta","room fan"],["split klimaanlage|splitklimaanlage|multisplit|mini.?split|klimaanlage w\u00e4rmepumpe","ductless mini split heat pump"],["klimaanlage|klimager|pinguino|chillflex|portasplit|breezein|quick connect|suntec|bosch cool|remko|clima butler|air conditioner|split","portable air conditioner"]];var sw=function(a){if(!a||!a.href||a.href.indexOf("amazon.de/s?k=")<0)return;try{var u=new URL(a.href);var k=(u.searchParams.get("k")||"").toLowerCase();if(!k)return;for(var i=0;i<R.length;i++){if(R[i][0]&&R[i][0].test(k)){a.href="https://www.amazon.com/s?k="+encodeURIComponent(R[i][1])+"&tag=ecoback0d-20";a.setAttribute("data-eb-ussw","1");return;}}}catch(e){}};var run=function(){for(var i=0;i<R.length;i++){try{R[i][0]=new RegExp(R[i][0]);}catch(e){R[i][0]=null;}}var pass=function(){try{document.querySelectorAll('a[href*="amazon.de/s?k="]').forEach(sw);}catch(e){}};if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",pass);else pass();document.addEventListener("click",function(e){try{var a=e.target&&e.target.closest&&e.target.closest('a[href*="amazon.de/s?k="]');if(a)sw(a);}catch(err){}},true);};if(tz.indexOf("America/")===0){run();}else if(tz.indexOf("Europe/")===0){return;}else{try{fetch("/api/geo").then(function(r){return r.json();}).then(function(d){if(d&&d.c&&NA.indexOf(d.c)>=0)run();}).catch(function(){});}catch(e){}}})();</script><!--/EB_USSWITCH-->
 <!--EB_TRACK--><script>(function(){var send=function(n,m){try{var b=JSON.stringify({n:n,p:location.pathname,r:document.referrer,m:m||null});if(navigator.sendBeacon){navigator.sendBeacon("/api/ev",new Blob([b],{type:"text/plain"}));}else{fetch("/api/ev",{method:"POST",keepalive:true,headers:{"Content-Type":"text/plain"},body:b});}}catch(e){}};var surf="";document.addEventListener("click",function(e){var a=e.target&&e.target.closest&&e.target.closest('a[href*="amazon."]');if(!a){surf="";return;}surf=a.closest("#eb-usmarket")?"us-market":a.closest("#eb-herbst")?"home-herbst":a.hasAttribute("data-eb-tp")?"toppick":a.closest("#eb-models")?"models":a.closest("#eb-ac-finder")?"ac-finder":a.closest(".eb-shop-grid")?"grid":a.closest("article")?"body":"other";},true);var raw=send,pend=null,pt=0;var flush=function(){if(pt){clearTimeout(pt);pt=0;}if(pend){var p=pend;pend=null;raw("affiliate_click",p);}};send=function(n,m){if(n!=="affiliate_click")return raw(n,m);m=m||{};if(!m.source&&surf)m.source=surf;var u=m.link_url||"",pu=pend&&(pend.link_url||"");if(pend&&u&&pu&&u!==pu)flush();if(pend){for(var k in m){if(m[k]!=null&&pend[k]==null)pend[k]=m[k];}}else{pend={};for(var k2 in m){if(m[k2]!=null)pend[k2]=m[k2];}}if(pt)clearTimeout(pt);pt=setTimeout(flush,700);};window.addEventListener("pagehide",flush);document.addEventListener("visibilitychange",function(){if(document.hidden)flush();});window.ebSend=send;raw("page_view");var lastAff=0;var g=window.gtag;window.gtag=function(){try{if(g)g.apply(null,arguments);}catch(e){}if(arguments[0]==="event"){if(arguments[1]==="affiliate_click")lastAff=+new Date();send(arguments[1],arguments[2]);}};document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest('a[href*="amazon."]');if(!a)return;setTimeout(function(){if(+new Date()-lastAff<500)return;if(window.gtag)gtag("event","affiliate_click",{source:surf||"inline",page:location.pathname,link_url:a.href});},0);});})();</script><!--/EB_TRACK-->
 </body>

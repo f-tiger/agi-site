@@ -97,6 +97,9 @@ jobs:
             node tools/product_intel/refresh.mjs || echo "::warning::price refresh failed — pages fall back to search links and static price text"
           fi
 
+      - name: Rebuild the open-dataset landing page (refreshes sizing-data.json first)
+        run: python3 tools/build_dataset_page.py
+
       - name: Inject site chrome (nav/footer/radar; idempotent, covers new pages)
         run: python3 tools/build_structure.py
 
@@ -160,6 +163,9 @@ jobs:
       - name: Check the winter price band is on the cost cluster and still honest
         run: python3 tools/check_stromheat.py
 
+      - name: Check the open dataset is machine-findable and embeds credit back
+        run: python3 tools/check_dataset.py
+
       - name: Check the price engine (SigV4 vector, refresher vs mock, built pages vs data)
         run: |
           node tools/product_intel/paapi.mjs --selftest
@@ -209,6 +215,21 @@ jobs:
           check "https://getecoback.com/it/guide/miglior-condizionatore-portatile-italia.html" "tag=getecoback-21"
           check "https://getecoback.com/guide/btu-rechner.md" "Canonical (HTML"
           check "https://getecoback.com/sizing-data.json" "creativecommons"
+          # /daten.html (2026-09-16). The accident this guards against is not a
+          # 404 — it is the page rendering perfectly while carrying no Dataset
+          # node, which makes it invisible to Google Dataset Search, the only
+          # reason it exists. Assert the node, not the page.
+          check "https://getecoback.com/daten.html" '"@type": "Dataset"'
+          # The CSV is claimed in that Dataset node as a text/csv DataDownload.
+          # If the edge serves it as octet-stream or HTML the claim is false and
+          # the file is useless to the tools that would consume it, while the
+          # page still looks perfect. So assert the header, not just the body.
+          csv_ct=$(curl -sIL --max-time 20 "https://getecoback.com/sizing-data.csv" | tr -d '\r' | grep -i '^content-type:' | tail -1 || true)
+          case "$csv_ct" in
+            *csv*) echo "OK /sizing-data.csv is $csv_ct" ;;
+            *) echo "::error::/sizing-data.csv must be served as text/csv, got: ${csv_ct:-<none>}"; fail=1 ;;
+          esac
+          check "https://getecoback.com/sizing-data.csv" "section,key,m2,value,unit,room,guide"
           check "https://getecoback.com/for-agents.html" "MCP"
           # Crawler/agent entry points that are rebuilt every deploy.
           check "https://getecoback.com/robots.txt" "Sitemap:"

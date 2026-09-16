@@ -11,7 +11,9 @@
    "win": "无动作",
    "lose": "owner 关 Cloudflare Bots 开关,会话不能代做",
    "source": "CLAUDE.md:437",
-   "status": "open"
+   "status": "won",
+   "settled": "2026-09-16",
+   "reading": "2026-09-16T08:23:25Z 本会话现跑探针(全权限网络已开):14 站 × 8 个 AI UA,blocked_sites=[]、invalid_sites=[],全部 control 200。Cloudflare Pay-Per-Crawl 2026-09-15 生效后次日无任何站被 403/429/503 拦截 → owner 无需动 Cloudflare 开关。"
   },
   {
    "id": "bpj-crawler-observed-0918",
@@ -588,6 +590,17 @@
    "win": "「把已验证 tag 的市场按本地单位服务好」成立 → 把 sq ft + 本地电价口径推到其余 EN 页",
    "lose": "点击仍 =0 → 美国面的问题不是单位,是这些页在美国根本没有分发;停止在 US 面投入,EN 区回到只服务 EU-English 读者",
    "source": "seasonality-by-country(US space heater 峰值 1 月);electric-heater-20-sqm 此前 m² 25 次 / sq ft 0 次却挂着 US 货架",
+   "status": "open"
+  },
+  {
+   "id": "eco-dataset-search-1111",
+   "site": "getecoback",
+   "due": "2026-11-11",
+   "metric": "/daten.html 的 googlebot 抓取次数(D1 crawl 表,该表只记 HTML,所以 .json/.csv 不在内)+ 该页 28 天真人 pv 与外部 referrer;t0(2026-09-16)= 页面此前不存在,全部为 0",
+   "threshold": "googlebot 至少抓过 /daten.html 1 次,且该页出现 ≥1 个非搜索引擎的外部 referrer 或 ≥20 真人 pv/28d",
+   "win": "「把自有派生数据做成机器可发现的开放数据集」对零权威域有效 → 把同样形态复制到舰队第二个有自有数据的站(SR landed-cost 或 agi odds)",
+   "lose": "googlebot 从未抓过 → Dataset Search 这条路对 70 天龄零外链域不通,不是内容问题;停止再投机器发现面,把外链结论写回 eco CLAUDE.md 并只维护不扩建",
+   "source": "2026-09-16:sizing-data.json 自 08-31 起 CC BY 4.0 上线、返回 200,但全站零 schema.org/Dataset、无落地页,只被 for-agents.html 一处链接 → 对 Dataset Search 不可见。同轮修掉第二个缺陷:widgets 嵌入片段此前是裸 iframe 而 widget 页带 noindex,一次嵌入产生零链接权重,现在片段自带宿主页 CC BY 署名链接。两者都不需要任何账号或外联。",
    "status": "open"
   }
  ]
