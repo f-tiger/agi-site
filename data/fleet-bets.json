@@ -602,6 +602,160 @@
    "lose": "googlebot 从未抓过 → Dataset Search 这条路对 70 天龄零外链域不通,不是内容问题;停止再投机器发现面,把外链结论写回 eco CLAUDE.md 并只维护不扩建",
    "source": "2026-09-16:sizing-data.json 自 08-31 起 CC BY 4.0 上线、返回 200,但全站零 schema.org/Dataset、无落地页,只被 for-agents.html 一处链接 → 对 Dataset Search 不可见。同轮修掉第二个缺陷:widgets 嵌入片段此前是裸 iframe 而 widget 页带 noindex,一次嵌入产生零链接权重,现在片段自带宿主页 CC BY 署名链接。两者都不需要任何账号或外联。",
    "status": "open"
+  },
+  {
+   "id": "after35-cards-1014",
+   "site": "after35",
+   "due": "2026-10-14",
+   "metric": "live 经验卡张数(非 owner、非测试)+ contact_reveal + restart_plan + match_click(28d)",
+   "threshold": "卡 ≥5 且 contact_reveal ≥3(另看 restart_plan ≥20 且 match_click ≥5)",
+   "win": "继续每日维护",
+   "lose": "卡 <2 张 → 只维护清单 + 路径工具,布告板不撤但不再投入",
+   "source": "sites/after35/CLAUDE.md:114(v2 补登同节)",
+   "status": "open"
+  },
+  {
+   "id": "after35-reveal-1214",
+   "site": "after35",
+   "due": "2026-12-14",
+   "metric": "累计 contact_reveal 或单卡 reveals;另看 /after-35-restart 的 Bing AI 引用",
+   "threshold": "contact_reveal ≥30 或任一卡 reveals ≥5",
+   "win": "立项第二期(城市分频道 / 行业标签 / 提醒)",
+   "lose": "不立项;Bing 引用 0 → 记反面发现,不再投中文判定页",
+   "source": "sites/after35/CLAUDE.md:114",
+   "status": "open"
+  },
+  {
+   "id": "learn-pv-tools-1015",
+   "site": "learn",
+   "due": "2026-10-15",
+   "metric": "lev 真人 page_view/28d 且 tool_result(剔 label='__ci')",
+   "threshold": "pv ≥100 且 tool_result ≥20",
+   "win": "继续每日维护 + 加第二批判定页",
+   "lose": "<30 pv → 只做月度维护",
+   "source": "sites/learn/CLAUDE.md:35",
+   "status": "open"
+  },
+  {
+   "id": "learn-bing-1215",
+   "site": "learn",
+   "due": "2026-12-15",
+   "metric": "任一判定页在 Bing AI Performance 明细里的引用次数",
+   "threshold": "≥1",
+   "win": "中文教育判定页可行,按引用量补页",
+   "lose": "0 → 反面发现",
+   "source": "sites/learn/CLAUDE.md:35",
+   "status": "open"
+  },
+  {
+   "id": "fanzha-pv-tools-1015",
+   "site": "fanzha",
+   "due": "2026-10-15",
+   "metric": "fev 真人 page_view/28d 且 tool_result(剔 label='__ci')",
+   "threshold": "pv ≥100 且 tool_result ≥20",
+   "win": "继续每日维护 + 加第二批判定页",
+   "lose": "<30 pv → 降为月度维护",
+   "source": "sites/fanzha/CLAUDE.md:46",
+   "status": "open"
+  },
+  {
+   "id": "fanzha-bing-1215",
+   "site": "fanzha",
+   "due": "2026-12-15",
+   "metric": "任一判定页在 Bing AI Performance 明细里的引用次数",
+   "threshold": "≥1",
+   "win": "中文反诈判定页吃引用成立,按引用量补页",
+   "lose": "0 → 反面发现,本方向不再扩面",
+   "source": "sites/fanzha/CLAUDE.md:46",
+   "status": "open"
+  },
+  {
+   "id": "firstjob-pv-tools-1031",
+   "site": "firstjob",
+   "due": "2026-10-31",
+   "metric": "jev 真人 page_view/28d 且 tool_result+calc_run(剔 label='__ci')",
+   "threshold": "pv ≥150 且 事件 ≥30(秋招窗口,阈值高于其他新站)",
+   "win": "继续维护 + 加第二批判定页",
+   "lose": "<40 pv → 降为月度维护",
+   "source": "sites/firstjob/CLAUDE.md:51",
+   "status": "open"
+  },
+  {
+   "id": "firstjob-bing-1215",
+   "site": "firstjob",
+   "due": "2026-12-15",
+   "metric": "任一判定页在 Bing AI Performance 明细里的引用次数",
+   "threshold": "≥1",
+   "win": "成立,按引用量补页",
+   "lose": "0 → 反面发现",
+   "source": "sites/firstjob/CLAUDE.md:51",
+   "status": "open"
+  },
+  {
+   "id": "codeword-pv-tools-1115",
+   "site": "codeword",
+   "due": "2026-11-15",
+   "metric": "cev 真人 page_view/28d 且 tool_result+card_print(剔 label='__ci')",
+   "threshold": "pv ≥200 且 事件 ≥40(英文池大,阈值高于中文站)",
+   "win": "继续维护 + 加第二批判定页",
+   "lose": "<50 pv → 降为月度维护",
+   "source": "sites/codeword/CLAUDE.md:51",
+   "status": "open"
+  },
+  {
+   "id": "codeword-bing-1231",
+   "site": "codeword",
+   "due": "2026-12-31",
+   "metric": "任一判定页在 Bing AI Performance 明细里的引用次数",
+   "threshold": "≥1",
+   "win": "英文判定页在主站之外也吃引用,按引用量补页",
+   "lose": "0 → 反面发现:英文新站策略回到「主站加页」",
+   "source": "sites/codeword/CLAUDE.md:51",
+   "status": "open"
+  },
+  {
+   "id": "powerbill-pv-tools-1115",
+   "site": "powerbill",
+   "due": "2026-11-15",
+   "metric": "pev 真人 page_view/28d 且 calc_run+tool_result(剔 label='__ci')",
+   "threshold": "pv ≥200 且 事件 ≥40",
+   "win": "继续维护 + 加第二批判定页",
+   "lose": "<50 pv → 降为月度维护",
+   "source": "sites/powerbill/CLAUDE.md:43",
+   "status": "open"
+  },
+  {
+   "id": "powerbill-bing-1231",
+   "site": "powerbill",
+   "due": "2026-12-31",
+   "metric": "任一判定页的 Bing AI 引用次数",
+   "threshold": "≥1",
+   "win": "成立",
+   "lose": "0 → 与 codeword 一并计入「英文新站 vs 主站加页」的反面发现",
+   "source": "sites/powerbill/CLAUDE.md:43",
+   "status": "open"
+  },
+  {
+   "id": "fleet-tool-use-1014",
+   "site": "fleet",
+   "due": "2026-10-14",
+   "metric": "舰队 28 天「读者主动发起的工具使用」合计(口径与 SQL 见 docs/tool-monetization-2026-09-16.md §一;剔 CI 与 label='__ci';eco 的 heat_now/strom_now 等随页加载的小部件不计)。t0(2026-09-16)= 61:agi calc_use 21 + eco 23 + SR 13 + bpj 4 + tds 0 + 六新站 0",
+   "threshold": "≥120 / 28d",
+   "win": "工具面有需求 → 在使用量最高的那个工具上装一次意向件(不是收款),再按 28 天读数决定是否接 Stripe",
+   "lose": "<120 → 工具不是营收路径:新站三件套里「不上传的工具」从必做降为可选,现有工具只维护不扩建",
+   "source": "docs/tool-monetization-2026-09-16.md §七",
+   "status": "open"
+  },
+  {
+   "id": "fleet-machine-demand-1014",
+   "site": "fleet",
+   "due": "2026-10-14",
+   "metric": "bpj /api/* 与 eco /mcp 的调用方,剔除本仓 CI(curl/8.5.0 等)、tools/fleet/bot_ua.txt 里的爬虫、以及自报的 MCP 采集器/索引器(rokmcp-collector、SaSame-MCP-Audit、AIWebIndex…)之后剩下的真实消费者。t0:MCP 侧 0;/api/changes 侧 1 个疑似定时调用方(SG,77 次/26 天)",
+   "threshold": "≥1 个调用方 28 天内 ≥20 次且落在 ≥10 个不同日期",
+   "win": "机器面有真实消费者 → 才可以调研计量付费层(向爬虫收费仍是杀单,这条只针对主动调用 API 的开发者)",
+   "lose": "只有索引器 → 机器面永远免费,继续按「被 vendored」做(稳定 URL + CC BY 署名),不再提付费 API",
+   "source": "docs/tool-monetization-2026-09-16.md §七",
+   "status": "open"
   }
  ]
 }
