@@ -560,3 +560,51 @@ CG 的分母是「已经进入游戏的人」。**两个数字不可直接比较
 ① 从 sandbox 进主目录，你们看哪些指标、有没有量的下限？
 ② sandbox 的展示是否计入开发者分成？(我们读到的答案是否)
 ③ 我们该在什么时候、用什么材料重新提交？
+
+### 十五、砍 GHOSTLINE / SINGULARITY 的载入与卡顿（2026-09-16，owner 授权后执行）
+
+**结果（同一台机器、同一套包、逐项实测）**
+
+| | 主线程阻塞 | load 事件 |
+|---|---|---|
+| GHOSTLINE 改前 | **10 258 ms** | 1 236 ms |
+| GHOSTLINE 改后 | **2 537 ms**（−75%） | 978 ms |
+| SINGULARITY 改前 | **6 726 ms** | 1 082 ms |
+| SINGULARITY 改后 | **584 ms**（−91%） | 670 ms |
+
+仓里原有的 `cg-package-smoke` 也跟着动了：**singularity 的 gameplayStart 1 379 ms → 715 ms**
+（1 379 是 CLAUDE.md 里记着的旧值）。
+
+**两个先被否掉的猜想（留下来，免得下次再猜一遍）**
+1. **「开局跑 500 次 AI 优化拖慢了它」——错。** 直接 bench：`AI.optimize(T, b, 500)` 只要 **96 ms**，
+   `makeTrack` 6.5 ms。不是它。
+2. **「`import * as THREE from "three"` 挡住了 tree-shaking」——也错。** 真的改成 33/37 个具名导入
+   重打包后，bundle **反而大了 2 KB**（516→518 KB）。esbuild 本来就能摇掉静态属性访问的命名空间导入，
+   three 的体积是 WebGLRenderer + 材质系统本身，**摇不掉**。已回滚，`git status` 干净。
+
+**真因（实测复现了他们的排序）**：同一环境下 PROMPT（2D canvas）主线程阻塞 **0 ms**、
+GHOSTLINE **10.2 s**、SINGULARITY **6.7 s** —— 与他们记的 387 / 5 143 / 4 589 ms 同序同量级。
+**成本是 three.js + WebGL 跑在软件光栅器上**（无 GPU 的审核机、被锁的办公机、廉价手机都是这个路径；
+本地 headless 实测 `UNMASKED_RENDERER_WEBGL` = `ANGLE (... SwiftShader ...)`）。
+
+**四处改动（都对真实低端玩家有效，不是针对审核做数）**
+1. **先探一个 1×1 的丢弃 context，读 `WEBGL_debug_renderer_info`**，命中
+   swiftshader/llvmpipe/softpipe/software/microsoft basic 就判定无 GPU。
+   **`antialias` 只能在建 context 时定，之后改不了**，所以必须先探再建：无 GPU 时 `antialias: false`。
+2. **无 GPU 直接从 low 模式起步**，不再「先卡三秒再降级」。SINGULARITY 的 low 路径本来就绕开
+   `EffectComposer` + `UnrealBloomPass`（几趟全屏 pass），所以它一帧都不用跑 bloom —— 这就是它 −91% 的来源。
+3. **降级阈值 3 s → 0.6 s，但前 1.5 s 豁免。** 豁免是必须的：three 第一次画到某个材质时才编译 shader，
+   那几帧在**好显卡上也慢**，没有豁免就会把好机器永久锁进 640 px —— 那比原来的问题更糟。
+   无 GPU 的机器不依赖这条，它由第 1 条直接起步即 low。
+4. **`resize()` 现在遵守 low 模式**（两款都改）。**这是个原有 bug**：resize 每次都从
+   `devicePixelRatio` 重算，所以一次转屏就把刚降下去的分辨率又还回去了。
+   GHOSTLINE 的 low 模式还**把 backing store 宽度压到 640**（不只是 pixelRatio 1）——
+   它是 fill-rate 瓶颈，像素数才是杠杆；CSS 照常拉伸，布局不变。实测 canvas 1100×680 → 缓冲 640×395。
+
+**验证**：`verify-ghostline` / `verify-singularity` 全绿（赛道·物理·AI·经济逻辑未动）、
+`cg-package-smoke` 七款全过、`fleet-smoke` 全过、两款截图人工确认画面正常（GHOSTLINE 在跑第 3.11 秒、
+126 km/h；SINGULARITY 面板与核心都在）。
+
+**⚠️ 一条不能含糊的话：这不代表他们记的 `loadingTime` 一定会变。**
+那个数字是**归档分析时算的，只在上传新包时刷新**。要知道有没有用，唯一办法是**传新包再读
+`get_application` 里的 `archiveData.loadingTime`** —— 5 143 / 4 589 会不会掉，到时候看数字，别提前宣布胜利。

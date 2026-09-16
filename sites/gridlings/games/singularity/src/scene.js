@@ -15,7 +15,17 @@ const CYAN = 0x39f2ff, MAGENTA = 0xff3fa4, GOLD = 0xffcc57, RACKS = 80, DRONES =
 const STAGE_BG = [0x070a14, 0x070a14, 0x08102a, 0x0b0f2e, 0x120a24];
 
 export function makeScene(canvas) {
-  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: "high-performance" });
+  /* See GHOSTLINE's scene.js: multisampling on a software rasterizer costs whole frames,
+     and antialias is fixed at context creation, so probe a throwaway context first. */
+  const soft = (() => {
+    try {
+      const g = document.createElement("canvas").getContext("webgl");
+      const ext = g && g.getExtension("WEBGL_debug_renderer_info");
+      const name = ext ? String(g.getParameter(ext.UNMASKED_RENDERER_WEBGL) || "") : "";
+      return /swiftshader|llvmpipe|softpipe|software|microsoft basic/i.test(name);
+    } catch (e) { return false; }
+  })();
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: !soft, powerPreference: "high-performance" });
   renderer.setClearColor(0x070a14, 1);
   const scene = new THREE.Scene();
   scene.fog = new THREE.Fog(0x070a14, 30, 52);
@@ -158,11 +168,13 @@ export function makeScene(canvas) {
     skinId = id; core.geometry.dispose(); core.geometry = k.geo(); core.geometry.userData.skin = id;
     coreMat.color.setHex(k.col); skinEm = k.em; coreMat.emissive.setHex(k.em); halo.material.color.setHex(k.em); edgeMat.color.setHex(k.em); coreLight.color.setHex(k.em); ring.material.color.setHex(k.ring);
   }
-  const st = { gpus: 0, agents: 0, tier: 0, boost: false, training: false, stage: 0, pulse: 0, zoom: 0, shake: 0, t: 0, W: 1, H: 1, span: 24, a: 1, sx: 0, sy: 0, coinRate: 0, moteRate: 0, low: false, market: null };
+  const st = { gpus: 0, agents: 0, tier: 0, boost: false, training: false, stage: 0, pulse: 0, zoom: 0, shake: 0, t: 0, W: 1, H: 1, span: 24, a: 1, sx: 0, sy: 0, coinRate: 0, moteRate: 0, low: soft, market: null };   /* no GPU: start low, do not discover it later */
   const MARKET_TINT = { boom: 0xffcc57, shortage: 0x39f2ff, grant: 0xb28cff };
   function resize() {
     const W = canvas.clientWidth || 300, H = canvas.clientHeight || 300, phone = W < 640;
-    const dpr = Math.min(window.devicePixelRatio || 1, phone ? 1.5 : 2);
+    /* honour low mode: resize recomputed this from scratch, handing a struggling
+       device its full pixel count back on every orientation change */
+    const dpr = st.low ? 1 : Math.min(window.devicePixelRatio || 1, phone ? 1.5 : 2);
     renderer.setPixelRatio(dpr); renderer.setSize(W, H, false); composer.setSize(W * dpr, H * dpr);
     bloom.resolution.set(W * dpr / 2, H * dpr / 2);
     /* frame the hall: 24 units across on desktop, tighter on a phone so the core stays big */
@@ -237,7 +249,10 @@ export function makeScene(canvas) {
     core.rotation.y -= dt * 1.1 * spin; core.rotation.x += dt * 0.7 * spin;
     halo.rotation.z += dt * 0.6 * spin; ring.rotation.z -= dt * 0.35;
     st.pulse = Math.max(0, st.pulse - dt * 3);
-    if (dt > 0.045) { slowT += dt; if (slowT > 3 && !st.low) setQuality(true); } else slowT = Math.max(0, slowT - dt * 0.5);
+    /* 0.6s, not 3s — see GHOSTLINE, including why the first 1.5s are exempt (shader
+       warmup). Without a GPU st.low starts true, so the bloom chain (several full-screen
+       passes) never runs a frame on a machine that cannot afford it. */
+    if (st.t > 1.5 && dt > 0.045) { slowT += dt; if (slowT > 0.6 && !st.low) setQuality(true); } else slowT = Math.max(0, slowT - dt * 0.5);
     const ps = 1 + st.pulse * 0.35 + (st.training ? Math.sin(t * 9) * 0.05 : 0);
     core.scale.setScalar(ps); coreLight.intensity = 5 + st.pulse * 12 + Math.sin(t * 3) * 0.6 + (st.training ? 3 : 0);
     coreMat.emissiveIntensity = 1.6 + st.pulse * 1.4 + (st.training ? 0.5 : 0);
