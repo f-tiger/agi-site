@@ -1115,7 +1115,12 @@ cg-package-smoke，别靠肉眼。
   **且分成只发生在主目录与合作网络：`playgama.com/llms-full.txt` 明写 sandbox 链接
   "does not by itself establish ... monetization"。sandbox 跑得再好也不产生收入，
   它的产出只能是「申诉主目录的证据」。别和 Playgama Partners 的 "up to 50%" 混淆——那是给站长的产品。
-  **不做 GameDistribution**（33%，覆盖重叠）。**Poki 的 web 独占在 CG 出结果前不签**。
+  **不做 GameDistribution**（33%，覆盖重叠）。**Poki 的 web 独占不签**（五年绑定 + 策展门槛够不着）。
+  **但 2026-09-16 查出我们只读了 Poki 的 A 套餐**：`developers.poki.com/guide/revenue-deal-types`
+  并列两种合同，第二种是 **Non-Exclusive = "a one-time flat license fee instead, with no revenue
+  share"**，适用对象原文写着 "games already live on other web platforms" —— **那正是我们**
+  （itch 七款 + Playgama sandbox 七款）。所以「Poki 够不着，谈它就是浪费时间」这条杀单**只对独占成立**；
+  非独占的一次性授权费进候选名单，执行包见 `docs/games-licensing-outreach-2026-09-16.md`。
 
 ## 埋点信标的 CORS：门户域名发不出数据（2026-09-07，Playgama 认证时实测发现）
 `navigator.sendBeacon` 是 **credentialed 请求**，浏览器**拒绝**对这类请求使用
