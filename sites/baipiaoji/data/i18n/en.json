@@ -1605,7 +1605,16 @@
         "quota": "The extension is open source and completely free for individual developers — no subscription, no rate limits, no markup on inference. It runs on your machine with your own keys, so your code never passes through their servers. New users also get free credits (officially stated as needing no card; the amount isn't given in verifiable quotes).",
         "wall": "The real cost sits on the model side: with your own key you pay each provider's list price, so your ceiling is whatever provider you choose — pair Cline with the free tiers in this site's API category (Groq, Cloudflare Workers AI) and the whole chain can cost nothing. Cline Provider (pay-as-you-go) and ClinePass (flat monthly) are the paid alternatives.",
         "source": "Cline official pricing page and docs (cline.bot / docs.cline.bot, verified via search-index quotes; new-user credit amount not officially stated)",
-        "checked": "2026-08-04"
+        "checked": "2026-08-04",
+        "paid": {
+          "tiers": "On the day we read it, the official pricing page lists exactly two tiers: Open Source, free forever for individual developers (the price cell literally reads n/a), and Enterprise, Custom, unpriced, contact sales. Cline's own words are no subscriptions, no vendor lock-in — there is no individual subscription tier at all, and the only money you spend is on model inference, either with your own API key or through Cline's own inference, which it describes as at cost. What Enterprise buys is team and compliance machinery: the JetBrains extension, SSO, an SLA, dedicated support, centralised billing, a team management dashboard, role-based access control, restricting which inference providers can be used, and authentication logs (fine-grained permissioning and advanced config management are marked Coming Soon). One caveat worth stating: ClinePass appears in the site navigation, but no price for it appears on the pricing page and /clinepass returned 404 that day, so we do not repeat any figure the vendor has not published",
+          "unit_cost": "The official pricing page publishes no rate card. On the individual side you pay for inference by usage, and the rate is whatever model and provider you pick — Cline names Anthropic, Gemini, OpenAI, OpenRouter, AWS Bedrock, GCP Vertex, Groq, Cerebras, Vercel AI Gateway and DeepSeek, and self-hosting is allowed. Cline's own inference is described as at cost, without a published rate. Enterprise is negotiated",
+          "quota_included": "false — with no subscription there is no such thing as included inference: every call in the open-source version is paid for by your own key or your prepaid balance",
+          "rollover": "Not applicable: no subscription period means nothing to carry over. The official pricing page says nothing about how long a prepaid balance stays valid",
+          "effective": "2026-09-16 (= the verification date, fetched directly from the official pricing page; that day the page carried only Open Source and Enterprise)",
+          "source": "https://cline.bot/pricing (official pricing page, fetched 2026-09-16; no ClinePass price is published there)",
+          "checked": "2026-09-16"
+        }
       }
     },
     "qoder": {
@@ -2317,7 +2326,16 @@
         "wall": "Heavy generation outpaces free earning — then it's buying Buzz or a membership; ad blockers or the SFW filter stop the ad-based Blue Buzz stream. **Licensing here is unlike anywhere else: there is no site-wide answer — it differs per model.** Civitai's licensing guide explains that uploaders set the permissions themselves, in two groups: merging/sharing, and commercial use. The commercial switches are itemised: whether you may sell generated images, use the model in the on-site generator, let other generation services offer the model, or sell the model and its merges. Some models forbid commercialisation in any form, covering the model, derivative models and their output. **The most consequential line is Civitai's own**: these settings run on the **honour system and are requests rather than a formal licence**, and Civitai will not pursue claims on anyone's behalf; enforceable rights depend on whether the underlying model carries a formal licence such as CreativeML Open RAIL-M. Reading the permission badges on a model page therefore **does not** mean you hold a licence in the legal sense — before publishing commercially, go back to the base model's formal terms.",
         "cycle": "daily",
         "source": "Civitai licensing guide, Terms of Service and licence texts (education.civitai.com/guide-to-licensing-options-on-civitai, civitai.com/content/tos, civitai.com/content/licenses/CreativeML Open RAIL-M — verified via search-index quotes)",
-        "checked": "2026-08-06"
+        "checked": "2026-08-06",
+        "paid": {
+          "tiers": "Three membership tiers, read off the official pricing page that day: Bronze $10/mo, Silver $25/mo, Gold $50/mo. They grant 10,000 / 25,000 / 50,000 Green Buzz per month and scale the bonus on purchased Buzz (5% / 10% / 20%), the Blue Buzz multiplier on daily rewards (1.5× / 2.5× / 4×), private models (3 / 10 / 100), images per job (8 / 10 / 12) and queued jobs (8 / 10 / 10). All three include high-priority generation, ad-free browsing, Civitai Link, private Discord channels and early access. Creator monetisation is capped at 10 and 25 model versions a month, unlimited on Gold. A perks-only membership without Buzz can be bought with Buzz instead. The same page notes that unrestricted content creation has moved to civitai.red",
+          "unit_cost": "Buzz costs exactly the same in all three tiers: $10→10,000, $25→25,000, $50→50,000, i.e. 1,000 Buzz per dollar ($0.001 each) — **the price step buys perks, not cheaper Buzz**. Civitai does not say this anywhere; it is this site dividing the three published figures, and the arithmetic is shown above. Against the spend rates verified here (an SD1.5 image ~1–2 Buzz, SDXL ~4–6), Bronze's 10,000 Buzz works out to roughly 1,600–2,500 SDXL images — again our conversion from official numbers, not a count the vendor promises",
+          "quota_included": "true — the Buzz a membership grants is the same on-site currency as the free daily earnings and spends the same way in the generator. What it does not change is model licensing, which still differs per model (see the honour-system warning in the wall field above; paying does not override it)",
+          "rollover": "The official pricing page does not say whether Green Buzz carries over between months, so neither do we — check your account page and the Terms of Service",
+          "effective": "2026-09-16 (= the verification date; fetched directly from the official pricing page that day. We had no earlier record of this page, so there is no prior price to compare)",
+          "source": "https://civitai.com/pricing (official pricing page, fetched 2026-09-16)",
+          "checked": "2026-09-16"
+        }
       }
     },
     "removebg": {

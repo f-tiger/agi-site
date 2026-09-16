@@ -24,7 +24,8 @@
    "win": "做成月更小节",
    "lose": "并入 developers 页",
    "source": "sites/baipiaoji/CLAUDE.md:49",
-   "status": "open"
+   "status": "open",
+   "reading_2026-09-16": "D1 现查 28d：/does-llms-txt-actually-work 的 JS pv = 0，AI 引用 = 0，watch 钩子点击 = 0（calc 事件全站 4 次，无一条是 /calc/watch-hook/*）。除非 09-17/18 两天内出现，两条都将判 lose。"
   },
   {
    "id": "bpj-freetier-cut-0918",
@@ -35,7 +36,8 @@
    "win": "扩 OpenAI/Anthropic/DeepSeek 同构系列",
    "lose": "随巡检自动更新,不再投人工",
    "source": "sites/baipiaoji/CLAUDE.md:44",
-   "status": "open"
+   "status": "open",
+   "reading_2026-09-16": "D1 现查 28d：/how-much-has-gemini-free-tier-been-cut 的 JS pv = 0，AI 引用 = 0，watch 钩子点击 = 0（calc 事件全站 4 次，无一条是 /calc/watch-hook/*）。除非 09-17/18 两天内出现，两条都将判 lose。"
   },
   {
    "id": "eco-googlebot-0918",
@@ -601,6 +603,28 @@
    "win": "「把自有派生数据做成机器可发现的开放数据集」对零权威域有效 → 把同样形态复制到舰队第二个有自有数据的站(SR landed-cost 或 agi odds)",
    "lose": "googlebot 从未抓过 → Dataset Search 这条路对 70 天龄零外链域不通,不是内容问题;停止再投机器发现面,把外链结论写回 eco CLAUDE.md 并只维护不扩建",
    "source": "2026-09-16:sizing-data.json 自 08-31 起 CC BY 4.0 上线、返回 200,但全站零 schema.org/Dataset、无落地页,只被 for-agents.html 一处链接 → 对 Dataset Search 不可见。同轮修掉第二个缺陷:widgets 嵌入片段此前是裸 iframe 而 widget 页带 noindex,一次嵌入产生零链接权重,现在片段自带宿主页 CC BY 署名链接。两者都不需要任何账号或外联。",
+   "status": "open"
+  },
+  {
+   "id": "bpj-ad-inventory-1014",
+   "site": "baipiaoji",
+   "due": "2026-10-14",
+   "metric": "工具页广告库存：/ad/house/tool/* 点击数，或 ads 表出现任一 draft（28 天窗，D1 现查，剔 CI）",
+   "threshold": "点击 ≥5 或 draft ≥1",
+   "win": "单页库存成立，投放页按板块把单页触达表做厚",
+   "lose": "=0 且工具页触达仍 ≥150 → 不是分发问题是需求问题，撤回工具页库存只留板块页",
+   "source": "sites/baipiaoji/docs/PRD-revenue-tools-2026-09-16.md",
+   "status": "open"
+  },
+  {
+   "id": "bpj-paid-tier-series-1014",
+   "site": "baipiaoji",
+   "due": "2026-10-14",
+   "metric": "civitai + cline 的判定页与 /upgrade/ 页合计带来源真人 pv（28 天窗，D1 现查）",
+   "threshold": "≥10",
+   "win": "继续按 D1 需求序补付费档（下一批 kimi / feishu-miaoji / haiper / quillbot，需 runner 侧抓官方页）",
+   "lose": "与 bpj-grok-series-1009 合并判定；两条皆 0 则停止为 SEO 目的补付费档，只按复核需要补",
+   "source": "sites/baipiaoji/docs/PRD-revenue-tools-2026-09-16.md",
    "status": "open"
   }
  ]

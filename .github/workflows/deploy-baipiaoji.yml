@@ -462,6 +462,25 @@ jobs:
           echo "$r" | grep -q '@' && { echo "::error::/api/reach 响应含 @ —— 疑似泄漏行级数据"; exit 1; }
           echo "✅ /api/reach 在位：ok、计数、paths、窗口参数、零行级数据"
 
+      # 广告库存面（2026-09-16 上线当日补自检）。断言的是**事故的形状**：
+      # 这块唯一会静默坏掉的方式是「位子没渲染到工具页上」或「渲染了但触达数没接上」——
+      # 两者线上都看不出来（没有广告时本来就只有一行自售文案），而工具页承担全站 2/3 的真人触达。
+      # 第三条断言 rel="sponsored nofollow noopener"：它掉了不是少个属性，是整站可能被判链接方案。
+      - name: Self-test ad inventory surface
+        id: st_ads
+        run: |
+          p=$(curl -sL -m 25 'https://baipiaoji.com/tools/grok.html')
+          echo "$p" | grep -q 'data-ad-tool="grok"' || { echo "::error::工具页没有广告位（全站 2/3 触达无库存）"; exit 1; }
+          echo "$p" | grep -Eq 'var R=[1-9][0-9]*, P=true' || { echo "::error::工具页广告位未接上该页真实触达数（应为 R=<正整数>, P=true）"; exit 1; }
+          echo "$p" | grep -q 'rel="sponsored nofollow noopener"' || { echo "::error::广告链接缺 rel=sponsored nofollow noopener"; exit 1; }
+          a=$(curl -sL -m 25 'https://baipiaoji.com/advertise.html')
+          echo "$a" | grep -q '触达最高的工具页' || { echo "::error::投放页缺单页库存表"; exit 1; }
+          r=$(curl -s -m 20 'https://baipiaoji.com/api/ads?cat=chat&lang=zh')
+          echo "$r" | head -c 200; echo
+          echo "$r" | grep -Eq '"ok":[[:space:]]*true' || { echo "::error::/api/ads 未返回 ok"; exit 1; }
+          echo "$r" | grep -q '"ads":\[' || { echo "::error::/api/ads 缺 ads 数组"; exit 1; }
+          echo "✅ 广告库存面在位：工具页有位、触达数已接、rel 合规、投放页有库存表、/api/ads 可读"
+
       - name: MCP discovery surface check
         run: |
           listed=false
@@ -611,5 +630,6 @@ jobs:
           check "变更分发" "${{ steps.st_dispatch.outcome }}"
           check "赚钱作业包注册墙" "${{ steps.st_earn.outcome }}"
           check "触达端点" "${{ steps.st_reach.outcome }}"
+          check "广告库存面" "${{ steps.st_ads.outcome }}"
           [ "$fail" = "0" ] || exit 1
           echo "✅ 全部链路自测通过"

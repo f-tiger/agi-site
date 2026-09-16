@@ -85,6 +85,11 @@ const REACH = existsSync(join(root, 'data/reach.json')) ? JSON.parse(readFileSyn
 const DRIFT = existsSync(join(root, 'data/drift.json')) ? JSON.parse(readFileSync(join(root, 'data/drift.json'), 'utf8')) : { items: [] };
 const driftOf = (slug) => (DRIFT.items || []).find((d) => d.slug === slug) || null;
 const reachOfCat = (cat) => { const r = REACH && (REACH.categories || []).find((c) => c.cat === cat); return r ? r.n : null; };
+// 单页触达（2026-09-16）：广告位此前只挂在板块页，而 D1 现查 28 天 307 个带来源真人里
+// **209 个落在工具页、只有 56 个落在板块页**——库存挂错了地方，站点 2/3 的触达没有库存。
+// 卖位子给厂商时，「这一页有多少人」比「这个板块有多少人」具体得多，而这个数 reach.json
+// 每天就在生成，此前没人用。取不到或为 0 时回落到板块数并把口径写在文案里，不含糊。
+const reachOfTool = (slug) => { const r = REACH && (REACH.tools || []).find((t) => t.slug === slug); return r ? r.n : null; };
 // 计量模型谱系：真正决定体验的不是「能白嫖多少」，而是「会撞上哪一种墙」。
 // 与类目规则同属洞察层——原本定义在 free-for-you 页面内部，
 // 接进 MCP 后 agent 也要用同一份，所以提到模块级：同一事实只写一处。
@@ -1687,6 +1692,7 @@ function toolPage(tool) {
     }).join('')}</div>
   </section>` : ''}
   ${subscribeOf(`/tools/${tool.slug}.html`)}
+  ${adSlotOf(tool.category, tool.slug)}
   ${(() => {
     // 该工具参与的对比页。人搜「A 怎么样」之后紧接着搜的就是「A 和 B 比」——把下一步放在手边。
     const mine = VS_PAIRS.filter(([a, b]) => a.slug === tool.slug || b.slug === tool.slug);
@@ -2596,24 +2602,32 @@ function upgradeIndexPage(upTools, groups) {
 // ② 链接一律 rel="sponsored nofollow noopener" —— 漏掉这个,整站可能被判链接方案;
 // ③ 与已核实条目**不共用容器**:目录是核实来的,这块是买来的,读者必须一眼分得清。
 // 取数在客户端:付款后要立刻可见,而静态构建最快也要等下一次;没有广告时整块不渲染。
-const adSlotOf = (cat) => {
+const adSlotOf = (cat, toolSlug) => {
   const zh = LOCALE.code === 'zh';
-  return `<div class="ad-slot" data-ad-cat="${esc(cat || '')}" hidden></div>
+  // 这一页自己的触达优先于板块触达：卖的是这一页，就报这一页的数。为 0 或取不到才回落到
+  // 板块数，并且文案里明说报的是板块——两个数绝不混用同一句话。
+  const own = toolSlug ? reachOfTool(toolSlug) : null;
+  const page = own != null && own > 0;
+  const R = page ? own : reachOfCat(cat);
+  return `<div class="ad-slot" data-ad-cat="${esc(cat || '')}" data-ad-tool="${esc(toolSlug || '')}" hidden></div>
 <script>(function(){
   var el=document.currentScript.previousElementSibling; if(!el)return;
   var c=el.getAttribute('data-ad-cat')||'';
+  var tl=el.getAttribute('data-ad-tool')||'';
   fetch('/api/ads?lang=${LOCALE.code}'+(c?'&cat='+encodeURIComponent(c):''))
    .then(function(r){return r.json()}).then(function(d){
     if(!d||!d.ads||!d.ads.length){
       // 空位自售:没有广告时这块位置就是库存,标出真实触达数与投放入口。数字来自 CI 每日落库的 reach.json;
       // 没有数字就只放入口。这一行是站方自己的话,不是广告,所以标「广告位」而非「广告」。
-      var R=${JSON.stringify(reachOfCat(cat))};
+      var R=${JSON.stringify(R)}, P=${page ? 'true' : 'false'};
       el.innerHTML='<p class="ad-slot-h">${zh ? '广告位' : 'Ad slot'}</p><a class="ad-house" href="${BASE}/advertise.html">'+
         ${zh
-          ? `'这个板块的广告位空着'+(R==null?'':'，过去 ${REACH ? REACH.window_days : 28} 天有 '+R+' 次带来源真人浏览')+'。自助投放，付款即上架 →'`
-          : `'This section has an open ad slot'+(R==null?'':' with '+R+' referred human views in the past ${REACH ? REACH.window_days : 28} days')+'. Self-serve, live on payment →'`}+'</a>';
+          ? `(P?'这一页的广告位空着，它在过去 ${REACH ? REACH.window_days : 28} 天有 '+R+' 次带来源真人浏览'
+               :'这个板块的广告位空着'+(R==null?'':'，过去 ${REACH ? REACH.window_days : 28} 天有 '+R+' 次带来源真人浏览'))+'。自助投放，付款即上架 →'`
+          : `(P?'The ad slot on this page is open — it had '+R+' referred human views in the past ${REACH ? REACH.window_days : 28} days'
+               :'This section has an open ad slot'+(R==null?'':' with '+R+' referred human views in the past ${REACH ? REACH.window_days : 28} days'))+'. Self-serve, live on payment →'`}+'</a>';
       el.hidden=false;
-      el.querySelector('.ad-house').addEventListener('click',function(){if(window.bpjEv)bpjEv('ad','/ad/house/'+(c||'all'))});
+      el.querySelector('.ad-house').addEventListener('click',function(){if(window.bpjEv)bpjEv('ad','/ad/house/'+(tl?'tool/'+tl:(c||'all')))});
       return;
     }
     var H='<p class="ad-slot-h">${zh ? '广告' : 'Ad'}</p>';
@@ -7536,10 +7550,10 @@ curl -s 'https://baipiaoji.com/api/limits?slug=kimi'              # ${zh ? '这�
   const HOW = zh
     ? [['填三行', '工具名、官网、一句话说明。机器当场校验：必须是 https、不能是已收录工具的域名、说明里不能塞链接。'],
        ['付款', '支付页由支付商托管，我们不接触你的卡号。'],
-       ['自动上架', `付款成功后由回调自动发布到你选的板块，${zh ? '' : ''}无需任何人审核。到期自动下架，不必联系我们。`]]
+       ['自动上架', '付款成功后由回调自动发布到你选的板块，无需任何人审核。到期自动下架，不必联系我们。位子出现在该板块的板块页，以及该板块下的每一个工具页——2026-09-16 起，此前只有板块页。']]
     : [['Three fields', 'Tool name, official URL, one line. Checked on the spot: https only, not a domain already in the directory, and no links inside the pitch.'],
        ['Pay', 'Checkout is hosted by the payment provider; we never touch your card details.'],
-       ['It goes live by itself', 'A webhook publishes the slot to the section you picked the moment payment clears. No human reviews it, and it retires on its own at the end of the run.']];
+       ['It goes live by itself', 'A webhook publishes the slot to the section you picked the moment payment clears. No human reviews it, and it retires on its own at the end of the run. The slot runs on that section page and on every tool page inside it — since 2026-09-16; before that, the section page only.']];
   const NOT = zh
     ? [['已核实数据', '广告买不到 limits 里的任何一个字：额度、官方出处、核实日期照旧只认官方页面。'],
        ['目录排序', '站内排序是编辑规则（完全免费 > 有已核实数字 > hot），广告不参与，也改不动它。'],
@@ -7575,6 +7589,22 @@ curl -s 'https://baipiaoji.com/api/limits?slug=kimi'              # ${zh ? '这�
     <table><thead><tr><th>${zh ? '板块' : 'Section'}</th><th>${zh ? '带来源真人浏览' : 'Referred human views'}</th></tr></thead>
     <tbody>${CATS_UI.map(([k, v]) => `<tr><td>${esc(v)}</td><td>${reachOfCat(k) == null ? '0' : reachOfCat(k)}</td></tr>`).join('')}</tbody></table>
   </section>` : ''}
+  ${(() => {
+    // 单页库存表（2026-09-16）：板块数对买家来说太粗——真正决定值不值的是「位子会出现在哪几页、
+    // 那几页各有多少人」。这张表不是新数据，是 reach.json 里一直躺着没人用的那一列。
+    // 只列 >0 的页，0 的页不该拿出来卖；一个数都没有就整块不渲染。
+    const rows = ((REACH && REACH.tools) || []).filter((r) => r.n > 0).slice(0, 15)
+      .map((r) => ({ ...r, name: bySlug.get(r.slug)?.name || r.slug }));
+    if (!rows.length) return '';
+    return `<section class="limits-table">
+    <h2 class="group-title">${zh ? '触达最高的工具页（位子也出现在这些页上）' : 'Highest-reach tool pages (your slot runs here too)'}<span>${rows.length}</span></h2>
+    <p class="sub-note">${zh
+      ? `买一个板块的位子，它会同时出现在该板块的板块页与其下每一个工具页。下面是过去 ${REACH.window_days} 天带来源真人浏览最高的工具页——口径与上表完全相同。全站 ${REACH.humans_referred} 次里有 ${((REACH.by_kind || {}).tool) || 0} 次落在工具页上，这就是位子搬到工具页的原因。`
+      : `A section slot runs on that section page and on every tool page inside it. These are the tool pages with the most referred human views over the past ${REACH.window_days} days, counted exactly as in the table above. Of the site's ${REACH.humans_referred} referred views, ${((REACH.by_kind || {}).tool) || 0} landed on a tool page — which is why the slot now runs there.`}</p>
+    <table><thead><tr><th>${zh ? '工具页' : 'Tool page'}</th><th>${zh ? '板块' : 'Section'}</th><th>${zh ? '带来源真人浏览' : 'Referred human views'}</th></tr></thead>
+    <tbody>${rows.map((r) => `<tr><td><a href="${BASE}/tools/${esc(r.slug)}.html">${esc(r.name)}</a></td><td>${esc((site.categories && site.categories[r.cat]) ? (LOCALE.code === 'zh' ? site.categories[r.cat] : ((i18n.en?.categories || {})[r.cat] || r.cat)) : r.cat)}</td><td>${r.n}</td></tr>`).join('')}</tbody></table>
+  </section>`;
+  })()}
   <section class="limits-table">
     <h2 class="group-title">${zh ? '投放' : 'Book a slot'}<span>1</span></h2>
     <form class="submit-form" id="adForm">

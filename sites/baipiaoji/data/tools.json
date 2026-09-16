@@ -860,7 +860,16 @@
       "quota": "扩展本身开源免费、对个人开发者完全免费，无订阅、无速率限制、对推理不加价；代码在本机运行、用你自己的 Key，不经过官方服务器。新用户另有一份免费额度（官方称无需绑卡，具体数额未在可核实引文中给出）。",
       "wall": "真正的花费在模型侧：自带 Key 就按各家原价付，成本上限由你选的 provider 决定——所以把 Cline 配上站内 api 分类里那些免费额度（如 Groq、Cloudflare Workers AI），整条链路可以是 0 元。另有 Cline Provider 按量与 ClinePass 月费两种可选付费路径。",
       "source": "Cline 官方定价页与文档（cline.bot / docs.cline.bot，经搜索索引引文核实；新用户赠额数额官方未明示）",
-      "checked": "2026-08-04"
+      "checked": "2026-08-04",
+      "paid": {
+        "tiers": "官方定价页当日只列两档：Open Source 对个人开发者永久免费（价格栏写的是 n/a），Enterprise 为 Custom、不公示价格、需联系销售。官方原话是 no subscriptions, no vendor lock-in——个人侧根本没有订阅档，唯一的花费是模型推理，自带 API key 或用 Cline 自家的推理（官方称按成本价 at cost）。Enterprise 买到的是团队与合规能力：JetBrains 扩展、SSO、SLA、专属支持、集中计费、团队管理面板、基于角色的访问控制、限制可用推理提供商、审计日志（细粒度权限与高级配置管理官方标注 Coming Soon）。有一条要提醒：官网导航里有 ClinePass，但官方定价页没有它的价格，/clinepass 当日返回 404，所以本站不转述任何未公示的数字",
+        "unit_cost": "官方定价页不给任何费率表。个人侧按推理用量付费，单价取决于你选的模型与提供商——官方列举 Anthropic、Gemini、OpenAI、OpenRouter、AWS Bedrock、GCP Vertex、Groq、Cerebras、Vercel AI Gateway、DeepSeek 等，也可自托管；Cline 自家推理官方称按成本价，但没有公布费率。Enterprise 为协商定价",
+        "quota_included": "false——订阅档不存在，因此也不存在「订阅内含多少推理」这回事：开源版的每一次调用都由你自己的 key 或充值余额支付",
+        "rollover": "不适用：没有订阅周期，也就没有额度结转的概念；预充值余额的有效期官方定价页未说明",
+        "effective": "2026-09-16（=核实日，官方定价页当日直接抓取；当日页面只有 Open Source 与 Enterprise 两档）",
+        "source": "https://cline.bot/pricing（官方定价页，2026-09-16 直接抓取；ClinePass 的价格官方未在该页公布）",
+        "checked": "2026-09-16"
+      }
     }
   },
   {
@@ -1108,7 +1117,7 @@
     "url": "https://zenvideo.qq.com",
     "affiliate": "",
     "hot": false,
-    "last_verified": "2026-08-24"
+    "last_verified": "2026-09-16"
   },
   {
     "slug": "luma",
@@ -2201,7 +2210,16 @@
       "wall": "Buzz 攒的速度赶不上重度生成就得买 Buzz 或开会员；开广告拦截或 NSFW 过滤会停掉广告蓝 Buzz 收益。**授权维度在这里最特殊：没有站级统一答案，逐个模型不同**。官方授权指引说明，模型上传者自行设定权限，分两组——合并/分享类，与商用类；商用类可逐项开关：能否售卖生成图、能否用站内生成器、能否让其他生成服务提供该模型、能否售卖模型或其合并版。有的模型明确禁止任何形式的商业化（含模型、衍生模型及其产出）。**最要命的一条是官方自己写的**：这些许可设置属于「honor system（自觉遵守）」、是**请求而非正式授权**，Civitai 不会代任何人追责；真正可执行的授权取决于底层模型是否采用 CreativeML Open RAIL-M 等正式协议。所以看了模型页的许可标记**不等于**拿到了法律意义上的授权——商用前需回到底层模型的正式协议本身。",
       "cycle": "daily",
       "source": "Civitai 官方授权指引、服务条款与授权文本页（education.civitai.com/guide-to-licensing-options-on-civitai、civitai.com/content/tos、civitai.com/content/licenses/CreativeML Open RAIL-M，经搜索索引引文核实）",
-      "checked": "2026-08-06"
+      "checked": "2026-08-06",
+      "paid": {
+        "tiers": "会员三档，官方定价页当日读取：Bronze $10/月、Silver $25/月、Gold $50/月。三档每月分别发放 10,000 / 25,000 / 50,000 Green Buzz，并按档提升购买 Buzz 的赠送比例（5% / 10% / 20%）、每日任务蓝 Buzz 倍率（1.5× / 2.5× / 4×）、私有模型数（3 / 10 / 100）、单次任务出图数（8 / 10 / 12）与排队任务数（8 / 10 / 10）；三档都含高优先级生成、无广告浏览、Civitai Link、专属 Discord 频道与新功能抢先。创作者变现额度按档为每月 10 个 / 25 个模型版本，Gold 不限。另有「只要权益、不含 Buzz」的 perks-only 会员，可用 Buzz 购买。同页官方另注明：不受限内容创作已迁至 civitai.red",
+        "unit_cost": "三档的 Buzz 单价完全相同：$10→10,000、$25→25,000、$50→50,000，都是 1,000 Buzz/美元（$0.001 一个 Buzz）——**档位差价买的是权益，不是更便宜的 Buzz**。这一句官方没有明写，是本站拿它公布的三组数字直接相除得出的，换算过程就在上面。再结合本站已核实的消耗口径（SD1.5 约 1–2 Buzz/张、SDXL 约 4–6 Buzz/张），Bronze 的 10,000 Buzz 约合 1,600–2,500 张 SDXL；这同样是按官方数字折算的估算，不是官方承诺的张数",
+        "quota_included": "true——会员每月发放的 Green Buzz 与免费每日领取的是同一种站内货币，可直接用于站内生成器；但生成之外的模型授权仍逐个模型不同（见上面 wall 里那条 honor system 的警告，付费会员不会改变它）",
+        "rollover": "官方定价页未说明 Green Buzz 是否跨月结转，本站不替它回答——以站内账户页与服务条款为准",
+        "effective": "2026-09-16（=核实日，官方定价页当日直接抓取；本站此前未记录该页价格，故无历史对比）",
+        "source": "https://civitai.com/pricing（官方定价页，2026-09-16 直接抓取）",
+        "checked": "2026-09-16"
+      }
     }
   },
   {
