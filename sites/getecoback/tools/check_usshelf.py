@@ -91,7 +91,31 @@ def main():
             if f"tag={US_TAG}" in u:
                 bad.append(f"{rel}: US tag on an amazon.de link: {u[:70]}")
 
-    print(f"check_usshelf: {n} pages carry a US surface")
+    # EB_USUNITS (2026-09-16): the square-metre ladders carry a US shelf, so an
+    # American gets American machines sized in m². The units box closes that,
+    # and every way it can fail is silent: missing on a ladder page (the reader
+    # never sees the conversion), present on a page whose slug has no size (the
+    # arithmetic would be about nothing), or shipped WITHOUT `hidden` — which
+    # puts "Reading this in the US?" in front of every German reader.
+    ladder = re.compile(r"^(?:electric-heater|dehumidifier)-(\d+)-sqm$")
+    units_pages = 0
+    for f in sorted(glob.glob(os.path.join(SITE, "en", "guide", "*.html"))):
+        rel, slug = os.path.relpath(f, SITE), os.path.basename(f)[:-5]
+        h = open(f, encoding="utf-8").read()
+        has = 'id="eb-usunits"' in h
+        m = ladder.match(slug)
+        if m and not has:
+            bad.append(f"{rel}: square-metre ladder page with no sq-ft box for US readers")
+        if has and not m:
+            bad.append(f"{rel}: sq-ft box on a page whose slug carries no room size")
+        if has:
+            units_pages += 1
+            if 'id="eb-usunits" hidden' not in h:
+                bad.append(f"{rel}: sq-ft box ships visible — every European reader sees it")
+            if m and f"{m.group(1)} m² is about" not in h:
+                bad.append(f"{rel}: sq-ft box does not state this page's own room size")
+
+    print(f"check_usshelf: {n} pages carry a US surface, {units_pages} carry the sq-ft box")
     if bad:
         print("FAIL check_usshelf:")
         for b in bad[:20]:

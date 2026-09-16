@@ -82,7 +82,71 @@ BATCHES = [
 ]
 
 
+# Per-country mode (--countries, 2026-09-16). The question "what is the key
+# product in each market" cannot be answered from the German file: a term's
+# level is normalised inside one comparison, so each country is measured in its
+# own language against its own basket and the numbers are comparable ONLY
+# within a country. Rank and peak month are what transfer, never the level.
+GEO_PRODUCTS = {
+    "DE": ["mobile klimaanlage", "luftentfeuchter", "heizlüfter", "schimmel"],
+    "IT": ["condizionatore portatile", "deumidificatore", "stufa elettrica", "muffa"],
+    "ES": ["aire acondicionado portatil", "deshumidificador", "calefactor", "humedad pared"],
+    "FR": ["climatiseur mobile", "deshumidificateur", "chauffage d'appoint", "moisissure mur"],
+    "GB": ["portable air conditioner", "dehumidifier", "electric heater", "mould"],
+    "US": ["portable air conditioner", "dehumidifier", "space heater", "mold"],
+}
+
+
+def countries():
+    """Write data/seasonality-by-country.json: per market, which product leads
+    and in which month. Run: python3 tools/fetch_seasonality.py --countries"""
+    from trendspy import Trends
+    import pandas as pd
+    tr = Trends()
+    out, errors = {}, []
+    for i, (geo, terms) in enumerate(GEO_PRODUCTS.items()):
+        if i:
+            time.sleep(GAP_S)
+        try:
+            df = tr.interest_over_time(terms, geo=geo, timeframe=TIMEFRAME)
+            df.index = pd.to_datetime(df.index)
+            m = df.groupby(df.index.month).mean()
+            rows = []
+            for c in df.columns:
+                if c == "isPartial":
+                    continue
+                sr = m[c]
+                rows.append({"term": c, "peak": round(float(sr.max()), 1),
+                             "peak_month": int(sr.idxmax()),
+                             "sep": round(float(sr.get(9, 0)), 1),
+                             "winter_mean": round(float(sr.reindex([11, 12, 1, 2]).mean()), 1)})
+            rows.sort(key=lambda r: -r["peak"])
+            out[geo] = rows
+            print(f"{geo}: ok — leader {rows[0]['term']} (peak month {rows[0]['peak_month']})")
+        except Exception as e:
+            errors.append({"geo": geo, "error": str(e)[:200]})
+            print(f"{geo}: FAILED {str(e)[:110]}", file=sys.stderr)
+    if not out:
+        print("nothing fetched — keeping the previous file", file=sys.stderr)
+        return 0
+    path = os.path.join(ROOT, "data", "seasonality-by-country.json")
+    doc = {"fetched": datetime.now(timezone.utc).strftime("%Y-%m-%d"),
+           "timeframe": TIMEFRAME,
+           "scale_note": ("Each country is normalised against its OWN basket, in its own "
+                          "language. Compare rank and peak month across countries; never "
+                          "compare levels between countries."),
+           "countries": out, "errors": errors}
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(doc, f, ensure_ascii=False, indent=1)
+        f.write("\n")
+    print(f"wrote {path}")
+    return 0
+
+
 def main():
+    if "--countries" in sys.argv:
+        return countries()
+
     try:
         from trendspy import Trends
         import pandas as pd

@@ -277,6 +277,19 @@ jobs:
           # The strip is the surface above the fold and ships on more pages than
           # the shelf, including ones that have no shelf at all.
           check "https://getecoback.com/en/guide/btu-calculator.html" "eb-ustop"
+          # Square-foot box (2026-09-16). These ladders carry a US shelf while
+          # sizing rooms only in m², so an American was sold American machines
+          # against a unit they do not use. Assert the box is there AND still
+          # ships hidden — visible, it greets every German reader with
+          # "Reading this in the US?", which is the louder failure of the two.
+          check "https://getecoback.com/en/guide/electric-heater-20-sqm.html" "20 m² is about 215 sq ft"
+          if curl -sL --max-time 20 "https://getecoback.com/en/guide/electric-heater-20-sqm.html" \
+             | grep -q 'id="eb-usunits" hidden'; then
+            echo "OK sq-ft box ships hidden"
+          else
+            echo "::error::the sq-ft box is not hidden by default — European readers see the US notice"
+            fail=1
+          fi
           # A European-location page must carry NO US surface: a US portable AC
           # is 115 V and will not run on a 230 V socket in Spain.
           es_body=$(curl -sL --max-time 20 "https://getecoback.com/en/guide/best-portable-air-conditioner-spain.html" || true)

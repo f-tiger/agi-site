@@ -1738,6 +1738,7 @@ US_SHELF_JS = (
     'var a=e.target&&e.target.closest&&e.target.closest(\'a[href*="amazon."]\');if(!a)return;'
     'if(window.gtag)gtag("event","affiliate_click",{source:this.id==="eb-ustop"?"us-toppick":"us-shelf",'
     'page:location.pathname,link_url:a.href});},true);}'
+    'var u=document.getElementById("eb-usunits");if(u)u.hidden=false;'
     'if(shown){var br=document.getElementById("eb-usmarket");if(br)br.hidden=true;}};'
     # The script rides with the strip, which sits near the top of the document,
     # so at execution time the shelf and the bridge further down are not parsed
@@ -1794,6 +1795,64 @@ def inject_us_toppick(html, slug):
     if "<!--EB_USTOP-->" in html:
         return re.sub(r'<!--EB_USTOP-->.*?<!--/EB_USTOP-->\n?', lambda m: blk, html, flags=re.S)
     return html.replace("<!--/EB_TOPPICK-->\n", "<!--/EB_TOPPICK-->\n" + blk, 1)
+
+
+# EN square-metre ladders read by an American (2026-09-16). These 13 pages
+# already carry the US shelf, so the one non-German market with a CONFIRMED
+# working associates tag was being sold American machines sized in a unit
+# Americans do not use: electric-heater-20-sqm says "m²" 25 times and "sq ft"
+# zero times. Its own peak month for that product is January, so the gap was
+# about to be in season. Titles and URLs are deliberately untouched — the
+# 2026-10-12 Bing indexation line (eco-en-qm-bing-1012) is measured on these
+# exact URLs and rewriting them would destroy its own baseline.
+QM_SQFT = {10: 108, 15: 161, 20: 215, 25: 269, 30: 323, 40: 431, 50: 538}
+QM_SLUG_RE = re.compile(r"^(?:electric-heater|dehumidifier)-(\d+)-sqm$")
+
+
+def us_units_block(slug):
+    """Hidden by default; the US swap script reveals it for North American
+    readers. States only arithmetic (m² -> sq ft) and the conversion the reader
+    needs to redo the euro costs on their own bill. The EIA figure is given as
+    the range actually readable from the source table, which interleaves
+    monthly, year-to-date and twelve-month sections under one header — naming a
+    single number from it would be a guess dressed as a citation."""
+    m = QM_SLUG_RE.match(slug or "")
+    if not m:
+        return ""
+    qm = int(m.group(1))
+    sqft = QM_SQFT.get(qm)
+    if not sqft:
+        return ""
+    return ('<!--EB_USUNITS--><div id="eb-usunits" hidden '
+            'style="max-width:1000px;margin:10px auto 0;padding:0 20px;">'
+            '<div style="background:#eef6fb;border:1px solid #cfe6fa;border-radius:12px;'
+            'padding:14px 18px;font-size:14.5px;">'
+            f'<strong>Reading this in the US?</strong> This page sizes rooms in square metres, '
+            f'the unit used where it was written — <strong>{qm} m² is about {sqft} sq ft</strong>. '
+            'Watts are the same everywhere, so the power figures need no conversion. '
+            'The running costs below are in euros at €0.30/kWh, which is roughly double a '
+            'typical US residential rate, so redo them on your own bill: '
+            '<strong>watts ÷ 1000 × your ¢/kWh × hours</strong>. '
+            'For reference the US residential average ran about 17–18 ¢/kWh across 2025–2026 '
+            '(<a href="https://www.eia.gov/electricity/monthly/epm_table_grapher.php?t=epmt_5_3" '
+            'target="_blank" rel="noopener">EIA, Electric Power Monthly table 5.3</a>, '
+            'data for June 2026) — your own rate is the one that counts.'
+            '</div></div><!--/EB_USUNITS-->\n')
+
+
+def inject_us_units(html, slug):
+    blk = us_units_block(slug)
+    if "<!--EB_USUNITS-->" in html:
+        if not blk:
+            return re.sub(r'<!--EB_USUNITS-->.*?<!--/EB_USUNITS-->\n?', '', html, flags=re.S)
+        return re.sub(r'<!--EB_USUNITS-->.*?<!--/EB_USUNITS-->\n?', lambda m: blk, html, flags=re.S)
+    if not blk:
+        return html
+    if "<!--/EB_CRUMB-->" in html:
+        return html.replace("<!--/EB_CRUMB-->", "<!--/EB_CRUMB-->" + blk, 1)
+    if "</nav>" in html:
+        return html.replace("</nav>", "</nav>\n" + blk, 1)
+    return html
 
 
 def inject_us_shelf(html, slug):
@@ -4442,6 +4501,7 @@ def main():
             new = inject_models(new, slug, en=True)
             new = inject_us_toppick(new, slug)
             new = inject_us_shelf(new, slug)
+            new = inject_us_units(new, slug)
             new = inject_sizer(new, slug, en=True)
             new = inject_toppick(new, slug, en=True)
             new = inject_explainer(new, slug, en=True)

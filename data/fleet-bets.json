@@ -1,6 +1,6 @@
 {
  "note": "舰队赌注台账:每条预登记判定线一行;status open→won/lost/insufficient/withdrawn 时必须写 settled(日期)与 reading(读数)。tools/fleet/check_bets.py 在 heartbeat 里断言:到期 3 天内提醒,过期 >7 天未结算即红。新增判定线不进这里 = heartbeat 看不见 = 等于没预登记。",
- "updated": "2026-09-15",
+ "updated": "2026-09-16",
  "bets": [
   {
    "id": "fleet-ai-access-0916",
@@ -422,7 +422,8 @@
    "win": "意大利语试点有信号 → 再谈第二语言",
    "lose": "60 天三维度全 0 → /it/ 只维护不扩建,且不为 ES/FR 重建同类试点",
    "source": "sites/getecoback/CLAUDE.md:90(口径需 owner Bing WMT)",
-   "status": "open"
+   "status": "open",
+   "reading_20260916": "提前读数(D1 现查,不等 10-27):/it/ **上线至今全部 page_view = 9 次,ua_class 全部是 bot**(来源 US/SG,零 referrer);28/56 天窗口内 **human pv = 0、affiliate_click = 0**。即 11 页意大利语页上线 18 天,**没有任何真人看过**。判定线口径是「Bing 曝光/AI 引荐//it/ 点击 任一 >0」,Bing 侧仍需 owner 截图,但 D1 这两维已确定为 0。10-27 按原口径结算,不提前判负;**但在此之前不得以「多语言有效」为由新建任何语言版本**。"
   },
   {
    "id": "bpj-md-mirror-1028",
@@ -576,6 +577,17 @@
    "win": "「补齐已验证品类的季节性反面」成立 → 按同法补 luftbefeuchter 的尺寸/房间页(站内除湿侧有 14 页,加湿侧只有 2 页)",
    "lose": "pv <20 → 加湿不是本站能拿的需求,维持 2 页不再扩;并据此推翻「品类对称即机会」这条假设",
    "source": "sites/getecoback/data/seasonality-de.json(luftbefeuchter 峰值 22,7 / 12 月 / 冬季 2,81× = 全部实测词里季节拉升最大;luftentfeuchter 峰值 32,0 却有 14 页,加湿侧仅 1 页)",
+   "status": "open"
+  },
+  {
+   "id": "eco-us-units-0131",
+   "site": "getecoback",
+   "due": "2027-01-31",
+   "metric": "13 张 EN qm 梯页:美国真人 pv 与 affiliate_click{source:us-shelf|us-toppick},读数窗覆盖 space heater 的 1 月峰值;t0(2026-09-16,56 天)= /en/ 美国真人 pv 26、us-shelf 点击 0",
+   "threshold": "美国 /en/ qm 页真人 pv ≥40/28d 且 us-shelf 点击 ≥3",
+   "win": "「把已验证 tag 的市场按本地单位服务好」成立 → 把 sq ft + 本地电价口径推到其余 EN 页",
+   "lose": "点击仍 =0 → 美国面的问题不是单位,是这些页在美国根本没有分发;停止在 US 面投入,EN 区回到只服务 EU-English 读者",
+   "source": "seasonality-by-country(US space heater 峰值 1 月);electric-heater-20-sqm 此前 m² 25 次 / sq ft 0 次却挂着 US 货架",
    "status": "open"
   }
  ]
