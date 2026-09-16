@@ -605,6 +605,20 @@ GHOSTLINE **10.2 s**、SINGULARITY **6.7 s** —— 与他们记的 387 / 5 143 
 `cg-package-smoke` 七款全过、`fleet-smoke` 全过、两款截图人工确认画面正常（GHOSTLINE 在跑第 3.11 秒、
 126 km/h；SINGULARITY 面板与核心都在）。
 
-**⚠️ 一条不能含糊的话：这不代表他们记的 `loadingTime` 一定会变。**
-那个数字是**归档分析时算的，只在上传新包时刷新**。要知道有没有用，唯一办法是**传新包再读
-`get_application` 里的 `archiveData.loadingTime`** —— 5 143 / 4 589 会不会掉，到时候看数字，别提前宣布胜利。
+**上传验证完成（2026-09-16 15:07 UTC，owner 说「你完成」后执行）——他们自己的数字动了：**
+
+| | 旧包 loadingTime | 新包 loadingTime | | initialSize |
+|---|---|---|---|---|
+| GHOSTLINE | 5 143 ms | **2 867 ms** | **−44%** | 217 837 → 218 042（+205 B） |
+| SINGULARITY | 4 589 ms | **1 114 ms** | **−76%** | 212 542 → 212 787（+245 B） |
+
+**`initialSize` 几乎没动而时间掉了一半到四分之三 —— 这直接证明了诊断：瓶颈从来不是体积，
+是没有 GPU 时的渲染开销。** 这也是为什么当初「摇 three.js」那条路注定没用。
+
+**已做到哪一步、没做哪一步（别搞混）**
+- 两个新归档 `ghostline-2026.09.16-lowgpu` / `singularity-2026.09.16-lowgpu` 已在表单里
+  （`inForm: true`），旧归档按平台规则**保留在旁边**，没有删除。
+- **没有提交审核**（MCP 里就没有这个动作，只能 owner 在后台做）。
+- **没有 `publish_sandbox`** —— 所以 09-15 起跑的三条免费投放**仍然跑在旧包上，实验没有被扰动**。
+  要让真实玩家吃到这次优化，需要 owner 决定何时把新归档发到 sandbox（那会换掉线上版本）。
+- 两款的 `status` 仍是 `REJECTED`，MOD-7343 / MOD-7380 未动。
