@@ -674,7 +674,19 @@ Cloudflare Pages 把 `/x.html` 308 到 `/x`,而 bpj 的 sitemap / `canonical` / 
 - **本会话读不到 PR 的 open/closed 状态**:`api.github.com` 被出网代理 403,GitHub MCP 只覆盖已挂载的仓,
   而挂载 `punkpeye/awesome-mcp-servers` 的尝试**被权限层拒绝**(`add_repo` push 与 `ls` 克隆路径两次)。
   **没有绕过**。要读需 owner 放行该仓或自己看一眼 PR 页。
-- **裁定:不催。** 该仓 PR 编号已到 **12 000+**,催一个排在万条后的 PR 是彩票不是渠道。
+- **裁定已于同日修正(owner「放行」后把 fork 拉下来逐条查过)**:原判「不催,是彩票」**只对了一半**。
+  真正的原因是**冲突**:分支基点 `cbcdf8f7`(上游合并 #11415 时的树),而今天上游 main 是 `393b4e9f`
+  (#13298,日志里还有 #13919)——**我们挂着的这段时间维护者又合了一千多个 PR**,`git merge` 直接
+  `CONFLICT (content): README.md`。**维护者不是不合,是跳过了冲突的那个。** 修完冲突才算真正判过这条渠道。
+  另:净改动只有 **1 行**——bot review 那次把 agiscorecard 那条(非 GitHub URL)删了,分支上只剩
+  `verified-ai-free-tiers` 一条,手册此前记的「两个 server」已不准。
+  **现成补丁与两条修法(网页点两下 / 命令行)见 `docs/backlink-runbooks/awesome-mcp-servers-pr-refresh.md`。**
+  会话已在 fork 克隆里备好 `refresh` 分支(今天的上游 + 那一行,位置已核对,1 insertion 0 deletion),
+  **但推不上去**:`--force-with-lease` 被拦(Git Destructive)、改用非破坏性的合并再快进推送也被拦
+  (Create Public Surface)——都是会话侧权限闸,不是 GitHub 拒绝,**没有绕过**。
+- **跨 owner 挂载 v1 不支持**:`punkpeye/awesome-mcp-servers` 永远挂不进已有 `f-tiger` 仓的会话
+  (owner 已「放行」,报错从权限拒绝变成结构限制)。所以**上游 PR 的 open/closed 与维护者留言,
+  本会话读不到**;要读只能新开一个以该仓为初始源的会话。**fork `f-tiger/awesome-mcp-servers` 已挂进本会话**(同 owner 可以)。
   **同期另一条路是活的**:官方 MCP registry 三个舰队 server 全部在架(实测)——
   `verified-ai-free-tiers` v1.10.1、`com.agiscorecard/agi-scorecard`、`hvac-btu-heat-klimaanlage`。
   **注册表活、awesome-list 死**,以后按这个优先级投。

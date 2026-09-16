@@ -18,8 +18,8 @@
       "section": "MCP servers",
       "site": "baipiaoji",
       "fit": "verified-ai-free-tiers MCP server 已在官方 registry;四个 PR 已提(#12240/#12245/#12513/#12084),等维护者合并",
-      "status": "pr_open_unmerged",
-      "verified_2026_09_16": "上游 main 的 README(1.75 MB)舰队域名 0 处 = 四个 PR 均未合并;fork 分支 add-agiscorecard-and-verified-free-tiers 仍在(HTTP 200)且条目完整,所以不是 PR 内容坏了,是没人合。PR 编号已到 12k+,队列极长。"
+      "status": "pr_conflicted",
+      "verified_2026_09_16": "诊断更新:PR 未合并的原因是**冲突**,不是被无视。分支基点 cbcdf8f7(上游 #11415 时的树),今天上游已到 #13298+,期间合并了一千多个 PR;git merge 直接 CONFLICT(README.md)。净改动只有 1 行(bot review 时 agiscorecard 那条因非 GitHub URL 被删)。修法与现成补丁见 docs/backlink-runbooks/awesome-mcp-servers-pr-refresh.md。"
     },
     {
       "repo": "wong2/awesome-mcp-servers",
