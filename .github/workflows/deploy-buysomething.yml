@@ -138,7 +138,7 @@ jobs:
           UA='buysomething-deploy-selfcheck-bot (+ci; classified as bot by design)'
           fail=0
           # 1) 200 + zero redirects
-          for p in / /landed-cost /is-alibaba-legit /sourcing-margins /mcp /styles.css /app.js /data.js /duty-stack.json; do
+          for p in / /landed-cost /is-alibaba-legit /sourcing-margins /mcp /styles.css /app.js /data.js /duty-stack.json /s301-ladder.json; do
             ok=0; code=000; redirs=0
             for try in 1 2 3 4 5; do
               res=$(curl -s -o /dev/null -w '%{http_code} %{num_redirects}' -L --max-redirs 5 \
