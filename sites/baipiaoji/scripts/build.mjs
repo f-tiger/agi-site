@@ -7613,6 +7613,7 @@ curl -s 'https://baipiaoji.com/api/limits?slug=kimi'              # ${zh ? '这�
   })()}
   <section class="limits-table">
     <h2 class="group-title">${zh ? '投放' : 'Book a slot'}<span>1</span></h2>
+    <p class="sub-note" id="adPrice">${zh ? '正在读取价格与开售状态…' : 'Loading price and availability…'}</p>
     <form class="submit-form" id="adForm">
       <label><span>${zh ? '工具名' : 'Tool name'}</span>
         <input type="text" name="name" required maxlength="60" placeholder="${zh ? '例如：Kimi' : 'e.g. Kimi'}"></label>
@@ -7692,6 +7693,23 @@ curl -s 'https://baipiaoji.com/api/limits?slug=kimi'              # ${zh ? '这�
     .catch(function(){btn.disabled=false;msg.className='sub-msg is-err';
       msg.textContent=ZH?'网络没通，稍后再试。':'Network error — please try again.';});
   });
+  // 价格与开售状态在页面加载时从服务端取（2026-09-16）。两个理由：
+  // ① 不让人填完三行、按下按钮之后才发现这里收不了钱——那句话原本只在提交失败时才说；
+  // ② 价格只有一处真相（wrangler.toml 的 ADS_PRICE_CENTS，服务端校验也用它），
+  //    写死在文案里迟早会和实际收款金额对不上，而对不上的那一刻钱已经收了。
+  fetch('/api/ads?doctor=1').then(function(r){return r.json()}).then(function(d){
+    if(!d||!d.ok)return;
+    var box=document.getElementById('adPrice'); if(!box)return;
+    var money=(d.price_cents/100).toFixed(2)+' '+(d.currency||'EUR');
+    if(d.selling){
+      box.textContent=ZH?('价格：'+money+' / '+d.days+' 天，付款后自动上架。')
+        :('Price: '+money+' for '+d.days+' days, live automatically once payment clears.');
+    }else{
+      box.className='sub-note is-err';
+      box.textContent=ZH?('目前还没开售——收款通道未接通。你仍然可以填下面的表单把内容存下，接通后可直接付款。计划价格 '+money+' / '+d.days+' 天。')
+        :('Not on sale yet — the payment channel is not connected. You can still fill in the form below to save your details and pay once it is. Planned price: '+money+' for '+d.days+' days.');
+    }
+  }).catch(function(){});
 })();
 </script>`;
 

@@ -160,6 +160,12 @@ jobs:
       - name: Quota facts check (no invented numbers)
         run: node scripts/quota-facts-check.mjs
 
+      # 收款路径的端到端测试（2026-09-16，零网络 ~0.1s）。/api/ad-claim 决定一个广告位
+      # 是否因为一笔链上到账而上架，判错的两个方向都直接是钱：判松了有人用金额不符的交易
+      # 换到真实曝光，判严了买家付了钱位子不上架。变异测试已验证它会红（去掉金额核对即失败）。
+      - name: Ad-claim money-path test (zero network)
+        run: node scripts/test-ad-claim.mjs
+
       # 付费档探针的零网络自检（2026-09-16）：这个探针决定「下一轮去读哪几家的定价页」，
       # 它判错的方向有两种，都必须能红——把无价页判成 ready 会把人骗去读一个没有价格的页面；
       # 把沙箱/网络拒绝判成「这家没有付费档」则会让一个能填的缺口被永久跳过。
@@ -499,7 +505,20 @@ jobs:
           echo "$r" | head -c 200; echo
           echo "$r" | grep -Eq '"ok":[[:space:]]*true' || { echo "::error::/api/ads 未返回 ok"; exit 1; }
           echo "$r" | grep -q '"ads":\[' || { echo "::error::/api/ads 缺 ads 数组"; exit 1; }
-          echo "✅ 广告库存面在位：工具页有位、触达数已接、rel 合规、投放页有库存表、/api/ads 可读"
+          # 收款体检（2026-09-16）。断言的是**半通电**这个事故形状：支付链接配了但 webhook 没配
+          # = 买家付得了钱、位子却永远不会上架 —— 收了钱不交付，是这条链上最坏的结局。
+          # 完全没配不算失败（今天就是这个状态，投放页会如实显示未开售），但每次部署都把
+          # 阻塞项打印出来，免得「配了没生效」又要等到有人付款才发现。
+          doc=$(curl -s -m 20 'https://baipiaoji.com/api/ads?doctor=1')
+          echo "$doc"
+          echo "$doc" | grep -Eq '"selling":(true|false)' || { echo "::error::/api/ads?doctor=1 未返回 selling"; exit 1; }
+          echo "$doc" | grep -q 'sk_live\|whsec_\|0x[0-9a-fA-F]\{40\}' && { echo "::error::体检端点疑似回显了密钥值"; exit 1; }
+          if echo "$doc" | grep -q '"payment_link":true' && echo "$doc" | grep -q '"stripe_webhook":false'; then
+            echo "::error::卡轨半通电：ADS_PAYMENT_LINK 已设但 STRIPE_WEBHOOK_SECRET 未设——买家能付款，付完不会自动上架"; exit 1; fi
+          if echo "$doc" | grep -q '"wallet":true' && echo "$doc" | grep -q '"claim_secret":false'; then
+            echo "::error::钱包轨半通电：ADS_WALLET 已设但 ADS_WATCH_SECRET 未设——链上轮询无法回写，付款后不会上架"; exit 1; fi
+          echo "$doc" | grep -q '"selling":true' && echo "💰 收款已通电" || echo "ℹ️ 收款未开通（投放页显示未开售，属预期状态）"
+          echo "✅ 广告库存面在位：工具页有位、触达数已接、rel 合规、投放页有库存表、/api/ads 可读、收款体检已跑"
 
       - name: MCP discovery surface check
         run: |

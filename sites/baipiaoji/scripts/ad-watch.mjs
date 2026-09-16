@@ -18,9 +18,15 @@ import { readFileSync } from 'node:fs';
 const DRY = process.argv.includes('--dry-run');
 const need = (k) => { const v = process.env[k]; if (!v && !DRY) { console.error(`缺少 ${k}`); process.exit(1); } return v || ''; };
 
-const ACCOUNT = process.env.CLOUDFLARE_ACCOUNT_ID || '';
-const D1 = process.env.D1_DATABASE_ID || '';
-const CF_TOKEN = process.env.CLOUDFLARE_API_TOKEN || '';
+// 2026-09-16 改：订单读写从 D1 REST 换成站点自己的 /api/ad-claim。
+// 原因不是洁癖,是原方案根本跑不通——本仓 deploy workflow 自己就写着
+// 「CI 直连 D1 的 REST 导出在舰队里从未成功过一次」,根手册 09-12 / 09-13 两次记录
+// 仓里两个 Cloudflare token 都没有 D1 权限。那条路上钱包轨会在第一条 SQL 就失败,
+// 而失败只有在 owner 真的打开开关、买家真的付了钱之后才看得见。
+// 现在走 Worker(自带 D1 绑定,零 token),顺带把一个带 D1 写权限的 CF token
+// 从公开仓的 Secrets 里彻底拿掉。
+const SITE = (process.env.ADS_CLAIM_URL || 'https://baipiaoji.com/api/ad-claim').trim();
+const CLAIM_SECRET = process.env.ADS_WATCH_SECRET || '';
 const WALLET = (process.env.ADS_WALLET || '').trim();
 const CHAIN = (process.env.ADS_WALLET_CHAIN || '').trim().toLowerCase();
 const CONTRACT = (process.env.ADS_WALLET_CONTRACT || '').trim().toLowerCase();
@@ -29,16 +35,19 @@ const MIN_CONF = Number(process.env.ADS_MIN_CONFIRMATIONS || 12);
 const DAYS = Number(process.env.ADS_DAYS || 30);
 const SCAN_KEY = process.env.ADS_SCAN_API_KEY || '';
 
-// D1 走 REST,与 deploy-baipiaoji.yml 里导出流量快照的那一步同一条路子
-async function d1(sql, params = []) {
-  const r = await fetch(`https://api.cloudflare.com/client/v4/accounts/${ACCOUNT}/d1/database/${D1}/query`, {
+// 订单读写走站点自己的端点(Worker 有 D1 绑定,不需要任何 Cloudflare API token)
+async function claimApi(body) {
+  const r = await fetch(SITE, {
     method: 'POST',
-    headers: { Authorization: `Bearer ${CF_TOKEN}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ sql, params }),
+    headers: { Authorization: `Bearer ${CLAIM_SECRET}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
   });
   const j = await r.json().catch(() => ({}));
-  if (!j.success) throw new Error(`D1 失败: ${JSON.stringify(j.errors || j).slice(0, 200)}`);
-  return (j.result && j.result[0] && j.result[0].results) || [];
+  // 503 = 站点侧没配 ADS_WATCH_SECRET;401 = 两边的密钥对不上。
+  // 这两种都必须大声失败:静默跳过等于「钱到了但位子没上」而没人知道。
+  if (r.status === 503) throw new Error('站点侧未配置 ADS_WATCH_SECRET（/api/ad-claim 返回 503）');
+  if (r.status === 401) throw new Error('ADS_WATCH_SECRET 两边不一致（/api/ad-claim 返回 401）');
+  return j;
 }
 
 // 各链的取数方式不同,但都要回同一个形状:{ amountRaw, contract, confirmations, hash }
@@ -95,18 +104,18 @@ const main = async () => {
     console.log(bad ? `自测失败 ${bad} 例` : '✅ 金额换算自测通过（6 位小数）');
     process.exit(bad ? 1 : 0);
   }
-  need('CLOUDFLARE_ACCOUNT_ID'); need('D1_DATABASE_ID'); need('CLOUDFLARE_API_TOKEN'); need('ADS_WALLET');
+  need('ADS_WALLET'); need('ADS_WATCH_SECRET');
   if (!CONTRACT) { console.error('缺少 ADS_WALLET_CONTRACT——不核对合约地址等于任何人扔一个山寨币都能换到广告位'); process.exit(1); }
 
-  const pending = await d1("SELECT id, cat, url, price_cents FROM ads WHERE status='pending' AND price_cents IS NOT NULL");
+  const pending = (await claimApi({ action: 'pending' })).pending || [];
   if (!pending.length) { console.log('没有待付订单，跳过'); return; }
   console.log(`待付订单 ${pending.length} 笔`);
 
   const txs = await incoming();
   console.log(`该地址最近入账 ${txs.length} 笔`);
 
-  const today = new Date().toISOString().slice(0, 10);
-  const exp = new Date(Date.now() + DAYS * 86400000).toISOString().slice(0, 10);
+  // 上架日与到期日由服务端算(它才是唯一写库的一方)。这里不再留一份本地副本——
+  // 留着会让人以为改这里能改到期日,而实际改的是 Worker 侧的 ADS_DAYS。
   let live = 0;
 
   for (const t of txs) {
@@ -115,13 +124,12 @@ const main = async () => {
     const cents = toCents(t.amountRaw);
     const hit = pending.find((p) => Number(p.price_cents) === cents);   // ③ 容差为 0
     if (!hit) continue;
-    const dupe = await d1('SELECT ad_id FROM ad_orders WHERE session = ?', [t.hash]);
-    if (dupe.length) continue;                                          // 幂等:同一笔链上交易只认一次
-    const r = await d1(
-      "UPDATE ads SET status='live', paid_at=?, expires=?, amount=?, session=? WHERE id=? AND status='pending'",
-      [today, exp, `${cents} ${process.env.ADS_WALLET_TOKEN || 'USDT'}`, t.hash, hit.id]);
-    await d1('INSERT OR IGNORE INTO ad_orders (ad_id, session, event_id, paid_at, amount, cat, url, starts, expires) VALUES (?,?,?,?,?,?,?,?,?)',
-      [hit.id, t.hash, t.hash, new Date().toISOString(), `${cents}`, hit.cat || '', hit.url || '', today, exp]);
+    // 幂等与金额都由服务端再核一遍(它不信任本脚本);这里只报告链上看到了什么。
+    const r = await claimApi({
+      action: 'claim', id: hit.id, cents, hash: t.hash, token: process.env.ADS_WALLET_TOKEN || 'USDT',
+    });
+    if (r.code === 'already' || r.code === 'notpending' || r.code === 'nochange') continue;
+    if (!r.ok) { console.log(`⚠️ ${hit.id} 未上架：${r.code}${r.want ? `（应收 ${r.want} 分，链上 ${r.got} 分）` : ''}`); continue; }
     console.log(`✅ 上架 ${hit.id}（金额 ${cents} 分，tx ${t.hash}）`);
     live++;
   }

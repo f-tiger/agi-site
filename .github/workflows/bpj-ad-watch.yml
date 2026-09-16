@@ -39,9 +39,11 @@ jobs:
 
       - name: Match on-chain payments to pending ad slots
         env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          D1_DATABASE_ID: 1ee08cb8-a174-4ec3-8dbc-89ef5d28aa05
+          # 2026-09-16：订单读写改走站点自己的 /api/ad-claim（Worker 自带 D1 绑定）。
+          # 原来这里挂的是 CLOUDFLARE_API_TOKEN + D1 REST，而本仓自己的 deploy workflow 就写着
+          # 「CI 直连 D1 的 REST 导出在舰队里从未成功过一次」——那条路上钱包轨会在第一条 SQL
+          # 就失败，且只有在真收到钱之后才看得见。顺带把一个带 D1 写权限的 token 从公开仓拿掉。
+          ADS_WATCH_SECRET: ${{ secrets.ADS_WATCH_SECRET }}
           # 地址与合约走 Secrets/Variables，绝不进仓库（公开仓红线）
           ADS_WALLET: ${{ secrets.ADS_WALLET }}
           ADS_WALLET_CONTRACT: ${{ secrets.ADS_WALLET_CONTRACT }}
