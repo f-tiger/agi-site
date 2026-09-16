@@ -1,15 +1,15 @@
 {
-  "generated": "2026-09-15",
+  "generated": "2026-09-16",
   "source": "/api/reach",
   "window_days": 28,
-  "since": "2026-08-18",
-  "until": "2026-09-15",
+  "since": "2026-08-19",
+  "until": "2026-09-16",
   "definition": "ev='' AND ref != '' — referred human page views (traffic-truth.mjs human line A); direct/no-referrer visits and /__ self-test paths excluded; counts only, no row-level data",
-  "humans_referred": 297,
-  "per_day": 10.6,
+  "humans_referred": 307,
+  "per_day": 11,
   "by_kind": {
-    "tool": 199,
-    "category": 51,
+    "tool": 206,
+    "category": 54,
     "page": 35,
     "plans": 4,
     "vs": 6,
@@ -18,47 +18,43 @@
   "categories": [
     {
       "cat": "chat",
-      "n": 94
+      "n": 95
+    },
+    {
+      "cat": "coding",
+      "n": 51
     },
     {
       "cat": "api",
       "n": 46
     },
     {
-      "cat": "coding",
-      "n": 44
-    },
-    {
       "cat": "video",
-      "n": 26
+      "n": 27
     },
     {
       "cat": "image",
-      "n": 14
+      "n": 12
     },
     {
       "cat": "office",
-      "n": 9
+      "n": 10
     },
     {
       "cat": "local",
-      "n": 7
+      "n": 8
+    },
+    {
+      "cat": "writing",
+      "n": 5
+    },
+    {
+      "cat": "audio",
+      "n": 5
     },
     {
       "cat": "agent",
       "n": 4
-    },
-    {
-      "cat": "audio",
-      "n": 4
-    },
-    {
-      "cat": "writing",
-      "n": 4
-    },
-    {
-      "cat": "study",
-      "n": 2
     },
     {
       "cat": "search",
@@ -66,6 +62,10 @@
     },
     {
       "cat": "safety",
+      "n": 1
+    },
+    {
+      "cat": "study",
       "n": 1
     },
     {
@@ -77,7 +77,7 @@
     {
       "slug": "grok",
       "cat": "chat",
-      "n": 76
+      "n": 77
     },
     {
       "slug": "fireworks",
@@ -87,16 +87,16 @@
     {
       "slug": "kimi",
       "cat": "chat",
-      "n": 13
-    },
-    {
-      "slug": "haiper",
-      "cat": "video",
-      "n": 9
+      "n": 14
     },
     {
       "slug": "feishu-miaoji",
       "cat": "office",
+      "n": 10
+    },
+    {
+      "slug": "haiper",
+      "cat": "video",
       "n": 9
     },
     {
@@ -110,13 +110,13 @@
       "n": 5
     },
     {
-      "slug": "civitai",
-      "cat": "image",
-      "n": 4
-    },
-    {
       "slug": "google-flow",
       "cat": "video",
+      "n": 3
+    },
+    {
+      "slug": "quillbot",
+      "cat": "writing",
       "n": 3
     },
     {
@@ -130,13 +130,13 @@
       "n": 3
     },
     {
-      "slug": "comfyui",
-      "cat": "local",
+      "slug": "civitai",
+      "cat": "image",
       "n": 3
     },
     {
-      "slug": "openrouter",
-      "cat": "api",
+      "slug": "comfyui",
+      "cat": "local",
       "n": 3
     },
     {
@@ -150,6 +150,11 @@
       "n": 2
     },
     {
+      "slug": "bolt",
+      "cat": "coding",
+      "n": 2
+    },
+    {
       "slug": "fish-audio",
       "cat": "audio",
       "n": 2
@@ -160,8 +165,18 @@
       "n": 2
     },
     {
-      "slug": "quillbot",
-      "cat": "writing",
+      "slug": "openrouter",
+      "cat": "api",
+      "n": 2
+    },
+    {
+      "slug": "replit",
+      "cat": "coding",
+      "n": 2
+    },
+    {
+      "slug": "ttsmaker",
+      "cat": "audio",
       "n": 2
     },
     {
@@ -180,17 +195,12 @@
       "n": 1
     },
     {
-      "slug": "claude",
-      "cat": "chat",
-      "n": 1
-    },
-    {
-      "slug": "elicit",
-      "cat": "study",
-      "n": 1
-    },
-    {
       "slug": "github-models",
+      "cat": "coding",
+      "n": 1
+    },
+    {
+      "slug": "goose",
       "cat": "coding",
       "n": 1
     },
@@ -202,11 +212,6 @@
     {
       "slug": "guojia-fanzha",
       "cat": "safety",
-      "n": 1
-    },
-    {
-      "slug": "krea",
-      "cat": "image",
       "n": 1
     },
     {
@@ -227,6 +232,16 @@
     {
       "slug": "tongyi-wanxiang",
       "cat": "image",
+      "n": 1
+    },
+    {
+      "slug": "zed",
+      "cat": "coding",
+      "n": 1
+    },
+    {
+      "slug": "anythingllm",
+      "cat": "local",
       "n": 1
     },
     {
@@ -258,32 +273,17 @@
       "slug": "figma",
       "cat": "design",
       "n": 1
-    },
-    {
-      "slug": "hailuo",
-      "cat": "video",
-      "n": 1
-    },
-    {
-      "slug": "immersive-translate",
-      "cat": "writing",
-      "n": 1
-    },
-    {
-      "slug": "jianying",
-      "cat": "video",
-      "n": 1
     }
   ],
   "judgement": [],
   "pages": [
     {
       "path": "grok",
-      "n": 76
+      "n": 77
     },
     {
       "path": "coding",
-      "n": 33
+      "n": 35
     },
     {
       "path": "/",
@@ -295,18 +295,18 @@
     },
     {
       "path": "kimi",
-      "n": 13
+      "n": 14
     },
     {
       "path": "api",
+      "n": 11
+    },
+    {
+      "path": "feishu-miaoji",
       "n": 10
     },
     {
       "path": "haiper",
-      "n": 9
-    },
-    {
-      "path": "feishu-miaoji",
       "n": 9
     },
     {
@@ -326,15 +326,15 @@
       "n": 5
     },
     {
-      "path": "civitai",
-      "n": 4
-    },
-    {
       "path": "video",
       "n": 3
     },
     {
       "path": "google-flow",
+      "n": 3
+    },
+    {
+      "path": "quillbot",
       "n": 3
     },
     {
@@ -346,11 +346,11 @@
       "n": 3
     },
     {
-      "path": "comfyui",
+      "path": "civitai",
       "n": 3
     },
     {
-      "path": "openrouter",
+      "path": "comfyui",
       "n": 3
     },
     {
@@ -370,6 +370,10 @@
       "n": 2
     },
     {
+      "path": "bolt",
+      "n": 2
+    },
+    {
       "path": "fish-audio",
       "n": 2
     },
@@ -378,7 +382,15 @@
       "n": 2
     },
     {
-      "path": "quillbot",
+      "path": "openrouter",
+      "n": 2
+    },
+    {
+      "path": "replit",
+      "n": 2
+    },
+    {
+      "path": "ttsmaker",
       "n": 2
     },
     {
@@ -410,15 +422,11 @@
       "n": 1
     },
     {
-      "path": "claude",
-      "n": 1
-    },
-    {
-      "path": "elicit",
-      "n": 1
-    },
-    {
       "path": "github-models",
+      "n": 1
+    },
+    {
+      "path": "goose",
       "n": 1
     },
     {
@@ -427,10 +435,6 @@
     },
     {
       "path": "guojia-fanzha",
-      "n": 1
-    },
-    {
-      "path": "krea",
       "n": 1
     },
     {
@@ -450,6 +454,10 @@
       "n": 1
     },
     {
+      "path": "zed",
+      "n": 1
+    },
+    {
       "path": "/vs/bailian-vs-cerebras",
       "n": 1
     },
@@ -463,6 +471,10 @@
     },
     {
       "path": "/vs/google-ai-studio-vs-openrouter",
+      "n": 1
+    },
+    {
+      "path": "anythingllm",
       "n": 1
     },
     {
@@ -504,40 +516,28 @@
     {
       "path": "liblib",
       "n": 1
-    },
-    {
-      "path": "lovable",
-      "n": 1
-    },
-    {
-      "path": "marscode",
-      "n": 1
-    },
-    {
-      "path": "mistral",
-      "n": 1
     }
   ],
   "referrers": [
     {
       "ref": "www.google.com",
-      "n": 155
+      "n": 158
     },
     {
       "ref": "cn.bing.com",
-      "n": 59
+      "n": 67
     },
     {
       "ref": "www.perplexity.ai",
-      "n": 20
+      "n": 18
     },
     {
       "ref": "chatgpt.com",
-      "n": 12
+      "n": 13
     },
     {
       "ref": "www.bing.com",
-      "n": 10
+      "n": 11
     },
     {
       "ref": "www.facebook.com",
@@ -553,7 +553,7 @@
     },
     {
       "ref": "yandex.com",
-      "n": 4
+      "n": 3
     },
     {
       "ref": "www.baidu.com",
@@ -592,7 +592,7 @@
     {
       "ref": "chatgpt.com",
       "path": "/c/api",
-      "n": 10
+      "n": 11
     },
     {
       "ref": "www.perplexity.ai",
@@ -636,17 +636,7 @@
     },
     {
       "ref": "www.perplexity.ai",
-      "path": "/en/tools/claude",
-      "n": 1
-    },
-    {
-      "ref": "www.perplexity.ai",
       "path": "/en/tools/groq",
-      "n": 1
-    },
-    {
-      "ref": "www.perplexity.ai",
-      "path": "/en/tools/openrouter",
       "n": 1
     },
     {
@@ -676,8 +666,8 @@
     }
   ],
   "events": {
-    "sub_view": 262,
-    "go": 63,
+    "sub_view": 279,
+    "go": 77,
     "sub_submit": 4,
     "sheet_dl": 4,
     "sub_ok": 3,
