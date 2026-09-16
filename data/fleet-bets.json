@@ -1,6 +1,6 @@
 {
   "note": "舰队赌注台账:每条预登记判定线一行;status open→won/lost/insufficient/withdrawn 时必须写 settled(日期)与 reading(读数)。tools/fleet/check_bets.py 在 heartbeat 里断言:到期 3 天内提醒,过期 >7 天未结算即红。新增判定线不进这里 = heartbeat 看不见 = 等于没预登记。",
-  "updated": "2026-09-15",
+  "updated": "2026-09-16",
   "bets": [
     {
       "id": "fleet-ai-access-0916",
@@ -587,6 +587,17 @@
       "source": "docs/fleet-cross-learning-2026-09-15.md",
       "status": "open",
       "note": "基线于 2026-09-15 当天更正:探测器改为语言无关后 agi 实为 15/16(全舰队最好),原判定对象失效"
+    },
+    {
+      "id": "fleet-backlinks-1116",
+      "site": "fleet",
+      "due": "2026-11-16",
+      "metric": "data/fleet-backlinks.json:①targets 里 present=true 的个数 ②舰队 by_other 的来源域数/访问数(2026-09-16 基线:0/6 个目标,1 个域 1 次访问,且那 1 次是 com.twitter.android)",
+      "threshold": "≥2 个目标已收录,或舰队 by_other ≥5 个域且 ≥20 次访问",
+      "win": "外链路径对本舰队有效,按 linkbuilding 技能的 Foundation 阶段继续投(entity stacking + 目录)",
+      "lose": "记反面发现「awesome-list / 目录外链对本舰队量级无效」,停投外链,只保留 by_other 监测(它零成本)",
+      "source": "docs/fleet-backlinks-2026-09-16.md",
+      "status": "open"
     }
   ]
 }

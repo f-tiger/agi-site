@@ -100,10 +100,13 @@ def src_bucket(host, self_host, spec=None):
 
 
 def classify_hosts(pairs, self_host):
-    """[(host, n)] → (by_source, by_search, by_fleet)。纯函数,供自检直接调用。"""
+    """[(host, n)] → (by_source, by_search, by_fleet, by_other)。纯函数,供自检直接调用。
+
+    by_other 是**第一方外链监测**:既不是搜索/AI/社交/兄弟站/本站的来源域,
+    也就是真的有别处在链我们并且送来了人(嵌入件、目录页、awesome-list…)。"""
     spec = canon()
     by_source = {b: 0 for b in BUCKETS}
-    by_search, by_fleet = {}, {}
+    by_search, by_fleet, by_other = {}, {}, {}
     for ref, n in pairs:
         h = src_host(ref)
         b = src_bucket(h, self_host, spec)
@@ -112,7 +115,9 @@ def classify_hosts(pairs, self_host):
             by_search[h] = by_search.get(h, 0) + int(n or 0)
         elif b == "fleet":
             by_fleet[h] = by_fleet.get(h, 0) + int(n or 0)
-    return by_source, by_search, by_fleet
+        elif b == "other":
+            by_other[h] = by_other.get(h, 0) + int(n or 0)
+    return by_source, by_search, by_fleet, by_other
 
 
 def parse(site, body):
@@ -122,7 +127,7 @@ def parse(site, body):
     if site == "baipiaoji":
         human = int(body.get("humans_referred") or 0)
         pairs = [(r.get("ref"), r.get("n")) for r in (body.get("referrers") or [])]
-        by_source, by_search, by_fleet = classify_hosts(pairs, SELF_HOST[site])
+        by_source, by_search, by_fleet, by_other = classify_hosts(pairs, SELF_HOST[site])
     else:
         human = int(body.get("human_pv") or 0)
         bs = body.get("by_source")
@@ -131,9 +136,11 @@ def parse(site, body):
         by_source = {b: int(bs.get(b) or 0) for b in BUCKETS}
         by_search = {k: int(v) for k, v in (body.get("by_search") or {}).items()}
         by_fleet = {k: int(v) for k, v in (body.get("by_fleet") or {}).items()}
+        by_other = {k: int(v) for k, v in (body.get("by_other") or {}).items()}
     row = {"site": site, "human_pv": human, "by_source": by_source,
            "by_search": dict(sorted(by_search.items(), key=lambda kv: -kv[1])[:12]),
            "by_fleet": dict(sorted(by_fleet.items(), key=lambda kv: -kv[1])[:12]),
+           "by_other": dict(sorted(by_other.items(), key=lambda kv: -kv[1])[:12]),
            "unattributed": human - sum(by_source.values()), "via": "endpoint"}
     if site in NOTES:
         row["note"] = NOTES[site]
@@ -219,14 +226,15 @@ console.log(JSON.stringify(%s.map((c) => srcBucket(srcHost(c[0]), SELF))));
                 print(f"::error::python/JS 分类不一致: {ref!r} js={a} py={b}")
                 ok = False
     # 3) 纯函数行为
-    bs, bse, bf = classify_hosts([("www.google.com", 10), ("chatgpt.com", 3), ("play.agiscorecard.com", 2),
-                                  ("", 5), ("agiscorecard.com", 7)], "agiscorecard.com")
+    bs, bse, bf, bo = classify_hosts([("www.google.com", 10), ("chatgpt.com", 3), ("play.agiscorecard.com", 2),
+                                      ("", 5), ("agiscorecard.com", 7), ("someblog.example.org", 4)], "agiscorecard.com")
     for label, cond in [
         ("search 计入 google", bs["search"] == 10 and bse["google.com"] == 10),
         ("ai 计入 chatgpt", bs["ai"] == 3),
         ("兄弟站计 fleet 不计 self", bs["fleet"] == 2 and bf["play.agiscorecard.com"] == 2),
         ("空 ref = direct", bs["direct"] == 5),
         ("本域 = self", bs["self"] == 7),
+        ("外链域名进 by_other", bo == {"someblog.example.org": 4} and bs["other"] == 4),
         ("bpj 形状能解析", parse("baipiaoji", {"ok": True, "humans_referred": 4,
                                               "referrers": [{"ref": "www.google.com", "n": 4}]})["by_source"]["search"] == 4),
         ("缺 by_source 要抛而不是猜", _raises(lambda: parse("learn", {"ok": True, "human_pv": 5}))),

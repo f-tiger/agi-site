@@ -30,6 +30,7 @@ ok(p2.by_source.ai===1, "chatgpt 计入 ai");
 ok(p2.by_source.fleet===1 && p2.by_fleet["play.agiscorecard.com"]===1, "兄弟子站计 fleet");
 ok(p2.by_source.self===1, "本域跳转计 self,不污染 fleet");
 ok(p2.by_source.other===1, "netflix.com 计 other —— 裸 includes 会把它误判成 x.com(social)");
+ok(p2.by_other && p2.by_other["netflix.com"] === 1, "by_other 记下是哪个域链过来的 —— 舰队第一方外链监测靠它");
 ok(p2.by_source.direct===before, "无 referer 的旧行仍在 direct");
 ok(Object.values(p2.by_source).reduce((a,b)=>a+b,0)===p2.human_pv, "分桶之和 = human_pv");
 console.log("\nall "+n+" assertions pass");

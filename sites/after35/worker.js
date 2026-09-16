@@ -387,14 +387,17 @@ export default {
           ).all();
           const self_host = srcHost(url.hostname);
           const by_source = { search: 0, ai: 0, fleet: 0, social: 0, self: 0, direct: 0, other: 0 };
-          const by_search = {}; const by_fleet = {};
+          const by_search = {}; const by_fleet = {}; const by_other = {};
           for (const r of (q2.results || [])) {
             const h = srcHost(r.host); const n = r.n | 0; const b = srcBucket(h, self_host);
             by_source[b] += n;
             if (b === "search") by_search[h] = (by_search[h] || 0) + n;
             else if (b === "fleet") by_fleet[h] = (by_fleet[h] || 0) + n;
+            // by_other = 既不是搜索/AI/社交/兄弟站/本站的来源域 —— 真的有人从别处链过来。
+            // 这是舰队第一方的外链监测:嵌入件、目录页、awesome-list 里的链接,送来过真人就出现在这里。
+            else if (b === "other") by_other[h] = (by_other[h] || 0) + n;
           }
-          return json({ ok: true, days: 28, human_pv, ai_ref, by_host, by_source, by_search, by_fleet, generated: new Date().toISOString() }, 200, { "cache-control": "public, max-age=3600" });
+          return json({ ok: true, days: 28, human_pv, ai_ref, by_host, by_source, by_search, by_fleet, by_other, generated: new Date().toISOString() }, 200, { "cache-control": "public, max-age=3600" });
         }
         return json({ ok: false, code: "notfound" }, 404);
       } catch (e) {

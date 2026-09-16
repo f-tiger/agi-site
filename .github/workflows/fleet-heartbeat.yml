@@ -181,7 +181,7 @@ jobs:
           git config user.email noreply@anthropic.com
           git config user.name Claude
           git add data/fleet-health.json
-          git add data/fleet-ai-access.json data/fleet-ai-referrals.json data/fleet-traffic-sources.json data/fleet-page-patterns.json 2>/dev/null || true
+          git add data/fleet-ai-access.json data/fleet-ai-referrals.json data/fleet-traffic-sources.json data/fleet-page-patterns.json data/fleet-backlinks.json 2>/dev/null || true
           git diff --cached --quiet && { echo "无变化"; exit 0; }
           git commit -m "chore(fleet): heartbeat 健康快照 $(date -u +%F)"
           for i in 1 2 3 4; do
@@ -268,6 +268,13 @@ jobs:
       - name: Weekly cross-site pattern matrix
         continue-on-error: true
         run: python3 tools/fleet/page_patterns.py
+
+      # 外链监测(每周一,脚本自己判星期,不新增 cron)。两半:①各站 by_other = 真的把人
+      # 送过来的站外来源域(第一方,不花钱不靠第三方工具);②目标清单核对——只读 README,
+      # **机器永不自动提 PR、永不发帖**(同 Reddit 那条规矩)。掉链会 warning。
+      - name: Weekly backlink monitor (read-only)
+        continue-on-error: true
+        run: python3 tools/fleet/backlinks.py
 
       # 舰队的「赌注台账」(2026-09-13,owner:「持续优化,探索,扩张」):每条预登记判定线一行,
       # 到期 3 天内提醒,过期 >7 天仍未结算 → 红 → GitHub 邮件。判定线可以判负,不可以被遗忘;

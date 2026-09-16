@@ -1,0 +1,27 @@
+{
+  "note": "外链目标清单(2026-09-16)。只收**已实测 raw README 可取(HTTP 200)**的目标;404 的留在 unverified 里,不假装它存在。fit 写明为什么这个站配这个列表——错位提交会被拒,并烧掉首次提交机会(directory-submissions 技能的硬规则)。机器只做**核对**:它从不自动提 PR、从不自动发帖。",
+  "updated": "2026-09-16",
+  "targets": [
+    {"repo": "awesomedata/awesome-public-datasets", "branch": "master", "file": "README.rst",
+     "section": "Machine Learning", "site": "agiscorecard",
+     "fit": "/data.json 是 CC BY 4.0 的开放数据集,这是本舰队最诚实的数据集类契合点", "status": "queued"},
+    {"repo": "punkpeye/awesome-mcp-servers", "branch": "main", "file": "README.md",
+     "section": "MCP servers", "site": "baipiaoji",
+     "fit": "verified-ai-free-tiers MCP server 已在官方 registry;四个 PR 已提(#12240/#12245/#12513/#12084),等维护者合并", "status": "pr_open"},
+    {"repo": "wong2/awesome-mcp-servers", "branch": "main", "file": "README.md",
+     "section": "MCP servers", "site": "baipiaoji",
+     "fit": "同上,另一份主流 MCP 列表", "status": "queued"},
+    {"repo": "Hannibal046/Awesome-LLM", "branch": "main", "file": "README.md",
+     "section": "Resources / Leaderboards", "site": "agiscorecard",
+     "fit": "AGI 判定台账 + 0-100 Thesis Tracker,属 LLM 评测/资源面", "status": "queued"},
+    {"repo": "steven2358/awesome-generative-ai", "branch": "main", "file": "README.md",
+     "section": "Resources", "site": "agiscorecard",
+     "fit": "同上,通用生成式 AI 资源列表", "status": "queued"},
+    {"repo": "mahseema/awesome-ai-tools", "branch": "main", "file": "README.md",
+     "section": "Directories / Free tools", "site": "baipiaoji",
+     "fit": "白嫖计是「确有免费额度的 AI 工具」目录,契合免费工具分区", "status": "queued"}
+  ],
+  "unverified": [
+    {"repo": "ComposioHQ/awesome-claude-skills", "why": "2026-09-16 实测 raw README 404(路径或分支已变);backlink-kit 里记的 67k star 无法在本会话核实,先不当成现存目标"}
+  ]
+}

@@ -635,3 +635,34 @@ Cloudflare Pages 把 `/x.html` 308 到 `/x`,而 bpj 的 sitemap / `canonical` / 
 「我的尺子对 A 站有效、对 B 站无效」上,而它不会报错,只会给你一张看起来很整齐的表。
 判定线:`bpj-canonical-fix-1013`(google 引荐 ≥180/28d)、`fleet-xlearn-matrix-1013`
 (**基线已更正**:eco 新鲜度 ≥8/9;原记的 agi 4/16 / eco 2/9 属探测器缺陷,已作废)。
+
+## 技能装在仓库根目录 + 外链方案(2026-09-16,owner:「整个站点可以安装技能,完善自动化外链方案」+「调研下哪些外链技能」;全文 `docs/fleet-backlinks-2026-09-16.md`)
+
+- **技能已合并到 `.claude/skills/`,96 个,14 个站通用**(此前按站装:agi 44 / bpj 87 / eco 29 / tds 80,
+  另外 10 站一个没有)。八个同名分歧的原因是 **eco 存的是旧精简版**,另三站逐字节相同,没有判断题;
+  每个取最完整的一份,逐站核对**无一丢失、无一降级**,四份站内副本已删。
+  线上实测四站 `.claude/skills/...` 全 404 —— **技能从未被当静态资源服务**,不是泄漏项。
+  **以后新增技能只加到根目录**;别再往 `sites/<x>/.claude/` 放,那正是分歧的来源。
+- **`linkbuilding` 技能的阶段判定:全舰队 14 个站都在 Foundation 阶段**(最老的 agi 首批页面 lastmod
+  2026-06-30,不到 3 个月)。这直接判掉 9 个战术里的 6 个:Growth 阶段的 guest posting / resource pages /
+  skyscraper / competitor backlink gap(后者还要付费工具,舰队没有),Authority 阶段的两个更远。
+  **现在该做的只有两个**:①**entity stacking**(20+ 平台一致存在 + `Organization` 的 `sameAs` 串起来;
+  技能称 Wikidata 是秘密武器)②**目录/注册表**。
+  **`sameAs` 只有 bpj 有**,但**不许现在补** —— 每一条都必须是真实存在的档案页,舰队除 GitHub 组织与
+  MCP registry 外没有已核实档案,**编一条进 schema 就是编造**。下一步在 owner 侧建档案。
+- **⛔ 机器永不自动提 PR、永不发帖、永不外联**(与 Reddit 那条同级)。社区类技能
+  (hacker-news-strategy / reddit-engagement / community-marketing)只能产出
+  `docs/distribution-staging/` 里由 owner 手发的稿,且过反 AI 味 8 条。理由:awesome-list 维护者对批量 PR
+  容忍度为零、错位提交会被拒**并烧掉首次提交机会**。机器只做**核对、去重、排队**。
+- **已建 `tools/fleet/backlinks.py`(搭 heartbeat 每周一,零新 cron,只读 GET)**:
+  ①**挣到的外链** = 各站 `/api/pulse` 新增的 `by_other`(既不是搜索/AI/社交/兄弟站/本站的来源域,
+  即真的有别处链过来并送来了人)②**目标清单核对** `tools/fleet/backlink_targets.json`(6 个已实测
+  raw README 可取的目标)③**掉链检测**(上次 present、这次不在 → warning)。
+- **首读就是决定性的,记死**:**舰队 `by_other` 只有 bpj 的 1 个域 1 次访问,而且是 `com.twitter.android`;
+  6 个目标列表无一收录舰队链接。** 其中 `punkpeye/awesome-mcp-servers` 手册里记着「四个 PR 已提、
+  纯等合并」——今天直接取 1.7 MB 的 README 核对,**一条舰队域名都没有,即那四个 PR 至今未被合并,
+  舰队零条已合并的 awesome-list 外链**。`ComposioHQ/awesome-claude-skills` 今天 raw README **404**,
+  已移入 `unverified`,不当成现存目标。
+- **判定线 `fleet-backlinks-1116`**:11-16 前 6 个目标 ≥2 个被收录,或 `by_other` ≥5 个域且 ≥20 次访问 →
+  外链路径有效;否则记反面发现「外链对本舰队量级无效」,**停投外链**,只留零成本的 `by_other` 监测。
+  基线:**0/6 个目标,1 个域 1 次访问。**
