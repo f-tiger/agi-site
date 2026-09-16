@@ -2219,3 +2219,76 @@ owner 要求按**亚马逊热销榜**选品(方向是对的:搜索量 ≠ 销量
 ① GB 或 NL 的 90 天真人 pv 到 **50+**(即今天的 10 倍),或 ②owner 明确说「就算不赚钱也要占住这个市场」,
 或 ③owner 开了对应 Associates 账号并给了 PA-API 凭据。**在此之前,英国那块需求(dehumidifier 25,5 +
 mould 23,8,双双 11 月见顶)只作为「最好的非德市场」留档,不投入。**
+
+## 外链:两个能自己修的缺陷,和一条不需要任何人说「好」的路(2026-09-16,owner:「外链你用其他办法帮我做」)
+
+### 先说清楚这一轮能做什么、不能做什么
+
+按仓库规矩先调了 `linkbuilding` 技能,它把本站判为 **Foundation phase**(域龄 70 天、
+零外链、无品牌信号),推荐的两条是 entity stacking 与 citations/directories ——
+**这两条都要 owner 去注册账号**,正是 owner 让我「用其他办法」绕开的东西。
+所以本轮不写外联话术、不列目录清单,只做**代码能做完的部分**:
+把本站已有的、别人有理由链接的东西,变成机器找得到、并且**转载即产生链接**的形状。
+
+### 缺陷一:本站有一个开放数据集,但对机器不可见
+
+`sizing-data.json` 自 2026-08-31 起 CC BY 4.0 上线、HTTP 200、7 条规则 + 3 条梯子(19 行)。
+实测发现:**全站零 `schema.org/Dataset` 标记,没有落地页,只有 `for-agents.html` 一处链接。**
+Google Dataset Search 是专为数据集建的发现面 —— **自动收录、不要账号、不要外联、不需要任何人批准**,
+而一个裸 JSON 文件在它眼里不存在。对一个 70 天龄零外链的域来说,
+**一条不需要别人说「好」的路比一条要别人点头的路值钱。**
+
+已建 `tools/build_dataset_page.py` → **`/daten.html`**:
+- 完整 `schema.org/Dataset`(name/description/url/license/creator/publisher/distribution/
+  isAccessibleForFree/variableMeasured/dateModified/keywords)。
+- **两种 distribution**:原有 JSON + 新增 **`/sizing-data.csv`**(长格式 24 行,
+  `section,key,m2,value,unit,room,guide`)—— 程序要 JSON,而真会署名的人要的是表格。
+- 「怎么署名」给的是**可直接粘贴的 HTML**(带 `<a href>`),不是纯文本 —— CC BY 的唯一条件是署名,
+  **署名做成链接形状,转载就是外链**。
+- **零联盟链接**(browser 实测 `a[href*=amazon]` = 0)。这一页是可信度资产,不是货架,永远不要往上挂链接。
+  **说准确一点**:页面自身不含任何商店链接,gate 会断言;但全站 chrome 照常注入
+  (`EB_PROFILE` 存房间条 + `EB_USSWITCH`),与 impressum/datenschutz 一视同仁 ——
+  存过房间的回访读者仍可能在这一页顶部看到一条商品条。这是站级留存件,不是这一页的变现,
+  本轮不动它。gate 因此**跳过 `<script>` 只看标记里的链接**:第一版扫原始 HTML 会被
+  USSWITCH 自己的字符串拼接误报,那是假阳性不是发现。
+
+**单一事实源**:页面与 CSV 的每个数字都从 `sizing-data.json` 读。
+排序上有个坑值得记:这一页必须排在 `build_structure.py`(要 nav/footer)和 `build_sitemap.py` 之前,
+而 `sizing-data.json` 是流水线很后面的 `build_agent_md.py` 写的。**解法不是断言而是消除**:
+`build_dataset_page.py` 自己先调 `build_agent_md.build_dataset()` 再读 —— 幂等,后面那次是 no-op,
+于是「改了规则却发了旧数字」这件事在结构上不可能发生,而不是靠 gate 事后抓(靠抓的话,
+改规则的那天部署会红,而那本是一次完全合法的改动)。
+
+### 缺陷二:每一次 widget 嵌入都在白送
+
+`widgets.html` 给出的嵌入片段此前是**裸 `<iframe>`**,而 widget 页自身带 `noindex`,
+里面的链接又在 iframe 内 —— **一次嵌入产生的链接权重正好是零**。本站等于免费送计算器,
+一分钱链接都收不到,而 CC BY 本来就要求署名。
+4 个静态片段 + JS 配置器生成的片段现在都自带宿主页署名行(链到 `/daten.html` + CC BY)。
+
+### 断言的是事故的形状
+
+`tools/check_dataset.py`(已进 gate):Dataset 必填字段、distribution 必须同时有 JSON 与 CSV、
+CSV 必须存在且行数 = 表头 + 非散文规则数 + 梯子行数、不许参差、页面数字不许与数据集漂移、
+5 个嵌入片段都必须带署名链接。**逐条验过能红**:删 CSV、删一行、弄参差、从 schema 里拿掉 CSV、
+删配置器那条链接 —— 五种都红。另外 gate **自己瞎了也会红**(找不到 `code.textContent=` 赋值就报错),
+这一条是上一轮被假通过咬过之后加的。
+部署后自检两条:`/daten.html` 断言的是 **`"@type": "Dataset"` 这个节点**(事故形状是「页面渲染完美但
+不再是数据集」,不是 404);`/sizing-data.csv` 断言 **content-type 含 csv**(schema 里承诺了 text/csv,
+边缘若发成 octet-stream,承诺就是假的,而页面看上去毫无异常)。
+
+### 判定线 `eco-dataset-search-1111`(2026-11-11)
+
+指标:**D1 crawl 表里 googlebot 抓 `/daten.html` 的次数**(该表只记 HTML,所以 .json/.csv 不会进)
++ 该页 28 天真人 pv 与外部 referrer。t0 = 0(页面此前不存在)。
+- **赢**:googlebot 至少抓过 1 次,且出现 ≥1 个非搜索引擎外部 referrer 或 ≥20 真人 pv/28d
+  → 把这个形态复制到舰队第二个有自有数据的站(SR landed-cost 或 agi odds)。
+- **输**:googlebot 从未抓过 → Dataset Search 对 70 天龄零外链域不通,**不是内容问题**;
+  停止再投机器发现面,只维护不扩建。
+
+### 不要再提的(本轮已判)
+
+需要 owner 注册账号的一切外链动作(目录、Wikidata、社媒 entity stacking)——
+不是不对,是**本会话做不了**,列出来只是把活推回给 owner;要做由 owner 直接说。
+PBN / 链接交换 / 群发目录 —— 技能文档里明确列为 Google SpamBrain 打击对象,永不做。
+往 `/daten.html` 挂联盟链接 —— 这页的全部价值来自它不卖东西。
