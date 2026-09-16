@@ -65,6 +65,8 @@ jobs:
           python3 tools/recall_radar.py || echo "::warning::recall radar fetch failed"
           # 2026-09-16:Section 301 阶梯(chapter 99 subchapter III,官方导出)。keep-last-good 在脚本里。
           python3 tools/fetch_s301_ladder.py || echo "::warning::s301 ladder fetch failed"
+          # 阶梯渲染进 /landed-cost 的标记块;闸门用 --check 断言两者一致,页面不许手改。
+          python3 tools/gen_s301_section.py || echo "::warning::s301 section render failed"
           # PRD P0-3 (2026-09-13): probe the official sources (USITC HTS / CPSC / EU Safety Gate) — status only, nothing ingested.
           python3 tools/probe_sources.py || echo "::warning::source probe failed"
           # Opportunity packs (paid product): deterministic, gated at >=10 dossiers; sample.json always public.
@@ -81,7 +83,7 @@ jobs:
           for f in sites/buysomething/site/trends.json sites/buysomething/site/rising.json data/sr-source-probe.json \
                    sites/buysomething/site/packs/index.json sites/buysomething/site/packs/sample.json \
                    sites/buysomething/site/passports.json sites/buysomething/site/recalls.json \
-                   sites/buysomething/site/s301-ladder.json; do
+                   sites/buysomething/site/s301-ladder.json sites/buysomething/site/landed-cost.html; do
             git add "$f" 2>/dev/null || true
           done
           git add sites/buysomething/site/packs/*-W*.json 2>/dev/null || true
@@ -114,6 +116,8 @@ jobs:
           # ②MCP 协议 + 零编造 + 零联盟链接的 17 条断言。任何一条红就不发。
           python3 tools/check_duty_stack.py --selftest
           python3 tools/check_duty_stack.py
+          python3 tools/gen_s301_section.py --selftest
+          python3 tools/gen_s301_section.py --check
           node tools/test_mcp.mjs
           echo "gate ok"
       - name: Deploy worker

@@ -274,3 +274,10 @@ section, main { scroll-margin-top: 76px; }
   .hero-stats { gap: 24px; }
   .policy-inner { flex-direction: column; gap: 6px; }
 }
+
+/* Section 301 ladder table (generated block on /landed-cost, 2026-09-16) */
+table.s301 { width: 100%; border-collapse: collapse; margin: 0.75rem 0 0.5rem; font-size: 0.95rem; }
+table.s301 th, table.s301 td { text-align: left; padding: 0.45rem 0.6rem; border-bottom: 1px solid rgba(127,127,127,0.25); vertical-align: top; }
+table.s301 th { font-weight: 600; opacity: 0.8; }
+table.s301 td:nth-child(2) { text-align: right; font-variant-numeric: tabular-nums; }
+@media (max-width: 640px) { table.s301 { font-size: 0.85rem; } table.s301 th:nth-child(5), table.s301 td:nth-child(5) { display: none; } }

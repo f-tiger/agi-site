@@ -13,7 +13,7 @@ import worker from "../worker.js";
 const SITE = path.join(path.dirname(fileURLToPath(import.meta.url)), "..", "site");
 const rows = [];
 const env = {
-  EV: { prepare() { return { bind() { return this; }, async run() { rows.push(1); return {}; }, async first() { return null; } }; } },
+  EV: { prepare() { return { bind(...a) { this.args = a; return this; }, async run() { rows.push(this.args); return {}; }, async first() { return null; } }; } },
   ASSETS: {
     async fetch(req) {
       const p = new URL(req.url).pathname;
@@ -111,5 +111,11 @@ ok(dirty.length === 0, "输出零联盟/跟踪参数(命中:" + dirty.length + "
 
 // 13) 每次调用都落一行 mcp_call
 ok(rows.length >= 8, "每次工具/资源调用都写了一行 mcp_call(" + rows.length + " 行)");
+const labels = rows.map((r) => String(r[1] || ""));
+ok(labels.includes("landed_cost:goods_value_usd") || labels.some((l) => l.startsWith("landed_cost:goods_value_usd")),
+   "调用形状只记参数名:" + labels.filter((l) => l.startsWith("landed_cost")).join(" | "));
+ok(labels.some((l) => l.endsWith(":∅")), "空参数调用记成 ∅(采集器的形状)");
+// 上面那次 landed_cost 传的是 1000 / 100 / 2.5 / 25;这些值一个都不许出现在标签里
+ok(!labels.some((l) => /1000|2\.5|\btrue\b/.test(l)), "参数值永不落库(标签里没有 1000 / 2.5 / true)");
 
 console.log("\nall " + n + " assertions pass");

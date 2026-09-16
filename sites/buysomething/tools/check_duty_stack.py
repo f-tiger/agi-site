@@ -56,9 +56,15 @@ def check_ladder(ladder, html):
     if not m:
         return ["landed-cost.html no longer carries the Section 301 rate hint the gate checks"]
     offered = {float(x) for x in re.findall(r"[\d.]+", m.group(1))}
+    faq = re.search(r'<p id="s301-faq">(.*?)</p>', html, re.S)
+    faq_rates = {float(x) for x in re.findall(r"([\d.]+)%", faq.group(1))} if faq else None
     for rate in ladder.get("additional_rates_seen_pct", []):
         if float(rate) not in offered:
             bad.append("official ladder has a %s%% Section 301 rate that the page hint does not offer" % rate)
+        if faq_rates is not None and float(rate) not in faq_rates:
+            bad.append("official ladder has a %s%% Section 301 rate that the FAQ answer does not mention" % rate)
+    if faq is None:
+        bad.append("landed-cost.html lost the Section 301 FAQ answer (id=s301-faq) the gate checks")
     if not ladder.get("ladder"):
         bad.append("s301-ladder.json has no rows")
     return bad
@@ -123,7 +129,7 @@ def selftest():
     assert check(bad_rate, html), "a product rate inside duty-stack.json must fail"
     assert check_llms("- landed cost: postal flat duties $80-200/item, the courier 54%-or-$100 rule"), "stale figures stated as current must fail"
     assert check_llms("- landed cost: the $80-200 postal flat duty expired 2026-02-28") == [], "superseded framing must pass"
-    page_hint = 'official ladder</a>: 0 / 7.5 / 10 / 15 / 25 / 50 / 100)'
+    page_hint = 'official ladder</a>: 0 / 7.5 / 10 / 15 / 25 / 50 / 100)<p id="s301-faq">7.5%, 10%, 15%, 25%, 50% and 100%</p>'
     assert check_ladder({"additional_rates_seen_pct": [7.5, 25.0, 100.0], "ladder": [1]}, page_hint) == []
     assert check_ladder({"additional_rates_seen_pct": [7.5, 60.0], "ladder": [1]}, page_hint), "a new official rate missing from the page must fail"
     assert check_ladder({"additional_rates_seen_pct": [7.5], "ladder": []}, page_hint), "an empty ladder must fail"

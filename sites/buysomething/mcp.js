@@ -107,6 +107,16 @@ const RESOURCES = [
 
 const round2 = (n) => Math.round(n * 100) / 100;
 
+// 调用形状:只记**参数名**,永不记参数值。
+// 为什么需要它(2026-09-16):机器面的读数里,索引器与真实使用者用同一个 UA 空间,靠 UA 分不开——
+// 但它们的调用形状不同:采集器打的是空参数或端点示例里的那几组,真实使用者带自己的数字。
+// 所以 fleet-machine-demand-1014 的判据是「有没有人带着自己的参数反复调」,而这一行就是它的唯一读数来源。
+// 参数名是商品化的字段名(goods_value_usd 之类),不含任何个人信息;值一律不落库。
+function argShape(args) {
+  const keys = Object.keys(args || {}).filter((k) => args[k] !== undefined && args[k] !== "").sort();
+  return keys.length ? ":" + keys.join(",").slice(0, 48) : ":∅";
+}
+
 async function asset(env, origin, file) {
   const r = await env.ASSETS.fetch(new Request(origin + file));
   if (!r || !r.ok) throw new Error("asset_unavailable:" + file);
@@ -300,7 +310,7 @@ export async function handleMcp(request, url, env, ctx, log) {
       else if (v !== "" && !Number.isNaN(Number(v)) && /^-?[\d.]+$/.test(v)) args[k] = Number(v);
       else args[k] = v;
     }
-    if (log) log(rest, request);
+    if (log) log(rest + argShape(args), request);
     try { return plain(await runTool(rest, args, env, origin)); } catch (e) { return plain({ error: String(e.message || e) }, 503); }
   }
 
@@ -358,7 +368,7 @@ export async function handleMcp(request, url, env, ctx, log) {
     const name = (one.params && one.params.name) || "";
     const args = (one.params && one.params.arguments) || {};
     if (!TOOLS.some((t) => t.name === name)) return rpcErr(id, -32602, "unknown tool: " + name);
-    if (log) log(name, request);
+    if (log) log(name + argShape(args), request);
     try {
       const out = await runTool(name, args, env, origin);
       return rpcOk(id, { content: [{ type: "text", text: JSON.stringify(out) }], structuredContent: out, isError: !!out.error });

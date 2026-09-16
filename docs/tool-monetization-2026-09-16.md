@@ -323,6 +323,14 @@ SELECT 'fanzha', name, COUNT(*) FROM fev WHERE ua_class='js' AND label<>'__ci' G
 - **顺带修正了页面的一个陈旧菜单**:`/landed-cost` 的 301 输入提示原来写「0 / 7.5 / 25 / 50 / 100」,官方阶梯里还有
   **10% 与 15%**。现在页面照官方阶梯列,且**闸门断言「阶梯里出现的每一档都必须在页面菜单里」**——下次 USTR 加一档,
   阶梯第二天自动拿到,页面没跟上就直接红。
+- **阶梯同时做成了人类面与被引用面**:`tools/gen_s301_section.py` 把同一份 JSON 渲染进 `/landed-cost` 的标记块
+  (51 条排除 heading / 9 条只引 note 的零加征 / 7,5 / 10 / 15 / 25 / 50 / 100% 各几条,带 note 与生效日),
+  **闸门 `--check` 重新渲染逐字比对,页面不许手改**;并加了一条 FAQ(可见文本与 FAQPage JSON-LD 逐字一致),
+  由闸门断言「官方阶梯里出现的每一档,页面菜单与 FAQ 都必须提到」。这一条是给**不会调 MCP 的 AI 引擎**准备的:
+  舰队的引用份额长在判定型页面上,而这是 SR 第一次有一页「带日期的官方数字 + 明确的不判定声明」。
+- **调用形状入库(零 PII)**:`mcp_call` 的 label 记 `工具名:参数名1,参数名2`(**只记参数名,永不记值**)。
+  这是为了把索引器与真实使用者分开——它们的 UA 分不开(见 §十六),但形状分得开:采集器打空参数(`:∅`),
+  使用者带自己的参数。判定线的判据已按此改写。
 - **`server.json` + `sr-mcp-publish.yml`**:用 GitHub OIDC 发布到 `registry.modelcontextprotocol.io`,零 owner 密钥。
 - **零新增 cron**(注册表发布只在 `server.json` 变更时触发);D1 每次调用记一行 `mcp_call`(只记工具名 + UA,零 PII)。
 
@@ -351,3 +359,22 @@ SELECT 'fanzha', name, COUNT(*) FROM fev WHERE ua_class='js' AND label<>'__ci' G
 - **`sr-mcp-registry-1014`(2026-10-14)**:`registry.modelcontextprotocol.io` 能搜到 `us-import-duty-facts`。
   win → 注册表这个货架对本仓的 OIDC 命名空间可用(bpj 已有先例,但 remotes-only 校验细则未知);
   lose → 记录被拒原因,机器面发现只能靠 llms.txt 与采集器路过。
+
+
+## 十六、机器面普查(2026-09-16 D1 现查,bpj 28 天 `ev='api'`)——顺带推翻了自己上一小时写的判据
+
+剔掉本仓 CI(curl/8.5.0,696 次,是八条 deploy 自检)之后,bpj 的 API 面上有:
+
+- **自报身份的 MCP 生态代理 7 个**:SaSame-MCP-Audit 23 次/22 天、rokmcp-collector 12/12、AIWebIndex 12/12、
+  mcp-protections-research 9/1、maghs(自述 "MCP prove")3/1、**`mcp/1.0.0` 2/2**、agentdeals-internal-pm 2/1,
+  另有一个普查型 UA 的两个变体共 4 次(其中一个把联系邮箱写进 UA——**按隐私红线不记进本仓**)。
+  这说明**围绕 MCP 已经长出一个索引与审计的生态**,它每天都在路过舰队。
+- **4 个用浏览器 UA 的定时调用方**:77 次/26 天、56/28、32/25、22/15。真人浏览器不会每天去打 `/api/changes`;
+  这些是伪装 UA 的计划任务。
+
+**这推翻了 §七 刚写下的判据**:`fleet-machine-demand-1014` 原本写「非索引器调用方 ≥20 次且跨 ≥10 天」——
+上面那 4 个立刻满足,**t0 就已经 win,那等于没打赌**。改判据(已同步进台账):**看调用形状而不是 UA**——
+索引器打空参数或端点示例里的那几组,真实使用者带自己的参数,所以 win = **≥1 个调用方 28 天内 ≥10 次带参数调用、
+跨 ≥5 天**。SR 的 `mcp_call` 因此记参数名(不记值),bpj 的 `/api/changes` 不记 query,只作辅助证据。
+
+**这条经验比这次的结论更值钱**:一个能被 t0 直接满足的判定线,是自我安慰不是赌注;写完判据要拿当天的读数试一遍。
