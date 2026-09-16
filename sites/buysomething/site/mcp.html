@@ -27,6 +27,7 @@
         <a href="/landed-cost">Landed Cost</a>
         <a href="/is-alibaba-legit">Alibaba Risk</a>
         <a href="/sourcing-margins">Margins</a>
+        <a href="/import-rule-changes">Rule Changes</a>
         <a href="/mcp">For Agents</a>
       </nav>
     </div>
@@ -40,7 +41,7 @@
         Most of the US import guidance in a model's training data is from 2025 and is now wrong: the $800 de minimis
         exemption was suspended indefinitely on <strong>2026-06-24</strong>, the postal flat duty expired on
         <strong>2026-02-28</strong>, and the IEEPA tariffs were struck down on <strong>2026-02-20</strong>.
-        These six tools answer from the dated record instead, and refuse to answer what they cannot source.
+        These eight tools answer from the dated record instead, and refuse to answer what they cannot source.
       </p>
     </section>
 
@@ -57,12 +58,14 @@
     </section>
 
     <section class="container" style="padding:0 0 1.5rem">
-      <h2>The six tools</h2>
+      <h2>The eight tools</h2>
       <p class="rule"><strong>duty_stack_rules</strong> — the stack rule by rule (HTS base, Section 301, Section 232, IEEPA struck down, de minimis suspended, postal flat expired, MPF 0.3464% / HMF 0.125%), each with its record and date.</p>
       <p class="rule"><strong>check_import_claim</strong> — fact-checks the four figures still repeated everywhere in 2026 and says plainly when a claim is not one it holds a record for.</p>
       <p class="rule"><strong>landed_cost</strong> — itemised duties, MPF (with the CBP floor disclosed as a placeholder), HMF on ocean entries, freight. <strong>It will not invent your duty rate:</strong> omit it and the tool errors and points at the official schedule.</p>
       <p class="rule"><strong>duty_passport</strong> — candidate HTS headings per consumer category, refreshed daily from the official USITC REST API, labelled as candidates and not a classification ruling.</p>
       <p class="rule"><strong>section_301_ladder</strong> — the 77 chapter-99 headings that carry a Section 301 addition (7.5%, 10%, 15%, 25%, 50%, 100%), each with the U.S. note that defines its list and, where the schedule states it, its effective date. It gives the ladder and where coverage is defined; it does not assert that your HTS8 is on a list.</p>
+      <p class="rule"><strong>classification_rulings</strong> — CBP's own binding rulings (CROSS) for a product in plain words: ruling number, date, the HTS codes CBP assigned, any chapter 99 heading joined to the Section 301 ladder, and whether the ruling was revoked. Queried live; nothing mirrored. It is precedent, not a ruling on your goods.</p>
+      <p class="rule"><strong>import_rule_changes</strong> — what changed in the general US import rules, newest first, from the Federal Register, with <code>since=</code> so an agent can poll it like a changelog. Case-specific antidumping and ITC paperwork is out of scope by design, and the response says so.</p>
       <p class="rule"><strong>recall_check</strong> — CPSC recalls touching a category in the last 365 days, with the cpsc.gov URL. A keyword hit means the words appear in a recall title, not that your supplier is affected.</p>
     </section>
 

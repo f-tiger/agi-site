@@ -67,6 +67,9 @@ jobs:
           python3 tools/fetch_s301_ladder.py || echo "::warning::s301 ladder fetch failed"
           # 阶梯渲染进 /landed-cost 的标记块;闸门用 --check 断言两者一致,页面不许手改。
           python3 tools/gen_s301_section.py || echo "::warning::s301 section render failed"
+          # 2026-09-16 垂直扩展:联邦公报进口规则变更雷达 + 由它渲染的 /import-rule-changes 页
+          python3 tools/fetch_rule_changes.py || echo "::warning::rule radar fetch failed"
+          python3 tools/gen_rule_changes_page.py || echo "::warning::rule-changes page render failed"
           # PRD P0-3 (2026-09-13): probe the official sources (USITC HTS / CPSC / EU Safety Gate) — status only, nothing ingested.
           python3 tools/probe_sources.py || echo "::warning::source probe failed"
           # Opportunity packs (paid product): deterministic, gated at >=10 dossiers; sample.json always public.
@@ -83,7 +86,8 @@ jobs:
           for f in sites/buysomething/site/trends.json sites/buysomething/site/rising.json data/sr-source-probe.json \
                    sites/buysomething/site/packs/index.json sites/buysomething/site/packs/sample.json \
                    sites/buysomething/site/passports.json sites/buysomething/site/recalls.json \
-                   sites/buysomething/site/s301-ladder.json sites/buysomething/site/landed-cost.html; do
+                   sites/buysomething/site/s301-ladder.json sites/buysomething/site/landed-cost.html \
+                   sites/buysomething/site/import-rule-changes.json sites/buysomething/site/import-rule-changes.html; do
             git add "$f" 2>/dev/null || true
           done
           git add sites/buysomething/site/packs/*-W*.json 2>/dev/null || true
@@ -95,6 +99,7 @@ jobs:
                    site/landed-cost.html site/is-alibaba-legit.html site/sourcing-margins.html \
                    site/packs.html site/packs-thanks.html site/packs/index.json \
                    site/mcp.html site/duty-stack.json site/s301-ladder.json server.json mcp.js \
+                   site/import-rule-changes.json site/import-rule-changes.html \
                    site/robots.txt site/sitemap.xml site/llms.txt \
                    site/16507d8e1997c4be371f5fbaf7ac1985.txt; do
             [ -f "$f" ] || { echo "::error::missing $f"; exit 1; }
@@ -118,6 +123,9 @@ jobs:
           python3 tools/check_duty_stack.py
           python3 tools/gen_s301_section.py --selftest
           python3 tools/gen_s301_section.py --check
+          python3 tools/fetch_rule_changes.py --selftest
+          python3 tools/gen_rule_changes_page.py --selftest
+          python3 tools/gen_rule_changes_page.py --check
           node tools/test_mcp.mjs
           echo "gate ok"
       - name: Deploy worker
@@ -138,7 +146,7 @@ jobs:
           UA='buysomething-deploy-selfcheck-bot (+ci; classified as bot by design)'
           fail=0
           # 1) 200 + zero redirects
-          for p in / /landed-cost /is-alibaba-legit /sourcing-margins /mcp /styles.css /app.js /data.js /duty-stack.json /s301-ladder.json; do
+          for p in / /landed-cost /is-alibaba-legit /sourcing-margins /mcp /import-rule-changes /styles.css /app.js /data.js /duty-stack.json /s301-ladder.json /import-rule-changes.json; do
             ok=0; code=000; redirs=0
             for try in 1 2 3 4 5; do
               res=$(curl -s -o /dev/null -w '%{http_code} %{num_redirects}' -L --max-redirs 5 \
@@ -202,6 +210,9 @@ jobs:
           check_json /api/mcp 'len(j.get("tools", [])) == 5 and "/api/mcp" in j["protocol"]["streamable_http"]'
           check_json '/api/mcp/duty_stack_rules?part=fees' 'j["fees"]["mpf"]["rate_pct"] == 0.3464 and "rules" not in j'
           check_json '/api/mcp/section_301_ladder?rate_pct=100' 'j["count"] >= 1 and all(r["additional_rate_pct"] == 100 for r in j["ladder"]) and "does not assert membership" in j["coverage_disclaimer"]'
+          check_json '/api/mcp/import_rule_changes?matched_in=title_or_abstract&limit=3' 'j["count"] >= 1 and all("federalregister.gov" in c["url"] for c in j["changes"]) and "antidumping" in j["out_of_scope"]'
+          # 实时打 CBP CROSS 的工具:上游可能慢或不通,所以只断言「要么给出官方链接的裁定,要么明说上游没答」,不断言一定有结果
+          check_json '/api/mcp/classification_rulings?query=plush%20toy&limit=2' 'all(r["url"].startswith("https://rulings.cbp.gov/ruling/") for r in j.get("rulings", [])) and (j.get("count", 0) >= 1 or "not answering" in j.get("error", ""))'
           # 零编造的线上证据:不给税率就必须拒算,而不是默认一个
           check_json '/api/mcp/landed_cost?goods_value_usd=1000' '"never guesses" in j.get("error","") and "hts.usitc.gov" in " ".join(j.get("how_to_get_it", []))'
           # JSON-RPC:initialize 与一次真实 tools/call(断言在 tools/assert_mcp_live.py,能单测)

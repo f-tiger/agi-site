@@ -32,7 +32,7 @@ const ok = (c, m) => { n++; if (!c) { console.error("FAIL " + n + ": " + m); pro
 
 // 1) descriptor
 const d = await (await call("/api/mcp")).json();
-ok(d.tools.length === 6 && d.protocol.streamable_http.includes("/api/mcp"), "GET /api/mcp 描述符:6 个工具 + 两种调用方式");
+ok(d.tools.length === 8 && d.protocol.streamable_http.includes("/api/mcp"), "GET /api/mcp 描述符:8 个工具 + 两种调用方式");
 
 // 2) initialize
 const init = await rpc("initialize", { protocolVersion: "2025-06-18" });
@@ -41,7 +41,7 @@ ok(init.result.protocolVersion === "2025-06-18" && /800/.test(init.result.instru
 
 // 3) tools/list
 const list = await rpc("tools/list", {});
-ok(list.result.tools.length === 6 && list.result.tools.every((t) => t.description && t.inputSchema), "tools/list:6 个工具都有描述与 schema");
+ok(list.result.tools.length === 8 && list.result.tools.every((t) => t.description && t.inputSchema), "tools/list:8 个工具都有描述与 schema");
 
 // 4) landed_cost 算术逐项可核对
 const lc = await rpc("tools/call", { name: "landed_cost", arguments: { goods_value_usd: 1000, freight_insurance_usd: 100, hts_base_rate_pct: 2.5, section_301_pct: 25, ocean_entry: true } });
@@ -104,8 +104,40 @@ ok(lad31.result.structuredContent.ladder.every((x) => /2024/.test(x.programme)) 
 const dpNote = await rpc("tools/call", { name: "duty_passport", arguments: { pick: "pet-fountain" } });
 ok(/section_301_ladder/.test(dpNote.result.structuredContent.section_301_note), "duty_passport:基础税率旁边指向 301 阶梯,不再是死胡同");
 
+// 11c) 规则变更雷达:since 过滤 + 范围声明必须随结果一起给出
+const rc1 = await rpc("tools/call", { name: "import_rule_changes", arguments: { matched_in: "title_or_abstract", limit: 5 } });
+const RC = rc1.result.structuredContent;
+ok(RC.count >= 1 && RC.changes.every((c) => c.matched_in === "title_or_abstract" && c.url.includes("federalregister.gov")) &&
+   /antidumping/i.test(RC.out_of_scope),
+   "import_rule_changes:标题/摘要命中 " + RC.count + " 条,全部官方链接,且随结果带「什么不在范围内」");
+const rc2 = await rpc("tools/call", { name: "import_rule_changes", arguments: { since: "2099-01-01" } });
+ok(rc2.result.structuredContent.count === 0, "import_rule_changes:since 在未来 → 0 条,不回退成「给你看点别的」");
+
+// 11d) CBP 裁定检索:用桩 fetch 跑,断言合成逻辑与失败路径(单测永不打网络)
+const realFetch = globalThis.fetch;
+globalThis.fetch = async () => new Response(JSON.stringify({ totalHits: 2, rulings: [
+  { rulingNumber: "N313929", rulingDate: "2020-09-10T00:00:00", subject: "The tariff classification of an LED face mask cover from China",
+    categories: "Classification", tariffs: "8543.70.9960, 9903.88.02", operationallyRevoked: false, revokedBy: [], modifiedBy: [] },
+  { rulingNumber: "OLD123", rulingDate: "1999-01-01T00:00:00", subject: "revoked example", categories: "Classification",
+    tariffs: "6307.90.9870", operationallyRevoked: true, revokedBy: ["X1"], modifiedBy: [] },
+] }), { headers: { "content-type": "application/json" } });
+const cr = await rpc("tools/call", { name: "classification_rulings", arguments: { query: "LED face mask", limit: 2 } });
+const CR = cr.result.structuredContent;
+const first = CR.rulings[0];
+ok(first.ruling === "N313929" && first.url === "https://rulings.cbp.gov/ruling/N313929" &&
+   first.hts_codes_assigned.length === 2 && first.chapter_99_headings[0].heading === "9903.88.02" &&
+   first.chapter_99_headings[0].additional_rate_pct === 25,
+   "classification_rulings:裁定里的 9903 号自动接上 301 阶梯(" + first.chapter_99_headings[0].rate_text + ")");
+ok(CR.rulings[1].revoked === true && /not a ruling on your product/i.test(CR.disclaimer),
+   "classification_rulings:被撤销的裁定标出来,并声明这不是对你货物的裁定");
+globalThis.fetch = async () => { throw new Error("network down"); };
+const crFail = await rpc("tools/call", { name: "classification_rulings", arguments: { query: "plush toy" } });
+ok(/not answering/.test(crFail.result.structuredContent.error) && crFail.result.structuredContent.upstream.includes("rulings.cbp.gov"),
+   "classification_rulings:上游挂了就说挂了,并给官方检索入口,绝不编裁定");
+globalThis.fetch = realFetch;
+
 // 12) 输出里永远没有联盟/跟踪参数
-const all = JSON.stringify([d, init, list, lc, claim, rc, dp, rest, res, lad, lad31]);
+const all = JSON.stringify([d, init, list, lc, claim, rc, dp, rest, res, lad, lad31, rc1, cr]);
 const dirty = [/[?&]tag=/, /[?&]ref=/, /[?&]utm_/, /amzn\.to/, /amazon\.[a-z.]+\/(dp|s\?)/].filter((re) => re.test(all));
 ok(dirty.length === 0, "输出零联盟/跟踪参数(命中:" + dirty.length + ")");
 

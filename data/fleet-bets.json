@@ -779,6 +779,28 @@
    "lose": "被拒 → 把拒绝原文记进本行 reading;机器面发现只能靠 llms.txt 与采集器路过",
    "source": "docs/tool-monetization-2026-09-16.md §十五",
    "status": "open"
+  },
+  {
+   "id": "sr-vertical-1014",
+   "site": "buysomething",
+   "due": "2026-10-14",
+   "metric": "垂直(跨境进口合规)首个真实信号:①D1 mcp_call 28 天里 classification_rulings + import_rule_changes 的**带参数**调用次数(label 不以 :∅ 结尾,剔本仓 CI UA);②/import-rule-changes 28 天真人 pv 与外部 referrer。t0(2026-09-16)= 两者皆 0,页面与工具当日才建",
+   "threshold": "带参数调用 ≥20 次 或 该页出现 ≥1 次 AI/搜索引荐",
+   "win": "垂直成立 → 按同样纪律接下一格官方源:openFDA food/device enforcement(2026-09-16 实测 200)与 EU 侧(今天没找到免密钥 alerts 接口,需再探)",
+   "lose": "两条都 0 → 机器面与引用面对这个垂直都没反应;停止扩工具,只维护现有八个,把力气还给 eco 联盟线",
+   "source": "docs/tool-monetization-2026-09-16.md §十七",
+   "status": "open"
+  },
+  {
+   "id": "sr-rule-changes-citation-1116",
+   "site": "buysomething",
+   "due": "2026-11-16",
+   "metric": "/import-rule-changes 的引用面:Bing AI Performance 明细里的引用次数,或 D1 里该页的搜索/AI 助手引荐数(28 天窗)",
+   "threshold": "≥1 次 AI 引用 或 搜索引荐 ≥3",
+   "win": "判定页形态在合规垂直里吃引用成立 → 按同一形态再做一页(候选:美国进口禁令/暂扣令、EU GPSR 责任人)",
+   "lose": "0 → 不再为这个垂直加页,只保留机器面(MCP + JSON),页面改为月度维护",
+   "source": "docs/tool-monetization-2026-09-16.md §十七",
+   "status": "open"
   }
  ]
 }

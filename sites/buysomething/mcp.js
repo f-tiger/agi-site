@@ -84,6 +84,32 @@ const TOOLS = [
     },
   },
   {
+    name: "classification_rulings",
+    description:
+      "Search CBP's own binding classification rulings (CROSS) for a product in plain words and get what CBP actually decided: ruling number, date, subject, the HTS codes it assigned — including any chapter 99 heading, which is what carries a Section 301 addition — and whether the ruling has been revoked or modified. This is precedent from the agency that decides, not a guess: it is how you check whether the code your supplier gave you matches what CBP has ruled on comparable goods. Queried live at call time from rulings.cbp.gov; nothing is mirrored here.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        query: { type: "string", description: "The product in ordinary words, e.g. 'LED face mask', 'plush toy', 'power bank'" },
+        limit: { type: "number", description: "How many rulings to return, 1–10 (default 5)" },
+      },
+      required: ["query"],
+    },
+  },
+  {
+    name: "import_rule_changes",
+    description:
+      "What changed in the general US import rules, newest first, from the official Federal Register API: presidential tariff actions, CBP and DHS rules, USTR notices — each with its publication date, document number and federalregister.gov link. Use `since` to get only what is new to you, the same way you would poll a changelog. Case-specific antidumping, ITC and Foreign-Trade Zone paperwork is out of scope by design and the response says so.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        since: { type: "string", description: "Only documents published on or after this date (YYYY-MM-DD)" },
+        matched_in: { type: "string", enum: ["title_or_abstract", "full_text_only", "any"], description: "title_or_abstract = the import phrase is in the headline matter (usually the ones that matter); default any" },
+        limit: { type: "number", description: "Maximum documents to return (default 25)" },
+      },
+    },
+  },
+  {
     name: "recall_check",
     description:
       "Official US product recalls (CPSC saferproducts.gov API) touching a product category in the last 365 days: date, title, hazard and the cpsc.gov URL. A keyword hit means the words appear in a recall title, not that a particular supplier or SKU is affected. Use before recommending or sourcing a category.",
@@ -102,6 +128,7 @@ const RESOURCES = [
   { uri: "sourceradar://duty-stack-rules", name: "duty-stack-rules", description: "The dated China→US duty stack, fees and superseded figures", mimeType: "application/json", file: "/duty-stack.json" },
   { uri: "sourceradar://duty-passports", name: "duty-passports", description: "Candidate HTS headings per product category, refreshed daily from USITC", mimeType: "application/json", file: "/passports.json" },
   { uri: "sourceradar://section-301-ladder", name: "section-301-ladder", description: "Section 301 additional-duty headings with their rates, notes and effective dates, from the official USITC export", mimeType: "application/json", file: "/s301-ladder.json" },
+  { uri: "sourceradar://import-rule-changes", name: "import-rule-changes", description: "Federal Register documents changing the general US import rules, 120-day window", mimeType: "application/json", file: "/import-rule-changes.json" },
   { uri: "sourceradar://official-recalls", name: "official-recalls", description: "CPSC recalls per tracked product category, 365-day window", mimeType: "application/json", file: "/recalls.json" },
 ];
 
@@ -219,6 +246,76 @@ async function runTool(name, args, env, origin) {
       ladder: rows,
       coverage_disclaimer: d.coverage_disclaimer,
       ustr_lists: d.ustr_lists,
+      cite: CITE,
+    };
+  }
+
+  if (name === "import_rule_changes") {
+    const d = await asset(env, origin, "/import-rule-changes.json");
+    const since = String(args.since || "");
+    const want = String(args.matched_in || "any");
+    const limit = Math.min(Math.max(Number(args.limit) || 25, 1), 80);
+    let rows = d.changes || [];
+    if (/^\d{4}-\d{2}-\d{2}$/.test(since)) rows = rows.filter((r) => String(r.date) >= since);
+    if (want === "title_or_abstract" || want === "full_text_only") rows = rows.filter((r) => r.matched_in === want);
+    return {
+      as_of: d.generated,
+      window_days: d.window_days,
+      since: since || d.since,
+      source: d.source,
+      queries: d.queries,
+      agencies_kept: d.agencies_kept,
+      out_of_scope: d.out_of_scope,
+      note: d.note,
+      count: rows.length,
+      changes: rows.slice(0, limit),
+      cite: CITE,
+    };
+  }
+
+  if (name === "classification_rulings") {
+    // 实时打 CBP 自己的 CROSS 检索(不镜像、不缓存到本仓,边缘缓存 1 小时),只取元数据并回链官方页。
+    // 零编造在这里的具体含义:我们不说「你的货应该归到 X」,只说「CBP 在这些裁定里把相似货物归到了 X」。
+    const q = String(args.query || "").trim().slice(0, 80);
+    if (!q) return { error: "query is required", cite: CITE };
+    const limit = Math.min(Math.max(Number(args.limit) || 5, 1), 10);
+    const u = "https://rulings.cbp.gov/api/search?term=" + encodeURIComponent(q) + "&pageSize=" + limit + "&collection=ALL";
+    let data = null;
+    try {
+      const r = await fetch(u, { headers: { accept: "application/json", "user-agent": "sourceradar-mcp/1.0 (+https://source.agiscorecard.com/mcp)" }, cf: { cacheTtl: 3600, cacheEverything: true } });
+      if (!r.ok) throw new Error("cbp_http_" + r.status);
+      data = await r.json();
+    } catch (e) {
+      return { error: "CBP CROSS is not answering right now — try again, or search it directly", upstream: "https://rulings.cbp.gov/search?term=" + encodeURIComponent(q), cite: CITE };
+    }
+    let ladder = null;
+    try { ladder = await asset(env, origin, "/s301-ladder.json"); } catch (e) { /* ladder is optional here */ }
+    const rows = (data.rulings || []).slice(0, limit).map((r) => {
+      const codes = String(r.tariffs || "").split(",").map((x) => x.trim()).filter(Boolean);
+      const ch99 = codes.filter((c) => c.startsWith("9903"));
+      const notes = ch99.map((c) => {
+        const hit = ladder && (ladder.ladder || []).find((x) => x.heading === c);
+        return hit ? { heading: c, rate_text: hit.rate_text, additional_rate_pct: hit.additional_rate_pct, us_notes: hit.us_notes } : { heading: c, rate_text: null, note: "not in the Section 301 ladder this server holds" };
+      });
+      return {
+        ruling: r.rulingNumber,
+        date: String(r.rulingDate || "").slice(0, 10),
+        subject: r.subject,
+        category: r.categories,
+        hts_codes_assigned: codes,
+        chapter_99_headings: notes,
+        revoked: !!r.operationallyRevoked || (r.revokedBy || []).length > 0,
+        modified_by: r.modifiedBy || [],
+        url: "https://rulings.cbp.gov/ruling/" + encodeURIComponent(r.rulingNumber),
+      };
+    });
+    return {
+      query: q,
+      total_hits: data.totalHits === undefined ? null : data.totalHits,
+      count: rows.length,
+      rulings: rows,
+      source: "https://rulings.cbp.gov (CBP CROSS, queried live at " + new Date().toISOString() + ")",
+      disclaimer: "These are CBP rulings on the goods described in them. They are not a ruling on your product: classification is the importer of record's responsibility, and a ruling can be revoked or modified. Read the ruling before relying on it, and request your own ruling for a binding answer.",
       cite: CITE,
     };
   }
