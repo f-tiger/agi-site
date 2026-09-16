@@ -666,3 +666,27 @@ Cloudflare Pages 把 `/x.html` 308 到 `/x`,而 bpj 的 sitemap / `canonical` / 
 - **判定线 `fleet-backlinks-1116`**:11-16 前 6 个目标 ≥2 个被收录,或 `by_other` ≥5 个域且 ≥20 次访问 →
   外链路径有效;否则记反面发现「外链对本舰队量级无效」,**停投外链**,只留零成本的 `by_other` 监测。
   基线:**0/6 个目标,1 个域 1 次访问。**
+
+### 追查四个 MCP PR 的结果 + 顺手修掉的 MCP 身份缺陷(2026-09-16,owner:「1. 你帮我完成」)
+
+- **四个 PR 一个都没合并**(上游 `punkpeye/awesome-mcp-servers` 的 main README 1.75 MB,舰队域名 0 处)。
+  **不是内容坏了**:fork 的 `add-agiscorecard-and-verified-free-tiers` 分支仍在(200),条目完整。
+- **本会话读不到 PR 的 open/closed 状态**:`api.github.com` 被出网代理 403,GitHub MCP 只覆盖已挂载的仓,
+  而挂载 `punkpeye/awesome-mcp-servers` 的尝试**被权限层拒绝**(`add_repo` push 与 `ls` 克隆路径两次)。
+  **没有绕过**。要读需 owner 放行该仓或自己看一眼 PR 页。
+- **裁定:不催。** 该仓 PR 编号已到 **12 000+**,催一个排在万条后的 PR 是彩票不是渠道。
+  **同期另一条路是活的**:官方 MCP registry 三个舰队 server 全部在架(实测)——
+  `verified-ai-free-tiers` v1.10.1、`com.agiscorecard/agi-scorecard`、`hvac-btu-heat-klimaanlage`。
+  **注册表活、awesome-list 死**,以后按这个优先级投。
+- **修掉的真缺陷:eco 的 MCP 一个实体三个名字。** 注册表生效条目是 `hvac-btu-heat-klimaanlage`,
+  另两条已标 Superseded,**但线上 worker 自报的仍是废弃名 `getecoback-raumklima`**(`worker.js:1340`,
+  改名时只改了 manifest 与 `superseded/`,这一行漏了),发布流水线的健康检查也在 grep 那个废弃名。
+  已改 worker 自报名为 canonical(版本对齐 1.2.0),发布健康检查**过渡期两名都认**(同一次 push 会
+  同时触发 deploy 与 publish,不这样会撞竞态),并在 **eco 部署自检加了防回归断言**:
+  线上自报名 ≠ `mcp/server.json` 的注册表名即红。
+- **注册表搜索不索引 `websiteUrl`**(实测:搜 `baipiaoji` 返回 3 条里**没有 bpj 自己的 server**;
+  搜 `getecoback` 只出那两条废弃的;搜 `agiscorecard` 命中是因为**名字里自带品牌**)。
+  已把品牌写进两站 manifest 的 `description`(eco v1.2.0、bpj v1.11.0),内容属实、**不改名**
+  ——再改一次名就是第四个名字。**新 MCP server 命名从此把品牌放进名字。**
+- **未处理的漂移**:`sites/baipiaoji/mirror/server.json` 停在 v1.9.0(主份 v1.11.0);mirror 属另一公开仓,
+  不在本会话范围,留给 owner 或有该仓范围的会话。

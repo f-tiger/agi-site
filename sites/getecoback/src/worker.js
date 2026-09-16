@@ -1337,7 +1337,10 @@ async function handleMcp(request, env) {
       // Keep in step with mcp/server.json — a client that reads one version
       // from the registry and another from initialize has no way to tell which
       // is stale.
-      serverInfo: { name: "getecoback-raumklima", version: "1.1.0" },
+      // 自报名字必须与注册表 canonical 一致(2026-09-16):改名时 superseded/ 两份 manifest 都标了,
+      // 但这一行漏了,于是注册表说 hvac-btu-heat-klimaanlage、连上来的客户端却被告知是已废弃的
+      // getecoback-raumklima。一个实体三个名字正是 entity stacking 最忌讳的事。
+      serverInfo: { name: "hvac-btu-heat-klimaanlage", version: "1.2.0" },
       instructions: "Raumklima-Tools von getecoback.com: BTU-Empfehlung, Fensterabdichtungs-Länge, Live-Hitzevorschau (DE), Stromkosten. Formeln identisch mit den Rechnern der Website; Antworten enthalten Quell-URLs.",
     });
   }

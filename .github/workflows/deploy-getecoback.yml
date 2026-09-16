@@ -207,6 +207,18 @@ jobs:
           # /api/pulse (2026-09-13): token-free AI-referral aggregate read by the fleet heartbeat
           check "https://getecoback.com/api/pulse" '"ai_ref"' 
           check "https://getecoback.com/api/pulse" '"by_source"' 
+
+          # MCP 自报名字必须与 mcp/server.json 的注册表名字一致(2026-09-16)。
+          # 那次改名只改了 manifest 与 superseded/,worker 的 serverInfo.name 漏了三个多月:
+          # 注册表说 hvac-btu-heat-klimaanlage,连上来的客户端却被告知是已废弃的 getecoback-raumklima。
+          # 一个实体三个名字正是 entity stacking 最忌讳的事,所以这条要能红。
+          want=$(python3 -c "import json;print(json.load(open('sites/getecoback/mcp/server.json'))['name'].split('/')[-1])")
+          got=$(curl -s -m 25 -X POST "https://getecoback.com/mcp/v1" \
+                 -H 'content-type: application/json' -H 'accept: application/json, text/event-stream' \
+                 -d '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-03-26","capabilities":{},"clientInfo":{"name":"deploy-check","version":"0"}}}' \
+                 | grep -oE '"name":"[^"]*"' | head -1 | sed 's/.*:"//;s/"//')
+          if [ "$got" = "$want" ]; then echo "OK    MCP serverInfo.name = $got(与注册表一致)"
+          else echo "::error::MCP 自报名字 '$got' 与注册表名字 '$want' 不一致"; fail=1; fi
           check "https://getecoback.com/it/guide/miglior-condizionatore-portatile-italia.html" "tag=getecoback-21"
           check "https://getecoback.com/guide/btu-rechner.md" "Canonical (HTML"
           check "https://getecoback.com/sizing-data.json" "creativecommons"

@@ -93,3 +93,59 @@ has-glama+valid-name,纯等维护者合并」。今天直接取那份 1.7 MB 的
 - 需要付费工具的 competitor backlink gap(舰队没有 Ahrefs/Moz,且它属 Growth 阶段)。
 - 机器自动提 PR / 自动发帖 / 自动外联(见 §五)。
 - 在没有真实档案页之前往 `sameAs` 里写任何一条(那是编造)。
+
+---
+
+## 八、追查那四个 MCP PR 的结果(owner:「1. 你帮我完成」)
+
+### 能确认的
+- **四个 PR 一个都没合并。** 上游 `punkpeye/awesome-mcp-servers` 的 `main` README(1.75 MB)里
+  舰队域名 **0 处**。
+- **不是 PR 内容坏了。** fork 的 `add-agiscorecard-and-verified-free-tiers` 分支仍在(HTTP 200),
+  第 1057 行的 `verified-ai-free-tiers` 条目完整,带 glama 徽章与 baipiaoji.com 链接。
+- **另一份 MCP 列表 `wong2/awesome-mcp-servers`(99 KB,比上游小 18 倍)同样 0 处** —— 我们从没投过它。
+
+### 本会话确认不了的(如实说,没绕过)
+PR 的 open/closed/有无维护者留言**读不到**:①`api.github.com` 被出网代理挡(403)
+②GitHub MCP 工具只覆盖已挂载的仓,而把 `punkpeye/awesome-mcp-servers` 挂进来的两次尝试
+(`add_repo` push、以及 `ls` 那个克隆路径)都被**权限层拒绝**。我没有绕过它。
+要读这些,需要 owner 在设置里放行该仓的挂载,或自己打开 PR 页面看一眼。
+
+### 裁定:**不值得催,理由是数字**
+该仓 PR 编号已到 **12 000+**,四个 PR 躺了一个多月。催一个排在万条之后的 PR 不是渠道,是彩票。
+**同期另一条路已经在工作**:官方 MCP registry 里三个舰队 server 全部在架(实测)——
+`io.github.f-tiger/verified-ai-free-tiers`(已到 v1.10.1)、`com.agiscorecard/agi-scorecard`、
+`io.github.f-tiger/hvac-btu-heat-klimaanlage`。**注册表是活的,awesome-list 是死的。**
+
+## 九、顺手查出并修掉的真缺陷:eco 的 MCP 身份一个实体三个名字
+
+沿着注册表核对,发现一次**改名没改干净**(不是设计决定,`superseded/` 目录证明改名是有意的):
+
+| 层 | 名字 |
+|---|---|
+| 注册表生效条目 | `io.github.f-tiger/hvac-btu-heat-klimaanlage` |
+| 注册表另两条(已标 Superseded) | `getecoback-climate-weather`、`getecoback-raumklima` |
+| **线上 worker 自报** | **`getecoback-raumklima`**(= 废弃名,`worker.js:1340`) |
+| 发布流水线健康检查 grep 的 | `getecoback-raumklima` |
+
+也就是说:客户端按注册表装的是 A,连上去被告知自己连的是已废弃的 B。
+`linkbuilding` 技能的 entity stacking 原话是「**每个地方用完全一样的品牌名,轻微变体都会让实体识别混乱**」。
+
+**已修**:worker 自报名改为 canonical、版本对齐 1.2.0;发布流水线的健康检查**过渡期两个名字都认**
+(本次 push 同时触发 deploy 与 publish,publish 探活时线上可能还是旧 worker —— 不这样会撞竞态);
+**新增防回归断言**:eco 部署自检直接比对「线上自报名 vs `mcp/server.json` 的注册表名」,不一致即红。
+本地用同一段逻辑对现网验过:`want=hvac-btu-heat-klimaanlage got=getecoback-raumklima` → 正确报不一致。
+
+## 十、注册表按品牌搜不到我们 —— 已改描述
+
+注册表的搜索**不索引 `websiteUrl`**。实测:
+- 搜 **`baipiaoji`** → 返回 3 条,**里面没有 bpj 自己的 server**(反而命中一条 eco 的)。
+- 搜 `getecoback` → 只有那两条**已废弃**的,生效的那条搜不到(它名字里没有品牌)。
+- 搜 `agiscorecard` → 命中,因为它的注册表名 `com.agiscorecard/agi-scorecard` **自带品牌**。
+
+这三条放在一起就是结论:**品牌进名字或进描述才搜得到**。已把品牌写进两站 manifest 的
+`description`(eco v1.2.0、bpj v1.11.0),内容全部属实(与线上 `instructions` 一致),
+**不改名**——再改一次名就是第四个名字。
+
+**顺带记一个未处理的漂移**:`sites/baipiaoji/mirror/server.json` 停在 **v1.9.0**,主份已 v1.11.0。
+mirror 属另一个公开仓的内容,不在本会话范围,留给 owner 或有该仓范围的会话。
