@@ -1,6 +1,6 @@
 {
   "note": "舰队赌注台账:每条预登记判定线一行;status open→won/lost/insufficient/withdrawn 时必须写 settled(日期)与 reading(读数)。tools/fleet/check_bets.py 在 heartbeat 里断言:到期 3 天内提醒,过期 >7 天未结算即红。新增判定线不进这里 = heartbeat 看不见 = 等于没预登记。",
-  "updated": "2026-09-15",
+  "updated": "2026-09-16",
   "bets": [
     {
       "id": "fleet-ai-access-0916",
@@ -556,7 +556,8 @@
       "metric_original": "D1 gridlings-events: ts>='2026-09-15 14:53' AND ref LIKE '%games.playgama.net%' AND country<>'US' 的 play_start 累计 / 二次事件(solve+play_again+game_over+hint_used)。剔 US 因为会话探针从 US 出网,口径保守",
       "threshold_original": "≥150 / ≥15",
       "revised": "2026-09-15",
-      "revised_reason": "原口径的「二次事件」测的是这些游戏不发的东西:D1 只记 solve/play_again/game_over 这类离散里程碑,而门户玩家在开局与跑完一局之间什么都不触发。owner 后台截图给了正确指标(停留时长):35 visits → 11 玩过 30s → 6 玩过 60s。阈值改为按他们的口径,原文保留在 *_original。"
+      "revised_reason": "原口径的「二次事件」测的是这些游戏不发的东西:D1 只记 solve/play_again/game_over 这类离散里程碑,而门户玩家在开局与跑完一局之间什么都不触发。owner 后台截图给了正确指标(停留时长):35 visits → 11 玩过 30s → 6 玩过 60s。阈值改为按他们的口径,原文保留在 *_original。",
+      "note": "版本冻结:读数属于 09-15 的旧包。09-16 上传了更快的新归档但 owner 决定「先不发」,结算前不得 publish_sandbox,否则样本前后不可比。"
     },
     {
       "id": "gridlings-playgama-five-0925",
