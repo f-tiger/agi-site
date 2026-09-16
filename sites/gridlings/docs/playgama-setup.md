@@ -638,3 +638,38 @@ GHOSTLINE 的 49/20/13 切成前后两段不可比的样本，而这份数据正
   台账里记的 VISITS / PLAYS 30S / PLAYS 60S 是旧包的表现，**不要拿它去代表新包**。
 - 结算之后，新包的用法是**两件事一起做**：发到 sandbox + 带着数据重新提交主目录。
   那时 `loadingTime` 从 5 143 / 4 589 降到 2 867 / 1 114 是可以写进申诉里的硬事实。
+
+### 十七、TOWERS 已建并上传（2026-09-16，owner：「towers也推上去」）
+
+**`applicationId: cmu49mo9y002pgo0h9pe85ymg`** · 状态 `DRAFT` · engine **`js`**（这次一开始就填对了）
+· 归档 `towers-2026.09.16-1` (`cmu49mxg0002rkg0hddaw562t`)，`bridgeSdk: FOUND`、Bridge 2.1.0、分析 DONE。
+
+**它是八款里最快的一个：**
+
+| 游戏 | loadingTime | initialSize |
+|---|---|---|
+| **TOWERS** | **376 ms** | **91 317** |
+| MINIMA / OVERSEER / PROMPT / MIMIC / OVERFIT | 313–474 ms | 92–99 KB |
+| SINGULARITY（优化后） | 1 114 ms | 212 KB |
+| GHOSTLINE（优化后） | 2 867 ms | 218 KB |
+
+表单已填：description（machine-verified 单解、每日 00:00 UTC 换题、三档自由练习）、
+howToPlayText（线索=可见塔数、点格循环高度、HINT/PLAY ANOTHER/难度键）、EN、
+DESKTOP+IOS+ANDROID、横竖屏都支持、`link` 指向 `play.agiscorecard.com/towers`、
+`distributeEverywhere: true`。
+
+**卡在哪（`get_submission_state` 的原话）**：`reason: "NO_CERTIFICATION"`。
+**Basic Certification 只能人来跑**，QA Tool 链接（只能问工具要，地址随部署变）：
+**`https://developer.playgama.com/qa-tool/cmu49mxg0002rkg0hddaw562t`**
+
+**跑认证时要做的一件事**：**点一下 EASY / MEDIUM / HARD 里的任意一个**——那就是广告断点。
+不需要解开题（`#again` 藏在 `#win` 里，解不开就看不见，这正是 GHOSTLINE 第一次认证栽的坑）。
+`tools/verify-puzzle-portal.js` 已经把这条断言成「未解题状态下一次真实点击能否观察到广告」，本地全绿。
+
+**还缺的（MCP 能传，但要先有图）**：`media` 是空的——三张封面（800×800 / 1080×1920 / 1920×1080）
+与截图都没有。`tools/capture-store-assets.js` 能从真实游戏里录，但它要一份
+`tools/store-assets/towers.js`（自动驾驶 + 摆拍帧），**拼图类还没写过这个配置**，
+要写一个能自动解题的 autopilot。封面是**投放的硬前提**（无封面 `start_sandbox_traffic` 直接拒 NO_COVERS），
+也是审核的期待项。
+
+**本轮没做**：没有 `publish_sandbox`、没有提交审核、没有开投放。
