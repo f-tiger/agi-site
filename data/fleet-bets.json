@@ -43,13 +43,14 @@
    "id": "eco-googlebot-0918",
    "site": "getecoback",
    "due": "2026-09-18",
-   "metric": "ua_audit 里 googlebot 7 天命中",
+   "metric": "爬虫抓取是否见到 googlebot（7 天窗）。**2026-09-16 修正仪器**：原写 ua_audit，但 D1 现查 ua_audit 只在 page_view 处记账、7 天 googlebot=0，而同窗 ev.crawl 表里 {\"bot\":\"googlebot\"} 有 249 次——读 ua_audit 会得到一个纯属仪器口径的假 0。以 ev 表 name='crawl' AND meta LIKE '%googlebot%' 为准",
    "threshold": "≥1",
    "win": "按 09-11 文档走下一步",
    "lose": "=0 → 收录问题,带证据升级 owner,解决前不寄望内容动作",
    "source": "sites/getecoback/CLAUDE.md:1094",
    "status": "open",
-   "reading_20260915": "提前读数(爬虫日志 09-11 上线,5 天窗):googlebot 19 次 / 15 个不同页面,对照 bingbot 241 次 / 112 页;googlebot 落在 /en/ 的 **0** 次。条件(≥1)已达成且只会更达成,但它要解锁的那个决定被另一个读数改写了:28 天 google 引荐 **0**(DE 页与 EN 页都是 0),见 CLAUDE.md 当日条目。"
+   "reading_20260915": "提前读数(爬虫日志 09-11 上线,5 天窗):googlebot 19 次 / 15 个不同页面,对照 bingbot 241 次 / 112 页;googlebot 落在 /en/ 的 **0** 次。条件(≥1)已达成且只会更达成,但它要解锁的那个决定被另一个读数改写了:28 天 google 引荐 **0**(DE 页与 EN 页都是 0),见 CLAUDE.md 当日条目。",
+   "reading_2026-09-16": "D1 现查：ev.crawl 7 天 googlebot **249** 次（同窗 bingbot 314、chatgpt-user 164、petalbot 148、oai-searchbot 144、perplexity 42、claudebot 17、gptbot 9）；ua_audit 同窗 googlebot **0**（该表只有 5 天数据、共 177 次，且 UA 截断到 48 字符）。按修正后的口径这条已满足 ≥1，09-18 应判 won。"
   },
   {
    "id": "gridlings-rules-cluster-0921",
@@ -625,6 +626,17 @@
    "win": "继续按 D1 需求序补付费档（下一批 kimi / feishu-miaoji / haiper / quillbot，需 runner 侧抓官方页）",
    "lose": "与 bpj-grok-series-1009 合并判定；两条皆 0 则停止为 SEO 目的补付费档，只按复核需要补",
    "source": "sites/baipiaoji/docs/PRD-revenue-tools-2026-09-16.md",
+   "status": "open"
+  },
+  {
+   "id": "bpj-pricing-probe-1014",
+   "site": "baipiaoji",
+   "due": "2026-10-14",
+   "metric": "付费档缺口（data/pricing-probe.json 的 gap_total）与探针产出：runner 侧 state=ready 的条数",
+   "threshold": "gap_total 较 109 下降 ≥8，且 runner 行 ready ≥10",
+   "win": "探针队列成立，继续按触达序把判定页/upgrade 页铺满",
+   "lose": "ready <10 → 多数厂商定价页是 SPA 或拒爬，探针降为每周一次；gap 不降 → 是会话没去读队列，不是探针问题，把读队列写进每日循环",
+   "source": "sites/baipiaoji/scripts/pricing-probe.mjs",
    "status": "open"
   }
  ]

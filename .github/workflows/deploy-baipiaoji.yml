@@ -109,6 +109,20 @@ jobs:
         run: node scripts/reach-export.mjs
         continue-on-error: true
 
+      # 付费档缺口探针（2026-09-16）：219 个工具里 109 个只差 limits.paid 一个字段，
+      # 差这一个字段 `is-<tool>-still-free` 与 `/upgrade/<tool>` 两种页型就都不生成——
+      # 而 D1 现查说读者 68% 落在工具页、问的正是这个问题。缺口填不动的原因不是没人想填，
+      # 是**会话沙箱抓不到官方定价页**（09-16 实测 x.ai / quillbot 403、kimi 连接重置、
+      # feishu 与 haiper 只回 SPA 壳），而 runner 的出网抓得到——与 source-drift 每天
+      # 抓 219 条来源页是同一条链路。所以把「猜 URL → 手抓 → 抓不到就算了」变成
+      # runner 每天推进 8 个的队列，会话下一轮直接读 data/pricing-probe.json 挑活。
+      # 它**只做发现与取证，一个数字都不写进 tools.json**（新数字永远走 limits-edit 两步）。
+      # 分钟账：最坏 8 × 3 候选 × ~3.5s ≈ 1.4 分/次 ≈ 42 分/月，挂已有 schedule，不新增 cron。
+      - name: Probe official pricing pages for paid-tier gaps (scheduled runs only)
+        if: github.event_name != 'push'
+        run: node scripts/pricing-probe.mjs
+        continue-on-error: true
+
       - name: Commit refreshed data (scheduled runs only)
         if: github.event_name != 'push'
         run: |
@@ -145,6 +159,12 @@ jobs:
       # 那种数字长得跟真的一模一样，而它正好打在本站唯一护城河上。
       - name: Quota facts check (no invented numbers)
         run: node scripts/quota-facts-check.mjs
+
+      # 付费档探针的零网络自检（2026-09-16）：这个探针决定「下一轮去读哪几家的定价页」，
+      # 它判错的方向有两种，都必须能红——把无价页判成 ready 会把人骗去读一个没有价格的页面；
+      # 把沙箱/网络拒绝判成「这家没有付费档」则会让一个能填的缺口被永久跳过。
+      - name: Pricing-probe selftest (zero network)
+        run: node scripts/pricing-probe.mjs --selftest
 
       # 自研分词器的回归检验：420 例金标准 × 两套词表 = 840 次逐例比对。
       # 写自己的实现就得自己证明它对，否则只是把「让用户猜」换成「让我们猜」。
