@@ -593,11 +593,15 @@ owner 决策卡、事实表)。
   Jungle Scout **$29–299/月**、Helium 10 **$99–279/月且 2026-04 取消入门档**、Keepa €19–29、Visualping $14 起)、
   **单位经济**(要到 €100/月:展示广告 5 万 pv、Amazon 联盟 1 176 点击、**按次计量 API ~870 次**、$29 包 3,4 单、$14 订阅 **7 个人**
   —— 按「要多少个 yes」排序,订阅最少、广告最荒谬,而**按次计量是唯一与现状同数量级的**,因为分母是机器不是人)、
-  **一件真东西**:**SourceRadar MCP 服务器已建**(`sites/buysomething/mcp.js`,五个工具 `duty_stack_rules` /
-  `check_import_claim` / `landed_cost` / `duty_passport` / `recall_check` + 三个资源;JSON-RPC + REST 兜底;
-  `server.json` 经 GitHub OIDC 发注册表,零新增 cron)。**三条红线由 17 条单测 + 两道闸门断言**:零编造(缺税率必须拒算)、
-  每条带 sources/as_of、**输出永远没有联盟或跟踪参数**。顺手修掉一个真缺陷:**SR 的 `llms.txt` 到今天为止仍把
-  $80–$200 邮包统一税与 54%/$100 快递规则写成现行规则**(页面 09-13 已改,给 AI 读的摘要没跟上),现在有闸门拦。
+  **一件真东西**:**SourceRadar MCP 服务器已建**(`sites/buysomething/mcp.js`,六个工具 `duty_stack_rules` /
+  `check_import_claim` / `landed_cost` / `duty_passport` / `section_301_ladder` / `recall_check` + 四个资源;JSON-RPC + REST 兜底;
+  `server.json` 经 GitHub OIDC 发注册表,零新增 cron)。**三条红线由 20 条单测 + 两道闸门断言**:零编造(缺税率必须拒算)、
+  每条带 sources/as_of、**输出永远没有联盟或跟踪参数**。顺手修掉两个真缺陷:①**SR 的 `llms.txt` 到今天为止仍把
+  $80–$200 邮包统一税与 54%/$100 快递规则写成现行规则**(页面 09-13 已改,给 AI 读的摘要没跟上);②每张 duty passport
+  都以 `s301: verify-on-ustr` 这个死胡同结束——而**加征 heading 本身就在同一个免密钥官方 API 里**:新建
+  `tools/fetch_s301_ladder.py` → `s301-ladder.json`,**77 条 chapter 99 heading、档位 7,5/10/15/25/50/100%**
+  (只认「号段 + product of China + 对应 U.S. note」三条同时成立,所以同批数据里的英国乘用车行自动排除;
+  **永不判定某个 HTS8 是否在清单里**)。两者现在都有闸门拦,页面的 301 菜单也由闸门断言必须覆盖官方阶梯的每一档。
 - **子站的翻转条件(写死,别再重新讨论)**:①任一已建收款面出现 **≥3 笔真实付费**;②`fleet-machine-demand-1014` 判 win
   **且** SR MCP 到 ~870 次调用/月;③出现一条**有法定死线的交付物**(参照德国房产税:3600 万业主 + 死线 → €34,95 有人付)。
   三条都不成立时,默认永远是「把钱押在已建的两处,不建第三处」。

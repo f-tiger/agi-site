@@ -47,7 +47,7 @@
         <label class="calc-field">Goods value, customs basis (USD)<input id="lcVal" type="number" min="1" value="400"></label>
         <label class="calc-field">Ocean freight + insurance (USD)<input id="lcShip" type="number" min="0" value="60"></label>
         <label class="calc-field">HTS base rate % (<a href="https://hts.usitc.gov/" rel="noopener" target="_blank">look up your heading</a>)<input id="lcBase" type="number" min="0" max="100" step="0.1" value="2.5"></label>
-        <label class="calc-field">Section 301 addition % (per USTR list: 0 / 7.5 / 25 / 50 / 100)<input id="lc301" type="number" min="0" max="100" step="0.5" value="25"></label>
+        <label class="calc-field">Section 301 addition % (<a href="/api/mcp/section_301_ladder" rel="noopener">official ladder</a>: 0 / 7.5 / 10 / 15 / 25 / 50 / 100)<input id="lc301" type="number" min="0" max="100" step="0.5" value="25"></label>
         <label class="calc-field">Section 232 % (0 unless steel/aluminium/derivatives etc.)<input id="lc232" type="number" min="0" max="100" step="0.5" value="0"></label>
         <label class="calc-field">Ocean entry? (adds HMF 0.125%)<select id="lcOcean"><option value="1">Yes</option><option value="0">No (air/courier)</option></select></label>
       </div>

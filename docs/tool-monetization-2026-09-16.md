@@ -296,20 +296,33 @@ SELECT 'fanzha', name, COUNT(*) FROM fev WHERE ua_class='js' AND label<>'__ci' G
 ## 十三、本轮第二批交付:SourceRadar MCP 服务器(已在代码里,合并即上线)
 
 - **`sites/buysomething/mcp.js`**:Streamable HTTP 的无状态子集(POST JSON-RPC)+ `GET /api/mcp/<tool>` REST 兜底
-  (实测两个采集器走的都是 REST)。五个工具:
+  (实测两个采集器走的都是 REST)。**六个**工具:
   | 工具 | 回答的问题 | 为什么别处没有 |
   |---|---|---|
   | `duty_stack_rules` | 现在的中→美关税栈逐条是什么,各自的依据与日期 | 7 条规则各带官方出处与生效/失效日期 |
   | `check_import_claim` | 「$800 以下免税」这类说法还成立吗 | **四个 2026 年已失效、但仍统治训练数据的数字**,逐条给判定 + 联邦公报链接 |
   | `landed_cost` | 这批货到岸多少钱 | 逐项、确定性;**不给税率就拒算**并指向 hts.usitc.gov |
   | `duty_passport` | 这个品类的候选税号与税率 | 每日从 USITC 官方 REST 取,明确声明「候选不是归类裁定」 |
+  | `section_301_ladder` | 301 加征有哪几档、哪条 note 定义清单 | **本轮新做的数据**:77 条 chapter 99 heading(9903.88 note 20 + 9903.91 note 31),档位 7,5/10/15/25/50/100%,28 条带自己的生效日 |
   | `recall_check` | 这个品类最近被召回过吗 | CPSC 官方 API,365 天窗,只回 cpsc.gov 链接 |
-- **三条红线,由 17 条单测断言,能红**(`tools/test_mcp.mjs`):①**零编造**——缺 `hts_base_rate_pct` 必须报错;
+- **三条红线,由 20 条单测断言,能红**(`tools/test_mcp.mjs`):①**零编造**——缺 `hts_base_rate_pct` 必须报错;
   ②每条结果带 `sources` + `as_of`;③**输出里永远没有联盟或跟踪参数**(agent 是引用源,污染它等于污染引用)。
 - **两道新闸门**:`tools/check_duty_stack.py`(机器面 `duty-stack.json` 与页面、llms.txt 三处不许漂移)与
   `tools/assert_mcp_live.py`(部署后打线上:$800 口径必须仍判 `false since 2026-06-24`,否则部署红)。
 - **顺手修掉一个真缺陷**:`llms.txt` 里给 AI 读的那句摘要,**到今天为止仍把 $80–$200 邮包统一税与 54%/$100 快递规则
   写成现行规则**(页面 2026-09-13 已改,摘要没跟上)。**被引用的恰恰是这个文件**——闸门现在会拦住这种漂移。
+- **补上了护照里那个死胡同**:每张 duty passport 此前都以 `s301: {"status":"verify-on-ustr"}` 结束——对读者和 agent 都是
+  「你自己去查」。本轮发现**加征 heading 本身就在同一个免密钥 API 里**:`tools/fetch_s301_ladder.py` 每天取
+  chapter 99 subchapter III,得到 **77 条**(9903.88 = U.S. note 20 的原始四张清单 66 条;9903.91 = 2024-09-27 生效的
+  加征 11 条),档位 **7,5 / 10 / 15 / 25 / 50 / 100%**。三条纪律写在代码里:①**只信每行自己说的**——必须同时满足
+  号段、描述里有 "product of China"、引用对应的 U.S. note,所以同一次导出里的 9903.94.31(英国乘用车,note 33)
+  自动落在外面,而不是靠号段猜;②**税率只在 "plus N%" 无歧义时才解析成数字**,否则留 null;
+  ③**生效日只在描述以 "Effective with respect to entries … on or after" 开头时才认**(9903.88 段描述里那些日期是
+  排除延期的日期,填进去会得到一个看起来精确的错数字)。**仍然不做的**:判定某个 HTS8 是否在清单里——那在
+  U.S. note 20/31 的 14 MB PDF 与 USTR 附件里,给不出就说给不出。
+- **顺带修正了页面的一个陈旧菜单**:`/landed-cost` 的 301 输入提示原来写「0 / 7.5 / 25 / 50 / 100」,官方阶梯里还有
+  **10% 与 15%**。现在页面照官方阶梯列,且**闸门断言「阶梯里出现的每一档都必须在页面菜单里」**——下次 USTR 加一档,
+  阶梯第二天自动拿到,页面没跟上就直接红。
 - **`server.json` + `sr-mcp-publish.yml`**:用 GitHub OIDC 发布到 `registry.modelcontextprotocol.io`,零 owner 密钥。
 - **零新增 cron**(注册表发布只在 `server.json` 变更时触发);D1 每次调用记一行 `mcp_call`(只记工具名 + UA,零 PII)。
 

@@ -14,6 +14,7 @@ Checks (all mechanical, no judgement):
   4. the JSON never states a product-specific duty rate (zero fabrication: rates are the importer's).
 Exit 1 on any failure; --selftest runs the pure checks against fixtures.
 """
+import datetime as dt
 import json
 import os
 import re
@@ -24,6 +25,7 @@ SITE = os.path.join(HERE, "..", "site")
 JSON_PATH = os.path.join(SITE, "duty-stack.json")
 HTML_PATH = os.path.join(SITE, "landed-cost.html")
 LLMS_PATH = os.path.join(SITE, "llms.txt")
+LADDER_PATH = os.path.join(SITE, "s301-ladder.json")
 
 # 机器面第二处:llms.txt 是给 AI 系统读的摘要,它在 2026-09-16 之前一直把 $80–$200 与 54%/$100
 # 当作现行规则写着(页面 09-13 就改了,摘要没跟上)。这是比页面更危险的漂移——被引用的是它。
@@ -40,6 +42,26 @@ SUPERSEDED_MARKS = {
     "Courier shipments pay about 54% ad valorem, or $100 flat per shipment": ["54%"],
     "'Reciprocal' baseline tariffs apply on top of the stack": ["Reciprocal", "reciprocal"],
 }
+
+
+def check_ladder(ladder, html):
+    """Pure: every additional rate in the official Section 301 ladder must be offered on the page's own hint.
+
+    The point is drift in one direction: USTR adds a rate (2024 added 50% and 100%), the ladder picks it up
+    from the official export the next morning, and the page silently keeps offering the old menu. This goes
+    red so a human updates the page instead of readers quietly using a stale list.
+    """
+    bad = []
+    m = re.search(r"official ladder</a>:([^<]*)\)", html)
+    if not m:
+        return ["landed-cost.html no longer carries the Section 301 rate hint the gate checks"]
+    offered = {float(x) for x in re.findall(r"[\d.]+", m.group(1))}
+    for rate in ladder.get("additional_rates_seen_pct", []):
+        if float(rate) not in offered:
+            bad.append("official ladder has a %s%% Section 301 rate that the page hint does not offer" % rate)
+    if not ladder.get("ladder"):
+        bad.append("s301-ladder.json has no rows")
+    return bad
 
 
 def check_llms(text):
@@ -101,6 +123,11 @@ def selftest():
     assert check(bad_rate, html), "a product rate inside duty-stack.json must fail"
     assert check_llms("- landed cost: postal flat duties $80-200/item, the courier 54%-or-$100 rule"), "stale figures stated as current must fail"
     assert check_llms("- landed cost: the $80-200 postal flat duty expired 2026-02-28") == [], "superseded framing must pass"
+    page_hint = 'official ladder</a>: 0 / 7.5 / 10 / 15 / 25 / 50 / 100)'
+    assert check_ladder({"additional_rates_seen_pct": [7.5, 25.0, 100.0], "ladder": [1]}, page_hint) == []
+    assert check_ladder({"additional_rates_seen_pct": [7.5, 60.0], "ladder": [1]}, page_hint), "a new official rate missing from the page must fail"
+    assert check_ladder({"additional_rates_seen_pct": [7.5], "ladder": []}, page_hint), "an empty ladder must fail"
+    assert check_ladder({"additional_rates_seen_pct": [7.5], "ladder": [1]}, "no hint here"), "a removed page hint must fail"
     print("check_duty_stack selftest: OK")
 
 
@@ -111,11 +138,22 @@ def main():
     data = json.load(open(JSON_PATH, encoding="utf-8"))
     html = open(HTML_PATH, encoding="utf-8").read()
     bad = check(data, html) + check_llms(open(LLMS_PATH, encoding="utf-8").read())
+    try:
+        ladder = json.load(open(LADDER_PATH, encoding="utf-8"))
+    except Exception as e:
+        bad.append("s301-ladder.json unreadable: %s" % e)
+        ladder = None
+    if ladder:
+        bad += check_ladder(ladder, html)
+        age = (dt.date.today() - dt.date.fromisoformat(ladder["generated"])).days
+        if age > 45:
+            print("::warning::s301 ladder is %d days old (refreshed in the schedule branch; not fatal)" % age)
     for b in bad:
         print("::error::duty-stack drift: " + b)
     if bad:
         return 1
-    print("duty-stack gate: OK (%d rules, %d superseded figures; page and llms.txt both in step)" % (len(data["rules"]), len(data["superseded"])))
+    print("duty-stack gate: OK (%d rules, %d superseded figures, %d Section 301 headings; page, llms.txt and ladder all in step)"
+          % (len(data["rules"]), len(data["superseded"]), len((ladder or {}).get("ladder", []))))
     return 0
 
 

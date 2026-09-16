@@ -32,7 +32,7 @@ const ok = (c, m) => { n++; if (!c) { console.error("FAIL " + n + ": " + m); pro
 
 // 1) descriptor
 const d = await (await call("/api/mcp")).json();
-ok(d.tools.length === 5 && d.protocol.streamable_http.includes("/api/mcp"), "GET /api/mcp 描述符:5 个工具 + 两种调用方式");
+ok(d.tools.length === 6 && d.protocol.streamable_http.includes("/api/mcp"), "GET /api/mcp 描述符:6 个工具 + 两种调用方式");
 
 // 2) initialize
 const init = await rpc("initialize", { protocolVersion: "2025-06-18" });
@@ -41,7 +41,7 @@ ok(init.result.protocolVersion === "2025-06-18" && /800/.test(init.result.instru
 
 // 3) tools/list
 const list = await rpc("tools/list", {});
-ok(list.result.tools.length === 5 && list.result.tools.every((t) => t.description && t.inputSchema), "tools/list:5 个工具都有描述与 schema");
+ok(list.result.tools.length === 6 && list.result.tools.every((t) => t.description && t.inputSchema), "tools/list:6 个工具都有描述与 schema");
 
 // 4) landed_cost 算术逐项可核对
 const lc = await rpc("tools/call", { name: "landed_cost", arguments: { goods_value_usd: 1000, freight_insurance_usd: 100, hts_base_rate_pct: 2.5, section_301_pct: 25, ocean_entry: true } });
@@ -93,8 +93,19 @@ ok(bad.error && bad.error.code === -32602, "未知工具 → JSON-RPC -32602");
 const badm = await rpc("tools/frobnicate", {});
 ok(badm.error && badm.error.code === -32601, "未知方法 → JSON-RPC -32601");
 
+// 11b) Section 301 阶梯:只给阶梯与定义清单的 note,绝不断言某个税号被覆盖
+const lad = await rpc("tools/call", { name: "section_301_ladder", arguments: { rate_pct: 100 } });
+const L = lad.result.structuredContent;
+ok(L.count >= 1 && L.ladder.every((x) => x.additional_rate_pct === 100) && /does not assert membership/.test(L.coverage_disclaimer) && L.ustr_lists.includes("ustr.gov"),
+   "section_301_ladder:按税率过滤得到 " + L.count + " 条,且明说不判定清单归属");
+const lad31 = await rpc("tools/call", { name: "section_301_ladder", arguments: { note: "31" } });
+ok(lad31.result.structuredContent.ladder.every((x) => /2024/.test(x.programme)) && lad31.result.structuredContent.ladder.some((x) => x.effective_from === "September 27, 2024"),
+   "section_301_ladder:note=31 只回 2024-09-27 那批加征");
+const dpNote = await rpc("tools/call", { name: "duty_passport", arguments: { pick: "pet-fountain" } });
+ok(/section_301_ladder/.test(dpNote.result.structuredContent.section_301_note), "duty_passport:基础税率旁边指向 301 阶梯,不再是死胡同");
+
 // 12) 输出里永远没有联盟/跟踪参数
-const all = JSON.stringify([d, init, list, lc, claim, rc, dp, rest, res]);
+const all = JSON.stringify([d, init, list, lc, claim, rc, dp, rest, res, lad, lad31]);
 const dirty = [/[?&]tag=/, /[?&]ref=/, /[?&]utm_/, /amzn\.to/, /amazon\.[a-z.]+\/(dp|s\?)/].filter((re) => re.test(all));
 ok(dirty.length === 0, "输出零联盟/跟踪参数(命中:" + dirty.length + ")");
 

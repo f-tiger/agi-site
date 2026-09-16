@@ -71,6 +71,19 @@ const TOOLS = [
     },
   },
   {
+    name: "section_301_ladder",
+    description:
+      "The Section 301 (China) additional-duty ladder, read straight from the official USITC HTS export of chapter 99 subchapter III: which 9903.88 / 9903.91 heading carries which addition (7.5%, 10%, 15%, 25%, 50%, 100%), which U.S. note defines its list, and — where the schedule states it — the date that heading took effect. It tells you the possible rates and where coverage is defined; it never asserts that a particular HTS8 code is on a list, because that lives in U.S. note 20/31 and the USTR annexes.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        rate_pct: { type: "number", description: "Only headings carrying this additional rate, e.g. 25" },
+        heading: { type: "string", description: "A chapter 99 heading prefix, e.g. '9903.88.03' or '9903.91'" },
+        note: { type: "string", enum: ["20", "31"], description: "20 = the original Section 301 lists; 31 = the increases effective 2024-09-27" },
+      },
+    },
+  },
+  {
     name: "recall_check",
     description:
       "Official US product recalls (CPSC saferproducts.gov API) touching a product category in the last 365 days: date, title, hazard and the cpsc.gov URL. A keyword hit means the words appear in a recall title, not that a particular supplier or SKU is affected. Use before recommending or sourcing a category.",
@@ -88,6 +101,7 @@ const TOOLS = [
 const RESOURCES = [
   { uri: "sourceradar://duty-stack-rules", name: "duty-stack-rules", description: "The dated China→US duty stack, fees and superseded figures", mimeType: "application/json", file: "/duty-stack.json" },
   { uri: "sourceradar://duty-passports", name: "duty-passports", description: "Candidate HTS headings per product category, refreshed daily from USITC", mimeType: "application/json", file: "/passports.json" },
+  { uri: "sourceradar://section-301-ladder", name: "section-301-ladder", description: "Section 301 additional-duty headings with their rates, notes and effective dates, from the official USITC export", mimeType: "application/json", file: "/s301-ladder.json" },
   { uri: "sourceradar://official-recalls", name: "official-recalls", description: "CPSC recalls per tracked product category, 365-day window", mimeType: "application/json", file: "/recalls.json" },
 ];
 
@@ -177,12 +191,38 @@ async function runTool(name, args, env, origin) {
     };
   }
 
+  if (name === "section_301_ladder") {
+    const d = await asset(env, origin, "/s301-ladder.json");
+    const want = Number(args.rate_pct);
+    const head = String(args.heading || "");
+    const note = String(args.note || "");
+    let rows = d.ladder || [];
+    if (Number.isFinite(want)) rows = rows.filter((r) => r.additional_rate_pct === want);
+    if (head) rows = rows.filter((r) => r.heading.startsWith(head));
+    if (note) rows = rows.filter((r) => (r.us_notes || []).some((n) => n === note || n.startsWith(note + "(")));
+    return {
+      as_of: d.generated,
+      source: d.source,
+      source_kind: d.source_kind,
+      additional_rates_seen_pct: d.additional_rates_seen_pct,
+      count: rows.length,
+      ladder: rows,
+      coverage_disclaimer: d.coverage_disclaimer,
+      ustr_lists: d.ustr_lists,
+      cite: CITE,
+    };
+  }
+
   if (name === "duty_passport") {
     const p = await asset(env, origin, "/passports.json");
     const picks = p.picks || {};
     const q = String(args.query || "").toLowerCase();
     const one = String(args.pick || "").toLowerCase();
-    const base = { as_of: p.generated, hts_release: p.hts_release, source: p.source, disclaimer: p.disclaimer, cite: CITE };
+    const base = {
+      as_of: p.generated, hts_release: p.hts_release, source: p.source, disclaimer: p.disclaimer,
+      section_301_note: "These are base (MFN) rates only. For the Section 301 addition call section_301_ladder: it gives the rate ladder and the U.S. note that defines each list. Nothing here asserts that a product is covered by a list.",
+      cite: CITE,
+    };
     if (one) {
       const row = picks[one];
       if (!row) return { ...base, error: "unknown pick", available: Object.keys(picks) };

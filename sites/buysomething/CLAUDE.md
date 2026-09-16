@@ -197,13 +197,19 @@ TikTok/1688 抓取、付费数据源。
 数据(官方关税栈 + USITC 候选税号 + CPSC 召回),此前只以没人看的 HTML 存在。
 
 - **实现**:`mcp.js`(worker 内挂 `/api/mcp`):POST JSON-RPC(Streamable HTTP 无状态子集)+ `GET /api/mcp/<tool>` REST 兜底
-  (实测采集器走的是 REST)。五个工具:`duty_stack_rules` / `check_import_claim` / `landed_cost` / `duty_passport` / `recall_check`,
-  外加三个只读资源。数据一律读 `site/*.json`,与页面同一事实源。
+  (实测采集器走的是 REST)。六个工具:`duty_stack_rules` / `check_import_claim` / `landed_cost` /
+  `duty_passport` / **`section_301_ladder`** / `recall_check`,外加四个只读资源。数据一律读 `site/*.json`,与页面同一事实源。
 - **三条红线(改任何一行前先读;`tools/test_mcp.mjs` 17 条断言全部能红)**:
   1. **零编造**:`landed_cost` 缺 `hts_base_rate_pct` 必须报错并指向 hts.usitc.gov,**永远不给默认税率**;
      归类是进口商的责任,`duty_passport` 只给「候选」并明说不是归类裁定。
   2. 每条结果带 `sources` + `as_of`;取不到静态资源回 503,**不拿旧数据冒充**。
   3. **输出里永远没有联盟/推荐/跟踪参数**(agent 是引用源,污染它等于污染引用)。这条同时由部署自检打线上。
+- **`s301-ladder.json`(2026-09-16 新数据,`tools/fetch_s301_ladder.py` 随 schedule 分支每日刷新)**:77 条 chapter 99
+  加征 heading(9903.88=note 20 的四张原始清单 66 条,9903.91=2024-09-27 生效加征 11 条),档位 7,5/10/15/25/50/100%。
+  **三条纪律不许放松**:①分类只认「号段 + 描述里 product of China + 对应 U.S. note」三条同时成立(同一导出里的
+  9903.94.31 英国乘用车因此自动排除);②税率只在 `plus N%` 无歧义时解析成数字;③生效日只认描述**开头**那句
+  `Effective with respect to entries … on or after`。**永远不判定某个 HTS8 是否在清单里**——那在 note 20/31 的 PDF 与
+  USTR 附件里。页面 `/landed-cost` 的 301 菜单由闸门断言必须覆盖阶梯里出现的每一档。
 - **两道闸门**:`tools/check_duty_stack.py`(`site/duty-stack.json` ↔ `landed-cost.html` ↔ `llms.txt` 三处不许漂移;
   **llms.txt 曾把 $80–$200 与 54%/$100 写成现行规则直到 2026-09-16**,被引用的恰恰是它)+
   `tools/assert_mcp_live.py`(部署后打线上:$800 口径必须仍判 `false since 2026-06-24`)。
