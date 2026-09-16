@@ -262,6 +262,13 @@ async function runTool(name, args, env, origin) {
       as_of: d.generated,
       window_days: d.window_days,
       since: since || d.since,
+      // 稳定路径承诺(同 bpj /api/changes 的做法):被别人写死进代码的前提,是这三个 URL 不改。
+      stable: {
+        snapshot: origin + "/import-rule-changes.json",
+        incremental: origin + "/api/mcp/import_rule_changes?since=YYYY-MM-DD",
+        page: origin + "/import-rule-changes",
+      },
+      license: "CC BY 4.0 — reuse and commercial use allowed, attribution required: " + origin + "/",
       source: d.source,
       queries: d.queries,
       agencies_kept: d.agencies_kept,

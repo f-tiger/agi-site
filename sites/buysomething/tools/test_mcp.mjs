@@ -112,6 +112,8 @@ ok(RC.count >= 1 && RC.changes.every((c) => c.matched_in === "title_or_abstract"
    "import_rule_changes:标题/摘要命中 " + RC.count + " 条,全部官方链接,且随结果带「什么不在范围内」");
 const rc2 = await rpc("tools/call", { name: "import_rule_changes", arguments: { since: "2099-01-01" } });
 ok(rc2.result.structuredContent.count === 0, "import_rule_changes:since 在未来 → 0 条,不回退成「给你看点别的」");
+ok(RC.stable.incremental.includes("since=YYYY-MM-DD") && RC.stable.snapshot.endsWith("/import-rule-changes.json") && /CC BY 4.0/.test(RC.license),
+   "import_rule_changes:带稳定路径承诺与许可(被写死进别人代码的前提)");
 
 // 11d) CBP 裁定检索:用桩 fetch 跑,断言合成逻辑与失败路径(单测永不打网络)
 const realFetch = globalThis.fetch;

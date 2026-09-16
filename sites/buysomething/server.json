@@ -1,8 +1,8 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-07-09/server.schema.json",
   "name": "io.github.f-tiger/us-import-duty-facts",
-  "description": "Dated US import facts: the China→US duty stack with its record, a fact-check for superseded figures like the $800 de minimis, a landed-cost estimator that refuses to guess your duty rate, USITC candidate HTS headings and CPSC recalls.",
-  "version": "1.0.0",
+  "description": "Dated US import facts from the official record: CBP CROSS classification rulings (live), the Section 301 rate ladder from the USITC chapter 99 export, candidate HTS headings, a landed-cost estimator that refuses to guess your duty rate, Federal Register import rule changes with a since= contract, and CPSC recalls.",
+  "version": "1.1.0",
   "websiteUrl": "https://source.agiscorecard.com/mcp",
   "remotes": [
     {
