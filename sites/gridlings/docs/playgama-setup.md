@@ -456,3 +456,31 @@ isHorizontal / isVertical / distributeEverywhere / archives / media **全部逐�
 它 09-15 15:45 进入 `MODERATION`,按 owner 的话等这一轮审完再改。
 **判断依据**:`list_moderation_comments` 或 `get_application` 里 MOD-7381 的 status 离开
 `MODERATION`(变成 REJECTED / 通过)之后,立刻改成 `js`——它是七款里唯一还填错的。
+
+### 十二、GHOSTLINE 17 小时读数，以及「0 二次事件」的最终解释（2026-09-16）
+
+**owner 截图(投放 17 小时)**：GHOSTLINE **VISITS 49 · PLAYS 30S 20 · PLAYS 60S 13**
+= **41% 玩过 30 秒、27% 玩过一分钟**。
+
+**趋势比绝对值更有意思**：09-15 那张是 16 / 6 / 3(38% / 19%)。增量的 33 次访问里
+**14 次过 30 秒(42%)、10 次过 60 秒(30%)** —— **后来的流量比最早那批更好**。
+买量通常是反过来的(先投最容易的人群),所以这条值得记。
+
+**「0 二次事件」到此彻底解释清楚,它从头到尾是我们自己的测量缺陷：**
+`worker.js` 的 `ALLOWED` 事件白名单(18 个名字)**把 GHOSTLINE 与 SINGULARITY 的全部
+互动事件都丢掉了**。GHOSTLINE 发 `race_start` / `finish` / `medal` / `beat_clone`,
+SINGULARITY 发 `milestone` / `ship` / `rogue` / `rewarded` 等十几个 —— **`ev` 表里这些名字
+一行都没有,历史上一次都没有过**(现查确认)。这两款恰好是流量最大的两款,
+所以「42 次开局 0 次二次事件」是**按构造必然的结果**,不是玩家行为。
+
+**已修**:白名单加 9 个**每局有上界**的事件(GHOSTLINE 四个 + SINGULARITY 五个)。
+**故意不加** `buy` / `train` / `research` / `cache` / `market` / `skin` / `mission` ——
+SINGULARITY 是放置游戏,这些跟着点击速度走,放进来等于用一个盲区换一张 D1 账单。
+
+**注意口径断点**:这 9 个事件**从 2026-09-16 部署后才开始有数**,与之前的窗口不可比。
+PROMPT / MINIMA / OVERFIT 的 `game_over` 一直在白名单里,所以它们的历史是连续的 ——
+这三款早就显示出真实重复游玩(PROMPT 10 次开局对 **23 次 game_over**、MINIMA 2 对 **7**)。
+
+**D1 现状(投放起至 09-16 08:11,非 US)**:GHOSTLINE 42 次开局 / **23 国**、
+SINGULARITY 32 / 17 国、PROMPT 10(+23 game_over +23 calc_use)、OVERFIT 5、OVERSEER 3、
+MINIMA 2(+7 game_over)、MIMIC 1。**后四款没有投放**,那点量是 sandbox 链接的自然曝光。
