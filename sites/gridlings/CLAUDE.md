@@ -1096,7 +1096,12 @@ cg-package-smoke，别靠肉眼。
   认证跑不了那么久,于是报「没有实现广告」。这条只写在 SDK 源码里,文档没提。
   同类字段还有 `minimumDelayBetweenInterstitial`。**排查顺序:先看 SDK 默认值,
   再怀疑自己的触发点。** 本次我先后误判了两次归因才查到这里。
-- 分发选型结论：Playgama（最高 80%）与 CG 直投**不冲突**，Playgama 官方声明不代发 Poki/CG。
+- 分发选型结论：Playgama 与 CG 直投**不冲突**，Playgama 官方声明不代发 Poki/CG。
+  **分成口径 2026-09-16 查证纠正**：不是「最高 80%」，是 `playgama.com/developers` 的三档累进
+  **70%（≤$1,000）/ 80%（$1,000–3,000）/ 90%（>$3,000）**——入门档比我们一直写的低、顶档比它高。
+  **且分成只发生在主目录与合作网络：`playgama.com/llms-full.txt` 明写 sandbox 链接
+  "does not by itself establish ... monetization"。sandbox 跑得再好也不产生收入，
+  它的产出只能是「申诉主目录的证据」。别和 Playgama Partners 的 "up to 50%" 混淆——那是给站长的产品。
   **不做 GameDistribution**（33%，覆盖重叠）。**Poki 的 web 独占在 CG 出结果前不签**。
 
 ## 埋点信标的 CORS：门户域名发不出数据（2026-09-07，Playgama 认证时实测发现）

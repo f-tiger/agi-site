@@ -3,7 +3,7 @@
 ## 为什么做这个（一句话）
 Playgama 明确写着「**我们不代你发布到 Poki 和 CrazyGames**，但你可以带着我们的 SDK 自己传」，
 所以它与 CG 直投**不冲突、纯加法**。它的托管发行覆盖自己的伙伴网络（月触达 4.5 亿、100+ 伙伴，
-含 YouTube Playables、MSN、Xiaomi、Y8、Telegram、Discord），开发者最高拿 **80%**。
+含 YouTube Playables、MSN、Xiaomi、Y8、Telegram、Discord）。~~开发者最高拿 **80%**~~ **← 2026-09-16 查证纠正：实际是三档累进 70% / 80% / 90%（分界 $1,000 与 $3,000），入门档 70%、顶档 90%；且分成只发生在主目录/合作网络，sandbox 那一层不分成。见本文第十三节。**
 对照 GameDistribution 只给 33% —— 覆盖重叠而分成差一倍多，**不做 GameDistribution**。
 
 ## 会话侧已完成（代码已上线）
@@ -484,3 +484,39 @@ PROMPT / MINIMA / OVERFIT 的 `game_over` 一直在白名单里,所以它们的�
 **D1 现状(投放起至 09-16 08:11,非 US)**:GHOSTLINE 42 次开局 / **23 国**、
 SINGULARITY 32 / 17 国、PROMPT 10(+23 game_over +23 calc_use)、OVERFIT 5、OVERSEER 3、
 MINIMA 2(+7 game_over)、MIMIC 1。**后四款没有投放**,那点量是 sandbox 链接的自然曝光。
+
+### 十三、sandbox 不分成——这次是查到的，不是「不知道」（2026-09-16）
+
+owner 追问「sandbox 能不能分成，你不知道？」。上一条我停在「后台没写、MCP 读不到」就不往下查了，
+这是偷懒。用出网权限查了他们自己的信源，**答案是明确的**。
+
+**Playgama 自己的机器可读参考 `https://playgama.com/llms-full.txt`，原文：**
+> "A sandbox link is public and goes live immediately, without moderation. **It does not by
+> itself establish acceptance into the Playgama catalog, partner distribution, audience
+> acquisition, or monetization.**"
+
+同页另一句：**"Sandbox publishing and main catalog publishing are separate outcomes."**
+`https://playgama.com/mcp/` 也写着 **"Main catalog submission is a separate step."**
+
+**所以：sandbox 这一层没有分成，一分钱都没有。** 后台 REVENUE 那一栏是 `—` 而不是 `$0.00`,
+现在完全说得通 —— **不是「还没赚到」，是这一层根本不存在收入这回事。**
+
+**那 09-15 实测到的 `loading → opened → closed` 是什么？** 广告确实播了、确实有填充,
+但**那是 Playgama 自己的广告位**。把它和「$2 免费投放」放在一起看，整件事就清楚了：
+**他们花自己的钱买量把玩家送进来，再用玩家看的广告把成本收回去，换取我们游戏的真实表现数据** ——
+这正是 09-14 拒稿信直说的目的("gives our team real performance data")。**这是一笔数据交易，不是分成。**
+
+**顺带纠正本文件开头写了九天的一个数字。** 第 6 行写「开发者最高拿 **80%**」——
+`https://playgama.com/developers` 的原文是三档累进：
+> up to $1,000 → **70% of net revenue**；$1,000–3,000 → **$700 + 80% over $1,000**；
+> $3,000+ → **$2,300 + 90% over $3,000**
+
+**入门档是 70% 不是 80%，顶档是 90%。** 我们一直按「最高 80%」在跟 GameDistribution 的 33%
+做对比,结论(Playgama 远优于 GD)不变,但**数字本身两头都记错了**。
+另外注意别和 **Playgama Partners 的「up to 50%」**混淆 —— 那是给**嵌入他们游戏库的站长**的产品,
+不是开发者分成,两者是不同的东西。
+
+**对决策的影响(重要)**:这条把 09-22 判定线的意义钉死了 ——
+**这轮 sandbox 投放的产出不可能是钱,只可能是「够不够硬的数据去申诉主目录」。**
+分成的入口只有主目录 / 合作网络,而那正是 09-14 把我们挡在外面的那一层。
+因此「拓展几个类似游戏」在主目录那道门打开之前,**无论留存多好都不会产生一分收入**。
