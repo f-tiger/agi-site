@@ -89,6 +89,7 @@ jobs:
           for f in site/index.html site/styles.css site/app.js site/data.js \
                    site/landed-cost.html site/is-alibaba-legit.html site/sourcing-margins.html \
                    site/packs.html site/packs-thanks.html site/packs/index.json \
+                   site/mcp.html site/duty-stack.json server.json mcp.js \
                    site/robots.txt site/sitemap.xml site/llms.txt \
                    site/16507d8e1997c4be371f5fbaf7ac1985.txt; do
             [ -f "$f" ] || { echo "::error::missing $f"; exit 1; }
@@ -105,6 +106,12 @@ jobs:
           bad = [b for b in ['54%', '$100 flat', '$80–$200', '$80-200'] if b in body]
           sys.exit('::error::superseded tariff figures outside the expired block: %s' % bad if bad else 0)
           PY
+          node --check mcp.js
+          # 机器面两道闸门(2026-09-16):①duty-stack.json 与页面/llms.txt 不许漂移
+          # ②MCP 协议 + 零编造 + 零联盟链接的 17 条断言。任何一条红就不发。
+          python3 tools/check_duty_stack.py --selftest
+          python3 tools/check_duty_stack.py
+          node tools/test_mcp.mjs
           echo "gate ok"
       - name: Deploy worker
         uses: cloudflare/wrangler-action@v3
@@ -124,7 +131,7 @@ jobs:
           UA='buysomething-deploy-selfcheck-bot (+ci; classified as bot by design)'
           fail=0
           # 1) 200 + zero redirects
-          for p in / /landed-cost /is-alibaba-legit /sourcing-margins /styles.css /app.js /data.js; do
+          for p in / /landed-cost /is-alibaba-legit /sourcing-margins /mcp /styles.css /app.js /data.js /duty-stack.json; do
             ok=0; code=000; redirs=0
             for try in 1 2 3 4 5; do
               res=$(curl -s -o /dev/null -w '%{http_code} %{num_redirects}' -L --max-redirs 5 \
@@ -184,6 +191,23 @@ jobs:
           done
           if [ "$ok" = "1" ]; then echo "OK    beacon /e → D1 → /api/selftest (n=$n)"
           else echo "::error::beacon truth test failed — /e events do not reach D1 (56 days of zero interactions may be a broken pipe, not absent readers)"; fail=1; fi
+          # 3b-bis) MCP 机器面(2026-09-16):协议活着 + 零编造 + 零联盟链接,三条都要能红。
+          check_json /api/mcp 'len(j.get("tools", [])) == 5 and "/api/mcp" in j["protocol"]["streamable_http"]'
+          check_json '/api/mcp/duty_stack_rules?part=fees' 'j["fees"]["mpf"]["rate_pct"] == 0.3464 and "rules" not in j'
+          # 零编造的线上证据:不给税率就必须拒算,而不是默认一个
+          check_json '/api/mcp/landed_cost?goods_value_usd=1000' '"never guesses" in j.get("error","") and "hts.usitc.gov" in " ".join(j.get("how_to_get_it", []))'
+          # JSON-RPC:initialize 与一次真实 tools/call(断言在 tools/assert_mcp_live.py,能单测)
+          ok=0
+          for try in 1 2 3 4 5; do
+            curl -s -X POST "$BASE/api/mcp" -H 'content-type: application/json' \
+              --data '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-06-18"}}' -o mcp1.json || true
+            curl -s -X POST "$BASE/api/mcp" -H 'content-type: application/json' \
+              --data '{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"check_import_claim","arguments":{"claim":"under $800 is duty free"}}}' -o mcp2.json || true
+            if python3 sites/buysomething/tools/assert_mcp_live.py mcp1.json mcp2.json; then ok=1; break; fi
+            sleep 5
+          done
+          [ "$ok" = "1" ] || { echo "::error::MCP live self-check failed after 5 tries"; fail=1; }
+          rm -f mcp1.json mcp2.json
           # 3c) packs: public status + sample, and a non-public pack must NOT be served without a token
           check_json /api/pack/status 'j.get("ok") is True and "configured" in j'
           check_json /packs/index.json '"weeks" in j'

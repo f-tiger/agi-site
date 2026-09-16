@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#128225;</text></svg>">
+  <link rel="stylesheet" href="styles.css">
+  <title>SourceRadar MCP server: dated US import facts for agents</title>
+  <meta name="description" content="Five tools an AI agent can call: the China→US duty stack with dates, a fact-check for the $800 de minimis and other superseded figures, a landed-cost calculator that refuses to guess your duty rate, candidate HTS headings from the USITC API, and CPSC recalls by category.">
+  <link rel="canonical" href="https://source.agiscorecard.com/mcp">
+  <meta property="og:title" content="SourceRadar MCP server: US import facts with dates, for agents">
+  <meta property="og:description" content="The 2025 import guidance in most training data is superseded. These five tools answer from the dated official record instead.">
+  <meta property="og:url" content="https://source.agiscorecard.com/mcp">
+  <meta property="og:type" content="article">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebAPI", "name": "SourceRadar MCP server", "url": "https://source.agiscorecard.com/mcp", "documentation": "https://source.agiscorecard.com/mcp", "termsOfService": "https://source.agiscorecard.com/", "provider": {"@type": "Organization", "name": "SourceRadar (AGI Scorecard)", "url": "https://source.agiscorecard.com/"}, "description": "Model Context Protocol server exposing the dated China to US duty stack, candidate HTS headings from the official USITC API, and CPSC product recalls."}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is the $800 de minimis exemption still available for US imports?", "acceptedAnswer": {"@type": "Answer", "text": "No. CBP published two notices on 2026-06-24 suspending the de minimis exemption indefinitely, one for postal and one for all other modes. The suspension rests on Section 321 and TFTEA authority, so the Supreme Court's IEEPA ruling of 2026-02-20 did not restore it. The check_import_claim tool returns this verdict with the Federal Register source."}}, {"@type": "Question", "name": "Will this server tell me my product's duty rate?", "acceptedAnswer": {"@type": "Answer", "text": "No, and that is deliberate. Classification is the importer of record's responsibility and a wrong rate carries penalties, so landed_cost refuses to run without a duty rate you supply and points at hts.usitc.gov. duty_passport gives candidate headings for a category with their published general rates, labelled as candidates rather than a classification ruling."}}, {"@type": "Question", "name": "How do I connect an MCP client to it?", "acceptedAnswer": {"@type": "Answer", "text": "Point a streamable-HTTP MCP client at https://source.agiscorecard.com/api/mcp. There is no key and no account. Clients that cannot speak JSON-RPC can call the same tools over plain GET at /api/mcp/<tool>?arg=value."}}]}</script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="/">
+        <span class="brand-mark">&#128225;</span>
+        <span class="brand-text">Source<em>Radar</em></span>
+      </a>
+      <nav class="main-nav">
+        <a href="/#picks">Radar Picks</a>
+        <a href="/landed-cost">Landed Cost</a>
+        <a href="/is-alibaba-legit">Alibaba Risk</a>
+        <a href="/sourcing-margins">Margins</a>
+        <a href="/mcp">For Agents</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero container">
+      <p class="hero-kicker">MCP server &middot; no key, no account, CC BY 4.0</p>
+      <h1>US import facts <span class="accent">with the date attached</span></h1>
+      <p class="hero-sub">
+        Most of the US import guidance in a model's training data is from 2025 and is now wrong: the $800 de minimis
+        exemption was suspended indefinitely on <strong>2026-06-24</strong>, the postal flat duty expired on
+        <strong>2026-02-28</strong>, and the IEEPA tariffs were struck down on <strong>2026-02-20</strong>.
+        These five tools answer from the dated record instead, and refuse to answer what they cannot source.
+      </p>
+    </section>
+
+    <section class="container" style="padding:0 0 1.5rem">
+      <div class="calc">
+        <h2>Connect</h2>
+        <p><strong>Streamable HTTP (JSON-RPC 2.0):</strong> <code>https://source.agiscorecard.com/api/mcp</code></p>
+        <p><strong>Plain GET, same tools:</strong> <code>https://source.agiscorecard.com/api/mcp/&lt;tool&gt;?arg=value</code></p>
+        <p class="calc-note">
+          Example: <code>/api/mcp/check_import_claim?claim=under%20$800%20is%20duty%20free</code> returns the verdict,
+          why, and the Federal Register notice. Every result carries <code>sources</code> and an <code>as_of</code> date.
+        </p>
+      </div>
+    </section>
+
+    <section class="container" style="padding:0 0 1.5rem">
+      <h2>The five tools</h2>
+      <p class="rule"><strong>duty_stack_rules</strong> — the stack rule by rule (HTS base, Section 301, Section 232, IEEPA struck down, de minimis suspended, postal flat expired, MPF 0.3464% / HMF 0.125%), each with its record and date.</p>
+      <p class="rule"><strong>check_import_claim</strong> — fact-checks the four figures still repeated everywhere in 2026 and says plainly when a claim is not one it holds a record for.</p>
+      <p class="rule"><strong>landed_cost</strong> — itemised duties, MPF (with the CBP floor disclosed as a placeholder), HMF on ocean entries, freight. <strong>It will not invent your duty rate:</strong> omit it and the tool errors and points at the official schedule.</p>
+      <p class="rule"><strong>duty_passport</strong> — candidate HTS headings per consumer category, refreshed daily from the official USITC REST API, labelled as candidates and not a classification ruling.</p>
+      <p class="rule"><strong>recall_check</strong> — CPSC recalls touching a category in the last 365 days, with the cpsc.gov URL. A keyword hit means the words appear in a recall title, not that your supplier is affected.</p>
+    </section>
+
+    <section class="container" style="padding:0 0 2rem">
+      <h2>What this server will not do</h2>
+      <p class="rule">It never states a product's own duty rate — classification belongs to the importer of record, and a wrong rate carries penalties.</p>
+      <p class="rule">It never returns an affiliate or tracking link. Not in a tool result, not in a resource, not ever; the deploy gate asserts it.</p>
+      <p class="rule">It never answers from memory. If a figure has no dated official source here, the tool says so instead of filling the gap.</p>
+      <p class="rule">It is not customs, legal or tax advice. Confirm rates with a licensed broker before wiring money.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>SourceRadar &middot; part of the <a href="https://agiscorecard.com/">AGI Scorecard</a> network &middot;
+      duty stack last reviewed 2026-09-16; passports and recalls refresh daily.</p>
+      <p class="muted">Not financial, legal or customs advice. Verify duty rates and supplier claims independently before wiring money.</p>
+    </div>
+  </footer>
+</body>
+</html>

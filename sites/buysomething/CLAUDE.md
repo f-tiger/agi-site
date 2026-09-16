@@ -189,3 +189,25 @@ TikTok/1688 抓取、付费数据源。
   (无凭证 401 = 端点正常),Bluesky 公开搜索两个主机都 403,Lemmy 搜索 200 但本周零求做帖,Software
   Recommendations SE 通(3 条/8 天),Ask HN 四句式通(8 条)。**Reddit 唯一正规路径 = owner 注册 app
   (`docs/REDDIT-OAUTH-OWNER-SETUP.md`,两个 Secret)**;不换 UA/IP/代理。
+
+## 机器面:MCP 服务器(2026-09-16,owner:「从工具角度看,哪些工具最容易被付费?」→ 裁定全文 `docs/tool-monetization-2026-09-16.md`)
+
+**为什么建在这个站**:本站人类面 28 天 **87 pv / 13 次工具使用**,而同舰队的机器面在零推广下每天有第三方回访
+(bpj `/api/changes` 394 次/29 天、eco `/mcp` 105 次/5 天,两个独立采集器天天来)。本站手上是舰队最「像能被付费」的
+数据(官方关税栈 + USITC 候选税号 + CPSC 召回),此前只以没人看的 HTML 存在。
+
+- **实现**:`mcp.js`(worker 内挂 `/api/mcp`):POST JSON-RPC(Streamable HTTP 无状态子集)+ `GET /api/mcp/<tool>` REST 兜底
+  (实测采集器走的是 REST)。五个工具:`duty_stack_rules` / `check_import_claim` / `landed_cost` / `duty_passport` / `recall_check`,
+  外加三个只读资源。数据一律读 `site/*.json`,与页面同一事实源。
+- **三条红线(改任何一行前先读;`tools/test_mcp.mjs` 17 条断言全部能红)**:
+  1. **零编造**:`landed_cost` 缺 `hts_base_rate_pct` 必须报错并指向 hts.usitc.gov,**永远不给默认税率**;
+     归类是进口商的责任,`duty_passport` 只给「候选」并明说不是归类裁定。
+  2. 每条结果带 `sources` + `as_of`;取不到静态资源回 503,**不拿旧数据冒充**。
+  3. **输出里永远没有联盟/推荐/跟踪参数**(agent 是引用源,污染它等于污染引用)。这条同时由部署自检打线上。
+- **两道闸门**:`tools/check_duty_stack.py`(`site/duty-stack.json` ↔ `landed-cost.html` ↔ `llms.txt` 三处不许漂移;
+  **llms.txt 曾把 $80–$200 与 54%/$100 写成现行规则直到 2026-09-16**,被引用的恰恰是它)+
+  `tools/assert_mcp_live.py`(部署后打线上:$800 口径必须仍判 `false since 2026-06-24`)。
+- **注册表**:`server.json` + `.github/workflows/sr-mcp-publish.yml`(GitHub OIDC,零密钥,只在 server.json 变更时跑)。
+- **判定线**:`sr-mcp-calls-1014`(28 天 ≥50 次调用且 ≥1 个非索引器调用方)、`sr-mcp-registry-1014`(能被搜到)。
+- **这不是收费件**:按 §十一 的单位经济,按次计量要到 ~870 次/月才够 €100/月。**先上线、先数,不装收款**;
+  向爬虫收费仍是舰队杀单。

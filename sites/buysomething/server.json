@@ -1,0 +1,13 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-07-09/server.schema.json",
+  "name": "io.github.f-tiger/us-import-duty-facts",
+  "description": "Dated US import facts: the China→US duty stack with its record, a fact-check for superseded figures like the $800 de minimis, a landed-cost estimator that refuses to guess your duty rate, USITC candidate HTS headings and CPSC recalls.",
+  "version": "1.0.0",
+  "websiteUrl": "https://source.agiscorecard.com/mcp",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://source.agiscorecard.com/api/mcp"
+    }
+  ]
+}

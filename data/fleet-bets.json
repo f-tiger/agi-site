@@ -756,6 +756,28 @@
    "lose": "只有索引器 → 机器面永远免费,继续按「被 vendored」做(稳定 URL + CC BY 署名),不再提付费 API",
    "source": "docs/tool-monetization-2026-09-16.md §七",
    "status": "open"
+  },
+  {
+   "id": "sr-mcp-calls-1014",
+   "site": "buysomething",
+   "due": "2026-10-14",
+   "metric": "SR /api/mcp 的 28 天调用数(D1 sourceradar-events.ev,name='mcp_call',剔本仓 deploy 自检 UA)+ 其中非索引器调用方数(UA 不在 tools/fleet/bot_ua.txt,且不自报 collector/audit/index)。t0(2026-09-16)= 0,端点当日才建",
+   "threshold": "≥50 次调用 且 ≥1 个非索引器调用方",
+   "win": "机器面对 SR 成立 → 按 docs/tool-monetization-2026-09-16.md §十一 继续量到 ~870 次/月(SimplyDuty £0,10/次 是价格锚)才谈计量付费",
+   "lose": "<50 或全是采集器 → 机器面只作为引用与「被 vendored」的手段,不再往付费方向投入;不再新建机器面工具",
+   "source": "docs/tool-monetization-2026-09-16.md §十五",
+   "status": "open"
+  },
+  {
+   "id": "sr-mcp-registry-1014",
+   "site": "buysomething",
+   "due": "2026-10-14",
+   "metric": "registry.modelcontextprotocol.io 搜索 us-import-duty-facts 是否返回本服务(sr-mcp-publish.yml 首跑结果)",
+   "threshold": "能搜到",
+   "win": "注册表货架对本仓 OIDC 命名空间可用(remotes-only 校验通过)→ 机器面新增工具时照此发布",
+   "lose": "被拒 → 把拒绝原文记进本行 reading;机器面发现只能靠 llms.txt 与采集器路过",
+   "source": "docs/tool-monetization-2026-09-16.md §十五",
+   "status": "open"
   }
  ]
 }

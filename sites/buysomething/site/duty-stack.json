@@ -1,0 +1,103 @@
+{
+  "id": "china-us-duty-stack",
+  "title": "China → US duty stack, as of the dates below",
+  "updated": "2026-09-16",
+  "jurisdiction": "US import (any mode of transport)",
+  "note": "Machine-readable twin of /landed-cost. Every rule carries the record that establishes it and the date it was decided or published. This file states rules and fee rates only; it never states a product's own duty rate — that is a classification question and the importer of record answers it.",
+  "disclaimer": "Not customs, legal or tax advice. Rates you supply are yours to confirm against the official schedule.",
+  "fees": {
+    "mpf": {
+      "rate_pct": 0.3464,
+      "basis": "ad valorem on the goods value",
+      "floor_note": "CBP sets the annual minimum and maximum; the estimator applies a $33 floor as a placeholder and says so. Confirm the current fiscal-year figures with CBP.",
+      "placeholder_floor_usd": 33,
+      "source": "CBP fee schedule"
+    },
+    "hmf": {
+      "rate_pct": 0.125,
+      "basis": "ad valorem, ocean entries only",
+      "source": "CBP fee schedule"
+    }
+  },
+  "rules": [
+    {
+      "n": 1,
+      "rule": "HTS base rate",
+      "status": "in force",
+      "detail": "Set by heading in the Harmonized Tariff Schedule. USITC publishes it through a free, keyless REST API and JSON export.",
+      "sources": ["https://hts.usitc.gov/", "https://www.usitc.gov/documents/hts/hts_external_user_guide.pdf"]
+    },
+    {
+      "n": 2,
+      "rule": "Section 301 (China)",
+      "status": "in force",
+      "detail": "Additional 7.5% to 100% on goods in the USTR lists; unaffected by the IEEPA ruling. USTR opened new Section 301 investigations on 2026-03-11 covering China among others, so listed rates can rise.",
+      "as_of": "2026-03-11",
+      "sources": ["https://ustr.gov/issue-areas/enforcement/section-301-investigations/tariff-actions", "https://www.congress.gov/crs-product/LSB11398"]
+    },
+    {
+      "n": 3,
+      "rule": "Section 232",
+      "status": "in force",
+      "detail": "Steel, aluminium and listed derivative products carry their own additional rate; not at issue in the IEEPA ruling.",
+      "sources": ["https://www.hklaw.com/en/insights/publications/2026/02/supreme-court-strikes-down-ieepa-tariffs"]
+    },
+    {
+      "n": 4,
+      "rule": "IEEPA tariffs",
+      "status": "struck down",
+      "detail": "Learning Resources, Inc. v. Trump, decided 2026-02-20: IEEPA does not authorise the President to impose tariffs. The 'reciprocal' and fentanyl tariffs imposed under it no longer apply.",
+      "as_of": "2026-02-20",
+      "sources": ["https://www.wilmerhale.com/en/insights/client-alerts/20260220-supreme-court-strikes-down-ieepa-tariffs-what-now", "https://www.congress.gov/crs-product/LSB11398"]
+    },
+    {
+      "n": 5,
+      "rule": "De minimis exemption",
+      "status": "suspended indefinitely, all modes",
+      "detail": "Two CBP notices of 2026-06-24 (one postal, one all other modes). The suspension rests on Section 321 / TFTEA authority, so the IEEPA ruling did not restore it. There is no small-parcel exemption on any route.",
+      "as_of": "2026-06-24",
+      "sources": ["https://www.federalregister.gov/documents/2026/06/24/2026-12670/indefinite-suspension-of-the-de-minimis-exemption-for-merchandise-arriving-through-all-modes-other", "https://regulations.justia.com/regulations/fedreg/2026/06/24/2026-12669.html"]
+    },
+    {
+      "n": 6,
+      "rule": "Postal parcels",
+      "status": "flat-rate option expired",
+      "detail": "The temporary flat-rate option for postal shipments expired on 2026-02-28. Postal parcels are assessed ad valorem through the postal informal-entry process.",
+      "as_of": "2026-02-28",
+      "sources": ["https://regulations.justia.com/regulations/fedreg/2026/06/24/2026-12669.html"]
+    },
+    {
+      "n": 7,
+      "rule": "Fees",
+      "status": "in force",
+      "detail": "Merchandise Processing Fee 0.3464% ad valorem with a CBP-set annual minimum and maximum; Harbor Maintenance Fee 0.125% on ocean entries.",
+      "sources": ["CBP fee schedule (verify the current fiscal-year minimum and maximum)"]
+    }
+  ],
+  "superseded": [
+    {
+      "claim": "$800 de minimis exemption still applies to small parcels",
+      "verdict": "false since 2026-06-24",
+      "why": "CBP suspended the exemption indefinitely for postal and for all other modes.",
+      "sources": ["https://www.federalregister.gov/documents/2026/06/24/2026-12670/indefinite-suspension-of-the-de-minimis-exemption-for-merchandise-arriving-through-all-modes-other"]
+    },
+    {
+      "claim": "Postal flat duty of $80 to $200 per item",
+      "verdict": "expired 2026-02-28",
+      "why": "The temporary flat-rate option lapsed; postal parcels are assessed ad valorem.",
+      "sources": ["https://regulations.justia.com/regulations/fedreg/2026/06/24/2026-12669.html"]
+    },
+    {
+      "claim": "Courier shipments pay about 54% ad valorem, or $100 flat per shipment",
+      "verdict": "dead since 2026-02-20",
+      "why": "Those figures were tied to the IEEPA tariff orders struck down by the Supreme Court.",
+      "sources": ["https://www.wilmerhale.com/en/insights/client-alerts/20260220-supreme-court-strikes-down-ieepa-tariffs-what-now"]
+    },
+    {
+      "claim": "'Reciprocal' baseline tariffs apply on top of the stack",
+      "verdict": "dead since 2026-02-20",
+      "why": "Imposed under IEEPA; struck down in Learning Resources, Inc. v. Trump.",
+      "sources": ["https://www.congress.gov/crs-product/LSB11398"]
+    }
+  ]
+}
