@@ -520,3 +520,43 @@ owner 追问「sandbox 能不能分成，你不知道？」。上一条我停在
 **这轮 sandbox 投放的产出不可能是钱,只可能是「够不够硬的数据去申诉主目录」。**
 分成的入口只有主目录 / 合作网络,而那正是 09-14 把我们挡在外面的那一层。
 因此「拓展几个类似游戏」在主目录那道门打开之前,**无论留存多好都不会产生一分收入**。
+
+### 十四、「多少点击才会被导入主目录」——他们没有公开任何数字门槛（2026-09-16 查证）
+
+owner 问的是「进主目录要多少量」。查了两个权威信源，**结论是：没有这个数字。**
+
+- `https://playgama.com/llms-full.txt`：通篇**没有任何** session / play / click 的数值门槛。
+  它给的是**人工审核的质量标准**，原文：
+  > "Human moderators play submitted games and evaluate both technical operation and the quality
+  > of the player experience; review is not limited to an automated compatibility check."
+  > 审的是 "launch, loading, build packaging, and build size; bugs and core behavior such as
+  > controls, menus, required features, saves, audio, and advertising; gameplay completeness,
+  > usability, and **whether the game provides sufficient distinct value for players**"。
+  > 并且明说 "**Not every submitted game is accepted.**"
+- `https://wiki.playgama.com/playgama/submitting-a-game`：同样**没有**任何 sessions / plays /
+  DAU / retention 的数值；只写「1–5 个工作日」。
+
+**所以「导入主目录」不是量的门槛，是人审的质量门槛。** 这一条很重要，因为它意味着
+**把量做大本身不会把门打开** —— 09-14 那封信要的是 performance data 作为**参考**，不是及格线。
+(搜索结果里出现过一句 "ads switch on through Playgama Ad once the game clears the **session
+threshold (access by request)**" —— 注意那是 **Playgama Ad / Partners 侧**的广告开通条件，
+而且明写 "access by request"，即**要问他们，不是公开数字**。别把它当成主目录门槛。)
+
+**唯一能当锚的公开数字是他们自己定的投放包**：`expectedGameplays: 100` / 轮 / $2 / 7 天。
+三轮 ≈ 300 次 gameplay —— **那是他们自己选的样本量**，把它当作「他们认为够看的样本」是合理推测，
+**但没有任何文档这么说，不许当成事实引用**。
+
+**别拿 CG 的门槛套过来。** CG 的 Basic Launch 是「≥7 天 **且** ≥500 次游玩」、头部游戏
+conversion-to-gameplay 80%+ —— **那是 CrazyGames 的规则，Playgama 没有对应条款**；
+而且两边**分母不同**：我们的 27% 分母是「广告点击落到页面的人」(含误点)，
+CG 的分母是「已经进入游戏的人」。**两个数字不可直接比较，比了会得出错误的悲观结论。**
+
+**由此得到本轮真正的杠杆**：既然门是人审质量而不是量，那么**`loadingTime` 是我们唯一
+握在手里、且被他们记录在案的质量指标** —— GHOSTLINE 5 143 ms / SINGULARITY 4 589 ms，
+比另外五款慢十倍以上。**要为申诉主目录做一件事，那件事是把这两款的载入时间打下来，
+不是把点击量堆上去。**
+
+**要拿到真数字只有一条路**：后台对话气泡问他们。三个问题一次问完：
+① 从 sandbox 进主目录，你们看哪些指标、有没有量的下限？
+② sandbox 的展示是否计入开发者分成？(我们读到的答案是否)
+③ 我们该在什么时候、用什么材料重新提交？
