@@ -666,10 +666,24 @@ DESKTOP+IOS+ANDROID、横竖屏都支持、`link` 指向 `play.agiscorecard.com/
 不需要解开题（`#again` 藏在 `#win` 里，解不开就看不见，这正是 GHOSTLINE 第一次认证栽的坑）。
 `tools/verify-puzzle-portal.js` 已经把这条断言成「未解题状态下一次真实点击能否观察到广告」，本地全绿。
 
-**还缺的（MCP 能传，但要先有图）**：`media` 是空的——三张封面（800×800 / 1080×1920 / 1920×1080）
-与截图都没有。`tools/capture-store-assets.js` 能从真实游戏里录，但它要一份
-`tools/store-assets/towers.js`（自动驾驶 + 摆拍帧），**拼图类还没写过这个配置**，
-要写一个能自动解题的 autopilot。封面是**投放的硬前提**（无封面 `start_sandbox_traffic` 直接拒 NO_COVERS），
-也是审核的期待项。
+**三张封面已生成并上传（同日，owner：「你主动完成，不用问我」）**：`tools/store-assets/towers.js`
+是这个目录里的第一份拼图配置。走 `poster` 路线，**所以封面不需要自动解题的 autopilot** ——
+`ONLY=covers` 连游戏实例都不用起。三张全部 `confirmed`、`inForm: true`、`replaced: []`
+（square→`icon` / portrait→`preview_vertical` / landscape→`preview`）。
+**`get_sandbox_state` 现在答 `publish.allowed: true`** —— 封面齐了，将来开投放不会再被 `NO_COVERS` 拒。
 
-**本轮没做**：没有 `publish_sandbox`、没有提交审核、没有开投放。
+**顺手修了 `capture-store-assets.js` 一处**：`ffmpegPath()` 原来无条件执行，没装 ffmpeg-static
+就直接 exit——**可封面根本不需要视频编码器**。改为只在真要出视频时解析，`ONLY=covers` 从此零依赖。
+
+**海报的设计取值（后面九款拼图照抄这份）**：底色用游戏自己的 `theme-color` **#002FA7**
+（towers.html 里就写着，不是另挑的），字体 Bungee（第六款专属，不复用），
+主体是**规则本身而不是装饰**——高度 2,4,1,5,3 从左边看：看到 2，4 盖过它，1 藏在后面，
+5 盖过一切，3 藏起来 = **可见 3 座，所以线索牌就是 3**，与游戏对这一行算出来的数一致。
+**不许画一个「看起来像摩天楼」但数不对的图。**
+
+**`videos` / `autopilot` 故意没写**：解谜游戏的预告片需要一个能在镜头前以可看的节奏解题的东西，
+和动作游戏那种「驱动输入状态」的 autopilot 是两码事；而且 **Playgama 的 MCP 根本没有视频/截图
+上传接口**（只有封面），所以今天能交付的就是封面。
+
+**本轮没做**：没有 `publish_sandbox`（**TOWERS 也遵守 09-22 冻结**——虽然它不在投放样本里，
+但 ORG_LIMIT 卡着三条并发，现在发也拿不到流量，等结算后和新包一起发）、没有提交审核、没有开投放。
