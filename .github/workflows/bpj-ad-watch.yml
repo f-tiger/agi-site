@@ -15,6 +15,12 @@ on:
   schedule:
     - cron: '7 */2 * * *'
   workflow_dispatch:
+    inputs:
+      mode:
+        description: '运行模式：watch=正常轮询上架；inspect=只勘察，不碰订单、不写任何东西，列出该地址收到过的代币与合约地址'
+        type: choice
+        options: [watch, inspect]
+        default: watch
 
 concurrency:
   group: bpj-ad-watch
@@ -23,8 +29,10 @@ concurrency:
 jobs:
   watch:
     runs-on: ubuntu-latest
-    # 钱包没配就整段跳过：未配置时这条任务什么都不做，也不报错
-    if: vars.ADS_WALLET_CHAIN != ''
+    # 钱包没配就整段跳过：未配置时这条任务什么都不做，也不报错。
+    # 手动 dispatch 不受这个变量限制——勘察模式恰恰是「还没配好」时要用的那一步
+    # （与 metaculus-bot 的门同一写法）。
+    if: vars.ADS_WALLET_CHAIN != '' || github.event_name == 'workflow_dispatch'
     defaults:
       run:
         working-directory: sites/baipiaoji
@@ -37,7 +45,18 @@ jobs:
       - name: Self-test the amount maths
         run: node scripts/ad-watch.mjs --dry-run
 
+      # 勘察：只读链上，不碰订单也不写任何东西。用它把 ADS_WALLET_CONTRACT 该填的值
+      # 从真实交易里抄出来——填错合约的后果是永远收不到钱，而且不报错。
+      - name: Inspect incoming tokens (manual, read-only)
+        if: github.event_name == 'workflow_dispatch' && inputs.mode == 'inspect'
+        env:
+          ADS_WALLET: ${{ secrets.ADS_WALLET }}
+          ADS_WALLET_CHAIN: ${{ vars.ADS_WALLET_CHAIN }}
+          ADS_SCAN_API_KEY: ${{ secrets.ADS_SCAN_API_KEY }}
+        run: node scripts/ad-watch.mjs --inspect
+
       - name: Match on-chain payments to pending ad slots
+        if: github.event_name != 'workflow_dispatch' || inputs.mode == 'watch'
         env:
           # 2026-09-16：订单读写改走站点自己的 /api/ad-claim（Worker 自带 D1 绑定）。
           # 原来这里挂的是 CLOUDFLARE_API_TOKEN + D1 REST，而本仓自己的 deploy workflow 就写着

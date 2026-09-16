@@ -67,7 +67,34 @@ Cloudflare 控制台 → **Workers & Pages → aiyangmao → Settings → Variab
 > 现已改走站点自己的 `/api/ad-claim`（Worker 自带 D1 绑定，零 token），并顺带把一个
 > 带 D1 写权限的 token 从公开仓的 Secrets 里拿掉了。
 
-### 1. 先生成一个共享密钥
+> **先说一件查出来的事（2026-09-16）**：你在 09-11 说过「直接用我前面 web3 的地址做收款」，
+> 但 `bpj ad watch` 这条任务的 **24 次运行全部是 `skipped`** ——它的开关是 GitHub 变量
+> `ADS_WALLET_CHAIN`，而它从来没被设过。所以这条轨**一次都没跑起来过**。
+> 另外：地址**不在仓库里**（已全仓扫过，零命中），这是红线要求的结果，不是丢了；
+> 它只可能在 GitHub / Cloudflare 的 Secrets 里，而那里的值任何会话都读不到。
+>
+> **不要把地址贴进对话**——贴了也进不了仓库（红线禁止），而会话内容可能被引用进提交说明。
+> 直接填进下面两个密钥库即可。
+
+### 0. 第一步：先勘察，别猜合约地址
+
+GitHub → Actions → **bpj ad watch** → Run workflow → mode 选 **`inspect`**。
+
+它只读链上、不碰订单、不写任何东西，会列出这个地址最近收到过的代币：
+
+```
+该地址最近收到的代币(按链上数据,不是我记的):
+  USDT  合约 0x…  小数位 6  最近 12 笔
+```
+
+把 USDT 那一行的**合约地址**抄进下面的 `ADS_WALLET_CONTRACT`。
+**为什么不让代码内置一张表**：合约地址写错的后果是「永远匹配不到任何一笔」——不报错、
+不退款、买家干等。这种值必须来自链上真实数据，而不是任何人（包括我）的记忆。
+
+> 跑 inspect 之前至少要先设好 `ADS_WALLET`（Secret）与 `ADS_WALLET_CHAIN`（Variable）。
+> 手动 dispatch 不受开关限制，所以这一步可以在还没配齐的时候跑。
+
+### 1. 生成一个共享密钥
 
 ```bash
 openssl rand -hex 32
@@ -88,7 +115,7 @@ openssl rand -hex 32
 | 名称 | 类型 | 值 |
 |---|---|---|
 | `ADS_WALLET` | Secret | 同上，同一个地址 |
-| `ADS_WALLET_CONTRACT` | Secret | 该链上 USDT 的**合约地址**。不配就报错退出——不核对合约等于任何人扔一个山寨币都能白拿广告位 |
+| `ADS_WALLET_CONTRACT` | Secret | 第 0 步 inspect 抄下来的那个合约地址。不配就报错退出——不核对合约等于任何人扔一个山寨币都能白拿广告位 |
 | `ADS_WATCH_SECRET` | Secret | 与 Cloudflare 那个**完全一致** |
 | `ADS_SCAN_API_KEY` | Secret | 区块浏览器 API key（TRON 用 TronGrid，EVM 用 Etherscan v2；不配也能跑，但会被限流） |
 | `ADS_WALLET_CHAIN` | **Variable** | 与 Cloudflare 一致。**这个变量还兼任开关**：不设的话整条轮询任务直接跳过 |
@@ -138,3 +165,19 @@ openssl rand -hex 32
 通电不会自己带来买家——它只是把「有人想买时买不了」这个障碍去掉。
 判定线 `bpj-ad-inventory-1014` 已预登记：到期看 `/ad/house/tool/*` 点击与 `ads` 草稿数，
 读数为 0 就按规矩撤回工具页库存，而不是继续加功能。
+
+---
+
+## 六、三个已经堵掉的静默失败（记录在案，避免以后重踩）
+
+这条链上最危险的不是「配错了报错」，而是「配错了不报错、只是永远收不到钱」。
+2026-09-16 堵掉三个：
+
+1. **D1 REST 走不通**（见第二节开头的方框）→ 已改走 `/api/ad-claim`。
+2. **小数位配错**：USDT 在多数链是 6 位、在 BNB Chain 是 18 位。按 6 位去算一笔 18 位的
+   转账会差 10¹² 倍，表现就是「金额永远对不上」。现在**小数位以链上这笔交易自报的为准**，
+   不再读配置值；自测里有 6 位与 18 位两组用例，变异测试确认会红。
+3. **地址与链不自洽**：把 TRON 地址配成 `ethereum`（或反过来）不会报错，只会一直查不到。
+   现在开跑前就校验形态并直接退出，错误信息里带上当前的 `ADS_WALLET_CHAIN`。
+
+`ADS_WALLET_DECIMALS` 因此不再需要你填（留着仅作兜底）。
