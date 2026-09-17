@@ -215,7 +215,10 @@ TikTok/1688 抓取、付费数据源。
   **llms.txt 曾把 $80–$200 与 54%/$100 写成现行规则直到 2026-09-16**,被引用的恰恰是它)+
   `tools/assert_mcp_live.py`(部署后打线上:$800 口径必须仍判 `false since 2026-06-24`)。
 - **注册表**:`server.json` + `.github/workflows/sr-mcp-publish.yml`(GitHub OIDC,零密钥,只在 server.json 变更时跑)。
-- **判定线**:`sr-mcp-calls-1014`(28 天 ≥50 次调用且 ≥1 个非索引器调用方)、`sr-mcp-registry-1014`(能被搜到)。
+- **判定线**:`sr-mcp-calls-1014`(28 天 ≥50 次调用且 ≥1 个非索引器调用方)。
+- **`sr-mcp-registry-1014` 已结:won(2026-09-17)** —— 注册表可搜到 `io.github.f-tiger/us-import-duty-facts` v1.1.0、status=active。
+  **踩过的坑记死**:注册表 `description` **硬限 100 字符**(超了在 publish 那步 422),断言已加在发布前;
+  remotes-only + `io.github.*` 命名空间可用本仓 OIDC 直接发布,零 owner 密钥。
 - **这不是收费件**:按 §十一 的单位经济,按次计量要到 ~870 次/月才够 €100/月。**先上线、先数,不装收款**;
   向爬虫收费仍是舰队杀单。
 

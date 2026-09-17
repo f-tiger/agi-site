@@ -1,6 +1,6 @@
 {
  "note": "舰队赌注台账:每条预登记判定线一行;status open→won/lost/insufficient/withdrawn 时必须写 settled(日期)与 reading(读数)。tools/fleet/check_bets.py 在 heartbeat 里断言:到期 3 天内提醒,过期 >7 天未结算即红。新增判定线不进这里 = heartbeat 看不见 = 等于没预登记。",
- "updated": "2026-09-16",
+ "updated": "2026-09-17",
  "bets": [
   {
    "id": "fleet-ai-access-0916",
@@ -778,7 +778,9 @@
    "win": "注册表货架对本仓 OIDC 命名空间可用(remotes-only 校验通过)→ 机器面新增工具时照此发布",
    "lose": "被拒 → 把拒绝原文记进本行 reading;机器面发现只能靠 llms.txt 与采集器路过",
    "source": "docs/tool-monetization-2026-09-16.md §十五",
-   "status": "open"
+   "status": "won",
+   "settled": "2026-09-17",
+   "reading": "2026-09-17T00:25Z 合并后首次真发布:sr-mcp-publish run #2 成功,registry.modelcontextprotocol.io 搜索 us-import-duty-facts 返回 1 条 —— io.github.f-tiger/us-import-duty-facts v1.1.0,status=active,remote 指向 https://source.agiscorecard.com/api/mcp。**run #1 失败并给出了这条能复用的事实**:注册表对 description 有 100 字符硬限制(422 expected length <= 100),bpj 那份 97 字符所以从没撞上;已压到 91 字符并把长度断言加进发布前的 sanity 步。结论:remotes-only 服务器在 io.github.* 命名空间下可以用本仓 OIDC 直接发布,零 owner 密钥 —— 机器面新增工具照此上架。"
   },
   {
    "id": "sr-vertical-1014",
