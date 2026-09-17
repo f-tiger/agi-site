@@ -97,6 +97,88 @@ GEO_PRODUCTS = {
 }
 
 
+# Market deep-dive (--market GB, 2026-09-17). The per-country mode above answers
+# "which of OUR four categories leads in this market". That is the wrong question
+# once a market is chosen: the four terms are a translation of the German shelf,
+# so of course the answer looks German. This asks what the market itself buys in
+# winter, including categories this site has never carried.
+#
+# GB is the first market to get one because it is the only one in GEO_PRODUCTS
+# whose top two terms BOTH peak in November and both outrank its summer term —
+# the opposite shape to Germany, where the site's whole structure came from.
+MARKET_ANCHOR = {"GB": "dehumidifier"}
+MARKET_BATCHES = {
+    "GB": [
+        # Products a UK winter has and a German one does not. `heated airer`
+        # and `electric blanket` are here because UK housing dries laundry
+        # indoors and heats the person rather than the room; neither has a
+        # German equivalent on this site.
+        ["heated airer", "electric blanket", "oil filled radiator"],
+        # The damp vocabulary. UK usage splits "damp" (the condition, a tenancy
+        # and housing word) from "condensation" (the mechanism) from "mould"
+        # (the result), and they are not synonyms the way Schimmel is one word.
+        ["damp", "condensation on windows", "black mould"],
+        ["drying clothes indoors", "damp proofing", "thermal curtains"],
+        # Running cost. The site's calculators assume €0,30/kWh; the UK price is
+        # set by the Ofgem cap and quoted in p/kWh, so cost content does not
+        # transfer even when the appliance does.
+        ["draught excluder", "electricity price cap", "condensation"],
+    ],
+}
+
+
+def market(geo):
+    """Write data/seasonality-<geo>.json for one market's own winter basket.
+    Run: python3 tools/fetch_seasonality.py --market GB"""
+    from trendspy import Trends
+    import pandas as pd
+    anchor = MARKET_ANCHOR[geo]
+    tr = Trends()
+    series, errors = {}, []
+    for i, batch in enumerate(MARKET_BATCHES[geo]):
+        if i:
+            time.sleep(GAP_S)
+        terms = [anchor] + batch if anchor not in batch else batch
+        try:
+            df = tr.interest_over_time(terms, geo=geo, timeframe=TIMEFRAME)
+            for c in df.columns:
+                if c != "isPartial":
+                    series[c] = df[c]
+            print(f"{geo} batch {i}: ok ({', '.join(terms)})")
+        except Exception as e:
+            errors.append({"terms": terms, "error": str(e)[:200]})
+            print(f"{geo} batch {i}: FAILED {str(e)[:120]}", file=sys.stderr)
+    if not series:
+        print("nothing fetched — keeping the previous file", file=sys.stderr)
+        return 0
+    df = pd.DataFrame(series)
+    df.index = pd.to_datetime(df.index)
+    df = df[~df.index.duplicated()]
+    monthly = df.groupby(df.index.month).mean()
+    rows = []
+    for c in df.columns:
+        s = monthly[c]
+        sep = float(s.get(9, 0))
+        winter = float(s.reindex([11, 12, 1, 2]).mean())
+        rows.append({"term": c, "sep": round(sep, 1),
+                     "peak": round(float(s.max()), 1), "peak_month": int(s.idxmax()),
+                     "winter_mean": round(winter, 1),
+                     "win_over_sep": round(winter / sep, 2) if sep else None})
+    rows.sort(key=lambda r: -r["peak"])
+    path = os.path.join(ROOT, "data", f"seasonality-{geo.lower()}.json")
+    doc = {"fetched": datetime.now(timezone.utc).strftime("%Y-%m-%d"), "geo": geo,
+           "timeframe": TIMEFRAME, "anchor": anchor,
+           "scale_note": ("One market, its own language, every batch repeating the anchor "
+                          "so the levels are comparable to each other. NOT comparable to "
+                          "seasonality-de.json (different anchor) or to any rising file."),
+           "weeks": int(df.shape[0]), "terms": rows, "errors": errors}
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(doc, f, ensure_ascii=False, indent=1)
+        f.write("\n")
+    print(f"wrote {path}: {len(rows)} terms, {len(errors)} failed")
+    return 0
+
+
 def countries():
     """Write data/seasonality-by-country.json: per market, which product leads
     and in which month. Run: python3 tools/fetch_seasonality.py --countries"""
@@ -146,6 +228,12 @@ def countries():
 def main():
     if "--countries" in sys.argv:
         return countries()
+    if "--market" in sys.argv:
+        geo = sys.argv[sys.argv.index("--market") + 1].upper()
+        if geo not in MARKET_BATCHES:
+            print(f"no basket defined for {geo} — add one to MARKET_BATCHES", file=sys.stderr)
+            return 1
+        return market(geo)
 
     try:
         from trendspy import Trends

@@ -97,6 +97,9 @@ jobs:
             node tools/product_intel/refresh.mjs || echo "::warning::price refresh failed — pages fall back to search links and static price text"
           fi
 
+      - name: Fill the UK running-cost block from the stored Ofgem cap
+        run: python3 tools/build_ukcost.py
+
       - name: Rebuild the open-dataset landing page (refreshes sizing-data.json first)
         run: python3 tools/build_dataset_page.py
 
@@ -166,6 +169,9 @@ jobs:
       - name: Check the open dataset is machine-findable and embeds credit back
         run: python3 tools/check_dataset.py
 
+      - name: Check the UK cost tables match the stored Ofgem cap and add up
+        run: python3 tools/check_ukcost.py
+
       - name: Check the price engine (SigV4 vector, refresher vs mock, built pages vs data)
         run: |
           node tools/product_intel/paapi.mjs --selftest
@@ -220,6 +226,29 @@ jobs:
           # node, which makes it invisible to Google Dataset Search, the only
           # reason it exists. Assert the node, not the page.
           check "https://getecoback.com/daten.html" '"@type": "Dataset"'
+          # UK pages (2026-09-17). These are new, so a 200 alone is already red
+          # against the previous build. What is asserted instead is the shape of
+          # the two accidents that would matter: the cost block quoting a cap
+          # period that is not the stored one, and a shelf appearing on pages
+          # whose whole argument is that they are not selling the reader anything.
+          # The expected rate and period are read from the stored cap, never
+          # typed here — a literal would be correct this quarter and would turn
+          # the deploy red next quarter for a change that was entirely correct.
+          cap_period=$(python3 -c "import json;print(json.load(open('data/ofgem-cap.json'))['period'])")
+          cap_rate=$(python3 -c "import json;print(json.load(open('data/ofgem-cap.json'))['electricity_p_per_kwh'])")
+          check "https://getecoback.com/en/guide/desiccant-vs-compressor-dehumidifier.html" "$cap_period"
+          check "https://getecoback.com/en/guide/heated-airer-vs-dehumidifier.html" "${cap_rate}p per kWh"
+          check "https://getecoback.com/en/guide/rising-damp-penetrating-damp-or-condensation.html" "penetrating damp"
+          # Scripts are stripped before counting. The site-wide saved-room bar
+          # builds amazon URLs by string concatenation on every page including
+          # the legal ones, so a raw grep reports five links on a page that
+          # renders none — a false positive, not a find. Same reasoning as
+          # check_dataset.py, which was bitten by this first.
+          for u in desiccant-vs-compressor-dehumidifier heated-airer-vs-dehumidifier rising-damp-penetrating-damp-or-condensation; do
+            n=$(curl -sL --max-time 20 "https://getecoback.com/en/guide/$u.html" \
+                 | python3 -c "import re,sys;h=re.sub(r'<script\b.*?</script>','',sys.stdin.read(),flags=re.S);print(len(re.findall(r'href=\"[^\"]*amazon[^\"]*\"',h)))" 2>/dev/null || echo ERR)
+            if [ "$n" != "0" ]; then echo "::error::/en/guide/$u.html carries $n marked-up amazon link(s) — these three pages route to the sized pages instead of selling"; fail=1; else echo "OK $u sells nothing"; fi
+          done
           # The CSV is claimed in that Dataset node as a text/csv DataDownload.
           # If the edge serves it as octet-stream or HTML the claim is false and
           # the file is useless to the tools that would consume it, while the

@@ -1,0 +1,12 @@
+{
+ "source": "https://www.ofgem.gov.uk/your-energy-supply/your-energy-bill/energy-price-cap-unit-rates-and-standing-charges",
+ "period": "1 October to 31 December 2026",
+ "electricity_p_per_kwh": 26.32,
+ "electricity_p_per_kwh_previous_period": 26.11,
+ "electricity_standing_charge_p_per_day": 54.83,
+ "cap_level_gbp_per_year": 1723,
+ "payment_method": "Direct Debit",
+ "vat_note": "There is no VAT on electricity from 1 October 2026 to 31 March 2027.",
+ "note": "Unit rate only. The daily standing charge is a fixed cost and is excluded on purpose: an appliance's running cost is the unit rate times the kilowatt-hours it uses.",
+ "fetched": "2026-09-17"
+}
