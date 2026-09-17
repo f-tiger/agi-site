@@ -1,0 +1,115 @@
+{
+ "fetched": "2026-09-17",
+ "geo": "GB",
+ "timeframe": "today 5-y",
+ "anchor": "dehumidifier",
+ "scale_note": "One market, its own language, every batch repeating the anchor so the levels are comparable to each other. NOT comparable to seasonality-de.json (different anchor) or to any rising file.",
+ "weeks": 262,
+ "terms": [
+  {
+   "term": "dehumidifier",
+   "sep": 19.5,
+   "peak": 53.8,
+   "peak_month": 11,
+   "winter_mean": 34.7,
+   "win_over_sep": 1.79
+  },
+  {
+   "term": "damp",
+   "sep": 24.0,
+   "peak": 31.2,
+   "peak_month": 11,
+   "winter_mean": 26.8,
+   "win_over_sep": 1.12
+  },
+  {
+   "term": "condensation",
+   "sep": 7.9,
+   "peak": 21.0,
+   "peak_month": 11,
+   "winter_mean": 15.5,
+   "win_over_sep": 1.96
+  },
+  {
+   "term": "electric blanket",
+   "sep": 9.3,
+   "peak": 19.1,
+   "peak_month": 11,
+   "winter_mean": 13.8,
+   "win_over_sep": 1.49
+  },
+  {
+   "term": "heated airer",
+   "sep": 11.0,
+   "peak": 15.5,
+   "peak_month": 10,
+   "winter_mean": 6.5,
+   "win_over_sep": 0.59
+  },
+  {
+   "term": "oil filled radiator",
+   "sep": 3.0,
+   "peak": 6.4,
+   "peak_month": 11,
+   "winter_mean": 4.7,
+   "win_over_sep": 1.6
+  },
+  {
+   "term": "draught excluder",
+   "sep": 2.6,
+   "peak": 5.1,
+   "peak_month": 11,
+   "winter_mean": 4.0,
+   "win_over_sep": 1.52
+  },
+  {
+   "term": "condensation on windows",
+   "sep": 1.6,
+   "peak": 5.0,
+   "peak_month": 11,
+   "winter_mean": 2.7,
+   "win_over_sep": 1.65
+  },
+  {
+   "term": "black mould",
+   "sep": 2.2,
+   "peak": 4.8,
+   "peak_month": 11,
+   "winter_mean": 4.1,
+   "win_over_sep": 1.82
+  },
+  {
+   "term": "thermal curtains",
+   "sep": 2.1,
+   "peak": 3.0,
+   "peak_month": 11,
+   "winter_mean": 2.1,
+   "win_over_sep": 0.99
+  },
+  {
+   "term": "damp proofing",
+   "sep": 1.9,
+   "peak": 2.2,
+   "peak_month": 11,
+   "winter_mean": 1.9,
+   "win_over_sep": 0.99
+  },
+  {
+   "term": "electricity price cap",
+   "sep": 0.6,
+   "peak": 0.8,
+   "peak_month": 8,
+   "winter_mean": 0.2,
+   "win_over_sep": 0.28
+  },
+  {
+   "term": "drying clothes indoors",
+   "sep": 0.1,
+   "peak": 0.1,
+   "peak_month": 9,
+   "winter_mean": 0.0,
+   "win_over_sep": 0.0
+  }
+ ],
+ "errors": []
+}

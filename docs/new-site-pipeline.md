@@ -9,9 +9,15 @@
    条件)+ **不上传的工具**(WebApplication JSON-LD,结果写进 URL 可分享)+ **官方免费入口清单**(只列核实过的)。
 4. **SEO/GEO 底盘**:robots 显式 Allow 全部 AI 爬虫 + 百度/搜狗/字节;IndexNow 密钥文件 + 加进 `tools/indexnow-subdomains.mjs`;
    `gen_md.py` 生成 `.md` 孪生与 `llms-full.txt`;llms.txt;sitemap lastmod;单 h1;Article/Breadcrumb/FAQPage/WebApplication。
-5. **舰队接线**:deploy workflow(闸门 + 冒烟 + kill switch)、fleet-heartbeat、ai_access_probe、ai_referrals、check_bot_ua、
+5. **舰队接线**:deploy workflow(闸门 + 冒烟 + kill switch + **信标真值测试**)、fleet-heartbeat、ai_access_probe、ai_referrals、check_bot_ua、
    automation map、总任务块、姊妹站互链(仅相关处)。**D1 账号 10 库上限已满:新站复用 after35-events 库,表名带站前缀。**
 6. **预登记判定线**(30 天 / 90 天):真人 pv、工具使用、Bing 引用;到期按原文结算。
+   **两条硬性(2026-09-16 补,起因见 `docs/tool-monetization-2026-09-16.md`)**:
+   ①**判定线必须同时写进 `data/fleet-bets.json`**——只写在站内 CLAUDE.md = heartbeat 看不见 = 等于没预登记
+   (09-14/09-15 建的六个站全部漏登,09-16 补齐 12 条)。
+   ②**判定线里只要出现「工具使用」,该站就必须有信标真值测试**:worker 出 `GET /api/selftest?label=`(只回计数),
+   deploy 自检先 `POST /e` 一条 `label=__ci` 的事件再读回来,读不到即把部署打红;统计一律剔 `label='__ci'`。
+   没有它,「读者没用工具」和「`/e` → D1 断了」在读数上完全一样,而新站的读数恰好长期是 0。
 
 ## 二、硬约束(全站通用)
 零编造(追不到一手出处的数字不上页;流水线 grep 闸门)· 无账号 · 不收费 · 不推荐机构/产品 · 法律只概括不解释 ·

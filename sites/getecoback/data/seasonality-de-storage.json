@@ -1,0 +1,116 @@
+{
+ "fetched": "2026-09-17",
+ "geo": "DE",
+ "basket": "DE-STORAGE",
+ "timeframe": "today 5-y",
+ "anchor": "heizlüfter",
+ "scale_note": "One market, its own language, every batch repeating the anchor so the levels are comparable to each other. NOT comparable to seasonality-de.json (different anchor) or to any rising file.",
+ "weeks": 262,
+ "terms": [
+  {
+   "term": "balkonkraftwerk",
+   "sep": 36.1,
+   "peak": 62.6,
+   "peak_month": 4,
+   "winter_mean": 29.7,
+   "win_over_sep": 0.82
+  },
+  {
+   "term": "heizlüfter",
+   "sep": 24.9,
+   "peak": 30.6,
+   "peak_month": 11,
+   "winter_mean": 22.2,
+   "win_over_sep": 0.89
+  },
+  {
+   "term": "anker solix",
+   "sep": 16.1,
+   "peak": 29.9,
+   "peak_month": 8,
+   "winter_mean": 11.4,
+   "win_over_sep": 0.7
+  },
+  {
+   "term": "balkonkraftwerk speicher",
+   "sep": 13.4,
+   "peak": 23.0,
+   "peak_month": 3,
+   "winter_mean": 11.1,
+   "win_over_sep": 0.83
+  },
+  {
+   "term": "zendure",
+   "sep": 6.0,
+   "peak": 12.3,
+   "peak_month": 3,
+   "winter_mean": 5.5,
+   "win_over_sep": 0.93
+  },
+  {
+   "term": "marstek",
+   "sep": 6.2,
+   "peak": 10.8,
+   "peak_month": 8,
+   "winter_mean": 4.4,
+   "win_over_sep": 0.71
+  },
+  {
+   "term": "balkonkraftwerk anmelden",
+   "sep": 4.3,
+   "peak": 7.8,
+   "peak_month": 4,
+   "winter_mean": 3.2,
+   "win_over_sep": 0.75
+  },
+  {
+   "term": "solaranlage balkon",
+   "sep": 4.8,
+   "peak": 7.2,
+   "peak_month": 7,
+   "winter_mean": 2.8,
+   "win_over_sep": 0.59
+  },
+  {
+   "term": "stromspeicher",
+   "sep": 4.7,
+   "peak": 5.7,
+   "peak_month": 3,
+   "winter_mean": 4.2,
+   "win_over_sep": 0.91
+  },
+  {
+   "term": "balkonkraftwerk mieter",
+   "sep": 0.0,
+   "peak": 0.3,
+   "peak_month": 4,
+   "winter_mean": 0.0,
+   "win_over_sep": 0.51
+  },
+  {
+   "term": "steckersolar",
+   "sep": 0.0,
+   "peak": 0.1,
+   "peak_month": 4,
+   "winter_mean": 0.0,
+   "win_over_sep": 0.51
+  },
+  {
+   "term": "balkonspeicher",
+   "sep": 0.0,
+   "peak": 0.0,
+   "peak_month": 3,
+   "winter_mean": 0.0,
+   "win_over_sep": null
+  },
+  {
+   "term": "balkonkraftwerk erlaubnis",
+   "sep": 0.0,
+   "peak": 0.0,
+   "peak_month": 1,
+   "winter_mean": 0.0,
+   "win_over_sep": null
+  }
+ ],
+ "errors": []
+}

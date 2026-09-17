@@ -1,7 +1,7 @@
 // firstjob worker 单测:假 D1 跑通 page_view 落表 jev / ci 排除 / 白名单 / pulse。
 import worker from "../worker.js";
 class FakeD1 { constructor(){ this.rows=[]; } prepare(sql){ const self=this; return { sql, args:[], bind(...a){ this.args=a; return this; }, async run(){ return self.exec(this.sql,this.args); }, async first(){ return self.exec(this.sql,this.args); }, async all(){ return { results: await self.exec(this.sql,this.args) }; } }; } async batch(s){ return s.map(()=>({})); }
-  exec(sql,a){ if(/^CREATE/.test(sql)) return {}; if(sql.startsWith("INSERT INTO jev")) { this.rows.push(a); return {}; } if(sql.startsWith("INSERT INTO jua_audit")) return {}; if(sql.startsWith("SELECT '_total'")) return [{host:"_total", n: this.rows.filter(r=>r[0]==="page_view"&&r[5]==="human").length}]; if(sql.startsWith("SELECT ref AS host")) { const g={}; for(const r of this.rows) if(r[0]==="page_view"&&r[5]==="human"){ const k=r[4]||""; g[k]=(g[k]||0)+1; } return Object.entries(g).map(([host,n])=>({host,n})); } throw new Error("unhandled "+sql.slice(0,40)); } }
+  exec(sql,a){ if(/^CREATE/.test(sql)) return {}; if(sql.startsWith("INSERT INTO jev")) { this.rows.push(a); return {}; } if(sql.startsWith("INSERT INTO jua_audit")) return {}; if(sql.startsWith("SELECT '_total'")) return [{host:"_total", n: this.rows.filter(r=>r[0]==="page_view"&&r[5]==="human").length}]; if(sql.startsWith("SELECT COUNT(*) n FROM jev WHERE label")) return { n: this.rows.filter(r=>r[1]===a[0]).length }; if(sql.startsWith("SELECT ref AS host")) { const g={}; for(const r of this.rows) if(r[0]==="page_view"&&r[5]==="human"){ const k=r[4]||""; g[k]=(g[k]||0)+1; } return Object.entries(g).map(([host,n])=>({host,n})); } throw new Error("unhandled "+sql.slice(0,40)); } }
 const db=new FakeD1(); const waits=[]; const ctx={ waitUntil:p=>waits.push(p) };
 const env={ EV:db, ASSETS:{ fetch: async ()=> new Response("<html>ok</html>", { headers:{ "content-type":"text/html" } }) } };
 const call=(path,opts={})=>worker.fetch(new Request("https://firstjob.agiscorecard.com"+path,{ ...opts, headers:{ "content-type":"application/json", "user-agent":"Mozilla/5.0 test", ...(opts.headers||{}) } }),env,ctx);
@@ -16,6 +16,9 @@ await call("/e",{ method:"POST", body: JSON.stringify({ n:"evil" }) }); await Pr
 ok(!db.rows.some(x=>x[0]==="evil"), "非白名单丢弃");
 const j=await call("/api/pulse").then(x=>x.json());
 ok(j.ok===true && j.human_pv===1 && typeof j.ai_ref==="number", "/api/pulse 聚合");
+await call("/e",{ method:"POST", body: JSON.stringify({ n:"tool_result", l:"__ci", p:"/__ci" }) }); await Promise.all(waits);
+const st=await call("/api/selftest?label=__ci").then(x=>x.json());
+ok(st.ok===true && st.n>=1, "/api/selftest 读回信标真值(证明 /e → D1 没断)");
 // 渠道构成(2026-09-15 舰队相互学习):用真实 Referer 头驱动 worker,断言的是分桶结果,
 // 不是「有这个字段」。分类表见 tools/fleet/ref_sources.txt(唯一权威,逐字断言在 check_ref_sources.py)。
 const before=(await call("/api/pulse").then(x=>x.json())).human_pv;

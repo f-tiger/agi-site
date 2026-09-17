@@ -134,6 +134,24 @@ def main():
             # threshold. If fewer than a third of the rows share a token with
             # the seed, the whole seed is flagged and the homepage rail skips
             # it. The rows are still written: nothing is silently discarded.
+            # Known limitation, measured 2026-09-15 — do not "fix" it the
+            # obvious way. The test is rank-blind, so a seed can keep a clean
+            # flag while its TOP row is nonsense: "matratze" came back led by
+            # "fluss durch riga", a river in Latvia, at 3.850, yet seven of ten
+            # rows did contain "matratze" and the share test passed.
+            #
+            # Adding "flag when the highest-value row is off-topic" was tried
+            # and reverted the same hour. Replayed against that day's real
+            # file it flagged three good seeds: klimaanlage (top "coolizi"),
+            # luftentfeuchter (top "meaco arete one 20l" — a model this site
+            # actually shelves) and balkonkraftwerk (top "ecoflow stream
+            # 5000"). Brand and model queries are the most valuable rising rows
+            # there are, and a token test cannot tell one from a foreign river.
+            # False-flagging them is worse than letting matratze through.
+            #
+            # A real fix needs a signal this file does not have — a known brand
+            # list per seed, or volume for the bare seed to compare against.
+            # Until then the share test stands and readers check the top row.
             toks = [t for t in re.split(r"\W+", seed.lower()) if len(t) > 3]
             hits = sum(1 for r in rows if any(t in str(r.get("q", "")).lower() for t in toks))
             polluted = bool(rows) and hits * 3 < len(rows)

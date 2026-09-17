@@ -3,35 +3,35 @@
   "search_no_result": [],
   "site_search": [
    {
-    "n": 1,
-    "q": "tool:sunwatch_ledger"
-   },
-   {
-    "n": 1,
+    "n": 2,
     "q": "tool:claim_ledger https://goldrush.agiscorecard."
    }
   ]
  },
- "fetched": "2026-09-15",
+ "fetched": "2026-09-17",
  "kind": "agi-trends",
  "notes": [],
  "ok": true,
  "pages": {
   "/ai-and-your-job": {
-   "n7": 39,
-   "p7": 16
+   "n7": 69,
+   "p7": 26
   },
   "/amodei-white-collar-bloodbath-prediction": {
-   "n7": 73,
-   "p7": 10
+   "n7": 92,
+   "p7": 27
   },
   "/cn": {
-   "n7": 67,
-   "p7": 24
+   "n7": 114,
+   "p7": 30
   },
   "/progress-index": {
-   "n7": 85,
-   "p7": 28
+   "n7": 125,
+   "p7": 30
+  },
+  "/search": {
+   "n7": 179,
+   "p7": 70
   }
  },
  "site": "agiscorecard",

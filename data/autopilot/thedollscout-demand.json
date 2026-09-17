@@ -2,47 +2,127 @@
  "covered": [
   {
    "kind": "value",
-   "match": 0.667,
-   "page": "fake-check.html",
-   "q": "pop mart overwatch",
+   "match": 0.65,
+   "page": "start.html",
+   "q": "pop mart demon slayer blind box",
    "seed": "pop mart",
    "source": "related-queries",
-   "stand": "2026-09-06",
-   "v": 550
+   "stand": "2026-09-16",
+   "v": 350
   },
   {
    "kind": "value",
    "match": 0.667,
    "page": "fake-check.html",
-   "q": "spongebob pop mart",
+   "q": "pop mart jjk",
    "seed": "pop mart",
    "source": "related-queries",
-   "stand": "2026-09-06",
-   "v": 80
+   "stand": "2026-09-16",
+   "v": 250
   },
   {
    "kind": "value",
-   "match": 0.85,
+   "match": 0.667,
    "page": "fake-check.html",
-   "q": "popmart",
+   "q": "dimo pop mart",
+   "seed": "pop mart",
+   "source": "related-queries",
+   "stand": "2026-09-16",
+   "v": 250
+  },
+  {
+   "kind": "autocomplete-new",
+   "match": 0.667,
+   "page": "index.html",
+   "q": "fake labubu dolls",
    "seed": "fake labubu",
-   "source": "related-queries",
-   "stand": "2026-09-05",
-   "v": 60
+   "source": "autocomplete-diff",
+   "stand": "2026-09-15",
+   "v": 1
+  },
+  {
+   "kind": "autocomplete-new",
+   "match": 0.95,
+   "page": "fake-check.html",
+   "q": "fake labubu name",
+   "seed": "fake labubu",
+   "source": "autocomplete-diff",
+   "stand": "2026-09-15",
+   "v": 1
+  },
+  {
+   "kind": "autocomplete-new",
+   "match": 0.667,
+   "page": "index.html",
+   "q": "fake labubu feet",
+   "seed": "fake labubu",
+   "source": "autocomplete-diff",
+   "stand": "2026-09-15",
+   "v": 1
+  },
+  {
+   "kind": "autocomplete-new",
+   "match": 1.0,
+   "page": "fake-check.html",
+   "q": "fake labubu teeth",
+   "seed": "fake labubu",
+   "source": "autocomplete-diff",
+   "stand": "2026-09-15",
+   "v": 1
+  },
+  {
+   "kind": "autocomplete-new",
+   "match": 1.0,
+   "page": "index.html",
+   "q": "fake labubu box vs real",
+   "seed": "fake labubu",
+   "source": "autocomplete-diff",
+   "stand": "2026-09-15",
+   "v": 1
+  },
+  {
+   "kind": "autocomplete-new",
+   "match": 1.0,
+   "page": "index.html",
+   "q": "fake labubu vs real",
+   "seed": "fake labubu",
+   "source": "autocomplete-diff",
+   "stand": "2026-09-15",
+   "v": 1
+  },
+  {
+   "kind": "autocomplete-new",
+   "match": 0.667,
+   "page": "index.html",
+   "q": "fake labubu funny",
+   "seed": "fake labubu",
+   "source": "autocomplete-diff",
+   "stand": "2026-09-15",
+   "v": 1
+  },
+  {
+   "kind": "autocomplete-new",
+   "match": 0.833,
+   "page": "where-to-buy.html",
+   "q": "fake labubu tag",
+   "seed": "fake labubu",
+   "source": "autocomplete-diff",
+   "stand": "2026-09-15",
+   "v": 1
+  },
+  {
+   "kind": "autocomplete-new",
+   "match": 0.667,
+   "page": "index.html",
+   "q": "fake labubu meme",
+   "seed": "fake labubu",
+   "source": "autocomplete-diff",
+   "stand": "2026-09-15",
+   "v": 1
   }
  ],
  "first_party_demand": {},
  "gaps": [
-  {
-   "kind": "value",
-   "match": 0.5,
-   "page": "fake-check.html",
-   "q": "monster hunter pop mart",
-   "seed": "pop mart",
-   "source": "related-queries",
-   "stand": "2026-09-06",
-   "v": 25850
-  },
   {
    "kind": "value",
    "match": 0.2,
@@ -50,28 +130,8 @@
    "q": "crumbl labubu ube dot cake",
    "seed": "labubu",
    "source": "related-queries",
-   "stand": "2026-09-05",
-   "v": 24900
-  },
-  {
-   "kind": "value",
-   "match": 0.333,
-   "page": "index.html",
-   "q": "lets try the viral crumbl labubu",
-   "seed": "labubu",
-   "source": "related-queries",
-   "stand": "2026-09-05",
-   "v": 7600
-  },
-  {
-   "kind": "value",
-   "match": 0.4,
-   "page": "fake-check.html",
-   "q": "pop mart international dessert expansion",
-   "seed": "pop mart",
-   "source": "related-queries",
-   "stand": "2026-09-06",
-   "v": 5300
+   "stand": "2026-09-15",
+   "v": 30400
   },
   {
    "kind": "value",
@@ -80,78 +140,38 @@
    "q": "labubu salon",
    "seed": "labubu",
    "source": "related-queries",
-   "stand": "2026-09-05",
-   "v": 1250
-  },
-  {
-   "kind": "value",
-   "match": 0.4,
-   "page": "rarity.html",
-   "q": "labubu fifa world cup 2026",
-   "seed": "labubu",
-   "source": "related-queries",
-   "stand": "2026-09-05",
-   "v": 950
+   "stand": "2026-09-15",
+   "v": 1300
   },
   {
    "kind": "value",
    "match": 0.5,
-   "page": "index.html",
-   "q": "jax labubu",
-   "seed": "labubu",
+   "page": "fake-check.html",
+   "q": "pop mart monster hunter",
+   "seed": "pop mart",
    "source": "related-queries",
-   "stand": "2026-09-05",
-   "v": 700
-  },
-  {
-   "kind": "value",
-   "match": 0.25,
-   "page": "index.html",
-   "q": "fifa world cup labubu",
-   "seed": "labubu",
-   "source": "related-queries",
-   "stand": "2026-09-05",
-   "v": 650
+   "stand": "2026-09-16",
+   "v": 1200
   },
   {
    "kind": "value",
    "match": 0.333,
    "page": "index.html",
-   "q": "world cup labubu",
+   "q": "lets try the viral crumbl labubu",
    "seed": "labubu",
    "source": "related-queries",
-   "stand": "2026-09-05",
-   "v": 500
+   "stand": "2026-09-15",
+   "v": 800
   },
   {
    "kind": "value",
-   "match": 0.5,
-   "page": "index.html",
-   "q": "labubu fifa",
-   "seed": "labubu",
-   "source": "related-queries",
-   "stand": "2026-09-05",
-   "v": 250
-  },
-  {
-   "kind": "value",
-   "match": 0.562,
-   "page": "how-blind-boxes-work.html",
-   "q": "pop mart care bear",
+   "match": 0.56,
+   "page": "where-to-buy.html",
+   "q": "nightmare before christmas pop mart",
    "seed": "pop mart",
    "source": "related-queries",
-   "stand": "2026-09-06",
-   "v": 250
-  },
-  {
-   "kind": "value",
-   "match": 0.5,
-   "page": "index.html",
-   "q": "chopped labubu",
-   "seed": "labubu",
-   "source": "related-queries",
-   "stand": "2026-09-05",
-   "v": 190
+   "stand": "2026-09-16",
+   "v": 800
   },
   {
    "kind": "value",
@@ -160,11 +180,61 @@
    "q": "labubu halloween costume",
    "seed": "labubu",
    "source": "related-queries",
-   "stand": "2026-09-05",
-   "v": 190
+   "stand": "2026-09-15",
+   "v": 350
+  },
+  {
+   "kind": "value",
+   "match": 0.5,
+   "page": "index.html",
+   "q": "jax labubu",
+   "seed": "labubu",
+   "source": "related-queries",
+   "stand": "2026-09-15",
+   "v": 300
+  },
+  {
+   "kind": "value",
+   "match": 0.4,
+   "page": "rarity.html",
+   "q": "labubu fifa world cup 2026",
+   "seed": "labubu",
+   "source": "related-queries",
+   "stand": "2026-09-15",
+   "v": 250
+  },
+  {
+   "kind": "value",
+   "match": 0.25,
+   "page": "index.html",
+   "q": "fifa world cup labubu",
+   "seed": "labubu",
+   "source": "related-queries",
+   "stand": "2026-09-15",
+   "v": 250
+  },
+  {
+   "kind": "value",
+   "match": 0.5,
+   "page": "fake-check.html",
+   "q": "pop mart demon slayer",
+   "seed": "pop mart",
+   "source": "related-queries",
+   "stand": "2026-09-16",
+   "v": 250
+  },
+  {
+   "kind": "value",
+   "match": 0.5,
+   "page": "index.html",
+   "q": "smiski series",
+   "seed": "pop mart",
+   "source": "related-queries",
+   "stand": "2026-09-16",
+   "v": 180
   }
  ],
- "generated": "2026-09-15",
+ "generated": "2026-09-17",
  "geo": "US",
  "heat_source": "no public aggregate endpoint on this site — heat needs either a Worker /api/* aggregate route or the D1 read permission on the deploy token",
  "hot_pages": [],
@@ -172,10 +242,16 @@
  "note": "选题输入,不是选题依据。任何由它引出的页面仍要过本站三门与硬内容规则。本文件由 tools/autopilot 每日确定性生成,零 AI、零编造。",
  "offtopic_dropped": [
   "hirono mist walker",
-  "miniso"
+  "hirono after dark",
+  "savannah guthrie",
+  "fugler",
+  "stonehenge",
+  "sonny angels"
  ],
  "site": "thedollscout",
- "source_notes": [],
+ "source_notes": [
+  "sites/thedollscout/content/trends-rising.json: 1 seed(s) are on the AUTOCOMPLETE FALLBACK, not Google Trends rising (fake labubu). Those rows are scored 1, not ranked against real volume — the demand face for them is degraded, not working."
+ ],
  "sources": [
   "sites/thedollscout/content/trends-rising.json"
  ],

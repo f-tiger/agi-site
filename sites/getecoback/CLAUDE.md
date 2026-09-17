@@ -1853,3 +1853,674 @@ ersatzteileshop.de、sos-zubehoer.de)、厂商(Bosch)、论坛(HaustechnikDialog
 8% 走 /en/ 为远期(需先改「EN 区一贯 amazon.de」契约,按页切 ecoback0d-20,探针过线出薄
 PRD 再动)。手表/美妆因品牌不搭**不进本站**。纪律:探针(probes-de-rising.json)过线 →
 KGR → 薄 PRD → 快反规则建面;板块提权为一级导航仍按舰队规则等首个真实转化。
+
+## 冬季通风对页:把全站最强 AI 资产复制到下一个季节(2026-09-15,owner:「已开通全权限网络访问,再做一次升级」)
+
+**先说网络这件事,免得下一轮再试一遍**:全权限确实打开了一些东西,但**没有打开最想要的那扇门**。
+实测(会话沙箱,2026-09-15):
+- ❌ **amazon.de 商品页仍读不到**——`/dp/B0BZWP26GD` 返回 **HTTP 200 但是 captcha 墙**(`productTitle` 不存在,
+  页面含 "automated access")。**EX105 那条 owner 待办没有被解掉,别以为拿到网络就能自助核验 ASIN。**
+  camelcamelcamel 403、Geizhals 403、idealo 403,同一堵墙。
+- ❌ **搜索引擎结果不可用且会骗人**:`bing.com/search` 返回 200,但**内容与查询无关** ——
+  `site:getecoback.com` 给的是某教堂网站、`site:hausjournal.net` 给的是 calguns.net、
+  德语钱线词给的是 support.google.com。**是对照组测出来的**(连查四条,每条都换一个不相干域)。
+  → **Bing 收录率仍然只能靠 owner 的 Bing WMT**,`eco-en-qm-bing-1012` / `eco-it-pilot-1027` 的口径不变。
+  这也再次坐实 08-31 那句「`site:` 运算符在本工具不可靠,未当证据」。
+- ✅ 真打开的两样:**Google Trends RSS**(21 KB 真数据,当日德国热搜含 `kaltfront`)、
+  **Cloudflare MCP 的 D1 直查**——`d1_database_query` 能读 `ecoback-events`,
+  **根手册那句「仓里两个 token 都没有 D1 read 权限」对 MCP 这条路不成立**,本轮钱线数字全部是 D1 现查。
+
+**D1 现查(28 天,`ua_class='human'`,2026-09-15)**:真人 pv 532 · affiliate_click 55 ·
+`/dp/` 6 = **10,9%**(t0 ~1%,判定线 09-28 ≥15%,已远离 <5% 的判负线)· amazon.de 53 / amazon.com 1 ·
+国家 DE 37 / US 4 / AT 4 / ES 3 / PT 2 / IT 2。**季节正在翻面**:7 天对比 `heat_now` 76→12、
+`feuchte_now` 1→9、`btu_calc` 2→7。
+
+**本轮的真发现(一条,决定了做什么)**:**`/en/guide/portable-ac-tilt-and-turn-windows.html`
+一页吃掉全站 AI 引荐的 52%**(23 条里 12 条,全部来自 chatgpt.com)。而且它**没有随季节衰减**——
+8 月 7 条、9 月前半月已 9 条。它是一张**问题形状 + 欧洲专属实物 + 物理可答**的英文页;
+**它讲的 Kipp 位在冬天恰恰是反面教材**(持续小开口 + 把窗框/洞口凉透 = 霉点长在洞口),
+而全站(德语英语都算)**没有一张冬季通风页**:只有 `richtig-lueften-bei-hitze`(夏)与
+`keller-lueften-sommer`(夏)。EN 面的取暖/潮湿侧只有 08-28 那 13 张 qm 模板梯,**一张问题页都没有**。
+
+**做了什么**:上线**德英对页**(hreflang 成组,不做 it):
+`/guide/richtig-lueften-im-winter.html` + `/en/guide/tilt-and-turn-windows-winter-condensation.html`。
+- **每个数字都溯源或可复算**:40–60 / 60–70 / >70 三档、表面 70–80% 起霉、20 °C+60% 露点 12 °C、
+  16 °C 卧室线,全部取自站内已发布且互相一致的 `fenster-beschlagen-innen` / `schimmel-wand-kommt-wieder` /
+  `luftentfeuchter-gegen-schimmel`;新增的两个数由 Magnus 公式现算并在页上写明算法。
+- **页面的脊梁是这一条**:`20 °C / 50% 的舒适房间,碰到 14 °C 的墙面,墙面处是 73%` —— 已过站内自己的
+  70% 起霉线。**「湿度计显示 50% 为什么还长霉」这个问题第一次在站内有了数字答案。**
+- **复用而非新造**:露点计算器沿用 `keller-lueften-sommer` 的 `dew()` 与**已在白名单的
+  `taupunkt_check` 事件**(冬季版改问「房间空气 vs 最冷表面」),零新事件、零 worker 改动。
+- 双向挂上夏季那张页(同一扇窗、相反季节),两页互链。
+
+**一个必须记下来的自我纠正(方法论,不只是这次)**:初稿把「墙面相对湿度」按**绝对湿度比**算成 **72%**,
+浏览器实跑计算器返回 **73%** —— **计算器是对的,我的正文是错的**:相对湿度的定义是
+**水汽分压比 `e/es(T)`**,不是 g/m³ 之比。同一个错误还污染了「冷空气进屋后的湿度」整张表
+(18/22/31/43 → 正确值 **16/21/30/42**)。两页正文 + 可见 FAQ + JSON-LD 已逐处改正,零残留。
+**教训:页面上的数字必须和页面上的计算器同一套定义;是 Playwright 实跑而不是审稿抓到的。**
+
+**验证**:13 步流水线 + 11 道闸门全绿(faq/crumb parity、adlabel、meta、usswitch/usshelf、cited_figures…);
+Playwright 实跑两页 —— **pageerror 0、390px 零横滚、计算器 73% 与正文一致、`taupunkt_check` 正常入 dataLayer**。
+`device_of()` 加了 `lueften-im-winter` / `winter-condensation` 两个 token(否则落 "ac",
+就是 08-28「EN drying-clothes 挂 AC toppick + 制冷 sizer」那个原样复现的坑);
+两页实测拿到的是**除湿货架(Comfee MDDF-20DEN7 / MeacoDry Arete One 20L·25L)**,
+正文零 BTU 零 heatwave。**部署自检加了「事故形状」断言**:两页必须含 `MeacoDry` 且**必须不含 `EB_SIZER`**。
+巧合但值得记:货架上的 MeacoDry 20L/25L 正是本周 rising 里的 `meaco arete one 20l`(v=49800)与
+`meacodry arete one 25l`(v=21350)。
+
+**判定线(已进 `data/fleet-bets.json`:`eco-ai-twin-1013`,2026-10-13,28 天)**:
+两页合计 **AI 引荐 ≥1 或 真人 pv ≥15**(t0 = 0/0)→「同一读者、同一页型、下一个季节」能继承 AI 引用,
+按同法做第二对;**AI 引荐 =0 且 pv <5 → tilt-and-turn 那 52% 是该页自身的年龄/运气,不是可复制的页型,
+停止造「AI 形状」的孪生页**。
+
+**刻意没做,别在下一轮重做**:
+- **不出 `infrarotheizung lüge` 页**(rising v=15850,很诱人)——站内 `infrarotheizung-ratgeber`
+  已经把这件事讲对了(「100% 转成热 = 每度热付一度电」,3.279 词,07-10 发布),再开一张就是翻炒。
+- **不做 /it/ 第三语**:意大利语试点判死线 10-27 还没到,先出结果再谈扩。
+- **不碰 eco 12 条 underserved 的标题改写**:09-15 的结论没变(Google 28 天引荐 = 0)。
+- **不因为 per-page 转化率差异动页**:55 次点击的盘子里,`klimaanlage-dachfenster` 的「71,4% 转化」
+  是 7 次 pv 撑的,属噪声,不是信号。
+
+## 用「季节性峰值」而不是「rising %」选题(2026-09-15 第二轮,owner:「冬季的热门谷歌趋势,升级网站,而不是随便升级」)
+
+**owner 的批评成立**:同日第一轮(冬季通风对页)是从 AI 引荐数据推出来的,**没查谷歌趋势**。
+这一轮先把趋势查清楚再决定建什么——过程里踩了三个坑,全部记下来。
+
+**⚠️ 坑一:九月读 rising 读到的是夏天。** `fetch_trends_rising.py` 的窗口是 `today 3-m`,
+九月中旬覆盖 **6 月中→9 月中**。实测 `lüften` 种子,rising 前三是
+`wie lüften bei hitze` **153.950**、`richtig lüften bei hitze` **128.800**、`wann lüften bei hitze` **107.050**
+——全部属实、全部是夏天、对「十月该发什么」毫无用处。**九月不要用 3 个月 rising 面判断冬季需求。**
+
+**⚠️ 坑二:rising 是百分比,不是量。** `konvektorheizung` 在 rising 面上 **31.700**,站内又确实零覆盖,
+看着像大缺口;拉 5 年绝对值一看 **峰值 1,2**。**差点为一个几乎没有搜索量的词建页。**
+
+**⚠️ 坑三(我自己当场踩的,最该记):Google Trends 只在一次比较内部归一化,跨批数字不可比。**
+我先用 `schimmel wand` 当锚跑了一批霉类词,读出 `schimmel fenster` = 25,2,写进了初稿;
+换成全局锚 `heizlüfter` 重跑,同一个词是 **4,8**。**两次的相对关系一致(4,8/12,4 ≈ 25,2/65),
+错的是我把两套刻度并排放进了同一张表。** 新工具的 docstring 里写着这条警告,而我照样犯了——
+**所以表里每个数必须来自同一个锚,下面这张表是重跑后的单一刻度。**
+
+**新仪器(手动跑,不加 cron)**:`tools/fetch_seasonality.py` → **`data/seasonality-de.json`**。
+5 年周数据 `interest_over_time`,每批都带同一个锚词 `heizlüfter` 所以跨批可比;输出
+**九月值 / 峰值 / 峰值月 / 冬季均值÷九月**。**与 rising 文件不可混用**(一个是相对水平、一个是百分比增长)。
+不挂 schedule 是刻意的:related_queries 与 interest_over_time 配额分开,而前者当天已被打爆
+(6 个种子 **3 个 `API quota exceeded`**,如实记录未静默丢弃)。本次 21 词 / 262 周 / 0 失败批。
+
+**读数(5 年,锚 heizlüfter,2026-09-15,单一刻度)**:
+
+| 词 | 九月 | 峰值 | 峰值月 | 冬÷九月 |
+|---|---|---|---|---|
+| **schimmel** | 44,4 | **68,5** | **1 月** | 1,43 |
+| luftentfeuchter | 19,5 | 32,0 | 11 月 | 1,19 |
+| heizlüfter | 23,9 | 29,4 | 11 月 | 0,89 |
+| infrarotheizung | 29,2 | 29,2 | 11 月 | 0,71 |
+| heizstrahler | 17,7 | 19,9 | 11 月 | 0,80 |
+| schimmel wand | 4,1 | 12,4 | 12 月 | 2,59 |
+| heizdecke | 5,9 | 12,1 | 12 月 | 1,48 |
+| heizung einstellen | 5,7 | 8,5 | 11 月 | 1,03 |
+| fenster beschlagen | 1,6 | 5,6 | 11 月 | 1,94 |
+| **schimmel fenster** | 1,1 | **4,8** | **12 月** | **3,74** |
+| schwarzer schimmel | 1,7 | 3,1 | 12 月 | 1,60 |
+| schimmel schlafzimmer | 0,5 | 2,4 | 11 月 | 4,84 |
+| schimmel tapete | 1,0 | 2,4 | 12 月 | 2,10 |
+| konvektorheizung | 1,0 | 1,2 | 7 月 | 0,80 |
+
+**三条结论**:
+1. **霉是本站冬季最大的题,不是取暖**:`schimmel` 峰值 **68,5** 是最大取暖词(heizlüfter 29,4)的 **2,3 倍**。
+2. **取暖 11 月见顶,霉 12 月/1 月见顶**——取暖是入冬、霉是深冬,**排期不一样**。
+3. **但霉的量集中在宽词上**:`schimmel` 68,5,而拆开的子词都不大(wand 12,4、fenster 4,8)。
+   **别拿「霉是最大的题」去论证任何一个具体子词很大**——这正是坑三的教训。
+
+**覆盖审计(标题级)**:站内霉页有 Badfugen / Keller / Kleiderschrank / Wand,**唯独没有「窗」**,
+而窗是冬季霉的第一现场。`schimmel fenster` 零标题覆盖;`schwarzer schimmel` / `schimmel schlafzimmer` /
+`schimmel tapete` 同样零覆盖。
+
+**顺带照出我上一轮的偏差(不粉饰)**:同批测量里 `schimmel fenster` 约是 `richtig lüften` 的 **2 倍**,
+而我给第一轮那页起的标题正是后者。**内容写对了,名字起错了。** 没有改名(上线 1 天、防翻炒;
+且它作为**预防**页是对的),改为新建页去接那个词,两页双向互链。
+
+**新页 `/guide/schimmel-am-fenster.html`**(1.251 词,DE-only,站内已有 5 张 DE-only 页先例)。
+**建它的诚实理由**:峰值 4,8 不大,但**冬季拉升 3,74×、12 月见顶、站内零覆盖**,
+且**与站内已有的 `fenster-beschlagen-innen`(峰值 5,6)同量级**——那页本站早就认为值得有。
+差异化在**「四个面、四个答案」**:窗上的霉长在 **硅胶缝 / 橡胶密封条 / 框 / 洞口(Laibung)** 四种材料上。
+- **橡胶密封条那段是全 SERP 没人讲的**:强力清洁剂让它变硬开裂 → 窗关不严 →
+  **冷面变大而不是变小**,读者自己把问题做大了。
+- **硅胶缝**沿用站内 `schimmel-bad-fugen` 已有的「擦完是均匀变白还是留暗影」判据(**链接过去不重写**),
+  并给出顺序纪律:**先把湿度压住再换缝,否则活干两遍**。
+- 安全口径**逐字沿用** bad-fugen 的规矩:只用一种清洁剂、含氯的绝不与醋/除垢剂混用、
+  **不给具体配比和浓度**、明写不是建筑鉴定也不给法律意见。
+- 物理段复用本站数字(20 °C/50% 碰 14 °C = **73%**、70–80% 起霉、露点 12 °C);`schimmel-` 前缀让
+  `device_of()` 自动落 dehum,货架自动是除湿机,**正文零 BTU 零 Hitzewelle**。
+
+**验证**:13 步流水线 + 11 道闸门全绿;Playwright 实跑 pageerror 0、390px 页面级零横滚
+(4 列表格在自己的框里滚,属设计行为)、**10 条 Amazon 链接 tag 全对**。部署自检把新页加进
+「事故形状」断言(必须含 MeacoDry、必须不含 `EB_SIZER`)。
+
+**判定线(`eco-schimmel-fenster-1213`,2026-12-13,读数日刻意落在该词 12 月峰值内)**:
+28 天真人 pv **≥40** 或 affiliate_click **≥4** → 「按 5 年季节性峰值选题」成立,
+按同法补 schwarzer schimmel / schimmel schlafzimmer / schimmel tapete;
+**pv <15 → 词选对了但本站拿不到这块需求(实体档次问题,08-31 已判),不再按峰值加页。**
+
+**别再做(这一轮查过了)**:
+- **konvektorheizung 不建页**(rising 31.700 是假象,5 年峰值 1,2)。
+- **`infrarotheizung test stiftung warentest`(rising 31.500)不碰**:SW 结果不能转载,站内无法核实。
+- **`schimmel mietminderung` 不碰**:法律题,本站规矩是不给法律意见。
+- **每日热搜 RSS 再次确认无用**:09-15 实拉 10 条全是明星/球赛/星座(sally field、ballon d'or…),
+  niche 命中 0——与 `fetch_trends_rising.py` 文档那句话一致,别再指望它。
+- **取暖簇不缺页**:infrarotheizung 6 页、heizlüfter 2 页、heizung-qm 7 页,而这些词 11 月见顶、
+  冬÷九月全部 ≤1,0(infrarotheizung 0,71)——**它们的问题不是覆盖,是发现面。**
+
+## 「其他热门产品」——实测后只建了一页,三个候选被数字杀掉(2026-09-15 第三轮)
+
+**用刚建的 `data/seasonality-de.json`(锚 heizlüfter)量了候选品类,结论和 rising 面给的印象相反。**
+
+| 词 | 九月 | 峰值 | 峰值月 | 冬÷九月 | 裁定 |
+|---|---|---|---|---|---|
+| matratze | 70,2 | **76,3** | 1 月 | 1,01 | **不做**:量最大但完全在 niche 外,且 08-31 已判「断点在实体不在内容」——越大的词越轮不到本站 |
+| kaffeevollautomat | 32,5 | **59,5** | **11 月** | 1,36 | **不做**:黑五/圣诞礼品大词,高客单,但与 Raumklima 无关 |
+| akku staubsauger | 15,8 | 26,5 | 11 月 | 1,32 | 不做(见下) |
+| saugroboter | 12,7 | 23,6 | 11 月 | 1,30 | 不做(见下) |
+| **luftbefeuchter** | 7,2 | **22,7** | **12 月** | **2,81** | **✅ 建了**:全部实测词里**季节拉升最大**,且在 niche 正中 |
+| fussbodenheizung | 11,1 | 16,1 | 11 月 | 1,24 | 不做:装修题,非本站可变现形态 |
+| luftreiniger | 7,1 | 11,1 | **6 月** | 1,38 | 不做:峰值在**夏天**(花粉),不是冬季题;站内已有 ratgeber |
+| **saugwischer** | 2,5 | **3,2** | 11 月 | 1,16 | **反面发现,见下** |
+
+**最重要的一条是负面的:Bodenpflege 这条垂直建错了。** 08-28 以「floor dust IS indoor air quality」
+为桥接开的 Bodenpflege 线,其种子词 `saugwischer` 的 5 年峰值只有 **3,2**(锚 heizlüfter 是 29,4),
+而它在 rising 面上显示 `bester saugwischer roboter` **62.450**,看着像整组探针里最强的信号。
+**D1 实查:全部 staubsauger/saugwischer/tineco/dreame 页 56 天合计真人 pv = 1。**
+数字和页面互相印证。**这是 rising % 第三次骗人了**(前两次:konvektorheizung、我自己混刻度),
+`akku staubsauger` / `saugroboter` 虽然比它大一个量级,但**同一条垂直已经空过一次,不试第二次**
+(舰队规矩:lost 的模式不复制)。
+
+**rising 面的污染检测有个已知漏洞,而且「显而易见的修法」是错的——别再修。**
+`matratze` 那一栏的**第一名是 `fluss durch riga`(拉脱维亚的一条河)**,却没被标 polluted:
+检测是「少于 1/3 的行不含种子词才报警」,而 matratze 有 7/10 行含词,顺利过关。
+我加了「最高值那行离题就报警」,**当场用当天真实数据回放,它把三个好种子误杀**:
+`klimaanlage`(第一名 `coolizi`)、`luftentfeuchter`(第一名 `meaco arete one 20l`——本站货架上就有这台)、
+`balkonkraftwerk`(第一名 `ecoflow stream 5000`)。**品牌/型号词是 rising 面最值钱的行,
+而词法匹配分不清「本品类的品牌」和「拉脱维亚的河」。** 已回滚,原因写进代码注释:
+真修需要这份文件里没有的信号(按种子的品牌名单,或裸种子的绝对量做对照)。**读的人自己看第一行。**
+
+**建的页:`/guide/luftbefeuchter-ratgeber.html`**(约 1.500 词)。
+**理由是对称性**:站内 `luftentfeuchter` 峰值 32,0 有 **14 页**,`luftbefeuchter` 峰值 22,7(71%)
+**只有 1 页**(stromverbrauch);而后者冬季拉升 **2,81×** 是全表最高,12 月见顶。
+子词全部很小(最大 `luftbefeuchter test` 6,7),**量在头部词上,所以建的是 Ratgeber 不是长尾页**——
+与 `schimmel` 那轮同一个形状。
+- **脊梁是一张没人发的表**:相对湿度按分压比换算到冷表面,**14 °C 外墙下,房间 48% 就把墙面推到 70%**
+  (起霉线)。所以通行的「加湿到 50%」在**有冷墙的老房子里是错的数字**。这条把加湿页和本轮前两页
+  (通风 / 窗霉)扣成一个闭环:**加湿器是唯一一个能主动把读者推过起霉线的家电。**
+- 三种工作原理据实拆开(Verdunster 构造上几乎不会过加湿 / Verdampfer 卫生最好但**耗电最高,烧水就是加热** /
+  Ultraschall 便宜安静但硬水喷白粉、脏水箱就是把里面长的东西雾化出来)。
+- 卫生与安全**逐字沿用**站内既有规矩:不给具体配比浓度、含氯的绝不与醋/除垢剂混。
+- **货架是本轮最容易出事的一处**:`device_of()` 把 luftbefeuchter 归在 `dehum`(湿度表的键),
+  默认货架会给**除湿机**——正好推荐与建议相反的东西。用 `CONTEXT_MODELS` 覆盖为
+  湿度计 / Verdunster+Hygrostat / 红外测温枪;**实测该页 MeacoDry、Comfee MDDF、Pro Breeze、Trotec 全为 0**,
+  部署自检加了**双向断言**(必须含 "Verdunster mit Hygrostat",且**必须不含** MeacoDry / Comfee MDDF)。
+
+**验证**:13 步 + 11 闸门全绿;Playwright pageerror 0、390px 零横滚、10 条链接 tag 全对、
+三个搜索词全部是加湿侧(hygrometer / luftbefeuchter+verdunster+hygrostat / infrarot+thermometer)。
+
+**判定线 `eco-luftbefeuchter-1220`(2026-12-20,窗口覆盖 12 月峰值)**:
+28 天真人 pv **≥50** 或 affiliate_click **≥5** → 「补齐已验证品类的季节性反面」成立,按同法补加湿侧尺寸页;
+**pv <20 → 推翻「品类对称即机会」这条假设,维持 2 页不再扩。**
+
+**别再提**:matratze / kaffeevollautomat / 任何礼品季大词(niche 外)、saugwischer 及整条 Bodenpflege
+扩张(峰值 3,2 + 56 天 1 pv,已判负)、luftreiniger 当冬季题(峰值在 6 月)、
+rising 污染检测的「最高行离题」修法(已实测误杀好种子)。
+
+## 国别维度:先证伪两个假设,再修一个真缺陷(2026-09-16,owner:「我说了要扩展不同国家的关键产品」)
+
+**上一轮我把「其他热门产品」做成了「德国还有哪些品类」,漏了国别。** 这一轮按国别测,
+结果先推翻了本站关于国际化的两个既有假设。
+
+### 一、`/it/` 意大利语试点:上线至今 0 个真人(D1 一手)
+
+`it_pv_alltime` = **9**,且 **9 条全部 `ua_class='bot'`**(来源 US/SG、零 referrer);
+28/56 天窗口 **human pv = 0、affiliate_click = 0**。11 页、三写手并行 + 中央复校、08-28 上线,
+**没有任何真人看过**。判定线 `eco-it-pilot-1027` 的口径含 Bing 曝光(owner 侧),故**不提前判负**,
+读数已记进台账。**但在 10-27 之前,不得以「多语言有效」为由新建任何语言版本。**
+→ **推论:靠「翻译出一个国家站」来扩国别,在本站已经试过一次,产出是 0。**
+
+### 二、美国是第二大「国家」,但大部分不是人
+
+56 天真人 pv:DE 230 · **US 93** · AT 23 · ES 12 · SG 8 · CH 6 · NL 5 · GB 5 · CA 4 · IT 3 · FR 3。
+**US 的 93 里有 67 落在德语页上**,反常。逐项验:
+`/guide/midea-portasplit-ausverkauft-alternativen.html` 拿到 **23 次 / 跨 22 个不同日期 / 23 条里 22 条无 referrer**,
+且 **10 条集中在 UTC 02 点**——每天一次、固定时辰、无来源,是定时任务不是读者。
+**小时分布对照(56 天)**:DE 峰值在 **UTC 13–15 点**(本地下午,人类曲线);US 峰值在 **UTC 01–04 点**。
+→ **可信的美国读者 ≈ `/en/` 上的 26 pv,不是 93。** 以后引用美国数字一律用 /en/ 口径,
+并且 `eco-us-market-0925` / `eco-us-switch-1005` / `eco-us-shelf-1015` 三条线结算时要按这个口径复核。
+
+### 三、各国的「关键产品」确实不同(5 年,每国用本国语言、本国篮子)
+
+**⚠️ 刻度纪律:每个国家只在自己的篮子内归一化,跨国比较绝对值无效**,只能比**排名与峰值月**。
+工具:`python3 tools/fetch_seasonality.py --countries` → `data/seasonality-by-country.json`。
+
+| 国家 | 领先词(峰值/峰值月) | 第二 | 冬季要点 |
+|---|---|---|---|
+| **IT** | **muffa 31,0 / 1 月** | condizionatore portatile 30,6 / 7 月 | 制冷冬季掉到 **1,0**;**意大利冬天的题是霉** |
+| **ES** | aire acond. portátil 39,6 / 7 月 | **calefactor 34,7 / 11 月** | 取暖几乎与制冷同量级(西班牙少有中央供暖) |
+| **GB** | **dehumidifier 25,5 / 11 月** | **mould 23,8 / 11 月** | 制冷冬季 **0,0**;英国冬天是除湿+霉 |
+| **US** | mold 76,0 / 8 月 | portable AC 24,4 / 6 月 | 冬季是 **space heater(峰值 1 月)** |
+| **FR** | climatiseur mobile 14,1 / 6 月 | 其余全部 ≤1,4 | **整体极弱,不投** |
+| DE | schimmel 18,6 / 1 月 | mobile klimaanlage 12,3 / 6 月 | 与 09-15 的结论一致 |
+
+**共同形状:所有欧洲市场的制冷在冬季归零(0,0–1,3),而霉/除湿/取暖上升。**
+**而 eco 的国别页(italy / spain / france / europe-heatwave)全部是制冷页**——它们将在每个市场休眠半年。
+
+### 四、变现门决定了这轮能动哪个国家
+
+- amazon.**com** `ecoback0d-20` —— **已确权、已在跑**(唯一确认可用的非德市场)。
+- amazon.**co.uk** —— 08-06 已记录:`getecoback-21` 在 .co.uk **不计佣**。英国流量目前**无法变现**。
+- amazon.**it / .es / .fr** —— tracking ID **仍未核实**(08-28 起悬置)。
+  **本轮实查:站内 `.it/.es/.fr` 全部只是正文提及,没有一条链接**——没有错 tag 泄漏,纪律是守住的。
+→ 所以:**英国和意大利的需求虽然更好看,但现在只有美国能赚到钱。**
+
+### 五、修掉的真缺陷:挂着美国货架,却只用平方米说话
+
+`electric-heater-20-sqm.html` 里 **m² 出现 25 次,"sq ft" / "square feet" 出现 0 次**,
+而它**带着 US 货架**(`Recommended in the US`)。即:**唯一有可用 tag 的市场,被推荐美国机器,
+却用美国人不使用的单位描述房间大小**——而 US 的 space heater 峰值正是 **1 月**,缺陷马上就要进旺季。
+
+**修法 `EB_USUNITS`**(13 张 EN qm 梯页:heater 7 + dehumidifier 6):默认 `hidden`,
+由既有的 US swap 脚本对北美读者揭示。内容只含**算术**(20 m² ≈ 215 sq ft)与**换算口径**
+(瓦特全球通用;页上 €/h 按 €0,30/kWh,约为美国民用电价两倍,给出 `瓦特 ÷ 1000 × 你的 ¢/kWh × 小时`)。
+电价**给区间不给单值**:EIA Electric Power Monthly 表 5.3(数据月 2026-06)把月度/年初至今/滚动 12 个月
+排在同一表头下,**指认其中某一个数字等于把猜测包装成引用**,故写「2025–2026 约 17–18 ¢/kWh」并附源链接。
+
+**刻意不动标题与 URL**:`eco-en-qm-bing-1012`(2026-10-12,Bing 收录率,t0=0)正是量这 13 个 URL 的,
+改标题等于毁掉它自己的基线。实测 diff 里 `<title>` 与 `canonical` 零变化。
+
+**闸门**:`check_usshelf.py` 新增三条断言(梯页必须有盒子 / 非梯页不得有 / **必须 hidden**,且盒子里的
+房间尺寸必须等于该页自己的尺寸)。**三种改法逐一实测变红**(改成可见、删掉盒子、把 20 改成 22),
+还原后绿。部署自检同时断言线上「有那句 sq ft」且「仍然 hidden」——
+**可见比缺失更糟:那会让每个德语读者迎面看到 "Reading this in the US?"**。
+Playwright 三时区实测:`Europe/Berlin` 隐藏、`America/New_York` 与 `America/Los_Angeles` 显示,pageerror 0。
+
+**判定线 `eco-us-units-0131`(2027-01-31,窗口覆盖 space heater 的 1 月峰值)**:
+美国 /en/ qm 页真人 pv ≥40/28d **且** us-shelf 点击 ≥3(t0:26 pv / 0 点击)→ 把 sq ft + 本地电价口径推到其余 EN 页;
+**点击仍 0 → 美国面的问题不是单位而是分发,停止投入,EN 区回到只服务 EU-English 读者。**
+
+**别再做**:
+- **不为 GB/IT/ES/FR 建页或建语言版本**,直到 ①/it/ 判定线结算 ②对应市场的 tag 被 owner 确权。
+  英国需求(dehumidifier 25,5 + mould 23,8,双双 11 月见顶)是**全部非德市场里最好的一块**,
+  但 `getecoback-21` 在 .co.uk 不计佣,**建了也收不到钱**——这是 owner 侧一个动作就能解锁的,值得每轮带出。
+- **法国不投**(全部词 ≤14,1 且其余 ≤1,4)。
+- **不要再用 93 这个数字说「美国是第二大市场」**。
+
+## 英国 + 荷兰市场:量完之后都不做,并纠正我自己上一轮的一句错话(2026-09-16,owner:「英国市场拓展」「然后是荷兰市场」「不同市场卖货不同,从亚马逊热点找」)
+
+### 先纠正我上一轮说错的一句
+
+我上一轮写「英国建了也收不到钱」——**不准确**。手册 1529 行早就记清楚了:
+**GB 读者点的是 amazon.de 链接、带 `getecoback-21`,在 .de 成交照样计佣**;
+08-06 记的只是「`getecoback-21` 用在 **.co.uk** 上不计佣」。
+所以英国不是「不可变现」,是「只能走 .de,而英国人脱欧后很少在 .de 下单」。差别很大,别再传错。
+
+### 这件事上一轮已经判过,而且判得对
+
+手册 500 行(更早的会话)已有结论:**GB 19 pv / 8 点击,诚实算术 ≈ 即便变现也只有 ~€1-2/月,
+不值得 owner 为此加入 Amazon UK Associates;不做,数字留档,GB 流量涨 10 倍再议。**
+本轮把窗口从 28 天拉到 **90 天**,结论只会更硬。
+
+### 90 天一手读数(D1,真人)
+
+| 市场 | 90 天真人 pv | 落在哪些页 | 来源 |
+|---|---|---|---|
+| **GB** | **5** | spain ×2、leaking-water、attic-bedroom、europe-heatwave | Bing / DDG |
+| **NL** | **5** | dachfenster ×2、tilt-and-turn ×2、vent-without-window | 站内 / **chatgpt.com** |
+
+**两个市场都是 90 天 5 次浏览 —— 约每 18 天一个人。而且全部是制冷页、全部是夏季内容。**
+(有意思的一条:英国人在读一篇讲**西班牙**的页;荷兰那 2 次来自 ChatGPT,又是 AI 引荐那条线。)
+
+**按本站自己实测的漏斗算(pv→点击 18,9%,€0,10/点击)**:
+- GB = **€0,38/年**;NL = **€0,38/年**。
+- **即便流量涨 10 倍,也各是 €3,83/年。**
+Amazon UK Associates 还有一条:开户后 180 天内无合格销售会被关户——以 5 pv/90d 的量,
+**英国账号大概率在赚到第一分钱之前就被关掉**。→ **两个市场都不做。结论不变,证据更强。**
+
+### 荷兰是新测的,结论是「需求不在本站的品类里」
+
+5 年 `interest_over_time`(每批内部归一化,跨批不可比):
+- 批一:`airco` **17,6**(6 月) ≫ `schimmel` 2,1 · `elektrische kachel` 1,1 · `luchtontvochtiger` **0,6**
+- 批二:`verwarming` **45,2**(11 月) ≫ `ontvochtiger` 3,2 · `vocht in huis` 1,4 · `condens ramen` 1,1
+
+**两条要点**:①荷兰最大的冬季词是 `verwarming`(供暖系统/锅炉/安装),**不是本站卖的便携电器**,
+也不是 Amazon 能变现的形态;②**荷兰的「霉」几乎不是搜索题**(schimmel 2,1 vs airco 17,6),
+与德国正好相反(DE:schimmel 18,6 vs klimaanlage 12,3)。房屋存量更新、保温更好,是合理解释。
+→ **荷兰没有本站服务的那种需求。不是变现问题,是需求问题。**
+
+### 「从亚马逊热点找」——这条路本轮走不通,原因要记死
+
+owner 要求按**亚马逊热销榜**选品(方向是对的:搜索量 ≠ 销量)。实测:
+- `amazon.nl/gp/bestsellers` **robots.txt 未禁**(`/gp/bestsellers` 不在 Disallow 列表),
+  curl 拿到 300 KB **且无验证码** —— 但**商品是 JS 懒加载的**,HTML 里 0 个 ASIN。
+- `amazon.co.uk` 与 `amazon.de` 的同一路径 **返回 3,8 KB 验证码墙**。
+- 想用 Playwright 渲染 → **本会话 Chromium 打不开任何外部 HTTPS**:代理 CA 未进 Chromium 的 NSS 库,
+  `certutil` 不可用、装不上。实测 `example.com` 同样 `ERR_CERT_AUTHORITY_INVALID`,
+  **不是亚马逊的问题,是本会话浏览器的结构性限制**(这也解释了为什么 `browser_smoke.cjs` 只测 localhost)。
+- 退而求其次想用 rising 拿品牌/型号词(最接近「在卖什么」),**related_queries 配额当天已打爆**;
+  库给的建议是「换 referer」——**属绕过,按本站一贯纪律不做**。
+
+**结论:本会话拿不到亚马逊热销数据,而且不要再试这三条路。**
+**真正的正路已经在仓里**:`tools/product_intel/`(PA-API,亚马逊官方商品数据接口,
+可按 BrowseNode 取热销),门在 `vars.PAAPI_ENABLED` + 三个 secret,**现在是关的**。
+它目前**硬编码 `webservices.amazon.de` / `amazon.de`**;要取别国热销榜,既要改 host/region,
+**也要 owner 在对应站点有 Associates 账号**——而这正是上面算术说不值得的那件事。
+
+### 所以本轮不建页,并把话说清楚
+
+按本站铁律(三门里的**变现门**、以及 08-28「稀释不是杠杆」),**英国与荷兰都不建页、不建语言版本、
+不伪造 `.co.uk`/`.nl` 链接**。真正的瓶颈不是国别覆盖,是**全站每天只有约 19 个真人**——
+分给更多国家不会凭空造出人来。/it/ 已经用 11 页 0 真人证过一次。
+
+**什么情况下我会改口(写下来,免得每轮重问)**:
+① GB 或 NL 的 90 天真人 pv 到 **50+**(即今天的 10 倍),或 ②owner 明确说「就算不赚钱也要占住这个市场」,
+或 ③owner 开了对应 Associates 账号并给了 PA-API 凭据。**在此之前,英国那块需求(dehumidifier 25,5 +
+mould 23,8,双双 11 月见顶)只作为「最好的非德市场」留档,不投入。**
+
+## 外链:两个能自己修的缺陷,和一条不需要任何人说「好」的路(2026-09-16,owner:「外链你用其他办法帮我做」)
+
+### 先说清楚这一轮能做什么、不能做什么
+
+按仓库规矩先调了 `linkbuilding` 技能,它把本站判为 **Foundation phase**(域龄 70 天、
+零外链、无品牌信号),推荐的两条是 entity stacking 与 citations/directories ——
+**这两条都要 owner 去注册账号**,正是 owner 让我「用其他办法」绕开的东西。
+所以本轮不写外联话术、不列目录清单,只做**代码能做完的部分**:
+把本站已有的、别人有理由链接的东西,变成机器找得到、并且**转载即产生链接**的形状。
+
+### 缺陷一:本站有一个开放数据集,但对机器不可见
+
+`sizing-data.json` 自 2026-08-31 起 CC BY 4.0 上线、HTTP 200、7 条规则 + 3 条梯子(19 行)。
+实测发现:**全站零 `schema.org/Dataset` 标记,没有落地页,只有 `for-agents.html` 一处链接。**
+Google Dataset Search 是专为数据集建的发现面 —— **自动收录、不要账号、不要外联、不需要任何人批准**,
+而一个裸 JSON 文件在它眼里不存在。对一个 70 天龄零外链的域来说,
+**一条不需要别人说「好」的路比一条要别人点头的路值钱。**
+
+已建 `tools/build_dataset_page.py` → **`/daten.html`**:
+- 完整 `schema.org/Dataset`(name/description/url/license/creator/publisher/distribution/
+  isAccessibleForFree/variableMeasured/dateModified/keywords)。
+- **两种 distribution**:原有 JSON + 新增 **`/sizing-data.csv`**(长格式 24 行,
+  `section,key,m2,value,unit,room,guide`)—— 程序要 JSON,而真会署名的人要的是表格。
+- 「怎么署名」给的是**可直接粘贴的 HTML**(带 `<a href>`),不是纯文本 —— CC BY 的唯一条件是署名,
+  **署名做成链接形状,转载就是外链**。
+- **零联盟链接**(browser 实测 `a[href*=amazon]` = 0)。这一页是可信度资产,不是货架,永远不要往上挂链接。
+  **说准确一点**:页面自身不含任何商店链接,gate 会断言;但全站 chrome 照常注入
+  (`EB_PROFILE` 存房间条 + `EB_USSWITCH`),与 impressum/datenschutz 一视同仁 ——
+  存过房间的回访读者仍可能在这一页顶部看到一条商品条。这是站级留存件,不是这一页的变现,
+  本轮不动它。gate 因此**跳过 `<script>` 只看标记里的链接**:第一版扫原始 HTML 会被
+  USSWITCH 自己的字符串拼接误报,那是假阳性不是发现。
+
+**单一事实源**:页面与 CSV 的每个数字都从 `sizing-data.json` 读。
+排序上有个坑值得记:这一页必须排在 `build_structure.py`(要 nav/footer)和 `build_sitemap.py` 之前,
+而 `sizing-data.json` 是流水线很后面的 `build_agent_md.py` 写的。**解法不是断言而是消除**:
+`build_dataset_page.py` 自己先调 `build_agent_md.build_dataset()` 再读 —— 幂等,后面那次是 no-op,
+于是「改了规则却发了旧数字」这件事在结构上不可能发生,而不是靠 gate 事后抓(靠抓的话,
+改规则的那天部署会红,而那本是一次完全合法的改动)。
+
+### 缺陷二:每一次 widget 嵌入都在白送
+
+`widgets.html` 给出的嵌入片段此前是**裸 `<iframe>`**,而 widget 页自身带 `noindex`,
+里面的链接又在 iframe 内 —— **一次嵌入产生的链接权重正好是零**。本站等于免费送计算器,
+一分钱链接都收不到,而 CC BY 本来就要求署名。
+4 个静态片段 + JS 配置器生成的片段现在都自带宿主页署名行(链到 `/daten.html` + CC BY)。
+
+### 断言的是事故的形状
+
+`tools/check_dataset.py`(已进 gate):Dataset 必填字段、distribution 必须同时有 JSON 与 CSV、
+CSV 必须存在且行数 = 表头 + 非散文规则数 + 梯子行数、不许参差、页面数字不许与数据集漂移、
+5 个嵌入片段都必须带署名链接。**逐条验过能红**:删 CSV、删一行、弄参差、从 schema 里拿掉 CSV、
+删配置器那条链接 —— 五种都红。另外 gate **自己瞎了也会红**(找不到 `code.textContent=` 赋值就报错),
+这一条是上一轮被假通过咬过之后加的。
+部署后自检两条:`/daten.html` 断言的是 **`"@type": "Dataset"` 这个节点**(事故形状是「页面渲染完美但
+不再是数据集」,不是 404);`/sizing-data.csv` 断言 **content-type 含 csv**(schema 里承诺了 text/csv,
+边缘若发成 octet-stream,承诺就是假的,而页面看上去毫无异常)。
+
+### 判定线 `eco-dataset-search-1111`(2026-11-11)
+
+指标:**D1 crawl 表里 googlebot 抓 `/daten.html` 的次数**(该表只记 HTML,所以 .json/.csv 不会进)
++ 该页 28 天真人 pv 与外部 referrer。t0 = 0(页面此前不存在)。
+- **赢**:googlebot 至少抓过 1 次,且出现 ≥1 个非搜索引擎外部 referrer 或 ≥20 真人 pv/28d
+  → 把这个形态复制到舰队第二个有自有数据的站(SR landed-cost 或 agi odds)。
+- **输**:googlebot 从未抓过 → Dataset Search 对 70 天龄零外链域不通,**不是内容问题**;
+  停止再投机器发现面,只维护不扩建。
+
+### 不要再提的(本轮已判)
+
+需要 owner 注册账号的一切外链动作(目录、Wikidata、社媒 entity stacking)——
+不是不对,是**本会话做不了**,列出来只是把活推回给 owner;要做由 owner 直接说。
+PBN / 链接交换 / 群发目录 —— 技能文档里明确列为 Google SpamBrain 打击对象,永不做。
+往 `/daten.html` 挂联盟链接 —— 这页的全部价值来自它不卖东西。
+
+## 英国:改口了,并且说清楚上一轮为什么测错(2026-09-17,owner:「继续扩展品类,重点是英国」)
+
+### 我上一轮的英国结论是用错误的尺子量出来的
+
+昨天我写「GB 90 天 5 pv,€0,38/年,不做」。**数字没错,推论错了。**
+今天把 GB 的 15 条 page_view 逐条拉出来看(D1,90 天):
+**全部 15 条无一例外落在夏季制冷页或首页** —— spain、europe-heatwave、leaking-water、
+attic-bedroom、skylight、tilt-and-turn、italy。6 条来自搜索引擎(DDG 3 / Bing 2 / Yahoo 1)。
+
+而 EN 区 43 个页面里 **25 个是便携空调**。所以昨天那句「英国人不来」的准确说法是:
+**我们只摆了夏季货,而英国的需求在冬季** —— 这不是需求判决,是库存判决。
+**教训(适用于任何市场):用现有库存去量一个市场的胃口,量到的是库存不是市场。**
+
+**口径也要记一笔**:GB 15 = 严格 `ua_class='human'` **5** + `ua_class IS NULL` **10**。
+NULL 是 JS 信标行(跑了 JS,更像真人),昨天报的 5 是严格口径,两个都对,引用时必须说明是哪个。
+
+### 英国的需求形状:唯一一个冬季压过夏季的市场
+
+`fetch_seasonality.py --market GB`(新增,5 年 `interest_over_time`,anchor=`dehumidifier`,
+写 `data/seasonality-gb.json`,13 词 0 失败):
+
+| 词 | peak | 峰值月 | 冬/九月 |
+|---|---|---|---|
+| **dehumidifier** | **53,8** | **11** | 1,79 |
+| **damp** | **31,2** | **11** | 1,12 |
+| condensation | 21,0 | 11 | 1,96 |
+| **electric blanket** | 19,1 | 11 | 1,49 |
+| **heated airer** | 15,5 | **10** | **0,59** |
+| oil filled radiator | 6,4 | 11 | 1,6 |
+| black mould | 4,8 | 11 | 1,82 |
+| drying clothes indoors | **0,1** | 9 | 0,0 |
+
+**四条读法**:①GB 是六国 basket 里**唯一**前两名都在 11 月见顶、且双双压过夏季词的市场
+(DE 的 #2 是 6 月的 mobile klimaanlage);②`heated airer` 峰值在 **10 月**且冬季均值低于九月
+(0,59)—— 这是**赛前采购形状,窗口就是现在**;③`damp`(31,2)远大于 `black mould`(4,8):
+**英国把这件事叫 damp,不叫 mould**,而站内 EN 区 `damp` 进标题的页数 = **0**;
+④`drying clothes indoors` = **0,1**,我原本的假设被自己的数据杀掉 —— 需求在**产品词**
+(heated airer)不在活动词。
+
+**`related_queries`(GB,12 个月)补两条决定性的**:`20l dehumidifier` 居 top
+→ **英国按升数和卧室数买,不按 m²**(站内 EN 六张梯页全是 sqm);rising 里
+`meaco dd8l pro desiccant` 与 `devola 12l compressor` 并列 → **desiccant/compressor 是英国特有的分野**,
+而站内货架 100% 是 compressor。
+
+### 本轮建的三页(EN,全部零商店链接)
+
+1. **`/en/guide/desiccant-vs-compressor-dehumidifier.html`** —— 英国最大品类的买点问题。
+   **物理是算出来的不是断言的**:压缩机靠冷盘凝水,盘必须低于房间露点;10 °C/60% 的露点 = **2,6 °C**,
+   盘要更低 → 实际掉到零下 → 结霜除霜。页面带露点计算器(复用白名单事件 `taupunkt_check`),
+   三档温度给三种结论(实测 20 °C→compressor / 12 °C→borderline / 8 °C→desiccant)。
+2. **`/en/guide/rising-damp-penetrating-damp-or-condensation.html`** —— 英国三种 damp 的分辨表
+   (位置 × 时机 × 外观 × 谁能修)。**诚实路由:三种里只有一种是除湿机能解决的**,
+   另两种明说「买机器没用」。租客一行链到 gov.uk 与 Shelter(两个 URL 均实测 200,不编)。
+3. **`/en/guide/heated-airer-vs-dehumidifier.html`** —— **真正的新品类**,窗口就是现在。
+   杀手级算式:18 °C 的 30 m³ 房间从 55% 起**只能再吸 207 g 水**就饱和 —— 一桶洗衣远超此数,
+   所以**多出来的水必须凝结在最冷的表面上**(窗、外墙)。带容量计算器,浏览器实测与 Python 逐位一致。
+
+### 两个必须记死的工程决定
+
+**① UK 电价不能手写。** 站内成本口径是 €0,30/kWh,英国是 Ofgem 上限、按 p/kWh、**每季度变**。
+新增 `fetch_ofgem_cap.py` → `data/ofgem-cap.json`(实抓:**26,32 p/kWh,1 Oct–31 Dec 2026**,
+上限 £1 723/年,并带 VAT 备注),`build_ukcost.py` 按 `<!--EB_UKCOST:variant-->` 注入表格,
+`check_ukcost.py` 断言页面费率=JSON、周期名出现在页上、**每行金额重算对得上**、
+**且 JSON 里的周期没过期**(过期 = 三个月没人跑 fetcher)。三种红法逐一验过。
+**部署后自检的期望值也从 JSON 读,不写字面量** —— 写字面量就是把同一个过期 bug 搬进 workflow。
+*抓取踩到的坑*:Ofgem 用 `\xa0`/` ` 分隔数字与单位,且不一致(`26.11 pence` 是普通空格、
+`26.32\xa0pence` 不是),第一版只匹配到一列 —— **正是那条「至少两个」断言把它抓出来的**。
+
+**② 三页一律零商店链接,这是编辑决定不是遗漏。** 三个理由,缺一不可:
+(a) `rising-damp…` 首次构建时 `device_of()` 把它归成 **"ac"**(slug 不含任何已知词),
+于是一张讲维多利亚墙体地下水的页上挂了**便携空调货架** —— 与 09-09 `schimmel-` 那次同款误判,
+换了个语言。已在 `device_of()` 加 `damp` / `condensation`;
+(b) desiccant 页的结论是「冷房买 desiccant」,而站内货架 100% 是 compressor ——
+**货架会和文章吵架**;
+(c) `getecoback-21` 在 **.co.uk 不计佣**,而 amazon.de 的家电是 **Schuko 插头**,
+寄到英国对读者本身就是错的。
+→ 三页进 `SKIP_MODELS` + `POPUP_SKIP`,**只内链到已有尺寸页**(那些页照常带 .de 货架,漏斗没断)。
+部署后自检**剥掉 `<script>` 后**断言三页零 `href="…amazon…"`(不剥会被存房间条的字符串拼接误报 5 条,
+与 `check_dataset.py` 同一个坑;负向测试第一次是**空跑**——`build_onpage` 给 h2 加了 id,
+我的锚点没匹配上,第二次换 `</article>` 才真的红)。
+
+### 判定线与 owner 的一个决定
+
+- **`eco-uk-winter-pages-1112`(11-12,覆盖 11 月峰值)**:三页合计 GB 真人 pv ≥25/28d
+  或全站 GB ≥40/28d → 赢则继续扩 `electric blanket`(19,1,本轮没建)与 `oil filled radiator`;
+  输则**英国面只维护不扩建**,并且以后不许再用「换个品类」解释英国零流量。
+- **`eco-uk-associates-decision-1112`**:**现在不建议开 Amazon UK Associates。**
+  开户后 180 天内没有 3 笔合格销售会被关户,今天 GB 是 90 天 15 pv,开了大概率烧掉。
+  **正确时点是内容拿到读数之后**;若 11-12 达线再开,180 天窗口正好覆盖整个英国潮湿季。
+- **没做的**:`electric blanket` / `oil filled radiator` 两个品类本轮有数据但没建页 ——
+  先看三页读数再决定,避免一次铺开四个品类然后全是 0。
+
+## 储能:类目确实大,但峰值在 4 月不是现在(2026-09-17,owner:「近期储能火爆,加大储能品类」+「不能包含ecoflow」+「阳台储能赛道法规立案支持,租户可以在阳台装光伏板,即插即用更符合德语区需求」)
+
+### 第一次把储能放到本站自己的标尺上量
+
+站内有 **12 张** balkonkraftwerk/balkonspeicher 页,而 `seasonality-de.json` 的 30 个词里
+**一个 balkon/speicher/solar 都没有** —— 类目从来没被量过。本轮新增
+`--market DE-STORAGE`(**anchor 仍是 heizlüfter**,所以与站内既有 30 词同标尺可比),
+写 `data/seasonality-de-storage.json`,13 词 0 失败:
+
+| 词 | peak | 峰值月 | 冬/九月 |
+|---|---|---|---|
+| **balkonkraftwerk** | **62,6** | **4** | 0,82 |
+| heizlüfter(锚) | 30,6 | 11 | 0,89 |
+| **anker solix** | 29,9 | 8 | 0,70 |
+| **balkonkraftwerk speicher** | **23,0** | **3** | 0,83 |
+| zendure | 12,3 | 3 | 0,93 |
+| marstek | 10,8 | 8 | 0,71 |
+| balkonkraftwerk anmelden | 7,8 | 4 | 0,75 |
+| stromspeicher | 5,7 | 3 | 0,91 |
+| **balkonkraftwerk mieter** | **0,3** | 4 | 0,51 |
+| **steckersolar** | **0,1** | 4 | — |
+| **balkonspeicher** | **0,0** | 3 | — |
+| **balkonkraftwerk erlaubnis** | **0,0** | 1 | — |
+
+**四条必须记死的读法**:
+1. **owner 的判断被数据支持**:`balkonkraftwerk` **62,6 = 站内锚点的 2 倍**、≈`luftentfeuchter`(32,0)的 2 倍、
+   逼近站内最大词 `schimmel`(68,5)。**这是本站能服务的最大类目之一**,08-26 的「能源板块降级」在
+   类目规模这一点上是判错了。
+2. **但「近期火爆」在季节上不成立**:峰值月是 **4 月**,`win_over_sep` = 0,82,即**冬季低于九月**。
+   所以这轮的正确定位是「**现在建、春天收**」——和英国那轮盯 11 月是同一种打法,方向相反。
+   **报告里不要说「现在是旺季」。**
+3. **`balkonspeicher` = 0,0,而站内有三张页用这个词**(rechner / foerderung / winter-frost)。
+   活的词是 **`balkonkraftwerk speicher`(23,0,3 月峰)**。**下一轮的优化动作已经确定:
+   保持 URL 不变,把这三页的 title/H1/描述改用活词**(改 URL 要做重定向,不值得)。
+4. **租户/法规的词本身几乎没有搜索量**(mieter 0,3、erlaubnis 0,0、steckersolar 0,1)。
+   这**不代表角度错**,代表**需求表达在头部词上**。所以法规内容做成一页是**引用赌注不是搜索赌注**,
+   判定线里已写死这一点,别在结算时改口径。
+
+### 已建:`/guide/balkonkraftwerk-mieter-recht.html`(一手法条,全部实抓)
+
+**零编造在法律题上尤其不能松。三条法条全部当日从 gesetze-im-internet.de 抓原文**(2026-09-17):
+- **§ 554 BGB** 标题现为「Barrierereduzierung, E-Mobilität, Einbruchsschutz und **Steckersolargeräte**」;
+  Abs.1 = 「Der Mieter **kann verlangen**, dass ihm der Vermieter … erlaubt」+ 不可期待时不成立;
+  **Abs.2「Eine zum Nachteil des Mieters abweichende Vereinbarung ist unwirksam」**。
+- **§ 20 Abs. 2 Nr. 5 WEG** 把 Steckersolargeräte 列为特权改造,且「**Über die Durchführung** ist …
+  zu beschließen」→ 共同体决定**怎么装,不再决定能不能装**。
+- **EEG § 8 Abs. 5a**:**2 kW 组件 / 800 VA 逆变器**,「Registrierungspflichten nach der
+  Marktstammdatenregisterverordnung **bleiben unberührt**; zusätzliche gegenüber dem **Netzbetreiber**
+  abzugebende Meldungen … **können nicht verlangt werden**」——**这一句才是「即插即用」的法律含义**。
+**页面的核心区分(市面上大多数文章写错的那一点)**:§554 给的是**请求许可的权利,不是免许可**。
+「还用不用问房东?」答案是**要问**;变的是「不想」不再是理由。不可期待性那条限制与页面同段写明,
+并明说本站不是律师、不做法律咨询。页面带 storage 货架(Zendure / Anker ×2,**无 EcoFlow**),
+这与英国三页不同——德国读者、amazon.de、Schuko 插头、getecoback-21 计佣,货架在这里是对的。
+
+### `不能包含 ecoflow`:veto 此前只挡住了人工货架,没挡住自动面
+
+owner 2026-08-28 已下过这条指令,当时**只在 `build_structure.py` 的人工货架里删了卡片**。
+本轮发现**首页 rising rail 会把任何 Google Trends 查询直接变成带 tag 的 amazon.de 搜索 chip,
+中间没有人**,而 `data/trends-rising.json` 自 09-12 起就存着 `"ecoflow stream 5000" v=8800`
+(balkonkraftwerk 种子下)。它没上线**是运气不是设计**,而「加大储能品类」正好会让这个种子更常浮出。
+- **`tools/brand_veto.txt` 是唯一名单**(加牌子只改这一个文件);rail 过滤它;
+  **`check_brand_veto.py` 扫的是构建产物 `site/`**,不是源码 —— 在一个注入点上执行的禁令,
+  只在没人加第二个注入点之前有效;**断言在输出上,就与它怎么进来的无关**。
+  (`tools/` 里的说明性注释与名单本身不扫,否则 gate 会变成噪音。)
+- **A/B 实测(避免空跑)**:同一份数据、把 veto 清空 → 首页出现 **1 个 ecoflow chip**;
+  veto 装回 → **0**。**是 veto 拦下的,不是 NICHE 正则** —— 注意原始那条 `ecoflow stream 5000`
+  很可能本来就过不了 NICHE,所以我换成 `ecoflow balkonkraftwerk speicher`(储能扩类后完全可能出现的词)
+  才拿到有效证据。**这类测试永远要先证明「不改就会发生」。**
+
+### 判定线
+
+- **`eco-balkon-mieter-recht-1115`**:≥1 次 AI 引荐或 ≥25 真人 pv/28d。**明写是引用赌注不是搜索赌注**
+  (搜索量 0,3),输了则「法规内容以后只作为已有页里的一节,不再单独出页」。
+- **`eco-storage-spring-0415`**:3–4 月峰值窗 storage 簇真人 pv ≥300 且 storage 货架 affiliate_click ≥15。
+  输了就承认 08-26 的降级是对的,储能簇冻结为维护态。
+- **本轮没做**:三张 `balkonspeicher` 页的活词改写(见上第 3 条,下一轮第一件事);
+  Nulleinspeisung / WEG 选型页(等 4 月线的读数再决定,不一次铺开)。
+
+## 乌克兰:三门全不过,把同一份产品知识转到能计佣的市场(2026-09-17,owner:「继续扩张页面,针对乌克兰进行产品的深度调研推荐」)
+
+### 先量,再决定。三个读数,一致地指向不做
+
+1. **UA 流量 = 0**。D1 90 天窗:UA **0 pv**、PL 0、MD 0(对照 DE 467、AT 49、CZ 4)。不是少,是零。
+2. **本站唯一一次加第三语言已经失败过,而且是彻底失败**。`/it/` 90 天:**9 pv,9 条全是 bot,
+   `ua_class='human'` 与 JS 信标 双双为 0** —— 8 个页面,**从上线到今天没有一个真人**。
+   (对照同窗:DE 根目录 1 149 pv / 357 严格真人;/en/ 199 / 80。)
+3. **连「能触达且能计佣」的那一版也没有需求**。新增 `--market DE-UA`(geo=DE,anchor=heizlüfter=30,6):
+   乌克兰语 **обігрівач 0,0 · цвіль 0,0 · осушувач повітря 0,0**;俄语 плесень 1,2 · обогреватель 0,9 ·
+   осушитель воздуха 0,7。**德国境内的乌克兰语需求是字面意义上的 0**,俄语约为德语锚点的 1/30。
+   —— 我本来最看好的角度是「在德乌克兰人:住德国房子、有德国霉菌问题、能在 amazon.de 下单」,
+   **这个角度被自己的数据杀掉了**,记下来免得下次再想一遍。
+
+**再加一条结构性事实**:**Amazon 没有服务乌克兰的商城**,本站唯一的德国 tag 是 amazon.de。
+所以即便有读者也收不到钱 —— 与英国那条(.co.uk 不计佣)同类但更彻底。
+
+**还有一条我要说出来而不是藏着的判断**:给正在经历停电的战区居民写联盟带货推荐,
+即使链路能通,也是一件需要想清楚的事。**但本轮的裁定不建立在这一点上** —— 它建立在
+上面三个读数上:**触达 0、计佣 0、同类先例 0 真人**。三门(数据/需求/变现)一门都不过。
+
+**什么情况下我会改口(写死,免得每轮重问)**:①UA 或 PL 的 90 天真人 pv 到 **50+**;
+②`--market DE-UA` 里任一乌克兰语词升到锚点的 **1/5 以上**(即 ≥6,0);③owner 拿到能覆盖该市场的
+联盟账号。**在此之前不建 `/uk/` 语言版、不建乌克兰产品页。**
+
+### 改为做的:把同一份产品知识指向能计佣的德国停电需求
+
+新增 `--market DE-BLACKOUT`(同锚点):**stromausfall 10,0(1 月峰)**、notvorrat 3,0、
+notstromaggregat 2,4、**powerstation 1,5**、heizen ohne strom 1,0、blackout vorsorge 0,5。
+**诚实定位:真实但小**,约为 `balkonkraftwerk`(62,6)的六分之一,而且 `stromausfall` 主要是
+**信息型查询(我家停电了)而不是购买型**。所以只建一页,不铺簇。
+
+**已建 `/guide/stromausfall-heizen.html`**,它的结论就是「深度产品调研」应有的样子:**大多数人想买的东西做不到他们想要的事。**
+- **决定性算术**:2000 W 暖风机在 1 kWh 上 **30 分钟**;**5,12 kWh(比本站最大的 Balkonspeicher 还大)也只有 154 分钟**;
+  而同一块 1 kWh 带路由器 **4,2 天**、LED **8,3 天**、手机 **67 次**。**倍数 200。**
+  → 电池是买给**信息、照明、冰箱**的,**保暖靠纺织品**。带计算器(浏览器实测与 Python 逐位一致)。
+- **和储能簇扣上的一条硬事实**:**并网逆变器在停电时必须断开**(否则会向有人作业的线路送电),
+  所以**没有明确 Notstrom/Inselbetrieb 功能的阳台储能,在停电时一度电都不给你**。这是买前的选型条件,
+  不是事后能在 App 里找到的开关。
+- **官方来源实抓**(BBK「Vorsorge für den Stromausfall」,2026-09-17):保暖衣物与毯子、集中在一个房间、
+  关门保温、**「Achten Sie jedoch trotzdem darauf, regelmäßig zu lüften!」**;燃气热源须有
+  Sauerstoffmangel- und Zündsicherung,并**推荐 CO 报警器**。
+- **本站能力接上去的地方**:停电时一屋子人 + 关门 + 蜡烛/燃气 + 墙体降温 = 湿度上升撞冷表面 →
+  这正是 BBK 那句「仍要定期通风」的物理原因,链到既有的冬季通风页。
+- **唯一的带货块是 CO 报警器**(BBK 明确推荐、几欧元、是这页上唯一救命的东西),
+  按 EN 50291 描述形态、**不点名型号**(本站不自测)。
+
+### 顺手抓到一个 gate 的真缺陷:「Anzeige」被当成广告标识,但它也是「读数显示」
+
+写 CO 报警器那段时用了「mit Anzeige der ppm-Werte」(带 ppm **显示**)。做负向测试时
+**把真正的广告标识删掉,`check_adlabel` 仍然通过** —— 因为它只是在整块里 substring 找 "Anzeige",
+而这块里恰好有另一个意义完全不同的 "Anzeige"。**在一个满是带显示屏的测量设备的站上,这个洞可以
+在任何一页上静默放过一个没有广告标识的联盟块。**
+**改法**:标识必须出现在**标识位置**(后面跟分隔符 `·` 或直接闭合元素),`LABEL_RE` 取代 substring。
+**先验证再收紧:线上 785 个块在新正则下全部照样通过,零误报**;收紧后负向测试正确变红。
+**通用教训:substring 断言在自然语言里迟早会被同形异义词满足 —— 断言要带位置,不只带词。**
+
+### 判定线
+
+**`eco-stromausfall-0116`**(读数窗覆盖 1 月峰值):真人 pv ≥80/28d 或 CO-Melder 块点击 ≥5。
+赢 → 同形态再做一页;输 → 承认德国停电面需求太薄,此页留作储能簇的安全锚,不再扩。

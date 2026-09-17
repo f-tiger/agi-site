@@ -76,6 +76,20 @@ export default {
       try { const b = await request.json(); if (ALLOWED.has(b.n)) logRow(env, ctx, { name: b.n, label: String(b.l || "").slice(0, 80), path: String(b.p || "").slice(0, 80), ref: (request.headers.get("referer") || "").slice(0, 120), ua_class: "js", country: (request.cf && request.cf.country) || "" }); } catch (e) {}
       return new Response("ok", { headers: { "access-control-allow-origin": "*" } });
     }
+    // 信标真值测试(2026-09-16 补,SR 09-13 同款):CI 先 POST 一条 label=__ci 的事件,再从这里读回来。
+    // 没有这条,「工具一次都没被用过」和「/e → D1 这根管子断了」在读数上一模一样——本站上线以来
+    // 客户端事件恒为 0,必须能证明是前者。只回计数,不回任何行级数据。
+    if (p === "/api/selftest" && request.method === "GET") {
+      const headers = { ...JSONH, "cache-control": "no-store" };
+      const label = (url.searchParams.get("label") || "").slice(0, 40);
+      // 只认 __ 开头的自检标签:这个端点是 CI 探针,不是给外人读站内统计的窗口。
+      if (!label || !label.startsWith("__") || !env.EV) return new Response(JSON.stringify({ ok: false, error: "ci label required" }), { status: 400, headers });
+      try {
+        await ensureSchema(env.EV);
+        const r = await env.EV.prepare("SELECT COUNT(*) n FROM fev WHERE label = ? AND day >= date('now','-2 days')").bind(label).first();
+        return new Response(JSON.stringify({ ok: true, label, n: (r && r.n) | 0 }), { headers });
+      } catch (e) { return new Response(JSON.stringify({ ok: false, error: "query_failed" }), { status: 500, headers }); }
+    }
     if (p === "/api/pulse" && request.method === "GET") {
       const headers = { ...JSONH, "cache-control": "public, max-age=3600" };
       if (!env.EV) return new Response(JSON.stringify({ ok: false, error: "no_db" }), { status: 503, headers });

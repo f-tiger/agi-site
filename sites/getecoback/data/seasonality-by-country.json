@@ -1,0 +1,188 @@
+{
+ "fetched": "2026-09-16",
+ "timeframe": "today 5-y",
+ "scale_note": "Each country is normalised against its OWN basket, in its own language. Compare rank and peak month across countries; never compare levels between countries.",
+ "countries": {
+  "DE": [
+   {
+    "term": "schimmel",
+    "peak": 18.6,
+    "peak_month": 1,
+    "sep": 12.3,
+    "winter_mean": 17.2
+   },
+   {
+    "term": "mobile klimaanlage",
+    "peak": 12.3,
+    "peak_month": 6,
+    "sep": 0.3,
+    "winter_mean": 0.0
+   },
+   {
+    "term": "luftentfeuchter",
+    "peak": 5.0,
+    "peak_month": 11,
+    "sep": 3.1,
+    "winter_mean": 3.6
+   },
+   {
+    "term": "heizlüfter",
+    "peak": 4.2,
+    "peak_month": 11,
+    "sep": 3.6,
+    "winter_mean": 3.1
+   }
+  ],
+  "IT": [
+   {
+    "term": "muffa",
+    "peak": 31.0,
+    "peak_month": 1,
+    "sep": 14.3,
+    "winter_mean": 26.1
+   },
+   {
+    "term": "condizionatore portatile",
+    "peak": 30.6,
+    "peak_month": 7,
+    "sep": 1.5,
+    "winter_mean": 1.0
+   },
+   {
+    "term": "deumidificatore",
+    "peak": 22.6,
+    "peak_month": 7,
+    "sep": 6.6,
+    "winter_mean": 12.9
+   },
+   {
+    "term": "stufa elettrica",
+    "peak": 6.0,
+    "peak_month": 11,
+    "sep": 1.8,
+    "winter_mean": 4.0
+   }
+  ],
+  "ES": [
+   {
+    "term": "aire acondicionado portatil",
+    "peak": 39.6,
+    "peak_month": 7,
+    "sep": 2.5,
+    "winter_mean": 1.3
+   },
+   {
+    "term": "calefactor",
+    "peak": 34.7,
+    "peak_month": 11,
+    "sep": 6.3,
+    "winter_mean": 25.4
+   },
+   {
+    "term": "deshumidificador",
+    "peak": 18.2,
+    "peak_month": 12,
+    "sep": 6.0,
+    "winter_mean": 15.8
+   },
+   {
+    "term": "humedad pared",
+    "peak": 3.3,
+    "peak_month": 1,
+    "sep": 1.6,
+    "winter_mean": 2.7
+   }
+  ],
+  "FR": [
+   {
+    "term": "climatiseur mobile",
+    "peak": 14.1,
+    "peak_month": 6,
+    "sep": 0.3,
+    "winter_mean": 0.0
+   },
+   {
+    "term": "chauffage d'appoint",
+    "peak": 1.4,
+    "peak_month": 11,
+    "sep": 0.9,
+    "winter_mean": 0.9
+   },
+   {
+    "term": "deshumidificateur",
+    "peak": 1.3,
+    "peak_month": 11,
+    "sep": 0.8,
+    "winter_mean": 0.9
+   },
+   {
+    "term": "moisissure mur",
+    "peak": 0.1,
+    "peak_month": 11,
+    "sep": 0.0,
+    "winter_mean": 0.0
+   }
+  ],
+  "GB": [
+   {
+    "term": "dehumidifier",
+    "peak": 25.5,
+    "peak_month": 11,
+    "sep": 9.2,
+    "winter_mean": 16.4
+   },
+   {
+    "term": "mould",
+    "peak": 23.8,
+    "peak_month": 11,
+    "sep": 14.0,
+    "winter_mean": 20.5
+   },
+   {
+    "term": "portable air conditioner",
+    "peak": 11.2,
+    "peak_month": 6,
+    "sep": 0.5,
+    "winter_mean": 0.0
+   },
+   {
+    "term": "electric heater",
+    "peak": 7.4,
+    "peak_month": 11,
+    "sep": 4.0,
+    "winter_mean": 5.7
+   }
+  ],
+  "US": [
+   {
+    "term": "mold",
+    "peak": 76.0,
+    "peak_month": 8,
+    "sep": 66.6,
+    "winter_mean": 59.6
+   },
+   {
+    "term": "portable air conditioner",
+    "peak": 24.4,
+    "peak_month": 6,
+    "sep": 5.0,
+    "winter_mean": 1.2
+   },
+   {
+    "term": "dehumidifier",
+    "peak": 16.9,
+    "peak_month": 6,
+    "sep": 9.6,
+    "winter_mean": 6.6
+   },
+   {
+    "term": "space heater",
+    "peak": 12.1,
+    "peak_month": 1,
+    "sep": 2.2,
+    "winter_mean": 9.3
+   }
+  ]
+ },
+ "errors": []
+}

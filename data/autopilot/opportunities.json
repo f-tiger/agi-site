@@ -1,6 +1,6 @@
 {
- "generated": "2026-09-15",
- "radar_fetched": "2026-09-15",
+ "generated": "2026-09-17",
+ "radar_fetched": "2026-09-17",
  "reddit_sources_ok": {
   "reddit_requests": false,
   "reddit_wish": false,
@@ -13,54 +13,24 @@
  },
  "note": "Derived facts only: no Reddit post text, bodies or permalinks are stored here or published. Themes are normalised request titles used as matching keys; demand = Google Trends rising; supply = PH/HN public feeds.",
  "counts": {
-  "candidates": 9,
+  "candidates": 5,
   "demand_confirmed": 0,
   "recurring": 0,
-  "scout": 9,
-  "supplied": 0
+  "scout": 5,
+  "supplied": 2
  },
  "opportunities": [
   {
-   "theme": "does anyone know youtube s pre 2006 s des key",
+   "theme": "day 13 three production applications on aws down",
    "site": "",
    "kind": "request-board",
    "subreddit": "ask_hn",
    "days_seen": [
-    "2026-09-08"
+    "2026-09-15"
    ],
    "state": "scout",
    "supplied": false,
-   "score": 2.5,
-   "demand": [],
-   "supply": [],
-   "fleet_pages": []
-  },
-  {
-   "theme": "is there anything worth developing with ai",
-   "site": "",
-   "kind": "request-board",
-   "subreddit": "ask_hn",
-   "days_seen": [
-    "2026-09-08"
-   ],
-   "state": "scout",
-   "supplied": false,
-   "score": 2.34,
-   "demand": [],
-   "supply": [],
-   "fleet_pages": []
-  },
-  {
-   "theme": "is there a way to do gpl anymore",
-   "site": "",
-   "kind": "request-board",
-   "subreddit": "ask_hn",
-   "days_seen": [
-    "2026-09-08"
-   ],
-   "state": "scout",
-   "supplied": false,
-   "score": 2.33,
+   "score": 2.23,
    "demand": [],
    "supply": [],
    "fleet_pages": []
@@ -81,51 +51,6 @@
    "fleet_pages": []
   },
   {
-   "theme": "is there a need for a new kind of antivirus or security application",
-   "site": "",
-   "kind": "request-board",
-   "subreddit": "ask_hn",
-   "days_seen": [
-    "2026-09-10"
-   ],
-   "state": "scout",
-   "supplied": false,
-   "score": 2.11,
-   "demand": [],
-   "supply": [],
-   "fleet_pages": []
-  },
-  {
-   "theme": "does each frontier model have its own unique taste",
-   "site": "",
-   "kind": "request-board",
-   "subreddit": "ask_hn",
-   "days_seen": [
-    "2026-09-12"
-   ],
-   "state": "scout",
-   "supplied": false,
-   "score": 2.04,
-   "demand": [],
-   "supply": [],
-   "fleet_pages": []
-  },
-  {
-   "theme": "extension for coloring fixed width files",
-   "site": "",
-   "kind": "request-board",
-   "subreddit": "softwarerecs",
-   "days_seen": [
-    "2026-09-08"
-   ],
-   "state": "scout",
-   "supplied": false,
-   "score": 2.02,
-   "demand": [],
-   "supply": [],
-   "fleet_pages": []
-  },
-  {
    "theme": "pdf printer on windows non agpl licensed",
    "site": "",
    "kind": "request-board",
@@ -141,6 +66,31 @@
    "fleet_pages": []
   },
   {
+   "theme": "does each frontier model have its own unique taste",
+   "site": "",
+   "kind": "request-board",
+   "subreddit": "ask_hn",
+   "days_seen": [
+    "2026-09-12"
+   ],
+   "state": "scout",
+   "supplied": true,
+   "score": 1.04,
+   "demand": [],
+   "supply": [
+    {
+     "title": "Show HN: OpenDocBot – bring your own model to Word, Excel and PowerPoint",
+     "url": "https://opendocbot.com/",
+     "src": "hn_show",
+     "shared": [
+      "model",
+      "own"
+     ]
+    }
+   ],
+   "fleet_pages": []
+  },
+  {
    "theme": "cli tool to interactively fill a json yaml schema and produce a project local to",
    "site": "",
    "kind": "request-board",
@@ -149,10 +99,20 @@
     "2026-09-10"
    ],
    "state": "scout",
-   "supplied": false,
-   "score": 2.0,
+   "supplied": true,
+   "score": 1.0,
    "demand": [],
-   "supply": [],
+   "supply": [
+    {
+     "title": "Show HN: Thurbox – A tmux-based TUI and CLI for local AI agent orchestration",
+     "url": "https://github.com/Thurbeen/thurbox",
+     "src": "hn_show",
+     "shared": [
+      "cli",
+      "local"
+     ]
+    }
+   ],
    "fleet_pages": []
   }
  ]
