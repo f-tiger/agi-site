@@ -863,11 +863,11 @@
    "id": "eco-traffic-double-1112",
    "site": "getecoback",
    "due": "2026-11-12",
-   "metric": "eco 28 天真人 pv(ua_class IS NULL OR 'human');并同时记录来源拆分与触达页数,用于归因",
-   "threshold": "≥1026 真人 pv/28d(= t0 的 2 倍)",
+   "metric": "eco 28 天 human_pv,**读数一律取 https://getecoback.com/api/pulse**(`python3 sites/getecoback/tools/traffic_check.py` 一条命令出结果);并同时记录来源拆分与触达页数用于归因",
+   "threshold": "/api/pulse 的 human_pv ≥1032/28d(= t0 516 的 2 倍)",
    "win": "「横向内链 + 季节权重」值得继续投,把同形态移植到 bpj/SR",
    "lose": "未翻倍 → 记录实际增幅与来源拆分;若增幅几乎全来自 bing_family 的季节性上升,则判定内链层无独立贡献,停止在内链上继续投入",
-   "source": "t0 = **2026-09-17 实测**:真人 pv **513**/28d,其中 Bing 家族(DDG 112 + Bing 67 + Ecosia 20 + Yahoo 17 + Qwant 3 + Startpage 2)= **221**、**Google = 0**、AI(ChatGPT 14 + Perplexity 7)= **21**、直接/无来源 193、站内 78;触达页数 **110**。结构事实:googlebot 28 天抓 **207 个不同页面**(几乎全站)却零引荐 —— Google 是排不上不是抓不到;bingbot 只抓到 **134** 页。",
+   "source": "t0 = **2026-09-17 实测**:真人 pv **513**/28d(D1 直查),其中 Bing 家族(DDG 112 + Bing 67 + Ecosia 20 + Yahoo 17 + Qwant 3 + Startpage 2)= **221**、**Google = 0**、AI(ChatGPT 14 + Perplexity 7)= **21**、直接/无来源 193、站内 78;触达页数 **110**。结构事实:googlebot 28 天抓 **207 个不同页面**(几乎全站)却零引荐 —— Google 是排不上不是抓不到;bingbot 只抓到 **134** 页。 **口径统一(同日补记)**:判定一律用 `/api/pulse` 的 `human_pv`,t0=**516**(同日同窗,与 D1 直查的 513 差 3 是取数时刻不同,定义相同:`ua_class IS NULL OR 'human'`)。**两次读数必须来自同一个仪器**,否则就是我自己在判定线里制造的尺子漂移 —— 基线已写入 `sites/getecoback/data/traffic-baseline.json`。",
    "status": "open"
   },
   {
@@ -886,7 +886,7 @@
    "site": "getecoback",
    "due": "2026-11-12",
    "metric": "eco AI 引荐真人 pv/28d(ChatGPT+Perplexity+Claude),以及 chatgpt-user 抓取里落在非首页的比例",
-   "threshold": "AI 引荐 ≥42/28d(t0=21 的 2 倍),或 chatgpt-user 抓取中非首页占比从 17% 升到 ≥35%",
+   "threshold": "/api/pulse 的 ai_ref ≥42/28d(t0=21),或 chatgpt-user 抓取中非首页占比从 17% 升到 ≥35%",
    "win": "「给最大的 AI 面一张数据表」有效 → 把同形态加到四个分类页(它们同样是入链最多、结构化事实最少的页)",
    "lose": "AI 引荐不动 → 首页表格不是杠杆,GEO 回到只维护 llms.txt/MCP,不再为引用改版面",
    "source": "2026-09-17 D1:28 天 chatgpt-user 抓取 190 次,其中 **157 次(83%)落在首页**,单篇指南只有 1–5 次;首页此前**没有任何 table**,而 house skill(citation-growth)把表格列为引用磁石。已建 `build_home_table.py`:7 个房型 × 冷/湿/热三列,全部从 `sizing-data.json` 生成(不可手写、不会漂移),并顺带给首页加了 19 条指向冬季梯页的内链。",
