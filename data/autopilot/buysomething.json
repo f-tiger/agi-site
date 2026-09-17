@@ -1,7 +1,12 @@
 {
  "dropped_last_run": [],
- "generated": "2026-09-16",
+ "generated": "2026-09-17",
  "pages": {
+  "import-rule-changes.html": {
+   "changed": "2026-09-16",
+   "h": "db21fdd772d0718e",
+   "origin": "bootstrap"
+  },
   "index.html": {
    "changed": "2026-09-14",
    "h": "02725dfedafa0634",
@@ -13,9 +18,14 @@
    "origin": "bootstrap"
   },
   "landed-cost.html": {
-   "changed": "2026-09-14",
-   "h": "00bc6d75af697118",
+   "changed": "2026-09-17",
+   "h": "a9267ef3693d7525",
    "origin": "observed"
+  },
+  "mcp.html": {
+   "changed": "2026-09-16",
+   "h": "99b1ac95ff2577da",
+   "origin": "bootstrap"
   },
   "packs.html": {
    "changed": "2026-09-13",
