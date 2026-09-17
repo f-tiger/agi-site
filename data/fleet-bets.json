@@ -880,6 +880,17 @@
    "lose": "有流量页数不动 → 内链不是本站的瓶颈,承认瓶颈是域权威,回到只维护",
    "source": "2026-09-17:196 张 guide 页新增 617 条横向内链(此前拓扑是 4 个分类页的星形)。schimmel-am-fenster 的入链页 2→10,luftentfeuchter-ratgeber 2→21,mobile-klimaanlage-ueberwintern(全站搜索第一页)4→8。**重要更正:本轮最初报告的「12 个孤儿页」是我自己分析脚本的正则只匹配相对路径造成的假象,真实孤儿数是 0** —— 分类页用绝对 URL 链接全部 142 篇。",
    "status": "open"
+  },
+  {
+   "id": "eco-home-table-geo-1112",
+   "site": "getecoback",
+   "due": "2026-11-12",
+   "metric": "eco AI 引荐真人 pv/28d(ChatGPT+Perplexity+Claude),以及 chatgpt-user 抓取里落在非首页的比例",
+   "threshold": "AI 引荐 ≥42/28d(t0=21 的 2 倍),或 chatgpt-user 抓取中非首页占比从 17% 升到 ≥35%",
+   "win": "「给最大的 AI 面一张数据表」有效 → 把同形态加到四个分类页(它们同样是入链最多、结构化事实最少的页)",
+   "lose": "AI 引荐不动 → 首页表格不是杠杆,GEO 回到只维护 llms.txt/MCP,不再为引用改版面",
+   "source": "2026-09-17 D1:28 天 chatgpt-user 抓取 190 次,其中 **157 次(83%)落在首页**,单篇指南只有 1–5 次;首页此前**没有任何 table**,而 house skill(citation-growth)把表格列为引用磁石。已建 `build_home_table.py`:7 个房型 × 冷/湿/热三列,全部从 `sizing-data.json` 生成(不可手写、不会漂移),并顺带给首页加了 19 条指向冬季梯页的内链。",
+   "status": "open"
   }
  ]
 }

@@ -103,6 +103,9 @@ jobs:
       - name: Rebuild the open-dataset landing page (refreshes sizing-data.json first)
         run: python3 tools/build_dataset_page.py
 
+      - name: Homepage sizing table from the open dataset (idempotent)
+        run: python3 tools/build_home_table.py
+
       - name: Inject site chrome (nav/footer/radar; idempotent, covers new pages)
         run: python3 tools/build_structure.py
 
