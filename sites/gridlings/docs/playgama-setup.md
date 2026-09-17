@@ -724,3 +724,48 @@ DESKTOP+IOS+ANDROID、横竖屏都支持、`link` 指向 `play.agiscorecard.com/
 **一个必须说的缺口**：GHOSTLINE + SINGULARITY 占了 146 次玩家开局里的 **117 次**，
 而它们至今只记得到 `play_start` —— 因为 09-16 那个白名单修复**还在分支上没合并，没部署**。
 合并才能在剩下五天里拿到这两款的互动数据。
+
+### 十九、Playgama 把投放改成了「先发帖、再投流」（2026-09-17 实测，会话按不了这个按钮了）
+
+试图给 MINIMA 开一轮免费投放时被服务端挡下，两次报错逐字如下：
+
+```
+Invalid arguments for tool start_sandbox_traffic: expected array, received undefined at postUrls
+Invalid arguments for tool start_sandbox_traffic: Too small: expected array to have >=1 items at postUrls
+```
+
+**`start_sandbox_traffic` 现在必须带 `postUrls`，且至少一条。** 配套出现了三个新 MCP 工具
+（`get_launch_steps` / `get_sandbox_share` / `get_bridge_sdk_docs`），其中 `get_launch_steps`
+把开发者路径写成顺序七步：**archive → bridge → covers → form → sandbox → share → traffic**。
+**share 排在 traffic 前面**，不是可选装饰。
+
+`get_sandbox_share` 给的是「已经写好的帖子 + 五个网络的分享链接」，MINIMA 那条原文：
+
+> "Made with AI. Brought to you by #PlaygamaMCP. Fine-tuned by me. MINIMA → https://playgama.ai/play/fs6f523iyl"
+
+x / threads / facebook / linkedin / reddit（r/playgamabridge）各一条预填链接。
+
+**所以现在的机制是：owner 真的把游戏发到社交网络 → 把那些帖子的 URL 交回来 →
+投放去放大这些帖子。** 会话发不了帖，**更不许编一个 post URL 去凑参数**——
+那是把一个不可撤销的花钱动作建立在假数据上。**这一步从今天起是 owner-only。**
+
+**同时套餐变了，而且变好了**：`offer` 从 $2/7 天变成 **FREE · $5 · 3 天 · ~100 gameplays**，
+**`remainingFreeRuns: 3`**，四款的 `ORG_LIMIT` 全部解除（`verdict.allowed: true`）。
+
+**给 owner 的两组链接（已取到的两款，其余两款取的时候被本地权限分类器挡了，下次会话可补）**
+
+- **MINIMA** `https://playgama.ai/play/fs6f523iyl`
+  · X：`https://x.com/intent/post?text=Made+with+AI.+Brought+to+you+by+%23PlaygamaMCP.+Fine-tuned+by+me.+MINIMA+%E2%86%92+https%3A%2F%2Fplaygama.ai%2Fplay%2Ffs6f523iyl`
+  · Reddit：`https://www.reddit.com/r/playgamabridge/submit?url=https%3A%2F%2Fplaygama.ai%2Fplay%2Ffs6f523iyl&title=Made+with+AI.+Brought+to+you+by+%23PlaygamaMCP.+Fine-tuned+by+me.+MINIMA`
+- **OVERFIT** `https://playgama.ai/play/gdzylsey5i`
+  · X：`https://x.com/intent/post?text=Made+with+AI.+Brought+to+you+by+%23PlaygamaMCP.+Fine-tuned+by+me.+OVERFIT+%E2%86%92+https%3A%2F%2Fplaygama.ai%2Fplay%2Fgdzylsey5i`
+  · Reddit：`https://www.reddit.com/r/playgamabridge/submit?url=https%3A%2F%2Fplaygama.ai%2Fplay%2Fgdzylsey5i&title=Made+with+AI.+Brought+to+you+by+%23PlaygamaMCP.+Fine-tuned+by+me.+OVERFIT`
+
+**发的时候改几个词。** 五个网络贴同一段预填文案是最容易被判自动化的形态（手册里那条反 AI 味
+规则同样适用）。这段是 Playgama 自己的模板、带他们的 tag，不存在冒充自然口碑的问题，
+但原样五连发仍然难看。
+
+**为什么只开一轮而不是三轮（决策留痕）**：现有三轮在 85% 预算没花完的情况下第三天就断流了。
+在弄清断流原因之前把三个免费名额一次性投进同一条管道，是拿全部筹码赌一个已知异常。
+**先开一轮、看它到底出不出量，再决定后两轮。** 候选顺序按现有证据：
+MINIMA（2 次开局 → 7 次 game_over，比值最高）→ OVERFIT（6 次开局、有二次事件）→ 其余。
