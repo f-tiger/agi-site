@@ -207,7 +207,13 @@ jobs:
           if [ "$ok" = "1" ]; then echo "OK    beacon /e → D1 → /api/selftest (n=$n)"
           else echo "::error::beacon truth test failed — /e events do not reach D1 (56 days of zero interactions may be a broken pipe, not absent readers)"; fail=1; fi
           # 3b-bis) MCP 机器面(2026-09-16):协议活着 + 零编造 + 零联盟链接,三条都要能红。
-          check_json /api/mcp 'len(j.get("tools", [])) == 5 and "/api/mcp" in j["protocol"]["streamable_http"]'
+          # 工具清单不写死数字(2026-09-17 教训:写死 5 之后加到 8,自检红的是它自己的陈旧断言)。
+          # 改为断言**线上 == 仓里**——这才是真正要防的事故形状:worker 没更新/发歪了。
+          exp=$(node -e "import('./sites/buysomething/mcp.js').then(m=>console.log(m.MCP_TOOLS.map(t=>t.name).sort().join(',')))")
+          got=$(curl -s --max-time 20 -A "$UA" "$BASE/api/mcp" | python3 -c "import json,sys; print(','.join(sorted(t['name'] for t in json.load(sys.stdin)['tools'])))" 2>/dev/null || echo PARSE_FAILED)
+          if [ -n "$exp" ] && [ "$exp" = "$got" ]; then echo "OK    /api/mcp 工具清单与仓库一致($(echo "$got" | tr ',' '\n' | wc -l) 个)"
+          else echo "::error::/api/mcp 与仓库不一致 — repo=[$exp] live=[$got]"; fail=1; fi
+          check_json /api/mcp '"/api/mcp" in j["protocol"]["streamable_http"] and len(j.get("resources", [])) >= 1'
           check_json '/api/mcp/duty_stack_rules?part=fees' 'j["fees"]["mpf"]["rate_pct"] == 0.3464 and "rules" not in j'
           check_json '/api/mcp/section_301_ladder?rate_pct=100' 'j["count"] >= 1 and all(r["additional_rate_pct"] == 100 for r in j["ladder"]) and "does not assert membership" in j["coverage_disclaimer"]'
           check_json '/api/mcp/import_rule_changes?matched_in=title_or_abstract&limit=3' 'j["count"] >= 1 and all("federalregister.gov" in c["url"] for c in j["changes"]) and "antidumping" in j["out_of_scope"]'
