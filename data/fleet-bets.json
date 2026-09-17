@@ -24,7 +24,9 @@
    "win": "做成月更小节",
    "lose": "并入 developers 页",
    "source": "sites/baipiaoji/CLAUDE.md:49",
-   "status": "open"
+   "status": "lost",
+   "settled": "2026-09-17",
+   "reading": "2026-09-17 现查 baipiaoji-hits(提前一天结算):`does-llms-txt-actually-work` 自 2026-08-21 上线 27 天,**在 hits 表里一行都没有** —— JS pv **0**、AI 引荐 **0**,两个阈值都没碰到。**不是测不到**:同 28 天窗该表记录 5 063 行、843 个不同 path,`/llms.txt` 自己就有 145 行;仪器正常,这一页是真的没有读者。→ 按预登记的 lose 分支:**并入 developers 页**,不再单独维护。"
   },
   {
    "id": "bpj-freetier-cut-0918",
@@ -35,7 +37,9 @@
    "win": "扩 OpenAI/Anthropic/DeepSeek 同构系列",
    "lose": "随巡检自动更新,不再投人工",
    "source": "sites/baipiaoji/CLAUDE.md:44",
-   "status": "open"
+   "status": "lost",
+   "settled": "2026-09-17",
+   "reading": "2026-09-17 现查(提前一天结算):`how-much-has-gemini-free-tier-been-cut` 自 2026-08-21 上线 27 天,**hits 表零行** —— JS pv **0**、AI 引荐 **0**;`watches` 表 **0 个钩子**。三个条件全不满足。→ 按预登记的 lose 分支:**该页随巡检自动更新,不再投人工**;**不扩** OpenAI/Anthropic/DeepSeek 同构系列(win 分支不成立,别再提)。"
   },
   {
    "id": "eco-googlebot-0918",
