@@ -57,7 +57,20 @@ function carMesh(col, ghost) {
   return g;
 }
 export function makeScene(canvas) {
-  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: "high-performance" });
+  /* Is there a GPU behind this context at all? A headless reviewer box, a locked-down
+     office machine and a cheap phone all fall back to a software rasterizer, where
+     multisampling is priced per pixel per sample and costs whole frames. The only way
+     to know is to ask a context, so ask a throwaway 1x1 one before building the real
+     renderer — antialias cannot be turned off after creation. */
+  const soft = (() => {
+    try {
+      const g = document.createElement("canvas").getContext("webgl");
+      const ext = g && g.getExtension("WEBGL_debug_renderer_info");
+      const name = ext ? String(g.getParameter(ext.UNMASKED_RENDERER_WEBGL) || "") : "";
+      return /swiftshader|llvmpipe|softpipe|software|microsoft basic/i.test(name);
+    } catch (e) { return false; }
+  })();
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: !soft, powerPreference: "high-performance" });
   renderer.setClearColor(SKY, 1); renderer.shadowMap.enabled = false;   /* contact-shadow decals instead: a depth pass blurs out under software WebGL and costs real frames on phones */
   renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.05;
   const scene = new THREE.Scene(); scene.fog = new THREE.Fog(0xa9dcff, 140, 520);
@@ -208,14 +221,28 @@ export function makeScene(canvas) {
   }
   function setCar(colorHex) { car.userData.bodyMat.color.setHex(colorHex); }
   function resize() {
-    const W = canvas.clientWidth || 300, H = canvas.clientHeight || 300, dpr = Math.min(window.devicePixelRatio || 1, W < 640 ? 1.5 : 2);
+    const W = canvas.clientWidth || 300, H = canvas.clientHeight || 300;
+    /* honour low mode here too: resize used to recompute the ratio from scratch, so any
+       orientation change handed a struggling device its full pixel count back.
+       Low mode caps the BACKING STORE, not just the ratio: without a GPU this game is
+       fill-rate bound, so halving the width is worth four times more than any change to
+       the scene. CSS still stretches it to the full canvas, so the layout is unchanged. */
+    const dpr = low ? Math.min(1, 640 / Math.max(1, W)) : Math.min(window.devicePixelRatio || 1, W < 640 ? 1.5 : 2);
     renderer.setPixelRatio(dpr); renderer.setSize(W, H, false); cam.aspect = W / H; cam.updateProjectionMatrix(); st.W = W; st.H = H;
   }
-  window.__dbg = { scene, car, sun, trackGroup }; let smokeAcc = 0, slowT = 0, low = false;
+  /* start low when there is no GPU rather than discovering it three seconds in */
+  window.__dbg = { scene, car, sun, trackGroup }; let smokeAcc = 0, slowT = 0, aliveT = 0, low = soft;
   function tick(dt, me, gh, pb, opts) {
     if (!T) return;
     /* a device that cannot hold the frame gets a lower pixel ratio, not a slideshow */
-    if (dt > 0.045) { slowT += dt; if (slowT > 3 && !low) { low = true; renderer.setPixelRatio(1); renderer.setSize(st.W, st.H, false); } } else slowT = Math.max(0, slowT - dt * 0.5);
+    /* 0.6s, not 3s: three seconds of slideshow is most of a first impression, and all of
+       the window a portal's archive analysis watches before it records a loading time.
+       The first 1.5s are exempt, because three compiles a shader the first time each
+       material is drawn — those frames are slow on hardware that is in fact fine, and
+       latching a good GPU into 640px over its warmup would be a worse bug than the one
+       this fixes. A machine with no GPU never waits for this: `soft` starts it low. */
+    aliveT += dt;
+    if (aliveT > 1.5 && dt > 0.045) { slowT += dt; if (slowT > 0.6 && !low) { low = true; resize(); } } else slowT = Math.max(0, slowT - dt * 0.5);
     placeCar(car, me, T); ghost.visible = !!gh && !gh.done; if (gh) placeCar(ghost, gh, T);
     pbGhost.visible = !!pb && !pb.done; if (pb) placeCar(pbGhost, pb, T);
     /* chase camera: behind and above, lagging a little, FOV opens with speed */

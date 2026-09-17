@@ -1,6 +1,6 @@
 {
   "note": "舰队赌注台账:每条预登记判定线一行;status open→won/lost/insufficient/withdrawn 时必须写 settled(日期)与 reading(读数)。tools/fleet/check_bets.py 在 heartbeat 里断言:到期 3 天内提醒,过期 >7 天未结算即红。新增判定线不进这里 = heartbeat 看不见 = 等于没预登记。",
-  "updated": "2026-09-15",
+  "updated": "2026-09-16",
   "bets": [
     {
       "id": "fleet-ai-access-0916",
@@ -542,6 +542,56 @@
       "lose": "未进前 1/3 下季不续",
       "source": "CLAUDE.md:营收突破线 判定线",
       "status": "open"
+    },
+    {
+      "id": "gridlings-playgama-traffic-0922",
+      "site": "gridlings",
+      "due": "2026-09-22",
+      "metric": "① D1: ts>='2026-09-15 14:53' AND ref LIKE '%games.playgama.net%' AND country<>'US' 的 play_start 累计;② Playgama 后台 Overview 的 VISITS / PLAYS 60S(只有 owner 能读,报告时须附截图日期)",
+      "threshold": "① ≥150 ② PLAYS 60S ÷ VISITS ≥15%",
+      "win": "拿这批 performance data 回投主目录(重交 GHOSTLINE+SINGULARITY),并把 $20 付费轮作为 owner 决策提出",
+      "lose": "门户线判负:游戏降为只维护,不买付费流量,人力回自有域留存",
+      "source": "sites/gridlings/docs/playgama-setup.md(2026-09-15 节)",
+      "status": "open",
+      "metric_original": "D1 gridlings-events: ts>='2026-09-15 14:53' AND ref LIKE '%games.playgama.net%' AND country<>'US' 的 play_start 累计 / 二次事件(solve+play_again+game_over+hint_used)。剔 US 因为会话探针从 US 出网,口径保守",
+      "threshold_original": "≥150 / ≥15",
+      "revised": "2026-09-15",
+      "revised_reason": "原口径的「二次事件」测的是这些游戏不发的东西:D1 只记 solve/play_again/game_over 这类离散里程碑,而门户玩家在开局与跑完一局之间什么都不触发。owner 后台截图给了正确指标(停留时长):35 visits → 11 玩过 30s → 6 玩过 60s。阈值改为按他们的口径,原文保留在 *_original。",
+      "note": "版本冻结:读数属于 09-15 的旧包。09-16 上传了更快的新归档但 owner 决定「先不发」,结算前不得 publish_sandbox,否则样本前后不可比。"
+    },
+    {
+      "id": "gridlings-playgama-five-0925",
+      "site": "gridlings",
+      "due": "2026-09-25",
+      "metric": "list_moderation_comments:排队五款(PROMPT/OVERFIT/MIMIC/OVERSEER/MINIMA)进主目录的数量",
+      "threshold": "≥1",
+      "win": "主目录未对 AI 游戏关门,按过审那款的形状复制",
+      "lose": "确认主目录对本舰队的 AI 游戏关闭,此后只经营 sandbox 面,不再空手重投",
+      "source": "sites/gridlings/docs/playgama-setup.md(2026-09-15 节)",
+      "status": "open"
+    },
+    {
+      "id": "gridlings-puzzle-portal-1013",
+      "site": "gridlings",
+      "due": "2026-10-13",
+      "metric": "towers 门户包:是否过 Playgama 认证并进 sandbox,以及 Playgama Overview 的 PLAYS 60S ÷ VISITS",
+      "threshold": "过认证 且 ≥15%(与那七款同口径)",
+      "win": "按 PUZZLE_PLAYGAMA 逐款扩到十款拼图;这是台账里第一条能长出扩张的行",
+      "lose": "拼图与 AI 主题游戏在门户上没有差别,门户线整体只维护;不再为门户改打包器",
+      "source": "sites/gridlings/docs/playgama-setup.md(2026-09-15 第九节)",
+      "status": "open"
+    },
+    {
+      "id": "gridlings-licensing-1017",
+      "site": "gridlings",
+      "due": "2026-10-17",
+      "metric": "一次性非独占授权:发出第一封询价起 30 天内收到的真实报价数字个数(任何金额,婉拒不计)",
+      "threshold": "≥1",
+      "win": "授权是活渠道,按同一形状扩到其余买家,并把拼图整包做成标准报价单",
+      "lose": "结算 09-09 预登记的『这批游戏当前不具备授权价值』:游戏线降为只维护,不再为变现投入时间",
+      "source": "docs/games-licensing-outreach-2026-09-16.md",
+      "status": "open",
+      "note": "owner 亲自发信,会话不代发。三封草稿已备好,发前自改约 10%。"
     }
   ]
 }
