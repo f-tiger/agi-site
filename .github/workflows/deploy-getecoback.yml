@@ -256,6 +256,13 @@ jobs:
           # safety-critical sentence on this site.
           check "https://getecoback.com/guide/stromausfall-heizen.html" "Kohlenmonoxid"
           check "https://getecoback.com/guide/stromausfall-heizen.html" "30 Minuten"
+          # The dehumidifier troubleshooting page (2026-09-17). Its whole value is
+          # one computed figure; a page that renders without it is intact and
+          # useless, which is the accident worth asserting.
+          check "https://getecoback.com/guide/luftentfeuchter-zieht-kein-wasser.html" "61 g"
+          # Homepage table: the site's largest AI surface had no structured rows
+          # at all until today, and it is generated from the open dataset.
+          check "https://getecoback.com/" "Richtwerte nach Raumgröße"
           # Brand veto on the LIVE homepage. The rising rail rebuilds daily from
           # Google Trends with no human in the loop, so the veto has to be checked
           # where it can actually be violated, not only at build time.
