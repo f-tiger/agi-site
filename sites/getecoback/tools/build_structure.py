@@ -913,6 +913,15 @@ def device_of(slug):
             # misfile that put an AC sizer on the EN drying-clothes page.
             or "lueften-im-winter" in s
             or "winter-condensation" in s
+            # UK damp vocabulary (2026-09-17). British English splits the one
+            # German word Schimmel into damp (the condition), condensation (the
+            # mechanism) and mould (the result), and none of those tokens were
+            # here. rising-damp-penetrating-damp-or-condensation therefore fell
+            # through to "ac" and shipped with a portable air-conditioner shelf
+            # on a page about groundwater in a Victorian wall — the same misfile
+            # the schimmel- prefix above was added to stop, in a new language.
+            or "damp" in s
+            or "condensation" in s
             # Humidifier pages live in the humidity family too: routing them to
             # "dehum" keeps every ac-only component (sizer, heat-energy box,
             # climate box) off the page; the card grid itself is overridden by
@@ -967,7 +976,17 @@ SKIP_MODELS = {"btu-rechner", "stromkosten-rechner", "infrarotheizung-watt-rechn
                "fensterabdichtung-klimaanlage", "window-seal-portable-ac",
                "fensterabdichtung-selber-bauen",
                "auto-bei-hitze-kuehlen", "haustier-hitze-kuehlen",
-               "ventilator-mit-eis", "richtig-lueften-bei-hitze", "pc-ueberhitzt-sommer"}
+               "ventilator-mit-eis", "richtig-lueften-bei-hitze", "pc-ueberhitzt-sommer",
+               # UK decision pages (2026-09-17). These three answer "which kind
+               # of thing do I need", and the shelf would argue with the answer:
+               # the desiccant page concludes "desiccant for a cold room" while
+               # every unit in our grid is a compressor, and the damp page's
+               # whole point is that two of the three damps are not fixed by
+               # buying anything. They route to the sized pages, which carry the
+               # grid, once the reader has decided what they are buying.
+               "desiccant-vs-compressor-dehumidifier",
+               "heated-airer-vs-dehumidifier",
+               "rising-damp-penetrating-damp-or-condensation"}
 # EN qm twins were briefly in SKIP_MODELS on 2026-08-28 (DEVICE_MODELS_EN had
 # no heater set, and models_block falls back to AC cards). Same day the EN
 # dehum/heater card sets were added, so the injectors now serve these pages
@@ -2154,7 +2173,13 @@ def popup_block(device, en=False, slug=None):
             '})();</script><!--/EB_POPUP-->\n')
 
 
-POPUP_SKIP = {"impressum", "datenschutz", "kontakt", "radar-bestaetigt"}
+POPUP_SKIP = {"impressum", "datenschutz", "kontakt", "radar-bestaetigt",
+              # Same three as SKIP_MODELS: an exit popup selling a compressor
+              # unit on a page that just told a British reader to buy desiccant,
+              # or anything at all on the damp page, contradicts the article.
+              "desiccant-vs-compressor-dehumidifier",
+              "heated-airer-vs-dehumidifier",
+              "rising-damp-penetrating-damp-or-condensation"}
 
 
 def inject_popup(html, slug, en=False):

@@ -803,6 +803,28 @@
    "lose": "0 → 不再为这个垂直加页,只保留机器面(MCP + JSON),页面改为月度维护",
    "source": "docs/tool-monetization-2026-09-16.md §十七",
    "status": "open"
+  },
+  {
+   "id": "eco-uk-winter-pages-1112",
+   "site": "getecoback",
+   "due": "2026-11-12",
+   "metric": "三张英国冬季页(desiccant-vs-compressor / rising-damp… / heated-airer…)的 GB 真人 pv 与 28 天全站 GB pv;t0(2026-09-17,D1 90 天窗)= GB 15 pv(严格 human 5 + ua_class NULL 10),全部落在夏季制冷页,冬季页 GB pv=0",
+   "threshold": "读数窗覆盖 11 月峰值:三页合计 GB 真人 pv ≥25/28d,或全站 GB pv ≥40/28d(今天 90 天才 15)",
+   "win": "「英国的需求是冬季潮湿,不是夏季制冷」成立 → 按同一口径再扩 electric blanket(GB 19,1,本轮未建)与 oil filled radiator,并把 UK Associates 开户提上日程",
+   "lose": "GB 仍近零 → 问题不是品类错配而是域权威/分发,英国面停止扩建只维护,结论写回 eco CLAUDE.md;不再以「换个品类」解释英国零流量",
+   "source": "2026-09-17 GB 5 年 interest_over_time(自有 basket,anchor=dehumidifier):dehumidifier 53,8(11 月)、damp 31,2(11 月)、condensation 21,0、electric blanket 19,1、heated airer 15,5(10 月峰);而站内 EN 区 43 页里 25 页是便携空调。GB related_queries 佐证 UK 用 litres/bedrooms 而非 m²(20l dehumidifier 居 top),且 desiccant/compressor 是 UK 特有分野。",
+   "status": "open"
+  },
+  {
+   "id": "eco-uk-associates-decision-1112",
+   "site": "getecoback",
+   "due": "2026-11-12",
+   "metric": "owner 是否开通 Amazon UK Associates(getecoback.com 列入站点列表);以及三张 UK 页是否仍为零商店链接",
+   "threshold": "到期时:GB pv 达到上一条的 win 线 → 建议开户并上 GB 货架;未达到 → 不开户,维持零货架",
+   "win": "开户后 UK 页按 .co.uk 上架,180 天 3 单窗口覆盖整个英国潮湿季(10 月–次年 3 月)",
+   "lose": "未达线仍开户 = 180 天内做不到 3 单会被关户;明确不开,避免烧掉一次注册机会",
+   "source": "getecoback-21 在 .co.uk 不计佣(手册 2026-08-06);且 amazon.de 家电是 Schuko 插头,寄到英国对读者也是错的 —— 所以本轮三页零商店链接、只内链到已有尺寸页(那些页照常带 .de 货架)。",
+   "status": "open"
   }
  ]
 }

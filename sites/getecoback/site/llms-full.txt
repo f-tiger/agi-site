@@ -14445,6 +14445,124 @@ Auf Deutsch: Wäsche in der Wohnung trocknen ohne Schimmel →
 
 ---
 
+## Desiccant or Compressor Dehumidifier? The Cold-Room Test
+URL: https://getecoback.com/en/guide/desiccant-vs-compressor-dehumidifier.html
+
+🗓 Updated September 17, 2026 · EcoBack editorial team
+
+Both types pull water out of the air and both are sold as "dehumidifiers", but they do it by opposite methods, and the method breaks down at different temperatures. In a warm flat the choice barely matters. In an unheated back bedroom, a garage, a conservatory or a hallway that never sees the boiler — which is where British damp actually lives — it decides whether the machine works at all.
+
+Here is the test, and you can run the arithmetic yourself below.
+
+## A compressor dehumidifier is a fridge that has to beat the dew point
+
+A compressor unit blows room air across a coil it has chilled with refrigerant. Water condenses on the coil and drips into the tank. For that to happen at all, the coil has to be colder than the dew point of the air in the room — the temperature at which that air is saturated. That is not a preference, it is the definition of condensation.
+
+So the question becomes: how cold is the dew point in a room like yours? That is pure arithmetic from the temperature and the humidity, using the same Magnus formula every calculator on this site uses:
+
+Room temperature | Dew point at 60% RH | Dew point at 70% RH |
+
+20 °C (heated living room) | 12.0 °C | 14.4 °C |
+
+15 °C (cool bedroom) | 7.3 °C | 9.6 °C |
+
+12 °C (unheated room) | 4.5 °C | 6.7 °C |
+
+10 °C (garage, utility) | 2.6 °C | 4.8 °C |
+
+8 °C | 0.7 °C | 2.9 °C |
+
+5 °C | −2.1 °C | 0.0 °C |
+
+Read the 10 °C row. To take water out of a 10 °C room at 60% humidity, the coil has to sit below 2.6 °C — and a coil does not run at the dew point, it runs well under it, because the air has to be chilled past saturation in the time it takes to cross the fins. In a room that cold, that means below zero. Frost forms on the coil, the machine stops to melt it, and the hour you paid for becomes part drying and part defrosting.
+
+That is the whole reason the type matters. It is not a quality difference between brands. It is the dew point falling with the temperature until the machine is fighting ice instead of water.
+
+Work out your own room
+Room temperature (°C)
+
+Relative humidity in the room (%)
+
+Find the dew point
+
+A cheap hygrometer gives you both numbers. The humidity reading is the one people guess wrong.
+
+## A desiccant dehumidifier does not care about the dew point
+
+A desiccant unit has no cold coil. Air passes through a wheel coated in a material that adsorbs water vapour directly, and a heater then drives the water back out of the wheel so it can keep going. Nothing has to be chilled below anything, so the cold room that stalls a compressor is simply a normal working day for a desiccant machine. It keeps extracting down to a few degrees above freezing.
+
+Two consequences follow, and both are real:
+
+- It uses more electricity per hour. The regeneration heater is the point of the design, and it is the bulk of the draw. A desiccant unit typically sits well above a comparable compressor unit on the plate.
+
+- It warms the room. That heater's energy ends up in the air coming out of the machine. In a cold utility room people like this. It is not free heating — see the caveat further down.
+
+## The honest running-cost comparison
+
+At the Ofgem price cap for 1 October to 31 December 2026, electricity on a Direct Debit tariff is 26.32p per kWh. Scale the hours to your own run.
+
+Machine | Plate | Per hour | 8 hours | Cost (£) |
+
+Compressor dehumidifier, small | 200 W | 5.3p | 1.6 kWh | 0.42 |
+
+Compressor dehumidifier, typical | 300 W | 7.9p | 2.4 kWh | 0.63 |
+
+Desiccant dehumidifier, low setting | 330 W | 8.7p | 2.6 kWh | 0.69 |
+
+Desiccant dehumidifier, high setting | 650 W | 17.1p | 5.2 kWh | 1.37 |
+
+Unit rate only, standing charge excluded — that is a daily fixed cost you pay whether the machine runs or not. There is no VAT on electricity from 1 October 2026 to 31 March 2027. Rate from Ofgem, read 2026-09-17. Your tariff may differ; the sum is watts ÷ 1000 × hours × your rate.
+
+Note what this table cannot tell you: cost per hour is not cost per litre. If the compressor unit in your 10 °C garage spends a third of each hour defrosting, its real cost per litre removed is half again what the wattage suggests, and the desiccant machine can end up cheaper for the job despite the bigger number on the plate. Rate the machines at the temperature of your room. The litres-per-day figure on the box is measured at conditions — warm and humid — that a British winter room does not meet.
+
+The heat is not a bonus. A desiccant dehumidifier does put its electricity into the room as warmth, and it is tempting to count that as heating you would have paid for anyway. Resist it unless you were actually going to heat that room. A fan heater turns the same kilowatt-hour into the same heat, and if the room is one you normally leave cold, the warmth is simply spend you did not plan.
+
+## So which one
+
+Where it is going | Type | Why |
+
+Heated living room or bedroom, 18–21 °C | Compressor | The dew point is 10–14 °C, comfortably above the coil. More water per unit of electricity. |
+
+Cool bedroom that dips below 15 °C | Either, compressor if it stays above 15 °C | This is the crossover. Watch what the room actually does overnight rather than what you assume. |
+
+Unheated room, hallway, spare room | Desiccant | Compressor extraction falls off exactly where you need it most, in the cold months. |
+
+Garage, conservatory, caravan, boat, loft | Desiccant | Regularly under 10 °C. A compressor unit will ice up and mostly defrost. |
+
+Drying laundry indoors in a heated room | Compressor | You are running it in warm, humid air, which is where the compressor design is at its best. |
+
+## What neither of them fixes
+
+A dehumidifier removes water from the air. If the water is arriving through the fabric of the building — up a wall from the ground, or in through a defect — the machine will run all winter, cost you every hour of it, and the wall will still be wet. Before buying either type, be sure you are looking at condensation and not one of the other two kinds of damp: how to tell the three apart.
+
+And if the humidity is high because of what happens in the room rather than what comes into it, the cheapest machine is sometimes no machine. Ventilation does the same job for nothing, when the outside air is colder and therefore drier than the air indoors — which in a British winter is most of the time.
+
+## Sizing, once you have picked a type
+
+Litres per day is the rating, and the honest version of it is that manufacturers measure at about 30 °C and 80% humidity, so real extraction in a cool British room is typically around half the number on the box. Our size ladder is here: what size dehumidifier for a room this big, with every rung and the rule behind it in the open dataset.
+
+## Frequently asked questions
+
+### Which is better, desiccant or compressor?
+
+Neither, on its own. Above about 15 °C a compressor unit removes more water per unit of electricity, so it wins in a heated room. Below that its coil ices up and it spends its time defrosting instead of drying, which is where a desiccant unit takes over. The room temperature decides, not the litres-per-day rating on the box.
+
+### Why does a compressor dehumidifier stop working when it is cold?
+
+It dries air by condensing water on a cold coil, so the coil has to be colder than the dew point of the room. At 10 °C and 60% relative humidity the dew point is 2.6 °C, so the coil must run below that, and in practice it drops below freezing. Frost forms, and the machine has to stop and melt it off.
+
+### Do desiccant dehumidifiers use more electricity?
+
+Per hour, usually yes, because they run a heater to regenerate the drying wheel. Per litre of water actually removed in a cold room they can use less, because a compressor unit in the same room spends part of every hour defrosting rather than extracting. Compare the machines at the temperature of your room, not at the rating conditions on the box.
+
+### Will a dehumidifier heat the room?
+
+Both types put nearly all the electricity they draw into the room as heat, and a desiccant unit adds the heat from its regeneration cycle on top, so its outlet air is noticeably warm. That is a side effect worth knowing about, not a reason to buy one as a heater: a fan heater delivers the same heat for the same electricity.
+
+What we have not done. We have not tested these machines. Everything above is either arithmetic you can repeat — the dew points come from the Magnus formula, the costs from watts × hours × the Ofgem rate — or a statement about how the two designs work. Where a number depends on a specific model, we have given you the method instead of a figure, because the plate on your machine is the only one that applies to you.
+
+---
+
 ## What size electric heater for 10 m²? Wattage guide
 URL: https://getecoback.com/en/guide/electric-heater-10-sqm.html
 
@@ -15410,6 +15528,114 @@ Keep reading:
 BTU calculator: the right cooling capacity + model →
 Best portable air conditioner for the 2026 heatwave →
 How to sleep in a heatwave without AC →
+
+---
+
+## Heated Airer or Dehumidifier? Where the Water Actually Goes
+URL: https://getecoback.com/en/guide/heated-airer-vs-dehumidifier.html
+
+🗓 Updated September 17, 2026 · EcoBack editorial team
+
+A heated airer is a drying rack with a low-wattage heating element in the bars. It works, it is cheap to run, and in a British October it is one of the most sensible things you can buy. But it is worth being precise about what it does, because a lot of winter condensation starts on one.
+
+A heated airer does not remove water from your home. It moves it, from the clothes into the air of the room, and it does that faster than an unheated rack would. That is the entire trade.
+
+## The number that surprises people
+
+Air can only hold so much water vapour, and at British indoor temperatures it is much less than intuition suggests. Here is how much water the air of an ordinary room can absorb before it is completely saturated, starting from a normal 55% humidity:
+
+Room | At 16 °C | At 18 °C | At 20 °C |
+
+12 m² bedroom (about 30 m³) | 184 g | 207 g | 233 g |
+
+18 m² living room (about 45 m³) | 275 g | 310 g | 349 g |
+
+Grams. Not litres. A spun wash load carries considerably more water than that out of the machine — weigh the basket wet, then weigh it again when the washing is dry, and the difference is what you are about to put into the room.
+
+So the arithmetic does not balance, and it cannot: the air in a small closed room physically cannot hold one load's worth of water. The surplus does not vanish. It condenses, on whatever surface in that room is coldest — which is the window, and the outside wall, and the corner behind the wardrobe. That is where the black spotting comes from, and it is why "the airer caused damp" is a thing people say even though the airer is only doing what it says on the box.
+
+How much can your room take?
+Floor area (m²)
+
+Ceiling height (m)
+
+Room temperature (°C)
+
+Humidity now (%)
+
+How much water fits?
+
+Assumes the door and windows are shut. Any ventilation raises the figure, which is rather the point.
+
+## What each machine is actually for
+
+| Heated airer | Dehumidifier |
+
+What it does | Adds gentle heat to the fabric so water leaves it faster | Takes water out of the room's air and puts it in a tank |
+
+Where the water ends up | In your air | In the tank, which you empty down the sink |
+
+Speeds up drying | Yes, strongly at the start | Yes, and it keeps working after the air would otherwise have saturated |
+
+Risk if used alone in a closed room | Condensation on the cold surfaces | None from moisture; it is the thing removing it |
+
+Leaves the room warmer | Yes, slightly | Yes — nearly all the electricity becomes heat |
+
+They are complements, not alternatives. The airer moves water out of the clothes; the dehumidifier moves it out of the room. Run the airer alone in a closed bedroom and the drying stalls anyway once the air approaches saturation, because wet fabric only gives up water to air that has room for it.
+
+## What it costs, at the current cap
+
+At the Ofgem price cap for 1 October to 31 December 2026, electricity on a Direct Debit tariff is 26.32p per kWh. Scale the hours to your own run.
+
+Machine | Plate | Per hour | 8 hours (one drying session) | Cost (£) |
+
+Heated airer, low-wattage | 100 W | 2.6p | 0.8 kWh | 0.21 |
+
+Heated airer, mid | 200 W | 5.3p | 1.6 kWh | 0.42 |
+
+Heated airer, three-tier | 300 W | 7.9p | 2.4 kWh | 0.63 |
+
+Compressor dehumidifier alongside it | 300 W | 7.9p | 2.4 kWh | 0.63 |
+
+Tumble dryer, one cycle | per cycle | — | 2.0 kWh | 0.53 |
+
+Unit rate only, standing charge excluded — that is a daily fixed cost you pay whether the machine runs or not. There is no VAT on electricity from 1 October 2026 to 31 March 2027. Rate from Ofgem, read 2026-09-17. Your tariff may differ; the sum is watts ÷ 1000 × hours × your rate.
+
+Use the figure on your own airer's plate rather than the bands above. The honest comparison is not airer against dryer — it is airer plus whatever deals with the moisture against dryer. An airer at 300 W for eight hours plus a 300 W dehumidifier for the same eight hours lands close to a tumble dryer cycle, and takes all day. The reasons to choose it are the ones that are not about money: no vent, no heat damage to the clothes, no dryer to buy.
+
+## The three ways to deal with the moisture
+
+- Ventilate briefly and fully. Free. Cold outside air is dry air once it warms up indoors, so opening up properly for a few minutes exchanges the humid air for air that has capacity. The mechanism and the routine are on our condensation page. A window left ajar all day is the one thing that does not work — it chills the surfaces without exchanging much air.
+
+- Run a dehumidifier in the same room. Costs money, keeps the heat, and is the option that works in a flat you cannot air properly. Which type depends on how cold the room is: desiccant or compressor. In a heated room a compressor unit is the efficient choice, and drying laundry is the one job where it is working in exactly the warm humid air it was designed for.
+
+- Put the airer somewhere that can take it. A bathroom with a working extractor, or the largest and warmest room you have with the door shut to the rest of the flat. The worst place is a cold bedroom with the door closed, which is also where most people put it.
+
+Do not cover it. Airers are commonly sold with a zipped cover to trap the heat, and it genuinely speeds drying. It also concentrates every gram of that water into a small volume, and when the cover comes off it all enters the room at once. If you use the cover, have the dehumidifier running, or open the window when you unzip it.
+
+## If the damp is already there
+
+If you have black spotting on a wall and you are not sure whether the washing is the cause, check what kind of damp it is before you change anything: rising damp, penetrating damp or condensation. Only the third one has anything to do with your laundry, and the other two will not improve no matter where you dry it.
+
+## Frequently asked questions
+
+### Does a heated airer cause damp?
+
+Not by itself, but it does put every drop of water from the washing into the air of the room, faster than an unheated rack does. If that room is small, cool or closed, the air saturates and the surplus condenses on the coldest surface in it — usually the window and the outside wall. The airer is not the cause; drying indoors without removing the moisture is.
+
+### Is a heated airer cheaper than a tumble dryer?
+
+Usually yes per session, because the wattage is far lower, but it takes several hours rather than one and it leaves you with the moisture to deal with. Work it out from the plate on your own airer: watts divided by 1000, times the hours you run it, times your unit rate.
+
+### Should I use a heated airer and a dehumidifier together?
+
+In a closed room that is the combination that works, and it is usually faster than either alone. The airer supplies the heat that moves water out of the fabric and the dehumidifier takes that water out of the air, so the drying does not stall as the room reaches saturation. You are paying for both machines, so compare the total against a tumble dryer cycle.
+
+### Should I open a window while the airer is on?
+
+Brief, full ventilation works and costs nothing, because cold outside air is dry once it warms up indoors. A window left ajar for hours is the worst of both, chilling the surfaces the moisture will land on while barely exchanging any air. If you want the room to stay warm, a dehumidifier does the same job without losing the heat.
+
+Where these numbers come from. The capacity table is the Magnus formula applied to the room volume — the same arithmetic behind every calculator on this site, published as open data at /daten.html so you can check it. The costs are watts × hours × the Ofgem cap rate, shown above with its period. We have not tested any airer and we do not name models, because the only wattage that applies to you is the one printed on yours.
 
 ---
 
@@ -16776,6 +17002,85 @@ Best portable air conditioner in Spain (2026) →
 Best portable air conditioner for Europe's heatwave →
 Portable AC with tilt-and-turn windows →
 How many BTU do I need? →
+
+---
+
+## Rising Damp, Penetrating Damp or Condensation? How to Tell
+URL: https://getecoback.com/en/guide/rising-damp-penetrating-damp-or-condensation.html
+
+🗓 Updated September 17, 2026 · EcoBack editorial team
+
+British houses have three separate faults that all get called "damp", and they have almost nothing in common except the stain on the wall. They arrive by different routes, they cost wildly different amounts to fix, and the dehumidifier that solves one of them does nothing whatsoever for the other two.
+
+Before you spend anything, work out which one you are looking at. Two questions get you most of the way: where is the patch, and when is it worst.
+
+## The two-question test
+
+| Condensation | Penetrating damp | Rising damp |
+
+Where | Coldest surfaces: outside walls, corners, window reveals, behind furniture, unheated rooms | One localised patch, any height, usually on a wall with something wrong outside it | Bottom of a ground-floor wall, fading out at a fairly level line |
+
+When | Winter, and within hours of showering, cooking or drying washing indoors | During and after heavy or driving rain; can persist in summer if the weather does | All year round, roughly constant, indifferent to the weather |
+
+Looks like | Black spotty mould, misted windows, damp-smelling fabric | An irregular blotch, often darker in the middle, may be tide-free | A tide mark, blown or crumbling plaster, white salt deposits |
+
+Fixed by | Ventilation, heating the surface, a dehumidifier | Repair to the outside: gutters, pointing, render, flashing | Building work to the wall base — a surveyor's job |
+
+## Condensation is the common one, and the only one we can help with
+
+Condensation damp is a humidity problem, not a building failure. Warm indoor air holds a lot of water; a cold surface chills the air touching it; and at the point where that air reaches saturation the water comes out on the surface. That is all it is.
+
+The reason it looks like a wall problem is that the humidity at a cold surface is much higher than the humidity in the middle of the room, so your hygrometer can read a reassuring 55% while the wall behind the wardrobe is sitting near the threshold where mould germinates. The mechanism, the arithmetic and the surface-humidity calculator are on our winter condensation page.
+
+Three things move it, in order of cost:
+
+- Move the furniture. A few centimetres of gap behind a wardrobe on an outside wall lets air reach the surface. Free.
+
+- Ventilate briefly and fully rather than leaving a window ajar all day. Cold outside air is dry air, and in winter it is almost always drier than the air indoors even when it is raining.
+
+- Dehumidify, if the moisture load is genuinely high — drying washing indoors will do it on its own. Which type depends on how cold the room is: desiccant or compressor.
+
+## Penetrating damp is a repair, not a purchase
+
+Water is getting in through the fabric. The usual culprits are outside and visible on a wet day: a blocked or leaking gutter running down a wall, cracked render, failed pointing, a slipped tile, flashing that has come away at a chimney or an extension join. Look at the wall from outside while it is actually raining. That is worth more than any meter.
+
+A dehumidifier cannot help. It will lower the humidity in the room slightly and the wall will keep getting wet, because the water is not coming from the air.
+
+## Rising damp is the rarest, and the most over-diagnosed
+
+Rising damp is groundwater drawn up through masonry by capillary action, where a house has no damp-proof course or the one it has is bridged — by raised ground outside, a rendered-over DPC, or a path laid above it. Its signature is the level line and the salts: as the water evaporates from the wall face it leaves behind the minerals it carried, which is why the plaster blows and why a white bloom appears.
+
+Be careful who diagnoses it. A free damp survey from a company that sells damp-proofing is not an independent opinion, and condensation on a ground-floor outside wall can look very like rising damp to someone who is measuring with a meter designed for timber. If the recommendation is an expensive injected course, it is worth paying an independent surveyor with no treatment to sell for a second look first. Check the ground level outside the wall, and the gutters, before you accept any diagnosis.
+
+## If you rent
+
+Which of the three you have also changes whose problem it is. Damp arising from the condition of the building is generally the landlord's to repair, and that is a legal question rather than a technical one — so rather than paraphrase it, here is where the official answer lives: gov.uk on repairs in private renting, and Shelter's free advice on damp and mould in rented homes.
+
+We sell nothing on this page and we are not lawyers. If your damp is a repair the landlord owes you, buying a dehumidifier is not the answer to it — at best it manages a symptom you should not be paying to manage.
+
+## If it turns out to be condensation
+
+Then it is a humidity problem and the rest of this site is about it. Start with what the air in your rooms is actually doing: the type question first, then size. The rules behind every figure we publish are open data at /daten.html, so you can check them or reuse them.
+
+## Frequently asked questions
+
+### Will a dehumidifier fix rising damp?
+
+No. A dehumidifier takes water out of the air in the room. Rising damp is water arriving through the masonry from the ground, and it will keep arriving at the same rate however dry you make the air. The machine will run all winter, cost you every hour of it, and the wall will still be wet.
+
+### How do I tell condensation from rising damp?
+
+Look at where it is and when. Condensation sits on the coldest surfaces — outside walls, corners, window reveals, behind wardrobes — usually as black spotty mould, and it is worst in winter and after showering, cooking or drying washing. Rising damp starts at the bottom of a ground-floor wall, stops at a fairly level line, and often leaves a tide mark with salt deposits in the plaster.
+
+### Is damp the landlord's responsibility?
+
+It depends on the cause and on your tenancy, and it is a legal question rather than a technical one. Damp caused by the condition of the building is generally the landlord's to repair. Official guidance for England is on gov.uk, and Shelter publishes free advice for renters. We are not lawyers and this page is not legal advice.
+
+### Why is there mould behind my wardrobe?
+
+Because the wall behind it is colder than the rest of the room and the air there barely moves. Mould germinates on the surface when the humidity at that surface stays high, and a cold surface raises the humidity right against it even though the room reading looks fine. Pulling furniture a few centimetres off an outside wall is the cheapest fix there is.
+
+What this page is not. It is not a survey. We have not seen your wall, we do not test buildings, and the three descriptions above are the common presentations rather than the only ones — damp is frequently more than one of the three at once. Where the answer is "get someone qualified to look", we have said so instead of selling you a machine.
 
 ---
 

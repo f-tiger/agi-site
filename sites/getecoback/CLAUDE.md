@@ -2292,3 +2292,95 @@ CSV 必须存在且行数 = 表头 + 非散文规则数 + 梯子行数、不许�
 不是不对,是**本会话做不了**,列出来只是把活推回给 owner;要做由 owner 直接说。
 PBN / 链接交换 / 群发目录 —— 技能文档里明确列为 Google SpamBrain 打击对象,永不做。
 往 `/daten.html` 挂联盟链接 —— 这页的全部价值来自它不卖东西。
+
+## 英国:改口了,并且说清楚上一轮为什么测错(2026-09-17,owner:「继续扩展品类,重点是英国」)
+
+### 我上一轮的英国结论是用错误的尺子量出来的
+
+昨天我写「GB 90 天 5 pv,€0,38/年,不做」。**数字没错,推论错了。**
+今天把 GB 的 15 条 page_view 逐条拉出来看(D1,90 天):
+**全部 15 条无一例外落在夏季制冷页或首页** —— spain、europe-heatwave、leaking-water、
+attic-bedroom、skylight、tilt-and-turn、italy。6 条来自搜索引擎(DDG 3 / Bing 2 / Yahoo 1)。
+
+而 EN 区 43 个页面里 **25 个是便携空调**。所以昨天那句「英国人不来」的准确说法是:
+**我们只摆了夏季货,而英国的需求在冬季** —— 这不是需求判决,是库存判决。
+**教训(适用于任何市场):用现有库存去量一个市场的胃口,量到的是库存不是市场。**
+
+**口径也要记一笔**:GB 15 = 严格 `ua_class='human'` **5** + `ua_class IS NULL` **10**。
+NULL 是 JS 信标行(跑了 JS,更像真人),昨天报的 5 是严格口径,两个都对,引用时必须说明是哪个。
+
+### 英国的需求形状:唯一一个冬季压过夏季的市场
+
+`fetch_seasonality.py --market GB`(新增,5 年 `interest_over_time`,anchor=`dehumidifier`,
+写 `data/seasonality-gb.json`,13 词 0 失败):
+
+| 词 | peak | 峰值月 | 冬/九月 |
+|---|---|---|---|
+| **dehumidifier** | **53,8** | **11** | 1,79 |
+| **damp** | **31,2** | **11** | 1,12 |
+| condensation | 21,0 | 11 | 1,96 |
+| **electric blanket** | 19,1 | 11 | 1,49 |
+| **heated airer** | 15,5 | **10** | **0,59** |
+| oil filled radiator | 6,4 | 11 | 1,6 |
+| black mould | 4,8 | 11 | 1,82 |
+| drying clothes indoors | **0,1** | 9 | 0,0 |
+
+**四条读法**:①GB 是六国 basket 里**唯一**前两名都在 11 月见顶、且双双压过夏季词的市场
+(DE 的 #2 是 6 月的 mobile klimaanlage);②`heated airer` 峰值在 **10 月**且冬季均值低于九月
+(0,59)—— 这是**赛前采购形状,窗口就是现在**;③`damp`(31,2)远大于 `black mould`(4,8):
+**英国把这件事叫 damp,不叫 mould**,而站内 EN 区 `damp` 进标题的页数 = **0**;
+④`drying clothes indoors` = **0,1**,我原本的假设被自己的数据杀掉 —— 需求在**产品词**
+(heated airer)不在活动词。
+
+**`related_queries`(GB,12 个月)补两条决定性的**:`20l dehumidifier` 居 top
+→ **英国按升数和卧室数买,不按 m²**(站内 EN 六张梯页全是 sqm);rising 里
+`meaco dd8l pro desiccant` 与 `devola 12l compressor` 并列 → **desiccant/compressor 是英国特有的分野**,
+而站内货架 100% 是 compressor。
+
+### 本轮建的三页(EN,全部零商店链接)
+
+1. **`/en/guide/desiccant-vs-compressor-dehumidifier.html`** —— 英国最大品类的买点问题。
+   **物理是算出来的不是断言的**:压缩机靠冷盘凝水,盘必须低于房间露点;10 °C/60% 的露点 = **2,6 °C**,
+   盘要更低 → 实际掉到零下 → 结霜除霜。页面带露点计算器(复用白名单事件 `taupunkt_check`),
+   三档温度给三种结论(实测 20 °C→compressor / 12 °C→borderline / 8 °C→desiccant)。
+2. **`/en/guide/rising-damp-penetrating-damp-or-condensation.html`** —— 英国三种 damp 的分辨表
+   (位置 × 时机 × 外观 × 谁能修)。**诚实路由:三种里只有一种是除湿机能解决的**,
+   另两种明说「买机器没用」。租客一行链到 gov.uk 与 Shelter(两个 URL 均实测 200,不编)。
+3. **`/en/guide/heated-airer-vs-dehumidifier.html`** —— **真正的新品类**,窗口就是现在。
+   杀手级算式:18 °C 的 30 m³ 房间从 55% 起**只能再吸 207 g 水**就饱和 —— 一桶洗衣远超此数,
+   所以**多出来的水必须凝结在最冷的表面上**(窗、外墙)。带容量计算器,浏览器实测与 Python 逐位一致。
+
+### 两个必须记死的工程决定
+
+**① UK 电价不能手写。** 站内成本口径是 €0,30/kWh,英国是 Ofgem 上限、按 p/kWh、**每季度变**。
+新增 `fetch_ofgem_cap.py` → `data/ofgem-cap.json`(实抓:**26,32 p/kWh,1 Oct–31 Dec 2026**,
+上限 £1 723/年,并带 VAT 备注),`build_ukcost.py` 按 `<!--EB_UKCOST:variant-->` 注入表格,
+`check_ukcost.py` 断言页面费率=JSON、周期名出现在页上、**每行金额重算对得上**、
+**且 JSON 里的周期没过期**(过期 = 三个月没人跑 fetcher)。三种红法逐一验过。
+**部署后自检的期望值也从 JSON 读,不写字面量** —— 写字面量就是把同一个过期 bug 搬进 workflow。
+*抓取踩到的坑*:Ofgem 用 `\xa0`/` ` 分隔数字与单位,且不一致(`26.11 pence` 是普通空格、
+`26.32\xa0pence` 不是),第一版只匹配到一列 —— **正是那条「至少两个」断言把它抓出来的**。
+
+**② 三页一律零商店链接,这是编辑决定不是遗漏。** 三个理由,缺一不可:
+(a) `rising-damp…` 首次构建时 `device_of()` 把它归成 **"ac"**(slug 不含任何已知词),
+于是一张讲维多利亚墙体地下水的页上挂了**便携空调货架** —— 与 09-09 `schimmel-` 那次同款误判,
+换了个语言。已在 `device_of()` 加 `damp` / `condensation`;
+(b) desiccant 页的结论是「冷房买 desiccant」,而站内货架 100% 是 compressor ——
+**货架会和文章吵架**;
+(c) `getecoback-21` 在 **.co.uk 不计佣**,而 amazon.de 的家电是 **Schuko 插头**,
+寄到英国对读者本身就是错的。
+→ 三页进 `SKIP_MODELS` + `POPUP_SKIP`,**只内链到已有尺寸页**(那些页照常带 .de 货架,漏斗没断)。
+部署后自检**剥掉 `<script>` 后**断言三页零 `href="…amazon…"`(不剥会被存房间条的字符串拼接误报 5 条,
+与 `check_dataset.py` 同一个坑;负向测试第一次是**空跑**——`build_onpage` 给 h2 加了 id,
+我的锚点没匹配上,第二次换 `</article>` 才真的红)。
+
+### 判定线与 owner 的一个决定
+
+- **`eco-uk-winter-pages-1112`(11-12,覆盖 11 月峰值)**:三页合计 GB 真人 pv ≥25/28d
+  或全站 GB ≥40/28d → 赢则继续扩 `electric blanket`(19,1,本轮没建)与 `oil filled radiator`;
+  输则**英国面只维护不扩建**,并且以后不许再用「换个品类」解释英国零流量。
+- **`eco-uk-associates-decision-1112`**:**现在不建议开 Amazon UK Associates。**
+  开户后 180 天内没有 3 笔合格销售会被关户,今天 GB 是 90 天 15 pv,开了大概率烧掉。
+  **正确时点是内容拿到读数之后**;若 11-12 达线再开,180 天窗口正好覆盖整个英国潮湿季。
+- **没做的**:`electric blanket` / `oil filled radiator` 两个品类本轮有数据但没建页 ——
+  先看三页读数再决定,避免一次铺开四个品类然后全是 0。
