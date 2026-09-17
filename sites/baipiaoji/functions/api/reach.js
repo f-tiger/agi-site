@@ -6,11 +6,39 @@
 // token 缺 D1 Read）。这个端点把取数搬回 Worker:它本来就绑着 HITS,不需要任何 token。
 // CI 每天 curl 一次写进 data/reach.json,构建期与雷达按文件读,第①层从此自己看得见流量。
 //
-// 只出聚合计数,不出任何行级数据:没有邮箱、没有 IP、没有国家分布、没有完整 UA。
+// 只出聚合计数,不出任何行级数据:没有邮箱、没有 IP、没有完整 UA。
 // 来源只到域名（hit.js 入库时已只存 hostname）。这是公开端点,按公开数据的标准写。
+//
+// ⚠️ 2026-09-17 有意推翻了本文件原来那句「没有国家分布」,理由写在这里免得下次被当成疏忽:
+// 这个端点存在的全部目的是「会话没 MCP 也看得见流量」,而 09-17 这天「中国流量是不是更大」
+// 这个问题**只能靠手接 MCP 查 D1 才答得出来**——四周里中国从 0 涨到最近 14 天 60 次带来源
+// 真人（同窗美国 63），而 reach.json 里一个字都没有。那正是它要防的失明。
+// 但原来那句顾虑是对的,所以只开到「安全的最小粒度」:
+//   · 只出**站点级**国家计数,不与 path、ref、事件做任何交叉（交叉才是重识别风险所在）;
+//   · **k 匿名下限 K_COUNTRY=5**,不足 5 次的国家一律并进 `other`,不单独出现。
+// 这两条由 foldSmallCountries() 保证,并有零网络单测（scripts/test-reach-shape.mjs）。
 //
 // 口径与 scripts/traffic-truth.mjs 的真人线 A 一致:ev='' 且来源域非空 = 可归因真人;
 // 无来源的直接访问不计（那是本站被扫描的主要形态）,/__ 开头的自测路径不计。
+export const K_COUNTRY = 5;
+
+// 小于 K 的国家并进 other:一个只有 1 次访问的国家配上 28 天窗口,在公开端点上离
+// 「可指认某个人」太近。返回值按计数降序,other 恒定排在最后（它不是一个国家）。
+export function foldSmallCountries(rows, k = K_COUNTRY) {
+  const kept = [];
+  let other = 0;
+  for (const r of rows || []) {
+    const cc = String((r && r.country) || '').trim().toUpperCase();
+    const n = Number((r && r.n) || 0);
+    if (!n) continue;
+    if (cc && /^[A-Z]{2}$/.test(cc) && n >= k) kept.push({ country: cc, n });
+    else other += n;                      // 含空国家码与所有 <k 的
+  }
+  kept.sort((a, b) => b.n - a.n);
+  if (other) kept.push({ country: 'other', n: other });
+  return kept;
+}
+
 const json = (o, status = 200) => new Response(JSON.stringify(o), {
   status,
   headers: {
@@ -33,7 +61,7 @@ export async function onRequestGet({ request, env }) {
   const HUMAN = "ev = '' AND ref IS NOT NULL AND ref != '' AND ref NOT LIKE '%baipiaoji%' AND path NOT LIKE '/\\_\\_%' ESCAPE '\\'";
   try {
     const q = (sql, ...params) => env.HITS.prepare(sql).bind(...params).all().then((r) => (r && r.results) || []);
-    const [total, paths, referrers, aiRefs, events, subsNew, subsAll, adsRows] = await Promise.all([
+    const [total, paths, referrers, aiRefs, events, subsNew, subsAll, adsRows, countryRows] = await Promise.all([
       q(`SELECT count(*) n FROM hits WHERE d >= ? AND ${HUMAN}`, since),
       q(`SELECT path, count(*) n FROM hits WHERE d >= ? AND ${HUMAN} GROUP BY path ORDER BY n DESC LIMIT 400`, since),
       q(`SELECT ref, count(*) n FROM hits WHERE d >= ? AND ${HUMAN} GROUP BY ref ORDER BY n DESC LIMIT 30`, since),
@@ -45,6 +73,9 @@ export async function onRequestGet({ request, env }) {
       q("SELECT count(*) n FROM submissions WHERE status = 'new' AND name NOT LIKE '\\_\\_ci%' ESCAPE '\\'").catch(() => [{ n: null }]),
       q("SELECT count(*) n FROM submissions WHERE name NOT LIKE '\\_\\_ci%' ESCAPE '\\'").catch(() => [{ n: null }]),
       q('SELECT status, count(*) n FROM ads GROUP BY status').catch(() => []),
+      // 市场面:只按国家计数,**不与 path / ref / 事件交叉**,并在下面过 k 匿名下限。
+      // 有它之前,「中国流量是不是更大」这种问题只有手接 MCP 查 D1 才答得出来。
+      q(`SELECT country, count(*) n FROM hits WHERE d >= ? AND ${HUMAN} GROUP BY country ORDER BY n DESC`, since),
     ]);
     const ads = {};
     for (const r of adsRows) ads[String(r.status || '')] = r.n;
@@ -58,6 +89,8 @@ export async function onRequestGet({ request, env }) {
       events: Object.fromEntries(events.map((r) => [r.ev, r.n])),
       submissions: { new: subsNew[0] ? subsNew[0].n : null, total: subsAll[0] ? subsAll[0].n : null },
       ads,
+      countries: foldSmallCountries(countryRows),
+      country_floor: K_COUNTRY,
     });
   } catch (e) {
     return json({ ok: false, code: 'query_failed' }, 500);

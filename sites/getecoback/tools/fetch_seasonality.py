@@ -79,6 +79,26 @@ BATCHES = [
     ["saugwischer", "saugroboter", "kaffeevollautomat"],
     ["matratze", "luftreiniger", "akku staubsauger"],
     ["luftbefeuchter", "heizkörper thermostat", "fussbodenheizung"],
+    # Energy hardware, asked 2026-09-17 ("是不是热泵/充电桩也是德语区重点").
+    # Measured rather than argued, and balkonkraftwerk is in the batch as a
+    # CONTROL, not a candidate: the site already ranks for it — growatt-noah-2000-
+    # probleme drew 26 real German readers with referrers in 28 days — so it says
+    # what "big enough for this site" looks like on this scale. Without it,
+    # wärmepumpe and wallbox are just two numbers with nothing to sit against.
+    #
+    # What the numbers cannot settle, so don't let them:
+    #   · wärmepumpe — the installed Luft-Wasser kind is a €10-30k capital good
+    #     bought through a Handwerker with BAFA/KfW paperwork, i.e. not an
+    #     affiliate product at all; and its lead-gen form was killed 2026-08-28
+    #     for needing Hauseigentümer while this site's readers are Mieter. The
+    #     Amazon-buyable slice is Luft-Luft, which the site already covers at
+    #     /guide/klimaanlage-mit-heizfunktion.html. A high number here would mean
+    #     "more heating content", never "sell heat pumps".
+    #   · wallbox — genuinely buyable on amazon.de and a far higher ticket than a
+    #     dehumidifier, but skews Hauseigentümer, and its commission rate is in
+    #     the Vergütungskatalog behind the Associates login. Nobody should quote
+    #     that rate from memory into a money decision.
+    ["wärmepumpe", "wallbox", "balkonkraftwerk"],
 ]
 
 
