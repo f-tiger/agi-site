@@ -46,8 +46,10 @@
    "win": "按 09-11 文档走下一步",
    "lose": "=0 → 收录问题,带证据升级 owner,解决前不寄望内容动作",
    "source": "sites/getecoback/CLAUDE.md:1094",
-   "status": "open",
-   "reading_20260915": "提前读数(爬虫日志 09-11 上线,5 天窗):googlebot 19 次 / 15 个不同页面,对照 bingbot 241 次 / 112 页;googlebot 落在 /en/ 的 **0** 次。条件(≥1)已达成且只会更达成,但它要解锁的那个决定被另一个读数改写了:28 天 google 引荐 **0**(DE 页与 EN 页都是 0),见 CLAUDE.md 当日条目。"
+   "status": "won",
+   "reading_20260915": "提前读数(爬虫日志 09-11 上线,5 天窗):googlebot 19 次 / 15 个不同页面,对照 bingbot 241 次 / 112 页;googlebot 落在 /en/ 的 **0** 次。条件(≥1)已达成且只会更达成,但它要解锁的那个决定被另一个读数改写了:28 天 google 引荐 **0**(DE 页与 EN 页都是 0),见 CLAUDE.md 当日条目。",
+   "settled": "2026-09-17",
+   "reading": "2026-09-17 现查(D1 crawl 表,7 天窗 09-11→09-17):googlebot **265 次命中、207 个不同页面** —— 阈值是 ≥1,实际是**整站每周被抓一遍**(站内可索引页 215)。**更重要的是它推翻了这条线背后的假设**:此前记的「googlebot 5 天只抓 19 次 / 15 页」已不成立。同日另测:Googlebot 拿到的字节与真人逐页 md5 相同、无 X-Robots-Tag、robots.txt 明确 Allow 且带 Sitemap 行。**所以 Google 引荐 = 0 的原因是排不上,不是抓不到**(71 天域龄、零外链)。以后不要再把「让 Google 来抓」列为待办。对照:bingbot 同 28 天只覆盖 134 页,而 Bing 家族贡献本站 100% 的搜索流量。"
   },
   {
    "id": "gridlings-rules-cluster-0921",
