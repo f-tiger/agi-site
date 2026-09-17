@@ -1,6 +1,56 @@
 {
   "items": [
     {
+      "name": "How Stale Is Your AI? Release age and training cutoff for 20 models",
+      "url": "https://stale.jock.pl/",
+      "host": "stale.jock.pl",
+      "src": "https://news.ycombinator.com/item?id=49726343",
+      "points": 70,
+      "comments": 44,
+      "found": "2026-09-17",
+      "status": "candidate"
+    },
+    {
+      "name": "Pizza Bot – An inbox for AI agents that work in the background",
+      "url": "https://github.com/pizza-bot-app/pizza-bot",
+      "host": "github.com",
+      "src": "https://news.ycombinator.com/item?id=49713894",
+      "points": 56,
+      "comments": 33,
+      "found": "2026-09-17",
+      "status": "candidate"
+    },
+    {
+      "name": "Panel – A research workspace where the agent can build its own panes",
+      "url": "https://github.com/greentfrapp/panel",
+      "host": "github.com",
+      "src": "https://news.ycombinator.com/item?id=49712621",
+      "points": 48,
+      "comments": 19,
+      "found": "2026-09-16",
+      "status": "candidate"
+    },
+    {
+      "name": "Ordewell – turn one goal into an ordered plan of coding-agent tasks",
+      "url": "https://github.com/ordewell/ordewell",
+      "host": "github.com",
+      "src": "https://news.ycombinator.com/item?id=49712276",
+      "points": 50,
+      "comments": 30,
+      "found": "2026-09-16",
+      "status": "candidate"
+    },
+    {
+      "name": "Redis City – Explore how Redis works in an interactive 3D model",
+      "url": "https://poltora.dev/redis",
+      "host": "poltora.dev",
+      "src": "https://news.ycombinator.com/item?id=49676425",
+      "points": 165,
+      "comments": 25,
+      "found": "2026-09-16",
+      "status": "candidate"
+    },
+    {
       "name": "Sunk Cost – How long until a local LLM rig pays for itself?",
       "url": "https://sunkcost.ai/",
       "host": "sunkcost.ai",
@@ -311,5 +361,5 @@
       "status": "candidate"
     }
   ],
-  "updated": "2026-09-15"
+  "updated": "2026-09-17"
 }

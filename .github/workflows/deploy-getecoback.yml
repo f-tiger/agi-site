@@ -97,6 +97,15 @@ jobs:
             node tools/product_intel/refresh.mjs || echo "::warning::price refresh failed — pages fall back to search links and static price text"
           fi
 
+      - name: Fill the UK running-cost block from the stored Ofgem cap
+        run: python3 tools/build_ukcost.py
+
+      - name: Rebuild the open-dataset landing page (refreshes sizing-data.json first)
+        run: python3 tools/build_dataset_page.py
+
+      - name: Homepage sizing table from the open dataset (idempotent)
+        run: python3 tools/build_home_table.py
+
       - name: Inject site chrome (nav/footer/radar; idempotent, covers new pages)
         run: python3 tools/build_structure.py
 
@@ -105,6 +114,9 @@ jobs:
 
       - name: Inject room-size cross-links (idempotent)
         run: python3 tools/build_xlinks.py
+
+      - name: Lateral related-guide links (season-weighted; idempotent)
+        run: python3 tools/build_related.py
 
       - name: Consolidate publisher entity (@id graph; idempotent gate)
         run: python3 tools/build_entity.py
@@ -160,6 +172,18 @@ jobs:
       - name: Check the winter price band is on the cost cluster and still honest
         run: python3 tools/check_stromheat.py
 
+      - name: Check the open dataset is machine-findable and embeds credit back
+        run: python3 tools/check_dataset.py
+
+      - name: Check the UK cost tables match the stored Ofgem cap and add up
+        run: python3 tools/check_ukcost.py
+
+      - name: Check no vetoed brand reached the published site
+        run: python3 tools/check_brand_veto.py
+
+      - name: Check the lateral link blocks are suggestions, not walls
+        run: python3 tools/check_related.py
+
       - name: Check the price engine (SigV4 vector, refresher vs mock, built pages vs data)
         run: |
           node tools/product_intel/paapi.mjs --selftest
@@ -209,6 +233,64 @@ jobs:
           check "https://getecoback.com/it/guide/miglior-condizionatore-portatile-italia.html" "tag=getecoback-21"
           check "https://getecoback.com/guide/btu-rechner.md" "Canonical (HTML"
           check "https://getecoback.com/sizing-data.json" "creativecommons"
+          # /daten.html (2026-09-16). The accident this guards against is not a
+          # 404 — it is the page rendering perfectly while carrying no Dataset
+          # node, which makes it invisible to Google Dataset Search, the only
+          # reason it exists. Assert the node, not the page.
+          check "https://getecoback.com/daten.html" '"@type": "Dataset"'
+          # UK pages (2026-09-17). These are new, so a 200 alone is already red
+          # against the previous build. What is asserted instead is the shape of
+          # the two accidents that would matter: the cost block quoting a cap
+          # period that is not the stored one, and a shelf appearing on pages
+          # whose whole argument is that they are not selling the reader anything.
+          # The expected rate and period are read from the stored cap, never
+          # typed here — a literal would be correct this quarter and would turn
+          # the deploy red next quarter for a change that was entirely correct.
+          cap_period=$(python3 -c "import json;print(json.load(open('data/ofgem-cap.json'))['period'])")
+          cap_rate=$(python3 -c "import json;print(json.load(open('data/ofgem-cap.json'))['electricity_p_per_kwh'])")
+          check "https://getecoback.com/en/guide/desiccant-vs-compressor-dehumidifier.html" "$cap_period"
+          check "https://getecoback.com/en/guide/heated-airer-vs-dehumidifier.html" "${cap_rate}p per kWh"
+          check "https://getecoback.com/en/guide/rising-damp-penetrating-damp-or-condensation.html" "penetrating damp"
+          # Blackout page (2026-09-17). The accident to guard is not a 404 but the
+          # page losing the one number it exists for, or its CO warning — the only
+          # safety-critical sentence on this site.
+          check "https://getecoback.com/guide/stromausfall-heizen.html" "Kohlenmonoxid"
+          check "https://getecoback.com/guide/stromausfall-heizen.html" "30 Minuten"
+          # The dehumidifier troubleshooting page (2026-09-17). Its whole value is
+          # one computed figure; a page that renders without it is intact and
+          # useless, which is the accident worth asserting.
+          check "https://getecoback.com/guide/luftentfeuchter-zieht-kein-wasser.html" "61 g"
+          # Homepage table: the site's largest AI surface had no structured rows
+          # at all until today, and it is generated from the open dataset.
+          check "https://getecoback.com/" "Richtwerte nach Raumgröße"
+          # Brand veto on the LIVE homepage. The rising rail rebuilds daily from
+          # Google Trends with no human in the loop, so the veto has to be checked
+          # where it can actually be violated, not only at build time.
+          for vb in $(sed "s/#.*//" tools/brand_veto.txt | tr -d " \t" | grep -v "^$"); do
+            if curl -sL --max-time 20 "https://getecoback.com/" | grep -qi "$vb"; then
+              echo "::error::the live homepage publishes vetoed brand $vb"; fail=1
+            else echo "OK homepage free of $vb"; fi
+          done
+          # Scripts are stripped before counting. The site-wide saved-room bar
+          # builds amazon URLs by string concatenation on every page including
+          # the legal ones, so a raw grep reports five links on a page that
+          # renders none — a false positive, not a find. Same reasoning as
+          # check_dataset.py, which was bitten by this first.
+          for u in desiccant-vs-compressor-dehumidifier heated-airer-vs-dehumidifier rising-damp-penetrating-damp-or-condensation; do
+            n=$(curl -sL --max-time 20 "https://getecoback.com/en/guide/$u.html" \
+                 | python3 -c "import re,sys;h=re.sub(r'<script\b.*?</script>','',sys.stdin.read(),flags=re.S);print(len(re.findall(r'href=\"[^\"]*amazon[^\"]*\"',h)))" 2>/dev/null || echo ERR)
+            if [ "$n" != "0" ]; then echo "::error::/en/guide/$u.html carries $n marked-up amazon link(s) — these three pages route to the sized pages instead of selling"; fail=1; else echo "OK $u sells nothing"; fi
+          done
+          # The CSV is claimed in that Dataset node as a text/csv DataDownload.
+          # If the edge serves it as octet-stream or HTML the claim is false and
+          # the file is useless to the tools that would consume it, while the
+          # page still looks perfect. So assert the header, not just the body.
+          csv_ct=$(curl -sIL --max-time 20 "https://getecoback.com/sizing-data.csv" | tr -d '\r' | grep -i '^content-type:' | tail -1 || true)
+          case "$csv_ct" in
+            *csv*) echo "OK /sizing-data.csv is $csv_ct" ;;
+            *) echo "::error::/sizing-data.csv must be served as text/csv, got: ${csv_ct:-<none>}"; fail=1 ;;
+          esac
+          check "https://getecoback.com/sizing-data.csv" "section,key,m2,value,unit,room,guide"
           check "https://getecoback.com/for-agents.html" "MCP"
           # Crawler/agent entry points that are rebuilt every deploy.
           check "https://getecoback.com/robots.txt" "Sitemap:"
@@ -235,6 +317,39 @@ jobs:
             *) echo "::error::/api/geo must be no-store, got: ${geo_cc:-<none>}"; fail=1 ;;
           esac
           check "https://getecoback.com/guide/klimaanlage-wohnmobil.html" "EB_USSWITCH"
+          # Winter-airing pair (2026-09-15). Both URLs are new, so a plain 200
+          # here is already red against the previous build. The assertion that
+          # matters is the classification, not the 200: these are humidity pages
+          # whose slugs name a window and a season, and the documented failure
+          # mode for exactly that shape is falling through device_of() to "ac" —
+          # which would put a cooling sizer and an air-conditioner shelf on a
+          # page about condensation in January. Assert the dehumidifier shelf is
+          # there AND the cooling sizer is not.
+          check "https://getecoback.com/guide/schimmel-am-fenster.html" "MeacoDry"
+          # Humidifier guide (2026-09-15). Its device family is "dehum" because
+          # that is the humidity table's key, so the default shelf would offer
+          # dehumidifiers to a reader whose air is too DRY — the page would sell
+          # the opposite of what it advises. CONTEXT_MODELS overrides it; assert
+          # both directions, since a silent override failure looks like nothing.
+          check "https://getecoback.com/guide/luftbefeuchter-ratgeber.html" "Verdunster mit Hygrostat"
+          if curl -sL --max-time 20 "https://getecoback.com/guide/luftbefeuchter-ratgeber.html" | grep -q "MeacoDry\|Comfee MDDF"; then
+            echo "::error::the humidifier guide is showing dehumidifiers — CONTEXT_MODELS override lost"
+            fail=1
+          else
+            echo "OK humidifier guide shows no dehumidifier cards"
+          fi
+          check "https://getecoback.com/guide/richtig-lueften-im-winter.html" "MeacoDry"
+          check "https://getecoback.com/en/guide/tilt-and-turn-windows-winter-condensation.html" "MeacoDry"
+          for u in "https://getecoback.com/guide/richtig-lueften-im-winter.html" \
+                   "https://getecoback.com/guide/schimmel-am-fenster.html" \
+                   "https://getecoback.com/en/guide/tilt-and-turn-windows-winter-condensation.html"; do
+            if curl -sL --max-time 20 "$u" | grep -q "EB_SIZER"; then
+              echo "::error::$u carries the cooling sizer — it has been misfiled as an 'ac' page"
+              fail=1
+            else
+              echo "OK $u has no cooling sizer"
+            fi
+          done
           # US shelf (2026-09-15). Both strings are absent from the previous
           # build, so both can actually fail. "Midea Duo" was the obvious second
           # assertion and was rejected: the EB_USMARKET bridge already names it,
@@ -244,6 +359,19 @@ jobs:
           # The strip is the surface above the fold and ships on more pages than
           # the shelf, including ones that have no shelf at all.
           check "https://getecoback.com/en/guide/btu-calculator.html" "eb-ustop"
+          # Square-foot box (2026-09-16). These ladders carry a US shelf while
+          # sizing rooms only in m², so an American was sold American machines
+          # against a unit they do not use. Assert the box is there AND still
+          # ships hidden — visible, it greets every German reader with
+          # "Reading this in the US?", which is the louder failure of the two.
+          check "https://getecoback.com/en/guide/electric-heater-20-sqm.html" "20 m² is about 215 sq ft"
+          if curl -sL --max-time 20 "https://getecoback.com/en/guide/electric-heater-20-sqm.html" \
+             | grep -q 'id="eb-usunits" hidden'; then
+            echo "OK sq-ft box ships hidden"
+          else
+            echo "::error::the sq-ft box is not hidden by default — European readers see the US notice"
+            fail=1
+          fi
           # A European-location page must carry NO US surface: a US portable AC
           # is 115 V and will not run on a 230 V socket in Spain.
           es_body=$(curl -sL --max-time 20 "https://getecoback.com/en/guide/best-portable-air-conditioner-spain.html" || true)

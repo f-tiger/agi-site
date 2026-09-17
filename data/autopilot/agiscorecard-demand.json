@@ -27,38 +27,39 @@
   "search_no_result": [],
   "site_search": [
    {
-    "n": 1,
-    "q": "tool:sunwatch_ledger"
-   },
-   {
-    "n": 1,
+    "n": 2,
     "q": "tool:claim_ledger https://goldrush.agiscorecard."
    }
   ]
  },
  "gaps": [],
- "generated": "2026-09-15",
+ "generated": "2026-09-17",
  "geo": "US",
- "heat_source": "measured 2026-09-15 (4 pages); no notes",
+ "heat_source": "measured 2026-09-17 (5 pages); no notes",
  "hot_pages": [
   {
-   "n7": 85,
-   "p7": 28,
+   "n7": 179,
+   "p7": 70,
+   "page": "/search"
+  },
+  {
+   "n7": 125,
+   "p7": 30,
    "page": "/progress-index"
   },
   {
-   "n7": 73,
-   "p7": 10,
-   "page": "/amodei-white-collar-bloodbath-prediction"
-  },
-  {
-   "n7": 67,
-   "p7": 24,
+   "n7": 114,
+   "p7": 30,
    "page": "/cn"
   },
   {
-   "n7": 39,
-   "p7": 16,
+   "n7": 92,
+   "p7": 27,
+   "page": "/amodei-white-collar-bloodbath-prediction"
+  },
+  {
+   "n7": 69,
+   "p7": 26,
    "page": "/ai-and-your-job"
   }
  ],

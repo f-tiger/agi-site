@@ -1,5 +1,5 @@
 {
- "fetched": "2026-09-15",
+ "fetched": "2026-09-17",
  "seeds": {
   "electric spin scrubber": {
    "auto": [
@@ -591,19 +591,27 @@
    "rising": [
     {
      "q": "pura car diffuser",
-     "v": 2000
+     "v": 29100
     },
     {
-     "q": "aroma 360 scents",
-     "v": 550
+     "q": "jcloud",
+     "v": 25050
     },
     {
-     "q": "aroma 360 diffuser",
-     "v": 160
+     "q": "brookstone ceramic ultrasonic aroma diffuser",
+     "v": 1750
+    },
+    {
+     "q": "sweet aroma diffuser young living",
+     "v": 650
+    },
+    {
+     "q": "360 aroma diffuser",
+     "v": 170
     },
     {
      "q": "aroma 360",
-     "v": 160
+     "v": 170
     },
     {
      "q": "hotel aroma diffuser",
@@ -615,11 +623,79 @@
     },
     {
      "q": "best aroma diffuser",
+     "v": 60
+    },
+    {
+     "q": "best diffuser",
+     "v": 60
+    }
+   ],
+   "source": "related-queries",
+   "fetched": "2026-09-16"
+  },
+  "robot vacuum replacement parts": {
+   "rising": [
+    {
+     "q": "shark robot vacuum",
+     "v": 60
+    },
+    {
+     "q": "shark vacuum replacement parts",
+     "v": 60
+    },
+    {
+     "q": "shark robot vacuum replacement parts",
+     "v": 50
+    },
+    {
+     "q": "shark replacement parts",
      "v": 40
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-09-15"
+   "fetched": "2026-09-17"
+  },
+  "red light therapy mask": {
+   "rising": [
+    {
+     "q": "shark cryoglow mask review",
+     "v": 7850
+    },
+    {
+     "q": "red.light therapy mask",
+     "v": 180
+    },
+    {
+     "q": "current body led mask series 2",
+     "v": 170
+    },
+    {
+     "q": "solawave mask reviews",
+     "v": 170
+    },
+    {
+     "q": "does red light therapy help with acne",
+     "v": 160
+    },
+    {
+     "q": "does red light therapy really work",
+     "v": 140
+    },
+    {
+     "q": "red light therapy benefits",
+     "v": 40
+    },
+    {
+     "q": "red light mask benefits",
+     "v": 40
+    },
+    {
+     "q": "red light therapy mask benefits",
+     "v": 40
+    }
+   ],
+   "source": "related-queries",
+   "fetched": "2026-09-17"
   }
  }
 }

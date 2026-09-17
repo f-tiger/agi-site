@@ -1,0 +1,68 @@
+{
+ "fetched": "2026-09-17",
+ "geo": "DE",
+ "basket": "DE-UA",
+ "timeframe": "today 5-y",
+ "anchor": "heizlüfter",
+ "scale_note": "One market, its own language, every batch repeating the anchor so the levels are comparable to each other. NOT comparable to seasonality-de.json (different anchor) or to any rising file.",
+ "weeks": 262,
+ "terms": [
+  {
+   "term": "heizlüfter",
+   "sep": 24.9,
+   "peak": 30.6,
+   "peak_month": 11,
+   "winter_mean": 22.3,
+   "win_over_sep": 0.9
+  },
+  {
+   "term": "плесень",
+   "sep": 0.8,
+   "peak": 1.2,
+   "peak_month": 11,
+   "winter_mean": 1.0,
+   "win_over_sep": 1.34
+  },
+  {
+   "term": "обогреватель",
+   "sep": 0.8,
+   "peak": 0.9,
+   "peak_month": 11,
+   "winter_mean": 0.6,
+   "win_over_sep": 0.68
+  },
+  {
+   "term": "осушитель воздуха",
+   "sep": 0.0,
+   "peak": 0.7,
+   "peak_month": 11,
+   "winter_mean": 0.4,
+   "win_over_sep": 8.2
+  },
+  {
+   "term": "обігрівач",
+   "sep": 0.0,
+   "peak": 0.0,
+   "peak_month": 11,
+   "winter_mean": 0.0,
+   "win_over_sep": null
+  },
+  {
+   "term": "цвіль",
+   "sep": 0.0,
+   "peak": 0.0,
+   "peak_month": 5,
+   "winter_mean": 0.0,
+   "win_over_sep": null
+  },
+  {
+   "term": "осушувач повітря",
+   "sep": 0.0,
+   "peak": 0.0,
+   "peak_month": 1,
+   "winter_mean": 0.0,
+   "win_over_sep": null
+  }
+ ],
+ "errors": []
+}

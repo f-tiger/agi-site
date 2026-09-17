@@ -3,6 +3,28 @@
   {
    "heat": null,
    "kind": "value",
+   "match": 0.75,
+   "page": "tools.html",
+   "q": "infrarotheizung gegen schimmel",
+   "seed": "infrarotheizung",
+   "source": "related-queries",
+   "stand": "2026-09-16",
+   "v": 59250
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 0.75,
+   "page": "guide/schimmel-bad-fugen.html",
+   "q": "schimmel auf leder entfernen",
+   "seed": "schimmel entfernen",
+   "source": "related-queries",
+   "stand": "2026-09-15",
+   "v": 50700
+  },
+  {
+   "heat": null,
+   "kind": "value",
    "match": 0.95,
    "page": "guide/trotec-luftentfeuchter-test.html",
    "q": "luftentfeuchter keller test",
@@ -23,7 +45,10 @@
    "v": 44900
   },
   {
-   "heat": null,
+   "heat": {
+    "n7": 3,
+    "p7": 1
+   },
    "kind": "value",
    "match": 1.0,
    "page": "guide/split-klimaanlage-ohne-kernbohrung.html",
@@ -43,17 +68,6 @@
    "source": "related-queries",
    "stand": "2026-09-11",
    "v": 40700
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.925,
-   "page": "guide/schimmel-im-keller-entfernen.html",
-   "q": "schimmel mit wasserstoffperoxid entfernen",
-   "seed": "schimmel entfernen",
-   "source": "related-queries",
-   "stand": "2026-09-14",
-   "v": 39250
   },
   {
    "heat": null,
@@ -79,8 +93,8 @@
   },
   {
    "heat": {
-    "n7": 6,
-    "p7": 0
+    "n7": 5,
+    "p7": 1
    },
    "kind": "value",
    "match": 0.925,
@@ -103,9 +117,53 @@
    "v": 28450
   },
   {
+   "heat": null,
+   "kind": "value",
+   "match": 0.7,
+   "page": "guide/infrarotheizung-decke-oder-wand.html",
+   "q": "infrarotheizung deckenmontage mit licht",
+   "seed": "infrarotheizung",
+   "source": "related-queries",
+   "stand": "2026-09-16",
+   "v": 25750
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 1.0,
+   "page": "guide/heizung-15-qm.html",
+   "q": "infrarotheizung 200 watt",
+   "seed": "infrarotheizung",
+   "source": "related-queries",
+   "stand": "2026-09-16",
+   "v": 24550
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 0.667,
+   "page": "guide/heizkosten-vergleich-rechner.html",
+   "q": "infrarotheizung auf rollen",
+   "seed": "infrarotheizung",
+   "source": "related-queries",
+   "stand": "2026-09-16",
+   "v": 23300
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 0.775,
+   "page": "guide/infrarotheizung-badezimmer.html",
+   "q": "elektrische heizung",
+   "seed": "infrarotheizung",
+   "source": "related-queries",
+   "stand": "2026-09-16",
+   "v": 23250
+  },
+  {
    "heat": {
-    "n7": 6,
-    "p7": 0
+    "n7": 5,
+    "p7": 1
    },
    "kind": "value",
    "match": 0.633,
@@ -119,12 +177,12 @@
   {
    "heat": null,
    "kind": "value",
-   "match": 0.75,
-   "page": "mcp.html",
-   "q": "schimmel englisch",
-   "seed": "schimmel entfernen",
+   "match": 0.98,
+   "page": "guide/infrarotheizung-ratgeber.html",
+   "q": "infrarotheizung 600 watt mit thermostat",
+   "seed": "infrarotheizung",
    "source": "related-queries",
-   "stand": "2026-09-14",
+   "stand": "2026-09-16",
    "v": 19750
   },
   {
@@ -141,6 +199,28 @@
   {
    "heat": null,
    "kind": "value",
+   "match": 0.917,
+   "page": "guide/infrarotheizung-garage.html",
+   "q": "infrarotheizung als bild",
+   "seed": "infrarotheizung",
+   "source": "related-queries",
+   "stand": "2026-09-16",
+   "v": 17650
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 0.75,
+   "page": "guide/heizung-10-qm.html",
+   "q": "könighaus infrarotheizung 600 watt",
+   "seed": "infrarotheizung",
+   "source": "related-queries",
+   "stand": "2026-09-16",
+   "v": 16250
+  },
+  {
+   "heat": null,
+   "kind": "value",
    "match": 1.0,
    "page": "guide/air-zuma-erfahrungen.html",
    "q": "air zuma klimaanlage",
@@ -148,17 +228,6 @@
    "source": "related-queries",
    "stand": "2026-09-14",
    "v": 15650
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.737,
-   "page": "guide/schimmel-im-keller-entfernen.html",
-   "q": "schimmel mit spiritus entfernen",
-   "seed": "schimmel entfernen",
-   "source": "related-queries",
-   "stand": "2026-09-14",
-   "v": 7000
   },
   {
    "heat": null,
@@ -208,17 +277,6 @@
    "heat": null,
    "kind": "value",
    "match": 1.0,
-   "page": "index.html",
-   "q": "schimmel ex",
-   "seed": "schimmel entfernen",
-   "source": "related-queries",
-   "stand": "2026-09-14",
-   "v": 5600
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 1.0,
    "page": "guide/air-zuma-erfahrungen.html",
    "q": "air zuma klimaanlage erfahrungen",
    "seed": "klimaanlage",
@@ -251,17 +309,6 @@
   {
    "heat": null,
    "kind": "value",
-   "match": 0.75,
-   "page": "guide/schimmel-bad-fugen.html",
-   "q": "schimmel auf leder entfernen",
-   "seed": "schimmel entfernen",
-   "source": "related-queries",
-   "stand": "2026-09-14",
-   "v": 1750
-  },
-  {
-   "heat": null,
-   "kind": "value",
    "match": 0.917,
    "page": "kategorie/klimaanlagen.html",
    "q": "coolzy klimaanlage test",
@@ -271,7 +318,10 @@
    "v": 500
   },
   {
-   "heat": null,
+   "heat": {
+    "n7": 3,
+    "p7": 1
+   },
    "kind": "value",
    "match": 1.0,
    "page": "guide/split-klimaanlage-ohne-kernbohrung.html",
@@ -295,134 +345,13 @@
   {
    "heat": null,
    "kind": "value",
-   "match": 1.0,
-   "page": "guide/schimmel-im-keller-entfernen.html",
-   "q": "schimmel im keller entfernen",
-   "seed": "schimmel entfernen",
-   "source": "related-queries",
-   "stand": "2026-09-14",
-   "v": 180
-  },
-  {
-   "heat": null,
-   "kind": "value",
    "match": 0.712,
    "page": "guide/schimmel-kleiderschrank.html",
    "q": "schimmel aus kleidung entfernen",
    "seed": "schimmel entfernen",
    "source": "related-queries",
-   "stand": "2026-09-14",
-   "v": 70
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.75,
-   "page": "guide/schimmel-bad-fugen.html",
-   "q": "schimmel in der dusche entfernen",
-   "seed": "schimmel entfernen",
-   "source": "related-queries",
-   "stand": "2026-09-14",
-   "v": 60
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.917,
-   "page": "guide/schimmel-bad-fugen.html",
-   "q": "schwarzen schimmel entfernen",
-   "seed": "schimmel entfernen",
-   "source": "related-queries",
-   "stand": "2026-09-14",
-   "v": 40
-  },
-  {
-   "heat": null,
-   "kind": "autocomplete-new",
-   "match": 1.0,
-   "page": "guide/infrarotheizung-decke-oder-wand.html",
-   "q": "infrarotheizung wand",
-   "seed": "infrarotheizung",
-   "source": "autocomplete-diff",
-   "stand": "2026-09-06",
-   "v": 1
-  },
-  {
-   "heat": null,
-   "kind": "autocomplete-new",
-   "match": 1.0,
-   "page": "guide/infrarotheizung-decke-oder-wand.html",
-   "q": "infrarotheizung decke",
-   "seed": "infrarotheizung",
-   "source": "autocomplete-diff",
-   "stand": "2026-09-06",
-   "v": 1
-  },
-  {
-   "heat": null,
-   "kind": "autocomplete-new",
-   "match": 1.0,
-   "page": "guide/infrarotheizung-badezimmer.html",
-   "q": "infrarotheizung badezimmer",
-   "seed": "infrarotheizung",
-   "source": "autocomplete-diff",
-   "stand": "2026-09-06",
-   "v": 1
-  },
-  {
-   "heat": null,
-   "kind": "autocomplete-new",
-   "match": 0.875,
-   "page": "guide/infrarotheizung-decke-oder-wand.html",
-   "q": "infrarotheizung bild",
-   "seed": "infrarotheizung",
-   "source": "autocomplete-diff",
-   "stand": "2026-09-06",
-   "v": 1
-  },
-  {
-   "heat": null,
-   "kind": "autocomplete-new",
-   "match": 0.95,
-   "page": "guide/infrarotheizung-ratgeber.html",
-   "q": "infrarotheizung test",
-   "seed": "infrarotheizung",
-   "source": "autocomplete-diff",
-   "stand": "2026-09-06",
-   "v": 1
-  },
-  {
-   "heat": null,
-   "kind": "autocomplete-new",
-   "match": 0.75,
-   "page": "guide/infrarotheizung-ratgeber.html",
-   "q": "infrarotheizungen",
-   "seed": "infrarotheizung",
-   "source": "autocomplete-diff",
-   "stand": "2026-09-06",
-   "v": 1
-  },
-  {
-   "heat": null,
-   "kind": "autocomplete-new",
-   "match": 1.0,
-   "page": "guide/infrarotheizung-standgeraet.html",
-   "q": "infrarotheizung standgerät",
-   "seed": "infrarotheizung",
-   "source": "autocomplete-diff",
-   "stand": "2026-09-06",
-   "v": 1
-  },
-  {
-   "heat": null,
-   "kind": "autocomplete-new",
-   "match": 0.9,
-   "page": "guide/heizluefter-stromverbrauch.html",
-   "q": "infrarotheizung stromverbrauch",
-   "seed": "infrarotheizung",
-   "source": "autocomplete-diff",
-   "stand": "2026-09-06",
-   "v": 1
+   "stand": "2026-09-15",
+   "v": 400
   }
  ],
  "first_party_demand": {
@@ -442,12 +371,22 @@
   {
    "kind": "value",
    "match": 0.5,
-   "page": "index.html",
-   "q": "weißer schimmel",
-   "seed": "schimmel entfernen",
+   "page": "guide/heizkosten-vergleich-rechner.html",
+   "q": "knebel infrarotheizung",
+   "seed": "infrarotheizung",
    "source": "related-queries",
-   "stand": "2026-09-14",
-   "v": 47800
+   "stand": "2026-09-16",
+   "v": 36000
+  },
+  {
+   "kind": "value",
+   "match": 0.5,
+   "page": "guide/heizkosten-vergleich-rechner.html",
+   "q": "infrarotheizung werkstatt",
+   "seed": "infrarotheizung",
+   "source": "related-queries",
+   "stand": "2026-09-16",
+   "v": 30750
   },
   {
    "kind": "value",
@@ -471,16 +410,6 @@
   },
   {
    "kind": "value",
-   "match": 0.0,
-   "page": null,
-   "q": "krups kaffeevollautomat intensity milk",
-   "seed": "kaffeevollautomat",
-   "source": "related-queries",
-   "stand": "2026-09-07",
-   "v": 16350
-  },
-  {
-   "kind": "value",
    "match": 0.5,
    "page": "guide/heizkosten-vergleich-rechner.html",
    "q": "stromsparender heizlüfter",
@@ -493,11 +422,21 @@
    "kind": "value",
    "match": 0.19,
    "page": "guide/epicooler-erfahrungen.html",
-   "q": "siemens kaffeevollautomat eq.6 plus s400 te654509de",
+   "q": "siemens kaffeevollautomat eq.6 plus s300 te653501de",
    "seed": "kaffeevollautomat",
    "source": "related-queries",
-   "stand": "2026-09-07",
-   "v": 9100
+   "stand": "2026-09-16",
+   "v": 9200
+  },
+  {
+   "kind": "value",
+   "match": 0.19,
+   "page": "guide/epicooler-erfahrungen.html",
+   "q": "siemens te651509de eq.6 plus s100 kaffeevollautomat",
+   "seed": "kaffeevollautomat",
+   "source": "related-queries",
+   "stand": "2026-09-16",
+   "v": 8900
   },
   {
    "kind": "value",
@@ -511,13 +450,13 @@
   },
   {
    "kind": "value",
-   "match": 0.19,
-   "page": "guide/epicooler-erfahrungen.html",
-   "q": "siemens kaffeevollautomat eq.6 plus s300 te653501de",
+   "match": 0.25,
+   "page": "guide/delonghi-pac-n90-test.html",
+   "q": "de'longhi kaffeevollautomat ecam 21.118.b",
    "seed": "kaffeevollautomat",
    "source": "related-queries",
-   "stand": "2026-09-07",
-   "v": 1750
+   "stand": "2026-09-16",
+   "v": 3700
   },
   {
    "kind": "value",
@@ -541,23 +480,43 @@
   },
   {
    "kind": "value",
-   "match": 0.45,
-   "page": "guide/klimaanlage-stromkosten.html",
-   "q": "kaffeevollautomat mit 2 bohnenbehälter testsieger",
+   "match": 0.0,
+   "page": null,
+   "q": "krups kaffeevollautomat intensity milk",
    "seed": "kaffeevollautomat",
    "source": "related-queries",
-   "stand": "2026-09-07",
-   "v": 250
+   "stand": "2026-09-16",
+   "v": 600
+  },
+  {
+   "kind": "value",
+   "match": 0.0,
+   "page": null,
+   "q": "philips kaffeevollautomat ep5443/70 5400 series",
+   "seed": "kaffeevollautomat",
+   "source": "related-queries",
+   "stand": "2026-09-16",
+   "v": 550
   },
   {
    "kind": "value",
    "match": 0.19,
    "page": "guide/epicooler-erfahrungen.html",
-   "q": "siemens te651509de eq.6 plus s100 kaffeevollautomat",
+   "q": "siemens kaffeevollautomat eq.6 plus s400 te654509de",
    "seed": "kaffeevollautomat",
    "source": "related-queries",
-   "stand": "2026-09-07",
-   "v": 250
+   "stand": "2026-09-16",
+   "v": 550
+  },
+  {
+   "kind": "value",
+   "match": 0.333,
+   "page": "guide/air-zuma-erfahrungen.html",
+   "q": "kaffeevollautomat mit keramikmahlwerk",
+   "seed": "kaffeevollautomat",
+   "source": "related-queries",
+   "stand": "2026-09-16",
+   "v": 300
   },
   {
    "kind": "value",
@@ -581,8 +540,18 @@
   },
   {
    "kind": "value",
-   "match": 0.487,
-   "page": "guide/klimaanlage-balkonkraftwerk.html",
+   "match": 0.5,
+   "page": "guide/delonghi-pac-n90-test.html",
+   "q": "de'longhi kaffeevollautomat",
+   "seed": "kaffeevollautomat",
+   "source": "related-queries",
+   "stand": "2026-09-16",
+   "v": 120
+  },
+  {
+   "kind": "value",
+   "match": 0.5,
+   "page": "guide/balkonkraftwerk-mieter-recht.html",
    "q": "balkonkraftwerk nicht angemeldet strafe",
    "seed": "balkonkraftwerk",
    "source": "related-queries",
@@ -591,12 +560,12 @@
   },
   {
    "kind": "value",
-   "match": 0.5,
-   "page": "guide/delonghi-pac-n90-test.html",
-   "q": "de'longhi kaffeevollautomat",
+   "match": 0.0,
+   "page": null,
+   "q": "samsung kaffeevollautomat",
    "seed": "kaffeevollautomat",
    "source": "related-queries",
-   "stand": "2026-09-07",
+   "stand": "2026-09-16",
    "v": 100
   },
   {
@@ -608,16 +577,6 @@
    "source": "related-queries",
    "stand": "2026-09-09",
    "v": 90
-  },
-  {
-   "kind": "value",
-   "match": 0.0,
-   "page": null,
-   "q": "samsung kaffeevollautomat",
-   "seed": "kaffeevollautomat",
-   "source": "related-queries",
-   "stand": "2026-09-07",
-   "v": 80
   },
   {
    "kind": "value",
@@ -671,16 +630,6 @@
   },
   {
    "kind": "value",
-   "match": 0.5,
-   "page": "guide/pro-breeze-luftentfeuchter-test.html",
-   "q": "mini kaffeevollautomat",
-   "seed": "kaffeevollautomat",
-   "source": "related-queries",
-   "stand": "2026-09-07",
-   "v": 60
-  },
-  {
-   "kind": "value",
    "match": 0.0,
    "page": null,
    "q": "babybett matratze 70x140",
@@ -718,22 +667,17 @@
    "source": "related-queries",
    "stand": "2026-09-10",
    "v": 40
-  },
-  {
-   "kind": "autocomplete-new",
-   "match": 0.5,
-   "page": "guide/heizkosten-vergleich-rechner.html",
-   "q": "infrarotheizung spiegel",
-   "seed": "infrarotheizung",
-   "source": "autocomplete-diff",
-   "stand": "2026-09-06",
-   "v": 1
   }
  ],
- "generated": "2026-09-15",
+ "generated": "2026-09-17",
  "geo": "DE",
- "heat_source": "measured 2026-09-15 (20 pages); no notes",
+ "heat_source": "measured 2026-09-17 (22 pages); no notes",
  "hot_pages": [
+  {
+   "n7": 9,
+   "p7": 4,
+   "page": "/guide/growatt-noah-2000-probleme.html"
+  },
   {
    "n7": 8,
    "p7": 5,
@@ -741,73 +685,68 @@
   },
   {
    "n7": 8,
-   "p7": 8,
+   "p7": 7,
    "page": "/guide/midea-portasplit-ausverkauft-alternativen.html"
   },
   {
    "n7": 6,
-   "p7": 0,
-   "page": "/guide/heizluefter-stromsparend.html"
-  },
-  {
-   "n7": 6,
-   "p7": 6,
-   "page": "/guide/klimaanlage-kippfenster.html"
-  },
-  {
-   "n7": 6,
-   "p7": 10,
-   "page": "/guide/klimaanlage-wohnmobil.html"
-  },
-  {
-   "n7": 6,
-   "p7": 7,
-   "page": "/guide/mobile-klimaanlage-ueberwintern.html"
-  },
-  {
-   "n7": 6,
-   "p7": 2,
+   "p7": 5,
    "page": "/guide/was-bedeutet-btu.html"
   },
   {
    "n7": 5,
-   "p7": 6,
-   "page": "/guide/growatt-noah-2000-probleme.html"
+   "p7": 1,
+   "page": "/guide/heizluefter-stromsparend.html"
+  },
+  {
+   "n7": 5,
+   "p7": 7,
+   "page": "/guide/klimaanlage-wohnmobil.html"
+  },
+  {
+   "n7": 5,
+   "p7": 5,
+   "page": "/guide/mobile-klimaanlage-ueberwintern.html"
   },
   {
    "n7": 4,
-   "p7": 3,
-   "page": "/en/guide/portable-ac-leaking-water.html"
-  },
-  {
-   "n7": 3,
-   "p7": 3,
-   "page": "/guide/klimaanlage-25-qm.html"
-  },
-  {
-   "n7": 3,
    "p7": 1,
-   "page": "/guide/klimaanlage-mit-heizfunktion.html"
+   "page": "/guide/fensterabdichtung-selber-bauen.html"
+  },
+  {
+   "n7": 4,
+   "p7": 8,
+   "page": "/guide/klimaanlage-kippfenster.html"
   },
   {
    "n7": 3,
    "p7": 0,
-   "page": "/guide/luftentfeuchter-keller.html"
+   "page": "/guide/comfee-geraete-test.html"
+  },
+  {
+   "n7": 3,
+   "p7": 1,
+   "page": "/guide/split-klimaanlage-ohne-kernbohrung.html"
   },
   {
    "n7": 2,
-   "p7": 1,
-   "page": "/en/guide/portable-ac-not-cooling.html"
+   "p7": 4,
+   "page": "/en/guide/portable-ac-leaking-water.html"
+  },
+  {
+   "n7": 2,
+   "p7": 2,
+   "page": "/en/guide/portable-air-conditioner-france.html"
+  },
+  {
+   "n7": 2,
+   "p7": 0,
+   "page": "/guide/beste-tragbare-klimaanlage-hitzewelle.html"
   },
   {
    "n7": 2,
    "p7": 0,
    "page": "/guide/beste-tragbare-klimaanlage-schlafzimmer.html"
-  },
-  {
-   "n7": 2,
-   "p7": 0,
-   "page": "/guide/fensterabdichtung-selber-bauen.html"
   }
  ],
  "how_to_read": "gaps = 今天有需求、站内没有页面接得住(match < 0.60);covered = 已有页面接得住。**page 字段是「词元重叠度最高的现有页面」,不是编辑判断** —— 实测它会挑错:eco 的 'luftentfeuchter bei hitze' 被它指到 kinderzimmer-kuehlen.html,而本站自己的 rail 把这条问句路由到 luftentfeuchter-ratgeber 的「它不制冷」那一节。所以 page 只当线索用,别当结论。v 是 Google 的增长值,不是搜索量;kind=autocomplete-new 的行来自配额用尽后的兜底,分值恒为 1,不可与真实增长值比较。**underserved** = 有真实增长值(v≥200、非兜底)的需求词、站内有页面接得住、但过去 7 天零真人到达 —— 这不是缺内容,是标题/首屏/内链让人找不到,是判断层最该动手的一类。hot_pages = 实测 7 天真人到达最多的页(n7)与前 7 天(p7);first_party_demand = 读者在站内亲手输入的搜索词(site_search / search_no_result),对 Google 面降级的站,它是主信号不是补充。heat_source 写着度量的日期与状态;读不到就如实写读不到。",
@@ -829,13 +768,33 @@
   "ikea bett 140x200"
  ],
  "site": "getecoback",
- "source_notes": [
-  "sites/getecoback/data/trends-rising.json: 1 seed(s) are on the AUTOCOMPLETE FALLBACK, not Google Trends rising (infrarotheizung). Those rows are scored 1, not ranked against real volume — the demand face for them is degraded, not working."
- ],
+ "source_notes": [],
  "sources": [
   "sites/getecoback/data/trends-rising.json"
  ],
  "underserved": [
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 0.75,
+   "page": "tools.html",
+   "q": "infrarotheizung gegen schimmel",
+   "seed": "infrarotheizung",
+   "source": "related-queries",
+   "stand": "2026-09-16",
+   "v": 59250
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 0.75,
+   "page": "guide/schimmel-bad-fugen.html",
+   "q": "schimmel auf leder entfernen",
+   "seed": "schimmel entfernen",
+   "source": "related-queries",
+   "stand": "2026-09-15",
+   "v": 50700
+  },
   {
    "heat": null,
    "kind": "value",
@@ -861,17 +820,6 @@
   {
    "heat": null,
    "kind": "value",
-   "match": 1.0,
-   "page": "guide/split-klimaanlage-ohne-kernbohrung.html",
-   "q": "split klimaanlage",
-   "seed": "luftentfeuchter",
-   "source": "related-queries",
-   "stand": "2026-09-11",
-   "v": 41150
-  },
-  {
-   "heat": null,
-   "kind": "value",
    "match": 0.75,
    "page": "guide/ventilator-kaufen-ratgeber.html",
    "q": "klimaanlage mobil",
@@ -879,17 +827,6 @@
    "source": "related-queries",
    "stand": "2026-09-11",
    "v": 40700
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.925,
-   "page": "guide/schimmel-im-keller-entfernen.html",
-   "q": "schimmel mit wasserstoffperoxid entfernen",
-   "seed": "schimmel entfernen",
-   "source": "related-queries",
-   "stand": "2026-09-14",
-   "v": 39250
   },
   {
    "heat": null,
@@ -927,12 +864,56 @@
   {
    "heat": null,
    "kind": "value",
-   "match": 0.75,
-   "page": "mcp.html",
-   "q": "schimmel englisch",
-   "seed": "schimmel entfernen",
+   "match": 0.7,
+   "page": "guide/infrarotheizung-decke-oder-wand.html",
+   "q": "infrarotheizung deckenmontage mit licht",
+   "seed": "infrarotheizung",
    "source": "related-queries",
-   "stand": "2026-09-14",
+   "stand": "2026-09-16",
+   "v": 25750
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 1.0,
+   "page": "guide/heizung-15-qm.html",
+   "q": "infrarotheizung 200 watt",
+   "seed": "infrarotheizung",
+   "source": "related-queries",
+   "stand": "2026-09-16",
+   "v": 24550
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 0.667,
+   "page": "guide/heizkosten-vergleich-rechner.html",
+   "q": "infrarotheizung auf rollen",
+   "seed": "infrarotheizung",
+   "source": "related-queries",
+   "stand": "2026-09-16",
+   "v": 23300
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 0.775,
+   "page": "guide/infrarotheizung-badezimmer.html",
+   "q": "elektrische heizung",
+   "seed": "infrarotheizung",
+   "source": "related-queries",
+   "stand": "2026-09-16",
+   "v": 23250
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 0.98,
+   "page": "guide/infrarotheizung-ratgeber.html",
+   "q": "infrarotheizung 600 watt mit thermostat",
+   "seed": "infrarotheizung",
+   "source": "related-queries",
+   "stand": "2026-09-16",
    "v": 19750
   },
   {
@@ -949,6 +930,28 @@
   {
    "heat": null,
    "kind": "value",
+   "match": 0.917,
+   "page": "guide/infrarotheizung-garage.html",
+   "q": "infrarotheizung als bild",
+   "seed": "infrarotheizung",
+   "source": "related-queries",
+   "stand": "2026-09-16",
+   "v": 17650
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 0.75,
+   "page": "guide/heizung-10-qm.html",
+   "q": "könighaus infrarotheizung 600 watt",
+   "seed": "infrarotheizung",
+   "source": "related-queries",
+   "stand": "2026-09-16",
+   "v": 16250
+  },
+  {
+   "heat": null,
+   "kind": "value",
    "match": 1.0,
    "page": "guide/air-zuma-erfahrungen.html",
    "q": "air zuma klimaanlage",
@@ -956,17 +959,6 @@
    "source": "related-queries",
    "stand": "2026-09-14",
    "v": 15650
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.737,
-   "page": "guide/schimmel-im-keller-entfernen.html",
-   "q": "schimmel mit spiritus entfernen",
-   "seed": "schimmel entfernen",
-   "source": "related-queries",
-   "stand": "2026-09-14",
-   "v": 7000
   },
   {
    "heat": null,
@@ -1000,61 +992,6 @@
    "source": "related-queries",
    "stand": "2026-09-14",
    "v": 6600
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.75,
-   "page": "guide/lidl-tronic-klimaanlage-test.html",
-   "q": "tronic klimaanlage 9000 btu",
-   "seed": "klimaanlage",
-   "source": "related-queries",
-   "stand": "2026-09-14",
-   "v": 6550
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 1.0,
-   "page": "index.html",
-   "q": "schimmel ex",
-   "seed": "schimmel entfernen",
-   "source": "related-queries",
-   "stand": "2026-09-14",
-   "v": 5600
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 1.0,
-   "page": "guide/air-zuma-erfahrungen.html",
-   "q": "air zuma klimaanlage erfahrungen",
-   "seed": "klimaanlage",
-   "source": "related-queries",
-   "stand": "2026-09-14",
-   "v": 5150
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 1.0,
-   "page": "guide/heizung-30-qm.html",
-   "q": "heizlüfter 400 watt",
-   "seed": "heizlüfter",
-   "source": "related-queries",
-   "stand": "2026-09-12",
-   "v": 4200
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.633,
-   "page": "guide/heizkosten-vergleich-rechner.html",
-   "q": "heizlüfter bad testsieger",
-   "seed": "heizlüfter",
-   "source": "related-queries",
-   "stand": "2026-09-12",
-   "v": 4050
   }
  ]
 }

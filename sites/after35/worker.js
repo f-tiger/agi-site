@@ -338,6 +338,16 @@ export default {
           logRow(env, ctx, { name: done ? "done_ok" : "withdraw_ok", label: r.kind + ":" + id, path: "/api/withdraw", ua_class: "api" });
           return json({ ok: true, status: done ? "done" : "withdrawn" });
         }
+        // 信标真值测试(2026-09-16 补,SR 09-13 同款):CI 先 POST 一条 label=__ci 的事件,再从这里读回来。
+        // 没有这条,「工具一次都没被用过」和「/e → D1 这根管子断了」在读数上一模一样——本站上线以来
+        // 客户端事件恒为 0,必须能证明是前者。只回计数,不回任何行级数据。
+        if (p === "/api/selftest" && request.method === "GET") {
+          const label = (url.searchParams.get("label") || "").slice(0, 40);
+          // 只认 __ 开头的自检标签:这个端点是 CI 探针,不是给外人读站内统计的窗口。
+          if (!label || !label.startsWith("__")) return json({ ok: false, error: "ci label required" }, 400);
+          const r = await env.EV.prepare("SELECT COUNT(*) n FROM ev WHERE label = ? AND day >= date('now','-2 days')").bind(label).first();
+          return json({ ok: true, label, n: (r && r.n) | 0 });
+        }
         if (p === "/api/pulse" && request.method === "GET") {
           // 舰队 heartbeat 读侧(同 goldrush):28 天真人 pv + AI 助手引荐,只给聚合数。
           const q = await env.EV.prepare("SELECT '_total' AS host, COUNT(*) AS n FROM ev WHERE name='page_view' AND ua_class='human' AND day >= date('now','-28 days') UNION ALL SELECT ref AS host, COUNT(*) AS n FROM ev WHERE name='page_view' AND ua_class='human' AND day >= date('now','-28 days') AND (ref LIKE '%chatgpt%' OR ref LIKE '%chat.openai%' OR ref LIKE '%perplexity%' OR ref LIKE '%claude.ai%' OR ref LIKE '%copilot%' OR ref LIKE '%gemini.google%' OR ref LIKE '%you.com%' OR ref LIKE '%kagi%' OR ref LIKE '%poe.com%' OR ref LIKE '%mistral%' OR ref LIKE '%deepseek%' OR ref LIKE '%kimi%' OR ref LIKE '%doubao%' OR ref LIKE '%yiyan%' OR ref LIKE '%metaso%') GROUP BY ref ORDER BY n DESC").all();

@@ -55,6 +55,8 @@ CAT_OF = {
     "luftentfeuchter-ratgeber": "luftqualitaet",
     "wohnmobil-feuchtigkeit-winter": "luftqualitaet",
     "fenster-beschlagen-innen": "luftqualitaet",
+    "richtig-lueften-im-winter": "luftqualitaet",
+    "schimmel-am-fenster": "luftqualitaet",
     "luftreiniger-ratgeber": "luftqualitaet",
     "klimaanlage-reinigen": "luftqualitaet",
     "klimaanlage-stromkosten": "energie-sparen",
@@ -84,6 +86,7 @@ FOOTER = ("<!--EB_FOOTER--><footer class=\"eb-footer\"><div class=\"eb-footer-in
           "<div><strong>EcoBack</strong>"
           "<a href=\"/tools.html\">🧮 Alle Rechner &amp; Checks</a>"
           "<a href=\"/widgets.html\">🧩 Widgets für deine Website</a>"
+          "<a href=\"/daten.html\">📊 Offene Daten (CC BY 4.0)</a>"
           "<a href=\"/hitze-radar.html\">🌡️ Hitze-Radar</a>"
           "<a href=\"/ueber-uns.html\">Über uns</a>"
           "<a href=\"/wie-wir-empfehlen.html\">Wie wir empfehlen</a>"
@@ -144,6 +147,7 @@ EN_NAV = ("<!--EB_NAV--><nav class=\"eb-nav\"><div class=\"eb-nav-in\">"
 EN_FOOTER = ("<!--EB_FOOTER--><footer class=\"eb-footer\"><div class=\"eb-footer-in\">"
              "<div><strong>EcoBack</strong>"
              "<a href=\"/tools.html\">🧮 All calculators</a>"
+             "<a href=\"/daten.html\">📊 Open data (CC BY 4.0)</a>"
              "<a href=\"/en/heat-radar.html\">🌡️ Heat Radar</a>"
              "<a href=\"/en/\">All Guides</a>"
              "<a href=\"/\">Deutsche Version</a></div>"
@@ -884,6 +888,15 @@ def device_of(slug):
     s = slug
     if s.startswith(("balkonkraftwerk-", "balkonspeicher-", "growatt-", "zendure-")):
         return "storage"
+    # Blackout/grid-outage pages are battery pages, not cooling pages. Without
+    # this "stromausfall-heizen" falls through to "ac" and a page about getting
+    # through a January power cut ships with a portable air-conditioner sizer —
+    # the third time this default has misfiled a page (schimmel- 09-09, the UK
+    # damp page this morning). The shelf itself is suppressed via SKIP_MODELS:
+    # a grid-tied balcony battery is NOT backup power, which is one of the
+    # things the page exists to say.
+    if "stromausfall" in s:
+        return "storage"
     if "ventilator" in s:
         return "fan"
     if ("luftentfeuchter" in s or "dehumidifier" in s
@@ -902,6 +915,22 @@ def device_of(slug):
             # and needs filters and cleaner. A substring test would have moved
             # this site's best search-driven page into the wrong device family.
             or s.startswith(("schimmel-", "stockflecken-"))
+            # Winter-airing pair (2026-09-15). Both slugs are humidity pages
+            # whose tokens name a window and a season, so without this they
+            # fall through to "ac" and a page about condensation in January
+            # would carry the heatwave band and cooling products — the same
+            # misfile that put an AC sizer on the EN drying-clothes page.
+            or "lueften-im-winter" in s
+            or "winter-condensation" in s
+            # UK damp vocabulary (2026-09-17). British English splits the one
+            # German word Schimmel into damp (the condition), condensation (the
+            # mechanism) and mould (the result), and none of those tokens were
+            # here. rising-damp-penetrating-damp-or-condensation therefore fell
+            # through to "ac" and shipped with a portable air-conditioner shelf
+            # on a page about groundwater in a Victorian wall — the same misfile
+            # the schimmel- prefix above was added to stop, in a new language.
+            or "damp" in s
+            or "condensation" in s
             # Humidifier pages live in the humidity family too: routing them to
             # "dehum" keeps every ac-only component (sizer, heat-energy box,
             # climate box) off the page; the card grid itself is overridden by
@@ -956,7 +985,21 @@ SKIP_MODELS = {"btu-rechner", "stromkosten-rechner", "infrarotheizung-watt-rechn
                "fensterabdichtung-klimaanlage", "window-seal-portable-ac",
                "fensterabdichtung-selber-bauen",
                "auto-bei-hitze-kuehlen", "haustier-hitze-kuehlen",
-               "ventilator-mit-eis", "richtig-lueften-bei-hitze", "pc-ueberhitzt-sommer"}
+               "ventilator-mit-eis", "richtig-lueften-bei-hitze", "pc-ueberhitzt-sommer",
+               # UK decision pages (2026-09-17). These three answer "which kind
+               # of thing do I need", and the shelf would argue with the answer:
+               # the desiccant page concludes "desiccant for a cold room" while
+               # every unit in our grid is a compressor, and the damp page's
+               # whole point is that two of the three damps are not fixed by
+               # buying anything. They route to the sized pages, which carry the
+               # grid, once the reader has decided what they are buying.
+               "desiccant-vs-compressor-dehumidifier",
+               "heated-airer-vs-dehumidifier",
+               "rising-damp-penetrating-damp-or-condensation",
+               # The honest product answer here is a CO alarm and warm bedding,
+               # not a balcony battery — the page's whole argument is that the
+               # battery does not do what buyers think.
+               "stromausfall-heizen"}
 # EN qm twins were briefly in SKIP_MODELS on 2026-08-28 (DEVICE_MODELS_EN had
 # no heater set, and models_block falls back to AC cards). Same day the EN
 # dehum/heater card sets were added, so the injectors now serve these pages
@@ -1296,6 +1339,17 @@ CONTEXT_MODELS = {
  # the hygrometer before any purchase), then the two build types the article
  # itself recommends. No named models — no public-test consensus verified, so
  # honest category searches. Prices only where the page states them.
+ # The humidifier buyer's guide (2026-09-15). Same three-card shape as the cost
+ # page, but ordered by that page's own argument: measure, then the build type
+ # that cannot over-humidify, then the two that can. The device family is
+ # "dehum" only because that is the humidity table's key — inject_quickpick
+ # blocks the dehumidifier router on luftbefeuchter slugs by keyword, so a
+ # reader whose air is too DRY is never routed to an entfeuchter picker.
+ "luftbefeuchter-ratgeber": [
+   ("Hygrometer (innen, Min/Max)", "Erst messen", "Unter 40 % über mehrere Tage ist der einzige Fall, der ein Gerät rechtfertigt — und es zeigt, ob der Zielwert gehalten wird.", "ab 10 €", "hygrometer+innen+min+max", "dehum"),
+   ("Verdunster mit Hygrostat", "Dauerbetrieb", "Kaltverdunstung: je feuchter die Luft, desto weniger nimmt sie auf — überfeuchtet konstruktionsbedingt kaum. Matten sind Verschleißteil.", "Preis vor Ort prüfen", "luftbefeuchter+verdunster+hygrostat", "dehum"),
+   ("Infrarot-Thermometer", "Kälteste Fläche finden", "Der Zielwert hängt an der kältesten Wand — ohne diese Messung stellst du den Hygrostat blind ein.", "ab ca. 20 €", "infrarot+thermometer", "dehum"),
+ ],
  "luftbefeuchter-stromverbrauch": [
    ("Hygrometer (innen, Min/Max)", "Erst messen", "Zeigt in zwei Tagen, ob die Luft wirklich dauerhaft unter 40 % liegt — ohne Messung ist jeder Befeuchter geraten.", "ab 10 €", "hygrometer+innen+min+max", "dehum"),
    ("Verdunster-Luftbefeuchter", "Sparsam im Dauerbetrieb", "Kaltverdunstung mit Lüfter, wenige Watt — überfeuchtet konstruktionsbedingt kaum.", "Preis vor Ort prüfen", "luftbefeuchter+verdunster+leise", "dehum"),
@@ -1381,6 +1435,8 @@ CONTEXT_SUB = {
                             "Luftbewegung statt auf Kältegeräte. Nicht selbst getestet. Symbolbilder."),
  "heizdecke-stromverbrauch": ("Wärme zum Körper statt in den Raum — alle drei arbeiten mit einem Bruchteil "
                               "der Leistung eines Heizlüfters. Nicht selbst getestet. Symbolbilder."),
+ "luftbefeuchter-ratgeber": ("Erst messen, dann den Zielwert an der kältesten Wand festlegen — "
+                             "nicht pauschal 50 %. Nicht selbst getestet. Symbolbilder."),
  "luftbefeuchter-stromverbrauch": ("Erst messen, dann befeuchten — der echte Fall ist dauerhaft unter 40 %. "
                                    "Über 60 %? Dann brauchst du das Gegenteil: einen Entfeuchter. "
                                    "Nicht selbst getestet. Symbolbilder."),
@@ -1716,6 +1772,7 @@ US_SHELF_JS = (
     'var a=e.target&&e.target.closest&&e.target.closest(\'a[href*="amazon."]\');if(!a)return;'
     'if(window.gtag)gtag("event","affiliate_click",{source:this.id==="eb-ustop"?"us-toppick":"us-shelf",'
     'page:location.pathname,link_url:a.href});},true);}'
+    'var u=document.getElementById("eb-usunits");if(u)u.hidden=false;'
     'if(shown){var br=document.getElementById("eb-usmarket");if(br)br.hidden=true;}};'
     # The script rides with the strip, which sits near the top of the document,
     # so at execution time the shelf and the bridge further down are not parsed
@@ -1772,6 +1829,64 @@ def inject_us_toppick(html, slug):
     if "<!--EB_USTOP-->" in html:
         return re.sub(r'<!--EB_USTOP-->.*?<!--/EB_USTOP-->\n?', lambda m: blk, html, flags=re.S)
     return html.replace("<!--/EB_TOPPICK-->\n", "<!--/EB_TOPPICK-->\n" + blk, 1)
+
+
+# EN square-metre ladders read by an American (2026-09-16). These 13 pages
+# already carry the US shelf, so the one non-German market with a CONFIRMED
+# working associates tag was being sold American machines sized in a unit
+# Americans do not use: electric-heater-20-sqm says "m²" 25 times and "sq ft"
+# zero times. Its own peak month for that product is January, so the gap was
+# about to be in season. Titles and URLs are deliberately untouched — the
+# 2026-10-12 Bing indexation line (eco-en-qm-bing-1012) is measured on these
+# exact URLs and rewriting them would destroy its own baseline.
+QM_SQFT = {10: 108, 15: 161, 20: 215, 25: 269, 30: 323, 40: 431, 50: 538}
+QM_SLUG_RE = re.compile(r"^(?:electric-heater|dehumidifier)-(\d+)-sqm$")
+
+
+def us_units_block(slug):
+    """Hidden by default; the US swap script reveals it for North American
+    readers. States only arithmetic (m² -> sq ft) and the conversion the reader
+    needs to redo the euro costs on their own bill. The EIA figure is given as
+    the range actually readable from the source table, which interleaves
+    monthly, year-to-date and twelve-month sections under one header — naming a
+    single number from it would be a guess dressed as a citation."""
+    m = QM_SLUG_RE.match(slug or "")
+    if not m:
+        return ""
+    qm = int(m.group(1))
+    sqft = QM_SQFT.get(qm)
+    if not sqft:
+        return ""
+    return ('<!--EB_USUNITS--><div id="eb-usunits" hidden '
+            'style="max-width:1000px;margin:10px auto 0;padding:0 20px;">'
+            '<div style="background:#eef6fb;border:1px solid #cfe6fa;border-radius:12px;'
+            'padding:14px 18px;font-size:14.5px;">'
+            f'<strong>Reading this in the US?</strong> This page sizes rooms in square metres, '
+            f'the unit used where it was written — <strong>{qm} m² is about {sqft} sq ft</strong>. '
+            'Watts are the same everywhere, so the power figures need no conversion. '
+            'The running costs below are in euros at €0.30/kWh, which is roughly double a '
+            'typical US residential rate, so redo them on your own bill: '
+            '<strong>watts ÷ 1000 × your ¢/kWh × hours</strong>. '
+            'For reference the US residential average ran about 17–18 ¢/kWh across 2025–2026 '
+            '(<a href="https://www.eia.gov/electricity/monthly/epm_table_grapher.php?t=epmt_5_3" '
+            'target="_blank" rel="noopener">EIA, Electric Power Monthly table 5.3</a>, '
+            'data for June 2026) — your own rate is the one that counts.'
+            '</div></div><!--/EB_USUNITS-->\n')
+
+
+def inject_us_units(html, slug):
+    blk = us_units_block(slug)
+    if "<!--EB_USUNITS-->" in html:
+        if not blk:
+            return re.sub(r'<!--EB_USUNITS-->.*?<!--/EB_USUNITS-->\n?', '', html, flags=re.S)
+        return re.sub(r'<!--EB_USUNITS-->.*?<!--/EB_USUNITS-->\n?', lambda m: blk, html, flags=re.S)
+    if not blk:
+        return html
+    if "<!--/EB_CRUMB-->" in html:
+        return html.replace("<!--/EB_CRUMB-->", "<!--/EB_CRUMB-->" + blk, 1)
+    if "</nav>" in html:
+        return html.replace("</nav>", "</nav>\n" + blk, 1)
+    return html
 
 
 def inject_us_shelf(html, slug):
@@ -2071,7 +2186,14 @@ def popup_block(device, en=False, slug=None):
             '})();</script><!--/EB_POPUP-->\n')
 
 
-POPUP_SKIP = {"impressum", "datenschutz", "kontakt", "radar-bestaetigt"}
+POPUP_SKIP = {"impressum", "datenschutz", "kontakt", "radar-bestaetigt",
+              # Same three as SKIP_MODELS: an exit popup selling a compressor
+              # unit on a page that just told a British reader to buy desiccant,
+              # or anything at all on the damp page, contradicts the article.
+              "desiccant-vs-compressor-dehumidifier",
+              "heated-airer-vs-dehumidifier",
+              "rising-damp-penetrating-damp-or-condensation",
+              "stromausfall-heizen"}
 
 
 def inject_popup(html, slug, en=False):
@@ -4420,6 +4542,7 @@ def main():
             new = inject_models(new, slug, en=True)
             new = inject_us_toppick(new, slug)
             new = inject_us_shelf(new, slug)
+            new = inject_us_units(new, slug)
             new = inject_sizer(new, slug, en=True)
             new = inject_toppick(new, slug, en=True)
             new = inject_explainer(new, slug, en=True)

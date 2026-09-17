@@ -1,87 +1,179 @@
 {
  "runs": [
   {
-   "changed_urls": [
-    "https://agiscorecard.com/agi-odds-vs-evidence.html",
-    "https://agiscorecard.com/cn.html"
-   ],
+   "changed_urls": [],
    "counts": {
     "bootstrapped": 0,
-    "changed": 2,
+    "changed": 0,
     "covered": 2,
     "demand_terms": 6,
     "gaps": 0,
-    "hot_pages": 4,
-    "lastmod_updated": 2,
+    "hot_pages": 5,
+    "lastmod_updated": 0,
     "offtopic": 4,
     "pages": 212,
     "undatable": 0,
     "underserved": 0
    },
    "notes": [
-    "heat: measured 2026-09-15 (4 pages); no notes"
+    "heat: measured 2026-09-17 (5 pages); no notes"
    ],
    "outcome": "ok",
    "site": "agiscorecard",
-   "today": "2026-09-15",
+   "today": "2026-09-17",
    "wrote": [
-    "sites/agiscorecard/sitemap.xml",
     "data/autopilot/agiscorecard.json",
     "data/autopilot/agiscorecard-demand.json"
    ]
   },
   {
-   "changed_urls": [],
+   "changed_urls": [
+    "https://source.agiscorecard.com/landed-cost.html"
+   ],
    "counts": {
-    "bootstrapped": 0,
-    "changed": 0,
+    "bootstrapped": 2,
+    "changed": 1,
     "covered": 0,
-    "demand_terms": 45,
-    "gaps": 1,
+    "demand_terms": 47,
+    "gaps": 0,
     "hot_pages": 0,
-    "lastmod_updated": 0,
-    "offtopic": 44,
-    "pages": 5,
+    "lastmod_updated": 1,
+    "offtopic": 47,
+    "pages": 7,
     "undatable": 0,
     "underserved": 0
    },
    "notes": [
-    "sites/buysomething/site/rising.json: 2 seed(s) are on the AUTOCOMPLETE FALLBACK, not Google Trends rising (chinese style shirt, electric pruning shears). Those rows are scored 1, not ranked against real volume — the demand face for them is degraded, not working.",
-    "sites/buysomething/site/rising.json: 11 fresh seed(s) used; 11 stale and 0 undated dropped",
-    "heat: measured 2026-09-15 (0 pages); no notes"
+    "sites/buysomething/site/rising.json: 1 seed(s) are on the AUTOCOMPLETE FALLBACK, not Google Trends rising (chinese style shirt). Those rows are scored 1, not ranked against real volume — the demand face for them is degraded, not working.",
+    "sites/buysomething/site/rising.json: 11 fresh seed(s) used; 13 stale and 0 undated dropped",
+    "heat: measured 2026-09-17 (0 pages); no notes"
    ],
    "outcome": "ok",
    "site": "buysomething",
-   "today": "2026-09-15",
+   "today": "2026-09-17",
    "wrote": [
+    "sites/buysomething/site/sitemap.xml",
     "data/autopilot/buysomething.json",
     "data/autopilot/buysomething-demand.json"
    ]
   },
   {
    "changed_urls": [
-    "https://getecoback.com/guide/heizluefter-stromsparend.html"
+    "https://getecoback.com/en/guide/best-portable-air-conditioner-europe-heatwave.html",
+    "https://getecoback.com/en/guide/best-portable-air-conditioner-for-bedroom.html",
+    "https://getecoback.com/en/guide/best-portable-air-conditioner-italy.html",
+    "https://getecoback.com/en/guide/btu-calculator.html",
+    "https://getecoback.com/en/guide/cheapest-way-to-cool-a-room-without-installation.html",
+    "https://getecoback.com/en/guide/cool-attic-bedroom-top-floor.html",
+    "https://getecoback.com/en/guide/dehumidifier-10-sqm.html",
+    "https://getecoback.com/en/guide/dehumidifier-15-sqm.html",
+    "https://getecoback.com/en/guide/dehumidifier-20-sqm.html",
+    "https://getecoback.com/en/guide/dehumidifier-25-sqm.html",
+    "https://getecoback.com/en/guide/dehumidifier-30-sqm.html",
+    "https://getecoback.com/en/guide/dehumidifier-40-sqm.html",
+    "https://getecoback.com/en/guide/dehumidifier-drying-clothes-cost.html",
+    "https://getecoback.com/en/guide/electric-heater-10-sqm.html",
+    "https://getecoback.com/en/guide/electric-heater-15-sqm.html",
+    "https://getecoback.com/en/guide/electric-heater-20-sqm.html",
+    "https://getecoback.com/en/guide/electric-heater-25-sqm.html",
+    "https://getecoback.com/en/guide/electric-heater-30-sqm.html",
+    "https://getecoback.com/en/guide/electric-heater-40-sqm.html",
+    "https://getecoback.com/en/guide/electric-heater-50-sqm.html",
+    "https://getecoback.com/en/guide/fan-with-ice-cool-room.html",
+    "https://getecoback.com/en/guide/gaming-pc-overheating-summer.html",
+    "https://getecoback.com/en/guide/heat-check.html",
+    "https://getecoback.com/en/guide/how-many-btu-do-i-need.html",
+    "https://getecoback.com/en/guide/how-to-clean-portable-air-conditioner.html",
+    "https://getecoback.com/en/guide/how-to-sleep-in-a-heatwave-without-ac.html",
+    "https://getecoback.com/en/guide/portable-ac-hose-extension.html",
+    "https://getecoback.com/en/guide/portable-ac-leaking-water.html",
+    "https://getecoback.com/en/guide/portable-ac-not-cooling.html",
+    "https://getecoback.com/en/guide/portable-ac-rented-apartment.html",
+    "https://getecoback.com/en/guide/portable-ac-running-cost.html",
+    "https://getecoback.com/en/guide/portable-ac-skylight-roof-window.html",
+    "https://getecoback.com/en/guide/portable-ac-smells-musty.html",
+    "https://getecoback.com/en/guide/portable-ac-tilt-and-turn-windows.html",
+    "https://getecoback.com/en/guide/portable-ac-vs-air-cooler.html",
+    "https://getecoback.com/en/guide/tilt-and-turn-windows-winter-condensation.html",
+    "https://getecoback.com/en/guide/vent-portable-ac-without-window.html",
+    "https://getecoback.com/en/guide/window-seal-portable-ac.html",
+    "https://getecoback.com/for-agents.html",
+    "https://getecoback.com/guide/abluftschlauch-verlaengern.html",
+    "https://getecoback.com/guide/bei-hitze-schlafen.html",
+    "https://getecoback.com/guide/beste-tragbare-klimaanlage-hitzewelle.html",
+    "https://getecoback.com/guide/beste-tragbare-klimaanlage-schlafzimmer.html",
+    "https://getecoback.com/guide/btu-rechner.html",
+    "https://getecoback.com/guide/dachgeschoss-kuehlen.html",
+    "https://getecoback.com/guide/fensterabdichtung-klimaanlage.html",
+    "https://getecoback.com/guide/heizung-10-qm.html",
+    "https://getecoback.com/guide/heizung-15-qm.html",
+    "https://getecoback.com/guide/heizung-20-qm.html",
+    "https://getecoback.com/guide/heizung-25-qm.html",
+    "https://getecoback.com/guide/heizung-30-qm.html",
+    "https://getecoback.com/guide/heizung-40-qm.html",
+    "https://getecoback.com/guide/heizung-50-qm.html",
+    "https://getecoback.com/guide/hitze-check.html",
+    "https://getecoback.com/guide/klimaanlage-15-qm.html",
+    "https://getecoback.com/guide/klimaanlage-25-qm.html",
+    "https://getecoback.com/guide/klimaanlage-30-qm.html",
+    "https://getecoback.com/guide/klimaanlage-dachfenster.html",
+    "https://getecoback.com/guide/klimaanlage-kippfenster.html",
+    "https://getecoback.com/guide/klimaanlage-mietwohnung.html",
+    "https://getecoback.com/guide/klimaanlage-reinigen.html",
+    "https://getecoback.com/guide/klimaanlage-stromkosten.html",
+    "https://getecoback.com/guide/klimaanlage-vs-luftkuehler.html",
+    "https://getecoback.com/guide/klimaanlage-wohnmobil.html",
+    "https://getecoback.com/guide/luftentfeuchter-10-qm.html",
+    "https://getecoback.com/guide/luftentfeuchter-15-qm.html",
+    "https://getecoback.com/guide/luftentfeuchter-20-qm.html",
+    "https://getecoback.com/guide/luftentfeuchter-25-qm.html",
+    "https://getecoback.com/guide/luftentfeuchter-30-qm.html",
+    "https://getecoback.com/guide/luftentfeuchter-40-qm.html",
+    "https://getecoback.com/guide/mobile-klimaanlage-kuehlt-nicht.html",
+    "https://getecoback.com/guide/mobile-klimaanlage-stinkt-schimmel.html",
+    "https://getecoback.com/guide/mobile-klimaanlage-tropft-wasser.html",
+    "https://getecoback.com/guide/mobile-klimaanlage-zu-laut.html",
+    "https://getecoback.com/guide/pc-ueberhitzt-sommer.html",
+    "https://getecoback.com/guide/richtig-lueften-im-winter.html",
+    "https://getecoback.com/guide/split-klimaanlage-ohne-kernbohrung.html",
+    "https://getecoback.com/guide/ventilator-mit-eis.html",
+    "https://getecoback.com/guide/waesche-trocknen-wohnung.html",
+    "https://getecoback.com/guide/wie-viel-btu-brauche-ich.html",
+    "https://getecoback.com/guide/zimmer-kuehlen-ohne-installation.html",
+    "https://getecoback.com/index.html",
+    "https://getecoback.com/it/guide/climatizzatore-senza-unita-esterna.html",
+    "https://getecoback.com/it/guide/condizionatore-finestra-anta-ribalta.html",
+    "https://getecoback.com/it/guide/condizionatore-portatile-15-mq.html",
+    "https://getecoback.com/it/guide/condizionatore-portatile-25-mq.html",
+    "https://getecoback.com/it/guide/condizionatore-portatile-30-mq.html",
+    "https://getecoback.com/it/guide/condizionatore-portatile-camper.html",
+    "https://getecoback.com/it/guide/condizionatore-portatile-rumoroso.html",
+    "https://getecoback.com/it/guide/condizionatore-senza-finestra.html",
+    "https://getecoback.com/it/guide/deumidificatore-40-mq.html",
+    "https://getecoback.com/it/guide/miglior-condizionatore-portatile-italia.html",
+    "https://getecoback.com/kategorie/energie-sparen.html",
+    "https://getecoback.com/kategorie/klimaanlagen.html",
+    "https://getecoback.com/widgets.html"
    ],
    "counts": {
-    "bootstrapped": 0,
-    "changed": 1,
-    "covered": 38,
-    "demand_terms": 82,
-    "gaps": 30,
+    "bootstrapped": 6,
+    "changed": 95,
+    "covered": 31,
+    "demand_terms": 76,
+    "gaps": 31,
     "hot_pages": 15,
     "offtopic": 14,
-    "pages": 204,
+    "pages": 214,
     "undatable": 0,
-    "underserved": 24
+    "underserved": 27
    },
    "notes": [
     "sitemap owned by this site's own generator — not touched",
-    "sites/getecoback/data/trends-rising.json: 1 seed(s) are on the AUTOCOMPLETE FALLBACK, not Google Trends rising (infrarotheizung). Those rows are scored 1, not ranked against real volume — the demand face for them is degraded, not working.",
-    "heat: measured 2026-09-15 (20 pages); no notes"
+    "heat: measured 2026-09-17 (22 pages); no notes"
    ],
    "outcome": "ok",
    "site": "getecoback",
-   "today": "2026-09-15",
+   "today": "2026-09-17",
    "wrote": [
     "data/autopilot/getecoback.json",
     "data/autopilot/getecoback-demand.json"
@@ -107,7 +199,7 @@
    ],
    "outcome": "ok",
    "site": "goldrush",
-   "today": "2026-09-15",
+   "today": "2026-09-17",
    "wrote": [
     "data/autopilot/goldrush.json",
     "data/autopilot/goldrush-demand.json"
@@ -133,7 +225,7 @@
    ],
    "outcome": "ok",
    "site": "gridlings",
-   "today": "2026-09-15",
+   "today": "2026-09-17",
    "wrote": [
     "data/autopilot/gridlings.json",
     "data/autopilot/gridlings-demand.json"
@@ -144,27 +236,28 @@
    "counts": {
     "bootstrapped": 0,
     "changed": 0,
-    "covered": 3,
-    "demand_terms": 18,
-    "gaps": 13,
+    "covered": 12,
+    "demand_terms": 29,
+    "gaps": 11,
     "hot_pages": 0,
     "lastmod_updated": 0,
-    "offtopic": 2,
+    "offtopic": 6,
     "pages": 39,
     "undatable": 0,
     "underserved": 0
    },
    "notes": [
+    "sites/thedollscout/content/trends-rising.json: 1 seed(s) are on the AUTOCOMPLETE FALLBACK, not Google Trends rising (fake labubu). Those rows are scored 1, not ranked against real volume — the demand face for them is degraded, not working.",
     "heat: no public aggregate endpoint on this site — heat needs either a Worker /api/* aggregate route or the D1 read permission on the deploy token"
    ],
    "outcome": "ok",
    "site": "thedollscout",
-   "today": "2026-09-15",
+   "today": "2026-09-17",
    "wrote": [
     "data/autopilot/thedollscout.json",
     "data/autopilot/thedollscout-demand.json"
    ]
   }
  ],
- "today": "2026-09-15"
+ "today": "2026-09-17"
 }

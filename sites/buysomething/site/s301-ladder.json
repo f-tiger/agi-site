@@ -1,0 +1,951 @@
+{
+ "generated": "2026-09-17",
+ "source": [
+  "https://hts.usitc.gov/reststop/exportList?from=9903.88&to=9903.89&format=JSON&styles=false",
+  "https://hts.usitc.gov/reststop/exportList?from=9903.90&to=9903.95&format=JSON&styles=false"
+ ],
+ "source_kind": "official USITC HTS REST export, Chapter 99 subchapter III",
+ "hts_release": "",
+ "headings": 77,
+ "additional_rates_seen_pct": [
+  7.5,
+  10.0,
+  15.0,
+  25.0,
+  50.0,
+  100.0
+ ],
+ "coverage_disclaimer": "This is the rate ladder only. Whether a particular HTS8 code is covered by a list is defined in U.S. note 20 to subchapter III of chapter 99 (USITC publishes it as a PDF) and in the USTR list annexes; this file does not assert membership for any product.",
+ "ustr_lists": "https://ustr.gov/issue-areas/enforcement/section-301-investigations/tariff-actions",
+ "ladder": [
+  {
+   "heading": "9903.88.01",
+   "programme": "Section 301 (China), U.S. note 20 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading plus 25%",
+   "additional_rate_pct": 25.0,
+   "kind": "additional ad valorem duty",
+   "effective_from": null,
+   "us_notes": [
+    "20(a)",
+    "20(b)"
+   ],
+   "description": "Except as provided in headings 9903.88.05, 9903.88.06, 9903.88.07, 9903.88.08, 9903.88.10, 9903.88.11, 9903.88.14, 9903.88.19, 9903.88.50, 9903.88.52, 9903.88.58, 9903.88.60, 9903.88.62, 9903.88.66, 9903.88.67, 9903.88.68, or 9903.88.69, articles the product of China, as provided for in U.S. note 20(a) to this subchapter and as provided for in the subheadings enumerated in U.S. note 20(b) [to this"
+  },
+  {
+   "heading": "9903.88.02",
+   "programme": "Section 301 (China), U.S. note 20 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading + 25%",
+   "additional_rate_pct": 25.0,
+   "kind": "additional ad valorem duty",
+   "effective_from": null,
+   "us_notes": [
+    "20(c)",
+    "20(d)"
+   ],
+   "description": "Except as provided in headings 9903.88.12, 9903.88.17, 9903.88.20, 9903.88.54, 9903.88.59, 9903.88.61, 9903.88.63, 9903.88.66, 9903.88.67, 9903.88.68, 9903.88.69, or 9903.88.70, articles the product of China, as provided for in U.S. note 20(c) to this subchapter and as provided for in the subheadings enumerated in U.S. note 20(d)"
+  },
+  {
+   "heading": "9903.88.03",
+   "programme": "Section 301 (China), U.S. note 20 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading + 25%",
+   "additional_rate_pct": 25.0,
+   "kind": "additional ad valorem duty",
+   "effective_from": null,
+   "us_notes": [
+    "20(e)",
+    "20(f)"
+   ],
+   "description": "Except as provided in headings 9903.88.13, 9903.88.18, 9903.88.33, 9903.88.34, 9903.88.35, 9903.88.36, 9903.88.37, 9903.88.38, 9903.88.40, 9903.88.41, 9903.88.43, 9903.88.45, 9903.88.46, 9903.88.48, 9903.88.56, 9903.88.64, 9903.88.66, 9903.88.67, 9903.88.68, or 9903.88.69, articles the product of China, as provided for in U.S. note 20(e) to this subchapter and as provided for in the subheadings en"
+  },
+  {
+   "heading": "9903.88.04",
+   "programme": "Section 301 (China), U.S. note 20 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading + 25%",
+   "additional_rate_pct": 25.0,
+   "kind": "additional ad valorem duty",
+   "effective_from": null,
+   "us_notes": [
+    "20(g)"
+   ],
+   "description": "Except as provided in headings 9903.88.33, 9903.88.34, 9903.88.36, 9903.88.37, 9903.88.38, 9903.88.40, 9903.88.46, 9903.88.48, 9903.88.56, 9903.88.64, 9903.88.66, 9903.88.67, or 9903.88.69, articles the product of China, as provided for in U.S. note 20(g) to this subchapter and as provided for in the subheadings enumerated in U.S. note 20(g)"
+  },
+  {
+   "heading": "9903.88.05",
+   "programme": "Section 301 (China), U.S. note 20 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading",
+   "additional_rate_pct": 0.0,
+   "kind": "no additional duty (exclusion or excepted heading)",
+   "effective_from": null,
+   "us_notes": [
+    "20(h)"
+   ],
+   "description": "Articles the product of China, as provided for in U.S. note 20(h) to this subchapter, each covered by an exclusion granted by the U.S. Trade Representative"
+  },
+  {
+   "heading": "9903.88.06",
+   "programme": "Section 301 (China), U.S. note 20 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading",
+   "additional_rate_pct": 0.0,
+   "kind": "no additional duty (exclusion or excepted heading)",
+   "effective_from": null,
+   "us_notes": [
+    "20(i)"
+   ],
+   "description": "Articles the product of China, as provided for in U.S. note 20(i) to this subchapter, each covered by an exclusion granted by the U.S. Trade Representative"
+  },
+  {
+   "heading": "9903.88.07",
+   "programme": "Section 301 (China), U.S. note 20 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading",
+   "additional_rate_pct": 0.0,
+   "kind": "no additional duty (exclusion or excepted heading)",
+   "effective_from": null,
+   "us_notes": [
+    "20(j)"
+   ],
+   "description": "Articles the product of China, as provided for in U.S. note 20(j) to this subchapter, each covered by an exclusion granted by the U.S. Trade Representative"
+  },
+  {
+   "heading": "9903.88.08",
+   "programme": "Section 301 (China), U.S. note 20 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading",
+   "additional_rate_pct": 0.0,
+   "kind": "no additional duty (exclusion or excepted heading)",
+   "effective_from": null,
+   "us_notes": [
+    "20(k)"
+   ],
+   "description": "Articles the product of China, as provided for in U.S. note 20(k) to this subchapter, each covered by an exclusion granted by the United States Trade Representative"
+  },
+  {
+   "heading": "9903.88.09",
+   "programme": "Section 301 (China), U.S. note 20 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading + 10%",
+   "additional_rate_pct": 10.0,
+   "kind": "additional ad valorem duty",
+   "effective_from": null,
+   "us_notes": [
+    "20(l)"
+   ],
+   "description": "Articles the product of China, as provided for in U.S. note 20(l) to this subchapter and as provided for in the subheadings enumerated in U.S. notes 20(f) or 20(g) to this subchapter, if exported to the United States before May 10, 2019 and entered for consumption, or withdrawn from warehouse for consumption, on or after May 10, 2019, and before June 15, 2019"
+  },
+  {
+   "heading": "9903.88.10",
+   "programme": "Section 301 (China), U.S. note 20 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading",
+   "additional_rate_pct": 0.0,
+   "kind": "no additional duty (exclusion or excepted heading)",
+   "effective_from": null,
+   "us_notes": [
+    "20(m)"
+   ],
+   "description": "Articles the product of China, as provided for in U.S. note 20(m) to this subchapter, each covered by an exclusion granted by the U.S. Trade Representative"
+  },
+  {
+   "heading": "9903.88.11",
+   "programme": "Section 301 (China), U.S. note 20 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading",
+   "additional_rate_pct": 0.0,
+   "kind": "no additional duty (exclusion or excepted heading)",
+   "effective_from": null,
+   "us_notes": [
+    "20(n)"
+   ],
+   "description": "Articles the product of China, as provided for in U.S. note 20(n) to this subchapter, each covered by an exclusion granted by the U.S. Trade Representative"
+  },
+  {
+   "heading": "9903.88.12",
+   "programme": "Section 301 (China), U.S. note 20 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading",
+   "additional_rate_pct": 0.0,
+   "kind": "no additional duty (exclusion or excepted heading)",
+   "effective_from": null,
+   "us_notes": [
+    "20(o)"
+   ],
+   "description": "Articles the product of China, as provided for in U.S. note 20(o) to this subchapter, each covered by an exclusion granted by the U.S. Trade Representative"
+  },
+  {
+   "heading": "9903.88.13",
+   "programme": "Section 301 (China), U.S. note 20 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading",
+   "additional_rate_pct": 0.0,
+   "kind": "no additional duty (exclusion or excepted heading)",
+   "effective_from": null,
+   "us_notes": [
+    "20(p)"
+   ],
+   "description": "Articles the product of China, as provided for in U.S. note 20(p) to this subchapter, each covered by an exclusion granted by the U.S. Trade Representative"
+  },
+  {
+   "heading": "9903.88.14",
+   "programme": "Section 301 (China), U.S. note 20 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading",
+   "additional_rate_pct": 0.0,
+   "kind": "no additional duty (exclusion or excepted heading)",
+   "effective_from": null,
+   "us_notes": [
+    "20(q)"
+   ],
+   "description": "Articles the product of China, as provided for in U.S. note 20(q) to this subchapter, each covered by an exclusion granted by the U.S. Trade Representative"
+  },
+  {
+   "heading": "9903.88.15",
+   "programme": "Section 301 (China), U.S. note 20 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading + 7.5%",
+   "additional_rate_pct": 7.5,
+   "kind": "additional ad valorem duty",
+   "effective_from": null,
+   "us_notes": [
+    "20(r)",
+    "20(s)"
+   ],
+   "description": "Except as provided in headings 9903.88.39, 9903.88.42, 9903.88.44, 9903.88.47, 9903.88.49, 9903.88.51, 9903.88.53, 9903.88.55, 9903.88.57, 9903.88.65, 9903.88.66, 9903.88.67, 9903.88.68, or 9903.88.69, articles the product of China, as provided for in U.S. note 20(r) to this subchapter and as provided for in the subheadings enumerated in U.S. note 20(s)"
+  },
+  {
+   "heading": "9903.88.16",
+   "programme": "Section 301 (China), U.S. note 20 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading + 15%",
+   "additional_rate_pct": 15.0,
+   "kind": "additional ad valorem duty",
+   "effective_from": null,
+   "us_notes": [
+    "20(t)",
+    "20(u)"
+   ],
+   "description": "Articles the product of China, as provided for in U.S. note 20(t) to this subchapter and as provided for in the subheadings enumerated in U.S. note 20(u) [Compiler's note: provision suspended.]"
+  },
+  {
+   "heading": "9903.88.17",
+   "programme": "Section 301 (China), U.S. note 20 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading",
+   "additional_rate_pct": 0.0,
+   "kind": "no additional duty (exclusion or excepted heading)",
+   "effective_from": null,
+   "us_notes": [
+    "20(v)"
+   ],
+   "description": "Articles the product of China, as provided for in U.S. note 20(v) to this subchapter, each covered by an exclusion granted by the U.S. Trade Representative"
+  },
+  {
+   "heading": "9903.88.18",
+   "programme": "Section 301 (China), U.S. note 20 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading",
+   "additional_rate_pct": 0.0,
+   "kind": "no additional duty (exclusion or excepted heading)",
+   "effective_from": null,
+   "us_notes": [
+    "20(w)"
+   ],
+   "description": "Articles the product of China, as provided for in U.S. note 20(w) to this subchapter, each covered by an exclusion granted by the U.S. Trade Representative"
+  },
+  {
+   "heading": "9903.88.19",
+   "programme": "Section 301 (China), U.S. note 20 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading",
+   "additional_rate_pct": 0.0,
+   "kind": "no additional duty (exclusion or excepted heading)",
+   "effective_from": null,
+   "us_notes": [
+    "20(x)"
+   ],
+   "description": "Articles the product of China, as provided for in U.S. note 20(x) to this subchapter, each covered by an exclusion granted by the U.S. Trade Representative"
+  },
+  {
+   "heading": "9903.88.20",
+   "programme": "Section 301 (China), U.S. note 20 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading",
+   "additional_rate_pct": 0.0,
+   "kind": "no additional duty (exclusion or excepted heading)",
+   "effective_from": null,
+   "us_notes": [
+    "20(y)"
+   ],
+   "description": "Articles the product of China, as provided for in U.S. note 20(y) to this subchapter, each covered by an exclusion granted by the U.S. Trade Representative"
+  },
+  {
+   "heading": "9903.88.21",
+   "programme": "Section 301 (China), U.S. note 20 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading",
+   "additional_rate_pct": 0.0,
+   "kind": "no additional duty (exclusion or excepted heading)",
+   "effective_from": null,
+   "us_notes": [
+    "20(z)"
+   ],
+   "description": "Articles the product of China, as provided for in U.S. note 20(z) to this subchapter"
+  },
+  {
+   "heading": "9903.88.22",
+   "programme": "Section 301 (China), U.S. note 20 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading",
+   "additional_rate_pct": 0.0,
+   "kind": "no additional duty (exclusion or excepted heading)",
+   "effective_from": null,
+   "us_notes": [
+    "20(aa)"
+   ],
+   "description": "Articles the product of China, as provided for in U.S. note 20(aa) to this subchapter"
+  },
+  {
+   "heading": "9903.88.23",
+   "programme": "Section 301 (China), U.S. note 20 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading",
+   "additional_rate_pct": 0.0,
+   "kind": "no additional duty (exclusion or excepted heading)",
+   "effective_from": null,
+   "us_notes": [
+    "20(bb)"
+   ],
+   "description": "Articles the product of China, as provided for in U.S. note 20(bb) to this subchapter"
+  },
+  {
+   "heading": "9903.88.24",
+   "programme": "Section 301 (China), U.S. note 20 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading",
+   "additional_rate_pct": 0.0,
+   "kind": "no additional duty (exclusion or excepted heading)",
+   "effective_from": null,
+   "us_notes": [
+    "20(cc)"
+   ],
+   "description": "Articles the product of China, as provided for in U.S. note 20(cc) to this subchapter"
+  },
+  {
+   "heading": "9903.88.25",
+   "programme": "Section 301 (China), U.S. note 20 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading",
+   "additional_rate_pct": 0.0,
+   "kind": "no additional duty (exclusion or excepted heading)",
+   "effective_from": null,
+   "us_notes": [
+    "20(dd)"
+   ],
+   "description": "Articles the product of China, as provided for in U.S. note 20(dd) to this subchapter"
+  },
+  {
+   "heading": "9903.88.26",
+   "programme": "Section 301 (China), U.S. note 20 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading",
+   "additional_rate_pct": 0.0,
+   "kind": "no additional duty (exclusion or excepted heading)",
+   "effective_from": null,
+   "us_notes": [
+    "20(ee)"
+   ],
+   "description": "Articles the product of China, as provided for in U.S. note 20(ee) to this subchapter"
+  },
+  {
+   "heading": "9903.88.27",
+   "programme": "Section 301 (China), U.S. note 20 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading",
+   "additional_rate_pct": 0.0,
+   "kind": "no additional duty (exclusion or excepted heading)",
+   "effective_from": null,
+   "us_notes": [
+    "20(ff)"
+   ],
+   "description": "Articles the product of China, as provided for in U.S. note 20(ff) to this subchapter"
+  },
+  {
+   "heading": "9903.88.28",
+   "programme": "Section 301 (China), U.S. note 20 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading",
+   "additional_rate_pct": 0.0,
+   "kind": "no additional duty (exclusion or excepted heading)",
+   "effective_from": null,
+   "us_notes": [
+    "20(gg)"
+   ],
+   "description": "Articles the product of China, as provided for in U.S. note 20(gg) to this subchapter"
+  },
+  {
+   "heading": "9903.88.33",
+   "programme": "Section 301 (China), U.S. note 20 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading",
+   "additional_rate_pct": 0.0,
+   "kind": "no additional duty (exclusion or excepted heading)",
+   "effective_from": null,
+   "us_notes": [
+    "20(ll)"
+   ],
+   "description": "Articles the product of China, as provided for in U.S. note 20(ll) to this subchapter, each covered by an exclusion granted by the U.S. Trade Representative"
+  },
+  {
+   "heading": "9903.88.34",
+   "programme": "Section 301 (China), U.S. note 20 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading",
+   "additional_rate_pct": 0.0,
+   "kind": "no additional duty (exclusion or excepted heading)",
+   "effective_from": null,
+   "us_notes": [
+    "20(mm)"
+   ],
+   "description": "Articles the product of China, as provided for in U.S. note 20(mm) to this subchapter, each covered by an exclusion granted by the U.S. Trade Representative"
+  },
+  {
+   "heading": "9903.88.35",
+   "programme": "Section 301 (China), U.S. note 20 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading",
+   "additional_rate_pct": 0.0,
+   "kind": "no additional duty (exclusion or excepted heading)",
+   "effective_from": null,
+   "us_notes": [
+    "20(nn)"
+   ],
+   "description": "Articles the product of China, as provided for in U.S. note 20(nn) to this subchapter, each covered by an exclusion granted by the U.S. Trade Representative"
+  },
+  {
+   "heading": "9903.88.36",
+   "programme": "Section 301 (China), U.S. note 20 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading",
+   "additional_rate_pct": 0.0,
+   "kind": "no additional duty (exclusion or excepted heading)",
+   "effective_from": null,
+   "us_notes": [
+    "20(oo)"
+   ],
+   "description": "Articles the product of China, as provided for in U.S. note 20(oo) to this subchapter, each covered by an exclusion granted by the U.S. Trade Representative"
+  },
+  {
+   "heading": "9903.88.37",
+   "programme": "Section 301 (China), U.S. note 20 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading",
+   "additional_rate_pct": 0.0,
+   "kind": "no additional duty (exclusion or excepted heading)",
+   "effective_from": null,
+   "us_notes": [
+    "20(pp)"
+   ],
+   "description": "Articles the product of China, as provided for in U.S. note 20(pp) to this subchapter, each covered by an exclusion granted by the U.S. Trade Representative"
+  },
+  {
+   "heading": "9903.88.38",
+   "programme": "Section 301 (China), U.S. note 20 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading",
+   "additional_rate_pct": 0.0,
+   "kind": "no additional duty (exclusion or excepted heading)",
+   "effective_from": null,
+   "us_notes": [
+    "20(qq)"
+   ],
+   "description": "Articles the product of China, as provided for in U.S. note 20(qq) to this subchapter, each covered by an exclusion granted by the U.S. Trade Representative"
+  },
+  {
+   "heading": "9903.88.39",
+   "programme": "Section 301 (China), U.S. note 20 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading",
+   "additional_rate_pct": 0.0,
+   "kind": "no additional duty (exclusion or excepted heading)",
+   "effective_from": null,
+   "us_notes": [
+    "20(rr)"
+   ],
+   "description": "Articles the product of China, as provided for in U.S. note 20(rr) to this subchapter, each covered by an exclusion granted by the U.S. Trade Representative"
+  },
+  {
+   "heading": "9903.88.40",
+   "programme": "Section 301 (China), U.S. note 20 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading",
+   "additional_rate_pct": 0.0,
+   "kind": "no additional duty (exclusion or excepted heading)",
+   "effective_from": null,
+   "us_notes": [
+    "20(ss)"
+   ],
+   "description": "Articles the product of China, as provided for in U.S. note 20(ss) to this subchapter, each covered by an exclusion granted by the U.S. Trade Representative"
+  },
+  {
+   "heading": "9903.88.41",
+   "programme": "Section 301 (China), U.S. note 20 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading",
+   "additional_rate_pct": 0.0,
+   "kind": "no additional duty (exclusion or excepted heading)",
+   "effective_from": null,
+   "us_notes": [
+    "20(tt)"
+   ],
+   "description": "Articles the product of China, as provided for in U.S. note 20(tt) to this subchapter, each covered by an exclusion granted by the U.S. Trade Representative"
+  },
+  {
+   "heading": "9903.88.42",
+   "programme": "Section 301 (China), U.S. note 20 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading",
+   "additional_rate_pct": 0.0,
+   "kind": "no additional duty (exclusion or excepted heading)",
+   "effective_from": null,
+   "us_notes": [
+    "20(uu)"
+   ],
+   "description": "Articles the product of China, as provided for in U.S. note 20(uu) to this subchapter, each covered by an exclusion granted by the U.S. Trade Representative"
+  },
+  {
+   "heading": "9903.88.43",
+   "programme": "Section 301 (China), U.S. note 20 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading",
+   "additional_rate_pct": 0.0,
+   "kind": "no additional duty (exclusion or excepted heading)",
+   "effective_from": null,
+   "us_notes": [
+    "20(vv)"
+   ],
+   "description": "Articles the product of China, as provided for in U.S. note 20(vv) to this subchapter, each covered by an exclusion granted by the U.S. Trade Representative"
+  },
+  {
+   "heading": "9903.88.44",
+   "programme": "Section 301 (China), U.S. note 20 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading",
+   "additional_rate_pct": 0.0,
+   "kind": "no additional duty (exclusion or excepted heading)",
+   "effective_from": null,
+   "us_notes": [
+    "20(ww)"
+   ],
+   "description": "Articles the product of China, as provided for in U.S. note 20(ww) to this subchapter, each covered by an exclusion granted by the U.S. Trade Representative"
+  },
+  {
+   "heading": "9903.88.45",
+   "programme": "Section 301 (China), U.S. note 20 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading",
+   "additional_rate_pct": 0.0,
+   "kind": "no additional duty (exclusion or excepted heading)",
+   "effective_from": null,
+   "us_notes": [
+    "20(xx)"
+   ],
+   "description": "Articles the product of China, as provided for in U.S. note 20(xx) to this subchapter, each covered by an exclusion granted by the U.S. Trade Representative"
+  },
+  {
+   "heading": "9903.88.46",
+   "programme": "Section 301 (China), U.S. note 20 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading",
+   "additional_rate_pct": 0.0,
+   "kind": "no additional duty (exclusion or excepted heading)",
+   "effective_from": null,
+   "us_notes": [
+    "20(yy)"
+   ],
+   "description": "Articles the product of China, as provided for in U.S. note 20(yy) to this subchapter, each covered by an exclusion granted by the U.S. Trade Representative"
+  },
+  {
+   "heading": "9903.88.47",
+   "programme": "Section 301 (China), U.S. note 20 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading",
+   "additional_rate_pct": 0.0,
+   "kind": "no additional duty (exclusion or excepted heading)",
+   "effective_from": null,
+   "us_notes": [
+    "20(zz)"
+   ],
+   "description": "Articles the product of China, as provided for in U.S. note 20(zz) to this subchapter, each covered by an exclusion granted by the U.S. Trade Representative"
+  },
+  {
+   "heading": "9903.88.48",
+   "programme": "Section 301 (China), U.S. note 20 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading",
+   "additional_rate_pct": 0.0,
+   "kind": "no additional duty (exclusion or excepted heading)",
+   "effective_from": null,
+   "us_notes": [
+    "20(aaa)"
+   ],
+   "description": "Articles the product of China, as provided for in U.S. note 20(aaa) to this subchapter, each covered by an exclusion granted by the U.S. Trade Representative"
+  },
+  {
+   "heading": "9903.88.49",
+   "programme": "Section 301 (China), U.S. note 20 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading",
+   "additional_rate_pct": 0.0,
+   "kind": "no additional duty (exclusion or excepted heading)",
+   "effective_from": null,
+   "us_notes": [
+    "20(bbb)"
+   ],
+   "description": "Articles the product of China, as provided for in U.S. note 20(bbb) to this subchapter, each covered by an exclusion granted by the U.S. Trade Representative"
+  },
+  {
+   "heading": "9903.88.50",
+   "programme": "Section 301 (China), U.S. note 20 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading",
+   "additional_rate_pct": 0.0,
+   "kind": "no additional duty (exclusion or excepted heading)",
+   "effective_from": "June 4, 2020",
+   "us_notes": [
+    "20(ccc)"
+   ],
+   "description": "Effective with respect to entries on or after June 4, 2020, and through December 31, 2020, articles the product of China, as provided for in U.S. note 20(ccc) to this subchapter, each covered by an exclusion granted by the U.S. Trade Representative"
+  },
+  {
+   "heading": "9903.88.51",
+   "programme": "Section 301 (China), U.S. note 20 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading",
+   "additional_rate_pct": 0.0,
+   "kind": "no additional duty (exclusion or excepted heading)",
+   "effective_from": null,
+   "us_notes": [
+    "20(ddd)"
+   ],
+   "description": "Articles the product of China, as provided for in U.S. note 20(ddd) to this subchapter, each covered by an exclusion granted by the U.S. Trade Representative"
+  },
+  {
+   "heading": "9903.88.52",
+   "programme": "Section 301 (China), U.S. note 20 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading",
+   "additional_rate_pct": 0.0,
+   "kind": "no additional duty (exclusion or excepted heading)",
+   "effective_from": "July 9, 2020",
+   "us_notes": [
+    "20(eee)"
+   ],
+   "description": "Effective with respect to entries on or after July 9, 2020, and through December 31, 2020, articles the product of China, as provided for in U.S. note 20(eee) to this subchapter, each covered by an exclusion granted by the U.S. Trade Representative"
+  },
+  {
+   "heading": "9903.88.53",
+   "programme": "Section 301 (China), U.S. note 20 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading",
+   "additional_rate_pct": 0.0,
+   "kind": "no additional duty (exclusion or excepted heading)",
+   "effective_from": null,
+   "us_notes": [
+    "20(fff)"
+   ],
+   "description": "Articles the product of China, as provided for in U.S. note 20(fff) to this subchapter, each covered by an exclusion granted by the U.S. Trade Representative"
+  },
+  {
+   "heading": "9903.88.54",
+   "programme": "Section 301 (China), U.S. note 20 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading",
+   "additional_rate_pct": 0.0,
+   "kind": "no additional duty (exclusion or excepted heading)",
+   "effective_from": "July 31, 2020",
+   "us_notes": [
+    "20(ggg)"
+   ],
+   "description": "Effective with respect to entries on or after July 31, 2020, and through December 31, 2020, articles the product of China, as provided for in U.S. note 20(ggg) to this subchapter, each covered by an exclusion granted by the U.S. Trade Representative"
+  },
+  {
+   "heading": "9903.88.55",
+   "programme": "Section 301 (China), U.S. note 20 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading",
+   "additional_rate_pct": 0.0,
+   "kind": "no additional duty (exclusion or excepted heading)",
+   "effective_from": null,
+   "us_notes": [
+    "20(hhh)"
+   ],
+   "description": "Articles the product of China, as provided for in U.S. note 20(hhh) to this subchapter, each covered by an exclusion granted by the U.S. Trade Representative"
+  },
+  {
+   "heading": "9903.88.56",
+   "programme": "Section 301 (China), U.S. note 20 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading",
+   "additional_rate_pct": 0.0,
+   "kind": "no additional duty (exclusion or excepted heading)",
+   "effective_from": "August 7, 2020",
+   "us_notes": [
+    "20(iii)"
+   ],
+   "description": "Effective with respect to entries on or after August 7, 2020, and through December 31, 2020, articles the product of China, as provided for in U.S. note 20(iii) to this subchapter, each covered by an exclusion granted by the U.S. Trade Representative"
+  },
+  {
+   "heading": "9903.88.57",
+   "programme": "Section 301 (China), U.S. note 20 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading",
+   "additional_rate_pct": 0.0,
+   "kind": "no additional duty (exclusion or excepted heading)",
+   "effective_from": "September 1, 2020",
+   "us_notes": [
+    "20(jjj)"
+   ],
+   "description": "Effective with respect to entries on or after September 1, 2020, and through December 31, 2020, articles the product of China, as provided for in U.S. note 20(jjj) to this subchapter, each covered by an exclusion granted by the U.S. Trade Representative"
+  },
+  {
+   "heading": "9903.88.58",
+   "programme": "Section 301 (China), U.S. note 20 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading",
+   "additional_rate_pct": 0.0,
+   "kind": "no additional duty (exclusion or excepted heading)",
+   "effective_from": "September 20, 2020",
+   "us_notes": [
+    "20(kkk)"
+   ],
+   "description": "Effective with respect to entries on or after September 20, 2020, and through December 31, 2020, articles the product of China, as provided for in U.S. note 20(kkk) to this subchapter, each covered by an exclusion granted by the U.S. Trade Representative"
+  },
+  {
+   "heading": "9903.88.59",
+   "programme": "Section 301 (China), U.S. note 20 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading",
+   "additional_rate_pct": 0.0,
+   "kind": "no additional duty (exclusion or excepted heading)",
+   "effective_from": "September 20, 2020",
+   "us_notes": [
+    "20(lll)"
+   ],
+   "description": "Effective with respect to entries on or after September 20, 2020, and through December 31, 2020, articles the product of China, as provided for in U.S. note 20(lll) to this subchapter, each covered by an exclusion granted by the U.S. Trade Representative"
+  },
+  {
+   "heading": "9903.88.60",
+   "programme": "Section 301 (China), U.S. note 20 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading",
+   "additional_rate_pct": 0.0,
+   "kind": "no additional duty (exclusion or excepted heading)",
+   "effective_from": "October 2, 2020",
+   "us_notes": [
+    "20(mmm)"
+   ],
+   "description": "Effective with respect to entries on or after October 2, 2020, and through December 31, 2020, articles the product of China, as provided for in U.S. note 20(mmm) to this subchapter, each covered by an exclusion granted by the U.S. Trade Representative"
+  },
+  {
+   "heading": "9903.88.61",
+   "programme": "Section 301 (China), U.S. note 20 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading",
+   "additional_rate_pct": 0.0,
+   "kind": "no additional duty (exclusion or excepted heading)",
+   "effective_from": "October 2, 2020",
+   "us_notes": [
+    "20(nnn)"
+   ],
+   "description": "Effective with respect to entries on or after October 2, 2020, and through December 31, 2020, articles the product of China, as provided for in U.S. note 20(nnn) to this subchapter, each covered by an exclusion granted by the U.S. Trade Representative"
+  },
+  {
+   "heading": "9903.88.62",
+   "programme": "Section 301 (China), U.S. note 20 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading",
+   "additional_rate_pct": 0.0,
+   "kind": "no additional duty (exclusion or excepted heading)",
+   "effective_from": "January 1, 2021",
+   "us_notes": [
+    "20(ooo)"
+   ],
+   "description": "Effective with respect to entries on or after January 1, 2021, and through November 30, 2021, articles the product of China, as provided for in U.S. note 20(ooo) to this subchapter, each covered by an exclusion granted by the U.S. Trade Representative"
+  },
+  {
+   "heading": "9903.88.63",
+   "programme": "Section 301 (China), U.S. note 20 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading",
+   "additional_rate_pct": 0.0,
+   "kind": "no additional duty (exclusion or excepted heading)",
+   "effective_from": "January 1, 2021",
+   "us_notes": [
+    "20(ppp)"
+   ],
+   "description": "Effective with respect to entries on or after January 1, 2021, and through November 30, 2021, articles the product of China, as provided for in U.S. note 20(ppp) to this subchapter, each covered by an exclusion granted by the U.S. Trade Representative"
+  },
+  {
+   "heading": "9903.88.64",
+   "programme": "Section 301 (China), U.S. note 20 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading",
+   "additional_rate_pct": 0.0,
+   "kind": "no additional duty (exclusion or excepted heading)",
+   "effective_from": "January 1, 2021",
+   "us_notes": [
+    "20(qqq)"
+   ],
+   "description": "Effective with respect to entries on or after January 1, 2021, and through November 30, 2021, articles the product of China, as provided for in U.S. note 20(qqq) to this subchapter, each covered by an exclusion granted by the U.S. Trade Representative"
+  },
+  {
+   "heading": "9903.88.65",
+   "programme": "Section 301 (China), U.S. note 20 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading",
+   "additional_rate_pct": 0.0,
+   "kind": "no additional duty (exclusion or excepted heading)",
+   "effective_from": "January 1, 2021",
+   "us_notes": [
+    "20(rrr)"
+   ],
+   "description": "Effective with respect to entries on or after January 1, 2021, and through November 30, 2021, articles the product of China, as provided for in U.S. note 20(rrr) to this subchapter, each covered by an exclusion granted by the U.S. Trade Representative"
+  },
+  {
+   "heading": "9903.88.66",
+   "programme": "Section 301 (China), U.S. note 20 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading",
+   "additional_rate_pct": 0.0,
+   "kind": "no additional duty (exclusion or excepted heading)",
+   "effective_from": "December 1, 2021",
+   "us_notes": [
+    "20(sss)"
+   ],
+   "description": "Effective with respect to entries on or after December 1, 2021, and before June 1, 2023, articles the product of China, as provided for in U.S. note 20(sss) to this subchapter, each covered by an exclusion granted by the U.S. Trade Representative"
+  },
+  {
+   "heading": "9903.88.67",
+   "programme": "Section 301 (China), U.S. note 20 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading",
+   "additional_rate_pct": 0.0,
+   "kind": "no additional duty (exclusion or excepted heading)",
+   "effective_from": "October 12, 2021",
+   "us_notes": [
+    "20(ttt)"
+   ],
+   "description": "Effective with respect to entries on or after October 12, 2021 and through June 14, 2024, articles the product of China, as provided for in U.S. note 20(ttt) to this subchapter, each covered by an exclusion granted by the U.S. Trade Representative"
+  },
+  {
+   "heading": "9903.88.68",
+   "programme": "Section 301 (China), U.S. note 20 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading",
+   "additional_rate_pct": 0.0,
+   "kind": "no additional duty (exclusion or excepted heading)",
+   "effective_from": "June 1, 2023",
+   "us_notes": [
+    "20(uuu)"
+   ],
+   "description": "Effective with respect to entries on or after June 1, 2023, and before June 15, 2024, articles the product of China, as provided for in U.S. note 20(uuu) to this subchapter, each covered by an exclusion granted by the U.S. Trade Representative"
+  },
+  {
+   "heading": "9903.88.69",
+   "programme": "Section 301 (China), U.S. note 20 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading",
+   "additional_rate_pct": 0.0,
+   "kind": "no additional duty (exclusion or excepted heading)",
+   "effective_from": "June 15, 2024",
+   "us_notes": [
+    "20(vvv)"
+   ],
+   "description": "Effective with respect to entries on or after June 15, 2024 and through November 9, 2026, articles the product of China, as provided for in U.S. note 20(vvv) to this subchapter, each covered by an exclusion granted by the U.S. Trade Representative"
+  },
+  {
+   "heading": "9903.88.70",
+   "programme": "Section 301 (China), U.S. note 20 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading",
+   "additional_rate_pct": 0.0,
+   "kind": "no additional duty (exclusion or excepted heading)",
+   "effective_from": "January 1, 2024",
+   "us_notes": [
+    "20(www)"
+   ],
+   "description": "Effective with respect to entries on or after January 1, 2024, and through November 9, 2026, articles the product of China, as provided in U.S. note 20(www) to this subchapter, each covered by an exclusion granted by the U.S. Trade Representative"
+  },
+  {
+   "heading": "9903.91.01",
+   "programme": "Section 301 increases effective 2024-09-27 (China), U.S. note 31 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading + 25%",
+   "additional_rate_pct": 25.0,
+   "kind": "additional ad valorem duty",
+   "effective_from": "September 27, 2024",
+   "us_notes": [
+    "31(b)"
+   ],
+   "description": "Effective with respect to entries on or after September 27, 2024, articles the product of China, as provided for in subdivision (b) of U.S. note 31 to this subchapter"
+  },
+  {
+   "heading": "9903.91.02",
+   "programme": "Section 301 increases effective 2024-09-27 (China), U.S. note 31 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading + 50%",
+   "additional_rate_pct": 50.0,
+   "kind": "additional ad valorem duty",
+   "effective_from": "September 27, 2024",
+   "us_notes": [
+    "31(c)"
+   ],
+   "description": "Effective with respect to entries on or after September 27, 2024, articles the product of China, as provided for in subdivision (c) of U.S. note 31 to this subchapter"
+  },
+  {
+   "heading": "9903.91.03",
+   "programme": "Section 301 increases effective 2024-09-27 (China), U.S. note 31 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading + 100%",
+   "additional_rate_pct": 100.0,
+   "kind": "additional ad valorem duty",
+   "effective_from": null,
+   "us_notes": [
+    "31(d)"
+   ],
+   "description": "Except as provided in heading 9903.91.10, effective with respect to entries on or after September 27, 2024, articles the product of China, as provided for in subdivision (d) of U.S. note 31 to this subchapter"
+  },
+  {
+   "heading": "9903.91.04",
+   "programme": "Section 301 increases effective 2024-09-27 (China), U.S. note 31 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading + 25%",
+   "additional_rate_pct": 25.0,
+   "kind": "additional ad valorem duty",
+   "effective_from": "January 1, 2025",
+   "us_notes": [
+    "31(e)"
+   ],
+   "description": "Effective with respect to entries on or after January 1, 2025, and before January 1, 2026, articles the product of China, as provided for in subdivision (e) of U.S. note 31 to this subchapter"
+  },
+  {
+   "heading": "9903.91.05",
+   "programme": "Section 301 increases effective 2024-09-27 (China), U.S. note 31 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading + 50%",
+   "additional_rate_pct": 50.0,
+   "kind": "additional ad valorem duty",
+   "effective_from": "January 1, 2025",
+   "us_notes": [
+    "31(f)"
+   ],
+   "description": "Effective with respect to entries on or after January 1, 2025, articles the product of China, as provided for in subdivision (f) of U.S. note 31 to this subchapter"
+  },
+  {
+   "heading": "9903.91.06",
+   "programme": "Section 301 increases effective 2024-09-27 (China), U.S. note 31 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading + 25%",
+   "additional_rate_pct": 25.0,
+   "kind": "additional ad valorem duty",
+   "effective_from": "January 1, 2026",
+   "us_notes": [
+    "31(g)"
+   ],
+   "description": "Effective with respect to entries on or after January 1, 2026, articles the product of China, as provided for in subdivision (g) of U.S. note 31 to this subchapter"
+  },
+  {
+   "heading": "9903.91.07",
+   "programme": "Section 301 increases effective 2024-09-27 (China), U.S. note 31 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading + 50%",
+   "additional_rate_pct": 50.0,
+   "kind": "additional ad valorem duty",
+   "effective_from": "January 1, 2026",
+   "us_notes": [
+    "31(h)"
+   ],
+   "description": "Effective with respect to entries on or after January 1, 2026, articles the product of China, as provided for in subdivision (h) of U.S. note 31 to this subchapter"
+  },
+  {
+   "heading": "9903.91.08",
+   "programme": "Section 301 increases effective 2024-09-27 (China), U.S. note 31 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading + 100%",
+   "additional_rate_pct": 100.0,
+   "kind": "additional ad valorem duty",
+   "effective_from": "January 1, 2026",
+   "us_notes": [
+    "31(i)"
+   ],
+   "description": "Effective with respect to entries on or after January 1, 2026, articles the product of China, as provided for in subdivision (i) of U.S. note 31 to this subchapter"
+  },
+  {
+   "heading": "9903.91.11",
+   "programme": "Section 301 increases effective 2024-09-27 (China), U.S. note 31 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading + 25%",
+   "additional_rate_pct": 25.0,
+   "kind": "additional ad valorem duty",
+   "effective_from": "January 1, 2025",
+   "us_notes": [
+    "31(j)"
+   ],
+   "description": "Effective with respect to entries on or after January 1, 2025, articles the product of China, as provided for in subdivision (j) of U.S. note 31 to this subchapter"
+  },
+  {
+   "heading": "9903.91.12",
+   "programme": "Section 301 increases effective 2024-09-27 (China), U.S. note 31 to subchapter III",
+   "rate_text": "The duty provided in subheadings 8716.39.00, 8716.90.30 or 8716.90.50 + 100%",
+   "additional_rate_pct": 100.0,
+   "kind": "additional ad valorem duty",
+   "effective_from": "November 10, 2026",
+   "us_notes": [
+    "31"
+   ],
+   "description": "Effective with respect to entries, on or after November 10, 2026, of intermodal chassis, subassemblies thereof, and parts thereof (provided for in statistical reporting number 8716.39.0090, or in subheadings 8716.90.30 or 8716.90.50), articles the product of China, as provided for in subdivision (k)(i) of U.S. note 31 to this subchapter, except as provided in heading 9903.91.13."
+  },
+  {
+   "heading": "9903.91.13",
+   "programme": "Section 301 increases effective 2024-09-27 (China), U.S. note 31 to subchapter III",
+   "rate_text": "The duty provided in the applicable subheading",
+   "additional_rate_pct": 0.0,
+   "kind": "no additional duty (exclusion or excepted heading)",
+   "effective_from": "November 10, 2026",
+   "us_notes": [
+    "31"
+   ],
+   "description": "Effective with respect to entries, on or after November 10, 2026, of articles the product of China, as provided for in subdivision (k)(ii) of U.S. note 31 to this subchapter (provided for in statistical reporting number 8716.39.0090, or subheadings 8716.90.30 or 8716.90.50), except as provided in heading 9903.91.12."
+  }
+ ]
+}

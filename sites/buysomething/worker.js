@@ -1,3 +1,4 @@
+import { handleMcp } from "./mcp.js";
 // buysomething(SourceRadar)worker:静态资产透传 + /e 事件白名单 + 服务端 pageview。
 // 舰队模式(同 gridlings/gamesledger):所有 D1 写都 try/catch + waitUntil,埋点永不 500 页面。
 const ALLOWED = new Set(["pick_open", "calc_use", "out_click", "search_use"]);
@@ -140,6 +141,22 @@ export default {
       if (!r.ok) return jsonNoStore({ ok: false, code: "no_such_pack" }, 404);
       logRow(env, ctx, { name: "pack_open", label: url.pathname.slice(7, 30), value: 0, path: url.pathname.slice(0, 80), ref: "", ua_class: "human", country: request.cf && request.cf.country || "" });
       return new Response(r.body, { headers: { "content-type": "application/json; charset=utf-8", "cache-control": "private, no-store" } });
+    }
+
+    // MCP server (2026-09-16):本站数据的机器面。REST 兜底与 JSON-RPC 同一实现,见 mcp.js 抬头。
+    // 每次调用记一行 mcp_call(只记工具名与 UA 前缀,零 PII),它是 fleet-machine-demand-1014 的读数来源。
+    if (url.pathname === "/api/mcp" || url.pathname.startsWith("/api/mcp/")) {
+      const ua = request.headers.get("user-agent") || "";
+      const log = (tool) => logRow(env, ctx, {
+        name: "mcp_call",
+        label: String(tool).slice(0, 60),
+        value: 0,
+        path: "/api/mcp",
+        ref: ua.slice(0, 120),
+        ua_class: uaClass(ua),
+        country: (request.cf && request.cf.country) || "",
+      });
+      return await handleMcp(request, url, env, ctx, log);
     }
 
     if (url.pathname === "/e" && request.method === "POST") {
