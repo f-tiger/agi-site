@@ -4,7 +4,20 @@
 // (2026-08-24 rules pages; 2026-09-06 /ai-games hub.) There is NO generic extensionless
 // fallback in this worker — every new content page MUST be added to this Set or it 404s.
 const GEO = new Set(["/ai-games","/futoshiki-rules","/kropki-sudoku-rules","/sandwich-sudoku-rules","/skyscraper-puzzle-rules","/star-battle-rules","/thermometer-puzzle-rules","/nonogram-rules","/6x6-sudoku-rules","/binary-puzzle-rules","/games-like-linkedin-queens"]);
-const ALLOWED = new Set(["play_start", "solve", "game_over", "calc_use", "share_copy", "hint_used", "play_again", "sub_click", "challenge_copy", "challenge_open", "challenge_result", "undo", "hub_click", "sweep_share", "embed_copy", "sub_submit", "sub_ok", "sub_fail"]);
+// 2026-09-16: GHOSTLINE and SINGULARITY were emitting their engagement events all
+// along and this Set was silently dropping every one — the table has never held a
+// single race_start, finish, medal, beat_clone, milestone or rogue. That is why those
+// two read as "play_start and nothing else" while Playgama's own dwell metric says 27%
+// of GHOSTLINE's visitors play past a minute. The gap was ours, not the players'.
+//
+// Only events BOUNDED PER SESSION are added. SINGULARITY is an idle game: buy, train,
+// research, cache, market, skin and mission fire as fast as a player can tap, and
+// letting those through would trade one blind spot for a D1 bill.
+const ALLOWED = new Set(["play_start", "solve", "game_over", "calc_use", "share_copy", "hint_used", "play_again", "sub_click", "challenge_copy", "challenge_open", "challenge_result", "undo", "hub_click", "sweep_share", "embed_copy", "sub_submit", "sub_ok", "sub_fail",
+  /* GHOSTLINE: one per race at most */
+  "race_start", "finish", "medal", "beat_clone",
+  /* SINGULARITY: one per lab milestone, not per tap */
+  "first_click", "milestone", "ship", "rogue", "rewarded"]);
 
 function uaClass(ua) {
   if (!ua) return "none";

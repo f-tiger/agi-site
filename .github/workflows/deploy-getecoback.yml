@@ -103,6 +103,19 @@ jobs:
       - name: Rebuild the open-dataset landing page (refreshes sizing-data.json first)
         run: python3 tools/build_dataset_page.py
 
+      - name: Homepage sizing table from the open dataset (idempotent)
+        run: python3 tools/build_home_table.py
+
+      # 2026-09-17：让 heizung-<N>-qm 的七页各回答一个不同的问题。改写前这一族的
+      # 兄弟页相似度是 54,0%（对照组 1,3%），标题与四个 H2 只差一个数字——正是
+      # Google 压制、Bing 容忍的门页形态，与「googlebot 爬 249 次/7 天、Google 引荐 0」
+      # 的 D1 读数吻合。修的方向是改写不是删页：这些 URL 上有 Bing 收录和现有营收。
+      # 必须跑在 build_onpage 之前，TOC 是从 <h2> 重建的。自检零 IO、变异测试验证过能红。
+      - name: Differentiate the heizung room-size family (idempotent injector)
+        run: |
+          python3 tools/differentiate_heizung.py --selftest
+          python3 tools/differentiate_heizung.py
+
       - name: Inject site chrome (nav/footer/radar; idempotent, covers new pages)
         run: python3 tools/build_structure.py
 
@@ -111,6 +124,9 @@ jobs:
 
       - name: Inject room-size cross-links (idempotent)
         run: python3 tools/build_xlinks.py
+
+      - name: Lateral related-guide links (season-weighted; idempotent)
+        run: python3 tools/build_related.py
 
       - name: Consolidate publisher entity (@id graph; idempotent gate)
         run: python3 tools/build_entity.py
@@ -174,6 +190,25 @@ jobs:
 
       - name: Check no vetoed brand reached the published site
         run: python3 tools/check_brand_veto.py
+
+      - name: Check the lateral link blocks are suggestions, not walls
+        run: python3 tools/check_related.py
+
+      - name: Check the category hubs still describe what they link to
+        run: python3 tools/check_hubcards.py
+
+      # 页族近重复度量（2026-09-17）。**只报数不拦部署**：今天的读数本来就超标，
+      # 上线即红会把一个待办变成一条坏掉的流水线。它存在的理由是把「兄弟页有多像」
+      # 从一句感觉变成每次部署都重算的数字——谁去改写正文都有靶子，改完能证明降下来了。
+      # 自检先跑（零 IO，能红）：判错任一方向都会让人白改或漏改。
+      # --regress 是个例外，它**会**拦部署：已经改写过的页族（CEILINGS）回到门页形态
+      # 不是待办，是事故——意味着有人重跑了 gen_heizung_qm.py 那个一次性脚手架，或者
+      # 把差异化注入器从这条链里拿掉了。两个天花板一起看（平均 + 最差的一对），因为
+      # 实测只还原 7 页里的 2 页时平均几乎不动，而那两页彼此已经又是 54,8%。
+      - name: Measure near-duplication across page families (report; regression = red)
+        run: |
+          python3 tools/check_duplication.py --selftest
+          python3 tools/check_duplication.py --regress
 
       - name: Check the price engine (SigV4 vector, refresher vs mock, built pages vs data)
         run: |
@@ -260,6 +295,17 @@ jobs:
           # safety-critical sentence on this site.
           check "https://getecoback.com/guide/stromausfall-heizen.html" "Kohlenmonoxid"
           check "https://getecoback.com/guide/stromausfall-heizen.html" "30 Minuten"
+          # The dehumidifier troubleshooting page (2026-09-17). Its whole value is
+          # one computed figure; a page that renders without it is intact and
+          # useless, which is the accident worth asserting.
+          check "https://getecoback.com/guide/luftentfeuchter-zieht-kein-wasser.html" "61 g"
+          # The infrared/mould page exists for one counter-marketing figure: above
+          # ~62% room RH the surface cannot reach the threshold at any wall
+          # temperature. A page that lost that number would read as an endorsement.
+          check "https://getecoback.com/guide/infrarotheizung-gegen-schimmel.html" "62 %"
+          # Homepage table: the site's largest AI surface had no structured rows
+          # at all until today, and it is generated from the open dataset.
+          check "https://getecoback.com/" "Richtwerte nach Raumgröße"
           # Brand veto on the LIVE homepage. The rising rail rebuilds daily from
           # Google Trends with no human in the loop, so the veto has to be checked
           # where it can actually be violated, not only at build time.

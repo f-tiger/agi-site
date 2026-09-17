@@ -16,11 +16,18 @@
 import { readFileSync } from 'node:fs';
 
 const DRY = process.argv.includes('--dry-run');
+const INSPECT = process.argv.includes('--inspect');   // 勘察模式：只读链上、不碰订单、不写任何东西
 const need = (k) => { const v = process.env[k]; if (!v && !DRY) { console.error(`缺少 ${k}`); process.exit(1); } return v || ''; };
 
-const ACCOUNT = process.env.CLOUDFLARE_ACCOUNT_ID || '';
-const D1 = process.env.D1_DATABASE_ID || '';
-const CF_TOKEN = process.env.CLOUDFLARE_API_TOKEN || '';
+// 2026-09-16 改：订单读写从 D1 REST 换成站点自己的 /api/ad-claim。
+// 原因不是洁癖,是原方案根本跑不通——本仓 deploy workflow 自己就写着
+// 「CI 直连 D1 的 REST 导出在舰队里从未成功过一次」,根手册 09-12 / 09-13 两次记录
+// 仓里两个 Cloudflare token 都没有 D1 权限。那条路上钱包轨会在第一条 SQL 就失败,
+// 而失败只有在 owner 真的打开开关、买家真的付了钱之后才看得见。
+// 现在走 Worker(自带 D1 绑定,零 token),顺带把一个带 D1 写权限的 CF token
+// 从公开仓的 Secrets 里彻底拿掉。
+const SITE = (process.env.ADS_CLAIM_URL || 'https://baipiaoji.com/api/ad-claim').trim();
+const CLAIM_SECRET = process.env.ADS_WATCH_SECRET || '';
 const WALLET = (process.env.ADS_WALLET || '').trim();
 const CHAIN = (process.env.ADS_WALLET_CHAIN || '').trim().toLowerCase();
 const CONTRACT = (process.env.ADS_WALLET_CONTRACT || '').trim().toLowerCase();
@@ -29,16 +36,19 @@ const MIN_CONF = Number(process.env.ADS_MIN_CONFIRMATIONS || 12);
 const DAYS = Number(process.env.ADS_DAYS || 30);
 const SCAN_KEY = process.env.ADS_SCAN_API_KEY || '';
 
-// D1 走 REST,与 deploy-baipiaoji.yml 里导出流量快照的那一步同一条路子
-async function d1(sql, params = []) {
-  const r = await fetch(`https://api.cloudflare.com/client/v4/accounts/${ACCOUNT}/d1/database/${D1}/query`, {
+// 订单读写走站点自己的端点(Worker 有 D1 绑定,不需要任何 Cloudflare API token)
+async function claimApi(body) {
+  const r = await fetch(SITE, {
     method: 'POST',
-    headers: { Authorization: `Bearer ${CF_TOKEN}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ sql, params }),
+    headers: { Authorization: `Bearer ${CLAIM_SECRET}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
   });
   const j = await r.json().catch(() => ({}));
-  if (!j.success) throw new Error(`D1 失败: ${JSON.stringify(j.errors || j).slice(0, 200)}`);
-  return (j.result && j.result[0] && j.result[0].results) || [];
+  // 503 = 站点侧没配 ADS_WATCH_SECRET;401 = 两边的密钥对不上。
+  // 这两种都必须大声失败:静默跳过等于「钱到了但位子没上」而没人知道。
+  if (r.status === 503) throw new Error('站点侧未配置 ADS_WATCH_SECRET（/api/ad-claim 返回 503）');
+  if (r.status === 401) throw new Error('ADS_WATCH_SECRET 两边不一致（/api/ad-claim 返回 401）');
+  return j;
 }
 
 // 各链的取数方式不同,但都要回同一个形状:{ amountRaw, contract, confirmations, hash }
@@ -53,6 +63,11 @@ async function incoming() {
       // TronGrid 不直接给确认数;用区块时间距今的秒数近似(TRON 约 3 秒一块)
       confirmations: Math.floor((Date.now() - Number(t.block_timestamp || 0)) / 3000),
       hash: t.transaction_id,
+      symbol: String((t.token_info && t.token_info.symbol) || ''),
+      // 小数位以**链上这笔交易自己报的**为准,而不是配置里那个值。USDT 在多数链是 6 位、
+      // 在 BNB Chain 是 18 位,配错一位金额就差 10 倍,而表现是「永远匹配不上」——
+      // 一个不报错的静默失败。能从数据里读到的,就不要让人去填。
+      decimals: Number((t.token_info && t.token_info.decimals) ?? NaN),
     }));
   }
   // Etherscan v2 统一多链端点:Ethereum / Base / Arbitrum 等用同一个 API,靠 chainid 区分
@@ -71,63 +86,114 @@ async function incoming() {
       contract: String(t.contractAddress || '').toLowerCase(),
       confirmations: Number(t.confirmations || 0),
       hash: t.hash,
+      symbol: String(t.tokenSymbol || ''),
+      decimals: Number(t.tokenDecimal ?? NaN),   // 见 TRON 分支那段注释:小数位以链上为准
     }));
 }
 
 // 原始整数 → 分。用字符串切而不是浮点:1e-6 精度的金额用 Number 会在边界上出错,
 // 而这里的比较必须是精确相等。
-function toCents(raw) {
-  const s = String(raw).padStart(DECIMALS + 1, '0');
-  const whole = s.slice(0, s.length - DECIMALS);
-  const frac = s.slice(s.length - DECIMALS).padEnd(2, '0').slice(0, 2);
+// decimals 默认走配置,但调用方应传入**链上这笔交易自己报的**位数(见 incoming 的注释)。
+export function toCents(raw, decimals = DECIMALS) {
+  const d = Number.isFinite(decimals) && decimals >= 0 ? Math.floor(decimals) : DECIMALS;
+  const s = String(raw).padStart(d + 1, '0');
+  const whole = s.slice(0, s.length - d);
+  const frac = s.slice(s.length - d).padEnd(2, '0').slice(0, 2);
   return Number(whole) * 100 + Number(frac);
+}
+
+// 地址形态与链必须自洽。把 TRON 地址配成 ethereum(或反过来)是这类配置最常见的手滑,
+// 而它的表现不是报错,是**永远匹配不到任何一笔**——又一个静默失败。开跑前就拦住。
+export function chainMismatch(chain, addr, label = '地址') {
+  const a = String(addr || '').trim();
+  if (!a) return '';
+  if (chain === 'tron') {
+    if (!/^T[A-Za-z1-9]{33}$/.test(a)) return `${label}「${a.slice(0, 6)}…」不像 TRON 地址（应为 T 开头、34 位）`;
+    return '';
+  }
+  if (!/^0x[a-fA-F0-9]{40}$/.test(a)) return `${label}「${a.slice(0, 6)}…」不像 EVM 地址（应为 0x 开头、42 位）`;
+  return '';
 }
 
 const main = async () => {
   if (DRY) {
-    // 自测:不碰网络,只验算金额换算与匹配逻辑——这一段能红,才算有自检
-    const cases = [['50370000', 5037], ['1000000', 100], ['999999', 99], ['0', 0]];
+    // 自测:不碰网络,只验算金额换算与配置校验——这一段能红,才算有自检
     let bad = 0;
-    for (const [raw, want] of cases) {
-      const got = toCents(raw);
-      if (got !== want) { console.error(`❌ toCents(${raw}) = ${got}，应为 ${want}`); bad++; }
+    const ck = (got, want, what) => { if (got !== want) { console.error(`❌ ${what}：得到 ${got}，应为 ${want}`); bad++; } };
+    for (const [raw, want] of [['50370000', 5037], ['1000000', 100], ['999999', 99], ['0', 0]]) {
+      ck(toCents(raw), want, `toCents(${raw}) 6 位小数`);
     }
-    console.log(bad ? `自测失败 ${bad} 例` : '✅ 金额换算自测通过（6 位小数）');
+    // 18 位小数的链(如 BNB Chain 上的 USDT)：按 6 位算会差 10^12 倍,表现是永远匹配不上。
+    ck(toCents('49370000000000000000', 18), 4937, 'toCents 18 位小数');
+    ck(toCents('1000000000000000000', 18), 100, 'toCents 18 位小数（整数额）');
+    // 链与地址形态必须自洽
+    ck(chainMismatch('tron', 'T' + 'x'.repeat(33)) === '', true, 'TRON 地址配 tron 应通过');
+    ck(chainMismatch('ethereum', '0x'.padEnd(42, 'a')) === '', true, 'EVM 地址配 ethereum 应通过');
+    ck(chainMismatch('ethereum', 'T' + 'x'.repeat(33)) !== '', true, 'TRON 地址配 ethereum 必须被拦');
+    ck(chainMismatch('tron', '0x'.padEnd(42, 'a')) !== '', true, 'EVM 地址配 tron 必须被拦');
+    ck(chainMismatch('tron', '') === '', true, '空值不在这里报错（由 need() 管）');
+    console.log(bad ? `自测失败 ${bad} 例` : '✅ 自测通过（金额换算 6/18 位小数、链与地址形态自洽）');
     process.exit(bad ? 1 : 0);
   }
-  need('CLOUDFLARE_ACCOUNT_ID'); need('D1_DATABASE_ID'); need('CLOUDFLARE_API_TOKEN'); need('ADS_WALLET');
-  if (!CONTRACT) { console.error('缺少 ADS_WALLET_CONTRACT——不核对合约地址等于任何人扔一个山寨币都能换到广告位'); process.exit(1); }
+  need('ADS_WALLET');
+  // 配置自洽性:开跑前就把手滑拦住,而不是让它表现为「一直匹配不上」。
+  for (const [v, label] of [[WALLET, '收款地址 ADS_WALLET'], [CONTRACT, '合约地址 ADS_WALLET_CONTRACT']]) {
+    const bad = chainMismatch(CHAIN, v, label);
+    if (bad) { console.error(`❌ ${bad}——当前 ADS_WALLET_CHAIN=${CHAIN || '(未设置)'}`); process.exit(1); }
+  }
 
-  const pending = await d1("SELECT id, cat, url, price_cents FROM ads WHERE status='pending' AND price_cents IS NOT NULL");
+  // 勘察模式:不碰订单、不写任何东西,只把这个地址最近收到的转账列出来
+  // (代币符号 / 合约地址 / 小数位)。用途很具体——ADS_WALLET_CONTRACT 该填什么,
+  // 从链上真实数据里抄,而不是靠任何人的记忆。填错合约的后果是永远收不到钱。
+  if (INSPECT) {
+    const txs = await incoming();
+    if (!txs.length) { console.log('该地址最近没有代币转入,无法勘察合约地址'); return; }
+    const seen = new Map();
+    for (const t of txs) {
+      const k = `${t.symbol}|${t.contract}|${t.decimals}`;
+      seen.set(k, (seen.get(k) || 0) + 1);
+    }
+    console.log('该地址最近收到的代币(按链上数据,不是我记的):');
+    for (const [k, n] of [...seen.entries()].sort((a, b) => b[1] - a[1])) {
+      const [sym, c, d] = k.split('|');
+      console.log(`  ${sym || '(无符号)'}  合约 ${c}  小数位 ${d}  最近 ${n} 笔`);
+    }
+    console.log('\n把上面对应 USDT 那一行的合约地址填进 GitHub Secret 「ADS_WALLET_CONTRACT」。');
+    return;
+  }
+
+  need('ADS_WATCH_SECRET');
+  if (!CONTRACT) { console.error('缺少 ADS_WALLET_CONTRACT——不核对合约地址等于任何人扔一个山寨币都能换到广告位。不知道填什么就先跑一次 --inspect，它会从链上列出这个地址收到过的代币与合约。'); process.exit(1); }
+
+  const pending = (await claimApi({ action: 'pending' })).pending || [];
   if (!pending.length) { console.log('没有待付订单，跳过'); return; }
   console.log(`待付订单 ${pending.length} 笔`);
 
   const txs = await incoming();
   console.log(`该地址最近入账 ${txs.length} 笔`);
 
-  const today = new Date().toISOString().slice(0, 10);
-  const exp = new Date(Date.now() + DAYS * 86400000).toISOString().slice(0, 10);
+  // 上架日与到期日由服务端算(它才是唯一写库的一方)。这里不再留一份本地副本——
+  // 留着会让人以为改这里能改到期日,而实际改的是 Worker 侧的 ADS_DAYS。
   let live = 0;
 
   for (const t of txs) {
     if (t.contract !== CONTRACT) continue;                 // ① 山寨代币
     if (t.confirmations < MIN_CONF) { console.log(`确认数不足(${t.confirmations}/${MIN_CONF})，本轮跳过 ${t.hash}`); continue; } // ②
-    const cents = toCents(t.amountRaw);
+    const cents = toCents(t.amountRaw, t.decimals);   // 小数位以链上这笔交易自报的为准
     const hit = pending.find((p) => Number(p.price_cents) === cents);   // ③ 容差为 0
     if (!hit) continue;
-    const dupe = await d1('SELECT ad_id FROM ad_orders WHERE session = ?', [t.hash]);
-    if (dupe.length) continue;                                          // 幂等:同一笔链上交易只认一次
-    const r = await d1(
-      "UPDATE ads SET status='live', paid_at=?, expires=?, amount=?, session=? WHERE id=? AND status='pending'",
-      [today, exp, `${cents} ${process.env.ADS_WALLET_TOKEN || 'USDT'}`, t.hash, hit.id]);
-    await d1('INSERT OR IGNORE INTO ad_orders (ad_id, session, event_id, paid_at, amount, cat, url, starts, expires) VALUES (?,?,?,?,?,?,?,?,?)',
-      [hit.id, t.hash, t.hash, new Date().toISOString(), `${cents}`, hit.cat || '', hit.url || '', today, exp]);
+    // 幂等与金额都由服务端再核一遍(它不信任本脚本);这里只报告链上看到了什么。
+    const r = await claimApi({
+      action: 'claim', id: hit.id, cents, hash: t.hash, token: process.env.ADS_WALLET_TOKEN || 'USDT',
+    });
+    if (r.code === 'already' || r.code === 'notpending' || r.code === 'nochange') continue;
+    if (!r.ok) { console.log(`⚠️ ${hit.id} 未上架：${r.code}${r.want ? `（应收 ${r.want} 分，链上 ${r.got} 分）` : ''}`); continue; }
     console.log(`✅ 上架 ${hit.id}（金额 ${cents} 分，tx ${t.hash}）`);
     live++;
   }
   // 收到钱但对不上任何订单 → 必须显式报出来,否则钱静静躺着而买家在等
   const claimed = new Set(pending.map((p) => Number(p.price_cents)));
-  const orphan = txs.filter((t) => t.contract === CONTRACT && t.confirmations >= MIN_CONF && !claimed.has(toCents(t.amountRaw)));
+  const orphan = txs.filter((t) => t.contract === CONTRACT && t.confirmations >= MIN_CONF && !claimed.has(toCents(t.amountRaw, t.decimals)));
   if (orphan.length) console.log(`⚠️ ${orphan.length} 笔入账对不上任何待付订单（金额不符/多付/少付），需要人工处理`);
   console.log(`本轮上架 ${live} 笔`);
 };

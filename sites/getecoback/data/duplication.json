@@ -1,0 +1,83 @@
+{
+ "checked": "2026-09-17",
+ "pages": 198,
+ "control_by_lang": {
+  "de": 0.0041,
+  "en": 0.0014,
+  "it": 0.0
+ },
+ "note": "剔除全站样板后的兄弟页 8-gram Jaccard 相似度。对照组是随机的不同主题两页；兄弟页远高于对照组 = Google 眼中的门页形态。本文件只报数，不改内容。",
+ "shingle_n": 8,
+ "boilerplate_shingles": 2258,
+ "control_similarity": 0.0041,
+ "threshold_pct": 40.0,
+ "families": {
+  "heizung-N-qm": {
+   "pages": 7,
+   "avg_similarity": 0.1992,
+   "worst_similarity": 0.2159,
+   "worst_pair": [
+    "heizung-40-qm",
+    "heizung-50-qm"
+   ],
+   "median_unique_shingles": 1376,
+   "lang": "de",
+   "pages_in_corpus": 144
+  },
+  "klimaanlage-N-qm": {
+   "pages": 7,
+   "avg_similarity": 0.3272,
+   "worst_similarity": 0.4307,
+   "worst_pair": [
+    "klimaanlage-10-qm",
+    "klimaanlage-15-qm"
+   ],
+   "median_unique_shingles": 916,
+   "lang": "de",
+   "pages_in_corpus": 144
+  },
+  "luftentfeuchter-N-qm": {
+   "pages": 6,
+   "avg_similarity": 0.5213,
+   "worst_similarity": 0.5634,
+   "worst_pair": [
+    "luftentfeuchter-10-qm",
+    "luftentfeuchter-15-qm"
+   ],
+   "median_unique_shingles": 706,
+   "lang": "de",
+   "pages_in_corpus": 144
+  },
+  "en:dehumidifier-N-sqm": {
+   "pages": 6,
+   "avg_similarity": 0.6225,
+   "worst_similarity": 0.627,
+   "worst_pair": [
+    "dehumidifier-15-sqm",
+    "dehumidifier-25-sqm"
+   ],
+   "median_unique_shingles": 903,
+   "lang": "en",
+   "pages_in_corpus": 44
+  },
+  "en:electric-heater-N-sqm": {
+   "pages": 7,
+   "avg_similarity": 0.5225,
+   "worst_similarity": 0.5509,
+   "worst_pair": [
+    "electric-heater-10-sqm",
+    "electric-heater-30-sqm"
+   ],
+   "median_unique_shingles": 955,
+   "lang": "en",
+   "pages_in_corpus": 44
+  },
+  "it:condizionatore-portatile-N-mq": {
+   "pages": 3,
+   "avg_similarity": null,
+   "note": "页族规模已达样板阈值,本方法在此语料下测不准(会把自身重复当样板剔除)",
+   "lang": "it",
+   "pages_in_corpus": 10
+  }
+ }
+}

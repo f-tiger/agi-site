@@ -73,7 +73,9 @@ function sizeOf(f) {
   fs.mkdirSync(OUT, { recursive: true });
   const { srv, port } = await serve(SITE);
   const base = `http://127.0.0.1:${port}/${slug}.html`;
-  const FF = ffmpegPath();
+  /* resolved only when videos will actually run: covers are pure screenshots, and
+     ONLY=covers should not be blocked by a missing video encoder */
+  const FF = process.env.ONLY === "covers" ? null : ffmpegPath();
   const browser = await chromium.launch({ args: ["--autoplay-policy=no-user-gesture-required"] });
   const report = [];
 

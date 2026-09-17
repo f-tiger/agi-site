@@ -519,10 +519,88 @@ Playgama 变体共用同一套「门户构建」清洗逻辑（剥无广告声�
 - 已排除且不许回捡：GameDistribution / GameMonetize / GamePix（强制其广告 SDK）、
   Coolmath（禁外链 + 禁统计信标）。
 
+
 **别急着下「游戏线失败」的总结论**：站内观测到的最强行为仍然是 CLAUDE.md 上面记的
 「一坐下连玩 5–6 款」的跨游戏会话，那是在**我们自己的域**上发生的，不依赖任何门户。
 门户是分发假设，不是产品假设；分发假设连挂三家，正确的动作是把投入从「求人上架」
 挪回「自有域的留存与串联」，而不是把游戏本身判死。
+
+## Playgama 主目录对「AI 做的游戏」另开一条路（2026-09-15，全权限出网后首次真实平台实测）
+
+**上面 09-09 那段里「Playgama 是唯一还活着的一支」仍然成立，但路径变了。**
+详情与取数方式全在 `docs/playgama-setup.md` 最后一节；这里只留必须记死的几条。
+
+- **GHOSTLINE 与 SINGULARITY 09-14 被拒，但不是 CG 那种无信息量模板**：审核原话是
+  「AI 做的游戏先经 Playgama MCP 发布拿真实数据，再由他们挑进主目录」。**这是分流不是判死。**
+  两款 `allowed:true`，但**空手重投只会拿到同一条回复——必须先有 sandbox 的 performance data**。
+  其余五款仍在队列(`PROCESSING` / 审核任务 `NEW` / 零评论)。
+- **七款已全部进 sandbox**，三个免费 DSP 流量轮(**$2 / 7 天 / ~100 gameplay**)09-15 14:53 起跑：
+  GHOSTLINE、SINGULARITY、PROMPT。另外四款被拒为 `ORG_LIMIT` —— **全组织同时只能三轮**。
+  免费轮之后是 **$20 买同样的包**。**花钱与发布都是 owner 的决定，会话不代做**
+  (`publish_sandbox` 无审核即公开、`start_sandbox_traffic` 不可撤销)。
+- **三个只能靠真实账号验证的假设，今天全部证实**(工具 `tools/verify-playgama-live.js`)：
+  ① `platform.id` 真的是 `playgama`(离线永远是 `mock`)；
+  ② **广告真的有填充**：实拨一次中插得到 `loading → opened → closed`，
+  09-07 以来所有 `loading → failed` 只代表本地无库存、**从不构成填充的证据**；
+  ③ **09-07 的 `/e` CORS 修复在生产上有效**：门户域名发出的信标回 200，D1 收得到行。
+  七款一致：Bridge 已初始化、无 SDK 缺失横幅、`GL_PG_ERR`/`GL_AD_ERR` 为 null、**console error 0**。
+- **第一批真实门户玩家的读数(26 分钟窗)：非 US `play_start` 19 次、十个国家、
+  二次事件(solve/play_again/game_over/hint_used)全 0。** 同窗 9 条 US 行恰好等于本会话 9 次探针
+  加载，已全部剔除；**AM 一国占 8 次,别当成 19 个独立玩家**。**流量进得来，人留不住** —— 与站内「一坐下连玩 5–6 款」的强行为正相反，
+  09-22 结算时这是要认真看的那一条，不是可以略过的噪音。
+- **判定线(已进 `data/fleet-bets.json`)**：`gridlings-playgama-traffic-0922`(≥150 非 US
+  play_start 且二次事件 ≥15 → 拿数据回投主目录并评估付费轮；否则门户线判负、不买流量)、
+  `gridlings-playgama-five-0925`(排队五款是否有一款进主目录)。
+- **留存没解决之前不碰排行榜/内购/封面重做**：没人玩完第一局，排行榜是空的。
+- **口径纠正(同日 15:40)**：上面那句「与站内『一坐下连玩 5–6 款』正相反」**对照组拿错了**。
+  那条强行为属于拼图那批(28 天自有域 `/towers` 188 开局 104 solve = **55%**、`/trail` 27/17 = **63%**)；
+  **这七款门户游戏在自有域 28 天合计只有 27 次开局、0 次 solve、二次事件 2 次(7.4%)**。
+  23 × 7.4% ≈ 1.7，**今天观测到 0 与自有域的比率在统计上分不开** —— 留不住人是**产品问题不是渠道问题**。
+- **反过来说，门户已经是这七款有史以来最大的玩家来源**：Playgama 47 分钟 23 次开局 > 自有域 28 天 27 次；
+  GHOSTLINE 自有域 28 天 **1 次** vs Playgama **11 次**。
+- **由此浮出的真问题**：`package_blocknova.py` 的 `PLAYGAMA` / `ITCH` 列表里装的恰恰是留存最差的七款，
+  **towers 与 trail 这两款唯一有真实完成率的游戏从未打包过任何门户**。towers 是 8KB 页 + 一个 js +
+  两个 JSON、依赖全根相对，`solve → 下一题` 天然是点击可达的中插点。**这属下一轮「扩张」槽，
+  而扩张只能从 won 的行长出来 —— 先等 09-22 那条判定线跑完，不抢跑。**
+
+## 拼图上门户：towers 试点 + 「人留不住」被 owner 截图推翻（2026-09-15 下半场，详见 `docs/playgama-setup.md` 八·九节）
+
+- **纠正(第三次,这次是被外部数据推翻)**:Playgama 后台 Overview 给的是**停留时长**——
+  35 visits → **11 玩过 30 秒(31%)** → **6 玩过 60 秒(17%)**;GHOSTLINE 单款 38% / 19%。
+  **「23 次开局 0 次二次事件 = 人留不住」作废**:D1 只记 solve/play_again/game_over 这类离散里程碑,
+  而这些游戏在开局与跑完一局之间**什么都不发**,测的是我们没埋的东西。**判定线
+  `gridlings-playgama-traffic-0922` 的口径已按此改写,原文保留在 `*_original`。**
+- **埋点漏率校准**:同窗 D1 26 vs 后台 35,**D1 约少 26%**(落页但 iframe 没跑起来的那部分)。
+  **以后门户人数用他们的 VISITS,D1 只做分国家与行为归因。**
+- **PROMPT 已进 `Moderation`**;平台栏的 REVENUE 是 `—` 不是 `$0.00` = 主目录没上架就没有收入行。
+  **sandbox 到底分不分成,后台没写、MCP 也读不到 —— 这是「80% 分成」适用哪一层的关键问题,
+  建议 owner 用后台对话气泡直接问。**
+- **十款拼图题库完全相同(各 320 池 + 450 日题),所以「再做一款类似 towers 的」= 翻炒。**
+  真缺口是这十款**从未上过任何门户**:28 天外部访问约 200 pv,而 Playgama 47 分钟给了 23 次开局。
+- **towers 门户包已建,零引擎改动**:`tools/portal/puzzle-portal.js` 只绑十款都已有的标记
+  (`#d-easy/#d-medium/#d-hard` 广告断点、`#grid`、`#win`);扩第二款只改 `PUZZLE_PLAYGAMA` 一行。
+  打包时改写三处:**信标 `sendBeacon("/e")` 根相对**(在门户上会 POST 到 Playgama 自己的域,
+  一行数据都收不到——而收数据是上门户的全部理由)、四个根相对站内件(含带 `.catch(){}` 的
+  `/sw.js` 注册,对游戏无害但照样打 console error)、剩余根相对 `<a>`。
+- **`tools/verify-puzzle-portal.js`(新增,能红)**:第一版测试用 JS `.click()` 点 `#again` **通过了**,
+  真实点击才发现 **`#again` 藏在 `#win` 里、不解题不可见** —— 认证只点可见控件又解不开题,
+  正是 GHOSTLINE 第一次认证那个坑,差点原样再踩。**断言写成「未解题状态下,一次真实点击能否观察到广告」。**
+  当前全绿(含 console error 0、无交互不出广告、90 秒冷却生效)。
+- **本轮没有任何对外动作**:没建应用、没上传、没发布 sandbox、没开投放。判定线
+  `gridlings-puzzle-portal-1013` 已登记。
+
+## ⛔ 版本冻结中：09-22 前不要 publish_sandbox（2026-09-16，owner：「先不发」）
+
+GHOSTLINE 与 SINGULARITY 的**新归档已上传并在表单里**（`*-2026.09.16-lowgpu`），
+Playgama 自己测的 `loadingTime` 从 **5 143 → 2 867** 和 **4 589 → 1 114**（体积几乎没变，
+差的全是无 GPU 时的渲染开销；做法见 `docs/playgama-setup.md` 十五节）。
+
+**但线上 sandbox 故意还是旧包。** 这轮投放唯一的产出是那份七天数据（**sandbox 不分成**，
+钱不在这一层），中途换包会把样本切成前后不可比的两段，而这份数据就是申诉主目录的全部材料。
+
+**后续会话的硬规矩**：09-22 投放结束前，**任何一款都不要 `publish_sandbox`**；
+`gridlings-playgama-traffic-0922` 的读数属于**旧包**，不要用它代表新包。
+结算之后再一次性做两件事：发新包到 sandbox + 带数据重新提交主目录。
 
 # 做门户游戏的要素清单（owner 2026-09-05「以后记得做 crazygame 游戏的要素」）
 
@@ -1031,8 +1109,18 @@ cg-package-smoke，别靠肉眼。
   认证跑不了那么久,于是报「没有实现广告」。这条只写在 SDK 源码里,文档没提。
   同类字段还有 `minimumDelayBetweenInterstitial`。**排查顺序:先看 SDK 默认值,
   再怀疑自己的触发点。** 本次我先后误判了两次归因才查到这里。
-- 分发选型结论：Playgama（最高 80%）与 CG 直投**不冲突**，Playgama 官方声明不代发 Poki/CG。
-  **不做 GameDistribution**（33%，覆盖重叠）。**Poki 的 web 独占在 CG 出结果前不签**。
+- 分发选型结论：Playgama 与 CG 直投**不冲突**，Playgama 官方声明不代发 Poki/CG。
+  **分成口径 2026-09-16 查证纠正**：不是「最高 80%」，是 `playgama.com/developers` 的三档累进
+  **70%（≤$1,000）/ 80%（$1,000–3,000）/ 90%（>$3,000）**——入门档比我们一直写的低、顶档比它高。
+  **且分成只发生在主目录与合作网络：`playgama.com/llms-full.txt` 明写 sandbox 链接
+  "does not by itself establish ... monetization"。sandbox 跑得再好也不产生收入，
+  它的产出只能是「申诉主目录的证据」。别和 Playgama Partners 的 "up to 50%" 混淆——那是给站长的产品。
+  **不做 GameDistribution**（33%，覆盖重叠）。**Poki 的 web 独占不签**（五年绑定 + 策展门槛够不着）。
+  **但 2026-09-16 查出我们只读了 Poki 的 A 套餐**：`developers.poki.com/guide/revenue-deal-types`
+  并列两种合同，第二种是 **Non-Exclusive = "a one-time flat license fee instead, with no revenue
+  share"**，适用对象原文写着 "games already live on other web platforms" —— **那正是我们**
+  （itch 七款 + Playgama sandbox 七款）。所以「Poki 够不着，谈它就是浪费时间」这条杀单**只对独占成立**；
+  非独占的一次性授权费进候选名单，执行包见 `docs/games-licensing-outreach-2026-09-16.md`。
 
 ## 埋点信标的 CORS：门户域名发不出数据（2026-09-07，Playgama 认证时实测发现）
 `navigator.sendBeacon` 是 **credentialed 请求**，浏览器**拒绝**对这类请求使用

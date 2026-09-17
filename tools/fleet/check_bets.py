@@ -90,6 +90,36 @@ def selftest():
     return 0 if all(ok for _, ok in cases) else 1
 
 
+CANON = dict(ensure_ascii=False, indent=1)
+
+
+def canonical_form_warning():
+    """Warn when the ledger is not serialised the canonical way.
+
+    Every session appends a line to this file. On 2026-09-17 two sessions wrote
+    it with different indents on the same day: nothing was lost, but the second
+    one rebased into a 1,925-line conflict over a one-line change, and hand-
+    resolving a conflict that size is exactly where a pre-registered judgement
+    line gets dropped by accident. The content was never at risk; the
+    formatting was.
+
+    One canonical form — json.dumps(ensure_ascii=False, indent=1) plus a
+    trailing newline — and a warning the moment a write deviates.
+
+    A warning, not an error: a session that has just recorded a real reading
+    must never be blocked from committing it over whitespace.
+    """
+    try:
+        raw = open(LEDGER, encoding="utf-8").read()
+        want = json.dumps(json.loads(raw), **CANON) + "\n"
+    except Exception:
+        return
+    if raw != want:
+        print("::warning::data/fleet-bets.json is not in canonical form "
+              "(json.dumps(ensure_ascii=False, indent=1) + trailing newline); "
+              "re-write it that way so diffs show only the lines that changed")
+
+
 def main(argv):
     if "--selftest" in argv:
         return selftest()
@@ -97,6 +127,7 @@ def main(argv):
     for a in argv:
         if a.startswith("--today="):
             today = dt.date.fromisoformat(a.split("=", 1)[1])
+    canonical_form_warning()
     bets = json.load(open(LEDGER, encoding="utf-8"))["bets"]
     errors, warnings, summary = check(bets, today)
     print(f"fleet bets: {summary['open']} open / {summary['settled']} settled / {summary['total']} total (today {today})")

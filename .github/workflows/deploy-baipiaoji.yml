@@ -109,6 +109,20 @@ jobs:
         run: node scripts/reach-export.mjs
         continue-on-error: true
 
+      # 付费档缺口探针（2026-09-16）：219 个工具里 109 个只差 limits.paid 一个字段，
+      # 差这一个字段 `is-<tool>-still-free` 与 `/upgrade/<tool>` 两种页型就都不生成——
+      # 而 D1 现查说读者 68% 落在工具页、问的正是这个问题。缺口填不动的原因不是没人想填，
+      # 是**会话沙箱抓不到官方定价页**（09-16 实测 x.ai / quillbot 403、kimi 连接重置、
+      # feishu 与 haiper 只回 SPA 壳），而 runner 的出网抓得到——与 source-drift 每天
+      # 抓 219 条来源页是同一条链路。所以把「猜 URL → 手抓 → 抓不到就算了」变成
+      # runner 每天推进 8 个的队列，会话下一轮直接读 data/pricing-probe.json 挑活。
+      # 它**只做发现与取证，一个数字都不写进 tools.json**（新数字永远走 limits-edit 两步）。
+      # 分钟账：最坏 8 × 3 候选 × ~3.5s ≈ 1.4 分/次 ≈ 42 分/月，挂已有 schedule，不新增 cron。
+      - name: Probe official pricing pages for paid-tier gaps (scheduled runs only)
+        if: github.event_name != 'push'
+        run: node scripts/pricing-probe.mjs
+        continue-on-error: true
+
       - name: Commit refreshed data (scheduled runs only)
         if: github.event_name != 'push'
         run: |
@@ -145,6 +159,34 @@ jobs:
       # 那种数字长得跟真的一模一样，而它正好打在本站唯一护城河上。
       - name: Quota facts check (no invented numbers)
         run: node scripts/quota-facts-check.mjs
+
+      # 收款路径的端到端测试（2026-09-16，零网络 ~0.1s）。/api/ad-claim 决定一个广告位
+      # 是否因为一笔链上到账而上架，判错的两个方向都直接是钱：判松了有人用金额不符的交易
+      # 换到真实曝光，判严了买家付了钱位子不上架。变异测试已验证它会红（去掉金额核对即失败）。
+      - name: Ad-claim money-path test (zero network)
+        run: node scripts/test-ad-claim.mjs
+
+      # 付费档探针的零网络自检（2026-09-16）：这个探针决定「下一轮去读哪几家的定价页」，
+      # 它判错的方向有两种，都必须能红——把无价页判成 ready 会把人骗去读一个没有价格的页面；
+      # 把沙箱/网络拒绝判成「这家没有付费档」则会让一个能填的缺口被永久跳过。
+      - name: Pricing-probe selftest (zero network)
+        run: node scripts/pricing-probe.mjs --selftest
+
+      # 边缘爬虫记账的路径分类（2026-09-17，零网络 ~0.1s）。_middleware.js 的
+      # isContentPath() 此前是白名单（`/` 结尾或 .html/.txt/.json/.md/.xml），而本站内容页
+      # 是无扩展名路由 —— 28 天 ev='bot' 只落到 23 个路径，`/tools/*` 与 `/c/*` 各 0 条，
+      # 同窗 92% 的真人落地正好在那批看不见的路径上。已改成黑名单（只排 /api/* 与静态资源）。
+      # 这一步把那次误判钉死：分类器再变回白名单、或黑名单宽到吃掉内容页，部署直接红。
+      - name: Crawler-accounting path classifier (zero network)
+        run: node scripts/test-middleware-paths.mjs
+
+      # /api/reach 国家面的隐私形状（2026-09-17，零网络）。这个端点原本明确「不出国家分布」，
+      # 当天有意推翻——因为「中国流量是不是更大」只能靠手接 MCP 查 D1 才答得出来，
+      # 而这个端点存在的全部目的就是不必那样。开的是最小粒度：站点级计数、k 匿名下限 5。
+      # ②那条会被无声破坏（把 k 调成 1、或把 >= 写成 >），页面看着一模一样，
+      # 而 28 天里只来过一次的国家就单独挂在公开端点上了。所以边界值逐个断言。
+      - name: Reach country-histogram privacy shape (zero network)
+        run: node scripts/test-reach-shape.mjs
 
       # 自研分词器的回归检验：420 例金标准 × 两套词表 = 840 次逐例比对。
       # 写自己的实现就得自己证明它对，否则只是把「让用户猜」换成「让我们猜」。
@@ -460,7 +502,53 @@ jobs:
           echo "$r" | grep -q '"window_days":7' || { echo "::error::/api/reach 未按 days 参数取窗"; exit 1; }
           # 只出聚合:响应里绝不能出现 @（邮箱）或完整 UA 字样
           echo "$r" | grep -q '@' && { echo "::error::/api/reach 响应含 @ —— 疑似泄漏行级数据"; exit 1; }
-          echo "✅ /api/reach 在位：ok、计数、paths、窗口参数、零行级数据"
+          # 国家面（2026-09-17）：形状对不对，以及 k 匿名下限有没有真的在生产里生效。
+          # 断言的是事故的形状——不是「有这个字段就行」，而是「字段在且下限没被绕过」。
+          echo "$r" | grep -q '"countries":\[' || { echo "::error::/api/reach 缺 countries —— 市场面又看不见了"; exit 1; }
+          echo "$r" | grep -q '"country_floor":[0-9]' || { echo "::error::/api/reach 未声明 country_floor"; exit 1; }
+          node -e '
+            const d = JSON.parse(process.argv[1]);
+            const k = d.country_floor;
+            if (!(k >= 5)) { console.error("::error::country_floor=" + k + " 低于 5"); process.exit(1); }
+            const bad = (d.countries || []).filter((r) => r.country !== "other" && r.n < k);
+            if (bad.length) { console.error("::error::公开端点上出现了低于下限的国家：" + JSON.stringify(bad)); process.exit(1); }
+            const extra = (d.countries || []).filter((r) => Object.keys(r).length !== 2);
+            if (extra.length) { console.error("::error::countries 行多了字段（交叉维度=重识别风险）"); process.exit(1); }
+            console.log("countries ok: " + (d.countries || []).length + " 行，下限 " + k);
+          ' "$r"
+          echo "✅ /api/reach 在位：ok、计数、paths、窗口参数、零行级数据、国家面过 k 匿名下限"
+
+      # 广告库存面（2026-09-16 上线当日补自检）。断言的是**事故的形状**：
+      # 这块唯一会静默坏掉的方式是「位子没渲染到工具页上」或「渲染了但触达数没接上」——
+      # 两者线上都看不出来（没有广告时本来就只有一行自售文案），而工具页承担全站 2/3 的真人触达。
+      # 第三条断言 rel="sponsored nofollow noopener"：它掉了不是少个属性，是整站可能被判链接方案。
+      - name: Self-test ad inventory surface
+        id: st_ads
+        run: |
+          p=$(curl -sL -m 25 'https://baipiaoji.com/tools/grok.html')
+          echo "$p" | grep -q 'data-ad-tool="grok"' || { echo "::error::工具页没有广告位（全站 2/3 触达无库存）"; exit 1; }
+          echo "$p" | grep -Eq 'var R=[1-9][0-9]*, P=true' || { echo "::error::工具页广告位未接上该页真实触达数（应为 R=<正整数>, P=true）"; exit 1; }
+          echo "$p" | grep -q 'rel="sponsored nofollow noopener"' || { echo "::error::广告链接缺 rel=sponsored nofollow noopener"; exit 1; }
+          a=$(curl -sL -m 25 'https://baipiaoji.com/advertise.html')
+          echo "$a" | grep -q '触达最高的工具页' || { echo "::error::投放页缺单页库存表"; exit 1; }
+          r=$(curl -s -m 20 'https://baipiaoji.com/api/ads?cat=chat&lang=zh')
+          echo "$r" | head -c 200; echo
+          echo "$r" | grep -Eq '"ok":[[:space:]]*true' || { echo "::error::/api/ads 未返回 ok"; exit 1; }
+          echo "$r" | grep -q '"ads":\[' || { echo "::error::/api/ads 缺 ads 数组"; exit 1; }
+          # 收款体检（2026-09-16）。断言的是**半通电**这个事故形状：支付链接配了但 webhook 没配
+          # = 买家付得了钱、位子却永远不会上架 —— 收了钱不交付，是这条链上最坏的结局。
+          # 完全没配不算失败（今天就是这个状态，投放页会如实显示未开售），但每次部署都把
+          # 阻塞项打印出来，免得「配了没生效」又要等到有人付款才发现。
+          doc=$(curl -s -m 20 'https://baipiaoji.com/api/ads?doctor=1')
+          echo "$doc"
+          echo "$doc" | grep -Eq '"selling":(true|false)' || { echo "::error::/api/ads?doctor=1 未返回 selling"; exit 1; }
+          echo "$doc" | grep -q 'sk_live\|whsec_\|0x[0-9a-fA-F]\{40\}' && { echo "::error::体检端点疑似回显了密钥值"; exit 1; }
+          if echo "$doc" | grep -q '"payment_link":true' && echo "$doc" | grep -q '"stripe_webhook":false'; then
+            echo "::error::卡轨半通电：ADS_PAYMENT_LINK 已设但 STRIPE_WEBHOOK_SECRET 未设——买家能付款，付完不会自动上架"; exit 1; fi
+          if echo "$doc" | grep -q '"wallet":true' && echo "$doc" | grep -q '"claim_secret":false'; then
+            echo "::error::钱包轨半通电：ADS_WALLET 已设但 ADS_WATCH_SECRET 未设——链上轮询无法回写，付款后不会上架"; exit 1; fi
+          echo "$doc" | grep -q '"selling":true' && echo "💰 收款已通电" || echo "ℹ️ 收款未开通（投放页显示未开售，属预期状态）"
+          echo "✅ 广告库存面在位：工具页有位、触达数已接、rel 合规、投放页有库存表、/api/ads 可读、收款体检已跑"
 
       # sitemap 的 URL 必须是终点(2026-09-15 修复):Cloudflare Pages 把 /x.html 308 到 /x,
       # 此前 1558 条 loc 与每页 canonical 全部声明 .html —— canonical 指向非 200,
@@ -505,15 +593,22 @@ jobs:
       # _middleware.js 拦住了**每一个**请求。它要是抛错或吞掉响应，
       # 整站会一起下线——所以它上线后必须有一条独立断言：页面照常 200、
       # 内容照常返回、API 不受影响。探针步骤只证明「爬虫进得来」，不覆盖这一条。
+      # ⚠️ 两个爬虫 UA 的自检 URL 必须带 `?__probe=1`（2026-09-17 修）。不带的话，这一步
+      # 每次部署都往 hits 表写两条假抓取。D1 现查坐实：28 天里 `/en/` 名下 GPTBot **43 次 /
+      # 29 天**、`/llms.txt` 名下 ClaudeBot **43 次 / 29 天**，计数与天数逐一对齐、全部 US
+      # —— 就是这两行 curl。也就是说 `/llms.txt` 的「ClaudeBot 抓取」**100% 是我们自己**，
+      # 而 GPTBot 全站 75 次里 57% 也是。`__probe=1` 的守卫本来就是为这件事建的，只是当初
+      # 只挡住了 ai-crawler-probe.mjs，漏了这一步。带上它响应仍然照常经过 ctx.next() 与
+      # noindex 逻辑，这一步要证明的「正常流量没被破坏」一点没少测，只是不再自证抓取量。
       - name: Self-test edge middleware (all traffic passes through it)
         id: st_mw
         continue-on-error: true
         run: |
-          h=$(curl -s -o /tmp/p.html -w "%{http_code}" -m 20 -A 'GPTBot/1.0' 'https://baipiaoji.com/en/')
+          h=$(curl -s -o /tmp/p.html -w "%{http_code}" -m 20 -A 'GPTBot/1.0' 'https://baipiaoji.com/en/?__probe=1')
           grep -q '</html>' /tmp/p.html || { echo "::error::中间件下页面内容不完整"; exit 1; }
           n=$(curl -s -o /dev/null -w "%{http_code}" -m 20 'https://baipiaoji.com/')
           a=$(curl -s -o /dev/null -w "%{http_code}" -m 20 'https://baipiaoji.com/api/limits?slug=kimi')
-          l=$(curl -s -o /dev/null -w "%{http_code}" -m 20 -A 'ClaudeBot/1.0' 'https://baipiaoji.com/llms.txt')
+          l=$(curl -s -o /dev/null -w "%{http_code}" -m 20 -A 'ClaudeBot/1.0' 'https://baipiaoji.com/llms.txt?__probe=1')
           echo "bot-page=$h human-page=$n api=$a bot-llms=$l"
           [ "$h" = "200" ] && [ "$n" = "200" ] && [ "$a" = "200" ] && [ "$l" = "200" ] \
             || { echo "::error::边缘中间件破坏了正常流量 bot=$h human=$n api=$a llms=$l"; exit 1; }
@@ -629,5 +724,6 @@ jobs:
           check "变更分发" "${{ steps.st_dispatch.outcome }}"
           check "赚钱作业包注册墙" "${{ steps.st_earn.outcome }}"
           check "触达端点" "${{ steps.st_reach.outcome }}"
+          check "广告库存面" "${{ steps.st_ads.outcome }}"
           [ "$fail" = "0" ] || exit 1
           echo "✅ 全部链路自测通过"

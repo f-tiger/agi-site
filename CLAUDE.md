@@ -410,6 +410,13 @@ owner 决策卡、事实表)。
   28 天 7 条**(供给侧)。问题不是测不到,是测到了薄然后照建。
 - **现在一页读完**:`data/autopilot/demand-digest.md`(零 AI,随 autopilot 每日生成,带日期与 STALE)。
   **任何选题讨论先打开它。**
+- **`gaps` 的读法(2026-09-17,逐条核完 eco 那 31 条之后补;适用全舰队)**:`match < 0.60` 量的是
+  **标题与开篇**有没有接住这个词,**不是站内有没有这一页**。两个已核实的结构原因:①`pagemap.py`
+  只读 title+h1+desc 加**正文前 4 000 字符**(eco 的 `infrarotheizung werkstatt` v=30 750 因此成了 gap,
+  而那页正文写了 8 次 Werkstatt);②`demand.py` 是**逐字串命中**,德语变格直接打穿
+  (`stromsparender` ≠ 页面上的 `stromsparend`)。**把 gap 当新页选题之前先 grep 全站正文**;
+  已经答了的,动作是把那个词形写进标题(优化槽),不是再建一页。**别顺手去改匹配器**——
+  整页 tokenise 试过并被否掉(页脚出现一次就命中),词形归并对德语复合词风险更大。
 - **本会话对 Reddit 双向封死**(沙箱 000 + 搜索工具被 reddit.com 拒绝):**原帖只有 runner 与 owner 浏览器能读**,
   别假装读过。**Reddit 两个源已接进雷达**(求做板块 r/SomebodyMakeThis、r/AppIdeas;垂直板块按站 `VERTICAL`
   配置 + 14 天**重现计数** `reddit_recurring`,同一问题 ≥2 个不同日期才算需求;公开 JSON,只读;**机器永不发帖**);
@@ -479,6 +486,7 @@ owner 决策卡、事实表)。
   win / lose / source)。`tools/fleet/check_bets.py` 挂 heartbeat:到期 3 天内 warning,**过期 >7 天仍 open 即红**。
   **新增任何判定线必须同时加一行进台账,否则等于没预登记**;结算时把 status 改为 won/lost/insufficient
   并写 settled + reading,再把结论写回对应站的 CLAUDE.md。
+- **台账文件的写法固定死(2026-09-17 两个会话同日撞车后加)**:一律 `json.dumps(ensure_ascii=False, indent=1)` + 结尾换行。当天 playgama 会话用 indent=2、eco 会话用 indent=1,**数据一条没丢,但一条新增判定线变成 1 925 行的 rebase 冲突** —— 而手工解一个那么大的冲突,正是预登记判定线被误删的典型场景。`check_bets.py` 现在会在格式偏离时打 **warning(不是 error**:刚记完真实读数的会话绝不该因为空格被挡住提交)。
 - **每次会话开场的三步(不问 owner,直接做)**:①`python3 tools/fleet/check_bets.py` 看谁到期,到期的先结算
   (D1 现查,读数进台账);②读 `data/autopilot/demand-digest.md` 与 `data/fleet-ai-referrals.json`;
   ③按下表各投**一件**,做完写判定线进台账。三门/零编造/防翻炒/隐私红线全部不变。
@@ -495,6 +503,16 @@ owner 决策卡、事实表)。
   「成长为那类型」的诚实距离:那两家的起点是**供给侧先免费聚合**(1999 阿里免费挂牌、2003 淘宝免费)与
   **推荐引擎按数据杀 app**;舰队里唯一有供给侧敲门的是 bpj 厂商投稿(28 天 7 条),它是最像「平台」的
   一寸,已在 bpj 队列里。**每次报告的台账栏从此加一行:开放/已结/本期 won-lost 计数。**
+  **⚠ 2026-09-16 纠正上面那句「28 天 7 条」**:会话首次直连 D1 后核实,7 条来自 **3 个提交者**
+  ——09-07 一个荷兰运营者一次投 5 个同族域名(同日同国同命名法,典型批量目录投放),另 SG、US 各一;
+  最新一条 09-09,真实节奏约 1 个提交者/两周,`submissions` 表另有 1 行是 CI 自测要剔。
+  同轮还查出 **bpj 的 `vendor_inquiries` 表在 D1 里根本不存在** = 询价探针上线 30 天零询价。
+  「唯一有供给侧敲门的一寸」仍成立(它确实是唯一的),但**厚度按 3 个提交者算,不是 7 个**。
+  详见 `sites/baipiaoji/docs/PRD-revenue-tools-2026-09-16.md`。
+  **附带的通用教训(对全舰队)**:`reach.json` 这类聚合读不出「这 7 条是不是同一个人投的」。
+  Cloudflare MCP 的 `d1_database_query` 本会话对八站 D1 全部可读——**要判定供给侧或转化面的真实
+  厚度,直接查 D1**,别停在聚合上。SQL 提醒:`LIKE '/__%'` 里的 `_` 是 SQL 通配符,剔 CI 自测
+  路径必须写 `LIKE '/\_\_%' ESCAPE '\'`,否则会把几乎所有行都滤掉(本轮踩过,差点把 307 读成 25)。
 - 09-13 明确**不做**的:eco 12 条 underserved 的标题改写。**结论不变,理由 09-15 换了**:
   09-11 那句「Google 没在抓(`googlebot=0`)」是**测不到**不是真 0——爬虫日志 09-11 才上线,
   上线后 5 天读到 googlebot 19 次 / 15 页(对照 bingbot 241 次 / 112 页)。真正的理由是

@@ -28,6 +28,8 @@ _AD_CLAIMS = [
     (re.compile(r", no sign-up and no ads", re.I), " and no sign-up"),
     (re.compile(r"no account, no ads", re.I), "no account"),
     (re.compile(r"No ads (?:inside|here)"), "Free to play"),
+    # every puzzle page's FAQPage JSON-LD ends its daily answer this way
+    (re.compile(r"with no account and no ads", re.I), "with no account"),
 ]
 # NB: not "no advertising" — MINIMA's source carries that phrase inside a code comment
 # quoting a Playgama rejection, and a comment is not a claim to a player.
@@ -157,6 +159,86 @@ for slug, prefix in sorted(PLAYGAMA_SHARED.items()):
         z.write(os.path.join(vendor, "LICENSE"), "LICENSE-playgama-bridge.txt")
         z.write(os.path.join(vendor, "playgama-bridge-config.json"), "playgama-bridge-config.json")
     print("wrote", zp, os.path.getsize(zp), "bytes")
+# ---------------------------------------------------------------------------
+# Playgama build for the PUZZLE games (2026-09-15).
+#
+# These are not single-file games: a puzzle page is html + style.css + its engine +
+# two json files + two small shared scripts. So unlike the seven above, this walks an
+# asset list into the zip and rewrites what only works on our own origin:
+#
+#   - the beacon. Every engine calls sendBeacon("/e") ROOT-relative, which on
+#     sb-xxx.games.playgama.net posts to Playgama's origin, not ours. Left alone, a
+#     puzzle on a portal reports nothing at all — and reporting is the entire reason to
+#     put it there. Rewritten to the absolute URL the seven already use.
+#   - /sub.js, /embed.js, /manifest.webmanifest are root-relative and site-only
+#     (mail capture, the embed widget). They 404 on a portal; they are dropped.
+#   - the header, the footer and the beehiiv link point at our site from inside someone
+#     else's storefront. Dropped for the same reason the footer already was.
+#
+# Pilot is towers only, by the same rule the seven followed: one game clears the
+# process before the rest are queued behind the same unknown. PUZZLE_PLAYGAMA is the
+# whole extension point — the shim binds to markup all ten pages already share.
+PUZZLE_PLAYGAMA = {"towers": "app-towers.js"}
+BEACON = "https://play.agiscorecard.com/e"
+_HEADER = re.compile(r"<header>.*?</header>", re.S)
+_ROOT_A = re.compile(r'<a [^>]*href="/(?!/)[^"]*"[^>]*>(.*?)</a>', re.S)
+_SUBCTA = re.compile(r'<p class="subline"><a id="subcta".*?</a></p>', re.S)
+_DROP_TAGS = [
+    re.compile(r'<script src="/(?:sub|embed)\.js"[^>]*></script>\s*'),
+    re.compile(r'<link rel="manifest"[^>]*>\s*'),
+    re.compile(r'<link rel="canonical"[^>]*>\s*'),
+    re.compile(r'<link rel="alternate" hreflang="[^"]*"[^>]*>\s*'),
+    re.compile(r'<meta property="og:[^"]*"[^>]*>\s*'),
+    re.compile(r'<script type="application/ld\+json">.*?</script>\s*', re.S),
+    # registers "/sw.js" — root-relative, so on a portal it 404s and Chromium logs a
+    # console error. The .catch() hides the failure from the game but not from their
+    # reviewer, and console errors are a rejection risk on every portal we have tried.
+    re.compile(r'<script>if\("serviceWorker" in navigator.*?</script>\s*', re.S),
+]
+for slug, engine in sorted(PUZZLE_PLAYGAMA.items()):
+    what = slug + " (Playgama puzzle build)"
+    src = io.open(os.path.join(ROOT, "site", slug + ".html"), encoding="utf-8").read()
+    tag = '<script src="%s"></script>' % engine
+    assert tag in src, what + ": engine script tag moved - update this packager"
+    out = src
+    for pat in _DROP_TAGS:
+        out = pat.sub("", out)
+    out, n = _HEADER.subn("", out)
+    assert n == 1, "%s: expected exactly one <header>, found %d" % (what, n)
+    out, n = _SUBCTA.subn("", out)
+    assert n == 1, "%s: the beehiiv subscribe link moved, found %d" % (what, n)
+    # SDK before the engine: certification reads index.html for the script tag, and a
+    # static tag means bridge is parsed by the time the shim runs.
+    out = out.replace(tag, '<script>window.GL_PG=true;</script>\n'
+                           '<script src="playgama-bridge.js"></script>\n' + tag, 1)
+    portal = io.open(os.path.join(ROOT, "tools", "portal", "puzzle-portal.js"), encoding="utf-8").read()
+    out = out.replace("</body>", "<script>\n" + portal + "\n</script>\n</body>", 1)
+    # Any remaining root-relative anchor (the rules page, sibling puzzles) is a dead
+    # link inside a portal iframe: it resolves against THEIR origin. Keep the words,
+    # drop the link — the sentence still reads, and strip_site_footer's guard below
+    # turns any wording this misses into a failed build rather than a shipped 404.
+    out, n = _ROOT_A.subn(lambda m: m.group(1), out)
+    assert n >= 1, what + ": expected at least one root-relative anchor to unwrap"
+    out = strip_ad_claims(out, what)
+    out = strip_site_footer(out, what)      # also asserts no root-relative <a> survived
+    assert "/sub.js" not in out and "/embed.js" not in out, what + ": a site-only script survived"
+
+    js = io.open(os.path.join(ROOT, "site", engine), encoding="utf-8").read()
+    js, n = re.subn(r'(sendBeacon|fetch)\("/e"', lambda m: m.group(1) + '("' + BEACON + '"', js)
+    assert n == 2, "%s: expected 2 root-relative beacon calls to rewrite, found %d" % (what, n)
+    assert '"/e"' not in js, what + ": a root-relative beacon survived"
+
+    zp = os.path.join(pgdir, slug + ".zip")
+    with zipfile.ZipFile(zp, "w", zipfile.ZIP_DEFLATED) as z:
+        z.writestr("index.html", out)
+        z.writestr(engine, js)
+        for f in ("style.css", "copy.js", "firstrun.js", slug + "-daily.json", slug + "-pool.json"):
+            z.write(os.path.join(ROOT, "site", f), f)
+        z.write(os.path.join(vendor, "playgama-bridge.js"), "playgama-bridge.js")
+        z.write(os.path.join(vendor, "LICENSE"), "LICENSE-playgama-bridge.txt")
+        z.write(os.path.join(vendor, "playgama-bridge-config.json"), "playgama-bridge-config.json")
+    print("wrote", zp, os.path.getsize(zp), "bytes")
+
 itchdir = os.path.join(ROOT, "site", "downloads", "itch")
 os.makedirs(itchdir, exist_ok=True)
 for slug in ITCH:

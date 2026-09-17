@@ -1,6 +1,6 @@
-# Balkonspeicher im Winter: Frost, Aufstellort & Überwintern
+# Balkonkraftwerk-Speicher im Winter: Frost & Aufstellort
 
-> Verträgt ein Balkonspeicher Frost? LiFePO4 lädt unter 0 °C nicht — moderne Geräte heizen vor oder stoppen automatisch.
+> Verträgt ein Balkonkraftwerk-Speicher Frost? LiFePO4 lädt unter 0 °C nicht — moderne Geräte heizen vor oder stoppen automatisch.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/balkonspeicher-winter-frost.html
 

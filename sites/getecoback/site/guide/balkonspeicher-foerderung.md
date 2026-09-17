@@ -1,6 +1,6 @@
-# Balkonspeicher-Förderung 2026: Wer zahlt was dazu?
+# Balkonkraftwerk-Speicher: Förderung 2026 im Überblick
 
-> Förderung für Balkonkraftwerk und Speicher 2026: Bundesländer, rund 20 kommunale Programme, Speicher-Bonus — und was ein Zuschuss wirklich bringt.
+> Förderung für Balkonkraftwerk-Speicher 2026: Bundesländer, rund 20 kommunale Programme, Speicher-Bonus — und was ein Zuschuss wirklich bringt.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/balkonspeicher-foerderung.html
 
