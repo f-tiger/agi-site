@@ -649,6 +649,17 @@
    "lose": "wallbox <对照组 → 归档，不再提；wärmepumpe 无论读数如何都不做联盟（Luft-Wasser 非 Amazon 商品，线索形态 08-28 已杀）",
    "source": "sites/getecoback/CLAUDE.md 德语区读数与两个品类裁定（2026-09-17）",
    "status": "open"
+  },
+  {
+   "id": "eco-dup-rewrite-1117",
+   "site": "getecoback",
+   "due": "2026-11-17",
+   "metric": "heizung-N-qm 页族改写后的平均 8-gram 相似度（tools/check_duplication.py，剔全站样板）+ 该族 28 天 Google 引荐数",
+   "threshold": "相似度 ≤20%（t0=54.0%）且 Google 引荐 ≥1（t0=0）",
+   "win": "重复度确实是抑制因素之一，按同法改 luftentfeuchter-N-qm（52.4%）",
+   "lose": "相似度降到位而 Google 仍为 0 → 重复度不是本站绑定约束，回到域龄/外链结论，不再为 Google 改写正文",
+   "source": "sites/getecoback/CLAUDE.md 七、Google 深度诊断第三轮（2026-09-17）",
+   "status": "open"
   }
  ]
 }

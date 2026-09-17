@@ -166,6 +166,15 @@ jobs:
       - name: Check the open dataset is machine-findable and embeds credit back
         run: python3 tools/check_dataset.py
 
+      # 页族近重复度量（2026-09-17）。**只报数不拦部署**：今天的读数本来就超标，
+      # 上线即红会把一个待办变成一条坏掉的流水线。它存在的理由是把「兄弟页有多像」
+      # 从一句感觉变成每次部署都重算的数字——谁去改写正文都有靶子，改完能证明降下来了。
+      # 自检先跑（零 IO，能红）：判错任一方向都会让人白改或漏改。
+      - name: Measure near-duplication across templated page families (report only)
+        run: |
+          python3 tools/check_duplication.py --selftest
+          python3 tools/check_duplication.py
+
       - name: Check the price engine (SigV4 vector, refresher vs mock, built pages vs data)
         run: |
           node tools/product_intel/paapi.mjs --selftest

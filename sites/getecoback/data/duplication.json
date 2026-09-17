@@ -1,0 +1,40 @@
+{
+ "checked": "2026-09-17",
+ "note": "剔除全站样板后的兄弟页 8-gram Jaccard 相似度。对照组是随机的不同主题两页；兄弟页远高于对照组 = Google 眼中的门页形态。本文件只报数，不改内容。",
+ "shingle_n": 8,
+ "boilerplate_shingles": 630,
+ "control_similarity": 0.0026,
+ "threshold_pct": 40.0,
+ "families": {
+  "heizung-N-qm": {
+   "pages": 7,
+   "avg_similarity": 0.54,
+   "worst_similarity": 0.5534,
+   "worst_pair": [
+    "heizung-25-qm",
+    "heizung-30-qm"
+   ],
+   "median_unique_shingles": 1096
+  },
+  "klimaanlage-N-qm": {
+   "pages": 7,
+   "avg_similarity": 0.3208,
+   "worst_similarity": 0.4285,
+   "worst_pair": [
+    "klimaanlage-10-qm",
+    "klimaanlage-15-qm"
+   ],
+   "median_unique_shingles": 876
+  },
+  "luftentfeuchter-N-qm": {
+   "pages": 6,
+   "avg_similarity": 0.5244,
+   "worst_similarity": 0.5618,
+   "worst_pair": [
+    "luftentfeuchter-10-qm",
+    "luftentfeuchter-20-qm"
+   ],
+   "median_unique_shingles": 664
+  }
+ }
+}
