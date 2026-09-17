@@ -21,6 +21,19 @@ Contract:
   * Writes data/fleet-ai-access.json; exit 1 iff any site blocks any agent. Never writes
     guesses: a request that errors is recorded as status 0 with the error text.
 
+Search-engine crawlers (2026-09-17, owner: 「让谷歌流量扩大」):
+  * Bingbot was here from the start; Googlebot was not — the fleet had been probing the
+    channel its search traffic already comes from, and never the one it wants to grow.
+    Googlebot is now in AGENTS, so it inherits the control-UA gate, the judging, the
+    selftest and the heartbeat wiring rather than getting a second half-built probe.
+  * READ THE RESULT ASYMMETRICALLY. Cloudflare verifies Googlebot/Bingbot by reverse DNS,
+    so this spoofed UA from a GitHub runner is treated *worse* than the real crawler, never
+    better. Therefore: 200 here ⇒ the real crawler is almost certainly fine (strong).
+    A block here ⇒ INCONCLUSIVE — it may be the verified-bot check firing on our forgery,
+    not a rule against the real one; confirm in Cloudflare before calling a site blocked.
+    The same asymmetry applies to the AI agents above, and it only ever makes a clean
+    all-200 reading stronger, so no past judgement changes.
+
 Usage: python3 tools/fleet/ai_access_probe.py [--selftest] [--only=site,site]
 """
 import concurrent.futures as cf
@@ -63,6 +76,7 @@ AGENTS = [
     ("ClaudeBot", "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko); compatible; ClaudeBot/1.0; +claudebot@anthropic.com"),
     ("Claude-User", "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko); compatible; Claude-User/1.0; +Claude-User@anthropic.com"),
     ("Bingbot", "Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)"),
+    ("Googlebot", "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"),
 ]
 CONTROL = ("(browser)", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36")
 BLOCK_CODES = {401, 403, 429, 503}
@@ -123,6 +137,8 @@ def selftest():
         ("agent 503 on llms.txt → blocked", classify(mk(200, 503, "ClaudeBot", "/llms.txt"))[1] == [{"agent": "ClaudeBot", "path": "/llms.txt", "status": 503}]),
         ("control not 200 → invalid, not judged", classify(mk(403, 403)) == (False, [])),
         ("agent 404 is not a block", classify(mk(200, 404)) == (True, [])),
+        ("Googlebot is probed (the channel owner wants grown)", "Googlebot" in [a for a, _ in AGENTS]),
+        ("Googlebot 403 is surfaced like any other block", classify(mk(200, 403, "Googlebot"))[1] == [{"agent": "Googlebot", "path": "/", "status": 403}]),
         ("agent network error (0) is not a block", classify(mk(200, 0)) == (True, [])),
         ("goldrush root gets ci=1", probe_url("https://goldrush.agiscorecard.com", "/") == "https://goldrush.agiscorecard.com/?ci=1&__probe=1"),
         ("other root gets __probe only", probe_url("https://baipiaoji.com", "/llms.txt") == "https://baipiaoji.com/llms.txt?__probe=1"),

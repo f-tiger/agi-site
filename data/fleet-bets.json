@@ -11,7 +11,9 @@
       "win": "无动作",
       "lose": "owner 关 Cloudflare Bots 开关,会话不能代做",
       "source": "CLAUDE.md:437",
-      "status": "open"
+      "status": "won",
+      "settled": "2026-09-17",
+      "reading": "blocked_sites = [] —— 14 站 × 9 个爬虫 UA × 2 条路径全部 200,零拦截(2026-09-17 现跑 tools/fleet/ai_access_probe.py)。Cloudflare Pay-Per-Crawl 09-15 生效后没有拦住任何一只自报家门的爬虫,保险丝「引用队列爬虫不设价不屏蔽」不需要动作。同次运行把 Googlebot 也加进了探针(此前只有 Bingbot):Googlebot 同样 14/14 全 200。效力说明:伪造 UA 从 runner 发出只会被 Cloudflare 的 verified-bot 检查更严格对待,所以全 200 是强证据,反向(若被拦)才需要去 Cloudflare 复核。"
     },
     {
       "id": "bpj-crawler-observed-0918",

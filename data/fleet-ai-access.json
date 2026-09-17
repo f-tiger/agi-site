@@ -1,5 +1,5 @@
 {
- "checked": "2026-09-15T13:01:31Z",
+ "checked": "2026-09-17T01:19:06Z",
  "paths": [
   "/",
   "/llms.txt"
@@ -12,7 +12,8 @@
   "Perplexity-User",
   "ClaudeBot",
   "Claude-User",
-  "Bingbot"
+  "Bingbot",
+  "Googlebot"
  ],
  "invalid_sites": [],
  "blocked_sites": [],
@@ -56,6 +57,10 @@
      "/llms.txt": 200
     },
     "Bingbot": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "Googlebot": {
      "/": 200,
      "/llms.txt": 200
     }
@@ -102,6 +107,10 @@
     "Bingbot": {
      "/": 200,
      "/llms.txt": 200
+    },
+    "Googlebot": {
+     "/": 200,
+     "/llms.txt": 200
     }
    }
   },
@@ -144,6 +153,10 @@
      "/llms.txt": 200
     },
     "Bingbot": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "Googlebot": {
      "/": 200,
      "/llms.txt": 200
     }
@@ -190,6 +203,10 @@
     "Bingbot": {
      "/": 200,
      "/llms.txt": 200
+    },
+    "Googlebot": {
+     "/": 200,
+     "/llms.txt": 200
     }
    }
   },
@@ -232,6 +249,10 @@
      "/llms.txt": 200
     },
     "Bingbot": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "Googlebot": {
      "/": 200,
      "/llms.txt": 200
     }
@@ -278,6 +299,10 @@
     "Bingbot": {
      "/": 200,
      "/llms.txt": 200
+    },
+    "Googlebot": {
+     "/": 200,
+     "/llms.txt": 200
     }
    }
   },
@@ -320,6 +345,10 @@
      "/llms.txt": 200
     },
     "Bingbot": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "Googlebot": {
      "/": 200,
      "/llms.txt": 200
     }
@@ -366,6 +395,10 @@
     "Bingbot": {
      "/": 200,
      "/llms.txt": 200
+    },
+    "Googlebot": {
+     "/": 200,
+     "/llms.txt": 200
     }
    }
   },
@@ -408,6 +441,10 @@
      "/llms.txt": 200
     },
     "Bingbot": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "Googlebot": {
      "/": 200,
      "/llms.txt": 200
     }
@@ -454,6 +491,10 @@
     "Bingbot": {
      "/": 200,
      "/llms.txt": 200
+    },
+    "Googlebot": {
+     "/": 200,
+     "/llms.txt": 200
     }
    }
   },
@@ -498,6 +539,10 @@
     "Bingbot": {
      "/": 200,
      "/llms.txt": 200
+    },
+    "Googlebot": {
+     "/": 200,
+     "/llms.txt": 200
     }
    }
   },
@@ -516,16 +561,16 @@
      "/llms.txt": 200
     },
     "OAI-SearchBot": {
-     "/": 500,
-     "/llms.txt": 500
+     "/": 200,
+     "/llms.txt": 200
     },
     "ChatGPT-User": {
-     "/": 500,
-     "/llms.txt": 500
+     "/": 200,
+     "/llms.txt": 200
     },
     "PerplexityBot": {
      "/": 200,
-     "/llms.txt": 500
+     "/llms.txt": 200
     },
     "Perplexity-User": {
      "/": 200,
@@ -540,6 +585,106 @@
      "/llms.txt": 200
     },
     "Bingbot": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "Googlebot": {
+     "/": 200,
+     "/llms.txt": 200
+    }
+   }
+  },
+  {
+   "site": "codeword",
+   "origin": "https://codeword.agiscorecard.com",
+   "valid": true,
+   "blocked": [],
+   "status": {
+    "(browser)": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "GPTBot": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "OAI-SearchBot": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "ChatGPT-User": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "PerplexityBot": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "Perplexity-User": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "ClaudeBot": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "Claude-User": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "Bingbot": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "Googlebot": {
+     "/": 200,
+     "/llms.txt": 200
+    }
+   }
+  },
+  {
+   "site": "powerbill",
+   "origin": "https://powerbill.agiscorecard.com",
+   "valid": true,
+   "blocked": [],
+   "status": {
+    "(browser)": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "GPTBot": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "OAI-SearchBot": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "ChatGPT-User": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "PerplexityBot": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "Perplexity-User": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "ClaudeBot": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "Claude-User": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "Bingbot": {
+     "/": 200,
+     "/llms.txt": 200
+    },
+    "Googlebot": {
      "/": 200,
      "/llms.txt": 200
     }

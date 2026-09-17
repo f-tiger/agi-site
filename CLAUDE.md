@@ -710,3 +710,33 @@ Cloudflare Pages 把 `/x.html` 308 到 `/x`,而 bpj 的 sitemap / `canonical` / 
   ——再改一次名就是第四个名字。**新 MCP server 命名从此把品牌放进名字。**
 - **未处理的漂移**:`sites/baipiaoji/mirror/server.json` 停在 v1.9.0(主份 v1.11.0);mirror 属另一公开仓,
   不在本会话范围,留给 owner 或有该仓范围的会话。
+
+## SEO 技能取用 + 「让谷歌流量扩大」的真瓶颈(2026-09-17,owner:「去github寻找seo优化技能，让谷歌流量扩大」;全文 `docs/fleet-google-seo-2026-09-17.md`)
+
+- **技能装了 4 个不是 25 个**:GitHub 四个主要 Claude SEO 技能仓逐个筛,只有
+  [inhouseseo/superseo-skills](https://github.com/inhouseseo/superseo-skills)(Apache-2.0、
+  零 API key、纯方法论)过关。装 `featured-snippet-optimizer`(现有 15 个 SEO 技能**没有
+  任何一个覆盖精选摘要**)、`semantic-gap-analysis`、`eeat-audit`,并把**本来就出自该仓的
+  `linkbuilding` 更新到上游版** —— 上游多的那句正是「don't present a guess as a measurement」。
+  不装 AgricIDaniel/claude-seo(25 技能 + 18 agent,要 Playwright 与 OAuth,重叠严重)、
+  seranking(付费 MCP)、aevans-eng(单文件,已被 `seo-audit` 覆盖)。
+  **取用纪律见 `.claude/skills/PROVENANCE.md`:查重 → 整包带 references → 先读后装 → 登记。
+  没登记的外部技能视同来历不明。** 再装一堆建议型技能是假动作:舰队缺的从来不是建议,是仪器。
+- **Googlebot 此前从来没被探过**:`ai_access_probe.py` 建成起就带 Bingbot —— 一直在探
+  **已有的**搜索来源,从没探过 **owner 想扩大的**那个。已补进同一个 AGENTS(不另起探针)。
+  **读数 09-17:Googlebot 14/14 全 200、robots 全放行、sitemap 全声明;9 只爬虫零拦截。**
+  顺带结掉 `fleet-ai-access-0916`(**台账第一条 won**)。
+  **效力纪律**:Cloudflare 按反向 DNS 验真 Googlebot,伪造 UA 从 runner 发出只会被**更严格**
+  对待 —— 所以**全 200 是强证据,被拦才不能下结论**(要去 Cloudflare 复核)。这条只会让干净读数
+  更强,不改写任何过往判定。**⇒ 零谷歌流量不是「进不来」,这一整类解释排掉了。**
+- **⚠️ 真瓶颈,后续会话开场必查:这条分支从来没并进 `main`,所以 09-15/09-16 两天的工作一件都没上线。**
+  今天查:领先 `origin/main` **7 个提交**,main 上连 `tools/fleet/ref_sources.txt` 都没有。后果:
+  ①13 份 `/api/pulse` 的 `by_source` 没上线 → **现在读 14 站 Google 全是 0,那是测不到不是真 0**;
+  ②**bpj 的 1558 条 canonical→308 修复没上线** —— 舰队唯一有谷歌流量的站,最大的谷歌缺陷还在线上;
+  ③agi 104 页面包屑、eco MCP 名、heartbeat 四个新检查、sitemap 守卫,全部未生效。
+  **「让谷歌流量扩大」的下一步不是写内容,是把这条分支并进 main。**
+- **今天绕开未部署仪器现查的诚实读数**(读 bpj `/api/reach` 的 `referrers` 原始键):
+  **bpj `www.google.com` 162 次 / 有来源真人 pv 311 = 52%,第一大来源**(09-15 是 155,还在涨);
+  cn.bing 70、perplexity 17、chatgpt 13。其余 13 站的 Google 数**读不到,等部署**;eco 09-15 手查是 0。
+- **新技能的投放对象是 bpj**,不是那 13 个 Foundation 期小站 —— 对零排名的页做精选摘要优化是无的放矢,
+  技能自己就写着「从第 6 名往后,先修排名」。
