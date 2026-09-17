@@ -242,6 +242,11 @@ jobs:
           check "https://getecoback.com/en/guide/desiccant-vs-compressor-dehumidifier.html" "$cap_period"
           check "https://getecoback.com/en/guide/heated-airer-vs-dehumidifier.html" "${cap_rate}p per kWh"
           check "https://getecoback.com/en/guide/rising-damp-penetrating-damp-or-condensation.html" "penetrating damp"
+          # Blackout page (2026-09-17). The accident to guard is not a 404 but the
+          # page losing the one number it exists for, or its CO warning — the only
+          # safety-critical sentence on this site.
+          check "https://getecoback.com/guide/stromausfall-heizen.html" "Kohlenmonoxid"
+          check "https://getecoback.com/guide/stromausfall-heizen.html" "30 Minuten"
           # Brand veto on the LIVE homepage. The rising rail rebuilds daily from
           # Google Trends with no human in the loop, so the veto has to be checked
           # where it can actually be violated, not only at build time.

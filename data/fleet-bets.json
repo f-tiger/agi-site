@@ -847,6 +847,17 @@
    "lose": "峰值月都做不到 → 储能簇冻结为维护态,不再投入;承认 08-26 的「能源板块降级」是对的",
    "source": "2026-09-17 首次把储能放到本站自己的标尺上量(anchor heizlüfter,seasonality-de-storage.json):**balkonkraftwerk 62,6 ≈ 站内锚点的 2 倍、≈ luftentfeuchter 32,0 的 2 倍、接近 schimmel 68,5** —— 类目确实大。但**峰值月是 4 月不是冬天**(win/sep=0,82,冬季低于九月),所以这是「现在建、春天收」,不是「现在火」。",
    "status": "open"
+  },
+  {
+   "id": "eco-stromausfall-0116",
+   "site": "getecoback",
+   "due": "2027-01-16",
+   "metric": "/guide/stromausfall-heizen.html 真人 pv/28d 与 EB_COMELDER 块的 affiliate_click;读数窗覆盖 stromausfall 的 1 月峰值;t0(2026-09-17)=新页全 0",
+   "threshold": "1 月峰值窗:真人 pv ≥80/28d 或 CO-Melder 块 affiliate_click ≥5",
+   "win": "「把产品调研写成『你想买的东西做不到这件事』」有效 → 同形态再做一页(Notstromaggregat / Kühlschrank im Ausfall)",
+   "lose": "德国停电面需求太薄(stromausfall 10,0 里几乎全是『我家停电了』的信息查询,不是购买查询)→ 不再扩,页面留作储能簇的安全锚",
+   "source": "2026-09-17 owner 要求「针对乌克兰深度产品调研」。乌克兰三门全不过(见下),把同一份产品知识转到能计佣的德国市场后实测:stromausfall **10,0**(1 月峰,anchor heizlüfter 30,6)、notstromaggregat 2,4、powerstation **1,5** —— 真实但小,且 stromausfall 主要是信息型查询。页面核心是算术:2000 W 暖风机在 1 kWh 上 **30 分钟**,同一块电池带路由器 **4,2 天**,倍数 200。",
+   "status": "open"
   }
  ]
 }
