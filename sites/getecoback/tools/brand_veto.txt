@@ -1,0 +1,17 @@
+# Brands this site never recommends. One token per line, case-insensitive,
+# matched as a substring of a product name or a search query.
+#
+# Why a file and not a code comment (2026-09-17). The EcoFlow veto has existed
+# since 2026-08-28 and was honoured in exactly one place: the curated shelf in
+# build_structure.py, where a human removed the card. Every AUTOMATED surface
+# was still free to publish it — and the homepage rising rail turns any Google
+# Trends query straight into a tagged amazon.de search chip. On 2026-09-12 the
+# stored trends data contained "ecoflow stream 5000" at v=8800 under the
+# balkonkraftwerk seed. It did not reach the page that rotation, by luck rather
+# than by design, and expanding the storage category makes that seed far more
+# likely to surface.
+#
+# So the veto lives here, the rail filters against it, and check_brand_veto.py
+# fails the deploy if a vetoed token appears anywhere in the published site.
+# Adding a brand means adding a line here, nothing else.
+ecoflow

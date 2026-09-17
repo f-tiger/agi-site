@@ -69,6 +69,26 @@ NICHE = re.compile(r"klima|kühl|kuehl|luft|entfeucht|feucht|schimmel|heiz|infra
                    r"kaffeevollautomat|matratze|taupunkt|lüft|lueft|radiator|heizstrahler", re.I)
 
 
+VETO_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "brand_veto.txt")
+
+
+def vetoed_brands():
+    """Brands this site never recommends — see tools/brand_veto.txt.
+
+    The rail is the reason this exists: it converts a Google Trends query into a
+    tagged amazon.de search link with no human in the loop, so an owner veto
+    enforced only in the curated shelf does not bind here at all.
+    """
+    if not os.path.exists(VETO_FILE):
+        return []
+    out = []
+    for line in open(VETO_FILE, encoding="utf-8"):
+        line = line.split("#", 1)[0].strip().lower()
+        if line:
+            out.append(line)
+    return out
+
+
 def main():
     if not os.path.exists(SRC):
         print("rising rail: no trends-rising.json — leaving page untouched")
@@ -83,6 +103,7 @@ def main():
     seed_dates = [str(v.get("fetched", "")) for v in data.get("seeds", {}).values()
                   if v.get("fetched")]
     stand = min(seed_dates) if seed_dates else data.get("fetched", "")
+    VETO = vetoed_brands()
     rows = []
     for seed, v in data.get("seeds", {}).items():
         if v.get("polluted"):
@@ -92,6 +113,10 @@ def main():
             if not q or not isinstance(val, int) or val < MIN_V or DROP.search(q):
                 continue
             if not NICHE.search(q):
+                continue
+            if any(b in q.lower() for b in VETO):
+                # Owner brand veto. Dropped silently rather than routed to a
+                # guide: there is no guide, and the alternative is a shelf chip.
                 continue
             rows.append((val, q))
     rows.sort(reverse=True)

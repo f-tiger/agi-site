@@ -825,6 +825,28 @@
    "lose": "未达线仍开户 = 180 天内做不到 3 单会被关户;明确不开,避免烧掉一次注册机会",
    "source": "getecoback-21 在 .co.uk 不计佣(手册 2026-08-06);且 amazon.de 家电是 Schuko 插头,寄到英国对读者也是错的 —— 所以本轮三页零商店链接、只内链到已有尺寸页(那些页照常带 .de 货架)。",
    "status": "open"
+  },
+  {
+   "id": "eco-balkon-mieter-recht-1115",
+   "site": "getecoback",
+   "due": "2026-11-15",
+   "metric": "/guide/balkonkraftwerk-mieter-recht.html 真人 pv/28d、AI 引荐、以及该页 affiliate_click(storage 货架);t0(2026-09-17)=页面新建全为 0",
+   "threshold": "**这不是搜索量赌注**:`balkonkraftwerk mieter` 5 年 interest_over_time 只有 **0,3**、`balkonkraftwerk erlaubnis` **0,0**(anchor heizlüfter=30,6)。赌的是引用与信任:≥1 次 AI 引荐或 ≥25 真人 pv/28d",
+   "win": "「把一手法条原文做成可引用页」有效 → 同形态复制到其他有法规钩子的题(空调安装许可、WEG 装修)",
+   "lose": "零引用零 pv → 法条页不是本站的引用杠杆,以后法规内容只作为已有页里的一节,不再单独出页",
+   "source": "owner 2026-09-17「阳台储能赛道法规立案支持,租户可以在阳台装光伏板」。会话实测一手法条(gesetze-im-internet.de,2026-09-17 抓取):§554 BGB 标题含 Steckersolargeräte、Abs.1 给 Anspruch auf Erlaubnis(非免许可)、Abs.2 不利于租户的约定无效;§20 Abs.2 Nr.5 WEG 同列;EEG §8 Abs.5a = 2 kW 组件 / 800 VA 逆变器,MaStR 登记保留但**不得要求额外向 Netzbetreiber 报备**。",
+   "status": "open"
+  },
+  {
+   "id": "eco-storage-spring-0415",
+   "site": "getecoback",
+   "due": "2027-04-15",
+   "metric": "12+1 张 balkonkraftwerk/balkonspeicher 页在 3–4 月峰值窗的真人 pv 与 affiliate_click{storage};t0(2026-09-17)= 待首次结算时回填(本轮只登记起点口径)",
+   "threshold": "3–4 月 28 天窗:storage 簇真人 pv ≥300 且 storage 货架 affiliate_click ≥15",
+   "win": "储能是本站第二根真柱子 → 按 4 月峰值扩品类(Speicher 选型、Nulleinspeisung、WEG)",
+   "lose": "峰值月都做不到 → 储能簇冻结为维护态,不再投入;承认 08-26 的「能源板块降级」是对的",
+   "source": "2026-09-17 首次把储能放到本站自己的标尺上量(anchor heizlüfter,seasonality-de-storage.json):**balkonkraftwerk 62,6 ≈ 站内锚点的 2 倍、≈ luftentfeuchter 32,0 的 2 倍、接近 schimmel 68,5** —— 类目确实大。但**峰值月是 4 月不是冬天**(win/sep=0,82,冬季低于九月),所以这是「现在建、春天收」,不是「现在火」。",
+   "status": "open"
   }
  ]
 }
