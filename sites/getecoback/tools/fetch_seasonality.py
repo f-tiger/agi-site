@@ -106,13 +106,13 @@ GEO_PRODUCTS = {
 # GB is the first market to get one because it is the only one in GEO_PRODUCTS
 # whose top two terms BOTH peak in November and both outrank its summer term —
 # the opposite shape to Germany, where the site's whole structure came from.
-MARKET_ANCHOR = {"GB": "dehumidifier", "DE-STORAGE": "heizlüfter"}
+MARKET_ANCHOR = {"GB": "dehumidifier", "DE-STORAGE": "heizlüfter", "DE-UA": "heizlüfter", "DE-BLACKOUT": "heizlüfter"}
 # A market key is not always a geo. DE-STORAGE measures German storage demand
 # against the SAME anchor as seasonality-de.json, so its levels are directly
 # comparable to the rest of the German basket — which is the only way to answer
 # "is storage actually bigger than what we already sell" rather than "is storage
 # big on its own scale".
-MARKET_GEO = {"DE-STORAGE": "DE"}
+MARKET_GEO = {"DE-STORAGE": "DE", "DE-UA": "DE", "DE-BLACKOUT": "DE"}
 MARKET_BATCHES = {
     "GB": [
         # Products a UK winter has and a German one does not. `heated airer`
@@ -141,6 +141,27 @@ MARKET_BATCHES = {
     # EcoFlow is deliberately absent. Owner instruction 2026-08-28, restated
     # 2026-09-17: the brand is never recommended here, so it is not measured as
     # a candidate either.
+    # Ukrainian- and Russian-language demand INSIDE Germany (2026-09-17). Asked
+    # to build for Ukraine, the first question is not what to write but whether
+    # anyone we can reach and bill is asking. Readers inside Ukraine cannot be
+    # monetised — there is no Amazon store for that market and our only tag is
+    # amazon.de. Ukrainian speakers in Germany can: they live in German flats
+    # with German mould and German heating bills, and they buy on amazon.de.
+    # Anchored on heizlüfter so the answer is on the same scale as the German
+    # basket rather than on its own.
+    "DE-UA": [
+        ["обігрівач", "цвіль", "осушувач повітря"],
+        ["обогреватель", "плесень", "осушитель воздуха"],
+    ],
+    # Grid-outage preparedness in the market we can actually bill (2026-09-17).
+    # Asked to build for Ukraine, the measurable answer was no on every gate.
+    # This tests whether the same PRODUCT knowledge — power stations, heating
+    # when the grid is down — has demand in Germany, where the tag pays and the
+    # site already has readers. Same anchor as everything else German.
+    "DE-BLACKOUT": [
+        ["stromausfall", "notstromaggregat", "powerstation"],
+        ["blackout vorsorge", "heizen ohne strom", "notvorrat"],
+    ],
     "DE-STORAGE": [
         ["balkonkraftwerk", "balkonspeicher", "stromspeicher"],
         ["balkonkraftwerk speicher", "steckersolar", "solaranlage balkon"],

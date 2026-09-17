@@ -888,6 +888,15 @@ def device_of(slug):
     s = slug
     if s.startswith(("balkonkraftwerk-", "balkonspeicher-", "growatt-", "zendure-")):
         return "storage"
+    # Blackout/grid-outage pages are battery pages, not cooling pages. Without
+    # this "stromausfall-heizen" falls through to "ac" and a page about getting
+    # through a January power cut ships with a portable air-conditioner sizer —
+    # the third time this default has misfiled a page (schimmel- 09-09, the UK
+    # damp page this morning). The shelf itself is suppressed via SKIP_MODELS:
+    # a grid-tied balcony battery is NOT backup power, which is one of the
+    # things the page exists to say.
+    if "stromausfall" in s:
+        return "storage"
     if "ventilator" in s:
         return "fan"
     if ("luftentfeuchter" in s or "dehumidifier" in s
@@ -986,7 +995,11 @@ SKIP_MODELS = {"btu-rechner", "stromkosten-rechner", "infrarotheizung-watt-rechn
                # grid, once the reader has decided what they are buying.
                "desiccant-vs-compressor-dehumidifier",
                "heated-airer-vs-dehumidifier",
-               "rising-damp-penetrating-damp-or-condensation"}
+               "rising-damp-penetrating-damp-or-condensation",
+               # The honest product answer here is a CO alarm and warm bedding,
+               # not a balcony battery — the page's whole argument is that the
+               # battery does not do what buyers think.
+               "stromausfall-heizen"}
 # EN qm twins were briefly in SKIP_MODELS on 2026-08-28 (DEVICE_MODELS_EN had
 # no heater set, and models_block falls back to AC cards). Same day the EN
 # dehum/heater card sets were added, so the injectors now serve these pages
@@ -2179,7 +2192,8 @@ POPUP_SKIP = {"impressum", "datenschutz", "kontakt", "radar-bestaetigt",
               # or anything at all on the damp page, contradicts the article.
               "desiccant-vs-compressor-dehumidifier",
               "heated-airer-vs-dehumidifier",
-              "rising-damp-penetrating-damp-or-condensation"}
+              "rising-damp-penetrating-damp-or-condensation",
+              "stromausfall-heizen"}
 
 
 def inject_popup(html, slug, en=False):

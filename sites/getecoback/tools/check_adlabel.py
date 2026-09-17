@@ -34,7 +34,16 @@ EXEMPT = {"EB_TRACK", "EB_USSWITCH"}
 BLOCK_RE = re.compile(r"<!--(EB_[A-Z_0-9]+)-->(.*?)<!--/\1-->", re.S)
 ANCHOR_RE = re.compile(r"<a\s[^>]*amazon\.", re.S)
 # German pages must carry a German marker, English pages an English one.
-LABELS = ("Anzeige", "Werbung", ">Ad<", "Ad ·")
+# A Werbekennzeichnung is only a label if it sits in a label POSITION —
+# followed by a separator, or closing its own element. A bare substring test
+# was satisfied by accident on 2026-09-17: a CO-alarm block described "ein
+# Gerät … mit Anzeige der ppm-Werte", where Anzeige means readout, not
+# advertisement, and the gate passed a block whose real ad label had been
+# deleted. On a site full of measuring devices that word is everywhere, so the
+# loose test could silently bless an unlabelled affiliate block on any page.
+# Verified against the live site before tightening: all 785 existing blocks
+# pass this pattern too, so it closes the hole without a single false positive.
+LABEL_RE = re.compile(r"Anzeige\s*(?:·|&middot;|<|\|)|Werbung\s*(?:·|&middot;|<|\|)|>Ad<|Ad\s*·")
 
 
 def main():
@@ -57,7 +66,7 @@ def main():
             if not ANCHOR_RE.search(frag):
                 continue
             checked += 1
-            if not any(x in frag for x in LABELS):
+            if not LABEL_RE.search(frag):
                 gaps.append(f"{os.path.relpath(path, ROOT)}: {block}")
     if gaps:
         print(f"check_adlabel: {len(gaps)} affiliate block(s) with no Werbekennzeichnung:")

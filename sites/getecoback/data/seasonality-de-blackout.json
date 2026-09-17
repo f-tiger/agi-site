@@ -1,0 +1,68 @@
+{
+ "fetched": "2026-09-17",
+ "geo": "DE",
+ "basket": "DE-BLACKOUT",
+ "timeframe": "today 5-y",
+ "anchor": "heizlüfter",
+ "scale_note": "One market, its own language, every batch repeating the anchor so the levels are comparable to each other. NOT comparable to seasonality-de.json (different anchor) or to any rising file.",
+ "weeks": 262,
+ "terms": [
+  {
+   "term": "heizlüfter",
+   "sep": 24.8,
+   "peak": 30.6,
+   "peak_month": 11,
+   "winter_mean": 22.3,
+   "win_over_sep": 0.9
+  },
+  {
+   "term": "stromausfall",
+   "sep": 8.1,
+   "peak": 10.0,
+   "peak_month": 1,
+   "winter_mean": 7.2,
+   "win_over_sep": 0.88
+  },
+  {
+   "term": "notvorrat",
+   "sep": 1.7,
+   "peak": 3.0,
+   "peak_month": 5,
+   "winter_mean": 1.1,
+   "win_over_sep": 0.62
+  },
+  {
+   "term": "notstromaggregat",
+   "sep": 2.1,
+   "peak": 2.4,
+   "peak_month": 10,
+   "winter_mean": 1.6,
+   "win_over_sep": 0.73
+  },
+  {
+   "term": "powerstation",
+   "sep": 1.1,
+   "peak": 1.5,
+   "peak_month": 8,
+   "winter_mean": 0.9,
+   "win_over_sep": 0.8
+  },
+  {
+   "term": "heizen ohne strom",
+   "sep": 1.0,
+   "peak": 1.0,
+   "peak_month": 9,
+   "winter_mean": 0.4,
+   "win_over_sep": 0.39
+  },
+  {
+   "term": "blackout vorsorge",
+   "sep": 0.4,
+   "peak": 0.5,
+   "peak_month": 10,
+   "winter_mean": 0.1,
+   "win_over_sep": 0.22
+  }
+ ],
+ "errors": []
+}
