@@ -479,6 +479,7 @@ owner 决策卡、事实表)。
   win / lose / source)。`tools/fleet/check_bets.py` 挂 heartbeat:到期 3 天内 warning,**过期 >7 天仍 open 即红**。
   **新增任何判定线必须同时加一行进台账,否则等于没预登记**;结算时把 status 改为 won/lost/insufficient
   并写 settled + reading,再把结论写回对应站的 CLAUDE.md。
+- **台账文件的写法固定死(2026-09-17 两个会话同日撞车后加)**:一律 `json.dumps(ensure_ascii=False, indent=1)` + 结尾换行。当天 playgama 会话用 indent=2、eco 会话用 indent=1,**数据一条没丢,但一条新增判定线变成 1 925 行的 rebase 冲突** —— 而手工解一个那么大的冲突,正是预登记判定线被误删的典型场景。`check_bets.py` 现在会在格式偏离时打 **warning(不是 error**:刚记完真实读数的会话绝不该因为空格被挡住提交)。
 - **每次会话开场的三步(不问 owner,直接做)**:①`python3 tools/fleet/check_bets.py` 看谁到期,到期的先结算
   (D1 现查,读数进台账);②读 `data/autopilot/demand-digest.md` 与 `data/fleet-ai-referrals.json`;
   ③按下表各投**一件**,做完写判定线进台账。三门/零编造/防翻炒/隐私红线全部不变。
