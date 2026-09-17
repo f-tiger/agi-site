@@ -1,6 +1,6 @@
 {
   "category": "Heizleistung nach Raumgröße",
-  "note": "Programmatische Kategorie #2: eine Seite je Raumgröße für Heizleistung (Watt). Neue Größe = Eintrag hier + `python tools/gen_heizung_qm.py`. ⚠️ gen_heizung_qm.py 是一次性脚手架:已提交的 DE 页在生成后被增补过(EB 组件/加深 FAQ/日期),重跑会把增补全部冲掉(2026-08-28 实测,git checkout 挽回)。加新尺寸时只跑新条目或手工比对,别整体重跑。_en 字段供 EN 孪生生成器使用。",
+  "note": "Programmatische Kategorie #2: eine Seite je Raumgröße für Heizleistung (Watt). Neue Größe = Eintrag hier + `python tools/gen_heizung_qm.py`. ⚠️ gen_heizung_qm.py 是一次性脚手架:已提交的 DE 页在生成后被增补过(EB 组件/加深 FAQ/日期),重跑会把增补全部冲掉(2026-08-28 实测,git checkout 挽回)。加新尺寸时只跑新条目或手工比对,别整体重跑。_en 字段供 EN 孪生生成器使用。 ⚠️ 2026-09-17 起线上正文不再由本脚本决定:七页的标题/描述/H1/四个 H2/正文/FAQ 由 `tools/differentiate_heizung.py` 拥有(挂在 deploy 链里 build_structure 之前,幂等)。本文件仍是 watt/wref/raumtyp/suchbegriff 的唯一真相,差异化文案在那个注入器里。重跑 gen_heizung_qm.py 会把七页打回门页形态,check_duplication.py --regress 会因此把部署打红。",
   "entries": [
     {
       "qm": 10,

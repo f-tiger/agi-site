@@ -659,7 +659,9 @@
    "win": "重复度确实是抑制因素之一，按同法改 luftentfeuchter-N-qm（52.4%）",
    "lose": "相似度降到位而 Google 仍为 0 → 重复度不是本站绑定约束，回到域龄/外链结论，不再为 Google 改写正文",
    "source": "sites/getecoback/CLAUDE.md 七、Google 深度诊断第三轮（2026-09-17）",
-   "status": "open"
+   "status": "open",
+   "reading_2026-09-17": "改写已执行（tools/differentiate_heizung.py，七页各回答一个不同的问题，编号/成本/电路余量全部由页面已有数字推导）。相似度 **54.0% → 19.5%**（最差一对 55.3% → 20.4%，对照组 0.3%）——**判定线的相似度这一半已达成**。另一半（28 天 Google 引荐 ≥1）到 11-17 才读，现在不判。同日把度量扩到英语/意语语料后发现：舰队最像门页的其实是 **en:dehumidifier-N-sqm 61.4%**（6 页，此前从未被测过），高于任何德语页族；en:electric-heater-N-sqm 52.1%。先修德语只因判定线押在那儿，不是因为它最坏。",
+   "guard": "check_duplication.py --regress 现在对 heizung-N-qm 设了双天花板（平均 25% / 最差一对 30%），回升即部署红——实测只还原 7 页里的 2 页，平均只从 19.5% 升到 21.6%，而那两页彼此已经是 54.8%，所以单看平均会漏。"
   }
  ]
 }
