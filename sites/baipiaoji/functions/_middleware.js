@@ -24,6 +24,17 @@ const AI_BOTS = [
   ['Amazonbot', 'amazonbot'], ['Applebot', 'applebot'], ['Bytespider', 'bytespider'],
   ['DuckAssistBot', 'duckassistbot'], ['MistralAI-User', 'mistralai'], ['cohere-ai', 'cohere-ai'],
   ['YandexBot', 'yandex'], ['CCBot', 'ccbot'], ['Meta-ExternalAgent', 'meta-external'],
+  // 中国搜索与 AI 检索（2026-09-17 补）。为什么现在补:D1 现查显示中国已经是本站增长的
+  // 那一半——四周里带来源真人从 0 涨到最近 14 天 60 次(同窗美国 63),其中 **cn.bing.com
+  // 占中国来源的 77%**，而落地页 92 次里 90 次是中文页。既然一半的读者在中国，
+  // 「百度/搜狗/神马/华为到底有没有来抓」就不该是一个查不到的问题——此前它们的 UA
+  // 一个都不在表里，botOf() 返回空，中间件直接 return，**在库里完全不存在**。
+  // 取词一律用**爬虫专属**词根,绝不用厂商名:`baidu` 会命中百度浏览器(baidubrowser)
+  // 把真人记成爬虫，那正好是这张表最不能犯的错。词根写错的后果只是「仍然看不见」
+  // (fail-safe)，永远不会变成一个错的数字。
+  ['Baiduspider', 'baiduspider'], ['Sogou', 'sogou web spider'],
+  ['360Spider', '360spider'], ['HaosouSpider', 'haosouspider'],
+  ['PetalBot', 'petalbot'], ['YisouSpider', 'yisouspider'],
 ];
 
 // 只对「内容资产」记账：页面、给 AI 读的清单、机器可读数据集。

@@ -8263,6 +8263,20 @@ Allow: /
 User-agent: Bytespider
 Allow: /
 
+# 中国搜索与 AI 检索（2026-09-17）。上面那条 User-agent: * 已经放行了它们，
+# 这几行是**声明性的**，不是解锁——与上面那组 AI 爬虫同一个写法：把「欢迎抓」写明白。
+# 加它们的实际理由是中国已占本站带来源真人的一半，而这份文件此前一个中文引擎都没提。
+User-agent: Baiduspider
+Allow: /
+User-agent: Sogou web spider
+Allow: /
+User-agent: 360Spider
+Allow: /
+User-agent: PetalBot
+Allow: /
+User-agent: YisouSpider
+Allow: /
+
 Sitemap: ${site.base_url}/sitemap.xml
 
 # LLMs: ${site.base_url}/llms.txt

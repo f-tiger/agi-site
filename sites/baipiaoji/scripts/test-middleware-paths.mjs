@@ -78,6 +78,39 @@ ck(botOf('Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605
        + 'Version/18.0 Mobile/15E148 Safari/604.1') === '', '普通 Safari 不是爬虫');
 ck(botOf('') === '' && botOf(null) === '', '空 UA 不是爬虫');
 
+// ── 中国搜索与 AI 检索（2026-09-17）────────────────────────────────
+// 为什么单独一组:中国已经是本站增长的那一半（四周里带来源真人 0 → 最近 14 天 60,
+// 同窗美国 63,其中 cn.bing.com 占中国来源的 77%），而此前这些爬虫的 UA 一个都不在
+// AI_BOTS 里,botOf() 返回空 → 中间件直接 return → **它们在库里完全不存在**。
+const CN_BOTS = [
+  ['Mozilla/5.0 (compatible; Baiduspider/2.0; +http://www.baidu.com/search/spider.html)', 'Baiduspider'],
+  ['Mozilla/5.0 (Linux; u; Android 4.2.2) AppleWebKit/534.46 (KHTML,like Gecko) Version/5.1 '
+   + 'Mobile Safari/10600.6.3 (compatible; Baiduspider-render/2.0; '
+   + '+http://www.baidu.com/search/spider.html)', 'Baiduspider'],
+  ['Sogou web spider/4.0(+http://www.sogou.com/docs/help/webmasters.htm#07)', 'Sogou'],
+  ['Mozilla/5.0 (compatible; 360Spider(compatible; HaosouSpider; '
+   + 'http://www.haosou.com/help/help_3_2.html))', '360Spider'],
+  ['Mozilla/5.0 (compatible; PetalBot;+https://webmaster.petalsearch.com/site/petalbot)', 'PetalBot'],
+  ['Mozilla/5.0 (compatible; YisouSpider/5.0; http://www.yisou.com/help/help_bot.html)', 'YisouSpider'],
+];
+for (const [ua, want] of CN_BOTS) ck(botOf(ua) === want, `中文爬虫应被认出为 ${want}：${ua.slice(0, 48)}…`);
+
+// 这一组是整块改动里最容易出事的地方,所以正面写死:**词根必须是爬虫专属的**。
+// 用厂商名当词根（'baidu'、'360'、'sogou'）会把这些真人浏览器记成爬虫,
+// 而 beacon 已经记过它们一遍 —— 漏斗会被算两遍,且正好发生在我们最关心的那个市场。
+const CN_HUMANS = [
+  'Mozilla/5.0 (Linux; Android 13; V2227A) AppleWebKit/537.36 (KHTML, like Gecko) '
+  + 'Chrome/140.0.0.0 Mobile Safari/537.36 baidubrowser/13.28.0.10',
+  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) '
+  + 'Chrome/140.0.0.0 Safari/537.36 SE 2.X MetaSr 1.0',
+  'Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) '
+  + 'Mobile/15E148 Quark/7.4.5 MQQBrowser/2.0',
+  'Mozilla/5.0 (Linux; Android 14) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 '
+  + 'Chrome/140.0.0.0 Mobile Safari/537.36 MicroMessenger/8.0.50.2701(0x28003237)',
+];
+for (const ua of CN_HUMANS) ck(botOf(ua) === '', `中国真人浏览器不能被当成爬虫：${ua.slice(-40)}`);
+
 if (bad) { console.error(`\ntest-middleware-paths: ${bad} 项失败`); process.exit(1); }
 console.log(`✅ test-middleware-paths 通过（内容页 ${CONTENT.length} 条 / 排除 ${SKIP.length} 条 / `
-          + `旧白名单漏掉的 ${rescued.length} 条已救回 / 爬虫识别双向）`);
+          + `旧白名单漏掉的 ${rescued.length} 条已救回 / 爬虫识别双向 / `
+          + `中文爬虫 ${CN_BOTS.length} 家、中国真人浏览器 ${CN_HUMANS.length} 种）`);

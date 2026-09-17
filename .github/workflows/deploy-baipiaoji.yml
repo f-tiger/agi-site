@@ -180,6 +180,14 @@ jobs:
       - name: Crawler-accounting path classifier (zero network)
         run: node scripts/test-middleware-paths.mjs
 
+      # /api/reach 国家面的隐私形状（2026-09-17，零网络）。这个端点原本明确「不出国家分布」，
+      # 当天有意推翻——因为「中国流量是不是更大」只能靠手接 MCP 查 D1 才答得出来，
+      # 而这个端点存在的全部目的就是不必那样。开的是最小粒度：站点级计数、k 匿名下限 5。
+      # ②那条会被无声破坏（把 k 调成 1、或把 >= 写成 >），页面看着一模一样，
+      # 而 28 天里只来过一次的国家就单独挂在公开端点上了。所以边界值逐个断言。
+      - name: Reach country-histogram privacy shape (zero network)
+        run: node scripts/test-reach-shape.mjs
+
       # 自研分词器的回归检验：420 例金标准 × 两套词表 = 840 次逐例比对。
       # 写自己的实现就得自己证明它对，否则只是把「让用户猜」换成「让我们猜」。
       - name: Tokenizer regression (840 golden cases)
@@ -494,7 +502,21 @@ jobs:
           echo "$r" | grep -q '"window_days":7' || { echo "::error::/api/reach 未按 days 参数取窗"; exit 1; }
           # 只出聚合:响应里绝不能出现 @（邮箱）或完整 UA 字样
           echo "$r" | grep -q '@' && { echo "::error::/api/reach 响应含 @ —— 疑似泄漏行级数据"; exit 1; }
-          echo "✅ /api/reach 在位：ok、计数、paths、窗口参数、零行级数据"
+          # 国家面（2026-09-17）：形状对不对，以及 k 匿名下限有没有真的在生产里生效。
+          # 断言的是事故的形状——不是「有这个字段就行」，而是「字段在且下限没被绕过」。
+          echo "$r" | grep -q '"countries":\[' || { echo "::error::/api/reach 缺 countries —— 市场面又看不见了"; exit 1; }
+          echo "$r" | grep -q '"country_floor":[0-9]' || { echo "::error::/api/reach 未声明 country_floor"; exit 1; }
+          node -e '
+            const d = JSON.parse(process.argv[1]);
+            const k = d.country_floor;
+            if (!(k >= 5)) { console.error("::error::country_floor=" + k + " 低于 5"); process.exit(1); }
+            const bad = (d.countries || []).filter((r) => r.country !== "other" && r.n < k);
+            if (bad.length) { console.error("::error::公开端点上出现了低于下限的国家：" + JSON.stringify(bad)); process.exit(1); }
+            const extra = (d.countries || []).filter((r) => Object.keys(r).length !== 2);
+            if (extra.length) { console.error("::error::countries 行多了字段（交叉维度=重识别风险）"); process.exit(1); }
+            console.log("countries ok: " + (d.countries || []).length + " 行，下限 " + k);
+          ' "$r"
+          echo "✅ /api/reach 在位：ok、计数、paths、窗口参数、零行级数据、国家面过 k 匿名下限"
 
       # 广告库存面（2026-09-16 上线当日补自检）。断言的是**事故的形状**：
       # 这块唯一会静默坏掉的方式是「位子没渲染到工具页上」或「渲染了但触达数没接上」——
