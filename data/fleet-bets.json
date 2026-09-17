@@ -600,6 +600,17 @@
       "lose": "记反面发现「awesome-list / 目录外链对本舰队量级无效」,停投外链,只保留 by_other 监测(它零成本)",
       "source": "docs/fleet-backlinks-2026-09-16.md",
       "status": "open"
+    },
+    {
+      "id": "agi-ai-music-1015",
+      "site": "agiscorecard",
+      "due": "2026-10-15",
+      "metric": "/is-ai-music-good-enough JS 真人 pv /28d,或任一 AI 引荐/引用",
+      "threshold": "pv ≥30 或 AI 引荐 ≥1",
+      "win": "判定题在本站量级成立;按「引用量大 × 缺多语言」补翻译,不新开子域",
+      "lose": "降级为 /can-ai-replace-knowledge-workers 的一个小节,不再单独维护;记反面发现「音乐方向在本舰队量级无读数」",
+      "source": "docs/ai-music-subdomain-2026-09-17.md",
+      "status": "open"
     }
   ]
 }

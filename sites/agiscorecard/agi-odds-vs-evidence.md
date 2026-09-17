@@ -1,8 +1,8 @@
 # AGI Timeline: Prediction Markets vs Evidence
 
-_Last updated: September 7, 2026 · Updated as verdicts change_
+_Last updated: September 14, 2026 · Updated as verdicts change_
 
-**Answer:** Prediction markets and this scorecard are measuring different things — and the difference is the insight. Polymarket prices an announcement event; the scorecard grades a capability claim against pre-registered criteria. Issue #3 of a running comparison: the market's AGI-by-2027 contract vs the Thesis Tracker's 62.5/100 evidence read.
+**Answer:** Prediction markets and this scorecard are measuring different things — and the difference is the insight. Polymarket prices an announcement event; the scorecard grades a capability claim against pre-registered criteria. Issue #4 of a running comparison: the market's AGI-by-2027 contract vs the Thesis Tracker's 62.5/100 evidence read.
 
 ## FAQ
 
@@ -16,7 +16,7 @@ Because the gap is informative. An announcement-priced market and a capability-g
 
 **How current are the odds shown?**
 
-Each issue quotes a dated snapshot with a link to the live market — never a 'current' price. Since 2026-09-07 the odds are fetched automatically once a week and carry an exact UTC timestamp and the market's traded volume, so a reading can no longer drift into being quoted as if it were live. The series is reviewed weekly but only publishes a new issue when one side actually moves; every review, including the quiet ones, is logged on the page.
+Each issue quotes a dated snapshot with a link to the live market — never a 'current' price. Since 2026-09-14 the odds are fetched automatically once a week and carry an exact UTC timestamp and the market's traded volume, so a reading can no longer drift into being quoted as if it were live. The series is reviewed weekly but only publishes a new issue when one side actually moves; every review, including the quiet ones, is logged on the page.
 
 ---
 Canonical page: https://agiscorecard.com/agi-odds-vs-evidence
