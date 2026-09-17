@@ -2292,3 +2292,53 @@ CSV 必须存在且行数 = 表头 + 非散文规则数 + 梯子行数、不许�
 不是不对,是**本会话做不了**,列出来只是把活推回给 owner;要做由 owner 直接说。
 PBN / 链接交换 / 群发目录 —— 技能文档里明确列为 Google SpamBrain 打击对象,永不做。
 往 `/daten.html` 挂联盟链接 —— 这页的全部价值来自它不卖东西。
+
+## 德语区读数与两个品类裁定（2026-09-17，owner：「德语区再继续做大」+「热泵是不是也是德语区重点」+「充电桩也是」）
+
+**全部为 D1 现查 28 天窗（ecoback-events，剔 CI），任何后续会话可复算。**
+
+### 一、德语区是钱的来源，且集中度极高
+DE+AT+CH 合计 **54 / 71** 次真人 affiliate_click = **76%**；DE 单独 272 真人 pv → 49 次点击 = **18.0% 点击率**
+（AT 15.4%、CH 7.1%、US 6.3%）。手册 08-27「瓶颈是流量不是转化」的裁定**再次被证实**，不要推翻它。
+
+### 二、**Google 对德语区送来的流量是 0**（本轮最重要的一条）
+DACH 28 天真人 pv 按来源：DuckDuckGo 90、other 79、无引荐 57、Bing 49、Ecosia 18、Yahoo 14、其它搜索 5，
+**Google 0**。DDG / Ecosia / Yahoo 全部取自 Bing 索引 —— 即**本站全部德语搜索流量来自同一个索引**，
+而占德国约 90% 份额的 Google 一次都没送过人。同期爬虫日志：**googlebot 249 次 / 7 天**、bingbot 314 次
+（`ev` 表 `name='crawl'`），所以是**爬了但没排名**，不是被挡。
+**已逐项排除技术原因**：robots.txt 全放行、canonical 正确、无 noindex、hreflang 在位、sitemap 209 条
+（含 140 条德语 guide）、IndexNow 已接（部署按 diff 推 + eco-health 周一再推近 7 天改动页）。
+`site:` 探测显示 Bing 只收了约 50 / 209。**结论：没有仓库里能修的缺陷，受限的是域名年龄与权重
+（站约 2.5 个月）。** 后续会话不要再去「修 Google 收录」——先确认这条，别重复排查。
+
+### 三、两页的「0 点击」是假流量造成的假象，不要去优化它们
+- `midea-portasplit-ausverkauft-alternativen`：32 pv 里 **US 28（其中 27 条无引荐）**、真实德语读者只有 4。
+- `luftentfeuchter-20-qm`：11 pv 里 US 8（7 条无引荐）、真实德语读者只有 2。
+与 09-16 那轮对 US 流量的判断一致。**任何按 pv 排序的优化清单都必须先按 country+ref 过滤**，否则会把
+人力投在没有读者的页面上。
+
+### 四、真实的转化分层：买点型 vs 排障型（这条决定新品类怎么做）
+同样的货架结构（3 toppick + 2 inline），转化差一个数量级：
+- **买点型**：`klimaanlage-dachfenster` 6/9 = 67%、`klimaanlage-15-qm` 3/6 = 50%、`klimaanlage-25-qm` 33%、
+  `klimaanlage-kippfenster` 25%、`klimaanlage-wohnmobil` 约 19%（剔假流量后）。
+- **排障型**：`growatt-noah-2000-probleme` 1/29 = **3.4%**、`mobile-klimaanlage-ueberwintern` 1/29 = **3.4%**
+  —— 两页都是 **100% 真实德语读者且带引荐**（DE 26+AT 3 / DE 24+AT 5），货架顺序也没错
+  （ueberwintern 的 toppick 就是防尘罩/滤网/清洁剂，空调机型排在后面）。
+  **差的是读者当下的意图**：机器坏了的人要修，不是要买；把空调收起来的人不会再买空调。
+
+### 五、热泵 —— 不做（一半早已裁定）
+- **线索形态 08-28 已列入舰队杀单**（要 Hauseigentümer，而本站读者是 Mieter）。别再提。
+- **联盟形态不成立**：Luft-Wasser 热泵是 €10–30k 的安装型资本品，走 Handwerker + BAFA/KfW 流程，
+  不是 Amazon 商品。能在 Amazon 买的那一半是 Luft-Luft，本站**已有** `/guide/klimaanlage-mit-heizfunktion.html`。
+- 即使 Trends 读数很高，它的含义也只能是「多做制热内容」，**永远不是「卖热泵」**。
+
+### 六、充电桩（Wallbox）—— 唯一值得继续量的候选，但不是现在
+- **正面**：amazon.de 真能买到（11 kW 壁盒），客单价远高于除湿机；德国并网报备（Netzbetreiber 申请、
+  §14a EnWG）正是本站「带出处、有责任」型内容的强项。
+- **本站已有的反面证据**：能源硬件这个邻接**已经存在**——`growatt-noah-2000-probleme`（阳台光伏储能）
+  带来 26 个真实德国读者，**但只转化 3.4%**，因为来的是排障查询不是购买查询。
+  所以 wallbox 若要做，**必须做成第四节的「买点型」**（选型/尺寸/合规清单），做成排障型等于复制 3.4%。
+- **两个未解**：受众偏业主而非租客；佣金费率在登录后的 Vergütungskatalog 里，**任何人都不要凭记忆报这个数**。
+- **本轮动作**：把 `wärmepumpe` / `wallbox` / `balkonkraftwerk`（**对照组**，本站已有排名）加进
+  `tools/fetch_seasonality.py` 的候选品类批次，连同上面的推理一起写在文件里，避免下一轮重推。
+  ⚠️ 该脚本**不在任何 schedule 上**（`eco-trends.yml` 只跑 `fetch_trends_de.mjs`），需会话在 runner 上手动跑一次才有读数。

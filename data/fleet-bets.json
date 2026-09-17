@@ -1,6 +1,6 @@
 {
  "note": "舰队赌注台账:每条预登记判定线一行;status open→won/lost/insufficient/withdrawn 时必须写 settled(日期)与 reading(读数)。tools/fleet/check_bets.py 在 heartbeat 里断言:到期 3 天内提醒,过期 >7 天未结算即红。新增判定线不进这里 = heartbeat 看不见 = 等于没预登记。",
- "updated": "2026-09-16",
+ "updated": "2026-09-17",
  "bets": [
   {
    "id": "fleet-ai-access-0916",
@@ -637,6 +637,17 @@
    "win": "探针队列成立，继续按触达序把判定页/upgrade 页铺满",
    "lose": "ready <10 → 多数厂商定价页是 SPA 或拒爬，探针降为每周一次；gap 不降 → 是会话没去读队列，不是探针问题，把读队列写进每日循环",
    "source": "sites/baipiaoji/scripts/pricing-probe.mjs",
+   "status": "open"
+  },
+  {
+   "id": "eco-wallbox-demand-1015",
+   "site": "getecoback",
+   "due": "2026-10-15",
+   "metric": "fetch_seasonality.py 候选批次读数：wärmepumpe / wallbox 相对对照组 balkonkraftwerk 的峰值与峰值月（该脚本需在 runner 手动跑一次）",
+   "threshold": "wallbox 峰值 ≥ balkonkraftwerk 峰值",
+   "win": "按「买点型」页形态（选型/尺寸/合规清单，非排障型）试一页，预登记 28 天 affiliate_click ≥3",
+   "lose": "wallbox <对照组 → 归档，不再提；wärmepumpe 无论读数如何都不做联盟（Luft-Wasser 非 Amazon 商品，线索形态 08-28 已杀）",
+   "source": "sites/getecoback/CLAUDE.md 德语区读数与两个品类裁定（2026-09-17）",
    "status": "open"
   }
  ]
