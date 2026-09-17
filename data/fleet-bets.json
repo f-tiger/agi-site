@@ -891,6 +891,17 @@
    "lose": "AI 引荐不动 → 首页表格不是杠杆,GEO 回到只维护 llms.txt/MCP,不再为引用改版面",
    "source": "2026-09-17 D1:28 天 chatgpt-user 抓取 190 次,其中 **157 次(83%)落在首页**,单篇指南只有 1–5 次;首页此前**没有任何 table**,而 house skill(citation-growth)把表格列为引用磁石。已建 `build_home_table.py`:7 个房型 × 冷/湿/热三列,全部从 `sizing-data.json` 生成(不可手写、不会漂移),并顺带给首页加了 19 条指向冬季梯页的内链。",
    "status": "open"
+  },
+  {
+   "id": "eco-troubleshoot-shape-1112",
+   "site": "getecoback",
+   "due": "2026-11-12",
+   "metric": "/guide/luftentfeuchter-zieht-kein-wasser.html 的搜索引荐真人 pv/28d;对照组 = 站内既有 4 张 troubleshooting 页(t0 合计 32 次搜索)与 16 张评测页(t0 合计 1 次)",
+   "threshold": "该页 ≥15 次搜索引荐/28d(= 既有 troubleshooting 页每页均值 8 的约 2 倍,读数窗覆盖 11 月 luftentfeuchter 峰值)",
+   "win": "「故障排查型页型」可复制 → 按同形状再建 3 张(heizlüfter riecht verbrannt / klimaanlage kühlt nicht / infrarotheizung wird nicht warm),并把评测页型正式判死",
+   "lose": "<15 → growatt-noah-2000-probleme 的 26 次是单页特例不是页型规律,停止按此形状铺页",
+   "source": "2026-09-17 第一方实测(28 天,真人):troubleshooting 形 **4 张页 = 32 次搜索访问**,评测形(-test/-erfahrungen)**16 张页 = 1 次** —— 每页约 **128 倍**差距。解释:评测页与 Stiftung Warentest/CHIP/Idealo 竞争,故障页只与论坛帖竞争。**Trends 无法佐证**(related_queries 配额打爆;且三个品牌种子 top+rising 里零条故障意图 —— 这类查询太长尾,Trends 测不到),**此处第一方数据优先**。页面核心是可复算的算术:40 m³ 房间 18 °C 从 60% 到 50% 只含 **61 g** 水;额定 20 l/天的测试条件 30 °C/80% 含 24,2 g/m³,而 18 °C/60% 只有 9,2 g/m³(**38%**)、10 °C 地下室 5,6(**23%**)。",
+   "status": "open"
   }
  ]
 }
