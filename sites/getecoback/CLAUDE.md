@@ -2590,3 +2590,27 @@ luftentfeuchter-ratgeber **2→21**、全站搜索第一页 mobile-klimaanlage-u
 ②`growatt-noah-2000-probleme` 单页贡献 26 次搜索 —— **「具体型号 + Probleme」是本站已验证的低竞争查询形状**,可复制;
 ③ChatGPT 的 190 次抓取里 **157 次落在首页**(83%),首页是本站最大的 AI 面而它**没有表格**
 (house skill:表格是引用磁石)。
+
+### 同日续:把表格给最大的 AI 面(2026-09-17,goal 第二件)
+
+**读数**:28 天 chatgpt-user 抓取 **190 次,其中 157 次(83%)落在首页**,单篇指南只有 1–5 次。
+**首页是本站最大的 AI 面,差了 30 倍**,而它此前**一个 `<table>` 都没有** ——
+house skill(citation-growth)明确把表格列为引用磁石(结构化行能被整段抬进答案,散文不能)。
+
+**已建 `tools/build_home_table.py`**:`/` 上渲染「Richtwerte nach Raumgröße」表,7 个房型 ×
+冷(BTU)/湿(l/Tag)/热(W)三列,**全部从 `site/sizing-data.json` 生成** ——
+与 `/daten.html` 同一份 CC BY 数据,所以首页不可能与数据集漂移,也没有一个手写数字。
+**副作用是正的**:表格顺带给首页加了 **19 条指向冬季梯页的内链**,而首页正是全站入链最多的页之一。
+浏览器实测:1 张表 7 行、390px 视口零横向溢出、零页面错误。
+
+**判定线 `eco-home-table-geo-1112`**:AI 引荐 ≥42/28d(t0=21),或 chatgpt-user 抓取中
+非首页占比从 **17%** 升到 ≥35%。输了就承认版面不是 GEO 杠杆,回到只维护 llms.txt/MCP。
+
+**另一条本轮量到但没做的**(留给下一轮,证据已在):**故障排查型页面是本站已验证的最强页型** ——
+28 天窗:troubleshooting 形(`-probleme` / `nicht-mehr` / `stinkt` / `ausverkauft`)**4 张页 = 32 次搜索访问**,
+评测形(`-test` / `-erfahrungen`)**16 张页 = 1 次**。**每页相差约 128 倍。**
+合理解释:评测页要和 Stiftung Warentest/CHIP/Idealo 抢,故障页只和论坛帖抢。
+**下一轮第一件事就是按这个形状建冬季品类的故障页**(luftentfeuchter 32,0 是冬季第二大词)。
+注意:`related_queries` 配额今天已打爆,库提示「换 referer」——**属绕过,不做**;
+而且这类查询太长尾,Trends 本来就测不到(实测 anker solarbank / comfee klimaanlage /
+meaco dehumidifier 三个种子的 top+rising 里**零条**故障意图)。**这里第一方数据比 Trends 可信。**
