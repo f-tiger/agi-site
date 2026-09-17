@@ -63,6 +63,13 @@ jobs:
           # PRD P1 (2026-09-13, probe 200/200): official duty passport (USITC HTS) + recall radar (CPSC). Keep-last-good inside.
           python3 tools/duty_passport.py || echo "::warning::duty passport fetch failed"
           python3 tools/recall_radar.py || echo "::warning::recall radar fetch failed"
+          # 2026-09-16:Section 301 阶梯(chapter 99 subchapter III,官方导出)。keep-last-good 在脚本里。
+          python3 tools/fetch_s301_ladder.py || echo "::warning::s301 ladder fetch failed"
+          # 阶梯渲染进 /landed-cost 的标记块;闸门用 --check 断言两者一致,页面不许手改。
+          python3 tools/gen_s301_section.py || echo "::warning::s301 section render failed"
+          # 2026-09-16 垂直扩展:联邦公报进口规则变更雷达 + 由它渲染的 /import-rule-changes 页
+          python3 tools/fetch_rule_changes.py || echo "::warning::rule radar fetch failed"
+          python3 tools/gen_rule_changes_page.py || echo "::warning::rule-changes page render failed"
           # PRD P0-3 (2026-09-13): probe the official sources (USITC HTS / CPSC / EU Safety Gate) — status only, nothing ingested.
           python3 tools/probe_sources.py || echo "::warning::source probe failed"
           # Opportunity packs (paid product): deterministic, gated at >=10 dossiers; sample.json always public.
@@ -78,7 +85,9 @@ jobs:
           # 一个都不暂存(2026-08-24 实测:trends/rising 因此从未回写过仓库)
           for f in sites/buysomething/site/trends.json sites/buysomething/site/rising.json data/sr-source-probe.json \
                    sites/buysomething/site/packs/index.json sites/buysomething/site/packs/sample.json \
-                   sites/buysomething/site/passports.json sites/buysomething/site/recalls.json; do
+                   sites/buysomething/site/passports.json sites/buysomething/site/recalls.json \
+                   sites/buysomething/site/s301-ladder.json sites/buysomething/site/landed-cost.html \
+                   sites/buysomething/site/import-rule-changes.json sites/buysomething/site/import-rule-changes.html; do
             git add "$f" 2>/dev/null || true
           done
           git add sites/buysomething/site/packs/*-W*.json 2>/dev/null || true
@@ -89,6 +98,8 @@ jobs:
           for f in site/index.html site/styles.css site/app.js site/data.js \
                    site/landed-cost.html site/is-alibaba-legit.html site/sourcing-margins.html \
                    site/packs.html site/packs-thanks.html site/packs/index.json \
+                   site/mcp.html site/duty-stack.json site/s301-ladder.json server.json mcp.js \
+                   site/import-rule-changes.json site/import-rule-changes.html \
                    site/robots.txt site/sitemap.xml site/llms.txt \
                    site/16507d8e1997c4be371f5fbaf7ac1985.txt; do
             [ -f "$f" ] || { echo "::error::missing $f"; exit 1; }
@@ -105,6 +116,17 @@ jobs:
           bad = [b for b in ['54%', '$100 flat', '$80–$200', '$80-200'] if b in body]
           sys.exit('::error::superseded tariff figures outside the expired block: %s' % bad if bad else 0)
           PY
+          node --check mcp.js
+          # 机器面两道闸门(2026-09-16):①duty-stack.json 与页面/llms.txt 不许漂移
+          # ②MCP 协议 + 零编造 + 零联盟链接的 17 条断言。任何一条红就不发。
+          python3 tools/check_duty_stack.py --selftest
+          python3 tools/check_duty_stack.py
+          python3 tools/gen_s301_section.py --selftest
+          python3 tools/gen_s301_section.py --check
+          python3 tools/fetch_rule_changes.py --selftest
+          python3 tools/gen_rule_changes_page.py --selftest
+          python3 tools/gen_rule_changes_page.py --check
+          node tools/test_mcp.mjs
           echo "gate ok"
       - name: Deploy worker
         uses: cloudflare/wrangler-action@v3
@@ -124,7 +146,7 @@ jobs:
           UA='buysomething-deploy-selfcheck-bot (+ci; classified as bot by design)'
           fail=0
           # 1) 200 + zero redirects
-          for p in / /landed-cost /is-alibaba-legit /sourcing-margins /styles.css /app.js /data.js; do
+          for p in / /landed-cost /is-alibaba-legit /sourcing-margins /mcp /import-rule-changes /styles.css /app.js /data.js /duty-stack.json /s301-ladder.json /import-rule-changes.json; do
             ok=0; code=000; redirs=0
             for try in 1 2 3 4 5; do
               res=$(curl -s -o /dev/null -w '%{http_code} %{num_redirects}' -L --max-redirs 5 \
@@ -184,6 +206,27 @@ jobs:
           done
           if [ "$ok" = "1" ]; then echo "OK    beacon /e → D1 → /api/selftest (n=$n)"
           else echo "::error::beacon truth test failed — /e events do not reach D1 (56 days of zero interactions may be a broken pipe, not absent readers)"; fail=1; fi
+          # 3b-bis) MCP 机器面(2026-09-16):协议活着 + 零编造 + 零联盟链接,三条都要能红。
+          check_json /api/mcp 'len(j.get("tools", [])) == 5 and "/api/mcp" in j["protocol"]["streamable_http"]'
+          check_json '/api/mcp/duty_stack_rules?part=fees' 'j["fees"]["mpf"]["rate_pct"] == 0.3464 and "rules" not in j'
+          check_json '/api/mcp/section_301_ladder?rate_pct=100' 'j["count"] >= 1 and all(r["additional_rate_pct"] == 100 for r in j["ladder"]) and "does not assert membership" in j["coverage_disclaimer"]'
+          check_json '/api/mcp/import_rule_changes?matched_in=title_or_abstract&limit=3' 'j["count"] >= 1 and all("federalregister.gov" in c["url"] for c in j["changes"]) and "antidumping" in j["out_of_scope"]'
+          # 实时打 CBP CROSS 的工具:上游可能慢或不通,所以只断言「要么给出官方链接的裁定,要么明说上游没答」,不断言一定有结果
+          check_json '/api/mcp/classification_rulings?query=plush%20toy&limit=2' 'all(r["url"].startswith("https://rulings.cbp.gov/ruling/") for r in j.get("rulings", [])) and (j.get("count", 0) >= 1 or "not answering" in j.get("error", ""))'
+          # 零编造的线上证据:不给税率就必须拒算,而不是默认一个
+          check_json '/api/mcp/landed_cost?goods_value_usd=1000' '"never guesses" in j.get("error","") and "hts.usitc.gov" in " ".join(j.get("how_to_get_it", []))'
+          # JSON-RPC:initialize 与一次真实 tools/call(断言在 tools/assert_mcp_live.py,能单测)
+          ok=0
+          for try in 1 2 3 4 5; do
+            curl -s -X POST "$BASE/api/mcp" -H 'content-type: application/json' \
+              --data '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-06-18"}}' -o mcp1.json || true
+            curl -s -X POST "$BASE/api/mcp" -H 'content-type: application/json' \
+              --data '{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"check_import_claim","arguments":{"claim":"under $800 is duty free"}}}' -o mcp2.json || true
+            if python3 sites/buysomething/tools/assert_mcp_live.py mcp1.json mcp2.json; then ok=1; break; fi
+            sleep 5
+          done
+          [ "$ok" = "1" ] || { echo "::error::MCP live self-check failed after 5 tries"; fail=1; }
+          rm -f mcp1.json mcp2.json
           # 3c) packs: public status + sample, and a non-public pack must NOT be served without a token
           check_json /api/pack/status 'j.get("ok") is True and "configured" in j'
           check_json /packs/index.json '"weeks" in j'

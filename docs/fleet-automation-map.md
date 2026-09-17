@@ -66,6 +66,8 @@ thedollscout 冻结约 **86 小时**——它的部署是纯 push 触发，没�
 | `agi-indexnow.yml` | `17 3 * * 1` | sitemap 提交（周一） |
 | **`fleet-autopilot.yml`** | `40 2 * * *` | **新增 2026-09-11：站点自治升级算法**（零 AI）。内容哈希记账 → sitemap `<lastmod>` 变成可计算的事实；只对内容真变了的 URL 打 IndexNow；当日 rising 需求对着站内已有页面匹配，写出排序过的缺口队列给第②层。**不写一个字正文。** 自检 20 条红色夹具跑在最前面。**09-12 加度量层**：抓 eco/agi/buysomething 的公开聚合端点（零密钥），队列新增 underserved / hot_pages / first_party_demand。全文 `docs/site-autopilot-2026-09.md` **2026-09-12 加一步「需求摘要」**:`tools/fleet/demand_digest.py` 把 rising / 雷达(含 Reddit 求做板块)/ autopilot gaps / 第一方信号读成一页 `data/autopilot/demand-digest.md`,秒级,零外部副作用。 |
 | `tds-indexnow.yml` | `20 6 * * 3` | tds IndexNow（周三） |
+| `bpj-mcp-publish.yml` | **无 cron**(`server.json` 变更或手动 dispatch) | bpj MCP server 发布到 registry.modelcontextprotocol.io(GitHub OIDC,零 owner 密钥)。此前漏登本表,2026-09-16 补 |
+| `sr-mcp-publish.yml` | **无 cron**(同上) | **新增 2026-09-16**:SourceRadar MCP server(`io.github.f-tiger/us-import-duty-facts`)发布到同一注册表。发布前先跑 `tools/test_mcp.mjs` 17 条断言,红了不发。**零新增 cron**:只在 `sites/buysomething/server.json` 改动时触发,≈1 分/次,月均 <2 分。理由与判定线见 `docs/tool-monetization-2026-09-16.md` §十三 |
 
 **成本**：heartbeat **实测 19 秒/次**（2026-09-04 首跑，run 33835200197），按 Actions
 最小计费粒度算 1 分/次 × 30 = ≤30 分/月；agi-site 为公开仓，Actions 免费，

@@ -111,5 +111,19 @@ jobs:
               *) echo "::error::$a broken: ${body:0:120}"; fail=1 ;;
             esac
           done
+          # 信标真值测试(2026-09-16,SR 09-13 同款):先 POST 一条 label=__ci 的事件,再从 /api/selftest 读回来。
+          # 本站上线至今客户端事件(工具使用/分享/FAQ)恒为 0。没有这一步,「读者没用工具」和
+          # 「/e → D1 这根管子断了」在读数上完全一样,而 10 月判定线要靠这些事件结算。
+          curl -s -o /dev/null -X POST "https://35.agiscorecard.com/e" -H 'content-type: text/plain' \
+            --data '{"n":"path_result","l":"__ci","p":"/__ci"}' || true
+          beacon_ok=0; bn=0
+          for try in 1 2 3 4 5 6; do
+            bn=$(curl -s --max-time 20 -A 'after35-deploy-smoke-bot (+ci)' "https://35.agiscorecard.com/api/selftest?label=__ci" \
+                 | python3 -c "import json,sys; print(json.load(sys.stdin).get('n',0))" 2>/dev/null || echo 0)
+            [ "${bn:-0}" -ge 1 ] && { beacon_ok=1; break; }
+            sleep 5
+          done
+          if [ "$beacon_ok" = "1" ]; then echo "OK    beacon /e -> D1 -> /api/selftest (n=$bn)"
+          else echo "::error::beacon truth test failed — /e 事件没进 D1,零工具使用的读数不可信"; fail=1; fi
           [ "$fail" = "0" ] || exit 1
           echo "self-check ok"

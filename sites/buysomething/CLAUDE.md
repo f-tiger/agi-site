@@ -189,3 +189,52 @@ TikTok/1688 抓取、付费数据源。
   (无凭证 401 = 端点正常),Bluesky 公开搜索两个主机都 403,Lemmy 搜索 200 但本周零求做帖,Software
   Recommendations SE 通(3 条/8 天),Ask HN 四句式通(8 条)。**Reddit 唯一正规路径 = owner 注册 app
   (`docs/REDDIT-OAUTH-OWNER-SETUP.md`,两个 Secret)**;不换 UA/IP/代理。
+
+## 机器面:MCP 服务器(2026-09-16,owner:「从工具角度看,哪些工具最容易被付费?」→ 裁定全文 `docs/tool-monetization-2026-09-16.md`)
+
+**为什么建在这个站**:本站人类面 28 天 **87 pv / 13 次工具使用**,而同舰队的机器面在零推广下每天有第三方回访
+(bpj `/api/changes` 394 次/29 天、eco `/mcp` 105 次/5 天,两个独立采集器天天来)。本站手上是舰队最「像能被付费」的
+数据(官方关税栈 + USITC 候选税号 + CPSC 召回),此前只以没人看的 HTML 存在。
+
+- **实现**:`mcp.js`(worker 内挂 `/api/mcp`):POST JSON-RPC(Streamable HTTP 无状态子集)+ `GET /api/mcp/<tool>` REST 兜底
+  (实测采集器走的是 REST)。八个工具:`duty_stack_rules` / `check_import_claim` / `landed_cost` /
+  `duty_passport` / `section_301_ladder` / **`classification_rulings`** / **`import_rule_changes`** / `recall_check`,
+  外加五个只读资源。数据一律读 `site/*.json`,与页面同一事实源。
+- **三条红线(改任何一行前先读;`tools/test_mcp.mjs` 17 条断言全部能红)**:
+  1. **零编造**:`landed_cost` 缺 `hts_base_rate_pct` 必须报错并指向 hts.usitc.gov,**永远不给默认税率**;
+     归类是进口商的责任,`duty_passport` 只给「候选」并明说不是归类裁定。
+  2. 每条结果带 `sources` + `as_of`;取不到静态资源回 503,**不拿旧数据冒充**。
+  3. **输出里永远没有联盟/推荐/跟踪参数**(agent 是引用源,污染它等于污染引用)。这条同时由部署自检打线上。
+- **`s301-ladder.json`(2026-09-16 新数据,`tools/fetch_s301_ladder.py` 随 schedule 分支每日刷新)**:77 条 chapter 99
+  加征 heading(9903.88=note 20 的四张原始清单 66 条,9903.91=2024-09-27 生效加征 11 条),档位 7,5/10/15/25/50/100%。
+  **三条纪律不许放松**:①分类只认「号段 + 描述里 product of China + 对应 U.S. note」三条同时成立(同一导出里的
+  9903.94.31 英国乘用车因此自动排除);②税率只在 `plus N%` 无歧义时解析成数字;③生效日只认描述**开头**那句
+  `Effective with respect to entries … on or after`。**永远不判定某个 HTS8 是否在清单里**——那在 note 20/31 的 PDF 与
+  USTR 附件里。页面 `/landed-cost` 的 301 菜单由闸门断言必须覆盖阶梯里出现的每一档。
+- **两道闸门**:`tools/check_duty_stack.py`(`site/duty-stack.json` ↔ `landed-cost.html` ↔ `llms.txt` 三处不许漂移;
+  **llms.txt 曾把 $80–$200 与 54%/$100 写成现行规则直到 2026-09-16**,被引用的恰恰是它)+
+  `tools/assert_mcp_live.py`(部署后打线上:$800 口径必须仍判 `false since 2026-06-24`)。
+- **注册表**:`server.json` + `.github/workflows/sr-mcp-publish.yml`(GitHub OIDC,零密钥,只在 server.json 变更时跑)。
+- **判定线**:`sr-mcp-calls-1014`(28 天 ≥50 次调用且 ≥1 个非索引器调用方)、`sr-mcp-registry-1014`(能被搜到)。
+- **这不是收费件**:按 §十一 的单位经济,按次计量要到 ~870 次/月才够 €100/月。**先上线、先数,不装收款**;
+  向爬虫收费仍是舰队杀单。
+
+
+## 垂直闭环:跨境进口合规(2026-09-16 第三轮,owner:「是否可以切中一个垂直领域,突破」)
+
+**这一条链是本站的定位,后续会话按它扩,不要横向加无关工具**:
+「CBP 把这东西归到哪」(`classification_rulings`)→「那个 9903 号加多少」(`section_301_ladder`)→
+「基础税率」(`duty_passport`)→「到岸多少」(`landed_cost`)→「规则最近变了没」(`import_rule_changes`)→
+「品类被召回没」(`recall_check`)。每一格只引官方记录。
+
+- **`classification_rulings` 的三条红线**:①**实时打 `rulings.cbp.gov`,不镜像不落库**(边缘缓存 1 小时,
+  pageSize ≤10,带自述 UA);②返回是**判例不是裁定**——必须保留 `revoked` 标记与「这不是对你货物的裁定」免责;
+  ③上游不通就明说不通并给官方检索入口,**永不编裁定**(单测里有失败路径断言)。
+- **`import_rule_changes` / `/import-rule-changes`**:`tools/fetch_rule_changes.py` 每日打联邦公报 API
+  (4 条字面查询 × 120 天窗,逐发间隔 1 秒),**机构白名单**(总统令 / CBP / DHS / USTR / 财政部)
+  = 范围声明;**反倾销个案、ITC 排期、外贸区公告故意排除**,这条必须随结果一起输出。
+  `matched_in` 分「标题/摘要」与「只在全文」两档,是**机械判定**;两档都列,不悄悄丢。
+  页面整页由 `gen_rule_changes_page.py` 渲染,`--check` 逐字比对——**页面不许手改**。
+- **下一格的候选与门槛**:openFDA food/device enforcement(2026-09-16 实测 200)是首选,
+  **但必须等 `sr-vertical-1014` 判 win 再接**;EU Safety Gate 当日未找到免密钥 alerts 接口,不写代码不承诺。
+- **永远不做**:担保金额、归类意见、反倾销个案跟踪、替用户决定税号。
