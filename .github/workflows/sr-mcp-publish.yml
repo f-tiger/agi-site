@@ -33,7 +33,10 @@ jobs:
           url = m['remotes'][0]['url']
           assert url == 'https://source.agiscorecard.com/api/mcp', url
           assert m['websiteUrl'].endswith('/mcp'), m['websiteUrl']
-          print('manifest ok:', m['name'], m['version'])
+          # 2026-09-17 首跑教训:注册表对 description 有 100 字符硬限制,超了才在 publish 那步 422。
+          # 断言挪到这里,失败发生在发布之前而不是之后。
+          assert len(m['description']) <= 100, 'description %d chars > 100 (registry rejects it)' % len(m['description'])
+          print('manifest ok:', m['name'], m['version'], '| description', len(m['description']), 'chars')
           PY
           node tools/test_mcp.mjs
 
