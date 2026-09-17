@@ -769,3 +769,25 @@ x / threads / facebook / linkedin / reddit（r/playgamabridge）各一条预填�
 在弄清断流原因之前把三个免费名额一次性投进同一条管道，是拿全部筹码赌一个已知异常。
 **先开一轮、看它到底出不出量，再决定后两轮。** 候选顺序按现有证据：
 MINIMA（2 次开局 → 7 次 game_over，比值最高）→ OVERFIT（6 次开局、有二次事件）→ 其余。
+
+### 二十、已合并上线并端到端验证（2026-09-17 15:16 UTC）
+
+`deploy-gridlings` run #126 **success**；合并时 `data/fleet-bets.json` 与另一路会话撞车，
+**按并集解决**（对方 81 条为准 + 本分支独有的 4 条 gridlings 行 = 85 条，id 无重复）——
+对方那一侧同时结算了五条 eco/fleet 判定线，那些以对方版本为准，本分支只带的是旧副本。
+
+**验证不是看 CI 绿灯，是看线上**：
+1. 新构建确实在服务 —— `curl https://play.agiscorecard.com/ghostline | grep swiftshader`
+   由 0 变 1（那个字符串只存在于新的软件光栅探测代码里），15:16:21Z 转绿。
+2. **白名单端到端过了** —— 向线上 `/e` POST 了一条 `race_start`（`label=__deploycheck`），
+   返回 200，且 **D1 里查得到这一行**。**合并之前这个事件名会被静默丢弃**，
+   所以这一行本身就是修复生效的证据。
+
+**⚠️ D1 里因此多了一条测试行**：`ev` 表 `label='__deploycheck'`、`name='race_start'`、
+`ts=2026-09-17 15:16:30`、`ref=''`。**任何读数都要剔掉它**
+（`AND label <> '__deploycheck'`）。这是舰队 `src=/__ci` 那条惯例的同类做法。
+
+**从现在起，GHOSTLINE 与 SINGULARITY 的互动事件才开始有数**
+（`race_start` / `finish` / `medal` / `beat_clone` / `first_click` / `milestone` /
+`ship` / `rogue` / `rewarded`）。**口径断点：这九个事件的历史从 2026-09-17 15:16 开始，
+与之前的窗口不可比。** 这两款占了投放样本 146 次开局里的 117 次。
