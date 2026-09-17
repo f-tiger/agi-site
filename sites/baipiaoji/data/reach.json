@@ -1,36 +1,36 @@
 {
-  "generated": "2026-09-16",
+  "generated": "2026-09-17",
   "source": "/api/reach",
   "window_days": 28,
-  "since": "2026-08-19",
-  "until": "2026-09-16",
+  "since": "2026-08-20",
+  "until": "2026-09-17",
   "definition": "ev='' AND ref != '' — referred human page views (traffic-truth.mjs human line A); direct/no-referrer visits and /__ self-test paths excluded; counts only, no row-level data",
-  "humans_referred": 307,
-  "per_day": 11,
+  "humans_referred": 318,
+  "per_day": 11.4,
   "by_kind": {
-    "tool": 206,
-    "category": 54,
+    "tool": 213,
+    "category": 57,
     "page": 35,
     "plans": 4,
-    "vs": 6,
+    "vs": 7,
     "alternatives": 2
   },
   "categories": [
     {
       "cat": "chat",
-      "n": 95
+      "n": 98
     },
     {
       "cat": "coding",
-      "n": 51
+      "n": 54
     },
     {
       "cat": "api",
-      "n": 46
+      "n": 47
     },
     {
       "cat": "video",
-      "n": 27
+      "n": 29
     },
     {
       "cat": "image",
@@ -46,11 +46,11 @@
     },
     {
       "cat": "writing",
-      "n": 5
+      "n": 6
     },
     {
       "cat": "audio",
-      "n": 5
+      "n": 6
     },
     {
       "cat": "agent",
@@ -87,7 +87,7 @@
     {
       "slug": "kimi",
       "cat": "chat",
-      "n": 14
+      "n": 17
     },
     {
       "slug": "feishu-miaoji",
@@ -102,7 +102,7 @@
     {
       "slug": "cline",
       "cat": "coding",
-      "n": 5
+      "n": 6
     },
     {
       "slug": "pixverse",
@@ -155,6 +155,11 @@
       "n": 2
     },
     {
+      "slug": "consensus",
+      "cat": "search",
+      "n": 2
+    },
+    {
       "slug": "fish-audio",
       "cat": "audio",
       "n": 2
@@ -162,6 +167,16 @@
     {
       "slug": "google-ai-studio",
       "cat": "api",
+      "n": 2
+    },
+    {
+      "slug": "hailuo",
+      "cat": "video",
+      "n": 2
+    },
+    {
+      "slug": "immersive-translate",
+      "cat": "writing",
       "n": 2
     },
     {
@@ -195,11 +210,6 @@
       "n": 1
     },
     {
-      "slug": "github-models",
-      "cat": "coding",
-      "n": 1
-    },
-    {
       "slug": "goose",
       "cat": "coding",
       "n": 1
@@ -212,11 +222,6 @@
     {
       "slug": "guojia-fanzha",
       "cat": "safety",
-      "n": 1
-    },
-    {
-      "slug": "perplexity",
-      "cat": "search",
       "n": 1
     },
     {
@@ -255,11 +260,6 @@
       "n": 1
     },
     {
-      "slug": "consensus",
-      "cat": "search",
-      "n": 1
-    },
-    {
       "slug": "deepinfra",
       "cat": "api",
       "n": 1
@@ -270,8 +270,8 @@
       "n": 1
     },
     {
-      "slug": "figma",
-      "cat": "design",
+      "slug": "elevenlabs",
+      "cat": "audio",
       "n": 1
     }
   ],
@@ -283,7 +283,7 @@
     },
     {
       "path": "coding",
-      "n": 35
+      "n": 38
     },
     {
       "path": "/",
@@ -295,7 +295,7 @@
     },
     {
       "path": "kimi",
-      "n": 14
+      "n": 17
     },
     {
       "path": "api",
@@ -314,11 +314,11 @@
       "n": 8
     },
     {
-      "path": "image",
-      "n": 5
+      "path": "cline",
+      "n": 6
     },
     {
-      "path": "cline",
+      "path": "image",
       "n": 5
     },
     {
@@ -374,11 +374,23 @@
       "n": 2
     },
     {
+      "path": "consensus",
+      "n": 2
+    },
+    {
       "path": "fish-audio",
       "n": 2
     },
     {
       "path": "google-ai-studio",
+      "n": 2
+    },
+    {
+      "path": "hailuo",
+      "n": 2
+    },
+    {
+      "path": "immersive-translate",
       "n": 2
     },
     {
@@ -422,10 +434,6 @@
       "n": 1
     },
     {
-      "path": "github-models",
-      "n": 1
-    },
-    {
       "path": "goose",
       "n": 1
     },
@@ -435,10 +443,6 @@
     },
     {
       "path": "guojia-fanzha",
-      "n": 1
-    },
-    {
-      "path": "perplexity",
       "n": 1
     },
     {
@@ -486,10 +490,6 @@
       "n": 1
     },
     {
-      "path": "consensus",
-      "n": 1
-    },
-    {
       "path": "deepinfra",
       "n": 1
     },
@@ -498,19 +498,19 @@
       "n": 1
     },
     {
+      "path": "elevenlabs",
+      "n": 1
+    },
+    {
       "path": "figma",
       "n": 1
     },
     {
-      "path": "hailuo",
-      "n": 1
-    },
-    {
-      "path": "immersive-translate",
-      "n": 1
-    },
-    {
       "path": "jianying",
+      "n": 1
+    },
+    {
+      "path": "kling",
       "n": 1
     },
     {
@@ -521,15 +521,15 @@
   "referrers": [
     {
       "ref": "www.google.com",
-      "n": 158
+      "n": 161
     },
     {
       "ref": "cn.bing.com",
-      "n": 67
+      "n": 76
     },
     {
       "ref": "www.perplexity.ai",
-      "n": 18
+      "n": 17
     },
     {
       "ref": "chatgpt.com",
@@ -537,7 +537,7 @@
     },
     {
       "ref": "www.bing.com",
-      "n": 11
+      "n": 12
     },
     {
       "ref": "www.facebook.com",
@@ -573,10 +573,6 @@
     },
     {
       "ref": "yandex.com.tr",
-      "n": 1
-    },
-    {
-      "ref": "www.yandex.com",
       "n": 1
     },
     {
@@ -641,11 +637,6 @@
     },
     {
       "ref": "www.perplexity.ai",
-      "path": "/en/tools/perplexity",
-      "n": 1
-    },
-    {
-      "ref": "www.perplexity.ai",
       "path": "/en/vs/bailian-vs-cerebras",
       "n": 1
     },
@@ -666,13 +657,13 @@
     }
   ],
   "events": {
-    "sub_view": 279,
-    "go": 77,
-    "sub_submit": 4,
-    "sheet_dl": 4,
-    "sub_ok": 3,
-    "star": 3,
-    "calc": 3,
+    "sub_view": 300,
+    "go": 89,
+    "sub_submit": 5,
+    "star": 5,
+    "sheet_dl": 5,
+    "sub_ok": 4,
+    "calc": 4,
     "sub_dup": 1
   },
   "submissions": {

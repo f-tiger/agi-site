@@ -1,6 +1,26 @@
 {
   "items": [
     {
+      "name": "How Stale Is Your AI? Release age and training cutoff for 20 models",
+      "url": "https://stale.jock.pl/",
+      "host": "stale.jock.pl",
+      "src": "https://news.ycombinator.com/item?id=49726343",
+      "points": 70,
+      "comments": 44,
+      "found": "2026-09-17",
+      "status": "candidate"
+    },
+    {
+      "name": "Pizza Bot – An inbox for AI agents that work in the background",
+      "url": "https://github.com/pizza-bot-app/pizza-bot",
+      "host": "github.com",
+      "src": "https://news.ycombinator.com/item?id=49713894",
+      "points": 56,
+      "comments": 33,
+      "found": "2026-09-17",
+      "status": "candidate"
+    },
+    {
       "name": "Panel – A research workspace where the agent can build its own panes",
       "url": "https://github.com/greentfrapp/panel",
       "host": "github.com",
@@ -341,5 +361,5 @@
       "status": "candidate"
     }
   ],
-  "updated": "2026-09-16"
+  "updated": "2026-09-17"
 }
