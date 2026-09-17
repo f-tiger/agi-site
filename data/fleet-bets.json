@@ -969,6 +969,17 @@
    "lose": "无流转 → 读者在转场页读完就走,桥不是杠杆;不再手工加桥,只靠 build_related",
    "source": "2026-09-17:该页是全站**搜索流量第一**(24 次/28d),主题正是「把空调收起来过冬」——读者刚刚明确表示夏天结束了。但它 **23 条出站内链中冬季页 = 0**,全部指向空调尺寸梯页;连它自己「frostfrei, **trocken** lagern」那节讲的就是除湿主题。**这同时暴露了 build_related.py 的一个局限**:按 slug 词汇重叠选链接会强化既有簇(klimaanlage→klimaanlage),恰恰在转场页上是反的,所以这里需要人工编辑判断而不是算法。",
    "status": "open"
+  },
+  {
+   "id": "eco-infrarot-schimmel-1112",
+   "site": "getecoback",
+   "due": "2026-11-12",
+   "metric": "/guide/infrarotheizung-gegen-schimmel.html 的搜索引荐真人 pv/28d;读数窗覆盖 infrarotheizung 的 11 月峰值",
+   "threshold": "≥20 次搜索引荐/28d",
+   "win": "「交集选题」成立(两个强词的交叉口 + 站内两边都有权威)→ 按同法找下一个交集(luftentfeuchter × keller、heizlüfter × stromkosten)",
+   "lose": "<20 → 交集不比单词更好做,回到按 seasonality 单词选题",
+   "source": "2026-09-17 从 demand-digest 读到(本轮才补做的会话仪式第②步):eco 的 autopilot 需求队列 **gaps 31**,且 Trends rising 里 **`infrarotheizung gegen schimmel` = 59 250,是 eco 全部 rising 行里最高的一条**。站内实测:**标题同时含这两个词的页 = 0**(11 页在正文提到两者,但没有一页是讲这个交集的)。两个词都是站内最强:schimmel 68,5(全站最大)、infrarotheizung 29,2,且 infrarotheizung 11 月见顶。页面的核心是可复算的物理,并且**与该题的营销说法相反**:20 °C/55% 时墙 14 °C → 表面 80%,墙 17 °C → 66%(3 度 = 14 个百分点,所以有效);但表面温度不可能高于室温,所以**室内湿度 ≥62% 时,再暖的墙也到不了 60% 阈值**——此时买红外板只会买到电费。",
+   "status": "open"
   }
  ]
 }

@@ -260,6 +260,10 @@ jobs:
           # one computed figure; a page that renders without it is intact and
           # useless, which is the accident worth asserting.
           check "https://getecoback.com/guide/luftentfeuchter-zieht-kein-wasser.html" "61 g"
+          # The infrared/mould page exists for one counter-marketing figure: above
+          # ~62% room RH the surface cannot reach the threshold at any wall
+          # temperature. A page that lost that number would read as an endorsement.
+          check "https://getecoback.com/guide/infrarotheizung-gegen-schimmel.html" "62 %"
           # Homepage table: the site's largest AI surface had no structured rows
           # at all until today, and it is generated from the open dataset.
           check "https://getecoback.com/" "Richtwerte nach Raumgröße"
