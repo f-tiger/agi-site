@@ -1,0 +1,24 @@
+{
+ "_note": "Baseline for the 2026-09-17 goal 'double eco traffic'. Both this and every later reading come from https://getecoback.com/api/pulse so the yardstick cannot drift. human_pv there is the permissive count (ua_class IS NULL OR 'human'); never compare it to a number produced another way.",
+ "taken": "2026-09-17",
+ "source": "https://getecoback.com/api/pulse",
+ "window_days": 28,
+ "human_pv": 516,
+ "ai_ref": 21,
+ "multiple": 2,
+ "due": "2026-11-12",
+ "bets": [
+  "eco-traffic-double-1112",
+  "eco-lateral-links-1112",
+  "eco-home-table-geo-1112",
+  "eco-troubleshoot-shape-1112"
+ ],
+ "context_at_t0": {
+  "google_referrals": 0,
+  "bing_family_referrals": 221,
+  "pages_with_any_search_or_ai_traffic": 18,
+  "indexable_pages": 215,
+  "googlebot_pages_crawled_28d": 207,
+  "bingbot_pages_crawled_28d": 134
+ }
+}
