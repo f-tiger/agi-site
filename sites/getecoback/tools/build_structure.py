@@ -351,10 +351,28 @@ def h1(html):
     m = re.search(r'<h1[^>]*>(.*?)</h1>', html, re.S)
     return re.sub(r'\s+', ' ', re.sub('<[^>]+>', '', m.group(1))).strip() if m else ""
 
-def first_sentence(text):
-    text = text.strip()
-    m = re.search(r'^(.*?[.:!?])(\s|$)', text)
-    return (m.group(1) if m else text)[:160]
+def card_summary(text):
+    """The hub-card blurb: the page's own meta description, essentially whole.
+
+    This used to be first_sentence(), cutting at the first '.', ':', '!' or '?'.
+    On this site that regex fights the house style. Every description is written
+    "Keyword vorne: dann die Substanz", so cutting at the colon threw away the
+    substance and left the keyword hanging — 124 of 144 cards ended in a colon
+    ("Luftentfeuchter:", "Hitze-Check:", "Stromkosten-Rechner für Klimaanlage,
+    Luftkühler, Ventilator und Heizung:"). Two were worse, cut mid-abbreviation
+    into "Klimaanlage vs." and "Midea PortaSplit vs.", which reads like a bug
+    because it is one. Found 2026-09-17 while retitling the storage pages.
+
+    Descriptions are already gated to 165 characters by check_meta and written
+    to stand alone, so there is nothing to summarise: take the text, and only if
+    it somehow runs long trim it on a word boundary rather than mid-word.
+    """
+    text = " ".join(text.split())
+    if len(text) <= 160:
+        return text
+    cut = text[:160]
+    sp = cut.rfind(" ")
+    return (cut[:sp] if sp > 100 else cut).rstrip(" ,;:—-") + "…"
 
 def collect_articles():
     arts = {k: [] for k, _, _ in CATEGORIES}
@@ -368,7 +386,15 @@ def collect_articles():
                or "klimaanlagen")
         arts[cat].append({
             "slug": slug, "url": canonical(html) or f"https://getecoback.com/guide/{slug}.html",
-            "title": h1(html) or slug, "desc": first_sentence(meta(html, "description")),
+            # h1() hands back the heading's inner HTML with entities intact, so
+            # escaping it again turns "&amp;" into "&amp;amp;" and the card shows
+            # a literal "&amp;". Same bug crumb_trust() was fixed for on
+            # 2026-09-04; this path was missed and carried 17 of them.
+            "title": htmllib.unescape(h1(html) or slug),
+            # meta() returns the attribute as written, i.e. already escaped, so
+            # the description needs the same unescape as the title — two cards
+            # were showing "Velux &amp; Co." and "Comfee &amp; Toshiba".
+            "desc": htmllib.unescape(card_summary(meta(html, "description"))),
         })
     return arts
 

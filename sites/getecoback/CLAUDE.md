@@ -2775,3 +2775,53 @@ Marktstammdatenregister 注册义务保留、并有对应 FAQ(但没写「怎么
 
 **这三条合起来解释了 `gaps 31 / covered 31` 这个看起来很大的数字**:它量的是标题面的覆盖,
 不是内容面的覆盖。**下一轮开场仍然先读 demand-digest(上一节的教训不变),但读到 gaps 时按上面这条读法走。**
+
+### 储能三页改名到活词,以及顺手挖出的分类页缺陷(2026-09-17)
+
+**这一节做的正是上一节推出来的那个动作**(正文已经答了 → 把活词写进标题,属优化槽),
+也是储能那一轮明写「下一轮第一件事」的那件。
+
+**① 三张页的标题从一个五年峰值 0,0 的词换成 23,0 的词,URL 一个字没改。**
+`seasonality-de-storage.json`(5 年,anchor `heizlüfter`):`balkonspeicher` **峰值 0,0**,
+`balkonkraftwerk speicher` **23,0(3 月峰)**。而 `balkonspeicher-rechner` / `-foerderung` /
+`-winter-frost` 三张页的 title / h1 / description / og / JSON-LD headline **全部用的是那个 0,0 的词**。
+已全部换成 `Balkonkraftwerk-Speicher …`;**URL 保持不变**(改 URL 要做重定向,不值得),
+正文继续说 Balkonspeicher(是真实德语,也让页面同时带住第二个词形)。
+面包屑与 BreadcrumbList 由 h1 生成,**重建后自动跟上**,不必手改。
+**内链锚文本刻意没有统一**:现存 28 种锚里生成式的会跟着标题走,手写的保持多样——
+把所有内链锚都改成同一个精确匹配词是 linkbuilding 技能明确点名的过度优化形态。
+
+**② 改完重建,分类页的 diff 里露出两个存量缺陷 —— 这才是本节的主要产出。**
+四张分类页是全站 142 篇指南的发现层(今天早些时候我自己纠正过「分类页没有真实链接」那个假发现),
+而它们上面:
+
+- **144 张卡片里 124 张的简介是一个断句**。生成器用 `first_sentence()` 在第一个 `.:!?` 处切,
+  而本站每一条 description 都是「Keyword vorne**:** dann die Substanz」的写法——
+  于是切掉了实质、留下了关键词前缀:`Luftentfeuchter:` · `Infrarotheizung:` · `Hitze-Check:` ·
+  `Stromkosten-Rechner für Klimaanlage, Luftkühler, Ventilator und Heizung:`。
+  更糟的两张切在缩写中间:**`Klimaanlage vs.`** 与 **`Midea PortaSplit vs.`**。
+- **17 处双重转义**,页面上显示字面量 `&amp;`。`h1()` 返回的是带实体的内部 HTML,
+  再 `escape()` 一次就成了 `&amp;amp;` —— **和 2026-09-04 给面包屑修过的是同一个 bug,
+  这条路径当时没人查**。描述那一路同样中招(`Velux &amp; Co.` / `Comfee &amp; Toshiba`)。
+
+**修法**:`first_sentence()` → `card_summary()`,**不再切**——description 本来就被 `check_meta`
+限在 165 字符内、本来就是写成能独立成立的一句,没有什么可摘要的;真超长才按词边界截断。
+标题与描述都先 `unescape` 再 escape。实测:卡片简介中位数 **31 → 151 字符**,以冒号结尾的 **124 → 0**。
+
+**新闸门 `check_hubcards.py`(已进流水线,第 14 道)**,断言的是**事故的形状**不是生成器:
+简介不得以冒号结尾、不得停在缩写上、页面 description 长而卡片简介 <40 字符即红、
+卡片标题必须等于该页 h1、分类页不得出现任何双重转义实体。
+**负向测试不是我planted的,是真实存量**:对改之前的线上产物跑,**212 处报红**;
+修完 210 处,剩下 2 处把描述那一路也揪出来了,补完归零。
+(**刻意没把生成器的函数搬进闸门里**——那种「自己验自己」的自检本仓已经栽过,写了等于没写。)
+Chromium 实测(390px + 1280px):18 张卡、单 h1、**零横向溢出**、可见文本里**零字面量 `&amp;`**、零页面错误。
+
+**诚实边界,别把这件事说成流量动作**:四张分类页 28 天真人 pv 合计 **10**
+(klimaanlagen 7 · luftqualitaet 2 · heizen 1 · energie-sparen **0**)。这是**正确性修复**,
+受益的主要是爬虫与 AI 读者(它们确实每周把分类页抓一遍),不是一条流量杠杆。
+它的效果不单独立线,并进 `eco-traffic-double-1112` 一起读。
+
+**判定线 `eco-storage-retitle-1112`(已进台账)**:三页合计真人 pv ≥15/28d 或 ≥2 次外部引荐;
+**t0 = 3 pv / 0 外部引荐**(2026-09-17 D1 现查)。
+**归因边界写死**:11-12 **早于**该词 3 月的峰值,所以它测的是**词形对不对**,
+不是**这个类目行不行**——后者是 `eco-storage-spring-0415`。输了就不要再为改标题立项。

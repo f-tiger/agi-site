@@ -1,6 +1,6 @@
-# Balkonspeicher-Rechner: Welche Speichergröße lohnt sich?
+# Balkonkraftwerk-Speicher: Welche Größe lohnt sich?
 
-> Balkonspeicher-Rechner: BKW-Leistung, Tagesverbrauch und Tagesprofil eingeben — sofort die passende Speichergröße in kWh plus ehrliche Lohnt-sich-Einschätzung.
+> Speicher fürs Balkonkraftwerk: Leistung, Tagesverbrauch und Tagesprofil eingeben — sofort die passende Speichergröße in kWh plus ehrliche Lohnt-sich-Einschätzung.
 
 Canonical (HTML, zitierfähig): https://getecoback.com/guide/balkonspeicher-rechner.html
 

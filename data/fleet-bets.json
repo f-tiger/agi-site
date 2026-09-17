@@ -980,6 +980,17 @@
    "lose": "<20 → 交集不比单词更好做,回到按 seasonality 单词选题",
    "source": "2026-09-17 从 demand-digest 读到(本轮才补做的会话仪式第②步):eco 的 autopilot 需求队列 **gaps 31**,且 Trends rising 里 **`infrarotheizung gegen schimmel` = 59 250,是 eco 全部 rising 行里最高的一条**。站内实测:**标题同时含这两个词的页 = 0**(11 页在正文提到两者,但没有一页是讲这个交集的)。两个词都是站内最强:schimmel 68,5(全站最大)、infrarotheizung 29,2,且 infrarotheizung 11 月见顶。页面的核心是可复算的物理,并且**与该题的营销说法相反**:20 °C/55% 时墙 14 °C → 表面 80%,墙 17 °C → 66%(3 度 = 14 个百分点,所以有效);但表面温度不可能高于室温,所以**室内湿度 ≥62% 时,再暖的墙也到不了 60% 阈值**——此时买红外板只会买到电费。",
    "status": "open"
+  },
+  {
+   "id": "eco-storage-retitle-1112",
+   "site": "getecoback",
+   "due": "2026-11-12",
+   "metric": "三张改名页(/guide/balkonspeicher-rechner|-foerderung|-winter-frost.html,URL 未变)的 28 天真人 pv 与外部引荐;t0(2026-09-17,D1 现查)= 合计 **3 pv / 0 外部引荐**",
+   "threshold": "三页合计真人 pv ≥15/28d 或出现 ≥2 次搜索/AI 外部引荐",
+   "win": "「把标题换成活词」是可复制的优化动作 → 按同法处理其他标题用死词的页(先量 seasonality 再改,URL 一律不动)",
+   "lose": "仍 <15 且零外部引荐 → 词形不是这三页零流量的原因(更可能是域权威 + 4 月才是峰值月),**不要再为改标题立项**;真正的读数推到 eco-storage-spring-0415",
+   "source": "2026-09-17:`seasonality-de-storage.json`(5 年,anchor heizlüfter)读出 **balkonspeicher 峰值 0,0** 而 **balkonkraftwerk speicher 23,0(3 月峰)**,而站内三张页的 title/h1/description 全部用的是那个 0,0 的词。本轮把这三处 + og/headline 换成活词,**URL 保持不变**(改 URL 要做重定向,不值得);正文仍可说 Balkonspeicher(是真实德语,也留住第二个词形)。**注意归因边界**:11-12 这个读数日**早于**该词 3 月的峰值,所以它测的是「词形对不对」,不是「这个类目行不行」—— 后者是 eco-storage-spring-0415。",
+   "status": "open"
   }
  ]
 }

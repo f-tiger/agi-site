@@ -184,6 +184,9 @@ jobs:
       - name: Check the lateral link blocks are suggestions, not walls
         run: python3 tools/check_related.py
 
+      - name: Check the category hubs still describe what they link to
+        run: python3 tools/check_hubcards.py
+
       - name: Check the price engine (SigV4 vector, refresher vs mock, built pages vs data)
         run: |
           node tools/product_intel/paapi.mjs --selftest
