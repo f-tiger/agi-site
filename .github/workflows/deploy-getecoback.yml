@@ -112,6 +112,9 @@ jobs:
       - name: Inject room-size cross-links (idempotent)
         run: python3 tools/build_xlinks.py
 
+      - name: Lateral related-guide links (season-weighted; idempotent)
+        run: python3 tools/build_related.py
+
       - name: Consolidate publisher entity (@id graph; idempotent gate)
         run: python3 tools/build_entity.py
 
@@ -174,6 +177,9 @@ jobs:
 
       - name: Check no vetoed brand reached the published site
         run: python3 tools/check_brand_veto.py
+
+      - name: Check the lateral link blocks are suggestions, not walls
+        run: python3 tools/check_related.py
 
       - name: Check the price engine (SigV4 vector, refresher vs mock, built pages vs data)
         run: |

@@ -858,6 +858,28 @@
    "lose": "德国停电面需求太薄(stromausfall 10,0 里几乎全是『我家停电了』的信息查询,不是购买查询)→ 不再扩,页面留作储能簇的安全锚",
    "source": "2026-09-17 owner 要求「针对乌克兰深度产品调研」。乌克兰三门全不过(见下),把同一份产品知识转到能计佣的德国市场后实测:stromausfall **10,0**(1 月峰,anchor heizlüfter 30,6)、notstromaggregat 2,4、powerstation **1,5** —— 真实但小,且 stromausfall 主要是信息型查询。页面核心是算术:2000 W 暖风机在 1 kWh 上 **30 分钟**,同一块电池带路由器 **4,2 天**,倍数 200。",
    "status": "open"
+  },
+  {
+   "id": "eco-traffic-double-1112",
+   "site": "getecoback",
+   "due": "2026-11-12",
+   "metric": "eco 28 天真人 pv(ua_class IS NULL OR 'human');并同时记录来源拆分与触达页数,用于归因",
+   "threshold": "≥1026 真人 pv/28d(= t0 的 2 倍)",
+   "win": "「横向内链 + 季节权重」值得继续投,把同形态移植到 bpj/SR",
+   "lose": "未翻倍 → 记录实际增幅与来源拆分;若增幅几乎全来自 bing_family 的季节性上升,则判定内链层无独立贡献,停止在内链上继续投入",
+   "source": "t0 = **2026-09-17 实测**:真人 pv **513**/28d,其中 Bing 家族(DDG 112 + Bing 67 + Ecosia 20 + Yahoo 17 + Qwant 3 + Startpage 2)= **221**、**Google = 0**、AI(ChatGPT 14 + Perplexity 7)= **21**、直接/无来源 193、站内 78;触达页数 **110**。结构事实:googlebot 28 天抓 **207 个不同页面**(几乎全站)却零引荐 —— Google 是排不上不是抓不到;bingbot 只抓到 **134** 页。",
+   "status": "open"
+  },
+  {
+   "id": "eco-lateral-links-1112",
+   "site": "getecoback",
+   "due": "2026-11-12",
+   "metric": "获得搜索/AI 流量的页面数(t0=18/214),以及被本轮加厚的几张冬季页的真人 pv",
+   "threshold": "有流量的页面数 ≥30,或 schimmel-am-fenster + luftentfeuchter-ratgeber + mobile-klimaanlage-ueberwintern 三页合计真人 pv 较 t0 翻倍",
+   "win": "横向内链确实把长尾页带起来了 → 扩到 /en/ 与 /it/,并把 MAX_LINKS 调到 5",
+   "lose": "有流量页数不动 → 内链不是本站的瓶颈,承认瓶颈是域权威,回到只维护",
+   "source": "2026-09-17:196 张 guide 页新增 617 条横向内链(此前拓扑是 4 个分类页的星形)。schimmel-am-fenster 的入链页 2→10,luftentfeuchter-ratgeber 2→21,mobile-klimaanlage-ueberwintern(全站搜索第一页)4→8。**重要更正:本轮最初报告的「12 个孤儿页」是我自己分析脚本的正则只匹配相对路径造成的假象,真实孤儿数是 0** —— 分类页用绝对 URL 链接全部 142 篇。",
+   "status": "open"
   }
  ]
 }
