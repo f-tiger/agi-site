@@ -172,6 +172,14 @@ jobs:
       - name: Pricing-probe selftest (zero network)
         run: node scripts/pricing-probe.mjs --selftest
 
+      # 边缘爬虫记账的路径分类（2026-09-17，零网络 ~0.1s）。_middleware.js 的
+      # isContentPath() 此前是白名单（`/` 结尾或 .html/.txt/.json/.md/.xml），而本站内容页
+      # 是无扩展名路由 —— 28 天 ev='bot' 只落到 23 个路径，`/tools/*` 与 `/c/*` 各 0 条，
+      # 同窗 92% 的真人落地正好在那批看不见的路径上。已改成黑名单（只排 /api/* 与静态资源）。
+      # 这一步把那次误判钉死：分类器再变回白名单、或黑名单宽到吃掉内容页，部署直接红。
+      - name: Crawler-accounting path classifier (zero network)
+        run: node scripts/test-middleware-paths.mjs
+
       # 自研分词器的回归检验：420 例金标准 × 两套词表 = 840 次逐例比对。
       # 写自己的实现就得自己证明它对，否则只是把「让用户猜」换成「让我们猜」。
       - name: Tokenizer regression (840 golden cases)
@@ -545,15 +553,22 @@ jobs:
       # _middleware.js 拦住了**每一个**请求。它要是抛错或吞掉响应，
       # 整站会一起下线——所以它上线后必须有一条独立断言：页面照常 200、
       # 内容照常返回、API 不受影响。探针步骤只证明「爬虫进得来」，不覆盖这一条。
+      # ⚠️ 两个爬虫 UA 的自检 URL 必须带 `?__probe=1`（2026-09-17 修）。不带的话，这一步
+      # 每次部署都往 hits 表写两条假抓取。D1 现查坐实：28 天里 `/en/` 名下 GPTBot **43 次 /
+      # 29 天**、`/llms.txt` 名下 ClaudeBot **43 次 / 29 天**，计数与天数逐一对齐、全部 US
+      # —— 就是这两行 curl。也就是说 `/llms.txt` 的「ClaudeBot 抓取」**100% 是我们自己**，
+      # 而 GPTBot 全站 75 次里 57% 也是。`__probe=1` 的守卫本来就是为这件事建的，只是当初
+      # 只挡住了 ai-crawler-probe.mjs，漏了这一步。带上它响应仍然照常经过 ctx.next() 与
+      # noindex 逻辑，这一步要证明的「正常流量没被破坏」一点没少测，只是不再自证抓取量。
       - name: Self-test edge middleware (all traffic passes through it)
         id: st_mw
         continue-on-error: true
         run: |
-          h=$(curl -s -o /tmp/p.html -w "%{http_code}" -m 20 -A 'GPTBot/1.0' 'https://baipiaoji.com/en/')
+          h=$(curl -s -o /tmp/p.html -w "%{http_code}" -m 20 -A 'GPTBot/1.0' 'https://baipiaoji.com/en/?__probe=1')
           grep -q '</html>' /tmp/p.html || { echo "::error::中间件下页面内容不完整"; exit 1; }
           n=$(curl -s -o /dev/null -w "%{http_code}" -m 20 'https://baipiaoji.com/')
           a=$(curl -s -o /dev/null -w "%{http_code}" -m 20 'https://baipiaoji.com/api/limits?slug=kimi')
-          l=$(curl -s -o /dev/null -w "%{http_code}" -m 20 -A 'ClaudeBot/1.0' 'https://baipiaoji.com/llms.txt')
+          l=$(curl -s -o /dev/null -w "%{http_code}" -m 20 -A 'ClaudeBot/1.0' 'https://baipiaoji.com/llms.txt?__probe=1')
           echo "bot-page=$h human-page=$n api=$a bot-llms=$l"
           [ "$h" = "200" ] && [ "$n" = "200" ] && [ "$a" = "200" ] && [ "$l" = "200" ] \
             || { echo "::error::边缘中间件破坏了正常流量 bot=$h human=$n api=$a llms=$l"; exit 1; }

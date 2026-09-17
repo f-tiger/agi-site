@@ -662,6 +662,30 @@
    "status": "open",
    "reading_2026-09-17": "改写已执行（tools/differentiate_heizung.py，七页各回答一个不同的问题，编号/成本/电路余量全部由页面已有数字推导）。相似度 **54.0% → 19.5%**（最差一对 55.3% → 20.4%，对照组 0.3%）——**判定线的相似度这一半已达成**。另一半（28 天 Google 引荐 ≥1）到 11-17 才读，现在不判。同日把度量扩到英语/意语语料后发现：舰队最像门页的其实是 **en:dehumidifier-N-sqm 61.4%**（6 页，此前从未被测过），高于任何德语页族；en:electric-heater-N-sqm 52.1%。先修德语只因判定线押在那儿，不是因为它最坏。",
    "guard": "check_duplication.py --regress 现在对 heizung-N-qm 设了双天花板（平均 25% / 最差一对 30%），回升即部署红——实测只还原 7 页里的 2 页，平均只从 19.5% 升到 21.6%，而那两页彼此已经是 54.8%，所以单看平均会漏。"
+  },
+  {
+   "id": "bpj-crawl-visibility-0924",
+   "site": "baipiaoji",
+   "due": "2026-09-24",
+   "metric": "D1 hits 表 ev='bot' 的 **不同 path 数**（28 天窗，剔 __probe）+ 其中 `/tools/%` 或 `/c/%` 的行数",
+   "threshold": "不同 path ≥100（t0=23）且 tools/c 行 ≥1（t0=0）",
+   "win": "仪器修好了 —— 下一轮才第一次能回答「1,542 页里哪些从没被抓过、哪些抓了排不上」，两者补救方向相反（发现层 vs 内容）",
+   "lose": "不同 path 仍 <40 → 不是仪器问题，爬虫确实只碰枢纽页与带扩展名的文件；那么发现层（sitemap 已 1,558 条但爬虫不深入）就是绑定约束，改内容无用，动作交给 owner 侧 Bing/GSC",
+   "source": "sites/baipiaoji/CLAUDE.md 第 18 条（2026-09-17）",
+   "status": "open",
+   "t0_2026-09-17": "ev='bot' 28 天 1,221 行 / 23 个不同 path，全部是 `/`、`/en/`、`/vs/`、`/money/`、`/earn/`、`/travel/`、`/upgrade/` 这类带斜杠枢纽，加 sitemap.xml / robots.txt / llms.txt / feed.xml / limits.json / openapi.json / .md。`/tools/<slug>` 与 `/c/<cat>` 各 **0** 条。同窗真人落地 330 次里 302 次（92%）在无扩展名路径上。"
+  },
+  {
+   "id": "bpj-bing-zh-surface-1015",
+   "site": "baipiaoji",
+   "due": "2026-10-15",
+   "metric": "Bing 家族（bing/duckduckgo/yahoo）带来源真人 28 天窗计数，及其落地页是否仍全部是中文页",
+   "threshold": "≥154（= 最近 14 天的 77 持平推到 28 天；t0 = 97/28d，上一个 14 天块只有 20，再上一个块是 0）",
+   "win": "中文面 + Bing 是本站真正的增长引擎 → 下一轮的内容与发现层投入按中文工具页排，不按 Google 排",
+   "lose": "<100 → 三个 14 天块的 0→20→77 是一次性收录事件不是趋势，回到按 Google/EN 面判断",
+   "source": "sites/baipiaoji/CLAUDE.md 第 18 条（2026-09-17）",
+   "status": "open",
+   "t0_2026-09-17": "14 天块：Bing 家族 0 → 20 → 77；Google 53 → 30 → 94 → 70。**两个引擎零重叠**：最近 14 天 Google 落地页 100% 是 `/en/*`（grok 47、c/coding 23、fireworks 10、haiper 6、pixverse 4），Bing 家族落地页 100% 是中文页（kimi 15、cline 6、feishu-miaoji 5、google-flow 4、together 3，其后约 15 个 2 次的长尾）。"
   }
  ]
 }
