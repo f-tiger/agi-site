@@ -1,5 +1,5 @@
 {
- "fetched": "2026-09-16",
+ "fetched": "2026-09-17",
  "seeds": {
   "electric spin scrubber": {
    "auto": [
@@ -636,16 +636,66 @@
   "robot vacuum replacement parts": {
    "rising": [
     {
+     "q": "shark robot vacuum",
+     "v": 60
+    },
+    {
      "q": "shark vacuum replacement parts",
+     "v": 60
+    },
+    {
+     "q": "shark robot vacuum replacement parts",
      "v": 50
     },
     {
-     "q": "shark robot vacuum",
+     "q": "shark replacement parts",
      "v": 40
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-09-16"
+   "fetched": "2026-09-17"
+  },
+  "red light therapy mask": {
+   "rising": [
+    {
+     "q": "shark cryoglow mask review",
+     "v": 7850
+    },
+    {
+     "q": "red.light therapy mask",
+     "v": 180
+    },
+    {
+     "q": "current body led mask series 2",
+     "v": 170
+    },
+    {
+     "q": "solawave mask reviews",
+     "v": 170
+    },
+    {
+     "q": "does red light therapy help with acne",
+     "v": 160
+    },
+    {
+     "q": "does red light therapy really work",
+     "v": 140
+    },
+    {
+     "q": "red light therapy benefits",
+     "v": 40
+    },
+    {
+     "q": "red light mask benefits",
+     "v": 40
+    },
+    {
+     "q": "red light therapy mask benefits",
+     "v": 40
+    }
+   ],
+   "source": "related-queries",
+   "fetched": "2026-09-17"
   }
  }
 }

@@ -1,5 +1,5 @@
 {
- "checked": "2026-09-16T10:17:12Z",
+ "checked": "2026-09-17T10:19:51Z",
  "endpoints": {
   "usitc_hts_search": {
    "url": "https://hts.usitc.gov/reststop/search?keyword=water%20fountain",
@@ -33,7 +33,7 @@
    "url": "https://ustr.gov/issue-areas/enforcement/section-301-investigations/tariff-actions",
    "status": 200,
    "type": "text/html; charset=UTF-8",
-   "bytes": 30882,
+   "bytes": 30842,
    "head": "<!DOCTYPE html>\n<html lang=\"en\" dir=\"ltr\" prefix=\"content: http://purl.org/rss/1.0/modules/content/  dc: http://purl.org"
   }
  }
