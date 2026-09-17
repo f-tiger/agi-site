@@ -2384,3 +2384,81 @@ NULL 是 JS 信标行(跑了 JS,更像真人),昨天报的 5 是严格口径,两
   **正确时点是内容拿到读数之后**;若 11-12 达线再开,180 天窗口正好覆盖整个英国潮湿季。
 - **没做的**:`electric blanket` / `oil filled radiator` 两个品类本轮有数据但没建页 ——
   先看三页读数再决定,避免一次铺开四个品类然后全是 0。
+
+## 储能:类目确实大,但峰值在 4 月不是现在(2026-09-17,owner:「近期储能火爆,加大储能品类」+「不能包含ecoflow」+「阳台储能赛道法规立案支持,租户可以在阳台装光伏板,即插即用更符合德语区需求」)
+
+### 第一次把储能放到本站自己的标尺上量
+
+站内有 **12 张** balkonkraftwerk/balkonspeicher 页,而 `seasonality-de.json` 的 30 个词里
+**一个 balkon/speicher/solar 都没有** —— 类目从来没被量过。本轮新增
+`--market DE-STORAGE`(**anchor 仍是 heizlüfter**,所以与站内既有 30 词同标尺可比),
+写 `data/seasonality-de-storage.json`,13 词 0 失败:
+
+| 词 | peak | 峰值月 | 冬/九月 |
+|---|---|---|---|
+| **balkonkraftwerk** | **62,6** | **4** | 0,82 |
+| heizlüfter(锚) | 30,6 | 11 | 0,89 |
+| **anker solix** | 29,9 | 8 | 0,70 |
+| **balkonkraftwerk speicher** | **23,0** | **3** | 0,83 |
+| zendure | 12,3 | 3 | 0,93 |
+| marstek | 10,8 | 8 | 0,71 |
+| balkonkraftwerk anmelden | 7,8 | 4 | 0,75 |
+| stromspeicher | 5,7 | 3 | 0,91 |
+| **balkonkraftwerk mieter** | **0,3** | 4 | 0,51 |
+| **steckersolar** | **0,1** | 4 | — |
+| **balkonspeicher** | **0,0** | 3 | — |
+| **balkonkraftwerk erlaubnis** | **0,0** | 1 | — |
+
+**四条必须记死的读法**:
+1. **owner 的判断被数据支持**:`balkonkraftwerk` **62,6 = 站内锚点的 2 倍**、≈`luftentfeuchter`(32,0)的 2 倍、
+   逼近站内最大词 `schimmel`(68,5)。**这是本站能服务的最大类目之一**,08-26 的「能源板块降级」在
+   类目规模这一点上是判错了。
+2. **但「近期火爆」在季节上不成立**:峰值月是 **4 月**,`win_over_sep` = 0,82,即**冬季低于九月**。
+   所以这轮的正确定位是「**现在建、春天收**」——和英国那轮盯 11 月是同一种打法,方向相反。
+   **报告里不要说「现在是旺季」。**
+3. **`balkonspeicher` = 0,0,而站内有三张页用这个词**(rechner / foerderung / winter-frost)。
+   活的词是 **`balkonkraftwerk speicher`(23,0,3 月峰)**。**下一轮的优化动作已经确定:
+   保持 URL 不变,把这三页的 title/H1/描述改用活词**(改 URL 要做重定向,不值得)。
+4. **租户/法规的词本身几乎没有搜索量**(mieter 0,3、erlaubnis 0,0、steckersolar 0,1)。
+   这**不代表角度错**,代表**需求表达在头部词上**。所以法规内容做成一页是**引用赌注不是搜索赌注**,
+   判定线里已写死这一点,别在结算时改口径。
+
+### 已建:`/guide/balkonkraftwerk-mieter-recht.html`(一手法条,全部实抓)
+
+**零编造在法律题上尤其不能松。三条法条全部当日从 gesetze-im-internet.de 抓原文**(2026-09-17):
+- **§ 554 BGB** 标题现为「Barrierereduzierung, E-Mobilität, Einbruchsschutz und **Steckersolargeräte**」;
+  Abs.1 = 「Der Mieter **kann verlangen**, dass ihm der Vermieter … erlaubt」+ 不可期待时不成立;
+  **Abs.2「Eine zum Nachteil des Mieters abweichende Vereinbarung ist unwirksam」**。
+- **§ 20 Abs. 2 Nr. 5 WEG** 把 Steckersolargeräte 列为特权改造,且「**Über die Durchführung** ist …
+  zu beschließen」→ 共同体决定**怎么装,不再决定能不能装**。
+- **EEG § 8 Abs. 5a**:**2 kW 组件 / 800 VA 逆变器**,「Registrierungspflichten nach der
+  Marktstammdatenregisterverordnung **bleiben unberührt**; zusätzliche gegenüber dem **Netzbetreiber**
+  abzugebende Meldungen … **können nicht verlangt werden**」——**这一句才是「即插即用」的法律含义**。
+**页面的核心区分(市面上大多数文章写错的那一点)**:§554 给的是**请求许可的权利,不是免许可**。
+「还用不用问房东?」答案是**要问**;变的是「不想」不再是理由。不可期待性那条限制与页面同段写明,
+并明说本站不是律师、不做法律咨询。页面带 storage 货架(Zendure / Anker ×2,**无 EcoFlow**),
+这与英国三页不同——德国读者、amazon.de、Schuko 插头、getecoback-21 计佣,货架在这里是对的。
+
+### `不能包含 ecoflow`:veto 此前只挡住了人工货架,没挡住自动面
+
+owner 2026-08-28 已下过这条指令,当时**只在 `build_structure.py` 的人工货架里删了卡片**。
+本轮发现**首页 rising rail 会把任何 Google Trends 查询直接变成带 tag 的 amazon.de 搜索 chip,
+中间没有人**,而 `data/trends-rising.json` 自 09-12 起就存着 `"ecoflow stream 5000" v=8800`
+(balkonkraftwerk 种子下)。它没上线**是运气不是设计**,而「加大储能品类」正好会让这个种子更常浮出。
+- **`tools/brand_veto.txt` 是唯一名单**(加牌子只改这一个文件);rail 过滤它;
+  **`check_brand_veto.py` 扫的是构建产物 `site/`**,不是源码 —— 在一个注入点上执行的禁令,
+  只在没人加第二个注入点之前有效;**断言在输出上,就与它怎么进来的无关**。
+  (`tools/` 里的说明性注释与名单本身不扫,否则 gate 会变成噪音。)
+- **A/B 实测(避免空跑)**:同一份数据、把 veto 清空 → 首页出现 **1 个 ecoflow chip**;
+  veto 装回 → **0**。**是 veto 拦下的,不是 NICHE 正则** —— 注意原始那条 `ecoflow stream 5000`
+  很可能本来就过不了 NICHE,所以我换成 `ecoflow balkonkraftwerk speicher`(储能扩类后完全可能出现的词)
+  才拿到有效证据。**这类测试永远要先证明「不改就会发生」。**
+
+### 判定线
+
+- **`eco-balkon-mieter-recht-1115`**:≥1 次 AI 引荐或 ≥25 真人 pv/28d。**明写是引用赌注不是搜索赌注**
+  (搜索量 0,3),输了则「法规内容以后只作为已有页里的一节,不再单独出页」。
+- **`eco-storage-spring-0415`**:3–4 月峰值窗 storage 簇真人 pv ≥300 且 storage 货架 affiliate_click ≥15。
+  输了就承认 08-26 的降级是对的,储能簇冻结为维护态。
+- **本轮没做**:三张 `balkonspeicher` 页的活词改写(见上第 3 条,下一轮第一件事);
+  Nulleinspeisung / WEG 选型页(等 4 月线的读数再决定,不一次铺开)。

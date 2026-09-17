@@ -172,6 +172,9 @@ jobs:
       - name: Check the UK cost tables match the stored Ofgem cap and add up
         run: python3 tools/check_ukcost.py
 
+      - name: Check no vetoed brand reached the published site
+        run: python3 tools/check_brand_veto.py
+
       - name: Check the price engine (SigV4 vector, refresher vs mock, built pages vs data)
         run: |
           node tools/product_intel/paapi.mjs --selftest
@@ -239,6 +242,14 @@ jobs:
           check "https://getecoback.com/en/guide/desiccant-vs-compressor-dehumidifier.html" "$cap_period"
           check "https://getecoback.com/en/guide/heated-airer-vs-dehumidifier.html" "${cap_rate}p per kWh"
           check "https://getecoback.com/en/guide/rising-damp-penetrating-damp-or-condensation.html" "penetrating damp"
+          # Brand veto on the LIVE homepage. The rising rail rebuilds daily from
+          # Google Trends with no human in the loop, so the veto has to be checked
+          # where it can actually be violated, not only at build time.
+          for vb in $(sed "s/#.*//" tools/brand_veto.txt | tr -d " \t" | grep -v "^$"); do
+            if curl -sL --max-time 20 "https://getecoback.com/" | grep -qi "$vb"; then
+              echo "::error::the live homepage publishes vetoed brand $vb"; fail=1
+            else echo "OK homepage free of $vb"; fi
+          done
           # Scripts are stripped before counting. The site-wide saved-room bar
           # builds amazon URLs by string concatenation on every page including
           # the legal ones, so a raw grep reports five links on a page that

@@ -106,7 +106,13 @@ GEO_PRODUCTS = {
 # GB is the first market to get one because it is the only one in GEO_PRODUCTS
 # whose top two terms BOTH peak in November and both outrank its summer term —
 # the opposite shape to Germany, where the site's whole structure came from.
-MARKET_ANCHOR = {"GB": "dehumidifier"}
+MARKET_ANCHOR = {"GB": "dehumidifier", "DE-STORAGE": "heizlüfter"}
+# A market key is not always a geo. DE-STORAGE measures German storage demand
+# against the SAME anchor as seasonality-de.json, so its levels are directly
+# comparable to the rest of the German basket — which is the only way to answer
+# "is storage actually bigger than what we already sell" rather than "is storage
+# big on its own scale".
+MARKET_GEO = {"DE-STORAGE": "DE"}
 MARKET_BATCHES = {
     "GB": [
         # Products a UK winter has and a German one does not. `heated airer`
@@ -124,6 +130,26 @@ MARKET_BATCHES = {
         # transfer even when the appliance does.
         ["draught excluder", "electricity price cap", "condensation"],
     ],
+    # German balcony storage (2026-09-17). The site has carried twelve
+    # Balkonkraftwerk/Balkonspeicher pages since before the August downgrade and
+    # has never once measured the category against its own shelf — there is not
+    # a single balkon/speicher/solar term in seasonality-de.json. Anchored on
+    # heizlüfter so these levels sit on the same scale as the thirty terms
+    # already in that file, which is the only way to answer "is this bigger than
+    # what we already sell".
+    #
+    # EcoFlow is deliberately absent. Owner instruction 2026-08-28, restated
+    # 2026-09-17: the brand is never recommended here, so it is not measured as
+    # a candidate either.
+    "DE-STORAGE": [
+        ["balkonkraftwerk", "balkonspeicher", "stromspeicher"],
+        ["balkonkraftwerk speicher", "steckersolar", "solaranlage balkon"],
+        # The tenancy angle: the owner's point is that the 2024 law made this a
+        # renter's decision rather than a landlord's. If that is real demand it
+        # shows up in these three.
+        ["balkonkraftwerk mieter", "balkonkraftwerk erlaubnis", "balkonkraftwerk anmelden"],
+        ["anker solix", "zendure", "marstek"],
+    ],
 }
 
 
@@ -133,6 +159,7 @@ def market(geo):
     from trendspy import Trends
     import pandas as pd
     anchor = MARKET_ANCHOR[geo]
+    real_geo = MARKET_GEO.get(geo, geo)
     tr = Trends()
     series, errors = {}, []
     for i, batch in enumerate(MARKET_BATCHES[geo]):
@@ -140,7 +167,7 @@ def market(geo):
             time.sleep(GAP_S)
         terms = [anchor] + batch if anchor not in batch else batch
         try:
-            df = tr.interest_over_time(terms, geo=geo, timeframe=TIMEFRAME)
+            df = tr.interest_over_time(terms, geo=real_geo, timeframe=TIMEFRAME)
             for c in df.columns:
                 if c != "isPartial":
                     series[c] = df[c]
@@ -166,7 +193,8 @@ def market(geo):
                      "win_over_sep": round(winter / sep, 2) if sep else None})
     rows.sort(key=lambda r: -r["peak"])
     path = os.path.join(ROOT, "data", f"seasonality-{geo.lower()}.json")
-    doc = {"fetched": datetime.now(timezone.utc).strftime("%Y-%m-%d"), "geo": geo,
+    doc = {"fetched": datetime.now(timezone.utc).strftime("%Y-%m-%d"), "geo": real_geo,
+           "basket": geo,
            "timeframe": TIMEFRAME, "anchor": anchor,
            "scale_note": ("One market, its own language, every batch repeating the anchor "
                           "so the levels are comparable to each other. NOT comparable to "
