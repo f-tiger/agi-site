@@ -2733,3 +2733,45 @@ luftentfeuchter-zieht-kein-wasser / heizkosten-senken-als-mieter。浏览器实�
 
 **方法论教训(比这一页更值钱)**:**会话仪式的第②步不是形式**。我用 Trends + D1 摸了三轮,
 而这条信号一直躺在每天自动生成的摘要第一屏里。**下一轮开场先打开 demand-digest,再动手。**
+
+### 但「gaps 31」不是 31 个机会——逐条查完是 0 个(2026-09-17,紧接上一节)
+
+上一节让我打开了需求队列,于是顺手把 31 条 gap 逐条查了一遍。**结论比那一页更该记住:
+今天这 31 条里,没有一条是「站内没有、该建、能建」的页。** 下一轮不要照着数字去建 31 页。
+
+**分层(全部机检,`v` 是 Google 增长值不是搜索量)**:
+
+| 层 | 条数 | 内容 |
+|---|---|---|
+| 站外品类 | **20** | kaffeevollautomat ×7 · matratze/bett/boxspring ×8 · staubsauger/saugwischer/saugroboter ×4 · pool matratze |
+| 品牌/零售商词 | **7** | knebel infrarotheizung 36 000 · dreo solaris slim h3 29 250 · bonaura luftentfeuchter 19 850 · anker solix ×2 · obi klimaanlage mobil · solarkon |
+| 其余 | **4** | infrarotheizung werkstatt 30 750 · stromsparender heizlüfter 15 000 · balkonkraftwerk nicht angemeldet strafe 100 · balkonkraftwerk registrieren 60 |
+
+- **20 条站外**:与 09-07 / 09-15 两次的判定一致(零权重孤儿页、niche 外),不再重议。
+- **7 条品牌词**:`bonaura` 09-11 已按「我一无所知的牌子不推荐 = 编造」挡下,`knebel` / `dreo` /
+  `solarkon` 同类;`obi` 是零售商,本站没有它的联盟关系。**这一整层受本站既有规则约束,不是选题池。**
+- **剩下 4 条里,最大的两条是测量假象,不是缺口**(下面是本节真正的产出)。
+
+**① `infrarotheizung werkstatt`(v=30 750)——页面存在,匹配器看不见它。**
+`infrarotheizung-garage.html` 正文出现 **Werkstatt 8 次**,但**在匹配器读的那个窗口里出现 0 次**。
+`tools/autopilot/pagemap.py` 的 `page_index()` 只取 title+h1+desc(权重 ×3)**加正文前 4 000 字符**;
+eco 的可见正文以导航 + 面包屑开头,4 000 字符基本只够覆盖开篇,那 8 个 Werkstatt 全在窗口下面。
+
+**② `stromsparender heizlüfter`(v=15 000)——德语词形变化直接打穿匹配。**
+`heizluefter-stromsparend.html` 在窗口内有 **`stromsparend` 5 次**,而查询词元是 **`stromsparender`**;
+`demand.py` 的打分是 `w in tok` 的**逐字串命中**,两者不相等 → hit 1/2 → 0.5 < 0.60 → 记成 gap。
+**这个站的标题用的是原形,而德国人搜的是变格形——这类假 gap 会一直复现。**
+
+**③ 两条注册词(v=100 / 60)**:今天上线的 `balkonkraftwerk-mieter-recht.html` 已写明
+Marktstammdatenregister 注册义务保留、并有对应 FAQ(但没写「怎么注册」的步骤,也没写未注册的罚则);
+**v=100/60 与上面两条的 30 750 / 15 000 不在一个量级,不值得为它单独出页。**
+
+**不要顺手去「修」这个匹配器。** `page_index()` 的 docstring 写着:整页 tokenise **试过了**,
+结果是「页脚链接里出现一次那个词」就算命中。窗口是**已知取舍**,不是疏忽;词形归并(stemming)
+对德语复合词同样有把 `luftentfeuchter` 和 `luftbefeuchter` 归到一起的风险——那会比现在糟得多。
+**纪律改为读法**:`match < 0.60` 只说明「**标题与开篇**没有接住这个词」,不说明站内没有这一页。
+**把一条 gap 当成新页选题之前,先 grep 全站正文**;若正文已经答了,真正的动作是
+**把那个词形写进标题/首屏**(这属于「优化」槽,不是「探索」槽),而不是再建一页。
+
+**这三条合起来解释了 `gaps 31 / covered 31` 这个看起来很大的数字**:它量的是标题面的覆盖,
+不是内容面的覆盖。**下一轮开场仍然先读 demand-digest(上一节的教训不变),但读到 gaps 时按上面这条读法走。**

@@ -410,6 +410,13 @@ owner 决策卡、事实表)。
   28 天 7 条**(供给侧)。问题不是测不到,是测到了薄然后照建。
 - **现在一页读完**:`data/autopilot/demand-digest.md`(零 AI,随 autopilot 每日生成,带日期与 STALE)。
   **任何选题讨论先打开它。**
+- **`gaps` 的读法(2026-09-17,逐条核完 eco 那 31 条之后补;适用全舰队)**:`match < 0.60` 量的是
+  **标题与开篇**有没有接住这个词,**不是站内有没有这一页**。两个已核实的结构原因:①`pagemap.py`
+  只读 title+h1+desc 加**正文前 4 000 字符**(eco 的 `infrarotheizung werkstatt` v=30 750 因此成了 gap,
+  而那页正文写了 8 次 Werkstatt);②`demand.py` 是**逐字串命中**,德语变格直接打穿
+  (`stromsparender` ≠ 页面上的 `stromsparend`)。**把 gap 当新页选题之前先 grep 全站正文**;
+  已经答了的,动作是把那个词形写进标题(优化槽),不是再建一页。**别顺手去改匹配器**——
+  整页 tokenise 试过并被否掉(页脚出现一次就命中),词形归并对德语复合词风险更大。
 - **本会话对 Reddit 双向封死**(沙箱 000 + 搜索工具被 reddit.com 拒绝):**原帖只有 runner 与 owner 浏览器能读**,
   别假装读过。**Reddit 两个源已接进雷达**(求做板块 r/SomebodyMakeThis、r/AppIdeas;垂直板块按站 `VERTICAL`
   配置 + 14 天**重现计数** `reddit_recurring`,同一问题 ≥2 个不同日期才算需求;公开 JSON,只读;**机器永不发帖**);
