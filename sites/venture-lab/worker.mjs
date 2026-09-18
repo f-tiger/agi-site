@@ -1,7 +1,7 @@
 import {schema} from './schema.mjs';
 import experiments from './experiments.json' with {type:'json'};
 const ready=new WeakMap(),pruned=new WeakMap();
-async function initialize(db){if(!ready.has(db))ready.set(db,db.exec(schema).catch(e=>{ready.delete(db);throw e;}));await ready.get(db);const today=new Date().toISOString().slice(0,10);if(pruned.get(db)!==today){await db.prepare("DELETE FROM venture_events WHERE day < date('now','-34 days')").run();pruned.set(db,today);}}
+async function initialize(db){if(!ready.has(db))ready.set(db,db.batch(schema.map(sql=>db.prepare(sql))).catch(e=>{ready.delete(db);throw e;}));await ready.get(db);const today=new Date().toISOString().slice(0,10);if(pruned.get(db)!==today){await db.prepare("DELETE FROM venture_events WHERE day < date('now','-34 days')").run();pruned.set(db,today);}}
 const routes=new Map(Object.entries(experiments).map(([id,x])=>[x.host,id]));
 const events=new Set(['visit','start','complete','export','rfq_export','offer','interest','research_none','research_once','research_repeat','agent_start','agent_complete','agent_export','agent_draft','agent_download','agent_interest','agent_none','agent_once','agent_repeat']);
 const sources=new Set(['direct','bpj','learn','eco','agi']);
