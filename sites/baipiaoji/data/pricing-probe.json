@@ -1,0 +1,267 @@
+{
+ "generated": "2026-09-18",
+ "env": "runner",
+ "note": "付费档缺口的抓取探针。只做发现与取证，绝不写事实：任何数字仍须经 scripts/limits-edit.mjs 两步核实后才进 tools.json。state=ready 表示该 URL 当天 200 且页面上有像价目表的价格段，不表示数字已被核实。每行的 env 是抓取时的网络环境：sandbox 行的 blocked 很可能只是会话沙箱出网被拒，不能当作「这家没有定价页」，只有 runner 行的 blocked 才值得当结论。",
+ "gap_total": 108,
+ "batch": [
+  "kimi",
+  "feishu-miaoji",
+  "haiper",
+  "fastgpt",
+  "quillbot",
+  "bolt",
+  "canva",
+  "consensus"
+ ],
+ "cursor": "consensus",
+ "summary": {
+  "ready": 2,
+  "empty": 3,
+  "blocked": 3,
+  "probed_total": 8
+ },
+ "tools": {
+  "kimi": {
+   "slug": "kimi",
+   "name": "Kimi（月之暗面）",
+   "cat": "chat",
+   "reach": 20,
+   "probed": "2026-09-18",
+   "env": "runner",
+   "state": "empty",
+   "tried": [
+    {
+     "url": "https://kimi.moonshot.cn/pricing",
+     "status": 200,
+     "bytes": 477575,
+     "tokens": 0
+    },
+    {
+     "url": "https://kimi.moonshot.cn/price",
+     "status": 200,
+     "bytes": 477575,
+     "tokens": 0
+    },
+    {
+     "url": "https://kimi.moonshot.cn/plans",
+     "status": 200,
+     "bytes": 477575,
+     "tokens": 0
+    }
+   ],
+   "best": {
+    "url": "https://kimi.moonshot.cn/pricing",
+    "tokens": 0,
+    "excerpt": ""
+   }
+  },
+  "feishu-miaoji": {
+   "slug": "feishu-miaoji",
+   "name": "飞书妙记",
+   "cat": "office",
+   "reach": 11,
+   "probed": "2026-09-18",
+   "env": "runner",
+   "state": "empty",
+   "tried": [
+    {
+     "url": "https://www.feishu.cn/pricing",
+     "status": 200,
+     "bytes": 4577,
+     "tokens": 0
+    },
+    {
+     "url": "https://www.feishu.cn/price",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://www.feishu.cn/plans",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    }
+   ],
+   "best": {
+    "url": "https://www.feishu.cn/pricing",
+    "tokens": 0,
+    "excerpt": ""
+   }
+  },
+  "haiper": {
+   "slug": "haiper",
+   "name": "Haiper",
+   "cat": "video",
+   "reach": 11,
+   "probed": "2026-09-18",
+   "env": "runner",
+   "state": "blocked",
+   "tried": [
+    {
+     "url": "https://haiper.ai/pricing",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://haiper.ai/price",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://haiper.ai/plans",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    }
+   ],
+   "best": null
+  },
+  "fastgpt": {
+   "slug": "fastgpt",
+   "name": "FastGPT",
+   "cat": "agent",
+   "reach": 3,
+   "probed": "2026-09-18",
+   "env": "runner",
+   "state": "ready",
+   "tried": [
+    {
+     "url": "https://fastgpt.cn/pricing",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://fastgpt.cn/price",
+     "status": 200,
+     "bytes": 140716,
+     "tokens": 3
+    }
+   ],
+   "best": {
+    "url": "https://fastgpt.cn/price",
+    "tokens": 3,
+    "excerpt": "Tiếng Việt 🇹🇭 ไทย 🇮🇩 Bahasa Indonesia 🇲🇾 Bahasa Melayu 定价 选择更适合你的版本 免费使用或升级更高的套餐 云服务 私有部署 按月 按年 支付10个月，畅享一年！ 免费版 ¥0/月 核心功能免费试用 100 AI 积分 600 组知识库索引 1 个团队成员 10 个 Agent 3 个 知识库 30 天对话记录保留 30 QPM 升级套餐 基础版 ¥99/月 解锁 FastGPT 完整功能 4000 AI 积分 6000 组知识库索引 5 个团队成员 50 个 Agent 30 个知识库 180 天对话记录保留 300 QPM 站点同步最大 500 页 48 小时工单支持响应 升级套餐 高级版 最受欢迎 ¥599/月 适合企业级生产工具 25000 AI 积分 36000 组知识库索引 50 个团队成员 200 个 Agent 100 个知识库 360 天对话记录保留 720 天团队操作日志记录 1500 QPM 站点同步最大 2000 页 24 小时工单支持响应 3 个应用备案 升级套餐 定制版 定制计费 助力中大型企业构建核心竞争力 优先深度技术支持 弹性资源配置 安全可控 专属客户经理 联系商务 FAQ 常见问题 关于套餐、AI 积分和资源限制的常见问题 是否切换订阅套餐？ 在哪里查看已订阅的套餐？ 什么是AI积分？ AI积分会过期么？ 知识库存储怎么计算？ 知识库索引什么时候会减少？ 额外资源包可以叠加么？ QPM 是什么？ 一个月,一年具体是多长时间？ 免费版数据会清除么？"
+   }
+  },
+  "quillbot": {
+   "slug": "quillbot",
+   "name": "QuillBot",
+   "cat": "writing",
+   "reach": 3,
+   "probed": "2026-09-18",
+   "env": "runner",
+   "state": "blocked",
+   "tried": [
+    {
+     "url": "https://quillbot.com/pricing",
+     "status": 403,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://quillbot.com/price",
+     "status": 403,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://quillbot.com/plans",
+     "status": 403,
+     "bytes": 0,
+     "tokens": 0
+    }
+   ],
+   "best": null
+  },
+  "bolt": {
+   "slug": "bolt",
+   "name": "Bolt.new",
+   "cat": "coding",
+   "reach": 2,
+   "probed": "2026-09-18",
+   "env": "runner",
+   "state": "ready",
+   "tried": [
+    {
+     "url": "https://bolt.new/pricing",
+     "status": 200,
+     "bytes": 89993,
+     "tokens": 8
+    }
+   ],
+   "best": {
+    "url": "https://bolt.new/pricing",
+    "tokens": 8,
+    "excerpt": "areers Pricing AI for Small Business → Custom apps for your business, built in an afternoon — no code, no developer, no $100K project. Top Use Cases AI App Builder AI Website Builder SaaS Dev Prototyping Business Type Small Business Enterprise Bolt Templates → Production-ready starting points — dashboards, storefronts, portfolios, and more. Fork one and make it yours. Support Community Help Center Security &amp; Trust Build and Learn Blog Templates Get Started Get Started Sign in Pricing Start for free. Upgrade as you go. Monthly Yearly Save up to 28% with yearly billing Free $0 Get started You get: Public and private projects 300K tokens daily limit 1M tokens per month Bolt branding on webs"
+   }
+  },
+  "canva": {
+   "slug": "canva",
+   "name": "Canva 可画",
+   "cat": "image",
+   "reach": 2,
+   "probed": "2026-09-18",
+   "env": "runner",
+   "state": "blocked",
+   "tried": [
+    {
+     "url": "https://www.canva.cn/pricing",
+     "status": 403,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://www.canva.cn/price",
+     "status": 403,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://www.canva.cn/plans",
+     "status": 403,
+     "bytes": 0,
+     "tokens": 0
+    }
+   ],
+   "best": null
+  },
+  "consensus": {
+   "slug": "consensus",
+   "name": "Consensus",
+   "cat": "search",
+   "reach": 2,
+   "probed": "2026-09-18",
+   "env": "runner",
+   "state": "empty",
+   "tried": [
+    {
+     "url": "https://consensus.app/pricing",
+     "status": 200,
+     "bytes": 52461,
+     "tokens": 0
+    },
+    {
+     "url": "https://consensus.app/price",
+     "status": 403,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://consensus.app/plans",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    }
+   ],
+   "best": {
+    "url": "https://consensus.app/pricing",
+    "tokens": 0,
+    "excerpt": ""
+   }
+  }
+ }
+}
