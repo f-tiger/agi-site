@@ -6,7 +6,7 @@ export const SAMPLE=serializeCSV(HEADERS,[
 {Type:'PRODUCT',Identification:'1003',Field:'title',Locale:'es',Market:'',Status:'','Default content':'Cedar desk lamp, 12 W','Translated content':''},
 {Type:'PRODUCT',Identification:'1004',Field:'title',Locale:'de',Market:'',Status:'','Default content':'Cedar linen cushion','Translated content':'Cedar Leinenkissen'},
 {Type:'PRODUCT',Identification:'1005',Field:'body_html',Locale:'de',Market:'',Status:'','Default content':'<p>Cedar is our fictional sample brand.</p>','Translated content':''}
-]);
+]).replace(/\r\n/g,'\n'); // Textarea values normalize newlines to LF.
 let doc=null,results=[],config={available:false},job=null,poll=null;
 function say(text,error=false){$('message').textContent=text;$('message').className='message'+(error?' error':'');}
 function download(name,content,type='text/csv;charset=utf-8'){const a=document.createElement('a'),url=URL.createObjectURL(new Blob([content],{type}));a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
