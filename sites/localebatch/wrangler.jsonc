@@ -1,0 +1,11 @@
+{
+  "name": "agi-localebatch-pilot",
+  "main": "src/worker.mjs",
+  "compatibility_date": "2026-09-18",
+  "assets": {"directory":"./site","binding":"ASSETS","run_worker_first":["/api/*"],"html_handling":"drop-trailing-slash","not_found_handling":"none"},
+  "routes": [{"pattern":"localebatch.agiscorecard.com","custom_domain":true}],
+  "workers_dev": true,
+  "vars": {"SALES_ENABLED":"false","QUALITY_REVIEWED":"false","SITE_ORIGIN":"https://localebatch.agiscorecard.com"}
+  // The public checker requires no D1, queue, payment secrets or cron.
+  // Add paid infrastructure only after its separate live integration checks.
+}

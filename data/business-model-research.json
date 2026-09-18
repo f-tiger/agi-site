@@ -1,0 +1,258 @@
+{
+  "version": 1,
+  "research_date": "2026-09-18",
+  "status": "desk_research_not_customer_validation",
+  "cases": [
+    {
+      "id": "starter-story",
+      "model": "创业案例/媒体",
+      "name": "Starter Story",
+      "url": "https://www.starterstory.com/",
+      "evidence_type": "官方首页",
+      "finding": "免费项目数据库与邮件订阅；合作注册机制可见",
+      "limitation": "具体当前收入未知，案例中项目收入不是平台收入",
+      "retrieved_at": "2026-09-18"
+    },
+    {
+      "id": "openvc",
+      "model": "融资工作流",
+      "name": "OpenVC",
+      "url": "https://www.openvc.app/pricing",
+      "evidence_type": "官方价格",
+      "finding": "90% 功能免费；Premium $99/月或 $299/年",
+      "limitation": "不证明订阅规模；融资周期可能影响续费",
+      "retrieved_at": "2026-09-18"
+    },
+    {
+      "id": "dealroom",
+      "model": "创业数据库",
+      "name": "Dealroom",
+      "url": "https://dealroom.co/pricing/",
+      "evidence_type": "官方价格",
+      "finding": "Premium 起价 €12,600/年，3 席位",
+      "limitation": "企业报价不是小站可直接复制的客单价",
+      "retrieved_at": "2026-09-18"
+    },
+    {
+      "id": "failory",
+      "model": "创业媒体/赞助",
+      "name": "Failory",
+      "url": "https://www.passionfroot.me/failory",
+      "evidence_type": "官方赞助店",
+      "finding": "标价 $700 原生广告、$350 周更链接",
+      "limitation": "标价不等于成交；主页与店铺订阅者口径不一致",
+      "retrieved_at": "2026-09-18"
+    },
+    {
+      "id": "trends-vc",
+      "model": "研究订阅/社群",
+      "name": "Trends.vc",
+      "url": "https://join.trends.vc/",
+      "evidence_type": "官方产品",
+      "finding": "短报告引流、研究库和社群付费",
+      "limitation": "价格未可靠读取；持续研究与社群有人工成本",
+      "retrieved_at": "2026-09-18"
+    },
+    {
+      "id": "stock-analysis",
+      "model": "投资信息工具",
+      "name": "Stock Analysis",
+      "url": "https://stockanalysis.com/pro/",
+      "evidence_type": "官方价格/规模自述",
+      "finding": "Pro $9.99/月或 $79/年；公司自述月服务超过500万投资者",
+      "limitation": "非独立流量核验；不能推出财务结果",
+      "retrieved_at": "2026-09-18"
+    },
+    {
+      "id": "boot-dev",
+      "model": "互动项目教育",
+      "name": "Boot.dev",
+      "url": "https://www.boot.dev/blog/news/bootdev-beat-2026-02",
+      "evidence_type": "官方使用量时间序列",
+      "finding": "2025-12 与 2026-01 完成量分别为3158482、4016641",
+      "limitation": "含课次/挑战合计，非去重人数或收入；约27.2%环比不证明单一渠道归因",
+      "retrieved_at": "2026-09-18"
+    },
+    {
+      "id": "roadmap",
+      "model": "开源路径/教育",
+      "name": "roadmap.sh",
+      "url": "https://roadmap.sh/premium",
+      "evidence_type": "官方产品",
+      "finding": "免费学习路径与开源社区承接付费课程/辅导",
+      "limitation": "付费价未读取；注册/活跃称谓混用，不当 MAU",
+      "retrieved_at": "2026-09-18"
+    },
+    {
+      "id": "class-central",
+      "model": "教育聚合/联盟",
+      "name": "Class Central",
+      "url": "https://www.classcentral.com/about",
+      "evidence_type": "官方披露",
+      "finding": "课程聚合与评价；第三方课程注册佣金披露",
+      "limitation": "我们的联盟资格与佣金并未建立",
+      "retrieved_at": "2026-09-18"
+    },
+    {
+      "id": "futurepedia",
+      "model": "工具发现+课程",
+      "name": "Futurepedia",
+      "url": "https://www.futurepedia.io/",
+      "evidence_type": "官方产品",
+      "finding": "工具目录与免费视频/课程通向升级",
+      "limitation": "收费金额与转化未知",
+      "retrieved_at": "2026-09-18"
+    },
+    {
+      "id": "photopea",
+      "model": "浏览器工具",
+      "name": "Photopea",
+      "url": "https://blog.photopea.com/creating-photopea.html",
+      "evidence_type": "历史创始人自述",
+      "finding": "2017记录投入超过4年；产品与反馈积累",
+      "limitation": "历史体量不能作为当前收入；低开发投入快速复制的反证",
+      "retrieved_at": "2026-09-18"
+    },
+    {
+      "id": "smallpdf",
+      "model": "任务工具矩阵",
+      "name": "Smallpdf",
+      "url": "https://smallpdf.com/about",
+      "evidence_type": "官方规模自述",
+      "finding": "从2013单一压缩任务扩到20+工具、24种语言；宣称1亿+月任务",
+      "limitation": "任务数不是用户数/收入，当前增长率未知",
+      "retrieved_at": "2026-09-18"
+    },
+    {
+      "id": "ilovepdf",
+      "model": "批量工具订阅",
+      "name": "iLovePDF",
+      "url": "https://www.ilovepdf.com/pricing",
+      "evidence_type": "官方价格",
+      "finding": "Premium $60/年，折合 $5/月",
+      "limitation": "不能称$5按月扣款；当前收入未知",
+      "retrieved_at": "2026-09-18"
+    },
+    {
+      "id": "alternative-to",
+      "model": "社区比较目录",
+      "name": "AlternativeTo",
+      "url": "https://alternativeto.net/",
+      "evidence_type": "官方产品",
+      "finding": "众包软件替代意见、合作伙伴展示",
+      "limitation": "社区质量维护是成本；展示不证明赞助收入",
+      "retrieved_at": "2026-09-18"
+    },
+    {
+      "id": "acquire",
+      "model": "交易市场",
+      "name": "Acquire",
+      "url": "https://acquire.com/pricing/",
+      "evidence_type": "官方产品",
+      "finding": "付费买家档位、交易发现和支持",
+      "limitation": "卖家与买家双边冷启动；未核清账期不引用具体价",
+      "retrieved_at": "2026-09-18"
+    },
+    {
+      "id": "bannerbear",
+      "model": "工具API",
+      "name": "Bannerbear",
+      "url": "https://www.bannerbear.com/pricing/",
+      "evidence_type": "官方价格",
+      "finding": "$49/月起，1000 API credits 与200 AI credits",
+      "limitation": "额度分开，不推成无限AI或已核当前 MRR",
+      "retrieved_at": "2026-09-18"
+    },
+    {
+      "id": "duolingo",
+      "model": "习惯教育/订阅",
+      "name": "Duolingo",
+      "url": "https://investors.duolingo.com/static-files/3c8277ee-bc94-4f5d-9b77-0db3e46f88b8",
+      "evidence_type": "上市公司季度披露（未经审计）",
+      "finding": "2026Q2 收入 $298.5m，同比18%；净利润$33.2m，同比下降26%",
+      "limitation": "收入增长不等于利润同比增长；APP成熟业务与新小站不同",
+      "retrieved_at": "2026-09-18"
+    }
+  ],
+  "signals": [
+    {
+      "id": "project-gap",
+      "url": "https://www.reddit.com/r/learnprogramming/comments/1vupf5p/how_do_you_go_from_fundamentals_to_building_a/",
+      "problem": "会Python/SQL语法但不会组织完整项目",
+      "inference": "项目练习与验收可能有价值",
+      "counterevidence": "没有付费证据",
+      "evidence_type": "community_anecdote",
+      "retrieved_at": "2026-09-18",
+      "date_limitation": "Relative timestamps from cached pages not treated as exact posting dates"
+    },
+    {
+      "id": "learning-wall",
+      "url": "https://www.reddit.com/r/learnprogramming/comments/1vvzuht/learn_how_to_learn/",
+      "problem": "被动学习无法独立开始",
+      "inference": "分阶段反馈可能改善完成率",
+      "counterevidence": "一对一诉求不等于可规模化或愿付钱",
+      "evidence_type": "community_anecdote",
+      "retrieved_at": "2026-09-18",
+      "date_limitation": "Relative timestamps from cached pages not treated as exact posting dates"
+    },
+    {
+      "id": "login-friction",
+      "url": "https://www.reddit.com/r/software/comments/1wc4elx/i_hate_having_to_sign_in_for_everything/",
+      "problem": "一次简单任务被注册打断",
+      "inference": "首次结果匿名完成",
+      "counterevidence": "不意味着有保存/协作价值时也不注册",
+      "evidence_type": "community_anecdote",
+      "retrieved_at": "2026-09-18",
+      "date_limitation": "Relative timestamps from cached pages not treated as exact posting dates"
+    },
+    {
+      "id": "ocr-free-only",
+      "url": "https://www.reddit.com/r/software/comments/1wdz7g8/looking_for_free_tool_to_take_text_from_image_in/",
+      "problem": "600个文件OCR且明确需要免费",
+      "inference": "批量任务有痛点",
+      "counterevidence": "明确反证消费用户付费能力，不计付费意向",
+      "evidence_type": "community_anecdote",
+      "retrieved_at": "2026-09-18",
+      "date_limitation": "Relative timestamps from cached pages not treated as exact posting dates"
+    },
+    {
+      "id": "quota-capacity",
+      "url": "https://www.reddit.com/r/startups/comments/1w58sn5/increasing_llm_quota_allocation_on_awsgcpazure_as/",
+      "problem": "试点客户被配额与TPM上限卡住",
+      "inference": "团队容量规划和来源变化可能有重复价值",
+      "counterevidence": "社区描述不能当厂商当前规则",
+      "evidence_type": "community_anecdote",
+      "retrieved_at": "2026-09-18",
+      "date_limitation": "Relative timestamps from cached pages not treated as exact posting dates"
+    },
+    {
+      "id": "investor-trust",
+      "url": "https://www.reddit.com/r/startups/comments/1w4gdkp/linkedin_family_office_unsolicited_are_spam_right/",
+      "problem": "判断陌生投资方可信度与适配浪费时间",
+      "inference": "带来源、日期和适配条件的目录",
+      "counterevidence": "不能承诺融资或收集私人联系方式",
+      "evidence_type": "community_anecdote",
+      "retrieved_at": "2026-09-18",
+      "date_limitation": "Relative timestamps from cached pages not treated as exact posting dates"
+    },
+    {
+      "id": "trend-chasing",
+      "url": "https://www.reddit.com/r/startups/comments/1w27m6s/unpopular_opinion_the_rfs_from_yc_is_actually/",
+      "problem": "讨论被热门融资主题带偏",
+      "inference": "以实际客户/渠道约束筛选机会",
+      "counterevidence": "观点分歧，不是代表性市场调查",
+      "evidence_type": "community_anecdote",
+      "retrieved_at": "2026-09-18",
+      "date_limitation": "Relative timestamps from cached pages not treated as exact posting dates"
+    }
+  ],
+  "unknowns": [
+    "current reconciled portfolio revenue",
+    "complete D1 funnel",
+    "willingness to pay for proposed offers",
+    "channel CAC",
+    "paid retention",
+    "verified traffic attribution"
+  ],
+  "priority_evidence": "Analyst judgment for testing, not measured market ranking"
+}

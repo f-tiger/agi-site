@@ -1,0 +1,316 @@
+{
+  "version": 1,
+  "currency": "EUR",
+  "clock": "days_after_first_public_release",
+  "targets": [
+    {
+      "day": 14,
+      "unrelated_paying_pilot_customers": 3,
+      "type": "commercial_validation_goal"
+    },
+    {
+      "day": 60,
+      "required_positive_margin_windows": 1,
+      "net_revenue_30d": 110
+    },
+    {
+      "day": 120,
+      "required_positive_margin_windows": 2,
+      "net_revenue_30d": 1100
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "stress",
+      "commission_per_provider_click": 0.04
+    },
+    {
+      "name": "planning",
+      "commission_per_provider_click": 0.1
+    },
+    {
+      "name": "upside",
+      "commission_per_provider_click": 0.2
+    }
+  ],
+  "experiments": [
+    {
+      "id": "eco-ventilation",
+      "site": "getecoback",
+      "hypothesis": "Problem-led visitors use an indoor/outdoor check and reach a relevant decision guide",
+      "surface": "/lueftungs-check.html",
+      "state": "implemented_draft",
+      "route": "existing_amazon_account_no_page_revenue_attribution",
+      "decision_event": "result",
+      "review_days": 28,
+      "min_qualified_landings": 100,
+      "min_decisions": 10,
+      "min_commerce_clicks": 3,
+      "max_build_hours": 8
+    },
+    {
+      "id": "eco-drying-cost",
+      "site": "getecoback",
+      "hypothesis": "Measured cost per litre attracts owners comparing operation and replacement",
+      "surface": "/entfeuchter-kostenvergleich.html",
+      "state": "implemented_draft",
+      "route": "existing_amazon_account_no_page_revenue_attribution",
+      "decision_event": "result",
+      "review_days": 28,
+      "min_qualified_landings": 100,
+      "min_decisions": 10,
+      "min_commerce_clicks": 3,
+      "max_build_hours": 6
+    },
+    {
+      "id": "eco-climate-retention",
+      "site": "getecoback",
+      "hypothesis": "A local measurement diary creates useful exports and voluntary repeat use",
+      "surface": "/raumklima-protokoll.html",
+      "state": "implemented_draft",
+      "route": "assists_existing_eco_guides",
+      "decision_event": "export",
+      "review_days": 28,
+      "min_qualified_landings": 100,
+      "min_decisions": 5,
+      "min_commerce_clicks": 0,
+      "max_build_hours": 4
+    },
+    {
+      "id": "eco-embed-distribution",
+      "site": "getecoback",
+      "hypothesis": "Housing and energy publishers embed a useful neutral calculator",
+      "surface": "/widgets/lueftungs-check.html",
+      "state": "implemented_draft",
+      "route": "attributed_referrals_to_eco",
+      "decision_event": "external_referral",
+      "review_days": 45,
+      "min_qualified_landings": 50,
+      "min_decisions": 10,
+      "min_commerce_clicks": 1,
+      "max_build_hours": 3
+    },
+    {
+      "id": "tds-collection-budget",
+      "site": "thedollscout",
+      "hypothesis": "A duplicate-risk and fixed-budget planner helps collectors decide before visiting buying guidance",
+      "surface": "/collection-plan",
+      "state": "deferred_after_business_model_reprioritization",
+      "route": "existing_de_us_amazon_accounts_no_page_revenue_attribution",
+      "decision_event": "collection_calc",
+      "review_days": 45,
+      "min_qualified_landings": 100,
+      "min_decisions": 10,
+      "min_commerce_clicks": 3,
+      "max_build_hours": 6
+    },
+    {
+      "id": "bpj-deliverable-workflows",
+      "site": "baipiaoji",
+      "hypothesis": "Step-by-step deliverables convert search visitors into completed tool plans",
+      "surface": "/workflows",
+      "state": "prioritized_for_task_scoping_not_implemented",
+      "route": "free_validation_then_bpj_team_workspace_offer_hypothesis",
+      "decision_event": "workflow_export",
+      "review_days": 28,
+      "min_qualified_landings": 100,
+      "min_decisions": 10,
+      "min_commerce_clicks": 0,
+      "max_build_hours": 4
+    },
+    {
+      "id": "eco-at-heating",
+      "site": "getecoback",
+      "hypothesis": "Austrian visitors reach locally applicable heating and permission guidance",
+      "surface": "/guide/klimaanlage-mietwohnung-oesterreich.html",
+      "state": "existing_measurement_candidate",
+      "route": "existing_amazon_de_account",
+      "decision_event": "qualified_next_step",
+      "review_days": 45,
+      "min_qualified_landings": 100,
+      "min_decisions": 10,
+      "min_commerce_clicks": 3,
+      "max_build_hours": 3
+    },
+    {
+      "id": "eco-heater-operating-budget",
+      "site": "getecoback",
+      "hypothesis": "Heating decisions improve when actual runtime and tariff precede product recommendations",
+      "surface": "/guide/heizkosten-vergleich-rechner.html",
+      "state": "queued",
+      "route": "existing_amazon_de_account",
+      "decision_event": "heizkosten_calc",
+      "review_days": 28,
+      "min_qualified_landings": 100,
+      "min_decisions": 10,
+      "min_commerce_clicks": 3,
+      "max_build_hours": 3
+    },
+    {
+      "id": "incubator-home-energy",
+      "site": "new_candidate",
+      "hypothesis": "A focused appliance operating-cost utility can acquire non-brand search demand",
+      "surface": null,
+      "state": "incubation",
+      "route": "requires_verified_monetization_before_new_domain",
+      "decision_event": "result",
+      "review_days": 45,
+      "min_qualified_landings": 200,
+      "min_decisions": 20,
+      "min_commerce_clicks": 5,
+      "max_build_hours": 4
+    },
+    {
+      "id": "incubator-maintenance",
+      "site": "new_candidate",
+      "hypothesis": "A symptom-to-maintenance decision service generates qualified replacement demand",
+      "surface": null,
+      "state": "incubation",
+      "route": "requires_sources_and_verified_monetization_before_new_domain",
+      "decision_event": "qualified_next_step",
+      "review_days": 45,
+      "min_qualified_landings": 200,
+      "min_decisions": 20,
+      "min_commerce_clicks": 5,
+      "max_build_hours": 4
+    }
+  ],
+  "revenue_definition": "Confirmed affiliate commission + recognized product/service sales, excluding VAT and refunds; cash receipt reported separately. Contribution deducts disjoint operating, acquisition and payment costs; labor and tax remain separate.",
+  "commercial_experiments": [
+    {
+      "id": "brief-paid-pilot",
+      "state": "prototype_retained_secondary_after_landscape_review",
+      "offer": "One source-labelled evidence brief for one property",
+      "price_eur": 59,
+      "billing": "one_time",
+      "delivery_limit_minutes": 45,
+      "review_days": 14,
+      "qualified_conversations_goal": 10,
+      "unrelated_paying_customers_goal": 3,
+      "repeat_requests_goal": 2,
+      "evidence": "Reddit client-report pain + existing paid reporting products; own demand not validated"
+    },
+    {
+      "id": "brief-recurring",
+      "state": "deferred_pending_comparative_validation",
+      "offer": "Repeat metric comparison and report workflow",
+      "price_eur": 29,
+      "billing": "monthly",
+      "gate": "At least 3 pilot customers and 2 repeat requests; no subscription currently sold"
+    },
+    {
+      "id": "climate-white-label",
+      "state": "free_embed_ready_paid_offer_unbuilt",
+      "offer": "Customized calculation module for housing/energy publishers",
+      "price_eur": 19,
+      "billing": "monthly",
+      "gate": "At least 3 independent embed users requesting paid customization; no demand inferred from widget existence"
+    },
+    {
+      "id": "quota-change-data",
+      "state": "discovery",
+      "offer": "Source-linked free-tier and licence change digest",
+      "price_eur": 39,
+      "billing": "monthly",
+      "gate": "3 developer teams paying for maintained data, with verified reuse rights and sustainable refresh cost"
+    },
+    {
+      "id": "qualified-energy-leads",
+      "state": "partner_needed",
+      "offer": "Opt-in qualified referral to a local provider",
+      "price_eur": null,
+      "billing": "contracted_lead",
+      "gate": "Verified provider agreement and acceptance definition before collecting or sending any leads"
+    },
+    {
+      "id": "bpj-team-workspace",
+      "site": "baipiaoji",
+      "offer": "Reusable source-linked AI tool plans for client delivery",
+      "price_eur": 19,
+      "billing": "monthly",
+      "max_build_hours": 12,
+      "review_days": 28,
+      "min_qualified_landings": 100,
+      "min_task_completions": 20,
+      "min_target_repeat_users": 5,
+      "min_paying_customers": 3,
+      "min_paid_renewals": 2,
+      "max_support_minutes_per_customer_month": 15,
+      "gate": "First validate 100 qualified landings, 20 completed plans and 5 target repeat users. Commercial replication requires 3 unrelated paying customers, 2 actual next-cycle paid renewals, support <=15 min/customer/month and positive contribution. No paid offer implemented.",
+      "state": "retained_discovery_after_transaction_review",
+      "evidence": "Comparative desk research and community anecdotes; own paid demand unknown",
+      "definition_source": "docs/business-model-landscape-2026-09-18.md"
+    },
+    {
+      "id": "learn-project-pack",
+      "site": "learn",
+      "offer": "Complete a first Python/SQL data project with reusable exercises and acceptance checks",
+      "price_eur": 29,
+      "billing": "one_time",
+      "max_build_hours": 8,
+      "review_days": 28,
+      "min_project_starters": 50,
+      "min_project_completions": 15,
+      "min_qualified_offer_views": 20,
+      "min_paying_customers": 3,
+      "min_second_project_buyers": 2,
+      "max_support_minutes_per_buyer": 20,
+      "gate": "Validate 50 starters and 15 independent completions; 20 qualified price exposures and 3 actual buyers. Replicate after 2 customers buy a second project, support <=20 min/buyer and positive contribution. One-time sales are not MRR.",
+      "state": "retained_discovery_after_transaction_review",
+      "evidence": "Comparative desk research and community anecdotes; own paid demand unknown",
+      "definition_source": "docs/business-model-landscape-2026-09-18.md"
+    },
+    {
+      "id": "venture-watchlist",
+      "site": "goldrush/agiscorecard",
+      "offer": "Source-linked commercial changes and exportable history for a narrow competitive research task",
+      "price_eur": 49,
+      "billing": "monthly",
+      "max_build_hours": 6,
+      "review_days": 28,
+      "max_initial_sources": 20,
+      "required_refresh_cycles": 2,
+      "min_qualified_sample_users": 10,
+      "min_paying_customers": 3,
+      "min_paid_renewals": 2,
+      "max_refresh_hours_week": 2,
+      "gate": "Validate 10 users with a repeat research job, 3 paying teams, 2 actual next-cycle renewals; <=2 maintenance hours/week across two refresh cycles, verified reuse rights and positive contribution. Failed source retrieval remains unknown.",
+      "state": "retained_discovery_after_transaction_review",
+      "evidence": "Comparative desk research and community anecdotes; own paid demand unknown",
+      "definition_source": "docs/business-model-landscape-2026-09-18.md"
+    },
+    {
+      "id": "localebatch-paid-batch",
+      "site": "localebatch",
+      "state": "implemented_local_prototype_sales_closed",
+      "offer": "Third-language Shopify product-title/search-snippet translation CSV batch with import checks",
+      "price_eur": 19,
+      "billing": "one_time_per_fixed_batch",
+      "max_rows": 500,
+      "max_characters": 100000,
+      "review_days": 28,
+      "min_qualified_landings": 100,
+      "min_qualified_offer_views": 20,
+      "min_unrelated_paying_customers": 3,
+      "min_independent_repeat_buyers": 2,
+      "gate": "Real provider quality review, Cloudflare and Stripe staging, usable merchant imports and positive contribution including labor. Do not call mocked tests market validation.",
+      "definition_source": "docs/transaction-business-three-rounds-2026-09-18.md"
+    },
+    {
+      "id": "ai-high-usage-service",
+      "state": "retained_discovery_not_implemented",
+      "offer": "Operational value for AI customers spending around EUR 1000/month, with an explicit platform fee",
+      "price_eur": null,
+      "billing": "conditional_platform_fee",
+      "gate": "Confirm three unrelated high-usage buyers, exact supplier/resale/payment terms and retained margin; no gateway or Web3 collection is live.",
+      "definition_source": "docs/transaction-business-three-rounds-2026-09-18.md"
+    }
+  ],
+  "strategy_review": {
+    "date": "2026-09-18",
+    "source": "docs/transaction-business-three-rounds-2026-09-18.md",
+    "previous_source": "docs/business-model-landscape-2026-09-18.md",
+    "status": "three_desk_and_code_rounds_complete_no_live_sales"
+  },
+  "operating_surplus_definition": "Net revenue less nonoverlapping payment, provider, acquisition, labor-valued delivery/support/acquisition, fixed maintenance and amortized setup. Income tax excluded; distinct from cash and revenue."
+}
