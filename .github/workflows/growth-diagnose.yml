@@ -1,0 +1,36 @@
+name: Read-only Cloudflare growth diagnosis
+
+# One branch only; no production deployment and no scheduled spend.
+on:
+  push:
+    branches: [codex/growth-reset-2026-09-18]
+    paths:
+      - tools/fleet/cloudflare_diagnose.py
+      - .github/workflows/growth-diagnose.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  aggregate:
+    if: github.repository == 'f-tiger/agi-site'
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Read fixed aggregate queries
+        env:
+          CLOUDFLARE_API_TOKEN_ZONE: ${{ secrets.CLOUDFLARE_API_TOKEN_ZONE }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: python3 tools/fleet/cloudflare_diagnose.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cloudflare-growth-diagnosis
+          path: artifacts/growth-diagnosis.json
+          retention-days: 7
+          if-no-files-found: error
