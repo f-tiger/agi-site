@@ -302,6 +302,26 @@ jobs:
           check "https://getecoback.com/en/guide/electric-heater-spain-apartment.html" "2.5–4 kWh of heat"
           check "https://getecoback.com/en/guide/electric-heater-spain-apartment.html" "Circular 3/2020"
           check "https://getecoback.com/en/guide/mould-italian-apartment-winter.html" "73 %"
+          # DACH round (2026-09-18). Same principle: assert the sentence each page
+          # exists for. The Austrian PV page without its 0.8 kW definition, the
+          # humidity hub without the 48 % figure, the heater page without the
+          # 8.7 A arithmetic, the two troubleshooting pages without their one
+          # safety line — each would be a page that renders and misleads.
+          check "https://getecoback.com/guide/balkonkraftwerk-oesterreich.html" "0,8 kW"
+          check "https://getecoback.com/guide/balkonkraftwerk-oesterreich.html" "keinen eigenen Zählpunkt"
+          check "https://getecoback.com/guide/luftfeuchtigkeit-senken.html" "48 Prozent"
+          check "https://getecoback.com/guide/heizluefter-schaltet-sich-aus.html" "8,7 A"
+          check "https://getecoback.com/guide/luftentfeuchter-stinkt.html" "Nichts in den Tank"
+          check "https://getecoback.com/guide/luftbefeuchter-weisser-staub.html" "Verdunster mit Hygrostat"
+          # The humidifier page must never carry the dehumidifier shelf (the
+          # opposite appliance), and no storage page may carry the vetoed brand.
+          body=$(curl -sL --max-time 20 "https://getecoback.com/guide/luftbefeuchter-weisser-staub.html" || true)
+          if echo "$body" | grep -q "MeacoDry"; then echo "::error::white-dust page carries a dehumidifier shelf — context override lost"; fail=1; else echo "OK white-dust page sells no dehumidifier"; fi
+          # The three German tenancy pages now point Austrian readers to Austrian
+          # law; losing that pointer would silently return them to § 554 BGB.
+          for u in klimaanlage-mietwohnung balkonkraftwerk-mieter-recht heizkosten-senken-als-mieter; do
+            check "https://getecoback.com/guide/$u.html" "oesterreich.html"
+          done
           # Shelf shape: the Spanish page is a heater page and the Italian page a
           # humidity page. The misfile this site has shipped four times is a page
           # falling through to "ac" and carrying a portable-AC sizer, so assert the

@@ -1131,6 +1131,39 @@
    "lose": "IT 英语读者太少(28d 4 pv)撑不起冬季页 → 意大利只维护制冷版;/it/ 语言版仍按 10-27 那条线单独结算",
    "source": "2026-09-18:`seasonality-by-country.json` IT:**muffa 31,0(1 月)** 是意大利第一词,压过 condizionatore portatile 30,6;站内对 IT 读者只有制冷页。页面全部数字由 Magnus 公式现算(20 °C/50 % → 14 °C 墙面 73 %;14 °C 墙面只需室内 48 % 即到 70 %),复用站内 taupunkt_check 计算器;意大利插座 Type L/F 的差别如实写明。**不建 /it/ 语言版**(eco-it-pilot-1027 未结)。",
    "status": "open"
+  },
+  {
+   "id": "eco-dach-troubleshoot-1116",
+   "site": "getecoback",
+   "due": "2026-11-16",
+   "metric": "三张冬季故障页(/guide/luftentfeuchter-stinkt · heizluefter-schaltet-sich-aus · luftbefeuchter-weisser-staub)28 天真人 pv 与搜索引荐合计;t0(2026-09-18)= 0 / 0",
+   "threshold": "三页合计搜索引荐 ≥25/28d(既有故障页每页均值 8 × 3 ≈ 24)或合计真人 pv ≥40",
+   "win": "「故障排查页型」跨簇成立(不只是空调簇)→ 按同形状补 balkonkraftwerk/wechselrichter 与 infrarotheizung 的故障页",
+   "lose": "128 倍页效只是空调簇 + 夏季的特例 → 停止按页型铺页,冬季簇回到季节性单词选题",
+   "source": "2026-09-17 D1:troubleshooting 形 4 页 = 32 次搜索访问/28d,评测形 16 页 = 1 次(每页 128 倍)。Trends 对这三个故障短语全部 ≈0(5 年 interest,anchor heizlüfter),与手册「故障长尾 Trends 结构上测不到,信第一方」一致——所以这是**页型赌注**,不是搜索量赌注。三页零编造:物理 + 算术(2 000 W ÷ 230 V = 8,7 A;16 A × 230 V = 3 680 W)、站内既有规则(单一清洁剂、不混氯与酸、不写浓度),没有型号级断言。",
+   "status": "open"
+  },
+  {
+   "id": "eco-luftfeuchtigkeit-hub-1116",
+   "site": "getecoback",
+   "due": "2026-11-16",
+   "metric": "/guide/luftfeuchtigkeit-senken.html 28 天真人 pv、搜索/AI 引荐、它向 30 张湿度簇页的站内跳转;t0(2026-09-18)= 0",
+   "threshold": "真人 pv ≥25/28d 或 ≥1 次 AI 引荐或 ≥3 次搜索引荐",
+   "win": "「簇入口判定页」成立 → 给取暖簇建同形态入口(heizen ohne zentralheizung / heizkosten senken 总览)",
+   "lose": "通用信息词在本域排不上(与新页冷启动一致)→ 不再建簇入口页,湿度簇只靠具体问题页",
+   "source": "2026-09-18:rising `luftfeuchtigkeit senken` 46 700(luftentfeuchter 种子),**autopilot 把它放进了 offtopic_dropped**——分类器把本站核心词判成站外,已记进手册;5 年绝对量 7,0(anchor 当周 100,heizlüfter 九月均值 24)= 中等、10 月峰、evergreen。页面全部数字 Magnus 现算并复核:室外 0 °C/90 % → 20 °C 时 24 %;5/80 → 30 %;10/90 → 47 %;15/90 → 66 %;25/70 → 95 %(夏季开窗反而更湿);40 m³/18 °C 60→50 % = 61 g。",
+   "status": "open"
+  },
+  {
+   "id": "eco-at-balkon-1116",
+   "site": "getecoback",
+   "due": "2026-11-16",
+   "metric": "/guide/balkonkraftwerk-oesterreich.html 28 天真人 pv(按国家)、搜索/AI 引荐;t0(2026-09-18)= 0;AT 全站 26 pv/28d。**峰值在 3–4 月**(AT balkonkraftwerk 61,4/3 月;anmelden 18,0/4 月;800 watt 23,0/6 月),11-16 只测早期信号",
+   "threshold": "≥1 次外部引荐(搜索或 AI)或该页真人 pv ≥8/28d;春季读数并入 eco-storage-spring-0415",
+   "win": "AT 法条页型(RIS 一手 + 与 DE 对照表)成立 → 按同法做 AT 的 Heizkostenzuschuss(等 oesterreich.gv.at 恢复)与 CH 的对应页",
+   "lose": "奥地利读者不需要奥地利专页 → 只维护三张德语页上的指路框,不再单独出 AT 页",
+   "source": "2026-09-18:RIS 实抓 ElWG(BGBl. I Nr. 91/2025,Fassung 18.09.2026):§ 7 Z 78 Kleinsterzeugungsanlage = 0,8 kW an der Übergabestelle;§ 77 无 eigener Zählpunkt(除非申请)、免 §§ 11/74 Abs 1;ElWOG 2010 §66a 于 24.12.2025 失效。**法条里没找到 Meldepflicht,页面如实说「问 Netzbetreiber」而不是编一个流程**;Förderung 因无官方汇总源不写金额。",
+   "status": "open"
   }
  ]
 }

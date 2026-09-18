@@ -3064,3 +3064,57 @@ IT → deumidificatore(注意它峰在 **7 月**,意大利除湿是夏题)。**�
 
 **一句实话**:三个市场 28 天合计 42 pv / 10 点击,是 DE 的 15%。这轮把它们从「没有」做到「有正确的页」,不会让点击翻倍;
 真正能翻倍的仍是 DE 的冬季簇到季,而那是日历。
+
+
+## 德语区大拓展:五张页、一层指路框,押在三条已验证的证据上(2026-09-18,owner:「德语区做一轮大拓展」)
+
+**「大」不是页数,是每一页背后有没有本站自己的读数。** 这轮的三条证据:①**故障排查页型**是本站唯一有 128 倍页效证据的页型
+(4 页 = 32 次搜索访问 vs 评测页 16 页 = 1 次);②**冬季湿度/取暖簇**是唯一有季节证据的簇(schimmel 68,5 / luftentfeuchter 32,0 / heizlüfter 29,4);
+③**AT 是唯一被系统性误服务的德语市场**(第三市场,全部落在引用德国法的页上)。四个新页队列冷启动 0 pv 的读数没变,
+所以每一页都登了判定线,输的写法先写好。
+
+### 建了什么
+
+| 页 | 押的证据 | 事实来源 | 货架族 |
+|---|---|---|---|
+| `/guide/luftfeuchtigkeit-senken.html` | rising 46 700、10 月峰、evergreen、**站内 30 张湿度页没有入口** | Magnus 现算并复核(室外 5 °C/80 % → 20 °C 时 30 %;25 °C/70 % → **95 %,夏天开窗更湿**;40 m³ 60→50 % = 61 g) | dehum |
+| `/guide/luftentfeuchter-stinkt.html` | 故障页型;镜像本站搜索第一页 `mobile-klimaanlage-stinkt-schimmel`(同一个部件) | 物理(冷湿脏的 Register + 暖房间 = 生物膜)+ 站内清洁纪律 | dehum |
+| `/guide/heizluefter-schaltet-sich-aus.html` | 故障页型;五个断路器按「模式」分诊 | 算术:2 000 W ÷ 230 V = **8,7 A**,16 A × 230 V = 3 680 W;两台 = 17,4 A 跳闸 | heater |
+| `/guide/luftbefeuchter-weisser-staub.html` | 故障页型;luftbefeuchter 冬/九月 2,81× | 物理(雾化带矿物、蒸汽不带);**CONTEXT_MODELS 覆盖**,否则默认 dehum 货架会在加湿页上卖除湿机 | 蒸馏水 / Verdunster / 湿度计 |
+| `/guide/balkonkraftwerk-oesterreich.html` | AT balkonkraftwerk 61,4(3 月)、anmelden 18,0、800 watt 23,0;站内 12 张 BKW 页全引 EEG | **RIS 实抓 ElWG**(BGBl. I Nr. 91/2025,Fassung 18.09.2026):§ 7 Z 78 = **0,8 kW an der Übergabestelle**;§ 77 无 Zählpunkt、免 §§ 11/74 Abs 1;ElWOG §66a 于 24.12.2025 失效 | storage(无 EcoFlow) |
+
+**DACH 指路层**:`klimaanlage-mietwohnung` / `balkonkraftwerk-mieter-recht` / `heizkosten-senken-als-mieter` 三张德语法律页各加一个框,
+把奥地利读者指向 § 9 MRG 页与 ElWG 页——此前这三页把 § 554 BGB 讲给第三市场的读者。部署自检断言三页含 `oesterreich.html`。
+
+### 量了但没建的(读数在,别再猜)
+
+- **`heizlüfter 300 watt`**:rising 44 900,5 年绝对量 **0,0** —— rising 第四次骗人(前三次 konvektorheizung、我自己混刻度、saugwischer)。不建。
+- **Heizkostenzuschuss AT**:19,3、10 月峰、零覆盖,**oesterreich.gv.at 仍是维护页**;下轮再查。
+- **`luftfeuchtigkeit senken` 被 autopilot 放进了 `offtopic_dropped`**——分类器把本站核心词判成站外。今天没改分类器(改一处会动全舰队);
+  读 digest 时**`offtopic_dropped` 也要扫一眼**,里面可能有最大的那条。
+- **Trends 对故障短语全部 ≈0**(luftentfeuchter stinkt 1,0、heizlüfter schaltet sich aus 0,0、infrarotheizung wird nicht warm 0,0):
+  与手册一致,长尾故障 Trends 测不到,信第一方。所以这三页是**页型赌注**,不是搜索量赌注。
+- **ElWG 里没找到 Kleinsterzeugungsanlage 的 Meldepflicht**:页面如实写「问 Netzbetreiber」,不编流程;Förderung 无官方汇总源,不写金额。
+
+### 过程里踩的两个坑(都被闸门抓住)
+
+1. **JSON-LD 里的德语引号**:FAQ 答案里 `„…"` 的闭引号是直引号,把整段 JSON-LD 打断(`build_entity` 红)。改成 `“`。
+   **更隐蔽的后果**:第一次构建时 JSON 坏了,注入器另塞了一个独立的 `eb-crumb-ld`;修好 JSON 再构建,@graph 里又拼进一个 →
+   **两个 BreadcrumbList**(`check_crumb_parity` 红)。要手工删掉那个孤儿脚本。**规矩:JSON-LD 里的引语只用 „…“。**
+2. **`cat_of()` 与 `collect_articles()` 各有一份前缀表**(注释说「same rules」,但是两份代码)。`luftfeuchtigkeit-` 只加了一处,
+   面包屑就落到了 Klimaanlagen。两处都改了;**下次谁再加前缀,两处一起。**
+3. 五条 description 全部超 165(181–187)——写完先数。
+
+### 验证
+
+18 道闸门全绿、byte-stable;Playwright 390px 六页(五新 + 一张指路框页):单 h1、零横滚、零错误、amazon 链接 11/11、11/11、12/12、10/10、11/11、15/15 全带 tag、
+零 amazon.com、货架在、零 EB_SIZER、FAQ 5 条;加湿页**无 MeacoDry**(覆盖生效)。内链:stinkt 页 18 张页链入(luftentfeuchter token 重叠),
+其余 4–6 张。部署自检 +7 条(0,8 kW / keinen eigenen Zählpunkt / 48 Prozent / 8,7 A / Nichts in den Tank / Verdunster mit Hygrostat / 三页 oesterreich.html)。
+
+### 判定线(已进台账,103 条)
+
+`eco-dach-troubleshoot-1116`(三张故障页合计搜索引荐 ≥25/28d 或 pv ≥40;**输 = 128 倍是空调簇特例,停止按页型铺页**)·
+`eco-luftfeuchtigkeit-hub-1116`(≥25 pv 或 ≥1 AI 或 ≥3 搜索)· `eco-at-balkon-1116`(≥1 外部引荐或 ≥8 pv;**春季峰值并入 eco-storage-spring-0415**)。
+
+**一句实话**:这一轮把德语区的三类缺口补上了——冬季故障页、湿度簇入口、奥地利法条——但它仍然是「新页」,
+而新页在本站的冷启动读数是 0。区别在于这次每一页都押在一个已经量过的形状上,输了能说清楚是哪个假设错了。

@@ -74,6 +74,10 @@ Der Speicher ist rechtlich das Unspektakuläre an der Sache: begrenzt wird die W
 
 - [Befestigung ohne Bohren](https://getecoback.com/guide/balkonkraftwerk-ohne-bohren.html) — oft das, was die Zumutbarkeitsfrage im Mietverhältnis entschärft
 
+**In Österreich gilt keines der drei Gesetze oben.** Weder § 554 BGB noch § 20 WEG noch § 8 EEG — dort regeln das Mietrechtsgesetz und das Elektrizitätswirtschaftsgesetz die Sache, mit anderen Zahlen (0,8 kW an der Übergabestelle statt 800 VA am Wechselrichter) und ohne Marktstammdatenregister:
+[Balkonkraftwerk in Österreich: was das ElWG sagt →](https://getecoback.com/guide/balkonkraftwerk-oesterreich.html) ·
+[Mietwohnung in Österreich: § 9 MRG →](https://getecoback.com/guide/klimaanlage-mietwohnung-oesterreich.html)
+
 ## Häufige Fragen
 
 ### Darf der Vermieter ein Balkonkraftwerk verbieten?

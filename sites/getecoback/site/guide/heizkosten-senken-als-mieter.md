@@ -49,6 +49,8 @@ Je feuchter die Raumluft, desto unbehaglicher fühlt sich dieselbe Temperatur an
 
 - **Dauerhafte Umbauten am Fenster** — Abdichtungen ja, solange sie rückstandsfrei abgehen.
 
+**Mieter in Österreich?** Die Regeln oben stammen aus dem deutschen Mietrecht. In Österreich entscheidet § 9 MRG — und der zählt Beheizungsanlagen ausdrücklich zu den Änderungen, bei denen das wichtige Interesse des Mieters als gegeben gilt: [was § 9 MRG für Heizung und Klimaanlage in der Mietwohnung regelt →](https://getecoback.com/guide/klimaanlage-mietwohnung-oesterreich.html)
+
 ## Häufige Fragen
 
 ### Darf ich als Mieter den Heizkörperthermostat austauschen?
