@@ -14,7 +14,7 @@ const env = { HITS: { prepare(sql) {
   assert.match(sql, /INSERT INTO hits/);
   return { bind(...values) { return { async run() { rows.push(values); } }; } };
 } } };
-async function send(e, p='/__ci/events') {
+async function send(e, p=e === 'gs' ? '/gs/miss' : '/__ci/events') {
   const request = new Request('https://baipiaoji.com/api/hit', {
     method:'POST', body: JSON.stringify({p, l:'en', e})
   });
@@ -30,6 +30,9 @@ for (const e of ['typo', 'page_view', '__proto__']) {
 }
 rows = []; await send(''); assert.equal(rows.length, 1); assert.equal(rows[0][5], '');
 rows = []; await send('gate', 'bad-path'); assert.equal(rows.length, 0);
+rows = []; await send('gs', '/gs/miss/private%40example.invalid');
+assert.equal(rows.length, 1); assert.equal(rows[0][1], '/gs/miss', 'cached clients must not persist raw queries');
+rows = []; await send('gs', '/arbitrary-query'); assert.equal(rows.length, 0);
 assert.deepEqual(growthCounts([
   {path:'/gate/next/grok/tiers',n:4}, {path:'/gate/soft-use/tokenizer',n:2},
   {path:'/gate/soft-use/private-email',n:1}, {path:'/gate/soft-use/grok/tiers',n:1},

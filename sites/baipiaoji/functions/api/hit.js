@@ -33,13 +33,20 @@ const EVENTS = new Set([
 export async function onRequestPost({ request, env }) {
   try {
     const b = await request.json().catch(() => ({}));
-    const path = String(b.p || '').slice(0, 200);
+    let path = String(b.p || '').slice(0, 200);
     if (!path.startsWith('/')) return new Response(null, { status: 204 });
     const lang = String(b.l || '').slice(0, 10);
     // 未知事件名直接丢弃：此前会被写成 ev=''，而 '' 正是「真人 pv」桶——
     // 一个拼错的事件名不是丢失，而是冒充成页面浏览。
     if (b.e && !EVENTS.has(b.e)) return new Response(null, { status: 204 });
     const ev = b.e || '';
+    // Older cached clients included raw search text in the path. Keep only
+    // the outcome, including during the rollout of the new client bundle.
+    if (ev === 'gs') {
+      const outcome = /^\/gs\/(hit|miss)(?:\/|$)/.exec(path);
+      if (!outcome) return new Response(null, { status: 204 });
+      path = '/gs/' + outcome[1];
+    }
     let ref = '';
     try { if (b.r) ref = new URL(b.r).hostname.slice(0, 100); } catch {}
     // 站内跳转不算来源

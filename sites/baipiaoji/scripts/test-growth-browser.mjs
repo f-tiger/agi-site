@@ -80,6 +80,9 @@ try {
     assert.equal(await page.locator('#stackCopy').isDisabled(), true);
     // Anonymous calculator use is possible before any subscription prompt.
     await page.goto('https://baipiaoji.com' + lang + '/llm-api-calculator.html');
+    const calcCount = events.filter(e => e.e === 'calc').length;
+    await page.waitForTimeout(1700);
+    assert.equal(events.filter(e => e.e === 'calc').length, calcCount, 'calculator load is not usage');
     const original = await page.locator('#calcOut').innerText();
     await page.locator('#calcReq').fill('99000');
     await page.locator('#calcReq').press('Tab');
@@ -105,6 +108,7 @@ try {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto('https://baipiaoji.com' + lang + '/');
     assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), 'homepage overflows on mobile');
+    assert(await page.locator('.rail-jump').evaluate(el => el.getBoundingClientRect().height < 80), 'mobile task navigation consumes the first screen');
     await page.screenshot({ path: join(artifacts, (lang ? 'en' : 'zh') + '-home-mobile.png') });
     await page.goto(savedUrl);
     await page.locator('[data-stack-tool]').first().waitFor();

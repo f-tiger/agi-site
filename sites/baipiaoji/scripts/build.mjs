@@ -410,10 +410,10 @@ var main=document.querySelector('main.stage'),slug=${JSON.stringify(slug)};
 if(!main)return;
 function EV(p){try{if(window.bpjEv)bpjEv('gate','/gate/'+p+'/'+slug)}catch(e){}}
 var used=false, interacted=false;
-var subscribed=false;try{subscribed=!!localStorage.getItem('bpj_tool_reg')}catch(e){}
+var subscribed=false;try{subscribed=!!(localStorage.getItem('bpj_tool_reg')||localStorage.getItem('bpj_subd'))}catch(e){}
 ['input','change','click'].forEach(function(n){main.addEventListener(n,function(e){
   if(e.isTrusted && e.target.closest('input,select,textarea,button') &&
-     !e.target.closest('.sub,.sub-inline,.gs,.reg-gate,.slidein,nav')) interacted=true;
+     !e.target.closest('.sub,.sub-inline,.gs,.reg-gate,.slidein,.watch,nav')) interacted=true;
 },true)});
 document.addEventListener('bpj:activity',function(e){
   if(used||!interacted||!e.detail||['calc','audit'].indexOf(e.detail.name)===-1)return;
@@ -446,7 +446,7 @@ document.addEventListener('bpj:activity',function(e){
         body:JSON.stringify({email:form.elements.email.value.trim(),website:form.elements.website.value||'',lang:'${LOCALE.code}',src:'tool-soft:'+slug})})
       .then(function(r){if(!r.ok)throw new Error('http');return r.json()}).then(function(d){
         if(d&&d.ok){
-          try{localStorage.setItem('bpj_tool_reg','1')}catch(x){}
+          try{localStorage.setItem('bpj_tool_reg','1');localStorage.setItem('bpj_subd','1')}catch(x){}
           msg.textContent='${T.done}';form.hidden=true;EV(d.code==='already'?'soft-dup':'soft-ok');
         }else{msg.textContent='${T.bad}';btn.disabled=false;EV('soft-error')}
       }).catch(function(){msg.textContent='${T.net}';btn.disabled=false;EV('soft-error')});
@@ -537,12 +537,13 @@ const railOf = () => `<aside class="rail">
     <span class="brand-text"><b>${esc(NAME)}</b><i>${esc(TAGLINE)}</i></span>
   </a>
   <nav class="rail-jump">
-    <a href="${BASE}/#dirs"><b>${LOCALE.code === 'zh' ? '两个主攻方向' : 'Two directions'}</b><span>2</span></a>
-    <a href="${BASE}/money/"><b>${UI('money_nav', '赚钱作业')}</b><span>${hustles.length}</span></a>
-    <a href="${BASE}/earn/"><b>${LOCALE.code === 'zh' ? '赚钱作业包' : 'Earning packs'}</b><span>${hustles.length}</span></a>
-    <a href="${BASE}/#plans"><b>${UI('plans_title', '免费方案')}</b><span>${solutions.length}</span></a>
+    <a href="${BASE}/stack-builder.html"><b>${LOCALE.code === 'zh' ? '配工具方案' : 'Build a plan'}</b></a>
+    <a href="${BASE}/subscription-audit.html"><b>${LOCALE.code === 'zh' ? '核对订阅' : 'Audit subscriptions'}</b></a>
     <a href="${BASE}/vs/"><b>${UI('vs_nav', '两两对照')}</b><span>${VS_PAIRS.length}</span></a>
     <a href="${BASE}/publish-check.html"><b>${UI('pc_nav', '能不能发')}</b><span>${Object.keys(LICENCE).length}</span></a>
+    <a href="${BASE}/#plans"><b>${UI('plans_title', '免费方案')}</b><span>${solutions.length}</span></a>
+    <a href="${BASE}/money/"><b>${UI('money_nav', '赚钱作业')}</b><span>${hustles.length}</span></a>
+    <a href="${BASE}/earn/"><b>${LOCALE.code === 'zh' ? '赚钱作业包' : 'Earning packs'}</b><span>${hustles.length}</span></a>
     <a href="${BASE}/report.html"><b>${LOCALE.code === 'zh' ? '真相报告' : 'The report'}</b><span>6</span></a>
   </nav>
   <div class="rail-search gs" data-idx="${BASE}/search-index.json"><input type="search" id="q" placeholder="${UI('search_ph', '搜索工具 / 场景 / 标签')}" autocomplete="off"><div class="gs-drop" hidden></div></div>
@@ -4795,7 +4796,7 @@ if (APIQ) {
       '<span class="calc-v">'+verdict+'</span><p>'+detail+'</p>'+
       '<i>'+(ZH?'核实于 ':'Checked ')+d.chk+' · '+d.c+'</i></div>';
   }
-  function render(){
+  function render(userAction){
     var R=Math.max(1,+req.value||0), T=Math.max(1,+tok.value||0), day=R*T;
     var fit=[],part=[],once=[],unk=[];
     D.forEach(function(d){
@@ -4837,7 +4838,7 @@ if (APIQ) {
       ?'以上只是把官方数字除以你的用量。速率均值按 12 小时摊平估算，突发峰值另算；数字随时会变，以各家官方页当日为准。'
       :'This only divides official figures by your usage. Per-minute averages assume a 12-hour spread; bursts are your problem to model. Numbers move — the official page on the day governs.')+'</p>';
     out.innerHTML=H;
-    clearTimeout(evT); evT=setTimeout(function(){EV('calc','/calc/'+R+'x'+T)},1500);
+    clearTimeout(evT); if(userAction)evT=setTimeout(function(){EV('calc','/calc/llm-api-calculator')},1500);
   }
   // 从 /tokenizer.html 带过来的真实 token 数：替换掉那个需要用户猜的默认值。
   // 数字的来历必须写在数字旁边——否则页面上会出现一个来路不明的精确数。
@@ -4852,11 +4853,11 @@ if (APIQ) {
       : 'The '+(+m[1]).toLocaleString('en-US')+' here came from this site\\'s token counter (cl100k_base, computed in your own browser) — not an estimate. That table is exact for OpenAI GPT-3.5/4 models and only an order-of-magnitude reference for Anthropic, Google or Alibaba models.';
     tok.parentNode.parentNode.insertBefore(box, tok.parentNode.nextSibling);
   })();
-  req.addEventListener('input',render); tok.addEventListener('input',render);
+  req.addEventListener('input',function(e){render(e.isTrusted)}); tok.addEventListener('input',function(e){render(e.isTrusted)});
   Array.prototype.forEach.call(document.querySelectorAll('.ask-hint button'),function(b){
-    b.addEventListener('click',function(){req.value=b.dataset.r;tok.value=b.dataset.t;render()});
+    b.addEventListener('click',function(e){req.value=b.dataset.r;tok.value=b.dataset.t;render(e.isTrusted)});
   });
-  render();
+  render(false);
 })();
 </script>`;
 
