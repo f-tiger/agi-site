@@ -9,7 +9,7 @@ export const SAMPLE=serializeCSV(HEADERS,[
 ]).replace(/\r\n/g,'\n'); // Textarea values normalize newlines to LF.
 let doc=null,results=[],config={available:false},job=null,poll=null;
 function say(text,error=false){$('message').textContent=text;$('message').className='message'+(error?' error':'');}
-function download(name,content,type='text/csv;charset=utf-8'){const a=document.createElement('a'),url=URL.createObjectURL(new Blob([content],{type}));a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
+function download(name,content,type='text/csv;charset=utf-8'){const a=document.createElement('a'),url=URL.createObjectURL(new Blob([content],{type}));a.href=url;a.download=name;a.textContent='Save '+name;a.className='secondary';document.getElementById('prepared-download')?.remove();a.id='prepared-download';document.querySelector('.results-panel').append(a);a.click();setTimeout(()=>{URL.revokeObjectURL(url);a.remove();},60000);}
 function reset(){clearTimeout(poll);doc=null;results=[];$('delivery').hidden=true;$('reviewed').checked=false;$('sample-run').disabled=true;$('audit-export').disabled=true;$('purchase').disabled=true;$('rows').replaceChildren();for(const id of ['eligible','kept','chars'])$(id).textContent='—';$('summary').textContent='';$('mode').textContent='LOCAL CHECKER';}
 function render(){
   $('eligible').textContent=doc.eligible;$('kept').textContent=doc.rows.length-doc.eligible;$('chars').textContent=doc.characters.toLocaleString();
@@ -23,7 +23,7 @@ function audit(){try{reset();doc=auditCSV($('csv').value,$('glossary').value.spl
 $('audit').addEventListener('click',audit);
 for(const id of ['csv','glossary'])$(id).addEventListener('input',()=>{reset();say('Content changed. Check this batch again.');});
 $('file').addEventListener('change',async()=>{const file=$('file').files[0];if(!file)return;if(file.size>700000){say('Use a CSV smaller than 700 KB.',true);return;}$('csv').value=await file.text();audit();});
-$('demo').addEventListener('click',()=>{$('csv').value=SAMPLE;$('glossary').value='Cedar';audit();$('workbench').scrollIntoView({behavior:'smooth'});});
+$('demo').addEventListener('click',()=>{$('csv').value=SAMPLE;$('glossary').value='Cedar';audit();$('sample-run').click();$('workbench').scrollIntoView({behavior:'smooth'});});
 $('sample-run').addEventListener('click',()=>{
   if(!doc||$('csv').value!==SAMPLE)return;
   const outputs=['Cedar Isolierflasche, 750 ml','Sac fourre-tout Cedar en coton avec 2 poches intérieures.','Lámpara de escritorio Cedar'];
@@ -50,7 +50,7 @@ for(const action of ['sync','resume','refund'])$(action).addEventListener('click
   if(action==='refund'&&!window.confirm('Request a full refund and stop further processing for this batch?'))return;
   $(action).disabled=true;await api('/api/jobs/'+job.id+'/'+action,{method:'POST'});await refresh();
 }catch(e){$('job-message').textContent=e.message;}finally{if(action==='sync')$('sync').disabled=false;}});
-async function init(){try{config=await api('/api/config',{auth:false});if(config.available){$('sales-state').textContent=`Paid pilot available. Seller: ${config.seller}. Support: ${config.support}. Check your file before checkout.`;$('purchase').textContent='Start this batch — €19 + tax';$('mode').textContent='LOCAL CHECKER';if(doc)render();}}catch{/* Offline review is intentionally useful without a server. */}
+async function init(){try{config=await api('/api/config',{auth:false});if(config.available){$('recovery').hidden=false;$('sales-state').textContent=`Paid pilot available. Seller: ${config.seller}. Support: ${config.support}. Check your file before checkout.`;$('purchase').textContent='Start this batch — €19 + tax';$('mode').textContent='LOCAL CHECKER';if(doc)render();}}catch{/* Offline review is intentionally useful without a server. */}
   const id=new URLSearchParams(location.search).get('job');if(id){$('job-id').value=id;let secret;try{secret=localStorage.getItem('localebatch:'+id);}catch{}if(secret){job={id,token:secret};remember();try{await api('/api/jobs/'+id+'/sync',{method:'POST'});await refresh();}catch(e){$('job-message').textContent=e.message;}}}
 }
 init();

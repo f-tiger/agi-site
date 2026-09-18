@@ -1,0 +1,3 @@
+importScripts('/vendor/sql-wasm.js');
+let engine;
+onmessage=async({data})=>{try{engine=engine||await initSqlJs({locateFile:f=>'/vendor/'+f});const p=await import('/project.mjs');const sql=p.validateQuery(data.sql),challenge=p.challenges[data.index];if(!challenge)throw Error('Unknown exercise.');let result,passed=true;for(let i=0;i<p.datasets.length;i++){const db=new engine.Database();try{p.seed(db,p.datasets[i]);const actual=db.exec(sql);const expected=db.exec(challenge.solution);if(i===0)result=actual;passed=passed&&p.equalResults(actual,expected);}finally{db.close();}}postMessage({result,passed});}catch(e){postMessage({error:e.message});}};
