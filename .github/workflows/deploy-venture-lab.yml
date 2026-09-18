@@ -32,11 +32,12 @@ jobs:
           npm test
           npm run build
           npx --yes wrangler@4 deploy --dry-run --outdir /tmp/venture-lab-worker
-      - name: Check domain ownership and prepare dedicated measurement database
+      - name: Check domain ownership and prepare isolated measurement table
         if: github.ref == 'refs/heads/main'
         working-directory: sites/venture-lab
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
           CLOUDFLARE_API_TOKEN_ZONE: ${{ secrets.CLOUDFLARE_API_TOKEN_ZONE }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: node scripts/prepare.mjs
@@ -58,5 +59,7 @@ jobs:
         working-directory: sites/venture-lab
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_API_TOKEN_ZONE: ${{ secrets.CLOUDFLARE_API_TOKEN_ZONE }}
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: node scripts/report.mjs
