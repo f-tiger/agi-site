@@ -1,6 +1,6 @@
 {
- "generated": "2026-09-17",
- "radar_fetched": "2026-09-17",
+ "generated": "2026-09-18",
+ "radar_fetched": "2026-09-18",
  "reddit_sources_ok": {
   "reddit_requests": false,
   "reddit_wish": false,
@@ -8,18 +8,48 @@
   "hn_ask": true,
   "softwarerecs": true,
   "bluesky_wish": false,
-  "lemmy_wish": false,
+  "lemmy_wish": true,
   "reddit_access": "public-json"
  },
  "note": "Derived facts only: no Reddit post text, bodies or permalinks are stored here or published. Themes are normalised request titles used as matching keys; demand = Google Trends rising; supply = PH/HN public feeds.",
  "counts": {
-  "candidates": 5,
+  "candidates": 8,
   "demand_confirmed": 0,
   "recurring": 0,
-  "scout": 5,
-  "supplied": 2
+  "scout": 8,
+  "supplied": 0
  },
  "opportunities": [
+  {
+   "theme": "how to recover google auth after phone stolen",
+   "site": "",
+   "kind": "request-board",
+   "subreddit": "ask_hn",
+   "days_seen": [
+    "2026-09-17"
+   ],
+   "state": "scout",
+   "supplied": false,
+   "score": 6.0,
+   "demand": [],
+   "supply": [],
+   "fleet_pages": []
+  },
+  {
+   "theme": "i don t think i can handle the new finder design bubbles circles around toolbar ",
+   "site": "",
+   "kind": "request-board",
+   "subreddit": "lemmy:macos",
+   "days_seen": [
+    "2026-09-17"
+   ],
+   "state": "scout",
+   "supplied": false,
+   "score": 2.38,
+   "demand": [],
+   "supply": [],
+   "fleet_pages": []
+  },
   {
    "theme": "day 13 three production applications on aws down",
    "site": "",
@@ -36,16 +66,46 @@
    "fleet_pages": []
   },
   {
-   "theme": "is there a genuine space for the desktop ai assistant or its solved",
+   "theme": "what exists if i want a premade soc mcu screen enclosure battery",
    "site": "",
    "kind": "request-board",
    "subreddit": "ask_hn",
    "days_seen": [
-    "2026-09-10"
+    "2026-09-17"
    ],
    "state": "scout",
    "supplied": false,
-   "score": 2.11,
+   "score": 2.07,
+   "demand": [],
+   "supply": [],
+   "fleet_pages": []
+  },
+  {
+   "theme": "about map enshittification have you noticed the maps have gotten worse",
+   "site": "",
+   "kind": "request-board",
+   "subreddit": "ask_hn",
+   "days_seen": [
+    "2026-09-17"
+   ],
+   "state": "scout",
+   "supplied": false,
+   "score": 2.04,
+   "demand": [],
+   "supply": [],
+   "fleet_pages": []
+  },
+  {
+   "theme": "does each frontier model have its own unique taste",
+   "site": "",
+   "kind": "request-board",
+   "subreddit": "ask_hn",
+   "days_seen": [
+    "2026-09-12"
+   ],
+   "state": "scout",
+   "supplied": false,
+   "score": 2.04,
    "demand": [],
    "supply": [],
    "fleet_pages": []
@@ -60,34 +120,9 @@
    ],
    "state": "scout",
    "supplied": false,
-   "score": 2.02,
+   "score": 2.04,
    "demand": [],
    "supply": [],
-   "fleet_pages": []
-  },
-  {
-   "theme": "does each frontier model have its own unique taste",
-   "site": "",
-   "kind": "request-board",
-   "subreddit": "ask_hn",
-   "days_seen": [
-    "2026-09-12"
-   ],
-   "state": "scout",
-   "supplied": true,
-   "score": 1.04,
-   "demand": [],
-   "supply": [
-    {
-     "title": "Show HN: OpenDocBot – bring your own model to Word, Excel and PowerPoint",
-     "url": "https://opendocbot.com/",
-     "src": "hn_show",
-     "shared": [
-      "model",
-      "own"
-     ]
-    }
-   ],
    "fleet_pages": []
   },
   {
@@ -99,20 +134,10 @@
     "2026-09-10"
    ],
    "state": "scout",
-   "supplied": true,
-   "score": 1.0,
+   "supplied": false,
+   "score": 2.0,
    "demand": [],
-   "supply": [
-    {
-     "title": "Show HN: Thurbox – A tmux-based TUI and CLI for local AI agent orchestration",
-     "url": "https://github.com/Thurbeen/thurbox",
-     "src": "hn_show",
-     "shared": [
-      "cli",
-      "local"
-     ]
-    }
-   ],
+   "supply": [],
    "fleet_pages": []
   }
  ]

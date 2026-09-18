@@ -1,5 +1,5 @@
 {
- "fetched": "2026-09-17",
+ "fetched": "2026-09-18",
  "geo": "IT",
  "seeds": {
   "condizionatore portatile": {
@@ -47,6 +47,60 @@
    ],
    "source": "related-queries",
    "fetched": "2026-09-17"
+  },
+  "deumidificatore": {
+   "auto": [
+    "deumidificatore",
+    "deumidificatore portatile",
+    "deumidificatore casa",
+    "deumidificatore dyson",
+    "deumidificatore in inglese",
+    "deumidificatore condizionatore",
+    "deumidificatore a parete",
+    "deumidificatore o condizionatore",
+    "deumidificatore vs condizionatore",
+    "deumidificatore come funziona"
+   ],
+   "rising": [
+    {
+     "q": "deumidificatore portatile",
+     "v": "new"
+    },
+    {
+     "q": "deumidificatore casa",
+     "v": "new"
+    },
+    {
+     "q": "deumidificatore dyson",
+     "v": "new"
+    },
+    {
+     "q": "deumidificatore in inglese",
+     "v": "new"
+    },
+    {
+     "q": "deumidificatore condizionatore",
+     "v": "new"
+    },
+    {
+     "q": "deumidificatore a parete",
+     "v": "new"
+    },
+    {
+     "q": "deumidificatore o condizionatore",
+     "v": "new"
+    },
+    {
+     "q": "deumidificatore vs condizionatore",
+     "v": "new"
+    },
+    {
+     "q": "deumidificatore come funziona",
+     "v": "new"
+    }
+   ],
+   "source": "autocomplete-diff",
+   "fetched": "2026-09-18"
   }
  }
 }
