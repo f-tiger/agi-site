@@ -28,8 +28,9 @@ try {
       if (url.pathname.startsWith('/api/')) return route.fulfill({ json: { ok: true } });
       if (url.pathname.endsWith('.html')) {
         redirects.push(url.pathname);
-        url.pathname = url.pathname.replace(/\/index\.html$/, '/').replace(/\.html$/, '');
-        return route.fulfill({ status: 308, headers: { location: url.href } });
+        // Playwright redirect follow-ups can bypass the route callback. Fail
+        // closed instead: legacy navigation must never reach production.
+        return route.abort('blockedbyclient');
       }
       const path = resolve(dist, '.' + url.pathname + (url.pathname.endsWith('/') ? 'index.html' : extname(url.pathname) ? '' : '.html'));
       if (!path.startsWith(dist + '/')) return route.abort();
@@ -83,12 +84,12 @@ try {
     assert.deepEqual(await page.locator('[data-stack-tool]').evaluateAll(es => es.map(e => e.dataset.stackTool)), before);
     assert.equal(await page.locator('#bpjSoftFollow').count(), 0);
     // Unknown and HTML-looking task params cannot become a task or markup.
-    await page.goto('https://baipiaoji.com' + lang + '/stack-builder.html?tasks=unknown,%3Cscript%3E');
+    await page.goto('https://baipiaoji.com' + lang + '/stack-builder?tasks=unknown,%3Cscript%3E');
     assert.equal(await page.locator('[data-stack-tool]').count(), 0);
     assert.equal(await page.locator('#stackDownload').isDisabled(), true);
     assert.equal(await page.locator('#stackCopy').isDisabled(), true);
     // Anonymous calculator use is possible before any subscription prompt.
-    await page.goto('https://baipiaoji.com' + lang + '/llm-api-calculator.html');
+    await page.goto('https://baipiaoji.com' + lang + '/llm-api-calculator');
     const calcCount = events.filter(e => e.e === 'calc').length;
     await page.waitForTimeout(1700);
     assert.equal(events.filter(e => e.e === 'calc').length, calcCount, 'calculator load is not usage');
@@ -107,7 +108,7 @@ try {
     assert.notEqual(await page.locator('#calcOut').innerText(), original);
     // The six real entry cohorts have working, crawlable next steps.
     for (const slug of ['grok', 'kimi', 'fireworks', 'haiper', 'feishu-miaoji', 'cline']) {
-      await page.goto('https://baipiaoji.com' + lang + '/tools/' + slug + '.html');
+      await page.goto('https://baipiaoji.com' + lang + '/tools/' + slug);
       assert(await page.locator('[data-next-tool] a').count() >= 2);
       const target = await page.locator('[data-next-kind]').first().getAttribute('href');
       await page.locator('[data-next-kind]').first().click();
@@ -115,7 +116,10 @@ try {
       assert(events.some(e => e.p.startsWith('/gate/next/' + slug + '/')));
     }
     for (const cat of ['coding', 'api']) {
+      await page.setViewportSize({ width: 390, height: 844 });
       await page.goto('https://baipiaoji.com' + lang + '/c/' + cat);
+      assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), 'category overflows on mobile');
+      await page.screenshot({ path: join(artifacts, (lang ? 'en' : 'zh') + '-category-' + cat + '.png') });
       const beforeRedirects = redirects.length;
       await page.locator('[data-next-kind=plan]').click();
       await page.locator('[data-stack-tool]').first().waitFor();

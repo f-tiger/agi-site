@@ -2720,7 +2720,7 @@ function categoryPage(key, label) {
     <div class="hero-inner">
       <h1>${(ce && ce.h1) || UI('cat_h1', '免费{label} AI 工具推荐').replace('{label}', esc(label))}</h1>
       <p class="answer">${esc(answer)}</p>
-      ${['coding', 'api'].includes(key) ? `<nav class="next-steps" data-next-tool="category-${key}" aria-label="${LOCALE.code === 'zh' ? '完成你的任务' : 'Complete your task'}">
+      ${['coding', 'api'].includes(key) ? `<nav class="tool-next" data-next-tool="category-${key}" aria-label="${LOCALE.code === 'zh' ? '完成你的任务' : 'Complete your task'}">
         <h2>${LOCALE.code === 'zh' ? '把目录变成你的工具方案' : 'Turn this directory into your tool plan'}</h2>
         <p>${LOCALE.code === 'zh' ? '免费使用，无需邮箱。选择任务后可保存和分享结果。' : 'Free to use, no email needed. Choose a task, then save and share the result.'}</p>
         <div class="next-links">
