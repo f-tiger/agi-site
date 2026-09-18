@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { canonicalUrls } from './canonical-urls.mjs';
 // 零依赖静态站构建脚本：读取 data/*.json，输出完整站点到 dist/
 import { readFileSync, writeFileSync, mkdirSync, rmSync, cpSync, existsSync, readdirSync } from 'node:fs';
 import { createHash } from 'node:crypto';
@@ -322,6 +323,8 @@ if (${JSON.stringify(PROD_HOSTS)}.indexOf(location.hostname) !== -1) {
 // 定义在域名门槛之外：非正式域名下也要能安全调用（内部自判，不会抛），
 // 否则回退域名上的脚本会因为 bpjEv 未定义而中断后面的逻辑。
 window.bpjEv = function (name, path) {
+  // Local product signal works in previews too; only the beacon needs production.
+  try { document.dispatchEvent(new CustomEvent('bpj:activity', {detail:{name:name}})); } catch(e) {}
   if (${JSON.stringify(PROD_HOSTS)}.indexOf(location.hostname) === -1) return;
   try {
     navigator.sendBeacon('/api/hit', JSON.stringify({
@@ -377,98 +380,79 @@ const metaDesc = (s, max = 155) => {
   return stop > max * 0.55 ? cut.slice(0, stop + 1).trim() : `${cut.trim()}…`;
 };
 
-// ---- 工具注册门（2026-08-29,owner:「解决方案上做的太弱,最好是工具需要用户注册才能用」）----
-//
-// PRD-subscription-pivot 的已核实结论是「订阅诉求存在,但触发时机站错了」（表单曝光 39 次
-// 提交 0 次）。这个门把注册请求搬到价值时刻:用户伸手用工具的那一下。设计约束:
-// ① 只锁交互不锁内容——内容全部留在 HTML 里,不做加载即弹的全屏墙(Google 侵入式插页
-//    惩罚 + 引用面是本站命脉);对照板/判定页/limits.json/llms-full/MCP/API 一概不锁,
-//    那是引用与变现资产(定位钉死条款)。
-// ② 复用 /api/subscribe 全套设施(D1 subs、蜜罐、幂等):注册=订阅,src=tool-gate:<slug>
-//    让 D1 直接回答「哪个工具在转化」。已订阅者填同一邮箱返回 already,同样解锁。
-// ③ 一次注册全站解锁,localStorage 记忆;localStorage 不可用(隐私模式)时按会话解锁。
-// ④ 门卡由 JS 注入:不进 HTML,不污染 SEO 摘要与 .md 镜像;无 JS 时工具本来就不可用。
-// 预登记判定线见 CLAUDE.md 执行令第 9 条(2026-09-26,gate 事件与 tool-gate 注册定去留)。
-const GATED_TOOLS = new Set([
+// ---- Value first: anonymous tools, optional follow-up after real use (2026-09-18) ----
+// Supersedes the 08-29 pre-use wall under the owner's growth-reset instruction.
+// Never intercept input or lock results. Earn packs retain their server-side gate.
+const OPEN_TOOLS = new Set([
   '/llm-api-calculator.html', '/publish-check.html', '/stack-builder.html',
   '/video-quota-planner.html', '/subscription-audit.html', '/tokenizer.html',
   '/pipeline/video.html', '/free-for-you.html',
 ]);
 function gateOf(path) {
-  if (!GATED_TOOLS.has(path)) return '';
+  if (!OPEN_TOOLS.has(path)) return '';
   const zh = LOCALE.code === 'zh';
   const slug = path.replace(/^\//, '').replace(/\.html$/, '').replace(/\//g, '-');
   const T = {
-    h2: zh ? '注册后免费使用：解锁本站全部工具' : 'Free with registration — unlocks every tool on this site',
-    p: zh
-      ? '留一个邮箱，本站全部自建工具（API 计算器、订阅体检、分词器、能不能发、流水线等）永久免费用，一次注册全站解锁。你关注的工具免费额度一变，我们也会告诉你。'
-      : 'Leave an email and every self-built tool on this site (API calculator, subscription audit, tokenizer, publish-check, pipelines and more) stays free to use — register once, unlocked everywhere. When a free tier you care about moves, you hear it too.',
-    ph: zh ? '你的邮箱' : 'your@email.com',
-    btn: zh ? '注册并解锁' : 'Register & unlock',
-    note: zh
-      ? '只用于解锁与额度变更提醒，不转让、不群发广告，随时可退订。邮箱之外我们不收集任何个人信息。已订阅过？填同一个邮箱即可解锁。'
-      : 'Used only to unlock the tools and for allowance-change alerts. Never sold, never blasted with ads, unsubscribe any time. Already subscribed? The same address unlocks.',
+    h2: zh ? '这次结果有用吗？' : 'Was this useful?',
+    p: zh ? '工具可继续免费使用，无需注册。你也可以自愿加入订阅名单；已核实的变化随时可在公开变更日志查看。'
+      : 'Keep using the tool for free, with no account. You can also join the subscriber list; verified changes are always available in the public change log.',
+    ph: zh ? '你的邮箱' : 'Your email',
+    btn: zh ? '自愿订阅' : 'Join the list',
+    close: zh ? '不用了，继续使用' : 'No thanks, keep using the tool',
+    note: zh ? '不影响工具使用。随时可退订，不承诺即时邮件通知。' : 'Optional. Unsubscribe any time. Instant email alerts are not promised.',
     busy: zh ? '提交中…' : 'Submitting…',
-    done: zh ? '已解锁，本站全部工具可用。' : 'Unlocked — every tool on this site is now open.',
-    bad: zh ? '邮箱格式不对，再检查一下。' : 'That address does not look right — please check it.',
-    net: zh ? '网络出错，稍后再试。' : 'Network error — please retry.',
+    done: zh ? '已加入名单。你可以继续使用工具。' : 'You are on the list. Keep using the tool.',
+    bad: zh ? '未能提交，请检查邮箱后重试。' : 'Could not subscribe. Check your email and retry.',
+    net: zh ? '网络出错，工具仍可正常使用。' : 'Network error. You can still use the tool.',
   };
   return `<script>(function(){
-var KEY='bpj_tool_reg',main=document.querySelector('main.stage');
-// bpjEv 自 2026-09-03 起随 /bpj.js 以 defer 加载（main 的整站字节优化），
-// 页面解析期尚未执行——门卡的曝光事件若直接调用会静默丢失，而判定线正是靠这个读数
-// 决定门的去留。defer 脚本保证在 DOMContentLoaded 之前跑完，所以事件挂在它上面发。
-function EV(n,p){
-  var f=function(){if(window.bpjEv)bpjEv(n,p)};
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',f);
-  else f();
-}
-
+window.BPJ_FREE_TOOL=true;
+var main=document.querySelector('main.stage'),slug=${JSON.stringify(slug)};
 if(!main)return;
-var ok=false;try{ok=!!localStorage.getItem(KEY)}catch(e){}
-if(ok)return;
-var sess=false;
-var card=document.createElement('section');
-card.id='bpjGate';card.className='reg-gate';
-card.innerHTML='<h2>${T.h2}</h2><p>${T.p}</p>'
-  +'<form class="sub-form"><input type="email" name="email" required autocomplete="email" placeholder="${T.ph}" aria-label="${T.ph}">'
-  +'<input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">'
-  +'<button type="submit">${T.btn}</button></form>'
-  +'<p class="sub-note">${T.note}</p><p class="sub-msg" role="status" aria-live="polite"></p>';
-var hero=main.querySelector('.hero');
-if(hero&&hero.parentNode===main)hero.insertAdjacentElement('afterend',card);
-else main.insertAdjacentElement('afterbegin',card);
-EV('gate','/gate/view/${slug}');
-function guard(e){
-  if(sess)return;
-  var t=e.target;
-  if(!t||!t.closest)return;
-  if(t.closest('#bpjGate,.sub,.gs,.slidein'))return;
-  var c=t.closest('input,select,textarea,button,[contenteditable]');
-  if(!c||!main.contains(c))return;
-  e.preventDefault();e.stopPropagation();
-  if(c.blur)c.blur();
-  card.classList.add('reg-gate-nudge');
-  setTimeout(function(){card.classList.remove('reg-gate-nudge')},700);
-  try{card.scrollIntoView({behavior:'smooth',block:'center'})}catch(x){card.scrollIntoView()}
-}
-['pointerdown','click','keydown','focusin'].forEach(function(n){document.addEventListener(n,guard,true)});
-var form=card.querySelector('form'),msg=card.querySelector('.sub-msg');
-form.addEventListener('submit',function(e){
-  e.preventDefault();
-  var email=(form.email.value||'').trim();
-  msg.textContent='${T.busy}';
-  fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({email:email,website:form.website.value||'',lang:'${LOCALE.code}',src:'tool-gate:${slug}'})})
-  .then(function(r){return r.json()}).then(function(d){
-    if(d&&d.ok){
-      sess=true;try{localStorage.setItem(KEY,'1')}catch(x){}
-      msg.textContent='${T.done}';
-      card.classList.add('reg-gate-done');
-      setTimeout(function(){if(card.parentNode)card.parentNode.removeChild(card)},1400);
-      if(window.bpjEv)bpjEv('gate','/gate/ok/${slug}');
-    }else{msg.textContent='${T.bad}';}
-  }).catch(function(){msg.textContent='${T.net}';});
+function EV(p){try{if(window.bpjEv)bpjEv('gate','/gate/'+p+'/'+slug)}catch(e){}}
+var used=false, interacted=false;
+var subscribed=false;try{subscribed=!!(localStorage.getItem('bpj_tool_reg')||localStorage.getItem('bpj_subd'))}catch(e){}
+['input','change','click'].forEach(function(n){main.addEventListener(n,function(e){
+  if(e.isTrusted && e.target.closest('input,select,textarea,button') &&
+     !e.target.closest('.sub,.sub-inline,.gs,.reg-gate,.slidein,.watch,nav')) interacted=true;
+},true)});
+document.addEventListener('bpj:activity',function(e){
+  if(used||!interacted||!e.detail||['calc','audit'].indexOf(e.detail.name)===-1)return;
+  used=true;
+  setTimeout(function(){
+    EV('soft-use');
+    if(subscribed)return;
+    var card=document.createElement('section');
+    card.id='bpjSoftFollow';card.className='reg-gate';
+    card.innerHTML='<h2>${T.h2}</h2><p>${T.p}</p>'
+      +'<form class="sub-form"><input type="email" name="email" required autocomplete="email" placeholder="${T.ph}" aria-label="${T.ph}">'
+      +'<input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">'
+      +'<button type="submit">${T.btn}</button></form>'
+      +'<p class="sub-note">${T.note} <a href="${BASE}/changes.html">${zh ? '查看变更日志' : 'Read the change log'}</a></p>'
+      +'<button type="button" data-dismiss>${T.close}</button><p class="sub-msg" role="status" aria-live="polite"></p>';
+    var sub=main.querySelector('.sub');if(sub)sub.before(card);else main.appendChild(card);
+    if(window.IntersectionObserver){
+      var io=new IntersectionObserver(function(es){
+        if(es.some(function(x){return x.isIntersecting})){EV('soft-view');io.disconnect()}
+      });io.observe(card);
+    }
+    card.querySelector('[data-dismiss]').addEventListener('click',function(){
+      if(io)io.disconnect();card.remove();EV('soft-dismiss');
+    });
+    var form=card.querySelector('form'),msg=card.querySelector('.sub-msg');
+    form.addEventListener('submit',function(e){
+      e.preventDefault();var btn=form.querySelector('button');if(btn.disabled)return;
+      btn.disabled=true;msg.textContent='${T.busy}';EV('soft-submit');
+      fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({email:form.elements.email.value.trim(),website:form.elements.website.value||'',lang:'${LOCALE.code}',src:'tool-soft:'+slug})})
+      .then(function(r){if(!r.ok)throw new Error('http');return r.json()}).then(function(d){
+        if(d&&d.ok){
+          try{localStorage.setItem('bpj_tool_reg','1');localStorage.setItem('bpj_subd','1')}catch(x){}
+          msg.textContent='${T.done}';form.hidden=true;EV(d.code==='already'?'soft-dup':'soft-ok');
+        }else{msg.textContent='${T.bad}';btn.disabled=false;EV('soft-error')}
+      }).catch(function(){msg.textContent='${T.net}';btn.disabled=false;EV('soft-error')});
+    });
+  },0);
 });
 })();</script>
 `;
@@ -476,7 +460,7 @@ form.addEventListener('submit',function(e){
 
 function layout({ title, description, path, body, wide, schema, noindex }) {
   const canonical = `${BASE}${path}`;
-  return `<!DOCTYPE html>
+  return canonicalUrls(`<!DOCTYPE html>
 <html lang="${LANG}">
 <head>
 <meta charset="UTF-8">
@@ -508,7 +492,7 @@ ${gateOf(path)}${subJs()}
   <p><a href="${BASE}/">${UI('home', '首页')}</a> · <a href="${BASE}/myths.html">${UI('myths_title', 'AI 免费额度流言核查')}</a> · <a href="${BASE}/free-for-you.html">${UI('ffy_nav', '你能白嫖什么')}</a> · <a href="${BASE}/publish-check.html">${UI('pc_nav', '能不能发')}</a> · <a href="${BASE}/no-official-source.html">${UI('ns_nav', '查无官方来源')}</a> · <a href="${BASE}/changes.html">${UI('ch_nav', '额度变更记录')}</a> · <a href="${BASE}/upgrade/">${UI('up_nav', '该买哪档')}</a> · <a href="${BASE}/solutions/coding.html">${LOCALE.code === 'zh' ? '解决方案' : 'Solutions'}</a> · <a href="${BASE}/earn/">${LOCALE.code === 'zh' ? 'AI 赚钱作业包' : 'AI earning packs'}</a> · <a href="${BASE}/why-did-my-ai-free-tier-stop-working.html">${LOCALE.code === 'zh' ? '额度突然不能用了' : 'Free tier stopped working'}</a> · <a href="${BASE}/report.html">${LOCALE.code === 'zh' ? '真相报告' : 'The report'}</a> · <a href="${BASE}/watch.html">${LOCALE.code === 'zh' ? '额度监控' : 'Watch'}</a> · <a href="${BASE}/submit.html">${UI('submit_nav', '提交工具')}</a> · <a href="${BASE}/for-vendors.html">${UI('vendors_nav', '厂商自荐')}</a> · <a href="${BASE}/developers.html">${UI('dev_nav', '开发者 API')}</a> · <a href="${BASE}/travel/">${UI('travel_nav', '旅行白嫖')}</a> · <a href="${BASE}/feed.xml">${UI('rss', 'RSS 订阅')}</a> · <a href="${BASE}/unsubscribe.html">${UI('unsub_nav', '退订提醒')}</a>${site.contact_email ? ` · <a href="mailto:${esc(site.contact_email)}">${UI('contact', '商务合作')}</a>` : ''}</p>
 </footer>
 </body>
-</html>`;
+</html>`);
 }
 
 // 角标只能来自工具的真实福利标签，不为好看凭空加（见 docs/DESIGN.md 禁忌清单）
@@ -554,12 +538,13 @@ const railOf = () => `<aside class="rail">
     <span class="brand-text"><b>${esc(NAME)}</b><i>${esc(TAGLINE)}</i></span>
   </a>
   <nav class="rail-jump">
-    <a href="${BASE}/#dirs"><b>${LOCALE.code === 'zh' ? '两个主攻方向' : 'Two directions'}</b><span>2</span></a>
-    <a href="${BASE}/money/"><b>${UI('money_nav', '赚钱作业')}</b><span>${hustles.length}</span></a>
-    <a href="${BASE}/earn/"><b>${LOCALE.code === 'zh' ? '赚钱作业包' : 'Earning packs'}</b><span>${hustles.length}</span></a>
-    <a href="${BASE}/#plans"><b>${UI('plans_title', '免费方案')}</b><span>${solutions.length}</span></a>
+    <a href="${BASE}/stack-builder.html"><b>${LOCALE.code === 'zh' ? '配工具方案' : 'Build a plan'}</b></a>
+    <a href="${BASE}/subscription-audit.html"><b>${LOCALE.code === 'zh' ? '核对订阅' : 'Audit subscriptions'}</b></a>
     <a href="${BASE}/vs/"><b>${UI('vs_nav', '两两对照')}</b><span>${VS_PAIRS.length}</span></a>
     <a href="${BASE}/publish-check.html"><b>${UI('pc_nav', '能不能发')}</b><span>${Object.keys(LICENCE).length}</span></a>
+    <a href="${BASE}/#plans"><b>${UI('plans_title', '免费方案')}</b><span>${solutions.length}</span></a>
+    <a href="${BASE}/money/"><b>${UI('money_nav', '赚钱作业')}</b><span>${hustles.length}</span></a>
+    <a href="${BASE}/earn/"><b>${LOCALE.code === 'zh' ? '赚钱作业包' : 'Earning packs'}</b><span>${hustles.length}</span></a>
     <a href="${BASE}/report.html"><b>${LOCALE.code === 'zh' ? '真相报告' : 'The report'}</b><span>6</span></a>
   </nav>
   <div class="rail-search gs" data-idx="${BASE}/search-index.json"><input type="search" id="q" placeholder="${UI('search_ph', '搜索工具 / 场景 / 标签')}" autocomplete="off"><div class="gs-drop" hidden></div></div>
@@ -738,9 +723,30 @@ const SUB_JS_BODY = `(function(){
   // 代价是「进页面就看到订阅区且全程不动手」的人不计入，会略微低估曝光；
   // 这个偏差方向是可接受的一侧：宁可少算真人，不可多算机器。
   var HUMAN=false, pending=false;
+  // Navigation events are separate from calc: browsing is not tool usage.
+  var next=document.querySelector('[data-next-tool]'),nextVisible=false,nextSeen=false;
+  function nextView(){
+    if(next&&HUMAN&&nextVisible&&!nextSeen){
+      nextSeen=true;EV('gate','/gate/next-view/'+next.dataset.nextTool);
+    }
+  }
+  if(next){
+    if(window.IntersectionObserver){
+    var nextIO=new IntersectionObserver(function(es){
+      nextVisible=es.some(function(e){return e.isIntersecting});nextView();
+    });nextIO.observe(next);
+    }
+    document.addEventListener('click',function(e){
+      var a=e.target.closest&&e.target.closest('[data-next-kind]');
+      if(a&&e.isTrusted){HUMAN=true;nextVisible=true;nextView();
+        EV('gate','/gate/next/'+next.dataset.nextTool+'/'+a.dataset.nextKind);
+      }
+    });
+  }
   function human(){
     if(HUMAN)return; HUMAN=true;
     if(pending){var w=pending;pending=false;EV('sub_view',w)}
+    nextView();
   }
   ['pointerdown','keydown','touchstart','wheel'].forEach(function(t){
     document.addEventListener(t,human,{once:true,passive:true});
@@ -970,6 +976,8 @@ const SUB_JS_BODY = `(function(){
     if(remember){try{localStorage.setItem('bpj_slide_ts',String(Date.now()))}catch(e){}}
   }
   function slideIn(reason){
+    // Tool users already have an optional follow-up after getting a result.
+    if(window.BPJ_FREE_TOOL && reason!=='star')return;
     if(!slideOK())return; SLID=true;
     var seedSrc=document.querySelector('.sub-form[data-seed]');
     var seed=read().length?read().join(','):(seedSrc?seedSrc.dataset.seed:'');
@@ -1035,12 +1043,12 @@ const SUB_JS_BODY = `(function(){
           else if(it.q.indexOf(kw)>=0)rest.push(it);
         }
         var hits=top.concat(rest).slice(0,8);
-        // 站内搜索此前零度量(2026-08-30 补):停敲 1.2s 记一次查询词。
-        // miss 词是需求信号——没搜到的就是站上缺的,进每日选题输入(仍过三门)。
+        // Measure search outcomes, not raw user queries. The endpoint now accepts
+        // gs, so the old text-bearing paths would start retaining private inputs.
         if(kw.length>=2){
           clearTimeout(evT);
           evT=setTimeout(function(){
-            if(window.bpjEv)bpjEv('gs','/gs/'+(hits.length?'hit':'miss')+'/'+encodeURIComponent(kw).slice(0,60));
+            if(window.bpjEv)bpjEv('gs','/gs/'+(hits.length?'hit':'miss'));
           },1200);
         }
         drop.textContent='';
@@ -1159,13 +1167,18 @@ return `${railOf()}
 <main class="stage">
   <header class="hero">
     <div class="hero-inner">
-      <h1>${UI('hero_h1', '{n} 个真有免费额度的 AI 工具<br>外加能照抄的赚钱作业，不卖课').replace('{n}', tools.length)}</h1>
-      <p>${UI('hero_lede_a', '')}<b>${hustles.length}</b>${UI('hero_lede_b', ' 份可以照抄的赚钱作业 + ')}<b>${solutions.length}</b>${UI('hero_lede_c', ' 套 0 元方案 + ')}<b>${tools.length}</b>${UI('hero_lede_d', ' 个真有免费额度的工具。每份作业都写明大多数人为什么失败，也写明这条路上的骗局长什么样——我们不承诺任何收入。')}</p>
-      <div class="plot">
-        <span class="cap">${UI('plot_cap', '{n} 条路 / 各几步').replace('{n}', hustles.length)}</span>
-${hustles.map((h) => `        <a href="${BASE}/money/${esc(h.slug)}.html">${Array.from({ length: h.steps.length }, (_, k) => `<i style="width:${k === 0 ? 40 : 24}px"></i>`).join('')}<em>${esc(h.title)}</em></a>`).join('\n')}
+      <h1>${LOCALE.code === 'zh' ? '先选你要做的事，<br>再看哪些免费 AI 够用' : 'Start with your task.<br>Find the free AI that fits.'}</h1>
+      <p>${LOCALE.code === 'zh' ? `从 ${tools.length} 个工具中组合你的方案，逐项查看免费额度、核实日期与商用条件。无需注册即可使用、下载和分享。` : `Build a plan from ${tools.length} tools, with free-tier limits, check dates and commercial-use conditions. Use, download and share it without signing up.`}</p>
+      <div class="task-start" aria-label="${LOCALE.code === 'zh' ? '按任务开始' : 'Start with a task'}">
+        ${[
+          ['coding,api','写代码 / 接 API','Code & APIs','选开发工具，核对额度','Choose tools and check limits'],
+          ['writing,image,video,audio','做一条视频','Make a video','脚本、画面、视频和配音','Script, images, video and audio'],
+          ['image,design','做图 / 做设计','Images & design','同时查看免费档和商用条件','Check free tiers and usage rights'],
+          ['office,writing','办公 / 写作','Work & writing','找能完成任务的免费档','Find a free tier for the job'],
+          ['search,chat','查资料 / 学习','Research & learning','选择搜索与对话工具','Choose research and chat tools'],
+        ].map(([tasks,cn,en,subCn,subEn]) => `<a href="${BASE}/stack-builder.html?tasks=${tasks}"><b>${LOCALE.code === 'zh' ? cn : en} →</b><span>${LOCALE.code === 'zh' ? subCn : subEn}</span></a>`).join('')}
       </div>
-      <p class="coverage"><a href="${BASE}/stack-builder.html"><b>${UI('stack_cta', '新：勾选任务，一次配齐一套全免费工具链 →')}</b></a></p>
+      <p class="coverage"><a href="${BASE}/stack-builder.html"><b>${LOCALE.code === 'zh' ? '自由组合我的工具方案 →' : 'Build my own tool plan →'}</b></a> · <a href="${BASE}/subscription-audit.html">${LOCALE.code === 'zh' ? '已有付费订阅？算算哪些免费档够用' : 'Already paying? Check which free tiers cover your needs'}</a></p>
       <div class="ask">
         <input type="search" id="ask" placeholder="${UI('ask_ph', '例如：要交 PPT / 想剪视频 / 写论文查文献')}" autocomplete="off">
         <div class="ask-hint" id="askHint">${(UI('chips', null) || [['ppt','做 PPT'],['剪视频','剪视频'],['论文','写论文'],['api','白嫖 API'],['文案','写文案'],['简历','改简历']]).map((c) => `<button data-fill="${esc(c[0])}">${esc(c[1])}</button>`).join('')}</div>
@@ -1550,6 +1563,30 @@ function toolFaq(tool) {
   return faq;
 }
 
+// Fixed cohort from the 2026-09-18 reach snapshot, not a daily popularity loop.
+const NEXT_STEP_COHORT = new Set(['grok', 'kimi', 'fireworks', 'haiper', 'feishu-miaoji', 'cline']);
+function nextStepsOf(tool) {
+  if (!NEXT_STEP_COHORT.has(tool.slug)) return '';
+  const zh = LOCALE.code === 'zh';
+  const routes = {
+    chat: ['chat-limits-board.html', '对比聊天额度', 'Compare chat limits'],
+    api: ['llm-api-calculator.html', '按用量计算 API 额度', 'Check your API usage'],
+    video: ['video-quota-planner.html', '按视频长度比较额度', 'Compare video allowances'],
+    office: ['office-quota-board.html', '对比会议与办公额度', 'Compare office allowances'],
+    coding: ['subscription-audit.html', '检查是否需要付费订阅', 'Check whether you need a subscription'],
+  };
+  const route = routes[tool.category];
+  const links = [[`alternatives/${tool.slug}.html`, zh ? `${tool.name} 的免费替代` : `Free alternatives to ${tool.name}`, 'alternatives']];
+  if (route) links.push([route[0], zh ? route[1] : route[2], 'use']);
+  const l = tool.limits;
+  if (l && l.paid && l.paid.tiers && l.quota && l.wall && l.source && l.checked)
+    links.push([`is-${tool.slug}-still-free.html`, zh ? '免费与付费档的区别' : 'Free vs paid tiers', 'tiers']);
+  return `<nav class="tool-next" data-next-tool="${esc(tool.slug)}" aria-label="${zh ? '继续解决你的问题' : 'Your next step'}">
+      <p><b>${zh ? '额度不够，下一步怎么选？' : 'Need more than the free tier?'}</b></p>
+      <div>${links.map(([url, label, kind]) => `<a href="${BASE}/${esc(url)}" data-next-kind="${kind}">${esc(label)} →</a>`).join('')}</div>
+    </nav>`;
+}
+
 // ---- 详情页（长尾 SEO：「XX 免费额度领取指南」） ----
 function toolPage(tool) {
   const catName = CATS[tool.category] || tool.category;
@@ -1583,6 +1620,7 @@ function toolPage(tool) {
       </div>
     </header>
     <p class="answer">${esc(answer)}</p>
+    ${nextStepsOf(tool)}
     <p class="go-top"><a href="${esc(outLink(tool))}" target="_blank" rel="noopener nofollow"
        data-tool="${esc(tool.slug)}" data-cat="${esc(tool.category)}" data-aff="${tool.affiliate ? 1 : 0}" data-place="tool_top">${UI('go_top', '直达官网领取')} — ${esc(tool.name)} →</a>${watchBtnOf(tool.slug)}</p>
     <div class="tags">${(tool.tags || []).map((t) => `<span class="tag">${esc(t)}</span>`).join('')}</div>
@@ -2682,6 +2720,14 @@ function categoryPage(key, label) {
     <div class="hero-inner">
       <h1>${(ce && ce.h1) || UI('cat_h1', '免费{label} AI 工具推荐').replace('{label}', esc(label))}</h1>
       <p class="answer">${esc(answer)}</p>
+      ${['coding', 'api'].includes(key) ? `<nav class="tool-next" data-next-tool="category-${key}" aria-label="${LOCALE.code === 'zh' ? '完成你的任务' : 'Complete your task'}">
+        <h2>${LOCALE.code === 'zh' ? '把目录变成你的工具方案' : 'Turn this directory into your tool plan'}</h2>
+        <p>${LOCALE.code === 'zh' ? '免费使用，无需邮箱。选择任务后可保存和分享结果。' : 'Free to use, no email needed. Choose a task, then save and share the result.'}</p>
+        <div class="next-links">
+          <a data-next-kind="plan" href="${BASE}/stack-builder.html?tasks=coding,api">${LOCALE.code === 'zh' ? '配一套免费编程 + API 方案 →' : 'Build a free coding + API plan →'}</a>
+          <a data-next-kind="use" href="${BASE}/${key === 'api' ? 'llm-api-calculator' : 'subscription-audit'}.html">${LOCALE.code === 'zh' ? (key === 'api' ? '算哪家免费档够用 →' : '核对我的付费订阅 →') : (key === 'api' ? 'Check which API tier fits →' : 'Audit my paid subscriptions →')}</a>
+        </div>
+      </nav>` : ''}
       <dl class="stats">
         <div><dt>${UI('stat_listed', '收录工具')}</dt><dd class="num">${list.length}</dd></div>
         <div><dt>${UI('stat_free', '完全免费')}</dt><dd class="num">${freeN}</dd></div>
@@ -3699,7 +3745,7 @@ for (const L of LOCALES) {
   writeFileSync(join(outDir, 'index.html'), layout({
     title: UI('index_title', '{name} - {n} 个真有免费额度的 AI 工具（含官方出处）+ {p} 套 0 元方案')
       .replace('{name}', NAME).replace('{n}', tools.length).replace('{p}', solutions.length),
-    description: DESC,
+    description: LOCALE.code === 'zh' ? `从 ${tools.length} 个 AI 工具中按任务组合免费档方案，查看额度、来源、核实日期与商用条件。无需注册即可使用工具、下载清单和分享配置。` : `Build a free-tier plan from ${tools.length} AI tools by task. Compare allowances, sources, check dates and licence conditions. Use tools, download your list and share your plan without signing up.`,
     path: '/',
     body: indexBodyOf(),
     wide: true,
@@ -4522,8 +4568,9 @@ ${PERSONAS.map((p) => {
       '<p class="pc-foot">'+(ZH?'核实于 ':'Checked ')+d.c+' · <a href="'+d.u+'">'+(ZH?'看官方原文与出处 →':'Read the official wording and source →')+'</a></p>'+
       '</div>'+cnBlock(cas.value);
   }
-  sel.addEventListener('change',render); cas.addEventListener('change',render);
-  if(cn) cn.addEventListener('change',render);
+  function use(){render();try{if(window.bpjEv)bpjEv('calc','/calc/publish-check')}catch(e){}}
+  sel.addEventListener('change',use); cas.addEventListener('change',use);
+  if(cn) cn.addEventListener('change',use);
   render();
 })();
 </script>`;
@@ -4758,7 +4805,7 @@ if (APIQ) {
       '<span class="calc-v">'+verdict+'</span><p>'+detail+'</p>'+
       '<i>'+(ZH?'核实于 ':'Checked ')+d.chk+' · '+d.c+'</i></div>';
   }
-  function render(){
+  function render(userAction){
     var R=Math.max(1,+req.value||0), T=Math.max(1,+tok.value||0), day=R*T;
     var fit=[],part=[],once=[],unk=[];
     D.forEach(function(d){
@@ -4800,7 +4847,7 @@ if (APIQ) {
       ?'以上只是把官方数字除以你的用量。速率均值按 12 小时摊平估算，突发峰值另算；数字随时会变，以各家官方页当日为准。'
       :'This only divides official figures by your usage. Per-minute averages assume a 12-hour spread; bursts are your problem to model. Numbers move — the official page on the day governs.')+'</p>';
     out.innerHTML=H;
-    clearTimeout(evT); evT=setTimeout(function(){EV('calc','/calc/'+R+'x'+T)},1500);
+    clearTimeout(evT); if(userAction)evT=setTimeout(function(){EV('calc','/calc/llm-api-calculator')},1500);
   }
   // 从 /tokenizer.html 带过来的真实 token 数：替换掉那个需要用户猜的默认值。
   // 数字的来历必须写在数字旁边——否则页面上会出现一个来路不明的精确数。
@@ -4815,11 +4862,11 @@ if (APIQ) {
       : 'The '+(+m[1]).toLocaleString('en-US')+' here came from this site\\'s token counter (cl100k_base, computed in your own browser) — not an estimate. That table is exact for OpenAI GPT-3.5/4 models and only an order-of-magnitude reference for Anthropic, Google or Alibaba models.';
     tok.parentNode.parentNode.insertBefore(box, tok.parentNode.nextSibling);
   })();
-  req.addEventListener('input',render); tok.addEventListener('input',render);
+  req.addEventListener('input',function(e){render(e.isTrusted)}); tok.addEventListener('input',function(e){render(e.isTrusted)});
   Array.prototype.forEach.call(document.querySelectorAll('.ask-hint button'),function(b){
-    b.addEventListener('click',function(){req.value=b.dataset.r;tok.value=b.dataset.t;render()});
+    b.addEventListener('click',function(e){req.value=b.dataset.r;tok.value=b.dataset.t;render(e.isTrusted)});
   });
-  render();
+  render(false);
 })();
 </script>`;
 
@@ -5049,12 +5096,12 @@ if (CODQ && CHATQ) {
   const zh = LOCALE.code === 'zh';
   const h1 = zh ? '定价：数据永久免费，卖的是围绕数据的服务' : 'Pricing: the data stays free — what is sold is the service around it';
   const desc = zh
-    ? '已核实数字、JSON API 与 MCP 服务器永久免费，数据以 CC BY 4.0 开放；全部自建工具同样免费，使用前注册一个邮箱即可（一次注册全站解锁）。将来收费的只有持续监控、报告导出与高频配额这类围绕数据的服务。付费收录、付费排序、付费徽章一概不卖——排序能买，核实就一文不值。厂商能买的只有两样：队列位置（加急核实：结论来得更快，不是更好的结论），以及带明示「广告」标注、与目录物理分开的广告位（见<a href="' + BASE + '/advertise.html">投放</a>）。详见厂商自荐页的「付费买不到的东西」。'
-    : 'The verified figures, the JSON API and the MCP server are free for good, and the data is open under CC BY 4.0. Every self-built tool is free too — register an email once and everything unlocks. Only services around the data — continuous monitoring, report export, higher quotas — will ever be paid. Paid listing, paid ranking and paid badges are not for sale at any price: if ranking can be bought, verification is worthless. A vendor can buy exactly two things: queue position (expedited verification: a faster verdict, never a better one) and a labelled ad slot that sits apart from the directory (see <a href="' + BASE + '/advertise.html">advertise</a>). The vendor page lists what payment cannot buy.';
+    ? '已核实数字、JSON API 与 MCP 服务器永久免费，数据以 CC BY 4.0 开放；全部自建工具同样免费，无需注册；使用后可自愿订阅。将来收费的只有持续监控、报告导出与高频配额这类围绕数据的服务。付费收录、付费排序、付费徽章一概不卖——排序能买，核实就一文不值。厂商能买的只有两样：队列位置（加急核实：结论来得更快，不是更好的结论），以及带明示「广告」标注、与目录物理分开的广告位（见<a href="' + BASE + '/advertise.html">投放</a>）。详见厂商自荐页的「付费买不到的东西」。'
+    : 'The verified figures, the JSON API and the MCP server are free for good, and the data is open under CC BY 4.0. Every self-built tool is free too, with no registration. Subscribing after use is optional. Only services around the data — continuous monitoring, report export, higher quotas — will ever be paid. Paid listing, paid ranking and paid badges are not for sale at any price: if ranking can be bought, verification is worthless. A vendor can buy exactly two things: queue position (expedited verification: a faster verdict, never a better one) and a labelled ad slot that sits apart from the directory (see <a href="' + BASE + '/advertise.html">advertise</a>). The vendor page lists what payment cannot buy.';
   const FREE = zh
-    ? [['全部已核实数字与出处', '这是全站存在的理由'], ['全部自建工具（注册邮箱后使用）', '订阅体检、API 计算器、能不能发、分词器等，一次注册全站解锁'],
+    ? [['全部已核实数字与出处', '这是全站存在的理由'], ['全部自建工具（无需注册）', '订阅体检、API 计算器、能不能发、分词器等，打开即可使用'],
        ['JSON API 与 limits.json / llms-full.txt', 'CC BY 4.0，署名回链即可商用'], ['MCP 服务器（14 工具 / 9 资源 / 4 提示词）', '无鉴权，无需安装']]
-    : [['Every verified figure and its source', 'This is why the site exists'], ['Every self-built tool (free with email registration)', 'Audit, API calculator, publish-check, tokenizer and more — register once, unlocked everywhere'],
+    : [['Every verified figure and its source', 'This is why the site exists'], ['Every self-built tool (no registration)', 'Audit, API calculator, publish-check, tokenizer and more — use them immediately'],
        ['JSON API and limits.json / llms-full.txt', 'CC BY 4.0 — attribute and link back, commercial use included'], ['MCP server (14 tools / 9 resources / 4 prompts)', 'No auth, nothing to install']];
   const PAID = zh
     ? [['持续监控·扩展档', '免费档已上线：/watch.html 可注册 webhook 监控 3 个工具。Pro 解锁全量监控与将来的历史时间序列导出——厂商不发公告，这来自每日重新核实'],
@@ -6284,19 +6331,20 @@ if (OFFQ) {
 {
   const zh = LOCALE.code === 'zh';
   const STACK_CATS = ['writing', 'coding', 'image', 'video', 'audio', 'design', 'search', 'office', 'chat', 'api'];
-  const pool = tools.filter((t) => STACK_CATS.includes(t.category)).map((t) => ({
+  const pool = tools.filter((t) => STACK_CATS.includes(t.category) && LICENCE[t.slug]?.verdict !== 'discontinued').map((t) => ({
     s: t.slug, n: t.name, c: t.category,
     free: (t._tags || []).includes('完全免费') ? 1 : 0,
     cn: (t._tags || []).includes('国内直连') ? 1 : 0,
     hot: t.hot ? 1 : 0,
-    q: t.limits ? plain(t.limits.quota).slice(0, 90) : '',
+    q: t.limits ? plain(t.limits.quota) : '',
     chk: t.limits?.checked || '',
+    source: t.limits?.source || '',
     lv: LICENCE[t.slug]?.verdict || '',
   }));
   const h1 = zh ? '免费 AI 工具栈组装器' : 'Free AI stack builder';
   const desc = zh
-    ? `勾选你要做的事，一次配齐一套全免费的工具链：每个推荐位都带已核实的额度摘要与核实日期；打开「要商用」，创作类推荐再叠加 ${Object.keys(LICENCE).length} 条官方条款判定的徽标——授权没核实的如实挂牌，不装知道。`
-    : `Tick what you need to do and assemble an all-free toolchain in one pass: every slot carries a verified allowance summary and its check date. Switch on "commercial use" and creative picks add badges from ${Object.keys(LICENCE).length} official-terms verdicts — where the licence is unverified, the badge says so instead of pretending.`;
+    ? `勾选任务，组合可用免费档的工具方案。查看有来源的额度摘要、核实日期和授权条件；没有查到的明确标注。无需邮箱即可下载清单、复制链接。`
+    : `Choose your tasks and build a plan using free tiers. See sourced allowances, check dates and licence conditions, with missing information clearly marked. Download your plan or copy its link without an email.`;
   const LAB = {
     writing: zh ? '写作翻译' : 'Writing', coding: zh ? '写代码' : 'Coding', image: zh ? '做图' : 'Images',
     video: zh ? '做视频' : 'Video', audio: zh ? '配音配乐' : 'Audio', design: zh ? '做设计' : 'Design',
@@ -6325,76 +6373,24 @@ if (OFFQ) {
       <button type="button" id="fFree" class="is-sel">${zh ? '优先完全免费' : 'Prefer fully free'}</button>
     </div>
     <div id="stackOut" class="calc-out" aria-live="polite"></div>
+    <noscript><p>${zh ? '组合、分享和下载需要启用 JavaScript。你仍可从首页的分类目录直接查看每个工具的额度与来源。' : 'Enable JavaScript to assemble, share and download a plan. You can still browse tool categories from the homepage to read limits and sources.'}</p></noscript>
+    <div class="stack-share ask-hint">
+      <button type="button" id="stackCopy">${zh ? '复制方案链接' : 'Copy plan link'}</button>
+      <button type="button" id="stackDownload">${zh ? '下载工具清单 (.txt)' : 'Download tool list (.txt)'}</button>
+      <output id="stackStatus" aria-live="polite"></output>
+      <input id="stackShareFallback" type="text" readonly hidden aria-label="${zh ? '方案链接' : 'Plan link'}">
+    </div>
+    <p class="sub-note">${zh ? '链接保存你的任务和筛选条件；打开时使用站内最新资料，推荐可能变化。下载清单保存当前资料。选择只在浏览器内处理。' : 'Links save your tasks and filters; recommendations may change as our data updates. Downloads preserve the current data. Selections are processed in your browser.'}</p>
     <p class="sub-note">${zh
-      ? '排序是编辑规则：完全免费优先、有已核实数字优先。「要商用」只对做图/视频/配音/设计生效——授权判定来自各家官方条款（详见「能不能发」页），未核实的如实挂牌。本页不构成法律意见。'
-      : 'Ranking is editorial: fully-free first, verified figures first. "Commercial use" applies to image/video/audio/design picks — verdicts restate official terms (see the publish-check page); unverified ones are flagged as such. Not legal advice.'}</p>
+      ? '排序规则：优先完全免费、有额度资料的工具。国内直连依据收录标签，不保证当前可用。「要商用」仅筛选做图/视频/配音/设计：保留可商用或有条件可商用的记录，使用前仍需核对工具页条款。核实日期代表资料快照，不保证免费档今天未变。'
+      : 'Ranking favors fully-free tools and sourced allowances. China availability uses directory tags, not a live connectivity check. Commercial mode filters image/video/audio/design to records marked allowed or conditional; check the conditions on each tool page. Dates describe data snapshots, not a guarantee that a free tier is unchanged today.'}</p>
   </section>
-  ${subInlineOf({
-    seed: pool.filter((t) => t.q).map((t) => t.s).slice(0, 40),
-    title: zh ? '配好的栈也会过期——额度变了要不要告诉你？' : 'Even a good stack goes stale — want to hear when an allowance moves?',
-    line: zh
-      ? '这套栈里每个数字都有保质期（核实日期就是）。留个邮箱，把你配好的栈当场下载成一页清单；里面哪家缩水，我们直接写信说哪家。'
-      : 'Every number in this stack has a shelf life (the check date). Leave an email, download your assembled stack as a one-pager now; when any of it shrinks, we write to you naming which.',
-  })}
 </main>
-<script>
-(function(){
-  var ZH=${zh};
-  var D=${JSON.stringify(pool)};
-  var LAB=${JSON.stringify(LAB)};
-  var LVB=${JSON.stringify(LVB)};
-  var BASE='${BASE}';
-  var BIZCATS={image:1,video:1,audio:1,design:1};
-  var sel={writing:1,image:1,video:1}, fCn=0, fBiz=0, fFree=1;
-  function EV(n,p){try{if(window.bpjEv)window.bpjEv(n,p)}catch(e){}}
-  var evT;
-  function pick(cat){
-    var xs=D.filter(function(t){return t.c===cat&&(!fCn||t.cn)});
-    xs.sort(function(a,b){
-      var sa=(fFree?a.free*4:a.free)+(a.q?2:0)+a.hot, sb=(fFree?b.free*4:b.free)+(b.q?2:0)+b.hot;
-      if(fBiz&&BIZCATS[cat]){
-        var w={yes:3,conditional:1,depends:0,unstated:-1,'':-1,no:-3};
-        sa+=(w[a.lv]||0)*2; sb+=(w[b.lv]||0)*2;
-      }
-      return sb-sa;
-    });
-    return xs.slice(0,3);
-  }
-  function render(){
-    var cats=Object.keys(sel).filter(function(c){return sel[c]});
-    var H='', chosen=[];
-    if(!cats.length){document.getElementById('stackOut').innerHTML='<p class="gs-none">'+(ZH?'先勾选至少一件要做的事。':'Tick at least one task first.')+'</p>';return}
-    cats.forEach(function(cat){
-      var xs=pick(cat);
-      H+='<h3 class="calc-h">'+LAB[cat]+'<em>'+xs.length+'</em></h3>';
-      if(!xs.length){H+='<p class="gs-none">'+(ZH?'按当前条件（如国内直连）没有合格项——放宽条件试试。':'Nothing qualifies under the current constraints — try loosening them.')+'</p>';return}
-      xs.forEach(function(t,i){
-        chosen.push(t.s);
-        var badge = (fBiz&&BIZCATS[cat]) ? '<span class="verdict '+LVB[t.lv][1]+'">'+LVB[t.lv][0]+'</span> ' : '';
-        var tags=[t.free?(ZH?'完全免费':'fully free'):null,t.cn?(ZH?'国内直连':'works in CN'):null].filter(Boolean).join(' · ');
-        H+='<div class="calc-row '+(i===0?'calc-ok':'calc-un')+'">'+
-          '<b><a href="'+BASE+'/tools/'+t.s+'.html">'+t.n+'</a></b> '+badge+
-          (tags?'<span class="calc-v">'+tags+'</span>':'')+
-          (t.q?'<p>'+t.q+'…</p><i>'+(ZH?'核实于 ':'Checked ')+t.chk+'</i>':'<p>'+(ZH?'这一款还没有已核实的额度数字——不代表不好用，代表我们尚未查到官方数':'No verified figure yet for this one — not a judgement, just no official number found so far')+'</p>')+
-          '</div>';
-      });
-    });
-    document.getElementById('stackOut').innerHTML=H;
-    var f=document.querySelector('.sub-inline .sub-form');
-    if(f&&chosen.length)f.setAttribute('data-seed',chosen.join(','));
-    clearTimeout(evT);evT=setTimeout(function(){EV('calc','/stack/'+cats.join('-')+(fBiz?'+biz':'')+(fCn?'+cn':''))},1500);
-  }
-  Array.prototype.forEach.call(document.querySelectorAll('#stackCats button'),function(b){
-    b.addEventListener('click',function(){sel[b.dataset.c]=sel[b.dataset.c]?0:1;b.classList.toggle('is-sel');render()});
-  });
-  function flag(id,fn){document.getElementById(id).addEventListener('click',function(){this.classList.toggle('is-sel');fn(this.classList.contains('is-sel')?1:0);render()})}
-  flag('fCn',function(v){fCn=v}); flag('fBiz',function(v){fBiz=v}); flag('fFree',function(v){fFree=v});
-  render();
-})();
-</script>`;
+<script type="application/json" id="stackData">${JSON.stringify({ zh, pool, labels: LAB, verdicts: LVB, base: BASE, categories: STACK_CATS }).replace(/</g, '\\u003c')}</script>
+<script src="${site.base_url}/stack-builder.js" defer></script>`;
 
   writeFileSync(join(dist, ...(L.dir ? [L.dir.slice(1)] : []), 'stack-builder.html'), layout({
-    title: zh ? `免费 AI 工具栈组装器：勾选任务，配齐一套全免费工具链（带已核实额度与商用判定） - ${NAME}` : `Free AI stack builder: tick your tasks, get an all-free toolchain with verified limits and licence verdicts - ${NAME}`,
+    title: zh ? `免费 AI 工具方案：按任务组合、下载和分享（附额度与授权条件） - ${NAME}` : `Free AI stack builder: choose tasks, compare limits, download and share your plan - ${NAME}`,
     description: desc,
     path: '/stack-builder.html',
     wide: true,
@@ -8070,6 +8066,7 @@ cpSync(join(root, 'assets/_headers'), join(dist, '_headers'));
 // 自研分词器：脚本与词表原样发出去。词表是二进制常量，构建期不加工——
 // 加工就意味着可能改坏，而它正确与否是 scripts/tokenizer-test.mjs 用金标准锁住的。
 cpSync(join(root, 'assets/tokenizer.js'), join(dist, 'tokenizer.js'));
+cpSync(join(root, 'assets/stack-builder.js'), join(dist, 'stack-builder.js'));
 cpSync(join(root, 'assets/tok'), join(dist, 'assets/tok'), { recursive: true });
 writeFileSync(join(dist, '.nojekyll'), '');
 // IndexNow 密钥文件：放在域名下即完成所有权验证（见 scripts/indexnow.mjs）
@@ -8637,5 +8634,17 @@ ${licOnly.join('\n')}
   }
   console.log(`📄 Markdown 镜像:${mirrored} 页（.html→.md,根/en/money/plans）`);
 }
+
+// Align discovery feeds and copied assets with Pages' existing public routes.
+(function cleanDiscovery(dir) {
+  for (const entry of readdirSync(dir, { withFileTypes: true })) {
+    const file = join(dir, entry.name);
+    if (entry.isDirectory()) cleanDiscovery(file);
+    else if (/\.(?:html|json|xml|txt|md|js)$/.test(entry.name)) {
+      const before = readFileSync(file, 'utf8'), after = canonicalUrls(before);
+      if (after !== before) writeFileSync(file, after);
+    }
+  }
+})(dist);
 
 console.log(`✅ 构建完成：${LOCALES.length} 种语言 × (首页 + 赚钱作业总览 + ${hustles.length} 作业页 + ${solutions.length} 方案页 + ${tools.length} 工具页 + ${catEntries.length} 分类页 + ${VS_PAIRS.length} 对比页) = ${allPages.length} 页 → dist/`);

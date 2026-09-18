@@ -22,6 +22,37 @@
 // 无来源的直接访问不计（那是本站被扫描的主要形态）,/__ 开头的自测路径不计。
 export const K_COUNTRY = 5;
 
+// Publish only experiment stages and our own fixed slugs, never arbitrary
+// event paths (search inputs and email addresses do not belong in this feed).
+export function growthCounts(rows) {
+  const slugs = new Set(['grok','kimi','fireworks','haiper','feishu-miaoji','cline','category-coding','category-api',
+    'llm-api-calculator','publish-check','stack-builder','video-quota-planner',
+    'subscription-audit','tokenizer','pipeline-video','free-for-you']);
+  return (rows || []).filter(r => {
+    const m = /^\/gate\/(next-view|next|soft-use|soft-view|soft-submit|soft-ok|soft-dup|soft-dismiss|soft-error|stack-use|stack-share|stack-export)\/([a-z0-9-]+)(?:\/(alternatives|use|tiers|plan))?$/.exec(r.path || '');
+    if (m && m[1].startsWith('stack-') && m[2] !== 'stack-builder') return false;
+    return m && slugs.has(m[2]) && (m[1] === 'next' ? !!m[3] : !m[3]) && Number.isSafeInteger(r.n) && r.n >= 0;
+  }).map(r => ({ path: r.path, n: r.n }));
+}
+
+// Fixed complete UTC windows; never compare a partial day with a full one.
+// Counts are independent aggregates, not a session funnel or unique people.
+export function completeComparisons(rows, today) {
+  const date = (offset) => new Date(Date.parse(today + 'T00:00:00Z') - offset * 86400000).toISOString().slice(0, 10);
+  const total = (since, until) => {
+    const out = { referred_js_pageviews: 0, calc_events: 0, outbound_events: 0, subscribe_success_events: 0 };
+    for (const r of rows || []) {
+      if (r.day < since || r.day >= until) continue;
+      for (const key of Object.keys(out)) out[key] += Number.isSafeInteger(r[key]) && r[key] >= 0 ? r[key] : 0;
+    }
+    return { since, until_exclusive: until, ...out };
+  };
+  return {
+    definition: 'Complete UTC dates; events are not unique people or cohort conversion rates. Historical missing instrumentation remains missing.',
+    windows: [7, 28].map(days => ({ days, current: total(date(days), today), previous: total(date(2 * days), date(days)) })),
+  };
+}
+
 // 小于 K 的国家并进 other:一个只有 1 次访问的国家配上 28 天窗口,在公开端点上离
 // 「可指认某个人」太近。返回值按计数降序,other 恒定排在最后（它不是一个国家）。
 export function foldSmallCountries(rows, k = K_COUNTRY) {
@@ -57,11 +88,12 @@ export async function onRequestGet({ request, env }) {
   if (days > 90) days = 90;
   const since = new Date(Date.now() - days * 86400000).toISOString().slice(0, 10);
   const today = new Date().toISOString().slice(0, 10);
+  const comparisonSince = new Date(Date.parse(today + 'T00:00:00Z') - 56 * 86400000).toISOString().slice(0, 10);
   // 真人线 A 的公共谓词。ref 已是 hostname;自家域在 hit.js 入库时就清空了,这里再挡一次。
   const HUMAN = "ev = '' AND ref IS NOT NULL AND ref != '' AND ref NOT LIKE '%baipiaoji%' AND path NOT LIKE '/\\_\\_%' ESCAPE '\\'";
   try {
     const q = (sql, ...params) => env.HITS.prepare(sql).bind(...params).all().then((r) => (r && r.results) || []);
-    const [total, paths, referrers, aiRefs, events, subsNew, subsAll, adsRows, countryRows] = await Promise.all([
+    const [total, paths, referrers, aiRefs, events, subsNew, subsAll, adsRows, countryRows, growthRows, comparisonRows] = await Promise.all([
       q(`SELECT count(*) n FROM hits WHERE d >= ? AND ${HUMAN}`, since),
       q(`SELECT path, count(*) n FROM hits WHERE d >= ? AND ${HUMAN} GROUP BY path ORDER BY n DESC LIMIT 400`, since),
       q(`SELECT ref, count(*) n FROM hits WHERE d >= ? AND ${HUMAN} GROUP BY ref ORDER BY n DESC LIMIT 30`, since),
@@ -76,6 +108,13 @@ export async function onRequestGet({ request, env }) {
       // 市场面:只按国家计数,**不与 path / ref / 事件交叉**,并在下面过 k 匿名下限。
       // 有它之前,「中国流量是不是更大」这种问题只有手接 MCP 查 D1 才答得出来。
       q(`SELECT country, count(*) n FROM hits WHERE d >= ? AND ${HUMAN} GROUP BY country ORDER BY n DESC`, since),
+      q("SELECT path, count(*) n FROM hits WHERE d >= ? AND ev = 'gate' AND lang != 'ci' AND path LIKE '/gate/%' GROUP BY path", since),
+      q(`SELECT d AS day,
+        SUM(CASE WHEN ${HUMAN} THEN 1 ELSE 0 END) AS referred_js_pageviews,
+        SUM(ev='calc') AS calc_events, SUM(ev='go') AS outbound_events,
+        SUM(ev='sub_ok') AS subscribe_success_events
+        FROM hits WHERE d >= ? AND d < ? AND ev IN ('','calc','go','sub_ok')
+        AND path NOT GLOB '/__*' AND COALESCE(lang,'') != 'ci' GROUP BY d`, comparisonSince, today),
     ]);
     const ads = {};
     for (const r of adsRows) ads[String(r.status || '')] = r.n;
@@ -91,6 +130,9 @@ export async function onRequestGet({ request, env }) {
       ads,
       countries: foldSmallCountries(countryRows),
       country_floor: K_COUNTRY,
+      comparisons: completeComparisons(comparisonRows, today),
+      growth: { experiment: 'value-first-2026-09-18', counts: growthCounts(growthRows),
+        note: 'New instrumentation; historical gate/ad/earn/gs/gs_go zeroes before this deployment were unmeasured. Counts are events, not unique people.' },
     });
   } catch (e) {
     return json({ ok: false, code: 'query_failed' }, 500);

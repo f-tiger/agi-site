@@ -188,6 +188,9 @@ jobs:
       - name: Reach country-histogram privacy shape (zero network)
         run: node scripts/test-reach-shape.mjs
 
+      - name: Frontend events reach D1 (zero network)
+        run: node scripts/test-hit-events.mjs
+
       # 自研分词器的回归检验：420 例金标准 × 两套词表 = 840 次逐例比对。
       # 写自己的实现就得自己证明它对，否则只是把「让用户猜」换成「让我们猜」。
       - name: Tokenizer regression (840 golden cases)
@@ -200,7 +203,9 @@ jobs:
       # 写死计数/空壳页）此前只在会话手动跑——CI 里从未把过关。放在 build 之后、deploy
       # 之前：不过关就不部署。
       - name: Verify dist (出厂门禁)
-        run: node scripts/verify-dist.mjs
+        run: |
+          node scripts/verify-dist.mjs
+          node scripts/test-canonical-urls.mjs
 
       # 2026-08-16 删除「Ensure Pages project exists」:项目早就存在,这一步每次都
       # 静默失败后 `|| true`——却要为此完整下载一次 wrangler。等于每次运行白花几十秒

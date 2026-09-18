@@ -142,7 +142,9 @@
    "win": "门保留",
    "lose": "注册 0 且 calc 跌 >80% → 报 owner 建议软门",
    "source": "sites/baipiaoji/CLAUDE.md:74",
-   "status": "open"
+   "status": "withdrawn",
+   "settled": "2026-09-18",
+   "reading": "Owner 本轮授权重置策略，八个工具改先使用后自愿订阅。代码审计证实 gate 不在 hit.js 服务端事件白名单，历史 gate=0 是未测量，不是零需求；旧 stack-builder 初载还会记 calc，前后不能直接同比。撤回旧注册墙实验，不声称已证实注册墙导致流失。由 bpj-value-first-1016 与 bpj-task-plan-1016 接替。"
   },
   {
    "id": "bpj-site-search-0927",
@@ -153,7 +155,8 @@
    "win": "按 hit/miss 与 gs_go 定下一步",
    "lose": "搜索线停止投入优化",
    "source": "sites/baipiaoji/CLAUDE.md:87",
-   "status": "open"
+   "status": "open",
+   "measurement_note_20260918": "代码审计：gs/gs_go/earn/gate/ad 此前被 hit.js 事件白名单静默丢弃。该类历史零值记作未测量；PV、订阅表或订单的独立证据仍有效。复盘时从修复生产部署时间计算有效观察窗，不用缺失事件判无需求。"
   },
   {
    "id": "bpj-earn-gate-0928",
@@ -164,7 +167,8 @@
    "win": "板块保留并扩路子",
    "lose": "0 且 pv ≥50 → 拆墙;pv <50 → 先补发现层",
    "source": "sites/baipiaoji/CLAUDE.md:105",
-   "status": "open"
+   "status": "open",
+   "measurement_note_20260918": "代码审计：gs/gs_go/earn/gate/ad 此前被 hit.js 事件白名单静默丢弃。该类历史零值记作未测量；PV、订阅表或订单的独立证据仍有效。复盘时从修复生产部署时间计算有效观察窗，不用缺失事件判无需求。"
   },
   {
    "id": "eco-dp-share-0928",
@@ -1002,7 +1006,8 @@
    "win": "单页库存成立，投放页按板块把单页触达表做厚",
    "lose": "=0 且工具页触达仍 ≥150 → 不是分发问题是需求问题，撤回工具页库存只留板块页",
    "source": "sites/baipiaoji/docs/PRD-revenue-tools-2026-09-16.md",
-   "status": "open"
+   "status": "open",
+   "measurement_note_20260918": "代码审计：gs/gs_go/earn/gate/ad 此前被 hit.js 事件白名单静默丢弃。该类历史零值记作未测量；PV、订阅表或订单的独立证据仍有效。复盘时从修复生产部署时间计算有效观察窗，不用缺失事件判无需求。"
   },
   {
    "id": "bpj-paid-tier-series-1014",
@@ -1164,6 +1169,30 @@
    "lose": "奥地利读者不需要奥地利专页 → 只维护三张德语页上的指路框,不再单独出 AT 页",
    "source": "2026-09-18:RIS 实抓 ElWG(BGBl. I Nr. 91/2025,Fassung 18.09.2026):§ 7 Z 78 Kleinsterzeugungsanlage = 0,8 kW an der Übergabestelle;§ 77 无 eigener Zählpunkt(除非申请)、免 §§ 11/74 Abs 1;ElWOG 2010 §66a 于 24.12.2025 失效。**法条里没找到 Meldepflicht,页面如实说「问 Netzbetreiber」而不是编一个流程**;Förderung 因无官方汇总源不写金额。",
    "status": "open"
+  },
+  {
+   "id": "bpj-value-first-1016",
+   "site": "baipiaoji",
+   "due": "2026-10-16",
+   "metric": "部署后 28d，六工具 + 编程/API 两分类入口的 /gate/next 点击与 /gate/next-view 有效曝光；soft-use 至少两个工具",
+   "threshold": "≥100 次曝光后，点击 ≥10 且 点击/曝光 ≥5%；至少两个工具发生真实操作",
+   "win": "扩大已有效的入口组合；每次仍沿用同口径",
+   "lose": "样本不足判 insufficient；足量且点击 <3% 撤/重写入口；不恢复前置注册墙",
+   "source": "sites/baipiaoji/docs/PRD-growth-reset-2026-09-18.md:1",
+   "status": "open",
+   "measurement_note": "计划日期；实际生产部署不足 28 天时不能提前判负。修复前 gate 未测量。这里是事件比率不是独立用户转化率；没有随机对照，不作因果承诺。"
+  },
+  {
+   "id": "bpj-task-plan-1016",
+   "site": "baipiaoji",
+   "due": "2026-10-16",
+   "metric": "部署后 28d，/gate/stack-use/stack-builder，与 /gate/stack-export/stack-builder + /gate/stack-share/stack-builder（公开 reach.growth 同口径）",
+   "threshold": "≥20 次组装操作且 ≥5 次导出/复制操作",
+   "win": "优先扩同受众任务模板与结果携带能力；另验回流与留存",
+   "lose": "足量入口而使用低则调整方案；入口不足先查发现层；不得把复制意向写成外部访问",
+   "source": "docs/growth-reset-2026-09-18.md:1",
+   "status": "open",
+   "measurement_note": "旧 stack-builder 初载 calc 与本次用户操作口径不一致，重新起算。28 天自生产部署；仍待部署/未测到时不是零。"
   }
  ]
 }
