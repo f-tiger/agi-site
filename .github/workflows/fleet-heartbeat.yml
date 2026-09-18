@@ -161,7 +161,9 @@ jobs:
           CLOUDFLARE_API_TOKEN_ZONE: ${{ secrets.CLOUDFLARE_API_TOKEN_ZONE }}
           CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-        run: python3 tools/fleet/ai_referrals.py
+        run: |
+          python3 tools/fleet/ai_referrals.py --selftest
+          python3 tools/fleet/ai_referrals.py
 
       # 快照回仓:任何后续会话(哪怕没有 Cloudflare/GitHub MCP)都能 cat 一下就
       # 知道舰队是不是活着。data/ 不在任何站点的部署 path 过滤里,不会烧部署。

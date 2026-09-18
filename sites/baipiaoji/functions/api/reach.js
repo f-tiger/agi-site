@@ -22,6 +22,19 @@
 // 无来源的直接访问不计（那是本站被扫描的主要形态）,/__ 开头的自测路径不计。
 export const K_COUNTRY = 5;
 
+// Publish only experiment stages and our own fixed slugs, never arbitrary
+// event paths (search inputs and email addresses do not belong in this feed).
+export function growthCounts(rows) {
+  const slugs = new Set(['grok','kimi','fireworks','haiper','feishu-miaoji','cline',
+    'llm-api-calculator','publish-check','stack-builder','video-quota-planner',
+    'subscription-audit','tokenizer','pipeline-video','free-for-you']);
+  return (rows || []).filter(r => {
+    const m = /^\/gate\/(next-view|next|soft-use|soft-view|soft-submit|soft-ok|soft-dup|soft-dismiss|soft-error|stack-share|stack-export)\/([a-z0-9-]+)(?:\/(alternatives|use|tiers))?$/.exec(r.path || '');
+    if (m && m[1].startsWith('stack-') && m[2] !== 'stack-builder') return false;
+    return m && slugs.has(m[2]) && (m[1] === 'next' ? !!m[3] : !m[3]) && Number.isSafeInteger(r.n) && r.n >= 0;
+  }).map(r => ({ path: r.path, n: r.n }));
+}
+
 // 小于 K 的国家并进 other:一个只有 1 次访问的国家配上 28 天窗口,在公开端点上离
 // 「可指认某个人」太近。返回值按计数降序,other 恒定排在最后（它不是一个国家）。
 export function foldSmallCountries(rows, k = K_COUNTRY) {
@@ -61,7 +74,7 @@ export async function onRequestGet({ request, env }) {
   const HUMAN = "ev = '' AND ref IS NOT NULL AND ref != '' AND ref NOT LIKE '%baipiaoji%' AND path NOT LIKE '/\\_\\_%' ESCAPE '\\'";
   try {
     const q = (sql, ...params) => env.HITS.prepare(sql).bind(...params).all().then((r) => (r && r.results) || []);
-    const [total, paths, referrers, aiRefs, events, subsNew, subsAll, adsRows, countryRows] = await Promise.all([
+    const [total, paths, referrers, aiRefs, events, subsNew, subsAll, adsRows, countryRows, growthRows] = await Promise.all([
       q(`SELECT count(*) n FROM hits WHERE d >= ? AND ${HUMAN}`, since),
       q(`SELECT path, count(*) n FROM hits WHERE d >= ? AND ${HUMAN} GROUP BY path ORDER BY n DESC LIMIT 400`, since),
       q(`SELECT ref, count(*) n FROM hits WHERE d >= ? AND ${HUMAN} GROUP BY ref ORDER BY n DESC LIMIT 30`, since),
@@ -76,6 +89,7 @@ export async function onRequestGet({ request, env }) {
       // 市场面:只按国家计数,**不与 path / ref / 事件交叉**,并在下面过 k 匿名下限。
       // 有它之前,「中国流量是不是更大」这种问题只有手接 MCP 查 D1 才答得出来。
       q(`SELECT country, count(*) n FROM hits WHERE d >= ? AND ${HUMAN} GROUP BY country ORDER BY n DESC`, since),
+      q("SELECT path, count(*) n FROM hits WHERE d >= ? AND ev = 'gate' AND lang != 'ci' AND path LIKE '/gate/%' GROUP BY path", since),
     ]);
     const ads = {};
     for (const r of adsRows) ads[String(r.status || '')] = r.n;
@@ -91,6 +105,8 @@ export async function onRequestGet({ request, env }) {
       ads,
       countries: foldSmallCountries(countryRows),
       country_floor: K_COUNTRY,
+      growth: { experiment: 'value-first-2026-09-18', counts: growthCounts(growthRows),
+        note: 'New instrumentation; historical gate/ad/earn/gs/gs_go zeroes before this deployment were unmeasured. Counts are events, not unique people.' },
     });
   } catch (e) {
     return json({ ok: false, code: 'query_failed' }, 500);

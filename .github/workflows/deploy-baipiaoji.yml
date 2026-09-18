@@ -188,6 +188,9 @@ jobs:
       - name: Reach country-histogram privacy shape (zero network)
         run: node scripts/test-reach-shape.mjs
 
+      - name: Frontend events reach D1 (zero network)
+        run: node scripts/test-hit-events.mjs
+
       # 自研分词器的回归检验：420 例金标准 × 两套词表 = 840 次逐例比对。
       # 写自己的实现就得自己证明它对，否则只是把「让用户猜」换成「让我们猜」。
       - name: Tokenizer regression (840 golden cases)

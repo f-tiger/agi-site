@@ -25,6 +25,9 @@ const EVENTS = new Set([
                  // 一个靠度量决定投入的战略，度量通道自己是坏的，这一课记在这
   'biz',         // 付费 listing 需求探针（/for-vendors.html）：询价按钮与表单结果，
                  // 路径区分动作（/biz/inquiry/<kind>、/biz/ok/<kind>）。90 天 0 询价即撤
+  // These are already emitted by build.mjs. Before 2026-09-18 they were
+  // silently discarded: historical zeroes are missing measurements, not demand.
+  'gate', 'earn', 'ad', 'gs', 'gs_go',
 ]);
 
 export async function onRequestPost({ request, env }) {

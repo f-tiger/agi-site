@@ -45,11 +45,11 @@ SITES = [
     ("agiscorecard", "f84f9d29-3ad9-4b37-b28e-3a78027d2f22", "pageviews", "ref_host",
      "ua_class='human' AND day>=date('now','-{w} days')", "SUM(hits)"),
     ("baipiaoji", "1ee08cb8-a174-4ec3-8dbc-89ef5d28aa05", "hits", "ref",
-     "ev='' AND d>=date('now','-{w} days') AND path NOT LIKE '/__ci%'", "COUNT(*)"),
+     "ev='' AND d>=date('now','-{w} days') AND path NOT GLOB '/__*'", "COUNT(*)"),
     ("getecoback", "75e45e05-44b5-4c56-9a3b-dd504b5c53f1", "ev", "ref",
      "name='page_view' AND ua_class='human' AND day>=date('now','-{w} days')", "COUNT(*)"),
     ("thedollscout", "6e71ddc6-b58c-49f4-b6f5-207f3778133f", "hits", "ref",
-     "ev='' AND d>=date('now','-{w} days') AND d>='2026-08-30' AND path NOT LIKE '/__ci%'", "COUNT(*)"),
+     "ev='' AND d>=date('now','-{w} days') AND d>='2026-08-30' AND path NOT GLOB '/__*'", "COUNT(*)"),
     ("goldrush", "77a0a152-6345-450e-83eb-6f26f246c0b8", "ev", "ref",
      "name='page_view' AND ua_class='human' AND day>=date('now','-{w} days')", "COUNT(*)"),
     ("gridlings", "bd3b1ca9-e9cb-4b71-9834-df3d67b39504", "ev", "ref",
@@ -93,16 +93,39 @@ ENDPOINTS = {
 
 def parse_endpoint(site, body):
     """Pure: an endpoint's JSON → (human_pv, ai_ref, by_host). Raises on a bad shape."""
-    if not isinstance(body, dict) or not body.get("ok"):
-        raise ValueError("endpoint not ok: " + str((body or {}).get("error") or (body or {}).get("code") or "?"))
+    if not isinstance(body, dict) or body.get("ok") is not True:
+        raise ValueError("endpoint not ok or not an object")
+    def count(value):
+        if isinstance(value, bool) or not isinstance(value, int) or value < 0:
+            raise ValueError("missing or invalid count")
+        return value
     if site == "baipiaoji":
         # /api/reach: humans_referred = referred human views (its human line A), ai_referrals rows (ref, path, n)
         by = {}
-        for r in body.get("ai_referrals") or []:
-            by[r["ref"]] = by.get(r["ref"], 0) + int(r.get("n") or 0)
-        return int(body.get("humans_referred") or 0), sum(by.values()), by
-    by = {k: int(v) for k, v in (body.get("by_host") or {}).items()}
-    return int(body.get("human_pv") or 0), int(body.get("ai_ref") or sum(by.values())), by
+        if not isinstance(body.get("ai_referrals"), list):
+            raise ValueError("missing ai_referrals")
+        for r in body["ai_referrals"]:
+            by[r["ref"]] = by.get(r["ref"], 0) + count(r.get("n"))
+        total, ai = count(body.get("humans_referred")), sum(by.values())
+    else:
+        if not isinstance(body.get("by_host"), dict):
+            raise ValueError("missing by_host")
+        by = {k: count(v) for k, v in body["by_host"].items()}
+        total, ai = count(body.get("human_pv")), count(body.get("ai_ref"))
+    if ai != sum(by.values()) or ai > total:
+        raise ValueError("inconsistent AI referral counts")
+    return total, ai, by
+
+
+def pv_basis(site, via="endpoint"):
+    """These denominators must never be added up as unique or verified humans."""
+    if site == "baipiaoji" and via == "endpoint":
+        return "referred_js_pageviews"
+    if site in ("baipiaoji", "thedollscout"):
+        return "js_pageviews"
+    if site == "getecoback" and via == "endpoint":
+        return "server_pageviews_human_or_legacy"
+    return "server_pageviews_ua_filtered"
 
 
 def fetch_endpoint(site):
@@ -186,17 +209,21 @@ def selftest():
         ("parse: empty → zeros", parse_rows([]) == (0, 0, {})),
         ("parse: only total → ai 0", parse_rows([{"host": "_total", "n": 5}]) == (5, 0, {})),
         ("sql: agi uses SUM(hits) on pageviews.ref_host", "SUM(hits)" in sql_for(SITES[0]) and "ref_host LIKE '%chatgpt%'" in sql_for(SITES[0])),
-        ("sql: bpj excludes /__ci and ev=''", "path NOT LIKE '/__ci%'" in sql_for(SITES[1]) and "ev=''" in sql_for(SITES[1])),
+        ("sql: bpj excludes /__ci and ev=''", "path NOT GLOB '/__*'" in sql_for(SITES[1]) and "ev=''" in sql_for(SITES[1])),
         ("sql: tds starts at 2026-08-30 (old site rows excluded)", "d>='2026-08-30'" in sql_for(SITES[3])),
         ("sql: every host token present", all(h in sql_for(SITES[2]) for h in AI_HOSTS)),
         ("sql: window is 28 days", f"'-{WINDOW} days'" in sql_for(SITES[4]) and WINDOW == 28),
         ("age: missing snapshot is ancient", snapshot_age_days(None, dt.date(2026, 9, 12)) > 1000),
         ("age: 2-day-old snapshot", snapshot_age_days({"generated": "2026-09-10T08:00:00Z"}, dt.date(2026, 9, 12)) == 2),
-        ("eight sites", len(SITES) == 8 and len({s[1] for s in SITES}) == 8),
+        ("site names and database/table pairs unique", len({s[0] for s in SITES}) == len(SITES) and len({(s[1], s[2]) for s in SITES}) == len(SITES)),
         ("endpoint: pulse shape", parse_endpoint("gridlings", {"ok": True, "human_pv": 658, "ai_ref": 3, "by_host": {"chatgpt.com": 3}}) == (658, 3, {"chatgpt.com": 3})),
         ("endpoint: bpj reach shape sums per ref", parse_endpoint("baipiaoji", {"ok": True, "humans_referred": 900, "ai_referrals": [{"ref": "www.perplexity.ai", "path": "/a", "n": 12}, {"ref": "www.perplexity.ai", "path": "/b", "n": 8}, {"ref": "chatgpt.com", "path": "/", "n": 12}]}) == (900, 32, {"www.perplexity.ai": 20, "chatgpt.com": 12})),
         ("endpoint: not ok raises", (lambda: (_raises(lambda: parse_endpoint("goldrush", {"ok": False, "error": "no_db"}))))()),
-        ("endpoint map covers all eight sites", set(ENDPOINTS) == {s[0] for s in SITES}),
+        ("endpoint map covers configured sites", set(ENDPOINTS) == {s[0] for s in SITES}),
+        ("missing data is not zero", _raises(lambda: parse_endpoint("gridlings", {"ok": True}))),
+        ("zero is not replaced by host totals", _raises(lambda: parse_endpoint("gridlings", {"ok": True, "human_pv": 2, "ai_ref": 0, "by_host": {"chatgpt.com": 1}}))),
+        ("negative counts rejected", _raises(lambda: parse_endpoint("gridlings", {"ok": True, "human_pv": -1, "ai_ref": 0, "by_host": {}}))),
+        ("mixed measurement bases stay distinct", pv_basis("agiscorecard") != pv_basis("baipiaoji") and pv_basis("baipiaoji") != pv_basis("baipiaoji", "d1-rest")),
     ]
     for n, ok in checks:
         print(("✅ " if ok else "❌ ") + n)
@@ -259,12 +286,19 @@ def main(argv):
 
 def write(sites, errors, how):
     sites = sorted(sites, key=lambda x: [s[0] for s in SITES].index(x["site"]))
+    totals = {}
+    for site in sites:
+        site["pv_basis"] = pv_basis(site["site"], site.get("via", "endpoint"))
+        totals[site["pv_basis"]] = totals.get(site["pv_basis"], 0) + site["human_pv"]
     snap = {
         "generated": dt.datetime.now(dt.timezone.utc).replace(microsecond=0, tzinfo=None).isoformat() + "Z",
         "window_days": WINDOW, "ok": not errors, "read_via": how, "errors": errors,
         "baseline_2026_09_12": {"fleet_ai_ref": 69, "note": "hand-measured; agi 20, bpj 33, eco 16, others 0"},
         "fleet_ai_ref": sum(x["ai_ref"] for x in sites),
-        "fleet_human_pv": sum(x["human_pv"] for x in sites),
+        # Preserve the key for consumers, but refuse to publish a false total.
+        "fleet_human_pv": None,
+        "pv_totals_by_basis": totals,
+        "measurement_note": "Mixed JS, referred-only and UA-filtered server views; not comparable human traffic. AI referrals are observed events, not unique people. Do not compute a fleet conversion rate from these denominators.",
         "sites": sites,
     }
     os.makedirs(os.path.dirname(OUT), exist_ok=True)

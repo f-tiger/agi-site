@@ -1025,3 +1025,10 @@ table.pl-tools tr.pl-on { background: var(--tool-s); }
 .limits-drift { margin: 8px 0 0; padding: 8px 10px; font-size: 13px; line-height: 1.55; color: var(--ink); background: #fff7e6; border-left: 3px solid #e0a800; }
 .ad-house { display: block; margin-top: 6px; font-size: 13px; color: var(--ink-2); text-decoration: none; }
 .ad-house:hover { color: var(--ink); text-decoration: underline; }
+/* Focused landing-page experiment: links wrap instead of pushing mobile wide. */
+.tool-next{margin:18px 0;padding:16px;border:1px solid currentColor;border-radius:12px}
+.tool-next p{margin:0 0 10px}
+.tool-next>div{display:flex;flex-wrap:wrap;gap:10px 20px}
+.tool-next a{line-height:1.6;overflow-wrap:anywhere}
+.tool-next a:focus-visible{outline:2px solid currentColor;outline-offset:4px}
+.task-start{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:24px 0}.task-start a{display:flex;flex-direction:column;gap:8px;padding:18px;border:1px solid var(--line,#ddd);border-radius:0;text-decoration:none}.task-start a:hover,.task-start a:focus-visible{background:var(--card,#f6f4ef);outline:2px solid currentColor;outline-offset:2px}.task-start span{font-size:.88rem;line-height:1.5}.stack-share{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin:20px 0}.stack-share output{flex-basis:100%;font-size:.9rem}.stack-share input{width:100%;max-width:100%;box-sizing:border-box}

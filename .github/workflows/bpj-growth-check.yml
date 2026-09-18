@@ -1,0 +1,47 @@
+name: BPJ growth regression
+on:
+  pull_request:
+    paths:
+      - 'sites/baipiaoji/scripts/build.mjs'
+      - 'sites/baipiaoji/assets/stack-builder.js'
+      - 'sites/baipiaoji/assets/style.css'
+      - 'sites/baipiaoji/functions/api/hit.js'
+      - 'sites/baipiaoji/functions/api/reach.js'
+      - 'sites/baipiaoji/scripts/test-growth-browser.mjs'
+      - '.github/workflows/bpj-growth-check.yml'
+permissions:
+  contents: read
+concurrency:
+  group: bpj-growth-check-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    defaults:
+      run:
+        working-directory: sites/baipiaoji
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Build and validate production output
+        run: |
+          node scripts/build.mjs
+          node scripts/verify-dist.mjs
+          node scripts/test-hit-events.mjs
+          node scripts/test-reach-shape.mjs
+          node scripts/reach-export.mjs --selftest
+      - name: Install browser test runtime
+        run: |
+          npm install --no-save --package-lock=false --prefix "$RUNNER_TEMP/bpj-browser" playwright@1.62.1
+          node "$RUNNER_TEMP/bpj-browser/node_modules/playwright/cli.js" install --with-deps chromium
+      - name: Test user journeys with all network calls intercepted
+        run: PLAYWRIGHT_MODULE_PATH="$RUNNER_TEMP/bpj-browser/node_modules/playwright" node scripts/test-growth-browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: bpj-growth-browser
+          path: sites/baipiaoji/test-results/growth/
+          retention-days: 7

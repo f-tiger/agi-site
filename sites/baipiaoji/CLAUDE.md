@@ -1,3 +1,5 @@
+> **2026-09-18 增长策略更新（Owner 本轮授权）**：按 [新 PRD](docs/PRD-growth-reset-2026-09-18.md) 执行：首页按任务进入，工具先免费使用，方案匿名下载与分享，使用后自愿订阅。此指令替代下文工具注册墙及「旧实验失败即永不尝试」的限制。`gate/earn/ad/gs/gs_go` 历史事件被后端白名单丢弃，不能按零需求结算；详见根 [增长方案](../../docs/growth-reset-2026-09-18.md)。
+
 <!-- MONOREPO 迁移说明(2026-08-19,owner 决定) -->
 > **本站已迁入公开 monorepo `f-tiger/agi-site`,路径 `sites/baipiaoji/`。**
 > 部署分支由 claude/prompt-optimization-workflow-7f3vg2 改为 agi-site 的

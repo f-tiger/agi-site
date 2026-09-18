@@ -68,6 +68,7 @@ function summarise(api) {
     referrers: (api.referrers || []).slice(0, 20),
     ai_referrals: api.ai_referrals || [],
     events: api.events || {},
+    growth: api.growth || null,
     submissions: api.submissions || {},
     ads: api.ads || {},
   };
