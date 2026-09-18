@@ -1,5 +1,7 @@
 # 四个独立商业实验：范围扩展与发布记录
 
+**最终发布更新**：四站改版已上线，三站统计链路经线上写入与汇总验证。新增外贸单据 Agent/MCP TradeCheck。详见[最终发布验收](vertical-agent-release-2026-09-18.md)及[垂直 Agent 商业评审](vertical-agent-commercial-review-2026-09-18.md)。以下部署前记录保留为历史，不代表当前仍阻塞。
+
 **商业复审更新**：新方向不因上线而获验证。参见[技能复审](commercial-skills-review-2026-09-18.md)和[Owner新增五方向](creator-agent-opportunities-2026-09-18.md)。RFQ、ModelMeter、QuerySprint目前仅是免费需求探针，付费功能扩建暂停。
 
 2026-09-18。Owner 在授权推送上线后进一步要求多个商业模式同时探索。此前“一个实验通过才开下一站”的顺序限制不再适用；保留证据、真实收费和不造假规则。以下判断为待检验假设，不是已经盈利的结论。
