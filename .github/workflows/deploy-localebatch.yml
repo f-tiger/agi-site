@@ -32,6 +32,7 @@ jobs:
       - name: Product checks and offline review build
         working-directory: sites/localebatch
         run: |
+          npm ci --ignore-scripts --no-audit --no-fund
           npm test
           npm run build
           node --check src/worker.mjs

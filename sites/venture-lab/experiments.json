@@ -1,0 +1,23 @@
+{
+  "rfqdesk": {
+    "name": "RFQ Desk",
+    "host": "rfqdesk.agiscorecard.com",
+    "proposed_price": "\u20ac19 / month",
+    "model": "Buyer workspace",
+    "sales_enabled": false
+  },
+  "modelmeter": {
+    "name": "ModelMeter",
+    "host": "modelmeter.agiscorecard.com",
+    "proposed_price": "\u20ac29 / month",
+    "model": "Cost review subscription",
+    "sales_enabled": false
+  },
+  "querysprint": {
+    "name": "QuerySprint",
+    "host": "querysprint.agiscorecard.com",
+    "proposed_price": "\u20ac29 one time",
+    "model": "Project collection",
+    "sales_enabled": false
+  }
+}
