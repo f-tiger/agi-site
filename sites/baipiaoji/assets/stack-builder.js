@@ -74,13 +74,19 @@
   });
   byId('stackCopy').addEventListener('click', async function (e) {
     var url = link();
+    byId('stackCopy').disabled = true;
+    byId('stackStatus').textContent = ZH ? '正在复制…' : 'Copying…';
     try {
-      await navigator.clipboard.writeText(url);
+      await Promise.race([
+        navigator.clipboard.writeText(url),
+        new Promise(function (_, reject) { setTimeout(function () { reject(new Error('clipboard timeout')); }, 1200); })
+      ]);
       byId('stackStatus').textContent = ZH ? '链接已复制。接收方无需注册。' : 'Link copied. Recipients need no account.';
     } catch (error) {
       var field = byId('stackShareFallback'); field.value = url; field.hidden = false; field.focus(); field.select();
       byId('stackStatus').textContent = ZH ? '请复制下方已选中的链接。' : 'Copy the selected link below.';
     }
+    byId('stackCopy').disabled = !ordered().length;
     if (e.isTrusted) ev('gate', '/gate/stack-share/stack-builder');
   });
   byId('stackDownload').addEventListener('click', function (e) {

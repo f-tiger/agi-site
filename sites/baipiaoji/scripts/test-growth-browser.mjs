@@ -55,7 +55,8 @@ try {
     const before = await page.locator('[data-stack-tool]').evaluateAll(es => es.map(e => e.dataset.stackTool));
     const savedUrl = page.url();
     await page.locator('#stackCopy').click();
-    assert.match(await page.locator('#stackStatus').innerText(), /复制|copied|Copy/);
+    await page.waitForFunction(() => /链接已复制|请复制下方|Link copied|Copy the selected/.test(document.getElementById('stackStatus').textContent));
+    assert.match(await page.locator('#stackStatus').innerText(), /链接已复制|请复制下方|Link copied|Copy the selected/);
     const downloadEvent = page.waitForEvent('download');
     await page.locator('#stackDownload').click();
     const download = await downloadEvent;

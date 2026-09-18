@@ -405,6 +405,7 @@ function gateOf(path) {
     net: zh ? '网络出错，工具仍可正常使用。' : 'Network error. You can still use the tool.',
   };
   return `<script>(function(){
+window.BPJ_FREE_TOOL=true;
 var main=document.querySelector('main.stage'),slug=${JSON.stringify(slug)};
 if(!main)return;
 function EV(p){try{if(window.bpjEv)bpjEv('gate','/gate/'+p+'/'+slug)}catch(e){}}
@@ -973,6 +974,8 @@ const SUB_JS_BODY = `(function(){
     if(remember){try{localStorage.setItem('bpj_slide_ts',String(Date.now()))}catch(e){}}
   }
   function slideIn(reason){
+    // Tool users already have an optional follow-up after getting a result.
+    if(window.BPJ_FREE_TOOL && reason!=='star')return;
     if(!slideOK())return; SLID=true;
     var seedSrc=document.querySelector('.sub-form[data-seed]');
     var seed=read().length?read().join(','):(seedSrc?seedSrc.dataset.seed:'');
