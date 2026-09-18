@@ -1,3 +1,7 @@
+## 2026-09-18 commercial review context
+
+Before extending revenue experiments, read `.agents/product-marketing.md`, `docs/commercial-skills-review-2026-09-18.md` and `docs/creator-agent-opportunities-2026-09-18.md`. New sites are probes, not proven businesses. Apply customer research, alternatives, pricing units and distribution gates before feature expansion. The owner explicitly added creator monetization, fandom, AI Agents, short video and startup-product reinvention; do not narrow future research to the already-built CSV tools.
+
 > **2026-09-18 多商业模式并行授权**：Owner 明确要求继续探索多个新站，不能只等一个实验结果。本轮新增 RFQ Desk、ModelMeter、QuerySprint，发布与验证边界见 [组合实验记录](docs/portfolio-experiments-2026-09-18.md)。旧的“首站付费后才开新子域”顺序要求由本次指示覆盖；不改变零编造、秘密保护或真实收入计量。
 
 > **2026-09-18 Owner 已授权推送上线**：按「先优化 Prompt 再执行」的流程发布 LocaleBatch 新站与本轮商业研究。当前发布说明见 [LocaleBatch 发布记录](docs/localebatch-release-2026-09-18.md)，商业决策见 [三轮对抗记录](docs/transaction-business-three-rounds-2026-09-18.md)。本站免费 CSV 检查可公开使用；支付、模型质量及后台任务未完成真实验收前保持收费关闭。仓库目前为 private，是 Owner 的主动选择。以下历史站点规则保留；本条不把旧的本地实验或模拟测试记作线上营收。

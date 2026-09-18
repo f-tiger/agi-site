@@ -8,3 +8,6 @@ export async function event(name,explicit=false){const key=name+':'+mode;if(seen
 $('measurement')?.addEventListener('change',e=>{enabled=e.target.checked;if(enabled)event('visit');});
 $('interest')?.addEventListener('click',async()=>{const b=$('interest');b.disabled=true;const ok=await event('interest',true);$('interest-status').textContent=ok?'Interest recorded anonymously. This plan is not available yet. No payment or reservation was made.':'We could not record your interest. No payment was taken. Please try again.';b.disabled=ok;});
 export function readyForOffer(){const p=$('offer');if(p){p.hidden=false;if(!p.dataset.observed){p.dataset.observed='true';const io=new IntersectionObserver(es=>{if(es.some(e=>e.isIntersecting))event('offer');},{threshold:.4});io.observe(p);}}}
+
+const researchButtons=[...document.querySelectorAll('[data-research]')];
+for(const button of researchButtons)button.addEventListener('click',async()=>{researchButtons.forEach(b=>b.disabled=true);const ok=await event(button.dataset.research,true);$('research-status').textContent=ok?'Thank you. Your anonymous answer was recorded.':'Your answer could not be recorded. Please try again.';if(!ok)researchButtons.forEach(b=>b.disabled=false);});

@@ -1,6 +1,6 @@
 import experiments from './experiments.json' with {type:'json'};
 const routes=new Map(Object.entries(experiments).map(([id,x])=>[x.host,id]));
-const events=new Set(['visit','start','complete','export','rfq_export','offer','interest']);
+const events=new Set(['visit','start','complete','export','rfq_export','offer','interest','research_none','research_once','research_repeat']);
 const sources=new Set(['direct','bpj','learn','eco','agi']);
 const modes=new Set(['own','sample','exercise','qa']);
 const json=(data,status=200)=>Response.json(data,{status,headers:{'Cache-Control':'no-store','X-Content-Type-Options':'nosniff'}});
