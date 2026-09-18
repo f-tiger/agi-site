@@ -1,4 +1,7 @@
+import {schema} from './schema.mjs';
 import experiments from './experiments.json' with {type:'json'};
+const ready=new WeakMap();
+async function initialize(db){if(!ready.has(db))ready.set(db,db.exec(schema).catch(e=>{ready.delete(db);throw e;}));await ready.get(db);}
 const routes=new Map(Object.entries(experiments).map(([id,x])=>[x.host,id]));
 const events=new Set(['visit','start','complete','export','rfq_export','offer','interest','research_none','research_once','research_repeat']);
 const sources=new Set(['direct','bpj','learn','eco','agi']);
@@ -8,6 +11,11 @@ async function body(request){const reader=request.body?.getReader();if(!reader)t
 export default {
  async fetch(request,env){const url=new URL(request.url),site=routes.get(url.hostname);if(!site)return new Response('Not found',{status:404});
  if(url.pathname==='/api/config')return json({site,price:experiments[site].proposed_price,sales_enabled:false,measurement:!!env.DB});
+ if(url.pathname==='/api/pulse'){
+  if(!['GET','HEAD'].includes(request.method))return json({error:'Method not allowed'},405);
+  if(!env.DB)return json({error:'Measurement unavailable'},503);
+  try{await initialize(env.DB);const result=await env.DB.prepare("SELECT mode,event,source,COUNT(*) AS visit_events FROM venture_events WHERE site=? AND day >= date('now','-27 days') AND mode != 'qa' GROUP BY mode,event,source ORDER BY mode,event,source").bind(site).all();return json({site,days:28,metric:'opt-in visit events; not users, buyers or revenue',rows:result.results});}catch{return json({error:'Measurement unavailable'},503);}
+ }
  if(url.pathname==='/api/event'){
   if(request.method!=='POST')return json({error:'Method not allowed'},405);
   if(request.headers.get('Origin')!==url.origin||!request.headers.get('Content-Type')?.startsWith('application/json'))return json({error:'Same-origin JSON required'},403);
@@ -17,7 +25,7 @@ export default {
   if(!env.DB||!env.EVENT_LIMIT)return json({error:'Measurement unavailable'},503);
   const rate=await env.EVENT_LIMIT.limit({key:site+':'+d.session});if(!rate.success)return json({error:'Please try later'},429);
   const day=new Date().toISOString().slice(0,10);
-  try{await env.DB.prepare('INSERT OR IGNORE INTO venture_events(day,site,event,mode,source,session) SELECT ?,?,?,?,?,? WHERE (SELECT COUNT(*) FROM venture_events WHERE day=? AND site=?) < 5000').bind(day,site,d.event,d.mode,d.source,d.session,day,site).run();const present=await env.DB.prepare('SELECT 1 AS recorded FROM venture_events WHERE day=? AND site=? AND event=? AND mode=? AND session=?').bind(day,site,d.event,d.mode,d.session).first();if(!present)return json({error:'Measurement capacity reached'},503);return json({recorded:true});}catch{return json({error:'Measurement temporarily unavailable'},503);}
+  try{await initialize(env.DB);await env.DB.prepare('INSERT OR IGNORE INTO venture_events(day,site,event,mode,source,session) SELECT ?,?,?,?,?,? WHERE (SELECT COUNT(*) FROM venture_events WHERE day=? AND site=?) < 5000').bind(day,site,d.event,d.mode,d.source,d.session,day,site).run();const present=await env.DB.prepare('SELECT 1 AS recorded FROM venture_events WHERE day=? AND site=? AND event=? AND mode=? AND session=?').bind(day,site,d.event,d.mode,d.session).first();if(!present)return json({error:'Measurement capacity reached'},503);return json({recorded:true});}catch{return json({error:'Measurement temporarily unavailable'},503);}
  }
  if(url.pathname.startsWith('/api/'))return json({error:'Not found'},404);
  if(!['GET','HEAD'].includes(request.method))return new Response('Method not allowed',{status:405});
@@ -27,5 +35,5 @@ export default {
  if(!/^\/(?:index\.html|guide\.html|privacy\.html|app\.mjs|onboarding\.mjs|fonts\/manrope-latin-wght-normal\.woff2|fonts\/LICENSE|styles\.css|core\.mjs|ui\.mjs|robots\.txt|sitemap\.xml|project\.mjs|sql-worker\.js|vendor\/sql-wasm\.(?:js|wasm)|vendor\/LICENSE)$/.test(path))return new Response('Not found',{status:404});
  const assetURL=new URL(url.origin+'/'+site+path);let response=await env.ASSETS.fetch(new Request(assetURL,{method:request.method}));response=new Response(response.body,response);response.headers.set('Content-Security-Policy',"default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; worker-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'");response.headers.set('X-Content-Type-Options','nosniff');response.headers.set('Referrer-Policy','no-referrer');response.headers.set('Permissions-Policy','camera=(), microphone=(), geolocation=()');return response;
  },
- async scheduled(_event,env){await env.DB.prepare("DELETE FROM venture_events WHERE day < date('now','-34 days')").run();}
+ async scheduled(_event,env){if(!env.DB)return;await initialize(env.DB);await env.DB.prepare("DELETE FROM venture_events WHERE day < date('now','-34 days')").run();}
 };

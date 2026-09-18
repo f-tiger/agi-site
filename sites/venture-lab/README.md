@@ -29,3 +29,7 @@ Run the **Commercial experiment funnel report** workflow for a read-only trailin
 ## Deployment verification still required
 
 Public worker/module/WASM execution and each complete user path must pass browser inspection after release. Unit tests do not establish payment demand, buyer retention, SQL proficiency or supplier quality.
+
+## Runtime measurement binding (2026-09-18)
+
+CI deployment credentials can bind the owner-managed `after35-events` database but D1 REST management returned 401. Preparation now uses the same explicit database ID as Learn. Cloudflare validates binding access during deployment. On first use the Worker creates only `venture_events` and its index. `/api/pulse` exposes only this host's 28-day non-QA aggregate counts, never visit identifiers or another site's tables. It accepts no SQL or query parameters. This is additive and does not change D1 permissions or existing data.
