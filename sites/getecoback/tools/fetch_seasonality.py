@@ -126,7 +126,8 @@ GEO_PRODUCTS = {
 # GB is the first market to get one because it is the only one in GEO_PRODUCTS
 # whose top two terms BOTH peak in November and both outrank its summer term —
 # the opposite shape to Germany, where the site's whole structure came from.
-MARKET_ANCHOR = {"GB": "dehumidifier", "DE-STORAGE": "heizlüfter", "DE-UA": "heizlüfter", "DE-BLACKOUT": "heizlüfter"}
+MARKET_ANCHOR = {"GB": "dehumidifier", "DE-STORAGE": "heizlüfter", "DE-UA": "heizlüfter", "DE-BLACKOUT": "heizlüfter",
+                 "AT": "heizlüfter"}
 # A market key is not always a geo. DE-STORAGE measures German storage demand
 # against the SAME anchor as seasonality-de.json, so its levels are directly
 # comparable to the rest of the German basket — which is the only way to answer
@@ -181,6 +182,24 @@ MARKET_BATCHES = {
     "DE-BLACKOUT": [
         ["stromausfall", "notstromaggregat", "powerstation"],
         ["blackout vorsorge", "heizen ohne strom", "notvorrat"],
+    ],
+    # Austria (2026-09-18). Third market by human page views (26/28d) and the
+    # only non-German one that clicks amazon.de links at the German rate — every
+    # one of those views landed on a German page, because the site has never
+    # carried an Austrian page. Same anchor as the German basket; levels are
+    # only comparable INSIDE this file (Trends normalises per geo), so read the
+    # ranking and the peak month, never the absolute against seasonality-de.
+    "AT": [
+        # The shelf, in the words Austrians use. "Klimagerät" is the Austrian
+        # retail term; if it outranks "Klimaanlage" here, the DE pages are
+        # mis-titled for this market.
+        ["klimaanlage", "klimagerät", "mobile klimaanlage"],
+        ["schimmel", "luftentfeuchter", "infrarotheizung"],
+        # What is specifically Austrian: the price is set by other rules
+        # (E-Control, not EEX/Netzentgelte), heating subsidies are a Land
+        # matter, and tenancy law is the MRG not the BGB.
+        ["strompreis", "heizkostenzuschuss", "stromkosten"],
+        ["klimaanlage mietwohnung", "balkonkraftwerk", "ölradiator"],
     ],
     "DE-STORAGE": [
         ["balkonkraftwerk", "balkonspeicher", "stromspeicher"],

@@ -1,0 +1,116 @@
+{
+ "fetched": "2026-09-18",
+ "geo": "AT",
+ "basket": "AT",
+ "timeframe": "today 5-y",
+ "anchor": "heizlüfter",
+ "scale_note": "One market, its own language, every batch repeating the anchor so the levels are comparable to each other. NOT comparable to seasonality-de.json (different anchor) or to any rising file.",
+ "weeks": 262,
+ "terms": [
+  {
+   "term": "schimmel",
+   "sep": 52.2,
+   "peak": 71.0,
+   "peak_month": 12,
+   "winter_mean": 65.9,
+   "win_over_sep": 1.26
+  },
+  {
+   "term": "balkonkraftwerk",
+   "sep": 36.8,
+   "peak": 61.4,
+   "peak_month": 3,
+   "winter_mean": 33.6,
+   "win_over_sep": 0.91
+  },
+  {
+   "term": "infrarotheizung",
+   "sep": 29.0,
+   "peak": 33.2,
+   "peak_month": 11,
+   "winter_mean": 23.1,
+   "win_over_sep": 0.8
+  },
+  {
+   "term": "klimaanlage",
+   "sep": 3.4,
+   "peak": 22.6,
+   "peak_month": 6,
+   "winter_mean": 1.8,
+   "win_over_sep": 0.52
+  },
+  {
+   "term": "heizkostenzuschuss",
+   "sep": 7.9,
+   "peak": 19.3,
+   "peak_month": 10,
+   "winter_mean": 9.4,
+   "win_over_sep": 1.19
+  },
+  {
+   "term": "strompreis",
+   "sep": 18.4,
+   "peak": 18.4,
+   "peak_month": 9,
+   "winter_mean": 12.7,
+   "win_over_sep": 0.69
+  },
+  {
+   "term": "heizlüfter",
+   "sep": 13.1,
+   "peak": 17.9,
+   "peak_month": 11,
+   "winter_mean": 13.3,
+   "win_over_sep": 1.02
+  },
+  {
+   "term": "luftentfeuchter",
+   "sep": 14.7,
+   "peak": 17.0,
+   "peak_month": 11,
+   "winter_mean": 11.7,
+   "win_over_sep": 0.8
+  },
+  {
+   "term": "klimagerät",
+   "sep": 0.5,
+   "peak": 7.5,
+   "peak_month": 6,
+   "winter_mean": 0.1,
+   "win_over_sep": 0.24
+  },
+  {
+   "term": "mobile klimaanlage",
+   "sep": 0.0,
+   "peak": 2.8,
+   "peak_month": 6,
+   "winter_mean": 0.0,
+   "win_over_sep": 0.0
+  },
+  {
+   "term": "stromkosten",
+   "sep": 2.0,
+   "peak": 2.5,
+   "peak_month": 11,
+   "winter_mean": 2.2,
+   "win_over_sep": 1.09
+  },
+  {
+   "term": "ölradiator",
+   "sep": 0.8,
+   "peak": 1.1,
+   "peak_month": 11,
+   "winter_mean": 0.5,
+   "win_over_sep": 0.58
+  },
+  {
+   "term": "klimaanlage mietwohnung",
+   "sep": 0.0,
+   "peak": 0.2,
+   "peak_month": 2,
+   "winter_mean": 0.1,
+   "win_over_sep": null
+  }
+ ],
+ "errors": []
+}

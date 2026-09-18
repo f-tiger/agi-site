@@ -2990,3 +2990,77 @@ Chromium 实测(390px + 1280px):18 张卡、单 h1、**零横向溢出**、可�
 **归因边界写死**:11-12 **早于**该词 3 月的峰值,所以它测的是**词形对不对**,
 不是**这个类目行不行**——后者是 `eco-storage-spring-0415`。输了就不要再为改标题立项。
 
+
+
+## 国家站扩展:三张页、三个市场,外加一个把最近两周所有新页的货架都吃掉的 bug(2026-09-18,owner:「增强eco站点的，扩展国家站，目标增加点击流量，geo，seo也要优化」)
+
+**owner 第四次要国家扩展,这次照做,但形态由变现门决定,不由「开语言版」决定。**
+先量(D1 28 天真人):DE 274 pv / 48 点击(17,5%)· US 122 / 4 · **AT 26 / 4(15,4%,0 落在 /en/)** ·
+CH 13 / 1 · **ES 12 / 3** · **IT 4 / 3** · PT 2 / 2 · GB 6 / 1 · NL 6 / 0 · FR 3 / 1。
+三个 EN 国家页在 9 月**仍有搜索流量**(56 天:europe-heatwave 29 pv/10 搜索、spain 18/6、italy 12/5、france 8/4)
+—— 这是本站唯一有排名证据的「国家页型」,而它们全是制冷页。
+
+### 选了哪三个国家,为什么不是别的
+
+| 市场 | 变现今天能不能计佣 | 建了什么 | 为什么 |
+|---|---|---|---|
+| **AT** | ✅ amazon.de / getecoback-21,零改动 | `/guide/klimaanlage-mietwohnung-oesterreich.html`(德语) | 第三市场,**全部落在引用 § 554 BGB 的德语页上——那是另一个国家的法律**。MRG § 9 有 BGB 没有的规则:**两个月不答复视为同意** |
+| **ES** | ✅ .de 发货 + Schuko = 西班牙 Type F | `/en/guide/electric-heater-spain-apartment.html` | `seasonality-by-country`:calefactor **34,7(11 月)** ≈ 制冷 39,6,站内只有制冷版 |
+| **IT** | ✅ .de 发货;插座 Type L/F 如实写明 | `/en/guide/mould-italian-apartment-winter.html` | **muffa 31,0(1 月)是意大利第一词**,压过 condizionatore 30,6 |
+| GB | ❌ .co.uk 不计佣 | 无(昨天已建 3 页,线 11-12) | — |
+| NL / FR / UA | ❌ 需求或变现不成立(09-16/17 已判) | 无 | — |
+| 新语言目录 | — | **无** | `/it/` 11 页 0 真人,线 10-27 未结 |
+
+**AT 五年季节性首次量出**(`data/seasonality-at.json`,anchor heizlüfter,**只在 AT 内可比**):
+schimmel **71,0(12 月)** · balkonkraftwerk 61,4(3 月)· infrarotheizung 33,2(11 月)· klimaanlage 22,6(6 月)·
+**heizkostenzuschuss 19,3(10 月,零覆盖)** · strompreis 18,4 · heizlüfter 17,9 · luftentfeuchter 17,0 ·
+klimagerät 7,5 · **klimaanlage mietwohnung 0,2**。
+- **Heizkostenzuschuss 是本轮最想建、没建的一页**:需求正在 10 月峰上,但 `oesterreich.gv.at` 全站是维护页(三个 URL 全 404),
+  九个 Bundesland 各自的官方页没有一个联邦入口可引;金额年年变、州州不同,没有一手源就是编造。**下轮先查联邦门户是否恢复。**
+- AT 租客页因此是**正确性 + 引用赌注,不是搜索赌注**(0,2)——和昨天 DE 的 mieter-recht 一样。它存在的理由是:
+  第三市场的读者此刻在读一部对他们不适用的法律。
+
+### 三张页的事实纪律(全部一手源,零编造)
+
+- **AT**:MRG 全文从 RIS 实抓(Fassung vom 18.09.2026):§ 9 Abs 1(Anzeige、两个月视为同意、七项条件逐字进表)、
+  Abs 2(**Beheizungsanlagen** 与节能改造的 Z 2 特权——红外板是 Beheizungsanlage,空调**不在名单里**,页面说清是 Auslegungsfrage)、
+  Abs 3(恢复原状条件)、**§ 1 适用范围**(≤2 套住宅的房子整体不适用;1953-06-30 后无公共资金新建的只适用少数条款,§ 9 不在其中)。
+  E-Control「Was kostet eine kWh」(Newsletter 3/2026):25–35 ct 存量 / 22–28 ct 新客(3 500 kWh)—— **本站 0,30 €/kWh 假设正落在奥地利区间中间,
+  德语计算器对 AT 不必换算**,页面据此给了三档表。
+- **ES**:PVPC 2.0TD 三时段从 BOE(CNMC Circular 3/2020)实抓:工作日 punta 10–14/18–22、llano 8–10/14–18/22–24、valle 0–8,
+  周六日/1 月 6 日/全国假日全天 valle,Ceuta/Melilla 移一小时。COP 2,5–4 沿用站内 heizfunktion 页;60–100 W/m² 沿用开放数据集;
+  成本表按 0,15/0,20/0,25 €/kWh **三个标明的假设**做算术,不声称账单。**改掉了两句自己写的编造**:「our readers describe」(没有这种读者数据)
+  与「15–17 °C in January are normal」(无源)。
+- **IT**:全部湿度数字 Magnus 现算并经 Python 复核:20 °C/50 % → 墙 17/14/12/10 °C = 60/**73**/83/95 %;
+  **14 °C 的墙只要室内 48 % 就到 70 %**;60 % 时 12 °C 墙已凝结。复用 `taupunkt_check` 计算器(浏览器实测 20/50/14 → 73 %,事件恰 1 条)。
+  DPR 74/2013(意大利供暖季法规)normattiva 返回的是壳页,**没拿到原文,页面不写它**,供暖时段只写机制不写数字。
+
+### 顺手抓到的真 bug:自 09-15 起每一张新页都没有货架
+
+三张新页构建完只有 toppick 条、**没有 `EB_MODELS` 货架**。查 `inject_models()`:它用「页面里出现过 canonical 型号名」判断
+「这页是人工策划页,别叠货架」——**但它检查的是已经注入过其他组件的 HTML**,而 EN 循环里排在它前面的 `EB_PROFILE`
+(存房间条)自 08-31 起带着 term→ASIN 表,表里有 `Comfee`。于是**每一张在那之后创建的页都被当成策划页,货架被静默扣掉**;
+老页靠 marker 分支继续重渲染,所以没人发现。实数:**9 张页**(09-15 richtig-lueften-im-winter / schimmel-am-fenster /
+tilt-and-turn-winter-condensation,09-17 balkonkraftwerk-mieter-recht / infrarotheizung-gegen-schimmel / luftentfeuchter-zieht-kein-wasser,
++ 今天三张)—— **昨天手册里写的「货架自动是除湿机」指的都只是 toppick 条,货架本体从来没到过这些页。**
+修法:guard 先剥掉 `<!--EB_*-->` 块再查名字(判断的是作者写了什么,不是注入器写了什么)。重建后 **117 → 126 张页有货架**,
+九张各拿到正确的族(除湿 ×5、取暖 ×2、储能 ×1、空调 ×1),链接全带 tag、全带广告标识,流水线 byte-stable。
+**教训(通用)**:任何「看页面里有没有 X 来决定要不要注入 Y」的 guard,都必须看**注入前**的页面——否则注入顺序一变,guard 就在测别的组件。
+
+### 验证
+
+18 道闸门全绿;Playwright 390px:三张新页 + 一张补回货架的页,单 h1、零横滚、零页面错误、amazon 链接 **17/17、10/10、14/14、14/14 全带 tag**、
+货架在位、**零 EB_SIZER**、FAQ 5 条可见。内链:AT 页被 klimaanlage-mietwohnung / mobile-klimaanlage-vergleich / 分类页链到(related 自动),
+ES 页被 spain 制冷页 + 七张 heater 梯页链到,IT 页手工加进 italy 制冷页的「季末」块(related 没有 token 重叠,自动链不上)。
+部署自检新增:AT 页断言「zwei Monaten」+「Vollanwendungsbereich」、ES 页断言「2.5–4 kWh of heat」+「Circular 3/2020」、
+IT 页断言「73 %」,以及 ES/IT 的**货架形态**(Schmidbauer / MeacoDry 在、EB_SIZER 不在)。
+
+### 判定线(已进台账)
+
+`eco-at-mrg-1116`(该页 ≥10 pv 且 AT ≥5,或 ≥1 AI 引荐,或 AT 全站 ≥40/28d;t0 页 0 / AT 26)·
+`eco-es-winter-en-1116`(≥10 pv 或 ≥3 搜索/AI 引荐;calefactor 11 月峰在窗内;t0 0)·
+`eco-it-winter-en-0115`(同阈值;muffa 1 月峰在窗内;t0 0)。**赢了才扩**:AT → Balkonkraftwerk-AT 规则页;ES → deshumidificador(12 月);
+IT → deumidificatore(注意它峰在 **7 月**,意大利除湿是夏题)。**输的写法**:对应国家只维护制冷版,不再按季节加国家页。
+
+**一句实话**:三个市场 28 天合计 42 pv / 10 点击,是 DE 的 15%。这轮把它们从「没有」做到「有正确的页」,不会让点击翻倍;
+真正能翻倍的仍是 DE 的冬季簇到季,而那是日历。

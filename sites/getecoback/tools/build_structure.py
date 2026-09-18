@@ -957,6 +957,11 @@ def device_of(slug):
             # the schimmel- prefix above was added to stop, in a new language.
             or "damp" in s
             or "condensation" in s
+            # (2026-09-18) "mould" itself was still missing from the list the
+            # comment above describes, so the Italian-winter mould page would
+            # have been the fourth page to fall through to "ac". No AC page on
+            # this site carries the token (checked before adding it).
+            or "mould" in s or "mold-" in s
             # Humidifier pages live in the humidity family too: routing them to
             # "dehum" keeps every ac-only component (sizer, heat-energy box,
             # climate box) off the page; the card grid itself is overridden by
@@ -1948,7 +1953,17 @@ def inject_models(html, slug, en=False):
         return re.sub(r'<!--EB_MODELS-->.*?<!--/EB_MODELS-->\n?', lambda m: block, html, flags=re.S)
     # The canon-name guard prevents doubling up on curated pages; a context set
     # replaces those recommendations by design, so it overrides the guard.
-    if not ctx and any(n in html for n in CANON_NAMES):
+    #
+    # The guard must look at the AUTHOR'S page, not at whatever earlier
+    # injectors have already added (2026-09-18). In the EN loop the US-market
+    # bridge runs before this function and names Comfee in its own copy, so
+    # on every EN page created after that bridge existed the guard saw a
+    # "curated" page and silently withheld the model grid — the site's best
+    # converting surface — while pages built earlier kept theirs through the
+    # marker branch above. Found because two country pages came out with a
+    # top-pick strip and no grid. Strip the injected blocks before testing.
+    authored = re.sub(r'<!--(EB_[A-Z_]+)-->.*?<!--/\1-->', '', html, flags=re.S)
+    if not ctx and any(n in authored for n in CANON_NAMES):
         return html
     if re.search(r'<h2\b', html):
         return re.sub(r'(<h2\b)', lambda m: block + m.group(1), html, count=1)

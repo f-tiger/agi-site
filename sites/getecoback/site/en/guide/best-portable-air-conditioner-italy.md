@@ -77,6 +77,7 @@ De'Longhi PAC EX105 →
   Comfee MPPH-09CRN7 →
 
 **As the cooling season winds down**
+[Mould in Italian flats in winter: why it comes back, what stops it →](https://getecoback.com/en/guide/mould-italian-apartment-winter.html)
 [Storing your AC? Kill the musty smell first →](https://getecoback.com/en/guide/portable-ac-smells-musty.html)
 [Drying clothes indoors this autumn: what it costs →](https://getecoback.com/en/guide/dehumidifier-drying-clothes-cost.html)
 **More guides**
