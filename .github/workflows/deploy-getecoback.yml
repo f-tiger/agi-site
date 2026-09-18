@@ -303,6 +303,29 @@ jobs:
           # ~62% room RH the surface cannot reach the threshold at any wall
           # temperature. A page that lost that number would read as an endorsement.
           check "https://getecoback.com/guide/infrarotheizung-gegen-schimmel.html" "62 %"
+          # Country pages (2026-09-18). Each exists for one fact a reader in that
+          # market cannot get from the German original, so that is what is asserted:
+          # the Austrian page is worthless without the two-month deemed-consent
+          # rule that the BGB does not have; the Spanish page without the heat-pump
+          # ratio that makes its whole argument; the Italian page without the
+          # surface-humidity figure. A 200 with those sentences missing is the
+          # accident, not a 404.
+          check "https://getecoback.com/guide/klimaanlage-mietwohnung-oesterreich.html" "zwei Monaten"
+          check "https://getecoback.com/guide/klimaanlage-mietwohnung-oesterreich.html" "Vollanwendungsbereich"
+          check "https://getecoback.com/en/guide/electric-heater-spain-apartment.html" "2.5–4 kWh of heat"
+          check "https://getecoback.com/en/guide/electric-heater-spain-apartment.html" "Circular 3/2020"
+          check "https://getecoback.com/en/guide/mould-italian-apartment-winter.html" "73 %"
+          # Shelf shape: the Spanish page is a heater page and the Italian page a
+          # humidity page. The misfile this site has shipped four times is a page
+          # falling through to "ac" and carrying a portable-AC sizer, so assert the
+          # right shelf is present and the wrong component absent, on the live HTML.
+          for pair in "electric-heater-spain-apartment|Schmidbauer" "mould-italian-apartment-winter|MeacoDry"; do
+            u="${pair%%|*}"; must="${pair##*|}"
+            body=$(curl -sL --max-time 20 "https://getecoback.com/en/guide/$u.html" || true)
+            if ! echo "$body" | grep -q "$must"; then echo "::error::/en/guide/$u.html lacks its $must shelf"; fail=1; fi
+            if echo "$body" | grep -q "EB_SIZER"; then echo "::error::/en/guide/$u.html carries the AC sizer — misfiled device family"; fail=1; fi
+            [ "$fail" = "1" ] || echo "OK $u has the right shelf and no sizer"
+          done
           # Homepage table: the site's largest AI surface had no structured rows
           # at all until today, and it is generated from the open dataset.
           check "https://getecoback.com/" "Richtwerte nach Raumgröße"

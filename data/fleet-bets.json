@@ -1,6 +1,6 @@
 {
  "note": "舰队赌注台账:每条预登记判定线一行;status open→won/lost/insufficient/withdrawn 时必须写 settled(日期)与 reading(读数)。tools/fleet/check_bets.py 在 heartbeat 里断言:到期 3 天内提醒,过期 >7 天未结算即红。新增判定线不进这里 = heartbeat 看不见 = 等于没预登记。",
- "updated": "2026-09-17",
+ "updated": "2026-09-18",
  "bets": [
   {
    "id": "fleet-ai-access-0916",
@@ -1098,6 +1098,39 @@
    "source": "sites/baipiaoji/CLAUDE.md 第 19 条（2026-09-17）",
    "status": "open",
    "t0_2026-09-17": "14 天块 CN：0 → 0 → 32 → 60；US：35 → 20 → 98 → 63。CN 的 92 次里 **90 次落在中文页**（/en/ 只有 2 次）；来源 cn.bing.com 71（77%）、m.baidu 6、chatgpt 5、www.baidu 3、bing 2、baidu.com 2、yandex 2、**doubao 1（首次出现中国 AI 助手引荐）**。无引荐那半边两国都不可计：CN 391 次里 `/` 一页占 126（32%，26 天），US 782 次里 /en/tools/grok 占 180——正是手册说要剔掉的「无引荐+单页集中」形状。"
+  },
+  {
+   "id": "eco-at-mrg-1116",
+   "site": "getecoback",
+   "due": "2026-11-16",
+   "metric": "/guide/klimaanlage-mietwohnung-oesterreich.html 28 天真人 pv(按国家拆)、外部引荐、AI 引荐;t0(2026-09-18)= 页面 0 / AT 全站 26 pv · 4 affiliate_click /28d,且 AT 读者此前 100% 落在德语页上",
+   "threshold": "该页 28d 真人 pv ≥10 其中 AT ≥5,或 ≥1 次 AI 引荐,或 AT 全站 pv ≥40/28d",
+   "win": "「同一语言、另一部法律」是本站对德语区第二国的正确形态 → 按同法补 CH(OR 统一了瑞士租法?先查)与 AT 的 Balkonkraftwerk 规则页",
+   "lose": "AT 读者不需要奥地利专页(德语页已经够用)→ 奥地利只在既有页里加一段「in Österreich gilt …」,不再单独出页",
+   "source": "2026-09-18 D1:AT 是第三市场(26 pv / 4 点击,15,4%,全部落在德语页),而这些页引用的是 § 554 BGB —— 对奥地利读者是另一个国家的法律。`seasonality-at.json`(5 年,anchor heizlüfter,仅 AT 内可比):schimmel 71,0(12 月)· balkonkraftwerk 61,4(3 月)· infrarotheizung 33,2(11 月)· klimaanlage 22,6(6 月)· **heizkostenzuschuss 19,3(10 月,零覆盖,但 oesterreich.gv.at 全站维护页 404,官方源拿不到,本轮没建)**· `klimaanlage mietwohnung` 0,2 —— 所以这条是**正确性 + 引用赌注,不是搜索赌注**。法条全部实抓 RIS(Fassung vom 18.09.2026):§ 9 Abs 1 两个月视为同意、七项条件;Abs 2 Beheizungsanlagen 特权;§ 1 适用范围。",
+   "status": "open"
+  },
+  {
+   "id": "eco-es-winter-en-1116",
+   "site": "getecoback",
+   "due": "2026-11-16",
+   "metric": "/en/guide/electric-heater-spain-apartment.html 28 天真人 pv、来源国、搜索/AI 引荐;t0(2026-09-18)= 0 / ES 全站 12 pv · 3 点击 /28d",
+   "threshold": "该页 28d 真人 pv ≥10 或 ≥3 次搜索/AI 引荐(calefactor 峰值 11 月,读数日在峰内)",
+   "win": "EN 国家页型从制冷扩到取暖成立 → 补 `deshumidificador`(18,2,12 月峰)侧与 PT/ES 沿海潮湿页",
+   "lose": "英语读者在西班牙只搜夏天 → EN 国家页只维护制冷版,冬季不扩",
+   "source": "2026-09-18:EN 国家页型在 9 月仍活着(56 天:europe-heatwave 29 pv/10 搜索、spain 18/6、italy 12/5、france 8/4),`seasonality-by-country.json` ES:aire acondicionado portátil 39,6(7 月)vs **calefactor 34,7(11 月)** —— 取暖与制冷同量级而站内只有制冷版。变现走 amazon.de + getecoback-21(Schuko = 西班牙 Type F,可用);PVPC 三时段取自 BOE(CNMC Circular 3/2020);COP 2,5–4 沿用站内 heizfunktion 页。",
+   "status": "open"
+  },
+  {
+   "id": "eco-it-winter-en-0115",
+   "site": "getecoback",
+   "due": "2027-01-15",
+   "metric": "/en/guide/mould-italian-apartment-winter.html 28 天真人 pv、来源国、搜索/AI 引荐、taupunkt_check 次数;t0(2026-09-18)= 0 / IT 全站 4 pv · 3 点击 /28d",
+   "threshold": "该页 28d 真人 pv ≥10 或 ≥3 次搜索/AI 引荐(muffa 峰值 1 月,读数日在峰内)",
+   "win": "同上一条:EN 国家页型跨季成立 → 补 IT 的 deumidificatore(22,6,**7 月峰**——意大利除湿是夏题)",
+   "lose": "IT 英语读者太少(28d 4 pv)撑不起冬季页 → 意大利只维护制冷版;/it/ 语言版仍按 10-27 那条线单独结算",
+   "source": "2026-09-18:`seasonality-by-country.json` IT:**muffa 31,0(1 月)** 是意大利第一词,压过 condizionatore portatile 30,6;站内对 IT 读者只有制冷页。页面全部数字由 Magnus 公式现算(20 °C/50 % → 14 °C 墙面 73 %;14 °C 墙面只需室内 48 % 即到 70 %),复用站内 taupunkt_check 计算器;意大利插座 Type L/F 的差别如实写明。**不建 /it/ 语言版**(eco-it-pilot-1027 未结)。",
+   "status": "open"
   },
   {
    "id": "fleet-source-mix-1013",

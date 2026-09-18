@@ -1,6 +1,16 @@
 {
   "items": [
     {
+      "name": "Share your AI Setup, Learn from others",
+      "url": "https://mysetup.ai/",
+      "host": "mysetup.ai",
+      "src": "https://news.ycombinator.com/item?id=49740105",
+      "points": 204,
+      "comments": 114,
+      "found": "2026-09-18",
+      "status": "candidate"
+    },
+    {
       "name": "How Stale Is Your AI? Release age and training cutoff for 20 models",
       "url": "https://stale.jock.pl/",
       "host": "stale.jock.pl",
@@ -361,5 +371,5 @@
       "status": "candidate"
     }
   ],
-  "updated": "2026-09-17"
+  "updated": "2026-09-18"
 }

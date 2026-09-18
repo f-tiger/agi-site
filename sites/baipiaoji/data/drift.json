@@ -1,10 +1,68 @@
 {
-  "generated": "2026-09-17",
+  "generated": "2026-09-18",
   "note": "官方来源页令牌集合连续两日与基线不同 = 漂移确认。只是「该去核」的信号,不是事实;limits.checked 推进到确认日后自动撤下。",
   "fetched_ok": 103,
   "fetched_fail": 21,
   "pending": 10,
   "items": [
+    {
+      "slug": "ollama",
+      "url": "https://github.com/ollama/ollama",
+      "confirmed": "2026-09-18",
+      "first_seen": "2026-09-17",
+      "added": [
+        "17.9k",
+        "181.2k"
+      ],
+      "removed": [
+        "17.8k",
+        "180.8k"
+      ],
+      "checked_then": "2026-08-04"
+    },
+    {
+      "slug": "n8n",
+      "url": "https://docs.n8n.io",
+      "confirmed": "2026-09-18",
+      "first_seen": "2026-09-17",
+      "added": [
+        "21days"
+      ],
+      "removed": [
+        "19days"
+      ],
+      "checked_then": "2026-08-04"
+    },
+    {
+      "slug": "elevenlabs",
+      "url": "https://elevenlabs.io/pricing",
+      "confirmed": "2026-09-18",
+      "first_seen": "2026-09-17",
+      "added": [
+        "$16",
+        "0.5credit",
+        "0.5credits",
+        "0026video",
+        "10000credits",
+        "1000characters",
+        "1000credits",
+        "100minutes",
+        "100words",
+        "10minutes",
+        "11,000minutes",
+        "11minutes"
+      ],
+      "removed": [
+        "15b",
+        "294b",
+        "30b",
+        "3b",
+        "79b",
+        "880662b",
+        "8b"
+      ],
+      "checked_then": "2026-08-02"
+    },
     {
       "slug": "anythingllm",
       "url": "https://anythingllm.com",
@@ -93,19 +151,6 @@
       "checked_then": "2026-08-06"
     },
     {
-      "slug": "n8n",
-      "url": "https://docs.n8n.io",
-      "confirmed": "2026-09-16",
-      "first_seen": "2026-09-15",
-      "added": [
-        "19days"
-      ],
-      "removed": [
-        "16days"
-      ],
-      "checked_then": "2026-08-04"
-    },
-    {
       "slug": "zhipu-glm",
       "url": "https://docs.bigmodel.cn/cn/guide/models/free/glm-4.7-flash",
       "confirmed": "2026-09-16",
@@ -127,34 +172,6 @@
       ],
       "removed": [],
       "checked_then": "2026-08-03"
-    },
-    {
-      "slug": "ollama",
-      "url": "https://github.com/ollama/ollama",
-      "confirmed": "2026-09-14",
-      "first_seen": "2026-09-13",
-      "added": [
-        "180.8k"
-      ],
-      "removed": [
-        "180.7k"
-      ],
-      "checked_then": "2026-08-04"
-    },
-    {
-      "slug": "elevenlabs",
-      "url": "https://elevenlabs.io/pricing",
-      "confirmed": "2026-09-14",
-      "first_seen": "2026-09-13",
-      "added": [
-        "30b",
-        "8b"
-      ],
-      "removed": [
-        "373b",
-        "74b"
-      ],
-      "checked_then": "2026-08-02"
     },
     {
       "slug": "cursor",
