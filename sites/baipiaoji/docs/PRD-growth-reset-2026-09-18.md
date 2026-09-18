@@ -31,3 +31,7 @@ Owner 本轮明确要求大胆调整，并指出旧要求可能错误。本实�
 
 
 对标依据与 14 站投入优先级见根 `docs/growth-reset-2026-09-18.md`。方案实验目标为 28 天内 ≥20 次真实组装操作且 ≥5 次导出/复制操作；新事件旧值不可同比。
+
+## 实时诊断补充（第二轮）
+
+Cloudflare 生产实测确认 .html → 308 → 无后缀 200，但 canonical 指回 .html。本轮统一自有链接/canonical/hreflang/sitemap/引用资产为实际 200 URL，文件和旧地址继续兼容；新增编程/API 分类入口（实时窗口分别 37/11 次主要语言页浏览），不据此编造新内容。方案真实操作单列 `/gate/stack-use/stack-builder`，可由 reach.growth 直接复盘；新增完整 UTC 7/28 天比较并保留旧快照字段。测试模拟 Pages 路由并检查任务路径无额外跳转。完整证据见根 `docs/cloudflare-deep-diagnosis-2026-09-18.md`。

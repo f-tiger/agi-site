@@ -47,7 +47,7 @@
         var v = LVB[t.lv] || LVB[''];
         var badge = flags.commercial && BIZ.includes(cat) ? '<span class="verdict ' + esc(v[1]) + '">' + esc(v[0]) + '</span> ' : '';
         html += '<div class="calc-row ' + (i === 0 ? 'calc-ok' : 'calc-un') + '" data-stack-tool="' + esc(t.s) + '">' +
-          '<b><a href="' + config.base + '/tools/' + esc(t.s) + '.html">' + esc(t.n) + '</a></b> ' + badge +
+          '<b><a href="' + config.base + '/tools/' + esc(t.s) + '">' + esc(t.n) + '</a></b> ' + badge +
           '<span class="calc-v">' + (t.free ? (ZH ? '完全免费' : 'Fully free') : (ZH ? '含免费档' : 'Free tier available')) + '</span>' +
           '<p>' + esc(t.q ? t.q.slice(0, 160) + (t.q.length > 160 ? '…' : '') : (ZH ? '未查到官方额度数字，使用前请核对工具页。' : 'No sourced allowance found. Check the tool page before use.')) + '</p>' +
           (t.chk ? '<i>' + (ZH ? '核实于 ' : 'Checked ') + esc(t.chk) + '</i>' : '') + '</div>';
@@ -61,7 +61,7 @@
     try { history.replaceState(null, '', link()); } catch (e) { /* URL updates are optional. */ }
     clearTimeout(timer);
     // Initial rendering, shared-link loading and empty results are not tool use.
-    if (userAction && current.length) timer = setTimeout(function () { ev('calc', '/stack/' + chosen.join('-') + (flags.commercial ? '+biz' : '') + (flags.cn ? '+cn' : '')); }, 500);
+    if (userAction && current.length) timer = setTimeout(function () { ev('gate', '/gate/stack-use/stack-builder'); ev('calc', '/stack/' + chosen.join('-') + (flags.commercial ? '+biz' : '') + (flags.cn ? '+cn' : '')); }, 500);
   }
   document.querySelectorAll('#stackCats button').forEach(function (b) {
     b.addEventListener('click', function (e) {
@@ -93,7 +93,7 @@
     var lines = [ZH ? '白嫖计 · 我的 AI 工具方案' : 'Baipiaoji · My AI tool plan', link(), '',
       ZH ? '资料快照：免费档与条件可能变化。请核对工具页来源和日期。有条件商用不等于无条件授权。' : 'Data snapshot: tiers and terms can change. Check sources and dates on each tool page. Conditional commercial use is not unrestricted permission.', ''];
     current.forEach(function (t) {
-      lines.push(LAB[t.c] + ' — ' + t.n, config.base + '/tools/' + t.s + '.html', t.q || (ZH ? '额度未核实' : 'Allowance unverified'),
+      lines.push(LAB[t.c] + ' — ' + t.n, config.base + '/tools/' + t.s, t.q || (ZH ? '额度未核实' : 'Allowance unverified'),
         (ZH ? '核实日期：' : 'Checked: ') + (t.chk || '—'), (ZH ? '来源：' : 'Source: ') + (t.source || '—'),
         (ZH ? '授权：' : 'Licence: ') + (LVB[t.lv] || LVB[''])[0], '');
     });

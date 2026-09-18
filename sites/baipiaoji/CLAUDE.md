@@ -1,3 +1,5 @@
+> **2026-09-18 实时诊断补充**：cn.bing.com 已成为明确来源，旧“Google 单依赖”为历史状态。公开页面 URL 以 Pages 无后缀 200 为准，禁止 canonical/sitemap 回指会 308 的 .html。完整证据及新完整 UTC 口径见 `../../docs/cloudflare-deep-diagnosis-2026-09-18.md`。
+
 > **2026-09-18 增长策略更新（Owner 本轮授权）**：按 [新 PRD](docs/PRD-growth-reset-2026-09-18.md) 执行：首页按任务进入，工具先免费使用，方案匿名下载与分享，使用后自愿订阅。此指令替代下文工具注册墙及「旧实验失败即永不尝试」的限制。`gate/earn/ad/gs/gs_go` 历史事件被后端白名单丢弃，不能按零需求结算；详见根 [增长方案](../../docs/growth-reset-2026-09-18.md)。
 
 <!-- MONOREPO 迁移说明(2026-08-19,owner 决定) -->

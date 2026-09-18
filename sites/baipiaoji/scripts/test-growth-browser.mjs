@@ -13,7 +13,7 @@ let checks = 0;
 try {
   for (const lang of ['', '/en']) {
     const context = await browser.newContext({ viewport: { width: 1280, height: 900 }, acceptDownloads: true });
-    let events = [], subscriptions = [], errors = [];
+    let events = [], subscriptions = [], errors = [], redirects = [];
     await context.route('**/*', async route => {
       const req = route.request(), url = new URL(req.url());
       if (url.hostname !== 'baipiaoji.com') return route.abort();
@@ -26,7 +26,12 @@ try {
         return route.fulfill({ json: { ok: true, code: 'already' } });
       }
       if (url.pathname.startsWith('/api/')) return route.fulfill({ json: { ok: true } });
-      const path = resolve(dist, '.' + url.pathname + (url.pathname.endsWith('/') ? 'index.html' : ''));
+      if (url.pathname.endsWith('.html')) {
+        redirects.push(url.pathname);
+        url.pathname = url.pathname.replace(/\/index\.html$/, '/').replace(/\.html$/, '');
+        return route.fulfill({ status: 308, headers: { location: url.href } });
+      }
+      const path = resolve(dist, '.' + url.pathname + (url.pathname.endsWith('/') ? 'index.html' : extname(url.pathname) ? '' : '.html'));
       if (!path.startsWith(dist + '/')) return route.abort();
       try {
         const mime = { '.html': 'text/html', '.js': 'application/javascript', '.css': 'text/css', '.json': 'application/json', '.svg': 'image/svg+xml' }[extname(path)] || 'application/octet-stream';
@@ -40,6 +45,8 @@ try {
     await page.locator('.task-start a').first().click();
     await page.locator('[data-stack-tool]').first().waitFor();
     assert.match(page.url(), /tasks=coding%2Capi/);
+    assert.equal(redirects.length, 0, 'homepage task link should reach the result without a redirect');
+    assert.equal(await page.locator('link[rel=canonical]').getAttribute('href'), 'https://baipiaoji.com' + lang + '/stack-builder');
     await page.waitForTimeout(1700); // Prove that the former load-time calc event is absent.
     assert.equal(events.filter(e => e.e === 'calc').length, 0);
     assert.equal(await page.locator('#bpjSoftFollow').count(), 0);
@@ -47,6 +54,7 @@ try {
     await page.locator('#stackCats [data-c=image]').click();
     await page.locator('#bpjSoftFollow').waitFor();
     assert(events.some(e => e.e === 'calc'));
+    assert(events.some(e => e.p === '/gate/stack-use/stack-builder'));
     assert(events.some(e => e.p === '/gate/soft-use/stack-builder'));
     await page.locator('#fBiz').click();
     const imageVerdicts = await page.locator('#stackOut .verdict').allTextContents();
@@ -64,7 +72,8 @@ try {
     await download.saveAs(file);
     const downloaded = readFileSync(file, 'utf8');
     assert(downloaded.includes(savedUrl));
-    assert(downloaded.includes('/tools/' + before[0] + '.html'));
+    assert(downloaded.includes('/tools/' + before[0]));
+    assert(!downloaded.includes('/tools/' + before[0] + '.html'));
     assert.match(downloaded, /来源：|Source:/);
     assert.equal(subscriptions.length, 0, 'export must not require an email');
     await page.locator('#bpjSoftFollow [data-dismiss]').click();
@@ -104,6 +113,14 @@ try {
       await page.locator('[data-next-kind]').first().click();
       assert.equal(page.url(), target);
       assert(events.some(e => e.p.startsWith('/gate/next/' + slug + '/')));
+    }
+    for (const cat of ['coding', 'api']) {
+      await page.goto('https://baipiaoji.com' + lang + '/c/' + cat);
+      const beforeRedirects = redirects.length;
+      await page.locator('[data-next-kind=plan]').click();
+      await page.locator('[data-stack-tool]').first().waitFor();
+      assert.equal(redirects.length, beforeRedirects, 'category-to-plan should not redirect');
+      assert(events.some(e => e.p === '/gate/next/category-' + cat + '/plan'));
     }
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto('https://baipiaoji.com' + lang + '/');

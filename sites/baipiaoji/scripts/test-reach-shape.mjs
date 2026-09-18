@@ -17,7 +17,7 @@
 // 所以下面对边界值逐个断言，而不是「跑通了就算」。
 //
 // 运行：node scripts/test-reach-shape.mjs
-import { foldSmallCountries, K_COUNTRY } from '../functions/api/reach.js';
+import { foldSmallCountries, K_COUNTRY, completeComparisons, growthCounts } from '../functions/api/reach.js';
 
 let bad = 0;
 const ck = (cond, msg) => { if (!cond) { console.error(`❌ ${msg}`); bad++; } };
@@ -70,6 +70,25 @@ ck(get(dirty, 'other') === 70, `空国家码与非法码应并入 other（40+30�
 ck(get(dirty, 'JP') === undefined, '计数为 0 的行不出现');
 ck(foldSmallCountries([]).length === 0 && foldSmallCountries(null).length === 0,
    '空输入返回空数组，不抛错（端点整体不能因为这一格陪葬）');
+
+const compare = completeComparisons([
+  { day: '2026-09-04', referred_js_pageviews: 3 },
+  { day: '2026-09-10', referred_js_pageviews: 4 },
+  { day: '2026-09-11', referred_js_pageviews: 5, calc_events: 2 },
+  { day: '2026-09-17', referred_js_pageviews: 6 },
+  { day: '2026-09-18', referred_js_pageviews: 999 },
+], '2026-09-18').windows[0];
+ck(compare.current.referred_js_pageviews === 11 && compare.previous.referred_js_pageviews === 7,
+  '完整 UTC 周边界不得重叠，今天未完结的 999 不得进入比较');
+ck(compare.current.calc_events === 2, '事件独立计数，不能用来源浏览量冒充漏斗分母');
+const growth = growthCounts([
+  { path: '/gate/stack-use/stack-builder', n: 2 },
+  { path: '/gate/next/category-coding/plan', n: 3 },
+  { path: '/gate/next/category-api/use', n: 4 },
+  { path: '/gate/next/arbitrary/private-search', n: 1 },
+  { path: '/gate/stack-use/grok', n: 1 },
+]);
+ck(growth.length === 3, '方案使用与分类入口可读，任意路径和错误工具仍不得公开');
 
 if (bad) { console.error(`\ntest-reach-shape: ${bad} 项失败`); process.exit(1); }
 console.log(`✅ test-reach-shape 通过（k=${K_COUNTRY} 下限双向 / 合计守恒 / 只有两个字段 / 脏输入不破门）`);

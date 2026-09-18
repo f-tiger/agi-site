@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { canonicalUrls } from './canonical-urls.mjs';
 // 零依赖静态站构建脚本：读取 data/*.json，输出完整站点到 dist/
 import { readFileSync, writeFileSync, mkdirSync, rmSync, cpSync, existsSync, readdirSync } from 'node:fs';
 import { createHash } from 'node:crypto';
@@ -459,7 +460,7 @@ document.addEventListener('bpj:activity',function(e){
 
 function layout({ title, description, path, body, wide, schema, noindex }) {
   const canonical = `${BASE}${path}`;
-  return `<!DOCTYPE html>
+  return canonicalUrls(`<!DOCTYPE html>
 <html lang="${LANG}">
 <head>
 <meta charset="UTF-8">
@@ -491,7 +492,7 @@ ${gateOf(path)}${subJs()}
   <p><a href="${BASE}/">${UI('home', '首页')}</a> · <a href="${BASE}/myths.html">${UI('myths_title', 'AI 免费额度流言核查')}</a> · <a href="${BASE}/free-for-you.html">${UI('ffy_nav', '你能白嫖什么')}</a> · <a href="${BASE}/publish-check.html">${UI('pc_nav', '能不能发')}</a> · <a href="${BASE}/no-official-source.html">${UI('ns_nav', '查无官方来源')}</a> · <a href="${BASE}/changes.html">${UI('ch_nav', '额度变更记录')}</a> · <a href="${BASE}/upgrade/">${UI('up_nav', '该买哪档')}</a> · <a href="${BASE}/solutions/coding.html">${LOCALE.code === 'zh' ? '解决方案' : 'Solutions'}</a> · <a href="${BASE}/earn/">${LOCALE.code === 'zh' ? 'AI 赚钱作业包' : 'AI earning packs'}</a> · <a href="${BASE}/why-did-my-ai-free-tier-stop-working.html">${LOCALE.code === 'zh' ? '额度突然不能用了' : 'Free tier stopped working'}</a> · <a href="${BASE}/report.html">${LOCALE.code === 'zh' ? '真相报告' : 'The report'}</a> · <a href="${BASE}/watch.html">${LOCALE.code === 'zh' ? '额度监控' : 'Watch'}</a> · <a href="${BASE}/submit.html">${UI('submit_nav', '提交工具')}</a> · <a href="${BASE}/for-vendors.html">${UI('vendors_nav', '厂商自荐')}</a> · <a href="${BASE}/developers.html">${UI('dev_nav', '开发者 API')}</a> · <a href="${BASE}/travel/">${UI('travel_nav', '旅行白嫖')}</a> · <a href="${BASE}/feed.xml">${UI('rss', 'RSS 订阅')}</a> · <a href="${BASE}/unsubscribe.html">${UI('unsub_nav', '退订提醒')}</a>${site.contact_email ? ` · <a href="mailto:${esc(site.contact_email)}">${UI('contact', '商务合作')}</a>` : ''}</p>
 </footer>
 </body>
-</html>`;
+</html>`);
 }
 
 // 角标只能来自工具的真实福利标签，不为好看凭空加（见 docs/DESIGN.md 禁忌清单）
@@ -2719,6 +2720,14 @@ function categoryPage(key, label) {
     <div class="hero-inner">
       <h1>${(ce && ce.h1) || UI('cat_h1', '免费{label} AI 工具推荐').replace('{label}', esc(label))}</h1>
       <p class="answer">${esc(answer)}</p>
+      ${['coding', 'api'].includes(key) ? `<nav class="next-steps" data-next-tool="category-${key}" aria-label="${LOCALE.code === 'zh' ? '完成你的任务' : 'Complete your task'}">
+        <h2>${LOCALE.code === 'zh' ? '把目录变成你的工具方案' : 'Turn this directory into your tool plan'}</h2>
+        <p>${LOCALE.code === 'zh' ? '免费使用，无需邮箱。选择任务后可保存和分享结果。' : 'Free to use, no email needed. Choose a task, then save and share the result.'}</p>
+        <div class="next-links">
+          <a data-next-kind="plan" href="${BASE}/stack-builder.html?tasks=coding,api">${LOCALE.code === 'zh' ? '配一套免费编程 + API 方案 →' : 'Build a free coding + API plan →'}</a>
+          <a data-next-kind="use" href="${BASE}/${key === 'api' ? 'llm-api-calculator' : 'subscription-audit'}.html">${LOCALE.code === 'zh' ? (key === 'api' ? '算哪家免费档够用 →' : '核对我的付费订阅 →') : (key === 'api' ? 'Check which API tier fits →' : 'Audit my paid subscriptions →')}</a>
+        </div>
+      </nav>` : ''}
       <dl class="stats">
         <div><dt>${UI('stat_listed', '收录工具')}</dt><dd class="num">${list.length}</dd></div>
         <div><dt>${UI('stat_free', '完全免费')}</dt><dd class="num">${freeN}</dd></div>
@@ -8625,5 +8634,17 @@ ${licOnly.join('\n')}
   }
   console.log(`📄 Markdown 镜像:${mirrored} 页（.html→.md,根/en/money/plans）`);
 }
+
+// Align discovery feeds and copied assets with Pages' existing public routes.
+(function cleanDiscovery(dir) {
+  for (const entry of readdirSync(dir, { withFileTypes: true })) {
+    const file = join(dir, entry.name);
+    if (entry.isDirectory()) cleanDiscovery(file);
+    else if (/\.(?:html|json|xml|txt|md|js)$/.test(entry.name)) {
+      const before = readFileSync(file, 'utf8'), after = canonicalUrls(before);
+      if (after !== before) writeFileSync(file, after);
+    }
+  }
+})(dist);
 
 console.log(`✅ 构建完成：${LOCALES.length} 种语言 × (首页 + 赚钱作业总览 + ${hustles.length} 作业页 + ${solutions.length} 方案页 + ${tools.length} 工具页 + ${catEntries.length} 分类页 + ${VS_PAIRS.length} 对比页) = ${allPages.length} 页 → dist/`);

@@ -239,6 +239,14 @@ def main():
     out.write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n')
     for group in ('edge', 'd1', 'public'):
         print(group + ': ' + ', '.join(f'{name}={data.get("status", "partial")}' for name, data in result[group].items()))
+    missing = sum(x['status'] != 'ok' for x in result['d1'].values())
+    if missing:
+        print(f'::warning::D1 direct reads unavailable for {missing}/{len(SITES)} sites. Public aggregates and edge data have different coverage; missing access is not zero activity.')
+    summary = os.environ.get('GITHUB_STEP_SUMMARY')
+    if summary:
+        with open(summary, 'a') as f:
+            f.write('Read-only growth diagnosis completed. No deployment or production writes.\n\n')
+            f.write(f'D1 direct reads unavailable: {missing}/{len(SITES)}. See aggregate artifact for exact coverage and permission errors.\n')
 
 
 if __name__ == '__main__':

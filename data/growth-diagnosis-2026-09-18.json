@@ -1,0 +1,3169 @@
+{
+  "generated": "2026-09-18T09:32:44.002416+00:00",
+  "source_run": "https://github.com/f-tiger/agi-site/actions/runs/35330072830",
+  "source_commit": "5c900b8f702af33c5fdd3e24cb5e789fab79115d",
+  "note": "Events and views are not unique visitors; no cross-site total. Public snapshots include partial today. Missing access is not zero.",
+  "edge": {
+    "agiscorecard.com": {
+      "basis": "edge_requests_not_people",
+      "subdomains_included": true,
+      "periods": {
+        "7": {
+          "current": {
+            "since": "2026-09-11",
+            "until_exclusive": "2026-09-18",
+            "reported_dates": 7,
+            "requests": 114923,
+            "edge_pageviews": 30927,
+            "cached_requests": 48257,
+            "status_counts": {
+              "200": 59593,
+              "202": 6750,
+              "204": 1688,
+              "301": 36,
+              "302": 2330,
+              "304": 118,
+              "307": 1422,
+              "308": 1802,
+              "400": 33,
+              "403": 3675,
+              "404": 30517,
+              "405": 6326,
+              "499": 104,
+              "500": 359,
+              "503": 18,
+              "402": 4,
+              "422": 24,
+              "522": 112,
+              "530": 12
+            }
+          },
+          "previous": {
+            "since": "2026-09-04",
+            "until_exclusive": "2026-09-11",
+            "reported_dates": 7,
+            "requests": 85039,
+            "edge_pageviews": 20839,
+            "cached_requests": 33648,
+            "status_counts": {
+              "200": 41618,
+              "202": 5611,
+              "204": 1492,
+              "301": 66,
+              "302": 2492,
+              "304": 355,
+              "307": 419,
+              "308": 731,
+              "400": 19,
+              "403": 3916,
+              "404": 23318,
+              "405": 4602,
+              "499": 25,
+              "500": 349,
+              "402": 4,
+              "422": 21,
+              "530": 1
+            }
+          }
+        },
+        "28": {
+          "current": {
+            "since": "2026-08-21",
+            "until_exclusive": "2026-09-18",
+            "reported_dates": 28,
+            "requests": 361399,
+            "edge_pageviews": 94070,
+            "cached_requests": 151146,
+            "status_counts": {
+              "200": 181494,
+              "202": 23576,
+              "204": 5230,
+              "301": 279,
+              "302": 9492,
+              "304": 1296,
+              "307": 7315,
+              "308": 3831,
+              "400": 146,
+              "402": 25,
+              "403": 17247,
+              "404": 91767,
+              "405": 18016,
+              "422": 131,
+              "499": 190,
+              "500": 1221,
+              "530": 13,
+              "503": 18,
+              "522": 112
+            }
+          },
+          "previous": {
+            "since": "2026-07-24",
+            "until_exclusive": "2026-08-21",
+            "reported_dates": 28,
+            "requests": 127945,
+            "edge_pageviews": 38658,
+            "cached_requests": 54842,
+            "status_counts": {
+              "200": 71380,
+              "204": 2205,
+              "304": 333,
+              "307": 1121,
+              "400": 1,
+              "402": 2,
+              "403": 1560,
+              "404": 42046,
+              "405": 2122,
+              "499": 29,
+              "422": 19,
+              "301": 184,
+              "302": 1018,
+              "308": 3394,
+              "522": 7,
+              "206": 1,
+              "202": 2523
+            }
+          }
+        }
+      },
+      "top_requests_yesterday": [
+        {
+          "host": "agiscorecard.com",
+          "path": "/mcp",
+          "status": 200,
+          "n": 1703
+        },
+        {
+          "host": "source.agiscorecard.com",
+          "path": "/api/mcp",
+          "status": 200,
+          "n": 1354
+        },
+        {
+          "host": "mcppulse.agiscorecard.com",
+          "path": "/mcp",
+          "status": 200,
+          "n": 1141
+        },
+        {
+          "host": "agiscorecard.com",
+          "path": "/mcp",
+          "status": 202,
+          "n": 577
+        },
+        {
+          "host": "mcppulse.agiscorecard.com",
+          "path": "/mcp",
+          "status": 202,
+          "n": 381
+        },
+        {
+          "host": "source.agiscorecard.com",
+          "path": "/api/mcp",
+          "status": 202,
+          "n": 357
+        },
+        {
+          "host": "compass.agiscorecard.com",
+          "path": "/",
+          "status": 302,
+          "n": 337
+        },
+        {
+          "host": "agiscorecard.com",
+          "path": "/mcp",
+          "status": 405,
+          "n": 321
+        },
+        {
+          "host": "agiscorecard.com",
+          "path": "/",
+          "status": 200,
+          "n": 240
+        },
+        {
+          "host": "mcppulse.agiscorecard.com",
+          "path": "/mcp",
+          "status": 405,
+          "n": 171
+        },
+        {
+          "host": "compass.agiscorecard.com",
+          "path": "/",
+          "status": 403,
+          "n": 171
+        },
+        {
+          "host": "agiscorecard.com",
+          "path": "/api/e",
+          "status": 204,
+          "n": 101
+        },
+        {
+          "host": "index.agiscorecard.com",
+          "path": "/php-info.php",
+          "status": 200,
+          "n": 100
+        },
+        {
+          "host": "agiscorecard.com",
+          "path": "/cdn-cgi/rum",
+          "status": 204,
+          "n": 85
+        },
+        {
+          "host": "mcppulse.agiscorecard.com",
+          "path": "/",
+          "status": 200,
+          "n": 76
+        },
+        {
+          "host": "agiscorecard.com",
+          "path": "/robots.txt",
+          "status": 200,
+          "n": 71
+        },
+        {
+          "host": "source.agiscorecard.com",
+          "path": "/mcp",
+          "status": 200,
+          "n": 71
+        },
+        {
+          "host": "agiscorecard.com",
+          "path": "/favicon.ico",
+          "status": 404,
+          "n": 69
+        },
+        {
+          "host": "source.agiscorecard.com",
+          "path": "/favicon.ico",
+          "status": 404,
+          "n": 68
+        },
+        {
+          "host": "compass.agiscorecard.com",
+          "path": "/register",
+          "status": 403,
+          "n": 67
+        },
+        {
+          "host": "agiscorecard.com",
+          "path": "/when-will-agi-arrive",
+          "status": 200,
+          "n": 64
+        },
+        {
+          "host": "compass.agiscorecard.com",
+          "path": "/signin",
+          "status": 403,
+          "n": 63
+        },
+        {
+          "host": "source.agiscorecard.com",
+          "path": "/",
+          "status": 200,
+          "n": 58
+        },
+        {
+          "host": "compass.agiscorecard.com",
+          "path": "/account",
+          "status": 403,
+          "n": 58
+        },
+        {
+          "host": "compass.agiscorecard.com",
+          "path": "/zh/",
+          "status": 200,
+          "n": 57
+        },
+        {
+          "host": "compass.agiscorecard.com",
+          "path": "/api/auth/signin",
+          "status": 403,
+          "n": 56
+        },
+        {
+          "host": "play.agiscorecard.com",
+          "path": "/e",
+          "status": 200,
+          "n": 49
+        },
+        {
+          "host": "powerbill.agiscorecard.com",
+          "path": "/",
+          "status": 200,
+          "n": 46
+        },
+        {
+          "host": "35.agiscorecard.com",
+          "path": "/",
+          "status": 200,
+          "n": 46
+        },
+        {
+          "host": "codeword.agiscorecard.com",
+          "path": "/",
+          "status": 200,
+          "n": 42
+        },
+        {
+          "host": "games.agiscorecard.com",
+          "path": "/",
+          "status": 200,
+          "n": 42
+        },
+        {
+          "host": "goldrush.agiscorecard.com",
+          "path": "/",
+          "status": 200,
+          "n": 40
+        },
+        {
+          "host": "play.agiscorecard.com",
+          "path": "/",
+          "status": 200,
+          "n": 40
+        },
+        {
+          "host": "agiscorecard.com",
+          "path": "/search",
+          "status": 200,
+          "n": 38
+        },
+        {
+          "host": "learn.agiscorecard.com",
+          "path": "/",
+          "status": 200,
+          "n": 38
+        },
+        {
+          "host": "compass.agiscorecard.com",
+          "path": "/admin",
+          "status": 403,
+          "n": 35
+        },
+        {
+          "host": "agiscorecard.com",
+          "path": "/wordpress/.env",
+          "status": 404,
+          "n": 34
+        },
+        {
+          "host": "agiscorecard.com",
+          "path": "/.env",
+          "status": 404,
+          "n": 34
+        },
+        {
+          "host": "x402.agiscorecard.com",
+          "path": "/",
+          "status": 200,
+          "n": 34
+        },
+        {
+          "host": "agents.agiscorecard.com",
+          "path": "/wp/",
+          "status": 404,
+          "n": 34
+        }
+      ],
+      "detail_note": "Adaptive sampled estimates; top 40 only, not exhaustive."
+    },
+    "baipiaoji.com": {
+      "basis": "edge_requests_not_people",
+      "subdomains_included": true,
+      "periods": {
+        "7": {
+          "current": {
+            "since": "2026-09-11",
+            "until_exclusive": "2026-09-18",
+            "reported_dates": 7,
+            "requests": 69336,
+            "edge_pageviews": 21315,
+            "cached_requests": 1048,
+            "status_counts": {
+              "200": 34628,
+              "202": 2781,
+              "204": 1897,
+              "301": 1415,
+              "304": 76,
+              "308": 20429,
+              "400": 68,
+              "402": 13,
+              "403": 771,
+              "404": 5877,
+              "405": 1356,
+              "499": 23,
+              "500": 2
+            }
+          },
+          "previous": {
+            "since": "2026-09-04",
+            "until_exclusive": "2026-09-11",
+            "reported_dates": 7,
+            "requests": 65337,
+            "edge_pageviews": 22049,
+            "cached_requests": 850,
+            "status_counts": {
+              "200": 33324,
+              "202": 2397,
+              "204": 1406,
+              "301": 1019,
+              "304": 52,
+              "308": 23084,
+              "400": 56,
+              "402": 11,
+              "403": 292,
+              "404": 2842,
+              "405": 845,
+              "499": 8,
+              "524": 1
+            }
+          }
+        },
+        "28": {
+          "current": {
+            "since": "2026-08-21",
+            "until_exclusive": "2026-09-18",
+            "reported_dates": 28,
+            "requests": 231178,
+            "edge_pageviews": 70555,
+            "cached_requests": 1909,
+            "status_counts": {
+              "200": 114734,
+              "202": 10259,
+              "204": 5194,
+              "301": 5372,
+              "308": 73871,
+              "400": 213,
+              "402": 41,
+              "403": 1236,
+              "404": 17021,
+              "405": 3015,
+              "499": 80,
+              "530": 1,
+              "304": 138,
+              "524": 1,
+              "500": 2
+            }
+          },
+          "previous": {
+            "since": "2026-07-24",
+            "until_exclusive": "2026-08-21",
+            "reported_dates": 26,
+            "requests": 169082,
+            "edge_pageviews": 67028,
+            "cached_requests": 19,
+            "status_counts": {
+              "200": 90398,
+              "204": 4538,
+              "301": 3243,
+              "304": 9,
+              "308": 55978,
+              "403": 219,
+              "405": 1126,
+              "522": 4,
+              "206": 7,
+              "404": 8604,
+              "499": 23,
+              "400": 359,
+              "202": 4517,
+              "402": 57
+            }
+          }
+        }
+      },
+      "top_requests_yesterday": [
+        {
+          "host": "baipiaoji.com",
+          "path": "/api/mcp",
+          "status": 200,
+          "n": 1547
+        },
+        {
+          "host": "baipiaoji.com",
+          "path": "/api/mcp",
+          "status": 202,
+          "n": 407
+        },
+        {
+          "host": "baipiaoji.com",
+          "path": "/cdn-cgi/rum",
+          "status": 204,
+          "n": 209
+        },
+        {
+          "host": "baipiaoji.com",
+          "path": "/api/hit",
+          "status": 204,
+          "n": 184
+        },
+        {
+          "host": "baipiaoji.com",
+          "path": "/",
+          "status": 200,
+          "n": 161
+        },
+        {
+          "host": "baipiaoji.com",
+          "path": "/en/watch.html",
+          "status": 308,
+          "n": 154
+        },
+        {
+          "host": "baipiaoji.com",
+          "path": "/en/watch",
+          "status": 200,
+          "n": 152
+        },
+        {
+          "host": "baipiaoji.com",
+          "path": "/api/mcp",
+          "status": 405,
+          "n": 133
+        },
+        {
+          "host": "baipiaoji.com",
+          "path": "/watch",
+          "status": 200,
+          "n": 120
+        },
+        {
+          "host": "baipiaoji.com",
+          "path": "/watch.html",
+          "status": 308,
+          "n": 120
+        },
+        {
+          "host": "baipiaoji.com",
+          "path": "/favicon.ico",
+          "status": 404,
+          "n": 91
+        },
+        {
+          "host": "baipiaoji.com",
+          "path": "/bpj.js",
+          "status": 200,
+          "n": 89
+        },
+        {
+          "host": "baipiaoji.com",
+          "path": "/robots.txt",
+          "status": 200,
+          "n": 74
+        },
+        {
+          "host": "baipiaoji.com",
+          "path": "/style.css",
+          "status": 200,
+          "n": 73
+        },
+        {
+          "host": "baipiaoji.com",
+          "path": "/en/tools/grok.html",
+          "status": 308,
+          "n": 69
+        },
+        {
+          "host": "baipiaoji.com",
+          "path": "/",
+          "status": 301,
+          "n": 48
+        },
+        {
+          "host": "baipiaoji.com",
+          "path": "/en/c/coding.html",
+          "status": 308,
+          "n": 47
+        },
+        {
+          "host": "baipiaoji.com",
+          "path": "/llms.txt",
+          "status": 200,
+          "n": 35
+        },
+        {
+          "host": "baipiaoji.com",
+          "path": "/en/tools/haiper.html",
+          "status": 308,
+          "n": 33
+        },
+        {
+          "host": "baipiaoji.com",
+          "path": "/en/tools/fireworks.html",
+          "status": 308,
+          "n": 32
+        },
+        {
+          "host": "baipiaoji.com",
+          "path": "/.well-known/agent-card.json",
+          "status": 404,
+          "n": 31
+        },
+        {
+          "host": "baipiaoji.com",
+          "path": "/.well-known/agent.json",
+          "status": 404,
+          "n": 30
+        },
+        {
+          "host": "baipiaoji.com",
+          "path": "/en/tools/grok",
+          "status": 200,
+          "n": 29
+        },
+        {
+          "host": "www.baipiaoji.com",
+          "path": "/",
+          "status": 200,
+          "n": 28
+        },
+        {
+          "host": "baipiaoji.com",
+          "path": "/api/changes",
+          "status": 200,
+          "n": 23
+        },
+        {
+          "host": "baipiaoji.com",
+          "path": "/en/c/coding",
+          "status": 200,
+          "n": 17
+        },
+        {
+          "host": "baipiaoji.com",
+          "path": "/.well-known/agent.json",
+          "status": 301,
+          "n": 15
+        },
+        {
+          "host": "baipiaoji.com",
+          "path": "/.well-known/agent-card.json",
+          "status": 301,
+          "n": 15
+        },
+        {
+          "host": "www.baipiaoji.com",
+          "path": "/",
+          "status": 301,
+          "n": 14
+        },
+        {
+          "host": "baipiaoji.com",
+          "path": "/api/reach",
+          "status": 200,
+          "n": 13
+        },
+        {
+          "host": "baipiaoji.com",
+          "path": "/api/ads",
+          "status": 200,
+          "n": 13
+        },
+        {
+          "host": "baipiaoji.com",
+          "path": "/.well-known/oauth-protected-resource",
+          "status": 404,
+          "n": 12
+        },
+        {
+          "host": "baipiaoji.com",
+          "path": "/publish-check",
+          "status": 200,
+          "n": 12
+        },
+        {
+          "host": "baipiaoji.com",
+          "path": "/tools/wolframalpha",
+          "status": 200,
+          "n": 12
+        },
+        {
+          "host": "baipiaoji.com",
+          "path": "/en/tools/doubao.html",
+          "status": 308,
+          "n": 11
+        },
+        {
+          "host": "baipiaoji.com",
+          "path": "/tools/kimi",
+          "status": 200,
+          "n": 11
+        },
+        {
+          "host": "baipiaoji.com",
+          "path": "/en/tools/fastgpt.html",
+          "status": 308,
+          "n": 11
+        },
+        {
+          "host": "baipiaoji.com",
+          "path": "/tools/feishu-miaoji",
+          "status": 200,
+          "n": 11
+        },
+        {
+          "host": "baipiaoji.com",
+          "path": "/.well-known/oauth-authorization-server",
+          "status": 404,
+          "n": 11
+        },
+        {
+          "host": "baipiaoji.com",
+          "path": "/.well-known/glama.json",
+          "status": 404,
+          "n": 10
+        }
+      ],
+      "detail_note": "Adaptive sampled estimates; top 40 only, not exhaustive."
+    },
+    "getecoback.com": {
+      "basis": "edge_requests_not_people",
+      "subdomains_included": true,
+      "periods": {
+        "7": {
+          "current": {
+            "since": "2026-09-11",
+            "until_exclusive": "2026-09-18",
+            "reported_dates": 7,
+            "requests": 53624,
+            "edge_pageviews": 4531,
+            "cached_requests": 8767,
+            "status_counts": {
+              "200": 30040,
+              "202": 8002,
+              "204": 117,
+              "301": 8125,
+              "307": 254,
+              "403": 130,
+              "404": 3896,
+              "405": 3006,
+              "499": 43,
+              "304": 11
+            }
+          },
+          "previous": {
+            "since": "2026-09-04",
+            "until_exclusive": "2026-09-11",
+            "reported_dates": 7,
+            "requests": 51508,
+            "edge_pageviews": 5704,
+            "cached_requests": 12299,
+            "status_counts": {
+              "200": 26680,
+              "202": 7221,
+              "204": 136,
+              "301": 7803,
+              "307": 448,
+              "403": 503,
+              "404": 6440,
+              "405": 2268,
+              "499": 6,
+              "304": 3
+            }
+          }
+        },
+        "28": {
+          "current": {
+            "since": "2026-08-21",
+            "until_exclusive": "2026-09-18",
+            "reported_dates": 28,
+            "requests": 201333,
+            "edge_pageviews": 17555,
+            "cached_requests": 43644,
+            "status_counts": {
+              "200": 101829,
+              "202": 30032,
+              "204": 404,
+              "301": 28350,
+              "304": 27,
+              "403": 1156,
+              "404": 25134,
+              "405": 9101,
+              "307": 5200,
+              "499": 61,
+              "400": 39
+            }
+          },
+          "previous": {
+            "since": "2026-07-24",
+            "until_exclusive": "2026-08-21",
+            "reported_dates": 28,
+            "requests": 80800,
+            "edge_pageviews": 13108,
+            "cached_requests": 22895,
+            "status_counts": {
+              "200": 45727,
+              "204": 285,
+              "301": 8575,
+              "307": 1836,
+              "404": 8771,
+              "405": 3300,
+              "304": 17,
+              "403": 117,
+              "202": 12150,
+              "499": 21,
+              "400": 1
+            }
+          }
+        }
+      },
+      "top_requests_yesterday": [
+        {
+          "host": "getecoback.com",
+          "path": "/mcp/v1",
+          "status": 200,
+          "n": 1325
+        },
+        {
+          "host": "getecoback.com",
+          "path": "/mcp",
+          "status": 200,
+          "n": 1183
+        },
+        {
+          "host": "getecoback.com",
+          "path": "/mcp/",
+          "status": 200,
+          "n": 972
+        },
+        {
+          "host": "getecoback.com",
+          "path": "/mcp",
+          "status": 202,
+          "n": 410
+        },
+        {
+          "host": "getecoback.com",
+          "path": "/mcp/v1",
+          "status": 202,
+          "n": 405
+        },
+        {
+          "host": "getecoback.com",
+          "path": "/mcp/",
+          "status": 202,
+          "n": 381
+        },
+        {
+          "host": "getecoback.com",
+          "path": "/",
+          "status": 200,
+          "n": 154
+        },
+        {
+          "host": "getecoback.com",
+          "path": "/mcp",
+          "status": 405,
+          "n": 148
+        },
+        {
+          "host": "getecoback.com",
+          "path": "/mcp/v1",
+          "status": 405,
+          "n": 127
+        },
+        {
+          "host": "getecoback.com",
+          "path": "/mcp/",
+          "status": 405,
+          "n": 124
+        },
+        {
+          "host": "getecoback.com",
+          "path": "/api/ev",
+          "status": 200,
+          "n": 83
+        },
+        {
+          "host": "getecoback.com",
+          "path": "/robots.txt",
+          "status": 200,
+          "n": 80
+        },
+        {
+          "host": "getecoback.com",
+          "path": "/guide/klimaanlage-wohnmobil.html",
+          "status": 200,
+          "n": 55
+        },
+        {
+          "host": "www.getecoback.com",
+          "path": "/",
+          "status": 301,
+          "n": 45
+        },
+        {
+          "host": "getecoback.com",
+          "path": "/api/geo",
+          "status": 200,
+          "n": 40
+        },
+        {
+          "host": "getecoback.com",
+          "path": "/llms.txt",
+          "status": 200,
+          "n": 33
+        },
+        {
+          "host": "getecoback.com",
+          "path": "/",
+          "status": 301,
+          "n": 33
+        },
+        {
+          "host": "getecoback.com",
+          "path": "/guide/schimmel-am-fenster.html",
+          "status": 200,
+          "n": 32
+        },
+        {
+          "host": "getecoback.com",
+          "path": "/en/guide/btu-calculator.html",
+          "status": 200,
+          "n": 32
+        },
+        {
+          "host": "getecoback.com",
+          "path": "/api/heat",
+          "status": 200,
+          "n": 31
+        },
+        {
+          "host": "getecoback.com",
+          "path": "/.well-known/agent-card.json",
+          "status": 404,
+          "n": 30
+        },
+        {
+          "host": "getecoback.com",
+          "path": "/en/guide/heated-airer-vs-dehumidifier.html",
+          "status": 200,
+          "n": 29
+        },
+        {
+          "host": "getecoback.com",
+          "path": "/en/guide/desiccant-vs-compressor-dehumidifier.html",
+          "status": 200,
+          "n": 29
+        },
+        {
+          "host": "getecoback.com",
+          "path": "/.well-known/agent.json",
+          "status": 404,
+          "n": 29
+        },
+        {
+          "host": "getecoback.com",
+          "path": "/api/strom",
+          "status": 200,
+          "n": 27
+        },
+        {
+          "host": "getecoback.com",
+          "path": "/sitemap.xml",
+          "status": 200,
+          "n": 27
+        },
+        {
+          "host": "getecoback.com",
+          "path": "/favicon.svg",
+          "status": 200,
+          "n": 27
+        },
+        {
+          "host": "getecoback.com",
+          "path": "/guide/heizluefter-stromsparend.html",
+          "status": 200,
+          "n": 26
+        },
+        {
+          "host": "getecoback.com",
+          "path": "/guide/btu-rechner.html",
+          "status": 200,
+          "n": 26
+        },
+        {
+          "host": "getecoback.com",
+          "path": "/en/guide/rising-damp-penetrating-damp-or-condensation.html",
+          "status": 200,
+          "n": 26
+        },
+        {
+          "host": "getecoback.com",
+          "path": "/en/guide/portable-ac-rented-apartment.html",
+          "status": 200,
+          "n": 25
+        },
+        {
+          "host": "getecoback.com",
+          "path": "/sizing-data.csv",
+          "status": 200,
+          "n": 25
+        },
+        {
+          "host": "getecoback.com",
+          "path": "/guide/richtig-lueften-im-winter.html",
+          "status": 200,
+          "n": 24
+        },
+        {
+          "host": "getecoback.com",
+          "path": "/guide/stromausfall-heizen.html",
+          "status": 200,
+          "n": 24
+        },
+        {
+          "host": "getecoback.com",
+          "path": "/en/guide/tilt-and-turn-windows-winter-condensation.html",
+          "status": 200,
+          "n": 24
+        },
+        {
+          "host": "getecoback.com",
+          "path": "/guide/luftbefeuchter-ratgeber.html",
+          "status": 200,
+          "n": 24
+        },
+        {
+          "host": "getecoback.com",
+          "path": "/en/guide/electric-heater-20-sqm.html",
+          "status": 200,
+          "n": 24
+        },
+        {
+          "host": "getecoback.com",
+          "path": "/favicon.ico",
+          "status": 404,
+          "n": 23
+        },
+        {
+          "host": "getecoback.com",
+          "path": "/.well-known/oauth-protected-resource.html",
+          "status": 404,
+          "n": 23
+        },
+        {
+          "host": "getecoback.com",
+          "path": "/.well-known/oauth-authorization-server.html",
+          "status": 404,
+          "n": 23
+        }
+      ],
+      "detail_note": "Adaptive sampled estimates; top 40 only, not exhaustive."
+    },
+    "thedollscout.com": {
+      "basis": "edge_requests_not_people",
+      "subdomains_included": true,
+      "periods": {
+        "7": {
+          "current": {
+            "since": "2026-09-11",
+            "until_exclusive": "2026-09-18",
+            "reported_dates": 7,
+            "requests": 7437,
+            "edge_pageviews": 1935,
+            "cached_requests": 89,
+            "status_counts": {
+              "200": 2988,
+              "204": 84,
+              "301": 411,
+              "304": 8,
+              "404": 2519,
+              "405": 524,
+              "410": 414,
+              "206": 4,
+              "403": 479,
+              "308": 5,
+              "530": 1
+            }
+          },
+          "previous": {
+            "since": "2026-09-04",
+            "until_exclusive": "2026-09-11",
+            "reported_dates": 7,
+            "requests": 5857,
+            "edge_pageviews": 1341,
+            "cached_requests": 214,
+            "status_counts": {
+              "200": 2219,
+              "204": 116,
+              "301": 552,
+              "304": 11,
+              "403": 143,
+              "404": 2086,
+              "405": 198,
+              "410": 523,
+              "308": 3,
+              "206": 6
+            }
+          }
+        },
+        "28": {
+          "current": {
+            "since": "2026-08-21",
+            "until_exclusive": "2026-09-18",
+            "reported_dates": 28,
+            "requests": 23145,
+            "edge_pageviews": 6364,
+            "cached_requests": 303,
+            "status_counts": {
+              "200": 9840,
+              "204": 462,
+              "301": 3086,
+              "308": 121,
+              "404": 6927,
+              "405": 748,
+              "403": 681,
+              "304": 36,
+              "410": 1233,
+              "206": 10,
+              "530": 1
+            }
+          },
+          "previous": {
+            "since": "2026-07-24",
+            "until_exclusive": "2026-08-21",
+            "reported_dates": 26,
+            "requests": 29796,
+            "edge_pageviews": 6685,
+            "cached_requests": 8,
+            "status_counts": {
+              "200": 11300,
+              "204": 229,
+              "301": 3168,
+              "304": 15,
+              "308": 2814,
+              "403": 211,
+              "404": 11840,
+              "405": 193,
+              "522": 3,
+              "206": 22,
+              "499": 1
+            }
+          }
+        }
+      },
+      "top_requests_yesterday": [
+        {
+          "host": "thedollscout.com",
+          "path": "/",
+          "status": 200,
+          "n": 68
+        },
+        {
+          "host": "thedollscout.com",
+          "path": "/robots.txt",
+          "status": 200,
+          "n": 39
+        },
+        {
+          "host": "www.thedollscout.com",
+          "path": "/",
+          "status": 200,
+          "n": 20
+        },
+        {
+          "host": "thedollscout.com",
+          "path": "/llms.txt",
+          "status": 200,
+          "n": 20
+        },
+        {
+          "host": "thedollscout.com",
+          "path": "/",
+          "status": 301,
+          "n": 19
+        },
+        {
+          "host": "www.thedollscout.com",
+          "path": "/",
+          "status": 301,
+          "n": 17
+        },
+        {
+          "host": "www.thedollscout.com",
+          "path": "/robots.txt",
+          "status": 200,
+          "n": 9
+        },
+        {
+          "host": "thedollscout.com",
+          "path": "/wp-login.php",
+          "status": 404,
+          "n": 7
+        },
+        {
+          "host": "thedollscout.com",
+          "path": "/sitemap.xml",
+          "status": 200,
+          "n": 7
+        },
+        {
+          "host": "thedollscout.com",
+          "path": "/mcp",
+          "status": 200,
+          "n": 6
+        },
+        {
+          "host": "thedollscout.com",
+          "path": "/js/main.js",
+          "status": 200,
+          "n": 5
+        },
+        {
+          "host": "thedollscout.com",
+          "path": "/fake-check",
+          "status": 200,
+          "n": 5
+        },
+        {
+          "host": "thedollscout.com",
+          "path": "/odds/one-box",
+          "status": 200,
+          "n": 5
+        },
+        {
+          "host": "thedollscout.com",
+          "path": "/odds/",
+          "status": 200,
+          "n": 5
+        },
+        {
+          "host": "thedollscout.com",
+          "path": "/odds/seventy-two-boxes",
+          "status": 200,
+          "n": 5
+        },
+        {
+          "host": "thedollscout.com",
+          "path": "/where-to-buy",
+          "status": 200,
+          "n": 4
+        },
+        {
+          "host": "thedollscout.com",
+          "path": "/lookup",
+          "status": 200,
+          "n": 4
+        },
+        {
+          "host": "thedollscout.com",
+          "path": "/api/ev",
+          "status": 204,
+          "n": 4
+        },
+        {
+          "host": "thedollscout.com",
+          "path": "/css/main.css",
+          "status": 200,
+          "n": 4
+        },
+        {
+          "host": "thedollscout.com",
+          "path": "/data/",
+          "status": 200,
+          "n": 4
+        },
+        {
+          "host": "thedollscout.com",
+          "path": "/legal/affiliate-disclosure",
+          "status": 200,
+          "n": 4
+        },
+        {
+          "host": "thedollscout.com",
+          "path": "/img/og.png",
+          "status": 200,
+          "n": 4
+        },
+        {
+          "host": "thedollscout.com",
+          "path": "/how-blind-boxes-work",
+          "status": 200,
+          "n": 4
+        },
+        {
+          "host": "thedollscout.com",
+          "path": "/glossary",
+          "status": 200,
+          "n": 4
+        },
+        {
+          "host": "thedollscout.com",
+          "path": "/rarity",
+          "status": 200,
+          "n": 4
+        },
+        {
+          "host": "thedollscout.com",
+          "path": "/de/start",
+          "status": 200,
+          "n": 4
+        },
+        {
+          "host": "thedollscout.com",
+          "path": "/de/odds/seventy-two-boxes",
+          "status": 200,
+          "n": 3
+        },
+        {
+          "host": "thedollscout.com",
+          "path": "/de/glossary",
+          "status": 200,
+          "n": 3
+        },
+        {
+          "host": "thedollscout.com",
+          "path": "/de/odds/one-box",
+          "status": 200,
+          "n": 3
+        },
+        {
+          "host": "thedollscout.com",
+          "path": "/de/psychology",
+          "status": 200,
+          "n": 3
+        },
+        {
+          "host": "thedollscout.com",
+          "path": "/media/system/js/core.js",
+          "status": 404,
+          "n": 3
+        },
+        {
+          "host": "thedollscout.com",
+          "path": "/js/odds-calc.js",
+          "status": 200,
+          "n": 3
+        },
+        {
+          "host": "thedollscout.com",
+          "path": "/de/odds/six-boxes",
+          "status": 200,
+          "n": 3
+        },
+        {
+          "host": "thedollscout.com",
+          "path": "/js/analytics.js",
+          "status": 200,
+          "n": 3
+        },
+        {
+          "host": "thedollscout.com",
+          "path": "/cdn-cgi/rum",
+          "status": 204,
+          "n": 3
+        },
+        {
+          "host": "www.thedollscout.com",
+          "path": "/api/ev",
+          "status": 204,
+          "n": 3
+        },
+        {
+          "host": "thedollscout.com",
+          "path": "/finder",
+          "status": 200,
+          "n": 3
+        },
+        {
+          "host": "thedollscout.com",
+          "path": "/media/system/js/core.js",
+          "status": 301,
+          "n": 3
+        },
+        {
+          "host": "thedollscout.com",
+          "path": "/odds/twelve-boxes-full-case",
+          "status": 200,
+          "n": 3
+        },
+        {
+          "host": "thedollscout.com",
+          "path": "/de/checker",
+          "status": 200,
+          "n": 3
+        }
+      ],
+      "detail_note": "Adaptive sampled estimates; top 40 only, not exhaustive."
+    }
+  },
+  "public": {
+    "agiscorecard": {
+      "ok": true,
+      "days": 28,
+      "human_pv": 33377,
+      "ai_ref": 22,
+      "generated": "2026-09-18T09:32:48.433Z",
+      "status": "ok",
+      "basis": "server_pageviews_ua_filtered"
+    },
+    "baipiaoji": {
+      "status": "ok",
+      "basis": "referred_js_pageviews",
+      "partial_today_included": true,
+      "snapshots": {
+        "7": {
+          "ok": true,
+          "generated": "2026-09-18T09:32:48.900Z",
+          "since": "2026-09-11",
+          "until": "2026-09-18",
+          "window_days": 7,
+          "humans_referred": 103,
+          "events": {
+            "sub_view": 152,
+            "go": 53,
+            "star": 5,
+            "calc": 3,
+            "sub_submit": 1,
+            "sub_ok": 1,
+            "sheet_dl": 1,
+            "biz": 1
+          },
+          "countries": [
+            {
+              "country": "CN",
+              "n": 44
+            },
+            {
+              "country": "US",
+              "n": 36
+            },
+            {
+              "country": "other",
+              "n": 23
+            }
+          ],
+          "paths": [
+            {
+              "path": "/en/tools/grok",
+              "n": 14
+            },
+            {
+              "path": "/tools/kimi",
+              "n": 12
+            },
+            {
+              "path": "/en/c/coding",
+              "n": 8
+            },
+            {
+              "path": "/en/tools/fireworks",
+              "n": 6
+            },
+            {
+              "path": "/en/tools/haiper",
+              "n": 5
+            },
+            {
+              "path": "/c/api",
+              "n": 4
+            },
+            {
+              "path": "/tools/cline",
+              "n": 4
+            },
+            {
+              "path": "/tools/feishu-miaoji",
+              "n": 4
+            },
+            {
+              "path": "/en/tools/fastgpt",
+              "n": 2
+            },
+            {
+              "path": "/en/tools/lm-studio",
+              "n": 2
+            },
+            {
+              "path": "/tools/bolt",
+              "n": 2
+            },
+            {
+              "path": "/tools/consensus",
+              "n": 2
+            },
+            {
+              "path": "/tools/google-flow",
+              "n": 2
+            },
+            {
+              "path": "/tools/hailuo",
+              "n": 2
+            },
+            {
+              "path": "/tools/qingying",
+              "n": 2
+            },
+            {
+              "path": "/tools/quillbot",
+              "n": 2
+            },
+            {
+              "path": "/tools/replit",
+              "n": 2
+            },
+            {
+              "path": "/tools/runway",
+              "n": 2
+            },
+            {
+              "path": "/",
+              "n": 1
+            },
+            {
+              "path": "/alternatives/openrouter",
+              "n": 1
+            },
+            {
+              "path": "/en/c/image",
+              "n": 1
+            },
+            {
+              "path": "/en/tools/comfyui",
+              "n": 1
+            },
+            {
+              "path": "/en/tools/goose",
+              "n": 1
+            },
+            {
+              "path": "/en/tools/pixverse",
+              "n": 1
+            },
+            {
+              "path": "/en/tools/windsurf",
+              "n": 1
+            },
+            {
+              "path": "/en/tools/zed",
+              "n": 1
+            },
+            {
+              "path": "/tools/anythingllm",
+              "n": 1
+            },
+            {
+              "path": "/tools/canva",
+              "n": 1
+            },
+            {
+              "path": "/tools/civitai",
+              "n": 1
+            },
+            {
+              "path": "/tools/cohere",
+              "n": 1
+            },
+            {
+              "path": "/tools/deepl",
+              "n": 1
+            },
+            {
+              "path": "/tools/doubao",
+              "n": 1
+            },
+            {
+              "path": "/tools/elevenlabs",
+              "n": 1
+            },
+            {
+              "path": "/tools/fish-audio",
+              "n": 1
+            },
+            {
+              "path": "/tools/google-ai-studio",
+              "n": 1
+            },
+            {
+              "path": "/tools/ima",
+              "n": 1
+            },
+            {
+              "path": "/tools/immersive-translate",
+              "n": 1
+            },
+            {
+              "path": "/tools/kling",
+              "n": 1
+            },
+            {
+              "path": "/tools/lm-studio",
+              "n": 1
+            },
+            {
+              "path": "/tools/marscode",
+              "n": 1
+            },
+            {
+              "path": "/tools/ollama",
+              "n": 1
+            },
+            {
+              "path": "/tools/tongyi-wanxiang",
+              "n": 1
+            },
+            {
+              "path": "/tools/ttsmaker",
+              "n": 1
+            },
+            {
+              "path": "/vs/nvidia-nim-vs-openrouter",
+              "n": 1
+            }
+          ],
+          "referrers": [
+            {
+              "ref": "cn.bing.com",
+              "n": 44
+            },
+            {
+              "ref": "www.google.com",
+              "n": 38
+            },
+            {
+              "ref": "www.bing.com",
+              "n": 9
+            },
+            {
+              "ref": "chatgpt.com",
+              "n": 5
+            },
+            {
+              "ref": "duckduckgo.com",
+              "n": 3
+            },
+            {
+              "ref": "yandex.com.tr",
+              "n": 1
+            },
+            {
+              "ref": "www.perplexity.ai",
+              "n": 1
+            },
+            {
+              "ref": "www.doubao.com",
+              "n": 1
+            },
+            {
+              "ref": "search.brave.com",
+              "n": 1
+            }
+          ]
+        },
+        "14": {
+          "ok": true,
+          "generated": "2026-09-18T09:32:49.093Z",
+          "since": "2026-09-04",
+          "until": "2026-09-18",
+          "window_days": 14,
+          "humans_referred": 173,
+          "events": {
+            "sub_view": 221,
+            "go": 65,
+            "star": 7,
+            "sub_submit": 4,
+            "sheet_dl": 4,
+            "calc": 4,
+            "sub_ok": 3,
+            "sub_dup": 1,
+            "biz": 1
+          },
+          "countries": [
+            {
+              "country": "US",
+              "n": 66
+            },
+            {
+              "country": "CN",
+              "n": 62
+            },
+            {
+              "country": "JP",
+              "n": 8
+            },
+            {
+              "country": "DE",
+              "n": 6
+            },
+            {
+              "country": "GB",
+              "n": 5
+            },
+            {
+              "country": "other",
+              "n": 26
+            }
+          ],
+          "paths": [
+            {
+              "path": "/en/tools/grok",
+              "n": 35
+            },
+            {
+              "path": "/tools/kimi",
+              "n": 16
+            },
+            {
+              "path": "/en/c/coding",
+              "n": 14
+            },
+            {
+              "path": "/en/tools/fireworks",
+              "n": 9
+            },
+            {
+              "path": "/",
+              "n": 6
+            },
+            {
+              "path": "/tools/cline",
+              "n": 6
+            },
+            {
+              "path": "/tools/feishu-miaoji",
+              "n": 6
+            },
+            {
+              "path": "/c/api",
+              "n": 5
+            },
+            {
+              "path": "/en/tools/haiper",
+              "n": 5
+            },
+            {
+              "path": "/tools/google-flow",
+              "n": 4
+            },
+            {
+              "path": "/en/tools/pixverse",
+              "n": 3
+            },
+            {
+              "path": "/tools/together",
+              "n": 3
+            },
+            {
+              "path": "/en/c/image",
+              "n": 2
+            },
+            {
+              "path": "/en/tools/fastgpt",
+              "n": 2
+            },
+            {
+              "path": "/en/tools/lm-studio",
+              "n": 2
+            },
+            {
+              "path": "/en/tools/tongyi",
+              "n": 2
+            },
+            {
+              "path": "/tools/bolt",
+              "n": 2
+            },
+            {
+              "path": "/tools/civitai",
+              "n": 2
+            },
+            {
+              "path": "/tools/comfyui",
+              "n": 2
+            },
+            {
+              "path": "/tools/consensus",
+              "n": 2
+            },
+            {
+              "path": "/tools/fish-audio",
+              "n": 2
+            },
+            {
+              "path": "/tools/google-ai-studio",
+              "n": 2
+            },
+            {
+              "path": "/tools/hailuo",
+              "n": 2
+            },
+            {
+              "path": "/tools/immersive-translate",
+              "n": 2
+            },
+            {
+              "path": "/tools/qingying",
+              "n": 2
+            },
+            {
+              "path": "/tools/quillbot",
+              "n": 2
+            },
+            {
+              "path": "/tools/replit",
+              "n": 2
+            },
+            {
+              "path": "/tools/runway",
+              "n": 2
+            },
+            {
+              "path": "/alternatives/grammarly",
+              "n": 1
+            },
+            {
+              "path": "/alternatives/openrouter",
+              "n": 1
+            },
+            {
+              "path": "/en/tools/canva",
+              "n": 1
+            },
+            {
+              "path": "/en/tools/civitai",
+              "n": 1
+            },
+            {
+              "path": "/en/tools/comfyui",
+              "n": 1
+            },
+            {
+              "path": "/en/tools/goose",
+              "n": 1
+            },
+            {
+              "path": "/en/tools/guojia-fanzha",
+              "n": 1
+            },
+            {
+              "path": "/en/tools/tongyi-lingma",
+              "n": 1
+            },
+            {
+              "path": "/en/tools/tongyi-wanxiang",
+              "n": 1
+            },
+            {
+              "path": "/en/tools/windsurf",
+              "n": 1
+            },
+            {
+              "path": "/en/tools/zed",
+              "n": 1
+            },
+            {
+              "path": "/tools/anythingllm",
+              "n": 1
+            },
+            {
+              "path": "/tools/canva",
+              "n": 1
+            },
+            {
+              "path": "/tools/cohere",
+              "n": 1
+            },
+            {
+              "path": "/tools/connectedpapers",
+              "n": 1
+            },
+            {
+              "path": "/tools/deepl",
+              "n": 1
+            },
+            {
+              "path": "/tools/doubao",
+              "n": 1
+            },
+            {
+              "path": "/tools/elevenlabs",
+              "n": 1
+            },
+            {
+              "path": "/tools/ima",
+              "n": 1
+            },
+            {
+              "path": "/tools/jianying",
+              "n": 1
+            },
+            {
+              "path": "/tools/kling",
+              "n": 1
+            },
+            {
+              "path": "/tools/lm-studio",
+              "n": 1
+            },
+            {
+              "path": "/tools/lovable",
+              "n": 1
+            },
+            {
+              "path": "/tools/marscode",
+              "n": 1
+            },
+            {
+              "path": "/tools/ollama",
+              "n": 1
+            },
+            {
+              "path": "/tools/tongyi-wanxiang",
+              "n": 1
+            },
+            {
+              "path": "/tools/ttsmaker",
+              "n": 1
+            },
+            {
+              "path": "/tools/zhipu-glm",
+              "n": 1
+            },
+            {
+              "path": "/vs/nvidia-nim-vs-openrouter",
+              "n": 1
+            }
+          ],
+          "referrers": [
+            {
+              "ref": "www.google.com",
+              "n": 73
+            },
+            {
+              "ref": "cn.bing.com",
+              "n": 65
+            },
+            {
+              "ref": "www.bing.com",
+              "n": 12
+            },
+            {
+              "ref": "chatgpt.com",
+              "n": 6
+            },
+            {
+              "ref": "www.perplexity.ai",
+              "n": 3
+            },
+            {
+              "ref": "duckduckgo.com",
+              "n": 3
+            },
+            {
+              "ref": "yandex.com",
+              "n": 2
+            },
+            {
+              "ref": "m.baidu.com",
+              "n": 2
+            },
+            {
+              "ref": "yandex.com.tr",
+              "n": 1
+            },
+            {
+              "ref": "www.doubao.com",
+              "n": 1
+            },
+            {
+              "ref": "www.baidu.com",
+              "n": 1
+            },
+            {
+              "ref": "search.brave.com",
+              "n": 1
+            },
+            {
+              "ref": "kagi.com",
+              "n": 1
+            },
+            {
+              "ref": "com.twitter.android",
+              "n": 1
+            },
+            {
+              "ref": "baidu.com",
+              "n": 1
+            }
+          ]
+        },
+        "28": {
+          "ok": true,
+          "generated": "2026-09-18T09:32:48.731Z",
+          "since": "2026-08-21",
+          "until": "2026-09-18",
+          "window_days": 28,
+          "humans_referred": 331,
+          "events": {
+            "sub_view": 329,
+            "go": 90,
+            "star": 7,
+            "calc": 6,
+            "sub_submit": 5,
+            "sheet_dl": 5,
+            "sub_ok": 4,
+            "sub_dup": 1,
+            "biz": 1
+          },
+          "countries": [
+            {
+              "country": "US",
+              "n": 164
+            },
+            {
+              "country": "CN",
+              "n": 94
+            },
+            {
+              "country": "JP",
+              "n": 12
+            },
+            {
+              "country": "DE",
+              "n": 7
+            },
+            {
+              "country": "CA",
+              "n": 7
+            },
+            {
+              "country": "GB",
+              "n": 6
+            },
+            {
+              "country": "other",
+              "n": 41
+            }
+          ],
+          "paths": [
+            {
+              "path": "/en/tools/grok",
+              "n": 77
+            },
+            {
+              "path": "/en/c/coding",
+              "n": 37
+            },
+            {
+              "path": "/",
+              "n": 26
+            },
+            {
+              "path": "/tools/kimi",
+              "n": 19
+            },
+            {
+              "path": "/en/tools/fireworks",
+              "n": 18
+            },
+            {
+              "path": "/c/api",
+              "n": 11
+            },
+            {
+              "path": "/en/tools/haiper",
+              "n": 11
+            },
+            {
+              "path": "/tools/feishu-miaoji",
+              "n": 11
+            },
+            {
+              "path": "/en/report",
+              "n": 8
+            },
+            {
+              "path": "/tools/cline",
+              "n": 6
+            },
+            {
+              "path": "/en/c/image",
+              "n": 5
+            },
+            {
+              "path": "/en/tools/fastgpt",
+              "n": 4
+            },
+            {
+              "path": "/en/tools/pixverse",
+              "n": 4
+            },
+            {
+              "path": "/tools/google-flow",
+              "n": 4
+            },
+            {
+              "path": "/tools/quillbot",
+              "n": 3
+            },
+            {
+              "path": "/tools/together",
+              "n": 3
+            },
+            {
+              "path": "/en/",
+              "n": 2
+            },
+            {
+              "path": "/en/plans/free-video-gen",
+              "n": 2
+            },
+            {
+              "path": "/en/tools/kimi",
+              "n": 2
+            },
+            {
+              "path": "/en/tools/lm-studio",
+              "n": 2
+            },
+            {
+              "path": "/en/tools/tongyi",
+              "n": 2
+            },
+            {
+              "path": "/en/vs/dify-vs-n8n",
+              "n": 2
+            },
+            {
+              "path": "/tools/bolt",
+              "n": 2
+            },
+            {
+              "path": "/tools/civitai",
+              "n": 2
+            },
+            {
+              "path": "/tools/comfyui",
+              "n": 2
+            },
+            {
+              "path": "/tools/consensus",
+              "n": 2
+            },
+            {
+              "path": "/tools/fish-audio",
+              "n": 2
+            },
+            {
+              "path": "/tools/google-ai-studio",
+              "n": 2
+            },
+            {
+              "path": "/tools/hailuo",
+              "n": 2
+            },
+            {
+              "path": "/tools/immersive-translate",
+              "n": 2
+            },
+            {
+              "path": "/tools/openrouter",
+              "n": 2
+            },
+            {
+              "path": "/tools/qingying",
+              "n": 2
+            },
+            {
+              "path": "/tools/replit",
+              "n": 2
+            },
+            {
+              "path": "/tools/runway",
+              "n": 2
+            },
+            {
+              "path": "/tools/ttsmaker",
+              "n": 2
+            },
+            {
+              "path": "/alternatives/grammarly",
+              "n": 1
+            },
+            {
+              "path": "/alternatives/openrouter",
+              "n": 1
+            },
+            {
+              "path": "/en/plans/free-life",
+              "n": 1
+            },
+            {
+              "path": "/en/plans/free-meeting-notes",
+              "n": 1
+            },
+            {
+              "path": "/en/tools/bailian",
+              "n": 1
+            },
+            {
+              "path": "/en/tools/canva",
+              "n": 1
+            },
+            {
+              "path": "/en/tools/civitai",
+              "n": 1
+            },
+            {
+              "path": "/en/tools/comfyui",
+              "n": 1
+            },
+            {
+              "path": "/en/tools/goose",
+              "n": 1
+            },
+            {
+              "path": "/en/tools/groq",
+              "n": 1
+            },
+            {
+              "path": "/en/tools/guojia-fanzha",
+              "n": 1
+            },
+            {
+              "path": "/en/tools/poe",
+              "n": 1
+            },
+            {
+              "path": "/en/tools/tongyi-lingma",
+              "n": 1
+            },
+            {
+              "path": "/en/tools/tongyi-wanxiang",
+              "n": 1
+            },
+            {
+              "path": "/en/tools/windsurf",
+              "n": 1
+            },
+            {
+              "path": "/en/tools/zed",
+              "n": 1
+            },
+            {
+              "path": "/en/vs/bailian-vs-cerebras",
+              "n": 1
+            },
+            {
+              "path": "/en/vs/cerebras-vs-openrouter",
+              "n": 1
+            },
+            {
+              "path": "/en/vs/cloudflare-workers-ai-vs-google-ai-studio",
+              "n": 1
+            },
+            {
+              "path": "/en/vs/google-ai-studio-vs-openrouter",
+              "n": 1
+            },
+            {
+              "path": "/tools/anythingllm",
+              "n": 1
+            },
+            {
+              "path": "/tools/canva",
+              "n": 1
+            },
+            {
+              "path": "/tools/cohere",
+              "n": 1
+            },
+            {
+              "path": "/tools/connectedpapers",
+              "n": 1
+            },
+            {
+              "path": "/tools/deepinfra",
+              "n": 1
+            },
+            {
+              "path": "/tools/deepl",
+              "n": 1
+            },
+            {
+              "path": "/tools/doubao",
+              "n": 1
+            },
+            {
+              "path": "/tools/elevenlabs",
+              "n": 1
+            },
+            {
+              "path": "/tools/figma",
+              "n": 1
+            },
+            {
+              "path": "/tools/ima",
+              "n": 1
+            },
+            {
+              "path": "/tools/jianying",
+              "n": 1
+            },
+            {
+              "path": "/tools/kling",
+              "n": 1
+            },
+            {
+              "path": "/tools/liblib",
+              "n": 1
+            },
+            {
+              "path": "/tools/lm-studio",
+              "n": 1
+            },
+            {
+              "path": "/tools/lovable",
+              "n": 1
+            },
+            {
+              "path": "/tools/marscode",
+              "n": 1
+            },
+            {
+              "path": "/tools/mistral",
+              "n": 1
+            },
+            {
+              "path": "/tools/ollama",
+              "n": 1
+            },
+            {
+              "path": "/tools/opusclip",
+              "n": 1
+            },
+            {
+              "path": "/tools/pixverse",
+              "n": 1
+            },
+            {
+              "path": "/tools/tme-studio",
+              "n": 1
+            },
+            {
+              "path": "/tools/tongyi-wanxiang",
+              "n": 1
+            },
+            {
+              "path": "/tools/windsurf",
+              "n": 1
+            },
+            {
+              "path": "/tools/zhipu-glm",
+              "n": 1
+            },
+            {
+              "path": "/tools/zhiying",
+              "n": 1
+            },
+            {
+              "path": "/vs/nvidia-nim-vs-openrouter",
+              "n": 1
+            }
+          ],
+          "referrers": [
+            {
+              "ref": "www.google.com",
+              "n": 165
+            },
+            {
+              "ref": "cn.bing.com",
+              "n": 84
+            },
+            {
+              "ref": "www.perplexity.ai",
+              "n": 14
+            },
+            {
+              "ref": "www.bing.com",
+              "n": 13
+            },
+            {
+              "ref": "chatgpt.com",
+              "n": 13
+            },
+            {
+              "ref": "www.facebook.com",
+              "n": 8
+            },
+            {
+              "ref": "m.facebook.com",
+              "n": 8
+            },
+            {
+              "ref": "m.baidu.com",
+              "n": 6
+            },
+            {
+              "ref": "yandex.com",
+              "n": 3
+            },
+            {
+              "ref": "www.baidu.com",
+              "n": 3
+            },
+            {
+              "ref": "duckduckgo.com",
+              "n": 3
+            },
+            {
+              "ref": "baidu.com",
+              "n": 3
+            },
+            {
+              "ref": "yandex.com.tr",
+              "n": 2
+            },
+            {
+              "ref": "www.google.com.hk",
+              "n": 2
+            },
+            {
+              "ref": "www.doubao.com",
+              "n": 1
+            },
+            {
+              "ref": "search.brave.com",
+              "n": 1
+            },
+            {
+              "ref": "kagi.com",
+              "n": 1
+            },
+            {
+              "ref": "com.twitter.android",
+              "n": 1
+            }
+          ]
+        },
+        "56": {
+          "ok": true,
+          "generated": "2026-09-18T09:32:49.369Z",
+          "since": "2026-07-24",
+          "until": "2026-09-18",
+          "window_days": 56,
+          "humans_referred": 438,
+          "events": {
+            "sub_view": 398,
+            "sub_view_bot": 171,
+            "go": 111,
+            "star": 10,
+            "calc": 6,
+            "sub_submit": 5,
+            "sheet_dl": 5,
+            "sub_ok": 4,
+            "sub_dup": 1,
+            "biz": 1
+          },
+          "countries": [
+            {
+              "country": "US",
+              "n": 219
+            },
+            {
+              "country": "CN",
+              "n": 94
+            },
+            {
+              "country": "JP",
+              "n": 12
+            },
+            {
+              "country": "FR",
+              "n": 12
+            },
+            {
+              "country": "DE",
+              "n": 10
+            },
+            {
+              "country": "KR",
+              "n": 9
+            },
+            {
+              "country": "CA",
+              "n": 9
+            },
+            {
+              "country": "GB",
+              "n": 7
+            },
+            {
+              "country": "ES",
+              "n": 6
+            },
+            {
+              "country": "HK",
+              "n": 5
+            },
+            {
+              "country": "other",
+              "n": 55
+            }
+          ],
+          "paths": [
+            {
+              "path": "/en/tools/grok",
+              "n": 80
+            },
+            {
+              "path": "/en/c/coding",
+              "n": 47
+            },
+            {
+              "path": "/",
+              "n": 26
+            },
+            {
+              "path": "/en/tools/fireworks",
+              "n": 26
+            },
+            {
+              "path": "/tools/kimi",
+              "n": 21
+            },
+            {
+              "path": "/en/tools/haiper",
+              "n": 18
+            },
+            {
+              "path": "/c/api",
+              "n": 11
+            },
+            {
+              "path": "/tools/feishu-miaoji",
+              "n": 11
+            },
+            {
+              "path": "/en/",
+              "n": 10
+            },
+            {
+              "path": "/en/tools/fastgpt",
+              "n": 10
+            },
+            {
+              "path": "/en/report",
+              "n": 8
+            },
+            {
+              "path": "/en/c/search",
+              "n": 6
+            },
+            {
+              "path": "/en/tools/claude",
+              "n": 6
+            },
+            {
+              "path": "/en/tools/kimi",
+              "n": 6
+            },
+            {
+              "path": "/en/tools/pixverse",
+              "n": 6
+            },
+            {
+              "path": "/tools/cline",
+              "n": 6
+            },
+            {
+              "path": "/en/c/image",
+              "n": 5
+            },
+            {
+              "path": "/en/c/video",
+              "n": 4
+            },
+            {
+              "path": "/en/tools/hailuo",
+              "n": 4
+            },
+            {
+              "path": "/tools/google-flow",
+              "n": 4
+            },
+            {
+              "path": "/en/c/chat",
+              "n": 3
+            },
+            {
+              "path": "/en/tools/ms-copilot",
+              "n": 3
+            },
+            {
+              "path": "/en/tools/poe",
+              "n": 3
+            },
+            {
+              "path": "/tools/quillbot",
+              "n": 3
+            },
+            {
+              "path": "/tools/together",
+              "n": 3
+            },
+            {
+              "path": "/en/plans/free-life",
+              "n": 2
+            },
+            {
+              "path": "/en/plans/free-meeting-notes",
+              "n": 2
+            },
+            {
+              "path": "/en/plans/free-video-gen",
+              "n": 2
+            },
+            {
+              "path": "/en/tools/civitai",
+              "n": 2
+            },
+            {
+              "path": "/en/tools/cursor",
+              "n": 2
+            },
+            {
+              "path": "/en/tools/lm-studio",
+              "n": 2
+            },
+            {
+              "path": "/en/tools/tongyi",
+              "n": 2
+            },
+            {
+              "path": "/en/vs/dify-vs-n8n",
+              "n": 2
+            },
+            {
+              "path": "/tools/bolt",
+              "n": 2
+            },
+            {
+              "path": "/tools/civitai",
+              "n": 2
+            },
+            {
+              "path": "/tools/comate",
+              "n": 2
+            },
+            {
+              "path": "/tools/comfyui",
+              "n": 2
+            },
+            {
+              "path": "/tools/consensus",
+              "n": 2
+            },
+            {
+              "path": "/tools/fish-audio",
+              "n": 2
+            },
+            {
+              "path": "/tools/google-ai-studio",
+              "n": 2
+            },
+            {
+              "path": "/tools/hailuo",
+              "n": 2
+            },
+            {
+              "path": "/tools/immersive-translate",
+              "n": 2
+            },
+            {
+              "path": "/tools/openrouter",
+              "n": 2
+            },
+            {
+              "path": "/tools/qingying",
+              "n": 2
+            },
+            {
+              "path": "/tools/replit",
+              "n": 2
+            },
+            {
+              "path": "/tools/runway",
+              "n": 2
+            },
+            {
+              "path": "/tools/ttsmaker",
+              "n": 2
+            },
+            {
+              "path": "/alternatives/grammarly",
+              "n": 1
+            },
+            {
+              "path": "/alternatives/openrouter",
+              "n": 1
+            },
+            {
+              "path": "/en/tools/bailian",
+              "n": 1
+            },
+            {
+              "path": "/en/tools/canva",
+              "n": 1
+            },
+            {
+              "path": "/en/tools/chatgpt",
+              "n": 1
+            },
+            {
+              "path": "/en/tools/codebuddy",
+              "n": 1
+            },
+            {
+              "path": "/en/tools/comfyui",
+              "n": 1
+            },
+            {
+              "path": "/en/tools/deepinfra",
+              "n": 1
+            },
+            {
+              "path": "/en/tools/dify",
+              "n": 1
+            },
+            {
+              "path": "/en/tools/elicit",
+              "n": 1
+            },
+            {
+              "path": "/en/tools/github-models",
+              "n": 1
+            },
+            {
+              "path": "/en/tools/goose",
+              "n": 1
+            },
+            {
+              "path": "/en/tools/groq",
+              "n": 1
+            },
+            {
+              "path": "/en/tools/guojia-fanzha",
+              "n": 1
+            },
+            {
+              "path": "/en/tools/hunyuan",
+              "n": 1
+            },
+            {
+              "path": "/en/tools/jianying",
+              "n": 1
+            },
+            {
+              "path": "/en/tools/krea",
+              "n": 1
+            },
+            {
+              "path": "/en/tools/openrouter",
+              "n": 1
+            },
+            {
+              "path": "/en/tools/perplexity",
+              "n": 1
+            },
+            {
+              "path": "/en/tools/siliconflow",
+              "n": 1
+            },
+            {
+              "path": "/en/tools/tongyi-lingma",
+              "n": 1
+            },
+            {
+              "path": "/en/tools/tongyi-wanxiang",
+              "n": 1
+            },
+            {
+              "path": "/en/tools/windsurf",
+              "n": 1
+            },
+            {
+              "path": "/en/tools/yuewen",
+              "n": 1
+            },
+            {
+              "path": "/en/tools/zed",
+              "n": 1
+            },
+            {
+              "path": "/en/tools/zhiying",
+              "n": 1
+            },
+            {
+              "path": "/en/vs/bailian-vs-cerebras",
+              "n": 1
+            },
+            {
+              "path": "/en/vs/cerebras-vs-openrouter",
+              "n": 1
+            },
+            {
+              "path": "/en/vs/cloudflare-workers-ai-vs-google-ai-studio",
+              "n": 1
+            },
+            {
+              "path": "/en/vs/google-ai-studio-vs-openrouter",
+              "n": 1
+            },
+            {
+              "path": "/en/vs/openrouter-vs-zhipu-glm",
+              "n": 1
+            },
+            {
+              "path": "/mcp",
+              "n": 1
+            },
+            {
+              "path": "/tools/anythingllm",
+              "n": 1
+            },
+            {
+              "path": "/tools/canva",
+              "n": 1
+            },
+            {
+              "path": "/tools/cerebras",
+              "n": 1
+            },
+            {
+              "path": "/tools/cohere",
+              "n": 1
+            },
+            {
+              "path": "/tools/connectedpapers",
+              "n": 1
+            },
+            {
+              "path": "/tools/deepinfra",
+              "n": 1
+            },
+            {
+              "path": "/tools/deepl",
+              "n": 1
+            },
+            {
+              "path": "/tools/doubao",
+              "n": 1
+            },
+            {
+              "path": "/tools/elevenlabs",
+              "n": 1
+            },
+            {
+              "path": "/tools/figma",
+              "n": 1
+            },
+            {
+              "path": "/tools/grok",
+              "n": 1
+            },
+            {
+              "path": "/tools/ima",
+              "n": 1
+            },
+            {
+              "path": "/tools/jianying",
+              "n": 1
+            },
+            {
+              "path": "/tools/kling",
+              "n": 1
+            },
+            {
+              "path": "/tools/leonardo",
+              "n": 1
+            },
+            {
+              "path": "/tools/liblib",
+              "n": 1
+            },
+            {
+              "path": "/tools/lm-studio",
+              "n": 1
+            },
+            {
+              "path": "/tools/lovable",
+              "n": 1
+            },
+            {
+              "path": "/tools/marscode",
+              "n": 1
+            },
+            {
+              "path": "/tools/mistral",
+              "n": 1
+            },
+            {
+              "path": "/tools/ollama",
+              "n": 1
+            }
+          ],
+          "referrers": [
+            {
+              "ref": "www.google.com",
+              "n": 244
+            },
+            {
+              "ref": "cn.bing.com",
+              "n": 84
+            },
+            {
+              "ref": "www.perplexity.ai",
+              "n": 26
+            },
+            {
+              "ref": "chatgpt.com",
+              "n": 14
+            },
+            {
+              "ref": "www.bing.com",
+              "n": 13
+            },
+            {
+              "ref": "yandex.com",
+              "n": 12
+            },
+            {
+              "ref": "www.facebook.com",
+              "n": 8
+            },
+            {
+              "ref": "m.facebook.com",
+              "n": 8
+            },
+            {
+              "ref": "m.baidu.com",
+              "n": 6
+            },
+            {
+              "ref": "www.google.com.hk",
+              "n": 5
+            },
+            {
+              "ref": "www.baidu.com",
+              "n": 3
+            },
+            {
+              "ref": "duckduckgo.com",
+              "n": 3
+            },
+            {
+              "ref": "baidu.com",
+              "n": 3
+            },
+            {
+              "ref": "yandex.com.tr",
+              "n": 2
+            },
+            {
+              "ref": "www.yandex.com",
+              "n": 1
+            },
+            {
+              "ref": "www.doubao.com",
+              "n": 1
+            },
+            {
+              "ref": "search.brave.com",
+              "n": 1
+            },
+            {
+              "ref": "registry.modelcontextprotocol.io",
+              "n": 1
+            },
+            {
+              "ref": "kagi.com",
+              "n": 1
+            },
+            {
+              "ref": "com.twitter.android",
+              "n": 1
+            },
+            {
+              "ref": "com.google.android.googlequicksearchbox",
+              "n": 1
+            }
+          ]
+        }
+      }
+    },
+    "getecoback": {
+      "ok": true,
+      "days": 28,
+      "human_pv": 514,
+      "ai_ref": 20,
+      "generated": "2026-09-18T09:32:49.664Z",
+      "status": "ok",
+      "basis": "server_pageviews_human_or_legacy"
+    },
+    "thedollscout": {
+      "ok": true,
+      "days": 28,
+      "human_pv": 246,
+      "ai_ref": 0,
+      "generated": "2026-09-18T09:32:49.931Z",
+      "status": "ok",
+      "basis": "js_pageviews"
+    },
+    "goldrush": {
+      "ok": true,
+      "days": 28,
+      "human_pv": 419,
+      "ai_ref": 0,
+      "generated": "2026-09-18T09:32:50.172Z",
+      "status": "ok",
+      "basis": "server_pageviews_ua_filtered"
+    },
+    "gridlings": {
+      "ok": true,
+      "days": 28,
+      "human_pv": 870,
+      "ai_ref": 0,
+      "generated": "2026-09-18T09:32:50.413Z",
+      "status": "ok",
+      "basis": "server_pageviews_ua_filtered"
+    },
+    "buysomething": {
+      "ok": true,
+      "days": 28,
+      "human_pv": 119,
+      "ai_ref": 0,
+      "generated": "2026-09-18T09:32:50.631Z",
+      "status": "ok",
+      "basis": "server_pageviews_ua_filtered"
+    },
+    "gamesledger": {
+      "ok": true,
+      "days": 28,
+      "human_pv": 800,
+      "ai_ref": 0,
+      "generated": "2026-09-18T09:32:50.939Z",
+      "status": "ok",
+      "basis": "server_pageviews_ua_filtered"
+    },
+    "after35": {
+      "ok": true,
+      "days": 28,
+      "human_pv": 434,
+      "ai_ref": 0,
+      "generated": "2026-09-18T09:32:52.180Z",
+      "status": "ok",
+      "basis": "server_pageviews_ua_filtered"
+    },
+    "learn": {
+      "ok": true,
+      "days": 28,
+      "human_pv": 242,
+      "ai_ref": 0,
+      "generated": "2026-09-18T09:32:52.682Z",
+      "status": "ok",
+      "basis": "server_pageviews_ua_filtered"
+    },
+    "fanzha": {
+      "ok": true,
+      "days": 28,
+      "human_pv": 212,
+      "ai_ref": 0,
+      "generated": "2026-09-18T09:32:53.144Z",
+      "status": "ok",
+      "basis": "server_pageviews_ua_filtered"
+    },
+    "firstjob": {
+      "ok": true,
+      "days": 28,
+      "human_pv": 191,
+      "ai_ref": 0,
+      "generated": "2026-09-18T09:32:53.599Z",
+      "status": "ok",
+      "basis": "server_pageviews_ua_filtered"
+    },
+    "codeword": {
+      "ok": true,
+      "days": 28,
+      "human_pv": 238,
+      "ai_ref": 0,
+      "generated": "2026-09-18T09:32:53.966Z",
+      "status": "ok",
+      "basis": "server_pageviews_ua_filtered"
+    },
+    "powerbill": {
+      "ok": true,
+      "days": 28,
+      "human_pv": 231,
+      "ai_ref": 0,
+      "generated": "2026-09-18T09:32:54.345Z",
+      "status": "ok",
+      "basis": "server_pageviews_ua_filtered"
+    },
+    "agi_trends": {
+      "status": "ok",
+      "rising_pages": [
+        {
+          "path": "/search",
+          "n": 220
+        },
+        {
+          "path": "/cn",
+          "n": 107
+        },
+        {
+          "path": "/ai-and-your-job",
+          "n": 78
+        },
+        {
+          "path": "/two-year-scorecard",
+          "n": 72
+        },
+        {
+          "path": "/invest",
+          "n": 71
+        }
+      ]
+    }
+  },
+  "routing_probes": [
+    {
+      "path": "/en/tools/grok.html",
+      "status": 308,
+      "location": "/en/tools/grok"
+    },
+    {
+      "path": "/en/tools/grok",
+      "status": 200,
+      "canonical": "https://baipiaoji.com/en/tools/grok.html"
+    },
+    {
+      "path": "/tools/kimi.html",
+      "status": 308,
+      "location": "/tools/kimi"
+    },
+    {
+      "path": "/tools/kimi",
+      "status": 200,
+      "canonical": "https://baipiaoji.com/tools/kimi.html"
+    },
+    {
+      "path": "/stack-builder.html",
+      "status": 308,
+      "location": "/stack-builder"
+    },
+    {
+      "path": "/stack-builder",
+      "status": 200,
+      "canonical": "https://baipiaoji.com/stack-builder.html"
+    }
+  ],
+  "d1_access": {
+    "status": "unavailable",
+    "distinct_credentials_tried": 2,
+    "affected_sites": 14,
+    "reason": "HTTP 403: The given account is not valid or is not authorized to access this service"
+  }
+}

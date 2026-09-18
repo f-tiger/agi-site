@@ -69,6 +69,7 @@ function summarise(api) {
     ai_referrals: api.ai_referrals || [],
     events: api.events || {},
     growth: api.growth || null,
+    comparisons: api.comparisons || null,
     submissions: api.submissions || {},
     ads: api.ads || {},
   };

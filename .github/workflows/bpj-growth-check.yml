@@ -3,6 +3,9 @@ on:
   pull_request:
     paths:
       - 'sites/baipiaoji/scripts/build.mjs'
+      - 'sites/baipiaoji/scripts/canonical-urls.mjs'
+      - 'sites/baipiaoji/scripts/test-canonical-urls.mjs'
+      - 'sites/baipiaoji/scripts/verify-dist.mjs'
       - 'sites/baipiaoji/assets/stack-builder.js'
       - 'sites/baipiaoji/assets/style.css'
       - 'sites/baipiaoji/functions/api/hit.js'
@@ -30,6 +33,7 @@ jobs:
         run: |
           node scripts/build.mjs
           node scripts/verify-dist.mjs
+          node scripts/test-canonical-urls.mjs
           node scripts/test-hit-events.mjs
           node scripts/test-reach-shape.mjs
           node scripts/reach-export.mjs --selftest
