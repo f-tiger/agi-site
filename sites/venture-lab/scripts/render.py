@@ -40,3 +40,10 @@ for slug,d in sites.items():
  page=page.replace('<a href="/guide">Guide</a>','<a href="/#learn">Quick start</a><a href="/guide">Guide</a>')
  page=page.replace('Free tool / early product experiment','Independent tool · Free beta')
  (Path('site')/slug/'index.html').write_text(page)
+
+# Buyer-matched distribution to the vertical Agent experiment.
+p=Path('site/rfqdesk/index.html');text=p.read_text()
+text=text.replace('<a href="/guide">Guide</a>','<a href="/guide">Guide</a><a href="/agent">Invoice Agent</a>')
+text=text.replace('<section class="faq">','<section class="agent-entry"><p class="section-label">After the order</p><h2>Does the supplier invoice match?</h2><p>Review the PO, invoice and earlier billed quantities with TradeCheck. Try a fictional example or install the local MCP in your AI assistant.</p><a class="button" href="/agent">Try the invoice review Agent →</a></section><section class="faq">')
+text=text.replace('<link rel="stylesheet" href="/styles.css">','<link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/agent.css">')
+p.write_text(text)

@@ -45,3 +45,7 @@ No new paid features for the three discovery probes until repeated task evidence
 ## Latest owner steering: five additional directions
 
 Read `docs/creator-agent-opportunities-2026-09-18.md`. Creator business cases + short-video workflows and task-based Agent selection + startup opportunity research are two higher-priority research candidates. They can replace investment in weak old experiments; they are not validated businesses yet. Celebrity fandom remains a bounded event/official-commerce hypothesis. No affiliate application has been submitted or approved in this session.
+
+## Vertical Agent / MCP steering
+
+Owner explicitly requested efficiency, structured-language work, finance, foreign trade and stocks, preferring a vertical product. Read `docs/vertical-agent-commercial-review-2026-09-18.md`. TradeCheck is now a bounded importer invoice/PO review beta inside RFQDesk, with a local MCP and host-guided agent prompt. It has no verified paying buyer. The public package permits internal evaluation only; the main repository remains private. Team workspace at €29/month is a hypothesis and is unavailable. Generic stock-price MCP wrapping is deprioritized because data suppliers already offer it. Evidence-linked filing changes remain a separate research candidate. Do not claim OCR, autonomous payments, three-way matching or recovered funds.

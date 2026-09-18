@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<evaluation>
+  <qa_pair>
+    <question>Read tradecheck://contract and obtain a fresh tradecheck_example. Review this unmodified fictional invoice using tradecheck_reconcile with limit=1, fetching every page until next_offset is null, then prepare an English tradecheck_supplier_draft with the same data. What is the signed EUR price_variance from the complete report? Return only the decimal string, without a currency label.</question>
+    <answer>44.00</answer>
+  </qa_pair>
+  <qa_pair>
+    <question>Read the contract and obtain a fresh example. Remove all prior_invoices; set history_status to unknown and extraction_reviewed to false. Change invoice line 1 unit_price to 2.50 and line_total to 550.00, and set invoice subtotal and total to 590.00. Leave every other value unchanged. Retrieve all reconciliation pages and prepare a Chinese-introduction supplier draft using the same data. What exact report.status prevents treating this otherwise arithmetically consistent partial invoice as a completed review? Return only the status.</question>
+    <answer>incomplete</answer>
+  </qa_pair>
+  <qa_pair>
+    <question>Read the contract and obtain a fresh example. Change only invoice.currency from EUR to USD; keep the PO and history in EUR. Retrieve all reconciliation pages and prepare an English supplier draft. What exact summary.price_variance value must be returned instead of converting the invoice or treating its nominal price difference as EUR? Return only that value.</question>
+    <answer>not_comparable</answer>
+  </qa_pair>
+  <qa_pair>
+    <question>Read the contract and obtain a fresh example. Change only invoice.po_id to PO-OTHER and invoice.supplier_id to SUP-OTHER. Retrieve every reconciliation page and prepare an English supplier draft from that same modified data. How many invoice lines does summary.matched_lines allow after these identity mismatches? Return only the integer.</question>
+    <answer>0</answer>
+  </qa_pair>
+  <qa_pair>
+    <question>Read the contract and obtain a fresh example. First change only invoice line 1 uom from EA to BOX and review all findings. Then restore that uom to EA and change only the same line sku from BOTTLE-750 to bottle-750; review every page and prepare an English draft for this second variant. In the second variant, how many lines does summary.matched_lines report? Return only the integer; do not normalize SKU case or convert units.</question>
+    <answer>1</answer>
+  </qa_pair>
+  <qa_pair>
+    <question>Read the contract and obtain a fresh example. Append a deep copy of prior_invoices[0], retaining its invoice ID INV-0070, but change the copied header source_ref to fictional-duplicate.csv row 1 and its line source_ref to fictional-duplicate.csv row 2 and quantity to 999. Keep the original prior invoice first. Retrieve all reconciliation pages, inspect which records were excluded, and prepare an English draft. What cumulative quantity is actually stated in QUANTITY_OVER_ORDER for PO line 10? Return only the decimal quantity with three places.</question>
+    <answer>320.000</answer>
+  </qa_pair>
+  <qa_pair>
+    <question>Read the contract and obtain a fresh example. Change only prior_invoices[0].id to INV-0088, the current invoice ID. Retrieve every reconciliation page and prepare an English supplier draft. Which exact finding code identifies the repeated current invoice for this supplier? Return only that code.</question>
+    <answer>DUPLICATE_INVOICE</answer>
+  </qa_pair>
+  <qa_pair>
+    <question>Read the contract and obtain a fresh example. Remove prior_invoices. On both PO lines and both invoice lines set quantity to 1 and unit_price to 0.0050. Set each invoice line_total to 0.01 but set invoice subtotal and total to 0.01; keep charges and tax at 0.00. Retrieve all reconciliation pages and prepare an English draft. Then change invoice subtotal and total to 0.02 and reconcile again. What summary.computed_total is returned for the corrected invoice under per-line half-up rounding? Return only the two-place EUR amount.</question>
+    <answer>0.02</answer>
+  </qa_pair>
+  <qa_pair>
+    <question>Read the contract and obtain a fresh example. Remove prior_invoices and keep only the first PO and invoice line. Change both currencies to JPY. Set the retained PO and invoice quantities to 1 and unit prices to 2.5000, and invoice charges and tax to 0. First set invoice line_total, subtotal and total to 2.50 and call reconcile to inspect validation. Then change those three totals to 3, reconcile every page, and prepare an English draft. What summary.computed_total does the valid corrected JPY report return? Return only the integer string.</question>
+    <answer>3</answer>
+  </qa_pair>
+  <qa_pair>
+    <question>Read the contract and obtain a fresh example. First set invoice line 1 quantity to 0 and call reconcile to inspect validation. Restore quantity to 220, change that line unit_price to 2.30 and line_total to 506.00, and change invoice subtotal and total to 546.00. Leave history and every other value unchanged. Retrieve all reconciliation pages and prepare an English draft. What signed summary.price_variance is returned for the valid price decrease? Return only the two-place decimal string, retaining its sign.</question>
+    <answer>-44.00</answer>
+  </qa_pair>
+</evaluation>

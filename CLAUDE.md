@@ -1,3 +1,7 @@
+## 2026-09-18 vertical Agent update
+
+Owner added vertical efficiency, finance, foreign-trade and stock Agent/MCP products. Read `docs/vertical-agent-commercial-review-2026-09-18.md` before extending this line. TradeCheck beta lives in `agents/tradecheck-mcp` with a public demo at RFQDesk `/agent`; paid features remain closed. It is a deterministic MCP plus host-guided workflow, not a verified autonomous finance/OCR service. Preserve exact source provenance and do not infer revenue from tool events.
+
 ## 2026-09-18 commercial review context
 
 Before extending revenue experiments, read `.agents/product-marketing.md`, `docs/commercial-skills-review-2026-09-18.md` and `docs/creator-agent-opportunities-2026-09-18.md`. New sites are probes, not proven businesses. Apply customer research, alternatives, pricing units and distribution gates before feature expansion. The owner explicitly added creator monetization, fandom, AI Agents, short video and startup-product reinvention; do not narrow future research to the already-built CSV tools.

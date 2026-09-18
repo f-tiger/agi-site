@@ -22,7 +22,7 @@ The three domains share a release and rollback unit. A failure affects all three
 
 Default off, optional checkbox. Explicit price-interest sends only its named event. Allowlisted schema; no raw inputs or contact details. Random page-visit identifier, no cross-session persistence. CI/browser checks use `mode=qa` (`?qa=1` in browser), excluded by the aggregate report. Samples use `sample`, SQL uses `exercise`, own CSV uses `own`. Reloads are not repeat users. Consent selection means reported counts are incomplete, not total traffic.
 
-Rate limit: 20 events per minute per visit key, plus 5,000 stored events/day/site cap. This is abuse/cost mitigation, not bot verification. Anonymous events remain forgeable. Daily cron deletes records older than the retained 35-day window. No subscription, personal lead or confirmed purchase exists in this database.
+Rate limit: 20 events per minute per visit key, plus 5,000 stored events/day/site cap. This is abuse/cost mitigation, not bot verification. Anonymous events remain forgeable. Cleanup on the next measurement request deletes records older than the 35-day active window; idle data may remain longer. No subscription, personal lead or confirmed purchase exists in this database.
 
 Run the **Commercial experiment funnel report** workflow for a read-only trailing-28-day aggregate. No raw identifiers are logged. Sales should only be reported from a real merchant ledger; never infer them from interest.
 
@@ -33,3 +33,9 @@ Public worker/module/WASM execution and each complete user path must pass browse
 ## Runtime measurement binding (2026-09-18)
 
 CI deployment credentials can bind the owner-managed `after35-events` database but D1 REST management returned 401. Preparation now uses the same explicit database ID as Learn. Cloudflare validates binding access during deployment. On first use the Worker creates only `venture_events` and its index. `/api/pulse` exposes only this host's 28-day non-QA aggregate counts, never visit identifiers or another site's tables. It accepts no SQL or query parameters. This is additive and does not change D1 permissions or existing data.
+
+The account already uses all five free Worker cron slots. No additional cron or paid plan is required: daily cleanup runs on the next event or aggregate request. If the service receives no requests, expired records may remain until the next request.
+
+## Build dependency
+
+Build `agents/tradecheck-mcp` first (`npm ci --ignore-scripts`, `npm run build`, `npm test`, `node scripts/evaluate.mjs`, `npm run package`). The site build includes that validated archive and browser engine. Paid team features remain unavailable. See the root vertical Agent review for commercial gates.
