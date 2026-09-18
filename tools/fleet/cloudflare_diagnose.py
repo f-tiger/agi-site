@@ -11,6 +11,7 @@ from pathlib import Path
 import re
 import urllib.error
 import urllib.request
+from html.parser import HTMLParser
 
 from ai_referrals import SITES, ENDPOINTS
 
@@ -97,7 +98,8 @@ def public_reads():
                 result[site]['basis'] = 'server_pageviews_human_or_legacy'
     b = request('https://agiscorecard.com/api/trends')
     # Searches intentionally not persisted; source schema differs, keep route counts only.
-    result['agi_trends'] = {k: safe_paths(v) for k, v in b.items() if k in ('rising', 'pages', 'top_pages') and isinstance(v, list)}
+    result['agi_trends'] = {'status': 'ok' if b.get('ok') else 'unavailable',
+                            'rising_pages': safe_paths(b.get('risingPages'))}
     return result
 
 
@@ -133,6 +135,23 @@ def edge_reads(accounts):
                 result[domain] = {'status': 'ok', 'credential': key, 'requested_days': days,
                                   'basis': 'edge_requests_not_people', 'subdomains_included': True,
                                   'days': groups[0].get('httpRequests1dGroups', []), 'attempts': attempts}
+                detail = '''query Detail($zone: String!, $since: DateTime!, $until: DateTime!) {
+                  viewer { zones(filter: {zoneTag: $zone}) {
+                    httpRequestsAdaptiveGroups(limit: 40, filter: {datetime_geq: $since, datetime_lt: $until, requestSource: "eyeball"}, orderBy: [count_DESC]) {
+                      count dimensions { clientRequestHTTPHost clientRequestPath edgeResponseStatus }
+                    }
+                  } }
+                }'''
+                detail_body = request(API + '/graphql', token, {'query': detail, 'variables': {
+                    'zone': zone['id'], 'since': str(TODAY - dt.timedelta(days=1)) + 'T00:00:00Z',
+                    'until': str(TODAY) + 'T00:00:00Z'}})
+                groups2 = (detail_body.get('data') or {}).get('viewer', {}).get('zones', [])
+                result[domain]['top_requests_yesterday'] = [
+                    {'host': x['dimensions']['clientRequestHTTPHost'], 'path': route(x['dimensions']['clientRequestPath']),
+                     'status': x['dimensions']['edgeResponseStatus'], 'n': x['count']}
+                    for x in (groups2[0].get('httpRequestsAdaptiveGroups', []) if groups2 else [])
+                    if x['dimensions']['clientRequestHTTPHost'] == domain or x['dimensions']['clientRequestHTTPHost'].endswith('.' + domain)]
+                result[domain]['detail_note'] = safe_error(detail_body) if detail_body.get('errors') else 'Adaptive sampled estimates; top 40 only, not exhaustive.'
                 break
             if domain in result:
                 break
@@ -180,6 +199,32 @@ def d1_reads(accounts):
     return result
 
 
+def routing_probes():
+    class NoRedirect(urllib.request.HTTPRedirectHandler):
+        def redirect_request(self, req, fp, code, msg, headers, newurl):
+            return None
+    class Canonical(HTMLParser):
+        value = None
+        def handle_starttag(self, tag, attrs):
+            a = dict(attrs)
+            if tag == 'link' and a.get('rel') == 'canonical':
+                self.value = a.get('href')
+    result = []
+    for path in ('/en/tools/grok.html', '/en/tools/grok', '/tools/kimi.html', '/tools/kimi', '/stack-builder.html', '/stack-builder'):
+        url = 'https://baipiaoji.com' + path + '?__probe=1'
+        req = urllib.request.Request(url, headers={'User-Agent': 'curl/8 fleet-growth-routing-probe'})
+        try:
+            with urllib.request.build_opener(NoRedirect()).open(req, timeout=15) as response:
+                parser = Canonical()
+                parser.feed(response.read(300000).decode('utf-8', errors='replace'))
+                result.append({'path': path, 'status': response.status, 'canonical': parser.value})
+        except urllib.error.HTTPError as exc:
+            result.append({'path': path, 'status': exc.code, 'location': exc.headers.get('Location', '').split('?')[0]})
+        except OSError:
+            result.append({'path': path, 'status': 'network_error'})
+    return result
+
+
 def main():
     accounts = {os.environ.get('CLOUDFLARE_ACCOUNT_ID', '').strip()} - {''}
     result = {'generated': NOW.isoformat(), 'source_commit': os.environ.get('GITHUB_SHA'),
@@ -188,6 +233,7 @@ def main():
     result['edge'] = edge_reads(accounts)
     result['d1'] = d1_reads(accounts)
     result['public'] = public_reads()
+    result['routing_probes'] = routing_probes()
     out = ROOT / 'artifacts' / 'growth-diagnosis.json'
     out.parent.mkdir(exist_ok=True)
     out.write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n')
