@@ -1,0 +1,789 @@
+{
+  "status": "planning_only_no_orders",
+  "results": [
+    {
+      "id": "vendor_review_49_base",
+      "unit": "paid_order",
+      "basis": "assumptions_not_forecasts",
+      "net_revenue_per_unit_eur": 46.55,
+      "gmv_per_unit_eur": null,
+      "payment_fee_base_per_unit_eur": 49,
+      "variable_cost_including_expected_retries_eur": 0.2,
+      "max_acquisition_cash_before_fixed_costs_eur": 21.835,
+      "cash_contribution_per_unit_eur": 42.335,
+      "labor_per_unit_eur": 22.5,
+      "contribution_after_labor_per_unit_eur": 19.835,
+      "monthly_fixed_economic_cost_eur": 250,
+      "positive_unit_contribution_after_labor": true,
+      "targets": [
+        {
+          "target_eur": 110,
+          "units_for_net_revenue": 3,
+          "units_for_cash_contribution_after_fixed_costs": 3,
+          "units_for_operating_surplus_after_labor": 19,
+          "qualified_offer_exposures_for_surplus": 95,
+          "hours_at_surplus_target": 22.25
+        },
+        {
+          "target_eur": 1100,
+          "units_for_net_revenue": 24,
+          "units_for_cash_contribution_after_fixed_costs": 27,
+          "units_for_operating_surplus_after_labor": 69,
+          "qualified_offer_exposures_for_surplus": 345,
+          "hours_at_surplus_target": 59.75
+        }
+      ],
+      "scale_probe": [
+        {
+          "units": 10,
+          "hours": 15.5,
+          "operating_surplus_after_labor_eur": -51.65
+        },
+        {
+          "units": 100,
+          "hours": 83.0,
+          "operating_surplus_after_labor_eur": 1733.5
+        },
+        {
+          "units": 1000,
+          "hours": 758.0,
+          "operating_surplus_after_labor_eur": 19585.0
+        }
+      ],
+      "limitations": [
+        "No measured conversion or demand",
+        "Income tax excluded",
+        "Monthly setup amortization is an assumption, not cash already spent",
+        "Positive unit contribution alone does not establish scalable demand or capacity"
+      ]
+    },
+    {
+      "id": "vendor_review_49_stress",
+      "unit": "paid_order",
+      "basis": "assumptions_not_forecasts",
+      "net_revenue_per_unit_eur": 41.65,
+      "gmv_per_unit_eur": null,
+      "payment_fee_base_per_unit_eur": 49,
+      "variable_cost_including_expected_retries_eur": 0.5,
+      "max_acquisition_cash_before_fixed_costs_eur": -11.21,
+      "cash_contribution_per_unit_eur": 23.79,
+      "labor_per_unit_eur": 50.0,
+      "contribution_after_labor_per_unit_eur": -26.21,
+      "monthly_fixed_economic_cost_eur": 370,
+      "positive_unit_contribution_after_labor": false,
+      "targets": [
+        {
+          "target_eur": 110,
+          "units_for_net_revenue": 3,
+          "units_for_cash_contribution_after_fixed_costs": 6,
+          "units_for_operating_surplus_after_labor": null,
+          "qualified_offer_exposures_for_surplus": null,
+          "hours_at_surplus_target": null
+        },
+        {
+          "target_eur": 1100,
+          "units_for_net_revenue": 27,
+          "units_for_cash_contribution_after_fixed_costs": 47,
+          "units_for_operating_surplus_after_labor": null,
+          "qualified_offer_exposures_for_surplus": null,
+          "hours_at_surplus_target": null
+        }
+      ],
+      "scale_probe": [
+        {
+          "units": 10,
+          "hours": 28.67,
+          "operating_surplus_after_labor_eur": -632.1
+        },
+        {
+          "units": 100,
+          "hours": 178.67,
+          "operating_surplus_after_labor_eur": -2991.0
+        },
+        {
+          "units": 1000,
+          "hours": 1678.67,
+          "operating_surplus_after_labor_eur": -26580.0
+        }
+      ],
+      "limitations": [
+        "No measured conversion or demand",
+        "Income tax excluded",
+        "Monthly setup amortization is an assumption, not cash already spent",
+        "Positive unit contribution alone does not establish scalable demand or capacity"
+      ]
+    },
+    {
+      "id": "vendor_review_79_price_test",
+      "unit": "paid_order",
+      "basis": "assumptions_not_forecasts",
+      "net_revenue_per_unit_eur": 75.05,
+      "gmv_per_unit_eur": null,
+      "payment_fee_base_per_unit_eur": 79,
+      "variable_cost_including_expected_retries_eur": 0.2,
+      "max_acquisition_cash_before_fixed_costs_eur": 49.285,
+      "cash_contribution_per_unit_eur": 69.785,
+      "labor_per_unit_eur": 22.5,
+      "contribution_after_labor_per_unit_eur": 47.285,
+      "monthly_fixed_economic_cost_eur": 250,
+      "positive_unit_contribution_after_labor": true,
+      "targets": [
+        {
+          "target_eur": 110,
+          "units_for_net_revenue": 2,
+          "units_for_cash_contribution_after_fixed_costs": 2,
+          "units_for_operating_surplus_after_labor": 8,
+          "qualified_offer_exposures_for_surplus": 80,
+          "hours_at_surplus_target": 14.0
+        },
+        {
+          "target_eur": 1100,
+          "units_for_net_revenue": 15,
+          "units_for_cash_contribution_after_fixed_costs": 16,
+          "units_for_operating_surplus_after_labor": 29,
+          "qualified_offer_exposures_for_surplus": 290,
+          "hours_at_surplus_target": 29.75
+        }
+      ],
+      "scale_probe": [
+        {
+          "units": 10,
+          "hours": 15.5,
+          "operating_surplus_after_labor_eur": 222.85
+        },
+        {
+          "units": 100,
+          "hours": 83.0,
+          "operating_surplus_after_labor_eur": 4478.5
+        },
+        {
+          "units": 1000,
+          "hours": 758.0,
+          "operating_surplus_after_labor_eur": 47035.0
+        }
+      ],
+      "limitations": [
+        "No measured conversion or demand",
+        "Income tax excluded",
+        "Monthly setup amortization is an assumption, not cash already spent",
+        "Positive unit contribution alone does not establish scalable demand or capacity"
+      ]
+    },
+    {
+      "id": "selfserve_pack_29_base",
+      "unit": "paid_order",
+      "basis": "assumptions_not_forecasts",
+      "net_revenue_per_unit_eur": 27.55,
+      "gmv_per_unit_eur": null,
+      "payment_fee_base_per_unit_eur": 29,
+      "variable_cost_including_expected_retries_eur": 0.2,
+      "max_acquisition_cash_before_fixed_costs_eur": 23.535,
+      "cash_contribution_per_unit_eur": 23.035,
+      "labor_per_unit_eur": 2.5,
+      "contribution_after_labor_per_unit_eur": 20.535,
+      "monthly_fixed_economic_cost_eur": 255,
+      "positive_unit_contribution_after_labor": true,
+      "targets": [
+        {
+          "target_eur": 110,
+          "units_for_net_revenue": 4,
+          "units_for_cash_contribution_after_fixed_costs": 6,
+          "units_for_operating_surplus_after_labor": 18,
+          "qualified_offer_exposures_for_surplus": 900,
+          "hours_at_surplus_target": 9.5
+        },
+        {
+          "target_eur": 1100,
+          "units_for_net_revenue": 40,
+          "units_for_cash_contribution_after_fixed_costs": 49,
+          "units_for_operating_surplus_after_labor": 66,
+          "qualified_offer_exposures_for_surplus": 3300,
+          "hours_at_surplus_target": 13.5
+        }
+      ],
+      "scale_probe": [
+        {
+          "units": 10,
+          "hours": 8.83,
+          "operating_surplus_after_labor_eur": -49.65
+        },
+        {
+          "units": 100,
+          "hours": 16.33,
+          "operating_surplus_after_labor_eur": 1798.5
+        },
+        {
+          "units": 1000,
+          "hours": 91.33,
+          "operating_surplus_after_labor_eur": 20280.0
+        }
+      ],
+      "limitations": [
+        "No measured conversion or demand",
+        "Income tax excluded",
+        "Monthly setup amortization is an assumption, not cash already spent",
+        "Positive unit contribution alone does not establish scalable demand or capacity"
+      ]
+    },
+    {
+      "id": "selfserve_pack_29_stress",
+      "unit": "paid_order",
+      "basis": "assumptions_not_forecasts",
+      "net_revenue_per_unit_eur": 26.1,
+      "gmv_per_unit_eur": null,
+      "payment_fee_base_per_unit_eur": 29,
+      "variable_cost_including_expected_retries_eur": 0.5,
+      "max_acquisition_cash_before_fixed_costs_eur": 9.04,
+      "cash_contribution_per_unit_eur": 12.04,
+      "labor_per_unit_eur": 15.0,
+      "contribution_after_labor_per_unit_eur": -2.96,
+      "monthly_fixed_economic_cost_eur": 255,
+      "positive_unit_contribution_after_labor": false,
+      "targets": [
+        {
+          "target_eur": 110,
+          "units_for_net_revenue": 5,
+          "units_for_cash_contribution_after_fixed_costs": 11,
+          "units_for_operating_surplus_after_labor": null,
+          "qualified_offer_exposures_for_surplus": null,
+          "hours_at_surplus_target": null
+        },
+        {
+          "target_eur": 1100,
+          "units_for_net_revenue": 43,
+          "units_for_cash_contribution_after_fixed_costs": 93,
+          "units_for_operating_surplus_after_labor": null,
+          "qualified_offer_exposures_for_surplus": null,
+          "hours_at_surplus_target": null
+        }
+      ],
+      "scale_probe": [
+        {
+          "units": 10,
+          "hours": 13.0,
+          "operating_surplus_after_labor_eur": -284.6
+        },
+        {
+          "units": 100,
+          "hours": 58.0,
+          "operating_surplus_after_labor_eur": -551.0
+        },
+        {
+          "units": 1000,
+          "hours": 508.0,
+          "operating_surplus_after_labor_eur": -3215.0
+        }
+      ],
+      "limitations": [
+        "No measured conversion or demand",
+        "Income tax excluded",
+        "Monthly setup amortization is an assumption, not cash already spent",
+        "Positive unit contribution alone does not establish scalable demand or capacity"
+      ]
+    },
+    {
+      "id": "education_pack_29_base",
+      "unit": "paid_order",
+      "basis": "assumptions_not_forecasts",
+      "net_revenue_per_unit_eur": 27.55,
+      "gmv_per_unit_eur": null,
+      "payment_fee_base_per_unit_eur": 29,
+      "variable_cost_including_expected_retries_eur": 0.2,
+      "max_acquisition_cash_before_fixed_costs_eur": 8.535,
+      "cash_contribution_per_unit_eur": 23.035,
+      "labor_per_unit_eur": 17.5,
+      "contribution_after_labor_per_unit_eur": 5.535,
+      "monthly_fixed_economic_cost_eur": 435,
+      "positive_unit_contribution_after_labor": true,
+      "targets": [
+        {
+          "target_eur": 110,
+          "units_for_net_revenue": 4,
+          "units_for_cash_contribution_after_fixed_costs": 6,
+          "units_for_operating_surplus_after_labor": 99,
+          "qualified_offer_exposures_for_surplus": 4950,
+          "hours_at_surplus_target": 71.75
+        },
+        {
+          "target_eur": 1100,
+          "units_for_net_revenue": 40,
+          "units_for_cash_contribution_after_fixed_costs": 49,
+          "units_for_operating_surplus_after_labor": 278,
+          "qualified_offer_exposures_for_surplus": 13900,
+          "hours_at_surplus_target": 176.17
+        }
+      ],
+      "scale_probe": [
+        {
+          "units": 10,
+          "hours": 19.83,
+          "operating_surplus_after_labor_eur": -379.65
+        },
+        {
+          "units": 100,
+          "hours": 72.33,
+          "operating_surplus_after_labor_eur": 118.5
+        },
+        {
+          "units": 1000,
+          "hours": 597.33,
+          "operating_surplus_after_labor_eur": 5100.0
+        }
+      ],
+      "limitations": [
+        "No measured conversion or demand",
+        "Income tax excluded",
+        "Monthly setup amortization is an assumption, not cash already spent",
+        "Positive unit contribution alone does not establish scalable demand or capacity"
+      ]
+    },
+    {
+      "id": "eco_confirmed_click_planning",
+      "unit": "provider_confirmed_click",
+      "basis": "assumptions_not_forecasts",
+      "net_revenue_per_unit_eur": 0.1,
+      "gmv_per_unit_eur": null,
+      "payment_fee_base_per_unit_eur": 0.1,
+      "variable_cost_including_expected_retries_eur": 0,
+      "max_acquisition_cash_before_fixed_costs_eur": 0.1,
+      "cash_contribution_per_unit_eur": 0.1,
+      "labor_per_unit_eur": 0.0,
+      "contribution_after_labor_per_unit_eur": 0.1,
+      "monthly_fixed_economic_cost_eur": 125,
+      "positive_unit_contribution_after_labor": true,
+      "targets": [
+        {
+          "target_eur": 110,
+          "units_for_net_revenue": 1100,
+          "units_for_cash_contribution_after_fixed_costs": 1150,
+          "units_for_operating_surplus_after_labor": 2350,
+          "qualified_offer_exposures_for_surplus": null,
+          "hours_at_surplus_target": 4.0
+        },
+        {
+          "target_eur": 1100,
+          "units_for_net_revenue": 11000,
+          "units_for_cash_contribution_after_fixed_costs": 11050,
+          "units_for_operating_surplus_after_labor": 12250,
+          "qualified_offer_exposures_for_surplus": null,
+          "hours_at_surplus_target": 4.0
+        }
+      ],
+      "scale_probe": [
+        {
+          "units": 10,
+          "hours": 4.0,
+          "operating_surplus_after_labor_eur": -124.0
+        },
+        {
+          "units": 100,
+          "hours": 4.0,
+          "operating_surplus_after_labor_eur": -115.0
+        },
+        {
+          "units": 1000,
+          "hours": 4.0,
+          "operating_surplus_after_labor_eur": -25.0
+        }
+      ],
+      "limitations": [
+        "No measured conversion or demand",
+        "Income tax excluded",
+        "Monthly setup amortization is an assumption, not cash already spent",
+        "Positive unit contribution alone does not establish scalable demand or capacity"
+      ]
+    },
+    {
+      "id": "localebatch_19_base",
+      "unit": "paid_order",
+      "basis": "assumptions_not_forecasts",
+      "net_revenue_per_unit_eur": 18.05,
+      "gmv_per_unit_eur": null,
+      "payment_fee_base_per_unit_eur": 19,
+      "variable_cost_including_expected_retries_eur": 1.58,
+      "max_acquisition_cash_before_fixed_costs_eur": 12.505,
+      "cash_contribution_per_unit_eur": 12.505,
+      "labor_per_unit_eur": 3.0,
+      "contribution_after_labor_per_unit_eur": 9.505,
+      "monthly_fixed_economic_cost_eur": 250,
+      "positive_unit_contribution_after_labor": true,
+      "targets": [
+        {
+          "target_eur": 110,
+          "units_for_net_revenue": 7,
+          "units_for_cash_contribution_after_fixed_costs": 10,
+          "units_for_operating_surplus_after_labor": 38,
+          "qualified_offer_exposures_for_surplus": 1267,
+          "hours_at_surplus_target": 11.8
+        },
+        {
+          "target_eur": 1100,
+          "units_for_net_revenue": 61,
+          "units_for_cash_contribution_after_fixed_costs": 89,
+          "units_for_operating_surplus_after_labor": 143,
+          "qualified_offer_exposures_for_surplus": 4767,
+          "hours_at_surplus_target": 22.3
+        }
+      ],
+      "scale_probe": [
+        {
+          "units": 10,
+          "hours": 9.0,
+          "operating_surplus_after_labor_eur": -154.95
+        },
+        {
+          "units": 100,
+          "hours": 18.0,
+          "operating_surplus_after_labor_eur": 700.5
+        },
+        {
+          "units": 1000,
+          "hours": 108.0,
+          "operating_surplus_after_labor_eur": 9255.0
+        }
+      ],
+      "limitations": [
+        "No measured conversion or demand",
+        "Income tax excluded",
+        "Monthly setup amortization is an assumption, not cash already spent",
+        "Positive unit contribution alone does not establish scalable demand or capacity"
+      ]
+    },
+    {
+      "id": "localebatch_19_stress",
+      "unit": "paid_order",
+      "basis": "assumptions_not_forecasts",
+      "net_revenue_per_unit_eur": 15.2,
+      "gmv_per_unit_eur": null,
+      "payment_fee_base_per_unit_eur": 19,
+      "variable_cost_including_expected_retries_eur": 2.9,
+      "max_acquisition_cash_before_fixed_costs_eur": -1.36,
+      "cash_contribution_per_unit_eur": 3.14,
+      "labor_per_unit_eur": 12.5,
+      "contribution_after_labor_per_unit_eur": -9.36,
+      "monthly_fixed_economic_cost_eur": 250,
+      "positive_unit_contribution_after_labor": false,
+      "targets": [
+        {
+          "target_eur": 110,
+          "units_for_net_revenue": 8,
+          "units_for_cash_contribution_after_fixed_costs": 39,
+          "units_for_operating_surplus_after_labor": null,
+          "qualified_offer_exposures_for_surplus": null,
+          "hours_at_surplus_target": null
+        },
+        {
+          "target_eur": 1100,
+          "units_for_net_revenue": 73,
+          "units_for_cash_contribution_after_fixed_costs": 354,
+          "units_for_operating_surplus_after_labor": null,
+          "qualified_offer_exposures_for_surplus": null,
+          "hours_at_surplus_target": null
+        }
+      ],
+      "scale_probe": [
+        {
+          "units": 10,
+          "hours": 12.17,
+          "operating_surplus_after_labor_eur": -343.6
+        },
+        {
+          "units": 100,
+          "hours": 49.67,
+          "operating_surplus_after_labor_eur": -1186.0
+        },
+        {
+          "units": 1000,
+          "hours": 424.67,
+          "operating_surplus_after_labor_eur": -9610.0
+        }
+      ],
+      "limitations": [
+        "No measured conversion or demand",
+        "Income tax excluded",
+        "Monthly setup amortization is an assumption, not cash already spent",
+        "Positive unit contribution alone does not establish scalable demand or capacity"
+      ]
+    },
+    {
+      "id": "localebatch_19_repeat_channel",
+      "unit": "paid_order",
+      "basis": "assumptions_not_forecasts",
+      "net_revenue_per_unit_eur": 18.43,
+      "gmv_per_unit_eur": null,
+      "payment_fee_base_per_unit_eur": 19,
+      "variable_cost_including_expected_retries_eur": 0.83,
+      "max_acquisition_cash_before_fixed_costs_eur": 15.135,
+      "cash_contribution_per_unit_eur": 15.635,
+      "labor_per_unit_eur": 1.5,
+      "contribution_after_labor_per_unit_eur": 14.135,
+      "monthly_fixed_economic_cost_eur": 250,
+      "positive_unit_contribution_after_labor": true,
+      "targets": [
+        {
+          "target_eur": 110,
+          "units_for_net_revenue": 6,
+          "units_for_cash_contribution_after_fixed_costs": 8,
+          "units_for_operating_surplus_after_labor": 26,
+          "qualified_offer_exposures_for_surplus": 520,
+          "hours_at_surplus_target": 9.3
+        },
+        {
+          "target_eur": 1100,
+          "units_for_net_revenue": 60,
+          "units_for_cash_contribution_after_fixed_costs": 71,
+          "units_for_operating_surplus_after_labor": 96,
+          "qualified_offer_exposures_for_surplus": 1920,
+          "hours_at_surplus_target": 12.8
+        }
+      ],
+      "scale_probe": [
+        {
+          "units": 10,
+          "hours": 8.5,
+          "operating_surplus_after_labor_eur": -108.65
+        },
+        {
+          "units": 100,
+          "hours": 13.0,
+          "operating_surplus_after_labor_eur": 1163.5
+        },
+        {
+          "units": 1000,
+          "hours": 58.0,
+          "operating_surplus_after_labor_eur": 13885.0
+        }
+      ],
+      "limitations": [
+        "No measured conversion or demand",
+        "Income tax excluded",
+        "Monthly setup amortization is an assumption, not cash already spent",
+        "Positive unit contribution alone does not establish scalable demand or capacity"
+      ]
+    },
+    {
+      "id": "trade_match_1000_gmv_5pct",
+      "unit": "completed_trade",
+      "basis": "assumptions_not_forecasts",
+      "net_revenue_per_unit_eur": 47.5,
+      "gmv_per_unit_eur": 1000,
+      "payment_fee_base_per_unit_eur": 1000,
+      "variable_cost_including_expected_retries_eur": 0.2,
+      "max_acquisition_cash_before_fixed_costs_eur": -33.0,
+      "cash_contribution_per_unit_eur": -3.0,
+      "labor_per_unit_eur": 45.0,
+      "contribution_after_labor_per_unit_eur": -48.0,
+      "monthly_fixed_economic_cost_eur": 250,
+      "positive_unit_contribution_after_labor": false,
+      "targets": [
+        {
+          "target_eur": 110,
+          "units_for_net_revenue": 3,
+          "units_for_cash_contribution_after_fixed_costs": null,
+          "units_for_operating_surplus_after_labor": null,
+          "qualified_offer_exposures_for_surplus": null,
+          "hours_at_surplus_target": null
+        },
+        {
+          "target_eur": 1100,
+          "units_for_net_revenue": 24,
+          "units_for_cash_contribution_after_fixed_costs": null,
+          "units_for_operating_surplus_after_labor": null,
+          "qualified_offer_exposures_for_surplus": null,
+          "hours_at_surplus_target": null
+        }
+      ],
+      "scale_probe": [
+        {
+          "units": 10,
+          "hours": 23.0,
+          "operating_surplus_after_labor_eur": -730.0
+        },
+        {
+          "units": 100,
+          "hours": 158.0,
+          "operating_surplus_after_labor_eur": -5050.0
+        },
+        {
+          "units": 1000,
+          "hours": 1508.0,
+          "operating_surplus_after_labor_eur": -48250.0
+        }
+      ],
+      "limitations": [
+        "No measured conversion or demand",
+        "Income tax excluded",
+        "Monthly setup amortization is an assumption, not cash already spent",
+        "Positive unit contribution alone does not establish scalable demand or capacity"
+      ]
+    },
+    {
+      "id": "ai_market_100_gmv_5pct_platform_fee_only",
+      "unit": "monthly_usage_customer",
+      "basis": "assumptions_not_forecasts",
+      "net_revenue_per_unit_eur": 4.85,
+      "gmv_per_unit_eur": 100,
+      "payment_fee_base_per_unit_eur": 5,
+      "variable_cost_including_expected_retries_eur": 0.2,
+      "max_acquisition_cash_before_fixed_costs_eur": 1.675,
+      "cash_contribution_per_unit_eur": 2.175,
+      "labor_per_unit_eur": 2.5,
+      "contribution_after_labor_per_unit_eur": -0.325,
+      "monthly_fixed_economic_cost_eur": 250,
+      "positive_unit_contribution_after_labor": false,
+      "targets": [
+        {
+          "target_eur": 110,
+          "units_for_net_revenue": 23,
+          "units_for_cash_contribution_after_fixed_costs": 56,
+          "units_for_operating_surplus_after_labor": null,
+          "qualified_offer_exposures_for_surplus": null,
+          "hours_at_surplus_target": null
+        },
+        {
+          "target_eur": 1100,
+          "units_for_net_revenue": 227,
+          "units_for_cash_contribution_after_fixed_costs": 511,
+          "units_for_operating_surplus_after_labor": null,
+          "qualified_offer_exposures_for_surplus": null,
+          "hours_at_surplus_target": null
+        }
+      ],
+      "scale_probe": [
+        {
+          "units": 10,
+          "hours": 8.83,
+          "operating_surplus_after_labor_eur": -253.25
+        },
+        {
+          "units": 100,
+          "hours": 16.33,
+          "operating_surplus_after_labor_eur": -282.5
+        },
+        {
+          "units": 1000,
+          "hours": 91.33,
+          "operating_surplus_after_labor_eur": -575.0
+        }
+      ],
+      "limitations": [
+        "No measured conversion or demand",
+        "Income tax excluded",
+        "Monthly setup amortization is an assumption, not cash already spent",
+        "Positive unit contribution alone does not establish scalable demand or capacity"
+      ]
+    },
+    {
+      "id": "ai_market_100_gmv_5pct_full_payment",
+      "unit": "monthly_usage_customer",
+      "basis": "assumptions_not_forecasts",
+      "net_revenue_per_unit_eur": 4.85,
+      "gmv_per_unit_eur": 100,
+      "payment_fee_base_per_unit_eur": 100,
+      "variable_cost_including_expected_retries_eur": 0.2,
+      "max_acquisition_cash_before_fixed_costs_eur": -1.65,
+      "cash_contribution_per_unit_eur": -1.15,
+      "labor_per_unit_eur": 2.5,
+      "contribution_after_labor_per_unit_eur": -3.65,
+      "monthly_fixed_economic_cost_eur": 250,
+      "positive_unit_contribution_after_labor": false,
+      "targets": [
+        {
+          "target_eur": 110,
+          "units_for_net_revenue": 23,
+          "units_for_cash_contribution_after_fixed_costs": null,
+          "units_for_operating_surplus_after_labor": null,
+          "qualified_offer_exposures_for_surplus": null,
+          "hours_at_surplus_target": null
+        },
+        {
+          "target_eur": 1100,
+          "units_for_net_revenue": 227,
+          "units_for_cash_contribution_after_fixed_costs": null,
+          "units_for_operating_surplus_after_labor": null,
+          "qualified_offer_exposures_for_surplus": null,
+          "hours_at_surplus_target": null
+        }
+      ],
+      "scale_probe": [
+        {
+          "units": 10,
+          "hours": 8.83,
+          "operating_surplus_after_labor_eur": -286.5
+        },
+        {
+          "units": 100,
+          "hours": 16.33,
+          "operating_surplus_after_labor_eur": -615.0
+        },
+        {
+          "units": 1000,
+          "hours": 91.33,
+          "operating_surplus_after_labor_eur": -3900.0
+        }
+      ],
+      "limitations": [
+        "No measured conversion or demand",
+        "Income tax excluded",
+        "Monthly setup amortization is an assumption, not cash already spent",
+        "Positive unit contribution alone does not establish scalable demand or capacity"
+      ]
+    },
+    {
+      "id": "ai_market_1000_gmv_5pct_platform_fee_only",
+      "unit": "monthly_usage_customer",
+      "basis": "assumptions_not_forecasts",
+      "net_revenue_per_unit_eur": 48.5,
+      "gmv_per_unit_eur": 1000,
+      "payment_fee_base_per_unit_eur": 50,
+      "variable_cost_including_expected_retries_eur": 0.2,
+      "max_acquisition_cash_before_fixed_costs_eur": 41.25,
+      "cash_contribution_per_unit_eur": 36.25,
+      "labor_per_unit_eur": 5.0,
+      "contribution_after_labor_per_unit_eur": 31.25,
+      "monthly_fixed_economic_cost_eur": 250,
+      "positive_unit_contribution_after_labor": true,
+      "targets": [
+        {
+          "target_eur": 110,
+          "units_for_net_revenue": 3,
+          "units_for_cash_contribution_after_fixed_costs": 4,
+          "units_for_operating_surplus_after_labor": 12,
+          "qualified_offer_exposures_for_surplus": 400,
+          "hours_at_surplus_target": 10.0
+        },
+        {
+          "target_eur": 1100,
+          "units_for_net_revenue": 23,
+          "units_for_cash_contribution_after_fixed_costs": 31,
+          "units_for_operating_surplus_after_labor": 44,
+          "qualified_offer_exposures_for_surplus": 1467,
+          "hours_at_surplus_target": 15.33
+        }
+      ],
+      "scale_probe": [
+        {
+          "units": 10,
+          "hours": 9.67,
+          "operating_surplus_after_labor_eur": 62.5
+        },
+        {
+          "units": 100,
+          "hours": 24.67,
+          "operating_surplus_after_labor_eur": 2875.0
+        },
+        {
+          "units": 1000,
+          "hours": 174.67,
+          "operating_surplus_after_labor_eur": 31000.0
+        }
+      ],
+      "limitations": [
+        "No measured conversion or demand",
+        "Income tax excluded",
+        "Monthly setup amortization is an assumption, not cash already spent",
+        "Positive unit contribution alone does not establish scalable demand or capacity"
+      ]
+    }
+  ]
+}
