@@ -103,7 +103,14 @@ jobs:
 
       - name: Verify every published workbench tool
         working-directory: ${{ github.workspace }}
-        run: node tools/revenue-studio/verify.mjs --site agi --live
+        run: |
+          # Cloudflare can briefly return the previous successful edition after deploy.
+          # Retry the same strict checks; a persistently old or broken page still fails.
+          for attempt in 1 2 3 4; do
+            if node tools/revenue-studio/verify.mjs --site agi --live; then exit 0; fi
+            if [ "$attempt" != "4" ]; then sleep 8; fi
+          done
+          exit 1
 
       - name: Notify verified localized tool URLs to IndexNow
         if: github.event_name == 'push'
