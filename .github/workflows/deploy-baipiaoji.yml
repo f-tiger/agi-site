@@ -271,6 +271,18 @@ jobs:
             sleep 8
           done
 
+      - name: Read membership migration totals (no account data)
+        env:
+          ADS_WATCH_SECRET: ${{ secrets.ADS_WATCH_SECRET }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          node --input-type=module <<'JS'
+          import {watchSecret} from './scripts/ad-runner-config.mjs';
+          const r=await fetch('https://baipiaoji.com/api/member-admin',{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+watchSecret(process.env)},body:JSON.stringify({action:'stats'}),signal:AbortSignal.timeout(20000)});
+          const d=await r.json();if(!r.ok||!d.ok)throw Error('Membership audit unavailable');
+          console.log(JSON.stringify({paid_orders:d.paid_orders,paid_members:d.paid_members,active_members:d.active_members,unexpired_pending:d.unexpired_pending}));
+          JS
+
       - name: Repair five Bing-reported canonical URLs once
         if: github.event_name == 'push' && contains(github.event.head_commit.message, '[indexnow-repair]') && github.run_attempt == 1
         run: node scripts/indexnow.mjs --repair-bing-20260919
