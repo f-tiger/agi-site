@@ -1,6 +1,6 @@
 # Product marketing context
 
-Version 1 — 2026-09-18. Draft from repository, owner statements and public sources; no invented customer interviews. Read `docs/commercial-skills-review-2026-09-18.md` before extending an experiment. Unknowns below are blockers to investment, not blanks to fill with assumptions.
+**Document version: v2** — **Last updated: 2026-09-19**. Draft from repository, owner statements and public sources; no invented customer interviews. Read `docs/commercial-skills-review-2026-09-18.md` before extending an experiment. Unknowns below are blockers to investment, not blanks to fill with assumptions.
 
 ## Business goal and proof
 
@@ -40,6 +40,8 @@ No new paid features for the three discovery probes until repeated task evidence
 
 ## Changelog
 
+- v2 (2026-09-19): Added eight-track/24-product portfolio, separated BPJ vendor placements from reader memberships, and gated automated marketing drafts on real checkout readiness. Owner requested implementation of BPJ checkout; historical general feature freezes do not block this scope.
+
 - 2026-09-18: Adopted product-marketing, customer-research, pricing and free-tools methods; downgraded three new sites from paid-business candidates to bounded discovery probes. Existing Eco revenue remains the portfolio benchmark.
 
 ## Latest owner steering: five additional directions
@@ -53,3 +55,10 @@ Owner explicitly requested efficiency, structured-language work, finance, foreig
 ## 19 September 2026 expansion
 
 Read `docs/vertical-agent-expansion-2026-09-19.md`. TradeCheck v0.2 adds explicit CSV/TSV mapping to reduce preparation friction, with source rows and unknown history preserved. FilingLens is a separate SEC same-period fact comparison beta and local MCP for financial research. Incumbents already provide fundamentals, source links and agents; this is a narrow usability experiment with low commercial confidence, no verified buyer and no checkout. €19/month saved-workspace/watchlist proposal is not built. Relevant entry: English/Chinese Invest hub. Do not infer restatement causes, stock returns, current holdings or investment recommendations from the comparison. Exact periods, conflict handling and source provenance are core product constraints.
+
+
+## 19 September portfolio and checkout steering
+
+Read `docs/revenue-portfolio-2026-09-19.md` and BPJ `docs/PRD-automatic-checkout-2026-09-19.md`. The owner explicitly requested multi-track revenue research, subsite/tool expansion and automated marketing, prioritizing BPJ payment and automatic placement. Twenty-four candidates across eight tracks are hypotheses, not launched paid products. Existing EUR49/30-day BPJ placement price remains a hypothesis. Vendor ads are a different buyer from free-resource readers. No invented buyer quotes or testimonials.
+
+BPJ implementation uses server-owned Checkout pricing, signed payment events, three sponsored lanes per category with an explicit queue, expiry and refund/dispute suspension. It is one-time payment, not automatic recurring membership. Production readiness and actual payments must be verified separately. Marketing automation prepares tagged links/drafts on the existing daily pipeline; no external messages have been sent and missing metrics remain unknown. Membership value must be saved work, history, batch processing or team access, backed by subscription events and server entitlements before sale.

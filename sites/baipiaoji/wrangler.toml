@@ -9,23 +9,13 @@ binding = "HITS"
 database_name = "baipiaoji-hits"
 database_id = "1ee08cb8-a174-4ec3-8dbc-89ef5d28aa05"
 
-# 广告位的**非机密**参数（2026-09-16，owner:「收款如何做？你帮我解决」）。
-# 为什么放这儿而不是让 owner 去 Cloudflare 后台一个个填：这四个值本来就是公开的——
-# 价格印在投放页上、周期写在文案里、到账预计时间要告诉买家。把它们留在后台的唯一效果
-# 是让「开通收款」从 2 步变成 6 步，而每多一步就多一次配错的机会。
-# 真正的机密只有两个，仍然只能进 Cloudflare Secrets：ADS_PAYMENT_LINK / STRIPE_WEBHOOK_SECRET
-# （卡轨），或 ADS_WALLET（钱包轨，公开仓红线明令地址不入库）。
-# 改价格改这里即可（一行，下一次部署生效）；金额校验在服务端按 ads 行里存下的 price_cents 做，
-# 所以改价不会影响已经下过单的买家。
-#
-# ⚠️ ADS_PRICE_CENTS = €49 / 30 天是**我给的起步价，不是核实出来的事实，owner 应自行确认**。
-# 定价依据（全部是本站真实读数，不是行业感觉）：一个板块位同时出现在该板块页与其下全部工具页；
-# 最大的板块 chat 过去 28 天是 95 次带来源真人浏览，coding 51、api 46。按 chat 算约合
-# €0,52/次真人浏览。对照 09-10 查到的同类目录报价（Futurepedia $247/$497、TAAFT $347 +
-# $99/月侧栏、EasyWithAI $125），它们的流量比本站高两个数量级，所以本站不能照抄那个价位。
-# 定高了没人买，定低了不值得为一笔交易付手续费——€49 是这两条约束之间的一个起点。
+# Server-created one-time Checkout. Secret values live only in Cloudflare:
+# STRIPE_SECRET_KEY and STRIPE_WEBHOOK_SECRET. Test/live keys must match mode.
+# Existing EUR49 / 30-day price is a hypothesis, not market validation.
 [vars]
 ADS_PRICE_CENTS = "4900"
 ADS_CURRENCY = "EUR"
 ADS_DAYS = "30"
+ADS_STRIPE_MODE = "live"
+ADS_AUTOMATIC_TAX = "false"
 ADS_WATCH_ETA = "2h"

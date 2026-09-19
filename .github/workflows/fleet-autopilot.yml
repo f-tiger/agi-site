@@ -77,6 +77,13 @@ jobs:
       - name: Write the demand digest (one page, zero AI)
         run: python3 tools/fleet/demand_digest.py --today="${{ steps.clock.outputs.today }}"
 
+      - name: Prepare measured marketing queue (no external sends)
+        run: |
+          python3 tools/fleet/test_marketing_queue.py
+          FLAGS=""
+          if [ "${{ inputs.dry_run }}" = "true" ]; then FLAGS="--check"; fi
+          python3 tools/fleet/marketing_queue.py --today "${{ steps.clock.outputs.today }}" $FLAGS
+
       - name: Commit what actually changed
         if: inputs.dry_run != true
         run: |
@@ -173,3 +180,4 @@ jobs:
               *) echo "::warning::IndexNow rejected $host with HTTP $code: $(head -c 200 /tmp/idx.out)" ;;
             esac
           done < /tmp/pings.txt
+
