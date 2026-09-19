@@ -150,6 +150,11 @@ def main():
         f"- [Kontakt]({BASE}/kontakt.html): Kontaktmöglichkeit.",
         "",
     ]
+    from build_household import PAGES
+    lines += ["## Haushaltswerkstatt", ""]
+    for slug, (title, desc) in PAGES.items():
+        lines.append(f"- [{title}]({BASE}/{slug}.html): {desc}")
+    lines.append("")
     out = os.path.join(ROOT, "llms.txt")
     open(out, "w", encoding="utf-8").write("\n".join(lines))
     print(f"llms.txt: {len(de)} DE + {len(en)} EN + {len(it)} IT guides, {len(kat)} categories")

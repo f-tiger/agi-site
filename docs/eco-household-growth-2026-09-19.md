@@ -1,0 +1,55 @@
+# Eco household growth experiment — 2026-09-19
+
+## Optimized brief and decision
+
+Grow qualified organic visits and attributable affiliate clicks to Eco, with existing authorization to deploy. Compare AGI/BPJ/Eco/TDS without equating edge requests, filtered pageviews and people. Use prompt-optimizer, market-research and frontend-design guidance; no paid outreach, fabricated search volumes or product tests.
+
+The new deliverable is a household decision workspace with three functioning tools, one downloadable measurement sheet and entry links from nine existing pages. Keep the existing humidity guide as the subject hub rather than duplicate yesterday's article. Formula-driven examples can be verified without new product price feeds. The tools answer different decisions: cost per equally dry laundry load, annualizing an observed measurement, and payback of replacing an already-owned device. No assumed winner and no forced purchase when replacement does not repay itself.
+
+## Evidence and limits
+
+Read-only Cloudflare diagnostic captured 2026-09-18, 28 complete dates 2026-08-21 through 2026-09-17:
+
+| Cloudflare zone | Edge pageViews | Interpretation |
+|---|---:|---|
+| agiscorecard.com | 94,070 | Includes subdomains and automated traffic |
+| baipiaoji.com | 70,555 | Includes automated traffic |
+| getecoback.com | 17,555 | Includes automated traffic |
+| thedollscout.com | 6,364 | Includes automated traffic and transition period |
+
+This supports the zone-volume ordering AGI > BPJ > Eco > TDS, not a ranking of verified users or profitability. TDS changed subject on August 30, so this window includes two different site propositions. It cannot settle the new proposition's viability.
+
+The same snapshot's public endpoints gave AGI 33,377 filtered server pageviews, Eco 514 human/legacy-class pageviews, TDS 246 JavaScript pageviews, and BPJ 331 referred JavaScript views. They are different instruments: do not put them in a single user leaderboard. Raw snapshot remains in prior diagnostic records. New deployment reads fresh aggregate endpoints into its job logs, with their original definitions.
+
+Root repository ledger records user-supplied PartnerNet screenshots: €11.20 commission and 112 clicks for the rolling 30 days through September 14; September 1–14 €1.61, 56 clicks and two ordered items. This is account-level German affiliate evidence, not item-level proof that a new category sells, and not a fresh balance. D1 clicks and PartnerNet clicks are not interchangeable. Revenue is not profit or settled cash.
+
+Eco's September 17 historical notes report 18 of 214 indexable pages receiving search/AI traffic and 513 filtered views over 28 days. This is a concentration warning, not a reason to generate hundreds of overlapping pages. Their claim that all secondary search engines use one index is not adopted: it is too broad. Their Googlebot UA records also do not independently authenticate Google's IPs or prove rankings.
+
+Public primary sources read September 19:
+- https://www.verbraucherzentrale.de/wissen/energie/strom-sparen/beim-kauf-eines-waeschetrockners-an-den-stromverbrauch-denken-37984 — label kWh per 100 drying cycles; comparison must use comparable usage.
+- https://www.verbraucherzentrale.de/wissen/energie/strom-sparen/heizen-und-lueften-so-gehts-richtig-10426 — distinguish humidity and ventilation from electricity cost.
+
+No usable specific Reddit thread was retrieved. No Reddit demand claim, keyword volume or competitor growth rate is inferred from unrelated search results. Hypothesis: practical, reproducible decision tools improve utility and create additional search landing opportunities. Existing consumer calculators demonstrate the format exists; they do not prove Eco will rank.
+
+## Shipped scope
+
+- `/wohnkosten-werkstatt.html`: guided decision hub, first-time instructions and existing humidity articles.
+- `/waeschetrockner-oder-luftentfeuchter.html`: per-load and annual direct electricity comparison, matched dryness and laundry quantity required.
+- `/strommess-protokoll.html`: observed kWh/time annualization, appliance-specific measurement instructions and blank CSV.
+- `/geraete-austausch-rechner.html`: keep-versus-buy total cost and simple payback; explicit no-payback outcome.
+- Nine contextual entry blocks, including homepage and tools directory. No unrelated cross-site link network.
+- Sitemap and site search use existing builders; RSS and llms index include the new pages. llms.txt is documentation, not a promised ranking signal.
+- Existing DE affiliate tag only, visible disclosures, category search links with no invented ASINs or live prices. No new storefront contracts.
+- Existing first-party tracker counts intentional calculation events with a fixed tool source and no numeric inputs. Default examples do not count as usage.
+
+## Commercial target and decision gates
+
+€110 per rolling 30 days is the first commercial target, not a forecast. At the historical account ratio €11.20/112 clicks = €0.10 per Amazon-recorded click, that would require approximately 1,100 comparable clicks. The ratio is small-sample, seasonal and account-wide; it must not be used to predict individual page revenue. €1,100 would require about 11,000 such clicks under the same unproven ratio and is not a credible immediate delivery claim.
+
+Operational target: double Eco's same-instrument filtered pageviews from the September 18 snapshot of 514/28d to at least 1,028/28d within 56 days. Verify instrumentation changes before comparison. Separately seek at least 50 filtered visits to this four-page cohort, 10 intentional calculation events and 5 non-CI affiliate clicks within its first 28 days. These are predeclared operating gates, not statistical significance thresholds.
+
+If the cohort has fewer than 50 visits, diagnose distribution/indexing before judging willingness to buy. At sufficient visits with no tool use, simplify entry and instructions; with tool use but no clicks, assess intent and recommendations before expanding products. Add further tools only after this cohort provides observable search arrivals or repeated use. PartnerNet revenue remains the authority for earned commission. No background monitor was created by this release.
+
+## Verification
+
+Pure calculation checks cover all published arithmetic, zero/negative electricity savings, zero-price no-payback, and invalid/zero-duration measurements. Local metadata, schema, one-H1 and ad-label checks cover the new pages. Full site build gates, deployment, live canonical/sitemap/asset checks and aggregate reads run in the existing Eco workflow. Record actual workflow outcome below after completion; a source commit alone is not proof of publication.

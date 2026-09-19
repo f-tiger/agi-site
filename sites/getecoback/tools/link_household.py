@@ -1,0 +1,27 @@
+#!/usr/bin/env python3
+"""Contextual links from existing content; run after standard link injectors."""
+from pathlib import Path
+import re
+SITE=Path(__file__).resolve().parents[1]/'site'
+TARGETS={
+'index.html':('Haushaltskosten mit eigenen Zahlen prüfen','/wohnkosten-werkstatt.html','Drei kostenlose Rechner: Trocknen vergleichen, Strom messen und einen Geräteaustausch durchrechnen.'),
+'tools.html':('Neu: die Haushaltswerkstatt','/wohnkosten-werkstatt.html','Messprotokoll, Trocknungsvergleich und Austauschrechner mit nachvollziehbaren Beispielen.'),
+'guide/waesche-trocknen-wohnung.html':('Trockner oder Entfeuchter: Was kostet deine Wäsche?','/waeschetrockner-oder-luftentfeuchter.html','Vergleiche Strom je gleich trockener Ladung statt nur die Wattzahl der Geräte.'),
+'guide/luftentfeuchter-ratgeber.html':('Vor dem Kauf mit deiner Nutzung rechnen','/waeschetrockner-oder-luftentfeuchter.html','Bei der Wäschetrocknung entscheiden Verbrauch und Laufzeit gemeinsam.'),
+'guide/luftentfeuchter-dauerbetrieb-stromkosten.html':('Dauerbetrieb tatsächlich messen','/strommess-protokoll.html','kWh und Messdauer notieren; Betrieb mit Hygrostat nicht als Dauerlast überschätzen.'),
+'guide/strom-sparen-haushalt.html':('Stromfresser mit einem Messprotokoll prüfen','/strommess-protokoll.html','Aus gemessenen kWh und deiner Nutzung nachvollziehbare Kosten machen.'),
+'guide/stromkosten-rechner.html':('Ist ein neues Gerät wirklich günstiger?','/geraete-austausch-rechner.html','Auch den Kaufpreis einrechnen: Stromersparnis ist noch keine Gesamtersparnis.'),
+'guide/luftfeuchtigkeit-senken.html':('Wäschekosten und Raumfeuchte getrennt prüfen','/waeschetrockner-oder-luftentfeuchter.html','Berechne direkte Stromkosten. Ursachen der Feuchtigkeit bleiben eine eigene Frage.'),
+'guide/klimaanlage-stromkosten.html':('Behalten oder austauschen?','/geraete-austausch-rechner.html','Mit Jahresverbrauch, Kaufpreis und deinem Strompreis vergleichen.'),
+}
+for name,(title,url,desc) in TARGETS.items():
+ p=SITE/name
+ if not p.exists():raise SystemExit('Missing source page: '+name)
+ s=p.read_text();block=f'<!--EB_HOUSEHOLD_LINK--><aside style="margin:24px 0;padding:20px;border-left:5px solid #075f88;background:#eff7fb;"><strong><a href="{url}">{title}</a></strong><p style="margin:6px 0 0;">{desc}</p></aside><!--/EB_HOUSEHOLD_LINK-->\n'
+ if '<!--EB_HOUSEHOLD_LINK-->' in s:s=re.sub(r'<!--EB_HOUSEHOLD_LINK-->.*?<!--/EB_HOUSEHOLD_LINK-->\n?',lambda m:block,s,flags=re.S)
+ else:
+  s,n=re.subn(r'(<h2\b)',lambda m:block+m.group(1),s,count=1)
+  if n!=1:raise SystemExit('No insertion target: '+name)
+ if name=='tools.html':s=s.replace('10 kostenlose Tools','kostenlose Tools')
+ p.write_text(s)
+print('Household entry links verified on',len(TARGETS),'existing pages.')

@@ -31,11 +31,13 @@ def rfc822(datestr):
 
 def main():
     items = []
-    for path in glob.glob(os.path.join(SITE, "guide", "*.html")):
+    from build_household import PAGES
+    paths = glob.glob(os.path.join(SITE, "guide", "*.html")) + [os.path.join(SITE, slug + ".html") for slug in PAGES]
+    for path in paths:
         h = open(path, encoding="utf-8").read()
         slug = os.path.basename(path)[:-5]
         items.append({
-            "url": f"{BASE}/guide/{slug}.html",
+            "url": f"{BASE}/" + os.path.relpath(path, SITE).replace(os.sep, "/"),
             # The page fields are already HTML-escaped (&amp;); unescape first so
             # the feed carries &amp; once, not &amp;amp;.
             "title": htmllib.escape(htmllib.unescape(title_of(h))),

@@ -128,6 +128,12 @@ jobs:
       - name: Lateral related-guide links (season-weighted; idempotent)
         run: python3 tools/build_related.py
 
+      - name: Link household decision tools from relevant existing pages
+        run: python3 tools/link_household.py
+
+      - name: Verify household calculation examples and edge cases
+        run: node tools/test_household.mjs
+
       - name: Consolidate publisher entity (@id graph; idempotent gate)
         run: python3 tools/build_entity.py
 
@@ -673,6 +679,9 @@ jobs:
       # ever disappears (purge, policy change), that must be a red run, not a
       # silent fade. Scheduled runs only: this asserts an external system, and
       # a registry outage should not block a content deploy.
+      - name: Verify household tools live and read aggregate baseline
+        run: node tools/household_live.mjs
+
       - name: Assert the MCP registry still lists this server (scheduled + manual)
         if: github.event_name != 'push'
         run: |

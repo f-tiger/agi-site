@@ -1,0 +1,11 @@
+import assert from 'node:assert/strict';
+import {drying,measured,replacement} from '../site/assets/household-math.mjs';
+const near=(a,b)=>assert.ok(Math.abs(a-b)<1e-8,`${a} != ${b}`);
+const d=drying({dryer:1.5,watts:250,hours:6,loads:3,price:.35});near(d.annualDryer,81.9);near(d.annualDehum,81.9);near(d.difference,0);
+const m=measured({kwh:1.2,hours:48,days:365,price:.35});near(m.annual,219);near(m.cost,76.65);
+const r=replacement({oldKwh:400,newKwh:200,price:.35,purchase:500,years:5});near(r.saving,70);near(r.keep,700);near(r.buy,850);near(r.payback,500/70);
+for(const newKwh of [400,500])assert.equal(replacement({oldKwh:400,newKwh,price:.35,purchase:500,years:5}).payback,null);
+assert.equal(replacement({oldKwh:400,newKwh:200,price:0,purchase:500,years:5}).payback,null);
+for(const hours of [0,NaN,Infinity,-1])assert.throws(()=>measured({kwh:1,hours,days:365,price:.35}),RangeError);
+assert.throws(()=>drying({dryer:-1,watts:250,hours:6,loads:3,price:.35}),RangeError);
+console.log('PASS household: worked examples, zero/negative saving, invalid measurements.');
