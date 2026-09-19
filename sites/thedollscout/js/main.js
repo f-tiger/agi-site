@@ -10,6 +10,7 @@
     if (toggle && nav) {
       toggle.addEventListener("click", function () {
         nav.classList.toggle("open");
+        toggle.setAttribute("aria-expanded", String(nav.classList.contains("open")));
       });
     }
     var y = document.getElementById("year");
@@ -40,3 +41,4 @@
     if (a && a.href) send("affiliate_click", a.href);
   }, true);
 })();
+

@@ -96,6 +96,12 @@ jobs:
       - name: Gate — FAQ/DefinedTerm structured data must match visible text
         run: node scripts/check-structured-data.mjs
 
+      - name: Verify collector tools and generated pages
+        run: |
+          node --test scripts/collector-tools.test.cjs
+          node scripts/gen-collector-pages.mjs
+          git diff --exit-code -- collection-tracker.html display-calculator.html collector-guide.html de/collection-tracker.html de/display-calculator.html de/collector-guide.html
+
       - name: Regenerate the /odds/ cluster and prove it is in sync
         # 生成器是幂等的,所以在部署链上重跑一次等于断言「仓库里的页 == 数据脊算出来的页」。
         # 若有人手改了生成页或改了 rarity-odds.json 却忘了重跑,这一步会让 diff 非空而失败。
@@ -170,7 +176,7 @@ jobs:
           else
             echo "build stamp ok: $live"
           fi
-          for p in / /rarity /fake-check /where-to-buy /how-blind-boxes-work /glossary /start /psychology /checker /finder /lookup /zh/ /th/ /de/ /de/rarity /de/fake-check /de/where-to-buy /de/how-blind-boxes-work /de/glossary /de/start /de/psychology /de/checker /de/finder /de/lookup /data/ /robots.txt /sitemap.xml /llms.txt /llms-full.txt /img/og.png /data/rarity-odds.json /data/labubu-glossary.json /data/labubu-fake-signals.json /data/pull-math.json /.well-known/mcp.json /legal/affiliate-disclosure /legal/privacy /odds/ /odds/one-box /odds/six-boxes /odds/twelve-boxes-full-case /odds/twenty-four-boxes /odds/seventy-two-boxes /de/odds/ /de/odds/one-box /de/odds/six-boxes /de/odds/twelve-boxes-full-case /de/odds/twenty-four-boxes /de/odds/seventy-two-boxes /0252657e77641154c50b39045dc829f8.txt; do
+          for p in / /collection-tracker /display-calculator /collector-guide /de/collection-tracker /de/display-calculator /de/collector-guide /js/collector-core.js /js/collector-tools.js /css/collector.css /rarity /fake-check /where-to-buy /how-blind-boxes-work /glossary /start /psychology /checker /finder /lookup /zh/ /th/ /de/ /de/rarity /de/fake-check /de/where-to-buy /de/how-blind-boxes-work /de/glossary /de/start /de/psychology /de/checker /de/finder /de/lookup /data/ /robots.txt /sitemap.xml /llms.txt /llms-full.txt /img/og.png /data/rarity-odds.json /data/labubu-glossary.json /data/labubu-fake-signals.json /data/pull-math.json /.well-known/mcp.json /legal/affiliate-disclosure /legal/privacy /odds/ /odds/one-box /odds/six-boxes /odds/twelve-boxes-full-case /odds/twenty-four-boxes /odds/seventy-two-boxes /de/odds/ /de/odds/one-box /de/odds/six-boxes /de/odds/twelve-boxes-full-case /de/odds/twenty-four-boxes /de/odds/seventy-two-boxes /0252657e77641154c50b39045dc829f8.txt; do
             code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 20 "https://thedollscout.com$p")
             redirs=$(curl -s -o /dev/null -w "%{num_redirects}" -L --max-redirs 5 --max-time 20 "https://thedollscout.com$p" || echo 99)
             echo "$p -> HTTP $code, redirects $redirs"
@@ -249,5 +255,6 @@ jobs:
 concurrency:
   group: deploy-thedollscout
   cancel-in-progress: true
+
 
 
