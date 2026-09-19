@@ -1,5 +1,5 @@
 {
- "fetched": "2026-09-18",
+ "fetched": "2026-09-19",
  "geo": "DE",
  "seeds": {
   "klimaanlage": {
@@ -334,30 +334,34 @@
    "rising": [
     {
      "q": "fluss durch riga",
-     "v": 4900
+     "v": 3800
     },
     {
      "q": "emma performance matratze",
-     "v": 130
-    },
-    {
-     "q": "matratze 80x180",
-     "v": 120
-    },
-    {
-     "q": "bett1 de",
-     "v": 120
+     "v": 140
     },
     {
      "q": "kühlende matratze",
+     "v": 130
+    },
+    {
+     "q": "bett1 de",
      "v": 100
     },
     {
-     "q": "bettgestell 140x200",
+     "q": "boxspringbett 140x200 mit matratze und topper",
+     "v": 80
+    },
+    {
+     "q": "mozart bett",
      "v": 70
     },
     {
-     "q": "ikea bett 140x200",
+     "q": "emma original pro matratze",
+     "v": 70
+    },
+    {
+     "q": "emma dynamic matratze",
      "v": 70
     },
     {
@@ -365,48 +369,48 @@
      "v": 60
     },
     {
-     "q": "boxspringbett 140x200 mit matratze und topper",
-     "v": 60
-    },
-    {
-     "q": "emma original pro matratze",
+     "q": "kinderbett 90x200",
      "v": 50
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-09-18",
+   "fetched": "2026-09-19",
    "polluted": false
   },
   "saugwischer": {
    "rising": [
     {
-     "q": "bester saugwischer roboter",
-     "v": 62450
+     "q": "kärcher nass trockensauger",
+     "v": 60450
     },
     {
-     "q": "blume 2000",
-     "v": 10700
+     "q": "roborock saros 20",
+     "v": 26650
     },
     {
-     "q": "kärcher fc5",
-     "v": 3300
+     "q": "roborock f25 ace pro",
+     "v": 21150
     },
     {
-     "q": "vorwerk staubsauger",
+     "q": "wischmop",
+     "v": 3450
+    },
+    {
+     "q": "bester saugwischer",
      "v": 60
     },
     {
      "q": "dyson staubsauger",
-     "v": 40
+     "v": 60
     },
     {
-     "q": "philips saugwischer",
+     "q": "stiftung warentest saugwischer",
      "v": 40
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-09-10",
-   "polluted": false
+   "fetched": "2026-09-19",
+   "polluted": true
   }
  }
 }
