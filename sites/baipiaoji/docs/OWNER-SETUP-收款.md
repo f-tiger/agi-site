@@ -1,3 +1,5 @@
+> 2026-09-19 更新：Owner 先使用 BNB Smart Chain USDT。新版开通步骤见 [WEB3-SETUP.md](WEB3-SETUP.md)；下文 Stripe 方案保留作后续银行卡入口。新版已实现独立 Web3 验款，覆盖下文历史“需要升级”的状态说明。
+
 # BPJ 自动收款与投放接入
 
 更新：2026-09-19。本版本用服务端 Stripe Checkout 取代新订单的通用 Payment Link / 裸钱包模式。旧订单保留处理路径。

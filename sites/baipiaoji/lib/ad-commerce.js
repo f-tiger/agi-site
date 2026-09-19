@@ -81,15 +81,23 @@ export async function fulfill(db,s,eventID,eventType,now=seconds()) {
   p(`UPDATE bpj_ad_checkout SET session=?,intent=?,total_cents=?,tax_cents=?,paid_at=?,
     state=COALESCE((SELECT reason FROM bpj_ad_reversals WHERE intent=?),'pending')
     WHERE id=? AND state IN ('creating','pending')`,s.id,s.payment_intent,s.amount_total,tax,now,s.payment_intent,id),
-  p(`UPDATE bpj_ad_checkout SET slot=(
-    WITH lanes(n) AS (VALUES(1),(2),(3)) SELECT n FROM lanes
-    ORDER BY MAX(?,COALESCE((SELECT MAX(ends_at) FROM bpj_ad_checkout q WHERE q.cat=? AND q.livemode=? AND q.slot=n AND q.state='paid'),0)),n LIMIT 1
-    ) WHERE id=? AND state='pending' AND starts_at IS NULL`,now,row.cat,row.livemode,id),
-  p(`UPDATE bpj_ad_checkout SET starts_at=MAX(?,COALESCE((SELECT MAX(q.ends_at) FROM bpj_ad_checkout q
-    WHERE q.id<>? AND q.cat=? AND q.livemode=? AND q.slot=(SELECT slot FROM bpj_ad_checkout WHERE id=?) AND q.state='paid'),0))
-    WHERE id=? AND state='pending' AND starts_at IS NULL`,now,id,row.cat,row.livemode,id,id),
-  p(`UPDATE bpj_ad_checkout SET ends_at=starts_at+days*86400,state='paid' WHERE id=? AND state='pending' AND starts_at IS NOT NULL`,id),
+  ...scheduleStatements(db,row,now),
   p('INSERT OR IGNORE INTO bpj_ad_events(id,type,created) VALUES(?,?,?)',eventID,eventType,now)
  ]);
  return publicStatus(await p('SELECT * FROM bpj_ad_checkout WHERE id=?',id).first(),now);
+}
+
+// Shared by Stripe and verified chain payments; always used inside the payment batch.
+export function scheduleStatements(db,row,now) {
+ const id=row.id,p=(sql,...args)=>db.prepare(sql).bind(...args);
+ return [
+  p(`UPDATE bpj_ad_checkout SET slot=(
+    WITH lanes(n) AS (VALUES(1),(2),(3)) SELECT n FROM lanes
+    ORDER BY MAX(?,COALESCE((SELECT MAX(ends_at) FROM bpj_ad_checkout q WHERE q.cat=? AND q.livemode=? AND q.slot=n AND q.state='paid'),0)),n LIMIT 1
+    ) WHERE id=? AND state='pending' AND paid_at IS NOT NULL AND starts_at IS NULL`,now,row.cat,row.livemode,id),
+  p(`UPDATE bpj_ad_checkout SET starts_at=MAX(?,COALESCE((SELECT MAX(q.ends_at) FROM bpj_ad_checkout q
+    WHERE q.id<>? AND q.cat=? AND q.livemode=? AND q.slot=(SELECT slot FROM bpj_ad_checkout WHERE id=?) AND q.state='paid'),0))
+    WHERE id=? AND state='pending' AND paid_at IS NOT NULL AND starts_at IS NULL`,now,id,row.cat,row.livemode,id,id),
+  p(`UPDATE bpj_ad_checkout SET ends_at=starts_at+days*86400,state='paid' WHERE id=? AND state='pending' AND paid_at IS NOT NULL AND starts_at IS NOT NULL`,id)
+ ];
 }

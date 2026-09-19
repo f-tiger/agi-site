@@ -170,7 +170,9 @@ jobs:
       # 它判错的方向有两种，都必须能红——把无价页判成 ready 会把人骗去读一个没有价格的页面；
       # 把沙箱/网络拒绝判成「这家没有付费档」则会让一个能填的缺口被永久跳过。
       - name: Checkout and delivery integration (SQLite, no network)
-        run: node scripts/test-ad-commerce.mjs
+        run: |
+          node scripts/test-ad-commerce.mjs
+          node scripts/test-ad-web3.mjs
 
       - name: Pricing-probe selftest (zero network)
         run: node scripts/pricing-probe.mjs --selftest

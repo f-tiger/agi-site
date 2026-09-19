@@ -20,4 +20,10 @@ ADS_STRIPE_MODE = "live"
 ADS_AUTOMATIC_TAX = "false"
 ADS_WATCH_ETA = "2h"
 
-# Checkout release: PR #7. Payment stays closed until both Stripe secrets are configured.
+# BNB Smart Chain USDT. Recipient and watch credential stay outside git.
+# Availability additionally requires configured secrets and healthy background checks.
+# Independent 49 USDT experiment price, not an exchange-rate conversion of EUR49.
+ADS_WEB3_ENABLED = "true"
+ADS_WALLET_CHAIN = "bsc"
+ADS_WEB3_PRICE_USD = "49.00"
+ADS_WEB3_RPC_URL = "https://bsc-rpc.publicnode.com"
