@@ -1,0 +1,323 @@
+{
+  "asOf": "2026-09-19T16:34:04.270Z",
+  "ok": true,
+  "checks": [
+    {
+      "name": "source snapshots",
+      "ok": true
+    },
+    {
+      "name": "usage and feedback",
+      "ok": true
+    },
+    {
+      "name": "web3.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "disclosures.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "compute.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "permit.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "calls.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "proof.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "evidence.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "protocol.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "route.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "incentives.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "reconcile.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "public AI access OAI-SearchBot",
+      "ok": true
+    },
+    {
+      "name": "public AI access PerplexityBot",
+      "ok": true
+    }
+  ],
+  "sources": {
+    "market": {
+      "status": "fresh",
+      "retrievedAt": "2026-09-19T16:33:25.993Z",
+      "ageSeconds": 44,
+      "quotes": [
+        {
+          "symbol": "BTC",
+          "quote": "USD",
+          "price": 81831.63791630436,
+          "sourceUpdatedAt": "2026-09-19T16:31:40.000Z",
+          "deviationBps": null
+        },
+        {
+          "symbol": "ETH",
+          "quote": "USD",
+          "price": 2647.353387354267,
+          "sourceUpdatedAt": "2026-09-19T16:31:40.000Z",
+          "deviationBps": null
+        },
+        {
+          "symbol": "USDC",
+          "quote": "USD",
+          "price": 0.9997181272461622,
+          "sourceUpdatedAt": "2026-09-19T16:31:40.000Z",
+          "deviationBps": -2.8187275383784183
+        },
+        {
+          "symbol": "USDT",
+          "quote": "USD",
+          "price": 0.9996252986876714,
+          "sourceUpdatedAt": "2026-09-19T16:31:40.000Z",
+          "deviationBps": -3.7470131232864023
+        }
+      ],
+      "source": {
+        "name": "DefiLlama current prices",
+        "url": "https://coins.llama.fi/prices/current/coingecko:bitcoin,coingecko:ethereum,coingecko:usd-coin,coingecko:tether",
+        "method": "https://api-docs.defillama.com/"
+      }
+    },
+    "briefs": {
+      "status": "fresh",
+      "retrievedAt": "2026-09-19T16:33:24.952Z",
+      "sources": [
+        {
+          "id": "ethereum",
+          "status": "ok",
+          "checkedAt": "2026-09-19T16:33:24.758Z"
+        },
+        {
+          "id": "x402",
+          "status": "ok",
+          "checkedAt": "2026-09-19T16:33:24.758Z"
+        },
+        {
+          "id": "ezkl",
+          "status": "ok",
+          "checkedAt": "2026-09-19T16:33:24.758Z"
+        }
+      ],
+      "items": [
+        {
+          "title": "fix(stellar): make the exact facilitator inclusion fee configurable (#3503)",
+          "url": "https://github.com/x402-foundation/x402/commit/c8c71f244c0d45a6a4fd990a96c69aa34781cd05",
+          "publishedAt": "2026-09-17T09:57:12.000Z",
+          "source": "x402 Foundation repository",
+          "sourceId": "x402",
+          "kind": "commits",
+          "task": "stablecoin"
+        },
+        {
+          "title": "fix(python-mcp): expose bare InvalidReason on FastMCP 402s (#3494)",
+          "url": "https://github.com/x402-foundation/x402/commit/165ff37023bfa4991c84409c77a16dc6a0e2e5f8",
+          "publishedAt": "2026-09-16T13:40:49.000Z",
+          "source": "x402 Foundation repository",
+          "sourceId": "x402",
+          "kind": "commits",
+          "task": "stablecoin"
+        },
+        {
+          "title": "fix(python): snapshot MCP 402 accepts before enrichers (#3495)",
+          "url": "https://github.com/x402-foundation/x402/commit/c608a718bde2e8226793a21595bdae68a24370a6",
+          "publishedAt": "2026-09-16T13:34:38.000Z",
+          "source": "x402 Foundation repository",
+          "sourceId": "x402",
+          "kind": "commits",
+          "task": "stablecoin"
+        },
+        {
+          "title": "docs(mcp): check paymentResponse before logging a settled payment (#3499)",
+          "url": "https://github.com/x402-foundation/x402/commit/19449761e6d6e57b6a8a26ac463f96b8a78a3123",
+          "publishedAt": "2026-09-16T13:27:12.000Z",
+          "source": "x402 Foundation repository",
+          "sourceId": "x402",
+          "kind": "commits",
+          "task": "stablecoin"
+        },
+        {
+          "title": "fix(go): update MCP hook test mock for PaymentPayloadContext (#3492)",
+          "url": "https://github.com/x402-foundation/x402/commit/8e0d7189c154bb5a84f7142b3f6a241d7779da58",
+          "publishedAt": "2026-09-16T05:18:59.000Z",
+          "source": "x402 Foundation repository",
+          "sourceId": "x402",
+          "kind": "commits",
+          "task": "stablecoin"
+        },
+        {
+          "title": "Join Us: EF Protocol Reddit AMA - September 16th, 2026",
+          "url": "https://blog.ethereum.org/en/2026/09/09/reddit-ama",
+          "publishedAt": "2026-09-09T00:00:00.000Z",
+          "source": "Ethereum Foundation",
+          "sourceId": "ethereum",
+          "kind": "rss",
+          "task": "protocol-change"
+        },
+        {
+          "title": "EF Protocol: The Hegotá EIP Opinion Post and Tier List",
+          "url": "https://blog.ethereum.org/en/2026/09/07/protocol-hegota-eips",
+          "publishedAt": "2026-09-07T00:00:00.000Z",
+          "source": "Ethereum Foundation",
+          "sourceId": "ethereum",
+          "kind": "rss",
+          "task": "protocol-change"
+        },
+        {
+          "title": "EF Protocol: Current and Emerging Priorities",
+          "url": "https://blog.ethereum.org/en/2026/09/07/protocol-priorities",
+          "publishedAt": "2026-09-07T00:00:00.000Z",
+          "source": "Ethereum Foundation",
+          "sourceId": "ethereum",
+          "kind": "rss",
+          "task": "protocol-change"
+        },
+        {
+          "title": "Glamsterdam Repricing Impact for Smart Contract Developers",
+          "url": "https://blog.ethereum.org/en/2026/08/24/glamsterdam-repricing-testing",
+          "publishedAt": "2026-08-24T00:00:00.000Z",
+          "source": "Ethereum Foundation",
+          "sourceId": "ethereum",
+          "kind": "rss",
+          "task": "protocol-change"
+        },
+        {
+          "title": "Raising machine-checked security benchmarks to advance hash-based SNARKs through agentic collaboration",
+          "url": "https://blog.ethereum.org/en/2026/08/20/better-codes-challenge",
+          "publishedAt": "2026-08-20T00:00:00.000Z",
+          "source": "Ethereum Foundation",
+          "sourceId": "ethereum",
+          "kind": "rss",
+          "task": "protocol-change"
+        }
+      ]
+    }
+  },
+  "events": {
+    "asOf": "2026-09-19T16:34:11.906Z",
+    "windowDays": 28,
+    "measurement": "Opt-in event counts, deduplicated within a page visit. Not unique people or a cross-domain session funnel. Incoming attribution is unverified; stripped referrers appear direct. Default examples, probes and MCP requests do not generate events.",
+    "groups": []
+  },
+  "feedback": {
+    "groups": [],
+    "measurement": "Self-reported submissions, not independent buyers."
+  },
+  "changes": [
+    {
+      "url": "https://github.com/x402-foundation/x402/commit/c8c71f244c0d45a6a4fd990a96c69aa34781cd05",
+      "title": "fix(stellar): make the exact facilitator inclusion fee configurable (#3503)",
+      "task": "stablecoin",
+      "kind": "initial_inventory",
+      "requiresReview": true
+    },
+    {
+      "url": "https://github.com/x402-foundation/x402/commit/165ff37023bfa4991c84409c77a16dc6a0e2e5f8",
+      "title": "fix(python-mcp): expose bare InvalidReason on FastMCP 402s (#3494)",
+      "task": "stablecoin",
+      "kind": "initial_inventory",
+      "requiresReview": true
+    },
+    {
+      "url": "https://github.com/x402-foundation/x402/commit/c608a718bde2e8226793a21595bdae68a24370a6",
+      "title": "fix(python): snapshot MCP 402 accepts before enrichers (#3495)",
+      "task": "stablecoin",
+      "kind": "initial_inventory",
+      "requiresReview": true
+    },
+    {
+      "url": "https://github.com/x402-foundation/x402/commit/19449761e6d6e57b6a8a26ac463f96b8a78a3123",
+      "title": "docs(mcp): check paymentResponse before logging a settled payment (#3499)",
+      "task": "stablecoin",
+      "kind": "initial_inventory",
+      "requiresReview": true
+    },
+    {
+      "url": "https://github.com/x402-foundation/x402/commit/8e0d7189c154bb5a84f7142b3f6a241d7779da58",
+      "title": "fix(go): update MCP hook test mock for PaymentPayloadContext (#3492)",
+      "task": "stablecoin",
+      "kind": "initial_inventory",
+      "requiresReview": true
+    },
+    {
+      "url": "https://blog.ethereum.org/en/2026/09/09/reddit-ama",
+      "title": "Join Us: EF Protocol Reddit AMA - September 16th, 2026",
+      "task": "protocol-change",
+      "kind": "initial_inventory",
+      "requiresReview": true
+    },
+    {
+      "url": "https://blog.ethereum.org/en/2026/09/07/protocol-hegota-eips",
+      "title": "EF Protocol: The Hegotá EIP Opinion Post and Tier List",
+      "task": "protocol-change",
+      "kind": "initial_inventory",
+      "requiresReview": true
+    },
+    {
+      "url": "https://blog.ethereum.org/en/2026/09/07/protocol-priorities",
+      "title": "EF Protocol: Current and Emerging Priorities",
+      "task": "protocol-change",
+      "kind": "initial_inventory",
+      "requiresReview": true
+    },
+    {
+      "url": "https://blog.ethereum.org/en/2026/08/24/glamsterdam-repricing-testing",
+      "title": "Glamsterdam Repricing Impact for Smart Contract Developers",
+      "task": "protocol-change",
+      "kind": "initial_inventory",
+      "requiresReview": true
+    },
+    {
+      "url": "https://blog.ethereum.org/en/2026/08/20/better-codes-challenge",
+      "title": "Raising machine-checked security benchmarks to advance hash-based SNARKs through agentic collaboration",
+      "task": "protocol-change",
+      "kind": "initial_inventory",
+      "requiresReview": true
+    }
+  ],
+  "outcomes": {
+    "indexedPages": null,
+    "verifiedThirdPartyBacklinks": null,
+    "aiCitations": null,
+    "paidBuyers": null,
+    "revenue": null
+  },
+  "notes": [
+    "Availability is not indexing. AI-user-agent requests do not authenticate a crawler or prove citation.",
+    "Opt-in events are not people or a joined session funnel; incoming channel labels are unverified.",
+    "External referral counts are not verified backlinks. Price movements are not customer demand."
+  ],
+  "summary": {
+    "optInPageEvents": 0,
+    "ownTaskEvents": 0,
+    "reportExportEvents": 0,
+    "toolOpenEvents": 0,
+    "aiReferredEvents": 0
+  },
+  "nextAction": "No opted-in page events observed. Check exposure and consent bias; do not conclude no demand."
+}

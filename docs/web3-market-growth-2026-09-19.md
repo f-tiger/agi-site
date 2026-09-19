@@ -14,7 +14,7 @@ Alternatives: CoinGecko already offers broad prices/charts; Kraken offers public
 
 ## Implemented scope
 
-- `/market.html`: BTC, ETH, USDC and USDT venue reference prices; UTC-day change and stablecoin basis-point deviation. Local impact calculator keeps prices explicit and never overwrites the reader's inputs with a moving quote.
+- `/market.html`: BTC, ETH, USDC and USDT aggregated reference prices; provider timestamps and stablecoin basis-point deviation. Local impact calculator keeps prices explicit and never overwrites the reader's inputs with a moving quote.
 - `/briefs.html`: original metadata from Ethereum Foundation, x402 commits and EZKL releases; publication and retrieval dates remain distinct. Commits are identified as commits, not released features. No full articles are copied or AI-generated news published.
 - Three original task guides: stablecoin payment reconciliation, gas/proof cost budgeting and protocol-change review. Each leads to the existing relevant tool, worked examples and inspectable reports. These are editorial workflow hypotheses, not customer quotations or interviews.
 - Canonical pages, source references, schema matching visible content, llms links, sitemap entries, RSS and public JSON. Prepared citations and relevant sharing links support voluntary linking. No automatic directory submissions, external posts, bought links or unrelated sitewide crosslinks.
@@ -22,7 +22,7 @@ Alternatives: CoinGecko already offers broad prices/charts; Kraken offers public
 
 ## Source freshness and operating cost
 
-Kraken's public ticker is read after a five-minute cache interval. This reports the last trade price; its UTC opening field is not a rolling 24-hour return. The server's receipt time is not a trade timestamp. Source metadata refreshes after one hour. Cache reuse is per Cloudflare edge location, not a globally guaranteed update instant. An open visible market page checks every minute. This is near-real-time context, not a tick-by-tick feed or alert SLA.
+DefiLlama current prices are read after a five-minute cache interval. Each price retains the provider timestamp; provider values older than 15 minutes are marked stale even when just received. No unsupported 24-hour change is inferred. The server's receipt time remains distinct. Source metadata refreshes after one hour. Cache reuse is per Cloudflare edge location, not a globally guaranteed update instant. An open visible market page checks every minute. This is near-real-time context, not a tick-by-tick feed or alert SLA.
 
 Failed refreshes preserve the original timestamp and mark the snapshot stale. Data older than a day is hidden. Missing values are never replaced by fictional example prices. Requests use fixed upstream URLs, bounded bodies and timeouts; readers cannot supply an arbitrary fetch URL. A short failure retry interval avoids immediate repeated upstream attempts within an isolate.
 
@@ -40,16 +40,17 @@ Next decisions: if relevant exposure is insufficient, inspect distribution and m
 
 ## Verification
 
-Local suite: 82 tests passed, including correct ticker units, stale/unavailable states, hostile feed URLs, source escaping, gas arithmetic, opt-in contracts, no raw-input persistence, idempotent QA events, source failure detection and all existing calculator/MCP tests. Sixty generated HTML pages passed canonical, schema, ID, link and UI-target checks. Production acceptance is recorded after deployment.
+Local suite: 83 tests passed, including provider timestamps and correct quote units, stale/unavailable states, hostile feed URLs, source escaping, gas arithmetic, opt-in contracts, no raw-input persistence, idempotent QA events, source failure detection and all existing calculator/MCP tests. Sixty generated HTML pages passed canonical, schema, ID, link and UI-target checks. Production acceptance is recorded after deployment.
 
 ## Primary references checked 2026-09-19
 
+- [DefiLlama public API](https://api-docs.defillama.com/): selected current-price source.
 - [Kraken ticker documentation](https://docs.kraken.com/api-reference/market-data/get-ticker-information): public endpoint and UTC opening semantics.
 - [Coinbase price documentation](https://docs.cdp.coinbase.com/coinbase-app/track-apis/prices): alternative public source investigated; local fetches timed out or returned 502, so no successful integration claimed.
 - [Ethereum Foundation blog](https://blog.ethereum.org/): original announcements and feed metadata.
 - [Ethereum gas documentation](https://ethereum.org/developers/docs/gas/): gas units and effective fee calculation.
 - [Circle transparency](https://www.circle.com/transparency): issuer disclosures are distinct from venue prices.
-- [x402 repository](https://github.com/coinbase/x402) and [EZKL documentation](https://docs.ezkl.xyz/): original project references.
+- [x402 repository](https://github.com/x402-foundation/x402) and [EZKL documentation](https://docs.ezkl.xyz/): original project references.
 - [Google helpful content guidance](https://developers.google.com/search/docs/fundamentals/creating-helpful-content) and [AI search guidance](https://developers.google.com/search/docs/appearance/ai-features): support useful, accessible, sourced content; do not establish guaranteed ranking or citation.
 
 
@@ -58,3 +59,14 @@ Local suite: 82 tests passed, including correct ticker units, stale/unavailable 
 首轮上线验收阻止将断源判为完成。Kraken 公共接口在验证环境持续超时，改为 DefiLlama 公共价格端点（BTC/ETH/USDC/USDT）；保留每个报价的提供方时间，超过 15 分钟标为 stale，不计算未提供的 24 小时涨跌。Ethereum RSS 已校正到 `/en/feed.xml`；x402 当前上游为 x402-foundation/x402，Coinbase 仓库已是 fork。只跟随固定来源，不自动放宽为任意 URL。公开失败原因仅固定错误码。
 
 参考： https://api-docs.defillama.com/ 、 https://github.com/coinbase/x402 、 https://github.com/x402-foundation/x402 。生产验收结果以最终工作流与当日 `data/autopilot/web3/latest.json` 为准。
+
+## Production acceptance and first baseline
+
+- Deployed source: `363f839b0e65a1fa0aa100abd1fd8ad04c52b7a3`; [successful release run](https://github.com/f-tiger/agi-site/actions/runs/35455293501).
+- Cloudflare version: `462e9fbb-79c8-4e52-8ff6-3ab11f0475b7`. Existing Worker and 11 scoped hosts retained.
+- Production static/API checks: 11 hosts, 604 requests. MCP: 10 calculators, 30 scenarios, 70 requests across protocol versions 2026-07-28 and 2025-11-25. Live market/content smoke passed, including event write/read, replay deduplication and QA exclusion.
+- Browser validation: 1,000 at 0.998 gives $998 and −$2; 21,000 gas × 10 gwei × $2,000/ETH gives $0.42. Updating the amount to 2,000 updates the result to $1,996 and −$4. These are QA examples. Market → stablecoin guide → reconcile tool preserved the explicit coarse channel; measurement remained off.
+- First actual audit at `2026-09-19T16:34:04.270Z`: all 15 checks passed. Four current price records and all three metadata sources connected; ten eligible official records inventoried. EZKL returned no eligible recent stable release, which is stated rather than filled with invented news.
+- The first audit recorded zero opted-in event counts and no non-QA feedback. This is a new, opt-in baseline; it is not proof of zero visitors or zero demand. Indexing, independent backlinks, AI citations, buyers and revenue remain unknown (`null`).
+- Daily report production is wired into the existing 02:40 UTC fleet workflow. This report was run directly against production; the next scheduled fleet run has not yet occurred. A one-time review is scheduled for 2026-09-26; no additional daily AI loop was created.
+- The owned public MCP repository now links these task guides and source endpoints: [discovery update](https://github.com/f-tiger/agiscorecard-mcp/commit/3e8e72e3a8a700311b503b2a6fd6ef3de6b304fd). This is an owned distribution link, not a third-party backlink or earned citation.
