@@ -1,0 +1,85 @@
+{
+  "as_of": "2026-09-19",
+  "kind": "marketing_preparation_not_distribution",
+  "sends": 0,
+  "campaigns": [
+    {
+      "id": "bpj-sponsored-placement",
+      "site": "bpj",
+      "state": "blocked",
+      "blockers": [
+        "live_checkout_not_ready"
+      ],
+      "draft": "在工具相关分类投放明确标注的赞助位；先看真实触达，再决定是否购买。",
+      "url": "https://baipiaoji.com/advertise.html?utm_source=owned_tool_pages&utm_medium=owned&utm_campaign=bpj-sponsored-placement&utm_content=v1",
+      "goal": "paid_placement",
+      "dedupe_key": "c82ec48236d6c6b1",
+      "published": false
+    },
+    {
+      "id": "bpj-free-quota",
+      "site": "bpj",
+      "state": "draft_ready",
+      "blockers": [],
+      "draft": "先核对你正在使用的AI工具免费额度与官方来源，再决定是否升级。",
+      "url": "https://baipiaoji.com/?utm_source=owned_search_content&utm_medium=owned&utm_campaign=bpj-free-quota&utm_content=v1",
+      "goal": "own_task_complete",
+      "dedupe_key": "b807866a73717a8f",
+      "published": false
+    },
+    {
+      "id": "agi-evidence",
+      "site": "agi",
+      "state": "draft_ready",
+      "blockers": [],
+      "draft": "读一条AI判断时，也检查它引用的原始证据与更新时间。",
+      "url": "https://agiscorecard.com/?utm_source=owned_search_content&utm_medium=owned&utm_campaign=agi-evidence&utm_content=v1",
+      "goal": "evidence_task_complete",
+      "dedupe_key": "f7ece4e8d756dca7",
+      "published": false
+    },
+    {
+      "id": "eco-energy-decision",
+      "site": "eco",
+      "state": "draft_ready",
+      "blockers": [],
+      "draft": "按自己的使用场景比较能源与家电选择；商品购买前核对零售商信息。",
+      "url": "https://www.getecoback.com/?utm_source=owned_search_content&utm_medium=owned&utm_campaign=eco-energy-decision&utm_content=v1",
+      "goal": "qualified_affiliate_click",
+      "dedupe_key": "c919cd5261feb110",
+      "published": false
+    },
+    {
+      "id": "tds-collector-decision",
+      "site": "tds",
+      "state": "draft_ready",
+      "blockers": [],
+      "draft": "收藏之前先核对系列、官方信息与购买来源，避免把热度当价值保证。",
+      "url": "https://thedollscout.com/?utm_source=owned_search_content&utm_medium=owned&utm_campaign=tds-collector-decision&utm_content=v1",
+      "goal": "own_task_complete",
+      "dedupe_key": "4ffb49bd3da96b27",
+      "published": false
+    },
+    {
+      "id": "localebatch-csv-check",
+      "site": "commerce",
+      "state": "draft_ready",
+      "blockers": [],
+      "draft": "多语言商品导入前，先检查CSV结构。免费检查不代表已完成翻译交付。",
+      "url": "https://localebatch.agiscorecard.com/?utm_source=owned_task_tutorial&utm_medium=owned&utm_campaign=localebatch-csv-check&utm_content=v1",
+      "goal": "own_file_check_complete",
+      "dedupe_key": "6d55d7e1f2c4a043",
+      "published": false
+    }
+  ],
+  "measurement": {
+    "visits": null,
+    "qualified_tasks": null,
+    "paid_buyers": null,
+    "net_revenue": null
+  },
+  "notes": [
+    "No social post or email was sent. Unknown metrics remain null, never zero.",
+    "One-time sponsored orders are not membership MRR. Draft readiness is not payment acceptance."
+  ]
+}

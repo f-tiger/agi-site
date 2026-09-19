@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "reviewed_at": "2026-09-19",
+  "max_age_days": 30,
+  "campaigns": [
+    {"id":"bpj-sponsored-placement","site":"bpj","url":"https://baipiaoji.com/advertise.html","goal":"paid_placement","requires_checkout":true,"draft":"在工具相关分类投放明确标注的赞助位；先看真实触达，再决定是否购买。","channel":"owned_tool_pages","status":"approved_entry"},
+    {"id":"bpj-free-quota","site":"bpj","url":"https://baipiaoji.com/","goal":"own_task_complete","requires_checkout":false,"draft":"先核对你正在使用的AI工具免费额度与官方来源，再决定是否升级。","channel":"owned_search_content","status":"approved_entry"},
+    {"id":"agi-evidence","site":"agi","url":"https://agiscorecard.com/","goal":"evidence_task_complete","requires_checkout":false,"draft":"读一条AI判断时，也检查它引用的原始证据与更新时间。","channel":"owned_search_content","status":"approved_entry"},
+    {"id":"eco-energy-decision","site":"eco","url":"https://www.getecoback.com/","goal":"qualified_affiliate_click","requires_checkout":false,"draft":"按自己的使用场景比较能源与家电选择；商品购买前核对零售商信息。","channel":"owned_search_content","status":"approved_entry"},
+    {"id":"tds-collector-decision","site":"tds","url":"https://thedollscout.com/","goal":"own_task_complete","requires_checkout":false,"draft":"收藏之前先核对系列、官方信息与购买来源，避免把热度当价值保证。","channel":"owned_search_content","status":"approved_entry"},
+    {"id":"localebatch-csv-check","site":"commerce","url":"https://localebatch.agiscorecard.com/","goal":"own_file_check_complete","requires_checkout":false,"draft":"多语言商品导入前，先检查CSV结构。免费检查不代表已完成翻译交付。","channel":"owned_task_tutorial","status":"approved_entry"}
+  ]
+}

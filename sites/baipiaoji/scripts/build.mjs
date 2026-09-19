@@ -2624,9 +2624,9 @@ const adSlotOf = (cat, toolSlug) => {
       el.innerHTML='<p class="ad-slot-h">${zh ? '广告位' : 'Ad slot'}</p><a class="ad-house" href="${BASE}/advertise.html">'+
         ${zh
           ? `(P?'这一页的广告位空着，它在过去 ${REACH ? REACH.window_days : 28} 天有 '+R+' 次带来源真人浏览'
-               :'这个板块的广告位空着'+(R==null?'':'，过去 ${REACH ? REACH.window_days : 28} 天有 '+R+' 次带来源真人浏览'))+'。自助投放，付款即上架 →'`
+               :'这个板块的广告位空着'+(R==null?'':'，过去 ${REACH ? REACH.window_days : 28} 天有 '+R+' 次带来源真人浏览'))+'。自助投放，付款后自动排期 →'`
           : `(P?'The ad slot on this page is open — it had '+R+' referred human views in the past ${REACH ? REACH.window_days : 28} days'
-               :'This section has an open ad slot'+(R==null?'':' with '+R+' referred human views in the past ${REACH ? REACH.window_days : 28} days'))+'. Self-serve, live on payment →'`}+'</a>';
+               :'This section has an open ad slot'+(R==null?'':' with '+R+' referred human views in the past ${REACH ? REACH.window_days : 28} days'))+'. Self-serve, scheduled after payment →'`}+'</a>';
       el.hidden=false;
       el.querySelector('.ad-house').addEventListener('click',function(){if(window.bpjEv)bpjEv('ad','/ad/house/'+(tl?'tool/'+tl:(c||'all')))});
       return;
@@ -7552,15 +7552,15 @@ curl -s 'https://baipiaoji.com/api/limits?slug=kimi'              # ${zh ? '这�
   const zh = LOCALE.code === 'zh';
   const h1 = zh ? '把你的工具投放到这里' : 'Advertise your tool here';
   const desc = zh
-    ? '自助投放:填三行、付款、立刻上架，全程无需等人审核。广告位一律带「广告」标注，与本站已核实的免费额度目录物理分开——目录的收录与排序永不出售。'
-    : 'Self-serve: three fields, pay, and the slot goes live immediately with nobody to wait for. Every slot carries an "Ad" label and sits apart from the verified free-tier directory — inclusion and ranking in that directory are never for sale.';
+    ? '自助投放:填三行、付款、自动排期上架，全程无需等人审核。广告位一律带「广告」标注，与本站已核实的免费额度目录物理分开——目录的收录与排序永不出售。'
+    : 'Self-serve: three fields, pay, and your sponsored placement is scheduled automatically. Every slot carries an "Ad" label and sits apart from the verified free-tier directory — inclusion and ranking in that directory are never for sale.';
   const HOW = zh
-    ? [['填三行', '工具名、官网、一句话说明。机器当场校验：必须是 https、不能是已收录工具的域名、说明里不能塞链接。'],
+    ? [['填三行', '工具名、官网、一句话说明。机器当场校验：必须是公开官网 https、说明里不能塞链接。已收录工具也可购买独立赞助位。'],
        ['付款', '支付页由支付商托管，我们不接触你的卡号。'],
-       ['自动上架', '付款成功后由回调自动发布到你选的板块，无需任何人审核。到期自动下架，不必联系我们。位子出现在该板块的板块页，以及该板块下的每一个工具页——2026-09-16 起，此前只有板块页。']]
-    : [['Three fields', 'Tool name, official URL, one line. Checked on the spot: https only, not a domain already in the directory, and no links inside the pitch.'],
+       ['自动上架', '付款确认后按到账处理顺序自动分配赞助位 1–3；满位则排到最早空档，展示期从排定开始时刻计。到期自动下架。位子出现在该板块的板块页，以及该板块下的每一个工具页——2026-09-16 起，此前只有板块页。']]
+    : [['Three fields', 'Tool name, official URL, one line. Checked on the spot: Public https website only; no links inside the pitch. Listed tools may also buy a separate sponsored placement.'],
        ['Pay', 'Checkout is hosted by the payment provider; we never touch your card details.'],
-       ['It goes live by itself', 'A webhook publishes the slot to the section you picked the moment payment clears. No human reviews it, and it retires on its own at the end of the run. The slot runs on that section page and on every tool page inside it — since 2026-09-16; before that, the section page only.']];
+       ['It goes live by itself', 'After confirmed payment, the next available sponsored slot (1–3) is assigned automatically in processing order. When full, your run starts at the next opening; the full term starts then. It retires automatically. The slot runs on that section page and on every tool page inside it — since 2026-09-16; before that, the section page only.']];
   const NOT = zh
     ? [['已核实数据', '广告买不到 limits 里的任何一个字：额度、官方出处、核实日期照旧只认官方页面。'],
        ['目录排序', '站内排序是编辑规则（完全免费 > 有已核实数字 > hot），广告不参与，也改不动它。'],
@@ -7625,94 +7625,16 @@ curl -s 'https://baipiaoji.com/api/limits?slug=kimi'              # ${zh ? '这�
       <label><span>${zh ? '投放板块' : 'Section'}</span>
         <select name="cat" required>${CATS_UI.map(([k, v]) => `<option value="${esc(k)}">${esc(v)}</option>`).join('')}</select></label>
       <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">
-      <button type="submit">${zh ? '去付款' : 'Continue to payment'}</button>
+      <label><input type="checkbox" name="accept_queue" required> ${zh ? '我接受每分类 3 个赞助位，满位自动排期；不保证流量或销量。一次性付款，不自动续费。' : 'I accept 3 sponsored slots per category and automatic scheduling when full. No traffic or sales guarantee. One-time payment; no automatic renewal.'}</label>
+      <button type="submit" disabled>${zh ? '去付款' : 'Continue to payment'}</button>
       <p class="sub-msg" role="status" aria-live="polite"></p>
     </form>
     <p class="sub-note">${zh
-      ? '不收集除上面四项之外的任何信息；付款信息全部留在支付商那里，我们拿不到也不需要。'
-      : 'Nothing beyond those four fields is collected; payment details stay with the provider, where we can neither see nor need them.'}</p>
+      ? '保存公开投放资料、订单编号与投放状态；支付商处理账单信息。此浏览器保存订单查询凭证，请保留付款凭据。退款或争议会停止投放。'
+      : 'We store public ad details, order references and delivery state; the provider processes billing details. This browser saves your order access token. Keep your payment receipt. Refunds or disputes stop delivery.'}</p>
   </section>
 </main>
-<script>
-(function(){
-  var ZH=${zh};
-  var f=document.getElementById('adForm'); if(!f)return;
-  function EV(n,p){try{if(window.bpjEv)window.bpjEv(n,p)}catch(e){}}
-  var seen=false;
-  function view(){if(!seen){seen=true;EV('ad','/ad/form/view')}}
-  f.addEventListener('focusin',view,{once:true});
-  f.addEventListener('submit',function(e){
-    e.preventDefault();
-    var msg=f.querySelector('.sub-msg'), btn=f.querySelector('button');
-    msg.className='sub-msg'; msg.textContent=ZH?'校验中…':'Checking…'; btn.disabled=true;
-    EV('ad','/ad/form/submit');
-    fetch('/api/ad-draft',{method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({name:f.name.value,url:f.url.value,pitch:f.pitch.value,
-        cat:f.cat.value,lang:'${LOCALE.code}',website:(f.querySelector('input[name=website]')||{}).value||''})})
-    .then(function(r){return r.json().catch(function(){return{ok:false}})})
-    .then(function(d){
-      btn.disabled=false;
-      if(d&&d.ok&&d.pay_url){EV('ad','/ad/pay/redirect');location.href=d.pay_url;return}
-      // 链上收款:不跳转,当场给出地址与唯一金额。金额的分位尾数就是这笔订单的编号,
-      // 轮询按完全相等匹配——所以必须原样转,多一分少一分都认不出来。
-      if(d&&d.ok&&d.pay&&d.pay.address){
-        EV('ad','/ad/pay/wallet');
-        f.hidden=true;
-        var w=document.createElement('div'); w.className='ad-pay';
-        var addr=document.createElement('code'); addr.textContent=d.pay.address;
-        var amt=document.createElement('code'); amt.textContent=d.pay.amount+' '+d.pay.token;
-        w.innerHTML='<h3>'+(ZH?'转账即可上架':'Send the transfer to go live')+'</h3>';
-        var rows=[[ZH?'链':'Chain', d.pay.chain||'—'],[ZH?'代币':'Token', d.pay.token],
-                  [ZH?'收款地址':'Address', ''],[ZH?'金额（必须完全一致）':'Amount (must match exactly)','']];
-        var t=document.createElement('dl'); t.className='ad-pay-dl';
-        rows.forEach(function(r,i){
-          var dt=document.createElement('dt'); dt.textContent=r[0];
-          var dd=document.createElement('dd');
-          if(i===2)dd.appendChild(addr); else if(i===3)dd.appendChild(amt); else dd.textContent=r[1];
-          t.appendChild(dt); t.appendChild(dd);
-        });
-        w.appendChild(t);
-        var warn=document.createElement('p'); warn.className='ad-pay-warn';
-        warn.textContent=ZH
-          ?'金额的最后两位是这笔订单的编号，改动任何一位都会导致认领不到。走错链的转账无法找回。到账并确认后约 '+(d.pay.eta||'2h')+' 内自动上架，无需联系我们。'
-          :'The last two digits of the amount identify this order; change any digit and it cannot be claimed. A transfer on the wrong chain cannot be recovered. Once confirmed it goes live automatically within about '+(d.pay.eta||'2h')+', with nobody to contact.';
-        w.appendChild(warn);
-        f.parentNode.insertBefore(w,f);
-        return;
-      }
-      msg.className='sub-msg is-err';
-      var m={badurl:ZH?'网址解析不了，需要完整的 https:// 地址。':'That URL does not parse — a full https:// address is needed.',
-        nothttps:ZH?'只接受 https 的地址。':'https addresses only.',
-        badhost:ZH?'这个主机名不像正式官网。':'That hostname does not look like a real site.',
-        nolinks:ZH?'一句话说明里不能放链接。':'The one-line pitch cannot contain a link.',
-        refused:ZH?'这个品类我们不投放。':'We do not carry that category.',
-        missing:ZH?'有必填项没填。':'Something required is missing.',
-        not_configured:ZH?'收款通道还没接通——你的内容已经存下，接通后可以直接付款。':'The payment channel is not connected yet. Your details are saved and can be paid for once it is.'};
-      msg.textContent=m[d&&d.code]||(ZH?'没提交上，稍后再试。':'That did not go through — try again shortly.');
-      EV('ad','/ad/err/'+((d&&d.code)||'net'));
-    })
-    .catch(function(){btn.disabled=false;msg.className='sub-msg is-err';
-      msg.textContent=ZH?'网络没通，稍后再试。':'Network error — please try again.';});
-  });
-  // 价格与开售状态在页面加载时从服务端取（2026-09-16）。两个理由：
-  // ① 不让人填完三行、按下按钮之后才发现这里收不了钱——那句话原本只在提交失败时才说；
-  // ② 价格只有一处真相（wrangler.toml 的 ADS_PRICE_CENTS，服务端校验也用它），
-  //    写死在文案里迟早会和实际收款金额对不上，而对不上的那一刻钱已经收了。
-  fetch('/api/ads?doctor=1').then(function(r){return r.json()}).then(function(d){
-    if(!d||!d.ok)return;
-    var box=document.getElementById('adPrice'); if(!box)return;
-    var money=(d.price_cents/100).toFixed(2)+' '+(d.currency||'EUR');
-    if(d.selling){
-      box.textContent=ZH?('价格：'+money+' / '+d.days+' 天，付款后自动上架。')
-        :('Price: '+money+' for '+d.days+' days, live automatically once payment clears.');
-    }else{
-      box.className='sub-note is-err';
-      box.textContent=ZH?('目前还没开售——收款通道未接通。你仍然可以填下面的表单把内容存下，接通后可直接付款。计划价格 '+money+' / '+d.days+' 天。')
-        :('Not on sale yet — the payment channel is not connected. You can still fill in the form below to save your details and pay once it is. Planned price: '+money+' for '+d.days+' days.');
-    }
-  }).catch(function(){});
-})();
-</script>`;
+<script src="/ad-checkout.js" defer></script>`;
 
   writeFileSync(join(dist, ...(L.dir ? [L.dir.slice(1)] : []), 'advertise.html'), layout({
     title: `${h1} - ${NAME}`, description: desc, path: '/advertise.html', body,
@@ -8071,6 +7993,7 @@ cpSync(join(root, 'assets/_headers'), join(dist, '_headers'));
 // 自研分词器：脚本与词表原样发出去。词表是二进制常量，构建期不加工——
 // 加工就意味着可能改坏，而它正确与否是 scripts/tokenizer-test.mjs 用金标准锁住的。
 cpSync(join(root, 'assets/tokenizer.js'), join(dist, 'tokenizer.js'));
+cpSync(join(root, 'assets/ad-checkout.js'), join(dist, 'ad-checkout.js'));
 cpSync(join(root, 'assets/tok'), join(dist, 'assets/tok'), { recursive: true });
 writeFileSync(join(dist, '.nojekyll'), '');
 // IndexNow 密钥文件：放在域名下即完成所有权验证（见 scripts/indexnow.mjs）
@@ -8652,3 +8575,4 @@ console.log(`✅ 构建完成：${LOCALES.length} 种语言 × (首页 + 赚钱�
     }
   }
 })(dist);
+
