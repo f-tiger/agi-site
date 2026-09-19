@@ -28,7 +28,7 @@ python3 scripts/check_html.py
 npx --yes wrangler@4 deploy --dry-run
 ```
 
-`npm test` builds 44 HTML pages, 30 worked scenarios, per-host metadata and share images, and the offline bundle, then runs 65 tests. `WEB3_BUILD_REVISION` pins the actual checked-out commit. Generated `dist/`, release module and credential-free generated Wrangler config are not committed.
+`npm test` builds 44 HTML pages, 30 worked scenarios, per-host metadata and share images, and the offline bundle, then runs 66 tests. `WEB3_BUILD_REVISION` pins the actual checked-out commit. Generated `dist/`, release module and credential-free generated Wrangler config are not committed.
 
 The path-scoped GitHub workflow validates, checks all hostname ownership, binds the existing database, deploys the Worker, and checks every production host and asset against the build. A collision stops before publication. Existing credentials remain in GitHub Secrets. Branch runs validate only; main may deploy. Do not substitute the trigger SHA for the checkout SHA after the stale-main guard.
 

@@ -28,7 +28,7 @@ The sharing-kit assets are ready for voluntary use by writers and teams. No unso
 
 ## Verification and measurement
 
-- 65 local engine, input, sharing and Worker-boundary tests pass. They include all 30 scenarios, exact CSV precision, malformed CSV rejection, safe public sharing and the existing monetary/protocol/security cases.
+- 66 local engine, input, sharing and Worker-boundary tests pass. They include all 30 scenarios, exact CSV precision, malformed CSV rejection, safe public sharing and the existing monetary/protocol/security cases.
 - All 44 HTML pages pass checks for unique titles and IDs, primary headings, label targets, internal references, canonical/OG agreement, schema parsing and share-card dimensions.
 - Worker dry run succeeds. Deployment smoke checks each host's pinned release and asset hashes, host isolation, canonical redirects, API behavior and QA-marked feedback.
 - Production deployment and browser verification are recorded below after completion. IndexNow receipt status is recorded separately from indexing.

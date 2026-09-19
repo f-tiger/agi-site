@@ -14,3 +14,5 @@ test('new discoverability assets preserve per-host boundaries and canonical HTML
  assert.equal((await get(hubHost,'/publish.html')).status,200);assert.equal((await get(hubHost,'/tools.json')).status,200);assert.equal((await get(hubHost,'/examples.html')).status,404);assert.equal((await get(hubHost,'/tool.json')).status,404);
  for(const host of [hubHost,...sites.map(s=>s.host)])assert.equal(await(await get(host,'/16507d8e1997c4be371f5fbaf7ac1985.txt')).text(),'16507d8e1997c4be371f5fbaf7ac1985');
 });
+
+test('deployment manifest covers every canonical page and has resolvable normalized routes',async()=>{const manifest=JSON.parse(await readFile('asset-manifest.generated.json','utf8'));for(const [host,files]of Object.entries(manifest)){for(const path of ['/','/guide.html','/privacy.html','/share.png','/sitemap.xml'])assert.ok(files[path],host+path);for(const [path,local]of Object.entries(files)){assert.ok(!path.includes('//'),path);assert.ok(!local.includes('//'),local);assert.equal((await get(host,path)).status,200,host+path);}}});
