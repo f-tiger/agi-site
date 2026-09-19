@@ -1,5 +1,7 @@
 import fs from 'node:fs';import os from 'node:os';import path from 'node:path';import {fileURLToPath} from 'node:url';import {createRequire} from 'node:module';import {execFileSync} from 'node:child_process';import assert from 'node:assert/strict';import {DatabaseSync} from 'node:sqlite';
-import {ensureMembers} from '../../sites/baipiaoji/lib/membership.js';import {digest,seconds} from '../../sites/baipiaoji/lib/ad-commerce.js';import {onRequestPost} from '../../sites/baipiaoji/functions/api/member.js';import {messages} from './messages.mjs';import {memberCopy} from '../revenue-studio/member-copy.mjs';
+import {ensureMembers} from '../../sites/baipiaoji/lib/membership.js';import {digest,seconds} from '../../sites/baipiaoji/lib/ad-commerce.js';import {onRequestPost} from '../../sites/baipiaoji/functions/api/member.js';import {messages} from './messages.mjs';import {memberCopy,memberURL,memberContext} from '../revenue-studio/member-copy.mjs';
+import {siteLanguages} from '../revenue-studio/i18n.mjs';
+import {sites} from '../revenue-studio/catalog.mjs';
 const here=path.dirname(fileURLToPath(import.meta.url)),repo=path.resolve(here,'../..'),tmp=fs.mkdtempSync(path.join(os.tmpdir(),'member-browser-'));const {chromium}=createRequire(new URL('../revenue-studio/package.json',import.meta.url))('playwright');
 for(const site of ['bpj','agi','eco','tds'])execFileSync(process.execPath,[path.join(repo,'tools/revenue-studio/build.mjs'),'--site',site,'--out',path.join(tmp,site)]);execFileSync(process.execPath,[path.join(here,'build.mjs'),'--out',path.join(tmp,'bpj')]);
 const sql=new DatabaseSync(':memory:');sql.exec('PRAGMA foreign_keys=ON');const db={prepare(query){return {args:[],query,bind(...a){this.args=a;return this;},async first(){return sql.prepare(query).get(...this.args)||null;},async all(){return {results:sql.prepare(query).all(...this.args)};},async run(){return {meta:{changes:sql.prepare(query).run(...this.args).changes}};}};},async batch(items){sql.exec('BEGIN');try{const out=items.map(s=>({meta:{changes:sql.prepare(s.query).run(...s.args).changes}}));sql.exec('COMMIT');return out;}catch(e){sql.exec('ROLLBACK');throw e;}}};
@@ -16,6 +18,30 @@ try{const context=await browser.newContext();const errors=[];context.on('page',p
   }
   let relative=url.pathname;if(!path.extname(relative))relative+='.html';const file=path.join(tmp,site,relative);if(!fs.existsSync(file))return route.fulfill({status:404,body:'fixture not found'});const ext=path.extname(file);return route.fulfill({body:fs.readFileSync(file),contentType:{'.html':'text/html','.mjs':'application/javascript','.js':'application/javascript','.json':'application/json','.css':'text/css','.wasm':'application/wasm'}[ext]||'text/plain'});
  });
+ async function continueFromLocal(page){
+  if(new URL(page.url()).hostname==='baipiaoji.com')return;
+  const before=new URL(page.url());await page.locator('#member-continue').waitFor();
+  assert.equal(await page.evaluate(()=>sessionStorage.getItem('workbench-member-key')),null);
+  await page.locator('#member-continue').click();await page.waitForURL('https://baipiaoji.com/**');
+  await page.locator('#site-context:not([hidden])').waitFor();
+  assert.equal(new URL(await page.locator('#return-tool').getAttribute('href')).hostname,before.hostname);
+ }
+ for(const site of ['agi','eco','tds'])for(const lang of siteLanguages[site]){
+  const page=await context.newPage();await page.goto(memberURL(lang,site));
+  assert.equal(new URL(page.url()).origin,sites[site].origin);assert.equal(await page.locator('.brand').textContent(),sites[site].name);
+  await page.locator('#member-continue').waitFor();
+  for(const a of await page.locator('header nav a').all())assert.equal(new URL(await a.getAttribute('href')).origin,sites[site].origin);
+  await page.setViewportSize({width:390,height:844});assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+  if(site==='eco'&&lang==='en')await page.screenshot({path:path.join(tmp,'ecoback-members-mobile.png'),fullPage:true});
+  await continueFromLocal(page);assert.equal(await page.locator('#source-brand').textContent(),sites[site].name);
+  const other=lang==='en'?'de':'en';await page.locator('header nav a[lang="'+other+'"]').click();await page.locator('#site-context:not([hidden])').waitFor();
+  assert.equal(await page.locator('#source-brand').textContent(),sites[site].name);assert.equal(new URL(await page.locator('#return-tool').getAttribute('href')).origin,sites[site].origin);
+  await page.close();console.log('LOCAL ENTRY OK '+site+'/'+lang);
+ }
+ for(const params of ['?source=https://evil.example&return=https://evil.example','?source=eco&tool=querysprint-projects','?source=__proto__&tool=billlens']){
+  const c=memberContext(params,'en');assert.ok(Object.values(sites).some(s=>s.origin===new URL(c.returnURL).origin));
+  const page=await context.newPage();await page.goto('https://baipiaoji.com/en/members'+params);await page.locator('#site-context:not([hidden])').waitFor();assert.equal(await page.locator('#return-tool').getAttribute('href'),c.returnURL);await page.close();
+ }
  for(const lang of ['zh','en','de','it']){
   const page=await context.newPage(),t=messages[lang],memberURL='https://baipiaoji.com/'+(lang==='zh'?'':lang+'/')+'members';await page.goto(memberURL);await page.waitForFunction(()=>document.querySelector('#availability').textContent.includes('Web3'));
   await page.locator('#checkout').click();assert.match(await page.locator('#notice').textContent(),new RegExp(t.consentRequired.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')));
@@ -23,13 +49,13 @@ try{const context=await browser.newContext();const errors=[];context.on('page',p
   await page.locator('#backup-file').setInputFiles({name:'billlens-inputs.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify({version:1,product:'billlens',values:{kwh:'4321',tariffs:'tariff,currency,unit_price,monthly_fee,one_time_credit\nA,EUR,0.30,12,100'}}))});await page.locator('#name').fill('Fixture '+lang);await page.locator('#save').click();await page.waitForFunction(expected=>document.querySelector('#notice').textContent===expected,t.saved);
   const output=page.waitForEvent('download');await page.locator('#export').click();assert.equal((await output).suggestedFilename(),'billlens-inputs.json');
   const popupPromise=page.waitForEvent('popup');await page.locator('#restore').click();const tool=await popupPromise;await tool.waitForFunction(()=>document.querySelector('#field-kwh')?.value==='4321');
-  const actualLang=await tool.locator('body').getAttribute('data-locale');const newMemberPromise=tool.waitForEvent('popup');await tool.getByRole('button',{name:memberCopy[actualLang].save,exact:true}).click();const transferred=await newMemberPromise;await transferred.waitForFunction(()=>document.querySelector('#payload')?.value.includes('4321'));assert.equal(await tool.evaluate(()=>sessionStorage.getItem('workbench-member-key')),null);await transferred.close();await tool.close();
+  const actualLang=await tool.locator('body').getAttribute('data-locale');const newMemberPromise=tool.waitForEvent('popup');await tool.getByRole('button',{name:memberCopy[actualLang].save,exact:true}).click();const transferred=await newMemberPromise;await continueFromLocal(transferred);await transferred.waitForFunction(()=>document.querySelector('#payload')?.value.includes('4321'));assert.equal(await tool.evaluate(()=>sessionStorage.getItem('workbench-member-key')),null);await transferred.close();await tool.close();
   await page.setViewportSize({width:390,height:844});assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));if(lang==='en')await page.screenshot({path:path.join(tmp,'membership-en-mobile.png'),fullPage:true});await page.close();console.log('MEMBER UI OK '+lang);
  }
  const purchase=await context.newPage();await purchase.goto('https://baipiaoji.com/en/members');await purchase.locator('#new-key').click();const keyBackup=purchase.waitForEvent('download');await purchase.locator('#backup-key').click();assert.equal((await keyBackup).suggestedFilename(),'workbench-access-key.json');await purchase.locator('#key-saved').check();await purchase.locator('#consent').check();await purchase.locator('#checkout').click();await purchase.waitForFunction(()=>document.querySelector('#orders')?.textContent.includes('9.000001'));assert.equal(sql.prepare("SELECT COUNT(*) n FROM wb_orders WHERE state='paid'").get().n,0);await purchase.close();console.log('MEMBER CHECKOUT UI OK (unpaid quote only)');
  for(const [id,selector,value]of [['querysprint-projects','#query','SELECT 9 AS saved_query;'],['puzzleclub','#seed','saved-puzzle'],['classroompuzzles','#seed','saved-class'],['embedpuzzles','#embed-title','Saved puzzle embed']]){
   const tool=await context.newPage();await tool.goto('https://agiscorecard.com/workbench/'+id);await tool.locator(selector).fill(value);
-  const popup=tool.waitForEvent('popup');await tool.getByRole('button',{name:memberCopy.en.save,exact:true}).click();const portal=await popup;await portal.waitForFunction(value=>document.querySelector('#payload')?.value.includes(value),value);
+  const popup=tool.waitForEvent('popup');await tool.getByRole('button',{name:memberCopy.en.save,exact:true}).click();const portal=await popup;await continueFromLocal(portal);await portal.waitForFunction(value=>document.querySelector('#payload')?.value.includes(value),value);
   const restored=portal.waitForEvent('popup');await portal.locator('#restore').click();const other=await restored;await other.waitForFunction(({selector,value})=>document.querySelector(selector)?.value===value,{selector,value});
   await other.close();await portal.close();await tool.close();console.log('SPECIAL RESTORE OK '+id);
  }

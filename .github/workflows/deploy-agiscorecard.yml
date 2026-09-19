@@ -10,6 +10,7 @@ on:
     branches: [main]
     paths:
       - "tools/revenue-studio/**"
+      - "tools/member-studio/**"
       - "sites/agiscorecard/**"
       - ".github/workflows/deploy-agiscorecard.yml"
   workflow_dispatch: {}

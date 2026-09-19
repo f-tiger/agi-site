@@ -15,6 +15,7 @@ on:
       - main
     paths:
       - "tools/revenue-studio/**"
+      - "tools/member-studio/**"
       - "sites/getecoback/site/**"
       - "sites/getecoback/tools/**"
       - "sites/getecoback/src/**"

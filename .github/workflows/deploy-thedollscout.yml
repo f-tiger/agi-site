@@ -10,6 +10,7 @@ on:
     branches: [main]
     paths:
       - "tools/revenue-studio/**"
+      - "tools/member-studio/**"
       # 纯簿记文件(content/ 被 assemble-dist 排除,不发布)不触发部署。
       - "sites/thedollscout/**"
       - "!sites/thedollscout/content/traffic.json"
