@@ -32,7 +32,7 @@ jobs:
     # 钱包没配就整段跳过：未配置时这条任务什么都不做，也不报错。
     # 手动 dispatch 不受这个变量限制——勘察模式恰恰是「还没配好」时要用的那一步
     # （与 metaculus-bot 的门同一写法）。
-    if: vars.ADS_WALLET_CHAIN != '' || github.event_name == 'workflow_dispatch'
+    if: vars.ADS_WALLET_CHAIN != '' || vars.ADS_WEB3_ENABLED == 'true' || github.event_name == 'workflow_dispatch'
     defaults:
       run:
         working-directory: sites/baipiaoji
@@ -72,4 +72,9 @@ jobs:
           ADS_WALLET_DECIMALS: ${{ vars.ADS_WALLET_DECIMALS }}
           ADS_MIN_CONFIRMATIONS: ${{ vars.ADS_MIN_CONFIRMATIONS }}
           ADS_DAYS: ${{ vars.ADS_DAYS }}
-        run: node scripts/ad-watch.mjs
+        run: |
+          if [ "${{ vars.ADS_WEB3_ENABLED }}" = "true" ]; then
+            node scripts/ad-watch-v2.mjs
+          else
+            node scripts/ad-watch.mjs
+          fi

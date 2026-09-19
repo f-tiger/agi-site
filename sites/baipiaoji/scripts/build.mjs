@@ -7556,10 +7556,10 @@ curl -s 'https://baipiaoji.com/api/limits?slug=kimi'              # ${zh ? '这�
     : 'Self-serve: three fields, pay, and your sponsored placement is scheduled automatically. Every slot carries an "Ad" label and sits apart from the verified free-tier directory — inclusion and ranking in that directory are never for sale.';
   const HOW = zh
     ? [['填三行', '工具名、官网、一句话说明。机器当场校验：必须是公开官网 https、说明里不能塞链接。已收录工具也可购买独立赞助位。'],
-       ['付款', '支付页由支付商托管，我们不接触你的卡号。'],
+       ['付款', '按订单显示的网络、币种和精确金额付款。系统自动核验链上到账；开放银行卡时由支付商托管结账。'],
        ['自动上架', '付款确认后按到账处理顺序自动分配赞助位 1–3；满位则排到最早空档，展示期从排定开始时刻计。到期自动下架。位子出现在该板块的板块页，以及该板块下的每一个工具页——2026-09-16 起，此前只有板块页。']]
     : [['Three fields', 'Tool name, official URL, one line. Checked on the spot: Public https website only; no links inside the pitch. Listed tools may also buy a separate sponsored placement.'],
-       ['Pay', 'Checkout is hosted by the payment provider; we never touch your card details.'],
+       ['Pay', 'Pay on the network and in the token and exact amount shown on your order. Chain receipts are verified automatically; card checkout, when available, is hosted by the payment provider.'],
        ['It goes live by itself', 'After confirmed payment, the next available sponsored slot (1–3) is assigned automatically in processing order. When full, your run starts at the next opening; the full term starts then. It retires automatically. The slot runs on that section page and on every tool page inside it — since 2026-09-16; before that, the section page only.']];
   const NOT = zh
     ? [['已核实数据', '广告买不到 limits 里的任何一个字：额度、官方出处、核实日期照旧只认官方页面。'],
@@ -7630,8 +7630,8 @@ curl -s 'https://baipiaoji.com/api/limits?slug=kimi'              # ${zh ? '这�
       <p class="sub-msg" role="status" aria-live="polite"></p>
     </form>
     <p class="sub-note">${zh
-      ? '保存公开投放资料、订单编号与投放状态；支付商处理账单信息。此浏览器保存订单查询凭证，请保留付款凭据。退款或争议会停止投放。'
-      : 'We store public ad details, order references and delivery state; the provider processes billing details. This browser saves your order access token. Keep your payment receipt. Refunds or disputes stop delivery.'}</p>
+      ? '保存公开投放资料、订单编号与投放状态；链上交易公开可查。此浏览器保存订单查询凭证，请保留付款凭据。链上退款需联系站方核对处理。'
+      : 'We store public ad details, order references and delivery state. Chain transactions are public. This browser saves your order access token. Keep your payment receipt. Chain refunds require contacting the site for review.'}</p>
   </section>
 </main>
 <script src="/ad-checkout.js" defer></script>`;
