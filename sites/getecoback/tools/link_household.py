@@ -2,6 +2,7 @@
 """Contextual links from existing content; run after standard link injectors."""
 from pathlib import Path
 import re
+import hashlib
 SITE=Path(__file__).resolve().parents[1]/'site'
 TARGETS={
 'index.html':('Haushaltskosten mit eigenen Zahlen prüfen','/wohnkosten-werkstatt.html','Drei kostenlose Rechner: Trocknen vergleichen, Strom messen und einen Geräteaustausch durchrechnen.'),
@@ -26,9 +27,17 @@ for name,(title,url,desc) in TARGETS.items():
  p.write_text(s)
 print('Household entry links verified on',len(TARGETS),'existing pages.')
 
+# Content-address browser assets so returning readers receive fixes, too.
+math_hash=hashlib.sha256((SITE/'assets/household-math.mjs').read_bytes()).hexdigest()[:12]
+js=SITE/'assets/household.mjs'
+js.write_text(re.sub(r"\./household-math\.mjs(?:\?v=[a-f0-9]+)?", './household-math.mjs?v='+math_hash, js.read_text()))
+asset_versions={name:hashlib.sha256((SITE/'assets'/name).read_bytes()).hexdigest()[:12] for name in ['household.css','household.mjs']}
+
 # Explicit browser QA must not count as customer adoption. Run after chrome.
 for slug in ['wohnkosten-werkstatt','waeschetrockner-oder-luftentfeuchter','strommess-protokoll','geraete-austausch-rechner']:
  p=SITE/(slug+'.html');s=p.read_text()
+ for name,version in asset_versions.items():
+  s=re.sub(r'/assets/'+re.escape(name)+r'(?:\?v=[a-f0-9]+)?', '/assets/'+name+'?v='+version, s)
  # These pages offer explicit DE/US category links; do not rewrite the visitor's choice.
  s=re.sub(r'<!--EB_USSWITCH-->.*?<!--/EB_USSWITCH-->\n?', '', s, flags=re.S)
  anchor='<!--EB_TRACK--><script>(function(){'
