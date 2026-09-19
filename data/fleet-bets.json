@@ -1175,6 +1175,116 @@
    "lose": "停止扩协议/AI评分/托管监控；无触达证据记 insufficient，已有相关触达而无需求则保留小工具或并站",
    "source": "docs/agent-delivery-lab-validation-2026-09-19.md:58",
    "status": "open"
+  },
+  {
+   "id": "web3-reconcile-1019",
+   "site": "web3-reconcile",
+   "due": "2026-10-19",
+   "metric": "https://reconcile.agiscorecard.com/api/stats：排除 qa=1，读取 own_completed=1 且 usefulness=helped 的匿名提交数及 frequency=repeat；稳定币对账。不是独立用户、客户或购买。",
+   "threshold": "自有材料完成且有帮助的提交 ≥5，其中重复任务 ≥3；只触发人工核实。协议 API 还需核实至少两个独立重复使用工作流，访问次数不能替代。",
+   "win": "核实至少两个独立团队两个周期的重复任务及相对当前替代的总时间改善，再决定下一阶段；没有收费放行。",
+   "lose": "没有相关触达证据则 insufficient；确认有触达但输入负担大于收益或没有重复任务，则停止专属功能扩张，保留免费工具或并入 hub。",
+   "source": "docs/web3-portfolio-research-2026-09-19.md；用户 2026-09-19 明确要求全部剩余方向研究完善后上线。",
+   "status": "open"
+  },
+  {
+   "id": "web3-evidence-1019",
+   "site": "web3-evidence",
+   "due": "2026-10-19",
+   "metric": "https://evidence.agiscorecard.com/api/stats：排除 qa=1，读取 own_completed=1 且 usefulness=helped 的匿名提交数及 frequency=repeat；Agent 任务证据。不是独立用户、客户或购买。",
+   "threshold": "自有材料完成且有帮助的提交 ≥5，其中重复任务 ≥3；只触发人工核实。协议 API 还需核实至少两个独立重复使用工作流，访问次数不能替代。",
+   "win": "核实至少两个独立团队两个周期的重复任务及相对当前替代的总时间改善，再决定下一阶段；没有收费放行。",
+   "lose": "没有相关触达证据则 insufficient；确认有触达但输入负担大于收益或没有重复任务，则停止专属功能扩张，保留免费工具或并入 hub。",
+   "source": "docs/web3-portfolio-research-2026-09-19.md；用户 2026-09-19 明确要求全部剩余方向研究完善后上线。",
+   "status": "open"
+  },
+  {
+   "id": "web3-route-1019",
+   "site": "web3-route",
+   "due": "2026-10-19",
+   "metric": "https://route.agiscorecard.com/api/stats：排除 qa=1，读取 own_completed=1 且 usefulness=helped 的匿名提交数及 frequency=repeat；采购路由。不是独立用户、客户或购买。",
+   "threshold": "自有材料完成且有帮助的提交 ≥5，其中重复任务 ≥3；只触发人工核实。协议 API 还需核实至少两个独立重复使用工作流，访问次数不能替代。",
+   "win": "核实至少两个独立团队两个周期的重复任务及相对当前替代的总时间改善，再决定下一阶段；没有收费放行。",
+   "lose": "没有相关触达证据则 insufficient；确认有触达但输入负担大于收益或没有重复任务，则停止专属功能扩张，保留免费工具或并入 hub。",
+   "source": "docs/web3-portfolio-research-2026-09-19.md；用户 2026-09-19 明确要求全部剩余方向研究完善后上线。",
+   "status": "open"
+  },
+  {
+   "id": "web3-protocol-1019",
+   "site": "web3-protocol",
+   "due": "2026-10-19",
+   "metric": "https://protocol.agiscorecard.com/api/stats：排除 qa=1，读取 own_completed=1 且 usefulness=helped 的匿名提交数及 frequency=repeat；协议资料 API。不是独立用户、客户或购买。",
+   "threshold": "自有材料完成且有帮助的提交 ≥5，其中重复任务 ≥3；只触发人工核实。协议 API 还需核实至少两个独立重复使用工作流，访问次数不能替代。",
+   "win": "核实至少两个独立团队两个周期的重复任务及相对当前替代的总时间改善，再决定下一阶段；没有收费放行。",
+   "lose": "没有相关触达证据则 insufficient；确认有触达但输入负担大于收益或没有重复任务，则停止专属功能扩张，保留免费工具或并入 hub。",
+   "source": "docs/web3-portfolio-research-2026-09-19.md；用户 2026-09-19 明确要求全部剩余方向研究完善后上线。",
+   "status": "open"
+  },
+  {
+   "id": "web3-permit-1019",
+   "site": "web3-permit",
+   "due": "2026-10-19",
+   "metric": "https://permit.agiscorecard.com/api/stats：排除 qa=1，读取 own_completed=1 且 usefulness=helped 的匿名提交数及 frequency=repeat；数据许可。不是独立用户、客户或购买。",
+   "threshold": "自有材料完成且有帮助的提交 ≥5，其中重复任务 ≥3；只触发人工核实。协议 API 还需核实至少两个独立重复使用工作流，访问次数不能替代。",
+   "win": "核实至少两个独立团队两个周期的重复任务及相对当前替代的总时间改善，再决定下一阶段；没有收费放行。",
+   "lose": "没有相关触达证据则 insufficient；确认有触达但输入负担大于收益或没有重复任务，则停止专属功能扩张，保留免费工具或并入 hub。",
+   "source": "docs/web3-portfolio-research-2026-09-19.md；用户 2026-09-19 明确要求全部剩余方向研究完善后上线。",
+   "status": "open"
+  },
+  {
+   "id": "web3-compute-1019",
+   "site": "web3-compute",
+   "due": "2026-10-19",
+   "metric": "https://compute.agiscorecard.com/api/stats：排除 qa=1，读取 own_completed=1 且 usefulness=helped 的匿名提交数及 frequency=repeat；有效算力成本。不是独立用户、客户或购买。",
+   "threshold": "自有材料完成且有帮助的提交 ≥5，其中重复任务 ≥3；只触发人工核实。协议 API 还需核实至少两个独立重复使用工作流，访问次数不能替代。",
+   "win": "核实至少两个独立团队两个周期的重复任务及相对当前替代的总时间改善，再决定下一阶段；没有收费放行。",
+   "lose": "没有相关触达证据则 insufficient；确认有触达但输入负担大于收益或没有重复任务，则停止专属功能扩张，保留免费工具或并入 hub。",
+   "source": "docs/web3-portfolio-research-2026-09-19.md；用户 2026-09-19 明确要求全部剩余方向研究完善后上线。",
+   "status": "open"
+  },
+  {
+   "id": "web3-incentives-1019",
+   "site": "web3-incentives",
+   "due": "2026-10-19",
+   "metric": "https://incentives.agiscorecard.com/api/stats：排除 qa=1，读取 own_completed=1 且 usefulness=helped 的匿名提交数及 frequency=repeat；激励经济。不是独立用户、客户或购买。",
+   "threshold": "自有材料完成且有帮助的提交 ≥5，其中重复任务 ≥3；只触发人工核实。协议 API 还需核实至少两个独立重复使用工作流，访问次数不能替代。",
+   "win": "核实至少两个独立团队两个周期的重复任务及相对当前替代的总时间改善，再决定下一阶段；没有收费放行。",
+   "lose": "没有相关触达证据则 insufficient；确认有触达但输入负担大于收益或没有重复任务，则停止专属功能扩张，保留免费工具或并入 hub。",
+   "source": "docs/web3-portfolio-research-2026-09-19.md；用户 2026-09-19 明确要求全部剩余方向研究完善后上线。",
+   "status": "open"
+  },
+  {
+   "id": "web3-proof-1019",
+   "site": "web3-proof",
+   "due": "2026-10-19",
+   "metric": "https://proof.agiscorecard.com/api/stats：排除 qa=1，读取 own_completed=1 且 usefulness=helped 的匿名提交数及 frequency=repeat；zkML 规划。不是独立用户、客户或购买。",
+   "threshold": "自有材料完成且有帮助的提交 ≥5，其中重复任务 ≥3；只触发人工核实。协议 API 还需核实至少两个独立重复使用工作流，访问次数不能替代。",
+   "win": "核实至少两个独立团队两个周期的重复任务及相对当前替代的总时间改善，再决定下一阶段；没有收费放行。",
+   "lose": "没有相关触达证据则 insufficient；确认有触达但输入负担大于收益或没有重复任务，则停止专属功能扩张，保留免费工具或并入 hub。",
+   "source": "docs/web3-portfolio-research-2026-09-19.md；用户 2026-09-19 明确要求全部剩余方向研究完善后上线。",
+   "status": "open"
+  },
+  {
+   "id": "web3-calls-1019",
+   "site": "web3-calls",
+   "due": "2026-10-19",
+   "metric": "https://calls.agiscorecard.com/api/stats：排除 qa=1，读取 own_completed=1 且 usefulness=helped 的匿名提交数及 frequency=repeat；调用解释。不是独立用户、客户或购买。",
+   "threshold": "自有材料完成且有帮助的提交 ≥5，其中重复任务 ≥3；只触发人工核实。协议 API 还需核实至少两个独立重复使用工作流，访问次数不能替代。",
+   "win": "核实至少两个独立团队两个周期的重复任务及相对当前替代的总时间改善，再决定下一阶段；没有收费放行。",
+   "lose": "没有相关触达证据则 insufficient；确认有触达但输入负担大于收益或没有重复任务，则停止专属功能扩张，保留免费工具或并入 hub。",
+   "source": "docs/web3-portfolio-research-2026-09-19.md；用户 2026-09-19 明确要求全部剩余方向研究完善后上线。",
+   "status": "open"
+  },
+  {
+   "id": "web3-disclosures-1019",
+   "site": "web3-disclosures",
+   "due": "2026-10-19",
+   "metric": "https://disclosures.agiscorecard.com/api/stats：排除 qa=1，读取 own_completed=1 且 usefulness=helped 的匿名提交数及 frequency=repeat；RWA 披露。不是独立用户、客户或购买。",
+   "threshold": "自有材料完成且有帮助的提交 ≥5，其中重复任务 ≥3；只触发人工核实。协议 API 还需核实至少两个独立重复使用工作流，访问次数不能替代。",
+   "win": "核实至少两个独立团队两个周期的重复任务及相对当前替代的总时间改善，再决定下一阶段；没有收费放行。",
+   "lose": "没有相关触达证据则 insufficient；确认有触达但输入负担大于收益或没有重复任务，则停止专属功能扩张，保留免费工具或并入 hub。",
+   "source": "docs/web3-portfolio-research-2026-09-19.md；用户 2026-09-19 明确要求全部剩余方向研究完善后上线。",
+   "status": "open"
   }
  ]
 }

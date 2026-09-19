@@ -1,0 +1,54 @@
+name: Validate and deploy Web3 Workbench
+on:
+  push:
+    branches: [main, 'codex/web3-*']
+    paths: ['sites/web3-studio/**', '.github/workflows/deploy-web3-studio.yml']
+  workflow_dispatch: {}
+permissions:
+  contents: read
+concurrency:
+  group: web3-studio-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Guard against stale main events
+        if: github.ref == 'refs/heads/main'
+        run: |
+          git fetch origin main --depth=1
+          git reset --hard origin/main
+      - name: Pin actual source revision
+        run: echo "WEB3_BUILD_REVISION=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Validate algorithms, UI and worker boundaries
+        working-directory: sites/web3-studio
+        run: |
+          npm test
+          python3 scripts/check_html.py
+          npx --yes wrangler@4 deploy --dry-run --outdir /tmp/web3-studio-worker
+      - name: Check each hostname and isolate feedback table
+        if: github.ref == 'refs/heads/main'
+        working-directory: sites/web3-studio
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_API_TOKEN_ZONE: ${{ secrets.CLOUDFLARE_API_TOKEN_ZONE }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: node scripts/prepare.mjs
+      - name: Publish all scoped tool hosts
+        if: github.ref == 'refs/heads/main'
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          wranglerVersion: '4'
+          workingDirectory: sites/web3-studio
+          command: deploy --config wrangler.generated.json
+      - name: Verify every live host, asset and API
+        if: github.ref == 'refs/heads/main'
+        working-directory: sites/web3-studio
+        run: node scripts/smoke.mjs

@@ -1,0 +1,30 @@
+from pathlib import Path
+from html.parser import HTMLParser
+import re
+class Page(HTMLParser):
+    def __init__(self):
+        super().__init__(); self.ids=[];self.labels=[];self.links=[];self.headings=0
+    def handle_starttag(self,tag,attrs):
+        a=dict(attrs)
+        if 'id' in a:self.ids.append(a['id'])
+        if tag=='label' and 'for' in a:self.labels.append(a['for'])
+        if tag in ['a','script','link']:self.links.append(a.get('href',a.get('src','')))
+        if tag=='h1':self.headings+=1
+root=Path('dist');checked=0
+for f in root.rglob('*.html'):
+    p=Page();p.feed(f.read_text());assert len(p.ids)==len(set(p.ids)),f'{f}: duplicate IDs'
+    assert p.headings==1,f'{f}: one primary heading required'
+    assert all(x in p.ids for x in p.labels),f'{f}: label without target'
+    for link in p.links:
+        if not link or link.startswith(('https://','http://','mailto:')):continue
+        if link.startswith('#'):assert link[1:] in p.ids,(f,link);continue
+        path=link.split('#')[0].split('?')[0]
+        if path in ['/openapi.json','/api/v1/profiles']:continue
+        if path=='/':path='/index.html'
+        assert (f.parent/path.lstrip('/')).exists() or (root/path.lstrip('/')).exists(),(f,link)
+    if 'data-site="hub"' not in f.read_text() and f.name=='index.html' and f.parent!=root:
+        app=Path('public/app.mjs').read_text()
+        refs=set(re.findall(r"\$\('([^']+)'\)",app))-{'fingerprint','fingerprint-result'}
+        assert refs<=set(p.ids),f'{f}: missing JS targets {refs-set(p.ids)}'
+    checked+=1
+print(f'PASS: {checked} HTML pages — unique IDs, labels, primary headings, local links and app targets.')
