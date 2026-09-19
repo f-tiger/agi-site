@@ -1,3 +1,5 @@
+> Superseded by the owner’s later clarification: memberships are independent per site. Current implementation and scope: `tools/member-studio/README.md`. The text below is the historical shared-system design.
+
 # 工具工作区付费会员
 
 授权：Owner 在 2026-09-19 明确要求「增加付费会员功能」。沿用已授权部署、已配置的 BSC USDT 钱包和 Cloudflare Secrets，不要求注册 Stripe。

@@ -1,63 +1,33 @@
-import fs from 'node:fs';import os from 'node:os';import path from 'node:path';import {fileURLToPath} from 'node:url';import {createRequire} from 'node:module';import {execFileSync} from 'node:child_process';import assert from 'node:assert/strict';import {DatabaseSync} from 'node:sqlite';
-import {ensureMembers} from '../../sites/baipiaoji/lib/membership.js';import {digest,seconds} from '../../sites/baipiaoji/lib/ad-commerce.js';import {onRequestPost} from '../../sites/baipiaoji/functions/api/member.js';import {messages} from './messages.mjs';import {memberCopy,memberURL,memberContext} from '../revenue-studio/member-copy.mjs';
-import {siteLanguages} from '../revenue-studio/i18n.mjs';
-import {sites} from '../revenue-studio/catalog.mjs';
-const here=path.dirname(fileURLToPath(import.meta.url)),repo=path.resolve(here,'../..'),tmp=fs.mkdtempSync(path.join(os.tmpdir(),'member-browser-'));const {chromium}=createRequire(new URL('../revenue-studio/package.json',import.meta.url))('playwright');
-for(const site of ['bpj','agi','eco','tds'])execFileSync(process.execPath,[path.join(repo,'tools/revenue-studio/build.mjs'),'--site',site,'--out',path.join(tmp,site)]);execFileSync(process.execPath,[path.join(here,'build.mjs'),'--out',path.join(tmp,'bpj')]);
-const sql=new DatabaseSync(':memory:');sql.exec('PRAGMA foreign_keys=ON');const db={prepare(query){return {args:[],query,bind(...a){this.args=a;return this;},async first(){return sql.prepare(query).get(...this.args)||null;},async all(){return {results:sql.prepare(query).all(...this.args)};},async run(){return {meta:{changes:sql.prepare(query).run(...this.args).changes}};}};},async batch(items){sql.exec('BEGIN');try{const out=items.map(s=>({meta:{changes:sql.prepare(s.query).run(...s.args).changes}}));sql.exec('COMMIT');return out;}catch(e){sql.exec('ROLLBACK');throw e;}}};
-await ensureMembers(db);const KEY='1'.repeat(64);sql.prepare('INSERT INTO wb_members(id,token_hash,created,ends_at) VALUES(?,?,?,?)').run('browser-fixture',await digest(KEY),seconds(),seconds()+86400);const addr='0x'+'2'.repeat(40),contract='0x55d398326f99059ff775485246999027b3197955';
-sql.prepare('INSERT INTO bpj_ad_web3_health(id,checked_at) VALUES(?,?)').run(await digest('bsc:'+addr+':'+contract),seconds());sql.prepare('INSERT INTO wb_health(id,checked_at) VALUES(1,?)').run(seconds());
-const env={HITS:db,MEMBERS_ENABLED:'true',ADS_WEB3_ENABLED:'true',ADS_WALLET_CHAIN:'bsc',ADS_WALLET:addr,ADS_WEB3_PRICE_USD:'49.00',ADS_WEB3_RPC_URL:'https://rpc.example.org',ADS_WATCH_SECRET:'s'.repeat(64),ADS_DAYS:'30'};
-const oldFetch=globalThis.fetch;globalThis.fetch=async(url,options)=>{assert.equal(url,env.ADS_WEB3_RPC_URL);const b=JSON.parse(options.body);return Response.json({result:b.method==='eth_chainId'?'0x38':b.method==='eth_call'?'0x12':{number:'0x3e8',timestamp:'0x'+seconds().toString(16)}});};
-const hosts={'baipiaoji.com':'bpj','agiscorecard.com':'agi','getecoback.com':'eco','thedollscout.com':'tds'};const browser=await chromium.launch({headless:true,...(process.env.WORKBENCH_CHROMIUM?{executablePath:process.env.WORKBENCH_CHROMIUM,args:['--no-sandbox','--disable-dev-shm-usage','--single-process']}:{})});
+import fs from 'node:fs';import os from 'node:os';import path from 'node:path';import {fileURLToPath} from 'node:url';import {createRequire} from 'node:module';import {execFileSync} from 'node:child_process';import assert from 'node:assert/strict';
+import {memberRoute} from './server.mjs';import {mockChain,setupSites,KEY} from './test-fixtures.mjs';import {digest,seconds} from '../../sites/baipiaoji/lib/ad-commerce.js';import {messages} from './messages.mjs';import {memberCopy,memberURL} from '../revenue-studio/member-copy.mjs';import {siteLanguages,pageURL} from '../revenue-studio/i18n.mjs';import {sites,products} from '../revenue-studio/catalog.mjs';
+const here=path.dirname(fileURLToPath(import.meta.url)),repo=path.resolve(here,'../..'),tmp=fs.mkdtempSync(path.join(os.tmpdir(),'independent-member-browser-'));const {chromium}=createRequire(new URL('../revenue-studio/package.json',import.meta.url))('playwright');
+for(const site of Object.keys(sites))execFileSync(process.execPath,[path.join(repo,'tools/revenue-studio/build.mjs'),'--site',site,'--out',path.join(tmp,site)]);execFileSync(process.execPath,[path.join(here,'build.mjs'),'--out',path.join(tmp,'bpj')]);
+const reset=mockChain(),all=await setupSites();for(const site of Object.keys(sites))all[site].db.sql.prepare('INSERT INTO wb_members(id,token_hash,created,ends_at) VALUES(?,?,?,?)').run('browser-fixture',await digest(KEY),seconds(),seconds()+86400);
+const browser=await chromium.launch({headless:true,...(process.env.WORKBENCH_CHROMIUM?{executablePath:process.env.WORKBENCH_CHROMIUM,args:['--no-sandbox','--disable-dev-shm-usage','--single-process']}:{})});
+const service=site=>site==='bpj'?'baipiaoji-workbench':site+'-workbench';
 try{const context=await browser.newContext();const errors=[];context.on('page',p=>p.on('pageerror',e=>errors.push(e.message)));
- await context.route('**/*',async route=>{const req=route.request(),url=new URL(req.url()),site=hosts[url.hostname];if(!site)return route.abort();
-  if(url.pathname==='/api/member'){
-   if(req.method()==='GET')return route.fulfill({json:{ok:true,ready:true,plan:{price_units:9000000},auto_renew:false}});
-   const response=await onRequestPost({env,request:new Request(req.url(),{method:req.method(),headers:req.headers(),body:req.postData()})});return route.fulfill({status:response.status,headers:Object.fromEntries(response.headers),body:await response.text()});
-  }
+ await context.route('**/*',async route=>{const req=route.request(),url=new URL(req.url()),site=Object.keys(sites).find(k=>sites[k].origin===url.origin);if(!site)return route.abort();
+  if(url.pathname.startsWith('/api/member')){const response=await memberRoute(new Request(req.url(),{method:req.method(),headers:req.headers(),...(req.method()==='POST'?{body:req.postData()}: {})}),all[site].raw,site);return route.fulfill({status:response.status,headers:Object.fromEntries(response.headers),body:await response.text()});}
   let relative=url.pathname;if(!path.extname(relative))relative+='.html';const file=path.join(tmp,site,relative);if(!fs.existsSync(file))return route.fulfill({status:404,body:'fixture not found'});const ext=path.extname(file);return route.fulfill({body:fs.readFileSync(file),contentType:{'.html':'text/html','.mjs':'application/javascript','.js':'application/javascript','.json':'application/json','.css':'text/css','.wasm':'application/wasm'}[ext]||'text/plain'});
  });
- async function continueFromLocal(page){
-  if(new URL(page.url()).hostname==='baipiaoji.com')return;
-  const before=new URL(page.url());await page.locator('#member-continue').waitFor();
-  assert.equal(await page.evaluate(()=>sessionStorage.getItem('workbench-member-key')),null);
-  await page.locator('#member-continue').click();await page.waitForURL('https://baipiaoji.com/**');
-  await page.locator('#site-context:not([hidden])').waitFor();
-  assert.equal(new URL(await page.locator('#return-tool').getAttribute('href')).hostname,before.hostname);
+ for(const site of Object.keys(sites))for(const lang of site==='bpj'?Object.keys(messages):siteLanguages[site]){
+  const t=messages[lang],page=await context.newPage();await page.goto(memberURL(lang,site));await page.waitForFunction(()=>document.querySelector('#availability').textContent.includes('Web3'));
+  assert.equal(await page.locator('.brand').textContent(),sites[site].name);for(const a of await page.locator('header nav a').all())assert.equal(new URL(await a.getAttribute('href'),page.url()).origin,sites[site].origin);
+  const keyFile=(s)=>({name:'key.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify({service:service(s),key:KEY}))});
+  await page.locator('#key-file').setInputFiles(keyFile(site==='eco'?'bpj':'eco'));await page.waitForFunction(expected=>document.querySelector('#notice').textContent===expected,t.badKey);
+  await page.locator('#key-file').setInputFiles(keyFile(site));await page.waitForFunction(()=>document.querySelector('#member-status').textContent.includes(new Date().getFullYear()));
+  const product=products.find(p=>p.site===site&&!p.kind),values=Object.fromEntries(product.fields.map(f=>[f.key,f.value])),data={version:1,product:product.id,values};
+  await page.locator('#backup-file').setInputFiles({name:product.id+'.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(data))});await page.locator('#name').fill(site+' '+lang);await page.locator('#save').click();await page.waitForFunction(expected=>document.querySelector('#notice').textContent===expected,t.saved);
+  const download=page.waitForEvent('download');await page.locator('#export').click();assert.equal((await download).suggestedFilename(),product.id+'-inputs.json');
+  const pp=page.waitForEvent('popup');await page.locator('#restore').click();const tool=await pp;await tool.waitForFunction(id=>document.querySelector('#field-'+id)!==null,product.fields[0].key);assert.equal(new URL(tool.url()).origin,sites[site].origin);
+  const tl=await tool.locator('body').getAttribute('data-locale'),save=tool.waitForEvent('popup');await tool.getByRole('button',{name:memberCopy[tl].save,exact:true}).click();const portal=await save;await portal.waitForFunction(id=>document.querySelector('#payload')?.value.includes(id),product.id);assert.equal(new URL(portal.url()).origin,sites[site].origin);assert.ok(!portal.url().includes('baipiaoji.com')||site==='bpj');await portal.close();await tool.close();
+  await page.setViewportSize({width:390,height:844});assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));if(site==='eco'&&lang==='en')await page.screenshot({path:path.join(tmp,'eco-independent-membership.png'),fullPage:true});
+  await page.close();console.log('INDEPENDENT MEMBER UI OK '+site+'/'+lang);
  }
- for(const site of ['agi','eco','tds'])for(const lang of siteLanguages[site]){
-  const page=await context.newPage();await page.goto(memberURL(lang,site));
-  assert.equal(new URL(page.url()).origin,sites[site].origin);assert.equal(await page.locator('.brand').textContent(),sites[site].name);
-  await page.locator('#member-continue').waitFor();
-  for(const a of await page.locator('header nav a').all())assert.equal(new URL(await a.getAttribute('href')).origin,sites[site].origin);
-  await page.setViewportSize({width:390,height:844});assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
-  if(site==='eco'&&lang==='en')await page.screenshot({path:path.join(tmp,'ecoback-members-mobile.png'),fullPage:true});
-  await continueFromLocal(page);assert.equal(await page.locator('#source-brand').textContent(),sites[site].name);
-  const other=lang==='en'?'de':'en';await page.locator('header nav a[lang="'+other+'"]').click();await page.locator('#site-context:not([hidden])').waitFor();
-  assert.equal(await page.locator('#source-brand').textContent(),sites[site].name);assert.equal(new URL(await page.locator('#return-tool').getAttribute('href')).origin,sites[site].origin);
-  await page.close();console.log('LOCAL ENTRY OK '+site+'/'+lang);
- }
- for(const params of ['?source=https://evil.example&return=https://evil.example','?source=eco&tool=querysprint-projects','?source=__proto__&tool=billlens']){
-  const c=memberContext(params,'en');assert.ok(Object.values(sites).some(s=>s.origin===new URL(c.returnURL).origin));
-  const page=await context.newPage();await page.goto('https://baipiaoji.com/en/members'+params);await page.locator('#site-context:not([hidden])').waitFor();assert.equal(await page.locator('#return-tool').getAttribute('href'),c.returnURL);await page.close();
- }
- for(const lang of ['zh','en','de','it']){
-  const page=await context.newPage(),t=messages[lang],memberURL='https://baipiaoji.com/'+(lang==='zh'?'':lang+'/')+'members';await page.goto(memberURL);await page.waitForFunction(()=>document.querySelector('#availability').textContent.includes('Web3'));
-  await page.locator('#checkout').click();assert.match(await page.locator('#notice').textContent(),new RegExp(t.consentRequired.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')));
-  await page.locator('#key-file').setInputFiles({name:'key.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify({service:'baipiaoji-workbench',key:KEY}))});await page.waitForFunction(()=>document.querySelector('#member-status').textContent.includes(new Date().getFullYear()));
-  await page.locator('#backup-file').setInputFiles({name:'billlens-inputs.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify({version:1,product:'billlens',values:{kwh:'4321',tariffs:'tariff,currency,unit_price,monthly_fee,one_time_credit\nA,EUR,0.30,12,100'}}))});await page.locator('#name').fill('Fixture '+lang);await page.locator('#save').click();await page.waitForFunction(expected=>document.querySelector('#notice').textContent===expected,t.saved);
-  const output=page.waitForEvent('download');await page.locator('#export').click();assert.equal((await output).suggestedFilename(),'billlens-inputs.json');
-  const popupPromise=page.waitForEvent('popup');await page.locator('#restore').click();const tool=await popupPromise;await tool.waitForFunction(()=>document.querySelector('#field-kwh')?.value==='4321');
-  const actualLang=await tool.locator('body').getAttribute('data-locale');const newMemberPromise=tool.waitForEvent('popup');await tool.getByRole('button',{name:memberCopy[actualLang].save,exact:true}).click();const transferred=await newMemberPromise;await continueFromLocal(transferred);await transferred.waitForFunction(()=>document.querySelector('#payload')?.value.includes('4321'));assert.equal(await tool.evaluate(()=>sessionStorage.getItem('workbench-member-key')),null);await transferred.close();await tool.close();
-  await page.setViewportSize({width:390,height:844});assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));if(lang==='en')await page.screenshot({path:path.join(tmp,'membership-en-mobile.png'),fullPage:true});await page.close();console.log('MEMBER UI OK '+lang);
- }
- const purchase=await context.newPage();await purchase.goto('https://baipiaoji.com/en/members');await purchase.locator('#new-key').click();const keyBackup=purchase.waitForEvent('download');await purchase.locator('#backup-key').click();assert.equal((await keyBackup).suggestedFilename(),'workbench-access-key.json');await purchase.locator('#key-saved').check();await purchase.locator('#consent').check();await purchase.locator('#checkout').click();await purchase.waitForFunction(()=>document.querySelector('#orders')?.textContent.includes('9.000001'));assert.equal(sql.prepare("SELECT COUNT(*) n FROM wb_orders WHERE state='paid'").get().n,0);await purchase.close();console.log('MEMBER CHECKOUT UI OK (unpaid quote only)');
+ // Same-site checkout with a new key creates unpaid orders only, never paid grants.
+ for(const site of Object.keys(sites)){const page=await context.newPage();await page.goto(memberURL('en',site));await page.waitForFunction(()=>document.querySelector('#availability').textContent.includes('Web3'));await page.locator('#new-key').click();const dl=page.waitForEvent('download');await page.locator('#backup-key').click();assert.equal((await dl).suggestedFilename(),site+'-access-key.json');await page.locator('#key-saved').check();await page.locator('#consent').check();await page.locator('#checkout').click();await page.waitForFunction(()=>document.querySelector('#orders')?.textContent.includes('9.'));assert.equal(all[site].db.sql.prepare("SELECT COUNT(*) n FROM wb_orders WHERE state='paid'").get().n,0);await page.close();console.log('INDEPENDENT QUOTE UI OK '+site);}
  for(const [id,selector,value]of [['querysprint-projects','#query','SELECT 9 AS saved_query;'],['puzzleclub','#seed','saved-puzzle'],['classroompuzzles','#seed','saved-class'],['embedpuzzles','#embed-title','Saved puzzle embed']]){
-  const tool=await context.newPage();await tool.goto('https://agiscorecard.com/workbench/'+id);await tool.locator(selector).fill(value);
-  const popup=tool.waitForEvent('popup');await tool.getByRole('button',{name:memberCopy.en.save,exact:true}).click();const portal=await popup;await continueFromLocal(portal);await portal.waitForFunction(value=>document.querySelector('#payload')?.value.includes(value),value);
-  const restored=portal.waitForEvent('popup');await portal.locator('#restore').click();const other=await restored;await other.waitForFunction(({selector,value})=>document.querySelector(selector)?.value===value,{selector,value});
-  await other.close();await portal.close();await tool.close();console.log('SPECIAL RESTORE OK '+id);
+  const tool=await context.newPage();await tool.goto(pageURL(products.find(p=>p.id===id),'en'));await tool.locator(selector).fill(value);const pp=tool.waitForEvent('popup');await tool.getByRole('button',{name:memberCopy.en.save,exact:true}).click();const portal=await pp;await portal.waitForFunction(v=>document.querySelector('#payload')?.value.includes(v),value);const rp=portal.waitForEvent('popup');await portal.locator('#restore').click();const restored=await rp;await restored.waitForFunction(({selector,value})=>document.querySelector(selector)?.value===value,{selector,value});await restored.close();await portal.close();await tool.close();console.log('SAME-SITE SPECIAL RESTORE OK '+id);
  }
- assert.deepEqual(errors,[]);console.log('Four-language member login, cloud save/export and cross-site restore/save passed with local paid fixture. Screenshot: '+path.join(tmp,'membership-en-mobile.png'));
-}finally{globalThis.fetch=oldFetch;await browser.close();sql.close();}
+ assert.deepEqual(errors,[]);console.log('Independent membership UI passed. Screenshot: '+path.join(tmp,'eco-independent-membership.png'));
+}finally{reset();await browser.close();for(const v of Object.values(all))v.db.sql.close();}

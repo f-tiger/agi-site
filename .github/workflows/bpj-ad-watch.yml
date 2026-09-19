@@ -78,3 +78,12 @@ jobs:
             node scripts/ad-watch.mjs
           fi
 
+
+      - name: Check each independent site membership
+        if: always() && (github.event_name != 'workflow_dispatch' || inputs.mode == 'watch')
+        timeout-minutes: 5
+        working-directory: ${{ github.workspace }}
+        env:
+          ADS_WATCH_SECRET: ${{ secrets.ADS_WATCH_SECRET }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: node tools/member-studio/ops.mjs watch-all

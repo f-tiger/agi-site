@@ -339,3 +339,8 @@ The existing fleet-autopilot daily 02:40 UTC job now runs sites/web3-studio/scri
 Data refresh is request-driven in the existing Worker: price snapshots after 5 minutes, official feed metadata after 1 hour; visible market tabs request updates every minute. Cache reuse is per Cloudflare location. Upstream failure preserves the original receipt timestamp, labels stale snapshots and hides data older than 24 hours. No tick-by-tick or alert SLA is offered. Daily source changes are a review queue, never automatically rewritten editorial claims.
 
 Budget estimate: 1–2 incremental runner minutes/day (30–60/month); hard audit limit 3 minutes/day (90/month), excluding existing job/artifact overhead. Repository is currently private: this is not a free-Actions claim. Worker requests use existing hosting; upstream market/feed reads are public and cached, no paid credentials or subscriptions added. No IndexNow in deployment, no external messages, directory submissions or outreach.
+
+
+## 2026-09-19 独立站点会员确认
+
+沿用 `bpj-ad-watch.yml` 的两小时 schedule，增加一个独立步骤调用 AGI、EcoBack、TDS 各自的 `/api/member-watch`；BPJ 会员保持本地检查。三站各用独立 D1 与操作密钥，某站失败不阻止尝试其他站。无新增 cron 或付费供应商。保守空闲增量预算约 0.5 分钟/次 × 360 次/月 = 180 runner 分钟/月，RPC 与订单量会影响实际用量；新增步骤硬上限 5 分钟。健康检查过期会关闭相应站点新订单，不取消已有会员权益。当前实现与验收见 `tools/member-studio/README.md`。

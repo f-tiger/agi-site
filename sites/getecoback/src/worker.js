@@ -1,3 +1,4 @@
+import {memberRoute,memberPage,secureMemberPage} from '../../../tools/member-studio/server.mjs';
 // getecoback.com — Cloudflare Worker in front of the static assets.
 //
 // Two jobs:
@@ -1399,6 +1400,8 @@ async function handleMcp(request, env) {
 
 export default {
   async fetch(request, env, ctx) {
+    const memberResponse=await memberRoute(request,env,'eco');if(memberResponse)return memberResponse;
+    if(memberPage(new URL(request.url).pathname))return secureMemberPage(await env.ASSETS.fetch(request));
     const url = new URL(request.url);
 
     // API routes run before the canonical-URL rewriting (which would otherwise

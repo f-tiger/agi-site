@@ -11,7 +11,7 @@ import {formulas,referenceLinks} from './methods.mjs';
 import {widgetHTML,escapeHTML as esc} from './widgets.mjs';
 const here=path.dirname(fileURLToPath(import.meta.url)),args=process.argv.slice(2),site=args[args.indexOf('--site')+1];
 if(!sites[site]||!args.includes('--out'))throw Error('Usage: node build.mjs --site bpj|agi|eco|tds --out OUTPUT');
-const out=path.resolve(args[args.indexOf('--out')+1]),s=sites[site],asset='/workbench-assets',version='2026-09-19.2';
+const out=path.resolve(args[args.indexOf('--out')+1]),s=sites[site],asset='/workbench-assets',version='2026-09-19.3';
 const dicts=Object.fromEntries(Object.keys(languages).map(l=>[l,JSON.parse(fs.readFileSync(path.join(here,'locales',l+'.json'),'utf8'))]));
 const own=products.filter(p=>p.site===site),listed=site==='agi'?products:own,urls=[],records=[];
 function put(rel,content){const file=path.join(out,rel.replace(/^\//,''));fs.mkdirSync(path.dirname(file),{recursive:true});fs.writeFileSync(file,content);}

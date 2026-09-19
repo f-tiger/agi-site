@@ -221,6 +221,13 @@ jobs:
       # 静默失败后 `|| true`——却要为此完整下载一次 wrangler。等于每次运行白花几十秒
       # 做一件确定无效的事。项目若真被删,下面的 deploy 会报错,那时手动建一次即可。
       # Owner requested Web3 launch using the existing repository Cloudflare key.
+      - name: Check legacy membership obligations before isolation
+        working-directory: ${{ github.workspace }}
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          ADS_WATCH_SECRET: ${{ secrets.ADS_WATCH_SECRET }}
+        run: node tools/member-studio/ops.mjs preflight
+
       - name: Sync payment secrets using the existing Cloudflare credential
         id: payment_config
         env:
@@ -239,6 +246,7 @@ jobs:
           node tools/revenue-studio/verify.mjs --site bpj --out sites/baipiaoji/dist
           node tools/member-studio/build.mjs --out sites/baipiaoji/dist
           node tools/member-studio/verify.mjs --out sites/baipiaoji/dist
+          node tools/member-studio/test-isolation.mjs
 
       - name: Deploy to Cloudflare Pages
         env:
@@ -786,7 +794,6 @@ jobs:
           check "广告库存面" "${{ steps.st_ads.outcome }}"
           [ "$fail" = "0" ] || exit 1
           echo "✅ 全部链路自测通过"
-
 
 
 

@@ -1,33 +1,39 @@
-# Workbench membership
+# Independent memberships
 
-Owner-authorized prepaid cloud workspace membership, hosted on BPJ for the four tool sites. Entry routes: `/members`, `/en/members`, `/de/members`, `/it/members`.
+The owner clarified that all four sites must have independent memberships, not shared rights behind local entrances. Each site now runs its own same-origin `/api/member`, `/api/member-watch`, and `/api/member-admin` against its existing, distinct D1 database. Login, payment quotes, receipts, expiry, support and cloud records are isolated. A purchase grants only that site's tools. The browser never calls or redirects to another site's membership service.
 
-Backend: `sites/baipiaoji/lib/membership.js`; API routes `member`, `member-watch`, `member-admin`. Additive tables and triggers bootstrap idempotently through the existing HITS D1 binding. No destructive migration or new credential. `MEMBERS_ENABLED=true` permits new orders only with fresh ad-chain and membership-watch health. Disabling new sales does not revoke paid access.
+| Site | Database binding | Routes | Exclusive quote micro-USDT range |
+| --- | --- | --- | --- |
+| BPJ | HITS / aiyangmao project | /members, /en/members, /de/members, /it/members | 9000001–9009999 |
+| AGI Scorecard | EVENTS / agiscorecard-events | /members, /zh/members | 9010001–9019999 |
+| EcoBack | EVENTS / ecoback-events | /members.html, /en/members.html, /it/members.html | 9020001–9029999 |
+| The Doll Scout | HITS / dollscout-events | /members, /de/members | 9030001–9039999 |
 
-Plan v1 is 9 USDT plus a unique fraction below 0.01, for 30 days. Pricing is a launch hypothesis. This is prepaid membership, not recurring debit or MRR. The v1 quote CHECK constraint deliberately fixes its range; a future price change must introduce a reviewed plan/migration, not edit a single display label.
+Plan: 9 USDT plus the exact order identifier fraction (less than 0.04 USDT), 30 days, 50 workspaces, 10 retained versions each, 64 KiB/version and 5 MiB total. No recurring debit. Current price remains a launch hypothesis. The approved receiving wallet is unchanged. Disjoint amount ranges enforced in each database prevent a matching transfer from paying a different site's order. Amounts are never recycled. Site-qualified order IDs, separate operator keys and receipt tables provide additional separation. Future pricing or partition changes require a reviewed migration, not only display edits.
 
-Build and test from the repository root:
+Server implementation is bundled locally into each site's Worker/Pages Functions. It makes no BPJ API calls for sibling-site membership. `server.mjs` selects the deployment's fixed site and database, never a client-provided site. `MEMBERS_ENABLED` controls new sales. Site-specific health must be fresh; the watcher probes the live chain even when no orders are pending. Existing paid reads/exports remain available during the 30-day expiry grace period. Record data is purged after grace; financial receipts remain for replay handling. Suspension does not initiate a refund.
+
+Keys are local-origin session storage plus user-downloaded backups with a site-specific service identifier. Other sites' backups are rejected. All tool-data messaging checks the same origin and exact window. No key or payload enters URLs. Only a separate Save action uploads data. No email recovery, team accounts or end-to-end encryption is promised.
+
+## Deployment and checks
+
+All workflows retain their original guards. Sibling deploys synchronize `MEMBER_WALLET` and distinct HMAC-derived `MEMBER_WATCH_SECRET` using existing repository Cloudflare credentials, preserving other keys and D1 bindings. No actual secret or wallet is printed or committed. BPJ retains its existing secret configuration. All four workflows watch the shared server sources and compile them into their own deployments.
+
+The existing two-hour `bpj-ad-watch` schedule independently calls each site's endpoint. Sibling checks run even if the BPJ ad step fails, and each site is attempted regardless of another site's failure. There is no new cron or paid provider. Conservative idle incremental budget: about 0.5 runner minutes per run × 360/month = 180 minutes/month, dependent on RPC latency. The new step has a five-minute cap; this is a budget estimate, not a billing guarantee. Per-site health closes new sales if monitoring is stale.
 
 ```sh
 node sites/baipiaoji/scripts/test-membership.mjs
-node tools/member-studio/build.mjs --out sites/baipiaoji/dist
-node tools/member-studio/verify.mjs --out sites/baipiaoji/dist
+node tools/member-studio/test-isolation.mjs
 node tools/member-studio/browser-test.mjs
-node tools/member-studio/verify.mjs --live
+node tools/revenue-studio/build.mjs --site eco --out /tmp/eco-workbench
+node tools/member-studio/verify.mjs --site eco --out /tmp/eco-workbench
+node tools/member-studio/verify.mjs --site eco --live
 ```
 
-Browser tests use the existing revenue-studio Playwright dependency and an isolated in-memory paid fixture, never production paid grants. `WORKBENCH_CHROMIUM` optionally supplies the local executable. Existing full tool browser regression remains required for shared frontend changes.
+The isolation suite uses four actual in-memory SQLite databases and mocked chain responses. Browser tests use paid fixtures only in memory; production verification never pays or grants membership. Tests cover same-token isolation, cross-site tx replay, product scope, SQL amount partitions, secret separation, all eleven localized pages, same-domain quotes and save/restore, and special SQL/puzzle tools.
 
-The BPJ deploy pipeline builds member assets after the tool workbench and runs backend and live gates. Existing `bpj-ad-watch` invokes `ad-watch-v2.mjs --members`: a separate authenticated member request processes one order at a time, performs grace-period cleanup and refreshes member health. No new cron. Empty member checks are expected to add seconds to the existing run; conservative incremental budget ~0.1 min × 360/month = 36 runner minutes/month, with RPC-heavy paid-order runs dependent on actual usage. No new paid service has been subscribed to.
+## Cutover evidence
 
-Admin actions use the existing ADS_WATCH_SECRET in Authorization, never URL parameters. `stats` gives gross confirmed micro-USDT, distinct paid members, active members, with net_revenue null. `support` lists up to 20 private unresolved requests; `resolve` accepts a ticket id. `suspend` / `resume` accept an order id. These operations must run through authenticated private tooling, never dump messages or credentials to git/CI logs. Suspension does not refund money; no refund is claimed until a separate real transfer is verified.
+Before changing rights, the authenticated production audit on 2026-09-19 at 16:14:51 UTC reported paid_orders=0, paid_members=0, active_members=0 and unexpired_pending=0. Run: https://github.com/f-tiger/agi-site/actions/runs/35454290932. No customer account details were exported. The deployment preflight refuses an old shared system with outstanding paid or unexpired pending orders; once the independent API is deployed it no longer applies the legacy gate.
 
-Data retention: tool content is deleted after membership expiry plus 30 days; inactive users must export beforehand. Payment receipts and account token digests remain for replay prevention and order support. Client keys live in the BPJ origin's session storage and an explicit user-downloaded file; other domains receive only user-selected tool data, never the key. postMessage checks both origin and window identity. No email recovery, team accounts or end-to-end encryption is promised.
-
-## Site-specific entrances (2026-09-19)
-
-The four sites now link to their own member entry routes. BPJ retains its portal; AGI uses `/members` and `/zh/members`, EcoBack `/members.html`, `/en/members.html`, `/it/members.html`, and The Doll Scout `/members`, `/de/members`. These are independent branded entrances, not independent accounts or payment processors.
-
-`tools/revenue-studio/member-entry-build.mjs` builds localized introductions from the existing plan copy. Checkout remains an explicit user click to BPJ, with a provider/domain explanation before departure. The portal uses an allowlisted source site and catalog product ID for its brand banner, language links and return link; arbitrary return URLs are ignored. No access key or tool inputs enter a URL. The cloud-save popup first shows the site's own introduction, then the original tool sends inputs only to that same window on the exact BPJ origin. Closing the popup or waiting 30 minutes removes the transfer listener; users can reopen from their tool. Nothing is uploaded until Save.
-
-Static and production workbench verification checks local membership links, pages, canonicals, language links and sitemaps. Browser verification covers the seven new localized entrances, source retention on language changes, hostile source parameters, and the full original cloud-save/restore path. All four deploy workflows watch shared membership changes so plan copy stays in sync.
+API configuration references: https://developers.cloudflare.com/api/resources/workers/subresources/scripts/subresources/secrets/methods/update/ and https://developers.cloudflare.com/api/resources/pages/subresources/projects/methods/edit/ .

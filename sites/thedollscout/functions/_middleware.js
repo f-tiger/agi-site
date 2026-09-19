@@ -1,3 +1,4 @@
+import {memberPage,secureMemberPage} from '../../../tools/member-studio/server.mjs';
 // Server-side crawler visibility (added 2026-08-19, pattern proven on
 // baipiaoji 08-11 and agiscorecard 08-05): AI retrieval crawlers — GPTBot,
 // ClaudeBot, PerplexityBot and friends — do not execute JavaScript, so the
@@ -62,6 +63,7 @@ const RETIRED_PREFIXES = [
 ];
 
 export async function onRequest(ctx) {
+  if(memberPage(new URL(ctx.request.url).pathname))return secureMemberPage(await ctx.next());
   try {
     const path = new URL(ctx.request.url).pathname;
     for (const p of RETIRED_PREFIXES) {

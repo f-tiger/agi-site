@@ -1,3 +1,4 @@
+import {memberRoute,memberPage,secureMemberPage} from '../../../../tools/member-studio/server.mjs';
 // First-party analytics for agiscorecard.com. This runs ALONGSIDE GA4, never instead
 // of it (owner rule, 2026-08-05): two independent channels, so either one failing
 // leaves the other still recording. The beacon below wraps gtag() and forwards a copy
@@ -192,6 +193,8 @@ const mcpText = (id, obj) => mcpOk(id, { content: [{ type: 'text', text: JSON.st
 
 export default {
   async fetch(request, env, ctx) {
+    const memberResponse=await memberRoute(request,env,'agi');if(memberResponse)return memberResponse;
+    if(memberPage(new URL(request.url).pathname))return secureMemberPage(await env.ASSETS.fetch(request));
     const url = new URL(request.url);
 
     // MCP server v0(STRATEGY-2027 E1:agent 分发先手棋)。Streamable HTTP:

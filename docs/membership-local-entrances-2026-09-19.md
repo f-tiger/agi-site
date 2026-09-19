@@ -1,3 +1,5 @@
+> Superseded by the owner’s later clarification: memberships are independent per site. Current implementation and scope: `tools/member-studio/README.md`. The text below is the historical shared-system design.
+
 # Site-specific membership entrances — 2026-09-19
 
 Owner requested that each of the four sites have its own membership entrance to avoid an unexplained jump to a different brand/domain. This is a presentation and navigation change, not a split of accounts, rights or payment rails.

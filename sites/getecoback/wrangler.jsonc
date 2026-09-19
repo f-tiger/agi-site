@@ -1,5 +1,6 @@
 {
-	"name": "ecoback",
+	"vars": {"MEMBERS_ENABLED":"true"},
+  "name": "ecoback",
 	"main": "src/worker.js",
 	"compatibility_date": "2026-07-01",
 	"routes": [

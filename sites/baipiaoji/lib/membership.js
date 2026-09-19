@@ -1,6 +1,11 @@
+import {products} from '../../../tools/revenue-studio/catalog.mjs';
 import {digest,seconds} from './ad-commerce.js';
 import {ensureWeb3,web3Health,web3Settings,probeChain,verifyTransfer,formatUnits,chainRpc,matchesTransfer} from './ad-web3.js';
 export const PLAN={id:'workbench-30',price_units:9000000,days:30,workspaces:50,versions:10,max_bytes:65536,total_bytes:5242880,grace_days:30};
+export const MEMBER_SITES={bpj:{offset:0},agi:{offset:10000},eco:{offset:20000},tds:{offset:30000}};
+export function memberSite(env={}){const site=env.MEMBER_SITE||'bpj';if(!Object.hasOwn(MEMBER_SITES,site))throw Error('not_ready');return site;}
+export function memberPlan(env={}){const site=memberSite(env);return {...PLAN,id:site+'-workbench-30',site,quote_base:PLAN.price_units+MEMBER_SITES[site].offset};}
+export const allowedProduct=(site,id)=>products.some(p=>p.site===site&&p.id===id);
 export const SCHEMA=[
  `CREATE TABLE IF NOT EXISTS wb_health(id INTEGER PRIMARY KEY,checked_at INTEGER NOT NULL)`,
  `CREATE TABLE IF NOT EXISTS wb_support(id TEXT PRIMARY KEY,member_id TEXT NOT NULL,message TEXT NOT NULL,created INTEGER NOT NULL,resolved INTEGER NOT NULL DEFAULT 0)`,
@@ -15,14 +20,14 @@ export const SCHEMA=[
  `CREATE TRIGGER IF NOT EXISTS wb_version_quota BEFORE INSERT ON wb_versions WHEN NEW.bytes>65536 OR COALESCE((SELECT SUM(bytes) FROM wb_versions WHERE member_id=NEW.member_id),0)+NEW.bytes>5242880 BEGIN SELECT RAISE(ABORT,'storage_quota'); END`,
  `CREATE TRIGGER IF NOT EXISTS wb_pending_quota BEFORE INSERT ON wb_orders WHEN (SELECT COUNT(*) FROM wb_orders WHERE state='pending' AND scan_done=0 AND created>NEW.created-604800)>=20 BEGIN SELECT RAISE(ABORT,'checkout_busy'); END`
 ];
-export async function ensureMembers(db){await ensureWeb3(db);await db.batch(SCHEMA.map(s=>db.prepare(s)));}
+export async function ensureMembers(db,site='bpj'){const base=memberPlan({MEMBER_SITE:site}).quote_base;await ensureWeb3(db);await db.batch(SCHEMA.map(s=>db.prepare(s.replace('amount_units>9000000 AND amount_units<9010000',`amount_units>${base} AND amount_units<${base+10000}`))));}
 export const memberByToken=async(db,token)=>db.prepare('SELECT * FROM wb_members WHERE token_hash=?').bind(await digest(token)).first();
 export function memberStatus(m,now=seconds()){return {exists:!!m,active:!!m&&!m.suspended&&m.ends_at>now,suspended:!!m?.suspended,ends_at:m?.ends_at||null,read_until:m?.ends_at?m.ends_at+PLAN.grace_days*86400:null,plan:PLAN};}
-export async function memberReady(env){const w=await web3Health(env);let health=null;try{health=await env.HITS.prepare('SELECT checked_at FROM wb_health WHERE id=1').first();}catch{}return !!health&&seconds()-health.checked_at<14400&&env.MEMBERS_ENABLED==='true'&&w.ready&&w.chain==='bsc'&&w.network.live===1&&w.baseUnits>PLAN.price_units+10000;}
+export async function memberReady(env){const w=await web3Health(env);let health=null;try{health=await env.HITS.prepare('SELECT checked_at FROM wb_health WHERE id=1').first();}catch{}return !!health&&seconds()-health.checked_at<14400&&env.MEMBERS_ENABLED==='true'&&(memberSite(env)==='bpj'?w.ready:w.enabled&&w.configured)&&w.chain==='bsc'&&w.network.live===1&&w.baseUnits>PLAN.price_units+10000;}
 export async function rate(db,key,max,ttl=3600){const now=seconds();await db.prepare('INSERT INTO wb_limits(key,n,expires) VALUES(?,1,?) ON CONFLICT(key) DO UPDATE SET n=CASE WHEN expires<=? THEN 1 ELSE n+1 END,expires=CASE WHEN expires<=? THEN excluded.expires ELSE expires END').bind(key,now+ttl,now,now).run();if((await db.prepare('SELECT n FROM wb_limits WHERE key=?').bind(key).first()).n>max)throw Error('rate_limited');}
 export function orderStatus(row){return {id:row.id,state:row.state==='pending'&&row.expires<seconds()?'expired':row.state,days:row.days,payment:{chain:row.chain,token:'USDT',address:row.recipient,contract:row.contract,amount:formatUnits(row.amount_units),expires:row.expires,tx:row.tx}};}
 export async function createOrder(env,token,nonce,ip){
- if(!/^[a-f0-9]{32}$/.test(nonce||''))throw Error('bad_nonce');const db=env.HITS,hash=await digest(token),now=seconds();let member=await memberByToken(db,token);const id=await digest('membership:'+hash+':'+nonce);
+ if(!/^[a-f0-9]{32}$/.test(nonce||''))throw Error('bad_nonce');const plan=memberPlan(env),db=env.HITS,hash=await digest(token),now=seconds();let member=await memberByToken(db,token);const id=await digest('membership:'+memberSite(env)+':'+hash+':'+nonce);
  const old=await db.prepare('SELECT * FROM wb_orders WHERE id=?').bind(id).first();if(old)return orderStatus(old);
  if(member?.suspended)throw Error('suspended');if(!await memberReady(env))throw Error('not_ready');
  await rate(db,'order:'+await digest(env.ADS_WATCH_SECRET+':'+ip),5);
@@ -32,11 +37,11 @@ export async function createOrder(env,token,nonce,ip){
  await db.batch([
  p('INSERT OR IGNORE INTO wb_members(id,token_hash,created) VALUES(?,?,?)',memberID,hash,now),
  p(`INSERT INTO wb_orders(id,member_id,chain,recipient,recipient_hex,contract,amount_units,days,created,expires,cursor)
- SELECT ?, (SELECT id FROM wb_members WHERE token_hash=?),?,?,?,?,COALESCE(MAX(amount_units),?)+1,?,?,?,? FROM wb_orders WHERE chain=? AND recipient=? AND contract=?`,id,hash,cfg.chain,cfg.recipient,cfg.recipient.slice(2),cfg.network.contract,PLAN.price_units,PLAN.days,now,now+3600,height,cfg.chain,cfg.recipient,cfg.network.contract)
+ SELECT ?, (SELECT id FROM wb_members WHERE token_hash=?),?,?,?,?,COALESCE(MAX(amount_units),?)+1,?,?,?,? FROM wb_orders WHERE chain=? AND recipient=? AND contract=?`,id,hash,cfg.chain,cfg.recipient,cfg.recipient.slice(2),cfg.network.contract,plan.quote_base,plan.days,now,now+3600,height,cfg.chain,cfg.recipient,cfg.network.contract)
  ]);
  const row=await db.prepare('SELECT * FROM wb_orders WHERE id=?').bind(id).first();
  // Never recycle amount identifiers. Capacity guard is also checked in SQL below.
- if(row.amount_units>=PLAN.price_units+10000)throw Error('quote_capacity');return orderStatus(row);
+ if(row.amount_units>=plan.quote_base+10000)throw Error('quote_capacity');return orderStatus(row);
 }
 export async function deliver(env,row,proof){
  if(proof.code!=='verified')throw Error('unverified');const db=env.HITS,now=seconds(),receiptID='member:'+row.id,p=(s,...a)=>db.prepare(s).bind(...a);
@@ -62,7 +67,7 @@ export async function checkOrder(env,row,tx){
  return orderStatus(row);
 }
 export async function watchMembers(env){
- await ensureMembers(env.HITS);const db=env.HITS,now=seconds();
+ await ensureMembers(env.HITS,memberSite(env));await probeChain(env);const db=env.HITS,now=seconds();
  const rows=await db.prepare("SELECT * FROM wb_orders WHERE state='pending' AND scan_done=0 AND created>? AND checked_at<=? ORDER BY checked_at,created LIMIT 1").bind(now-7*86400,now-15).all();
  for(const row of rows.results||[])await checkOrder(env,row);
  await db.batch([

@@ -1,8 +1,8 @@
 import {json,digest,seconds} from '../../lib/ad-commerce.js';
-import {PLAN,ensureMembers,memberByToken,memberStatus,memberReady,createOrder,checkOrder,orderStatus,saveSpace,rate} from '../../lib/membership.js';
+import {PLAN,memberSite,memberPlan,allowedProduct,ensureMembers,memberByToken,memberStatus,memberReady,createOrder,checkOrder,orderStatus,saveSpace,rate} from '../../lib/membership.js';
 const tokenOf=r=>String(r.headers.get('Authorization')||'').replace(/^Bearer /,'');
 export async function onRequestGet({env}){
- try{if(!env.HITS)return json({ok:false,code:'not_ready'},503);await ensureMembers(env.HITS);return json({ok:true,version:1,ready:await memberReady(env),plan:PLAN,chain:'bsc',token:'USDT',auto_renew:false});}catch{return json({ok:false,code:'temporarily_unavailable'},503);}
+ try{if(!env.HITS)return json({ok:false,code:'not_ready'},503);await ensureMembers(env.HITS,memberSite(env));return json({ok:true,version:1,ready:await memberReady(env),plan:memberPlan(env),site:memberSite(env),chain:'bsc',token:'USDT',auto_renew:false});}catch{return json({ok:false,code:'temporarily_unavailable'},503);}
 }
 export async function onRequestPost({request,env}){
  if(!env.HITS)return json({ok:false,code:'not_ready'},503);
@@ -13,8 +13,8 @@ export async function onRequestPost({request,env}){
  let b;try{const raw=await request.text();if(new TextEncoder().encode(raw).length>100000)return json({ok:false,code:'too_large'},413);b=JSON.parse(raw);}catch{return json({ok:false,code:'badjson'},400);}
  if(!b||typeof b!=='object'||Array.isArray(b))return json({ok:false,code:'badjson'},400);
  try{
-  const db=env.HITS;await ensureMembers(db);let m=await memberByToken(db,token);
-  if(b.action==='status')return json({ok:true,...memberStatus(m)});
+  const db=env.HITS;await ensureMembers(db,memberSite(env));let m=await memberByToken(db,token);
+  if(b.action==='status')return json({ok:true,...memberStatus(m),plan:memberPlan(env),site:memberSite(env)});
   if(b.action==='checkout'){
    if(b.accept_terms!==true||b.key_saved!==true)return json({ok:false,code:'consent_required'},400);
    return json({ok:true,order:await createOrder(env,token,b.nonce,request.headers.get('CF-Connecting-IP')||'unknown')});
@@ -48,7 +48,7 @@ export async function onRequestPost({request,env}){
   if(b.action==='read'){
    const row=await db.prepare('SELECT body,revision,created FROM wb_versions WHERE member_id=? AND space_id=? AND revision=?').bind(m.id,String(b.id||''),Number.isSafeInteger(b.revision)?b.revision:-1).first();if(!row)return json({ok:false,code:'not_found'},404);return json({ok:true,data:JSON.parse(row.body),revision:row.revision,created:row.created});
   }
-  if(b.action==='save')return json(await saveSpace(db,m,b));
+  if(b.action==='save'){if(!allowedProduct(memberSite(env),b.data?.product))return json({ok:false,code:'wrong_site'},400);return json(await saveSpace(db,m,b));}
   return json({ok:false,code:'bad_action'},400);
  }catch(e){
   const known=['bad_nonce','bad_key','not_ready','suspended','rate_limited','quote_capacity','membership_required','bad_workspace','bad_backup','storage_quota','workspace_quota','revision_conflict','chain_unavailable','network_config_changed','wrong_chain','token_precision'];

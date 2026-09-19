@@ -15,7 +15,7 @@ async function order(env,n=1){const o=await createOrder(env,key(n),nonce(n),'ip'
 function receiptFor(o,t=tx){return {transactionHash:t,status:'0x1',blockNumber:'0x3e8',blockHash:blockhash,logs:[{address:o.contract,transactionHash:t,topics:[topic,'0x'+'0'.repeat(64),'0x'+o.recipient_hex.padStart(64,'0')],data:'0x'+(BigInt(o.amount_units)*10n**12n).toString(16).padStart(64,'0')}]};}
 async function paid(env,n=1,t=tx){const o=await order(env,n);receipt=receiptFor(o,t);await deliver(env,o,await verifyTransfer(env,o,t));return memberByToken(env.HITS,key(n));}
 function request(token,body,origin='https://baipiaoji.com'){return new Request('https://baipiaoji.com/api/member',{method:'POST',headers:{Authorization:'Bearer '+token,'Content-Type':'application/json',Origin:origin},body:JSON.stringify(body)});}
-const backup={version:1,product:'billlens',values:{kwh:'3200'}};
+const backup={version:1,product:'launchdesk',values:{kwh:'3200'}};
 const space=(revision=0,id=nonce(1))=>({id,revision,name:'September',data:backup});
 let count=0;async function test(name,fn){await fn();count++;console.log('PASS',name);}
 try{
