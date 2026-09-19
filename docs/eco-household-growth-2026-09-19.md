@@ -69,3 +69,11 @@ For cohort review use `docs/eco-household-queries.sql`: 28 complete UTC dates Se
 The legacy automatic US switch matched “Hygrostat” before “Luftentfeuchter” and rewrote the new dehumidifier link to an indoor hygrometer while leaving its Amazon.de label unchanged. Browser verification caught this real mismatch. The four new pages now present explicit German and US category links and exclude the legacy auto-switch after chrome injection; existing unrelated pages are unchanged. The live gate asserts the intended category/tag pair and absence of the auto-switch. This is a fix to the new cohort, not a claim that the entire legacy rule list is repaired.
 
 Browser interactions verified equal-cost drying inputs, longer dehumidifier running time, and the no-payback replacement branch. QA used the explicit probe parameter. These interactions are not users or affiliate conversions.
+
+Readout caution: TDS also has a substantially smaller current sitemap (39 URLs versus Eco 224 in the preceding discovery audit) and changed positioning on August 30. Low total traffic does not establish weak per-page economics or invalidate its new topic. This release prioritizes Eco because it has historical affiliate earnings, not because other sites have been proven unviable.
+
+## Final browser/cache verification
+
+The marketplace follow-up workflow https://github.com/f-tiger/agi-site/actions/runs/35417145979 completed successfully; all four live pages passed and IndexNow returned HTTP 200. Browser inspection verified each German/US button's actual category and affiliate tag without clicking affiliate links. The measured-use calculator returned 219 kWh / €76.65 for the published example; the replacement tool correctly returned no payback for a higher-consumption replacement.
+
+Returning-browser QA also exposed cached CSS retaining the earlier navigation color. The build now derives version parameters from content hashes for CSS, calculator JavaScript and its calculation dependency. The injection/versioning pass was verified byte-stable. Follow-up deployment: https://github.com/f-tiger/agi-site/actions/runs/35417297979 . No mobile browser viewport was available in this browser surface; responsive CSS is included but no mobile visual-test claim is made.
