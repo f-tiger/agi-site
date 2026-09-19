@@ -23,3 +23,10 @@ Owner 决策：先使用截图中的币安钱包，BNB Smart Chain USDT（BEP-20
 Cloudflare 管理后台在当前浏览器持续触发安全验证，重试一次仍未进入；未修改后台秘密配置。没有可用的 Cloudflare 配置连接器或 GitHub Secrets 写入接口，因此未设置 ADS_WALLET、两端 ADS_WATCH_SECRET 或 GitHub ADS_WEB3_ENABLED 变量。没有执行任何真实付款、钱包转账或退款。
 
 开通步骤见 `sites/baipiaoji/docs/WEB3-SETUP.md`。代码发布与真实收款开通分开记录。此功能为一次性赞助投放，不是会员自动续费。
+
+## 生产部署结果
+
+PR #9 已合并，部署提交 `854b49b602888215698b3c0f897823f18e560535`；Actions `35432636100` 全部成功。
+线上浏览器检查 `https://baipiaoji.com/advertise`：显示 49 USDT / 30 天、匹配尾数和未开售说明，Web3 按钮禁用。
+线上 API：`web3.enabled=true`、`chain=bsc`、`token=USDT`，但 `configured=false`、`watch_healthy=false`、`rails.wallet=false`、`selling=false`。未授权私有订单请求返回 401；未配置的后台验款接口返回 503。
+直接运行真实 RPC 只读探针通过 chainId、18 位精度、最终确认区块检查。没有真实资金转账。
