@@ -144,13 +144,22 @@ export async function scanOrder(env,row){
  return web3Status(row);
 }
 export async function watchWeb3(env){
- await ensureWeb3(env.HITS);const cfg=web3Settings(env);const height=await probeChain(env,cfg);
+ let stage='schema';
+ try{
+ await ensureWeb3(env.HITS);const cfg=web3Settings(env);stage='chain_probe';const height=await probeChain(env,cfg);
  // Do not advertise availability if the RPC silently lacks log scanning.
+ stage='log_probe';
  const probe=await rpc(env,'eth_getLogs',[{address:cfg.network.contract,fromBlock:'0x'+height.toString(16),toBlock:'0x'+height.toString(16),topics:['0x'+TRANSFER,null,'0x'+cfg.recipient.slice(2).padStart(64,'0')]}]);
  if(!Array.isArray(probe))throw Error('chain_unavailable');
+ stage='orders_read';
  const rows=await env.HITS.prepare("SELECT c.*,w.* FROM bpj_ad_checkout c JOIN bpj_ad_web3 w ON w.order_id=c.id WHERE c.state='pending' AND w.chain=? AND c.created>? ORDER BY w.checked_at,c.created LIMIT 3").bind(cfg.chain,seconds()-7*86400).all();
- let processed=0;
+ let processed=0;stage='orders_scan';
  for(const row of rows.results||[]){await scanOrder(env,row);processed++;}
+ stage='health_write';
  await env.HITS.prepare('INSERT INTO bpj_ad_web3_health(id,checked_at) VALUES(?,?) ON CONFLICT(id) DO UPDATE SET checked_at=excluded.checked_at').bind(await healthKey(cfg),seconds()).run();
  return {ok:true,processed};
+ }catch{
+  // Fixed stage names only; never return database messages or RPC bodies.
+  throw Error('watch_'+stage+'_unavailable');
+ }
 }

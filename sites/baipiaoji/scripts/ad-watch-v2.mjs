@@ -22,7 +22,10 @@ let processed=0;
 for(let batch=0;batch<7;batch++){
 const r=await fetch('https://baipiaoji.com/api/ad-web3-watch',{method:'POST',headers:{Authorization:'Bearer '+secret},signal:AbortSignal.timeout(120000)});
 const j=await r.json();
-if(!r.ok||!j.ok)throw Error('Web3 verification failed; check Cloudflare wallet/RPC configuration and shared watch secret');
+if(!r.ok||!j.ok){
+ const code=/^(unauthorized|not_configured|chain_watch_unavailable|watch_(schema|chain_probe|log_probe|orders_read|orders_scan|health_write)_unavailable)$/.test(j.code)?j.code:'unexpected_response';
+ throw Error('Web3 verification failed: HTTP '+r.status+' '+code);
+}
 processed+=j.processed;
 if(j.processed<3)break;
 }
