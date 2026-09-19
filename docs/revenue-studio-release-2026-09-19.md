@@ -87,3 +87,14 @@
 - [PuzzleClub](https://agiscorecard.com/workbench/puzzleclub)
 - [ClassroomPuzzles](https://agiscorecard.com/workbench/classroompuzzles)
 - [EmbedPuzzles](https://agiscorecard.com/workbench/embedpuzzles)
+
+### 已完成正式发布
+
+提交 `874231ec80745d369e6ec8d5893b7125cfbd3bdd` 于 2026-09-19 完成发布。约 10:20 UTC 复核：四条工作流全部 success；24 个正式工具页、4 个 hub、各站 sitemap 和 JS/WASM/CSS 资源全部通过部署后检查，并从当前会话再次逐项核对正式 URL 通过。
+
+- [AGI 工作流 35436960110](https://github.com/f-tiger/agi-site/actions/runs/35436960110)：15 工具；CI 内 24 个浏览器操作流程全部通过。
+- [BPJ 工作流 35436960085](https://github.com/f-tiger/agi-site/actions/runs/35436960085)：3 工具；原付款检查依然 `selling:true`、`wallet:true`、`watch_healthy:true`。
+- [Eco 工作流 35436960105](https://github.com/f-tiger/agi-site/actions/runs/35436960105)：3 工具；原站健康检查通过。
+- [TDS 工作流 35436960141](https://github.com/f-tiger/agi-site/actions/runs/35436960141)：3 工具；原站退役页面、联盟与事件检查通过。
+
+这证明可用版发布成功，不证明已发生新真实付款、会员续费或获客增长。没有进行真实资金转账。原清单中付费团队/自动监控等高级能力仍按上表记录为未交付。
