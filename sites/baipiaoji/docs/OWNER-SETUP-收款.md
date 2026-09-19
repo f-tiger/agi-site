@@ -1,3 +1,5 @@
+> 2026-09-19 更新：Web3 开通优先走已有 GitHub Cloudflare Key。只需添加 GitHub Secret `ADS_WALLET`，其余由部署流水线同步、部署和检查；详见 [WEB3-SETUP.md](WEB3-SETUP.md)。下方手动 Cloudflare 设置属于备用方式。
+
 > 2026-09-19 更新：Owner 先使用 BNB Smart Chain USDT。新版开通步骤见 [WEB3-SETUP.md](WEB3-SETUP.md)；下文 Stripe 方案保留作后续银行卡入口。新版已实现独立 Web3 验款，覆盖下文历史“需要升级”的状态说明。
 
 # BPJ 自动收款与投放接入
