@@ -51,6 +51,11 @@ jobs:
             echo "::warning::stale run — HEAD $(git rev-parse --short HEAD) is behind main tip $(git rev-parse --short "$TIP"); deploying the tip instead of rolling production back"
             git reset --hard "$TIP"
           fi
+      - name: Regenerate feed and agent-readable mirrors from current pages
+        working-directory: sites/agiscorecard
+        run: |
+          python3 tools/gen_feed.py
+          python3 tools/gen_agent_surfaces.py
       - name: Validate site (zero-fabrication gates must print OK)
         working-directory: sites/agiscorecard
         run: python3 tools/validate.py
@@ -122,3 +127,4 @@ jobs:
             *) echo "::error::/api/pulse broken: ${p:0:120}"; fail=1 ;;
           esac
           exit $fail
+

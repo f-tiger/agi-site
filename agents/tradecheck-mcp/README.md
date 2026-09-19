@@ -1,4 +1,4 @@
-# TradeCheck MCP · 0.1.0 beta
+# TradeCheck MCP · 0.2.0 beta
 
 A local tool for importer and purchasing-team invoice review. It compares one purchase order, one supplier invoice and supplied prior invoice history, then prepares an **unsent** supplier clarification. It is a deterministic review engine exposed through MCP plus a guided agent prompt. It is not a hosted model, OCR service, ERP integration or autonomous payment agent.
 
@@ -23,7 +23,7 @@ The demo connects a real MCP client over stdio, loads a fictional order and find
 claude mcp add tradecheck -- node /absolute/path/tradecheck-mcp/dist/server.js
 ```
 
-Run `/mcp` in Claude Code and check that three TradeCheck tools appear. For Cursor, add this entry to its MCP configuration:
+Run `/mcp` in Claude Code and check that four TradeCheck tools appear. For Cursor, add this entry to its MCP configuration:
 
 ```json
 {"mcpServers":{"tradecheck":{"command":"node","args":["/absolute/path/tradecheck-mcp/dist/server.js"]}}}
@@ -39,6 +39,7 @@ If your host does not surface prompts, paste `AGENT-WORKFLOW.md`. Its ability to
 
 | Tool | Input | Output |
 |---|---|---|
+| `tradecheck_import_tables` | PO/invoice header metadata, CSV/TSV text and explicit zero-based column mappings | Unreviewed structured data, unknown prior history |
 | `tradecheck_example` | `{}` | Stable fictional input and contract |
 | `tradecheck_reconcile` | `{data, offset?:0, limit?:20}` | Summary, a page of findings, total finding count, next offset |
 | `tradecheck_supplier_draft` | `{data, language?:"en"}` | Unsent subject/body with up to 20 exception/gap items |
@@ -78,3 +79,9 @@ npm run package
 The package command stages an explicit allowlist, including the tested build, fixtures, documentation, sources and pinned dependencies manifest. It excludes repository contents, credentials, node_modules and buyer documents. Verify the download against `SHA256SUMS`.
 
 The protocol and decimal contract tests are not a measurement of LLM, OCR or commercial accuracy. See `EVALUATION.md` for independent read-only protocol scenarios when included.
+
+## Spreadsheet input in v0.2
+
+Paste CSV or tab-separated cells including headers. The browser previews five rows and all mappings; up to 100 data rows are imported. Columns must be explicitly mapped with no reuse. Filenames and physical row locators are preserved. Every header amount, currency, supplier and order ID is required. Localized decimals and numeric formulas are rejected; unknown charges are never zero-filled. Prior history begins unknown and extraction_reviewed begins false. Confirm against original documents before reconciliation. The MCP accepts the same text and zero-based mappings through tradecheck_import_tables.
+
+Release archives use a fixed timestamp and explicit source allowlist. Bump the package/download version when release contents change. The audit report schema remains version 0.1.0; package version 0.2.0 adds input preparation without changing report semantics.

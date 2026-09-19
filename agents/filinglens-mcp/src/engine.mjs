@@ -1,0 +1,33 @@
+// A source-value comparison, never a restatement classifier or investment signal.
+const DATE=/^\d{4}-\d{2}-\d{2}$/;const ACCESSION=/^\d{10}-\d{2}-\d{6}$/;
+export const concepts={Assets:'Total assets',Liabilities:'Total liabilities',StockholdersEquity:'Stockholders’ equity',Revenues:'Revenues',RevenueFromContractWithCustomerExcludingAssessedTax:'Revenue from contracts with customers',NetIncomeLoss:'Net income / loss',EarningsPerShareDiluted:'Diluted earnings per share',NetCashProvidedByUsedInOperatingActivities:'Operating cash flow'};
+export function validDate(d){return typeof d==='string'&&DATE.test(d)&&!Number.isNaN(Date.parse(d))&&new Date(d+'T00:00:00Z').toISOString().slice(0,10)===d;}
+export function conceptPath(cik,tag){if(!/^\d{1,10}$/.test(String(cik))||Number(cik)<=0)throw Error('Use a numeric SEC CIK with 1–10 digits.');if(!Object.hasOwn(concepts,tag))throw Error('Select a supported US-GAAP concept.');return `https://data.sec.gov/api/xbrl/companyconcept/CIK${String(cik).padStart(10,'0')}/us-gaap/${tag}.json`;}
+function decimal(v){if(typeof v!=='number'||!Number.isFinite(v)||Math.abs(v)>Number.MAX_SAFE_INTEGER||! /^-?\d+(\.\d{1,10})?$/.test(String(v)))throw Error('Selected observation has an unsupported or unsafe numeric value. Verify the original filing.');const s=String(v),negative=s.startsWith('-'),[a,b='']=s.replace('-','').split('.');return {n:BigInt(a+b)*(negative?-1n:1n),scale:b.length,text:s};}
+function subtract(a,b){const x=decimal(a),y=decimal(b),s=Math.max(x.scale,y.scale),n=x.n*10n**BigInt(s-x.scale)-y.n*10n**BigInt(s-y.scale);const abs=(n<0n?-n:n).toString().padStart(s+1,'0');return (n<0n?'-':'')+(s?abs.slice(0,-s)+'.'+abs.slice(-s):abs);}
+export function inspect(data){
+ if(!data||typeof data!=='object'||Array.isArray(data)||!/^\d{1,10}$/.test(String(data.cik))||Number(data.cik)<=0||data.taxonomy!=='us-gaap'||!Object.hasOwn(concepts,data.tag)||typeof data.entityName!=='string'||data.entityName.length>200||!data.units||typeof data.units!=='object')throw Error('Supply one supported SEC companyconcept JSON object.');
+ if(Object.keys(data.units).length>20)throw Error('Too many units.');let count=0;
+ const periods=[];for(const [unit,rows] of Object.entries(data.units)){if(unit.length>60||!Array.isArray(rows))throw Error('Invalid units.');count+=rows.length;if(count>10000)throw Error('At most 10,000 observations.');const seen=new Set();for(const row of rows){if(!row||typeof row!=='object'||!validDate(row.end)||!validDate(row.filed)||(row.start!==undefined&&(!validDate(row.start)||row.start>row.end))||row.filed<row.end||!ACCESSION.test(row.accn)||!['10-K','10-K/A','10-Q','10-Q/A','20-F','20-F/A','40-F','40-F/A','6-K','6-K/A'].includes(row.form))continue;const k=JSON.stringify([row.start??null,row.end]);if(!seen.has(k)){seen.add(k);periods.push({unit,start:row.start??null,end:row.end});}}}
+ periods.sort((a,b)=>b.end.localeCompare(a.end)||String(b.start).localeCompare(String(a.start))||a.unit.localeCompare(b.unit));
+ return {cik:String(Number(data.cik)),entity:data.entityName,tag:data.tag,label:concepts[data.tag],observations:count,periods};
+}
+function source(cik,r){return {value:decimal(r.val).text,start:r.start??null,end:r.end,filed:r.filed,form:r.form,accession:r.accn,filing_url:Number(cik)===9999999999?null:`https://www.sec.gov/Archives/edgar/data/${Number(cik)}/${r.accn.replaceAll('-','')}/`};}
+function pick(data,unit,start,end,asOf){
+ const candidates=(data.units[unit]||[]).filter(r=>r&&typeof r==='object'&&(r.start??null)===start&&r.end===end&&validDate(r.filed)&&r.filed>=end&&r.filed<=asOf&&ACCESSION.test(r.accn)&&['10-K','10-K/A','10-Q','10-Q/A','20-F','20-F/A','40-F','40-F/A','6-K','6-K/A'].includes(r.form));
+ if(!candidates.length)return {status:'missing',filed:null,sources:[],source_count:0};
+ const latest=candidates.reduce((a,r)=>r.filed>a?r.filed:a,'');const rows=candidates.filter(r=>r.filed===latest);const distinct=new Set(rows.map(r=>decimal(r.val).text));
+ // Preserve conflict status while bounding source rows; disclose all omissions.
+ const sources=[...new Map(rows.map(r=>[r.accn+'|'+decimal(r.val).text,source(data.cik,r)])).values()].sort((a,b)=>a.accession.localeCompare(b.accession)||a.value.localeCompare(b.value));
+ return {status:distinct.size===1?'available':'ambiguous',filed:latest,value:distinct.size===1?decimal(rows[0].val).text:null,sources:sources.slice(0,20),source_count:sources.length,sources_omitted:Math.max(0,sources.length-20)};
+}
+export function compare(data,options){
+ const meta=inspect(data);const {unit,start=null,end,before,after}=options||{};
+ if(typeof unit!=='string'||!Object.hasOwn(data.units,unit)||!validDate(end)||!validDate(before)||!validDate(after)||(start!==null&&(!validDate(start)||start>end))||before>=after)throw Error('Choose an available unit, an exact start/end period and two increasing as-of dates.');
+ const left=pick(data,unit,start,end,before),right=pick(data,unit,start,end,after);
+ const available=left.status==='available'&&right.status==='available';
+ let delta=null;if(available){const l=data.units[unit].find(r=>r&&r.accn===left.sources[0].accession&&r.filed===left.filed&&r.end===end&&(r.start??null)===start),r=data.units[unit].find(r=>r&&r.accn===right.sources[0].accession&&r.filed===right.filed&&r.end===end&&(r.start??null)===start);delta=subtract(r.val,l.val);}
+ return {version:'0.1.0',scope:'same-period as-filed value comparison',entity:meta.entity,cik:meta.cik,taxonomy:'us-gaap',tag:meta.tag,unit,period:{start,end},as_of:{before,after},status:!available?'incomplete':Number(delta)===0?'unchanged':'value_changed',absolute_change:delta,before:left,after:right,restatement_determined:false,investment_recommendation:false,limits:['This compares reported values, not causes. A difference does not establish a restatement, error or investment opportunity.','The latest eligible filing date at each cutoff is used; conflicting values on that date remain ambiguous.','The period must match exactly. Fiscal year labels and quarter frames are not used to combine periods.','SEC companyconcept data can omit custom concepts and dimensions, and may change after corrections. Inspect source filings.']};
+}
+export const example={cik:9999999999,entityName:'Fictional Harbor Components — example only',taxonomy:'us-gaap',tag:'Revenues',units:{USD:[{start:'2024-01-01',end:'2024-12-31',val:125000000,accn:'9999999999-25-000001',form:'10-K',filed:'2025-02-20'},{start:'2024-01-01',end:'2024-12-31',val:123000000,accn:'9999999999-26-000001',form:'10-K',filed:'2026-02-20'}]}};
+export const exampleOptions={unit:'USD',start:'2024-01-01',end:'2024-12-31',before:'2025-12-31',after:'2026-03-01'};

@@ -22,6 +22,10 @@
     {
       "pattern": "querysprint.agiscorecard.com",
       "custom_domain": true
+    },
+    {
+      "pattern": "filinglens.agiscorecard.com",
+      "custom_domain": true
     }
   ],
   "ratelimits": [

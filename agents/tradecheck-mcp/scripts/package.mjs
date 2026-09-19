@@ -1,6 +1,7 @@
 import {cp,mkdir,rm,readFile,writeFile} from 'node:fs/promises';import {spawnSync} from 'node:child_process';import {createHash} from 'node:crypto';
 const stage='release/tradecheck-mcp';await rm('release',{recursive:true,force:true});await mkdir(stage,{recursive:true});
-const allow=['package.json','package-lock.json','tsconfig.json','README.md','LICENSE.txt','THIRD-PARTY-NOTICES.txt','AGENT-WORKFLOW.md','src','dist','examples','tests','scripts','evals.xml','EVALUATION.md','evaluation-results.json'];
+const allow=['package.json','package-lock.json','tsconfig.json','README.md','LICENSE.txt','THIRD-PARTY-NOTICES.txt','AGENT-WORKFLOW.md','src','dist','examples','tests','scripts','evals.xml','EVALUATION.md'];
 for(const path of allow)await cp(path,stage+'/'+path,{recursive:true});
-const file='tradecheck-mcp-0.1.0.tar.gz';const r=spawnSync('tar',['-czf','release/'+file,'-C','release','tradecheck-mcp'],{stdio:'inherit'});if(r.status!==0)throw Error('Archive creation failed');
+const evaluation=await readFile(stage+'/EVALUATION.md','utf8');await writeFile(stage+'/EVALUATION.md',evaluation.replace(/^- Run timestamp: .*$/m,'- Run timestamp: recorded in the repository release report.').replace('Structured protocol outputs and assertion results: `evaluation-results.json`','Run `node scripts/evaluate.mjs` to generate local protocol outputs and assertion results.'));
+const file='tradecheck-mcp-0.2.0.tar.gz';const r=spawnSync('tar',['--sort=name','--mtime=2026-09-19T00:00:00Z','--owner=0','--group=0','--numeric-owner','-czf','release/'+file,'-C','release','tradecheck-mcp'],{stdio:'inherit'});if(r.status!==0)throw Error('Archive creation failed');
 const digest=createHash('sha256').update(await readFile('release/'+file)).digest('hex');await writeFile('release/SHA256SUMS',digest+'  '+file+'\n');console.log('Created reviewed beta package and checksum.');

@@ -5,6 +5,7 @@ on:
     paths:
       - 'sites/venture-lab/**'
       - 'agents/tradecheck-mcp/**'
+      - 'agents/filinglens-mcp/**'
       - '.github/workflows/deploy-venture-lab.yml'
   workflow_dispatch: {}
 permissions:
@@ -34,6 +35,13 @@ jobs:
           npm test
           node scripts/evaluate.mjs
           npm run package
+      - name: Validate and package FilingLens MCP
+        working-directory: agents/filinglens-mcp
+        run: |
+          npm ci --ignore-scripts --no-audit --no-fund
+          npm test
+          node scripts/evaluate.mjs
+          npm run package
       - name: Install pinned SQL runtime, test and build
         working-directory: sites/venture-lab
         run: |
@@ -49,7 +57,7 @@ jobs:
           CLOUDFLARE_API_TOKEN_ZONE: ${{ secrets.CLOUDFLARE_API_TOKEN_ZONE }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: node scripts/prepare.mjs
-      - name: Deploy three public tools
+      - name: Deploy portfolio tools
         if: github.ref == 'refs/heads/main'
         uses: cloudflare/wrangler-action@v3
         with:

@@ -6,4 +6,4 @@ for(const route of config.routes){const match=domains.find(d=>d.hostname===route
 // authorization is enforced by Cloudflare on deploy; no management API proxy.
 config.d1_databases=[{binding:'DB',database_name:'after35-events',database_id:'6109b81e-c970-47d7-b7fc-3a2a15f68ed2'}];
 await writeFile('wrangler.generated.json',JSON.stringify(config,null,2)+'\n');
-console.log('Prepared existing owner DB binding; Worker initializes only venture_events.');
+console.log('Prepared existing owner DB binding; Worker initializes only venture_events and filinglens_events.');

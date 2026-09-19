@@ -1,0 +1,4 @@
+import {cp,mkdir,rm,readFile,writeFile} from 'node:fs/promises';import {spawnSync} from 'node:child_process';import {createHash} from 'node:crypto';
+const stage='release/filinglens-mcp';await rm('release',{recursive:true,force:true});await mkdir(stage,{recursive:true});
+for(const p of ['package.json','package-lock.json','README.md','LICENSE.txt','THIRD-PARTY-NOTICES.txt','src','tests','scripts','evals.xml','EVALUATION.md'])await cp(p,stage+'/'+p,{recursive:true});
+const file='filinglens-mcp-0.1.0.tar.gz';const r=spawnSync('tar',['--sort=name','--mtime=2026-09-19T00:00:00Z','--owner=0','--group=0','--numeric-owner','-czf','release/'+file,'-C','release','filinglens-mcp'],{stdio:'inherit'});if(r.status!==0)throw Error('Archive creation failed');await writeFile('release/SHA256SUMS',createHash('sha256').update(await readFile('release/'+file)).digest('hex')+'  '+file+'\n');console.log('Packaged FilingLens beta with checksum.');
