@@ -173,6 +173,7 @@ jobs:
         run: |
           node scripts/test-ad-commerce.mjs
           node scripts/test-ad-web3.mjs
+          node scripts/test-ad-watch-readiness.mjs
 
       - name: Pricing-probe selftest (zero network)
         run: node scripts/pricing-probe.mjs --selftest
@@ -218,6 +219,7 @@ jobs:
       # 做一件确定无效的事。项目若真被删,下面的 deploy 会报错,那时手动建一次即可。
       # Owner requested Web3 launch using the existing repository Cloudflare key.
       - name: Sync payment secrets using the existing Cloudflare credential
+        id: payment_config
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
@@ -232,6 +234,7 @@ jobs:
 
       - name: Verify Web3 watcher and selling after deployment
         env:
+          REQUIRE_WEB3_CONFIGURED: ${{ steps.payment_config.outputs.configured }}
           ADS_WATCH_SECRET: ${{ secrets.ADS_WATCH_SECRET }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: node scripts/ad-watch-v2.mjs --if-configured
