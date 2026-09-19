@@ -1,6 +1,6 @@
 import {drying,measured,replacement} from './household-math.mjs';
 const form=document.querySelector('[data-household]'),out=document.querySelector('#result');
-const eur=n=>n.toLocaleString('de-DE',{style:'currency',currency:'EUR'}),num=n=>n.toLocaleString('de-DE',{maximumFractionDigits:2});
+const eur=n=>(Math.round((n+Number.EPSILON)*100)/100).toLocaleString('de-DE',{style:'currency',currency:'EUR'}),num=n=>n.toLocaleString('de-DE',{maximumFractionDigits:2});
 if(form){
  const calc=()=>{
   if(!form.reportValidity())return;

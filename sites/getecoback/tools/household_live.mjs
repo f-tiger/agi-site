@@ -3,7 +3,8 @@ const origin='https://getecoback.com';
 async function get(url){const r=await fetch(url,{headers:{'User-Agent':'getecoback-ci household-release'},signal:AbortSignal.timeout(20000)});assert.equal(r.status,200,url);return r;}
 const sitemap=await(await get(origin+'/sitemap.xml')).text();
 for(const slug of ['wohnkosten-werkstatt','waeschetrockner-oder-luftentfeuchter','strommess-protokoll','geraete-austausch-rechner']){
- const url=origin+'/'+slug+'.html',r=await get(url),html=await r.text();assert.equal(r.url,url);assert.ok(html.includes('rel="canonical" href="'+url+'"'));assert.ok(sitemap.includes(url));assert.ok(html.includes('household.css'));assert.ok(html.includes('EB_TRACK'));assert.ok(!r.headers.get('x-robots-tag')?.includes('noindex'));console.log('PASS live household '+slug);
+ const url=origin+'/'+slug+'.html',r=await get(url),html=await r.text();assert.equal(r.url,url);assert.ok(html.includes('rel="canonical" href="'+url+'"'));assert.ok(sitemap.includes(url));assert.ok(html.includes('household.css'));assert.ok(html.includes('EB_TRACK'));assert.ok(!html.includes('<!--EB_USSWITCH-->'),'Explicit marketplace choice must not be auto-rewritten');
+ if(slug==='waeschetrockner-oder-luftentfeuchter'){assert.ok(html.includes('amazon.com/s?k=dehumidifier&amp;tag=ecoback0d-20'));assert.ok(html.includes('amazon.de/s?k=Luftentfeuchter+Hygrostat&amp;tag=getecoback-21'));}assert.ok(!r.headers.get('x-robots-tag')?.includes('noindex'));console.log('PASS live household '+slug);
 }
 for(const name of ['household.css','household.mjs','household-math.mjs'])await get(origin+'/assets/'+name);
 await get(origin+'/downloads/haushalt-messprotokoll.csv');

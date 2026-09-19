@@ -29,6 +29,8 @@ print('Household entry links verified on',len(TARGETS),'existing pages.')
 # Explicit browser QA must not count as customer adoption. Run after chrome.
 for slug in ['wohnkosten-werkstatt','waeschetrockner-oder-luftentfeuchter','strommess-protokoll','geraete-austausch-rechner']:
  p=SITE/(slug+'.html');s=p.read_text()
+ # These pages offer explicit DE/US category links; do not rewrite the visitor's choice.
+ s=re.sub(r'<!--EB_USSWITCH-->.*?<!--/EB_USSWITCH-->\n?', '', s, flags=re.S)
  anchor='<!--EB_TRACK--><script>(function(){'
  guard='if(new URLSearchParams(location.search).get("__probe")==="1")return;'
  assert anchor in s, slug+' tracking anchor missing'

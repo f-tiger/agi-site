@@ -39,7 +39,7 @@ No usable specific Reddit thread was retrieved. No Reddit demand claim, keyword 
 - `/geraete-austausch-rechner.html`: keep-versus-buy total cost and simple payback; explicit no-payback outcome.
 - Nine contextual entry blocks, including homepage and tools directory. No unrelated cross-site link network.
 - Sitemap and site search use existing builders; RSS and llms index include the new pages. llms.txt is documentation, not a promised ranking signal.
-- Existing DE affiliate tag only, visible disclosures, category search links with no invented ASINs or live prices. No new storefront contracts.
+- Existing DE and US affiliate tags with explicit market choice, visible disclosures, category search links with no invented ASINs or live prices. No new storefront contracts.
 - Existing first-party tracker counts intentional calculation events with a fixed tool source and no numeric inputs. Default examples do not count as usage.
 
 ## Commercial target and decision gates
@@ -61,3 +61,11 @@ Commit `32ef29713f82301ccd968cf96f5ed9f1838db89b`, workflow https://github.com/f
 Fresh 2026-09-19 02:50 UTC aggregates: AGI 34,602 filtered pageviews / 22 AI referrers; BPJ 334 referred JavaScript views; Eco 509 filtered pageviews / 20 AI referrals; TDS 255 JavaScript pageviews / 0 AI referrals. Definitions differ. Eco trend endpoint: page_view n7=112 / p7=118 and affiliate_click n7=18 / p7=10. The endpoint includes today, so these date-based bins are not necessarily equally complete. No causal growth or conversion-rate improvement is claimed.
 
 The first browser inspection contributed two possible hub pageviews already present in that aggregate. They are QA, not acquisition. A follow-up adds an explicit `__probe=1` exclusion to tracking on the four new pages and excludes probe calculations before interactive QA. Commercial evaluation must exclude this initial self-test activity. Subsequent production verification should record the final follow-up workflow below.
+
+For cohort review use `docs/eco-household-queries.sql`: 28 complete UTC dates September 20–October 17, strict human-class filter, launch day excluded. This cohort gate uses a stricter filter than the legacy site-wide pulse and must remain separate. The query is read-only and is not scheduled or automatically executed.
+
+## Adversarial browser finding
+
+The legacy automatic US switch matched “Hygrostat” before “Luftentfeuchter” and rewrote the new dehumidifier link to an indoor hygrometer while leaving its Amazon.de label unchanged. Browser verification caught this real mismatch. The four new pages now present explicit German and US category links and exclude the legacy auto-switch after chrome injection; existing unrelated pages are unchanged. The live gate asserts the intended category/tag pair and absence of the auto-switch. This is a fix to the new cohort, not a claim that the entire legacy rule list is repaired.
+
+Browser interactions verified equal-cost drying inputs, longer dehumidifier running time, and the no-payback replacement branch. QA used the explicit probe parameter. These interactions are not users or affiliate conversions.
