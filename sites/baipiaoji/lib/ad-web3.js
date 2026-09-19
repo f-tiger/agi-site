@@ -30,13 +30,14 @@ export function web3Settings(env){
  const configured=!!env.HITS&&!!network&&addressOK&&rpcOK&&cents>0&&cents<=1000000&&Number.isInteger(days)&&days>0&&days<=366&&String(env.ADS_WATCH_SECRET||'').length>=32;
  return {chain,network,recipient:network?.chainId?recipient.toLowerCase():recipient,cents,days,configured,enabled:env.ADS_WEB3_ENABLED==='true',baseUnits:cents*10000};
 }
+function rpcFailure(reason){const failure=Error('chain_unavailable');failure.reason=reason;return failure;}
 async function api(url,body,headers={}){
  const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),10000);
  try{
   const r=await fetch(url,{method:body?'POST':'GET',headers:{'Content-Type':'application/json',...headers},body:body?JSON.stringify(body):undefined,signal:controller.signal,redirect:'manual'});
-  if(!r.ok)throw Error('rpc_http_'+r.status);
-  let j;try{j=await r.json();}catch{throw Error('rpc_invalid_json');}
-  if(j.error||j.Error||j.success===false)throw Error('rpc_rejected');return j;
+  if(!r.ok)throw rpcFailure('rpc_http_'+r.status);
+  let j;try{j=await r.json();}catch{throw rpcFailure('rpc_invalid_json');}
+  if(j.error||j.Error||j.success===false)throw rpcFailure('rpc_rejected');return j;
  }finally{clearTimeout(timer);}
 }
 async function rpc(env,method,params=[]){const j=await api(env.ADS_WEB3_RPC_URL,{jsonrpc:'2.0',id:1,method,params});if(!('result' in j))throw Error('chain_unavailable');return j.result;}
@@ -166,7 +167,7 @@ export async function watchWeb3(env){
  }catch(cause){
   // Fixed stage/reason codes only; never return database messages or RPC bodies.
   const failure=Error('watch_'+stage+'_unavailable');
-  failure.reason=/^(rpc_http_[1-5][0-9]{2}|rpc_invalid_json|rpc_rejected|wrong_chain|token_precision|chain_unavailable|not_configured)$/.test(cause.message)?cause.message:({TypeError:'runtime_type_error',AbortError:'rpc_timeout'}[cause.name]||'internal_error');
+  failure.reason=/^(rpc_http_[1-5][0-9]{2}|rpc_invalid_json|rpc_rejected|wrong_chain|token_precision|chain_unavailable|not_configured)$/.test(cause.reason||cause.message)?(cause.reason||cause.message):({TypeError:'runtime_type_error',AbortError:'rpc_timeout'}[cause.name]||'internal_error');
   throw failure;
  }
 }
