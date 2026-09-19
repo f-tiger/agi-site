@@ -13,11 +13,11 @@ node tools/revenue-studio/verify.mjs --site agi --out /tmp/agi-workbench
 
 Site keys: `bpj`, `agi`, `eco`, `tds`. Existing Cloudflare workflows call the builder after their normal builds and check every new route after deployment. No new cloud account, domain, paid dependency or credential is needed. sql.js 1.13.0 is pinned and vendored at build time, including its WASM runtime; visitors do not depend on a third-party CDN.
 
-Inputs remain in the browser. Storage is opt-in, namespaced per product, limited to 20 versions and can be cleared. Backups and reports are explicit downloads. No claims of encryption, cloud synchronization, live monitoring, automatic translation, financial advice, authenticity verification or fraud detection are made. These tools do not initiate transfers. LaunchDesk links to the existing BPJ checkout; it does not duplicate wallet configuration.
+Calculations run in the browser. Inputs remain local unless the user explicitly saves a record in the separate BPJ member workspace. Storage is opt-in, namespaced per product, limited to 20 versions and can be cleared. Backups and reports are explicit downloads. No claims of end-to-end encryption, live monitoring, automatic translation, financial advice, authenticity verification or fraud detection are made. Cloud backup is an explicit paid operation; local tool execution stays offline. These tools do not initiate transfers. LaunchDesk links to the existing BPJ checkout; it does not duplicate wallet configuration.
 
 ## Commercial boundary
 
-Only the existing BPJ sponsored placement is sold. The other 23 first editions are free. Proposed premium prices in the research are hypotheses, not offers. LocalStorage is not an authorization/paywall mechanism. Team accounts, source polling, email delivery, subscription billing and premium fulfillment remain separate unbuilt work. Existing guide/affiliate surfaces remain available through each mother site, but a calculator use does not count as affiliate revenue.
+The calculators remain free. BPJ sponsored placement and optional prepaid cloud-workspace membership are separate paid services. Membership adds server-side storage and version history across all 24 tools; see `../member-studio/README.md`. LocalStorage is not an authorization/paywall mechanism. Team accounts, source polling, email delivery and automatic recurring debit are not included. Existing guide/affiliate surfaces remain available through each mother site, but a calculator use does not count as affiliate revenue.
 
 All business example rows are fictional and labeled. Do not ingest customer data into tests. Tests verify arithmetic, ambiguity handling, calendar timezones, CSV export safety, SQL behavior and puzzle uniqueness; they are not market validation.
 

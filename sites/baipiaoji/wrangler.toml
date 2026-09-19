@@ -27,3 +27,7 @@ ADS_WEB3_ENABLED = "true"
 ADS_WALLET_CHAIN = "bsc"
 ADS_WEB3_PRICE_USD = "49.00"
 ADS_WEB3_RPC_URL = "https://rpc-bsc.48.club"
+
+
+# Owner-authorized prepaid workbench membership; shares the configured Web3 rail.
+MEMBERS_ENABLED = "true"

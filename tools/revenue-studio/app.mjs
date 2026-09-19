@@ -1,3 +1,4 @@
+import {memberCopy,memberURL} from './member-copy.mjs';
 import {products,href} from './catalog.mjs';
 import {engines,csvOut,puzzle,csv} from './core.mjs';
 import {projects} from './projects.mjs';
@@ -30,3 +31,16 @@ if(product){try{if(product.kind==='sql')sql();else if(product.kind)puzzles();els
 
 function sharing(){const link=$('copy-page');if(link)link.onclick=async()=>{try{await navigator.clipboard.writeText(pageURL(product,language));message('Link copied.');}catch{download('tool-link.txt',pageURL(product,language));}};const widget=$('create-widget');if(widget)widget.onclick=async()=>{try{const r=await fetch(new URL('./widgets/'+language+'/'+product.id+'.txt',import.meta.url));if(!r.ok)throw Error('Widget download unavailable');const html=await r.text();const safe=v=>v.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));const code='<iframe title="'+safe(product.name)+'" sandbox="allow-scripts allow-downloads" style="width:100%;height:700px;border:1px solid #ccc" srcdoc="'+safe(html)+'"></iframe>';const holder=$('widget-code');holder.replaceChildren(el('textarea',code,{rows:'6',readonly:'','aria-label':'Copyable embed code'}),button('Download standalone tool',()=>download(product.id+'-'+language+'.html',html,'text/html')));message('Embed code ready.');}catch(e){message(e.message,true);}};}
 if(product)sharing();
+
+
+// Explicit cross-origin transfer: the access key never leaves the BPJ member page.
+if(product){
+ const m=memberCopy[language],snapshot=()=>({version:1,product:product.id,values:product.fields.length?inputs():product.kind==='sql'?{project:$('project').value,query:$('query').value}:{seed:$('seed')?.value||'',count:$('count')?.value||'',title:$('embed-title')?.value||'',progress:product.kind==='puzzle'?JSON.stringify([...document.querySelectorAll('#output .puzzle-grid input')].map(n=>n.value)):''}});
+ const section=document.querySelector('.member-offer');section.classList.add('no-print');
+ section.append(button(m.export,()=>download(product.id+'-inputs.json',JSON.stringify(snapshot(),null,2),'application/json')));
+ section.append(button(m.save,()=>{const data=snapshot(),url=new URL(memberURL(language));url.searchParams.set('from',location.origin);const win=window.open(url.href,'_blank');if(!win)return message(m.popup,true);const handler=e=>{if(e.source!==win||e.origin!==url.origin||e.data?.kind!=='workbench-member-ready')return;win.postMessage({kind:'workbench-save',data},url.origin);window.removeEventListener('message',handler);};window.addEventListener('message',handler);setTimeout(()=>window.removeEventListener('message',handler),120000);}));
+
+ const restore=data=>{if(data?.version!==1||data.product!==product.id||!data.values||typeof data.values!=='object')return;const v=data.values;if(product.fields.length)fill(v);else if(product.kind==='sql'){if(!/^[0-2]$/.test(String(v.project))||typeof v.query!=='string')return;$('project').value=v.project;$('project').dispatchEvent(new Event('change'));$('query').value=v.query.slice(0,20000);}else{if(typeof v.seed==='string')$('seed').value=v.seed.slice(0,80);if(product.kind==='puzzle'){try{const progress=JSON.parse(v.progress||'[]');$('input-form').querySelector('button')?.click();document.querySelectorAll('#output .puzzle-grid input').forEach((n,i)=>{if(!n.readOnly&&/^[1-4]?$/.test(progress[i]||''))n.value=progress[i]||'';});}catch{}}if($('count')&&typeof v.count==='string')$('count').value=v.count;if($('embed-title')&&typeof v.title==='string')$('embed-title').value=v.title.slice(0,60);}message(m.restore);};
+ if(!product.fields.length){const upload=el('input',undefined,{type:'file',accept:'.json,application/json','aria-label':m.restore});upload.onchange=async()=>{try{const f=upload.files[0];if(f.size>65536)throw Error('Backup is too large.');restore(JSON.parse(await f.text()));}catch(e){message(e.message,true);}};section.append(upload);}
+ if(window.opener&&new URLSearchParams(location.search).get('restore')==='1'){const handler=e=>{if(e.source!==window.opener||e.origin!=='https://baipiaoji.com'||e.data?.kind!=='workbench-restore')return;restore(e.data.data);window.removeEventListener('message',handler);};window.addEventListener('message',handler);window.opener.postMessage({kind:'workbench-ready'},'https://baipiaoji.com');}
+}

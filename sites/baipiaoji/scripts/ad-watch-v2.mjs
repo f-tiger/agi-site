@@ -43,3 +43,17 @@ const doctor=await fetch('https://baipiaoji.com/api/ads?doctor=1',{signal:AbortS
 const state=await doctor.json();
 if(!doctor.ok||!state.selling||!state.rails?.wallet||!state.web3?.watch_healthy)throw Error('Watcher completed but Web3 selling is not healthy');
 console.log(JSON.stringify({selling:true,wallet:true,watch_healthy:true}));
+
+if(process.argv.includes('--members')){
+ let membershipProcessed=0,openSupport=0;
+ for(let batch=0;batch<7;batch++){
+  const r=await fetch('https://baipiaoji.com/api/member-watch',{method:'POST',headers:{Authorization:'Bearer '+secret},signal:AbortSignal.timeout(120000)});
+  const j=await r.json();
+  if(!r.ok||!j.ok)throw Error('Membership watcher failed: HTTP '+r.status);
+  membershipProcessed+=j.processed;openSupport=j.support_open;
+  if(j.processed<1)break;
+ }
+ console.log(JSON.stringify({membership_processed:membershipProcessed,membership_support_open:openSupport}));
+ if(openSupport)console.log('::warning::Membership support requests await operator review; use the authenticated member-admin API.');
+}
+

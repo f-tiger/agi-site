@@ -73,7 +73,8 @@ jobs:
           ADS_DAYS: ${{ vars.ADS_DAYS }}
         run: |
           if [ "$WEB3_ENABLED" != "false" ]; then
-            node scripts/ad-watch-v2.mjs --if-configured
+            node scripts/ad-watch-v2.mjs --if-configured --members
           else
             node scripts/ad-watch.mjs
           fi
+
