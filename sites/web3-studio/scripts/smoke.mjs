@@ -21,18 +21,17 @@ async function ready(s){
  throw Error(s.host+' did not serve this release: '+last);
 }
 await Promise.all(hosts.map(ready));
-const shared=(await readdir('dist',{withFileTypes:true})).filter(x=>x.isFile()&&!['index.html','guide.html','privacy.html','robots.txt','sitemap.xml','llms.txt'].includes(x.name)).map(x=>x.name);
+const manifest=JSON.parse(await readFile('asset-manifest.generated.json','utf8'));
 await Promise.all(hosts.map(async s=>{
- const prefix=s.id==='hub'?'':s.id+'/';
- const pages=['index.html','guide.html','privacy.html','robots.txt','sitemap.xml','llms.txt',...(s.id==='hub'?[]:['examples/input.json','examples/report.json'])];
- for(const file of [...pages,...shared]){
-  const path=file==='index.html'?'/':'/'+file;
+ const files=manifest[s.host];
+ for(const [path,file] of Object.entries(files)){
   const r=await request(s.host,path);assert.equal(r.status,200,s.host+path);
   assert.equal(r.headers.get('x-content-type-options'),'nosniff');assert.match(r.headers.get('content-security-policy')||'',/frame-ancestors 'none'/);
-  const bytes=Buffer.from(await r.arrayBuffer());const local=await readFile('dist/'+(shared.includes(file)?'':prefix)+file);
+  const bytes=Buffer.from(await r.arrayBuffer());const local=await readFile('dist/'+file);
   assert.equal(hash(bytes),hash(local),'Deployed content differs: '+s.host+path);
   if(file.endsWith('.mjs'))assert.match(r.headers.get('content-type')||'',/(?:java|ecma)script/i,'Module MIME: '+file);
  }
+ const redirect=await request(s.host,'/index.html');assert.equal(redirect.status,308);assert.equal(redirect.headers.get('location'),'https://'+s.host+'/');
  for(const path of ['/not-a-page','/reconcile/index.html','/../__private__'])assert.equal((await request(s.host,path)).status,404,s.host+path);
  const h=await request(s.host,'/',{method:'HEAD'});assert.equal(h.status,200);assert.equal((await h.arrayBuffer()).byteLength,0);
  if(s.id!=='protocol')assert.equal((await request(s.host,'/api/v1/profiles')).status,404);
@@ -42,7 +41,7 @@ await Promise.all(hosts.map(async s=>{
   for(let i=0;i<2;i++){const f=await request(s.host,'/api/feedback',init);assert.equal(f.status,200,'QA feedback '+s.host);assert.equal((await f.json()).saved,true);}
   const stats=await request(s.host,'/api/stats');assert.equal(stats.status,200);const v=await stats.json();assert.ok(v.groups.some(g=>g.site===s.id&&g.qa===1&&g.submissions>=1));assert.ok(v.groups.every(g=>g.site===s.id));
  }
- console.log('Verified '+s.host+': revision, '+(pages.length+shared.length)+' files, routing, headers'+(s.id==='hub'?'':', isolated QA feedback'));
+ console.log('Verified '+s.host+': revision, '+Object.keys(files).length+' files, routing, headers'+(s.id==='hub'?'':', isolated QA feedback'));
 }));
 const apiHost=sites.find(s=>s.id==='protocol').host;
 let r=await request(apiHost,'/api/v1/profiles');assert.equal(r.status,200);assert.equal(r.headers.get('access-control-allow-origin'),'*');let v=await r.json();assert.equal(v.revision,release.revision);assert.deepEqual(v.profiles,profiles);

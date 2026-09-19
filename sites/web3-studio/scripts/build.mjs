@@ -3,6 +3,8 @@ import {execFileSync} from 'node:child_process';
 import {sites,hubHost,label} from '../public/catalog.mjs';
 import {run} from '../public/engine.mjs';
 import {VERSION} from '../public/core.mjs';
+import {writeManifest} from './manifest.mjs';
+import {enrich} from './growth.mjs';
 const h=x=>String(x).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const brand='<svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M5 5h14l8 8v14H5z" stroke="currentColor" stroke-width="2"/><path d="M19 5v8h8M10 18h12M10 23h8" stroke="currentColor" stroke-width="2"/></svg>';
 const head=(title,description,url)=>`<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${h(title)}</title><meta name="description" content="${h(description)}"><link rel="canonical" href="${h(url)}"><meta property="og:title" content="${h(title)}"><meta property="og:description" content="${h(description)}"><meta property="og:url" content="${h(url)}"><meta property="og:type" content="website"><link rel="icon" href="/mark.svg"><link rel="stylesheet" href="/style.css"></head>`;
@@ -25,4 +27,5 @@ await writeFile('dist/index.html',head(hub.name+' — AI × Web3 tools',hub.desc
 await writeFile('dist/guide.html',doc(hub,'guide.html','Choose a workflow',`<p>Start with the tool that matches your material. All examples are fictional and all tools are free beta.</p><ul>${sites.map(s=>`<li><a href="https://${s.host}/guide.html">${h(s.name)} / ${h(s.zh)}</a>: ${h(s.description)}</li>`).join('')}</ul>`));await writeFile('dist/privacy.html',privacy({...hub,limit:'No custody, automatic trading, legal rights certification, security audit or guaranteed model quality.'}));
 await writeFile('dist/robots.txt',`User-agent: *\nAllow: /\nSitemap: https://${hubHost}/sitemap.xml\n`);await writeFile('dist/sitemap.xml',`<?xml version="1.0"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${['','guide.html','privacy.html'].map(p=>`<url><loc>https://${hubHost}/${p}</loc></url>`).join('')}</urlset>`);await writeFile('dist/llms.txt','# Web3 Workbench\n\n'+sites.map(s=>`- [${s.name}](https://${s.host}/): ${s.description} Scope: ${s.limit}`).join('\n')+'\n');
 const revision=process.env.WEB3_BUILD_REVISION||'local-development';await writeFile('release.generated.mjs','export const release='+JSON.stringify({version:VERSION,revision,sites:sites.map(s=>({id:s.id,host:s.host}))})+';\n');await writeFile('dist/release.json',JSON.stringify({version:VERSION,revision})+'\n');
-execFileSync('python3',['scripts/bundle.py']);console.log(`Built ${sites.length} tools + hub; revision ${revision}.`);
+await enrich();
+execFileSync('python3',['scripts/bundle.py']);await writeManifest();console.log(`Built ${sites.length} tools + hub; revision ${revision}.`);

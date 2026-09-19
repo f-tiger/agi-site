@@ -21,3 +21,6 @@ jobs:
       - run: node sites/agiscorecard/tools/indexnow.mjs
       - name: Submit new subdomains (play. / source.) — added 2026-08-22
         run: node tools/indexnow-subdomains.mjs
+      - name: Submit Web3 Workbench sitemaps after per-host validation
+        if: always()
+        run: node sites/web3-studio/scripts/indexnow.mjs

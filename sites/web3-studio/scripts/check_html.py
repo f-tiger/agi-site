@@ -1,6 +1,8 @@
 from pathlib import Path
 from html.parser import HTMLParser
-import re
+import re, json
+from urllib.parse import urlparse
+from PIL import Image
 class Page(HTMLParser):
     def __init__(self):
         super().__init__(); self.ids=[];self.labels=[];self.links=[];self.headings=0
@@ -10,7 +12,7 @@ class Page(HTMLParser):
         if tag=='label' and 'for' in a:self.labels.append(a['for'])
         if tag in ['a','script','link']:self.links.append(a.get('href',a.get('src','')))
         if tag=='h1':self.headings+=1
-root=Path('dist');checked=0
+root=Path('dist');checked=0; titles=set()
 for f in root.rglob('*.html'):
     p=Page();p.feed(f.read_text());assert len(p.ids)==len(set(p.ids)),f'{f}: duplicate IDs'
     assert p.headings==1,f'{f}: one primary heading required'
@@ -26,5 +28,20 @@ for f in root.rglob('*.html'):
         app=Path('public/app.mjs').read_text()
         refs=set(re.findall(r"\$\('([^']+)'\)",app))-{'fingerprint','fingerprint-result'}
         assert refs<=set(p.ids),f'{f}: missing JS targets {refs-set(p.ids)}'
+    text=f.read_text();title=re.search(r'<title>(.*?)</title>',text).group(1)
+    assert title not in titles,(f,'duplicate title');titles.add(title)
+    canonical=re.search(r'rel="canonical" href="([^"]+)"',text).group(1)
+    expected='/' if f.name=='index.html' else '/'+f.name
+    assert urlparse(canonical).path==expected,(f,canonical)
+    assert f'<meta property="og:url" content="{canonical}">' in text,(f,'og:url differs from canonical')
+    assert re.search(r'<meta property="og:image" content="https://[^/]+/share.png">',text),(f,'share image')
+    for data in re.findall(r'<script type="application/ld\+json">(.*?)</script>',text):
+        graph=json.loads(data)['@graph']
+        for entity in graph:
+            assert 'aggregateRating' not in entity
+            if entity['@type']=='WebPage':assert entity['url']==canonical
+            if entity['@type']=='FAQPage':
+                for q in entity['mainEntity']:assert q['name'].replace('&','&amp;') in text,(f,q['name'])
+    with Image.open(f.parent/'share.png') as image:assert image.size==(1200,630)
     checked+=1
 print(f'PASS: {checked} HTML pages — unique IDs, labels, primary headings, local links and app targets.')
