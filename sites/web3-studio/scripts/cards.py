@@ -1,8 +1,9 @@
 from pathlib import Path
+import os
 import json
 from PIL import Image, ImageDraw, ImageFont
 
-fontroot=Path('/usr/share/fonts/truetype/dejavu')
+fontroot=Path(os.environ.get('WEB3_FONT_DIR','/usr/share/fonts/truetype/dejavu'))
 def font(n,bold=False):return ImageFont.truetype(str(fontroot/('DejaVuSans-Bold.ttf' if bold else 'DejaVuSans.ttf')),n)
 def wrapped(draw,text,f,width):
     lines=[];line=''
@@ -30,3 +31,4 @@ for c in json.loads(Path('dist/cards.json').read_text()):
     d.rectangle((60,528,1140,590),fill='#f4f7fc');d.text((78,545),c['host'],font=font(24,True),fill=accent)
     dest=Path('dist')/('' if c['id']=='hub' else c['id']);im.save(dest/'share.png',optimize=True)
 Path('dist/cards.json').unlink()
+
