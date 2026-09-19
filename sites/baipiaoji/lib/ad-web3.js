@@ -31,8 +31,13 @@ export function web3Settings(env){
  return {chain,network,recipient:network?.chainId?recipient.toLowerCase():recipient,cents,days,configured,enabled:env.ADS_WEB3_ENABLED==='true',baseUnits:cents*10000};
 }
 async function api(url,body,headers={}){
- const r=await fetch(url,{method:body?'POST':'GET',headers:{'Content-Type':'application/json',...headers},body:body?JSON.stringify(body):undefined,signal:AbortSignal.timeout(10000),redirect:'error'});
- if(!r.ok)throw Error('chain_unavailable');const j=await r.json();if(j.error||j.Error||j.success===false)throw Error('chain_unavailable');return j;
+ const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),10000);
+ try{
+  const r=await fetch(url,{method:body?'POST':'GET',headers:{'Content-Type':'application/json',...headers},body:body?JSON.stringify(body):undefined,signal:controller.signal,redirect:'manual'});
+  if(!r.ok)throw Error('rpc_http_'+r.status);
+  let j;try{j=await r.json();}catch{throw Error('rpc_invalid_json');}
+  if(j.error||j.Error||j.success===false)throw Error('rpc_rejected');return j;
+ }finally{clearTimeout(timer);}
 }
 async function rpc(env,method,params=[]){const j=await api(env.ADS_WEB3_RPC_URL,{jsonrpc:'2.0',id:1,method,params});if(!('result' in j))throw Error('chain_unavailable');return j.result;}
 const hexNum=x=>{if(!/^0x[0-9a-f]+$/i.test(x||''))throw Error('chain_unavailable');const n=Number(BigInt(x));if(!Number.isSafeInteger(n))throw Error('chain_unavailable');return n;};
@@ -158,8 +163,10 @@ export async function watchWeb3(env){
  stage='health_write';
  await env.HITS.prepare('INSERT INTO bpj_ad_web3_health(id,checked_at) VALUES(?,?) ON CONFLICT(id) DO UPDATE SET checked_at=excluded.checked_at').bind(await healthKey(cfg),seconds()).run();
  return {ok:true,processed};
- }catch{
-  // Fixed stage names only; never return database messages or RPC bodies.
-  throw Error('watch_'+stage+'_unavailable');
+ }catch(cause){
+  // Fixed stage/reason codes only; never return database messages or RPC bodies.
+  const failure=Error('watch_'+stage+'_unavailable');
+  failure.reason=/^(rpc_http_[1-5][0-9]{2}|rpc_invalid_json|rpc_rejected|wrong_chain|token_precision|chain_unavailable|not_configured)$/.test(cause.message)?cause.message:({TypeError:'runtime_type_error',AbortError:'rpc_timeout'}[cause.name]||'internal_error');
+  throw failure;
  }
 }

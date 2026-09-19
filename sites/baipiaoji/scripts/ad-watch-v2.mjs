@@ -24,7 +24,8 @@ const r=await fetch('https://baipiaoji.com/api/ad-web3-watch',{method:'POST',hea
 const j=await r.json();
 if(!r.ok||!j.ok){
  const code=/^(unauthorized|not_configured|chain_watch_unavailable|watch_(schema|chain_probe|log_probe|orders_read|orders_scan|health_write)_unavailable)$/.test(j.code)?j.code:'unexpected_response';
- throw Error('Web3 verification failed: HTTP '+r.status+' '+code);
+ const reason=/^(rpc_http_[1-5][0-9]{2}|rpc_invalid_json|rpc_rejected|wrong_chain|token_precision|chain_unavailable|not_configured|runtime_type_error|rpc_timeout|internal_error)$/.test(j.reason)?j.reason:'unspecified';
+ throw Error('Web3 verification failed: HTTP '+r.status+' '+code+' '+reason);
 }
 processed+=j.processed;
 if(j.processed<3)break;
