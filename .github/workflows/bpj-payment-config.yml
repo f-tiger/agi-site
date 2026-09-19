@@ -1,0 +1,27 @@
+# Read-only credential/configuration check; no payment or production mutations.
+name: BPJ payment configuration
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/bpj-payment-config.yml'
+      - 'sites/baipiaoji/scripts/ad-config-check.mjs'
+permissions:
+  contents: read
+jobs:
+  check:
+    if: github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[bpj-check]')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Check existing GitHub credentials and Cloudflare configuration
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          ADS_WALLET: ${{ secrets.ADS_WALLET }}
+          ADS_WATCH_SECRET: ${{ secrets.ADS_WATCH_SECRET }}
+        run: node sites/baipiaoji/scripts/ad-config-check.mjs
