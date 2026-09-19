@@ -6,7 +6,8 @@ for(const [id,s] of Object.entries(data.sites)){
  if(only==='venture'&&id==='localebatch'||only==='localebatch'&&id!=='localebatch')continue;
  const origin='https://'+s.host,rows=data.pages.filter(p=>p.site===id),xml=await(await get(origin+'/sitemap.xml')).text();
  for(const p of rows){const url=origin+'/'+p.slug,r=await get(url),html=await r.text();assert.ok(html.includes('rel="canonical" href="'+url+'"'));assert.ok(html.includes('application/ld+json'));assert.ok(xml.includes(url));assert.ok(!r.headers.get('x-robots-tag')?.includes('noindex'));await get(origin+'/examples/'+p.download);
- const alias=await fetch(url+'.html',{redirect:'manual',signal:AbortSignal.timeout(15000)});assert.ok([301,308].includes(alias.status));assert.equal(new URL(alias.headers.get('location'),origin).href,url);
+ const alias=await fetch(url+'.html',{redirect:'manual',signal:AbortSignal.timeout(15000)});// Workers Static Assets documents 307 for html_handling; custom venture routes use permanent redirects.
+ console.log('Alias '+id+': HTTP '+alias.status);assert.ok((id==='localebatch'?[301,307,308]:[301,308]).includes(alias.status),url+' alias status '+alias.status);assert.equal(new URL(alias.headers.get('location'),origin).href,url);
  }
  for(const path of ['/llms.txt','/feed.xml','/social.png'])await get(origin+path);
  // Probe only a UA string, not a real vendor IP: do not claim proof of actual bot admission.
