@@ -3,6 +3,7 @@ import {execFileSync} from 'node:child_process';
 import {sites,byId,hubHost} from '../public/catalog.mjs';
 import {topics,scenarios,exampleLink,publicMetadata,inputSchema,updated} from '../public/experience.mjs';
 import {run} from '../public/engine.mjs';
+import {agentPages} from './mcp-pages.mjs';
 import {VERSION} from '../public/core.mjs';
 const h=x=>String(x).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const ld=x=>'<script type="application/ld+json">'+JSON.stringify(x).replace(/</g,'\\u003c')+'</script>';
@@ -65,7 +66,7 @@ export async function enrich(){
   await writeFile(dir+'/llms.txt',`# ${s.name}\n\n${topics[s.id].answer}\n\n- [Tool](https://${s.host}/)\n- [Method](https://${s.host}/guide.html)\n- [Worked examples](https://${s.host}/examples.html)\n- [Markdown reference](https://${s.host}/guide.md)\n- [Capabilities](https://${s.host}/tool.json)\n- [Input structure](https://${s.host}/input.schema.json)\n- [Privacy](https://${s.host}/privacy.html)\n\nFree beta. Version ${VERSION}. Reviewed ${updated}. ${s.limit}\n`);
   cardData.push({id:s.id,name:s.name,topic:topics[s.id].query,host:s.host,color:s.color,metrics:run(s.id,s.sample).metrics.slice(0,2),scenario:scenarios(s.id)[0].title});
  }
- await hubPages();cardData.push({id:'hub',name:'Web3 Workbench',topic:'Bring a question. Leave with a working result.',host:hubHost,color:'#315aa2',metrics:[{label:'Local worksheets',value:'10'},{label:'Fictional scenarios',value:'30'}],scenario:'AI & Web3 operational tools'});
+ await hubPages();await agentPages(enrichHead);cardData.push({id:'hub',name:'Web3 Workbench',topic:'Bring a question. Leave with a working result.',host:hubHost,color:'#315aa2',metrics:[{label:'Local worksheets',value:'10'},{label:'Fictional scenarios',value:'30'}],scenario:'AI & Web3 operational tools'});
  await writeFile('dist/cards.json',JSON.stringify(cardData));execFileSync('python3',['scripts/cards.py']);
- for(const s of [{id:'hub',host:hubHost},...sites]){const dir='dist/'+(s.id==='hub'?'':s.id+'/'),paths=s.id==='hub'?['','guide.html','publish.html','privacy.html']:['','guide.html','examples.html','privacy.html'];await writeFile(dir+'sitemap.xml',`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${paths.map(p=>`<url><loc>https://${s.host}/${p}</loc><lastmod>${updated}</lastmod></url>`).join('')}</urlset>`);}
+ for(const s of [{id:'hub',host:hubHost},...sites]){const dir='dist/'+(s.id==='hub'?'':s.id+'/'),paths=s.id==='hub'?['','guide.html','publish.html','privacy.html','for-agents.html']:['','guide.html','examples.html','privacy.html','for-agents.html'];await writeFile(dir+'sitemap.xml',`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${paths.map(p=>`<url><loc>https://${s.host}/${p}</loc><lastmod>${updated}</lastmod></url>`).join('')}</urlset>`);}
 }

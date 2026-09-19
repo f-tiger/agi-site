@@ -21,3 +21,5 @@ Commercial status: every current function is free. No checkout, paid package, pa
 Distribution: owner-controlled hub and contextual links, guides, machine-readable examples and CLI. No automated outreach or social posts. Existing fleet traffic is not evidence for this new portfolio.
 
 Measurement: optional, self-reported submissions with an explicit QA flag. No input upload. At 2026-10-19, five own-task/helped submissions and three recurring-task submissions per site trigger manual validation only; no demand conclusion without evidence of relevant exposure. See fleet-bets and the research document.
+
+Implementation update (MCP 1.2): browser/offline processing stays local. Optional remote MCP sends selected parameters to the server without application persistence; it exposes the same deterministic calculations plus public search/fetch citation references. Remote calls are not counted as feedback, people, customers or revenue. MCP availability does not demonstrate AI citation or directory inclusion.

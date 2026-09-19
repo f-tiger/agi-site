@@ -64,6 +64,14 @@
         "limit": 10,
         "period": 60
       }
+    },
+    {
+      "name": "MCP_LIMIT",
+      "namespace_id": "260919934",
+      "simple": {
+        "limit": 120,
+        "period": 60
+      }
     }
   ]
 }

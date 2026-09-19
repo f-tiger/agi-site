@@ -25,6 +25,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
+      - name: Install pinned MCP dependencies
+        working-directory: sites/web3-studio
+        run: npm ci
       - name: Install static share-card renderer
         run: python3 -m pip install -r sites/web3-studio/requirements-build.txt
       - name: Validate algorithms, UI and worker boundaries
@@ -53,4 +56,6 @@ jobs:
       - name: Verify every live host, asset and API
         if: github.ref == 'refs/heads/main'
         working-directory: sites/web3-studio
-        run: node scripts/smoke.mjs
+        run: |
+          node scripts/smoke.mjs
+          node scripts/mcp-smoke.mjs
