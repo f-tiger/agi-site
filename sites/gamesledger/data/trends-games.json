@@ -1,7 +1,14 @@
 {
- "d": "2026-09-18",
+ "d": "2026-09-19",
  "hits": [],
- "discovered": [],
+ "discovered": [
+  {
+   "query": "news science",
+   "appid": 4731610,
+   "name": "New Science",
+   "sim": 0.96
+  }
+ ],
  "watch": [
   {
    "appid": 207610,
@@ -17,6 +24,11 @@
    "appid": 4165890,
    "name": "Steam Frame",
    "first_seen": "2026-09-14"
+  },
+  {
+   "appid": 4731610,
+   "name": "New Science",
+   "first_seen": "2026-09-19"
   }
  ],
  "note": "hits=in-pool trending; discovered=new games surfaced by trends via Steam official storesearch (>=0.85 name similarity); watch feeds the search pool only — verdict pages stay hand-curated."
