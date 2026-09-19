@@ -14,6 +14,7 @@ on:
     branches:
       - main
     paths:
+      - "tools/revenue-studio/**"
       - "sites/getecoback/site/**"
       - "sites/getecoback/tools/**"
       - "sites/getecoback/src/**"
@@ -222,6 +223,14 @@ jobs:
           node tools/product_intel/test_refresh.mjs
           python3 tools/check_products.py
 
+      - name: Build and validate practical tool workbench
+        working-directory: ${{ github.workspace }}
+        run: |
+          npm ci --prefix tools/revenue-studio --ignore-scripts
+          node --test tools/revenue-studio/test.mjs
+          node tools/revenue-studio/build.mjs --site eco --out sites/getecoback/site
+          node tools/revenue-studio/verify.mjs --site eco --out sites/getecoback/site
+
       - name: Deploy to Cloudflare Workers
         uses: cloudflare/wrangler-action@v3
         with:
@@ -230,6 +239,10 @@ jobs:
           wranglerVersion: "4"
           workingDirectory: sites/getecoback
           command: deploy
+
+      - name: Verify every published workbench tool
+        working-directory: ${{ github.workspace }}
+        run: node tools/revenue-studio/verify.mjs --site eco --live
 
       - name: Post-deploy health check (live site serves key pages)
         run: |
@@ -785,3 +798,4 @@ jobs:
             -H "Content-Type: application/json; charset=utf-8" \
             -d "{\"host\":\"getecoback.com\",\"key\":\"dc2860e32f47689a11c7bc07a21f6ffb\",\"keyLocation\":\"https://getecoback.com/dc2860e32f47689a11c7bc07a21f6ffb.txt\",\"urlList\":${URLS}}" \
             -w "\nIndexNow HTTP status: %{http_code}\n" || true
+

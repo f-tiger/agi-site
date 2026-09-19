@@ -9,6 +9,7 @@ on:
   push:
     branches: [main]
     paths:
+      - "tools/revenue-studio/**"
       - "sites/agiscorecard/**"
       - ".github/workflows/deploy-agiscorecard.yml"
   workflow_dispatch: {}
@@ -81,6 +82,16 @@ jobs:
             exit 1
           fi
 
+      - name: Build and validate practical tool workbench
+        working-directory: ${{ github.workspace }}
+        run: |
+          npm ci --prefix tools/revenue-studio --ignore-scripts
+          node --test tools/revenue-studio/test.mjs
+          node tools/revenue-studio/node_modules/playwright/cli.js install --with-deps chromium --only-shell
+          node tools/revenue-studio/browser-test.mjs
+          node tools/revenue-studio/build.mjs --site agi --out sites/agiscorecard
+          node tools/revenue-studio/verify.mjs --site agi --out sites/agiscorecard
+
       - name: Deploy to Cloudflare Workers
         uses: cloudflare/wrangler-action@v3
         with:
@@ -89,6 +100,10 @@ jobs:
           wranglerVersion: "4"
           workingDirectory: sites/agiscorecard
           command: deploy
+
+      - name: Verify every published workbench tool
+        working-directory: ${{ github.workspace }}
+        run: node tools/revenue-studio/verify.mjs --site agi --live
 
       - name: Post-deploy smoke (live site serves key surfaces)
         run: |
@@ -128,4 +143,5 @@ jobs:
             *) echo "::error::/api/pulse broken: ${p:0:120}"; fail=1 ;;
           esac
           exit $fail
+
 

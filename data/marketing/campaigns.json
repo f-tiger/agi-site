@@ -3,11 +3,305 @@
   "reviewed_at": "2026-09-19",
   "max_age_days": 30,
   "campaigns": [
-    {"id":"bpj-sponsored-placement","site":"bpj","url":"https://baipiaoji.com/advertise.html","goal":"paid_placement","requires_checkout":true,"draft":"在工具相关分类投放明确标注的赞助位；先看真实触达，再决定是否购买。","channel":"owned_tool_pages","status":"approved_entry"},
-    {"id":"bpj-free-quota","site":"bpj","url":"https://baipiaoji.com/","goal":"own_task_complete","requires_checkout":false,"draft":"先核对你正在使用的AI工具免费额度与官方来源，再决定是否升级。","channel":"owned_search_content","status":"approved_entry"},
-    {"id":"agi-evidence","site":"agi","url":"https://agiscorecard.com/","goal":"evidence_task_complete","requires_checkout":false,"draft":"读一条AI判断时，也检查它引用的原始证据与更新时间。","channel":"owned_search_content","status":"approved_entry"},
-    {"id":"eco-energy-decision","site":"eco","url":"https://www.getecoback.com/","goal":"qualified_affiliate_click","requires_checkout":false,"draft":"按自己的使用场景比较能源与家电选择；商品购买前核对零售商信息。","channel":"owned_search_content","status":"approved_entry"},
-    {"id":"tds-collector-decision","site":"tds","url":"https://thedollscout.com/","goal":"own_task_complete","requires_checkout":false,"draft":"收藏之前先核对系列、官方信息与购买来源，避免把热度当价值保证。","channel":"owned_search_content","status":"approved_entry"},
-    {"id":"localebatch-csv-check","site":"commerce","url":"https://localebatch.agiscorecard.com/","goal":"own_file_check_complete","requires_checkout":false,"draft":"多语言商品导入前，先检查CSV结构。免费检查不代表已完成翻译交付。","channel":"owned_task_tutorial","status":"approved_entry"}
+    {
+      "id": "bpj-sponsored-placement",
+      "site": "bpj",
+      "url": "https://baipiaoji.com/advertise.html",
+      "goal": "paid_placement",
+      "requires_checkout": true,
+      "draft": "在工具相关分类投放明确标注的赞助位；先看真实触达，再决定是否购买。",
+      "channel": "owned_tool_pages",
+      "status": "approved_entry"
+    },
+    {
+      "id": "bpj-free-quota",
+      "site": "bpj",
+      "url": "https://baipiaoji.com/",
+      "goal": "own_task_complete",
+      "requires_checkout": false,
+      "draft": "先核对你正在使用的AI工具免费额度与官方来源，再决定是否升级。",
+      "channel": "owned_search_content",
+      "status": "approved_entry"
+    },
+    {
+      "id": "agi-evidence",
+      "site": "agi",
+      "url": "https://agiscorecard.com/",
+      "goal": "evidence_task_complete",
+      "requires_checkout": false,
+      "draft": "读一条AI判断时，也检查它引用的原始证据与更新时间。",
+      "channel": "owned_search_content",
+      "status": "approved_entry"
+    },
+    {
+      "id": "eco-energy-decision",
+      "site": "eco",
+      "url": "https://www.getecoback.com/",
+      "goal": "qualified_affiliate_click",
+      "requires_checkout": false,
+      "draft": "按自己的使用场景比较能源与家电选择；商品购买前核对零售商信息。",
+      "channel": "owned_search_content",
+      "status": "approved_entry"
+    },
+    {
+      "id": "tds-collector-decision",
+      "site": "tds",
+      "url": "https://thedollscout.com/",
+      "goal": "own_task_complete",
+      "requires_checkout": false,
+      "draft": "收藏之前先核对系列、官方信息与购买来源，避免把热度当价值保证。",
+      "channel": "owned_search_content",
+      "status": "approved_entry"
+    },
+    {
+      "id": "localebatch-csv-check",
+      "site": "commerce",
+      "url": "https://localebatch.agiscorecard.com/",
+      "goal": "own_file_check_complete",
+      "requires_checkout": false,
+      "draft": "多语言商品导入前，先检查CSV结构。免费检查不代表已完成翻译交付。",
+      "channel": "owned_task_tutorial",
+      "status": "approved_entry"
+    },
+    {
+      "id": "studio-launchdesk",
+      "site": "bpj",
+      "url": "https://baipiaoji.com/workbench/launchdesk",
+      "goal": "paid_placement",
+      "requires_checkout": true,
+      "draft": "Prepare a sponsored tool placement, then check live inventory and pay through BPJ. Check current inventory and price before buying.",
+      "channel": "owned_task_tutorial",
+      "status": "approved_entry"
+    },
+    {
+      "id": "studio-quotawatch-pro",
+      "site": "bpj",
+      "url": "https://baipiaoji.com/workbench/quotawatch-pro",
+      "goal": "own_task_complete",
+      "requires_checkout": false,
+      "draft": "Compare two verified quota snapshots without mistaking a unit change for a better deal. Free browser edition; no cloud synchronization or paid membership.",
+      "channel": "owned_task_tutorial",
+      "status": "approved_entry"
+    },
+    {
+      "id": "studio-creatorops",
+      "site": "bpj",
+      "url": "https://baipiaoji.com/workbench/creatorops",
+      "goal": "own_task_complete",
+      "requires_checkout": false,
+      "draft": "Turn clip timings, evidence and rights notes into a production handoff. Free browser edition; no cloud synchronization or paid membership.",
+      "channel": "owned_task_tutorial",
+      "status": "approved_entry"
+    },
+    {
+      "id": "studio-evidencewatch",
+      "site": "agi",
+      "url": "https://agiscorecard.com/workbench/evidencewatch",
+      "goal": "own_task_complete",
+      "requires_checkout": false,
+      "draft": "Keep claim-level source references and export due dates to your calendar. Free browser edition; no cloud synchronization or paid membership.",
+      "channel": "owned_task_tutorial",
+      "status": "approved_entry"
+    },
+    {
+      "id": "studio-agentfit",
+      "site": "agi",
+      "url": "https://agiscorecard.com/workbench/agentfit",
+      "goal": "own_task_complete",
+      "requires_checkout": false,
+      "draft": "Choose an execution pattern and write testable acceptance criteria before deploying an agent. Free browser edition; no cloud synchronization or paid membership.",
+      "channel": "owned_task_tutorial",
+      "status": "approved_entry"
+    },
+    {
+      "id": "studio-filinglens-workspace",
+      "site": "agi",
+      "url": "https://agiscorecard.com/workbench/filinglens-workspace",
+      "goal": "own_task_complete",
+      "requires_checkout": false,
+      "draft": "Preserve same-period research inputs, source URLs and calculated changes. Free browser edition; no cloud synchronization or paid membership.",
+      "channel": "owned_task_tutorial",
+      "status": "approved_entry"
+    },
+    {
+      "id": "studio-billlens",
+      "site": "eco",
+      "url": "https://getecoback.com/en/workbench/billlens.html",
+      "goal": "own_task_complete",
+      "requires_checkout": false,
+      "draft": "Compare first-year and recurring electricity costs using your actual tariff inputs. Free browser edition; no cloud synchronization or paid membership.",
+      "channel": "owned_task_tutorial",
+      "status": "approved_entry"
+    },
+    {
+      "id": "studio-appliancepayback",
+      "site": "eco",
+      "url": "https://getecoback.com/en/workbench/appliancepayback.html",
+      "goal": "own_task_complete",
+      "requires_checkout": false,
+      "draft": "Estimate replacement payback under three energy-price assumptions. Free browser edition; no cloud synchronization or paid membership.",
+      "channel": "owned_task_tutorial",
+      "status": "approved_entry"
+    },
+    {
+      "id": "studio-homeenergy-log",
+      "site": "eco",
+      "url": "https://getecoback.com/en/workbench/homeenergy-log.html",
+      "goal": "own_task_complete",
+      "requires_checkout": false,
+      "draft": "Turn cumulative meter readings into interval use and daily averages. Free browser edition; no cloud synchronization or paid membership.",
+      "channel": "owned_task_tutorial",
+      "status": "approved_entry"
+    },
+    {
+      "id": "studio-collectorledger",
+      "site": "tds",
+      "url": "https://thedollscout.com/workbench/collectorledger",
+      "goal": "own_task_complete",
+      "requires_checkout": false,
+      "draft": "Count owned figures and duplicates while preserving recorded purchase costs. Free browser edition; no cloud synchronization or paid membership.",
+      "channel": "owned_task_tutorial",
+      "status": "approved_entry"
+    },
+    {
+      "id": "studio-dropcalendar",
+      "site": "tds",
+      "url": "https://thedollscout.com/workbench/dropcalendar",
+      "goal": "own_task_complete",
+      "requires_checkout": false,
+      "draft": "Convert entered official release announcements into timezone-safe calendar reminders. Free browser edition; no cloud synchronization or paid membership.",
+      "channel": "owned_task_tutorial",
+      "status": "approved_entry"
+    },
+    {
+      "id": "studio-displayfit",
+      "site": "tds",
+      "url": "https://thedollscout.com/workbench/displayfit",
+      "goal": "own_task_complete",
+      "requires_checkout": false,
+      "draft": "Check display capacity and visible front-row space before buying a cabinet. Free browser edition; no cloud synchronization or paid membership.",
+      "channel": "owned_task_tutorial",
+      "status": "approved_entry"
+    },
+    {
+      "id": "studio-tradecheck-team",
+      "site": "agi",
+      "url": "https://agiscorecard.com/workbench/tradecheck-team",
+      "goal": "own_task_complete",
+      "requires_checkout": false,
+      "draft": "Compare invoice lines to purchase orders and flag duplicate invoice IDs. Free browser edition; no cloud synchronization or paid membership.",
+      "channel": "owned_task_tutorial",
+      "status": "approved_entry"
+    },
+    {
+      "id": "studio-localebatch-qa",
+      "site": "agi",
+      "url": "https://agiscorecard.com/workbench/localebatch-qa",
+      "goal": "own_task_complete",
+      "requires_checkout": false,
+      "draft": "Find missing translations, changed placeholders and import-field duplicates. Free browser edition; no cloud synchronization or paid membership.",
+      "channel": "owned_task_tutorial",
+      "status": "approved_entry"
+    },
+    {
+      "id": "studio-rfq-roundbook",
+      "site": "agi",
+      "url": "https://agiscorecard.com/workbench/rfq-roundbook",
+      "goal": "own_task_complete",
+      "requires_checkout": false,
+      "draft": "Compare one-currency quote rounds and save the assumptions behind each decision. Free browser edition; no cloud synchronization or paid membership.",
+      "channel": "owned_task_tutorial",
+      "status": "approved_entry"
+    },
+    {
+      "id": "studio-evidencebrief",
+      "site": "agi",
+      "url": "https://agiscorecard.com/workbench/evidencebrief",
+      "goal": "own_task_complete",
+      "requires_checkout": false,
+      "draft": "Build a sourced opportunity memo with alternatives, counterevidence and a stop condition. Free browser edition; no cloud synchronization or paid membership.",
+      "channel": "owned_task_tutorial",
+      "status": "approved_entry"
+    },
+    {
+      "id": "studio-modelmeter-reconcile",
+      "site": "agi",
+      "url": "https://agiscorecard.com/workbench/modelmeter-reconcile",
+      "goal": "own_task_complete",
+      "requires_checkout": false,
+      "draft": "Reconcile normalized expected AI costs against billing entries without connecting an account. Free browser edition; no cloud synchronization or paid membership.",
+      "channel": "owned_task_tutorial",
+      "status": "approved_entry"
+    },
+    {
+      "id": "studio-workflowcost",
+      "site": "agi",
+      "url": "https://agiscorecard.com/workbench/workflowcost",
+      "goal": "own_task_complete",
+      "requires_checkout": false,
+      "draft": "Model retries, human review and fixed costs before quoting an automated workflow. Free browser edition; no cloud synchronization or paid membership.",
+      "channel": "owned_task_tutorial",
+      "status": "approved_entry"
+    },
+    {
+      "id": "studio-querysprint-projects",
+      "site": "agi",
+      "url": "https://agiscorecard.com/workbench/querysprint-projects",
+      "goal": "own_task_complete",
+      "requires_checkout": false,
+      "draft": "Run original SQLite projects in your browser and compare results with explained solutions. Free browser edition; no cloud synchronization or paid membership.",
+      "channel": "owned_task_tutorial",
+      "status": "approved_entry"
+    },
+    {
+      "id": "studio-job-evidence",
+      "site": "agi",
+      "url": "https://agiscorecard.com/workbench/job-evidence",
+      "goal": "own_task_complete",
+      "requires_checkout": false,
+      "draft": "Map role requirements to real projects, sources and observed results. Free browser edition; no cloud synchronization or paid membership.",
+      "channel": "owned_task_tutorial",
+      "status": "approved_entry"
+    },
+    {
+      "id": "studio-scamchecklist",
+      "site": "agi",
+      "url": "https://agiscorecard.com/workbench/scamchecklist",
+      "goal": "own_task_complete",
+      "requires_checkout": false,
+      "draft": "Create a verification checklist from observable warning signals. Free browser edition; no cloud synchronization or paid membership.",
+      "channel": "owned_task_tutorial",
+      "status": "approved_entry"
+    },
+    {
+      "id": "studio-puzzleclub",
+      "site": "agi",
+      "url": "https://agiscorecard.com/workbench/puzzleclub",
+      "goal": "own_task_complete",
+      "requires_checkout": false,
+      "draft": "Play an original daily 4 × 4 puzzle with one verified solution and share your result. Free browser edition; no cloud synchronization or paid membership.",
+      "channel": "owned_task_tutorial",
+      "status": "approved_entry"
+    },
+    {
+      "id": "studio-classroompuzzles",
+      "site": "agi",
+      "url": "https://agiscorecard.com/workbench/classroompuzzles",
+      "goal": "own_task_complete",
+      "requires_checkout": false,
+      "draft": "Generate original printable number puzzles and a separate answer sheet for your class. Free browser edition; no cloud synchronization or paid membership.",
+      "channel": "owned_task_tutorial",
+      "status": "approved_entry"
+    },
+    {
+      "id": "studio-embedpuzzles",
+      "site": "agi",
+      "url": "https://agiscorecard.com/workbench/embedpuzzles",
+      "goal": "own_task_complete",
+      "requires_checkout": false,
+      "draft": "Generate a self-contained interactive puzzle embed for a website or classroom page. Free browser edition; no cloud synchronization or paid membership.",
+      "channel": "owned_task_tutorial",
+      "status": "approved_entry"
+    }
   ]
 }

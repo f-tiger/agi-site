@@ -14,6 +14,7 @@ on:
   push:
     branches: [main]
     paths:
+      - "tools/revenue-studio/**"
       - "sites/baipiaoji/**"
       - ".github/workflows/deploy-baipiaoji.yml"
   workflow_dispatch:
@@ -227,10 +228,22 @@ jobs:
           ADS_WATCH_SECRET: ${{ secrets.ADS_WATCH_SECRET }}
         run: node scripts/ad-configure.mjs --optional
 
+      - name: Build and validate practical tool workbench
+        working-directory: ${{ github.workspace }}
+        run: |
+          npm ci --prefix tools/revenue-studio --ignore-scripts
+          node --test tools/revenue-studio/test.mjs
+          node tools/revenue-studio/build.mjs --site bpj --out sites/baipiaoji/dist
+          node tools/revenue-studio/verify.mjs --site bpj --out sites/baipiaoji/dist
+
       - name: Deploy to Cloudflare Pages
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: npx wrangler@4 pages deploy dist --project-name=aiyangmao --branch=main --commit-dirty=true
+
+      - name: Verify every published workbench tool
+        working-directory: ${{ github.workspace }}
+        run: node tools/revenue-studio/verify.mjs --site bpj --live
 
       - name: Verify Web3 watcher and selling after deployment
         env:
@@ -742,4 +755,5 @@ jobs:
           check "广告库存面" "${{ steps.st_ads.outcome }}"
           [ "$fail" = "0" ] || exit 1
           echo "✅ 全部链路自测通过"
+
 

@@ -1,0 +1,12 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import assert from 'node:assert/strict';
+import {products,sites,href} from './catalog.mjs';
+const args=process.argv.slice(2),site=args[args.indexOf('--site')+1],s=sites[site],live=args.includes('--live'),out=args.includes('--out')?path.resolve(args[args.indexOf('--out')+1]):null;
+assert.ok(s,'Choose a site');
+const selected=products.filter(p=>p.site===site),expected=[{url:s.origin+s.prefix+s.suffix,marker:'Useful work.'},...selected.map(p=>({url:href(p),marker:`data-product="${p.id}"`}))];
+async function read(url){if(!live){const route=new URL(url).pathname;return fs.readFileSync(path.join(out,route.replace(/^\//,'')+(route.endsWith('.html')?'':'.html')),'utf8');}let error;for(let i=0;i<5;i++){try{const r=await fetch(url,{signal:AbortSignal.timeout(20000),headers:{'User-Agent':'workbench-release-check/1.0'}});if(!r.ok)throw Error(`${r.status}: ${url}`);return await r.text();}catch(e){error=e;if(i<4)await new Promise(r=>setTimeout(r,4000));}}throw error;}
+for(const item of expected){const html=await read(item.url);assert.ok(html.includes(item.marker),`Wrong page at ${item.url}`);assert.ok(html.includes(`rel="canonical" href="${item.url}"`),`Canonical mismatch ${item.url}`);assert.ok(!html.includes('noindex'),`Unexpected noindex ${item.url}`);if(item.marker.includes('data-product')){assert.ok(html.includes('id="input-form"'));assert.ok(html.includes('application/ld+json'));assert.ok(html.includes('All prefilled business examples are fictional'));}console.log('OK '+item.url);}
+for(const asset of ['app.mjs','core.mjs','catalog.mjs','projects.mjs','style.css','sql-worker.js','vendor/sql-wasm.js','vendor/sql-wasm.wasm']){if(live){const r=await fetch(s.origin+'/workbench-assets/'+asset,{signal:AbortSignal.timeout(20000)});assert.equal(r.status,200,asset);const type=r.headers.get('content-type')||'';assert.ok(!type.includes('text/html'),'Asset returned HTML: '+asset);assert.ok((await r.arrayBuffer()).byteLength>100,asset);}else assert.ok(fs.statSync(path.join(out,'workbench-assets',asset)).size>100,asset);}
+const sitemap=live?await read(s.origin+'/sitemap.xml'):fs.readFileSync(path.join(out,'sitemap.xml'),'utf8');for(const item of expected)assert.ok(sitemap.includes('<loc>'+item.url+'</loc>'),`Sitemap missing ${item.url}`);
+console.log(`${site}: ${selected.length} tools, hub, sitemap and runtime assets passed (${live?'production':'build'}).`);

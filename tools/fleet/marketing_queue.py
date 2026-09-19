@@ -2,7 +2,7 @@
 """Generate reviewable campaign drafts, never send posts/emails or invent results."""
 import argparse, datetime as dt, hashlib, json, pathlib, urllib.parse, urllib.request
 ROOT = pathlib.Path(__file__).resolve().parents[2]
-ALLOWED = {'baipiaoji.com','agiscorecard.com','www.getecoback.com','thedollscout.com','localebatch.agiscorecard.com'}
+ALLOWED = {'baipiaoji.com','agiscorecard.com','www.getecoback.com','getecoback.com','thedollscout.com','localebatch.agiscorecard.com'}
 
 def compile_plan(catalog, doctor, today):
     age = (dt.date.fromisoformat(today)-dt.date.fromisoformat(catalog['reviewed_at'])).days
@@ -40,3 +40,4 @@ def main():
         (output/'queue.md').write_text('\n'.join(lines))
     print(json.dumps({'date':a.today,'drafts':sum(c['state']=='draft_ready' for c in report['campaigns']),'blocked':sum(c['state']=='blocked' for c in report['campaigns']),'sends':0,'check_only':a.check}))
 if __name__=='__main__':main()
+
