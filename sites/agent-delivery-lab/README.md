@@ -1,9 +1,9 @@
 # Agent Delivery Lab
 
-Independent free beta at https://verify.agiscorecard.com/ for x402 v2 exact EVM payment-shape inspection, declared JSON response checks and captured payment-term comparisons. No wallet, payment, live endpoint proxy or hosted monitoring.
+Independent free beta at https://verify.agiscorecard.com/ for x402 v2 exact EVM payment-shape inspection, declared JSON response checks and captured payment-term comparisons, guided rules and batch accepted-output cost. No wallet, payment, live endpoint proxy or hosted monitoring.
 
 ```sh
-npm test  # build + 26 meaningful engine/CLI/worker tests; no npm dependencies
+npm test  # build + engine/CLI/worker tests; no npm dependencies
 npm run build
 ```
 
@@ -12,3 +12,5 @@ See `../../docs/agent-delivery-lab-validation-2026-09-19.md` for revalidation, e
 Release uses `.github/workflows/deploy-agent-delivery-lab.yml`. Branches validate; main checks existing hostname ownership, binds the fleet D1 database with an isolated feedback table, deploys an independent Worker, then requires deployed commit and asset hashes plus a QA feedback round trip. No new scheduled job. The existing fleet bet checker handles the experiment's decision deadline.
 
 Feedback rows are anonymous submissions, not verified users or conversions. Keep QA separate. Never add raw inputs, arbitrary free text, wallet connections or claims of settlement verification without re-evaluating the product boundary.
+
+Version 0.2 adds local file import, tab-memory input preservation, a guided contract editor, contract export, and batch checks. See ../../docs/agent-delivery-lab-v02-2026-09-19.md. All entered costs remain self-reported; no provider ranking or currency conversion.

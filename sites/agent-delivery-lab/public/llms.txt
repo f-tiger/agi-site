@@ -3,6 +3,7 @@
 
 - [Workbench](https://verify.agiscorecard.com/): x402 v2 exact EVM challenge shape checks, declared JSON response rules, and captured challenge comparison.
 - [Guide](https://verify.agiscorecard.com/guide.html): rule format, coverage, Node runner and Chinese quick start.
+- [Batch response checks](https://verify.agiscorecard.com/batch-checks.html): worked example, exact entered cost totals, failure/retry costs and declared-rule acceptance. All sample providers are fictional.
 - [Privacy](https://verify.agiscorecard.com/privacy.html): local inputs, optional anonymous feedback, no wallet or payment.
 
 The tool does not verify signatures, settlement, factual accuracy or provider trust. Hosted monitoring and paid subscriptions are not available. This is an independent beta, not an x402 certification service.

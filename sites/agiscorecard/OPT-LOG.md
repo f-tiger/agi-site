@@ -3116,3 +3116,8 @@ true-believer 2 · contrarian 2)。新页的 `deep_pacing_mid` / `hot_topic_clic
 `/agi-odds-vs-evidence`(台账累积,不覆盖);Tracker 侧仍 62.5/100,无判定翻转——**赔率跌了 4.5 个点,
 证据没动**,这正是这个栏目要写的差距。feed / search-index 重生成,validate OK(230 页 / 212 URL)。
 引用放大队列三项均带闸门未开,常规阶梯不动页面(昨天已发一页,anti-churn)。
+
+
+## 2026-09-19 — Agent Delivery Lab contextual developer entry
+
+Owner explicitly asked to continue expanding the newly launched Web3 × AI tool. Added one contextual block on /for-agents linking to Agent Delivery Lab batch acceptance/cost checks, with existing tool_click location=for_agents_delivery_lab. The free dataset and its subscription flow are unchanged. Source page remains authoritative; stale gen_for_agents.py was not run. Updated visible/article date and sitemap lastmod; deploy pipeline regenerates feed/Markdown surfaces and validates. This is a distribution probe, not demonstrated traffic or revenue. Details: ../../docs/agent-delivery-lab-v02-2026-09-19.md.

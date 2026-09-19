@@ -112,6 +112,7 @@ jobs:
           check "https://agiscorecard.com/" "/api/e"
           check "https://agiscorecard.com/progress-index" "One Score for the 2027 Bet"
           check "https://agiscorecard.com/data.json" "predictions"
+          check "https://agiscorecard.com/for-agents" "for_agents_delivery_lab"
           check "https://agiscorecard.com/sitemap.xml" "<loc>"
           check "https://agiscorecard.com/cn" "预言 AGI 2027 的基金"
           # D1 read path: /api/trends serves live rows; broken binding = broken JSON here.
