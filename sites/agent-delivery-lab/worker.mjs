@@ -30,7 +30,10 @@ export default {async fetch(request,env){
   }
   if(url.pathname.startsWith('/api/'))return json({error:'Not found'},404);
   if(!['GET','HEAD'].includes(request.method))return json({error:'Method not allowed'},405);
-  const response=await env.ASSETS.fetch(request);const out=new Response(response.body,response);
+  // html_handling is intentionally none so documented .html URLs remain stable.
+  // Map only the root explicitly; arbitrary missing routes must remain real 404s.
+  const assetURL=new URL(request.url);if(assetURL.pathname==='/')assetURL.pathname='/index.html';
+  const response=await env.ASSETS.fetch(new Request(assetURL,request));const out=new Response(response.body,response);
   for(const [k,v] of Object.entries(security))out.headers.set(k,v);
   out.headers.set('Cache-Control','public, max-age=0, must-revalidate');
   if(url.searchParams.has('qa'))out.headers.set('X-Robots-Tag','noindex');
