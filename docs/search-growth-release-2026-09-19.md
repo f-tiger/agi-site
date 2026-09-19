@@ -58,3 +58,13 @@ Seven days: verify crawl/canonical health and identify which entry pages receive
 - Shopify translation CSV workflow: https://help.shopify.com/en/manual/international/localization-and-translation
 - SEC API contract: https://www.sec.gov/search-filings/edgar-application-programming-interfaces
 - SQLite SELECT: https://www.sqlite.org/lang_select.html
+
+## Verified publication
+
+The four venture hosts deployed successfully in https://github.com/f-tiger/agi-site/actions/runs/35415636267 . All six new task pages across five sites are deployed; LocaleBatch completed its follow-up verification in https://github.com/f-tiger/agi-site/actions/runs/35415916133 . Its initial post-deploy check incorrectly required a permanent redirect; Workers Static Assets documents HTTP 307 for HTML aliases. The check now accepts 307 only for LocaleBatch while still requiring the exact canonical destination. Reference: https://developers.cloudflare.com/workers/static-assets/routing/advanced/html-handling/ .
+
+Venture IndexNow responses were HTTP 202 (verification pending): RFQDesk four URLs, ModelMeter three, QuerySprint three, FilingLens three. These responses do not demonstrate indexing. The read-only audit at 2026-09-19 02:27 UTC found HTTP 200 for all 19 homepages, robots files and sitemaps. BPJ's sampled Grok, Kimi and stack-builder routes matched their extensionless canonical URLs.
+
+Browser QA confirmed the FilingLens tutorial and working share button; the copied URL contains only the public tutorial address. No files or private tool input are shared. Traffic figures remain endpoint aggregates, not verified humans, revenue or proof of ranking improvement. Paid offerings remain closed.
+
+LocaleBatch live verification observed HTTP 307 to its exact canonical URL and IndexNow HTTP 202 for three changed URLs at 02:32 UTC. Follow-up venture workflow 35415916063 also completed successfully.

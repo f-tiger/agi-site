@@ -14,3 +14,7 @@ Changes:
 Validation: selection tests cover historical `.html` manifest keys against both sitemap formats, the five-page repair, missing sitemap entries and foreign-host rejection. Canonical gate passed on the prior full build (1,601 canonical pages); current main is rebuilt and checked in CI before deployment. Publication and IndexNow response must be confirmed in release logs, not inferred from this source commit.
 
 Primary protocol: https://www.indexnow.org/documentation . HTTP 200 confirms received; HTTP 202 means key validation pending. Warning disappearance requires Bing to re-evaluate; no immediate disappearance is promised.
+
+## Verified publication
+
+Commit `649bd85a685a18bfd67bd642b604541deac76449`, workflow https://github.com/f-tiger/agi-site/actions/runs/35415636259 completed successfully. The 1,603-page distribution passed validation. At 2026-09-19 02:26:51 UTC, IndexNow returned HTTP 200 for all five repair URLs. Live browser inspection confirmed the extensionless Google Flow canonical. This verifies deployment and receipt, not Bing indexing or warning removal.
