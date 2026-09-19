@@ -20,8 +20,15 @@ if(process.argv.includes('--if-configured')){
 const secret=watchSecret(process.env);
 let processed=0;
 for(let batch=0;batch<7;batch++){
-const r=await fetch('https://baipiaoji.com/api/ad-web3-watch',{method:'POST',headers:{Authorization:'Bearer '+secret},signal:AbortSignal.timeout(120000)});
-const j=await r.json();
+let r,j;
+for(let attempt=0;attempt<3;attempt++){
+ r=await fetch('https://baipiaoji.com/api/ad-web3-watch',{method:'POST',headers:{Authorization:'Bearer '+secret},signal:AbortSignal.timeout(120000)});
+ j=await r.json();
+ if(r.ok&&j.ok)break;
+ // Deployment propagation and transient upstream failures; never retry auth failures.
+ if(![502,503,504].includes(r.status)||attempt===2)break;
+ await new Promise(resolve=>setTimeout(resolve,10000));
+}
 if(!r.ok||!j.ok){
  const code=/^(unauthorized|not_configured|chain_watch_unavailable|watch_(schema|chain_probe|log_probe|orders_read|orders_scan|health_write)_unavailable)$/.test(j.code)?j.code:'unexpected_response';
  const reason=/^(rpc_http_[1-5][0-9]{2}|rpc_invalid_json|rpc_rejected|wrong_chain|token_precision|chain_unavailable|not_configured|runtime_type_error|rpc_timeout|internal_error)$/.test(j.reason)?j.reason:'unspecified';
