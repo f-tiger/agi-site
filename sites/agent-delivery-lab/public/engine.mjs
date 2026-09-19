@@ -13,6 +13,7 @@ export function parse(text) {
     const [v, depth] = stack.pop();
     if (depth > 64) throw Error('JSON nesting exceeds 64 levels.');
     if (typeof v === 'number' && !Number.isFinite(v)) throw Error('Numbers must be finite.');
+    if (typeof v === 'number' && Number.isInteger(v) && !Number.isSafeInteger(v)) throw Error('Integers outside the safe number range must be encoded as strings.');
     if (v && typeof v === 'object') for (const a of Object.values(v)) stack.push([a, depth + 1]);
   }
   return value;
@@ -39,7 +40,7 @@ export function inspectChallenge(text) {
   }
   if (!object(value.resource)) error('/resource', 'Provide a resource object with its absolute HTTP(S) URL.');
   else {
-    try { const u = new URL(value.resource.url); if (!['http:','https:'].includes(u.protocol) || u.username || u.password) throw Error(); }
+    try { if (typeof value.resource.url !== 'string') throw Error(); const u = new URL(value.resource.url); if (!['http:','https:'].includes(u.protocol) || u.username || u.password) throw Error(); }
     catch { error('/resource/url', 'Use an absolute HTTP(S) URL without embedded credentials.'); }
     for (const key of ['description','mimeType']) if (own(value.resource,key) && typeof value.resource[key] !== 'string') error('/resource/'+key, 'Expected a string.');
   }

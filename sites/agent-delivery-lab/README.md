@@ -3,7 +3,7 @@
 Independent free beta at https://verify.agiscorecard.com/ for x402 v2 exact EVM payment-shape inspection, declared JSON response checks and captured payment-term comparisons. No wallet, payment, live endpoint proxy or hosted monitoring.
 
 ```sh
-npm test  # build + 24 meaningful engine/CLI/worker tests; no npm dependencies
+npm test  # build + 25 meaningful engine/CLI/worker tests; no npm dependencies
 npm run build
 ```
 
