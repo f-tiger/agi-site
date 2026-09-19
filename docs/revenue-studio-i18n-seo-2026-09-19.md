@@ -44,3 +44,20 @@ BPJ 原 `/workbench` 改为中文主版本，英文有 `/en/workbench` 独立地
 付费与数据边界保持：BPJ 赞助位沿用现有结账；英文入口连接英文投放页。其余工具不新增收费、团队同步或自动监控承诺。不以本次发布测试推算访问量、引用量或营收。
 
 正式工作流、IndexNow 接收状态与最终结果将在实际部署后追加。
+
+## 发布记录（实际验收）
+
+主提交：`b4b33ea50f2fe9af0e08aa4240162bdb51f66f73`。2026-09-19 正式部署。
+
+- BPJ：[35441878012](https://github.com/f-tiger/agi-site/actions/runs/35441878012) 全部成功；8 个语言页面/文字镜像/运行资源通过，IndexNow HTTP 200 接收 8 页；付款链路仍为 `selling:true`、`wallet:true`、`watch_healthy:true`。
+- TDS：[35441878002](https://github.com/f-tiger/agi-site/actions/runs/35441878002) 全部成功；8 页通过，IndexNow HTTP 200 接收 8 页。
+- Eco：[35441877999](https://github.com/f-tiger/agi-site/actions/runs/35441877999) 全部成功；12 页通过，IndexNow HTTP 200 接收 12 页。
+- AGI 首次运行：[35441878041](https://github.com/f-tiger/agi-site/actions/runs/35441878041)。51 个语言版浏览器操作及 4 个独立嵌入检查通过、部署完成，但紧随部署的首页验收读到旧版并失败。随后从当前会话复查全部 32 个正式语言页面、文字镜像与资源均通过。修复提交 `5e8466e571f8a2b5fae8e6f196ba7592b5db2ab2` 在 AGI 流水线增加最多 4 次严格验收重试，间隔 8 秒，未放宽版本或内容断言。
+
+目前已逐项核实全部 60 个正式语言页面可访问并具备正确 canonical 与 hreflang。AGI 修复后的最终工作流和 IndexNow 结果见后续记录；不将第一次失败隐藏为成功。
+
+### 最终验收完成
+
+2026-09-19 12:10 UTC，AGI 修复后的 [35442057049](https://github.com/f-tiger/agi-site/actions/runs/35442057049) 全部成功：51 个语言版操作、4 个嵌入场景再次通过，32 个 AGI 正式语言页面与文字镜像、sitemap、运行资源通过，IndexNow HTTP 200 接收 32 页。
+
+最终合计：四站全部发布成功，24 个工具拥有 51 个语言版工具页面与 9 个语言版目录；60 个 canonical 页面均已通过线上验收并获 IndexNow HTTP 200 接收。搜索引擎实际收录量、AI 引用量和新增独立第三方反链仍未知。测试、提交和自有站互链均不作为这些增长指标或收入证明。
