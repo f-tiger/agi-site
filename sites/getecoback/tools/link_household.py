@@ -25,3 +25,12 @@ for name,(title,url,desc) in TARGETS.items():
  if name=='tools.html':s=s.replace('10 kostenlose Tools','kostenlose Tools')
  p.write_text(s)
 print('Household entry links verified on',len(TARGETS),'existing pages.')
+
+# Explicit browser QA must not count as customer adoption. Run after chrome.
+for slug in ['wohnkosten-werkstatt','waeschetrockner-oder-luftentfeuchter','strommess-protokoll','geraete-austausch-rechner']:
+ p=SITE/(slug+'.html');s=p.read_text()
+ anchor='<!--EB_TRACK--><script>(function(){'
+ guard='if(new URLSearchParams(location.search).get("__probe")==="1")return;'
+ assert anchor in s, slug+' tracking anchor missing'
+ if anchor+guard not in s:s=s.replace(anchor,anchor+guard,1)
+ p.write_text(s)

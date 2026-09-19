@@ -53,3 +53,11 @@ If the cohort has fewer than 50 visits, diagnose distribution/indexing before ju
 ## Verification
 
 Pure calculation checks cover all published arithmetic, zero/negative electricity savings, zero-price no-payback, and invalid/zero-duration measurements. Local metadata, schema, one-H1 and ad-label checks cover the new pages. Full site build gates, deployment, live canonical/sitemap/asset checks and aggregate reads run in the existing Eco workflow. Record actual workflow outcome below after completion; a source commit alone is not proof of publication.
+
+## First production verification
+
+Commit `32ef29713f82301ccd968cf96f5ed9f1838db89b`, workflow https://github.com/f-tiger/agi-site/actions/runs/35416790865 completed all build gates and live checks. IndexNow returned HTTP 200 for 48 changed canonical URLs (including existing pages touched by the build), not evidence of indexing.
+
+Fresh 2026-09-19 02:50 UTC aggregates: AGI 34,602 filtered pageviews / 22 AI referrers; BPJ 334 referred JavaScript views; Eco 509 filtered pageviews / 20 AI referrals; TDS 255 JavaScript pageviews / 0 AI referrals. Definitions differ. Eco trend endpoint: page_view n7=112 / p7=118 and affiliate_click n7=18 / p7=10. The endpoint includes today, so these date-based bins are not necessarily equally complete. No causal growth or conversion-rate improvement is claimed.
+
+The first browser inspection contributed two possible hub pageviews already present in that aggregate. They are QA, not acquisition. A follow-up adds an explicit `__probe=1` exclusion to tracking on the four new pages and excludes probe calculations before interactive QA. Commercial evaluation must exclude this initial self-test activity. Subsequent production verification should record the final follow-up workflow below.

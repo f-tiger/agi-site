@@ -16,7 +16,7 @@ if(form){
    }
    out.textContent=text;out.focus();
    // Only an intentional successful calculation, no inputs or result sent.
-   window.gtag?.('event','stromkosten_calc',{source:'household-'+kind});
+   if(!new URLSearchParams(location.search).has('__probe'))window.gtag?.('event','stromkosten_calc',{source:'household-'+kind});
   }catch{out.textContent='Bitte gültige Zahlen innerhalb der angegebenen Grenzen eingeben.';}
  };
  form.addEventListener('submit',e=>{e.preventDefault();calc();});
