@@ -21,7 +21,7 @@ for f in root.rglob('*.html'):
         if not link or link.startswith(('https://','http://','mailto:')):continue
         if link.startswith('#'):assert link[1:] in p.ids,(f,link);continue
         path=link.split('#')[0].split('?')[0]
-        if path in ['/openapi.json','/api/v1/profiles','/mcp']:continue
+        if path in ['/openapi.json','/api/v1/profiles','/mcp','/api/market','/api/briefs','/updates.xml']:continue
         if path=='/':path='/index.html'
         assert (f.parent/path.lstrip('/')).exists() or (root/path.lstrip('/')).exists(),(f,link)
     if 'data-site="hub"' not in f.read_text() and f.name=='index.html' and f.parent!=root:

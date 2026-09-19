@@ -66,3 +66,20 @@ Remote MCP arguments are sent to the server, unlike browser/offline inputs. Appl
 `/for-agents.html` is the human setup/citation/privacy guide. `/.well-known/mcp.json` is explicitly a descriptive metadata file, not a standard auto-install mechanism or official registry listing. MCP availability is not evidence of AI search citations.
 
 Tests use the official 2.0 client pinned to 2026-07-28 and the official 1.30 client for 2025-era compatibility. `scripts/mcp-smoke.mjs` repeats negotiation, tool discovery, resources, all 30 scenarios, citations and host scoping against the deployed endpoint. CI installs the lockfile, retains the stale-main guard and uses existing Cloudflare credentials. No new scheduled workflow is introduced.
+
+## Market context and conversion measurement (1.3)
+
+The hub now serves source-stamped `/market.html`, `/briefs.html`, three task guides,
+`/api/market`, `/api/briefs` and `/updates.xml`. Price snapshots refresh on request
+after five minutes; official metadata after one hour. Stale/unavailable data is
+explicit and data older than a day is hidden. These are venue references, not
+executable quotes or verified payments. Public source polling does not change
+any browser or MCP calculation contract.
+
+Optional, off-by-default fixed-category usage measurement writes only the isolated
+`web3_studio_events` table. `/api/growth` excludes QA unless `?qa=1`; reports count
+opt-in events, not people, linked sessions, verified backlinks or revenue. A
+separate MEASURE_LIMIT binding caps submissions. `/api/stats` feedback is separate.
+Run `node scripts/market-smoke.mjs` after deploying and
+`node scripts/growth-audit.mjs --check` for source/discovery/measurement health.
+The existing daily fleet-autopilot retains 30 daily diagnostic records.

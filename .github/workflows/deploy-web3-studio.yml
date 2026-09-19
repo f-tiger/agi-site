@@ -59,3 +59,4 @@ jobs:
         run: |
           node scripts/smoke.mjs
           node scripts/mcp-smoke.mjs
+          node scripts/market-smoke.mjs

@@ -72,6 +72,14 @@
         "limit": 120,
         "period": 60
       }
+    },
+    {
+      "name": "MEASURE_LIMIT",
+      "namespace_id": "260919935",
+      "simple": {
+        "limit": 60,
+        "period": 60
+      }
     }
   ]
 }

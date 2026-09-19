@@ -105,6 +105,24 @@ jobs:
           retention-days: 30
           if-no-files-found: warn
 
+      - name: Audit Web3 market sources and task conversions
+        id: web3
+        continue-on-error: true
+        timeout-minutes: 3
+        run: |
+          FLAGS=""
+          if [ "${{ inputs.dry_run }}" = "true" ]; then FLAGS="--check"; fi
+          node sites/web3-studio/scripts/growth-audit.mjs $FLAGS
+
+      - name: Preserve Web3 growth evidence
+        if: always() && inputs.dry_run != true
+        uses: actions/upload-artifact@v4
+        with:
+          name: web3-growth-${{ github.run_id }}
+          path: data/autopilot/web3/
+          retention-days: 30
+          if-no-files-found: warn
+
       - name: Commit what actually changed
         if: inputs.dry_run != true
         run: |
@@ -211,3 +229,10 @@ jobs:
           echo "::error::Workbench audit failed; inspect its report or timeout log."
           exit 1
 
+
+
+      - name: Enforce Web3 source and measurement health
+        if: always() && steps.web3.outcome == 'failure'
+        run: |
+          echo "::error::Web3 audit failed; inspect saved source and conversion diagnostics."
+          exit 1

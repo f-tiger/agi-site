@@ -1,6 +1,7 @@
 import test from 'node:test';import assert from 'node:assert/strict';import {readFile} from 'node:fs/promises';
 import worker,{feedbackShape} from '../worker.mjs';import {sites,hubHost} from '../public/catalog.mjs';
 const assetCalls=[];const env={ASSETS:{fetch:async request=>{const p=new URL(request.url).pathname;assetCalls.push(p);try{return new Response(await readFile('dist'+p));}catch{return new Response('Missing',{status:404});}}}};
+globalThis.caches={default:{match:async key=>new Response(JSON.stringify({retrievedAt:new Date().toISOString(),quotes:[],items:[],sources:[]}))}};
 const get=(host,path='/',method='GET')=>worker.fetch(new Request('https://'+host+path,{method}),env);
 test('all hostnames serve their own page and never a sibling page',async()=>{for(const s of sites){const r=await get(s.host);assert.equal(r.status,200);assert.ok((await r.text()).includes('data-site="'+s.id+'"'));assert.equal((await get(s.host,'/evidence/index.html')).status,404);}assert.equal((await get(hubHost)).status,200);assert.equal((await get('unknown.example.org')).status,404);});
 test('shared modules, guides and examples resolve without redirects',async()=>{for(const path of ['/engine.mjs','/guide.html','/examples/input.json','/offline-tools.zip']){const r=await get(sites[0].host,path);assert.equal(r.status,200);assert.equal(r.headers.get('Location'),null);}assert.equal((await get(hubHost,'/examples/input.json')).status,404);});

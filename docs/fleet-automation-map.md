@@ -330,3 +330,12 @@ owner 原话：「现在舰队你的定时运行任务各种出错，你帮我�
 预算：预估正常 1–2 分钟/日，即增量约 30–60 runner 分钟/月；检查步骤硬上限 4 分钟/次，即最多 120 分钟/月，不含原流程与 artifact 开销。不是免费额度或免计费承诺。
 仅请求四个自有域的公开资源，无 IndexNow 重复提交、第三方抓取或消息外发。null 表示缺少证据，不能替换成 0。
 
+
+
+## 2026-09-19: Web3 source and conversion monitoring
+
+The existing fleet-autopilot daily 02:40 UTC job now runs sites/web3-studio/scripts/growth-audit.mjs. No additional GitHub cron or AI content-generation loop. It checks the 11 owned tool hosts, near-real-time price source freshness, official metadata, crawlable task pages, opt-in aggregate events and QA-separated feedback. It writes data/autopilot/web3/latest.json, latest.md and 30 daily history records; artifacts retain 30 days. Failed checks preserve diagnostics before the workflow fails.
+
+Data refresh is request-driven in the existing Worker: price snapshots after 5 minutes, official feed metadata after 1 hour; visible market tabs request updates every minute. Cache reuse is per Cloudflare location. Upstream failure preserves the original receipt timestamp, labels stale snapshots and hides data older than 24 hours. No tick-by-tick or alert SLA is offered. Daily source changes are a review queue, never automatically rewritten editorial claims.
+
+Budget estimate: 1–2 incremental runner minutes/day (30–60/month); hard audit limit 3 minutes/day (90/month), excluding existing job/artifact overhead. Repository is currently private: this is not a free-Actions claim. Worker requests use existing hosting; upstream market/feed reads are public and cached, no paid credentials or subscriptions added. No IndexNow in deployment, no external messages, directory submissions or outreach.
