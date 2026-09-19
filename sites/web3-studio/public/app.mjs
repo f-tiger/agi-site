@@ -1,6 +1,8 @@
+import {feedbackSender} from './feedback.mjs';
+const sendFeedback=feedbackSender();
 import {byId,enums,label} from './catalog.mjs';
 import {run} from './engine.mjs';
-import {scenarios,scenario,exampleLink,reportMarkdown,csvRows,csvTemplate} from './experience.mjs';
+import {scenarios,scenario,exampleLink,reportMarkdown,csvRows,csvTemplate,csvExamples} from './experience.mjs';
 import {parse,LIMIT,VERSION} from './core.mjs';
 const $=id=>document.getElementById(id),id=document.body.dataset.site,site=byId[id];
 const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=String(text);if(cls)n.className=cls;return n;};
@@ -24,7 +26,7 @@ function renderEditor(){
   const csv=el('details',undefined,'csv-import');csv.append(el('summary','Paste CSV for '+label(key).toLowerCase()));
   const csvLabel=el('label','CSV with exact column headers'),paste=el('textarea');paste.setAttribute('aria-label',label(key)+' CSV');paste.placeholder=csvTemplate(site.sample[key][0]);paste.spellcheck=false;csvLabel.append(paste);csv.append(csvLabel,el('p','Amounts remain exact strings. Replaces this record group only; no upload.','quiet'));
   const apply=el('button','Use pasted CSV','secondary');apply.type='button';apply.addEventListener('click',()=>{try{current[key]=csvRows(paste.value,site.sample[key][0]);$('input-source').value='own';sync();renderEditor();$('status').textContent='CSV loaded locally. Review the records and run the tool.';}catch(error){invalidate(error.message);}});
-  const template=el('button','Download CSV headers','subtle');template.type='button';template.addEventListener('click',()=>download(id+'-'+key+'-headers.csv',csvTemplate(site.sample[key][0]),'text/csv;charset=utf-8'));csv.append(apply,template);section.append(csv);root.append(section);
+  const template=el('button','Download CSV headers','subtle');template.type='button';template.addEventListener('click',()=>download(id+'-'+key+'-headers.csv',csvTemplate(site.sample[key][0]),'text/csv;charset=utf-8'));const sample=el('a','Download filled example CSV');sample.href=csvExamples(id).find(c=>c.group===key).path;sample.download='';csv.append(apply,template,sample);section.append(csv);root.append(section);
  }
 }
 function validateShapeForEditor(data){
@@ -62,7 +64,8 @@ $('save-readable').addEventListener('click',()=>{if(report)download(id+'-report.
 $('print-report').addEventListener('click',()=>{if(report)window.print();});
 $('share-example').addEventListener('click',async()=>{const link=exampleLink(id,activeCase);$('share-output').value=link;try{await navigator.clipboard.writeText(link);$('share-status').textContent='Public fictional example link copied. Your records are not included.';}catch{$('share-output').focus();$('share-output').select();$('share-status').textContent='Public link selected. Use your device’s Copy command.';}});
 
-$('feedback').addEventListener('submit',async e=>{e.preventDefault();const status=$('feedback-status');status.textContent='Sending your choices…';try{const res=await fetch('/api/feedback',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:crypto.randomUUID(),frequency:$('frequency').value,usefulness:$('usefulness').value,interest:$('interest').value,ownCompleted,qa:new URL(location.href).searchParams.get('qa')==='1'})});if(!res.ok)throw Error('Feedback could not be saved. You can still use every tool.');status.textContent='Feedback saved. Thank you.';}catch(e){status.textContent=e.message;}});
+$('feedback').addEventListener('submit',async e=>{e.preventDefault();const status=$('feedback-status'),button=$('feedback').querySelector('button[type="submit"]');if(button.disabled)return;button.disabled=true;status.textContent='Sending your choices…';try{await sendFeedback({frequency:$('frequency').value,usefulness:$('usefulness').value,interest:$('interest').value,ownCompleted,qa:new URL(location.href).searchParams.get('qa')==='1'});status.textContent='Feedback saved. Thank you.';}catch(e){status.textContent=e.message;}finally{button.disabled=false;}});
 if($('fingerprint'))$('fingerprint').addEventListener('change',async e=>{const f=e.target.files[0];if(!f)return;try{if(f.size>10*1024*1024)throw Error('Use a file of 10 MiB or less.');const bytes=await crypto.subtle.digest('SHA-256',await f.arrayBuffer());$('fingerprint-result').textContent='sha256:'+Array.from(new Uint8Array(bytes),b=>b.toString(16).padStart(2,'0')).join('');}catch(error){$('fingerprint-result').textContent=error.message;}finally{e.target.value='';}});
 load(current,'Fictional example loaded. Replace it with your records when ready.');
 const requestedCase=new URL(location.href).searchParams.get('scenario');if(scenarios(id).some(c=>c.key===requestedCase))chooseCase(requestedCase);
+
