@@ -245,6 +245,12 @@ jobs:
         working-directory: ${{ github.workspace }}
         run: node tools/revenue-studio/verify.mjs --site bpj --live
 
+      - name: Notify verified localized tool URLs to IndexNow
+        if: github.event_name == 'push'
+        continue-on-error: true
+        working-directory: ${{ github.workspace }}
+        run: node tools/revenue-studio/indexnow.mjs --site bpj --out sites/baipiaoji/dist
+
       - name: Verify Web3 watcher and selling after deployment
         env:
           REQUIRE_WEB3_CONFIGURED: ${{ steps.payment_config.outputs.configured }}
@@ -755,5 +761,6 @@ jobs:
           check "广告库存面" "${{ steps.st_ads.outcome }}"
           [ "$fail" = "0" ] || exit 1
           echo "✅ 全部链路自测通过"
+
 
 

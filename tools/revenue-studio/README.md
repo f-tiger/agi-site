@@ -24,3 +24,9 @@ All business example rows are fictional and labeled. Do not ingest customer data
 ## Distribution
 
 The builder wires the home page, related tools, AGI's two tool hubs, sitemap and llms indexes. It preserves existing entries and is idempotent. The AGI workbench is the complete 24-item directory. This is owned-site discovery, not an outbound campaign. No external messages are sent. Measure actual acquired visits, own-data task completions, and separately verified payments before expanding paid claims.
+
+## Localization and discovery (edition 2026-09-19.2)
+
+`i18n.mjs` is the route/language contract. BPJ uses Chinese at `/workbench` and English at `/en/workbench`; Eco uses German at `/workbench.html`, English under `/en/`, Italian under `/it/`. AGI is EN/ZH, TDS EN/DE. `locales/*.json` contains reviewed static UI, method and report translations. All language pages self-canonicalize and link reciprocally. User data and machine field identifiers are preserved. Do not add a locale without complete product/method coverage and passing tests.
+
+`methods.mjs` explains the actual algorithms. Static worked examples and text mirrors are generated from the same engines, not separate hand-edited result tables. `widgets.mjs` produces standalone, no-network embeds for the 20 form engines; source labels and attribution are optional, and no backlinks or rankings are claimed. `indexnow.mjs` verifies live canonicals and the existing public key before a push-only submission. Acceptance is logged separately from indexing. Run `browser-test.mjs` for all 51 localized tool flows and four sandboxed embed scenarios.

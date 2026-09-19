@@ -244,6 +244,12 @@ jobs:
         working-directory: ${{ github.workspace }}
         run: node tools/revenue-studio/verify.mjs --site eco --live
 
+      - name: Notify verified localized tool URLs to IndexNow
+        if: github.event_name == 'push'
+        continue-on-error: true
+        working-directory: ${{ github.workspace }}
+        run: node tools/revenue-studio/indexnow.mjs --site eco --out sites/getecoback/site
+
       - name: Post-deploy health check (live site serves key pages)
         run: |
           sleep 15
@@ -798,4 +804,5 @@ jobs:
             -H "Content-Type: application/json; charset=utf-8" \
             -d "{\"host\":\"getecoback.com\",\"key\":\"dc2860e32f47689a11c7bc07a21f6ffb\",\"keyLocation\":\"https://getecoback.com/dc2860e32f47689a11c7bc07a21f6ffb.txt\",\"urlList\":${URLS}}" \
             -w "\nIndexNow HTTP status: %{http_code}\n" || true
+
 

@@ -154,6 +154,12 @@ jobs:
         working-directory: ${{ github.workspace }}
         run: node tools/revenue-studio/verify.mjs --site tds --live
 
+      - name: Notify verified localized tool URLs to IndexNow
+        if: github.event_name == 'push'
+        continue-on-error: true
+        working-directory: ${{ github.workspace }}
+        run: node tools/revenue-studio/indexnow.mjs --site tds --out sites/thedollscout/dist
+
       - name: Post-deploy self-check
         run: |
           sleep 20
@@ -243,4 +249,5 @@ jobs:
 concurrency:
   group: deploy-thedollscout
   cancel-in-progress: true
+
 
