@@ -1,60 +1,60 @@
 {
-  "generated": "2026-09-18",
+  "generated": "2026-09-19",
   "source": "/api/reach",
   "window_days": 28,
-  "since": "2026-08-21",
-  "until": "2026-09-18",
+  "since": "2026-08-22",
+  "until": "2026-09-19",
   "definition": "ev='' AND ref != '' — referred human page views (traffic-truth.mjs human line A); direct/no-referrer visits and /__ self-test paths excluded; counts only, no row-level data",
-  "humans_referred": 329,
-  "per_day": 11.8,
+  "humans_referred": 334,
+  "per_day": 11.9,
   "by_kind": {
-    "tool": 227,
-    "category": 53,
+    "tool": 234,
+    "category": 52,
     "page": 36,
     "plans": 4,
-    "vs": 7,
+    "vs": 6,
     "alternatives": 2
   },
   "categories": [
     {
       "cat": "chat",
-      "n": 101
+      "n": 100
     },
     {
       "cat": "coding",
-      "n": 54
+      "n": 56
     },
     {
       "cat": "api",
-      "n": 48
+      "n": 49
     },
     {
       "cat": "video",
-      "n": 30
-    },
-    {
-      "cat": "image",
-      "n": 13
+      "n": 31
     },
     {
       "cat": "office",
       "n": 12
     },
     {
+      "cat": "image",
+      "n": 12
+    },
+    {
+      "cat": "writing",
+      "n": 9
+    },
+    {
       "cat": "local",
       "n": 8
     },
     {
-      "cat": "writing",
-      "n": 7
+      "cat": "agent",
+      "n": 6
     },
     {
       "cat": "audio",
       "n": 6
-    },
-    {
-      "cat": "agent",
-      "n": 5
     },
     {
       "cat": "search",
@@ -77,22 +77,22 @@
     {
       "slug": "grok",
       "cat": "chat",
-      "n": 77
+      "n": 75
     },
     {
       "slug": "kimi",
       "cat": "chat",
-      "n": 20
+      "n": 21
     },
     {
       "slug": "fireworks",
       "cat": "api",
-      "n": 18
+      "n": 19
     },
     {
       "slug": "haiper",
       "cat": "video",
-      "n": 11
+      "n": 12
     },
     {
       "slug": "feishu-miaoji",
@@ -102,7 +102,7 @@
     {
       "slug": "cline",
       "cat": "coding",
-      "n": 6
+      "n": 7
     },
     {
       "slug": "pixverse",
@@ -110,14 +110,14 @@
       "n": 5
     },
     {
-      "slug": "google-flow",
-      "cat": "video",
+      "slug": "fastgpt",
+      "cat": "agent",
       "n": 4
     },
     {
-      "slug": "fastgpt",
-      "cat": "agent",
-      "n": 3
+      "slug": "google-flow",
+      "cat": "video",
+      "n": 4
     },
     {
       "slug": "quillbot",
@@ -157,6 +157,11 @@
     {
       "slug": "consensus",
       "cat": "search",
+      "n": 2
+    },
+    {
+      "slug": "deepl",
+      "cat": "writing",
       "n": 2
     },
     {
@@ -225,6 +230,11 @@
       "n": 1
     },
     {
+      "slug": "github-models",
+      "cat": "coding",
+      "n": 1
+    },
+    {
       "slug": "goose",
       "cat": "coding",
       "n": 1
@@ -260,17 +270,7 @@
       "n": 1
     },
     {
-      "slug": "cohere",
-      "cat": "api",
-      "n": 1
-    },
-    {
-      "slug": "connectedpapers",
-      "cat": "study",
-      "n": 1
-    },
-    {
-      "slug": "deepinfra",
+      "slug": "cerebras",
       "cat": "api",
       "n": 1
     }
@@ -279,7 +279,7 @@
   "pages": [
     {
       "path": "grok",
-      "n": 77
+      "n": 75
     },
     {
       "path": "coding",
@@ -291,18 +291,18 @@
     },
     {
       "path": "kimi",
-      "n": 20
+      "n": 21
     },
     {
       "path": "fireworks",
-      "n": 18
-    },
-    {
-      "path": "api",
-      "n": 11
+      "n": 19
     },
     {
       "path": "haiper",
+      "n": 12
+    },
+    {
+      "path": "api",
       "n": 11
     },
     {
@@ -315,23 +315,23 @@
     },
     {
       "path": "cline",
-      "n": 6
-    },
-    {
-      "path": "image",
-      "n": 5
+      "n": 7
     },
     {
       "path": "pixverse",
       "n": 5
     },
     {
-      "path": "google-flow",
+      "path": "image",
       "n": 4
     },
     {
       "path": "fastgpt",
-      "n": 3
+      "n": 4
+    },
+    {
+      "path": "google-flow",
+      "n": 4
     },
     {
       "path": "quillbot",
@@ -371,6 +371,10 @@
     },
     {
       "path": "consensus",
+      "n": 2
+    },
+    {
+      "path": "deepl",
       "n": 2
     },
     {
@@ -442,6 +446,10 @@
       "n": 1
     },
     {
+      "path": "github-models",
+      "n": 1
+    },
+    {
       "path": "goose",
       "n": 1
     },
@@ -470,10 +478,6 @@
       "n": 1
     },
     {
-      "path": "/vs/cerebras-vs-openrouter",
-      "n": 1
-    },
-    {
       "path": "/vs/cloudflare-workers-ai-vs-google-ai-studio",
       "n": 1
     },
@@ -483,6 +487,10 @@
     },
     {
       "path": "anythingllm",
+      "n": 1
+    },
+    {
+      "path": "cerebras",
       "n": 1
     },
     {
@@ -498,10 +506,6 @@
       "n": 1
     },
     {
-      "path": "deepl",
-      "n": 1
-    },
-    {
       "path": "doubao",
       "n": 1
     },
@@ -512,24 +516,16 @@
     {
       "path": "figma",
       "n": 1
-    },
-    {
-      "path": "ima",
-      "n": 1
     }
   ],
   "referrers": [
     {
       "ref": "www.google.com",
-      "n": 164
+      "n": 165
     },
     {
       "ref": "cn.bing.com",
-      "n": 83
-    },
-    {
-      "ref": "www.perplexity.ai",
-      "n": 14
+      "n": 88
     },
     {
       "ref": "www.bing.com",
@@ -538,6 +534,10 @@
     {
       "ref": "chatgpt.com",
       "n": 13
+    },
+    {
+      "ref": "www.perplexity.ai",
+      "n": 12
     },
     {
       "ref": "www.facebook.com",
@@ -553,7 +553,7 @@
     },
     {
       "ref": "yandex.com",
-      "n": 3
+      "n": 4
     },
     {
       "ref": "www.baidu.com",
@@ -601,7 +601,7 @@
     {
       "ref": "www.perplexity.ai",
       "path": "/en/c/image",
-      "n": 5
+      "n": 4
     },
     {
       "ref": "www.perplexity.ai",
@@ -645,11 +645,6 @@
     },
     {
       "ref": "www.perplexity.ai",
-      "path": "/en/vs/cerebras-vs-openrouter",
-      "n": 1
-    },
-    {
-      "ref": "www.perplexity.ai",
       "path": "/en/vs/cloudflare-workers-ai-vs-google-ai-studio",
       "n": 1
     },
@@ -660,15 +655,15 @@
     }
   ],
   "events": {
-    "sub_view": 325,
-    "go": 89,
+    "sub_view": 330,
+    "go": 91,
     "star": 7,
     "calc": 6,
     "sub_submit": 5,
     "sheet_dl": 5,
     "sub_ok": 4,
-    "sub_dup": 1,
-    "biz": 1
+    "biz": 2,
+    "sub_dup": 1
   },
   "submissions": {
     "new": 7,

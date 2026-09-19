@@ -1,24 +1,24 @@
 {
- "generated": "2026-09-18",
+ "generated": "2026-09-19",
  "env": "runner",
  "note": "付费档缺口的抓取探针。只做发现与取证，绝不写事实：任何数字仍须经 scripts/limits-edit.mjs 两步核实后才进 tools.json。state=ready 表示该 URL 当天 200 且页面上有像价目表的价格段，不表示数字已被核实。每行的 env 是抓取时的网络环境：sandbox 行的 blocked 很可能只是会话沙箱出网被拒，不能当作「这家没有定价页」，只有 runner 行的 blocked 才值得当结论。",
  "gap_total": 108,
  "batch": [
-  "kimi",
-  "feishu-miaoji",
-  "haiper",
-  "fastgpt",
-  "quillbot",
-  "bolt",
-  "canva",
-  "consensus"
+  "deepl",
+  "fish-audio",
+  "google-ai-studio",
+  "immersive-translate",
+  "qingying",
+  "replit",
+  "runway",
+  "tongyi"
  ],
- "cursor": "consensus",
+ "cursor": "tongyi",
  "summary": {
-  "ready": 2,
-  "empty": 3,
-  "blocked": 3,
-  "probed_total": 8
+  "ready": 5,
+  "empty": 6,
+  "blocked": 5,
+  "probed_total": 16
  },
  "tools": {
   "kimi": {
@@ -262,6 +262,237 @@
     "tokens": 0,
     "excerpt": ""
    }
+  },
+  "deepl": {
+   "slug": "deepl",
+   "name": "DeepL",
+   "cat": "writing",
+   "reach": 2,
+   "probed": "2026-09-19",
+   "env": "runner",
+   "state": "ready",
+   "tried": [
+    {
+     "url": "https://www.deepl.com/pricing",
+     "status": 200,
+     "bytes": 600000,
+     "tokens": 38
+    }
+   ],
+   "best": {
+    "url": "https://www.deepl.com/pricing",
+    "tokens": 38,
+    "excerpt": "伙伴 登录 开始免费试用 主菜单 现已推出： 实时翻译您的话语，以您的声音呈现。 立即试用 找到最适合你的计划 翻译器 API Voice 年度 月度 通过年度付费节省16% 德国 (EUR €) Individual 个人用户专业级翻译 €7.49 每月，按年计费 1 免费试用 免费试用30 天。可随时取消。 显示更多 包含： 无数据训练 每月 300,000 个字符 每月 3 份文件翻译 1 份术语表 保存 1 次翻译 全页翻译 可用加载项： Write Pro 30 分钟的 DeepL Voice 服务 每位用户每月包含 查看更多功能 热门 Team 全面提升团队翻译效率与管控能力 €24.99 用户/月，按年计费 1 免费试用 免费试用30 天。可随时取消。 显示更多 所有 Individual 提供的优势，以及： 每位用户每月 1,000,000 个字符 每月 20 份文件翻译 批量文件翻译 5 份共享风格规则列表 5 份术语表 保存 10 次翻译 团队管理 分析与报告 单点登录（SSO） 可用加载项： Write Pro 30 分钟的 DeepL Voice 服务 每位用户每月包含 查看更多功能 Business 企业级多语言沟通管理解决方案 €49.99 用户/月，按年计费 1 立刻订购 显示更多 所有 Team 提供的优势，以及： 无限量字符 2 每月 100 份文件翻译 20 份共享风格规则列表 无限量术语表 2 翻译记忆库 2 无限制保存翻译 2 用户预配（SCIM） 域名管理 99.0 % 服务可用率 Write Pro 可用加载项： Translatio"
+   }
+  },
+  "fish-audio": {
+   "slug": "fish-audio",
+   "name": "Fish Audio",
+   "cat": "audio",
+   "reach": 2,
+   "probed": "2026-09-19",
+   "env": "runner",
+   "state": "blocked",
+   "tried": [
+    {
+     "url": "https://fish.audio/pricing",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://fish.audio/price",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://fish.audio/plans",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    }
+   ],
+   "best": null
+  },
+  "google-ai-studio": {
+   "slug": "google-ai-studio",
+   "name": "Google AI Studio",
+   "cat": "api",
+   "reach": 2,
+   "probed": "2026-09-19",
+   "env": "runner",
+   "state": "empty",
+   "tried": [
+    {
+     "url": "https://aistudio.google.com/pricing",
+     "status": 200,
+     "bytes": 600000,
+     "tokens": 0
+    },
+    {
+     "url": "https://aistudio.google.com/price",
+     "status": 200,
+     "bytes": 600000,
+     "tokens": 0
+    },
+    {
+     "url": "https://aistudio.google.com/plans",
+     "status": 200,
+     "bytes": 600000,
+     "tokens": 0
+    }
+   ],
+   "best": {
+    "url": "https://aistudio.google.com/pricing",
+    "tokens": 0,
+    "excerpt": ""
+   }
+  },
+  "immersive-translate": {
+   "slug": "immersive-translate",
+   "name": "沉浸式翻译",
+   "cat": "writing",
+   "reach": 2,
+   "probed": "2026-09-19",
+   "env": "runner",
+   "state": "empty",
+   "tried": [
+    {
+     "url": "https://immersivetranslate.com/pricing",
+     "status": 200,
+     "bytes": 600000,
+     "tokens": 1
+    },
+    {
+     "url": "https://immersivetranslate.com/price",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://immersivetranslate.com/plans",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    }
+   ],
+   "best": {
+    "url": "https://immersivetranslate.com/pricing",
+    "tokens": 1,
+    "excerpt": "。 为了确保服务的高可用性并防止恶意滥用，我们近期设置了防滥用和公平使用原则： 免费用户： 依然可以享受优质翻译，但单日翻译请求设有合理上限（注册后额度更高）。针对需要 DeepL、OpenAI、Claude 等顶级翻译服务的用户，我们提供每月最高 5000 万 Token 的超大额度，打造低成本、开箱即用的专业体验。 付费会员： 您的权益不受此策略影响，且拥有更高的频率权限。 我们会持续优化调度算法，在保障系统稳定的同时，尽可能让每一位用户都能顺畅翻译。 安装沉浸式翻译扩展后，我该如何使用？ 快速开始使用的话，看下面的内容就够了（我们也在这里准备了一份 更详细的使用指南 ）： 安装后，浏览器默认会把沉浸式翻译的扩展图标折叠起来，所以第一步，你需要在 浏览器右上角的折叠菜单里 将沉浸式翻译放出来，如下： 接下来就可以翻译网页了，以 USA Today 为例，打开 USA Today 的英文网页 ，在任何区域点击右键，在菜单里选择【翻译网页/还原原文】按钮，网页就会以双语的形式显示。如果你喜欢快捷键的话，可以直接按下【Alt+A】(MacOS 是【Option+A】) 来触发网页翻译。还有一种办法，就是点击浏览器工具栏里的沉浸式翻译图标，然后点击【翻译】，如下： 如果你想翻译文档，比如 PDF，Epub，字幕文件等，你可以在浏览器工具栏里点击【沉浸式翻译】图标，点击【更多】，即可看到。 我很喜欢沉浸式翻译，想推荐给朋友，你们有联盟计划吗？ 是的，我们有一个易于加入的联盟计划，任何人都可以 点击这里自助申请 ，之后你会得到一个专属的推广链接，使用这个链接，您可以向朋友推荐沉浸式翻译"
+   }
+  },
+  "qingying": {
+   "slug": "qingying",
+   "name": "智谱清影",
+   "cat": "video",
+   "reach": 2,
+   "probed": "2026-09-19",
+   "env": "runner",
+   "state": "empty",
+   "tried": [
+    {
+     "url": "https://chatglm.cn/pricing",
+     "status": 200,
+     "bytes": 4080,
+     "tokens": 0
+    },
+    {
+     "url": "https://chatglm.cn/price",
+     "status": 200,
+     "bytes": 4080,
+     "tokens": 0
+    },
+    {
+     "url": "https://chatglm.cn/plans",
+     "status": 200,
+     "bytes": 4080,
+     "tokens": 0
+    }
+   ],
+   "best": {
+    "url": "https://chatglm.cn/pricing",
+    "tokens": 0,
+    "excerpt": ""
+   }
+  },
+  "replit": {
+   "slug": "replit",
+   "name": "Replit",
+   "cat": "coding",
+   "reach": 2,
+   "probed": "2026-09-19",
+   "env": "runner",
+   "state": "ready",
+   "tried": [
+    {
+     "url": "https://replit.com/pricing",
+     "status": 200,
+     "bytes": 256913,
+     "tokens": 8
+    }
+   ],
+   "best": {
+    "url": "https://replit.com/pricing",
+    "tokens": 8,
+    "excerpt": "ies Gallery Blog Newsroom Log in Create account Pricing Choose the best plan for you. Monthly Yearly Up to 10% off Core $20 $18 / month, billed annually AI integrations Up to 30 hours of chat on Free Mode Up to 60 projects on Free Mode $20 towards most powerful models Plan mode Unlimited workspaces Try now Pro $100 $90 / month, billed annually 10 parallel agents Premium Support Everything in Core plus: Even more Free Mode usage to chat and create $100 towards most powerful models Up to 15 collaborators Invite up to 50 viewers Database rollback up to 28 days Upgrade to Pro Enterprise Custom Enterprise-grade security and control Custom seat limits SSO/SAML Advanced privacy controls Single-tena"
+   }
+  },
+  "runway": {
+   "slug": "runway",
+   "name": "Runway",
+   "cat": "video",
+   "reach": 2,
+   "probed": "2026-09-19",
+   "env": "runner",
+   "state": "ready",
+   "tried": [
+    {
+     "url": "https://runwayml.com/pricing",
+     "status": 200,
+     "bytes": 600000,
+     "tokens": 14
+    }
+   ],
+   "best": {
+    "url": "https://runwayml.com/pricing",
+    "tokens": 14,
+    "excerpt": "AI Image and Video Pricing from $12/month | Runway AI Creative Dev Robotics Research Resources Enterprise Pricing Enterprise Sales Login Try Runway Runway AI Summit: 9/30 in San Francisco. Register now for the Runway AI Summit on 9/30 in San Francisco to hear from leaders at DeepMind, NVIDIA, Physical Intelligence and more. Buy tickets Choose the Right Plan for You Trusted by 60M+ creators and leading enterprises Individual Team &amp; Enterprise API Monthly Yearly -20% off Free Free forever. For people looking to explore Runway&#x27;s AI Tools $0 /month 125 credits 125 one-time credits to explore Runway&#x27;s AI tools. Start Free Includes 125 credits (one time) A selection of generative cre"
+   }
+  },
+  "tongyi": {
+   "slug": "tongyi",
+   "name": "通义千问",
+   "cat": "chat",
+   "reach": 2,
+   "probed": "2026-09-19",
+   "env": "runner",
+   "state": "blocked",
+   "tried": [
+    {
+     "url": "https://tongyi.aliyun.com/pricing",
+     "status": 0,
+     "bytes": 0,
+     "tokens": 0,
+     "error": "UND_ERR_CONNECT_TIMEOUT"
+    },
+    {
+     "url": "https://tongyi.aliyun.com/price",
+     "status": 0,
+     "bytes": 0,
+     "tokens": 0,
+     "error": "UND_ERR_CONNECT_TIMEOUT"
+    },
+    {
+     "url": "https://tongyi.aliyun.com/plans",
+     "status": 0,
+     "bytes": 0,
+     "tokens": 0,
+     "error": "UND_ERR_CONNECT_TIMEOUT"
+    }
+   ],
+   "best": null
   }
  }
 }
