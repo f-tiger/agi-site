@@ -29,3 +29,7 @@ python3 tools/fleet/marketing_queue.py --today 2026-09-19 --check
 ## CI兼容性修复
 
 首轮发布被新增集成测试拦截：CI Node22的SQLite无法解析嵌套ORDER BY内对更新表的关联引用。已将不可变的分类/环境绑定为SQL参数，并显式查询已选slot，保留同一D1事务和并发语义。修复后Node22和Node24各13项集成测试通过；首轮失败未部署到生产。部署状态以修复后Actions为准。
+
+## 生产部署结果
+
+修复后部署成功：[Actions 35431125034](https://github.com/f-tiger/agi-site/actions/runs/35431125034)，全部部署自检通过。2026-09-19线上 `/api/ads?doctor=1` 返回新版结构：mode=live、database=true、slots=3、selling=false；阻塞仅为 STRIPE_SECRET_KEY 和 STRIPE_WEBHOOK_SECRET 未配置。`/ad-checkout.js` 返回200。已上线的是自动收款/排期代码和关闭收费时的正确界面，不是已接通真实支付；没有执行真实扣款。
