@@ -1,5 +1,5 @@
 {
- "fetched": "2026-09-18",
+ "fetched": "2026-09-19",
  "seeds": {
   "electric spin scrubber": {
    "auto": [
@@ -704,32 +704,82 @@
   "pet water fountain": {
    "rising": [
     {
-     "q": "pawira cat fountain",
-     "v": 34100
+     "q": "petlibro water fountain not working",
+     "v": 33150
     },
     {
-     "q": "selene cat water fountain",
-     "v": 28700
+     "q": "rhykin pet co reviews",
+     "v": 23750
     },
     {
-     "q": "selene pets",
-     "v": 6900
+     "q": "pet store near me",
+     "v": 1050
     },
     {
      "q": "best pet water fountain",
      "v": 60
     },
     {
-     "q": "best pet fountain",
-     "v": 60
-    },
-    {
      "q": "veken pet fountain",
-     "v": 60
+     "v": 50
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-09-18"
+   "fetched": "2026-09-19"
+  },
+  "automatic pet feeder camera": {
+   "auto": [
+    "automatic pet feeder camera",
+    "automatic cat feeder camera",
+    "automatic dog feeder camera",
+    "automatic cat feeder camera reddit",
+    "automatic pet feeder wifi camera",
+    "automatic pet feeder with camera australia",
+    "automatic pet feeder with camera nearby",
+    "automatic pet feeder with camera near me",
+    "automatic pet feeder with camera bunnings",
+    "wopet automatic pet feeder camera"
+   ],
+   "rising": [
+    {
+     "q": "automatic cat feeder camera",
+     "v": "new"
+    },
+    {
+     "q": "automatic dog feeder camera",
+     "v": "new"
+    },
+    {
+     "q": "automatic cat feeder camera reddit",
+     "v": "new"
+    },
+    {
+     "q": "automatic pet feeder wifi camera",
+     "v": "new"
+    },
+    {
+     "q": "automatic pet feeder with camera australia",
+     "v": "new"
+    },
+    {
+     "q": "automatic pet feeder with camera nearby",
+     "v": "new"
+    },
+    {
+     "q": "automatic pet feeder with camera near me",
+     "v": "new"
+    },
+    {
+     "q": "automatic pet feeder with camera bunnings",
+     "v": "new"
+    },
+    {
+     "q": "wopet automatic pet feeder camera",
+     "v": "new"
+    }
+   ],
+   "source": "autocomplete-diff",
+   "fetched": "2026-09-19"
   }
  }
 }
