@@ -70,4 +70,14 @@
 
 ## 发布记录
 
-待 CI 与线上验收后补充。本文件中“已实现”指代码已完成，不替代发布成功记录。
+2026-09-19 08:26 UTC：发布完成，入口 https://verify.agiscorecard.com/ 。
+
+- PR #8 已合并：https://github.com/f-tiger/agi-site/pull/8 。后续修复精度、URL 类型约束、首次 DNS 就绪等待和首页 asset 映射。
+- 最终发布 commit：`e43fcfb93c6c12eb7e220919133274502e339b5e`。
+- Cloudflare Worker version：`1ef16455-f27a-4856-bf36-82b21f3bbb54`。
+- 成功流水线：https://github.com/f-tiger/agi-site/actions/runs/35431968494 ，全部步骤 success。
+- 26 项本地与 CI 测试通过。线上 smoke 核对实际 revision、九个资源的 SHA-256、安全头、404、跨域拒绝、真实 QA 反馈写入及聚合查询，日志明确 PASS。测试反馈带 qa=1，不计入需求信号。
+- 首次部署资源成功但 DNS 尚未就绪，验收真实失败；第二次发现 html_handling=none 的首页映射缺失，验收真实失败。均已修复后重新发布，不跳过断言，也不把历史红色运行视作成功。
+- 静态 UI 核查：HTML ID 无重复、JavaScript 中的静态元素引用与表单 label 都可解析、内部页面和下载链接对应实际文件。
+- **未完成的验证：真实浏览器视觉与点击验收。** 本会话 Cloud Browser 对 localhost 与新域名报 `ERR_BLOCKED_BY_CLIENT`；已读取故障指南并进行一次域名就绪后的重试，仍受当前浏览器网络环境限制。这不是站点返回的反机器人拦截，也不能据此认定站点不可用。生产站可达性与代码完整性由上面的 GitHub Actions 实际 HTTPS 请求证实。未声称完成移动端视觉、屏幕阅读器或真实浏览器导出验收。
+- 本次发布未进行真实支付、收费、外部推广或新增付费供应商开通。商业需求结论仍为待证。
