@@ -4,6 +4,7 @@ on:
     branches: [main, 'codex/venture-lab-*']
     paths:
       - 'sites/venture-lab/**'
+      - "tools/discovery/**"
       - 'agents/tradecheck-mcp/**'
       - 'agents/filinglens-mcp/**'
       - '.github/workflows/deploy-venture-lab.yml'
@@ -42,6 +43,10 @@ jobs:
           npm test
           node scripts/evaluate.mjs
           npm run package
+      - name: Build and validate search discovery pages
+        run: |
+          python3 tools/discovery/build.py --only venture
+          python3 tools/discovery/validate.py --only venture
       - name: Install pinned SQL runtime, test and build
         working-directory: sites/venture-lab
         run: |
@@ -74,3 +79,13 @@ jobs:
         if: github.ref == 'refs/heads/main'
         working-directory: sites/venture-lab
         run: node scripts/report.mjs
+
+      - name: Verify public search pages and notify IndexNow once
+        if: github.ref == 'refs/heads/main'
+        run: node tools/discovery/live.mjs venture ${{ github.run_attempt == 1 && '--submit' || '' }}
+
+      - name: Read fleet crawl health and aggregate traffic
+        if: github.ref == 'refs/heads/main'
+        continue-on-error: true
+        timeout-minutes: 3
+        run: python3 tools/discovery/audit.py

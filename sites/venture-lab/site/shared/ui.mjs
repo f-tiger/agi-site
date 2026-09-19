@@ -1,8 +1,9 @@
+import {acquisitionSource} from '/acquisition.mjs';
 export const $=id=>document.getElementById(id);
 export function table(target,headers,rows){const el=$(target);el.replaceChildren();const head=document.createElement('thead'),hr=document.createElement('tr');for(const h of headers){const th=document.createElement('th');th.textContent=h.replaceAll('_',' ');hr.append(th);}head.append(hr);el.append(head);const body=document.createElement('tbody');for(const row of rows){const tr=document.createElement('tr');for(const h of headers){const td=document.createElement('td');td.textContent=row[h]??'';tr.append(td);}body.append(tr);}el.append(body);}
 export function download(name,content,type='text/plain;charset=utf-8'){const a=document.createElement('a'),url=URL.createObjectURL(new Blob([content],{type}));a.href=url;a.download=name;a.textContent='Save '+name;a.className='secondary';document.getElementById('prepared-download')?.remove();a.id='prepared-download';document.querySelector('.output').append(a);a.click();setTimeout(()=>{URL.revokeObjectURL(url);a.remove();},60000);}
 const qa=new URLSearchParams(location.search).get('qa')==='1';
-const session=crypto.randomUUID(),seen=new Set(),source=['bpj','learn','eco','agi'].includes(new URLSearchParams(location.search).get('src'))?new URLSearchParams(location.search).get('src'):'direct';
+const session=crypto.randomUUID(),seen=new Set(),source=acquisitionSource(location.search,document.referrer);
 let enabled=false,mode='own';export function setMode(v){mode=v;}
 export async function event(name,explicit=false){const key=name+':'+mode;if(seen.has(key))return true;if(!enabled&&!explicit)return false;if(navigator.doNotTrack==='1'&&!explicit)return false;try{const r=await fetch('/api/event',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({event:name,mode:qa?'qa':mode,session,source,consent:true}),keepalive:true});if(r.ok){seen.add(key);return true;}}catch{}return false;}
 $('measurement')?.addEventListener('change',e=>{enabled=e.target.checked;if(enabled)event('visit');});

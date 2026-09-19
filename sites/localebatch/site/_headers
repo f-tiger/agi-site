@@ -3,3 +3,7 @@
   Referrer-Policy: no-referrer
   X-Content-Type-Options: nosniff
   Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+/examples/*
+  X-Robots-Tag: noindex
+  Content-Disposition: attachment

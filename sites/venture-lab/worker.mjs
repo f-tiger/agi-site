@@ -1,11 +1,12 @@
 import {secConcept} from './sec-api.mjs';
+import discovery from '../../tools/discovery/content.json' with {type:'json'};
 import {schema} from './schema.mjs';
 import experiments from './experiments.json' with {type:'json'};
 const ready=new WeakMap(),pruned=new WeakMap();
 async function initialize(db){if(!ready.has(db))ready.set(db,db.batch(schema.map(sql=>db.prepare(sql))).catch(e=>{ready.delete(db);throw e;}));await ready.get(db);const today=new Date().toISOString().slice(0,10);if(pruned.get(db)!==today){for(const table of ["venture_events","filinglens_events"])await db.prepare(`DELETE FROM ${table} WHERE day < date('now','-34 days')`).run();pruned.set(db,today);}}
 const routes=new Map(Object.entries(experiments).map(([id,x])=>[x.host,id]));
 const events=new Set(['visit','start','complete','export','rfq_export','offer','interest','research_none','research_once','research_repeat','agent_start','agent_complete','agent_export','agent_draft','agent_download','agent_interest','agent_none','agent_once','agent_repeat']);
-const sources=new Set(['direct','bpj','learn','eco','agi']);
+const sources=new Set(['direct','bpj','learn','eco','agi','search','ai','community','social','example']);
 const modes=new Set(['own','sample','exercise','qa']);
 const json=(data,status=200)=>Response.json(data,{status,headers:{'Cache-Control':'no-store','X-Content-Type-Options':'nosniff'}});
 async function body(request){const reader=request.body?.getReader();if(!reader)throw Error('body');let size=0,chunks=[];try{for(;;){const {done,value}=await reader.read();if(done)break;size+=value.length;if(size>512)throw Error('size');chunks.push(value);}}finally{await reader.cancel();}return JSON.parse(new TextDecoder().decode(Uint8Array.from(chunks.flatMap(x=>[...x]))));}
@@ -31,11 +32,17 @@ export default {
  }
  if(url.pathname.startsWith('/api/'))return json({error:'Not found'},404);
  if(!['GET','HEAD'].includes(request.method))return new Response('Method not allowed',{status:405});
+ const guideSlugs=discovery.pages.filter(p=>p.site===site).map(p=>'/'+p.slug);
+ const requestedGuide=url.pathname.replace(/\.html$/,'').replace(/\/$/,'');
+ if(guideSlugs.includes(requestedGuide)&&requestedGuide!==url.pathname)return Response.redirect(url.origin+requestedGuide+url.search,301);
  if(['/index.html','/guide.html','/privacy.html','/guide/','/privacy/','/agent.html','/agent-guide.html','/agent/','/agent-guide/'].includes(url.pathname)){const dest=url.pathname.replace(/index\.html$/,'').replace(/\.html$/,'').replace(/\/$/,'')||'/';return Response.redirect(url.origin+dest+url.search,301);}
  // Map only declared public assets. No cross-host files or build internals are exposed.
- const path=url.pathname==='/'?'/index.html':['/guide','/privacy','/agent','/agent-guide'].includes(url.pathname)?url.pathname+'.html':url.pathname;
- if(!/^\/(?:index\.html|guide\.html|privacy\.html|agent(?:-guide)?\.html|agent\.css|agent-app\.mjs|tables-app\.mjs|filing-engine\.mjs|filinglens-NOTICES\.txt|filing\.css|agent-example\.json|tradecheck\.js|tradecheck-NOTICES\.txt|downloads\/(?:tradecheck-mcp-0\.2\.0\.tar\.gz|filinglens-mcp-0\.1\.0\.tar\.gz|SHA256SUMS)|app\.mjs|onboarding\.mjs|fonts\/manrope-latin-wght-normal\.woff2|fonts\/LICENSE|styles\.css|core\.mjs|ui\.mjs|robots\.txt|sitemap\.xml|project\.mjs|sql-worker\.js|vendor\/sql-wasm\.(?:js|wasm)|vendor\/LICENSE)$/.test(path))return new Response('Not found',{status:404});
- const assetURL=new URL(url.origin+'/'+site+path);let response=await env.ASSETS.fetch(new Request(assetURL,{method:request.method}));response=new Response(response.body,response);response.headers.set('Content-Security-Policy',"default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; worker-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'");response.headers.set('X-Content-Type-Options','nosniff');response.headers.set('Referrer-Policy','no-referrer');response.headers.set('Permissions-Policy','camera=(), microphone=(), geolocation=()');return response;
+ const path=url.pathname==='/'?'/index.html':['/guide','/privacy','/agent','/agent-guide',...guideSlugs].includes(url.pathname)?url.pathname+'.html':url.pathname;
+ const guideAsset=guideSlugs.includes(url.pathname);
+ const publicFile=/^\/(?:discovery\.(?:css|mjs)|acquisition\.mjs|social\.png|llms\.txt|feed\.xml|[a-f0-9]{32}\.txt)$/.test(path)||discovery.pages.some(p=>p.site===site&&path==='/examples/'+p.download);
+ if(!guideAsset&&!publicFile&&!/^\/(?:index\.html|guide\.html|privacy\.html|agent(?:-guide)?\.html|agent\.css|agent-app\.mjs|tables-app\.mjs|filing-engine\.mjs|filinglens-NOTICES\.txt|filing\.css|agent-example\.json|tradecheck\.js|tradecheck-NOTICES\.txt|downloads\/(?:tradecheck-mcp-0\.2\.0\.tar\.gz|filinglens-mcp-0\.1\.0\.tar\.gz|SHA256SUMS)|app\.mjs|onboarding\.mjs|fonts\/manrope-latin-wght-normal\.woff2|fonts\/LICENSE|styles\.css|core\.mjs|ui\.mjs|robots\.txt|sitemap\.xml|project\.mjs|sql-worker\.js|vendor\/sql-wasm\.(?:js|wasm)|vendor\/LICENSE)$/.test(path))return new Response('Not found',{status:404});
+ const assetURL=new URL(url.origin+'/'+site+path);let response=await env.ASSETS.fetch(new Request(assetURL,{method:request.method}));response=new Response(response.body,response);response.headers.set('Content-Security-Policy',"default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; worker-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'");response.headers.set('X-Content-Type-Options','nosniff');response.headers.set('Referrer-Policy','no-referrer');if(path.startsWith('/examples/')){response.headers.set('X-Robots-Tag','noindex');response.headers.set('Content-Disposition','attachment');}
+ response.headers.set('Permissions-Policy','camera=(), microphone=(), geolocation=()');return response;
  },
  async scheduled(_event,env){if(!env.DB)return;await initialize(env.DB);for(const table of ["venture_events","filinglens_events"])await env.DB.prepare(`DELETE FROM ${table} WHERE day < date('now','-34 days')`).run();}
 };

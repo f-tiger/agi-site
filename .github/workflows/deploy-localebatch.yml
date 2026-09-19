@@ -5,6 +5,7 @@ on:
     branches: [main, codex/localebatch-launch-2026-09-18]
     paths:
       - "sites/localebatch/**"
+      - "tools/discovery/**"
       - ".github/workflows/deploy-localebatch.yml"
   workflow_dispatch: {}
 
@@ -29,6 +30,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "24"
+      - name: Build and validate search discovery pages
+        run: |
+          python3 tools/discovery/build.py --only localebatch
+          python3 tools/discovery/validate.py --only localebatch
       - name: Product checks and offline review build
         working-directory: sites/localebatch
         run: |
@@ -61,3 +66,7 @@ jobs:
         if: github.ref == 'refs/heads/main'
         working-directory: sites/localebatch
         run: node scripts/smoke.mjs https://localebatch.agiscorecard.com
+
+      - name: Verify public search pages and notify IndexNow once
+        if: github.ref == 'refs/heads/main'
+        run: node tools/discovery/live.mjs localebatch ${{ github.run_attempt == 1 && '--submit' || '' }}

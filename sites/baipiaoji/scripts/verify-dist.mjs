@@ -167,7 +167,8 @@ let hreflangErr = 0;
     let p = href.replace(/^https?:\/\/[^/]+/, '');
     if (p === '' || p === '/') p = '/index.html';
     if (p.endsWith('/')) p += 'index.html';
-    return join(root, p.replace(/^\//, ''));
+    const file = join(root, p.replace(/^\//, ''));
+    return existsSync(file) ? file : file + '.html';
   };
   for (const p of pages) {
     const html = readFileSync(p, 'utf8');
