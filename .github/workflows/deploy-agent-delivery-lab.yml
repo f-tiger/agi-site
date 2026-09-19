@@ -1,0 +1,51 @@
+name: Validate and deploy Agent Delivery Lab
+on:
+  push:
+    branches: [main, 'codex/agent-delivery-*']
+    paths: ['sites/agent-delivery-lab/**', '.github/workflows/deploy-agent-delivery-lab.yml']
+  workflow_dispatch: {}
+permissions:
+  contents: read
+concurrency:
+  group: agent-delivery-lab-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Guard against stale main events
+        if: github.ref == 'refs/heads/main'
+        run: |
+          git fetch origin main --depth=1
+          git reset --hard origin/main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Validate engine, privacy boundaries and worker bundle
+        working-directory: sites/agent-delivery-lab
+        run: |
+          npm test
+          npx --yes wrangler@4 deploy --dry-run --outdir /tmp/agent-delivery-worker
+      - name: Check domain ownership and bind isolated feedback table
+        if: github.ref == 'refs/heads/main'
+        working-directory: sites/agent-delivery-lab
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_API_TOKEN_ZONE: ${{ secrets.CLOUDFLARE_API_TOKEN_ZONE }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: node scripts/prepare.mjs
+      - name: Deploy independent worker
+        if: github.ref == 'refs/heads/main'
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          wranglerVersion: '4'
+          workingDirectory: sites/agent-delivery-lab
+          command: deploy --config wrangler.generated.json
+      - name: Verify actual deployed revision, assets and feedback
+        if: github.ref == 'refs/heads/main'
+        working-directory: sites/agent-delivery-lab
+        run: node scripts/smoke.mjs
