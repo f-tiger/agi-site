@@ -62,3 +62,9 @@ Read `docs/vertical-agent-expansion-2026-09-19.md`. TradeCheck v0.2 adds explici
 Read `docs/revenue-portfolio-2026-09-19.md` and BPJ `docs/PRD-automatic-checkout-2026-09-19.md`. The owner explicitly requested multi-track revenue research, subsite/tool expansion and automated marketing, prioritizing BPJ payment and automatic placement. Twenty-four candidates across eight tracks are hypotheses, not launched paid products. Existing EUR49/30-day BPJ placement price remains a hypothesis. Vendor ads are a different buyer from free-resource readers. No invented buyer quotes or testimonials.
 
 BPJ implementation uses server-owned Checkout pricing, signed payment events, three sponsored lanes per category with an explicit queue, expiry and refund/dispute suspension. It is one-time payment, not automatic recurring membership. Production readiness and actual payments must be verified separately. Marketing automation prepares tagged links/drafts on the existing daily pipeline; no external messages have been sent and missing metrics remain unknown. Membership value must be saved work, history, batch processing or team access, backed by subscription events and server entitlements before sale.
+
+
+## Web3 × AI validation and launch — 2026-09-19
+
+Agent Delivery Lab (`verify.agiscorecard.com`) is a bounded free experiment for developers consuming paid API results. Read `docs/agent-delivery-lab-validation-2026-09-19.md`. It checks x402 v2 exact EVM challenge shapes, declared JSON response rules and payment snapshot differences, with an offline Node runner. It does not verify payments or factual accuracy. Hosted history and monitoring at €29/month remain an unavailable price hypothesis; no checkout or verified buyer. Anonymous feedback explicitly includes zero frequency and no-interest answers and separates QA. Launch authorization was explicit in the owner's current request; commercial scaling still requires real purchase and repeat-task evidence.
+

@@ -1,6 +1,6 @@
 {
  "note": "舰队赌注台账:每条预登记判定线一行;status open→won/lost/insufficient/withdrawn 时必须写 settled(日期)与 reading(读数)。tools/fleet/check_bets.py 在 heartbeat 里断言:到期 3 天内提醒,过期 >7 天未结算即红。新增判定线不进这里 = heartbeat 看不见 = 等于没预登记。",
- "updated": "2026-09-18",
+ "updated": "2026-09-19",
  "bets": [
   {
    "id": "fleet-ai-access-0916",
@@ -1163,6 +1163,17 @@
    "win": "AT 法条页型(RIS 一手 + 与 DE 对照表)成立 → 按同法做 AT 的 Heizkostenzuschuss(等 oesterreich.gv.at 恢复)与 CH 的对应页",
    "lose": "奥地利读者不需要奥地利专页 → 只维护三张德语页上的指路框,不再单独出 AT 页",
    "source": "2026-09-18:RIS 实抓 ElWG(BGBl. I Nr. 91/2025,Fassung 18.09.2026):§ 7 Z 78 Kleinsterzeugungsanlage = 0,8 kW an der Übergabestelle;§ 77 无 eigener Zählpunkt(除非申请)、免 §§ 11/74 Abs 1;ElWOG 2010 §66a 于 24.12.2025 失效。**法条里没找到 Meldepflicht,页面如实说「问 Netzbetreiber」而不是编一个流程**;Förderung 因无官方汇总源不写金额。",
+   "status": "open"
+  },
+  {
+   "id": "agent-delivery-demand-1019",
+   "site": "agent-delivery-lab",
+   "due": "2026-10-19",
+   "metric": "/api/stats 排除 qa=1 后 own_completed=1 匿名反馈及频率/兴趣分组；不是独立访客或购买",
+   "threshold": "own_completed>=10，其中 frequency=4plus>=5、interest=discuss>=3；只触发人工核实，不放行收费",
+   "win": "核实同一人群重复任务与免费替代不足，再决定付费试验；须另有独立购买证据",
+   "lose": "停止扩协议/AI评分/托管监控；无触达证据记 insufficient，已有相关触达而无需求则保留小工具或并站",
+   "source": "docs/agent-delivery-lab-validation-2026-09-19.md:58",
    "status": "open"
   }
  ]
