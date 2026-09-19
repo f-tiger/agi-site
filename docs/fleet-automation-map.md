@@ -319,3 +319,14 @@ owner 原话：「现在舰队你的定时运行任务各种出错，你帮我�
   会话侧改不了自己的模型，也不许自作主张改 Routine 的 model 字段。
 - **单会话承载**：一轮要过 5 个站 + 周一 4 项。prompt 里写了优先级截断规则
   （A 健康 → B agi → C eco → D bpj → E tds → F SunWatch），截断时必须在报告里写明哪块没做。
+
+
+## 2026-09-19：24 工具的多语言日检
+
+在既有 fleet-autopilot（02:40 UTC）中加入 tools/fleet/workbench_growth.mjs，不增加 cron 或 AI 任务。
+按 catalog 与语言路由动态计算页面清单，检查 HTML/canonical/hreflang/结构化数据、文本镜像、独立嵌入、母站入口、运行文件与 Web3 就绪状态。
+结果写入 data/autopilot/workbench/latest.json、latest.md 与最多 30 天的 history.json；GitHub artifact 保留 30 天。
+失败先保存诊断并让其他每日收据正常提交，最后将 workflow 标红。dry_run 不写结果。
+预算：预估正常 1–2 分钟/日，即增量约 30–60 runner 分钟/月；检查步骤硬上限 4 分钟/次，即最多 120 分钟/月，不含原流程与 artifact 开销。不是免费额度或免计费承诺。
+仅请求四个自有域的公开资源，无 IndexNow 重复提交、第三方抓取或消息外发。null 表示缺少证据，不能替换成 0。
+

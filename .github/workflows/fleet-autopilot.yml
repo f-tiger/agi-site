@@ -84,6 +84,27 @@ jobs:
           if [ "${{ inputs.dry_run }}" = "true" ]; then FLAGS="--check"; fi
           python3 tools/fleet/marketing_queue.py --today "${{ steps.clock.outputs.today }}" $FLAGS
 
+      - name: Test workbench health failure detection
+        run: node --test tools/fleet/workbench_growth.test.mjs
+
+      - name: Audit localized tools and distribution assets
+        id: workbench
+        continue-on-error: true
+        timeout-minutes: 4
+        run: |
+          FLAGS=""
+          if [ "${{ inputs.dry_run }}" = "true" ]; then FLAGS="--check"; fi
+          node tools/fleet/workbench_growth.mjs $FLAGS
+
+      - name: Preserve workbench evidence even when an audit fails
+        if: always() && inputs.dry_run != true
+        uses: actions/upload-artifact@v4
+        with:
+          name: workbench-growth-${{ github.run_id }}
+          path: data/autopilot/workbench/
+          retention-days: 30
+          if-no-files-found: warn
+
       - name: Commit what actually changed
         if: inputs.dry_run != true
         run: |
@@ -180,4 +201,13 @@ jobs:
               *) echo "::warning::IndexNow rejected $host with HTTP $code: $(head -c 200 /tmp/idx.out)" ;;
             esac
           done < /tmp/pings.txt
+
+
+      # Persist the diagnostics first, then fail visibly. A failed audit must not
+      # prevent the other daily receipts from being committed.
+      - name: Enforce workbench health result
+        if: always() && steps.workbench.outcome == 'failure'
+        run: |
+          echo "::error::Workbench audit failed; inspect its report or timeout log."
+          exit 1
 

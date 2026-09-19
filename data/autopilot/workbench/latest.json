@@ -1,0 +1,667 @@
+{
+  "as_of": "2026-09-19T13:12:49.828Z",
+  "kind": "owned_page_health_not_market_validation",
+  "ok": true,
+  "site_checks": [
+    {
+      "site": "bpj",
+      "errors": [],
+      "discovery_pages": 6
+    },
+    {
+      "site": "agi",
+      "errors": [],
+      "discovery_pages": 6
+    },
+    {
+      "site": "eco",
+      "errors": [],
+      "discovery_pages": 6
+    },
+    {
+      "site": "tds",
+      "errors": [],
+      "discovery_pages": 6
+    }
+  ],
+  "counts": {
+    "products": 24,
+    "pages": 60,
+    "passed": 60,
+    "failed": 0,
+    "widget_versions": 43
+  },
+  "pages": [
+    {
+      "site": "bpj",
+      "lang": "zh",
+      "id": "hub",
+      "form": false,
+      "url": "https://baipiaoji.com/workbench",
+      "errors": [],
+      "status": 200,
+      "ok": true
+    },
+    {
+      "site": "bpj",
+      "lang": "zh",
+      "id": "launchdesk",
+      "form": true,
+      "url": "https://baipiaoji.com/workbench/launchdesk",
+      "errors": [],
+      "status": 200,
+      "ok": true
+    },
+    {
+      "site": "bpj",
+      "lang": "zh",
+      "id": "quotawatch-pro",
+      "form": true,
+      "url": "https://baipiaoji.com/workbench/quotawatch-pro",
+      "errors": [],
+      "status": 200,
+      "ok": true
+    },
+    {
+      "site": "bpj",
+      "lang": "zh",
+      "id": "creatorops",
+      "form": true,
+      "url": "https://baipiaoji.com/workbench/creatorops",
+      "errors": [],
+      "status": 200,
+      "ok": true
+    },
+    {
+      "site": "bpj",
+      "lang": "en",
+      "id": "hub",
+      "form": false,
+      "url": "https://baipiaoji.com/en/workbench",
+      "errors": [],
+      "status": 200,
+      "ok": true
+    },
+    {
+      "site": "bpj",
+      "lang": "en",
+      "id": "launchdesk",
+      "form": true,
+      "url": "https://baipiaoji.com/en/workbench/launchdesk",
+      "errors": [],
+      "status": 200,
+      "ok": true
+    },
+    {
+      "site": "bpj",
+      "lang": "en",
+      "id": "quotawatch-pro",
+      "form": true,
+      "url": "https://baipiaoji.com/en/workbench/quotawatch-pro",
+      "errors": [],
+      "status": 200,
+      "ok": true
+    },
+    {
+      "site": "bpj",
+      "lang": "en",
+      "id": "creatorops",
+      "form": true,
+      "url": "https://baipiaoji.com/en/workbench/creatorops",
+      "errors": [],
+      "status": 200,
+      "ok": true
+    },
+    {
+      "site": "agi",
+      "lang": "en",
+      "id": "hub",
+      "form": false,
+      "url": "https://agiscorecard.com/workbench",
+      "errors": [],
+      "status": 200,
+      "ok": true
+    },
+    {
+      "site": "agi",
+      "lang": "en",
+      "id": "evidencewatch",
+      "form": true,
+      "url": "https://agiscorecard.com/workbench/evidencewatch",
+      "errors": [],
+      "status": 200,
+      "ok": true
+    },
+    {
+      "site": "agi",
+      "lang": "en",
+      "id": "agentfit",
+      "form": true,
+      "url": "https://agiscorecard.com/workbench/agentfit",
+      "errors": [],
+      "status": 200,
+      "ok": true
+    },
+    {
+      "site": "agi",
+      "lang": "en",
+      "id": "filinglens-workspace",
+      "form": true,
+      "url": "https://agiscorecard.com/workbench/filinglens-workspace",
+      "errors": [],
+      "status": 200,
+      "ok": true
+    },
+    {
+      "site": "agi",
+      "lang": "en",
+      "id": "tradecheck-team",
+      "form": true,
+      "url": "https://agiscorecard.com/workbench/tradecheck-team",
+      "errors": [],
+      "status": 200,
+      "ok": true
+    },
+    {
+      "site": "agi",
+      "lang": "en",
+      "id": "localebatch-qa",
+      "form": true,
+      "url": "https://agiscorecard.com/workbench/localebatch-qa",
+      "errors": [],
+      "status": 200,
+      "ok": true
+    },
+    {
+      "site": "agi",
+      "lang": "en",
+      "id": "rfq-roundbook",
+      "form": true,
+      "url": "https://agiscorecard.com/workbench/rfq-roundbook",
+      "errors": [],
+      "status": 200,
+      "ok": true
+    },
+    {
+      "site": "agi",
+      "lang": "en",
+      "id": "evidencebrief",
+      "form": true,
+      "url": "https://agiscorecard.com/workbench/evidencebrief",
+      "errors": [],
+      "status": 200,
+      "ok": true
+    },
+    {
+      "site": "agi",
+      "lang": "en",
+      "id": "modelmeter-reconcile",
+      "form": true,
+      "url": "https://agiscorecard.com/workbench/modelmeter-reconcile",
+      "errors": [],
+      "status": 200,
+      "ok": true
+    },
+    {
+      "site": "agi",
+      "lang": "en",
+      "id": "workflowcost",
+      "form": true,
+      "url": "https://agiscorecard.com/workbench/workflowcost",
+      "errors": [],
+      "status": 200,
+      "ok": true
+    },
+    {
+      "site": "agi",
+      "lang": "en",
+      "id": "querysprint-projects",
+      "form": false,
+      "url": "https://agiscorecard.com/workbench/querysprint-projects",
+      "errors": [],
+      "status": 200,
+      "ok": true
+    },
+    {
+      "site": "agi",
+      "lang": "en",
+      "id": "job-evidence",
+      "form": true,
+      "url": "https://agiscorecard.com/workbench/job-evidence",
+      "errors": [],
+      "status": 200,
+      "ok": true
+    },
+    {
+      "site": "agi",
+      "lang": "en",
+      "id": "scamchecklist",
+      "form": true,
+      "url": "https://agiscorecard.com/workbench/scamchecklist",
+      "errors": [],
+      "status": 200,
+      "ok": true
+    },
+    {
+      "site": "agi",
+      "lang": "en",
+      "id": "puzzleclub",
+      "form": false,
+      "url": "https://agiscorecard.com/workbench/puzzleclub",
+      "errors": [],
+      "status": 200,
+      "ok": true
+    },
+    {
+      "site": "agi",
+      "lang": "en",
+      "id": "classroompuzzles",
+      "form": false,
+      "url": "https://agiscorecard.com/workbench/classroompuzzles",
+      "errors": [],
+      "status": 200,
+      "ok": true
+    },
+    {
+      "site": "agi",
+      "lang": "en",
+      "id": "embedpuzzles",
+      "form": false,
+      "url": "https://agiscorecard.com/workbench/embedpuzzles",
+      "errors": [],
+      "status": 200,
+      "ok": true
+    },
+    {
+      "site": "agi",
+      "lang": "zh",
+      "id": "hub",
+      "form": false,
+      "url": "https://agiscorecard.com/zh/workbench",
+      "errors": [],
+      "status": 200,
+      "ok": true
+    },
+    {
+      "site": "agi",
+      "lang": "zh",
+      "id": "evidencewatch",
+      "form": true,
+      "url": "https://agiscorecard.com/zh/workbench/evidencewatch",
+      "errors": [],
+      "status": 200,
+      "ok": true
+    },
+    {
+      "site": "agi",
+      "lang": "zh",
+      "id": "agentfit",
+      "form": true,
+      "url": "https://agiscorecard.com/zh/workbench/agentfit",
+      "errors": [],
+      "status": 200,
+      "ok": true
+    },
+    {
+      "site": "agi",
+      "lang": "zh",
+      "id": "filinglens-workspace",
+      "form": true,
+      "url": "https://agiscorecard.com/zh/workbench/filinglens-workspace",
+      "errors": [],
+      "status": 200,
+      "ok": true
+    },
+    {
+      "site": "agi",
+      "lang": "zh",
+      "id": "tradecheck-team",
+      "form": true,
+      "url": "https://agiscorecard.com/zh/workbench/tradecheck-team",
+      "errors": [],
+      "status": 200,
+      "ok": true
+    },
+    {
+      "site": "agi",
+      "lang": "zh",
+      "id": "localebatch-qa",
+      "form": true,
+      "url": "https://agiscorecard.com/zh/workbench/localebatch-qa",
+      "errors": [],
+      "status": 200,
+      "ok": true
+    },
+    {
+      "site": "agi",
+      "lang": "zh",
+      "id": "rfq-roundbook",
+      "form": true,
+      "url": "https://agiscorecard.com/zh/workbench/rfq-roundbook",
+      "errors": [],
+      "status": 200,
+      "ok": true
+    },
+    {
+      "site": "agi",
+      "lang": "zh",
+      "id": "evidencebrief",
+      "form": true,
+      "url": "https://agiscorecard.com/zh/workbench/evidencebrief",
+      "errors": [],
+      "status": 200,
+      "ok": true
+    },
+    {
+      "site": "agi",
+      "lang": "zh",
+      "id": "modelmeter-reconcile",
+      "form": true,
+      "url": "https://agiscorecard.com/zh/workbench/modelmeter-reconcile",
+      "errors": [],
+      "status": 200,
+      "ok": true
+    },
+    {
+      "site": "agi",
+      "lang": "zh",
+      "id": "workflowcost",
+      "form": true,
+      "url": "https://agiscorecard.com/zh/workbench/workflowcost",
+      "errors": [],
+      "status": 200,
+      "ok": true
+    },
+    {
+      "site": "agi",
+      "lang": "zh",
+      "id": "querysprint-projects",
+      "form": false,
+      "url": "https://agiscorecard.com/zh/workbench/querysprint-projects",
+      "errors": [],
+      "status": 200,
+      "ok": true
+    },
+    {
+      "site": "agi",
+      "lang": "zh",
+      "id": "job-evidence",
+      "form": true,
+      "url": "https://agiscorecard.com/zh/workbench/job-evidence",
+      "errors": [],
+      "status": 200,
+      "ok": true
+    },
+    {
+      "site": "agi",
+      "lang": "zh",
+      "id": "scamchecklist",
+      "form": true,
+      "url": "https://agiscorecard.com/zh/workbench/scamchecklist",
+      "errors": [],
+      "status": 200,
+      "ok": true
+    },
+    {
+      "site": "agi",
+      "lang": "zh",
+      "id": "puzzleclub",
+      "form": false,
+      "url": "https://agiscorecard.com/zh/workbench/puzzleclub",
+      "errors": [],
+      "status": 200,
+      "ok": true
+    },
+    {
+      "site": "agi",
+      "lang": "zh",
+      "id": "classroompuzzles",
+      "form": false,
+      "url": "https://agiscorecard.com/zh/workbench/classroompuzzles",
+      "errors": [],
+      "status": 200,
+      "ok": true
+    },
+    {
+      "site": "agi",
+      "lang": "zh",
+      "id": "embedpuzzles",
+      "form": false,
+      "url": "https://agiscorecard.com/zh/workbench/embedpuzzles",
+      "errors": [],
+      "status": 200,
+      "ok": true
+    },
+    {
+      "site": "eco",
+      "lang": "de",
+      "id": "hub",
+      "form": false,
+      "url": "https://getecoback.com/workbench.html",
+      "errors": [],
+      "status": 200,
+      "ok": true
+    },
+    {
+      "site": "eco",
+      "lang": "de",
+      "id": "billlens",
+      "form": true,
+      "url": "https://getecoback.com/workbench/billlens.html",
+      "errors": [],
+      "status": 200,
+      "ok": true
+    },
+    {
+      "site": "eco",
+      "lang": "de",
+      "id": "appliancepayback",
+      "form": true,
+      "url": "https://getecoback.com/workbench/appliancepayback.html",
+      "errors": [],
+      "status": 200,
+      "ok": true
+    },
+    {
+      "site": "eco",
+      "lang": "de",
+      "id": "homeenergy-log",
+      "form": true,
+      "url": "https://getecoback.com/workbench/homeenergy-log.html",
+      "errors": [],
+      "status": 200,
+      "ok": true
+    },
+    {
+      "site": "eco",
+      "lang": "en",
+      "id": "hub",
+      "form": false,
+      "url": "https://getecoback.com/en/workbench.html",
+      "errors": [],
+      "status": 200,
+      "ok": true
+    },
+    {
+      "site": "eco",
+      "lang": "en",
+      "id": "billlens",
+      "form": true,
+      "url": "https://getecoback.com/en/workbench/billlens.html",
+      "errors": [],
+      "status": 200,
+      "ok": true
+    },
+    {
+      "site": "eco",
+      "lang": "en",
+      "id": "appliancepayback",
+      "form": true,
+      "url": "https://getecoback.com/en/workbench/appliancepayback.html",
+      "errors": [],
+      "status": 200,
+      "ok": true
+    },
+    {
+      "site": "eco",
+      "lang": "en",
+      "id": "homeenergy-log",
+      "form": true,
+      "url": "https://getecoback.com/en/workbench/homeenergy-log.html",
+      "errors": [],
+      "status": 200,
+      "ok": true
+    },
+    {
+      "site": "eco",
+      "lang": "it",
+      "id": "hub",
+      "form": false,
+      "url": "https://getecoback.com/it/workbench.html",
+      "errors": [],
+      "status": 200,
+      "ok": true
+    },
+    {
+      "site": "eco",
+      "lang": "it",
+      "id": "billlens",
+      "form": true,
+      "url": "https://getecoback.com/it/workbench/billlens.html",
+      "errors": [],
+      "status": 200,
+      "ok": true
+    },
+    {
+      "site": "eco",
+      "lang": "it",
+      "id": "appliancepayback",
+      "form": true,
+      "url": "https://getecoback.com/it/workbench/appliancepayback.html",
+      "errors": [],
+      "status": 200,
+      "ok": true
+    },
+    {
+      "site": "eco",
+      "lang": "it",
+      "id": "homeenergy-log",
+      "form": true,
+      "url": "https://getecoback.com/it/workbench/homeenergy-log.html",
+      "errors": [],
+      "status": 200,
+      "ok": true
+    },
+    {
+      "site": "tds",
+      "lang": "en",
+      "id": "hub",
+      "form": false,
+      "url": "https://thedollscout.com/workbench",
+      "errors": [],
+      "status": 200,
+      "ok": true
+    },
+    {
+      "site": "tds",
+      "lang": "en",
+      "id": "collectorledger",
+      "form": true,
+      "url": "https://thedollscout.com/workbench/collectorledger",
+      "errors": [],
+      "status": 200,
+      "ok": true
+    },
+    {
+      "site": "tds",
+      "lang": "en",
+      "id": "dropcalendar",
+      "form": true,
+      "url": "https://thedollscout.com/workbench/dropcalendar",
+      "errors": [],
+      "status": 200,
+      "ok": true
+    },
+    {
+      "site": "tds",
+      "lang": "en",
+      "id": "displayfit",
+      "form": true,
+      "url": "https://thedollscout.com/workbench/displayfit",
+      "errors": [],
+      "status": 200,
+      "ok": true
+    },
+    {
+      "site": "tds",
+      "lang": "de",
+      "id": "hub",
+      "form": false,
+      "url": "https://thedollscout.com/de/workbench",
+      "errors": [],
+      "status": 200,
+      "ok": true
+    },
+    {
+      "site": "tds",
+      "lang": "de",
+      "id": "collectorledger",
+      "form": true,
+      "url": "https://thedollscout.com/de/workbench/collectorledger",
+      "errors": [],
+      "status": 200,
+      "ok": true
+    },
+    {
+      "site": "tds",
+      "lang": "de",
+      "id": "dropcalendar",
+      "form": true,
+      "url": "https://thedollscout.com/de/workbench/dropcalendar",
+      "errors": [],
+      "status": 200,
+      "ok": true
+    },
+    {
+      "site": "tds",
+      "lang": "de",
+      "id": "displayfit",
+      "form": true,
+      "url": "https://thedollscout.com/de/workbench/displayfit",
+      "errors": [],
+      "status": 200,
+      "ok": true
+    }
+  ],
+  "checkout": {
+    "ready": true,
+    "status": "observed",
+    "real_payment_verified": null
+  },
+  "marketing": {
+    "queue_fresh": true,
+    "draft_ready": 57,
+    "blocked": [],
+    "sends": 0
+  },
+  "outcomes": {
+    "indexed_pages": null,
+    "third_party_backlinks": null,
+    "ai_citations": null,
+    "qualified_visits": null,
+    "own_task_completions": null,
+    "paid_buyers": null,
+    "net_revenue": null
+  },
+  "next_actions": [
+    {
+      "priority": "evidence",
+      "reason": "Import dated Search Console/Bing, referral and settled-payment evidence before claiming acquisition or revenue."
+    }
+  ],
+  "notes": [
+    "A passing page is not an indexed page, backlink, user, sale or membership.",
+    "Checkout readiness does not verify a real transfer. No transfer is initiated.",
+    "Only owned public URLs are fetched. No form inputs, wallet addresses or raw doctor response are stored."
+  ]
+}
