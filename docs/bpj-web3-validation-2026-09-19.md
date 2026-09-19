@@ -18,13 +18,22 @@ Owner 决策：先使用截图中的币安钱包，BNB Smart Chain USDT（BEP-20
 - 构建检查 1,603 HTML：broken、ldErr、zhLeak、placeholder、rawMd、contradiction、enJson、staleCount、hollow、hreflang 全零。
 - 只读 BSC 节点交叉验证 chainId=56、USDT decimals=18；公共查询节点支持过滤 eth_getLogs。
 
+## 当前开售验收（2026-09-19 09:24 UTC）
+
+Owner 已保存 GitHub `ADS_WALLET`，runner 校验为已批准的 BSC 收款地址。复用已有 Cloudflare API token 同步生产 Secrets；验款子密钥按 BPJ 专用上下文派生，不将 Cloudflare 原始 token 发送到站点。
+
+[生产 Actions](https://github.com/f-tiger/agi-site/actions/runs/35434576793) 全部成功。线上 `/api/ads?doctor=1` 确认 `selling=true`、`rails.wallet=true`、`web3.configured=true`、`web3.watch_healthy=true`。Stripe 仍未配置。
+
+实测修复：
+- 首次部署自定义域传播期间曾读到旧配置并跳过巡检；现在已同步配置的部署必须等待并通过验款，不允许静默跳过。新增三种回归：延迟后成功、持续缺失失败、未配置的定时任务跳过。
+- 公共 RPC 在 Cloudflare 返回 HTTP 429，保持新单关闭；改用 `https://rpc-bsc.48.club`，链 ID 56、USDT 18 位精度、finalized 区块及过滤日志查询都通过生产巡检。
+- RPC 请求使用显式超时与禁止跟随重定向；后台只输出固定阶段/原因码。对短暂 502/503/504 最多重试两次，不重试鉴权失败。
+
 ## 尚未完成
 
-Cloudflare 管理后台在当前浏览器持续触发安全验证，重试一次仍未进入；未修改后台秘密配置。没有可用的 Cloudflare 配置连接器或 GitHub Secrets 写入接口，因此未设置 ADS_WALLET、两端 ADS_WATCH_SECRET 或 GitHub ADS_WEB3_ENABLED 变量。没有执行任何真实付款、钱包转账或退款。
+没有执行真实资金付款、钱包转账或退款。自动付款核验和排期的交付规则已有集成测试；首次真实买家付款仍应核对链上到账和实际投放。此功能为一次性赞助投放，不是会员自动续费。
 
-开通步骤见 `sites/baipiaoji/docs/WEB3-SETUP.md`。代码发布与真实收款开通分开记录。此功能为一次性赞助投放，不是会员自动续费。
-
-## 生产部署结果
+## 首次部署历史（开售前）
 
 PR #9 已合并，部署提交 `854b49b602888215698b3c0f897823f18e560535`；Actions `35432636100` 全部成功。
 线上浏览器检查 `https://baipiaoji.com/advertise`：显示 49 USDT / 30 天、匹配尾数和未开售说明，Web3 按钮禁用。

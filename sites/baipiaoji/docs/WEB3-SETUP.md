@@ -2,9 +2,13 @@
 
 2026-09-19：Owner 选择币安钱包截图对应的 BNB Smart Chain USDT（BEP-20）。地址已做 EIP-55 校验；实际地址与查询凭据不进仓库。同一个 0x 地址不等于自动支持所有链、币种。
 
-## 开通
+## 当前状态
 
-代码中已有非秘密配置：`ADS_WEB3_ENABLED=true`、`ADS_WALLET_CHAIN=bsc`、`ADS_WEB3_PRICE_USD=49.00`、`ADS_WEB3_RPC_URL=https://bsc-rpc.publicnode.com`。独立试验价为 **49 USDT / 30 天，加不足 0.01 USDT 的订单匹配尾数**，不是原 EUR49 的汇率换算。
+2026-09-19 09:24 UTC：**Web3 已开售**。Owner 已添加 GitHub `ADS_WALLET`；Actions 自动同步 Cloudflare Secrets、部署并通过真实链上巡检。线上体检 `selling=true`、`rails.wallet=true`、`web3.configured=true`、`web3.watch_healthy=true`。[生产运行](https://github.com/f-tiger/agi-site/actions/runs/35434576793)全部成功。尚未进行真实资金付款/退款验收；Stripe 未启用。
+
+## 开通与维护（首次配置已完成）
+
+代码中已有非秘密配置：`ADS_WEB3_ENABLED=true`、`ADS_WALLET_CHAIN=bsc`、`ADS_WEB3_PRICE_USD=49.00`、`ADS_WEB3_RPC_URL=https://rpc-bsc.48.club`。独立试验价为 **49 USDT / 30 天，加不足 0.01 USDT 的订单匹配尾数**，不是原 EUR49 的汇率换算。
 
 1. 在 [GitHub Actions Secrets](https://github.com/f-tiger/agi-site/settings/secrets/actions/new) 添加 **`ADS_WALLET`**，值为 Owner 已提供的完整 BSC 收款地址。地址不写入 git；脚本按已核对的地址摘要校验，填错会停止。
 2. 运行或重新运行 **Daily update & deploy**。已有 `CLOUDFLARE_API_TOKEN` 负责向 Pages `aiyangmao` 写入生产环境的两个 Secrets，然后构建部署、启动验款并检查开售状态。无需登录 Cloudflare 面板，也无需额外 GitHub Variable。
@@ -12,7 +16,7 @@
 4. 查看 [收款体检](https://baipiaoji.com/api/ads?doctor=1)，确认 `selling=true`、`rails.wallet=true`、`web3.watch_healthy=true`。每两小时的 **bpj ad watch** 已默认走新版核验；上线前自动跳过，配置完成后自动运行。显式设置 GitHub Variable `ADS_WEB3_ENABLED=false` 才回到旧版路径。
 5. 真实付款验收仍需 Owner 主动签名转账，检查只交付一次、赞助位与起止时间正确；模拟测试不计真实营收。
 
-2026-09-19 [Actions 实测](https://github.com/f-tiger/agi-site/actions/runs/35433339269)：已有 Cloudflare token 可访问项目、D1 绑定存在；GitHub 与 Cloudflare 均未配置 `ADS_WALLET`、`ADS_WATCH_SECRET`。因此当时仍未开售。当前连接器不能写入 GitHub Secrets；Owner 只需补一次钱包 Secret，后续配置与发布由上述流水线处理。
+上线过程中修复了首次部署传播延迟导致的巡检跳过；配置同步后必须通过线上巡检。原 PublicNode 从 Cloudflare 请求返回 HTTP 429，已切换到经过链 ID、USDT 精度、最终确认区块和过滤日志查询实测的 48 Club RPC。服务端错误只返回固定阶段/原因码，不含密钥、地址或 RPC 原文。
 
 不需要 Stripe 账户，也不需要钱包私钥或助记词。客户主动签名转账，系统核验后交付；本功能不自动扣客户余额，不是订阅自动续费。
 
