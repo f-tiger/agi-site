@@ -23,3 +23,11 @@ The interrupted agi-grow task reported completed but unpublished work. That work
 Run `node scripts/gen-collector-pages.mjs` from the site directory after changing localized page copy. It generates the six tool/guide pages; homepage insertion is intentionally one-time so subsequent runs preserve homepage edits. Run `node --test scripts/collector-tools.test.cjs` before publishing. The existing llms-full build includes the new pages during deployment.
 
 Collection data is local to a browser and origin. Downloaded JSON is the recovery format; CSV is not an import format. Duplicate filtering is based on an entry's quantity, not fuzzy matching of names. Tool events represent use, never sales.
+
+## Production release — 2026-09-19 13:01 UTC
+
+Owner explicitly approved merging and production deployment, and requested that routine follow-up fixes and releases proceed without repeated confirmation. PR #11 was squash-merged as `63c2b8a7a79ddb6e15ecb01666ad7c9d306b4a6c`.
+
+[Deployment run 35444454920](https://github.com/f-tiger/agi-site/actions/runs/35444454920) completed successfully. The production build stamp matched that SHA. All six new English/German pages returned HTTP 200 with zero redirects; shared assets and existing routes also passed. The beacon endpoint returned 204 and `/api/pulse` passed. IndexNow accepted 51 URLs with HTTP 200; acceptance is not a claim of indexing or traffic growth.
+
+Production interaction testing from the desktop browser was unavailable because navigation timed out. Interaction tests were completed on the local preview as documented above; production route, build and service checks were performed by the deployment runner. No growth or revenue outcome is claimed.
