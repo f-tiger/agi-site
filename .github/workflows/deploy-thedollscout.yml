@@ -159,7 +159,14 @@ jobs:
       # ③重定向环(gridlings 教训)。三样都测。
       - name: Verify every published workbench tool
         working-directory: ${{ github.workspace }}
-        run: node tools/revenue-studio/verify.mjs --site tds --live
+        run: |
+          # Deployment propagation may briefly serve the previous edition.
+          # Retry the same strict checks; persistent mismatches still fail.
+          for attempt in 1 2 3 4; do
+            if node tools/revenue-studio/verify.mjs --site tds --live; then exit 0; fi
+            if [ "$attempt" != "4" ]; then sleep 8; fi
+          done
+          exit 1
 
       - name: Notify verified localized tool URLs to IndexNow
         if: github.event_name == 'push'
@@ -256,6 +263,4 @@ jobs:
 concurrency:
   group: deploy-thedollscout
   cancel-in-progress: true
-
-
 
