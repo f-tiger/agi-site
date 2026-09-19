@@ -14,8 +14,9 @@ document.addEventListener('click',e=>{
  let u;try{u=new URL(a.href);}catch{return;}
  if(u.hostname.endsWith('.agiscorecard.com')){
   if(u.pathname==='/for-agents.html')track('mcp_setup');
-  if(u.hostname!==location.hostname&&/^https:\/\/(reconcile|evidence|route|protocol|permit|compute|incentives|proof|calls|disclosures)\.agiscorecard\.com/.test(u.href)){
-   track('tool_open');if(source.channel!=='direct')u.searchParams.set('channel',source.channel);
+  if(u.hostname!==location.hostname&&/^https:\/\/(reconcile|evidence|route|protocol|permit|compute|incentives|proof|calls|disclosures)\.agiscorecard\.com/.test(u.href))track('tool_open');
+  if(pageNames.includes(pageName(u.pathname))){
+   if(source.channel!=='direct')u.searchParams.set('channel',source.channel);
    if(source.campaign!=='none'&&!u.searchParams.has('via'))u.searchParams.set('via',source.campaign);
    a.href=u.href;
   }

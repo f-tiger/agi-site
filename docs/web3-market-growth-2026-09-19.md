@@ -51,3 +51,10 @@ Local suite: 82 tests passed, including correct ticker units, stale/unavailable 
 - [Circle transparency](https://www.circle.com/transparency): issuer disclosures are distinct from venue prices.
 - [x402 repository](https://github.com/coinbase/x402) and [EZKL documentation](https://docs.ezkl.xyz/): original project references.
 - [Google helpful content guidance](https://developers.google.com/search/docs/fundamentals/creating-helpful-content) and [AI search guidance](https://developers.google.com/search/docs/appearance/ai-features): support useful, accessible, sourced content; do not establish guaranteed ranking or citation.
+
+
+## 上线验收修正
+
+首轮上线验收阻止将断源判为完成。Kraken 公共接口在验证环境持续超时，改为 DefiLlama 公共价格端点（BTC/ETH/USDC/USDT）；保留每个报价的提供方时间，超过 15 分钟标为 stale，不计算未提供的 24 小时涨跌。Ethereum RSS 已校正到 `/en/feed.xml`；x402 当前上游为 x402-foundation/x402，Coinbase 仓库已是 fork。只跟随固定来源，不自动放宽为任意 URL。公开失败原因仅固定错误码。
+
+参考： https://api-docs.defillama.com/ 、 https://github.com/coinbase/x402 、 https://github.com/x402-foundation/x402 。生产验收结果以最终工作流与当日 `data/autopilot/web3/latest.json` 为准。
