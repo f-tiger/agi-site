@@ -24,6 +24,12 @@ const BASE = "https://thedollscout.com";
    future round leaves behind should not leak in by accident. Order = the
    reading order we'd hand a person. */
 const PAGES = [
+  ["de/collector-guide.html", "/de/collector-guide"],
+  ["de/display-calculator.html", "/de/display-calculator"],
+  ["de/collection-tracker.html", "/de/collection-tracker"],
+  ["collector-guide.html", "/collector-guide"],
+  ["display-calculator.html", "/display-calculator"],
+  ["collection-tracker.html", "/collection-tracker"],
   ["index.html", "/"],
   ["start.html", "/start"],
   ["rarity.html", "/rarity"],
@@ -218,3 +224,4 @@ try {
 }
 
 process.exit(0);
+
