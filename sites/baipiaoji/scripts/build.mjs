@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { canonicalUrls } from './canonical-urls.mjs';
 // 零依赖静态站构建脚本：读取 data/*.json，输出完整站点到 dist/
 import { readFileSync, writeFileSync, mkdirSync, rmSync, cpSync, existsSync, readdirSync } from 'node:fs';
 import { createHash } from 'node:crypto';
@@ -8639,3 +8640,15 @@ ${licOnly.join('\n')}
 }
 
 console.log(`✅ 构建完成：${LOCALES.length} 种语言 × (首页 + 赚钱作业总览 + ${hustles.length} 作业页 + ${solutions.length} 方案页 + ${tools.length} 工具页 + ${catEntries.length} 分类页 + ${VS_PAIRS.length} 对比页) = ${allPages.length} 页 → dist/`);
+
+// Match Cloudflare Pages public URLs across canonical, hreflang, links and feeds.
+(function alignDiscovery(dir) {
+  for (const entry of readdirSync(dir, {withFileTypes:true})) {
+    const file=join(dir,entry.name);
+    if(entry.isDirectory()) alignDiscovery(file);
+    else if(/\.(?:html|json|xml|txt|md|js)$/.test(entry.name)) {
+      const before=readFileSync(file,'utf8'),after=canonicalUrls(before);
+      if(after!==before) writeFileSync(file,after);
+    }
+  }
+})(dist);

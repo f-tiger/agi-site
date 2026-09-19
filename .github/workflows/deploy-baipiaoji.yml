@@ -193,12 +193,18 @@ jobs:
       - name: Tokenizer regression (840 golden cases)
         run: node scripts/tokenizer-test.mjs
 
+      - name: Verify IndexNow selection and URL migration
+        run: node scripts/test-indexnow-plan.mjs
+
       - name: Build site
         run: node scripts/build.mjs
 
       # 2026-08-17 挂入：九道出厂门禁（断链/JSON-LD/中文残留/占位符/裸MD/矛盾/EN缺项/
       # 写死计数/空壳页）此前只在会话手动跑——CI 里从未把过关。放在 build 之后、deploy
       # 之前：不过关就不部署。
+      - name: Verify canonical routes and sitemap targets
+        run: node scripts/check-canonical-routes.mjs
+
       - name: Verify dist (出厂门禁)
         run: node scripts/verify-dist.mjs
 
@@ -209,6 +215,10 @@ jobs:
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: npx wrangler@4 pages deploy dist --project-name=aiyangmao --branch=main --commit-dirty=true
+
+      - name: Repair five Bing-reported canonical URLs once
+        if: github.event_name == 'push' && contains(github.event.head_commit.message, '[indexnow-repair]') && github.run_attempt == 1
+        run: node scripts/indexnow.mjs --repair-bing-20260919
 
       # 每日流量快照：把 D1 里的第一方打点聚合后写回仓库（data/traffic-snapshot.json），
       # 任何会话（含无 MCP 的自动循环轮次）都能从 git 读到最新流量。
@@ -611,7 +621,7 @@ jobs:
       # 而回填本身只需要几十秒。一件事只留一个入口，避免两处分叉。
       - name: Ping IndexNow (Bing/Yandex/Naver instant indexing)
         if: github.event_name != 'push'
-        run: node scripts/indexnow.mjs || true
+        run: node scripts/indexnow.mjs
 
       # Wayback Machine 快照：无需账号的外部索引面——存档页可被搜索与 AI 检索抓取且永久回链本站。
       # 按价值排序取前 N 个（方法论 → 拒绝清单 → 流言核查 → 首页 → 类目 → 对比页），见 scripts/wayback.mjs
