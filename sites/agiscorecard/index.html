@@ -584,10 +584,17 @@
   footer a { color: var(--muted); }
   footer a:hover { color: var(--text); opacity: 1; }
 
+
+  .mobile-menu { display: none; position: relative; }
+  .mobile-menu summary { list-style: none; cursor: pointer; color: var(--text); font-size: 13px; font-weight: 600; padding: 8px 10px; border: 1px solid var(--border2); border-radius: 8px; }
+  .mobile-menu summary::-webkit-details-marker { display: none; }
+  .mobile-menu-links { position: absolute; right: 0; top: calc(100% + 8px); min-width: 210px; padding: 8px; display: grid; gap: 2px; background: var(--bg2); border: 1px solid var(--border2); border-radius: 10px; box-shadow: 0 12px 30px rgba(0,0,0,.35); }
+  .mobile-menu-links a { display: block; padding: 9px 10px; color: var(--text); font-size: 13px; border-radius: 6px; }
+  .mobile-menu-links a:hover { background: var(--bg3); opacity: 1; }
   /* RESPONSIVE */
   @media (max-width: 700px) {
     header { padding: 0 1rem; }
-    nav { display: none; }
+    .desktop-nav { display: none; }\n    .mobile-menu { display: block; }
     .hero { padding: 3rem 1rem 2rem; }
     .clock-section, .section, .newsletter { margin-left: 1rem; margin-right: 1rem; }
     .milestones-grid { grid-template-columns: 1fr; margin-left: 1rem; margin-right: 1rem; }
@@ -613,7 +620,7 @@
     <div class="logo-dot"></div>
     AGI Scorecard
   </div>
-  <nav>
+  <nav class="desktop-nav" aria-label="Primary">
     <a href="#predictions">Scorecard</a>
     <a href="/discuss">Discuss</a>
     <a href="/ai-and-your-job" onclick="gtag('event','hot_topic_click',{location:'nav_job'});">💼 AI &amp; your job</a>
@@ -621,11 +628,29 @@
     <a href="/ai-tools" onclick="gtag('event','tool_click',{location:'nav'});">🎮 Play</a>
     <a href="/invest" onclick="gtag('event','invest_tool_click',{location:'nav'});">💰 Invest</a>
     <a href="https://compass.agiscorecard.com/en" onclick="gtag('event','invest_tool_click',{location:'nav_compass'});">🧭 13F Compass</a>
+    <a href="https://web3.agiscorecard.com/" onclick="gtag('event','tool_click',{location:'nav_web3'});">◈ Web3</a>
     <a href="/search" title="Search · 站内搜索">🔍</a>
     <a href="two-year-scorecard.html" onclick="gtag('event','analysis_click',{location:'nav'});">Analysis</a>
     <a href="/cn">中文</a>
     <a href="/advertise">Advertise</a>
   </nav>
+  <details class="mobile-menu">
+    <summary>Menu <span aria-hidden="true">☰</span></summary>
+    <div class="mobile-menu-links">
+      <a href="#predictions">Scorecard</a>
+      <a href="/discuss">Discuss</a>
+      <a href="/ai-and-your-job">💼 AI &amp; your job</a>
+      <a href="/does-ai-slowdown-change-agi-2027">🔥 Slow down?</a>
+      <a href="/ai-tools">🎮 Play / AI tools</a>
+      <a href="/invest">💰 Invest</a>
+      <a href="https://compass.agiscorecard.com/en">🧭 13F Compass</a>
+      <a href="https://web3.agiscorecard.com/">◈ Web3 Workbench</a>
+      <a href="/search">🔍 Search</a>
+      <a href="two-year-scorecard.html">Analysis</a>
+      <a href="/cn">中文</a>
+      <a href="/advertise">Advertise</a>
+    </div>
+  </details>
   <a class="subscribe-btn" href="https://agiscorecard.beehiiv.com/subscribe?utm_source=agiscorecard&utm_medium=header" target="_blank" rel="noopener" onclick="gtag('event','subscribe_click',{location:'header'});" style="text-decoration:none; display:inline-block;">Subscribe free</a>
 </header>
 
