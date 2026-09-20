@@ -116,7 +116,7 @@ def build():
 <label class="check"><input type="checkbox" id="comparable" name="comparable">{esc(t["comparable"])}</label>
 <button type="submit">{esc(t["run"])}</button><p id="form-error" role="alert"></p></form>
 <section class="results" aria-labelledby="result-heading"><h2 id="result-heading">{esc(t["results"])}</h2><div id="result" aria-live="polite"><p>{esc(t["initial"])}</p></div>
-<div class="actions"><button type="button" id="share">{esc(t["share"])}</button><button type="button" id="print">{esc(t["print"])}</button></div><p id="share-status" role="status"></p><a id="share-link" hidden></a></section>
+<div class="actions"><button type="button" id="share">{esc(t["share"])}</button><button type="button" id="print">{esc(t["print"])}</button></div><div class="community-share" aria-label="Community sharing"><span>{esc(t["share"])}:</span><a data-share="whatsapp" target="_blank" rel="noopener">WhatsApp</a><a data-share="reddit" target="_blank" rel="noopener">Reddit</a><a data-share="x" target="_blank" rel="noopener">X</a><a data-share="email">Email</a></div><p id="share-status" role="status"></p><a id="share-link" hidden></a></section>
 </div>
 <article>
 {body}
