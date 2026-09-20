@@ -9,6 +9,7 @@ Extend the existing daily `fleet-autopilot` run so the public `f-tiger/agi-site`
 - `tools/fleet/membership_snapshot.mjs` checks the four independent membership APIs and stores readiness plus aggregate order/member counters. It never writes a payment, activates a member, reads a token, or stores customer data.
 - `tools/fleet/evolution.py` ranks opportunity signals, membership health, data freshness, hot pages, underserved demand and AI-referral gaps. Missing or stale inputs remain `unknown` and become an observation or alert.
 - The job writes `data/fleet-evolution/latest.json`, `latest.md`, a 30-day history and `sites/*/data/fleet-evolution.json` manifests. The manifests are static, machine-readable evidence for the sites and AI crawlers; they do not claim that queued work was completed.
+- Site manifests keep exact counters in the root report but use stable bands and state flags locally, so an unchanged opportunity does not cause all fourteen sites to redeploy every day.
 - The existing autopilot remains responsible for content-hash lastmod correction, demand queues and delta-only IndexNow. A push carrying a changed site file uses the existing `[deploy]` gate so that the relevant site publishes without waiting for a later session.
 
 ## Decision boundary
