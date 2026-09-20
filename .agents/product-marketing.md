@@ -1,6 +1,6 @@
 # Product marketing context
 
-**Document version: v2** — **Last updated: 2026-09-19**. Draft from repository, owner statements and public sources; no invented customer interviews. Read `docs/commercial-skills-review-2026-09-18.md` before extending an experiment. Unknowns below are blockers to investment, not blanks to fill with assumptions.
+**Document version: v3** — **Last updated: 2026-09-20**. Draft from repository, owner statements and public sources; no invented customer interviews. Read `docs/commercial-skills-review-2026-09-18.md` before extending an experiment. Unknowns below are blockers to investment, not blanks to fill with assumptions.
 
 ## Business goal and proof
 
@@ -40,6 +40,8 @@ No new paid features for the three discovery probes until repeated task evidence
 
 ## Changelog
 
+- v3 (2026-09-20): Added the owner-requested AGI discussion experiment. Free community participation is distinct from paid workspaces; existing same-site AGI identity is preserved. Growth is unverified.
+
 - v2 (2026-09-19): Added eight-track/24-product portfolio, separated BPJ vendor placements from reader memberships, and gated automated marketing drafts on real checkout readiness. Owner requested implementation of BPJ checkout; historical general feature freezes do not block this scope.
 
 - 2026-09-18: Adopted product-marketing, customer-research, pricing and free-tools methods; downgraded three new sites from paid-business candidates to bounded discovery probes. Existing Eco revenue remains the portfolio benchmark.
@@ -68,3 +70,9 @@ BPJ implementation uses server-owned Checkout pricing, signed payment events, th
 
 Agent Delivery Lab (`verify.agiscorecard.com`) is a bounded free experiment for developers consuming paid API results. Read `docs/agent-delivery-lab-validation-2026-09-19.md`. It checks x402 v2 exact EVM challenge shapes, declared JSON response rules and payment snapshot differences, with an offline Node runner. It does not verify payments or factual accuracy. Hosted history and monitoring at €29/month remain an unavailable price hypothesis; no checkout or verified buyer. Anonymous feedback explicitly includes zero frequency and no-interest answers and separates QA. Launch authorization was explicit in the owner's current request; commercial scaling still requires real purchase and repeat-task evidence.
 
+
+## AGI community experiment — 2026-09-20
+
+Read `docs/agi-community-research-2026-09-20.md`. The owner requested deep research and an AGI homepage discussion area to grow registrations and traffic. Target hypothesis: readers who want first-hand AI tool evidence, testable AGI predictions and concrete work changes. The first release has three topics, editorial prompts, free same-site registration, moderated submissions, follows and shareable SSR pages. Existing AGI access keys work; free registration grants no paid workspace entitlement.
+
+Alternatives include staying on Reddit/Hugging Face, embedded GitHub comments, and external chat. We have not validated willingness to migrate or contribute. Login-key backup is a friction risk; no email recovery or off-site notifications are promised. All user submissions require review. Editorial prompts are explicitly labeled and excluded from forum-post schema. Shares, external referrals, registrations, approved contributions and return visits remain separate measures. Do not publish generated promotional text into communities that prohibit it, or equate a share button with acquired backlinks.

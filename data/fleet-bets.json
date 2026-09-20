@@ -1296,6 +1296,17 @@
    "lose": "无相关触达或 opt-in 不足记 insufficient；有明确触达仍无保存复盘或输入成本高，则收缩为免费辅助工具，不扩建社区。",
    "source": "docs/web3-research-experience-2026-09-20.md: 验证与停止规则",
    "status": "open"
+  },
+  {
+   "id": "agi-discussion-1020",
+   "site": "agiscorecard",
+   "due": "2026-10-20",
+   "metric": "AGI /api/discuss/admin action=stats：28 天讨论区 session-days、来源分类、免费社区注册账号、7 天内投稿且通过审核的账号、跨日回访账号、未回复主题及审核积压。公开 /api/pulse 仅作主站 pageview 背景，不充当社区独立用户。",
+   "threshold": "先观察至少 100 个讨论区 session-days；若不足则 insufficient。有足够触达后：至少 10 个免费账号、3 个非站长账号有通过审核的投稿、3 个注册账号跨日回访，且没有持续超过 48 小时的审核积压，才进入下一轮人工需求核实。这是运营判定线，不是统计显著性或营收证明。",
+   "win": "保留三个主题，访谈实际参与者并优先改善他们反复使用的流程；有真实来源的外部引荐再加分发投入，不自动开新板块或买量。",
+   "lose": "触达不足则改善现有站内入口；有触达无参与则收窄到编辑主题讨论，暂停自由发帖扩张。若无人审核，暂停新投稿而保留可读内容和用户删除功能。",
+   "source": "docs/agi-community-research-2026-09-20.md；用户要求深度调研后在 AGI 首页增加讨论区，目标注册与流量。",
+   "status": "open"
   }
  ]
 }

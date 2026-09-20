@@ -74,6 +74,9 @@ jobs:
       # search query was stored as an empty label, and the table looked fine. Runs on
       # the push path because it is a correctness gate on the deployed worker, and it
       # costs a couple of seconds.
+      - name: Test community privacy, registration and permissions
+        run: node --test sites/agiscorecard/tools/community/test.mjs
+
       - name: Test analytics field sanitisers
         working-directory: sites/agiscorecard
         run: node tools/test_analytics_sanitiser.mjs
@@ -94,6 +97,7 @@ jobs:
           node tools/revenue-studio/node_modules/playwright/cli.js install --with-deps chromium --only-shell
           node tools/revenue-studio/browser-test.mjs
           node tools/member-studio/browser-test.mjs
+          node sites/agiscorecard/tools/community/browser-test.mjs
           node tools/revenue-studio/build.mjs --site agi --out sites/agiscorecard
           node tools/revenue-studio/verify.mjs --site agi --out sites/agiscorecard
           node tools/member-studio/test-isolation.mjs
@@ -130,6 +134,20 @@ jobs:
             if [ "$attempt" != "4" ]; then sleep 8; fi
           done
           exit 1
+
+      - name: Verify discussion pages and private API boundaries
+        run: |
+          for attempt in 1 2 3; do
+            if node sites/agiscorecard/tools/community/verify.mjs; then exit 0; fi
+            if [ "$attempt" != "3" ]; then sleep 8; fi
+          done
+          exit 1
+
+      - name: Read aggregate community growth and review backlog
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          ADS_WATCH_SECRET: ${{ secrets.ADS_WATCH_SECRET }}
+        run: node sites/agiscorecard/tools/community/ops.mjs stats
 
       - name: Verify every published workbench tool
         working-directory: ${{ github.workspace }}
