@@ -21,6 +21,7 @@ on:
       - "sites/baipiaoji/scripts/ad-runner-config.mjs"
       - "sites/getecoback/site/**"
       - "sites/getecoback/tools/**"
+      - "sites/getecoback/data/**"
       - "sites/getecoback/src/**"
       - "sites/getecoback/wrangler.jsonc"
       - ".github/workflows/deploy-getecoback.yml"
@@ -120,6 +121,9 @@ jobs:
         run: |
           python3 tools/differentiate_heizung.py --selftest
           python3 tools/differentiate_heizung.py
+
+      - name: Build country solution calculators and localized mirrors
+        run: python3 tools/build_country_calculators.py
 
       - name: Inject site chrome (nav/footer/radar; idempotent, covers new pages)
         run: python3 tools/build_structure.py
