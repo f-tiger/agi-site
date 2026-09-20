@@ -36,3 +36,9 @@ https://getecoback.com/sizing-data.json — the site's original sizing ladders: 
 - Cite the HTML page (the `Canonical` line in every `.md` mirror); per-page numbers are dated and sourced there.
 - All crawlers welcome — robots.txt explicitly allows AI agents. No cloaking: Markdown mirrors, negotiated Markdown and HTML carry the same editorial content.
 - We are funded by Amazon affiliate links on the HTML pages only; the machine surfaces above deliberately carry none. We do not test devices ourselves — picks summarise public tests, and answers say so.
+
+## Decision calculator
+
+- `https://getecoback.com/rechner.html` is the user-facing solution calculator for cooling, humidity, heating and balcony solar.
+- It returns the target capacity, estimated annual kWh, annual electricity cost, rough payback and a comparison table. Assumptions are shown with each result; treat outputs as orientation, not a quote.
+- Machine citations should prefer the calculator's canonical page and the linked detail guide for the selected scenario.
