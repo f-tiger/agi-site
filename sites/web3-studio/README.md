@@ -83,3 +83,9 @@ separate MEASURE_LIMIT binding caps submissions. `/api/stats` feedback is separa
 Run `node scripts/market-smoke.mjs` after deploying and
 `node scripts/growth-audit.mjs --check` for source/discovery/measurement health.
 The existing daily fleet-autopilot retains 30 daily diagnostic records.
+
+## Research board (1.4)
+
+`/market.html` now combines eight curated assets, daily history comparisons, source-linked research questions and a local evidence notebook. `/api/research` is a separate read-only feed; the original four-asset `/api/market` contract and deterministic MCP tools remain available. `status` describes snapshot retrieval; every quote has its own freshness status. Changes use daily samples within two hours of the intended interval, never synthetic candles. Missing history does not erase usable current prices.
+
+Watchlist baselines and notes are written to browser storage only on explicit Save, expire after 30 days and have separate Delete actions. They are never uploaded. Export is a user-authored Markdown file, not automatic publication or an AI verdict. Four optional fixed-category events support evaluating the experiment without collecting notes, saved prices or asset selections. `scripts/research-smoke.mjs` verifies actual source/history connectivity after deployment; the existing daily audit covers this feed too.

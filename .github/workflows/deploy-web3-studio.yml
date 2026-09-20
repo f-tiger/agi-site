@@ -60,3 +60,4 @@ jobs:
           node scripts/smoke.mjs
           node scripts/mcp-smoke.mjs
           node scripts/market-smoke.mjs
+          node scripts/research-smoke.mjs

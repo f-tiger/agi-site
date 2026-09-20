@@ -1,6 +1,8 @@
+import {assets} from '../public/research-core.mjs';
 import test from 'node:test';import assert from 'node:assert/strict';import {audit} from '../scripts/growth-audit.mjs';import {newPaths} from '../scripts/market-pages.mjs';
 function good(url){const u=new URL(url),now=new Date().toISOString();let text='';
  if(u.pathname==='/api/market')text=JSON.stringify({status:'fresh',retrievedAt:now,quotes:[{},{},{},{}]});
+ else if(u.pathname==='/api/research')text=JSON.stringify({status:'fresh',historyStatus:'fresh',retrievedAt:now,quotes:assets.map(a=>({symbol:a.symbol,status:'fresh',day:{percent:1},week:{percent:1}}))});
  else if(u.pathname==='/api/briefs')text=JSON.stringify({status:'fresh',retrievedAt:now,sources:[],items:[]});
  else if(u.pathname==='/api/growth')text=JSON.stringify({qa:false,groups:[],asOf:now,windowDays:28});
  else if(u.pathname==='/api/stats')text=JSON.stringify({groups:[{qa:1,submissions:400}]});

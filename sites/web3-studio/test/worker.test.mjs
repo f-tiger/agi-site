@@ -1,7 +1,7 @@
 import test from 'node:test';import assert from 'node:assert/strict';import {readFile} from 'node:fs/promises';
 import worker,{feedbackShape} from '../worker.mjs';import {sites,hubHost} from '../public/catalog.mjs';
 const assetCalls=[];const env={ASSETS:{fetch:async request=>{const p=new URL(request.url).pathname;assetCalls.push(p);try{return new Response(await readFile('dist'+p));}catch{return new Response('Missing',{status:404});}}}};
-globalThis.caches={default:{match:async key=>new Response(JSON.stringify({retrievedAt:new Date().toISOString(),quotes:[],items:[],sources:[]}))}};
+globalThis.caches={default:{match:async key=>new Response(JSON.stringify({retrievedAt:new Date().toISOString(),quotes:[],items:[],sources:[],rows:[]}))}};
 const get=(host,path='/',method='GET')=>worker.fetch(new Request('https://'+host+path,{method}),env);
 test('all hostnames serve their own page and never a sibling page',async()=>{for(const s of sites){const r=await get(s.host);assert.equal(r.status,200);assert.ok((await r.text()).includes('data-site="'+s.id+'"'));assert.equal((await get(s.host,'/evidence/index.html')).status,404);}assert.equal((await get(hubHost)).status,200);assert.equal((await get('unknown.example.org')).status,404);});
 test('shared modules, guides and examples resolve without redirects',async()=>{for(const path of ['/engine.mjs','/guide.html','/examples/input.json','/offline-tools.zip']){const r=await get(sites[0].host,path);assert.equal(r.status,200);assert.equal(r.headers.get('Location'),null);}assert.equal((await get(hubHost,'/examples/input.json')).status,404);});
@@ -17,3 +17,5 @@ test('new discoverability assets preserve per-host boundaries and canonical HTML
 });
 
 test('deployment manifest covers every canonical page and has resolvable normalized routes',async()=>{const manifest=JSON.parse(await readFile('asset-manifest.generated.json','utf8'));for(const [host,files]of Object.entries(manifest)){for(const path of ['/','/guide.html','/privacy.html','/share.png','/sitemap.xml'])assert.ok(files[path],host+path);for(const [path,local]of Object.entries(files)){assert.ok(!path.includes('//'),path);assert.ok(!local.includes('//'),local);assert.equal((await get(host,path)).status,200,host+path);}}});
+
+test('research context is read-only, scoped and rejects arbitrary source URLs',async()=>{for(const path of ['/api/research?url=https://evil.test','/api/research?format=json','/api/research?format=html&format=html'])assert.equal((await get(hubHost,path)).status,400);assert.equal((await get(hubHost,'/api/research','POST')).status,405);assert.equal((await get(sites[0].host,'/api/research')).status,404);const r=await get(hubHost,'/api/research');assert.equal(r.status,200);assert.equal(r.headers.get('X-Robots-Tag'),'noindex');const body=await r.json();assert.ok(body.quotes.every(q=>q.price===null&&q.day===null));});

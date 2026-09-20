@@ -1,6 +1,6 @@
 {
  "note": "舰队赌注台账:每条预登记判定线一行;status open→won/lost/insufficient/withdrawn 时必须写 settled(日期)与 reading(读数)。tools/fleet/check_bets.py 在 heartbeat 里断言:到期 3 天内提醒,过期 >7 天未结算即红。新增判定线不进这里 = heartbeat 看不见 = 等于没预登记。",
- "updated": "2026-09-19",
+ "updated": "2026-09-20",
  "bets": [
   {
    "id": "fleet-ai-access-0916",
@@ -1284,6 +1284,17 @@
    "win": "核实至少两个独立团队两个周期的重复任务及相对当前替代的总时间改善，再决定下一阶段；没有收费放行。",
    "lose": "没有相关触达证据则 insufficient；确认有触达但输入负担大于收益或没有重复任务，则停止专属功能扩张，保留免费工具或并入 hub。",
    "source": "docs/web3-portfolio-research-2026-09-19.md；用户 2026-09-19 明确要求全部剩余方向研究完善后上线。",
+   "status": "open"
+  },
+  {
+   "id": "web3-research-1019",
+   "site": "web3-research",
+   "due": "2026-10-19",
+   "metric": "https://web3.agiscorecard.com/api/growth，排除 qa；watch_compare 与 review_export 的自愿事件，加人工核实的重复研究需求。事件不是人数或留存率。",
+   "threshold": "review_export ≥5 且 watch_compare ≥3 仅触发人工验证；扩建另需至少两个独立使用者重复研究、相对既有替代的改善证据。t0 非 QA 自愿事件为 0。",
+   "win": "核实真实重复使用后再判断是否投资可靠提醒/云历史/结构化讨论；不自动开售。",
+   "lose": "无相关触达或 opt-in 不足记 insufficient；有明确触达仍无保存复盘或输入成本高，则收缩为免费辅助工具，不扩建社区。",
+   "source": "docs/web3-research-experience-2026-09-20.md: 验证与停止规则",
    "status": "open"
   }
  ]

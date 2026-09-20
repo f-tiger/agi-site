@@ -1,6 +1,6 @@
 export const channels=['direct','search','ai','external','owned','campaign'];
 export const campaigns=['none','market','stablecoin','gas','protocol-change','publisher','mcp'];
-export const events=['page_view','sample_run','own_run','report_export','tool_open','mcp_setup','citation_copy','cost_check'];
+export const events=['page_view','sample_run','own_run','report_export','tool_open','mcp_setup','citation_copy','cost_check','watch_save','watch_compare','review_save','review_export'];
 export const pageNames=['home','guide','examples','privacy','for-agents','publish','market','briefs','stablecoin-payment-check','gas-budget-check','protocol-change-check'];
 export function attribution(url,referrer=''){
  const u=new URL(url),c=u.searchParams.get('channel'),tag=u.searchParams.get('via');let channel='direct';

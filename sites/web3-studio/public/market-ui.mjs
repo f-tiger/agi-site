@@ -5,7 +5,7 @@ const send=event=>document.dispatchEvent(new CustomEvent('web3:measure',{detail:
 if(form)form.addEventListener('submit',e=>{
  e.preventDefault();try{const v=Object.fromEntries(['amount','price','gas','feeGwei','ethUsd'].map(k=>{const raw=form.elements[k].value;if(raw.trim()==='')throw Error('Fill each input; missing prices are not assumed.');return[k,Number(raw)];})),r=impact(v),fmt=n=>new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:4}).format(n);out.textContent=`Reference value ${fmt(r.value)}; difference from $1 per token ${fmt(r.difference)}; gas estimate ${fmt(r.gasUsd)}. Gas units and effective fee are your assumptions. L2 data fees, swaps and other charges are not included. This does not prove a payment settled.`;send('cost_check');}catch(e){out.textContent=e.message;}
 });
-const market=document.getElementById('market-live'),briefs=document.getElementById('briefs-live');
+const market=document.getElementById('research-controls')?null:document.getElementById('market-live'),briefs=document.getElementById('briefs-live');
 async function refresh(){
  if(document.hidden)return;
  const block=market||briefs;if(!block)return;

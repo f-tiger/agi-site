@@ -1,3 +1,4 @@
+import {researchSnapshot,researchMarkup} from './research.mjs';
 import {snapshot,marketMarkup,briefsMarkup,rss} from './market.mjs';
 import {measurement} from './measurement.mjs';
 import {handleMcp} from './mcp.mjs';
@@ -6,7 +7,7 @@ import {sites,hubHost} from './public/catalog.mjs';
 import {profiles,selectProfiles,CHECKED_AT} from './public/profiles.mjs';
 import {release} from './release.generated.mjs';
 const hosts=new Map([[hubHost,'hub'],...sites.map(s=>[s.host,s.id])]);
-const shared=new Set(['app.mjs','catalog.mjs','core.mjs','engine.mjs','finance.mjs','evidence.mjs','planning.mjs','inspection.mjs','profiles.mjs','style.css','mark.svg','runner.mjs','LICENSE.txt','offline-tools.zip','release.json','experience.mjs','hub.mjs','mcp-info.mjs','attribution.mjs','measure.mjs','market-ui.mjs','impact.mjs','16507d8e1997c4be371f5fbaf7ac1985.txt']);
+const shared=new Set(['app.mjs','catalog.mjs','core.mjs','engine.mjs','finance.mjs','evidence.mjs','planning.mjs','inspection.mjs','profiles.mjs','style.css','mark.svg','runner.mjs','LICENSE.txt','offline-tools.zip','release.json','experience.mjs','hub.mjs','mcp-info.mjs','attribution.mjs','measure.mjs','market-ui.mjs','impact.mjs','research-ui.mjs','research-core.mjs','16507d8e1997c4be371f5fbaf7ac1985.txt']);
 const pages=new Set(['/','/index.html','/guide.html','/privacy.html','/robots.txt','/sitemap.xml','/llms.txt','/examples/input.json','/examples/report.json','/share.png','/llms-full.txt','/for-agents.html','/.well-known/mcp.json']);
 const security={'Content-Security-Policy':"default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' https://*.agiscorecard.com; connect-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'",'X-Content-Type-Options':'nosniff','Referrer-Policy':'no-referrer','X-Frame-Options':'DENY','Permissions-Policy':'camera=(), microphone=(), geolocation=()','Strict-Transport-Security':'max-age=31536000; includeSubDomains'};
 const json=(v,status=200,headers={})=>new Response(JSON.stringify(v),{status,headers:{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store',...headers}});
@@ -18,6 +19,16 @@ const openapi={openapi:'3.1.0',info:{title:'Protocol Ledger source profiles',ver
 export async function handle(request,env){
  const u=new URL(request.url),site=hosts.get(u.hostname);if(!site)return json({error:'Unknown host'},404);if(u.pathname==='/mcp')return handleMcp(request,env,site);
  if(['/api/event','/api/growth'].includes(u.pathname))return measurement(request,env,site);
+ if(site==='hub'&&['/market.html','/api/research'].includes(u.pathname)){
+  if(!['GET','HEAD'].includes(request.method))return json({error:'Read-only endpoint'},405,{Allow:'GET, HEAD'});
+  if(u.pathname==='/api/research'&&([...u.searchParams.keys()].some(k=>k!=='format')||u.searchParams.getAll('format').length>1||u.searchParams.has('format')&&u.searchParams.get('format')!=='html'))return json({error:'Invalid format'},400);
+  const [board,updates]=await Promise.all([researchSnapshot(),snapshot('briefs')]);
+  const data={...board,revision:release.revision,canonical:u.origin+'/market.html',updates:{status:updates.status,retrievedAt:updates.retrievedAt,items:(updates.items||[]).slice(0,3)}};
+  const markup=researchMarkup(data);
+  if(u.pathname==='/api/research')return u.searchParams.get('format')==='html'?new Response(markup,{headers:{'Content-Type':'text/html; charset=utf-8','X-Robots-Tag':'noindex'}}):json(data,200,{'Access-Control-Allow-Origin':'*','X-Robots-Tag':'noindex'});
+  const asset=await env.ASSETS.fetch(new Request(u.origin+'/market.html'));if(!asset.ok)return asset;
+  return new Response((await asset.text()).replace(/<!-- LIVE:market:start -->[\s\S]*?<!-- LIVE:market:end -->/,'<!-- LIVE:market:start -->'+markup+'<!-- LIVE:market:end -->'),{headers:{'Content-Type':'text/html; charset=utf-8'}});
+ }
  if(site==='hub'&&['/market.html','/briefs.html','/api/market','/api/briefs','/updates.xml'].includes(u.pathname)){
   if(!['GET','HEAD'].includes(request.method))return json({error:'Read-only endpoint'},405,{Allow:'GET, HEAD'});
   if(u.pathname.startsWith('/api/')&&([...u.searchParams.keys()].some(k=>k!=='format')||u.searchParams.getAll('format').length>1||u.searchParams.has('format')&&u.searchParams.get('format')!=='html'))return json({error:'Invalid format'},400);

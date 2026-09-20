@@ -20,7 +20,7 @@ export function parsePrices(raw,now=Date.now()){
   return {symbol,quote:'USD',price,sourceUpdatedAt:new Date(time).toISOString(),deviationBps:symbol.startsWith('USD')?(price-1)*10000:null};
  });
 }
-async function read(url,json=true){
+export async function readSource(url,json=true){
  const r=await fetch(url,{headers:{Accept:json?'application/json':'application/rss+xml, application/xml','User-Agent':'Web3Workbench/1.3 (+https://web3.agiscorecard.com/market.html)'},signal:AbortSignal.timeout(7000),redirect:'manual'});
  if(!r.ok)throw Error('source_http_'+r.status);const reader=r.body.getReader();let size=0,text='';const decoder=new TextDecoder();
  while(true){const v=await reader.read();if(v.done)break;size+=v.value.length;if(size>1048576){await reader.cancel();throw Error('source_too_large');}text+=decoder.decode(v.value,{stream:true});}text+=decoder.decode();return json?JSON.parse(text):text;
@@ -42,8 +42,8 @@ export function parseFeed(raw,source,now=Date.now()){
  }).slice(0,5).map(r=>({title:decode(r.title).slice(0,160),url:r.url,publishedAt:new Date(r.publishedAt).toISOString(),source:source.name,sourceId:source.id,kind:source.kind,task:source.task}));
 }
 async function collect(kind){
- if(kind==='market')return {quotes:parsePrices(await read(marketSource)),source:{name:'DefiLlama current prices',url:marketSource,method:marketMethod},timestampMeaning:'sourceUpdatedAt is the provider price timestamp; retrievedAt is our receipt time. Prices older than 15 minutes are marked stale. No 24-hour change or executable quote is inferred.'};
- const sources=await Promise.all(feeds.map(async s=>{try{return {id:s.id,name:s.name,url:s.home,status:'ok',checkedAt:stamp(),items:parseFeed(await read(s.url,s.kind!=='rss'),s)};}catch(e){return {id:s.id,name:s.name,url:s.home,status:'unavailable',checkedAt:stamp(),reason:failureCode(e),items:[]};}}));
+ if(kind==='market')return {quotes:parsePrices(await readSource(marketSource)),source:{name:'DefiLlama current prices',url:marketSource,method:marketMethod},timestampMeaning:'sourceUpdatedAt is the provider price timestamp; retrievedAt is our receipt time. Prices older than 15 minutes are marked stale. No 24-hour change or executable quote is inferred.'};
+ const sources=await Promise.all(feeds.map(async s=>{try{return {id:s.id,name:s.name,url:s.home,status:'ok',checkedAt:stamp(),items:parseFeed(await readSource(s.url,s.kind!=='rss'),s)};}catch(e){return {id:s.id,name:s.name,url:s.home,status:'unavailable',checkedAt:stamp(),reason:failureCode(e),items:[]};}}));
  if(sources.every(s=>s.status!=='ok'))throw Object.assign(Error('all_sources_unavailable'),{sources});
  return {sources,items:sources.flatMap(s=>s.items).sort((a,b)=>b.publishedAt.localeCompare(a.publishedAt)),scope:'Official headlines and code/release metadata only. Source publication is not independent verification or an automatic change to our calculator assumptions.'};
 }
