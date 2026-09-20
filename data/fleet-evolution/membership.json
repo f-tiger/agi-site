@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "generated": "2026-09-20T07:54:34.866Z",
+  "source": "same-origin /api/member and /api/member-admin stats",
+  "privacy": "aggregate counters only; no member, order, support, token or wallet data",
+  "ok": true,
+  "sites": [
+    {
+      "site": "bpj",
+      "origin": "https://baipiaoji.com",
+      "public": {
+        "ok": true,
+        "ready": true,
+        "site": "bpj",
+        "auto_renew": false,
+        "plan_price_units": 9000000,
+        "plan_days": 30
+      },
+      "admin": {
+        "ok": false
+      },
+      "errors": [
+        "admin:operator_secret_unset"
+      ]
+    },
+    {
+      "site": "agi",
+      "origin": "https://agiscorecard.com",
+      "public": {
+        "ok": true,
+        "ready": true,
+        "site": "agi",
+        "auto_renew": false,
+        "plan_price_units": 9000000,
+        "plan_days": 30
+      },
+      "admin": {
+        "ok": false
+      },
+      "errors": [
+        "admin:operator_secret_unset"
+      ]
+    },
+    {
+      "site": "eco",
+      "origin": "https://getecoback.com",
+      "public": {
+        "ok": true,
+        "ready": true,
+        "site": "eco",
+        "auto_renew": false,
+        "plan_price_units": 9000000,
+        "plan_days": 30
+      },
+      "admin": {
+        "ok": false
+      },
+      "errors": [
+        "admin:operator_secret_unset"
+      ]
+    },
+    {
+      "site": "tds",
+      "origin": "https://thedollscout.com",
+      "public": {
+        "ok": true,
+        "ready": true,
+        "site": "tds",
+        "auto_renew": false,
+        "plan_price_units": 9000000,
+        "plan_days": 30
+      },
+      "admin": {
+        "ok": false
+      },
+      "errors": [
+        "admin:operator_secret_unset"
+      ]
+    }
+  ],
+  "totals": {
+    "paid_orders": 0,
+    "paid_members": 0,
+    "active_members": 0,
+    "unexpired_pending": 0
+  }
+}

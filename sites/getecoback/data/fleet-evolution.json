@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "site": "getecoback",
+  "signals": {
+    "membership": {
+      "ready": true,
+      "paid_members": null,
+      "active_members": null
+    },
+    "traffic": {
+      "human_pv": 514,
+      "ai_ref": 20,
+      "reach_humans_referred": null
+    },
+    "demand": {
+      "underserved": 20,
+      "gaps": 23,
+      "hot_pages": 15
+    },
+    "health": {
+      "http": "200",
+      "days_since_deploy": 0
+    }
+  },
+  "actions": [
+    {
+      "kind": "optimize_existing_page",
+      "priority": 80,
+      "reason": "measured demand reaches an existing page with zero recent referred readers",
+      "evidence": {
+        "count": 20,
+        "query": "infrarotheizung gegen schimmel",
+        "page": "guide/infrarotheizung-gegen-schimmel.html",
+        "value": 59250
+      },
+      "mode": "queue"
+    },
+    {
+      "kind": "membership_observability",
+      "priority": 68,
+      "reason": "membership aggregate counters are unavailable",
+      "evidence": {
+        "admin_ok": false
+      },
+      "mode": "observe"
+    },
+    {
+      "kind": "content_gap",
+      "priority": 55,
+      "reason": "rising demand has no matching page; editorial judgement is required",
+      "evidence": {
+        "count": 23,
+        "query": "knebel infrarotheizung",
+        "value": 36000
+      },
+      "mode": "queue"
+    },
+    {
+      "kind": "improve_hot_page",
+      "priority": 52,
+      "reason": "prioritize a page with measured reader heat",
+      "evidence": {
+        "page": "/en/guide/portable-ac-tilt-and-turn-windows.html",
+        "n7": 8,
+        "p7": 6
+      },
+      "mode": "queue"
+    }
+  ],
+  "autonomous_changes": [
+    "refresh aggregate snapshots",
+    "refresh opportunity and demand queues",
+    "update truthful sitemap lastmod when content hashes change",
+    "submit IndexNow only for changed URLs"
+  ]
+}

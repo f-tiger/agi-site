@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "site": "thedollscout",
+  "signals": {
+    "membership": {
+      "ready": true,
+      "paid_members": null,
+      "active_members": null
+    },
+    "traffic": {
+      "human_pv": 260,
+      "ai_ref": 0,
+      "reach_humans_referred": null
+    },
+    "demand": {
+      "underserved": 0,
+      "gaps": 11,
+      "hot_pages": 0
+    },
+    "health": {
+      "http": "200",
+      "days_since_deploy": 0
+    }
+  },
+  "actions": [
+    {
+      "kind": "membership_observability",
+      "priority": 68,
+      "reason": "membership aggregate counters are unavailable",
+      "evidence": {
+        "admin_ok": false
+      },
+      "mode": "observe"
+    },
+    {
+      "kind": "content_gap",
+      "priority": 55,
+      "reason": "rising demand has no matching page; editorial judgement is required",
+      "evidence": {
+        "count": 11,
+        "query": "crumbl labubu ube dot cake",
+        "value": 30400
+      },
+      "mode": "queue"
+    },
+    {
+      "kind": "ai_discovery",
+      "priority": 48,
+      "reason": "referred traffic exists but no AI-assistant referral is measured",
+      "evidence": {
+        "human_pv_28d": 260,
+        "ai_ref_28d": 0
+      },
+      "mode": "queue"
+    }
+  ],
+  "autonomous_changes": [
+    "refresh aggregate snapshots",
+    "refresh opportunity and demand queues",
+    "update truthful sitemap lastmod when content hashes change",
+    "submit IndexNow only for changed URLs"
+  ]
+}

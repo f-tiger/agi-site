@@ -1,6 +1,6 @@
 {
  "dropped_last_run": [],
- "generated": "2026-09-19",
+ "generated": "2026-09-20",
  "pages": {
   "daten.html": {
    "changed": "2026-08-31",
@@ -248,9 +248,14 @@
    "origin": "observed"
   },
   "en/index.html": {
-   "changed": "2026-09-16",
-   "h": "a9efb7dbb5c3c9de",
+   "changed": "2026-09-20",
+   "h": "92f48927b8a7edce",
    "origin": "observed"
+  },
+  "en/solution-calculator.html": {
+   "changed": "",
+   "h": "1944495333cd61ae",
+   "origin": "bootstrap"
   },
   "for-agents.html": {
    "changed": "2026-09-17",
@@ -1013,8 +1018,8 @@
    "origin": "observed"
   },
   "index.html": {
-   "changed": "2026-09-18",
-   "h": "22189c8b72b6cc20",
+   "changed": "2026-09-20",
+   "h": "6ce21c334f2c360a",
    "origin": "observed"
   },
   "it/guide/climatizzatore-senza-unita-esterna.html": {
@@ -1101,6 +1106,11 @@
    "changed": "2026-09-16",
    "h": "4e9a8732fbdd1097",
    "origin": "observed"
+  },
+  "rechner.html": {
+   "changed": "",
+   "h": "91b91ba7cf0044a1",
+   "origin": "bootstrap"
   },
   "tools.html": {
    "changed": "2026-09-16",

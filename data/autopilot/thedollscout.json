@@ -1,10 +1,20 @@
 {
  "dropped_last_run": [],
- "generated": "2026-09-19",
+ "generated": "2026-09-20",
  "pages": {
   "checker.html": {
    "changed": "2026-08-30",
    "h": "a5dddd94468b853a",
+   "origin": "bootstrap"
+  },
+  "collection-tracker.html": {
+   "changed": "2026-09-19",
+   "h": "f0abfa538a8ec1ae",
+   "origin": "bootstrap"
+  },
+  "collector-guide.html": {
+   "changed": "2026-09-19",
+   "h": "ddafb4020a15deff",
    "origin": "bootstrap"
   },
   "data/index.html": {
@@ -17,15 +27,30 @@
    "h": "237bd5cfb7af9e81",
    "origin": "bootstrap"
   },
+  "de/collection-tracker.html": {
+   "changed": "2026-09-19",
+   "h": "7f7b239ad34bba99",
+   "origin": "bootstrap"
+  },
+  "de/collector-guide.html": {
+   "changed": "2026-09-19",
+   "h": "3f769f4df2460475",
+   "origin": "bootstrap"
+  },
+  "de/display-calculator.html": {
+   "changed": "2026-09-19",
+   "h": "d7547342a1df134e",
+   "origin": "bootstrap"
+  },
   "de/fake-check.html": {
    "changed": "2026-08-30",
    "h": "fab2cabbe2e56479",
    "origin": "bootstrap"
   },
   "de/finder.html": {
-   "changed": "2026-08-30",
-   "h": "e32104876ed2606a",
-   "origin": "bootstrap"
+   "changed": "2026-09-20",
+   "h": "7a82413a1111b07f",
+   "origin": "observed"
   },
   "de/glossary.html": {
    "changed": "2026-08-30",
@@ -38,9 +63,9 @@
    "origin": "bootstrap"
   },
   "de/index.html": {
-   "changed": "2026-08-30",
-   "h": "5612b5b194b792be",
-   "origin": "bootstrap"
+   "changed": "2026-09-20",
+   "h": "a1f8a0191b458d3c",
+   "origin": "observed"
   },
   "de/lookup.html": {
    "changed": "2026-08-30",
@@ -83,18 +108,23 @@
    "origin": "bootstrap"
   },
   "de/rarity.html": {
-   "changed": "2026-08-30",
-   "h": "f2585cfb7e8a304d",
-   "origin": "bootstrap"
+   "changed": "2026-09-20",
+   "h": "a01d9e6c54e800e4",
+   "origin": "observed"
   },
   "de/start.html": {
-   "changed": "2026-08-30",
-   "h": "8751fceb072b9502",
-   "origin": "bootstrap"
+   "changed": "2026-09-20",
+   "h": "61cf7608cf1c5b04",
+   "origin": "observed"
   },
   "de/where-to-buy.html": {
-   "changed": "2026-08-30",
-   "h": "f61211e37b1d8a88",
+   "changed": "2026-09-20",
+   "h": "6387001314e02bbc",
+   "origin": "observed"
+  },
+  "display-calculator.html": {
+   "changed": "2026-09-19",
+   "h": "136902146b098fcc",
    "origin": "bootstrap"
   },
   "fake-check.html": {
@@ -103,9 +133,9 @@
    "origin": "bootstrap"
   },
   "finder.html": {
-   "changed": "2026-08-30",
-   "h": "438fe73f95b9b4b4",
-   "origin": "bootstrap"
+   "changed": "2026-09-20",
+   "h": "88f8988f07c0c4e6",
+   "origin": "observed"
   },
   "glossary.html": {
    "changed": "2026-08-30",
@@ -118,9 +148,9 @@
    "origin": "bootstrap"
   },
   "index.html": {
-   "changed": "2026-08-30",
-   "h": "3ce621f79ba57b32",
-   "origin": "bootstrap"
+   "changed": "2026-09-20",
+   "h": "d2891fb2bddd82b9",
+   "origin": "observed"
   },
   "legal/affiliate-disclosure.html": {
    "changed": "2026-08-30",
@@ -128,9 +158,9 @@
    "origin": "bootstrap"
   },
   "legal/privacy.html": {
-   "changed": "2026-08-30",
-   "h": "8a3b531afdd87b5b",
-   "origin": "bootstrap"
+   "changed": "2026-09-20",
+   "h": "3043991bd4bade8f",
+   "origin": "observed"
   },
   "lookup.html": {
    "changed": "2026-08-30",
@@ -173,14 +203,14 @@
    "origin": "bootstrap"
   },
   "rarity.html": {
-   "changed": "2026-08-30",
-   "h": "d88b99471ac790f5",
-   "origin": "bootstrap"
+   "changed": "2026-09-20",
+   "h": "de01700cfd52c76e",
+   "origin": "observed"
   },
   "start.html": {
-   "changed": "2026-08-30",
-   "h": "0b64cdb6648cecd6",
-   "origin": "bootstrap"
+   "changed": "2026-09-20",
+   "h": "210f7200eb5221d3",
+   "origin": "observed"
   },
   "th/index.html": {
    "changed": "2026-08-30",
@@ -188,9 +218,9 @@
    "origin": "bootstrap"
   },
   "where-to-buy.html": {
-   "changed": "2026-08-30",
-   "h": "fbc12a7d6da18e1b",
-   "origin": "bootstrap"
+   "changed": "2026-09-20",
+   "h": "fb6d232bdba104d5",
+   "origin": "observed"
   },
   "zh/index.html": {
    "changed": "2026-08-30",

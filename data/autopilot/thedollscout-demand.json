@@ -33,7 +33,7 @@
   {
    "kind": "autocomplete-new",
    "match": 0.667,
-   "page": "index.html",
+   "page": "fake-check.html",
    "q": "fake labubu dolls",
    "seed": "fake labubu",
    "source": "autocomplete-diff",
@@ -53,7 +53,7 @@
   {
    "kind": "autocomplete-new",
    "match": 0.667,
-   "page": "index.html",
+   "page": "fake-check.html",
    "q": "fake labubu feet",
    "seed": "fake labubu",
    "source": "autocomplete-diff",
@@ -72,8 +72,8 @@
   },
   {
    "kind": "autocomplete-new",
-   "match": 1.0,
-   "page": "index.html",
+   "match": 0.987,
+   "page": "fake-check.html",
    "q": "fake labubu box vs real",
    "seed": "fake labubu",
    "source": "autocomplete-diff",
@@ -83,7 +83,7 @@
   {
    "kind": "autocomplete-new",
    "match": 1.0,
-   "page": "index.html",
+   "page": "fake-check.html",
    "q": "fake labubu vs real",
    "seed": "fake labubu",
    "source": "autocomplete-diff",
@@ -93,7 +93,7 @@
   {
    "kind": "autocomplete-new",
    "match": 0.667,
-   "page": "index.html",
+   "page": "fake-check.html",
    "q": "fake labubu funny",
    "seed": "fake labubu",
    "source": "autocomplete-diff",
@@ -113,7 +113,7 @@
   {
    "kind": "autocomplete-new",
    "match": 0.667,
-   "page": "index.html",
+   "page": "fake-check.html",
    "q": "fake labubu meme",
    "seed": "fake labubu",
    "source": "autocomplete-diff",
@@ -234,7 +234,7 @@
    "v": 180
   }
  ],
- "generated": "2026-09-19",
+ "generated": "2026-09-20",
  "geo": "US",
  "heat_source": "no public aggregate endpoint on this site — heat needs either a Worker /api/* aggregate route or the D1 read permission on the deploy token",
  "hot_pages": [],

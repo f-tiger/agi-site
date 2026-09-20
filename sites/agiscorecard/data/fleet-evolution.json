@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "site": "agiscorecard",
+  "signals": {
+    "membership": {
+      "ready": true,
+      "paid_members": null,
+      "active_members": null
+    },
+    "traffic": {
+      "human_pv": 36366,
+      "ai_ref": 22,
+      "reach_humans_referred": null
+    },
+    "demand": {
+      "underserved": 0,
+      "gaps": 0,
+      "hot_pages": 5
+    },
+    "health": {
+      "http": "200",
+      "days_since_deploy": 0
+    }
+  },
+  "actions": [
+    {
+      "kind": "membership_observability",
+      "priority": 68,
+      "reason": "membership aggregate counters are unavailable",
+      "evidence": {
+        "admin_ok": false
+      },
+      "mode": "observe"
+    },
+    {
+      "kind": "improve_hot_page",
+      "priority": 52,
+      "reason": "prioritize a page with measured reader heat",
+      "evidence": {
+        "page": "/search",
+        "n7": 341,
+        "p7": 54
+      },
+      "mode": "queue"
+    }
+  ],
+  "autonomous_changes": [
+    "refresh aggregate snapshots",
+    "refresh opportunity and demand queues",
+    "update truthful sitemap lastmod when content hashes change",
+    "submit IndexNow only for changed URLs"
+  ]
+}

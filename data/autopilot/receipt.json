@@ -2,28 +2,30 @@
  "runs": [
   {
    "changed_urls": [
-    "https://agiscorecard.com/invest.html",
-    "https://agiscorecard.com/zh/invest.html"
+    "https://agiscorecard.com/cn.html",
+    "https://agiscorecard.com/for-agents.html",
+    "https://agiscorecard.com/index.html",
+    "https://agiscorecard.com/privacy.html"
    ],
    "counts": {
     "bootstrapped": 0,
-    "changed": 2,
+    "changed": 4,
     "covered": 2,
     "demand_terms": 6,
     "gaps": 0,
     "hot_pages": 5,
-    "lastmod_updated": 2,
+    "lastmod_updated": 4,
     "offtopic": 4,
     "pages": 212,
     "undatable": 0,
     "underserved": 0
    },
    "notes": [
-    "heat: measured 2026-09-19 (5 pages); no notes"
+    "heat: measured 2026-09-20 (5 pages); no notes"
    ],
    "outcome": "ok",
    "site": "agiscorecard",
-   "today": "2026-09-19",
+   "today": "2026-09-20",
    "wrote": [
     "sites/agiscorecard/sitemap.xml",
     "data/autopilot/agiscorecard.json",
@@ -39,22 +41,23 @@
     "bootstrapped": 0,
     "changed": 2,
     "covered": 0,
-    "demand_terms": 56,
+    "demand_terms": 62,
     "gaps": 0,
     "hot_pages": 0,
     "lastmod_updated": 2,
-    "offtopic": 56,
+    "offtopic": 62,
     "pages": 7,
     "undatable": 0,
     "underserved": 0
    },
    "notes": [
-    "sites/buysomething/site/rising.json: 11 fresh seed(s) used; 15 stale and 0 undated dropped",
-    "heat: measured 2026-09-19 (0 pages); no notes"
+    "sites/buysomething/site/rising.json: 1 seed(s) are on the AUTOCOMPLETE FALLBACK, not Google Trends rising (automatic pet feeder camera). Those rows are scored 1, not ranked against real volume — the demand face for them is degraded, not working.",
+    "sites/buysomething/site/rising.json: 11 fresh seed(s) used; 16 stale and 0 undated dropped",
+    "heat: measured 2026-09-20 (0 pages); no notes"
    ],
    "outcome": "ok",
    "site": "buysomething",
-   "today": "2026-09-19",
+   "today": "2026-09-20",
    "wrote": [
     "sites/buysomething/site/sitemap.xml",
     "data/autopilot/buysomething.json",
@@ -62,26 +65,29 @@
    ]
   },
   {
-   "changed_urls": [],
+   "changed_urls": [
+    "https://getecoback.com/en/index.html",
+    "https://getecoback.com/index.html"
+   ],
    "counts": {
-    "bootstrapped": 0,
-    "changed": 0,
+    "bootstrapped": 2,
+    "changed": 2,
     "covered": 31,
-    "demand_terms": 73,
-    "gaps": 27,
+    "demand_terms": 67,
+    "gaps": 23,
     "hot_pages": 15,
-    "offtopic": 15,
-    "pages": 224,
-    "undatable": 0,
-    "underserved": 26
+    "offtopic": 13,
+    "pages": 226,
+    "undatable": 2,
+    "underserved": 28
    },
    "notes": [
     "sitemap owned by this site's own generator — not touched",
-    "heat: measured 2026-09-19 (25 pages); no notes"
+    "heat: measured 2026-09-20 (25 pages); no notes"
    ],
    "outcome": "ok",
    "site": "getecoback",
-   "today": "2026-09-19",
+   "today": "2026-09-20",
    "wrote": [
     "data/autopilot/getecoback.json",
     "data/autopilot/getecoback-demand.json"
@@ -107,7 +113,7 @@
    ],
    "outcome": "ok",
    "site": "goldrush",
-   "today": "2026-09-19",
+   "today": "2026-09-20",
    "wrote": [
     "data/autopilot/goldrush.json",
     "data/autopilot/goldrush-demand.json"
@@ -133,24 +139,36 @@
    ],
    "outcome": "ok",
    "site": "gridlings",
-   "today": "2026-09-19",
+   "today": "2026-09-20",
    "wrote": [
     "data/autopilot/gridlings.json",
     "data/autopilot/gridlings-demand.json"
    ]
   },
   {
-   "changed_urls": [],
+   "changed_urls": [
+    "https://thedollscout.com/de/finder.html",
+    "https://thedollscout.com/de/index.html",
+    "https://thedollscout.com/de/rarity.html",
+    "https://thedollscout.com/de/start.html",
+    "https://thedollscout.com/de/where-to-buy.html",
+    "https://thedollscout.com/finder.html",
+    "https://thedollscout.com/index.html",
+    "https://thedollscout.com/legal/privacy.html",
+    "https://thedollscout.com/rarity.html",
+    "https://thedollscout.com/start.html",
+    "https://thedollscout.com/where-to-buy.html"
+   ],
    "counts": {
-    "bootstrapped": 0,
-    "changed": 0,
+    "bootstrapped": 6,
+    "changed": 11,
     "covered": 12,
     "demand_terms": 29,
     "gaps": 11,
     "hot_pages": 0,
-    "lastmod_updated": 0,
+    "lastmod_updated": 11,
     "offtopic": 6,
-    "pages": 39,
+    "pages": 45,
     "undatable": 0,
     "underserved": 0
    },
@@ -160,12 +178,13 @@
    ],
    "outcome": "ok",
    "site": "thedollscout",
-   "today": "2026-09-19",
+   "today": "2026-09-20",
    "wrote": [
+    "sites/thedollscout/sitemap.xml",
     "data/autopilot/thedollscout.json",
     "data/autopilot/thedollscout-demand.json"
    ]
   }
  ],
- "today": "2026-09-19"
+ "today": "2026-09-20"
 }

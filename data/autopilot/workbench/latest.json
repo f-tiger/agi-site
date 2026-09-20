@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-09-19T13:12:49.828Z",
+  "as_of": "2026-09-20T07:54:25.932Z",
   "kind": "owned_page_health_not_market_validation",
   "ok": true,
   "site_checks": [
@@ -640,8 +640,27 @@
   },
   "marketing": {
     "queue_fresh": true,
-    "draft_ready": 57,
-    "blocked": [],
+    "draft_ready": 54,
+    "blocked": [
+      {
+        "id": "bpj-sponsored-placement",
+        "reasons": [
+          "live_checkout_not_ready"
+        ]
+      },
+      {
+        "id": "studio-launchdesk-zh",
+        "reasons": [
+          "live_checkout_not_ready"
+        ]
+      },
+      {
+        "id": "studio-launchdesk-en",
+        "reasons": [
+          "live_checkout_not_ready"
+        ]
+      }
+    ],
     "sends": 0
   },
   "outcomes": {
