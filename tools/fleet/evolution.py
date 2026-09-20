@@ -110,6 +110,34 @@ def safe_action(kind: str, priority: int, reason: str, evidence: dict[str, Any],
     }
 
 
+def band(value: Any) -> str | None:
+    """Bucket volatile counters so site manifests do not redeploy every day."""
+    if value is None:
+        return None
+    try:
+        n = float(value)
+    except (TypeError, ValueError):
+        return None
+    if n <= 0:
+        return "0"
+    if n < 10:
+        return "1-9"
+    if n < 100:
+        return "10-99"
+    return "100+"
+
+
+def compact_action(action: dict[str, Any]) -> dict[str, Any]:
+    """Keep stable evidence in site files; exact numbers remain in latest.json."""
+    compact: dict[str, Any] = {}
+    for key, value in (action.get("evidence") or {}).items():
+        if key in {"page", "query", "http", "site"}:
+            compact[key] = value
+        elif key in {"count", "value", "n7", "p7", "human_pv_28d", "ai_ref_28d", "referred_humans_28d", "paid_members", "active_members"}:
+            compact[f"{key}_band"] = band(value)
+    return {"kind": action.get("kind"), "priority": action.get("priority"), "reason": action.get("reason"), "evidence": compact, "mode": action.get("mode")}
+
+
 def membership_by_site(snapshot: dict[str, Any]) -> dict[str, dict[str, Any]]:
     rows = snapshot.get("sites") if isinstance(snapshot, dict) else []
     out: dict[str, dict[str, Any]] = {}
@@ -228,12 +256,12 @@ def build(today: dt.date) -> tuple[dict[str, Any], dict[str, str]]:
             "schema_version": 1,
             "site": site,
             "signals": {
-                "membership": {"ready": (member.get("public", {}) or {}).get("ready") if isinstance(member, dict) else None, "paid_members": (member.get("admin", {}) or {}).get("paid_members") if isinstance(member, dict) else None, "active_members": (member.get("admin", {}) or {}).get("active_members") if isinstance(member, dict) else None},
-                "traffic": traffic,
-                "demand": {"underserved": len(underserved), "gaps": len(gaps), "hot_pages": len(hot_pages)},
-                "health": {"http": health_row.get("http"), "days_since_deploy": health_row.get("days_since_deploy")},
+                "membership": {"ready": (member.get("public", {}) or {}).get("ready") if isinstance(member, dict) else None, "has_paid_members": integer((member.get("admin", {}) or {}).get("paid_members"), -1) > 0 if isinstance(member, dict) else None, "has_active_members": integer((member.get("admin", {}) or {}).get("active_members"), -1) > 0 if isinstance(member, dict) else None},
+                "traffic": {"human_pv_band": band(traffic.get("human_pv")), "ai_ref_band": band(traffic.get("ai_ref")), "reach_humans_referred_band": band(traffic.get("reach_humans_referred"))},
+                "demand": {"has_underserved": bool(underserved), "has_gaps": bool(gaps), "has_hot_pages": bool(hot_pages), "top_underserved_page": (underserved[0] or {}).get("page") if underserved and isinstance(underserved[0], dict) else None, "top_hot_page": (hot_pages[0] or {}).get("page") if hot_pages and isinstance(hot_pages[0], dict) else None},
+                "health": {"http": health_row.get("http"), "stale_deploy": integer(health_row.get("days_since_deploy"), -1) < 0 or integer(health_row.get("days_since_deploy"), -1) >= 7},
             },
-            "actions": site_actions,
+            "actions": [compact_action(item) for item in site_actions],
             "autonomous_changes": autonomous,
         }
 
