@@ -1,5 +1,5 @@
 {
- "fetched": "2026-09-19",
+ "fetched": "2026-09-20",
  "seeds": {
   "electric spin scrubber": {
    "auto": [
@@ -740,46 +740,43 @@
     "automatic pet feeder with camera bunnings",
     "wopet automatic pet feeder camera"
    ],
+   "rising": [],
+   "source": "autocomplete-diff",
+   "fetched": "2026-09-20"
+  },
+  "self cleaning litter box": {
    "rising": [
     {
-     "q": "automatic cat feeder camera",
-     "v": "new"
+     "q": "moonbox litter box",
+     "v": 11550
     },
     {
-     "q": "automatic dog feeder camera",
-     "v": "new"
+     "q": "petsnowy litter box",
+     "v": 450
     },
     {
-     "q": "automatic cat feeder camera reddit",
-     "v": "new"
+     "q": "costco self cleaning litter box",
+     "v": 350
     },
     {
-     "q": "automatic pet feeder wifi camera",
-     "v": "new"
+     "q": "petsafe self cleaning litter box",
+     "v": 80
     },
     {
-     "q": "automatic pet feeder with camera australia",
-     "v": "new"
+     "q": "petsafe litter box",
+     "v": 70
     },
     {
-     "q": "automatic pet feeder with camera nearby",
-     "v": "new"
+     "q": "best cat litter",
+     "v": 50
     },
     {
-     "q": "automatic pet feeder with camera near me",
-     "v": "new"
-    },
-    {
-     "q": "automatic pet feeder with camera bunnings",
-     "v": "new"
-    },
-    {
-     "q": "wopet automatic pet feeder camera",
-     "v": "new"
+     "q": "best cat litter box",
+     "v": 50
     }
    ],
-   "source": "autocomplete-diff",
-   "fetched": "2026-09-19"
+   "source": "related-queries",
+   "fetched": "2026-09-20"
   }
  }
 }
