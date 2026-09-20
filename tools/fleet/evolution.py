@@ -127,6 +127,11 @@ def band(value: Any) -> str | None:
     return "100+"
 
 
+def positive_flag(value: Any) -> bool | None:
+    n = integer(value, None)
+    return None if n is None else n > 0
+
+
 def compact_action(action: dict[str, Any]) -> dict[str, Any]:
     """Keep stable evidence in site files; exact numbers remain in latest.json."""
     compact: dict[str, Any] = {}
@@ -256,7 +261,7 @@ def build(today: dt.date) -> tuple[dict[str, Any], dict[str, str]]:
             "schema_version": 1,
             "site": site,
             "signals": {
-                "membership": {"ready": (member.get("public", {}) or {}).get("ready") if isinstance(member, dict) else None, "has_paid_members": integer((member.get("admin", {}) or {}).get("paid_members"), -1) > 0 if isinstance(member, dict) else None, "has_active_members": integer((member.get("admin", {}) or {}).get("active_members"), -1) > 0 if isinstance(member, dict) else None},
+                "membership": {"ready": (member.get("public", {}) or {}).get("ready") if isinstance(member, dict) else None, "has_paid_members": positive_flag((member.get("admin", {}) or {}).get("paid_members")) if isinstance(member, dict) else None, "has_active_members": positive_flag((member.get("admin", {}) or {}).get("active_members")) if isinstance(member, dict) else None},
                 "traffic": {"human_pv_band": band(traffic.get("human_pv")), "ai_ref_band": band(traffic.get("ai_ref")), "reach_humans_referred_band": band(traffic.get("reach_humans_referred"))},
                 "demand": {"has_underserved": bool(underserved), "has_gaps": bool(gaps), "has_hot_pages": bool(hot_pages), "top_underserved_page": (underserved[0] or {}).get("page") if underserved and isinstance(underserved[0], dict) else None, "top_hot_page": (hot_pages[0] or {}).get("page") if hot_pages and isinstance(hot_pages[0], dict) else None},
                 "health": {"http": health_row.get("http"), "stale_deploy": integer(health_row.get("days_since_deploy"), -1) < 0 or integer(health_row.get("days_since_deploy"), -1) >= 7},
