@@ -1227,7 +1227,7 @@ async function mcpCallTool(name, args, env) {
     }
     const phrase = String(a.frage || "").toLowerCase().trim();
     const max = Math.max(1, Math.min(10, Number(a.max) || 5));
-    const lang = a.sprache === "de" || a.sprache === "en" ? a.sprache : null;
+    const lang = ["de", "en", "fr", "es", "it"].includes(a.sprache) ? a.sprache : null;
     const hits = index
       .filter((e) => e && e.u && (!lang || e.l === lang))
       .map((e) => ({ e, s: scoreEntry(e, tokens, phrase) }))
