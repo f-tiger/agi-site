@@ -28,8 +28,8 @@ BASE = "https://getecoback.com"
 
 TAG_RE = re.compile(r'[ \t]*<link rel="alternate" hreflang="([^"]+)" href="([^"]+)">\n?')
 CANON_RE = re.compile(r'<link rel="canonical" href="([^"]+)">')
-VALID_LANGS = {"de", "en", "it"}  # ISO 639-1；本站不用地区码（受众是语言不是国家）
-LANG_ORDER = ["de", "en", "it"]  # 块内行序 = x-default 优先级
+VALID_LANGS = {"de", "en", "fr", "es", "it"}
+LANG_ORDER = ["de", "en", "fr", "es", "it"]
 
 
 def url_to_file(url: str):
@@ -47,6 +47,10 @@ def lang_of(f: Path) -> str:
     rel = str(f.relative_to(SITE))
     if rel.startswith("en/"):
         return "en"
+    if rel.startswith("fr/"):
+        return "fr"
+    if rel.startswith("es/"):
+        return "es"
     if rel.startswith("it/"):
         return "it"
     return "de"
