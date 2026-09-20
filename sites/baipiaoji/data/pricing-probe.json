@@ -1,24 +1,24 @@
 {
- "generated": "2026-09-19",
+ "generated": "2026-09-20",
  "env": "runner",
  "note": "付费档缺口的抓取探针。只做发现与取证，绝不写事实：任何数字仍须经 scripts/limits-edit.mjs 两步核实后才进 tools.json。state=ready 表示该 URL 当天 200 且页面上有像价目表的价格段，不表示数字已被核实。每行的 env 是抓取时的网络环境：sandbox 行的 blocked 很可能只是会话沙箱出网被拒，不能当作「这家没有定价页」，只有 runner 行的 blocked 才值得当结论。",
  "gap_total": 108,
  "batch": [
-  "deepl",
-  "fish-audio",
-  "google-ai-studio",
-  "immersive-translate",
-  "qingying",
-  "replit",
-  "runway",
-  "tongyi"
+  "tongyi-wanxiang",
+  "ttsmaker",
+  "windsurf",
+  "anythingllm",
+  "cerebras",
+  "github-models",
+  "groq",
+  "guojia-fanzha"
  ],
- "cursor": "tongyi",
+ "cursor": "guojia-fanzha",
  "summary": {
-  "ready": 5,
-  "empty": 6,
-  "blocked": 5,
-  "probed_total": 16
+  "ready": 8,
+  "empty": 8,
+  "blocked": 8,
+  "probed_total": 24
  },
  "tools": {
   "kimi": {
@@ -490,6 +490,233 @@
      "bytes": 0,
      "tokens": 0,
      "error": "UND_ERR_CONNECT_TIMEOUT"
+    }
+   ],
+   "best": null
+  },
+  "tongyi-wanxiang": {
+   "slug": "tongyi-wanxiang",
+   "name": "通义万相",
+   "cat": "image",
+   "reach": 2,
+   "probed": "2026-09-20",
+   "env": "runner",
+   "state": "blocked",
+   "tried": [
+    {
+     "url": "https://tongyi.aliyun.com/pricing",
+     "status": 0,
+     "bytes": 0,
+     "tokens": 0,
+     "error": "UND_ERR_CONNECT_TIMEOUT"
+    },
+    {
+     "url": "https://tongyi.aliyun.com/price",
+     "status": 0,
+     "bytes": 0,
+     "tokens": 0,
+     "error": "UND_ERR_CONNECT_TIMEOUT"
+    },
+    {
+     "url": "https://tongyi.aliyun.com/plans",
+     "status": 0,
+     "bytes": 0,
+     "tokens": 0,
+     "error": "UND_ERR_CONNECT_TIMEOUT"
+    }
+   ],
+   "best": null
+  },
+  "ttsmaker": {
+   "slug": "ttsmaker",
+   "name": "TTSMaker",
+   "cat": "audio",
+   "reach": 2,
+   "probed": "2026-09-20",
+   "env": "runner",
+   "state": "blocked",
+   "tried": [
+    {
+     "url": "https://ttsmaker.cn/pricing",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://ttsmaker.cn/price",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://ttsmaker.cn/plans",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    }
+   ],
+   "best": null
+  },
+  "windsurf": {
+   "slug": "windsurf",
+   "name": "Windsurf",
+   "cat": "coding",
+   "reach": 2,
+   "probed": "2026-09-20",
+   "env": "runner",
+   "state": "ready",
+   "tried": [
+    {
+     "url": "https://windsurf.com/pricing",
+     "status": 200,
+     "bytes": 357807,
+     "tokens": 19
+    }
+   ],
+   "best": {
+    "url": "https://windsurf.com/pricing",
+    "tokens": 19,
+    "excerpt": "and Pricing Choose the perfect plan for your journey SWE-2, our latest model, is now available → INDIVIDUAL PLANS Free $0 Download Light quota to code with agents Limited model availability Unlimited inline edits Unlimited Tab completions Pro POPULAR $20 per month Select plan Everything in Free, plus: Increased quotas, including access to frontier models from OpenAI, Claude, Gemini, and SpaceXAI, plus leading open source models Full model availability Free use of SWE-2 Free in Devin Desktop and CLI through October 10, 2026 Access to cloud agents (Devin Cloud) Purchase extra usage at API pricing Max NEW $200 per month Select plan Everything in Pro, plus: Significantly higher quotas TEAM PLANS"
+   }
+  },
+  "anythingllm": {
+   "slug": "anythingllm",
+   "name": "AnythingLLM",
+   "cat": "local",
+   "reach": 1,
+   "probed": "2026-09-20",
+   "env": "runner",
+   "state": "ready",
+   "tried": [
+    {
+     "url": "https://anythingllm.com/pricing",
+     "status": 200,
+     "bytes": 61611,
+     "tokens": 6
+    }
+   ],
+   "best": {
+    "url": "https://anythingllm.com/pricing",
+    "tokens": 6,
+    "excerpt": "n your infrastructure. Self-host with Docker for free For small teams Basic Perfect for independent use or small teams. $50 /monthly Included Private instance Custom subdomain RAG, agents, and work right out of the box Just bring an LLM API Key Start for $50/mo For startups Pro Higher performance with priority resources. Built for teams that rely on AI daily. $99 /monthly Included Private instance RAG, agents, work right out of the box Great for large teams 72-hour support SLA Start for $99/mo For enterprises Enterprise Premium service package, customization, and on-premise support. Contact Us Included On-premise deployment Custom SLA Custom integrations SSO, RBAC, and more Request Quote Clo"
+   }
+  },
+  "cerebras": {
+   "slug": "cerebras",
+   "name": "Cerebras",
+   "cat": "api",
+   "reach": 1,
+   "probed": "2026-09-20",
+   "env": "runner",
+   "state": "empty",
+   "tried": [
+    {
+     "url": "https://cerebras.ai/pricing",
+     "status": 200,
+     "bytes": 234158,
+     "tokens": 0
+    },
+    {
+     "url": "https://cloud.cerebras.ai/pricing",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://cloud.cerebras.ai/price",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    }
+   ],
+   "best": {
+    "url": "https://cerebras.ai/pricing",
+    "tokens": 0,
+    "excerpt": ""
+   }
+  },
+  "github-models": {
+   "slug": "github-models",
+   "name": "GitHub Models",
+   "cat": "coding",
+   "reach": 1,
+   "probed": "2026-09-20",
+   "env": "runner",
+   "state": "ready",
+   "tried": [
+    {
+     "url": "https://github.com/pricing",
+     "status": 200,
+     "bytes": 600000,
+     "tokens": 51
+    }
+   ],
+   "best": {
+    "url": "https://github.com/pricing",
+    "tokens": 51,
+    "excerpt": "es on team Switch plans Select a plan to review its features Free Team Enterprise Features Free Team Enterprise Pricing $ 0 USD per month $ 0 USD per month forever $ 4 USD per user/month $ 4 USD per user/month for the first 12 months * $ 21 USD per user/month $ 21 USD per user/month for the first 12 months * How to get started Join for free Continue with Team Start a free trial Contact Sales Code management Public repositories Unlimited Unlimited Unlimited Host open source projects in public GitHub repositories, accessible via web or command line. Public repositories are accessible to anyone at GitHub.com. Uh oh! There was an error while loading. Please reload this page . Unlimited Unlimited"
+   }
+  },
+  "groq": {
+   "slug": "groq",
+   "name": "Groq",
+   "cat": "api",
+   "reach": 1,
+   "probed": "2026-09-20",
+   "env": "runner",
+   "state": "empty",
+   "tried": [
+    {
+     "url": "https://groq.com/pricing",
+     "status": 200,
+     "bytes": 54738,
+     "tokens": 1
+    },
+    {
+     "url": "https://groq.com/price",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://groq.com/plans",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    }
+   ],
+   "best": {
+    "url": "https://groq.com/pricing",
+    "tokens": 1,
+    "excerpt": "Groq is the premier neocloud for fast inference Groq Closes $350 million Series A, Building the World&#x27;s Leading AI Inference Cloud Read more &gt; Every customer served. Every product sold. Every commit merged. Every agent task completed. That’s inference. Training creates the possibility. Inference creates the value. The more we ask of AI, the more inference it takes. And inference is becoming the bottleneck. Groq was built for this. We pioneered the LPU. Now, with LPX, it works alongside NVIDIA’s next-generation GPUs to deliver unparalleled inference capability, reliably, affordably, at scale. Fast or affordable is no longer a tradeoff. We’re building hundreds of megawatts of capacity,"
+   }
+  },
+  "guojia-fanzha": {
+   "slug": "guojia-fanzha",
+   "name": "国家反诈中心",
+   "cat": "safety",
+   "reach": 1,
+   "probed": "2026-09-20",
+   "env": "runner",
+   "state": "blocked",
+   "tried": [
+    {
+     "url": "https://fzapph5.gjfzpt.cn/pricing",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://fzapph5.gjfzpt.cn/price",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://fzapph5.gjfzpt.cn/plans",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
     }
    ],
    "best": null

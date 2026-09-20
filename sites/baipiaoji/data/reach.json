@@ -1,24 +1,24 @@
 {
-  "generated": "2026-09-19",
+  "generated": "2026-09-20",
   "source": "/api/reach",
   "window_days": 28,
-  "since": "2026-08-22",
-  "until": "2026-09-19",
+  "since": "2026-08-23",
+  "until": "2026-09-20",
   "definition": "ev='' AND ref != '' — referred human page views (traffic-truth.mjs human line A); direct/no-referrer visits and /__ self-test paths excluded; counts only, no row-level data",
-  "humans_referred": 334,
-  "per_day": 11.9,
+  "humans_referred": 338,
+  "per_day": 12.1,
   "by_kind": {
-    "tool": 234,
-    "category": 52,
+    "tool": 241,
+    "category": 50,
     "page": 36,
-    "plans": 4,
     "vs": 6,
-    "alternatives": 2
+    "alternatives": 2,
+    "plans": 3
   },
   "categories": [
     {
       "cat": "chat",
-      "n": 100
+      "n": 101
     },
     {
       "cat": "coding",
@@ -34,15 +34,15 @@
     },
     {
       "cat": "office",
+      "n": 13
+    },
+    {
+      "cat": "writing",
       "n": 12
     },
     {
       "cat": "image",
-      "n": 12
-    },
-    {
-      "cat": "writing",
-      "n": 9
+      "n": 11
     },
     {
       "cat": "local",
@@ -50,7 +50,7 @@
     },
     {
       "cat": "agent",
-      "n": 6
+      "n": 7
     },
     {
       "cat": "audio",
@@ -82,7 +82,7 @@
     {
       "slug": "kimi",
       "cat": "chat",
-      "n": 21
+      "n": 22
     },
     {
       "slug": "fireworks",
@@ -97,12 +97,17 @@
     {
       "slug": "feishu-miaoji",
       "cat": "office",
-      "n": 11
+      "n": 12
     },
     {
       "slug": "cline",
       "cat": "coding",
-      "n": 7
+      "n": 8
+    },
+    {
+      "slug": "fastgpt",
+      "cat": "agent",
+      "n": 5
     },
     {
       "slug": "pixverse",
@@ -110,14 +115,19 @@
       "n": 5
     },
     {
-      "slug": "fastgpt",
-      "cat": "agent",
-      "n": 4
-    },
-    {
       "slug": "google-flow",
       "cat": "video",
       "n": 4
+    },
+    {
+      "slug": "immersive-translate",
+      "cat": "writing",
+      "n": 4
+    },
+    {
+      "slug": "deepl",
+      "cat": "writing",
+      "n": 3
     },
     {
       "slug": "quillbot",
@@ -160,11 +170,6 @@
       "n": 2
     },
     {
-      "slug": "deepl",
-      "cat": "writing",
-      "n": 2
-    },
-    {
       "slug": "fish-audio",
       "cat": "audio",
       "n": 2
@@ -177,11 +182,6 @@
     {
       "slug": "hailuo",
       "cat": "video",
-      "n": 2
-    },
-    {
-      "slug": "immersive-translate",
-      "cat": "writing",
       "n": 2
     },
     {
@@ -283,7 +283,7 @@
     },
     {
       "path": "coding",
-      "n": 37
+      "n": 36
     },
     {
       "path": "/",
@@ -291,7 +291,7 @@
     },
     {
       "path": "kimi",
-      "n": 21
+      "n": 22
     },
     {
       "path": "fireworks",
@@ -302,11 +302,11 @@
       "n": 12
     },
     {
-      "path": "api",
-      "n": 11
+      "path": "feishu-miaoji",
+      "n": 12
     },
     {
-      "path": "feishu-miaoji",
+      "path": "api",
       "n": 11
     },
     {
@@ -315,23 +315,31 @@
     },
     {
       "path": "cline",
-      "n": 7
+      "n": 8
+    },
+    {
+      "path": "fastgpt",
+      "n": 5
     },
     {
       "path": "pixverse",
       "n": 5
     },
     {
-      "path": "image",
-      "n": 4
-    },
-    {
-      "path": "fastgpt",
-      "n": 4
-    },
-    {
       "path": "google-flow",
       "n": 4
+    },
+    {
+      "path": "immersive-translate",
+      "n": 4
+    },
+    {
+      "path": "image",
+      "n": 3
+    },
+    {
+      "path": "deepl",
+      "n": 3
     },
     {
       "path": "quillbot",
@@ -354,10 +362,6 @@
       "n": 3
     },
     {
-      "path": "/plans/free-video-gen",
-      "n": 2
-    },
-    {
       "path": "tongyi",
       "n": 2
     },
@@ -374,10 +378,6 @@
       "n": 2
     },
     {
-      "path": "deepl",
-      "n": 2
-    },
-    {
       "path": "fish-audio",
       "n": 2
     },
@@ -387,10 +387,6 @@
     },
     {
       "path": "hailuo",
-      "n": 2
-    },
-    {
-      "path": "immersive-translate",
       "n": 2
     },
     {
@@ -439,6 +435,10 @@
     },
     {
       "path": "/plans/free-meeting-notes",
+      "n": 1
+    },
+    {
+      "path": "/plans/free-video-gen",
       "n": 1
     },
     {
@@ -521,15 +521,15 @@
   "referrers": [
     {
       "ref": "www.google.com",
-      "n": 165
+      "n": 164
     },
     {
       "ref": "cn.bing.com",
-      "n": 88
+      "n": 90
     },
     {
       "ref": "www.bing.com",
-      "n": 13
+      "n": 16
     },
     {
       "ref": "chatgpt.com",
@@ -537,7 +537,7 @@
     },
     {
       "ref": "www.perplexity.ai",
-      "n": 12
+      "n": 11
     },
     {
       "ref": "www.facebook.com",
@@ -577,7 +577,7 @@
     },
     {
       "ref": "www.doubao.com",
-      "n": 1
+      "n": 2
     },
     {
       "ref": "search.brave.com",
@@ -601,7 +601,7 @@
     {
       "ref": "www.perplexity.ai",
       "path": "/en/c/image",
-      "n": 4
+      "n": 3
     },
     {
       "ref": "www.perplexity.ai",
@@ -655,8 +655,8 @@
     }
   ],
   "events": {
-    "sub_view": 330,
-    "go": 91,
+    "sub_view": 344,
+    "go": 94,
     "star": 7,
     "calc": 6,
     "sub_submit": 5,

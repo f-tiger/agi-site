@@ -1,10 +1,37 @@
 {
-  "generated": "2026-09-19",
+  "generated": "2026-09-20",
   "note": "官方来源页令牌集合连续两日与基线不同 = 漂移确认。只是「该去核」的信号,不是事实;limits.checked 推进到确认日后自动撤下。",
-  "fetched_ok": 102,
-  "fetched_fail": 22,
+  "fetched_ok": 103,
+  "fetched_fail": 21,
   "pending": 8,
   "items": [
+    {
+      "slug": "continue",
+      "url": "https://github.com/continuedev/continue",
+      "confirmed": "2026-09-20",
+      "first_seen": "2026-09-19",
+      "added": [
+        "36.0k",
+        "36k"
+      ],
+      "removed": [
+        "35.9k"
+      ],
+      "checked_then": "2026-08-04"
+    },
+    {
+      "slug": "elevenlabs",
+      "url": "https://elevenlabs.io/pricing",
+      "confirmed": "2026-09-20",
+      "first_seen": "2026-09-19",
+      "added": [
+        "$15"
+      ],
+      "removed": [
+        "$16"
+      ],
+      "checked_then": "2026-08-02"
+    },
     {
       "slug": "elicit",
       "url": "https://elicit.com",
@@ -107,36 +134,6 @@
         "19days"
       ],
       "checked_then": "2026-08-04"
-    },
-    {
-      "slug": "elevenlabs",
-      "url": "https://elevenlabs.io/pricing",
-      "confirmed": "2026-09-18",
-      "first_seen": "2026-09-17",
-      "added": [
-        "$16",
-        "0.5credit",
-        "0.5credits",
-        "0026video",
-        "10000credits",
-        "1000characters",
-        "1000credits",
-        "100minutes",
-        "100words",
-        "10minutes",
-        "11,000minutes",
-        "11minutes"
-      ],
-      "removed": [
-        "15b",
-        "294b",
-        "30b",
-        "3b",
-        "79b",
-        "880662b",
-        "8b"
-      ],
-      "checked_then": "2026-08-02"
     },
     {
       "slug": "anythingllm",
