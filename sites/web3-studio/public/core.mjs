@@ -1,4 +1,4 @@
-export const VERSION='1.5.0';
+export const VERSION='1.6.0';
 export const LIMIT=131072;
 export function parse(text){
  if(typeof text!=='string'||new TextEncoder().encode(text).length>LIMIT)throw Error('Use JSON smaller than 128 KiB.');
