@@ -11,7 +11,6 @@ from __future__ import annotations
 import argparse
 import datetime as dt
 import json
-import os
 from pathlib import Path
 from typing import Any
 
@@ -50,7 +49,7 @@ def read_json(path: Path, default: Any = None) -> Any:
         return default
 
 
-def integer(value: Any, default: int = 0) -> int:
+def integer(value: Any, default: int | None = 0) -> int | None:
     try:
         return int(value)
     except (TypeError, ValueError):
