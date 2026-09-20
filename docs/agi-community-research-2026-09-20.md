@@ -77,3 +77,21 @@
 实现位于 `sites/agiscorecard/tools/community/` 和 `community-assets/`，接入原有 Worker 与 AGI EVENTS D1。新增表独立命名；复用同站会员身份，不修改支付状态、订单或付费权益。没有新域名、邮件服务、外部社区账号或付费软件。
 
 自动验收：`node --test sites/agiscorecard/tools/community/test.mjs`；`node sites/agiscorecard/tools/community/browser-test.mjs`；部署后 `node sites/agiscorecard/tools/community/verify.mjs`。正式发布证据在发布完成后补记。上线当日不能判断注册或流量是否提升。
+
+
+### 发布验收记录（持续更新）
+
+- 本地 11 项 SQLite 集成测试通过：免费注册不授予付费权益、已有会员不被重置、跨域与匿名写入拒绝、待审核隐私、XSS 转义、幂等提交、本人删除、关注未读、举报与限流、聚合指标。
+- 中英浏览器完整流程通过，覆盖草稿、密钥备份与导入、注册、投稿、关注、退出和登录；私有审核通过后正文才公开。已检查 390px 手机与 1280px 桌面截图。
+- 原有 16 项 analytics sanitizer 检查、8 项跨站会员隔离检查通过。
+- 首次 CI 在静态链接门被阻止：原校验器不知道 Worker 动态路由。修复为实际运行 22 个社区路由后再加入已验证路径集，并非略过链接检查。修复不影响原有静态页面校验。
+- 同时修复首次进入页面时认证状态尚未返回，过早点击可能重复跳转的竞态。
+
+- 首次成功发布：[Actions 35482419015](https://github.com/f-tiger/agi-site/actions/runs/35482419015)，代码 `37a7f295e8ab309ff0b401e37a4b3c300cbe5482`。Cloudflare 发布、原有工具/会员检查和新社区只读线上验收全部通过。
+- 独立线上复核：两张首页、双语讨论列表与主题、双语账号页、规则、动态 sitemap、静态脚本均返回预期内容；匿名账号状态与审核队列请求均被拒绝。没有创建生产测试账号或帖子。
+- 2026-09-20 01:51:49 UTC 的聚合初始读数：社区 session-days、注册、激活、跨日回访、待审核与举报均为 0。零是新社区的真实起点，不是已有增长效果。
+- 发布后加固：历史测量数据清理接入现有每日 operator stats，安静站点也不依赖真实用户访问才清理；增加对应 SQLite 测试。
+
+- **最终版本验收通过**：[Actions 35482534598](https://github.com/f-tiger/agi-site/actions/runs/35482534598)，代码 `73484102001a22d990ab08c7ad255992f4c7e441`。全站校验、hreflang、11 项社区集成测试、中英浏览器流程、既有工具/会员回归、Cloudflare 部署、只读线上社区检查、聚合数据读取与主站 smoke 全部成功。
+- 已上线入口：[英文讨论区](https://agiscorecard.com/discuss)、[中文讨论区](https://agiscorecard.com/zh/discuss)；免费账号：[英文](https://agiscorecard.com/discuss/account)、[中文](https://agiscorecard.com/zh/discuss/account)。
+- 尚未验证：真实用户注册转化、持续审核供给、真实外部引荐与新增外链、30 天留存及收入贡献。没有自动发布外部社区帖子，也没有人为创建生产测试活跃度。
