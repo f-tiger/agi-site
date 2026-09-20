@@ -123,6 +123,30 @@ jobs:
           retention-days: 30
           if-no-files-found: warn
 
+
+      # The measured evolution layer keeps the fleet useful when no AI session
+      # runs. It reads aggregate membership, demand, health and referral signals,
+      # writes only redacted manifests, and queues judgement-heavy work.
+      - name: Test fleet evolution decision engine
+        run: python3 tools/fleet/test_evolution.py
+
+      - name: Snapshot independent membership health and counters
+        id: membership
+        continue-on-error: true
+        env:
+          ADS_WATCH_SECRET: ${{ secrets.ADS_WATCH_SECRET }}
+        run: |
+          FLAGS=""
+          if [ "${{ inputs.dry_run }}" = "true" ]; then FLAGS="--check"; fi
+          node tools/fleet/membership_snapshot.mjs $FLAGS
+
+      - name: Build fleet opportunity and upgrade manifests
+        id: evolution
+        run: |
+          FLAGS=""
+          if [ "${{ inputs.dry_run }}" = "true" ]; then FLAGS="--check"; fi
+          python3 tools/fleet/evolution.py --today "${{ steps.clock.outputs.today }}" $FLAGS | tee "$GITHUB_STEP_SUMMARY"
+
       - name: Commit what actually changed
         if: inputs.dry_run != true
         run: |
@@ -132,6 +156,11 @@ jobs:
           # makes git add abort and stage NOTHING — the failure that has bitten
           # this repo five times, once discarding eleven nights of traffic data.
           git add data/autopilot 2>/dev/null || true
+          git add data/fleet-evolution 2>/dev/null || true
+          for f in sites/*/data/fleet-evolution.json; do
+            [ -f "$f" ] || continue
+            git add "$f" 2>/dev/null || echo "::warning::could not stage $f"
+          done
           for f in $(python3 -c "
           import json,sys
           d=json.load(open('data/autopilot/receipt.json'))
@@ -146,7 +175,9 @@ jobs:
             echo "staged=0" >> "$GITHUB_ENV"
           else
             echo "staged=1" >> "$GITHUB_ENV"
-            git commit -m "chore(autopilot): honest lastmod + demand queue ${{ steps.clock.outputs.today }}"
+            suffix=""
+            if git diff --cached --name-only | grep -q '^sites/'; then suffix=" [deploy]"; fi
+            git commit -m "chore(autopilot): measured fleet evolution ${{ steps.clock.outputs.today }}${suffix}"
             for i in 1 2 3 4; do
               git pull --rebase --autostash origin main && git push origin main && break
               echo "push attempt $i failed; retrying"; sleep $((2**i))
