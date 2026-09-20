@@ -1,9 +1,13 @@
 {
-  "asOf": "2026-09-19T16:34:04.270Z",
+  "asOf": "2026-09-20T01:37:10.366Z",
   "ok": true,
   "checks": [
     {
       "name": "source snapshots",
+      "ok": true
+    },
+    {
+      "name": "research board",
       "ok": true
     },
     {
@@ -15,19 +19,11 @@
       "ok": true
     },
     {
-      "name": "disclosures.agiscorecard.com",
+      "name": "protocol.agiscorecard.com",
       "ok": true
     },
     {
-      "name": "compute.agiscorecard.com",
-      "ok": true
-    },
-    {
-      "name": "permit.agiscorecard.com",
-      "ok": true
-    },
-    {
-      "name": "calls.agiscorecard.com",
+      "name": "reconcile.agiscorecard.com",
       "ok": true
     },
     {
@@ -35,15 +31,11 @@
       "ok": true
     },
     {
-      "name": "evidence.agiscorecard.com",
-      "ok": true
-    },
-    {
-      "name": "protocol.agiscorecard.com",
-      "ok": true
-    },
-    {
       "name": "route.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "compute.agiscorecard.com",
       "ok": true
     },
     {
@@ -51,7 +43,19 @@
       "ok": true
     },
     {
-      "name": "reconcile.agiscorecard.com",
+      "name": "calls.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "permit.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "disclosures.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "evidence.agiscorecard.com",
       "ok": true
     },
     {
@@ -66,36 +70,36 @@
   "sources": {
     "market": {
       "status": "fresh",
-      "retrievedAt": "2026-09-19T16:33:25.993Z",
-      "ageSeconds": 44,
+      "retrievedAt": "2026-09-20T01:36:09.481Z",
+      "ageSeconds": 67,
       "quotes": [
         {
           "symbol": "BTC",
           "quote": "USD",
-          "price": 81831.63791630436,
-          "sourceUpdatedAt": "2026-09-19T16:31:40.000Z",
+          "price": 81052.90805404216,
+          "sourceUpdatedAt": "2026-09-20T01:34:40.000Z",
           "deviationBps": null
         },
         {
           "symbol": "ETH",
           "quote": "USD",
-          "price": 2647.353387354267,
-          "sourceUpdatedAt": "2026-09-19T16:31:40.000Z",
+          "price": 2618.345413687554,
+          "sourceUpdatedAt": "2026-09-20T01:34:40.000Z",
           "deviationBps": null
         },
         {
           "symbol": "USDC",
           "quote": "USD",
-          "price": 0.9997181272461622,
-          "sourceUpdatedAt": "2026-09-19T16:31:40.000Z",
-          "deviationBps": -2.8187275383784183
+          "price": 0.9997152283080932,
+          "sourceUpdatedAt": "2026-09-20T01:34:40.000Z",
+          "deviationBps": -2.847716919067711
         },
         {
           "symbol": "USDT",
           "quote": "USD",
-          "price": 0.9996252986876714,
-          "sourceUpdatedAt": "2026-09-19T16:31:40.000Z",
-          "deviationBps": -3.7470131232864023
+          "price": 0.9996138684397059,
+          "sourceUpdatedAt": "2026-09-20T01:34:40.000Z",
+          "deviationBps": -3.8613156029410067
         }
       ],
       "source": {
@@ -106,22 +110,22 @@
     },
     "briefs": {
       "status": "fresh",
-      "retrievedAt": "2026-09-19T16:33:24.952Z",
+      "retrievedAt": "2026-09-20T01:37:17.721Z",
       "sources": [
         {
           "id": "ethereum",
           "status": "ok",
-          "checkedAt": "2026-09-19T16:33:24.758Z"
+          "checkedAt": "2026-09-20T01:37:17.482Z"
         },
         {
           "id": "x402",
           "status": "ok",
-          "checkedAt": "2026-09-19T16:33:24.758Z"
+          "checkedAt": "2026-09-20T01:37:17.482Z"
         },
         {
           "id": "ezkl",
           "status": "ok",
-          "checkedAt": "2026-09-19T16:33:24.758Z"
+          "checkedAt": "2026-09-20T01:37:17.482Z"
         }
       ],
       "items": [
@@ -216,10 +220,129 @@
           "task": "protocol-change"
         }
       ]
+    },
+    "research": {
+      "status": "fresh",
+      "retrievedAt": "2026-09-20T01:37:18.044Z",
+      "historyStatus": "fresh",
+      "quotes": [
+        {
+          "symbol": "BTC",
+          "status": "fresh",
+          "sourceUpdatedAt": "2026-09-20T01:35:50.000Z",
+          "day": {
+            "percent": -0.6790455669112294,
+            "from": "2026-09-19T01:00:00.000Z",
+            "to": "2026-09-20T01:35:50.000Z"
+          },
+          "week": {
+            "percent": 4.909408080257438,
+            "from": "2026-09-13T01:00:00.000Z",
+            "to": "2026-09-20T01:35:50.000Z"
+          }
+        },
+        {
+          "symbol": "ETH",
+          "status": "fresh",
+          "sourceUpdatedAt": "2026-09-20T01:35:50.000Z",
+          "day": {
+            "percent": -0.22677696736018715,
+            "from": "2026-09-19T01:00:00.000Z",
+            "to": "2026-09-20T01:35:50.000Z"
+          },
+          "week": {
+            "percent": 3.7134268494863454,
+            "from": "2026-09-13T01:00:00.000Z",
+            "to": "2026-09-20T01:35:50.000Z"
+          }
+        },
+        {
+          "symbol": "USDC",
+          "status": "fresh",
+          "sourceUpdatedAt": "2026-09-20T01:35:50.000Z",
+          "day": {
+            "percent": -0.007407682564330997,
+            "from": "2026-09-19T01:00:00.000Z",
+            "to": "2026-09-20T01:35:50.000Z"
+          },
+          "week": {
+            "percent": -0.01768572934407464,
+            "from": "2026-09-13T01:00:00.000Z",
+            "to": "2026-09-20T01:35:50.000Z"
+          }
+        },
+        {
+          "symbol": "USDT",
+          "status": "fresh",
+          "sourceUpdatedAt": "2026-09-20T01:35:50.000Z",
+          "day": {
+            "percent": -0.010978563238484007,
+            "from": "2026-09-19T01:00:00.000Z",
+            "to": "2026-09-20T01:35:50.000Z"
+          },
+          "week": {
+            "percent": -0.022452606172507217,
+            "from": "2026-09-13T01:00:00.000Z",
+            "to": "2026-09-20T01:35:50.000Z"
+          }
+        },
+        {
+          "symbol": "TAO",
+          "status": "fresh",
+          "sourceUpdatedAt": "2026-09-20T01:35:50.000Z",
+          "day": {
+            "percent": 4.5130151482506875,
+            "from": "2026-09-19T01:00:00.000Z",
+            "to": "2026-09-20T01:35:50.000Z"
+          },
+          "week": {
+            "percent": 13.767683414826681,
+            "from": "2026-09-13T01:00:00.000Z",
+            "to": "2026-09-20T01:35:50.000Z"
+          }
+        },
+        {
+          "symbol": "RENDER",
+          "status": "fresh",
+          "sourceUpdatedAt": "2026-09-20T01:31:40.000Z",
+          "day": {
+            "percent": 1.362130565608921,
+            "from": "2026-09-19T01:01:30.000Z",
+            "to": "2026-09-20T01:31:40.000Z"
+          },
+          "week": {
+            "percent": 13.98959805266542,
+            "from": "2026-09-13T01:01:20.000Z",
+            "to": "2026-09-20T01:31:40.000Z"
+          }
+        },
+        {
+          "symbol": "FET",
+          "status": "fresh",
+          "sourceUpdatedAt": "2026-09-20T01:35:50.000Z",
+          "day": {
+            "percent": -5.217598572648596,
+            "from": "2026-09-19T01:00:00.000Z",
+            "to": "2026-09-20T01:35:50.000Z"
+          },
+          "week": {
+            "percent": 4.01442224091948,
+            "from": "2026-09-13T01:01:30.000Z",
+            "to": "2026-09-20T01:35:50.000Z"
+          }
+        },
+        {
+          "symbol": "AKT",
+          "status": "stale",
+          "sourceUpdatedAt": "2026-09-20T01:21:50.000Z",
+          "day": null,
+          "week": null
+        }
+      ]
     }
   },
   "events": {
-    "asOf": "2026-09-19T16:34:11.906Z",
+    "asOf": "2026-09-20T01:37:19.004Z",
     "windowDays": 28,
     "measurement": "Opt-in event counts, deduplicated within a page visit. Not unique people or a cross-domain session funnel. Incoming attribution is unverified; stripped referrers appear direct. Default examples, probes and MCP requests do not generate events.",
     "groups": []
@@ -228,78 +351,7 @@
     "groups": [],
     "measurement": "Self-reported submissions, not independent buyers."
   },
-  "changes": [
-    {
-      "url": "https://github.com/x402-foundation/x402/commit/c8c71f244c0d45a6a4fd990a96c69aa34781cd05",
-      "title": "fix(stellar): make the exact facilitator inclusion fee configurable (#3503)",
-      "task": "stablecoin",
-      "kind": "initial_inventory",
-      "requiresReview": true
-    },
-    {
-      "url": "https://github.com/x402-foundation/x402/commit/165ff37023bfa4991c84409c77a16dc6a0e2e5f8",
-      "title": "fix(python-mcp): expose bare InvalidReason on FastMCP 402s (#3494)",
-      "task": "stablecoin",
-      "kind": "initial_inventory",
-      "requiresReview": true
-    },
-    {
-      "url": "https://github.com/x402-foundation/x402/commit/c608a718bde2e8226793a21595bdae68a24370a6",
-      "title": "fix(python): snapshot MCP 402 accepts before enrichers (#3495)",
-      "task": "stablecoin",
-      "kind": "initial_inventory",
-      "requiresReview": true
-    },
-    {
-      "url": "https://github.com/x402-foundation/x402/commit/19449761e6d6e57b6a8a26ac463f96b8a78a3123",
-      "title": "docs(mcp): check paymentResponse before logging a settled payment (#3499)",
-      "task": "stablecoin",
-      "kind": "initial_inventory",
-      "requiresReview": true
-    },
-    {
-      "url": "https://github.com/x402-foundation/x402/commit/8e0d7189c154bb5a84f7142b3f6a241d7779da58",
-      "title": "fix(go): update MCP hook test mock for PaymentPayloadContext (#3492)",
-      "task": "stablecoin",
-      "kind": "initial_inventory",
-      "requiresReview": true
-    },
-    {
-      "url": "https://blog.ethereum.org/en/2026/09/09/reddit-ama",
-      "title": "Join Us: EF Protocol Reddit AMA - September 16th, 2026",
-      "task": "protocol-change",
-      "kind": "initial_inventory",
-      "requiresReview": true
-    },
-    {
-      "url": "https://blog.ethereum.org/en/2026/09/07/protocol-hegota-eips",
-      "title": "EF Protocol: The Hegotá EIP Opinion Post and Tier List",
-      "task": "protocol-change",
-      "kind": "initial_inventory",
-      "requiresReview": true
-    },
-    {
-      "url": "https://blog.ethereum.org/en/2026/09/07/protocol-priorities",
-      "title": "EF Protocol: Current and Emerging Priorities",
-      "task": "protocol-change",
-      "kind": "initial_inventory",
-      "requiresReview": true
-    },
-    {
-      "url": "https://blog.ethereum.org/en/2026/08/24/glamsterdam-repricing-testing",
-      "title": "Glamsterdam Repricing Impact for Smart Contract Developers",
-      "task": "protocol-change",
-      "kind": "initial_inventory",
-      "requiresReview": true
-    },
-    {
-      "url": "https://blog.ethereum.org/en/2026/08/20/better-codes-challenge",
-      "title": "Raising machine-checked security benchmarks to advance hash-based SNARKs through agentic collaboration",
-      "task": "protocol-change",
-      "kind": "initial_inventory",
-      "requiresReview": true
-    }
-  ],
+  "changes": [],
   "outcomes": {
     "indexedPages": null,
     "verifiedThirdPartyBacklinks": null,
@@ -317,6 +369,10 @@
     "ownTaskEvents": 0,
     "reportExportEvents": 0,
     "toolOpenEvents": 0,
+    "watchSaveEvents": 0,
+    "watchCompareEvents": 0,
+    "reviewSaveEvents": 0,
+    "reviewExportEvents": 0,
     "aiReferredEvents": 0
   },
   "nextAction": "No opted-in page events observed. Check exposure and consent bias; do not conclude no demand."
