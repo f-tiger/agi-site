@@ -1,5 +1,5 @@
 import {ORIGIN,root,seed,seeds,categories,topicPath} from './content.mjs';
-import {hash,now,ensure,limit,identity,thread,listing,replies,event,metrics,sourceOf} from './store.mjs';
+import {hash,now,ensure,limit,identity,thread,listing,replies,event,metrics,sourceOf,cleanup} from './store.mjs';
 import {hub,topic,account,rules,moderate,shell,postForm,choose,esc} from './render.mjs';
 const headers={'Cache-Control':'no-store','X-Content-Type-Options':'nosniff','Referrer-Policy':'strict-origin-when-cross-origin','X-Frame-Options':'DENY','Content-Security-Policy':"default-src 'self'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'"};
 const json=(data,status=200)=>Response.json(data,{status,headers:{...headers,'X-Robots-Tag':'noindex'}});
@@ -11,7 +11,7 @@ async function bodyOf(request){if(!request.headers.get('Content-Type')?.startsWi
 function sourceURL(s){if(s===undefined||s==='')return '';if(typeof s!=='string'||s.length>500)throw Error('bad_source');let u;try{u=new URL(s);}catch{throw Error('bad_source');}if(u.protocol!=='https:'||u.username||u.password)throw Error('bad_source');return u.href;}
 async function adminAuth(request,env){const key=(request.headers.get('Authorization')||'').replace(/^Bearer /,'');if(!env.MEMBER_WATCH_SECRET||key.length>256)throw Error('unauthorized');const a=await hash(key),b=await hash(await hash(env.MEMBER_WATCH_SECRET+':community-moderator:v1'));let d=0;for(let i=0;i<a.length;i++)d|=a.charCodeAt(i)^b.charCodeAt(i);if(d)throw Error('unauthorized');}
 async function admin(request,env,b){await adminAuth(request,env);const db=env.EVENTS;
- if(b.action==='stats')return json({ok:true,...await metrics(db)});
+ if(b.action==='stats'){await cleanup(db);return json({ok:true,...await metrics(db)});}
  if(b.action==='queue')return json({ok:true,posts:(await db.prepare("SELECT p.*,u.handle FROM discuss_posts p JOIN discuss_profiles u ON u.member_id=p.member_id WHERE p.status='pending' ORDER BY p.created LIMIT 50").all()).results,reports:(await db.prepare("SELECT r.post,r.reason,r.created,p.body,p.title FROM discuss_reports r JOIN discuss_posts p ON p.id=r.post WHERE r.resolved=0 ORDER BY r.created LIMIT 50").all()).results});
  if(b.action==='moderate'){
   if(!validID(b.id)||!['public','rejected','deleted'].includes(b.status))throw Error('bad_input');
@@ -25,7 +25,7 @@ async function admin(request,env,b){await adminAuth(request,env);const db=env.EV
 async function write(request,env,b,lang){const db=env.EVENTS,secret=env.MEMBER_WATCH_SECRET;if(!secret)throw Error('unavailable');const ip=await hash(secret+':discuss:'+new Date().toISOString().slice(0,10)+':'+(request.headers.get('CF-Connecting-IP')||'unknown'));
  await limit(db,'ip:'+ip,90);
  // Bounded maintenance on the existing request path; no new cron or external messages.
- await db.batch([db.prepare('DELETE FROM discuss_limits WHERE expires<?').bind(now()-86400),db.prepare("DELETE FROM discuss_visits WHERE day<date('now','-90 days')"),db.prepare("DELETE FROM discuss_activity WHERE day<date('now','-90 days')")]);
+ await cleanup(db);
  if(b.action==='visit'){
   if(!/^[a-f0-9]{32}$/.test(b.sid||''))throw Error('bad_input');
   await db.prepare("INSERT OR IGNORE INTO discuss_visits(day,sid,lang,source) VALUES(date('now'),?,?,?)").bind(await hash(secret+':visit:'+b.sid),lang,sourceOf(b.source)).run();return json({ok:true});

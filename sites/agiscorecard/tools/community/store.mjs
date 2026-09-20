@@ -39,3 +39,5 @@ export async function metrics(db){const one=async sql=>(await db.prepare(sql).fi
  by_source:(await db.prepare("SELECT source,COUNT(*) registrations FROM discuss_profiles WHERE created>=unixepoch('now','-28 days') GROUP BY source").all()).results,
  events:(await db.prepare("SELECT name,source,SUM(n) n FROM discuss_events WHERE day>=date('now','-27 days') GROUP BY name,source").all()).results
 };}
+
+export async function cleanup(db){await db.batch([db.prepare('DELETE FROM discuss_limits WHERE expires<?').bind(now()-86400),db.prepare("DELETE FROM discuss_visits WHERE day<date('now','-90 days')"),db.prepare("DELETE FROM discuss_activity WHERE day<date('now','-90 days')")]);}
