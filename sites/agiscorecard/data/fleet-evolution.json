@@ -4,22 +4,24 @@
   "signals": {
     "membership": {
       "ready": true,
-      "paid_members": null,
-      "active_members": null
+      "has_paid_members": null,
+      "has_active_members": null
     },
     "traffic": {
-      "human_pv": 36366,
-      "ai_ref": 22,
-      "reach_humans_referred": null
+      "human_pv_band": "100+",
+      "ai_ref_band": "10-99",
+      "reach_humans_referred_band": null
     },
     "demand": {
-      "underserved": 0,
-      "gaps": 0,
-      "hot_pages": 5
+      "has_underserved": false,
+      "has_gaps": false,
+      "has_hot_pages": true,
+      "top_underserved_page": null,
+      "top_hot_page": "/search"
     },
     "health": {
       "http": "200",
-      "days_since_deploy": 0
+      "stale_deploy": false
     }
   },
   "actions": [
@@ -27,9 +29,7 @@
       "kind": "membership_observability",
       "priority": 68,
       "reason": "membership aggregate counters are unavailable",
-      "evidence": {
-        "admin_ok": false
-      },
+      "evidence": {},
       "mode": "observe"
     },
     {
@@ -38,8 +38,8 @@
       "reason": "prioritize a page with measured reader heat",
       "evidence": {
         "page": "/search",
-        "n7": 341,
-        "p7": 54
+        "n7_band": "100+",
+        "p7_band": "10-99"
       },
       "mode": "queue"
     }

@@ -4,22 +4,24 @@
   "signals": {
     "membership": {
       "ready": true,
-      "paid_members": null,
-      "active_members": null
+      "has_paid_members": null,
+      "has_active_members": null
     },
     "traffic": {
-      "human_pv": 514,
-      "ai_ref": 20,
-      "reach_humans_referred": null
+      "human_pv_band": "100+",
+      "ai_ref_band": "10-99",
+      "reach_humans_referred_band": null
     },
     "demand": {
-      "underserved": 20,
-      "gaps": 23,
-      "hot_pages": 15
+      "has_underserved": true,
+      "has_gaps": true,
+      "has_hot_pages": true,
+      "top_underserved_page": "guide/infrarotheizung-gegen-schimmel.html",
+      "top_hot_page": "/guide/fensterabdichtung-selber-bauen.html"
     },
     "health": {
       "http": "200",
-      "days_since_deploy": 0
+      "stale_deploy": false
     }
   },
   "actions": [
@@ -28,10 +30,10 @@
       "priority": 80,
       "reason": "measured demand reaches an existing page with zero recent referred readers",
       "evidence": {
-        "count": 20,
+        "count_band": "10-99",
         "query": "infrarotheizung gegen schimmel",
         "page": "guide/infrarotheizung-gegen-schimmel.html",
-        "value": 59250
+        "value_band": "100+"
       },
       "mode": "queue"
     },
@@ -39,9 +41,7 @@
       "kind": "membership_observability",
       "priority": 68,
       "reason": "membership aggregate counters are unavailable",
-      "evidence": {
-        "admin_ok": false
-      },
+      "evidence": {},
       "mode": "observe"
     },
     {
@@ -49,9 +49,9 @@
       "priority": 55,
       "reason": "rising demand has no matching page; editorial judgement is required",
       "evidence": {
-        "count": 23,
+        "count_band": "10-99",
         "query": "knebel infrarotheizung",
-        "value": 36000
+        "value_band": "100+"
       },
       "mode": "queue"
     },
@@ -60,9 +60,9 @@
       "priority": 52,
       "reason": "prioritize a page with measured reader heat",
       "evidence": {
-        "page": "/en/guide/portable-ac-tilt-and-turn-windows.html",
-        "n7": 8,
-        "p7": 6
+        "page": "/guide/fensterabdichtung-selber-bauen.html",
+        "n7_band": "10-99",
+        "p7_band": "1-9"
       },
       "mode": "queue"
     }

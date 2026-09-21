@@ -2,12 +2,12 @@
  "extra": {
   "events": {
    "affiliate_click": {
-    "n7": 17,
-    "p7": 9
+    "n7": 13,
+    "p7": 13
    },
    "btu_calc": {
-    "n7": 5,
-    "p7": 2
+    "n7": 22,
+    "p7": 7
    },
    "feuchte_now": {
     "n7": 9,
@@ -15,66 +15,78 @@
    },
    "heat_now": {
     "n7": 4,
-    "p7": 39
+    "p7": 18
    },
    "page_view": {
-    "n7": 113,
-    "p7": 122
+    "n7": 130,
+    "p7": 111
    },
    "popup_click": {
-    "n7": 3,
-    "p7": 3
+    "n7": 0,
+    "p7": 6
    },
    "popup_close": {
-    "n7": 16,
+    "n7": 19,
     "p7": 16
    },
    "popup_view": {
-    "n7": 38,
-    "p7": 42
+    "n7": 39,
+    "p7": 46
    },
    "standort_check": {
     "n7": 0,
     "p7": 3
    },
    "strom_now": {
-    "n7": 18,
-    "p7": 10
+    "n7": 21,
+    "p7": 7
    },
    "video_play": {
-    "n7": 1,
+    "n7": 2,
     "p7": 4
    }
   },
   "zero_hits": []
  },
- "fetched": "2026-09-20",
+ "fetched": "2026-09-21",
  "kind": "eco-trend",
  "notes": [],
  "ok": true,
  "pages": {
   "/": {
    "n7": 4,
-   "p7": 10
+   "p7": 1
+  },
+  "/en/guide.html": {
+   "n7": 2,
+   "p7": 0
   },
   "/en/guide/btu-calculator.html": {
-   "n7": 6,
+   "n7": 8,
+   "p7": 0
+  },
+  "/en/guide/dehumidifier-drying-clothes-cost.html": {
+   "n7": 2,
    "p7": 0
   },
   "/en/guide/portable-ac-leaking-water.html": {
    "n7": 2,
-   "p7": 3
+   "p7": 2
   },
-  "/en/guide/portable-ac-tilt-and-turn-windows.html": {
-   "n7": 8,
-   "p7": 6
-  },
-  "/en/guide/portable-air-conditioner-france.html": {
+  "/en/guide/portable-ac-skylight-roof-window.html": {
    "n7": 2,
    "p7": 1
   },
+  "/en/guide/portable-ac-smells-musty.html": {
+   "n7": 9,
+   "p7": 1
+  },
+  "/en/guide/portable-ac-tilt-and-turn-windows.html": {
+   "n7": 7,
+   "p7": 7
+  },
   "/guide/balkonkraftwerk-ohne-bohren.html": {
-   "n7": 3,
+   "n7": 4,
    "p7": 0
   },
   "/guide/beste-tragbare-klimaanlage-hitzewelle.html": {
@@ -89,17 +101,13 @@
    "n7": 2,
    "p7": 0
   },
-  "/guide/fensterabdichtung-klimaanlage.html": {
-   "n7": 2,
-   "p7": 0
-  },
   "/guide/fensterabdichtung-selber-bauen.html": {
-   "n7": 8,
+   "n7": 12,
    "p7": 1
   },
   "/guide/growatt-noah-2000-probleme.html": {
-   "n7": 6,
-   "p7": 7
+   "n7": 7,
+   "p7": 6
   },
   "/guide/heizluefter-stromverbrauch.html": {
    "n7": 2,
@@ -108,18 +116,6 @@
   "/guide/klimaanlage-10-qm.html": {
    "n7": 2,
    "p7": 0
-  },
-  "/guide/klimaanlage-30-qm.html": {
-   "n7": 2,
-   "p7": 0
-  },
-  "/guide/klimaanlage-kippfenster.html": {
-   "n7": 4,
-   "p7": 5
-  },
-  "/guide/klimaanlage-wohnmobil.html": {
-   "n7": 2,
-   "p7": 7
   },
   "/guide/luftentfeuchter-20-qm.html": {
    "n7": 3,
@@ -134,7 +130,7 @@
    "p7": 8
   },
   "/guide/mobile-klimaanlage-ueberwintern.html": {
-   "n7": 3,
+   "n7": 2,
    "p7": 5
   },
   "/guide/schmidbauer-infrarotheizung-test.html": {
@@ -147,7 +143,7 @@
   },
   "/guide/was-bedeutet-btu.html": {
    "n7": 3,
-   "p7": 7
+   "p7": 6
   },
   "/wohnkosten-werkstatt.html": {
    "n7": 4,

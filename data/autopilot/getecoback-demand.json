@@ -23,17 +23,6 @@
    "v": 50700
   },
   {
-   "heat": null,
-   "kind": "value",
-   "match": 0.95,
-   "page": "guide/trotec-luftentfeuchter-test.html",
-   "q": "luftentfeuchter keller test",
-   "seed": "luftentfeuchter",
-   "source": "related-queries",
-   "stand": "2026-09-11",
-   "v": 48200
-  },
-  {
    "heat": {
     "n7": 2,
     "p7": 0
@@ -48,31 +37,6 @@
    "v": 44900
   },
   {
-   "heat": {
-    "n7": 2,
-    "p7": 1
-   },
-   "kind": "value",
-   "match": 1.0,
-   "page": "guide/split-klimaanlage-ohne-kernbohrung.html",
-   "q": "split klimaanlage",
-   "seed": "luftentfeuchter",
-   "source": "related-queries",
-   "stand": "2026-09-11",
-   "v": 41150
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.75,
-   "page": "guide/ventilator-kaufen-ratgeber.html",
-   "q": "klimaanlage mobil",
-   "seed": "luftentfeuchter",
-   "source": "related-queries",
-   "stand": "2026-09-11",
-   "v": 40700
-  },
-  {
    "heat": null,
    "kind": "value",
    "match": 0.725,
@@ -80,8 +44,19 @@
    "q": "klarstein mobile klimaanlage mit abluftschlauch, 4-in-1 klimagerät mit ventilato",
    "seed": "luftentfeuchter",
    "source": "related-queries",
-   "stand": "2026-09-11",
-   "v": 38200
+   "stand": "2026-09-20",
+   "v": 44450
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 0.933,
+   "page": "guide/luftentfeuchter-ratgeber.html",
+   "q": "kühlt ein luftentfeuchter",
+   "seed": "luftentfeuchter",
+   "source": "related-queries",
+   "stand": "2026-09-20",
+   "v": 36200
   },
   {
    "heat": null,
@@ -91,8 +66,8 @@
    "q": "luftentfeuchter testsieger stiftung warentest",
    "seed": "luftentfeuchter",
    "source": "related-queries",
-   "stand": "2026-09-11",
-   "v": 31250
+   "stand": "2026-09-20",
+   "v": 30450
   },
   {
    "heat": null,
@@ -185,17 +160,6 @@
   {
    "heat": null,
    "kind": "value",
-   "match": 0.875,
-   "page": "guide/wohnmobil-feuchtigkeit-winter.html",
-   "q": "luftentfeuchter wohnung ohne strom",
-   "seed": "luftentfeuchter",
-   "source": "related-queries",
-   "stand": "2026-09-11",
-   "v": 19250
-  },
-  {
-   "heat": null,
-   "kind": "value",
    "match": 0.917,
    "page": "guide/infrarotheizung-garage.html",
    "q": "infrarotheizung als bild",
@@ -203,6 +167,17 @@
    "source": "related-queries",
    "stand": "2026-09-16",
    "v": 17650
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 0.85,
+   "page": "guide/schimmel-kleiderschrank.html",
+   "q": "luftentfeuchter granulat nachfüllpack",
+   "seed": "luftentfeuchter",
+   "source": "related-queries",
+   "stand": "2026-09-20",
+   "v": 16950
   },
   {
    "heat": null,
@@ -225,6 +200,31 @@
    "source": "related-queries",
    "stand": "2026-09-14",
    "v": 15650
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 0.887,
+   "page": "guide/luftentfeuchter-granulat-oder-elektrisch.html",
+   "q": "luftentfeuchter keller ohne strom",
+   "seed": "luftentfeuchter",
+   "source": "related-queries",
+   "stand": "2026-09-20",
+   "v": 15100
+  },
+  {
+   "heat": {
+    "n7": 4,
+    "p7": 1
+   },
+   "kind": "value",
+   "match": 0.667,
+   "page": "index.html",
+   "q": "luftentfeuchter wohnung testsieger",
+   "seed": "luftentfeuchter",
+   "source": "related-queries",
+   "stand": "2026-09-20",
+   "v": 13050
   },
   {
    "heat": null,
@@ -387,16 +387,6 @@
   },
   {
    "kind": "value",
-   "match": 0.5,
-   "page": "index.html",
-   "q": "bonaura luftentfeuchter",
-   "seed": "luftentfeuchter",
-   "source": "related-queries",
-   "stand": "2026-09-11",
-   "v": 19850
-  },
-  {
-   "kind": "value",
    "match": 0.0,
    "page": null,
    "q": "krups kaffeevollautomat intensity milk",
@@ -507,6 +497,16 @@
   },
   {
    "kind": "value",
+   "match": 0.0,
+   "page": null,
+   "q": "leifheit saugwischer",
+   "seed": "saugwischer",
+   "source": "related-queries",
+   "stand": "2026-09-20",
+   "v": 120
+  },
+  {
+   "kind": "value",
    "match": 0.5,
    "page": "guide/balkonkraftwerk-mieter-recht.html",
    "q": "balkonkraftwerk nicht angemeldet strafe",
@@ -533,6 +533,16 @@
    "seed": "matratze",
    "source": "related-queries",
    "stand": "2026-09-19",
+   "v": 80
+  },
+  {
+   "kind": "value",
+   "match": 0.5,
+   "page": "guide/bester-luftkuehler.html",
+   "q": "bester saugwischer",
+   "seed": "saugwischer",
+   "source": "related-queries",
+   "stand": "2026-09-20",
    "v": 80
   },
   {
@@ -584,30 +594,45 @@
    "source": "related-queries",
    "stand": "2026-09-19",
    "v": 60
-  }
- ],
- "generated": "2026-09-20",
- "geo": "DE",
- "heat_source": "measured 2026-09-20 (25 pages); no notes",
- "hot_pages": [
-  {
-   "n7": 8,
-   "p7": 6,
-   "page": "/en/guide/portable-ac-tilt-and-turn-windows.html"
   },
   {
-   "n7": 8,
+   "kind": "value",
+   "match": 0.0,
+   "page": null,
+   "q": "vorwerk staubsauger",
+   "seed": "saugwischer",
+   "source": "related-queries",
+   "stand": "2026-09-20",
+   "v": 40
+  }
+ ],
+ "generated": "2026-09-21",
+ "geo": "DE",
+ "heat_source": "measured 2026-09-21 (24 pages); no notes",
+ "hot_pages": [
+  {
+   "n7": 12,
    "p7": 1,
    "page": "/guide/fensterabdichtung-selber-bauen.html"
   },
   {
-   "n7": 6,
+   "n7": 9,
+   "p7": 1,
+   "page": "/en/guide/portable-ac-smells-musty.html"
+  },
+  {
+   "n7": 8,
    "p7": 0,
    "page": "/en/guide/btu-calculator.html"
   },
   {
-   "n7": 6,
+   "n7": 7,
    "p7": 7,
+   "page": "/en/guide/portable-ac-tilt-and-turn-windows.html"
+  },
+  {
+   "n7": 7,
+   "p7": 6,
    "page": "/guide/growatt-noah-2000-probleme.html"
   },
   {
@@ -617,23 +642,18 @@
   },
   {
    "n7": 4,
-   "p7": 10,
+   "p7": 1,
    "page": "/"
   },
   {
    "n7": 4,
-   "p7": 5,
-   "page": "/guide/klimaanlage-kippfenster.html"
+   "p7": 0,
+   "page": "/guide/balkonkraftwerk-ohne-bohren.html"
   },
   {
    "n7": 4,
    "p7": 0,
    "page": "/wohnkosten-werkstatt.html"
-  },
-  {
-   "n7": 3,
-   "p7": 0,
-   "page": "/guide/balkonkraftwerk-ohne-bohren.html"
   },
   {
    "n7": 3,
@@ -647,36 +667,38 @@
   },
   {
    "n7": 3,
-   "p7": 5,
-   "page": "/guide/mobile-klimaanlage-ueberwintern.html"
-  },
-  {
-   "n7": 3,
-   "p7": 7,
+   "p7": 6,
    "page": "/guide/was-bedeutet-btu.html"
   },
   {
    "n7": 2,
-   "p7": 3,
-   "page": "/en/guide/portable-ac-leaking-water.html"
+   "p7": 0,
+   "page": "/en/guide.html"
   },
   {
    "n7": 2,
-   "p7": 1,
-   "page": "/en/guide/portable-air-conditioner-france.html"
+   "p7": 0,
+   "page": "/en/guide/dehumidifier-drying-clothes-cost.html"
+  },
+  {
+   "n7": 2,
+   "p7": 2,
+   "page": "/en/guide/portable-ac-leaking-water.html"
   }
  ],
  "how_to_read": "gaps = 今天有需求、站内没有页面接得住(match < 0.60);covered = 已有页面接得住。**page 字段是「词元重叠度最高的现有页面」,不是编辑判断** —— 实测它会挑错:eco 的 'luftentfeuchter bei hitze' 被它指到 kinderzimmer-kuehlen.html,而本站自己的 rail 把这条问句路由到 luftentfeuchter-ratgeber 的「它不制冷」那一节。所以 page 只当线索用,别当结论。v 是 Google 的增长值,不是搜索量;kind=autocomplete-new 的行来自配额用尽后的兜底,分值恒为 1,不可与真实增长值比较。**underserved** = 有真实增长值(v≥200、非兜底)的需求词、站内有页面接得住、但过去 7 天零真人到达 —— 这不是缺内容,是标题/首屏/内链让人找不到,是判断层最该动手的一类。hot_pages = 实测 7 天真人到达最多的页(n7)与前 7 天(p7);first_party_demand = 读者在站内亲手输入的搜索词(site_search / search_no_result),对 Google 面降级的站,它是主信号不是补充。heat_source 写着度量的日期与状态;读不到就如实写读不到。",
  "note": "选题输入,不是选题依据。任何由它引出的页面仍要过本站三门与硬内容规则。本文件由 tools/autopilot 每日确定性生成,零 AI、零编造。",
  "offtopic_dropped": [
-  "meaco arete one 20l",
-  "luftfeuchtigkeit senken",
+  "meacodry arete one 20l",
+  "comfee mddf-20den7-wf",
   "coolizi",
-  "meacodry arete one 25l",
+  "bautrockner kaufen",
+  "kärcher nass trockensauger",
   "ecoflow stream 5000",
   "ariston mobis plus 10",
   "dreo atom one",
   "fluss durch riga",
+  "dreame h15 pro heat",
   "anker solix 4 pro",
   "anker solix 4",
   "bett1 de",
@@ -714,35 +736,24 @@
   {
    "heat": null,
    "kind": "value",
-   "match": 0.95,
-   "page": "guide/trotec-luftentfeuchter-test.html",
-   "q": "luftentfeuchter keller test",
-   "seed": "luftentfeuchter",
-   "source": "related-queries",
-   "stand": "2026-09-11",
-   "v": 48200
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.75,
-   "page": "guide/ventilator-kaufen-ratgeber.html",
-   "q": "klimaanlage mobil",
-   "seed": "luftentfeuchter",
-   "source": "related-queries",
-   "stand": "2026-09-11",
-   "v": 40700
-  },
-  {
-   "heat": null,
-   "kind": "value",
    "match": 0.725,
    "page": "guide/klarstein-geraete-test.html",
    "q": "klarstein mobile klimaanlage mit abluftschlauch, 4-in-1 klimagerät mit ventilato",
    "seed": "luftentfeuchter",
    "source": "related-queries",
-   "stand": "2026-09-11",
-   "v": 38200
+   "stand": "2026-09-20",
+   "v": 44450
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 0.933,
+   "page": "guide/luftentfeuchter-ratgeber.html",
+   "q": "kühlt ein luftentfeuchter",
+   "seed": "luftentfeuchter",
+   "source": "related-queries",
+   "stand": "2026-09-20",
+   "v": 36200
   },
   {
    "heat": null,
@@ -752,8 +763,8 @@
    "q": "luftentfeuchter testsieger stiftung warentest",
    "seed": "luftentfeuchter",
    "source": "related-queries",
-   "stand": "2026-09-11",
-   "v": 31250
+   "stand": "2026-09-20",
+   "v": 30450
   },
   {
    "heat": null,
@@ -846,17 +857,6 @@
   {
    "heat": null,
    "kind": "value",
-   "match": 0.875,
-   "page": "guide/wohnmobil-feuchtigkeit-winter.html",
-   "q": "luftentfeuchter wohnung ohne strom",
-   "seed": "luftentfeuchter",
-   "source": "related-queries",
-   "stand": "2026-09-11",
-   "v": 19250
-  },
-  {
-   "heat": null,
-   "kind": "value",
    "match": 0.917,
    "page": "guide/infrarotheizung-garage.html",
    "q": "infrarotheizung als bild",
@@ -864,6 +864,17 @@
    "source": "related-queries",
    "stand": "2026-09-16",
    "v": 17650
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 0.85,
+   "page": "guide/schimmel-kleiderschrank.html",
+   "q": "luftentfeuchter granulat nachfüllpack",
+   "seed": "luftentfeuchter",
+   "source": "related-queries",
+   "stand": "2026-09-20",
+   "v": 16950
   },
   {
    "heat": null,
@@ -886,6 +897,17 @@
    "source": "related-queries",
    "stand": "2026-09-14",
    "v": 15650
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 0.887,
+   "page": "guide/luftentfeuchter-granulat-oder-elektrisch.html",
+   "q": "luftentfeuchter keller ohne strom",
+   "seed": "luftentfeuchter",
+   "source": "related-queries",
+   "stand": "2026-09-20",
+   "v": 15100
   },
   {
    "heat": null,

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "as_of": "2026-09-20",
+  "as_of": "2026-09-21",
   "privacy": "aggregate counts and derived queues only; no customer or raw community content",
   "fleet": {
     "sites": 14,
@@ -8,15 +8,15 @@
     "membership_ready": 4,
     "paid_members": 0,
     "active_members": 0,
-    "opportunities": 8,
+    "opportunities": 6,
     "stale_inputs": 0
   },
   "input_dates": {
-    "membership": "2026-09-20T07:54:34.866Z",
-    "health": "2026-09-19T12:10:53Z",
-    "ai_referrals": "2026-09-19T12:11:12Z",
-    "opportunities": "2026-09-19",
-    "autopilot_receipt": "2026-09-20"
+    "membership": "2026-09-21T08:11:35.006Z",
+    "health": "2026-09-20T12:46:28Z",
+    "ai_referrals": "2026-09-20T12:46:43Z",
+    "opportunities": "2026-09-20",
+    "autopilot_receipt": "2026-09-21"
   },
   "input_ages_days": {
     "membership": 0,
@@ -28,7 +28,7 @@
   "stale_inputs": [],
   "membership": {
     "schema_version": 1,
-    "generated": "2026-09-20T07:54:34.866Z",
+    "generated": "2026-09-21T08:11:35.006Z",
     "source": "same-origin /api/member and /api/member-admin stats",
     "privacy": "aggregate counters only; no member, order, support, token or wallet data",
     "ok": true,
@@ -124,10 +124,10 @@
       "supply": 0
     },
     {
-      "theme": "i don t think i can handle the new finder design bubbles circles around toolbar ",
+      "theme": "stripe withholding balance of 100000",
       "site": null,
       "state": "scout",
-      "score": 2.53,
+      "score": 3.02,
       "days_seen": 1,
       "demand": 0,
       "supply": 0
@@ -164,24 +164,6 @@
       "site": null,
       "state": "scout",
       "score": 2.04,
-      "days_seen": 1,
-      "demand": 0,
-      "supply": 0
-    },
-    {
-      "theme": "pdf printer on windows non agpl licensed",
-      "site": null,
-      "state": "scout",
-      "score": 2.04,
-      "days_seen": 1,
-      "demand": 0,
-      "supply": 0
-    },
-    {
-      "theme": "stripe withholding balance of 100000",
-      "site": null,
-      "state": "scout",
-      "score": 2.02,
       "days_seen": 1,
       "demand": 0,
       "supply": 0
@@ -242,12 +224,24 @@
       "mode": "observe"
     },
     {
+      "site": "buysomething",
+      "kind": "content_gap",
+      "priority": 55,
+      "reason": "rising demand has no matching page; editorial judgement is required",
+      "evidence": {
+        "count": 1,
+        "query": "costco self cleaning litter box",
+        "value": 350
+      },
+      "mode": "queue"
+    },
+    {
       "site": "getecoback",
       "kind": "content_gap",
       "priority": 55,
       "reason": "rising demand has no matching page; editorial judgement is required",
       "evidence": {
-        "count": 23,
+        "count": 25,
         "query": "knebel infrarotheizung",
         "value": 36000
       },
@@ -272,8 +266,8 @@
       "reason": "prioritize a page with measured reader heat",
       "evidence": {
         "page": "/search",
-        "n7": 341,
-        "p7": 54
+        "n7": 344,
+        "p7": 59
       },
       "mode": "queue"
     },
@@ -283,9 +277,9 @@
       "priority": 52,
       "reason": "prioritize a page with measured reader heat",
       "evidence": {
-        "page": "/en/guide/portable-ac-tilt-and-turn-windows.html",
-        "n7": 8,
-        "p7": 6
+        "page": "/guide/fensterabdichtung-selber-bauen.html",
+        "n7": 12,
+        "p7": 1
       },
       "mode": "queue"
     },
@@ -295,7 +289,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 441,
+        "human_pv_28d": 443,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -306,7 +300,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 123,
+        "human_pv_28d": 107,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -317,7 +311,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 323,
+        "human_pv_28d": 342,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -328,7 +322,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 225,
+        "human_pv_28d": 240,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -339,7 +333,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 201,
+        "human_pv_28d": 207,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -350,7 +344,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 829,
+        "human_pv_28d": 618,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -361,7 +355,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 435,
+        "human_pv_28d": 436,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -372,7 +366,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 910,
+        "human_pv_28d": 881,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -383,7 +377,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 256,
+        "human_pv_28d": 260,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -394,7 +388,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 282,
+        "human_pv_28d": 291,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -405,7 +399,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 260,
+        "human_pv_28d": 308,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -430,7 +424,7 @@
     },
     "buysomething": {
       "path": "sites/buysomething/data/fleet-evolution.json",
-      "action_count": 1
+      "action_count": 2
     },
     "goldrush": {
       "path": "sites/goldrush/data/fleet-evolution.json",

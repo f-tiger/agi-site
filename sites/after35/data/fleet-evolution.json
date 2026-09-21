@@ -4,22 +4,24 @@
   "signals": {
     "membership": {
       "ready": null,
-      "paid_members": null,
-      "active_members": null
+      "has_paid_members": null,
+      "has_active_members": null
     },
     "traffic": {
-      "human_pv": 441,
-      "ai_ref": 0,
-      "reach_humans_referred": null
+      "human_pv_band": "100+",
+      "ai_ref_band": "0",
+      "reach_humans_referred_band": null
     },
     "demand": {
-      "underserved": 0,
-      "gaps": 0,
-      "hot_pages": 0
+      "has_underserved": false,
+      "has_gaps": false,
+      "has_hot_pages": false,
+      "top_underserved_page": null,
+      "top_hot_page": null
     },
     "health": {
       "http": "200",
-      "days_since_deploy": 0
+      "stale_deploy": false
     }
   },
   "actions": [
@@ -28,8 +30,8 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 441,
-        "ai_ref_28d": 0
+        "human_pv_28d_band": "100+",
+        "ai_ref_28d_band": "0"
       },
       "mode": "queue"
     }

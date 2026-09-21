@@ -3,35 +3,43 @@
   "search_no_result": [],
   "site_search": [
    {
-    "n": 3,
+    "n": 2,
     "q": "tool:claim_ledger https://goldrush.agiscorecard."
+   },
+   {
+    "n": 1,
+    "q": "tool:sunwatch_ledger"
+   },
+   {
+    "n": 1,
+    "q": "tool:invest_positions"
    }
   ]
  },
- "fetched": "2026-09-20",
+ "fetched": "2026-09-21",
  "kind": "agi-trends",
  "notes": [],
  "ok": true,
  "pages": {
   "/ai-and-your-job": {
-   "n7": 102,
-   "p7": 37
+   "n7": 103,
+   "p7": 39
+  },
+  "/ai-job-risk-check": {
+   "n7": 97,
+   "p7": 36
   },
   "/search": {
-   "n7": 341,
-   "p7": 54
+   "n7": 344,
+   "p7": 59
   },
   "/two-year-scorecard": {
-   "n7": 97,
+   "n7": 100,
    "p7": 28
   },
   "/will-agi-arrive-2027": {
    "n7": 98,
-   "p7": 39
-  },
-  "/zh/agi-test": {
-   "n7": 118,
-   "p7": 52
+   "p7": 38
   }
  },
  "site": "agiscorecard",
