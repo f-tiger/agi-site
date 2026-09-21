@@ -29,10 +29,7 @@ concurrency:
 jobs:
   watch:
     runs-on: ubuntu-latest
-    # 钱包没配就整段跳过：未配置时这条任务什么都不做，也不报错。
-    # 手动 dispatch 不受这个变量限制——勘察模式恰恰是「还没配好」时要用的那一步
-    # （与 metaculus-bot 的门同一写法）。
-    if: vars.ADS_WALLET_CHAIN != '' || github.event_name == 'workflow_dispatch'
+    # Live doctor endpoint gates unconfigured Web3 without requiring a GitHub variable.
     defaults:
       run:
         working-directory: sites/baipiaoji
@@ -63,6 +60,8 @@ jobs:
           # 「CI 直连 D1 的 REST 导出在舰队里从未成功过一次」——那条路上钱包轨会在第一条 SQL
           # 就失败，且只有在真收到钱之后才看得见。顺带把一个带 D1 写权限的 token 从公开仓拿掉。
           ADS_WATCH_SECRET: ${{ secrets.ADS_WATCH_SECRET }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          WEB3_ENABLED: ${{ vars.ADS_WEB3_ENABLED }}
           # 地址与合约走 Secrets/Variables，绝不进仓库（公开仓红线）
           ADS_WALLET: ${{ secrets.ADS_WALLET }}
           ADS_WALLET_CONTRACT: ${{ secrets.ADS_WALLET_CONTRACT }}
@@ -72,4 +71,19 @@ jobs:
           ADS_WALLET_DECIMALS: ${{ vars.ADS_WALLET_DECIMALS }}
           ADS_MIN_CONFIRMATIONS: ${{ vars.ADS_MIN_CONFIRMATIONS }}
           ADS_DAYS: ${{ vars.ADS_DAYS }}
-        run: node scripts/ad-watch.mjs
+        run: |
+          if [ "$WEB3_ENABLED" != "false" ]; then
+            node scripts/ad-watch-v2.mjs --if-configured --members
+          else
+            node scripts/ad-watch.mjs
+          fi
+
+
+      - name: Check each independent site membership
+        if: always() && (github.event_name != 'workflow_dispatch' || inputs.mode == 'watch')
+        timeout-minutes: 5
+        working-directory: ${{ github.workspace }}
+        env:
+          ADS_WATCH_SECRET: ${{ secrets.ADS_WATCH_SECRET }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: node tools/member-studio/ops.mjs watch-all

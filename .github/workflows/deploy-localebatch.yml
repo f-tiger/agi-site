@@ -1,0 +1,72 @@
+name: Validate and deploy LocaleBatch
+
+on:
+  push:
+    branches: [main, codex/localebatch-launch-2026-09-18]
+    paths:
+      - "sites/localebatch/**"
+      - "tools/discovery/**"
+      - ".github/workflows/deploy-localebatch.yml"
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+concurrency:
+  group: localebatch-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - name: Deploy the current main revision
+        if: github.ref == 'refs/heads/main'
+        run: |
+          git fetch origin main --depth=1
+          git checkout --detach origin/main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: Build and validate search discovery pages
+        run: |
+          python3 tools/discovery/build.py --only localebatch
+          python3 tools/discovery/validate.py --only localebatch
+      - name: Product checks and offline review build
+        working-directory: sites/localebatch
+        run: |
+          npm ci --ignore-scripts --no-audit --no-fund
+          npm test
+          npm run build
+          node --check src/worker.mjs
+          node --check site/app.mjs
+      - name: Validate Cloudflare bundle
+        working-directory: sites/localebatch
+        run: npx --yes wrangler@4 deploy --dry-run --outdir /tmp/localebatch-worker
+      - name: Verify the custom hostname is safe to assign
+        if: github.ref == 'refs/heads/main'
+        working-directory: sites/localebatch
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_API_TOKEN_ZONE: ${{ secrets.CLOUDFLARE_API_TOKEN_ZONE }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: node scripts/preflight-domain.mjs
+      - name: Deploy to Cloudflare
+        if: github.ref == 'refs/heads/main'
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          wranglerVersion: "4"
+          workingDirectory: sites/localebatch
+          command: deploy
+      - name: Verify public pages and closed payment state
+        if: github.ref == 'refs/heads/main'
+        working-directory: sites/localebatch
+        run: node scripts/smoke.mjs https://localebatch.agiscorecard.com
+
+      - name: Verify public search pages and notify IndexNow once
+        if: github.ref == 'refs/heads/main'
+        run: node tools/discovery/live.mjs localebatch ${{ github.run_attempt == 1 && '--submit' || '' }}

@@ -1,43 +1,47 @@
 {
-  "generated": "2026-09-18",
+  "generated": "2026-09-21",
   "source": "/api/reach",
   "window_days": 28,
-  "since": "2026-08-21",
-  "until": "2026-09-18",
+  "since": "2026-08-24",
+  "until": "2026-09-21",
   "definition": "ev='' AND ref != '' — referred human page views (traffic-truth.mjs human line A); direct/no-referrer visits and /__ self-test paths excluded; counts only, no row-level data",
-  "humans_referred": 329,
-  "per_day": 11.8,
+  "humans_referred": 350,
+  "per_day": 12.5,
   "by_kind": {
-    "tool": 227,
-    "category": 53,
+    "tool": 255,
+    "category": 49,
     "page": 36,
-    "plans": 4,
-    "vs": 7,
-    "alternatives": 2
+    "vs": 6,
+    "alternatives": 2,
+    "plans": 2
   },
   "categories": [
     {
       "cat": "chat",
-      "n": 101
+      "n": 104
     },
     {
       "cat": "coding",
-      "n": 54
+      "n": 60
     },
     {
       "cat": "api",
-      "n": 48
+      "n": 49
     },
     {
       "cat": "video",
-      "n": 30
-    },
-    {
-      "cat": "image",
-      "n": 13
+      "n": 33
     },
     {
       "cat": "office",
+      "n": 15
+    },
+    {
+      "cat": "writing",
+      "n": 13
+    },
+    {
+      "cat": "image",
       "n": 12
     },
     {
@@ -45,16 +49,12 @@
       "n": 8
     },
     {
-      "cat": "writing",
+      "cat": "agent",
       "n": 7
     },
     {
       "cat": "audio",
       "n": 6
-    },
-    {
-      "cat": "agent",
-      "n": 5
     },
     {
       "cat": "search",
@@ -77,32 +77,37 @@
     {
       "slug": "grok",
       "cat": "chat",
-      "n": 77
+      "n": 76
     },
     {
       "slug": "kimi",
       "cat": "chat",
-      "n": 20
+      "n": 24
     },
     {
       "slug": "fireworks",
       "cat": "api",
-      "n": 18
-    },
-    {
-      "slug": "haiper",
-      "cat": "video",
-      "n": 11
+      "n": 19
     },
     {
       "slug": "feishu-miaoji",
       "cat": "office",
-      "n": 11
+      "n": 14
+    },
+    {
+      "slug": "haiper",
+      "cat": "video",
+      "n": 13
     },
     {
       "slug": "cline",
       "cat": "coding",
-      "n": 6
+      "n": 12
+    },
+    {
+      "slug": "fastgpt",
+      "cat": "agent",
+      "n": 5
     },
     {
       "slug": "pixverse",
@@ -110,18 +115,28 @@
       "n": 5
     },
     {
+      "slug": "deepl",
+      "cat": "writing",
+      "n": 4
+    },
+    {
       "slug": "google-flow",
       "cat": "video",
       "n": 4
     },
     {
-      "slug": "fastgpt",
-      "cat": "agent",
-      "n": 3
+      "slug": "immersive-translate",
+      "cat": "writing",
+      "n": 4
     },
     {
       "slug": "quillbot",
       "cat": "writing",
+      "n": 3
+    },
+    {
+      "slug": "replit",
+      "cat": "coding",
       "n": 3
     },
     {
@@ -175,8 +190,13 @@
       "n": 2
     },
     {
-      "slug": "immersive-translate",
-      "cat": "writing",
+      "slug": "jianying",
+      "cat": "video",
+      "n": 2
+    },
+    {
+      "slug": "liblib",
+      "cat": "image",
       "n": 2
     },
     {
@@ -187,11 +207,6 @@
     {
       "slug": "qingying",
       "cat": "video",
-      "n": 2
-    },
-    {
-      "slug": "replit",
-      "cat": "coding",
       "n": 2
     },
     {
@@ -225,6 +240,11 @@
       "n": 1
     },
     {
+      "slug": "github-models",
+      "cat": "coding",
+      "n": 1
+    },
+    {
       "slug": "goose",
       "cat": "coding",
       "n": 1
@@ -240,7 +260,7 @@
       "n": 1
     },
     {
-      "slug": "poe",
+      "slug": "ms-copilot",
       "cat": "chat",
       "n": 1
     },
@@ -253,37 +273,17 @@
       "slug": "zed",
       "cat": "coding",
       "n": 1
-    },
-    {
-      "slug": "anythingllm",
-      "cat": "local",
-      "n": 1
-    },
-    {
-      "slug": "cohere",
-      "cat": "api",
-      "n": 1
-    },
-    {
-      "slug": "connectedpapers",
-      "cat": "study",
-      "n": 1
-    },
-    {
-      "slug": "deepinfra",
-      "cat": "api",
-      "n": 1
     }
   ],
   "judgement": [],
   "pages": [
     {
       "path": "grok",
-      "n": 77
+      "n": 76
     },
     {
       "path": "coding",
-      "n": 37
+      "n": 35
     },
     {
       "path": "/",
@@ -291,22 +291,26 @@
     },
     {
       "path": "kimi",
-      "n": 20
+      "n": 24
     },
     {
       "path": "fireworks",
-      "n": 18
-    },
-    {
-      "path": "api",
-      "n": 11
-    },
-    {
-      "path": "haiper",
-      "n": 11
+      "n": 19
     },
     {
       "path": "feishu-miaoji",
+      "n": 14
+    },
+    {
+      "path": "haiper",
+      "n": 13
+    },
+    {
+      "path": "cline",
+      "n": 12
+    },
+    {
+      "path": "api",
       "n": 11
     },
     {
@@ -314,11 +318,7 @@
       "n": 8
     },
     {
-      "path": "cline",
-      "n": 6
-    },
-    {
-      "path": "image",
+      "path": "fastgpt",
       "n": 5
     },
     {
@@ -326,15 +326,27 @@
       "n": 5
     },
     {
+      "path": "deepl",
+      "n": 4
+    },
+    {
       "path": "google-flow",
       "n": 4
     },
     {
-      "path": "fastgpt",
+      "path": "immersive-translate",
+      "n": 4
+    },
+    {
+      "path": "image",
       "n": 3
     },
     {
       "path": "quillbot",
+      "n": 3
+    },
+    {
+      "path": "replit",
       "n": 3
     },
     {
@@ -352,10 +364,6 @@
     {
       "path": "comfyui",
       "n": 3
-    },
-    {
-      "path": "/plans/free-video-gen",
-      "n": 2
     },
     {
       "path": "tongyi",
@@ -386,7 +394,11 @@
       "n": 2
     },
     {
-      "path": "immersive-translate",
+      "path": "jianying",
+      "n": 2
+    },
+    {
+      "path": "liblib",
       "n": 2
     },
     {
@@ -395,10 +407,6 @@
     },
     {
       "path": "qingying",
-      "n": 2
-    },
-    {
-      "path": "replit",
       "n": 2
     },
     {
@@ -434,11 +442,15 @@
       "n": 1
     },
     {
-      "path": "/plans/free-meeting-notes",
+      "path": "/plans/free-video-gen",
       "n": 1
     },
     {
       "path": "bailian",
+      "n": 1
+    },
+    {
+      "path": "github-models",
       "n": 1
     },
     {
@@ -454,7 +466,7 @@
       "n": 1
     },
     {
-      "path": "poe",
+      "path": "ms-copilot",
       "n": 1
     },
     {
@@ -470,10 +482,6 @@
       "n": 1
     },
     {
-      "path": "/vs/cerebras-vs-openrouter",
-      "n": 1
-    },
-    {
       "path": "/vs/cloudflare-workers-ai-vs-google-ai-studio",
       "n": 1
     },
@@ -483,6 +491,10 @@
     },
     {
       "path": "anythingllm",
+      "n": 1
+    },
+    {
+      "path": "cerebras",
       "n": 1
     },
     {
@@ -498,46 +510,34 @@
       "n": 1
     },
     {
-      "path": "deepl",
-      "n": 1
-    },
-    {
       "path": "doubao",
       "n": 1
     },
     {
       "path": "elevenlabs",
       "n": 1
-    },
-    {
-      "path": "figma",
-      "n": 1
-    },
-    {
-      "path": "ima",
-      "n": 1
     }
   ],
   "referrers": [
     {
       "ref": "www.google.com",
-      "n": 164
+      "n": 163
     },
     {
       "ref": "cn.bing.com",
-      "n": 83
-    },
-    {
-      "ref": "www.perplexity.ai",
-      "n": 14
+      "n": 101
     },
     {
       "ref": "www.bing.com",
-      "n": 13
+      "n": 17
     },
     {
       "ref": "chatgpt.com",
       "n": 13
+    },
+    {
+      "ref": "www.perplexity.ai",
+      "n": 11
     },
     {
       "ref": "www.facebook.com",
@@ -553,14 +553,14 @@
     },
     {
       "ref": "yandex.com",
-      "n": 3
-    },
-    {
-      "ref": "www.baidu.com",
-      "n": 3
+      "n": 4
     },
     {
       "ref": "duckduckgo.com",
+      "n": 4
+    },
+    {
+      "ref": "www.baidu.com",
       "n": 3
     },
     {
@@ -577,7 +577,7 @@
     },
     {
       "ref": "www.doubao.com",
-      "n": 1
+      "n": 2
     },
     {
       "ref": "search.brave.com",
@@ -601,7 +601,7 @@
     {
       "ref": "www.perplexity.ai",
       "path": "/en/c/image",
-      "n": 5
+      "n": 3
     },
     {
       "ref": "www.perplexity.ai",
@@ -645,11 +645,6 @@
     },
     {
       "ref": "www.perplexity.ai",
-      "path": "/en/vs/cerebras-vs-openrouter",
-      "n": 1
-    },
-    {
-      "ref": "www.perplexity.ai",
       "path": "/en/vs/cloudflare-workers-ai-vs-google-ai-studio",
       "n": 1
     },
@@ -660,19 +655,19 @@
     }
   ],
   "events": {
-    "sub_view": 325,
-    "go": 89,
-    "star": 7,
+    "sub_view": 361,
+    "go": 97,
+    "star": 8,
     "calc": 6,
-    "sub_submit": 5,
-    "sheet_dl": 5,
-    "sub_ok": 4,
-    "sub_dup": 1,
-    "biz": 1
+    "sub_submit": 4,
+    "sheet_dl": 4,
+    "biz": 4,
+    "sub_ok": 3,
+    "sub_dup": 1
   },
   "submissions": {
-    "new": 7,
-    "total": 7
+    "new": 8,
+    "total": 8
   },
   "ads": {}
 }

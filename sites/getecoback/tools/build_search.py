@@ -24,7 +24,7 @@ def field(h, pattern):
 
 def collect():
     out = []
-    pats = ["*.html", "guide/*.html", "en/*.html", "en/guide/*.html", "it/*.html", "it/guide/*.html", "kategorie/*.html"]
+    pats = ["*.html", "guide/*.html", "en/*.html", "en/guide/*.html", "fr/*.html", "es/*.html", "it/*.html", "it/guide/*.html", "kategorie/*.html"]
     for pat in pats:
         for path in sorted(glob.glob(os.path.join(SITE, pat))):
             rel = os.path.relpath(path, SITE).replace(os.sep, "/")
@@ -41,7 +41,7 @@ def collect():
             if url.endswith("/index.html"):
                 url = url[: -len("index.html")]
             out.append({"u": url, "t": title, "d": desc[:160],
-                        "l": "en" if rel.startswith("en/") else "it" if rel.startswith("it/") else "de"})
+                        "l": "en" if rel.startswith("en/") else "fr" if rel.startswith("fr/") else "es" if rel.startswith("es/") else "it" if rel.startswith("it/") else "de"})
     return out
 
 

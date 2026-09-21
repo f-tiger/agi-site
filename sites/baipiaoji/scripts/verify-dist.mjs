@@ -27,7 +27,7 @@ const exists = (href) => {
   if (h.startsWith('http') || h.startsWith('mailto')) return true;
   if (h.startsWith('/api/')) return true;   // Pages Functions 路由，不在 dist 里
   h = h.replace(/^\//, '');
-  return [join(root, h), join(root, h, 'index.html'), join(root, h.replace(/\/$/, '') + '/index.html')]
+  return [join(root, h), join(root, h + '.html'), join(root, h, 'index.html'), join(root, h.replace(/\/$/, '') + '/index.html')]
     .some((c) => { try { statSync(c); return true; } catch { return false; } });
 };
 
@@ -167,7 +167,8 @@ let hreflangErr = 0;
     let p = href.replace(/^https?:\/\/[^/]+/, '');
     if (p === '' || p === '/') p = '/index.html';
     if (p.endsWith('/')) p += 'index.html';
-    return join(root, p.replace(/^\//, ''));
+    const file = join(root, p.replace(/^\//, ''));
+    return existsSync(file) ? file : file + '.html';
   };
   for (const p of pages) {
     const html = readFileSync(p, 'utf8');

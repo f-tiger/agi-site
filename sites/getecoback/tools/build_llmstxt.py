@@ -91,7 +91,7 @@ def main():
         "",
         f"{SEASON_FOCUS[season]}",
         "",
-        "Sprachen: Deutsch (Hauptbereich, /guide/), Englisch (/en/guide/), Italienisch (/it/guide/).",
+        "Sprachen: Deutsch (/guide/), Englisch (/en/guide/), Französisch (/fr/), Spanisch (/es/), Italienisch (/it/guide/).",
         f"Volltext aller Ratgeber: {BASE}/llms-full.txt",
         "",
         "## Interaktive Tools & Widgets",
@@ -126,6 +126,8 @@ def main():
     de = pages("guide")
     en = pages("en/guide")
     it = pages("it/guide")
+    fr = pages("fr")
+    es = pages("es")
     kat = pages("kategorie")
     lines.append("## Ratgeber (Deutsch)")
     lines.append("")
@@ -137,6 +139,14 @@ def main():
     if it:
         lines += ["", "## Guide (Italiano)", ""]
         for url, t, d in it:
+            lines.append(f"- [{t}]({url}): {d}")
+    if fr:
+        lines += ["", "## Calculateur (Français)", ""]
+        for url, t, d in fr:
+            lines.append(f"- [{t}]({url}): {d}")
+    if es:
+        lines += ["", "## Calculadora (Español)", ""]
+        for url, t, d in es:
             lines.append(f"- [{t}]({url}): {d}")
     lines += ["", "## Kategorien", ""]
     for url, t, d in kat:
@@ -150,6 +160,11 @@ def main():
         f"- [Kontakt]({BASE}/kontakt.html): Kontaktmöglichkeit.",
         "",
     ]
+    from build_household import PAGES
+    lines += ["## Haushaltswerkstatt", ""]
+    for slug, (title, desc) in PAGES.items():
+        lines.append(f"- [{title}]({BASE}/{slug}.html): {desc}")
+    lines.append("")
     out = os.path.join(ROOT, "llms.txt")
     open(out, "w", encoding="utf-8").write("\n".join(lines))
     print(f"llms.txt: {len(de)} DE + {len(en)} EN + {len(it)} IT guides, {len(kat)} categories")
@@ -161,7 +176,7 @@ def main():
             "> zitierfähige URL steht über jedem Abschnitt. Stand: siehe sitemap.xml.",
             ""]
     n = 0
-    for subdir in ("guide", "en/guide", "it/guide"):
+    for subdir in ("guide", "en/guide", "fr", "es", "it/guide"):
         for url, t, d in pages(subdir):
             fn = os.path.join(ROOT, subdir, url.rsplit("/", 1)[1])
             txt = body_text(fn)

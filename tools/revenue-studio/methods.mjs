@@ -1,0 +1,27 @@
+export const formulas={
+'launchdesk':'Placement: 49 USDT for 30 days, plus the unique matching fraction shown at checkout. Inventory and the final quote come from the live checkout.',
+'quotawatch-pro':'Match tool + unit + reset period. Compare the two entered limits; unmatched keys require review rather than numeric subtraction.',
+'creatorops':'Clip duration = end_seconds − start_seconds. Every clip keeps its hook, claim, evidence and rights note.',
+'evidencewatch':'Review date = checked_at + review_days. A date on or before the selected review date is due. Calendar reminders run in your calendar app.',
+'agentfit':'Fixed steps select a deterministic workflow. Adaptive tasks select a read-only agent or an approval-gated agent according to external permissions.',
+'filinglens-workspace':'Change = current − prior. Change % = (current − prior) ÷ |prior| × 100. A zero prior value makes percentage change undefined.',
+'billlens':'First year = annual kWh × unit price + 12 × monthly fee − one-time credit. Following year excludes the one-time credit.',
+'appliancepayback':'Annual saved kWh = (old W − new W) × hours/day × days/year ÷ 1,000. Payback years = extra purchase cost ÷ annual saving. Price scenarios use 75%, 100% and 125% of your price.',
+'homeenergy-log':'Interval kWh = current reading − previous reading for the same meter. Daily use = interval kWh ÷ elapsed days. A decreasing reading requires review.',
+'collectorledger':'Group by series + figure + variant. Duplicates = max(quantity − 1, 0). Recorded cost = sum(quantity × paid_each), kept separate by currency.',
+'dropcalendar':'Convert each explicitly offset event time to UTC. Export a one-hour calendar event with a 30-minute reminder; source announcements are supplied by you.',
+'displayfit':'Across = floor((width + gap) ÷ (figure width + gap)). Depth rows use the same rule. Total = across × depth rows × usable levels. Each figure must fit the clear shelf height.',
+ 'tradecheck-team':'Invoice amount = quantity × unit_price. Match vendor + PO, then compare the amount within your tolerance. Duplicate checks use vendor + invoice.',
+ 'localebatch-qa':'Compare the sets of placeholders, number strings and HTML tags in source and target. Check missing targets and repeated id + field + locale combinations.',
+ 'rfq-roundbook':'Quote total = quantity × unit_price + freight − discount. Compare identical requested quantities and currencies; terms still require human review.',
+ 'evidencebrief':'Keep each claim with its source, evidence type and stance. Count entered counterevidence; record the alternative and stop condition without inventing market demand.',
+ 'modelmeter-reconcile':'Difference = billed − expected. Flag absolute differences above tolerance, duplicate provider + period + id keys, and negative adjustments.',
+ 'workflowcost':'Expected attempts = 1 + p + … + p^retries. Completion probability = 1 − p^(retries+1). Monthly cost includes execution attempts, review labor and fixed costs.',
+ 'querysprint-projects':'Each query runs against a fresh fictional SQLite database in a Web Worker. A pass requires exact output column names, row order and values. A five-second timeout terminates the worker.',
+ 'job-evidence':'For every requirement, keep your evidence, source reference and observed result. Missing fields become next actions, not invented qualifications.',
+ 'scamchecklist':'Six observable warning signals each map to a verification step. The count is not a probability or a verdict that a message is safe.',
+ 'puzzleclub':'Digits 1–4 occur once per row, column and 2×2 box. Seeded generation removes clues only while the solver finds exactly one solution.',
+ 'classroompuzzles':'Generate 1–12 original, uniquely solvable 4×4 puzzles from a chosen seed. The printable answer sheet begins on a new page.',
+ 'embedpuzzles':'Create a sandboxed, self-contained iframe using an original uniquely solvable 4×4 puzzle. The embed has no network or account dependency.'
+};
+export const referenceLinks={csv:['RFC 4180 — CSV format','https://www.rfc-editor.org/rfc/rfc4180'],calendar:['RFC 5545 — iCalendar','https://www.rfc-editor.org/rfc/rfc5545'],sql:['SQLite SELECT documentation','https://www.sqlite.org/lang_select.html'],embed:['HTML iframe specification','https://html.spec.whatwg.org/multipage/iframe-embed-object.html#the-iframe-element']};

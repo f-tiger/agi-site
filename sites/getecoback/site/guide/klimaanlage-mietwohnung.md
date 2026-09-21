@@ -52,6 +52,8 @@ Am **17. Juli 2026** hat der Bundesgerichtshof entschieden (Az. **V ZR 162/25*
 
 Hinweis: Das ist eine redaktionelle Zusammenfassung, keine Rechtsberatung. Im Streitfall hilft der örtliche Mieterverein oder eine Anwältin für Mietrecht.
 
+**Du wohnst in Österreich?** Dann gilt für dich nichts von dem, was oben aus dem BGB zitiert ist. Das Mietrechtsgesetz regelt Veränderungen der Wohnung in § 9 MRG — mit einer Anzeigepflicht, einer Zwei-Monats-Frist und sieben Bedingungen, die es im deutschen Recht so nicht gibt: [Klimaanlage in der Mietwohnung in Österreich: § 9 MRG erklärt →](https://getecoback.com/guide/klimaanlage-mietwohnung-oesterreich.html)
+
 ## Häufige Fragen
 
 **Ist eine Klimaanlage in der Mietwohnung erlaubt?**Ja — solange sie ohne bauliche Veränderung auskommt. Eine tragbare Monoblock-Klimaanlage steht frei im Raum, der Abluftschlauch geht durchs gekippte Fenster, nichts wird gebohrt: Das fällt in der Regel unter den normalen Mietgebrauch und braucht keine Genehmigung.

@@ -1,24 +1,24 @@
 {
- "generated": "2026-09-18",
+ "generated": "2026-09-21",
  "env": "runner",
  "note": "付费档缺口的抓取探针。只做发现与取证，绝不写事实：任何数字仍须经 scripts/limits-edit.mjs 两步核实后才进 tools.json。state=ready 表示该 URL 当天 200 且页面上有像价目表的价格段，不表示数字已被核实。每行的 env 是抓取时的网络环境：sandbox 行的 blocked 很可能只是会话沙箱出网被拒，不能当作「这家没有定价页」，只有 runner 行的 blocked 才值得当结论。",
  "gap_total": 108,
  "batch": [
-  "kimi",
-  "feishu-miaoji",
-  "haiper",
-  "fastgpt",
-  "quillbot",
-  "bolt",
-  "canva",
-  "consensus"
+  "ms-copilot",
+  "tongyi-lingma",
+  "ai360",
+  "aider",
+  "aippt",
+  "ante",
+  "anythingllm",
+  "bing-image"
  ],
- "cursor": "consensus",
+ "cursor": "bing-image",
  "summary": {
-  "ready": 2,
-  "empty": 3,
-  "blocked": 3,
-  "probed_total": 8
+  "ready": 9,
+  "empty": 12,
+  "blocked": 10,
+  "probed_total": 31
  },
  "tools": {
   "kimi": {
@@ -262,6 +262,682 @@
     "tokens": 0,
     "excerpt": ""
    }
+  },
+  "deepl": {
+   "slug": "deepl",
+   "name": "DeepL",
+   "cat": "writing",
+   "reach": 2,
+   "probed": "2026-09-19",
+   "env": "runner",
+   "state": "ready",
+   "tried": [
+    {
+     "url": "https://www.deepl.com/pricing",
+     "status": 200,
+     "bytes": 600000,
+     "tokens": 38
+    }
+   ],
+   "best": {
+    "url": "https://www.deepl.com/pricing",
+    "tokens": 38,
+    "excerpt": "伙伴 登录 开始免费试用 主菜单 现已推出： 实时翻译您的话语，以您的声音呈现。 立即试用 找到最适合你的计划 翻译器 API Voice 年度 月度 通过年度付费节省16% 德国 (EUR €) Individual 个人用户专业级翻译 €7.49 每月，按年计费 1 免费试用 免费试用30 天。可随时取消。 显示更多 包含： 无数据训练 每月 300,000 个字符 每月 3 份文件翻译 1 份术语表 保存 1 次翻译 全页翻译 可用加载项： Write Pro 30 分钟的 DeepL Voice 服务 每位用户每月包含 查看更多功能 热门 Team 全面提升团队翻译效率与管控能力 €24.99 用户/月，按年计费 1 免费试用 免费试用30 天。可随时取消。 显示更多 所有 Individual 提供的优势，以及： 每位用户每月 1,000,000 个字符 每月 20 份文件翻译 批量文件翻译 5 份共享风格规则列表 5 份术语表 保存 10 次翻译 团队管理 分析与报告 单点登录（SSO） 可用加载项： Write Pro 30 分钟的 DeepL Voice 服务 每位用户每月包含 查看更多功能 Business 企业级多语言沟通管理解决方案 €49.99 用户/月，按年计费 1 立刻订购 显示更多 所有 Team 提供的优势，以及： 无限量字符 2 每月 100 份文件翻译 20 份共享风格规则列表 无限量术语表 2 翻译记忆库 2 无限制保存翻译 2 用户预配（SCIM） 域名管理 99.0 % 服务可用率 Write Pro 可用加载项： Translatio"
+   }
+  },
+  "fish-audio": {
+   "slug": "fish-audio",
+   "name": "Fish Audio",
+   "cat": "audio",
+   "reach": 2,
+   "probed": "2026-09-19",
+   "env": "runner",
+   "state": "blocked",
+   "tried": [
+    {
+     "url": "https://fish.audio/pricing",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://fish.audio/price",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://fish.audio/plans",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    }
+   ],
+   "best": null
+  },
+  "google-ai-studio": {
+   "slug": "google-ai-studio",
+   "name": "Google AI Studio",
+   "cat": "api",
+   "reach": 2,
+   "probed": "2026-09-19",
+   "env": "runner",
+   "state": "empty",
+   "tried": [
+    {
+     "url": "https://aistudio.google.com/pricing",
+     "status": 200,
+     "bytes": 600000,
+     "tokens": 0
+    },
+    {
+     "url": "https://aistudio.google.com/price",
+     "status": 200,
+     "bytes": 600000,
+     "tokens": 0
+    },
+    {
+     "url": "https://aistudio.google.com/plans",
+     "status": 200,
+     "bytes": 600000,
+     "tokens": 0
+    }
+   ],
+   "best": {
+    "url": "https://aistudio.google.com/pricing",
+    "tokens": 0,
+    "excerpt": ""
+   }
+  },
+  "immersive-translate": {
+   "slug": "immersive-translate",
+   "name": "沉浸式翻译",
+   "cat": "writing",
+   "reach": 2,
+   "probed": "2026-09-19",
+   "env": "runner",
+   "state": "empty",
+   "tried": [
+    {
+     "url": "https://immersivetranslate.com/pricing",
+     "status": 200,
+     "bytes": 600000,
+     "tokens": 1
+    },
+    {
+     "url": "https://immersivetranslate.com/price",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://immersivetranslate.com/plans",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    }
+   ],
+   "best": {
+    "url": "https://immersivetranslate.com/pricing",
+    "tokens": 1,
+    "excerpt": "。 为了确保服务的高可用性并防止恶意滥用，我们近期设置了防滥用和公平使用原则： 免费用户： 依然可以享受优质翻译，但单日翻译请求设有合理上限（注册后额度更高）。针对需要 DeepL、OpenAI、Claude 等顶级翻译服务的用户，我们提供每月最高 5000 万 Token 的超大额度，打造低成本、开箱即用的专业体验。 付费会员： 您的权益不受此策略影响，且拥有更高的频率权限。 我们会持续优化调度算法，在保障系统稳定的同时，尽可能让每一位用户都能顺畅翻译。 安装沉浸式翻译扩展后，我该如何使用？ 快速开始使用的话，看下面的内容就够了（我们也在这里准备了一份 更详细的使用指南 ）： 安装后，浏览器默认会把沉浸式翻译的扩展图标折叠起来，所以第一步，你需要在 浏览器右上角的折叠菜单里 将沉浸式翻译放出来，如下： 接下来就可以翻译网页了，以 USA Today 为例，打开 USA Today 的英文网页 ，在任何区域点击右键，在菜单里选择【翻译网页/还原原文】按钮，网页就会以双语的形式显示。如果你喜欢快捷键的话，可以直接按下【Alt+A】(MacOS 是【Option+A】) 来触发网页翻译。还有一种办法，就是点击浏览器工具栏里的沉浸式翻译图标，然后点击【翻译】，如下： 如果你想翻译文档，比如 PDF，Epub，字幕文件等，你可以在浏览器工具栏里点击【沉浸式翻译】图标，点击【更多】，即可看到。 我很喜欢沉浸式翻译，想推荐给朋友，你们有联盟计划吗？ 是的，我们有一个易于加入的联盟计划，任何人都可以 点击这里自助申请 ，之后你会得到一个专属的推广链接，使用这个链接，您可以向朋友推荐沉浸式翻译"
+   }
+  },
+  "qingying": {
+   "slug": "qingying",
+   "name": "智谱清影",
+   "cat": "video",
+   "reach": 2,
+   "probed": "2026-09-19",
+   "env": "runner",
+   "state": "empty",
+   "tried": [
+    {
+     "url": "https://chatglm.cn/pricing",
+     "status": 200,
+     "bytes": 4080,
+     "tokens": 0
+    },
+    {
+     "url": "https://chatglm.cn/price",
+     "status": 200,
+     "bytes": 4080,
+     "tokens": 0
+    },
+    {
+     "url": "https://chatglm.cn/plans",
+     "status": 200,
+     "bytes": 4080,
+     "tokens": 0
+    }
+   ],
+   "best": {
+    "url": "https://chatglm.cn/pricing",
+    "tokens": 0,
+    "excerpt": ""
+   }
+  },
+  "replit": {
+   "slug": "replit",
+   "name": "Replit",
+   "cat": "coding",
+   "reach": 2,
+   "probed": "2026-09-19",
+   "env": "runner",
+   "state": "ready",
+   "tried": [
+    {
+     "url": "https://replit.com/pricing",
+     "status": 200,
+     "bytes": 256913,
+     "tokens": 8
+    }
+   ],
+   "best": {
+    "url": "https://replit.com/pricing",
+    "tokens": 8,
+    "excerpt": "ies Gallery Blog Newsroom Log in Create account Pricing Choose the best plan for you. Monthly Yearly Up to 10% off Core $20 $18 / month, billed annually AI integrations Up to 30 hours of chat on Free Mode Up to 60 projects on Free Mode $20 towards most powerful models Plan mode Unlimited workspaces Try now Pro $100 $90 / month, billed annually 10 parallel agents Premium Support Everything in Core plus: Even more Free Mode usage to chat and create $100 towards most powerful models Up to 15 collaborators Invite up to 50 viewers Database rollback up to 28 days Upgrade to Pro Enterprise Custom Enterprise-grade security and control Custom seat limits SSO/SAML Advanced privacy controls Single-tena"
+   }
+  },
+  "runway": {
+   "slug": "runway",
+   "name": "Runway",
+   "cat": "video",
+   "reach": 2,
+   "probed": "2026-09-19",
+   "env": "runner",
+   "state": "ready",
+   "tried": [
+    {
+     "url": "https://runwayml.com/pricing",
+     "status": 200,
+     "bytes": 600000,
+     "tokens": 14
+    }
+   ],
+   "best": {
+    "url": "https://runwayml.com/pricing",
+    "tokens": 14,
+    "excerpt": "AI Image and Video Pricing from $12/month | Runway AI Creative Dev Robotics Research Resources Enterprise Pricing Enterprise Sales Login Try Runway Runway AI Summit: 9/30 in San Francisco. Register now for the Runway AI Summit on 9/30 in San Francisco to hear from leaders at DeepMind, NVIDIA, Physical Intelligence and more. Buy tickets Choose the Right Plan for You Trusted by 60M+ creators and leading enterprises Individual Team &amp; Enterprise API Monthly Yearly -20% off Free Free forever. For people looking to explore Runway&#x27;s AI Tools $0 /month 125 credits 125 one-time credits to explore Runway&#x27;s AI tools. Start Free Includes 125 credits (one time) A selection of generative cre"
+   }
+  },
+  "tongyi": {
+   "slug": "tongyi",
+   "name": "通义千问",
+   "cat": "chat",
+   "reach": 2,
+   "probed": "2026-09-19",
+   "env": "runner",
+   "state": "blocked",
+   "tried": [
+    {
+     "url": "https://tongyi.aliyun.com/pricing",
+     "status": 0,
+     "bytes": 0,
+     "tokens": 0,
+     "error": "UND_ERR_CONNECT_TIMEOUT"
+    },
+    {
+     "url": "https://tongyi.aliyun.com/price",
+     "status": 0,
+     "bytes": 0,
+     "tokens": 0,
+     "error": "UND_ERR_CONNECT_TIMEOUT"
+    },
+    {
+     "url": "https://tongyi.aliyun.com/plans",
+     "status": 0,
+     "bytes": 0,
+     "tokens": 0,
+     "error": "UND_ERR_CONNECT_TIMEOUT"
+    }
+   ],
+   "best": null
+  },
+  "tongyi-wanxiang": {
+   "slug": "tongyi-wanxiang",
+   "name": "通义万相",
+   "cat": "image",
+   "reach": 2,
+   "probed": "2026-09-20",
+   "env": "runner",
+   "state": "blocked",
+   "tried": [
+    {
+     "url": "https://tongyi.aliyun.com/pricing",
+     "status": 0,
+     "bytes": 0,
+     "tokens": 0,
+     "error": "UND_ERR_CONNECT_TIMEOUT"
+    },
+    {
+     "url": "https://tongyi.aliyun.com/price",
+     "status": 0,
+     "bytes": 0,
+     "tokens": 0,
+     "error": "UND_ERR_CONNECT_TIMEOUT"
+    },
+    {
+     "url": "https://tongyi.aliyun.com/plans",
+     "status": 0,
+     "bytes": 0,
+     "tokens": 0,
+     "error": "UND_ERR_CONNECT_TIMEOUT"
+    }
+   ],
+   "best": null
+  },
+  "ttsmaker": {
+   "slug": "ttsmaker",
+   "name": "TTSMaker",
+   "cat": "audio",
+   "reach": 2,
+   "probed": "2026-09-20",
+   "env": "runner",
+   "state": "blocked",
+   "tried": [
+    {
+     "url": "https://ttsmaker.cn/pricing",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://ttsmaker.cn/price",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://ttsmaker.cn/plans",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    }
+   ],
+   "best": null
+  },
+  "windsurf": {
+   "slug": "windsurf",
+   "name": "Windsurf",
+   "cat": "coding",
+   "reach": 2,
+   "probed": "2026-09-20",
+   "env": "runner",
+   "state": "ready",
+   "tried": [
+    {
+     "url": "https://windsurf.com/pricing",
+     "status": 200,
+     "bytes": 357807,
+     "tokens": 19
+    }
+   ],
+   "best": {
+    "url": "https://windsurf.com/pricing",
+    "tokens": 19,
+    "excerpt": "and Pricing Choose the perfect plan for your journey SWE-2, our latest model, is now available → INDIVIDUAL PLANS Free $0 Download Light quota to code with agents Limited model availability Unlimited inline edits Unlimited Tab completions Pro POPULAR $20 per month Select plan Everything in Free, plus: Increased quotas, including access to frontier models from OpenAI, Claude, Gemini, and SpaceXAI, plus leading open source models Full model availability Free use of SWE-2 Free in Devin Desktop and CLI through October 10, 2026 Access to cloud agents (Devin Cloud) Purchase extra usage at API pricing Max NEW $200 per month Select plan Everything in Pro, plus: Significantly higher quotas TEAM PLANS"
+   }
+  },
+  "anythingllm": {
+   "slug": "anythingllm",
+   "name": "AnythingLLM",
+   "cat": "local",
+   "reach": 0,
+   "probed": "2026-09-21",
+   "env": "runner",
+   "state": "ready",
+   "tried": [
+    {
+     "url": "https://anythingllm.com/pricing",
+     "status": 200,
+     "bytes": 61611,
+     "tokens": 6
+    }
+   ],
+   "best": {
+    "url": "https://anythingllm.com/pricing",
+    "tokens": 6,
+    "excerpt": "n your infrastructure. Self-host with Docker for free For small teams Basic Perfect for independent use or small teams. $50 /monthly Included Private instance Custom subdomain RAG, agents, and work right out of the box Just bring an LLM API Key Start for $50/mo For startups Pro Higher performance with priority resources. Built for teams that rely on AI daily. $99 /monthly Included Private instance RAG, agents, work right out of the box Great for large teams 72-hour support SLA Start for $99/mo For enterprises Enterprise Premium service package, customization, and on-premise support. Contact Us Included On-premise deployment Custom SLA Custom integrations SSO, RBAC, and more Request Quote Clo"
+   }
+  },
+  "cerebras": {
+   "slug": "cerebras",
+   "name": "Cerebras",
+   "cat": "api",
+   "reach": 1,
+   "probed": "2026-09-20",
+   "env": "runner",
+   "state": "empty",
+   "tried": [
+    {
+     "url": "https://cerebras.ai/pricing",
+     "status": 200,
+     "bytes": 234158,
+     "tokens": 0
+    },
+    {
+     "url": "https://cloud.cerebras.ai/pricing",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://cloud.cerebras.ai/price",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    }
+   ],
+   "best": {
+    "url": "https://cerebras.ai/pricing",
+    "tokens": 0,
+    "excerpt": ""
+   }
+  },
+  "github-models": {
+   "slug": "github-models",
+   "name": "GitHub Models",
+   "cat": "coding",
+   "reach": 1,
+   "probed": "2026-09-20",
+   "env": "runner",
+   "state": "ready",
+   "tried": [
+    {
+     "url": "https://github.com/pricing",
+     "status": 200,
+     "bytes": 600000,
+     "tokens": 51
+    }
+   ],
+   "best": {
+    "url": "https://github.com/pricing",
+    "tokens": 51,
+    "excerpt": "es on team Switch plans Select a plan to review its features Free Team Enterprise Features Free Team Enterprise Pricing $ 0 USD per month $ 0 USD per month forever $ 4 USD per user/month $ 4 USD per user/month for the first 12 months * $ 21 USD per user/month $ 21 USD per user/month for the first 12 months * How to get started Join for free Continue with Team Start a free trial Contact Sales Code management Public repositories Unlimited Unlimited Unlimited Host open source projects in public GitHub repositories, accessible via web or command line. Public repositories are accessible to anyone at GitHub.com. Uh oh! There was an error while loading. Please reload this page . Unlimited Unlimited"
+   }
+  },
+  "groq": {
+   "slug": "groq",
+   "name": "Groq",
+   "cat": "api",
+   "reach": 1,
+   "probed": "2026-09-20",
+   "env": "runner",
+   "state": "empty",
+   "tried": [
+    {
+     "url": "https://groq.com/pricing",
+     "status": 200,
+     "bytes": 54738,
+     "tokens": 1
+    },
+    {
+     "url": "https://groq.com/price",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://groq.com/plans",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    }
+   ],
+   "best": {
+    "url": "https://groq.com/pricing",
+    "tokens": 1,
+    "excerpt": "Groq is the premier neocloud for fast inference Groq Closes $350 million Series A, Building the World&#x27;s Leading AI Inference Cloud Read more &gt; Every customer served. Every product sold. Every commit merged. Every agent task completed. That’s inference. Training creates the possibility. Inference creates the value. The more we ask of AI, the more inference it takes. And inference is becoming the bottleneck. Groq was built for this. We pioneered the LPU. Now, with LPX, it works alongside NVIDIA’s next-generation GPUs to deliver unparalleled inference capability, reliably, affordably, at scale. Fast or affordable is no longer a tradeoff. We’re building hundreds of megawatts of capacity,"
+   }
+  },
+  "guojia-fanzha": {
+   "slug": "guojia-fanzha",
+   "name": "国家反诈中心",
+   "cat": "safety",
+   "reach": 1,
+   "probed": "2026-09-20",
+   "env": "runner",
+   "state": "blocked",
+   "tried": [
+    {
+     "url": "https://fzapph5.gjfzpt.cn/pricing",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://fzapph5.gjfzpt.cn/price",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://fzapph5.gjfzpt.cn/plans",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    }
+   ],
+   "best": null
+  },
+  "ms-copilot": {
+   "slug": "ms-copilot",
+   "name": "微软 Copilot",
+   "cat": "chat",
+   "reach": 1,
+   "probed": "2026-09-21",
+   "env": "runner",
+   "state": "empty",
+   "tried": [
+    {
+     "url": "https://copilot.microsoft.com/pricing",
+     "status": 200,
+     "bytes": 38594,
+     "tokens": 0
+    },
+    {
+     "url": "https://copilot.microsoft.com/price",
+     "status": 200,
+     "bytes": 38594,
+     "tokens": 0
+    },
+    {
+     "url": "https://copilot.microsoft.com/plans",
+     "status": 200,
+     "bytes": 36871,
+     "tokens": 0
+    }
+   ],
+   "best": {
+    "url": "https://copilot.microsoft.com/pricing",
+    "tokens": 0,
+    "excerpt": ""
+   }
+  },
+  "tongyi-lingma": {
+   "slug": "tongyi-lingma",
+   "name": "通义灵码",
+   "cat": "coding",
+   "reach": 1,
+   "probed": "2026-09-21",
+   "env": "runner",
+   "state": "ready",
+   "tried": [
+    {
+     "url": "https://lingma.aliyun.com/pricing",
+     "status": 200,
+     "bytes": 85629,
+     "tokens": 3
+    }
+   ],
+   "best": {
+    "url": "https://lingma.aliyun.com/pricing",
+    "tokens": 3,
+    "excerpt": "测试智能体 限制：对话 50轮次/月，单元测试智能体 50方法/月 企业管理 授权管理 统计报表 审计日志 知识管理 自定义扩展管理 企业版专用推理服务 多组织管理 专属 VPC 部署 IP 白名单管理 专有网络访问 个人专业版 限免 ( ¥ 59 /月 ) 前往下载 代码生成 行/函数级代码实时续写 注释生成代码 离线模型单行补全 跨文件感知能力 多结果推荐 企业代码生成增强 智能问答 研发智能问答 本地工程问答 企业知识库问答 图片多模态问答 终端问答 生成代码注释 生成代码解释 生成单元测试 代码优化 提交信息生成 代码问题修复 异常报错排查 AI 程序员（Beta） 多文件批量修改 单元测试智能体 企业管理 授权管理 统计报表 审计日志 知识管理 自定义扩展管理 企业版专用推理服务 多组织管理 专属 VPC 部署 IP 白名单管理 专有网络访问 企业标准版 ¥ 79 /人/月 10人起购 免费开通 代码生成 行/函数级代码实时续写 注释生成代码 离线模型单行补全 跨文件感知能力 多结果推荐 企业代码生成增强 智能问答 研发智能问答 本地工程问答 企业知识库问答 图片多模态问答 终端问答 生成代码注释 生成代码解释 生成单元测试 代码优化 提交信息生成 代码问题修复 异常报\u0000错排查 AI 程序员（Beta） 多文件批量修改 单元测试智能体 企业管理 授权管理 统计报表 审计日志 知识管理 自定义扩展管理 企业版专用推理服务 多组织管理 专属 VPC 部署 IP 白名单管理 专有网络访问 企业专属版 ¥ 159 /人/月 100人起购 前往开通 代码生成 行/函数级代码实时"
+   }
+  },
+  "ai360": {
+   "slug": "ai360",
+   "name": "360 AI 搜索",
+   "cat": "search",
+   "reach": 0,
+   "probed": "2026-09-21",
+   "env": "runner",
+   "state": "empty",
+   "tried": [
+    {
+     "url": "https://so.360.com/pricing",
+     "status": 200,
+     "bytes": 6567,
+     "tokens": 0
+    },
+    {
+     "url": "https://so.360.com/price",
+     "status": 200,
+     "bytes": 6567,
+     "tokens": 0
+    },
+    {
+     "url": "https://so.360.com/plans",
+     "status": 200,
+     "bytes": 6567,
+     "tokens": 0
+    }
+   ],
+   "best": {
+    "url": "https://so.360.com/pricing",
+    "tokens": 0,
+    "excerpt": ""
+   }
+  },
+  "aider": {
+   "slug": "aider",
+   "name": "Aider",
+   "cat": "coding",
+   "reach": 0,
+   "probed": "2026-09-21",
+   "env": "runner",
+   "state": "blocked",
+   "tried": [
+    {
+     "url": "https://aider.chat/pricing",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://aider.chat/price",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://aider.chat/plans",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    }
+   ],
+   "best": null
+  },
+  "aippt": {
+   "slug": "aippt",
+   "name": "AiPPT",
+   "cat": "office",
+   "reach": 0,
+   "probed": "2026-09-21",
+   "env": "runner",
+   "state": "empty",
+   "tried": [
+    {
+     "url": "https://www.aippt.cn/pricing",
+     "status": 200,
+     "bytes": 6046,
+     "tokens": 0
+    },
+    {
+     "url": "https://www.aippt.cn/price",
+     "status": 200,
+     "bytes": 58987,
+     "tokens": 0
+    },
+    {
+     "url": "https://www.aippt.cn/plans",
+     "status": 200,
+     "bytes": 6046,
+     "tokens": 0
+    }
+   ],
+   "best": {
+    "url": "https://www.aippt.cn/pricing",
+    "tokens": 0,
+    "excerpt": ""
+   }
+  },
+  "ante": {
+   "slug": "ante",
+   "name": "Ante",
+   "cat": "coding",
+   "reach": 0,
+   "probed": "2026-09-21",
+   "env": "runner",
+   "state": "empty",
+   "tried": [
+    {
+     "url": "https://ante.run/pricing",
+     "status": 200,
+     "bytes": 1055,
+     "tokens": 0
+    },
+    {
+     "url": "https://ante.run/price",
+     "status": 200,
+     "bytes": 1055,
+     "tokens": 0
+    },
+    {
+     "url": "https://ante.run/plans",
+     "status": 200,
+     "bytes": 1055,
+     "tokens": 0
+    }
+   ],
+   "best": {
+    "url": "https://ante.run/pricing",
+    "tokens": 0,
+    "excerpt": ""
+   }
+  },
+  "bing-image": {
+   "slug": "bing-image",
+   "name": "Bing 图像创作",
+   "cat": "image",
+   "reach": 0,
+   "probed": "2026-09-21",
+   "env": "runner",
+   "state": "blocked",
+   "tried": [
+    {
+     "url": "https://www.bing.com/pricing",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://www.bing.com/price",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://www.bing.com/plans",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    }
+   ],
+   "best": null
   }
  }
 }

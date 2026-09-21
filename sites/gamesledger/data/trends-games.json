@@ -1,7 +1,14 @@
 {
- "d": "2026-09-17",
+ "d": "2026-09-21",
  "hits": [],
- "discovered": [],
+ "discovered": [
+  {
+   "query": "silent hill townfall",
+   "appid": 1636440,
+   "name": "SILENT HILL: Townfall",
+   "sim": 1.0
+  }
+ ],
  "watch": [
   {
    "appid": 207610,
@@ -17,6 +24,16 @@
    "appid": 4165890,
    "name": "Steam Frame",
    "first_seen": "2026-09-14"
+  },
+  {
+   "appid": 4731610,
+   "name": "New Science",
+   "first_seen": "2026-09-19"
+  },
+  {
+   "appid": 1636440,
+   "name": "SILENT HILL: Townfall",
+   "first_seen": "2026-09-21"
   }
  ],
  "note": "hits=in-pool trending; discovered=new games surfaced by trends via Steam official storesearch (>=0.85 name similarity); watch feeds the search pool only — verdict pages stay hand-curated."

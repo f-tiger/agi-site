@@ -1,8 +1,8 @@
 {
- "generated": "2026-09-17",
+ "generated": "2026-09-21",
  "source": "https://www.federalregister.gov/developers/documentation/api/v1 (official Federal Register API, keyless)",
  "window_days": 120,
- "since": "2026-05-20",
+ "since": "2026-05-24",
  "queries": [
   "section 301",
   "section 232",
@@ -21,6 +21,21 @@
  "note": "Documents whose full text matches an import-duty query in the window, newest first. Titles and abstracts are the Federal Register's own words, trimmed but never rewritten. A match means the phrase appears in the document, not that the document affects any particular shipment. matched_in says whether the phrase surfaced in the title/abstract or only deeper in the full text — the latter often means the document is about something else.",
  "count": 26,
  "changes": [
+  {
+   "document_number": "2026-19336",
+   "date": "2026-09-21",
+   "type": "Presidential Document",
+   "title": "Restoring Reciprocity in Government Procurement",
+   "abstract": "",
+   "agencies": [
+    "Executive Office of the President"
+   ],
+   "url": "https://www.federalregister.gov/documents/2026/09/21/2026-19336/restoring-reciprocity-in-government-procurement",
+   "matched": [
+    "section 301"
+   ],
+   "matched_in": "full_text_only"
+  },
   {
    "document_number": "2026-18839",
    "date": "2026-09-14",
@@ -209,7 +224,6 @@
    ],
    "url": "https://www.federalregister.gov/documents/2026/08/24/2026-17294/temporary-suspension-of-additional-duties-to-offset-canadian-discrimination-against-the-commerce-of",
    "matched": [
-    "harmonized tariff schedule",
     "section 301"
    ],
    "matched_in": "full_text_only"
@@ -410,22 +424,6 @@
     "U.S. Customs and Border Protection"
    ],
    "url": "https://www.federalregister.gov/documents/2026/06/24/2026-12668/test-of-the-new-electronic-informal-entry-process-for-mail",
-   "matched": [
-    "de minimis exemption"
-   ],
-   "matched_in": "full_text_only"
-  },
-  {
-   "document_number": "2026-10311",
-   "date": "2026-05-22",
-   "type": "Notice",
-   "title": "Agency Information Collection Activities; Extension; International Mail Duty Worksheet (IMDW)",
-   "abstract": "The Department of Homeland Security, U.S. Customs and Border Protection (CBP) will be submitting the following information collection request to the Office of Management and Budget (OMB) for review and approval in accordance with the Paperwork Reduction Act of 1995 (PRA). The information collection is published in t…",
-   "agencies": [
-    "Homeland Security Department",
-    "U.S. Customs and Border Protection"
-   ],
-   "url": "https://www.federalregister.gov/documents/2026/05/22/2026-10311/agency-information-collection-activities-extension-international-mail-duty-worksheet-imdw",
    "matched": [
     "de minimis exemption"
    ],

@@ -1,0 +1,16 @@
+import assert from 'node:assert/strict';
+import {Client,StreamableHTTPClientTransport} from '@modelcontextprotocol/client';
+import {Client as LegacyClient} from '@modelcontextprotocol/sdk/client/index.js';
+import {StreamableHTTPClientTransport as LegacyTransport} from '@modelcontextprotocol/sdk/client/streamableHttp.js';
+import {sites,hubHost} from '../public/catalog.mjs';import {scenarios} from '../public/experience.mjs';import {toolNames} from '../public/mcp-info.mjs';import {run} from '../public/engine.mjs';import {release} from '../release.generated.mjs';
+let requests=0;
+async function connect(host=hubHost,legacy=false){const C=legacy?LegacyClient:Client,T=legacy?LegacyTransport:StreamableHTTPClientTransport;const client=new C({name:'web3-release-smoke',version:release.version},legacy?{}:{versionNegotiation:{mode:{pin:'2026-07-28'}}});const transport=new T(new URL('https://'+host+'/mcp'),{fetch:async(url,init)=>{requests++;const r=await fetch(url,{...init,signal:AbortSignal.timeout(20000)});assert.equal(r.headers.get('cache-control'),'no-store');return r;}});await client.connect(transport);assert.equal(client.getServerVersion().version,release.version);return client;}
+const client=await connect();
+try{
+ assert.deepEqual((await client.listTools()).tools.map(t=>t.name),['search','fetch',...sites.map(s=>toolNames[s.id])]);const resources=(await client.listResources()).resources;
+ for(const s of sites){const uri='https://'+s.host+'/examples/'+scenarios(s.id)[0].key+'.json';assert.ok(resources.some(r=>r.uri===uri));const sample=await client.readResource({uri});assert.deepEqual(JSON.parse(sample.contents[0].text),scenarios(s.id)[0].input);for(const c of scenarios(s.id)){const r=await client.callTool({name:toolNames[s.id],arguments:c.input});assert.ok(!r.isError,'MCP calculation rejected '+s.id+'/'+c.key);assert.equal(r.structuredContent.revision,release.revision);assert.deepEqual(r.structuredContent.report,run(s.id,c.input));assert.equal(r.structuredContent.citation.methodUrl,'https://'+s.host+'/guide.html');}console.log('MCP verified scenarios and citation: '+s.id);}
+ const search=await client.callTool({name:'search',arguments:{query:'GPU'}});assert.equal(search.structuredContent.results[0].id,'compute');const ref=await client.callTool({name:'fetch',arguments:{id:'compute'}});assert.equal(ref.structuredContent.metadata.revision,release.revision);assert.match(ref.structuredContent.text,/MCP integration/);
+}finally{await client.close();}
+const legacy=await connect(hubHost,true);try{assert.deepEqual((await legacy.listTools()).tools.map(t=>t.name),['search','fetch',...sites.map(s=>toolNames[s.id])]);const result=await legacy.callTool({name:toolNames.route,arguments:sites.find(s=>s.id==='route').sample});assert.ok(!result.isError);assert.equal(result.structuredContent.revision,release.revision);}finally{await legacy.close();}
+for(const s of sites){const single=await connect(s.host);try{assert.deepEqual((await single.listTools()).tools.map(t=>t.name),['search','fetch',toolNames[s.id]]);}finally{await single.close();}}
+console.log(JSON.stringify({mcpHosts:sites.length+1,calculators:sites.length,scenarios:sites.flatMap(s=>scenarios(s.id)).length,protocols:['2026-07-28','2025-11-25'],requests,revision:release.revision,privateInputsUsed:false}));

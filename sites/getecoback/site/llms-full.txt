@@ -628,6 +628,7 @@ Klimaanlage mit Balkonkraftwerk betreiben →
 Stromkosten-Rechner für deine Geräte →
 
 Passt dazu
+- Heizlüfter schaltet sich immer aus? Fünf Ursachen, in der Reihenfolge
 - Infrarotheizung-Rechner: Wie viel Watt brauchst du?
 - Heizkosten-Vergleich: Heizlüfter, Infrarot oder Klima?
 - BTU-Rechner für Klimaanlagen
@@ -711,6 +712,10 @@ Der Speicher ist rechtlich das Unspektakuläre an der Sache: begrenzt wird die W
 
 - Befestigung ohne Bohren — oft das, was die Zumutbarkeitsfrage im Mietverhältnis entschärft
 
+In Österreich gilt keines der drei Gesetze oben. Weder § 554 BGB noch § 20 WEG noch § 8 EEG — dort regeln das Mietrechtsgesetz und das Elektrizitätswirtschaftsgesetz die Sache, mit anderen Zahlen (0,8 kW an der Übergabestelle statt 800 VA am Wechselrichter) und ohne Marktstammdatenregister:
+Balkonkraftwerk in Österreich: was das ElWG sagt → ·
+Mietwohnung in Österreich: § 9 MRG →
+
 ## Häufige Fragen
 
 ### Darf der Vermieter ein Balkonkraftwerk verbieten?
@@ -744,6 +749,105 @@ Passt dazu
 - Klimaanlage mit Balkonkraftwerk betreiben: Was geht wirklich?
 - Balkonkraftwerk kaufen: Amazon oder Fachhändler?
 - Balkon-Check: Lohnt sich Solar an deinem Balkon?
+
+---
+
+## Balkonkraftwerk in Österreich: 0,8 kW, Zählpunkt, Netzbetreiber
+URL: https://getecoback.com/guide/balkonkraftwerk-oesterreich.html
+
+Direkt zur EmpfehlungAnzeige · Affiliate-Links — für dich derselbe Preis
+Sweet Spot 1,9 kWhZendure SolarFlow 800 Pro→Obergrenze der EmpfehlungAnker Solarbank 3 E2700 Pro→Kleinste sinnvolle GrößeAnker Solarbank 2 E1600 Pro→Alle Modelle mit Begründung ↓
+
+🗓 Aktualisiert am 18. September 2026 · EcoBack Redaktion
+
+Kurz: In Österreich ist ein Balkonkraftwerk eine Kleinsterzeugungsanlage nach dem ElWG, wenn seine Maximalkapazität höchstens 0,8 kW an der Übergabestelle beträgt — gemessen dort, wo der Strom ins Netz geht, nicht an den Modulen. Für solche Anlagen darf der Netzbetreiber keinen eigenen Zählpunkt anlegen (außer du beantragst einen), und du bist von den Bilanzgruppen- und Erzeugerpflichten ausgenommen. Ein Marktstammdatenregister gibt es nicht; ob dein Netzbetreiber eine Meldung will, steht in seinen Anschlussbedingungen. Und für Mieter gilt nicht § 554 BGB, sondern § 9 MRG.
+
+Wir sind keine Juristen und keine Elektriker. Diese Seite gibt den Gesetzestext wieder, so wie er am 18.09.2026 im Rechtsinformationssystem des Bundes (RIS) steht. Sie ist keine Rechtsberatung, und sie ersetzt nicht die Anschlussbedingungen deines Netzbetreibers.
+
+## Was das ElWG sagt — im Wortlaut
+
+Das Elektrizitätswirtschaftsgesetz (ElWG, BGBl. I Nr. 91/2025) hat das alte ElWOG 2010 abgelöst; dessen Bestimmungen sind laut RIS mit 24.12.2025 außer Kraft getreten. Die Definition steht in den Begriffsbestimmungen:
+
+„‚Kleinsterzeugungsanlagen' eine oder mehrere Stromerzeugungseinheiten, deren Maximalkapazität in Summe höchstens 0,8 kW pro Anlage an der Übergabestelle eines Netzbenutzers beträgt;"
+§ 7 Ziffer 78 ElWG
+
+Und die Regeln dafür stehen in einem eigenen Paragraphen:
+
+„(1) Netzbetreiber dürfen Kleinsterzeugungsanlagen keinen eigenen Zählpunkt zuordnen. (2) Netzbenutzer, die in ihrer Anlage eine Kleinsterzeugungsanlage betreiben, sind hinsichtlich der Kleinsterzeugungsanlage von den Verpflichtungen gemäß den §§ 11 und 74 Abs. 1 ausgenommen. (3) Abweichend von Abs. 1 ist Netzbenutzern, die in ihrer Anlage eine Kleinsterzeugungsanlage betreiben, auf Antrag ein eigener Zählpunkt zuzuordnen. Auf Kleinsterzeugungsanlagen mit eigenem Zählpunkt ist Abs. 2 nicht anzuwenden."
+§ 77 ElWG, Kleinsterzeugungsanlagen
+
+Die beiden Paragraphen, von denen Absatz 2 befreit: § 11 verpflichtet Netzbenutzer, sich einer Bilanzgruppe anzuschließen; § 74 Absatz 1 listet die allgemeinen Pflichten der Erzeuger — Bilanzgruppe, Datenbereitstellung an Netzbetreiber und Bilanzgruppenkoordinator, Fahrpläne bei großen Anlagen. Wer ein Balkonkraftwerk betreibt, ist also im Gesetz kein „Erzeuger" mit diesen Pflichten, solange die Anlage keinen eigenen Zählpunkt hat.
+
+## Die Grenze liegt woanders als in Deutschland
+
+Das ist der Unterschied, den man beim Kauf kennen muss. Das deutsche EEG nennt in § 8 Absatz 5a zwei Zahlen — bis zu 2 kW installierte Modulleistung und bis zu 800 VA Wechselrichterleistung. Das ElWG nennt eine Zahl, und zwar an der Übergabestelle des Netzbenutzers: 0,8 kW Maximalkapazität in Summe pro Anlage. Was das für ein Set aus dem Handel bedeutet:
+
+| Deutschland (§ 8 Abs. 5a EEG) | Österreich (§ 7 Z 78, § 77 ElWG) |
+
+Wo die Grenze gemessen wird | Modulleistung (2 kW) und Wechselrichter (800 VA) | Übergabestelle ins Netz: 0,8 kW Maximalkapazität |
+
+Registrierung | Marktstammdatenregister bleibt Pflicht | Kein Marktstammdatenregister; Meldung an den Netzbetreiber nach dessen Bedingungen |
+
+Zusätzliche Meldung an den Netzbetreiber | Kann nicht verlangt werden (§ 8 Abs. 5a EEG) | Das Gesetz schweigt dazu; die Anschlussbedingungen des Netzbetreibers gelten |
+
+Eigener Zähler / Zählpunkt | — | Darf nicht zugeordnet werden, außer auf Antrag (dann entfallen die Ausnahmen) |
+
+Mieterrecht | § 554 BGB: Anspruch auf Erlaubnis, Steckersolar ausdrücklich genannt | § 9 MRG: Anzeige, zwei Monate, sieben Bedingungen — Steckersolar nicht genannt |
+
+Praktische Lesart, keine Rechtsauskunft: Ein Set, das in Deutschland als 800-VA-Balkonkraftwerk verkauft wird, speist an der Übergabestelle höchstens 0,8 kW ein und passt damit in die österreichische Definition. Ein Set mit mehr Modulleistung ist dabei kein Problem, solange die Einspeisung begrenzt bleibt — die Zahl, die zählt, ist die am Netz. Wer einen Speicher dahinter hängt, ändert daran nichts, solange die Übergabestelle bei 0,8 kW bleibt; was ein Speicher am Balkon bringt, rechnet der Speicher-Rechner — die Physik ist auf beiden Seiten der Grenze dieselbe.
+
+## Zählpunkt: warum du meist keinen willst
+
+Absatz 1 klingt wie eine Einschränkung, ist aber die Vereinfachung: Ohne eigenen Zählpunkt ist das Balkonkraftwerk für das Netz unsichtbar, dein Zähler läuft langsamer, fertig. Absatz 3 erlaubt einen eigenen Zählpunkt auf Antrag — und schaltet damit Absatz 2 aus, du wirst also zum Erzeuger mit Bilanzgruppe und Datenpflichten. Das ergibt Sinn, wenn Einspeisung gezählt und abgerechnet werden soll; für die 0,8 kW eines Balkonkraftwerks, die tagsüber den Kühlschrank und den Router tragen, ist es der teurere Weg zu einem Ergebnis, das man nicht braucht. Was der Strom wert ist, der nicht selbst verbraucht wird, sagt § 77 nicht; ohne Zählpunkt wird er schlicht nicht gezählt.
+
+## Melden: was das Gesetz sagt — und was nicht
+
+Das ist der Punkt, an dem wir nicht mehr behaupten als der Text hergibt. Das ElWG definiert die Kleinsterzeugungsanlage, verbietet den eigenen Zählpunkt und befreit von zwei Pflichtkatalogen. Eine eigene Meldepflicht für Kleinsterzeugungsanlagen haben wir im Gesetzestext nicht gefunden. Das heißt nicht, dass du nichts melden musst: Wie eine Anlage an das Netz angeschlossen wird, regeln die Anschlussbedingungen und technischen Regeln des jeweiligen Netzbetreibers, und die können eine Meldung mit Formular vorsehen. Die ehrliche Anleitung ist deshalb kurz: Vor dem Einstecken beim Netzbetreiber nachfragen, ob und wie er die Anlage gemeldet haben will. Das kostet eine E-Mail und erspart die Diskussion hinterher.
+
+## Mieter: § 9 MRG statt § 554 BGB
+
+Unser Ratgeber Balkonkraftwerk als Mieter erklärt den deutschen Anspruch aus § 554 BGB. In Österreich gibt es diesen Anspruch nicht in dieser Form. Das Mietrechtsgesetz arbeitet mit einem Verfahren: Der Hauptmieter zeigt eine wesentliche Veränderung dem Vermieter an, schweigt der zwei Monate, gilt das als Zustimmung, und ablehnen darf er nur, wenn eine von sieben Bedingungen fehlt. Ob ein Balkonkraftwerk als „der Senkung des Energieverbrauchs dienende Ausgestaltung" nach § 9 Absatz 2 gilt — dann wäre das wichtige Interesse per Gesetz gegeben —, ist eine Auslegungsfrage, zu der wir nichts behaupten. Der ganze Paragraph mit Wortlaut steht in Mietwohnung in Österreich: § 9 MRG erklärt; die Frage, ob die Befestigung überhaupt eine Veränderung ist, entschärft oft schon eine Halterung ohne Bohren.
+
+## Was auf beiden Seiten der Grenze gleich bleibt
+
+- Die Physik. Ausrichtung, Verschattung und Verbrauchsprofil entscheiden über den Ertrag, nicht das Gesetz — der Standort-Check und der Lohnt-sich-Rechner rechnen mit kWh, die keine Staatsgrenze kennen. Trag den österreichischen Arbeitspreis von deiner Rechnung ein; die Regulierungsbehörde E-Control nennt 22 bis 35 Cent je kWh als übliche Spanne für Haushalte (Newsletter 3/2026).
+
+- Das Netzsignal. Wer wissen will, wann der Börsenstrom billig ist: der Strompreis-Radar zeigt EPEX-Preise, die für Österreich und Deutschland aus demselben Markt kommen.
+
+- Der Stromausfall. Ein netzgekoppeltes Balkonkraftwerk speist bei Stromausfall nichts — es muss sich abschalten. Warum, und was ein Speicher dann kann und nicht kann, steht in Stromausfall: Was eine Powerstation wirklich schafft.
+
+## Häufige Fragen
+
+### Wie viel Leistung darf ein Balkonkraftwerk in Österreich haben?
+
+Das ElWG definiert Kleinsterzeugungsanlagen als eine oder mehrere Stromerzeugungseinheiten, deren Maximalkapazität in Summe höchstens 0,8 kW pro Anlage an der Übergabestelle eines Netzbenutzers beträgt. Die Grenze liegt also an der Übergabestelle ins Netz, nicht an der Modulleistung — anders als in Deutschland, wo das EEG 2 kW Modulleistung und 800 VA Wechselrichterleistung nennt.
+
+### Bekomme ich in Österreich einen eigenen Zähler für das Balkonkraftwerk?
+
+Nicht automatisch: Nach § 77 Absatz 1 ElWG dürfen Netzbetreiber Kleinsterzeugungsanlagen keinen eigenen Zählpunkt zuordnen. Absatz 3 erlaubt es auf Antrag — dann entfällt aber die Ausnahme von den Erzeuger- und Bilanzgruppenpflichten aus Absatz 2. Für ein Balkonkraftwerk, das den eigenen Verbrauch senken soll, ist der eigene Zählpunkt in der Regel nicht das, was man will.
+
+### Muss ich das Balkonkraftwerk in Österreich anmelden?
+
+Ein Marktstammdatenregister wie in Deutschland gibt es in Österreich nicht. Das ElWG nimmt Kleinsterzeugungsanlagen von den Pflichten der §§ 11 und 74 Absatz 1 aus — Bilanzgruppe und allgemeine Erzeugerpflichten. Ob und wie dein Netzbetreiber eine Meldung der Anlage verlangt, steht in seinen Anschlussbedingungen; im Gesetzestext selbst haben wir keine eigene Meldepflicht für diese Anlagen gefunden. Frag beim Netzbetreiber nach dem Formular, bevor du einsteckst.
+
+### Gilt § 554 BGB für Mieter in Österreich?
+
+Nein. Das BGB ist deutsches Recht. In Österreich regelt § 9 Mietrechtsgesetz, was ein Hauptmieter an der Wohnung verändern darf — mit Anzeige an den Vermieter, einer Zwei-Monats-Frist und sieben Bedingungen. Ob ein Balkonkraftwerk als „der Senkung des Energieverbrauchs dienende Ausgestaltung“ gilt, ist eine Auslegungsfrage, die vor der Anzeige mit Mietervereinigung oder Arbeiterkammer zu klären ist.
+
+### Was passiert mit dem Strom, den ich nicht selbst verbrauche?
+
+Er fließt ins Netz. Ohne eigenen Zählpunkt für die Anlage wird er nicht gesondert gezählt und nicht vergütet — genau deshalb ist ein Balkonkraftwerk in Österreich wie in Deutschland dann sinnvoll, wenn es tagsüber laufenden Verbrauch deckt. Unser Rechner zeigt, wie viel davon bei deinem Verbrauchsprofil hängen bleibt.
+
+Quellen, im Wortlaut nachlesbar. Alle Gesetzeszitate stammen aus dem Rechtsinformationssystem des Bundes, Fassung vom 18.09.2026:
+Elektrizitätswirtschaftsgesetz (ElWG), konsolidiert — dort § 7 Z 78, § 11, § 74 und § 77;
+die deutschen Vergleichswerte aus § 8 EEG;
+die Strompreisspanne von E-Control (Newsletter 3/2026).
+Förderungen für Balkonkraftwerke sind in Österreich Sache von Bund, Ländern und Gemeinden und ändern sich jährlich — wir nennen hier bewusst keine Beträge, weil wir keine amtliche Übersicht gefunden haben, auf die wir verlinken könnten. Wir sind keine Juristen; der Wortlaut im RIS ist immer aktueller als jede Zusammenfassung, auch als diese.
+
+Passt dazu
+- Klimaanlage mit Balkonkraftwerk betreiben: Was geht wirklich?
+- Balkonkraftwerk kaufen: Amazon oder Fachhändler?
+- Balkonkraftwerk: Speicher nachrüsten — so geht's (2026)
 
 ---
 
@@ -812,8 +916,8 @@ Klimaanlage in der Mietwohnung: was erlaubt ist →
 Passt dazu
 - Klimaanlage mit Balkonkraftwerk betreiben: Was geht wirklich?
 - Balkonkraftwerk: Speicher nachrüsten — so geht's (2026)
+- Balkonkraftwerk in Österreich: 0,8 kW, Zählpunkt, Netzbetreiber
 - Balkonkraftwerk als Mieter: Was der Vermieter noch verbieten darf
-- Balkonkraftwerk: Lohnt es sich? Der Rechner
 
 ---
 
@@ -914,6 +1018,7 @@ Strom sparen im Haushalt →
 Passt dazu
 - Balkonkraftwerk kaufen: Amazon oder Fachhändler?
 - Balkonkraftwerk befestigen — ohne ein einziges Loch
+- Balkonkraftwerk in Österreich: 0,8 kW, Zählpunkt, Netzbetreiber
 - Balkonkraftwerk als Mieter: Was der Vermieter noch verbieten darf
 
 ---
@@ -1023,6 +1128,7 @@ Klimaanlage mit Balkonkraftwerk betreiben →
 Passt dazu
 - Stromverbrauch-Check: Zahlst du zu viel?
 - Hitze-Check: Wie stark heizt sich dein Zimmer auf?
+- Balkonkraftwerk in Österreich: 0,8 kW, Zählpunkt, Netzbetreiber
 - Balkonkraftwerk als Mieter: Was der Vermieter noch verbieten darf
 
 ---
@@ -3496,6 +3602,8 @@ Je feuchter die Raumluft, desto unbehaglicher fühlt sich dieselbe Temperatur an
 
 - Dauerhafte Umbauten am Fenster — Abdichtungen ja, solange sie rückstandsfrei abgehen.
 
+Mieter in Österreich? Die Regeln oben stammen aus dem deutschen Mietrecht. In Österreich entscheidet § 9 MRG — und der zählt Beheizungsanlagen ausdrücklich zu den Änderungen, bei denen das wichtige Interesse des Mieters als gegeben gilt: was § 9 MRG für Heizung und Klimaanlage in der Mietwohnung regelt →
+
 ## Häufige Fragen
 
 ### Darf ich als Mieter den Heizkörperthermostat austauschen?
@@ -3521,6 +3629,7 @@ Fenster beschlagen von innen: Ursache und Abhilfe →
 Thermovorhang: Wirkung und Tipps →
 
 Passt dazu
+- Luftfeuchtigkeit senken: die drei Hebel — und welcher zuerst
 - Balkonkraftwerk als Mieter: Was der Vermieter noch verbieten darf
 
 ---
@@ -3602,6 +3711,99 @@ Passt dazu
 - Mobile Klimaanlage Vergleich 2026: Worauf es beim Kauf wirklich ankommt
 - De'Longhi Pinguino: Welches Modell lohnt sich?
 - Börsenstrompreis-Radar
+
+---
+
+## Heizlüfter schaltet sich immer aus? Fünf Ursachen, in der Reihenfolge
+URL: https://getecoback.com/guide/heizluefter-schaltet-sich-aus.html
+
+Direkt zur EmpfehlungAnzeige · Affiliate-Links — für dich derselbe Preis
+Kleine RäumeSchmidbauer Hybrid Pro 600 W→Auch fürs BadSchmidbauer ISP T 700 W→Die meistgesuchte KleinstklasseHeizlüfter 300 Watt→Alle Modelle mit Begründung ↓
+
+🗓 Aktualisiert am 18. September 2026 · EcoBack Redaktion
+
+Kurz: Schaltet das Gerät nach Minuten ab und läuft nach einer Pause wieder → Überhitzungsschutz (Filter, Abstand, Abdeckung). Schaltet es sofort beim Hinstellen ab → Kippschutz (Teppich, schräg, wackelt). Geht es im Takt an und aus → Thermostat, das ist normal. Ist der ganze Stromkreis tot → Sicherung: 2.000 W sind 8,7 A, und 16 A sind schnell voll. Ist nur die Steckdosenleiste aus → ihr Überlastschalter, und der hat recht. Reihenfolge des Prüfens: von oben nach unten.
+
+Schnell zum passenden GerätNach Raumgröße10 m²15 m²20 m²25 m²30 m²40 m²50 m²
+
+Nach GerätetypInfrarotheizungHeizlüfter
+
+Nach BetriebskostenWatt-RechnerHeizkosten vergleichen
+
+## Die fünf Abschalter und ihr Muster
+
+Muster | Abschalter | Was dahintersteckt | Das darfst du tun |
+
+Läuft, wird heiß, geht nach 2–15 Minuten aus, nach Abkühlen wieder an | Überhitzungsschutz im Gerät | Zu wenig Luft durch das Heizelement: Ansauggitter/Filter voll Staub, zu nah an Wand oder Vorhang, Auslass halb abgedeckt, Gerät auf weichem Untergrund, der die Ansaugung unten verschließt | Filter reinigen, Abstand nach Anleitung (in der Regel gilt: nichts vor dem Auslass), harter Boden. Nicht den Wächter überbrücken. |
+
+Geht sofort aus, sobald du es hinstellst, oder wenn es angestoßen wird | Kippschutz (Schalter im Boden) | Das Gerät steht nicht gerade oder nicht mit vollem Gewicht auf: Hochflor, Sofa, schräger Boden, ein Fuß hängt | Auf harte, ebene Fläche. Schaltet es dort weiter ab: Schalter defekt, Händler. |
+
+Geht regelmäßig an und aus, Raum ist warm | Thermostat | Kein Fehler. Es hält die eingestellte Temperatur und pausiert dazwischen | Nichts. Wer die Pausen nicht will, stellt höher ein — und zahlt entsprechend. |
+
+Alles an derselben Wand ist plötzlich stromlos | Leitungsschutzschalter (Sicherung) im Verteiler | Mehr als 16 A auf dem Stromkreis: der Heizlüfter plus Wasserkocher, zweiter Heizlüfter, Staubsauger, Föhn | Andere Geräte auf dem Kreis abschalten oder den Heizlüfter an einen anderen Kreis. Nie eine stärkere Sicherung einsetzen. |
+
+Nur die Steckdosenleiste ist aus, der Rest der Wohnung nicht | Überlastschalter der Leiste | Die Leiste ist für die Dauerlast nicht gemacht oder es hängt zu viel dran | Direkt in die Wandsteckdose. Siehe unten. |
+
+## Die Rechnung mit den 16 Ampere
+
+Ein Wohnungsstromkreis ist in Deutschland und Österreich üblicherweise mit 16 A abgesichert. Bei 230 V Netzspannung sind das rund 3.680 W, die der ganze Kreis zusammen tragen kann — und ein Stromkreis versorgt fast immer mehrere Steckdosen, oft ein ganzes Zimmer oder die halbe Küche.
+
+Gerät | Leistung | Strom bei 230 V |
+
+Heizlüfter, volle Stufe | 2.000 W | 8,7 A |
+
+Heizlüfter, kleine Stufe | 1.000–1.200 W | 4,3–5,2 A |
+
+Wasserkocher | ~2.000 W | ~8,7 A |
+
+Zwei Heizlüfter auf voller Stufe | 4.000 W | 17,4 A — löst aus |
+
+Heizlüfter + Wasserkocher | 4.000 W | 17,4 A — löst aus |
+
+Das ist die ganze Erklärung dafür, warum die Sicherung „immer genau dann" fliegt, wenn jemand in der Küche Tee kocht. Die Formel ist Strom = Leistung ÷ Spannung; wer nachrechnen will, welche Geräte zusammen noch unter 16 A bleiben, braucht nur die Wattzahlen von den Typenschildern. Welche Steckdosen an einem Kreis hängen, verrät die Beschriftung am Sicherungskasten — oder ein Test mit einer Lampe, während der Automat aus ist.
+
+Was du nicht tust. Keinen stärkeren Leitungsschutzschalter einsetzen (die Leitung in der Wand ist für 16 A ausgelegt, nicht der Automat ist das Limit), den Überhitzungsschutz nicht überbrücken, das Gerät nicht mit abgedecktem Auslass „vorwärmen". Alle drei sind die Fälle, für die es die Abschalter überhaupt gibt. Wir sind keine Elektriker; wer an der Hausinstallation etwas ändern will, holt einen.
+
+## Die Steckdosenleiste: der Abschalter, der am häufigsten recht hat
+
+Ein Heizlüfter unterscheidet sich von fast jedem anderen Gerät an der Leiste dadurch, dass er seine volle Leistung über Stunden zieht. Eine Leiste, deren Kontakte, Kabelquerschnitt oder Schalter dafür knapp ausgelegt sind, wird dabei warm — und das ist der Grund, warum die Anleitungen von Heizgeräten fast durchweg die Wandsteckdose vorschreiben. Manche Leisten haben einen eigenen Überlastschalter; löst der aus, ist das kein Defekt der Leiste, sondern ihr Zweck.
+
+Wenn es ohne Verlängerung nicht geht: eine Leiste, deren aufgedruckte Nennleistung deutlich über der des Geräts liegt, keine Kabeltrommel (aufgerollte Kabel erwärmen sich stärker), nichts Weiteres an derselben Leiste — und nach zehn Minuten die Leiste und den Stecker anfassen. Wird eines von beiden mehr als handwarm, ist es die falsche Leiste.
+
+## Wenn es keiner der fünf ist
+
+Ein Gerät, das auf hartem Boden, mit sauberem Filter, frei stehend, allein am Stromkreis und direkt in der Wand nach Minuten abschaltet, hat ein Problem im Inneren — ein festhängender Lüfter, ein Wächter, der zu früh auslöst, ein Kontakt. Das ist Sache des Herstellers oder Händlers, nicht des Schraubenziehers: Ein Heizelement hinter einem überbrückten Wächter ist ein Brandrisiko, und ein Heizlüfter kostet weniger als das, was er anzünden kann. Riecht es verbrannt oder nach heißem Kunststoff, Stecker ziehen und nicht mehr einschalten.
+
+## Und der Heizlüfter, der nicht abschaltet, ist der teurere
+
+Ein Wort zum Thermostat, weil es oft als Defekt gemeldet wird: Ein Gerät, das an- und ausgeht, tut genau das, was 2.000 W in einem kleinen Raum tun müssen. Unser Ratgeber zum Stromverbrauch rechnet mit etwa der halben Laufzeit in einem Raum, der die Zieltemperatur erreicht hat — ein Heizlüfter ohne Thermostat oder auf Anschlag läuft durch und kostet das Doppelte. Wer sparen will, stellt das Thermostat niedriger, nicht das Gerät auf Dauerlauf; was die einzelnen Modelle sparsam macht und was nicht, steht in Heizlüfter stromsparend.
+
+## Häufige Fragen
+
+### Warum schaltet mein Heizlüfter nach ein paar Minuten ab?
+
+Meistens greift der Überhitzungsschutz: Ein Temperaturwächter am Heizelement trennt den Strom, wenn die Luft nicht schnell genug abgeführt wird. Ursache ist fast immer ein zugesetzter Ansaugfilter, ein Gerät zu dicht an Wand, Vorhang oder Sofa, oder ein abgedeckter Auslass. Das Gerät läuft nach dem Abkühlen wieder — und schaltet wieder ab, solange die Ursache bleibt.
+
+### Der Heizlüfter geht sofort aus, sobald ich ihn hinstelle — Defekt?
+
+Eher der Kippschutz. Ein Schalter im Boden gibt den Strom nur frei, wenn das Gerät gerade und mit Gewicht auf einer festen Fläche steht. Auf hochflorigem Teppich, auf einer schrägen Fläche oder wenn ein Fuß in der Luft hängt, bleibt er offen. Auf harten, ebenen Boden stellen — steht das Gerät dort und schaltet trotzdem ab, ist der Schalter selbst die Ursache.
+
+### Ist es normal, dass der Heizlüfter im Takt an- und ausgeht?
+
+Ja, wenn er ein Thermostat hat. Er heizt bis zur eingestellten Temperatur, schaltet ab, wartet, bis der Raum etwas abgekühlt ist, und heizt wieder. Das ist kein Fehler, sondern der Grund, warum ein 2.000-Watt-Gerät in einem warmen Raum nur etwa die Hälfte der Zeit Strom zieht — unsere Kostenrechner setzen genau das voraus.
+
+### Warum fliegt die Sicherung, wenn der Heizlüfter läuft?
+
+Weil ein Wohnungsstromkreis üblicherweise mit 16 Ampere abgesichert ist und ein 2.000-Watt-Gerät bei 230 Volt rund 8,7 Ampere zieht. Ein zweiter Heizlüfter, ein Wasserkocher oder ein Staubsauger am selben Stromkreis reichen, um über 16 Ampere zu kommen. Die Lösung ist nicht eine größere Sicherung, sondern ein anderer Stromkreis — welche Steckdosen zusammenhängen, steht am Sicherungskasten.
+
+### Darf ein Heizlüfter an einer Steckdosenleiste laufen?
+
+Die Hersteller von Heizgeräten sagen fast durchweg: direkt in die Wandsteckdose. Ein Heizlüfter zieht seine volle Leistung über Stunden, und eine Steckdosenleiste wird warm, wenn Kontakte, Kabelquerschnitt oder der Schalter dafür nicht ausgelegt sind. Manche Leisten schalten bei Überlast ab — das ist dann der fünfte Abschalter. Wenn es ohne Verlängerung nicht geht: eine Leiste, deren aufgedruckte Nennleistung deutlich über der des Geräts liegt, ohne Kabeltrommel, und die Leiste anfassen — wird sie warm, ist sie falsch.
+
+Was hier gerechnet und was nur beschrieben ist. Die Ampere-Werte sind Leistung ÷ 230 V, nachrechenbar mit jedem Typenschild; die 16 A sind der übliche Wert eines Wohnungsstromkreises, dein Verteiler zeigt deinen. Wie die einzelnen Schutzschalter in einem bestimmten Gerät gebaut sind, steht nur in dessen Anleitung; wir testen Geräte nicht selbst. Das hier ist keine Elektro-Beratung — für alles hinter der Steckdose ist ein Elektriker zuständig.
+
+Passt dazu
+- Balkonkraftwerk: Lohnt es sich? Der Rechner
 
 ---
 
@@ -3697,6 +3899,9 @@ Heizdecke: Was kostet eine Nacht? →
 Klimaanlage mit Heizfunktion — günstiger bei langen Heizzeiten →
 Was kostet eine Klimaanlage an Strom? →
 Infrarotheizung: Ratgeber und Kostenvergleich →
+
+Passt dazu
+- Heizlüfter schaltet sich immer aus? Fünf Ursachen, in der Reihenfolge
 
 ---
 
@@ -3817,6 +4022,7 @@ Infrarotheizung: Ratgeber und Kostenvergleich →
 Stromkosten-Rechner für alle Geräte →
 
 Passt dazu
+- Heizlüfter schaltet sich immer aus? Fünf Ursachen, in der Reihenfolge
 - Luftbefeuchter: Was kostet der Strom wirklich?
 - Wie viel Strom verbraucht ein Ventilator?
 
@@ -7227,6 +7433,7 @@ Passt dazu
 - Klimaanlage & Zugluft: Nackenschmerzen vermeiden
 - Fensterabdichtung für Klimaanlagen: Welche passt an dein Fenster?
 - Klimaanlage vs. Lüftungsanlage: Was ist der Unterschied?
+- Klimaanlage vs. Luftkühler: Was ist günstiger im Betrieb?
 
 ---
 
@@ -7295,6 +7502,8 @@ Was heißt das für dich als Mieter? Direkt erst einmal nichts — die Grundrege
 
 Hinweis: Das ist eine redaktionelle Zusammenfassung, keine Rechtsberatung. Im Streitfall hilft der örtliche Mieterverein oder eine Anwältin für Mietrecht.
 
+Du wohnst in Österreich? Dann gilt für dich nichts von dem, was oben aus dem BGB zitiert ist. Das Mietrechtsgesetz regelt Veränderungen der Wohnung in § 9 MRG — mit einer Anzeigepflicht, einer Zwei-Monats-Frist und sieben Bedingungen, die es im deutschen Recht so nicht gibt: Klimaanlage in der Mietwohnung in Österreich: § 9 MRG erklärt →
+
 ## Häufige Fragen
 
 Ist eine Klimaanlage in der Mietwohnung erlaubt?Ja — solange sie ohne bauliche Veränderung auskommt. Eine tragbare Monoblock-Klimaanlage steht frei im Raum, der Abluftschlauch geht durchs gekippte Fenster, nichts wird gebohrt: Das fällt in der Regel unter den normalen Mietgebrauch und braucht keine Genehmigung.
@@ -7341,10 +7550,10 @@ Tragbare Klimaanlage am Kippfenster abdichten →
 Beste tragbare Klimaanlage für die Hitzewelle →
 
 Passt dazu
-- Klimaanlage in der Mietwohnung in Österreich: § 9 MRG erklärt
 - Mobile Klimaanlage stinkt oder riecht muffig nach Schimmel? Ursachen & Reinigung
 - Klimaanlage & Zugluft: Nackenschmerzen vermeiden
 - Fensterabdichtung für Klimaanlagen: Welche passt an dein Fenster?
+- Klimaanlage vs. Lüftungsanlage: Was ist der Unterschied?
 
 ---
 
@@ -8202,8 +8411,8 @@ Passt dazu
 - Klimaanlage & Zugluft: Nackenschmerzen vermeiden
 - Ventilator kaufen 2026: Welcher Typ passt zu dir?
 - Klimaanlage vs. Lüftungsanlage: Was ist der Unterschied?
+- Klimaanlage & Luftkühler reinigen: Filter, Wassertank, Geruch
 - Beste tragbare Klimaanlage für die Hitzewelle 2026
-- Klimaanlage vs. Luftkühler: Was ist günstiger im Betrieb?
 
 ---
 
@@ -8427,8 +8636,8 @@ Passt dazu
 - Klimaanlage & Zugluft: Nackenschmerzen vermeiden
 - Klimaanlage vs. Lüftungsanlage: Was ist der Unterschied?
 - Split-Klimaanlage ohne Kernbohrung — geht das wirklich?
+- Klimaanlage für Wohnmobil & Wohnwagen
 - Klimaanlage ohne Balkon & ohne Außeneinheit: Welche Optionen Mieter haben
-- Klimaanlage & Luftkühler reinigen: Filter, Wassertank, Geruch
 
 ---
 
@@ -8752,6 +8961,9 @@ Schimmel am Fenster entfernen: vier Flächen, vier Antworten
 Luftentfeuchter Ratgeber: wenn die Luft zu feucht ist
 Fenster beschlagen von innen: 3 Ursachen, 1 Diagnose
 
+Passt dazu
+- Weißer Staub vom Luftbefeuchter: das ist Kalk — so hört es auf
+
 ---
 
 ## Luftbefeuchter Stromverbrauch: Kosten pro Nacht (2026)
@@ -8824,8 +9036,76 @@ Stromkosten-Rechner →
 
 Passt dazu
 - Heizlüfter Stromverbrauch: Was kostet er pro Stunde?
+- Weißer Staub vom Luftbefeuchter: das ist Kalk — so hört es auf
 - Luftbefeuchter: Verdunster, Verdampfer oder Ultraschall?
 - Wie viel Strom verbraucht ein Ventilator?
+
+---
+
+## Weißer Staub vom Luftbefeuchter: das ist Kalk — so hört es auf
+URL: https://getecoback.com/guide/luftbefeuchter-weisser-staub.html
+
+Direkt zur EmpfehlungAnzeige · Affiliate-Links — für dich derselbe Preis
+Wirkt sofortDestilliertes Wasser (5 l)→Staubfrei gebautVerdunster mit Hygrostat→Erst messenHygrometer (innen, Min/Max)→Alle Modelle mit Begründung ↓
+
+🗓 Aktualisiert am 18. September 2026 · EcoBack Redaktion
+
+Kurz: Ein Ultraschall-Luftbefeuchter zerstäubt Wasser samt allem, was darin gelöst ist. Die Tröpfchen verdunsten, der Kalk bleibt als feiner weißer Staub liegen — auf Möbeln, Bildschirmen, dunklen Flächen. Je härter dein Leitungswasser, desto mehr. Drei Abhilfen: entmineralisiertes Wasser (wirkt vollständig, kostet laufend), eine Entkalkungskartusche (wirkt, bis sie erschöpft ist), oder eine andere Bauart — Verdunster und Verdampfer geben Dampf ab, keinen Nebel, und lassen den Kalk im Gerät. Und der Staub ist beim Ultraschallgerät nicht einmal das wichtigste Thema; das ist der Tank.
+
+## Wie der Kalk in die Luft kommt
+
+Ein Ultraschallgerät schlägt mit einer schwingenden Membran winzige Tröpfchen aus dem Wasser und bläst sie als kalten Nebel in den Raum. Das ist kein Verdampfen: Die Tröpfchen sind flüssiges Wasser, und flüssiges Leitungswasser enthält gelöste Mineralien — Calcium, Magnesium, das, was den Wasserkocher weiß macht. In der Raumluft verdunstet das Wasser aus jedem Tröpfchen, die Mineralien können nicht verdunsten und bleiben als Partikel zurück. Sie sind so leicht, dass sie eine Weile schweben, und setzen sich dann dort ab, wo man sie sieht: auf dem Fernseher, dem Klavier, dem schwarzen Regal.
+
+Verdunster und Verdampfer haben dieses Problem aus demselben Grund nicht: Sie geben Wasserdampf ab, also einzelne Wassermoleküle ohne Fracht. Beim Verdunster bleibt der Kalk in der nassen Matte, beim Verdampfer im Heizbehälter — dort muss er dann entkalkt werden, aber er landet nicht auf den Möbeln. Der Unterschied der drei Bauarten steht ausführlich im Luftbefeuchter-Ratgeber.
+
+## Wie hart ist dein Wasser?
+
+Die Menge des Staubs hängt direkt an der Wasserhärte, und die ist in Deutschland und Österreich regional sehr verschieden — von weichem Wasser in Mittelgebirgs- und Alpenregionen bis zu hartem Wasser über Kalkstein und Kreide. Dein Wasserversorger veröffentlicht die Härte für dein Versorgungsgebiet, meist online und auf der Jahresabrechnung, in Grad deutscher Härte (°dH) oder als Härtebereich weich, mittel, hart. Die Faustprobe steht in der Küche: Wer den Wasserkocher alle paar Wochen entkalken muss, hat hartes Wasser — und sieht beim Ultraschallgerät entsprechend viel Staub.
+
+## Drei Abhilfen — und was jede kostet
+
+Abhilfe | Wirkung auf den Staub | Preis dafür | Für wen |
+
+Destilliertes oder entmineralisiertes Wasser | Vollständig — es gibt keine Mineralien zu verteilen | Laufende Kosten bei mehreren Litern pro Tag; Schleppen | Kleiner Tank, gelegentlicher Betrieb, Kinderzimmer |
+
+Entkalkungskartusche (Ionentauscher, oft vom Hersteller vorgesehen) | Gut, solange sie nicht erschöpft ist — das sieht man daran, dass der Staub zurückkommt | Kartusche regelmäßig wechseln; bei hartem Wasser häufig | Wer beim Ultraschallgerät bleiben will |
+
+Andere Bauart: Verdunster oder Verdampfer | Vollständig, konstruktionsbedingt | Neues Gerät; Verdunster: Matte tauschen; Verdampfer: entkalken, höchster Stromverbrauch der drei | Dauerbetrieb, hartes Wasser, wer den Staub ein für alle Mal loswerden will |
+
+Was nicht hilft: gefiltertes Wasser aus dem Tischfilter (der nimmt zwar Härte, aber meist nicht genug, um den Staub zu beenden), abgekochtes Wasser (der Kalk ist noch drin, nur teilweise im Topf) und Zusätze für den Tank, die versprechen, Kalk zu „binden" — was gebunden ist, wird trotzdem zerstäubt.
+
+## Der Staub ist das kleinere Problem: der Tank
+
+Der Mechanismus, der den Kalk verteilt, verteilt alles, was im Wasser ist. Ein Tank mit lauwarmem Wasser, der drei Tage steht, ist ein Nährboden, und das Ultraschallgerät nebelt seinen Inhalt in die Raumluft, statt ihn wie ein Verdampfer abzukochen. Deshalb gilt für Ultraschallgeräte strenger als für alle anderen: Wasser täglich wechseln, Tank wöchentlich reinigen, das Gerät nie mit Restwasser stehen lassen. Wie beim muffigen Entfeuchter gilt: nur ein Reinigungsmittel, nichts Chlorhaltiges mit Essig oder Entkalker mischen, keine Konzentrationen aus dem Internet — die stehen auf dem Etikett.
+
+Und vor der Reinigung die Frage davor: Ist die Luft überhaupt zu trocken? Ein Hygrometer kostet wenig; unter 40 Prozent ist trocken, über 50 Prozent ist in einem Altbau mit kalten Außenwänden bereits die Zone, in der die Feuchte an der Wand zum Problem wird — der Ratgeber erklärt, warum der Zielwert an deiner kältesten Wand hängt. Ein Luftbefeuchter ohne Hygrostat, der in einem Raum mit 50 Prozent weiterläuft, tauscht weißen Staub gegen schwarze Punkte hinter dem Schrank.
+
+## Häufige Fragen
+
+### Was ist der weiße Staub, den mein Luftbefeuchter hinterlässt?
+
+Der Mineralgehalt deines Leitungswassers — vor allem Kalk. Ein Ultraschallgerät zerstäubt das Wasser mit allem, was darin gelöst ist; die Tröpfchen verdunsten in der Luft, die Mineralien bleiben als feiner Staub übrig und setzen sich auf Möbeln, Bildschirmen und dunklen Flächen ab. Je härter das Wasser, desto mehr.
+
+### Ist der Staub gesundheitsschädlich?
+
+Wir sind keine Ärzte und beantworten das nicht. Was wir sagen können: Der Staub ist Kalk, also dasselbe, was sich im Wasserkocher absetzt. Das größere Thema beim Ultraschallgerät ist ein anderes: Derselbe Nebel, der die Mineralien verteilt, verteilt auch alles, was im Tank wächst, wenn das Wasser tagelang steht. Wer Beschwerden mit dem Gerät in Verbindung bringt, spricht mit einem Arzt — und tauscht das Wasser täglich.
+
+### Hilft destilliertes Wasser wirklich?
+
+Ja, vollständig — destilliertes oder entmineralisiertes Wasser enthält keine Mineralien, also gibt es nichts zu verteilen. Der Nachteil ist der Preis bei mehreren Litern pro Tag. Eine Zwischenlösung ist die Entkalkungskartusche, die viele Geräte vorsehen; sie bindet die Härte, muss aber regelmäßig gewechselt werden und wirkt nur, solange sie nicht erschöpft ist — was man dem Staub ansieht.
+
+### Welche Bauart macht keinen weißen Staub?
+
+Verdunster und Verdampfer. Beim Verdunster zieht Luft durch eine nasse Matte, nur Wasserdampf geht in den Raum, der Kalk bleibt in der Matte. Beim Verdampfer kocht das Wasser, der Dampf ist mineralfrei, der Kalk bleibt im Heizbehälter und muss dort entkalkt werden. Beide sind aus demselben Grund staubfrei: Sie verteilen Dampf, kein zerstäubtes Wasser.
+
+### Wie erfahre ich, wie hart mein Wasser ist?
+
+Dein Wasserversorger veröffentlicht die Härte für dein Versorgungsgebiet, meist online und auf der Jahresabrechnung, in Grad deutscher Härte (°dH) oder als Härtebereich. Eine grobe Antwort gibt auch der Wasserkocher: Wer alle paar Wochen entkalken muss, hat hartes Wasser — und wird mit einem Ultraschallgerät viel Staub sehen.
+
+Was hier Physik ist und was nicht. Dass zerstäubtes Wasser seine Mineralien mitnimmt und Dampf nicht, ist der ganze Unterschied zwischen den Bauarten und keine Herstellerangabe. Welche Kartusche zu welchem Gerät passt und wie lange sie hält, steht nur in dessen Anleitung; wir testen Geräte nicht selbst. Zur Gesundheit äußern wir uns nicht — das ist Sache eines Arztes.
+
+Passt dazu
+- Luftbefeuchter: Was kostet der Strom wirklich?
 
 ---
 
@@ -8881,9 +9161,8 @@ Passt dazu
 - Trotec Luftentfeuchter: Welcher TTK lohnt sich?
 - Pro Breeze Luftentfeuchter: Was sagen die Tests?
 - Luftentfeuchter zieht kein Wasser — woran es wirklich liegt
-- Luftentfeuchter oder Luftreiniger?
-- Luftentfeuchter für 25 m²?
-- Luftentfeuchter für 40 m²?
+- Luftentfeuchter stinkt muffig? Ursache finden und beheben
+- Luftentfeuchter für 20 m²?
 
 ---
 
@@ -8939,7 +9218,7 @@ Passt dazu
 - Trotec Luftentfeuchter: Welcher TTK lohnt sich?
 - Pro Breeze Luftentfeuchter: Was sagen die Tests?
 - Luftentfeuchter zieht kein Wasser — woran es wirklich liegt
-- Luftentfeuchter oder Luftreiniger?
+- Luftentfeuchter stinkt muffig? Ursache finden und beheben
 - Luftentfeuchter für 25 m²?
 - Luftentfeuchter für 30 m²?
 
@@ -8997,9 +9276,9 @@ Passt dazu
 - Trotec Luftentfeuchter: Welcher TTK lohnt sich?
 - Pro Breeze Luftentfeuchter: Was sagen die Tests?
 - Luftentfeuchter zieht kein Wasser — woran es wirklich liegt
-- Luftentfeuchter oder Luftreiniger?
-- Luftentfeuchter für den Keller: gegen Feuchte, Schimmel & muffigen Geruch
+- Luftentfeuchter stinkt muffig? Ursache finden und beheben
 - Luftentfeuchter für 30 m²?
+- Luftentfeuchter für 40 m²?
 
 ---
 
@@ -9055,9 +9334,9 @@ Passt dazu
 - Trotec Luftentfeuchter: Welcher TTK lohnt sich?
 - Pro Breeze Luftentfeuchter: Was sagen die Tests?
 - Luftentfeuchter zieht kein Wasser — woran es wirklich liegt
-- Luftentfeuchter oder Luftreiniger?
-- Luftentfeuchter für den Keller: gegen Feuchte, Schimmel & muffigen Geruch
+- Luftentfeuchter stinkt muffig? Ursache finden und beheben
 - Luftentfeuchter gegen Schimmel — hilft das wirklich?
+- Luftentfeuchter für 40 m²?
 
 ---
 
@@ -9113,9 +9392,9 @@ Passt dazu
 - Trotec Luftentfeuchter: Welcher TTK lohnt sich?
 - Pro Breeze Luftentfeuchter: Was sagen die Tests?
 - Luftentfeuchter zieht kein Wasser — woran es wirklich liegt
-- Luftentfeuchter oder Luftreiniger?
-- Luftentfeuchter für 10 m²?
+- Luftentfeuchter stinkt muffig? Ursache finden und beheben
 - Luftentfeuchter: Granulat oder elektrisch — was hilft wirklich?
+- Luftentfeuchter für den Keller: gegen Feuchte, Schimmel & muffigen Geruch
 
 ---
 
@@ -9174,7 +9453,7 @@ Passt dazu
 - Trotec Luftentfeuchter: Welcher TTK lohnt sich?
 - Pro Breeze Luftentfeuchter: Was sagen die Tests?
 - Luftentfeuchter zieht kein Wasser — woran es wirklich liegt
-- Luftentfeuchter oder Luftreiniger?
+- Luftentfeuchter stinkt muffig? Ursache finden und beheben
 - Luftentfeuchter für 10 m²?
 - Luftentfeuchter: Granulat oder elektrisch — was hilft wirklich?
 
@@ -9275,6 +9554,7 @@ Passt dazu
 - Trotec Luftentfeuchter: Welcher TTK lohnt sich?
 - Pro Breeze Luftentfeuchter: Was sagen die Tests?
 - Luftentfeuchter zieht kein Wasser — woran es wirklich liegt
+- Luftentfeuchter stinkt muffig? Ursache finden und beheben
 - Luftentfeuchter gegen Schimmel & feuchte Luft: Kaufberatung 2026
 - Was kostet eine Klimaanlage an Strom pro Stunde?
 
@@ -9479,7 +9759,7 @@ Passt dazu
 - Trotec Luftentfeuchter: Welcher TTK lohnt sich?
 - Pro Breeze Luftentfeuchter: Was sagen die Tests?
 - Luftentfeuchter zieht kein Wasser — woran es wirklich liegt
-- Luftentfeuchter oder Luftreiniger?
+- Luftentfeuchter stinkt muffig? Ursache finden und beheben
 
 ---
 
@@ -9579,7 +9859,7 @@ Passt dazu
 - Trotec Luftentfeuchter: Welcher TTK lohnt sich?
 - Pro Breeze Luftentfeuchter: Was sagen die Tests?
 - Luftentfeuchter zieht kein Wasser — woran es wirklich liegt
-- Luftentfeuchter oder Luftreiniger?
+- Luftentfeuchter stinkt muffig? Ursache finden und beheben
 
 ---
 
@@ -9658,6 +9938,7 @@ Passt dazu
 - Trotec Luftentfeuchter: Welcher TTK lohnt sich?
 - Pro Breeze Luftentfeuchter: Was sagen die Tests?
 - Luftentfeuchter zieht kein Wasser — woran es wirklich liegt
+- Luftentfeuchter stinkt muffig? Ursache finden und beheben
 
 ---
 
@@ -9769,7 +10050,105 @@ Passt dazu
 - Trotec Luftentfeuchter: Welcher TTK lohnt sich?
 - Pro Breeze Luftentfeuchter: Was sagen die Tests?
 - Luftentfeuchter zieht kein Wasser — woran es wirklich liegt
+- Luftentfeuchter stinkt muffig? Ursache finden und beheben
+
+---
+
+## Luftentfeuchter stinkt muffig? Ursache finden und beheben
+URL: https://getecoback.com/guide/luftentfeuchter-stinkt.html
+
+Direkt zur EmpfehlungAnzeige · Affiliate-Links — für dich derselbe Preis
+Preis-LeistungComfee MDDF-20DEN7→Leise & für WäscheMeacoDry Arete One 20L→Dieselbe Reihe, größerer RaumMeacoDry Arete One 25L→Alle Modelle mit Begründung ↓
+
+🗓 Aktualisiert am 18. September 2026 · EcoBack Redaktion
+
+Kurz: Ein Luftentfeuchter ist ein kaltes, nasses, staubiges Register in einem warmen Raum plus ein Tank mit stehendem Wasser — genau die Bedingungen, unter denen ein Biofilm wächst, und der ist der Geruch. Das Muster verrät die Quelle: beim Einschalten → Register, gleichmäßig oder mit vollem Tank stärker → Tank, nur am Filter → Filter, verbrannt → Stecker ziehen. Reinigen lässt sich alles außer dem Kältekreis; dauerhaft trocken bleibt das Gerät nur, wenn der Tank täglich geleert oder ein Ablaufschlauch angeschlossen wird.
+
+## Warum ausgerechnet das Gerät, das trocknen soll
+
+Ein Kompressor-Entfeuchter kühlt ein Register unter den Taupunkt der Raumluft, damit Wasser daran kondensiert — das ist sein ganzes Prinzip. Dieselbe Raumluft trägt Staub, Hautschuppen, Fasern, Pollen, und alles davon bleibt in der Feuchtigkeit auf dem Register hängen. Jetzt hast du eine Oberfläche, die dauerhaft nass ist, mit Nährstoffen belegt, in einem 18 bis 22 °C warmen Raum. Was darauf wächst, riecht muffig, säuerlich oder nach Keller — und der Luftstrom trägt es beim Einschalten in den Raum, den du eigentlich trocknen wolltest.
+
+Der zweite Ort ist der Tank. Kondensat ist zunächst sauberes, fast mineralfreies Wasser; steht es aber tagelang im Warmen und bekommt Staub von oben, ist es ein kleines Aquarium ohne Filter. Wer das Gerät nur „wenn nötig" laufen lässt und den Tank dazwischen nicht leert, züchtet den Geruch dort.
+
+Bei mobilen Klimaanlagen ist es exakt dasselbe Problem am selben Bauteil — der Verdampfer der Klimaanlage ist das Register des Entfeuchters, nur mit anderer Beschriftung.
+
+## Die Quelle eingrenzen: das Muster des Geruchs
+
+Wann es riecht | Wahrscheinliche Quelle | Was du tust |
+
+Beim Einschalten deutlich, nach einigen Minuten schwächer | Belag auf dem Register; der erste Luftstrom bläst ihn aus | Register reinigen (unten), Gerät nach dem Betrieb trocken laufen lassen |
+
+Gleichmäßig, oder stärker, je voller der Tank | Stehendes Wasser im Tank | Tank heiß ausspülen, täglich leeren oder Ablaufschlauch |
+
+Nur wenn du den Filter herausziehst; sonst kaum | Feuchter, verstaubter Ansaugfilter | Filter auswaschen, vollständig trocknen, erst dann einsetzen |
+
+Säuerlich und nur bei niedriger Raumtemperatur | Register vereist und taut ab — das Tauwasser löst alten Belag | Reinigen; unter etwa 12 °C ist ein Kompressorgerät ohnehin die falsche Bauart |
+
+Verbrannt, heißer Kunststoff, elektrisch | Kein Biofilm — Motor, Lüfter oder Elektronik | Stecker ziehen, nicht weiter benutzen, Hersteller oder Händler |
+
+## Reinigen, Schritt für Schritt
+
+- Stecker ziehen, Tank leeren. Alles Weitere ohne Strom.
+
+- Tank: mit heißem Wasser und etwas Spülmittel ausspülen, mit einer weichen Bürste in die Ecken, gründlich nachspülen, offen trocknen lassen. Ein Tank, der feucht zurück ins Gerät kommt, ist nach drei Tagen wieder so weit.
+
+- Filter: herausnehmen, unter lauwarmem Wasser ausspülen — bei starkem Belag mit Spülmittel —, dann flach liegend vollständig trocknen. Ein feuchter Filter im Gerät ist die dritte Geruchsquelle.
+
+- Register (die Lamellen hinter dem Filter): lose Staub mit einer weichen Bürste oder dem Staubsauger mit Bürstenaufsatz abnehmen, in Lamellenrichtung, ohne die dünnen Bleche zu verbiegen. Gibt der Hersteller einen Reiniger für das Register frei, nur diesen und nur nach Anleitung; sonst nichts in das Gerät sprühen — was hineinläuft, landet im Kondensatweg und im Tank.
+
+- Gehäuse und Luftauslass feucht abwischen.
+
+- Trocken laufen lassen: Viele Geräte haben einen reinen Lüfterbetrieb; ansonsten 30 Minuten normal laufen lassen, Tank leeren, offen stehen lassen.
+
+Nichts in den Tank. Essig, Chlorreiniger, „Entfeuchter-Tabs", Duftöl: Der Tank wird von der Raumluft nicht durchströmt, ein Zusatz dort behandelt Wasser, das du wegschüttest, und Duftöl überdeckt nur, während der Belag weiterwächst. Und wie in allen unseren Schimmel-Ratgebern: nur ein Mittel, chlorhaltige Reiniger nie mit Essig oder Entkalker mischen. Konzentrationen nennen wir absichtlich keine — die stehen auf dem Etikett.
+
+## Dauerhaft trocken halten
+
+- Tank täglich leeren — nicht, wenn er voll ist, sondern jeden Tag. Stehendes Wasser ist das Problem, nicht die Menge.
+
+- Ablaufschlauch anschließen, wenn das Gerät über Stunden läuft: Fast jedes Kompressorgerät hat den Anschluss; dann steht kein Wasser mehr im Gerät. Unser Ratgeber zum Dauerbetrieb rechnet die Stromkosten dazu.
+
+- Filter alle zwei Wochen im Betrieb ausspülen; er ist der Staubfänger, der das Register schützt.
+
+- Vor dem Einlagern reinigen, trocken laufen lassen, Tank leer und offen — ein feucht eingelagertes Gerät riecht im Herbst beim ersten Einschalten nach dem ganzen Sommer.
+
+- Nicht in trockener Luft laufen lassen. Ein Gerät, das kaum Wasser zieht, hält sein Register trotzdem kalt und feucht; warum es dann nichts zieht, ist meist der Raum, nicht das Gerät.
+
+## Wenn der Geruch trotzdem bleibt
+
+Dann sitzt der Belag dort, wo du ohne Öffnen des Gehäuses nicht hinkommst: im Kondensatweg zwischen Register und Tank, in der Wanne unter dem Register, im Lüfterrad. Ein Gerät öffnen, in dem ein Kältekreis liegt, ist nichts für den Küchentisch. Prüfe, ob der Hersteller einen Service anbietet, und rechne ehrlich: Bei einem älteren Gerät der unteren Preisklasse ist der Ersatz oft die bessere Antwort. Für die Auswahl gilt dann derselbe Ratgeber wie beim ersten Kauf — Luftentfeuchter: Kaufberatung — mit einem Merkmal mehr auf der Liste: ein Tank, der sich ohne Verrenkung herausnehmen und ausspülen lässt.
+
+## Häufige Fragen
+
+### Warum riecht mein Luftentfeuchter muffig?
+
+Weil er drei Dinge vereint, die Mikroorganismen brauchen: eine dauerhaft nasse Oberfläche (das kalte Register, an dem das Wasser kondensiert), Nährstoffe (der Staub aus der Raumluft, der genau dort hängen bleibt) und Wärme (der Raum). Dazu kommt stehendes Wasser im Tank. Der Geruch ist der Biofilm, der daraus entsteht — nicht das Wasser selbst.
+
+### Woran erkenne ich, ob der Tank oder das Gerät riecht?
+
+Am Muster. Riecht es vor allem beim Einschalten und wird nach Minuten schwächer, sitzt der Belag auf dem Register und wird vom Luftstrom ausgeblasen. Riecht es gleichmäßig oder stärker, je voller der Tank ist, ist es das Wasser im Tank. Riecht nur der Filter, wenn du ihn herausziehst, ist es der Filter. Riecht es verbrannt oder nach heißem Kunststoff, ist es keiner von dreien — dann Stecker ziehen und das Gerät nicht weiter benutzen.
+
+### Darf ich Essig, Chlorreiniger oder Duftöl in den Tank geben?
+
+Nein. Der Tank wird von der Raumluft nicht durchströmt, ein Zusatz dort verändert also nur das Wasser, das du ohnehin wegschüttest — und Duftöl überdeckt den Geruch, während der Biofilm weiterwächst. Reiniger gehören auf Tank und Filter, die du außerhalb des Geräts ausspülst, nie ins Gerät. Und wie überall gilt: nur ein Mittel, chlorhaltige Reiniger niemals mit Essig oder Entkalker mischen.
+
+### Wie oft muss ich den Tank leeren?
+
+Täglich, auch wenn er nicht voll ist — stehendes Wasser in einem warmen Raum ist das Problem, nicht die Menge. Wer das Gerät im Dauerbetrieb nutzt, schließt den Ablaufschlauch an, den fast jedes Kompressorgerät hat; dann steht gar kein Wasser mehr im Gerät.
+
+### Der Geruch bleibt trotz Reinigung — was jetzt?
+
+Dann sitzt der Belag an einer Stelle, an die du ohne Öffnen des Gehäuses nicht kommst, meist im Kondensatweg zwischen Register und Tank. Ein Gerät öffnen, in dem ein Kältekreis liegt, ist nichts für den Küchentisch. Prüfe, ob der Hersteller einen Service anbietet; bei einem älteren Gerät der unteren Preisklasse ist der Ersatz oft die ehrlichere Antwort — und beim nächsten wird der Tank täglich geleert.
+
+Was wir hier wissen und was nicht. Der Mechanismus — kondensierende Oberfläche, Staub, Wärme, stehendes Wasser — ist derselbe, den wir für Klimaanlagen beschrieben haben, und er gilt für jedes Kompressorgerät. Welche Reiniger ein bestimmtes Gerät verträgt, steht nur in dessen Anleitung; wir testen Geräte nicht selbst und nennen deshalb weder Mittel noch Mengen. Bei Atemwegsbeschwerden, die mit dem Gerät zusammenfallen, ist der Arzt die richtige Adresse, nicht diese Seite.
+
+Passt dazu
+- Trotec Luftentfeuchter: Welcher TTK lohnt sich?
+- Pro Breeze Luftentfeuchter: Was sagen die Tests?
 - Luftentfeuchter oder Luftreiniger?
+- Luftentfeuchter für den Keller: gegen Feuchte, Schimmel & muffigen Geruch
+- Luftentfeuchter für 10 m²?
+- Luftentfeuchter für 25 m²?
 
 ---
 
@@ -9893,8 +10272,145 @@ Woher die Zahlen kommen. Alle Wassermengen oben sind die Magnus-Formel, angewand
 Passt dazu
 - Trotec Luftentfeuchter: Welcher TTK lohnt sich?
 - Pro Breeze Luftentfeuchter: Was sagen die Tests?
+- Luftentfeuchter stinkt muffig? Ursache finden und beheben
 - Luftentfeuchter gegen Schimmel & feuchte Luft: Kaufberatung 2026
-- Luftentfeuchter oder Luftreiniger?
+
+---
+
+## Luftfeuchtigkeit senken: die drei Hebel — und welcher zuerst
+URL: https://getecoback.com/guide/luftfeuchtigkeit-senken.html
+
+Direkt zur EmpfehlungAnzeige · Affiliate-Links — für dich derselbe Preis
+Preis-LeistungComfee MDDF-20DEN7→Leise & für WäscheMeacoDry Arete One 20L→Dieselbe Reihe, größerer RaumMeacoDry Arete One 25L→Alle Modelle mit Begründung ↓
+
+🗓 Aktualisiert am 18. September 2026 · EcoBack Redaktion
+
+Kurz: Zu feucht ist ein Raum über 60 Prozent — aber die Zahl, die Schimmel wachsen lässt, ist die an der kältesten Wand, und die liegt bei 20 °C und 50 Prozent im Raum an einer 14 °C kalten Wand schon bei 73 Prozent. Senken geht über drei Hebel, und die Reihenfolge ist nicht beliebig: erst weniger Wasser erzeugen (kostet nichts), dann lüften (im Winter wirksam, im Sommer oft das Gegenteil), dann entfeuchten (wenn die ersten beiden nicht reichen). Heizen hilft den Wänden — führt aber kein Wasser ab.
+
+Schnell zum passenden GerätNach Raumgröße10 m²15 m²20 m²25 m²30 m²40 m²
+
+Nach EinsatzortKellerWäsche trocknenGegen Schimmel
+
+Nach BauartGranulat oder elektrischDauerbetrieb-Kosten
+
+## Wie feucht ist zu feucht? Die Zahlen
+
+Das Hygrometer in Raummitte gibt dir eine Zahl. Sie ist die richtige Zahl für dein Wohlbefinden und die falsche für die Wand. Relative Feuchte hängt von der Temperatur ab: Dieselbe Luft, an einer kalten Oberfläche abgekühlt, hat dort eine höhere relative Feuchte — und Schimmel wächst an Oberflächen. Die Tabelle rechnet das für einen Raum mit 20 °C durch (Magnus-Formel, dieselbe wie in unserem Taupunkt-Rechner):
+
+Hygrometer zeigt … | Wand 17 °C | Wand 14 °C | Wand 12 °C | Bewertung |
+
+40 % | 48 % | 58 % | 67 % | Raum in Ordnung; nur die kalte Wand nähert sich der Grenze |
+
+50 % | 60 % | 73 % | 83 % | Raum in Ordnung — an einer 14-°C-Wand wächst trotzdem Schimmel |
+
+60 % | 72 % | 88 % | 100 % (Kondensat) | Zu feucht; jede kühle Wand ist im Schimmelbereich |
+
+Die Faustregeln daraus: 40–60 Prozent im Raum sind der Zielbereich, ab 60 Prozent beginnt die Grauzone, ab etwa 70 Prozent an der Oberfläche keimen Sporen. Und die unbequeme Zahl: Bei einer 14 °C kalten Wand reichen im Raum schon 48 Prozent, damit die Wand bei 70 liegt. Wer wissen will, wie kalt die eigene Außenwand ist, misst sie mit einem Infrarotthermometer an einem kalten Morgen — nicht am milden Nachmittag.
+
+## Woher das Wasser kommt — und wie wenig ein Raum verträgt
+
+Ein Raum ist ein kleiner Behälter. Ein Zimmer mit 40 m³ Luft bei 18 °C enthält zwischen 60 und 50 Prozent relativer Feuchte nur etwa 61 Gramm Wasser — ein kleines Glas. Alles, was mehr als das in die Luft bringt, hebt die Feuchte über die Schwelle: eine Dusche, ein Topf ohne Deckel, ein Wäscheständer, zwei schlafende Menschen, die eine Nacht lang ausatmen. Das erklärt, warum die Feuchte in einer Wohnung so schnell steigt und warum ein Entfeuchter in einem bereits trockenen Raum kaum Wasser zieht: Es ist einfach nicht viel da.
+
+## Hebel 1: weniger Wasser erzeugen (kostet nichts)
+
+- Deckel auf den Topf, Dunstabzug an — beim Kochen entsteht Wasserdampf in Mengen, die das Zimmer sonst stundenlang trägt.
+
+- Nach dem Duschen: Tür zu, Fenster auf. Der Dampf soll nach draußen, nicht in den Flur und ins Schlafzimmer.
+
+- Wäsche nicht auf der Heizung und nicht im Wohnzimmer. Wenn drinnen getrocknet werden muss: ein Raum, Tür zu, Fenster auf oder Entfeuchter daneben — unser Ratgeber Wäsche in der Wohnung trocknen rechnet vor, was das kostet.
+
+- Möbel von der Außenwand weg. Das senkt die Feuchte nicht, aber es lässt warme Raumluft an die Wand — und damit die Zahl an der Wand, die zählt.
+
+## Hebel 2: Lüften — im Winter der stärkste Hebel, im Sommer oft der falsche
+
+Lüften tauscht Innenluft gegen Außenluft. Ob das trocknet, hängt nicht von den Prozentzahlen draußen ab, sondern davon, wie viel Wasser die Außenluft absolut enthält, sobald sie auf Raumtemperatur ist. Die Tabelle rechnet Außenluft auf 20 °C hoch:
+
+Außenluft | Nach dem Erwärmen auf 20 °C | Lüften … |
+
+0 °C / 90 % | 24 % | trocknet stark |
+
+5 °C / 80 % | 30 % | trocknet stark |
+
+10 °C / 90 % (Herbstnebel) | 47 % | trocknet noch, aber langsam |
+
+15 °C / 90 % | 66 % | bringt fast nichts |
+
+25 °C / 70 % (Sommertag) | 95 % — im kühlen Raum kondensiert es | macht es schlimmer |
+
+Deshalb ist Stoßlüften im Winter so wirksam: Selbst neblige 90-Prozent-Luft ist, einmal warm, trocken. Und deshalb wird ein Keller, der im Sommer gelüftet wird, nicht trockener, sondern nasser — die warme Außenluft schlägt sich an den kühlen Kellerwänden nieder. Die Regel: lüften, wenn es draußen kälter ist als drinnen; sonst Hebel 3.
+
+Wie gelüftet wird, entscheidet mit: 5 bis 10 Minuten weit auf, mehrmals am Tag, nicht stundenlang gekippt. Das gekippte Fenster tauscht wenig Luft, kühlt aber Rahmen und Laibung aus — und eine kalte Laibung ist genau die Oberfläche aus der ersten Tabelle. Warum, steht in Richtig lüften im Winter.
+
+## Hebel 3: Entfeuchter — wann er der einzige Weg ist
+
+Ein Entfeuchter führt Wasser ab, ohne dass die Außenluft mitspielen muss. Er ist der richtige Hebel, wenn:
+
+- die Außenluft selbst feucht ist — Nebelwochen im Herbst, Keller im Sommer;
+
+- ein Raum nicht geheizt wird und deshalb auch nicht durch Heizen trockener werden kann;
+
+- eine Wasserquelle bleiben muss — Wäsche, ein Aquarium, viele Pflanzen;
+
+- oder die Zahl an der Wand nach Hebel 1 und 2 immer noch über 70 liegt.
+
+Raum | Nennleistung (Liter/Tag) | Ratgeber |
+
+10 m² | 10–12 | 10 m² |
+
+15 m² | 12–16 | 15 m² |
+
+20 m² | 16–20 | 20 m² |
+
+25 m² | 20 | 25 m² |
+
+30 m² | 20–25 | 30 m² |
+
+40 m² | 25–30 | 40 m² |
+
+Zwei Dinge zu den Litern: Die Nennleistung wird bei 30 °C und 80 Prozent gemessen — in einem 18 °C warmen Zimmer bei 60 Prozent zieht dasselbe Gerät ungefähr ein Drittel davon, und das ist normal, nicht defekt. Und unter etwa 12 °C Raumtemperatur arbeitet ein Kompressorgerät kaum noch, weil sein Kühlregister unter den Taupunkt der Luft muss; für kalte Keller und ungeheizte Räume ist ein Adsorptionsgerät die richtige Bauart — der Bauart-Vergleich erklärt die Grenze.
+
+## Heizen senkt die Prozentzahl — nicht das Wasser
+
+Wer heizt, sieht das Hygrometer fallen: Warme Luft kann mehr Wasser aufnehmen, also sinkt die relative Feuchte, obwohl kein Gramm Wasser den Raum verlassen hat. Das ist kein Trick, sondern an den Wänden echt nützlich — eine Wand, die von 14 auf 17 °C kommt, fällt im Beispiel oben von 73 auf rund 60 Prozent. Es hat aber eine Grenze, die kein Heizkörperprospekt nennt: Eine Wand kann nicht wärmer werden als die Raumluft, also nie trockener als der Raum. Liegt der Raum über etwa 62 Prozent, kommt die Wand mit keiner Heizung mehr unter 60 — dann ist es Hebel 2 oder 3 oder nichts. Die Rechnung dazu steht in Infrarotheizung gegen Schimmel.
+
+## Die Reihenfolge, wenn du heute anfängst
+
+Du misst … | Erster Schritt | Wenn das nicht reicht |
+
+Raum über 60 %, draußen kälter als drinnen | Stoßlüften 3× täglich, Wasserquellen abstellen (Hebel 1 + 2) | Entfeuchter im feuchtesten Raum |
+
+Raum über 60 %, draußen warm und feucht (Sommer, Keller) | Fenster zu, Entfeuchter (Hebel 3) — Lüften macht es schlimmer | Ursache suchen: feuchter Keller hat oft eine bauliche |
+
+Raum 45–55 %, aber Schimmel an einer Wand | Wand messen; Möbel abrücken; Raum gleichmäßig warm halten | Wand gezielt wärmen — mit der 62-%-Grenze im Kopf |
+
+Fenster morgens beschlagen | Nachts Tür auf oder Schlafzimmer leicht heizen; morgens stoßlüften | Fenster beschlagen von innen: die drei Ursachen |
+
+## Häufige Fragen
+
+### Ab wann ist die Luftfeuchtigkeit zu hoch?
+
+In Wohnräumen gelten 40 bis 60 Prozent als Zielbereich; über 60 Prozent beginnt die Grauzone, ab etwa 70 Prozent an einer Oberfläche keimt Schimmel. Entscheidend ist aber nicht die Zahl in Raummitte, sondern die an der kältesten Wand: Bei 20 °C und 50 Prozent im Raum liegt die Feuchte an einer 14 °C kalten Wand schon bei rund 73 Prozent.
+
+### Senkt Lüften die Luftfeuchtigkeit immer?
+
+Nein. Im Winter ja: Außenluft mit 5 °C und 80 Prozent hat, auf 20 °C erwärmt, nur noch rund 30 Prozent. Im Sommer kann Lüften das Gegenteil bewirken: Außenluft mit 25 °C und 70 Prozent landet in einem 20 °C kühlen Raum bei rund 95 Prozent. Lüften senkt die Feuchte nur, wenn die Außenluft absolut weniger Wasser enthält als die Innenluft — im Winter fast immer, in feuchten Sommerwochen und in kühlen Kellern oft nicht.
+
+### Hilft Heizen gegen zu hohe Luftfeuchtigkeit?
+
+Heizen senkt die relative Feuchte, weil wärmere Luft mehr Wasser aufnehmen kann — das Wasser selbst bleibt im Raum. Der Nutzen liegt an den Wänden: Eine Wand, die von 14 auf 17 °C kommt, fällt im Beispiel von 73 auf rund 60 Prozent Oberflächenfeuchte. Was Heizen nicht kann: das Wasser abführen. Dafür braucht es Lüften oder einen Entfeuchter.
+
+### Wann brauche ich einen Luftentfeuchter?
+
+Wenn Lüften nicht funktioniert, weil die Außenluft selbst feucht ist (Nebelwochen, Keller im Sommer), wenn ein Raum nicht geheizt wird oder wenn eine Wasserquelle im Raum bleibt, etwa Wäsche. Die Größe richtet sich nach dem Raum: für 20 m² etwa 16 bis 20 Liter Nennleistung pro Tag. Unter etwa 12 °C Raumtemperatur arbeitet ein Kompressorgerät kaum noch; dann ist ein Adsorptionsgerät die richtige Wahl.
+
+### Warum ist der Tank meines Entfeuchters nach einer Nacht fast leer?
+
+Weil in trockener werdender Luft nicht mehr viel Wasser ist. Ein 40 m³ großer Raum bei 18 °C enthält zwischen 60 und 50 Prozent nur etwa 61 Gramm Wasser. Ein Gerät mit 20 Litern Nennleistung pro Tag holt diese Menge in Minuten; danach fängt es nur noch das auf, was neu entsteht. Ein leerer Tank ist meist ein trockener Raum, kein Defekt.
+
+Woher die Zahlen kommen. Alle Feuchtewerte sind mit der Magnus-Formel aus den genannten Temperaturen berechnet — dieselbe Rechnung, die unsere Taupunkt-Rechner im Browser ausführen; die 61 Gramm stammen aus unserem Entfeuchter-Ratgeber, die Liter-Leiter aus dem offenen Datensatz dieser Seite. Die Schwellen 60 Prozent (Raum) und 70 Prozent (Oberfläche) sind die, mit denen alle unsere Schimmel-Ratgeber arbeiten. Wir sind keine Bausachverständigen: Wenn eine Wand trotz trockener Luft nass bleibt, ist das ein Fall für einen, nicht für ein Gerät.
+
+Passt dazu
+- Heizkosten senken als Mieter: was erlaubt ist — und was sich rechnet
 
 ---
 
@@ -10562,7 +11078,7 @@ Passt dazu
 - Mobile Klimaanlage Vergleich 2026: Worauf es beim Kauf wirklich ankommt
 - Mobile Klimaanlage tropft Wasser — Ursachen & Lösungen
 - Mobile Klimaanlage kühlt nicht: der 7-Punkte-Check
-- Schimmel an der Wand kommt wieder — warum immer genau an dieser Stelle
+- Luftentfeuchter stinkt muffig? Ursache finden und beheben
 - Luftentfeuchter gegen Schimmel — hilft das wirklich?
 - Tragbare Klimaanlage am Kippfenster — geht das?
 
@@ -10755,8 +11271,8 @@ Passt dazu
 - Mobile Klimaanlage tropft Wasser — Ursachen & Lösungen
 - Mobile Klimaanlage kühlt nicht: der 7-Punkte-Check
 - Klimaanlage & Zugluft: Nackenschmerzen vermeiden
+- Klimaanlage in der Mietwohnung in Österreich: § 9 MRG erklärt
 - Klimaanlage für die Mietwohnung — was ist wirklich erlaubt?
-- Klimaanlage für Wohnmobil & Wohnwagen
 
 ---
 
@@ -11382,6 +11898,7 @@ Luftentfeuchter gegen Schimmel: was er kann — und was nicht →
 Passt dazu
 - Trotec Luftentfeuchter: Welcher TTK lohnt sich?
 - Luftentfeuchter zieht kein Wasser — woran es wirklich liegt
+- Luftentfeuchter stinkt muffig? Ursache finden und beheben
 - Luftentfeuchter oder Luftreiniger?
 
 ---
@@ -13533,6 +14050,7 @@ Luftentfeuchter gegen Schimmel: was er kann — und was nicht →
 
 Passt dazu
 - Luftentfeuchter zieht kein Wasser — woran es wirklich liegt
+- Luftentfeuchter stinkt muffig? Ursache finden und beheben
 - Luftentfeuchter oder Luftreiniger?
 
 ---

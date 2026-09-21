@@ -9,6 +9,11 @@ on:
   push:
     branches: [main]
     paths:
+      - "tools/revenue-studio/**"
+      - "tools/member-studio/**"
+      - "sites/baipiaoji/lib/**"
+      - "sites/baipiaoji/functions/api/member*.js"
+      - "sites/baipiaoji/scripts/ad-runner-config.mjs"
       # 纯簿记文件(content/ 被 assemble-dist 排除,不发布)不触发部署。
       - "sites/thedollscout/**"
       - "!sites/thedollscout/content/traffic.json"
@@ -95,6 +100,12 @@ jobs:
       - name: Gate — FAQ/DefinedTerm structured data must match visible text
         run: node scripts/check-structured-data.mjs
 
+      - name: Verify collector tools and generated pages
+        run: |
+          node --test scripts/collector-tools.test.cjs
+          node scripts/gen-collector-pages.mjs
+          git diff --exit-code -- collection-tracker.html display-calculator.html collector-guide.html de/collection-tracker.html de/display-calculator.html de/collector-guide.html
+
       - name: Regenerate the /odds/ cluster and prove it is in sync
         # 生成器是幂等的,所以在部署链上重跑一次等于断言「仓库里的页 == 数据脊算出来的页」。
         # 若有人手改了生成页或改了 rarity-odds.json 却忘了重跑,这一步会让 diff 非空而失败。
@@ -123,6 +134,27 @@ jobs:
           # either way) can no longer pass on last week's production.
           echo "$GITHUB_SHA" > dist/__build.txt
 
+      - name: Build and validate practical tool workbench
+        working-directory: ${{ github.workspace }}
+        run: |
+          npm ci --prefix tools/revenue-studio --ignore-scripts
+          node --test tools/revenue-studio/test.mjs
+          node tools/revenue-studio/build.mjs --site tds --out sites/thedollscout/dist
+          node tools/revenue-studio/verify.mjs --site tds --out sites/thedollscout/dist
+          node tools/member-studio/test-isolation.mjs
+          node tools/member-studio/verify.mjs --site tds --out sites/thedollscout/dist
+
+      - name: Configure independent membership secrets
+        working-directory: ${{ github.workspace }}
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          ADS_WALLET: ${{ secrets.ADS_WALLET }}
+          ADS_WATCH_SECRET: ${{ secrets.ADS_WATCH_SECRET }}
+        run: |
+          node tools/member-studio/ops.mjs preflight
+          node tools/member-studio/ops.mjs configure tds
+
       - name: Deploy to Cloudflare Pages
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
@@ -141,6 +173,35 @@ jobs:
       # 部署后自检(根仓 CLAUDE.md 2026-08-27 审计要求:断言事故的形状)。
       # 本站的事故形状:①新页 404(部署没生效)②旧成人页仍 200(下架没生效)
       # ③重定向环(gridlings 教训)。三样都测。
+      - name: Verify independent membership after deployment
+        working-directory: ${{ github.workspace }}
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          ADS_WATCH_SECRET: ${{ secrets.ADS_WATCH_SECRET }}
+        run: |
+          for attempt in 1 2 3 4; do
+            if node tools/member-studio/ops.mjs watch tds && node tools/member-studio/verify.mjs --site tds --live; then exit 0; fi
+            if [ "$attempt" != "4" ]; then sleep 8; fi
+          done
+          exit 1
+
+      - name: Verify every published workbench tool
+        working-directory: ${{ github.workspace }}
+        run: |
+          # Deployment propagation may briefly serve the previous edition.
+          # Retry the same strict checks; persistent mismatches still fail.
+          for attempt in 1 2 3 4; do
+            if node tools/revenue-studio/verify.mjs --site tds --live; then exit 0; fi
+            if [ "$attempt" != "4" ]; then sleep 8; fi
+          done
+          exit 1
+
+      - name: Notify verified localized tool URLs to IndexNow
+        if: github.event_name == 'push'
+        continue-on-error: true
+        working-directory: ${{ github.workspace }}
+        run: node tools/revenue-studio/indexnow.mjs --site tds --out sites/thedollscout/dist
+
       - name: Post-deploy self-check
         run: |
           sleep 20
@@ -151,7 +212,7 @@ jobs:
           else
             echo "build stamp ok: $live"
           fi
-          for p in / /rarity /fake-check /where-to-buy /how-blind-boxes-work /glossary /start /psychology /checker /finder /lookup /zh/ /th/ /de/ /de/rarity /de/fake-check /de/where-to-buy /de/how-blind-boxes-work /de/glossary /de/start /de/psychology /de/checker /de/finder /de/lookup /data/ /robots.txt /sitemap.xml /llms.txt /llms-full.txt /img/og.png /data/rarity-odds.json /data/labubu-glossary.json /data/labubu-fake-signals.json /data/pull-math.json /.well-known/mcp.json /legal/affiliate-disclosure /legal/privacy /odds/ /odds/one-box /odds/six-boxes /odds/twelve-boxes-full-case /odds/twenty-four-boxes /odds/seventy-two-boxes /de/odds/ /de/odds/one-box /de/odds/six-boxes /de/odds/twelve-boxes-full-case /de/odds/twenty-four-boxes /de/odds/seventy-two-boxes /0252657e77641154c50b39045dc829f8.txt; do
+          for p in / /collection-tracker /display-calculator /collector-guide /de/collection-tracker /de/display-calculator /de/collector-guide /js/collector-core.js /js/collector-tools.js /css/collector.css /rarity /fake-check /where-to-buy /how-blind-boxes-work /glossary /start /psychology /checker /finder /lookup /zh/ /th/ /de/ /de/rarity /de/fake-check /de/where-to-buy /de/how-blind-boxes-work /de/glossary /de/start /de/psychology /de/checker /de/finder /de/lookup /data/ /robots.txt /sitemap.xml /llms.txt /llms-full.txt /img/og.png /data/rarity-odds.json /data/labubu-glossary.json /data/labubu-fake-signals.json /data/pull-math.json /.well-known/mcp.json /legal/affiliate-disclosure /legal/privacy /odds/ /odds/one-box /odds/six-boxes /odds/twelve-boxes-full-case /odds/twenty-four-boxes /odds/seventy-two-boxes /de/odds/ /de/odds/one-box /de/odds/six-boxes /de/odds/twelve-boxes-full-case /de/odds/twenty-four-boxes /de/odds/seventy-two-boxes /0252657e77641154c50b39045dc829f8.txt; do
             code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 20 "https://thedollscout.com$p")
             redirs=$(curl -s -o /dev/null -w "%{num_redirects}" -L --max-redirs 5 --max-time 20 "https://thedollscout.com$p" || echo 99)
             echo "$p -> HTTP $code, redirects $redirs"

@@ -1,0 +1,472 @@
+{
+  "schema_version": 1,
+  "as_of": "2026-09-21",
+  "privacy": "aggregate counts and derived queues only; no customer or raw community content",
+  "fleet": {
+    "sites": 14,
+    "healthy": 14,
+    "membership_ready": 4,
+    "paid_members": 0,
+    "active_members": 0,
+    "opportunities": 6,
+    "stale_inputs": 0
+  },
+  "input_dates": {
+    "membership": "2026-09-21T08:11:35.006Z",
+    "health": "2026-09-20T12:46:28Z",
+    "ai_referrals": "2026-09-20T12:46:43Z",
+    "opportunities": "2026-09-20",
+    "autopilot_receipt": "2026-09-21"
+  },
+  "input_ages_days": {
+    "membership": 0,
+    "health": 1,
+    "ai_referrals": 1,
+    "opportunities": 1,
+    "autopilot_receipt": 0
+  },
+  "stale_inputs": [],
+  "membership": {
+    "schema_version": 1,
+    "generated": "2026-09-21T08:11:35.006Z",
+    "source": "same-origin /api/member and /api/member-admin stats",
+    "privacy": "aggregate counters only; no member, order, support, token or wallet data",
+    "ok": true,
+    "sites": [
+      {
+        "site": "bpj",
+        "origin": "https://baipiaoji.com",
+        "public": {
+          "ok": true,
+          "ready": true,
+          "site": "bpj",
+          "auto_renew": false,
+          "plan_price_units": 9000000,
+          "plan_days": 30
+        },
+        "admin": {
+          "ok": false
+        },
+        "errors": [
+          "admin:operator_secret_unset"
+        ]
+      },
+      {
+        "site": "agi",
+        "origin": "https://agiscorecard.com",
+        "public": {
+          "ok": true,
+          "ready": true,
+          "site": "agi",
+          "auto_renew": false,
+          "plan_price_units": 9000000,
+          "plan_days": 30
+        },
+        "admin": {
+          "ok": false
+        },
+        "errors": [
+          "admin:operator_secret_unset"
+        ]
+      },
+      {
+        "site": "eco",
+        "origin": "https://getecoback.com",
+        "public": {
+          "ok": true,
+          "ready": true,
+          "site": "eco",
+          "auto_renew": false,
+          "plan_price_units": 9000000,
+          "plan_days": 30
+        },
+        "admin": {
+          "ok": false
+        },
+        "errors": [
+          "admin:operator_secret_unset"
+        ]
+      },
+      {
+        "site": "tds",
+        "origin": "https://thedollscout.com",
+        "public": {
+          "ok": true,
+          "ready": true,
+          "site": "tds",
+          "auto_renew": false,
+          "plan_price_units": 9000000,
+          "plan_days": 30
+        },
+        "admin": {
+          "ok": false
+        },
+        "errors": [
+          "admin:operator_secret_unset"
+        ]
+      }
+    ],
+    "totals": {
+      "paid_orders": 0,
+      "paid_members": 0,
+      "active_members": 0,
+      "unexpired_pending": 0
+    }
+  },
+  "opportunities": [
+    {
+      "theme": "how to recover google auth after phone stolen",
+      "site": null,
+      "state": "scout",
+      "score": 6.0,
+      "days_seen": 1,
+      "demand": 0,
+      "supply": 0
+    },
+    {
+      "theme": "stripe withholding balance of 100000",
+      "site": null,
+      "state": "scout",
+      "score": 3.02,
+      "days_seen": 1,
+      "demand": 0,
+      "supply": 0
+    },
+    {
+      "theme": "day 13 three production applications on aws down",
+      "site": null,
+      "state": "scout",
+      "score": 2.23,
+      "days_seen": 1,
+      "demand": 0,
+      "supply": 0
+    },
+    {
+      "theme": "what exists if i want a premade soc mcu screen enclosure battery",
+      "site": null,
+      "state": "scout",
+      "score": 2.07,
+      "days_seen": 1,
+      "demand": 0,
+      "supply": 0
+    },
+    {
+      "theme": "offline windows ledger for a one person microgreens farm trays standing orders n",
+      "site": null,
+      "state": "scout",
+      "score": 2.05,
+      "days_seen": 1,
+      "demand": 0,
+      "supply": 0
+    },
+    {
+      "theme": "about map enshittification have you noticed the maps have gotten worse",
+      "site": null,
+      "state": "scout",
+      "score": 2.04,
+      "days_seen": 1,
+      "demand": 0,
+      "supply": 0
+    }
+  ],
+  "actions": [
+    {
+      "site": "getecoback",
+      "kind": "optimize_existing_page",
+      "priority": 80,
+      "reason": "measured demand reaches an existing page with zero recent referred readers",
+      "evidence": {
+        "count": 20,
+        "query": "infrarotheizung gegen schimmel",
+        "page": "guide/infrarotheizung-gegen-schimmel.html",
+        "value": 59250
+      },
+      "mode": "queue"
+    },
+    {
+      "site": "agiscorecard",
+      "kind": "membership_observability",
+      "priority": 68,
+      "reason": "membership aggregate counters are unavailable",
+      "evidence": {
+        "admin_ok": false
+      },
+      "mode": "observe"
+    },
+    {
+      "site": "baipiaoji",
+      "kind": "membership_observability",
+      "priority": 68,
+      "reason": "membership aggregate counters are unavailable",
+      "evidence": {
+        "admin_ok": false
+      },
+      "mode": "observe"
+    },
+    {
+      "site": "getecoback",
+      "kind": "membership_observability",
+      "priority": 68,
+      "reason": "membership aggregate counters are unavailable",
+      "evidence": {
+        "admin_ok": false
+      },
+      "mode": "observe"
+    },
+    {
+      "site": "thedollscout",
+      "kind": "membership_observability",
+      "priority": 68,
+      "reason": "membership aggregate counters are unavailable",
+      "evidence": {
+        "admin_ok": false
+      },
+      "mode": "observe"
+    },
+    {
+      "site": "buysomething",
+      "kind": "content_gap",
+      "priority": 55,
+      "reason": "rising demand has no matching page; editorial judgement is required",
+      "evidence": {
+        "count": 1,
+        "query": "costco self cleaning litter box",
+        "value": 350
+      },
+      "mode": "queue"
+    },
+    {
+      "site": "getecoback",
+      "kind": "content_gap",
+      "priority": 55,
+      "reason": "rising demand has no matching page; editorial judgement is required",
+      "evidence": {
+        "count": 25,
+        "query": "knebel infrarotheizung",
+        "value": 36000
+      },
+      "mode": "queue"
+    },
+    {
+      "site": "thedollscout",
+      "kind": "content_gap",
+      "priority": 55,
+      "reason": "rising demand has no matching page; editorial judgement is required",
+      "evidence": {
+        "count": 11,
+        "query": "crumbl labubu ube dot cake",
+        "value": 30400
+      },
+      "mode": "queue"
+    },
+    {
+      "site": "agiscorecard",
+      "kind": "improve_hot_page",
+      "priority": 52,
+      "reason": "prioritize a page with measured reader heat",
+      "evidence": {
+        "page": "/search",
+        "n7": 344,
+        "p7": 59
+      },
+      "mode": "queue"
+    },
+    {
+      "site": "getecoback",
+      "kind": "improve_hot_page",
+      "priority": 52,
+      "reason": "prioritize a page with measured reader heat",
+      "evidence": {
+        "page": "/guide/fensterabdichtung-selber-bauen.html",
+        "n7": 12,
+        "p7": 1
+      },
+      "mode": "queue"
+    },
+    {
+      "site": "after35",
+      "kind": "ai_discovery",
+      "priority": 48,
+      "reason": "referred traffic exists but no AI-assistant referral is measured",
+      "evidence": {
+        "human_pv_28d": 443,
+        "ai_ref_28d": 0
+      },
+      "mode": "queue"
+    },
+    {
+      "site": "buysomething",
+      "kind": "ai_discovery",
+      "priority": 48,
+      "reason": "referred traffic exists but no AI-assistant referral is measured",
+      "evidence": {
+        "human_pv_28d": 107,
+        "ai_ref_28d": 0
+      },
+      "mode": "queue"
+    },
+    {
+      "site": "codeword",
+      "kind": "ai_discovery",
+      "priority": 48,
+      "reason": "referred traffic exists but no AI-assistant referral is measured",
+      "evidence": {
+        "human_pv_28d": 342,
+        "ai_ref_28d": 0
+      },
+      "mode": "queue"
+    },
+    {
+      "site": "fanzha",
+      "kind": "ai_discovery",
+      "priority": 48,
+      "reason": "referred traffic exists but no AI-assistant referral is measured",
+      "evidence": {
+        "human_pv_28d": 240,
+        "ai_ref_28d": 0
+      },
+      "mode": "queue"
+    },
+    {
+      "site": "firstjob",
+      "kind": "ai_discovery",
+      "priority": 48,
+      "reason": "referred traffic exists but no AI-assistant referral is measured",
+      "evidence": {
+        "human_pv_28d": 207,
+        "ai_ref_28d": 0
+      },
+      "mode": "queue"
+    },
+    {
+      "site": "gamesledger",
+      "kind": "ai_discovery",
+      "priority": 48,
+      "reason": "referred traffic exists but no AI-assistant referral is measured",
+      "evidence": {
+        "human_pv_28d": 618,
+        "ai_ref_28d": 0
+      },
+      "mode": "queue"
+    },
+    {
+      "site": "goldrush",
+      "kind": "ai_discovery",
+      "priority": 48,
+      "reason": "referred traffic exists but no AI-assistant referral is measured",
+      "evidence": {
+        "human_pv_28d": 436,
+        "ai_ref_28d": 0
+      },
+      "mode": "queue"
+    },
+    {
+      "site": "gridlings",
+      "kind": "ai_discovery",
+      "priority": 48,
+      "reason": "referred traffic exists but no AI-assistant referral is measured",
+      "evidence": {
+        "human_pv_28d": 881,
+        "ai_ref_28d": 0
+      },
+      "mode": "queue"
+    },
+    {
+      "site": "learn",
+      "kind": "ai_discovery",
+      "priority": 48,
+      "reason": "referred traffic exists but no AI-assistant referral is measured",
+      "evidence": {
+        "human_pv_28d": 260,
+        "ai_ref_28d": 0
+      },
+      "mode": "queue"
+    },
+    {
+      "site": "powerbill",
+      "kind": "ai_discovery",
+      "priority": 48,
+      "reason": "referred traffic exists but no AI-assistant referral is measured",
+      "evidence": {
+        "human_pv_28d": 291,
+        "ai_ref_28d": 0
+      },
+      "mode": "queue"
+    },
+    {
+      "site": "thedollscout",
+      "kind": "ai_discovery",
+      "priority": 48,
+      "reason": "referred traffic exists but no AI-assistant referral is measured",
+      "evidence": {
+        "human_pv_28d": 308,
+        "ai_ref_28d": 0
+      },
+      "mode": "queue"
+    }
+  ],
+  "site_manifests": {
+    "agiscorecard": {
+      "path": "sites/agiscorecard/data/fleet-evolution.json",
+      "action_count": 2
+    },
+    "baipiaoji": {
+      "path": "sites/baipiaoji/data/fleet-evolution.json",
+      "action_count": 1
+    },
+    "getecoback": {
+      "path": "sites/getecoback/data/fleet-evolution.json",
+      "action_count": 4
+    },
+    "thedollscout": {
+      "path": "sites/thedollscout/data/fleet-evolution.json",
+      "action_count": 3
+    },
+    "buysomething": {
+      "path": "sites/buysomething/data/fleet-evolution.json",
+      "action_count": 2
+    },
+    "goldrush": {
+      "path": "sites/goldrush/data/fleet-evolution.json",
+      "action_count": 1
+    },
+    "gridlings": {
+      "path": "sites/gridlings/data/fleet-evolution.json",
+      "action_count": 1
+    },
+    "gamesledger": {
+      "path": "sites/gamesledger/data/fleet-evolution.json",
+      "action_count": 1
+    },
+    "after35": {
+      "path": "sites/after35/data/fleet-evolution.json",
+      "action_count": 1
+    },
+    "learn": {
+      "path": "sites/learn/data/fleet-evolution.json",
+      "action_count": 1
+    },
+    "fanzha": {
+      "path": "sites/fanzha/data/fleet-evolution.json",
+      "action_count": 1
+    },
+    "firstjob": {
+      "path": "sites/firstjob/data/fleet-evolution.json",
+      "action_count": 1
+    },
+    "codeword": {
+      "path": "sites/codeword/data/fleet-evolution.json",
+      "action_count": 1
+    },
+    "powerbill": {
+      "path": "sites/powerbill/data/fleet-evolution.json",
+      "action_count": 1
+    }
+  },
+  "rules": {
+    "no_editorial_autowrite": true,
+    "no_payment_or_membership_mutation": true,
+    "missing_is_unknown": true,
+    "site_deploys_only_when_manifest_or_site_content_changes": true
+  }
+}

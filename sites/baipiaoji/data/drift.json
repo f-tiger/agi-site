@@ -1,24 +1,135 @@
 {
-  "generated": "2026-09-18",
+  "generated": "2026-09-21",
   "note": "官方来源页令牌集合连续两日与基线不同 = 漂移确认。只是「该去核」的信号,不是事实;limits.checked 推进到确认日后自动撤下。",
   "fetched_ok": 103,
   "fetched_fail": 21,
-  "pending": 10,
+  "pending": 7,
   "items": [
     {
       "slug": "ollama",
       "url": "https://github.com/ollama/ollama",
-      "confirmed": "2026-09-18",
-      "first_seen": "2026-09-17",
+      "confirmed": "2026-09-21",
+      "first_seen": "2026-09-20",
       "added": [
-        "17.9k",
-        "181.2k"
+        "181.3k"
       ],
       "removed": [
-        "17.8k",
-        "180.8k"
+        "181.2k"
       ],
       "checked_then": "2026-08-04"
+    },
+    {
+      "slug": "groq",
+      "url": "https://console.groq.com/docs/rate-limits",
+      "confirmed": "2026-09-21",
+      "first_seen": "2026-09-20",
+      "added": [],
+      "removed": [
+        "70k"
+      ],
+      "checked_then": "2026-08-02"
+    },
+    {
+      "slug": "continue",
+      "url": "https://github.com/continuedev/continue",
+      "confirmed": "2026-09-20",
+      "first_seen": "2026-09-19",
+      "added": [
+        "36.0k",
+        "36k"
+      ],
+      "removed": [
+        "35.9k"
+      ],
+      "checked_then": "2026-08-04"
+    },
+    {
+      "slug": "elevenlabs",
+      "url": "https://elevenlabs.io/pricing",
+      "confirmed": "2026-09-20",
+      "first_seen": "2026-09-19",
+      "added": [
+        "$15"
+      ],
+      "removed": [
+        "$16"
+      ],
+      "checked_then": "2026-08-02"
+    },
+    {
+      "slug": "elicit",
+      "url": "https://elicit.com",
+      "confirmed": "2026-09-19",
+      "first_seen": "2026-09-18",
+      "added": [],
+      "removed": [
+        "32.448m"
+      ],
+      "checked_then": "2026-08-04"
+    },
+    {
+      "slug": "bailian",
+      "url": "https://aliyun.com",
+      "confirmed": "2026-09-19",
+      "first_seen": "2026-09-18",
+      "added": [],
+      "removed": [
+        "10k",
+        "1mo",
+        "70m"
+      ],
+      "checked_then": "2026-08-03"
+    },
+    {
+      "slug": "dify",
+      "url": "https://dify.ai",
+      "confirmed": "2026-09-19",
+      "first_seen": "2026-09-18",
+      "added": [
+        "156k"
+      ],
+      "removed": [
+        "155k"
+      ],
+      "checked_then": "2026-08-04"
+    },
+    {
+      "slug": "pika",
+      "url": "https://pika.art/terms-of-service",
+      "confirmed": "2026-09-19",
+      "first_seen": "2026-09-18",
+      "added": [
+        "$100.",
+        "18years",
+        "30days",
+        "365days",
+        "60days",
+        "90days"
+      ],
+      "removed": [],
+      "checked_then": "2026-08-06"
+    },
+    {
+      "slug": "cursor",
+      "url": "https://cursor.com",
+      "confirmed": "2026-09-19",
+      "first_seen": "2026-09-18",
+      "added": [
+        "$3"
+      ],
+      "removed": [],
+      "checked_then": "2026-08-03"
+    },
+    {
+      "slug": "siliconflow",
+      "url": "https://siliconflow.cn",
+      "confirmed": "2026-09-19",
+      "first_seen": "2026-09-18",
+      "added": [
+        "29b"
+      ],
+      "removed": [],
+      "checked_then": "2026-08-03"
     },
     {
       "slug": "n8n",
@@ -32,36 +143,6 @@
         "19days"
       ],
       "checked_then": "2026-08-04"
-    },
-    {
-      "slug": "elevenlabs",
-      "url": "https://elevenlabs.io/pricing",
-      "confirmed": "2026-09-18",
-      "first_seen": "2026-09-17",
-      "added": [
-        "$16",
-        "0.5credit",
-        "0.5credits",
-        "0026video",
-        "10000credits",
-        "1000characters",
-        "1000credits",
-        "100minutes",
-        "100words",
-        "10minutes",
-        "11,000minutes",
-        "11minutes"
-      ],
-      "removed": [
-        "15b",
-        "294b",
-        "30b",
-        "3b",
-        "79b",
-        "880662b",
-        "8b"
-      ],
-      "checked_then": "2026-08-02"
     },
     {
       "slug": "anythingllm",
@@ -160,40 +241,6 @@
         "1,m"
       ],
       "checked_then": "2026-08-01"
-    },
-    {
-      "slug": "bailian",
-      "url": "https://aliyun.com",
-      "confirmed": "2026-09-15",
-      "first_seen": "2026-09-14",
-      "added": [
-        "10k",
-        "1mo"
-      ],
-      "removed": [],
-      "checked_then": "2026-08-03"
-    },
-    {
-      "slug": "cursor",
-      "url": "https://cursor.com",
-      "confirmed": "2026-09-14",
-      "first_seen": "2026-09-13",
-      "added": [],
-      "removed": [
-        "$3,000",
-        "0032b",
-        "00810b",
-        "00b",
-        "011b",
-        "01237b",
-        "01358061b",
-        "01b",
-        "03024b",
-        "031b",
-        "03b",
-        "04380b"
-      ],
-      "checked_then": "2026-08-03"
     }
   ]
 }

@@ -319,3 +319,28 @@ owner 原话：「现在舰队你的定时运行任务各种出错，你帮我�
   会话侧改不了自己的模型，也不许自作主张改 Routine 的 model 字段。
 - **单会话承载**：一轮要过 5 个站 + 周一 4 项。prompt 里写了优先级截断规则
   （A 健康 → B agi → C eco → D bpj → E tds → F SunWatch），截断时必须在报告里写明哪块没做。
+
+
+## 2026-09-19：24 工具的多语言日检
+
+在既有 fleet-autopilot（02:40 UTC）中加入 tools/fleet/workbench_growth.mjs，不增加 cron 或 AI 任务。
+按 catalog 与语言路由动态计算页面清单，检查 HTML/canonical/hreflang/结构化数据、文本镜像、独立嵌入、母站入口、运行文件与 Web3 就绪状态。
+结果写入 data/autopilot/workbench/latest.json、latest.md 与最多 30 天的 history.json；GitHub artifact 保留 30 天。
+失败先保存诊断并让其他每日收据正常提交，最后将 workflow 标红。dry_run 不写结果。
+预算：预估正常 1–2 分钟/日，即增量约 30–60 runner 分钟/月；检查步骤硬上限 4 分钟/次，即最多 120 分钟/月，不含原流程与 artifact 开销。不是免费额度或免计费承诺。
+仅请求四个自有域的公开资源，无 IndexNow 重复提交、第三方抓取或消息外发。null 表示缺少证据，不能替换成 0。
+
+
+
+## 2026-09-19: Web3 source and conversion monitoring
+
+The existing fleet-autopilot daily 02:40 UTC job now runs sites/web3-studio/scripts/growth-audit.mjs. No additional GitHub cron or AI content-generation loop. It checks the 11 owned tool hosts, near-real-time price source freshness, official metadata, crawlable task pages, opt-in aggregate events and QA-separated feedback. It writes data/autopilot/web3/latest.json, latest.md and 30 daily history records; artifacts retain 30 days. Failed checks preserve diagnostics before the workflow fails.
+
+Data refresh is request-driven in the existing Worker: price snapshots after 5 minutes, official feed metadata after 1 hour; visible market tabs request updates every minute. Cache reuse is per Cloudflare location. Upstream failure preserves the original receipt timestamp, labels stale snapshots and hides data older than 24 hours. No tick-by-tick or alert SLA is offered. Daily source changes are a review queue, never automatically rewritten editorial claims.
+
+Budget estimate: 1–2 incremental runner minutes/day (30–60/month); hard audit limit 3 minutes/day (90/month), excluding existing job/artifact overhead. Repository is currently private: this is not a free-Actions claim. Worker requests use existing hosting; upstream market/feed reads are public and cached, no paid credentials or subscriptions added. No IndexNow in deployment, no external messages, directory submissions or outreach.
+
+
+## 2026-09-19 独立站点会员确认
+
+沿用 `bpj-ad-watch.yml` 的两小时 schedule，增加一个独立步骤调用 AGI、EcoBack、TDS 各自的 `/api/member-watch`；BPJ 会员保持本地检查。三站各用独立 D1 与操作密钥，某站失败不阻止尝试其他站。无新增 cron 或付费供应商。保守空闲增量预算约 0.5 分钟/次 × 360 次/月 = 180 runner 分钟/月，RPC 与订单量会影响实际用量；新增步骤硬上限 5 分钟。健康检查过期会关闭相应站点新订单，不取消已有会员权益。当前实现与验收见 `tools/member-studio/README.md`。

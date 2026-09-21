@@ -382,7 +382,7 @@ def collect_articles():
         cat = (CAT_OF.get(slug)
                or ("heizen" if slug.startswith(("heizung-", "heizluefter-", "infrarotheizung-", "heizkosten-")) else None)
             or ("energie-sparen" if slug.startswith(("balkonkraftwerk-", "balkonspeicher-", "growatt-", "zendure-", "strompreis-", "stromvergleich-")) else None)
-               or ("luftqualitaet" if slug.startswith(("luftentfeuchter-", "luftbefeuchter-", "keller-", "schimmel-")) else None)
+               or ("luftqualitaet" if slug.startswith(("luftentfeuchter-", "luftbefeuchter-", "keller-", "schimmel-", "luftfeuchtigkeit-")) else None)
                or "klimaanlagen")
         arts[cat].append({
             "slug": slug, "url": canonical(html) or f"https://getecoback.com/guide/{slug}.html",
@@ -490,7 +490,7 @@ def cat_of(slug):
     return (CAT_OF.get(slug)
             or ("heizen" if slug.startswith(("heizung-", "heizluefter-", "infrarotheizung-", "heizkosten-")) else None)
             or ("energie-sparen" if slug.startswith(("balkonkraftwerk-", "balkonspeicher-", "growatt-", "zendure-", "strompreis-", "stromvergleich-")) else None)
-            or ("luftqualitaet" if slug.startswith(("luftentfeuchter-", "luftbefeuchter-", "keller-", "schimmel-")) else None)
+            or ("luftqualitaet" if slug.startswith(("luftentfeuchter-", "luftbefeuchter-", "keller-", "schimmel-", "luftfeuchtigkeit-")) else None)
             or "klimaanlagen")
 
 
@@ -962,6 +962,10 @@ def device_of(slug):
             # have been the fourth page to fall through to "ac". No AC page on
             # this site carries the token (checked before adding it).
             or "mould" in s or "mold-" in s
+            # The generic "Luftfeuchtigkeit senken" judgement page (2026-09-18)
+            # names no device in its slug at all; without this it is an "ac"
+            # page. No AC slug carries the token.
+            or "luftfeuchtigkeit" in s
             # Humidifier pages live in the humidity family too: routing them to
             # "dehum" keeps every ac-only component (sizer, heat-energy box,
             # climate box) off the page; the card grid itself is overridden by
@@ -1386,6 +1390,14 @@ CONTEXT_MODELS = {
    ("Verdunster-Luftbefeuchter", "Sparsam im Dauerbetrieb", "Kaltverdunstung mit Lüfter, wenige Watt — überfeuchtet konstruktionsbedingt kaum.", "Preis vor Ort prüfen", "luftbefeuchter+verdunster+leise", "dehum"),
    ("Ultraschall mit Hygrostat", "Schnell & leise", "Schaltet am Zielwert ab. Bei hartem Wasser destilliertes Wasser nutzen — sonst Kalkstaub.", "Preis vor Ort prüfen", "ultraschall+luftbefeuchter+hygrostat", "dehum"),
  ],
+ # The white-dust page (2026-09-18): a humidifier page, so the default "dehum"
+ # grid would recommend dehumidifiers — the opposite appliance. Its three
+ # remedies ARE the page's three sections, in the page's own order.
+ "luftbefeuchter-weisser-staub": [
+   ("Destilliertes Wasser (5 l)", "Wirkt sofort", "Keine Mineralien, kein Staub — die einzige Abhilfe, die beim Ultraschallgerät vollständig wirkt. Laufende Kosten.", "Preis vor Ort prüfen", "destilliertes+wasser+5+liter", "dehum"),
+   ("Verdunster mit Hygrostat", "Staubfrei gebaut", "Gibt Dampf ab, keinen Nebel — der Kalk bleibt in der Matte. Matten sind Verschleißteil.", "Preis vor Ort prüfen", "luftbefeuchter+verdunster+hygrostat", "dehum"),
+   ("Hygrometer (innen, Min/Max)", "Erst messen", "Über 50 % im Altbau ist schon die Zone, in der die kalte Wand zum Problem wird — ein Befeuchter ohne Zielwert läuft blind.", "ab 10 €", "hygrometer+innen+min+max", "dehum"),
+ ],
  # The balcony-PV mounting page: its products are the mounts themselves, not
  # the battery family the storage default would show. Category cards matching
  # the page's three mounting routes.
@@ -1471,6 +1483,8 @@ CONTEXT_SUB = {
  "luftbefeuchter-stromverbrauch": ("Erst messen, dann befeuchten — der echte Fall ist dauerhaft unter 40 %. "
                                    "Über 60 %? Dann brauchst du das Gegenteil: einen Entfeuchter. "
                                    "Nicht selbst getestet. Symbolbilder."),
+ "luftbefeuchter-weisser-staub": ("Die drei Abhilfen von oben, in derselben Reihenfolge — anderes Wasser, andere Bauart, erst messen. "
+                                  "Nicht selbst getestet. Symbolbilder."),
  "balkonkraftwerk-ohne-bohren": ("Nach Balkontyp sortiert — alle drei kommen ohne Bohrung aus. Windlast-Freigabe "
                                  "des Herstellers beachten. Nicht selbst montiert. Symbolbilder."),
  "fenster-beschlagen-innen": ("Erst die Luftfeuchte messen, dann senken — beschlagene Scheiben sind ein "

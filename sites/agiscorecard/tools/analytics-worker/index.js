@@ -1,3 +1,5 @@
+import {communityRoute} from '../community/server.mjs';
+import {memberRoute,memberPage,secureMemberPage} from '../../../../tools/member-studio/server.mjs';
 // First-party analytics for agiscorecard.com. This runs ALONGSIDE GA4, never instead
 // of it (owner rule, 2026-08-05): two independent channels, so either one failing
 // leaves the other still recording. The beacon below wraps gtag() and forwards a copy
@@ -23,6 +25,7 @@
 // identify a person or link one visit to another. /privacy says all of this in prose.
 
 const ALLOWED_EVENTS = new Set([
+  'discussion_click', 'discussion_home_view',
   'page_view', 'subscribe_click', 'tool_click', 'agi_test_click', 'index_click',
   'deeplink_pick', 'vote_cast', 'challenge_share', 'x_share', 'embed_copy',
   // 读者预测台账(2026-08-21,strategy-2027 九月项 v0):location='p_'+匿名8位id,
@@ -227,6 +230,9 @@ const srcBucket = (host, self) => {
 
 export default {
   async fetch(request, env, ctx) {
+    const communityResponse=await communityRoute(request,env);if(communityResponse)return communityResponse;
+    const memberResponse=await memberRoute(request,env,'agi');if(memberResponse)return memberResponse;
+    if(memberPage(new URL(request.url).pathname))return secureMemberPage(await env.ASSETS.fetch(request));
     const url = new URL(request.url);
 
     // MCP server v0(STRATEGY-2027 E1:agent 分发先手棋)。Streamable HTTP:

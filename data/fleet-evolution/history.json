@@ -1,0 +1,475 @@
+[
+  {
+    "as_of": "2026-09-20",
+    "fleet": {
+      "sites": 14,
+      "healthy": 14,
+      "membership_ready": 4,
+      "paid_members": 0,
+      "active_members": 0,
+      "opportunities": 8,
+      "stale_inputs": 0
+    },
+    "actions": [
+      {
+        "site": "getecoback",
+        "kind": "optimize_existing_page",
+        "priority": 80,
+        "reason": "measured demand reaches an existing page with zero recent referred readers",
+        "evidence": {
+          "count": 20,
+          "query": "infrarotheizung gegen schimmel",
+          "page": "guide/infrarotheizung-gegen-schimmel.html",
+          "value": 59250
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "agiscorecard",
+        "kind": "membership_observability",
+        "priority": 68,
+        "reason": "membership aggregate counters are unavailable",
+        "evidence": {
+          "admin_ok": false
+        },
+        "mode": "observe"
+      },
+      {
+        "site": "baipiaoji",
+        "kind": "membership_observability",
+        "priority": 68,
+        "reason": "membership aggregate counters are unavailable",
+        "evidence": {
+          "admin_ok": false
+        },
+        "mode": "observe"
+      },
+      {
+        "site": "getecoback",
+        "kind": "membership_observability",
+        "priority": 68,
+        "reason": "membership aggregate counters are unavailable",
+        "evidence": {
+          "admin_ok": false
+        },
+        "mode": "observe"
+      },
+      {
+        "site": "thedollscout",
+        "kind": "membership_observability",
+        "priority": 68,
+        "reason": "membership aggregate counters are unavailable",
+        "evidence": {
+          "admin_ok": false
+        },
+        "mode": "observe"
+      },
+      {
+        "site": "getecoback",
+        "kind": "content_gap",
+        "priority": 55,
+        "reason": "rising demand has no matching page; editorial judgement is required",
+        "evidence": {
+          "count": 23,
+          "query": "knebel infrarotheizung",
+          "value": 36000
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "thedollscout",
+        "kind": "content_gap",
+        "priority": 55,
+        "reason": "rising demand has no matching page; editorial judgement is required",
+        "evidence": {
+          "count": 11,
+          "query": "crumbl labubu ube dot cake",
+          "value": 30400
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "agiscorecard",
+        "kind": "improve_hot_page",
+        "priority": 52,
+        "reason": "prioritize a page with measured reader heat",
+        "evidence": {
+          "page": "/search",
+          "n7": 341,
+          "p7": 54
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "getecoback",
+        "kind": "improve_hot_page",
+        "priority": 52,
+        "reason": "prioritize a page with measured reader heat",
+        "evidence": {
+          "page": "/en/guide/portable-ac-tilt-and-turn-windows.html",
+          "n7": 8,
+          "p7": 6
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "after35",
+        "kind": "ai_discovery",
+        "priority": 48,
+        "reason": "referred traffic exists but no AI-assistant referral is measured",
+        "evidence": {
+          "human_pv_28d": 441,
+          "ai_ref_28d": 0
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "buysomething",
+        "kind": "ai_discovery",
+        "priority": 48,
+        "reason": "referred traffic exists but no AI-assistant referral is measured",
+        "evidence": {
+          "human_pv_28d": 123,
+          "ai_ref_28d": 0
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "codeword",
+        "kind": "ai_discovery",
+        "priority": 48,
+        "reason": "referred traffic exists but no AI-assistant referral is measured",
+        "evidence": {
+          "human_pv_28d": 323,
+          "ai_ref_28d": 0
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "fanzha",
+        "kind": "ai_discovery",
+        "priority": 48,
+        "reason": "referred traffic exists but no AI-assistant referral is measured",
+        "evidence": {
+          "human_pv_28d": 225,
+          "ai_ref_28d": 0
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "firstjob",
+        "kind": "ai_discovery",
+        "priority": 48,
+        "reason": "referred traffic exists but no AI-assistant referral is measured",
+        "evidence": {
+          "human_pv_28d": 201,
+          "ai_ref_28d": 0
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "gamesledger",
+        "kind": "ai_discovery",
+        "priority": 48,
+        "reason": "referred traffic exists but no AI-assistant referral is measured",
+        "evidence": {
+          "human_pv_28d": 829,
+          "ai_ref_28d": 0
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "goldrush",
+        "kind": "ai_discovery",
+        "priority": 48,
+        "reason": "referred traffic exists but no AI-assistant referral is measured",
+        "evidence": {
+          "human_pv_28d": 435,
+          "ai_ref_28d": 0
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "gridlings",
+        "kind": "ai_discovery",
+        "priority": 48,
+        "reason": "referred traffic exists but no AI-assistant referral is measured",
+        "evidence": {
+          "human_pv_28d": 910,
+          "ai_ref_28d": 0
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "learn",
+        "kind": "ai_discovery",
+        "priority": 48,
+        "reason": "referred traffic exists but no AI-assistant referral is measured",
+        "evidence": {
+          "human_pv_28d": 256,
+          "ai_ref_28d": 0
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "powerbill",
+        "kind": "ai_discovery",
+        "priority": 48,
+        "reason": "referred traffic exists but no AI-assistant referral is measured",
+        "evidence": {
+          "human_pv_28d": 282,
+          "ai_ref_28d": 0
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "thedollscout",
+        "kind": "ai_discovery",
+        "priority": 48,
+        "reason": "referred traffic exists but no AI-assistant referral is measured",
+        "evidence": {
+          "human_pv_28d": 260,
+          "ai_ref_28d": 0
+        },
+        "mode": "queue"
+      }
+    ]
+  },
+  {
+    "as_of": "2026-09-21",
+    "fleet": {
+      "sites": 14,
+      "healthy": 14,
+      "membership_ready": 4,
+      "paid_members": 0,
+      "active_members": 0,
+      "opportunities": 6,
+      "stale_inputs": 0
+    },
+    "actions": [
+      {
+        "site": "getecoback",
+        "kind": "optimize_existing_page",
+        "priority": 80,
+        "reason": "measured demand reaches an existing page with zero recent referred readers",
+        "evidence": {
+          "count": 20,
+          "query": "infrarotheizung gegen schimmel",
+          "page": "guide/infrarotheizung-gegen-schimmel.html",
+          "value": 59250
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "agiscorecard",
+        "kind": "membership_observability",
+        "priority": 68,
+        "reason": "membership aggregate counters are unavailable",
+        "evidence": {
+          "admin_ok": false
+        },
+        "mode": "observe"
+      },
+      {
+        "site": "baipiaoji",
+        "kind": "membership_observability",
+        "priority": 68,
+        "reason": "membership aggregate counters are unavailable",
+        "evidence": {
+          "admin_ok": false
+        },
+        "mode": "observe"
+      },
+      {
+        "site": "getecoback",
+        "kind": "membership_observability",
+        "priority": 68,
+        "reason": "membership aggregate counters are unavailable",
+        "evidence": {
+          "admin_ok": false
+        },
+        "mode": "observe"
+      },
+      {
+        "site": "thedollscout",
+        "kind": "membership_observability",
+        "priority": 68,
+        "reason": "membership aggregate counters are unavailable",
+        "evidence": {
+          "admin_ok": false
+        },
+        "mode": "observe"
+      },
+      {
+        "site": "buysomething",
+        "kind": "content_gap",
+        "priority": 55,
+        "reason": "rising demand has no matching page; editorial judgement is required",
+        "evidence": {
+          "count": 1,
+          "query": "costco self cleaning litter box",
+          "value": 350
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "getecoback",
+        "kind": "content_gap",
+        "priority": 55,
+        "reason": "rising demand has no matching page; editorial judgement is required",
+        "evidence": {
+          "count": 25,
+          "query": "knebel infrarotheizung",
+          "value": 36000
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "thedollscout",
+        "kind": "content_gap",
+        "priority": 55,
+        "reason": "rising demand has no matching page; editorial judgement is required",
+        "evidence": {
+          "count": 11,
+          "query": "crumbl labubu ube dot cake",
+          "value": 30400
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "agiscorecard",
+        "kind": "improve_hot_page",
+        "priority": 52,
+        "reason": "prioritize a page with measured reader heat",
+        "evidence": {
+          "page": "/search",
+          "n7": 344,
+          "p7": 59
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "getecoback",
+        "kind": "improve_hot_page",
+        "priority": 52,
+        "reason": "prioritize a page with measured reader heat",
+        "evidence": {
+          "page": "/guide/fensterabdichtung-selber-bauen.html",
+          "n7": 12,
+          "p7": 1
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "after35",
+        "kind": "ai_discovery",
+        "priority": 48,
+        "reason": "referred traffic exists but no AI-assistant referral is measured",
+        "evidence": {
+          "human_pv_28d": 443,
+          "ai_ref_28d": 0
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "buysomething",
+        "kind": "ai_discovery",
+        "priority": 48,
+        "reason": "referred traffic exists but no AI-assistant referral is measured",
+        "evidence": {
+          "human_pv_28d": 107,
+          "ai_ref_28d": 0
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "codeword",
+        "kind": "ai_discovery",
+        "priority": 48,
+        "reason": "referred traffic exists but no AI-assistant referral is measured",
+        "evidence": {
+          "human_pv_28d": 342,
+          "ai_ref_28d": 0
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "fanzha",
+        "kind": "ai_discovery",
+        "priority": 48,
+        "reason": "referred traffic exists but no AI-assistant referral is measured",
+        "evidence": {
+          "human_pv_28d": 240,
+          "ai_ref_28d": 0
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "firstjob",
+        "kind": "ai_discovery",
+        "priority": 48,
+        "reason": "referred traffic exists but no AI-assistant referral is measured",
+        "evidence": {
+          "human_pv_28d": 207,
+          "ai_ref_28d": 0
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "gamesledger",
+        "kind": "ai_discovery",
+        "priority": 48,
+        "reason": "referred traffic exists but no AI-assistant referral is measured",
+        "evidence": {
+          "human_pv_28d": 618,
+          "ai_ref_28d": 0
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "goldrush",
+        "kind": "ai_discovery",
+        "priority": 48,
+        "reason": "referred traffic exists but no AI-assistant referral is measured",
+        "evidence": {
+          "human_pv_28d": 436,
+          "ai_ref_28d": 0
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "gridlings",
+        "kind": "ai_discovery",
+        "priority": 48,
+        "reason": "referred traffic exists but no AI-assistant referral is measured",
+        "evidence": {
+          "human_pv_28d": 881,
+          "ai_ref_28d": 0
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "learn",
+        "kind": "ai_discovery",
+        "priority": 48,
+        "reason": "referred traffic exists but no AI-assistant referral is measured",
+        "evidence": {
+          "human_pv_28d": 260,
+          "ai_ref_28d": 0
+        },
+        "mode": "queue"
+      },
+      {
+        "site": "powerbill",
+        "kind": "ai_discovery",
+        "priority": 48,
+        "reason": "referred traffic exists but no AI-assistant referral is measured",
+        "evidence": {
+          "human_pv_28d": 291,
+          "ai_ref_28d": 0
+        },
+        "mode": "queue"
+      }
+    ]
+  }
+]

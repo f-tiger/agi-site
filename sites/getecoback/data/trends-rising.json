@@ -1,5 +1,5 @@
 {
- "fetched": "2026-09-17",
+ "fetched": "2026-09-21",
  "geo": "DE",
  "seeds": {
   "klimaanlage": {
@@ -112,98 +112,112 @@
    "polluted": false
   },
   "luftentfeuchter": {
+   "auto": [
+    "luftentfeuchter",
+    "luftentfeuchter keller",
+    "luftentfeuchter elektrisch",
+    "luftentfeuchter test",
+    "luftentfeuchter granulat",
+    "luftentfeuchter wohnung",
+    "luftentfeuchter obi",
+    "luftentfeuchter media markt",
+    "luftentfeuchter ohne strom",
+    "luftentfeuchter testsieger"
+   ],
    "rising": [
     {
-     "q": "meaco arete one 20l",
-     "v": 49800
+     "q": "luftentfeuchter keller",
+     "v": "new"
     },
     {
-     "q": "luftentfeuchter keller test",
-     "v": 48200
+     "q": "luftentfeuchter elektrisch",
+     "v": "new"
     },
     {
-     "q": "luftfeuchtigkeit senken",
-     "v": 46700
+     "q": "luftentfeuchter test",
+     "v": "new"
     },
     {
-     "q": "split klimaanlage",
-     "v": 41150
+     "q": "luftentfeuchter granulat",
+     "v": "new"
     },
     {
-     "q": "klimaanlage mobil",
-     "v": 40700
+     "q": "luftentfeuchter wohnung",
+     "v": "new"
     },
     {
-     "q": "klarstein mobile klimaanlage mit abluftschlauch, 4-in-1 klimagerät mit ventilato",
-     "v": 38200
+     "q": "luftentfeuchter obi",
+     "v": "new"
     },
     {
-     "q": "luftentfeuchter testsieger stiftung warentest",
-     "v": 31250
+     "q": "luftentfeuchter media markt",
+     "v": "new"
     },
     {
-     "q": "meacodry arete one 25l",
-     "v": 21350
+     "q": "luftentfeuchter ohne strom",
+     "v": "new"
     },
     {
-     "q": "bonaura luftentfeuchter",
-     "v": 19850
-    },
-    {
-     "q": "luftentfeuchter wohnung ohne strom",
-     "v": 19250
+     "q": "luftentfeuchter testsieger",
+     "v": "new"
     }
    ],
-   "source": "related-queries",
-   "fetched": "2026-09-11",
-   "polluted": false
+   "source": "autocomplete-diff",
+   "fetched": "2026-09-21"
   },
   "heizlüfter": {
+   "auto": [
+    "heizlüfter",
+    "heizlüfter bad",
+    "heizlüfter test",
+    "heizlüfter camping",
+    "heizlüfter obi",
+    "heizlüfter media markt",
+    "heizlüfter mit akku",
+    "heizlüfter als ventilator",
+    "heizlüfter kaufen",
+    "heizlüfter bauhaus"
+   ],
    "rising": [
     {
-     "q": "heizlüfter 300 watt",
-     "v": 44900
+     "q": "heizlüfter bad",
+     "v": "new"
     },
     {
-     "q": "dreo solaris slim h3",
-     "v": 29250
+     "q": "heizlüfter test",
+     "v": "new"
     },
     {
-     "q": "sparsamer heizlüfter",
-     "v": 28600
+     "q": "heizlüfter camping",
+     "v": "new"
     },
     {
-     "q": "energiesparender heizlüfter",
-     "v": 28450
+     "q": "heizlüfter obi",
+     "v": "new"
     },
     {
-     "q": "keramik heizlüfter test",
-     "v": 20500
+     "q": "heizlüfter media markt",
+     "v": "new"
     },
     {
-     "q": "stromsparender heizlüfter",
-     "v": 15000
+     "q": "heizlüfter mit akku",
+     "v": "new"
     },
     {
-     "q": "heizlüfter garage",
-     "v": 6750
+     "q": "heizlüfter als ventilator",
+     "v": "new"
     },
     {
-     "q": "heizlüfter 400 watt",
-     "v": 4200
+     "q": "heizlüfter kaufen",
+     "v": "new"
     },
     {
-     "q": "heizlüfter bad testsieger",
-     "v": 4050
-    },
-    {
-     "q": "dreo atom one",
-     "v": 3850
+     "q": "heizlüfter bauhaus",
+     "v": "new"
     }
    ],
-   "source": "related-queries",
-   "fetched": "2026-09-12",
-   "polluted": false
+   "source": "autocomplete-diff",
+   "fetched": "2026-09-21"
   },
   "balkonkraftwerk": {
    "rising": [
@@ -286,82 +300,74 @@
   "akku staubsauger": {
    "rising": [
     {
-     "q": "lululemon shorts",
-     "v": 34000
+     "q": "belstaff jacke herren",
+     "v": 26850
     },
     {
      "q": "sky scanner",
-     "v": 600
+     "v": 14100
     },
     {
-     "q": "lululemon rucksack",
-     "v": 450
+     "q": "ford",
+     "v": 550
     },
     {
-     "q": "new balance hierro",
-     "v": 400
-    },
-    {
-     "q": "belstaff",
-     "v": 400
-    },
-    {
-     "q": "belstaff jacke herren",
+     "q": "lululemon shorts",
      "v": 350
     },
     {
-     "q": "belstaff weste",
+     "q": "dyson tp09",
      "v": 350
     },
     {
      "q": "ventilator dyson",
-     "v": 300
+     "v": 350
     },
     {
-     "q": "ford",
-     "v": 250
+     "q": "lululemon rucksack",
+     "v": 350
     },
     {
      "q": "new balance herren sale",
+     "v": 300
+    },
+    {
+     "q": "belstaff weste",
+     "v": 300
+    },
+    {
+     "q": "belstaff",
      "v": 250
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-09-17",
+   "fetched": "2026-09-18",
    "polluted": true
   },
   "matratze": {
    "rising": [
     {
      "q": "fluss durch riga",
-     "v": 3850
+     "v": 3800
     },
     {
      "q": "emma performance matratze",
-     "v": 150
-    },
-    {
-     "q": "kühlende matratze",
      "v": 140
     },
     {
+     "q": "kühlende matratze",
+     "v": 130
+    },
+    {
      "q": "bett1 de",
-     "v": 120
+     "v": 100
     },
     {
      "q": "boxspringbett 140x200 mit matratze und topper",
-     "v": 90
-    },
-    {
-     "q": "emma original matratze",
      "v": 80
     },
     {
-     "q": "pool matratze",
-     "v": 70
-    },
-    {
-     "q": "ikea bett 140x200",
+     "q": "mozart bett",
      "v": 70
     },
     {
@@ -369,43 +375,47 @@
      "v": 70
     },
     {
-     "q": "babybett matratze 70x140",
+     "q": "emma dynamic matratze",
+     "v": 70
+    },
+    {
+     "q": "emma original matratze",
      "v": 60
+    },
+    {
+     "q": "kinderbett 90x200",
+     "v": 50
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-09-09",
+   "fetched": "2026-09-19",
    "polluted": false
   },
   "saugwischer": {
    "rising": [
     {
-     "q": "bester saugwischer roboter",
-     "v": 62450
+     "q": "kärcher nass trockensauger",
+     "v": 20600
     },
     {
-     "q": "blume 2000",
-     "v": 10700
+     "q": "dreame h15 pro heat",
+     "v": 2600
     },
     {
-     "q": "kärcher fc5",
-     "v": 3300
+     "q": "leifheit saugwischer",
+     "v": 120
+    },
+    {
+     "q": "bester saugwischer",
+     "v": 80
     },
     {
      "q": "vorwerk staubsauger",
-     "v": 60
-    },
-    {
-     "q": "dyson staubsauger",
-     "v": 40
-    },
-    {
-     "q": "philips saugwischer",
      "v": 40
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-09-10",
+   "fetched": "2026-09-20",
    "polluted": false
   }
  }

@@ -1,0 +1,9 @@
+import {parse,shape,choice,report,metric,table,day,int} from './core.mjs';
+import {reconcile,route,incentives} from './finance.mjs';
+import {evidence} from './evidence.mjs';
+import {compute,permit,proof} from './planning.mjs';
+import {calls,disclosures} from './inspection.mjs';
+import {selectProfiles,CHECKED_AT} from './profiles.mjs';
+function protocol(x){shape(x,['purpose','status','asOf','maxAgeDays']);choice(x.purpose,['all','payment','identity','token'],'Purpose');choice(x.status,['all','draft','standard','specification'],'Status');int(x.maxAgeDays,'Maximum age',0,3650);const now=day(x.asOf,'As of'),age=(now-day(CHECKED_AT,'Checked date'))/86400000;const rows=selectProfiles(x);return report('Source-backed profiles selected','A small, dated editorial dataset for integration research. Use the JSON API to retrieve the same records.',[metric('Profiles',rows.length),metric('Checked at',CHECKED_AT),metric('Freshness',age<0?'Checked date is in the future':age>x.maxAgeDays?'Review overdue':'Within your age limit')],[table('Official-source profiles',['Profile','Purpose','Status','Version','Source'],rows.map(r=>[r.name,r.purpose,r.status,r.version,r.source]))],['These are editorial summaries and review checklists, not exhaustive protocol schemas or conformance certificates. Read the linked specification before implementing.','The dataset is a release snapshot. The API reports its original checkedAt and current age; it does not silently refresh the research date. Free access is available; no paid feed is on sale.'],{profiles:rows,checkedAt:CHECKED_AT,ageDays:age,stale:age<0||age>x.maxAgeDays});}
+export const engines={reconcile,evidence,route,protocol,permit,compute,incentives,proof,calls,disclosures};
+export function run(id,input){if(!Object.hasOwn(engines,id))throw Error('Unknown tool.');return engines[id](parse(typeof input==='string'?input:JSON.stringify(input)));}

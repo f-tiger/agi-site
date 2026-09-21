@@ -1,0 +1,337 @@
+{
+  "asOf": "2026-09-21T08:11:28.233Z",
+  "ok": true,
+  "checks": [
+    {
+      "name": "source snapshots",
+      "ok": true
+    },
+    {
+      "name": "research board",
+      "ok": true
+    },
+    {
+      "name": "usage and feedback",
+      "ok": true
+    },
+    {
+      "name": "reconcile.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "calls.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "incentives.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "proof.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "disclosures.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "permit.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "protocol.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "route.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "compute.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "web3.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "evidence.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "public AI access OAI-SearchBot",
+      "ok": true
+    },
+    {
+      "name": "public AI access PerplexityBot",
+      "ok": true
+    }
+  ],
+  "sources": {
+    "market": {
+      "status": "fresh",
+      "retrievedAt": "2026-09-21T08:11:29.492Z",
+      "ageSeconds": 0,
+      "quotes": [
+        {
+          "symbol": "BTC",
+          "quote": "USD",
+          "price": 81912.25955921657,
+          "sourceUpdatedAt": "2026-09-21T08:09:50.000Z",
+          "deviationBps": null
+        },
+        {
+          "symbol": "ETH",
+          "quote": "USD",
+          "price": 2667.172391408999,
+          "sourceUpdatedAt": "2026-09-21T08:09:50.000Z",
+          "deviationBps": null
+        },
+        {
+          "symbol": "USDC",
+          "quote": "USD",
+          "price": 0.999757048946951,
+          "sourceUpdatedAt": "2026-09-21T08:09:50.000Z",
+          "deviationBps": -2.4295105304894538
+        },
+        {
+          "symbol": "USDT",
+          "quote": "USD",
+          "price": 0.9997555149099374,
+          "sourceUpdatedAt": "2026-09-21T08:09:50.000Z",
+          "deviationBps": -2.44485090062585
+        }
+      ],
+      "source": {
+        "name": "DefiLlama current prices",
+        "url": "https://coins.llama.fi/prices/current/coingecko:bitcoin,coingecko:ethereum,coingecko:usd-coin,coingecko:tether",
+        "method": "https://api-docs.defillama.com/"
+      }
+    },
+    "briefs": {
+      "status": "fresh",
+      "retrievedAt": "2026-09-21T08:11:28.519Z",
+      "sources": [
+        {
+          "id": "ethereum",
+          "status": "ok",
+          "checkedAt": "2026-09-21T08:11:28.475Z"
+        },
+        {
+          "id": "x402",
+          "status": "unavailable",
+          "checkedAt": "2026-09-21T08:11:28.518Z"
+        },
+        {
+          "id": "ezkl",
+          "status": "unavailable",
+          "checkedAt": "2026-09-21T08:11:28.514Z"
+        }
+      ],
+      "items": [
+        {
+          "title": "Join Us: EF Protocol Reddit AMA - September 16th, 2026",
+          "url": "https://blog.ethereum.org/en/2026/09/09/reddit-ama",
+          "publishedAt": "2026-09-09T00:00:00.000Z",
+          "source": "Ethereum Foundation",
+          "sourceId": "ethereum",
+          "kind": "rss",
+          "task": "protocol-change"
+        },
+        {
+          "title": "EF Protocol: The Hegotá EIP Opinion Post and Tier List",
+          "url": "https://blog.ethereum.org/en/2026/09/07/protocol-hegota-eips",
+          "publishedAt": "2026-09-07T00:00:00.000Z",
+          "source": "Ethereum Foundation",
+          "sourceId": "ethereum",
+          "kind": "rss",
+          "task": "protocol-change"
+        },
+        {
+          "title": "EF Protocol: Current and Emerging Priorities",
+          "url": "https://blog.ethereum.org/en/2026/09/07/protocol-priorities",
+          "publishedAt": "2026-09-07T00:00:00.000Z",
+          "source": "Ethereum Foundation",
+          "sourceId": "ethereum",
+          "kind": "rss",
+          "task": "protocol-change"
+        },
+        {
+          "title": "Glamsterdam Repricing Impact for Smart Contract Developers",
+          "url": "https://blog.ethereum.org/en/2026/08/24/glamsterdam-repricing-testing",
+          "publishedAt": "2026-08-24T00:00:00.000Z",
+          "source": "Ethereum Foundation",
+          "sourceId": "ethereum",
+          "kind": "rss",
+          "task": "protocol-change"
+        },
+        {
+          "title": "Raising machine-checked security benchmarks to advance hash-based SNARKs through agentic collaboration",
+          "url": "https://blog.ethereum.org/en/2026/08/20/better-codes-challenge",
+          "publishedAt": "2026-08-20T00:00:00.000Z",
+          "source": "Ethereum Foundation",
+          "sourceId": "ethereum",
+          "kind": "rss",
+          "task": "protocol-change"
+        }
+      ]
+    },
+    "research": {
+      "status": "fresh",
+      "retrievedAt": "2026-09-21T08:11:29.752Z",
+      "historyStatus": "fresh",
+      "quotes": [
+        {
+          "symbol": "BTC",
+          "status": "fresh",
+          "sourceUpdatedAt": "2026-09-21T08:09:50.000Z",
+          "day": {
+            "percent": 2.0245518564142806,
+            "from": "2026-09-20T08:00:00.000Z",
+            "to": "2026-09-21T08:09:50.000Z"
+          },
+          "week": {
+            "percent": 5.214352921459686,
+            "from": "2026-09-14T08:00:00.000Z",
+            "to": "2026-09-21T08:09:50.000Z"
+          }
+        },
+        {
+          "symbol": "ETH",
+          "status": "fresh",
+          "sourceUpdatedAt": "2026-09-21T08:09:50.000Z",
+          "day": {
+            "percent": 3.533681244481901,
+            "from": "2026-09-20T08:00:00.000Z",
+            "to": "2026-09-21T08:09:50.000Z"
+          },
+          "week": {
+            "percent": 5.757302124158126,
+            "from": "2026-09-14T08:00:00.000Z",
+            "to": "2026-09-21T08:09:50.000Z"
+          }
+        },
+        {
+          "symbol": "USDC",
+          "status": "fresh",
+          "sourceUpdatedAt": "2026-09-21T08:09:50.000Z",
+          "day": {
+            "percent": 0.00613702586462761,
+            "from": "2026-09-20T08:00:00.000Z",
+            "to": "2026-09-21T08:09:50.000Z"
+          },
+          "week": {
+            "percent": -0.003915392833475639,
+            "from": "2026-09-14T08:00:00.000Z",
+            "to": "2026-09-21T08:09:50.000Z"
+          }
+        },
+        {
+          "symbol": "USDT",
+          "status": "fresh",
+          "sourceUpdatedAt": "2026-09-21T08:09:50.000Z",
+          "day": {
+            "percent": 0.015058760805808369,
+            "from": "2026-09-20T08:00:00.000Z",
+            "to": "2026-09-21T08:09:50.000Z"
+          },
+          "week": {
+            "percent": 0.012414569781626916,
+            "from": "2026-09-14T08:00:00.000Z",
+            "to": "2026-09-21T08:09:50.000Z"
+          }
+        },
+        {
+          "symbol": "TAO",
+          "status": "fresh",
+          "sourceUpdatedAt": "2026-09-21T08:09:50.000Z",
+          "day": {
+            "percent": 8.560052754829206,
+            "from": "2026-09-20T08:00:00.000Z",
+            "to": "2026-09-21T08:09:50.000Z"
+          },
+          "week": {
+            "percent": 16.29233461444337,
+            "from": "2026-09-14T08:00:00.000Z",
+            "to": "2026-09-21T08:09:50.000Z"
+          }
+        },
+        {
+          "symbol": "RENDER",
+          "status": "fresh",
+          "sourceUpdatedAt": "2026-09-21T08:09:50.000Z",
+          "day": {
+            "percent": 15.699548478608172,
+            "from": "2026-09-20T08:00:00.000Z",
+            "to": "2026-09-21T08:09:50.000Z"
+          },
+          "week": {
+            "percent": 26.47888906107898,
+            "from": "2026-09-14T08:01:20.000Z",
+            "to": "2026-09-21T08:09:50.000Z"
+          }
+        },
+        {
+          "symbol": "FET",
+          "status": "fresh",
+          "sourceUpdatedAt": "2026-09-21T08:09:50.000Z",
+          "day": {
+            "percent": 9.045962490396175,
+            "from": "2026-09-20T08:00:00.000Z",
+            "to": "2026-09-21T08:09:50.000Z"
+          },
+          "week": {
+            "percent": 7.314344902124303,
+            "from": "2026-09-14T08:01:20.000Z",
+            "to": "2026-09-21T08:09:50.000Z"
+          }
+        },
+        {
+          "symbol": "AKT",
+          "status": "stale",
+          "sourceUpdatedAt": "2026-09-21T07:51:50.000Z",
+          "day": null,
+          "week": null
+        }
+      ]
+    }
+  },
+  "events": {
+    "asOf": "2026-09-21T08:11:31.198Z",
+    "windowDays": 28,
+    "measurement": "Opt-in event counts, deduplicated within a page visit. Not unique people or a cross-domain session funnel. Incoming attribution is unverified; stripped referrers appear direct. Default examples, probes and MCP requests do not generate events.",
+    "groups": []
+  },
+  "feedback": {
+    "groups": [],
+    "measurement": "Self-reported submissions, not independent buyers."
+  },
+  "changes": [],
+  "outcomes": {
+    "indexedPages": null,
+    "verifiedThirdPartyBacklinks": null,
+    "aiCitations": null,
+    "paidBuyers": null,
+    "revenue": null
+  },
+  "notes": [
+    "Availability is not indexing. AI-user-agent requests do not authenticate a crawler or prove citation.",
+    "Opt-in events are not people or a joined session funnel; incoming channel labels are unverified.",
+    "External referral counts are not verified backlinks. Price movements are not customer demand."
+  ],
+  "summary": {
+    "optInPageEvents": 0,
+    "ownTaskEvents": 0,
+    "reportExportEvents": 0,
+    "toolOpenEvents": 0,
+    "watchSaveEvents": 0,
+    "watchCompareEvents": 0,
+    "reviewSaveEvents": 0,
+    "reviewExportEvents": 0,
+    "proofMineEvents": 0,
+    "proofShareEvents": 0,
+    "proofVerifyEvents": 0,
+    "aiReferredEvents": 0
+  },
+  "nextAction": "No opted-in page events observed. Check exposure and consent bias; do not conclude no demand."
+}

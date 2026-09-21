@@ -77,6 +77,76 @@ jobs:
       - name: Write the demand digest (one page, zero AI)
         run: python3 tools/fleet/demand_digest.py --today="${{ steps.clock.outputs.today }}"
 
+      - name: Prepare measured marketing queue (no external sends)
+        run: |
+          python3 tools/fleet/test_marketing_queue.py
+          FLAGS=""
+          if [ "${{ inputs.dry_run }}" = "true" ]; then FLAGS="--check"; fi
+          python3 tools/fleet/marketing_queue.py --today "${{ steps.clock.outputs.today }}" $FLAGS
+
+      - name: Test workbench health failure detection
+        run: node --test tools/fleet/workbench_growth.test.mjs
+
+      - name: Audit localized tools and distribution assets
+        id: workbench
+        continue-on-error: true
+        timeout-minutes: 4
+        run: |
+          FLAGS=""
+          if [ "${{ inputs.dry_run }}" = "true" ]; then FLAGS="--check"; fi
+          node tools/fleet/workbench_growth.mjs $FLAGS
+
+      - name: Preserve workbench evidence even when an audit fails
+        if: always() && inputs.dry_run != true
+        uses: actions/upload-artifact@v4
+        with:
+          name: workbench-growth-${{ github.run_id }}
+          path: data/autopilot/workbench/
+          retention-days: 30
+          if-no-files-found: warn
+
+      - name: Audit Web3 market sources and task conversions
+        id: web3
+        continue-on-error: true
+        timeout-minutes: 3
+        run: |
+          FLAGS=""
+          if [ "${{ inputs.dry_run }}" = "true" ]; then FLAGS="--check"; fi
+          node sites/web3-studio/scripts/growth-audit.mjs $FLAGS
+
+      - name: Preserve Web3 growth evidence
+        if: always() && inputs.dry_run != true
+        uses: actions/upload-artifact@v4
+        with:
+          name: web3-growth-${{ github.run_id }}
+          path: data/autopilot/web3/
+          retention-days: 30
+          if-no-files-found: warn
+
+
+      # The measured evolution layer keeps the fleet useful when no AI session
+      # runs. It reads aggregate membership, demand, health and referral signals,
+      # writes only redacted manifests, and queues judgement-heavy work.
+      - name: Test fleet evolution decision engine
+        run: python3 tools/fleet/test_evolution.py
+
+      - name: Snapshot independent membership health and counters
+        id: membership
+        continue-on-error: true
+        env:
+          ADS_WATCH_SECRET: ${{ secrets.ADS_WATCH_SECRET }}
+        run: |
+          FLAGS=""
+          if [ "${{ inputs.dry_run }}" = "true" ]; then FLAGS="--check"; fi
+          node tools/fleet/membership_snapshot.mjs $FLAGS
+
+      - name: Build fleet opportunity and upgrade manifests
+        id: evolution
+        run: |
+          FLAGS=""
+          if [ "${{ inputs.dry_run }}" = "true" ]; then FLAGS="--check"; fi
+          python3 tools/fleet/evolution.py --today "${{ steps.clock.outputs.today }}" $FLAGS | tee "$GITHUB_STEP_SUMMARY"
+
       - name: Commit what actually changed
         if: inputs.dry_run != true
         run: |
@@ -86,6 +156,11 @@ jobs:
           # makes git add abort and stage NOTHING — the failure that has bitten
           # this repo five times, once discarding eleven nights of traffic data.
           git add data/autopilot 2>/dev/null || true
+          git add data/fleet-evolution 2>/dev/null || true
+          for f in sites/*/data/fleet-evolution.json; do
+            [ -f "$f" ] || continue
+            git add "$f" 2>/dev/null || echo "::warning::could not stage $f"
+          done
           for f in $(python3 -c "
           import json,sys
           d=json.load(open('data/autopilot/receipt.json'))
@@ -100,7 +175,9 @@ jobs:
             echo "staged=0" >> "$GITHUB_ENV"
           else
             echo "staged=1" >> "$GITHUB_ENV"
-            git commit -m "chore(autopilot): honest lastmod + demand queue ${{ steps.clock.outputs.today }}"
+            suffix=""
+            if git diff --cached --name-only | grep -q '^sites/'; then suffix=" [deploy]"; fi
+            git commit -m "chore(autopilot): measured fleet evolution ${{ steps.clock.outputs.today }}${suffix}"
             for i in 1 2 3 4; do
               git pull --rebase --autostash origin main && git push origin main && break
               echo "push attempt $i failed; retrying"; sleep $((2**i))
@@ -173,3 +250,20 @@ jobs:
               *) echo "::warning::IndexNow rejected $host with HTTP $code: $(head -c 200 /tmp/idx.out)" ;;
             esac
           done < /tmp/pings.txt
+
+
+      # Persist the diagnostics first, then fail visibly. A failed audit must not
+      # prevent the other daily receipts from being committed.
+      - name: Enforce workbench health result
+        if: always() && steps.workbench.outcome == 'failure'
+        run: |
+          echo "::error::Workbench audit failed; inspect its report or timeout log."
+          exit 1
+
+
+
+      - name: Enforce Web3 source and measurement health
+        if: always() && steps.web3.outcome == 'failure'
+        run: |
+          echo "::error::Web3 audit failed; inspect saved source and conversion diagnostics."
+          exit 1

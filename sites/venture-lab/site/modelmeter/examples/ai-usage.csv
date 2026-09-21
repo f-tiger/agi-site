@@ -1,0 +1,4 @@
+project,provider,model,requests,input_tokens,output_tokens,billed_usd
+Support,Example provider,Fast model,12000,18000000,2400000,48
+Research,Example provider,Reasoning model,500,4000000,1000000,86
+Support,Other provider,Backup model,800,900000,180000,6

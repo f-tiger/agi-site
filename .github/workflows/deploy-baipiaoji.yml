@@ -14,6 +14,8 @@ on:
   push:
     branches: [main]
     paths:
+      - "tools/revenue-studio/**"
+      - "tools/member-studio/**"
       - "sites/baipiaoji/**"
       - ".github/workflows/deploy-baipiaoji.yml"
   workflow_dispatch:
@@ -169,6 +171,13 @@ jobs:
       # 付费档探针的零网络自检（2026-09-16）：这个探针决定「下一轮去读哪几家的定价页」，
       # 它判错的方向有两种，都必须能红——把无价页判成 ready 会把人骗去读一个没有价格的页面；
       # 把沙箱/网络拒绝判成「这家没有付费档」则会让一个能填的缺口被永久跳过。
+      - name: Checkout and delivery integration (SQLite, no network)
+        run: |
+          node scripts/test-ad-commerce.mjs
+          node scripts/test-ad-web3.mjs
+          node scripts/test-membership.mjs
+          node scripts/test-ad-watch-readiness.mjs
+
       - name: Pricing-probe selftest (zero network)
         run: node scripts/pricing-probe.mjs --selftest
 
@@ -193,22 +202,98 @@ jobs:
       - name: Tokenizer regression (840 golden cases)
         run: node scripts/tokenizer-test.mjs
 
+      - name: Verify IndexNow selection and URL migration
+        run: node scripts/test-indexnow-plan.mjs
+
       - name: Build site
         run: node scripts/build.mjs
 
       # 2026-08-17 挂入：九道出厂门禁（断链/JSON-LD/中文残留/占位符/裸MD/矛盾/EN缺项/
       # 写死计数/空壳页）此前只在会话手动跑——CI 里从未把过关。放在 build 之后、deploy
       # 之前：不过关就不部署。
+      - name: Verify canonical routes and sitemap targets
+        run: node scripts/check-canonical-routes.mjs
+
       - name: Verify dist (出厂门禁)
         run: node scripts/verify-dist.mjs
 
       # 2026-08-16 删除「Ensure Pages project exists」:项目早就存在,这一步每次都
       # 静默失败后 `|| true`——却要为此完整下载一次 wrangler。等于每次运行白花几十秒
       # 做一件确定无效的事。项目若真被删,下面的 deploy 会报错,那时手动建一次即可。
+      # Owner requested Web3 launch using the existing repository Cloudflare key.
+      - name: Check legacy membership obligations before isolation
+        working-directory: ${{ github.workspace }}
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          ADS_WATCH_SECRET: ${{ secrets.ADS_WATCH_SECRET }}
+        run: node tools/member-studio/ops.mjs preflight
+
+      - name: Sync payment secrets using the existing Cloudflare credential
+        id: payment_config
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          ADS_WALLET: ${{ secrets.ADS_WALLET }}
+          ADS_WATCH_SECRET: ${{ secrets.ADS_WATCH_SECRET }}
+        run: node scripts/ad-configure.mjs --optional
+
+      - name: Build and validate practical tool workbench
+        working-directory: ${{ github.workspace }}
+        run: |
+          npm ci --prefix tools/revenue-studio --ignore-scripts
+          node --test tools/revenue-studio/test.mjs
+          node tools/revenue-studio/build.mjs --site bpj --out sites/baipiaoji/dist
+          node tools/revenue-studio/verify.mjs --site bpj --out sites/baipiaoji/dist
+          node tools/member-studio/build.mjs --out sites/baipiaoji/dist
+          node tools/member-studio/verify.mjs --out sites/baipiaoji/dist
+          node tools/member-studio/test-isolation.mjs
+
       - name: Deploy to Cloudflare Pages
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: npx wrangler@4 pages deploy dist --project-name=aiyangmao --branch=main --commit-dirty=true
+
+      - name: Verify every published workbench tool
+        working-directory: ${{ github.workspace }}
+        run: node tools/revenue-studio/verify.mjs --site bpj --live
+
+      - name: Notify verified localized tool URLs to IndexNow
+        if: github.event_name == 'push'
+        continue-on-error: true
+        working-directory: ${{ github.workspace }}
+        run: node tools/revenue-studio/indexnow.mjs --site bpj --out sites/baipiaoji/dist
+
+      - name: Verify Web3 watcher and selling after deployment
+        env:
+          REQUIRE_WEB3_CONFIGURED: ${{ steps.payment_config.outputs.configured }}
+          ADS_WATCH_SECRET: ${{ secrets.ADS_WATCH_SECRET }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: node scripts/ad-watch-v2.mjs --if-configured --members
+
+      - name: Verify membership checkout and protected routes
+        working-directory: ${{ github.workspace }}
+        run: |
+          for attempt in 1 2 3 4; do
+            if node tools/member-studio/verify.mjs --live; then exit 0; fi
+            if [ "$attempt" = "4" ]; then exit 1; fi
+            sleep 8
+          done
+
+      - name: Read membership migration totals (no account data)
+        env:
+          ADS_WATCH_SECRET: ${{ secrets.ADS_WATCH_SECRET }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          node --input-type=module <<'JS'
+          import {watchSecret} from './scripts/ad-runner-config.mjs';
+          const r=await fetch('https://baipiaoji.com/api/member-admin',{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+watchSecret(process.env)},body:JSON.stringify({action:'stats'}),signal:AbortSignal.timeout(20000)});
+          const d=await r.json();if(!r.ok||!d.ok)throw Error('Membership audit unavailable');
+          console.log(JSON.stringify({paid_orders:d.paid_orders,paid_members:d.paid_members,active_members:d.active_members,unexpired_pending:d.unexpired_pending}));
+          JS
+
+      - name: Repair five Bing-reported canonical URLs once
+        if: github.event_name == 'push' && contains(github.event.head_commit.message, '[indexnow-repair]') && github.run_attempt == 1
+        run: node scripts/indexnow.mjs --repair-bing-20260919
 
       # 每日流量快照：把 D1 里的第一方打点聚合后写回仓库（data/traffic-snapshot.json），
       # 任何会话（含无 MCP 的自动循环轮次）都能从 git 读到最新流量。
@@ -543,8 +628,8 @@ jobs:
           echo "$doc"
           echo "$doc" | grep -Eq '"selling":(true|false)' || { echo "::error::/api/ads?doctor=1 未返回 selling"; exit 1; }
           echo "$doc" | grep -q 'sk_live\|whsec_\|0x[0-9a-fA-F]\{40\}' && { echo "::error::体检端点疑似回显了密钥值"; exit 1; }
-          if echo "$doc" | grep -q '"payment_link":true' && echo "$doc" | grep -q '"stripe_webhook":false'; then
-            echo "::error::卡轨半通电：ADS_PAYMENT_LINK 已设但 STRIPE_WEBHOOK_SECRET 未设——买家能付款，付完不会自动上架"; exit 1; fi
+          if echo "$doc" | grep -q '"stripe_api":true' && echo "$doc" | grep -q '"stripe_webhook":false'; then
+            echo "::error::卡轨半通电：STRIPE_SECRET_KEY 已设但 STRIPE_WEBHOOK_SECRET 未设——买家能付款，付完不会自动上架"; exit 1; fi
           if echo "$doc" | grep -q '"wallet":true' && echo "$doc" | grep -q '"claim_secret":false'; then
             echo "::error::钱包轨半通电：ADS_WALLET 已设但 ADS_WATCH_SECRET 未设——链上轮询无法回写，付款后不会上架"; exit 1; fi
           echo "$doc" | grep -q '"selling":true' && echo "💰 收款已通电" || echo "ℹ️ 收款未开通（投放页显示未开售，属预期状态）"
@@ -629,7 +714,7 @@ jobs:
       # 而回填本身只需要几十秒。一件事只留一个入口，避免两处分叉。
       - name: Ping IndexNow (Bing/Yandex/Naver instant indexing)
         if: github.event_name != 'push'
-        run: node scripts/indexnow.mjs || true
+        run: node scripts/indexnow.mjs
 
       # Wayback Machine 快照：无需账号的外部索引面——存档页可被搜索与 AI 检索抓取且永久回链本站。
       # 按价值排序取前 N 个（方法论 → 拒绝清单 → 流言核查 → 首页 → 类目 → 对比页），见 scripts/wayback.mjs
@@ -727,3 +812,6 @@ jobs:
           check "广告库存面" "${{ steps.st_ads.outcome }}"
           [ "$fail" = "0" ] || exit 1
           echo "✅ 全部链路自测通过"
+
+
+

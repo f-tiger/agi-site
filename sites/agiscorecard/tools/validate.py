@@ -14,12 +14,22 @@ import json
 import os
 import re
 import sys
+import subprocess
 import xml.dom.minidom
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 KNOWN_EXTENSIONLESS = {"two-year-scorecard", "agi-questions"}
 
 problems = []
+
+# Community pages are rendered by the Worker, not static HTML files. Exercise the
+# actual routes against a temporary SQLite fixture; never exempt arbitrary paths.
+try:
+    DYNAMIC_ROUTES = set(json.loads(subprocess.check_output(
+        ['node', os.path.join(ROOT, 'tools/community/validate-routes.mjs')], text=True)))
+except Exception as exc:
+    DYNAMIC_ROUTES = set()
+    problems.append('Community route validation failed: %r' % (exc,))
 
 # Root pages plus the language/section subdirectories (zh/, invest/, agi-type/ ...).
 # These used to be unvalidated: 43 live pages with no FAQ/JSON-LD/link checking.
@@ -58,7 +68,7 @@ for f in PAGES:
     no_script = re.sub(r"<script\b.*?</script>", "", html, flags=re.S)
     for href in set(re.findall(r"<(?:a|link)\b[^>]*?href=[\"']/([a-z0-9\-/\.]+?)[\"']", no_script)):
         base = href[:-5] if href.endswith(".html") else href.rstrip("/")
-        if not base or base in KNOWN_EXTENSIONLESS:
+        if not base or base in KNOWN_EXTENSIONLESS or base in DYNAMIC_ROUTES:
             continue
         if (os.path.exists(os.path.join(ROOT, base + ".html"))
                 or os.path.exists(os.path.join(ROOT, base, "index.html"))

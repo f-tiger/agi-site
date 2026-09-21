@@ -972,3 +972,24 @@ CLAUDE.md 里「propagation IS the product」那条规则要防的那件事。�
   启动 +26 周把结果与 Alpha Arena 对照写进 `/do-ai-trading-agents-work`。
 - 事件:`invest_tool_click{invest_hub_ledger}`、`tool_click{doaitrading_ledger}`、
   `index_click{ledger_tracker}`、`subscribe_click{deep_ledger}`。
+
+
+## 原生讨论区（2026-09-20，owner 明确要求）
+
+本轮范围覆盖旧的新增板块冻结；研究与运营界线见根仓 `docs/agi-community-research-2026-09-20.md`。
+`/discuss` + `/zh/discuss`，三个主题、六个明确标注的编辑开场话题。首页 `/` 与 `/cn` 都有入口。
+免费社区注册使用**本站 AGI 会员的访问密钥身份**，`wb_members.ends_at=0`，不授予付费权益；
+这不是邮箱订阅或 SunWatch Telegram 绑定，不改变投资工具现有的 Telegram 契约。
+账号、订单与讨论数据不能跨 BPJ/Eco/TDS 复用。用户原文不冒充译文。
+
+代码 `tools/community/`（不作为静态资产公开），前端 `community-assets/`。新增讨论表使用 EVENTS D1。
+投稿全部待审核；公开接口、SSR、动态 `/discuss-sitemap.xml` 只读通过内容。编辑主题不使用
+DiscussionForumPosting。不要伪造活跃度、用户或回复，不自动在外部社区发帖。
+
+审核 `/discuss/moderate`，社区子密钥由现有 AGI 运维密钥派生；
+私有生成方式见 `tools/community/ops.mjs` 与研究报告。禁止把凭据、待审正文或用户记录写入公开日志。
+每日现有部署流程只输出聚合 stats，未增加定时任务。`data/fleet-bets.json` 的
+`agi-discussion-1020` 在 2026-10-20 复盘，注意 session-days 不是独立用户，分享意图不是外链。
+
+修改讨论功能必须跑 SQLite 权限/隐私测试与中英浏览器流程；上线需跑只读 verify。
+保留 AGI 原有判断台账、分歧引擎和付费工作区，不把论坛加入自动生成工具页面的模板。

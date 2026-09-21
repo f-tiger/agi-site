@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "site": "getecoback",
+  "signals": {
+    "membership": {
+      "ready": true,
+      "has_paid_members": null,
+      "has_active_members": null
+    },
+    "traffic": {
+      "human_pv_band": "100+",
+      "ai_ref_band": "10-99",
+      "reach_humans_referred_band": null
+    },
+    "demand": {
+      "has_underserved": true,
+      "has_gaps": true,
+      "has_hot_pages": true,
+      "top_underserved_page": "guide/infrarotheizung-gegen-schimmel.html",
+      "top_hot_page": "/guide/fensterabdichtung-selber-bauen.html"
+    },
+    "health": {
+      "http": "200",
+      "stale_deploy": false
+    }
+  },
+  "actions": [
+    {
+      "kind": "optimize_existing_page",
+      "priority": 80,
+      "reason": "measured demand reaches an existing page with zero recent referred readers",
+      "evidence": {
+        "count_band": "10-99",
+        "query": "infrarotheizung gegen schimmel",
+        "page": "guide/infrarotheizung-gegen-schimmel.html",
+        "value_band": "100+"
+      },
+      "mode": "queue"
+    },
+    {
+      "kind": "membership_observability",
+      "priority": 68,
+      "reason": "membership aggregate counters are unavailable",
+      "evidence": {},
+      "mode": "observe"
+    },
+    {
+      "kind": "content_gap",
+      "priority": 55,
+      "reason": "rising demand has no matching page; editorial judgement is required",
+      "evidence": {
+        "count_band": "10-99",
+        "query": "knebel infrarotheizung",
+        "value_band": "100+"
+      },
+      "mode": "queue"
+    },
+    {
+      "kind": "improve_hot_page",
+      "priority": 52,
+      "reason": "prioritize a page with measured reader heat",
+      "evidence": {
+        "page": "/guide/fensterabdichtung-selber-bauen.html",
+        "n7_band": "10-99",
+        "p7_band": "1-9"
+      },
+      "mode": "queue"
+    }
+  ],
+  "autonomous_changes": [
+    "refresh aggregate snapshots",
+    "refresh opportunity and demand queues",
+    "update truthful sitemap lastmod when content hashes change",
+    "submit IndexNow only for changed URLs"
+  ]
+}

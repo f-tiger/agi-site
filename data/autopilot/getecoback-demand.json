@@ -3,8 +3,8 @@
   {
    "heat": null,
    "kind": "value",
-   "match": 0.75,
-   "page": "tools.html",
+   "match": 1.0,
+   "page": "guide/infrarotheizung-gegen-schimmel.html",
    "q": "infrarotheizung gegen schimmel",
    "seed": "infrarotheizung",
    "source": "related-queries",
@@ -15,7 +15,7 @@
    "heat": null,
    "kind": "value",
    "match": 0.75,
-   "page": "guide/schimmel-bad-fugen.html",
+   "page": "guide/schimmel-am-fenster.html",
    "q": "schimmel auf leder entfernen",
    "seed": "schimmel entfernen",
    "source": "related-queries",
@@ -23,51 +23,18 @@
    "v": 50700
   },
   {
-   "heat": null,
+   "heat": {
+    "n7": 2,
+    "p7": 0
+   },
    "kind": "value",
    "match": 0.95,
-   "page": "guide/trotec-luftentfeuchter-test.html",
-   "q": "luftentfeuchter keller test",
-   "seed": "luftentfeuchter",
-   "source": "related-queries",
-   "stand": "2026-09-11",
-   "v": 48200
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.967,
-   "page": "guide/heizung-10-qm.html",
+   "page": "guide/heizluefter-stromverbrauch.html",
    "q": "heizlüfter 300 watt",
    "seed": "heizlüfter",
    "source": "related-queries",
    "stand": "2026-09-12",
    "v": 44900
-  },
-  {
-   "heat": {
-    "n7": 3,
-    "p7": 1
-   },
-   "kind": "value",
-   "match": 1.0,
-   "page": "guide/split-klimaanlage-ohne-kernbohrung.html",
-   "q": "split klimaanlage",
-   "seed": "luftentfeuchter",
-   "source": "related-queries",
-   "stand": "2026-09-11",
-   "v": 41150
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.75,
-   "page": "guide/ventilator-kaufen-ratgeber.html",
-   "q": "klimaanlage mobil",
-   "seed": "luftentfeuchter",
-   "source": "related-queries",
-   "stand": "2026-09-11",
-   "v": 40700
   },
   {
    "heat": null,
@@ -77,8 +44,19 @@
    "q": "klarstein mobile klimaanlage mit abluftschlauch, 4-in-1 klimagerät mit ventilato",
    "seed": "luftentfeuchter",
    "source": "related-queries",
-   "stand": "2026-09-11",
-   "v": 38200
+   "stand": "2026-09-20",
+   "v": 44450
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 0.933,
+   "page": "guide/luftentfeuchter-ratgeber.html",
+   "q": "kühlt ein luftentfeuchter",
+   "seed": "luftentfeuchter",
+   "source": "related-queries",
+   "stand": "2026-09-20",
+   "v": 36200
   },
   {
    "heat": null,
@@ -88,14 +66,11 @@
    "q": "luftentfeuchter testsieger stiftung warentest",
    "seed": "luftentfeuchter",
    "source": "related-queries",
-   "stand": "2026-09-11",
-   "v": 31250
+   "stand": "2026-09-20",
+   "v": 30450
   },
   {
-   "heat": {
-    "n7": 5,
-    "p7": 1
-   },
+   "heat": null,
    "kind": "value",
    "match": 0.925,
    "page": "guide/heizluefter-stromsparend.html",
@@ -131,7 +106,7 @@
    "heat": null,
    "kind": "value",
    "match": 1.0,
-   "page": "guide/heizung-15-qm.html",
+   "page": "guide/infrarotheizung-watt-rechner.html",
    "q": "infrarotheizung 200 watt",
    "seed": "infrarotheizung",
    "source": "related-queries",
@@ -161,10 +136,7 @@
    "v": 23250
   },
   {
-   "heat": {
-    "n7": 5,
-    "p7": 1
-   },
+   "heat": null,
    "kind": "value",
    "match": 0.633,
    "page": "guide/heizluefter-stromsparend.html",
@@ -188,17 +160,6 @@
   {
    "heat": null,
    "kind": "value",
-   "match": 0.875,
-   "page": "guide/wohnmobil-feuchtigkeit-winter.html",
-   "q": "luftentfeuchter wohnung ohne strom",
-   "seed": "luftentfeuchter",
-   "source": "related-queries",
-   "stand": "2026-09-11",
-   "v": 19250
-  },
-  {
-   "heat": null,
-   "kind": "value",
    "match": 0.917,
    "page": "guide/infrarotheizung-garage.html",
    "q": "infrarotheizung als bild",
@@ -210,8 +171,19 @@
   {
    "heat": null,
    "kind": "value",
-   "match": 0.75,
-   "page": "guide/heizung-10-qm.html",
+   "match": 0.85,
+   "page": "guide/schimmel-kleiderschrank.html",
+   "q": "luftentfeuchter granulat nachfüllpack",
+   "seed": "luftentfeuchter",
+   "source": "related-queries",
+   "stand": "2026-09-20",
+   "v": 16950
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 0.737,
+   "page": "guide/infrarotheizung-ratgeber.html",
    "q": "könighaus infrarotheizung 600 watt",
    "seed": "infrarotheizung",
    "source": "related-queries",
@@ -232,8 +204,33 @@
   {
    "heat": null,
    "kind": "value",
-   "match": 0.9,
-   "page": "kategorie/heizen.html",
+   "match": 0.887,
+   "page": "guide/luftentfeuchter-granulat-oder-elektrisch.html",
+   "q": "luftentfeuchter keller ohne strom",
+   "seed": "luftentfeuchter",
+   "source": "related-queries",
+   "stand": "2026-09-20",
+   "v": 15100
+  },
+  {
+   "heat": {
+    "n7": 4,
+    "p7": 1
+   },
+   "kind": "value",
+   "match": 0.667,
+   "page": "index.html",
+   "q": "luftentfeuchter wohnung testsieger",
+   "seed": "luftentfeuchter",
+   "source": "related-queries",
+   "stand": "2026-09-20",
+   "v": 13050
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 0.875,
+   "page": "guide/infrarotheizung-garage.html",
    "q": "heizlüfter garage",
    "seed": "heizlüfter",
    "source": "related-queries",
@@ -287,7 +284,7 @@
   {
    "heat": null,
    "kind": "value",
-   "match": 1.0,
+   "match": 0.95,
    "page": "guide/heizung-30-qm.html",
    "q": "heizlüfter 400 watt",
    "seed": "heizlüfter",
@@ -298,8 +295,8 @@
   {
    "heat": null,
    "kind": "value",
-   "match": 0.633,
-   "page": "guide/heizkosten-vergleich-rechner.html",
+   "match": 0.65,
+   "page": "guide/heizung-10-qm.html",
    "q": "heizlüfter bad testsieger",
    "seed": "heizlüfter",
    "source": "related-queries",
@@ -309,8 +306,8 @@
   {
    "heat": null,
    "kind": "value",
-   "match": 0.917,
-   "page": "kategorie/klimaanlagen.html",
+   "match": 0.9,
+   "page": "guide/coolizi-erfahrungen.html",
    "q": "coolzy klimaanlage test",
    "seed": "klimaanlage",
    "source": "related-queries",
@@ -319,7 +316,7 @@
   },
   {
    "heat": {
-    "n7": 3,
+    "n7": 2,
     "p7": 1
    },
    "kind": "value",
@@ -360,16 +357,6 @@
  "gaps": [
   {
    "kind": "value",
-   "match": 0.333,
-   "page": "guide/bester-luftkuehler.html",
-   "q": "bester saugwischer roboter",
-   "seed": "saugwischer",
-   "source": "related-queries",
-   "stand": "2026-09-10",
-   "v": 62450
-  },
-  {
-   "kind": "value",
    "match": 0.5,
    "page": "guide/heizkosten-vergleich-rechner.html",
    "q": "knebel infrarotheizung",
@@ -400,13 +387,13 @@
   },
   {
    "kind": "value",
-   "match": 0.5,
-   "page": "index.html",
-   "q": "bonaura luftentfeuchter",
-   "seed": "luftentfeuchter",
+   "match": 0.0,
+   "page": null,
+   "q": "krups kaffeevollautomat intensity milk",
+   "seed": "kaffeevollautomat",
    "source": "related-queries",
-   "stand": "2026-09-11",
-   "v": 19850
+   "stand": "2026-09-17",
+   "v": 16500
   },
   {
    "kind": "value",
@@ -422,11 +409,21 @@
    "kind": "value",
    "match": 0.19,
    "page": "guide/epicooler-erfahrungen.html",
+   "q": "siemens kaffeevollautomat eq.6 plus s400 te654509de",
+   "seed": "kaffeevollautomat",
+   "source": "related-queries",
+   "stand": "2026-09-17",
+   "v": 13950
+  },
+  {
+   "kind": "value",
+   "match": 0.19,
+   "page": "guide/epicooler-erfahrungen.html",
    "q": "siemens kaffeevollautomat eq.6 plus s300 te653501de",
    "seed": "kaffeevollautomat",
    "source": "related-queries",
-   "stand": "2026-09-16",
-   "v": 9200
+   "stand": "2026-09-17",
+   "v": 10550
   },
   {
    "kind": "value",
@@ -435,8 +432,8 @@
    "q": "siemens te651509de eq.6 plus s100 kaffeevollautomat",
    "seed": "kaffeevollautomat",
    "source": "related-queries",
-   "stand": "2026-09-16",
-   "v": 8900
+   "stand": "2026-09-17",
+   "v": 9600
   },
   {
    "kind": "value",
@@ -447,16 +444,6 @@
    "source": "related-queries",
    "stand": "2026-09-13",
    "v": 4400
-  },
-  {
-   "kind": "value",
-   "match": 0.25,
-   "page": "guide/delonghi-pac-n90-test.html",
-   "q": "de'longhi kaffeevollautomat ecam 21.118.b",
-   "seed": "kaffeevollautomat",
-   "source": "related-queries",
-   "stand": "2026-09-16",
-   "v": 3700
   },
   {
    "kind": "value",
@@ -480,53 +467,13 @@
   },
   {
    "kind": "value",
-   "match": 0.0,
-   "page": null,
-   "q": "krups kaffeevollautomat intensity milk",
-   "seed": "kaffeevollautomat",
-   "source": "related-queries",
-   "stand": "2026-09-16",
-   "v": 600
-  },
-  {
-   "kind": "value",
-   "match": 0.0,
-   "page": null,
-   "q": "philips kaffeevollautomat ep5443/70 5400 series",
-   "seed": "kaffeevollautomat",
-   "source": "related-queries",
-   "stand": "2026-09-16",
-   "v": 550
-  },
-  {
-   "kind": "value",
-   "match": 0.19,
-   "page": "guide/epicooler-erfahrungen.html",
-   "q": "siemens kaffeevollautomat eq.6 plus s400 te654509de",
-   "seed": "kaffeevollautomat",
-   "source": "related-queries",
-   "stand": "2026-09-16",
-   "v": 550
-  },
-  {
-   "kind": "value",
-   "match": 0.333,
-   "page": "guide/air-zuma-erfahrungen.html",
-   "q": "kaffeevollautomat mit keramikmahlwerk",
-   "seed": "kaffeevollautomat",
-   "source": "related-queries",
-   "stand": "2026-09-16",
-   "v": 300
-  },
-  {
-   "kind": "value",
    "match": 0.25,
    "page": "en/guide/best-portable-air-conditioner-europe-heatwave.html",
    "q": "emma performance matratze",
    "seed": "matratze",
    "source": "related-queries",
-   "stand": "2026-09-09",
-   "v": 150
+   "stand": "2026-09-19",
+   "v": 140
   },
   {
    "kind": "value",
@@ -535,8 +482,8 @@
    "q": "kühlende matratze",
    "seed": "matratze",
    "source": "related-queries",
-   "stand": "2026-09-09",
-   "v": 140
+   "stand": "2026-09-19",
+   "v": 130
   },
   {
    "kind": "value",
@@ -545,7 +492,17 @@
    "q": "de'longhi kaffeevollautomat",
    "seed": "kaffeevollautomat",
    "source": "related-queries",
-   "stand": "2026-09-16",
+   "stand": "2026-09-17",
+   "v": 120
+  },
+  {
+   "kind": "value",
+   "match": 0.0,
+   "page": null,
+   "q": "leifheit saugwischer",
+   "seed": "saugwischer",
+   "source": "related-queries",
+   "stand": "2026-09-20",
    "v": 120
   },
   {
@@ -565,7 +522,7 @@
    "q": "samsung kaffeevollautomat",
    "seed": "kaffeevollautomat",
    "source": "related-queries",
-   "stand": "2026-09-16",
+   "stand": "2026-09-17",
    "v": 100
   },
   {
@@ -575,28 +532,18 @@
    "q": "boxspringbett 140x200 mit matratze und topper",
    "seed": "matratze",
    "source": "related-queries",
-   "stand": "2026-09-09",
-   "v": 90
-  },
-  {
-   "kind": "value",
-   "match": 0.25,
-   "page": "for-agents.html",
-   "q": "emma original matratze",
-   "seed": "matratze",
-   "source": "related-queries",
-   "stand": "2026-09-09",
+   "stand": "2026-09-19",
    "v": 80
   },
   {
    "kind": "value",
-   "match": 0.0,
-   "page": null,
-   "q": "pool matratze",
-   "seed": "matratze",
+   "match": 0.5,
+   "page": "guide/bester-luftkuehler.html",
+   "q": "bester saugwischer",
+   "seed": "saugwischer",
    "source": "related-queries",
-   "stand": "2026-09-09",
-   "v": 70
+   "stand": "2026-09-20",
+   "v": 80
   },
   {
    "kind": "value",
@@ -605,7 +552,17 @@
    "q": "emma original pro matratze",
    "seed": "matratze",
    "source": "related-queries",
-   "stand": "2026-09-09",
+   "stand": "2026-09-19",
+   "v": 70
+  },
+  {
+   "kind": "value",
+   "match": 0.0,
+   "page": null,
+   "q": "emma dynamic matratze",
+   "seed": "matratze",
+   "source": "related-queries",
+   "stand": "2026-09-19",
    "v": 70
   },
   {
@@ -630,12 +587,12 @@
   },
   {
    "kind": "value",
-   "match": 0.0,
-   "page": null,
-   "q": "babybett matratze 70x140",
+   "match": 0.25,
+   "page": "for-agents.html",
+   "q": "emma original matratze",
    "seed": "matratze",
    "source": "related-queries",
-   "stand": "2026-09-09",
+   "stand": "2026-09-19",
    "v": 60
   },
   {
@@ -645,78 +602,58 @@
    "q": "vorwerk staubsauger",
    "seed": "saugwischer",
    "source": "related-queries",
-   "stand": "2026-09-10",
-   "v": 60
-  },
-  {
-   "kind": "value",
-   "match": 0.0,
-   "page": null,
-   "q": "dyson staubsauger",
-   "seed": "saugwischer",
-   "source": "related-queries",
-   "stand": "2026-09-10",
-   "v": 40
-  },
-  {
-   "kind": "value",
-   "match": 0.0,
-   "page": null,
-   "q": "philips saugwischer",
-   "seed": "saugwischer",
-   "source": "related-queries",
-   "stand": "2026-09-10",
+   "stand": "2026-09-20",
    "v": 40
   }
  ],
- "generated": "2026-09-17",
+ "generated": "2026-09-21",
  "geo": "DE",
- "heat_source": "measured 2026-09-17 (22 pages); no notes",
+ "heat_source": "measured 2026-09-21 (24 pages); no notes",
  "hot_pages": [
   {
-   "n7": 9,
-   "p7": 4,
-   "page": "/guide/growatt-noah-2000-probleme.html"
-  },
-  {
-   "n7": 8,
-   "p7": 5,
-   "page": "/en/guide/portable-ac-tilt-and-turn-windows.html"
-  },
-  {
-   "n7": 8,
-   "p7": 7,
-   "page": "/guide/midea-portasplit-ausverkauft-alternativen.html"
-  },
-  {
-   "n7": 6,
-   "p7": 5,
-   "page": "/guide/was-bedeutet-btu.html"
-  },
-  {
-   "n7": 5,
-   "p7": 1,
-   "page": "/guide/heizluefter-stromsparend.html"
-  },
-  {
-   "n7": 5,
-   "p7": 7,
-   "page": "/guide/klimaanlage-wohnmobil.html"
-  },
-  {
-   "n7": 5,
-   "p7": 5,
-   "page": "/guide/mobile-klimaanlage-ueberwintern.html"
-  },
-  {
-   "n7": 4,
+   "n7": 12,
    "p7": 1,
    "page": "/guide/fensterabdichtung-selber-bauen.html"
   },
   {
-   "n7": 4,
+   "n7": 9,
+   "p7": 1,
+   "page": "/en/guide/portable-ac-smells-musty.html"
+  },
+  {
+   "n7": 8,
+   "p7": 0,
+   "page": "/en/guide/btu-calculator.html"
+  },
+  {
+   "n7": 7,
+   "p7": 7,
+   "page": "/en/guide/portable-ac-tilt-and-turn-windows.html"
+  },
+  {
+   "n7": 7,
+   "p7": 6,
+   "page": "/guide/growatt-noah-2000-probleme.html"
+  },
+  {
+   "n7": 6,
    "p7": 8,
-   "page": "/guide/klimaanlage-kippfenster.html"
+   "page": "/guide/midea-portasplit-ausverkauft-alternativen.html"
+  },
+  {
+   "n7": 4,
+   "p7": 1,
+   "page": "/"
+  },
+  {
+   "n7": 4,
+   "p7": 0,
+   "page": "/guide/balkonkraftwerk-ohne-bohren.html"
+  },
+  {
+   "n7": 4,
+   "p7": 0,
+   "page": "/wohnkosten-werkstatt.html"
   },
   {
    "n7": 3,
@@ -725,47 +662,48 @@
   },
   {
    "n7": 3,
-   "p7": 1,
-   "page": "/guide/split-klimaanlage-ohne-kernbohrung.html"
+   "p7": 2,
+   "page": "/guide/luftentfeuchter-20-qm.html"
+  },
+  {
+   "n7": 3,
+   "p7": 6,
+   "page": "/guide/was-bedeutet-btu.html"
   },
   {
    "n7": 2,
-   "p7": 4,
-   "page": "/en/guide/portable-ac-leaking-water.html"
+   "p7": 0,
+   "page": "/en/guide.html"
+  },
+  {
+   "n7": 2,
+   "p7": 0,
+   "page": "/en/guide/dehumidifier-drying-clothes-cost.html"
   },
   {
    "n7": 2,
    "p7": 2,
-   "page": "/en/guide/portable-air-conditioner-france.html"
-  },
-  {
-   "n7": 2,
-   "p7": 0,
-   "page": "/guide/beste-tragbare-klimaanlage-hitzewelle.html"
-  },
-  {
-   "n7": 2,
-   "p7": 0,
-   "page": "/guide/beste-tragbare-klimaanlage-schlafzimmer.html"
+   "page": "/en/guide/portable-ac-leaking-water.html"
   }
  ],
  "how_to_read": "gaps = 今天有需求、站内没有页面接得住(match < 0.60);covered = 已有页面接得住。**page 字段是「词元重叠度最高的现有页面」,不是编辑判断** —— 实测它会挑错:eco 的 'luftentfeuchter bei hitze' 被它指到 kinderzimmer-kuehlen.html,而本站自己的 rail 把这条问句路由到 luftentfeuchter-ratgeber 的「它不制冷」那一节。所以 page 只当线索用,别当结论。v 是 Google 的增长值,不是搜索量;kind=autocomplete-new 的行来自配额用尽后的兜底,分值恒为 1,不可与真实增长值比较。**underserved** = 有真实增长值(v≥200、非兜底)的需求词、站内有页面接得住、但过去 7 天零真人到达 —— 这不是缺内容,是标题/首屏/内链让人找不到,是判断层最该动手的一类。hot_pages = 实测 7 天真人到达最多的页(n7)与前 7 天(p7);first_party_demand = 读者在站内亲手输入的搜索词(site_search / search_no_result),对 Google 面降级的站,它是主信号不是补充。heat_source 写着度量的日期与状态;读不到就如实写读不到。",
  "note": "选题输入,不是选题依据。任何由它引出的页面仍要过本站三门与硬内容规则。本文件由 tools/autopilot 每日确定性生成,零 AI、零编造。",
  "offtopic_dropped": [
-  "meaco arete one 20l",
-  "luftfeuchtigkeit senken",
+  "meacodry arete one 20l",
+  "comfee mddf-20den7-wf",
   "coolizi",
-  "meacodry arete one 25l",
-  "blume 2000",
+  "bautrockner kaufen",
+  "kärcher nass trockensauger",
   "ecoflow stream 5000",
   "ariston mobis plus 10",
   "dreo atom one",
   "fluss durch riga",
-  "kärcher fc5",
+  "dreame h15 pro heat",
   "anker solix 4 pro",
   "anker solix 4",
   "bett1 de",
-  "ikea bett 140x200"
+  "mozart bett",
+  "kinderbett 90x200"
  ],
  "site": "getecoback",
  "source_notes": [],
@@ -776,8 +714,8 @@
   {
    "heat": null,
    "kind": "value",
-   "match": 0.75,
-   "page": "tools.html",
+   "match": 1.0,
+   "page": "guide/infrarotheizung-gegen-schimmel.html",
    "q": "infrarotheizung gegen schimmel",
    "seed": "infrarotheizung",
    "source": "related-queries",
@@ -788,7 +726,7 @@
    "heat": null,
    "kind": "value",
    "match": 0.75,
-   "page": "guide/schimmel-bad-fugen.html",
+   "page": "guide/schimmel-am-fenster.html",
    "q": "schimmel auf leder entfernen",
    "seed": "schimmel entfernen",
    "source": "related-queries",
@@ -798,46 +736,24 @@
   {
    "heat": null,
    "kind": "value",
-   "match": 0.95,
-   "page": "guide/trotec-luftentfeuchter-test.html",
-   "q": "luftentfeuchter keller test",
-   "seed": "luftentfeuchter",
-   "source": "related-queries",
-   "stand": "2026-09-11",
-   "v": 48200
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.967,
-   "page": "guide/heizung-10-qm.html",
-   "q": "heizlüfter 300 watt",
-   "seed": "heizlüfter",
-   "source": "related-queries",
-   "stand": "2026-09-12",
-   "v": 44900
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.75,
-   "page": "guide/ventilator-kaufen-ratgeber.html",
-   "q": "klimaanlage mobil",
-   "seed": "luftentfeuchter",
-   "source": "related-queries",
-   "stand": "2026-09-11",
-   "v": 40700
-  },
-  {
-   "heat": null,
-   "kind": "value",
    "match": 0.725,
    "page": "guide/klarstein-geraete-test.html",
    "q": "klarstein mobile klimaanlage mit abluftschlauch, 4-in-1 klimagerät mit ventilato",
    "seed": "luftentfeuchter",
    "source": "related-queries",
-   "stand": "2026-09-11",
-   "v": 38200
+   "stand": "2026-09-20",
+   "v": 44450
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 0.933,
+   "page": "guide/luftentfeuchter-ratgeber.html",
+   "q": "kühlt ein luftentfeuchter",
+   "seed": "luftentfeuchter",
+   "source": "related-queries",
+   "stand": "2026-09-20",
+   "v": 36200
   },
   {
    "heat": null,
@@ -847,8 +763,19 @@
    "q": "luftentfeuchter testsieger stiftung warentest",
    "seed": "luftentfeuchter",
    "source": "related-queries",
-   "stand": "2026-09-11",
-   "v": 31250
+   "stand": "2026-09-20",
+   "v": 30450
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 0.925,
+   "page": "guide/heizluefter-stromsparend.html",
+   "q": "sparsamer heizlüfter",
+   "seed": "heizlüfter",
+   "source": "related-queries",
+   "stand": "2026-09-12",
+   "v": 28600
   },
   {
    "heat": null,
@@ -876,7 +803,7 @@
    "heat": null,
    "kind": "value",
    "match": 1.0,
-   "page": "guide/heizung-15-qm.html",
+   "page": "guide/infrarotheizung-watt-rechner.html",
    "q": "infrarotheizung 200 watt",
    "seed": "infrarotheizung",
    "source": "related-queries",
@@ -908,6 +835,17 @@
   {
    "heat": null,
    "kind": "value",
+   "match": 0.633,
+   "page": "guide/heizluefter-stromsparend.html",
+   "q": "keramik heizlüfter test",
+   "seed": "heizlüfter",
+   "source": "related-queries",
+   "stand": "2026-09-12",
+   "v": 20500
+  },
+  {
+   "heat": null,
+   "kind": "value",
    "match": 0.98,
    "page": "guide/infrarotheizung-ratgeber.html",
    "q": "infrarotheizung 600 watt mit thermostat",
@@ -915,17 +853,6 @@
    "source": "related-queries",
    "stand": "2026-09-16",
    "v": 19750
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.875,
-   "page": "guide/wohnmobil-feuchtigkeit-winter.html",
-   "q": "luftentfeuchter wohnung ohne strom",
-   "seed": "luftentfeuchter",
-   "source": "related-queries",
-   "stand": "2026-09-11",
-   "v": 19250
   },
   {
    "heat": null,
@@ -941,8 +868,19 @@
   {
    "heat": null,
    "kind": "value",
-   "match": 0.75,
-   "page": "guide/heizung-10-qm.html",
+   "match": 0.85,
+   "page": "guide/schimmel-kleiderschrank.html",
+   "q": "luftentfeuchter granulat nachfüllpack",
+   "seed": "luftentfeuchter",
+   "source": "related-queries",
+   "stand": "2026-09-20",
+   "v": 16950
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 0.737,
+   "page": "guide/infrarotheizung-ratgeber.html",
    "q": "könighaus infrarotheizung 600 watt",
    "seed": "infrarotheizung",
    "source": "related-queries",
@@ -963,8 +901,19 @@
   {
    "heat": null,
    "kind": "value",
-   "match": 0.9,
-   "page": "kategorie/heizen.html",
+   "match": 0.887,
+   "page": "guide/luftentfeuchter-granulat-oder-elektrisch.html",
+   "q": "luftentfeuchter keller ohne strom",
+   "seed": "luftentfeuchter",
+   "source": "related-queries",
+   "stand": "2026-09-20",
+   "v": 15100
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 0.875,
+   "page": "guide/infrarotheizung-garage.html",
    "q": "heizlüfter garage",
    "seed": "heizlüfter",
    "source": "related-queries",
@@ -977,17 +926,6 @@
    "match": 0.833,
    "page": "guide/klimaanlage-mietwohnung.html",
    "q": "bgh urteil klimaanlage",
-   "seed": "klimaanlage",
-   "source": "related-queries",
-   "stand": "2026-09-14",
-   "v": 6600
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.938,
-   "page": "kategorie/klimaanlagen.html",
-   "q": "beste klimaanlage für mietwohnung",
    "seed": "klimaanlage",
    "source": "related-queries",
    "stand": "2026-09-14",

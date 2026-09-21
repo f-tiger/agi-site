@@ -1,6 +1,6 @@
 {
  "note": "舰队赌注台账:每条预登记判定线一行;status open→won/lost/insufficient/withdrawn 时必须写 settled(日期)与 reading(读数)。tools/fleet/check_bets.py 在 heartbeat 里断言:到期 3 天内提醒,过期 >7 天未结算即红。新增判定线不进这里 = heartbeat 看不见 = 等于没预登记。",
- "updated": "2026-09-18",
+ "updated": "2026-09-21",
  "bets": [
   {
    "id": "fleet-ai-access-0916",
@@ -1197,6 +1197,182 @@
    "win": "判定题在本站量级成立;按「引用量大 × 缺多语言」补翻译,不新开子域",
    "lose": "降级为 /can-ai-replace-knowledge-workers 的一个小节,不再单独维护;记反面发现「音乐方向在本舰队量级无读数」",
    "source": "docs/ai-music-subdomain-2026-09-17.md",
+   "status": "open"
+  },
+  {
+   "id": "eco-dach-troubleshoot-1116",
+   "site": "getecoback",
+   "due": "2026-11-16",
+   "metric": "三张冬季故障页(/guide/luftentfeuchter-stinkt · heizluefter-schaltet-sich-aus · luftbefeuchter-weisser-staub)28 天真人 pv 与搜索引荐合计;t0(2026-09-18)= 0 / 0",
+   "threshold": "三页合计搜索引荐 ≥25/28d(既有故障页每页均值 8 × 3 ≈ 24)或合计真人 pv ≥40",
+   "win": "「故障排查页型」跨簇成立(不只是空调簇)→ 按同形状补 balkonkraftwerk/wechselrichter 与 infrarotheizung 的故障页",
+   "lose": "128 倍页效只是空调簇 + 夏季的特例 → 停止按页型铺页,冬季簇回到季节性单词选题",
+   "source": "2026-09-17 D1:troubleshooting 形 4 页 = 32 次搜索访问/28d,评测形 16 页 = 1 次(每页 128 倍)。Trends 对这三个故障短语全部 ≈0(5 年 interest,anchor heizlüfter),与手册「故障长尾 Trends 结构上测不到,信第一方」一致——所以这是**页型赌注**,不是搜索量赌注。三页零编造:物理 + 算术(2 000 W ÷ 230 V = 8,7 A;16 A × 230 V = 3 680 W)、站内既有规则(单一清洁剂、不混氯与酸、不写浓度),没有型号级断言。",
+   "status": "open"
+  },
+  {
+   "id": "eco-luftfeuchtigkeit-hub-1116",
+   "site": "getecoback",
+   "due": "2026-11-16",
+   "metric": "/guide/luftfeuchtigkeit-senken.html 28 天真人 pv、搜索/AI 引荐、它向 30 张湿度簇页的站内跳转;t0(2026-09-18)= 0",
+   "threshold": "真人 pv ≥25/28d 或 ≥1 次 AI 引荐或 ≥3 次搜索引荐",
+   "win": "「簇入口判定页」成立 → 给取暖簇建同形态入口(heizen ohne zentralheizung / heizkosten senken 总览)",
+   "lose": "通用信息词在本域排不上(与新页冷启动一致)→ 不再建簇入口页,湿度簇只靠具体问题页",
+   "source": "2026-09-18:rising `luftfeuchtigkeit senken` 46 700(luftentfeuchter 种子),**autopilot 把它放进了 offtopic_dropped**——分类器把本站核心词判成站外,已记进手册;5 年绝对量 7,0(anchor 当周 100,heizlüfter 九月均值 24)= 中等、10 月峰、evergreen。页面全部数字 Magnus 现算并复核:室外 0 °C/90 % → 20 °C 时 24 %;5/80 → 30 %;10/90 → 47 %;15/90 → 66 %;25/70 → 95 %(夏季开窗反而更湿);40 m³/18 °C 60→50 % = 61 g。",
+   "status": "open"
+  },
+  {
+   "id": "eco-at-balkon-1116",
+   "site": "getecoback",
+   "due": "2026-11-16",
+   "metric": "/guide/balkonkraftwerk-oesterreich.html 28 天真人 pv(按国家)、搜索/AI 引荐;t0(2026-09-18)= 0;AT 全站 26 pv/28d。**峰值在 3–4 月**(AT balkonkraftwerk 61,4/3 月;anmelden 18,0/4 月;800 watt 23,0/6 月),11-16 只测早期信号",
+   "threshold": "≥1 次外部引荐(搜索或 AI)或该页真人 pv ≥8/28d;春季读数并入 eco-storage-spring-0415",
+   "win": "AT 法条页型(RIS 一手 + 与 DE 对照表)成立 → 按同法做 AT 的 Heizkostenzuschuss(等 oesterreich.gv.at 恢复)与 CH 的对应页",
+   "lose": "奥地利读者不需要奥地利专页 → 只维护三张德语页上的指路框,不再单独出 AT 页",
+   "source": "2026-09-18:RIS 实抓 ElWG(BGBl. I Nr. 91/2025,Fassung 18.09.2026):§ 7 Z 78 Kleinsterzeugungsanlage = 0,8 kW an der Übergabestelle;§ 77 无 eigener Zählpunkt(除非申请)、免 §§ 11/74 Abs 1;ElWOG 2010 §66a 于 24.12.2025 失效。**法条里没找到 Meldepflicht,页面如实说「问 Netzbetreiber」而不是编一个流程**;Förderung 因无官方汇总源不写金额。",
+   "status": "open"
+  },
+  {
+   "id": "agent-delivery-demand-1019",
+   "site": "agent-delivery-lab",
+   "due": "2026-10-19",
+   "metric": "/api/stats 排除 qa=1 后 own_completed=1 匿名反馈及频率/兴趣分组；不是独立访客或购买",
+   "threshold": "own_completed>=10，其中 frequency=4plus>=5、interest=discuss>=3；只触发人工核实，不放行收费",
+   "win": "核实同一人群重复任务与免费替代不足，再决定付费试验；须另有独立购买证据",
+   "lose": "停止扩协议/AI评分/托管监控；无触达证据记 insufficient，已有相关触达而无需求则保留小工具或并站",
+   "source": "docs/agent-delivery-lab-validation-2026-09-19.md:58",
+   "status": "open"
+  },
+  {
+   "id": "web3-reconcile-1019",
+   "site": "web3-reconcile",
+   "due": "2026-10-19",
+   "metric": "https://reconcile.agiscorecard.com/api/stats：排除 qa=1，读取 own_completed=1 且 usefulness=helped 的匿名提交数及 frequency=repeat；稳定币对账。不是独立用户、客户或购买。",
+   "threshold": "自有材料完成且有帮助的提交 ≥5，其中重复任务 ≥3；只触发人工核实。协议 API 还需核实至少两个独立重复使用工作流，访问次数不能替代。",
+   "win": "核实至少两个独立团队两个周期的重复任务及相对当前替代的总时间改善，再决定下一阶段；没有收费放行。",
+   "lose": "没有相关触达证据则 insufficient；确认有触达但输入负担大于收益或没有重复任务，则停止专属功能扩张，保留免费工具或并入 hub。",
+   "source": "docs/web3-portfolio-research-2026-09-19.md；用户 2026-09-19 明确要求全部剩余方向研究完善后上线。",
+   "status": "open"
+  },
+  {
+   "id": "web3-evidence-1019",
+   "site": "web3-evidence",
+   "due": "2026-10-19",
+   "metric": "https://evidence.agiscorecard.com/api/stats：排除 qa=1，读取 own_completed=1 且 usefulness=helped 的匿名提交数及 frequency=repeat；Agent 任务证据。不是独立用户、客户或购买。",
+   "threshold": "自有材料完成且有帮助的提交 ≥5，其中重复任务 ≥3；只触发人工核实。协议 API 还需核实至少两个独立重复使用工作流，访问次数不能替代。",
+   "win": "核实至少两个独立团队两个周期的重复任务及相对当前替代的总时间改善，再决定下一阶段；没有收费放行。",
+   "lose": "没有相关触达证据则 insufficient；确认有触达但输入负担大于收益或没有重复任务，则停止专属功能扩张，保留免费工具或并入 hub。",
+   "source": "docs/web3-portfolio-research-2026-09-19.md；用户 2026-09-19 明确要求全部剩余方向研究完善后上线。",
+   "status": "open"
+  },
+  {
+   "id": "web3-route-1019",
+   "site": "web3-route",
+   "due": "2026-10-19",
+   "metric": "https://route.agiscorecard.com/api/stats：排除 qa=1，读取 own_completed=1 且 usefulness=helped 的匿名提交数及 frequency=repeat；采购路由。不是独立用户、客户或购买。",
+   "threshold": "自有材料完成且有帮助的提交 ≥5，其中重复任务 ≥3；只触发人工核实。协议 API 还需核实至少两个独立重复使用工作流，访问次数不能替代。",
+   "win": "核实至少两个独立团队两个周期的重复任务及相对当前替代的总时间改善，再决定下一阶段；没有收费放行。",
+   "lose": "没有相关触达证据则 insufficient；确认有触达但输入负担大于收益或没有重复任务，则停止专属功能扩张，保留免费工具或并入 hub。",
+   "source": "docs/web3-portfolio-research-2026-09-19.md；用户 2026-09-19 明确要求全部剩余方向研究完善后上线。",
+   "status": "open"
+  },
+  {
+   "id": "web3-protocol-1019",
+   "site": "web3-protocol",
+   "due": "2026-10-19",
+   "metric": "https://protocol.agiscorecard.com/api/stats：排除 qa=1，读取 own_completed=1 且 usefulness=helped 的匿名提交数及 frequency=repeat；协议资料 API。不是独立用户、客户或购买。",
+   "threshold": "自有材料完成且有帮助的提交 ≥5，其中重复任务 ≥3；只触发人工核实。协议 API 还需核实至少两个独立重复使用工作流，访问次数不能替代。",
+   "win": "核实至少两个独立团队两个周期的重复任务及相对当前替代的总时间改善，再决定下一阶段；没有收费放行。",
+   "lose": "没有相关触达证据则 insufficient；确认有触达但输入负担大于收益或没有重复任务，则停止专属功能扩张，保留免费工具或并入 hub。",
+   "source": "docs/web3-portfolio-research-2026-09-19.md；用户 2026-09-19 明确要求全部剩余方向研究完善后上线。",
+   "status": "open"
+  },
+  {
+   "id": "web3-permit-1019",
+   "site": "web3-permit",
+   "due": "2026-10-19",
+   "metric": "https://permit.agiscorecard.com/api/stats：排除 qa=1，读取 own_completed=1 且 usefulness=helped 的匿名提交数及 frequency=repeat；数据许可。不是独立用户、客户或购买。",
+   "threshold": "自有材料完成且有帮助的提交 ≥5，其中重复任务 ≥3；只触发人工核实。协议 API 还需核实至少两个独立重复使用工作流，访问次数不能替代。",
+   "win": "核实至少两个独立团队两个周期的重复任务及相对当前替代的总时间改善，再决定下一阶段；没有收费放行。",
+   "lose": "没有相关触达证据则 insufficient；确认有触达但输入负担大于收益或没有重复任务，则停止专属功能扩张，保留免费工具或并入 hub。",
+   "source": "docs/web3-portfolio-research-2026-09-19.md；用户 2026-09-19 明确要求全部剩余方向研究完善后上线。",
+   "status": "open"
+  },
+  {
+   "id": "web3-compute-1019",
+   "site": "web3-compute",
+   "due": "2026-10-19",
+   "metric": "https://compute.agiscorecard.com/api/stats：排除 qa=1，读取 own_completed=1 且 usefulness=helped 的匿名提交数及 frequency=repeat；有效算力成本。不是独立用户、客户或购买。",
+   "threshold": "自有材料完成且有帮助的提交 ≥5，其中重复任务 ≥3；只触发人工核实。协议 API 还需核实至少两个独立重复使用工作流，访问次数不能替代。",
+   "win": "核实至少两个独立团队两个周期的重复任务及相对当前替代的总时间改善，再决定下一阶段；没有收费放行。",
+   "lose": "没有相关触达证据则 insufficient；确认有触达但输入负担大于收益或没有重复任务，则停止专属功能扩张，保留免费工具或并入 hub。",
+   "source": "docs/web3-portfolio-research-2026-09-19.md；用户 2026-09-19 明确要求全部剩余方向研究完善后上线。",
+   "status": "open"
+  },
+  {
+   "id": "web3-incentives-1019",
+   "site": "web3-incentives",
+   "due": "2026-10-19",
+   "metric": "https://incentives.agiscorecard.com/api/stats：排除 qa=1，读取 own_completed=1 且 usefulness=helped 的匿名提交数及 frequency=repeat；激励经济。不是独立用户、客户或购买。",
+   "threshold": "自有材料完成且有帮助的提交 ≥5，其中重复任务 ≥3；只触发人工核实。协议 API 还需核实至少两个独立重复使用工作流，访问次数不能替代。",
+   "win": "核实至少两个独立团队两个周期的重复任务及相对当前替代的总时间改善，再决定下一阶段；没有收费放行。",
+   "lose": "没有相关触达证据则 insufficient；确认有触达但输入负担大于收益或没有重复任务，则停止专属功能扩张，保留免费工具或并入 hub。",
+   "source": "docs/web3-portfolio-research-2026-09-19.md；用户 2026-09-19 明确要求全部剩余方向研究完善后上线。",
+   "status": "open"
+  },
+  {
+   "id": "web3-proof-1019",
+   "site": "web3-proof",
+   "due": "2026-10-19",
+   "metric": "https://proof.agiscorecard.com/api/stats：排除 qa=1，读取 own_completed=1 且 usefulness=helped 的匿名提交数及 frequency=repeat；zkML 规划。不是独立用户、客户或购买。",
+   "threshold": "自有材料完成且有帮助的提交 ≥5，其中重复任务 ≥3；只触发人工核实。协议 API 还需核实至少两个独立重复使用工作流，访问次数不能替代。",
+   "win": "核实至少两个独立团队两个周期的重复任务及相对当前替代的总时间改善，再决定下一阶段；没有收费放行。",
+   "lose": "没有相关触达证据则 insufficient；确认有触达但输入负担大于收益或没有重复任务，则停止专属功能扩张，保留免费工具或并入 hub。",
+   "source": "docs/web3-portfolio-research-2026-09-19.md；用户 2026-09-19 明确要求全部剩余方向研究完善后上线。",
+   "status": "open"
+  },
+  {
+   "id": "web3-calls-1019",
+   "site": "web3-calls",
+   "due": "2026-10-19",
+   "metric": "https://calls.agiscorecard.com/api/stats：排除 qa=1，读取 own_completed=1 且 usefulness=helped 的匿名提交数及 frequency=repeat；调用解释。不是独立用户、客户或购买。",
+   "threshold": "自有材料完成且有帮助的提交 ≥5，其中重复任务 ≥3；只触发人工核实。协议 API 还需核实至少两个独立重复使用工作流，访问次数不能替代。",
+   "win": "核实至少两个独立团队两个周期的重复任务及相对当前替代的总时间改善，再决定下一阶段；没有收费放行。",
+   "lose": "没有相关触达证据则 insufficient；确认有触达但输入负担大于收益或没有重复任务，则停止专属功能扩张，保留免费工具或并入 hub。",
+   "source": "docs/web3-portfolio-research-2026-09-19.md；用户 2026-09-19 明确要求全部剩余方向研究完善后上线。",
+   "status": "open"
+  },
+  {
+   "id": "web3-disclosures-1019",
+   "site": "web3-disclosures",
+   "due": "2026-10-19",
+   "metric": "https://disclosures.agiscorecard.com/api/stats：排除 qa=1，读取 own_completed=1 且 usefulness=helped 的匿名提交数及 frequency=repeat；RWA 披露。不是独立用户、客户或购买。",
+   "threshold": "自有材料完成且有帮助的提交 ≥5，其中重复任务 ≥3；只触发人工核实。协议 API 还需核实至少两个独立重复使用工作流，访问次数不能替代。",
+   "win": "核实至少两个独立团队两个周期的重复任务及相对当前替代的总时间改善，再决定下一阶段；没有收费放行。",
+   "lose": "没有相关触达证据则 insufficient；确认有触达但输入负担大于收益或没有重复任务，则停止专属功能扩张，保留免费工具或并入 hub。",
+   "source": "docs/web3-portfolio-research-2026-09-19.md；用户 2026-09-19 明确要求全部剩余方向研究完善后上线。",
+   "status": "open"
+  },
+  {
+   "id": "web3-research-1019",
+   "site": "web3-research",
+   "due": "2026-10-19",
+   "metric": "https://web3.agiscorecard.com/api/growth，排除 qa；watch_compare 与 review_export 的自愿事件，加人工核实的重复研究需求。事件不是人数或留存率。",
+   "threshold": "review_export ≥5 且 watch_compare ≥3 仅触发人工验证；扩建另需至少两个独立使用者重复研究、相对既有替代的改善证据。t0 非 QA 自愿事件为 0。",
+   "win": "核实真实重复使用后再判断是否投资可靠提醒/云历史/结构化讨论；不自动开售。",
+   "lose": "无相关触达或 opt-in 不足记 insufficient；有明确触达仍无保存复盘或输入成本高，则收缩为免费辅助工具，不扩建社区。",
+   "source": "docs/web3-research-experience-2026-09-20.md: 验证与停止规则",
+   "status": "open"
+  },
+  {
+   "id": "agi-discussion-1020",
+   "site": "agiscorecard",
+   "due": "2026-10-20",
+   "metric": "AGI /api/discuss/admin action=stats：28 天讨论区 session-days、来源分类、免费社区注册账号、7 天内投稿且通过审核的账号、跨日回访账号、未回复主题及审核积压。公开 /api/pulse 仅作主站 pageview 背景，不充当社区独立用户。",
+   "threshold": "先观察至少 100 个讨论区 session-days；若不足则 insufficient。有足够触达后：至少 10 个免费账号、3 个非站长账号有通过审核的投稿、3 个注册账号跨日回访，且没有持续超过 48 小时的审核积压，才进入下一轮人工需求核实。这是运营判定线，不是统计显著性或营收证明。",
+   "win": "保留三个主题，访谈实际参与者并优先改善他们反复使用的流程；有真实来源的外部引荐再加分发投入，不自动开新板块或买量。",
+   "lose": "触达不足则改善现有站内入口；有触达无参与则收窄到编辑主题讨论，暂停自由发帖扩张。若无人审核，暂停新投稿而保留可读内容和用户删除功能。",
+   "source": "docs/agi-community-research-2026-09-20.md；用户要求深度调研后在 AGI 首页增加讨论区，目标注册与流量。",
    "status": "open"
   }
  ]
