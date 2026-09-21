@@ -27,3 +27,9 @@
   搜索·AI 引荐 / owner 收到询问)。**否则:站上没有能判需求的读数,不得据此判「没人要」**;
   并入 venture-lab 组合决策线,不再单独扩建,直到 owner 决定加 opt-in 计数(同 venture-lab 形态)
   或打开付费。
+
+## 2026-09-21 深度优化(舰队 CLAUDE.md 同日节有全文)
+- `site/*.html` 是静态源,但 `tools/discovery/build.py --only localebatch` 会给每页注入 discovery-head(og/JSON-LD 含
+  `dateModified`)、可见「Updated」行,并重写 sitemap(现在带 `<lastmod>`,由 `tools/discovery/lastmod-localebatch.json`
+  内容哈希清单驱动)。**CI 是 check 模式**:改了页面要 `LASTMOD_MODE=update python3 tools/discovery/build.py --only localebatch`
+  并提交清单。`/guide` 标题缩短、`/privacy` 补 meta description(按页面内容写)、发现页标题超 60 字符不加品牌后缀。

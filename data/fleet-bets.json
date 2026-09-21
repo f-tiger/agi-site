@@ -65,7 +65,9 @@
    "win": "追加 zh 版与更多查询",
    "lose": "全簇 <10 pv → 停止扩张",
    "source": "sites/gridlings/CLAUDE.md:178",
-   "status": "open"
+   "status": "won",
+   "settled": "2026-09-21",
+   "reading": "D1 gridlings-events 现查(2026-09-21,28d 窗,name='page_view' AND ua_class='human'):10 张规则页合计 52 pv(games-like-linkedin-queens 7、star-battle 6、sandwich-sudoku 6、futoshiki 6、thermometer 5、skyscraper 5、binary 5、6x6-sudoku 5、nonogram 4、kropki 3;各页 first_day 08-27,最新 09-19)。ua_audit 同窗查无 fleet/heartbeat/audit/python UA 的行,会话探针未计入。阈值 ≥50,读数 52 —— 赢得很薄(+2),且是服务端 human 口径(09-12 起收紧)。Bing/GSC 前 20 那半句本会话读不到。win 动作「追加 zh 版与更多查询」= 台账里第一条可长出扩张槽的 won 行;本轮未动 gridlings,留给下一次 gridlings 会话。"
   },
   {
    "id": "gridlings-itch-0924",
@@ -924,7 +926,7 @@
    "threshold_original": "≥150 / ≥15",
    "revised": "2026-09-15",
    "revised_reason": "原口径的「二次事件」测的是这些游戏不发的东西:D1 只记 solve/play_again/game_over 这类离散里程碑,而门户玩家在开局与跑完一局之间什么都不触发。owner 后台截图给了正确指标(停留时长):35 visits → 11 玩过 30s → 6 玩过 60s。阈值改为按他们的口径,原文保留在 *_original。",
-   "note": "版本冻结:读数属于 09-15 的旧包。09-16 上传了更快的新归档但 owner 决定「先不发」,结算前不得 publish_sandbox,否则样本前后不可比。"
+   "note": "版本冻结:读数属于 09-15 的旧包。09-16 上传了更快的新归档但 owner 决定「先不发」,结算前不得 publish_sandbox,否则样本前后不可比。 ‖ 2026-09-21 预读(到期前一天,不结算):① D1 play_start 非 US、ref LIKE '%games.playgama.net%'、ts≥09-15 14:53 = 155(4 个有事件日 09-15→09-19,09-20/21 无新增),已过 ≥150;② PLAYS 60S ÷ VISITS 仍需 owner 后台截图。"
   },
   {
    "id": "gridlings-playgama-five-0925",
@@ -1428,6 +1430,17 @@
    "win": "进入 portfolio 的付费门:3 位付费者、2 位复购、正贡献。",
    "lose": "既无验收也无读数 → 站上没有任何能判需求的读数,不得据此判「没人要」;并入 venture-lab 组合决策线,不再单独扩建,直到 owner 决定加 opt-in 计数(同 venture-lab 形态)或打开付费。",
    "source": "docs/portfolio-experiments-2026-09-18.md:32 + docs/localebatch-release-2026-09-18.md;2026-09-21 补登。",
+   "status": "open"
+  },
+  {
+   "id": "web3-mcp-registry-1019",
+   "site": "web3-studio",
+   "due": "2026-10-19",
+   "metric": "官方 MCP 注册表搜索 `agiscorecard-web3-workbench`(https://registry.modelcontextprotocol.io/v0/servers?search=agiscorecard-web3-workbench)是否命中,以及 web3_studio_events / 服务器日志里是否出现非索引器的 /mcp 调用(带参数的 tools/call)。",
+   "threshold": "注册表命中(发布 workflow 只在 server.json 变更时跑一次,merge 后首跑即判);且 28d 内 ≥1 个非索引器调用方带参数调用 ≥5 次。t0(2026-09-21):注册表 0 命中,/mcp 只有部署冒烟与本会话的 initialize。",
+   "win": "按 SR 的做法给每个工具主机的 scoped /mcp 也登记(名字带品牌),并把 web3 hub 的 llms-full/tool.json 列进主域 for-agents 的机器面。",
+   "lose": "注册表命中但零真实调用 → 与 sr-mcp-calls-1014 同判:机器面只维护不扩;注册表未命中 → 查 publish run 日志(OIDC / 422),不重命名。",
+   "source": "CLAUDE.md 2026-09-16「注册表活、awesome-list 死,以后按这个优先级投」;本轮 docs 见 CLAUDE.md 2026-09-21 深度优化节。",
    "status": "open"
   }
  ]

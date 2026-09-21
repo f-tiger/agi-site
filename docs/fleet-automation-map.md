@@ -68,6 +68,7 @@ thedollscout 冻结约 **86 小时**——它的部署是纯 push 触发，没�
 | `tds-indexnow.yml` | `20 6 * * 3` | tds IndexNow（周三） |
 | `bpj-mcp-publish.yml` | **无 cron**(`server.json` 变更或手动 dispatch) | bpj MCP server 发布到 registry.modelcontextprotocol.io(GitHub OIDC,零 owner 密钥)。此前漏登本表,2026-09-16 补 |
 | `sr-mcp-publish.yml` | **无 cron**(同上) | **新增 2026-09-16**:SourceRadar MCP server(`io.github.f-tiger/us-import-duty-facts`)发布到同一注册表。发布前先跑 `tools/test_mcp.mjs` 17 条断言,红了不发。**零新增 cron**:只在 `sites/buysomething/server.json` 改动时触发,≈1 分/次,月均 <2 分。理由与判定线见 `docs/tool-monetization-2026-09-16.md` §十三 |
+| `web3-mcp-publish.yml` | **无 cron**(同上) | **新增 2026-09-21**:Web3 Workbench hub 的 `/mcp`(官方 SDK Streamable HTTP)登记进同一注册表(`io.github.f-tiger/agiscorecard-web3-workbench`)。sanity 步断言版本 == package.json、描述 ≤100、名字带品牌,并带自定义 UA 打一次线上 initialize(边缘 403 Python 默认 UA)。只在 `sites/web3-studio/server.json` 改动时触发,≈1 分/次。判定线 `web3-mcp-registry-1019` |
 
 **成本**：heartbeat **实测 19 秒/次**（2026-09-04 首跑，run 33835200197），按 Actions
 最小计费粒度算 1 分/次 × 30 = ≤30 分/月；agi-site 为公开仓，Actions 免费，

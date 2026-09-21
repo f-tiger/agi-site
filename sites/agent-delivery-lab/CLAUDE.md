@@ -27,3 +27,11 @@
 - `agent-delivery-demand-1019`(`data/fleet-bets.json`,main 09-19 预登记):`/api/stats` 排除 qa=1
   后 own_completed ≥10,其中 frequency=4plus ≥5、interest=discuss ≥3 → 只触发人工核实,不放行收费。
 - 结算时:读 `/api/stats`,把读数写进台账 `reading`,结论写回本文件。
+
+## 2026-09-21 深度优化(舰队 CLAUDE.md 同日节有全文)
+- sitemap `<lastmod>` 与页面 `dateModified`/可见「Updated」行由 `lastmod.json`(内容哈希清单)驱动,
+  `scripts/build.mjs` 末尾调用 `tools/fleet/lastmod.py`;**CI 是 check 模式**:改了页面内容而没跑
+  `LASTMOD_MODE=update npm run build` 会把构建打红(信息里有修法),改完把 `lastmod.json` 一起提交。
+- 4 页此前零 JSON-LD、零 og:image:首页加 `WebApplication`,4 页加 og/twitter + `public/share.png`
+  (`scripts/share_card.py` 用页面自己的文案渲染;改文案时重跑)。
+- 进每周 IndexNow(`tools/indexnow-subdomains.mjs`),密钥文件 `public/16507d8e….txt` 由 worker 的资产透传直接服务。

@@ -34,3 +34,11 @@
   ≥100 才允许解读;完成 ≥20 且价格兴趣 ≥5;收费前 3 位无关联真实买家 + 2 位续费。
 - `venture-filinglens-1019`:100 次相关落地 + 20 次自有任务完成 + 5 次价格兴趣,或 30 天到期先复盘。
 - **读数不足只说明分发未验证,不得下「市场不需要」的结论**(portfolio 文档原话)。
+
+## 2026-09-21 深度优化(舰队 CLAUDE.md 同日节有全文)
+- **`scripts/pages.py` 以前会整个覆盖 `experiments.json`**(丢掉手工加的 filinglens、€ 变 `\u20ac`),而部署冒烟
+  与 `/api/pulse` 都按它遍历主机——已改为合并写入。本地重生成顺序:`python3 scripts/pages.py && python3 scripts/render.py`,
+  然后**必须**再跑 `python3 tools/discovery/build.py --only venture`(它给每页注入 discovery-head、可见日期与 sitemap)。
+- sitemap `<lastmod>` / JSON-LD `dateModified` / 可见「Updated」行由 `tools/discovery/lastmod-<site>.json` 驱动
+  (内容哈希,`tools/fleet/lastmod.py`);CI 是 check 模式,内容变了要 `LASTMOD_MODE=update python3 tools/discovery/build.py`
+  并提交清单。三站 `/guide` 的 description 改为真描述(此前照抄标题);`/agent` 标题缩短;发现页标题超 60 字符不加品牌后缀。

@@ -916,3 +916,45 @@ Cloudflare Pages 把 `/x.html` 308 到 `/x`,而 bpj 的 sitemap / `canonical` / 
   agi 面包屑 / 本轮四站接入,全部要等 owner 合并才生效。**
 - **本会话读不到 D1**:Cloudflare MCP 在本会话仍是未授权状态(owner 已重授权,但非交互会话拿不到
   新令牌,需新开会话)。所以到期的 `gridlings-rules-cluster-0921` 没结算,钱线仪表盘没现查。
+
+## 四个新站深度优化:先量,再修分发与信任层(2026-09-21,owner:「深度优化几个新站点」)
+
+**先量(D1 现查 + 87 页爬取 + 探针)**:四站上线 2–3 天,**人类读数全是 0**——venture 三站的 `venture_events`
+只有部署冒烟的 `mode='qa'` 行(6/6/7),`agent_delivery_feedback` 与 `web3_studio_feedback` 剔 qa 后 0 行,
+`filinglens_events` 5 行、`web3_studio_events` 9 行(均为机器面/冒烟形状)。而且 venture 的统计**默认关闭只测同意者**、
+localebatch **不记任何访问**,所以「零」也读不出访客有没有来。按 09-18 组合文档的规矩(28 天不足 100 次相关落地访问
+→ 先处理分发不足),本轮**不动转化面、不改产品**,只修**能让搜索引擎与 AI 读者找到并信任这些页**的机制,每条都有
+爬取读数支撑:
+- **`<lastmod>` 从「没有」或「写死一个日期」改成内容哈希驱动(`tools/fleet/lastmod.py`,stdlib,带 selftest)**。
+  爬取发现 verify / venture 四主机 / localebatch 的 sitemap **0 条 lastmod**,web3 11 主机 **65 页全写 2026-09-19**
+  ——而 09-20/21 的中文版改了每一页的导航,那个常数已经在撒谎。机制:每站一份 `lastmod.json`{loc: hash, lastmod,
+  published},**update 模式**只给内容真变了的页改日期,**check 模式(CI 默认)**在内容变了而清单没更新时把构建打红
+  (信息里直接给出 `LASTMOD_MODE=update …` 的修法);同一清单同时注入 JSON-LD `dateModified`/`datePublished` 与
+  页面可见的「Updated <time>」行(中文页「更新于」),注入块用注释包起来、哈希前剥掉,所以**注入不改哈希、重跑逐字节相同**。
+  这是 bpj `page-lastmod.json` 那套诚实做法的无需 runner 回推版本,四站(verify / venture 4 主机 + localebatch 经
+  `tools/discovery/build.py` / web3 11 主机 + zh)全部接上,起始日期取各站源码最后真实改动日(09-19;web3 09-21)。
+  **踩过两个坑记下**:①剥块正则不能带 `\s*`,否则把块前原有的换行一起吃掉,哈希就变了(verify 首跑当场红);
+  ②web3 的 `check_html.py` 只认 `@graph` 形状的 JSON-LD,注入节点因此统一用 `@graph` 包裹。
+- **标题与描述(爬取按 60 字符判)**:12 页标题 66–78 字符——发现页与 web3 hub 工具页都是「标题 | 品牌」后缀把它
+  推过线的,规则改为**超过 60 就不加后缀**(品牌仍在 og:site_name / h1 / 面包屑里);3 条发现页标题本身缩短;
+  rfqdesk `/agent` 与 localebatch `/guide` 静态标题缩短。venture 三站 `/guide` 的 meta description 此前**照抄标题**
+  (37–47 字符),改为按各自指南正文写的真描述;localebatch `/privacy` 原本没有 description,补上(按页面内容写)。
+- **verify 补齐机器可读层**:4 页此前**零 JSON-LD、零 og:image**——首页加 `WebApplication`(免费、浏览器、发布者),
+  4 页加 og/twitter 标签与 `share.png`(Pillow 用页面自己的文案渲染,脚本入库),并放进每周 IndexNow
+  (`tools/indexnow-subdomains.mjs` + 同一把舰队密钥文件);web3 的 IndexNow 脚本此前**不推 `/zh/sitemap.xml`**,补上。
+- **web3 hub 登记进官方 MCP 注册表**(`sites/web3-studio/server.json` + `web3-mcp-publish.yml`,照抄 SR 的
+  OIDC 流程,只在 server.json 变更时跑):hub `/mcp` 是官方 SDK 的 Streamable HTTP,活着(initialize 回 1.7.0),
+  但注册表搜 web3/agiscorecard 都没有它。名字带品牌(09-16 规矩)、描述 98 字符、版本断言等于 package.json、
+  sanity 步真的打一次线上 initialize。**Cloudflare 边缘 403 Python 默认 UA**——sanity 步必须带自定义 UA
+  (本地先用 urllib 复现了 403,加 UA 后 200)。判定线 `web3-mcp-registry-1019`。
+- **主域机器面终于提到它们**:`agiscorecard.com/llms.txt` 此前 0 处提及四站,加「Sister tools for agents」节
+  (web3 hub + MCP 端点、verify、FilingLens SEC 端点、TradeCheck、Protocol Ledger API);`/for-agents` 补
+  FilingLens 与 TradeCheck 一段。SourceRadar 首页加一行读者相关的互链(决定 PO 之后核对供应商发票 → TradeCheck),
+  这是本轮唯一一条跨站链接,by_fleet 读数 PR 合并后才有。
+- **顺手修掉的真缺陷**:venture-lab `scripts/pages.py` 每次运行都**整个覆盖 `experiments.json`**——把手工加的
+  FilingLens 条目删掉、把 € 转成 `€`;而部署冒烟与 `/api/pulse` 都按这个文件遍历主机。改为合并写入。
+- **不做的与为什么**:不给四站加 opt-in 计数或 page_view(数据契约,owner 决定);不改产品页文案与定价;不建页;
+  不做「按转化率优化」——没有一个读数能支撑。web3 各工具主机的 scoped `/mcp` 不逐个登记(先看 hub 一条有没有人用)。
+- **验证**:lastmod selftest 11 条;verify 35 测试、web3 94 测试 + check_html 64 页 + indexnow --check 11 主机、
+  venture 25 测试、localebatch 23 测试 + 构建、discovery build/validate 23 页(check 模式)、agi validate/hreflang/
+  面包屑、SR worker 语法 + validate_picks、45 条 workflow YAML。**这些改动和 PR #2 其余部分一样,合并前一件都不在线上。**

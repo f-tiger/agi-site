@@ -30,3 +30,15 @@
 ## 判定线(main 09-19 预登记,`data/fleet-bets.json`)
 - `web3-<tool>-1019` 十条 + `web3-research-1019`:各工具 `/api/stats` 排除 qa=1 后
   own_completed=1 且 usefulness=helped 的提交 ≥5、其中 repeat ≥3 → 只触发人工核实,不放行收费。
+
+## 2026-09-21 深度优化(舰队 CLAUDE.md 同日节有全文)
+- 11 主机 65 页的 sitemap `<lastmod>` 此前全是写死的 2026-09-19(`growth.mjs` 的 `updated` 常数),中文版改了每页导航后
+  它已失真。现在 `lastmod.json`(内容哈希清单)驱动 sitemap `<lastmod>` + 每页 `@graph` 形状的 WebPage
+  `dateModified`/`datePublished` + 可见「Updated / 更新于」行;`scripts/build.mjs` 在 zh sitemap 之后、bundle 之前调用
+  `tools/fleet/lastmod.py`。**CI 是 check 模式**:改内容后跑 `LASTMOD_MODE=update npm run build` 并提交 `lastmod.json`。
+  `growth.mjs` 的 JSON-LD 不再带常数 `dateModified`(同 @id 的节点由清单给日期)。
+- hub 三张工具页标题超 60 字符时不再加「| Web3 Workbench」后缀(`market-pages.mjs`)。`scripts/indexnow.mjs` 现在也推
+  hub 的 `/zh/sitemap.xml`。
+- **官方 MCP 注册表**:`server.json`(`io.github.f-tiger/agiscorecard-web3-workbench`,版本须等于 package.json)+
+  `.github/workflows/web3-mcp-publish.yml`(只在 server.json 变更时跑;sanity 步真打线上 initialize,**必须带自定义 UA,
+  边缘 403 Python 默认 UA**)。判定线 `web3-mcp-registry-1019`。升版本时 package.json 与 server.json 一起改。
