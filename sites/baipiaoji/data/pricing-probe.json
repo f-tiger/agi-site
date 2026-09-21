@@ -1,24 +1,24 @@
 {
- "generated": "2026-09-20",
+ "generated": "2026-09-21",
  "env": "runner",
  "note": "付费档缺口的抓取探针。只做发现与取证，绝不写事实：任何数字仍须经 scripts/limits-edit.mjs 两步核实后才进 tools.json。state=ready 表示该 URL 当天 200 且页面上有像价目表的价格段，不表示数字已被核实。每行的 env 是抓取时的网络环境：sandbox 行的 blocked 很可能只是会话沙箱出网被拒，不能当作「这家没有定价页」，只有 runner 行的 blocked 才值得当结论。",
  "gap_total": 108,
  "batch": [
-  "tongyi-wanxiang",
-  "ttsmaker",
-  "windsurf",
+  "ms-copilot",
+  "tongyi-lingma",
+  "ai360",
+  "aider",
+  "aippt",
+  "ante",
   "anythingllm",
-  "cerebras",
-  "github-models",
-  "groq",
-  "guojia-fanzha"
+  "bing-image"
  ],
- "cursor": "guojia-fanzha",
+ "cursor": "bing-image",
  "summary": {
-  "ready": 8,
-  "empty": 8,
-  "blocked": 8,
-  "probed_total": 24
+  "ready": 9,
+  "empty": 12,
+  "blocked": 10,
+  "probed_total": 31
  },
  "tools": {
   "kimi": {
@@ -583,8 +583,8 @@
    "slug": "anythingllm",
    "name": "AnythingLLM",
    "cat": "local",
-   "reach": 1,
-   "probed": "2026-09-20",
+   "reach": 0,
+   "probed": "2026-09-21",
    "env": "runner",
    "state": "ready",
    "tried": [
@@ -714,6 +714,224 @@
     },
     {
      "url": "https://fzapph5.gjfzpt.cn/plans",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    }
+   ],
+   "best": null
+  },
+  "ms-copilot": {
+   "slug": "ms-copilot",
+   "name": "微软 Copilot",
+   "cat": "chat",
+   "reach": 1,
+   "probed": "2026-09-21",
+   "env": "runner",
+   "state": "empty",
+   "tried": [
+    {
+     "url": "https://copilot.microsoft.com/pricing",
+     "status": 200,
+     "bytes": 38594,
+     "tokens": 0
+    },
+    {
+     "url": "https://copilot.microsoft.com/price",
+     "status": 200,
+     "bytes": 38594,
+     "tokens": 0
+    },
+    {
+     "url": "https://copilot.microsoft.com/plans",
+     "status": 200,
+     "bytes": 36871,
+     "tokens": 0
+    }
+   ],
+   "best": {
+    "url": "https://copilot.microsoft.com/pricing",
+    "tokens": 0,
+    "excerpt": ""
+   }
+  },
+  "tongyi-lingma": {
+   "slug": "tongyi-lingma",
+   "name": "通义灵码",
+   "cat": "coding",
+   "reach": 1,
+   "probed": "2026-09-21",
+   "env": "runner",
+   "state": "ready",
+   "tried": [
+    {
+     "url": "https://lingma.aliyun.com/pricing",
+     "status": 200,
+     "bytes": 85629,
+     "tokens": 3
+    }
+   ],
+   "best": {
+    "url": "https://lingma.aliyun.com/pricing",
+    "tokens": 3,
+    "excerpt": "测试智能体 限制：对话 50轮次/月，单元测试智能体 50方法/月 企业管理 授权管理 统计报表 审计日志 知识管理 自定义扩展管理 企业版专用推理服务 多组织管理 专属 VPC 部署 IP 白名单管理 专有网络访问 个人专业版 限免 ( ¥ 59 /月 ) 前往下载 代码生成 行/函数级代码实时续写 注释生成代码 离线模型单行补全 跨文件感知能力 多结果推荐 企业代码生成增强 智能问答 研发智能问答 本地工程问答 企业知识库问答 图片多模态问答 终端问答 生成代码注释 生成代码解释 生成单元测试 代码优化 提交信息生成 代码问题修复 异常报错排查 AI 程序员（Beta） 多文件批量修改 单元测试智能体 企业管理 授权管理 统计报表 审计日志 知识管理 自定义扩展管理 企业版专用推理服务 多组织管理 专属 VPC 部署 IP 白名单管理 专有网络访问 企业标准版 ¥ 79 /人/月 10人起购 免费开通 代码生成 行/函数级代码实时续写 注释生成代码 离线模型单行补全 跨文件感知能力 多结果推荐 企业代码生成增强 智能问答 研发智能问答 本地工程问答 企业知识库问答 图片多模态问答 终端问答 生成代码注释 生成代码解释 生成单元测试 代码优化 提交信息生成 代码问题修复 异常报\u0000错排查 AI 程序员（Beta） 多文件批量修改 单元测试智能体 企业管理 授权管理 统计报表 审计日志 知识管理 自定义扩展管理 企业版专用推理服务 多组织管理 专属 VPC 部署 IP 白名单管理 专有网络访问 企业专属版 ¥ 159 /人/月 100人起购 前往开通 代码生成 行/函数级代码实时"
+   }
+  },
+  "ai360": {
+   "slug": "ai360",
+   "name": "360 AI 搜索",
+   "cat": "search",
+   "reach": 0,
+   "probed": "2026-09-21",
+   "env": "runner",
+   "state": "empty",
+   "tried": [
+    {
+     "url": "https://so.360.com/pricing",
+     "status": 200,
+     "bytes": 6567,
+     "tokens": 0
+    },
+    {
+     "url": "https://so.360.com/price",
+     "status": 200,
+     "bytes": 6567,
+     "tokens": 0
+    },
+    {
+     "url": "https://so.360.com/plans",
+     "status": 200,
+     "bytes": 6567,
+     "tokens": 0
+    }
+   ],
+   "best": {
+    "url": "https://so.360.com/pricing",
+    "tokens": 0,
+    "excerpt": ""
+   }
+  },
+  "aider": {
+   "slug": "aider",
+   "name": "Aider",
+   "cat": "coding",
+   "reach": 0,
+   "probed": "2026-09-21",
+   "env": "runner",
+   "state": "blocked",
+   "tried": [
+    {
+     "url": "https://aider.chat/pricing",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://aider.chat/price",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://aider.chat/plans",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    }
+   ],
+   "best": null
+  },
+  "aippt": {
+   "slug": "aippt",
+   "name": "AiPPT",
+   "cat": "office",
+   "reach": 0,
+   "probed": "2026-09-21",
+   "env": "runner",
+   "state": "empty",
+   "tried": [
+    {
+     "url": "https://www.aippt.cn/pricing",
+     "status": 200,
+     "bytes": 6046,
+     "tokens": 0
+    },
+    {
+     "url": "https://www.aippt.cn/price",
+     "status": 200,
+     "bytes": 58987,
+     "tokens": 0
+    },
+    {
+     "url": "https://www.aippt.cn/plans",
+     "status": 200,
+     "bytes": 6046,
+     "tokens": 0
+    }
+   ],
+   "best": {
+    "url": "https://www.aippt.cn/pricing",
+    "tokens": 0,
+    "excerpt": ""
+   }
+  },
+  "ante": {
+   "slug": "ante",
+   "name": "Ante",
+   "cat": "coding",
+   "reach": 0,
+   "probed": "2026-09-21",
+   "env": "runner",
+   "state": "empty",
+   "tried": [
+    {
+     "url": "https://ante.run/pricing",
+     "status": 200,
+     "bytes": 1055,
+     "tokens": 0
+    },
+    {
+     "url": "https://ante.run/price",
+     "status": 200,
+     "bytes": 1055,
+     "tokens": 0
+    },
+    {
+     "url": "https://ante.run/plans",
+     "status": 200,
+     "bytes": 1055,
+     "tokens": 0
+    }
+   ],
+   "best": {
+    "url": "https://ante.run/pricing",
+    "tokens": 0,
+    "excerpt": ""
+   }
+  },
+  "bing-image": {
+   "slug": "bing-image",
+   "name": "Bing 图像创作",
+   "cat": "image",
+   "reach": 0,
+   "probed": "2026-09-21",
+   "env": "runner",
+   "state": "blocked",
+   "tried": [
+    {
+     "url": "https://www.bing.com/pricing",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://www.bing.com/price",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://www.bing.com/plans",
      "status": 404,
      "bytes": 0,
      "tokens": 0

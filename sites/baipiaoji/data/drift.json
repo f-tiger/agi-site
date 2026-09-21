@@ -1,10 +1,34 @@
 {
-  "generated": "2026-09-20",
+  "generated": "2026-09-21",
   "note": "官方来源页令牌集合连续两日与基线不同 = 漂移确认。只是「该去核」的信号,不是事实;limits.checked 推进到确认日后自动撤下。",
   "fetched_ok": 103,
   "fetched_fail": 21,
-  "pending": 8,
+  "pending": 7,
   "items": [
+    {
+      "slug": "ollama",
+      "url": "https://github.com/ollama/ollama",
+      "confirmed": "2026-09-21",
+      "first_seen": "2026-09-20",
+      "added": [
+        "181.3k"
+      ],
+      "removed": [
+        "181.2k"
+      ],
+      "checked_then": "2026-08-04"
+    },
+    {
+      "slug": "groq",
+      "url": "https://console.groq.com/docs/rate-limits",
+      "confirmed": "2026-09-21",
+      "first_seen": "2026-09-20",
+      "added": [],
+      "removed": [
+        "70k"
+      ],
+      "checked_then": "2026-08-02"
+    },
     {
       "slug": "continue",
       "url": "https://github.com/continuedev/continue",
@@ -106,21 +130,6 @@
       ],
       "removed": [],
       "checked_then": "2026-08-03"
-    },
-    {
-      "slug": "ollama",
-      "url": "https://github.com/ollama/ollama",
-      "confirmed": "2026-09-18",
-      "first_seen": "2026-09-17",
-      "added": [
-        "17.9k",
-        "181.2k"
-      ],
-      "removed": [
-        "17.8k",
-        "180.8k"
-      ],
-      "checked_then": "2026-08-04"
     },
     {
       "slug": "n8n",
