@@ -31,7 +31,7 @@ for f in root.rglob('*.html'):
     text=f.read_text();title=re.search(r'<title>(.*?)</title>',text).group(1)
     assert title not in titles,(f,'duplicate title');titles.add(title)
     canonical=re.search(r'rel="canonical" href="([^"]+)"',text).group(1)
-    expected='/' if f.name=='index.html' else '/'+f.name
+    expected=('/zh/' if f.parent==root/'zh' and f.name=='index.html' else ('/zh/'+f.name if f.parent==root/'zh' else ('/' if f.name=='index.html' else '/'+f.name)))
     assert urlparse(canonical).path==expected,(f,canonical)
     assert f'<meta property="og:url" content="{canonical}">' in text,(f,'og:url differs from canonical')
     assert re.search(r'<meta property="og:image" content="https://[^/]+/share.png">',text),(f,'share image')
@@ -42,6 +42,7 @@ for f in root.rglob('*.html'):
             if entity['@type']=='WebPage':assert entity['url']==canonical
             if entity['@type']=='FAQPage':
                 for q in entity['mainEntity']:assert q['name'].replace('&','&amp;') in text,(f,q['name'])
-    with Image.open(f.parent/'share.png') as image:assert image.size==(1200,630)
+    share=f.parent/'share.png';share=share if share.exists() else root/'share.png'
+    with Image.open(share) as image:assert image.size==(1200,630)
     checked+=1
 print(f'PASS: {checked} HTML pages — unique IDs, labels, primary headings, local links and app targets.')

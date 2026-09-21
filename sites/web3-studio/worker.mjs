@@ -8,7 +8,7 @@ import {profiles,selectProfiles,CHECKED_AT} from './public/profiles.mjs';
 import {release} from './release.generated.mjs';
 const hosts=new Map([[hubHost,'hub'],...sites.map(s=>[s.host,s.id])]);
 const shared=new Set(['app.mjs','catalog.mjs','core.mjs','engine.mjs','finance.mjs','evidence.mjs','planning.mjs','inspection.mjs','profiles.mjs','style.css','mark.svg','runner.mjs','LICENSE.txt','offline-tools.zip','release.json','experience.mjs','hub.mjs','mcp-info.mjs','attribution.mjs','measure.mjs','market-ui.mjs','impact.mjs','research-ui.mjs','research-core.mjs','proof-core.mjs','finance-core.mjs','16507d8e1997c4be371f5fbaf7ac1985.txt']);
-const pages=new Set(['/','/index.html','/guide.html','/privacy.html','/robots.txt','/sitemap.xml','/llms.txt','/examples/input.json','/examples/report.json','/share.png','/llms-full.txt','/for-agents.html','/.well-known/mcp.json']);
+const pages=new Set(['/','/index.html','/zh/','/zh/index.html','/zh/guide.html','/zh/privacy.html','/zh/market.html','/zh/robots.txt','/zh/sitemap.xml','/zh/llms.txt','/guide.html','/privacy.html','/robots.txt','/sitemap.xml','/llms.txt','/examples/input.json','/examples/report.json','/share.png','/llms-full.txt','/for-agents.html','/.well-known/mcp.json']);
 const security={'Content-Security-Policy':"default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' https://*.agiscorecard.com; connect-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'",'X-Content-Type-Options':'nosniff','Referrer-Policy':'no-referrer','X-Frame-Options':'DENY','Permissions-Policy':'camera=(), microphone=(), geolocation=()','Strict-Transport-Security':'max-age=31536000; includeSubDomains'};
 const json=(v,status=200,headers={})=>new Response(JSON.stringify(v),{status,headers:{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store',...headers}});
 async function setup(db){await db.prepare('CREATE TABLE IF NOT EXISTS web3_studio_feedback (id TEXT PRIMARY KEY,site TEXT NOT NULL,frequency TEXT NOT NULL,usefulness TEXT NOT NULL,interest TEXT NOT NULL,own_completed INTEGER NOT NULL,qa INTEGER NOT NULL,created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP)').run();await db.prepare("DELETE FROM web3_studio_feedback WHERE created_at < datetime('now','-35 days')").run();}
@@ -19,6 +19,13 @@ const openapi={openapi:'3.1.0',info:{title:'Protocol Ledger source profiles',ver
 export async function handle(request,env){
  const u=new URL(request.url),site=hosts.get(u.hostname);if(!site)return json({error:'Unknown host'},404);if(u.pathname==='/mcp')return handleMcp(request,env,site);
  if(['/api/event','/api/growth'].includes(u.pathname))return measurement(request,env,site);
+ if(site==='hub'&&u.pathname==='/zh/market.html'){
+  if(!['GET','HEAD'].includes(request.method))return json({error:'Read-only endpoint'},405,{Allow:'GET, HEAD'});
+  const [board,updates]=await Promise.all([researchSnapshot(),snapshot('briefs')]);
+  const markup=researchMarkup({...board,revision:release.revision,canonical:u.origin+'/zh/market.html',updates:{status:updates.status,retrievedAt:updates.retrievedAt,items:(updates.items||[]).slice(0,3)}});
+  const asset=await env.ASSETS.fetch(new Request(u.origin+'/zh/market.html'));if(!asset.ok)return asset;
+  return new Response((await asset.text()).replace(/<!-- LIVE:market:start -->[\s\S]*?<!-- LIVE:market:end -->/,'<!-- LIVE:market:start -->'+markup+'<!-- LIVE:market:end -->'),{headers:{'Content-Type':'text/html; charset=utf-8'}});
+ }
  if(site==='hub'&&['/market.html','/api/research'].includes(u.pathname)){
   if(!['GET','HEAD'].includes(request.method))return json({error:'Read-only endpoint'},405,{Allow:'GET, HEAD'});
   if(u.pathname==='/api/research'&&([...u.searchParams.keys()].some(k=>k!=='format')||u.searchParams.getAll('format').length>1||u.searchParams.has('format')&&u.searchParams.get('format')!=='html'))return json({error:'Invalid format'},400);
@@ -57,7 +64,7 @@ if(u.pathname==='/api/health')return request.method==='GET'||request.method==='H
  if(!['GET','HEAD'].includes(request.method))return json({error:'Method not allowed'},405,{Allow:'GET, HEAD'});
  if(u.pathname==='/index.html')return new Response(null,{status:308,headers:{Location:u.origin+'/'+u.search}});
  const toolPages=site!=='hub'?new Set(['/examples.html','/tool.json','/input.schema.json','/guide.md',...scenarios(site).flatMap(c=>['/examples/'+c.key+'.json','/examples/'+c.key+'-report.json'])]):new Set(['/publish.html','/tools.json','/stablecoin-payment-check.html','/gas-budget-check.html','/protocol-change-check.html']);
- let path;if(shared.has(u.pathname.slice(1)))path=u.pathname;else if(pages.has(u.pathname)||toolPages.has(u.pathname)){if(site==='hub'&&u.pathname.startsWith('/examples/'))return json({error:'Not found'},404);path=(site==='hub'?'':'/'+site)+(u.pathname==='/'?'/index.html':u.pathname);}else return json({error:'Not found'},404);
+ let path;if(shared.has(u.pathname.slice(1)))path=u.pathname;else if(pages.has(u.pathname)||toolPages.has(u.pathname)){if(site==='hub'&&u.pathname.startsWith('/examples/'))return json({error:'Not found'},404);path=site==='hub'?(u.pathname.startsWith('/zh/')?u.pathname:(u.pathname==='/'?'/index.html':u.pathname)):(u.pathname==='/'?'/'+site+'/index.html':'/'+site+u.pathname);}else return json({error:'Not found'},404);
  const assetUrl=new URL(request.url);assetUrl.pathname=path;assetUrl.search='';const response=await env.ASSETS.fetch(new Request(assetUrl,{method:request.method}));const headers=new Headers(response.headers);
  if(u.pathname==='/guide.md')headers.set('Content-Type','text/markdown; charset=utf-8');
  if(['/guide.md','/llms-full.txt'].includes(u.pathname))headers.set('Link','<'+u.origin+'/guide.html>; rel="canonical"');
