@@ -1,5 +1,5 @@
 {
- "fetched": "2026-09-20",
+ "fetched": "2026-09-21",
  "seeds": {
   "electric spin scrubber": {
    "auto": [
@@ -747,36 +747,102 @@
   "self cleaning litter box": {
    "rising": [
     {
+     "q": "furrytail litter box",
+     "v": 23200
+    },
+    {
+     "q": "best cat litter box for odor control",
+     "v": 16400
+    },
+    {
+     "q": "moonbox cat litter box",
+     "v": 15750
+    },
+    {
+     "q": "petsafe self cleaning litter box reviews",
+     "v": 13000
+    },
+    {
      "q": "moonbox litter box",
-     "v": 11550
+     "v": 2250
     },
     {
-     "q": "petsnowy litter box",
-     "v": 450
-    },
-    {
-     "q": "costco self cleaning litter box",
-     "v": 350
+     "q": "litter genie",
+     "v": 250
     },
     {
      "q": "petsafe self cleaning litter box",
-     "v": 80
-    },
-    {
-     "q": "petsafe litter box",
      "v": 70
     },
     {
-     "q": "best cat litter",
-     "v": 50
+     "q": "petsafe litter box",
+     "v": 60
+    },
+    {
+     "q": "best self cleaning cat litter box",
+     "v": 40
     },
     {
      "q": "best cat litter box",
-     "v": 50
+     "v": 40
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-09-20"
+   "fetched": "2026-09-21"
+  },
+  "robot pet companion": {
+   "auto": [
+    "robot pet companion",
+    "robot dog companion",
+    "robot dog companion for elderly",
+    "robot dog companion warframe",
+    "robot dog companion fallout 4",
+    "robot animal companion",
+    "robot dog companion fallout",
+    "robot dog companion new vegas",
+    "robot dog companion nms",
+    "best robot pet companion"
+   ],
+   "rising": [
+    {
+     "q": "robot dog companion",
+     "v": "new"
+    },
+    {
+     "q": "robot dog companion for elderly",
+     "v": "new"
+    },
+    {
+     "q": "robot dog companion warframe",
+     "v": "new"
+    },
+    {
+     "q": "robot dog companion fallout 4",
+     "v": "new"
+    },
+    {
+     "q": "robot animal companion",
+     "v": "new"
+    },
+    {
+     "q": "robot dog companion fallout",
+     "v": "new"
+    },
+    {
+     "q": "robot dog companion new vegas",
+     "v": "new"
+    },
+    {
+     "q": "robot dog companion nms",
+     "v": "new"
+    },
+    {
+     "q": "best robot pet companion",
+     "v": "new"
+    }
+   ],
+   "source": "autocomplete-diff",
+   "fetched": "2026-09-21"
   }
  }
 }
