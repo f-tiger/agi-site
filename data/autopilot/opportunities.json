@@ -1,6 +1,6 @@
 {
- "generated": "2026-09-20",
- "radar_fetched": "2026-09-20",
+ "generated": "2026-09-21",
+ "radar_fetched": "2026-09-21",
  "reddit_sources_ok": {
   "reddit_requests": false,
   "reddit_wish": false,
@@ -13,10 +13,10 @@
  },
  "note": "Derived facts only: no Reddit post text, bodies or permalinks are stored here or published. Themes are normalised request titles used as matching keys; demand = Google Trends rising; supply = PH/HN public feeds.",
  "counts": {
-  "candidates": 6,
+  "candidates": 7,
   "demand_confirmed": 0,
   "recurring": 0,
-  "scout": 6,
+  "scout": 7,
   "supplied": 0
  },
  "opportunities": [
@@ -45,7 +45,7 @@
    ],
    "state": "scout",
    "supplied": false,
-   "score": 3.02,
+   "score": 3.07,
    "demand": [],
    "supply": [],
    "fleet_pages": []
@@ -66,6 +66,21 @@
    "fleet_pages": []
   },
   {
+   "theme": "offline windows ledger for a one person microgreens farm trays standing orders n",
+   "site": "",
+   "kind": "request-board",
+   "subreddit": "softwarerecs",
+   "days_seen": [
+    "2026-09-18"
+   ],
+   "state": "scout",
+   "supplied": false,
+   "score": 2.11,
+   "demand": [],
+   "supply": [],
+   "fleet_pages": []
+  },
+  {
    "theme": "what exists if i want a premade soc mcu screen enclosure battery",
    "site": "",
    "kind": "request-board",
@@ -81,21 +96,6 @@
    "fleet_pages": []
   },
   {
-   "theme": "offline windows ledger for a one person microgreens farm trays standing orders n",
-   "site": "",
-   "kind": "request-board",
-   "subreddit": "softwarerecs",
-   "days_seen": [
-    "2026-09-18"
-   ],
-   "state": "scout",
-   "supplied": false,
-   "score": 2.05,
-   "demand": [],
-   "supply": [],
-   "fleet_pages": []
-  },
-  {
    "theme": "about map enshittification have you noticed the maps have gotten worse",
    "site": "",
    "kind": "request-board",
@@ -106,6 +106,21 @@
    "state": "scout",
    "supplied": false,
    "score": 2.04,
+   "demand": [],
+   "supply": [],
+   "fleet_pages": []
+  },
+  {
+   "theme": "editor with doxygen preview",
+   "site": "",
+   "kind": "request-board",
+   "subreddit": "softwarerecs",
+   "days_seen": [
+    "2026-09-20"
+   ],
+   "state": "scout",
+   "supplied": false,
+   "score": 2.0,
    "demand": [],
    "supply": [],
    "fleet_pages": []
