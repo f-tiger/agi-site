@@ -111,3 +111,12 @@ owner 原话:「先优化prompt再执行:调用技能实现舰队各个站点的
 | SR mcp_call 非 CI 24 次 / 4 天 | D1 sourceradar-events | 2026-09-21 |
 | 四站 `/api/member` 全部 `ready:true`、9 USDT/30d;wb_orders 0 | 线上端点 + D1 | 2026-09-21 |
 | 会员/广告/Packs 均「未产生真实付费」 | `docs/independent-memberships-release-2026-09-19.md`、bpj CLAUDE.md 第 17 条、SR PRD | 2026-09-19 / 09-16 / 09-13 |
+
+## 七、继续执行(同日第二轮,owner:「继续执行」)
+
+按 §四的槽位表只剩一件能在规则内做的事:bpj 判定系列(优化槽,已有 09-11/09-16 扩张令)。
+读 `sites/baipiaoji/data/pricing-probe.json`,runner `state=ready` 9 家 → 沙箱复抓官方定价页 → 7 家经
+`limits-edit.mjs` 写入付费档(fastgpt / bolt / deepl / replit / runway / windsurf / anythingllm),
+判定页 21 → 28 组;tongyi-lingma(两官方源冲突)与 github-models(无模型价)不补。
+不新增判定线;10-14 结算 `bpj-paid-tier-series-1014` 时列出这 7 页读数作参考,阈值不改。
+钱线台账(§二)与 owner 决策卡(§五)不变——这一轮增加的是**可被搜索到的购买意图页**,不是收入。

@@ -234,10 +234,19 @@
     "hot": false,
     "last_verified": "2026-09-21",
     "limits": {
-      "quota": "免费档每月 25 个 prompt credits（官方文档明码）；Tab 补全免费使用。注意：Windsurf 已并入 Cognition（Devin）体系，官方定价与文档页现以 Devin 品牌展示。",
-      "wall": "当月 25 个 credits 用尽后 Cascade/Agent 类功能受限，可按 $10/250 credits 加购或订阅付费档；补全不受影响。",
-      "source": "Windsurf/Devin 官方定价页与文档（windsurf.com / docs.windsurf.com，经搜索索引引文核实）",
-      "checked": "2026-08-03"
+      "quota": "免费档每月 25 个 prompt credits（官方文档明码）；Tab 补全免费使用。注意：Windsurf 已并入 Cognition（Devin）体系，官方定价与文档页现以 Devin 品牌展示。⚠ 2026-09-20 runner 直接抓取的官方定价页已不再列 credits 数字：Free 档写的是「Light quota to code with agents」、模型可用性受限、行内编辑与 Tab 补全不限量——25 credits 是 08-03 的官方文档口径，两者出现在不同日期的不同官方页面，本站两条都保留、不替你选，下次文档复核再定。",
+      "wall": "当月 25 个 credits 用尽后 Cascade/Agent 类功能受限，可按 $10/250 credits 加购或订阅付费档；补全不受影响（2026-09-20 定价页对加购的措辞已改为「按 API 价格购买额外用量」，$10/250 credits 同样是 08-03 文档口径。）",
+      "source": "Windsurf/Devin 官方定价页与文档（windsurf.com / docs.windsurf.com，经搜索索引引文核实）；https://windsurf.com/pricing（runner 探针 2026-09-20 直接抓取）",
+      "checked": "2026-08-03",
+      "paid": {
+        "tiers": "官方定价页 Individual 区当日列三档：Free $0（agent 用量为「light quota」、模型可用性受限、行内编辑与 Tab 补全不限量）；Pro $20/月（更高配额，含 OpenAI、Claude、Gemini、SpaceXAI 的前沿模型与主流开源模型，全部模型可用，SWE-2 免费使用，Devin Desktop 与 CLI 免费至 2026-10-10，可用云端 agent（Devin Cloud），额外用量按 API 价格加购）；Max $200/月（官方标 NEW：Pro 全部 + 显著更高配额）。Team 区在同一页，但抓取文本止于「TEAM PLANS」，团队价不写。本条只有 runner 探针的 700 字节摘录，沙箱直连失败（连接被重置），因此没有 FAQ 与年付信息",
+        "unit_cost": "定价页当日不给任何数字化的配额（没有 credits 数、没有消息数），Pro 与 Max 的差别只写「显著更高」；超出配额按 API 价格加购，费率不在抓取文本内。08-03 文档口径的 $10/250 credits 是否仍有效，官方定价页当日不再提",
+        "quota_included": "true——三档都含配额，但配额大小官方当日只用 light / increased / significantly higher 三个形容词，没有数字",
+        "rollover": "官方定价页抓取文本未涉及结转，本站不写",
+        "effective": "2026-09-20（=runner 核实日；页面当日标注 SWE-2 在 Devin Desktop/CLI 免费至 2026-10-10，这是页面上唯一带日期的条款）",
+        "source": "https://windsurf.com/pricing（官方定价页，runner 探针 2026-09-20 直接抓取，摘录 700 字节；沙箱 2026-09-21 直连失败）",
+        "checked": "2026-09-20"
+      }
     }
   },
   {
@@ -446,10 +455,19 @@
     "hot": false,
     "last_verified": "2026-09-21",
     "limits": {
-      "quota": "免费计划为一次性发放 125 积分：不过期、但用完永不续发（官方帮助中心专页明码，注意不是「每月 125」）；可用模型范围也少于付费档。",
+      "quota": "免费计划为一次性发放 125 积分：不过期、但用完永不续发（官方帮助中心专页明码，注意不是「每月 125」）；可用模型范围也少于付费档。2026-09-21 官方定价页复核一致：Free $0/月，125 积分一次性发放、不过期，含 5GB 素材存储。",
       "wall": "125 积分用完后免费计划无法单独购买积分，继续生成必须升级 Standard 及以上；免费档定位就是「付费前试玩」。**授权维度是本站目前见到的最宽松一档，也正好戳破「无水印才可商用」这个等式**：官方明确所有档位（含免费档）的用户都保留自己上传与生成内容的所有权与全部权利，且**享有商用权**——官方专页逐条列举了适用场景：YouTube 变现与非变现投稿、Reels/TikTok 等短视频、社交媒体发布、电影节参赛、产品广告等。免费档确实带 Runway 水印，去水印需升级 Standard 及以上——但**水印只是外观，商用权在免费档就已经给了**。",
-      "source": "Runway 官方帮助中心「Free plan details」「Usage rights」「Can I use the content I made in Runway for commercial purposes?」等专页与使用条款（help.runwayml.com / runwayml.com/terms-of-use，经搜索索引引文核实）",
-      "checked": "2026-08-06"
+      "source": "Runway 官方帮助中心「Free plan details」「Usage rights」「Can I use the content I made in Runway for commercial purposes?」等专页与使用条款（help.runwayml.com / runwayml.com/terms-of-use，经搜索索引引文核实）；官方定价页 https://runwayml.com/pricing（2026-09-21 直接抓取，含 FAQ 与模型对比表）",
+      "checked": "2026-09-21",
+      "paid": {
+        "tiers": "官方定价页 Individual 页签当日列四档（月付 / 年付折算月价，年付官方写省 20%）：Free $0；Standard $15/月（年付 $12/月）：625 积分/月——官方换算为 52 秒 Gen-4.5、104 秒 Gen-4 Turbo 或 78 张 Gen-4 图（1080p），全部视频与图像模型，5 路并行生成，最多 3 个项目，去水印，4K 放大，20GB 存储；Pro $35/月（年付 $28/月，官方标 Popular）：2250 积分/月（187 秒 Gen-4.5 / 375 秒 Gen-4 Turbo / 281 张 Gen-4 图），15 路并行，最多 5 个项目，1 个 Brand Kit，1 个自定义声音克隆，可随时加购积分，Runway MCP，不限 4K 视频放大，100GB；Max $95/月（年付 $76/月，官方标 Best value）：9500 积分/月（791 秒 Gen-4.5 / 1900 秒 Gen-4 Turbo / 1187 张 Gen-4 图 / 475 张 Nano Banana Pro 2K 图），20 路并行，未用积分可结转一个月，最多 10 个项目，3 个 Brand Kit，3 个声音克隆，HDR/ProRes/图像序列输出，500GB。Team & Enterprise 与 API 是另两个页签，未抓取",
+        "unit_cost": "计量单位是积分，按模型、时长与分辨率扣：官方 FAQ 与对比表明码 Gen-4.5 每秒 12 积分（即 60 积分/5 秒）、Aleph 2.0 140 积分/5 秒、Seedance 2.0 Pro 1080p 160 积分/4 秒、Seedance 2.0 Fast 116 积分/4 秒、Gen-4 Image 1080p 8 积分/张、Gen-4 Image Turbo 2 积分/张、Nano Banana Pro 2K 20 积分/张、Seed Audio 15 积分/分钟、文本转语音 1 积分/50 字符。加购积分最低 1,000 积分起，加购单价未在抓取文本中展开",
+        "quota_included": "true——每档含月度积分（625 / 2250 / 9500），免费档是一次性 125",
+        "rollover": "官方 FAQ 明码：Standard 与 Pro 的月度积分不结转，账单日后 24 小时内重置；Max 最多结转一个月未用积分；另行购买的积分永不过期；免费档的 125 积分也不过期",
+        "effective": "2026-09-21（=核实日，官方定价页当日直接抓取；runner 探针 2026-09-19 读到同一页）",
+        "source": "https://runwayml.com/pricing（官方定价页 Individual 页签，2026-09-21 直接抓取，含 FAQ 与模型对比表）",
+        "checked": "2026-09-21"
+      }
     }
   },
   {
@@ -1554,10 +1572,19 @@
     "hot": true,
     "last_verified": "2026-09-21",
     "limits": {
-      "quota": "开发者 API Free 档每月 500,000 字符，无每日限制、用完当月即停（官方文档明示）。网页免费版单次翻译有字符上限，但官方未公布具体数字，超长文本需分段。",
+      "quota": "开发者 API Free 档每月 500,000 字符，无每日限制、用完当月即停（官方文档明示）。网页免费版单次翻译有字符上限，但官方未公布具体数字，超长文本需分段。2026-09-21 官方定价页的档位对比表补上了网页/应用免费版的月度口径：文本翻译 50,000 字符/用户/月、文件翻译 1 份/月、保存 1 次翻译（单次粘贴的字符上限官方仍未给数字）。",
       "wall": "API 达到月度 50 万字符后停止翻译、次月重置；网页版超长文本会被截断，需分段粘贴或升级 Pro。",
-      "source": "DeepL 官方开发者文档与帮助中心（经搜索索引引文核实）",
-      "checked": "2026-08-02"
+      "source": "DeepL 官方开发者文档与帮助中心（经搜索索引引文核实）；官方定价页 https://www.deepl.com/pricing（2026-09-21 直接抓取，免费版 50,000 字符/月与付费档来自该页对比表）",
+      "checked": "2026-09-21",
+      "paid": {
+        "tiers": "这是 DeepL Pro（翻译器网页/应用）的订阅，不是 API 定价——定价页的 API 与 Voice 是另两个页签，抓取文本未展开。德国站（EUR、含增值税）按年计费当日列四档：Individual €7.49/月（300,000 字符/月、3 份文件翻译/月、1 份术语表、保存 1 次翻译、整页翻译、不用你的数据训练）；Team €24.99/用户/月（1,000,000 字符/用户/月、20 份文件翻译/月、批量文件翻译、5 份共享风格规则、5 份术语表、保存 10 次翻译、团队管理、分析报告、SSO）；Business €49.99/用户/月（字符不限量但适用合理使用政策、100 份文件翻译/月、翻译记忆、SCIM 用户配置、99.0% 可用性）；Enterprise 定制价（自带 key、99.9% 可用性、专属客户团队）。Individual 与 Team 有 30 天免费试用。月付官方只写「年付省 16%」，月付具体价格未在抓取文本中展开；价格按国家/币种显示，其他地区以官方页当地价为准。Write Pro 加载项 €6.99/用户/月（年付）",
+        "unit_cost": "计量单位是字符/用户/月（Individual 30 万、Team 100 万、Business 不限量但有合理使用政策），文件翻译按份/月另计（3 / 20 / 100）。定价页不按超量字符单独计价——超出就等下月或升档，该页没有字符加购包。API 是另一套按字符计费，这里不混",
+        "quota_included": "true——每档写明当月字符与文件份数；Business 与 Enterprise 的「不限量」带脚注 2「适用合理使用政策」",
+        "rollover": "官方定价页未说明当月未用完的字符是否结转，「每月」口径即月度重置，本站不推断",
+        "effective": "2026-09-21（=核实日，官方定价页当日直接抓取；runner 探针 2026-09-19 读到同一组欧元价格）",
+        "source": "https://www.deepl.com/pricing（官方定价页，德国/EUR 站、年付口径，2026-09-21 直接抓取）",
+        "checked": "2026-09-21"
+      }
     }
   },
   {
@@ -2055,11 +2082,20 @@
     "hot": false,
     "last_verified": "2026-09-21",
     "limits": {
-      "quota": "免费档双重上限（官方支持文档明码）：每天最多 300,000 tokens、每月总量 1,000,000 tokens——注意网上流传的「每天 150K」是旧口径。",
+      "quota": "免费档双重上限（官方支持文档明码）：每天最多 300,000 tokens、每月总量 1,000,000 tokens——注意网上流传的「每天 150K」是旧口径。2026-09-21 官方定价页复核一致：Free $0 仍写 300K tokens 日上限、1M tokens 月上限；免费档另有网站带 Bolt 品牌标识、单文件上传 10MB、托管站点最多 333k web requests、数据库个数不限。",
       "wall": "触及日上限等次日、触及月上限等下月或升级付费档（更大 token 池且可结转规则见官方页）；生成中断时项目仍保留可手动续做。",
       "cycle": "daily",
-      "source": "Bolt 官方支持文档 Tokens 专页与定价页（support.bolt.new / bolt.new，经搜索索引引文核实）",
-      "checked": "2026-08-03"
+      "source": "Bolt 官方支持文档 Tokens 专页（support.bolt.new，经搜索索引引文核实）与官方定价页 https://bolt.new/pricing（2026-09-21 直接抓取，含 FAQ）",
+      "checked": "2026-09-21",
+      "paid": {
+        "tiers": "官方定价页（按月计费）当日列四档：Free $0；Pro $25/月（无日 token 上限、token 起步 10M/月、去掉 Bolt 品牌标识、可私密分享站点、单文件上传 100MB、托管最多 1M web requests、未用 token 结转下月、自定义域名、SEO 增强、扩展数据库容量与可选数据库提供商、AI 图片编辑）；Teams $30/月/成员（官方标 Popular：Pro 全部 + 集中计费、团队级权限与用户配置、私有 NPM registry、按包的 Design System 提示；FAQ 明说每位付费成员各得自己的月度 token 配额、成员间不共享）；Enterprise 定制价（SSO、审计日志、专属客户经理、7×24 支持、SLA）。按年付官方写「最多省 28%」，年付具体金额未在抓取文本中展开。Pro 写的是「起步 10M tokens」，即页面上还有更高 token 档位的选择器，本站只抓到 $25 这个起步档，更高档的价格不写",
+        "unit_cost": "计量单位是 AI token。官方 FAQ 明说大头开销是把项目文件系统同步给模型：项目越大、每条消息耗 token 越多，所以「10M tokens 够用多久」取决于项目体积而不是消息条数。定价页不给按 token 的单价，超出档位额度的加购价格也未在该页公布",
+        "quota_included": "true——Pro 起步含每月 10M tokens，Teams 每位付费成员各有自己的月度 token 配额（官方 FAQ 明确不共享）；免费档是 300K/天 + 1M/月",
+        "rollover": "官方 FAQ 明码：自 2025-07-01 起，付费订阅的 token 可结转一个月，即最长两个月内有效；使用结转 token 的前提是订阅仍在有效期。免费档不结转（日上限次日重置、月上限次月重置）",
+        "effective": "2026-09-21（=核实日，官方定价页当日直接抓取；runner 探针 2026-09-18 读到同一页；结转规则官方标注自 2025-07-01 起生效）",
+        "source": "https://bolt.new/pricing（官方定价页，2026-09-21 直接抓取，含 FAQ）",
+        "checked": "2026-09-21"
+      }
     }
   },
   {
@@ -2104,7 +2140,16 @@
       "quota": "Starter 免费档：Agent 用量为每日发放 credits、月度封顶（官方文档明示机制，数额未公布不采信第三方）；另有月度发布 credits，可免费发布 1 个应用。",
       "wall": "最大的坑不是额度：**免费发布的应用 30 天后链接自动下线**（官方文档明码）——拿它做长期在线的作品集或给客户看的 demo 会翻车；长期在线需付费档。",
       "source": "Replit 官方文档 Starter Plan 页与官方博客（docs.replit.com / replit.com，经搜索索引引文核实；credits 数额官方未公布）",
-      "checked": "2026-08-03"
+      "checked": "2026-08-03",
+      "paid": {
+        "tiers": "官方定价页当日只列三档、没有免费档的卡片（免费 Starter 的规则见上面「免费额度」，来自官方文档）：Core $20/月（年付折 $18/月：Free Mode 最多 30 小时对话、最多 60 个项目，含 $20 用于最强模型的额度，Plan mode，工作区不限）；Pro $100/月（年付折 $90/月：10 个并行 Agent、优先支持、更多 Free Mode 用量、含 $100 最强模型额度、最多 15 位协作者、最多 50 位查看者、数据库回滚最长 28 天）；Enterprise 定制价（自定义席位、SSO/SAML、高级隐私控制、单租户环境、固定出站 IP）。年付官方写「最多省 10%」；价格未含税",
+        "unit_cost": "计量单位是「美元额度」：Core 每月含 $20、Pro 含 $100 用于最强模型，Free Mode 另按小时与项目数计。定价页 FAQ 列有「Effort-Based Pricing（按量付费）是什么」「credits 用完怎么办」条目，答案未在抓取文本中展开，超额费率本站不写；页面自注 Agent 由大模型驱动、行为是概率性的、可能出错",
+        "quota_included": "true——含在订阅内的是美元额度（$20 / $100），不是固定次数；用完后按 FAQ 走按量付费，费率未抓到",
+        "rollover": "官方定价页未说明月度美元额度是否结转，本站不推断",
+        "effective": "2026-09-21（=核实日，官方定价页当日直接抓取；runner 探针 2026-09-19 读到同一组价格）",
+        "source": "https://replit.com/pricing（官方定价页，2026-09-21 直接抓取）",
+        "checked": "2026-09-21"
+      }
     }
   },
   {
@@ -3142,10 +3187,19 @@
     "hot": false,
     "last_verified": "2026-09-21",
     "limits": {
-      "quota": "开源社区版自部署免费，含 Agent 构建、工作流、知识库全部核心功能。云端免费版有 AI 积分与知识库索引额度（官方文档确认这两种计量存在，但免费档具体数值未在可核实引文中给出，不猜测）。",
+      "quota": "开源社区版自部署免费，含 Agent 构建、工作流、知识库全部核心功能。云端免费版有 AI 积分与知识库索引额度（官方文档确认这两种计量存在，但免费档具体数值未在可核实引文中给出，不猜测）——2026-09-21 官方定价页（fastgpt.cn/price）已直接抓到免费版数字：¥0/月，100 AI 积分、600 组知识库索引、1 个团队成员、10 个 Agent、3 个知识库、对话记录保留 30 天、30 QPM（此前 08-04 只能确认两种计量存在、数值未在引文中给出，现已补齐）。",
       "wall": "云端免费版最硬的一条是「30 天不登录清空知识库」——这不是额度问题而是数据保全问题；知识库索引超限后无法新增或更新内容；付费套餐到期会自动切回免费版并清空 AI 积分。要长期留存数据就走自部署。",
-      "source": "FastGPT 官方文档与定价页（fastgpt.cn / doc.tryfastgpt.ai，经搜索索引引文核实；免费档数值官方未明示）",
-      "checked": "2026-08-04"
+      "source": "FastGPT 官方定价页 https://fastgpt.cn/price（2026-09-21 直接抓取，免费版与付费档数字均来自该页）与官方文档（doc.tryfastgpt.ai，经搜索索引引文核实）",
+      "checked": "2026-09-21",
+      "paid": {
+        "tiers": "官方定价页「云服务·按月」当日列四档：免费版 ¥0/月；基础版 ¥99/月（4000 AI 积分、6000 组知识库索引、5 个团队成员、50 个 Agent、30 个知识库、对话记录保留 180 天、300 QPM、站点同步最多 500 页、48 小时工单响应）；高级版 ¥599/月（官方标「最受欢迎」：25000 AI 积分、36000 组知识库索引、50 个团队成员、200 个 Agent、100 个知识库、对话记录保留 360 天、团队操作日志 720 天、1500 QPM、站点同步最多 2000 页、24 小时工单响应、3 个应用备案）；定制版按定制计费、联系商务。按年付官方口径是「支付 10 个月，畅享一年」。另有「私有部署」页签，抓取文本未展开其价格，不转述",
+        "unit_cost": "计量单位是「AI 积分」与「知识库索引组」，官方只按档位打包卖，定价页不给单个积分的价格；一次对话消耗多少积分取决于模型，FAQ 列有「什么是 AI 积分」「额外资源包可以叠加么」条目但答案未在抓取文本中展开，加购资源包的单价本站不写",
+        "quota_included": "true——每档都写明当月含多少 AI 积分与索引组，模型调用不要求你自带 key；超出后要么等下月要么买额外资源包（单价未抓到）",
+        "rollover": "官方定价页 FAQ 列有「AI 积分会过期么」条目，答案未在抓取文本中展开，本站不写结转规则；此前核实的文档口径是付费套餐到期会自动切回免费版并清空 AI 积分",
+        "effective": "2026-09-21（=核实日，官方定价页当日直接抓取；runner 探针 2026-09-18 读到同一组数字）",
+        "source": "https://fastgpt.cn/price（官方定价页，2026-09-21 直接抓取；/pricing 路径 404，价格在 /price）",
+        "checked": "2026-09-21"
+      }
     }
   },
   {
@@ -3615,10 +3669,19 @@
     "hot": false,
     "last_verified": "2026-09-21",
     "limits": {
-      "quota": "桌面版 MIT 开源、完全免费，官方口径是「**无需账号、无需 API Key、无 token 限制**」，在本机运行（macOS / Windows / Linux 均有）。云端版由官方团队托管在隔离的 AWS 实例上，供试用或规模化使用；**云端定价与用量上限官方未在可核实页面明示**，因此不写数字。",
+      "quota": "桌面版 MIT 开源、完全免费，官方口径是「**无需账号、无需 API Key、无 token 限制**」，在本机运行（macOS / Windows / Linux 均有）；官方定价页另明写 Docker 自部署免费。云端版由官方团队托管在隔离的 AWS 实例上，供试用或规模化使用；**云端价格 2026-09-21 已在官方 /pricing 页直接抓到（Basic $50/月、Pro $99/月，见付费档位），但云端用量上限官方仍未在可核实页面明示**，因此额度侧不写数字。",
       "wall": "桌面版没有额度墙，能力取决于你接的模型与本机硬件（与 Ollama、LM Studio 同型）。要多人协作或托管运维就走云端版，费用与限制以官方 cloud 页当期为准。",
-      "source": "AnythingLLM 官网与文档（anythingllm.com、docs.anythingllm.com，经搜索索引引文核实；云端版额度官方未明示）",
-      "checked": "2026-08-04"
+      "source": "AnythingLLM 官网与文档（anythingllm.com、docs.anythingllm.com，经搜索索引引文核实）；官方定价页 https://anythingllm.com/pricing（2026-09-21 直接抓取，云端价格来自该页；用量上限该页未写）",
+      "checked": "2026-09-21",
+      "paid": {
+        "tiers": "官方定价页当日列三档云端（Cloud）方案，桌面版与 Docker 自部署仍免费：Basic $50/月（面向小团队与个人：私有实例、自定义子域名、开箱即用的 RAG 与 agent，「只需自带 LLM API Key」）；Pro $99/月（面向初创团队：私有实例、优先资源、适合大团队、72 小时支持 SLA）；Enterprise 联系报价（本地部署、定制 SLA、定制集成、SSO 与 RBAC）。页面没有年付价、没有用量上限、没有席位数——三档都不写「多少用户」，多用户能力写在功能区（多租户隔离、管理员控制、白标）",
+        "unit_cost": "云端方案卖的是托管实例，不含模型推理：Basic 明写「自带 LLM API Key」，模型费用按你选的提供商原价另付（与桌面版一样，可接站内 api 分类里的免费额度）；Pro 未写是否含推理，本站不推断。没有按用量的单价，只有按月的实例费",
+        "quota_included": "false——订阅买到的是实例与运维，Basic 明确要求自带 key，token 消耗不在 $50 内；Pro 一档官方未说明",
+        "rollover": "不适用：按月付实例费，没有可结转的额度",
+        "effective": "2026-09-21（=核实日，官方定价页当日直接抓取；runner 探针同日读到同一页）",
+        "source": "https://anythingllm.com/pricing（官方定价页，2026-09-21 直接抓取）",
+        "checked": "2026-09-21"
+      }
     }
   },
   {

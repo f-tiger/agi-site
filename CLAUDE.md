@@ -981,3 +981,10 @@ localebatch **不记任何访问**,所以「零」也读不出访客有没有来
 - **技能副作用**:`conversion-ops/cro_audit.py` 在本仓装的版本跑不起来(tuple `.lower()`),四个 URL 同一处崩 —— 技能仓的工具
   ≠ 可用仪器。另:SR `tools/test_mcp.mjs` 第 9 条(recall_check 21 条)在 main 的 HEAD 上就红,与本轮无关,留给 SR 会话。
 - **不做**:新收款面、KGR 新页(eco 冻结)、改会员定价、发帖外联、把 `ready:true` 记成营收。
+- **「继续执行」(同日第二轮)**:规则内唯一可执行的增长动作是 bpj 判定系列(它自己的 09-11/09-16 扩张令,
+  且是唯一有 Google 流量的站)。runner 探针 `state=ready` 的 9 家逐一在沙箱复抓官方定价页,**补齐 7 家付费档**
+  (fastgpt / bolt / deepl / replit / runway / windsurf / anythingllm),判定页 21 → 28 组;**两家 ready 不补**:
+  tongyi-lingma(官方定价页与帮助中心两源冲突)、github-models(命中的是 GitHub 套餐价,无模型价)。
+  一个数字都不是算出来的,细节与反例(windsurf 定价页已不再写 credits 数)见 bpj CLAUDE.md「判定系列第三批」。
+  eco Midea PortaSplit 页(28d 29 pv / 0 点击)与 agi 询单意图(`subscribe_click` 28d 2 次已量到)看过不动。
+  钱线台账与 owner 决策卡与上午一字不变。

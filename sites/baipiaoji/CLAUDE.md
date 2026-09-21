@@ -621,3 +621,35 @@ Cloudflare Pages 把 `/x.html` **308** 跳到 `/x`。在此之前本站的 sitem
 
 ## 钱线仪器(2026-09-21)
 `/api/reach` 多返回 `money`(subs_by_status / ads_by_status / ad_checkout_by_state / ad_web3_orders / watches / member_orders_by_state / submissions_total / go_28d / biz_28d),舰队 `money_line.py` 每日读;部署自检断言 `"money":{`。09-21 读数:投稿 7(3 个提交者)、广告 0 行(密钥未设)、subs live 0。
+
+## 判定系列第三批:探针 ready 的 9 家逐一核对,补 7 家(2026-09-21,owner:「继续执行」)
+
+- **动作**:读 `data/pricing-probe.json`(第 16 条要求的那一步)——runner 行 `state=ready` 共 9 家。
+  每家把官方定价页在沙箱再直抓一次(runner 摘录只有 700 字节,不够写档位),两处一致才写;
+  全部经 `limits-edit.mjs` 两步写入,护栏零拒绝。**补齐 7 家**:fastgpt / bolt / deepl / replit /
+  runway / windsurf / anythingllm。判定页 **21 → 28 组**(`is-<slug>-still-free` 中英各 28 页),
+  `/upgrade/` 工具页现为 28 个。`guard-regression` 129 条无丢失、`quota-facts-check` 327 组 0 问题、
+  `verify-dist` 1639 页全零。
+- **ready 但不补的两家,理由各写死**:
+  ① **tongyi-lingma**:`lingma.aliyun.com/pricing` 当日仍标「个人专业版 限免(¥59/月)」、企业标准版
+     ¥79/人/月(10 人起)、企业专属版 ¥159/人/月(100 人起);而本站 08-03 按帮助中心记的是
+     「已更名 Qoder CN、个人专业版试用 2026-05 结束、2,000 Credits/月」。**两个官方源互相矛盾**,
+     宁缺毋编:不写付费档,等 Qoder CN 自己的定价页进探针再定(定价页 URL 要换,旧域名可能是陈页)。
+  ② **github-models**:探针命中的是 `github.com/pricing`(Free / Team $4 / Enterprise $21 的 GitHub
+     套餐价),页面上没有任何模型价——探针的「像价目表」判定在这里是假阳性,不写。
+- **顺手补的免费档事实(都来自同一张官方定价页,不是新页)**:fastgpt 免费版数字此前「官方未明示」,
+  现有 100 积分 / 600 索引 / 30 QPM 等 7 项;deepl 网页免费版 50,000 字符/用户/月;anythingllm
+  云端价格从「未明示」改为已抓到;bolt / runway 免费档复核一致。**windsurf 是反例**:09-20 定价页已不再
+  写 credits 数字(只剩 light / increased / significantly higher),25 credits 与 $10/250 credits 是
+  08-03 文档口径——两条都保留并标日期,不替读者选;`checked` 故意留 08-03,让它继续排在复核队列里。
+- **零推算纪律,本轮实际执行的形态**:年付折算价只写官方自己标的(runway $12/$28/$76、replit
+  $18/$90),官方只写「省 16%/20%/28%」的一律不算;单积分单价、超额费率、结转规则凡定价页 FAQ
+  只有标题没有答案的,写「未在抓取文本中展开」。fastgpt 那句「¥99 ÷ 4000 积分」在草稿里出现过,
+  删掉了——除法不是编造,但它不在官方页上。
+- **需求序那四家仍然抓不到,现在有 runner 证据**:kimi 三个候选 200 但零价格 token(SPA 壳)、
+  feishu 同、haiper 三路 404、quillbot 三路 403。**不是会话没去读队列,是队列里可读的已经读完。**
+- **变更日志的日期修正**:`limits-history.mjs` 自 09-13 起没再跑,cline 等 6 家 09-16/09-12 补的
+  付费档到今天才入账;本轮把这 6 条按各自 `paid.checked` 记日期,不记成 09-21。变更日志是
+  公开信任页,日期错 5 天会被看见。以后补付费档那次提交就顺手跑一次 `limits-history.mjs`。
+- **判定线不新增**:这 7 页不另开线;10-14 结算 `bpj-paid-tier-series-1014` 时把它们的读数一并列出
+  作参考,**阈值仍只按 cline + civitai 算**(预登记的线不改)。
