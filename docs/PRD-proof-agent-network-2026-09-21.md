@@ -7,7 +7,7 @@
 
 ## 0. 优化后的执行 Prompt
 
-> 以“可验证的有用贡献驱动的 Agent 网络（Proof-of-Useful-Agent Network）”为概念，评估并在 \`f-tiger/agi-site\` 中设计一个可产生真实收入的 AI Agent/MCP 站点。
+> 以“可验证的有用贡献驱动的 Agent 网络（Proof-of-Useful-Agent Network）”为概念，评估并在 `f-tiger/agi-site` 中设计一个可产生真实收入的 AI Agent/MCP 站点。
 >
 > 目标：用户通过完成真实任务、创建可复用的 Agent/工具、分享链接带来合格使用和付费转化，获得一个有唯一编号、可验证血缘、可被 AI 调度的个人 Agent 子站；平台通过 MCP 托管、调用量、工作流/模板、团队空间、企业部署或获批联盟获得收入。
 >
