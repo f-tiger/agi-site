@@ -1497,7 +1497,21 @@ export default {
           // 这是舰队第一方的外链监测:嵌入件、目录页、awesome-list 里的链接,送来过真人就出现在这里。
           else if (b === "other") by_other[h] = (by_other[h] || 0) + n;
         }
-        return new Response(JSON.stringify({ ok: true, days: 28, human_pv, ai_ref, by_host, by_source, by_search, by_fleet, by_other, generated: new Date().toISOString() }), { headers });
+        // 钱线(2026-09-21 舰队钱线仪表盘,读侧 tools/fleet/money_line.py):只出聚合计数。
+        // 单独 try:钱线查询失败不能拖垮 AI 引荐/渠道构成的读侧;部署自检断言 money 是对象。
+        let money = null;
+        try {
+          const m = await env.EVENTS.prepare(
+            "SELECT 'affiliate_click_28d' AS k, COUNT(*) AS n FROM ev WHERE name='affiliate_click' AND (ua_class IS NULL OR ua_class='human') AND page NOT LIKE '/__ci%' AND day >= date('now','-28 days') UNION ALL SELECT 'affiliate_click_us_market_28d', COUNT(*) FROM ev WHERE name='affiliate_click' AND page NOT LIKE '/__ci%' AND day >= date('now','-28 days') AND meta LIKE '%us-market%' UNION ALL SELECT 'affiliate_click_amazon_com_28d', COUNT(*) FROM ev WHERE name='affiliate_click' AND page NOT LIKE '/__ci%' AND day >= date('now','-28 days') AND meta LIKE '%amazon.com%' UNION ALL SELECT 'subs_total', COUNT(*) FROM subs"
+          ).all();
+          money = { days: 28 };
+          for (const r of (m.results || [])) money[r.k] = r.n | 0;
+          try {
+            const o = await env.EVENTS.prepare("SELECT state, COUNT(*) AS n FROM wb_orders GROUP BY state").all();
+            money.member_orders_by_state = Object.fromEntries((o.results || []).map((r) => [String(r.state), r.n | 0]));
+          } catch (e) { money.member_orders_by_state = null; }
+        } catch (e) { money = null; }
+        return new Response(JSON.stringify({ ok: true, days: 28, human_pv, ai_ref, by_host, by_source, by_search, by_fleet, by_other, money, generated: new Date().toISOString() }), { headers });
       } catch (e) {
         return new Response(JSON.stringify({ ok: false, error: "query_failed" }), { status: 500, headers });
       }

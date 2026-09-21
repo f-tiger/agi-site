@@ -283,7 +283,7 @@ jobs:
           ok=0
           for try in 1 2 3 4 5; do
             pulse=$(curl -s --max-time 20 "https://thedollscout.com/api/pulse" || echo "")
-            case "$pulse" in *'"ok":true'*'"ai_ref"'*'"by_source"'*) ok=1; break;; esac
+            case "$pulse" in *'"ok":true'*'"ai_ref"'*'"by_source"'*'"money":{'*) ok=1; break;; esac
             sleep 5
           done
           [ "$ok" = "1" ] && echo "OK /api/pulse" || { echo "::error::/api/pulse broken: ${pulse:0:120}"; exit 1; }

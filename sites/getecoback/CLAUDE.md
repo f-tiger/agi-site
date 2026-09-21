@@ -3118,3 +3118,6 @@ IT → deumidificatore(注意它峰在 **7 月**,意大利除湿是夏题)。**�
 
 **一句实话**:这一轮把德语区的三类缺口补上了——冬季故障页、湿度簇入口、奥地利法条——但它仍然是「新页」,
 而新页在本站的冷启动读数是 0。区别在于这次每一页都押在一个已经量过的形状上,输了能说清楚是哪个假设错了。
+
+## 钱线仪器(2026-09-21)
+`/api/pulse` 多返回 `money`(affiliate_click_28d human 口径 / us_market / amazon_com / subs_total / member_orders_by_state),舰队 `tools/fleet/money_line.py` 每日读;部署自检断言 `"money":{`。owner 亲报的 PartnerNet 数字在根仓 `data/fleet-money-owner.json`,给新截图时更新那里。

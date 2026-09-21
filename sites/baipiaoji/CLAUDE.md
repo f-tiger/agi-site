@@ -618,3 +618,6 @@ Cloudflare Pages 把 `/x.html` **308** 跳到 `/x`。在此之前本站的 sitem
   回来了;第二次构建起恢复正常。
 - 守卫:部署自检有一条硬断言(sitemap 零 `.html` + 抽样页直接 200 + canonical 自指),
   舰队 heartbeat 另有 `tools/fleet/sitemap_guard.py`。判定线 `bpj-canonical-fix-1013`(10-13)。
+
+## 钱线仪器(2026-09-21)
+`/api/reach` 多返回 `money`(subs_by_status / ads_by_status / ad_checkout_by_state / ad_web3_orders / watches / member_orders_by_state / submissions_total / go_28d / biz_28d),舰队 `money_line.py` 每日读;部署自检断言 `"money":{`。09-21 读数:投稿 7(3 个提交者)、广告 0 行(密钥未设)、subs live 0。

@@ -279,7 +279,16 @@ export default {
           // 这是舰队第一方的外链监测:嵌入件、目录页、awesome-list 里的链接,送来过真人就出现在这里。
           else if (b === "other") by_other[h] = (by_other[h] || 0) + n;
         }
-        return new Response(JSON.stringify({ ok: true, days: 28, human_pv, ai_ref, by_host, by_source, by_search, by_fleet, by_other, generated: new Date().toISOString() }), { headers });
+        // 钱线(2026-09-21 舰队钱线仪表盘,读侧 tools/fleet/money_line.py):只出聚合计数,剔 CI 自测。
+        let money = null;
+        try {
+          const m = await env.EV.prepare(
+            "SELECT name||'_28d' AS k, COUNT(*) AS n FROM ev WHERE day >= date('now','-28 days') AND name IN ('mcp_call','pick_open','out_click','calc_use','pack_open','pack_order') AND (path IS NULL OR path NOT LIKE '/__ci%') AND (label IS NULL OR label NOT LIKE '__ci%') GROUP BY name"
+          ).all();
+          money = { days: 28 };
+          for (const r of (m.results || [])) money[String(r.k)] = r.n | 0;
+        } catch (e) { money = null; }
+        return new Response(JSON.stringify({ ok: true, days: 28, human_pv, ai_ref, by_host, by_source, by_search, by_fleet, by_other, money, generated: new Date().toISOString() }), { headers });
       } catch (e) {
         return new Response(JSON.stringify({ ok: false, error: "query_failed" }), { status: 500, headers });
       }

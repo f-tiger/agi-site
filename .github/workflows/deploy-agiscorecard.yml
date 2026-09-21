@@ -207,7 +207,7 @@ jobs:
           # /api/pulse (2026-09-13): the fleet heartbeat reads AI-assistant referrals here, token-free.
           p=$(curl -s --max-time 20 "https://agiscorecard.com/api/pulse" || echo "")
           case "$p" in
-            *'"ok":true'*'"ai_ref"'*'"by_source"'*) echo "OK /api/pulse" ;;
+            *'"ok":true'*'"ai_ref"'*'"by_source"'*'"money":{'*) echo "OK /api/pulse" ;;
             *) echo "::error::/api/pulse broken: ${p:0:120}"; fail=1 ;;
           esac
           exit $fail

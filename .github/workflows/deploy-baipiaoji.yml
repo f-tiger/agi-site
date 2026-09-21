@@ -582,6 +582,8 @@ jobs:
           r=$(curl -s -m 25 -A 'curl/8.0 bpj-ci-selftest' 'https://baipiaoji.com/api/reach?days=7')
           echo "$r" | head -c 300; echo
           echo "$r" | grep -q '"ok":true' || { echo "::error::/api/reach 未返回 ok:true"; exit 1; }
+          # 钱线(2026-09-21):money 必须是对象(舰队 money_line.py 读它)
+          echo "$r" | grep -q '"money":{' || { echo "::error::/api/reach 没有 money 对象"; exit 1; }
           echo "$r" | grep -q '"humans_referred":[0-9]' || { echo "::error::/api/reach 缺 humans_referred 计数"; exit 1; }
           echo "$r" | grep -q '"paths":\[' || { echo "::error::/api/reach 缺 paths 数组"; exit 1; }
           echo "$r" | grep -q '"window_days":7' || { echo "::error::/api/reach 未按 days 参数取窗"; exit 1; }

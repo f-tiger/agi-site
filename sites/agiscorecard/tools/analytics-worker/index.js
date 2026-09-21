@@ -413,7 +413,25 @@ export default {
           // 这是舰队第一方的外链监测:嵌入件、目录页、awesome-list 里的链接,送来过真人就出现在这里。
           else if (b === 'other') by_other[h] = (by_other[h] || 0) + n;
         }
-        return new Response(JSON.stringify({ ok: true, days: 28, human_pv, ai_ref, by_host, by_source, by_search, by_fleet, by_other, generated: new Date().toISOString() }), { headers });
+        // 钱线(2026-09-21 舰队钱线仪表盘,读侧 tools/fleet/money_line.py):只出聚合计数。
+        // 单独 try:钱线查询失败不能拖垮 AI 引荐/渠道构成的读侧;部署自检断言 money 是对象。
+        let money = null;
+        try {
+          const m = await env.EVENTS.prepare(
+            `SELECT 'subscribers' AS k, COUNT(*) AS n FROM subscribers WHERE status='stored' UNION ALL SELECT 'ev_'||name||'_28d', COUNT(*) FROM events WHERE day >= date('now','-28 days') AND (ua_class='human' OR ua_class IS NULL) AND name IN ('tool_click','invest_tool_click','subscribe_click','calc_use','pick_ledger') GROUP BY name UNION ALL SELECT 'pv_'||substr(path,2)||'_28d', SUM(hits) FROM pageviews WHERE ua_class='human' AND day >= date('now','-28 days') AND path IN ('/advertise','/audits','/members','/workbench') GROUP BY path`
+          ).all();
+          money = { days: 28 };
+          for (const r of (m.results || [])) money[String(r.k)] = r.n | 0;
+          try {
+            const o = await env.EVENTS.prepare('SELECT state, COUNT(*) AS n FROM wb_orders GROUP BY state').all();
+            money.member_orders_by_state = Object.fromEntries((o.results || []).map((r) => [String(r.state), r.n | 0]));
+          } catch (e) { money.member_orders_by_state = null; }
+          try {
+            const d = await env.EVENTS.prepare('SELECT COUNT(*) AS n FROM discuss_profiles').all();
+            money.discuss_profiles = ((d.results || [])[0] || {}).n | 0;
+          } catch (e) { money.discuss_profiles = null; }
+        } catch (e) { money = null; }
+        return new Response(JSON.stringify({ ok: true, days: 28, human_pv, ai_ref, by_host, by_source, by_search, by_fleet, by_other, money, generated: new Date().toISOString() }), { headers });
       } catch (e) {
         return new Response(JSON.stringify({ ok: false, error: 'query_failed' }), { status: 500, headers });
       }

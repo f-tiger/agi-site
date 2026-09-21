@@ -958,3 +958,26 @@ localebatch **不记任何访问**,所以「零」也读不出访客有没有来
 - **验证**:lastmod selftest 11 条;verify 35 测试、web3 94 测试 + check_html 64 页 + indexnow --check 11 主机、
   venture 25 测试、localebatch 23 测试 + 构建、discovery build/validate 23 页(check 模式)、agi validate/hreflang/
   面包屑、SR worker 语法 + validate_picks、45 条 workflow YAML。**这些改动和 PR #2 其余部分一样,合并前一件都不在线上。**
+
+## 营收目标增长:先优化 prompt 再执行(2026-09-21,owner:「调用技能实现舰队各个站点的营收目标增长」;全文 `docs/revenue-growth-prompt-2026-09-21.md`)
+
+- **三轮 prompt 的定稿**:只对 5 个有钱线的站 + 4 类收款面做;每站只答「绑定约束是什么」;技能给一个不违反杀单的动作;
+  营收目标 = 已预登记判定线的数字,不另编;新增线只允许仪器线。
+- **钱线台账(D1 现查 09-21,28d)**:**在赚的只有一条** —— eco amazon.de €11,20/30d(窗至 09-14,付款侧未完成,一分未到手);
+  eco affiliate_click 64 human / 139 全 UA,pv 522(点击率 12,3%),us-market 1/5。**通了没人买**:四站会员全部 `ready:true`
+  9 USDT/30d **0 单**;agi /advertise 223 pv **0 询单**;bpj watches 0。**建了没通电**:bpj 广告位(投稿 7 / 3 个厂商 = 舰队唯一
+  有买家敲门的面,密钥未设)、SR Packs(Stripe 未设)。tds pv 341 / 1 次点击。**SR `/api/mcp` 09-17 起 24 次非 CI 调用**
+  (带参数的 check_import_claim 7 次)= 机器面首次真实使用,`sr-mcp-calls-1014` 的 t0 已不是 0。
+- **技能的读法记死**:pricing / offers / paywalls / cro 的共同前提是**买家已在门口**;舰队读数说的是没有买家出现在任何已建
+  收款轨上。技能是方法论不是仪器;bpj 广告位是唯一「分子分母都齐、只差收银台」的面。会员轨违反 paywalls 的「先价值后索取」
+  (卖 24 个免费工具的云端保存,而工具 28d 全舰队只被主动用 61 次)—— **保留不推广**,10-14 按 `fleet-tool-use-1014` 定去留。
+- **本轮唯一的代码动作 = 钱线仪表盘变第①层仪器**:五站 pulse/reach 多出 `money` 对象(各站自己的口径,零 PII,坏了回 null
+  不拖垮 pulse)+ 五条部署自检断言 `"money":{` + `tools/fleet/money_line.py`(随 heartbeat,keep-last-good,>3 天红)→
+  `data/fleet-money.json` + demand-digest「钱线仪表盘」节;owner 亲报数字在 `data/fleet-money-owner.json`(带数据窗,永不推算)。
+  判定线 `fleet-money-line-1019`。**每次报告的钱线从此读快照,不再手查 D1。**
+- **owner 决策卡(按 €/分钟)**:①PartnerNet 付款/税务(2 分钟,€11,20 到手)②bpj 广告位两个密钥(5 分钟)③Metaculus key + 变量
+  (3 分钟,Fall 赛季 09-28 开题)④SR Packs Stripe 五个值(10 分钟)⑤决策:eco EN 区意/法/西三页 28d 7 次点击落 .de,
+  要不要开 .it/.fr/.es 跟踪 ID ⑥决策:四站会员 0/4 保留还是撤导航。
+- **技能副作用**:`conversion-ops/cro_audit.py` 在本仓装的版本跑不起来(tuple `.lower()`),四个 URL 同一处崩 —— 技能仓的工具
+  ≠ 可用仪器。另:SR `tools/test_mcp.mjs` 第 9 条(recall_check 21 条)在 main 的 HEAD 上就红,与本轮无关,留给 SR 会话。
+- **不做**:新收款面、KGR 新页(eco 冻结)、改会员定价、发帖外联、把 `ready:true` 记成营收。

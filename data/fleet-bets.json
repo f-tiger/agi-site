@@ -1442,6 +1442,17 @@
    "lose": "注册表命中但零真实调用 → 与 sr-mcp-calls-1014 同判:机器面只维护不扩;注册表未命中 → 查 publish run 日志(OIDC / 422),不重命名。",
    "source": "CLAUDE.md 2026-09-16「注册表活、awesome-list 死,以后按这个优先级投」;本轮 docs 见 CLAUDE.md 2026-09-21 深度优化节。",
    "status": "open"
+  },
+  {
+   "id": "fleet-money-line-1019",
+   "site": "fleet",
+   "due": "2026-10-19",
+   "metric": "data/fleet-money.json 里 via='endpoint' 的钱线站数(五站:getecoback / agiscorecard / baipiaoji / thedollscout / buysomething),以及 demand-digest 的「钱线仪表盘」节是否每日带读数。",
+   "threshold": "5/5 站经端点读到 money 对象且快照不 STALE;heartbeat 里 money 步 30 天内红 ≤2 次。",
+   "win": "钱线仪表盘从「会话手查 D1」变成第①层自动仪器;每次报告直接引用快照,不再重跑 D1。",
+   "lose": "哪站读不到就查该站 money 查询(部署自检会先红);两站以上长期读不到 → 回退为会话手查并把原因写进手册。",
+   "source": "CLAUDE.md 2026-09-21「营收目标增长」节;docs/revenue-growth-prompt-2026-09-21.md",
+   "status": "open"
   }
  ]
 }

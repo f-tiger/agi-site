@@ -78,7 +78,17 @@ export async function onRequestGet({ request, env }) {
       // 这是舰队第一方的外链监测:嵌入件、目录页、awesome-list 里的链接,送来过真人就出现在这里。
       else if (b === 'other') by_other[h] = (by_other[h] || 0) + n;
     }
-    return json({ ok: true, days: 28, human_pv, ai_ref, by_host, by_source, by_search, by_fleet, by_other, generated: new Date().toISOString() });
+    // 钱线(2026-09-21 舰队钱线仪表盘,读侧 tools/fleet/money_line.py):只出聚合计数,08-30 前的旧站行不计。
+    let money = null;
+    try {
+      const m = await env.HITS.prepare("SELECT COUNT(*) AS n FROM hits WHERE ev='affiliate_click' AND d >= date('now','-28 days') AND d >= '2026-08-30' AND path NOT LIKE '/__ci%'").all();
+      money = { days: 28, affiliate_click_28d: (((m.results || [])[0] || {}).n | 0) };
+      try {
+        const o = await env.HITS.prepare('SELECT state, COUNT(*) AS n FROM wb_orders GROUP BY state').all();
+        money.member_orders_by_state = Object.fromEntries((o.results || []).map((r) => [String(r.state), r.n | 0]));
+      } catch (e) { money.member_orders_by_state = null; }
+    } catch (e) { money = null; }
+    return json({ ok: true, days: 28, human_pv, ai_ref, by_host, by_source, by_search, by_fleet, by_other, money, generated: new Date().toISOString() });
   } catch (e) {
     return json({ ok: false, error: 'query_failed' }, 500);
   }

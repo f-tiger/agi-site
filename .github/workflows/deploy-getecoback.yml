@@ -315,6 +315,8 @@ jobs:
           # /api/pulse (2026-09-13): token-free AI-referral aggregate read by the fleet heartbeat
           check "https://getecoback.com/api/pulse" '"ai_ref"' 
           check "https://getecoback.com/api/pulse" '"by_source"' 
+          # 钱线(2026-09-21):money 必须是对象;查询坏了 worker 会回 null,这里就红
+          check "https://getecoback.com/api/pulse" '"money":{' 
 
           # MCP 自报名字必须与 mcp/server.json 的注册表名字一致(2026-09-16)。
           # 那次改名只改了 manifest 与 superseded/,worker 的 serverInfo.name 漏了三个多月:
