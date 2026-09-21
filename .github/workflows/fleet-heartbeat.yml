@@ -41,6 +41,9 @@ jobs:
         run: |
           set -uo pipefail
           # site|live URL|deploy workflow file
+          # 2026-09-21:四个新 worker(18 个)+ 它们的 13 个次级主机名(31 个公开主机)。
+          # 第三列为空 = 只探活不查部署年龄、不自动重发(同一 worker 的多主机共用一条部署链,
+          # 重发只挂在带 workflow 的那一行,否则一次 run 会把同一条 workflow 派发多次)。
           SITES='agiscorecard|https://agiscorecard.com/|deploy-agiscorecard.yml
           baipiaoji|https://baipiaoji.com/|deploy-baipiaoji.yml
           getecoback|https://getecoback.com/|deploy-getecoback.yml
@@ -54,7 +57,24 @@ jobs:
           fanzha|https://fanzha.agiscorecard.com/?ci=1|deploy-fanzha.yml
           firstjob|https://firstjob.agiscorecard.com/?ci=1|deploy-firstjob.yml
           codeword|https://codeword.agiscorecard.com/?ci=1|deploy-codeword.yml
-          powerbill|https://powerbill.agiscorecard.com/?ci=1|deploy-powerbill.yml'
+          powerbill|https://powerbill.agiscorecard.com/?ci=1|deploy-powerbill.yml
+          agent-delivery-lab|https://verify.agiscorecard.com/|deploy-agent-delivery-lab.yml
+          venture-lab|https://rfqdesk.agiscorecard.com/|deploy-venture-lab.yml
+          web3-studio|https://web3.agiscorecard.com/|deploy-web3-studio.yml
+          localebatch|https://localebatch.agiscorecard.com/|deploy-localebatch.yml
+          venture-lab/modelmeter|https://modelmeter.agiscorecard.com/|
+          venture-lab/querysprint|https://querysprint.agiscorecard.com/|
+          venture-lab/filinglens|https://filinglens.agiscorecard.com/|
+          web3-studio/reconcile|https://reconcile.agiscorecard.com/|
+          web3-studio/evidence|https://evidence.agiscorecard.com/|
+          web3-studio/route|https://route.agiscorecard.com/|
+          web3-studio/protocol|https://protocol.agiscorecard.com/|
+          web3-studio/permit|https://permit.agiscorecard.com/|
+          web3-studio/compute|https://compute.agiscorecard.com/|
+          web3-studio/incentives|https://incentives.agiscorecard.com/|
+          web3-studio/proof|https://proof.agiscorecard.com/|
+          web3-studio/calls|https://calls.agiscorecard.com/|
+          web3-studio/disclosures|https://disclosures.agiscorecard.com/|'
 
           NOW=$(date -u +%s)
           BAD=0
@@ -82,6 +102,19 @@ jobs:
             #   · 取最近 5 条成功 run 的 updated_at **最大值**,而不是盲信 [0];
             #   · 把拿到的原始值打进日志,下次再出就是可诊断的,而不是靠推。
             # (教训同源:此前 itch 那次也是靠"步骤耗时"去推断而不是读日志,推错了。)
+            if [ -z "$wf" ]; then
+              # 次级主机名:只探活。部署年龄与重发由同一 worker 带 workflow 的那一行负责。
+              echo "  probe $name: http=$code (secondary host, no deploy-age check)"
+              if [ "$code" != "200" ]; then
+                BAD=1
+                echo "::error::$name ($url) 返回 $code,不是 200"
+              fi
+              [ $FIRST -eq 0 ] && echo ',' >> /tmp/h.json
+              FIRST=0
+              printf '    {"site":"%s","url":"%s","http":"%s","days_since_deploy":null,"redeployed":false}' \
+                "$name" "$url" "$code" >> /tmp/h.json
+              continue
+            fi
             last=$(gh api "repos/$REPO/actions/workflows/$wf/runs?status=success&per_page=5" \
                      --jq '[.workflow_runs[].updated_at] | max // ""' 2>/dev/null || echo "")
             echo "  probe $name: http=$code last_success=${last:-<none>}"

@@ -24,7 +24,16 @@ HOSTS = ["agiscorecard.com", "baipiaoji.com", "getecoback.com", "thedollscout.co
          "play.agiscorecard.com", "source.agiscorecard.com", "games.agiscorecard.com",
          "goldrush.agiscorecard.com", "35.agiscorecard.com", "learn.agiscorecard.com",
          "fanzha.agiscorecard.com", "firstjob.agiscorecard.com", "codeword.agiscorecard.com",
-         "powerbill.agiscorecard.com"]
+         "powerbill.agiscorecard.com",
+         # 2026-09-21:四个新 worker 的全部 17 个公开主机名(每个主机各有自己的 sitemap)。
+         "verify.agiscorecard.com",
+         "rfqdesk.agiscorecard.com", "modelmeter.agiscorecard.com", "querysprint.agiscorecard.com",
+         "filinglens.agiscorecard.com",
+         "web3.agiscorecard.com", "reconcile.agiscorecard.com", "evidence.agiscorecard.com",
+         "route.agiscorecard.com", "protocol.agiscorecard.com", "permit.agiscorecard.com",
+         "compute.agiscorecard.com", "incentives.agiscorecard.com", "proof.agiscorecard.com",
+         "calls.agiscorecard.com", "disclosures.agiscorecard.com",
+         "localebatch.agiscorecard.com"]
 UA = "fleet-heartbeat/sitemap_guard (+https://github.com/f-tiger/agi-site)"
 SAMPLE = 4
 
@@ -99,7 +108,11 @@ def selftest():
         ("canonical 解析(rel 在前)", canonical_of('<link rel="canonical" href="https://a/b">') == "https://a/b"),
         ("canonical 解析(href 在前)", canonical_of('<link href="https://a/b" rel="canonical">') == "https://a/b"),
         ("没有 canonical 返回 None", canonical_of("<html></html>") is None),
-        ("14 个站", len(HOSTS) == 14 and len(set(HOSTS)) == 14),
+        # 不写死站数(手册 2026-09-17:写死数量的断言迟早退化成只会误报的噪音);
+        # 断言的是形状:无重复、全是舰队自己的域、没有协议前缀或路径。
+        ("主机名单无重复", len(set(HOSTS)) == len(HOSTS)),
+        ("主机名单全是舰队域且是裸主机名",
+         all(re.fullmatch(r"([a-z0-9-]+\.)?(agiscorecard|baipiaoji|getecoback|thedollscout)\.com", h) for h in HOSTS)),
     ]
     for label, cond in cases:
         print(("ok   " if cond else "FAIL ") + label)

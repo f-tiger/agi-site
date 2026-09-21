@@ -1374,6 +1374,61 @@
    "lose": "触达不足则改善现有站内入口；有触达无参与则收窄到编辑主题讨论，暂停自由发帖扩张。若无人审核，暂停新投稿而保留可读内容和用户删除功能。",
    "source": "docs/agi-community-research-2026-09-20.md；用户要求深度调研后在 AGI 首页增加讨论区，目标注册与流量。",
    "status": "open"
+  },
+  {
+   "id": "venture-rfqdesk-1016",
+   "site": "venture-lab",
+   "due": "2026-10-16",
+   "metric": "https://rfqdesk.agiscorecard.com/api/pulse(28d,mode!='qa' 的 opt-in visit events,按 event/source 分组)+ 仓库工作流「Commercial experiment funnel report」。计的是同意者的事件,不是访客、用户或购买。",
+   "threshold": "28d 相关落地访问 ≥100 才允许解读;在此之上:自带数据完成 ≥20 且价格兴趣 ≥5。",
+   "win": "人工核实是不是同一人群的重复任务与免费替代不足;再定付费试验。收费前须 3 位无关联真实买家(另有独立购买证据),订阅扩张前须 2 位次月实付续费。",
+   "lose": "落地访问 <100 → insufficient(只说明分发未验证,不得下「市场不需要」的结论);完成量达标而兴趣为 0 → 调整付费增量,不扩功能。",
+   "source": "docs/portfolio-experiments-2026-09-18.md:29-33(owner 2026-09-18「多商业模式并行授权」);2026-09-21 补登进台账,此前只写在文档里。",
+   "status": "open"
+  },
+  {
+   "id": "venture-modelmeter-1016",
+   "site": "venture-lab",
+   "due": "2026-10-16",
+   "metric": "https://modelmeter.agiscorecard.com/api/pulse(同上口径)。当前匿名计数测不出续访。",
+   "threshold": "同 rfqdesk:落地访问 ≥100 后,自带账单完成 ≥20 且价格兴趣 ≥5;另需核实真实的重复复盘需求。",
+   "win": "3 个实际团队购买、2 次真实续费,且与免费替代比较仍有价值 → 继续;否则保留免费工具。",
+   "lose": "落地访问 <100 → insufficient;达完成量而零兴趣 → 调整付费增量。",
+   "source": "docs/portfolio-experiments-2026-09-18.md:30,33;2026-09-21 补登。",
+   "status": "open"
+  },
+  {
+   "id": "venture-querysprint-1016",
+   "site": "venture-lab",
+   "due": "2026-10-16",
+   "metric": "https://querysprint.agiscorecard.com/api/pulse(同上口径)。辅助解题不能叫独立能力认证。",
+   "threshold": "落地访问 ≥100 后,完成项目的访问记录 ≥20 且价格兴趣 ≥5。",
+   "win": "3 位买家且至少 2 位买第二个项目,内容维护与获客后贡献为正 → 继续;否则保留免费三题。",
+   "lose": "落地访问 <100 → insufficient;达完成量而零兴趣 → 调整付费增量。",
+   "source": "docs/portfolio-experiments-2026-09-18.md:31,33;2026-09-21 补登。",
+   "status": "open"
+  },
+  {
+   "id": "venture-filinglens-1019",
+   "site": "venture-lab",
+   "due": "2026-10-19",
+   "metric": "https://filinglens.agiscorecard.com/api/pulse(28d,mode!='qa',按 event/source 分组)。opt-in 事件不等于独立的人。",
+   "threshold": "100 次相关落地访问 + 20 次自有任务完成 + 5 次带情境的价格兴趣,三者齐 → 才去调查真实的重复任务;或 30 天到期先复盘(以先满足者为准)。",
+   "win": "核实到可识别的重复任务且现有 ERP/Excel 不易替代 → 进入 3 位独立付费买家 + 支持后贡献为正 + 复购的收费门;否则不扩功能。",
+   "lose": "可触达用户一致偏好自己的表格或在位者、说不出未满足的重复任务 → 停止或重新定位;访问不足 → insufficient,先解决分发。",
+   "source": "docs/vertical-agent-expansion-2026-09-19.md:66 + docs/vertical-agent-commercial-review-2026-09-18.md:75-81;2026-09-21 补登。",
+   "status": "open"
+  },
+  {
+   "id": "localebatch-readout-1016",
+   "site": "localebatch",
+   "due": "2026-10-16",
+   "metric": "任一一手读数:① D1 jobs 表首行(只有付费处理打开后才可能有)② tools/discovery/audit.py 或 heartbeat 快照读到的搜索/AI 引荐 ③ owner 收到的询问。本站 worker 不记录任何访问事件(只记付费 job 与限流桶),这是 09-18 发布时的设计,不是漏埋点。",
+   "threshold": "10-16 前「真实模型与支付端验收」完成(SALES_ENABLED 打开)或 ≥1 条一手读数。",
+   "win": "进入 portfolio 的付费门:3 位付费者、2 位复购、正贡献。",
+   "lose": "既无验收也无读数 → 站上没有任何能判需求的读数,不得据此判「没人要」;并入 venture-lab 组合决策线,不再单独扩建,直到 owner 决定加 opt-in 计数(同 venture-lab 形态)或打开付费。",
+   "source": "docs/portfolio-experiments-2026-09-18.md:32 + docs/localebatch-release-2026-09-18.md;2026-09-21 补登。",
+   "status": "open"
   }
  ]
 }

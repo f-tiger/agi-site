@@ -49,6 +49,9 @@ SITES = {
     "after35": "35.agiscorecard.com", "learn": "learn.agiscorecard.com",
     "fanzha": "fanzha.agiscorecard.com", "firstjob": "firstjob.agiscorecard.com",
     "codeword": "codeword.agiscorecard.com", "powerbill": "powerbill.agiscorecard.com",
+    # 2026-09-21:四个新 worker,各以主主机入矩阵(次级主机同一套模板,不重复计)。
+    "agent-delivery-lab": "verify.agiscorecard.com", "venture-lab": "rfqdesk.agiscorecard.com",
+    "web3-studio": "web3.agiscorecard.com", "localebatch": "localebatch.agiscorecard.com",
 }
 OWN = re.compile(r"(^|\.)(agiscorecard|getecoback|baipiaoji|thedollscout)\.com$")
 SKIP = re.compile(r"(schema\.org|w3\.org|creativecommons|gstatic|googletagmanager|google-analytics|fonts\.|beehiiv)")
@@ -210,7 +213,9 @@ def selftest():
         ("「Updated as verdicts change」这种无日期的话不算",
          not dated_fresh(LD + '<div class="updated">Updated as verdicts change</div>')),
         ("ld 类型解析", ld_types('<script type="application/ld+json">{"@type":"FAQPage"}</script>') == {"FAQPage"}),
-        ("14 个站", len(SITES) == 14),
+        # 不写死站数(手册 2026-09-17);断言形状:主机无重复、全是舰队域。
+        ("站表主机无重复", len(set(SITES.values())) == len(SITES)),
+        ("站表主机全是舰队域", all(OWN.search(h) for h in SITES.values())),
     ]
     for label, cond in cases:
         print(("ok   " if cond else "FAIL ") + label)

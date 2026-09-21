@@ -880,3 +880,39 @@ Cloudflare Pages 把 `/x.html` 308 到 `/x`,而 bpj 的 sitemap / `canonical` / 
 - **别再提(对外)**:AI 音乐子站/子域、AI 音乐生成器、托管或分发 AI 曲目、AI 翻唱、样本库、
   Suno/Udio 联盟、AI 音乐工具目录(bpj 已有且读数 0)、追 Suno 诉讼做快反页。
 - **⚠️ 这一页和前两天的所有工作一样,还没上线** —— 分支仍未并进 `main`(见上一节)。
+
+## 四个新 worker 接进舰队仪器 + PR #2 合并 + web3 /zh/(2026-09-21,owner:「1已经重授权,2、3、4都执行」)
+
+- **舰队现在是 18 个 worker、31 个公开主机**(14 站 + agent-delivery-lab `verify.`、venture-lab
+  `rfqdesk./modelmeter./querysprint./filinglens.`、web3-studio `web3.` + 10 个工具主机、localebatch)。
+  09-18/19 由 main 侧会话上线的这四个,到 09-21 为止**不在任何舰队仪器里**:heartbeat 不探、
+  AI 爬虫探针不探、sitemap 守卫不看、周矩阵不计——它们挂了只有各自部署时的 smoke 能发现。
+  **本轮接入(零新 cron,全部搭 heartbeat)**:heartbeat `SITES` 加 4 行带部署链 + 13 行次级主机
+  (第三列为空 = 只探活不查部署年龄、不重发,否则同一 workflow 一次 run 会被派发多次);
+  `ai_access_probe.py` 各探一个主机(bot 规则是 zone 级);`sitemap_guard.py` 17 个主机全加;
+  `page_patterns.py` 以主主机入矩阵。**首读 09-21:31 主机探活全 200、9 UA × 2 路径 × 18 站零拦截、
+  31 份 sitemap 抽样 0 重定向。**
+- **两处写死 `== 14` 的自检同轮改掉**(`page_patterns` / `sitemap_guard`,正是 09-17 手册说的那种
+  「迟早只会误报」的断言),改为形状断言(无重复、全是舰队域、裸主机名)。
+- **纠正 09-21 上午分析里的一句**:「四站没有防回滚守卫和部署后自检」**只对了一半**。四条 workflow
+  都有 `scripts/smoke.mjs` 类的部署后真断言(web3 甚至逐主机遍历清单),没有的是 `::error` 字样;
+  守卫也都有,但两条是 `checkout --detach origin/main`、另两条 fetch 一失败就挡部署——本轮四条
+  统一成舰队标准(只在 push 到 main 生效、fail-open、reset)。**这四条 workflow 也在 `codex/*`
+  分支上触发做验证**,守卫条件必须带 `github.ref == 'refs/heads/main'`,否则分支验证会被重置到 main。
+- **AI 引荐与渠道构成读不到这四个站,而且不该硬接**:agent-delivery / web3 只记匿名反馈,
+  venture-lab 只记勾选同意者的 opt-in 事件(`/api/pulse` 形状不同,计的不是访客),localebatch
+  **什么访问事件都不记**。这是各自发布文档写明的设计,不是漏埋点。**所以 10-24 那条 AI 引荐
+  判定线(≥156/28d)的分母仍是记录 page_view 的 14 站**;要不要给新站加 opt-in 计数是
+  owner 的数据契约决定,本轮不代做。
+- **判定线补登 5 条**(`venture-rfqdesk/modelmeter/querysprint-1016`、`venture-filinglens-1019`、
+  `localebatch-readout-1016`),阈值逐条抄自 09-18/19 两份文档,此前只在文档里 = 等于没预登记。
+  web3 ×11 与 agent-delivery ×1 是 main 侧 09-19 已登的。四站各补了 CLAUDE.md 骨架(只记机器结构、
+  仪器与判定线,站规仍以各自 README 与发布文档为准)。
+- **web3 `/zh/` 404 已修**:静态资产 `html_handling:none`,worker 对 `/` 做了 index 映射、对 `/zh/`
+  没做;`2fc336a` 只改清单不改 worker,于是「清单覆盖每一页」测试红在自己那一行。改三处
+  (`/zh/`→index、`/zh/index.html` 308、`/zh/share.png` 放行),94/94。
+- **PR #2 与 main 的第三次合并**:206 提交、3 处冲突(CLAUDE.md 标题并集 29 节、bets 按 id 并集 122→127、
+  ai-access 取带 Googlebot 的快照)。**这条分支仍未并进 main,by_source / bpj canonical 修复 /
+  agi 面包屑 / 本轮四站接入,全部要等 owner 合并才生效。**
+- **本会话读不到 D1**:Cloudflare MCP 在本会话仍是未授权状态(owner 已重授权,但非交互会话拿不到
+  新令牌,需新开会话)。所以到期的 `gridlings-rules-cluster-0921` 没结算,钱线仪表盘没现查。

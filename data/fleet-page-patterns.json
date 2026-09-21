@@ -1,12 +1,12 @@
 {
- "generated": "2026-09-15T16:26:01Z",
+ "generated": "2026-09-21T13:10:45Z",
  "note": "同一套判据打在所有站上;分母是分层抽样的页数,不是全站。判据与采样纪律见脚本 docstring。",
  "errors": [],
  "sites": [
   {
    "site": "agiscorecard",
-   "pages": 212,
-   "path_groups": 10,
+   "pages": 246,
+   "path_groups": 11,
    "sampled": 16,
    "dated_fresh": 15,
    "has_source": 16,
@@ -15,33 +15,33 @@
   },
   {
    "site": "baipiaoji",
-   "pages": 1558,
-   "path_groups": 14,
+   "pages": 1598,
+   "path_groups": 17,
    "sampled": 16,
    "dated_fresh": 12,
    "has_source": 7,
    "faq_ld": 10,
-   "breadcrumb": 16
+   "breadcrumb": 14
   },
   {
    "site": "getecoback",
-   "pages": 207,
-   "path_groups": 5,
-   "sampled": 9,
-   "dated_fresh": 5,
-   "has_source": 9,
-   "faq_ld": 6,
+   "pages": 254,
+   "path_groups": 8,
+   "sampled": 15,
+   "dated_fresh": 6,
+   "has_source": 13,
+   "faq_ld": 4,
    "breadcrumb": 6
   },
   {
    "site": "thedollscout",
-   "pages": 39,
-   "path_groups": 7,
-   "sampled": 11,
+   "pages": 55,
+   "path_groups": 8,
+   "sampled": 13,
    "dated_fresh": 6,
-   "has_source": 6,
+   "has_source": 8,
    "faq_ld": 4,
-   "breadcrumb": 5
+   "breadcrumb": 7
   },
   {
    "site": "gridlings",
@@ -55,7 +55,7 @@
   },
   {
    "site": "buysomething",
-   "pages": 5,
+   "pages": 7,
    "path_groups": 1,
    "sampled": 2,
    "dated_fresh": 1,
@@ -142,6 +142,46 @@
    "has_source": 1,
    "faq_ld": 1,
    "breadcrumb": 1
+  },
+  {
+   "site": "agent-delivery-lab",
+   "pages": 4,
+   "path_groups": 1,
+   "sampled": 2,
+   "dated_fresh": 0,
+   "has_source": 2,
+   "faq_ld": 0,
+   "breadcrumb": 0
+  },
+  {
+   "site": "venture-lab",
+   "pages": 7,
+   "path_groups": 1,
+   "sampled": 2,
+   "dated_fresh": 0,
+   "has_source": 0,
+   "faq_ld": 0,
+   "breadcrumb": 0
+  },
+  {
+   "site": "web3-studio",
+   "pages": 10,
+   "path_groups": 1,
+   "sampled": 2,
+   "dated_fresh": 0,
+   "has_source": 0,
+   "faq_ld": 0,
+   "breadcrumb": 0
+  },
+  {
+   "site": "localebatch",
+   "pages": 4,
+   "path_groups": 1,
+   "sampled": 2,
+   "dated_fresh": 0,
+   "has_source": 2,
+   "faq_ld": 0,
+   "breadcrumb": 0
   }
  ]
 }

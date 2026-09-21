@@ -63,6 +63,12 @@ SITES = [
     ("firstjob", "https://firstjob.agiscorecard.com"),
     ("codeword", "https://codeword.agiscorecard.com"),
     ("powerbill", "https://powerbill.agiscorecard.com"),
+    # 2026-09-21:四个新 worker 各探一个主机(Cloudflare 的 bot 规则是 zone 级,同 zone 同 worker 的
+    # 次级主机名不会得到不同答案;次级主机的探活在 fleet-heartbeat.yml 里)。
+    ("agent-delivery-lab", "https://verify.agiscorecard.com"),
+    ("venture-lab", "https://rfqdesk.agiscorecard.com"),
+    ("web3-studio", "https://web3.agiscorecard.com"),
+    ("localebatch", "https://localebatch.agiscorecard.com"),
 ]
 PATHS = ["/", "/llms.txt"]
 
