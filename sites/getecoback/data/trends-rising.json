@@ -1,5 +1,5 @@
 {
- "fetched": "2026-09-20",
+ "fetched": "2026-09-21",
  "geo": "DE",
  "seeds": {
   "klimaanlage": {
@@ -112,98 +112,112 @@
    "polluted": false
   },
   "luftentfeuchter": {
+   "auto": [
+    "luftentfeuchter",
+    "luftentfeuchter keller",
+    "luftentfeuchter elektrisch",
+    "luftentfeuchter test",
+    "luftentfeuchter granulat",
+    "luftentfeuchter wohnung",
+    "luftentfeuchter obi",
+    "luftentfeuchter media markt",
+    "luftentfeuchter ohne strom",
+    "luftentfeuchter testsieger"
+   ],
    "rising": [
     {
-     "q": "klarstein mobile klimaanlage mit abluftschlauch, 4-in-1 klimagerät mit ventilato",
-     "v": 44450
+     "q": "luftentfeuchter keller",
+     "v": "new"
     },
     {
-     "q": "meacodry arete one 20l",
-     "v": 36800
+     "q": "luftentfeuchter elektrisch",
+     "v": "new"
     },
     {
-     "q": "kühlt ein luftentfeuchter",
-     "v": 36200
+     "q": "luftentfeuchter test",
+     "v": "new"
     },
     {
-     "q": "luftentfeuchter testsieger stiftung warentest",
-     "v": 30450
+     "q": "luftentfeuchter granulat",
+     "v": "new"
     },
     {
-     "q": "comfee mddf-20den7-wf",
-     "v": 25250
+     "q": "luftentfeuchter wohnung",
+     "v": "new"
     },
     {
-     "q": "bautrockner kaufen",
-     "v": 23000
+     "q": "luftentfeuchter obi",
+     "v": "new"
     },
     {
-     "q": "easy home luftentfeuchter bedienungsanleitung aldi",
-     "v": 20000
+     "q": "luftentfeuchter media markt",
+     "v": "new"
     },
     {
-     "q": "luftentfeuchter granulat nachfüllpack",
-     "v": 16950
+     "q": "luftentfeuchter ohne strom",
+     "v": "new"
     },
     {
-     "q": "luftentfeuchter keller ohne strom",
-     "v": 15100
-    },
-    {
-     "q": "luftentfeuchter wohnung testsieger",
-     "v": 13050
+     "q": "luftentfeuchter testsieger",
+     "v": "new"
     }
    ],
-   "source": "related-queries",
-   "fetched": "2026-09-20",
-   "polluted": false
+   "source": "autocomplete-diff",
+   "fetched": "2026-09-21"
   },
   "heizlüfter": {
+   "auto": [
+    "heizlüfter",
+    "heizlüfter bad",
+    "heizlüfter test",
+    "heizlüfter camping",
+    "heizlüfter obi",
+    "heizlüfter media markt",
+    "heizlüfter mit akku",
+    "heizlüfter als ventilator",
+    "heizlüfter kaufen",
+    "heizlüfter bauhaus"
+   ],
    "rising": [
     {
-     "q": "heizlüfter 300 watt",
-     "v": 44900
+     "q": "heizlüfter bad",
+     "v": "new"
     },
     {
-     "q": "dreo solaris slim h3",
-     "v": 29250
+     "q": "heizlüfter test",
+     "v": "new"
     },
     {
-     "q": "sparsamer heizlüfter",
-     "v": 28600
+     "q": "heizlüfter camping",
+     "v": "new"
     },
     {
-     "q": "energiesparender heizlüfter",
-     "v": 28450
+     "q": "heizlüfter obi",
+     "v": "new"
     },
     {
-     "q": "keramik heizlüfter test",
-     "v": 20500
+     "q": "heizlüfter media markt",
+     "v": "new"
     },
     {
-     "q": "stromsparender heizlüfter",
-     "v": 15000
+     "q": "heizlüfter mit akku",
+     "v": "new"
     },
     {
-     "q": "heizlüfter garage",
-     "v": 6750
+     "q": "heizlüfter als ventilator",
+     "v": "new"
     },
     {
-     "q": "heizlüfter 400 watt",
-     "v": 4200
+     "q": "heizlüfter kaufen",
+     "v": "new"
     },
     {
-     "q": "heizlüfter bad testsieger",
-     "v": 4050
-    },
-    {
-     "q": "dreo atom one",
-     "v": 3850
+     "q": "heizlüfter bauhaus",
+     "v": "new"
     }
    ],
-   "source": "related-queries",
-   "fetched": "2026-09-12",
-   "polluted": false
+   "source": "autocomplete-diff",
+   "fetched": "2026-09-21"
   },
   "balkonkraftwerk": {
    "rising": [
