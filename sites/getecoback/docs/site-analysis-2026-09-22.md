@@ -158,7 +158,7 @@ IndexNow 自己的 FAQ 写明重复提交未变 URL 会被视为噪音并降低�
 - run 221(本次提交,33 个 site 文件在 diff 里):IndexNow 提交 **27 个 URL = pushed diff 里在 sitemap 内的页**,new=0,HTTP 200;工具 manifest ping **skipped**(生成器未变);sitemap 闸门绿。上一版对一个一文件提交是 66 + 12。
 - run 222(只改 workflow):**authored=0 new=0 submit=0 → 「nothing changed — skipping the ping」**;manifest ping skipped;闸门绿。
 - 线上 sitemap 部署后:lastmod = 今天的 URL 从 13 个降到 **8 个,且全部是今天真有提交的文件**(`/`、`/en/`、`/it/`、tools、agents/compliance ×2、creator-kit ×2);工具构建器追加的 15 条 workbench/members 条目**不带 lastmod**(没有假新鲜)。
-- **未解的一条(如实记)**:runner 上仍有 **37 张页在部署链后与仓库不同**(全部 klimaanlage/luftentfeuchter 梯页、EN 故障页、mobile-klimaanlage-* 等),而本地从干净树跑同一条链(含 revenue-studio 构建、两个固定 `PYTHONHASHSEED`)**HTML churn = 0**。它们**不再被提交给 IndexNow**(只报 warning),所以不影响本轮目标;但「仓库 ≠ 部署产物」本身是个待查项——某个只在 runner 上跑的步骤在改这些页。IndexNow 步现在会打印第一张 churn 页的 diff 摘录,下一次部署的日志就能点名是哪个注入器。
+- **最后一条 churn 也找到了(run 223 的 diff 摘录点名)**:runner 上 **37 张页在部署链后与仓库不同**,而本地干净树(含 revenue-studio 构建、两个固定 `PYTHONHASHSEED`)churn = 0。差异全在 `<!--EB_RELATED-->`:`build_related.py` 的 top-up 遍历按 **dict 顺序 = `os.walk` 顺序 = 文件系统目录序**走,同时一边遍历一边改 `chosen`/`inbound`,所以 runner 的 ext4 与沙箱的目录序给出不同的补链结果。**同一份代码在两台机器上产出不同页面,这不是随机,是文件系统。** 修法:遍历改 `sorted(pages)`,`os.walk` 的 dirs/files 也排序;本地两遍 byte-stable 后把确定性产物提交进仓。教训:**任何「一边遍历一边改状态」的注入器,遍历顺序必须显式排序**,否则 CI 与本地永远对不上。
 
 **本轮刻意没做**:不改任何标题(Google 0 引荐,Bing 口径无 CTR 数据)、不加 Quellen(无读数)、不建新页(19 张新页一张都没被抓,再建是往黑洞里投)、不动 `build_related`(内链不是杠杆)、不给首页再加 GEO 件(§二)。
 
