@@ -1136,3 +1136,19 @@ cg-package-smoke，别靠肉眼。
   沙箱打不到线上站，这条只能在 runner 上验。
 - **通用教训**：游戏上第三方门户前，先问「我们的埋点在别人的域名下还发得出去吗」。
   itch 之所以有数据，只是因为 `itch.zone` 恰好没触发这个路径。
+
+## Playgama 主目录 7/7 同模板拒稿 + 流量线 ① 达标(2026-09-22,到期结算)
+
+- **`gridlings-playgama-five-0925` 提前 3 天判 lost**:MCP `list_applications` 显示 PROMPT / OVERFIT / MIMIC / OVERSEER /
+  MINIMA 全部 REJECTED(09-15 18:57–19:17 UTC),五款的 `list_moderation_comments` 是**同一条模板**:AI 生成的游戏
+  要先经 Playgama MCP 沙箱拿到真实表现数据,再由他们挑选进主目录。GHOSTLINE(09-14 13:02)与 SINGULARITY(09-14 13:39)
+  也是同一句 —— **7/7 同文,主目录对本舰队的 AI 游戏关闭**。lose 动作生效:只经营 sandbox 面,**不再空手重投**;
+  进主目录的唯一通道是平台按沙箱表现挑,不是我们再提交。09-08 那次「质量」拒稿的教训(第 1063 行)仍有效,但已不是主因。
+- **`gridlings-playgama-traffic-0922` ① 达标、② 等 owner**:D1 现查 play_start 非 US 且 ref 含 games.playgama.net、ts≥09-15 14:53
+  = **155**(阈值 150;全部 167,含 US 12)。**投放形状要记住**:09-15 76、09-16 87、09-17 2、09-19 2、之后 0 ——
+  163/167 落在前 48 小时,而 MCP `get_sandbox_traffic` 说 run 仍 RUNNING、budget $2 只花了 16.8%、**09-22 14:53 UTC 结束**。
+  所以「≥150」是免费 boost 头两天给的,不是持续流量;主目录 09-14/15 全拒与投放停摆同期。
+  **owner 一件事**:run 结束后截一张 Overview(VISITS / PLAYS 60S,附日期)—— 这是 ② 的唯一读数;09-29 前没截图记 insufficient。
+  win 动作里「回投主目录」已被上一条作废,剩下的只有「$20 付费轮」这个 owner 决策;lose 则游戏降为只维护。
+- **版本冻结仍有效**:结算前不 `publish_sandbox` 新包(09-16 那个更快的归档仍未发)。② 结算之后再一次性做:发新包到 sandbox;
+  「带数据重新提交主目录」这半句删掉,主目录不接受提交。

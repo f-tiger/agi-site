@@ -926,7 +926,8 @@
    "threshold_original": "≥150 / ≥15",
    "revised": "2026-09-15",
    "revised_reason": "原口径的「二次事件」测的是这些游戏不发的东西:D1 只记 solve/play_again/game_over 这类离散里程碑,而门户玩家在开局与跑完一局之间什么都不触发。owner 后台截图给了正确指标(停留时长):35 visits → 11 玩过 30s → 6 玩过 60s。阈值改为按他们的口径,原文保留在 *_original。",
-   "note": "版本冻结:读数属于 09-15 的旧包。09-16 上传了更快的新归档但 owner 决定「先不发」,结算前不得 publish_sandbox,否则样本前后不可比。 ‖ 2026-09-21 预读(到期前一天,不结算):① D1 play_start 非 US、ref LIKE '%games.playgama.net%'、ts≥09-15 14:53 = 155(4 个有事件日 09-15→09-19,09-20/21 无新增),已过 ≥150;② PLAYS 60S ÷ VISITS 仍需 owner 后台截图。"
+   "note": "版本冻结:读数属于 09-15 的旧包。09-16 上传了更快的新归档但 owner 决定「先不发」,结算前不得 publish_sandbox,否则样本前后不可比。 ‖ 2026-09-21 预读(到期前一天,不结算):① D1 play_start 非 US、ref LIKE '%games.playgama.net%'、ts≥09-15 14:53 = 155(4 个有事件日 09-15→09-19,09-20/21 无新增),已过 ≥150;② PLAYS 60S ÷ VISITS 仍需 owner 后台截图。 ‖ 2026-09-22:①已达标,等 owner ② 截图结算(见 reading_2026-09-22)。",
+   "reading_2026-09-22": "到期日现查。① D1 gridlings-events(name='play_start',ts≥'2026-09-15 14:53',ref LIKE '%games.playgama.net%',country<>'US')= **155**,阈值 ≥150 已过;全部 167(含 US 12),全 human,按日 09-15 76 / 09-16 87 / 09-17 2 / 09-19 2,09-20 起 0,最后一次 09-19 18:41 UTC。Playgama MCP get_sandbox_traffic(SINGULARITY):run RUNNING,FREE,budget $2,spentRatio 0.168,startsAt 09-15 14:53,endsAt **09-22 14:53 UTC**;即 163/167 开局落在前 48 小时,之后投放几乎停摆,与 7 款主目录申请 09-14/15 全部 REJECTED 同期。② PLAYS 60S ÷ VISITS 仍只有 owner 后台能读:**run 今日 14:53 UTC 结束后截一张 Overview(附日期)即可结算**;09-29 前没有截图则记 insufficient。win 动作里「回投主目录」已被 gridlings-playgama-five-0925(lost,7/7 同模板拒稿)作废 —— 主目录只按 sandbox 表现由平台挑,不接受再提交;剩下的 win 动作只有一条:$20 付费轮作为 owner 决策提出。"
   },
   {
    "id": "gridlings-playgama-five-0925",
@@ -937,7 +938,9 @@
    "win": "主目录未对 AI 游戏关门,按过审那款的形状复制",
    "lose": "确认主目录对本舰队的 AI 游戏关闭,此后只经营 sandbox 面,不再空手重投",
    "source": "sites/gridlings/docs/playgama-setup.md(2026-09-15 节)",
-   "status": "open"
+   "status": "lost",
+   "settled": "2026-09-22",
+   "reading": "Playgama MCP list_applications 2026-09-22 04:30 UTC:PROMPT / OVERFIT / MIMIC / OVERSEER / MINIMA 全部 REJECTED(09-15 18:57–19:17 UTC);list_moderation_comments 五款同一条模板:「For games created with AI, we offer a dedicated way to test them on Playgama before they can be considered for our main catalog… Publishing through Playgama MCP … gives our team real performance data that we can use to identify the strongest games for potential placement in the main Playgama catalog」。GHOSTLINE(09-14 13:02)与 SINGULARITY(09-14 13:39)也是同一模板 —— **7/7 同文,主目录对本舰队的 AI 游戏关闭**。提前 3 天结算,因为读数已不可能改变。lose 动作生效:只经营 sandbox 面,不再空手重投;进主目录的唯一通道是 Playgama 自己按 sandbox 表现挑选,不是我们再提交。"
   },
   {
    "id": "gridlings-puzzle-portal-1013",
