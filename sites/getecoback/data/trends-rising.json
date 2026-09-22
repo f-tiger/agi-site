@@ -1,5 +1,5 @@
 {
- "fetched": "2026-09-21",
+ "fetched": "2026-09-22",
  "geo": "DE",
  "seeds": {
   "klimaanlage": {
@@ -166,72 +166,61 @@
    "fetched": "2026-09-21"
   },
   "heizlüfter": {
-   "auto": [
-    "heizlüfter",
-    "heizlüfter bad",
-    "heizlüfter test",
-    "heizlüfter camping",
-    "heizlüfter obi",
-    "heizlüfter media markt",
-    "heizlüfter mit akku",
-    "heizlüfter als ventilator",
-    "heizlüfter kaufen",
-    "heizlüfter bauhaus"
-   ],
    "rising": [
     {
-     "q": "heizlüfter bad",
-     "v": "new"
+     "q": "sparsamer heizlüfter",
+     "v": 54950
     },
     {
-     "q": "heizlüfter test",
-     "v": "new"
+     "q": "akku heizlüfter makita",
+     "v": 38500
     },
     {
-     "q": "heizlüfter camping",
-     "v": "new"
+     "q": "dyson ventilator und heizlüfter",
+     "v": 34450
     },
     {
-     "q": "heizlüfter obi",
-     "v": "new"
+     "q": "energiesparender heizlüfter",
+     "v": 33050
     },
     {
-     "q": "heizlüfter media markt",
-     "v": "new"
+     "q": "dreo atom one",
+     "v": 31000
     },
     {
-     "q": "heizlüfter mit akku",
-     "v": "new"
+     "q": "heizlüfter große räume",
+     "v": 27750
     },
     {
-     "q": "heizlüfter als ventilator",
-     "v": "new"
+     "q": "heizlüfter fürs auto",
+     "v": 20850
     },
     {
-     "q": "heizlüfter kaufen",
-     "v": "new"
+     "q": "heizlüfter mit wenig stromverbrauch",
+     "v": 17400
     },
     {
-     "q": "heizlüfter bauhaus",
-     "v": "new"
+     "q": "voltomat heating heizlüfter",
+     "v": 14400
+    },
+    {
+     "q": "heizlüfter bad testsieger",
+     "v": 7800
     }
    ],
-   "source": "autocomplete-diff",
-   "fetched": "2026-09-21"
+   "source": "related-queries",
+   "fetched": "2026-09-22",
+   "polluted": false
   },
   "balkonkraftwerk": {
    "rising": [
     {
      "q": "ecoflow stream 5000",
-     "v": 8800
+     "v": 9300
     },
     {
      "q": "anker solix solarbank 4 e5000 pro,meter gen 2 ,5xbp5000 balkonkraftwerk",
-     "v": 4400
-    },
-    {
-     "q": "anker solix solarbank 4 e5000 pro",
-     "v": 700
+     "v": 6500
     },
     {
      "q": "split klimaanlage",
@@ -239,32 +228,36 @@
     },
     {
      "q": "balkonkraftwerk klimaanlage",
-     "v": 450
+     "v": 300
+    },
+    {
+     "q": "anker solix solarbank 4 e5000 pro",
+     "v": 300
     },
     {
      "q": "anker solix 4 pro",
-     "v": 350
-    },
-    {
-     "q": "anker solix 4",
      "v": 250
     },
     {
-     "q": "balkonkraftwerk nicht angemeldet strafe",
-     "v": 100
+     "q": "anker solarbank 4 pro",
+     "v": 250
     },
     {
-     "q": "solarkon",
-     "v": 60
+     "q": "anker solix 4",
+     "v": 200
     },
     {
-     "q": "balkonkraftwerk registrieren",
-     "v": 60
+     "q": "ecoflow stream",
+     "v": 80
+    },
+    {
+     "q": "solarpanel kaufen",
+     "v": 70
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-09-13",
-   "polluted": false
+   "fetched": "2026-09-22",
+   "polluted": true
   },
   "kaffeevollautomat": {
    "rising": [
