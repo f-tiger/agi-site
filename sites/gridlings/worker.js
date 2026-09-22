@@ -4,6 +4,8 @@
 // (2026-08-24 rules pages; 2026-09-06 /ai-games hub.) There is NO generic extensionless
 // fallback in this worker — every new content page MUST be added to this Set or it 404s.
 const GEO = new Set(["/ai-games","/futoshiki-rules","/kropki-sudoku-rules","/sandwich-sudoku-rules","/skyscraper-puzzle-rules","/star-battle-rules","/thermometer-puzzle-rules","/nonogram-rules","/6x6-sudoku-rules","/binary-puzzle-rules","/games-like-linkedin-queens"]);
+// zh twins of the rules pages (2026-09-22): /zh/<slug> → <slug>-zh.html; /zh/ai-games has no twin.
+const GEO_ZH = new Set(["/zh/futoshiki-rules", "/zh/kropki-sudoku-rules", "/zh/sandwich-sudoku-rules", "/zh/skyscraper-puzzle-rules", "/zh/star-battle-rules", "/zh/thermometer-puzzle-rules", "/zh/nonogram-rules", "/zh/6x6-sudoku-rules", "/zh/binary-puzzle-rules", "/zh/games-like-linkedin-queens"]);
 // 2026-09-16: GHOSTLINE and SINGULARITY were emitting their engagement events all
 // along and this Set was silently dropping every one — the table has never held a
 // single race_start, finish, medal, beat_clone, milestone or rogue. That is why those
@@ -267,6 +269,8 @@ export default {
       assetReq = new Request(new URL("/downloads.html", url).toString(), request);
     } else if (GEO.has(url.pathname.replace(/\/$/, ""))) {
       assetReq = new Request(new URL(url.pathname.replace(/\/$/, "") + ".html", url).toString(), request);
+    } else if (GEO_ZH.has(url.pathname.replace(/\/$/, ""))) {
+      assetReq = new Request(new URL(url.pathname.replace(/\/$/, "").slice(3) + "-zh.html", url).toString(), request);
     } else if (url.pathname.startsWith("/zh/") && /\.(js|css|json|png|svg|txt|ico|webmanifest)$/.test(url.pathname)) {
       // zh pages are served at /zh/<game> but reference assets relatively,
       // which the browser resolves under /zh/ — fall back to the root asset

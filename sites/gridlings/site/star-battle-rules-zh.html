@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>星战谜题（Star Battle）规则：双星版怎么玩</title>
+<meta name="description" content="星战谜题规则：放星星，使每行、每列、每个色块恰好有规定数量的星（10×10 上是 2 颗），且任意两颗星不相邻，连对角也不行。附技巧。">
+<link rel="canonical" href="https://play.agiscorecard.com/zh/star-battle-rules">
+<link rel="alternate" hreflang="en" href="https://play.agiscorecard.com/star-battle-rules">
+<link rel="alternate" hreflang="zh" href="https://play.agiscorecard.com/zh/star-battle-rules">
+<link rel="stylesheet" href="style.css">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#002FA7">
+<meta property="og:title" content="星战谜题（Star Battle）规则：双星版怎么玩">
+<meta property="og:description" content="星战谜题规则：放星星，使每行、每列、每个色块恰好有规定数量的星（10×10 上是 2 颗），且任意两颗星不相邻，连对角也不行。附技巧。">
+<meta property="og:url" content="https://play.agiscorecard.com/zh/star-battle-rules">
+<meta property="og:type" content="article">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⭐</text></svg>">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "星战谜题（Star Battle）规则：双星版怎么玩", "datePublished": "2026-08-24", "dateModified": "2026-08-24", "inLanguage": "zh", "url": "https://play.agiscorecard.com/zh/star-battle-rules", "author": {"@type": "Organization", "name": "Gridlings (AGI Scorecard)", "url": "https://agiscorecard.com/about"}, "publisher": {"@type": "Organization", "name": "Gridlings", "url": "https://play.agiscorecard.com/"}, "description": "星战谜题规则：放星星，使每行、每列、每个色块恰好有规定数量的星（10×10 上是 2 颗），且任意两颗星不相邻，连对角也不行。附技巧。"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "星战谜题的规则是什么？", "acceptedAnswer": {"@type": "Answer", "text": "放星星，使每一行、每一列、每一个色块恰好包含规定数量的星（标准 10×10 是两颗），且任意两颗星互不相碰，连对角也不行。"}}, {"@type": "Question", "name": "星战谜题每行放几颗星？", "acceptedAnswer": {"@type": "Answer", "text": "本站每日 10×10 题：每行恰好两颗、每列两颗、每个色块两颗。入门 8×8 用一颗星。数量总是随题目一起标出。"}}, {"@type": "Question", "name": "星战谜题和 LinkedIn 的 Queens 游戏是一回事吗？", "acceptedAnswer": {"@type": "Answer", "text": "是同一个谜题家族 —— Queens 是用皇冠符号的单星星战。谜题书和锦标赛使用的经典名称是 star battle（星战）；本站的每日题是更难的双星形式。"}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Gridlings 格灵", "item": "https://play.agiscorecard.com/zh"}, {"@type": "ListItem", "position": 2, "name": "星战规则 —— 到处都是两颗星，且互不相碰", "item": "https://play.agiscorecard.com/zh/star-battle-rules"}]}</script>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1 style="font-size:1.3rem"><a href="/zh/star-battle-rules">星战规则 —— 到处都是两颗星，且互不相碰</a></h1>
+</header>
+
+<div class="rules" style="border-top:0;padding-top:6px">
+  <p style="font-size:1.02rem"><strong>三条「恰好」和一条「绝不」。</strong>放星星，使每一行、每一列、每一个色块最终恰好有规定数量的星 —— <strong>每日 10×10 是 2★</strong>，入门 8×8 是 1★ —— 并且任意两颗星永远不相碰，连对角相接也不行。没有算术，没有数字：纯粹的摆放逻辑。</p>
+  <p id="live" style="border:1px solid var(--line);border-radius:10px;background:var(--bg2);padding:10px 12px;font-size:.95rem">今日经验证的每日题已上线 —— <a href="/zh/starbattle">去玩</a>。</p>
+<script>fetch("/starbattle-daily.json").then(r=>r.json()).then(d=>{var e=new Date(d.epoch+"T00:00:00Z"),n=Math.floor((Date.now()-e)/864e5)+1;if(n>0)document.getElementById("live").innerHTML='第 <strong>'+n+'</strong> 期每日题已上线（每天 00:00 UTC 更新一盘）—— <a href="/zh/starbattle">去玩</a>，或浏览<a href="/archive">存档</a>。';}).catch(()=>{});</script>
+  <h2>规则</h2>
+  <table style="width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums">
+    <thead><tr><th style="text-align:left;padding:6px 8px;border-bottom:1px solid var(--line)">规则</th><th style="text-align:left;padding:6px 8px;border-bottom:1px solid var(--line)">含义</th></tr></thead>
+    <tbody><tr><td style="padding:6px 8px;white-space:nowrap"><strong>行与列</strong></td><td style="padding:6px 8px">每一行、每一列恰好包含规定数量的星（每日题是 2 颗）。</td></tr><tr><td style="padding:6px 8px;white-space:nowrap"><strong>色块</strong></td><td style="padding:6px 8px">每一个色块也恰好包含同样数量的星。</td></tr><tr><td style="padding:6px 8px;white-space:nowrap"><strong>不相碰</strong></td><td style="padding:6px 8px">任意两颗星不相邻 —— 横、竖、对角都不行。</td></tr><tr><td style="padding:6px 8px;white-space:nowrap"><strong>笔记</strong></td><td style="padding:6px 8px">× 是玩家标记「这里没星」的笔记；客户端只用它做记账。</td></tr></tbody>
+  </table>
+  <h2>拿色块数行</h2><p>如果 k 个色块完全落在 m 行之内且 k×星数 = m×星数，这些色块就占尽了那几行的全部星 —— 那几行里其他色块的每一格都是 ×。</p><h2>挤压小色块</h2><p>2 格或 3 格的色块放 2★……不可能存在；小色块一旦套上相邻规则，往往只剩一种合法的放星方式。先解紧的色块。</p><h2>给落下的星画圈</h2><p>每放一颗星，立刻把它周围八格标 ×；每完成一行/列/色块，把剩下的格子全部标 × —— 先把这些连锁做完，再去搜索任何东西。</p>
+  <h2>已验证，不是承诺</h2>
+  <p>生成器先摆星：先放好星，再围着它们长出色块，最后只有当求解器证明解唯一时才接受盘面。接受率极低 —— 大约只有 0.2% 的 8×8 1★ 候选盘面能通过 —— 这就是为什么 450 盘 10×10 2★ 每日题（自 2026-08-24 起）每一盘都不需要猜。</p>
+</div>
+
+<div class="rules">
+  <h2>常见问题</h2>
+  <h3 style="font-size:.98rem;margin:10px 0 2px">星战谜题的规则是什么？</h3><p style="margin:0 0 6px">放星星，使每一行、每一列、每一个色块恰好包含规定数量的星（标准 10×10 是两颗），且任意两颗星互不相碰，连对角也不行。</p><h3 style="font-size:.98rem;margin:10px 0 2px">星战谜题每行放几颗星？</h3><p style="margin:0 0 6px">本站每日 10×10 题：每行恰好两颗、每列两颗、每个色块两颗。入门 8×8 用一颗星。数量总是随题目一起标出。</p><h3 style="font-size:.98rem;margin:10px 0 2px">星战谜题和 LinkedIn 的 Queens 游戏是一回事吗？</h3><p style="margin:0 0 6px">是同一个谜题家族 —— Queens 是用皇冠符号的单星星战。谜题书和锦标赛使用的经典名称是 star battle（星战）；本站的每日题是更难的双星形式。</p>
+</div>
+
+<div class="rules" style="font-size:.9rem;color:var(--mut)">
+  <p>更多规则指南：<a href="/zh/futoshiki-rules">≶ 不等号</a> · <a href="/zh/kropki-sudoku-rules">⚫ 点点</a> · <a href="/zh/sandwich-sudoku-rules">🥪 三明治</a> · <a href="/zh/skyscraper-puzzle-rules">🏙 摩天楼</a> · <a href="/zh/thermometer-puzzle-rules">🌡 温度计</a> · <a href="/zh/nonogram-rules">▦ 数织</a> · <a href="/zh/6x6-sudoku-rules">🔢 迷你数独</a> · <a href="/zh/binary-puzzle-rules">🌙 日月</a> · <a href="/zh/games-like-linkedin-queens">🧩 像 LinkedIn Queens 的游戏</a></p>
+  <p>出自 <a href="https://agiscorecard.com/about">AGI Scorecard</a> 团队 · <a href="/zh/starbattle">去玩</a> · <a href="/archive">存档</a> · <a href="/bench">研究基准</a></p>
+</div>
+</div>
+</body>
+</html>

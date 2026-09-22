@@ -78,7 +78,8 @@
    "win": "继续投入游戏线",
    "lose": "游戏降为只维护;人力回 eco/bpj 变现线",
    "source": "sites/gridlings/CLAUDE.md:301",
-   "status": "open"
+   "status": "open",
+   "reading_2026-09-22": "预读(到期前 2 天,不结算):D1 gridlings-events ref LIKE '%itch.zone%' 累计 play_start **45**(首日 08-24,最近 09-19,只有 6 个有事件日)、solve **13**(全部落在 08-24→08-27);28d 窗 33 / 12。阈值 ≥150 / ≥25,两项都差数倍,且 solve 自 08-27 起 0 —— 09-24 按规则结算,读数不会翻转。"
   },
   {
    "id": "eco-kuehlt-nicht-0925",
@@ -1455,6 +1456,17 @@
    "win": "钱线仪表盘从「会话手查 D1」变成第①层自动仪器;每次报告直接引用快照,不再重跑 D1。",
    "lose": "哪站读不到就查该站 money 查询(部署自检会先红);两站以上长期读不到 → 回退为会话手查并把原因写进手册。",
    "source": "CLAUDE.md 2026-09-21「营收目标增长」节;docs/revenue-growth-prompt-2026-09-21.md",
+   "status": "open"
+  },
+  {
+   "id": "gridlings-rules-zh-1022",
+   "site": "gridlings",
+   "due": "2026-10-22",
+   "metric": "D1 gridlings-events page_view(human)28d 窗:path LIKE '/zh/%-rules' OR path='/zh/games-like-linkedin-queens'(10 张 zh 规则页合计);窗口从 PR #2 合并上线日起算",
+   "threshold": "≥20(t0=0;对照:EN 簇首个 28 天 52,zh 页占全站真人 pv 27%,按比例只有 ~14,阈值故意高于比例)",
+   "win": "zh 面成立:把 /ai-games 与 /nonogram-no-guessing 也做 zh 版,并在 zh.html 加规则指南入口",
+   "lose": "<10 → 停止 zh 规则页扩张,保留已建页只维护;10–19 记 insufficient 再看 28 天",
+   "source": "sites/gridlings/CLAUDE.md「规则簇 zh 版」(2026-09-22)",
    "status": "open"
   }
  ]

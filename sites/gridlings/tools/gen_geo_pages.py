@@ -183,22 +183,49 @@ def faq_ld(faqs):
     ents = [{"@type":"Question","name":q,"acceptedAnswer":{"@type":"Answer","text":a}} for q,a in faqs]
     return json.dumps({"@context":"https://schema.org","@type":"FAQPage","mainEntity":ents}, ensure_ascii=False)
 
-def art_ld(p):
+def art_ld(p, lang, url):
     return json.dumps({"@context":"https://schema.org","@type":"Article","headline":p["title"],
-      "datePublished":TODAY,"dateModified":TODAY,"inLanguage":"en",
+      "datePublished":TODAY,"dateModified":TODAY,"inLanguage":lang,"url":url,
       "author":{"@type":"Organization","name":"Gridlings (AGI Scorecard)","url":"https://agiscorecard.com/about"},
       "publisher":{"@type":"Organization","name":"Gridlings","url":BASE+"/"},
       "description":p["desc"]}, ensure_ascii=False)
 
-def crumb_ld(p):
+def crumb_ld(p, lang, url):
+    home = BASE + ("/zh" if lang == "zh" else "/")
     return json.dumps({"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
-      {"@type":"ListItem","position":1,"name":"Gridlings","item":BASE+"/"},
-      {"@type":"ListItem","position":2,"name":p["h1"],"item":BASE+"/"+p["slug"]}]}, ensure_ascii=False)
+      {"@type":"ListItem","position":1,"name":"Gridlings" if lang == "en" else "Gridlings 格灵","item":home},
+      {"@type":"ListItem","position":2,"name":p["h1"],"item":url}]}, ensure_ascii=False)
 
-def build(p):
+# UI strings per language. The zh page is the same page in Chinese (2026-09-22 expansion
+# from the won `gridlings-rules-cluster-0921` line): same slug, same first-party numbers,
+# served at /zh/<slug> from <slug>-zh.html, hreflang-paired both ways like the game pages.
+UI = {
+ "en": dict(th_rule="Rule", th_mean="What it means", h_rules="The rules", h_games="The 11 daily games",
+   live_now="Today's verified daily is live — <a href=\"{play}\">play it now</a>.",
+   live_js="'Daily board <strong>#'+n+'</strong> is live now (a new one at 00:00 UTC) — <a href=\"{play}\">play it</a>, or browse the <a href=\"/archive\">archive</a>.'",
+   live_hub="All 11 dailies refresh at 00:00 UTC — <a href=\"{play}\">start the Daily Sweep</a>.",
+   h_verified="Verified, not promised", h_faq="FAQ", more="More rules guides: ",
+   footer="By the team behind <a href=\"https://agiscorecard.com/about\">AGI Scorecard</a> · <a href=\"{play}\">Play</a> · <a href=\"/archive\">Archive</a> · <a href=\"/bench\">Research benchmark</a>"),
+ "zh": dict(th_rule="规则", th_mean="含义", h_rules="规则", h_games="11 款每日游戏",
+   live_now="今日经验证的每日题已上线 —— <a href=\"{play}\">去玩</a>。",
+   live_js="'第 <strong>'+n+'</strong> 期每日题已上线（每天 00:00 UTC 更新一盘）—— <a href=\"{play}\">去玩</a>，或浏览<a href=\"/archive\">存档</a>。'",
+   live_hub="11 款每日题都在 00:00 UTC 刷新 —— <a href=\"{play}\">开始每日全扫</a>。",
+   h_verified="已验证，不是承诺", h_faq="常见问题", more="更多规则指南：",
+   footer="出自 <a href=\"https://agiscorecard.com/about\">AGI Scorecard</a> 团队 · <a href=\"{play}\">去玩</a> · <a href=\"/archive\">存档</a> · <a href=\"/bench\">研究基准</a>"),
+}
+
+def page_url(slug, lang):
+    return BASE + ("/zh/" if lang == "zh" else "/") + slug
+
+def build(p, lang="en"):
+    if lang == "zh":
+        from geo_pages_zh import ZH
+        p = dict(p, **ZH[p["slug"]])
+    ui = UI[lang]
+    url = page_url(p["slug"], lang)
     rows = ""
     if p.get("rules"):
-        head = "<tr><th style=\"text-align:left;padding:6px 8px;border-bottom:1px solid var(--line)\">Rule</th><th style=\"text-align:left;padding:6px 8px;border-bottom:1px solid var(--line)\">What it means</th></tr>"
+        head = f"<tr><th style=\"text-align:left;padding:6px 8px;border-bottom:1px solid var(--line)\">{ui['th_rule']}</th><th style=\"text-align:left;padding:6px 8px;border-bottom:1px solid var(--line)\">{ui['th_mean']}</th></tr>"
         for k,v in p["rules"]:
             rows += f"<tr><td style=\"padding:6px 8px;white-space:nowrap\"><strong>{k}</strong></td><td style=\"padding:6px 8px\">{v}</td></tr>"
     else:
@@ -211,65 +238,76 @@ def build(p):
     live = ""
     if p["game"]:
         jsonf = ("puzzles" if p["game"]=="puzzles" else p["game"]) + "-daily.json"
-        live = f"""<p id=\"live\" style=\"border:1px solid var(--line);border-radius:10px;background:var(--bg2);padding:10px 12px;font-size:.95rem\">Today's verified daily is live — <a href=\"{p['play']}\">play it now</a>.</p>
-<script>fetch("/{jsonf}").then(r=>r.json()).then(d=>{{var e=new Date(d.epoch+"T00:00:00Z"),n=Math.floor((Date.now()-e)/864e5)+1;if(n>0)document.getElementById("live").innerHTML='Daily board <strong>#'+n+'</strong> is live now (a new one at 00:00 UTC) — <a href="{p['play']}">play it</a>, or browse the <a href="/archive">archive</a>.';}}).catch(()=>{{}});</script>"""
+        live = f"""<p id=\"live\" style=\"border:1px solid var(--line);border-radius:10px;background:var(--bg2);padding:10px 12px;font-size:.95rem\">{ui['live_now'].format(play=p['play'])}</p>
+<script>fetch("/{jsonf}").then(r=>r.json()).then(d=>{{var e=new Date(d.epoch+"T00:00:00Z"),n=Math.floor((Date.now()-e)/864e5)+1;if(n>0)document.getElementById("live").innerHTML={ui['live_js'].format(play=p['play'])};}}).catch(()=>{{}});</script>"""
     else:
-        live = f"""<p style=\"border:1px solid var(--line);border-radius:10px;background:var(--bg2);padding:10px 12px;font-size:.95rem\">All 11 dailies refresh at 00:00 UTC — <a href=\"/\">start the Daily Sweep</a>.</p>"""
-    related = " · ".join(f"<a href=\"/{q['slug']}\">{q['icon']} {q['slug'].replace('-',' ')}</a>" for q in PAGES if q["slug"] != p["slug"])
+        live = f"""<p style=\"border:1px solid var(--line);border-radius:10px;background:var(--bg2);padding:10px 12px;font-size:.95rem\">{ui['live_hub'].format(play=p['play'])}</p>"""
+    if lang == "zh":
+        from geo_pages_zh import ZH
+        related = " · ".join(f"<a href=\"/zh/{q['slug']}\">{q['icon']} {ZH[q['slug']]['short']}</a>" for q in PAGES if q["slug"] != p["slug"])
+    else:
+        related = " · ".join(f"<a href=\"/{q['slug']}\">{q['icon']} {q['slug'].replace('-',' ')}</a>" for q in PAGES if q["slug"] != p["slug"])
+    alt = (f"<link rel=\"alternate\" hreflang=\"en\" href=\"{page_url(p['slug'],'en')}\">\n"
+           f"<link rel=\"alternate\" hreflang=\"zh\" href=\"{page_url(p['slug'],'zh')}\">")
     return f"""<!doctype html>
-<html lang="en">
+<html lang="{lang}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
 <title>{html.escape(p['title'])}</title>
 <meta name="description" content="{html.escape(p['desc'])}">
-<link rel="canonical" href="{BASE}/{p['slug']}">
+<link rel="canonical" href="{url}">
+{alt}
 <link rel="stylesheet" href="style.css">
 <link rel="manifest" href="/manifest.webmanifest">
 <meta name="theme-color" content="#002FA7">
 <meta property="og:title" content="{html.escape(p['title'])}">
 <meta property="og:description" content="{html.escape(p['desc'])}">
-<meta property="og:url" content="{BASE}/{p['slug']}">
+<meta property="og:url" content="{url}">
 <meta property="og:type" content="article">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>{p['icon']}</text></svg>">
-<script type="application/ld+json">{art_ld(p)}</script>
+<script type="application/ld+json">{art_ld(p, lang, url)}</script>
 <script type="application/ld+json">{faq_ld(p['faqs'])}</script>
-<script type="application/ld+json">{crumb_ld(p)}</script>
+<script type="application/ld+json">{crumb_ld(p, lang, url)}</script>
 </head>
 <body>
 <div class="wrap">
 <header>
-  <h1 style="font-size:1.3rem"><a href="/{p['slug']}">{p['h1']}</a></h1>
+  <h1 style="font-size:1.3rem"><a href="{'/zh/' if lang == 'zh' else '/'}{p['slug']}">{p['h1']}</a></h1>
 </header>
 
 <div class="rules" style="border-top:0;padding-top:6px">
   <p style="font-size:1.02rem">{p['capsule']}</p>
   {live}
-  <h2>{'The rules' if p.get('rules') else 'The 11 daily games'}</h2>
+  <h2>{ui['h_rules'] if p.get('rules') else ui['h_games']}</h2>
   <table style="width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums">
     <thead>{head}</thead>
     <tbody>{rows}</tbody>
   </table>
   {tech}
-  <h2>Verified, not promised</h2>
+  <h2>{ui['h_verified']}</h2>
   <p>{p['data']}</p>
 </div>
 
 <div class="rules">
-  <h2>FAQ</h2>
+  <h2>{ui['h_faq']}</h2>
   {faqs_html}
 </div>
 
 <div class="rules" style="font-size:.9rem;color:var(--mut)">
-  <p>More rules guides: {related}</p>
-  <p>By the team behind <a href="https://agiscorecard.com/about">AGI Scorecard</a> · <a href="{p['play']}">Play</a> · <a href="/archive">Archive</a> · <a href="/bench">Research benchmark</a></p>
+  <p>{ui['more']}{related}</p>
+  <p>{ui['footer'].format(play=p['play'])}</p>
 </div>
 </div>
 </body>
 </html>
 """
 
-for p in PAGES:
-    path = os.path.join(SITE, p["slug"] + ".html")
-    open(path, "w").write(build(p))
-    print("wrote", p["slug"] + ".html")
+if __name__ == "__main__":
+    import sys
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    for p in PAGES:
+        for lang in ("en", "zh"):
+            path = os.path.join(SITE, p["slug"] + ("-zh" if lang == "zh" else "") + ".html")
+            open(path, "w").write(build(p, lang))
+            print("wrote", os.path.basename(path))

@@ -148,7 +148,7 @@ jobs:
         run: |
           set -u
           fail=0
-          for p in / /ai-games /starbattle /zh/starbattle /star-battle-rules /archive /download /blocknova /overfit /mimic /overseer /prompt /minima /singularity /downloads/cg/overfit-cg.zip /downloads/cg/mimic-cg.zip /downloads/cg/overseer-cg.zip /downloads/cg/prompt-cg.zip /downloads/cg/minima-cg.zip /downloads/cg/singularity-cg.zip /ghostline /downloads/cg/ghostline-cg.zip /downloads/itch/ghostline.zip /app-starbattle.js /zh/app-starbattle.js; do
+          for p in / /ai-games /starbattle /zh/starbattle /star-battle-rules /zh/star-battle-rules /archive /download /blocknova /overfit /mimic /overseer /prompt /minima /singularity /downloads/cg/overfit-cg.zip /downloads/cg/mimic-cg.zip /downloads/cg/overseer-cg.zip /downloads/cg/prompt-cg.zip /downloads/cg/minima-cg.zip /downloads/cg/singularity-cg.zip /ghostline /downloads/cg/ghostline-cg.zip /downloads/itch/ghostline.zip /app-starbattle.js /zh/app-starbattle.js; do
             url="https://play.agiscorecard.com$p"
             ok=0; code=000; redirs=0
             # edge propagation can lag the wrangler deploy by a beat — retry briefly
