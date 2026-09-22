@@ -146,6 +146,12 @@ jobs:
         run: node scripts/agent-watch-verify.mjs --max 40
         continue-on-error: true
 
+      # MCP 被发现探针（2026-09-22，≈10 秒）：官方注册表登记名 / isLatest / 版本 == server.json（权威，错了这步就红），
+      # 五个第三方目录的公开搜索页 grep（只作信息），本站 .well-known 版本对齐。产出 data/mcp-discovery.json 随下面那步提交。
+      - name: MCP discovery probe (scheduled runs only)
+        if: github.event_name != 'push'
+        run: node scripts/mcp-discovery-probe.mjs
+
       - name: Commit refreshed data (scheduled runs only)
         if: github.event_name != 'push'
         run: |
@@ -210,6 +216,7 @@ jobs:
           node scripts/agent-watch-verify.mjs --selftest
           node scripts/agent-watch-admit.mjs --selftest
           node scripts/agent-watch-registry-pull.mjs --selftest
+          node scripts/mcp-discovery-probe.mjs --selftest
           node scripts/test-agent-watch.mjs
 
       # 边缘爬虫记账的路径分类（2026-09-17，零网络 ~0.1s）。_middleware.js 的

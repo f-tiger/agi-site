@@ -24,6 +24,9 @@ const AGENT_WATCH = existsSync(join(root, 'data/agent-watch.json'))
 // 2026-09-22 重构：agents 页全部改由 scripts/agent-pages.mjs 经本文件的 layout() 出页（同一套样式、侧栏、语言切换、信标），
 // 词表 data/agent-watch-vocab.json 是中英标签的唯一来源；受众分组由 _agents.js 的 audiencesOf() 机械推导。
 const AGENT_VOCAB = JSON.parse(readFileSync(join(root, 'data/agent-watch-vocab.json'), 'utf8'));
+// server.json 是官方 MCP 注册表的登记信息（bpj-mcp-publish.yml 经 GitHub OIDC 自动发布）；
+// .well-known/mcp.json、agents 页与 llms.txt 里的登记名与版本一律从它读，不再各处手写（三处版本此前靠人同步）。
+const SERVER_JSON = JSON.parse(readFileSync(join(root, 'server.json'), 'utf8'));
 const AGENT_N = AGENT_WATCH.agents.length;
 const AGENT_CURATED_N = AGENT_WATCH.agents.filter((a) => a.origin !== 'mcp-registry').length;
 // 拒绝清单：查不到官方来源、因此不写数字的工具。之前只有 /no-official-source.html 一处在用，
@@ -4453,7 +4456,7 @@ ${PERSONAS.map((p) => {
     mkdirSync(join(outDir, 'agents', 'c'), { recursive: true });
     mkdirSync(join(outDir, 'agents', 'for'), { recursive: true });
     const r = buildAgentPages({
-      layout, railOf, esc, crumbLd, BASE, site, NAME, LOCALE, vocab: AGENT_VOCAB, registry: AGENT_WATCH, toolBySlug: bySlug, subscribeOf,
+      layout, railOf, esc, crumbLd, faqLd, BASE, site, NAME, LOCALE, vocab: AGENT_VOCAB, registry: AGENT_WATCH, toolBySlug: bySlug, subscribeOf, serverJson: SERVER_JSON,
       write: (rel, s) => writeFileSync(join(outDir, rel), s),
       pushPage: (u, pr) => allPages.push({ u, pr }),
     });
@@ -8208,6 +8211,12 @@ mkdirSync(join(dist, '.well-known'), { recursive: true });
 writeFileSync(join(dist, '.well-known', 'mcp.json'), JSON.stringify({
   name: 'verified-ai-free-tiers',
   title: 'Baipiaoji - Verified AI Free-Tier Data',
+  // 2026-09-22：版本与登记名从 server.json 读（与注册表登记的是同一份），remotes 与官方 schema 同形；
+  // 目录爬虫据此能把这份 well-known 与注册表条目对上号。test-agent-watch --dist 断言三处版本一致。
+  version: SERVER_JSON.version,
+  registry: { name: SERVER_JSON.name, url: `https://registry.modelcontextprotocol.io/v0/servers?search=${encodeURIComponent(SERVER_JSON.name.split('/').pop())}` },
+  remotes: SERVER_JSON.remotes,
+  websiteUrl: SERVER_JSON.websiteUrl,
   description: `Verified free-tier limits, quotas and commercial-use verdicts for ${N_ALL} AI tools — ${N_LIM} of them carry an officially sourced ceiling and the rest deliberately carry none. Every figure is traced to an official vendor page with a check date. No-auth streamable HTTP MCP server + REST API, data CC BY 4.0.`,
   keywords: ['ai-tools', 'free-tier', 'limits', 'quota', 'pricing', 'rate-limits', 'commercial-use', 'licence', 'directory', 'verified', 'comparison', 'fact-check', 'workflow', 'changelog', 'audit', 'buying-guide', 'monitoring', 'change-alerts', 'webhook'],
   endpoint: `${site.base_url}/api/mcp`,
@@ -8295,6 +8304,24 @@ Allow: /
 User-agent: Bingbot
 Allow: /
 User-agent: Bytespider
+Allow: /
+# 2026-09-22 补：其余自报家门的 AI 检索/助手爬虫。同样是声明性的（User-agent: * 早已放行），
+# 写明是为了 robots 解析器按名匹配时不落到「未提及」——舰队 ai_access_probe 用这些 UA 探边缘可达性。
+User-agent: Applebot-Extended
+Allow: /
+User-agent: meta-externalagent
+Allow: /
+User-agent: DuckAssistBot
+Allow: /
+User-agent: MistralAI-User
+Allow: /
+User-agent: Perplexity-User
+Allow: /
+User-agent: YouBot
+Allow: /
+User-agent: Amazonbot
+Allow: /
+User-agent: CCBot
 Allow: /
 
 # 中国搜索与 AI 检索（2026-09-17）。上面那条 User-agent: * 已经放行了它们，
@@ -8623,7 +8650,9 @@ ${licOnly.join('\n')}
     .replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>')
     .replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&nbsp;/g, ' ')
     .replace(/\s+/g, ' ').trim();
-  const MIRROR_DIRS = ['', 'en', 'money', 'plans', 'en/money', 'en/plans'];
+  // 2026-09-22 加 agents 面：枢纽 / 受众页 / 类目表是被引用的页型（第 18 条：本站的 AI 引荐落在列表/类目页），
+  // 记录页 noindex 不镜像——用「页面自己是否 noindex」判，不写死目录名。
+  const MIRROR_DIRS = ['', 'en', 'money', 'plans', 'en/money', 'en/plans', 'agents', 'agents/c', 'agents/for', 'en/agents', 'en/agents/c', 'en/agents/for'];
   let mirrored = 0;
   for (const rel of MIRROR_DIRS) {
     const dir = rel ? join(dist, rel) : dist;
@@ -8635,6 +8664,7 @@ ${licOnly.join('\n')}
       const target = join(dir, f.replace(/\.html$/, '.md'));
       if (existsSync(target)) continue;
       const html = readFileSync(join(dir, f), 'utf8');
+      if (/<meta name="robots" content="noindex/.test(html)) continue;   // noindex 页不是引用面，不镜像
       const m1 = (re) => { const m = html.match(re); return m ? m[1] : ''; };
       const title = stripTags(m1(/<title>([\s\S]*?)<\/title>/));
       const desc = stripTags(m1(/<meta name="description" content="([^"]*)"/));
@@ -8642,16 +8672,20 @@ ${licOnly.join('\n')}
       const canonical = m1(/<link rel="canonical" href="([^"]*)"/) ||
         `${site.base_url}/${rel ? rel + '/' : ''}${f}`;
       const zh = !rel.startsWith('en');
-      // FAQ 只认页面自己声明的 FAQPage JSON-LD——镜像不产生任何页面上没有的事实
-      const faqs = [];
+      // FAQ 与清单只认页面自己声明的 JSON-LD（FAQPage / ItemList）——镜像不产生任何页面上没有的事实
+      const faqs = [], items = [];
       for (const sm of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
         try {
           const o = JSON.parse(sm[1]);
-          for (const node of Array.isArray(o) ? o : [o]) {
-            if (node['@type'] !== 'FAQPage') continue;
-            for (const q of node.mainEntity || []) {
-              const a = q.acceptedAnswer && q.acceptedAnswer.text;
-              if (q.name && a) faqs.push([stripTags(q.name), stripTags(a)]);
+          for (const node of Array.isArray(o) ? o : (o['@graph'] ? o['@graph'] : [o])) {
+            if (node['@type'] === 'FAQPage') {
+              for (const q of node.mainEntity || []) {
+                const a = q.acceptedAnswer && q.acceptedAnswer.text;
+                if (q.name && a) faqs.push([stripTags(q.name), stripTags(a)]);
+              }
+            } else if (node['@type'] === 'ItemList') {
+              for (const it of node.itemListElement || []) if (it.name && it.url) items.push([stripTags(it.name), it.url]);
+              if (Number.isInteger(node.numberOfItems) && node.numberOfItems > (node.itemListElement || []).length) items.total = node.numberOfItems;
             }
           }
         } catch { /* 页面 JSON-LD 可解析性由 verify-dist 把关,这里只跳过 */ }
@@ -8666,6 +8700,7 @@ ${licOnly.join('\n')}
           : `This file is the Markdown mirror of [${canonical}](${canonical}) — for LLM/agent context windows, auto-extracted from the published page; the HTML page is canonical. Generated ${TODAY}.`,
         '',
         ...(faqs.length ? [zh ? '## 常见问题' : '## FAQ', '', ...faqs.flatMap(([q, a]) => [`**${q}**`, '', a, ''])] : []),
+        ...(items.length ? [zh ? `## 清单（页面 ItemList，共 ${items.total || items.length} 条${items.total ? `，此处列前 ${items.length} 条` : ''}）` : `## List (page ItemList, ${items.total || items.length} items${items.total ? `, first ${items.length} shown` : ''})`, '', ...items.map(([nm, u]) => `- [${nm}](${u})`), ''] : []),
         '---',
         zh
           ? `全量已核实数据（一次抓取）:${site.base_url}/llms-full.txt · JSON:${site.base_url}/limits.json · MCP:${site.base_url}/api/mcp。数据以 CC BY 4.0 开放:引用请注明「${site.name}（baipiaoji.com）」并带核实日期。`
@@ -8676,7 +8711,7 @@ ${licOnly.join('\n')}
       mirrored++;
     }
   }
-  console.log(`📄 Markdown 镜像:${mirrored} 页（.html→.md,根/en/money/plans）`);
+  console.log(`📄 Markdown 镜像:${mirrored} 页（.html→.md,根/en/money/plans/agents 可索引页）`);
 }
 
 console.log(`✅ 构建完成：${LOCALES.length} 种语言 × (首页 + 赚钱作业总览 + ${hustles.length} 作业页 + ${solutions.length} 方案页 + ${tools.length} 工具页 + ${catEntries.length} 分类页 + ${VS_PAIRS.length} 对比页) = ${allPages.length} 页 → dist/`);

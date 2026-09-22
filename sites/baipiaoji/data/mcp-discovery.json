@@ -1,0 +1,68 @@
+{
+ "checked": "2026-09-22",
+ "server": {
+  "name": "io.github.f-tiger/verified-ai-free-tiers",
+  "version": "1.13.0",
+  "remote": "https://baipiaoji.com/api/mcp"
+ },
+ "official_registry": {
+  "listed": true,
+  "latest_version": "1.13.0",
+  "is_latest": true,
+  "version_matches": true,
+  "updated_at": "2026-09-22T15:38:19.738468Z",
+  "status": "active",
+  "http": 200
+ },
+ "own_surfaces": {
+  "well_known_http": 200,
+  "well_known_version": null,
+  "well_known_matches": false,
+  "openapi_http": 200,
+  "llms_txt_http": 200,
+  "llms_mentions_mcp": true
+ },
+ "directories": [
+  {
+   "id": "pulsemcp",
+   "name": "PulseMCP",
+   "url": "https://www.pulsemcp.com/servers?q=baipiaoji",
+   "http": 200,
+   "found": false,
+   "evidence": "html-grep (client-rendered pages may hide a real listing; only found:true is a fact)"
+  },
+  {
+   "id": "glama",
+   "name": "Glama",
+   "url": "https://glama.ai/mcp/servers?query=baipiaoji",
+   "http": 200,
+   "found": true,
+   "evidence": "html-grep (client-rendered pages may hide a real listing; only found:true is a fact)"
+  },
+  {
+   "id": "mcp-so",
+   "name": "mcp.so",
+   "url": "https://mcp.so/search?q=baipiaoji",
+   "http": 200,
+   "found": false,
+   "evidence": "html-grep (client-rendered pages may hide a real listing; only found:true is a fact)"
+  },
+  {
+   "id": "smithery",
+   "name": "Smithery",
+   "url": "https://smithery.ai/search?q=baipiaoji",
+   "http": 200,
+   "found": false,
+   "evidence": "html-grep (client-rendered pages may hide a real listing; only found:true is a fact)"
+  },
+  {
+   "id": "cursor-directory",
+   "name": "Cursor Directory (community)",
+   "url": "https://cursor.directory/mcp?q=baipiaoji",
+   "http": 429,
+   "found": false,
+   "evidence": "html-grep (client-rendered pages may hide a real listing; only found:true is a fact)"
+  }
+ ],
+ "note": "Written by scripts/mcp-discovery-probe.mjs (scheduled). official_registry is authoritative; directories are informational grep results."
+}

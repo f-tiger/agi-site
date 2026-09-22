@@ -1446,6 +1446,18 @@
    "lose": "① = 0 → 解释页读者只读不算,从 SIZER_FORCE 移除(不留死块);② 仍为 0 → 结果条的 Amazon 按钮是死 CTA,把结果条简化为答案 + 站内链接,别再往上加钩子;窗口内该页真人 pv <8 → insufficient,顺延 2027-06-20(制冷季)",
    "source": "sites/getecoback/docs/btu-calc-analysis-2026-09-22.md",
    "status": "open"
+  },
+  {
+   "id": "bpj-mcp-discovery-1103",
+   "site": "baipiaoji",
+   "due": "2026-11-03",
+   "metric": "① sites/baipiaoji/data/mcp-discovery.json（每日 schedule 由 scripts/mcp-discovery-probe.mjs 写）：official_registry.listed && is_latest && version_matches 连续为 true 的天数；② directories[].found=true 的第三方目录数（只有 found:true 算数，html-grep 的 false 是「没看见」不是「没收录」）；③ D1 hits ev='api' 且 path='/api/mcp' 28 天里 ref(UA) 不含 CI/goldrush-deploy/baipiaoji-mcp 形状的不同 UA 数（09-16 普查口径：索引器打空参数，使用者带参数）",
+   "threshold": "① 探针上线后零天不一致（任一天 version 漂移即视为发布链路坏了）且 ② ≥2 且 ③ ≥3 个非索引器 UA 带参数调用",
+   "win": "自动注册链路成立、第三方目录见得到、有真实调用方 → 继续用 server.json 版本号驱动发布；把 agents 目录的 monitor_new_agents 写进各目录描述；下一步只按 ③ 里出现的调用方形状加工具",
+   "lose": "① 漂移 → 修 bpj-mcp-publish.yml（不是写文档）；② <2 → 目录提交在 owner 手里，记「已建未提交」不再催；③ =0 → 被发现 ≠ 被使用，机器面按 fleet-machine-demand-1014 的结论只维护",
+   "source": "sites/baipiaoji/CLAUDE.md 第 23 条（2026-09-22）+ docs/distribution-staging/bpj-mcp-directories-2026-09-22.md",
+   "status": "open",
+   "t0_2026-09-22": "官方注册表：listed=True version=1.13.0 is_latest=True matches=True（bpj-mcp-publish.yml 于 15:38 UTC 自动发布 1.13.0）；第三方目录 found:true = ['glama']，未见 = pulsemcp(200), mcp-so(200), smithery(200), cursor-directory(429)；本站 .well-known 在本轮部署前没有 version 字段（well_known_matches=false 是部署前读数）。③ 未读（下一次会话查 D1）。"
   }
  ]
 }

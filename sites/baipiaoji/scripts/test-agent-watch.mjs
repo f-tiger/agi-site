@@ -72,8 +72,23 @@ if (process.argv.includes('--dist')) {
       for (const c of cats) ck(s.includes(`/agents/c/${c}"`), `${hub}: category ${c} missing`);
       ck(s.includes('aw-gs-big') && s.includes('agents-index.json'), `${hub}: hub search box missing`);
       ck(s.includes('id="featured"'), `${hub}: featured (cross-linked free-tier) section missing`);
+      ck(s.includes('class="aw-asof"') && s.includes(reg.checked), `${hub}: dated capsule (data as of ${reg.checked}) missing`);
       if (lang) ck(!CJK.test(enText(s)), `${hub}: CJK on the English hub`);
+      // GEO ④: visible FAQ and FAQPage JSON-LD must be the same text; plus a Dataset node describing agents.json.
+      const lds = [...s.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((m) => { try { return JSON.parse(m[1]); } catch { return null; } }).filter(Boolean);
+      const faq = lds.find((o) => o['@type'] === 'FAQPage');
+      ck(!!faq && faq.mainEntity.length >= 4, `${hub}: FAQPage JSON-LD missing`);
+      if (faq) for (const q of faq.mainEntity) ck(s.includes(`<summary>${q.name.replace(/&/g, '&amp;')}</summary>`) && s.includes(q.acceptedAnswer.text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')), `${hub}: FAQ JSON-LD text not verbatim on the page: ${q.name.slice(0, 40)}`);
+      const ds = lds.find((o) => o['@type'] === 'Dataset');
+      ck(!!ds && ds.dateModified === reg.checked && (ds.distribution || []).some((d) => /agents\.json$/.test(d.contentUrl)), `${hub}: Dataset JSON-LD (agents.json, dateModified = registry.checked) missing`);
+      ck(s.includes(JSON.parse(readFileSync(join(ROOT, 'server.json'), 'utf8')).name), `${hub}: official registry name not on the page`);
     }
+    // .md mirrors: the citable pages have one, noindex record pages do not (mirror = citation surface, not a doorway)
+    ck(has(`${lang}agents/index.md`), `${lang}agents/index.md mirror missing`);
+    if (has(`${lang}agents/index.md`)) { const m = read(`${lang}agents/index.md`); ck(/^# /.test(m) && m.includes('## ') && m.includes('](https://'), `${lang}agents/index.md: mirror lacks heading / FAQ / list`); }
+    for (const c of cats) ck(has(`${lang}agents/c/${c}.md`), `${lang}agents/c/${c}.md mirror missing`);
+    for (const k of AUDIENCES) ck(has(`${lang}agents/for/${k}.md`), `${lang}agents/for/${k}.md mirror missing`);
+    ck(!has(`${lang}agents/${curated[0].slug}.md`), `${lang}agents/${curated[0].slug}.md: noindex record pages must not be mirrored`);
     // search index: same shape as the site index, every record, curated first, no CJK on the English side
     const ix = `${lang}agents-index.json`; ck(has(ix), `${ix} missing`);
     if (has(ix)) {
@@ -134,6 +149,18 @@ if (process.argv.includes('--dist')) {
     for (const c of cats) ck(sm.includes(`<loc>${pre}/agents/c/${c}</loc>`), `sitemap lacks ${pre}/agents/c/${c}`);
   }
   ck(!curated.some((a) => sm.includes(`/agents/${a.slug}</loc>`)), 'sitemap must not list record pages (noindex)');
+  // Discovery surfaces: three copies of the version (server.json / .well-known / MCP initialize) must agree, and the
+  // robots file must name the AI crawlers the fleet probe uses (declarative, but a parser matching by name must find them).
+  {
+    const sj = JSON.parse(readFileSync(join(ROOT, 'server.json'), 'utf8'));
+    const wk = JSON.parse(read('.well-known/mcp.json'));
+    ck(wk.version === sj.version && wk.registry && wk.registry.name === sj.name && Array.isArray(wk.remotes) && wk.remotes[0].url === sj.remotes[0].url, '.well-known/mcp.json must carry server.json version / registry name / remotes');
+    ck(readFileSync(join(ROOT, 'functions', 'api', 'mcp.js'), 'utf8').includes(`version: '${sj.version}'`), `functions/api/mcp.js serverInfo.version must equal server.json (${sj.version})`);
+    ck(sj.description.length <= 100, 'server.json description exceeds the registry’s 100-character limit');
+    const robots = read('robots.txt');
+    for (const ua of ['GPTBot', 'ClaudeBot', 'PerplexityBot', 'OAI-SearchBot', 'Google-Extended', 'Applebot-Extended', 'meta-externalagent', 'DuckAssistBot', 'Baiduspider']) ck(robots.includes(`User-agent: ${ua}\nAllow: /`), `robots.txt: ${ua} not explicitly allowed`);
+    ck(robots.includes('/api/mcp') && robots.includes('/llms.txt'), 'robots.txt must point at the MCP endpoint and llms.txt');
+  }
   // verify-dist exempts /agents/ from its stale-count gate (publisher descriptions say things like "187 tools");
   // so our OWN copy on the hub must never phrase the directory size as "N tools" — it is records, not tools.
   // Scope: the hub's own <main> minus table bodies and scripts (the site footer's "219 AI tools" is the directory's real count and verify-dist checks it).

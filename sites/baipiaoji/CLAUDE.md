@@ -2,7 +2,10 @@
 > **本站已迁入公开 monorepo `f-tiger/agi-site`,路径 `sites/baipiaoji/`。**
 > 部署分支由 claude/prompt-optimization-workflow-7f3vg2 改为 agi-site 的
 > `main`(deploy-baipiaoji.yml);提交信息含 `[deploy]` 才部署的门保留;每日
-> schedule(北京 08:30)已随迁移恢复。旧私有仓 f-tiger/aitools 是历史档案,
+> schedule(北京 08:30)已随迁移恢复。
+> **owner 2026-09-23:「后续上线不用问我」**——bpj 的改动经全部门禁(verify-dist / canonical /
+> test-agent-watch --dist / 其余 push 路径脚本)本地全绿后,会话可直接合并到 main 部署,不再等
+> 「上线」指令;仍然一次会话合成一次 push、提交信息带 `[deploy]`、不触碰其它站点。旧私有仓 f-tiger/aitools 是历史档案,
 > 不再推送。公开仓红线见仓库根 CLAUDE.md。
 
 ## 执行令(2026-08-20,基于两轮深度调研,详见根仓 docs/fleet-deep-dive-2026-08.md)
@@ -668,3 +671,28 @@ GEO / 设计类任务前，先查技能库是否覆盖，覆盖则按其框架�
    考虑对有点击的记录解除 noindex;≥2 项未达 → cap 冻结只维护;pv <20 受众页也撤)、`bpj-agents-registry-quality-1020`(注册表来源 stale ≤5%
    且拒绝率 ≤30% → cap 720 → 1 500;否则收到 400 并只收 90 天内有更新且带 packages 的)。
    **不做**:为 agents 开子站/子域;LLM 写描述或翻译发布者文字;给注册表记录建页;把候选自动塞进账本;第三次为「更多条目」立项(除非 1103 判 win)。
+   **同日第三轮(owner:「首页不够凸显 agents / 分类样式不好看不突出重点 / 没有搜索」)**:首页 hero 正下方加 `agents-home` 区块
+   (专属搜索框 + 六扇门 + 「同时有本站免费额度记录的 Agent」+ 类目计数,`data-home-block="agents"`),hero 统计加计数,rail-jump 移到第二位;
+   类目页改为「摘要 chips → 搜索框 + 本页筛选 → 人工收录卡片 → 注册表表格」;`/agents-index.json` 每语言一份、复用 `/bpj.js` 的搜索组件
+   (**顺手修了它的单缓存 bug**:一页两个搜索框曾共用第一个索引;事件打 `/gs/agents/…`);298 条人工收录也进全站索引。
+
+23. **🔎 GEO + MCP 自动注册与被发现 2026-09-22 第四轮**(owner:「先优化 prompt 再优化:做好 geo,mcp 的自动注册与被发现」)。
+   **先说已有的**:官方注册表的自动发布**早已存在且今天刚跑过**——`bpj-mcp-publish.yml` 在 `server.json` 变更时经 GitHub OIDC 发布,
+   15:38 UTC 已把 1.13.0 登记为 isLatest;SR / eco 各有同款。所以「自动注册」这轮补的是**它能不能红**,不是重建。
+   **本轮做的**:①`bpj-mcp-publish.yml` 加发布前形状门(登记名命名空间 / semver / **description ≤100 字符**——SR 09-17 在 publish 那步
+   422 过 / remotes / websiteUrl)与**发布后断言**(最多等 60 秒,注册表必须返回同名 isLatest 且 version == server.json,否则红);
+   ②`scripts/mcp-discovery-probe.mjs` 搭每日 schedule 写 `data/mcp-discovery.json`:官方注册表(权威,漂移即红)+ 五个第三方目录公开
+   搜索页 grep(只作信息:`found:false` 是「没看见」,只有 `found:true` 是事实)+ 本站 `.well-known` / openapi / llms.txt;
+   **首跑发现 Glama 已收录本站**(它同步官方注册表,标「Server is responding」)——零操作得来的第一个第三方目录;
+   ③`.well-known/mcp.json` 从 `server.json` 读 version / 登记名 / remotes(此前三处版本靠人同步;`--dist` 断言三处一致);
+   ④GEO 六件套落到 agents 面:枢纽的可见 FAQ 与 FAQPage JSON-LD **由同一数组生成**(逐字一致,`--dist` 断言)、`Dataset` JSON-LD 描述
+   `agents.json`(dateModified = 账本核验日)、枢纽 / 受众页 / 类目表带**日期胶囊**「数据截至 <核验日>」、CollectionPage 带 dateModified;
+   ⑤`.md` 镜像扩到 agents 的可索引页(枢纽 / 6 受众 / 13 类目,zh+en 共 40 份;**noindex 页不镜像,按页面自己的 robots meta 判**);
+   镜像新增「清单」节——从页面自己的 ItemList JSON-LD 提取,仍是零第二份事实;⑥robots.txt 补 8 个自报家门的 AI 爬虫(声明性);
+   ⑦目录提交清单 `docs/distribution-staging/bpj-mcp-directories-2026-09-22.md`:**第三方目录没有免密钥提交 API**,PulseMCP / mcp.so /
+   cursor.directory 按 URL 可直接填;Smithery 要关联 GitHub 仓库(本仓私有,是否建只放 README 的公开镜像仓属 owner 决定);Docker 目录与
+   官方连接器目录不适用。
+   **明确不做**:A2A agent card(`/.well-known/agent-card.json`)——本站不是 A2A 服务器,发一张卡就是假声明;伪造任何目录的提交;
+   为「被发现」加第 17 个工具(机器面口径见第 16 条:被发现 ≠ 被使用)。
+   **判定线** `bpj-mcp-discovery-1103`:①探针上线后零天版本漂移 ②第三方 found:true ≥2 ③28 天 `/api/mcp` 非索引器 UA 带参数调用 ≥3。
+   t0:官方 listed/isLatest/1.13.0 ✓;第三方 found = Glama 1 个;③ 未读。
