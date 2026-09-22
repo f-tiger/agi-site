@@ -580,13 +580,13 @@ const railOf = () => `<aside class="rail">
   </a>
   <nav class="rail-jump">
     <a href="${BASE}/#dirs"><b>${LOCALE.code === 'zh' ? '两个主攻方向' : 'Two directions'}</b><span>2</span></a>
+    <a href="${BASE}/agents/"><b>${LOCALE.code === 'zh' ? 'Agent 与 MCP 目录' : 'Agents & MCP'}</b><span>${AGENT_N}</span></a>
     <a href="${BASE}/money/"><b>${UI('money_nav', '赚钱作业')}</b><span>${hustles.length}</span></a>
     <a href="${BASE}/earn/"><b>${LOCALE.code === 'zh' ? '赚钱作业包' : 'Earning packs'}</b><span>${hustles.length}</span></a>
     <a href="${BASE}/#plans"><b>${UI('plans_title', '免费方案')}</b><span>${solutions.length}</span></a>
     <a href="${BASE}/vs/"><b>${UI('vs_nav', '两两对照')}</b><span>${VS_PAIRS.length}</span></a>
     <a href="${BASE}/publish-check.html"><b>${UI('pc_nav', '能不能发')}</b><span>${Object.keys(LICENCE).length}</span></a>
     <a href="${BASE}/report.html"><b>${LOCALE.code === 'zh' ? '真相报告' : 'The report'}</b><span>6</span></a>
-    <a href="${BASE}/agents/"><b>${LOCALE.code === 'zh' ? 'Agent 与 MCP 目录' : 'Agents & MCP'}</b><span>${AGENT_N}</span></a>
   </nav>
   <div class="rail-search gs" data-idx="${BASE}/search-index.json"><input type="search" id="q" placeholder="${UI('search_ph', '搜索工具 / 场景 / 标签')}" autocomplete="off"><div class="gs-drop" hidden></div></div>
   <nav class="rail-nav">
@@ -1037,11 +1037,13 @@ const SUB_JS_BODY = `(function(){
   });
   // ---- 全局搜索 ----
   // 索引懒加载：聚焦才拉取，不聚焦的访客不花这份流量。
-  var IDX=null, IDXP=null;
+  // 索引按 URL 缓存（2026-09-22）：同一页现在可能有两个搜索框指向不同索引（全站 search-index.json 与
+  // agents-index.json）；此前单个全局缓存会让第二个框拿到第一个框的索引。
+  var IDX={}, IDXP={};
   function loadIdx(u){
-    if(IDX)return Promise.resolve(IDX);
-    if(!IDXP)IDXP=fetch(u).then(function(r){return r.json()}).then(function(d){IDX=d;return d});
-    return IDXP;
+    if(IDX[u])return Promise.resolve(IDX[u]);
+    if(!IDXP[u])IDXP[u]=fetch(u).then(function(r){return r.json()}).then(function(d){IDX[u]=d;return d});
+    return IDXP[u];
   }
   Array.prototype.forEach.call(document.querySelectorAll('.gs'),function(g){
     var inp=g.querySelector('input'), drop=g.querySelector('.gs-drop'); if(!inp||!drop)return;
@@ -1066,7 +1068,7 @@ const SUB_JS_BODY = `(function(){
         if(kw.length>=2){
           clearTimeout(evT);
           evT=setTimeout(function(){
-            if(window.bpjEv)bpjEv('gs','/gs/'+(hits.length?'hit':'miss')+'/'+encodeURIComponent(kw).slice(0,60));
+            if(window.bpjEv)bpjEv('gs','/gs/'+(g.dataset.tag?g.dataset.tag+'/':'')+(hits.length?'hit':'miss')+'/'+encodeURIComponent(kw).slice(0,60));
           },1200);
         }
         drop.textContent='';
@@ -1155,6 +1157,40 @@ const agentWatchStrip = () => {
 </div>`;
 };
 
+// 首页顶部的 Agent 与 MCP 目录区块（2026-09-22 第三轮，owner：「首页不够凸显 agents…也没有搜索」）。
+// 紧跟 hero，是首页第一个内容区块：专属搜索框（agents-index.json，事件 /gs/agents/…）+ 六扇受众门 +
+// 「有本站免费额度记录的 Agent」（重点 = 与本站已核实数据交叉的那些，规则可解释，不靠感觉排）+ 类目计数。
+// data-home-block="agents" 让区块级点击仪器（第 21 条）能单独读它。
+const agentsHomeBlock = () => {
+  const all = AGENT_WATCH.agents || [];
+  if (!all.length) return '';
+  const zh = LOCALE.code === 'zh';
+  const V = AGENT_VOCAB;
+  const audN = Object.fromEntries(AUDIENCES.map((k) => [k, 0]));
+  for (const a of all) for (const k of audiencesOf(a)) audN[k]++;
+  const catN = {}; for (const a of all) catN[a.category] = (catN[a.category] || 0) + 1;
+  const cats = Object.keys(V.categories).filter((k) => catN[k]).sort((a, b) => catN[b] - catN[a]).slice(0, 6);
+  const featured = all.filter((a) => a.origin !== 'mcp-registry' && a.tool_slug && bySlug.has(a.tool_slug))
+    .sort((a, b) => String(a.name).localeCompare(String(b.name))).slice(0, 8);
+  const curated = all.filter((a) => a.origin !== 'mcp-registry').length;
+  const doors = AUDIENCES.map((k) => `<a href="${BASE}/agents/for/${k}.html"><b>${esc(V.audiences[k][zh ? 'zh' : 'en'])}</b><i>${audN[k]}</i><span>${esc(V.audiences[k][zh ? 'lede_zh' : 'lede_en'])}</span></a>`).join('');
+  return `<section class="agents-home" id="agents" data-home-block="agents">
+  <div class="agents-home-head">
+    <h2 class="group-title">${zh ? 'Agent 与 MCP 目录' : 'Agents & MCP directory'}<span>${all.length}</span></h2>
+    <p class="agents-home-lede">${zh ? `${curated} 条人工收录 + ${all.length - curated} 条官方 MCP 注册表，每条带官方来源与 URL 核验日期。按你是谁选门，或直接搜。` : `${curated} curated records + ${all.length - curated} from the official MCP registry, each with an official source and per-URL check dates. Pick a door by who you are, or search.`}</p>
+    <div class="gs agents-gs" data-idx="${BASE}/agents-index.json" data-tag="agents"><input type="search" placeholder="${zh ? `搜 ${all.length} 条 Agent / MCP：名称、能力、类目` : `Search ${all.length} agents & MCP servers: name, capability, category`}" aria-label="${zh ? '搜索 Agent 与 MCP' : 'Search agents and MCP'}" autocomplete="off"><div class="gs-drop" hidden></div></div>
+  </div>
+  <div class="agents-home-grid">
+    <nav class="agents-doors" aria-label="${zh ? '按受众选' : 'By audience'}">${doors}</nav>
+    <div class="agents-side">
+      <h3>${zh ? '有本站免费额度记录的 Agent' : 'Agents with a verified free-tier record here'}</h3>
+      <ul>${featured.map((a) => `<li><a href="${BASE}/agents/${esc(a.slug)}.html">${esc(a.name)}</a><a class="agents-ft" href="${BASE}/tools/${esc(a.tool_slug)}.html">${zh ? '还免费吗 →' : 'still free? →'}</a></li>`).join('')}</ul>
+      <p class="agents-cats">${cats.map((k) => `<a href="${BASE}/agents/c/${k}.html">${esc(V.categories[k][zh ? 'zh' : 'en'])} <b>${catN[k]}</b></a>`).join('')}<a class="agents-all" href="${BASE}/agents/">${zh ? `全部 ${all.length} 条 →` : `All ${all.length} →`}</a></p>
+    </div>
+  </div>
+</section>`;
+};
+
 const sectionsOf = () => catEntries.map(([k, v]) => `<section class="group" data-cat="${esc(k)}" id="${esc(k)}">
   <h2 class="group-title">${esc(v)}<span>${countOf(k)}</span></h2>
   <div class="grid">
@@ -1227,6 +1263,7 @@ ${hustles.map((h) => `        <a href="${BASE}/money/${esc(h.slug)}.html">${Arra
         <div><dt>${UI('stat_tools', '免费工具')}</dt><dd class="num">${tools.length}</dd></div>
         <div><dt>${UI('stat_free', '完全免费')}</dt><dd class="num">${freeCount}</dd></div>
         <div><dt>${UI('stat_daily', '每日领额度')}</dt><dd class="num">${dailyCount}</dd></div>
+        <div><dt><a href="${BASE}/agents/">${LOCALE.code === 'zh' ? 'Agent 与 MCP' : 'Agents & MCP'}</a></dt><dd class="num">${AGENT_N}</dd></div>
       </dl>
       ${(() => {
         // 首页此前只报「收录了多少」——那是任何导航站都能报的数。
@@ -1242,6 +1279,7 @@ ${hustles.map((h) => `        <a href="${BASE}/money/${esc(h.slug)}.html">${Arra
       })()}
     </div>
   </header>
+  ${agentsHomeBlock()}
   ${(() => {
     // 首页双方向区（owner 2026-08-18 指令：以编码与视频两个大方向凸显解决方案）。
     //
@@ -4204,6 +4242,10 @@ for (const L of LOCALES) {
       q: `${h.title} ${h.who}`.toLowerCase() })),
     ...VS_PAIRS.map(([a, b]) => ({ u: `${BASE}/vs/${a.slug}-vs-${b.slug}.html`, n: `${a.name} vs ${b.name}`, k: UI('gs_k_vs', '对比'),
       q: `${a.name} ${b.name} ${a.slug} ${b.slug} vs`.toLowerCase() })),
+    // 人工收录的 Agent 记录进全站索引（2026-09-22）：搜「cline」「langgraph」在侧栏搜索框里也要能找到。
+    // 注册表来源的 680 条只进 agents-index.json（专属搜索框），不让全站索引每次聚焦多拉 250 KB。
+    ...(AGENT_WATCH.agents || []).filter((a) => a.origin !== 'mcp-registry').map((a) => ({ u: `${BASE}/agents/${a.slug}.html`, n: a.name, k: LOCALE.code === 'zh' ? 'Agent' : 'Agent',
+      q: `${a.name} ${a.slug} ${LOCALE.code === 'zh' ? a.zh_description : a.description} ${(LOCALE.code === 'zh' ? a.zh_capabilities : a.capabilities || []).join(' ')} ${AGENT_VOCAB.categories[a.category]?.[LOCALE.code === 'zh' ? 'zh' : 'en'] || ''} mcp agent`.toLowerCase() })),
     ...[
       ['/earn/', LOCALE.code === 'zh' ? 'AI 赚钱作业包' : 'AI earning packs', 'earn money 赚钱 副业 接单 变现 作业 包 商用 授权 外快 兼职'],
       ['/changes.html', UI('ch_nav', '额度变更记录'), 'changes changelog 变更 更新'],

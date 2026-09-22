@@ -48,6 +48,12 @@ if (process.argv.includes('--dist')) {
     ck(!/<nav class="lang">[^]*?\/agents\/[^]*?<\/nav>/.test(s.match(/<nav class="lang">[\s\S]*?<\/nav>/)?.[0] || ''), `${p}: agents link must not sit inside the language switch (the 2026-09-22 复列 bug)`);
     ck(/rail-jump[\s\S]*?\/agents\/"/.test(s), `${p}: rail-jump lacks the agents entry`);
     for (const k of AUDIENCES) ck(s.includes(`/agents/for/${k}"`), `${p}: strip lacks the ${k} door`);
+    // Third round (owner: 首页不够凸显 / 没有搜索): a top block right under the hero with its own search box.
+    const top = s.match(/<section class="agents-home"[\s\S]*?<\/section>/);
+    ck(!!top && s.indexOf('<section class="agents-home"') < s.indexOf('<section class="dirs"'), `${p}: agents-home block must sit right after the hero, before the directions block`);
+    ck(!!top && top[0].includes('data-home-block="agents"') && top[0].includes('agents-index.json') && top[0].includes('data-tag="agents"'), `${p}: agents-home block needs its beacon id and the agents search box`);
+    ck(!!top && AUDIENCES.every((k) => top[0].includes(`/agents/for/${k}"`)), `${p}: agents-home block lacks a door`);
+    ck(/class="stats"[\s\S]*?\/agents\/"/.test(s), `${p}: hero stats lack the agents count`);
   }
   const seen = new Set();
   for (const lang of ['', 'en/']) {
@@ -64,7 +70,19 @@ if (process.argv.includes('--dist')) {
       ck(s.includes('/api/hit'), `${hub}: page-view beacon missing`);
       for (const k of AUDIENCES) ck(s.includes(`/agents/for/${k}"`), `${hub}: door ${k} missing`);
       for (const c of cats) ck(s.includes(`/agents/c/${c}"`), `${hub}: category ${c} missing`);
+      ck(s.includes('aw-gs-big') && s.includes('agents-index.json'), `${hub}: hub search box missing`);
+      ck(s.includes('id="featured"'), `${hub}: featured (cross-linked free-tier) section missing`);
       if (lang) ck(!CJK.test(enText(s)), `${hub}: CJK on the English hub`);
+    }
+    // search index: same shape as the site index, every record, curated first, no CJK on the English side
+    const ix = `${lang}agents-index.json`; ck(has(ix), `${ix} missing`);
+    if (has(ix)) {
+      const j = JSON.parse(read(ix));
+      ck(Array.isArray(j) && j.length === agents.length, `${ix}: ${j.length} entries ≠ ${agents.length} records`);
+      ck(j.every((e) => e.u && e.n && e.k && typeof e.q === 'string' && e.q === e.q.toLowerCase()), `${ix}: entry shape (u/n/k/q lowercase)`);
+      ck(j.slice(0, curated.length).every((e) => e.u.includes('/agents/')), `${ix}: curated entries must come first and point at record pages`);
+      if (lang) ck(!j.some((e) => CJK.test(e.n + e.k + e.q)), `${ix}: CJK in the English search index`);
+      else ck(j.some((e) => CJK.test(e.q)), `${ix}: zh index carries no Chinese text`);
     }
     for (const k of AUDIENCES) {
       const p = `${lang}agents/for/${k}.html`; ck(has(p), `${p} missing`); if (!has(p)) continue;
@@ -78,6 +96,10 @@ if (process.argv.includes('--dist')) {
       const s = read(p);
       ck(s.includes(`<link rel="canonical" href="${pre}/agents/c/${c}">`), `${p}: canonical`);
       ck(s.includes('hreflang="x-default"') && !s.includes('content="noindex'), `${p}: must be indexable with hreflang`);
+      ck(s.includes('id="aw-filter"') && s.includes('agents-index.json'), `${p}: in-page filter + search box missing`);
+      const hasCur = agents.some((x) => x.category === c && x.origin !== 'mcp-registry'), hasReg = agents.some((x) => x.category === c && x.origin === 'mcp-registry');
+      if (hasCur) ck(s.includes('id="curated"') && s.includes('class="aw-card'), `${p}: curated records must render as cards`);
+      if (hasCur && hasReg) ck(s.indexOf('id="curated"') < s.indexOf('id="registry"'), `${p}: curated section must precede the registry table (重点在前)`);
       for (const a of agents.filter((x) => x.category === c)) {
         const ok = a.origin === 'mcp-registry' ? s.includes(`data-tool="agents/${a.slug}/source"`) : s.includes(`/agents/${a.slug}"`);
         if (ok) union.add(a.slug); else ck(false, `${p}: row for ${a.slug} missing`);
