@@ -5,7 +5,7 @@
   "description": "白嫖计 · 教想赚钱的人真正上手 AI（赚钱作业 + 0 元方案 + 免费工具，零依赖静态站）",
   "type": "module",
   "scripts": {
-    "build": "node scripts/build.mjs",
+    "build": "node scripts/build.mjs && node scripts/build-agent-watch.mjs",
     "preview-styles": "node scripts/preview-styles.mjs",
     "verify": "node scripts/verify.mjs",
     "preview": "npx serve dist",
