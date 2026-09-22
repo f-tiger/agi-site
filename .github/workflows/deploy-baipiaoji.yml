@@ -125,6 +125,15 @@ jobs:
         run: node scripts/pricing-probe.mjs
         continue-on-error: true
 
+      # Agent-watch URL 核验（2026-09-22）：账本里每条的官方主页与仓库 URL 每天盖章——只写「哪条 URL 何时答过 2xx」，
+      # 不写任何事实；404/410 只标 stale 永不自动下线；403/超时视为未知不动。首跑 26/28 仓库 200，
+      # 两条第一方仓库链接 404（本仓 09-18 转私有）。~28 条 × 2 URL，串行 0.4s 间隔，通常 <1 分，
+      # 挂已有 schedule 不新增 cron；产出随下面那步一起提交（git add data/ 已覆盖）。
+      - name: Verify agent-watch URLs (scheduled runs only)
+        if: github.event_name != 'push'
+        run: node scripts/agent-watch-verify.mjs
+        continue-on-error: true
+
       - name: Commit refreshed data (scheduled runs only)
         if: github.event_name != 'push'
         run: |
@@ -181,6 +190,14 @@ jobs:
       - name: Pricing-probe selftest (zero network)
         run: node scripts/pricing-probe.mjs --selftest
 
+      # Agent-watch（2026-09-22）：账本 schema（zh 字段齐、日期单调、URL 核验字段在位）、runner 核验器的纯语义、
+      # MCP monitor_new_agents / get_agent 的过滤与查找、以及首页 `home` 事件名在 hit.js 白名单里——
+      # 一个掉出白名单的事件名在边缘被静默丢弃而页面看起来一切正常，`audit` 事件就是这样消失过几周。
+      - name: Agent-watch registry, verifier and MCP-filter selftests (zero network)
+        run: |
+          node scripts/agent-watch-verify.mjs --selftest
+          node scripts/test-agent-watch.mjs
+
       # 边缘爬虫记账的路径分类（2026-09-17，零网络 ~0.1s）。_middleware.js 的
       # isContentPath() 此前是白名单（`/` 结尾或 .html/.txt/.json/.md/.xml），而本站内容页
       # 是无扩展名路由 —— 28 天 ev='bot' 只落到 23 个路径，`/tools/*` 与 `/c/*` 各 0 条，
@@ -216,6 +233,11 @@ jobs:
 
       - name: Verify dist (出厂门禁)
         run: node scripts/verify-dist.mjs
+
+      # 首页 ↔ agents 联动必须真的在产物里（zh/en 两版）：联动条在 section#agent 内、区块级点击信标已注入、
+      # 构建出的 /agents/ 与账本逐条对得上。不在这里断言，首页改版一次就能把联动条无声挤掉。
+      - name: Verify homepage ↔ agent-watch linkage in dist
+        run: node scripts/test-agent-watch.mjs --dist
 
       # 2026-08-16 删除「Ensure Pages project exists」:项目早就存在,这一步每次都
       # 静默失败后 `|| true`——却要为此完整下载一次 wrangler。等于每次运行白花几十秒
@@ -394,6 +416,10 @@ jobs:
           echo "beacon self-test HTTP $code"
           # hit.js 永远回 204；不是 204 就是 Function/绑定/信标链路断了——此前这里只打印不断言
           [ "$code" = "204" ] || { echo "::error::第一方信标未返回 204（实得 $code）"; exit 1; }
+          # 首页区块级点击事件（2026-09-22）走同一条链路；白名单在不在由零网络测试断言，这里只证链路通。lang=ci 会被 reach 剔除。
+          ch=$(curl -s -o /dev/null -w "%{http_code}" -X POST https://baipiaoji.com/api/hit \
+            -H 'Content-Type: application/json' -d '{"p":"/home/__ci/x","l":"ci","e":"home"}' --max-time 15)
+          [ "$ch" = "204" ] || { echo "::error::home 事件信标未返回 204（实得 $ch）"; exit 1; }
         continue-on-error: true
 
       # 订阅链路自测：Function + D1 绑定 + 表结构，任一环断了都必须当天暴露。
@@ -491,6 +517,21 @@ jobs:
           mb=$(curl -s -m 20 -X POST 'https://baipiaoji.com/api/mcp' -H 'Content-Type: application/json' \
             -d '{"jsonrpc":"2.0","id":8,"method":"tools/call","params":{"name":"get_category_playbook","arguments":{"category":"video"}}}')
           echo "$mb" | grep -q 'ask_first' || { echo "::error::get_category_playbook 未返回类目规律"; exit 1; }
+          # Agent watch（2026-09-22）：线上账本 == 仓库账本。count 不写死——从 data/agent-watch.json 现算
+          # （舰队 09-17 规矩：写死的数字迟早退化成只会误报的噪音；要防的事故是「资产/worker 没更新到当前账本」）。
+          want=$(node -e "console.log(JSON.parse(require('fs').readFileSync('data/agent-watch.json','utf8')).agents.length)")
+          first=$(node -e "console.log(JSON.parse(require('fs').readFileSync('data/agent-watch.json','utf8')).agents[0].slug)")
+          mn=$(curl -s -m 20 -X POST 'https://baipiaoji.com/api/mcp' -H 'Content-Type: application/json' \
+            -d '{"jsonrpc":"2.0","id":10,"method":"tools/call","params":{"name":"monitor_new_agents","arguments":{}}}')
+          got=$(printf '%s' "$mn" | node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{try{const j=JSON.parse(s);const t=JSON.parse(j.result.content[0].text);console.log(t.count)}catch(e){console.log("ERR")}})')
+          [ "$got" = "$want" ] || { echo "::error::monitor_new_agents count=$got ≠ repo $want（线上资产未更新到当前账本）"; exit 1; }
+          mg=$(curl -s -m 20 -X POST 'https://baipiaoji.com/api/mcp' -H 'Content-Type: application/json' \
+            -d "{\"jsonrpc\":\"2.0\",\"id\":11,\"method\":\"tools/call\",\"params\":{\"name\":\"get_agent\",\"arguments\":{\"slug\":\"$first\"}}}")
+          printf '%s' "$mg" | node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{try{const j=JSON.parse(s);const t=JSON.parse(j.result.content[0].text);if(!t.agent||!t.verification||!("repo_url_checked" in t.verification))process.exit(1)}catch(e){process.exit(1)}})' \
+            || { echo "::error::get_agent 未返回记录 + verification 块（slug=$first）"; exit 1; }
+          aj=$(curl -s -m 15 'https://baipiaoji.com/agents.json' | node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{try{console.log(JSON.parse(s).count)}catch(e){console.log("ERR")}})')
+          [ "$aj" = "$want" ] || { echo "::error::/agents.json count=$aj ≠ repo $want"; exit 1; }
+          echo "✅ agent watch: $want records live, get_agent($first) carries verification"
           for a in quotas myths workflows changes no-source labeling insights; do
             code=$(curl -s -o /dev/null -w "%{http_code}" -m 15 "https://baipiaoji.com/en/$a.json")
             [ "$code" = "200" ] || { echo "::error::机器可读资产缺失 $a=$code"; exit 1; }

@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0",
+  "version": "1.1.0",
   "checked": "2026-09-22",
   "policy": {
     "scope": "Publicly discoverable AI agents, MCP servers and agent platforms",
@@ -32,7 +32,8 @@
         "name": "Glama MCP directory",
         "url": "https://glama.ai/mcp"
       }
-    ]
+    ],
+    "url_checks": "source_checked / repo_checked are the dates each URL last answered 2xx/3xx to scripts/agent-watch-verify.mjs (daily, on the CI runner) or to a maintaining session. null = not yet reached from a network that can fetch it; a listing never claims a check it did not make."
   },
   "agents": [
     {
@@ -62,7 +63,11 @@
         "供应商澄清"
       ],
       "zh_pricing_note": "免费测试包；不托管收款 Agent",
-      "zh_evidence_level": "第一方仓库与浏览器工作台"
+      "zh_evidence_level": "第一方仓库与浏览器工作台",
+      "source_checked": "2026-09-22",
+      "repo_checked": null,
+      "source_http": 200,
+      "repo_http": 404
     },
     {
       "slug": "web3-studio",
@@ -91,7 +96,11 @@
         "代币调用审查"
       ],
       "zh_pricing_note": "免费测试版；不托管钱包、不自动交易",
-      "zh_evidence_level": "第一方网站与仓库"
+      "zh_evidence_level": "第一方网站与仓库",
+      "source_checked": "2026-09-22",
+      "repo_checked": null,
+      "source_http": 200,
+      "repo_http": 404
     },
     {
       "slug": "flowise",
@@ -120,7 +129,11 @@
         "工具调用"
       ],
       "zh_pricing_note": "支持开源自托管；托管方案以官方页面为准",
-      "zh_evidence_level": "官方主页与仓库"
+      "zh_evidence_level": "官方主页与仓库",
+      "source_checked": "2026-09-22",
+      "repo_checked": "2026-09-22",
+      "source_http": 200,
+      "repo_http": 200
     },
     {
       "slug": "langflow",
@@ -149,7 +162,11 @@
         "组件编排"
       ],
       "zh_pricing_note": "支持开源自托管；托管方案以官方页面为准",
-      "zh_evidence_level": "官方主页与仓库"
+      "zh_evidence_level": "官方主页与仓库",
+      "source_checked": "2026-09-22",
+      "repo_checked": "2026-09-22",
+      "source_http": 200,
+      "repo_http": 200
     },
     {
       "slug": "activepieces",
@@ -178,7 +195,11 @@
         "第三方集成"
       ],
       "zh_pricing_note": "支持开源自托管；托管方案以官方页面为准",
-      "zh_evidence_level": "官方主页与仓库"
+      "zh_evidence_level": "官方主页与仓库",
+      "source_checked": "2026-09-22",
+      "repo_checked": "2026-09-22",
+      "source_http": 200,
+      "repo_http": 200
     },
     {
       "slug": "n8n",
@@ -207,7 +228,763 @@
         "第三方集成"
       ],
       "zh_pricing_note": "自托管与托管版的协作限制不同",
-      "zh_evidence_level": "官方主页与仓库"
+      "zh_evidence_level": "官方主页与仓库",
+      "source_checked": "2026-09-22",
+      "repo_checked": "2026-09-22",
+      "source_http": 200,
+      "repo_http": 200
+    },
+    {
+      "slug": "dify",
+      "name": "Dify",
+      "category": "agent",
+      "description": "Open-source LLM application platform with a visual workflow builder, agent orchestration and RAG pipelines; self-hosted or cloud.",
+      "source_url": "https://dify.ai/",
+      "repo_url": "https://github.com/langgenius/dify",
+      "first_seen": "2026-09-22",
+      "last_verified": "2026-09-22",
+      "status": "new",
+      "source_checked": "2026-09-22",
+      "repo_checked": "2026-09-22",
+      "transport": "Self-hosted web app or cloud; REST API",
+      "capabilities": [
+        "visual workflow builder",
+        "agent orchestration",
+        "RAG pipelines",
+        "API publishing"
+      ],
+      "pricing_note": "Open-source self-hosting; cloud plans priced on the official site",
+      "evidence_level": "official homepage and repository",
+      "zh_description": "开源 LLM 应用平台：可视化工作流、智能体编排与 RAG 管线，可自托管或用云版。",
+      "zh_category": "智能体框架",
+      "zh_transport": "自托管 Web 应用或云版；REST API",
+      "zh_capabilities": [
+        "可视化工作流",
+        "智能体编排",
+        "RAG 管线",
+        "发布为 API"
+      ],
+      "zh_pricing_note": "开源可自托管；云版套餐以官网定价为准",
+      "zh_evidence_level": "官方主页与代码仓库",
+      "source_http": 200,
+      "repo_http": 200
+    },
+    {
+      "slug": "crewai",
+      "name": "CrewAI",
+      "category": "agent",
+      "description": "Framework for orchestrating role-based multi-agent crews with tasks, tools and flows; Python library plus a hosted platform.",
+      "source_url": "https://www.crewai.com/",
+      "repo_url": "https://github.com/crewAIInc/crewAI",
+      "first_seen": "2026-09-22",
+      "last_verified": "2026-09-22",
+      "status": "new",
+      "source_checked": "2026-09-22",
+      "repo_checked": "2026-09-22",
+      "transport": "Python SDK; hosted platform",
+      "capabilities": [
+        "multi-agent crews",
+        "role-based agents",
+        "flows",
+        "tool integration"
+      ],
+      "pricing_note": "Open-source framework; platform plans priced on the official site",
+      "evidence_level": "official homepage and repository",
+      "zh_description": "按角色编排多智能体「团队」的框架：任务、工具与流程；Python 库加托管平台。",
+      "zh_category": "智能体框架",
+      "zh_transport": "Python SDK；托管平台",
+      "zh_capabilities": [
+        "多智能体团队",
+        "角色化智能体",
+        "流程编排",
+        "工具接入"
+      ],
+      "zh_pricing_note": "开源框架；平台套餐以官网定价为准",
+      "zh_evidence_level": "官方主页与代码仓库",
+      "source_http": 200,
+      "repo_http": 200
+    },
+    {
+      "slug": "langgraph",
+      "name": "LangGraph",
+      "category": "agent",
+      "description": "Low-level orchestration framework for stateful, long-running agents modelled as graphs, with persistence and human-in-the-loop; from the LangChain team.",
+      "source_url": "https://www.langchain.com/langgraph",
+      "repo_url": "https://github.com/langchain-ai/langgraph",
+      "first_seen": "2026-09-22",
+      "last_verified": "2026-09-22",
+      "status": "new",
+      "source_checked": "2026-09-22",
+      "repo_checked": "2026-09-22",
+      "transport": "Python and JavaScript SDK; LangGraph Platform for hosting",
+      "capabilities": [
+        "graph-based orchestration",
+        "state persistence",
+        "human-in-the-loop",
+        "streaming"
+      ],
+      "pricing_note": "Open-source library; platform tiers on the official site",
+      "evidence_level": "official homepage and repository",
+      "zh_description": "LangChain 团队的底层编排框架：把有状态、长时运行的智能体建成图，带持久化与人工介入。",
+      "zh_category": "智能体框架",
+      "zh_transport": "Python 与 JavaScript SDK；LangGraph Platform 托管",
+      "zh_capabilities": [
+        "图式编排",
+        "状态持久化",
+        "人工介入",
+        "流式输出"
+      ],
+      "zh_pricing_note": "开源库；平台档位以官网为准",
+      "zh_evidence_level": "官方主页与代码仓库",
+      "source_http": 200,
+      "repo_http": 200
+    },
+    {
+      "slug": "autogen",
+      "name": "AutoGen",
+      "category": "agent",
+      "description": "Microsoft's open-source framework for multi-agent conversations and event-driven agent applications.",
+      "source_url": "https://microsoft.github.io/autogen/",
+      "repo_url": "https://github.com/microsoft/autogen",
+      "first_seen": "2026-09-22",
+      "last_verified": "2026-09-22",
+      "status": "new",
+      "source_checked": "2026-09-22",
+      "repo_checked": "2026-09-22",
+      "transport": "Python SDK (.NET also available)",
+      "capabilities": [
+        "multi-agent conversation",
+        "event-driven runtime",
+        "tool use",
+        "AutoGen Studio UI"
+      ],
+      "pricing_note": "Open-source; model usage billed by your provider",
+      "evidence_level": "official homepage and repository",
+      "zh_description": "微软开源的多智能体对话与事件驱动智能体应用框架。",
+      "zh_category": "智能体框架",
+      "zh_transport": "Python SDK（另有 .NET）",
+      "zh_capabilities": [
+        "多智能体对话",
+        "事件驱动运行时",
+        "工具调用",
+        "AutoGen Studio 界面"
+      ],
+      "zh_pricing_note": "开源；模型用量按你的模型供应商计费",
+      "zh_evidence_level": "官方主页与代码仓库",
+      "source_http": 200,
+      "repo_http": 200
+    },
+    {
+      "slug": "openai-agents-sdk",
+      "name": "OpenAI Agents SDK",
+      "category": "agent",
+      "description": "OpenAI's lightweight framework for agentic apps built from agents, handoffs, guardrails and tracing.",
+      "source_url": "https://openai.github.io/openai-agents-python/",
+      "repo_url": "https://github.com/openai/openai-agents-python",
+      "first_seen": "2026-09-22",
+      "last_verified": "2026-09-22",
+      "status": "new",
+      "source_checked": "2026-09-22",
+      "repo_checked": "2026-09-22",
+      "transport": "Python SDK (TypeScript edition available)",
+      "capabilities": [
+        "agents and handoffs",
+        "guardrails",
+        "tracing",
+        "tool calling"
+      ],
+      "pricing_note": "Open-source SDK; OpenAI API usage billed separately",
+      "evidence_level": "official homepage and repository",
+      "zh_description": "OpenAI 的轻量智能体框架：智能体、交接（handoff）、护栏与追踪。",
+      "zh_category": "智能体框架",
+      "zh_transport": "Python SDK（另有 TypeScript 版）",
+      "zh_capabilities": [
+        "智能体与交接",
+        "护栏",
+        "追踪",
+        "工具调用"
+      ],
+      "zh_pricing_note": "开源 SDK；OpenAI API 用量另计",
+      "zh_evidence_level": "官方主页与代码仓库",
+      "source_http": 200,
+      "repo_http": 200
+    },
+    {
+      "slug": "mcp-reference-servers",
+      "name": "MCP reference servers",
+      "category": "mcp",
+      "description": "Reference implementations of Model Context Protocol servers maintained alongside the MCP specification (filesystem, fetch, git, memory and more).",
+      "source_url": "https://modelcontextprotocol.io/",
+      "repo_url": "https://github.com/modelcontextprotocol/servers",
+      "first_seen": "2026-09-22",
+      "last_verified": "2026-09-22",
+      "status": "new",
+      "source_checked": "2026-09-22",
+      "repo_checked": "2026-09-22",
+      "transport": "stdio MCP servers (npm and pip packages)",
+      "capabilities": [
+        "filesystem",
+        "fetch",
+        "git",
+        "memory",
+        "reference implementations"
+      ],
+      "pricing_note": "Open-source",
+      "evidence_level": "official homepage and repository",
+      "zh_description": "随 MCP 规范维护的参考服务器实现（文件系统、fetch、git、memory 等）。",
+      "zh_category": "MCP",
+      "zh_transport": "stdio MCP 服务器（npm / pip 包）",
+      "zh_capabilities": [
+        "文件系统",
+        "网页抓取",
+        "git",
+        "记忆",
+        "参考实现"
+      ],
+      "zh_pricing_note": "开源",
+      "zh_evidence_level": "官方主页与代码仓库",
+      "source_http": 200,
+      "repo_http": 200
+    },
+    {
+      "slug": "mcp-registry",
+      "name": "MCP Registry",
+      "category": "mcp",
+      "description": "The official community registry for discovering MCP servers, with a public API and publishing through the mcp-publisher CLI. Baipiaoji itself is listed there.",
+      "source_url": "https://registry.modelcontextprotocol.io/",
+      "repo_url": "https://github.com/modelcontextprotocol/registry",
+      "first_seen": "2026-09-22",
+      "last_verified": "2026-09-22",
+      "status": "new",
+      "source_checked": "2026-09-22",
+      "repo_checked": "2026-09-22",
+      "transport": "Public REST API; publisher CLI",
+      "capabilities": [
+        "MCP server discovery",
+        "publishing",
+        "public API"
+      ],
+      "pricing_note": "Free public registry",
+      "evidence_level": "official homepage and repository",
+      "zh_description": "MCP 官方社区注册表：公开 API 可查询服务器，经 mcp-publisher CLI 发布。白嫖计自己的 MCP 就登记在这里。",
+      "zh_category": "MCP",
+      "zh_transport": "公开 REST API；发布 CLI",
+      "zh_capabilities": [
+        "MCP 服务器发现",
+        "发布",
+        "公开 API"
+      ],
+      "zh_pricing_note": "免费公开注册表",
+      "zh_evidence_level": "官方主页与代码仓库",
+      "source_http": 200,
+      "repo_http": 200
+    },
+    {
+      "slug": "browser-use",
+      "name": "Browser Use",
+      "category": "agent",
+      "description": "Open-source library that lets AI agents drive a real browser to complete web tasks; also offered as a hosted cloud.",
+      "source_url": "https://browser-use.com/",
+      "repo_url": "https://github.com/browser-use/browser-use",
+      "first_seen": "2026-09-22",
+      "last_verified": "2026-09-22",
+      "status": "new",
+      "source_checked": "2026-09-22",
+      "repo_checked": "2026-09-22",
+      "transport": "Python SDK; hosted cloud API",
+      "capabilities": [
+        "browser automation",
+        "web task agents",
+        "hosted browsers"
+      ],
+      "pricing_note": "Open-source library; cloud usage priced on the official site",
+      "evidence_level": "official homepage and repository",
+      "zh_description": "让智能体操控真实浏览器完成网页任务的开源库；另有托管云版。",
+      "zh_category": "智能体框架",
+      "zh_transport": "Python SDK；托管云 API",
+      "zh_capabilities": [
+        "浏览器自动化",
+        "网页任务智能体",
+        "托管浏览器"
+      ],
+      "zh_pricing_note": "开源库；云用量以官网定价为准",
+      "zh_evidence_level": "官方主页与代码仓库",
+      "source_http": 200,
+      "repo_http": 200
+    },
+    {
+      "slug": "openhands",
+      "name": "OpenHands",
+      "category": "coding",
+      "description": "Open-source platform for AI software-development agents that write code, run commands and browse the web, from All Hands AI.",
+      "source_url": "https://all-hands.dev/",
+      "repo_url": "https://github.com/All-Hands-AI/OpenHands",
+      "first_seen": "2026-09-22",
+      "last_verified": "2026-09-22",
+      "status": "new",
+      "source_checked": "2026-09-22",
+      "repo_checked": "2026-09-22",
+      "transport": "Docker or CLI; hosted cloud",
+      "capabilities": [
+        "autonomous coding agent",
+        "sandboxed execution",
+        "GitHub integration"
+      ],
+      "pricing_note": "Open-source; hosted cloud priced on the official site",
+      "evidence_level": "official homepage and repository",
+      "zh_description": "All Hands AI 的开源软件开发智能体平台：写代码、跑命令、浏览网页。",
+      "zh_category": "编程智能体",
+      "zh_transport": "Docker 或 CLI；托管云版",
+      "zh_capabilities": [
+        "自主编程智能体",
+        "沙箱执行",
+        "GitHub 集成"
+      ],
+      "zh_pricing_note": "开源；托管云以官网定价为准",
+      "zh_evidence_level": "官方主页与代码仓库",
+      "source_http": 200,
+      "repo_http": 200
+    },
+    {
+      "slug": "composio",
+      "name": "Composio",
+      "category": "mcp",
+      "description": "Integration layer that gives agents authenticated access to third-party SaaS tools, exposed through SDKs and MCP endpoints.",
+      "source_url": "https://composio.dev/",
+      "repo_url": "https://github.com/ComposioHQ/composio",
+      "first_seen": "2026-09-22",
+      "last_verified": "2026-09-22",
+      "status": "new",
+      "source_checked": "2026-09-22",
+      "repo_checked": "2026-09-22",
+      "transport": "SDK; MCP endpoints; hosted",
+      "capabilities": [
+        "tool integrations",
+        "managed auth",
+        "MCP endpoints"
+      ],
+      "pricing_note": "Free tier and paid plans on the official site",
+      "evidence_level": "official homepage and repository",
+      "zh_description": "给智能体接入第三方 SaaS 工具的集成层（含鉴权），以 SDK 与 MCP 端点暴露。",
+      "zh_category": "MCP",
+      "zh_transport": "SDK；MCP 端点；托管",
+      "zh_capabilities": [
+        "工具集成",
+        "托管鉴权",
+        "MCP 端点"
+      ],
+      "zh_pricing_note": "有免费档，付费套餐以官网为准",
+      "zh_evidence_level": "官方主页与代码仓库",
+      "source_http": 200,
+      "repo_http": 200
+    },
+    {
+      "slug": "smolagents",
+      "name": "smolagents",
+      "category": "agent",
+      "description": "Hugging Face's minimal agent library where agents write and execute code as their actions, with sandboxed executors and Hub sharing.",
+      "source_url": "https://huggingface.co/docs/smolagents/index",
+      "repo_url": "https://github.com/huggingface/smolagents",
+      "first_seen": "2026-09-22",
+      "last_verified": "2026-09-22",
+      "status": "new",
+      "source_checked": "2026-09-22",
+      "repo_checked": "2026-09-22",
+      "transport": "Python library",
+      "capabilities": [
+        "code agents",
+        "tool calling",
+        "sandboxed execution",
+        "Hub integration"
+      ],
+      "pricing_note": "Open-source",
+      "evidence_level": "official homepage and repository",
+      "zh_description": "Hugging Face 的极简智能体库：智能体以写代码并执行作为动作，带沙箱执行器与 Hub 共享。",
+      "zh_category": "智能体框架",
+      "zh_transport": "Python 库",
+      "zh_capabilities": [
+        "代码智能体",
+        "工具调用",
+        "沙箱执行",
+        "Hub 集成"
+      ],
+      "zh_pricing_note": "开源",
+      "zh_evidence_level": "官方主页与代码仓库",
+      "source_http": 200,
+      "repo_http": 200
+    },
+    {
+      "slug": "goose",
+      "name": "goose",
+      "category": "coding",
+      "description": "Block's open-source, extensible local AI agent that automates engineering tasks and connects to tools through MCP extensions.",
+      "source_url": "https://block.github.io/goose/",
+      "repo_url": "https://github.com/block/goose",
+      "first_seen": "2026-09-22",
+      "last_verified": "2026-09-22",
+      "status": "new",
+      "source_checked": "2026-09-22",
+      "repo_checked": "2026-09-22",
+      "transport": "Desktop app and CLI; MCP extensions",
+      "capabilities": [
+        "local coding agent",
+        "MCP extensions",
+        "multi-provider models"
+      ],
+      "pricing_note": "Open-source; bring your own model provider",
+      "evidence_level": "official homepage and repository",
+      "zh_description": "Block 开源的可扩展本地智能体：自动化工程任务，通过 MCP 扩展接工具。",
+      "zh_category": "编程智能体",
+      "zh_transport": "桌面应用与 CLI；MCP 扩展",
+      "zh_capabilities": [
+        "本地编程智能体",
+        "MCP 扩展",
+        "多模型供应商"
+      ],
+      "zh_pricing_note": "开源；自带模型供应商",
+      "zh_evidence_level": "官方主页与代码仓库",
+      "source_http": 200,
+      "repo_http": 200
+    },
+    {
+      "slug": "mastra",
+      "name": "Mastra",
+      "category": "agent",
+      "description": "TypeScript-first agent framework with workflows, agents, RAG and evals.",
+      "source_url": "https://mastra.ai/",
+      "repo_url": "https://github.com/mastra-ai/mastra",
+      "first_seen": "2026-09-22",
+      "last_verified": "2026-09-22",
+      "status": "new",
+      "source_checked": "2026-09-22",
+      "repo_checked": "2026-09-22",
+      "transport": "TypeScript SDK; hosted cloud",
+      "capabilities": [
+        "TypeScript agents",
+        "workflows",
+        "RAG",
+        "evals"
+      ],
+      "pricing_note": "Open-source framework; cloud priced on the official site",
+      "evidence_level": "official homepage and repository",
+      "zh_description": "TypeScript 优先的智能体框架：工作流、智能体、RAG 与评测。",
+      "zh_category": "智能体框架",
+      "zh_transport": "TypeScript SDK；托管云版",
+      "zh_capabilities": [
+        "TypeScript 智能体",
+        "工作流",
+        "RAG",
+        "评测"
+      ],
+      "zh_pricing_note": "开源框架；云版以官网定价为准",
+      "zh_evidence_level": "官方主页与代码仓库",
+      "source_http": 200,
+      "repo_http": 200
+    },
+    {
+      "slug": "google-adk",
+      "name": "Google Agent Development Kit",
+      "category": "agent",
+      "description": "Google's open-source kit for building, evaluating and deploying multi-agent systems, optimised for Gemini and Vertex AI.",
+      "source_url": "https://google.github.io/adk-docs/",
+      "repo_url": "https://github.com/google/adk-python",
+      "first_seen": "2026-09-22",
+      "last_verified": "2026-09-22",
+      "status": "new",
+      "source_checked": "2026-09-22",
+      "repo_checked": "2026-09-22",
+      "transport": "Python SDK (Java also available)",
+      "capabilities": [
+        "multi-agent systems",
+        "evaluation",
+        "deployment to Vertex AI"
+      ],
+      "pricing_note": "Open-source; Google Cloud usage billed separately",
+      "evidence_level": "official homepage and repository",
+      "zh_description": "Google 开源的多智能体开发套件：构建、评测与部署，为 Gemini 与 Vertex AI 优化。",
+      "zh_category": "智能体框架",
+      "zh_transport": "Python SDK（另有 Java）",
+      "zh_capabilities": [
+        "多智能体系统",
+        "评测",
+        "部署到 Vertex AI"
+      ],
+      "zh_pricing_note": "开源；Google Cloud 用量另计",
+      "zh_evidence_level": "官方主页与代码仓库",
+      "source_http": 200,
+      "repo_http": 200
+    },
+    {
+      "slug": "semantic-kernel",
+      "name": "Semantic Kernel",
+      "category": "agent",
+      "description": "Microsoft's open-source SDK for integrating LLMs into .NET, Python and Java applications, with an agent framework and plugins.",
+      "source_url": "https://learn.microsoft.com/en-us/semantic-kernel/overview/",
+      "repo_url": "https://github.com/microsoft/semantic-kernel",
+      "first_seen": "2026-09-22",
+      "last_verified": "2026-09-22",
+      "status": "new",
+      "source_checked": "2026-09-22",
+      "repo_checked": "2026-09-22",
+      "transport": ".NET, Python and Java SDK",
+      "capabilities": [
+        "plugins",
+        "agent framework",
+        "multi-language SDK"
+      ],
+      "pricing_note": "Open-source",
+      "evidence_level": "official homepage and repository",
+      "zh_description": "微软开源 SDK：把 LLM 接进 .NET / Python / Java 应用，带智能体框架与插件体系。",
+      "zh_category": "智能体框架",
+      "zh_transport": ".NET / Python / Java SDK",
+      "zh_capabilities": [
+        "插件",
+        "智能体框架",
+        "多语言 SDK"
+      ],
+      "zh_pricing_note": "开源",
+      "zh_evidence_level": "官方主页与代码仓库",
+      "source_http": 200,
+      "repo_http": 200
+    },
+    {
+      "slug": "aider",
+      "name": "Aider",
+      "category": "coding",
+      "description": "Open-source AI pair-programming tool that edits code in your local git repository from the terminal.",
+      "source_url": "https://aider.chat/",
+      "repo_url": "https://github.com/Aider-AI/aider",
+      "first_seen": "2026-09-22",
+      "last_verified": "2026-09-22",
+      "status": "new",
+      "source_checked": "2026-09-22",
+      "repo_checked": "2026-09-22",
+      "transport": "CLI (Python); bring your own model API key",
+      "capabilities": [
+        "terminal coding agent",
+        "git-aware edits",
+        "multi-file changes"
+      ],
+      "pricing_note": "Open-source; model usage billed by your provider",
+      "evidence_level": "official homepage and repository",
+      "zh_description": "开源终端结对编程工具：直接在本地 git 仓库里改代码。",
+      "zh_category": "编程智能体",
+      "zh_transport": "CLI（Python）；自带模型 API key",
+      "zh_capabilities": [
+        "终端编程智能体",
+        "感知 git 的编辑",
+        "多文件修改"
+      ],
+      "zh_pricing_note": "开源；模型用量按供应商计费",
+      "zh_evidence_level": "官方主页与代码仓库",
+      "source_http": 200,
+      "repo_http": 200
+    },
+    {
+      "slug": "context7",
+      "name": "Context7",
+      "category": "mcp",
+      "description": "MCP server that injects current, version-specific library documentation into coding assistants.",
+      "source_url": "https://context7.com/",
+      "repo_url": "https://github.com/upstash/context7",
+      "first_seen": "2026-09-22",
+      "last_verified": "2026-09-22",
+      "status": "new",
+      "source_checked": "2026-09-22",
+      "repo_checked": "2026-09-22",
+      "transport": "Remote and local MCP server",
+      "capabilities": [
+        "up-to-date library docs",
+        "version-aware context",
+        "MCP"
+      ],
+      "pricing_note": "Free tier; plans on the official site",
+      "evidence_level": "official homepage and repository",
+      "zh_description": "把最新、按版本的库文档注入编程助手的 MCP 服务器。",
+      "zh_category": "MCP",
+      "zh_transport": "远程与本地 MCP 服务器",
+      "zh_capabilities": [
+        "最新库文档",
+        "按版本上下文",
+        "MCP"
+      ],
+      "zh_pricing_note": "有免费档；套餐以官网为准",
+      "zh_evidence_level": "官方主页与代码仓库",
+      "source_http": 200,
+      "repo_http": 200
+    },
+    {
+      "slug": "pydantic-ai",
+      "name": "Pydantic AI",
+      "category": "agent",
+      "description": "Agent framework from the Pydantic team bringing type-safe, model-agnostic agents to Python.",
+      "source_url": "https://ai.pydantic.dev/",
+      "repo_url": "https://github.com/pydantic/pydantic-ai",
+      "first_seen": "2026-09-22",
+      "last_verified": "2026-09-22",
+      "status": "new",
+      "source_checked": "2026-09-22",
+      "repo_checked": "2026-09-22",
+      "transport": "Python SDK",
+      "capabilities": [
+        "type-safe agents",
+        "model-agnostic",
+        "structured outputs",
+        "dependency injection"
+      ],
+      "pricing_note": "Open-source",
+      "evidence_level": "official homepage and repository",
+      "zh_description": "Pydantic 团队的智能体框架：类型安全、模型无关的 Python 智能体。",
+      "zh_category": "智能体框架",
+      "zh_transport": "Python SDK",
+      "zh_capabilities": [
+        "类型安全智能体",
+        "模型无关",
+        "结构化输出",
+        "依赖注入"
+      ],
+      "zh_pricing_note": "开源",
+      "zh_evidence_level": "官方主页与代码仓库",
+      "source_http": 200,
+      "repo_http": 200
+    },
+    {
+      "slug": "claude-agent-sdk",
+      "name": "Claude Agent SDK",
+      "category": "agent",
+      "description": "Anthropic's SDK for building agents on the same harness that powers Claude Code, with built-in tools, MCP support and permission controls.",
+      "source_url": "https://docs.anthropic.com/en/docs/agent-sdk/overview",
+      "repo_url": "https://github.com/anthropics/claude-agent-sdk-python",
+      "first_seen": "2026-09-22",
+      "last_verified": "2026-09-22",
+      "status": "new",
+      "source_checked": "2026-09-22",
+      "repo_checked": "2026-09-22",
+      "transport": "Python and TypeScript SDK",
+      "capabilities": [
+        "agent harness",
+        "built-in tools",
+        "MCP support",
+        "permission controls"
+      ],
+      "pricing_note": "Open-source SDK; Claude API usage billed separately",
+      "evidence_level": "official homepage and repository",
+      "zh_description": "Anthropic 的智能体 SDK：与 Claude Code 同一套运行框架，内置工具、MCP 支持与权限控制。",
+      "zh_category": "智能体框架",
+      "zh_transport": "Python 与 TypeScript SDK",
+      "zh_capabilities": [
+        "智能体运行框架",
+        "内置工具",
+        "MCP 支持",
+        "权限控制"
+      ],
+      "zh_pricing_note": "开源 SDK；Claude API 用量另计",
+      "zh_evidence_level": "官方主页与代码仓库",
+      "source_http": 200,
+      "repo_http": 200
+    },
+    {
+      "slug": "cloudflare-agents",
+      "name": "Cloudflare Agents & MCP",
+      "category": "mcp",
+      "description": "Cloudflare's toolkit for running remote MCP servers and stateful agents on Workers, plus its own MCP servers for Cloudflare services.",
+      "source_url": "https://developers.cloudflare.com/agents/model-context-protocol/",
+      "repo_url": "https://github.com/cloudflare/mcp-server-cloudflare",
+      "first_seen": "2026-09-22",
+      "last_verified": "2026-09-22",
+      "status": "new",
+      "source_checked": "2026-09-22",
+      "repo_checked": "2026-09-22",
+      "transport": "Remote MCP (streamable HTTP / SSE) on Workers",
+      "capabilities": [
+        "remote MCP hosting",
+        "stateful agents",
+        "OAuth for MCP"
+      ],
+      "pricing_note": "Workers free tier; see official pricing",
+      "evidence_level": "official homepage and repository",
+      "zh_description": "Cloudflare 在 Workers 上跑远程 MCP 服务器与有状态智能体的工具集，另附 Cloudflare 自家服务的 MCP 服务器。",
+      "zh_category": "MCP",
+      "zh_transport": "Workers 上的远程 MCP（streamable HTTP / SSE）",
+      "zh_capabilities": [
+        "远程 MCP 托管",
+        "有状态智能体",
+        "MCP 的 OAuth"
+      ],
+      "zh_pricing_note": "Workers 免费档；以官网定价为准",
+      "zh_evidence_level": "官方主页与代码仓库",
+      "source_http": 200,
+      "repo_http": 200
+    },
+    {
+      "slug": "agno",
+      "name": "Agno",
+      "category": "agent",
+      "description": "Open-source framework for building multi-agent systems with memory, knowledge and reasoning, plus a self-hosted runtime for serving them.",
+      "source_url": "https://agno.com/",
+      "repo_url": "https://github.com/agno-agi/agno",
+      "first_seen": "2026-09-22",
+      "last_verified": "2026-09-22",
+      "status": "new",
+      "source_checked": "2026-09-22",
+      "repo_checked": "2026-09-22",
+      "transport": "Python SDK; self-hosted runtime",
+      "capabilities": [
+        "multi-agent teams",
+        "memory",
+        "knowledge",
+        "runtime"
+      ],
+      "pricing_note": "Open-source; hosted offerings on the official site",
+      "evidence_level": "official homepage and repository",
+      "zh_description": "开源多智能体框架：记忆、知识与推理，另有自托管运行时用于部署。",
+      "zh_category": "智能体框架",
+      "zh_transport": "Python SDK；自托管运行时",
+      "zh_capabilities": [
+        "多智能体团队",
+        "记忆",
+        "知识库",
+        "运行时"
+      ],
+      "zh_pricing_note": "开源；托管产品以官网为准",
+      "zh_evidence_level": "官方主页与代码仓库",
+      "source_http": 200,
+      "repo_http": 200
+    },
+    {
+      "slug": "camel",
+      "name": "CAMEL",
+      "category": "agent",
+      "description": "Open-source multi-agent framework from the CAMEL-AI community for studying and building agent societies, with data-generation and task-automation toolkits.",
+      "source_url": "https://camel-ai.org/",
+      "repo_url": "https://github.com/camel-ai/camel",
+      "first_seen": "2026-09-22",
+      "last_verified": "2026-09-22",
+      "status": "new",
+      "source_checked": "2026-09-22",
+      "repo_checked": "2026-09-22",
+      "transport": "Python SDK",
+      "capabilities": [
+        "multi-agent societies",
+        "role-playing agents",
+        "data generation",
+        "toolkits"
+      ],
+      "pricing_note": "Open-source",
+      "evidence_level": "official homepage and repository",
+      "zh_description": "CAMEL-AI 社区的开源多智能体框架：研究与构建「智能体社会」，附数据生成与任务自动化工具箱。",
+      "zh_category": "智能体框架",
+      "zh_transport": "Python SDK",
+      "zh_capabilities": [
+        "多智能体社会",
+        "角色扮演智能体",
+        "数据生成",
+        "工具箱"
+      ],
+      "zh_pricing_note": "开源",
+      "zh_evidence_level": "官方主页与代码仓库",
+      "source_http": 200,
+      "repo_http": 200
     }
   ]
 }

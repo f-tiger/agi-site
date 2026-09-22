@@ -606,3 +606,31 @@ GEO / 设计类任务前，先查技能库是否覆盖，覆盖则按其框架�
    **09-19 1 628 / 4 253 行** → 09-20 1 155 → 09-21 1 197。整站 1 542 页在分类器修好后两天内被抓遍——此前的「23 个 path」
    是仪器瞎,不是爬虫不来。**下一轮 bpj 第一件事**:用这份数据回答「哪些页从没被抓过、哪些抓了排不上」(两者补救方向相反),
    在那之前不按感觉挑页。`bpj-bing-zh-surface-1015` / `bpj-cn-*-1015` 照原期读。
+
+21. **🤖 Agent 监控目录加厚 + 首页联动 + 首页区块点击仪器 2026-09-22**(owner:「Bpj我在其他会话上线了agents,但是丰富度不够,
+   需要更多的agents工具,并且要和首页联动,检查下首页的点击,看是否替换一部分agents?」;薄 PRD `docs/PRD-agent-watch-2026-09-22.md`)。
+   **先说「检查首页的点击」的结论:检查不了。** 首页 243 pv/28d 是全站第一页(CN 134 / US 49),但事件只有 go/star/calc/sub_*,
+   `ref` 对站内跳转写空——**没有任何一个首页区块知道自己被点过几次**。代理读数(首页独占入口的目的页 pv):plans 25 /
+   money 24 / upgrade 23 / is-still-free 30 / agents 5(单国)。**所以本轮不替换任何区块**:先装仪器 `bpjEv('home',
+   '/home/<区块 id>/<目标>')`(只在 `/` 与 `/en/` 挂,`home` 进 hit.js 白名单并由零网络测试断言——`audit` 事件曾因漏白名单
+   静默丢失几周),28 天后按 `bpj-home-blocks-1020` 的读数替换零点击区块;plans/money 各有 owner 指令与判定线(`bpj-earn-gate-0928`
+   六天后到期),不在它们结算前动手。
+   **另一会话上线的 agents 面盘点**:`data/agent-watch.json` **6 条**(2 条自家产品),`/agents/` + 详情页 + `agents.json` +
+   MCP `monitor_new_agents`,首页只在 `</nav>` 追加一个词;`/agents/` 首日 5 pv 全部 US 单国。
+   **本轮做的(零新 cron、零收款、零编造)**:①账本 **6 → 28 条**,22 条官方主页当日实抓 200;仓库 URL 用核验器自己的
+   UA 经 Node fetch **26/28 → 200**(curl 带 Mozilla 形 UA 对 github.com / api.github.com 一律 403——**别再写「沙箱抓不到 GitHub」,
+   是 UA 的事**),**2 条第一方仓库链接 404:本仓 09-18 转私有**,`tradecheck-mcp` / `web3-studio` 的「代码仓库」对公众是死链,
+   页面如实渲染「最近核验 HTTP 404」——owner 决定公开仓库或换公开链接。②`scripts/agent-watch-verify.mjs` 搭每日 schedule
+   给两条 URL 盖章(404/410 只标 stale 永不自动下线;403/超时视为未知不动);**首跑抓到自己的 bug**:模块被 import 时也跑
+   `main()`,零网络测试触发了一次真实核验——已加直接执行守卫,**push 路径的闸门不许有副作用**。③MCP:`monitor_new_agents` 加
+   `since`(首见日期,像 `/api/changes?since=` 一样轮询)与 `transport`;新增 `get_agent`(按 slug 取单条 + `verification` 块,
+   查不到回已知 slug 列表不猜);过滤/查找抽到 `functions/api/_agents.js` 零网络单测。`.well-known` / llms.txt / mcp.html /
+   server.json 1.12.0 同步;**「14 个工具」这句在四处早已过期**(另一会话加第 15 个没改文案),现为 16 工具 / 10 资源。
+   ④首页智能体区块(section#agent)下加「新 Agent 与 MCP 监控」联动条(最新 6 条 + 全部入口,`data-home-block="agent-watch"`)。
+   ⑤闸门:`test-agent-watch.mjs`(schema / zh 平行 / 日期单调 / 核验字段 / 描述里不许有星数用户数价格 / 过滤查找 / 白名单)
+   + `--dist`(zh/en 首页都带联动条与信标、`/agents/` 与账本逐条一致)+ 部署后自检 **线上 `monitor_new_agents` count == 仓库
+   账本长度**(不写死数字)、`get_agent` 带 verification、`/agents.json` count == 仓库。
+   **判定线(已进台账)**:`bpj-home-blocks-1020`(`home` 事件 28d ≥40 且 ≥5 个区块有读数 → 仪器成立,零点击区块按数据替换)、
+   `bpj-agent-watch-1020`(`/agents/*` 真人 pv ≥30 或 首页→agents 点击 ≥10 或 非 CI 的 `monitor_new_agents`/`get_agent` 调用 ≥5
+   → 按周扩条目;三项全空 → 只维护不扩,联动条撤回 nav)。
+   **不做**:为 agents 开子站/子域;写任何未核数字;用 LLM 生成条目;把雷达命中的产品自动塞进账本(官方主页 200 才入)。

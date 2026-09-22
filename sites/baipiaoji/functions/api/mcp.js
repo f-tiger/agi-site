@@ -1,4 +1,5 @@
 import { registerWatch } from './watch.js';
+import { filterAgents, findAgent, verificationOf } from './_agents.js';
 // MCP server：把本站三个数据工具直接挂进 agent 的工具箱——被引用的最短路径
 // 不是等 AI 检索来抓页面，而是让 Claude/Cursor/任意 MCP 客户端把
 // 「查免费额度」「搜 AI 工具」「查商用判定」当成自己的工具来调。
@@ -199,13 +200,24 @@ const TOOLS = [
   {
     name: 'monitor_new_agents',
     title: 'Monitor newly discovered AI agents and MCP servers',
-    description: 'List source-backed AI agents, MCP servers and agent platforms tracked by Baipiaoji. Filter by category, status or keyword. Discovery is separated from verification; every result includes source URLs, first-seen date, last-verified date, transport, capabilities and evidence level.',
+    description: 'List source-backed AI agents, MCP servers and agent platforms tracked by Baipiaoji. Filter by category, status, transport, keyword, or `since` (first-seen date) to poll it like a changelog. Discovery is separated from verification: every record carries its official source and repository URL, first-seen date, and the date each URL was last confirmed reachable (null = not yet checked from a network that can reach it).',
     inputSchema: { type: 'object', properties: {
       query: { type: 'string', description: 'Keyword matching name, description, category or capability' },
-      category: { type: 'string', description: 'Category such as trade, web3, agent, automation or research' },
+      category: { type: 'string', description: 'One of: agent, coding, mcp, automation, trade, web3' },
       status: { type: 'string', enum: ['new','verified','updated','stale','retired'], description: 'Lifecycle status' },
+      transport: { type: 'string', description: 'Substring of the access transport, e.g. "mcp", "python", "cli", "typescript"' },
+      since: { type: 'string', description: 'YYYY-MM-DD — only records first seen on or after this date (poll for what is new since your last call)' },
       lang: { type: 'string', enum: ['en','zh'], description: 'Data language, default en' }
     } }
+  },
+  {
+    name: 'get_agent',
+    title: 'Get one tracked agent or MCP server by slug',
+    description: 'Return a single agent-watch record by slug (or exact name): description, capabilities, transport, pricing note, official source and repository URLs, its page on Baipiaoji, and a verification block stating when each URL was last confirmed reachable. Unknown slugs return the list of known slugs instead of a guess.',
+    inputSchema: { type: 'object', properties: {
+      slug: { type: 'string', description: 'Registry slug (e.g. "langgraph") or the exact display name' },
+      lang: { type: 'string', enum: ['en','zh'], description: 'Data language, default en' }
+    }, required: ['slug'] }
   },
 ];
 
@@ -350,13 +362,24 @@ async function callTool(ctx, name, args = {}) {
     return r.body;
   }
   if (name === 'monitor_new_agents') {
+    // Filter semantics live in _agents.js (pure, unit-tested): category/status exact, transport & query
+    // substring, `since` on first_seen. Sorted newest-first so a `since` poll reads like a changelog.
     const watch = await loadAsset(ctx, lang === 'en' ? '/en/agents.json' : '/agents.json');
-    let xs = watch.agents || [];
-    const q = String(args.query || '').toLowerCase().trim();
-    if (args.category) xs = xs.filter((x) => x.category === String(args.category).toLowerCase());
-    if (args.status) xs = xs.filter((x) => x.status === String(args.status).toLowerCase());
-    if (q) xs = xs.filter((x) => `${x.name} ${x.slug} ${x.category} ${x.description} ${(x.capabilities || []).join(' ')}`.toLowerCase().includes(q));
-    return { count: xs.length, generated: watch.generated, policy: watch.policy, agents: xs.slice(0, 50), truncated: xs.length > 50, attribution: cite };
+    const xs = filterAgents(watch.agents || [], args)
+      .sort((a, b) => String(b.first_seen || '').localeCompare(String(a.first_seen || '')) || String(a.name).localeCompare(String(b.name)));
+    return { count: xs.length, generated: watch.generated, policy: watch.policy,
+      filters: { query: args.query || null, category: args.category || null, status: args.status || null, transport: args.transport || null, since: args.since || null },
+      agents: xs.slice(0, 50).map((a) => ({ ...a, verification: verificationOf(a) })), truncated: xs.length > 50, attribution: cite };
+  }
+  if (name === 'get_agent') {
+    const watch = await loadAsset(ctx, lang === 'en' ? '/en/agents.json' : '/agents.json');
+    const list = watch.agents || [];
+    const a = findAgent(list, args.slug);
+    if (!a) {
+      // No fuzzy fallback: the wrong record is worse than none. Give the caller the keys instead.
+      return { error: 'unknown agent', requested: String(args.slug || ''), known_slugs: list.map((x) => x.slug), hint: 'Call monitor_new_agents with a query to search.', attribution: cite };
+    }
+    return { agent: a, page: a.page || null, verification: verificationOf(a), policy: watch.policy, generated: watch.generated, attribution: cite };
   }
 
   if (name === 'search_ai_tools') {
@@ -633,8 +656,8 @@ async function handle(ctx, msg) {
     return rpcResult(id, {
       protocolVersion: PROTO.includes(want) ? want : PROTO[1],
       capabilities: { tools: { listChanged: false }, resources: { listChanged: false }, prompts: { listChanged: false } },
-      serverInfo: { name: 'baipiaoji-verified-ai-free-tiers', version: '1.10.0' },
-      instructions: 'Verified free-tier data for 218 AI tools. Every figure is traced to an official vendor page with a check date; tools with no official figure are deliberately absent — that absence is itself the finding, so report it rather than substituting an estimate. Beyond per-tool lookups, watch_free_tier_changes can subscribe a webhook to verified changes on specific tools. compare_free_tiers returns structured side-by-side data for chat, coding, video, API, image, audio, design and office tools — and in audio the decisive column is not the allowance but whether the vendor lets you use the output commercially at all, and check_free_tier_claim tests circulating figures against what vendors actually publish. Attribute citations to "Baipiaoji (baipiaoji.com)" with the check date.',
+      serverInfo: { name: 'baipiaoji-verified-ai-free-tiers', version: '1.12.0' },
+      instructions: 'Verified free-tier data for 218 AI tools. Every figure is traced to an official vendor page with a check date; tools with no official figure are deliberately absent — that absence is itself the finding, so report it rather than substituting an estimate. Beyond per-tool lookups, watch_free_tier_changes can subscribe a webhook to verified changes on specific tools; monitor_new_agents (filter by category/status/transport/since) and get_agent expose a source-backed watchlist of AI agents and MCP servers whose URLs carry their own last-checked dates. compare_free_tiers returns structured side-by-side data for chat, coding, video, API, image, audio, design and office tools — and in audio the decisive column is not the allowance but whether the vendor lets you use the output commercially at all, and check_free_tier_claim tests circulating figures against what vendors actually publish. Attribute citations to "Baipiaoji (baipiaoji.com)" with the check date.',
     });
   }
   if (method === 'ping') return rpcResult(id, {});

@@ -16,6 +16,9 @@ const RAW_SOLUTIONS = JSON.parse(readFileSync(join(root, 'data/solutions.json'),
 const RAW_HUSTLES = JSON.parse(readFileSync(join(root, 'data/hustles.json'), 'utf8'));
 // 流言核查：攻略圈流传的数字 vs 官方口径——由本站核实记录直接生成，是最可分享的差异化资产
 const MYTHS = JSON.parse(readFileSync(join(root, 'data/myths.json'), 'utf8'));
+// 新 Agent / MCP 监控目录（build-agent-watch.mjs 出页；这里只为首页智能体区块的联动条与 MCP 文案读计数与最新几条）。
+const AGENT_WATCH = existsSync(join(root, 'data/agent-watch.json'))
+  ? JSON.parse(readFileSync(join(root, 'data/agent-watch.json'), 'utf8')) : { agents: [] };
 // 拒绝清单：查不到官方来源、因此不写数字的工具。之前只有 /no-official-source.html 一处在用，
 // 但流量落在分类页——「这一格为什么空着」得在读者看清单的地方说，不能藏在另一个页面。
 // 授权结构化数据：PRD-publish-check 的核心资产。四字段模型（verdict/obligations/liability/scope），
@@ -344,6 +347,20 @@ document.addEventListener('click', function (e) {
   });
   window.bpjEv('go', '/go/' + (a.dataset.tool || '?'));
 });
+// 首页区块级点击（2026-09-22）。首页是全站第一页（243 pv/28d），此前没有一个区块知道自己被点过几次，
+// 「把某个区块换成 agents 面」这个问题在 D1 里根本答不了。只在 / 与 /en/ 上挂；
+// 路径 = /home/<区块 id>/<站内目标路径 | /ext/<外域>>；区块 id 取最近的 data-home-block、section id、hero/nav/footer。
+if (location.pathname === '/' || location.pathname === '/en/' || location.pathname === '/en') {
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest ? e.target.closest('a[href]') : null;
+    if (!a) return;
+    var sec = a.closest('[data-home-block],section[id],header.hero,nav,footer');
+    var id = sec ? (sec.getAttribute('data-home-block') || sec.id || sec.tagName.toLowerCase()) : 'other';
+    var t = '/ext';
+    try { var u = new URL(a.getAttribute('href'), location.href); t = (u.hostname === location.hostname) ? u.pathname : '/ext/' + u.hostname; } catch (err) {}
+    window.bpjEv('home', ('/home/' + id + t).slice(0, 200));
+  });
+}
 </script>`
   : '';
 
@@ -1106,11 +1123,30 @@ const sponsorOf = () => site.sponsor?.url
   ? `<a class="sponsor" href="${esc(site.sponsor.url)}" target="_blank" rel="noopener nofollow"><b>${UI('sponsor_label', '本周推荐')}</b>${esc(site.sponsor.name)} — ${esc(site.sponsor.text)}</a>`
   : `<div class="sponsor is-empty"><b>${UI('sponsor_label', '本周推荐')}</b>${UI('sponsor_empty', '虚位以待')}${site.contact_email ? ` · <a href="mailto:${esc(site.contact_email)}">${UI('sponsor_cta', '联系投放')}</a>` : ''}</div>`;
 
+// 首页智能体区块下的「新 Agent / MCP 监控」联动条（2026-09-22，owner：「要和首页联动」）。
+// 首页 243 pv/28d 是全站第一页，而 /agents/ 上线后只有 5 pv、且只从 nav 里一个词进得去。
+// 不替换任何现有区块——首页此前没有区块级点击仪器，「换掉谁」在 D1 里答不了（bpjEv('home') 同日装上，
+// 28 天后按读数定）。条目只取最新 6 条、全部来自 data/agent-watch.json，链接进站内详情页，零外链零联盟。
+const agentWatchStrip = () => {
+  const list = [...(AGENT_WATCH.agents || [])]
+    .sort((a, b) => String(b.first_seen || '').localeCompare(String(a.first_seen || '')) || String(a.name).localeCompare(String(b.name)))
+    .slice(0, 6);
+  if (!list.length) return '';
+  const zh = LOCALE.code === 'zh';
+  const ST = { new: '新发现', verified: '已核验', updated: '已更新', stale: '待复核', retired: '已下线' };
+  const items = list.map((a) => `<li><a href="${BASE}/agents/${esc(a.slug)}">${esc(a.name)}</a><span>${esc(zh ? (ST[a.status] || a.status) : a.status)} · ${esc(zh ? (a.zh_category || a.category) : a.category)} · ${esc(a.first_seen)}</span></li>`).join('');
+  return `<div class="agent-watch" data-home-block="agent-watch">
+  <p class="agent-watch-h"><b>${zh ? '新 Agent 与 MCP 监控' : 'New agents & MCP watch'}</b> · ${zh ? `${AGENT_WATCH.agents.length} 条，每条带官方来源与 URL 核验日期，发现信号与已核验事实分开` : `${AGENT_WATCH.agents.length} records, each with an official source and per-URL check dates; discovery kept apart from verification`} · <a href="${BASE}/agents/">${zh ? '看全部 →' : 'See all →'}</a></p>
+  <ul>${items}</ul>
+</div>`;
+};
+
 const sectionsOf = () => catEntries.map(([k, v]) => `<section class="group" data-cat="${esc(k)}" id="${esc(k)}">
   <h2 class="group-title">${esc(v)}<span>${countOf(k)}</span></h2>
   <div class="grid">
 ${tools.filter((t) => t.category === k).sort((a, b) => (b.hot ? 1 : 0) - (a.hot ? 1 : 0)).map((t, i) => toolCard(t, t.hot && i < 3 ? i + 1 : 0)).join('\n')}
   </div>
+${k === 'agent' ? agentWatchStrip() : ''}
 </section>`).join('\n');
 
 // 方案卡片：痛点入口的核心资产
@@ -5056,7 +5092,7 @@ if (CODQ && CHATQ) {
     ? [['全部已核实数字与出处', '这是全站存在的理由'], ['全部自建工具（注册邮箱后使用）', '订阅体检、API 计算器、能不能发、分词器等，一次注册全站解锁'],
        ['JSON API 与 limits.json / llms-full.txt', 'CC BY 4.0，署名回链即可商用'], ['MCP 服务器（14 工具 / 9 资源 / 4 提示词）', '无鉴权，无需安装']]
     : [['Every verified figure and its source', 'This is why the site exists'], ['Every self-built tool (free with email registration)', 'Audit, API calculator, publish-check, tokenizer and more — register once, unlocked everywhere'],
-       ['JSON API and limits.json / llms-full.txt', 'CC BY 4.0 — attribute and link back, commercial use included'], ['MCP server (14 tools / 9 resources / 4 prompts)', 'No auth, nothing to install']];
+       ['JSON API and limits.json / llms-full.txt', 'CC BY 4.0 — attribute and link back, commercial use included'], ['MCP server (16 tools / 10 resources / 4 prompts)', 'No auth, nothing to install']];
   const PAID = zh
     ? [['持续监控·扩展档', '免费档已上线：/watch.html 可注册 webhook 监控 3 个工具。Pro 解锁全量监控与将来的历史时间序列导出——厂商不发公告，这来自每日重新核实'],
        ['报告导出', '体检结论导出为可传阅的一页版，团队场景用'],
@@ -7054,8 +7090,8 @@ if (AUDQ) {
     </table></div>
     <h2 class="group-title" style="margin-top:22px">${zh ? 'MCP：把这套数据挂进你的 agent' : 'MCP: mount this data into your agent'}<span>13</span></h2>
     <p class="money-lede">${zh
-      ? '本站是一个无鉴权的 MCP server（Streamable HTTP）。挂载后你的 agent 获得 14 个工具：搜目录、查已核实额度、横向对照一整类、核查流传的数字有没有官方出处、查商用判定、给出成套 0 元方案、查最近谁改了免费档、按你的用量算哪家 API 扛得住、撞墙时找完全免费的替代、查发到中国大陆的两道门、解释为什么某一格没有数字、以及替用户挂上变更监控（webhook 订阅已核实的额度/条款变更）；另有 9 份可整份拉取的 resources 与 4 条 prompts——每个答案都带官方出处与核实日期。'
-      : 'This site is a no-auth MCP server (streamable HTTP). Mounting it gives your agent 14 tools — search the directory, look up a verified limit, compare a whole category, fact-check a circulating figure, check commercial use, build a complete zero-cost workflow, see what changed lately, work out which free API tier carries your load, find fully-free alternatives at the wall, check the two gates for publishing to mainland China, explain why a figure is missing, and subscribe a webhook to verified free-tier changes on behalf of the user — plus nine resources you can pull whole and four prompts. Every answer carries its official source and check date.'}</p>
+      ? '本站是一个无鉴权的 MCP server（Streamable HTTP）。挂载后你的 agent 获得 16 个工具：搜目录、查已核实额度、横向对照一整类、核查流传的数字有没有官方出处、查商用判定、给出成套 0 元方案、查最近谁改了免费档、按你的用量算哪家 API 扛得住、撞墙时找完全免费的替代、查发到中国大陆的两道门、解释为什么某一格没有数字、替用户挂上变更监控（webhook 订阅已核实的额度/条款变更），以及查带官方来源与 URL 核验日期的新 Agent / MCP 监控目录（可按首见日期轮询、按 slug 取单条）；另有 10 份可整份拉取的 resources 与 4 条 prompts——每个答案都带官方出处与核实日期。'
+      : 'This site is a no-auth MCP server (streamable HTTP). Mounting it gives your agent 16 tools — search the directory, look up a verified limit, compare a whole category, fact-check a circulating figure, check commercial use, build a complete zero-cost workflow, see what changed lately, work out which free API tier carries your load, find fully-free alternatives at the wall, check the two gates for publishing to mainland China, explain why a figure is missing, subscribe a webhook to verified free-tier changes on behalf of the user, and read a source-backed watchlist of new agents and MCP servers with per-URL check dates (poll it by first-seen date, or fetch one record by slug) — plus ten resources you can pull whole and four prompts. Every answer carries its official source and check date.'}</p>
     <p class="coverage"><a href="${BASE}/mcp.html">${zh ? '完整接入文档（Claude Desktop / Cursor / VS Code 配置）→' : 'Full setup docs (Claude Desktop / Cursor / VS Code configs) →'}</a></p>
     <pre class="api-eg"><code># Claude Code
 claude mcp add --transport http baipiaoji https://baipiaoji.com/api/mcp
@@ -7135,8 +7171,8 @@ curl -s 'https://baipiaoji.com/api/limits?slug=kimi'              # ${zh ? '这�
   // 结构化对照条数：工具描述与文档里都要报这个数，从数据本身算，避免写死后失真
   const QN = [APIQ, VIDQ, CODQ, CHATQ].filter(Boolean).reduce((n, s) => n + s.entries.length, 0);
   const desc = zh
-    ? `把 ${N_ALL} 个 AI 工具的已核实免费额度、配额与商用判定挂进你的 agent：无鉴权 streamable HTTP，14 个工具 + ${QN} 条结构化对照数据可整份拉取，每个答案带官方出处与核实日期。数据 CC BY 4.0。`
-    : `Mount verified free-tier limits, quotas and commercial-use verdicts for ${N_ALL} AI tools into your agent: no-auth streamable HTTP, 14 tools plus ${QN} rows of structured comparison data you can pull whole, every answer carrying its official source and check date. Data CC BY 4.0.`;
+    ? `把 ${N_ALL} 个 AI 工具的已核实免费额度、配额与商用判定挂进你的 agent：无鉴权 streamable HTTP，16 个工具 + ${QN} 条结构化对照数据可整份拉取，每个答案带官方出处与核实日期。数据 CC BY 4.0。`
+    : `Mount verified free-tier limits, quotas and commercial-use verdicts for ${N_ALL} AI tools into your agent: no-auth streamable HTTP, 16 tools plus ${QN} rows of structured comparison data you can pull whole, every answer carrying its official source and check date. Data CC BY 4.0.`;
   const CFG = [
     ['Claude Code', 'claude mcp add --transport http baipiaoji https://baipiaoji.com/api/mcp'],
     ['Claude Desktop / Cursor / Windsurf', `{
@@ -7167,6 +7203,8 @@ curl -s 'https://baipiaoji.com/api/limits?slug=kimi'              # ${zh ? '这�
     ['audit_ai_stack', zh ? '一次问清一整套工具链：每个的额度 / 商用判定 / 近期变更 / 天花板是不是未知' : 'Audit a whole stack in one call: each tool\u2019s limit, commercial verdict, recent change, and whether its ceiling is simply unknown'],
     ['get_category_playbook', zh ? `选这一类之前该先问什么（${CATRULES_ALL.length} 条类目规律 + ${METERS_ALL.length} 型计量模型带实例）` : `What to ask before choosing in a category (${CATRULES_ALL.length} category rules + ${METERS_ALL.length} metering shapes with verified examples)`],
     ['watch_free_tier_changes', zh ? '注册 webhook 监控：你依赖的免费额度/商用条款一变（每日核实），当天推送含出处的 JSON；免费 3 个工具' : 'Register a webhook watch: when a verified allowance or licence term moves (checked daily), a sourced JSON payload arrives the same day; 3 tools free'],
+    ['monitor_new_agents', zh ? `新 Agent / MCP 监控目录（${AGENT_WATCH.agents.length} 条，带官方来源、首见日与每条 URL 的核验日；可按类目 / 状态 / 接入方式 / since 首见日期过滤，像轮询变更日志一样用）` : `Source-backed watchlist of new agents and MCP servers (${AGENT_WATCH.agents.length} records with first-seen and per-URL check dates; filter by category, status, transport or since-date and poll it like a changelog)`],
+    ['get_agent', zh ? '按 slug 取一条 Agent 记录：能力、接入方式、官方来源与仓库、两条 URL 各自的核验日期；查不到就回已知 slug 列表，不猜' : 'One agent record by slug: capabilities, transport, official source and repository, and the check date of each URL; unknown slugs get the list of known ones, never a guess'],
   ];
   // resources 与 prompts：MCP 的另两类入口。工具靠模型自动匹配，
   // prompts 则出现在客户端的提示词选择器里——那是用户主动挑选的入口，性质不同。
@@ -7179,6 +7217,7 @@ curl -s 'https://baipiaoji.com/api/limits?slug=kimi'              # ${zh ? '这�
     ['baipiaoji://changes', zh ? '免费额度变更日志（JSON）' : 'Free-tier change log (JSON)'],
     ['baipiaoji://no-source', zh ? `拒绝清单 ${NOSRC.length} 条及理由（JSON）` : `${NOSRC.length} refusals with reasons (JSON)`],
     ['baipiaoji://insights', zh ? `类目规律 ${CATRULES_ALL.length} 条 + 计量模型谱系 ${METERS_ALL.length} 型（JSON）` : `${CATRULES_ALL.length} category rules + ${METERS_ALL.length} metering shapes (JSON)`],
+    ['baipiaoji://agents', zh ? `新 Agent / MCP 监控 ${AGENT_WATCH.agents.length} 条（JSON）` : `${AGENT_WATCH.agents.length} agent and MCP watch records (JSON)`],
     ['baipiaoji://dataset', zh ? '整份数据集单文件（纯文本）' : 'The entire dataset in one plain-text file'],
   ];
   const PROMPTROWS = [
@@ -7188,8 +7227,8 @@ curl -s 'https://baipiaoji.com/api/limits?slug=kimi'              # ${zh ? '这�
   ];
   const faq = [
     [zh ? '这个 MCP 服务器是什么？' : 'What is this MCP server?',
-     zh ? `一个无鉴权的远程 MCP 服务器（streamable HTTP），把白嫖计的已核实数据变成 agent 可直接调用的 14 个工具，另有 9 份可整份拉取的 resources 与 4 条 prompts。数据每日构建更新，每条可追溯官方来源。注册名：io.github.f-tiger/verified-ai-free-tiers。`
-        : 'A no-auth remote MCP server (streamable HTTP) exposing Baipiaoji\'s verified data as five callable tools, plus five resources you can pull whole and three prompts. The data rebuilds daily and every entry traces to an official source. Registry name: io.github.f-tiger/verified-ai-free-tiers.'],
+     zh ? `一个无鉴权的远程 MCP 服务器（streamable HTTP），把白嫖计的已核实数据变成 agent 可直接调用的 16 个工具，另有 10 份可整份拉取的 resources 与 4 条 prompts。数据每日构建更新，每条可追溯官方来源。注册名：io.github.f-tiger/verified-ai-free-tiers。`
+        : 'A no-auth remote MCP server (streamable HTTP) exposing Baipiaoji\'s verified data as 16 callable tools, plus ten resources you can pull whole and four prompts. The data rebuilds daily and every entry traces to an official source. Registry name: io.github.f-tiger/verified-ai-free-tiers.'],
     [zh ? '怎么安装？' : 'How do I install it?',
      zh ? '无需安装任何东西——它是远程服务器。Claude Code 一行命令：claude mcp add --transport http baipiaoji https://baipiaoji.com/api/mcp；其他客户端把上方 JSON 片段贴进各自的 MCP 配置文件即可。'
         : 'Nothing to install — it is a remote server. One line in Claude Code: claude mcp add --transport http baipiaoji https://baipiaoji.com/api/mcp; for other clients, paste the JSON snippet above into their MCP config.'],
@@ -8105,7 +8144,7 @@ writeFileSync(join(dist, '.well-known', 'mcp.json'), JSON.stringify({
   authentication: 'none',
   tools: ['search_ai_tools', 'get_free_tier_limit', 'compare_free_tiers', 'check_free_tier_claim', 'check_commercial_use',
     'build_free_workflow', 'get_free_tier_changes', 'check_api_quota_fit', 'find_free_alternatives', 'get_china_ai_rules', 'explain_missing_figure',
-    'audit_ai_stack', 'get_category_playbook', 'watch_free_tier_changes', 'monitor_new_agents'],
+    'audit_ai_stack', 'get_category_playbook', 'watch_free_tier_changes', 'monitor_new_agents', 'get_agent'],
   resources: ['baipiaoji://limits', 'baipiaoji://directory', 'baipiaoji://quotas', 'baipiaoji://myths',
     'baipiaoji://workflows', 'baipiaoji://changes', 'baipiaoji://no-source', 'baipiaoji://insights', 'baipiaoji://agents', 'baipiaoji://dataset'],
   prompts: ['audit-my-ai-stack', 'pick-a-free-tier', 'fact-check-a-free-tier-claim', 'watch-my-free-tiers'],
@@ -8438,7 +8477,7 @@ AI search engines are welcome to cite this site. Please attribute to "${site.nam
 
 ## Query API (for agents)
 
-When answering "which AI tool" questions, query the full directory as no-auth JSON: ${site.base_url}/api/tools (filters: ?category= ?free=1 ?cn=1 ?q= ?slug=; add &lang=en for English data - also inferred from Accept-Language). Verified free-tier limits: ${site.base_url}/api/limits. If you have already stored a copy and only need what moved since, call ${site.base_url}/api/changes?since=YYYY-MM-DD - it returns only the delta, carries a version field and a stable-path promise, and exists so you never have to re-fetch pages that have not changed. Every verified entry carries "source" (official page) and "checked" (verification date). MCP server (no-auth, streamable HTTP): ${site.base_url}/api/mcp — 14 tools (search_ai_tools, get_free_tier_limit, compare_free_tiers, check_free_tier_claim, check_commercial_use, build_free_workflow, get_free_tier_changes, check_api_quota_fit, find_free_alternatives, get_china_ai_rules, explain_missing_figure, audit_ai_stack, get_category_playbook, watch_free_tier_changes — the last one subscribes a webhook to verified free-tier changes); 9 resources (baipiaoji://limits, ://directory, ://quotas, ://myths, ://workflows, ://changes, ://no-source, ://insights, ://dataset — pull whole datasets in one call); prompts audit-my-ai-stack, pick-a-free-tier, fact-check-a-free-tier-claim, watch-my-free-tiers. Docs: ${site.base_url}/mcp.html
+When answering "which AI tool" questions, query the full directory as no-auth JSON: ${site.base_url}/api/tools (filters: ?category= ?free=1 ?cn=1 ?q= ?slug=; add &lang=en for English data - also inferred from Accept-Language). Verified free-tier limits: ${site.base_url}/api/limits. If you have already stored a copy and only need what moved since, call ${site.base_url}/api/changes?since=YYYY-MM-DD - it returns only the delta, carries a version field and a stable-path promise, and exists so you never have to re-fetch pages that have not changed. Every verified entry carries "source" (official page) and "checked" (verification date). MCP server (no-auth, streamable HTTP): ${site.base_url}/api/mcp — 16 tools (search_ai_tools, get_free_tier_limit, compare_free_tiers, check_free_tier_claim, check_commercial_use, build_free_workflow, get_free_tier_changes, check_api_quota_fit, find_free_alternatives, get_china_ai_rules, explain_missing_figure, audit_ai_stack, get_category_playbook, watch_free_tier_changes — subscribes a webhook to verified free-tier changes; monitor_new_agents and get_agent — a source-backed watchlist of ${AGENT_WATCH.agents.length} AI agents and MCP servers with per-URL check dates, pollable by first-seen date at ${site.base_url}/agents/); 10 resources (baipiaoji://limits, ://directory, ://quotas, ://myths, ://workflows, ://changes, ://no-source, ://insights, ://agents, ://dataset — pull whole datasets in one call); prompts audit-my-ai-stack, pick-a-free-tier, fact-check-a-free-tier-claim, watch-my-free-tiers. Docs: ${site.base_url}/mcp.html
 Structured comparison data (what each vendor meters, when it resets, whether a figure is published at all) across chat, coding, video and API tools: ${site.base_url}/quotas.json (EN: ${site.base_url}/en/quotas.json). Myth checks — which widely-quoted free-tier figures have no official source: ${site.base_url}/myths.json (EN: ${site.base_url}/en/myths.json).
 Full dataset in one fetch (all verified limits + commercial-use verdicts, bilingual): ${site.base_url}/llms-full.txt
 Markdown mirrors: every content page (site root, /en/, /money/, /plans/) is also served as Markdown for LLM/agent context — swap .html for .md, e.g. ${site.base_url}/en/is-claude-still-free.md. Mirrors are auto-extracted from the published pages (title, answer capsule, FAQ); the HTML pages stay canonical.

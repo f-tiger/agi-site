@@ -1371,6 +1371,30 @@
    "status": "open",
    "registered_late": "2026-09-22 补登(同上)。",
    "reading_2026-09-22": "① 31(bot-UA 22 / browser-UA 9,其中 2 次经 agiscorecard.com/for-agents);② ledger_render 0。旁证:fork_click 终身 1(08-29)、audit_click 0、ledger_click 0、agi MCP get_claim_ledger 终身 4 次调用(08-30 / 09-14 / 09-15 / 09-17,来源未知,不排除会话自测)。"
+  },
+  {
+   "id": "bpj-home-blocks-1020",
+   "site": "baipiaoji",
+   "due": "2026-10-20",
+   "metric": "D1 hits 表 ev='home' 的 28 天计数,按 path 第二段(区块 id:/home/<block>/…)分组,剔 lang='ci' 与 path LIKE '/home/\\_\\_%' ESCAPE '\\'",
+   "threshold": "总数 ≥40 且 ≥5 个不同区块有读数(t0 = 0,事件 09-22 才存在)",
+   "win": "首页区块点击仪器成立 → 28 天 0 点击的区块按数据替换(agents 条或其它有读数的面顶上),不再靠感觉改首页",
+   "lose": "<40 → 首页 243 pv/28d 里几乎没人点任何区块,或仪器坏了;先对照 st_beacon 与 test-agent-watch 的白名单断言排除仪器,再决定;在此之前不替换任何区块",
+   "source": "sites/baipiaoji/CLAUDE.md 第 21 条(2026-09-22)+ docs/PRD-agent-watch-2026-09-22.md",
+   "status": "open",
+   "t0_2026-09-22": "首页 28 天真人 pv 243(`/`)+ 22(`/en/`),CN 134 / US 49;首页此前零区块级点击仪器,`ref` 对站内跳转为空,所以「首页各区块被点几次」在 D1 里不可答。代理读数:首页独占入口的目的页 28 天 pv —— plans 25(13 页)/ en/plans 28 / money 24(6 页)/ upgrade 23 / is-still-free 30 / agents 5(1 国)。"
+  },
+  {
+   "id": "bpj-agent-watch-1020",
+   "site": "baipiaoji",
+   "due": "2026-10-20",
+   "metric": "① `/agents/%` + `/en/agents/%` 28 天真人 pv(ev='',剔 __probe);② ev='home' 且 path LIKE '/home/agent-watch/%' 的点击数;③ ev='api' 且 path IN ('/api/mcp/monitor_new_agents','/api/mcp/get_agent') 且 ref(UA)不含 goldrush-deploy/baipiaoji CI 形状的调用数",
+   "threshold": "① ≥30 或 ② ≥10 或 ③ ≥5(t0:① 5 pv 单国 / ② 0 / ③ 0)",
+   "win": "agents 面有读者或有机器消费者 → 继续按周扩条目(只收官方主页当日 200 的项目,repo 由 runner 盖章),并在 agi /for-agents 互链",
+   "lose": "三项全空 → agents 面只维护(runner 核验照跑),不再扩条目;首页联动条撤回 nav 一行;不再第三次为「agent 目录」立项",
+   "source": "sites/baipiaoji/CLAUDE.md 第 21 条(2026-09-22)+ docs/PRD-agent-watch-2026-09-22.md",
+   "status": "open",
+   "t0_2026-09-22": "账本 6 → 28 条(22 条官方主页会话当日 200 核验,仓库 URL 待 runner 核验);/agents/ 上线首日 5 pv 全部 US 单国(疑为建站会话自查);monitor_new_agents 终身 0 次调用;28 天 `/api/mcp/*` 各工具 ~55 次 = 部署自检形状。"
   }
  ]
 }
