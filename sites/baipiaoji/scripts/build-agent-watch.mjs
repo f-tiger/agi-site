@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 // Directory entrypoints are emitted for Cloudflare Pages canonical routes.
 // Localized copy is generated from the source-backed registry.
+// Deployment retry after infrastructure self-test.
 import {readFileSync,writeFileSync,existsSync,mkdirSync} from 'node:fs';
 import {join} from 'node:path';
 const root=new URL('..',import.meta.url).pathname;
