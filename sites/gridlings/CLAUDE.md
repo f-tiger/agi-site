@@ -1136,3 +1136,17 @@ cg-package-smoke，别靠肉眼。
   沙箱打不到线上站，这条只能在 runner 上验。
 - **通用教训**：游戏上第三方门户前，先问「我们的埋点在别人的域名下还发得出去吗」。
   itch 之所以有数据，只是因为 `itch.zone` 恰好没触发这个路径。
+
+## 判定线结算 2026-09-22(D1 现查;全文见根仓 `docs/fork-ledger-pricing-2026-09-22.md` §六)
+
+- **`gridlings-rules-cluster-0921` → won(52 ≥ 50,边际 4%)**:十张规则页 28 天真人 pv 52(6x6 5 · binary 5 · futoshiki 6 ·
+  games-like-linkedin-queens 7 · kropki 3 · nonogram 4 · sandwich 6 · skyscraper 5 · star-battle 6 · thermometer 5)。
+  10 行来自 play.agiscorecard.com 站内导航,其余无 referrer 但分散在数小时内(不是秒级扫描)。**搜索/AI 引荐 0。**
+  异常值:`/star-battle-rules` 28 天 bot 抓取 89 次(其余页 6–10),下次维护看一眼 ua_audit。
+  win 分支「追加 zh 版与更多查询」**记为下一个扩张槽候选、本日未铺**:阈值另一半(Bing/GSC 前 20)只有 owner 能读,
+  零搜索引荐的 won 不该直接长出第二批页。
+- **`gridlings-playgama-traffic-0922`**:① 非 US `play_start` **155 ≥150**(全部落在 09-15 14:54 → 09-19 18:41,之后 0;
+  投放 run `spentRatio` 0.148,09-22 14:53 UTC 结束)。② 等 owner 投放结束后的 VISITS / PLAYS 60S 截图(旧包那版;
+  09-16 那张 17 小时读数 13/49 = 26,5%)。保持 open,09-29 前结算。
+- 未到期只记:`gridlings-itch-0924` itch play_start 58 / solve 13(阈值 150 / 25);`gridlings-playgama-five-0925`
+  五款全部 REJECTED(09-15),0/5,另有 TOWERS DRAFT。

@@ -65,7 +65,9 @@
    "win": "追加 zh 版与更多查询",
    "lose": "全簇 <10 pv → 停止扩张",
    "source": "sites/gridlings/CLAUDE.md:178",
-   "status": "open"
+   "status": "won",
+   "settled": "2026-09-22",
+   "reading": "2026-09-22 D1 现查(ev 表,ua_class='human',28 天 08-25→09-22):十张规则页真人 pv 合计 52(≥50,边际 4%):6x6 5 · binary 5 · futoshiki 6 · games-like-linkedin-queens 7 · kropki 3 · nonogram 4 · sandwich 6 · skyscraper 5 · star-battle 6 · thermometer 5。来源:10 行经 play.agiscorecard.com 站内导航,其余无 referrer 但分散在数小时内(SG 09-14 六页跨 4,4 小时、FR 09-02 七页跨 76 分钟),不是秒级扫描形状。搜索/AI 引荐 0。阈值另一半(Bing/GSC 前 20)只有 owner 能读。异常值:/star-battle-rules 28 天 bot 抓取 89 次(其余页 6–10)。win 分支「追加 zh 版与更多查询」记为下一个扩张槽候选,09-22 未铺:零搜索引荐的 won 不该直接长出第二批页,先等 owner 的 Bing/GSC 那一半。"
   },
   {
    "id": "gridlings-itch-0924",
@@ -76,7 +78,8 @@
    "win": "继续投入游戏线",
    "lose": "游戏降为只维护;人力回 eco/bpj 变现线",
    "source": "sites/gridlings/CLAUDE.md:301",
-   "status": "open"
+   "status": "open",
+   "reading_2026-09-22": "D1:ref LIKE '%itch.zone%' 的 play_start 累计 58 / solve 13(阈值 150 / 25)。未到期,不结算。"
   },
   {
    "id": "eco-kuehlt-nicht-0925",
@@ -924,7 +927,8 @@
    "threshold_original": "≥150 / ≥15",
    "revised": "2026-09-15",
    "revised_reason": "原口径的「二次事件」测的是这些游戏不发的东西:D1 只记 solve/play_again/game_over 这类离散里程碑,而门户玩家在开局与跑完一局之间什么都不触发。owner 后台截图给了正确指标(停留时长):35 visits → 11 玩过 30s → 6 玩过 60s。阈值改为按他们的口径,原文保留在 *_original。",
-   "note": "版本冻结:读数属于 09-15 的旧包。09-16 上传了更快的新归档但 owner 决定「先不发」,结算前不得 publish_sandbox,否则样本前后不可比。"
+   "note": "版本冻结:读数属于 09-15 的旧包。09-16 上传了更快的新归档但 owner 决定「先不发」,结算前不得 publish_sandbox,否则样本前后不可比。",
+   "reading_2026-09-22": "① D1:ts>='2026-09-15 14:53' AND ref LIKE '%games.playgama.net%' AND country<>'US' 的 play_start = 155(≥150 达成),跨 4 天,全部落在 09-15 14:54 → 09-19 18:41,09-20 起为 0;Playgama get_sandbox_traffic:run 仍 RUNNING,spentRatio 0.148,endsAt 2026-09-22T14:53Z。② 需 owner 投放结束后的 VISITS / PLAYS 60S 截图(旧包那一版);上一张 owner 截图 09-16(投放 17 小时)是 13/49 = 26,5%。保持 open,09-29 前结算;若届时无新截图,按 ① + 09-16 截图结算并注明截图日期。"
   },
   {
    "id": "gridlings-playgama-five-0925",
@@ -935,7 +939,8 @@
    "win": "主目录未对 AI 游戏关门,按过审那款的形状复制",
    "lose": "确认主目录对本舰队的 AI 游戏关闭,此后只经营 sandbox 面,不再空手重投",
    "source": "sites/gridlings/docs/playgama-setup.md(2026-09-15 节)",
-   "status": "open"
+   "status": "open",
+   "reading_2026-09-22": "Playgama list_applications:PROMPT / OVERFIT / MIMIC / OVERSEER / MINIMA 五款状态全部 REJECTED(09-15),GHOSTLINE / SINGULARITY 亦 REJECTED(09-16),另有 TOWERS 处于 DRAFT;0/5 进主目录。未到期,不结算。"
   },
   {
    "id": "gridlings-puzzle-portal-1013",
@@ -1059,8 +1064,10 @@
    "win": "仪器修好了 —— 下一轮才第一次能回答「1,542 页里哪些从没被抓过、哪些抓了排不上」，两者补救方向相反（发现层 vs 内容）",
    "lose": "不同 path 仍 <40 → 不是仪器问题，爬虫确实只碰枢纽页与带扩展名的文件；那么发现层（sitemap 已 1,558 条但爬虫不深入）就是绑定约束，改内容无用，动作交给 owner 侧 Bing/GSC",
    "source": "sites/baipiaoji/CLAUDE.md 第 18 条（2026-09-17）",
-   "status": "open",
-   "t0_2026-09-17": "ev='bot' 28 天 1,221 行 / 23 个不同 path，全部是 `/`、`/en/`、`/vs/`、`/money/`、`/earn/`、`/travel/`、`/upgrade/` 这类带斜杠枢纽，加 sitemap.xml / robots.txt / llms.txt / feed.xml / limits.json / openapi.json / .md。`/tools/<slug>` 与 `/c/<cat>` 各 **0** 条。同窗真人落地 330 次里 302 次（92%）在无扩展名路径上。"
+   "status": "won",
+   "t0_2026-09-17": "ev='bot' 28 天 1,221 行 / 23 个不同 path，全部是 `/`、`/en/`、`/vs/`、`/money/`、`/earn/`、`/travel/`、`/upgrade/` 这类带斜杠枢纽，加 sitemap.xml / robots.txt / llms.txt / feed.xml / limits.json / openapi.json / .md。`/tools/<slug>` 与 `/c/<cat>` 各 **0** 条。同窗真人落地 330 次里 302 次（92%）在无扩展名路径上。",
+   "settled": "2026-09-22",
+   "reading": "2026-09-22 D1 现查(hits 表,ev='bot',28 天 08-25→09-22,剔 __probe):不同 path 1 635(t0=23)、/tools/%|/c/% 行 3 310(t0=0)、bot 行合计约 11 000。逐日:09-16 7 个不同 path → 09-17(分类器上线日)96 → 09-18 384 → 09-19 1 628 / 4 253 行 → 09-20 1 155 → 09-21 1 197 → 09-22(半天)245。提前 2 天结算的理由:读数是 28 天窗内的累计不同 path 数,到 09-24 只会更大,不可能回落到阈值以下。仪器修好了;下一轮 bpj 第一件事 = 用这份数据回答「1 542 页里哪些从没被抓过、哪些抓了排不上」。"
   },
   {
    "id": "bpj-bing-zh-surface-1015",
@@ -1318,6 +1325,52 @@
    "lose": "覆盖仍 <6/19 → 新页不被抓是 Bing 对本域的抓取预算/权威问题,不是提交噪音;09-04 的「rising 只深化不出新页」冻结继续,把 Bing Webmaster 的抓取统计列为 owner 待办,不再为发现面写代码",
    "source": "sites/getecoback/docs/site-analysis-2026-09-22.md §三–§四、§六;修复 = deploy-getecoback.yml(部署前快照线上 sitemap;IndexNow 只提 pushed diff ∪ 新 URL;manifest ping 只在生成器变更时跑)+ tools/build_sitemap.py(无日期页改用 git 提交日)+ tools/check_sitemap_lastmod.py 闸门",
    "status": "open"
+  },
+  {
+   "id": "goldrush-tripwire-0930",
+   "site": "goldrush",
+   "due": "2026-09-30",
+   "metric": "/protocol + /agix + /grader 三页 JS 口径 page_view 合计(ev 表 ua_class='js',28 天窗)",
+   "threshold": "> 0(2026-08-30 时终身为 0)",
+   "win": "解除「此后不许再写任何白皮书/协议提案」的禁令——只是解禁,不含任何扩建动作",
+   "lose": "仍为 0 → 瓶颈在分发不在经济学,此后不许再写任何白皮书/协议提案,只做被引用的判定页",
+   "source": "sites/goldrush/CLAUDE.md 判定线节(2026-08-30 改写)",
+   "status": "open",
+   "registered_late": "2026-09-22 补登:此前只写在站内 CLAUDE.md,没进台账(= 等于没预登记)。阈值原文照抄。",
+   "reading_2026-09-22": "8 行/28d(protocol 3 · grader 3 · agix 2),全部落在 09-18→09-21 四天、1 个国家。字面已达成;形状是单人单国。",
+   "reading_rule": "结算时按字面记 won,但 reading 必须写明国家数与天数;单国单 UA 前缀的读数不得据此扩建任何协议面(win 分支本来也只是解禁)。"
+  },
+  {
+   "id": "goldrush-survival-1028",
+   "site": "goldrush",
+   "due": "2026-10-28",
+   "metric": "① JS 口径 page_view(全站,28 天)或 ② 非 goldrush 的外部 referrer",
+   "threshold": "① ≥50 或 ② 发现型外部 referrer ≥1(非品牌搜索词、AI 助手、第三方站点);品牌导航(搜『agiscorecard』)与主站内链单独计,不作达标依据",
+   "threshold_original": "① ≥50/28d 或 ② 出现 ≥1 个非 goldrush 的外部 referrer",
+   "revised": "2026-09-22",
+   "revised_reason": "09-22 现查 ② 字面已达成:google.com/search?q=agiscorecard 9 行/8 路径、google.com 5 行、agiscorecard.com/for-agents 8 行——全部是品牌导航或主站内链,不是「被发现」。原阈值在到期前 36 天就被品牌导航满足 = 自我安慰(09-16 教训:能被 t0 直接满足的线不是赌注)。早于到期改,并保留原文。",
+   "win": "继续投入",
+   "lose": "全空 → 降为季度维护",
+   "source": "sites/goldrush/CLAUDE.md 判定线节(2026-08-30 改写)",
+   "status": "open",
+   "registered_late": "2026-09-22 补登(同上)。",
+   "reading_2026-09-22": "① JS pv 13/28d(5 路径);② 发现型外部 referrer 0;品牌/内网 referrer 22 行(google 搜 agiscorecard 9、google.com 5、for-agents 8)。"
+  },
+  {
+   "id": "goldrush-protocol-adoption-1130",
+   "site": "goldrush",
+   "due": "2026-11-30",
+   "metric": "① /claimledger.json 被我们没写的客户端抓取(剔 goldrush referrer、?ci=1、自家 MCP 自取;定义见 /fetchlog.json)或 ② registry 的 ledger_render 事件 label 为非 goldrush URL",
+   "threshold": "① 里 browser / MCP / skill 类客户端(非 bot-UA 爬虫)≥1,或 ② ≥1;bot-UA 抓取单独计数、不作达标依据",
+   "threshold_original": "① ≥1 或 ② ≥1",
+   "revised": "2026-09-22",
+   "revised_reason": "09-22 现查 ① 字面已 31 次(bot-UA 22 / browser-UA 9)。bot-UA 那 22 次的日形状(每日 1 次、US、无 referrer)与 ua_audit 里 OpenAI 家族 UA 前缀每日 9–22 次吻合——索引抓取,与 llms.txt「被抓不被用」是同一件事,正是 fetchlog 定义里说要防的失败形态。按原阈值这条线在 t+23 天就被爬虫满足。早于到期 69 天改,并保留原文;fetchlog.json 同步加了 crawler/browser 两栏。",
+   "win": "传播引擎保留",
+   "lose": "协议没有消费者,如实记录,只剩引用机器;上架数永不作为达标依据",
+   "source": "sites/goldrush/CLAUDE.md 判定线节(2026-08-30 改写)+ sites/goldrush/site/fetchlog.json",
+   "status": "open",
+   "registered_late": "2026-09-22 补登(同上)。",
+   "reading_2026-09-22": "① 31(bot-UA 22 / browser-UA 9,其中 2 次经 agiscorecard.com/for-agents);② ledger_render 0。旁证:fork_click 终身 1(08-29)、audit_click 0、ledger_click 0、agi MCP get_claim_ledger 终身 4 次调用(08-30 / 09-14 / 09-15 / 09-17,来源未知,不排除会话自测)。"
   }
  ]
 }
