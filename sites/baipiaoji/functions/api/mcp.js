@@ -196,6 +196,17 @@ const TOOLS = [
       key: { type: 'string', description: 'Optional Pro license key (bpj.…) to unlock watching all tools' },
     } },
   },
+  {
+    name: 'monitor_new_agents',
+    title: 'Monitor newly discovered AI agents and MCP servers',
+    description: 'List source-backed AI agents, MCP servers and agent platforms tracked by Baipiaoji. Filter by category, status or keyword. Discovery is separated from verification; every result includes source URLs, first-seen date, last-verified date, transport, capabilities and evidence level.',
+    inputSchema: { type: 'object', properties: {
+      query: { type: 'string', description: 'Keyword matching name, description, category or capability' },
+      category: { type: 'string', description: 'Category such as trade, web3, agent, automation or research' },
+      status: { type: 'string', enum: ['new','verified','updated','stale','retired'], description: 'Lifecycle status' },
+      lang: { type: 'string', enum: ['en','zh'], description: 'Data language, default en' }
+    } }
+  },
 ];
 
 // resources：让 agent 一次性拉走整份数据集，而不是逐条问。
@@ -228,6 +239,7 @@ const RESOURCES = [
   { uri: 'baipiaoji://dataset', asset: { en: '/llms-full.txt', zh: '/llms-full.txt' }, name: 'full-dataset-text',
     title: 'Full verified dataset (text)', mimeType: 'text/plain',
     description: 'The entire verified dataset in one plain-text file: every limit and commercial-use verdict, bilingual, with sources, check dates and the verification method.' },
+  { uri: 'baipiaoji://agents', asset: { en: '/en/agents.json', zh: '/agents.json' }, name: 'agent-watch', title: 'New AI agents and MCP watch', mimeType: 'application/json', description: 'Source-backed agent and MCP discovery records with first-seen, last-verified, lifecycle status, transport, capabilities and evidence level.' },
 ];
 
 // prompts：MCP 客户端会把它们列进提示词选择器——这是工具之外的第二个被发现的入口，
@@ -337,6 +349,16 @@ async function callTool(ctx, name, args = {}) {
     // callTool 的返回值由 tools/call 统一包 content——这里返回数据本体即可
     return r.body;
   }
+  if (name === 'monitor_new_agents') {
+    const watch = await loadAsset(ctx, lang === 'en' ? '/en/agents.json' : '/agents.json');
+    let xs = watch.agents || [];
+    const q = String(args.query || '').toLowerCase().trim();
+    if (args.category) xs = xs.filter((x) => x.category === String(args.category).toLowerCase());
+    if (args.status) xs = xs.filter((x) => x.status === String(args.status).toLowerCase());
+    if (q) xs = xs.filter((x) => `${x.name} ${x.slug} ${x.category} ${x.description} ${(x.capabilities || []).join(' ')}`.toLowerCase().includes(q));
+    return { count: xs.length, generated: watch.generated, policy: watch.policy, agents: xs.slice(0, 50), truncated: xs.length > 50, attribution: cite };
+  }
+
   if (name === 'search_ai_tools') {
     let xs = all;
     if (args.category) xs = xs.filter((t) => t.category === String(args.category).toLowerCase());
