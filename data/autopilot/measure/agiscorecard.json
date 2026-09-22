@@ -3,43 +3,43 @@
   "search_no_result": [],
   "site_search": [
    {
-    "n": 2,
-    "q": "tool:claim_ledger https://goldrush.agiscorecard."
-   },
-   {
-    "n": 1,
+    "n": 3,
     "q": "tool:sunwatch_ledger"
    },
    {
-    "n": 1,
+    "n": 3,
     "q": "tool:invest_positions"
+   },
+   {
+    "n": 2,
+    "q": "tool:claim_ledger https://goldrush.agiscorecard."
    }
   ]
  },
- "fetched": "2026-09-21",
+ "fetched": "2026-09-22",
  "kind": "agi-trends",
  "notes": [],
  "ok": true,
  "pages": {
-  "/ai-and-your-job": {
-   "n7": 103,
-   "p7": 39
-  },
   "/ai-job-risk-check": {
-   "n7": 97,
-   "p7": 36
+   "n7": 95,
+   "p7": 44
+  },
+  "/aschenbrenner-fund-collapse": {
+   "n7": 82,
+   "p7": 35
   },
   "/search": {
-   "n7": 344,
-   "p7": 59
+   "n7": 310,
+   "p7": 108
   },
-  "/two-year-scorecard": {
-   "n7": 100,
-   "p7": 28
+  "/what-jobs-are-safe-from-ai": {
+   "n7": 92,
+   "p7": 39
   },
-  "/will-agi-arrive-2027": {
-   "n7": 98,
-   "p7": 38
+  "/your-agi-timeline": {
+   "n7": 89,
+   "p7": 42
   }
  },
  "site": "agiscorecard",

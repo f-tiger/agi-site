@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "as_of": "2026-09-21",
+  "as_of": "2026-09-22",
   "privacy": "aggregate counts and derived queues only; no customer or raw community content",
   "fleet": {
     "sites": 14,
@@ -8,15 +8,15 @@
     "membership_ready": 4,
     "paid_members": 0,
     "active_members": 0,
-    "opportunities": 6,
+    "opportunities": 7,
     "stale_inputs": 0
   },
   "input_dates": {
-    "membership": "2026-09-21T08:11:35.006Z",
-    "health": "2026-09-20T12:46:28Z",
-    "ai_referrals": "2026-09-20T12:46:43Z",
-    "opportunities": "2026-09-20",
-    "autopilot_receipt": "2026-09-21"
+    "membership": "2026-09-22T07:56:13.432Z",
+    "health": "2026-09-21T14:43:29Z",
+    "ai_referrals": "2026-09-21T14:43:55Z",
+    "opportunities": "2026-09-21",
+    "autopilot_receipt": "2026-09-22"
   },
   "input_ages_days": {
     "membership": 0,
@@ -28,7 +28,7 @@
   "stale_inputs": [],
   "membership": {
     "schema_version": 1,
-    "generated": "2026-09-21T08:11:35.006Z",
+    "generated": "2026-09-22T07:56:13.432Z",
     "source": "same-origin /api/member and /api/member-admin stats",
     "privacy": "aggregate counters only; no member, order, support, token or wallet data",
     "ok": true,
@@ -127,7 +127,7 @@
       "theme": "stripe withholding balance of 100000",
       "site": null,
       "state": "scout",
-      "score": 3.02,
+      "score": 3.07,
       "days_seen": 1,
       "demand": 0,
       "supply": 0
@@ -142,19 +142,19 @@
       "supply": 0
     },
     {
-      "theme": "what exists if i want a premade soc mcu screen enclosure battery",
+      "theme": "offline windows ledger for a one person microgreens farm trays standing orders n",
       "site": null,
       "state": "scout",
-      "score": 2.07,
+      "score": 2.11,
       "days_seen": 1,
       "demand": 0,
       "supply": 0
     },
     {
-      "theme": "offline windows ledger for a one person microgreens farm trays standing orders n",
+      "theme": "what exists if i want a premade soc mcu screen enclosure battery",
       "site": null,
       "state": "scout",
-      "score": 2.05,
+      "score": 2.07,
       "days_seen": 1,
       "demand": 0,
       "supply": 0
@@ -167,6 +167,15 @@
       "days_seen": 1,
       "demand": 0,
       "supply": 0
+    },
+    {
+      "theme": "editor with doxygen preview",
+      "site": null,
+      "state": "scout",
+      "score": 2.0,
+      "days_seen": 1,
+      "demand": 0,
+      "supply": 0
     }
   ],
   "actions": [
@@ -176,7 +185,7 @@
       "priority": 80,
       "reason": "measured demand reaches an existing page with zero recent referred readers",
       "evidence": {
-        "count": 20,
+        "count": 17,
         "query": "infrarotheizung gegen schimmel",
         "page": "guide/infrarotheizung-gegen-schimmel.html",
         "value": 59250
@@ -224,24 +233,12 @@
       "mode": "observe"
     },
     {
-      "site": "buysomething",
-      "kind": "content_gap",
-      "priority": 55,
-      "reason": "rising demand has no matching page; editorial judgement is required",
-      "evidence": {
-        "count": 1,
-        "query": "costco self cleaning litter box",
-        "value": 350
-      },
-      "mode": "queue"
-    },
-    {
       "site": "getecoback",
       "kind": "content_gap",
       "priority": 55,
       "reason": "rising demand has no matching page; editorial judgement is required",
       "evidence": {
-        "count": 25,
+        "count": 29,
         "query": "knebel infrarotheizung",
         "value": 36000
       },
@@ -266,8 +263,8 @@
       "reason": "prioritize a page with measured reader heat",
       "evidence": {
         "page": "/search",
-        "n7": 344,
-        "p7": 59
+        "n7": 310,
+        "p7": 108
       },
       "mode": "queue"
     },
@@ -278,8 +275,8 @@
       "reason": "prioritize a page with measured reader heat",
       "evidence": {
         "page": "/guide/fensterabdichtung-selber-bauen.html",
-        "n7": 12,
-        "p7": 1
+        "n7": 14,
+        "p7": 2
       },
       "mode": "queue"
     },
@@ -289,7 +286,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 443,
+        "human_pv_28d": 449,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -300,7 +297,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 107,
+        "human_pv_28d": 104,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -311,7 +308,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 342,
+        "human_pv_28d": 349,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -322,7 +319,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 240,
+        "human_pv_28d": 246,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -333,7 +330,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 207,
+        "human_pv_28d": 219,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -344,7 +341,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 618,
+        "human_pv_28d": 588,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -355,7 +352,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 436,
+        "human_pv_28d": 442,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -366,7 +363,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 881,
+        "human_pv_28d": 856,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -377,7 +374,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 260,
+        "human_pv_28d": 266,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -388,7 +385,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 291,
+        "human_pv_28d": 301,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -399,7 +396,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 308,
+        "human_pv_28d": 311,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -424,7 +421,7 @@
     },
     "buysomething": {
       "path": "sites/buysomething/data/fleet-evolution.json",
-      "action_count": 2
+      "action_count": 1
     },
     "goldrush": {
       "path": "sites/goldrush/data/fleet-evolution.json",

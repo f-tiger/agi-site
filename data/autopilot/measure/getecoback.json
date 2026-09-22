@@ -2,79 +2,71 @@
  "extra": {
   "events": {
    "affiliate_click": {
-    "n7": 13,
-    "p7": 13
+    "n7": 24,
+    "p7": 14
    },
    "btu_calc": {
-    "n7": 22,
+    "n7": 25,
     "p7": 7
    },
    "feuchte_now": {
-    "n7": 9,
+    "n7": 13,
     "p7": 8
    },
    "heat_now": {
     "n7": 4,
-    "p7": 18
+    "p7": 12
    },
    "page_view": {
-    "n7": 130,
+    "n7": 189,
     "p7": 111
+   },
+   "panel_fit": {
+    "n7": 1,
+    "p7": 0
    },
    "popup_click": {
     "n7": 0,
     "p7": 6
    },
    "popup_close": {
-    "n7": 19,
-    "p7": 16
+    "n7": 24,
+    "p7": 15
    },
    "popup_view": {
-    "n7": 39,
-    "p7": 46
+    "n7": 46,
+    "p7": 47
    },
    "standort_check": {
     "n7": 0,
     "p7": 3
    },
    "strom_now": {
-    "n7": 21,
-    "p7": 7
+    "n7": 28,
+    "p7": 6
    },
    "video_play": {
-    "n7": 2,
-    "p7": 4
+    "n7": 1,
+    "p7": 5
    }
   },
   "zero_hits": []
  },
- "fetched": "2026-09-21",
+ "fetched": "2026-09-22",
  "kind": "eco-trend",
  "notes": [],
  "ok": true,
  "pages": {
   "/": {
-   "n7": 4,
-   "p7": 1
-  },
-  "/en/guide.html": {
-   "n7": 2,
+   "n7": 5,
    "p7": 0
   },
   "/en/guide/btu-calculator.html": {
-   "n7": 8,
+   "n7": 9,
    "p7": 0
-  },
-  "/en/guide/dehumidifier-drying-clothes-cost.html": {
-   "n7": 2,
-   "p7": 0
-  },
-  "/en/guide/portable-ac-leaking-water.html": {
-   "n7": 2,
-   "p7": 2
   },
   "/en/guide/portable-ac-skylight-roof-window.html": {
-   "n7": 2,
+   "n7": 3,
    "p7": 1
   },
   "/en/guide/portable-ac-smells-musty.html": {
@@ -82,68 +74,84 @@
    "p7": 1
   },
   "/en/guide/portable-ac-tilt-and-turn-windows.html": {
-   "n7": 7,
-   "p7": 7
+   "n7": 6,
+   "p7": 8
+  },
+  "/guide/abluftschlauch-verlaengern.html": {
+   "n7": 3,
+   "p7": 0
   },
   "/guide/balkonkraftwerk-ohne-bohren.html": {
    "n7": 4,
    "p7": 0
   },
-  "/guide/beste-tragbare-klimaanlage-hitzewelle.html": {
-   "n7": 2,
+  "/guide/btu-rechner.html": {
+   "n7": 3,
    "p7": 0
   },
   "/guide/comfee-geraete-test.html": {
    "n7": 3,
    "p7": 0
   },
-  "/guide/delonghi-pac-n90-test.html": {
-   "n7": 2,
-   "p7": 0
-  },
   "/guide/fensterabdichtung-selber-bauen.html": {
-   "n7": 12,
-   "p7": 1
+   "n7": 14,
+   "p7": 2
   },
   "/guide/growatt-noah-2000-probleme.html": {
-   "n7": 7,
-   "p7": 6
+   "n7": 8,
+   "p7": 5
   },
   "/guide/heizluefter-stromverbrauch.html": {
-   "n7": 2,
+   "n7": 3,
    "p7": 0
   },
-  "/guide/klimaanlage-10-qm.html": {
-   "n7": 2,
-   "p7": 0
+  "/guide/klimaanlage-30-qm.html": {
+   "n7": 6,
+   "p7": 2
+  },
+  "/guide/klimaanlage-kippfenster.html": {
+   "n7": 3,
+   "p7": 6
+  },
+  "/guide/klimaanlage-wohnmobil.html": {
+   "n7": 4,
+   "p7": 6
   },
   "/guide/luftentfeuchter-20-qm.html": {
    "n7": 3,
    "p7": 2
   },
-  "/guide/luftentfeuchter-keller.html": {
-   "n7": 2,
-   "p7": 3
-  },
   "/guide/midea-portasplit-ausverkauft-alternativen.html": {
-   "n7": 6,
-   "p7": 8
-  },
-  "/guide/mobile-klimaanlage-ueberwintern.html": {
-   "n7": 2,
-   "p7": 5
-  },
-  "/guide/schmidbauer-infrarotheizung-test.html": {
-   "n7": 2,
-   "p7": 0
+   "n7": 7,
+   "p7": 7
   },
   "/guide/split-klimaanlage-ohne-kernbohrung.html": {
    "n7": 2,
    "p7": 1
   },
+  "/guide/thermovorhang-ratgeber.html": {
+   "n7": 2,
+   "p7": 0
+  },
+  "/guide/unterschied-klimaanlage-lueftungsanlage.html": {
+   "n7": 2,
+   "p7": 0
+  },
+  "/guide/ventilator-mit-eis.html": {
+   "n7": 2,
+   "p7": 1
+  },
+  "/guide/ventilator-stromverbrauch.html": {
+   "n7": 2,
+   "p7": 0
+  },
   "/guide/was-bedeutet-btu.html": {
-   "n7": 3,
+   "n7": 7,
    "p7": 6
+  },
+  "/guide/zimmer-kuehlen-ohne-installation.html": {
+   "n7": 4,
+   "p7": 0
   },
   "/wohnkosten-werkstatt.html": {
    "n7": 4,

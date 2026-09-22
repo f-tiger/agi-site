@@ -1,10 +1,35 @@
 {
  "dropped_last_run": [],
- "generated": "2026-09-21",
+ "generated": "2026-09-22",
  "pages": {
+  "agents/compliance.html": {
+   "changed": "2026-09-22",
+   "h": "54933811c23479b5",
+   "origin": "bootstrap"
+  },
+  "agents/trade/index.html": {
+   "changed": "2026-09-21",
+   "h": "362880c7550dff2e",
+   "origin": "bootstrap"
+  },
+  "creator-kit.html": {
+   "changed": "2026-09-22",
+   "h": "99861510acb776ac",
+   "origin": "bootstrap"
+  },
   "daten.html": {
    "changed": "2026-08-31",
    "h": "d5f7f65247b7a632",
+   "origin": "bootstrap"
+  },
+  "en/agents/compliance.html": {
+   "changed": "2026-09-22",
+   "h": "22dd36379262af91",
+   "origin": "bootstrap"
+  },
+  "en/creator-kit.html": {
+   "changed": "2026-09-22",
+   "h": "cc3ce7a1de27a96f",
    "origin": "bootstrap"
   },
   "en/guide/best-portable-air-conditioner-europe-heatwave.html": {
@@ -78,8 +103,8 @@
    "origin": "observed"
   },
   "en/guide/desiccant-vs-compressor-dehumidifier.html": {
-   "changed": "2026-09-18",
-   "h": "efcef19553448796",
+   "changed": "2026-09-22",
+   "h": "22049abaa6652d88",
    "origin": "observed"
   },
   "en/guide/electric-heater-10-sqm.html": {
@@ -143,8 +168,8 @@
    "origin": "observed"
   },
   "en/guide/heated-airer-vs-dehumidifier.html": {
-   "changed": "2026-09-18",
-   "h": "f666b9ac9a8f62eb",
+   "changed": "2026-09-22",
+   "h": "ad53fd8180770550",
    "origin": "observed"
   },
   "en/guide/how-many-btu-do-i-need.html": {
@@ -153,8 +178,8 @@
    "origin": "observed"
   },
   "en/guide/how-to-clean-portable-air-conditioner.html": {
-   "changed": "2026-09-18",
-   "h": "291a7d17b96a27ab",
+   "changed": "2026-09-22",
+   "h": "380097938faf7e06",
    "origin": "observed"
   },
   "en/guide/how-to-sleep-in-a-heatwave-without-ac.html": {
@@ -173,13 +198,13 @@
    "origin": "observed"
   },
   "en/guide/portable-ac-leaking-water.html": {
-   "changed": "2026-09-18",
-   "h": "7a605d960fc2a849",
+   "changed": "2026-09-22",
+   "h": "5e2d2ed09e1f61d7",
    "origin": "observed"
   },
   "en/guide/portable-ac-not-cooling.html": {
-   "changed": "2026-09-18",
-   "h": "1771c26ad34d3bc8",
+   "changed": "2026-09-22",
+   "h": "71def57c30c369c7",
    "origin": "observed"
   },
   "en/guide/portable-ac-rented-apartment.html": {
@@ -188,8 +213,8 @@
    "origin": "observed"
   },
   "en/guide/portable-ac-running-cost.html": {
-   "changed": "2026-09-18",
-   "h": "651ce070b8c0e96c",
+   "changed": "2026-09-22",
+   "h": "25c2321f02bb831c",
    "origin": "observed"
   },
   "en/guide/portable-ac-skylight-roof-window.html": {
@@ -198,8 +223,8 @@
    "origin": "observed"
   },
   "en/guide/portable-ac-smells-musty.html": {
-   "changed": "2026-09-18",
-   "h": "7dcf96c1c8489c7a",
+   "changed": "2026-09-22",
+   "h": "c3697c365efb7a32",
    "origin": "observed"
   },
   "en/guide/portable-ac-tilt-and-turn-windows.html": {
@@ -248,19 +273,44 @@
    "origin": "observed"
   },
   "en/index.html": {
-   "changed": "2026-09-20",
-   "h": "92f48927b8a7edce",
+   "changed": "2026-09-22",
+   "h": "6e0169bf632279a3",
    "origin": "observed"
   },
   "en/solution-calculator.html": {
-   "changed": "2026-09-21",
-   "h": "790910a0c4fdd1db",
+   "changed": "2026-09-22",
+   "h": "fcd6b44d3596abb4",
    "origin": "observed"
+  },
+  "es/calculadora.html": {
+   "changed": "2026-09-20",
+   "h": "454632cddfc099e5",
+   "origin": "bootstrap"
+  },
+  "es/creator-kit.html": {
+   "changed": "2026-09-20",
+   "h": "e9953bd5b786f6f2",
+   "origin": "bootstrap"
   },
   "for-agents.html": {
    "changed": "2026-09-17",
    "h": "50769db2c85c54e2",
    "origin": "observed"
+  },
+  "fr/calculateur.html": {
+   "changed": "2026-09-20",
+   "h": "c894577887a33247",
+   "origin": "bootstrap"
+  },
+  "fr/creator-kit.html": {
+   "changed": "2026-09-20",
+   "h": "6d20f772c5c82d10",
+   "origin": "bootstrap"
+  },
+  "geraete-austausch-rechner.html": {
+   "changed": "2026-09-19",
+   "h": "4cf1999932663d4d",
+   "origin": "bootstrap"
   },
   "guide/abluftschlauch-verlaengern.html": {
    "changed": "2026-09-18",
@@ -448,8 +498,8 @@
    "origin": "bootstrap"
   },
   "guide/heizluefter-stromsparend.html": {
-   "changed": "2026-09-18",
-   "h": "1a9c3c21d45a17f0",
+   "changed": "2026-09-22",
+   "h": "90fe2302cd9cae4c",
    "origin": "observed"
   },
   "guide/heizluefter-stromverbrauch.html": {
@@ -573,33 +623,33 @@
    "origin": "observed"
   },
   "guide/klimaanlage-15-qm.html": {
-   "changed": "2026-09-18",
-   "h": "7ec361d004af6a79",
+   "changed": "2026-09-22",
+   "h": "36fdad88869a64df",
    "origin": "observed"
   },
   "guide/klimaanlage-20-qm.html": {
-   "changed": "2026-09-18",
-   "h": "544feb7d0bc36300",
+   "changed": "2026-09-22",
+   "h": "6a20271b8ab59c6f",
    "origin": "observed"
   },
   "guide/klimaanlage-25-qm.html": {
-   "changed": "2026-09-18",
-   "h": "d6ccac52835285e4",
+   "changed": "2026-09-22",
+   "h": "4db0e697b6ff81a3",
    "origin": "observed"
   },
   "guide/klimaanlage-30-qm.html": {
-   "changed": "2026-09-18",
-   "h": "c4736822a40a63eb",
+   "changed": "2026-09-22",
+   "h": "0bae7f38a9785081",
    "origin": "observed"
   },
   "guide/klimaanlage-40-qm.html": {
-   "changed": "2026-09-18",
-   "h": "f7317f76dc4ba994",
+   "changed": "2026-09-22",
+   "h": "422b4385a9a14f98",
    "origin": "observed"
   },
   "guide/klimaanlage-50-qm.html": {
-   "changed": "2026-09-18",
-   "h": "1a825bf5166b0cfa",
+   "changed": "2026-09-22",
+   "h": "b3e6bb0d49fc2e66",
    "origin": "observed"
   },
   "guide/klimaanlage-balkonkraftwerk.html": {
@@ -623,9 +673,9 @@
    "origin": "observed"
   },
   "guide/klimaanlage-mietwohnung-oesterreich.html": {
-   "changed": "2026-09-18",
-   "h": "ef95af3f84f4cb5e",
-   "origin": "bootstrap"
+   "changed": "2026-09-22",
+   "h": "def56ab7e33bba36",
+   "origin": "observed"
   },
   "guide/klimaanlage-mietwohnung.html": {
    "changed": "2026-09-18",
@@ -633,58 +683,58 @@
    "origin": "observed"
   },
   "guide/klimaanlage-mit-heizfunktion.html": {
-   "changed": "2026-09-18",
-   "h": "a0ba00fdf48ea8c1",
+   "changed": "2026-09-22",
+   "h": "23faea548bdb6bb6",
    "origin": "observed"
   },
   "guide/klimaanlage-nachts-laufen-lassen.html": {
-   "changed": "2026-09-18",
-   "h": "5fdc635fda55c240",
+   "changed": "2026-09-22",
+   "h": "55eaac3220164770",
    "origin": "observed"
   },
   "guide/klimaanlage-oder-ventilator.html": {
-   "changed": "2026-09-18",
-   "h": "e0d78a22730001bc",
+   "changed": "2026-09-22",
+   "h": "6949f966269a17de",
    "origin": "observed"
   },
   "guide/klimaanlage-ohne-abluftschlauch.html": {
-   "changed": "2026-09-18",
-   "h": "ff457d86936a3a01",
+   "changed": "2026-09-22",
+   "h": "a582c0e3b4705bd2",
    "origin": "observed"
   },
   "guide/klimaanlage-ohne-balkon.html": {
-   "changed": "2026-09-18",
-   "h": "73eeb69e4d765fe1",
+   "changed": "2026-09-22",
+   "h": "9f9888052ed7de1f",
    "origin": "observed"
   },
   "guide/klimaanlage-reinigen.html": {
-   "changed": "2026-09-18",
-   "h": "7d666f3efed7ee45",
+   "changed": "2026-09-22",
+   "h": "555db10d165bef9b",
    "origin": "observed"
   },
   "guide/klimaanlage-stromkosten.html": {
-   "changed": "2026-09-18",
-   "h": "df5b4ff73c57cac4",
+   "changed": "2026-09-22",
+   "h": "1ef57f780a5d2033",
    "origin": "observed"
   },
   "guide/klimaanlage-vs-luftkuehler.html": {
-   "changed": "2026-09-18",
-   "h": "fd64c206504db09f",
+   "changed": "2026-09-22",
+   "h": "7cd40e51e8366d85",
    "origin": "observed"
   },
   "guide/klimaanlage-wann-kaufen.html": {
-   "changed": "2026-09-18",
-   "h": "e7f19ca0bdee0239",
+   "changed": "2026-09-22",
+   "h": "5ee7e253ab371552",
    "origin": "observed"
   },
   "guide/klimaanlage-wohnmobil.html": {
-   "changed": "2026-09-18",
-   "h": "e28ae6c4fa401a07",
+   "changed": "2026-09-22",
+   "h": "f524b16b02d4445d",
    "origin": "observed"
   },
   "guide/klimaanlage-zubehoer-guenstig.html": {
-   "changed": "2026-09-18",
-   "h": "6bde4699fc86a5a9",
+   "changed": "2026-09-22",
+   "h": "9c309f8902162e5c",
    "origin": "observed"
   },
   "guide/klimaanlage-zugluft-nackenschmerzen.html": {
@@ -693,8 +743,8 @@
    "origin": "observed"
   },
   "guide/lidl-tronic-klimaanlage-test.html": {
-   "changed": "2026-09-18",
-   "h": "6f1e3d5b94d9a3b0",
+   "changed": "2026-09-22",
+   "h": "b69ba1fac2ecc50d",
    "origin": "observed"
   },
   "guide/luftbefeuchter-ratgeber.html": {
@@ -713,8 +763,8 @@
    "origin": "bootstrap"
   },
   "guide/luftentfeuchter-10-qm.html": {
-   "changed": "2026-09-18",
-   "h": "1d91b3972f30df7a",
+   "changed": "2026-09-22",
+   "h": "f4b7f5913d5f1119",
    "origin": "observed"
   },
   "guide/luftentfeuchter-15-qm.html": {
@@ -728,23 +778,23 @@
    "origin": "observed"
   },
   "guide/luftentfeuchter-25-qm.html": {
-   "changed": "2026-09-18",
-   "h": "62d93234828ea7a2",
+   "changed": "2026-09-22",
+   "h": "6a493d1d2b1c69fb",
    "origin": "observed"
   },
   "guide/luftentfeuchter-30-qm.html": {
-   "changed": "2026-09-18",
-   "h": "aa2f954765df2c46",
+   "changed": "2026-09-22",
+   "h": "9814808defe54a70",
    "origin": "observed"
   },
   "guide/luftentfeuchter-40-qm.html": {
-   "changed": "2026-09-18",
-   "h": "217a35b0d8df05c9",
+   "changed": "2026-09-22",
+   "h": "c5ad15ed219eb6eb",
    "origin": "observed"
   },
   "guide/luftentfeuchter-dauerbetrieb-stromkosten.html": {
-   "changed": "2026-09-18",
-   "h": "57ab13d0d8d2d46a",
+   "changed": "2026-09-22",
+   "h": "2a355b86f41ccd99",
    "origin": "observed"
   },
   "guide/luftentfeuchter-gegen-schimmel.html": {
@@ -768,14 +818,14 @@
    "origin": "observed"
   },
   "guide/luftentfeuchter-ratgeber.html": {
-   "changed": "2026-09-18",
-   "h": "b0d4779f1eb2c102",
+   "changed": "2026-09-22",
+   "h": "5d4d15323972a204",
    "origin": "observed"
   },
   "guide/luftentfeuchter-stinkt.html": {
-   "changed": "2026-09-18",
-   "h": "63aad0b62e78eb53",
-   "origin": "bootstrap"
+   "changed": "2026-09-22",
+   "h": "7e5b7992434d36d3",
+   "origin": "observed"
   },
   "guide/luftentfeuchter-zieht-kein-wasser.html": {
    "changed": "2026-09-17",
@@ -783,9 +833,9 @@
    "origin": "bootstrap"
   },
   "guide/luftfeuchtigkeit-senken.html": {
-   "changed": "2026-09-18",
-   "h": "5c13f1aa01ebf266",
-   "origin": "bootstrap"
+   "changed": "2026-09-22",
+   "h": "92af1b057b4c618f",
+   "origin": "observed"
   },
   "guide/luftreiniger-ratgeber.html": {
    "changed": "2026-09-18",
@@ -813,33 +863,33 @@
    "origin": "observed"
   },
   "guide/mobile-klimaanlage-kuehlt-nicht.html": {
-   "changed": "2026-09-18",
-   "h": "b97b333b597f71ef",
+   "changed": "2026-09-22",
+   "h": "01dc93f4508969b4",
    "origin": "observed"
   },
   "guide/mobile-klimaanlage-stinkt-schimmel.html": {
-   "changed": "2026-09-18",
-   "h": "50d9ae01f89bf970",
+   "changed": "2026-09-22",
+   "h": "ea3d4ca2f5d06c0b",
    "origin": "observed"
   },
   "guide/mobile-klimaanlage-tropft-wasser.html": {
-   "changed": "2026-09-18",
-   "h": "95f12d95809d75ee",
+   "changed": "2026-09-22",
+   "h": "209a2b32c464738d",
    "origin": "observed"
   },
   "guide/mobile-klimaanlage-ueberwintern.html": {
-   "changed": "2026-09-18",
-   "h": "986d654646d1b66c",
+   "changed": "2026-09-22",
+   "h": "99832f6a7c680f62",
    "origin": "observed"
   },
   "guide/mobile-klimaanlage-vergleich.html": {
-   "changed": "2026-09-18",
-   "h": "ad99fad8a790fe8c",
+   "changed": "2026-09-22",
+   "h": "1f55f3609ae8491b",
    "origin": "observed"
   },
   "guide/mobile-klimaanlage-zu-laut.html": {
-   "changed": "2026-09-18",
-   "h": "d51aaf62bf815230",
+   "changed": "2026-09-22",
+   "h": "bb7c2366e5ce8d2d",
    "origin": "observed"
   },
   "guide/pc-ueberhitzt-sommer.html": {
@@ -908,23 +958,23 @@
    "origin": "observed"
   },
   "guide/split-klimaanlage-ohne-kernbohrung.html": {
-   "changed": "2026-09-18",
-   "h": "118e9edcc998226e",
+   "changed": "2026-09-22",
+   "h": "9e97bcf23988222b",
    "origin": "observed"
   },
   "guide/strom-sparen-haushalt.html": {
-   "changed": "2026-09-18",
-   "h": "782ce485e50d7e9c",
+   "changed": "2026-09-22",
+   "h": "42a4c6fb1646f915",
    "origin": "observed"
   },
   "guide/stromausfall-heizen.html": {
-   "changed": "2026-09-18",
-   "h": "3a90755c30df7bb3",
+   "changed": "2026-09-22",
+   "h": "b1e18b0322aaebfe",
    "origin": "observed"
   },
   "guide/stromkosten-rechner.html": {
-   "changed": "2026-09-18",
-   "h": "2a11190c04267827",
+   "changed": "2026-09-22",
+   "h": "c122869fe4ebbaf2",
    "origin": "observed"
   },
   "guide/strompreis-radar.html": {
@@ -963,8 +1013,8 @@
    "origin": "observed"
   },
   "guide/unterschied-klimaanlage-lueftungsanlage.html": {
-   "changed": "2026-09-18",
-   "h": "0ab07399745dfdc9",
+   "changed": "2026-09-22",
+   "h": "10fbb8b6b03af808",
    "origin": "observed"
   },
   "guide/ventilator-kaufen-ratgeber.html": {
@@ -988,8 +1038,8 @@
    "origin": "observed"
   },
   "guide/waesche-trocknen-wohnung.html": {
-   "changed": "2026-09-18",
-   "h": "a4fa3d50b82a6c23",
+   "changed": "2026-09-22",
+   "h": "3e1ef6041c94a659",
    "origin": "observed"
   },
   "guide/was-bedeutet-btu.html": {
@@ -1018,9 +1068,19 @@
    "origin": "observed"
   },
   "index.html": {
-   "changed": "2026-09-20",
-   "h": "6ce21c334f2c360a",
+   "changed": "2026-09-22",
+   "h": "f335e2a3601fd8f5",
    "origin": "observed"
+  },
+  "it/calcolatore.html": {
+   "changed": "2026-09-20",
+   "h": "05b87e6845148447",
+   "origin": "bootstrap"
+  },
+  "it/creator-kit.html": {
+   "changed": "2026-09-20",
+   "h": "3e61a7df996ab93f",
+   "origin": "bootstrap"
   },
   "it/guide/climatizzatore-senza-unita-esterna.html": {
    "changed": "2026-09-18",
@@ -1073,9 +1133,9 @@
    "origin": "observed"
   },
   "it/index.html": {
-   "changed": "2026-08-31",
-   "h": "ea1049f705093ed6",
-   "origin": "bootstrap"
+   "changed": "2026-09-22",
+   "h": "bc946a9fcb25570f",
+   "origin": "observed"
   },
   "kategorie/energie-sparen.html": {
    "changed": "2026-09-18",
@@ -1107,20 +1167,35 @@
    "h": "4e9a8732fbdd1097",
    "origin": "observed"
   },
-  "rechner.html": {
+  "pro-werkzeuge.html": {
    "changed": "2026-09-21",
-   "h": "2a7e9f186fb519c6",
+   "h": "5477a12fc348a1c6",
+   "origin": "bootstrap"
+  },
+  "rechner.html": {
+   "changed": "2026-09-22",
+   "h": "586813f0f6af77d5",
    "origin": "observed"
   },
+  "strommess-protokoll.html": {
+   "changed": "2026-09-19",
+   "h": "c9f0a482a65357b1",
+   "origin": "bootstrap"
+  },
   "tools.html": {
-   "changed": "2026-09-21",
-   "h": "955baa64d1e1bbb0",
+   "changed": "2026-09-22",
+   "h": "b6bfb547c246909b",
    "origin": "observed"
   },
   "ueber-uns.html": {
    "changed": "2026-09-16",
    "h": "875e985f5e006020",
    "origin": "observed"
+  },
+  "waeschetrockner-oder-luftentfeuchter.html": {
+   "changed": "2026-09-19",
+   "h": "f8bac8bc6843a9ac",
+   "origin": "bootstrap"
   },
   "widgets.html": {
    "changed": "2026-09-17",
@@ -1131,6 +1206,11 @@
    "changed": "2026-09-16",
    "h": "0349fe41c67b4708",
    "origin": "observed"
+  },
+  "wohnkosten-werkstatt.html": {
+   "changed": "2026-09-19",
+   "h": "2f984160977a3a72",
+   "origin": "bootstrap"
   }
  },
  "site": "getecoback"

@@ -14,7 +14,7 @@
     },
     "demand": {
       "has_underserved": false,
-      "has_gaps": true,
+      "has_gaps": false,
       "has_hot_pages": false,
       "top_underserved_page": null,
       "top_hot_page": null
@@ -25,17 +25,6 @@
     }
   },
   "actions": [
-    {
-      "kind": "content_gap",
-      "priority": 55,
-      "reason": "rising demand has no matching page; editorial judgement is required",
-      "evidence": {
-        "count_band": "1-9",
-        "query": "costco self cleaning litter box",
-        "value_band": "100+"
-      },
-      "mode": "queue"
-    },
     {
       "kind": "ai_discovery",
       "priority": 48,
