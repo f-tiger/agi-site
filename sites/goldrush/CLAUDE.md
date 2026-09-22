@@ -225,3 +225,19 @@ owner 原话要素:分享即复制分裂用户子站、区块链式证明、每�
    `flip_v1_2026-08-30`** 并写 `correction`。registry 对别人要求的「no silent history rewrites」第一次用在自己身上。
 **别再提(在 08-30 铁律之上新增)**:给账本加「链上证明」层、每个子站自动生成 MCP、按分裂数或链上位置加权的任何定价、
 用「AI 来定价」绕开「价值来自后入者」。
+
+### 同日第二轮(owner:「goldrush优化再上线」):公布的数字改由仪器自己算,准入规则先对自己执行
+
+- **`/fetchlog.json` 不再是手抄文件**:worker 每次读时从本站 D1 现算(`FETCHLOG_SQL_CLASSES` / `FETCHLOG_SQL_EVIDENCE`,
+  三条排除项逐字对应文件里的 definitions),`site/fetchlog.json` 退为模板 + 兜底(标 `live:false`,永远不能冒充现值)。
+  **理由**:它承诺「updated as it moves」却停在 0 二十二天;而 11-30 采用线要用同一条 SQL 结算——t0 与结算必须同一个仪器
+  (eco 09-17 定的规矩)。`tools/test_fetchlog.mjs` 钉死求和不变式(50 组 fuzz)、零是合法读数、脏行不抛错、
+  **SQL 排除项逐字在位**(放宽一条 = 制造采纳,收紧一条 = 藏采纳,页面上都看不出来)。
+- **`tools/check_ledger.mjs`**:registry 对别人要求的准入规则(五字段、flip ≥15 字、source 可查、更正必须保留旧文本)
+  第一次对自己的 `ledger.json` 执行,挂进部署闸门;`--selftest` 11 例先证明它能红。
+- **部署后自检加两条协议自己的承诺**:`/claimledger.json` 必须带 `access-control-allow-origin: *`(丢了它页面照样 200,
+  但 grader 的 reader 与所有跨域 registry 全断),`/fetchlog.json` 必须 `live:true` 且 headline = 三部分之和;
+  `/.well-known/claimledger.json` 进 200 名单。
+- 读数(D1 现查 2026-09-22):**grader_use / grader_copy / ledger_click / audit_click / ledger_render 终身全部 0**,
+  只有 08-29 那 1 次 fork_click;28 天 JS 口径 pv 13(`/` 3 · protocol 3 · grader 3 · agix 2 · how-to 2)。
+  「工具在零采纳时也对单个使用者有用」那条赌注到今天**没有一个使用者**。这轮因此只动仪器与闸门,不动页面。

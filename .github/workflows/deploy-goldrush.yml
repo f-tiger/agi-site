@@ -58,6 +58,13 @@ jobs:
           done
           node --check worker.js
           node -e "JSON.parse(require('fs').readFileSync('site/ledger.json','utf8'))"
+          # 2026-09-22: the registry's own admission rules applied to our own ledger (five fields,
+          # written flip ≥15 chars, checkable source, corrections keep the old text), and the
+          # live /fetchlog.json summariser + its SQL exclusions pinned. Both self-test first so a
+          # gate that has gone blind fails here, not silently.
+          node tools/check_ledger.mjs --selftest
+          node tools/check_ledger.mjs
+          node tools/test_fetchlog.mjs
           echo "gate ok"
       - name: Deploy worker
         uses: cloudflare/wrangler-action@v3
@@ -75,7 +82,7 @@ jobs:
         run: |
           set -u
           fail=0
-          for p in / /protocol /agix /grader /how-to-verify-ai-money-claims /ledger.json /claimledger.json /llms.txt; do
+          for p in / /protocol /agix /grader /how-to-verify-ai-money-claims /ledger.json /claimledger.json /.well-known/claimledger.json /llms.txt; do
             url="https://goldrush.agiscorecard.com$p?ci=1"
             ok=0; code=000
             for try in 1 2 3 4 5; do
@@ -92,5 +99,24 @@ jobs:
             *'"ok":true'*'"ai_ref"'*) echo "OK    /api/pulse" ;;
             *) echo "::error::/api/pulse broken: ${pulse:0:120}"; fail=1 ;;
           esac
+          # 2026-09-22 — the protocol's own promises, asserted on the live edge:
+          # (1) /claimledger.json MUST carry access-control-allow-origin: * (the grader's reader and
+          #     every browser-side registry fetch it from another origin; lose the header and every
+          #     protocol tool breaks while the page still returns 200);
+          # (2) /fetchlog.json is computed live (live:true) and its headline equals the sum of its
+          #     three parts — a served static fallback (live:false) means D1 is unreachable from the
+          #     worker, which is exactly the "stale zero" failure this rewrite exists to end.
+          cors=$(curl -s -o /dev/null -D - --max-time 20 -A 'goldrush-deploy-smoke-bot (+ci)' \
+                 "https://goldrush.agiscorecard.com/claimledger.json?ci=1" | tr -d '\r' | grep -i '^access-control-allow-origin: \*' || true)
+          if [ -n "$cors" ]; then echo "OK    /claimledger.json access-control-allow-origin: *"; else echo "::error::/claimledger.json lacks access-control-allow-origin: * — every protocol reader breaks"; fail=1; fi
+          fl=$(curl -s --max-time 20 -A 'goldrush-deploy-smoke-bot (+ci)' "https://goldrush.agiscorecard.com/fetchlog.json?ci=1" || echo "")
+          if printf '%s' "$fl" | node -e '
+            let s=""; process.stdin.on("data",d=>s+=d).on("end",()=>{
+              let j; try { j=JSON.parse(s); } catch(e){ console.error("not JSON"); process.exit(1); }
+              const c=j.counts||{};
+              if (j.live!==true) { console.error("live:"+j.live+" error:"+j.live_error); process.exit(1); }
+              if (c.outside_fetches_of_our_claimledger!==(c.outside_fetches_crawler_ua|0)+(c.outside_fetches_browser_ua|0)+(c.outside_fetches_other_ua|0)) { console.error("sum mismatch"); process.exit(1); }
+              console.log("live outside="+c.outside_fetches_of_our_claimledger+" crawler="+c.outside_fetches_crawler_ua+" browser="+c.outside_fetches_browser_ua+" as_of="+c.as_of);
+            });'; then echo "OK    /fetchlog.json live"; else echo "::error::/fetchlog.json not live or inconsistent: ${fl:0:160}"; fail=1; fi
           [ "$fail" = "0" ] || exit 1
           echo "self-check ok"

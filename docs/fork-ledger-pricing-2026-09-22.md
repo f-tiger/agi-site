@@ -100,6 +100,10 @@ verdict 加一句「翻转条件字面触发、其余读数全为 0、抓取不�
    AI 读者看到的是静态文本,「currently zero」在 09-22 已经是假话。
 3. `ledger.json` 条目按 §四处理。
 4. `data/fleet-bets.json`:补登 goldrush 三条线;结算到期的两条(见 §六);记录 playgama 与 itch 的当日读数。
+5. **(第二轮,owner「goldrush优化再上线」)`/fetchlog.json` 改为 worker 从 D1 现算**(静态文件退为 `live:false` 兜底),
+   `tools/test_fetchlog.mjs` 钉死求和不变式与三条 SQL 排除项;`tools/check_ledger.mjs` 把 registry 的准入规则第一次对自己
+   的账本执行并进部署闸门;部署后自检断言 `/claimledger.json` 的 CORS 头与 fetchlog `live:true`。D1 现查:grader_use /
+   grader_copy / ledger_click / audit_click 终身全 0——「工具对单个使用者有用」这条赌注至今没有一个使用者,所以不动页面。
 
 ## 六、同日仪式结算(与本提案无关,但到期了)
 
