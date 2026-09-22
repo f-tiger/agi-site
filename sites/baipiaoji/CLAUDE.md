@@ -634,3 +634,37 @@ GEO / 设计类任务前，先查技能库是否覆盖，覆盖则按其框架�
    `bpj-agent-watch-1020`(`/agents/*` 真人 pv ≥30 或 首页→agents 点击 ≥10 或 非 CI 的 `monitor_new_agents`/`get_agent` 调用 ≥5
    → 按周扩条目;三项全空 → 只维护不扩,联动条撤回 nav)。
    **不做**:为 agents 开子站/子域;写任何未核数字;用 LLM 生成条目;把雷达命中的产品自动塞进账本(官方主页 200 才入)。
+
+22. **🤖 Agent 与 MCP 目录:28 → 978 条、按受众分门、整体走站点 layout、GEO 面 2026-09-22 第二轮**(owner 同日三条:「扩展agents到200个以上,
+   优化被引用与点击可能,确保多语言正确」→「升级到1000左右,成为最大的agents站点,agents要面向不同的用户分类清晰,然后做流量geo等优化」→
+   「新agents监控菜单在首页和中英文并列放在一起…样式与站点差异大,中文跳转到英文也混乱,整体重构下agents」;薄 PRD `docs/PRD-agents-scale-2026-09-22.md`)。
+   **账本 978 = 298 人工收录 + 680 官方 MCP 注册表。** 人工种子 `data/agent-watch-candidates.json` 282 条(每条手写中英文一句话 + 词表键),
+   官方页当天 2xx 才入 → 270 入、12 拒;注册表 `scripts/agent-watch-registry-pull.mjs` 拉公开 API(80 页 8 000 条最新版,7 177 条有仓库或官网,
+   仓库优先 + updatedAt 倒序,cap 720)→ 仓库 2xx 才入 → 680 入、38 拒。被拒的在 `data/agent-watch-admissions.json` 记 reason 与 HTTP,
+   runner 每日 `--max 60` 重试(会话沙箱对 openai.com / perplexity / cherry-ai 等是 403/5xx,runner 网络不同)。
+   **三条纪律**:①**词表是中英标签的唯一来源**(`data/agent-watch-vocab.json`:类目 / 受众 / 接入方式 / 能力 / 价格形态 / 证据),记录只存键,
+   文案由词表渲染,`test-agent-watch.mjs` 断言渲染文本 == 词表——1 000 条才不会各自漂移;②**注册表记录只展示发布者自己的文字**(英文原文、
+   中文标题进 `zh_name`),不翻译不改写不评分,没有记录页(页面即仓库);③**入门永远是官方页 2xx**,仓库单独换不来收录;`official` 块
+   (页面自己的 title / meta description + 抓取日)是记录页上唯一的第三方文字。
+   **页面(zh + en 各一)**:枢纽 `/agents/`(六扇受众门 + 类目 + 最新 24 + 机器面 + FAQ)、`/agents/for/<受众>` ×6、`/agents/c/<类目>` ×13
+   完整表——**这三种可索引进 sitemap 带 hreflang**;`/agents/<slug>` 记录页只给人工收录的 298 条,**noindex,follow,不进 sitemap 不带 hreflang**
+   (verify-dist 规则 ⑤)。受众由 `_agents.js` `audiencesOf()` 从类目 + 词表键**机械推导**(开发者 / 让 AI 替你写代码的人 / 不写代码也能用 /
+   给任意 Agent 加能力 / 团队与企业 / 研究与数据),一条可属多门。**全部经 `build.mjs` 的 `layout()` 出页**(`scripts/agent-pages.mjs`)——
+   同样式、侧栏、语言切换、页脚、信标;旧的独立模板 `build-agent-watch.mjs` 删除。**「中英文并列」的根因**:旧版把链接 `replace('</nav>')`
+   注进了语言切换的 `<nav class="lang">`;现在入口在 rail-jump、页脚与首页联动条(六扇门 + 最新 6 条),`--dist` 断言语言切换里没有 agents 链接。
+   **GEO**:类目表 ItemList JSON-LD、llms.txt 新节(六门 + 十三表 + JSON + MCP 参数)、`agents.json` 每语言一份(英文剔 `zh_`)、MCP
+   `monitor_new_agents` 加 audience / origin / offset / limit(默认 50 上限 100,回 total / next_offset),server.json 1.13.0。
+   **点击仪器**:表格与记录页出站链接 `data-tool="agents/<slug>/source|repo"` → `ev='go'` 路径 `/go/agents/…`;页面自带 page_view 信标
+   (旧版页面**零信标**,所以第 21 条记的「5 pv」来路不明)。
+   **⚠ 顺手抓到第三个仪器缺陷**:`gate` / `earn` / `gs` / `gs_go` / `ad` 五个事件名的发送端早在页面里,但 09-04「未知事件名改为丢弃」上线时
+   没进 hit.js 白名单——此后全部边缘静默丢弃,D1 恒 0。**第 9 / 10 / 11 / 13 / 15 条与 `bpj-tool-gate-0926` / `bpj-search-0927` /
+   `bpj-earn-gate-0928` / `bpj-ad-inventory-1014` 此前读到的 0 是丢包不是行为,窗口从本次部署起算**(台账已加 `instrument_note_2026-09-22`)。
+   `test-agent-watch.mjs` 现机械比对 build.mjs 里每个 `bpjEv('x')` / `EV('x')` 都在白名单——`audit` 同一种失踪的第三次,靠人记不住。
+   **预算**:schedule 三步 registry-pull → admit --max 60 → verify --max 40(3 并发、最久未核优先,每条约每周轮到一次)≈2 分/日 ≈60 分/月。
+   **verify-dist 的 staleCount 门对 `/agents/` 豁免**(注册表描述里「exposes 187 tools」「1102tools.com」是发布者的话),本站自己的枢纽文案
+   一律说「records / 条记录」并由 `--dist` 守。**本次部署会让全站 lastmod 刷新一次**(rail-jump 与页脚各加了一个入口,1 626 页哈希全变)——
+   与 09-04 `/bpj.js` 那次同类,一次性,IndexNow 会整站推一轮。
+   **判定线(已进台账)**:`bpj-agents-scale-1103`(`/agents/%` 真人 pv ≥60 且 `/go/agents/%` ≥15 且 搜索/AI 引荐 ≥3 → 继续吸纳、按读数排门、
+   考虑对有点击的记录解除 noindex;≥2 项未达 → cap 冻结只维护;pv <20 受众页也撤)、`bpj-agents-registry-quality-1020`(注册表来源 stale ≤5%
+   且拒绝率 ≤30% → cap 720 → 1 500;否则收到 400 并只收 90 天内有更新且带 packages 的)。
+   **不做**:为 agents 开子站/子域;LLM 写描述或翻译发布者文字;给注册表记录建页;把候选自动塞进账本;第三次为「更多条目」立项(除非 1103 判 win)。

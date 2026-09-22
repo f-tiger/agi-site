@@ -116,6 +116,9 @@ let staleCount = 0;
     if (existsSync(join(root, f))) files.push(join(root, f));
   }
   for (const p of files) {
+    // /agents/ 页面引用第三方（官方 MCP 注册表）发布者自己的描述原文——「exposes 187 tools」「1102tools.com」都是
+    // 他们的话不是本站的规模声明；本站在 agents 面自己的文案一律说「records / 条记录」，由 test-agent-watch --dist 守。
+    if (/(?:^|\/)agents\//.test(p)) continue;
     const txt = readFileSync(p, 'utf8');
     for (const m of txt.matchAll(RE)) {
       const n = Number(m[1]);

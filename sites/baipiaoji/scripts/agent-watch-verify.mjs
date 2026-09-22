@@ -10,20 +10,25 @@
 // GitHub answers. A listing never claims a check it did not make: an unreachable URL keeps its old date or
 // stays null, and the page renders the last HTTP status next to it.
 //
+// Budget (registry grew to 200+ on 2026-09-22; the repo is private so Actions minutes are billed): each run
+// re-checks only the MAX oldest-checked records (default 40, 3 in flight) ≈ 1 minute ≈ 30 min/month, so one
+// record is re-stamped roughly weekly. The page copy says "re-checked in rotation", never "daily".
+//
 // Semantics (pure, in applyCheck, unit-tested by scripts/test-agent-watch.mjs):
 //   2xx/3xx on source_url  → source_checked = today; a 'stale' record recovers to 'verified'
 //   2xx/3xx on repo_url    → repo_checked = today
 //   both reachable         → last_verified = today; 'new' becomes 'verified' once first_seen is in the past
+//                            (a record with no repo_url counts the source alone as "both")
 //   404 / 410 on source    → status = 'stale' (never 'retired' — that is an editorial verdict, not an HTTP code)
 //   403 / 429 / 5xx / timeout / network error → nothing changes (unknown ≠ dead; fail-open like source-drift)
-// Usage: node scripts/agent-watch-verify.mjs [--selftest]
+// Usage: node scripts/agent-watch-verify.mjs [--selftest] [--max N] [--all]
 import { readFileSync, writeFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const FILE = join(ROOT, 'data', 'agent-watch.json');
-const UA = 'baipiaoji-agent-watch/1.0 (+https://baipiaoji.com/agents/)';
+export const UA = 'baipiaoji-agent-watch/1.0 (+https://baipiaoji.com/agents/)';
 const ok = (c) => Number.isInteger(c) && c >= 200 && c < 400;
 const gone = (c) => c === 404 || c === 410;
 
@@ -35,7 +40,8 @@ export function applyCheck(agent, res, today) {
   if (r !== null) a.repo_http = r;
   if (ok(s)) { a.source_checked = today; if (a.status === 'stale') a.status = 'verified'; }
   if (ok(r)) a.repo_checked = today;
-  if (ok(s) && (r === null ? false : ok(r))) {
+  const repoOk = agent.repo_url ? (r === null ? false : ok(r)) : true;   // no repo_url → nothing to wait for
+  if (ok(s) && repoOk) {
     a.last_verified = today;
     if (a.status === 'new' && String(a.first_seen || '') < today) a.status = 'verified';
   }
@@ -43,18 +49,25 @@ export function applyCheck(agent, res, today) {
   return a;
 }
 
-async function head(url) {
+// Which records to check this run: the MAX whose oldest check date (source or repo) is oldest; null sorts first.
+export function pickBatch(agents, max) {
+  const key = (a) => [a.source_checked, a.repo_url ? a.repo_checked : a.source_checked].map((d) => d || '0000-00-00').sort()[0];
+  return [...agents].sort((a, b) => key(a).localeCompare(key(b)) || String(a.slug).localeCompare(String(b.slug))).slice(0, max).map((a) => a.slug);
+}
+
+export async function head(url) {
   try {
     const ctl = new AbortController();
     const t = setTimeout(() => ctl.abort(), 15000);
     const res = await fetch(url, { method: 'GET', redirect: 'follow', signal: ctl.signal, headers: { 'user-agent': UA, accept: 'text/html,application/json;q=0.9,*/*;q=0.5' } });
     clearTimeout(t);
+    try { await res.body?.cancel(); } catch {}
     return res.status;
   } catch (e) { return null; }
 }
 
 function selftest() {
-  const base = { slug: 'x', status: 'new', first_seen: '2026-09-22', last_verified: '2026-09-22', source_checked: '2026-09-22', repo_checked: null };
+  const base = { slug: 'x', status: 'new', first_seen: '2026-09-22', last_verified: '2026-09-22', source_checked: '2026-09-22', repo_checked: null, repo_url: 'https://github.com/x/y' };
   const T = '2026-09-23';
   const cases = [
     ['both 200 → both stamped, last_verified today, new→verified', (() => { const a = applyCheck(base, { source: 200, repo: 200 }, T); return a.source_checked === T && a.repo_checked === T && a.last_verified === T && a.status === 'verified'; })()],
@@ -65,6 +78,8 @@ function selftest() {
     ['500 → nothing changes (unknown ≠ dead)', (() => { const a = applyCheck(base, { source: 503, repo: 502 }, T); return a.status === 'new' && a.source_checked === '2026-09-22' && a.repo_checked === null && a.source_http === 503; })()],
     ['same-day first_seen stays new even when both reachable', (() => { const a = applyCheck(base, { source: 200, repo: 200 }, '2026-09-22'); return a.status === 'new' && a.last_verified === '2026-09-22'; })()],
     ['never auto-retires', (() => { const a = applyCheck({ ...base, status: 'verified' }, { source: 410, repo: 404 }, T); return a.status === 'stale'; })()],
+    ['no repo_url → source alone advances last_verified', (() => { const a = applyCheck({ ...base, repo_url: null }, { source: 200, repo: null }, T); return a.last_verified === T && a.status === 'verified' && a.repo_checked === null; })()],
+    ['batch picks oldest-checked first, null first', (() => { const xs = [{ slug: 'c', source_checked: '2026-09-20', repo_url: 'r', repo_checked: '2026-09-20' }, { slug: 'a', source_checked: null, repo_url: null }, { slug: 'b', source_checked: '2026-09-10', repo_url: 'r', repo_checked: '2026-09-21' }]; return pickBatch(xs, 2).join() === 'a,b'; })()],
   ];
   let bad = 0;
   for (const [n, p] of cases) { console.log(`${p ? '✅' : '❌'} ${n}`); if (!p) bad++; }
@@ -76,21 +91,29 @@ async function main() {
   const raw = readFileSync(FILE, 'utf8');
   const d = JSON.parse(raw);
   const today = new Date().toISOString().slice(0, 10);
-  const out = [];
+  const mi = process.argv.indexOf('--max');
+  const max = process.argv.includes('--all') ? d.agents.length : (mi > -1 ? Math.max(1, Number(process.argv[mi + 1]) || 40) : 40);
+  const batch = new Set(pickBatch(d.agents, max));
+  const bySlug = new Map(d.agents.map((a) => [a.slug, a]));
   let changed = 0;
-  for (const a of d.agents) {
-    const res = { source: await head(a.source_url), repo: a.repo_url ? await head(a.repo_url) : null };
-    await new Promise((r) => setTimeout(r, 400));
-    const b = applyCheck(a, res, today);
-    if (JSON.stringify(b) !== JSON.stringify(a)) changed++;
-    out.push(b);
-    console.log(`${String(res.source ?? '---').padStart(3)} ${String(res.repo ?? '---').padStart(3)}  ${a.slug}  ${b.status}`);
-  }
-  d.agents = out;
+  const queue = [...batch];
+  const worker = async () => {
+    while (queue.length) {
+      const slug = queue.shift(); const a = bySlug.get(slug);
+      const res = { source: await head(a.source_url), repo: a.repo_url ? await head(a.repo_url) : null };
+      const b = applyCheck(a, res, today);
+      if (JSON.stringify(b) !== JSON.stringify(a)) changed++;
+      bySlug.set(slug, b);
+      console.log(`${String(res.source ?? '---').padStart(3)} ${String(res.repo ?? '---').padStart(3)}  ${a.slug}  ${b.status}`);
+      await new Promise((r) => setTimeout(r, 400));
+    }
+  };
+  await Promise.all([worker(), worker(), worker()]);
+  d.agents = d.agents.map((a) => bySlug.get(a.slug));
   d.checked = today;
   const next = JSON.stringify(d, null, 2) + '\n';
   if (next !== raw) writeFileSync(FILE, next);
-  console.log(`agent-watch-verify: ${out.length} records, ${changed} changed, checked=${today}`);
+  console.log(`agent-watch-verify: ${batch.size}/${d.agents.length} records checked, ${changed} changed, checked=${today}`);
 }
 // Run only when executed directly. scripts/test-agent-watch.mjs imports applyCheck from here, and on
 // 2026-09-22 the first import fired a full network verification from inside a "zero-network" gate —

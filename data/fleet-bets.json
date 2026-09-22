@@ -145,7 +145,8 @@
    "win": "门保留",
    "lose": "注册 0 且 calc 跌 >80% → 报 owner 建议软门",
    "source": "sites/baipiaoji/CLAUDE.md:74",
-   "status": "open"
+   "status": "open",
+   "instrument_note_2026-09-22": "⚠ 2026-09-22 仪器修正：该事件名自 09-04「未知事件名改为丢弃」上线起从未进 hit.js 白名单，边缘静默丢弃，此前读到的 0 是丢包不是行为；本次部署起才有读数，窗口从部署日重新起算。"
   },
   {
    "id": "bpj-site-search-0927",
@@ -167,7 +168,8 @@
    "win": "板块保留并扩路子",
    "lose": "0 且 pv ≥50 → 拆墙;pv <50 → 先补发现层",
    "source": "sites/baipiaoji/CLAUDE.md:105",
-   "status": "open"
+   "status": "open",
+   "instrument_note_2026-09-22": "⚠ 2026-09-22 仪器修正：该事件名自 09-04「未知事件名改为丢弃」上线起从未进 hit.js 白名单，边缘静默丢弃，此前读到的 0 是丢包不是行为；本次部署起才有读数，窗口从部署日重新起算。"
   },
   {
    "id": "eco-dp-share-0928",
@@ -1007,7 +1009,8 @@
    "win": "单页库存成立，投放页按板块把单页触达表做厚",
    "lose": "=0 且工具页触达仍 ≥150 → 不是分发问题是需求问题，撤回工具页库存只留板块页",
    "source": "sites/baipiaoji/docs/PRD-revenue-tools-2026-09-16.md",
-   "status": "open"
+   "status": "open",
+   "instrument_note_2026-09-22": "⚠ 2026-09-22 仪器修正：该事件名自 09-04「未知事件名改为丢弃」上线起从未进 hit.js 白名单，边缘静默丢弃，此前读到的 0 是丢包不是行为；本次部署起才有读数，窗口从部署日重新起算。"
   },
   {
    "id": "bpj-paid-tier-series-1014",
@@ -1382,7 +1385,8 @@
    "lose": "<40 → 首页 243 pv/28d 里几乎没人点任何区块,或仪器坏了;先对照 st_beacon 与 test-agent-watch 的白名单断言排除仪器,再决定;在此之前不替换任何区块",
    "source": "sites/baipiaoji/CLAUDE.md 第 21 条(2026-09-22)+ docs/PRD-agent-watch-2026-09-22.md",
    "status": "open",
-   "t0_2026-09-22": "首页 28 天真人 pv 243(`/`)+ 22(`/en/`),CN 134 / US 49;首页此前零区块级点击仪器,`ref` 对站内跳转为空,所以「首页各区块被点几次」在 D1 里不可答。代理读数:首页独占入口的目的页 28 天 pv —— plans 25(13 页)/ en/plans 28 / money 24(6 页)/ upgrade 23 / is-still-free 30 / agents 5(1 国)。"
+   "t0_2026-09-22": "首页 28 天真人 pv 243(`/`)+ 22(`/en/`),CN 134 / US 49;首页此前零区块级点击仪器,`ref` 对站内跳转为空,所以「首页各区块被点几次」在 D1 里不可答。代理读数:首页独占入口的目的页 28 天 pv —— plans 25(13 页)/ en/plans 28 / money 24(6 页)/ upgrade 23 / is-still-free 30 / agents 5(1 国)。",
+   "note_2026-09-22b": "同日第二轮（owner：扩到 1000 左右 + 受众分类 + GEO；重构 agents）：账本 28 → 978 条（298 条人工收录 + 680 条官方 MCP 注册表，50 条候选因官方页非 2xx 被拒待 runner 重试）；agents 面改走站点 layout（同样式 / 语言切换 / 信标），枢纽 + 6 受众页 + 13 类目表进 sitemap，记录页 noindex；首页联动条改为六扇受众门。读数窗口不变。"
   },
   {
    "id": "bpj-agent-watch-1020",
@@ -1394,7 +1398,32 @@
    "lose": "三项全空 → agents 面只维护(runner 核验照跑),不再扩条目;首页联动条撤回 nav 一行;不再第三次为「agent 目录」立项",
    "source": "sites/baipiaoji/CLAUDE.md 第 21 条(2026-09-22)+ docs/PRD-agent-watch-2026-09-22.md",
    "status": "open",
-   "t0_2026-09-22": "账本 6 → 28 条(22 条官方主页会话当日 200 核验,仓库 URL 待 runner 核验);/agents/ 上线首日 5 pv 全部 US 单国(疑为建站会话自查);monitor_new_agents 终身 0 次调用;28 天 `/api/mcp/*` 各工具 ~55 次 = 部署自检形状。"
+   "t0_2026-09-22": "账本 6 → 28 条(22 条官方主页会话当日 200 核验,仓库 URL 待 runner 核验);/agents/ 上线首日 5 pv 全部 US 单国(疑为建站会话自查);monitor_new_agents 终身 0 次调用;28 天 `/api/mcp/*` 各工具 ~55 次 = 部署自检形状。",
+   "note_2026-09-22b": "同日第二轮（owner：扩到 1000 左右 + 受众分类 + GEO；重构 agents）：账本 28 → 978 条（298 条人工收录 + 680 条官方 MCP 注册表，50 条候选因官方页非 2xx 被拒待 runner 重试）；agents 面改走站点 layout（同样式 / 语言切换 / 信标），枢纽 + 6 受众页 + 13 类目表进 sitemap，记录页 noindex；首页联动条改为六扇受众门。读数窗口不变。"
+  },
+  {
+   "id": "bpj-agents-scale-1103",
+   "site": "baipiaoji",
+   "due": "2026-11-03",
+   "metric": "① D1 hits 表 28 天真人 pv（ev=''，剔 __probe / CI）落在 `/agents/%` 与 `/en/agents/%`（枢纽 + 受众页 + 类目表 + 记录页）；② ev='go' 且 path LIKE '/go/agents/%' 的出站点击（source / repo 各计）；③ ref 属搜索引擎或 AI 助手且落地 `/agents%` 的引荐次数（reach.json 的 ai_referrals + 搜索来源域）",
+   "threshold": "① ≥60 且 ② ≥15 且 ③ ≥3（任一 AI 助手引荐即计）；t0（2026-09-22 部署当日）：① 5（旧 /agents/ 单国）/ ② 0 / ③ 0；账本 t0 = 978 条（298 人工 + 680 注册表）",
+   "win": "agents 面有读者、有点击、有引荐 → 继续按日从官方 MCP 注册表吸纳（cap 逐步放开），受众页开始按 D1 读数排前后；考虑给记录页解除 noindex（只对有点击的记录）",
+   "lose": "三项里 ≥2 项未达 → 注册表吸纳停在当前 cap，记录页保持 noindex，agents 面只维护核验管线；不再为「更多条目」立项；若 ① <20 则连受众页也退回只留枢纽 + 类目表",
+   "source": "sites/baipiaoji/CLAUDE.md 第 22 条（2026-09-22）+ docs/PRD-agents-scale-2026-09-22.md",
+   "status": "open",
+   "t0_2026-09-22": "账本 978 条（28 → 298 人工收录：候选 282 条经官方页 2xx 门后入 270 条；680 条来自官方 MCP 注册表，仓库 URL 2xx 才入；50 条候选被拒记 reason 待 runner 重试）。页面：枢纽 + 6 受众页 + 13 类目表（zh/en 各一，进 sitemap）+ 298 条记录页（noindex）。仪器：记录页与表格的出站链接带 data-tool=agents/<slug>/source|repo → ev='go'；页面走 layout() 带 page_view 信标（旧版页面零信标，所以旧的 5 pv 也来路不明）。"
+  },
+  {
+   "id": "bpj-agents-registry-quality-1020",
+   "site": "baipiaoji",
+   "due": "2026-10-20",
+   "metric": "data/agent-watch.json 里 origin='mcp-registry' 的记录：status='stale'（仓库/官方页转 404）的比例；以及 data/agent-watch-admissions.json 里注册表候选的拒绝率（rejected 中 origin=mcp-registry ÷ 已尝试）",
+   "threshold": "stale 比例 ≤5% 且 拒绝率 ≤30%（t0：stale 0%，首日拒绝率见 admissions 文件）",
+   "win": "注册表是干净的来源 → cap 从 720 放开到 1 500（仍只收有仓库或官网的），每日 admit --max 提到 120",
+   "lose": "stale >5% 或拒绝率 >30% → 注册表条目多为一次性/死链，cap 收回到 400，并只收「有 packages 且 updatedAt 90 天内」的条目；不删已入账本的（stale 就是它们的状态）",
+   "source": "sites/baipiaoji/CLAUDE.md 第 22 条（2026-09-22）+ scripts/agent-watch-registry-pull.mjs 头注释",
+   "status": "open",
+   "t0_2026-09-22": "注册表 API 首拉：80 页 8 000 条最新版，7 177 条有仓库或官网，cap 720（仓库优先、updatedAt 倒序）；当日入 680 条。"
   }
  ]
 }

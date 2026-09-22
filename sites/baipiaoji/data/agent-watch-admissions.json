@@ -1,0 +1,5158 @@
+{
+ "checked": "2026-09-22",
+ "rejected": {
+  "beeai-framework": {
+   "attempts": 1,
+   "first_attempt": "2026-09-22",
+   "reason": "source HTTP 502",
+   "source_http": 502,
+   "repo_http": 200,
+   "last_attempt": "2026-09-22"
+  },
+  "llama-stack": {
+   "attempts": 1,
+   "first_attempt": "2026-09-22",
+   "reason": "source HTTP 404",
+   "source_http": 404,
+   "repo_http": 200,
+   "last_attempt": "2026-09-22"
+  },
+  "controlflow": {
+   "attempts": 1,
+   "first_attempt": "2026-09-22",
+   "reason": "source HTTP 404",
+   "source_http": 404,
+   "repo_http": 200,
+   "last_attempt": "2026-09-22"
+  },
+  "codex-cli": {
+   "attempts": 1,
+   "first_attempt": "2026-09-22",
+   "reason": "source HTTP 403",
+   "source_http": 403,
+   "repo_http": 200,
+   "last_attempt": "2026-09-22"
+  },
+  "plandex": {
+   "attempts": 1,
+   "first_attempt": "2026-09-22",
+   "reason": "source unreachable (timeout / network)",
+   "source_http": null,
+   "repo_http": 200,
+   "last_attempt": "2026-09-22"
+  },
+  "amp": {
+   "attempts": 1,
+   "first_attempt": "2026-09-22",
+   "reason": "source unreachable (timeout / network)",
+   "source_http": null,
+   "repo_http": null,
+   "last_attempt": "2026-09-22"
+  },
+  "cloudflare-mcp-servers": {
+   "attempts": 1,
+   "first_attempt": "2026-09-22",
+   "reason": "duplicate repository of an existing record",
+   "source_http": 200,
+   "repo_http": 200,
+   "last_attempt": "2026-09-22"
+  },
+  "mcp-toolbox-databases": {
+   "attempts": 1,
+   "first_attempt": "2026-09-22",
+   "reason": "source HTTP 404",
+   "source_http": 404,
+   "repo_http": 200,
+   "last_attempt": "2026-09-22"
+  },
+  "cherry-studio": {
+   "attempts": 1,
+   "first_attempt": "2026-09-22",
+   "reason": "source HTTP 503",
+   "source_http": 503,
+   "repo_http": 200,
+   "last_attempt": "2026-09-22"
+  },
+  "appbuilder": {
+   "attempts": 1,
+   "first_attempt": "2026-09-22",
+   "reason": "source HTTP 500",
+   "source_http": 500,
+   "repo_http": 200,
+   "last_attempt": "2026-09-22"
+  },
+  "perplexity-comet": {
+   "attempts": 1,
+   "first_attempt": "2026-09-22",
+   "reason": "source HTTP 403",
+   "source_http": 403,
+   "repo_http": null,
+   "last_attempt": "2026-09-22"
+  },
+  "llm-guard": {
+   "attempts": 1,
+   "first_attempt": "2026-09-22",
+   "reason": "source unreachable (timeout / network)",
+   "source_http": null,
+   "repo_http": 200,
+   "last_attempt": "2026-09-22"
+  },
+  "be-florealholidays-workspace": {
+   "attempts": 1,
+   "first_attempt": "2026-09-22",
+   "reason": "source HTTP 404",
+   "source_http": 404,
+   "repo_http": 404,
+   "last_attempt": "2026-09-22"
+  },
+  "linkbreakers-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-09-22",
+   "reason": "source HTTP 404",
+   "source_http": 404,
+   "repo_http": 404,
+   "last_attempt": "2026-09-22"
+  },
+  "wiretensors-wiretensors": {
+   "attempts": 1,
+   "first_attempt": "2026-09-22",
+   "reason": "source HTTP 404",
+   "source_http": 404,
+   "repo_http": 404,
+   "last_attempt": "2026-09-22"
+  },
+  "tensormaster-pdf": {
+   "attempts": 1,
+   "first_attempt": "2026-09-22",
+   "reason": "source HTTP 503",
+   "source_http": 503,
+   "repo_http": 200,
+   "last_attempt": "2026-09-22"
+  },
+  "sketchxflow-dev-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-09-22",
+   "reason": "source HTTP 403",
+   "source_http": 403,
+   "repo_http": 403,
+   "last_attempt": "2026-09-22"
+  },
+  "voyahomes-voya-homes": {
+   "attempts": 1,
+   "first_attempt": "2026-09-22",
+   "reason": "source HTTP 404",
+   "source_http": 404,
+   "repo_http": 404,
+   "last_attempt": "2026-09-22"
+  },
+  "slidingbox-hydrate-dehydrate": {
+   "attempts": 1,
+   "first_attempt": "2026-09-22",
+   "reason": "source unreachable (timeout / network)",
+   "source_http": null,
+   "repo_http": 200,
+   "last_attempt": "2026-09-22"
+  },
+  "trypinchy-pinchy": {
+   "attempts": 1,
+   "first_attempt": "2026-09-22",
+   "reason": "source unreachable (timeout / network)",
+   "source_http": null,
+   "repo_http": 200,
+   "last_attempt": "2026-09-22"
+  },
+  "niubiagent-niubiagent": {
+   "attempts": 1,
+   "first_attempt": "2026-09-22",
+   "reason": "source HTTP 404",
+   "source_http": 404,
+   "repo_http": 404,
+   "last_attempt": "2026-09-22"
+  },
+  "proabono-mcp-installation": {
+   "attempts": 1,
+   "first_attempt": "2026-09-22",
+   "reason": "source HTTP 500",
+   "source_http": 500,
+   "repo_http": 200,
+   "last_attempt": "2026-09-22"
+  },
+  "cn-savantcat-geo-cn": {
+   "attempts": 1,
+   "first_attempt": "2026-09-22",
+   "reason": "source unreachable (timeout / network)",
+   "source_http": null,
+   "repo_http": 200,
+   "last_attempt": "2026-09-22"
+  },
+  "klipy-klipy": {
+   "attempts": 1,
+   "first_attempt": "2026-09-22",
+   "reason": "source HTTP 404",
+   "source_http": 404,
+   "repo_http": 404,
+   "last_attempt": "2026-09-22"
+  },
+  "microsoft-azure": {
+   "attempts": 1,
+   "first_attempt": "2026-09-22",
+   "reason": "duplicate repository of an existing record",
+   "source_http": 200,
+   "repo_http": 200,
+   "last_attempt": "2026-09-22"
+  },
+  "apify-mcp-server": {
+   "attempts": 1,
+   "first_attempt": "2026-09-22",
+   "reason": "duplicate repository of an existing record",
+   "source_http": 200,
+   "repo_http": 200,
+   "last_attempt": "2026-09-22"
+  },
+  "myprivacyagent-public": {
+   "attempts": 1,
+   "first_attempt": "2026-09-22",
+   "reason": "source HTTP 404",
+   "source_http": 404,
+   "repo_http": 404,
+   "last_attempt": "2026-09-22"
+  },
+  "solsniperbot-solana-snipe-bot-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-09-22",
+   "reason": "source HTTP 503",
+   "source_http": 503,
+   "repo_http": 200,
+   "last_attempt": "2026-09-22"
+  },
+  "youricp-mcp-server": {
+   "attempts": 1,
+   "first_attempt": "2026-09-22",
+   "reason": "source HTTP 403",
+   "source_http": 403,
+   "repo_http": 200,
+   "last_attempt": "2026-09-22"
+  },
+  "vhishongkong-vhis": {
+   "attempts": 1,
+   "first_attempt": "2026-09-22",
+   "reason": "source HTTP 404",
+   "source_http": 404,
+   "repo_http": 404,
+   "last_attempt": "2026-09-22"
+  },
+  "mareaalcalina-storefront": {
+   "attempts": 1,
+   "first_attempt": "2026-09-22",
+   "reason": "source HTTP 404",
+   "source_http": 404,
+   "repo_http": 404,
+   "last_attempt": "2026-09-22"
+  },
+  "hykeep-keep": {
+   "attempts": 1,
+   "first_attempt": "2026-09-22",
+   "reason": "source HTTP 404",
+   "source_http": 404,
+   "repo_http": 404,
+   "last_attempt": "2026-09-22"
+  },
+  "siglata-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-09-22",
+   "reason": "source HTTP 404",
+   "source_http": 404,
+   "repo_http": 404,
+   "last_attempt": "2026-09-22"
+  },
+  "yasinozen-etf-flows": {
+   "attempts": 1,
+   "first_attempt": "2026-09-22",
+   "reason": "source HTTP 410",
+   "source_http": 410,
+   "repo_http": 200,
+   "last_attempt": "2026-09-22"
+  },
+  "echosaw-mcp-server": {
+   "attempts": 1,
+   "first_attempt": "2026-09-22",
+   "reason": "source HTTP 404",
+   "source_http": 404,
+   "repo_http": 404,
+   "last_attempt": "2026-09-22"
+  },
+  "cn-savantcat-answers": {
+   "attempts": 1,
+   "first_attempt": "2026-09-22",
+   "reason": "source unreachable (timeout / network)",
+   "source_http": null,
+   "repo_http": 200,
+   "last_attempt": "2026-09-22"
+  },
+  "blocklottos-blocklottos": {
+   "attempts": 1,
+   "first_attempt": "2026-09-22",
+   "reason": "source HTTP 404",
+   "source_http": 404,
+   "repo_http": 404,
+   "last_attempt": "2026-09-22"
+  },
+  "ulupspaces-ulup-spaces-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-09-22",
+   "reason": "source HTTP 403",
+   "source_http": 403,
+   "repo_http": 403,
+   "last_attempt": "2026-09-22"
+  },
+  "uluplife-life": {
+   "attempts": 1,
+   "first_attempt": "2026-09-22",
+   "reason": "source HTTP 403",
+   "source_http": 403,
+   "repo_http": 403,
+   "last_attempt": "2026-09-22"
+  },
+  "kanta-cli": {
+   "attempts": 1,
+   "first_attempt": "2026-09-22",
+   "reason": "source HTTP 404",
+   "source_http": 404,
+   "repo_http": 404,
+   "last_attempt": "2026-09-22"
+  },
+  "agency-ottobot-contractor-license-changes": {
+   "attempts": 1,
+   "first_attempt": "2026-09-22",
+   "reason": "duplicate repository of an existing record",
+   "source_http": 200,
+   "repo_http": 200,
+   "last_attempt": "2026-09-22"
+  },
+  "projectdata-mpp-connector": {
+   "attempts": 1,
+   "first_attempt": "2026-09-22",
+   "reason": "source unreachable (timeout / network)",
+   "source_http": null,
+   "repo_http": 404,
+   "last_attempt": "2026-09-22"
+  },
+  "redpanda-docs-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-09-22",
+   "reason": "source HTTP 404",
+   "source_http": 404,
+   "repo_http": 404,
+   "last_attempt": "2026-09-22"
+  },
+  "multinex-memq": {
+   "attempts": 1,
+   "first_attempt": "2026-09-22",
+   "reason": "source HTTP 404",
+   "source_http": 404,
+   "repo_http": 404,
+   "last_attempt": "2026-09-22"
+  },
+  "cloud-basebalance-basebalance": {
+   "attempts": 1,
+   "first_attempt": "2026-09-22",
+   "reason": "source unreachable (timeout / network)",
+   "source_http": null,
+   "repo_http": 200,
+   "last_attempt": "2026-09-22"
+  },
+  "lillytechsystems-ai-school": {
+   "attempts": 1,
+   "first_attempt": "2026-09-22",
+   "reason": "source HTTP 403",
+   "source_http": 403,
+   "repo_http": 200,
+   "last_attempt": "2026-09-22"
+  },
+  "melodygenie-melody-genie": {
+   "attempts": 1,
+   "first_attempt": "2026-09-22",
+   "reason": "source HTTP 404",
+   "source_http": 404,
+   "repo_http": 404,
+   "last_attempt": "2026-09-22"
+  },
+  "writulos-scribe": {
+   "attempts": 1,
+   "first_attempt": "2026-09-22",
+   "reason": "source HTTP 503",
+   "source_http": 503,
+   "repo_http": 404,
+   "last_attempt": "2026-09-22"
+  },
+  "tapetide-stock-research-mcp": {
+   "attempts": 1,
+   "first_attempt": "2026-09-22",
+   "reason": "source HTTP 405",
+   "source_http": 405,
+   "repo_http": 200,
+   "last_attempt": "2026-09-22"
+  },
+  "lamdis-exchange": {
+   "attempts": 1,
+   "first_attempt": "2026-09-22",
+   "reason": "source unreachable (timeout / network)",
+   "source_http": null,
+   "repo_http": 200,
+   "last_attempt": "2026-09-22"
+  }
+ },
+ "admitted": [
+  {
+   "slug": "vercel-ai-sdk",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "llamaindex",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "langchain",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "haystack",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "metagpt",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "autogpt",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "superagi",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "griptape",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "dspy",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "instructor",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "guidance",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "outlines",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "agency-swarm",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "atomic-agents",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "julep",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "rivet",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "taskweaver",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "langroid",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "promptflow",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "bedrock-agentcore",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "spring-ai",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "strands-agents",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "langchain4j",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "koog",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "genkit",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "rig",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "eino",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "qwen-agent",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "xagent",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "modelscope-agent",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "agentscope",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "chatdev",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "lagent",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "deepagents",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "microsoft-agent-framework",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "a2a-protocol",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "agent-protocol",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "ag-ui",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "assistant-ui",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "copilotkit",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "chainlit",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "openai-agents-js",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "burr",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "nemo-agent-toolkit",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "marvin",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "mirascope",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "magentic",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "agentverse",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "baml",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "swarms",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "agentgpt",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "aios",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "agent-zero",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "txtai",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "youtu-agent",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "agent-lightning",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "eliza",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "continue",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "cline",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "spring-ai-alibaba",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "gemini-cli",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "roo-code",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "kilo-code",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "qwen-code",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "claude-code",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "crush",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "opencode",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "devin",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "cursor",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "windsurf",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "github-copilot-agent",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "jules",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "kiro",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "replit-agent",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "trae",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "bolt-diy",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "swe-agent",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "mini-swe-agent",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "coderabbit",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "pr-agent",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "augment-code",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "warp",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "codegen",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "factory-droids",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "void",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "amazon-q-developer",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "junie",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "refact",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "potpie",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "gpt-pilot",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "mcp-python-sdk",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "model-context-protocol",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "vibe-kanban",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "mcp-typescript-sdk",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "mcp-java-sdk",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "mcp-csharp-sdk",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "mcp-go-sdk",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "mcp-kotlin-sdk",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "mcp-rust-sdk",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "mcp-swift-sdk",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "mcp-ruby-sdk",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "mcp-inspector",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "playwright-mcp",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "github-mcp-server",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "brave-search-mcp",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "fastmcp",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "firecrawl-mcp-server",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "exa-mcp-server",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "tavily-mcp",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "supabase-mcp",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "neon-mcp",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "aws-mcp-servers",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "microsoft-mcp",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "sentry-mcp",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "stripe-agent-toolkit",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "grafana-mcp",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "notion-mcp-server",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "mcpo",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "docker-mcp-toolkit",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "smithery",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "glama-mcp",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "mcp-use",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "awesome-mcp-servers",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "mcp-agent",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "pulsemcp",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "zapier-mcp",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "fast-agent",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "mcp-so",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "arcade",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "pipedream-mcp",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "chrome-devtools-mcp",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "desktop-commander",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "jetbrains-mcp",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "apify-mcp",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "blender-mcp",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "hf-mcp-server",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "toolhive",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "mcp-scan",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "agentgateway",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "redis-mcp",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "postgres-mcp",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "metamcp",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "dbhub",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "kubernetes-mcp-server",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "terraform-mcp-server",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "mongodb-mcp-server",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "vercel-mcp",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "figma-context-mcp",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "shopify-dev-mcp",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "perplexity-mcp",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "markitdown",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "modelscope-mcp",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "windmill",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "zapier-agents",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "nacos",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "kestra",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "higress",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "gumloop",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "relay-app",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "lindy",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "relevance-ai",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "voiceflow",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "rasa",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "sim",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "superagent",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "open-webui",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "botpress",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "anythingllm",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "librechat",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "lobe-chat",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "5ire",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "jan",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "khoj",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "dust",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "openmanus",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "owl",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "onyx",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "agenticseek",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "ii-agent",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "suna",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "manus",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "minimax-agent",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "genspark",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "coze-studio",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "fastgpt",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "ragflow",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "maxkb",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "vertex-agent-builder",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "bisheng",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "agentforce",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "copilot-studio",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "bedrock-agents",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "azure-ai-foundry",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "watsonx-orchestrate",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "sierra",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "decagon",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "bailian",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "vellum",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "fin",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "wordware",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "stagehand",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "skyvern",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "steel",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "lightpanda",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "crawl4ai",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "firecrawl",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "jina-reader",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "scrapegraph-ai",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "self-operating-computer",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "ui-tars-desktop",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "open-interpreter",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "nanobrowser",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "magnitude",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "notte",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "agent-s",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "cua",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "browserless",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "fellou",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "vapi",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "livekit-agents",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "retell",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "pipecat",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "elevenlabs-agents",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "bland",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "deepgram-voice-agent",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "openai-realtime-agents",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "ultravox",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "vocode",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "bolna",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "langsmith",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "langfuse",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "langwatch",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "agentops",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "arize-phoenix",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "openllmetry",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "helicone",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "promptfoo",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "deepeval",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "inspect-ai",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "ragas",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "weave",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "opik",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "laminar",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "guardrails-ai",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "braintrust",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "nemo-guardrails",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "garak",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "letta",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "mem0",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "graphiti",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "cognee",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "langmem",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "supermemory",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "microsandbox",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "e2b",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "zep",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "daytona",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "inngest-agentkit",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "litellm",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "portkey",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "deer-flow",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "open-deep-research",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "storm",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "perplexica",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "paperqa",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "gpt-researcher",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "pandas-ai",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "langchain-chatchat",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "vanna",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "wren-ai",
+   "date": "2026-09-22",
+   "origin": "curated"
+  },
+  {
+   "slug": "avagama-openings",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "marketinque-launch-plan",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "a2awire-benchmark-accurate-financial-record-reconcile-2026-09-22-af293a80",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "bird-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "rationalbloks-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "dimensions-analytics-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "trustysquire-trusty-squire",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "usepromise-promise",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "gocardless-gc-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "getloggerhead-loggerhead",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "steledger-gateway",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "files-python-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "nibomo-flashcards",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "gtmotto-linkedin",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "bowmark-bowmark",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "sendraven-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "getplexa-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "ekwo-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "art-maddegen-agent-solsnap",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "club-atlasyield-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "githits-githits",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "hasdata-instagram",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "hasdata-google-images",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "hasdata-glassdoor",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "sendinel-mcp-server",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "hasdata-facebook",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "hasdata-zillow",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "jobspipe-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "hasdata-youtube",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "hasdata-yelp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "hasdata-yellowpages",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "hasdata-web-scraping",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "hasdata-walmart",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "hasdata-tiktok",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "getmunin-munin",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "hasdata-shopify",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "hasdata-redfin",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "hasdata-indeed",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "hasdata-google-trends",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "hasdata-google-search",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "hasdata-google-scholar",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "hasdata-google-hotels",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "hasdata-google-maps",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "hasdata-google-flights",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "hasdata-duckduckgo",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "hasdata-booking",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "hasdata-bing",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "hasdata-amazon",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "hasdata-airbnb",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "day-shyn-shyn",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "magnemo-magnemo",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "vibgrate-ai-context",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "laraue-boards",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "draugr-draugr",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "starreel-starreel",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "pubfi-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "adrkit-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "deepledger-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "kleooai-kleo",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "clauderecall-recall",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "prominara-prominara",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "odilelabs-odile",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "goaimoat-ai-visibility",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "blindpay-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "jaxon-dsail",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "arbitron-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "cloud-gagarin-gagarin",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "getclera-clera",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "wa-campaigns-whatsapp-campaigns",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "agtnames-agt",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "maxvideoai-maxvideoai",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "prereason-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "parseapi-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "buckybuild-bucky",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "onvaou-itineraires",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "rithmo-rithmo",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "spicyapi-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "sumoffice-office",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "agentixshop-agentix",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "sallim-korea-realty",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "sallim-contract-compass",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "blackveilsecurity-dns",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "apiguru-amazon-data",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "igods-space-monkey",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "debugbundle-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "captureoneai-web-perception",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "clusteragent-cluster-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "fiatdock-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "postman-mcp-server",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "povver-mcp-server",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "pack4back-nutrition",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "tokportal-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "tribeunal-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "mochify-mochify",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "hydrata-mcp-server",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "deerdawn-deerdawn",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "teamwork-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "growsurf-growsurf",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "shipstatic-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "skilltotal-skilltotal",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "keboola-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "kapruka-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "artisign-artisign",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "mencoro-mencoro",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "followontours-cricket-travel",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "htmlradar-share",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "pokemontcgapi-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "402cron-402cron",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "naumu-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "ausca-agent-services",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "cheap-doc-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "dregs-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "rocketlist-rocketlist",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "nomnaviet-han-nom",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "bykaranteli-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "sapiensinteticos-sapiens",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "lotsofsounds-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "plori-plori",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "clipstudio-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "instavar-mcp-server",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "squawkflow-mcp-market-structure",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "killbottleneck-killbottleneck",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "trustydata-trustydata",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "antideploy-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "coingraph-coingraph",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "br-acorridadosbairros-metro-quadrado",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "dvt-dvt",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "quantcalc-retirement-engine",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "decionis-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "ogstamp-og",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "truevaluerankings-tvr-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "bitbybit-cad",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "ch-stratta-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "regulations-ai",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "aiconduit-conduit",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "tapeperp-tape",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "agenticbooks-books",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "ankimcp-anki-mcp-server-addon",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "vithanco-vgraph-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "br-ia-cnpj-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "playwrightgen-playwrightgen",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "pdfgate-mcp-server",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "croviatrust-crovia",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "origozero-zeromind",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "merchantflow-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "ufcalendar-fight-api",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "memgit-memgit",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "getcited-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "gominddb-gomind",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "materialscodegraph-mcg",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "cn-moonlybox-moonlink",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "asrmemory-asr",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "openmayhem-openmayhem",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "streamsapps-nuberea",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "minitok-minitok",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "growaify-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "adako-ads",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "mailmcp-mailmcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "cn-narracore-screenplay-formatter",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "hiddenswap-swap",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "execbro-execbro",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "csscreme-design-systems",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "frameonlab-frameon",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "apick-business",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "handsforagents-hands",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "bigapi-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "tollwarden-tollwarden",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "cloud-tiniest-tiniest-cloud",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "super-log-cloud",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "classifier-docs",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "audiopod-audiopod",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "signal8-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "robowrite-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "hotelscasa-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "kashrock-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "robopartpicker-robopartpicker",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "paywithlocus-locus",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "spicygen-spicygen",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "cleanvector-cleanvector",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "clipcliper-clipcliper",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "blue-brick-hub",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "visitelsewhere-resort",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "arcnautical-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "heymetra-heymetra",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "agilitycms-mcp-server",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "undercurrentholdings-aegis",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "computer-tin-tin",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "backpow-pow-mining-oracle",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "ankimcp-anki-mcp-server",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "kinlab-kin",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "xoomar-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "worldmonitor-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "elijahdesent-custom-website-editor",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "minradar-minradar",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "offnadir-delta-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "nilyo-nilyo",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "nintact-nintact",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "smartbear-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "limzo-telegram-group-stats",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "skeletiq-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "monnet-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "superagnt-youtube-data",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "pondchat-pondchat",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "vertodigital-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "halffee-coinrebate",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "jittee-splitbill",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "market-category-booster-mcb",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "imnoo-quality-control-plan",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "mobopinions-survey-light",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "hit-pay-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "businessmcp-businessmcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "remoshift-jobs",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "autonomad-computeback",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "autonomad-travel",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "saltapp-salt",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "ilien-svipall-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "truverif-panel-review",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "cn-housingsentinel-housing-sentinel",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "boathousecloud-boathouse",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "getunblocked-unblocked-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "cn-savantcat-ai-compliance",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "enclave402-enclave402",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "local-mcp-local-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "predictionmarketspicks-quant",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "jiyumarketing-mcp-agency-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "bcited-bcited",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "auraspay-merchant-payments",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "fulcradynamics-context",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "osboon-osboon",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "datavidence-financials",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "limonene-limonene",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "decaframe-decaframe",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "familyofficeknowledgegraph-fo-kg",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "limrun-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "enconvert-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "tegas-video",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "playgama-developer-cabinet",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "promptfrenzy-promptfrenzy",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "plainrouter-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "vidofy-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "invompt-invompt",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "foura-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "labelixa-zpl",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "adrianczuczka-mason",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "openagenda-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "heystack-heystack",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "dexpaprika-dexpaprika",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "fairmind-project-context",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "xverum-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "cloud-krova-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "reps-log-repslog",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "aiwatercolorgenerator-watercolor",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "devart-mcp-sqlserver",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "itsnum-num",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "saymaker-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "zarla-website-builder",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "fgac-fgac",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "rhylthyme-rhylthyme",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "skillsandagents-catalog-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "cloud-dchub-mcp-server",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "obto-obto",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "robosystems-xbrlkit",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "filetypeconverters-converter",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "bot-ranch-mcp-server",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "curviate-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "edgegap-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "ultimaps-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "ca-clevertech-clevertech-mcp-server",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "jobsforaiagents-jobs",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "hlaverify-hla-verify",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "onvexia-onvexia",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "nmjib-nmjib",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "alterphone-phone-calls",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "yanlinglabs-video-extract-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "aim-journal-aim",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "hyreflow-hyreflow",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "cloud-artibot-zhijiangyun",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "docnexus-mcp-docnexus",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "gondola-gondola",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "agencyai-agency-ai",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "ideatomotion-idea-to-motion",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "jobmojito-jobmojito",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "ssid-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "dnsdoctor-dns-doctor",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "donnyautomation-dex-data",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "wizeb-ai-native-index",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "datatreehaus-skopia-floor-plan-layout",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "dechonet-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "dinglebear-labby",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "byjg-docs",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "moosejudge-alces-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "oceanalt-aml",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "rightcard-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "getskarn-skarn",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "1325-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "mspmcp-instinct",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "au-ato-mcp-ato-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "davisvillelabs-filmrights-filmrightsproof",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "litescrape-mcp-server",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "findmetool-lookup",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "bangermail-banger",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "renderball-renderball",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "platequery-plate-api",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "hamir-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "cat-churchofai-aigora",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "mock-server-mockserver",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "gateco-gateco",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "aisenseapi-free-public-tools",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "selda-selda",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "agentbit-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "plainfreight-quotes",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "getstub-check",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "coralswarm-coralswarm",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "be-lexgo-jobs",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "emisar-emisar",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "replynodes-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "parad1gm-prism",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "traderspy-traderspy",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "easygroupflights-easygroupflights",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "nessgate-nessgate",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "parsestream-parsestream",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "limitguard-api-trust-intelligence",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "kenxcomp-kenotex-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "openephemeris-open-ephemeris",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "waitingforpower-energy-permitting-tracker",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "tickerscout-ticker-scout",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "dveracity-semantic-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "fintechstudios-studio",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "revelara-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "agentemaillist-free-transactional-email-smtp-relay",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "transcodely-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "hostbeam-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "elopstudio-aiwave-ai-wave",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "lasers-guildcontrol-discord",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "tuskcms-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "moosejudge-castor-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "shiftinbits-constellation",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "meetsquad-squad",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "sequentum-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "merofoundry-merofoundry",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "hovercode-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "tectonicplates-tectonic-plates",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "empiriolabs-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "macaroonnetwork-mcp-server",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "jenriks-photo-archive",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "scfcontrolsplatform-mcp-server-scf",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "octapi-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "thedploy-deployer",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "helvabase-helvabase",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "art-travel-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "goalieip-trademark",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "macaroonnetwork-bible-evidence",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "outfitmaker-outfit-assistant",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "forestrie-resolve",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "proxycove-mcp-server",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "kema-studio-invoice",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "name-nameai-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "forestrie-verify",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "expense-budget-tracker-expense-budget-tracker",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "lyricpatch-lyricpatch",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "glasser-glasser",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "omnara-omnara",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "stravue-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "timeprooflabs-forge-arena-wilds",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "fluttergo-remote",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "flyvolo-knowledge",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "edgedepth-research",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "laddro-career",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "bouldercountydryervent-booking",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "clize-clize",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "rendobar-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "swarm-board-board",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "citadeldb-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "allratestoday-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "altmetric-mcp-altmetric-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "matrajs-matra",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "realworldapis-realworldapis",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "vaaya-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "drillr-drillr",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "homespun-homespun",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "instantclips-instantclips",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "ctxfile-ctxfile",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "westerncontainersales-wcs",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "skillmd-skillmd",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "1102tools-acquisition-gov-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "justdukkan-invoice-intake-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "failecho-failecho",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "gpuquant-infrastructure",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "soumtok-heart",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "resustackapp-resustack",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "aplusz-flight-fares",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "emberverse-emberverse",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "verlon-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "eigma-eigma",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "moltlinestudio-catalog",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "sensefold-sensefold",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "mailtea-mailtea",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "satohub-onchain-agents",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "oddsockets-remote-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "ownerspec-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "mahonia-mahonia",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "getyoutubetranscript-youtube-transcript-and-youtube-search",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "shareseer-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "yachtcharterquotes-site",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "tulimoa-platform",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "sugra-api-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "atagon-kogiqa-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "aieph-aieph",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "alfanestlabs-relay",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "transcriptfetch-youtube-transcripts",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "glbforge-glbforge",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "wingmanprotocol-agent-gateway",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "ambermem-amber",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "marutap-marutap",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "retailreason-intelligence",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "loomascale-ads",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "windsock-windsock",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "discordservers-search",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "algomakers-algomaker",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "triplebooks-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "seomatic-seomatic",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "forcefieldsilicon-mdengine",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "oddsrail-polymarket-kalshi-trading",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "arsentev-contextburn",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "vercel-groundtruth-ruby-groundtruth",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "term-forum",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "knowledgeforagents-knowledge-for-agents",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "cardcenteringtool-card-prices",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "exactlane-preflight",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "netmon-demo",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "cosvoice-cosvoice",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "imnoo-drawing-converter",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "mentionagent-mentionagent",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "srift-srift",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "seenpaid-seenpaid",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "loopingagent-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "cc-basile-basile",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "snapdiff-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "interviewflowai-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "voxodds-voxodds",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "frontiercrown-signer-nostr-signer",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "cavyro-cavyro",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "trent-trent",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "okareo-okareo",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "rechtssysteem-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "aikstockdata-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "avidquant-optiondesk",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "dayze-life-context",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "ratchetgate-ratchet",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "igods-gvt",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "kanera-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "loadster-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "theservicemarketingguys-audit",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "churnkey-churnkey",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "de-cronjob-cronjob-de-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "agentsouk-agentsouk",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "sednasystem-genesis",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "reqbeat-hiring-signals",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "marketcheck-api",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "cloud-easybits-easybits",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "withtallied-tallied",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "marketcheck-ai-reports",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "tugra-ai-tugra",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "sytecheck-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "mambabuilt-mcp-linkedin-post-engager-capture",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "mambabuilt-mcp-gtm-suite",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "atako-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "aicontentdrop-ai-content-drop",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "riskstate-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "openwebhook-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "paxalabs-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "scopeblind-protect-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "yentaknows-directory",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "inoh-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "thrifle-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "productnow-productnow",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "tabtree-tabtree",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "ag-bureau-search",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "savvly-savvly",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "energyaisolution-solar-home-incentives",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "meshkore-meshkore",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "build-swapi-star-wars",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "justdomain-just-domain",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "parlel-parlel",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "mysiren-siren",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "certscore-mcp-light",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "flightpowers-booking",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "atlassian-mcp-server",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "catalystedgescanner-catalyst-edge-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "peopleanalyst-discovery",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "see-geo-seegeo",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "plexarm-plexarm",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "bestremotetools-image-resize-convert-compress-crop",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "canonicai-answers",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "sendseven-messaging",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "agentspodium-hosting",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "ogenalabs-gate402-x402",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "dmarkoff-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "ogenalabs-signals-edge-x402",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "stytrix-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "bestremotetools-office-suite-all-servers-one-install",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "acornreply-server",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "wyrdmcp-wyrd",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "flashmemorize-flash",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "savingslast-calculators",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "club-inite-inite-club",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "evlek-mcp-server",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "instilus-gpsr",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "agentsim-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "chat-mumo-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "performix-site",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "dataengineerprofessional-guide-registry",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "devplane-site",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "softwareengineeringprofessional-journeyman",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "aiengineerprofessional-engineerpro-library",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "pagerankcafe-mcp-server",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "peopleprincipia-principia",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "imaginode-imaginode",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "shortpixel-mcp-optimize",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "vibrai-vibrai",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "get2great-discovery",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "siftivo-siftivo",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "whimsical-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "mcpemails-emails",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "ogenalabs-token-risk-x402",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "immersivecommons-floor10",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "branderux-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "travelanimator-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "korely-memory",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "universalagentforum-forum",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "starsinger-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "nittim-nittim",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "adrianhomelab-leadgen-onrc",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "getengram-engram",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "memcell-memcell",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "verticalflows-agent-gateway",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "leafwright-leafwright",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "tryperspect-perspect",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "blockscout-mcp-server",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "gregbenza-openhouse",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "anywaypossible-agent-utilities",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "cotal-cotal",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "archi-den-den-archi-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "ca-ccpcrate-ccpcrate",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "3dassets-catalogue",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "volunteerreminder-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "feeless402-nano-pay",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "tripyana-london-chauffeur",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "fruitstand-fund-returns",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "elicitly-elicitly",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "altorank-altorank",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "svgrid-svgrid",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "toolyour-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "vruum-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "agentfilings-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "wellnessproject-wellness-project",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "cc-servelink-serve",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "foldlaboratories-art",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "usememra-memra",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "snopekgames-godai",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "club-worldorder-cube-playground",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "goodbarber-public-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "calibrd-agent",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "ch-prospex-swissco",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "primaxiom-memory-reasongraph",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "mailyond-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "tetrees-ex-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "mightys-cairn",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "beyondfolder-directories",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "intodns-scanner",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "creatordb-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "fivexer-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "runx-runx",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "orangepro-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "ontoramp-graph-query",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "opensolr-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "sprixen-sprixen",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "eveoy-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "knowall-reverie",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "borealhost-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "gemina-gemina",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "contracko-contracko",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "getadloop-adloop",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "creatica-backgrounds",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "vexa-vexa",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "docs2mcp-docs2mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "chibitek-mochii",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "chibitek-nexus",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "hatchloop-sms-whatsapp-messaging",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "cloud-agenteconomy-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "gumballtools-equation-steps",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "trailweights-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "empryo-docs",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "smartmemory-stratum-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "inite-visibility",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "snipzr-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "countersignatory-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "ca-honkio-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "lbrain-lbrain",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "br-bridgeaibrasil-bridgeai",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "kymaapi-kyma",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "verirouteintel-lookup",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "countlink-countdown",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "hemmabo-mcp-server",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "ontarioprotocol-ontario-protocol",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "bizmoon-regulatory",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "scriptmasterlabs-x402-gateway",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "bot-ttrpg-grimoire",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "weftly-weftly",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "ratevert-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "nooticr-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "move-studios-staff-ops",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "giveradar-charity-registry",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "aicommander-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "milewiseai-milewise",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "novence-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "extentos-mcp-server",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "physea-liminality",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "cn-pianam-mcp-devtools-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "youspot-youspot",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "hythe-hythe",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "rapidly-rapidly",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "agentworkpad-workpad",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "parkerfawcett-rebuild-dossier",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "cn-pianam-mcp-fuel-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "oliverkiss-agentic-endpoints",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "cn-pianam-mcp-stock-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "nd-x-ndex-pricing",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "cn-pianam-mcp-calendar-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "aureum-tech-website",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "darkfunnels-docs",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "duami-intent-exchange",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "asterwise-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "monopoly-gold-planner-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "fillfolio-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "vercel-ora-x402-gateway-sensations-mergulho",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "crixin-voice",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "symvanta-code-graph",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "statable-analytics",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "naibul-board-game-hall",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "hiddencontent-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "project-feldspar-scan",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "mosadd-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "808bits-fips-cmvp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "made-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "codenib-codenib",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "schedulenchill-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "familiaplanner-familia",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "nowgetitdone-getitdone",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "dzgapp-mint",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "workos-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "upload-post-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "audioeye-testing-sdk-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "vercel-proof-stack-lake-proofstack",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "ifa-wisdom-library",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "crisphive-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "promotionpros-catalog",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "extend-extend",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "sellermate-amazon-ads",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "de-bibelstudium-mcp-bibelstudium",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "askacharge-askacharge",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "balmasai-balmas-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "lazyweb-discovery",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "pandough-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "cn-pianam-mcp-ip-location-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "clideck-network-knowledge",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "cn-pianam-mcp-exchange-rate-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "cn-pianam-mcp-weather-mcp-china",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "cn-pianam-mcp-12306-train-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "cn-pianam-mcp-hot-trending-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "getbeachfinder-beachfinder",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "heyyumi-heyyumi",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "neuronsearchlab-mcp",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "xweather-weather",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "datakoot-domain-dns-whois",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "datakoot-base-onchain-wallet-tokens",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "postfleet-postfleet",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "datakoot-us-weather-forecast-alerts",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "datakoot-federal-register-rules",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "datakoot-economy-gdp-inflation-unemployment",
+   "date": "2026-09-22",
+   "origin": "mcp-registry"
+  }
+ ],
+ "note": "Written by scripts/agent-watch-admit.mjs. A slug listed under rejected was NOT admitted (reason + last HTTP status); it is retried on later runs. Candidates that were admitted appear in data/agent-watch.json."
+}

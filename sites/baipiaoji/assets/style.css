@@ -1032,3 +1032,66 @@ table.pl-tools tr.pl-on { background: var(--tool-s); }
 .agent-watch ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:6px 14px}
 .agent-watch li{font-size:14px;line-height:1.35}
 .agent-watch li span{display:block;font-size:12px;color:#61727b}
+
+/* ---- Agent 与 MCP 目录（2026-09-22 重构：走站点自己的 layout，不再自带样式）---- */
+.agent-watch-doors { display: flex; flex-wrap: wrap; gap: 6px 8px; margin: 0 0 10px; }
+.agent-watch-doors a { display: inline-flex; gap: 6px; align-items: baseline; font-size: 12.5px; border: 1px solid var(--line); padding: 3px 9px; color: var(--ink-2); }
+.agent-watch-doors a:hover { border-color: var(--ink-2); color: var(--ink); }
+.agent-watch-doors a span { font-size: 11px; color: var(--mute); }
+.aw .hero { margin-bottom: 8px; }
+.aw .stats .aw-date { font-size: 18px; letter-spacing: 0; }
+.aw section { margin-top: 30px; }
+.aw-doorgrid, .aw-cats { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); border-top: 1px solid var(--rule); border-left: 1px solid var(--line); }
+.aw-door, .aw-cat { display: flex; flex-direction: column; gap: 4px; padding: 14px 15px 16px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); color: var(--ink); }
+.aw-door:hover, .aw-cat:hover { background: var(--card); }
+.aw-door b, .aw-cat b { font-size: 15px; font-weight: 800; }
+.aw-door i, .aw-cat i { font-style: normal; font-size: 26px; font-weight: 900; letter-spacing: -1px; color: var(--plan); line-height: 1.1; }
+.aw-cat i { color: var(--tool); }
+.aw-door span, .aw-cat span { font-size: 12.5px; line-height: 1.6; color: var(--ink-2); }
+.aw-lede { font-size: 13.5px; color: var(--ink-2); margin: 6px 0 12px; max-width: 70ch; }
+.aw-tablewrap { overflow-x: auto; border-top: 1px solid var(--rule); }
+.aw-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.aw-table th, .aw-table td { text-align: left; vertical-align: top; padding: 8px 10px 8px 0; border-bottom: 1px solid var(--line); }
+.aw-table th { font-size: 11.5px; color: var(--mute); font-weight: 600; white-space: nowrap; }
+.aw-table td:first-child { font-weight: 700; white-space: nowrap; }
+.aw-table td:first-child a { color: var(--ink); }
+.aw-table td:first-child a:hover { color: var(--work); }
+.aw-table .aw-desc { min-width: 24ch; max-width: 56ch; color: var(--ink-2); }
+.aw-table .aw-links { white-space: nowrap; }
+.aw-links a { color: var(--plan); }
+.aw-origin, .aw-tool { display: inline-block; margin-left: 6px; font-size: 10.5px; font-weight: 500; color: var(--mute); border: 1px solid var(--line); padding: 0 5px; vertical-align: middle; }
+.aw-tool { color: var(--tool); border-color: var(--tool); }
+.aw-st { font-size: 11.5px; border: 1px solid var(--line); padding: 1px 6px; white-space: nowrap; }
+.aw-st-verified { color: var(--tool); border-color: var(--tool); }
+.aw-st-stale, .aw-st-retired { color: var(--work); border-color: var(--work); }
+.aw-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); border-top: 1px solid var(--rule); border-left: 1px solid var(--line); }
+.aw-card { padding: 14px 15px 16px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); font-size: 13.5px; }
+.aw-card h3 { font-size: 16px; margin: 2px 0 6px; }
+.aw-card h3 a { color: var(--ink); }
+.aw-card h3 a:hover { color: var(--work); }
+.aw-card p { margin: 0 0 6px; line-height: 1.6; }
+.aw-meta { font-size: 12px; color: var(--mute); line-height: 1.6; }
+.aw-kv { font-size: 12.5px; color: var(--ink-2); }
+.aw-kv b { color: var(--ink); font-weight: 700; }
+.aw-record { max-width: 820px; padding-top: 8px; }
+.aw-record h1 { font-size: clamp(28px, 4vw, 40px); line-height: 1.1; letter-spacing: -1px; margin: 6px 0 12px; }
+.aw-desc-lead { font-size: 16px; line-height: 1.75; color: var(--ink-2); max-width: 60ch; }
+.aw-official { margin: 16px 0; padding: 12px 16px; border-left: 3px solid var(--tool); background: var(--card); font-size: 14px; line-height: 1.7; }
+.aw-official p { margin: 0; }
+.aw-official footer { margin-top: 6px; font-size: 12px; color: var(--mute); }
+.aw-facts { display: grid; grid-template-columns: 1fr; border-top: 1px solid var(--rule); margin: 18px 0; }
+.aw-facts > div { display: grid; grid-template-columns: 120px 1fr; gap: 12px; padding: 9px 0; border-bottom: 1px solid var(--line); font-size: 13.5px; }
+.aw-facts dt { color: var(--mute); font-size: 12px; padding-top: 2px; }
+.aw-facts dd { margin: 0; line-height: 1.6; }
+.aw-actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 14px 0; }
+.aw-actions .go { display: inline-block; padding: 8px 14px; background: var(--ink); color: #fff; font-weight: 700; font-size: 13.5px; }
+.aw-actions .go.alt { background: transparent; color: var(--ink); border: 1px solid var(--ink); }
+.aw-sib ul { list-style: none; padding: 0; margin: 8px 0 0; }
+.aw-sib li { padding: 6px 0; border-bottom: 1px solid var(--line); font-size: 13.5px; }
+.aw-sib li span { display: block; color: var(--mute); font-size: 12.5px; }
+.aw-machine { border-top: 1px solid var(--rule); padding-top: 14px; font-size: 13.5px; }
+.aw-machine h2 { font-size: 15px; margin: 0 0 6px; }
+.aw-machine ul { padding-left: 18px; margin: 6px 0; }
+.aw-machine code, .aw-machine pre { font-size: 12.5px; background: var(--card); padding: 1px 5px; }
+.aw-machine pre { padding: 10px 12px; white-space: pre-wrap; }
+@media (max-width: 720px) { .aw-facts > div { grid-template-columns: 1fr; gap: 2px; } }

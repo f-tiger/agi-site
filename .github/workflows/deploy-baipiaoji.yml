@@ -129,9 +129,21 @@ jobs:
       # 不写任何事实；404/410 只标 stale 永不自动下线；403/超时视为未知不动。首跑 26/28 仓库 200，
       # 两条第一方仓库链接 404（本仓 09-18 转私有）。~28 条 × 2 URL，串行 0.4s 间隔，通常 <1 分，
       # 挂已有 schedule 不新增 cron；产出随下面那步一起提交（git add data/ 已覆盖）。
+      # 2026-09-22 扩到 1 000 条后改为三步、总预算 ≈2 分/日（≈60 分/月，仓库已转私有、分钟计费）：
+      #   ① registry-pull：官方 MCP 注册表 → 候选文件（只发现不收录；API 出错保留旧文件）
+      #   ② admit --max 60：候选的官方页当天 2xx 才入账本；被拒的记 reason 次日重试
+      #   ③ verify --max 40：账本里最久未核的 40 条盖章（3 并发，≈1 分），每条约每周轮到一次
+      - name: Pull MCP registry candidates (scheduled runs only)
+        if: github.event_name != 'push'
+        run: node scripts/agent-watch-registry-pull.mjs
+        continue-on-error: true
+      - name: Admit agent-watch candidates (scheduled runs only)
+        if: github.event_name != 'push'
+        run: node scripts/agent-watch-admit.mjs --max 60
+        continue-on-error: true
       - name: Verify agent-watch URLs (scheduled runs only)
         if: github.event_name != 'push'
-        run: node scripts/agent-watch-verify.mjs
+        run: node scripts/agent-watch-verify.mjs --max 40
         continue-on-error: true
 
       - name: Commit refreshed data (scheduled runs only)
@@ -193,9 +205,11 @@ jobs:
       # Agent-watch（2026-09-22）：账本 schema（zh 字段齐、日期单调、URL 核验字段在位）、runner 核验器的纯语义、
       # MCP monitor_new_agents / get_agent 的过滤与查找、以及首页 `home` 事件名在 hit.js 白名单里——
       # 一个掉出白名单的事件名在边缘被静默丢弃而页面看起来一切正常，`audit` 事件就是这样消失过几周。
-      - name: Agent-watch registry, verifier and MCP-filter selftests (zero network)
+      - name: Agent-watch registry, verifier, admit, registry-pull and MCP-filter selftests (zero network)
         run: |
           node scripts/agent-watch-verify.mjs --selftest
+          node scripts/agent-watch-admit.mjs --selftest
+          node scripts/agent-watch-registry-pull.mjs --selftest
           node scripts/test-agent-watch.mjs
 
       # 边缘爬虫记账的路径分类（2026-09-17，零网络 ~0.1s）。_middleware.js 的
@@ -531,7 +545,17 @@ jobs:
             || { echo "::error::get_agent 未返回记录 + verification 块（slug=$first）"; exit 1; }
           aj=$(curl -s -m 15 'https://baipiaoji.com/agents.json' | node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{try{console.log(JSON.parse(s).count)}catch(e){console.log("ERR")}})')
           [ "$aj" = "$want" ] || { echo "::error::/agents.json count=$aj ≠ repo $want"; exit 1; }
-          echo "✅ agent watch: $want records live, get_agent($first) carries verification"
+          # 2026-09-22 重构：翻页与受众过滤是线上契约的一部分；枢纽 / 受众页 / 类目表 200；人工收录记录页 noindex。
+          mp=$(curl -s -m 20 -X POST 'https://baipiaoji.com/api/mcp' -H 'Content-Type: application/json' \
+            -d '{"jsonrpc":"2.0","id":12,"method":"tools/call","params":{"name":"monitor_new_agents","arguments":{"limit":5,"audience":"mcp"}}}')
+          printf '%s' "$mp" | node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{try{const t=JSON.parse(JSON.parse(s).result.content[0].text);if(t.returned!==5||t.next_offset!==5||!t.agents.every(a=>a.audiences.includes("mcp")))process.exit(1)}catch(e){process.exit(1)}})' \
+            || { echo "::error::monitor_new_agents pagination / audience filter broken"; exit 1; }
+          for p in /agents/ /en/agents/ /agents/for/developers /en/agents/for/mcp /agents/c/mcp /en/agents/c/coding; do
+            code=$(curl -s -o /dev/null -w "%{http_code}" -m 15 "https://baipiaoji.com$p")
+            [ "$code" = "200" ] || { echo "::error::$p → $code"; exit 1; }
+          done
+          curl -s -m 15 "https://baipiaoji.com/agents/$first" | grep -q 'content="noindex,follow"' || { echo "::error::/agents/$first must be noindex,follow"; exit 1; }
+          echo "✅ agent watch: $want records live, get_agent($first) carries verification, pagination + doors + tables 200"
           for a in quotas myths workflows changes no-source labeling insights; do
             code=$(curl -s -o /dev/null -w "%{http_code}" -m 15 "https://baipiaoji.com/en/$a.json")
             [ "$code" = "200" ] || { echo "::error::机器可读资产缺失 $a=$code"; exit 1; }
