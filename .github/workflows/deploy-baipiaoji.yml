@@ -206,7 +206,7 @@ jobs:
         run: node scripts/test-indexnow-plan.mjs
 
       - name: Build site
-        run: node scripts/build.mjs
+        run: npm run build
 
       # 2026-08-17 挂入：九道出厂门禁（断链/JSON-LD/中文残留/占位符/裸MD/矛盾/EN缺项/
       # 写死计数/空壳页）此前只在会话手动跑——CI 里从未把过关。放在 build 之后、deploy
