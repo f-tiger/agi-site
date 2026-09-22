@@ -1,6 +1,6 @@
 {
  "note": "舰队赌注台账:每条预登记判定线一行;status open→won/lost/insufficient/withdrawn 时必须写 settled(日期)与 reading(读数)。tools/fleet/check_bets.py 在 heartbeat 里断言:到期 3 天内提醒,过期 >7 天未结算即红。新增判定线不进这里 = heartbeat 看不见 = 等于没预登记。",
- "updated": "2026-09-20",
+ "updated": "2026-09-22",
  "bets": [
   {
    "id": "fleet-ai-access-0916",
@@ -1306,6 +1306,17 @@
    "win": "保留三个主题，访谈实际参与者并优先改善他们反复使用的流程；有真实来源的外部引荐再加分发投入，不自动开新板块或买量。",
    "lose": "触达不足则改善现有站内入口；有触达无参与则收窄到编辑主题讨论，暂停自由发帖扩张。若无人审核，暂停新投稿而保留可读内容和用户删除功能。",
    "source": "docs/agi-community-research-2026-09-20.md；用户要求深度调研后在 AGI 首页增加讨论区，目标注册与流量。",
+   "status": "open"
+  },
+  {
+   "id": "eco-new-page-discovery-1020",
+   "site": "getecoback",
+   "due": "2026-10-20",
+   "metric": "D1 ev.crawl:2026-09-10 之后发布的 19 张页里被 bingbot 抓过 ≥1 次的页数(t0 2026-09-22 = 1/19,12 天窗;同窗 bingbot 每天抓 30–125 次老页);同批 19 页的 28 天搜索引荐(t0 = 0)",
+   "threshold": "bingbot 覆盖 ≥12/19(≥60 %)且 ≥1 次搜索引荐落在这 19 页中的任一页",
+   "win": "发现面噪音(IndexNow 每次部署重提 30–66 个未变 URL + 工具 manifest 12 URL 整包重提 + sitemap 用 mtime 把十几页日日标成今天)确是新页零抓取的原因之一 → 把同样的 delta 纪律移植到舰队其它带 IndexNow 步骤的站(bpj/tds/agi)",
+   "lose": "覆盖仍 <6/19 → 新页不被抓是 Bing 对本域的抓取预算/权威问题,不是提交噪音;09-04 的「rising 只深化不出新页」冻结继续,把 Bing Webmaster 的抓取统计列为 owner 待办,不再为发现面写代码",
+   "source": "sites/getecoback/docs/site-analysis-2026-09-22.md §三–§四、§六;修复 = deploy-getecoback.yml(部署前快照线上 sitemap;IndexNow 只提 pushed diff ∪ 新 URL;manifest ping 只在生成器变更时跑)+ tools/build_sitemap.py(无日期页改用 git 提交日)+ tools/check_sitemap_lastmod.py 闸门",
    "status": "open"
   }
  ]

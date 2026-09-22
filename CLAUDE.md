@@ -212,6 +212,7 @@ play.)+ 三个外部站(baipiaoji/getecoback/thedollscout)。实测教训:引用
   这才是要防的事故形状(worker 没更新、发歪了),而且它不会随功能增长而过期。
   **同日第二条**:MCP 官方注册表对 `server.json.description` 有 **100 字符硬限制**(超了在 publish 那步
   422),断言已前移到发布前的 sanity 步——**外部服务的硬限制,要在本地能红的地方断言一次**。
+- **发现面只提真变化(2026-09-22,eco 实测)**:eco 的 IndexNow 步曾把注入器改写的文件也当「变了」提交——一个一文件提交提交 66 个 URL、一天 ≈780 次;sitemap 对无日期页回退 mtime,CI 全新 checkout 让十几页日日 lastmod=部署日。结果:9-10 后的 19 张新页 bingbot 12 天只抓 1 张,而老页每天抓 100+。**规矩(全舰队带 IndexNow 步的站都适用)**:IndexNow 只提 pushed diff ∪(本次 sitemap − 部署前线上 sitemap 快照);注入 churn 只报 warning;sitemap lastmod 永不回退 mtime(dateModified → git 提交日 → datePublished);「今天」只允许首页/生成页/今天有提交的文件,用闸门断言(eco `check_sitemap_lastmod.py`)。判定线 `eco-new-page-discovery-1020`。
 
 ## 会话工作方式
 

@@ -3118,3 +3118,15 @@ IT → deumidificatore(注意它峰在 **7 月**,意大利除湿是夏题)。**�
 
 **一句实话**:这一轮把德语区的三类缺口补上了——冬季故障页、湿度簇入口、奥地利法条——但它仍然是「新页」,
 而新页在本站的冷启动读数是 0。区别在于这次每一页都押在一个已经量过的形状上,输了能说清楚是哪个假设错了。
+
+## 深度全站分析 + 同类站对比:新页根本没被 Bing 抓,根因在发现面噪音(2026-09-22,owner:「先完善prompt再执行:eco深度全站分析,再对比同类网站,学习增强流量策略,并执行应用」;全文 `docs/site-analysis-2026-09-22.md`)
+
+**212 页 × D1 56 天 × 12 天爬虫日志,一句话:最强的流量预测变量是页面年龄,而年龄起作用是因为 9-10 之后发布的 19 张页 bingbot 12 天只抓过 1 张 1 次**(同期 bingbot 每天抓 30–125 次**老**页)。本站 100 % 搜索流量来自 Bing 索引,所以这一条压倒所有页面属性。
+
+- **控制年龄后(DE、8-27 前,n=112)仍成立的**:故障页每页 11,0 次搜索(计算器指南 3,3、梯页 1,65);梯页是钱页(2,0 联盟点击/页,全站最高);1 200–1 999 词的页搜索访问是 <1 200 的 **2,7×**;有 1 张表的页拿到 14 次 AI 引荐、0 表的只有 4 次(搜索无差);入链不是杠杆(第三次)。**标题长度 56–65 赢是与 7 月 CTR 改写重合的相关,不动标题。**
+- **根因两处,都修了**:①IndexNow 步把注入器改写的文件也当「变了」提交——run 220 一个一文件提交提交了 **66 个 URL**,09-17 十次部署 ≈ 780 次提交,真变的不到十分之一;工具 manifest 另外每次 push 整包提 12 个。②`build_sitemap` 无日期页回退 **mtime**,CI 全新 checkout → 线上 13 个 URL 日日 lastmod=部署日。修法:部署前快照线上 sitemap;IndexNow 只提 **pushed diff ∪(本次 sitemap − 部署前线上 sitemap)∪ schedule 那次的 `/`**,churn 只报 warning;manifest ping 只在 `tools/revenue-studio|member-studio` 变更时跑;lastmod 顺序 dateModified → **git 提交日** → datePublished → 回退;新闸门 `check_sitemap_lastmod.py`(今天日期只允许首页/未跟踪生成页/今天有提交的文件,两向自检)。注入产物已提交进仓,仓库 = 部署状态。
+- **AI 面**:`/` 28 天被 openai 家族抓 316 次、AI 引荐 **0**;56 天 39 次 AI 引荐全部落深页(tilt-and-turn 16、kippfenster 7)。结算 `eco-home-table-geo-1112` 时按「首页是目录、深页是答案」读。
+- **同行(只写抓到的)**:temperaturheld 68 页全部 lastmod 2026-09、~1 050 词、73 内链/页、0 外链、无 meta description;raumklimatest 咨询页 2 257 词 + Quellen 4 外链 + 具名作者 + 真图;klimaanlagen-guru 选题与 eco 逐条重合、每月 11–19 帖、LocalBusiness 地址。**学的只有「已有流量的短页加深」**(下一轮候选:was-bedeutet-btu 764 词/19 搜索、abluftschlauch-verlaengern 759/10、wie-viel-btu 382/7、zugluft 720/6);假新鲜、作者、地址、产品页、巨型导航一律不学(理由在文档 §五)。
+- **沙箱可达性**:六个搜索引擎全部不可用;vergleich.org / luftentfeuchter.cc 质询页;testit sitemap 410。诊断中从沙箱发过**一次** IndexNow GET(单条,200),记档不重复。
+- **判定线 `eco-new-page-discovery-1020`**:19 张新页 bingbot 覆盖 ≥12/19 且 ≥1 次搜索引荐;输 = 是抓取预算/权威问题,新页冻结继续,Bing Webmaster 抓取统计列 owner 待办。
+- **脏数据口径**:`/` 83 pv 里 57 US 无来源、midea-portasplit 50 里 43 US 无来源、spain 6 天 14 US、smells-musty 3 天 11 US——扫描器,按 pv 排序前先剔。
