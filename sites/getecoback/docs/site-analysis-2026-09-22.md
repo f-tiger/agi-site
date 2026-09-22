@@ -154,6 +154,12 @@ IndexNow 自己的 FAQ 写明重复提交未变 URL 会被视为噪音并降低�
 4. **新闸门 `check_sitemap_lastmod.py`**:lastmod = 今天的 URL 必须是首页 / 未跟踪的生成页 / 今天有提交的文件,否则红;自检两个方向(mtime 泄漏、注入器盖 dateModified)各红一次。
 5. **把注入链的产物提交进仓库**(30 个已跟踪文件:`EB_HOUSEHOLD_LINK`、chrome、国家计算器、`household.mjs` 版本号),让仓库状态 = 部署状态,churn warning 归零;生成页(workbench/members/_headers)照原设计不提交。
 
+**线上验证(run 221 `df560dc` / run 222 `94c5304`,2026-09-22 04:53–05:00 UTC)**:
+- run 221(本次提交,33 个 site 文件在 diff 里):IndexNow 提交 **27 个 URL = pushed diff 里在 sitemap 内的页**,new=0,HTTP 200;工具 manifest ping **skipped**(生成器未变);sitemap 闸门绿。上一版对一个一文件提交是 66 + 12。
+- run 222(只改 workflow):**authored=0 new=0 submit=0 → 「nothing changed — skipping the ping」**;manifest ping skipped;闸门绿。
+- 线上 sitemap 部署后:lastmod = 今天的 URL 从 13 个降到 **8 个,且全部是今天真有提交的文件**(`/`、`/en/`、`/it/`、tools、agents/compliance ×2、creator-kit ×2);工具构建器追加的 15 条 workbench/members 条目**不带 lastmod**(没有假新鲜)。
+- **未解的一条(如实记)**:runner 上仍有 **37 张页在部署链后与仓库不同**(全部 klimaanlage/luftentfeuchter 梯页、EN 故障页、mobile-klimaanlage-* 等),而本地从干净树跑同一条链(含 revenue-studio 构建、两个固定 `PYTHONHASHSEED`)**HTML churn = 0**。它们**不再被提交给 IndexNow**(只报 warning),所以不影响本轮目标;但「仓库 ≠ 部署产物」本身是个待查项——某个只在 runner 上跑的步骤在改这些页。IndexNow 步现在会打印第一张 churn 页的 diff 摘录,下一次部署的日志就能点名是哪个注入器。
+
 **本轮刻意没做**:不改任何标题(Google 0 引荐,Bing 口径无 CTR 数据)、不加 Quellen(无读数)、不建新页(19 张新页一张都没被抓,再建是往黑洞里投)、不动 `build_related`(内链不是杠杆)、不给首页再加 GEO 件(§二)。
 
 ## 七、判定线(已进 `data/fleet-bets.json`)

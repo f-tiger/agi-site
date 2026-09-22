@@ -849,6 +849,14 @@ jobs:
           # tracked files the injectors rewrote in this run (never submitted, only reported)
           git status --porcelain site | awk '$1=="M" || $1=="MM" {print $NF}' | grep '\.html$' \
             | sed 's|^sites/getecoback/||' | sort -u > /tmp/churn.txt || true
+          # Diagnostic for the churn: what the first rewritten page differs by, so the
+          # injector responsible can be named from the log instead of reproduced.
+          if [ -s /tmp/churn.txt ]; then
+            git diff --stat -- site | tail -1
+            first=$(head -1 /tmp/churn.txt)
+            echo "diff excerpt for $first:"
+            git diff -U0 -- "$first" | grep -E '^[-+]' | grep -vE '^(\+\+\+|---)' | cut -c1-300 | head -6 || true
+          fi
           EVENT="${{ github.event_name }}" python3 - <<'PY'
           import json, os, re
           BASE = 'https://getecoback.com'

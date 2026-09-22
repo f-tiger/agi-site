@@ -3129,4 +3129,5 @@ IT → deumidificatore(注意它峰在 **7 月**,意大利除湿是夏题)。**�
 - **同行(只写抓到的)**:temperaturheld 68 页全部 lastmod 2026-09、~1 050 词、73 内链/页、0 外链、无 meta description;raumklimatest 咨询页 2 257 词 + Quellen 4 外链 + 具名作者 + 真图;klimaanlagen-guru 选题与 eco 逐条重合、每月 11–19 帖、LocalBusiness 地址。**学的只有「已有流量的短页加深」**(下一轮候选:was-bedeutet-btu 764 词/19 搜索、abluftschlauch-verlaengern 759/10、wie-viel-btu 382/7、zugluft 720/6);假新鲜、作者、地址、产品页、巨型导航一律不学(理由在文档 §五)。
 - **沙箱可达性**:六个搜索引擎全部不可用;vergleich.org / luftentfeuchter.cc 质询页;testit sitemap 410。诊断中从沙箱发过**一次** IndexNow GET(单条,200),记档不重复。
 - **判定线 `eco-new-page-discovery-1020`**:19 张新页 bingbot 覆盖 ≥12/19 且 ≥1 次搜索引荐;输 = 是抓取预算/权威问题,新页冻结继续,Bing Webmaster 抓取统计列 owner 待办。
+- **线上验证(run 221/222)**:内容提交提 27 个 URL(= pushed diff),纯 workflow 提交提 **0**(「nothing changed — skipping」);manifest ping 两次都 skipped;lastmod=今天的 URL 13 → 8 且全是今天有提交的文件。**未解**:runner 上仍有 37 张页在链后与仓库不同(本地干净树 + 固定 hash seed 均为 0)——不再进 IndexNow,但「仓库 ≠ 部署产物」待查;IndexNow 步现在打印第一张 churn 页的 diff 摘录,**下一次部署的日志就能点名是哪个 runner-only 步骤**,下一轮先看它。
 - **脏数据口径**:`/` 83 pv 里 57 US 无来源、midea-portasplit 50 里 43 US 无来源、spain 6 天 14 US、smells-musty 3 天 11 US——扫描器,按 pv 排序前先剔。
