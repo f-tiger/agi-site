@@ -3131,3 +3131,11 @@ IT → deumidificatore(注意它峰在 **7 月**,意大利除湿是夏题)。**�
 - **判定线 `eco-new-page-discovery-1020`**:19 张新页 bingbot 覆盖 ≥12/19 且 ≥1 次搜索引荐;输 = 是抓取预算/权威问题,新页冻结继续,Bing Webmaster 抓取统计列 owner 待办。
 - **线上验证(run 221/222)**:内容提交提 27 个 URL(= pushed diff),纯 workflow 提交提 **0**(「nothing changed — skipping」);manifest ping 两次都 skipped;lastmod=今天的 URL 13 → 8 且全是今天有提交的文件。**那 37 张 churn 页也修了**(run 223 的 diff 摘录点名 `EB_RELATED`):`build_related.py` 的 top-up 遍历按 `os.walk` 目录序走且边遍历边改状态,runner(ext4)与沙箱目录序不同 → 同一份代码两台机器产出不同页。已改 `sorted(pages)` + 排序 walk,确定性产物已提交。**规矩:边遍历边改状态的注入器,遍历顺序必须显式排序。** IndexNow 步保留「第一张 churn 页 diff 摘录」诊断,以后 churn warning 出现先看它。
 - **脏数据口径**:`/` 83 pv 里 57 US 无来源、midea-portasplit 50 里 43 US 无来源、spain 6 天 14 US、smells-musty 3 天 11 US——扫描器,按 pv 排序前先剔。
+
+## 工具板块检查与扩展:34 个工具,1 个被用,枢纽漏了 14 个(2026-09-22,owner:「先优化prompt再执行:eco站点的工具板块检查与扩展」;全文 `docs/tools-audit-2026-09-22.md`)
+
+- **读数(D1 56 天真人)**:`btu_calc` **72**(尺寸器,唯一被用的工具);其余全部工具事件合计 <10;`taupunkt_check`/`heizkosten_calc`/`bkw_calc`/`hitze_check` 等 8 个事件 **0**(本轮逐个实跑验证都能发,是没人触发);`/tools.html` 56 天 **1 pv**。
+- **Playwright 逐页实跑 39 张(390 px,信标全捕获)抓到的真缺陷,全部已修**:①`pro-werkzeuge` 能源工具**用自己的默认值都算不出**(`eCost` 6 800 不在 `min=1 step=100` 的步进格上,`reportValidity` 静默 false)→ `min=100`;②五张国家计算器结果表头 **`undefined undefined`**(`t.totalA/B` 从不存在于文案包)→ 回退 `t.total`;③同五张 **390 px 横向溢出 35–177 px**(grid 子项无 `min-width:0`)→ 修 CSS;④es/fr/it 三张**连 page_view 都不记**(不在注入循环里)→ `country-ui.js` 的 `ev()` 助手在无层页面直发 `/api/ev`,**load 时**补 page_view(`setTimeout(0)` 会在 EB_TRACK 之前跑而双计,实测过);⑤7 个工具面零事件 → 新增 `solution_calc` / `pro_tool_run` / `watt_calc`(去抖 + 同值去重),worker 白名单 +3。
+- **枢纽**:`/tools.html` 是导航唯一工具入口却是手写页,**14 张工具页不在上面**(五张决策计算器、三张 household、五张冬季露点/停电页、Speicher-Förderung)。现在 `tools/build_tools_hub.py` 从文件系统发现工具页(剥 EB_ 块后的数字输入 / `data-v` 问答 / ≥2 select+结果区 / 显式实时数据工具),按季节排家族,文案取各页 h1+description;`tools/check_tools_hub.py` 断言**枢纽 == 文件系统**,两向自检。34 张全在,byte-stable。`/workbench` 12 张是部署时生成、闸门运行时不存在,不进自动索引。
+- **不建新工具**:需求文件里没有一条工具形状的查询,free-tools 评分卡 <15;33/34 个工具没人用是发现与正确性问题,不是品类问题。判定线 `eco-tools-hub-1020`(枢纽 pv ≥10 且非 BTU 工具事件 ≥12,或新事件任一 ≥5;输 = 读者只在指南里顺手用工具,枢纽只维护闸门)。
+- **通用教训**:①「工具能用」要在浏览器里用**页面自己的默认值**点一次——一个从来算不出结果的工具在静态检查里和好的一模一样;②翻译文案包里的键要在渲染代码引用处逐个核,`x||fallback` 的回退要覆盖所有键而不是想到的那几个;③任何「按页面里有没有 X 决定」的判断先剥掉注入块(与 09-18 货架 guard 同一条)。

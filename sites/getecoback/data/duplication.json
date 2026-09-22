@@ -26,25 +26,25 @@
   },
   "klimaanlage-N-qm": {
    "pages": 7,
-   "avg_similarity": 0.3272,
-   "worst_similarity": 0.4307,
+   "avg_similarity": 0.3256,
+   "worst_similarity": 0.4314,
    "worst_pair": [
     "klimaanlage-10-qm",
     "klimaanlage-15-qm"
    ],
-   "median_unique_shingles": 916,
+   "median_unique_shingles": 914,
    "lang": "de",
    "pages_in_corpus": 150
   },
   "luftentfeuchter-N-qm": {
    "pages": 6,
-   "avg_similarity": 0.5188,
-   "worst_similarity": 0.561,
+   "avg_similarity": 0.5213,
+   "worst_similarity": 0.5585,
    "worst_pair": [
     "luftentfeuchter-10-qm",
     "luftentfeuchter-20-qm"
    ],
-   "median_unique_shingles": 709,
+   "median_unique_shingles": 702,
    "lang": "de",
    "pages_in_corpus": 150
   },

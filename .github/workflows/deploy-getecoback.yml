@@ -130,6 +130,10 @@ jobs:
 
       - name: Build country solution calculators and localized mirrors
         run: python3 tools/build_country_calculators.py
+      # 2026-09-22: the hub was hand-written and nine tool pages never reached it. It is
+      # now filled from the filesystem; check_tools_hub asserts hub == filesystem.
+      - name: Fill the tools hub from the pages that exist (idempotent)
+        run: python3 tools/build_tools_hub.py
 
       - name: Inject site chrome (nav/footer/radar; idempotent, covers new pages)
         run: python3 tools/build_structure.py
@@ -227,6 +231,10 @@ jobs:
 
       - name: Check the category hubs still describe what they link to
         run: python3 tools/check_hubcards.py
+      - name: Check the tools hub lists every tool page and nothing stale (gate)
+        run: |
+          python3 tools/check_tools_hub.py --selftest
+          python3 tools/check_tools_hub.py
 
       # 页族近重复度量（2026-09-17）。**只报数不拦部署**：今天的读数本来就超标，
       # 上线即红会把一个待办变成一条坏掉的流水线。它存在的理由是把「兄弟页有多像」
@@ -403,6 +411,14 @@ jobs:
           check "https://getecoback.com/guide/heizluefter-schaltet-sich-aus.html" "8,7 A"
           check "https://getecoback.com/guide/luftentfeuchter-stinkt.html" "Nichts in den Tank"
           check "https://getecoback.com/guide/luftbefeuchter-weisser-staub.html" "Verdunster mit Hygrostat"
+          # Tools audit 2026-09-22: the hub is generated from the filesystem and must carry the
+          # pages that were unreachable before (a dew-point guide, the DE decision calculator);
+          # the Pro energy tool must ship a default that its own validation accepts.
+          check "https://getecoback.com/tools.html" "EB_TOOLS_INDEX"
+          check "https://getecoback.com/tools.html" "/guide/luftentfeuchter-zieht-kein-wasser.html"
+          check "https://getecoback.com/tools.html" "/rechner.html"
+          check "https://getecoback.com/pro-werkzeuge.html" 'id="eCost" type="number" value="6800" min="100" step="100"'
+          check "https://getecoback.com/js/country-ui.js" "solution_calc"
           # The humidifier page must never carry the dehumidifier shelf (the
           # opposite appliance), and no storage page may carry the vetoed brand.
           body=$(curl -sL --max-time 20 "https://getecoback.com/guide/luftbefeuchter-weisser-staub.html" || true)

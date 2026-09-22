@@ -407,6 +407,10 @@ const EV_NAMES = new Set([
   // fired nothing, so "nobody crosses the seasons" and "the component is inert"
   // were indistinguishable. check_events.py fails the build if this drifts.
   "season_bridge",
+  // Tools audit 2026-09-22: three calculators fired nothing at all, so "nobody used it"
+  // and "it never reported" were the same reading. Country calculators (5 pages),
+  // pro-werkzeuge (3 runs), infrarot Watt-Rechner.
+  "solution_calc", "pro_tool_run", "watt_calc",
   // Written server-side by serveMarkdown (crawlers run no JS), listed here so
   // the event vocabulary stays in one place.
   "md_serve",

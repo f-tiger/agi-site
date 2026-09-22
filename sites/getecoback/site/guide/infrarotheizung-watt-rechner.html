@@ -129,7 +129,8 @@
       html+="<br><span style='font-size:13.5px;color:#5b6b78;'>Betriebskosten bei 0,30 €/kWh: ca. "+(bedarf/1000*0.30).toFixed(2).replace(".",",")+" € pro Stunde Volllast.</span>";
       out.innerHTML=html;
     }
-    qm.addEventListener("input",calc);d.addEventListener("change",calc);calc();
+    var t,last="";function user(){calc();clearTimeout(t);t=setTimeout(function(){var k=qm.value+"/"+d.value;if(k===last)return;last=k;if(window.gtag)gtag("event","watt_calc",{qm:parseFloat(qm.value)||0,w:parseInt(d.value,10)});},600);}
+    qm.addEventListener("input",user);d.addEventListener("change",user);calc();
   })();
   </script>
   <p>Der Rechner nutzt die gängige Faustformel der Hersteller: <strong>60 W/m² bei guter, 80 W/m² bei mittlerer und 100 W/m² bei schlechter Dämmung</strong>. Bei Deckenhöhen über 2,60 m, vielen Außenwänden oder großen Fensterflächen nimmst du sicherheitshalber die nächsthöhere Dämmstufe.</p>

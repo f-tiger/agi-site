@@ -1424,6 +1424,17 @@
    "source": "sites/baipiaoji/CLAUDE.md 第 22 条（2026-09-22）+ scripts/agent-watch-registry-pull.mjs 头注释",
    "status": "open",
    "t0_2026-09-22": "注册表 API 首拉：80 页 8 000 条最新版，7 177 条有仓库或官网，cap 720（仓库优先、updatedAt 倒序）；当日入 680 条。"
+  },
+  {
+   "id": "eco-tools-hub-1020",
+   "site": "getecoback",
+   "due": "2026-10-20",
+   "metric": "D1(真人,剔 CI,28 天):① /tools.html page_view;② 工具事件合计(standort_check+stromkosten_calc+panel_fit+seal_fit+taupunkt_check+heizkosten_calc+bkw_calc+speicher_calc+strom_check+foerder_check+hitze_check+heat_check,不含 btu_calc);③ 新事件 solution_calc / pro_tool_run / watt_calc。t0(2026-09-22,按 56 天折半):① 0,5 ② ≈3,5 ③ 不存在(此前不发)",
+   "threshold": "① ≥10 且 ② ≥12,或 ③ 任一 ≥5",
+   "win": "工具的瓶颈确是发现面 → 把每个家族的前一名工具卡放进对应 /kategorie/ 页;继续用 check_tools_hub 保证枢纽==文件系统",
+   "lose": "读者不从枢纽找工具、只在指南里顺手用 → 枢纽只维护闸门不再投入;结论并入 fleet-tool-use-1014(新站三件套里的「工具」降为可选)",
+   "source": "sites/getecoback/docs/tools-audit-2026-09-22.md;本轮修复 = 枢纽从文件系统生成(14 张漏掉的工具页补齐)+ 7 个无埋点工具面加事件 + pro-werkzeuge 能源工具从「永远算不出」修好 + 国家计算器表头 undefined 与 390px 溢出修好 + es/fr/it 三页补 page_view",
+   "status": "open"
   }
  ]
 }
