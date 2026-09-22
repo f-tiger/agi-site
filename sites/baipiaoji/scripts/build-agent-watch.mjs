@@ -14,7 +14,9 @@ const html=(lang='zh')=>{
 };
 writeFileSync(join(root,'dist','agents.json'),JSON.stringify(payload,null,2)+'\n');
 writeFileSync(join(root,'dist','en','agents.json'),JSON.stringify({...payload,title:'Baipiaoji Agent Watch (English)'},null,2)+'\n');
+mkdirSync(join(root,'dist','agents'),{recursive:true});
 writeFileSync(join(root,'dist','agents.html'),html('zh'));
+writeFileSync(join(root,'dist','agents','index.html'),html('zh'));
 const detail=(a,lang='zh')=>{
  const en=lang==='en'; const title=(en?a.name+' | New Agent Watch | Baipiaoji':a.name+'｜新 Agent 监控｜白嫖计');
  const desc=en?a.description:'来源可追溯的 '+a.name+' Agent 记录：能力、接入方式、状态和核验日期。';
@@ -24,7 +26,9 @@ const detail=(a,lang='zh')=>{
 mkdirSync(join(root,'dist','agents'),{recursive:true}); mkdirSync(join(root,'dist','en','agents'),{recursive:true});
 for(const a of agents){writeFileSync(join(root,'dist','agents',a.slug+'.html'),detail(a,'zh'));writeFileSync(join(root,'dist','en','agents',a.slug+'.html'),detail(a,'en'));}
 
+mkdirSync(join(root,'dist','en','agents'),{recursive:true});
 writeFileSync(join(root,'dist','en','agents.html'),html('en'));
+writeFileSync(join(root,'dist','en','agents','index.html'),html('en'));
 for(const p of ['dist/sitemap.xml']) if(existsSync(join(root,p))){let s=readFileSync(join(root,p),'utf8');const rows=[site.base_url+'/agents/',site.base_url+'/en/agents/',...agents.flatMap(a=>[a.page,site.base_url+'/en/agents/'+a.slug+'.html'])];for(const u of rows)if(!s.includes('<loc>'+u+'</loc>'))s=s.replace('</urlset>','<url><loc>'+u+'</loc><priority>0.9</priority></url></urlset>');writeFileSync(join(root,p),s);}
 for(const p of ['dist/index.html','dist/en/index.html'])if(existsSync(join(root,p))){let s=readFileSync(join(root,p),'utf8');const lang=p.includes('/en/')?'en':'zh';const label=lang==='en'?'New Agent Watch':'新 Agent 监控';if(!s.includes('/agents/'))s=s.replace('</nav>','<a href="/agents/">'+label+'</a></nav>');writeFileSync(join(root,p),s);}
 console.log('Agent watch built:',agents.length);
