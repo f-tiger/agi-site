@@ -1,24 +1,24 @@
 {
- "generated": "2026-09-21",
+ "generated": "2026-09-22",
  "env": "runner",
  "note": "付费档缺口的抓取探针。只做发现与取证，绝不写事实：任何数字仍须经 scripts/limits-edit.mjs 两步核实后才进 tools.json。state=ready 表示该 URL 当天 200 且页面上有像价目表的价格段，不表示数字已被核实。每行的 env 是抓取时的网络环境：sandbox 行的 blocked 很可能只是会话沙箱出网被拒，不能当作「这家没有定价页」，只有 runner 行的 blocked 才值得当结论。",
  "gap_total": 108,
  "batch": [
-  "ms-copilot",
-  "tongyi-lingma",
-  "ai360",
-  "aider",
-  "aippt",
-  "ante",
-  "anythingllm",
-  "bing-image"
+  "caiyun",
+  "cerebras",
+  "character-ai",
+  "chatgpt",
+  "codebuddy",
+  "cody",
+  "cohere",
+  "comate"
  ],
- "cursor": "bing-image",
+ "cursor": "comate",
  "summary": {
-  "ready": 9,
-  "empty": 12,
-  "blocked": 10,
-  "probed_total": 31
+  "ready": 12,
+  "empty": 14,
+  "blocked": 12,
+  "probed_total": 38
  },
  "tools": {
   "kimi": {
@@ -605,15 +605,15 @@
    "slug": "cerebras",
    "name": "Cerebras",
    "cat": "api",
-   "reach": 1,
-   "probed": "2026-09-20",
+   "reach": 0,
+   "probed": "2026-09-22",
    "env": "runner",
    "state": "empty",
    "tried": [
     {
      "url": "https://cerebras.ai/pricing",
      "status": 200,
-     "bytes": 234158,
+     "bytes": 234244,
      "tokens": 0
     },
     {
@@ -938,6 +938,200 @@
     }
    ],
    "best": null
+  },
+  "caiyun": {
+   "slug": "caiyun",
+   "name": "彩云小译",
+   "cat": "writing",
+   "reach": 0,
+   "probed": "2026-09-22",
+   "env": "runner",
+   "state": "empty",
+   "tried": [
+    {
+     "url": "https://fanyi.caiyunapp.com/pricing",
+     "status": 200,
+     "bytes": 5452,
+     "tokens": 0
+    },
+    {
+     "url": "https://fanyi.caiyunapp.com/price",
+     "status": 200,
+     "bytes": 5452,
+     "tokens": 0
+    },
+    {
+     "url": "https://fanyi.caiyunapp.com/plans",
+     "status": 200,
+     "bytes": 5452,
+     "tokens": 0
+    }
+   ],
+   "best": {
+    "url": "https://fanyi.caiyunapp.com/pricing",
+    "tokens": 0,
+    "excerpt": ""
+   }
+  },
+  "character-ai": {
+   "slug": "character-ai",
+   "name": "Character.AI",
+   "cat": "chat",
+   "reach": 0,
+   "probed": "2026-09-22",
+   "env": "runner",
+   "state": "blocked",
+   "tried": [
+    {
+     "url": "https://character.ai/pricing",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://character.ai/price",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://character.ai/plans",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    }
+   ],
+   "best": null
+  },
+  "chatgpt": {
+   "slug": "chatgpt",
+   "name": "ChatGPT",
+   "cat": "chat",
+   "reach": 0,
+   "probed": "2026-09-22",
+   "env": "runner",
+   "state": "blocked",
+   "tried": [
+    {
+     "url": "https://chatgpt.com/pricing",
+     "status": 403,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://chatgpt.com/price",
+     "status": 403,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://chatgpt.com/plans",
+     "status": 403,
+     "bytes": 0,
+     "tokens": 0
+    }
+   ],
+   "best": null
+  },
+  "codebuddy": {
+   "slug": "codebuddy",
+   "name": "CodeBuddy（腾讯）",
+   "cat": "coding",
+   "reach": 0,
+   "probed": "2026-09-22",
+   "env": "runner",
+   "state": "ready",
+   "tried": [
+    {
+     "url": "https://codebuddy.ai/docs/zh/ide/Account/pricing",
+     "status": 200,
+     "bytes": 30223,
+     "tokens": 14
+    }
+   ],
+   "best": {
+    "url": "https://codebuddy.ai/docs/zh/ide/Account/pricing",
+    "tokens": 14,
+    "excerpt": "账单 发票 最佳实践 支持 故障排除 安全与隐私 联系我们 版本发布 概览 快速导航 定价 ​ CodeBuddy 提供以下版本以满足用户不同的 AI 开发需求。 各版本定价如下： 个人版套餐 ​ 方案 Free Pro 连续包月 免费 $10.00 / 月 连续包年 — $96.00 / 年 （$8.00 / 月 按年计费） 基础积分 / 月 100 1,000 加赠积分 / 月 — 1,000 每月累计实得积分 100 2,000 活跃赠送（限时活动） 30 积分 / 天 50 积分 / 天 代码实时补全 5,000 次 / 月（限免无限次） 无限次 自动任务 3 个（限免 99 个） 15 个（限免 99 个） 模型调度 Auto 调度（限免全模型可选） 全模型可选 新功能抢先体验 — 逐步开放 跨文件理解 ✅ ✅ 注释生成代码 ✅ ✅ Free 版限免期间，用户可享受全模型可选、代码补全不限次、自动任务 99 个； 限免结束后恢复档位额度 。活动结束时间以官方为准，届时将提前通知。 开通 Pro 及 Pro 7天试用 后，Free 版 100 积分不再另行发放。 活跃赠送 为限时活动，当天有对话请求即视为活跃用户，详情参见 限时每日活跃奖励说明 。 基础积分与加赠积分均按月发放，当月有效、不累积结转；加赠部分自到账日起1个月内有效。 团队版套餐 ​ 方案 Team 版（月付） Team 版（年付） 价格 $40.00 / 坐席 / 月 $480.00 / 坐席 / 年 功能 • 每席位每月 1,000 积分，团队公共池共享 • 管理员控制台 • 统一账单管理 • 支持 "
+   }
+  },
+  "cody": {
+   "slug": "cody",
+   "name": "Sourcegraph Cody",
+   "cat": "coding",
+   "reach": 0,
+   "probed": "2026-09-22",
+   "env": "runner",
+   "state": "ready",
+   "tried": [
+    {
+     "url": "https://sourcegraph.com/blog/changes-to-cody-free-pro-and-enterprise-starter-plans",
+     "status": 200,
+     "bytes": 32039,
+     "tokens": 5
+    }
+   ],
+   "best": {
+    "url": "https://sourcegraph.com/blog/changes-to-cody-free-pro-and-enterprise-starter-plans",
+    "tokens": 5,
+    "excerpt": "ody Free will continue until July 23, 2025 , at which point it will be discontinued. Sign up with Amp today and receive $10 in free credits at ampcode.com . If you're using Cody Pro: Your access to Cody Pro will continue until July 23, 2025 , at which point it will be discontinued. You will not be charged for use of Cody Pro between now and July 23, 2025. Cody Pro customers can email amp-devs@ampcode.com to receive $40 in Amp credits as a thank you for using Cody Pro. If you're using Enterprise Starter: Existing Enterprise Starter workspaces will retain Cody access until July 23, 2025 , after which Cody will be removed. Your Enterprise Starter subscription remains fully supported for Code Se"
+   }
+  },
+  "cohere": {
+   "slug": "cohere",
+   "name": "Cohere",
+   "cat": "api",
+   "reach": 0,
+   "probed": "2026-09-22",
+   "env": "runner",
+   "state": "ready",
+   "tried": [
+    {
+     "url": "https://cohere.com/pricing",
+     "status": 200,
+     "bytes": 526588,
+     "tokens": 41
+    }
+   ],
+   "best": {
+    "url": "https://cohere.com/pricing",
+    "tokens": 41,
+    "excerpt": "will be billed on a pay-as-you-go basis. Your bill will be issued at the end of every calendar month or when you reach $250 in outstanding balances. The endpoint I’m using is billed by token. What is a token? Language models understand “tokens” rather than characters or bytes. The number of tokens per word depends on the complexity of the text. Simple text may approach 1 token per word on average, while complex texts may use less common words that require 3-4 tokens per word on average. For more details on tokens, refer to this page . Where do I find pricing for our legacy models? For existing customers: Command pricing is $1.00/1M tokens for input and $2.00/1M tokens for output Command-ligh"
+   }
+  },
+  "comate": {
+   "slug": "comate",
+   "name": "文心快码 Comate（百度）",
+   "cat": "coding",
+   "reach": 0,
+   "probed": "2026-09-22",
+   "env": "runner",
+   "state": "empty",
+   "tried": [
+    {
+     "url": "https://comate.baidu.com/pricing",
+     "status": 200,
+     "bytes": 14287,
+     "tokens": 0
+    },
+    {
+     "url": "https://comate.baidu.com/price",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://comate.baidu.com/plans",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    }
+   ],
+   "best": {
+    "url": "https://comate.baidu.com/pricing",
+    "tokens": 0,
+    "excerpt": ""
+   }
   }
  }
 }

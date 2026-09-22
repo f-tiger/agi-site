@@ -1,6 +1,36 @@
 {
   "items": [
     {
+      "name": "Lossless-memory – a personal AI memory that never summarizes",
+      "url": "https://github.com/aru-labs/lossless-memory",
+      "host": "github.com",
+      "src": "https://news.ycombinator.com/item?id=49786419",
+      "points": 59,
+      "comments": 21,
+      "found": "2026-09-22",
+      "status": "candidate"
+    },
+    {
+      "name": "Mini-AGI – Dynamic continual learning model trained on 8GB VRAM",
+      "url": "https://github.com/volotat/mini-AGI/",
+      "host": "github.com",
+      "src": "https://news.ycombinator.com/item?id=49783133",
+      "points": 257,
+      "comments": 57,
+      "found": "2026-09-22",
+      "status": "candidate"
+    },
+    {
+      "name": "jevals – replacing LLM judges with typed Jev decisions",
+      "url": "https://github.com/openlayer-ai/jevals",
+      "host": "github.com",
+      "src": "https://news.ycombinator.com/item?id=49780849",
+      "points": 42,
+      "comments": 1,
+      "found": "2026-09-22",
+      "status": "candidate"
+    },
+    {
       "name": "CUA-S1 – A System One Model for Computer Use",
       "url": "https://github.com/trycua/cua",
       "host": "github.com",
@@ -381,5 +411,5 @@
       "status": "candidate"
     }
   ],
-  "updated": "2026-09-21"
+  "updated": "2026-09-22"
 }
