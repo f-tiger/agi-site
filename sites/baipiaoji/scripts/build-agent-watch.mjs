@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// Directory entrypoints are emitted for Cloudflare Pages canonical routes.
 import {readFileSync,writeFileSync,existsSync,mkdirSync} from 'node:fs';
 import {join} from 'node:path';
 const root=new URL('..',import.meta.url).pathname;
