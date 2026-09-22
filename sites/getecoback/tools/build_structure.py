@@ -2606,7 +2606,7 @@ def quickpick_box(device, slug, en=False):
 # line for line from /guide/btu-rechner.html, and the two inputs left out here are
 # fixed at that calculator's own defaults (standard ceiling, two people, no open
 # kitchen), so the homepage and the full calculator never disagree.
-HOME_TOOL = '''<!--EB_HOMETOOL--><section style="background:#fff;border-bottom:1px solid #e4ebf0;">
+HOME_TOOL = '''<!--EB_HOMETOOL--><section id="eb-hometool" style="background:#fff;border-bottom:1px solid #e4ebf0;">
 <div style="max-width:960px;margin:0 auto;padding:26px 20px;">
 <div style="background:#f7fafc;border:1px solid #cfe0ea;border-radius:14px;padding:20px 22px;">
 <strong style="font-size:19px;display:block;margin-bottom:3px;">Welche Kühlleistung braucht dein Raum?</strong>
@@ -2660,6 +2660,9 @@ function calc(){
     '<p id="eb-ht-sub-msg" style="margin:7px 0 0;font-size:13px;"></p></div>'+
     '<p style="margin:10px 0 0;font-size:12px;color:#5b6b78;">Richtwert nach 340 BTU/m². Modelle nicht selbst getestet — Auswahl nach öffentlichen Tests, Links sind Affiliate-Links.</p>';
   r.style.display="block";
+  // Same as the guide sizer: the result button names its surface (2026-09-22).
+  var az=r.querySelector('a[rel~="sponsored"]');
+  if(az)az.addEventListener("click",function(){if(window.gtag)gtag("event","affiliate_click",{source:"home-tool",link_url:az.href});});
   var link=location.origin+"/?qm="+qm+"&sun="+sun;
   var pl=document.getElementById("eb-ht-perma");
   if(pl)pl.innerHTML='Ergebnis zum Wiederfinden: <a href="'+link+'" style="color:#0f6ba8;">'+link+'</a>';
@@ -4339,7 +4342,11 @@ def sizer_block(en=False, prefill=20):
     t = SIZER_TXT[en]
     opts = "".join(f'<option value="{v}"{" selected" if v == "1" else ""}>{lbl}</option>'
                    for v, lbl in t["opts"])
-    full = "/en/guide/how-many-btu-do-i-need.html" if en else "/guide/btu-rechner.html"
+    # The "add ceiling, people, kitchen" button must land on the page that has
+    # those inputs. Until 2026-09-22 the EN sizer sent readers to
+    # how-many-btu-do-i-need, an explainer with no calculator at all; the EN
+    # page with the five inputs is btu-calculator (its DE twin is btu-rechner).
+    full = "/en/guide/btu-calculator.html" if en else "/guide/btu-rechner.html"
     loc = "en-GB" if en else "de-DE"
     b0, b1, b2, b3 = [x[1] for x in t["bands"]]
     # "ca." is German; the EN panel had been printing it since the sizer shipped.
@@ -4348,7 +4355,12 @@ def sizer_block(en=False, prefill=20):
     BIGCTA_HTML = (f'<a href="{_bc[0]}" style="background:#0f6ba8;color:#fff;font-weight:800;'
                    f'padding:9px 15px;border-radius:8px;text-decoration:none;font-size:13.5px;">'
                    f'{_bc[1]}</a>') if _bc else ""
-    return ('<!--EB_SIZER--><section style="max-width:1000px;margin:18px auto 0;padding:0 20px;">'
+    # id="eb-sizer": the tracking layer names the click surface by ancestor, and
+    # until 2026-09-22 the result band's Amazon button was indistinguishable from
+    # an in-text link ("body"). 21 sizer sessions in 56 days had zero affiliate
+    # clicks on the same page the same day; from now on that reads as
+    # affiliate_click{source:"sizer"} = 0 instead of having to be inferred.
+    return ('<!--EB_SIZER--><section id="eb-sizer" style="max-width:1000px;margin:18px auto 0;padding:0 20px;">'
             '<div style="background:#f7fafc;border:1px solid #cfe0ea;border-radius:12px;padding:16px 18px;">'
             f'<strong style="font-size:16.5px;display:block;margin-bottom:2px;">{t["h"]}</strong>'
             f'<p style="margin:0 0 12px;color:#5b6b78;font-size:13.5px;">{t["sub"]}</p>'
@@ -4428,6 +4440,16 @@ def sizer_block(en=False, prefill=20):
             '+\'<p style="margin:9px 0 0;font-size:11.5px;color:#5b6b78;">\'+' + repr(t["note"]) + '+\'</p>\''
             '+\'<p style="margin:5px 0 0;font-size:11.5px;color:#5b6b78;">\'+' + repr(t["mcp"]) + '+\'</p>\';'
             'r.style.display="block";'
+            # The result's Amazon button names its own click surface, the way the
+            # toppick strip does (the tracking layer's fallback stands down for
+            # 500 ms after any reported affiliate_click, so this is one row, not
+            # two). Before 2026-09-22 this click fell through to "body" and the
+            # calc→click funnel could only be inferred from timestamps: 21 sizer
+            # sessions in 56 days, zero clicks on the same page the same day.
+            # Done here rather than in the tracking layer so the change touches
+            # the 65 sizer pages, not every page on the site.
+            'var az=r.querySelector(\'a[rel~="sponsored"]\');'
+            'if(az)az.addEventListener("click",function(){if(window.gtag)gtag("event","affiliate_click",{source:"sizer",link_url:az.href});});'
             # Telemetry only for a calculation the reader asked for. The block
             # renders one on load so the answer is simply there, and counting
             # that as a "tool use" would turn every page view into a fake one.
@@ -4451,6 +4473,15 @@ def sizer_block(en=False, prefill=20):
 # a second one competes for the same attention instead of adding an answer.
 SIZER_SKIP = {"btu-rechner", "btu-calculator", "wie-viel-btu-fuer-wie-viel-qm"}
 
+# Pages that get the sizer although they are in SKIP_MODELS. SKIP_MODELS keeps
+# product cards off explainer pages, and the sizer inherited that. But the BTU
+# explainer is the site's largest search entry for the BTU question (56 days to
+# 2026-09-22: 25 human views, 20 of them from search — more than the calculator
+# page itself gets), and it answered "what does BTU mean" without ever letting
+# the reader compute their own number. The one tool on this site people use is
+# the one that sits on the page where the question is asked.
+SIZER_FORCE = {"was-bedeutet-btu"}
+
 
 def inject_sizer(html, slug, en=False):
     """Idempotently put the room-sizing tool right above the model grid on
@@ -4459,8 +4490,9 @@ def inject_sizer(html, slug, en=False):
     # the seal/hose tools are injected later in the same pass, so a marker test
     # would answer differently on the first and second run.
     own_tool = (SEALFIT_PAGES_EN | HOSEFIT_PAGES_EN) if en else (SEALFIT_PAGES_DE | HOSEFIT_PAGES_DE)
-    eligible = (device_of(slug) == "ac" and slug not in SKIP_MODELS and slug not in SIZER_SKIP
-                and slug not in CONTEXT_MODELS and slug not in own_tool)
+    eligible = slug in SIZER_FORCE or (
+        device_of(slug) == "ac" and slug not in SKIP_MODELS and slug not in SIZER_SKIP
+        and slug not in CONTEXT_MODELS and slug not in own_tool)
     if not eligible:
         return re.sub(r'<!--EB_SIZER-->.*?<!--/EB_SIZER-->\n?', '', html, flags=re.S)
     m = re.search(r'-(\d{1,3})-qm$', slug)

@@ -419,6 +419,14 @@ jobs:
           check "https://getecoback.com/tools.html" "/rechner.html"
           check "https://getecoback.com/pro-werkzeuge.html" 'id="eCost" type="number" value="6800" min="100" step="100"'
           check "https://getecoback.com/js/country-ui.js" "solution_calc"
+          # BTU sizer round (2026-09-22): the explainer that gets the BTU search
+          # traffic carries the sizer; the EN sizer's "full calculator" button
+          # lands on the page that has the inputs; both calculators' result
+          # buttons are named surfaces in the tracking layer.
+          check "https://getecoback.com/guide/was-bedeutet-btu.html" 'id="eb-sizer"'
+          check "https://getecoback.com/en/guide/portable-ac-leaking-water.html" '/en/guide/btu-calculator.html'
+          check "https://getecoback.com/guide/klimaanlage-25-qm.html" 'source:"sizer"'
+          check "https://getecoback.com/" 'source:"home-tool"'
           # The humidifier page must never carry the dehumidifier shelf (the
           # opposite appliance), and no storage page may carry the vetoed brand.
           body=$(curl -sL --max-time 20 "https://getecoback.com/guide/luftbefeuchter-weisser-staub.html" || true)

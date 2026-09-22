@@ -1435,6 +1435,17 @@
    "lose": "读者不从枢纽找工具、只在指南里顺手用 → 枢纽只维护闸门不再投入;结论并入 fleet-tool-use-1014(新站三件套里的「工具」降为可选)",
    "source": "sites/getecoback/docs/tools-audit-2026-09-22.md;本轮修复 = 枢纽从文件系统生成(14 张漏掉的工具页补齐)+ 7 个无埋点工具面加事件 + pro-werkzeuge 能源工具从「永远算不出」修好 + 国家计算器表头 undefined 与 390px 溢出修好 + es/fr/it 三页补 page_view",
    "status": "open"
+  },
+  {
+   "id": "eco-btu-sizer-1020",
+   "site": "getecoback",
+   "due": "2026-10-20",
+   "metric": "① /guide/was-bedeutet-btu.html 的 btu_calc 会话数(按 page|day|country 去重,真人,剔 CI)28d;② 全站 affiliate_click{source:\"sizer\"} 28d;③ 对照:64 张原载体页的会话/100 pv(t0 DE 7,5 · EN 1,7 · 合计 4,9)。t0(2026-09-22):① 0(56d 该页 25 pv、20 来自搜索、无 sizer)· ② 0(56d 21 次会话,同页同日联盟点击 0)· 季节:btu klimaanlage 5 年峰值 6 月,冬季≈9 月的 0,24",
+   "threshold": "① ≥3 会话(t0=0,该页此前没有工具;28d 约 12 pv,3 会话≈25 %,介于 btu-rechner 的 50 % 与载体页的 5 % 之间)且 ② ≥1",
+   "win": "BTU 解释页读者会用工具 → 保留;把「问题在哪页,工具放哪页」推到 EN 解释页与其它 SKIP_MODELS 里的信息型制冷页;6 月旺季再读一次 sizer 的会话/100 pv",
+   "lose": "① = 0 → 解释页读者只读不算,从 SIZER_FORCE 移除(不留死块);② 仍为 0 → 结果条的 Amazon 按钮是死 CTA,把结果条简化为答案 + 站内链接,别再往上加钩子;窗口内该页真人 pv <8 → insufficient,顺延 2027-06-20(制冷季)",
+   "source": "sites/getecoback/docs/btu-calc-analysis-2026-09-22.md",
+   "status": "open"
   }
  ]
 }
