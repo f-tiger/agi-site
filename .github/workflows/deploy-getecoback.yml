@@ -847,7 +847,8 @@ jobs:
           git diff --name-only "$BEFORE" "${{ github.sha }}" -- 'site/*.html' 'site/**/*.html' \
             | sed 's|^sites/getecoback/||' | sort -u > /tmp/authored.txt
           # tracked files the injectors rewrote in this run (never submitted, only reported)
-          git status --porcelain site | awk '$1=="M" || $1=="MM" {print $NF}' | grep '\.html$' | sort -u > /tmp/churn.txt || true
+          git status --porcelain site | awk '$1=="M" || $1=="MM" {print $NF}' | grep '\.html$' \
+            | sed 's|^sites/getecoback/||' | sort -u > /tmp/churn.txt || true
           EVENT="${{ github.event_name }}" python3 - <<'PY'
           import json, os, re
           BASE = 'https://getecoback.com'
@@ -860,6 +861,8 @@ jobs:
               return dict(re.findall(r'<loc>([^<]+)</loc>\s*(?:<lastmod>([^<]*)</lastmod>)?', xml))
           def url_of(p):
               # p is like site/guide/x.html; prefer the page's own canonical
+              if p.startswith('sites/getecoback/'):
+                  p = p[len('sites/getecoback/'):]   # porcelain paths are repo-relative
               try:
                   m = CANON.search(open(p, encoding='utf-8').read())
                   if m:
@@ -894,6 +897,9 @@ jobs:
           if churn:
               print(f'::warning::{len(churn)} page(s) were rewritten by the injectors but not submitted (their content did not change in this push): '
                     + ', '.join(churn[:12]) + (' …' if len(churn) > 12 else ''))
+              print('injector churn, full list (a file here means repo state != deploy state; commit the injected output or fix the injector):')
+              for u in churn:
+                  print('  ' + u)
           print(f'authored={len(authored)} new={len(new)} churn={len(churn)} submit={len(submit)}')
           for u in submit:
               print('  ' + u)
