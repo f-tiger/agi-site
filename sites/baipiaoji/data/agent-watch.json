@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "checked": "2026-09-22",
+  "policy": {
+    "scope": "Publicly discoverable AI agents, MCP servers and agent platforms",
+    "verification": "A listing is published only when an official homepage, repository or protocol page is attached; discovery signals are never treated as product claims.",
+    "statuses": ["new", "verified", "updated", "stale", "retired"],
+    "sources": [
+      {"id":"github-releases","name":"GitHub public releases and repositories","url":"https://github.com/search?q=agent+mcp&type=repositories"},
+      {"id":"mcp-registry","name":"Official MCP registry discovery","url":"https://registry.modelcontextprotocol.io/"},
+      {"id":"smithery","name":"Smithery MCP directory","url":"https://smithery.ai/"},
+      {"id":"glama","name":"Glama MCP directory","url":"https://glama.ai/mcp"}
+    ]
+  },
+  "agents": [
+    {"slug":"tradecheck-mcp","name":"TradeCheck MCP","category":"trade","description":"Local invoice and purchase-order review for importer and purchasing teams; produces an unsent supplier clarification.","source_url":"https://rfqdesk.agiscorecard.com/agent","repo_url":"https://github.com/f-tiger/agi-site/tree/main/agents/tradecheck-mcp","first_seen":"2026-09-21","last_verified":"2026-09-22","status":"verified","transport":"stdio MCP","capabilities":["invoice review","PO matching","supplier clarification"],"pricing_note":"Free beta package; no hosted payment agent","evidence_level":"first-party repository and browser workbench"},
+    {"slug":"web3-studio","name":"Web3 Studio","category":"web3","description":"Review-first workbenches for stablecoin reconciliation, protocol evidence and token call decoding.","source_url":"https://web3.agiscorecard.com/agents.html","repo_url":"https://github.com/f-tiger/agi-site/tree/main/sites/web3-studio","first_seen":"2026-09-21","last_verified":"2026-09-22","status":"updated","transport":"Web UI and MCP endpoints","capabilities":["stablecoin reconciliation","protocol evidence","token call review"],"pricing_note":"Free beta; no wallet custody or automatic trading","evidence_level":"first-party site and repository"},
+    {"slug":"flowise","name":"Flowise","category":"agent","description":"Open-source visual builder for LLM workflows, tools and retrieval applications.","source_url":"https://flowiseai.com/","repo_url":"https://github.com/FlowiseAI/Flowise","first_seen":"2026-09-22","last_verified":"2026-09-22","status":"new","transport":"Web UI and self-hosted APIs","capabilities":["visual workflows","RAG","tool calling"],"pricing_note":"Open-source self-hosting available; hosted plans vary","evidence_level":"official homepage and repository"},
+    {"slug":"langflow","name":"Langflow","category":"agent","description":"Visual workflow builder for composing models, prompts, retrieval and tools.","source_url":"https://www.langflow.org/","repo_url":"https://github.com/langflow-ai/langflow","first_seen":"2026-09-22","last_verified":"2026-09-22","status":"new","transport":"Web UI and APIs","capabilities":["visual workflows","RAG","components"],"pricing_note":"Open-source self-hosting available; hosted plans vary","evidence_level":"official homepage and repository"},
+    {"slug":"activepieces","name":"Activepieces","category":"automation","description":"Open-source automation platform with AI steps and integrations for repeatable workflows.","source_url":"https://www.activepieces.com/","repo_url":"https://github.com/activepieces/activepieces","first_seen":"2026-09-22","last_verified":"2026-09-22","status":"new","transport":"Web UI and APIs","capabilities":["automation","AI steps","integrations"],"pricing_note":"Open-source self-hosting available; hosted plans vary","evidence_level":"official homepage and repository"},
+    {"slug":"n8n","name":"n8n","category":"automation","description":"Workflow automation platform with community nodes, credentials and AI workflow building blocks.","source_url":"https://n8n.io/","repo_url":"https://github.com/n8n-io/n8n","first_seen":"2026-09-22","last_verified":"2026-09-22","status":"updated","transport":"Web UI and APIs","capabilities":["automation","AI workflows","integrations"],"pricing_note":"Self-hosted and hosted offerings have different collaboration limits","evidence_level":"official homepage and repository"}
+  ]
+}
