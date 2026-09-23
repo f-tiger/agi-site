@@ -1,8 +1,8 @@
 {
- "generated": "2026-09-22",
+ "generated": "2026-09-23",
  "source": "https://www.federalregister.gov/developers/documentation/api/v1 (official Federal Register API, keyless)",
  "window_days": 120,
- "since": "2026-05-25",
+ "since": "2026-05-26",
  "queries": [
   "section 301",
   "section 232",
@@ -19,8 +19,39 @@
  "out_of_scope": "Case-specific trade-remedy paperwork is deliberately excluded: Commerce/ITA antidumping and countervailing notices, International Trade Commission investigation and scheduling notices, and Foreign-Trade Zones Board notices. They run to dozens a week and bind one product in one case; this radar is for the rules that apply across shipments. Check the ITC and ITA dockets directly if your product is under a case.",
  "failed_queries": [],
  "note": "Documents whose full text matches an import-duty query in the window, newest first. Titles and abstracts are the Federal Register's own words, trimmed but never rewritten. A match means the phrase appears in the document, not that the document affects any particular shipment. matched_in says whether the phrase surfaced in the title/abstract or only deeper in the full text — the latter often means the document is about something else.",
- "count": 25,
+ "count": 27,
  "changes": [
+  {
+   "document_number": "2026-19414",
+   "date": "2026-09-23",
+   "type": "Notice",
+   "title": "Electronic Export Manifest for Truck Cargo Test",
+   "abstract": "This document announces that U.S. Customs and Border Protection (CBP) will conduct an Automated Commercial Environment (ACE) Electronic Export Manifest (EEM) for Truck Cargo Test. The ACE EEM for Truck Cargo Test is a voluntary test in which truck export participants agree to the submission of certain limited export…",
+   "agencies": [
+    "Homeland Security Department",
+    "U.S. Customs and Border Protection"
+   ],
+   "url": "https://www.federalregister.gov/documents/2026/09/23/2026-19414/electronic-export-manifest-for-truck-cargo-test",
+   "matched": [
+    "harmonized tariff schedule"
+   ],
+   "matched_in": "full_text_only"
+  },
+  {
+   "document_number": "2026-19399",
+   "date": "2026-09-23",
+   "type": "Notice",
+   "title": "Fiscal Year 2027 Tariff-Rate Quota Allocations for Raw Cane Sugar",
+   "abstract": "The Office of the United States Trade Representative is providing notice of allocations of the Fiscal Year (FY) 2027 (October 1, 2026 through September 30, 2027) in-quota quantities of the tariff- rate quota (TRQ) for imported raw cane sugar.",
+   "agencies": [
+    "Trade Representative, Office of United States"
+   ],
+   "url": "https://www.federalregister.gov/documents/2026/09/23/2026-19399/fiscal-year-2027-tariff-rate-quota-allocations-for-raw-cane-sugar",
+   "matched": [
+    "harmonized tariff schedule"
+   ],
+   "matched_in": "full_text_only"
+  },
   {
    "document_number": "2026-19336",
    "date": "2026-09-21",

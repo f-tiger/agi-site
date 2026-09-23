@@ -1,5 +1,5 @@
 {
- "fetched": "2026-09-22",
+ "fetched": "2026-09-23",
  "seeds": {
   "electric spin scrubber": {
    "auto": [
@@ -810,40 +810,86 @@
   "balkonkraftwerk speicher": {
    "rising": [
     {
-     "q": "balkonkraftwerk mit speicher 800w",
-     "v": 525850
-    },
-    {
      "q": "aldi balkonkraftwerk mit speicher",
-     "v": 272750
+     "v": 622100
     },
     {
-     "q": "speicher für balkonkraftwerk nachrüsten",
-     "v": 25550
-    },
-    {
-     "q": "zendure balkonkraftwerk mit speicher",
-     "v": 12100
-    },
-    {
-     "q": "anker speicher für balkonkraftwerk",
-     "v": 180
-    },
-    {
-     "q": "anker balkonkraftwerk mit speicher",
-     "v": 90
-    },
-    {
-     "q": "balkonkraftwerk mit speicher 2000w",
-     "v": 90
+     "q": "balkonkraftwerk mit speicher 800w",
+     "v": 476400
     },
     {
      "q": "balkonkraftwerk mit speicher testsieger",
-     "v": 40
+     "v": 362100
+    },
+    {
+     "q": "zendure balkonkraftwerk mit speicher",
+     "v": 34650
+    },
+    {
+     "q": "speicher für balkonkraftwerk nachrüsten",
+     "v": 23450
+    },
+    {
+     "q": "speicher für balkonkraftwerk",
+     "v": 50
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-09-22"
+   "fetched": "2026-09-23"
+  },
+  "energy monitoring smart plug": {
+   "auto": [
+    "energy monitoring smart plug",
+    "energy monitoring smart plug home assistant",
+    "energy monitoring smart plug uk",
+    "energy monitoring smart plug matter",
+    "energy monitoring smart plug nearby",
+    "energy monitoring smart plug reddit",
+    "energy monitoring smart plug homekit",
+    "energy monitoring smart plug zigbee",
+    "energy monitoring smart plug australia",
+    "energy monitor smart plug smartthings"
+   ],
+   "rising": [
+    {
+     "q": "energy monitoring smart plug home assistant",
+     "v": "new"
+    },
+    {
+     "q": "energy monitoring smart plug uk",
+     "v": "new"
+    },
+    {
+     "q": "energy monitoring smart plug matter",
+     "v": "new"
+    },
+    {
+     "q": "energy monitoring smart plug nearby",
+     "v": "new"
+    },
+    {
+     "q": "energy monitoring smart plug reddit",
+     "v": "new"
+    },
+    {
+     "q": "energy monitoring smart plug homekit",
+     "v": "new"
+    },
+    {
+     "q": "energy monitoring smart plug zigbee",
+     "v": "new"
+    },
+    {
+     "q": "energy monitoring smart plug australia",
+     "v": "new"
+    },
+    {
+     "q": "energy monitor smart plug smartthings",
+     "v": "new"
+    }
+   ],
+   "source": "autocomplete-diff",
+   "fetched": "2026-09-23"
   }
  }
 }
