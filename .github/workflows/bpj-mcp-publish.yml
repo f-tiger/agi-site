@@ -53,10 +53,23 @@ jobs:
             console.log("server.json ok:", s.name, s.version, s.description.length + " chars");
           '
 
+      # 幂等（2026-09-23 首跑就撞上）：本 workflow 的触发路径含它自己的文件，改 workflow 不改版本也会跑，
+      # 而注册表对重复版本回 400「cannot publish duplicate version」。已登记同版本 → 跳过发布，只做下面的核验。
+      - name: Is this version already in the registry?
+        id: pre
+        run: |
+          want=$(node -e "console.log(JSON.parse(require('fs').readFileSync('server.json','utf8')).version)")
+          name=$(node -e "console.log(JSON.parse(require('fs').readFileSync('server.json','utf8')).name)")
+          got=$(curl -s -m 20 "https://registry.modelcontextprotocol.io/v0/servers?search=verified-ai-free-tiers&version=latest" \
+            | node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{try{const j=JSON.parse(s);const m=(j.servers||[]).find(r=>r.server&&r.server.name===process.argv[1]&&r._meta&&r._meta["io.modelcontextprotocol.registry/official"]&&r._meta["io.modelcontextprotocol.registry/official"].isLatest);console.log(m?m.server.version:"")}catch(e){console.log("")}})' "$name")
+          if [ "$got" = "$want" ]; then echo "already=true" >> "$GITHUB_OUTPUT"; echo "ℹ️ registry already lists $name $want — nothing to publish"; else echo "already=false" >> "$GITHUB_OUTPUT"; echo "registry has '${got:-none}', will publish $want"; fi
+
       - name: Login via GitHub OIDC
+        if: steps.pre.outputs.already != 'true'
         run: ./mcp-publisher login github-oidc
 
       - name: Publish server.json
+        if: steps.pre.outputs.already != 'true'
         run: ./mcp-publisher publish
 
       # 发布后断言注册表真的反映了这个版本（能红）：查名字、要求 isLatest 且 version == server.json。
