@@ -1,26 +1,26 @@
 {
- "checked": "2026-09-22",
+ "checked": "2026-09-23",
  "pages": 206,
  "control_by_lang": {
-  "de": 0.0015,
+  "de": 0.0014,
   "en": 0.0023,
   "it": 0.0
  },
  "note": "剔除全站样板后的兄弟页 8-gram Jaccard 相似度。对照组是随机的不同主题两页；兄弟页远高于对照组 = Google 眼中的门页形态。本文件只报数，不改内容。",
  "shingle_n": 8,
  "boilerplate_shingles": 2265,
- "control_similarity": 0.0015,
+ "control_similarity": 0.0014,
  "threshold_pct": 40.0,
  "families": {
   "heizung-N-qm": {
    "pages": 7,
-   "avg_similarity": 0.1978,
-   "worst_similarity": 0.2145,
+   "avg_similarity": 0.1992,
+   "worst_similarity": 0.2159,
    "worst_pair": [
     "heizung-40-qm",
     "heizung-50-qm"
    ],
-   "median_unique_shingles": 1372,
+   "median_unique_shingles": 1376,
    "lang": "de",
    "pages_in_corpus": 150
   },
@@ -38,13 +38,13 @@
   },
   "luftentfeuchter-N-qm": {
    "pages": 6,
-   "avg_similarity": 0.5213,
-   "worst_similarity": 0.5585,
+   "avg_similarity": 0.5233,
+   "worst_similarity": 0.5605,
    "worst_pair": [
     "luftentfeuchter-10-qm",
     "luftentfeuchter-20-qm"
    ],
-   "median_unique_shingles": 702,
+   "median_unique_shingles": 706,
    "lang": "de",
    "pages_in_corpus": 150
   },

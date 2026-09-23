@@ -3152,3 +3152,15 @@ IT → deumidificatore(注意它峰在 **7 月**,意大利除湿是夏题)。**�
 - **别做**:美国 sq ft 输入(btu_calc 国家分布 US = 0,且 `eco-us-units-0131` 已在测)、首页工具改成加载即算(只产生假读数)、给 kippfenster / dachfenster / kuehlt-nicht 叠 sizer(候选,等 10-20 读数)、BTU 新页。
 - **通用教训**:①**事件数不是使用数**,任何「随输入变化发事件」的工具都要按会话读;②**工具放在问题被问出的那张页上**,而不是放在「工具页」上——SKIP 名单在挡货架的同时可能顺手挡掉了唯一有人用的工具,加排除规则时想清楚它连坐了什么;③**改埋点口径优先做在组件里**,全站层的一行改动 = 全站 HTML 变化 = 发现面噪音。
 
+## 联盟点击深度分析:泄漏已全部堵上,赢的只有「先测再换」,EX105 仍卡在 owner 的 3 分钟(2026-09-23,owner:「eco联盟点击的深度分析优化」;全文 `docs/affiliate-clicks-analysis-2026-09-23.md`)
+
+- **28 天 79 次点击(真人,剔 CI,08-26→09-23)**:正文手写配件链接 32(41 %)、toppick 24、models 8、other 8、sticky 3。**126 张页都有的货架只贡献 10 %,最大的面是写页时按步骤放进正文的具名配件**(Kippfenster-Panel、XPS-Platte、Alu-Klebeband)。按页型:安装/配件 ~38 %、尺寸梯页 29 %、EN 国家页 11 %、房车 8 %、排障 6 %。DE+AT 84 %。每周 13–20 次,制冷季收尾后稳定。
+- **去向**:EX105 搜索链 14 次(18 %,11 页 6 国)· 窗封/面板/板材搜索 ~22(对配件这是对的)· `/dp/` 10 · 房车 6 · 供暖具名卡 6(Schmidbauer 4、NTH20 1)· **MeacoDry 0**。amazon.de 75、.com 1。**没有送错商城的泄漏。**
+- **三条泄漏都已是历史,今天构建产物里是 0**:无来源点击(56 天 42 → 28 天 0,08-28 埋点层按祖先推导来源)、已核验型号仍走搜索(Comfee / Klarstein / MDDF / PAC N90 的 `s?k=` 今天 0 页)、无 link_url(2 条,均早于修复)。**所以「深度分析」在泄漏一栏的结论是没有新东西可修,别再去找。**
+- **赢的一条,补登并提前结算**:`eco-growatt-diagnosis-0925`(08-28 预登记,此前只写在本手册、没进台账)读到 **31 pv / 3 点击(1/29 → 3/31)** —— 计量插座 1(经 sticky 栏)、Growatt 本机 2。won。**win 动作本轮执行**:09-17/18 建的三张排障页一直继承品类默认货架,给「机器出问题」的读者摆两台新机器(kein-wasser / stinkt 摆 MeacoDry 20L+25L,schaltet-sich-aus 摆两块红外板 + 两台暖风机)——正是 growatt 页 08-28 替掉的形态。改为诊断优先,**每句卡片文案都取自页面自己的正文**(61 g / 65 % / 8,7 A / 2,6 A / Lamellenrichtung / Schwimmerabschaltung):湿度计 → 吸附式 → 排水管;计量插座 → Schmidbauer 600 W(**只留一张换机卡**:初稿的「1.000 W 恒温暖风机」删了,读者的机器几乎都有小档,那是在卖他已有的东西);Lamellenbürste → 排水管。**顺序即移动端 CTA**:sticky 栏取页面第一条 Amazon 链接。读数并入 `eco-dach-troubleshoot-1116`,不另开线。
+- **12 条线的提前读数已写进台账 `reading_2026-09-23`**(到期日再结算):09-25 kuehlt-nicht pv 0 → insufficient · 具名冬季卡 5(介于 4–8)→ insufficient 顺延 10-25 · 房车 lose · 租客冬季 lose · us-market 1 → lose 撤桥 · 09-28 /dp/ **14,5 %**(阈值 15 %)· feuchte_now 渲染 22 → insufficient · split 1 → lose · 10-03 rising_guide 0。
+- **口径纪律(全舰队适用)**:pv = 0 的页读出 0 点击,结算写 **insufficient 不写 lose** —— 「没人来」与「没人买」点击数一样,处方相反。
+- **owner 一件事,用今天的数字**:EX105 的 ASIN。28 天 14 次点击、08-31 以来 10/62 落搜索页;`/dp/` 14,5 % 卡在 09-28 线的 15 % 下面,**这一条核验通过就是 31 %**。B0BZWP26GD 不是(落到 AP98)。
+- **过程里自己踩的一个坑**:只跑半条注入链(build_structure → build_hreflang)再比对,会让 96 张页的 markdown 链接与 hreflang 换位——`build_agent_md` 在链尾把它放回去。**任何「二次运行是否 byte-stable」的验证必须跑完整链,按部署顺序。** 部署后断言也要先对构建产物 grep 一次:第一版把导语里的小写 `erst messen` 写成了大写。
+- **别做**:加钩子、动其它货架顺序、「锐化」泛搜索 `luftentfeuchter`(沙箱看不到 amazon.de 结果,改坏比不改糟)、统一配件搜索词(只影响归因,是翻炒)、动退出弹层(28 天 165 展示 / 8 点击 / 76 关闭,拆留都缺证据)、为 GB/AU 各 1 次 .de 点击写切换。
+

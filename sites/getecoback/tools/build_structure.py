@@ -1398,6 +1398,30 @@ CONTEXT_MODELS = {
    ("Verdunster mit Hygrostat", "Staubfrei gebaut", "Gibt Dampf ab, keinen Nebel — der Kalk bleibt in der Matte. Matten sind Verschleißteil.", "Preis vor Ort prüfen", "luftbefeuchter+verdunster+hygrostat", "dehum"),
    ("Hygrometer (innen, Min/Max)", "Erst messen", "Über 50 % im Altbau ist schon die Zone, in der die kalte Wand zum Problem wird — ein Befeuchter ohne Zielwert läuft blind.", "ab 10 €", "hygrometer+innen+min+max", "dehum"),
  ],
+ # Diagnosis-first shelves for the three troubleshooting pages of 2026-09-17/18
+ # (affiliate-click audit 2026-09-23). Until today these pages inherited the
+ # dehumidifier/heater default and offered a reader whose unit misbehaves two
+ # new units — the exact pattern growatt-noah-2000-probleme replaced on
+ # 2026-08-28. That page's pre-registered line (28 d ≥2 clicks) read 3 clicks on
+ # 31 views by 09-23, one of them the meter via the sticky bar, which follows
+ # the page's FIRST Amazon link — so the order here is the mobile CTA too.
+ # Every sentence below restates the page's own text; nothing is added.
+ "luftentfeuchter-zieht-kein-wasser": [
+   ("Hygrometer (innen, Min/Max)", "Erst messen", "Ein echter Defekt setzt über 65 % gemessene Luftfeuchte voraus — im 40-m³-Raum bei 18 °C stecken zwischen 60 % und 50 % nur 61 Gramm Wasser.", "ab 10 €", "hygrometer+innen+min+max", "dehum"),
+   ("Adsorptions-Luftentfeuchter", "Für den kalten Raum", "Ursache 1 auf dieser Seite: Der Raum ist für ein Kompressorgerät zu kalt — für kalte Räume ist die andere Bauart gemacht.", "Preis vor Ort prüfen", "adsorptions+luftentfeuchter", "dehum"),
+   ("Ablaufschlauch (Luftentfeuchter)", "Ursache 5 ausschließen", "Liegt der Schlauch zu hoch oder hat einen Knick, greift die Schwimmerabschaltung — ein kurzer Schlauch mit Gefälle, nicht ein neues Gerät.", "Preis vor Ort prüfen", "luftentfeuchter+ablaufschlauch", "dehum"),
+ ],
+ "heizluefter-schaltet-sich-aus": [
+   ("Energiemessgerät (Steckdose)", "Erst messen", "Zeigt die echte Aufnahme: 2.000 W sind 8,7 A — mit Wasserkocher oder zweitem Heizlüfter ist der 16-A-Kreis voll. Die Rechnung von oben, am eigenen Gerät.", "€ · ca. 10–20 €", "energiekostenmessger%C3%A4t+steckdose", "battery"),
+   # Only ONE replacement card. The reader's heater almost always has a small
+   # stage already (the page's table: 1.000–1.200 W = 4,3–5,2 A), so a second
+   # "buy a 1,000 W heater" card would sell them what they own.
+   ("Schmidbauer Hybrid Pro 600 W", "Wenn tauschen statt reparieren", "600 W sind 2,6 A — bleibt auch neben Wasserkocher oder Staubsauger unter 16 A. Nicht selbst getestet, Preis vor Ort prüfen.", "Preis vor Ort prüfen", "Schmidbauer+Hybrid+Pro+600+W+Infrarotheizung", "heater"),
+ ],
+ "luftentfeuchter-stinkt": [
+   ("Weiche Lamellenbürste", "Für das Register", "Losen Staub in Lamellenrichtung abnehmen, ohne die dünnen Bleche zu verbiegen — die Quelle, wenn es beim Einschalten riecht.", "Preis vor Ort prüfen", "lamellenb%C3%BCrste+weich", "dehum"),
+   ("Ablaufschlauch (Luftentfeuchter)", "Dauerhaft trocken", "Fast jedes Kompressorgerät hat den Anschluss — dann steht kein Wasser mehr im Gerät, und der Tank-Geruch hat keine Grundlage.", "Preis vor Ort prüfen", "luftentfeuchter+ablaufschlauch", "dehum"),
+ ],
  # The balcony-PV mounting page: its products are the mounts themselves, not
  # the battery family the storage default would show. Category cards matching
  # the page's three mounting routes.
@@ -1485,6 +1509,12 @@ CONTEXT_SUB = {
                                    "Nicht selbst getestet. Symbolbilder."),
  "luftbefeuchter-weisser-staub": ("Die drei Abhilfen von oben, in derselben Reihenfolge — anderes Wasser, andere Bauart, erst messen. "
                                   "Nicht selbst getestet. Symbolbilder."),
+ "luftentfeuchter-zieht-kein-wasser": ("Erst messen, dann die Bauart, dann der Ablauf — ein neues Gerät steht hier absichtlich "
+                                       "nicht vorn. Nicht selbst getestet. Symbolbilder."),
+ "heizluefter-schaltet-sich-aus": ("In der Reihenfolge der Seite: erst messen, dann die kleine Stufe am eigenen Gerät, erst "
+                                   "dann ein anderes Gerät. Nicht selbst getestet. Symbolbilder."),
+ "luftentfeuchter-stinkt": ("Reinigen statt ersetzen: Bürste fürs Register, Ablaufschlauch gegen stehendes Wasser — was nie "
+                            "in den Tank gehört, steht oben. Nicht selbst getestet. Symbolbilder."),
  "balkonkraftwerk-ohne-bohren": ("Nach Balkontyp sortiert — alle drei kommen ohne Bohrung aus. Windlast-Freigabe "
                                  "des Herstellers beachten. Nicht selbst montiert. Symbolbilder."),
  "fenster-beschlagen-innen": ("Erst die Luftfeuchte messen, dann senken — beschlagene Scheiben sind ein "

@@ -1,6 +1,6 @@
 {
  "note": "舰队赌注台账:每条预登记判定线一行;status open→won/lost/insufficient/withdrawn 时必须写 settled(日期)与 reading(读数)。tools/fleet/check_bets.py 在 heartbeat 里断言:到期 3 天内提醒,过期 >7 天未结算即红。新增判定线不进这里 = heartbeat 看不见 = 等于没预登记。",
- "updated": "2026-09-22",
+ "updated": "2026-09-23",
  "bets": [
   {
    "id": "fleet-ai-access-0916",
@@ -90,7 +90,8 @@
    "win": "诊断优先模式可移植",
    "lose": "问题页一律不再投商品面",
    "source": "sites/getecoback/CLAUDE.md:539",
-   "status": "open"
+   "status": "open",
+   "reading_2026-09-23": "08-28→09-23 该页真人 pv 0、affiliate_click 0。窗口内没有读者,09-25 应记 insufficient 而非 lose(0 点击是没人来,不是没人买);对照 growatt 同型页 31 pv / 3 点击。"
   },
   {
    "id": "eco-named-model-cards-0925",
@@ -101,7 +102,8 @@
    "win": "具名>泛标签 推广到 purifier/fan",
    "lose": "是流量不是卡片,停止在型号上投入",
    "source": "sites/getecoback/CLAUDE.md:731",
-   "status": "open"
+   "status": "open",
+   "reading_2026-09-23": "08-28→09-23 具名冬季卡点击 5:Schmidbauer ISP T 700 ×2、Hybrid Pro 600 ×2、Midea NTH20 ×1;MeacoDry 20L/25L 0。介于 4 与 8 之间,原文两个分支都不触发 → 09-25 记 insufficient,顺延 10-25(供暖季开场)。"
   },
   {
    "id": "eco-rv-cluster-0925",
@@ -112,7 +114,8 @@
    "win": "补第二页",
    "lose": "停止扩房车簇,不试第三次",
    "source": "sites/getecoback/CLAUDE.md:686",
-   "status": "open"
+   "status": "open",
+   "reading_2026-09-23": "08-28→09-23 该页 pv 1、点击 0、不在 TOP20 → 09-25 结算 lose(房车流量不迁移到潮湿意图)。"
   },
   {
    "id": "eco-tenant-winter-0925",
@@ -123,7 +126,8 @@
    "win": "补第二页",
    "lose": "租客流量不随季节迁移到取暖意图",
    "source": "sites/getecoback/CLAUDE.md:593",
-   "status": "open"
+   "status": "open",
+   "reading_2026-09-23": "08-28→09-23 该页 pv 0、点击 0 → 09-25 结算 lose(与 09-04「快反 6 页全史 0」一致)。"
   },
   {
    "id": "eco-us-market-0925",
@@ -134,7 +138,8 @@
    "win": "北美桥成立,配真实美国型号",
    "lose": "撤块;EN 区就是给 EU-English 读者的",
    "source": "sites/getecoback/CLAUDE.md:368",
-   "status": "open"
+   "status": "open",
+   "reading_2026-09-23": "08-28→09-23 us-market / us-shelf / us-toppick 合计 1(09-07 france 页 → amazon.com Midea Duo)。阈值 ≥5 → 09-25 按原文撤块;货架整块换国籍另有 eco-us-shelf-1015,不连坐。"
   },
   {
    "id": "bpj-tool-gate-0926",
@@ -181,7 +186,8 @@
    "lose": "<5% → 回去重诊断,别重复同一动作",
    "source": "sites/getecoback/CLAUDE.md:1586",
    "status": "open",
-   "reading_20260915": "提前读数(D1 现查,28d,ua_class='human'):55 次 affiliate_click 里 /dp/ 6 次 = 10,9%(t0 ~1%)。已远离 <5% 的判负线但未到 ≥15%;amazon.de 53 / amazon.com 1。09-28 按原口径结算。"
+   "reading_20260915": "提前读数(D1 现查,28d,ua_class='human'):55 次 affiliate_click 里 /dp/ 6 次 = 10,9%(t0 ~1%)。已远离 <5% 的判负线但未到 ≥15%;amazon.de 53 / amazon.com 1。09-28 按原口径结算。",
+   "reading_2026-09-23": "08-31→09-23 /dp/ 9 / 62 带 link_url 的点击 = 14,5 %(t0 ~1 %)。同窗 EX105 搜索链 10 次 = 16 %:它一条就压着这条线,ASIN 仍等 owner 3 分钟核验(自 08-28 起)。"
   },
   {
    "id": "eco-feuchte-now-0928",
@@ -192,7 +198,8 @@
    "win": "取暖簇做冬季版",
    "lose": "渲染够点击 ≤2 → 活数字不驱动购买,撤块",
    "source": "sites/getecoback/CLAUDE.md:1464",
-   "status": "open"
+   "status": "open",
+   "reading_2026-09-23": "08-31→09-23 feuchte_now 渲染 22(阈值 50)、湿度簇点击 5(基线 5)。渲染不够 → 09-28 记 insufficient(不是「点击不够」),顺延 10-28。"
   },
   {
    "id": "eco-split-cluster-0928",
@@ -203,7 +210,8 @@
    "win": "补第二个高客单簇",
    "lose": "≤2 → 该价位在本站受众不成立,停止",
    "source": "sites/getecoback/CLAUDE.md:1512",
-   "status": "open"
+   "status": "open",
+   "reading_2026-09-23": "08-31→09-23 split 簇三页点击 1(基线 4、阈值 6、≤2 判负)→ 09-28 按原文 lose:这个价位在本站受众里不成立。"
   },
   {
    "id": "sr-sourcing-margins-0928",
@@ -258,7 +266,8 @@
    "win": "问题→答案路由推广到热搜命中",
    "lose": "0 → 栏是装饰,拆",
    "source": "sites/getecoback/CLAUDE.md:1384",
-   "status": "open"
+   "status": "open",
+   "reading_2026-09-23": "09-05→09-23 rising_guide 0、首页栏 Amazon chip 来源点击 0(28 天 79 次点击里无 rising 来源)。未到期,不结算。"
   },
   {
    "id": "gridlings-ai-games-hub-1004",
@@ -292,7 +301,8 @@
    "lose": "<30% → 去查而不是删",
    "source": "sites/getecoback/CLAUDE.md:1300",
    "status": "open",
-   "reading_20260915": "提前读数(D1,28d):US 国家 affiliate_click 仅 4 次,其中 amazon.com 1 次 = 25%。样本太小,到期按原口径读,别用这 4 次下结论。"
+   "reading_20260915": "提前读数(D1,28d):US 国家 affiliate_click 仅 4 次,其中 amazon.com 1 次 = 25%。样本太小,到期按原口径读,别用这 4 次下结论。",
+   "reading_2026-09-23": "08-26→09-23 US 国家点击 2:1 amazon.com(us-market)/ 1 amazon.de(italy 页 EX105,属 US_SWAP_NEVER 设计)。n=2 不判。"
   },
   {
    "id": "gridlings-bn-baseline-1005",
@@ -336,7 +346,8 @@
    "win": "按需求重选货架推广到 fan/purifier/shade",
    "lose": "记反面发现,不再重复",
    "source": "sites/getecoback/CLAUDE.md:1061",
-   "status": "open"
+   "status": "open",
+   "reading_2026-09-23": "09-11→09-23 heizlüfter 300 watt 0、MeacoDry 20L/25L 0(dehum 页的点击落在泛搜索 luftentfeuchter ×2 与 keller+ablaufschlauch ×1)。未到期。"
   },
   {
    "id": "fleet-opportunity-engine-1011",
@@ -369,7 +380,8 @@
    "win": "「按国家换货」成立 → 推广到 6 个通用 toppick 页,再评估第二个国家",
    "lose": "us-shelf=0 而美国 pv ≥80 → 先查 /api/geo 是否被调用/隐藏逻辑误伤,不得归因为「美国人不买」;美国 pv <50 → 样本不足,顺延 11-15",
    "source": "sites/getecoback/CLAUDE.md:1040",
-   "status": "open"
+   "status": "open",
+   "reading_2026-09-23": "09-15→09-23 source:us-shelf 0、us-toppick 0;US 国家点击 1(.de)。未到期,n 太小。"
   },
   {
    "id": "fleet-market-board-1019",
@@ -1458,6 +1470,19 @@
    "source": "sites/baipiaoji/CLAUDE.md 第 23 条（2026-09-22）+ docs/distribution-staging/bpj-mcp-directories-2026-09-22.md",
    "status": "open",
    "t0_2026-09-22": "官方注册表：listed=True version=1.13.0 is_latest=True matches=True（bpj-mcp-publish.yml 于 15:38 UTC 自动发布 1.13.0）；第三方目录 found:true = ['glama']，未见 = pulsemcp(200), mcp-so(200), smithery(200), cursor-directory(429)；本站 .well-known 在本轮部署前没有 version 字段（well_known_matches=false 是部署前读数）。③ 未读（下一次会话查 D1）。"
+  },
+  {
+   "id": "eco-growatt-diagnosis-0925",
+   "site": "getecoback",
+   "due": "2026-09-25",
+   "metric": "growatt-noah-2000-probleme 28d affiliate_click(诊断优先货架:能耗计量插座 → WLAN 计量插座 → 换机位;2026-08-28 上线)",
+   "threshold": "≥2 → 「诊断优先」模式成立,移植到其他问题页;0 → 问题页判负普适化(配对线 eco-kuehlt-nicht-0925)",
+   "win": "把「先测再换」的货架顺序移植到其余问题页",
+   "lose": "问题页一律不再投入商品面",
+   "source": "sites/getecoback/CLAUDE.md(2026-08-28 全面优化轮 §唯一的活缺口);台账补登 2026-09-23,与 09-22 goldrush 三条同类",
+   "status": "won",
+   "settled": "2026-09-23",
+   "reading": "08-28→09-23:31 真人 pv / 3 affiliate_click(3 个会话,9,7 %,此前 1/29 = 3,4 %):energiekostenmessgerät ×1(经 sticky 栏——它取页面第一条 Amazon 链接,所以货架顺序就是移动端 CTA)、Growatt NOAH 2000 ×2(正文换机位)。计数不可逆且已过阈值,提前两天结算。win 动作本轮执行:luftentfeuchter-zieht-kein-wasser / heizluefter-schaltet-sich-aus / luftentfeuchter-stinkt 三张 09-17/18 排障页的货架从「两台新机器」改为诊断优先,读数并入 eco-dach-troubleshoot-1116。"
   }
  ]
 }
