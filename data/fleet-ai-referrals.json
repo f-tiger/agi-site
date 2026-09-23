@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-23T16:02:01Z",
+ "generated": "2026-09-23T16:04:05Z",
  "window_days": 28,
  "ok": true,
  "read_via": "endpoints",
@@ -9,12 +9,12 @@
   "note": "hand-measured; agi 20, bpj 33, eco 16, others 0"
  },
  "fleet_ai_ref": 59,
- "fleet_human_pv": 44549,
- "fleet_human_pv_excl_flagged": 3207,
+ "fleet_human_pv": 44656,
+ "fleet_human_pv_excl_flagged": 3220,
  "sites": [
   {
    "site": "agiscorecard",
-   "human_pv": 39365,
+   "human_pv": 39459,
    "ai_ref": 21,
    "by_host": {
     "chatgpt.com": 7,
@@ -28,7 +28,7 @@
   },
   {
    "site": "baipiaoji",
-   "human_pv": 387,
+   "human_pv": 388,
    "ai_ref": 22,
    "by_host": {
     "chatgpt.com": 13,
@@ -39,7 +39,7 @@
   },
   {
    "site": "getecoback",
-   "human_pv": 583,
+   "human_pv": 586,
    "ai_ref": 15,
    "by_host": {
     "chatgpt.com": 12,
@@ -63,21 +63,21 @@
   },
   {
    "site": "gridlings",
-   "human_pv": 838,
+   "human_pv": 839,
    "ai_ref": 0,
    "by_host": {},
    "via": "endpoint"
   },
   {
    "site": "buysomething",
-   "human_pv": 103,
+   "human_pv": 105,
    "ai_ref": 0,
    "by_host": {},
    "via": "endpoint"
   },
   {
    "site": "gamesledger",
-   "human_pv": 527,
+   "human_pv": 533,
    "ai_ref": 1,
    "by_host": {
     "copilot.microsoft.com": 1
