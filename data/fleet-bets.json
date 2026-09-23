@@ -636,7 +636,8 @@
    "win": "继续每日维护",
    "lose": "卡 <2 张 → 只维护清单 + 路径工具,布告板不撤但不再投入",
    "source": "sites/after35/CLAUDE.md:114(v2 补登同节)",
-   "status": "open"
+   "status": "open",
+   "reading_2026-09-23": "after35 ev 表 28 天:真人 page_view 456、外部来源 0、其它事件 0。"
   },
   {
    "id": "after35-reveal-1214",
@@ -653,12 +654,16 @@
    "id": "learn-pv-tools-1015",
    "site": "learn",
    "due": "2026-10-15",
-   "metric": "lev 真人 page_view/28d 且 tool_result(剔 label='__ci')",
+   "metric": "lev 外部来源真人 page_view(ref 非空且不含 agiscorecard)/28d 且 tool_result(剔 label='__ci')",
    "threshold": "pv ≥100 且 tool_result ≥20",
    "win": "继续每日维护 + 加第二批判定页",
    "lose": "<30 pv → 只做月度维护",
    "source": "sites/learn/CLAUDE.md:35",
-   "status": "open"
+   "status": "open",
+   "metric_original": "lev 真人 page_view/28d 且 tool_result(剔 label='__ci')",
+   "revised": "2026-09-23",
+   "revised_reason": "t0 就满足了:2026-09-23 D1 现查,pv 那一半今天已被字面满足(280 ≥ 阈值),而这 280 行 28 天里外部来源 0、任何其它事件 0;其中每天 2 行是舰队 AI 访问探针的浏览器对照请求(worker 不认 __probe,已于同日改为带 ci=1),其余是无来源的单次访问(US/NL/CA/RO/QA/BE)。按舰队 09-16 规矩「能被 t0 满足的线不是赌注」,到期前改判据:pv 只计 ref 非空且不是本站/本舰队域的 page_view,阈值数字不变。原文保留在 *_original。",
+   "reading_2026-09-23": "lev 真人 page_view 280/28d,其中外部来源 0;工具事件 0。"
   },
   {
    "id": "learn-bing-1215",
@@ -675,12 +680,16 @@
    "id": "fanzha-pv-tools-1015",
    "site": "fanzha",
    "due": "2026-10-15",
-   "metric": "fev 真人 page_view/28d 且 tool_result(剔 label='__ci')",
+   "metric": "fev 外部来源真人 page_view(ref 非空且不含 agiscorecard)/28d 且 tool_result(剔 label='__ci')",
    "threshold": "pv ≥100 且 tool_result ≥20",
    "win": "继续每日维护 + 加第二批判定页",
    "lose": "<30 pv → 降为月度维护",
    "source": "sites/fanzha/CLAUDE.md:46",
-   "status": "open"
+   "status": "open",
+   "metric_original": "fev 真人 page_view/28d 且 tool_result(剔 label='__ci')",
+   "revised": "2026-09-23",
+   "revised_reason": "t0 就满足了:2026-09-23 D1 现查,pv 那一半今天已被字面满足(273 ≥ 阈值),而这 273 行 28 天里外部来源 0、任何其它事件 0;其中每天 2 行是舰队 AI 访问探针的浏览器对照请求(worker 不认 __probe,已于同日改为带 ci=1),其余是无来源的单次访问(US/NL/CA/RO/QA/BE)。按舰队 09-16 规矩「能被 t0 满足的线不是赌注」,到期前改判据:pv 只计 ref 非空且不是本站/本舰队域的 page_view,阈值数字不变。原文保留在 *_original。",
+   "reading_2026-09-23": "fev 真人 page_view 273/28d,其中外部来源 0;工具事件 0。"
   },
   {
    "id": "fanzha-bing-1215",
@@ -697,12 +706,16 @@
    "id": "firstjob-pv-tools-1031",
    "site": "firstjob",
    "due": "2026-10-31",
-   "metric": "jev 真人 page_view/28d 且 tool_result+calc_run(剔 label='__ci')",
+   "metric": "jev 外部来源真人 page_view(ref 非空且不含 agiscorecard)/28d 且 tool_result+calc_run(剔 label='__ci')",
    "threshold": "pv ≥150 且 事件 ≥30(秋招窗口,阈值高于其他新站)",
    "win": "继续维护 + 加第二批判定页",
    "lose": "<40 pv → 降为月度维护",
    "source": "sites/firstjob/CLAUDE.md:51",
-   "status": "open"
+   "status": "open",
+   "metric_original": "jev 真人 page_view/28d 且 tool_result+calc_run(剔 label='__ci')",
+   "revised": "2026-09-23",
+   "revised_reason": "t0 就满足了:2026-09-23 D1 现查,pv 那一半今天已被字面满足(245 ≥ 阈值),而这 245 行 28 天里外部来源 0、任何其它事件 0;其中每天 2 行是舰队 AI 访问探针的浏览器对照请求(worker 不认 __probe,已于同日改为带 ci=1),其余是无来源的单次访问(US/NL/CA/RO/QA/BE)。按舰队 09-16 规矩「能被 t0 满足的线不是赌注」,到期前改判据:pv 只计 ref 非空且不是本站/本舰队域的 page_view,阈值数字不变。原文保留在 *_original。",
+   "reading_2026-09-23": "jev 真人 page_view 245/28d,其中外部来源 0;工具事件 0。"
   },
   {
    "id": "firstjob-bing-1215",
@@ -719,12 +732,16 @@
    "id": "codeword-pv-tools-1115",
    "site": "codeword",
    "due": "2026-11-15",
-   "metric": "cev 真人 page_view/28d 且 tool_result+card_print(剔 label='__ci')",
+   "metric": "cev 外部来源真人 page_view(ref 非空且不含 agiscorecard)/28d 且 tool_result+card_print(剔 label='__ci')",
    "threshold": "pv ≥200 且 事件 ≥40(英文池大,阈值高于中文站)",
    "win": "继续维护 + 加第二批判定页",
    "lose": "<50 pv → 降为月度维护",
    "source": "sites/codeword/CLAUDE.md:51",
-   "status": "open"
+   "status": "open",
+   "metric_original": "cev 真人 page_view/28d 且 tool_result+card_print(剔 label='__ci')",
+   "revised": "2026-09-23",
+   "revised_reason": "t0 就满足了:2026-09-23 D1 现查,pv 那一半今天已被字面满足(383 ≥ 阈值),而这 383 行 28 天里外部来源 0、任何其它事件 0;其中每天 2 行是舰队 AI 访问探针的浏览器对照请求(worker 不认 __probe,已于同日改为带 ci=1),其余是无来源的单次访问(US/NL/CA/RO/QA/BE)。按舰队 09-16 规矩「能被 t0 满足的线不是赌注」,到期前改判据:pv 只计 ref 非空且不是本站/本舰队域的 page_view,阈值数字不变。原文保留在 *_original。",
+   "reading_2026-09-23": "cev 真人 page_view 383/28d,其中外部来源 0;工具事件 0。"
   },
   {
    "id": "codeword-bing-1231",
@@ -741,12 +758,16 @@
    "id": "powerbill-pv-tools-1115",
    "site": "powerbill",
    "due": "2026-11-15",
-   "metric": "pev 真人 page_view/28d 且 calc_run+tool_result(剔 label='__ci')",
+   "metric": "pev 外部来源真人 page_view(ref 非空且不含 agiscorecard)/28d 且 calc_run+tool_result(剔 label='__ci')",
    "threshold": "pv ≥200 且 事件 ≥40",
    "win": "继续维护 + 加第二批判定页",
    "lose": "<50 pv → 降为月度维护",
    "source": "sites/powerbill/CLAUDE.md:43",
-   "status": "open"
+   "status": "open",
+   "metric_original": "pev 真人 page_view/28d 且 calc_run+tool_result(剔 label='__ci')",
+   "revised": "2026-09-23",
+   "revised_reason": "t0 就满足了:2026-09-23 D1 现查,pv 那一半今天已被字面满足(340 ≥ 阈值),而这 340 行 28 天里外部来源 0、任何其它事件 0;其中每天 2 行是舰队 AI 访问探针的浏览器对照请求(worker 不认 __probe,已于同日改为带 ci=1),其余是无来源的单次访问(US/NL/CA/RO/QA/BE)。按舰队 09-16 规矩「能被 t0 满足的线不是赌注」,到期前改判据:pv 只计 ref 非空且不是本站/本舰队域的 page_view,阈值数字不变。原文保留在 *_original。",
+   "reading_2026-09-23": "pev 真人 page_view 340/28d,其中外部来源 0;工具事件 0。"
   },
   {
    "id": "powerbill-bing-1231",
@@ -942,7 +963,8 @@
    "revised": "2026-09-15",
    "revised_reason": "原口径的「二次事件」测的是这些游戏不发的东西:D1 只记 solve/play_again/game_over 这类离散里程碑,而门户玩家在开局与跑完一局之间什么都不触发。owner 后台截图给了正确指标(停留时长):35 visits → 11 玩过 30s → 6 玩过 60s。阈值改为按他们的口径,原文保留在 *_original。",
    "note": "版本冻结:读数属于 09-15 的旧包。09-16 上传了更快的新归档但 owner 决定「先不发」,结算前不得 publish_sandbox,否则样本前后不可比。",
-   "reading_2026-09-22": "① D1:ts>='2026-09-15 14:53' AND ref LIKE '%games.playgama.net%' AND country<>'US' 的 play_start = 155(≥150 达成),跨 4 天,全部落在 09-15 14:54 → 09-19 18:41,09-20 起为 0;Playgama get_sandbox_traffic:run 仍 RUNNING,spentRatio 0.148,endsAt 2026-09-22T14:53Z。② 需 owner 投放结束后的 VISITS / PLAYS 60S 截图(旧包那一版);上一张 owner 截图 09-16(投放 17 小时)是 13/49 = 26,5%。保持 open,09-29 前结算;若届时无新截图,按 ① + 09-16 截图结算并注明截图日期。"
+   "reading_2026-09-22": "① D1:ts>='2026-09-15 14:53' AND ref LIKE '%games.playgama.net%' AND country<>'US' 的 play_start = 155(≥150 达成),跨 4 天,全部落在 09-15 14:54 → 09-19 18:41,09-20 起为 0;Playgama get_sandbox_traffic:run 仍 RUNNING,spentRatio 0.148,endsAt 2026-09-22T14:53Z。② 需 owner 投放结束后的 VISITS / PLAYS 60S 截图(旧包那一版);上一张 owner 截图 09-16(投放 17 小时)是 13/49 = 26,5%。保持 open,09-29 前结算;若届时无新截图,按 ① + 09-16 截图结算并注明截图日期。",
+   "reading_2026-09-23": "Playgama get_sandbox_traffic:run cmu2skueg… FINISHED(09-15 14:53 → 09-22 14:53,spentRatio 0,148)。① 终值 155(投放已结束,不再变;另有 game_over 61、calc_use 40、play_again 8)。② 仍缺 owner 投放后截图;按本线自己的规则 09-29 前结算,届时无新截图即按 ① + 09-16 截图(13/49 = 26,5 %)结算并注明截图日期。"
   },
   {
    "id": "gridlings-playgama-five-0925",
@@ -954,7 +976,8 @@
    "lose": "确认主目录对本舰队的 AI 游戏关闭,此后只经营 sandbox 面,不再空手重投",
    "source": "sites/gridlings/docs/playgama-setup.md(2026-09-15 节)",
    "status": "open",
-   "reading_2026-09-22": "Playgama list_applications:PROMPT / OVERFIT / MIMIC / OVERSEER / MINIMA 五款状态全部 REJECTED(09-15),GHOSTLINE / SINGULARITY 亦 REJECTED(09-16),另有 TOWERS 处于 DRAFT;0/5 进主目录。未到期,不结算。"
+   "reading_2026-09-22": "Playgama list_applications:PROMPT / OVERFIT / MIMIC / OVERSEER / MINIMA 五款状态全部 REJECTED(09-15),GHOSTLINE / SINGULARITY 亦 REJECTED(09-16),另有 TOWERS 处于 DRAFT;0/5 进主目录。未到期,不结算。",
+   "reading_2026-09-23": "list_applications:五款仍全部 REJECTED(09-15),09-16 之后无状态变化;0/5。"
   },
   {
    "id": "gridlings-puzzle-portal-1013",

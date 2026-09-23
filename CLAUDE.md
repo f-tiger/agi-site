@@ -670,6 +670,14 @@ owner 决策卡、事实表)。
   账号体系/登录才能用的工具、用「换个更火的工具品类」解释 61 这个数字。
 
 
+## 舰队数据梳理:44 549 次「真人 pv」里约 41 400 次不是读者(2026-09-23,owner:「整个舰队梳理数据与改进」;全文 `docs/fleet-review-2026-09-23.md`)
+
+- **引用舰队流量一律用 `fleet_human_pv_excl_flagged`,不要用 `fleet_human_pv`**。agi 的 pulse 是服务端计数(39 454/28d),JS 实测 1 641、外部来源 750;六个新站(after35/learn/fanzha/firstjob/codeword/powerbill)合计 1 977「真人」,28 天外部来源 0、事件 0。剔除后 3 207,加 agi JS ≈ 4 850。`ai_referrals.py` 的 `PV_CAVEAT` 是这张名单的唯一来源。
+- **舰队自己的仪器在污染读数**:AI 访问探针的浏览器对照请求只带 `__probe=1`,六个 worker 不认,每站每天记 2 行真人。已改为所有请求带 `ci=1`。**以后新增任何探针/自检请求,先确认目标 worker 认哪个标记**。
+- **四个在线站此前不在任何舰队仪器里**(localebatch / verify / rfqdesk / web3),现已进 heartbeat 与 AI 探针。**新站上线的检查项加一条:heartbeat 的 SITES 与 `ai_access_probe.py` 的 SITES 各加一行**,否则它是一个没人看的站。
+- **五条新站线的 pv 那一半被噪音在 t0 满足**,已改为只计外部来源 pv(原文保留)。这是 09-16「能被 t0 满足的线不是赌注」的第三次应用。
+- **钱**:仍只有 eco 联盟一条有真收入;bpj/SR 的四个收款面 28 天 0 笔;tds 28 天 1 次联盟点击。
+
 ## 「分享即分裂子站 + 账本 + AI 定价」——不建第二次;它就是 goldrush(2026-09-22,owner:「探索商业复利的营收站点…类似比特币…分裂…账本…定价算法…越古老越值钱」;全文 `docs/fork-ledger-pricing-2026-09-22.md`)
 
 - **裁定**:提案四件里三件 **08-29 已建在 goldrush**(fork 套件 / Claim Ledger Protocol / `get_claim_ledger` MCP + skill),

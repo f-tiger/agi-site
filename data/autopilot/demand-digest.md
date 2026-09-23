@@ -3,17 +3,17 @@
 零 AI 汇总;每条带日期;它是**选题输入不是选题依据**,任何由此引出的页面仍过三门(数据/需求/变现)。
 
 ## 源状态(抓不到就写出来,不复用旧数据)
-- softwarerecs: ok, 2 条
+- softwarerecs: ok, 3 条
 - bluesky_wish: **不可用** — "is there an app that" HTTP 403; "is there a tool that" HTTP 403; "i wish there was an app" HTTP 403
-- lemmy_wish: **不可用** — zero request-shaped posts this week
+- lemmy_wish: **不可用** — is there an app The operation was aborted due to timeout
 - producthunt: ok, 30 条
 - reddit_requests: **不可用** — r/SomebodyMakeThis HTTP 403; r/AppIdeas HTTP 403; r/Lightbulb HTTP 403; r/software HTTP 403
 - reddit_vertical: **不可用** — r/singularity HTTP 403; r/artificial HTTP 403; r/agi HTTP 403; r/ControlProblem HTTP 403; r/ChatGPT HTTP 403; r/ClaudeAI
 - reddit_wish: **不可用** — r/Entrepreneur HTTP 403; r/smallbusiness HTTP 403; r/startups HTTP 403; r/SaaS HTTP 403; r/SideProject HTTP 403; r/indie
-- hn_ask: ok, 5 条
+- hn_ask: ok, 4 条
 - hn_show: ok, 30 条
-- hn_top_ai: ok, 2 条
-- 雷达快照日期:2026-09-22(1 天前)
+- hn_top_ai: ok, 8 条
+- 雷达快照日期:2026-09-23(0 天前)
 
 ## 板块产出榜(14 天;名单 tools/fleet/reddit_watchlist.json,更新 2026-09-13)
 | 板块 | 名单 | 今日 | ok 天数 | 帖子 | 求做形 | 重现主题 | 标记 |
@@ -59,24 +59,24 @@
 - betalist: HTTP 404 text/html; charset=UTF-8 1722B
 - indiehackers_rss: HTTP 404 text/html; charset=utf-8 24208B
 - producthunt_topic_ai: HTTP 403 text/html; charset=UTF-8 5770B
-- yc_rfs: HTTP 200 text/html; charset=utf-8 98453B
-- reddit_rss_public: HTTP 200 application/atom+xml; charset=UTF-8 52584B
+- yc_rfs: HTTP 200 text/html; charset=utf-8 99888B
+- reddit_rss_public: HTTP 200 application/atom+xml; charset=UTF-8 53551B
 - reddit_json_public: HTTP 403 text/html 190238B
 - reddit_oauth_endpoint: HTTP 401 application/json; charset=UTF-8 41B
 - stackexchange_softwarerecs: HTTP 200 application/json; charset=utf-8 379B
 - bluesky_public_search: HTTP 403 text/html 2334B
-- bluesky_alt_host: HTTP 200 application/json; charset=utf-8 2807B
-- lemmy_world_search: HTTP 200 application/json 12028B
+- bluesky_alt_host: HTTP 403 text/html 94B
+- lemmy_world_search: HTTP 200 application/json 8737B
 
 - Reddit 访问通道:public-json(oauth = owner 已注册官方 app;public-json = 未鉴权,runner 09-13 起逐板 403)
 ## 求做帖(Reddit request 板 + wish 句式 + Ask HN + Software Recommendations SE + Bluesky 求做搜索)
 只读,机器永不发帖。出现在这里 ≠ 有人在搜它。
-- ↑119 · ask_hn · How to recover Google auth after phone stolen? — https://news.ycombinator.com/item?id=49742976
+- ↑121 · ask_hn · How to recover Google auth after phone stolen? — https://news.ycombinator.com/item?id=49742976
 - ↑11 · ask_hn · Stripe Withholding Balance of $100000 — https://news.ycombinator.com/item?id=49764468
-- ↑4 · ask_hn · Day 13. Three production applications on AWS down — https://news.ycombinator.com/item?id=49716456
 - ↑3 · softwarerecs · Offline Windows ledger for a one-person microgreens farm (trays + standing orders, no cloud) — https://softwarerecs.stackexchange.com/questions/95595/offline-windows-ledger-for-a-one-person-microgreens-farm-trays-standing-order
 - ↑2 · ask_hn · About map enshittification: Have you noticed the maps have gotten worse? — https://news.ycombinator.com/item?id=49743189
 - ↑1 · ask_hn · What exists if I want a premade SoC/MCU/screen/enclosure/battery? — https://news.ycombinator.com/item?id=49747290
+- ↑0 · softwarerecs · Dynamically display text on a remote Android (TV) display — https://softwarerecs.stackexchange.com/questions/95606/dynamically-display-text-on-a-remote-android-tv-display
 - ↑0 · softwarerecs · Editor with doxygen preview — https://softwarerecs.stackexchange.com/questions/95599/editor-with-doxygen-preview
 
 ## Reddit 垂直板块 · 14 天内重现的问题(这才是需求信号)
@@ -88,14 +88,14 @@
 - [9d] **artificial general intelligence** → general donahue (6650), gpt 6 astra (4600), singularity (650), agi vs ai (90)
 - [9d] **agi timeline** → (空)
 **创业雷达词表命中(PH/HN/Reddit)**
-- Plane Agents
-- Contextberg
-- SereneDB
-- WeWeb MCP
-- Prowler Cloud
-- PixelCrew
-- vgpu
-- Show HN: Mini-AGI – Dynamic continual learning model trained on 8GB VRAM
+- Solid
+- Naise AI
+- Koreshield
+- Alexandria by Firecrawl
+- Claude Opus 5.5
+- AgentScore
+- ResumeContext
+- Fez
 **autopilot 需求队列**:gaps **0** / covered 2 · heat: measured 2026-09-23 (0 pages); no notes
 **第一方需求**:`{"search_no_result": [], "site_search": [{"n": 4, "q": "tool:sunwatch_ledger"}, {"n": 4, "q": "tool:invest_positions"}, {"n": 2, "q": "tool:claim_ledger https://goldrush.agiscorecard."}]}`
 
@@ -105,26 +105,26 @@
 - [2d] **midjourney** → midjourney v8.2 (30800), seedance 2.5 (4900), runway gen-2 (4750), software testing strategies (2150)
 - [1d] **suno** → bmg suno (15100), jason isbell suno lawsuit (14150), suno artist incubator program (8050), treblo (6800)
 - [1d] **sora** → when is sora coming to fortnite (23100), sora release date fortnite speculation (10150), when does sora come to fortnite (9550), when will sora be in fortnite (7050)
-- [10d] **gemini** → gemini 3.8 flash (5650), gemini 3.7 flash (3750), sergey brin google gemini ban (2750), gemini the janus cat (2050)
-- [10d] **perplexity** → glm 5.2 (11050), perplexity ai ceo startup strategy (7600), perplexity nvidia local ai agent (2350), perplexity brain ai memory system (2100)
+- [0d] **gemini** → gemini 3.8 flash (5700), gemini 3.7 flash (3200), sergey brin google gemini ban (2850), gemini 3.6 (600)
+- [0d] **perplexity** → perplexity nvidia local ai agent (2850), chatgpt claude perplexity financial advice (1700), best time to visit maldives (1600), glm 5.2 (950)
 **创业雷达词表命中(PH/HN/Reddit)**
-- (无)
+- RankControl
 **autopilot 需求队列**:该站未纳入 autopilot
 
 ## getecoback
 **Trends rising(逐 seed 时效)**
+- [6d] **condizionatore portatile** → pinguino delonghi (40400), condizionatore portatile md (33300), condizionatore portatile eurospin (31900), condizionatore portatile comfee 9000 btu (23650)
+- [5d] **deumidificatore** → deumidificatore portatile (new), deumidificatore casa (new), deumidificatore dyson (new), deumidificatore in inglese (new)
 - [7d] **portable air conditioner** → walmart kissair portable air conditioner (450), portable air conditioner pick up today (400), shop deals on portable air conditioner for home (350), midea 12 000 btu duo smart inverter portable air conditioner (300)
 - [6d] **dehumidifier** → does a dehumidifier cool the air (300), pelonis dehumidifier reviews (170), will a dehumidifier cool a room (160), is dehumidifier water good for plants (140)
-- [9d] **klimaanlage** → coolizi (25150), air zuma klimaanlage (15650), bgh urteil klimaanlage (6600), beste klimaanlage für mietwohnung (6600)
+- [0d] **klimaanlage** → coolizi klimaanlage (28550), air zuma klimaanlage (17800), coolizi coolzy (9900), bgh urteil klimaanlage (8050)
 - [8d] **schimmel entfernen** → schimmel auf leder entfernen (50700), schimmel aus kleidung entfernen (400)
 - [7d] **infrarotheizung** → infrarotheizung gegen schimmel (59250), knebel infrarotheizung (36000), infrarotheizung werkstatt (30750), infrarotheizung deckenmontage mit licht (25750)
 - [2d] **luftentfeuchter** → luftentfeuchter keller (new), luftentfeuchter elektrisch (new), luftentfeuchter test (new), luftentfeuchter granulat (new)
 - [1d] **heizlüfter** → sparsamer heizlüfter (54950), akku heizlüfter makita (38500), dyson ventilator und heizlüfter (34450), energiesparender heizlüfter (33050)
-- [1d] **balkonkraftwerk** → ecoflow stream 5000 (9300), anker solix solarbank 4 e5000 pro,meter gen 2 ,5xbp5000 balkonkraftwerk (6500), split klimaanlage (450), balkonkraftwerk klimaanlage (300)
+- [0d] **balkonkraftwerk** → ecoflow stream 5000 (11300), anker solix solarbank 4 e5000 pro,meter gen 2 ,5xbp5000 balkonkraftwerk (7000), anker solix solarbank 4 e5000 pro (300), anker solarbank 4 pro (250)
 - [6d] **kaffeevollautomat** → krups kaffeevollautomat intensity milk (16500), siemens kaffeevollautomat eq.6 plus s400 te654509de (13950), siemens kaffeevollautomat eq.6 plus s300 te653501de (10550), siemens te651509de eq.6 plus s100 kaffeevollautomat (9600)
 - [5d] **akku staubsauger** → belstaff jacke herren (26850), sky scanner (14100), ford (550), lululemon shorts (350)
-- [6d] **condizionatore portatile** → pinguino delonghi (40400), condizionatore portatile md (33300), condizionatore portatile eurospin (31900), condizionatore portatile comfee 9000 btu (23650)
-- [5d] **deumidificatore** → deumidificatore portatile (new), deumidificatore casa (new), deumidificatore dyson (new), deumidificatore in inglese (new)
 **创业雷达词表命中(PH/HN/Reddit)**
 - (无)
 **autopilot 需求队列**:gaps **22** / covered 30 · heat: measured 2026-09-23 (25 pages); no notes
@@ -182,31 +182,31 @@
 **autopilot 需求队列**:该站未纳入 autopilot
 
 ## 机会撮合(reddit 请求 × Trends rising × PH/HN 供给;data/autopilot/opportunities.json)
-- 候选 7 · 已确认需求 0 · 重现 0 · 已有人做 0(生成 2026-09-22;Reddit 源 ok:{'reddit_requests': False, 'reddit_wish': False, 'reddit_vertical': False, 'hn_ask': True, 'softwarerecs': True, 'bluesky_wish': False, 'lemmy_wish': False, 'reddit_access': 'public-json'})
+- 候选 7 · 已确认需求 0 · 重现 0 · 已有人做 0(生成 2026-09-23;Reddit 源 ok:{'reddit_requests': False, 'reddit_wish': False, 'reddit_vertical': False, 'hn_ask': True, 'softwarerecs': True, 'bluesky_wish': False, 'lemmy_wish': False, 'reddit_access': 'public-json'})
 - [scout] how to recover google auth after phone stolen · 1 天 · 站 -
 - [scout] stripe withholding balance of 100000 · 1 天 · 站 -
-- [scout] day 13 three production applications on aws down · 1 天 · 站 -
 - [scout] offline windows ledger for a one person microgreens farm trays standing orders n · 1 天 · 站 -
 - [scout] what exists if i want a premade soc mcu screen enclosure battery · 1 天 · 站 -
 - [scout] about map enshittification have you noticed the maps have gotten worse · 1 天 · 站 -
+- [scout] dynamically display text on a remote android tv display · 1 天 · 站 -
 - [scout] editor with doxygen preview · 1 天 · 站 -
 
 ## AI 助手引荐(28 天窗,真人 pv 里 referrer 是 ChatGPT/Perplexity/Claude/Copilot 等)
-- 舰队合计 **62** 次 / 真人 pv 43525(快照 2026-09-22;09-12 手测基线 69)
-- baipiaoji: 23 / 384 pv · chatgpt.com 13, www.perplexity.ai 9, kagi.com 1
-- agiscorecard: 22 / 38433 pv · chatgpt.com 8, claude.ai 7, www.perplexity.ai 3, copilot.microsoft.com 2, kagi.com 2
-- getecoback: 17 / 583 pv · chatgpt.com 13, www.perplexity.ai 4
-- thedollscout: 0 / 313 pv · —
-- goldrush: 0 / 446 pv · —
-- gridlings: 0 / 851 pv · —
-- buysomething: 0 / 104 pv · —
-- gamesledger: 0 / 517 pv · —
-- after35: 0 / 454 pv · —
-- learn: 0 / 274 pv · —
-- fanzha: 0 / 250 pv · —
-- firstjob: 0 / 222 pv · —
-- codeword: 0 / 374 pv · —
-- powerbill: 0 / 320 pv · —
+- 舰队合计 **59** 次 / 真人 pv 44549,剔除已标记噪音站 3207(快照 2026-09-23;09-12 手测基线 69)
+- baipiaoji: 22 / 387 pv · chatgpt.com 13, www.perplexity.ai 8, kagi.com 1
+- agiscorecard: 21 / 39365 pv · chatgpt.com 7, claude.ai 7, www.perplexity.ai 3, copilot.microsoft.com 2, kagi.com 2 · ⚠ pv 不是读者数:server-side pageviews; JS page_view beacon 1,641/28d on 2026-09-23
+- getecoback: 15 / 583 pv · chatgpt.com 12, www.perplexity.ai 3
+- gamesledger: 1 / 527 pv · copilot.microsoft.com 1
+- thedollscout: 0 / 321 pv · —
+- goldrush: 0 / 448 pv · —
+- gridlings: 0 / 838 pv · —
+- buysomething: 0 / 103 pv · —
+- after35: 0 / 456 pv · — · ⚠ pv 不是读者数:0 outside referrers and 0 events in 28d on 2026-09-23
+- learn: 0 / 280 pv · — · ⚠ pv 不是读者数:0 outside referrers and 0 events in 28d on 2026-09-23
+- fanzha: 0 / 273 pv · — · ⚠ pv 不是读者数:0 outside referrers and 0 events in 28d on 2026-09-23
+- firstjob: 0 / 245 pv · — · ⚠ pv 不是读者数:0 outside referrers and 0 events in 28d on 2026-09-23
+- codeword: 0 / 383 pv · — · ⚠ pv 不是读者数:0 outside referrers and 0 events in 28d on 2026-09-23
+- powerbill: 0 / 340 pv · — · ⚠ pv 不是读者数:0 outside referrers and 0 events in 28d on 2026-09-23
 
 ---
 读法:gaps>0 且对应 rising 不是 STALE,才值得进第②层选题;Reddit 命中要再查搜索需求;

@@ -169,10 +169,10 @@ def main():
         aa = age_days(today, ar.get("generated", ""))
         stale = " **STALE**" if (aa is None or aa > 3) else ""
         base = (ar.get("baseline_2026_09_12") or {}).get("fleet_ai_ref")
-        out.append(f"- 舰队合计 **{ar.get('fleet_ai_ref')}** 次 / 真人 pv {ar.get('fleet_human_pv')}(快照 {ar.get('generated','?')[:10]}{stale};09-12 手测基线 {base})")
+        out.append(f"- 舰队合计 **{ar.get('fleet_ai_ref')}** 次 / 真人 pv {ar.get('fleet_human_pv')},剔除已标记噪音站 {ar.get('fleet_human_pv_excl_flagged', '?')}(快照 {ar.get('generated','?')[:10]}{stale};09-12 手测基线 {base})")
         for s_ in sorted(ar.get("sites", []), key=lambda x: -x.get("ai_ref", 0)):
             hosts = ", ".join(f"{h} {n}" for h, n in sorted(s_.get("by_host", {}).items(), key=lambda kv: -kv[1])) or "—"
-            out.append(f"- {s_['site']}: {s_.get('ai_ref', 0)} / {s_.get('human_pv', 0)} pv · {hosts}")
+            out.append(f"- {s_['site']}: {s_.get('ai_ref', 0)} / {s_.get('human_pv', 0)} pv · {hosts}" + (f" · ⚠ pv 不是读者数:{s_['pv_caveat']}" if s_.get('pv_caveat') else ''))
         if ar.get("errors"):
             out.append("- 未读到:" + " | ".join(ar["errors"]))
     out.append("")

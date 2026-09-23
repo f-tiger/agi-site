@@ -93,6 +93,7 @@ def load_traffic(site: str, site_dir: str, ai_rows: dict[str, dict[str, Any]]) -
         "human_pv": integer(ai.get("human_pv"), None),
         "ai_ref": integer(ai.get("ai_ref"), None),
         "reach_humans_referred": None,
+        "pv_caveat": ai.get("pv_caveat"),
     }
     reach = read_json(ROOT / site_dir / "data/reach.json", {}) or {}
     if isinstance(reach, dict) and isinstance(reach.get("humans_referred"), (int, float)):
@@ -244,7 +245,9 @@ def build(today: dt.date) -> tuple[dict[str, Any], dict[str, str]]:
 
         human_pv = traffic.get("human_pv")
         ai_ref = traffic.get("ai_ref")
-        if isinstance(human_pv, int) and human_pv >= 100 and ai_ref == 0:
+        # pv_caveat (2026-09-23): this pv is instrument noise, not referred readers,
+        # so the premise of the action ("referred traffic exists") is false.
+        if isinstance(human_pv, int) and human_pv >= 100 and ai_ref == 0 and not traffic.get("pv_caveat"):
             site_actions.append(safe_action("ai_discovery", 48, "referred traffic exists but no AI-assistant referral is measured", {"human_pv_28d": human_pv, "ai_ref_28d": ai_ref}, "queue"))
         if site in ai_rows and ai_ref is None:
             site_actions.append(safe_action("data_quality", 45, "AI referral snapshot has no numeric value for this site", {"site": site}, "observe"))

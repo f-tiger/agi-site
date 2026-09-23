@@ -34,7 +34,7 @@ import urllib.request
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 OUT = os.path.join(ROOT, "data", "fleet-ai-access.json")
 
-# goldrush counts ?ci=1 as self-test traffic and skips its UA audit; the rest ignore extra params.
+# ?ci=1 marks self-test traffic on goldrush and the six after35-events sites; the rest ignore it.
 SITES = [
     ("agiscorecard", "https://agiscorecard.com"),
     ("baipiaoji", "https://baipiaoji.com"),
@@ -50,6 +50,11 @@ SITES = [
     ("firstjob", "https://firstjob.agiscorecard.com"),
     ("codeword", "https://codeword.agiscorecard.com"),
     ("powerbill", "https://powerbill.agiscorecard.com"),
+    # Four deployed sites that no fleet instrument watched until 2026-09-23.
+    ("localebatch", "https://localebatch.agiscorecard.com"),
+    ("agent-delivery-lab", "https://verify.agiscorecard.com"),
+    ("venture-lab", "https://rfqdesk.agiscorecard.com"),
+    ("web3-studio", "https://web3.agiscorecard.com"),
 ]
 PATHS = ["/", "/llms.txt"]
 
@@ -81,11 +86,15 @@ def fetch(url, ua, timeout=20):
 
 
 def probe_url(origin, path):
+    # Every probe request carries ci=1 (2026-09-23). The control request uses a
+    # browser UA, and the six workers on after35-events (after35/learn/fanzha/
+    # firstjob/codeword/powerbill) do not know __probe: they logged it as a human
+    # page_view, two rows per site per day, in the very pv the fleet judges them
+    # on. All of them skip logging on ci=1; goldrush already did. Checked the same
+    # day that all 18 sites return the identical status with and without ci=1,
+    # and a block happens at the edge before the worker sees the query anyway.
     sep = "&" if "?" in path else "?"
-    if "goldrush" in origin and path == "/":
-        path = "/?ci=1"
-        sep = "&"
-    return f"{origin}{path}{sep}__probe=1"
+    return f"{origin}{path}{sep}ci=1&__probe=1"
 
 
 def probe_site(name, origin, fetcher=fetch):
@@ -125,7 +134,7 @@ def selftest():
         ("agent 404 is not a block", classify(mk(200, 404)) == (True, [])),
         ("agent network error (0) is not a block", classify(mk(200, 0)) == (True, [])),
         ("goldrush root gets ci=1", probe_url("https://goldrush.agiscorecard.com", "/") == "https://goldrush.agiscorecard.com/?ci=1&__probe=1"),
-        ("other root gets __probe only", probe_url("https://baipiaoji.com", "/llms.txt") == "https://baipiaoji.com/llms.txt?__probe=1"),
+        ("every site gets ci=1 too, so the control is never a human page_view", probe_url("https://learn.agiscorecard.com", "/llms.txt") == "https://learn.agiscorecard.com/llms.txt?ci=1&__probe=1"),
     ]
     bad = [n for n, ok in checks if not ok]
     for n, ok in checks:

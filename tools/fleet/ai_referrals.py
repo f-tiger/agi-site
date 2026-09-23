@@ -257,14 +257,39 @@ def main(argv):
     return write(sites, errors, f"endpoints + d1-rest via {winner}")
 
 
+# Sites whose `human_pv` is not a count of readers (fleet data review 2026-09-23,
+# D1 read the same day). The pulse numbers stay as each endpoint reports them —
+# changing six workers' definitions would break every line already registered on
+# them — but the fleet total must not add them up as if they were people.
+#   agiscorecard: server-side pageviews with a non-bot UA: 39,454/28d, while the
+#     JS page_view beacon counted 1,641 and only 750 rows carried an outside
+#     referrer. 24x; undeclared crawlers with browser UAs.
+#   the six after35-events sites: 245-456 "human" page_views each, 0 with an
+#     outside referrer and 0 events of any other kind in 28 days.
+PV_CAVEAT = {
+    "agiscorecard": "server-side pageviews; JS page_view beacon 1,641/28d on 2026-09-23",
+    "after35": "0 outside referrers and 0 events in 28d on 2026-09-23",
+    "learn": "0 outside referrers and 0 events in 28d on 2026-09-23",
+    "fanzha": "0 outside referrers and 0 events in 28d on 2026-09-23",
+    "firstjob": "0 outside referrers and 0 events in 28d on 2026-09-23",
+    "codeword": "0 outside referrers and 0 events in 28d on 2026-09-23",
+    "powerbill": "0 outside referrers and 0 events in 28d on 2026-09-23",
+}
+
+
 def write(sites, errors, how):
     sites = sorted(sites, key=lambda x: [s[0] for s in SITES].index(x["site"]))
+    for x in sites:
+        if x["site"] in PV_CAVEAT:
+            x["pv_caveat"] = PV_CAVEAT[x["site"]]
     snap = {
         "generated": dt.datetime.now(dt.timezone.utc).replace(microsecond=0, tzinfo=None).isoformat() + "Z",
         "window_days": WINDOW, "ok": not errors, "read_via": how, "errors": errors,
         "baseline_2026_09_12": {"fleet_ai_ref": 69, "note": "hand-measured; agi 20, bpj 33, eco 16, others 0"},
         "fleet_ai_ref": sum(x["ai_ref"] for x in sites),
         "fleet_human_pv": sum(x["human_pv"] for x in sites),
+        # sites not flagged as noise; flagged ≠ checked-clean for the rest
+        "fleet_human_pv_excl_flagged": sum(x["human_pv"] for x in sites if "pv_caveat" not in x),
         "sites": sites,
     }
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
