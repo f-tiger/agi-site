@@ -1,5 +1,5 @@
 {
- "checked": "2026-09-22",
+ "checked": "2026-09-23",
  "server": {
   "name": "io.github.f-tiger/verified-ai-free-tiers",
   "version": "1.13.0",
@@ -16,8 +16,8 @@
  },
  "own_surfaces": {
   "well_known_http": 200,
-  "well_known_version": null,
-  "well_known_matches": false,
+  "well_known_version": "1.13.0",
+  "well_known_matches": true,
   "openapi_http": 200,
   "llms_txt_http": 200,
   "llms_mentions_mcp": true
@@ -27,7 +27,7 @@
    "id": "pulsemcp",
    "name": "PulseMCP",
    "url": "https://www.pulsemcp.com/servers?q=baipiaoji",
-   "http": 200,
+   "http": 403,
    "found": false,
    "evidence": "html-grep (client-rendered pages may hide a real listing; only found:true is a fact)"
   },
@@ -36,14 +36,14 @@
    "name": "Glama",
    "url": "https://glama.ai/mcp/servers?query=baipiaoji",
    "http": 200,
-   "found": true,
+   "found": false,
    "evidence": "html-grep (client-rendered pages may hide a real listing; only found:true is a fact)"
   },
   {
    "id": "mcp-so",
    "name": "mcp.so",
    "url": "https://mcp.so/search?q=baipiaoji",
-   "http": 200,
+   "http": 403,
    "found": false,
    "evidence": "html-grep (client-rendered pages may hide a real listing; only found:true is a fact)"
   },

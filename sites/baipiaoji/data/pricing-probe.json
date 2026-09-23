@@ -1,24 +1,24 @@
 {
- "generated": "2026-09-22",
+ "generated": "2026-09-23",
  "env": "runner",
  "note": "付费档缺口的抓取探针。只做发现与取证，绝不写事实：任何数字仍须经 scripts/limits-edit.mjs 两步核实后才进 tools.json。state=ready 表示该 URL 当天 200 且页面上有像价目表的价格段，不表示数字已被核实。每行的 env 是抓取时的网络环境：sandbox 行的 blocked 很可能只是会话沙箱出网被拒，不能当作「这家没有定价页」，只有 runner 行的 blocked 才值得当结论。",
  "gap_total": 108,
  "batch": [
-  "caiyun",
-  "cerebras",
-  "character-ai",
-  "chatgpt",
-  "codebuddy",
-  "cody",
-  "cohere",
-  "comate"
+  "continue",
+  "coze",
+  "d-id",
+  "devv",
+  "dify",
+  "doubao-aixue",
+  "duckduckgo-ai",
+  "elevenlabs"
  ],
- "cursor": "comate",
+ "cursor": "elevenlabs",
  "summary": {
-  "ready": 12,
-  "empty": 14,
-  "blocked": 12,
-  "probed_total": 38
+  "ready": 14,
+  "empty": 19,
+  "blocked": 13,
+  "probed_total": 46
  },
  "tools": {
   "kimi": {
@@ -1131,6 +1131,250 @@
     "url": "https://comate.baidu.com/pricing",
     "tokens": 0,
     "excerpt": ""
+   }
+  },
+  "continue": {
+   "slug": "continue",
+   "name": "Continue",
+   "cat": "coding",
+   "reach": 0,
+   "probed": "2026-09-23",
+   "env": "runner",
+   "state": "blocked",
+   "tried": [
+    {
+     "url": "https://continue.dev/pricing",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://continue.dev/price",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://continue.dev/plans",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    }
+   ],
+   "best": null
+  },
+  "coze": {
+   "slug": "coze",
+   "name": "扣子 Coze（字节）",
+   "cat": "agent",
+   "reach": 0,
+   "probed": "2026-09-23",
+   "env": "runner",
+   "state": "empty",
+   "tried": [
+    {
+     "url": "https://www.coze.cn/pricing",
+     "status": 200,
+     "bytes": 89483,
+     "tokens": 0
+    },
+    {
+     "url": "https://www.coze.cn/price",
+     "status": 200,
+     "bytes": 89483,
+     "tokens": 0
+    },
+    {
+     "url": "https://www.coze.cn/plans",
+     "status": 200,
+     "bytes": 89483,
+     "tokens": 0
+    }
+   ],
+   "best": {
+    "url": "https://www.coze.cn/pricing",
+    "tokens": 0,
+    "excerpt": ""
+   }
+  },
+  "d-id": {
+   "slug": "d-id",
+   "name": "D-ID",
+   "cat": "video",
+   "reach": 0,
+   "probed": "2026-09-23",
+   "env": "runner",
+   "state": "empty",
+   "tried": [
+    {
+     "url": "https://d-id.com/pricing/studio",
+     "status": 200,
+     "bytes": 152585,
+     "tokens": 0
+    },
+    {
+     "url": "https://www.d-id.com/pricing",
+     "status": 200,
+     "bytes": 152585,
+     "tokens": 0
+    },
+    {
+     "url": "https://www.d-id.com/price",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    }
+   ],
+   "best": {
+    "url": "https://d-id.com/pricing/studio",
+    "tokens": 0,
+    "excerpt": ""
+   }
+  },
+  "devv": {
+   "slug": "devv",
+   "name": "Devv AI",
+   "cat": "coding",
+   "reach": 0,
+   "probed": "2026-09-23",
+   "env": "runner",
+   "state": "empty",
+   "tried": [
+    {
+     "url": "https://devv.ai/pricing",
+     "status": 200,
+     "bytes": 101248,
+     "tokens": 0
+    },
+    {
+     "url": "https://devv.ai/price",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://devv.ai/plans",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    }
+   ],
+   "best": {
+    "url": "https://devv.ai/pricing",
+    "tokens": 0,
+    "excerpt": ""
+   }
+  },
+  "dify": {
+   "slug": "dify",
+   "name": "Dify",
+   "cat": "agent",
+   "reach": 0,
+   "probed": "2026-09-23",
+   "env": "runner",
+   "state": "ready",
+   "tried": [
+    {
+     "url": "https://dify.ai/pricing",
+     "status": 200,
+     "bytes": 136644,
+     "tokens": 6
+    }
+   ],
+   "best": {
+    "url": "https://dify.ai/pricing",
+    "tokens": 6,
+    "excerpt": "lly Bill Annually Save 17% Professional Popular For independent developers and small teams building production AI apps. $590 per workspace / year Start Building 5,000 message credits / month Message credits are provided to help you easily try out different models from OpenAI, Anthropic, Gemini, xAI, Tongyi in Dify. Credits are consumed based on the model type. Once they&#39;re used up, you can switch to your own API key. 1 Team Workspace 3 Team Members 50 Apps 500 Knowledge Documents Quota on the number of documents imported from the Knowledge Data Source. 5GB Knowledge Data Storage Documents with the High Quality indexing mode will consume Knowledge Data Storage resources. When Knowledge Da"
+   }
+  },
+  "doubao-aixue": {
+   "slug": "doubao-aixue",
+   "name": "豆包爱学",
+   "cat": "study",
+   "reach": 0,
+   "probed": "2026-09-23",
+   "env": "runner",
+   "state": "empty",
+   "tried": [
+    {
+     "url": "https://www.doubao.com/pricing",
+     "status": 200,
+     "bytes": 267346,
+     "tokens": 0
+    },
+    {
+     "url": "https://www.doubao.com/price",
+     "status": 200,
+     "bytes": 267346,
+     "tokens": 0
+    },
+    {
+     "url": "https://www.doubao.com/plans",
+     "status": 200,
+     "bytes": 267346,
+     "tokens": 0
+    }
+   ],
+   "best": {
+    "url": "https://www.doubao.com/pricing",
+    "tokens": 0,
+    "excerpt": ""
+   }
+  },
+  "duckduckgo-ai": {
+   "slug": "duckduckgo-ai",
+   "name": "DuckDuckGo AI Chat",
+   "cat": "chat",
+   "reach": 0,
+   "probed": "2026-09-23",
+   "env": "runner",
+   "state": "empty",
+   "tried": [
+    {
+     "url": "https://duck.ai/pricing",
+     "status": 200,
+     "bytes": 26012,
+     "tokens": 0
+    },
+    {
+     "url": "https://duck.ai/price",
+     "status": 200,
+     "bytes": 26012,
+     "tokens": 0
+    },
+    {
+     "url": "https://duck.ai/plans",
+     "status": 200,
+     "bytes": 26012,
+     "tokens": 0
+    }
+   ],
+   "best": {
+    "url": "https://duck.ai/pricing",
+    "tokens": 0,
+    "excerpt": ""
+   }
+  },
+  "elevenlabs": {
+   "slug": "elevenlabs",
+   "name": "ElevenLabs",
+   "cat": "audio",
+   "reach": 0,
+   "probed": "2026-09-23",
+   "env": "runner",
+   "state": "ready",
+   "tried": [
+    {
+     "url": "https://elevenlabs.io/pricing",
+     "status": 200,
+     "bytes": 600000,
+     "tokens": 37
+    }
+   ],
+   "best": {
+    "url": "https://elevenlabs.io/pricing",
+    "tokens": 37,
+    "excerpt": "enAPI API ElevenCreative Creative ElevenAgents Agents ElevenAPI API Monthly billing Monthly billing Yearly billing Free $0 per month Build for free Text to Speech Speech to Text Sound Effects Voice Design Music Productions Image 3 Projects in Studio 10k credits per month Starter $6 per month Choose Starter Everything in free, plus Commercial License Instant Voice Cloning 20 Projects in Studio Music commercial use Dubbing Studio Image &amp; Video 30k credits per month Creator Popular $22 First month 50% off $11 per month Choose Creator Everything in Starter, plus Professional Voice Cloning Additional Credits 121k credits per month Pro $99 per month Choose Pro Everything in Creator, plus 44.1k"
    }
   }
  }

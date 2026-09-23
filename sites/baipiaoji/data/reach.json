@@ -1,19 +1,19 @@
 {
-  "generated": "2026-09-22",
+  "generated": "2026-09-23",
   "source": "/api/reach",
   "window_days": 28,
-  "since": "2026-08-25",
-  "until": "2026-09-22",
+  "since": "2026-08-26",
+  "until": "2026-09-23",
   "definition": "ev='' AND ref != '' — referred human page views (traffic-truth.mjs human line A); direct/no-referrer visits and /__ self-test paths excluded; counts only, no row-level data",
-  "humans_referred": 372,
-  "per_day": 13.3,
+  "humans_referred": 378,
+  "per_day": 13.5,
   "by_kind": {
-    "tool": 276,
+    "tool": 281,
     "category": 53,
-    "page": 35,
-    "vs": 4,
+    "page": 38,
     "alternatives": 2,
-    "plans": 2
+    "plans": 1,
+    "vs": 3
   },
   "categories": [
     {
@@ -26,15 +26,15 @@
     },
     {
       "cat": "api",
-      "n": 47
+      "n": 46
     },
     {
       "cat": "video",
-      "n": 35
+      "n": 37
     },
     {
       "cat": "office",
-      "n": 17
+      "n": 19
     },
     {
       "cat": "writing",
@@ -42,7 +42,7 @@
     },
     {
       "cat": "image",
-      "n": 13
+      "n": 14
     },
     {
       "cat": "local",
@@ -82,7 +82,7 @@
     {
       "slug": "kimi",
       "cat": "chat",
-      "n": 27
+      "n": 26
     },
     {
       "slug": "fireworks",
@@ -92,7 +92,7 @@
     {
       "slug": "feishu-miaoji",
       "cat": "office",
-      "n": 15
+      "n": 17
     },
     {
       "slug": "haiper",
@@ -105,6 +105,16 @@
       "n": 14
     },
     {
+      "slug": "google-flow",
+      "cat": "video",
+      "n": 6
+    },
+    {
+      "slug": "fastgpt",
+      "cat": "agent",
+      "n": 5
+    },
+    {
       "slug": "deepl",
       "cat": "writing",
       "n": 5
@@ -115,16 +125,6 @@
       "n": 5
     },
     {
-      "slug": "fastgpt",
-      "cat": "agent",
-      "n": 4
-    },
-    {
-      "slug": "google-flow",
-      "cat": "video",
-      "n": 4
-    },
-    {
       "slug": "immersive-translate",
       "cat": "writing",
       "n": 4
@@ -132,6 +132,11 @@
     {
       "slug": "fish-audio",
       "cat": "audio",
+      "n": 3
+    },
+    {
+      "slug": "liblib",
+      "cat": "image",
       "n": 3
     },
     {
@@ -200,11 +205,6 @@
       "n": 2
     },
     {
-      "slug": "liblib",
-      "cat": "image",
-      "n": 2
-    },
-    {
       "slug": "openrouter",
       "cat": "api",
       "n": 2
@@ -250,11 +250,6 @@
       "n": 1
     },
     {
-      "slug": "groq",
-      "cat": "api",
-      "n": 1
-    },
-    {
       "slug": "guojia-fanzha",
       "cat": "safety",
       "n": 1
@@ -273,6 +268,11 @@
       "slug": "windsurf",
       "cat": "coding",
       "n": 1
+    },
+    {
+      "slug": "zed",
+      "cat": "coding",
+      "n": 1
     }
   ],
   "judgement": [],
@@ -286,11 +286,11 @@
       "n": 39
     },
     {
-      "path": "kimi",
-      "n": 27
+      "path": "/",
+      "n": 29
     },
     {
-      "path": "/",
+      "path": "kimi",
       "n": 26
     },
     {
@@ -299,7 +299,7 @@
     },
     {
       "path": "feishu-miaoji",
-      "n": 15
+      "n": 17
     },
     {
       "path": "haiper",
@@ -318,20 +318,20 @@
       "n": 8
     },
     {
+      "path": "google-flow",
+      "n": 6
+    },
+    {
+      "path": "fastgpt",
+      "n": 5
+    },
+    {
       "path": "deepl",
       "n": 5
     },
     {
       "path": "pixverse",
       "n": 5
-    },
-    {
-      "path": "fastgpt",
-      "n": 4
-    },
-    {
-      "path": "google-flow",
-      "n": 4
     },
     {
       "path": "immersive-translate",
@@ -343,6 +343,10 @@
     },
     {
       "path": "fish-audio",
+      "n": 3
+    },
+    {
+      "path": "liblib",
       "n": 3
     },
     {
@@ -378,10 +382,6 @@
       "n": 2
     },
     {
-      "path": "/vs/dify-vs-n8n",
-      "n": 2
-    },
-    {
       "path": "bolt",
       "n": 2
     },
@@ -399,10 +399,6 @@
     },
     {
       "path": "hailuo",
-      "n": 2
-    },
-    {
-      "path": "liblib",
       "n": 2
     },
     {
@@ -438,10 +434,6 @@
       "n": 1
     },
     {
-      "path": "/plans/free-life",
-      "n": 1
-    },
-    {
       "path": "/plans/free-video-gen",
       "n": 1
     },
@@ -455,10 +447,6 @@
     },
     {
       "path": "goose",
-      "n": 1
-    },
-    {
-      "path": "groq",
       "n": 1
     },
     {
@@ -479,6 +467,10 @@
     },
     {
       "path": "zed",
+      "n": 1
+    },
+    {
+      "path": "/vs/dify-vs-n8n",
       "n": 1
     },
     {
@@ -516,6 +508,14 @@
     {
       "path": "figma",
       "n": 1
+    },
+    {
+      "path": "gamma",
+      "n": 1
+    },
+    {
+      "path": "ima",
+      "n": 1
     }
   ],
   "referrers": [
@@ -525,19 +525,15 @@
     },
     {
       "ref": "cn.bing.com",
-      "n": 111
+      "n": 116
     },
     {
       "ref": "www.bing.com",
-      "n": 18
+      "n": 20
     },
     {
       "ref": "chatgpt.com",
       "n": 13
-    },
-    {
-      "ref": "www.perplexity.ai",
-      "n": 9
     },
     {
       "ref": "www.facebook.com",
@@ -548,7 +544,11 @@
       "n": 8
     },
     {
-      "ref": "m.baidu.com",
+      "ref": "www.perplexity.ai",
+      "n": 7
+    },
+    {
+      "ref": "www.baidu.com",
       "n": 6
     },
     {
@@ -556,8 +556,8 @@
       "n": 5
     },
     {
-      "ref": "www.baidu.com",
-      "n": 4
+      "ref": "m.baidu.com",
+      "n": 5
     },
     {
       "ref": "duckduckgo.com",
@@ -604,11 +604,6 @@
       "n": 3
     },
     {
-      "ref": "www.perplexity.ai",
-      "path": "/en/vs/dify-vs-n8n",
-      "n": 2
-    },
-    {
       "ref": "chatgpt.com",
       "path": "/",
       "n": 1
@@ -635,7 +630,7 @@
     },
     {
       "ref": "www.perplexity.ai",
-      "path": "/en/tools/groq",
+      "path": "/en/vs/dify-vs-n8n",
       "n": 1
     },
     {
@@ -645,19 +640,20 @@
     }
   ],
   "events": {
-    "sub_view": 379,
-    "go": 104,
+    "sub_view": 408,
+    "go": 111,
     "star": 10,
     "calc": 7,
-    "sub_submit": 4,
-    "sheet_dl": 4,
-    "biz": 4,
-    "sub_ok": 3,
+    "home": 6,
+    "biz": 6,
+    "sub_submit": 5,
+    "sheet_dl": 5,
+    "sub_ok": 4,
     "sub_dup": 1
   },
   "submissions": {
-    "new": 8,
-    "total": 8
+    "new": 9,
+    "total": 9
   },
   "ads": {}
 }
