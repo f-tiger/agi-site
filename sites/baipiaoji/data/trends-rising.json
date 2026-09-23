@@ -1,5 +1,5 @@
 {
- "fetched": "2026-09-22",
+ "fetched": "2026-09-23",
  "geo": "US",
  "seeds": {
   "deepseek": {
@@ -190,85 +190,93 @@
    "rising": [
     {
      "q": "gemini 3.8 flash",
-     "v": 5650
+     "v": 5700
     },
     {
      "q": "gemini 3.7 flash",
-     "v": 3750
+     "v": 3200
     },
     {
      "q": "sergey brin google gemini ban",
-     "v": 2750
-    },
-    {
-     "q": "gemini the janus cat",
-     "v": 2050
+     "v": 2850
     },
     {
      "q": "gemini 3.6",
-     "v": 650
-    },
-    {
-     "q": "sony bravia 9 ii true rgb 4k hdr google tv with gemini",
-     "v": 550
+     "v": 600
     },
     {
      "q": "gemini notebook",
-     "v": 350
-    },
-    {
-     "q": "gemini 3.5 pro release date",
-     "v": 300
-    },
-    {
-     "q": "gemini 3.5 pro",
-     "v": 200
+     "v": 450
     },
     {
      "q": "gemini notebook lm",
-     "v": 90
+     "v": 120
+    },
+    {
+     "q": "notebook lm",
+     "v": 120
+    },
+    {
+     "q": "gemini 3.5 pro",
+     "v": 100
+    },
+    {
+     "q": "gemini student offer",
+     "v": 100
+    },
+    {
+     "q": "gemini lm",
+     "v": 70
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-09-13"
+   "fetched": "2026-09-23"
   },
   "perplexity": {
    "rising": [
     {
-     "q": "glm 5.2",
-     "v": 11050
-    },
-    {
-     "q": "perplexity ai ceo startup strategy",
-     "v": 7600
-    },
-    {
      "q": "perplexity nvidia local ai agent",
-     "v": 2350
-    },
-    {
-     "q": "perplexity brain ai memory system",
-     "v": 2100
+     "v": 2850
     },
     {
      "q": "chatgpt claude perplexity financial advice",
-     "v": 2000
+     "v": 1700
+    },
+    {
+     "q": "best time to visit maldives",
+     "v": 1600
+    },
+    {
+     "q": "glm 5.2",
+     "v": 950
+    },
+    {
+     "q": "perplec",
+     "v": 300
     },
     {
      "q": "perplexed",
-     "v": 110
+     "v": 140
     },
     {
      "q": "perplex",
-     "v": 50
+     "v": 80
     },
     {
-     "q": "perplexity ai.",
+     "q": "perplexity portable computer",
+     "v": 60
+    },
+    {
+     "q": "firecrawl",
+     "v": 60
+    },
+    {
+     "q": "perp",
      "v": 50
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-09-13"
+   "fetched": "2026-09-23"
   }
  }
 }
