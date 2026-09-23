@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "as_of": "2026-09-22",
+  "as_of": "2026-09-23",
   "privacy": "aggregate counts and derived queues only; no customer or raw community content",
   "fleet": {
     "sites": 14,
@@ -12,11 +12,11 @@
     "stale_inputs": 0
   },
   "input_dates": {
-    "membership": "2026-09-22T07:56:13.432Z",
-    "health": "2026-09-21T14:43:29Z",
-    "ai_referrals": "2026-09-21T14:43:55Z",
-    "opportunities": "2026-09-21",
-    "autopilot_receipt": "2026-09-22"
+    "membership": "2026-09-23T07:57:14.713Z",
+    "health": "2026-09-22T12:58:30Z",
+    "ai_referrals": "2026-09-22T12:58:46Z",
+    "opportunities": "2026-09-22",
+    "autopilot_receipt": "2026-09-23"
   },
   "input_ages_days": {
     "membership": 0,
@@ -28,7 +28,7 @@
   "stale_inputs": [],
   "membership": {
     "schema_version": 1,
-    "generated": "2026-09-22T07:56:13.432Z",
+    "generated": "2026-09-23T07:57:14.713Z",
     "source": "same-origin /api/member and /api/member-admin stats",
     "privacy": "aggregate counters only; no member, order, support, token or wallet data",
     "ok": true,
@@ -185,7 +185,7 @@
       "priority": 80,
       "reason": "measured demand reaches an existing page with zero recent referred readers",
       "evidence": {
-        "count": 17,
+        "count": 20,
         "query": "infrarotheizung gegen schimmel",
         "page": "guide/infrarotheizung-gegen-schimmel.html",
         "value": 59250
@@ -238,9 +238,9 @@
       "priority": 55,
       "reason": "rising demand has no matching page; editorial judgement is required",
       "evidence": {
-        "count": 29,
-        "query": "knebel infrarotheizung",
-        "value": 36000
+        "count": 22,
+        "query": "akku heizlüfter makita",
+        "value": 38500
       },
       "mode": "queue"
     },
@@ -257,26 +257,14 @@
       "mode": "queue"
     },
     {
-      "site": "agiscorecard",
-      "kind": "improve_hot_page",
-      "priority": 52,
-      "reason": "prioritize a page with measured reader heat",
-      "evidence": {
-        "page": "/search",
-        "n7": 310,
-        "p7": 108
-      },
-      "mode": "queue"
-    },
-    {
       "site": "getecoback",
       "kind": "improve_hot_page",
       "priority": 52,
       "reason": "prioritize a page with measured reader heat",
       "evidence": {
         "page": "/guide/fensterabdichtung-selber-bauen.html",
-        "n7": 14,
-        "p7": 2
+        "n7": 13,
+        "p7": 4
       },
       "mode": "queue"
     },
@@ -286,7 +274,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 449,
+        "human_pv_28d": 454,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -308,7 +296,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 349,
+        "human_pv_28d": 374,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -319,7 +307,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 246,
+        "human_pv_28d": 250,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -330,7 +318,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 219,
+        "human_pv_28d": 222,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -341,7 +329,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 588,
+        "human_pv_28d": 517,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -352,7 +340,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 442,
+        "human_pv_28d": 446,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -363,7 +351,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 856,
+        "human_pv_28d": 851,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -374,7 +362,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 266,
+        "human_pv_28d": 274,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -385,7 +373,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 301,
+        "human_pv_28d": 320,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -396,7 +384,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 311,
+        "human_pv_28d": 313,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -405,7 +393,7 @@
   "site_manifests": {
     "agiscorecard": {
       "path": "sites/agiscorecard/data/fleet-evolution.json",
-      "action_count": 2
+      "action_count": 1
     },
     "baipiaoji": {
       "path": "sites/baipiaoji/data/fleet-evolution.json",

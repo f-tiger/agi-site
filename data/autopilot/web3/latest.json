@@ -1,5 +1,5 @@
 {
-  "asOf": "2026-09-22T07:56:08.314Z",
+  "asOf": "2026-09-23T07:57:09.179Z",
   "ok": true,
   "checks": [
     {
@@ -15,15 +15,11 @@
       "ok": true
     },
     {
-      "name": "reconcile.agiscorecard.com",
+      "name": "evidence.agiscorecard.com",
       "ok": true
     },
     {
-      "name": "web3.agiscorecard.com",
-      "ok": true
-    },
-    {
-      "name": "protocol.agiscorecard.com",
+      "name": "proof.agiscorecard.com",
       "ok": true
     },
     {
@@ -31,15 +27,23 @@
       "ok": true
     },
     {
+      "name": "protocol.agiscorecard.com",
+      "ok": true
+    },
+    {
+      "name": "reconcile.agiscorecard.com",
+      "ok": true
+    },
+    {
       "name": "permit.agiscorecard.com",
       "ok": true
     },
     {
-      "name": "evidence.agiscorecard.com",
+      "name": "compute.agiscorecard.com",
       "ok": true
     },
     {
-      "name": "compute.agiscorecard.com",
+      "name": "calls.agiscorecard.com",
       "ok": true
     },
     {
@@ -51,11 +55,7 @@
       "ok": true
     },
     {
-      "name": "proof.agiscorecard.com",
-      "ok": true
-    },
-    {
-      "name": "calls.agiscorecard.com",
+      "name": "web3.agiscorecard.com",
       "ok": true
     },
     {
@@ -70,36 +70,36 @@
   "sources": {
     "market": {
       "status": "fresh",
-      "retrievedAt": "2026-09-22T07:56:08.720Z",
+      "retrievedAt": "2026-09-23T07:57:10.143Z",
       "ageSeconds": 0,
       "quotes": [
         {
           "symbol": "BTC",
           "quote": "USD",
-          "price": 85300.75775347461,
-          "sourceUpdatedAt": "2026-09-22T07:54:40.000Z",
+          "price": 86178.93335576823,
+          "sourceUpdatedAt": "2026-09-23T07:55:40.000Z",
           "deviationBps": null
         },
         {
           "symbol": "ETH",
           "quote": "USD",
-          "price": 2724.257485982589,
-          "sourceUpdatedAt": "2026-09-22T07:54:40.000Z",
+          "price": 2744.739889759213,
+          "sourceUpdatedAt": "2026-09-23T07:55:40.000Z",
           "deviationBps": null
         },
         {
           "symbol": "USDC",
           "quote": "USD",
-          "price": 0.9998275467986744,
-          "sourceUpdatedAt": "2026-09-22T07:54:40.000Z",
-          "deviationBps": -1.7245320132563968
+          "price": 0.99986840597961,
+          "sourceUpdatedAt": "2026-09-23T07:55:40.000Z",
+          "deviationBps": -1.3159402038998014
         },
         {
           "symbol": "USDT",
           "quote": "USD",
-          "price": 0.9997516571471978,
-          "sourceUpdatedAt": "2026-09-22T07:54:40.000Z",
-          "deviationBps": -2.483428528021747
+          "price": 0.9998175729490631,
+          "sourceUpdatedAt": "2026-09-23T07:55:40.000Z",
+          "deviationBps": -1.8242705093685085
         }
       ],
       "source": {
@@ -110,65 +110,65 @@
     },
     "briefs": {
       "status": "fresh",
-      "retrievedAt": "2026-09-22T07:56:08.743Z",
+      "retrievedAt": "2026-09-23T07:57:09.747Z",
       "sources": [
         {
           "id": "ethereum",
           "status": "ok",
-          "checkedAt": "2026-09-22T07:56:08.581Z"
+          "checkedAt": "2026-09-23T07:57:09.520Z"
         },
         {
           "id": "x402",
           "status": "ok",
-          "checkedAt": "2026-09-22T07:56:08.581Z"
+          "checkedAt": "2026-09-23T07:57:09.520Z"
         },
         {
           "id": "ezkl",
           "status": "ok",
-          "checkedAt": "2026-09-22T07:56:08.581Z"
+          "checkedAt": "2026-09-23T07:57:09.520Z"
         }
       ],
       "items": [
         {
-          "title": "fix(go): match HTTP routes on escaped and decoded paths (#3543)",
-          "url": "https://github.com/x402-foundation/x402/commit/279f12cf185811220f68f140ba71c3db1de38f7b",
-          "publishedAt": "2026-09-22T06:05:31.000Z",
+          "title": "Specify exact Lightning on lnbtc (#2861)",
+          "url": "https://github.com/x402-foundation/x402/commit/6fe0d4bfd104e8c61ae0b6aeaefe9da506d502ff",
+          "publishedAt": "2026-09-23T06:01:21.000Z",
           "source": "x402 Foundation repository",
           "sourceId": "x402",
           "kind": "commits",
           "task": "stablecoin"
         },
         {
-          "title": "fix(ts): match HTTP routes on escaped and decoded paths (#3542)",
-          "url": "https://github.com/x402-foundation/x402/commit/5d3a2b2c56b2c8e5b7e0f3b516183b1640e095d8",
-          "publishedAt": "2026-09-22T06:04:59.000Z",
+          "title": "specs(exact): correct Starknet settlement rules (follow-up to #2849) (#3126)",
+          "url": "https://github.com/x402-foundation/x402/commit/d6d2c580142eec4ff96935ad834009454253d9a3",
+          "publishedAt": "2026-09-23T03:56:15.000Z",
           "source": "x402 Foundation repository",
           "sourceId": "x402",
           "kind": "commits",
           "task": "stablecoin"
         },
         {
-          "title": "feat: expand x402.org/protected routes (#3522)",
-          "url": "https://github.com/x402-foundation/x402/commit/749653343bfbbe82fde9f31fdcbb2349b426a460",
-          "publishedAt": "2026-09-21T18:55:53.000Z",
+          "title": "chore: version python package (#3554)",
+          "url": "https://github.com/x402-foundation/x402/commit/71eb9a55e081e7b81ba3046d0bd17c3eb9c7bf81",
+          "publishedAt": "2026-09-22T18:22:45.000Z",
           "source": "x402 Foundation repository",
           "sourceId": "x402",
           "kind": "commits",
           "task": "stablecoin"
         },
         {
-          "title": "fix(evm): reject malformed CAIP-2 network identifiers in getEvmChainId (#3521)",
-          "url": "https://github.com/x402-foundation/x402/commit/59f1347a1a0828af6c9eb9c01298338d3eff3053",
-          "publishedAt": "2026-09-21T14:02:47.000Z",
+          "title": "chore(go): release (#3555)",
+          "url": "https://github.com/x402-foundation/x402/commit/74ee0f5ca1e3ee412095d9a61289dafff3d2d930",
+          "publishedAt": "2026-09-22T18:22:31.000Z",
           "source": "x402 Foundation repository",
           "sourceId": "x402",
           "kind": "commits",
           "task": "stablecoin"
         },
         {
-          "title": "fix(python): close literal-route bypass via percent-encoded path separator (#3502)",
-          "url": "https://github.com/x402-foundation/x402/commit/6323ec74c85607e706e0722dd294365a7fb57768",
-          "publishedAt": "2026-09-21T05:37:04.000Z",
+          "title": "chore: version typescript packages (#3553)",
+          "url": "https://github.com/x402-foundation/x402/commit/597694348c9b7658565e6b14d22e04f719c2fd37",
+          "publishedAt": "2026-09-22T18:22:18.000Z",
           "source": "x402 Foundation repository",
           "sourceId": "x402",
           "kind": "commits",
@@ -223,134 +223,134 @@
     },
     "research": {
       "status": "fresh",
-      "retrievedAt": "2026-09-22T07:56:08.916Z",
+      "retrievedAt": "2026-09-23T07:57:10.793Z",
       "historyStatus": "fresh",
       "quotes": [
         {
           "symbol": "BTC",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-09-22T07:54:40.000Z",
+          "sourceUpdatedAt": "2026-09-23T07:55:40.000Z",
           "day": {
-            "percent": 4.509691131810611,
-            "from": "2026-09-21T07:00:00.000Z",
-            "to": "2026-09-22T07:54:40.000Z"
+            "percent": 0.960319509301133,
+            "from": "2026-09-22T07:00:00.000Z",
+            "to": "2026-09-23T07:55:40.000Z"
           },
           "week": {
-            "percent": 10.420432488803645,
-            "from": "2026-09-15T07:00:00.000Z",
-            "to": "2026-09-22T07:54:40.000Z"
+            "percent": 13.44760334270556,
+            "from": "2026-09-16T07:00:00.000Z",
+            "to": "2026-09-23T07:55:40.000Z"
           }
         },
         {
           "symbol": "ETH",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-09-22T07:54:40.000Z",
+          "sourceUpdatedAt": "2026-09-23T07:55:40.000Z",
           "day": {
-            "percent": 2.327086997748151,
-            "from": "2026-09-21T07:00:00.000Z",
-            "to": "2026-09-22T07:54:40.000Z"
+            "percent": 0.5432183110766209,
+            "from": "2026-09-22T07:00:00.000Z",
+            "to": "2026-09-23T07:55:40.000Z"
           },
           "week": {
-            "percent": 9.640550511470858,
-            "from": "2026-09-15T07:00:00.000Z",
-            "to": "2026-09-22T07:54:40.000Z"
+            "percent": 14.181522853099082,
+            "from": "2026-09-16T07:00:00.000Z",
+            "to": "2026-09-23T07:55:40.000Z"
           }
         },
         {
           "symbol": "USDC",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-09-22T07:54:40.000Z",
+          "sourceUpdatedAt": "2026-09-23T07:55:40.000Z",
           "day": {
-            "percent": 0.008283597339087123,
-            "from": "2026-09-21T07:00:00.000Z",
-            "to": "2026-09-22T07:54:40.000Z"
+            "percent": 0.0036595080011636583,
+            "from": "2026-09-22T07:00:00.000Z",
+            "to": "2026-09-23T07:55:40.000Z"
           },
           "week": {
-            "percent": -0.0011187022437741945,
-            "from": "2026-09-15T07:00:00.000Z",
-            "to": "2026-09-22T07:54:40.000Z"
+            "percent": 0.01501533613879058,
+            "from": "2026-09-16T07:00:00.000Z",
+            "to": "2026-09-23T07:55:40.000Z"
           }
         },
         {
           "symbol": "USDT",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-09-22T07:54:40.000Z",
+          "sourceUpdatedAt": "2026-09-23T07:55:40.000Z",
           "day": {
-            "percent": 0.0004831417201867083,
-            "from": "2026-09-21T07:00:00.000Z",
-            "to": "2026-09-22T07:54:40.000Z"
+            "percent": 0.007504715475725732,
+            "from": "2026-09-22T07:00:00.000Z",
+            "to": "2026-09-23T07:55:40.000Z"
           },
           "week": {
-            "percent": -0.0017445566858897976,
-            "from": "2026-09-15T07:00:00.000Z",
-            "to": "2026-09-22T07:54:40.000Z"
+            "percent": 0.04513799837193577,
+            "from": "2026-09-16T07:00:00.000Z",
+            "to": "2026-09-23T07:55:40.000Z"
           }
         },
         {
           "symbol": "TAO",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-09-22T07:54:40.000Z",
+          "sourceUpdatedAt": "2026-09-23T07:55:40.000Z",
           "day": {
-            "percent": 18.150324461835353,
-            "from": "2026-09-21T07:00:00.000Z",
-            "to": "2026-09-22T07:54:40.000Z"
+            "percent": -1.8571074553428657,
+            "from": "2026-09-22T07:00:00.000Z",
+            "to": "2026-09-23T07:55:40.000Z"
           },
           "week": {
-            "percent": 38.159755106559246,
-            "from": "2026-09-15T07:00:00.000Z",
-            "to": "2026-09-22T07:54:40.000Z"
+            "percent": 43.43965076778773,
+            "from": "2026-09-16T07:00:00.000Z",
+            "to": "2026-09-23T07:55:40.000Z"
           }
         },
         {
           "symbol": "RENDER",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-09-22T07:54:40.000Z",
+          "sourceUpdatedAt": "2026-09-23T07:46:20.000Z",
           "day": {
-            "percent": 2.763495332197663,
-            "from": "2026-09-21T07:00:00.000Z",
-            "to": "2026-09-22T07:54:40.000Z"
+            "percent": 1.992323328787582,
+            "from": "2026-09-22T07:00:00.000Z",
+            "to": "2026-09-23T07:46:20.000Z"
           },
           "week": {
-            "percent": 32.336524254019025,
-            "from": "2026-09-15T07:01:50.000Z",
-            "to": "2026-09-22T07:54:40.000Z"
+            "percent": 40.59333818428683,
+            "from": "2026-09-16T07:01:30.000Z",
+            "to": "2026-09-23T07:46:20.000Z"
           }
         },
         {
           "symbol": "FET",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-09-22T07:54:40.000Z",
+          "sourceUpdatedAt": "2026-09-23T07:55:40.000Z",
           "day": {
-            "percent": 9.093471909958662,
-            "from": "2026-09-21T07:00:00.000Z",
-            "to": "2026-09-22T07:54:40.000Z"
+            "percent": 4.282456202405882,
+            "from": "2026-09-22T07:00:00.000Z",
+            "to": "2026-09-23T07:55:40.000Z"
           },
           "week": {
-            "percent": 25.677569956319335,
-            "from": "2026-09-15T07:01:50.000Z",
-            "to": "2026-09-22T07:54:40.000Z"
+            "percent": 38.41806396232257,
+            "from": "2026-09-16T07:01:30.000Z",
+            "to": "2026-09-23T07:55:40.000Z"
           }
         },
         {
           "symbol": "AKT",
           "status": "fresh",
-          "sourceUpdatedAt": "2026-09-22T07:46:40.000Z",
+          "sourceUpdatedAt": "2026-09-23T07:46:20.000Z",
           "day": {
-            "percent": 12.993980433874896,
-            "from": "2026-09-21T06:51:50.000Z",
-            "to": "2026-09-22T07:46:40.000Z"
+            "percent": 12.85458355291944,
+            "from": "2026-09-22T07:01:40.000Z",
+            "to": "2026-09-23T07:46:20.000Z"
           },
           "week": {
-            "percent": 26.584459406869023,
-            "from": "2026-09-15T06:51:40.000Z",
-            "to": "2026-09-22T07:46:40.000Z"
+            "percent": 51.239117808878376,
+            "from": "2026-09-16T06:51:50.000Z",
+            "to": "2026-09-23T07:46:20.000Z"
           }
         }
       ]
     }
   },
   "events": {
-    "asOf": "2026-09-22T07:56:11.454Z",
+    "asOf": "2026-09-23T07:57:12.117Z",
     "windowDays": 28,
     "measurement": "Opt-in event counts, deduplicated within a page visit. Not unique people or a cross-domain session funnel. Incoming attribution is unverified; stripped referrers appear direct. Default examples, probes and MCP requests do not generate events.",
     "groups": []
@@ -361,36 +361,36 @@
   },
   "changes": [
     {
-      "url": "https://github.com/x402-foundation/x402/commit/279f12cf185811220f68f140ba71c3db1de38f7b",
-      "title": "fix(go): match HTTP routes on escaped and decoded paths (#3543)",
+      "url": "https://github.com/x402-foundation/x402/commit/6fe0d4bfd104e8c61ae0b6aeaefe9da506d502ff",
+      "title": "Specify exact Lightning on lnbtc (#2861)",
       "task": "stablecoin",
       "kind": "new_since_previous_check",
       "requiresReview": true
     },
     {
-      "url": "https://github.com/x402-foundation/x402/commit/5d3a2b2c56b2c8e5b7e0f3b516183b1640e095d8",
-      "title": "fix(ts): match HTTP routes on escaped and decoded paths (#3542)",
+      "url": "https://github.com/x402-foundation/x402/commit/d6d2c580142eec4ff96935ad834009454253d9a3",
+      "title": "specs(exact): correct Starknet settlement rules (follow-up to #2849) (#3126)",
       "task": "stablecoin",
       "kind": "new_since_previous_check",
       "requiresReview": true
     },
     {
-      "url": "https://github.com/x402-foundation/x402/commit/749653343bfbbe82fde9f31fdcbb2349b426a460",
-      "title": "feat: expand x402.org/protected routes (#3522)",
+      "url": "https://github.com/x402-foundation/x402/commit/71eb9a55e081e7b81ba3046d0bd17c3eb9c7bf81",
+      "title": "chore: version python package (#3554)",
       "task": "stablecoin",
       "kind": "new_since_previous_check",
       "requiresReview": true
     },
     {
-      "url": "https://github.com/x402-foundation/x402/commit/59f1347a1a0828af6c9eb9c01298338d3eff3053",
-      "title": "fix(evm): reject malformed CAIP-2 network identifiers in getEvmChainId (#3521)",
+      "url": "https://github.com/x402-foundation/x402/commit/74ee0f5ca1e3ee412095d9a61289dafff3d2d930",
+      "title": "chore(go): release (#3555)",
       "task": "stablecoin",
       "kind": "new_since_previous_check",
       "requiresReview": true
     },
     {
-      "url": "https://github.com/x402-foundation/x402/commit/6323ec74c85607e706e0722dd294365a7fb57768",
-      "title": "fix(python): close literal-route bypass via percent-encoded path separator (#3502)",
+      "url": "https://github.com/x402-foundation/x402/commit/597694348c9b7658565e6b14d22e04f719c2fd37",
+      "title": "chore: version typescript packages (#3553)",
       "task": "stablecoin",
       "kind": "new_since_previous_check",
       "requiresReview": true
