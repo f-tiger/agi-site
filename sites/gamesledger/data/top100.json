@@ -1,606 +1,600 @@
 {
  "note": "Valve official Most Played chart; written only by CI.",
- "d": "2026-09-22",
+ "d": "2026-09-23",
  "games": [
   {
    "appid": 730,
    "name": "Counter-Strike 2",
    "rank": 1,
-   "n": 1218401
+   "n": 1236411
   },
   {
    "appid": 570,
    "name": "Dota 2",
    "rank": 2,
-   "n": 794330
+   "n": 824642
   },
   {
    "appid": 578080,
    "name": "PUBG: BATTLEGROUNDS",
    "rank": 3,
-   "n": 754595
+   "n": 747912
   },
   {
    "appid": 431960,
    "name": "Wallpaper Engine",
    "rank": 4,
-   "n": 104150
+   "n": 102894
   },
   {
    "appid": 1867240,
    "name": "WARDOGS",
    "rank": 5,
-   "n": 318255
+   "n": 302873
   },
   {
    "appid": 1172470,
    "name": "Apex Legends™",
    "rank": 6,
-   "n": 265692
+   "n": 262884
   },
   {
    "appid": 892970,
    "name": "Valheim",
    "rank": 7,
-   "n": 222742
+   "n": 213162
   },
   {
    "appid": 271590,
    "name": "Grand Theft Auto V Legacy",
    "rank": 8,
-   "n": 68284
-  },
-  {
-   "appid": 2676230,
-   "name": "FiveM",
-   "rank": 9,
-   "n": 190548
-  },
-  {
-   "appid": 2868840,
-   "name": "Slay the Spire 2",
-   "rank": 10,
-   "n": 94284
+   "n": 65423
   },
   {
    "appid": 4126040,
    "name": "Aniimo",
+   "rank": 9,
+   "n": 135227
+  },
+  {
+   "appid": 2676230,
+   "name": "FiveM",
+   "rank": 10,
+   "n": 187753
+  },
+  {
+   "appid": 2868840,
+   "name": "Slay the Spire 2",
    "rank": 11,
-   "n": 143600
-  },
-  {
-   "appid": 2767030,
-   "name": "Marvel Rivals",
-   "rank": 12,
-   "n": 101124
-  },
-  {
-   "appid": 2357570,
-   "name": "Overwatch®",
-   "rank": 13,
-   "n": 73367
-  },
-  {
-   "appid": 359550,
-   "name": "Tom Clancy's Rainbow Six Siege",
-   "rank": 14,
-   "n": 87872
-  },
-  {
-   "appid": 250900,
-   "name": "The Binding of Isaac: Rebirth",
-   "rank": 15,
-   "n": 76763
-  },
-  {
-   "appid": 236390,
-   "name": "War Thunder",
-   "rank": 16,
-   "n": 78185
+   "n": 95274
   },
   {
    "appid": 553850,
    "name": "HELLDIVERS™ 2",
+   "rank": 12,
+   "n": 92344
+  },
+  {
+   "appid": 2767030,
+   "name": "Marvel Rivals",
+   "rank": 13,
+   "n": 93014
+  },
+  {
+   "appid": 2357570,
+   "name": "Overwatch®",
+   "rank": 14,
+   "n": 69982
+  },
+  {
+   "appid": 359550,
+   "name": "Tom Clancy's Rainbow Six Siege",
+   "rank": 15,
+   "n": 80046
+  },
+  {
+   "appid": 250900,
+   "name": "The Binding of Isaac: Rebirth",
+   "rank": 16,
+   "n": 76678
+  },
+  {
+   "appid": 236390,
+   "name": "War Thunder",
    "rank": 17,
-   "n": 46189
+   "n": 76218
   },
   {
    "appid": 381210,
    "name": "Dead by Daylight",
    "rank": 18,
-   "n": 59969
+   "n": 61530
   },
   {
    "appid": 322170,
    "name": "Geometry Dash",
    "rank": 19,
-   "n": 50170
+   "n": 47465
   },
   {
    "appid": 1422450,
    "name": "Deadlock",
    "rank": 20,
-   "n": 71414
-  },
-  {
-   "appid": 3240220,
-   "name": "Grand Theft Auto V Enhanced",
-   "rank": 21,
-   "n": 76209
+   "n": 72432
   },
   {
    "appid": 1973530,
    "name": "Limbus Company",
+   "rank": 21,
+   "n": 44621
+  },
+  {
+   "appid": 3240220,
+   "name": "Grand Theft Auto V Enhanced",
    "rank": 22,
-   "n": 53719
+   "n": 73498
   },
   {
    "appid": 105600,
    "name": "Terraria",
    "rank": 23,
-   "n": 47033
+   "n": 45514
   },
   {
    "appid": 413150,
    "name": "Stardew Valley",
    "rank": 24,
-   "n": 74297
+   "n": 74198
   },
   {
    "appid": 2507950,
    "name": "Delta Force",
    "rank": 25,
-   "n": 120884
+   "n": 120942
   },
   {
    "appid": 252490,
    "name": "Rust",
    "rank": 26,
-   "n": 113924
+   "n": 103118
   },
   {
    "appid": 3405690,
    "name": "EA SPORTS FC™ 26",
    "rank": 27,
-   "n": 46556
+   "n": 46672
   },
   {
    "appid": 230410,
    "name": "Warframe",
    "rank": 28,
-   "n": 63881
+   "n": 61510
   },
   {
    "appid": 2807960,
    "name": "Battlefield™ 6",
    "rank": 29,
-   "n": 39451
+   "n": 38395
   },
   {
    "appid": 1623730,
    "name": "Palworld",
    "rank": 30,
-   "n": 78646
+   "n": 75230
   },
   {
    "appid": 440,
    "name": "Team Fortress 2",
    "rank": 31,
-   "n": 73688
+   "n": 71144
   },
   {
    "appid": 108600,
    "name": "Project Zomboid",
    "rank": 32,
-   "n": 56315
+   "n": 54701
   },
   {
    "appid": 1086940,
    "name": "Baldur's Gate 3",
    "rank": 33,
-   "n": 57121
+   "n": 55983
   },
   {
    "appid": 438100,
    "name": "VRChat",
    "rank": 34,
-   "n": 53858
-  },
-  {
-   "appid": 550,
-   "name": "Left 4 Dead 2",
-   "rank": 35,
-   "n": 33511
+   "n": 53828
   },
   {
    "appid": 227300,
    "name": "Euro Truck Simulator 2",
+   "rank": 35,
+   "n": 41025
+  },
+  {
+   "appid": 550,
+   "name": "Left 4 Dead 2",
    "rank": 36,
-   "n": 41143
+   "n": 28229
   },
   {
    "appid": 2246340,
    "name": "Monster Hunter Wilds",
    "rank": 37,
-   "n": 57452
+   "n": 56374
   },
   {
    "appid": 394360,
    "name": "Hearts of Iron IV",
    "rank": 38,
-   "n": 48331
+   "n": 48285
+  },
+  {
+   "appid": 1203220,
+   "name": "NARAKA: BLADEPOINT",
+   "rank": 39,
+   "n": 62338
   },
   {
    "appid": 1174180,
    "name": "Red Dead Redemption 2",
-   "rank": 39,
-   "n": 37533
+   "rank": 40,
+   "n": 36850
   },
   {
    "appid": 1091500,
    "name": "Cyberpunk 2077",
-   "rank": 40,
-   "n": 36216
-  },
-  {
-   "appid": 4001890,
-   "name": "How to Fish",
    "rank": 41,
-   "n": 31801
+   "n": 35601
   },
   {
-   "appid": 3527290,
-   "name": "PEAK",
+   "appid": 322330,
+   "name": "Don't Starve Together",
    "rank": 42,
-   "n": 28975
+   "n": 45778
   },
   {
-   "appid": 275850,
-   "name": "No Man's Sky",
+   "appid": 252950,
+   "name": "Rocket League®",
    "rank": 43,
-   "n": 39947
+   "n": 29168
   },
   {
    "appid": 3678970,
    "name": "TBH: Task Bar Hero",
    "rank": 44,
-   "n": 90698
-  },
-  {
-   "appid": 1203220,
-   "name": "NARAKA: BLADEPOINT",
-   "rank": 45,
-   "n": 62156
+   "n": 90751
   },
   {
    "appid": 1245620,
    "name": "ELDEN RING",
-   "rank": 46,
-   "n": 38898
-  },
-  {
-   "appid": 3241660,
-   "name": "R.E.P.O.",
-   "rank": 47,
-   "n": 27067
+   "rank": 45,
+   "n": 38282
   },
   {
    "appid": 1938090,
    "name": "Call of Duty®",
-   "rank": 48,
-   "n": 35093
+   "rank": 46,
+   "n": 33376
   },
   {
-   "appid": 322330,
-   "name": "Don't Starve Together",
-   "rank": 49,
-   "n": 45505
-  },
-  {
-   "appid": 252950,
-   "name": "Rocket League®",
-   "rank": 50,
-   "n": 28437
+   "appid": 4001890,
+   "name": "How to Fish",
+   "rank": 47,
+   "n": 29542
   },
   {
    "appid": 1449850,
    "name": "Yu-Gi-Oh! Master Duel",
+   "rank": 48,
+   "n": 19816
+  },
+  {
+   "appid": 3527290,
+   "name": "PEAK",
+   "rank": 49,
+   "n": 26719
+  },
+  {
+   "appid": 275850,
+   "name": "No Man's Sky",
+   "rank": 50,
+   "n": 37995
+  },
+  {
+   "appid": 3241660,
+   "name": "R.E.P.O.",
    "rank": 51,
-   "n": 19947
-  },
-  {
-   "appid": 284160,
-   "name": "BeamNG.drive",
-   "rank": 52,
-   "n": 24391
-  },
-  {
-   "appid": 2694490,
-   "name": "Path of Exile 2",
-   "rank": 53,
-   "n": 53812
+   "n": 26859
   },
   {
    "appid": 1665460,
    "name": "eFootball™",
+   "rank": 52,
+   "n": 20659
+  },
+  {
+   "appid": 284160,
+   "name": "BeamNG.drive",
+   "rank": 53,
+   "n": 23513
+  },
+  {
+   "appid": 2694490,
+   "name": "Path of Exile 2",
    "rank": 54,
-   "n": 21340
-  },
-  {
-   "appid": 4000,
-   "name": "Garry's Mod",
-   "rank": 55,
-   "n": 29492
-  },
-  {
-   "appid": 2344520,
-   "name": "Diablo® IV",
-   "rank": 56,
-   "n": 49572
+   "n": 51441
   },
   {
    "appid": 1364780,
    "name": "Street Fighter™ 6",
+   "rank": 55,
+   "n": 33760
+  },
+  {
+   "appid": 4000,
+   "name": "Garry's Mod",
+   "rank": 56,
+   "n": 28476
+  },
+  {
+   "appid": 2344520,
+   "name": "Diablo® IV",
    "rank": 57,
-   "n": 34421
+   "n": 47039
   },
   {
    "appid": 2483190,
    "name": "Forza Horizon 6",
    "rank": 58,
-   "n": 19120
+   "n": 18674
   },
   {
-   "appid": 1222670,
-   "name": "The Sims™ 4",
+   "appid": 1281930,
+   "name": "tModLoader",
    "rank": 59,
-   "n": 27948
+   "n": 31905
   },
   {
    "appid": 489830,
    "name": "The Elder Scrolls V: Skyrim Special Edition",
    "rank": 60,
-   "n": 29055
-  },
-  {
-   "appid": 1281930,
-   "name": "tModLoader",
-   "rank": 61,
-   "n": 31393
+   "n": 28826
   },
   {
    "appid": 3419430,
    "name": "Bongo Cat",
-   "rank": 62,
-   "n": 170520
+   "rank": 61,
+   "n": 169812
   },
   {
    "appid": 3513350,
    "name": "Wuthering Waves",
+   "rank": 62,
+   "n": 12386
+  },
+  {
+   "appid": 1222670,
+   "name": "The Sims™ 4",
    "rank": 63,
-   "n": 13325
+   "n": 25980
   },
   {
    "appid": 2073620,
    "name": "Arena Breakout: Infinite",
    "rank": 64,
-   "n": 40858
+   "n": 40190
+  },
+  {
+   "appid": 1085660,
+   "name": "Destiny 2",
+   "rank": 65,
+   "n": 24540
   },
   {
    "appid": 289070,
    "name": "Sid Meier’s Civilization® VI",
-   "rank": 65,
-   "n": 39319
+   "rank": 66,
+   "n": 38561
   },
   {
    "appid": 1905180,
    "name": "OBS Studio",
-   "rank": 66,
-   "n": 30738
-  },
-  {
-   "appid": 2300320,
-   "name": "Farming Simulator 25",
    "rank": 67,
-   "n": 47365
-  },
-  {
-   "appid": 1142710,
-   "name": "Total War: WARHAMMER III",
-   "rank": 68,
-   "n": 30043
+   "n": 30787
   },
   {
    "appid": 1808500,
    "name": "ARC Raiders",
+   "rank": 68,
+   "n": 26287
+  },
+  {
+   "appid": 2300320,
+   "name": "Farming Simulator 25",
    "rank": 69,
-   "n": 27564
+   "n": 45840
+  },
+  {
+   "appid": 1142710,
+   "name": "Total War: WARHAMMER III",
+   "rank": 70,
+   "n": 28601
   },
   {
    "appid": 1366800,
    "name": "Crosshair X",
-   "rank": 70,
-   "n": 38213
+   "rank": 71,
+   "n": 36548
   },
   {
    "appid": 291550,
    "name": "Brawlhalla",
-   "rank": 71,
-   "n": 12609
+   "rank": 72,
+   "n": 12855
   },
   {
    "appid": 221100,
    "name": "DayZ",
-   "rank": 72,
-   "n": 48444
+   "rank": 73,
+   "n": 47645
   },
   {
    "appid": 594650,
    "name": "Hunt: Showdown 1896",
-   "rank": 73,
-   "n": 29682
+   "rank": 74,
+   "n": 30949
   },
   {
    "appid": 244210,
    "name": "Assetto Corsa",
-   "rank": 74,
-   "n": 14064
+   "rank": 75,
+   "n": 14373
   },
   {
    "appid": 261550,
    "name": "Mount & Blade II: Bannerlord",
-   "rank": 75,
-   "n": 33889
-  },
-  {
-   "appid": 251570,
-   "name": "7 Days to Die",
    "rank": 76,
-   "n": 31107
-  },
-  {
-   "appid": 582010,
-   "name": "Monster Hunter: World",
-   "rank": 77,
-   "n": 32690
-  },
-  {
-   "appid": 294100,
-   "name": "RimWorld",
-   "rank": 78,
-   "n": 33397
-  },
-  {
-   "appid": 714010,
-   "name": "Aimlabs",
-   "rank": 79,
-   "n": 7433
+   "n": 33322
   },
   {
    "appid": 813780,
    "name": "Age of Empires II: Definitive Edition",
-   "rank": 80,
-   "n": 20874
+   "rank": 77,
+   "n": 25918
   },
   {
-   "appid": 2638890,
-   "name": "Onimusha: Way of the Sword",
+   "appid": 714010,
+   "name": "Aimlabs",
+   "rank": 78,
+   "n": 8208
+  },
+  {
+   "appid": 582010,
+   "name": "Monster Hunter: World",
+   "rank": 79,
+   "n": 32445
+  },
+  {
+   "appid": 251570,
+   "name": "7 Days to Die",
+   "rank": 80,
+   "n": 30465
+  },
+  {
+   "appid": 294100,
+   "name": "RimWorld",
    "rank": 81,
-   "n": 27109
+   "n": 32728
   },
   {
    "appid": 1374490,
    "name": "RuneScape: Dragonwilds",
    "rank": 82,
-   "n": 33149
+   "n": 30272
   },
   {
-   "appid": 1085660,
-   "name": "Destiny 2",
+   "appid": 2638890,
+   "name": "Onimusha: Way of the Sword",
    "rank": 83,
-   "n": 18968
-  },
-  {
-   "appid": 739630,
-   "name": "Phasmophobia",
-   "rank": 84,
-   "n": 14871
+   "n": 24797
   },
   {
    "appid": 3321460,
    "name": "Crimson Desert Enhanced",
-   "rank": 85,
-   "n": 24312
+   "rank": 84,
+   "n": 23229
   },
   {
    "appid": 3551340,
    "name": "Football Manager 26",
-   "rank": 86,
-   "n": 40295
+   "rank": 85,
+   "n": 40074
   },
   {
    "appid": 2139460,
    "name": "Once Human",
-   "rank": 87,
-   "n": 24083
+   "rank": 86,
+   "n": 24149
   },
   {
    "appid": 2622380,
    "name": "ELDEN RING NIGHTREIGN",
-   "rank": 88,
-   "n": 30492
+   "rank": 87,
+   "n": 30608
   },
   {
    "appid": 2183900,
    "name": "Warhammer 40,000: Space Marine 2",
+   "rank": 88,
+   "n": 14459
+  },
+  {
+   "appid": 739630,
+   "name": "Phasmophobia",
    "rank": 89,
-   "n": 15255
+   "n": 12968
   },
   {
    "appid": 2050650,
    "name": "Resident Evil 4",
    "rank": 90,
-   "n": 15369
-  },
-  {
-   "appid": 2406770,
-   "name": "Bodycam",
-   "rank": 91,
-   "n": 8348
+   "n": 15259
   },
   {
    "appid": 960090,
    "name": "Bloons TD 6",
-   "rank": 92,
-   "n": 8896
+   "rank": 91,
+   "n": 8600
   },
   {
    "appid": 4162040,
    "name": "Zenless Zone Zero",
+   "rank": 92,
+   "n": 7716
+  },
+  {
+   "appid": 2379780,
+   "name": "Balatro",
    "rank": 93,
-   "n": 8397
+   "n": 8482
   },
   {
    "appid": 2073850,
    "name": "THE FINALS",
    "rank": 94,
-   "n": 14129
-  },
-  {
-   "appid": 1144200,
-   "name": "Ready or Not",
-   "rank": 95,
-   "n": 10068
-  },
-  {
-   "appid": 2379780,
-   "name": "Balatro",
-   "rank": 96,
-   "n": 8505
-  },
-  {
-   "appid": 1158310,
-   "name": "Crusader Kings III",
-   "rank": 97,
-   "n": 21191
-  },
-  {
-   "appid": 945360,
-   "name": "Among Us",
-   "rank": 98,
-   "n": 9056
+   "n": 13858
   },
   {
    "appid": 2358720,
    "name": "Black Myth: Wukong",
+   "rank": 95,
+   "n": 23161
+  },
+  {
+   "appid": 1158310,
+   "name": "Crusader Kings III",
+   "rank": 96,
+   "n": 20572
+  },
+  {
+   "appid": 2406770,
+   "name": "Bodycam",
+   "rank": 97,
+   "n": 7300
+  },
+  {
+   "appid": 1144200,
+   "name": "Ready or Not",
    "rank": 99,
-   "n": 23549
+   "n": 9028
   },
   {
    "appid": 3932890,
    "name": "Escape from Tarkov",
    "rank": 100,
-   "n": 32206
+   "n": 32012
   }
  ]
 }
