@@ -706,7 +706,7 @@ GEO / 设计类任务前，先查技能库是否覆盖，覆盖则按其框架�
    新增 Agent 目录节(中英目录、MCP 类目表、agents.json、RSS),覆盖率句 121/218→129/219;`server.json` 1.5.0→每日镜像注册表 isLatest(1.13.0);
    `sync.mjs` 每日维护这些数字,锚点缺失或源不可达只打 WARN 不中断(旧版一挂就连额度表都不更新)。仓库 description/website/topics 三项为空,只有 owner 能改。
    ②**同一维护者互链**:`mcp` 页新增 `#same-maintainer` 表,名单**不手写**,取账本里 `keys.evidence` ∈ {first-party, first-party-hosted} 且接入方式 `mcp-*` 的记录
-   (因此与其它记录一样每天被核验器盖章);SR `/mcp` 页脚、eco `mcp.html` 各加一行指回 bpj 英文 MCP 页与 MCP 类目表;agiscorecard `/agents/` 顶栏改指 bpj 英文 Agent 目录。
+   (因此与其它记录一样每天被核验器盖章);SR `/mcp` 页脚、eco `mcp.html` 各加一行指回 bpj 英文 MCP 页与 MCP 类目表;agiscorecard `/agents/` 顶栏改指 bpj 英文 Agent 目录、`/zh/agents/` 指中文目录(**该页有四份副本**:`agents.html`、`agents/index.html`、`zh/agents.html`、`zh/agents/index.html`,线上 `/agents/` 服务的是 `agents/index.html`——第一版只改了 `agents.html`,部署绿了线上却没变,是 live 检查抓到的)。
    **全部用规范 URL**(bpj 是无扩展名路由,`/mcp.html` → 308;第一版写的就是带 .html 的,当场改掉)。
    ③三个舰队 MCP 服务器(SR / eco / MCP Pulse)作为第一方托管记录入账(官方页当日 200),词表新增 `evidence.first-party-hosted` 与三个能力键;
    `agent-watch-admit.mjs` 放行「无公开仓库 + first-party-hosted」。账本 978→981。
