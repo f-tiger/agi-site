@@ -45,6 +45,10 @@ export function buildAgentPages(ctx) {
     status: (vocab.status[a.status] || {})[zh ? 'zh' : 'en'] || a.status,
   });
   const tool = (a) => (a.tool_slug && toolBySlug.get(a.tool_slug)) || null;
+  // RSS for the directory (2026-09-22, owner: 「让网站更快被自动发现」): feed readers, aggregators and AI crawlers poll feeds
+  // for what is new; the registry admits new records daily, so this feed changes daily. Indexable pages advertise it in <head>.
+  const feedRef = { title: T('New AI agents & MCP servers — Baipiaoji', '新收录的 Agent 与 MCP — 白嫖计'), href: url('/agents/feed.xml') };
+  const lay = (o) => layout({ ...o, feed: o.noindex ? undefined : feedRef });
   // Official page text is quoted verbatim; on the English side it is shown only when it has no CJK (en pages carry a
   // no-CJK gate, and a Chinese vendor title on an English page would trip it while helping nobody).
   const official = (a) => {
@@ -92,7 +96,7 @@ export function buildAgentPages(ctx) {
   };
   // Dated capsule (GEO: a dated first-party statement above the fold) — the registry's own last-check date, never today's clock.
   const asOf = () => `<p class="aw-asof">${T(`Data as of ${registry.checked} (last URL re-check). `, `数据截至 ${registry.checked}（最近一次 URL 重核）。`)}${T('Re-checked in rotation; a stale URL is marked, never silently removed.', '轮询重核；失效 URL 只标记，绝不静默删除。')}</p>`;
-  const machine = () => `<section class="aw-machine" id="machine"><h2 class="group-title">${T('For agents and AI search', '给智能体与 AI 搜索用的入口')}</h2><p>${T('The whole list is machine-readable and citable with its check dates:', '整份清单机器可读，引用时请带核验日期：')}</p><ul><li><code>${site.base_url}${zh ? '' : '/en'}/agents.json</code> — ${T('every record with first-seen date, per-URL check dates, vocabulary keys and audiences', '每条记录带首见日、每条 URL 的核验日、词表键与受众')}</li><li>MCP <code>monitor_new_agents</code> (${T('filters: category, audience, status, transport, origin, since, query; paginate with offset/limit', '过滤：category / audience / status / transport / origin / since / query；offset+limit 翻页')}) · <code>get_agent</code> — <a href="${BASE}/mcp.html">${T('server docs', '服务器文档')}</a>${serverJson ? ` · ${T('listed in the official MCP registry as', '官方 MCP 注册表登记名')} <code>${esc(serverJson.name)}</code> v${esc(serverJson.version)}` : ''}</li><li><a href="${site.base_url}/llms.txt">llms.txt</a> · <a href="${site.base_url}/.well-known/mcp.json">.well-known/mcp.json</a> · <a href="${site.base_url}/openapi.json">openapi.json</a></li></ul><p class="aw-meta">${T('Cite as “Baipiaoji (baipiaoji.com)” with the check date. Discovery is separated from verification: a listing is not a security, performance or revenue claim.', '引用请注明「白嫖计（baipiaoji.com）」并带核验日期。发现与核验分开：收录不等于安全、性能或盈利承诺。')}</p></section>`;
+  const machine = () => `<section class="aw-machine" id="machine"><h2 class="group-title">${T('For agents and AI search', '给智能体与 AI 搜索用的入口')}</h2><p>${T('The whole list is machine-readable and citable with its check dates:', '整份清单机器可读，引用时请带核验日期：')}</p><ul><li><code>${site.base_url}${zh ? '' : '/en'}/agents.json</code> — ${T('every record with first-seen date, per-URL check dates, vocabulary keys and audiences', '每条记录带首见日、每条 URL 的核验日、词表键与受众')}</li><li>MCP <code>monitor_new_agents</code> (${T('filters: category, audience, status, transport, origin, since, query; paginate with offset/limit', '过滤：category / audience / status / transport / origin / since / query；offset+limit 翻页')}) · <code>get_agent</code> — <a href="${BASE}/mcp.html">${T('server docs', '服务器文档')}</a>${serverJson ? ` · ${T('listed in the official MCP registry as', '官方 MCP 注册表登记名')} <code>${esc(serverJson.name)}</code> v${esc(serverJson.version)}` : ''}</li><li><a href="${site.base_url}/llms.txt">llms.txt</a> · <a href="${site.base_url}/.well-known/mcp.json">.well-known/mcp.json</a> · <a href="${site.base_url}/openapi.json">openapi.json</a> · <a href="${feedRef.href}" type="application/rss+xml">RSS</a> ${T('(newest records)', '（最新收录）')}</li></ul><p class="aw-meta">${T('Cite as “Baipiaoji (baipiaoji.com)” with the check date. Discovery is separated from verification: a listing is not a security, performance or revenue claim.', '引用请注明「白嫖计（baipiaoji.com）」并带核验日期。发现与核验分开：收录不等于安全、性能或盈利承诺。')}</p></section>`;
   // Visible FAQ and FAQPage JSON-LD are generated from the same array, so they cannot drift (GEO rule ④).
   const FAQ = [
     { q: T('What does “verified” mean here?', '这里的「已核验」是什么意思？'), a: T('Only that the official URL and, when there is one, the repository URL answered when we fetched them on the date shown. It is not a review, a security audit or an endorsement. A URL that stops answering is marked stale, never silently removed.', '只表示官方 URL（以及有公开仓库时的仓库 URL）在所示日期被我们抓取时有应答。它不是评测、不是安全审计、也不是背书。停止应答的 URL 会标为待复核，绝不会被静默删除。') },
@@ -144,7 +148,7 @@ export function buildAgentPages(ctx) {
   ${machine()}
   ${subscribeOf ? subscribeOf(path) : ''}
 </main>`;
-    write(`agents/index.html`, layout({ title: T('AI agents, MCP servers & agent platforms — verified directory | Baipiaoji', 'AI Agent 与 MCP 目录：带官方来源与核验日期 | 白嫖计'), description: answer, path, body, wide: true, schema: [ld([{ name: T('Agents & MCP', 'Agent 与 MCP'), url: url(path) }]), { '@context': 'https://schema.org', '@type': 'CollectionPage', name: h1, url: url(path), description: answer, dateModified: registry.checked }, itemList(featured, T('Agents with a verified free-tier record', '有已核实免费额度记录的 Agent')), faqLd(FAQ), datasetLd()] }));
+    write(`agents/index.html`, lay({ title: T('AI agents, MCP servers & agent platforms — verified directory | Baipiaoji', 'AI Agent 与 MCP 目录：带官方来源与核验日期 | 白嫖计'), description: answer, path, body, wide: true, schema: [ld([{ name: T('Agents & MCP', 'Agent 与 MCP'), url: url(path) }]), { '@context': 'https://schema.org', '@type': 'CollectionPage', name: h1, url: url(path), description: answer, dateModified: registry.checked }, itemList(featured, T('Agents with a verified free-tier record', '有已核实免费额度记录的 Agent')), faqLd(FAQ), datasetLd()] }));
     pushPage(url(path), '0.9');
   }
 
@@ -164,7 +168,7 @@ export function buildAgentPages(ctx) {
   ${groups.map(([c, xs]) => { const cur = xs.filter(hasPage), reg = xs.filter((a) => !hasPage(a)); return `<section id="${esc(c)}" data-aw-sec><h2 class="group-title">${esc(catLabel(c))}<span>${xs.length}</span></h2><p class="aw-lede">${esc(catLede(c))}</p>${cur.length ? cards(cur) : ''}${reg.length ? `<p class="coverage"><a href="${url(`/agents/c/${c}.html`)}">${T(`${n(reg.length)} more from the official MCP registry in the full ${catLabel(c)} table →`, `另有 ${n(reg.length)} 条来自官方 MCP 注册表，见完整的「${catLabel(c)}」表 →`)}</a></p>` : `<p class="coverage"><a href="${url(`/agents/c/${c}.html`)}">${T('Full category table →', '完整类目表 →')}</a></p>`}</section>`; }).join('\n')}
   ${machine()}
 </main>${filterScript}`;
-    write(`agents/for/${k}.html`, layout({ title: T(`${audLabel(k)} — agents & MCP tools with sources | Baipiaoji`, `${audLabel(k)}：带来源的 Agent 与 MCP 工具 | 白嫖计`), description: `${audLede(k)} ${T(`${n(list.length)} records with official sources and check dates.`, `${n(list.length)} 条记录，带官方来源与核验日期。`)}`, path, body, wide: true, schema: [ld([{ name: T('Agents & MCP', 'Agent 与 MCP'), url: url('/agents/') }, { name: audLabel(k), url: url(path) }]), { '@context': 'https://schema.org', '@type': 'CollectionPage', name: h1, url: url(path), dateModified: registry.checked }, itemList(list.filter(hasPage), h1)] }));
+    write(`agents/for/${k}.html`, lay({ title: T(`${audLabel(k)} — agents & MCP tools with sources | Baipiaoji`, `${audLabel(k)}：带来源的 Agent 与 MCP 工具 | 白嫖计`), description: `${audLede(k)} ${T(`${n(list.length)} records with official sources and check dates.`, `${n(list.length)} 条记录，带官方来源与核验日期。`)}`, path, body, wide: true, schema: [ld([{ name: T('Agents & MCP', 'Agent 与 MCP'), url: url('/agents/') }, { name: audLabel(k), url: url(path) }]), { '@context': 'https://schema.org', '@type': 'CollectionPage', name: h1, url: url(path), dateModified: registry.checked }, itemList(list.filter(hasPage), h1)] }));
     pushPage(url(path), '0.8');
   }
 
@@ -186,7 +190,7 @@ export function buildAgentPages(ctx) {
   ${reg.length ? `<section id="registry" data-aw-sec><h2 class="group-title">${T('From the official MCP registry', '来自官方 MCP 注册表')}<span>${reg.length}</span></h2><p class="aw-lede">${T('Published by whoever controls each namespace; the description is the publisher’s own. Verified here only as “the repository answered on the date shown”.', '由控制各命名空间的发布者自行登记，描述是发布者原文。本站只核验到「仓库在所示日期有应答」。')}</p>${table(reg)}</section>` : ''}
   ${machine()}
 </main>${filterScript}`;
-    write(`agents/c/${c}.html`, layout({ title: T(`${catLabel(c)} — ${n(list.length)} agents & MCP tools, verified sources | Baipiaoji`, `${catLabel(c)}：${n(list.length)} 个 Agent 与 MCP 工具，来源已核验 | 白嫖计`), description: `${catLede(c)} ${T(`${n(list.length)} records, each with an official source URL and the date it last answered.`, `${n(list.length)} 条记录，每条带官方来源 URL 与最近应答日期。`)}`, path, body, wide: true, schema: [ld([{ name: T('Agents & MCP', 'Agent 与 MCP'), url: url('/agents/') }, { name: catLabel(c), url: url(path) }]), { '@context': 'https://schema.org', '@type': 'CollectionPage', name: h1, url: url(path), dateModified: registry.checked }, itemList(list, h1)] }));
+    write(`agents/c/${c}.html`, lay({ title: T(`${catLabel(c)} — ${n(list.length)} agents & MCP tools, verified sources | Baipiaoji`, `${catLabel(c)}：${n(list.length)} 个 Agent 与 MCP 工具，来源已核验 | 白嫖计`), description: `${catLede(c)} ${T(`${n(list.length)} records, each with an official source URL and the date it last answered.`, `${n(list.length)} 条记录，每条带官方来源 URL 与最近应答日期。`)}`, path, body, wide: true, schema: [ld([{ name: T('Agents & MCP', 'Agent 与 MCP'), url: url('/agents/') }, { name: catLabel(c), url: url(path) }]), { '@context': 'https://schema.org', '@type': 'CollectionPage', name: h1, url: url(path), dateModified: registry.checked }, itemList(list, h1)] }));
     pushPage(url(path), '0.8');
   }
 
@@ -219,7 +223,7 @@ export function buildAgentPages(ctx) {
     <section class="aw-machine"><h2 class="group-title">${T('Fetch this record', '取这条记录')}</h2><pre>MCP get_agent {"slug":"${esc(a.slug)}"}\n${site.base_url}${zh ? '' : '/en'}/agents.json</pre></section>
   </article>
 </main>`;
-    write(`agents/${a.slug}.html`, layout({ title: T(`${a.name} — ${x.cat} | Agent watch | Baipiaoji`, `${a.name}：${x.cat} | Agent 监控 | 白嫖计`), description: x.desc, path, body, wide: true, noindex: true, schema: [{ '@context': 'https://schema.org', '@type': 'WebPage', name: a.name, url: url(path), description: x.desc, dateModified: a.last_verified, about: { '@type': 'SoftwareApplication', name: a.name, url: a.source_url, applicationCategory: x.cat } }] }));
+    write(`agents/${a.slug}.html`, lay({ title: T(`${a.name} — ${x.cat} | Agent watch | Baipiaoji`, `${a.name}：${x.cat} | Agent 监控 | 白嫖计`), description: x.desc, path, body, wide: true, noindex: true, schema: [{ '@context': 'https://schema.org', '@type': 'WebPage', name: a.name, url: url(path), description: x.desc, dateModified: a.last_verified, about: { '@type': 'SoftwareApplication', name: a.name, url: a.source_url, applicationCategory: x.cat } }] }));
   }
 
   // ── machine-readable list + search index for this locale ──────────────
@@ -231,5 +235,10 @@ export function buildAgentPages(ctx) {
   const idx = [...curated, ...fromRegistry].map((a) => ({ u: hasPage(a) ? pageOf(a) : a.source_url, n: nm(a), k: hasPage(a) ? catLabel(a.category) : `${catLabel(a.category)} · ${T('registry', '注册表')}`,
     q: `${a.name} ${zh ? (a.zh_name || '') : ''} ${a.slug} ${zh ? a.zh_description : a.description} ${(zh ? a.zh_capabilities : a.capabilities).join(' ')} ${zh ? a.zh_transport : a.transport} ${catLabel(a.category)} ${audiencesOf(a).map(audLabel).join(' ')}`.toLowerCase() }));
   write('agents-index.json', JSON.stringify(idx));
+  // RSS 2.0, newest 50 by first-seen. Curated records link to their record page, registry rows to their official page.
+  const rfc822 = (d) => new Date(`${d}T00:00:00Z`).toUTCString();
+  const x = (v) => String(v ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  const items = agents.slice(0, 50).map((a) => `<item><title>${x(nm(a))}</title><link>${x(hasPage(a) ? pageOf(a) : a.source_url)}</link><guid isPermaLink="false">baipiaoji-agent-${x(a.slug)}</guid><pubDate>${rfc822(a.first_seen)}</pubDate><category>${x(catLabel(a.category))}</category><description>${x(L(a).desc)}</description></item>`).join('');
+  write('agents/feed.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>${x(feedRef.title)}</title><link>${url('/agents/')}</link><atom:link href="${feedRef.href}" rel="self" type="application/rss+xml"/><description>${x(T('Newly admitted AI agents, MCP servers and agent platforms. A record is admitted only after its official page answered on that day.', '新收录的 AI Agent、MCP 服务器与 Agent 平台。一条记录只在它的官方页面当天有应答时才会被收录。'))}</description><language>${zh ? 'zh-CN' : 'en'}</language><lastBuildDate>${rfc822(registry.checked)}</lastBuildDate>${items}</channel></rss>\n`);
   return { total: agents.length, curated: curated.length, registry: fromRegistry.length, categories: cats, audiences: Object.fromEntries(AUDIENCES.map((k) => [k, byAud.get(k).length])) };
 }

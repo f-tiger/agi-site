@@ -1,6 +1,6 @@
 {
   "version": "2.0.0",
-  "checked": "2026-09-22",
+  "checked": "2026-09-23",
   "policy": {
     "scope": "Publicly discoverable AI agents, MCP servers and agent platforms",
     "verification": "A listing is published only when an official homepage, repository or protocol page is attached; discovery signals are never treated as product claims.",
@@ -48531,6 +48531,147 @@
       "repo_checked": "2026-09-22",
       "source_http": 200,
       "repo_http": 200
+    },
+    {
+      "slug": "mcp-pulse",
+      "name": "MCP Pulse — Agentic Commerce Tools",
+      "category": "mcp",
+      "description": "Remote MCP server with free tools for agent-facing websites: MCP endpoint health scans, AI-readiness scores, an llms.txt generator, a glossary and indexes.",
+      "source_url": "https://mcppulse.agiscorecard.com",
+      "repo_url": null,
+      "first_seen": "2026-09-23",
+      "last_verified": "2026-09-23",
+      "status": "new",
+      "transport": "Remote MCP server (HTTP)",
+      "zh_transport": "远程 MCP 服务器（HTTP）",
+      "capabilities": [
+        "MCP server",
+        "website and endpoint health checks"
+      ],
+      "zh_capabilities": [
+        "MCP 服务器",
+        "网站与端点健康检查"
+      ],
+      "pricing_note": "Free to use",
+      "zh_pricing_note": "免费使用",
+      "evidence_level": "first-party hosted server — same maintainer as this site; no public repository",
+      "zh_evidence_level": "第一方托管服务器——与本站同一维护者；无公开仓库",
+      "zh_description": "面向「给智能体用的网站」的免费工具远程 MCP 服务器：MCP 端点健康扫描、AI 就绪度评分、llms.txt 生成、术语表与索引。",
+      "zh_category": "MCP 服务器、客户端与注册表",
+      "keys": {
+        "transport": "mcp-remote",
+        "capabilities": [
+          "mcp-server",
+          "site-audit"
+        ],
+        "pricing": "free",
+        "evidence": "first-party-hosted"
+      },
+      "origin": "curated",
+      "official": {
+        "title": "MCP Pulse — health check any MCP server in 10 seconds",
+        "description": "Free scanner for remote MCP servers: protocol handshake, tools/list, latency, TLS, auth and metadata quality — scored 0-100 with concrete fixes. Built for the Model Context Protocol era.",
+        "checked": "2026-09-23"
+      },
+      "source_checked": "2026-09-23",
+      "repo_checked": null,
+      "source_http": 200,
+      "repo_http": null
+    },
+    {
+      "slug": "getecoback-mcp",
+      "name": "EcoBack room-climate calculators (MCP)",
+      "category": "mcp",
+      "description": "Remote MCP server for room climate in Germany and the EU: air-conditioner BTU sizing, window-seal length, heatwave outlook, running costs and balcony-solar subsidies.",
+      "source_url": "https://getecoback.com/mcp.html",
+      "repo_url": null,
+      "first_seen": "2026-09-23",
+      "last_verified": "2026-09-23",
+      "status": "new",
+      "transport": "Remote MCP server (HTTP)",
+      "zh_transport": "远程 MCP 服务器（HTTP）",
+      "capabilities": [
+        "MCP server",
+        "calculators"
+      ],
+      "zh_capabilities": [
+        "MCP 服务器",
+        "计算器"
+      ],
+      "pricing_note": "Free to use",
+      "zh_pricing_note": "免费使用",
+      "evidence_level": "first-party hosted server — same maintainer as this site; no public repository",
+      "zh_evidence_level": "第一方托管服务器——与本站同一维护者；无公开仓库",
+      "zh_description": "面向德国与欧盟室内气候的远程 MCP 服务器：空调 BTU 选型、窗户密封条长度、热浪展望、运行电费与阳台光伏补贴。",
+      "zh_category": "MCP 服务器、客户端与注册表",
+      "keys": {
+        "transport": "mcp-remote",
+        "capabilities": [
+          "mcp-server",
+          "calculators"
+        ],
+        "pricing": "free",
+        "evidence": "first-party-hosted"
+      },
+      "origin": "curated",
+      "official": {
+        "title": "Raumklima-MCP-Server: KI-Tools für BTU, Fensterabdichtung & Hitze",
+        "description": "Offener MCP-Server von getecoback.com: BTU-Empfehlung, Fensterabdichtung, Hitzevorschau, Stromkosten und Ratgeber-Suche — für Claude, Cursor & Co.",
+        "checked": "2026-09-23"
+      },
+      "source_checked": "2026-09-23",
+      "repo_checked": null,
+      "source_http": 200,
+      "repo_http": null
+    },
+    {
+      "slug": "sourceradar-mcp",
+      "name": "SourceRadar US import facts (MCP)",
+      "category": "trade",
+      "description": "Remote MCP server with dated US import facts for sellers: CBP classification rulings, the Section 301 tariff ladder, landed-cost arithmetic, Federal Register rule changes and CPSC recalls.",
+      "source_url": "https://source.agiscorecard.com/mcp",
+      "repo_url": null,
+      "first_seen": "2026-09-23",
+      "last_verified": "2026-09-23",
+      "status": "new",
+      "transport": "Remote MCP server (HTTP)",
+      "zh_transport": "远程 MCP 服务器（HTTP）",
+      "capabilities": [
+        "MCP server",
+        "dated regulatory data",
+        "calculators"
+      ],
+      "zh_capabilities": [
+        "MCP 服务器",
+        "带日期的法规数据",
+        "计算器"
+      ],
+      "pricing_note": "Free to use",
+      "zh_pricing_note": "免费使用",
+      "evidence_level": "first-party hosted server — same maintainer as this site; no public repository",
+      "zh_evidence_level": "第一方托管服务器——与本站同一维护者；无公开仓库",
+      "zh_description": "面向卖家的美国进口事实远程 MCP 服务器：CBP 归类裁定、301 关税阶梯、到岸成本计算、联邦公报规则变更与 CPSC 召回，每条带日期与出处。",
+      "zh_category": "外贸智能体",
+      "keys": {
+        "transport": "mcp-remote",
+        "capabilities": [
+          "mcp-server",
+          "regulatory-data",
+          "calculators"
+        ],
+        "pricing": "free",
+        "evidence": "first-party-hosted"
+      },
+      "origin": "curated",
+      "official": {
+        "title": "SourceRadar MCP server: dated US import facts for agents",
+        "description": "Five tools an AI agent can call: the China→US duty stack with dates, a fact-check for the $800 de minimis and other superseded figures, a landed-cost calculator that refuses to guess your duty rate, candidate HTS headings from the USITC API, and CPSC recalls by category.",
+        "checked": "2026-09-23"
+      },
+      "source_checked": "2026-09-23",
+      "repo_checked": null,
+      "source_http": 200,
+      "repo_http": null
     }
   ]
 }

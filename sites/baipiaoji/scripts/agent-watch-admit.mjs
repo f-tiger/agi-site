@@ -68,7 +68,9 @@ export function validateCandidate(c, vocab, toolSlugs) {
   if (!c.zh_description || !CJK.test(c.zh_description)) bad.push('zh_description');
   if (c.tool_slug && toolSlugs && !toolSlugs.has(c.tool_slug)) bad.push('tool_slug');
   if (c.keys && ((c.keys.evidence === 'repo-only') !== (c.repo_url !== null && c.repo_url === c.source_url))) bad.push('evidence/repo-only');
-  if (c.keys && (c.keys.evidence === 'official-only') !== (c.repo_url === null)) bad.push('evidence/official-only');
+  // official-only ⇒ no repo; no repo ⇒ official-only or first-party-hosted (a fleet server whose repo is private says so).
+  if (c.keys && c.keys.evidence === 'official-only' && c.repo_url !== null) bad.push('evidence/official-only');
+  if (c.keys && c.repo_url === null && !['official-only', 'first-party-hosted'].includes(c.keys.evidence)) bad.push('evidence/no-repo');
   return bad;
 }
 

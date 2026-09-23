@@ -795,6 +795,12 @@ jobs:
           curl -s -m 20 "http://rpc.pingomatic.com/" -H 'Content-Type: text/xml' \
             -d '<?xml version="1.0"?><methodCall><methodName>weblogUpdates.extendedPing</methodName><params><param><value>白嫖计</value></param><param><value>https://baipiaoji.com/</value></param><param><value>https://baipiaoji.com/feed.xml</value></param></params></methodCall>' \
             -o /dev/null && echo pinged || echo skipped
+          # Agents 目录 RSS（2026-09-22）：注册表每天收录新条目，这份 feed 每天真的在变——只在 schedule 上 ping，与上面同一规矩。
+          for f in agents/feed.xml en/agents/feed.xml; do
+            curl -s -m 20 "http://rpc.pingomatic.com/" -H 'Content-Type: text/xml' \
+              -d "<?xml version=\"1.0\"?><methodCall><methodName>weblogUpdates.extendedPing</methodName><params><param><value>Baipiaoji Agents &amp; MCP</value></param><param><value>https://baipiaoji.com/${f%feed.xml}</value></param><param><value>https://baipiaoji.com/$f</value></param></params></methodCall>" \
+              -o /dev/null && echo "pinged $f" || echo "skipped $f"
+          done
         continue-on-error: true
 
       - name: Ensure custom domain bound (baipiaoji.com)

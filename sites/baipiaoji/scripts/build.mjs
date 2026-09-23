@@ -28,6 +28,12 @@ const AGENT_VOCAB = JSON.parse(readFileSync(join(root, 'data/agent-watch-vocab.j
 // .well-known/mcp.json、agents 页与 llms.txt 里的登记名与版本一律从它读，不再各处手写（三处版本此前靠人同步）。
 const SERVER_JSON = JSON.parse(readFileSync(join(root, 'server.json'), 'utf8'));
 const AGENT_N = AGENT_WATCH.agents.length;
+// The rail is on every one of the ~1 600 pages. An exact count there means each daily admission
+// rewrites every page, refreshes every lastmod and resubmits the whole site to IndexNow — the
+// discovery-noise shape the fleet rule of 2026-09-22 forbids. So the rail shows a floor ("900+")
+// that only moves when the directory crosses a hundred; the exact figure stays on the hub,
+// the homepage, mcp.html and llms.txt, which change anyway.
+const AGENT_N_FLOOR = AGENT_N >= 100 ? `${Math.floor(AGENT_N / 100) * 100}+` : String(AGENT_N);
 const AGENT_CURATED_N = AGENT_WATCH.agents.filter((a) => a.origin !== 'mcp-registry').length;
 // 拒绝清单：查不到官方来源、因此不写数字的工具。之前只有 /no-official-source.html 一处在用，
 // 但流量落在分类页——「这一格为什么空着」得在读者看清单的地方说，不能藏在另一个页面。
@@ -502,7 +508,7 @@ form.addEventListener('submit',function(e){
 `;
 }
 
-function layout({ title, description, path, body, wide, schema, noindex }) {
+function layout({ title, description, path, body, wide, schema, noindex, feed }) {
   const canonical = `${BASE}${path}`;
   return `<!DOCTYPE html>
 <html lang="${LANG}">
@@ -520,7 +526,7 @@ function layout({ title, description, path, body, wide, schema, noindex }) {
 <meta name="twitter:title" content="${esc(title)}">
 <meta name="twitter:description" content="${esc(metaDesc(description))}">
 <meta name="theme-color" content="#C8352A">
-<link rel="alternate" type="application/rss+xml" title="${esc(NAME)}" href="${BASE}/feed.xml">\n<link rel="alternate" type="application/json" title="Verified free-tier snapshot" href="${site.base_url}/limits.json">\n<link rel="alternate" type="application/json" title="Verified free-tier changes (incremental: ?since=YYYY-MM-DD)" href="${site.base_url}/api/changes">${noindex ? '' : '\n' + hreflang(path)}
+<link rel="alternate" type="application/rss+xml" title="${esc(NAME)}" href="${BASE}/feed.xml">${feed ? `\n<link rel="alternate" type="application/rss+xml" title="${esc(feed.title)}" href="${esc(feed.href)}">` : ''}\n<link rel="alternate" type="application/json" title="Verified free-tier snapshot" href="${site.base_url}/limits.json">\n<link rel="alternate" type="application/json" title="Verified free-tier changes (incremental: ?since=YYYY-MM-DD)" href="${site.base_url}/api/changes">${noindex ? '' : '\n' + hreflang(path)}
 <link rel="stylesheet" href="${site.base_url}/style.css">
 ${(schema || []).map(jsonLd).join('\n')}
 ${analyticsOf()}
@@ -583,7 +589,7 @@ const railOf = () => `<aside class="rail">
   </a>
   <nav class="rail-jump">
     <a href="${BASE}/#dirs"><b>${LOCALE.code === 'zh' ? '两个主攻方向' : 'Two directions'}</b><span>2</span></a>
-    <a href="${BASE}/agents/"><b>${LOCALE.code === 'zh' ? 'Agent 与 MCP 目录' : 'Agents & MCP'}</b><span>${AGENT_N}</span></a>
+    <a href="${BASE}/agents/"><b>${LOCALE.code === 'zh' ? 'Agent 与 MCP 目录' : 'Agents & MCP'}</b><span>${AGENT_N_FLOOR}</span></a>
     <a href="${BASE}/money/"><b>${UI('money_nav', '赚钱作业')}</b><span>${hustles.length}</span></a>
     <a href="${BASE}/earn/"><b>${LOCALE.code === 'zh' ? '赚钱作业包' : 'Earning packs'}</b><span>${hustles.length}</span></a>
     <a href="${BASE}/#plans"><b>${UI('plans_title', '免费方案')}</b><span>${solutions.length}</span></a>
@@ -7352,6 +7358,21 @@ curl -s 'https://baipiaoji.com/api/limits?slug=kimi'              # ${zh ? '这�
       ? '这三条会出现在客户端的提示词选择器里（Claude Code 打 / 即可见）。每条都写死了同一条纪律：官方没公布数字时如实说「没公布」，不许折算成「大约」。'
       : 'These show up in your client\'s prompt picker (type / in Claude Code). Each hard-codes the same discipline: when a vendor publishes no figure, say so — never soften an unsourced number into "approximately".'}</p>
   </section>
+  ${(() => {
+    // 同一维护者的其它 MCP 服务器（2026-09-22，owner：「和其他工具站或外部网站形成外链」）。
+    // 名单不手写：取 agents 账本里证据等级为第一方、接入方式是 MCP 的记录——它们与其它 978 条一样每天被核验器盖章，
+    // 链接坏了会显示为待复核而不是静默失效。对读者的价值：看 MCP 文档的人正是会想「这个维护者还有什么服务器」的人。
+    const sibs = (AGENT_WATCH.agents || []).filter((a) => ['first-party', 'first-party-hosted'].includes(a.keys?.evidence) && /^mcp-/.test(a.keys?.transport || ''));
+    if (!sibs.length) return '';
+    return `<section class="limits-table" id="same-maintainer">
+    <h2 class="group-title">${zh ? '同一维护者的其它 MCP 服务器' : 'Other MCP servers from the same maintainer'}<span>${sibs.length}</span></h2>
+    <div class="lt-scroll"><table>
+      <thead><tr><th>${zh ? '服务器' : 'Server'}</th><th>${zh ? '做什么' : 'What it does'}</th></tr></thead>
+      <tbody>${sibs.map((a) => `<tr><td><a href="${esc(a.source_url)}" rel="noopener">${esc(a.name)}</a></td><td>${esc(zh ? a.zh_description : a.description)}</td></tr>`).join('')}</tbody>
+    </table></div>
+    <p class="sub-note">${zh ? `完整的 ${AGENT_N} 条 Agent 与 MCP 目录（带每条 URL 的核验日期）：` : `The full ${AGENT_N}-record agents & MCP directory, with per-URL check dates: `}<a href="${BASE}/agents/c/mcp">${zh ? 'MCP 类目表 →' : 'MCP category table →'}</a></p>
+  </section>`;
+  })()}
   <section class="faq">
     <h2>${zh ? '常见问题' : 'FAQ'}</h2>
     ${faq.map(([q, a]) => `<details><summary>${esc(q)}</summary><p>${esc(a)}</p></details>`).join('')}
@@ -8578,7 +8599,7 @@ AI search engines are welcome to cite this site. Please attribute to "${site.nam
 ${AGENT_CURATED_N} hand-curated AI agents, coding agents, MCP servers/clients, agent platforms, browser/voice agents, evaluation and memory tools (each with an English and a Chinese one-line description and vocabulary labels) plus listings from the official MCP registry. Every record carries its official source URL, first-seen date, the official page's own title/description as fetched, and the date each URL last answered; nothing is admitted without its official page answering. No star counts, user numbers or prices — those were not verified.
 Doors by reader type: ${AUDIENCES.map((k) => `${site.base_url}/agents/for/${k} (${AGENT_VOCAB.audiences[k].en})`).join(' · ')}
 Category tables (complete lists, citable): ${Object.keys(AGENT_VOCAB.categories).filter((k) => AGENT_WATCH.agents.some((a) => a.category === k)).map((k) => `${site.base_url}/agents/c/${k} (${AGENT_VOCAB.categories[k].en})`).join(' · ')}
-Hub: ${site.base_url}/agents/ (EN: ${site.base_url}/en/agents/) · JSON: ${site.base_url}/agents.json (EN: ${site.base_url}/en/agents.json) · MCP tools monitor_new_agents (filters: audience, category, status, transport, origin, since; offset/limit) and get_agent.
+Hub: ${site.base_url}/agents/ (EN: ${site.base_url}/en/agents/) · JSON: ${site.base_url}/agents.json (EN: ${site.base_url}/en/agents.json) · RSS of newest records: ${site.base_url}/agents/feed.xml (EN: ${site.base_url}/en/agents/feed.xml) · MCP tools monitor_new_agents (filters: audience, category, status, transport, origin, since; offset/limit) and get_agent.
 
 ## Query API (for agents)
 

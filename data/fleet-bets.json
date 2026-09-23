@@ -1483,6 +1483,18 @@
    "status": "won",
    "settled": "2026-09-23",
    "reading": "08-28→09-23:31 真人 pv / 3 affiliate_click(3 个会话,9,7 %,此前 1/29 = 3,4 %):energiekostenmessgerät ×1(经 sticky 栏——它取页面第一条 Amazon 链接,所以货架顺序就是移动端 CTA)、Growatt NOAH 2000 ×2(正文换机位)。计数不可逆且已过阈值,提前两天结算。win 动作本轮执行:luftentfeuchter-zieht-kein-wasser / heizluefter-schaltet-sich-aus / luftentfeuchter-stinkt 三张 09-17/18 排障页的货架从「两台新机器」改为诊断优先,读数并入 eco-dach-troubleshoot-1116。"
+  },
+  {
+   "id": "bpj-backlinks-1103",
+   "site": "baipiaoji",
+   "due": "2026-11-03",
+   "metric": "① D1 baipiaoji-hits：ev='' 且 ref 属 github.com / glama.ai / registry.modelcontextprotocol.io / source.agiscorecard.com / getecoback.com / agiscorecard.com / mcppulse.agiscorecard.com 的 28 天访问数与天数（剔 /__ 路径）；② 同表 ev='' 且 ref 属 feedly.com / inoreader.com / newsblur.com / feedbin.com / theoldreader.com 的访问数（RSS 读者点进记录页；feed 本身的抓取测不到——中间件只给 AI 爬虫记账，普通 feed 抓取器不进表，所以不拿抓取当指标）；③ punkpeye/awesome-remote-mcp-servers 的 README 是否含 baipiaoji.com/api/mcp（owner 提交 PR 之后才可能为真）",
+   "threshold": "① ≥5 次且跨 ≥3 天，或 ② ≥3 次，或 ③ 为真；t0（2026-09-23 D1 现查 28 天）：① 0（非搜索非 AI 的外部来源只有 facebook 16 次同一天、X 客户端 1 次）/ ② 0（feed 本轮才上线）/ ③ 否。对照：SR /mcp 28 天真人 pv 4——舰队内链本身几乎没有读者，它们的作用是给爬虫与目录一条路径",
+   "win": "外链面有东西在走 → 按来源追加：① 里哪个域带人就在那个站的同类页面再放一处（仍只放在读者真实相关的页上）；③ 为真则把 SR / eco / MCP Pulse 各自的条目也提交进去",
+   "lose": "三项全空 → 舰队互链与数据集仓 README 不带人也不带爬虫，停止加任何跨站链接块；发现面只剩 owner 侧的目录提交（PulseMCP / mcp.so / cursor.directory / awesome-remote），不再为「外链」写代码",
+   "source": "sites/baipiaoji/CLAUDE.md 第 24 条（2026-09-23）+ docs/distribution-staging/bpj-mcp-directories-2026-09-22.md",
+   "status": "open",
+   "t0_2026-09-23": "ref 前三：www.google.com 174 / cn.bing.com 116 / www.bing.com 19；AI：chatgpt.com 13、perplexity 7、doubao 2；github/glama/registry/舰队站 = 0"
   }
  ]
 }

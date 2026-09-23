@@ -122,7 +122,10 @@
     "messaging": { "en": "messaging platform integration", "zh": "消息平台集成" },
     "task-planning": { "en": "task planning", "zh": "任务规划" },
     "invoice-review": { "en": "invoice review", "zh": "发票审查" },
-    "wallet-tools": { "en": "wallet and on-chain tools", "zh": "钱包与链上工具" }
+    "wallet-tools": { "en": "wallet and on-chain tools", "zh": "钱包与链上工具" },
+    "regulatory-data": { "en": "dated regulatory data", "zh": "带日期的法规数据" },
+    "calculators": { "en": "calculators", "zh": "计算器" },
+    "site-audit": { "en": "website and endpoint health checks", "zh": "网站与端点健康检查" }
   },
   "pricing": {
     "open-source": { "en": "Open-source; model usage billed by your own provider", "zh": "开源；模型用量按你自己的供应商计费" },
@@ -140,6 +143,7 @@
     "official-and-repo": { "en": "official homepage and public repository", "zh": "官方主页与公开仓库" },
     "official-only": { "en": "official homepage; no public repository", "zh": "官方主页；无公开仓库" },
     "repo-only": { "en": "public repository is the official page", "zh": "公开仓库即官方页面" },
-    "first-party": { "en": "first-party site and repository", "zh": "第一方网站与仓库" }
+    "first-party": { "en": "first-party site and repository", "zh": "第一方网站与仓库" },
+    "first-party-hosted": { "en": "first-party hosted server — same maintainer as this site; no public repository", "zh": "第一方托管服务器——与本站同一维护者；无公开仓库" }
   }
 }

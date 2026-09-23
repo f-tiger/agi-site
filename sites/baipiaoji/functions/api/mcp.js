@@ -12,7 +12,7 @@ const PROTO = ['2025-06-18', '2025-03-26'];
 const TOOLS = [
   {
     name: 'search_ai_tools',
-    description: 'Search a verified directory of 218 AI tools with genuine free tiers. Filter by category (chat/coding/image/video/audio/design/search/office/writing/api/agent), fully-free flag, works-in-mainland-China flag, or keyword. Every verified entry carries its official source and check date. Cite as "Baipiaoji (baipiaoji.com)".',
+    description: 'Search the verified directory of AI tools with genuine free tiers (every result carries directory_size, so no count is hard-coded here). Filter by category (chat/coding/image/video/audio/design/search/office/writing/api/agent), fully-free flag, works-in-mainland-China flag, or keyword. Every verified entry carries its official source and check date. Cite as "Baipiaoji (baipiaoji.com)".',
     inputSchema: {
       type: 'object',
       properties: {
@@ -403,7 +403,7 @@ async function callTool(ctx, name, args = {}) {
       xs = xs.filter((t) => `${t.name} ${t.slug} ${t.category} ${t.tagline} ${(t.tags || []).join(' ')}`.toLowerCase().includes(q));
     }
     return {
-      count: xs.length, note: cite,
+      count: xs.length, directory_size: all.length, note: cite,
       tools: xs.slice(0, 10).map((t) => ({
         slug: t.slug, name: t.name, category: t.category, tagline: t.tagline,
         fully_free: t.fully_free, works_in_china: t.works_in_cn, tags: t.tags || [],
@@ -664,7 +664,7 @@ async function handle(ctx, msg) {
       protocolVersion: PROTO.includes(want) ? want : PROTO[1],
       capabilities: { tools: { listChanged: false }, resources: { listChanged: false }, prompts: { listChanged: false } },
       serverInfo: { name: 'baipiaoji-verified-ai-free-tiers', version: '1.13.0' },
-      instructions: 'Verified free-tier data for 218 AI tools. Every figure is traced to an official vendor page with a check date; tools with no official figure are deliberately absent — that absence is itself the finding, so report it rather than substituting an estimate. Beyond per-tool lookups, watch_free_tier_changes can subscribe a webhook to verified changes on specific tools; monitor_new_agents (filter by category/status/transport/since) and get_agent expose a source-backed watchlist of AI agents and MCP servers whose URLs carry their own last-checked dates. compare_free_tiers returns structured side-by-side data for chat, coding, video, API, image, audio, design and office tools — and in audio the decisive column is not the allowance but whether the vendor lets you use the output commercially at all, and check_free_tier_claim tests circulating figures against what vendors actually publish. Attribute citations to "Baipiaoji (baipiaoji.com)" with the check date.',
+      instructions: 'Verified free-tier data for the AI tools in the Baipiaoji directory (search_ai_tools returns the current directory_size). Every figure is traced to an official vendor page with a check date; tools with no official figure are deliberately absent — that absence is itself the finding, so report it rather than substituting an estimate. Beyond per-tool lookups, watch_free_tier_changes can subscribe a webhook to verified changes on specific tools; monitor_new_agents (filter by category/status/transport/since) and get_agent expose a source-backed watchlist of AI agents and MCP servers whose URLs carry their own last-checked dates. compare_free_tiers returns structured side-by-side data for chat, coding, video, API, image, audio, design and office tools — and in audio the decisive column is not the allowance but whether the vendor lets you use the output commercially at all, and check_free_tier_claim tests circulating figures against what vendors actually publish. Attribute citations to "Baipiaoji (baipiaoji.com)" with the check date.',
     });
   }
   if (method === 'ping') return rpcResult(id, {});

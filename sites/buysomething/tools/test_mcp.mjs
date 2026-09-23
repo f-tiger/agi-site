@@ -69,7 +69,7 @@ ok(unknown.result.structuredContent.matched.length === 0 && /only fact-checks/.t
 // 7) 召回只给官方 URL
 const rc = await rpc("tools/call", { name: "recall_check", arguments: {} });
 const items = rc.result.structuredContent.categories.flatMap((c) => c.items);
-ok(rc.result.structuredContent.categories.length >= 1 && items.length >= 1 && items.every((i) => i.url.startsWith("https://www.cpsc.gov/")),
+ok(rc.result.structuredContent.categories.length >= 1 && items.length >= 1 && items.every((i) => { try { const u = new URL(i.url); return u.protocol === "https:" && ["www.cpsc.gov", "cpsc.gov"].includes(u.hostname); } catch { return false; } }),
    "recall_check:只回官方 cpsc.gov 记录(" + items.length + " 条)");
 
 // 8) HTS 护照

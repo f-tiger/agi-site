@@ -47,6 +47,10 @@ if (process.argv.includes('--dist')) {
     ck(!!sec && sec[0].includes('agent-watch'), `${p}: strip must live inside the 智能体 section`);
     ck(!/<nav class="lang">[^]*?\/agents\/[^]*?<\/nav>/.test(s.match(/<nav class="lang">[\s\S]*?<\/nav>/)?.[0] || ''), `${p}: agents link must not sit inside the language switch (the 2026-09-22 复列 bug)`);
     ck(/rail-jump[\s\S]*?\/agents\/"/.test(s), `${p}: rail-jump lacks the agents entry`);
+    // The rail is on every page; an exact count there rewrites ~1 600 pages (and their lastmod) on
+    // every admission. It must be a hundreds floor like "900+" (fleet rule 2026-09-22: 发现面只提真变化).
+    const railN = s.match(/rail-jump[\s\S]*?\/agents\/"><b>[^<]*<\/b><span>([^<]*)<\/span>/)?.[1];
+    ck(railN === undefined || /^\d+00\+$|^\d{1,2}$/.test(railN), `${p}: rail agents badge "${railN}" must be a floor like "900+", not the exact count`);
     for (const k of AUDIENCES) ck(s.includes(`/agents/for/${k}"`), `${p}: strip lacks the ${k} door`);
     // Third round (owner: 首页不够凸显 / 没有搜索): a top block right under the hero with its own search box.
     const top = s.match(/<section class="agents-home"[\s\S]*?<\/section>/);

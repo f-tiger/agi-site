@@ -40,9 +40,16 @@ def normalise(items, since):
             continue
         seen.add(rid)
         hazards = [h.get("Name") for h in (it.get("Hazards") or []) if isinstance(h, dict) and h.get("Name")]
-        out.append({"id": rid, "date": date, "title": (it.get("Title") or "")[:140], "hazard": (hazards[0] if hazards else "")[:120], "url": it.get("URL") or ""})
+        out.append({"id": rid, "date": date, "title": (it.get("Title") or "")[:140], "hazard": (hazards[0] if hazards else "")[:120], "url": canonical_url(it.get("URL") or "")})
     out.sort(key=lambda x: x["date"], reverse=True)
     return out
+
+
+def canonical_url(u):
+    """CPSC's API returns most recall links on www.cpsc.gov and, since 2026-09-19, some on the bare
+    cpsc.gov host, which answers 301 to the same path on www. Same record, one hop shorter, and the
+    MCP gate checks one host form. Nothing else about the URL is touched."""
+    return "https://www.cpsc.gov/" + u[len("https://cpsc.gov/"):] if u.startswith("https://cpsc.gov/") else u
 
 
 def selftest():

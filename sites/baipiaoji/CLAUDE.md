@@ -696,3 +696,31 @@ GEO / 设计类任务前，先查技能库是否覆盖，覆盖则按其框架�
    为「被发现」加第 17 个工具(机器面口径见第 16 条:被发现 ≠ 被使用)。
    **判定线** `bpj-mcp-discovery-1103`:①探针上线后零天版本漂移 ②第三方 found:true ≥2 ③28 天 `/api/mcp` 非索引器 UA 带参数调用 ≥3。
    t0:官方 listed/isLatest/1.13.0 ✓;第三方 found = Glama 1 个;③ 未读。
+
+24. **🔗 外链与被发现 2026-09-23**(owner:「你想办法和其他工具站或者外部网站形成外链,让网站更快被自动发现。点击。」;owner kit 见
+   `docs/distribution-staging/bpj-mcp-directories-2026-09-22.md` 后半)。
+   **t0(D1 28 天,ev='' 外部来源)**:google 174 / cn.bing 116 / bing 19 / chatgpt 13 / perplexity 7 / doubao 2;**github / glama / 注册表 / 舰队站 = 0**,
+   非搜索非 AI 的只有 facebook 16(同一天)与 X 客户端 1。对照:SR `/mcp` 28 天真人 pv **4**——舰队互链几乎没有读者,它们的作用是给爬虫与目录一条路。
+   **做了的(都能自己完成、都不需要别人点头)**:
+   ①**公开数据集仓 `f-tiger/verified-ai-free-tiers`**(本来就公开,09-22 我把它当成「要不要建」的 owner 决定,**记错了**):README MCP 节 14→16 工具、9→10 资源,
+   新增 Agent 目录节(中英目录、MCP 类目表、agents.json、RSS),覆盖率句 121/218→129/219;`server.json` 1.5.0→每日镜像注册表 isLatest(1.13.0);
+   `sync.mjs` 每日维护这些数字,锚点缺失或源不可达只打 WARN 不中断(旧版一挂就连额度表都不更新)。仓库 description/website/topics 三项为空,只有 owner 能改。
+   ②**同一维护者互链**:`mcp` 页新增 `#same-maintainer` 表,名单**不手写**,取账本里 `keys.evidence` ∈ {first-party, first-party-hosted} 且接入方式 `mcp-*` 的记录
+   (因此与其它记录一样每天被核验器盖章);SR `/mcp` 页脚、eco `mcp.html` 各加一行指回 bpj 英文 MCP 页与 MCP 类目表;agiscorecard `/agents/` 顶栏改指 bpj 英文 Agent 目录。
+   **全部用规范 URL**(bpj 是无扩展名路由,`/mcp.html` → 308;第一版写的就是带 .html 的,当场改掉)。
+   ③三个舰队 MCP 服务器(SR / eco / MCP Pulse)作为第一方托管记录入账(官方页当日 200),词表新增 `evidence.first-party-hosted` 与三个能力键;
+   `agent-watch-admit.mjs` 放行「无公开仓库 + first-party-hosted」。账本 978→981。
+   ④**Agent 目录 RSS**:`/agents/feed.xml` 与 `/en/agents/feed.xml`(最新 50 条,guid 稳定),只在可索引的 agents 页 `<head>` 声明,llms.txt 列出,schedule 路径 ping Ping-O-Matic。
+   ⑤MCP 文本里写死的「218 AI tools」(实际 219)删掉,`search_ai_tools` 结果改带 `directory_size`——数字从数据来,不再靠人记。
+   **顺手抓到的真缺陷(比外链本身更重要)**:第 22 条说「rail 与页脚各加一个入口,1 626 页哈希全变,**一次性**」——**不是一次性**。rail 在每页上且带**精确**条数,
+   而 schedule 每天 `admit --max 60` 会改条数 → 每次收录都让全站 lastmod 刷新、IndexNow 整站重推,正是舰队 09-22「发现面只提真变化」要消灭的形状。
+   已改为下限写法「900+」,只在跨过整百时变;实测模拟 3 条变化:**受影响页 1 626 → 44**(只剩真正列出记录的 agents 页 + 首页 + mcp 页)。
+   `test-agent-watch --dist` 断言 rail 徽章必须是下限形状,**变异测试确认写回精确数即红**。
+   同轮把 09-22 被我改成展开格式的 `agent-watch-candidates.json`(一条一行)与 `agent-watch-vocab.json`(手排)还原成原格式,只留新增的几行——
+   否则一次加 3 条候选是 5 500 行 diff,下一个会话解冲突时最容易误删预登记的东西。**规矩:改手排 JSON 用文本插入,不要 load→dump。**
+   **只有 owner 能做的(第三方目录都要账号)**:`punkpeye/awesome-remote-mcp-servers` 四条条目已按其 CONTRIBUTING 写好(四个端点 `initialize` 往返成功、
+   四个 Glama connector 200、说明句 ≤120 字符且用下限不用精确数),**开 PR 的账号必须先点星**,本会话既没有点星工具也不该以 owner 身份在第三方仓提交;
+   PulseMCP / mcp.so / cursor.directory 表单;Smithery 用公开数据集仓;数据集仓 About 三项。
+   **明确不做**:徽章/「链接我们」组件(eco 实测分享 0、iframe 不产生链接)、链接交换与群发目录、为外链加新页。
+   **判定线** `bpj-backlinks-1103`:①来自 github/glama/注册表/舰队站的访问 ≥5 且跨 ≥3 天,或 ②RSS 阅读器(feedly/inoreader 等)来源 ≥3,或 ③awesome-remote 已收录;
+   三项全空 → 舰队互链与数据集仓不带人,停止写任何跨站链接块,发现面只剩 owner 侧目录提交。

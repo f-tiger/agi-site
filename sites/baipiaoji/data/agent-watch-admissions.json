@@ -1,5 +1,5 @@
 {
- "checked": "2026-09-22",
+ "checked": "2026-09-23",
  "rejected": {
   "beeai-framework": {
    "attempts": 1,
@@ -5152,6 +5152,21 @@
    "slug": "datakoot-economy-gdp-inflation-unemployment",
    "date": "2026-09-22",
    "origin": "mcp-registry"
+  },
+  {
+   "slug": "mcp-pulse",
+   "date": "2026-09-23",
+   "origin": "curated"
+  },
+  {
+   "slug": "getecoback-mcp",
+   "date": "2026-09-23",
+   "origin": "curated"
+  },
+  {
+   "slug": "sourceradar-mcp",
+   "date": "2026-09-23",
+   "origin": "curated"
   }
  ],
  "note": "Written by scripts/agent-watch-admit.mjs. A slug listed under rejected was NOT admitted (reason + last HTTP status); it is retried on later runs. Candidates that were admitted appear in data/agent-watch.json."
