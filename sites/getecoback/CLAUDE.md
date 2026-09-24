@@ -242,7 +242,7 @@ yahoo 3 · chatgpt 2 · ecosia 1。**Google 依旧为 0**。所以秋冬的活�
 - **主动保持搜索链接的台账(别再「补全」它们)**:AEG ChillFlex Pro(变体家族,
   站内从未指定子型号)· Midea PortaSplit(经典款正是 ausverkauft 页那台,货架上
   现有三个同名兄弟款,搜索页对读者更诚实)· 两款风扇(季节已过)· 储能(板块已降级)。
-- **PA-API 已达解锁条件**(需 3 单,现有 5 单)——это owner 侧的永久自动化路径,
+- ~~**PA-API 已达解锁条件**(需 3 单,现有 5 单)~~ **2026-09-24:PA-API 已停用,接替的 Creators API 门槛是 30 天 ≥10 笔成交,现在不够**——это owner 侧的永久自动化路径,
   只在下次 PartnerNet 截图时顺带提一次,不催。
 - **判定口径**:D1 看不到成交,判据在 PartnerNet——下次 owner 贴月度截图时,对比
   click→order 转化率 vs 基线 **4.20%**(2026-07-26→08-24 窗口)。dp 直链的预期方向
@@ -1231,7 +1231,7 @@ GSC 曝光数**——这一条挂在 owner 待办上,不要自己替它下定论
   作为常开闸门每次部署都跑。密钥只在 Secrets,日志永不回显。`data/products.json` **不提交**
   (每次部署在 runner 上现刷,新鲜度自然满足;失败 = 那次部署无价格,退回现状,诚实降级)。
 
-**owner 三步(≈10 分钟,`tools/product_intel/README.md`)**:PartnerNet 申请 PA-API 密钥
+**⚠ 2026-09-24 作废:PA-API 5.0 已被 Amazon 停用(调用回 403),下面这三步不要再让 owner 做;接替者 Creators API 要近 30 天 ≥10 笔成交,见 `tools/product_intel/README.md` 顶部。** 原文:**owner 三步(≈10 分钟,`tools/product_intel/README.md`)**:PartnerNet 申请 PA-API 密钥
 (账号近 180 天 ≥3 笔成交,30 天窗已有 10 件,**以后台实际显示为准**,沙箱无法核实)→ 三条 Secrets →
 先手动 dispatch 看 `refresh: ok=…` 再设 `PAAPI_ENABLED=1`。**未做这三步之前,这条线是暗的,
 零副作用。**
@@ -3195,3 +3195,13 @@ IT → deumidificatore(注意它峰在 **7 月**,意大利除湿是夏题)。**�
 - **顺手修的**:`device_of` 把「waeschestaender」归到除湿族;`CAT_OF` 补两个 luftqualitaet slug;季节日历的读法说明与 heizstrahler 裁定里的「新页等 10-20」一并改掉。
 - **验证**:21 道闸门 + 队列闸门全绿;390 px 四页单 h1、零横滚、零错误、amazon 链接全带 tag;外侧页 0 条 amazon 链接;两个计算器默认值 207 g / 3,5 °C,各发恰 1 条 `taupunkt_check`;首页块 12 条链接。
 - **判定线**:`eco-expansion-batch1-1122`(三页 10-26→11-22;前提 bingbot 抓过 ≥2 页)、`eco-newest-block-1008`(处理组 9 页 vs 对照组 19 页,≥5/9 且高 ≥30 个百分点;块会轮换,按在块天数读)。`eco-new-page-discovery-1020` 的读数里已注明 09-24 起有第二个干预。
+
+## 营收:第一条不靠商品成交的 Amazon 收入 + 第四季度日历(2026-09-24,owner:「eco如何突破商业营收？设计方案并上线」;全文 `docs/revenue-q4-deal-calendar-2026-09-24.md`)
+
+- **钱线读数**:PartnerNet 8 月 €0,085/点击 → **01.–14.09. €0,03/点击**(€1,61 / 56 点击,两件)。点击没怎么少,**每次点击的钱掉到三分之一**:9 月读者还在读过季的空调页,研究不下单。这一站全部收入都绑在「读者这周正好要买」上。
+- **上线的**:`EB_DEALS` 活动横幅(`tools/build_deals.py` + `data/deal-calendar.json` + 闸门 `check_deals.py`)。只在 Amazon 已公告的活动窗内出现(Prime Deal Days 2026 = 10-06/07,aboutamazon.de;横幅 09-29 起,由每日 03:17 UTC 定时部署自动开关),首页 + 144 张有货架的德语页,只对 DE/AT 时区显示,默认 `hidden`。内容:日期、按货架族一句本站已有的话、§ 11 PAngV 的 30 天最低价、以及**只在 Prime 专属活动时**出现的 Prime 试用链接(`amazon.de/primegratistesten?tag=getecoback-21`,PartnerNet:**3 EUR 每个试用**;按 9 月费率 ≈ 100 次商品点击)。事件 `bounty_click`。
+- **读数纪律(全站适用)**:点试用链接时页面追踪器也会记一条 `affiliate_click`(link_url 含 `primegratistesten`)。**以后读商品点击,一律剔 `link_url LIKE '%primegratistesten%'`。** 横幅里不链 aboutamazon.de:含「amazon.」,同样会被记成联盟点击。
+- **Black Friday**:日历里有(11-27),但 `announced: false`。Amazon 公告周日期后,由每日任务按 aboutamazon.de 原文填进 `deal-calendar.json`(日期、原话、URL、`show_from` 最多提前 14 天),每日摘要的「Deal-Kalender」行会提醒。非 Prime 活动不带试用链接。
+- **PA-API 已停用**(Amazon 弃用说明:调用回 403;第三方汇总 2026-05-15 下线)。09-12 的价格引擎调的就是它;手册里「owner 申请 PA-API 三步」已作废。接替的 Creators API 支持德国,门槛是**近 30 天 ≥10 笔合格成交**。**「价格 / Deals 层」的前提改读成「先卖到 30 天 10 单」**,不要再列成 owner 待办。
+- **别做**:常年挂 Prime 试用、推 Audible/Music/Kids+/Prime Video 试用(同样 3 EUR,与本站读者无关)、替 Amazon 预测活动日期、横幅里放价格或商品链接、为非 Amazon 联盟写代码(09-05:只请示)。
+- **判定线**:`eco-prime-bounty-1027`(PartnerNet 10 月 ≥1 笔 Prime 试用 Prämie;`bounty_click` ≥5 而 0 笔 → 撤试用链接只留日期和 § 11;<5 或没有截图 → insufficient)。`fleet-bounty-line-0929` 已结算为执行。

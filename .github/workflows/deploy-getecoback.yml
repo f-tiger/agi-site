@@ -138,6 +138,15 @@ jobs:
       - name: Inject site chrome (nav/footer/radar; idempotent, covers new pages)
         run: python3 tools/build_structure.py
 
+      # Deal-calendar band (2026-09-24). Date-driven: it renders only while an
+      # announced Amazon event from data/deal-calendar.json is inside its window,
+      # and removes itself afterwards. The daily 03:17 UTC run is what turns it on
+      # and off, so no push is needed on 09-29 or 10-08.
+      - name: Deal-calendar band (date-windowed; idempotent)
+        run: |
+          python3 tools/build_deals.py --selftest
+          python3 tools/build_deals.py
+
       - name: Inject on-page layer (TOC + updated badge; idempotent)
         run: python3 tools/build_onpage.py
 
@@ -239,6 +248,10 @@ jobs:
       # so a queue that drifts from the site is a deploy-time error: a 'built'
       # flag on a page that does not exist, a queued slug that already has a
       # page, a built page without its bet. Running low only warns.
+      - name: Check the deal band is sourced, hidden by default and in its window (gate)
+        run: |
+          python3 tools/check_deals.py --selftest
+          python3 tools/check_deals.py
       - name: Check the expansion queue agrees with the site (gate)
         run: |
           python3 tools/check_expansion_queue.py --selftest
@@ -485,6 +498,22 @@ jobs:
           n=$(curl -sL --max-time 20 "https://getecoback.com/guide/fenster-beschlagen-aussen.html" \
                | python3 -c "import re,sys;h=re.sub(r'<script\b.*?</script>','',sys.stdin.read(),flags=re.S);print(len(re.findall(r'href=\"[^\"]*amazon[^\"]*\"',h)))" 2>/dev/null || echo ERR)
           if [ "$n" != "0" ]; then echo "::error::fenster-beschlagen-aussen carries $n amazon link(s) — the page sells nothing by design"; fail=1; else echo "OK fenster-beschlagen-aussen sells nothing"; fi
+          # Deal band (2026-09-24). The expectation is computed from the calendar
+          # for today's Berlin date, never typed: the accident is a band that is
+          # missing while an event is live, or still on the page after it ended.
+          deal=$(python3 -c "import sys;sys.path.insert(0,'tools');import build_deals as b,datetime as d;e=b.active_event(b.load_calendar(),d.datetime.now(b.BERLIN).date());print(e['id'] if e else '')")
+          # Retried like check(): on the day the band switches on or off, the edge
+          # can still answer with the previous build for a few seconds.
+          for u in "https://getecoback.com/" "https://getecoback.com/guide/luftentfeuchter-20-qm.html"; do
+            for attempt in 1 2 3 4; do
+              has=$(curl -sL --max-time 20 "$u" | grep -c 'id="eb-deals" hidden' || true)
+              if { [ -n "$deal" ] && [ "$has" != "0" ]; } || { [ -z "$deal" ] && [ "$has" = "0" ]; }; then break; fi
+              [ "$attempt" -lt 4 ] && sleep 10
+            done
+            if [ -n "$deal" ] && [ "$has" = "0" ]; then echo "::error::$u has no deal band while $deal is live"; fail=1
+            elif [ -z "$deal" ] && [ "$has" != "0" ]; then echo "::error::$u still carries a deal band with no event live"; fail=1
+            else echo "OK $u deal band matches the calendar (${deal:-none})"; fi
+          done
           # The humidifier page must never carry the dehumidifier shelf (the
           # opposite appliance), and no storage page may carry the vetoed brand.
           body=$(curl -sL --max-time 20 "https://getecoback.com/guide/luftbefeuchter-weisser-staub.html" || true)

@@ -411,6 +411,10 @@ const EV_NAMES = new Set([
   // and "it never reported" were the same reading. Country calculators (5 pages),
   // pro-werkzeuge (3 runs), infrarot Watt-Rechner.
   "solution_calc", "pro_tool_run", "watt_calc",
+  // Deal-calendar band (2026-09-24): the Prime-trial link pays a fixed Amazon
+  // bounty, not a product commission. The page trackers still log it as an
+  // affiliate_click (any amazon.de link does); this event is the clean count.
+  "bounty_click",
   // Written server-side by serveMarkdown (crawlers run no JS), listed here so
   // the event vocabulary stays in one place.
   "md_serve",

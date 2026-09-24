@@ -171,6 +171,33 @@ def expansion_queue(site):
     return out
 
 
+def deal_calendar(site, today):
+    """Next Amazon.de shopping events from sites/<site>/data/deal-calendar.json
+    (2026-09-24). An event that is close and still unannounced is the prompt to
+    look for Amazon's own announcement; the band renders nothing until it is filled."""
+    f = os.path.join(ROOT, "sites", site, "data", "deal-calendar.json")
+    if not os.path.exists(f):
+        return []
+    d = load(f)
+    if "__error__" in d:
+        return [f"**Deal-Kalender**:deal-calendar.json 不可用({d['__error__']})"]
+    rows = []
+    for ev in d.get("events") or []:
+        try:
+            end = dt.date.fromisoformat(ev["end"])
+            start = dt.date.fromisoformat(ev["start"])
+        except Exception:
+            continue
+        if end < today:
+            continue
+        if ev.get("announced"):
+            st = f"已公告,横幅 {ev.get('show_from')}→{ev['end']}" + (",带 Prime 试用链接" if ev.get("prime_only") else "")
+        else:
+            st = "**未公告:去 aboutamazon.de 查,填进 deal-calendar.json 才会出横幅**"
+        rows.append(f"- {ev.get('name')} {start}({(start - today).days} 天后)· {st}")
+    return ["**Deal-Kalender**(Amazon 活动;data/deal-calendar.json)"] + (rows or ["- (没有未结束的活动)"])
+
+
 def main():
     today = dt.date.today()
     for a in sys.argv[1:]:
@@ -258,6 +285,7 @@ def main():
             out.append("**autopilot 需求队列**:该站未纳入 autopilot")
         out.extend(season_calendar(site, today))
         out.extend(expansion_queue(site))
+        out.extend(deal_calendar(site, today))
         out.append("")
 
     # 机会撮合(Reddit 请求 × rising 需求 × 已有供给;零 AI,派生事实,不转载帖子)

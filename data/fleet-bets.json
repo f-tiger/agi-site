@@ -235,7 +235,9 @@
    "win": "加行并预登记 +28d 判定线",
    "lose": "—",
    "source": "CLAUDE.md:营收突破线 #3",
-   "status": "open"
+   "status": "won",
+   "settled": "2026-09-24",
+   "reading": "已执行:EB_DEALS(tools/build_deals.py + data/deal-calendar.json + 闸门 check_deals.py)随 2026-09-24 部署上线,按日期门控在 09-29 由每日 03:17 UTC 定时部署自动出现、10-08 自动撤下——与预登记的 09-29 起一致,且晚于 09-25/09-28 的判定线。形态比预登记收窄:不是常驻一行,只在 Prime 专属活动(Prime Deal Days 10-06/07,aboutamazon.de)前 7 天到结束出现,只对 DE/AT 时区显示,链接 amazon.de/primegratistesten?tag=getecoback-21(PartnerNet:3 EUR 每个 Prime 试用)。+28d 线 = eco-prime-bounty-1027。"
   },
   {
    "id": "bpj-owner-action-0930",
@@ -550,7 +552,8 @@
    "win": "解耦成立",
    "lose": "「解耦」判负,回到把 eco 做厚",
    "source": "CLAUDE.md:营收突破线 判定线",
-   "status": "open"
+   "status": "open",
+   "reading_2026-09-24": "eco PartnerNet 最新一期 01.–14.09.:€1,61 / 56 点击 = €0,03/点击(8 月 €0,085)。9 月读者多在读过季的空调页,点击不再带来成交。第一条不依赖商品成交的 Amazon 收入线(Prime 试用 Prämie,3 EUR/笔)09-29 起随 Prime Deal Days 横幅上线,读数见 eco-prime-bounty-1027。另:PA-API 已停用,价格层改由 Creators API,门槛 30 天 ≥10 笔成交。"
   },
   {
    "id": "agi-paper-ledger-read-2027",
@@ -1597,6 +1600,17 @@
    "win": "从每天被抓的首页链过去是发现面的杠杆 → 保留该块,把同一模式搬到 /en/,eco-new-page-discovery-1020 按此解读",
    "lose": "两组相当 → 首页链接不是杠杆;块保留(零成本、对读者有用)但不扩建,Bing Webmaster 抓取统计仍列 owner 待办。两组都为 0 → Bing 目前根本不抓本域新 URL,别在页面上找原因",
    "source": "sites/getecoback/docs/continuous-expansion-2026-09-24.md",
+   "status": "open"
+  },
+  {
+   "id": "eco-prime-bounty-1027",
+   "site": "getecoback",
+   "due": "2026-10-27",
+   "metric": "① D1 bounty_click(真人,剔 CI,09-29→10-07,Prime Deal Days 横幅窗);② PartnerNet 10 月「Prämien / Miscellaneous Referrals」里 Prime 试用笔数(只有 owner 能读,须附截图日期)。t0(2026-09-24):① 0(事件此前不存在)② 0",
+   "threshold": "② ≥1 笔 Prime 试用 Prämie(= €3,占 9 月 1.–14. 全部佣金 €1,61 的近两倍)",
+   "win": "单次 Prime 专属活动就能拿到不依赖商品成交的钱 → 保留横幅机制,把 2027 年 7 月 Prime Day 预登记进 deal-calendar(公告后再填),并评估 Prime Video Channels 等其它 3 EUR 试用是否有同样诚实的理由(没有就不做)",
+   "lose": "① ≥5 而 ② = 0 → 读者点了但不开试用(多半已是 Prime 会员):以后的活动只保留日期/§ 11 PAngV 两行,撤掉试用链接;① <5 → insufficient:横幅窗里读者太少(9 天,约 150 次 DE 页浏览),不是链接的问题;没有 owner 截图 → insufficient,不得记成 lose",
+   "source": "sites/getecoback/docs/revenue-q4-deal-calendar-2026-09-24.md",
    "status": "open"
   }
  ]

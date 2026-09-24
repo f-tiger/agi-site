@@ -305,7 +305,7 @@ owner 决策卡、事实表)。
   2026-08-29「只走 Amazon」——**只请示不抢跑,一行代码不写**;owner 答 no 则永久归档。
 - **#3 Amazon.de 服务 bounty(Prime/Audible 免费试用 Prämie,现有 tag)**:预登记 **09-29**
   (eco 三条 affiliate_click 判定线结算后)在非判定窗购买页加一行,事件 `bounty_click`;
-  金额在登录后的 Vergütungskatalog,owner 下次截图顺带。
+  金额在登录后的 Vergütungskatalog,owner 下次截图顺带。**2026-09-24 已上线**:PartnerNet 公开页写明 Prime 试用 3 EUR/笔;形态收窄为 Prime 专属活动(Prime Deal Days 10-06/07)前 7 天到结束的横幅,日期门控 09-29 自动出现,判定线 `eco-prime-bounty-1027`(`sites/getecoback/docs/revenue-q4-deal-calendar-2026-09-24.md`)。同日查实 **PA-API 5.0 已停用**,价格层要等 Creators API 的「30 天 ≥10 笔成交」门槛。
 - **#5 Perplexity Comet Plus 出版商池**:owner 一封邮件(草稿在文档 §七),60 天无回复归档。
 - **外部变更要盯**:Cloudflare Pay-Per-Use 2026-09-15 起默认拦截 [thin]——保险丝「引用队列
   爬虫不设价不屏蔽」优先,09-15 后若 heartbeat 看到 GPTBot/OAI-SearchBot/ClaudeBot/
