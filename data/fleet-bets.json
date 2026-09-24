@@ -962,14 +962,16 @@
    "win": "拿这批 performance data 回投主目录(重交 GHOSTLINE+SINGULARITY),并把 $20 付费轮作为 owner 决策提出",
    "lose": "门户线判负:游戏降为只维护,不买付费流量,人力回自有域留存",
    "source": "sites/gridlings/docs/playgama-setup.md(2026-09-15 节)",
-   "status": "open",
+   "status": "won",
    "metric_original": "D1 gridlings-events: ts>='2026-09-15 14:53' AND ref LIKE '%games.playgama.net%' AND country<>'US' 的 play_start 累计 / 二次事件(solve+play_again+game_over+hint_used)。剔 US 因为会话探针从 US 出网,口径保守",
    "threshold_original": "≥150 / ≥15",
    "revised": "2026-09-15",
    "revised_reason": "原口径的「二次事件」测的是这些游戏不发的东西:D1 只记 solve/play_again/game_over 这类离散里程碑,而门户玩家在开局与跑完一局之间什么都不触发。owner 后台截图给了正确指标(停留时长):35 visits → 11 玩过 30s → 6 玩过 60s。阈值改为按他们的口径,原文保留在 *_original。",
    "note": "版本冻结:读数属于 09-15 的旧包。09-16 上传了更快的新归档但 owner 决定「先不发」,结算前不得 publish_sandbox,否则样本前后不可比。",
    "reading_2026-09-22": "① D1:ts>='2026-09-15 14:53' AND ref LIKE '%games.playgama.net%' AND country<>'US' 的 play_start = 155(≥150 达成),跨 4 天,全部落在 09-15 14:54 → 09-19 18:41,09-20 起为 0;Playgama get_sandbox_traffic:run 仍 RUNNING,spentRatio 0.148,endsAt 2026-09-22T14:53Z。② 需 owner 投放结束后的 VISITS / PLAYS 60S 截图(旧包那一版);上一张 owner 截图 09-16(投放 17 小时)是 13/49 = 26,5%。保持 open,09-29 前结算;若届时无新截图,按 ① + 09-16 截图结算并注明截图日期。",
-   "reading_2026-09-23": "Playgama get_sandbox_traffic:run cmu2skueg… FINISHED(09-15 14:53 → 09-22 14:53,spentRatio 0,148)。① 终值 155(投放已结束,不再变;另有 game_over 61、calc_use 40、play_again 8)。② 仍缺 owner 投放后截图;按本线自己的规则 09-29 前结算,届时无新截图即按 ① + 09-16 截图(13/49 = 26,5 %)结算并注明截图日期。"
+   "reading_2026-09-23": "Playgama get_sandbox_traffic:run cmu2skueg… FINISHED(09-15 14:53 → 09-22 14:53,spentRatio 0,148)。① 终值 155(投放已结束,不再变;另有 game_over 61、calc_use 40、play_again 8)。② 仍缺 owner 投放后截图;按本线自己的规则 09-29 前结算,届时无新截图即按 ① + 09-16 截图(13/49 = 26,5 %)结算并注明截图日期。",
+   "settled": "2026-09-24",
+   "reading": "① D1 现查(剔 US 与 label='__deploycheck'):投放起 2026-09-15 14:53 至今,非 US play_start 累计 **155**,**46 个国家** —— 阈值 150,以 3% 的边际达标。投放窗口名义到 09-22 14:53,但**最后一条事件是 09-19 18:41**,提前三天断流,三轮 spentRatio 当时只有 13–16%。② 只有 owner 能读的那一半,最后一次读数是 **2026-09-16 后台截图**:GHOSTLINE VISITS 49 / PLAYS 60S 13 = **27%**,阈值 15%,达标 1.8 倍。**但那是开跑 17 小时的读数,不是窗口结束时的读数**——没有 09-22 的截图,这一半按已有的唯一一次测量结算,结算时应向 owner 说明。分款(非 US play_start / 二次事件):PROMPT 17/80 · SINGULARITY 62/0 · GHOSTLINE 57/2 · MINIMA 2/11 · OVERFIT 6/4 · OVERSEER 3/0 · MIMIC 1/0。**PROMPT 那个 4.7 的比值是三个人不是一群人**:BR 一人 2 开局→23 次 game_over、ID 3→13、SO 1→4,其余九国 12 次开局→**0** 次二次事件。深度参与 ≈ 3/17。GHOSTLINE 只有 2 次二次事件,因为它那九个事件名 09-17 15:16 才随白名单修复上线,窗口只剩两天。"
   },
   {
    "id": "gridlings-playgama-five-0925",
@@ -980,9 +982,11 @@
    "win": "主目录未对 AI 游戏关门,按过审那款的形状复制",
    "lose": "确认主目录对本舰队的 AI 游戏关闭,此后只经营 sandbox 面,不再空手重投",
    "source": "sites/gridlings/docs/playgama-setup.md(2026-09-15 节)",
-   "status": "open",
+   "status": "lost",
    "reading_2026-09-22": "Playgama list_applications:PROMPT / OVERFIT / MIMIC / OVERSEER / MINIMA 五款状态全部 REJECTED(09-15),GHOSTLINE / SINGULARITY 亦 REJECTED(09-16),另有 TOWERS 处于 DRAFT;0/5 进主目录。未到期,不结算。",
-   "reading_2026-09-23": "list_applications:五款仍全部 REJECTED(09-15),09-16 之后无状态变化;0/5。"
+   "reading_2026-09-23": "list_applications:五款仍全部 REJECTED(09-15),09-16 之后无状态变化;0/5。",
+   "settled": "2026-09-24",
+   "reading": "排队五款 PROMPT / OVERFIT / MIMIC / OVERSEER / MINIMA **全部 REJECTED**(2026-09-15 18:57–19:17 同一批),进主目录 **0** 款,阈值 ≥1。拒稿原文与 GHOSTLINE / SINGULARITY 09-14 那两条**逐字相同**,仍是那段 AI 游戏分流政策(先经 Playgama MCP 拿真实数据,再由他们挑进主目录),**不是质量评语**。至此七款 **7/7** 全部被主目录拒绝,同一条政策理由——这不再是偶然,是这条门对本舰队关着。提前一天结算:答案已定,再等一天不会改变。"
   },
   {
    "id": "gridlings-puzzle-portal-1013",
