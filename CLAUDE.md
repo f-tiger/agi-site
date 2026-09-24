@@ -263,6 +263,9 @@ Weekly AI News 均 2–13 分钟成功）；**手动触发路径正常**（`fire
 2. **先算账再加 cron**（每次分钟 × 每月次数，写进提交说明）；外部副作用只挂 schedule。
 3. **合并优先于删除**：`update_trigger` 改 prompt + `enabled=false` 停用，
    **永不 `delete_trigger`**——预登记判定线与历史必须留痕。
+   **例外(2026-09-24)**:owner 明令「删除旧的你的舰队定时任务,重建一个新的」,已删全部 11 条旧 Routine,
+   prompt 全文先存进 `docs/routines-archive-2026-09-14/` 与 `-09-24/`;现役只有 `trig_01EqzKvfWsoUJzNwYeD9m8XL`
+   (每日新会话,原文 `docs/fleet-master-routine.md`,见 automation map 第十一节)。以后再删也照此:先存档再删。
 
 第①层的兜底现在是 `fleet-heartbeat.yml`（每日 08:00 UTC）：八站探活、超 7 天未成功
 部署自动重发、快照写回 `data/fleet-health.json`、任一站非 200 直接把 run 打红。

@@ -344,3 +344,20 @@ Budget estimate: 1–2 incremental runner minutes/day (30–60/month); hard audi
 ## 2026-09-19 独立站点会员确认
 
 沿用 `bpj-ad-watch.yml` 的两小时 schedule，增加一个独立步骤调用 AGI、EcoBack、TDS 各自的 `/api/member-watch`；BPJ 会员保持本地检查。三站各用独立 D1 与操作密钥，某站失败不阻止尝试其他站。无新增 cron 或付费供应商。保守空闲增量预算约 0.5 分钟/次 × 360 次/月 = 180 runner 分钟/月，RPC 与订单量会影响实际用量；新增步骤硬上限 5 分钟。健康检查过期会关闭相应站点新订单，不取消已有会员权益。当前实现与验收见 `tools/member-studio/README.md`。
+
+---
+
+## 十一、2026-09-24：owner 令「删除旧的你的舰队定时任务，重建一个新的」——执行结果
+
+- **删除 11 条**（`delete_trigger`，owner 明确要求，覆盖第四节第 3 条「永不 delete_trigger」）：
+  09-14 自绑定总任务 `trig_012kK8KVg4WYD4g6Y6wEiXet` + 09-14 已停用的 10 条。prompt 全文都在仓内：
+  `docs/routines-archive-2026-09-14/`、`docs/routines-archive-2026-09-24/`。删除后 `list_triggers` 只剩新建的一条。
+- **新建 `trig_01EqzKvfWsoUJzNwYeD9m8XL`「舰队总任务 v2」**：`0 4 * * *`，**每次触发新建会话**，手机推送开；
+  prompt 原文 `docs/fleet-master-routine.md`。职责与 09-14 版相同（A 健康/台账 → B agi+SR → C eco → D bpj →
+  E tds 偶数日 → F SunWatch 周一 → G after35 审核 → H 新站群报数；周一/每月附加不变），补进了 09-14 之后的新规矩：
+  `fleet_human_pv_excl_flagged` 口径、localebatch/verify/rfqdesk/web3 四站、AI 访问探针、Metaculus 待办。
+- **为什么改成新会话**：自绑定的常驻会话上下文越积越长、模型跟着那个会话走；新会话每天从干净状态开始。
+- **缺口（要 owner 动手）**：从会话里建的 Routine 存不进 MCP 连接器，所以新 Routine 没有 Cloudflare / GitHub MCP。
+  D1 现查与 after35 审核在补上之前做不了（prompt 要求如实报「未验证」）。
+  补救：claude.ai → Routines → 这一条 → 加 Cloudflare_Developer_Platform 与 GitHub 连接器。
+- 首轮：2026-09-25 04:00 UTC。首轮跑完先看会话有没有真的 push 到 main、日报是否覆盖 A–H。
