@@ -96,8 +96,8 @@
 - AgentScore
 - ResumeContext
 - Fez
-**autopilot 需求队列**:gaps **0** / covered 2 · heat: measured 2026-09-23 (0 pages); no notes
-**第一方需求**:`{"search_no_result": [], "site_search": [{"n": 4, "q": "tool:sunwatch_ledger"}, {"n": 4, "q": "tool:invest_positions"}, {"n": 2, "q": "tool:claim_ledger https://goldrush.agiscorecard."}]}`
+**autopilot 需求队列**:gaps **0** / covered 2 · heat: measured 2026-09-24 (0 pages); no notes
+**第一方需求**:`{"search_no_result": [], "site_search": [{"n": 5, "q": "tool:sunwatch_ledger"}, {"n": 5, "q": "tool:invest_positions"}, {"n": 1, "q": "tool:claim_ledger https://goldrush.agiscorecard."}]}`
 
 ## baipiaoji
 **Trends rising(逐 seed 时效)**
@@ -113,8 +113,6 @@
 
 ## getecoback
 **Trends rising(逐 seed 时效)**
-- [7d] **condizionatore portatile** → pinguino delonghi (40400), condizionatore portatile md (33300), condizionatore portatile eurospin (31900), condizionatore portatile comfee 9000 btu (23650)
-- [6d] **deumidificatore** → deumidificatore portatile (new), deumidificatore casa (new), deumidificatore dyson (new), deumidificatore in inglese (new)
 - [8d] **portable air conditioner** → walmart kissair portable air conditioner (450), portable air conditioner pick up today (400), shop deals on portable air conditioner for home (350), midea 12 000 btu duo smart inverter portable air conditioner (300)
 - [7d] **dehumidifier** → does a dehumidifier cool the air (300), pelonis dehumidifier reviews (170), will a dehumidifier cool a room (160), is dehumidifier water good for plants (140)
 - [1d] **klimaanlage** → coolizi klimaanlage (28550), air zuma klimaanlage (17800), coolizi coolzy (9900), bgh urteil klimaanlage (8050)
@@ -125,9 +123,11 @@
 - [1d] **balkonkraftwerk** → ecoflow stream 5000 (11300), anker solix solarbank 4 e5000 pro,meter gen 2 ,5xbp5000 balkonkraftwerk (7000), anker solix solarbank 4 e5000 pro (300), anker solarbank 4 pro (250)
 - [7d] **kaffeevollautomat** → krups kaffeevollautomat intensity milk (16500), siemens kaffeevollautomat eq.6 plus s400 te654509de (13950), siemens kaffeevollautomat eq.6 plus s300 te653501de (10550), siemens te651509de eq.6 plus s100 kaffeevollautomat (9600)
 - [6d] **akku staubsauger** → belstaff jacke herren (26850), sky scanner (14100), ford (550), lululemon shorts (350)
+- [7d] **condizionatore portatile** → pinguino delonghi (40400), condizionatore portatile md (33300), condizionatore portatile eurospin (31900), condizionatore portatile comfee 9000 btu (23650)
+- [6d] **deumidificatore** → deumidificatore portatile (new), deumidificatore casa (new), deumidificatore dyson (new), deumidificatore in inglese (new)
 **创业雷达词表命中(PH/HN/Reddit)**
 - (无)
-**autopilot 需求队列**:gaps **22** / covered 30 · heat: measured 2026-09-23 (25 pages); no notes(gaps 量的是标题与开篇有没有接住,不是站内有没有这一页——建页前先 grep 正文)
+**autopilot 需求队列**:gaps **21** / covered 31 · heat: measured 2026-09-24 (25 pages); no notes(gaps 量的是标题与开篇有没有接住,不是站内有没有这一页——建页前先 grep 正文)
 - kind=value · match=0.333 · page=guide/heizkosten-vergleich-rechner.html · q=akku heizlüfter makita
 - kind=value · match=0.5 · page=guide/heizkosten-vergleich-rechner.html · q=knebel infrarotheizung
 - kind=value · match=0.5 · page=guide/heizkosten-vergleich-rechner.html · q=infrarotheizung werkstatt
@@ -172,7 +172,7 @@
 - [STALE] **solar camping lights** → (空)
 **创业雷达词表命中(PH/HN/Reddit)**
 - (无)
-**autopilot 需求队列**:gaps **0** / covered 0 · heat: measured 2026-09-23 (0 pages); no notes
+**autopilot 需求队列**:gaps **0** / covered 0 · heat: measured 2026-09-24 (0 pages); no notes
 **第一方需求**:`{"picks": {}}`
 
 ## gridlings

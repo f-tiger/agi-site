@@ -58,6 +58,17 @@
   {
    "heat": null,
    "kind": "value",
+   "match": 0.95,
+   "page": "guide/air-zuma-erfahrungen.html",
+   "q": "coolizi klimaanlage",
+   "seed": "klimaanlage",
+   "source": "related-queries",
+   "stand": "2026-09-23",
+   "v": 28550
+  },
+  {
+   "heat": null,
+   "kind": "value",
    "match": 0.6,
    "page": "guide/heizkosten-vergleich-rechner.html",
    "q": "heizlüfter große räume",
@@ -135,6 +146,17 @@
   {
    "heat": null,
    "kind": "value",
+   "match": 1.0,
+   "page": "guide/air-zuma-erfahrungen.html",
+   "q": "air zuma klimaanlage",
+   "seed": "klimaanlage",
+   "source": "related-queries",
+   "stand": "2026-09-23",
+   "v": 17800
+  },
+  {
+   "heat": null,
+   "kind": "value",
    "match": 0.917,
    "page": "guide/infrarotheizung-garage.html",
    "q": "infrarotheizung als bild",
@@ -168,13 +190,13 @@
   {
    "heat": null,
    "kind": "value",
-   "match": 1.0,
-   "page": "guide/air-zuma-erfahrungen.html",
-   "q": "air zuma klimaanlage",
+   "match": 0.833,
+   "page": "guide/klimaanlage-mietwohnung.html",
+   "q": "bgh urteil klimaanlage",
    "seed": "klimaanlage",
    "source": "related-queries",
-   "stand": "2026-09-14",
-   "v": 15650
+   "stand": "2026-09-23",
+   "v": 8050
   },
   {
    "heat": null,
@@ -190,34 +212,23 @@
   {
    "heat": null,
    "kind": "value",
-   "match": 0.833,
-   "page": "guide/klimaanlage-mietwohnung.html",
-   "q": "bgh urteil klimaanlage",
-   "seed": "klimaanlage",
-   "source": "related-queries",
-   "stand": "2026-09-14",
-   "v": 6600
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.938,
-   "page": "kategorie/klimaanlagen.html",
-   "q": "beste klimaanlage für mietwohnung",
-   "seed": "klimaanlage",
-   "source": "related-queries",
-   "stand": "2026-09-14",
-   "v": 6600
-  },
-  {
-   "heat": null,
-   "kind": "value",
    "match": 0.75,
    "page": "guide/lidl-tronic-klimaanlage-test.html",
    "q": "tronic klimaanlage 9000 btu",
    "seed": "klimaanlage",
    "source": "related-queries",
-   "stand": "2026-09-14",
+   "stand": "2026-09-23",
+   "v": 7450
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 0.9,
+   "page": "guide/coolizi-erfahrungen.html",
+   "q": "coolzy klimaanlage test",
+   "seed": "klimaanlage",
+   "source": "related-queries",
+   "stand": "2026-09-23",
    "v": 6550
   },
   {
@@ -228,19 +239,19 @@
    "q": "air zuma klimaanlage erfahrungen",
    "seed": "klimaanlage",
    "source": "related-queries",
-   "stand": "2026-09-14",
-   "v": 5150
+   "stand": "2026-09-23",
+   "v": 5750
   },
   {
    "heat": null,
    "kind": "value",
-   "match": 0.9,
-   "page": "guide/coolizi-erfahrungen.html",
-   "q": "coolzy klimaanlage test",
+   "match": 0.817,
+   "page": "guide/portasplit-vs-monoblock.html",
+   "q": "midea portasplit mobile split klimaanlage inklusive",
    "seed": "klimaanlage",
    "source": "related-queries",
-   "stand": "2026-09-14",
-   "v": 500
+   "stand": "2026-09-23",
+   "v": 4700
   },
   {
    "heat": null,
@@ -420,16 +431,6 @@
   },
   {
    "kind": "value",
-   "match": 0.5,
-   "page": "guide/ventilator-kaufen-ratgeber.html",
-   "q": "obi klimaanlage mobil",
-   "seed": "klimaanlage",
-   "source": "related-queries",
-   "stand": "2026-09-14",
-   "v": 600
-  },
-  {
-   "kind": "value",
    "match": 0.25,
    "page": "en/guide/best-portable-air-conditioner-europe-heatwave.html",
    "q": "emma performance matratze",
@@ -559,18 +560,18 @@
    "v": 1
   }
  ],
- "generated": "2026-09-23",
+ "generated": "2026-09-24",
  "geo": "DE",
- "heat_source": "measured 2026-09-23 (25 pages); no notes",
+ "heat_source": "measured 2026-09-24 (25 pages); no notes",
  "hot_pages": [
   {
-   "n7": 13,
+   "n7": 12,
    "p7": 4,
    "page": "/guide/fensterabdichtung-selber-bauen.html"
   },
   {
    "n7": 10,
-   "p7": 1,
+   "p7": 0,
    "page": "/en/guide/portable-ac-smells-musty.html"
   },
   {
@@ -580,7 +581,7 @@
   },
   {
    "n7": 9,
-   "p7": 5,
+   "p7": 8,
    "page": "/guide/growatt-noah-2000-probleme.html"
   },
   {
@@ -590,7 +591,12 @@
   },
   {
    "n7": 6,
-   "p7": 8,
+   "p7": 1,
+   "page": "/en/guide/portable-ac-skylight-roof-window.html"
+  },
+  {
+   "n7": 6,
+   "p7": 7,
    "page": "/en/guide/portable-ac-tilt-and-turn-windows.html"
   },
   {
@@ -599,14 +605,19 @@
    "page": "/guide/klimaanlage-30-qm.html"
   },
   {
-   "n7": 6,
-   "p7": 7,
-   "page": "/guide/was-bedeutet-btu.html"
-  },
-  {
    "n7": 5,
    "p7": 0,
    "page": "/"
+  },
+  {
+   "n7": 5,
+   "p7": 5,
+   "page": "/guide/was-bedeutet-btu.html"
+  },
+  {
+   "n7": 4,
+   "p7": 0,
+   "page": "/en/guide/best-portable-air-conditioner-europe-heatwave.html"
   },
   {
    "n7": 4,
@@ -615,7 +626,7 @@
   },
   {
    "n7": 4,
-   "p7": 5,
+   "p7": 4,
    "page": "/guide/klimaanlage-kippfenster.html"
   },
   {
@@ -627,27 +638,18 @@
    "n7": 4,
    "p7": 0,
    "page": "/guide/zimmer-kuehlen-ohne-installation.html"
-  },
-  {
-   "n7": 4,
-   "p7": 0,
-   "page": "/wohnkosten-werkstatt.html"
-  },
-  {
-   "n7": 3,
-   "p7": 0,
-   "page": "/en/"
   }
  ],
  "how_to_read": "gaps = 今天有需求、站内没有页面接得住(match < 0.60);covered = 已有页面接得住。**page 字段是「词元重叠度最高的现有页面」,不是编辑判断** —— 实测它会挑错:eco 的 'luftentfeuchter bei hitze' 被它指到 kinderzimmer-kuehlen.html,而本站自己的 rail 把这条问句路由到 luftentfeuchter-ratgeber 的「它不制冷」那一节。所以 page 只当线索用,别当结论。v 是 Google 的增长值,不是搜索量;kind=autocomplete-new 的行来自配额用尽后的兜底,分值恒为 1,不可与真实增长值比较。**underserved** = 有真实增长值(v≥200、非兜底)的需求词、站内有页面接得住、但过去 7 天零真人到达 —— 这不是缺内容,是标题/首屏/内链让人找不到,是判断层最该动手的一类。hot_pages = 实测 7 天真人到达最多的页(n7)与前 7 天(p7);first_party_demand = 读者在站内亲手输入的搜索词(site_search / search_no_result),对 Google 面降级的站,它是主信号不是补充。heat_source 写着度量的日期与状态;读不到就如实写读不到。",
  "note": "选题输入,不是选题依据。任何由它引出的页面仍要过本站三门与硬内容规则。本文件由 tools/autopilot 每日确定性生成,零 AI、零编造。",
  "offtopic_dropped": [
   "dreo atom one",
-  "coolizi",
   "kärcher nass trockensauger",
-  "ariston mobis plus 10",
+  "coolizi coolzy",
   "fluss durch riga",
   "dreame h15 pro heat",
+  "coolizi",
+  "coolizi erfahrungen",
   "bett1 de",
   "mozart bett",
   "kinderbett 90x200"
@@ -714,6 +716,17 @@
    "source": "related-queries",
    "stand": "2026-09-22",
    "v": 33050
+  },
+  {
+   "heat": null,
+   "kind": "value",
+   "match": 0.95,
+   "page": "guide/air-zuma-erfahrungen.html",
+   "q": "coolizi klimaanlage",
+   "seed": "klimaanlage",
+   "source": "related-queries",
+   "stand": "2026-09-23",
+   "v": 28550
   },
   {
    "heat": null,
@@ -795,6 +808,17 @@
   {
    "heat": null,
    "kind": "value",
+   "match": 1.0,
+   "page": "guide/air-zuma-erfahrungen.html",
+   "q": "air zuma klimaanlage",
+   "seed": "klimaanlage",
+   "source": "related-queries",
+   "stand": "2026-09-23",
+   "v": 17800
+  },
+  {
+   "heat": null,
+   "kind": "value",
    "match": 0.917,
    "page": "guide/infrarotheizung-garage.html",
    "q": "infrarotheizung als bild",
@@ -828,13 +852,13 @@
   {
    "heat": null,
    "kind": "value",
-   "match": 1.0,
-   "page": "guide/air-zuma-erfahrungen.html",
-   "q": "air zuma klimaanlage",
+   "match": 0.833,
+   "page": "guide/klimaanlage-mietwohnung.html",
+   "q": "bgh urteil klimaanlage",
    "seed": "klimaanlage",
    "source": "related-queries",
-   "stand": "2026-09-14",
-   "v": 15650
+   "stand": "2026-09-23",
+   "v": 8050
   },
   {
    "heat": null,
@@ -850,35 +874,13 @@
   {
    "heat": null,
    "kind": "value",
-   "match": 0.833,
-   "page": "guide/klimaanlage-mietwohnung.html",
-   "q": "bgh urteil klimaanlage",
-   "seed": "klimaanlage",
-   "source": "related-queries",
-   "stand": "2026-09-14",
-   "v": 6600
-  },
-  {
-   "heat": null,
-   "kind": "value",
-   "match": 0.938,
-   "page": "kategorie/klimaanlagen.html",
-   "q": "beste klimaanlage für mietwohnung",
-   "seed": "klimaanlage",
-   "source": "related-queries",
-   "stand": "2026-09-14",
-   "v": 6600
-  },
-  {
-   "heat": null,
-   "kind": "value",
    "match": 0.75,
    "page": "guide/lidl-tronic-klimaanlage-test.html",
    "q": "tronic klimaanlage 9000 btu",
    "seed": "klimaanlage",
    "source": "related-queries",
-   "stand": "2026-09-14",
-   "v": 6550
+   "stand": "2026-09-23",
+   "v": 7450
   }
  ]
 }

@@ -1,6 +1,6 @@
 {
  "dropped_last_run": [],
- "generated": "2026-09-23",
+ "generated": "2026-09-24",
  "pages": {
   "agents/compliance.html": {
    "changed": "2026-09-22",
@@ -387,6 +387,11 @@
    "h": "63fb49be332489ca",
    "origin": "observed"
   },
+  "guide/beheizter-waeschestaender.html": {
+   "changed": "2026-09-24",
+   "h": "d6b3f24b1e260d2c",
+   "origin": "bootstrap"
+  },
   "guide/bei-hitze-schlafen.html": {
    "changed": "2026-09-23",
    "h": "38c42b66c08fa904",
@@ -447,9 +452,14 @@
    "h": "6b30c3bb8a435099",
    "origin": "observed"
   },
+  "guide/fenster-beschlagen-aussen.html": {
+   "changed": "2026-09-24",
+   "h": "9e11ef5ea6c353ba",
+   "origin": "bootstrap"
+  },
   "guide/fenster-beschlagen-innen.html": {
-   "changed": "2026-09-18",
-   "h": "16d29f3464e343de",
+   "changed": "2026-09-24",
+   "h": "fee8543da8f0e739",
    "origin": "observed"
   },
   "guide/fensterabdichtung-klimaanlage.html": {
@@ -503,8 +513,8 @@
    "origin": "observed"
   },
   "guide/heizluefter-stromverbrauch.html": {
-   "changed": "2026-09-18",
-   "h": "aa4b3ba50e446fec",
+   "changed": "2026-09-24",
+   "h": "6303fd21dcbd65bd",
    "origin": "observed"
   },
   "guide/heizung-10-qm.html": {
@@ -553,8 +563,8 @@
    "origin": "observed"
   },
   "guide/hitzeschutz-fenster.html": {
-   "changed": "2026-09-18",
-   "h": "2f25eafa838c515a",
+   "changed": "2026-09-24",
+   "h": "85953617a65dae9e",
    "origin": "observed"
   },
   "guide/homeoffice-buero-kuehlen.html": {
@@ -563,38 +573,43 @@
    "origin": "observed"
   },
   "guide/infrarotheizung-badezimmer.html": {
-   "changed": "2026-09-18",
-   "h": "e06b8d545d50f690",
+   "changed": "2026-09-24",
+   "h": "2c14d21b5e4a390f",
    "origin": "observed"
   },
   "guide/infrarotheizung-decke-oder-wand.html": {
-   "changed": "2026-09-18",
-   "h": "b9d41ba4f40b0c59",
+   "changed": "2026-09-24",
+   "h": "0336f92b51c6bb23",
    "origin": "observed"
   },
   "guide/infrarotheizung-garage.html": {
-   "changed": "2026-09-18",
-   "h": "3595174702ead700",
+   "changed": "2026-09-24",
+   "h": "ff6c957b18db3879",
    "origin": "observed"
   },
   "guide/infrarotheizung-gegen-schimmel.html": {
-   "changed": "2026-09-17",
-   "h": "1531e546256240c1",
-   "origin": "bootstrap"
+   "changed": "2026-09-24",
+   "h": "3ea8f3adfd10f81b",
+   "origin": "observed"
   },
   "guide/infrarotheizung-ratgeber.html": {
-   "changed": "2026-09-18",
-   "h": "25a46101b6b69405",
+   "changed": "2026-09-24",
+   "h": "1f4bfc5cd3a3ce5b",
    "origin": "observed"
   },
   "guide/infrarotheizung-standgeraet.html": {
-   "changed": "2026-09-18",
-   "h": "73b366ae9d99787e",
+   "changed": "2026-09-24",
+   "h": "547b3266eae9ea5f",
    "origin": "observed"
   },
+  "guide/infrarotheizung-thermostat.html": {
+   "changed": "2026-09-24",
+   "h": "40dc5dc57c480122",
+   "origin": "bootstrap"
+  },
   "guide/infrarotheizung-watt-rechner.html": {
-   "changed": "2026-09-23",
-   "h": "ef538582e3f64dea",
+   "changed": "2026-09-24",
+   "h": "ac95db8e38bc4ed5",
    "origin": "observed"
   },
   "guide/keller-lueften-sommer.html": {
@@ -663,8 +678,8 @@
    "origin": "observed"
   },
   "guide/klimaanlage-fenster-einbruchschutz.html": {
-   "changed": "2026-09-23",
-   "h": "f551c52b8705bd79",
+   "changed": "2026-09-24",
+   "h": "fbc04d720fe7d1dc",
    "origin": "observed"
   },
   "guide/klimaanlage-kippfenster.html": {
@@ -798,8 +813,8 @@
    "origin": "observed"
   },
   "guide/luftentfeuchter-gegen-schimmel.html": {
-   "changed": "2026-09-18",
-   "h": "3f1daf5c3cf60ee9",
+   "changed": "2026-09-24",
+   "h": "895b158e30ad9a55",
    "origin": "observed"
   },
   "guide/luftentfeuchter-granulat-oder-elektrisch.html": {
@@ -913,8 +928,8 @@
    "origin": "observed"
   },
   "guide/raum-ohne-fenster-kuehlen.html": {
-   "changed": "2026-09-23",
-   "h": "24440c2172f37394",
+   "changed": "2026-09-24",
+   "h": "8a36abf625a7be58",
    "origin": "observed"
   },
   "guide/richtig-lueften-bei-hitze.html": {
@@ -953,8 +968,8 @@
    "origin": "observed"
   },
   "guide/schmidbauer-infrarotheizung-test.html": {
-   "changed": "2026-09-18",
-   "h": "9325ef0e20e4befb",
+   "changed": "2026-09-24",
+   "h": "116d8845442a3973",
    "origin": "observed"
   },
   "guide/split-klimaanlage-ohne-kernbohrung.html": {
@@ -1038,8 +1053,8 @@
    "origin": "observed"
   },
   "guide/waesche-trocknen-wohnung.html": {
-   "changed": "2026-09-22",
-   "h": "3e1ef6041c94a659",
+   "changed": "2026-09-24",
+   "h": "3da5336aee357db3",
    "origin": "observed"
   },
   "guide/was-bedeutet-btu.html": {
@@ -1048,8 +1063,8 @@
    "origin": "observed"
   },
   "guide/wie-viel-btu-brauche-ich.html": {
-   "changed": "2026-09-23",
-   "h": "d3048a71d7c05c9b",
+   "changed": "2026-09-24",
+   "h": "77fd6d60e38a90db",
    "origin": "observed"
   },
   "guide/wohnmobil-feuchtigkeit-winter.html": {
@@ -1068,8 +1083,8 @@
    "origin": "observed"
   },
   "index.html": {
-   "changed": "2026-09-23",
-   "h": "e8c52c5afaefacb5",
+   "changed": "2026-09-24",
+   "h": "62eef73774d8470e",
    "origin": "observed"
   },
   "it/calcolatore.html": {
@@ -1143,18 +1158,18 @@
    "origin": "observed"
   },
   "kategorie/heizen.html": {
-   "changed": "2026-09-18",
-   "h": "e514088a3a3ea7b6",
+   "changed": "2026-09-24",
+   "h": "4a1115c2534e463c",
    "origin": "observed"
   },
   "kategorie/klimaanlagen.html": {
-   "changed": "2026-09-18",
-   "h": "200273b0ddc293c5",
+   "changed": "2026-09-24",
+   "h": "e53cdd53d0e0df3c",
    "origin": "observed"
   },
   "kategorie/luftqualitaet.html": {
-   "changed": "2026-09-18",
-   "h": "de9eeab24f275dce",
+   "changed": "2026-09-24",
+   "h": "c18773ae0b9b13aa",
    "origin": "observed"
   },
   "kontakt.html": {
@@ -1183,8 +1198,8 @@
    "origin": "bootstrap"
   },
   "tools.html": {
-   "changed": "2026-09-23",
-   "h": "1a2a2f7e1b3ac447",
+   "changed": "2026-09-24",
+   "h": "4c784249406da1a6",
    "origin": "observed"
   },
   "ueber-uns.html": {
