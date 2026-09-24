@@ -1,7 +1,7 @@
 import { handleMcp } from "./mcp.js";
 // buysomething(SourceRadar)worker:静态资产透传 + /e 事件白名单 + 服务端 pageview。
 // 舰队模式(同 gridlings/gamesledger):所有 D1 写都 try/catch + waitUntil,埋点永不 500 页面。
-const ALLOWED = new Set(["pick_open", "calc_use", "out_click", "search_use"]);
+const ALLOWED = new Set(["pick_open", "calc_use", "out_click", "search_use", "mcp_install_click"]);
 
 function uaClass(ua) {
   if (!ua) return "none";

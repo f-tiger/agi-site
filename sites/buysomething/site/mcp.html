@@ -58,6 +58,22 @@
     </section>
 
     <section class="container" style="padding:0 0 1.5rem">
+      <div class="calc">
+        <h2>Add it to your client</h2>
+        <p class="calc-note">One line, no key, no account. Copying is the only thing this page measures
+          (a count per client, nothing else) — it is how we find out whether anyone actually installs it.</p>
+        <p><strong>Claude Code</strong><br>
+          <code id="cmd-claude">claude mcp add --transport http sourceradar https://source.agiscorecard.com/api/mcp</code>
+          <button type="button" class="copy-btn" data-copy="cmd-claude" data-client="claude-code">Copy</button></p>
+        <p><strong>Any client that takes a JSON config</strong> (Cursor, VS Code, Windsurf…)<br>
+          <code id="cmd-json">{"mcpServers":{"sourceradar":{"type":"http","url":"https://source.agiscorecard.com/api/mcp"}}}</code>
+          <button type="button" class="copy-btn" data-copy="cmd-json" data-client="json-config">Copy</button></p>
+        <p class="calc-note">No client at hand? The same tools answer plain GET:
+          <code>/api/mcp/check_import_claim?claim=under%20$800%20is%20duty%20free</code></p>
+      </div>
+    </section>
+
+    <section class="container" style="padding:0 0 1.5rem">
       <h2>The eight tools</h2>
       <p class="rule"><strong>duty_stack_rules</strong> — the stack rule by rule (HTS base, Section 301, Section 232, IEEPA struck down, de minimis suspended, postal flat expired, MPF 0.3464% / HMF 0.125%), each with its record and date.</p>
       <p class="rule"><strong>check_import_claim</strong> — fact-checks the four figures still repeated everywhere in 2026 and says plainly when a claim is not one it holds a record for.</p>
@@ -78,6 +94,27 @@
     </section>
   </main>
 
+  <script>
+  // 复制安装指令时记一行 mcp_install_click(只记客户端名,零 PII)。
+  // 为什么值得埋:2026-09-24 复盘的读数是「采集器天天来、没人带参数调用」——
+  // 中间缺的正是「有人把它装进自己的客户端」这一步,而这一步此前**在整个舰队都没有读数**
+  // (eco 早就定义了同名事件,但它只发给 GA4,D1 里一行都没有)。
+  document.querySelectorAll(".copy-btn").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var el = document.getElementById(b.getAttribute("data-copy"));
+      var text = el ? el.textContent : "";
+      var done = function () { b.textContent = "Copied"; setTimeout(function () { b.textContent = "Copy"; }, 1500); };
+      (navigator.clipboard ? navigator.clipboard.writeText(text) : Promise.reject()).then(done).catch(function () {
+        var r = document.createRange(); r.selectNode(el); var sel = window.getSelection();
+        sel.removeAllRanges(); sel.addRange(r); done();
+      });
+      try {
+        var body = JSON.stringify({ n: "mcp_install_click", l: b.getAttribute("data-client"), v: 0, p: location.pathname });
+        navigator.sendBeacon ? navigator.sendBeacon("/e", body) : fetch("/e", { method: "POST", body: body, keepalive: true });
+      } catch (e) {}
+    });
+  });
+  </script>
   <footer class="site-footer">
     <div class="container">
       <p>SourceRadar &middot; part of the <a href="https://agiscorecard.com/">AGI Scorecard</a> network &middot;

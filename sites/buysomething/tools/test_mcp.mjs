@@ -194,4 +194,16 @@ const before2 = rows.length;
 await worker.fetch(new Request("https://source.agiscorecard.com/api/mcp/duty_stack_rules", { headers: { "user-agent": "Claude/1.0" } }), env, ctx);
 ok(rows.length === before2 + 1, "真实客户端的调用照常落库");
 
+// 16) 安装意向事件:白名单放行 mcp_install_click,其余照旧丢弃
+const beforeI = rows.length;
+await worker.fetch(new Request("https://source.agiscorecard.com/e", { method: "POST",
+  headers: { "content-type": "application/json" },
+  body: JSON.stringify({ n: "mcp_install_click", l: "claude-code", v: 0, p: "/mcp" }) }), env, ctx);
+ok(rows.length === beforeI + 1 && rows[rows.length - 1][0] === "mcp_install_click" && rows[rows.length - 1][1] === "claude-code",
+   "/e 放行 mcp_install_click(只记客户端名)");
+const beforeJ = rows.length;
+await worker.fetch(new Request("https://source.agiscorecard.com/e", { method: "POST",
+  headers: { "content-type": "application/json" }, body: JSON.stringify({ n: "install_everything", l: "x" }) }), env, ctx);
+ok(rows.length === beforeJ, "/e 仍然丢弃白名单外的事件");
+
 console.log("\nall " + n + " assertions pass");

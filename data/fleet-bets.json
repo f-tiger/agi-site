@@ -1644,6 +1644,17 @@
    "lose": "「机器面」从此只按 SR 一个站读,不再声称是舰队级读数;不再为其他站补机器面工具",
    "source": "docs/tool-direction-review-2026-09-24.md §五",
    "status": "open"
+  },
+  {
+   "id": "sr-mcp-install-1022",
+   "site": "buysomething",
+   "due": "2026-10-22",
+   "metric": "D1 sourceradar-events.ev 里 name='mcp_install_click' 的行数(28 天,label 为客户端名,零 PII)。t0(2026-09-24)= 0,页面当日才有安装指令;**舰队此前没有任何站测过这一步** —— eco 定义了同名事件但只发 GA4,D1 里一行都没有",
+   "threshold": "≥1",
+   "win": "「被发现 → 有人试着装」这一步能被测到 → 才谈第二步(装完有没有带参数调用),并把同样的埋点补给 eco/bpj",
+   "lose": "连复制安装指令的人都没有 → 机器面对人的入口不是页面;停止在页面上投入,机器面只维持注册表与 llms.txt 两条被动发现",
+   "source": "docs/tool-direction-review-2026-09-24.md §四",
+   "status": "open"
   }
  ]
 }

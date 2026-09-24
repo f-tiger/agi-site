@@ -241,6 +241,8 @@ jobs:
           code=$(curl -s -o /dev/null -w '%{http_code}' -A "$UA" "$BASE/packs/2026-W01.json" || echo 000)
           case "$code" in 403|503) echo "OK    /packs/<week>.json without token -> $code";; *) echo "::error::gated pack served without token (HTTP $code)"; fail=1;; esac
           check_body /packs 'Opportunity packs'
+          # 安装指令是「被发现 → 被装上」这一步的唯一入口(sr-mcp-install-1022 的读数源)
+          check_body /mcp 'claude mcp add --transport http sourceradar' 'mcp_install_click'
           # 3d) official data files, asserted only once the schedule has produced them
           if [ -f sites/buysomething/site/passports.json ]; then check_json /passports.json '"picks" in j and len(j["picks"]) == 31 and j.get("hts_release") is not None or "picks" in j'; fi
           if [ -f sites/buysomething/site/recalls.json ]; then check_json /recalls.json '"picks" in j and j.get("window_days") == 365'; fi
