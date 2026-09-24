@@ -8,7 +8,7 @@
     "covered": 2,
     "demand_terms": 6,
     "gaps": 0,
-    "hot_pages": 5,
+    "hot_pages": 0,
     "lastmod_updated": 0,
     "offtopic": 4,
     "pages": 212,
@@ -16,11 +16,11 @@
     "underserved": 0
    },
    "notes": [
-    "heat: measured 2026-09-21 (5 pages); no notes"
+    "heat: measured 2026-09-24 (0 pages); no notes"
    ],
    "outcome": "ok",
    "site": "agiscorecard",
-   "today": "2026-09-21",
+   "today": "2026-09-24",
    "wrote": [
     "data/autopilot/agiscorecard.json",
     "data/autopilot/agiscorecard-demand.json"
@@ -35,22 +35,23 @@
     "bootstrapped": 0,
     "changed": 2,
     "covered": 0,
-    "demand_terms": 55,
-    "gaps": 1,
+    "demand_terms": 63,
+    "gaps": 0,
     "hot_pages": 0,
     "lastmod_updated": 2,
-    "offtopic": 54,
+    "offtopic": 63,
     "pages": 7,
     "undatable": 0,
     "underserved": 0
    },
    "notes": [
-    "sites/buysomething/site/rising.json: 11 fresh seed(s) used; 17 stale and 0 undated dropped",
-    "heat: measured 2026-09-21 (0 pages); no notes"
+    "sites/buysomething/site/rising.json: 1 seed(s) are on the AUTOCOMPLETE FALLBACK, not Google Trends rising (energy monitoring smart plug). Those rows are scored 1, not ranked against real volume — the demand face for them is degraded, not working.",
+    "sites/buysomething/site/rising.json: 11 fresh seed(s) used; 20 stale and 0 undated dropped",
+    "heat: measured 2026-09-24 (0 pages); no notes"
    ],
    "outcome": "ok",
    "site": "buysomething",
-   "today": "2026-09-21",
+   "today": "2026-09-24",
    "wrote": [
     "sites/buysomething/site/sitemap.xml",
     "data/autopilot/buysomething.json",
@@ -59,29 +60,48 @@
   },
   {
    "changed_urls": [
-    "https://getecoback.com/en/solution-calculator.html",
-    "https://getecoback.com/rechner.html",
+    "https://getecoback.com/guide/fenster-beschlagen-innen.html",
+    "https://getecoback.com/guide/heizluefter-stromverbrauch.html",
+    "https://getecoback.com/guide/hitzeschutz-fenster.html",
+    "https://getecoback.com/guide/infrarotheizung-badezimmer.html",
+    "https://getecoback.com/guide/infrarotheizung-decke-oder-wand.html",
+    "https://getecoback.com/guide/infrarotheizung-garage.html",
+    "https://getecoback.com/guide/infrarotheizung-gegen-schimmel.html",
+    "https://getecoback.com/guide/infrarotheizung-ratgeber.html",
+    "https://getecoback.com/guide/infrarotheizung-standgeraet.html",
+    "https://getecoback.com/guide/infrarotheizung-watt-rechner.html",
+    "https://getecoback.com/guide/klimaanlage-fenster-einbruchschutz.html",
+    "https://getecoback.com/guide/luftentfeuchter-gegen-schimmel.html",
+    "https://getecoback.com/guide/raum-ohne-fenster-kuehlen.html",
+    "https://getecoback.com/guide/schmidbauer-infrarotheizung-test.html",
+    "https://getecoback.com/guide/waesche-trocknen-wohnung.html",
+    "https://getecoback.com/guide/wie-viel-btu-brauche-ich.html",
+    "https://getecoback.com/index.html",
+    "https://getecoback.com/kategorie/heizen.html",
+    "https://getecoback.com/kategorie/klimaanlagen.html",
+    "https://getecoback.com/kategorie/luftqualitaet.html",
     "https://getecoback.com/tools.html"
    ],
    "counts": {
-    "bootstrapped": 0,
-    "changed": 3,
+    "bootstrapped": 3,
+    "changed": 21,
     "covered": 31,
-    "demand_terms": 71,
-    "gaps": 25,
+    "demand_terms": 62,
+    "gaps": 21,
     "hot_pages": 15,
-    "offtopic": 15,
-    "pages": 226,
+    "offtopic": 10,
+    "pages": 245,
     "undatable": 0,
-    "underserved": 28
+    "underserved": 24
    },
    "notes": [
     "sitemap owned by this site's own generator — not touched",
-    "heat: measured 2026-09-21 (24 pages); no notes"
+    "sites/getecoback/data/trends-rising.json: 1 seed(s) are on the AUTOCOMPLETE FALLBACK, not Google Trends rising (luftentfeuchter). Those rows are scored 1, not ranked against real volume — the demand face for them is degraded, not working.",
+    "heat: measured 2026-09-24 (25 pages); no notes"
    ],
    "outcome": "ok",
    "site": "getecoback",
-   "today": "2026-09-21",
+   "today": "2026-09-24",
    "wrote": [
     "data/autopilot/getecoback.json",
     "data/autopilot/getecoback-demand.json"
@@ -107,7 +127,7 @@
    ],
    "outcome": "ok",
    "site": "goldrush",
-   "today": "2026-09-21",
+   "today": "2026-09-24",
    "wrote": [
     "data/autopilot/goldrush.json",
     "data/autopilot/goldrush-demand.json"
@@ -133,7 +153,7 @@
    ],
    "outcome": "ok",
    "site": "gridlings",
-   "today": "2026-09-21",
+   "today": "2026-09-24",
    "wrote": [
     "data/autopilot/gridlings.json",
     "data/autopilot/gridlings-demand.json"
@@ -160,12 +180,12 @@
    ],
    "outcome": "ok",
    "site": "thedollscout",
-   "today": "2026-09-21",
+   "today": "2026-09-24",
    "wrote": [
     "data/autopilot/thedollscout.json",
     "data/autopilot/thedollscout-demand.json"
    ]
   }
  ],
- "today": "2026-09-21"
+ "today": "2026-09-24"
 }

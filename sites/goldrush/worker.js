@@ -74,9 +74,92 @@ const srcBucket = (host, self) => {
   return "other";
 };
 
+// /fetchlog.json (2026-09-22): the consumption number is COMPUTED from this worker's own D1 on
+// every read, not hand-typed. site/fetchlog.json stays as the template (definitions, history,
+// the one number this D1 cannot see) and as the fallback when D1 is unreachable — served with
+// live:false so a stale snapshot can never pass as current. Why: the file promised "updated as
+// it moves" and then sat at 0 for 22 days while the true count reached 31, and three static
+// pages repeated the stale zero to AI readers. The 2026-11-30 adoption line is settled on THIS
+// query, so t0 and settlement share one instrument (tools/test_fetchlog.mjs pins it).
+// Exclusions, matching the file's definitions: (a) a goldrush referrer = our own registry page
+// fetching the file; (b) ?ci=1 rows are never written (logRow drops them); (c) the single
+// 2026-08-30 no-UA row was our own MCP server before it learned to tag itself — excluded by
+// date+class, nothing wider.
+export const FETCHLOG_SQL_CLASSES =
+  "SELECT ua_class, COUNT(*) AS n FROM ev WHERE name='page_view' AND path='/claimledger.json'" +
+  " AND (ref IS NULL OR ref='' OR ref NOT LIKE '%goldrush.agiscorecard.com%')" +
+  " AND NOT (day='2026-08-30' AND ua_class='none') GROUP BY ua_class";
+export const FETCHLOG_SQL_EVIDENCE =
+  "SELECT name, COUNT(*) AS n FROM ev WHERE name IN ('ledger_click','audit_click','fork_click','grader_use','grader_copy')" +
+  " OR (name='ledger_render' AND label NOT LIKE '%goldrush.agiscorecard.com%') GROUP BY name";
+
+export function summarizeFetchlog(template, classRows, evidenceRows, today) {
+  const t = template && typeof template === "object" ? template : {};
+  const cls = { bot: 0, human: 0, other: 0 };
+  for (const r of (Array.isArray(classRows) ? classRows : [])) {
+    if (!r || typeof r !== "object") continue;
+    const n = Number(r.n) || 0;
+    if (r.ua_class === "bot") cls.bot += n;
+    else if (r.ua_class === "human") cls.human += n;
+    else cls.other += n; // 'other' / 'none' / '' — no browser token and no crawler token
+  }
+  const ev = { ledger_click: 0, audit_click: 0, fork_click: 0, grader_use: 0, grader_copy: 0, ledger_render: 0 };
+  for (const r of (Array.isArray(evidenceRows) ? evidenceRows : [])) {
+    if (r && typeof r === "object" && Object.prototype.hasOwnProperty.call(ev, r.name)) ev[r.name] = Number(r.n) || 0;
+  }
+  const sc = (t.counts && typeof t.counts === "object") ? t.counts : {};
+  const se = (t.consumption_evidence && typeof t.consumption_evidence === "object") ? t.consumption_evidence : {};
+  const out = Object.assign({}, t);
+  out.live = true;
+  out.computed_from = "D1 goldrush-events, this worker, on every read (edge-cached 1 h); the static file is only the fallback";
+  out.dateModified = today;
+  out.counts = {
+    ledgers_listed: Number(sc.ledgers_listed) || 0,
+    ledgers_validating: Number(sc.ledgers_validating) || 0,
+    outside_fetches_of_our_claimledger: cls.bot + cls.human + cls.other,
+    outside_fetches_crawler_ua: cls.bot,
+    outside_fetches_browser_ua: cls.human,
+    outside_fetches_other_ua: cls.other,
+    as_of: today,
+    period: sc.period || "site lifetime (from 2026-08-29)"
+  };
+  out.consumption_evidence = {
+    ledger_click_lifetime: ev.ledger_click,
+    audit_click_lifetime: ev.audit_click,
+    fork_click_lifetime: ev.fork_click,
+    grader_use_lifetime: ev.grader_use,
+    grader_copy_lifetime: ev.grader_copy,
+    registry_ledger_render_external: ev.ledger_render,
+    mcp_get_claim_ledger_calls_lifetime: (typeof se.mcp_get_claim_ledger_calls_lifetime === "number") ? se.mcp_get_claim_ledger_calls_lifetime : null,
+    mcp_calls_note: "counted on agiscorecard's D1, not this one — a session-refreshed snapshot dated static_snapshot_as_of",
+    static_snapshot_as_of: sc.as_of || null,
+    note: typeof se.note === "string" ? se.note : ""
+  };
+  return out;
+}
+
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
+
+    if (url.pathname === "/fetchlog.json" && request.method === "GET") {
+      const ci = url.searchParams.get("ci") === "1";
+      const pvUa = request.headers.get("user-agent") || "";
+      const pvCls = uaClass(pvUa);
+      if (!ci) auditUa(env, ctx, pvUa, pvCls);
+      logRow(env, ctx, { ci, name: "page_view", path: "/fetchlog.json", ref: (request.headers.get("referer") || "").slice(0, 120), ua_class: pvCls, country: (request.cf && request.cf.country) || "" });
+      const headers = { "content-type": "application/json; charset=utf-8", "cache-control": "public, max-age=3600", "access-control-allow-origin": "*" };
+      let template = {};
+      try { template = await (await env.ASSETS.fetch(new Request(url.origin + "/fetchlog.json"))).json(); } catch (e) { template = {}; }
+      if (!env.EV) return new Response(JSON.stringify(Object.assign({}, template, { live: false, live_error: "no_db" }), null, 2), { headers });
+      try {
+        const [a, b] = await env.EV.batch([env.EV.prepare(FETCHLOG_SQL_CLASSES), env.EV.prepare(FETCHLOG_SQL_EVIDENCE)]);
+        const body = summarizeFetchlog(template, a && a.results, b && b.results, new Date().toISOString().slice(0, 10));
+        return new Response(JSON.stringify(body, null, 2), { headers });
+      } catch (e) {
+        return new Response(JSON.stringify(Object.assign({}, template, { live: false, live_error: "query_failed" }), null, 2), { headers });
+      }
+    }
 
     // /api/pulse (2026-09-13, fleet "AI 时代的站点" flywheel read-side): 28-day human page
     // views and how many arrived from an AI assistant, by referrer host. Aggregate counts
@@ -153,7 +236,7 @@ export default {
     const res = await env.ASSETS.fetch(request);
     if (request.method === "GET" && res.status === 200) {
       const type = res.headers.get("content-type") || "";
-      if (type.includes("text/html") || ["/ledger.json", "/llms.txt", "/protocol.md", "/agix.md", "/skill/claim-ledger/SKILL.md", "/fetchlog.json", "/claimledger.schema.json"].includes(url.pathname)) {
+      if (type.includes("text/html") || ["/ledger.json", "/llms.txt", "/protocol.md", "/agix.md", "/skill/claim-ledger/SKILL.md", "/claimledger.schema.json"].includes(url.pathname)) {
         const pvUa = request.headers.get("user-agent") || "";
         const pvCls = uaClass(pvUa);
         if (url.searchParams.get("ci") !== "1") auditUa(env, ctx, pvUa, pvCls);

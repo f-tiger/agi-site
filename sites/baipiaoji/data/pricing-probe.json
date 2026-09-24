@@ -1,24 +1,24 @@
 {
- "generated": "2026-09-21",
+ "generated": "2026-09-24",
  "env": "runner",
  "note": "付费档缺口的抓取探针。只做发现与取证，绝不写事实：任何数字仍须经 scripts/limits-edit.mjs 两步核实后才进 tools.json。state=ready 表示该 URL 当天 200 且页面上有像价目表的价格段，不表示数字已被核实。每行的 env 是抓取时的网络环境：sandbox 行的 blocked 很可能只是会话沙箱出网被拒，不能当作「这家没有定价页」，只有 runner 行的 blocked 才值得当结论。",
  "gap_total": 108,
  "batch": [
-  "ms-copilot",
-  "tongyi-lingma",
-  "ai360",
-  "aider",
-  "aippt",
-  "ante",
-  "anythingllm",
-  "bing-image"
+  "elicit",
+  "exa",
+  "felo",
+  "figma",
+  "framer",
+  "gamma",
+  "gaoding",
+  "gemini"
  ],
- "cursor": "bing-image",
+ "cursor": "gemini",
  "summary": {
-  "ready": 9,
-  "empty": 12,
-  "blocked": 10,
-  "probed_total": 31
+  "ready": 19,
+  "empty": 20,
+  "blocked": 15,
+  "probed_total": 54
  },
  "tools": {
   "kimi": {
@@ -605,15 +605,15 @@
    "slug": "cerebras",
    "name": "Cerebras",
    "cat": "api",
-   "reach": 1,
-   "probed": "2026-09-20",
+   "reach": 0,
+   "probed": "2026-09-22",
    "env": "runner",
    "state": "empty",
    "tried": [
     {
      "url": "https://cerebras.ai/pricing",
      "status": 200,
-     "bytes": 234158,
+     "bytes": 234244,
      "tokens": 0
     },
     {
@@ -932,6 +932,648 @@
     },
     {
      "url": "https://www.bing.com/plans",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    }
+   ],
+   "best": null
+  },
+  "caiyun": {
+   "slug": "caiyun",
+   "name": "彩云小译",
+   "cat": "writing",
+   "reach": 0,
+   "probed": "2026-09-22",
+   "env": "runner",
+   "state": "empty",
+   "tried": [
+    {
+     "url": "https://fanyi.caiyunapp.com/pricing",
+     "status": 200,
+     "bytes": 5452,
+     "tokens": 0
+    },
+    {
+     "url": "https://fanyi.caiyunapp.com/price",
+     "status": 200,
+     "bytes": 5452,
+     "tokens": 0
+    },
+    {
+     "url": "https://fanyi.caiyunapp.com/plans",
+     "status": 200,
+     "bytes": 5452,
+     "tokens": 0
+    }
+   ],
+   "best": {
+    "url": "https://fanyi.caiyunapp.com/pricing",
+    "tokens": 0,
+    "excerpt": ""
+   }
+  },
+  "character-ai": {
+   "slug": "character-ai",
+   "name": "Character.AI",
+   "cat": "chat",
+   "reach": 0,
+   "probed": "2026-09-22",
+   "env": "runner",
+   "state": "blocked",
+   "tried": [
+    {
+     "url": "https://character.ai/pricing",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://character.ai/price",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://character.ai/plans",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    }
+   ],
+   "best": null
+  },
+  "chatgpt": {
+   "slug": "chatgpt",
+   "name": "ChatGPT",
+   "cat": "chat",
+   "reach": 0,
+   "probed": "2026-09-22",
+   "env": "runner",
+   "state": "blocked",
+   "tried": [
+    {
+     "url": "https://chatgpt.com/pricing",
+     "status": 403,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://chatgpt.com/price",
+     "status": 403,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://chatgpt.com/plans",
+     "status": 403,
+     "bytes": 0,
+     "tokens": 0
+    }
+   ],
+   "best": null
+  },
+  "codebuddy": {
+   "slug": "codebuddy",
+   "name": "CodeBuddy（腾讯）",
+   "cat": "coding",
+   "reach": 0,
+   "probed": "2026-09-22",
+   "env": "runner",
+   "state": "ready",
+   "tried": [
+    {
+     "url": "https://codebuddy.ai/docs/zh/ide/Account/pricing",
+     "status": 200,
+     "bytes": 30223,
+     "tokens": 14
+    }
+   ],
+   "best": {
+    "url": "https://codebuddy.ai/docs/zh/ide/Account/pricing",
+    "tokens": 14,
+    "excerpt": "账单 发票 最佳实践 支持 故障排除 安全与隐私 联系我们 版本发布 概览 快速导航 定价 ​ CodeBuddy 提供以下版本以满足用户不同的 AI 开发需求。 各版本定价如下： 个人版套餐 ​ 方案 Free Pro 连续包月 免费 $10.00 / 月 连续包年 — $96.00 / 年 （$8.00 / 月 按年计费） 基础积分 / 月 100 1,000 加赠积分 / 月 — 1,000 每月累计实得积分 100 2,000 活跃赠送（限时活动） 30 积分 / 天 50 积分 / 天 代码实时补全 5,000 次 / 月（限免无限次） 无限次 自动任务 3 个（限免 99 个） 15 个（限免 99 个） 模型调度 Auto 调度（限免全模型可选） 全模型可选 新功能抢先体验 — 逐步开放 跨文件理解 ✅ ✅ 注释生成代码 ✅ ✅ Free 版限免期间，用户可享受全模型可选、代码补全不限次、自动任务 99 个； 限免结束后恢复档位额度 。活动结束时间以官方为准，届时将提前通知。 开通 Pro 及 Pro 7天试用 后，Free 版 100 积分不再另行发放。 活跃赠送 为限时活动，当天有对话请求即视为活跃用户，详情参见 限时每日活跃奖励说明 。 基础积分与加赠积分均按月发放，当月有效、不累积结转；加赠部分自到账日起1个月内有效。 团队版套餐 ​ 方案 Team 版（月付） Team 版（年付） 价格 $40.00 / 坐席 / 月 $480.00 / 坐席 / 年 功能 • 每席位每月 1,000 积分，团队公共池共享 • 管理员控制台 • 统一账单管理 • 支持 "
+   }
+  },
+  "cody": {
+   "slug": "cody",
+   "name": "Sourcegraph Cody",
+   "cat": "coding",
+   "reach": 0,
+   "probed": "2026-09-22",
+   "env": "runner",
+   "state": "ready",
+   "tried": [
+    {
+     "url": "https://sourcegraph.com/blog/changes-to-cody-free-pro-and-enterprise-starter-plans",
+     "status": 200,
+     "bytes": 32039,
+     "tokens": 5
+    }
+   ],
+   "best": {
+    "url": "https://sourcegraph.com/blog/changes-to-cody-free-pro-and-enterprise-starter-plans",
+    "tokens": 5,
+    "excerpt": "ody Free will continue until July 23, 2025 , at which point it will be discontinued. Sign up with Amp today and receive $10 in free credits at ampcode.com . If you're using Cody Pro: Your access to Cody Pro will continue until July 23, 2025 , at which point it will be discontinued. You will not be charged for use of Cody Pro between now and July 23, 2025. Cody Pro customers can email amp-devs@ampcode.com to receive $40 in Amp credits as a thank you for using Cody Pro. If you're using Enterprise Starter: Existing Enterprise Starter workspaces will retain Cody access until July 23, 2025 , after which Cody will be removed. Your Enterprise Starter subscription remains fully supported for Code Se"
+   }
+  },
+  "cohere": {
+   "slug": "cohere",
+   "name": "Cohere",
+   "cat": "api",
+   "reach": 0,
+   "probed": "2026-09-22",
+   "env": "runner",
+   "state": "ready",
+   "tried": [
+    {
+     "url": "https://cohere.com/pricing",
+     "status": 200,
+     "bytes": 526588,
+     "tokens": 41
+    }
+   ],
+   "best": {
+    "url": "https://cohere.com/pricing",
+    "tokens": 41,
+    "excerpt": "will be billed on a pay-as-you-go basis. Your bill will be issued at the end of every calendar month or when you reach $250 in outstanding balances. The endpoint I’m using is billed by token. What is a token? Language models understand “tokens” rather than characters or bytes. The number of tokens per word depends on the complexity of the text. Simple text may approach 1 token per word on average, while complex texts may use less common words that require 3-4 tokens per word on average. For more details on tokens, refer to this page . Where do I find pricing for our legacy models? For existing customers: Command pricing is $1.00/1M tokens for input and $2.00/1M tokens for output Command-ligh"
+   }
+  },
+  "comate": {
+   "slug": "comate",
+   "name": "文心快码 Comate（百度）",
+   "cat": "coding",
+   "reach": 0,
+   "probed": "2026-09-22",
+   "env": "runner",
+   "state": "empty",
+   "tried": [
+    {
+     "url": "https://comate.baidu.com/pricing",
+     "status": 200,
+     "bytes": 14287,
+     "tokens": 0
+    },
+    {
+     "url": "https://comate.baidu.com/price",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://comate.baidu.com/plans",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    }
+   ],
+   "best": {
+    "url": "https://comate.baidu.com/pricing",
+    "tokens": 0,
+    "excerpt": ""
+   }
+  },
+  "continue": {
+   "slug": "continue",
+   "name": "Continue",
+   "cat": "coding",
+   "reach": 0,
+   "probed": "2026-09-23",
+   "env": "runner",
+   "state": "blocked",
+   "tried": [
+    {
+     "url": "https://continue.dev/pricing",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://continue.dev/price",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://continue.dev/plans",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    }
+   ],
+   "best": null
+  },
+  "coze": {
+   "slug": "coze",
+   "name": "扣子 Coze（字节）",
+   "cat": "agent",
+   "reach": 0,
+   "probed": "2026-09-23",
+   "env": "runner",
+   "state": "empty",
+   "tried": [
+    {
+     "url": "https://www.coze.cn/pricing",
+     "status": 200,
+     "bytes": 89483,
+     "tokens": 0
+    },
+    {
+     "url": "https://www.coze.cn/price",
+     "status": 200,
+     "bytes": 89483,
+     "tokens": 0
+    },
+    {
+     "url": "https://www.coze.cn/plans",
+     "status": 200,
+     "bytes": 89483,
+     "tokens": 0
+    }
+   ],
+   "best": {
+    "url": "https://www.coze.cn/pricing",
+    "tokens": 0,
+    "excerpt": ""
+   }
+  },
+  "d-id": {
+   "slug": "d-id",
+   "name": "D-ID",
+   "cat": "video",
+   "reach": 0,
+   "probed": "2026-09-23",
+   "env": "runner",
+   "state": "empty",
+   "tried": [
+    {
+     "url": "https://d-id.com/pricing/studio",
+     "status": 200,
+     "bytes": 152585,
+     "tokens": 0
+    },
+    {
+     "url": "https://www.d-id.com/pricing",
+     "status": 200,
+     "bytes": 152585,
+     "tokens": 0
+    },
+    {
+     "url": "https://www.d-id.com/price",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    }
+   ],
+   "best": {
+    "url": "https://d-id.com/pricing/studio",
+    "tokens": 0,
+    "excerpt": ""
+   }
+  },
+  "devv": {
+   "slug": "devv",
+   "name": "Devv AI",
+   "cat": "coding",
+   "reach": 0,
+   "probed": "2026-09-23",
+   "env": "runner",
+   "state": "empty",
+   "tried": [
+    {
+     "url": "https://devv.ai/pricing",
+     "status": 200,
+     "bytes": 101248,
+     "tokens": 0
+    },
+    {
+     "url": "https://devv.ai/price",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://devv.ai/plans",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    }
+   ],
+   "best": {
+    "url": "https://devv.ai/pricing",
+    "tokens": 0,
+    "excerpt": ""
+   }
+  },
+  "dify": {
+   "slug": "dify",
+   "name": "Dify",
+   "cat": "agent",
+   "reach": 0,
+   "probed": "2026-09-23",
+   "env": "runner",
+   "state": "ready",
+   "tried": [
+    {
+     "url": "https://dify.ai/pricing",
+     "status": 200,
+     "bytes": 136644,
+     "tokens": 6
+    }
+   ],
+   "best": {
+    "url": "https://dify.ai/pricing",
+    "tokens": 6,
+    "excerpt": "lly Bill Annually Save 17% Professional Popular For independent developers and small teams building production AI apps. $590 per workspace / year Start Building 5,000 message credits / month Message credits are provided to help you easily try out different models from OpenAI, Anthropic, Gemini, xAI, Tongyi in Dify. Credits are consumed based on the model type. Once they&#39;re used up, you can switch to your own API key. 1 Team Workspace 3 Team Members 50 Apps 500 Knowledge Documents Quota on the number of documents imported from the Knowledge Data Source. 5GB Knowledge Data Storage Documents with the High Quality indexing mode will consume Knowledge Data Storage resources. When Knowledge Da"
+   }
+  },
+  "doubao-aixue": {
+   "slug": "doubao-aixue",
+   "name": "豆包爱学",
+   "cat": "study",
+   "reach": 0,
+   "probed": "2026-09-23",
+   "env": "runner",
+   "state": "empty",
+   "tried": [
+    {
+     "url": "https://www.doubao.com/pricing",
+     "status": 200,
+     "bytes": 267346,
+     "tokens": 0
+    },
+    {
+     "url": "https://www.doubao.com/price",
+     "status": 200,
+     "bytes": 267346,
+     "tokens": 0
+    },
+    {
+     "url": "https://www.doubao.com/plans",
+     "status": 200,
+     "bytes": 267346,
+     "tokens": 0
+    }
+   ],
+   "best": {
+    "url": "https://www.doubao.com/pricing",
+    "tokens": 0,
+    "excerpt": ""
+   }
+  },
+  "duckduckgo-ai": {
+   "slug": "duckduckgo-ai",
+   "name": "DuckDuckGo AI Chat",
+   "cat": "chat",
+   "reach": 0,
+   "probed": "2026-09-23",
+   "env": "runner",
+   "state": "empty",
+   "tried": [
+    {
+     "url": "https://duck.ai/pricing",
+     "status": 200,
+     "bytes": 26012,
+     "tokens": 0
+    },
+    {
+     "url": "https://duck.ai/price",
+     "status": 200,
+     "bytes": 26012,
+     "tokens": 0
+    },
+    {
+     "url": "https://duck.ai/plans",
+     "status": 200,
+     "bytes": 26012,
+     "tokens": 0
+    }
+   ],
+   "best": {
+    "url": "https://duck.ai/pricing",
+    "tokens": 0,
+    "excerpt": ""
+   }
+  },
+  "elevenlabs": {
+   "slug": "elevenlabs",
+   "name": "ElevenLabs",
+   "cat": "audio",
+   "reach": 0,
+   "probed": "2026-09-23",
+   "env": "runner",
+   "state": "ready",
+   "tried": [
+    {
+     "url": "https://elevenlabs.io/pricing",
+     "status": 200,
+     "bytes": 600000,
+     "tokens": 37
+    }
+   ],
+   "best": {
+    "url": "https://elevenlabs.io/pricing",
+    "tokens": 37,
+    "excerpt": "enAPI API ElevenCreative Creative ElevenAgents Agents ElevenAPI API Monthly billing Monthly billing Yearly billing Free $0 per month Build for free Text to Speech Speech to Text Sound Effects Voice Design Music Productions Image 3 Projects in Studio 10k credits per month Starter $6 per month Choose Starter Everything in free, plus Commercial License Instant Voice Cloning 20 Projects in Studio Music commercial use Dubbing Studio Image &amp; Video 30k credits per month Creator Popular $22 First month 50% off $11 per month Choose Creator Everything in Starter, plus Professional Voice Cloning Additional Credits 121k credits per month Pro $99 per month Choose Pro Everything in Creator, plus 44.1k"
+   }
+  },
+  "elicit": {
+   "slug": "elicit",
+   "name": "Elicit",
+   "cat": "study",
+   "reach": 0,
+   "probed": "2026-09-24",
+   "env": "runner",
+   "state": "ready",
+   "tried": [
+    {
+     "url": "https://elicit.com/pricing",
+     "status": 200,
+     "bytes": 545039,
+     "tokens": 27
+    }
+   ],
+   "best": {
+    "url": "https://elicit.com/pricing",
+    "tokens": 27,
+    "excerpt": "hat with papers with full-text access View sources for answers Import from Zotero Try for free Plus For deeper research $11 Save 42% Per user/month, billed as $132 annually Export to RIS, CSV, BIB, PDF and DOCX Add 5 columns to your tables at a tim e Unlimited search across more than 500 thousand clinical trials Standard usage for Research Agent, Research Reports, and Systematic Literature Reviews Sign up Pro For systematic reviews $39 Save 43% Per user/month, billed as $468 annually 5x usage for Research Agent, Research Reports, and Systematic Literature Reviews Dedicated Systematic Review Workflow that can screen 5,000 papers Add 20 columns to your tables at a tim e Reports extract from up"
+   }
+  },
+  "exa": {
+   "slug": "exa",
+   "name": "Exa",
+   "cat": "search",
+   "reach": 0,
+   "probed": "2026-09-24",
+   "env": "runner",
+   "state": "ready",
+   "tried": [
+    {
+     "url": "https://exa.ai/pricing",
+     "status": 200,
+     "bytes": 140525,
+     "tokens": 37
+    }
+   ],
+   "best": {
+    "url": "https://exa.ai/pricing",
+    "tokens": 37,
+    "excerpt": "ers with structured outputs Web grounded citations Get started Daily at 9:00AM Weekly, Mondays Daily at 6:00PM Monitors $15 /1k requests Identify fresh events on the web Runs searches at a specified cadence Receive updates with webhooks Get started Use cases Coding agents Chatbots News monitoring Enrichments Voice agents People search Company search Coding agents Search over millions of GitHub repos, docs, and Stack Overflow with high-accuracy code retrieval. Search docs, repos, and changelogs in real time Use sub-200ms search options inside latency-sensitive agent loops Ground code generation with current package and API references Docs Search Repo Search Changelog Lookup Exa Search $7 /1k "
+   }
+  },
+  "felo": {
+   "slug": "felo",
+   "name": "Felo Search",
+   "cat": "search",
+   "reach": 0,
+   "probed": "2026-09-24",
+   "env": "runner",
+   "state": "empty",
+   "tried": [
+    {
+     "url": "https://felo.ai/pricing",
+     "status": 200,
+     "bytes": 119969,
+     "tokens": 0
+    },
+    {
+     "url": "https://felo.ai/price",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://felo.ai/plans",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    }
+   ],
+   "best": {
+    "url": "https://felo.ai/pricing",
+    "tokens": 0,
+    "excerpt": ""
+   }
+  },
+  "figma": {
+   "slug": "figma",
+   "name": "Figma",
+   "cat": "design",
+   "reach": 0,
+   "probed": "2026-09-24",
+   "env": "runner",
+   "state": "ready",
+   "tried": [
+    {
+     "url": "https://figma.com/pricing",
+     "status": 200,
+     "bytes": 600000,
+     "tokens": 28
+    }
+   ],
+   "best": {
+    "url": "https://figma.com/pricing",
+    "tokens": 28,
+    "excerpt": "e Starter? Why choose Starter? Includes: Unlimited drafts UI kits and templates 150 AI credits/day, up to 500 AI credits/mo Professional Monthly Annual Full seat $16 /mo + 3,000 AI credits/mo Dev seat $12 /mo + 500 AI credits/mo Collab seat $3 /mo + 500 AI credits/mo Select plan Why choose Professional? Why choose Professional? Choose Professional if you: Are a professional working solo or with others Need unlimited files and projects for a single team Want advanced prototyping tools and easier dev handoff Key features: Unlimited files and projects Team-wide design libraries Advanced Dev Mode inspection and MCP Server Organization Billed annually Full seat $55 /mo + 3,500 AI credits/mo Dev s"
+   }
+  },
+  "framer": {
+   "slug": "framer",
+   "name": "Framer",
+   "cat": "design",
+   "reach": 0,
+   "probed": "2026-09-24",
+   "env": "runner",
+   "state": "ready",
+   "tried": [
+    {
+     "url": "https://framer.com/pricing",
+     "status": 200,
+     "bytes": 600000,
+     "tokens": 11
+    }
+   ],
+   "best": {
+    "url": "https://framer.com/pricing",
+    "tokens": 11,
+    "excerpt": "ntroduction Examples Start free, then scale your site Start free, then scale your site Yearly billing Free Try for free $0 500 AI credits to try Free Framer domain 1 GB bandwidth Design pages Start for Free Basic Creative personal sites $10 per month 1,000 AI credits / month 2,000 AI credits / month 3,000 AI credits / month 5,000 AI credits / month 8,000 AI credits / month 10,000 AI credits / month 15,000 credits / month Free custom domain 2 CMS collections 50 GB bandwidth Built-in SEO Use your own domain Localization (add-on) Start with Basic Pro Growing professional sites $30 <div class=\"framer-lhw"
+   }
+  },
+  "gamma": {
+   "slug": "gamma",
+   "name": "Gamma",
+   "cat": "office",
+   "reach": 0,
+   "probed": "2026-09-24",
+   "env": "runner",
+   "state": "blocked",
+   "tried": [
+    {
+     "url": "https://gamma.app/pricing",
+     "status": 403,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://gamma.app/price",
+     "status": 403,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://gamma.app/plans",
+     "status": 403,
+     "bytes": 0,
+     "tokens": 0
+    }
+   ],
+   "best": null
+  },
+  "gaoding": {
+   "slug": "gaoding",
+   "name": "稿定 AI",
+   "cat": "design",
+   "reach": 0,
+   "probed": "2026-09-24",
+   "env": "runner",
+   "state": "ready",
+   "tried": [
+    {
+     "url": "https://www.gaoding.com/pricing",
+     "status": 200,
+     "bytes": 514749,
+     "tokens": 18
+    }
+   ],
+   "best": {
+    "url": "https://www.gaoding.com/pricing",
+    "tokens": 18,
+    "excerpt": "兑换 🌕月满中秋 ·会员低至4折 大会员最高送3个月，模板+AI权益一步到位，月均更划算！ 03 天 10 小时 40 分钟 20 秒 个人使用 企业使用 2年 最高送1年 连续包年 连续包季 更多选择 模板会员 模板在线编辑，快速出图 ¥ 159 /年 ¥13.25/月 明细 50 豆/月 最多可生成约 50 张图片或 5 个视频 立即开通 到期前 24 小时内将按 159 元/年自动续费，可随时取消 模板创作权益 个人商用授权 模板作品高清无水印下载 模板作品 PSD 导出 海量海报、PPT、视频、H5 等 VIP 模板 持续更新 高级工具功能：尺寸延展、PSD 转模板等 随时随地 在线编辑 AI 创作权益 50 豆/月 访问所有AI模型 加购豆享折扣 AI作品高清下载（可设置多倍数尺寸） 模型限时优惠 精选素材组合包 无官方自营素材下载次数 无第三方合作素材下载次数 通用权益 50 GB 存储空间 AI 创作会员 AI 创作与创意生成，豆额度灵活选择 ¥ 319 /年 ¥659 ¥26.58/月 1豆=0.09元 明细 0.3K 0.5K 1K 300 豆/月 每月最多可生成约 500 张图片或 50 个视频 立即开通 到期前 24 小时内将按 319 元/年自动续费，可随时取消 模板创作权益 无个人商用授权 模板作品高清无水印下载 模板作品 PSD 导出 海量海报、PPT、视频、H5 等 VIP 模板 持续更新 高级工具功能：尺寸延展、PSD 转模板等 随时随地 在线编辑 AI 创作权益 300～3000豆/月 访问所有AI模型 加购豆享折扣 AI作品高清下载（可设置"
+   }
+  },
+  "gemini": {
+   "slug": "gemini",
+   "name": "Google Gemini",
+   "cat": "chat",
+   "reach": 0,
+   "probed": "2026-09-24",
+   "env": "runner",
+   "state": "blocked",
+   "tried": [
+    {
+     "url": "https://gemini.google.com/pricing",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://gemini.google.com/price",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://gemini.google.com/plans",
      "status": 404,
      "bytes": 0,
      "tokens": 0

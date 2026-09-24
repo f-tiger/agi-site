@@ -1,5 +1,8 @@
 #!/usr/bin/env node
 import { canonicalUrls } from './canonical-urls.mjs';
+import { buildAgentPages } from './agent-pages.mjs';
+import { buildWorkPlan, workPlanLinks } from './work-plan.mjs';
+import { audiencesOf, AUDIENCES } from '../functions/api/_agents.js';
 // 零依赖静态站构建脚本：读取 data/*.json，输出完整站点到 dist/
 import { readFileSync, writeFileSync, mkdirSync, rmSync, cpSync, existsSync, readdirSync } from 'node:fs';
 import { createHash } from 'node:crypto';
@@ -16,6 +19,23 @@ const RAW_SOLUTIONS = JSON.parse(readFileSync(join(root, 'data/solutions.json'),
 const RAW_HUSTLES = JSON.parse(readFileSync(join(root, 'data/hustles.json'), 'utf8'));
 // 流言核查：攻略圈流传的数字 vs 官方口径——由本站核实记录直接生成，是最可分享的差异化资产
 const MYTHS = JSON.parse(readFileSync(join(root, 'data/myths.json'), 'utf8'));
+// Agent 与 MCP 目录（2026-09-22 起由 scripts/agent-pages.mjs 经本文件 layout() 出页；这里读账本给首页联动条、rail、MCP 文案与 llms.txt 用）。
+const AGENT_WATCH = existsSync(join(root, 'data/agent-watch.json'))
+  ? JSON.parse(readFileSync(join(root, 'data/agent-watch.json'), 'utf8')) : { agents: [] };
+// 2026-09-22 重构：agents 页全部改由 scripts/agent-pages.mjs 经本文件的 layout() 出页（同一套样式、侧栏、语言切换、信标），
+// 词表 data/agent-watch-vocab.json 是中英标签的唯一来源；受众分组由 _agents.js 的 audiencesOf() 机械推导。
+const AGENT_VOCAB = JSON.parse(readFileSync(join(root, 'data/agent-watch-vocab.json'), 'utf8'));
+// server.json 是官方 MCP 注册表的登记信息（bpj-mcp-publish.yml 经 GitHub OIDC 自动发布）；
+// .well-known/mcp.json、agents 页与 llms.txt 里的登记名与版本一律从它读，不再各处手写（三处版本此前靠人同步）。
+const SERVER_JSON = JSON.parse(readFileSync(join(root, 'server.json'), 'utf8'));
+const AGENT_N = AGENT_WATCH.agents.length;
+// The rail is on every one of the ~1 600 pages. An exact count there means each daily admission
+// rewrites every page, refreshes every lastmod and resubmits the whole site to IndexNow — the
+// discovery-noise shape the fleet rule of 2026-09-22 forbids. So the rail shows a floor ("900+")
+// that only moves when the directory crosses a hundred; the exact figure stays on the hub,
+// the homepage, mcp.html and llms.txt, which change anyway.
+const AGENT_N_FLOOR = AGENT_N >= 100 ? `${Math.floor(AGENT_N / 100) * 100}+` : String(AGENT_N);
+const AGENT_CURATED_N = AGENT_WATCH.agents.filter((a) => a.origin !== 'mcp-registry').length;
 // 拒绝清单：查不到官方来源、因此不写数字的工具。之前只有 /no-official-source.html 一处在用，
 // 但流量落在分类页——「这一格为什么空着」得在读者看清单的地方说，不能藏在另一个页面。
 // 授权结构化数据：PRD-publish-check 的核心资产。四字段模型（verdict/obligations/liability/scope），
@@ -184,6 +204,7 @@ for (const l of LOCALES) {
 // 当前渲染语言的状态：渲染函数直接读这些，因此本身几乎不用改
 let LOCALE, BASE, LANG, CATS, NAME, TAGLINE, DESC, UI;
 let tools, solutions, hustles, catEntries, bySlug, planBySlug, plansUsing;
+const WORK_PLAN_LINKS = workPlanLinks(root);
 
 function useLocale(l) {
   const d = i18n[l.code] || null;
@@ -354,6 +375,20 @@ document.addEventListener('click', function (e) {
   });
   window.bpjEv('go', '/go/' + (a.dataset.tool || '?'));
 });
+// 首页区块级点击（2026-09-22）。首页是全站第一页（243 pv/28d），此前没有一个区块知道自己被点过几次，
+// 「把某个区块换成 agents 面」这个问题在 D1 里根本答不了。只在 / 与 /en/ 上挂；
+// 路径 = /home/<区块 id>/<站内目标路径 | /ext/<外域>>；区块 id 取最近的 data-home-block、section id、hero/nav/footer。
+if (location.pathname === '/' || location.pathname === '/en/' || location.pathname === '/en') {
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest ? e.target.closest('a[href]') : null;
+    if (!a) return;
+    var sec = a.closest('[data-home-block],section[id],header.hero,nav,footer');
+    var id = sec ? (sec.getAttribute('data-home-block') || sec.id || sec.tagName.toLowerCase()) : 'other';
+    var t = '/ext';
+    try { var u = new URL(a.getAttribute('href'), location.href); t = (u.hostname === location.hostname) ? u.pathname : '/ext/' + u.hostname; } catch (err) {}
+    window.bpjEv('home', ('/home/' + id + t).slice(0, 200));
+  });
+}
 </script>`
   : '';
 
@@ -485,7 +520,7 @@ form.addEventListener('submit',function(e){
 `;
 }
 
-function layout({ title, description, path, body, wide, schema, noindex }) {
+function layout({ title, description, path, body, wide, schema, noindex, feed }) {
   const canonical = `${BASE}${pub(path)}`;
   return `<!DOCTYPE html>
 <html lang="${LANG}">
@@ -503,7 +538,7 @@ function layout({ title, description, path, body, wide, schema, noindex }) {
 <meta name="twitter:title" content="${esc(title)}">
 <meta name="twitter:description" content="${esc(metaDesc(description))}">
 <meta name="theme-color" content="#C8352A">
-<link rel="alternate" type="application/rss+xml" title="${esc(NAME)}" href="${BASE}/feed.xml">\n<link rel="alternate" type="application/json" title="Verified free-tier snapshot" href="${site.base_url}/limits.json">\n<link rel="alternate" type="application/json" title="Verified free-tier changes (incremental: ?since=YYYY-MM-DD)" href="${site.base_url}/api/changes">${noindex ? '' : '\n' + hreflang(path)}
+<link rel="alternate" type="application/rss+xml" title="${esc(NAME)}" href="${BASE}/feed.xml">${feed ? `\n<link rel="alternate" type="application/rss+xml" title="${esc(feed.title)}" href="${esc(feed.href)}">` : ''}\n<link rel="alternate" type="application/json" title="Verified free-tier snapshot" href="${site.base_url}/limits.json">\n<link rel="alternate" type="application/json" title="Verified free-tier changes (incremental: ?since=YYYY-MM-DD)" href="${site.base_url}/api/changes">${noindex ? '' : '\n' + hreflang(path)}
 <link rel="stylesheet" href="${site.base_url}/style.css">
 ${(schema || []).map(jsonLd).join('\n')}
 ${analyticsOf()}
@@ -516,7 +551,7 @@ ${gateOf(path)}${subJs()}
   ${friendLinks.length ? `<nav class="friend-links"><span>${UI('friend_links', '友情链接')}</span>${friendLinks.map((l) => `<a href="${esc(l.url)}" target="_blank" rel="noopener nofollow" title="${esc(l.desc || '')}">${esc(l.name)}</a>`).join('')}</nav>` : ''}
   <p>${esc(NAME)} · ${esc(TAGLINE)} · ${UI('footer_count', '共收录')} ${tools.length} ${UI('footer_count_unit', '个真有免费额度的 AI 工具')}</p>
   <p class="disclosure">${UI('disclosure', '部分链接为合作推广链接，我们可能因此获得佣金；这不影响工具的收录标准与排序，也不会让你多花一分钱。福利以官方页面实时信息为准。')}${site.ga_id ? UI('privacy', '本站使用 Google Analytics 统计匿名访问数据，用于改进内容，不收集个人身份信息。') : ''}${UI('privacy_sub', ' 若你主动订阅额度变更提醒，我们会保存你填写的邮箱与你关注的工具列表，仅用于发送这些工具的额度变动通知；不转让、不用于广告投放，随时可退订。除此之外不收集任何个人信息。')}</p>
-  <p><a href="${BASE}/">${UI('home', '首页')}</a> · <a href="${BASE}/myths.html">${UI('myths_title', 'AI 免费额度流言核查')}</a> · <a href="${BASE}/free-for-you.html">${UI('ffy_nav', '你能白嫖什么')}</a> · <a href="${BASE}/publish-check.html">${UI('pc_nav', '能不能发')}</a> · <a href="${BASE}/no-official-source.html">${UI('ns_nav', '查无官方来源')}</a> · <a href="${BASE}/changes.html">${UI('ch_nav', '额度变更记录')}</a> · <a href="${BASE}/upgrade/">${UI('up_nav', '该买哪档')}</a> · <a href="${BASE}/solutions/coding.html">${LOCALE.code === 'zh' ? '解决方案' : 'Solutions'}</a> · <a href="${BASE}/earn/">${LOCALE.code === 'zh' ? 'AI 赚钱作业包' : 'AI earning packs'}</a> · <a href="${BASE}/why-did-my-ai-free-tier-stop-working.html">${LOCALE.code === 'zh' ? '额度突然不能用了' : 'Free tier stopped working'}</a> · <a href="${BASE}/report.html">${LOCALE.code === 'zh' ? '真相报告' : 'The report'}</a> · <a href="${BASE}/watch.html">${LOCALE.code === 'zh' ? '额度监控' : 'Watch'}</a> · <a href="${BASE}/submit.html">${UI('submit_nav', '提交工具')}</a> · <a href="${BASE}/for-vendors.html">${UI('vendors_nav', '厂商自荐')}</a> · <a href="${BASE}/developers.html">${UI('dev_nav', '开发者 API')}</a> · <a href="${BASE}/travel/">${UI('travel_nav', '旅行白嫖')}</a> · <a href="${BASE}/feed.xml">${UI('rss', 'RSS 订阅')}</a> · <a href="${BASE}/unsubscribe.html">${UI('unsub_nav', '退订提醒')}</a>${site.contact_email ? ` · <a href="mailto:${esc(site.contact_email)}">${UI('contact', '商务合作')}</a>` : ''}</p>
+  <p><a href="${BASE}/">${UI('home', '首页')}</a> · <a href="${BASE}/myths.html">${UI('myths_title', 'AI 免费额度流言核查')}</a> · <a href="${BASE}/free-for-you.html">${UI('ffy_nav', '你能白嫖什么')}</a> · <a href="${BASE}/publish-check.html">${UI('pc_nav', '能不能发')}</a> · <a href="${BASE}/no-official-source.html">${UI('ns_nav', '查无官方来源')}</a> · <a href="${BASE}/changes.html">${UI('ch_nav', '额度变更记录')}</a> · <a href="${BASE}/upgrade/">${UI('up_nav', '该买哪档')}</a> · <a href="${BASE}/solutions/coding.html">${LOCALE.code === 'zh' ? '解决方案' : 'Solutions'}</a> · <a href="${BASE}/earn/">${LOCALE.code === 'zh' ? 'AI 赚钱作业包' : 'AI earning packs'}</a> · <a href="${BASE}/why-did-my-ai-free-tier-stop-working.html">${LOCALE.code === 'zh' ? '额度突然不能用了' : 'Free tier stopped working'}</a> · <a href="${BASE}/report.html">${LOCALE.code === 'zh' ? '真相报告' : 'The report'}</a> · <a href="${BASE}/watch.html">${LOCALE.code === 'zh' ? '额度监控' : 'Watch'}</a> · <a href="${BASE}/agents/">${LOCALE.code === 'zh' ? 'Agent 与 MCP 目录' : 'Agents & MCP'}</a> · <a href="${BASE}/submit.html">${UI('submit_nav', '提交工具')}</a> · <a href="${BASE}/for-vendors.html">${UI('vendors_nav', '厂商自荐')}</a> · <a href="${BASE}/developers.html">${UI('dev_nav', '开发者 API')}</a> · <a href="${BASE}/travel/">${UI('travel_nav', '旅行白嫖')}</a> · <a href="${BASE}/feed.xml">${UI('rss', 'RSS 订阅')}</a> · <a href="${BASE}/unsubscribe.html">${UI('unsub_nav', '退订提醒')}</a>${site.contact_email ? ` · <a href="mailto:${esc(site.contact_email)}">${UI('contact', '商务合作')}</a>` : ''}</p>
 </footer>
 </body>
 </html>`;
@@ -566,6 +601,7 @@ const railOf = () => `<aside class="rail">
   </a>
   <nav class="rail-jump">
     <a href="${BASE}/#dirs"><b>${LOCALE.code === 'zh' ? '两个主攻方向' : 'Two directions'}</b><span>2</span></a>
+    <a href="${BASE}/agents/"><b>${LOCALE.code === 'zh' ? 'Agent 与 MCP 目录' : 'Agents & MCP'}</b><span>${AGENT_N_FLOOR}</span></a>
     <a href="${BASE}/money/"><b>${UI('money_nav', '赚钱作业')}</b><span>${hustles.length}</span></a>
     <a href="${BASE}/earn/"><b>${LOCALE.code === 'zh' ? '赚钱作业包' : 'Earning packs'}</b><span>${hustles.length}</span></a>
     <a href="${BASE}/#plans"><b>${UI('plans_title', '免费方案')}</b><span>${solutions.length}</span></a>
@@ -1022,11 +1058,13 @@ const SUB_JS_BODY = `(function(){
   });
   // ---- 全局搜索 ----
   // 索引懒加载：聚焦才拉取，不聚焦的访客不花这份流量。
-  var IDX=null, IDXP=null;
+  // 索引按 URL 缓存（2026-09-22）：同一页现在可能有两个搜索框指向不同索引（全站 search-index.json 与
+  // agents-index.json）；此前单个全局缓存会让第二个框拿到第一个框的索引。
+  var IDX={}, IDXP={};
   function loadIdx(u){
-    if(IDX)return Promise.resolve(IDX);
-    if(!IDXP)IDXP=fetch(u).then(function(r){return r.json()}).then(function(d){IDX=d;return d});
-    return IDXP;
+    if(IDX[u])return Promise.resolve(IDX[u]);
+    if(!IDXP[u])IDXP[u]=fetch(u).then(function(r){return r.json()}).then(function(d){IDX[u]=d;return d});
+    return IDXP[u];
   }
   Array.prototype.forEach.call(document.querySelectorAll('.gs'),function(g){
     var inp=g.querySelector('input'), drop=g.querySelector('.gs-drop'); if(!inp||!drop)return;
@@ -1051,7 +1089,7 @@ const SUB_JS_BODY = `(function(){
         if(kw.length>=2){
           clearTimeout(evT);
           evT=setTimeout(function(){
-            if(window.bpjEv)bpjEv('gs','/gs/'+(hits.length?'hit':'miss')+'/'+encodeURIComponent(kw).slice(0,60));
+            if(window.bpjEv)bpjEv('gs','/gs/'+(g.dataset.tag?g.dataset.tag+'/':'')+(hits.length?'hit':'miss')+'/'+encodeURIComponent(kw).slice(0,60));
           },1200);
         }
         drop.textContent='';
@@ -1116,11 +1154,70 @@ const sponsorOf = () => site.sponsor?.url
   ? `<a class="sponsor" href="${esc(site.sponsor.url)}" target="_blank" rel="noopener nofollow"><b>${UI('sponsor_label', '本周推荐')}</b>${esc(site.sponsor.name)} — ${esc(site.sponsor.text)}</a>`
   : `<div class="sponsor is-empty"><b>${UI('sponsor_label', '本周推荐')}</b>${UI('sponsor_empty', '虚位以待')}${site.contact_email ? ` · <a href="mailto:${esc(site.contact_email)}">${UI('sponsor_cta', '联系投放')}</a>` : ''}</div>`;
 
+// 首页智能体区块下的「新 Agent / MCP 监控」联动条（2026-09-22，owner：「要和首页联动」）。
+// 首页 243 pv/28d 是全站第一页，而 /agents/ 上线后只有 5 pv、且只从 nav 里一个词进得去。
+// 不替换任何现有区块——首页此前没有区块级点击仪器，「换掉谁」在 D1 里答不了（bpjEv('home') 同日装上，
+// 28 天后按读数定）。条目只取最新 6 条、全部来自 data/agent-watch.json，链接进站内详情页，零外链零联盟。
+// 2026-09-22 重构：联动条改为「按你是谁选门」六个入口（受众计数机械推导）+ 最新 6 条人工收录；
+// 链接全部指向 agents 面自己的页（受众页 / 类目页 / 记录页），零外链零联盟。
+const agentWatchStrip = () => {
+  const all = AGENT_WATCH.agents || [];
+  if (!all.length) return '';
+  const zh = LOCALE.code === 'zh';
+  const list = [...all].filter((a) => a.origin !== 'mcp-registry')
+    .sort((a, b) => String(b.first_seen || '').localeCompare(String(a.first_seen || '')) || String(a.name).localeCompare(String(b.name)))
+    .slice(0, 6);
+  const audN = Object.fromEntries(AUDIENCES.map((k) => [k, 0]));
+  for (const a of all) for (const k of audiencesOf(a)) audN[k]++;
+  const doors = AUDIENCES.map((k) => `<a href="${BASE}/agents/for/${k}.html"><b>${esc(AGENT_VOCAB.audiences[k][zh ? 'zh' : 'en'])}</b><span>${audN[k]}</span></a>`).join('');
+  const items = list.map((a) => `<li><a href="${BASE}/agents/${esc(a.slug)}.html">${esc(a.name)}</a><span>${esc(zh ? (AGENT_VOCAB.status[a.status]?.zh || a.status) : a.status)} · ${esc(zh ? (AGENT_VOCAB.categories[a.category]?.zh || a.category) : (AGENT_VOCAB.categories[a.category]?.en || a.category))} · ${esc(a.first_seen)}</span></li>`).join('');
+  return `<div class="agent-watch" data-home-block="agent-watch">
+  <p class="agent-watch-h"><b>${zh ? 'Agent 与 MCP 监控目录' : 'Agents & MCP watch'}</b> · ${zh ? `${AGENT_N} 条记录（${AGENT_CURATED_N} 条人工收录 + 官方 MCP 注册表），每条带官方来源与 URL 核验日期` : `${AGENT_N} records (${AGENT_CURATED_N} curated + the official MCP registry), each with an official source and per-URL check dates`} · <a href="${BASE}/agents/">${zh ? '看全部 →' : 'See all →'}</a></p>
+  <nav class="agent-watch-doors">${doors}</nav>
+  <ul>${items}</ul>
+</div>`;
+};
+
+// 首页顶部的 Agent 与 MCP 目录区块（2026-09-22 第三轮，owner：「首页不够凸显 agents…也没有搜索」）。
+// 紧跟 hero，是首页第一个内容区块：专属搜索框（agents-index.json，事件 /gs/agents/…）+ 六扇受众门 +
+// 「有本站免费额度记录的 Agent」（重点 = 与本站已核实数据交叉的那些，规则可解释，不靠感觉排）+ 类目计数。
+// data-home-block="agents" 让区块级点击仪器（第 21 条）能单独读它。
+const agentsHomeBlock = () => {
+  const all = AGENT_WATCH.agents || [];
+  if (!all.length) return '';
+  const zh = LOCALE.code === 'zh';
+  const V = AGENT_VOCAB;
+  const audN = Object.fromEntries(AUDIENCES.map((k) => [k, 0]));
+  for (const a of all) for (const k of audiencesOf(a)) audN[k]++;
+  const catN = {}; for (const a of all) catN[a.category] = (catN[a.category] || 0) + 1;
+  const cats = Object.keys(V.categories).filter((k) => catN[k]).sort((a, b) => catN[b] - catN[a]).slice(0, 6);
+  const featured = all.filter((a) => a.origin !== 'mcp-registry' && a.tool_slug && bySlug.has(a.tool_slug))
+    .sort((a, b) => String(a.name).localeCompare(String(b.name))).slice(0, 8);
+  const curated = all.filter((a) => a.origin !== 'mcp-registry').length;
+  const doors = AUDIENCES.map((k) => `<a href="${BASE}/agents/for/${k}.html"><b>${esc(V.audiences[k][zh ? 'zh' : 'en'])}</b><i>${audN[k]}</i><span>${esc(V.audiences[k][zh ? 'lede_zh' : 'lede_en'])}</span></a>`).join('');
+  return `<section class="agents-home" id="agents" data-home-block="agents">
+  <div class="agents-home-head">
+    <h2 class="group-title">${zh ? 'Agent 与 MCP 目录' : 'Agents & MCP directory'}<span>${all.length}</span></h2>
+    <p class="agents-home-lede">${zh ? `${curated} 条人工收录 + ${all.length - curated} 条官方 MCP 注册表，每条带官方来源与 URL 核验日期。按你是谁选门，或直接搜。` : `${curated} curated records + ${all.length - curated} from the official MCP registry, each with an official source and per-URL check dates. Pick a door by who you are, or search.`}</p>
+    <div class="gs agents-gs" data-idx="${BASE}/agents-index.json" data-tag="agents"><input type="search" placeholder="${zh ? `搜 ${all.length} 条 Agent / MCP：名称、能力、类目` : `Search ${all.length} agents & MCP servers: name, capability, category`}" aria-label="${zh ? '搜索 Agent 与 MCP' : 'Search agents and MCP'}" autocomplete="off"><div class="gs-drop" hidden></div></div>
+  </div>
+  <div class="agents-home-grid">
+    <nav class="agents-doors" aria-label="${zh ? '按受众选' : 'By audience'}">${doors}</nav>
+    <div class="agents-side">
+      <h3>${zh ? '有本站免费额度记录的 Agent' : 'Agents with a verified free-tier record here'}</h3>
+      <ul>${featured.map((a) => `<li><a href="${BASE}/agents/${esc(a.slug)}.html">${esc(a.name)}</a><a class="agents-ft" href="${BASE}/tools/${esc(a.tool_slug)}.html">${zh ? '还免费吗 →' : 'still free? →'}</a></li>`).join('')}</ul>
+      <p class="agents-cats">${cats.map((k) => `<a href="${BASE}/agents/c/${k}.html">${esc(V.categories[k][zh ? 'zh' : 'en'])} <b>${catN[k]}</b></a>`).join('')}<a class="agents-all" href="${BASE}/agents/">${zh ? `全部 ${all.length} 条 →` : `All ${all.length} →`}</a></p>
+    </div>
+  </div>
+</section>`;
+};
+
 const sectionsOf = () => catEntries.map(([k, v]) => `<section class="group" data-cat="${esc(k)}" id="${esc(k)}">
   <h2 class="group-title">${esc(v)}<span>${countOf(k)}</span></h2>
   <div class="grid">
 ${tools.filter((t) => t.category === k).sort((a, b) => (b.hot ? 1 : 0) - (a.hot ? 1 : 0)).map((t, i) => toolCard(t, t.hot && i < 3 ? i + 1 : 0)).join('\n')}
   </div>
+${k === 'agent' ? agentWatchStrip() : ''}
 </section>`).join('\n');
 
 // 方案卡片：痛点入口的核心资产
@@ -1176,6 +1273,7 @@ return `${railOf()}
         <span class="cap">${UI('plot_cap', '{n} 条路 / 各几步').replace('{n}', hustles.length)}</span>
 ${hustles.map((h) => `        <a href="${BASE}/money/${esc(h.slug)}.html">${Array.from({ length: h.steps.length }, (_, k) => `<i style="width:${k === 0 ? 40 : 24}px"></i>`).join('')}<em>${esc(h.title)}</em></a>`).join('\n')}
       </div>
+      <p class="coverage"><a href="${BASE}/work-plan.html"><b>${LOCALE.code === 'zh' ? '新：按你的岗位算一套 AI 方案——免费额度够不够你的工作量 →' : 'New: an AI plan for your job — do the free tiers cover your workload? →'}</b></a></p>
       <p class="coverage"><a href="${BASE}/stack-builder.html"><b>${UI('stack_cta', '新：勾选任务，一次配齐一套全免费工具链 →')}</b></a></p>
       <div class="ask">
         <input type="search" id="ask" placeholder="${UI('ask_ph', '例如：要交 PPT / 想剪视频 / 写论文查文献')}" autocomplete="off">
@@ -1187,6 +1285,7 @@ ${hustles.map((h) => `        <a href="${BASE}/money/${esc(h.slug)}.html">${Arra
         <div><dt>${UI('stat_tools', '免费工具')}</dt><dd class="num">${tools.length}</dd></div>
         <div><dt>${UI('stat_free', '完全免费')}</dt><dd class="num">${freeCount}</dd></div>
         <div><dt>${UI('stat_daily', '每日领额度')}</dt><dd class="num">${dailyCount}</dd></div>
+        <div><dt><a href="${BASE}/agents/">${LOCALE.code === 'zh' ? 'Agent 与 MCP' : 'Agents & MCP'}</a></dt><dd class="num">${AGENT_N}</dd></div>
       </dl>
       ${(() => {
         // 首页此前只报「收录了多少」——那是任何导航站都能报的数。
@@ -1202,6 +1301,7 @@ ${hustles.map((h) => `        <a href="${BASE}/money/${esc(h.slug)}.html">${Arra
       })()}
     </div>
   </header>
+  ${agentsHomeBlock()}
   ${(() => {
     // 首页双方向区（owner 2026-08-18 指令：以编码与视频两个大方向凸显解决方案）。
     //
@@ -1861,7 +1961,8 @@ function planPage(s) {
       <div class="cost-paid"><span>${UI('cost_paid_label', '不用它，同样的事要花')}</span><b>${esc(s.saving || UI('some_money', '一笔钱'))}</b><i>${esc(s.cost_paid)}</i></div>
     </div>
     <h2 class="steps-title">${UI('steps_title', '分 {n} 步走').replace('{n}', s.steps.length)}</h2>
-    <ol class="steps">${steps}</ol>
+    <ol class="steps">${steps}</ol>${WORK_PLAN_LINKS.has(s.slug) ? `
+    <p class="coverage wp-cta"><a href="${BASE}${WORK_PLAN_LINKS.get(s.slug)}">${LOCALE.code === 'zh' ? '按你自己的工作量算一算：这几款工具的免费额度加起来够不够 →' : 'Check it against your own workload: do these free tiers, added up, cover it? →'}</a></p>` : ''}
     ${ceilingRows.length ? `<section class="limits-table">
       <h2 class="group-title">${LOCALE.code === 'zh' ? '这条链哪一步先撞墙' : 'Which link in this chain hits its wall first'}<span>${ceilingRows.length}</span></h2>
       <div class="lt-scroll"><table>
@@ -4164,6 +4265,10 @@ for (const L of LOCALES) {
       q: `${h.title} ${h.who}`.toLowerCase() })),
     ...VS_PAIRS.map(([a, b]) => ({ u: `${BASE}/vs/${a.slug}-vs-${b.slug}.html`, n: `${a.name} vs ${b.name}`, k: UI('gs_k_vs', '对比'),
       q: `${a.name} ${b.name} ${a.slug} ${b.slug} vs`.toLowerCase() })),
+    // 人工收录的 Agent 记录进全站索引（2026-09-22）：搜「cline」「langgraph」在侧栏搜索框里也要能找到。
+    // 注册表来源的 680 条只进 agents-index.json（专属搜索框），不让全站索引每次聚焦多拉 250 KB。
+    ...(AGENT_WATCH.agents || []).filter((a) => a.origin !== 'mcp-registry').map((a) => ({ u: `${BASE}/agents/${a.slug}.html`, n: a.name, k: LOCALE.code === 'zh' ? 'Agent' : 'Agent',
+      q: `${a.name} ${a.slug} ${LOCALE.code === 'zh' ? a.zh_description : a.description} ${(LOCALE.code === 'zh' ? a.zh_capabilities : a.capabilities || []).join(' ')} ${AGENT_VOCAB.categories[a.category]?.[LOCALE.code === 'zh' ? 'zh' : 'en'] || ''} mcp agent`.toLowerCase() })),
     ...[
       ['/earn/', LOCALE.code === 'zh' ? 'AI 赚钱作业包' : 'AI earning packs', 'earn money 赚钱 副业 接单 变现 作业 包 商用 授权 外快 兼职'],
       ['/changes.html', UI('ch_nav', '额度变更记录'), 'changes changelog 变更 更新'],
@@ -4174,6 +4279,7 @@ for (const L of LOCALES) {
       ['/no-official-source.html', UI('ns_nav', '查无官方来源'), 'no source 来源 拒绝'],
       ['/llm-api-calculator.html', UI('calc_nav', '免费 API 计算器'), 'api calculator token 计算 免费额度 llm'],
       ['/stack-builder.html', UI('stack_nav', '免费工具栈组装器'), 'stack builder 组装 工具链 免费 选型'],
+      ['/work-plan.html', LOCALE.code === 'zh' ? '按岗位算 AI 方案' : 'AI plan by job', 'work plan job role workload 岗位 职业 工作 工作量 方案 规划 电商 自媒体 教师 学生 程序员 设计师 翻译 免费额度 够不够'],
       ['/video-quota-planner.html', LOCALE.code === 'zh' ? '视频免费额度对照板' : 'Video quota board', 'video quota 视频 额度 对照 credits 商用 watermark'],
       ['/coding-quota-board.html', LOCALE.code === 'zh' ? '编程助手额度对照板' : 'Coding assistant quota board', 'coding copilot cursor 编程 补全 completions credits 额度 对照'],
       ['/subscription-audit.html', LOCALE.code === 'zh' ? 'AI 订阅体检' : 'AI subscription audit', 'subscription audit 订阅 体检 月费 停订阅 cancel 白付 copilot cursor claude chatgpt 值不值'],
@@ -4362,6 +4468,21 @@ ${PERSONAS.map((p) => {
     ])],
   }));
   allPages.push({ u: `${BASE}/free-for-you.html`, pr: '0.8' });
+
+  // ---- Agent 与 MCP 目录（2026-09-22 重构，见 scripts/agent-pages.mjs）----
+  // 枢纽页 + 6 个受众页 + 每类目一张表进 sitemap；人工收录的记录页 noindex,follow、不进 sitemap；
+  // 注册表来源的记录没有记录页（页面即仓库）。agents.json 每语言一份（英文版剔除 zh_ 字段）。
+  {
+    const outDir = join(dist, L.dir.replace(/^\//, ''));
+    mkdirSync(join(outDir, 'agents', 'c'), { recursive: true });
+    mkdirSync(join(outDir, 'agents', 'for'), { recursive: true });
+    const r = buildAgentPages({
+      layout, railOf, esc, crumbLd, faqLd, BASE, site, NAME, LOCALE, vocab: AGENT_VOCAB, registry: AGENT_WATCH, toolBySlug: bySlug, subscribeOf, serverJson: SERVER_JSON,
+      write: (rel, s) => writeFileSync(join(outDir, rel), s),
+      pushPage: (u, pr) => allPages.push({ u, pr }),
+    });
+    console.log(`🤖 agents (${L.code}): ${r.total} records → hub + ${AUDIENCES.length} audience pages + ${r.categories.length} category tables + ${r.curated} record pages (noindex)`);
+  }
 
   // ---- 「能不能发」授权核查页 ----
   // PRD-publish-check 的 MVP。全行业都在回答「有没有水印」，而用户要解决的是
@@ -5066,7 +5187,7 @@ if (CODQ && CHATQ) {
     ? [['全部已核实数字与出处', '这是全站存在的理由'], ['全部自建工具（注册邮箱后使用）', '订阅体检、API 计算器、能不能发、分词器等，一次注册全站解锁'],
        ['JSON API 与 limits.json / llms-full.txt', 'CC BY 4.0，署名回链即可商用'], ['MCP 服务器（14 工具 / 9 资源 / 4 提示词）', '无鉴权，无需安装']]
     : [['Every verified figure and its source', 'This is why the site exists'], ['Every self-built tool (free with email registration)', 'Audit, API calculator, publish-check, tokenizer and more — register once, unlocked everywhere'],
-       ['JSON API and limits.json / llms-full.txt', 'CC BY 4.0 — attribute and link back, commercial use included'], ['MCP server (14 tools / 9 resources / 4 prompts)', 'No auth, nothing to install']];
+       ['JSON API and limits.json / llms-full.txt', 'CC BY 4.0 — attribute and link back, commercial use included'], ['MCP server (16 tools / 10 resources / 4 prompts)', 'No auth, nothing to install']];
   const PAID = zh
     ? [['持续监控·扩展档', '免费档已上线：/watch.html 可注册 webhook 监控 3 个工具。Pro 解锁全量监控与将来的历史时间序列导出——厂商不发公告，这来自每日重新核实'],
        ['报告导出', '体检结论导出为可传阅的一页版，团队场景用'],
@@ -6324,6 +6445,7 @@ if (OFFQ) {
   <header class="hero"><div class="hero-inner">
     <h1>${esc(h1)}</h1>
     <p class="answer">${esc(desc)}</p>
+    <p class="coverage"><a href="${BASE}/work-plan.html">${zh ? '想按岗位整套算，还要看免费额度够不够你的量？用岗位方案规划器 →' : 'Want a whole plan for your job, checked against your workload? Use the plan-by-job calculator →'}</a></p>
     <p class="coverage"><a href="${BASE}/llm-api-calculator.html">${zh ? '只关心 API 额度？直接用免费 API 计算器 →' : 'Only care about API allowances? Use the free API calculator →'}</a></p>
   </div></header>
 
@@ -6413,6 +6535,17 @@ if (OFFQ) {
     schema: [crumbLd([{ name: NAME, url: `${BASE}/` }, { name: h1, url: `${BASE}/stack-builder.html` }])],
   }));
   allPages.push({ u: `${BASE}/stack-builder.html`, pr: '0.9' });
+}
+
+// ---- 岗位方案规划器（2026-09-24，owner：按自己的实际工作算一套 AI 方案，试用免费、高阶收费；见 scripts/work-plan.mjs 与 docs/PRD-work-plan-2026-09-24.md）----
+// 计算全在浏览器里、全部免费；云端保存走已上线的工作区会员（不新建收款面）。
+{
+  const r = buildWorkPlan({
+    root, layout, railOf, esc, crumbLd, faqLd, BASE, NAME, LOCALE, site, toolsBySlug: bySlug, planBySlug, licence: LICENCE || {},
+    write: (s) => writeFileSync(join(dist, ...(L.dir ? [L.dir.slice(1)] : []), 'work-plan.html'), s),
+    pushPage: (u, pr) => allPages.push({ u, pr }),
+  });
+  console.log(`🧭 work-plan (${LOCALE.code}): ${r.roles} roles · ${r.tasks} tasks · ${r.tools} tools, ${r.withCap} with a same-unit official figure · data as of ${r.asOf}`);
 }
 
 // ---- 自建工具 3 号：视频免费额度对照板 ----
@@ -7064,8 +7197,8 @@ if (AUDQ) {
     </table></div>
     <h2 class="group-title" style="margin-top:22px">${zh ? 'MCP：把这套数据挂进你的 agent' : 'MCP: mount this data into your agent'}<span>13</span></h2>
     <p class="money-lede">${zh
-      ? '本站是一个无鉴权的 MCP server（Streamable HTTP）。挂载后你的 agent 获得 14 个工具：搜目录、查已核实额度、横向对照一整类、核查流传的数字有没有官方出处、查商用判定、给出成套 0 元方案、查最近谁改了免费档、按你的用量算哪家 API 扛得住、撞墙时找完全免费的替代、查发到中国大陆的两道门、解释为什么某一格没有数字、以及替用户挂上变更监控（webhook 订阅已核实的额度/条款变更）；另有 9 份可整份拉取的 resources 与 4 条 prompts——每个答案都带官方出处与核实日期。'
-      : 'This site is a no-auth MCP server (streamable HTTP). Mounting it gives your agent 14 tools — search the directory, look up a verified limit, compare a whole category, fact-check a circulating figure, check commercial use, build a complete zero-cost workflow, see what changed lately, work out which free API tier carries your load, find fully-free alternatives at the wall, check the two gates for publishing to mainland China, explain why a figure is missing, and subscribe a webhook to verified free-tier changes on behalf of the user — plus nine resources you can pull whole and four prompts. Every answer carries its official source and check date.'}</p>
+      ? '本站是一个无鉴权的 MCP server（Streamable HTTP）。挂载后你的 agent 获得 16 个工具：搜目录、查已核实额度、横向对照一整类、核查流传的数字有没有官方出处、查商用判定、给出成套 0 元方案、查最近谁改了免费档、按你的用量算哪家 API 扛得住、撞墙时找完全免费的替代、查发到中国大陆的两道门、解释为什么某一格没有数字、替用户挂上变更监控（webhook 订阅已核实的额度/条款变更），以及查带官方来源与 URL 核验日期的新 Agent / MCP 监控目录（可按首见日期轮询、按 slug 取单条）；另有 10 份可整份拉取的 resources 与 4 条 prompts——每个答案都带官方出处与核实日期。'
+      : 'This site is a no-auth MCP server (streamable HTTP). Mounting it gives your agent 16 tools — search the directory, look up a verified limit, compare a whole category, fact-check a circulating figure, check commercial use, build a complete zero-cost workflow, see what changed lately, work out which free API tier carries your load, find fully-free alternatives at the wall, check the two gates for publishing to mainland China, explain why a figure is missing, subscribe a webhook to verified free-tier changes on behalf of the user, and read a source-backed watchlist of new agents and MCP servers with per-URL check dates (poll it by first-seen date, or fetch one record by slug) — plus ten resources you can pull whole and four prompts. Every answer carries its official source and check date.'}</p>
     <p class="coverage"><a href="${BASE}/mcp.html">${zh ? '完整接入文档（Claude Desktop / Cursor / VS Code 配置）→' : 'Full setup docs (Claude Desktop / Cursor / VS Code configs) →'}</a></p>
     <pre class="api-eg"><code># Claude Code
 claude mcp add --transport http baipiaoji https://baipiaoji.com/api/mcp
@@ -7145,8 +7278,8 @@ curl -s 'https://baipiaoji.com/api/limits?slug=kimi'              # ${zh ? '这�
   // 结构化对照条数：工具描述与文档里都要报这个数，从数据本身算，避免写死后失真
   const QN = [APIQ, VIDQ, CODQ, CHATQ].filter(Boolean).reduce((n, s) => n + s.entries.length, 0);
   const desc = zh
-    ? `把 ${N_ALL} 个 AI 工具的已核实免费额度、配额与商用判定挂进你的 agent：无鉴权 streamable HTTP，14 个工具 + ${QN} 条结构化对照数据可整份拉取，每个答案带官方出处与核实日期。数据 CC BY 4.0。`
-    : `Mount verified free-tier limits, quotas and commercial-use verdicts for ${N_ALL} AI tools into your agent: no-auth streamable HTTP, 14 tools plus ${QN} rows of structured comparison data you can pull whole, every answer carrying its official source and check date. Data CC BY 4.0.`;
+    ? `把 ${N_ALL} 个 AI 工具的已核实免费额度、配额与商用判定挂进你的 agent：无鉴权 streamable HTTP，16 个工具 + ${QN} 条结构化对照数据可整份拉取，每个答案带官方出处与核实日期。数据 CC BY 4.0。`
+    : `Mount verified free-tier limits, quotas and commercial-use verdicts for ${N_ALL} AI tools into your agent: no-auth streamable HTTP, 16 tools plus ${QN} rows of structured comparison data you can pull whole, every answer carrying its official source and check date. Data CC BY 4.0.`;
   const CFG = [
     ['Claude Code', 'claude mcp add --transport http baipiaoji https://baipiaoji.com/api/mcp'],
     ['Claude Desktop / Cursor / Windsurf', `{
@@ -7177,6 +7310,8 @@ curl -s 'https://baipiaoji.com/api/limits?slug=kimi'              # ${zh ? '这�
     ['audit_ai_stack', zh ? '一次问清一整套工具链：每个的额度 / 商用判定 / 近期变更 / 天花板是不是未知' : 'Audit a whole stack in one call: each tool\u2019s limit, commercial verdict, recent change, and whether its ceiling is simply unknown'],
     ['get_category_playbook', zh ? `选这一类之前该先问什么（${CATRULES_ALL.length} 条类目规律 + ${METERS_ALL.length} 型计量模型带实例）` : `What to ask before choosing in a category (${CATRULES_ALL.length} category rules + ${METERS_ALL.length} metering shapes with verified examples)`],
     ['watch_free_tier_changes', zh ? '注册 webhook 监控：你依赖的免费额度/商用条款一变（每日核实），当天推送含出处的 JSON；免费 3 个工具' : 'Register a webhook watch: when a verified allowance or licence term moves (checked daily), a sourced JSON payload arrives the same day; 3 tools free'],
+    ['monitor_new_agents', zh ? `Agent 与 MCP 目录（${AGENT_N} 条：${AGENT_CURATED_N} 条人工收录 + 官方 MCP 注册表；带官方来源、首见日与每条 URL 的核验日；可按受众 / 类目 / 状态 / 接入方式 / 来源 / since 首见日期过滤，offset+limit 翻页，像轮询变更日志一样用）` : `Agents & MCP directory (${AGENT_N} records: ${AGENT_CURATED_N} curated + the official MCP registry; official source, first-seen and per-URL check dates; filter by audience, category, status, transport, origin or since-date, page with offset/limit, poll it like a changelog)`],
+    ['get_agent', zh ? '按 slug 取一条 Agent 记录：能力、接入方式、官方来源与仓库、两条 URL 各自的核验日期；查不到就回已知 slug 列表，不猜' : 'One agent record by slug: capabilities, transport, official source and repository, and the check date of each URL; unknown slugs get the list of known ones, never a guess'],
   ];
   // resources 与 prompts：MCP 的另两类入口。工具靠模型自动匹配，
   // prompts 则出现在客户端的提示词选择器里——那是用户主动挑选的入口，性质不同。
@@ -7189,6 +7324,7 @@ curl -s 'https://baipiaoji.com/api/limits?slug=kimi'              # ${zh ? '这�
     ['baipiaoji://changes', zh ? '免费额度变更日志（JSON）' : 'Free-tier change log (JSON)'],
     ['baipiaoji://no-source', zh ? `拒绝清单 ${NOSRC.length} 条及理由（JSON）` : `${NOSRC.length} refusals with reasons (JSON)`],
     ['baipiaoji://insights', zh ? `类目规律 ${CATRULES_ALL.length} 条 + 计量模型谱系 ${METERS_ALL.length} 型（JSON）` : `${CATRULES_ALL.length} category rules + ${METERS_ALL.length} metering shapes (JSON)`],
+    ['baipiaoji://agents', zh ? `Agent 与 MCP 目录 ${AGENT_N} 条（JSON，含受众与词表键）` : `${AGENT_N} agent and MCP records (JSON, with audiences and vocabulary keys)`],
     ['baipiaoji://dataset', zh ? '整份数据集单文件（纯文本）' : 'The entire dataset in one plain-text file'],
   ];
   const PROMPTROWS = [
@@ -7198,8 +7334,8 @@ curl -s 'https://baipiaoji.com/api/limits?slug=kimi'              # ${zh ? '这�
   ];
   const faq = [
     [zh ? '这个 MCP 服务器是什么？' : 'What is this MCP server?',
-     zh ? `一个无鉴权的远程 MCP 服务器（streamable HTTP），把白嫖计的已核实数据变成 agent 可直接调用的 14 个工具，另有 9 份可整份拉取的 resources 与 4 条 prompts。数据每日构建更新，每条可追溯官方来源。注册名：io.github.f-tiger/verified-ai-free-tiers。`
-        : 'A no-auth remote MCP server (streamable HTTP) exposing Baipiaoji\'s verified data as five callable tools, plus five resources you can pull whole and three prompts. The data rebuilds daily and every entry traces to an official source. Registry name: io.github.f-tiger/verified-ai-free-tiers.'],
+     zh ? `一个无鉴权的远程 MCP 服务器（streamable HTTP），把白嫖计的已核实数据变成 agent 可直接调用的 16 个工具，另有 10 份可整份拉取的 resources 与 4 条 prompts。数据每日构建更新，每条可追溯官方来源。注册名：io.github.f-tiger/verified-ai-free-tiers。`
+        : 'A no-auth remote MCP server (streamable HTTP) exposing Baipiaoji\'s verified data as 16 callable tools, plus ten resources you can pull whole and four prompts. The data rebuilds daily and every entry traces to an official source. Registry name: io.github.f-tiger/verified-ai-free-tiers.'],
     [zh ? '怎么安装？' : 'How do I install it?',
      zh ? '无需安装任何东西——它是远程服务器。Claude Code 一行命令：claude mcp add --transport http baipiaoji https://baipiaoji.com/api/mcp；其他客户端把上方 JSON 片段贴进各自的 MCP 配置文件即可。'
         : 'Nothing to install — it is a remote server. One line in Claude Code: claude mcp add --transport http baipiaoji https://baipiaoji.com/api/mcp; for other clients, paste the JSON snippet above into their MCP config.'],
@@ -7249,6 +7385,21 @@ curl -s 'https://baipiaoji.com/api/limits?slug=kimi'              # ${zh ? '这�
       ? '这三条会出现在客户端的提示词选择器里（Claude Code 打 / 即可见）。每条都写死了同一条纪律：官方没公布数字时如实说「没公布」，不许折算成「大约」。'
       : 'These show up in your client\'s prompt picker (type / in Claude Code). Each hard-codes the same discipline: when a vendor publishes no figure, say so — never soften an unsourced number into "approximately".'}</p>
   </section>
+  ${(() => {
+    // 同一维护者的其它 MCP 服务器（2026-09-22，owner：「和其他工具站或外部网站形成外链」）。
+    // 名单不手写：取 agents 账本里证据等级为第一方、接入方式是 MCP 的记录——它们与其它 978 条一样每天被核验器盖章，
+    // 链接坏了会显示为待复核而不是静默失效。对读者的价值：看 MCP 文档的人正是会想「这个维护者还有什么服务器」的人。
+    const sibs = (AGENT_WATCH.agents || []).filter((a) => ['first-party', 'first-party-hosted'].includes(a.keys?.evidence) && /^mcp-/.test(a.keys?.transport || ''));
+    if (!sibs.length) return '';
+    return `<section class="limits-table" id="same-maintainer">
+    <h2 class="group-title">${zh ? '同一维护者的其它 MCP 服务器' : 'Other MCP servers from the same maintainer'}<span>${sibs.length}</span></h2>
+    <div class="lt-scroll"><table>
+      <thead><tr><th>${zh ? '服务器' : 'Server'}</th><th>${zh ? '做什么' : 'What it does'}</th></tr></thead>
+      <tbody>${sibs.map((a) => `<tr><td><a href="${esc(a.source_url)}" rel="noopener">${esc(a.name)}</a></td><td>${esc(zh ? a.zh_description : a.description)}</td></tr>`).join('')}</tbody>
+    </table></div>
+    <p class="sub-note">${zh ? `完整的 ${AGENT_N} 条 Agent 与 MCP 目录（带每条 URL 的核验日期）：` : `The full ${AGENT_N}-record agents & MCP directory, with per-URL check dates: `}<a href="${BASE}/agents/c/mcp">${zh ? 'MCP 类目表 →' : 'MCP category table →'}</a></p>
+  </section>`;
+  })()}
   <section class="faq">
     <h2>${zh ? '常见问题' : 'FAQ'}</h2>
     ${faq.map(([q, a]) => `<details><summary>${esc(q)}</summary><p>${esc(a)}</p></details>`).join('')}
@@ -8108,6 +8259,12 @@ mkdirSync(join(dist, '.well-known'), { recursive: true });
 writeFileSync(join(dist, '.well-known', 'mcp.json'), JSON.stringify({
   name: 'verified-ai-free-tiers',
   title: 'Baipiaoji - Verified AI Free-Tier Data',
+  // 2026-09-22：版本与登记名从 server.json 读（与注册表登记的是同一份），remotes 与官方 schema 同形；
+  // 目录爬虫据此能把这份 well-known 与注册表条目对上号。test-agent-watch --dist 断言三处版本一致。
+  version: SERVER_JSON.version,
+  registry: { name: SERVER_JSON.name, url: `https://registry.modelcontextprotocol.io/v0/servers?search=${encodeURIComponent(SERVER_JSON.name.split('/').pop())}` },
+  remotes: SERVER_JSON.remotes,
+  websiteUrl: SERVER_JSON.websiteUrl,
   description: `Verified free-tier limits, quotas and commercial-use verdicts for ${N_ALL} AI tools — ${N_LIM} of them carry an officially sourced ceiling and the rest deliberately carry none. Every figure is traced to an official vendor page with a check date. No-auth streamable HTTP MCP server + REST API, data CC BY 4.0.`,
   keywords: ['ai-tools', 'free-tier', 'limits', 'quota', 'pricing', 'rate-limits', 'commercial-use', 'licence', 'directory', 'verified', 'comparison', 'fact-check', 'workflow', 'changelog', 'audit', 'buying-guide', 'monitoring', 'change-alerts', 'webhook'],
   endpoint: `${site.base_url}/api/mcp`,
@@ -8115,9 +8272,9 @@ writeFileSync(join(dist, '.well-known', 'mcp.json'), JSON.stringify({
   authentication: 'none',
   tools: ['search_ai_tools', 'get_free_tier_limit', 'compare_free_tiers', 'check_free_tier_claim', 'check_commercial_use',
     'build_free_workflow', 'get_free_tier_changes', 'check_api_quota_fit', 'find_free_alternatives', 'get_china_ai_rules', 'explain_missing_figure',
-    'audit_ai_stack', 'get_category_playbook', 'watch_free_tier_changes'],
+    'audit_ai_stack', 'get_category_playbook', 'watch_free_tier_changes', 'monitor_new_agents', 'get_agent'],
   resources: ['baipiaoji://limits', 'baipiaoji://directory', 'baipiaoji://quotas', 'baipiaoji://myths',
-    'baipiaoji://workflows', 'baipiaoji://changes', 'baipiaoji://no-source', 'baipiaoji://insights', 'baipiaoji://dataset'],
+    'baipiaoji://workflows', 'baipiaoji://changes', 'baipiaoji://no-source', 'baipiaoji://insights', 'baipiaoji://agents', 'baipiaoji://dataset'],
   prompts: ['audit-my-ai-stack', 'pick-a-free-tier', 'fact-check-a-free-tier-claim', 'watch-my-free-tiers'],
   rest_api: `${site.base_url}/api/tools`,
   openapi: `${site.base_url}/openapi.json`,
@@ -8195,6 +8352,24 @@ Allow: /
 User-agent: Bingbot
 Allow: /
 User-agent: Bytespider
+Allow: /
+# 2026-09-22 补：其余自报家门的 AI 检索/助手爬虫。同样是声明性的（User-agent: * 早已放行），
+# 写明是为了 robots 解析器按名匹配时不落到「未提及」——舰队 ai_access_probe 用这些 UA 探边缘可达性。
+User-agent: Applebot-Extended
+Allow: /
+User-agent: meta-externalagent
+Allow: /
+User-agent: DuckAssistBot
+Allow: /
+User-agent: MistralAI-User
+Allow: /
+User-agent: Perplexity-User
+Allow: /
+User-agent: YouBot
+Allow: /
+User-agent: Amazonbot
+Allow: /
+User-agent: CCBot
 Allow: /
 
 # 中国搜索与 AI 检索（2026-09-17）。上面那条 User-agent: * 已经放行了它们，
@@ -8348,6 +8523,7 @@ Interfaces built on the verified dataset — each answers a decision directly an
 - [免费 API 额度计算器 / Free LLM API calculator](${site.base_url}/llm-api-calculator.html)：输入每天调用次数与单次 tokens，算出 ${APIQ ? APIQ.entries.length : 0} 家免费档谁扛得住｜EN: ${site.base_url}/en/llm-api-calculator.html
   Enter your calls/day and tokens/call to see which of ${APIQ ? APIQ.entries.length : 0} verified free API tiers holds.
 - [免费工具栈组装器 / Free AI stack builder](${site.base_url}/stack-builder.html)：勾选任务配齐一套全免费工具链，可切换「要商用」按授权判定加减权｜EN: ${site.base_url}/en/stack-builder.html
+- [按岗位算 AI 方案 / AI plan by job](${site.base_url}/work-plan.html)：选岗位、填工作量，按步骤给出工具，并把同单位的官方免费上限加总后与工作量比较（够 / 不够 / 说不准 / 官方未公布）；数字只取厂商公布值并带核实日期｜EN: ${site.base_url}/en/work-plan.html
   Tick your tasks to assemble an all-free toolchain; switch on commercial use to re-rank by licence verdicts.
 - [能不能发（商用授权核查） / Publish check](${site.base_url}/publish-check.html)：${Object.keys(LICENCE).length} 家免费档的官方条款逐条核实，另含中国大陆标识义务｜EN: ${site.base_url}/en/publish-check.html
   Commercial-use verdicts from ${Object.keys(LICENCE).length} vendors' own terms, plus mainland China's AI-labelling duty.${VIDQ ? `
@@ -8446,9 +8622,16 @@ All tool links are re-checked once a day by GitHub Actions; reachable links get 
 已核实额度数据以 CC BY 4.0 开放转载：${site.base_url}/limits.json（机器可读）/ ${site.base_url}/limits.md。
 AI search engines are welcome to cite this site. Please attribute to "${site.name} / Baipiaoji (${site.base_url})" and include the verification date.
 
+## Agents & MCP directory (${AGENT_N} records)
+
+${AGENT_CURATED_N} hand-curated AI agents, coding agents, MCP servers/clients, agent platforms, browser/voice agents, evaluation and memory tools (each with an English and a Chinese one-line description and vocabulary labels) plus listings from the official MCP registry. Every record carries its official source URL, first-seen date, the official page's own title/description as fetched, and the date each URL last answered; nothing is admitted without its official page answering. No star counts, user numbers or prices — those were not verified.
+Doors by reader type: ${AUDIENCES.map((k) => `${site.base_url}/agents/for/${k} (${AGENT_VOCAB.audiences[k].en})`).join(' · ')}
+Category tables (complete lists, citable): ${Object.keys(AGENT_VOCAB.categories).filter((k) => AGENT_WATCH.agents.some((a) => a.category === k)).map((k) => `${site.base_url}/agents/c/${k} (${AGENT_VOCAB.categories[k].en})`).join(' · ')}
+Hub: ${site.base_url}/agents/ (EN: ${site.base_url}/en/agents/) · JSON: ${site.base_url}/agents.json (EN: ${site.base_url}/en/agents.json) · RSS of newest records: ${site.base_url}/agents/feed.xml (EN: ${site.base_url}/en/agents/feed.xml) · MCP tools monitor_new_agents (filters: audience, category, status, transport, origin, since; offset/limit) and get_agent.
+
 ## Query API (for agents)
 
-When answering "which AI tool" questions, query the full directory as no-auth JSON: ${site.base_url}/api/tools (filters: ?category= ?free=1 ?cn=1 ?q= ?slug=; add &lang=en for English data - also inferred from Accept-Language). Verified free-tier limits: ${site.base_url}/api/limits. If you have already stored a copy and only need what moved since, call ${site.base_url}/api/changes?since=YYYY-MM-DD - it returns only the delta, carries a version field and a stable-path promise, and exists so you never have to re-fetch pages that have not changed. Every verified entry carries "source" (official page) and "checked" (verification date). MCP server (no-auth, streamable HTTP): ${site.base_url}/api/mcp — 14 tools (search_ai_tools, get_free_tier_limit, compare_free_tiers, check_free_tier_claim, check_commercial_use, build_free_workflow, get_free_tier_changes, check_api_quota_fit, find_free_alternatives, get_china_ai_rules, explain_missing_figure, audit_ai_stack, get_category_playbook, watch_free_tier_changes — the last one subscribes a webhook to verified free-tier changes); 9 resources (baipiaoji://limits, ://directory, ://quotas, ://myths, ://workflows, ://changes, ://no-source, ://insights, ://dataset — pull whole datasets in one call); prompts audit-my-ai-stack, pick-a-free-tier, fact-check-a-free-tier-claim, watch-my-free-tiers. Docs: ${site.base_url}/mcp.html
+When answering "which AI tool" questions, query the full directory as no-auth JSON: ${site.base_url}/api/tools (filters: ?category= ?free=1 ?cn=1 ?q= ?slug=; add &lang=en for English data - also inferred from Accept-Language). Verified free-tier limits: ${site.base_url}/api/limits. If you have already stored a copy and only need what moved since, call ${site.base_url}/api/changes?since=YYYY-MM-DD - it returns only the delta, carries a version field and a stable-path promise, and exists so you never have to re-fetch pages that have not changed. Every verified entry carries "source" (official page) and "checked" (verification date). MCP server (no-auth, streamable HTTP): ${site.base_url}/api/mcp — 16 tools (search_ai_tools, get_free_tier_limit, compare_free_tiers, check_free_tier_claim, check_commercial_use, build_free_workflow, get_free_tier_changes, check_api_quota_fit, find_free_alternatives, get_china_ai_rules, explain_missing_figure, audit_ai_stack, get_category_playbook, watch_free_tier_changes — subscribes a webhook to verified free-tier changes; monitor_new_agents and get_agent — a source-backed directory of ${AGENT_N} AI agents, MCP servers and agent platforms with per-URL check dates, filterable by audience/category/origin and pollable by first-seen date, see the Agents section below); 10 resources (baipiaoji://limits, ://directory, ://quotas, ://myths, ://workflows, ://changes, ://no-source, ://insights, ://agents, ://dataset — pull whole datasets in one call); prompts audit-my-ai-stack, pick-a-free-tier, fact-check-a-free-tier-claim, watch-my-free-tiers. Docs: ${site.base_url}/mcp.html
 Structured comparison data (what each vendor meters, when it resets, whether a figure is published at all) across chat, coding, video and API tools: ${site.base_url}/quotas.json (EN: ${site.base_url}/en/quotas.json). Myth checks — which widely-quoted free-tier figures have no official source: ${site.base_url}/myths.json (EN: ${site.base_url}/en/myths.json).
 Full dataset in one fetch (all verified limits + commercial-use verdicts, bilingual): ${site.base_url}/llms-full.txt
 Markdown mirrors: every content page (site root, /en/, /money/, /plans/) is also served as Markdown for LLM/agent context — swap .html for .md, e.g. ${site.base_url}/en/is-claude-still-free.md. Mirrors are auto-extracted from the published pages (title, answer capsule, FAQ); the HTML pages stay canonical.
@@ -8516,7 +8699,9 @@ ${licOnly.join('\n')}
     .replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>')
     .replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&nbsp;/g, ' ')
     .replace(/\s+/g, ' ').trim();
-  const MIRROR_DIRS = ['', 'en', 'money', 'plans', 'en/money', 'en/plans'];
+  // 2026-09-22 加 agents 面：枢纽 / 受众页 / 类目表是被引用的页型（第 18 条：本站的 AI 引荐落在列表/类目页），
+  // 记录页 noindex 不镜像——用「页面自己是否 noindex」判，不写死目录名。
+  const MIRROR_DIRS = ['', 'en', 'money', 'plans', 'en/money', 'en/plans', 'agents', 'agents/c', 'agents/for', 'en/agents', 'en/agents/c', 'en/agents/for'];
   let mirrored = 0;
   for (const rel of MIRROR_DIRS) {
     const dir = rel ? join(dist, rel) : dist;
@@ -8528,6 +8713,7 @@ ${licOnly.join('\n')}
       const target = join(dir, f.replace(/\.html$/, '.md'));
       if (existsSync(target)) continue;
       const html = readFileSync(join(dir, f), 'utf8');
+      if (/<meta name="robots" content="noindex/.test(html)) continue;   // noindex 页不是引用面，不镜像
       const m1 = (re) => { const m = html.match(re); return m ? m[1] : ''; };
       const title = stripTags(m1(/<title>([\s\S]*?)<\/title>/));
       const desc = stripTags(m1(/<meta name="description" content="([^"]*)"/));
@@ -8535,16 +8721,20 @@ ${licOnly.join('\n')}
       const canonical = m1(/<link rel="canonical" href="([^"]*)"/) ||
         `${site.base_url}/${rel ? rel + '/' : ''}${f}`;
       const zh = !rel.startsWith('en');
-      // FAQ 只认页面自己声明的 FAQPage JSON-LD——镜像不产生任何页面上没有的事实
-      const faqs = [];
+      // FAQ 与清单只认页面自己声明的 JSON-LD（FAQPage / ItemList）——镜像不产生任何页面上没有的事实
+      const faqs = [], items = [];
       for (const sm of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
         try {
           const o = JSON.parse(sm[1]);
-          for (const node of Array.isArray(o) ? o : [o]) {
-            if (node['@type'] !== 'FAQPage') continue;
-            for (const q of node.mainEntity || []) {
-              const a = q.acceptedAnswer && q.acceptedAnswer.text;
-              if (q.name && a) faqs.push([stripTags(q.name), stripTags(a)]);
+          for (const node of Array.isArray(o) ? o : (o['@graph'] ? o['@graph'] : [o])) {
+            if (node['@type'] === 'FAQPage') {
+              for (const q of node.mainEntity || []) {
+                const a = q.acceptedAnswer && q.acceptedAnswer.text;
+                if (q.name && a) faqs.push([stripTags(q.name), stripTags(a)]);
+              }
+            } else if (node['@type'] === 'ItemList') {
+              for (const it of node.itemListElement || []) if (it.name && it.url) items.push([stripTags(it.name), it.url]);
+              if (Number.isInteger(node.numberOfItems) && node.numberOfItems > (node.itemListElement || []).length) items.total = node.numberOfItems;
             }
           }
         } catch { /* 页面 JSON-LD 可解析性由 verify-dist 把关,这里只跳过 */ }
@@ -8559,6 +8749,7 @@ ${licOnly.join('\n')}
           : `This file is the Markdown mirror of [${canonical}](${canonical}) — for LLM/agent context windows, auto-extracted from the published page; the HTML page is canonical. Generated ${TODAY}.`,
         '',
         ...(faqs.length ? [zh ? '## 常见问题' : '## FAQ', '', ...faqs.flatMap(([q, a]) => [`**${q}**`, '', a, ''])] : []),
+        ...(items.length ? [zh ? `## 清单（页面 ItemList，共 ${items.total || items.length} 条${items.total ? `，此处列前 ${items.length} 条` : ''}）` : `## List (page ItemList, ${items.total || items.length} items${items.total ? `, first ${items.length} shown` : ''})`, '', ...items.map(([nm, u]) => `- [${nm}](${u})`), ''] : []),
         '---',
         zh
           ? `全量已核实数据（一次抓取）:${site.base_url}/llms-full.txt · JSON:${site.base_url}/limits.json · MCP:${site.base_url}/api/mcp。数据以 CC BY 4.0 开放:引用请注明「${site.name}（baipiaoji.com）」并带核实日期。`
@@ -8569,7 +8760,7 @@ ${licOnly.join('\n')}
       mirrored++;
     }
   }
-  console.log(`📄 Markdown 镜像:${mirrored} 页（.html→.md,根/en/money/plans）`);
+  console.log(`📄 Markdown 镜像:${mirrored} 页（.html→.md,根/en/money/plans/agents 可索引页）`);
 }
 
 console.log(`✅ 构建完成：${LOCALES.length} 种语言 × (首页 + 赚钱作业总览 + ${hustles.length} 作业页 + ${solutions.length} 方案页 + ${tools.length} 工具页 + ${catEntries.length} 分类页 + ${VS_PAIRS.length} 对比页) = ${allPages.length} 页 → dist/`);

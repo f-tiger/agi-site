@@ -1,67 +1,56 @@
 {
  "ok": true,
- "fetched": "2026-09-21",
+ "fetched": "2026-09-24",
  "source": "https://trends.google.com/trending/rss?geo=DE",
- "matched": [],
+ "matched": [
+  {
+   "title": "wetterwarnung",
+   "traffic": "2000+"
+  }
+ ],
  "top": [
   {
-   "title": "novo nordisk",
-   "traffic": "200+"
-  },
-  {
-   "title": "skoda peaq",
-   "traffic": "1000+"
-  },
-  {
-   "title": "innotrans",
-   "traffic": "500+"
-  },
-  {
-   "title": "bäcker",
+   "title": "michael olise",
    "traffic": "2000+"
   },
   {
-   "title": "bundesliga bvb",
+   "title": "u bahnhof schönhauser allee",
+   "traffic": "1000+"
+  },
+  {
+   "title": "hessenschau",
+   "traffic": "1000+"
+  },
+  {
+   "title": "radio lippe",
    "traffic": "500+"
   },
   {
-   "title": "abstimmung euroscheine",
-   "traffic": "100+"
+   "title": "wetterwarnung",
+   "traffic": "2000+"
   },
   {
-   "title": "vonovia aktie",
+   "title": "sabrina wittmann",
+   "traffic": "500+"
+  },
+  {
+   "title": "u-bahn",
    "traffic": "5000+"
   },
   {
-   "title": "bfv",
-   "traffic": "100+"
+   "title": "shelly group",
+   "traffic": "1000+"
   },
   {
-   "title": "bing",
-   "traffic": "200+"
+   "title": "schwandorf",
+   "traffic": "1000+"
   },
   {
-   "title": "maps",
-   "traffic": "50000+"
+   "title": "freizeitpark",
+   "traffic": "1000+"
   }
  ],
  "history": [
-  {
-   "d": "2026-09-07",
-   "matched": [
-    "sturm der liebe"
-   ]
-  },
-  {
-   "d": "2026-09-08",
-   "matched": [
-    "wetter münchen"
-   ]
-  },
-  {
-   "d": "2026-09-09",
-   "matched": []
-  },
   {
    "d": "2026-09-10",
    "matched": []
@@ -111,6 +100,20 @@
   {
    "d": "2026-09-21",
    "matched": []
+  },
+  {
+   "d": "2026-09-22",
+   "matched": []
+  },
+  {
+   "d": "2026-09-23",
+   "matched": []
+  },
+  {
+   "d": "2026-09-24",
+   "matched": [
+    "wetterwarnung"
+   ]
   }
  ]
 }

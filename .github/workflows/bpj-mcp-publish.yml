@@ -37,13 +37,51 @@ jobs:
           curl -sL "https://github.com/modelcontextprotocol/registry/releases/latest/download/mcp-publisher_${OS}_${ARCH}.tar.gz" | tar xz mcp-publisher
           ./mcp-publisher --version
 
+      # 发布前的本地硬门（2026-09-22）：注册表对 description 有 100 字符硬限制（SR 09-17 在 publish 那步 422 过一次）；
+      # 三处版本（server.json / .well-known / MCP initialize）由 build 从 server.json 派生，这里只校 server.json 自身形状。
+      - name: Sanity-check server.json before publishing
+        run: |
+          node -e '
+            const s = JSON.parse(require("fs").readFileSync("server.json","utf8"));
+            const bad = [];
+            if (!/^io\.github\.f-tiger\//.test(s.name)) bad.push("name namespace");
+            if (!/^\d+\.\d+\.\d+$/.test(s.version)) bad.push("version not semver");
+            if (!s.description || s.description.length > 100) bad.push("description missing or >100 chars (registry hard limit)");
+            if (!Array.isArray(s.remotes) || !s.remotes[0] || s.remotes[0].type !== "streamable-http" || !/^https:\/\/baipiaoji\.com\/api\/mcp$/.test(s.remotes[0].url)) bad.push("remotes[0]");
+            if (!/^https:\/\/baipiaoji\.com\//.test(s.websiteUrl || "")) bad.push("websiteUrl");
+            if (bad.length) { console.error("::error::server.json: " + bad.join(", ")); process.exit(1); }
+            console.log("server.json ok:", s.name, s.version, s.description.length + " chars");
+          '
+
+      # 幂等（2026-09-23 首跑就撞上）：本 workflow 的触发路径含它自己的文件，改 workflow 不改版本也会跑，
+      # 而注册表对重复版本回 400「cannot publish duplicate version」。已登记同版本 → 跳过发布，只做下面的核验。
+      - name: Is this version already in the registry?
+        id: pre
+        run: |
+          want=$(node -e "console.log(JSON.parse(require('fs').readFileSync('server.json','utf8')).version)")
+          name=$(node -e "console.log(JSON.parse(require('fs').readFileSync('server.json','utf8')).name)")
+          got=$(curl -s -m 20 "https://registry.modelcontextprotocol.io/v0/servers?search=verified-ai-free-tiers&version=latest" \
+            | node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{try{const j=JSON.parse(s);const m=(j.servers||[]).find(r=>r.server&&r.server.name===process.argv[1]&&r._meta&&r._meta["io.modelcontextprotocol.registry/official"]&&r._meta["io.modelcontextprotocol.registry/official"].isLatest);console.log(m?m.server.version:"")}catch(e){console.log("")}})' "$name")
+          if [ "$got" = "$want" ]; then echo "already=true" >> "$GITHUB_OUTPUT"; echo "ℹ️ registry already lists $name $want — nothing to publish"; else echo "already=false" >> "$GITHUB_OUTPUT"; echo "registry has '${got:-none}', will publish $want"; fi
+
       - name: Login via GitHub OIDC
+        if: steps.pre.outputs.already != 'true'
         run: ./mcp-publisher login github-oidc
 
       - name: Publish server.json
+        if: steps.pre.outputs.already != 'true'
         run: ./mcp-publisher publish
 
-      - name: Verify listing
+      # 发布后断言注册表真的反映了这个版本（能红）：查名字、要求 isLatest 且 version == server.json。
+      # 注册表索引有延迟，最多等 6 × 10s；仍不一致就红——「发布步骤绿了但注册表没变」正是要抓的事故形状。
+      - name: Verify the registry reflects this version
         run: |
-          sleep 5
-          curl -s "https://registry.modelcontextprotocol.io/v0/servers?search=verified-ai-free-tiers" | head -c 400; echo
+          want=$(node -e "console.log(JSON.parse(require('fs').readFileSync('server.json','utf8')).version)")
+          name=$(node -e "console.log(JSON.parse(require('fs').readFileSync('server.json','utf8')).name)")
+          for i in 1 2 3 4 5 6; do
+            got=$(curl -s -m 20 "https://registry.modelcontextprotocol.io/v0/servers?search=verified-ai-free-tiers&version=latest" \
+              | node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{try{const j=JSON.parse(s);const m=(j.servers||[]).find(r=>r.server&&r.server.name===process.argv[1]&&r._meta&&r._meta["io.modelcontextprotocol.registry/official"]&&r._meta["io.modelcontextprotocol.registry/official"].isLatest);console.log(m?m.server.version:"")}catch(e){console.log("")}})' "$name")
+            [ "$got" = "$want" ] && { echo "✅ registry lists $name $got (isLatest)"; exit 0; }
+            echo "registry shows '$got', want $want — waiting ($i/6)"; sleep 10
+          done
+          echo "::error::registry did not reflect $name $want after publish"; exit 1

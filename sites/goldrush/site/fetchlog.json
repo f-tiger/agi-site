@@ -2,20 +2,39 @@
   "name": "Claim Ledger Protocol — consumption log",
   "url": "https://goldrush.agiscorecard.com/fetchlog.json",
   "license": "CC BY 4.0",
-  "dateModified": "2026-08-31",
+  "dateModified": "2026-09-22",
+  "live": false,
+  "static_note": "This is the template and fallback. The served /fetchlog.json is computed from the site's own D1 by worker.js on every read and says live:true; if you are reading live:false, D1 was unreachable and these counts are the last session-typed snapshot dated counts.as_of.",
   "why": "The protocol asks sites to publish /claimledger.json. This file publishes whether anyone actually reads it, including when the answer is nobody. 'Ledgers published' is deliberately NOT reported as traction: llms.txt scored well on exactly that number while being dead.",
   "definitions": {
     "ledgers_listed": "Ledgers on the reference registry, first-party included.",
     "ledgers_validating": "Of those, how many parse and carry all five required fields in every entry.",
     "outside_fetches_of_our_claimledger": "Fetches of goldrush.agiscorecard.com/claimledger.json by a client this network did NOT write. Excluded, all three: (a) any fetch carrying a goldrush referrer — our own registry page fetches the file; (b) our deployment self-check, which tags itself ?ci=1; (c) fetches made by our own agiscorecard MCP server's get_claim_ledger tool, which is our code calling our file. Exclusion (c) was added 2026-08-31 after exactly that happened on 2026-08-30 and would otherwise have counted as adoption on the first day the number was published — the failure mode this file exists to prevent.",
-    "known_limit": "An external ledger's own readership is unobservable from here. The 2026-11-30 adoption line is therefore resolved by this number plus registry ledger_render events whose label is a non-goldrush URL."
+    "outside_fetches_crawler_ua": "Of the outside fetches, those whose user agent classifies as a crawler (search engines, AI-search fetchers, SEO tools). A crawler fetching a JSON URL it found in a sitemap or llms.txt is indexing, not protocol consumption — it is exactly what made llms.txt look alive. Split out on 2026-09-22 so the headline number cannot be read as adoption.",
+    "outside_fetches_browser_ua": "Of the outside fetches, those with a browser-class user agent: a person, or an MCP/skill client that did not identify itself. Two of these arrived via a link on agiscorecard.com/for-agents.",
+    "outside_fetches_other_ua": "Of the outside fetches, those with neither a browser token nor a crawler token in the user agent, or no user agent at all (server-side code that did not identify itself). Counted so the three parts always sum to the headline.",
+    "known_limit": "An external ledger's own readership is unobservable from here. The 2026-11-30 adoption line is therefore resolved by browser/MCP-class fetches plus registry ledger_render events whose label is a non-goldrush URL — never by crawler fetches."
   },
   "counts": {
     "ledgers_listed": 1,
     "ledgers_validating": 1,
-    "outside_fetches_of_our_claimledger": 0,
-    "as_of": "2026-08-31",
+    "outside_fetches_of_our_claimledger": 31,
+    "outside_fetches_crawler_ua": 22,
+    "outside_fetches_browser_ua": 9,
+    "outside_fetches_other_ua": 0,
+    "as_of": "2026-09-22",
     "period": "site lifetime (from 2026-08-29)"
   },
-  "note": "Two self-inflicted signals caught and excluded so far. (1) Ten machine fetches of /ledger.json were this repository's own deploy self-check — ten deploys, ten fetches. (2) One fetch of /claimledger.json on 2026-08-30 was our own MCP server's get_claim_ledger tool. Neither is adoption. The count stays 0."
+  "history": [
+    { "as_of": "2026-08-31", "outside_fetches_of_our_claimledger": 0 }
+  ],
+  "consumption_evidence": {
+    "ledger_click_lifetime": 0,
+    "audit_click_lifetime": 0,
+    "fork_click_lifetime": 1,
+    "registry_ledger_render_external": 0,
+    "mcp_get_claim_ledger_calls_lifetime": 4,
+    "note": "Fetches are not use. Nothing above shows any fetcher parsing the five fields or acting on a verdict. The four MCP calls (2026-08-30, 09-14, 09-15, 09-17) are of unknown origin and may be this network's own sessions; they are listed, not counted."
+  },
+  "note": "Self-inflicted signals caught and excluded so far: (1) ten machine fetches of /ledger.json were this repository's own deploy self-check — ten deploys, ten fetches; (2) one fetch of /claimledger.json on 2026-08-30 was our own MCP server's get_claim_ledger tool. Neither is adoption. 2026-09-22 update: 31 outside fetches since launch; 22 of them carry crawler user agents whose daily one-fetch-from-US pattern matches the OpenAI crawler family seen in this site's UA audit the same days. That is a URL being indexed. The count moved; the verdict on adoption did not."
 }

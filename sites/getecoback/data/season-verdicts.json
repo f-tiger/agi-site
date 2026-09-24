@@ -1,0 +1,21 @@
+{
+ "note": "Settled decisions on terms in seasonality-de.json, so the daily season calendar (data/autopilot/demand-digest.md) shows the decision instead of re-flagging the same term as 'uncovered' every autumn. A verdict is a pointer to where the reasoning lives, not a new judgement; change one only with new evidence and say which. Terms below the digest's volume floor (peak < 2.0 on this scale) are labelled automatically and do not need an entry.",
+ "verdicts": {
+  "matratze": {"verdict": "站外(离题大词)", "date": "2026-09-15", "source": "eco CLAUDE.md「其他热门产品」"},
+  "kaffeevollautomat": {"verdict": "站外(礼品季大词)", "date": "2026-09-15", "source": "eco CLAUDE.md「其他热门产品」"},
+  "akku staubsauger": {"verdict": "Bodenpflege 判负,不试第二次", "date": "2026-09-15", "source": "eco CLAUDE.md「其他热门产品」"},
+  "saugroboter": {"verdict": "Bodenpflege 判负,不试第二次", "date": "2026-09-15", "source": "eco CLAUDE.md「其他热门产品」"},
+  "saugwischer": {"verdict": "Bodenpflege 判负(峰值 3,2 / 56 天 1 pv)", "date": "2026-09-15", "source": "eco CLAUDE.md「其他热门产品」"},
+  "fussbodenheizung": {"verdict": "装修题,非联盟可买形态", "date": "2026-09-15", "source": "eco CLAUDE.md「其他热门产品」"},
+  "wandheizung": {"verdict": "装修题(埋墙),非联盟可买形态", "date": "2026-09-24", "source": "docs/season-calendar-2026-09-24.md"},
+  "konvektorheizung": {"verdict": "rising 假象,5 年峰值 1,2", "date": "2026-09-15", "source": "eco CLAUDE.md「用季节性峰值选题」"},
+  "luftreiniger": {"verdict": "峰值在 6 月(花粉),不是冬季题", "date": "2026-09-15", "source": "eco CLAUDE.md「其他热门产品」"},
+  "heizung einstellen": {"verdict": "红海(Utopia/ÖKO-TEST/heizung.de/heizsparer/MVV)", "date": "2026-08-05", "source": "eco CLAUDE.md 秋季关键词扩展轮"},
+  "heizkörper thermostat": {"verdict": "红海;租客角度已在 heizkosten-senken-als-mieter", "date": "2026-08-05", "source": "eco CLAUDE.md 秋季关键词扩展轮 + 租客线"},
+  "schwarzer schimmel": {"verdict": "菌种/健康声明边界;扩展条件挂 eco-schimmel-fenster-1213", "date": "2026-09-09", "source": "eco CLAUDE.md 品类扩张第二批"},
+  "schimmel schlafzimmer": {"verdict": "预登记:eco-schimmel-fenster-1213 赢了才补", "date": "2026-09-15", "source": "data/fleet-bets.json eco-schimmel-fenster-1213"},
+  "schimmel tapete": {"verdict": "预登记:eco-schimmel-fenster-1213 赢了才补", "date": "2026-09-15", "source": "data/fleet-bets.json eco-schimmel-fenster-1213"},
+  "wärmepumpe": {"verdict": "安装型资本品;线索形态 08-28 已杀", "date": "2026-09-17", "source": "eco CLAUDE.md 德语区读数与两个品类裁定"},
+  "heizstrahler": {"verdict": "扩到已排名页 heizluefter-stromverbrauch;独立页可进扩展队列,须先过 SERP 门(无测评,不点名型号)", "date": "2026-09-24", "source": "docs/season-calendar-2026-09-24.md", "changed": "2026-09-24: 撤回「新页等 eco-new-page-discovery-1020」(owner「站点应该持续扩展」;docs/continuous-expansion-2026-09-24.md)"}
+ }
+}

@@ -2,10 +2,10 @@
   "source": "Cloudflare GraphQL Analytics API (edge-measured)",
   "note": "Counted at the edge, so unaffected by ad blockers, privacy browsers or network-level blocking of Google. Includes bot and crawler traffic, which on a new site is most of it — read it as a floor, not as humans.",
   "zone": "thedollscout.com",
-  "updated": "2026-09-21",
+  "updated": "2026-09-24",
   "window": {
     "since": "2026-07-26",
-    "until": "2026-09-20"
+    "until": "2026-09-23"
   },
   "days": {
     "2026-07-26": {
@@ -2910,6 +2910,180 @@
         "CN": 20,
         "GB": 15,
         "NL": 12
+      }
+    },
+    "2026-09-21": {
+      "date": "2026-09-21",
+      "requests": 775,
+      "pageViews": 355,
+      "uniques": 230,
+      "byIpType": {
+        "noRecord": 470,
+        "unknown": 170,
+        "searchEngine": 135
+      },
+      "byBrowser": {
+        "Unknown": 136,
+        "Curl": 90,
+        "MobileSafari": 68,
+        "Chrome": 21,
+        "GoogleBot": 17,
+        "BingBot": 15,
+        "YandexBot": 3,
+        "Opera": 2,
+        "Edge": 2,
+        "Firefox": 1
+      },
+      "byContentType": {
+        "html": 478,
+        "txt": 142,
+        "json": 51,
+        "js": 40,
+        "xml": 23,
+        "unknown": 20,
+        "empty": 11,
+        "css": 7,
+        "png": 3
+      },
+      "byStatus": {
+        "200": 589,
+        "204": 4,
+        "301": 55,
+        "308": 6,
+        "401": 3,
+        "403": 2,
+        "404": 66,
+        "405": 1,
+        "410": 49
+      },
+      "topCountries": {
+        "US": 557,
+        "SG": 35,
+        "DE": 29,
+        "BE": 26,
+        "CN": 24,
+        "FR": 22,
+        "AU": 17,
+        "JP": 14
+      }
+    },
+    "2026-09-22": {
+      "date": "2026-09-22",
+      "requests": 1540,
+      "pageViews": 303,
+      "uniques": 207,
+      "byIpType": {
+        "noRecord": 1071,
+        "unknown": 358,
+        "searchEngine": 108,
+        "badHost": 3
+      },
+      "byBrowser": {
+        "Unknown": 131,
+        "Curl": 92,
+        "MobileSafari": 33,
+        "Chrome": 16,
+        "GoogleBot": 15,
+        "BingBot": 4,
+        "Firefox": 3,
+        "ChromeMobile": 3,
+        "SamsungInternet": 3,
+        "YandexBot": 2,
+        "Edge": 1
+      },
+      "byContentType": {
+        "html": 1272,
+        "txt": 118,
+        "json": 57,
+        "js": 31,
+        "xml": 17,
+        "unknown": 16,
+        "empty": 16,
+        "css": 10,
+        "png": 3
+      },
+      "byStatus": {
+        "200": 517,
+        "204": 5,
+        "301": 69,
+        "304": 3,
+        "308": 6,
+        "401": 3,
+        "403": 15,
+        "404": 885,
+        "405": 4,
+        "410": 33
+      },
+      "topCountries": {
+        "US": 825,
+        "AU": 277,
+        "GB": 277,
+        "SG": 57,
+        "BE": 17,
+        "NL": 15,
+        "FI": 10,
+        "CN": 8
+      }
+    },
+    "2026-09-23": {
+      "date": "2026-09-23",
+      "requests": 4123,
+      "pageViews": 1220,
+      "uniques": 336,
+      "byIpType": {
+        "noRecord": 3444,
+        "unknown": 537,
+        "searchEngine": 116,
+        "badHost": 20,
+        "allowlist": 6
+      },
+      "byBrowser": {
+        "Chrome": 687,
+        "Unknown": 301,
+        "Curl": 92,
+        "MobileSafari": 90,
+        "GoogleBot": 12,
+        "BingBot": 11,
+        "Firefox": 10,
+        "ChromeMobile": 8,
+        "YandexBot": 5,
+        "Safari": 2,
+        "Opera": 1,
+        "Edge": 1
+      },
+      "byContentType": {
+        "html": 2241,
+        "js": 859,
+        "txt": 382,
+        "css": 283,
+        "empty": 259,
+        "json": 64,
+        "unknown": 20,
+        "xml": 12,
+        "png": 3
+      },
+      "byStatus": {
+        "200": 2584,
+        "204": 425,
+        "301": 155,
+        "304": 1,
+        "308": 8,
+        "401": 3,
+        "403": 16,
+        "404": 850,
+        "405": 45,
+        "410": 32,
+        "499": 4
+      },
+      "topCountries": {
+        "US": 2060,
+        "DE": 813,
+        "NL": 383,
+        "CA": 377,
+        "LT": 154,
+        "FI": 54,
+        "SG": 54,
+        "LU": 40
       }
     }
   }

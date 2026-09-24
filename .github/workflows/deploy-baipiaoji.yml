@@ -125,6 +125,33 @@ jobs:
         run: node scripts/pricing-probe.mjs
         continue-on-error: true
 
+      # Agent-watch URL 核验（2026-09-22）：账本里每条的官方主页与仓库 URL 每天盖章——只写「哪条 URL 何时答过 2xx」，
+      # 不写任何事实；404/410 只标 stale 永不自动下线；403/超时视为未知不动。首跑 26/28 仓库 200，
+      # 两条第一方仓库链接 404（本仓 09-18 转私有）。~28 条 × 2 URL，串行 0.4s 间隔，通常 <1 分，
+      # 挂已有 schedule 不新增 cron；产出随下面那步一起提交（git add data/ 已覆盖）。
+      # 2026-09-22 扩到 1 000 条后改为三步、总预算 ≈2 分/日（≈60 分/月，仓库已转私有、分钟计费）：
+      #   ① registry-pull：官方 MCP 注册表 → 候选文件（只发现不收录；API 出错保留旧文件）
+      #   ② admit --max 60：候选的官方页当天 2xx 才入账本；被拒的记 reason 次日重试
+      #   ③ verify --max 40：账本里最久未核的 40 条盖章（3 并发，≈1 分），每条约每周轮到一次
+      - name: Pull MCP registry candidates (scheduled runs only)
+        if: github.event_name != 'push'
+        run: node scripts/agent-watch-registry-pull.mjs
+        continue-on-error: true
+      - name: Admit agent-watch candidates (scheduled runs only)
+        if: github.event_name != 'push'
+        run: node scripts/agent-watch-admit.mjs --max 60
+        continue-on-error: true
+      - name: Verify agent-watch URLs (scheduled runs only)
+        if: github.event_name != 'push'
+        run: node scripts/agent-watch-verify.mjs --max 40
+        continue-on-error: true
+
+      # MCP 被发现探针（2026-09-22，≈10 秒）：官方注册表登记名 / isLatest / 版本 == server.json（权威，错了这步就红），
+      # 五个第三方目录的公开搜索页 grep（只作信息），本站 .well-known 版本对齐。产出 data/mcp-discovery.json 随下面那步提交。
+      - name: MCP discovery probe (scheduled runs only)
+        if: github.event_name != 'push'
+        run: node scripts/mcp-discovery-probe.mjs
+
       - name: Commit refreshed data (scheduled runs only)
         if: github.event_name != 'push'
         run: |
@@ -181,6 +208,19 @@ jobs:
       - name: Pricing-probe selftest (zero network)
         run: node scripts/pricing-probe.mjs --selftest
 
+      # Agent-watch（2026-09-22）：账本 schema（zh 字段齐、日期单调、URL 核验字段在位）、runner 核验器的纯语义、
+      # MCP monitor_new_agents / get_agent 的过滤与查找、以及首页 `home` 事件名在 hit.js 白名单里——
+      # 一个掉出白名单的事件名在边缘被静默丢弃而页面看起来一切正常，`audit` 事件就是这样消失过几周。
+      - name: Agent-watch registry, verifier, admit, registry-pull and MCP-filter selftests (zero network)
+        run: |
+          node scripts/agent-watch-verify.mjs --selftest
+          node scripts/agent-watch-admit.mjs --selftest
+          node scripts/agent-watch-registry-pull.mjs --selftest
+          node scripts/mcp-discovery-probe.mjs --selftest
+          node scripts/test-agent-watch.mjs
+          # 岗位方案规划器（2026-09-24）：容量规则能从配额文件读出数、work-roles.json 里没有手写额度、加总逻辑（页面嵌的就是这个函数）
+          node scripts/test-work-plan.mjs
+
       # 边缘爬虫记账的路径分类（2026-09-17，零网络 ~0.1s）。_middleware.js 的
       # isContentPath() 此前是白名单（`/` 结尾或 .html/.txt/.json/.md/.xml），而本站内容页
       # 是无扩展名路由 —— 28 天 ev='bot' 只落到 23 个路径，`/tools/*` 与 `/c/*` 各 0 条，
@@ -206,7 +246,7 @@ jobs:
         run: node scripts/test-indexnow-plan.mjs
 
       - name: Build site
-        run: node scripts/build.mjs
+        run: npm run build
 
       # 2026-08-17 挂入：九道出厂门禁（断链/JSON-LD/中文残留/占位符/裸MD/矛盾/EN缺项/
       # 写死计数/空壳页）此前只在会话手动跑——CI 里从未把过关。放在 build 之后、deploy
@@ -216,6 +256,13 @@ jobs:
 
       - name: Verify dist (出厂门禁)
         run: node scripts/verify-dist.mjs
+
+      # 首页 ↔ agents 联动必须真的在产物里（zh/en 两版）：联动条在 section#agent 内、区块级点击信标已注入、
+      # 构建出的 /agents/ 与账本逐条对得上。不在这里断言，首页改版一次就能把联动条无声挤掉。
+      - name: Verify homepage ↔ agent-watch linkage in dist
+        run: |
+          node scripts/test-agent-watch.mjs --dist
+          node scripts/test-work-plan.mjs --dist
 
       # 2026-08-16 删除「Ensure Pages project exists」:项目早就存在,这一步每次都
       # 静默失败后 `|| true`——却要为此完整下载一次 wrangler。等于每次运行白花几十秒
@@ -381,7 +428,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data/traffic-snapshot.json 2>/dev/null || true
-          git diff --cached --quiet || { git commit -m "chore: traffic snapshot $(date -u +%F)"; git pull --rebase -q; git push; }
+          git diff --cached --quiet || { git commit -m "chore: traffic snapshot $(date -u +%F)"; git pull --rebase --autostash -q; git push; }
         continue-on-error: true
 
       # 部署后自测第一方打点：CI 网络可达生产域，打一发 /__selftest，
@@ -394,6 +441,10 @@ jobs:
           echo "beacon self-test HTTP $code"
           # hit.js 永远回 204；不是 204 就是 Function/绑定/信标链路断了——此前这里只打印不断言
           [ "$code" = "204" ] || { echo "::error::第一方信标未返回 204（实得 $code）"; exit 1; }
+          # 首页区块级点击事件（2026-09-22）走同一条链路；白名单在不在由零网络测试断言，这里只证链路通。lang=ci 会被 reach 剔除。
+          ch=$(curl -s -o /dev/null -w "%{http_code}" -X POST https://baipiaoji.com/api/hit \
+            -H 'Content-Type: application/json' -d '{"p":"/home/__ci/x","l":"ci","e":"home"}' --max-time 15)
+          [ "$ch" = "204" ] || { echo "::error::home 事件信标未返回 204（实得 $ch）"; exit 1; }
         continue-on-error: true
 
       # 订阅链路自测：Function + D1 绑定 + 表结构，任一环断了都必须当天暴露。
@@ -491,6 +542,31 @@ jobs:
           mb=$(curl -s -m 20 -X POST 'https://baipiaoji.com/api/mcp' -H 'Content-Type: application/json' \
             -d '{"jsonrpc":"2.0","id":8,"method":"tools/call","params":{"name":"get_category_playbook","arguments":{"category":"video"}}}')
           echo "$mb" | grep -q 'ask_first' || { echo "::error::get_category_playbook 未返回类目规律"; exit 1; }
+          # Agent watch（2026-09-22）：线上账本 == 仓库账本。count 不写死——从 data/agent-watch.json 现算
+          # （舰队 09-17 规矩：写死的数字迟早退化成只会误报的噪音；要防的事故是「资产/worker 没更新到当前账本」）。
+          want=$(node -e "console.log(JSON.parse(require('fs').readFileSync('data/agent-watch.json','utf8')).agents.length)")
+          first=$(node -e "console.log(JSON.parse(require('fs').readFileSync('data/agent-watch.json','utf8')).agents[0].slug)")
+          mn=$(curl -s -m 20 -X POST 'https://baipiaoji.com/api/mcp' -H 'Content-Type: application/json' \
+            -d '{"jsonrpc":"2.0","id":10,"method":"tools/call","params":{"name":"monitor_new_agents","arguments":{}}}')
+          got=$(printf '%s' "$mn" | node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{try{const j=JSON.parse(s);const t=JSON.parse(j.result.content[0].text);console.log(t.count)}catch(e){console.log("ERR")}})')
+          [ "$got" = "$want" ] || { echo "::error::monitor_new_agents count=$got ≠ repo $want（线上资产未更新到当前账本）"; exit 1; }
+          mg=$(curl -s -m 20 -X POST 'https://baipiaoji.com/api/mcp' -H 'Content-Type: application/json' \
+            -d "{\"jsonrpc\":\"2.0\",\"id\":11,\"method\":\"tools/call\",\"params\":{\"name\":\"get_agent\",\"arguments\":{\"slug\":\"$first\"}}}")
+          printf '%s' "$mg" | node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{try{const j=JSON.parse(s);const t=JSON.parse(j.result.content[0].text);if(!t.agent||!t.verification||!("repo_url_checked" in t.verification))process.exit(1)}catch(e){process.exit(1)}})' \
+            || { echo "::error::get_agent 未返回记录 + verification 块（slug=$first）"; exit 1; }
+          aj=$(curl -s -m 15 'https://baipiaoji.com/agents.json' | node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{try{console.log(JSON.parse(s).count)}catch(e){console.log("ERR")}})')
+          [ "$aj" = "$want" ] || { echo "::error::/agents.json count=$aj ≠ repo $want"; exit 1; }
+          # 2026-09-22 重构：翻页与受众过滤是线上契约的一部分；枢纽 / 受众页 / 类目表 200；人工收录记录页 noindex。
+          mp=$(curl -s -m 20 -X POST 'https://baipiaoji.com/api/mcp' -H 'Content-Type: application/json' \
+            -d '{"jsonrpc":"2.0","id":12,"method":"tools/call","params":{"name":"monitor_new_agents","arguments":{"limit":5,"audience":"mcp"}}}')
+          printf '%s' "$mp" | node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{try{const t=JSON.parse(JSON.parse(s).result.content[0].text);if(t.returned!==5||t.next_offset!==5||!t.agents.every(a=>a.audiences.includes("mcp")))process.exit(1)}catch(e){process.exit(1)}})' \
+            || { echo "::error::monitor_new_agents pagination / audience filter broken"; exit 1; }
+          for p in /agents/ /en/agents/ /agents/for/developers /en/agents/for/mcp /agents/c/mcp /en/agents/c/coding; do
+            code=$(curl -s -o /dev/null -w "%{http_code}" -m 15 "https://baipiaoji.com$p")
+            [ "$code" = "200" ] || { echo "::error::$p → $code"; exit 1; }
+          done
+          curl -s -m 15 "https://baipiaoji.com/agents/$first" | grep -q 'content="noindex,follow"' || { echo "::error::/agents/$first must be noindex,follow"; exit 1; }
+          echo "✅ agent watch: $want records live, get_agent($first) carries verification, pagination + doors + tables 200"
           for a in quotas myths workflows changes no-source labeling insights; do
             code=$(curl -s -o /dev/null -w "%{http_code}" -m 15 "https://baipiaoji.com/en/$a.json")
             [ "$code" = "200" ] || { echo "::error::机器可读资产缺失 $a=$code"; exit 1; }
@@ -499,6 +575,11 @@ jobs:
           oa=$(curl -s -o /dev/null -w "%{http_code}" -m 15 'https://baipiaoji.com/openapi.json')
           lf=$(curl -s -o /dev/null -w "%{http_code}" -m 15 'https://baipiaoji.com/llms-full.txt')
           [ "$wk" = "200" ] && [ "$oa" = "200" ] && [ "$lf" = "200" ] || { echo "::error::发现面缺失 well-known=$wk openapi=$oa llms-full=$lf"; exit 1; }
+          # 岗位方案规划器：两语页面在线且带计算器；会员工作区认得这个产品（否则「保存到云端」会被服务端以 wrong_site 拒掉）。
+          for p in /work-plan /en/work-plan; do
+            curl -s -m 15 "https://baipiaoji.com$p" | grep -q 'id="wpGo"' || { echo "::error::$p lacks the planner"; exit 1; }
+          done
+          curl -s -m 15 'https://baipiaoji.com/member-assets/products.json' | grep -q '"ai-work-plan"' || { echo "::error::member workspace does not list ai-work-plan — cloud save would be refused"; exit 1; }
           echo "✅ Agent API 自测通过（limits + tools + lang=en + MCP + 发现面）"
         continue-on-error: true
 
@@ -707,7 +788,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data/ai-crawler-probe.json 2>/dev/null || true
-          git diff --cached --quiet || { git commit -m "chore: AI crawler probe $(date -u +%F)"; git pull --rebase -q; git push; }
+          git diff --cached --quiet || { git commit -m "chore: AI crawler probe $(date -u +%F)"; git pull --rebase --autostash -q; git push; }
         continue-on-error: true
 
       # 日常只推「近两天有实质变更」的 URL（协议本意）。
@@ -727,13 +808,18 @@ jobs:
 
       # 变更清单必须回写仓库：它是「哪些页真的变了」的唯一记忆，
       # 丢了就等于每天从零开始，sitemap lastmod 和 IndexNow 又会退回「每天全站都变了」。
+      # 2026-09-24 查实：这一步在本仓从未成功过——构建会改写已跟踪的 data/earn-packs.generated.js
+      # (checked_at 日期)，工作区不干净，`git pull --rebase` 当场拒绝；continue-on-error 把它藏了一周，
+      # 结果每次定时部署都拿 09-17 的旧清单比，1 626 页天天 lastmod=今天、IndexNow 天天整站重推。
+      # 修法:三处构建后的提交一律 --autostash;本步加 id 进下面的汇总门——它失败,run 要红。
       - name: Commit page change manifest
+        id: manifest
         if: github.event_name != 'push'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data/page-lastmod.json data/limits-history.json data/agenda.json data/mcp-status.json 2>/dev/null || true
-          git diff --cached --quiet || { git commit -m "chore: page change manifest $(date -u +%F)"; git pull --rebase -q; git push; }
+          git diff --cached --quiet || { git commit -m "chore: page change manifest $(date -u +%F)"; git pull --rebase --autostash -q; git push; }
         continue-on-error: true
 
       # RSS ping：无需账号的聚合器分发——通知 Ping-O-Matic 站点 feed 有更新
@@ -743,6 +829,12 @@ jobs:
           curl -s -m 20 "http://rpc.pingomatic.com/" -H 'Content-Type: text/xml' \
             -d '<?xml version="1.0"?><methodCall><methodName>weblogUpdates.extendedPing</methodName><params><param><value>白嫖计</value></param><param><value>https://baipiaoji.com/</value></param><param><value>https://baipiaoji.com/feed.xml</value></param></params></methodCall>' \
             -o /dev/null && echo pinged || echo skipped
+          # Agents 目录 RSS（2026-09-22）：注册表每天收录新条目，这份 feed 每天真的在变——只在 schedule 上 ping，与上面同一规矩。
+          for f in agents/feed.xml en/agents/feed.xml; do
+            curl -s -m 20 "http://rpc.pingomatic.com/" -H 'Content-Type: text/xml' \
+              -d "<?xml version=\"1.0\"?><methodCall><methodName>weblogUpdates.extendedPing</methodName><params><param><value>Baipiaoji Agents &amp; MCP</value></param><param><value>https://baipiaoji.com/${f%feed.xml}</value></param><param><value>https://baipiaoji.com/$f</value></param></params></methodCall>" \
+              -o /dev/null && echo "pinged $f" || echo "skipped $f"
+          done
         continue-on-error: true
 
       - name: Ensure custom domain bound (baipiaoji.com)
@@ -812,6 +904,7 @@ jobs:
           check "赚钱作业包注册墙" "${{ steps.st_earn.outcome }}"
           check "触达端点" "${{ steps.st_reach.outcome }}"
           check "广告库存面" "${{ steps.st_ads.outcome }}"
+          check "变更清单回写" "${{ steps.manifest.outcome }}"
           [ "$fail" = "0" ] || exit 1
           echo "✅ 全部链路自测通过"
 

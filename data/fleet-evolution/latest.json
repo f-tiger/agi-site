@@ -1,22 +1,22 @@
 {
   "schema_version": 1,
-  "as_of": "2026-09-21",
+  "as_of": "2026-09-24",
   "privacy": "aggregate counts and derived queues only; no customer or raw community content",
   "fleet": {
     "sites": 14,
-    "healthy": 14,
+    "healthy": 18,
     "membership_ready": 4,
     "paid_members": 0,
     "active_members": 0,
-    "opportunities": 6,
+    "opportunities": 7,
     "stale_inputs": 0
   },
   "input_dates": {
-    "membership": "2026-09-21T08:11:35.006Z",
-    "health": "2026-09-20T12:46:28Z",
-    "ai_referrals": "2026-09-20T12:46:43Z",
-    "opportunities": "2026-09-20",
-    "autopilot_receipt": "2026-09-21"
+    "membership": "2026-09-24T07:47:56.109Z",
+    "health": "2026-09-23T16:03:41Z",
+    "ai_referrals": "2026-09-23T16:04:05Z",
+    "opportunities": "2026-09-23",
+    "autopilot_receipt": "2026-09-24"
   },
   "input_ages_days": {
     "membership": 0,
@@ -28,7 +28,7 @@
   "stale_inputs": [],
   "membership": {
     "schema_version": 1,
-    "generated": "2026-09-21T08:11:35.006Z",
+    "generated": "2026-09-24T07:47:56.109Z",
     "source": "same-origin /api/member and /api/member-admin stats",
     "privacy": "aggregate counters only; no member, order, support, token or wallet data",
     "ok": true,
@@ -127,16 +127,16 @@
       "theme": "stripe withholding balance of 100000",
       "site": null,
       "state": "scout",
-      "score": 3.02,
+      "score": 3.07,
       "days_seen": 1,
       "demand": 0,
       "supply": 0
     },
     {
-      "theme": "day 13 three production applications on aws down",
+      "theme": "offline windows ledger for a one person microgreens farm trays standing orders n",
       "site": null,
       "state": "scout",
-      "score": 2.23,
+      "score": 2.11,
       "days_seen": 1,
       "demand": 0,
       "supply": 0
@@ -151,19 +151,28 @@
       "supply": 0
     },
     {
-      "theme": "offline windows ledger for a one person microgreens farm trays standing orders n",
+      "theme": "about map enshittification have you noticed the maps have gotten worse",
       "site": null,
       "state": "scout",
-      "score": 2.05,
+      "score": 2.04,
       "days_seen": 1,
       "demand": 0,
       "supply": 0
     },
     {
-      "theme": "about map enshittification have you noticed the maps have gotten worse",
+      "theme": "dynamically display text on a remote android tv display",
       "site": null,
       "state": "scout",
-      "score": 2.04,
+      "score": 2.0,
+      "days_seen": 1,
+      "demand": 0,
+      "supply": 0
+    },
+    {
+      "theme": "editor with doxygen preview",
+      "site": null,
+      "state": "scout",
+      "score": 2.0,
       "days_seen": 1,
       "demand": 0,
       "supply": 0
@@ -224,26 +233,14 @@
       "mode": "observe"
     },
     {
-      "site": "buysomething",
-      "kind": "content_gap",
-      "priority": 55,
-      "reason": "rising demand has no matching page; editorial judgement is required",
-      "evidence": {
-        "count": 1,
-        "query": "costco self cleaning litter box",
-        "value": 350
-      },
-      "mode": "queue"
-    },
-    {
       "site": "getecoback",
       "kind": "content_gap",
       "priority": 55,
       "reason": "rising demand has no matching page; editorial judgement is required",
       "evidence": {
-        "count": 25,
-        "query": "knebel infrarotheizung",
-        "value": 36000
+        "count": 21,
+        "query": "akku heizlüfter makita",
+        "value": 38500
       },
       "mode": "queue"
     },
@@ -260,18 +257,6 @@
       "mode": "queue"
     },
     {
-      "site": "agiscorecard",
-      "kind": "improve_hot_page",
-      "priority": 52,
-      "reason": "prioritize a page with measured reader heat",
-      "evidence": {
-        "page": "/search",
-        "n7": 344,
-        "p7": 59
-      },
-      "mode": "queue"
-    },
-    {
       "site": "getecoback",
       "kind": "improve_hot_page",
       "priority": 52,
@@ -279,18 +264,7 @@
       "evidence": {
         "page": "/guide/fensterabdichtung-selber-bauen.html",
         "n7": 12,
-        "p7": 1
-      },
-      "mode": "queue"
-    },
-    {
-      "site": "after35",
-      "kind": "ai_discovery",
-      "priority": 48,
-      "reason": "referred traffic exists but no AI-assistant referral is measured",
-      "evidence": {
-        "human_pv_28d": 443,
-        "ai_ref_28d": 0
+        "p7": 4
       },
       "mode": "queue"
     },
@@ -300,51 +274,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 107,
-        "ai_ref_28d": 0
-      },
-      "mode": "queue"
-    },
-    {
-      "site": "codeword",
-      "kind": "ai_discovery",
-      "priority": 48,
-      "reason": "referred traffic exists but no AI-assistant referral is measured",
-      "evidence": {
-        "human_pv_28d": 342,
-        "ai_ref_28d": 0
-      },
-      "mode": "queue"
-    },
-    {
-      "site": "fanzha",
-      "kind": "ai_discovery",
-      "priority": 48,
-      "reason": "referred traffic exists but no AI-assistant referral is measured",
-      "evidence": {
-        "human_pv_28d": 240,
-        "ai_ref_28d": 0
-      },
-      "mode": "queue"
-    },
-    {
-      "site": "firstjob",
-      "kind": "ai_discovery",
-      "priority": 48,
-      "reason": "referred traffic exists but no AI-assistant referral is measured",
-      "evidence": {
-        "human_pv_28d": 207,
-        "ai_ref_28d": 0
-      },
-      "mode": "queue"
-    },
-    {
-      "site": "gamesledger",
-      "kind": "ai_discovery",
-      "priority": 48,
-      "reason": "referred traffic exists but no AI-assistant referral is measured",
-      "evidence": {
-        "human_pv_28d": 618,
+        "human_pv_28d": 105,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -355,7 +285,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 436,
+        "human_pv_28d": 448,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -366,29 +296,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 881,
-        "ai_ref_28d": 0
-      },
-      "mode": "queue"
-    },
-    {
-      "site": "learn",
-      "kind": "ai_discovery",
-      "priority": 48,
-      "reason": "referred traffic exists but no AI-assistant referral is measured",
-      "evidence": {
-        "human_pv_28d": 260,
-        "ai_ref_28d": 0
-      },
-      "mode": "queue"
-    },
-    {
-      "site": "powerbill",
-      "kind": "ai_discovery",
-      "priority": 48,
-      "reason": "referred traffic exists but no AI-assistant referral is measured",
-      "evidence": {
-        "human_pv_28d": 291,
+        "human_pv_28d": 839,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -399,7 +307,7 @@
       "priority": 48,
       "reason": "referred traffic exists but no AI-assistant referral is measured",
       "evidence": {
-        "human_pv_28d": 308,
+        "human_pv_28d": 321,
         "ai_ref_28d": 0
       },
       "mode": "queue"
@@ -408,7 +316,7 @@
   "site_manifests": {
     "agiscorecard": {
       "path": "sites/agiscorecard/data/fleet-evolution.json",
-      "action_count": 2
+      "action_count": 1
     },
     "baipiaoji": {
       "path": "sites/baipiaoji/data/fleet-evolution.json",
@@ -424,7 +332,7 @@
     },
     "buysomething": {
       "path": "sites/buysomething/data/fleet-evolution.json",
-      "action_count": 2
+      "action_count": 1
     },
     "goldrush": {
       "path": "sites/goldrush/data/fleet-evolution.json",
@@ -436,31 +344,31 @@
     },
     "gamesledger": {
       "path": "sites/gamesledger/data/fleet-evolution.json",
-      "action_count": 1
+      "action_count": 0
     },
     "after35": {
       "path": "sites/after35/data/fleet-evolution.json",
-      "action_count": 1
+      "action_count": 0
     },
     "learn": {
       "path": "sites/learn/data/fleet-evolution.json",
-      "action_count": 1
+      "action_count": 0
     },
     "fanzha": {
       "path": "sites/fanzha/data/fleet-evolution.json",
-      "action_count": 1
+      "action_count": 0
     },
     "firstjob": {
       "path": "sites/firstjob/data/fleet-evolution.json",
-      "action_count": 1
+      "action_count": 0
     },
     "codeword": {
       "path": "sites/codeword/data/fleet-evolution.json",
-      "action_count": 1
+      "action_count": 0
     },
     "powerbill": {
       "path": "sites/powerbill/data/fleet-evolution.json",
-      "action_count": 1
+      "action_count": 0
     }
   },
   "rules": {

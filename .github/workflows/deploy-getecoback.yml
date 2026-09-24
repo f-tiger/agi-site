@@ -80,6 +80,12 @@ jobs:
             echo "::warning::stale run — HEAD $(git rev-parse --short HEAD) is behind main tip $(git rev-parse --short "$TIP"); deploying the tip instead of rolling production back"
             git reset --hard "$TIP"
           fi
+      # The IndexNow step at the end submits URLs that are in the freshly built
+      # sitemap but were not live before this deploy — that is what "new page"
+      # means, whichever generator produced it. Snapshot the live inventory first.
+      # Fail-open: no baseline = no new-URL submissions this run, never a flood.
+      - name: Snapshot the live sitemap (baseline for the IndexNow delta)
+        run: curl -sf --max-time 20 -A "getecoback-ci" https://getecoback.com/sitemap.xml -o /tmp/prev_sitemap.xml || echo "::warning::live sitemap not reachable — new-URL detection is off for this run"
       - name: Rotate homepage to current season (year-round positioning; idempotent)
         run: python3 tools/build_season.py
       - name: Refresh the homepage rising-demand rail (idempotent, honest-map)
@@ -124,9 +130,22 @@ jobs:
 
       - name: Build country solution calculators and localized mirrors
         run: python3 tools/build_country_calculators.py
+      # 2026-09-22: the hub was hand-written and nine tool pages never reached it. It is
+      # now filled from the filesystem; check_tools_hub asserts hub == filesystem.
+      - name: Fill the tools hub from the pages that exist (idempotent)
+        run: python3 tools/build_tools_hub.py
 
       - name: Inject site chrome (nav/footer/radar; idempotent, covers new pages)
         run: python3 tools/build_structure.py
+
+      # Deal-calendar band (2026-09-24). Date-driven: it renders only while an
+      # announced Amazon event from data/deal-calendar.json is inside its window,
+      # and removes itself afterwards. The daily 03:17 UTC run is what turns it on
+      # and off, so no push is needed on 09-29 or 10-08.
+      - name: Deal-calendar band (date-windowed; idempotent)
+        run: |
+          python3 tools/build_deals.py --selftest
+          python3 tools/build_deals.py
 
       - name: Inject on-page layer (TOC + updated badge; idempotent)
         run: python3 tools/build_onpage.py
@@ -153,7 +172,17 @@ jobs:
         run: python3 tools/build_hreflang.py
 
       - name: Rebuild sitemap from filesystem (auto-sync new pages before deploy)
-        run: python3 tools/build_sitemap.py
+        run: |
+          python3 tools/build_sitemap.py --selftest
+          python3 tools/build_sitemap.py
+
+      # 2026-09-22: undated pages used to get the deploy date on every deploy (fresh
+      # checkout → mtime = now). A sitemap that says "a dozen pages changed today"
+      # six times a day is the freshness signal Bing learns to ignore.
+      - name: Check the sitemap only claims "changed today" for pages that did (gate)
+        run: |
+          python3 tools/check_sitemap_lastmod.py --selftest
+          python3 tools/check_sitemap_lastmod.py
 
       - name: Rebuild RSS feed (auto-sync new guides before deploy)
         run: python3 tools/build_feed.py
@@ -211,6 +240,22 @@ jobs:
 
       - name: Check the category hubs still describe what they link to
         run: python3 tools/check_hubcards.py
+      - name: Check the tools hub lists every tool page and nothing stale (gate)
+        run: |
+          python3 tools/check_tools_hub.py --selftest
+          python3 tools/check_tools_hub.py
+      # The standing expansion queue (2026-09-24). The daily run builds from it,
+      # so a queue that drifts from the site is a deploy-time error: a 'built'
+      # flag on a page that does not exist, a queued slug that already has a
+      # page, a built page without its bet. Running low only warns.
+      - name: Check the deal band is sourced, hidden by default and in its window (gate)
+        run: |
+          python3 tools/check_deals.py --selftest
+          python3 tools/check_deals.py
+      - name: Check the expansion queue agrees with the site (gate)
+        run: |
+          python3 tools/check_expansion_queue.py --selftest
+          python3 tools/check_expansion_queue.py
 
       # 页族近重复度量（2026-09-17）。**只报数不拦部署**：今天的读数本来就超标，
       # 上线即红会把一个待办变成一条坏掉的流水线。它存在的理由是把「兄弟页有多像」
@@ -253,6 +298,7 @@ jobs:
           node tools/member-studio/ops.mjs configure eco
 
       - name: Deploy to Cloudflare Workers
+        id: deploy
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
@@ -277,8 +323,24 @@ jobs:
         working-directory: ${{ github.workspace }}
         run: node tools/revenue-studio/verify.mjs --site eco --live
 
-      - name: Notify verified localized tool URLs to IndexNow
+      # The manifest ping submits all 12 tool URLs. Until 2026-09-22 it ran on every
+      # push, i.e. the same unchanged dozen several times a day. Those pages only
+      # change when their generators change, so that is the only time to ping.
+      - name: Did the tool generators change in this push? (gates the manifest ping)
+        id: toolsrc
         if: github.event_name == 'push'
+        working-directory: ${{ github.workspace }}
+        run: |
+          BEFORE="${{ github.event.before }}"
+          case "$BEFORE" in ""|0000000000000000000000000000000000000000) BEFORE="HEAD~1" ;; esac
+          if git cat-file -e "${BEFORE}^{commit}" 2>/dev/null && git diff --quiet "$BEFORE" "${{ github.sha }}" -- tools/revenue-studio tools/member-studio; then
+            echo "changed=0" >> "$GITHUB_OUTPUT"
+            echo "tool generators untouched in this push — manifest ping skipped (the pages did not change)"
+          else
+            echo "changed=1" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Notify verified localized tool URLs to IndexNow
+        if: github.event_name == 'push' && steps.toolsrc.outputs.changed == '1'
         continue-on-error: true
         working-directory: ${{ github.workspace }}
         run: node tools/revenue-studio/indexnow.mjs --site eco --out sites/getecoback/site
@@ -287,22 +349,36 @@ jobs:
         run: |
           sleep 15
           fail=0
+          # Retries cover two different things. A non-200 is retried quickly. A 200
+          # WITHOUT the expected content is retried after 10 s, up to three times:
+          # right after a deploy the edge can still answer from its cache
+          # (cf-cache-status: HIT) with the previous build. Run 231 (2026-09-24)
+          # went red that way on a page whose new content was live seconds later.
+          # Content that is still missing after ~30 s is a real failure; a copy
+          # that was stale and then turned fresh is printed as a notice, so the
+          # race stays visible instead of silently absorbed.
           check() {
-            url="$1"; must_contain="$2"
-            for attempt in 1 2 3; do
+            url="$1"; must_contain="$2"; stale=0
+            for attempt in 1 2 3 4; do
               body=$(curl -sL --max-time 20 -w "\n%{http_code}" "$url" || echo -e "\n000")
-              code=$(echo "$body" | tail -1)
-              [ "$code" = "200" ] && break
-              sleep 3
+              code=$(tail -1 <<<"$body")
+              if [ "$code" = "200" ]; then
+                if [ -z "$must_contain" ] || grep -q -- "$must_contain" <<<"$body"; then break; fi
+                stale=$((stale+1)); [ "$attempt" -lt 4 ] && sleep 10
+              else
+                sleep 3
+              fi
             done
             if [ "$code" != "200" ]; then
               echo "::error::$url returned HTTP $code"
               fail=1
-            elif [ -n "$must_contain" ] && ! echo "$body" | grep -q "$must_contain"; then
-              echo "::error::$url is 200 but missing expected content: $must_contain"
+            elif [ -n "$must_contain" ] && ! grep -q -- "$must_contain" <<<"$body"; then
+              echo "::error::$url is 200 but missing expected content after $stale tries: $must_contain"
               fail=1
             else
               echo "OK $url ($code)"
+              [ "$stale" -gt 0 ] && echo "::notice::$url served the previous build $stale time(s) before the new content (edge cache after deploy)"
+              true
             fi
           }
           check "https://getecoback.com/" "tag=getecoback-21"
@@ -386,6 +462,73 @@ jobs:
           check "https://getecoback.com/guide/heizluefter-schaltet-sich-aus.html" "8,7 A"
           check "https://getecoback.com/guide/luftentfeuchter-stinkt.html" "Nichts in den Tank"
           check "https://getecoback.com/guide/luftbefeuchter-weisser-staub.html" "Verdunster mit Hygrostat"
+          # Tools audit 2026-09-22: the hub is generated from the filesystem and must carry the
+          # pages that were unreachable before (a dew-point guide, the DE decision calculator);
+          # the Pro energy tool must ship a default that its own validation accepts.
+          check "https://getecoback.com/tools.html" "EB_TOOLS_INDEX"
+          check "https://getecoback.com/tools.html" "/guide/luftentfeuchter-zieht-kein-wasser.html"
+          check "https://getecoback.com/tools.html" "/rechner.html"
+          check "https://getecoback.com/pro-werkzeuge.html" 'id="eCost" type="number" value="6800" min="100" step="100"'
+          check "https://getecoback.com/js/country-ui.js" "solution_calc"
+          # BTU sizer round (2026-09-22): the explainer that gets the BTU search
+          # traffic carries the sizer; the EN sizer's "full calculator" button
+          # lands on the page that has the inputs; both calculators' result
+          # buttons are named surfaces in the tracking layer.
+          check "https://getecoback.com/guide/was-bedeutet-btu.html" 'id="eb-sizer"'
+          check "https://getecoback.com/en/guide/portable-ac-leaking-water.html" '/en/guide/btu-calculator.html'
+          check "https://getecoback.com/guide/klimaanlage-25-qm.html" 'source:"sizer"'
+          check "https://getecoback.com/" 'source:"home-tool"'
+          # Diagnosis-first shelves on the three troubleshooting pages (2026-09-23):
+          # the shape of the incident is a new unit offered to a reader whose unit
+          # misbehaves, so assert the measuring/cleaning item is on the page.
+          check "https://getecoback.com/guide/luftentfeuchter-zieht-kein-wasser.html" 'adsorptions+luftentfeuchter'
+          check "https://getecoback.com/guide/heizluefter-schaltet-sich-aus.html" 'erst messen, dann die kleine Stufe'
+          check "https://getecoback.com/guide/luftentfeuchter-stinkt.html" 'lamellenb%C3%BCrste+weich'
+          # 2026-09-24 season calendar: Heizstrahler was expanded onto this ranked
+          # page instead of a new one (new pages are not being crawled by Bing yet).
+          check "https://getecoback.com/guide/heizluefter-stromverbrauch.html" 'heizstrahler+innen+stufen'
+          # The BTU page used to contradict the site's own calculator (350–400 BTU/m²,
+          # a monoblock for 35 m²+). Assert the reconciled ceiling is there AND the
+          # old rule is gone — the second half is what an old build would fail.
+          check "https://getecoback.com/guide/wie-viel-btu-brauche-ich.html" '13.600 BTU'
+          btu_body=$(curl -sL --max-time 20 "https://getecoback.com/guide/wie-viel-btu-brauche-ich.html" || true)
+          if echo "$btu_body" | grep -q "350–400 BTU"; then
+            echo "::error::wie-viel-btu-brauche-ich still states 350–400 BTU/m² (contradicts sizing-data.json)"; fail=1
+          else
+            echo "OK BTU page uses the dataset rule"
+          fi
+          # Continuous expansion, batch 1 (2026-09-24, owner: 「站点应该持续扩展」).
+          # Each page is asserted on the number it exists for. The homepage block is
+          # the discovery path for new pages (bingbot fetches / almost daily and had
+          # no <a href> to anything published after 09-15), so the accident worth
+          # catching is the block missing or no longer carrying the newest page.
+          check "https://getecoback.com/guide/beheizter-waeschestaender.html" "207 g"
+          check "https://getecoback.com/guide/infrarotheizung-thermostat.html" "Fußleistenhöhe"
+          check "https://getecoback.com/guide/fenster-beschlagen-aussen.html" "Randverbund"
+          check "https://getecoback.com/" 'id="eb-newest"'
+          check "https://getecoback.com/" 'href="/guide/beheizter-waeschestaender.html"'
+          # Nothing to buy on the outside-condensation page: a shelf there would
+          # sell a fix for a sign that the window works. Scripts stripped first,
+          # same reason as the UK pages below.
+          n=$(curl -sL --max-time 20 "https://getecoback.com/guide/fenster-beschlagen-aussen.html" \
+               | python3 -c "import re,sys;h=re.sub(r'<script\b.*?</script>','',sys.stdin.read(),flags=re.S);print(len(re.findall(r'href=\"[^\"]*amazon[^\"]*\"',h)))" 2>/dev/null || echo ERR)
+          if [ "$n" != "0" ]; then echo "::error::fenster-beschlagen-aussen carries $n amazon link(s) — the page sells nothing by design"; fail=1; else echo "OK fenster-beschlagen-aussen sells nothing"; fi
+          # Deal band (2026-09-24). The expectation is computed from the calendar
+          # for today's Berlin date, never typed: the accident is a band that is
+          # missing while an event is live, or still on the page after it ended.
+          deal=$(python3 -c "import sys;sys.path.insert(0,'tools');import build_deals as b,datetime as d;e=b.active_event(b.load_calendar(),d.datetime.now(b.BERLIN).date());print(e['id'] if e else '')")
+          # Retried like check(): on the day the band switches on or off, the edge
+          # can still answer with the previous build for a few seconds.
+          for u in "https://getecoback.com/" "https://getecoback.com/guide/luftentfeuchter-20-qm.html"; do
+            for attempt in 1 2 3 4; do
+              has=$(curl -sL --max-time 20 "$u" | grep -c 'id="eb-deals" hidden' || true)
+              if { [ -n "$deal" ] && [ "$has" != "0" ]; } || { [ -z "$deal" ] && [ "$has" = "0" ]; }; then break; fi
+              [ "$attempt" -lt 4 ] && sleep 10
+            done
+            if [ -n "$deal" ] && [ "$has" = "0" ]; then echo "::error::$u has no deal band while $deal is live"; fail=1
+            elif [ -z "$deal" ] && [ "$has" != "0" ]; then echo "::error::$u still carries a deal band with no event live"; fail=1
+            else echo "OK $u deal band matches the calendar (${deal:-none})"; fi
+          done
           # The humidifier page must never carry the dehumidifier shelf (the
           # opposite appliance), and no storage page may carry the vetoed brand.
           body=$(curl -sL --max-time 20 "https://getecoback.com/guide/luftbefeuchter-weisser-staub.html" || true)
@@ -803,19 +946,29 @@ jobs:
           fi
 
       # IndexNow is this site's fastest discovery channel, and its own FAQ asks for
-      # URLs that actually changed — resubmitting the whole inventory every deploy
-      # reads as spam and devalues the site's future submissions. So: pages changed
-      # by this push, plus pages the injectors rewrote during this run, intersected
-      # with the sitemap so noindex pages never get submitted. The sitemap stays the
-      # complete inventory; IndexNow carries only the delta.
+      # URLs that actually changed — resubmitting unchanged URLs reads as spam and
+      # devalues the site's future submissions. Until 2026-09-22 this step also
+      # submitted every file the injectors had rewritten during the run: 30–66
+      # unchanged URLs per deploy at ~6 deploys a day, while bingbot had fetched the
+      # 19 newest guides exactly once in twelve days (and 100 old pages a day).
+      # Now a URL is submitted only if (a) its file changed in the pushed commits,
+      # (b) it is in the freshly built sitemap but was not in the live sitemap
+      # snapshotted before this deploy — genuinely new, whichever generator made it —
+      # or (c) it is the homepage on the daily scheduled run (the rail really changes
+      # daily). Injector churn is reported as a warning, never submitted. The sitemap
+      # stays the complete inventory; IndexNow carries only the delta.
       - name: Ping IndexNow with the pages that actually changed
+        # Runs whenever the deploy itself landed, even if a post-deploy check went
+        # red: the diff is computed from this push, so a red check used to drop the
+        # ping for content that was already live, and the next push's diff no longer
+        # contains those pages (run 231 → 232 on 2026-09-24: submit=0). The job
+        # stays red either way; only the ping is no longer lost.
+        if: ${{ !cancelled() && steps.deploy.outcome == 'success' }}
         run: |
           sleep 20
           BEFORE="${{ github.event.before }}"
-          # On a scheduled run nothing was pushed — diffing against HEAD~1 would
-          # resubmit the last commit's URLs every single day. Diff HEAD against
-          # itself instead, so only files the injectors rewrote in this run
-          # (e.g. the season flip) get submitted.
+          # On a scheduled run nothing was pushed: diff HEAD against itself so the
+          # authored set is empty and only genuinely new URLs (+ the homepage) go out.
           if [ "${{ github.event_name }}" = "schedule" ]; then BEFORE="HEAD"; fi
           case "$BEFORE" in ""|0000000000000000000000000000000000000000) BEFORE="HEAD~1" ;; esac
           if ! git cat-file -e "${BEFORE}^{commit}" 2>/dev/null; then
@@ -823,23 +976,75 @@ jobs:
             BEFORE="HEAD~1"
           fi
           git cat-file -e "${BEFORE}^{commit}" || { echo "::error::cannot determine what changed"; exit 1; }
-          { git diff --name-only "$BEFORE" "${{ github.sha }}" -- 'site/*.html' 'site/**/*.html'
-            git status --porcelain site | awk '{print $NF}' | grep '\.html$' || true
-          } | sed 's|^sites/getecoback/||' | sort -u > /tmp/changed.txt
-          echo "changed html files:"; cat /tmp/changed.txt
-          python3 - <<'PY'
-          import json, re
-          sitemap = set(re.findall(r'<loc>([^<]+)</loc>', open('site/sitemap.xml', encoding='utf-8').read()))
-          out = []
-          for line in open('/tmp/changed.txt', encoding='utf-8'):
-              p = line.strip()
-              if not p.startswith('site/') or not p.endswith('.html'):
-                  continue
-              url = 'https://getecoback.com/' + p[len('site/'):]
-              if url in sitemap and url not in out:
-                  out.append(url)
-          open('/tmp/idx_urls.json', 'w').write(json.dumps(out))
-          open('/tmp/idx_count', 'w').write(str(len(out)))
+          git diff --name-only "$BEFORE" "${{ github.sha }}" -- 'site/*.html' 'site/**/*.html' \
+            | sed 's|^sites/getecoback/||' | sort -u > /tmp/authored.txt
+          # tracked files the injectors rewrote in this run (never submitted, only reported)
+          git status --porcelain site | awk '$1=="M" || $1=="MM" {print $NF}' | grep '\.html$' \
+            | sed 's|^sites/getecoback/||' | sort -u > /tmp/churn.txt || true
+          # Diagnostic for the churn: what the first rewritten page differs by, so the
+          # injector responsible can be named from the log instead of reproduced.
+          if [ -s /tmp/churn.txt ]; then
+            git diff --stat -- site | tail -1
+            first=$(head -1 /tmp/churn.txt)
+            echo "diff excerpt for $first:"
+            git diff -U0 -- "$first" | grep -E '^[-+]' | grep -vE '^(\+\+\+|---)' | cut -c1-300 | head -6 || true
+          fi
+          EVENT="${{ github.event_name }}" python3 - <<'PY'
+          import json, os, re
+          BASE = 'https://getecoback.com'
+          CANON = re.compile(r'<link\s+rel="canonical"\s+href="([^"]+)"', re.I)
+          def parse(path):
+              try:
+                  xml = open(path, encoding='utf-8').read()
+              except OSError:
+                  return None
+              return dict(re.findall(r'<loc>([^<]+)</loc>\s*(?:<lastmod>([^<]*)</lastmod>)?', xml))
+          def url_of(p):
+              # p is like site/guide/x.html; prefer the page's own canonical
+              if p.startswith('sites/getecoback/'):
+                  p = p[len('sites/getecoback/'):]   # porcelain paths are repo-relative
+              try:
+                  m = CANON.search(open(p, encoding='utf-8').read())
+                  if m:
+                      return m.group(1)
+              except OSError:
+                  pass  # deleted in this push: nothing to submit
+              rel = p[len('site/'):]
+              rel = '' if rel == 'index.html' else re.sub(r'(^|/)index\.html$', r'\1', rel)
+              return BASE + '/' + rel
+          now = parse('site/sitemap.xml') or {}
+          prev = parse('/tmp/prev_sitemap.xml')
+          files = [l.strip() for l in open('/tmp/authored.txt', encoding='utf-8')]
+          authored = [url_of(p) for p in files if p.startswith('site/') and p.endswith('.html')]
+          submit = []
+          for u in authored:
+              if u in now and u not in submit:
+                  submit.append(u)
+          new = []
+          if prev is None:
+              print('::warning::no live sitemap baseline — new-URL detection is off for this run')
+          else:
+              new = [u for u in now if u not in prev]
+              if len(new) > 60:
+                  print(f'::warning::{len(new)} URLs are new vs the live sitemap — a baseline problem, not a release; submitting only the pushed changes')
+                  new = []
+          for u in new:
+              if u not in submit:
+                  submit.append(u)
+          if os.environ.get('EVENT') == 'schedule' and BASE + '/' in now and BASE + '/' not in submit:
+              submit.append(BASE + '/')
+          churn = [u for u in (url_of(l.strip()) for l in open('/tmp/churn.txt', encoding='utf-8') if l.strip()) if u not in submit]
+          if churn:
+              print(f'::warning::{len(churn)} page(s) were rewritten by the injectors but not submitted (their content did not change in this push): '
+                    + ', '.join(churn[:12]) + (' …' if len(churn) > 12 else ''))
+              print('injector churn, full list (a file here means repo state != deploy state; commit the injected output or fix the injector):')
+              for u in churn:
+                  print('  ' + u)
+          print(f'authored={len(authored)} new={len(new)} churn={len(churn)} submit={len(submit)}')
+          for u in submit:
+              print('  ' + u)
+          open('/tmp/idx_urls.json', 'w').write(json.dumps(submit))
+          open('/tmp/idx_count', 'w').write(str(len(submit)))
           PY
           COUNT=$(cat /tmp/idx_count)
           echo "submitting $COUNT changed URL(s) to IndexNow"

@@ -129,7 +129,8 @@
       html+="<br><span style='font-size:13.5px;color:#5b6b78;'>Betriebskosten bei 0,30 €/kWh: ca. "+(bedarf/1000*0.30).toFixed(2).replace(".",",")+" € pro Stunde Volllast.</span>";
       out.innerHTML=html;
     }
-    qm.addEventListener("input",calc);d.addEventListener("change",calc);calc();
+    var t,last="";function user(){calc();clearTimeout(t);t=setTimeout(function(){var k=qm.value+"/"+d.value;if(k===last)return;last=k;if(window.gtag)gtag("event","watt_calc",{qm:parseFloat(qm.value)||0,w:parseInt(d.value,10)});},600);}
+    qm.addEventListener("input",user);d.addEventListener("change",user);calc();
   })();
   </script>
   <p>Der Rechner nutzt die gängige Faustformel der Hersteller: <strong>60 W/m² bei guter, 80 W/m² bei mittlerer und 100 W/m² bei schlechter Dämmung</strong>. Bei Deckenhöhen über 2,60 m, vielen Außenwänden oder großen Fensterflächen nimmst du sicherheitshalber die nächsthöhere Dämmstufe.</p>
@@ -192,7 +193,7 @@
     <a href="/guide/heizung-20-qm.html">Welche Heizung für 20 qm? →</a>
     <a href="/guide/stromkosten-rechner.html">Stromkosten-Rechner für Elektrogeräte →</a>
   </div>
-<!--EB_RELATED--><nav class="eb-related" aria-label="Passt dazu" style="margin:26px 0 8px;padding:14px 16px;background:#fff;border:1px solid #e4ebf0;border-radius:12px;"><strong style="display:block;font-size:14px;color:#0a4d7a;margin-bottom:6px;">Passt dazu</strong><ul style="margin:0 0 0 18px;font-size:14.5px;"><li><a href="/guide/schmidbauer-infrarotheizung-test.html">Schmidbauer Infrarotheizung: Was sagen die Tests?</a></li><li><a href="/guide/infrarotheizung-standgeraet.html">Infrarotheizung als Standgerät: heizen, ohne zu bohren</a></li><li><a href="/guide/infrarotheizung-garage.html">Infrarotheizung für die Garage: sinnvoll — aber nur für eines von drei Zielen</a></li><li><a href="/guide/infrarotheizung-decke-oder-wand.html">Infrarotheizung an Decke oder Wand? Die Wand ist der Standard — die Decke hat einen Grund</a></li></ul></nav><!--/EB_RELATED-->
+<!--EB_RELATED--><nav class="eb-related" aria-label="Passt dazu" style="margin:26px 0 8px;padding:14px 16px;background:#fff;border:1px solid #e4ebf0;border-radius:12px;"><strong style="display:block;font-size:14px;color:#0a4d7a;margin-bottom:6px;">Passt dazu</strong><ul style="margin:0 0 0 18px;font-size:14.5px;"><li><a href="/guide/schmidbauer-infrarotheizung-test.html">Schmidbauer Infrarotheizung: Was sagen die Tests?</a></li><li><a href="/guide/infrarotheizung-thermostat.html">Infrarotheizung mit Thermostat: welches, wohin — und was es wirklich spart</a></li><li><a href="/guide/infrarotheizung-standgeraet.html">Infrarotheizung als Standgerät: heizen, ohne zu bohren</a></li><li><a href="/guide/infrarotheizung-garage.html">Infrarotheizung für die Garage: sinnvoll — aber nur für eines von drei Zielen</a></li></ul></nav><!--/EB_RELATED-->
 </article>
 </div>
 

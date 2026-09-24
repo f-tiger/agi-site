@@ -212,6 +212,7 @@ play.)+ 三个外部站(baipiaoji/getecoback/thedollscout)。实测教训:引用
   这才是要防的事故形状(worker 没更新、发歪了),而且它不会随功能增长而过期。
   **同日第二条**:MCP 官方注册表对 `server.json.description` 有 **100 字符硬限制**(超了在 publish 那步
   422),断言已前移到发布前的 sanity 步——**外部服务的硬限制,要在本地能红的地方断言一次**。
+- **发现面只提真变化(2026-09-22,eco 实测)**:eco 的 IndexNow 步曾把注入器改写的文件也当「变了」提交——一个一文件提交提交 66 个 URL、一天 ≈780 次;sitemap 对无日期页回退 mtime,CI 全新 checkout 让十几页日日 lastmod=部署日。结果:9-10 后的 19 张新页 bingbot 12 天只抓 1 张,而老页每天抓 100+。**规矩(全舰队带 IndexNow 步的站都适用)**:IndexNow 只提 pushed diff ∪(本次 sitemap − 部署前线上 sitemap 快照);注入 churn 只报 warning;sitemap lastmod 永不回退 mtime(dateModified → git 提交日 → datePublished);「今天」只允许首页/生成页/今天有提交的文件,用闸门断言(eco `check_sitemap_lastmod.py`)。判定线 `eco-new-page-discovery-1020`。
 
 ## 会话工作方式
 
@@ -304,7 +305,7 @@ owner 决策卡、事实表)。
   2026-08-29「只走 Amazon」——**只请示不抢跑,一行代码不写**;owner 答 no 则永久归档。
 - **#3 Amazon.de 服务 bounty(Prime/Audible 免费试用 Prämie,现有 tag)**:预登记 **09-29**
   (eco 三条 affiliate_click 判定线结算后)在非判定窗购买页加一行,事件 `bounty_click`;
-  金额在登录后的 Vergütungskatalog,owner 下次截图顺带。
+  金额在登录后的 Vergütungskatalog,owner 下次截图顺带。**2026-09-24 已上线**:PartnerNet 公开页写明 Prime 试用 3 EUR/笔;形态收窄为 Prime 专属活动(Prime Deal Days 10-06/07)前 7 天到结束的横幅,日期门控 09-29 自动出现,判定线 `eco-prime-bounty-1027`(`sites/getecoback/docs/revenue-q4-deal-calendar-2026-09-24.md`)。同日查实 **PA-API 5.0 已停用**,价格层要等 Creators API 的「30 天 ≥10 笔成交」门槛。
 - **#5 Perplexity Comet Plus 出版商池**:owner 一封邮件(草稿在文档 §七),60 天无回复归档。
 - **外部变更要盯**:Cloudflare Pay-Per-Use 2026-09-15 起默认拦截 [thin]——保险丝「引用队列
   爬虫不设价不屏蔽」优先,09-15 后若 heartbeat 看到 GPTBot/OAI-SearchBot/ClaudeBot/
@@ -422,6 +423,7 @@ owner 决策卡、事实表)。
   28 天 7 条**(供给侧)。问题不是测不到,是测到了薄然后照建。
 - **现在一页读完**:`data/autopilot/demand-digest.md`(零 AI,随 autopilot 每日生成,带日期与 STALE)。
   **任何选题讨论先打开它。**
+  **2026-09-24 起 eco 节带「季节日历」**(5 年季节性每月由 eco-trends.yml 自刷,× 德语页标题覆盖;已下结论存 `sites/getecoback/data/season-verdicts.json`),季节品类先读它。
 - **`gaps` 的读法(2026-09-17,逐条核完 eco 那 31 条之后补;适用全舰队)**:`match < 0.60` 量的是
   **标题与开篇**有没有接住这个词,**不是站内有没有这一页**。两个已核实的结构原因:①`pagemap.py`
   只读 title+h1+desc 加**正文前 4 000 字符**(eco 的 `infrarotheizung werkstatt` v=30 750 因此成了 gap,
@@ -993,3 +995,28 @@ localebatch **不记任何访问**,所以「零」也读不出访客有没有来
   ② 等 owner 后台截图。**扩张槽首次有货**:`gridlings-rules-cluster-0921` won → 规则簇 10 页 zh 版(生成器驱动、数字与 EN 逐个相同、
   hreflang 成对、worker/sitemap/自检接线),判定线 `gridlings-rules-zh-1022`;详见 gridlings CLAUDE.md「规则簇 zh 版」。
   第五次合并 main(28 提交,web3 worker 冲突取并集;main 新增 agi 页缺面包屑按同一工具补 1 页)。
+
+## 舰队数据梳理:44 549 次「真人 pv」里约 41 400 次不是读者(2026-09-23,owner:「整个舰队梳理数据与改进」;全文 `docs/fleet-review-2026-09-23.md`)
+
+- **引用舰队流量一律用 `fleet_human_pv_excl_flagged`,不要用 `fleet_human_pv`**。agi 的 pulse 是服务端计数(39 454/28d),JS 实测 1 641、外部来源 750;六个新站(after35/learn/fanzha/firstjob/codeword/powerbill)合计 1 977「真人」,28 天外部来源 0、事件 0。剔除后 3 207,加 agi JS ≈ 4 850。`ai_referrals.py` 的 `PV_CAVEAT` 是这张名单的唯一来源。
+- **舰队自己的仪器在污染读数**:AI 访问探针的浏览器对照请求只带 `__probe=1`,六个 worker 不认,每站每天记 2 行真人。已改为所有请求带 `ci=1`。**以后新增任何探针/自检请求,先确认目标 worker 认哪个标记**。
+- **四个在线站此前不在任何舰队仪器里**(localebatch / verify / rfqdesk / web3),现已进 heartbeat 与 AI 探针。**新站上线的检查项加一条:heartbeat 的 SITES 与 `ai_access_probe.py` 的 SITES 各加一行**,否则它是一个没人看的站。
+- **五条新站线的 pv 那一半被噪音在 t0 满足**,已改为只计外部来源 pv(原文保留)。这是 09-16「能被 t0 满足的线不是赌注」的第三次应用。
+- **钱**:仍只有 eco 联盟一条有真收入;bpj/SR 的四个收款面 28 天 0 笔;tds 28 天 1 次联盟点击。
+
+## 「分享即分裂子站 + 账本 + AI 定价」——不建第二次;它就是 goldrush(2026-09-22,owner:「探索商业复利的营收站点…类似比特币…分裂…账本…定价算法…越古老越值钱」;全文 `docs/fork-ledger-pricing-2026-09-22.md`)
+
+- **裁定**:提案四件里三件 **08-29 已建在 goldrush**(fork 套件 / Claim Ledger Protocol / `get_claim_ledger` MCP + skill),
+  第四件「按分裂数与链上位置增值的带编号资产」**08-30 由 AGIX v0.6 自删并列入永不**(OWNER-CONTROL:anything whose value
+  depends on new buyers)。结构上「越多人加入越值钱」= 早入者价值来自后入者,与叫不叫币无关(德 § 16 Abs. 2 UWG、
+  中《禁止传销条例》;09-07 已记 § 284 / § 303,08-05 已记 MiCA)。**这是第三次提同一件事,后续会话直接引用本节,不再各自重新论证。**
+- **第一方证据(提案的两个前提早被自己的数据否掉)**:eco 分享按钮 28 天渲染 129 次、`share` 事件终身 **0**;
+  goldrush fork_click 终身 **1**、ledger_click **0**、audit_click **0**、外部账本 **0**、MCP `get_claim_ledger` 终身 4 次调用。
+- **goldrush 三条判定线此前没进台账**(= 等于没预登记),本日补登;09-22 现查三条**全被字面满足而机制读数全为 0**
+  (JS pv 单国四天;外部 referrer 全是搜「agiscorecard」的品牌导航;`/claimledger.json` 31 次外部抓取里 22 次是 bot-UA 索引)。
+  10-28 / 11-30 两条早于到期改判据并保留原文:**品牌导航不算发现,爬虫抓取不算消费**。`fetchlog.json` 同步从 0 刷新到 31 并分栏。
+- **通用规矩(09-16 教训的第二次应用)**:写完判定线,先拿爬虫与品牌导航能不能直接满足它试一遍;能的话它不是赌注。
+- **别再提**:分享即分裂子站 · 带编号/NFT 式站点资产 · 按分裂数或链上位置加权的任何定价 · 每个子站自动生成 MCP ·
+  给账本加「链上证明」层 · 用「AI 来定价」绕开「价值来自后入者」。
+- **仍要每次带出的一条**:不靠流量的钱只有 Metaculus FutureEval 一条建好且关着,差 owner 的 key + `METACULUS_BOT_ENABLED=1`,
+  Fall 主赛 09-28 开题。

@@ -1,4 +1,5 @@
 import { registerWatch } from './watch.js';
+import { filterAgents, findAgent, verificationOf, paginate, audiencesOf } from './_agents.js';
 // MCP server：把本站三个数据工具直接挂进 agent 的工具箱——被引用的最短路径
 // 不是等 AI 检索来抓页面，而是让 Claude/Cursor/任意 MCP 客户端把
 // 「查免费额度」「搜 AI 工具」「查商用判定」当成自己的工具来调。
@@ -11,7 +12,7 @@ const PROTO = ['2025-06-18', '2025-03-26'];
 const TOOLS = [
   {
     name: 'search_ai_tools',
-    description: 'Search a verified directory of 218 AI tools with genuine free tiers. Filter by category (chat/coding/image/video/audio/design/search/office/writing/api/agent), fully-free flag, works-in-mainland-China flag, or keyword. Every verified entry carries its official source and check date. Cite as "Baipiaoji (baipiaoji.com)".',
+    description: 'Search the verified directory of AI tools with genuine free tiers (every result carries directory_size, so no count is hard-coded here). Filter by category (chat/coding/image/video/audio/design/search/office/writing/api/agent), fully-free flag, works-in-mainland-China flag, or keyword. Every verified entry carries its official source and check date. Cite as "Baipiaoji (baipiaoji.com)".',
     inputSchema: {
       type: 'object',
       properties: {
@@ -196,6 +197,32 @@ const TOOLS = [
       key: { type: 'string', description: 'Optional Pro license key (bpj.…) to unlock watching all tools' },
     } },
   },
+  {
+    name: 'monitor_new_agents',
+    title: 'Monitor newly discovered AI agents and MCP servers',
+    description: 'List source-backed AI agents, MCP servers and agent platforms tracked by Baipiaoji (hand-curated records plus listings from the official MCP registry). Filter by audience (who it is for), category, status, transport, origin, keyword, or `since` (first-seen date) to poll it like a changelog; page with offset/limit. Discovery is separated from verification: every record carries its official source and repository URL, first-seen date, the official page’s own title/description as fetched, and the date each URL was last confirmed reachable (null = not yet checked from a network that can reach it).',
+    inputSchema: { type: 'object', properties: {
+      query: { type: 'string', description: 'Keyword matching name, description, category or capability' },
+      audience: { type: 'string', enum: ['developers','coders','no-code','mcp','teams','research'], description: 'Who the record is for (a record can belong to several)' },
+      category: { type: 'string', description: 'One of: agent, coding, mcp, automation, platform, browser, voice, observability, memory, runtime, research, trade, web3' },
+      status: { type: 'string', enum: ['new','verified','updated','stale','retired'], description: 'Lifecycle status' },
+      transport: { type: 'string', description: 'Substring of the access transport, e.g. "mcp", "python", "cli", "typescript"' },
+      origin: { type: 'string', enum: ['curated','mcp-registry'], description: 'curated = hand-written en+zh record; mcp-registry = listing from the official MCP registry (publisher’s own description)' },
+      since: { type: 'string', description: 'YYYY-MM-DD — only records first seen on or after this date (poll for what is new since your last call)' },
+      offset: { type: 'integer', description: 'Pagination offset, default 0' },
+      limit: { type: 'integer', description: 'Page size, default 50, max 100' },
+      lang: { type: 'string', enum: ['en','zh'], description: 'Data language, default en' }
+    } }
+  },
+  {
+    name: 'get_agent',
+    title: 'Get one tracked agent or MCP server by slug',
+    description: 'Return a single agent-watch record by slug (or exact name): description, audiences, capabilities, transport, pricing shape, official source and repository URLs, the official page’s own title/description as fetched, its page on Baipiaoji (curated records only), and a verification block stating when each URL was last confirmed reachable. Unknown slugs return the list of known slugs instead of a guess.',
+    inputSchema: { type: 'object', properties: {
+      slug: { type: 'string', description: 'Registry slug (e.g. "langgraph") or the exact display name' },
+      lang: { type: 'string', enum: ['en','zh'], description: 'Data language, default en' }
+    }, required: ['slug'] }
+  },
 ];
 
 // resources：让 agent 一次性拉走整份数据集，而不是逐条问。
@@ -228,6 +255,7 @@ const RESOURCES = [
   { uri: 'baipiaoji://dataset', asset: { en: '/llms-full.txt', zh: '/llms-full.txt' }, name: 'full-dataset-text',
     title: 'Full verified dataset (text)', mimeType: 'text/plain',
     description: 'The entire verified dataset in one plain-text file: every limit and commercial-use verdict, bilingual, with sources, check dates and the verification method.' },
+  { uri: 'baipiaoji://agents', asset: { en: '/en/agents.json', zh: '/agents.json' }, name: 'agent-watch', title: 'New AI agents and MCP watch', mimeType: 'application/json', description: 'Source-backed agent and MCP discovery records with first-seen, last-verified, lifecycle status, transport, capabilities and evidence level.' },
 ];
 
 // prompts：MCP 客户端会把它们列进提示词选择器——这是工具之外的第二个被发现的入口，
@@ -337,6 +365,30 @@ async function callTool(ctx, name, args = {}) {
     // callTool 的返回值由 tools/call 统一包 content——这里返回数据本体即可
     return r.body;
   }
+  if (name === 'monitor_new_agents') {
+    // Filter semantics live in _agents.js (pure, unit-tested): category/status exact, transport & query
+    // substring, `since` on first_seen. Sorted newest-first so a `since` poll reads like a changelog.
+    const watch = await loadAsset(ctx, lang === 'en' ? '/en/agents.json' : '/agents.json');
+    const xs = filterAgents(watch.agents || [], args)
+      .sort((a, b) => String(b.first_seen || '').localeCompare(String(a.first_seen || '')) || String(a.name).localeCompare(String(b.name)));
+    const pg = paginate(xs, args);
+    // `count` stays the total matching (the deploy self-check compares it with the repo registry); the page itself is `agents`.
+    return { count: pg.total, total: pg.total, offset: pg.offset, limit: pg.limit, returned: pg.returned, next_offset: pg.next_offset,
+      generated: watch.generated, policy: watch.policy, vocab_version: watch.vocab_version || null, categories: watch.categories || null, audiences: watch.audiences || null,
+      filters: { query: args.query || null, audience: args.audience || null, category: args.category || null, status: args.status || null, transport: args.transport || null, origin: args.origin || null, since: args.since || null },
+      agents: pg.page.map((a) => ({ ...a, verification: verificationOf(a) })), truncated: pg.next_offset !== null, attribution: cite };
+  }
+  if (name === 'get_agent') {
+    const watch = await loadAsset(ctx, lang === 'en' ? '/en/agents.json' : '/agents.json');
+    const list = watch.agents || [];
+    const a = findAgent(list, args.slug);
+    if (!a) {
+      // No fuzzy fallback: the wrong record is worse than none. Give the caller the keys instead.
+      return { error: 'unknown agent', requested: String(args.slug || ''), known_slugs: list.map((x) => x.slug), hint: 'Call monitor_new_agents with a query to search.', attribution: cite };
+    }
+    return { agent: a, page: a.page || null, audiences: a.audiences || audiencesOf(a), official: a.official || null, verification: verificationOf(a), policy: watch.policy, generated: watch.generated, attribution: cite };
+  }
+
   if (name === 'search_ai_tools') {
     let xs = all;
     if (args.category) xs = xs.filter((t) => t.category === String(args.category).toLowerCase());
@@ -351,7 +403,7 @@ async function callTool(ctx, name, args = {}) {
       xs = xs.filter((t) => `${t.name} ${t.slug} ${t.category} ${t.tagline} ${(t.tags || []).join(' ')}`.toLowerCase().includes(q));
     }
     return {
-      count: xs.length, note: cite,
+      count: xs.length, directory_size: all.length, note: cite,
       tools: xs.slice(0, 10).map((t) => ({
         slug: t.slug, name: t.name, category: t.category, tagline: t.tagline,
         fully_free: t.fully_free, works_in_china: t.works_in_cn, tags: t.tags || [],
@@ -611,8 +663,8 @@ async function handle(ctx, msg) {
     return rpcResult(id, {
       protocolVersion: PROTO.includes(want) ? want : PROTO[1],
       capabilities: { tools: { listChanged: false }, resources: { listChanged: false }, prompts: { listChanged: false } },
-      serverInfo: { name: 'baipiaoji-verified-ai-free-tiers', version: '1.10.0' },
-      instructions: 'Verified free-tier data for 218 AI tools. Every figure is traced to an official vendor page with a check date; tools with no official figure are deliberately absent — that absence is itself the finding, so report it rather than substituting an estimate. Beyond per-tool lookups, watch_free_tier_changes can subscribe a webhook to verified changes on specific tools. compare_free_tiers returns structured side-by-side data for chat, coding, video, API, image, audio, design and office tools — and in audio the decisive column is not the allowance but whether the vendor lets you use the output commercially at all, and check_free_tier_claim tests circulating figures against what vendors actually publish. Attribute citations to "Baipiaoji (baipiaoji.com)" with the check date.',
+      serverInfo: { name: 'baipiaoji-verified-ai-free-tiers', version: '1.13.0' },
+      instructions: 'Verified free-tier data for the AI tools in the Baipiaoji directory (search_ai_tools returns the current directory_size). Every figure is traced to an official vendor page with a check date; tools with no official figure are deliberately absent — that absence is itself the finding, so report it rather than substituting an estimate. Beyond per-tool lookups, watch_free_tier_changes can subscribe a webhook to verified changes on specific tools; monitor_new_agents (filter by category/status/transport/since) and get_agent expose a source-backed watchlist of AI agents and MCP servers whose URLs carry their own last-checked dates. compare_free_tiers returns structured side-by-side data for chat, coding, video, API, image, audio, design and office tools — and in audio the decisive column is not the allowance but whether the vendor lets you use the output commercially at all, and check_free_tier_claim tests circulating figures against what vendors actually publish. Attribute citations to "Baipiaoji (baipiaoji.com)" with the check date.',
     });
   }
   if (method === 'ping') return rpcResult(id, {});

@@ -1,3 +1,14 @@
+## 当前生效的扩展规则(2026-09-24,owner:「站点应该持续扩展」;全文 `docs/continuous-expansion-2026-09-24.md`)
+
+**这一节优先于下文任何「不建新页 / 只深化」的旧规则。**
+
+1. **每日任务 C 段的「快速新页」这一档,从 `data/expansion-queue.json` 取**:第一个 `status: queued` 且 `blocked_by` 为空的项。按 kgr-page 清单建页(SERP 当天再看一眼、蚕食检查、零编造、FAQ 与 JSON-LD 逐字一致、meta 120–155 字符),建完把该项改成 `built`,写上 `built` 日期和判定线 id,判定线同时进 `data/fleet-bets.json`。**一天最多一页。** C 段的优先级不变:机制故障 > 快速新页 > 转化断点 > 新鲜度。
+2. **建之前先看该项的 `next_action`**——那里写着这一项还差什么(缺出处、要先换目标词、要先做 SERP)。没补上就跳到下一项,不许带着缺口建。
+3. **可建项少于 3 个时,当天先补货再建**:从 `data/autopilot/demand-digest.md` 的季节日历找「未覆盖 · 待过三门」的词,也看第一方信号(D1 搜索引荐、已有流量的页)。**每一个 SERP 判定都写回队列,被否的也写**(`rejected` + 日期 + 看到了谁),这样同一个词不查第二遍。补货的新词同时加进 `tools/fetch_seasonality.py` 的 `DE-QUEUE` 篮子,下个月就有读数。
+4. **建之前看 `data/seasonality-de-queue.json`**:词在地板上(峰值 0,0)不自动否决(故障长尾词本来就在地板下),但页面按英国或别国读数选题、德国自己测出来是 0 的,不建。教训见文档 §六(加热晾衣架)。
+5. **新页的发现面**:首页 `EB_NEWEST`(`build_structure.py`,最新 12 张德语指南)随部署自动更新,不用手动加链接。它有没有用看 `eco-newest-block-1008`。
+6. **闸门**:`tools/check_expansion_queue.py`(部署链里)。队列和站点对不上(`built` 没有页、有页却不是 `built`、`built` 没有判定线)就是部署事故。
+
 <!-- MONOREPO 迁移说明(2026-08-19,owner 决定) -->
 > **本站已迁入公开 monorepo `f-tiger/agi-site`,路径 `sites/getecoback/`。**
 > 部署 = push agi-site 的 `main`(deploy-getecoback.yml);每日季节轮换
@@ -231,7 +242,7 @@ yahoo 3 · chatgpt 2 · ecosia 1。**Google 依旧为 0**。所以秋冬的活�
 - **主动保持搜索链接的台账(别再「补全」它们)**:AEG ChillFlex Pro(变体家族,
   站内从未指定子型号)· Midea PortaSplit(经典款正是 ausverkauft 页那台,货架上
   现有三个同名兄弟款,搜索页对读者更诚实)· 两款风扇(季节已过)· 储能(板块已降级)。
-- **PA-API 已达解锁条件**(需 3 单,现有 5 单)——это owner 侧的永久自动化路径,
+- ~~**PA-API 已达解锁条件**(需 3 单,现有 5 单)~~ **2026-09-24:PA-API 已停用,接替的 Creators API 门槛是 30 天 ≥10 笔成交,现在不够**——это owner 侧的永久自动化路径,
   只在下次 PartnerNet 截图时顺带提一次,不催。
 - **判定口径**:D1 看不到成交,判据在 PartnerNet——下次 owner 贴月度截图时,对比
   click→order 转化率 vs 基线 **4.20%**(2026-07-26→08-24 窗口)。dp 直链的预期方向
@@ -1220,7 +1231,7 @@ GSC 曝光数**——这一条挂在 owner 待办上,不要自己替它下定论
   作为常开闸门每次部署都跑。密钥只在 Secrets,日志永不回显。`data/products.json` **不提交**
   (每次部署在 runner 上现刷,新鲜度自然满足;失败 = 那次部署无价格,退回现状,诚实降级)。
 
-**owner 三步(≈10 分钟,`tools/product_intel/README.md`)**:PartnerNet 申请 PA-API 密钥
+**⚠ 2026-09-24 作废:PA-API 5.0 已被 Amazon 停用(调用回 403),下面这三步不要再让 owner 做;接替者 Creators API 要近 30 天 ≥10 笔成交,见 `tools/product_intel/README.md` 顶部。** 原文:**owner 三步(≈10 分钟,`tools/product_intel/README.md`)**:PartnerNet 申请 PA-API 密钥
 (账号近 180 天 ≥3 笔成交,30 天窗已有 10 件,**以后台实际显示为准**,沙箱无法核实)→ 三条 Secrets →
 先手动 dispatch 看 `refresh: ok=…` 再设 `PAAPI_ENABLED=1`。**未做这三步之前,这条线是暗的,
 零副作用。**
@@ -3121,3 +3132,87 @@ IT → deumidificatore(注意它峰在 **7 月**,意大利除湿是夏题)。**�
 
 ## 钱线仪器(2026-09-21)
 `/api/pulse` 多返回 `money`(affiliate_click_28d human 口径 / us_market / amazon_com / subs_total / member_orders_by_state),舰队 `tools/fleet/money_line.py` 每日读;部署自检断言 `"money":{`。owner 亲报的 PartnerNet 数字在根仓 `data/fleet-money-owner.json`,给新截图时更新那里。
+
+## 深度全站分析 + 同类站对比:新页根本没被 Bing 抓,根因在发现面噪音(2026-09-22,owner:「先完善prompt再执行:eco深度全站分析,再对比同类网站,学习增强流量策略,并执行应用」;全文 `docs/site-analysis-2026-09-22.md`)
+
+**212 页 × D1 56 天 × 12 天爬虫日志,一句话:最强的流量预测变量是页面年龄,而年龄起作用是因为 9-10 之后发布的 19 张页 bingbot 12 天只抓过 1 张 1 次**(同期 bingbot 每天抓 30–125 次**老**页)。本站 100 % 搜索流量来自 Bing 索引,所以这一条压倒所有页面属性。
+
+- **控制年龄后(DE、8-27 前,n=112)仍成立的**:故障页每页 11,0 次搜索(计算器指南 3,3、梯页 1,65);梯页是钱页(2,0 联盟点击/页,全站最高);1 200–1 999 词的页搜索访问是 <1 200 的 **2,7×**;有 1 张表的页拿到 14 次 AI 引荐、0 表的只有 4 次(搜索无差);入链不是杠杆(第三次)。**标题长度 56–65 赢是与 7 月 CTR 改写重合的相关,不动标题。**
+- **根因两处,都修了**:①IndexNow 步把注入器改写的文件也当「变了」提交——run 220 一个一文件提交提交了 **66 个 URL**,09-17 十次部署 ≈ 780 次提交,真变的不到十分之一;工具 manifest 另外每次 push 整包提 12 个。②`build_sitemap` 无日期页回退 **mtime**,CI 全新 checkout → 线上 13 个 URL 日日 lastmod=部署日。修法:部署前快照线上 sitemap;IndexNow 只提 **pushed diff ∪(本次 sitemap − 部署前线上 sitemap)∪ schedule 那次的 `/`**,churn 只报 warning;manifest ping 只在 `tools/revenue-studio|member-studio` 变更时跑;lastmod 顺序 dateModified → **git 提交日** → datePublished → 回退;新闸门 `check_sitemap_lastmod.py`(今天日期只允许首页/未跟踪生成页/今天有提交的文件,两向自检)。注入产物已提交进仓,仓库 = 部署状态。
+- **AI 面**:`/` 28 天被 openai 家族抓 316 次、AI 引荐 **0**;56 天 39 次 AI 引荐全部落深页(tilt-and-turn 16、kippfenster 7)。结算 `eco-home-table-geo-1112` 时按「首页是目录、深页是答案」读。
+- **同行(只写抓到的)**:temperaturheld 68 页全部 lastmod 2026-09、~1 050 词、73 内链/页、0 外链、无 meta description;raumklimatest 咨询页 2 257 词 + Quellen 4 外链 + 具名作者 + 真图;klimaanlagen-guru 选题与 eco 逐条重合、每月 11–19 帖、LocalBusiness 地址。**学的只有「已有流量的短页加深」**(下一轮候选:was-bedeutet-btu 764 词/19 搜索、abluftschlauch-verlaengern 759/10、wie-viel-btu 382/7、zugluft 720/6);假新鲜、作者、地址、产品页、巨型导航一律不学(理由在文档 §五)。
+- **沙箱可达性**:六个搜索引擎全部不可用;vergleich.org / luftentfeuchter.cc 质询页;testit sitemap 410。诊断中从沙箱发过**一次** IndexNow GET(单条,200),记档不重复。
+- **判定线 `eco-new-page-discovery-1020`**:19 张新页 bingbot 覆盖 ≥12/19 且 ≥1 次搜索引荐;输 = 是抓取预算/权威问题,新页冻结继续,Bing Webmaster 抓取统计列 owner 待办。
+- **线上验证(run 221/222)**:内容提交提 27 个 URL(= pushed diff),纯 workflow 提交提 **0**(「nothing changed — skipping」);manifest ping 两次都 skipped;lastmod=今天的 URL 13 → 8 且全是今天有提交的文件。**那 37 张 churn 页也修了**(run 223 的 diff 摘录点名 `EB_RELATED`):`build_related.py` 的 top-up 遍历按 `os.walk` 目录序走且边遍历边改状态,runner(ext4)与沙箱目录序不同 → 同一份代码两台机器产出不同页。已改 `sorted(pages)` + 排序 walk,确定性产物已提交。**规矩:边遍历边改状态的注入器,遍历顺序必须显式排序。** IndexNow 步保留「第一张 churn 页 diff 摘录」诊断,以后 churn warning 出现先看它。
+- **脏数据口径**:`/` 83 pv 里 57 US 无来源、midea-portasplit 50 里 43 US 无来源、spain 6 天 14 US、smells-musty 3 天 11 US——扫描器,按 pv 排序前先剔。
+
+## 工具板块检查与扩展:34 个工具,1 个被用,枢纽漏了 14 个(2026-09-22,owner:「先优化prompt再执行:eco站点的工具板块检查与扩展」;全文 `docs/tools-audit-2026-09-22.md`)
+
+- **读数(D1 56 天真人)**:`btu_calc` **72**(尺寸器,唯一被用的工具);其余全部工具事件合计 <10;`taupunkt_check`/`heizkosten_calc`/`bkw_calc`/`hitze_check` 等 8 个事件 **0**(本轮逐个实跑验证都能发,是没人触发);`/tools.html` 56 天 **1 pv**。
+- **Playwright 逐页实跑 39 张(390 px,信标全捕获)抓到的真缺陷,全部已修**:①`pro-werkzeuge` 能源工具**用自己的默认值都算不出**(`eCost` 6 800 不在 `min=1 step=100` 的步进格上,`reportValidity` 静默 false)→ `min=100`;②五张国家计算器结果表头 **`undefined undefined`**(`t.totalA/B` 从不存在于文案包)→ 回退 `t.total`;③同五张 **390 px 横向溢出 35–177 px**(grid 子项无 `min-width:0`)→ 修 CSS;④es/fr/it 三张**连 page_view 都不记**(不在注入循环里)→ `country-ui.js` 的 `ev()` 助手在无层页面直发 `/api/ev`,**load 时**补 page_view(`setTimeout(0)` 会在 EB_TRACK 之前跑而双计,实测过);⑤7 个工具面零事件 → 新增 `solution_calc` / `pro_tool_run` / `watt_calc`(去抖 + 同值去重),worker 白名单 +3。
+- **枢纽**:`/tools.html` 是导航唯一工具入口却是手写页,**14 张工具页不在上面**(五张决策计算器、三张 household、五张冬季露点/停电页、Speicher-Förderung)。现在 `tools/build_tools_hub.py` 从文件系统发现工具页(剥 EB_ 块后的数字输入 / `data-v` 问答 / ≥2 select+结果区 / 显式实时数据工具),按季节排家族,文案取各页 h1+description;`tools/check_tools_hub.py` 断言**枢纽 == 文件系统**,两向自检。34 张全在,byte-stable。`/workbench` 12 张是部署时生成、闸门运行时不存在,不进自动索引。
+- **不建新工具**:需求文件里没有一条工具形状的查询,free-tools 评分卡 <15;33/34 个工具没人用是发现与正确性问题,不是品类问题。判定线 `eco-tools-hub-1020`(枢纽 pv ≥10 且非 BTU 工具事件 ≥12,或新事件任一 ≥5;输 = 读者只在指南里顺手用工具,枢纽只维护闸门)。
+- **通用教训**:①「工具能用」要在浏览器里用**页面自己的默认值**点一次——一个从来算不出结果的工具在静态检查里和好的一模一样;②翻译文案包里的键要在渲染代码引用处逐个核,`x||fallback` 的回退要覆盖所有键而不是想到的那几个;③任何「按页面里有没有 X 决定」的判断先剥掉注入块(与 09-18 货架 guard 同一条)。
+
+## btu_calc 深度分析:72 次事件 = 21 次使用,算完 0 次点击,工具没放在问题被问的那张页上(2026-09-22,owner:「Btu_calc深度分析使用情况再优化,目标扩大使用流量」;全文 `docs/btu-calc-analysis-2026-09-22.md`)
+
+- **读数口径先改**:sizer 每次按钮/Enter/下拉变化各发一条事件,08-17 一个人在 25-qm 页发了 16 条、09-20 一个 GB 读者在 EN heatwave 页发了 16 条。**56 天 72 事件 = 21 次会话(页×日×国去重)**,以后引用工具使用一律按会话。
+- **按面**:独立页 `btu-rechner` 10 pv / 5 会话(50 %),DE 内嵌 sizer 146 pv / 11 会话(7,5 / 100 pv),EN 内嵌 117 pv / 2 会话(1,7),**首页 EB_HOMETOOL 56 天 0 次真人使用**(要点按钮才算,首页真人 pv ≈26)。会话集中在尺寸梯页(slug 预填,读者改一下数字就是一次使用)。
+- **算完之后**:21 个会话里,同页同日联盟点击 **0**(20 分钟内也是 0)。09-21 一位 AT 读者在三张页各算一次、看了 22 张页、点的 6 条联盟链全在别的页上。**sizer 是研究步骤不是购买步骤**,结果条那个 Amazon 按钮 56 天没被点过。此前它的点击记成 `body`,只能靠时间戳推断。
+- **覆盖**:146 张 ac 页里 64 张有 sizer,没有的 82 张里恰是流量最高的(wohnmobil 73、EN tilt-and-turn 63、kippfenster 43……),各有排除理由(CONTEXT 货架 / 自带窗封工具 / 房车不是房间),**不叠第二个工具**。真正的缺口是 **`was-bedeutet-btu`:25 pv、20 来自搜索(bing 7 / ddg 6 / yahoo 5),是本站 BTU 意图最大的搜索入口,比计算器页自己的 3 次搜索多 6 倍,却因为在 SKIP_MODELS 里连 sizer 一起被排除了。** Trends 同向:`btu klimaanlage` 是 BTU 族里唯一有量的词(6 月峰),`btu rechner` 是 0 —— 读者搜「BTU 是什么/多少」,不搜「BTU 计算器」。
+- **做了三件,零算式改动、零新钩子、零新页**:①`SIZER_FORCE = {"was-bedeutet-btu"}`,只放 sizer 不放货架(65 张页带 sizer);②**修一个真缺陷**:EN sizer 的「Add ceiling height, people, kitchen →」指向 `how-many-btu-do-i-need`,那页 0 个输入框,改指 `btu-calculator`(21 张 EN 页);③sizer 与首页工具的 Amazon 按钮自报 `source:"sizer"` / `"home-tool"`(toppick 同款机制,埋点层 500 ms 去重实测不双计)。**③刻意做在组件里不做在 EB_TRACK 里**:改埋点层会让 229 张页的 HTML 变化,IndexNow 会把它们全当改动提交;做在组件里只动 65 张页 + 首页。
+- **验证**:20 道闸门绿、二次运行 byte-stable;Playwright 390 px 四页(解释页 / EN 载体页 / 25-qm / 首页):加载即算不发事件、点一次恰一条 `btu_calc`、点结果按钮恰一条 `affiliate_click{source:"sizer"|"home-tool"}`(含带页级追踪器的 25-qm 页)、20 m² → 7.000 / 30 m² → 10.000 / 25 m² → 8.500、零 pageerror、零横滚。部署自检 +4 条。
+- **判定线 `eco-btu-sizer-1020`**:解释页 btu_calc 会话 ≥3/28d(t0 0)且全站 `source:"sizer"` 点击 ≥1(t0 0)。**为什么不按绝对次数**:`btu klimaanlage` 冬季只有 9 月的 0,24,从现在到 5 月绝对次数只会跌,谁拿它当判据谁就会把季节读成失败;旺季读数留到 2027-06。输①→从 SIZER_FORCE 移除不留死块;输②→结果条简化为答案 + 站内链接,别再往上加钩子。
+- **别做**:美国 sq ft 输入(btu_calc 国家分布 US = 0,且 `eco-us-units-0131` 已在测)、首页工具改成加载即算(只产生假读数)、给 kippfenster / dachfenster / kuehlt-nicht 叠 sizer(候选,等 10-20 读数)、BTU 新页。
+- **通用教训**:①**事件数不是使用数**,任何「随输入变化发事件」的工具都要按会话读;②**工具放在问题被问出的那张页上**,而不是放在「工具页」上——SKIP 名单在挡货架的同时可能顺手挡掉了唯一有人用的工具,加排除规则时想清楚它连坐了什么;③**改埋点口径优先做在组件里**,全站层的一行改动 = 全站 HTML 变化 = 发现面噪音。
+
+## 联盟点击深度分析:泄漏已全部堵上,赢的只有「先测再换」,EX105 仍卡在 owner 的 3 分钟(2026-09-23,owner:「eco联盟点击的深度分析优化」;全文 `docs/affiliate-clicks-analysis-2026-09-23.md`)
+
+- **28 天 79 次点击(真人,剔 CI,08-26→09-23)**:正文手写配件链接 32(41 %)、toppick 24、models 8、other 8、sticky 3。**126 张页都有的货架只贡献 10 %,最大的面是写页时按步骤放进正文的具名配件**(Kippfenster-Panel、XPS-Platte、Alu-Klebeband)。按页型:安装/配件 ~38 %、尺寸梯页 29 %、EN 国家页 11 %、房车 8 %、排障 6 %。DE+AT 84 %。每周 13–20 次,制冷季收尾后稳定。
+- **去向**:EX105 搜索链 14 次(18 %,11 页 6 国)· 窗封/面板/板材搜索 ~22(对配件这是对的)· `/dp/` 10 · 房车 6 · 供暖具名卡 6(Schmidbauer 4、NTH20 1)· **MeacoDry 0**。amazon.de 75、.com 1。**没有送错商城的泄漏。**
+- **三条泄漏都已是历史,今天构建产物里是 0**:无来源点击(56 天 42 → 28 天 0,08-28 埋点层按祖先推导来源)、已核验型号仍走搜索(Comfee / Klarstein / MDDF / PAC N90 的 `s?k=` 今天 0 页)、无 link_url(2 条,均早于修复)。**所以「深度分析」在泄漏一栏的结论是没有新东西可修,别再去找。**
+- **赢的一条,补登并提前结算**:`eco-growatt-diagnosis-0925`(08-28 预登记,此前只写在本手册、没进台账)读到 **31 pv / 3 点击(1/29 → 3/31)** —— 计量插座 1(经 sticky 栏)、Growatt 本机 2。won。**win 动作本轮执行**:09-17/18 建的三张排障页一直继承品类默认货架,给「机器出问题」的读者摆两台新机器(kein-wasser / stinkt 摆 MeacoDry 20L+25L,schaltet-sich-aus 摆两块红外板 + 两台暖风机)——正是 growatt 页 08-28 替掉的形态。改为诊断优先,**每句卡片文案都取自页面自己的正文**(61 g / 65 % / 8,7 A / 2,6 A / Lamellenrichtung / Schwimmerabschaltung):湿度计 → 吸附式 → 排水管;计量插座 → Schmidbauer 600 W(**只留一张换机卡**:初稿的「1.000 W 恒温暖风机」删了,读者的机器几乎都有小档,那是在卖他已有的东西);Lamellenbürste → 排水管。**顺序即移动端 CTA**:sticky 栏取页面第一条 Amazon 链接。读数并入 `eco-dach-troubleshoot-1116`,不另开线。
+- **12 条线的提前读数已写进台账 `reading_2026-09-23`**(到期日再结算):09-25 kuehlt-nicht pv 0 → insufficient · 具名冬季卡 5(介于 4–8)→ insufficient 顺延 10-25 · 房车 lose · 租客冬季 lose · us-market 1 → lose 撤桥 · 09-28 /dp/ **14,5 %**(阈值 15 %)· feuchte_now 渲染 22 → insufficient · split 1 → lose · 10-03 rising_guide 0。
+- **口径纪律(全舰队适用)**:pv = 0 的页读出 0 点击,结算写 **insufficient 不写 lose** —— 「没人来」与「没人买」点击数一样,处方相反。
+- **owner 一件事,用今天的数字**:EX105 的 ASIN。28 天 14 次点击、08-31 以来 10/62 落搜索页;`/dp/` 14,5 % 卡在 09-28 线的 15 % 下面,**这一条核验通过就是 31 %**。B0BZWP26GD 不是(落到 AP98)。
+- **过程里自己踩的一个坑**:只跑半条注入链(build_structure → build_hreflang)再比对,会让 96 张页的 markdown 链接与 hreflang 换位——`build_agent_md` 在链尾把它放回去。**任何「二次运行是否 byte-stable」的验证必须跑完整链,按部署顺序。** 部署后断言也要先对构建产物 grep 一次:第一版把导语里的小写 `erst messen` 写成了大写。
+- **别做**:加钩子、动其它货架顺序、「锐化」泛搜索 `luftentfeuchter`(沙箱看不到 amazon.de 结果,改坏比不改糟)、统一配件搜索词(只影响归因,是翻炒)、动退出弹层(28 天 165 展示 / 8 点击 / 76 关闭,拆留都缺证据)、为 GB/AU 各 1 次 .de 点击写切换。
+
+
+## 季节日历自动化 + Heizstrahler 扩到已排名页 + BTU 短页与本站数字对齐(2026-09-24,owner:「eco站点学习更多同类型网站成功经验，监控Google trends做好品类扩展与网站自动化」;全文 `docs/season-calendar-2026-09-24.md`)
+
+- **季节性现在自己每月刷新**:`eco-trends.yml` 每天调用 `fetch_seasonality.py --if-older-than 28`(不满 28 天一秒退出,无新 cron,失败次日重试,排在 rising 之后;≈5 分钟/月)。新增两件自动化才需要的东西:**按锚点重标定**(系数写进 `anchor_factors`;之前能共用刻度,是因为 heizlüfter 2022 秋那一周恰好是每批的最高点,2027 秋它移出窗口)与**逐词保留上次好值**(`carried_from`)。`tools/test_seasonality.py` 17 条离线断言先跑,把重标定改成恒等变换会变红。**手跑 `--market` / `--countries` 仍是手动的。**
+- **选季节品类先读日历**:`data/autopilot/demand-digest.md` 的 getecoback 节有「季节日历」:峰值月在 42 天内开始的词 × 德语页标题覆盖 × 状态。已下的结论放 `data/season-verdicts.json`(只存指针,换结论要有新证据);**状态为「未覆盖 · 待过三门」的才是候选**。已知假象:`zugluft` / `fenster abdichten` 显示「已覆盖」,但覆盖它们的是夏季空调页。
+- **新页仍不被 Bing 抓**:09-17/18 发布的 15 张页 bingbot 0 张(09-10→14 那批是 38/46)。09-22 降噪后已有 6 张页第一次被抓,方向对但没结。~~在 `eco-new-page-discovery-1020` 结算前,新品类扩到已排名页上,不建新页。~~ **同日撤回**(owner「站点应该持续扩展」):新页照建,一天一页走扩展队列,发现面由首页 `EB_NEWEST` 块承担,见文件顶部「当前生效的扩展规则」。
+- **Heizstrahler**(峰值 19,9、11 月,标题覆盖 0,没有测评所以不点名型号)→ `heizluefter-stromverbrauch` 新增一节:每 kWh 一样贵,省钱只能靠瓦数;四种场景怎么选;它做不到的事;安全只指向说明书、电工和 BBK。判定 `eco-heizstrahler-onpage-1125`。
+- **`wie-viel-btu-brauche-ich` 此前和本站自己的数字打架**(350–400 BTU/m²、+10 % 日照、35 m²+ 推 Monoblock),现在与计算器和数据集一致(340、+20 %、2,6 m 以上 ×1,15、约 13.500 BTU 以上改用分体机),328 → 715 词。判定 `eco-btu-reconcile-0715`,在制冷季用占比读。**任何写 BTU 数字的页都以 `site/sizing-data.json` 和 btu-rechner 的系数为准。**
+- **部署后内容断言会撞边缘缓存**(run 231 红):部署后 15 s 内,边缘可能还用旧版回答(`cf-cache-status: HIT`)。新页面的内容断言因此读到旧版,而几秒后线上已经是新内容。`check()` 以前只在非 200 时重试,现在内容缺失时每 10 s 重试一次、最多 3 次,约 30 s 后仍缺才判红;中途从旧版变成新版会打一条 `::notice::`。**新增内容断言照旧写,不要为了它去改缓存头。**同一次还暴露:部署后检查一红,IndexNow 那步就被跳过,而下一次 push 的 diff 里已经没有这些页(run 232 submit=0)。现在 IndexNow 只要部署本身成功就会跑;漏掉的两页由 eco-health 周一的 7 天补推(09-28)接住。
+- **别做**:为「学更多同类站」再抓一批竞品(09-22 已比过六家,沙箱对多数同行 403);在新页能被抓之前按日历建新页;因为词义假覆盖去改日历匹配器。
+
+## 持续扩展:队列、首页发现面、第一批三页(2026-09-24,owner:「站点应该持续扩展」;全文 `docs/continuous-expansion-2026-09-24.md`)
+
+- **规则在文件顶部「当前生效的扩展规则」**,这里只记这一轮做了什么、量到了什么。
+- **为什么撤回上午那条「不建新页」**:它把「值不值得建」和「能不能被发现」绑在了一起。D1 读数:首页 14 天被 bingbot 抓 25 次(12 天有),分类枢纽各 2–3 次,09-17/18 新页 0/15;而首页此前**没有一条 `<a href>` 指向 09-15 之后的任何一页**(`EB_POPLIVE` 的标题表只在 JS 里)。所以修发现面,扩展不停。
+- **建了**:`data/expansion-queue.json` + 闸门 `check_expansion_queue.py`(7 个自检用例)+ demand-digest 里的队列节;首页 `EB_NEWEST`(最新 12 张,h1 作链接文字,原地替换);`DE-QUEUE` Trends 篮子挂在 `eco-trends.yml` 的月度步骤上。三张新页:`beheizter-waeschestaender`(207 g / 73 %)、`infrarotheizung-thermostat`(4,8 kWh / 1,44 €、四种调节方式)、`fenster-beschlagen-aussen`(露点表,零商店链接)。否掉六个(entlüften、richtig heizen、zugluft、wärmeunterbett、luftentfeuchter reinigen、ölradiator,全是红海),都写进了队列。
+- **建完才测到的**:加热晾衣架在德国的每一种写法都不到普通「wäscheständer」的 0,5 %(英国 heated airer 是 15,5)——**这一页是照英国读数选的**。页面保留,不再建第二张,不做德语梯。外侧结露页在峰值月(10 月)上线。hygrometer 项改为「luftfeuchtigkeit messen」(1,0,与 infrarotheizung thermostat 同量级;kalibrieren 0,3)。**规矩:队列项建之前先有 DE-QUEUE 读数。**
+- **顺手修的**:`device_of` 把「waeschestaender」归到除湿族;`CAT_OF` 补两个 luftqualitaet slug;季节日历的读法说明与 heizstrahler 裁定里的「新页等 10-20」一并改掉。
+- **验证**:21 道闸门 + 队列闸门全绿;390 px 四页单 h1、零横滚、零错误、amazon 链接全带 tag;外侧页 0 条 amazon 链接;两个计算器默认值 207 g / 3,5 °C,各发恰 1 条 `taupunkt_check`;首页块 12 条链接。
+- **判定线**:`eco-expansion-batch1-1122`(三页 10-26→11-22;前提 bingbot 抓过 ≥2 页)、`eco-newest-block-1008`(处理组 9 页 vs 对照组 19 页,≥5/9 且高 ≥30 个百分点;块会轮换,按在块天数读)。`eco-new-page-discovery-1020` 的读数里已注明 09-24 起有第二个干预。
+
+## 营收:第一条不靠商品成交的 Amazon 收入 + 第四季度日历(2026-09-24,owner:「eco如何突破商业营收？设计方案并上线」;全文 `docs/revenue-q4-deal-calendar-2026-09-24.md`)
+
+- **钱线读数**:PartnerNet 8 月 €0,085/点击 → **01.–14.09. €0,03/点击**(€1,61 / 56 点击,两件)。点击没怎么少,**每次点击的钱掉到三分之一**:9 月读者还在读过季的空调页,研究不下单。这一站全部收入都绑在「读者这周正好要买」上。
+- **上线的**:`EB_DEALS` 活动横幅(`tools/build_deals.py` + `data/deal-calendar.json` + 闸门 `check_deals.py`)。只在 Amazon 已公告的活动窗内出现(Prime Deal Days 2026 = 10-06/07,aboutamazon.de;横幅 09-29 起,由每日 03:17 UTC 定时部署自动开关),首页 + 144 张有货架的德语页,只对 DE/AT 时区显示,默认 `hidden`。内容:日期、按货架族一句本站已有的话、§ 11 PAngV 的 30 天最低价、以及**只在 Prime 专属活动时**出现的 Prime 试用链接(`amazon.de/primegratistesten?tag=getecoback-21`,PartnerNet:**3 EUR 每个试用**;按 9 月费率 ≈ 100 次商品点击)。事件 `bounty_click`。
+- **读数纪律(全站适用)**:点试用链接时页面追踪器也会记一条 `affiliate_click`(link_url 含 `primegratistesten`)。**以后读商品点击,一律剔 `link_url LIKE '%primegratistesten%'`。** 横幅里不链 aboutamazon.de:含「amazon.」,同样会被记成联盟点击。
+- **Black Friday**:日历里有(11-27),但 `announced: false`。Amazon 公告周日期后,由每日任务按 aboutamazon.de 原文填进 `deal-calendar.json`(日期、原话、URL、`show_from` 最多提前 14 天),每日摘要的「Deal-Kalender」行会提醒。非 Prime 活动不带试用链接。
+- **PA-API 已停用**(Amazon 弃用说明:调用回 403;第三方汇总 2026-05-15 下线)。09-12 的价格引擎调的就是它;手册里「owner 申请 PA-API 三步」已作废。接替的 Creators API 支持德国,门槛是**近 30 天 ≥10 笔合格成交**。**「价格 / Deals 层」的前提改读成「先卖到 30 天 10 单」**,不要再列成 owner 待办。
+- **别做**:常年挂 Prime 试用、推 Audible/Music/Kids+/Prime Video 试用(同样 3 EUR,与本站读者无关)、替 Amazon 预测活动日期、横幅里放价格或商品链接、为非 Amazon 联盟写代码(09-05:只请示)。
+- **判定线**:`eco-prime-bounty-1027`(PartnerNet 10 月 ≥1 笔 Prime 试用 Prämie;`bounty_click` ≥5 而 0 笔 → 撤试用链接只留日期和 § 11;<5 或没有截图 → insufficient)。`fleet-bounty-line-0929` 已结算为执行。
+
+## 阳台储能爆发:红利在存量,不在再卖一台(2026-09-24,owner:「欧洲阳台储能爆发有什么机会点」;全文 `docs/balcony-storage-opportunities-2026-09-24.md`)
+
+- **事实**:德国在运行插电光伏约 133 万台(2026-05,MaStR 汇总);2024 年随插电光伏装的电池 22,2 万台(+97 %,EUPD × Anker,**厂商共同发布**);2025 年阳台储能占家用储能台数 30,6 %,品牌份额 **Anker ~55 %**、Growatt 12 %、Marstek 10,3 %、EcoFlow 5,6 %(pv magazine 2026-06-26,基于 MaStR)。回本之争:厂商研究「4 年」假设 **0,58 €/kWh**,HTW Berlin 计算器 **10 年以上**。DIN VDE V 0126-95 不涵盖储能,储能部分「预计 2026」(二手)。荷兰净计量 2027-01-01 一次性取消(Rijksoverheid)。
+- **第一方**:90 天里储能板块只有 `growatt-noah-2000-probleme` 有人来(41 pv、35 搜索、3 点击,其中 2 次点的是本机),其余 11 张合计 <30 pv。Growatt 只占 12 %,**Anker 的存量约是它的 4,6 倍而 eco 没有 Anker 问题页**。DE-QUEUE:anker solarbank 9,7(4 月峰,9 月 5,8)、marstek venus 3,2、zendure solarflow 3,1。
+- **已做**:`anker-solarbank-probleme`、`marstek-venus-probleme` 进扩展队列最前(SERP 判定可写:论坛 + 店铺博客 + 厂商支持页),每日任务按队列一天一张;三个品牌词进 DE-QUEUE 月度篮子。**设备相关说法只取厂商支持页,论坛错误码不当事实。**
+- **下一步(不是现在)**:1–2 月在 `balkonspeicher-rechner` 加「0,58 € vs 你的电价」假设对照表(优化槽,不建「lohnt sich」新页);VDE 储能规范原文发布后按原文写。
+- **别做**:EcoFlow、自营转售、「电网低价充电套利」内容(规范未发布)、价格追踪(无接口)、储能子站、「mit Speicher anmelden」页(厂商博客占屏)。荷兰与品牌直营联盟要 owner 先开门(amazon.nl 账号 / 破「只走 Amazon」)。

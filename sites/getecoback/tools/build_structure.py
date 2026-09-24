@@ -55,6 +55,8 @@ CAT_OF = {
     "luftentfeuchter-ratgeber": "luftqualitaet",
     "wohnmobil-feuchtigkeit-winter": "luftqualitaet",
     "fenster-beschlagen-innen": "luftqualitaet",
+    "fenster-beschlagen-aussen": "luftqualitaet",
+    "beheizter-waeschestaender": "luftqualitaet",
     "richtig-lueften-im-winter": "luftqualitaet",
     "schimmel-am-fenster": "luftqualitaet",
     "luftreiniger-ratgeber": "luftqualitaet",
@@ -972,7 +974,12 @@ def device_of(slug):
             # CONTEXT_MODELS, and the dehumidifier quick-pick router is blocked
             # by keyword in inject_quickpick — a reader whose air is too DRY
             # must never be routed to a dehumidifier picker.
-            or "luftbefeuchter" in s):
+            or "luftbefeuchter" in s
+            # Heated drying rack (2026-09-24). The page's whole argument is where
+            # the laundry's water goes, so it is a humidity page; without this the
+            # slug (no humidity token) falls through to "ac" — the sixth misfile
+            # this default would have produced. Its shelf is set in CONTEXT_MODELS.
+            or "waeschestaender" in s):
         return "dehum"
     if "luftreiniger" in s:
         return "purifier"
@@ -1034,7 +1041,11 @@ SKIP_MODELS = {"btu-rechner", "stromkosten-rechner", "infrarotheizung-watt-rechn
                # The honest product answer here is a CO alarm and warm bedding,
                # not a balcony battery — the page's whole argument is that the
                # battery does not do what buyers think.
-               "stromausfall-heizen"}
+               "stromausfall-heizen",
+               # Outside condensation on well-insulated glass (2026-09-24) is a
+               # good sign with nothing to buy; the humidity family would put a
+               # dehumidifier shelf on a page whose answer is "wait an hour".
+               "fenster-beschlagen-aussen"}
 # EN qm twins were briefly in SKIP_MODELS on 2026-08-28 (DEVICE_MODELS_EN had
 # no heater set, and models_block falls back to AC cards). Same day the EN
 # dehum/heater card sets were added, so the injectors now serve these pages
@@ -1398,6 +1409,30 @@ CONTEXT_MODELS = {
    ("Verdunster mit Hygrostat", "Staubfrei gebaut", "Gibt Dampf ab, keinen Nebel — der Kalk bleibt in der Matte. Matten sind Verschleißteil.", "Preis vor Ort prüfen", "luftbefeuchter+verdunster+hygrostat", "dehum"),
    ("Hygrometer (innen, Min/Max)", "Erst messen", "Über 50 % im Altbau ist schon die Zone, in der die kalte Wand zum Problem wird — ein Befeuchter ohne Zielwert läuft blind.", "ab 10 €", "hygrometer+innen+min+max", "dehum"),
  ],
+ # Diagnosis-first shelves for the three troubleshooting pages of 2026-09-17/18
+ # (affiliate-click audit 2026-09-23). Until today these pages inherited the
+ # dehumidifier/heater default and offered a reader whose unit misbehaves two
+ # new units — the exact pattern growatt-noah-2000-probleme replaced on
+ # 2026-08-28. That page's pre-registered line (28 d ≥2 clicks) read 3 clicks on
+ # 31 views by 09-23, one of them the meter via the sticky bar, which follows
+ # the page's FIRST Amazon link — so the order here is the mobile CTA too.
+ # Every sentence below restates the page's own text; nothing is added.
+ "luftentfeuchter-zieht-kein-wasser": [
+   ("Hygrometer (innen, Min/Max)", "Erst messen", "Ein echter Defekt setzt über 65 % gemessene Luftfeuchte voraus — im 40-m³-Raum bei 18 °C stecken zwischen 60 % und 50 % nur 61 Gramm Wasser.", "ab 10 €", "hygrometer+innen+min+max", "dehum"),
+   ("Adsorptions-Luftentfeuchter", "Für den kalten Raum", "Ursache 1 auf dieser Seite: Der Raum ist für ein Kompressorgerät zu kalt — für kalte Räume ist die andere Bauart gemacht.", "Preis vor Ort prüfen", "adsorptions+luftentfeuchter", "dehum"),
+   ("Ablaufschlauch (Luftentfeuchter)", "Ursache 5 ausschließen", "Liegt der Schlauch zu hoch oder hat einen Knick, greift die Schwimmerabschaltung — ein kurzer Schlauch mit Gefälle, nicht ein neues Gerät.", "Preis vor Ort prüfen", "luftentfeuchter+ablaufschlauch", "dehum"),
+ ],
+ "heizluefter-schaltet-sich-aus": [
+   ("Energiemessgerät (Steckdose)", "Erst messen", "Zeigt die echte Aufnahme: 2.000 W sind 8,7 A — mit Wasserkocher oder zweitem Heizlüfter ist der 16-A-Kreis voll. Die Rechnung von oben, am eigenen Gerät.", "€ · ca. 10–20 €", "energiekostenmessger%C3%A4t+steckdose", "battery"),
+   # Only ONE replacement card. The reader's heater almost always has a small
+   # stage already (the page's table: 1.000–1.200 W = 4,3–5,2 A), so a second
+   # "buy a 1,000 W heater" card would sell them what they own.
+   ("Schmidbauer Hybrid Pro 600 W", "Wenn tauschen statt reparieren", "600 W sind 2,6 A — bleibt auch neben Wasserkocher oder Staubsauger unter 16 A. Nicht selbst getestet, Preis vor Ort prüfen.", "Preis vor Ort prüfen", "Schmidbauer+Hybrid+Pro+600+W+Infrarotheizung", "heater"),
+ ],
+ "luftentfeuchter-stinkt": [
+   ("Weiche Lamellenbürste", "Für das Register", "Losen Staub in Lamellenrichtung abnehmen, ohne die dünnen Bleche zu verbiegen — die Quelle, wenn es beim Einschalten riecht.", "Preis vor Ort prüfen", "lamellenb%C3%BCrste+weich", "dehum"),
+   ("Ablaufschlauch (Luftentfeuchter)", "Dauerhaft trocken", "Fast jedes Kompressorgerät hat den Anschluss — dann steht kein Wasser mehr im Gerät, und der Tank-Geruch hat keine Grundlage.", "Preis vor Ort prüfen", "luftentfeuchter+ablaufschlauch", "dehum"),
+ ],
  # The balcony-PV mounting page: its products are the mounts themselves, not
  # the battery family the storage default would show. Category cards matching
  # the page's three mounting routes.
@@ -1405,6 +1440,18 @@ CONTEXT_MODELS = {
    ("Gitterbalkon-Halterung", "Stab- & Gittergeländer", "Haken/Klemmen um die Querstreben — rückstandsfrei, in Minuten montiert. Streben-Abstand vorher messen.", "ab ca. 30 €", "balkonkraftwerk+halterung+gitterbalkon", "battery"),
    ("Klemmhalterung Betonbrüstung", "Massive Brüstung", "Umgreift die Mauerkrone mit Gegenplatte — klemmt statt dübelt. Auf Gummiauflagen achten.", "ab ca. 40 €", "balkonkraftwerk+halterung+beton+ohne+bohren", "battery"),
    ("Ballast-Aufständerung", "Boden & Flachdach", "Frei neigbar für den besten Ertrag — hält über Gewicht statt über das Geländer.", "ab ca. 35 €", "solarmodul+aufstaenderung+ballast", "battery"),
+ ],
+ # Expansion queue batch 1 (2026-09-24). Both shelves are what each page's own
+ # text tells the reader to do, in the page's order — no new selection judgement.
+ "beheizter-waeschestaender": [
+   ("Beheizter Wäscheständer mit Timer", "Mit Abschaltung", "Die Stäbe wärmen die Wäsche direkt — der Timer verhindert, dass er vergessen den ganzen Tag läuft.", "Preis vor Ort prüfen", "beheizter+w%C3%A4schest%C3%A4nder+timer", "shade"),
+   ("Luftentfeuchter fürs Wäschetrocknen", "Nimmt das Wasser aus der Luft", "Der Ständer bringt das Wasser in den Raum, der Entfeuchter holt es wieder heraus — sonst landet es an Fenster und Wand.", "Preis vor Ort prüfen", "luftentfeuchter+w%C3%A4schetrocknen", "dehum"),
+   ("Hygrometer", "Erst messen", "Zeigt, ob der Raum die Wäsche verkraftet — über 60 % Luftfeuchte wird es an kalten Wänden kritisch.", "Preis vor Ort prüfen", "hygrometer+innen", "purifier"),
+ ],
+ "infrarotheizung-thermostat": [
+   ("Steckdosenthermostat", "Ohne Installation", "Zwischen Steckdose und Panel — Belastbarkeit auf dem Typenschild mit der Leistung des Panels vergleichen.", "Preis vor Ort prüfen", "steckdosenthermostat+infrarotheizung", "heater"),
+   ("Funk-Thermostat mit Empfänger", "Fühler frei platzieren", "Misst dort, wo du sitzt, statt auf Fußleistenhöhe — bei manchen Systemen für mehrere Panels.", "Preis vor Ort prüfen", "funkthermostat+infrarotheizung", "heater"),
+   ("Energiekostenmessgerät", "Erst messen", "Zeigt die kWh eines Abends — die einzige Zahl, die dir sagt, was das Thermostat wirklich spart.", "Preis vor Ort prüfen", "energiekostenmessger%C3%A4t+steckdose", "purifier"),
  ],
  "fenster-beschlagen-innen": [
    ("Hygrometer (innen, Min/Max)", "Erst messen", "Zeigt, ob die Luftfeuchte wirklich über 60 % liegt — ohne Messung ist jede Maßnahme geraten.", "ab 10 €", "hygrometer+innen+min+max", "dehum"),
@@ -1485,8 +1532,18 @@ CONTEXT_SUB = {
                                    "Nicht selbst getestet. Symbolbilder."),
  "luftbefeuchter-weisser-staub": ("Die drei Abhilfen von oben, in derselben Reihenfolge — anderes Wasser, andere Bauart, erst messen. "
                                   "Nicht selbst getestet. Symbolbilder."),
+ "luftentfeuchter-zieht-kein-wasser": ("Erst messen, dann die Bauart, dann der Ablauf — ein neues Gerät steht hier absichtlich "
+                                       "nicht vorn. Nicht selbst getestet. Symbolbilder."),
+ "heizluefter-schaltet-sich-aus": ("In der Reihenfolge der Seite: erst messen, dann die kleine Stufe am eigenen Gerät, erst "
+                                   "dann ein anderes Gerät. Nicht selbst getestet. Symbolbilder."),
+ "luftentfeuchter-stinkt": ("Reinigen statt ersetzen: Bürste fürs Register, Ablaufschlauch gegen stehendes Wasser — was nie "
+                            "in den Tank gehört, steht oben. Nicht selbst getestet. Symbolbilder."),
  "balkonkraftwerk-ohne-bohren": ("Nach Balkontyp sortiert — alle drei kommen ohne Bohrung aus. Windlast-Freigabe "
                                  "des Herstellers beachten. Nicht selbst montiert. Symbolbilder."),
+ "beheizter-waeschestaender": ("In der Reihenfolge der Seite: trocknen, das Wasser wieder aus der Luft holen, "
+                               "messen. Nicht selbst getestet. Symbolbilder."),
+ "infrarotheizung-thermostat": ("Die zwei Bauarten, die ohne Installation gehen, und das Messgerät, das zeigt, was "
+                                "sie sparen. Nicht selbst getestet. Symbolbilder."),
  "fenster-beschlagen-innen": ("Erst die Luftfeuchte messen, dann senken — beschlagene Scheiben sind ein "
                               "Feuchte-Symptom, kein Fensterproblem. Nicht selbst getestet. Symbolbilder."),
  "strom-sparen-haushalt": ("Erst messen, dann kaufen — diese drei kosten zusammen weniger als eine Monatsrechnung "
@@ -2248,7 +2305,7 @@ POPUP_SKIP = {"impressum", "datenschutz", "kontakt", "radar-bestaetigt",
               "desiccant-vs-compressor-dehumidifier",
               "heated-airer-vs-dehumidifier",
               "rising-damp-penetrating-damp-or-condensation",
-              "stromausfall-heizen"}
+              "stromausfall-heizen", "fenster-beschlagen-aussen"}
 
 
 def inject_popup(html, slug, en=False):
@@ -2385,6 +2442,57 @@ def inject_poplive(html):
         return re.sub(r'<!--EB_POPLIVE-->.*?<!--/EB_POPLIVE-->\n?', lambda m: blk, html, flags=re.S)
     if "<!--/EB_POPULAR-->" in html:
         return html.replace("<!--/EB_POPULAR-->", "<!--/EB_POPULAR-->" + blk, 1)
+    return html
+
+
+# "Neu im Ratgeber" (2026-09-24). The homepage is the one page bingbot fetches
+# almost daily (25 fetches on 12 of 14 days, 09-10→09-23), while the category
+# hubs get 2-3 fetches a fortnight. Until now the homepage reached new guides only
+# through the EB_POPLIVE JSON title map — a string in a <script>, not a link —
+# and 15 of the guides published 09-17/18 had not been fetched by bingbot once.
+# A static list of real <a href> from the daily-crawled page is the cheapest
+# crawl path there is. Deterministic: newest datePublished first, slug as the
+# tie-break, so the block only changes when a new guide is published.
+NEWEST_N = 12
+
+
+def newest_guides(n=NEWEST_N):
+    rows = []
+    for path in glob.glob(os.path.join(GUIDE, "*.html")):
+        page = open(path, encoding="utf-8").read()
+        m = re.search(r'"datePublished"\s*:\s*"(\d{4}-\d{2}-\d{2})"', page)
+        if not m:
+            continue
+        slug = os.path.basename(path)[:-5]
+        rows.append((m.group(1), slug, h1(page) or slug))
+    rows.sort(key=lambda r: (r[0], r[1]), reverse=True)
+    return rows[:n]
+
+
+def newest_block(rows):
+    # h1() returns the heading's inner HTML with entities intact — used as-is,
+    # never escaped again (the &amp;amp; bug the category cards had until 09-17).
+    lis = "".join(
+        f'<li style="margin:6px 0;"><a href="/guide/{slug}.html" style="color:#0f6ba8;font-weight:700;'
+        f'text-decoration:none;">{title}</a> <span style="color:#5b6b78;font-size:13px;">· '
+        f'{d[8:10]}.{d[5:7]}.{d[:4]}</span></li>' for d, slug, title in rows)
+    return ('<!--EB_NEWEST--><section id="eb-newest" style="border-top:1px solid #eef2f5;">'
+            '<div style="max-width:1000px;margin:0 auto;padding:26px 20px;">'
+            '<h2 style="margin:0 0 4px;">Neu im Ratgeber</h2>'
+            '<p style="margin:0 0 10px;color:#5b6b78;font-size:14px;">Die zuletzt veröffentlichten Ratgeber, '
+            'neueste zuerst.</p>'
+            f'<ul style="list-style:none;padding:0;margin:0;">{lis}</ul></div></section><!--/EB_NEWEST-->\n')
+
+
+def inject_newest(html):
+    """Idempotently list the newest guides on the homepage as real links."""
+    blk = newest_block(newest_guides())
+    if "<!--EB_NEWEST-->" in html:
+        return re.sub(r'<!--EB_NEWEST-->.*?<!--/EB_NEWEST-->\n?', lambda m: blk, html, flags=re.S)
+    # After the popular block's trailing newline, so inject_poplive's own
+    # "\n?" keeps matching and a second run is byte-identical.
+    if "<!--/EB_POPLIVE-->\n" in html:
+        return html.replace("<!--/EB_POPLIVE-->\n", "<!--/EB_POPLIVE-->\n" + blk, 1)
     return html
 
 
@@ -2606,7 +2714,7 @@ def quickpick_box(device, slug, en=False):
 # line for line from /guide/btu-rechner.html, and the two inputs left out here are
 # fixed at that calculator's own defaults (standard ceiling, two people, no open
 # kitchen), so the homepage and the full calculator never disagree.
-HOME_TOOL = '''<!--EB_HOMETOOL--><section style="background:#fff;border-bottom:1px solid #e4ebf0;">
+HOME_TOOL = '''<!--EB_HOMETOOL--><section id="eb-hometool" style="background:#fff;border-bottom:1px solid #e4ebf0;">
 <div style="max-width:960px;margin:0 auto;padding:26px 20px;">
 <div style="background:#f7fafc;border:1px solid #cfe0ea;border-radius:14px;padding:20px 22px;">
 <strong style="font-size:19px;display:block;margin-bottom:3px;">Welche Kühlleistung braucht dein Raum?</strong>
@@ -2660,6 +2768,9 @@ function calc(){
     '<p id="eb-ht-sub-msg" style="margin:7px 0 0;font-size:13px;"></p></div>'+
     '<p style="margin:10px 0 0;font-size:12px;color:#5b6b78;">Richtwert nach 340 BTU/m². Modelle nicht selbst getestet — Auswahl nach öffentlichen Tests, Links sind Affiliate-Links.</p>';
   r.style.display="block";
+  // Same as the guide sizer: the result button names its surface (2026-09-22).
+  var az=r.querySelector('a[rel~="sponsored"]');
+  if(az)az.addEventListener("click",function(){if(window.gtag)gtag("event","affiliate_click",{source:"home-tool",link_url:az.href});});
   var link=location.origin+"/?qm="+qm+"&sun="+sun;
   var pl=document.getElementById("eb-ht-perma");
   if(pl)pl.innerHTML='Ergebnis zum Wiederfinden: <a href="'+link+'" style="color:#0f6ba8;">'+link+'</a>';
@@ -4339,7 +4450,11 @@ def sizer_block(en=False, prefill=20):
     t = SIZER_TXT[en]
     opts = "".join(f'<option value="{v}"{" selected" if v == "1" else ""}>{lbl}</option>'
                    for v, lbl in t["opts"])
-    full = "/en/guide/how-many-btu-do-i-need.html" if en else "/guide/btu-rechner.html"
+    # The "add ceiling, people, kitchen" button must land on the page that has
+    # those inputs. Until 2026-09-22 the EN sizer sent readers to
+    # how-many-btu-do-i-need, an explainer with no calculator at all; the EN
+    # page with the five inputs is btu-calculator (its DE twin is btu-rechner).
+    full = "/en/guide/btu-calculator.html" if en else "/guide/btu-rechner.html"
     loc = "en-GB" if en else "de-DE"
     b0, b1, b2, b3 = [x[1] for x in t["bands"]]
     # "ca." is German; the EN panel had been printing it since the sizer shipped.
@@ -4348,7 +4463,12 @@ def sizer_block(en=False, prefill=20):
     BIGCTA_HTML = (f'<a href="{_bc[0]}" style="background:#0f6ba8;color:#fff;font-weight:800;'
                    f'padding:9px 15px;border-radius:8px;text-decoration:none;font-size:13.5px;">'
                    f'{_bc[1]}</a>') if _bc else ""
-    return ('<!--EB_SIZER--><section style="max-width:1000px;margin:18px auto 0;padding:0 20px;">'
+    # id="eb-sizer": the tracking layer names the click surface by ancestor, and
+    # until 2026-09-22 the result band's Amazon button was indistinguishable from
+    # an in-text link ("body"). 21 sizer sessions in 56 days had zero affiliate
+    # clicks on the same page the same day; from now on that reads as
+    # affiliate_click{source:"sizer"} = 0 instead of having to be inferred.
+    return ('<!--EB_SIZER--><section id="eb-sizer" style="max-width:1000px;margin:18px auto 0;padding:0 20px;">'
             '<div style="background:#f7fafc;border:1px solid #cfe0ea;border-radius:12px;padding:16px 18px;">'
             f'<strong style="font-size:16.5px;display:block;margin-bottom:2px;">{t["h"]}</strong>'
             f'<p style="margin:0 0 12px;color:#5b6b78;font-size:13.5px;">{t["sub"]}</p>'
@@ -4428,6 +4548,16 @@ def sizer_block(en=False, prefill=20):
             '+\'<p style="margin:9px 0 0;font-size:11.5px;color:#5b6b78;">\'+' + repr(t["note"]) + '+\'</p>\''
             '+\'<p style="margin:5px 0 0;font-size:11.5px;color:#5b6b78;">\'+' + repr(t["mcp"]) + '+\'</p>\';'
             'r.style.display="block";'
+            # The result's Amazon button names its own click surface, the way the
+            # toppick strip does (the tracking layer's fallback stands down for
+            # 500 ms after any reported affiliate_click, so this is one row, not
+            # two). Before 2026-09-22 this click fell through to "body" and the
+            # calc→click funnel could only be inferred from timestamps: 21 sizer
+            # sessions in 56 days, zero clicks on the same page the same day.
+            # Done here rather than in the tracking layer so the change touches
+            # the 65 sizer pages, not every page on the site.
+            'var az=r.querySelector(\'a[rel~="sponsored"]\');'
+            'if(az)az.addEventListener("click",function(){if(window.gtag)gtag("event","affiliate_click",{source:"sizer",link_url:az.href});});'
             # Telemetry only for a calculation the reader asked for. The block
             # renders one on load so the answer is simply there, and counting
             # that as a "tool use" would turn every page view into a fake one.
@@ -4451,6 +4581,15 @@ def sizer_block(en=False, prefill=20):
 # a second one competes for the same attention instead of adding an answer.
 SIZER_SKIP = {"btu-rechner", "btu-calculator", "wie-viel-btu-fuer-wie-viel-qm"}
 
+# Pages that get the sizer although they are in SKIP_MODELS. SKIP_MODELS keeps
+# product cards off explainer pages, and the sizer inherited that. But the BTU
+# explainer is the site's largest search entry for the BTU question (56 days to
+# 2026-09-22: 25 human views, 20 of them from search — more than the calculator
+# page itself gets), and it answered "what does BTU mean" without ever letting
+# the reader compute their own number. The one tool on this site people use is
+# the one that sits on the page where the question is asked.
+SIZER_FORCE = {"was-bedeutet-btu"}
+
 
 def inject_sizer(html, slug, en=False):
     """Idempotently put the room-sizing tool right above the model grid on
@@ -4459,8 +4598,9 @@ def inject_sizer(html, slug, en=False):
     # the seal/hose tools are injected later in the same pass, so a marker test
     # would answer differently on the first and second run.
     own_tool = (SEALFIT_PAGES_EN | HOSEFIT_PAGES_EN) if en else (SEALFIT_PAGES_DE | HOSEFIT_PAGES_DE)
-    eligible = (device_of(slug) == "ac" and slug not in SKIP_MODELS and slug not in SIZER_SKIP
-                and slug not in CONTEXT_MODELS and slug not in own_tool)
+    eligible = slug in SIZER_FORCE or (
+        device_of(slug) == "ac" and slug not in SKIP_MODELS and slug not in SIZER_SKIP
+        and slug not in CONTEXT_MODELS and slug not in own_tool)
     if not eligible:
         return re.sub(r'<!--EB_SIZER-->.*?<!--/EB_SIZER-->\n?', '', html, flags=re.S)
     m = re.search(r'-(\d{1,3})-qm$', slug)
@@ -4515,6 +4655,7 @@ def main():
             new = inject_home_tiles(new)
             new = inject_home_storage(new)
             new = inject_poplive(new)
+            new = inject_newest(new)
         # Transaction layer + compact opt-in only on guide pages (where SEO
         # traffic lands), not on the homepage, legal pages, or /hitze-radar.html.
         if os.path.dirname(path) == GUIDE:

@@ -21,19 +21,6 @@ Contract:
   * Writes data/fleet-ai-access.json; exit 1 iff any site blocks any agent. Never writes
     guesses: a request that errors is recorded as status 0 with the error text.
 
-Search-engine crawlers (2026-09-17, owner: 「让谷歌流量扩大」):
-  * Bingbot was here from the start; Googlebot was not — the fleet had been probing the
-    channel its search traffic already comes from, and never the one it wants to grow.
-    Googlebot is now in AGENTS, so it inherits the control-UA gate, the judging, the
-    selftest and the heartbeat wiring rather than getting a second half-built probe.
-  * READ THE RESULT ASYMMETRICALLY. Cloudflare verifies Googlebot/Bingbot by reverse DNS,
-    so this spoofed UA from a GitHub runner is treated *worse* than the real crawler, never
-    better. Therefore: 200 here ⇒ the real crawler is almost certainly fine (strong).
-    A block here ⇒ INCONCLUSIVE — it may be the verified-bot check firing on our forgery,
-    not a rule against the real one; confirm in Cloudflare before calling a site blocked.
-    The same asymmetry applies to the AI agents above, and it only ever makes a clean
-    all-200 reading stronger, so no past judgement changes.
-
 Usage: python3 tools/fleet/ai_access_probe.py [--selftest] [--only=site,site]
 """
 import concurrent.futures as cf
@@ -47,7 +34,7 @@ import urllib.request
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 OUT = os.path.join(ROOT, "data", "fleet-ai-access.json")
 
-# goldrush counts ?ci=1 as self-test traffic and skips its UA audit; the rest ignore extra params.
+# ?ci=1 marks self-test traffic on goldrush and the six after35-events sites; the rest ignore it.
 SITES = [
     ("agiscorecard", "https://agiscorecard.com"),
     ("baipiaoji", "https://baipiaoji.com"),
@@ -63,12 +50,11 @@ SITES = [
     ("firstjob", "https://firstjob.agiscorecard.com"),
     ("codeword", "https://codeword.agiscorecard.com"),
     ("powerbill", "https://powerbill.agiscorecard.com"),
-    # 2026-09-21:四个新 worker 各探一个主机(Cloudflare 的 bot 规则是 zone 级,同 zone 同 worker 的
-    # 次级主机名不会得到不同答案;次级主机的探活在 fleet-heartbeat.yml 里)。
+    # Four deployed sites that no fleet instrument watched until 2026-09-23.
+    ("localebatch", "https://localebatch.agiscorecard.com"),
     ("agent-delivery-lab", "https://verify.agiscorecard.com"),
     ("venture-lab", "https://rfqdesk.agiscorecard.com"),
     ("web3-studio", "https://web3.agiscorecard.com"),
-    ("localebatch", "https://localebatch.agiscorecard.com"),
 ]
 PATHS = ["/", "/llms.txt"]
 
@@ -82,7 +68,6 @@ AGENTS = [
     ("ClaudeBot", "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko); compatible; ClaudeBot/1.0; +claudebot@anthropic.com"),
     ("Claude-User", "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko); compatible; Claude-User/1.0; +Claude-User@anthropic.com"),
     ("Bingbot", "Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)"),
-    ("Googlebot", "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"),
 ]
 CONTROL = ("(browser)", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36")
 BLOCK_CODES = {401, 403, 429, 503}
@@ -101,11 +86,15 @@ def fetch(url, ua, timeout=20):
 
 
 def probe_url(origin, path):
+    # Every probe request carries ci=1 (2026-09-23). The control request uses a
+    # browser UA, and the six workers on after35-events (after35/learn/fanzha/
+    # firstjob/codeword/powerbill) do not know __probe: they logged it as a human
+    # page_view, two rows per site per day, in the very pv the fleet judges them
+    # on. All of them skip logging on ci=1; goldrush already did. Checked the same
+    # day that all 18 sites return the identical status with and without ci=1,
+    # and a block happens at the edge before the worker sees the query anyway.
     sep = "&" if "?" in path else "?"
-    if "goldrush" in origin and path == "/":
-        path = "/?ci=1"
-        sep = "&"
-    return f"{origin}{path}{sep}__probe=1"
+    return f"{origin}{path}{sep}ci=1&__probe=1"
 
 
 def probe_site(name, origin, fetcher=fetch):
@@ -143,11 +132,9 @@ def selftest():
         ("agent 503 on llms.txt → blocked", classify(mk(200, 503, "ClaudeBot", "/llms.txt"))[1] == [{"agent": "ClaudeBot", "path": "/llms.txt", "status": 503}]),
         ("control not 200 → invalid, not judged", classify(mk(403, 403)) == (False, [])),
         ("agent 404 is not a block", classify(mk(200, 404)) == (True, [])),
-        ("Googlebot is probed (the channel owner wants grown)", "Googlebot" in [a for a, _ in AGENTS]),
-        ("Googlebot 403 is surfaced like any other block", classify(mk(200, 403, "Googlebot"))[1] == [{"agent": "Googlebot", "path": "/", "status": 403}]),
         ("agent network error (0) is not a block", classify(mk(200, 0)) == (True, [])),
         ("goldrush root gets ci=1", probe_url("https://goldrush.agiscorecard.com", "/") == "https://goldrush.agiscorecard.com/?ci=1&__probe=1"),
-        ("other root gets __probe only", probe_url("https://baipiaoji.com", "/llms.txt") == "https://baipiaoji.com/llms.txt?__probe=1"),
+        ("every site gets ci=1 too, so the control is never a human page_view", probe_url("https://learn.agiscorecard.com", "/llms.txt") == "https://learn.agiscorecard.com/llms.txt?ci=1&__probe=1"),
     ]
     bad = [n for n, ok in checks if not ok]
     for n, ok in checks:

@@ -138,8 +138,9 @@ def main():
     # sending a German reader to an English guide is a worse experience than no
     # link, and hreflang already handles the language pairing.
     pages = {}
-    for root, _dirs, files in os.walk(SITE):
-        for fn in files:
+    for root, dirs, files in os.walk(SITE):
+        dirs.sort()  # deterministic walk order on every filesystem
+        for fn in sorted(files):
             if not fn.endswith(".html"):
                 continue
             path = os.path.join(root, fn)
@@ -195,7 +196,13 @@ def main():
     # exists so the thinnest pages get at least a couple of lateral paths in
     # instead of depending on the hub alone.
     topped_up = 0
-    for dst in pages:
+    # Sorted, not dict order: this pass mutates `chosen`/`inbound` as it goes,
+    # so the order pages are visited decides who gets topped up into whom.
+    # Dict order here is os.walk order, i.e. directory-listing order, which
+    # differs between filesystems — the CI runner produced a different block on
+    # 37 pages than a local run of the very same code (2026-09-22), and those
+    # 37 pages then showed up as "changed" on every deploy.
+    for dst in sorted(pages):
         while inbound[dst] < MIN_INBOUND:
             # Overlap first; then the topic family, because a page whose slug
             # shares no word with anything (stromausfall-heizen was the case)

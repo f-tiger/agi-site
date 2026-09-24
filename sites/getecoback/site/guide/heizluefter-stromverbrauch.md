@@ -73,6 +73,44 @@ Am Verbrauch pro Stunde kannst du nichts ändern — 2000 Watt bleiben 2000 Watt
 
 Und der einfachste Spartipp von allen: Tür zu. Ein Heizlüfter kämpft gegen jedes offene Türblatt an — je kleiner und geschlossener der Raum, desto kürzer die Laufzeit.
 
+## Heizlüfter oder Heizstrahler?
+
+Wer im Herbst nach einem Heizstrahler sucht, fragt meistens eigentlich: **Ist der Strahler die sparsame Variante des Heizlüfters?** Die ehrliche Antwort hat zwei Hälften.
+
+**Pro Kilowattstunde ist ein Heizstrahler genauso teuer.** Quarz-, Halogen- und Carbonstrahler sind wie der Heizlüfter elektrische Widerstandsheizungen: Aus 1 kWh Strom wird 1 kWh Wärme, nicht mehr. „Sparsam“ ist also auch hier nicht das Gerät, sondern wie viele Watt du wie lange laufen lässt.
+
+**Der Unterschied ist, wohin die Wärme geht.** Der Heizlüfter heizt die Luft. Die warme Luft steigt nach oben und verteilt sich, und warm wird dir erst, wenn der ganze Raum wärmer ist. Ein Heizstrahler strahlt auf das, was vor ihm steht: auf dich, deinen Stuhl, deinen Tisch. Du spürst die Wärme sofort, auch wenn die Raumluft kühl bleibt. Wer an einer Stelle sitzt, kommt deshalb oft mit einer kleinen Stufe aus, und nur daher kommt die Ersparnis.
+
+Gerät / Stufe | Leistung | Kosten pro Stunde (0,40 €/kWh) |
+
+Heizlüfter, volle Stufe | 2.000 W | 0,80 € |
+
+Heizlüfter, halbe Stufe | 1.000 W | 0,40 € |
+
+Heizstrahler, Rechenbeispiel | 1.200 W | 0,48 € |
+
+Heizstrahler, Rechenbeispiel | 800 W | 0,32 € |
+
+Heizstrahler, Rechenbeispiel | 400 W | 0,16 € |
+
+Die Strahler-Zeilen sind Rechenbeispiele, keine Marktübersicht: Die Leistung deines Geräts steht auf dem Typenschild. Gerechnet wird wie oben, Watt ÷ 1.000 × Stunden × Strompreis. Mit 0,30 €/kWh sind es jeweils drei Viertel der Beträge.
+
+**Welches Gerät wofür:**
+
+- **Schreibtisch, Sofa, eine Person an einer Stelle:** Strahler (oder ein [Infrarot-Panel](https://getecoback.com/guide/infrarotheizung-ratgeber.html)), auf dich gerichtet, kleine Stufe. Hier spart die geringere Wattzahl wirklich.
+
+- **Kleines, geschlossenes Bad vor dem Duschen:** Heizlüfter. Er macht in wenigen Minuten die Luft im ganzen kleinen Raum warm, und genau das willst du, wenn du nass aus der Dusche kommst. Ein Strahler an der Badwand ist eine feste Installation, siehe Sicherheit unten.
+
+- **Werkstatt, Garage, zugige Räume:** Strahler. Warme Luft zieht dort ab, Strahlung trifft dich trotzdem. Mehr dazu im [Ratgeber für Garage und Werkstatt](https://getecoback.com/guide/infrarotheizung-garage.html).
+
+- **Einen ganzen Raum den Winter über heizen:** keins von beiden. Dafür sind die Alternativen unten da.
+
+**Was ein Strahler nicht kann.** Er wärmt nur, was er „sieht“: Die abgewandte Seite bleibt kalt, und wenn du aufstehst, ist die Wärme weg. Er heizt auch keine kalten Außenwände. Gegen Kondenswasser und Schimmel hilft ein auf dich gerichteter Strahler deshalb nicht; warum es dort auf die Wandtemperatur ankommt, steht im Ratgeber [Infrarotheizung gegen Schimmel](https://getecoback.com/guide/infrarotheizung-gegen-schimmel.html). Und viele Quarz-, Halogen- und Carbonstrahler glühen sichtbar, was im Schlafzimmer oder vor dem Fernseher stören kann.
+
+**Sicherheit.** Die Front eines Strahlers wird heiß. Die Mindestabstände zu Vorhängen, Möbeln und Textilien stehen in der Anleitung; halte dich an die, nicht an eine Faustregel aus dem Netz, und deck das Gerät nie ab. Bei einem Standgerät lohnt ein Blick darauf, ob es beim Umkippen abschaltet. Ein Strahler an der Wand im Bad gehört von einer Elektrofachkraft montiert und angeschlossen, die Schutzart nennt der Hersteller. Terrassenstrahler sind für draußen gebaut und nicht Thema dieser Seite. Für gasbetriebene Heizquellen in Innenräumen verlangt das BBK Sauerstoffmangel- und Zündsicherung und empfiehlt einen Kohlenmonoxid-Warnmelder; die Quelle steht im Ratgeber [Heizen bei Stromausfall](https://getecoback.com/guide/stromausfall-heizen.html). Ein Gas-Terrassenstrahler ist dafür nicht gebaut. Das ist keine Elektroberatung.
+
+Anzeige · Affiliate-Link, für dich derselbe PreisWenn der Strahler für deinen Platz passt: Heizstrahler für innen mit mehreren Stufen auf Amazon.de ansehen → Achte auf eine kleine Stufe und eine Abschaltung beim Umkippen. Wir haben keinen Strahler selbst getestet und nennen deshalb kein Modell.
+
 ## Alternativen: Infrarotheizung und Wärmepumpe
 
 Sobald du regelmäßig länger als zwei bis drei Stunden am Tag im selben Raum zuheizt, lohnt der Blick auf Alternativen:
@@ -90,6 +128,8 @@ Sobald du regelmäßig länger als zwei bis drei Stunden am Tag im selben Raum z
 **Ist ein Heizlüfter günstiger als eine Infrarotheizung?**Pro Kilowattstunde nicht — beide sind elektrische Widerstandsheizungen, aus 1 kWh Strom wird immer genau 1 kWh Wärme. Infrarot-Panels haben aber meist eine geringere Wattzahl (300–1000 Watt) und wärmen gezielt Flächen und Personen, was bei längerem Einsatz im selben Raum oft angenehmer und in Summe günstiger ist. Der Heizlüfter punktet vor allem bei der Geschwindigkeit.
 
 **Lohnt sich ein Heizlüfter als Dauerheizung?**Nein. Als reine Widerstandsheizung ist er die teuerste Art zu heizen — ein ganzer Raum über den Winter kostet schnell mehrere Hundert Euro. Für viele Stunden am Tag ist eine Wärmepumpe oder eine Klimaanlage mit Heizfunktion pro Kilowattstunde Wärme rund drei- bis viermal günstiger.
+
+**Ist ein Heizstrahler sparsamer als ein Heizlüfter?**Pro Kilowattstunde nicht — beide machen aus 1 kWh Strom genau 1 kWh Wärme. Sparen kann der Strahler nur über die Wattzahl: Er wärmt dich direkt statt der Raumluft, deshalb reicht an einem festen Platz oft eine kleine Stufe. 800 Watt kosten bei 0,40 €/kWh 0,32 € pro Stunde, ein Heizlüfter auf voller Stufe 0,80 €. Einen ganzen Raum über viele Stunden heizt keins von beiden günstig.
 
 **Kurz und gezielt heizen? Ein Modell mit Thermostat regelt sich selbst ab und spart real Laufzeit.**
 

@@ -37,6 +37,8 @@ for (const p of pages) {
   // 相对链接——70,421 条里只看了 4 条，broken=0 是没看，不是没坏。
   for (const m of html.matchAll(/\s(?:href|src)="([^"]+)"/g)) {
     const h = m[1].replace(/^https:\/\/baipiaoji\.com(?=\/|$)/, '') || '/';
+    // 会员页由 tools/member-studio/build.mjs 在同一条部署流水线里、本门之后写进 dist（它自己的 verify.mjs 检查那些路由）。
+    if (/^\/(?:en\/)?members(?:\?|$)/.test(h)) continue;
     if (h.startsWith('/') && !exists(h)) { console.log('BROKEN', p, m[1]); broken++; }
   }
   for (const m of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
@@ -116,6 +118,9 @@ let staleCount = 0;
     if (existsSync(join(root, f))) files.push(join(root, f));
   }
   for (const p of files) {
+    // /agents/ 页面引用第三方（官方 MCP 注册表）发布者自己的描述原文——「exposes 187 tools」「1102tools.com」都是
+    // 他们的话不是本站的规模声明；本站在 agents 面自己的文案一律说「records / 条记录」，由 test-agent-watch --dist 守。
+    if (/(?:^|\/)agents\//.test(p)) continue;
     const txt = readFileSync(p, 'utf8');
     for (const m of txt.matchAll(RE)) {
       const n = Number(m[1]);

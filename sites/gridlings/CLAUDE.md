@@ -302,6 +302,9 @@ Star Battle 的**区域根本没有被勾出来**。共享网格样式 `gap:6px`
 `ref LIKE '%itch.zone%'` 的 `play_start` 累计 **≥150** 且 `solve` **≥25**,
 才继续投入游戏线;否则游戏降为「只维护、不新增」,人力全部回到 eco/bpj 的变现线。
 判定当天把结果写进 analytics-notes.md,不管方向如何。
+**✗ 结算(2026-09-24,判负)**:D1 `ev` 表 `ref LIKE '%itch.zone%'`:`play_start` 累计 **52**、`solve` **13**
+(最后一次 solve 在 08-27)——两项都不到阈值的三分之一。按上面原文执行:**游戏线只维护、不新增**,
+人力回 eco/bpj 变现线。(本站没有 analytics-notes.md,结论写在这里与 `data/fleet-bets.json`。)
 
 **本次已做的唯一改动(证据驱动,不是口味)**:胜利画面加「下一题:<某款> →」+
 「全部 11 款 →」,并给此前完全没有埋点的 `.gamesnav` 补上 `hub_click` 信标。
@@ -1170,3 +1173,17 @@ cg-package-smoke，别靠肉眼。
 - **判定线 `gridlings-rules-zh-1022`**(已进台账):上线后 28 天 10 张 zh 规则页 human pv ≥20 → 把 `/ai-games` 与
   `/nonogram-no-guessing` 也做 zh 版并在 zh.html 加入口;<10 停止 zh 扩张;10–19 insufficient 再看 28 天。
   阈值故意高于按比例的 ~14,免得 t0 附近就自我满足。**上线日 = PR #2 合并日,不是今天。**
+
+## 判定线结算 2026-09-22(D1 现查;全文见根仓 `docs/fork-ledger-pricing-2026-09-22.md` §六)
+
+- **`gridlings-rules-cluster-0921` → won(52 ≥ 50,边际 4%)**:十张规则页 28 天真人 pv 52(6x6 5 · binary 5 · futoshiki 6 ·
+  games-like-linkedin-queens 7 · kropki 3 · nonogram 4 · sandwich 6 · skyscraper 5 · star-battle 6 · thermometer 5)。
+  10 行来自 play.agiscorecard.com 站内导航,其余无 referrer 但分散在数小时内(不是秒级扫描)。**搜索/AI 引荐 0。**
+  异常值:`/star-battle-rules` 28 天 bot 抓取 89 次(其余页 6–10),下次维护看一眼 ua_audit。
+  win 分支「追加 zh 版与更多查询」**记为下一个扩张槽候选、本日未铺**:阈值另一半(Bing/GSC 前 20)只有 owner 能读,
+  零搜索引荐的 won 不该直接长出第二批页。
+- **`gridlings-playgama-traffic-0922`**:① 非 US `play_start` **155 ≥150**(全部落在 09-15 14:54 → 09-19 18:41,之后 0;
+  投放 run `spentRatio` 0.148,09-22 14:53 UTC 结束)。② 等 owner 投放结束后的 VISITS / PLAYS 60S 截图(旧包那版;
+  09-16 那张 17 小时读数 13/49 = 26,5%)。保持 open,09-29 前结算。
+- 未到期只记:`gridlings-itch-0924` itch play_start 58 / solve 13(阈值 150 / 25);`gridlings-playgama-five-0925`
+  五款全部 REJECTED(09-15),0/5,另有 TOWERS DRAFT。

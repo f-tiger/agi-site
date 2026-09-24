@@ -13,6 +13,8 @@ function tab(id) {
 document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{tab(t.dataset.tab);history.replaceState(null,'','#'+active);}));
 window.addEventListener('hashchange',()=>tab(location.hash.slice(1)));
 tab(ids.includes(location.hash.slice(1))?location.hash.slice(1):'energy');
+// Tools audit 2026-09-22: one beacon per intentional run; probes never count.
+function ev(n,m){try{if(new URLSearchParams(location.search).has('__probe'))return;if(window.ebSend)return window.ebSend(n,m);navigator.sendBeacon('/api/ev',new Blob([JSON.stringify({n:n,p:location.pathname,r:document.referrer,m:m||null})],{type:'text/plain'}));}catch(e){}}
 function value(id) {return $(id).value;}
 function output(id, text) {const el=$(id);el.className='output';el.style.whiteSpace='pre-line';el.setAttribute('role','status');el.textContent=text;report=text;}
 function persist(ids) {try {localStorage.setItem('eb_pro_tools_v2',JSON.stringify(Object.fromEntries(ids.map(id=>[id,value(id)]))));} catch (_) {}}
@@ -27,12 +29,12 @@ $('energyRun').addEventListener('click',()=>{
   if(![bill,cost,pct,years].every(Number.isFinite)||bill<=0||cost<=0||pct<0||pct>100||![5,10,15].includes(years)) return;
   const annual=bill*12*pct/100;
   const scenarios=[Math.max(0,pct-10),pct,Math.min(100,pct+10)];
-  output('energyOut',`${value('eType')} · ${value('eRegion')} (Beschriftung, keine Regionaldaten)\nJährliche Einsparung: ${money(annual)}\nEinfache Amortisation: ${annual?(cost/annual).toFixed(1)+' Jahre':'nicht erreichbar bei 0 % Einsparung'}\nSaldo nach ${years} Jahren: ${money(annual*years-cost)}\n\nSensitivität (Annahme ±10 Prozentpunkte):\n${scenarios.map(p=>`${p} %: ${p?(cost/(bill*12*p/100)).toFixed(1)+' Jahre':'keine Amortisation'}`).join('\n')}\n\nFormel: Monatskosten × 12 × Reduktion / 100. Keine Förderung, Zinsen, Wartung oder Alterung. Nächster Schritt: Verbrauch und Einsparungsannahme mit vergleichbaren Angeboten prüfen.`);
+  ev('pro_tool_run',{tool:'energy'});output('energyOut',`${value('eType')} · ${value('eRegion')} (Beschriftung, keine Regionaldaten)\nJährliche Einsparung: ${money(annual)}\nEinfache Amortisation: ${annual?(cost/annual).toFixed(1)+' Jahre':'nicht erreichbar bei 0 % Einsparung'}\nSaldo nach ${years} Jahren: ${money(annual*years-cost)}\n\nSensitivität (Annahme ±10 Prozentpunkte):\n${scenarios.map(p=>`${p} %: ${p?(cost/(bill*12*p/100)).toFixed(1)+' Jahre':'keine Amortisation'}`).join('\n')}\n\nFormel: Monatskosten × 12 × Reduktion / 100. Keine Förderung, Zinsen, Wartung oder Alterung. Nächster Schritt: Verbrauch und Einsparungsannahme mit vergleichbaren Angeboten prüfen.`);
   persist(fields);
 });
 $('tenderRun').addEventListener('click',()=>{
   const keyword=value('tKey').trim();if(!keyword){$('tKey').focus();return;}
-  output('tenderOut',`Suchprofil, keine Trefferliste\nFähigkeit: ${keyword}\nRegion: ${value('tRegion')}\nGewünschte Frist: höchstens ${value('tDays')} Tage\nUnternehmensprofil: ${value('tSize')}\nSME-Präferenz: ${value('tSet')}\nMindestwert: ${money(+value('tValue')*1000)}\n\nIm Originalportal prüfen: genaue Leistungsbeschreibung, CPV/NAICS, Frist mit Zeitzone, Währung, Mindestumsatz, Referenzen und Ausschlussgründe. Diese Angaben werden hier nicht automatisch gefiltert oder verifiziert.`);
+  ev('pro_tool_run',{tool:'tender'});output('tenderOut',`Suchprofil, keine Trefferliste\nFähigkeit: ${keyword}\nRegion: ${value('tRegion')}\nGewünschte Frist: höchstens ${value('tDays')} Tage\nUnternehmensprofil: ${value('tSize')}\nSME-Präferenz: ${value('tSet')}\nMindestwert: ${money(+value('tValue')*1000)}\n\nIm Originalportal prüfen: genaue Leistungsbeschreibung, CPV/NAICS, Frist mit Zeitzone, Währung, Mindestumsatz, Referenzen und Ausschlussgründe. Diese Angaben werden hier nicht automatisch gefiltert oder verifiziert.`);
   const portals={EU:['TED','https://ted.europa.eu/'],USA:['SAM.gov','https://sam.gov/content/opportunities'],UK:['Find a Tender','https://www.find-tender.service.gov.uk/']};
   const regions=value('tRegion')==='Alle'?Object.keys(portals):[value('tRegion')];
   regions.forEach(r=>{const a=document.createElement('a');a.href=portals[r][1];a.textContent='\n'+portals[r][0]+' öffnen →';$('tenderOut').appendChild(a);});persist(fields);
@@ -43,7 +45,7 @@ documents.forEach((name,i)=>{const label=document.createElement('label');const i
 $('complianceRun').before(group);
 $('complianceRun').addEventListener('click',()=>{
   const lines=documents.map((name,i)=>`${$('evidence'+i).checked?'Laut Eingabe vorhanden (ungeprüft)':'Noch zu klären'}: ${name}`);
-  output('complianceOut',`Dokumentenliste · ${value('cType')}\nHerkunft: ${value('cOrigin')} · Vertrieb: ${value('cSales')}\nDatenstand (Selbstauskunft): ${value('cData')}\n\n${lines.join('\n')}\n\nKeine Rechtsrisiko-Punktzahl. Keine automatische Prüfung von Dokumenten oder Vorschriften. Nächster Schritt: Produkt und Zolltarifnummer genau bestimmen; Quellen, Versionsstand und Zuständigkeit dokumentieren.`);persist(fields);
+  ev('pro_tool_run',{tool:'compliance'});output('complianceOut',`Dokumentenliste · ${value('cType')}\nHerkunft: ${value('cOrigin')} · Vertrieb: ${value('cSales')}\nDatenstand (Selbstauskunft): ${value('cData')}\n\n${lines.join('\n')}\n\nKeine Rechtsrisiko-Punktzahl. Keine automatische Prüfung von Dokumenten oder Vorschriften. Nächster Schritt: Produkt und Zolltarifnummer genau bestimmen; Quellen, Versionsstand und Zuständigkeit dokumentieren.`);persist(fields);
 });
 $('exportResult').addEventListener('click',()=>{
   if(!report){$('shareStatus').textContent='Bitte zuerst ein Ergebnis erstellen.';return;}

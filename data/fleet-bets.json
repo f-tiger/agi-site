@@ -1,6 +1,6 @@
 {
  "note": "舰队赌注台账:每条预登记判定线一行;status open→won/lost/insufficient/withdrawn 时必须写 settled(日期)与 reading(读数)。tools/fleet/check_bets.py 在 heartbeat 里断言:到期 3 天内提醒,过期 >7 天未结算即红。新增判定线不进这里 = heartbeat 看不见 = 等于没预登记。",
- "updated": "2026-09-21",
+ "updated": "2026-09-24",
  "bets": [
   {
    "id": "fleet-ai-access-0916",
@@ -67,7 +67,8 @@
    "source": "sites/gridlings/CLAUDE.md:178",
    "status": "won",
    "settled": "2026-09-21",
-   "reading": "D1 gridlings-events 现查(2026-09-21,28d 窗,name='page_view' AND ua_class='human'):10 张规则页合计 52 pv(games-like-linkedin-queens 7、star-battle 6、sandwich-sudoku 6、futoshiki 6、thermometer 5、skyscraper 5、binary 5、6x6-sudoku 5、nonogram 4、kropki 3;各页 first_day 08-27,最新 09-19)。ua_audit 同窗查无 fleet/heartbeat/audit/python UA 的行,会话探针未计入。阈值 ≥50,读数 52 —— 赢得很薄(+2),且是服务端 human 口径(09-12 起收紧)。Bing/GSC 前 20 那半句本会话读不到。win 动作「追加 zh 版与更多查询」= 台账里第一条可长出扩张槽的 won 行;本轮未动 gridlings,留给下一次 gridlings 会话。"
+   "reading": "D1 gridlings-events 现查(2026-09-21,28d 窗,name='page_view' AND ua_class='human'):10 张规则页合计 52 pv(games-like-linkedin-queens 7、star-battle 6、sandwich-sudoku 6、futoshiki 6、thermometer 5、skyscraper 5、binary 5、6x6-sudoku 5、nonogram 4、kropki 3;各页 first_day 08-27,最新 09-19)。ua_audit 同窗查无 fleet/heartbeat/audit/python UA 的行,会话探针未计入。阈值 ≥50,读数 52 —— 赢得很薄(+2),且是服务端 human 口径(09-12 起收紧)。Bing/GSC 前 20 那半句本会话读不到。win 动作「追加 zh 版与更多查询」= 台账里第一条可长出扩张槽的 won 行;本轮未动 gridlings,留给下一次 gridlings 会话。",
+   "reading_2026-09-22": "2026-09-22 D1 现查(ev 表,ua_class='human',28 天 08-25→09-22):十张规则页真人 pv 合计 52(≥50,边际 4%):6x6 5 · binary 5 · futoshiki 6 · games-like-linkedin-queens 7 · kropki 3 · nonogram 4 · sandwich 6 · skyscraper 5 · star-battle 6 · thermometer 5。来源:10 行经 play.agiscorecard.com 站内导航,其余无 referrer 但分散在数小时内(SG 09-14 六页跨 4,4 小时、FR 09-02 七页跨 76 分钟),不是秒级扫描形状。搜索/AI 引荐 0。阈值另一半(Bing/GSC 前 20)只有 owner 能读。异常值:/star-battle-rules 28 天 bot 抓取 89 次(其余页 6–10)。win 分支「追加 zh 版与更多查询」记为下一个扩张槽候选,09-22 未铺:零搜索引荐的 won 不该直接长出第二批页,先等 owner 的 Bing/GSC 那一半。"
   },
   {
    "id": "gridlings-itch-0924",
@@ -78,8 +79,11 @@
    "win": "继续投入游戏线",
    "lose": "游戏降为只维护;人力回 eco/bpj 变现线",
    "source": "sites/gridlings/CLAUDE.md:301",
-   "status": "open",
-   "reading_2026-09-22": "预读(到期前 2 天,不结算):D1 gridlings-events ref LIKE '%itch.zone%' 累计 play_start **45**(首日 08-24,最近 09-19,只有 6 个有事件日)、solve **13**(全部落在 08-24→08-27);28d 窗 33 / 12。阈值 ≥150 / ≥25,两项都差数倍,且 solve 自 08-27 起 0 —— 09-24 按规则结算,读数不会翻转。"
+   "status": "lost",
+   "reading_2026-09-22": "D1:ref LIKE '%itch.zone%' 的 play_start 累计 58 / solve 13(阈值 150 / 25)。未到期,不结算。",
+   "settled": "2026-09-24",
+   "reading": "D1 gridlings ev(无 ua 过滤,与 09-22 同口径):ref LIKE '%itch.zone%' 的 play_start 累计 52(08-24→09-23,09-22 后 +7)/ solve 13(最后一次 08-27)。阈值 150 / 25,两项都不到三分之一;solve 已 4 周为 0。09-22 记的 58 与今天 52 对不上,原因未查明,两者都远低于线,不影响结论。按原文:游戏降为只维护、不新增,人力回 eco/bpj 变现线。",
+   "reading_2026-09-22_pr2": "预读(到期前 2 天,不结算):D1 gridlings-events ref LIKE '%itch.zone%' 累计 play_start **45**(首日 08-24,最近 09-19,只有 6 个有事件日)、solve **13**(全部落在 08-24→08-27);28d 窗 33 / 12。阈值 ≥150 / ≥25,两项都差数倍,且 solve 自 08-27 起 0 —— 09-24 按规则结算,读数不会翻转。"
   },
   {
    "id": "eco-kuehlt-nicht-0925",
@@ -90,7 +94,8 @@
    "win": "诊断优先模式可移植",
    "lose": "问题页一律不再投商品面",
    "source": "sites/getecoback/CLAUDE.md:539",
-   "status": "open"
+   "status": "open",
+   "reading_2026-09-23": "08-28→09-23 该页真人 pv 0、affiliate_click 0。窗口内没有读者,09-25 应记 insufficient 而非 lose(0 点击是没人来,不是没人买);对照 growatt 同型页 31 pv / 3 点击。"
   },
   {
    "id": "eco-named-model-cards-0925",
@@ -101,7 +106,8 @@
    "win": "具名>泛标签 推广到 purifier/fan",
    "lose": "是流量不是卡片,停止在型号上投入",
    "source": "sites/getecoback/CLAUDE.md:731",
-   "status": "open"
+   "status": "open",
+   "reading_2026-09-23": "08-28→09-23 具名冬季卡点击 5:Schmidbauer ISP T 700 ×2、Hybrid Pro 600 ×2、Midea NTH20 ×1;MeacoDry 20L/25L 0。介于 4 与 8 之间,原文两个分支都不触发 → 09-25 记 insufficient,顺延 10-25(供暖季开场)。"
   },
   {
    "id": "eco-rv-cluster-0925",
@@ -112,7 +118,8 @@
    "win": "补第二页",
    "lose": "停止扩房车簇,不试第三次",
    "source": "sites/getecoback/CLAUDE.md:686",
-   "status": "open"
+   "status": "open",
+   "reading_2026-09-23": "08-28→09-23 该页 pv 1、点击 0、不在 TOP20 → 09-25 结算 lose(房车流量不迁移到潮湿意图)。"
   },
   {
    "id": "eco-tenant-winter-0925",
@@ -123,7 +130,8 @@
    "win": "补第二页",
    "lose": "租客流量不随季节迁移到取暖意图",
    "source": "sites/getecoback/CLAUDE.md:593",
-   "status": "open"
+   "status": "open",
+   "reading_2026-09-23": "08-28→09-23 该页 pv 0、点击 0 → 09-25 结算 lose(与 09-04「快反 6 页全史 0」一致)。"
   },
   {
    "id": "eco-us-market-0925",
@@ -134,7 +142,8 @@
    "win": "北美桥成立,配真实美国型号",
    "lose": "撤块;EN 区就是给 EU-English 读者的",
    "source": "sites/getecoback/CLAUDE.md:368",
-   "status": "open"
+   "status": "open",
+   "reading_2026-09-23": "08-28→09-23 us-market / us-shelf / us-toppick 合计 1(09-07 france 页 → amazon.com Midea Duo)。阈值 ≥5 → 09-25 按原文撤块;货架整块换国籍另有 eco-us-shelf-1015,不连坐。"
   },
   {
    "id": "bpj-tool-gate-0926",
@@ -145,7 +154,8 @@
    "win": "门保留",
    "lose": "注册 0 且 calc 跌 >80% → 报 owner 建议软门",
    "source": "sites/baipiaoji/CLAUDE.md:74",
-   "status": "open"
+   "status": "open",
+   "instrument_note_2026-09-22": "⚠ 2026-09-22 仪器修正：该事件名自 09-04「未知事件名改为丢弃」上线起从未进 hit.js 白名单，边缘静默丢弃，此前读到的 0 是丢包不是行为；本次部署起才有读数，窗口从部署日重新起算。"
   },
   {
    "id": "bpj-site-search-0927",
@@ -167,7 +177,8 @@
    "win": "板块保留并扩路子",
    "lose": "0 且 pv ≥50 → 拆墙;pv <50 → 先补发现层",
    "source": "sites/baipiaoji/CLAUDE.md:105",
-   "status": "open"
+   "status": "open",
+   "instrument_note_2026-09-22": "⚠ 2026-09-22 仪器修正：该事件名自 09-04「未知事件名改为丢弃」上线起从未进 hit.js 白名单，边缘静默丢弃，此前读到的 0 是丢包不是行为；本次部署起才有读数，窗口从部署日重新起算。"
   },
   {
    "id": "eco-dp-share-0928",
@@ -179,7 +190,8 @@
    "lose": "<5% → 回去重诊断,别重复同一动作",
    "source": "sites/getecoback/CLAUDE.md:1586",
    "status": "open",
-   "reading_20260915": "提前读数(D1 现查,28d,ua_class='human'):55 次 affiliate_click 里 /dp/ 6 次 = 10,9%(t0 ~1%)。已远离 <5% 的判负线但未到 ≥15%;amazon.de 53 / amazon.com 1。09-28 按原口径结算。"
+   "reading_20260915": "提前读数(D1 现查,28d,ua_class='human'):55 次 affiliate_click 里 /dp/ 6 次 = 10,9%(t0 ~1%)。已远离 <5% 的判负线但未到 ≥15%;amazon.de 53 / amazon.com 1。09-28 按原口径结算。",
+   "reading_2026-09-23": "08-31→09-23 /dp/ 9 / 62 带 link_url 的点击 = 14,5 %(t0 ~1 %)。同窗 EX105 搜索链 10 次 = 16 %:它一条就压着这条线,ASIN 仍等 owner 3 分钟核验(自 08-28 起)。"
   },
   {
    "id": "eco-feuchte-now-0928",
@@ -190,7 +202,8 @@
    "win": "取暖簇做冬季版",
    "lose": "渲染够点击 ≤2 → 活数字不驱动购买,撤块",
    "source": "sites/getecoback/CLAUDE.md:1464",
-   "status": "open"
+   "status": "open",
+   "reading_2026-09-23": "08-31→09-23 feuchte_now 渲染 22(阈值 50)、湿度簇点击 5(基线 5)。渲染不够 → 09-28 记 insufficient(不是「点击不够」),顺延 10-28。"
   },
   {
    "id": "eco-split-cluster-0928",
@@ -201,7 +214,8 @@
    "win": "补第二个高客单簇",
    "lose": "≤2 → 该价位在本站受众不成立,停止",
    "source": "sites/getecoback/CLAUDE.md:1512",
-   "status": "open"
+   "status": "open",
+   "reading_2026-09-23": "08-31→09-23 split 簇三页点击 1(基线 4、阈值 6、≤2 判负)→ 09-28 按原文 lose:这个价位在本站受众里不成立。"
   },
   {
    "id": "sr-sourcing-margins-0928",
@@ -223,7 +237,9 @@
    "win": "加行并预登记 +28d 判定线",
    "lose": "—",
    "source": "CLAUDE.md:营收突破线 #3",
-   "status": "open"
+   "status": "won",
+   "settled": "2026-09-24",
+   "reading": "已执行:EB_DEALS(tools/build_deals.py + data/deal-calendar.json + 闸门 check_deals.py)随 2026-09-24 部署上线,按日期门控在 09-29 由每日 03:17 UTC 定时部署自动出现、10-08 自动撤下——与预登记的 09-29 起一致,且晚于 09-25/09-28 的判定线。形态比预登记收窄:不是常驻一行,只在 Prime 专属活动(Prime Deal Days 10-06/07,aboutamazon.de)前 7 天到结束出现,只对 DE/AT 时区显示,链接 amazon.de/primegratistesten?tag=getecoback-21(PartnerNet:3 EUR 每个 Prime 试用)。+28d 线 = eco-prime-bounty-1027。"
   },
   {
    "id": "bpj-owner-action-0930",
@@ -256,7 +272,8 @@
    "win": "问题→答案路由推广到热搜命中",
    "lose": "0 → 栏是装饰,拆",
    "source": "sites/getecoback/CLAUDE.md:1384",
-   "status": "open"
+   "status": "open",
+   "reading_2026-09-23": "09-05→09-23 rising_guide 0、首页栏 Amazon chip 来源点击 0(28 天 79 次点击里无 rising 来源)。未到期,不结算。"
   },
   {
    "id": "gridlings-ai-games-hub-1004",
@@ -290,7 +307,8 @@
    "lose": "<30% → 去查而不是删",
    "source": "sites/getecoback/CLAUDE.md:1300",
    "status": "open",
-   "reading_20260915": "提前读数(D1,28d):US 国家 affiliate_click 仅 4 次,其中 amazon.com 1 次 = 25%。样本太小,到期按原口径读,别用这 4 次下结论。"
+   "reading_20260915": "提前读数(D1,28d):US 国家 affiliate_click 仅 4 次,其中 amazon.com 1 次 = 25%。样本太小,到期按原口径读,别用这 4 次下结论。",
+   "reading_2026-09-23": "08-26→09-23 US 国家点击 2:1 amazon.com(us-market)/ 1 amazon.de(italy 页 EX105,属 US_SWAP_NEVER 设计)。n=2 不判。"
   },
   {
    "id": "gridlings-bn-baseline-1005",
@@ -334,7 +352,8 @@
    "win": "按需求重选货架推广到 fan/purifier/shade",
    "lose": "记反面发现,不再重复",
    "source": "sites/getecoback/CLAUDE.md:1061",
-   "status": "open"
+   "status": "open",
+   "reading_2026-09-23": "09-11→09-23 heizlüfter 300 watt 0、MeacoDry 20L/25L 0(dehum 页的点击落在泛搜索 luftentfeuchter ×2 与 keller+ablaufschlauch ×1)。未到期。"
   },
   {
    "id": "fleet-opportunity-engine-1011",
@@ -367,7 +386,8 @@
    "win": "「按国家换货」成立 → 推广到 6 个通用 toppick 页,再评估第二个国家",
    "lose": "us-shelf=0 而美国 pv ≥80 → 先查 /api/geo 是否被调用/隐藏逻辑误伤,不得归因为「美国人不买」;美国 pv <50 → 样本不足,顺延 11-15",
    "source": "sites/getecoback/CLAUDE.md:1040",
-   "status": "open"
+   "status": "open",
+   "reading_2026-09-23": "09-15→09-23 source:us-shelf 0、us-toppick 0;US 国家点击 1(.de)。未到期,n 太小。"
   },
   {
    "id": "fleet-market-board-1019",
@@ -534,7 +554,8 @@
    "win": "解耦成立",
    "lose": "「解耦」判负,回到把 eco 做厚",
    "source": "CLAUDE.md:营收突破线 判定线",
-   "status": "open"
+   "status": "open",
+   "reading_2026-09-24": "eco PartnerNet 最新一期 01.–14.09.:€1,61 / 56 点击 = €0,03/点击(8 月 €0,085)。9 月读者多在读过季的空调页,点击不再带来成交。第一条不依赖商品成交的 Amazon 收入线(Prime 试用 Prämie,3 EUR/笔)09-29 起随 Prime Deal Days 横幅上线,读数见 eco-prime-bounty-1027。另:PA-API 已停用,价格层改由 Creators API,门槛 30 天 ≥10 笔成交。"
   },
   {
    "id": "agi-paper-ledger-read-2027",
@@ -622,7 +643,8 @@
    "win": "继续每日维护",
    "lose": "卡 <2 张 → 只维护清单 + 路径工具,布告板不撤但不再投入",
    "source": "sites/after35/CLAUDE.md:114(v2 补登同节)",
-   "status": "open"
+   "status": "open",
+   "reading_2026-09-23": "after35 ev 表 28 天:真人 page_view 456、外部来源 0、其它事件 0。"
   },
   {
    "id": "after35-reveal-1214",
@@ -639,12 +661,16 @@
    "id": "learn-pv-tools-1015",
    "site": "learn",
    "due": "2026-10-15",
-   "metric": "lev 真人 page_view/28d 且 tool_result(剔 label='__ci')",
+   "metric": "lev 外部来源真人 page_view(ref 非空且不含 agiscorecard)/28d 且 tool_result(剔 label='__ci')",
    "threshold": "pv ≥100 且 tool_result ≥20",
    "win": "继续每日维护 + 加第二批判定页",
    "lose": "<30 pv → 只做月度维护",
    "source": "sites/learn/CLAUDE.md:35",
-   "status": "open"
+   "status": "open",
+   "metric_original": "lev 真人 page_view/28d 且 tool_result(剔 label='__ci')",
+   "revised": "2026-09-23",
+   "revised_reason": "t0 就满足了:2026-09-23 D1 现查,pv 那一半今天已被字面满足(280 ≥ 阈值),而这 280 行 28 天里外部来源 0、任何其它事件 0;其中每天 2 行是舰队 AI 访问探针的浏览器对照请求(worker 不认 __probe,已于同日改为带 ci=1),其余是无来源的单次访问(US/NL/CA/RO/QA/BE)。按舰队 09-16 规矩「能被 t0 满足的线不是赌注」,到期前改判据:pv 只计 ref 非空且不是本站/本舰队域的 page_view,阈值数字不变。原文保留在 *_original。",
+   "reading_2026-09-23": "lev 真人 page_view 280/28d,其中外部来源 0;工具事件 0。"
   },
   {
    "id": "learn-bing-1215",
@@ -661,12 +687,16 @@
    "id": "fanzha-pv-tools-1015",
    "site": "fanzha",
    "due": "2026-10-15",
-   "metric": "fev 真人 page_view/28d 且 tool_result(剔 label='__ci')",
+   "metric": "fev 外部来源真人 page_view(ref 非空且不含 agiscorecard)/28d 且 tool_result(剔 label='__ci')",
    "threshold": "pv ≥100 且 tool_result ≥20",
    "win": "继续每日维护 + 加第二批判定页",
    "lose": "<30 pv → 降为月度维护",
    "source": "sites/fanzha/CLAUDE.md:46",
-   "status": "open"
+   "status": "open",
+   "metric_original": "fev 真人 page_view/28d 且 tool_result(剔 label='__ci')",
+   "revised": "2026-09-23",
+   "revised_reason": "t0 就满足了:2026-09-23 D1 现查,pv 那一半今天已被字面满足(273 ≥ 阈值),而这 273 行 28 天里外部来源 0、任何其它事件 0;其中每天 2 行是舰队 AI 访问探针的浏览器对照请求(worker 不认 __probe,已于同日改为带 ci=1),其余是无来源的单次访问(US/NL/CA/RO/QA/BE)。按舰队 09-16 规矩「能被 t0 满足的线不是赌注」,到期前改判据:pv 只计 ref 非空且不是本站/本舰队域的 page_view,阈值数字不变。原文保留在 *_original。",
+   "reading_2026-09-23": "fev 真人 page_view 273/28d,其中外部来源 0;工具事件 0。"
   },
   {
    "id": "fanzha-bing-1215",
@@ -683,12 +713,16 @@
    "id": "firstjob-pv-tools-1031",
    "site": "firstjob",
    "due": "2026-10-31",
-   "metric": "jev 真人 page_view/28d 且 tool_result+calc_run(剔 label='__ci')",
+   "metric": "jev 外部来源真人 page_view(ref 非空且不含 agiscorecard)/28d 且 tool_result+calc_run(剔 label='__ci')",
    "threshold": "pv ≥150 且 事件 ≥30(秋招窗口,阈值高于其他新站)",
    "win": "继续维护 + 加第二批判定页",
    "lose": "<40 pv → 降为月度维护",
    "source": "sites/firstjob/CLAUDE.md:51",
-   "status": "open"
+   "status": "open",
+   "metric_original": "jev 真人 page_view/28d 且 tool_result+calc_run(剔 label='__ci')",
+   "revised": "2026-09-23",
+   "revised_reason": "t0 就满足了:2026-09-23 D1 现查,pv 那一半今天已被字面满足(245 ≥ 阈值),而这 245 行 28 天里外部来源 0、任何其它事件 0;其中每天 2 行是舰队 AI 访问探针的浏览器对照请求(worker 不认 __probe,已于同日改为带 ci=1),其余是无来源的单次访问(US/NL/CA/RO/QA/BE)。按舰队 09-16 规矩「能被 t0 满足的线不是赌注」,到期前改判据:pv 只计 ref 非空且不是本站/本舰队域的 page_view,阈值数字不变。原文保留在 *_original。",
+   "reading_2026-09-23": "jev 真人 page_view 245/28d,其中外部来源 0;工具事件 0。"
   },
   {
    "id": "firstjob-bing-1215",
@@ -705,12 +739,16 @@
    "id": "codeword-pv-tools-1115",
    "site": "codeword",
    "due": "2026-11-15",
-   "metric": "cev 真人 page_view/28d 且 tool_result+card_print(剔 label='__ci')",
+   "metric": "cev 外部来源真人 page_view(ref 非空且不含 agiscorecard)/28d 且 tool_result+card_print(剔 label='__ci')",
    "threshold": "pv ≥200 且 事件 ≥40(英文池大,阈值高于中文站)",
    "win": "继续维护 + 加第二批判定页",
    "lose": "<50 pv → 降为月度维护",
    "source": "sites/codeword/CLAUDE.md:51",
-   "status": "open"
+   "status": "open",
+   "metric_original": "cev 真人 page_view/28d 且 tool_result+card_print(剔 label='__ci')",
+   "revised": "2026-09-23",
+   "revised_reason": "t0 就满足了:2026-09-23 D1 现查,pv 那一半今天已被字面满足(383 ≥ 阈值),而这 383 行 28 天里外部来源 0、任何其它事件 0;其中每天 2 行是舰队 AI 访问探针的浏览器对照请求(worker 不认 __probe,已于同日改为带 ci=1),其余是无来源的单次访问(US/NL/CA/RO/QA/BE)。按舰队 09-16 规矩「能被 t0 满足的线不是赌注」,到期前改判据:pv 只计 ref 非空且不是本站/本舰队域的 page_view,阈值数字不变。原文保留在 *_original。",
+   "reading_2026-09-23": "cev 真人 page_view 383/28d,其中外部来源 0;工具事件 0。"
   },
   {
    "id": "codeword-bing-1231",
@@ -727,12 +765,16 @@
    "id": "powerbill-pv-tools-1115",
    "site": "powerbill",
    "due": "2026-11-15",
-   "metric": "pev 真人 page_view/28d 且 calc_run+tool_result(剔 label='__ci')",
+   "metric": "pev 外部来源真人 page_view(ref 非空且不含 agiscorecard)/28d 且 calc_run+tool_result(剔 label='__ci')",
    "threshold": "pv ≥200 且 事件 ≥40",
    "win": "继续维护 + 加第二批判定页",
    "lose": "<50 pv → 降为月度维护",
    "source": "sites/powerbill/CLAUDE.md:43",
-   "status": "open"
+   "status": "open",
+   "metric_original": "pev 真人 page_view/28d 且 calc_run+tool_result(剔 label='__ci')",
+   "revised": "2026-09-23",
+   "revised_reason": "t0 就满足了:2026-09-23 D1 现查,pv 那一半今天已被字面满足(340 ≥ 阈值),而这 340 行 28 天里外部来源 0、任何其它事件 0;其中每天 2 行是舰队 AI 访问探针的浏览器对照请求(worker 不认 __probe,已于同日改为带 ci=1),其余是无来源的单次访问(US/NL/CA/RO/QA/BE)。按舰队 09-16 规矩「能被 t0 满足的线不是赌注」,到期前改判据:pv 只计 ref 非空且不是本站/本舰队域的 page_view,阈值数字不变。原文保留在 *_original。",
+   "reading_2026-09-23": "pev 真人 page_view 340/28d,其中外部来源 0;工具事件 0。"
   },
   {
    "id": "powerbill-bing-1231",
@@ -928,7 +970,9 @@
    "revised": "2026-09-15",
    "revised_reason": "原口径的「二次事件」测的是这些游戏不发的东西:D1 只记 solve/play_again/game_over 这类离散里程碑,而门户玩家在开局与跑完一局之间什么都不触发。owner 后台截图给了正确指标(停留时长):35 visits → 11 玩过 30s → 6 玩过 60s。阈值改为按他们的口径,原文保留在 *_original。",
    "note": "版本冻结:读数属于 09-15 的旧包。09-16 上传了更快的新归档但 owner 决定「先不发」,结算前不得 publish_sandbox,否则样本前后不可比。 ‖ 2026-09-21 预读(到期前一天,不结算):① D1 play_start 非 US、ref LIKE '%games.playgama.net%'、ts≥09-15 14:53 = 155(4 个有事件日 09-15→09-19,09-20/21 无新增),已过 ≥150;② PLAYS 60S ÷ VISITS 仍需 owner 后台截图。 ‖ 2026-09-22:①已达标,等 owner ② 截图结算(见 reading_2026-09-22)。",
-   "reading_2026-09-22": "到期日现查。① D1 gridlings-events(name='play_start',ts≥'2026-09-15 14:53',ref LIKE '%games.playgama.net%',country<>'US')= **155**,阈值 ≥150 已过;全部 167(含 US 12),全 human,按日 09-15 76 / 09-16 87 / 09-17 2 / 09-19 2,09-20 起 0,最后一次 09-19 18:41 UTC。Playgama MCP get_sandbox_traffic(SINGULARITY):run RUNNING,FREE,budget $2,spentRatio 0.168,startsAt 09-15 14:53,endsAt **09-22 14:53 UTC**;即 163/167 开局落在前 48 小时,之后投放几乎停摆,与 7 款主目录申请 09-14/15 全部 REJECTED 同期。② PLAYS 60S ÷ VISITS 仍只有 owner 后台能读:**run 今日 14:53 UTC 结束后截一张 Overview(附日期)即可结算**;09-29 前没有截图则记 insufficient。win 动作里「回投主目录」已被 gridlings-playgama-five-0925(lost,7/7 同模板拒稿)作废 —— 主目录只按 sandbox 表现由平台挑,不接受再提交;剩下的 win 动作只有一条:$20 付费轮作为 owner 决策提出。"
+   "reading_2026-09-22": "① D1:ts>='2026-09-15 14:53' AND ref LIKE '%games.playgama.net%' AND country<>'US' 的 play_start = 155(≥150 达成),跨 4 天,全部落在 09-15 14:54 → 09-19 18:41,09-20 起为 0;Playgama get_sandbox_traffic:run 仍 RUNNING,spentRatio 0.148,endsAt 2026-09-22T14:53Z。② 需 owner 投放结束后的 VISITS / PLAYS 60S 截图(旧包那一版);上一张 owner 截图 09-16(投放 17 小时)是 13/49 = 26,5%。保持 open,09-29 前结算;若届时无新截图,按 ① + 09-16 截图结算并注明截图日期。",
+   "reading_2026-09-23": "Playgama get_sandbox_traffic:run cmu2skueg… FINISHED(09-15 14:53 → 09-22 14:53,spentRatio 0,148)。① 终值 155(投放已结束,不再变;另有 game_over 61、calc_use 40、play_again 8)。② 仍缺 owner 投放后截图;按本线自己的规则 09-29 前结算,届时无新截图即按 ① + 09-16 截图(13/49 = 26,5 %)结算并注明截图日期。",
+   "reading_2026-09-22_pr2": "到期日现查。① D1 gridlings-events(name='play_start',ts≥'2026-09-15 14:53',ref LIKE '%games.playgama.net%',country<>'US')= **155**,阈值 ≥150 已过;全部 167(含 US 12),全 human,按日 09-15 76 / 09-16 87 / 09-17 2 / 09-19 2,09-20 起 0,最后一次 09-19 18:41 UTC。Playgama MCP get_sandbox_traffic(SINGULARITY):run RUNNING,FREE,budget $2,spentRatio 0.168,startsAt 09-15 14:53,endsAt **09-22 14:53 UTC**;即 163/167 开局落在前 48 小时,之后投放几乎停摆,与 7 款主目录申请 09-14/15 全部 REJECTED 同期。② PLAYS 60S ÷ VISITS 仍只有 owner 后台能读:**run 今日 14:53 UTC 结束后截一张 Overview(附日期)即可结算**;09-29 前没有截图则记 insufficient。win 动作里「回投主目录」已被 gridlings-playgama-five-0925(lost,7/7 同模板拒稿)作废 —— 主目录只按 sandbox 表现由平台挑,不接受再提交;剩下的 win 动作只有一条:$20 付费轮作为 owner 决策提出。"
   },
   {
    "id": "gridlings-playgama-five-0925",
@@ -940,6 +984,8 @@
    "lose": "确认主目录对本舰队的 AI 游戏关闭,此后只经营 sandbox 面,不再空手重投",
    "source": "sites/gridlings/docs/playgama-setup.md(2026-09-15 节)",
    "status": "lost",
+   "reading_2026-09-22": "Playgama list_applications:PROMPT / OVERFIT / MIMIC / OVERSEER / MINIMA 五款状态全部 REJECTED(09-15),GHOSTLINE / SINGULARITY 亦 REJECTED(09-16),另有 TOWERS 处于 DRAFT;0/5 进主目录。未到期,不结算。",
+   "reading_2026-09-23": "list_applications:五款仍全部 REJECTED(09-15),09-16 之后无状态变化;0/5。",
    "settled": "2026-09-22",
    "reading": "Playgama MCP list_applications 2026-09-22 04:30 UTC:PROMPT / OVERFIT / MIMIC / OVERSEER / MINIMA 全部 REJECTED(09-15 18:57–19:17 UTC);list_moderation_comments 五款同一条模板:「For games created with AI, we offer a dedicated way to test them on Playgama before they can be considered for our main catalog… Publishing through Playgama MCP … gives our team real performance data that we can use to identify the strongest games for potential placement in the main Playgama catalog」。GHOSTLINE(09-14 13:02)与 SINGULARITY(09-14 13:39)也是同一模板 —— **7/7 同文,主目录对本舰队的 AI 游戏关闭**。提前 3 天结算,因为读数已不可能改变。lose 动作生效:只经营 sandbox 面,不再空手重投;进主目录的唯一通道是 Playgama 自己按 sandbox 表现挑选,不是我们再提交。"
   },
@@ -1008,7 +1054,8 @@
    "win": "单页库存成立，投放页按板块把单页触达表做厚",
    "lose": "=0 且工具页触达仍 ≥150 → 不是分发问题是需求问题，撤回工具页库存只留板块页",
    "source": "sites/baipiaoji/docs/PRD-revenue-tools-2026-09-16.md",
-   "status": "open"
+   "status": "open",
+   "instrument_note_2026-09-22": "⚠ 2026-09-22 仪器修正：该事件名自 09-04「未知事件名改为丢弃」上线起从未进 hit.js 白名单，边缘静默丢弃，此前读到的 0 是丢包不是行为；本次部署起才有读数，窗口从部署日重新起算。"
   },
   {
    "id": "bpj-paid-tier-series-1014",
@@ -1065,8 +1112,10 @@
    "win": "仪器修好了 —— 下一轮才第一次能回答「1,542 页里哪些从没被抓过、哪些抓了排不上」，两者补救方向相反（发现层 vs 内容）",
    "lose": "不同 path 仍 <40 → 不是仪器问题，爬虫确实只碰枢纽页与带扩展名的文件；那么发现层（sitemap 已 1,558 条但爬虫不深入）就是绑定约束，改内容无用，动作交给 owner 侧 Bing/GSC",
    "source": "sites/baipiaoji/CLAUDE.md 第 18 条（2026-09-17）",
-   "status": "open",
-   "t0_2026-09-17": "ev='bot' 28 天 1,221 行 / 23 个不同 path，全部是 `/`、`/en/`、`/vs/`、`/money/`、`/earn/`、`/travel/`、`/upgrade/` 这类带斜杠枢纽，加 sitemap.xml / robots.txt / llms.txt / feed.xml / limits.json / openapi.json / .md。`/tools/<slug>` 与 `/c/<cat>` 各 **0** 条。同窗真人落地 330 次里 302 次（92%）在无扩展名路径上。"
+   "status": "won",
+   "t0_2026-09-17": "ev='bot' 28 天 1,221 行 / 23 个不同 path，全部是 `/`、`/en/`、`/vs/`、`/money/`、`/earn/`、`/travel/`、`/upgrade/` 这类带斜杠枢纽，加 sitemap.xml / robots.txt / llms.txt / feed.xml / limits.json / openapi.json / .md。`/tools/<slug>` 与 `/c/<cat>` 各 **0** 条。同窗真人落地 330 次里 302 次（92%）在无扩展名路径上。",
+   "settled": "2026-09-22",
+   "reading": "2026-09-22 D1 现查(hits 表,ev='bot',28 天 08-25→09-22,剔 __probe):不同 path 1 635(t0=23)、/tools/%|/c/% 行 3 310(t0=0)、bot 行合计约 11 000。逐日:09-16 7 个不同 path → 09-17(分类器上线日)96 → 09-18 384 → 09-19 1 628 / 4 253 行 → 09-20 1 155 → 09-21 1 197 → 09-22(半天)245。提前 2 天结算的理由:读数是 28 天窗内的累计不同 path 数,到 09-24 只会更大,不可能回落到阈值以下。仪器修好了;下一轮 bpj 第一件事 = 用这份数据回答「1 542 页里哪些从没被抓过、哪些抓了排不上」。"
   },
   {
    "id": "bpj-bing-zh-surface-1015",
@@ -1136,73 +1185,6 @@
    "win": "同上一条:EN 国家页型跨季成立 → 补 IT 的 deumidificatore(22,6,**7 月峰**——意大利除湿是夏题)",
    "lose": "IT 英语读者太少(28d 4 pv)撑不起冬季页 → 意大利只维护制冷版;/it/ 语言版仍按 10-27 那条线单独结算",
    "source": "2026-09-18:`seasonality-by-country.json` IT:**muffa 31,0(1 月)** 是意大利第一词,压过 condizionatore portatile 30,6;站内对 IT 读者只有制冷页。页面全部数字由 Magnus 公式现算(20 °C/50 % → 14 °C 墙面 73 %;14 °C 墙面只需室内 48 % 即到 70 %),复用站内 taupunkt_check 计算器;意大利插座 Type L/F 的差别如实写明。**不建 /it/ 语言版**(eco-it-pilot-1027 未结)。",
-   "status": "open"
-  },
-  {
-   "id": "fleet-source-mix-1013",
-   "site": "fleet",
-   "due": "2026-10-13",
-   "metric": "data/fleet-traffic-sources.json:14 站里能读出 by_source 的站数 / 未归因占比",
-   "threshold": "≥13 站有读数 且 舰队 unattributed ≤ 真人 pv 的 5%",
-   "win": "渠道构成进常规台账,各站按自己那一行选渠道",
-   "lose": "记反面发现「渠道构成读不齐」,读侧退回只看 AI 引荐,不再维护该仪器",
-   "source": "docs/fleet-traffic-sources-2026-09-15.md",
-   "status": "open"
-  },
-  {
-   "id": "fleet-google-channel-1013",
-   "site": "fleet",
-   "due": "2026-10-13",
-   "metric": "除 bpj 外,by_search 里 google.* ≥10/28d 的站数(09-15 起点:bpj 157,eco 0,其余 12 站未知)",
-   "threshold": "≥2 个站",
-   "win": "Google 通道在舰队不是孤例,对这些站的标题/结构改写才有对象",
-   "lose": "Google = bpj 专属;其余站一律按 Bing 家族与 AI 引荐口径优化,永不再为 Google 改标题",
-   "source": "docs/fleet-traffic-sources-2026-09-15.md",
-   "status": "open"
-  },
-  {
-   "id": "bpj-canonical-fix-1013",
-   "site": "baipiaoji",
-   "due": "2026-10-13",
-   "metric": "data/fleet-traffic-sources.json 里 bpj 的 by_search google.* /28d(09-15 基线 157)",
-   "threshold": "≥180(+15%)",
-   "win": "sitemap/canonical 卫生对 Google 通道有效;sitemap_guard 留作常驻守卫",
-   "lose": "记反面发现「canonical 卫生不是 bpj 的瓶颈」,不再往这个方向投,守卫保留但不再据此改站",
-   "source": "docs/fleet-cross-learning-2026-09-15.md",
-   "status": "open"
-  },
-  {
-   "id": "fleet-xlearn-matrix-1013",
-   "site": "fleet",
-   "due": "2026-10-13",
-   "metric": "data/fleet-page-patterns.json:eco 的 dated_fresh 命中率(09-15 **修正后**基线 5/9;初版记的 agi 4/16 与 eco 2/9 是探测器词表缺陷,已作废)",
-   "threshold": "eco ≥8/9",
-   "win": "新鲜度标注移植到 eco 完成,矩阵能驱动移植,保留每周一取数",
-   "lose": "记反面发现「eco 的德语指南不需要可见日期」,该列对 eco 无效,矩阵降为季度一次",
-   "source": "docs/fleet-cross-learning-2026-09-15.md",
-   "status": "open",
-   "note": "基线于 2026-09-15 当天更正:探测器改为语言无关后 agi 实为 15/16(全舰队最好),原判定对象失效"
-  },
-  {
-   "id": "fleet-backlinks-1116",
-   "site": "fleet",
-   "due": "2026-11-16",
-   "metric": "data/fleet-backlinks.json:①targets 里 present=true 的个数 ②舰队 by_other 的来源域数/访问数(2026-09-16 基线:0/6 个目标,1 个域 1 次访问,且那 1 次是 com.twitter.android)",
-   "threshold": "≥2 个目标已收录,或舰队 by_other ≥5 个域且 ≥20 次访问",
-   "win": "外链路径对本舰队有效,按 linkbuilding 技能的 Foundation 阶段继续投(entity stacking + 目录)",
-   "lose": "记反面发现「awesome-list / 目录外链对本舰队量级无效」,停投外链,只保留 by_other 监测(它零成本)",
-   "source": "docs/fleet-backlinks-2026-09-16.md",
-   "status": "open"
-  },
-  {
-   "id": "agi-ai-music-1015",
-   "site": "agiscorecard",
-   "due": "2026-10-15",
-   "metric": "/is-ai-music-good-enough JS 真人 pv /28d,或任一 AI 引荐/引用",
-   "threshold": "pv ≥30 或 AI 引荐 ≥1",
-   "win": "判定题在本站量级成立;按「引用量大 × 缺多语言」补翻译,不新开子域",
-   "lose": "降级为 /can-ai-replace-knowledge-workers 的一个小节,不再单独维护;记反面发现「音乐方向在本舰队量级无读数」",
-   "source": "docs/ai-music-subdomain-2026-09-17.md",
    "status": "open"
   },
   {
@@ -1379,6 +1361,341 @@
    "win": "保留三个主题，访谈实际参与者并优先改善他们反复使用的流程；有真实来源的外部引荐再加分发投入，不自动开新板块或买量。",
    "lose": "触达不足则改善现有站内入口；有触达无参与则收窄到编辑主题讨论，暂停自由发帖扩张。若无人审核，暂停新投稿而保留可读内容和用户删除功能。",
    "source": "docs/agi-community-research-2026-09-20.md；用户要求深度调研后在 AGI 首页增加讨论区，目标注册与流量。",
+   "status": "open"
+  },
+  {
+   "id": "eco-new-page-discovery-1020",
+   "site": "getecoback",
+   "due": "2026-10-20",
+   "metric": "D1 ev.crawl:2026-09-10 之后发布的 19 张页里被 bingbot 抓过 ≥1 次的页数(t0 2026-09-22 = 1/19,12 天窗;同窗 bingbot 每天抓 30–125 次老页);同批 19 页的 28 天搜索引荐(t0 = 0)",
+   "threshold": "bingbot 覆盖 ≥12/19(≥60 %)且 ≥1 次搜索引荐落在这 19 页中的任一页",
+   "win": "发现面噪音(IndexNow 每次部署重提 30–66 个未变 URL + 工具 manifest 12 URL 整包重提 + sitemap 用 mtime 把十几页日日标成今天)确是新页零抓取的原因之一 → 把同样的 delta 纪律移植到舰队其它带 IndexNow 步骤的站(bpj/tds/agi)",
+   "lose": "覆盖仍 <6/19 → 新页不被抓是 Bing 对本域的抓取预算/权威问题,不是提交噪音;09-04 的「rising 只深化不出新页」冻结继续,把 Bing Webmaster 的抓取统计列为 owner 待办,不再为发现面写代码",
+   "source": "sites/getecoback/docs/site-analysis-2026-09-22.md §三–§四、§六;修复 = deploy-getecoback.yml(部署前快照线上 sitemap;IndexNow 只提 pushed diff ∪ 新 URL;manifest ping 只在生成器变更时跑)+ tools/build_sitemap.py(无日期页改用 git 提交日)+ tools/check_sitemap_lastmod.py 闸门",
+   "status": "open",
+   "reading_2026-09-24": "09-24 第二个干预:首页新块 EB_NEWEST 链到 15 张从未被 bingbot 抓过的 09-17/18 页里的 9 张。此后本线若赢,是 IndexNow 降噪与首页链接的共同效果;eco-newest-block-1008 用对照组把两者分开。D1 09-24 读数:09-17/18 页 0/15 被抓;09-22 后首次被抓的是 6 张更早的页(infrarotheizung-standgeraet、schimmel-bad-fugen、it/camper 于 09-22;it/rumoroso、it/deumidificatore-40-mq、it/condizionatore-15-mq 于 09-24)。"
+  },
+  {
+   "id": "goldrush-tripwire-0930",
+   "site": "goldrush",
+   "due": "2026-09-30",
+   "metric": "/protocol + /agix + /grader 三页 JS 口径 page_view 合计(ev 表 ua_class='js',28 天窗)",
+   "threshold": "> 0(2026-08-30 时终身为 0)",
+   "win": "解除「此后不许再写任何白皮书/协议提案」的禁令——只是解禁,不含任何扩建动作",
+   "lose": "仍为 0 → 瓶颈在分发不在经济学,此后不许再写任何白皮书/协议提案,只做被引用的判定页",
+   "source": "sites/goldrush/CLAUDE.md 判定线节(2026-08-30 改写)",
+   "status": "open",
+   "registered_late": "2026-09-22 补登:此前只写在站内 CLAUDE.md,没进台账(= 等于没预登记)。阈值原文照抄。",
+   "reading_2026-09-22": "8 行/28d(protocol 3 · grader 3 · agix 2),全部落在 09-18→09-21 四天、1 个国家。字面已达成;形状是单人单国。",
+   "reading_rule": "结算时按字面记 won,但 reading 必须写明国家数与天数;单国单 UA 前缀的读数不得据此扩建任何协议面(win 分支本来也只是解禁)。"
+  },
+  {
+   "id": "goldrush-survival-1028",
+   "site": "goldrush",
+   "due": "2026-10-28",
+   "metric": "① JS 口径 page_view(全站,28 天)或 ② 非 goldrush 的外部 referrer",
+   "threshold": "① ≥50 或 ② 发现型外部 referrer ≥1(非品牌搜索词、AI 助手、第三方站点);品牌导航(搜『agiscorecard』)与主站内链单独计,不作达标依据",
+   "threshold_original": "① ≥50/28d 或 ② 出现 ≥1 个非 goldrush 的外部 referrer",
+   "revised": "2026-09-22",
+   "revised_reason": "09-22 现查 ② 字面已达成:google.com/search?q=agiscorecard 9 行/8 路径、google.com 5 行、agiscorecard.com/for-agents 8 行——全部是品牌导航或主站内链,不是「被发现」。原阈值在到期前 36 天就被品牌导航满足 = 自我安慰(09-16 教训:能被 t0 直接满足的线不是赌注)。早于到期改,并保留原文。",
+   "win": "继续投入",
+   "lose": "全空 → 降为季度维护",
+   "source": "sites/goldrush/CLAUDE.md 判定线节(2026-08-30 改写)",
+   "status": "open",
+   "registered_late": "2026-09-22 补登(同上)。",
+   "reading_2026-09-22": "① JS pv 13/28d(5 路径);② 发现型外部 referrer 0;品牌/内网 referrer 22 行(google 搜 agiscorecard 9、google.com 5、for-agents 8)。"
+  },
+  {
+   "id": "goldrush-protocol-adoption-1130",
+   "site": "goldrush",
+   "due": "2026-11-30",
+   "metric": "① /claimledger.json 被我们没写的客户端抓取(剔 goldrush referrer、?ci=1、自家 MCP 自取;定义见 /fetchlog.json)或 ② registry 的 ledger_render 事件 label 为非 goldrush URL",
+   "threshold": "① 里 browser / MCP / skill 类客户端(非 bot-UA 爬虫)≥1,或 ② ≥1;bot-UA 抓取单独计数、不作达标依据",
+   "threshold_original": "① ≥1 或 ② ≥1",
+   "revised": "2026-09-22",
+   "revised_reason": "09-22 现查 ① 字面已 31 次(bot-UA 22 / browser-UA 9)。bot-UA 那 22 次的日形状(每日 1 次、US、无 referrer)与 ua_audit 里 OpenAI 家族 UA 前缀每日 9–22 次吻合——索引抓取,与 llms.txt「被抓不被用」是同一件事,正是 fetchlog 定义里说要防的失败形态。按原阈值这条线在 t+23 天就被爬虫满足。早于到期 69 天改,并保留原文;fetchlog.json 同步加了 crawler/browser 两栏。",
+   "win": "传播引擎保留",
+   "lose": "协议没有消费者,如实记录,只剩引用机器;上架数永不作为达标依据",
+   "source": "sites/goldrush/CLAUDE.md 判定线节(2026-08-30 改写)+ sites/goldrush/site/fetchlog.json",
+   "status": "open",
+   "registered_late": "2026-09-22 补登(同上)。",
+   "reading_2026-09-22": "① 31(bot-UA 22 / browser-UA 9,其中 2 次经 agiscorecard.com/for-agents);② ledger_render 0。旁证:fork_click 终身 1(08-29)、audit_click 0、ledger_click 0、agi MCP get_claim_ledger 终身 4 次调用(08-30 / 09-14 / 09-15 / 09-17,来源未知,不排除会话自测)。"
+  },
+  {
+   "id": "bpj-home-blocks-1020",
+   "site": "baipiaoji",
+   "due": "2026-10-20",
+   "metric": "D1 hits 表 ev='home' 的 28 天计数,按 path 第二段(区块 id:/home/<block>/…)分组,剔 lang='ci' 与 path LIKE '/home/\\_\\_%' ESCAPE '\\'",
+   "threshold": "总数 ≥40 且 ≥5 个不同区块有读数(t0 = 0,事件 09-22 才存在)",
+   "win": "首页区块点击仪器成立 → 28 天 0 点击的区块按数据替换(agents 条或其它有读数的面顶上),不再靠感觉改首页",
+   "lose": "<40 → 首页 243 pv/28d 里几乎没人点任何区块,或仪器坏了;先对照 st_beacon 与 test-agent-watch 的白名单断言排除仪器,再决定;在此之前不替换任何区块",
+   "source": "sites/baipiaoji/CLAUDE.md 第 21 条(2026-09-22)+ docs/PRD-agent-watch-2026-09-22.md",
+   "status": "open",
+   "t0_2026-09-22": "首页 28 天真人 pv 243(`/`)+ 22(`/en/`),CN 134 / US 49;首页此前零区块级点击仪器,`ref` 对站内跳转为空,所以「首页各区块被点几次」在 D1 里不可答。代理读数:首页独占入口的目的页 28 天 pv —— plans 25(13 页)/ en/plans 28 / money 24(6 页)/ upgrade 23 / is-still-free 30 / agents 5(1 国)。",
+   "note_2026-09-22b": "同日第二轮（owner：扩到 1000 左右 + 受众分类 + GEO；重构 agents）：账本 28 → 978 条（298 条人工收录 + 680 条官方 MCP 注册表，50 条候选因官方页非 2xx 被拒待 runner 重试）；agents 面改走站点 layout（同样式 / 语言切换 / 信标），枢纽 + 6 受众页 + 13 类目表进 sitemap，记录页 noindex；首页联动条改为六扇受众门。读数窗口不变。"
+  },
+  {
+   "id": "bpj-agent-watch-1020",
+   "site": "baipiaoji",
+   "due": "2026-10-20",
+   "metric": "① `/agents/%` + `/en/agents/%` 28 天真人 pv(ev='',剔 __probe);② ev='home' 且 path LIKE '/home/agent-watch/%' 的点击数;③ ev='api' 且 path IN ('/api/mcp/monitor_new_agents','/api/mcp/get_agent') 且 ref(UA)不含 goldrush-deploy/baipiaoji CI 形状的调用数",
+   "threshold": "① ≥30 或 ② ≥10 或 ③ ≥5(t0:① 5 pv 单国 / ② 0 / ③ 0)",
+   "win": "agents 面有读者或有机器消费者 → 继续按周扩条目(只收官方主页当日 200 的项目,repo 由 runner 盖章),并在 agi /for-agents 互链",
+   "lose": "三项全空 → agents 面只维护(runner 核验照跑),不再扩条目;首页联动条撤回 nav 一行;不再第三次为「agent 目录」立项",
+   "source": "sites/baipiaoji/CLAUDE.md 第 21 条(2026-09-22)+ docs/PRD-agent-watch-2026-09-22.md",
+   "status": "open",
+   "t0_2026-09-22": "账本 6 → 28 条(22 条官方主页会话当日 200 核验,仓库 URL 待 runner 核验);/agents/ 上线首日 5 pv 全部 US 单国(疑为建站会话自查);monitor_new_agents 终身 0 次调用;28 天 `/api/mcp/*` 各工具 ~55 次 = 部署自检形状。",
+   "note_2026-09-22b": "同日第二轮（owner：扩到 1000 左右 + 受众分类 + GEO；重构 agents）：账本 28 → 978 条（298 条人工收录 + 680 条官方 MCP 注册表，50 条候选因官方页非 2xx 被拒待 runner 重试）；agents 面改走站点 layout（同样式 / 语言切换 / 信标），枢纽 + 6 受众页 + 13 类目表进 sitemap，记录页 noindex；首页联动条改为六扇受众门。读数窗口不变。"
+  },
+  {
+   "id": "bpj-agents-scale-1103",
+   "site": "baipiaoji",
+   "due": "2026-11-03",
+   "metric": "① D1 hits 表 28 天真人 pv（ev=''，剔 __probe / CI）落在 `/agents/%` 与 `/en/agents/%`（枢纽 + 受众页 + 类目表 + 记录页）；② ev='go' 且 path LIKE '/go/agents/%' 的出站点击（source / repo 各计）；③ ref 属搜索引擎或 AI 助手且落地 `/agents%` 的引荐次数（reach.json 的 ai_referrals + 搜索来源域）",
+   "threshold": "① ≥60 且 ② ≥15 且 ③ ≥3（任一 AI 助手引荐即计）；t0（2026-09-22 部署当日）：① 5（旧 /agents/ 单国）/ ② 0 / ③ 0；账本 t0 = 978 条（298 人工 + 680 注册表）",
+   "win": "agents 面有读者、有点击、有引荐 → 继续按日从官方 MCP 注册表吸纳（cap 逐步放开），受众页开始按 D1 读数排前后；考虑给记录页解除 noindex（只对有点击的记录）",
+   "lose": "三项里 ≥2 项未达 → 注册表吸纳停在当前 cap，记录页保持 noindex，agents 面只维护核验管线；不再为「更多条目」立项；若 ① <20 则连受众页也退回只留枢纽 + 类目表",
+   "source": "sites/baipiaoji/CLAUDE.md 第 22 条（2026-09-22）+ docs/PRD-agents-scale-2026-09-22.md",
+   "status": "open",
+   "t0_2026-09-22": "账本 978 条（28 → 298 人工收录：候选 282 条经官方页 2xx 门后入 270 条；680 条来自官方 MCP 注册表，仓库 URL 2xx 才入；50 条候选被拒记 reason 待 runner 重试）。页面：枢纽 + 6 受众页 + 13 类目表（zh/en 各一，进 sitemap）+ 298 条记录页（noindex）。仪器：记录页与表格的出站链接带 data-tool=agents/<slug>/source|repo → ev='go'；页面走 layout() 带 page_view 信标（旧版页面零信标，所以旧的 5 pv 也来路不明）。"
+  },
+  {
+   "id": "bpj-agents-registry-quality-1020",
+   "site": "baipiaoji",
+   "due": "2026-10-20",
+   "metric": "data/agent-watch.json 里 origin='mcp-registry' 的记录：status='stale'（仓库/官方页转 404）的比例；以及 data/agent-watch-admissions.json 里注册表候选的拒绝率（rejected 中 origin=mcp-registry ÷ 已尝试）",
+   "threshold": "stale 比例 ≤5% 且 拒绝率 ≤30%（t0：stale 0%，首日拒绝率见 admissions 文件）",
+   "win": "注册表是干净的来源 → cap 从 720 放开到 1 500（仍只收有仓库或官网的），每日 admit --max 提到 120",
+   "lose": "stale >5% 或拒绝率 >30% → 注册表条目多为一次性/死链，cap 收回到 400，并只收「有 packages 且 updatedAt 90 天内」的条目；不删已入账本的（stale 就是它们的状态）",
+   "source": "sites/baipiaoji/CLAUDE.md 第 22 条（2026-09-22）+ scripts/agent-watch-registry-pull.mjs 头注释",
+   "status": "open",
+   "t0_2026-09-22": "注册表 API 首拉：80 页 8 000 条最新版，7 177 条有仓库或官网，cap 720（仓库优先、updatedAt 倒序）；当日入 680 条。"
+  },
+  {
+   "id": "eco-tools-hub-1020",
+   "site": "getecoback",
+   "due": "2026-10-20",
+   "metric": "D1(真人,剔 CI,28 天):① /tools.html page_view;② 工具事件合计(standort_check+stromkosten_calc+panel_fit+seal_fit+taupunkt_check+heizkosten_calc+bkw_calc+speicher_calc+strom_check+foerder_check+hitze_check+heat_check,不含 btu_calc);③ 新事件 solution_calc / pro_tool_run / watt_calc。t0(2026-09-22,按 56 天折半):① 0,5 ② ≈3,5 ③ 不存在(此前不发)",
+   "threshold": "① ≥10 且 ② ≥12,或 ③ 任一 ≥5",
+   "win": "工具的瓶颈确是发现面 → 把每个家族的前一名工具卡放进对应 /kategorie/ 页;继续用 check_tools_hub 保证枢纽==文件系统",
+   "lose": "读者不从枢纽找工具、只在指南里顺手用 → 枢纽只维护闸门不再投入;结论并入 fleet-tool-use-1014(新站三件套里的「工具」降为可选)",
+   "source": "sites/getecoback/docs/tools-audit-2026-09-22.md;本轮修复 = 枢纽从文件系统生成(14 张漏掉的工具页补齐)+ 7 个无埋点工具面加事件 + pro-werkzeuge 能源工具从「永远算不出」修好 + 国家计算器表头 undefined 与 390px 溢出修好 + es/fr/it 三页补 page_view",
+   "status": "open"
+  },
+  {
+   "id": "eco-btu-sizer-1020",
+   "site": "getecoback",
+   "due": "2026-10-20",
+   "metric": "① /guide/was-bedeutet-btu.html 的 btu_calc 会话数(按 page|day|country 去重,真人,剔 CI)28d;② 全站 affiliate_click{source:\"sizer\"} 28d;③ 对照:64 张原载体页的会话/100 pv(t0 DE 7,5 · EN 1,7 · 合计 4,9)。t0(2026-09-22):① 0(56d 该页 25 pv、20 来自搜索、无 sizer)· ② 0(56d 21 次会话,同页同日联盟点击 0)· 季节:btu klimaanlage 5 年峰值 6 月,冬季≈9 月的 0,24",
+   "threshold": "① ≥3 会话(t0=0,该页此前没有工具;28d 约 12 pv,3 会话≈25 %,介于 btu-rechner 的 50 % 与载体页的 5 % 之间)且 ② ≥1",
+   "win": "BTU 解释页读者会用工具 → 保留;把「问题在哪页,工具放哪页」推到 EN 解释页与其它 SKIP_MODELS 里的信息型制冷页;6 月旺季再读一次 sizer 的会话/100 pv",
+   "lose": "① = 0 → 解释页读者只读不算,从 SIZER_FORCE 移除(不留死块);② 仍为 0 → 结果条的 Amazon 按钮是死 CTA,把结果条简化为答案 + 站内链接,别再往上加钩子;窗口内该页真人 pv <8 → insufficient,顺延 2027-06-20(制冷季)",
+   "source": "sites/getecoback/docs/btu-calc-analysis-2026-09-22.md",
+   "status": "open"
+  },
+  {
+   "id": "bpj-mcp-discovery-1103",
+   "site": "baipiaoji",
+   "due": "2026-11-03",
+   "metric": "① sites/baipiaoji/data/mcp-discovery.json（每日 schedule 由 scripts/mcp-discovery-probe.mjs 写）：official_registry.listed && is_latest && version_matches 连续为 true 的天数；② directories[].found=true 的第三方目录数（只有 found:true 算数，html-grep 的 false 是「没看见」不是「没收录」）；③ D1 hits ev='api' 且 path='/api/mcp' 28 天里 ref(UA) 不含 CI/goldrush-deploy/baipiaoji-mcp 形状的不同 UA 数（09-16 普查口径：索引器打空参数，使用者带参数）",
+   "threshold": "① 探针上线后零天不一致（任一天 version 漂移即视为发布链路坏了）且 ② ≥2 且 ③ ≥3 个非索引器 UA 带参数调用",
+   "win": "自动注册链路成立、第三方目录见得到、有真实调用方 → 继续用 server.json 版本号驱动发布；把 agents 目录的 monitor_new_agents 写进各目录描述；下一步只按 ③ 里出现的调用方形状加工具",
+   "lose": "① 漂移 → 修 bpj-mcp-publish.yml（不是写文档）；② <2 → 目录提交在 owner 手里，记「已建未提交」不再催；③ =0 → 被发现 ≠ 被使用，机器面按 fleet-machine-demand-1014 的结论只维护",
+   "source": "sites/baipiaoji/CLAUDE.md 第 23 条（2026-09-22）+ docs/distribution-staging/bpj-mcp-directories-2026-09-22.md",
+   "status": "open",
+   "t0_2026-09-22": "官方注册表：listed=True version=1.13.0 is_latest=True matches=True（bpj-mcp-publish.yml 于 15:38 UTC 自动发布 1.13.0）；第三方目录 found:true = ['glama']，未见 = pulsemcp(200), mcp-so(200), smithery(200), cursor-directory(429)；本站 .well-known 在本轮部署前没有 version 字段（well_known_matches=false 是部署前读数）。③ 未读（下一次会话查 D1）。"
+  },
+  {
+   "id": "eco-growatt-diagnosis-0925",
+   "site": "getecoback",
+   "due": "2026-09-25",
+   "metric": "growatt-noah-2000-probleme 28d affiliate_click(诊断优先货架:能耗计量插座 → WLAN 计量插座 → 换机位;2026-08-28 上线)",
+   "threshold": "≥2 → 「诊断优先」模式成立,移植到其他问题页;0 → 问题页判负普适化(配对线 eco-kuehlt-nicht-0925)",
+   "win": "把「先测再换」的货架顺序移植到其余问题页",
+   "lose": "问题页一律不再投入商品面",
+   "source": "sites/getecoback/CLAUDE.md(2026-08-28 全面优化轮 §唯一的活缺口);台账补登 2026-09-23,与 09-22 goldrush 三条同类",
+   "status": "won",
+   "settled": "2026-09-23",
+   "reading": "08-28→09-23:31 真人 pv / 3 affiliate_click(3 个会话,9,7 %,此前 1/29 = 3,4 %):energiekostenmessgerät ×1(经 sticky 栏——它取页面第一条 Amazon 链接,所以货架顺序就是移动端 CTA)、Growatt NOAH 2000 ×2(正文换机位)。计数不可逆且已过阈值,提前两天结算。win 动作本轮执行:luftentfeuchter-zieht-kein-wasser / heizluefter-schaltet-sich-aus / luftentfeuchter-stinkt 三张 09-17/18 排障页的货架从「两台新机器」改为诊断优先,读数并入 eco-dach-troubleshoot-1116。"
+  },
+  {
+   "id": "bpj-backlinks-1103",
+   "site": "baipiaoji",
+   "due": "2026-11-03",
+   "metric": "① D1 baipiaoji-hits：ev='' 且 ref 属 github.com / glama.ai / registry.modelcontextprotocol.io / source.agiscorecard.com / getecoback.com / agiscorecard.com / mcppulse.agiscorecard.com 的 28 天访问数与天数（剔 /__ 路径）；② 同表 ev='' 且 ref 属 feedly.com / inoreader.com / newsblur.com / feedbin.com / theoldreader.com 的访问数（RSS 读者点进记录页；feed 本身的抓取测不到——中间件只给 AI 爬虫记账，普通 feed 抓取器不进表，所以不拿抓取当指标）；③ punkpeye/awesome-remote-mcp-servers 的 README 是否含 baipiaoji.com/api/mcp（owner 提交 PR 之后才可能为真）",
+   "threshold": "① ≥5 次且跨 ≥3 天，或 ② ≥3 次，或 ③ 为真；t0（2026-09-23 D1 现查 28 天）：① 0（非搜索非 AI 的外部来源只有 facebook 16 次同一天、X 客户端 1 次）/ ② 0（feed 本轮才上线）/ ③ 否。对照：SR /mcp 28 天真人 pv 4——舰队内链本身几乎没有读者，它们的作用是给爬虫与目录一条路径",
+   "win": "外链面有东西在走 → 按来源追加：① 里哪个域带人就在那个站的同类页面再放一处（仍只放在读者真实相关的页上）；③ 为真则把 SR / eco / MCP Pulse 各自的条目也提交进去",
+   "lose": "三项全空 → 舰队互链与数据集仓 README 不带人也不带爬虫，停止加任何跨站链接块；发现面只剩 owner 侧的目录提交（PulseMCP / mcp.so / cursor.directory / awesome-remote），不再为「外链」写代码",
+   "source": "sites/baipiaoji/CLAUDE.md 第 24 条（2026-09-23）+ docs/distribution-staging/bpj-mcp-directories-2026-09-22.md",
+   "status": "open",
+   "t0_2026-09-23": "ref 前三：www.google.com 174 / cn.bing.com 116 / www.bing.com 19；AI：chatgpt.com 13、perplexity 7、doubao 2；github/glama/registry/舰队站 = 0"
+  },
+  {
+   "id": "eco-heizstrahler-onpage-1125",
+   "site": "getecoback",
+   "due": "2026-11-25",
+   "metric": "① 全站 affiliate_click 中 link_url 含 'heizstrahler' 的次数 28d(真人,剔 CI);② /guide/heizluefter-stromverbrauch.html 28d 搜索引荐(Bing 家族 + google)。t0(2026-09-24):① 0(56d 也是 0,全站此前没有 Heizstrahler 商品链)· ② 5(28d 5 pv / 5 搜索 / 1 点击)。季节:heizstrahler 5 年峰值 19,9、11 月(锚 heizlüfter),窗口 10-28→11-25 落在峰值月",
+   "threshold": "① ≥3 或 ② ≥10(t0 的 2 倍)",
+   "win": "「季节日历里未覆盖的品类,扩到已被 Bing 抓取、已有搜索流量的页上」成立 → 下一个『未覆盖 · 待过三门』的词照此办(先找已排名的宿主页,不建新页),直到 eco-new-page-discovery-1020 证明新页能被抓",
+   "lose": "① = 0 且 ② <5 → 一节内容拉不来一个新品类的需求;记入反面发现,Heizstrahler 等新页能被抓后再议单页,不再往已排名页里塞品类节",
+   "source": "sites/getecoback/docs/season-calendar-2026-09-24.md",
+   "status": "open"
+  },
+  {
+   "id": "eco-btu-reconcile-0715",
+   "site": "getecoback",
+   "due": "2027-07-15",
+   "metric": "/guide/wie-viel-btu-brauche-ich.html 在全站搜索引荐中的占比,56d 窗(真人,剔 CI;占比而不是绝对数,抵消全站增长)。t0(2026-07-29→09-23):7 / 442 = 1,58 %。页面 2026-09-24 从 328 词加深到 715 词,并把与本站计算器/数据集矛盾的三处(350–400 BTU/m²、+10 % 日照、35 m²+ 推 Monoblock)改成同一套规则",
+   "threshold": "占比 ≥3,2 %(t0 的 2 倍),读数窗 2027-05-20→07-15(制冷季)",
+   "win": "「已有搜索流量的短页 + 可溯源的加深」在本站成立 → 按 site-analysis §八 的候选(abluftschlauch-verlaengern、zugluft)照做",
+   "lose": "占比不升 → 字数信号(1 200–1 999 词 2,7×)在这页不成立,停止为搜索加深夏季短页;矛盾修正本身仍保留(正确性不靠读数)。窗口内全站搜索引荐 <200 → insufficient",
+   "source": "sites/getecoback/docs/season-calendar-2026-09-24.md",
+   "status": "open"
+  },
+  {
+   "id": "eco-season-instrument-1020",
+   "site": "getecoback",
+   "due": "2026-10-20",
+   "metric": "sites/getecoback/data/seasonality-de.json 的 fetched 日期与 anchor_factors;data/autopilot/demand-digest.md 的 getecoback 季节日历节。t0(2026-09-24):fetched 2026-09-15(手动)、无 anchor_factors;日历节已上线",
+   "threshold": "fetched ≥2026-10-13 且由 eco-trends.yml 自动提交(不是会话手跑),anchor_factors 存在,errors ≤1 批;日历节数据 ≤40 天",
+   "win": "仪器自己在跑 → 以后选季节品类只读日历,不再手跑 fetch_seasonality.py",
+   "lose": "没有自动刷新 → 查 eco-trends.yml 那一步的日志(429 / 配额 / pandas),修管道;这条线只判仪器,不判任何内容决定",
+   "source": "sites/getecoback/docs/season-calendar-2026-09-24.md",
+   "status": "open"
+  },
+  {
+   "id": "bpj-work-plan-use-1024",
+   "site": "baipiaoji",
+   "due": "2026-10-24",
+   "metric": "D1 baipiaoji-hits：① ev='calc' 且 path LIKE '/plan/%' 的次数，按 d × country × path 去重（一个人反复点「算我的方案」只算一次）；② /work-plan 与 /en/work-plan 的真人 pv（ev=''，剔 /__ 路径）",
+   "threshold": "① ≥20 且 ② ≥60；t0（2026-09-24 上线）：0 / 0。对照：/stack-builder 28 天 8 pv、calc 6 次",
+   "win": "有人按岗位算方案 → 按 ① 里出现的岗位与任务分布加岗位、补容量规则（仍只从配额文件读数）",
+   "lose": "① <5 → 只维护（容量规则随配额文件自动更新），不再加岗位、不做按岗位的 SEO 页；入口保留",
+   "source": "sites/baipiaoji/CLAUDE.md 第 25 条 + docs/PRD-work-plan-2026-09-24.md",
+   "status": "open",
+   "instrument_note_2026-09-24": "第二轮起（同日）：结果随输入静默重算，复制 Markdown 与恢复方案不再重复记 calc（第一版会各多记一次）；分享链接打开记 /plan-link/、导入或云端恢复记 /plan-restore/、复制分享链接记 /plan-share/——都不以 /plan/ 开头，不计入 ①。t0 复核：上线当日 D1 里两页 0 行（pv 也是 0）。"
+  },
+  {
+   "id": "bpj-work-plan-paid-1124",
+   "site": "baipiaoji",
+   "due": "2026-11-24",
+   "metric": "① D1 wb_orders state='paid' 的笔数，与 wb_spaces 里 product='ai-work-plan' 的工作区数；② ev='calc' 且 path LIKE '/plan-save/%' 的次数（剔 CI）",
+   "threshold": "① ≥1 笔已付且其会员有 ai-work-plan 工作区；t0：会员 0、订单 0、已付 0、工作区 0（2026-09-24 D1 现查）",
+   "win": "付费层有第一个买家 → 记进台账营收栏（USDT 实收，净额按链上核对），再谈高阶功能",
+   "lose": "已付 0 且 ② <5 → 不再给这个规划器加付费功能；已付 0 但 ② ≥5 → 卡点在支付方式（目前只收 USDT），属 owner 的 Stripe 决定，会话不抢跑",
+   "source": "sites/baipiaoji/CLAUDE.md 第 25 条 + docs/PRD-work-plan-2026-09-24.md",
+   "status": "open",
+   "note_2026-09-24": "第二轮起保存的方案带每个工具当时的数字、核实日期与判定；从云端或 JSON 恢复时逐条列出变化。这是会员的实际卖点（额度每月在变），但 JSON 导入同样免费——会员卖的是不用自己留文件、最近 10 个版本、换设备，不是 diff 本身。"
+  },
+  {
+   "id": "bpj-manifest-commit-0927",
+   "site": "baipiaoji",
+   "due": "2026-09-27",
+   "metric": "① main 上 2026-09-25 起 \"chore: page change manifest\" 提交数；② 同期定时部署日志里 \"IndexNow: submitted N URLs\" 的 N（取最近一次）；③ 汇总门「变更清单回写」的 outcome",
+   "threshold": "① ≥1 且 ② ≤300 且 ③ success；t0（2026-09-24 查实）：① 自并入 monorepo 起从未成功过一次，② 09-22 起每天 1 626（整站），清单停在 09-17",
+   "win": "清单回写修通，sitemap lastmod 与 IndexNow 回到只报真变化；结论写回 bpj CLAUDE.md 第 26 条",
+   "lose": "读那次 run 的「Commit page change manifest」日志：若仍是工作区不干净，查是哪个文件（--autostash 应已覆盖）；若是推送竞争，改为重试；在修通之前不把任何「今天变了多少页」的读数当事实引用",
+   "source": "sites/baipiaoji/CLAUDE.md 第 26 条 + .github/workflows/deploy-baipiaoji.yml",
+   "status": "open"
+  },
+  {
+   "id": "eco-expansion-batch1-1122",
+   "site": "getecoback",
+   "due": "2026-11-22",
+   "metric": "扩展队列第一批三页(beheizter-waeschestaender、infrarotheizung-thermostat、fenster-beschlagen-aussen),28 天窗 10-26→11-22,真人,剔 CI:① 搜索 + AI 引荐合计 ② page_view 合计 ③ 前提:bingbot 至少抓过其中 2 页(D1 crawl)。t0(2026-09-24):0 / 0 / 0(新页)。季节:heizlüfter / infrarotheizung / fenster beschlagen 峰值都在 11 月",
+   "threshold": "③ 成立 且(① ≥10 或 ② ≥30)",
+   "win": "队列的选题法(5 年季节性 × SERP 判定 × 蚕食检查)选出的页能接到读者 → 保持每天 1 页的节奏,按同法补货",
+   "lose": "③ 成立但 ① <3 且 ② <10 → 选题法没打中本站接得住的需求:补货改为第一方信号优先(D1 引荐、站内搜索、已有搜索流量的页),季节性只作平局打破。扩展照常继续,只改选题法。③ 不成立 → insufficient:是发现面问题不是内容问题(见 eco-newest-block-1008)",
+   "source": "sites/getecoback/docs/continuous-expansion-2026-09-24.md",
+   "status": "open"
+  },
+  {
+   "id": "eco-newest-block-1008",
+   "site": "getecoback",
+   "due": "2026-10-08",
+   "metric": "D1 crawl(bingbot):09-24 之后被抓过 ≥1 次的页占比。处理组 = 09-24 进入首页新块 EB_NEWEST、此前 bingbot 0 次的 9 张 09-17/18 页(luftfeuchtigkeit-senken, luftentfeuchter-stinkt, luftbefeuchter-weisser-staub, klimaanlage-mietwohnung-oesterreich, heizluefter-schaltet-sich-aus, balkonkraftwerk-oesterreich, stromausfall-heizen, luftentfeuchter-zieht-kein-wasser, infrarotheizung-gegen-schimmel);对照组 = 其余 D1 首条记录 ≥09-10、到 09-24 bingbot 仍为 0、且不在该块里的页(19 张,DE/EN/IT)。t0:0/9 对 0/19。暴露说明:块只列最新 12 张,每天最多新增 1 页,处理组从第 12 位起依次被挤出——结算时按每页在块里的天数(git log 可复原)对照其首次被抓日期读,被挤出之后才被抓的不算块的功劳",
+   "threshold": "处理组 ≥5/9 且 处理组占比 − 对照组占比 ≥30 个百分点",
+   "win": "从每天被抓的首页链过去是发现面的杠杆 → 保留该块,把同一模式搬到 /en/,eco-new-page-discovery-1020 按此解读",
+   "lose": "两组相当 → 首页链接不是杠杆;块保留(零成本、对读者有用)但不扩建,Bing Webmaster 抓取统计仍列 owner 待办。两组都为 0 → Bing 目前根本不抓本域新 URL,别在页面上找原因",
+   "source": "sites/getecoback/docs/continuous-expansion-2026-09-24.md",
+   "status": "open"
+  },
+  {
+   "id": "eco-prime-bounty-1027",
+   "site": "getecoback",
+   "due": "2026-10-27",
+   "metric": "① D1 bounty_click(真人,剔 CI,09-29→10-07,Prime Deal Days 横幅窗);② PartnerNet 10 月「Prämien / Miscellaneous Referrals」里 Prime 试用笔数(只有 owner 能读,须附截图日期)。t0(2026-09-24):① 0(事件此前不存在)② 0",
+   "threshold": "② ≥1 笔 Prime 试用 Prämie(= €3,占 9 月 1.–14. 全部佣金 €1,61 的近两倍)",
+   "win": "单次 Prime 专属活动就能拿到不依赖商品成交的钱 → 保留横幅机制,把 2027 年 7 月 Prime Day 预登记进 deal-calendar(公告后再填),并评估 Prime Video Channels 等其它 3 EUR 试用是否有同样诚实的理由(没有就不做)",
+   "lose": "① ≥5 而 ② = 0 → 读者点了但不开试用(多半已是 Prime 会员):以后的活动只保留日期/§ 11 PAngV 两行,撤掉试用链接;① <5 → insufficient:横幅窗里读者太少(9 天,约 150 次 DE 页浏览),不是链接的问题;没有 owner 截图 → insufficient,不得记成 lose",
+   "source": "sites/getecoback/docs/revenue-q4-deal-calendar-2026-09-24.md",
+   "status": "open"
+  },
+  {
+   "id": "fleet-source-mix-1013",
+   "site": "fleet",
+   "due": "2026-10-13",
+   "metric": "data/fleet-traffic-sources.json:14 站里能读出 by_source 的站数 / 未归因占比",
+   "threshold": "≥13 站有读数 且 舰队 unattributed ≤ 真人 pv 的 5%",
+   "win": "渠道构成进常规台账,各站按自己那一行选渠道",
+   "lose": "记反面发现「渠道构成读不齐」,读侧退回只看 AI 引荐,不再维护该仪器",
+   "source": "docs/fleet-traffic-sources-2026-09-15.md",
+   "status": "open"
+  },
+  {
+   "id": "fleet-google-channel-1013",
+   "site": "fleet",
+   "due": "2026-10-13",
+   "metric": "除 bpj 外,by_search 里 google.* ≥10/28d 的站数(09-15 起点:bpj 157,eco 0,其余 12 站未知)",
+   "threshold": "≥2 个站",
+   "win": "Google 通道在舰队不是孤例,对这些站的标题/结构改写才有对象",
+   "lose": "Google = bpj 专属;其余站一律按 Bing 家族与 AI 引荐口径优化,永不再为 Google 改标题",
+   "source": "docs/fleet-traffic-sources-2026-09-15.md",
+   "status": "open"
+  },
+  {
+   "id": "bpj-canonical-fix-1013",
+   "site": "baipiaoji",
+   "due": "2026-10-13",
+   "metric": "data/fleet-traffic-sources.json 里 bpj 的 by_search google.* /28d(09-15 基线 157)",
+   "threshold": "≥180(+15%)",
+   "win": "sitemap/canonical 卫生对 Google 通道有效;sitemap_guard 留作常驻守卫",
+   "lose": "记反面发现「canonical 卫生不是 bpj 的瓶颈」,不再往这个方向投,守卫保留但不再据此改站",
+   "source": "docs/fleet-cross-learning-2026-09-15.md",
+   "status": "open"
+  },
+  {
+   "id": "fleet-xlearn-matrix-1013",
+   "site": "fleet",
+   "due": "2026-10-13",
+   "metric": "data/fleet-page-patterns.json:eco 的 dated_fresh 命中率(09-15 **修正后**基线 5/9;初版记的 agi 4/16 与 eco 2/9 是探测器词表缺陷,已作废)",
+   "threshold": "eco ≥8/9",
+   "win": "新鲜度标注移植到 eco 完成,矩阵能驱动移植,保留每周一取数",
+   "lose": "记反面发现「eco 的德语指南不需要可见日期」,该列对 eco 无效,矩阵降为季度一次",
+   "source": "docs/fleet-cross-learning-2026-09-15.md",
+   "status": "open",
+   "note": "基线于 2026-09-15 当天更正:探测器改为语言无关后 agi 实为 15/16(全舰队最好),原判定对象失效"
+  },
+  {
+   "id": "fleet-backlinks-1116",
+   "site": "fleet",
+   "due": "2026-11-16",
+   "metric": "data/fleet-backlinks.json:①targets 里 present=true 的个数 ②舰队 by_other 的来源域数/访问数(2026-09-16 基线:0/6 个目标,1 个域 1 次访问,且那 1 次是 com.twitter.android)",
+   "threshold": "≥2 个目标已收录,或舰队 by_other ≥5 个域且 ≥20 次访问",
+   "win": "外链路径对本舰队有效,按 linkbuilding 技能的 Foundation 阶段继续投(entity stacking + 目录)",
+   "lose": "记反面发现「awesome-list / 目录外链对本舰队量级无效」,停投外链,只保留 by_other 监测(它零成本)",
+   "source": "docs/fleet-backlinks-2026-09-16.md",
+   "status": "open"
+  },
+  {
+   "id": "agi-ai-music-1015",
+   "site": "agiscorecard",
+   "due": "2026-10-15",
+   "metric": "/is-ai-music-good-enough JS 真人 pv /28d,或任一 AI 引荐/引用",
+   "threshold": "pv ≥30 或 AI 引荐 ≥1",
+   "win": "判定题在本站量级成立;按「引用量大 × 缺多语言」补翻译,不新开子域",
+   "lose": "降级为 /can-ai-replace-knowledge-workers 的一个小节,不再单独维护;记反面发现「音乐方向在本舰队量级无读数」",
+   "source": "docs/ai-music-subdomain-2026-09-17.md",
    "status": "open"
   },
   {

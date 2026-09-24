@@ -1,5 +1,5 @@
 import fs from 'node:fs';import path from 'node:path';import {fileURLToPath} from 'node:url';
-import {messages} from './messages.mjs';import {products,sites} from '../revenue-studio/catalog.mjs';import {pageURL,siteLanguages,hubURL} from '../revenue-studio/i18n.mjs';
+import {messages} from './messages.mjs';import {products,sites,externalProducts} from '../revenue-studio/catalog.mjs';import {pageURL,siteLanguages,hubURL} from '../revenue-studio/i18n.mjs';
 const here=path.dirname(fileURLToPath(import.meta.url));
 export function buildMembers({site='bpj',out}){
  const s=sites[site];if(!s)throw Error('Unknown member site');out=path.resolve(out);
@@ -8,7 +8,7 @@ const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'
 const route=l=>(site==='bpj'?(l==='zh'?'':'/'+l):l===(site==='eco'?'de':'en')?'':'/'+l)+'/members'+(site==='eco'?'.html':'');const put=(p,c)=>{const f=path.join(out,p);fs.mkdirSync(path.dirname(f),{recursive:true});fs.writeFileSync(f,c);};
 for(const file of ['app.mjs','style.css','context.mjs'])put('member-assets/'+file,file==='style.css'?fs.readFileSync(path.join(here,file),'utf8').replace('--blue:#214dc5','--blue:'+s.color):fs.readFileSync(path.join(here,file)));
 put('member-assets/messages.mjs',fs.readFileSync(path.join(here,'messages.mjs')));
-put('member-assets/products.json',JSON.stringify(own.map(p=>({id:p.id,name:p.name,urls:Object.fromEntries(['zh','en','de','it'].map(l=>[l,pageURL(p,siteLanguages[p.site].includes(l)?l:'en')]))}))));
+put('member-assets/products.json',JSON.stringify([...own.map(p=>({id:p.id,name:p.name,urls:Object.fromEntries(['zh','en','de','it'].map(l=>[l,pageURL(p,siteLanguages[p.site].includes(l)?l:'en')]))})),...externalProducts.filter(p=>p.site===site).map(p=>({id:p.id,name:p.name,urls:Object.fromEntries(['zh','en','de','it'].map(l=>[l,p.urls[l]||p.urls.en]))}))]));
 for(const lang of locales){const t=messages[lang];
  const canonical=s.origin+route(lang),btn=(id,label)=>`<button type="button" id="${id}">${esc(t[label])}</button>`,field=(id,label,type='text')=>`<label for="${id}">${esc(t[label])}</label><input id="${id}" type="${type}">`;
  const nav=locales.map(l=>`<a href="${route(l)}" lang="${l}" ${l===lang?'aria-current="page"':''}>${{zh:'中文',en:'English',de:'Deutsch',it:'Italiano'}[l]}</a>`).join('');

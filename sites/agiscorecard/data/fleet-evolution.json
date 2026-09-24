@@ -15,9 +15,9 @@
     "demand": {
       "has_underserved": false,
       "has_gaps": false,
-      "has_hot_pages": true,
+      "has_hot_pages": false,
       "top_underserved_page": null,
-      "top_hot_page": "/search"
+      "top_hot_page": null
     },
     "health": {
       "http": "200",
@@ -31,17 +31,6 @@
       "reason": "membership aggregate counters are unavailable",
       "evidence": {},
       "mode": "observe"
-    },
-    {
-      "kind": "improve_hot_page",
-      "priority": 52,
-      "reason": "prioritize a page with measured reader heat",
-      "evidence": {
-        "page": "/search",
-        "n7_band": "100+",
-        "p7_band": "10-99"
-      },
-      "mode": "queue"
     }
   ],
   "autonomous_changes": [
