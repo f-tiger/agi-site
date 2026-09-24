@@ -83,7 +83,8 @@
    "reading_2026-09-22": "D1:ref LIKE '%itch.zone%' 的 play_start 累计 58 / solve 13(阈值 150 / 25)。未到期,不结算。",
    "settled": "2026-09-24",
    "reading": "D1 gridlings ev(无 ua 过滤,与 09-22 同口径):ref LIKE '%itch.zone%' 的 play_start 累计 52(08-24→09-23,09-22 后 +7)/ solve 13(最后一次 08-27)。阈值 150 / 25,两项都不到三分之一;solve 已 4 周为 0。09-22 记的 58 与今天 52 对不上,原因未查明,两者都远低于线,不影响结论。按原文:游戏降为只维护、不新增,人力回 eco/bpj 变现线。",
-   "reading_2026-09-22_pr2": "预读(到期前 2 天,不结算):D1 gridlings-events ref LIKE '%itch.zone%' 累计 play_start **45**(首日 08-24,最近 09-19,只有 6 个有事件日)、solve **13**(全部落在 08-24→08-27);28d 窗 33 / 12。阈值 ≥150 / ≥25,两项都差数倍,且 solve 自 08-27 起 0 —— 09-24 按规则结算,读数不会翻转。"
+   "reading_2026-09-22_pr2": "预读(到期前 2 天,不结算):D1 gridlings-events ref LIKE '%itch.zone%' 累计 play_start **45**(首日 08-24,最近 09-19,只有 6 个有事件日)、solve **13**(全部落在 08-24→08-27);28d 窗 33 / 12。阈值 ≥150 / ≥25,两项都差数倍,且 solve 自 08-27 起 0 —— 09-24 按规则结算,读数不会翻转。",
+   "reading_2026-09-24_pr2": "关于 09-22 的 58 与 09-24 的 52 对不上:D1 无行被删(最早行 08-22 仍在),itch.zone play_start 只增不减,本会话 09-22 04:30 读到 45、之后 +7 = 52,与主读数一致。58 是那一次查询的离群值,结算值 52 成立。"
   },
   {
    "id": "eco-kuehlt-nicht-0925",
@@ -477,7 +478,8 @@
    "win": "按站内 CLAUDE.md 加码",
    "lose": "按站内 CLAUDE.md 收缩",
    "source": "sites/thedollscout/CLAUDE.md:276",
-   "status": "open"
+   "status": "open",
+   "reading_2026-09-24": "口径提醒:tds 的 hits 表没有 UA 列,09-23 单日 304 次 pv 是一次 QA 突发(US/DE/LT 三国在 5 张页上循环,引荐是本站与预览主机 dollscout.pages.dev),不是读者;按天读数时该日须剔除,否则 28 天均值被抬高约 11/天。"
   },
   {
    "id": "eco-schema-entity-1031",
@@ -808,7 +810,9 @@
    "lose": "只有索引器 → 机器面永远免费,继续按「被 vendored」做(稳定 URL + CC BY 署名),不再提付费 API",
    "source": "docs/tool-monetization-2026-09-16.md §七",
    "status": "open",
-   "reading_20260916": "t0 普查(bpj hits ev='api',28 天,剔本仓 CI curl/8.5.0 的 696 次):自报身份的 MCP 生态代理 **7 个** —— SaSame-MCP-Audit 23 次/22 天、rokmcp-collector 12/12、AIWebIndex 12/12、mcp-protections-research 9/1、maghs(MCP prove)3/1、mcp/1.0.0 2/2、agentdeals-internal-pm 2/1,另有一个普查型 UA 两个变体共 4 次(其中一个把联系邮箱写在 UA 里,按隐私红线不记入本仓)。另有 4 个**浏览器 UA 的定时调用方**:77 次/26 天、56/28、32/25、22/15 —— 真人浏览器不会每天打 /api/changes,这些是伪装 UA 的计划任务,**按旧口径会被算成「真实消费者」,这正是改判据的原因**。SR 侧 t0 = 0(端点当日才建)。"
+   "reading_20260916": "t0 普查(bpj hits ev='api',28 天,剔本仓 CI curl/8.5.0 的 696 次):自报身份的 MCP 生态代理 **7 个** —— SaSame-MCP-Audit 23 次/22 天、rokmcp-collector 12/12、AIWebIndex 12/12、mcp-protections-research 9/1、maghs(MCP prove)3/1、mcp/1.0.0 2/2、agentdeals-internal-pm 2/1,另有一个普查型 UA 两个变体共 4 次(其中一个把联系邮箱写在 UA 里,按隐私红线不记入本仓)。另有 4 个**浏览器 UA 的定时调用方**:77 次/26 天、56/28、32/25、22/15 —— 真人浏览器不会每天打 /api/changes,这些是伪装 UA 的计划任务,**按旧口径会被算成「真实消费者」,这正是改判据的原因**。SR 侧 t0 = 0(端点当日才建)。",
+   "metric_clarified_2026-09-24": "澄清(不改阈值):本仓自己的 deploy/CI 自检永远不算调用方。原因:SR deploy 自检每次部署带参数调用 6 个工具共 ~15 次,09-17 起 4 个部署日已 45 次,第 5 个部署日就会让「≥10 次带参数、跨 ≥5 天」被我们自己满足。识别方式:ref(UA)以 buysomething-deploy-selfcheck 开头,或 09-24 前与 deploy 同时刻的裸 curl/。",
+   "reading_2026-09-24": "SR 侧外部带参数调用 0(见 sr-mcp-calls-1014 同日读数);bpj /api/changes 侧未复查。"
   },
   {
    "id": "sr-mcp-calls-1014",
@@ -819,7 +823,8 @@
    "win": "机器面对 SR 成立 → 按 docs/tool-monetization-2026-09-16.md §十一 继续量到 ~870 次/月(SimplyDuty £0,10/次 是价格锚)才谈计量付费",
    "lose": "<50 或全是采集器 → 机器面只作为引用与「被 vendored」的手段,不再往付费方向投入;不再新建机器面工具",
    "source": "docs/tool-monetization-2026-09-16.md §十五",
-   "status": "open"
+   "status": "open",
+   "reading_2026-09-24": "D1 现查(sourceradar-events,mcp_call,09-17→09-24,label 不含 __ci):合计 80 次。按 ref 列里存的 UA 拆:本仓 deploy 自检 UA 45 次 + 裸 curl/ 13 次(同一 deploy 步骤的 JSON-RPC 两发没带 -A,同 4 天、同 US)= **58 次是我们自己**;外部 22 次来自 8 个调用方,全部是索引器形状(rokmcp-collector 7、SaSame-MCP-Audit 7、MJ12bot、TrimtabVerifier 等),**带参数的外部调用 0**。剔自测后 t0 读数 = 22 次 / 0 个合格调用方(阈值 ≥50 且 ≥1 个)。deploy-buysomething.yml 09-24 起 JSON-RPC 也带 selfcheck UA;09-24 前的裸 curl/ 行照本读数一并剔除。09-21 手册里「24 次非 CI 调用、带参数 check_import_claim 7 次 = 首次真实使用」是误读,那 7 次就是 deploy 的 JSON-RPC。"
   },
   {
    "id": "sr-mcp-registry-1014",
@@ -843,7 +848,8 @@
    "win": "垂直成立 → 按同样纪律接下一格官方源:openFDA food/device enforcement(2026-09-16 实测 200)与 EU 侧(今天没找到免密钥 alerts 接口,需再探)",
    "lose": "两条都 0 → 机器面与引用面对这个垂直都没反应;停止扩工具,只维护现有八个,把力气还给 eco 联盟线",
    "source": "docs/tool-monetization-2026-09-16.md §十七",
-   "status": "open"
+   "status": "open",
+   "reading_2026-09-24": "①classification_rulings + import_rule_changes 带参数调用 09-17→09-24 共 20 次,**全部是本仓 deploy 自检**(selfcheck UA),外部 0;剔后 t0 仍为 0。②/import-rule-changes 页面的引荐未复查。"
   },
   {
    "id": "sr-rule-changes-citation-1116",
@@ -1055,7 +1061,8 @@
    "lose": "=0 且工具页触达仍 ≥150 → 不是分发问题是需求问题，撤回工具页库存只留板块页",
    "source": "sites/baipiaoji/docs/PRD-revenue-tools-2026-09-16.md",
    "status": "open",
-   "instrument_note_2026-09-22": "⚠ 2026-09-22 仪器修正：该事件名自 09-04「未知事件名改为丢弃」上线起从未进 hit.js 白名单，边缘静默丢弃，此前读到的 0 是丢包不是行为；本次部署起才有读数，窗口从部署日重新起算。"
+   "instrument_note_2026-09-22": "⚠ 2026-09-22 仪器修正：该事件名自 09-04「未知事件名改为丢弃」上线起从未进 hit.js 白名单，边缘静默丢弃，此前读到的 0 是丢包不是行为；本次部署起才有读数，窗口从部署日重新起算。",
+   "reading_2026-09-24": "/api/ads?doctor=1(09-22 部署日志)selling=true、mode=live、钱包轨(BSC USDT)已通电,卡轨缺 STRIPE_SECRET_KEY/STRIPE_WEBHOOK_SECRET;D1 现查 ads / ad_orders / bpj_ad_checkout / bpj_ad_web3 / chain_receipts 全部 0 行。即收银台已开,draft 与下单都是 0 —— 这条线测的是需求,不再被「收不了钱」干扰。"
   },
   {
    "id": "bpj-paid-tier-series-1014",
@@ -1685,7 +1692,8 @@
    "win": "外链路径对本舰队有效,按 linkbuilding 技能的 Foundation 阶段继续投(entity stacking + 目录)",
    "lose": "记反面发现「awesome-list / 目录外链对本舰队量级无效」,停投外链,只保留 by_other 监测(它零成本)",
    "source": "docs/fleet-backlinks-2026-09-16.md",
-   "status": "open"
+   "status": "open",
+   "reading_2026-09-24": "仪器修正(PR #2,未上线):*.pages.dev / *.workers.dev 归 self。不修的话 tds 09-23 预览环境 QA 会在 by_other 记 71 次「挣到的外链」,单独就过 ≥20 次访问的阈值。"
   },
   {
    "id": "agi-ai-music-1015",

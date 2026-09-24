@@ -10,7 +10,7 @@ owner 原话:「先优化prompt再执行:调用技能实现舰队各个站点的
 
 **第 2 轮(对抗:这句话里有五个会把执行带偏的假设)**
 1. 「营收目标」没有定义。舰队今天只有**一条在赚钱的线**(eco 的 amazon.de 联盟,30 天 €11,20,owner 09-14 截图),
-   其余是**通了电没人买**的收款面(四站会员、agi 广告位)和**建了没通电**的收款面(bpj 广告位、SR Packs、venture /
+   其余是**通了电没人买**的收款面(四站会员、agi 广告位)和**建了没通电**的收款面(~~bpj 广告位~~ ⚠09-24 纠正:钱包轨已通电、属「通了没人买」;SR Packs、venture /
    localebatch 付费)。把「增长」平均分给 14 个站等于把力气花在没有钱线的站上。
 2. 「调用技能」:pricing / offers / paywalls / cro 四个技能读完,共同的前提是**已经有买家在门口**——技能回答的是
    「怎么定价、怎么包装、什么时候索取」。舰队的第一方读数说的是**没有买家出现在任何一条已建收款轨上**。技能是方法论
@@ -36,9 +36,9 @@ owner 原话:「先优化prompt再执行:调用技能实现舰队各个站点的
 |---|---|---|---|---|---|
 | **eco** | amazon.de `getecoback-21`:owner 截图 30d 至 09-14 **€11,20 / 112 点击**;付款侧未填 → 一分未到手 | 会员(9 USDT/30d,`ready:true`):0 单 | — | affiliate_click **64**(human)/ 139(全 UA);真人 pv 522 → 点击率 12,3%;us-market **1**、amazon.com **1**;top 页 klimaanlage-wohnmobil 6 / dachfenster 5 / kippfenster 4 / 30-qm 4 / fensterabdichtung 4 | **流量 + 付款侧**。点击率已高,新页冷启动 ≈ 0(快反 6 页全史 pv 0),站规已冻结新页 |
 | **agi** | — | /advertise($50 / $100):pv **223**,询单 **0**;/audits pv **170**,询单 0;会员 0 单;讨论区 0 账号 0 帖 | Metaculus bot(owner key) | JS 真人 pv 1 199;subscribers 2;invest_tool_click 9、tool_click 19、calc_use 21;vote_cast 95 | **无需求 + owner key**。资产是引用份额(不付钱) |
-| **bpj** | — | 会员 0 单;watches 0 | **广告位 €49/30d**:`ads` 0 行、`bpj_ad_checkout` 0 行 —— 收款密钥未设 | 有来源真人 pv 3 133;go 103;**厂商投稿累计 7(3 个提交者)**、biz 4;subs 4 pending + 1 unsub(**0 个 live**);grok 一页 391 pv(Google 72) | **收款轨未通电**。舰队唯一有供给侧敲门的站 |
+| **bpj** | — | 会员 0 单;watches 0 | **广告位 €49/30d**:`ads` 0 行、`bpj_ad_checkout` 0 行 —— 收款密钥未设 ⚠09-24 纠正:钱包轨(BSC USDT)早已通电,`/api/ads?doctor=1` selling=true,缺的只是卡轨 | 有来源真人 pv 3 133;go 103;**厂商投稿累计 7(3 个提交者)**、biz 4;subs 4 pending + 1 unsub(**0 个 live**);grok 一页 391 pv(Google 72) | **收款轨未通电**。舰队唯一有供给侧敲门的站 |
 | **tds** | amazon.com `ecoback0d-20`(US 账号 30d $0,00,08-28 截图) | 会员 0 单 | — | 真人 pv 341,affiliate_click **1**(首页);货架在 picks 页,而 picks 页 28d pv <6 | **流量**(10-29 线) |
-| **SR** | — | MCP `/api/mcp`:**24 次非 CI 调用 / 4 天**(09-17 起;check_import_claim 带参数 7 次) | Packs:Stripe 未设 → 503 | 真人 pv 98;subs 0 | **收款轨未通电**(Packs);机器面刚有真实调用 |
+| **SR** | — | MCP `/api/mcp`:~~**24 次非 CI 调用 / 4 天**(09-17 起;check_import_claim 带参数 7 次)~~ ⚠09-24 纠正:80 次里 58 次是本仓 deploy 自检,外部带参数调用 0 | Packs:Stripe 未设 → 503 | 真人 pv 98;subs 0 | **收款轨未通电**(Packs);机器面刚有真实调用 |
 | 四站会员 | — | agi / bpj / eco / tds 全部 `ready:true`,9 USDT/30d,BSC:**0 单、0 会员**;/members pv agi 2、bpj 0 | — | 卖的是 24 个免费工具的云端保存,而舰队工具使用 28d 合计 61 次 | **无需求**(paywalls:「先价值后索取」——没有价值时刻) |
 | venture ×4 / localebatch / web3 / verify | — | — | 付费关闭(各自发布文档的门) | 非 QA 人类事件 **0**(见 09-21 上一节) | 分发未验证 |
 
@@ -55,7 +55,7 @@ owner 原话:「先优化prompt再执行:调用技能实现舰队各个站点的
 | agi | `citation-growth`(舰队自研)+ `pricing` | citation-growth:引用 ≠ 流量,被引页必须带零点击钩子——钩子在(订阅、Future Bet、工具),但 28d 只换来 2 次 subscribe_click。pricing 的价值单位:/advertise 卖的是「触达」,而触达在 JS 口径下是 40 人/天——**不是价格问题,是价值单位为零**。 | 不动 /advertise 定价、不建第五个收款面。唯一不靠流量的钱仍是 Metaculus(owner:key + 变量,3 分钟;Fall 赛季 09-28 开题) |
 | bpj | `offers`(价值方程)+ `pricing` | offers:广告位的价值方程 = 梦想结果(被找到)× 可信度(**真实触达表**,已在广告页)÷ 时间 ÷ 努力(自助下单,已建);买家存在(3 个厂商主动投稿);**分子分母都齐了,唯一缺的是收银台没通电**。 | owner:卡轨两个密钥(`docs/OWNER-SETUP-收款.md`)。代码:无——09-16 已把 owner 动作压到最少 |
 | tds | `cro` | 首页 125 pv、1 次点击;货架在 picks / care-cleaning 页,而这些页 28d pv <6 —— 是**到达问题不是页面问题**;cro 的「首屏价值主张 / CTA」检查对一个日均 4 人的站没有可判读数。 | 不动;10-29 线照常结算 |
-| SR | `paywalls` + `pricing`(按次计量) | pricing 09-16 已算:按次计量 API 是唯一与现状同数量级的模型;09-17 起 `/api/mcp` 出现 **24 次非 CI 调用**(其中带参数的 `check_import_claim` 7 次)= 首次真实机器使用。paywalls:MCP 里不放付费墙(索引器会把它当噪音)。 | 不动 MCP;Packs 等 owner 的 Stripe 五个值;`sr-mcp-calls-1014` 10-14 按读数判 |
+| SR | `paywalls` + `pricing`(按次计量) | pricing 09-16 已算:按次计量 API 是唯一与现状同数量级的模型;~~09-17 起 `/api/mcp` 出现 **24 次非 CI 调用**~~(⚠09-24 纠正:是本仓 deploy 自检,外部带参数 0)(其中带参数的 `check_import_claim` 7 次)= 首次真实机器使用。paywalls:MCP 里不放付费墙(索引器会把它当噪音)。 | 不动 MCP;Packs 等 owner 的 Stripe 五个值;`sr-mcp-calls-1014` 10-14 按读数判 |
 | 四站会员 | `paywalls` | 「先价值后索取」——会员卖的是工具的云端保存,而工具本身 28d 全舰队只被主动用了 61 次;付费墙出现在没有 aha 的地方。 | 保留轨道(owner 09-19 建的),**不再加导航或推广**;等 `fleet-tool-use-1014`(10-14)读数再定去留 |
 
 **没做的 + 为什么**:不给任何站加新收款面(09-16 裁定:绑定约束不是工具品类);不写 KGR 新页(eco 站规冻结);
@@ -83,7 +83,7 @@ owner 原话:「先优化prompt再执行:调用技能实现舰队各个站点的
 | # | 动作 | 时间 | 直接影响 | 现状证据 |
 |---|---|---|---|---|
 | 1 | partnernet.amazon.de 补完付款/税务信息 | 2 分钟 | **€11,20 到手**(舰队唯一已发生的营收) | 截图右下「Complete your onboarding checklist」 |
-| 2 | bpj 广告位卡轨两个密钥 `ADS_PAYMENT_LINK` + `STRIPE_WEBHOOK_SECRET`(`docs/OWNER-SETUP-收款.md`) | 5 分钟 | 唯一有买家敲门的收款面通电:7 条投稿 / 3 个厂商 | `ads` 0 行不是没人要,是没法付 |
+| 2 | ~~bpj 广告位卡轨两个密钥~~ ⚠09-24:钱包轨已在卖,此项降为可选 — `ADS_PAYMENT_LINK` + `STRIPE_WEBHOOK_SECRET`(`docs/OWNER-SETUP-收款.md`) | 5 分钟 | 唯一有买家敲门的收款面通电:7 条投稿 / 3 个厂商 | `ads` 0 行不是没人要,是没法付 |
 | 3 | Metaculus:`ANTHROPIC_API_KEY`(或 OpenRouter)+ `METACULUS_BOT_ENABLED=1`,先 dispatch `dry_run=true` | 3 分钟 | 每季 $50k 奖池,零访客需求;Fall 主赛题 **09-28** 开放 | 09-14 干跑已验证管道 |
 | 4 | SR Packs:Stripe Payment Link + webhook + 5 个 Secrets/Vars(`docs/PACKS-OWNER-SETUP.md`) | 10 分钟 | 第二条 Stripe 轨;MCP 09-17 起有真实调用 | 现 `/packs` 503 |
 | 5 | 决策:是否为 eco EN 区意/法/西三页开 amazon.it/.fr/.es 跟踪 ID | 决策 | 28d 7 次点击现在落 .de;开了再按页切链(EU 访客照旧走 .de) | D1 top 页表 |

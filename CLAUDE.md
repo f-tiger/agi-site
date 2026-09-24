@@ -967,9 +967,11 @@ localebatch **不记任何访问**,所以「零」也读不出访客有没有来
   营收目标 = 已预登记判定线的数字,不另编;新增线只允许仪器线。
 - **钱线台账(D1 现查 09-21,28d)**:**在赚的只有一条** —— eco amazon.de €11,20/30d(窗至 09-14,付款侧未完成,一分未到手);
   eco affiliate_click 64 human / 139 全 UA,pv 522(点击率 12,3%),us-market 1/5。**通了没人买**:四站会员全部 `ready:true`
-  9 USDT/30d **0 单**;agi /advertise 223 pv **0 询单**;bpj watches 0。**建了没通电**:bpj 广告位(投稿 7 / 3 个厂商 = 舰队唯一
-  有买家敲门的面,密钥未设)、SR Packs(Stripe 未设)。tds pv 341 / 1 次点击。**SR `/api/mcp` 09-17 起 24 次非 CI 调用**
-  (带参数的 check_import_claim 7 次)= 机器面首次真实使用,`sr-mcp-calls-1014` 的 t0 已不是 0。
+  9 USDT/30d **0 单**;agi /advertise 223 pv **0 询单**;bpj watches 0。**建了没通电**:~~bpj 广告位(投稿 7 / 3 个厂商 = 舰队唯一
+  有买家敲门的面,密钥未设)~~ **(09-24 纠正:bpj 广告位的钱包轨早已通电,`/api/ads?doctor=1` 回 selling=true、BSC USDT;
+  缺的只是卡轨。所以它属「通了没人买」:ads/订单/链上收据全 0)**、SR Packs(Stripe 未设)。tds pv 341 / 1 次点击。~~**SR `/api/mcp` 09-17 起 24 次非 CI 调用**
+  (带参数的 check_import_claim 7 次)= 机器面首次真实使用~~ **(09-24 纠正:按 D1 里存的 UA 拆,80 次里 58 次是本仓 deploy 自检 ——
+  其中那 7 次带参数 check_import_claim 就是 deploy 步骤里没带 -A 的 JSON-RPC 裸 curl;外部带参数调用 0。SR 机器面至今没有真实使用。)**
 - **技能的读法记死**:pricing / offers / paywalls / cro 的共同前提是**买家已在门口**;舰队读数说的是没有买家出现在任何已建
   收款轨上。技能是方法论不是仪器;bpj 广告位是唯一「分子分母都齐、只差收银台」的面。会员轨违反 paywalls 的「先价值后索取」
   (卖 24 个免费工具的云端保存,而工具 28d 全舰队只被主动用 61 次)—— **保留不推广**,10-14 按 `fleet-tool-use-1014` 定去留。
@@ -977,7 +979,7 @@ localebatch **不记任何访问**,所以「零」也读不出访客有没有来
   不拖垮 pulse)+ 五条部署自检断言 `"money":{` + `tools/fleet/money_line.py`(随 heartbeat,keep-last-good,>3 天红)→
   `data/fleet-money.json` + demand-digest「钱线仪表盘」节;owner 亲报数字在 `data/fleet-money-owner.json`(带数据窗,永不推算)。
   判定线 `fleet-money-line-1019`。**每次报告的钱线从此读快照,不再手查 D1。**
-- **owner 决策卡(按 €/分钟)**:①PartnerNet 付款/税务(2 分钟,€11,20 到手)②bpj 广告位两个密钥(5 分钟)③Metaculus key + 变量
+- **owner 决策卡(按 €/分钟)**:①PartnerNet 付款/税务(2 分钟,€11,20 到手)②~~bpj 广告位两个密钥(5 分钟)~~(09-24 删除:钱包轨已在卖,卡轨是可选项,不再是待办)③Metaculus key + 变量
   (3 分钟,Fall 赛季 09-28 开题)④SR Packs Stripe 五个值(10 分钟)⑤决策:eco EN 区意/法/西三页 28d 7 次点击落 .de,
   要不要开 .it/.fr/.es 跟踪 ID ⑥决策:四站会员 0/4 保留还是撤导航。
 - **技能副作用**:`conversion-ops/cro_audit.py` 在本仓装的版本跑不起来(tuple `.lower()`),四个 URL 同一处崩 —— 技能仓的工具
@@ -1020,3 +1022,16 @@ localebatch **不记任何访问**,所以「零」也读不出访客有没有来
   给账本加「链上证明」层 · 用「AI 来定价」绕开「价值来自后入者」。
 - **仍要每次带出的一条**:不靠流量的钱只有 Metaculus FutureEval 一条建好且关着,差 owner 的 key + `METACULUS_BOT_ENABLED=1`,
   Fall 主赛 09-28 开题。
+
+## 舰队数据检查:三条判定线差点被自检撑过线(2026-09-24,owner:「整个舰队数据检查下」;全文 `docs/fleet-data-check-2026-09-24.md`)
+
+- **引用任何「机器面调用」读数前,先按 UA 剔本仓自检**:SR 80 次 mcp_call 里 58 次是 deploy 自检(45 次 selfcheck UA + 13 次没带 `-A`
+  的裸 curl),外部带参数调用 **0**。deploy-buysomething.yml 已补 `-A "$UA"`;三条线已写剔除后读数,`fleet-machine-demand-1014`
+  加了「本仓自检永不算调用方」的澄清(不改阈值)。**新增任何打生产接口的自检,UA 必须能被识别,且读数口径里写明剔除规则。**
+- **预览主机是自己**:`tools/fleet/ref_sources.txt` 首组 `self:pages.dev|workers.dev`。不这样分,一次预览环境 QA 就是 71 次「外链」。
+- **tds 的 hits 表没有 UA 列**:09-23 单日 304 次 pv 是 QA 突发,按天读 `tds-60d-1029` 时要剔。
+- **gridlings 自有域的 solve 基本是开发测试**(122/123 在 6 天、只有 CN/US);外部玩家只从 Playgama 与 itch 来。
+- **纠正 09-21 两条**:SR「首次真实使用」是自检;bpj 广告位钱包轨早已在卖(selling=true),属「通了没人买」。原文已划线标注。
+- **bpj 四个数据文件自 09-11 没进仓**:`git pull --rebase` 缺 `--autostash`,被 `continue-on-error` 染绿;main `5a24095` 已修,
+  `bpj-manifest-commit-0927` 在盯。**教训(全舰队):`continue-on-error` 的步骤在 API 里显示 success,查「为什么文件不动」要读日志,不能看步骤颜色。**
+- **待办(内容工作,另起)**:bpj 8 条厂商投稿全部停在 `new`,最早 09-07,零审核。

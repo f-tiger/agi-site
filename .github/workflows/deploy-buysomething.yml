@@ -222,11 +222,14 @@ jobs:
           # 零编造的线上证据:不给税率就必须拒算,而不是默认一个
           check_json '/api/mcp/landed_cost?goods_value_usd=1000' '"never guesses" in j.get("error","") and "hts.usitc.gov" in " ".join(j.get("how_to_get_it", []))'
           # JSON-RPC:initialize 与一次真实 tools/call(断言在 tools/assert_mcp_live.py,能单测)
+          # -A "$UA"(2026-09-24):不带时 curl 默认 UA 被 worker 记成外部调用方 —— 09-17→09-24 的 80 次 mcp_call
+          # 里 58 次是本步自己(45 带 selfcheck UA + 13 次裸 curl),它会把 sr-mcp-calls/sr-vertical/fleet-machine-demand 三条线
+          # 用自测撑过线。读数一律剔 ref LIKE 'buysomething-deploy-selfcheck%' 与 09-24 前的裸 curl/。
           ok=0
           for try in 1 2 3 4 5; do
-            curl -s -X POST "$BASE/api/mcp" -H 'content-type: application/json' \
+            curl -s -X POST -A "$UA" "$BASE/api/mcp" -H 'content-type: application/json' \
               --data '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-06-18"}}' -o mcp1.json || true
-            curl -s -X POST "$BASE/api/mcp" -H 'content-type: application/json' \
+            curl -s -X POST -A "$UA" "$BASE/api/mcp" -H 'content-type: application/json' \
               --data '{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"check_import_claim","arguments":{"claim":"under $800 is duty free"}}}' -o mcp2.json || true
             if python3 sites/buysomething/tools/assert_mcp_live.py mcp1.json mcp2.json; then ok=1; break; fi
             sleep 5

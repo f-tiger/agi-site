@@ -47,6 +47,9 @@ CASES = [
     ("chatgpt.com", "ai"), ("www.perplexity.ai", "ai"), ("claude.ai", "ai"),
     ("gemini.google.com", "ai"), ("copilot.microsoft.com", "ai"), ("kagi.com", "ai"),
     ("agiscorecard.com", "self"), ("www.agiscorecard.com", "self"),
+    # 2026-09-24:Cloudflare 预览/部署主机(*.pages.dev / *.workers.dev)是本站自己的构建,不是外链。
+    # 不这样分,tds 09-23 一次预览环境 QA 就会在 by_other 里记 71 次「挣到的外链」,把 fleet-backlinks-1116 推过线。
+    ("dollscout.pages.dev", "self"), ("https://aiyangmao.pages.dev/en/", "self"), ("preview.x.workers.dev", "self"),
     ("play.agiscorecard.com", "fleet"), ("getecoback.com", "fleet"),
     ("baipiaoji.com", "fleet"), ("thedollscout.com", "fleet"),
     ("t.co", "social"), ("m.facebook.com", "social"), ("news.ycombinator.com", "social"),
@@ -54,6 +57,7 @@ CASES = [
     # 下面这些必须 NOT 被误分类 —— 裸 includes 时代它们全是误判
     ("netflix.com", "other"), ("mybing.example.org", "other"), ("notgoogle.org", "other"),
     ("someblog.example.com", "other"), ("agiscorecard.com.evil.example", "other"),
+    ("pages.dev.evil.example", "other"),
 ]
 
 BLOCK = re.compile(r"(const REF_SRC = .*?^const srcBucket = .*?^\};)", re.M | re.S)
