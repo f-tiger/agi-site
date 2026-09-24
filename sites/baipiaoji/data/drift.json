@@ -1,10 +1,25 @@
 {
-  "generated": "2026-09-23",
+  "generated": "2026-09-24",
   "note": "官方来源页令牌集合连续两日与基线不同 = 漂移确认。只是「该去核」的信号,不是事实;limits.checked 推进到确认日后自动撤下。",
   "fetched_ok": 102,
   "fetched_fail": 22,
-  "pending": 10,
+  "pending": 14,
   "items": [
+    {
+      "slug": "anythingllm",
+      "url": "https://anythingllm.com",
+      "confirmed": "2026-09-24",
+      "first_seen": "2026-09-23",
+      "added": [
+        "28months",
+        "37months"
+      ],
+      "removed": [
+        "27months",
+        "36months"
+      ],
+      "checked_then": "2026-08-04"
+    },
     {
       "slug": "kimi",
       "url": "https://kimi.com/zh-cn/help/membership",
@@ -152,19 +167,6 @@
       ],
       "removed": [
         "19days"
-      ],
-      "checked_then": "2026-08-04"
-    },
-    {
-      "slug": "anythingllm",
-      "url": "https://anythingllm.com",
-      "confirmed": "2026-09-17",
-      "first_seen": "2026-09-16",
-      "added": [
-        "66k"
-      ],
-      "removed": [
-        "65k"
       ],
       "checked_then": "2026-08-04"
     },

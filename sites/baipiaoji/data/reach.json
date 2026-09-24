@@ -1,52 +1,53 @@
 {
-  "generated": "2026-09-23",
+  "generated": "2026-09-24",
   "source": "/api/reach",
   "window_days": 28,
-  "since": "2026-08-26",
-  "until": "2026-09-23",
+  "since": "2026-08-27",
+  "until": "2026-09-24",
   "definition": "ev='' AND ref != '' — referred human page views (traffic-truth.mjs human line A); direct/no-referrer visits and /__ self-test paths excluded; counts only, no row-level data",
-  "humans_referred": 378,
-  "per_day": 13.5,
+  "humans_referred": 388,
+  "per_day": 13.9,
   "by_kind": {
-    "tool": 281,
-    "category": 53,
+    "tool": 293,
+    "category": 51,
     "page": 38,
     "alternatives": 2,
+    "judgement": 1,
     "plans": 1,
-    "vs": 3
+    "vs": 2
   },
   "categories": [
     {
       "cat": "chat",
-      "n": 118
+      "n": 128
     },
     {
       "cat": "coding",
-      "n": 65
+      "n": 63
     },
     {
       "cat": "api",
-      "n": 46
+      "n": 44
     },
     {
       "cat": "video",
-      "n": 37
+      "n": 38
     },
     {
       "cat": "office",
-      "n": 19
+      "n": 20
+    },
+    {
+      "cat": "image",
+      "n": 15
     },
     {
       "cat": "writing",
       "n": 14
     },
     {
-      "cat": "image",
-      "n": 14
-    },
-    {
       "cat": "local",
-      "n": 8
+      "n": 10
     },
     {
       "cat": "audio",
@@ -54,7 +55,7 @@
     },
     {
       "cat": "agent",
-      "n": 6
+      "n": 5
     },
     {
       "cat": "search",
@@ -77,21 +78,21 @@
     {
       "slug": "grok",
       "cat": "chat",
-      "n": 86
+      "n": 91
     },
     {
       "slug": "kimi",
       "cat": "chat",
-      "n": 26
-    },
-    {
-      "slug": "fireworks",
-      "cat": "api",
-      "n": 19
+      "n": 31
     },
     {
       "slug": "feishu-miaoji",
       "cat": "office",
+      "n": 18
+    },
+    {
+      "slug": "fireworks",
+      "cat": "api",
       "n": 17
     },
     {
@@ -160,6 +161,11 @@
       "n": 3
     },
     {
+      "slug": "tongyi-wanxiang",
+      "cat": "image",
+      "n": 3
+    },
+    {
       "slug": "civitai",
       "cat": "image",
       "n": 3
@@ -177,6 +183,11 @@
     {
       "slug": "tongyi",
       "cat": "chat",
+      "n": 2
+    },
+    {
+      "slug": "anythingllm",
+      "cat": "local",
       "n": 2
     },
     {
@@ -230,11 +241,6 @@
       "n": 2
     },
     {
-      "slug": "tongyi-wanxiang",
-      "cat": "image",
-      "n": 2
-    },
-    {
       "slug": "bailian",
       "cat": "api",
       "n": 1
@@ -268,37 +274,37 @@
       "slug": "windsurf",
       "cat": "coding",
       "n": 1
-    },
+    }
+  ],
+  "judgement": [
     {
-      "slug": "zed",
-      "cat": "coding",
+      "path": "/is-google-flow-still-free",
       "n": 1
     }
   ],
-  "judgement": [],
   "pages": [
     {
       "path": "grok",
-      "n": 86
+      "n": 91
     },
     {
       "path": "coding",
-      "n": 39
+      "n": 37
+    },
+    {
+      "path": "kimi",
+      "n": 31
     },
     {
       "path": "/",
       "n": 29
     },
     {
-      "path": "kimi",
-      "n": 26
+      "path": "feishu-miaoji",
+      "n": 18
     },
     {
       "path": "fireworks",
-      "n": 19
-    },
-    {
-      "path": "feishu-miaoji",
       "n": 17
     },
     {
@@ -366,6 +372,10 @@
       "n": 3
     },
     {
+      "path": "tongyi-wanxiang",
+      "n": 3
+    },
+    {
       "path": "civitai",
       "n": 3
     },
@@ -379,6 +389,10 @@
     },
     {
       "path": "tongyi",
+      "n": 2
+    },
+    {
+      "path": "anythingllm",
       "n": 2
     },
     {
@@ -422,15 +436,15 @@
       "n": 2
     },
     {
-      "path": "tongyi-wanxiang",
-      "n": 2
-    },
-    {
       "path": "/alternatives/grammarly",
       "n": 1
     },
     {
       "path": "/alternatives/openrouter",
+      "n": 1
+    },
+    {
+      "path": "/is-google-flow-still-free",
       "n": 1
     },
     {
@@ -470,10 +484,6 @@
       "n": 1
     },
     {
-      "path": "/vs/dify-vs-n8n",
-      "n": 1
-    },
-    {
       "path": "/vs/google-ai-studio-vs-openrouter",
       "n": 1
     },
@@ -482,11 +492,11 @@
       "n": 1
     },
     {
-      "path": "anythingllm",
+      "path": "cerebras",
       "n": 1
     },
     {
-      "path": "cerebras",
+      "path": "cherry-studio",
       "n": 1
     },
     {
@@ -512,24 +522,20 @@
     {
       "path": "gamma",
       "n": 1
-    },
-    {
-      "path": "ima",
-      "n": 1
     }
   ],
   "referrers": [
     {
       "ref": "www.google.com",
-      "n": 174
+      "n": 173
     },
     {
       "ref": "cn.bing.com",
-      "n": 116
+      "n": 123
     },
     {
       "ref": "www.bing.com",
-      "n": 20
+      "n": 21
     },
     {
       "ref": "chatgpt.com",
@@ -564,6 +570,10 @@
       "n": 4
     },
     {
+      "ref": "com.twitter.android",
+      "n": 4
+    },
+    {
       "ref": "baidu.com",
       "n": 3
     },
@@ -585,10 +595,6 @@
     },
     {
       "ref": "kagi.com",
-      "n": 1
-    },
-    {
-      "ref": "com.twitter.android",
       "n": 1
     }
   ],
@@ -630,7 +636,7 @@
     },
     {
       "ref": "www.perplexity.ai",
-      "path": "/en/vs/dify-vs-n8n",
+      "path": "/en/is-google-flow-still-free",
       "n": 1
     },
     {
@@ -640,15 +646,16 @@
     }
   ],
   "events": {
-    "sub_view": 408,
-    "go": 111,
+    "sub_view": 427,
+    "go": 121,
+    "home": 12,
     "star": 10,
-    "calc": 7,
-    "home": 6,
-    "biz": 6,
+    "calc": 8,
+    "biz": 7,
     "sub_submit": 5,
     "sheet_dl": 5,
     "sub_ok": 4,
+    "gate": 2,
     "sub_dup": 1
   },
   "submissions": {

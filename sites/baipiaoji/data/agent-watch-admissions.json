@@ -1,5 +1,5 @@
 {
- "checked": "2026-09-23",
+ "checked": "2026-09-24",
  "rejected": {
   "beeai-framework": {
    "attempts": 2,
@@ -257,37 +257,29 @@
    "repo_http": 404,
    "last_attempt": "2026-09-23"
   },
-  "cn-savantcat-answers": {
-   "attempts": 1,
-   "first_attempt": "2026-09-22",
-   "reason": "source unreachable (timeout / network)",
-   "source_http": null,
-   "repo_http": 200,
-   "last_attempt": "2026-09-22"
-  },
   "blocklottos-blocklottos": {
-   "attempts": 1,
+   "attempts": 2,
    "first_attempt": "2026-09-22",
    "reason": "source HTTP 404",
    "source_http": 404,
    "repo_http": 404,
-   "last_attempt": "2026-09-22"
+   "last_attempt": "2026-09-24"
   },
   "ulupspaces-ulup-spaces-mcp": {
-   "attempts": 1,
+   "attempts": 2,
    "first_attempt": "2026-09-22",
    "reason": "source HTTP 403",
    "source_http": 403,
    "repo_http": 403,
-   "last_attempt": "2026-09-22"
+   "last_attempt": "2026-09-24"
   },
   "uluplife-life": {
-   "attempts": 1,
+   "attempts": 2,
    "first_attempt": "2026-09-22",
    "reason": "source HTTP 403",
    "source_http": 403,
    "repo_http": 403,
-   "last_attempt": "2026-09-22"
+   "last_attempt": "2026-09-24"
   },
   "kanta-cli": {
    "attempts": 1,
@@ -298,44 +290,36 @@
    "last_attempt": "2026-09-22"
   },
   "agency-ottobot-contractor-license-changes": {
-   "attempts": 1,
+   "attempts": 2,
    "first_attempt": "2026-09-22",
    "reason": "duplicate repository of an existing record",
    "source_http": 200,
    "repo_http": 200,
-   "last_attempt": "2026-09-22"
+   "last_attempt": "2026-09-24"
   },
   "projectdata-mpp-connector": {
-   "attempts": 1,
+   "attempts": 2,
    "first_attempt": "2026-09-22",
    "reason": "source unreachable (timeout / network)",
    "source_http": null,
    "repo_http": 404,
-   "last_attempt": "2026-09-22"
+   "last_attempt": "2026-09-24"
   },
   "redpanda-docs-mcp": {
-   "attempts": 1,
+   "attempts": 2,
    "first_attempt": "2026-09-22",
    "reason": "source HTTP 404",
    "source_http": 404,
    "repo_http": 404,
-   "last_attempt": "2026-09-22"
+   "last_attempt": "2026-09-24"
   },
   "multinex-memq": {
-   "attempts": 1,
+   "attempts": 2,
    "first_attempt": "2026-09-22",
    "reason": "source HTTP 404",
    "source_http": 404,
    "repo_http": 404,
-   "last_attempt": "2026-09-22"
-  },
-  "cloud-basebalance-basebalance": {
-   "attempts": 1,
-   "first_attempt": "2026-09-22",
-   "reason": "source unreachable (timeout / network)",
-   "source_http": null,
-   "repo_http": 200,
-   "last_attempt": "2026-09-22"
+   "last_attempt": "2026-09-24"
   },
   "lillytechsystems-ai-school": {
    "attempts": 1,
@@ -392,6 +376,30 @@
    "source_http": 200,
    "repo_http": 200,
    "last_attempt": "2026-09-23"
+  },
+  "goaimoat-brand-intel-memory": {
+   "attempts": 1,
+   "first_attempt": "2026-09-24",
+   "reason": "duplicate repository of an existing record",
+   "source_http": 200,
+   "repo_http": 200,
+   "last_attempt": "2026-09-24"
+  },
+  "a2awire-benchmark-invoice-reconcile-2026-09-23-9888f269": {
+   "attempts": 1,
+   "first_attempt": "2026-09-24",
+   "reason": "duplicate repository of an existing record",
+   "source_http": 200,
+   "repo_http": 404,
+   "last_attempt": "2026-09-24"
+  },
+  "foodose-glp1-nutrition": {
+   "attempts": 1,
+   "first_attempt": "2026-09-24",
+   "reason": "source HTTP 404",
+   "source_http": 404,
+   "repo_http": 404,
+   "last_attempt": "2026-09-24"
   }
  },
  "admitted": [
@@ -5293,6 +5301,256 @@
   {
    "slug": "trypinchy-pinchy",
    "date": "2026-09-23",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "golproductions-exnos",
+   "date": "2026-09-24",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "br-adseditor-mcp",
+   "date": "2026-09-24",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "ca-movahedi-privacy",
+   "date": "2026-09-24",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "golproductions-envie",
+   "date": "2026-09-24",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "alternativeassetliteracy-aal-advisor-mcp",
+   "date": "2026-09-24",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "laboriq-mcp-server",
+   "date": "2026-09-24",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "microsoft-powerbi-modeling-mcp",
+   "date": "2026-09-24",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "maskbreak-mcp",
+   "date": "2026-09-24",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "daedalmap-boundaries",
+   "date": "2026-09-24",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "polytranslator-translator",
+   "date": "2026-09-24",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "datasparc-dbhawk",
+   "date": "2026-09-24",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "cartviral-cartviral",
+   "date": "2026-09-24",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "ravenmcp-raven-mcp",
+   "date": "2026-09-24",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "getmcpads-pinterest-ads",
+   "date": "2026-09-24",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "getmcpads-x-ads",
+   "date": "2026-09-24",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "getmcpads-tiktok-ads",
+   "date": "2026-09-24",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "getmcpads-meta-ads",
+   "date": "2026-09-24",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "getmcpads-google-search-console",
+   "date": "2026-09-24",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "getmcpads-google-analytics",
+   "date": "2026-09-24",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "getmcpads-google-ads",
+   "date": "2026-09-24",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "overwing-mcp",
+   "date": "2026-09-24",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "mettakin-mettakin",
+   "date": "2026-09-24",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "jidoseal-mcp",
+   "date": "2026-09-24",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "agentbuilt-agentbuilt",
+   "date": "2026-09-24",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "comos-federation-gateway",
+   "date": "2026-09-24",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "hutchdb-hutchdb",
+   "date": "2026-09-24",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "warmthengine-observatory",
+   "date": "2026-09-24",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "aidesignblueprint-blueprint",
+   "date": "2026-09-24",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "brianbooms-quiet-menders",
+   "date": "2026-09-24",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "zettoai-zetto",
+   "date": "2026-09-24",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "devart-mcp-zohodesk",
+   "date": "2026-09-24",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "devart-mcp-zohocrm",
+   "date": "2026-09-24",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "devart-mcp-sqlite",
+   "date": "2026-09-24",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "devart-mcp-salesforcemc",
+   "date": "2026-09-24",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "devart-mcp-salesforce",
+   "date": "2026-09-24",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "devart-mcp-quickbooks",
+   "date": "2026-09-24",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "devart-mcp-postgresql",
+   "date": "2026-09-24",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "devart-mcp-oracle",
+   "date": "2026-09-24",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "devart-mcp-dynamics365",
+   "date": "2026-09-24",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "devart-mcp-mysql",
+   "date": "2026-09-24",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "mambabuilt-mcp-talent-agency-lookup",
+   "date": "2026-09-24",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "celigo-celigo",
+   "date": "2026-09-24",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "neuronto-x402-payments-facilitator",
+   "date": "2026-09-24",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "osir-domain-registrar",
+   "date": "2026-09-24",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "surfingdog-inbox",
+   "date": "2026-09-24",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "vibe-fixer-vibefix",
+   "date": "2026-09-24",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "jithox-jithox",
+   "date": "2026-09-24",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "aiapplyd-aiapplyd",
+   "date": "2026-09-24",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "cn-savantcat-answers",
+   "date": "2026-09-24",
+   "origin": "mcp-registry"
+  },
+  {
+   "slug": "cloud-basebalance-basebalance",
+   "date": "2026-09-24",
    "origin": "mcp-registry"
   }
  ],

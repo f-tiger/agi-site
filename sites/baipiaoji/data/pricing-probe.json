@@ -1,24 +1,24 @@
 {
- "generated": "2026-09-23",
+ "generated": "2026-09-24",
  "env": "runner",
  "note": "付费档缺口的抓取探针。只做发现与取证，绝不写事实：任何数字仍须经 scripts/limits-edit.mjs 两步核实后才进 tools.json。state=ready 表示该 URL 当天 200 且页面上有像价目表的价格段，不表示数字已被核实。每行的 env 是抓取时的网络环境：sandbox 行的 blocked 很可能只是会话沙箱出网被拒，不能当作「这家没有定价页」，只有 runner 行的 blocked 才值得当结论。",
  "gap_total": 108,
  "batch": [
-  "continue",
-  "coze",
-  "d-id",
-  "devv",
-  "dify",
-  "doubao-aixue",
-  "duckduckgo-ai",
-  "elevenlabs"
+  "elicit",
+  "exa",
+  "felo",
+  "figma",
+  "framer",
+  "gamma",
+  "gaoding",
+  "gemini"
  ],
- "cursor": "elevenlabs",
+ "cursor": "gemini",
  "summary": {
-  "ready": 14,
-  "empty": 19,
-  "blocked": 13,
-  "probed_total": 46
+  "ready": 19,
+  "empty": 20,
+  "blocked": 15,
+  "probed_total": 54
  },
  "tools": {
   "kimi": {
@@ -1376,6 +1376,210 @@
     "tokens": 37,
     "excerpt": "enAPI API ElevenCreative Creative ElevenAgents Agents ElevenAPI API Monthly billing Monthly billing Yearly billing Free $0 per month Build for free Text to Speech Speech to Text Sound Effects Voice Design Music Productions Image 3 Projects in Studio 10k credits per month Starter $6 per month Choose Starter Everything in free, plus Commercial License Instant Voice Cloning 20 Projects in Studio Music commercial use Dubbing Studio Image &amp; Video 30k credits per month Creator Popular $22 First month 50% off $11 per month Choose Creator Everything in Starter, plus Professional Voice Cloning Additional Credits 121k credits per month Pro $99 per month Choose Pro Everything in Creator, plus 44.1k"
    }
+  },
+  "elicit": {
+   "slug": "elicit",
+   "name": "Elicit",
+   "cat": "study",
+   "reach": 0,
+   "probed": "2026-09-24",
+   "env": "runner",
+   "state": "ready",
+   "tried": [
+    {
+     "url": "https://elicit.com/pricing",
+     "status": 200,
+     "bytes": 545039,
+     "tokens": 27
+    }
+   ],
+   "best": {
+    "url": "https://elicit.com/pricing",
+    "tokens": 27,
+    "excerpt": "hat with papers with full-text access View sources for answers Import from Zotero Try for free Plus For deeper research $11 Save 42% Per user/month, billed as $132 annually Export to RIS, CSV, BIB, PDF and DOCX Add 5 columns to your tables at a tim e Unlimited search across more than 500 thousand clinical trials Standard usage for Research Agent, Research Reports, and Systematic Literature Reviews Sign up Pro For systematic reviews $39 Save 43% Per user/month, billed as $468 annually 5x usage for Research Agent, Research Reports, and Systematic Literature Reviews Dedicated Systematic Review Workflow that can screen 5,000 papers Add 20 columns to your tables at a tim e Reports extract from up"
+   }
+  },
+  "exa": {
+   "slug": "exa",
+   "name": "Exa",
+   "cat": "search",
+   "reach": 0,
+   "probed": "2026-09-24",
+   "env": "runner",
+   "state": "ready",
+   "tried": [
+    {
+     "url": "https://exa.ai/pricing",
+     "status": 200,
+     "bytes": 140525,
+     "tokens": 37
+    }
+   ],
+   "best": {
+    "url": "https://exa.ai/pricing",
+    "tokens": 37,
+    "excerpt": "ers with structured outputs Web grounded citations Get started Daily at 9:00AM Weekly, Mondays Daily at 6:00PM Monitors $15 /1k requests Identify fresh events on the web Runs searches at a specified cadence Receive updates with webhooks Get started Use cases Coding agents Chatbots News monitoring Enrichments Voice agents People search Company search Coding agents Search over millions of GitHub repos, docs, and Stack Overflow with high-accuracy code retrieval. Search docs, repos, and changelogs in real time Use sub-200ms search options inside latency-sensitive agent loops Ground code generation with current package and API references Docs Search Repo Search Changelog Lookup Exa Search $7 /1k "
+   }
+  },
+  "felo": {
+   "slug": "felo",
+   "name": "Felo Search",
+   "cat": "search",
+   "reach": 0,
+   "probed": "2026-09-24",
+   "env": "runner",
+   "state": "empty",
+   "tried": [
+    {
+     "url": "https://felo.ai/pricing",
+     "status": 200,
+     "bytes": 119969,
+     "tokens": 0
+    },
+    {
+     "url": "https://felo.ai/price",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://felo.ai/plans",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    }
+   ],
+   "best": {
+    "url": "https://felo.ai/pricing",
+    "tokens": 0,
+    "excerpt": ""
+   }
+  },
+  "figma": {
+   "slug": "figma",
+   "name": "Figma",
+   "cat": "design",
+   "reach": 0,
+   "probed": "2026-09-24",
+   "env": "runner",
+   "state": "ready",
+   "tried": [
+    {
+     "url": "https://figma.com/pricing",
+     "status": 200,
+     "bytes": 600000,
+     "tokens": 28
+    }
+   ],
+   "best": {
+    "url": "https://figma.com/pricing",
+    "tokens": 28,
+    "excerpt": "e Starter? Why choose Starter? Includes: Unlimited drafts UI kits and templates 150 AI credits/day, up to 500 AI credits/mo Professional Monthly Annual Full seat $16 /mo + 3,000 AI credits/mo Dev seat $12 /mo + 500 AI credits/mo Collab seat $3 /mo + 500 AI credits/mo Select plan Why choose Professional? Why choose Professional? Choose Professional if you: Are a professional working solo or with others Need unlimited files and projects for a single team Want advanced prototyping tools and easier dev handoff Key features: Unlimited files and projects Team-wide design libraries Advanced Dev Mode inspection and MCP Server Organization Billed annually Full seat $55 /mo + 3,500 AI credits/mo Dev s"
+   }
+  },
+  "framer": {
+   "slug": "framer",
+   "name": "Framer",
+   "cat": "design",
+   "reach": 0,
+   "probed": "2026-09-24",
+   "env": "runner",
+   "state": "ready",
+   "tried": [
+    {
+     "url": "https://framer.com/pricing",
+     "status": 200,
+     "bytes": 600000,
+     "tokens": 11
+    }
+   ],
+   "best": {
+    "url": "https://framer.com/pricing",
+    "tokens": 11,
+    "excerpt": "ntroduction Examples Start free, then scale your site Start free, then scale your site Yearly billing Free Try for free $0 500 AI credits to try Free Framer domain 1 GB bandwidth Design pages Start for Free Basic Creative personal sites $10 per month 1,000 AI credits / month 2,000 AI credits / month 3,000 AI credits / month 5,000 AI credits / month 8,000 AI credits / month 10,000 AI credits / month 15,000 credits / month Free custom domain 2 CMS collections 50 GB bandwidth Built-in SEO Use your own domain Localization (add-on) Start with Basic Pro Growing professional sites $30 <div class=\"framer-lhw"
+   }
+  },
+  "gamma": {
+   "slug": "gamma",
+   "name": "Gamma",
+   "cat": "office",
+   "reach": 0,
+   "probed": "2026-09-24",
+   "env": "runner",
+   "state": "blocked",
+   "tried": [
+    {
+     "url": "https://gamma.app/pricing",
+     "status": 403,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://gamma.app/price",
+     "status": 403,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://gamma.app/plans",
+     "status": 403,
+     "bytes": 0,
+     "tokens": 0
+    }
+   ],
+   "best": null
+  },
+  "gaoding": {
+   "slug": "gaoding",
+   "name": "稿定 AI",
+   "cat": "design",
+   "reach": 0,
+   "probed": "2026-09-24",
+   "env": "runner",
+   "state": "ready",
+   "tried": [
+    {
+     "url": "https://www.gaoding.com/pricing",
+     "status": 200,
+     "bytes": 514749,
+     "tokens": 18
+    }
+   ],
+   "best": {
+    "url": "https://www.gaoding.com/pricing",
+    "tokens": 18,
+    "excerpt": "兑换 🌕月满中秋 ·会员低至4折 大会员最高送3个月，模板+AI权益一步到位，月均更划算！ 03 天 10 小时 40 分钟 20 秒 个人使用 企业使用 2年 最高送1年 连续包年 连续包季 更多选择 模板会员 模板在线编辑，快速出图 ¥ 159 /年 ¥13.25/月 明细 50 豆/月 最多可生成约 50 张图片或 5 个视频 立即开通 到期前 24 小时内将按 159 元/年自动续费，可随时取消 模板创作权益 个人商用授权 模板作品高清无水印下载 模板作品 PSD 导出 海量海报、PPT、视频、H5 等 VIP 模板 持续更新 高级工具功能：尺寸延展、PSD 转模板等 随时随地 在线编辑 AI 创作权益 50 豆/月 访问所有AI模型 加购豆享折扣 AI作品高清下载（可设置多倍数尺寸） 模型限时优惠 精选素材组合包 无官方自营素材下载次数 无第三方合作素材下载次数 通用权益 50 GB 存储空间 AI 创作会员 AI 创作与创意生成，豆额度灵活选择 ¥ 319 /年 ¥659 ¥26.58/月 1豆=0.09元 明细 0.3K 0.5K 1K 300 豆/月 每月最多可生成约 500 张图片或 50 个视频 立即开通 到期前 24 小时内将按 319 元/年自动续费，可随时取消 模板创作权益 无个人商用授权 模板作品高清无水印下载 模板作品 PSD 导出 海量海报、PPT、视频、H5 等 VIP 模板 持续更新 高级工具功能：尺寸延展、PSD 转模板等 随时随地 在线编辑 AI 创作权益 300～3000豆/月 访问所有AI模型 加购豆享折扣 AI作品高清下载（可设置"
+   }
+  },
+  "gemini": {
+   "slug": "gemini",
+   "name": "Google Gemini",
+   "cat": "chat",
+   "reach": 0,
+   "probed": "2026-09-24",
+   "env": "runner",
+   "state": "blocked",
+   "tried": [
+    {
+     "url": "https://gemini.google.com/pricing",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://gemini.google.com/price",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://gemini.google.com/plans",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    }
+   ],
+   "best": null
   }
  }
 }
