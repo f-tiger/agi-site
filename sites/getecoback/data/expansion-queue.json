@@ -1,0 +1,282 @@
+{
+ "note": "eco's standing expansion queue (owner 2026-09-24: 「站点应该持续扩展」). The daily fleet task (block C) takes the first item with status 'queued' and an empty 'blocked_by', builds it through the kgr-page checklist, flips it to 'built' with the page date and a bet id, and never builds more than one page a day. When fewer than three items are 'queued', the same run restocks from the season calendar in data/autopilot/demand-digest.md and records every SERP verdict here, rejections included, so no term is researched twice. Gate: tools/check_expansion_queue.py.",
+ "updated": "2026-09-24",
+ "items": [
+  {
+   "slug": "beheizter-waeschestaender",
+   "working_title": "Beheizter Wäscheständer: Kosten und wohin das Wasser geht",
+   "cluster": "luftqualitaet",
+   "evidence": [
+    "GB seasonality 2026-09-17: heated airer 15,5, peak October (UK, not DE)",
+    "site coverage 0 on the German side; EN twin heated-airer-vs-dehumidifier exists but cannot be monetised (.co.uk)",
+    "seasonality-de-queue 2026-09-24 (anchor heizlüfter): beheizbarer 0,0 / beheizter 0,0 — at the Trends floor",
+    "spelling check 2026-09-24 (own batch, geo DE, 5y): wäscheständer peak 53,0 (August); beheizbarer 0,1 · beheizter 0,2 · elektrischer 0,2 · heizwäscheständer 0,1 — every heated variant is under 0,5 % of the plain rack. No spelling carries demand, so the title stays; the heated rack is a UK product, not a German search"
+   ],
+   "serp": {
+    "date": "2026-09-24",
+    "verdict": "writable",
+    "seen": "otto, pro-idee, silvergear (shops); wohlig-wohnen, wäscheprofis, warmundwohlig, waeschekorb (small niche sites)"
+   },
+   "cannibalization": "waesche-trocknen-wohnung covers drying without a heated rack; no page answers the heated rack itself",
+   "monetisation": "amazon.de category search + dehumidifier + hygrometer (CONTEXT_MODELS)",
+   "status": "built",
+   "built": "2026-09-24",
+   "bet": "eco-expansion-batch1-1122",
+   "blocked_by": "",
+   "next_action": "Measured after building: German demand for the heated rack is at the floor. Do not build a second heated-rack page or a DE size ladder; the page stands or falls on eco-expansion-batch1-1122 and on the 'wohin das Wasser geht' angle it shares with waesche-trocknen-wohnung."
+  },
+  {
+   "slug": "infrarotheizung-thermostat",
+   "working_title": "Infrarotheizung mit Thermostat: welches, wohin, was es spart",
+   "cluster": "heizen",
+   "evidence": [
+    "seasonality-de 2026-09-15: infrarotheizung 29,2, peak November",
+    "8 IR pages, none on the thermostat as a purchase decision (ratgeber has one section)",
+    "seasonality-de-queue 2026-09-24: infrarotheizung thermostat 1,1, peak November"
+   ],
+   "serp": {
+    "date": "2026-09-24",
+    "verdict": "writable",
+    "seen": "bosch (manufacturer), heizung.de, heizungsfinder (portals); infrarotheizung-experten, wohnen-und-technik, infrarot-heizung-test, heizwelle, bauabenteuer (niche/shops)"
+   },
+   "cannibalization": "infrarotheizung-ratgeber has a thermostat section; the new page is the accessory decision and links back",
+   "monetisation": "Steckdosenthermostat, Funk-Thermostat, Energiekostenmessgerät (CONTEXT_MODELS)",
+   "status": "built",
+   "built": "2026-09-24",
+   "bet": "eco-expansion-batch1-1122",
+   "blocked_by": "",
+   "next_action": ""
+  },
+  {
+   "slug": "fenster-beschlagen-aussen",
+   "working_title": "Fenster beschlagen außen: warum das ein gutes Zeichen ist",
+   "cluster": "luftqualitaet",
+   "evidence": [
+    "seasonality-de 2026-09-15: fenster beschlagen 5,6, peak November, winter/sep 1,94",
+    "fenster-beschlagen-innen exists and says nothing about the outside",
+    "seasonality-de-queue 2026-09-24: fenster beschlagen außen 0,7 (Sep) → peak 1,8 in October — the page went live in its peak month"
+   ],
+   "serp": {
+    "date": "2026-09-24",
+    "verdict": "writable",
+    "seen": "fenster-schmidinger, fensterversand, polnischefenster24, greenox, rumpfinger, ifenster24, schramm (window makers and shops only)"
+   },
+   "cannibalization": "none: the innen page is the opposite case and is linked",
+   "monetisation": "none by design (nothing to buy); SKIP_MODELS + POPUP_SKIP. Citation and traffic bet, routes to the innen page's shelf",
+   "status": "built",
+   "built": "2026-09-24",
+   "bet": "eco-expansion-batch1-1122",
+   "blocked_by": "",
+   "next_action": ""
+  },
+  {
+   "slug": "heizluefter-riecht-verbrannt",
+   "working_title": "Heizlüfter riecht verbrannt: Staub, Erstbetrieb oder Defekt?",
+   "cluster": "heizen",
+   "evidence": [
+    "troubleshooting page type: 4 pages = 32 search visits vs 16 test pages = 1 (28d, 2026-09-17)",
+    "heizlüfter 29,4, peak November",
+    "no page has this as its question; schaltet-sich-aus mentions the smell in one sentence",
+    "seasonality-de-queue 2026-09-24: heizlüfter riecht 0,0 — expected for a troubleshooting phrase (long-tail fault queries sit under the Trends floor; the page-type evidence is first-party)"
+   ],
+   "serp": {
+    "date": "2026-09-24",
+    "verdict": "writable",
+    "seen": "gutefrage, heizlüfter-berater, wanderzauber (niche), heizung.de and rmheizung (central heating, different device)"
+   },
+   "cannibalization": "heizluefter-stromsparend (dust on glowing wire, one sentence), heizluefter-schaltet-sich-aus (safety sentence) — link both",
+   "monetisation": "diagnosis-first shelf per the won growatt pattern (eco-growatt-diagnosis-0925): cleaning aid first, a thermostat heater as the replacement slot",
+   "status": "queued",
+   "blocked_by": "",
+   "next_action": "Find a manufacturer manual or safety source for the first-use smell before stating it; otherwise leave that paragraph out. Safety wording as schaltet-sich-aus: unplug on smoke, no DIY repair."
+  },
+  {
+   "slug": "hygrometer-testen-salz",
+   "working_title": "Luftfeuchtigkeit richtig messen: wohin das Hygrometer gehört und wie du es mit Salz prüfst",
+   "cluster": "luftqualitaet",
+   "evidence": [
+    "the hygrometer is the first card on this site's humidity shelves, and every humidity page's advice hinges on 60 % — a sensor that is 5 points off moves a reading across that line",
+    "saturated table salt holds air at about 75 % RH (D'Addario, Ambient Weather support pages), a check any reader can do with a freezer bag",
+    "seasonality-de-queue 2026-09-24: hygrometer kalibrieren 0,0 (peak 0,1)",
+    "own batch 2026-09-24 (geo DE, 5y, anchor hygrometer): hygrometer 53,0 peak November; luftfeuchtigkeit messen 4,4 November; kalibrieren 0,3 · genauigkeit 0,1 · testen 0,0 — the calibration words have no demand, the head word and 'luftfeuchtigkeit messen' do",
+    "seasonality-de-queue 2026-09-24 (anchor heizlüfter, same scale as seasonality-de): luftfeuchtigkeit messen 1,0, peak November, winter/Sep 1,59 — same size as infrarotheizung thermostat (1,1), which was built"
+   ],
+   "serp": {
+    "date": "2026-09-24",
+    "verdict": "writable",
+    "seen": "talu, hygrometer-test.de (3 pages), aero-check, helpster, ambientweather, daddario (checked for 'hygrometer kalibrieren', not yet for 'luftfeuchtigkeit messen')"
+   },
+   "cannibalization": "none: no page on the site explains checking the instrument its advice depends on",
+   "monetisation": "hygrometer (Min/Max) — already the first card on fenster-beschlagen-innen, waesche-trocknen-wohnung, luftentfeuchter-keller",
+   "status": "queued",
+   "blocked_by": "",
+   "next_action": "Retarget before building: the question readers type is 'luftfeuchtigkeit messen' (and the head word hygrometer), not 'kalibrieren'. Run the SERP check on 'luftfeuchtigkeit messen' first — if big test/retail sites own it, reject and record; if writable, the salt test becomes one section. Cite the 75 % figure from a primary or manufacturer source; no brand claims. Grep first: schimmel-wand-kommt-wieder already mentions measuring."
+  },
+  {
+   "slug": "heizkoerper-entlueften",
+   "working_title": "Heizkörper entlüften als Mieter",
+   "cluster": "heizen",
+   "evidence": [
+    "site coverage 0",
+    "tenant-doable, product = Entlüftungsschlüssel",
+    "seasonality-de-queue 2026-09-24: heizkörper entlüften 3,7 (Sep) → 6,3 November — real demand, red SERP; the rejection stands"
+   ],
+   "serp": {
+    "date": "2026-09-24",
+    "verdict": "red",
+    "seen": "dein-heizungsbauer, heizung.de, viessmann, badenova (utility), warehaus, erste-hausverwaltung, wohnglueck, freeyou, monrose"
+   },
+   "cannibalization": "heizkosten-senken-als-mieter (thermostat heads, seals) — different task",
+   "monetisation": "Entlüftungsschlüssel, auffangbehälter (category searches)",
+   "status": "rejected",
+   "blocked_by": "",
+   "next_action": "None: the tenant angle is already covered by several of the ranking pages."
+  },
+  {
+   "slug": "richtig-heizen",
+   "working_title": "Richtig heizen in der Mietwohnung",
+   "cluster": "heizen",
+   "evidence": [
+    "seasonality-de 2026-09-15: richtig heizen 3,0, peak November — the only 'uncovered, not decided' term in the 2026-09-24 season calendar"
+   ],
+   "serp": {
+    "date": "2026-09-24",
+    "verdict": "red",
+    "seen": "lichtblick, vonovia, obi, vattenfall, dein-heizungsbauer, bosch, co2online, heizsparer, mein-eigenheim"
+   },
+   "cannibalization": "heizkosten-senken-als-mieter, richtig-lueften-im-winter",
+   "monetisation": "programmable thermostat heads (already on the tenant page's shelf)",
+   "status": "rejected",
+   "blocked_by": "",
+   "next_action": "None."
+  },
+  {
+   "slug": "heizkostenzuschuss-oesterreich",
+   "working_title": "Heizkostenzuschuss Österreich 2026 nach Bundesland",
+   "cluster": "heizen",
+   "evidence": [
+    "seasonality-at 2026-09-18: heizkostenzuschuss 19,3, peak October, site coverage 0",
+    "AT is the third market and clicks amazon.de at the German rate"
+   ],
+   "serp": {
+    "date": "",
+    "verdict": "unchecked",
+    "seen": ""
+   },
+   "cannibalization": "none",
+   "monetisation": "weak (subsidy information); links to the heating shelf",
+   "status": "blocked",
+   "blocked_by": "source",
+   "next_action": "oesterreich.gv.at was a maintenance page on 2026-09-18 and the nine Länder have no federal entry point. Build only from a live official source per Land; amounts change yearly — never from memory."
+  },
+  {
+   "slug": "zugluft-abdichten-winter",
+   "working_title": "Zugluft im Winter: Fenster und Türen abdichten ohne Bohren",
+   "cluster": "heizen",
+   "evidence": [
+    "seasonality-de 2026-09-15: zugluft 3,5 + fenster abdichten 3,2, both peak November",
+    "both show as 'covered' in the season calendar only through summer AC pages"
+   ],
+   "serp": {
+    "date": "2026-09-24",
+    "verdict": "red",
+    "seen": "verivox, utopia, myhomebook, stuttgarter-nachrichten, wohnglueck, selbermachen, geizkopf"
+   },
+   "cannibalization": "heizkosten-senken-als-mieter covers door seals and window film",
+   "monetisation": "Dichtungsband, Zugluftstopper",
+   "status": "rejected",
+   "blocked_by": "",
+   "next_action": "No new page. If the tenant page's Zugluft row gets search traffic, deepen that row instead."
+  },
+  {
+   "slug": "waermeunterbett-oder-heizdecke",
+   "working_title": "Wärmeunterbett oder Heizdecke",
+   "cluster": "heizen",
+   "evidence": [
+    "seasonality-de 2026-09-15: heizdecke 12,1, peak December; heizdecke-stromverbrauch exists"
+   ],
+   "serp": {
+    "date": "2026-09-24",
+    "verdict": "red",
+    "seen": "bett1, mediamarkt, enbw, jolie, elektroheizung.org, euronics"
+   },
+   "cannibalization": "heizdecke-stromverbrauch",
+   "monetisation": "Wärmeunterbett, Heizdecke",
+   "status": "rejected",
+   "blocked_by": "",
+   "next_action": "No new page; a Wärmeunterbett paragraph belongs on heizdecke-stromverbrauch if that page starts drawing search visits."
+  },
+  {
+   "slug": "luftentfeuchter-reinigen",
+   "working_title": "Luftentfeuchter reinigen",
+   "cluster": "luftqualitaet",
+   "evidence": [
+    "maintenance pages are this site's most-cited type (klimaanlage-reinigen)"
+   ],
+   "serp": {
+    "date": "2026-09-24",
+    "verdict": "red",
+    "seen": "dyson, levoit, dreo (manufacturers), hausjournal, coolblue, drycheck, brune"
+   },
+   "cannibalization": "luftentfeuchter-stinkt already carries the cleaning steps",
+   "monetisation": "Lamellenbürste, Ablaufschlauch (already on stinkt's shelf)",
+   "status": "rejected",
+   "blocked_by": "",
+   "next_action": "None."
+  },
+  {
+   "slug": "schimmel-schlafzimmer",
+   "working_title": "Schimmel im Schlafzimmer",
+   "cluster": "luftqualitaet",
+   "evidence": [
+    "seasonality-de 2026-09-15: schimmel schlafzimmer 2,4, winter/sep 4,84"
+   ],
+   "serp": {
+    "date": "",
+    "verdict": "unchecked",
+    "seen": ""
+   },
+   "cannibalization": "schimmel-wand-kommt-wieder, schimmel-am-fenster",
+   "monetisation": "dehumidifier shelf",
+   "status": "gated",
+   "blocked_by": "bet:eco-schimmel-fenster-1213",
+   "next_action": "Pre-registered 2026-09-15: build only if eco-schimmel-fenster-1213 wins (with schimmel tapete and schwarzer schimmel)."
+  },
+  {
+   "slug": "balkonkraftwerk-speicher-nachruesten-2027",
+   "working_title": "Balkonkraftwerk-Speicher: spring refresh",
+   "cluster": "energie-sparen",
+   "evidence": [
+    "seasonality-de-storage 2026-09-17: balkonkraftwerk speicher 23,0, peak March"
+   ],
+   "serp": {
+    "date": "",
+    "verdict": "unchecked",
+    "seen": ""
+   },
+   "cannibalization": "12 existing Balkonkraftwerk/Balkonspeicher pages",
+   "monetisation": "storage shelf (no EcoFlow)",
+   "status": "seasonal-hold",
+   "blocked_by": "season:2027-02-01",
+   "next_action": "In February, read eco-storage-spring-0415 context and decide whether the cluster needs a page or only refreshed dates."
+  },
+  {
+   "slug": "oelradiator-stromverbrauch",
+   "working_title": "Ölradiator: Stromverbrauch und wann er sich lohnt",
+   "cluster": "heizen",
+   "evidence": [
+    "seasonality-at 2026-09-18 carries ölradiator; the DE heater cluster has no Ölradiator page"
+   ],
+   "serp": {
+    "date": "2026-09-24",
+    "verdict": "red",
+    "seen": "heizung.de, giga, thermondo, adac, smart-home-fox, elektroheizung.org, stromguide"
+   },
+   "cannibalization": "heizluefter-stromverbrauch (same arithmetic)",
+   "monetisation": "Ölradiator category",
+   "status": "rejected",
+   "blocked_by": "",
+   "next_action": "None as a page; an Ölradiator row can go into heizluefter-stromverbrauch's table if that page's heater section draws clicks."
+  }
+ ]
+}

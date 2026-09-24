@@ -1,3 +1,14 @@
+## 当前生效的扩展规则(2026-09-24,owner:「站点应该持续扩展」;全文 `docs/continuous-expansion-2026-09-24.md`)
+
+**这一节优先于下文任何「不建新页 / 只深化」的旧规则。**
+
+1. **每日任务 C 段的「快速新页」这一档,从 `data/expansion-queue.json` 取**:第一个 `status: queued` 且 `blocked_by` 为空的项。按 kgr-page 清单建页(SERP 当天再看一眼、蚕食检查、零编造、FAQ 与 JSON-LD 逐字一致、meta 120–155 字符),建完把该项改成 `built`,写上 `built` 日期和判定线 id,判定线同时进 `data/fleet-bets.json`。**一天最多一页。** C 段的优先级不变:机制故障 > 快速新页 > 转化断点 > 新鲜度。
+2. **建之前先看该项的 `next_action`**——那里写着这一项还差什么(缺出处、要先换目标词、要先做 SERP)。没补上就跳到下一项,不许带着缺口建。
+3. **可建项少于 3 个时,当天先补货再建**:从 `data/autopilot/demand-digest.md` 的季节日历找「未覆盖 · 待过三门」的词,也看第一方信号(D1 搜索引荐、已有流量的页)。**每一个 SERP 判定都写回队列,被否的也写**(`rejected` + 日期 + 看到了谁),这样同一个词不查第二遍。补货的新词同时加进 `tools/fetch_seasonality.py` 的 `DE-QUEUE` 篮子,下个月就有读数。
+4. **建之前看 `data/seasonality-de-queue.json`**:词在地板上(峰值 0,0)不自动否决(故障长尾词本来就在地板下),但页面按英国或别国读数选题、德国自己测出来是 0 的,不建。教训见文档 §六(加热晾衣架)。
+5. **新页的发现面**:首页 `EB_NEWEST`(`build_structure.py`,最新 12 张德语指南)随部署自动更新,不用手动加链接。它有没有用看 `eco-newest-block-1008`。
+6. **闸门**:`tools/check_expansion_queue.py`(部署链里)。队列和站点对不上(`built` 没有页、有页却不是 `built`、`built` 没有判定线)就是部署事故。
+
 <!-- MONOREPO 迁移说明(2026-08-19,owner 决定) -->
 > **本站已迁入公开 monorepo `f-tiger/agi-site`,路径 `sites/getecoback/`。**
 > 部署 = push agi-site 的 `main`(deploy-getecoback.yml);每日季节轮换
@@ -3169,8 +3180,18 @@ IT → deumidificatore(注意它峰在 **7 月**,意大利除湿是夏题)。**�
 
 - **季节性现在自己每月刷新**:`eco-trends.yml` 每天调用 `fetch_seasonality.py --if-older-than 28`(不满 28 天一秒退出,无新 cron,失败次日重试,排在 rising 之后;≈5 分钟/月)。新增两件自动化才需要的东西:**按锚点重标定**(系数写进 `anchor_factors`;之前能共用刻度,是因为 heizlüfter 2022 秋那一周恰好是每批的最高点,2027 秋它移出窗口)与**逐词保留上次好值**(`carried_from`)。`tools/test_seasonality.py` 17 条离线断言先跑,把重标定改成恒等变换会变红。**手跑 `--market` / `--countries` 仍是手动的。**
 - **选季节品类先读日历**:`data/autopilot/demand-digest.md` 的 getecoback 节有「季节日历」:峰值月在 42 天内开始的词 × 德语页标题覆盖 × 状态。已下的结论放 `data/season-verdicts.json`(只存指针,换结论要有新证据);**状态为「未覆盖 · 待过三门」的才是候选**。已知假象:`zugluft` / `fenster abdichten` 显示「已覆盖」,但覆盖它们的是夏季空调页。
-- **新页仍不被 Bing 抓**:09-17/18 发布的 15 张页 bingbot 0 张(09-10→14 那批是 38/46)。09-22 降噪后已有 6 张页第一次被抓,方向对但没结。**在 `eco-new-page-discovery-1020` 结算前,新品类扩到已排名页上,不建新页。**
+- **新页仍不被 Bing 抓**:09-17/18 发布的 15 张页 bingbot 0 张(09-10→14 那批是 38/46)。09-22 降噪后已有 6 张页第一次被抓,方向对但没结。~~在 `eco-new-page-discovery-1020` 结算前,新品类扩到已排名页上,不建新页。~~ **同日撤回**(owner「站点应该持续扩展」):新页照建,一天一页走扩展队列,发现面由首页 `EB_NEWEST` 块承担,见文件顶部「当前生效的扩展规则」。
 - **Heizstrahler**(峰值 19,9、11 月,标题覆盖 0,没有测评所以不点名型号)→ `heizluefter-stromverbrauch` 新增一节:每 kWh 一样贵,省钱只能靠瓦数;四种场景怎么选;它做不到的事;安全只指向说明书、电工和 BBK。判定 `eco-heizstrahler-onpage-1125`。
 - **`wie-viel-btu-brauche-ich` 此前和本站自己的数字打架**(350–400 BTU/m²、+10 % 日照、35 m²+ 推 Monoblock),现在与计算器和数据集一致(340、+20 %、2,6 m 以上 ×1,15、约 13.500 BTU 以上改用分体机),328 → 715 词。判定 `eco-btu-reconcile-0715`,在制冷季用占比读。**任何写 BTU 数字的页都以 `site/sizing-data.json` 和 btu-rechner 的系数为准。**
 - **部署后内容断言会撞边缘缓存**(run 231 红):部署后 15 s 内,边缘可能还用旧版回答(`cf-cache-status: HIT`)。新页面的内容断言因此读到旧版,而几秒后线上已经是新内容。`check()` 以前只在非 200 时重试,现在内容缺失时每 10 s 重试一次、最多 3 次,约 30 s 后仍缺才判红;中途从旧版变成新版会打一条 `::notice::`。**新增内容断言照旧写,不要为了它去改缓存头。**同一次还暴露:部署后检查一红,IndexNow 那步就被跳过,而下一次 push 的 diff 里已经没有这些页(run 232 submit=0)。现在 IndexNow 只要部署本身成功就会跑;漏掉的两页由 eco-health 周一的 7 天补推(09-28)接住。
 - **别做**:为「学更多同类站」再抓一批竞品(09-22 已比过六家,沙箱对多数同行 403);在新页能被抓之前按日历建新页;因为词义假覆盖去改日历匹配器。
+
+## 持续扩展:队列、首页发现面、第一批三页(2026-09-24,owner:「站点应该持续扩展」;全文 `docs/continuous-expansion-2026-09-24.md`)
+
+- **规则在文件顶部「当前生效的扩展规则」**,这里只记这一轮做了什么、量到了什么。
+- **为什么撤回上午那条「不建新页」**:它把「值不值得建」和「能不能被发现」绑在了一起。D1 读数:首页 14 天被 bingbot 抓 25 次(12 天有),分类枢纽各 2–3 次,09-17/18 新页 0/15;而首页此前**没有一条 `<a href>` 指向 09-15 之后的任何一页**(`EB_POPLIVE` 的标题表只在 JS 里)。所以修发现面,扩展不停。
+- **建了**:`data/expansion-queue.json` + 闸门 `check_expansion_queue.py`(7 个自检用例)+ demand-digest 里的队列节;首页 `EB_NEWEST`(最新 12 张,h1 作链接文字,原地替换);`DE-QUEUE` Trends 篮子挂在 `eco-trends.yml` 的月度步骤上。三张新页:`beheizter-waeschestaender`(207 g / 73 %)、`infrarotheizung-thermostat`(4,8 kWh / 1,44 €、四种调节方式)、`fenster-beschlagen-aussen`(露点表,零商店链接)。否掉六个(entlüften、richtig heizen、zugluft、wärmeunterbett、luftentfeuchter reinigen、ölradiator,全是红海),都写进了队列。
+- **建完才测到的**:加热晾衣架在德国的每一种写法都不到普通「wäscheständer」的 0,5 %(英国 heated airer 是 15,5)——**这一页是照英国读数选的**。页面保留,不再建第二张,不做德语梯。外侧结露页在峰值月(10 月)上线。hygrometer 项改为「luftfeuchtigkeit messen」(1,0,与 infrarotheizung thermostat 同量级;kalibrieren 0,3)。**规矩:队列项建之前先有 DE-QUEUE 读数。**
+- **顺手修的**:`device_of` 把「waeschestaender」归到除湿族;`CAT_OF` 补两个 luftqualitaet slug;季节日历的读法说明与 heizstrahler 裁定里的「新页等 10-20」一并改掉。
+- **验证**:21 道闸门 + 队列闸门全绿;390 px 四页单 h1、零横滚、零错误、amazon 链接全带 tag;外侧页 0 条 amazon 链接;两个计算器默认值 207 g / 3,5 °C,各发恰 1 条 `taupunkt_check`;首页块 12 条链接。
+- **判定线**:`eco-expansion-batch1-1122`(三页 10-26→11-22;前提 bingbot 抓过 ≥2 页)、`eco-newest-block-1008`(处理组 9 页 vs 对照组 19 页,≥5/9 且高 ≥30 个百分点;块会轮换,按在块天数读)。`eco-new-page-discovery-1020` 的读数里已注明 09-24 起有第二个干预。

@@ -140,14 +140,14 @@
 | kaffeevollautomat | 59.5 | 11 月 | 38 天 | 1.36 | 0 | 已裁定:站外(礼品季大词)(2026-09-15) |
 | luftentfeuchter | 32.0 | 11 月 | 38 天 | 1.19 | 18 | 已覆盖 18 页 |
 | heizlüfter | 29.4 | 11 月 | 38 天 | 0.89 | 4 | 已覆盖 4 页 |
-| infrarotheizung | 29.2 | 11 月 | 38 天 | 0.71 | 8 | 已覆盖 8 页 |
+| infrarotheizung | 29.2 | 11 月 | 38 天 | 0.71 | 9 | 已覆盖 9 页 |
 | akku staubsauger | 26.5 | 11 月 | 38 天 | 1.32 | 0 | 已裁定:Bodenpflege 判负,不试第二次(2026-09-15) |
 | saugroboter | 23.6 | 11 月 | 38 天 | 1.3 | 0 | 已裁定:Bodenpflege 判负,不试第二次(2026-09-15) |
-| heizstrahler | 19.9 | 11 月 | 38 天 | 0.8 | 0 | 已裁定:扩到已排名页 heizluefter-stromverbrauch;新页等 eco-new-page-discovery-1020(2026-09-24) |
+| heizstrahler | 19.9 | 11 月 | 38 天 | 0.8 | 0 | 已裁定:扩到已排名页 heizluefter-stromverbrauch;独立页可进扩展队列,须先过 SERP 门(无测评,不点名型号)(2026-09-24) |
 | fussbodenheizung | 16.1 | 11 月 | 38 天 | 1.24 | 0 | 已裁定:装修题,非联盟可买形态(2026-09-15) |
 | heizung einstellen | 8.5 | 11 月 | 38 天 | 1.03 | 0 | 已裁定:红海(Utopia/ÖKO-TEST/heizung.de/heizsparer/MVV)(2026-08-05) |
 | heizkörper thermostat | 6.0 | 11 月 | 38 天 | 1.09 | 0 | 已裁定:红海;租客角度已在 heizkosten-senken-als-mieter(2026-08-05) |
-| fenster beschlagen | 5.6 | 11 月 | 38 天 | 1.94 | 1 | 已覆盖 1 页 |
+| fenster beschlagen | 5.6 | 11 月 | 38 天 | 1.94 | 2 | 已覆盖 2 页 |
 | wandheizung | 4.5 | 11 月 | 38 天 | 1.04 | 0 | 已裁定:装修题(埋墙),非联盟可买形态(2026-09-24) |
 | zugluft | 3.5 | 11 月 | 38 天 | 1.11 | 1 | 已覆盖 1 页 |
 | fenster abdichten | 3.2 | 11 月 | 38 天 | 1.06 | 2 | 已覆盖 2 页 |
@@ -155,7 +155,10 @@
 | richtig heizen | 3.0 | 11 月 | 38 天 | 1.16 | 0 | **未覆盖 · 待过三门** |
 | schimmel schlafzimmer | 2.4 | 11 月 | 38 天 | 4.84 | 0 | 已裁定:预登记:eco-schimmel-fenster-1213 赢了才补(2026-09-15) |
 | wäsche trocknen wohnung | 1.0 | 11 月 | 38 天 | 2.12 | 1 | 量太小(峰值 <2.0) |
-读法:数值只在本文件内可比(与 rising 不可比);「未覆盖 · 待过三门」才是候选,仍要过需求/变现门,且新页先看 eco-new-page-discovery-1020——新页不被 Bing 抓时,扩品类扩到已排名页上。
+读法:数值只在本文件内可比(与 rising 不可比);「未覆盖 · 待过三门」才是候选,仍要过需求/变现门;过了门的写进扩展队列,每天最多建一页(2026-09-24 起不再等 eco-new-page-discovery-1020,新页的发现面由首页「Neu im Ratgeber」块承担,是否奏效看 eco-newest-block-1008)。
+**扩展队列**(更新 2026-09-24;blocked 1 · built 3 · gated 1 · queued 2 · rejected 6 · seasonal-hold 1;**可建 <3,当天先补货**)
+- `heizluefter-riecht-verbrannt` — Heizlüfter riecht verbrannt: Staub, Erstbetrieb oder Defekt? · 待办:Find a manufacturer manual or safety source for the first-use smell before stating it; otherwise leave that paragraph out. Safety wording as schaltet-sich-aus: 
+- `hygrometer-testen-salz` — Luftfeuchtigkeit richtig messen: wohin das Hygrometer gehört und wie du es mit Salz prüfst · 待办:Retarget before building: the question readers type is 'luftfeuchtigkeit messen' (and the head word hygrometer), not 'kalibrieren'. Run the SERP check on 'luftf
 
 ## buysomething
 **Trends rising(逐 seed 时效)**

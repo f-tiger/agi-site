@@ -137,8 +137,37 @@ def season_calendar(site, today):
         return out + ["- (未来 6 周没有进入峰值月的词)"]
     out += ["| 词 | 峰值 | 峰值月 | 距峰值月 | 冬÷九月 | 标题覆盖页 | 状态 |", "|---|---|---|---|---|---|---|"]
     out += [x[2] for x in rows]
-    out.append("读法:数值只在本文件内可比(与 rising 不可比);「未覆盖 · 待过三门」才是候选,仍要过需求/变现门,"
-               "且新页先看 eco-new-page-discovery-1020——新页不被 Bing 抓时,扩品类扩到已排名页上。")
+    out.append("读法:数值只在本文件内可比(与 rising 不可比);「未覆盖 · 待过三门」才是候选,仍要过需求/变现门;"
+               "过了门的写进扩展队列,每天最多建一页(2026-09-24 起不再等 eco-new-page-discovery-1020,"
+               "新页的发现面由首页「Neu im Ratgeber」块承担,是否奏效看 eco-newest-block-1008)。")
+    return out
+
+
+def expansion_queue(site):
+    """The site's standing expansion queue (sites/<site>/data/expansion-queue.json,
+    2026-09-24, owner: 「站点应该持续扩展」): counts by status and the next three
+    buildable items with the action each one still needs. The daily run builds
+    the first of them; this makes the queue visible to whoever reads the digest
+    before choosing a topic. Empty for sites without a queue."""
+    f = os.path.join(ROOT, "sites", site, "data", "expansion-queue.json")
+    if not os.path.exists(f):
+        return []
+    d = load(f)
+    if "__error__" in d:
+        return [f"**扩展队列**:expansion-queue.json 不可用({d['__error__']})"]
+    items = d.get("items") or []
+    counts = {}
+    for it in items:
+        counts[it.get("status")] = counts.get(it.get("status"), 0) + 1
+    ready = [it for it in items if it.get("status") == "queued" and not it.get("blocked_by")]
+    out = [f"**扩展队列**(更新 {d.get('updated', '?')};"
+           + " · ".join(f"{k} {v}" for k, v in sorted(counts.items()))
+           + (";**可建 <3,当天先补货**" if len(ready) < 3 else "") + ")"]
+    for it in ready[:3]:
+        out.append(f"- `{it.get('slug')}` — {it.get('working_title', '')}"
+                   + (f" · 待办:{str(it.get('next_action'))[:160]}" if it.get("next_action") else ""))
+    if not ready:
+        out.append("- (没有可建项:按季节日历补货,每个 SERP 裁定都写回队列)")
     return out
 
 
@@ -228,6 +257,7 @@ def main():
         else:
             out.append("**autopilot 需求队列**:该站未纳入 autopilot")
         out.extend(season_calendar(site, today))
+        out.extend(expansion_queue(site))
         out.append("")
 
     # 机会撮合(Reddit 请求 × rising 需求 × 已有供给;零 AI,派生事实,不转载帖子)

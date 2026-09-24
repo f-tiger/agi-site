@@ -235,6 +235,14 @@ jobs:
         run: |
           python3 tools/check_tools_hub.py --selftest
           python3 tools/check_tools_hub.py
+      # The standing expansion queue (2026-09-24). The daily run builds from it,
+      # so a queue that drifts from the site is a deploy-time error: a 'built'
+      # flag on a page that does not exist, a queued slug that already has a
+      # page, a built page without its bet. Running low only warns.
+      - name: Check the expansion queue agrees with the site (gate)
+        run: |
+          python3 tools/check_expansion_queue.py --selftest
+          python3 tools/check_expansion_queue.py
 
       # 页族近重复度量（2026-09-17）。**只报数不拦部署**：今天的读数本来就超标，
       # 上线即红会把一个待办变成一条坏掉的流水线。它存在的理由是把「兄弟页有多像」
@@ -461,6 +469,22 @@ jobs:
           else
             echo "OK BTU page uses the dataset rule"
           fi
+          # Continuous expansion, batch 1 (2026-09-24, owner: 「站点应该持续扩展」).
+          # Each page is asserted on the number it exists for. The homepage block is
+          # the discovery path for new pages (bingbot fetches / almost daily and had
+          # no <a href> to anything published after 09-15), so the accident worth
+          # catching is the block missing or no longer carrying the newest page.
+          check "https://getecoback.com/guide/beheizter-waeschestaender.html" "207 g"
+          check "https://getecoback.com/guide/infrarotheizung-thermostat.html" "Fußleistenhöhe"
+          check "https://getecoback.com/guide/fenster-beschlagen-aussen.html" "Randverbund"
+          check "https://getecoback.com/" 'id="eb-newest"'
+          check "https://getecoback.com/" 'href="/guide/beheizter-waeschestaender.html"'
+          # Nothing to buy on the outside-condensation page: a shelf there would
+          # sell a fix for a sign that the window works. Scripts stripped first,
+          # same reason as the UK pages below.
+          n=$(curl -sL --max-time 20 "https://getecoback.com/guide/fenster-beschlagen-aussen.html" \
+               | python3 -c "import re,sys;h=re.sub(r'<script\b.*?</script>','',sys.stdin.read(),flags=re.S);print(len(re.findall(r'href=\"[^\"]*amazon[^\"]*\"',h)))" 2>/dev/null || echo ERR)
+          if [ "$n" != "0" ]; then echo "::error::fenster-beschlagen-aussen carries $n amazon link(s) — the page sells nothing by design"; fail=1; else echo "OK fenster-beschlagen-aussen sells nothing"; fi
           # The humidifier page must never carry the dehumidifier shelf (the
           # opposite appliance), and no storage page may carry the vetoed brand.
           body=$(curl -sL --max-time 20 "https://getecoback.com/guide/luftbefeuchter-weisser-staub.html" || true)

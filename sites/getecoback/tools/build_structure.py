@@ -55,6 +55,8 @@ CAT_OF = {
     "luftentfeuchter-ratgeber": "luftqualitaet",
     "wohnmobil-feuchtigkeit-winter": "luftqualitaet",
     "fenster-beschlagen-innen": "luftqualitaet",
+    "fenster-beschlagen-aussen": "luftqualitaet",
+    "beheizter-waeschestaender": "luftqualitaet",
     "richtig-lueften-im-winter": "luftqualitaet",
     "schimmel-am-fenster": "luftqualitaet",
     "luftreiniger-ratgeber": "luftqualitaet",
@@ -972,7 +974,12 @@ def device_of(slug):
             # CONTEXT_MODELS, and the dehumidifier quick-pick router is blocked
             # by keyword in inject_quickpick — a reader whose air is too DRY
             # must never be routed to a dehumidifier picker.
-            or "luftbefeuchter" in s):
+            or "luftbefeuchter" in s
+            # Heated drying rack (2026-09-24). The page's whole argument is where
+            # the laundry's water goes, so it is a humidity page; without this the
+            # slug (no humidity token) falls through to "ac" — the sixth misfile
+            # this default would have produced. Its shelf is set in CONTEXT_MODELS.
+            or "waeschestaender" in s):
         return "dehum"
     if "luftreiniger" in s:
         return "purifier"
@@ -1034,7 +1041,11 @@ SKIP_MODELS = {"btu-rechner", "stromkosten-rechner", "infrarotheizung-watt-rechn
                # The honest product answer here is a CO alarm and warm bedding,
                # not a balcony battery — the page's whole argument is that the
                # battery does not do what buyers think.
-               "stromausfall-heizen"}
+               "stromausfall-heizen",
+               # Outside condensation on well-insulated glass (2026-09-24) is a
+               # good sign with nothing to buy; the humidity family would put a
+               # dehumidifier shelf on a page whose answer is "wait an hour".
+               "fenster-beschlagen-aussen"}
 # EN qm twins were briefly in SKIP_MODELS on 2026-08-28 (DEVICE_MODELS_EN had
 # no heater set, and models_block falls back to AC cards). Same day the EN
 # dehum/heater card sets were added, so the injectors now serve these pages
@@ -1430,6 +1441,18 @@ CONTEXT_MODELS = {
    ("Klemmhalterung Betonbrüstung", "Massive Brüstung", "Umgreift die Mauerkrone mit Gegenplatte — klemmt statt dübelt. Auf Gummiauflagen achten.", "ab ca. 40 €", "balkonkraftwerk+halterung+beton+ohne+bohren", "battery"),
    ("Ballast-Aufständerung", "Boden & Flachdach", "Frei neigbar für den besten Ertrag — hält über Gewicht statt über das Geländer.", "ab ca. 35 €", "solarmodul+aufstaenderung+ballast", "battery"),
  ],
+ # Expansion queue batch 1 (2026-09-24). Both shelves are what each page's own
+ # text tells the reader to do, in the page's order — no new selection judgement.
+ "beheizter-waeschestaender": [
+   ("Beheizter Wäscheständer mit Timer", "Mit Abschaltung", "Die Stäbe wärmen die Wäsche direkt — der Timer verhindert, dass er vergessen den ganzen Tag läuft.", "Preis vor Ort prüfen", "beheizter+w%C3%A4schest%C3%A4nder+timer", "shade"),
+   ("Luftentfeuchter fürs Wäschetrocknen", "Nimmt das Wasser aus der Luft", "Der Ständer bringt das Wasser in den Raum, der Entfeuchter holt es wieder heraus — sonst landet es an Fenster und Wand.", "Preis vor Ort prüfen", "luftentfeuchter+w%C3%A4schetrocknen", "dehum"),
+   ("Hygrometer", "Erst messen", "Zeigt, ob der Raum die Wäsche verkraftet — über 60 % Luftfeuchte wird es an kalten Wänden kritisch.", "Preis vor Ort prüfen", "hygrometer+innen", "purifier"),
+ ],
+ "infrarotheizung-thermostat": [
+   ("Steckdosenthermostat", "Ohne Installation", "Zwischen Steckdose und Panel — Belastbarkeit auf dem Typenschild mit der Leistung des Panels vergleichen.", "Preis vor Ort prüfen", "steckdosenthermostat+infrarotheizung", "heater"),
+   ("Funk-Thermostat mit Empfänger", "Fühler frei platzieren", "Misst dort, wo du sitzt, statt auf Fußleistenhöhe — bei manchen Systemen für mehrere Panels.", "Preis vor Ort prüfen", "funkthermostat+infrarotheizung", "heater"),
+   ("Energiekostenmessgerät", "Erst messen", "Zeigt die kWh eines Abends — die einzige Zahl, die dir sagt, was das Thermostat wirklich spart.", "Preis vor Ort prüfen", "energiekostenmessger%C3%A4t+steckdose", "purifier"),
+ ],
  "fenster-beschlagen-innen": [
    ("Hygrometer (innen, Min/Max)", "Erst messen", "Zeigt, ob die Luftfeuchte wirklich über 60 % liegt — ohne Messung ist jede Maßnahme geraten.", "ab 10 €", "hygrometer+innen+min+max", "dehum"),
    ("Comfee MDDF-20DEN7", "Dauerhaft trocknen", "Bewährter Entfeuchter für Wohnräume — senkt die Luftfeuchte unter die Kondensationsgrenze.", "€€ · ca. 150–200 €", "Comfee+MDDF-20DEN7", "dehum"),
@@ -1517,6 +1540,10 @@ CONTEXT_SUB = {
                             "in den Tank gehört, steht oben. Nicht selbst getestet. Symbolbilder."),
  "balkonkraftwerk-ohne-bohren": ("Nach Balkontyp sortiert — alle drei kommen ohne Bohrung aus. Windlast-Freigabe "
                                  "des Herstellers beachten. Nicht selbst montiert. Symbolbilder."),
+ "beheizter-waeschestaender": ("In der Reihenfolge der Seite: trocknen, das Wasser wieder aus der Luft holen, "
+                               "messen. Nicht selbst getestet. Symbolbilder."),
+ "infrarotheizung-thermostat": ("Die zwei Bauarten, die ohne Installation gehen, und das Messgerät, das zeigt, was "
+                                "sie sparen. Nicht selbst getestet. Symbolbilder."),
  "fenster-beschlagen-innen": ("Erst die Luftfeuchte messen, dann senken — beschlagene Scheiben sind ein "
                               "Feuchte-Symptom, kein Fensterproblem. Nicht selbst getestet. Symbolbilder."),
  "strom-sparen-haushalt": ("Erst messen, dann kaufen — diese drei kosten zusammen weniger als eine Monatsrechnung "
@@ -2278,7 +2305,7 @@ POPUP_SKIP = {"impressum", "datenschutz", "kontakt", "radar-bestaetigt",
               "desiccant-vs-compressor-dehumidifier",
               "heated-airer-vs-dehumidifier",
               "rising-damp-penetrating-damp-or-condensation",
-              "stromausfall-heizen"}
+              "stromausfall-heizen", "fenster-beschlagen-aussen"}
 
 
 def inject_popup(html, slug, en=False):
@@ -2415,6 +2442,57 @@ def inject_poplive(html):
         return re.sub(r'<!--EB_POPLIVE-->.*?<!--/EB_POPLIVE-->\n?', lambda m: blk, html, flags=re.S)
     if "<!--/EB_POPULAR-->" in html:
         return html.replace("<!--/EB_POPULAR-->", "<!--/EB_POPULAR-->" + blk, 1)
+    return html
+
+
+# "Neu im Ratgeber" (2026-09-24). The homepage is the one page bingbot fetches
+# almost daily (25 fetches on 12 of 14 days, 09-10→09-23), while the category
+# hubs get 2-3 fetches a fortnight. Until now the homepage reached new guides only
+# through the EB_POPLIVE JSON title map — a string in a <script>, not a link —
+# and 15 of the guides published 09-17/18 had not been fetched by bingbot once.
+# A static list of real <a href> from the daily-crawled page is the cheapest
+# crawl path there is. Deterministic: newest datePublished first, slug as the
+# tie-break, so the block only changes when a new guide is published.
+NEWEST_N = 12
+
+
+def newest_guides(n=NEWEST_N):
+    rows = []
+    for path in glob.glob(os.path.join(GUIDE, "*.html")):
+        page = open(path, encoding="utf-8").read()
+        m = re.search(r'"datePublished"\s*:\s*"(\d{4}-\d{2}-\d{2})"', page)
+        if not m:
+            continue
+        slug = os.path.basename(path)[:-5]
+        rows.append((m.group(1), slug, h1(page) or slug))
+    rows.sort(key=lambda r: (r[0], r[1]), reverse=True)
+    return rows[:n]
+
+
+def newest_block(rows):
+    # h1() returns the heading's inner HTML with entities intact — used as-is,
+    # never escaped again (the &amp;amp; bug the category cards had until 09-17).
+    lis = "".join(
+        f'<li style="margin:6px 0;"><a href="/guide/{slug}.html" style="color:#0f6ba8;font-weight:700;'
+        f'text-decoration:none;">{title}</a> <span style="color:#5b6b78;font-size:13px;">· '
+        f'{d[8:10]}.{d[5:7]}.{d[:4]}</span></li>' for d, slug, title in rows)
+    return ('<!--EB_NEWEST--><section id="eb-newest" style="border-top:1px solid #eef2f5;">'
+            '<div style="max-width:1000px;margin:0 auto;padding:26px 20px;">'
+            '<h2 style="margin:0 0 4px;">Neu im Ratgeber</h2>'
+            '<p style="margin:0 0 10px;color:#5b6b78;font-size:14px;">Die zuletzt veröffentlichten Ratgeber, '
+            'neueste zuerst.</p>'
+            f'<ul style="list-style:none;padding:0;margin:0;">{lis}</ul></div></section><!--/EB_NEWEST-->\n')
+
+
+def inject_newest(html):
+    """Idempotently list the newest guides on the homepage as real links."""
+    blk = newest_block(newest_guides())
+    if "<!--EB_NEWEST-->" in html:
+        return re.sub(r'<!--EB_NEWEST-->.*?<!--/EB_NEWEST-->\n?', lambda m: blk, html, flags=re.S)
+    # After the popular block's trailing newline, so inject_poplive's own
+    # "\n?" keeps matching and a second run is byte-identical.
+    if "<!--/EB_POPLIVE-->\n" in html:
+        return html.replace("<!--/EB_POPLIVE-->\n", "<!--/EB_POPLIVE-->\n" + blk, 1)
     return html
 
 
@@ -4577,6 +4655,7 @@ def main():
             new = inject_home_tiles(new)
             new = inject_home_storage(new)
             new = inject_poplive(new)
+            new = inject_newest(new)
         # Transaction layer + compact opt-in only on guide pages (where SEO
         # traffic lands), not on the homepage, legal pages, or /hitze-radar.html.
         if os.path.dirname(path) == GUIDE:

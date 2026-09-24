@@ -16,6 +16,6 @@
   "schimmel schlafzimmer": {"verdict": "预登记:eco-schimmel-fenster-1213 赢了才补", "date": "2026-09-15", "source": "data/fleet-bets.json eco-schimmel-fenster-1213"},
   "schimmel tapete": {"verdict": "预登记:eco-schimmel-fenster-1213 赢了才补", "date": "2026-09-15", "source": "data/fleet-bets.json eco-schimmel-fenster-1213"},
   "wärmepumpe": {"verdict": "安装型资本品;线索形态 08-28 已杀", "date": "2026-09-17", "source": "eco CLAUDE.md 德语区读数与两个品类裁定"},
-  "heizstrahler": {"verdict": "扩到已排名页 heizluefter-stromverbrauch;新页等 eco-new-page-discovery-1020", "date": "2026-09-24", "source": "docs/season-calendar-2026-09-24.md"}
+  "heizstrahler": {"verdict": "扩到已排名页 heizluefter-stromverbrauch;独立页可进扩展队列,须先过 SERP 门(无测评,不点名型号)", "date": "2026-09-24", "source": "docs/season-calendar-2026-09-24.md", "changed": "2026-09-24: 撤回「新页等 eco-new-page-discovery-1020」(owner「站点应该持续扩展」;docs/continuous-expansion-2026-09-24.md)"}
  }
 }

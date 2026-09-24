@@ -1364,7 +1364,8 @@
    "win": "发现面噪音(IndexNow 每次部署重提 30–66 个未变 URL + 工具 manifest 12 URL 整包重提 + sitemap 用 mtime 把十几页日日标成今天)确是新页零抓取的原因之一 → 把同样的 delta 纪律移植到舰队其它带 IndexNow 步骤的站(bpj/tds/agi)",
    "lose": "覆盖仍 <6/19 → 新页不被抓是 Bing 对本域的抓取预算/权威问题,不是提交噪音;09-04 的「rising 只深化不出新页」冻结继续,把 Bing Webmaster 的抓取统计列为 owner 待办,不再为发现面写代码",
    "source": "sites/getecoback/docs/site-analysis-2026-09-22.md §三–§四、§六;修复 = deploy-getecoback.yml(部署前快照线上 sitemap;IndexNow 只提 pushed diff ∪ 新 URL;manifest ping 只在生成器变更时跑)+ tools/build_sitemap.py(无日期页改用 git 提交日)+ tools/check_sitemap_lastmod.py 闸门",
-   "status": "open"
+   "status": "open",
+   "reading_2026-09-24": "09-24 第二个干预:首页新块 EB_NEWEST 链到 15 张从未被 bingbot 抓过的 09-17/18 页里的 9 张。此后本线若赢,是 IndexNow 降噪与首页链接的共同效果;eco-newest-block-1008 用对照组把两者分开。D1 09-24 读数:09-17/18 页 0/15 被抓;09-22 后首次被抓的是 6 张更早的页(infrarotheizung-standgeraet、schimmel-bad-fugen、it/camper 于 09-22;it/rumoroso、it/deumidificatore-40-mq、it/condizionatore-15-mq 于 09-24)。"
   },
   {
    "id": "goldrush-tripwire-0930",
@@ -1574,6 +1575,28 @@
    "win": "付费层有第一个买家 → 记进台账营收栏（USDT 实收，净额按链上核对），再谈高阶功能",
    "lose": "已付 0 且 ② <5 → 不再给这个规划器加付费功能；已付 0 但 ② ≥5 → 卡点在支付方式（目前只收 USDT），属 owner 的 Stripe 决定，会话不抢跑",
    "source": "sites/baipiaoji/CLAUDE.md 第 25 条 + docs/PRD-work-plan-2026-09-24.md",
+   "status": "open"
+  },
+  {
+   "id": "eco-expansion-batch1-1122",
+   "site": "getecoback",
+   "due": "2026-11-22",
+   "metric": "扩展队列第一批三页(beheizter-waeschestaender、infrarotheizung-thermostat、fenster-beschlagen-aussen),28 天窗 10-26→11-22,真人,剔 CI:① 搜索 + AI 引荐合计 ② page_view 合计 ③ 前提:bingbot 至少抓过其中 2 页(D1 crawl)。t0(2026-09-24):0 / 0 / 0(新页)。季节:heizlüfter / infrarotheizung / fenster beschlagen 峰值都在 11 月",
+   "threshold": "③ 成立 且(① ≥10 或 ② ≥30)",
+   "win": "队列的选题法(5 年季节性 × SERP 判定 × 蚕食检查)选出的页能接到读者 → 保持每天 1 页的节奏,按同法补货",
+   "lose": "③ 成立但 ① <3 且 ② <10 → 选题法没打中本站接得住的需求:补货改为第一方信号优先(D1 引荐、站内搜索、已有搜索流量的页),季节性只作平局打破。扩展照常继续,只改选题法。③ 不成立 → insufficient:是发现面问题不是内容问题(见 eco-newest-block-1008)",
+   "source": "sites/getecoback/docs/continuous-expansion-2026-09-24.md",
+   "status": "open"
+  },
+  {
+   "id": "eco-newest-block-1008",
+   "site": "getecoback",
+   "due": "2026-10-08",
+   "metric": "D1 crawl(bingbot):09-24 之后被抓过 ≥1 次的页占比。处理组 = 09-24 进入首页新块 EB_NEWEST、此前 bingbot 0 次的 9 张 09-17/18 页(luftfeuchtigkeit-senken, luftentfeuchter-stinkt, luftbefeuchter-weisser-staub, klimaanlage-mietwohnung-oesterreich, heizluefter-schaltet-sich-aus, balkonkraftwerk-oesterreich, stromausfall-heizen, luftentfeuchter-zieht-kein-wasser, infrarotheizung-gegen-schimmel);对照组 = 其余 D1 首条记录 ≥09-10、到 09-24 bingbot 仍为 0、且不在该块里的页(19 张,DE/EN/IT)。t0:0/9 对 0/19。暴露说明:块只列最新 12 张,每天最多新增 1 页,处理组从第 12 位起依次被挤出——结算时按每页在块里的天数(git log 可复原)对照其首次被抓日期读,被挤出之后才被抓的不算块的功劳",
+   "threshold": "处理组 ≥5/9 且 处理组占比 − 对照组占比 ≥30 个百分点",
+   "win": "从每天被抓的首页链过去是发现面的杠杆 → 保留该块,把同一模式搬到 /en/,eco-new-page-discovery-1020 按此解读",
+   "lose": "两组相当 → 首页链接不是杠杆;块保留(零成本、对读者有用)但不扩建,Bing Webmaster 抓取统计仍列 owner 待办。两组都为 0 → Bing 目前根本不抓本域新 URL,别在页面上找原因",
+   "source": "sites/getecoback/docs/continuous-expansion-2026-09-24.md",
    "status": "open"
   }
  ]

@@ -142,14 +142,31 @@ GEO_PRODUCTS = {
 # whose top two terms BOTH peak in November and both outrank its summer term —
 # the opposite shape to Germany, where the site's whole structure came from.
 MARKET_ANCHOR = {"GB": "dehumidifier", "DE-STORAGE": "heizlüfter", "DE-UA": "heizlüfter", "DE-BLACKOUT": "heizlüfter",
-                 "AT": "heizlüfter"}
+                 "AT": "heizlüfter", "DE-QUEUE": "heizlüfter"}
 # A market key is not always a geo. DE-STORAGE measures German storage demand
 # against the SAME anchor as seasonality-de.json, so its levels are directly
 # comparable to the rest of the German basket — which is the only way to answer
 # "is storage actually bigger than what we already sell" rather than "is storage
 # big on its own scale".
-MARKET_GEO = {"DE-STORAGE": "DE", "DE-UA": "DE", "DE-BLACKOUT": "DE"}
+MARKET_GEO = {"DE-STORAGE": "DE", "DE-UA": "DE", "DE-BLACKOUT": "DE", "DE-QUEUE": "DE"}
 MARKET_BATCHES = {
+    # The expansion queue's own terms (2026-09-24, data/expansion-queue.json).
+    # Pages get built from SERP + cannibalisation evidence when the term has no
+    # Trends number yet; this basket gives each of them one afterwards, on the
+    # same anchor and scale as seasonality-de.json. eco-trends.yml refreshes it
+    # monthly with the German file. When the queue changes, change this list —
+    # a queued term without a measurement is the gap this basket exists to close.
+    "DE-QUEUE": [
+        # Built 2026-09-24, tracked so their bets can be read against demand.
+        # "beheizt" and "beheizbar" were both measured on the first run and
+        # both sit at the floor (as do "elektrischer" and "heizwäscheständer",
+        # own batch against "wäscheständer"): one spelling is enough to watch.
+        ["beheizter wäscheständer", "infrarotheizung thermostat", "fenster beschlagen außen"],
+        # Queued or rejected. "hygrometer kalibrieren" read 0,0 on the first
+        # run; the reader's words are "luftfeuchtigkeit messen", which is what
+        # the queued hygrometer item was retargeted to.
+        ["luftfeuchtigkeit messen", "heizlüfter riecht", "heizkörper entlüften"],
+    ],
     "GB": [
         # Products a UK winter has and a German one does not. `heated airer`
         # and `electric blanket` are here because UK housing dries laundry
@@ -230,32 +247,45 @@ MARKET_BATCHES = {
 
 def market(geo):
     """Write data/seasonality-<geo>.json for one market's own winter basket.
-    Run: python3 tools/fetch_seasonality.py --market GB"""
+    Run: python3 tools/fetch_seasonality.py --market GB [--if-older-than 28]
+    Same rescale and keep-last-good rules as the main German basket."""
+    path = os.path.join(ROOT, "data", f"seasonality-{geo.lower()}.json")
+    if "--if-older-than" in sys.argv:
+        days = int(sys.argv[sys.argv.index("--if-older-than") + 1])
+        if is_fresh(path, days):
+            print(f"{os.path.relpath(path, ROOT)} is younger than {days} days — nothing to do")
+            return 0
     from trendspy import Trends
     import pandas as pd
     anchor = MARKET_ANCHOR[geo]
     real_geo = MARKET_GEO.get(geo, geo)
+    try:
+        previous = json.load(open(path, encoding="utf-8"))
+    except Exception:
+        previous = None
     tr = Trends()
-    series, errors = {}, []
+    frames, errors, failed_terms = [], [], []
     for i, batch in enumerate(MARKET_BATCHES[geo]):
         if i:
             time.sleep(GAP_S)
         terms = [anchor] + batch if anchor not in batch else batch
         try:
             df = tr.interest_over_time(terms, geo=real_geo, timeframe=TIMEFRAME)
-            for c in df.columns:
-                if c != "isPartial":
-                    series[c] = df[c]
+            df.index = pd.to_datetime(df.index)
+            df = df[~df.index.duplicated()]
+            frames.append((terms, df))
             print(f"{geo} batch {i}: ok ({', '.join(terms)})")
         except Exception as e:
             errors.append({"terms": terms, "error": str(e)[:200]})
+            failed_terms += [t for t in batch if t != anchor]
             print(f"{geo} batch {i}: FAILED {str(e)[:120]}", file=sys.stderr)
-    if not series:
+    if not frames:
         print("nothing fetched — keeping the previous file", file=sys.stderr)
         return 0
+    series, factors, rs_errors = rescale_batches(frames, anchor)
+    errors += rs_errors
+    failed_terms += [t for e in rs_errors for t in e["terms"] if t != anchor]
     df = pd.DataFrame(series)
-    df.index = pd.to_datetime(df.index)
-    df = df[~df.index.duplicated()]
     monthly = df.groupby(df.index.month).mean()
     rows = []
     for c in df.columns:
@@ -266,14 +296,16 @@ def market(geo):
                      "peak": round(float(s.max()), 1), "peak_month": int(s.idxmax()),
                      "winter_mean": round(winter, 1),
                      "win_over_sep": round(winter / sep, 2) if sep else None})
+    rows = carry_forward(rows, previous, failed_terms)
     rows.sort(key=lambda r: -r["peak"])
-    path = os.path.join(ROOT, "data", f"seasonality-{geo.lower()}.json")
     doc = {"fetched": datetime.now(timezone.utc).strftime("%Y-%m-%d"), "geo": real_geo,
            "basket": geo,
            "timeframe": TIMEFRAME, "anchor": anchor,
-           "scale_note": ("One market, its own language, every batch repeating the anchor "
-                          "so the levels are comparable to each other. NOT comparable to "
-                          "seasonality-de.json (different anchor) or to any rising file."),
+           "scale_note": ("One market, its own language, every batch repeating the anchor and "
+                          "rescaled onto batch 0 through it (anchor_factors). A basket on the "
+                          "heizlüfter anchor in geo DE shares the scale of seasonality-de.json; "
+                          "any other geo or anchor does not. Never compare with a rising file."),
+           "anchor_factors": factors,
            "weeks": int(df.shape[0]), "terms": rows, "errors": errors}
     with open(path, "w", encoding="utf-8") as f:
         json.dump(doc, f, ensure_ascii=False, indent=1)
