@@ -302,6 +302,9 @@ Star Battle 的**区域根本没有被勾出来**。共享网格样式 `gap:6px`
 `ref LIKE '%itch.zone%'` 的 `play_start` 累计 **≥150** 且 `solve` **≥25**,
 才继续投入游戏线;否则游戏降为「只维护、不新增」,人力全部回到 eco/bpj 的变现线。
 判定当天把结果写进 analytics-notes.md,不管方向如何。
+**✗ 结算(2026-09-24,判负)**:D1 `ev` 表 `ref LIKE '%itch.zone%'`:`play_start` 累计 **52**、`solve` **13**
+(最后一次 solve 在 08-27)——两项都不到阈值的三分之一。按上面原文执行:**游戏线只维护、不新增**,
+人力回 eco/bpj 变现线。(本站没有 analytics-notes.md,结论写在这里与 `data/fleet-bets.json`。)
 
 **本次已做的唯一改动(证据驱动,不是口味)**:胜利画面加「下一题:<某款> →」+
 「全部 11 款 →」,并给此前完全没有埋点的 `.gamesnav` 补上 `hub_click` 信标。

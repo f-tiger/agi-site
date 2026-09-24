@@ -56,6 +56,92 @@ def rising_for(site, today):
     return rows or ["- (无 rising 文件)"]
 
 
+SEASON_HORIZON = 42      # days: the peak MONTH has to begin within six weeks
+SEASON_STALE = 40        # the file refreshes monthly (eco-trends.yml); older = the refresh broke
+SEASON_FLOOR = 2.0       # below this peak (anchor scale) a term is too small to plan a page on
+_TRANS = str.maketrans({"ü": "ue", "ö": "oe", "ä": "ae", "ß": "ss"})
+
+
+def _title_index(site):
+    """{path: lowercased title + h1} for the site's German pages (not /en/, /it/)."""
+    import html as _h, re as _re
+    idx = {}
+    for p in glob.glob(os.path.join(ROOT, "sites", site, "site", "**", "*.html"), recursive=True):
+        rel = os.path.relpath(p, os.path.join(ROOT, "sites", site, "site"))
+        if rel.startswith(("en/", "it/")) or "workbench" in rel:
+            continue
+        try:
+            s = open(p, encoding="utf-8").read()
+        except Exception:
+            continue
+        t = _re.search(r"<title>(.*?)</title>", s, _re.S)
+        h = _re.search(r"<h1[^>]*>(.*?)</h1>", s, _re.S)
+        txt = (t.group(1) if t else "") + " " + _re.sub(r"<[^>]+>", " ", h.group(1) if h else "")
+        idx[rel.lower()] = _h.unescape(txt).lower()
+    return idx
+
+
+def _covered(term, idx):
+    """Pages whose title/h1 contains every word of the term, or whose slug
+    contains its transliteration (heizlüfter -> heizluefter). Title-level on
+    purpose: the question is whether a page is ABOUT this term, and the
+    2026-09-17 gap audit showed body-text matching answers a different one."""
+    ws = term.lower().split()
+    return [p for p, t in idx.items() if all(w in t or w.translate(_TRANS) in p for w in ws)]
+
+
+def season_calendar(site, today):
+    """Terms whose five-year peak month begins within SEASON_HORIZON days,
+    against how many of the site's German pages are titled for them.
+    Reads sites/<site>/data/seasonality-de.json (refreshed monthly) and the
+    settled decisions in season-verdicts.json. Empty for sites without it."""
+    f = os.path.join(ROOT, "sites", site, "data", "seasonality-de.json")
+    if not os.path.exists(f):
+        return []
+    d = load(f)
+    if "__error__" in d:
+        return [f"**季节日历**:seasonality-de.json 不可用({d['__error__']})"]
+    verdicts = (load(os.path.join(ROOT, "sites", site, "data", "season-verdicts.json")) or {}).get("verdicts") or {}
+    a = age_days(today, d.get("fetched", ""))
+    stale = " **STALE:月度刷新断了,查 eco-trends.yml**" if (a is None or a > SEASON_STALE) else ""
+    idx = _title_index(site)
+    rows = []
+    for r in d.get("terms", []):
+        m = r.get("peak_month")
+        if not isinstance(m, int):
+            continue
+        if m == today.month:
+            days = 0
+        else:
+            y = today.year + (1 if m < today.month else 0)
+            days = (dt.date(y, m, 1) - today).days
+        if days > SEASON_HORIZON:
+            continue
+        cov = _covered(r["term"], idx)
+        v = verdicts.get(r["term"])
+        if v:
+            status = f"已裁定:{v.get('verdict')}({v.get('date')})"
+        elif (r.get("peak") or 0) < SEASON_FLOOR:
+            status = f"量太小(峰值 <{SEASON_FLOOR})"
+        elif not cov:
+            status = "**未覆盖 · 待过三门**"
+        else:
+            status = f"已覆盖 {len(cov)} 页"
+        carried = f" (沿用 {r['carried_from']})" if r.get("carried_from") else ""
+        rows.append((days, -(r.get("peak") or 0), f"| {r['term']}{carried} | {r.get('peak')} | {m} 月 | "
+                     + ("本月" if days == 0 else f"{days} 天") + f" | {r.get('win_over_sep')} | {len(cov)} | {status} |"))
+    rows.sort()
+    out = [f"**季节日历**(5 年季节性 × 德语页标题覆盖;峰值月在 {SEASON_HORIZON} 天内开始;"
+           f"数据 {d.get('fetched', '?')},{a} 天前,锚 {d.get('anchor')}{stale})"]
+    if not rows:
+        return out + ["- (未来 6 周没有进入峰值月的词)"]
+    out += ["| 词 | 峰值 | 峰值月 | 距峰值月 | 冬÷九月 | 标题覆盖页 | 状态 |", "|---|---|---|---|---|---|---|"]
+    out += [x[2] for x in rows]
+    out.append("读法:数值只在本文件内可比(与 rising 不可比);「未覆盖 · 待过三门」才是候选,仍要过需求/变现门,"
+               "且新页先看 eco-new-page-discovery-1020——新页不被 Bing 抓时,扩品类扩到已排名页上。")
+    return out
+
+
 def main():
     today = dt.date.today()
     for a in sys.argv[1:]:
@@ -129,7 +215,8 @@ def main():
         if os.path.exists(dp):
             d = load(dp)
             gaps = d.get("gaps") or []
-            out.append(f"**autopilot 需求队列**:gaps **{len(gaps)}** / covered {len(d.get('covered') or [])} · heat: {str(d.get('heat_source'))[:60]}")
+            out.append(f"**autopilot 需求队列**:gaps **{len(gaps)}** / covered {len(d.get('covered') or [])} · heat: {str(d.get('heat_source'))[:60]}"
+                       + ("(gaps 量的是标题与开篇有没有接住,不是站内有没有这一页——建页前先 grep 正文)" if gaps else ""))
             for g in gaps[:3]:
                 if isinstance(g, dict):
                     out.append("- " + " · ".join(f"{k}={str(v)[:40]}" for k, v in list(g.items())[:4]))
@@ -140,6 +227,7 @@ def main():
                 out.append(f"**第一方需求**:`{json.dumps(fp, ensure_ascii=False)[:200]}`")
         else:
             out.append("**autopilot 需求队列**:该站未纳入 autopilot")
+        out.extend(season_calendar(site, today))
         out.append("")
 
     # 机会撮合(Reddit 请求 × rising 需求 × 已有供给;零 AI,派生事实,不转载帖子)

@@ -1,6 +1,6 @@
 {
  "note": "舰队赌注台账:每条预登记判定线一行;status open→won/lost/insufficient/withdrawn 时必须写 settled(日期)与 reading(读数)。tools/fleet/check_bets.py 在 heartbeat 里断言:到期 3 天内提醒,过期 >7 天未结算即红。新增判定线不进这里 = heartbeat 看不见 = 等于没预登记。",
- "updated": "2026-09-23",
+ "updated": "2026-09-24",
  "bets": [
   {
    "id": "fleet-ai-access-0916",
@@ -78,8 +78,10 @@
    "win": "继续投入游戏线",
    "lose": "游戏降为只维护;人力回 eco/bpj 变现线",
    "source": "sites/gridlings/CLAUDE.md:301",
-   "status": "open",
-   "reading_2026-09-22": "D1:ref LIKE '%itch.zone%' 的 play_start 累计 58 / solve 13(阈值 150 / 25)。未到期,不结算。"
+   "status": "lost",
+   "reading_2026-09-22": "D1:ref LIKE '%itch.zone%' 的 play_start 累计 58 / solve 13(阈值 150 / 25)。未到期,不结算。",
+   "settled": "2026-09-24",
+   "reading": "D1 gridlings ev(无 ua 过滤,与 09-22 同口径):ref LIKE '%itch.zone%' 的 play_start 累计 52(08-24→09-23,09-22 后 +7)/ solve 13(最后一次 08-27)。阈值 150 / 25,两项都不到三分之一;solve 已 4 周为 0。09-22 记的 58 与今天 52 对不上,原因未查明,两者都远低于线,不影响结论。按原文:游戏降为只维护、不新增,人力回 eco/bpj 变现线。"
   },
   {
    "id": "eco-kuehlt-nicht-0925",
@@ -1518,6 +1520,39 @@
    "source": "sites/baipiaoji/CLAUDE.md 第 24 条（2026-09-23）+ docs/distribution-staging/bpj-mcp-directories-2026-09-22.md",
    "status": "open",
    "t0_2026-09-23": "ref 前三：www.google.com 174 / cn.bing.com 116 / www.bing.com 19；AI：chatgpt.com 13、perplexity 7、doubao 2；github/glama/registry/舰队站 = 0"
+  },
+  {
+   "id": "eco-heizstrahler-onpage-1125",
+   "site": "getecoback",
+   "due": "2026-11-25",
+   "metric": "① 全站 affiliate_click 中 link_url 含 'heizstrahler' 的次数 28d(真人,剔 CI);② /guide/heizluefter-stromverbrauch.html 28d 搜索引荐(Bing 家族 + google)。t0(2026-09-24):① 0(56d 也是 0,全站此前没有 Heizstrahler 商品链)· ② 5(28d 5 pv / 5 搜索 / 1 点击)。季节:heizstrahler 5 年峰值 19,9、11 月(锚 heizlüfter),窗口 10-28→11-25 落在峰值月",
+   "threshold": "① ≥3 或 ② ≥10(t0 的 2 倍)",
+   "win": "「季节日历里未覆盖的品类,扩到已被 Bing 抓取、已有搜索流量的页上」成立 → 下一个『未覆盖 · 待过三门』的词照此办(先找已排名的宿主页,不建新页),直到 eco-new-page-discovery-1020 证明新页能被抓",
+   "lose": "① = 0 且 ② <5 → 一节内容拉不来一个新品类的需求;记入反面发现,Heizstrahler 等新页能被抓后再议单页,不再往已排名页里塞品类节",
+   "source": "sites/getecoback/docs/season-calendar-2026-09-24.md",
+   "status": "open"
+  },
+  {
+   "id": "eco-btu-reconcile-0715",
+   "site": "getecoback",
+   "due": "2027-07-15",
+   "metric": "/guide/wie-viel-btu-brauche-ich.html 在全站搜索引荐中的占比,56d 窗(真人,剔 CI;占比而不是绝对数,抵消全站增长)。t0(2026-07-29→09-23):7 / 442 = 1,58 %。页面 2026-09-24 从 328 词加深到 715 词,并把与本站计算器/数据集矛盾的三处(350–400 BTU/m²、+10 % 日照、35 m²+ 推 Monoblock)改成同一套规则",
+   "threshold": "占比 ≥3,2 %(t0 的 2 倍),读数窗 2027-05-20→07-15(制冷季)",
+   "win": "「已有搜索流量的短页 + 可溯源的加深」在本站成立 → 按 site-analysis §八 的候选(abluftschlauch-verlaengern、zugluft)照做",
+   "lose": "占比不升 → 字数信号(1 200–1 999 词 2,7×)在这页不成立,停止为搜索加深夏季短页;矛盾修正本身仍保留(正确性不靠读数)。窗口内全站搜索引荐 <200 → insufficient",
+   "source": "sites/getecoback/docs/season-calendar-2026-09-24.md",
+   "status": "open"
+  },
+  {
+   "id": "eco-season-instrument-1020",
+   "site": "getecoback",
+   "due": "2026-10-20",
+   "metric": "sites/getecoback/data/seasonality-de.json 的 fetched 日期与 anchor_factors;data/autopilot/demand-digest.md 的 getecoback 季节日历节。t0(2026-09-24):fetched 2026-09-15(手动)、无 anchor_factors;日历节已上线",
+   "threshold": "fetched ≥2026-10-13 且由 eco-trends.yml 自动提交(不是会话手跑),anchor_factors 存在,errors ≤1 批;日历节数据 ≤40 天",
+   "win": "仪器自己在跑 → 以后选季节品类只读日历,不再手跑 fetch_seasonality.py",
+   "lose": "没有自动刷新 → 查 eco-trends.yml 那一步的日志(429 / 配额 / pandas),修管道;这条线只判仪器,不判任何内容决定",
+   "source": "sites/getecoback/docs/season-calendar-2026-09-24.md",
+   "status": "open"
   }
  ]
 }

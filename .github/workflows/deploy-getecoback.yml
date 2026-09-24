@@ -433,6 +433,19 @@ jobs:
           check "https://getecoback.com/guide/luftentfeuchter-zieht-kein-wasser.html" 'adsorptions+luftentfeuchter'
           check "https://getecoback.com/guide/heizluefter-schaltet-sich-aus.html" 'erst messen, dann die kleine Stufe'
           check "https://getecoback.com/guide/luftentfeuchter-stinkt.html" 'lamellenb%C3%BCrste+weich'
+          # 2026-09-24 season calendar: Heizstrahler was expanded onto this ranked
+          # page instead of a new one (new pages are not being crawled by Bing yet).
+          check "https://getecoback.com/guide/heizluefter-stromverbrauch.html" 'heizstrahler+innen+stufen'
+          # The BTU page used to contradict the site's own calculator (350–400 BTU/m²,
+          # a monoblock for 35 m²+). Assert the reconciled ceiling is there AND the
+          # old rule is gone — the second half is what an old build would fail.
+          check "https://getecoback.com/guide/wie-viel-btu-brauche-ich.html" '13.600 BTU'
+          btu_body=$(curl -sL --max-time 20 "https://getecoback.com/guide/wie-viel-btu-brauche-ich.html" || true)
+          if echo "$btu_body" | grep -q "350–400 BTU"; then
+            echo "::error::wie-viel-btu-brauche-ich still states 350–400 BTU/m² (contradicts sizing-data.json)"; fail=1
+          else
+            echo "OK BTU page uses the dataset rule"
+          fi
           # The humidifier page must never carry the dehumidifier shelf (the
           # opposite appliance), and no storage page may carry the vetoed brand.
           body=$(curl -sL --max-time 20 "https://getecoback.com/guide/luftbefeuchter-weisser-staub.html" || true)

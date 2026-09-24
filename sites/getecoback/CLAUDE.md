@@ -3164,3 +3164,12 @@ IT → deumidificatore(注意它峰在 **7 月**,意大利除湿是夏题)。**�
 - **过程里自己踩的一个坑**:只跑半条注入链(build_structure → build_hreflang)再比对,会让 96 张页的 markdown 链接与 hreflang 换位——`build_agent_md` 在链尾把它放回去。**任何「二次运行是否 byte-stable」的验证必须跑完整链,按部署顺序。** 部署后断言也要先对构建产物 grep 一次:第一版把导语里的小写 `erst messen` 写成了大写。
 - **别做**:加钩子、动其它货架顺序、「锐化」泛搜索 `luftentfeuchter`(沙箱看不到 amazon.de 结果,改坏比不改糟)、统一配件搜索词(只影响归因,是翻炒)、动退出弹层(28 天 165 展示 / 8 点击 / 76 关闭,拆留都缺证据)、为 GB/AU 各 1 次 .de 点击写切换。
 
+
+## 季节日历自动化 + Heizstrahler 扩到已排名页 + BTU 短页与本站数字对齐(2026-09-24,owner:「eco站点学习更多同类型网站成功经验，监控Google trends做好品类扩展与网站自动化」;全文 `docs/season-calendar-2026-09-24.md`)
+
+- **季节性现在自己每月刷新**:`eco-trends.yml` 每天调用 `fetch_seasonality.py --if-older-than 28`(不满 28 天一秒退出,无新 cron,失败次日重试,排在 rising 之后;≈5 分钟/月)。新增两件自动化才需要的东西:**按锚点重标定**(系数写进 `anchor_factors`;之前能共用刻度,是因为 heizlüfter 2022 秋那一周恰好是每批的最高点,2027 秋它移出窗口)与**逐词保留上次好值**(`carried_from`)。`tools/test_seasonality.py` 17 条离线断言先跑,把重标定改成恒等变换会变红。**手跑 `--market` / `--countries` 仍是手动的。**
+- **选季节品类先读日历**:`data/autopilot/demand-digest.md` 的 getecoback 节有「季节日历」:峰值月在 42 天内开始的词 × 德语页标题覆盖 × 状态。已下的结论放 `data/season-verdicts.json`(只存指针,换结论要有新证据);**状态为「未覆盖 · 待过三门」的才是候选**。已知假象:`zugluft` / `fenster abdichten` 显示「已覆盖」,但覆盖它们的是夏季空调页。
+- **新页仍不被 Bing 抓**:09-17/18 发布的 15 张页 bingbot 0 张(09-10→14 那批是 38/46)。09-22 降噪后已有 6 张页第一次被抓,方向对但没结。**在 `eco-new-page-discovery-1020` 结算前,新品类扩到已排名页上,不建新页。**
+- **Heizstrahler**(峰值 19,9、11 月,标题覆盖 0,没有测评所以不点名型号)→ `heizluefter-stromverbrauch` 新增一节:每 kWh 一样贵,省钱只能靠瓦数;四种场景怎么选;它做不到的事;安全只指向说明书、电工和 BBK。判定 `eco-heizstrahler-onpage-1125`。
+- **`wie-viel-btu-brauche-ich` 此前和本站自己的数字打架**(350–400 BTU/m²、+10 % 日照、35 m²+ 推 Monoblock),现在与计算器和数据集一致(340、+20 %、2,6 m 以上 ×1,15、约 13.500 BTU 以上改用分体机),328 → 715 词。判定 `eco-btu-reconcile-0715`,在制冷季用占比读。**任何写 BTU 数字的页都以 `site/sizing-data.json` 和 btu-rechner 的系数为准。**
+- **别做**:为「学更多同类站」再抓一批竞品(09-22 已比过六家,沙箱对多数同行 403);在新页能被抓之前按日历建新页;因为词义假覆盖去改日历匹配器。

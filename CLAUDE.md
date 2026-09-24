@@ -423,6 +423,7 @@ owner 决策卡、事实表)。
   28 天 7 条**(供给侧)。问题不是测不到,是测到了薄然后照建。
 - **现在一页读完**:`data/autopilot/demand-digest.md`(零 AI,随 autopilot 每日生成,带日期与 STALE)。
   **任何选题讨论先打开它。**
+  **2026-09-24 起 eco 节带「季节日历」**(5 年季节性每月由 eco-trends.yml 自刷,× 德语页标题覆盖;已下结论存 `sites/getecoback/data/season-verdicts.json`),季节品类先读它。
 - **`gaps` 的读法(2026-09-17,逐条核完 eco 那 31 条之后补;适用全舰队)**:`match < 0.60` 量的是
   **标题与开篇**有没有接住这个词,**不是站内有没有这一页**。两个已核实的结构原因:①`pagemap.py`
   只读 title+h1+desc 加**正文前 4 000 字符**(eco 的 `infrarotheizung werkstatt` v=30 750 因此成了 gap,

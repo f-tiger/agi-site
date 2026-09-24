@@ -36,11 +36,26 @@ Method notes that matter for reading the output:
 Quota: related_queries and interest_over_time have separate limits, and the
 related-queries one is easy to exhaust (three of six seeds failed with "API
 quota exceeded" on 2026-09-15). This tool only uses interest_over_time, sleeps
-between batches, and is NOT on a schedule — it is run by hand when someone
-needs to decide what a season should get. Adding it to a cron would spend
-quota the daily rising fetch needs.
+between batches. Since 2026-09-24 the DEFAULT German basket (not --market,
+not --countries) refreshes itself once a month: eco-trends.yml calls it daily
+with `--if-older-than 28`, which exits in under a second unless the file is at
+least 28 days old. No new cron, and it runs AFTER the rising fetch in the same
+job so the daily rising quota is spent first. Cost: ~5 runner minutes a month.
 
-Run: python3 tools/fetch_seasonality.py [--out data/seasonality-de.json]
+Two things a monthly refresh needs that a hand run did not:
+  * Batches are RESCALED onto batch 0 through the anchor (factor = sum of the
+    anchor in batch 0 / sum of the anchor in batch i, over their common weeks).
+    Until 2026-09 this was implicit: heizlüfter's autumn-2022 energy-crisis
+    spike is the single highest week in every batch, so every batch happened
+    to share a 100. That spike leaves the five-year window in autumn 2027, and
+    from then on an un-rescaled file would silently mix scales. The factors are
+    written to the output so a drift is visible, not inferred.
+  * Keep-last-good per TERM: a batch that fails no longer drops its terms from
+    the file. The previous row is carried with `carried_from: <date>`, because
+    the season calendar in the daily digest reads this file and a missing term
+    would read as "no demand" rather than "not measured this month".
+
+Run: python3 tools/fetch_seasonality.py [--out data/seasonality-de.json] [--if-older-than 28]
 Needs: pip install trendspy pandas
 """
 import json
@@ -313,6 +328,63 @@ def countries():
     return 0
 
 
+def rescale_batches(frames, anchor):
+    """Put every batch on batch 0's scale through the shared anchor.
+
+    frames: list of (terms, DataFrame) in request order, each containing
+    `anchor`. Returns (series: dict term -> Series, factors: list, errors:
+    list). A batch whose anchor sums to zero over the common weeks cannot be
+    placed on the scale and is reported as an error rather than guessed.
+    Kept free of any network or Trends import so it can be tested offline.
+    """
+    series, factors, errors = {}, [], []
+    ref = None
+    for terms, df in frames:
+        a = df[anchor].astype(float)
+        if ref is None:
+            ref, f = a, 1.0
+        else:
+            common = ref.index.intersection(a.index)
+            denom = float(a.loc[common].sum())
+            f = float(ref.loc[common].sum()) / denom if denom else None
+        factors.append({"terms": terms, "factor": None if f is None else round(f, 4)})
+        if f is None:
+            errors.append({"terms": terms, "error": "anchor is zero in this batch — cannot rescale"})
+            continue
+        for c in df.columns:
+            if c in ("isPartial", anchor):
+                continue
+            series[c] = df[c].astype(float) * f
+    if ref is not None:
+        series[anchor] = ref
+    return series, factors, errors
+
+
+def carry_forward(rows, previous, failed_terms):
+    """Keep-last-good per term: terms of a failed batch keep last month's row."""
+    have = {r["term"] for r in rows}
+    prev_rows = {r["term"]: r for r in (previous or {}).get("terms", [])}
+    when = (previous or {}).get("fetched")
+    for t in failed_terms:
+        if t in have or t not in prev_rows:
+            continue
+        r = dict(prev_rows[t])
+        r["carried_from"] = r.get("carried_from") or when
+        rows.append(r)
+    return rows
+
+
+def is_fresh(path, days, today=None):
+    """True when `path` was fetched fewer than `days` days ago."""
+    try:
+        doc = json.load(open(path, encoding="utf-8"))
+        fetched = datetime.strptime(doc["fetched"], "%Y-%m-%d").date()
+    except Exception:
+        return False
+    today = today or datetime.now(timezone.utc).date()
+    return (today - fetched).days < days
+
+
 def main():
     if "--countries" in sys.argv:
         return countries()
@@ -323,6 +395,14 @@ def main():
             return 1
         return market(geo)
 
+    out = sys.argv[sys.argv.index("--out") + 1] if "--out" in sys.argv else OUT
+    # The age check comes before the imports on purpose: on 27 days out of 28
+    # the workflow step should cost a second, not a pandas import.
+    if "--if-older-than" in sys.argv:
+        days = int(sys.argv[sys.argv.index("--if-older-than") + 1])
+        if is_fresh(out, days):
+            print(f"{os.path.relpath(out, ROOT)} is younger than {days} days — nothing to do")
+            return 0
     try:
         from trendspy import Trends
         import pandas as pd
@@ -330,9 +410,12 @@ def main():
         print("needs: pip install trendspy pandas", file=sys.stderr)
         return 1
 
-    out = sys.argv[sys.argv.index("--out") + 1] if "--out" in sys.argv else OUT
+    try:
+        previous = json.load(open(out, encoding="utf-8"))
+    except Exception:
+        previous = None
     tr = Trends()
-    series, errors = {}, []
+    frames, errors, failed_terms = [], [], []
 
     for i, batch in enumerate(BATCHES):
         if i:
@@ -340,17 +423,21 @@ def main():
         terms = [ANCHOR] + batch if ANCHOR not in batch else batch
         try:
             df = tr.interest_over_time(terms, geo=GEO, timeframe=TIMEFRAME)
-            for c in df.columns:
-                if c != "isPartial":
-                    series[c] = df[c]
+            df.index = pd.to_datetime(df.index)
+            df = df[~df.index.duplicated()]
+            frames.append((terms, df))
             print(f"batch {i}: ok ({', '.join(terms)})")
         except Exception as e:  # recorded, never silently dropped
             errors.append({"terms": terms, "error": str(e)[:200]})
+            failed_terms += [t for t in batch if t != ANCHOR]
             print(f"batch {i}: FAILED {str(e)[:120]}", file=sys.stderr)
 
-    if not series:
+    if not frames:
         print("nothing fetched — keeping the previous file (keep-last-good)", file=sys.stderr)
         return 0
+    series, factors, rs_errors = rescale_batches(frames, ANCHOR)
+    errors += rs_errors
+    failed_terms += [t for e in rs_errors for t in e["terms"] if t != ANCHOR]
 
     df = pd.DataFrame(series)
     df.index = pd.to_datetime(df.index)
@@ -370,6 +457,7 @@ def main():
             "winter_mean": round(winter, 1),
             "win_over_sep": round(winter / sep, 2) if sep else None,
         })
+    rows = carry_forward(rows, previous, failed_terms)
     rows.sort(key=lambda r: -r["peak"])
 
     doc = {
@@ -378,9 +466,11 @@ def main():
         "timeframe": TIMEFRAME,
         "anchor": ANCHOR,
         "scale_note": ("Google Trends normalises within a comparison. Values here are "
-                       "comparable to each other because every batch repeats the anchor; "
+                       "comparable to each other because every batch repeats the anchor "
+                       "and is rescaled onto batch 0 through it (see anchor_factors); "
                        "they are NOT comparable to trends-rising.json, which reports "
                        "percentage growth on an unknown base."),
+        "anchor_factors": factors,
         "weeks": int(df.shape[0]),
         "terms": rows,
         "errors": errors,

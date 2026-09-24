@@ -31,10 +31,27 @@ jobs:
         run: |
           pip install -q trendspy
           python3 tools/fetch_trends_rising.py || echo "::warning::rising fetch failed — keep last good"
+      # Five-year seasonality, once a month (2026-09-24, owner: 「监控 Google trends
+      # 做好品类扩展与网站自动化」). The step runs daily but the tool exits in a
+      # second unless data/seasonality-de.json is ≥28 days old, so there is no new
+      # cron and a failed month retries the next day instead of waiting a month.
+      # It comes AFTER the rising fetch so the daily rising quota is spent first.
+      # Cost: ~5 runner minutes once a month (12 batches × 20 s gap + requests)
+      # + ~1 s/day for the age check. The offline test runs first: an instrument
+      # the daily digest reads unattended must not ship a scale bug.
+      - name: Monthly seasonality (5-year, only when ≥28 days old)
+        run: |
+          if python3 -c "import sys; sys.path.insert(0,'tools'); import fetch_seasonality as f; sys.exit(0 if f.is_fresh(f.OUT, 28) else 1)"; then
+            echo "seasonality-de.json is fresh — skipped"; exit 0
+          fi
+          pip install -q pandas trendspy
+          python3 tools/test_seasonality.py
+          python3 tools/fetch_seasonality.py --if-older-than 28 || echo "::warning::seasonality refresh failed — keep last good"
       - name: Commit snapshot if changed
         run: |
           git config user.name 'Claude'
           git config user.email 'noreply@anthropic.com'
           git add data/trends-de.json
           git add data/trends-rising.json 2>/dev/null || true
+          git add data/seasonality-de.json 2>/dev/null || true
           git diff --cached --quiet || { git commit -m "chore(trends): 德国热搜触发器快照 $(date -u +%F)"; git pull --rebase origin main; git push origin main; }
