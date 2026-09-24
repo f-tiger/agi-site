@@ -277,6 +277,7 @@ jobs:
           node tools/member-studio/ops.mjs configure eco
 
       - name: Deploy to Cloudflare Workers
+        id: deploy
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
@@ -889,6 +890,12 @@ jobs:
       # daily). Injector churn is reported as a warning, never submitted. The sitemap
       # stays the complete inventory; IndexNow carries only the delta.
       - name: Ping IndexNow with the pages that actually changed
+        # Runs whenever the deploy itself landed, even if a post-deploy check went
+        # red: the diff is computed from this push, so a red check used to drop the
+        # ping for content that was already live, and the next push's diff no longer
+        # contains those pages (run 231 → 232 on 2026-09-24: submit=0). The job
+        # stays red either way; only the ping is no longer lost.
+        if: ${{ !cancelled() && steps.deploy.outcome == 'success' }}
         run: |
           sleep 20
           BEFORE="${{ github.event.before }}"
