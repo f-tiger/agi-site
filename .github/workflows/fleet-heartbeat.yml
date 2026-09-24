@@ -217,6 +217,17 @@ jobs:
         continue-on-error: true
         run: python3 tools/fleet/money_line.py
 
+      # 4b) 机器面读数(2026-09-24 复盘产物)。三个站各自服务 MCP,各自数过一遍,
+      #     结论都是「大部分是我们自己」——但没人把三份读数放在一起过,每次都要重新手算。
+      #     这一步用同一套词汇(ci / operator / indexer / other + 需求调用方规则)读各站的
+      #     公开聚合端点(零 token),写 data/fleet-mcp-usage.json;某站曾经能读、连续 >3 天读不到才红。
+      - name: Read the fleet machine face (MCP, 28d)
+        id: mcpusage
+        continue-on-error: true
+        run: |
+          python3 tools/fleet/mcp_usage.py --selftest
+          python3 tools/fleet/mcp_usage.py
+
       # 快照回仓:任何后续会话(哪怕没有 Cloudflare/GitHub MCP)都能 cat 一下就
       # 知道舰队是不是活着。data/ 不在任何站点的部署 path 过滤里,不会烧部署。
       - name: Commit health snapshot
@@ -225,7 +236,7 @@ jobs:
           git config user.email noreply@anthropic.com
           git config user.name Claude
           git add data/fleet-health.json
-          git add data/fleet-ai-access.json data/fleet-ai-referrals.json data/fleet-traffic-sources.json data/fleet-money.json data/fleet-page-patterns.json data/fleet-backlinks.json 2>/dev/null || true
+          git add data/fleet-ai-access.json data/fleet-ai-referrals.json data/fleet-traffic-sources.json data/fleet-money.json data/fleet-page-patterns.json data/fleet-backlinks.json data/fleet-mcp-usage.json 2>/dev/null || true
           git diff --cached --quiet && { echo "无变化"; exit 0; }
           git commit -m "chore(fleet): heartbeat 健康快照 $(date -u +%F)"
           for i in 1 2 3 4; do
@@ -331,7 +342,7 @@ jobs:
         run: python3 tools/fleet/recall_gate.py --check
 
       - name: Fail the run if any site is down, blocks AI crawlers, or a traffic read is stale
-        if: steps.probe.outputs.bad == '1' || steps.aiprobe.outcome == 'failure' || steps.airef.outcome == 'failure' || steps.srcmix.outcome == 'failure' || steps.money.outcome == 'failure' || steps.smguard.outcome == 'failure'
+        if: steps.probe.outputs.bad == '1' || steps.aiprobe.outcome == 'failure' || steps.airef.outcome == 'failure' || steps.srcmix.outcome == 'failure' || steps.money.outcome == 'failure' || steps.smguard.outcome == 'failure' || steps.mcpusage.outcome == 'failure'
         run: |
-          echo "site-down=${{ steps.probe.outputs.bad }} ai-crawler-blocked=${{ steps.aiprobe.outcome }} ai-referrals=${{ steps.airef.outcome }} source-mix=${{ steps.srcmix.outcome }} money=${{ steps.money.outcome }} sitemap=${{ steps.smguard.outcome }}"
+          echo "site-down=${{ steps.probe.outputs.bad }} ai-crawler-blocked=${{ steps.aiprobe.outcome }} ai-referrals=${{ steps.airef.outcome }} source-mix=${{ steps.srcmix.outcome }} money=${{ steps.money.outcome }} sitemap=${{ steps.smguard.outcome }} mcp-usage=${{ steps.mcpusage.outcome }}"
           exit 1

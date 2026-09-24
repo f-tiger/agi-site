@@ -13,7 +13,30 @@ import worker from "../worker.js";
 const SITE = path.join(path.dirname(fileURLToPath(import.meta.url)), "..", "site");
 const rows = [];
 const env = {
-  EV: { prepare() { return { bind(...a) { this.args = a; return this; }, async run() { rows.push(this.args); return {}; }, async first() { return null; } }; } },
+  EV: {
+    prepare(sql) {
+      return {
+        sql,
+        bind(...a) { this.args = a; return this; },
+        async run() { rows.push(this.args); return {}; },
+        async first() { return null; },
+        async all() {
+          // /api/pulse 的两条查询:AI 引荐(这里不关心)与机器面分类(这里是被测对象)。
+          if (/FROM ev WHERE name='mcp_call'/.test(this.sql)) {
+            return { results: [
+              { ua: "buysomething-deploy-selfcheck-bot (+ci)", n: 45, d: 4, args: 45, shapes: 6 },
+              { ua: "curl/8.5.0", n: 13, d: 4, args: 12, shapes: 5 },
+              { ua: "rokmcp-collector/0.2 (+https://rokmcp.com/bot)", n: 7, d: 7, args: 0, shapes: 1 },
+              { ua: "SaSame-MCP-Audit/0.1", n: 7, d: 7, args: 0, shapes: 1 },
+              { ua: "Claude/1.0 (+desktop)", n: 11, d: 6, args: 11, shapes: 8 },
+              { ua: "replayer/1.0 (+scheduled)", n: 40, d: 20, args: 40, shapes: 3 },
+            ] };
+          }
+          return { results: [] };
+        },
+      };
+    },
+  },
   ASSETS: {
     async fetch(req) {
       const p = new URL(req.url).pathname;
@@ -151,5 +174,36 @@ ok(labels.includes("landed_cost:goods_value_usd") || labels.some((l) => l.starts
 ok(labels.some((l) => l.endsWith(":∅")), "空参数调用记成 ∅(采集器的形状)");
 // 上面那次 landed_cost 传的是 1000 / 100 / 2.5 / 25;这些值一个都不许出现在标签里
 ok(!labels.some((l) => /1000|2\.5|\btrue\b/.test(l)), "参数值永不落库(标签里没有 1000 / 2.5 / true)");
+
+// 14) 机器面分类:自检与裸 curl 都不算需求,只有 other 档带参数的才算
+const pulse = await (await call("/api/pulse")).json();
+const M = pulse.mcp;
+ok(M.calls === 123 && M.ci === 45 && M.operator === 13 && M.indexer === 14 && M.other === 51,
+   "pulse.mcp 分类:ci 45 / operator(裸 curl)13 / indexer 14 / other 51");
+ok(M.with_args === 51 && M.callers === 2, "pulse.mcp:with_args 只数 other 档,采集器的空参数与自检都不计入");
+ok(M.demand_callers === 1, "需求调用方只认参数形状够多样的那个(重放者 40 次/20 天但只有 3 种形状,不算)");
+ok(!JSON.stringify(pulse).includes("rokmcp") && !JSON.stringify(pulse).includes("SaSame"),
+   "pulse 永不回 UA 字符串(采集器 UA 里出现过联系邮箱)");
+
+// 15) 部署自检自己的调用不落库
+const before = rows.length;
+await worker.fetch(new Request("https://source.agiscorecard.com/api/mcp/duty_stack_rules", {
+  headers: { "user-agent": "buysomething-deploy-selfcheck-bot (+ci; classified as bot by design)" } }), env, ctx);
+ok(rows.length === before, "部署自检的 MCP 调用不写 mcp_call(它每天固定打 5–6 次,会顶高判定线分子)");
+const before2 = rows.length;
+await worker.fetch(new Request("https://source.agiscorecard.com/api/mcp/duty_stack_rules", { headers: { "user-agent": "Claude/1.0" } }), env, ctx);
+ok(rows.length === before2 + 1, "真实客户端的调用照常落库");
+
+// 16) 安装意向事件:白名单放行 mcp_install_click,其余照旧丢弃
+const beforeI = rows.length;
+await worker.fetch(new Request("https://source.agiscorecard.com/e", { method: "POST",
+  headers: { "content-type": "application/json" },
+  body: JSON.stringify({ n: "mcp_install_click", l: "claude-code", v: 0, p: "/mcp" }) }), env, ctx);
+ok(rows.length === beforeI + 1 && rows[rows.length - 1][0] === "mcp_install_click" && rows[rows.length - 1][1] === "claude-code",
+   "/e 放行 mcp_install_click(只记客户端名)");
+const beforeJ = rows.length;
+await worker.fetch(new Request("https://source.agiscorecard.com/e", { method: "POST",
+  headers: { "content-type": "application/json" }, body: JSON.stringify({ n: "install_everything", l: "x" }) }), env, ctx);
+ok(rows.length === beforeJ, "/e 仍然丢弃白名单外的事件");
 
 console.log("\nall " + n + " assertions pass");
