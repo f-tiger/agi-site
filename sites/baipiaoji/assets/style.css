@@ -1179,3 +1179,15 @@ a.aw-chip:hover { border-color: var(--ink-2); color: var(--ink); }
 .wp-role summary { cursor: pointer; display: flex; justify-content: space-between; gap: 10px; font-size: 14px; }
 .wp-role summary span { color: var(--mute); font-size: 12.5px; }
 .wp-method { margin: 8px 0 0; padding-left: 18px; font-size: 13px; line-height: 1.9; color: var(--ink-2); }
+/* /work-plan 第二、三轮（2026-09-24）：工作天数、导入、厂商原话、保存后变化、方案页入口 */
+.wp-days { font-size: 13.5px; margin: 10px 0 0; }
+.wp-days input { width: 4em; padding: 4px 6px; border: 1px solid var(--rule); background: var(--card); color: var(--ink); font: inherit; }
+.wp-days small { display: block; color: var(--mute); font-size: 11.5px; margin-top: 2px; }
+.wp-import { margin-top: 8px; }
+.wp-link { border: 0; border-bottom: 1px solid var(--rule); background: transparent; color: var(--ink-2); padding: 0; font: inherit; cursor: pointer; }
+.wp-link:hover { color: var(--ink); border-color: var(--ink-2); }
+.calc-row .wp-q { color: var(--mute); }
+#wpDiff { margin-top: 12px; }
+#wpDiff ul { margin: 6px 0; padding-left: 18px; font-size: 13px; line-height: 1.8; }
+.wp-open { font-size: 12.5px; }
+.wp-cta { margin: 14px 0 4px; }

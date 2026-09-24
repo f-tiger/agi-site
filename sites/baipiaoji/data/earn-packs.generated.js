@@ -77,7 +77,7 @@ export const PACKS = {
     }
    ],
    "no_figure": [],
-   "checked_at": "2026-09-17"
+   "checked_at": "2026-09-24"
   },
   "ai-copywriting-service": {
    "slug": "ai-copywriting-service",
@@ -169,7 +169,7 @@ export const PACKS = {
     "火山写作",
     "秘塔写作猫"
    ],
-   "checked_at": "2026-09-17"
+   "checked_at": "2026-09-24"
   },
   "ai-chatbot-for-smb": {
    "slug": "ai-chatbot-for-smb",
@@ -243,7 +243,7 @@ export const PACKS = {
     }
    ],
    "no_figure": [],
-   "checked_at": "2026-09-17"
+   "checked_at": "2026-09-24"
   },
   "ai-teaching-elders": {
    "slug": "ai-teaching-elders",
@@ -293,7 +293,7 @@ export const PACKS = {
    ],
    "stack": [],
    "no_figure": [],
-   "checked_at": "2026-09-17"
+   "checked_at": "2026-09-24"
   },
   "ai-content-account": {
    "slug": "ai-content-account",
@@ -356,7 +356,7 @@ export const PACKS = {
     }
    ],
    "no_figure": [],
-   "checked_at": "2026-09-17"
+   "checked_at": "2026-09-24"
   },
   "ai-design-service": {
    "slug": "ai-design-service",
@@ -459,7 +459,7 @@ export const PACKS = {
    "no_figure": [
     "创客贴"
    ],
-   "checked_at": "2026-09-17"
+   "checked_at": "2026-09-24"
   }
  },
  "en": {
@@ -539,7 +539,7 @@ export const PACKS = {
     }
    ],
    "no_figure": [],
-   "checked_at": "2026-09-17"
+   "checked_at": "2026-09-24"
   },
   "ai-copywriting-service": {
    "slug": "ai-copywriting-service",
@@ -631,7 +631,7 @@ export const PACKS = {
     "Huoshan Writing",
     "Xiezuocat"
    ],
-   "checked_at": "2026-09-17"
+   "checked_at": "2026-09-24"
   },
   "ai-chatbot-for-smb": {
    "slug": "ai-chatbot-for-smb",
@@ -705,7 +705,7 @@ export const PACKS = {
     }
    ],
    "no_figure": [],
-   "checked_at": "2026-09-17"
+   "checked_at": "2026-09-24"
   },
   "ai-teaching-elders": {
    "slug": "ai-teaching-elders",
@@ -755,7 +755,7 @@ export const PACKS = {
    ],
    "stack": [],
    "no_figure": [],
-   "checked_at": "2026-09-17"
+   "checked_at": "2026-09-24"
   },
   "ai-content-account": {
    "slug": "ai-content-account",
@@ -818,7 +818,7 @@ export const PACKS = {
     }
    ],
    "no_figure": [],
-   "checked_at": "2026-09-17"
+   "checked_at": "2026-09-24"
   },
   "ai-design-service": {
    "slug": "ai-design-service",
@@ -921,7 +921,7 @@ export const PACKS = {
    "no_figure": [
     "Chuangkit"
    ],
-   "checked_at": "2026-09-17"
+   "checked_at": "2026-09-24"
   }
  }
 };

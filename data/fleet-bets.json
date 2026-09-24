@@ -1567,7 +1567,8 @@
    "win": "有人按岗位算方案 → 按 ① 里出现的岗位与任务分布加岗位、补容量规则（仍只从配额文件读数）",
    "lose": "① <5 → 只维护（容量规则随配额文件自动更新），不再加岗位、不做按岗位的 SEO 页；入口保留",
    "source": "sites/baipiaoji/CLAUDE.md 第 25 条 + docs/PRD-work-plan-2026-09-24.md",
-   "status": "open"
+   "status": "open",
+   "instrument_note_2026-09-24": "第二轮起（同日）：结果随输入静默重算，复制 Markdown 与恢复方案不再重复记 calc（第一版会各多记一次）；分享链接打开记 /plan-link/、导入或云端恢复记 /plan-restore/、复制分享链接记 /plan-share/——都不以 /plan/ 开头，不计入 ①。t0 复核：上线当日 D1 里两页 0 行（pv 也是 0）。"
   },
   {
    "id": "bpj-work-plan-paid-1124",
@@ -1578,6 +1579,18 @@
    "win": "付费层有第一个买家 → 记进台账营收栏（USDT 实收，净额按链上核对），再谈高阶功能",
    "lose": "已付 0 且 ② <5 → 不再给这个规划器加付费功能；已付 0 但 ② ≥5 → 卡点在支付方式（目前只收 USDT），属 owner 的 Stripe 决定，会话不抢跑",
    "source": "sites/baipiaoji/CLAUDE.md 第 25 条 + docs/PRD-work-plan-2026-09-24.md",
+   "status": "open",
+   "note_2026-09-24": "第二轮起保存的方案带每个工具当时的数字、核实日期与判定；从云端或 JSON 恢复时逐条列出变化。这是会员的实际卖点（额度每月在变），但 JSON 导入同样免费——会员卖的是不用自己留文件、最近 10 个版本、换设备，不是 diff 本身。"
+  },
+  {
+   "id": "bpj-manifest-commit-0927",
+   "site": "baipiaoji",
+   "due": "2026-09-27",
+   "metric": "① main 上 2026-09-25 起 \"chore: page change manifest\" 提交数；② 同期定时部署日志里 \"IndexNow: submitted N URLs\" 的 N（取最近一次）；③ 汇总门「变更清单回写」的 outcome",
+   "threshold": "① ≥1 且 ② ≤300 且 ③ success；t0（2026-09-24 查实）：① 自并入 monorepo 起从未成功过一次，② 09-22 起每天 1 626（整站），清单停在 09-17",
+   "win": "清单回写修通，sitemap lastmod 与 IndexNow 回到只报真变化；结论写回 bpj CLAUDE.md 第 26 条",
+   "lose": "读那次 run 的「Commit page change manifest」日志：若仍是工作区不干净，查是哪个文件（--autostash 应已覆盖）；若是推送竞争，改为重试；在修通之前不把任何「今天变了多少页」的读数当事实引用",
+   "source": "sites/baipiaoji/CLAUDE.md 第 26 条 + .github/workflows/deploy-baipiaoji.yml",
    "status": "open"
   },
   {

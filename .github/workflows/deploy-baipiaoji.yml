@@ -428,7 +428,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data/traffic-snapshot.json 2>/dev/null || true
-          git diff --cached --quiet || { git commit -m "chore: traffic snapshot $(date -u +%F)"; git pull --rebase -q; git push; }
+          git diff --cached --quiet || { git commit -m "chore: traffic snapshot $(date -u +%F)"; git pull --rebase --autostash -q; git push; }
         continue-on-error: true
 
       # 部署后自测第一方打点：CI 网络可达生产域，打一发 /__selftest，
@@ -768,7 +768,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data/ai-crawler-probe.json 2>/dev/null || true
-          git diff --cached --quiet || { git commit -m "chore: AI crawler probe $(date -u +%F)"; git pull --rebase -q; git push; }
+          git diff --cached --quiet || { git commit -m "chore: AI crawler probe $(date -u +%F)"; git pull --rebase --autostash -q; git push; }
         continue-on-error: true
 
       # 日常只推「近两天有实质变更」的 URL（协议本意）。
@@ -788,13 +788,18 @@ jobs:
 
       # 变更清单必须回写仓库：它是「哪些页真的变了」的唯一记忆，
       # 丢了就等于每天从零开始，sitemap lastmod 和 IndexNow 又会退回「每天全站都变了」。
+      # 2026-09-24 查实：这一步在本仓从未成功过——构建会改写已跟踪的 data/earn-packs.generated.js
+      # (checked_at 日期)，工作区不干净，`git pull --rebase` 当场拒绝；continue-on-error 把它藏了一周，
+      # 结果每次定时部署都拿 09-17 的旧清单比，1 626 页天天 lastmod=今天、IndexNow 天天整站重推。
+      # 修法:三处构建后的提交一律 --autostash;本步加 id 进下面的汇总门——它失败,run 要红。
       - name: Commit page change manifest
+        id: manifest
         if: github.event_name != 'push'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data/page-lastmod.json data/limits-history.json data/agenda.json data/mcp-status.json 2>/dev/null || true
-          git diff --cached --quiet || { git commit -m "chore: page change manifest $(date -u +%F)"; git pull --rebase -q; git push; }
+          git diff --cached --quiet || { git commit -m "chore: page change manifest $(date -u +%F)"; git pull --rebase --autostash -q; git push; }
         continue-on-error: true
 
       # RSS ping：无需账号的聚合器分发——通知 Ping-O-Matic 站点 feed 有更新
@@ -879,6 +884,7 @@ jobs:
           check "赚钱作业包注册墙" "${{ steps.st_earn.outcome }}"
           check "触达端点" "${{ steps.st_reach.outcome }}"
           check "广告库存面" "${{ steps.st_ads.outcome }}"
+          check "变更清单回写" "${{ steps.manifest.outcome }}"
           [ "$fail" = "0" ] || exit 1
           echo "✅ 全部链路自测通过"
 

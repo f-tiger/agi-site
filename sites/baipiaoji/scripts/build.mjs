@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { canonicalUrls } from './canonical-urls.mjs';
 import { buildAgentPages } from './agent-pages.mjs';
-import { buildWorkPlan } from './work-plan.mjs';
+import { buildWorkPlan, workPlanLinks } from './work-plan.mjs';
 import { audiencesOf, AUDIENCES } from '../functions/api/_agents.js';
 // 零依赖静态站构建脚本：读取 data/*.json，输出完整站点到 dist/
 import { readFileSync, writeFileSync, mkdirSync, rmSync, cpSync, existsSync, readdirSync } from 'node:fs';
@@ -204,6 +204,7 @@ for (const l of LOCALES) {
 // 当前渲染语言的状态：渲染函数直接读这些，因此本身几乎不用改
 let LOCALE, BASE, LANG, CATS, NAME, TAGLINE, DESC, UI;
 let tools, solutions, hustles, catEntries, bySlug, planBySlug, plansUsing;
+const WORK_PLAN_LINKS = workPlanLinks(root);
 
 function useLocale(l) {
   const d = i18n[l.code] || null;
@@ -1950,7 +1951,8 @@ function planPage(s) {
       <div class="cost-paid"><span>${UI('cost_paid_label', '不用它，同样的事要花')}</span><b>${esc(s.saving || UI('some_money', '一笔钱'))}</b><i>${esc(s.cost_paid)}</i></div>
     </div>
     <h2 class="steps-title">${UI('steps_title', '分 {n} 步走').replace('{n}', s.steps.length)}</h2>
-    <ol class="steps">${steps}</ol>
+    <ol class="steps">${steps}</ol>${WORK_PLAN_LINKS.has(s.slug) ? `
+    <p class="coverage wp-cta"><a href="${BASE}${WORK_PLAN_LINKS.get(s.slug)}">${LOCALE.code === 'zh' ? '按你自己的工作量算一算：这几款工具的免费额度加起来够不够 →' : 'Check it against your own workload: do these free tiers, added up, cover it? →'}</a></p>` : ''}
     ${ceilingRows.length ? `<section class="limits-table">
       <h2 class="group-title">${LOCALE.code === 'zh' ? '这条链哪一步先撞墙' : 'Which link in this chain hits its wall first'}<span>${ceilingRows.length}</span></h2>
       <div class="lt-scroll"><table>
