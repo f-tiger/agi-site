@@ -780,3 +780,17 @@ GEO / 设计类任务前，先查技能库是否覆盖，覆盖则按其框架�
    修法:三处构建后的提交一律 `git pull --rebase --autostash`(在临时仓复现了原报错并验证修复);本步加 `id: manifest` 进汇总门,再失败 run 就红;
    本次推送带上当前清单作为新基线。判定线 `bpj-manifest-commit-0927`。**通用教训:`continue-on-error` 的步骤必须有别的东西看它的 outcome,否则它就是一个静默失败的开关。**
    **明确不做**:单位换算(字符 → 分钟、credits → 份数,官方没给口径)、给未确认的工具估一个「大概能用」、为分享做短链服务、为每个岗位建 SEO 页。
+
+## 机器面:三个缺口(2026-09-24 舰队复盘,全文 `docs/tool-direction-review-2026-09-24.md`)
+
+`tools/fleet/mcp_usage.py`(挂 heartbeat)现在把舰队三个 MCP 站读成一份 `data/fleet-mcp-usage.json`。
+本站首跑是 `exposed: false` —— 不是没人调,是**没有可读的聚合端点**。本站 28 天 `/api/mcp*` 共 588 次:
+
+- **514 次是我们自己的部署自检 `curl/8.5.0`**(占 87%),第三方约 70 次,全部是自报家门的采集器/审计器
+  (SaSame 23、rokmcp 19、mcp-protections-research 9、BrickBlueBot 6、`mcp/1.0.0` 3、maghs 3、Vouch-Census 4、agentdeals 2)。
+- 三个缺口,按修的性价比排:①**`/api/reach` 加一个 `mcp` 块**(字段与 `tools/fleet/mcp_usage.py` 里的四档一致:
+  `ci`/`operator`/`indexer`/`other` + `with_args` + `demand_callers`);②**自检的调用不落库**(SR 09-24 已这么改:
+  它占了自己分子的 56%,不排除的话判定线读的是我们自己);③**不记参数就无法分辨重放与使用** ——
+  eco 的 `node` 调用方 180 次全带参数但只有 9 种组合,正是靠参数才认出来的。
+- 判定线 `fleet-mcp-instrument-1022`(10-22):三站里 ≥2 个能被舰队脚本读出 `demand_callers`,否则「机器面」
+  以后只按 SR 一个站读,不再声称是舰队级读数。

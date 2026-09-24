@@ -3213,3 +3213,18 @@ IT → deumidificatore(注意它峰在 **7 月**,意大利除湿是夏题)。**�
 - **已做**:`anker-solarbank-probleme`、`marstek-venus-probleme` 进扩展队列最前(SERP 判定可写:论坛 + 店铺博客 + 厂商支持页),每日任务按队列一天一张;三个品牌词进 DE-QUEUE 月度篮子。**设备相关说法只取厂商支持页,论坛错误码不当事实。**
 - **下一步(不是现在)**:1–2 月在 `balkonspeicher-rechner` 加「0,58 € vs 你的电价」假设对照表(优化槽,不建「lohnt sich」新页);VDE 储能规范原文发布后按原文写。
 - **别做**:EcoFlow、自营转售、「电网低价充电套利」内容(规范未发布)、价格追踪(无接口)、储能子站、「mit Speicher anmelden」页(厂商博客占屏)。荷兰与品牌直营联盟要 owner 先开门(amazon.nl 账号 / 破「只走 Amazon」)。
+
+## 机器面读数的两个缺口(2026-09-24 舰队复盘发现,全文 `docs/tool-direction-review-2026-09-24.md`)
+
+舰队新建了 `tools/fleet/mcp_usage.py`(挂 heartbeat,零 token),用同一套词汇把三个 MCP 站读成一份
+`data/fleet-mcp-usage.json`。本站首跑的结果是 `calls=366` 但 `demand_callers=None`,原因是两处缺口:
+
+1. **`/api/trend` 的 `mcp` 块只按工具名聚合,没有调用方分档**。舰队口径是四档
+   `ci`(我们自己)/ `operator`(裸 curl、node、无 UA)/ `indexer`(自报家门的采集器)/ `other`(唯一可能是需求的一档),
+   外加**需求调用方规则**:≥10 次带参数 + ≥5 天 + **参数多样性 ≥ 调用次数的 1/4**。
+   本站数据已经够算(meta 里有 `ua` 与 `args`),只差把它加进公开端点。**加上之后这条线才是舰队级读数**
+   (判定线 `fleet-mcp-instrument-1022`)。为什么要多样性那一条:本站 `node` 调用方 **180 次 / 20 天全带参数,
+   却只有 9 种参数组合**,rokmcp 54 次**只有 1 种** —— 旧口径会把重放器判成需求。
+2. **`mcp_install_click` 只发给 GA4,D1 一行都没有**(`site/mcp.html` 里那行 `gtag(...)`)。
+   所以「有人试着把服务器装进客户端」这件事在本站**从来没被测过**,不是测出来是 0。
+   SR 09-24 已经把这一步补成可读的数(复制安装指令即落一行,只记客户端名),本站照抄即可。
