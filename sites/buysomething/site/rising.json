@@ -1,59 +1,31 @@
 {
- "fetched": "2026-09-23",
+ "fetched": "2026-09-24",
  "seeds": {
   "electric spin scrubber": {
-   "auto": [
-    "electric spin scrubber",
-    "electric spin scrubber amazon",
-    "electric spin scrubber for bathroom",
-    "electric spin scrubber charger",
-    "electric spin scrubber nearby",
-    "electric spin scrubber brush",
-    "electric spin scrubber reviews",
-    "electric spin scrubber cordless",
-    "electric spin scrubber cordless cleaning brush",
-    "electric spin scrubber near me"
-   ],
    "rising": [
     {
-     "q": "electric spin scrubber amazon",
-     "v": "new"
+     "q": "ykyi electric spin scrubber",
+     "v": 250
     },
     {
-     "q": "electric spin scrubber for bathroom",
-     "v": "new"
+     "q": "homitt electric spin scrubber",
+     "v": 140
     },
     {
-     "q": "electric spin scrubber charger",
-     "v": "new"
+     "q": "labigo electric spin scrubber",
+     "v": 100
     },
     {
-     "q": "electric spin scrubber nearby",
-     "v": "new"
+     "q": "voweek electric spin scrubber",
+     "v": 100
     },
     {
-     "q": "electric spin scrubber brush",
-     "v": "new"
-    },
-    {
-     "q": "electric spin scrubber reviews",
-     "v": "new"
-    },
-    {
-     "q": "electric spin scrubber cordless",
-     "v": "new"
-    },
-    {
-     "q": "electric spin scrubber cordless cleaning brush",
-     "v": "new"
-    },
-    {
-     "q": "electric spin scrubber near me",
-     "v": "new"
+     "q": "best electric spin scrubber",
+     "v": 60
     }
    ],
-   "source": "autocomplete-diff",
-   "fetched": "2026-08-25"
+   "source": "related-queries",
+   "fetched": "2026-09-24"
   },
   "portable carpet cleaner": {
    "auto": [
@@ -850,46 +822,9 @@
     "energy monitoring smart plug australia",
     "energy monitor smart plug smartthings"
    ],
-   "rising": [
-    {
-     "q": "energy monitoring smart plug home assistant",
-     "v": "new"
-    },
-    {
-     "q": "energy monitoring smart plug uk",
-     "v": "new"
-    },
-    {
-     "q": "energy monitoring smart plug matter",
-     "v": "new"
-    },
-    {
-     "q": "energy monitoring smart plug nearby",
-     "v": "new"
-    },
-    {
-     "q": "energy monitoring smart plug reddit",
-     "v": "new"
-    },
-    {
-     "q": "energy monitoring smart plug homekit",
-     "v": "new"
-    },
-    {
-     "q": "energy monitoring smart plug zigbee",
-     "v": "new"
-    },
-    {
-     "q": "energy monitoring smart plug australia",
-     "v": "new"
-    },
-    {
-     "q": "energy monitor smart plug smartthings",
-     "v": "new"
-    }
-   ],
+   "rising": [],
    "source": "autocomplete-diff",
-   "fetched": "2026-09-23"
+   "fetched": "2026-09-24"
   }
  }
 }
