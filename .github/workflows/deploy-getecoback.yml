@@ -327,22 +327,36 @@ jobs:
         run: |
           sleep 15
           fail=0
+          # Retries cover two different things. A non-200 is retried quickly. A 200
+          # WITHOUT the expected content is retried after 10 s, up to three times:
+          # right after a deploy the edge can still answer from its cache
+          # (cf-cache-status: HIT) with the previous build. Run 231 (2026-09-24)
+          # went red that way on a page whose new content was live seconds later.
+          # Content that is still missing after ~30 s is a real failure; a copy
+          # that was stale and then turned fresh is printed as a notice, so the
+          # race stays visible instead of silently absorbed.
           check() {
-            url="$1"; must_contain="$2"
-            for attempt in 1 2 3; do
+            url="$1"; must_contain="$2"; stale=0
+            for attempt in 1 2 3 4; do
               body=$(curl -sL --max-time 20 -w "\n%{http_code}" "$url" || echo -e "\n000")
-              code=$(echo "$body" | tail -1)
-              [ "$code" = "200" ] && break
-              sleep 3
+              code=$(tail -1 <<<"$body")
+              if [ "$code" = "200" ]; then
+                if [ -z "$must_contain" ] || grep -q -- "$must_contain" <<<"$body"; then break; fi
+                stale=$((stale+1)); [ "$attempt" -lt 4 ] && sleep 10
+              else
+                sleep 3
+              fi
             done
             if [ "$code" != "200" ]; then
               echo "::error::$url returned HTTP $code"
               fail=1
-            elif [ -n "$must_contain" ] && ! echo "$body" | grep -q "$must_contain"; then
-              echo "::error::$url is 200 but missing expected content: $must_contain"
+            elif [ -n "$must_contain" ] && ! grep -q -- "$must_contain" <<<"$body"; then
+              echo "::error::$url is 200 but missing expected content after $stale tries: $must_contain"
               fail=1
             else
               echo "OK $url ($code)"
+              [ "$stale" -gt 0 ] && echo "::notice::$url served the previous build $stale time(s) before the new content (edge cache after deploy)"
+              true
             fi
           }
           check "https://getecoback.com/" "tag=getecoback-21"
