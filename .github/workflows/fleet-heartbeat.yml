@@ -169,6 +169,17 @@ jobs:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: python3 tools/fleet/ai_referrals.py
 
+      # 4b) 机器面读数(2026-09-24 复盘产物)。三个站各自服务 MCP,各自数过一遍,
+      #     结论都是「大部分是我们自己」——但没人把三份读数放在一起过,每次都要重新手算。
+      #     这一步用同一套词汇(ci / operator / indexer / other + 需求调用方规则)读各站的
+      #     公开聚合端点(零 token),写 data/fleet-mcp-usage.json;某站曾经能读、连续 >3 天读不到才红。
+      - name: Read the fleet machine face (MCP, 28d)
+        id: mcpusage
+        continue-on-error: true
+        run: |
+          python3 tools/fleet/mcp_usage.py --selftest
+          python3 tools/fleet/mcp_usage.py
+
       # 快照回仓:任何后续会话(哪怕没有 Cloudflare/GitHub MCP)都能 cat 一下就
       # 知道舰队是不是活着。data/ 不在任何站点的部署 path 过滤里,不会烧部署。
       - name: Commit health snapshot
@@ -177,7 +188,7 @@ jobs:
           git config user.email noreply@anthropic.com
           git config user.name Claude
           git add data/fleet-health.json
-          git add data/fleet-ai-access.json data/fleet-ai-referrals.json 2>/dev/null || true
+          git add data/fleet-ai-access.json data/fleet-ai-referrals.json data/fleet-mcp-usage.json 2>/dev/null || true
           git diff --cached --quiet && { echo "无变化"; exit 0; }
           git commit -m "chore(fleet): heartbeat 健康快照 $(date -u +%F)"
           for i in 1 2 3 4; do

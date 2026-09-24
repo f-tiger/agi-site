@@ -794,19 +794,21 @@
    "win": "工具面有需求 → 在使用量最高的那个工具上装一次意向件(不是收款),再按 28 天读数决定是否接 Stripe",
    "lose": "<120 → 工具不是营收路径:新站三件套里「不上传的工具」从必做降为可选,现有工具只维护不扩建",
    "source": "docs/tool-monetization-2026-09-16.md §七",
-   "status": "open"
+   "status": "open",
+   "reading_20260924": "69/28d(t0 61):eco 38(btu 34 + standort 3 + panel 1)、agi 22、bpj 9、**SR 0(从 13 掉下来)**、tds 0、六个新站 0。六站的 0 现在是**测出来的**:信标真值测试每天绿(n=4),九天零客户端事件。同期舰队新增 4 站、13+ 个工具,总使用量只从 61 动到 69。"
   },
   {
    "id": "fleet-machine-demand-1014",
    "site": "fleet",
    "due": "2026-10-14",
    "metric": "机器面有没有**非索引器**的真实消费者。判据改为**调用形状**而不是 UA(2026-09-16 修正:索引器与真实使用者共用同一个 UA 空间,浏览器 UA 的定时抓取与采集器分不开;但形状分得开——采集器打空参数或端点示例里的那几组,使用者带自己的参数)。读数:SR `mcp_call` 的 label 记参数名(不记值),bpj `/api/changes` 不记 query 只作辅助证据。",
-   "threshold": "≥1 个调用方 28 天内 ≥10 次**带参数**调用(label 不以 :∅ 结尾)且跨 ≥5 个不同日期",
+   "threshold": "≥1 个调用方 28 天内 ≥10 次带参数调用(label 不以 :∅ 结尾)、跨 ≥5 个不同日期,**且参数多样性 ≥ 调用次数的 1/4**(2026-09-24 收紧:见 reading)",
    "win": "机器面有真实消费者 → 才可以调研计量付费层(向爬虫收费仍是杀单,这条只针对主动调用 API 的开发者)",
    "lose": "只有索引器 → 机器面永远免费,继续按「被 vendored」做(稳定 URL + CC BY 署名),不再提付费 API",
    "source": "docs/tool-monetization-2026-09-16.md §七",
    "status": "open",
-   "reading_20260916": "t0 普查(bpj hits ev='api',28 天,剔本仓 CI curl/8.5.0 的 696 次):自报身份的 MCP 生态代理 **7 个** —— SaSame-MCP-Audit 23 次/22 天、rokmcp-collector 12/12、AIWebIndex 12/12、mcp-protections-research 9/1、maghs(MCP prove)3/1、mcp/1.0.0 2/2、agentdeals-internal-pm 2/1,另有一个普查型 UA 两个变体共 4 次(其中一个把联系邮箱写在 UA 里,按隐私红线不记入本仓)。另有 4 个**浏览器 UA 的定时调用方**:77 次/26 天、56/28、32/25、22/15 —— 真人浏览器不会每天打 /api/changes,这些是伪装 UA 的计划任务,**按旧口径会被算成「真实消费者」,这正是改判据的原因**。SR 侧 t0 = 0(端点当日才建)。"
+   "reading_20260916": "t0 普查(bpj hits ev='api',28 天,剔本仓 CI curl/8.5.0 的 696 次):自报身份的 MCP 生态代理 **7 个** —— SaSame-MCP-Audit 23 次/22 天、rokmcp-collector 12/12、AIWebIndex 12/12、mcp-protections-research 9/1、maghs(MCP prove)3/1、mcp/1.0.0 2/2、agentdeals-internal-pm 2/1,另有一个普查型 UA 两个变体共 4 次(其中一个把联系邮箱写在 UA 里,按隐私红线不记入本仓)。另有 4 个**浏览器 UA 的定时调用方**:77 次/26 天、56/28、32/25、22/15 —— 真人浏览器不会每天打 /api/changes,这些是伪装 UA 的计划任务,**按旧口径会被算成「真实消费者」,这正是改判据的原因**。SR 侧 t0 = 0(端点当日才建)。",
+   "reading_20260924": "三站现查。SR:8 天 80 次,45 次部署自检 + 13 次沙箱手测 curl,第三方 22 次**全部空参数**,带参数的第三方 = 0。eco:366 次/29 天(worker 已排除 CI),但 `node` 调用方 180 次/20 天**只用 9 种参数组合**、rokmcp 54 次**只有 1 种**、SaSame 32 次**1 种** —— 重放不是使用。bpj:588 次里 514 次是自检 curl,第三方 ~70 次全是自报家门的采集器/审计器。**关键**:按收紧前的口径,eco 的 `node` 今天就已满足 win(180 次带参数、20 天)—— 一条能被现状满足的线不是赌注,所以在任何人达标之前把参数多样性写进条件。按新口径全舰队需求调用方 = 0。"
   },
   {
    "id": "sr-mcp-calls-1014",
@@ -817,7 +819,8 @@
    "win": "机器面对 SR 成立 → 按 docs/tool-monetization-2026-09-16.md §十一 继续量到 ~870 次/月(SimplyDuty £0,10/次 是价格锚)才谈计量付费",
    "lose": "<50 或全是采集器 → 机器面只作为引用与「被 vendored」的手段,不再往付费方向投入;不再新建机器面工具",
    "source": "docs/tool-monetization-2026-09-16.md §十五",
-   "status": "open"
+   "status": "open",
+   "reading_20260924": "上线 8 天:80 次调用,其中我们自己 58 次(自检 45 + 沙箱 curl 13);第三方 22 次全部空参数,带参数第三方 0。已改:部署自检的调用不再落库;pulse 新增机器面块(ci/operator/indexer/other + 需求调用方),部署自检断言该块存在。10-14 按原文结算。"
   },
   {
    "id": "sr-mcp-registry-1014",
@@ -841,7 +844,8 @@
    "win": "垂直成立 → 按同样纪律接下一格官方源:openFDA food/device enforcement(2026-09-16 实测 200)与 EU 侧(今天没找到免密钥 alerts 接口,需再探)",
    "lose": "两条都 0 → 机器面与引用面对这个垂直都没反应;停止扩工具,只维护现有八个,把力气还给 eco 联盟线",
    "source": "docs/tool-monetization-2026-09-16.md §十七",
-   "status": "open"
+   "status": "open",
+   "reading_20260924": "带参数第三方调用 0;/import-rule-changes 真人 pv 2、/mcp 真人 pv 4,**引荐来源全为空**(无 AI、无搜索)。页面与工具都在线、闸门全绿,缺的是「被装进某个客户端」这一步。"
   },
   {
    "id": "sr-rule-changes-citation-1116",
@@ -1628,6 +1632,17 @@
    "win": "单次 Prime 专属活动就能拿到不依赖商品成交的钱 → 保留横幅机制,把 2027 年 7 月 Prime Day 预登记进 deal-calendar(公告后再填),并评估 Prime Video Channels 等其它 3 EUR 试用是否有同样诚实的理由(没有就不做)",
    "lose": "① ≥5 而 ② = 0 → 读者点了但不开试用(多半已是 Prime 会员):以后的活动只保留日期/§ 11 PAngV 两行,撤掉试用链接;① <5 → insufficient:横幅窗里读者太少(9 天,约 150 次 DE 页浏览),不是链接的问题;没有 owner 截图 → insufficient,不得记成 lose",
    "source": "sites/getecoback/docs/revenue-q4-deal-calendar-2026-09-24.md",
+   "status": "open"
+  },
+  {
+   "id": "fleet-mcp-instrument-1022",
+   "site": "fleet",
+   "due": "2026-10-22",
+   "metric": "data/fleet-mcp-usage.json 里 exposed=true 且 demand_callers 为整数的站点数(bpj 需要聚合端点、eco 需要调用方分档)。t0(2026-09-24)= 1(只有 SR,且要等本次合并部署后才生效)",
+   "threshold": "≥2",
+   "win": "机器面读数是舰队级的,继续按它判 fleet-machine-demand",
+   "lose": "「机器面」从此只按 SR 一个站读,不再声称是舰队级读数;不再为其他站补机器面工具",
+   "source": "docs/tool-direction-review-2026-09-24.md §五",
    "status": "open"
   }
  ]

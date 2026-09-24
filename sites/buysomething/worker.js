@@ -69,6 +69,21 @@ async function packTokenValid(env, token) {
 }
 const PACK_PUBLIC = new Set(["/packs/index.json", "/packs/sample.json"]);
 
+// ── 机器面调用的分类(2026-09-24 复盘产物)──────────────────────────────────────
+// 09-17→09-24 的读数里 80 次 mcp_call 有 58 次是我们自己(部署自检 45 + 沙箱手测 curl 13),
+// 而 22 次第三方全部是空参数的采集器。把"我们自己"和"手动 curl"混进同一个数字里,
+// 任何"机器面有人用"的说法都不可证伪。所以分类写死在这里,并与 tools/fleet/mcp_usage.py
+// 逐字相同:ci = 本仓的自检机器人;operator = 裸 curl/wget 之类(可能是我们,也可能是有人手戳,
+// 两者都不算需求);indexer = 自报家门的 MCP 采集/审计/普查器;other = 其余,唯一算需求的一档。
+// **with_args 只数 other 档**——带着自己参数来的调用才是使用,空参数是探测。
+function mcpClass(ua) {
+  const u = String(ua || "");
+  if (/deploy-selfcheck-bot|deploy-smoke-bot|getecoback-ci|bpj-ci-selftest|crawlprobe/i.test(u)) return "ci";
+  if (/^(curl|wget|httpie|python-requests|node|go-http-client|libwww|okhttp)\b/i.test(u) || u === "") return "operator";
+  if (/collector|audit|census|verifier|index|prove|probe|research|crawler|spider|bot\b|bot\/|mcp\/\d/i.test(u)) return "indexer";
+  return "other";
+}
+
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
@@ -147,7 +162,10 @@ export default {
     // 每次调用记一行 mcp_call(只记工具名与 UA 前缀,零 PII),它是 fleet-machine-demand-1014 的读数来源。
     if (url.pathname === "/api/mcp" || url.pathname.startsWith("/api/mcp/")) {
       const ua = request.headers.get("user-agent") || "";
-      const log = (tool) => logRow(env, ctx, {
+      // 部署自检的调用不落库:它每天固定打 5–6 次,会把 fleet-machine-demand-1014 的分子
+      // 顶成噪音(09-24 读数:80 次里 45 次是它)。工具本身仍然照常回答,自检照样能红。
+      const isCi = /deploy-selfcheck-bot|deploy-smoke-bot/i.test(ua);
+      const log = (tool) => isCi ? undefined : logRow(env, ctx, {
         name: "mcp_call",
         label: String(tool).slice(0, 60),
         value: 0,
@@ -226,7 +244,30 @@ export default {
           if (r.host === "_total") human_pv = r.n | 0; else if (r.host) by_host[r.host] = r.n | 0;
         }
         const ai_ref = Object.values(by_host).reduce((a, b) => a + b, 0);
-        return new Response(JSON.stringify({ ok: true, days: 28, human_pv, ai_ref, by_host, generated: new Date().toISOString() }), { headers });
+        // 机器面读数(同窗 28 天)。只回聚合计数,**永不回 UA 字符串** —— 采集器的 UA 里出现过
+        // 联系邮箱,原样吐出来就是把别人的个人信息搬上公开端点。
+        const m = await env.EV.prepare(
+          "SELECT substr(ref,1,60) AS ua, COUNT(*) AS n, COUNT(DISTINCT day) AS d, " +
+          "COUNT(DISTINCT label) AS shapes, " +
+          "SUM(CASE WHEN label LIKE '%:∅' THEN 0 ELSE 1 END) AS args " +
+          "FROM ev WHERE name='mcp_call' AND day >= date('now','-28 days') GROUP BY substr(ref,1,60)"
+        ).all().catch(() => ({ results: [] }));
+        // variety = 同一调用方用过多少种不同的**参数形状**。本站按隐私选择只记参数名不记参数值,
+        // 所以这里只能给形状多样性(eco 记了值,能给更强的口径);两者不可混为一谈,字段名因此不同。
+        const mcp = { days: 28, variety: "shape_only", calls: 0, ci: 0, operator: 0, indexer: 0, other: 0, with_args: 0, callers: 0, demand_callers: 0, best: { calls: 0, days: 0, shapes: 0 } };
+        for (const r of (m.results || [])) {
+          const k = mcpClass(r.ua), n = r.n | 0, d = r.d | 0, shapes = r.shapes | 0, args = r.args | 0;
+          mcp.calls += n; mcp[k] += n;
+          if (k !== "other") continue;
+          mcp.callers += 1;
+          mcp.with_args += args;
+          // 需求调用方(2026-09-24 预登记):≥10 次带参数调用、跨 ≥5 天、且形状多样性 ≥ 1/4 的调用次数。
+          // 最后一条是这轮复盘加的:eco 的 `node` 调用方 180 次 / 20 天全带参数,但只有 9 种参数组合
+          // —— 那是重放,不是使用。旧口径会把它判成需求,所以口径在任何人达标之前先收紧。
+          if (args >= 10 && d >= 5 && shapes * 4 >= args) mcp.demand_callers += 1;
+          if (n > mcp.best.calls) mcp.best = { calls: n, days: d, shapes };
+        }
+        return new Response(JSON.stringify({ ok: true, days: 28, human_pv, ai_ref, by_host, mcp, generated: new Date().toISOString() }), { headers });
       } catch (e) {
         return new Response(JSON.stringify({ ok: false, error: "query_failed" }), { status: 500, headers });
       }

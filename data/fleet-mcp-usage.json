@@ -1,0 +1,59 @@
+{
+ "generated": "2026-09-24T13:41:05Z",
+ "window_days": 28,
+ "rule": "demand caller = >=10 argument-bearing calls, >=5 distinct days, argument variety >= 1/4 of those calls; ci/operator/indexer never count. Pre-registered 2026-09-24, before anything qualified.",
+ "sites": [
+  {
+   "site": "buysomething",
+   "endpoint": "/api/mcp",
+   "exposed": false,
+   "missing": [
+    "mcp block absent from /api/pulse"
+   ]
+  },
+  {
+   "site": "getecoback",
+   "endpoint": "/mcp/v1",
+   "exposed": true,
+   "missing": [
+    "caller classes",
+    "argument variety",
+    "demand_callers"
+   ],
+   "days": 28,
+   "calls": 366,
+   "by_tool": {
+    "fensterabdichtung_laenge": 59,
+    "btu_empfehlung": 59,
+    "balkonspeicher_foerderung": 58,
+    "hitzewelle_vorschau": 56,
+    "geraet_wahl": 46,
+    "klimaanlage_stromkosten": 30,
+    "taupunkt_lueften": 29,
+    "heizleistung_watt": 29
+   },
+   "ci": 0,
+   "ci_note": "the worker already refuses to log its own smoke UA, so these are non-CI calls",
+   "demand_callers": null
+  },
+  {
+   "site": "baipiaoji",
+   "endpoint": "/api/mcp",
+   "exposed": false,
+   "missing": [
+    "no machine-face aggregate exposed yet; D1 has the rows (hits.ev='api', path /api/mcp*) but no arguments and no CI exclusion"
+   ]
+  }
+ ],
+ "fleet": {
+  "calls_28d": 366,
+  "demand_callers": 0,
+  "demand_measurable_on": [],
+  "demand_unmeasurable_on": [
+   "getecoback",
+   "buysomething",
+   "baipiaoji"
+  ],
+  "verdict": "no demand caller anywhere it can be measured"
+ }
+}

@@ -195,6 +195,8 @@ jobs:
           check_json /api/pop '"picks" in j and "degraded" not in j'
           # /api/pulse (2026-09-13): token-free AI-referral aggregate read by the fleet heartbeat
           check_json /api/pulse 'j.get("ok") is True and isinstance(j.get("ai_ref"), int) and j.get("days") == 28'
+          # 机器面块是 fleet-machine-demand-1014 / sr-mcp-calls-1014 的唯一读数源;缺了就等于没读数。
+          check_json /api/pulse 'isinstance(j["mcp"]["calls"], int) and isinstance(j["mcp"]["demand_callers"], int) and j["mcp"]["variety"] == "shape_only"'
           rm -f body.json
           # 3b) PRD P0-1 beacon truth test: POST a CI-labelled event, then read it back through the aggregate endpoint.
           curl -s -o /dev/null -X POST "$BASE/e" -H 'content-type: text/plain' --data '{"n":"calc_use","l":"__ci","p":"/__ci"}' || true
