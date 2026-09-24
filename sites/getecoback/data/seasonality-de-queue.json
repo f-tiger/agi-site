@@ -22,18 +22,35 @@
     "heizlüfter riecht",
     "heizkörper entlüften"
    ],
-   "factor": 0.9998
+   "factor": 1.0
+  },
+  {
+   "terms": [
+    "heizlüfter",
+    "anker solarbank",
+    "marstek venus",
+    "zendure solarflow"
+   ],
+   "factor": 1.0
   }
  ],
  "weeks": 262,
  "terms": [
   {
    "term": "heizlüfter",
-   "sep": 24.6,
-   "peak": 29.0,
+   "sep": 24.7,
+   "peak": 29.1,
    "peak_month": 11,
    "winter_mean": 21.2,
    "win_over_sep": 0.86
+  },
+  {
+   "term": "anker solarbank",
+   "sep": 5.8,
+   "peak": 9.7,
+   "peak_month": 4,
+   "winter_mean": 3.9,
+   "win_over_sep": 0.67
   },
   {
    "term": "heizkörper entlüften",
@@ -41,7 +58,23 @@
    "peak": 6.3,
    "peak_month": 11,
    "winter_mean": 4.2,
-   "win_over_sep": 1.13
+   "win_over_sep": 1.12
+  },
+  {
+   "term": "marstek venus",
+   "sep": 2.3,
+   "peak": 3.2,
+   "peak_month": 8,
+   "winter_mean": 1.4,
+   "win_over_sep": 0.63
+  },
+  {
+   "term": "zendure solarflow",
+   "sep": 1.1,
+   "peak": 3.1,
+   "peak_month": 3,
+   "winter_mean": 1.2,
+   "win_over_sep": 1.02
   },
   {
    "term": "fenster beschlagen außen",
@@ -57,7 +90,7 @@
    "peak": 1.1,
    "peak_month": 11,
    "winter_mean": 0.8,
-   "win_over_sep": 0.72
+   "win_over_sep": 0.75
   },
   {
    "term": "luftfeuchtigkeit messen",
@@ -79,7 +112,7 @@
    "term": "heizlüfter riecht",
    "sep": 0.0,
    "peak": 0.0,
-   "peak_month": 12,
+   "peak_month": 4,
    "winter_mean": 0.0,
    "win_over_sep": null
   }

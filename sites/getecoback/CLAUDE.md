@@ -3205,3 +3205,11 @@ IT → deumidificatore(注意它峰在 **7 月**,意大利除湿是夏题)。**�
 - **PA-API 已停用**(Amazon 弃用说明:调用回 403;第三方汇总 2026-05-15 下线)。09-12 的价格引擎调的就是它;手册里「owner 申请 PA-API 三步」已作废。接替的 Creators API 支持德国,门槛是**近 30 天 ≥10 笔合格成交**。**「价格 / Deals 层」的前提改读成「先卖到 30 天 10 单」**,不要再列成 owner 待办。
 - **别做**:常年挂 Prime 试用、推 Audible/Music/Kids+/Prime Video 试用(同样 3 EUR,与本站读者无关)、替 Amazon 预测活动日期、横幅里放价格或商品链接、为非 Amazon 联盟写代码(09-05:只请示)。
 - **判定线**:`eco-prime-bounty-1027`(PartnerNet 10 月 ≥1 笔 Prime 试用 Prämie;`bounty_click` ≥5 而 0 笔 → 撤试用链接只留日期和 § 11;<5 或没有截图 → insufficient)。`fleet-bounty-line-0929` 已结算为执行。
+
+## 阳台储能爆发:红利在存量,不在再卖一台(2026-09-24,owner:「欧洲阳台储能爆发有什么机会点」;全文 `docs/balcony-storage-opportunities-2026-09-24.md`)
+
+- **事实**:德国在运行插电光伏约 133 万台(2026-05,MaStR 汇总);2024 年随插电光伏装的电池 22,2 万台(+97 %,EUPD × Anker,**厂商共同发布**);2025 年阳台储能占家用储能台数 30,6 %,品牌份额 **Anker ~55 %**、Growatt 12 %、Marstek 10,3 %、EcoFlow 5,6 %(pv magazine 2026-06-26,基于 MaStR)。回本之争:厂商研究「4 年」假设 **0,58 €/kWh**,HTW Berlin 计算器 **10 年以上**。DIN VDE V 0126-95 不涵盖储能,储能部分「预计 2026」(二手)。荷兰净计量 2027-01-01 一次性取消(Rijksoverheid)。
+- **第一方**:90 天里储能板块只有 `growatt-noah-2000-probleme` 有人来(41 pv、35 搜索、3 点击,其中 2 次点的是本机),其余 11 张合计 <30 pv。Growatt 只占 12 %,**Anker 的存量约是它的 4,6 倍而 eco 没有 Anker 问题页**。DE-QUEUE:anker solarbank 9,7(4 月峰,9 月 5,8)、marstek venus 3,2、zendure solarflow 3,1。
+- **已做**:`anker-solarbank-probleme`、`marstek-venus-probleme` 进扩展队列最前(SERP 判定可写:论坛 + 店铺博客 + 厂商支持页),每日任务按队列一天一张;三个品牌词进 DE-QUEUE 月度篮子。**设备相关说法只取厂商支持页,论坛错误码不当事实。**
+- **下一步(不是现在)**:1–2 月在 `balkonspeicher-rechner` 加「0,58 € vs 你的电价」假设对照表(优化槽,不建「lohnt sich」新页);VDE 储能规范原文发布后按原文写。
+- **别做**:EcoFlow、自营转售、「电网低价充电套利」内容(规范未发布)、价格追踪(无接口)、储能子站、「mit Speicher anmelden」页(厂商博客占屏)。荷兰与品牌直营联盟要 owner 先开门(amazon.nl 账号 / 破「只走 Amazon」)。

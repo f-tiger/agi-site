@@ -160,9 +160,10 @@
 | schimmel schlafzimmer | 2.4 | 11 月 | 38 天 | 4.84 | 0 | 已裁定:预登记:eco-schimmel-fenster-1213 赢了才补(2026-09-15) |
 | wäsche trocknen wohnung | 1.0 | 11 月 | 38 天 | 2.12 | 1 | 量太小(峰值 <2.0) |
 读法:数值只在本文件内可比(与 rising 不可比);「未覆盖 · 待过三门」才是候选,仍要过需求/变现门;过了门的写进扩展队列,每天最多建一页(2026-09-24 起不再等 eco-new-page-discovery-1020,新页的发现面由首页「Neu im Ratgeber」块承担,是否奏效看 eco-newest-block-1008)。
-**扩展队列**(更新 2026-09-24;blocked 1 · built 3 · gated 1 · queued 2 · rejected 6 · seasonal-hold 1;**可建 <3,当天先补货**)
+**扩展队列**(更新 2026-09-24;blocked 1 · built 3 · gated 1 · queued 4 · rejected 6 · seasonal-hold 1)
+- `anker-solarbank-probleme` — Anker Solarbank lädt nicht oder speist nicht ein: die Ursachen in der Reihenfolge · 待办:Jede gerätespezifische Aussage (Neustart per Tastenkombination, Winter-Kalibrierung, Einspeise-Stopp bei niedrigem Ladestand) nur aus Ankers eigenen Support-Sei
+- `marstek-venus-probleme` — Marstek Venus lädt oder entlädt nicht: Standby, App, Modus — was du prüfen kannst · 待办:Erst bauen, wenn anker-solarbank-probleme steht (gleiche Vorlage). Quellen: Marstek-Handbuch bzw. marstek.de-Support; was nur in Foren steht (z. B. Firmware-Ver
 - `heizluefter-riecht-verbrannt` — Heizlüfter riecht verbrannt: Staub, Erstbetrieb oder Defekt? · 待办:Find a manufacturer manual or safety source for the first-use smell before stating it; otherwise leave that paragraph out. Safety wording as schaltet-sich-aus: 
-- `hygrometer-testen-salz` — Luftfeuchtigkeit richtig messen: wohin das Hygrometer gehört und wie du es mit Salz prüfst · 待办:Retarget before building: the question readers type is 'luftfeuchtigkeit messen' (and the head word hygrometer), not 'kalibrieren'. Run the SERP check on 'luftf
 **Deal-Kalender**(Amazon 活动;data/deal-calendar.json)
 - Prime Deal Days 2026-10-06(12 天后)· 已公告,横幅 2026-09-29→2026-10-07,带 Prime 试用链接
 - Black Friday 2026-11-27(64 天后)· **未公告:去 aboutamazon.de 查,填进 deal-calendar.json 才会出横幅**

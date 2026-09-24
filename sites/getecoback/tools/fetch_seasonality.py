@@ -166,6 +166,10 @@ MARKET_BATCHES = {
         # run; the reader's words are "luftfeuchtigkeit messen", which is what
         # the queued hygrometer item was retargeted to.
         ["luftfeuchtigkeit messen", "heizlüfter riecht", "heizkörper entlüften"],
+        # Storage troubleshooting items (2026-09-24). Fault phrases sit under the
+        # Trends floor, so the brand names are the measurable proxy for the size
+        # of each installed base the pages are written for.
+        ["anker solarbank", "marstek venus", "zendure solarflow"],
     ],
     "GB": [
         # Products a UK winter has and a German one does not. `heated airer`
