@@ -1,68 +1,107 @@
 {
- "fetched": "2026-09-23",
+ "fetched": "2026-09-24",
  "geo": "DE",
  "seeds": {
   "klimaanlage": {
    "rising": [
     {
-     "q": "coolizi klimaanlage",
-     "v": 28550
-    },
-    {
-     "q": "air zuma klimaanlage",
-     "v": 17800
-    },
-    {
-     "q": "coolizi coolzy",
-     "v": 9900
-    },
-    {
-     "q": "bgh urteil klimaanlage",
-     "v": 8050
-    },
-    {
-     "q": "tronic klimaanlage 9000 btu",
-     "v": 7450
-    },
-    {
-     "q": "coolzy klimaanlage test",
-     "v": 6550
-    },
-    {
-     "q": "air zuma klimaanlage erfahrungen",
-     "v": 5750
+     "q": "coolizi erfahrungen",
+     "v": 7700
     },
     {
      "q": "midea portasplit mobile split klimaanlage inklusive",
-     "v": 4700
+     "v": 5300
     },
     {
      "q": "coolizi",
+     "v": 2500
+    },
+    {
+     "q": "coolizi coolzy",
      "v": 1850
     },
     {
-     "q": "coolizi erfahrungen",
-     "v": 1100
+     "q": "bgh urteil klimaanlage",
+     "v": 1250
+    },
+    {
+     "q": "tronic klimaanlage 9000 btu",
+     "v": 900
+    },
+    {
+     "q": "air zuma klimaanlage erfahrungen",
+     "v": 650
+    },
+    {
+     "q": "coolzy klimaanlage test",
+     "v": 550
+    },
+    {
+     "q": "air zuma klimaanlage",
+     "v": 400
+    },
+    {
+     "q": "bosch klimaanlage mobil",
+     "v": 110
     }
    ],
    "source": "related-queries",
-   "fetched": "2026-09-23",
+   "fetched": "2026-09-24",
    "polluted": false
   },
   "schimmel entfernen": {
+   "auto": [
+    "schimmel entfernen",
+    "schimmel entfernen wand",
+    "schimmel entfernen hausmittel",
+    "schimmel entfernen dusche",
+    "schimmel entfernen bad fugen",
+    "schimmel entfernen dm",
+    "schimmel entfernen wand innen",
+    "schimmel entfernen tapete",
+    "schimmel entfernen mit alkohol",
+    "schimmel entfernen spray"
+   ],
    "rising": [
     {
-     "q": "schimmel auf leder entfernen",
-     "v": 50700
+     "q": "schimmel entfernen wand",
+     "v": "new"
     },
     {
-     "q": "schimmel aus kleidung entfernen",
-     "v": 400
+     "q": "schimmel entfernen hausmittel",
+     "v": "new"
+    },
+    {
+     "q": "schimmel entfernen dusche",
+     "v": "new"
+    },
+    {
+     "q": "schimmel entfernen bad fugen",
+     "v": "new"
+    },
+    {
+     "q": "schimmel entfernen dm",
+     "v": "new"
+    },
+    {
+     "q": "schimmel entfernen wand innen",
+     "v": "new"
+    },
+    {
+     "q": "schimmel entfernen tapete",
+     "v": "new"
+    },
+    {
+     "q": "schimmel entfernen mit alkohol",
+     "v": "new"
+    },
+    {
+     "q": "schimmel entfernen spray",
+     "v": "new"
     }
    ],
-   "source": "related-queries",
-   "fetched": "2026-09-15",
-   "polluted": false
+   "source": "autocomplete-diff",
+   "fetched": "2026-09-24"
   },
   "infrarotheizung": {
    "rising": [

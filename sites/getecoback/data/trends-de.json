@@ -1,55 +1,56 @@
 {
  "ok": true,
- "fetched": "2026-09-23",
+ "fetched": "2026-09-24",
  "source": "https://trends.google.com/trending/rss?geo=DE",
- "matched": [],
- "top": [
+ "matched": [
   {
-   "title": "1. fc union berlin",
-   "traffic": "500+"
-  },
-  {
-   "title": "peter maffay",
-   "traffic": "1000+"
-  },
-  {
-   "title": "steffen baumgart",
-   "traffic": "5000+"
-  },
-  {
-   "title": "cdu nordrhein-westfalen",
-   "traffic": "5000+"
-  },
-  {
-   "title": "disney",
-   "traffic": "1000+"
-  },
-  {
-   "title": "sänger",
-   "traffic": "5000+"
-  },
-  {
-   "title": "eibacher hauptstraße",
-   "traffic": "500+"
-  },
-  {
-   "title": "emmanuel macron",
-   "traffic": "1000+"
-  },
-  {
-   "title": "zug",
-   "traffic": "2000+"
-  },
-  {
-   "title": "angry anderson",
+   "title": "wetterwarnung",
    "traffic": "2000+"
   }
  ],
- "history": [
+ "top": [
   {
-   "d": "2026-09-09",
-   "matched": []
+   "title": "michael olise",
+   "traffic": "2000+"
   },
+  {
+   "title": "u bahnhof schönhauser allee",
+   "traffic": "1000+"
+  },
+  {
+   "title": "hessenschau",
+   "traffic": "1000+"
+  },
+  {
+   "title": "radio lippe",
+   "traffic": "500+"
+  },
+  {
+   "title": "wetterwarnung",
+   "traffic": "2000+"
+  },
+  {
+   "title": "sabrina wittmann",
+   "traffic": "500+"
+  },
+  {
+   "title": "u-bahn",
+   "traffic": "5000+"
+  },
+  {
+   "title": "shelly group",
+   "traffic": "1000+"
+  },
+  {
+   "title": "schwandorf",
+   "traffic": "1000+"
+  },
+  {
+   "title": "freizeitpark",
+   "traffic": "1000+"
+  }
+ ],
+ "history": [
   {
    "d": "2026-09-10",
    "matched": []
@@ -107,6 +108,12 @@
   {
    "d": "2026-09-23",
    "matched": []
+  },
+  {
+   "d": "2026-09-24",
+   "matched": [
+    "wetterwarnung"
+   ]
   }
  ]
 }
