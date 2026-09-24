@@ -1,15 +1,28 @@
 {
- "generated": "2026-09-24T13:41:05Z",
+ "generated": "2026-09-24T13:47:39Z",
  "window_days": 28,
  "rule": "demand caller = >=10 argument-bearing calls, >=5 distinct days, argument variety >= 1/4 of those calls; ci/operator/indexer never count. Pre-registered 2026-09-24, before anything qualified.",
  "sites": [
   {
    "site": "buysomething",
    "endpoint": "/api/mcp",
-   "exposed": false,
-   "missing": [
-    "mcp block absent from /api/pulse"
-   ]
+   "exposed": true,
+   "missing": [],
+   "days": 28,
+   "calls": 82,
+   "ci": 45,
+   "operator": 15,
+   "indexer": 17,
+   "other": 5,
+   "with_args": 0,
+   "callers": 3,
+   "demand_callers": 0,
+   "variety": "shape_only",
+   "best_caller": {
+    "calls": 3,
+    "days": 3,
+    "shapes": 1
+   }
   },
   {
    "site": "getecoback",
@@ -46,12 +59,13 @@
   }
  ],
  "fleet": {
-  "calls_28d": 366,
+  "calls_28d": 448,
   "demand_callers": 0,
-  "demand_measurable_on": [],
+  "demand_measurable_on": [
+   "buysomething"
+  ],
   "demand_unmeasurable_on": [
    "getecoback",
-   "buysomething",
    "baipiaoji"
   ],
   "verdict": "no demand caller anywhere it can be measured"
