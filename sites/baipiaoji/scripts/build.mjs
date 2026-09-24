@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import { canonicalUrls } from './canonical-urls.mjs';
 import { buildAgentPages } from './agent-pages.mjs';
+import { buildWorkPlan } from './work-plan.mjs';
 import { audiencesOf, AUDIENCES } from '../functions/api/_agents.js';
 // 零依赖静态站构建脚本：读取 data/*.json，输出完整站点到 dist/
 import { readFileSync, writeFileSync, mkdirSync, rmSync, cpSync, existsSync, readdirSync } from 'node:fs';
@@ -1261,6 +1262,7 @@ return `${railOf()}
         <span class="cap">${UI('plot_cap', '{n} 条路 / 各几步').replace('{n}', hustles.length)}</span>
 ${hustles.map((h) => `        <a href="${BASE}/money/${esc(h.slug)}.html">${Array.from({ length: h.steps.length }, (_, k) => `<i style="width:${k === 0 ? 40 : 24}px"></i>`).join('')}<em>${esc(h.title)}</em></a>`).join('\n')}
       </div>
+      <p class="coverage"><a href="${BASE}/work-plan.html"><b>${LOCALE.code === 'zh' ? '新：按你的岗位算一套 AI 方案——免费额度够不够你的工作量 →' : 'New: an AI plan for your job — do the free tiers cover your workload? →'}</b></a></p>
       <p class="coverage"><a href="${BASE}/stack-builder.html"><b>${UI('stack_cta', '新：勾选任务，一次配齐一套全免费工具链 →')}</b></a></p>
       <div class="ask">
         <input type="search" id="ask" placeholder="${UI('ask_ph', '例如：要交 PPT / 想剪视频 / 写论文查文献')}" autocomplete="off">
@@ -4265,6 +4267,7 @@ for (const L of LOCALES) {
       ['/no-official-source.html', UI('ns_nav', '查无官方来源'), 'no source 来源 拒绝'],
       ['/llm-api-calculator.html', UI('calc_nav', '免费 API 计算器'), 'api calculator token 计算 免费额度 llm'],
       ['/stack-builder.html', UI('stack_nav', '免费工具栈组装器'), 'stack builder 组装 工具链 免费 选型'],
+      ['/work-plan.html', LOCALE.code === 'zh' ? '按岗位算 AI 方案' : 'AI plan by job', 'work plan job role workload 岗位 职业 工作 工作量 方案 规划 电商 自媒体 教师 学生 程序员 设计师 翻译 免费额度 够不够'],
       ['/video-quota-planner.html', LOCALE.code === 'zh' ? '视频免费额度对照板' : 'Video quota board', 'video quota 视频 额度 对照 credits 商用 watermark'],
       ['/coding-quota-board.html', LOCALE.code === 'zh' ? '编程助手额度对照板' : 'Coding assistant quota board', 'coding copilot cursor 编程 补全 completions credits 额度 对照'],
       ['/subscription-audit.html', LOCALE.code === 'zh' ? 'AI 订阅体检' : 'AI subscription audit', 'subscription audit 订阅 体检 月费 停订阅 cancel 白付 copilot cursor claude chatgpt 值不值'],
@@ -6430,6 +6433,7 @@ if (OFFQ) {
   <header class="hero"><div class="hero-inner">
     <h1>${esc(h1)}</h1>
     <p class="answer">${esc(desc)}</p>
+    <p class="coverage"><a href="${BASE}/work-plan.html">${zh ? '想按岗位整套算，还要看免费额度够不够你的量？用岗位方案规划器 →' : 'Want a whole plan for your job, checked against your workload? Use the plan-by-job calculator →'}</a></p>
     <p class="coverage"><a href="${BASE}/llm-api-calculator.html">${zh ? '只关心 API 额度？直接用免费 API 计算器 →' : 'Only care about API allowances? Use the free API calculator →'}</a></p>
   </div></header>
 
@@ -6519,6 +6523,17 @@ if (OFFQ) {
     schema: [crumbLd([{ name: NAME, url: `${BASE}/` }, { name: h1, url: `${BASE}/stack-builder.html` }])],
   }));
   allPages.push({ u: `${BASE}/stack-builder.html`, pr: '0.9' });
+}
+
+// ---- 岗位方案规划器（2026-09-24，owner：按自己的实际工作算一套 AI 方案，试用免费、高阶收费；见 scripts/work-plan.mjs 与 docs/PRD-work-plan-2026-09-24.md）----
+// 计算全在浏览器里、全部免费；云端保存走已上线的工作区会员（不新建收款面）。
+{
+  const r = buildWorkPlan({
+    root, layout, railOf, esc, crumbLd, faqLd, BASE, NAME, LOCALE, site, toolsBySlug: bySlug, planBySlug, licence: LICENCE || {},
+    write: (s) => writeFileSync(join(dist, ...(L.dir ? [L.dir.slice(1)] : []), 'work-plan.html'), s),
+    pushPage: (u, pr) => allPages.push({ u, pr }),
+  });
+  console.log(`🧭 work-plan (${LOCALE.code}): ${r.roles} roles · ${r.tasks} tasks · ${r.tools} tools, ${r.withCap} with a same-unit official figure · data as of ${r.asOf}`);
 }
 
 // ---- 自建工具 3 号：视频免费额度对照板 ----
@@ -8496,6 +8511,7 @@ Interfaces built on the verified dataset — each answers a decision directly an
 - [免费 API 额度计算器 / Free LLM API calculator](${site.base_url}/llm-api-calculator.html)：输入每天调用次数与单次 tokens，算出 ${APIQ ? APIQ.entries.length : 0} 家免费档谁扛得住｜EN: ${site.base_url}/en/llm-api-calculator.html
   Enter your calls/day and tokens/call to see which of ${APIQ ? APIQ.entries.length : 0} verified free API tiers holds.
 - [免费工具栈组装器 / Free AI stack builder](${site.base_url}/stack-builder.html)：勾选任务配齐一套全免费工具链，可切换「要商用」按授权判定加减权｜EN: ${site.base_url}/en/stack-builder.html
+- [按岗位算 AI 方案 / AI plan by job](${site.base_url}/work-plan.html)：选岗位、填工作量，按步骤给出工具，并把同单位的官方免费上限加总后与工作量比较（够 / 不够 / 说不准 / 官方未公布）；数字只取厂商公布值并带核实日期｜EN: ${site.base_url}/en/work-plan.html
   Tick your tasks to assemble an all-free toolchain; switch on commercial use to re-rank by licence verdicts.
 - [能不能发（商用授权核查） / Publish check](${site.base_url}/publish-check.html)：${Object.keys(LICENCE).length} 家免费档的官方条款逐条核实，另含中国大陆标识义务｜EN: ${site.base_url}/en/publish-check.html
   Commercial-use verdicts from ${Object.keys(LICENCE).length} vendors' own terms, plus mainland China's AI-labelling duty.${VIDQ ? `

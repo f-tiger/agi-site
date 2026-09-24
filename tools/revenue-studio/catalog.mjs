@@ -31,4 +31,9 @@ p('puzzleclub','PuzzleClub','agi',7,'Play an original daily 4 × 4 puzzle with o
 p('classroompuzzles','ClassroomPuzzles','agi',7,'Generate original printable number puzzles and a separate answer sheet for your class.',[],{kind:'classroom'}),
 p('embedpuzzles','EmbedPuzzles','agi',7,'Generate a self-contained interactive puzzle embed for a website or classroom page.',[],{kind:'embed'})
 ];
+// Tools a site builds itself (not by this workbench builder) that can still be saved to that site's member workspace.
+// Only id/name/site/urls: the member page lists them, the member API accepts them for saving, nothing here builds a page.
+export const externalProducts=[
+{id:'ai-work-plan',name:'AI Work Plan',site:'bpj',urls:{zh:'https://baipiaoji.com/work-plan',en:'https://baipiaoji.com/en/work-plan'}}
+];
 export function href(product){const s=sites[product.site];return s.origin+s.prefix+'/'+product.id+s.suffix;}

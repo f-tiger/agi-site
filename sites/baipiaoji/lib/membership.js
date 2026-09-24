@@ -1,11 +1,11 @@
-import {products} from '../../../tools/revenue-studio/catalog.mjs';
+import {products,externalProducts} from '../../../tools/revenue-studio/catalog.mjs';
 import {digest,seconds} from './ad-commerce.js';
 import {ensureWeb3,web3Health,web3Settings,probeChain,verifyTransfer,formatUnits,chainRpc,matchesTransfer} from './ad-web3.js';
 export const PLAN={id:'workbench-30',price_units:9000000,days:30,workspaces:50,versions:10,max_bytes:65536,total_bytes:5242880,grace_days:30};
 export const MEMBER_SITES={bpj:{offset:0},agi:{offset:10000},eco:{offset:20000},tds:{offset:30000}};
 export function memberSite(env={}){const site=env.MEMBER_SITE||'bpj';if(!Object.hasOwn(MEMBER_SITES,site))throw Error('not_ready');return site;}
 export function memberPlan(env={}){const site=memberSite(env);return {...PLAN,id:site+'-workbench-30',site,quote_base:PLAN.price_units+MEMBER_SITES[site].offset};}
-export const allowedProduct=(site,id)=>products.some(p=>p.site===site&&p.id===id);
+export const allowedProduct=(site,id)=>products.some(p=>p.site===site&&p.id===id)||externalProducts.some(p=>p.site===site&&p.id===id);
 export const SCHEMA=[
  `CREATE TABLE IF NOT EXISTS wb_health(id INTEGER PRIMARY KEY,checked_at INTEGER NOT NULL)`,
  `CREATE TABLE IF NOT EXISTS wb_support(id TEXT PRIMARY KEY,member_id TEXT NOT NULL,message TEXT NOT NULL,created INTEGER NOT NULL,resolved INTEGER NOT NULL DEFAULT 0)`,

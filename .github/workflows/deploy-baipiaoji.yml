@@ -218,6 +218,8 @@ jobs:
           node scripts/agent-watch-registry-pull.mjs --selftest
           node scripts/mcp-discovery-probe.mjs --selftest
           node scripts/test-agent-watch.mjs
+          # 岗位方案规划器（2026-09-24）：容量规则能从配额文件读出数、work-roles.json 里没有手写额度、加总逻辑（页面嵌的就是这个函数）
+          node scripts/test-work-plan.mjs
 
       # 边缘爬虫记账的路径分类（2026-09-17，零网络 ~0.1s）。_middleware.js 的
       # isContentPath() 此前是白名单（`/` 结尾或 .html/.txt/.json/.md/.xml），而本站内容页
@@ -258,7 +260,9 @@ jobs:
       # 首页 ↔ agents 联动必须真的在产物里（zh/en 两版）：联动条在 section#agent 内、区块级点击信标已注入、
       # 构建出的 /agents/ 与账本逐条对得上。不在这里断言，首页改版一次就能把联动条无声挤掉。
       - name: Verify homepage ↔ agent-watch linkage in dist
-        run: node scripts/test-agent-watch.mjs --dist
+        run: |
+          node scripts/test-agent-watch.mjs --dist
+          node scripts/test-work-plan.mjs --dist
 
       # 2026-08-16 删除「Ensure Pages project exists」:项目早就存在,这一步每次都
       # 静默失败后 `|| true`——却要为此完整下载一次 wrangler。等于每次运行白花几十秒
@@ -571,6 +575,11 @@ jobs:
           oa=$(curl -s -o /dev/null -w "%{http_code}" -m 15 'https://baipiaoji.com/openapi.json')
           lf=$(curl -s -o /dev/null -w "%{http_code}" -m 15 'https://baipiaoji.com/llms-full.txt')
           [ "$wk" = "200" ] && [ "$oa" = "200" ] && [ "$lf" = "200" ] || { echo "::error::发现面缺失 well-known=$wk openapi=$oa llms-full=$lf"; exit 1; }
+          # 岗位方案规划器：两语页面在线且带计算器；会员工作区认得这个产品（否则「保存到云端」会被服务端以 wrong_site 拒掉）。
+          for p in /work-plan /en/work-plan; do
+            curl -s -m 15 "https://baipiaoji.com$p" | grep -q 'id="wpGo"' || { echo "::error::$p lacks the planner"; exit 1; }
+          done
+          curl -s -m 15 'https://baipiaoji.com/member-assets/products.json' | grep -q '"ai-work-plan"' || { echo "::error::member workspace does not list ai-work-plan — cloud save would be refused"; exit 1; }
           echo "✅ Agent API 自测通过（limits + tools + lang=en + MCP + 发现面）"
         continue-on-error: true
 

@@ -1553,6 +1553,28 @@
    "lose": "没有自动刷新 → 查 eco-trends.yml 那一步的日志(429 / 配额 / pandas),修管道;这条线只判仪器,不判任何内容决定",
    "source": "sites/getecoback/docs/season-calendar-2026-09-24.md",
    "status": "open"
+  },
+  {
+   "id": "bpj-work-plan-use-1024",
+   "site": "baipiaoji",
+   "due": "2026-10-24",
+   "metric": "D1 baipiaoji-hits：① ev='calc' 且 path LIKE '/plan/%' 的次数，按 d × country × path 去重（一个人反复点「算我的方案」只算一次）；② /work-plan 与 /en/work-plan 的真人 pv（ev=''，剔 /__ 路径）",
+   "threshold": "① ≥20 且 ② ≥60；t0（2026-09-24 上线）：0 / 0。对照：/stack-builder 28 天 8 pv、calc 6 次",
+   "win": "有人按岗位算方案 → 按 ① 里出现的岗位与任务分布加岗位、补容量规则（仍只从配额文件读数）",
+   "lose": "① <5 → 只维护（容量规则随配额文件自动更新），不再加岗位、不做按岗位的 SEO 页；入口保留",
+   "source": "sites/baipiaoji/CLAUDE.md 第 25 条 + docs/PRD-work-plan-2026-09-24.md",
+   "status": "open"
+  },
+  {
+   "id": "bpj-work-plan-paid-1124",
+   "site": "baipiaoji",
+   "due": "2026-11-24",
+   "metric": "① D1 wb_orders state='paid' 的笔数，与 wb_spaces 里 product='ai-work-plan' 的工作区数；② ev='calc' 且 path LIKE '/plan-save/%' 的次数（剔 CI）",
+   "threshold": "① ≥1 笔已付且其会员有 ai-work-plan 工作区；t0：会员 0、订单 0、已付 0、工作区 0（2026-09-24 D1 现查）",
+   "win": "付费层有第一个买家 → 记进台账营收栏（USDT 实收，净额按链上核对），再谈高阶功能",
+   "lose": "已付 0 且 ② <5 → 不再给这个规划器加付费功能；已付 0 但 ② ≥5 → 卡点在支付方式（目前只收 USDT），属 owner 的 Stripe 决定，会话不抢跑",
+   "source": "sites/baipiaoji/CLAUDE.md 第 25 条 + docs/PRD-work-plan-2026-09-24.md",
+   "status": "open"
   }
  ]
 }
