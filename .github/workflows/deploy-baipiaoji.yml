@@ -306,6 +306,14 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: npx wrangler@4 pages deploy dist --project-name=aiyangmao --branch=main --commit-dirty=true
 
+      # Refresh the existing watcher before readiness checks; stale heartbeats close sales.
+      - name: Verify Web3 watcher and selling after deployment
+        env:
+          REQUIRE_WEB3_CONFIGURED: ${{ steps.payment_config.outputs.configured }}
+          ADS_WATCH_SECRET: ${{ secrets.ADS_WATCH_SECRET }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: node scripts/ad-watch-v2.mjs --if-configured --members
+
       - name: Verify published BPJ first-party tools
         run: node scripts/verify-studio-live.mjs
 
@@ -318,13 +326,6 @@ jobs:
         continue-on-error: true
         working-directory: ${{ github.workspace }}
         run: node tools/revenue-studio/indexnow.mjs --site bpj --out sites/baipiaoji/dist
-
-      - name: Verify Web3 watcher and selling after deployment
-        env:
-          REQUIRE_WEB3_CONFIGURED: ${{ steps.payment_config.outputs.configured }}
-          ADS_WATCH_SECRET: ${{ secrets.ADS_WATCH_SECRET }}
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-        run: node scripts/ad-watch-v2.mjs --if-configured --members
 
       - name: Verify membership checkout and protected routes
         working-directory: ${{ github.workspace }}
