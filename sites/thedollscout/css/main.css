@@ -1,3 +1,4 @@
+@import url('/css/brand.css?v=2026-09-25.4');
 /* DollScout — Labubu rarity & buyer's guide.
    Anchor (2026-08-30 v3, owner: 「labubu官网风格同频」): Swiss-commerce —
    pure white surface, one sans family, generous whitespace, hairline rules,
@@ -8,20 +9,20 @@
    the odds are the artwork — "1 : 72" set huge, and the calculator's result
    is the largest number on screen. */
 :root {
-  --bg: #ffffff;
-  --bg-raised: #f7f7f8;
-  --card: #ffffff;
-  --ink: #111114;
-  --ink-dim: #6e6e76;
-  --line: #e7e7ec;
-  --red: #e4002b;
-  --accent: #e4002b;
-  --accent-strong: #b40022;
+  --bg: var(--tds-paper);
+  --bg-raised: var(--tds-surface);
+  --card: var(--tds-paper);
+  --ink: var(--tds-ink);
+  --ink-dim: var(--tds-muted);
+  --line: var(--tds-line);
+  --red: var(--tds-accent);
+  --accent: var(--tds-accent);
+  --accent-strong: var(--tds-accent-strong);
   --good: #1d7a46;
   --bad: #c0392b;
-  --radius: 12px;
-  --maxw: 1080px;
-  --sans: "Helvetica Neue", Helvetica, Arial, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --radius: var(--tds-radius);
+  --maxw: var(--tds-width);
+  --sans: var(--tds-font);
   --serif: var(--sans);
   --mono: "SF Mono", "Consolas", "Courier New", monospace;
 }

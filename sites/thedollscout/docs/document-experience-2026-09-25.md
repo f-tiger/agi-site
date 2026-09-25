@@ -6,7 +6,7 @@ Optimized brief: use the existing browser-only PDF tools and EN/DE/ZH routes; un
 
 ## What changes for users
 
-- A shared teal/slate document theme, consistent tool tabs, visible breadcrumbs on every secondary page, balanced localized headings, and the same sharing controls on home, tools and guides.
+- A shared TDS white/black/red document theme, consistent tool tabs, visible breadcrumbs on every secondary page, balanced localized headings, and the same sharing controls on home, tools and guides.
 - Every tool explains its use case, output and remaining human checks. Guides link back to relevant tools and other guides, with publisher, update date and primary references.
 - Page sharing sends a public URL with the fixed `via=share` marker. The recipient starts with an empty workspace.
 - Result sharing first opens a preview. It contains document/page/finding counts, partial-inspection status, comparison counts when applicable, limitations and a tool URL. It excludes filenames, titles, extracted text, failure messages and manual notes. Sample summaries are visibly labelled.
@@ -34,6 +34,10 @@ Fourteen document tests cover real PDF parsing, comparison, export safety, priva
 
 ## Shared design rules
 
-`document-assets/style.css` owns the document theme: teal action color, slate text, a light paper background, one system font stack, visible keyboard focus and consistent button/form spacing. Tool tabs, fact rows, citation panels and share panels use shared classes. New pages must use the document generator and locale copy instead of creating independent page styles. Historical collector tools retain their archive identity and a document-brand return banner.
+`css/brand.css` owns the TDS brand foundation: white (#ffffff), black (#111114), red (#e4002b), Helvetica, 1080px content width and rounded actions. `document-assets/style.css` consumes these same values as the original pages. The TDS-only workbench and member pages receive the same brand adapter after their generators finish. Tool tabs, fact rows, citation panels and share panels use shared classes. New pages must use the document generator and locale copy instead of creating independent page styles. Historical collector tools retain their archive identity and a document-brand return banner.
 
 Full downloaded reports still include the document fields described on the privacy page; the redacted share summary is a separate output. Sharing controls do not publish reports or create public file URLs.
+
+## Brand correction — edition 2026-09-25.4
+
+The owner pointed out that the document tools did not match TDS. The previous teal/slate direction was an implementation mistake: internal component consistency did not establish consistency with the existing brand. The shared foundation now follows the original TDS theme. The document SVG icon, browser theme color, archive banner and social card were updated together. The new share card uses a new PNG URL to avoid stale social/image caches; its editable SVG source is committed alongside it. Functional behavior, locales and search content are unchanged.

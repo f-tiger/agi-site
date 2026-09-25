@@ -1,0 +1,53 @@
+/* TDS brand foundation. Matches the original Swiss-commerce theme in main.css.
+   Document tools, collector pages and TDS-only generated workspaces share it. */
+:root {
+  --tds-paper: #ffffff;
+  --tds-surface: #f7f7f8;
+  --tds-ink: #111114;
+  --tds-muted: #6e6e76;
+  --tds-line: #e7e7ec;
+  --tds-accent: #e4002b;
+  --tds-accent-strong: #b40022;
+  --tds-font: "Helvetica Neue", Helvetica, Arial, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --tds-radius: 12px;
+  --tds-width: 1080px;
+  --tds-shadow: 0 8px 30px rgba(17,17,20,.07);
+}
+
+/* Site-scoped adapters for the separately generated TDS workbench/member UI.
+   These selectors never match sibling sites, and contain no business logic. */
+body[data-site="tds"], body[data-member-site="tds"] {
+  --accent: var(--tds-accent);
+  --blue: var(--tds-accent);
+  --ink: var(--tds-ink);
+  --paper: var(--tds-paper);
+  --mist: var(--tds-surface);
+  --line: var(--tds-line);
+  background: var(--tds-paper);
+  color: var(--tds-ink);
+  font-family: var(--tds-font);
+  -webkit-font-smoothing: antialiased;
+}
+body[data-site="tds"] :is(header,footer,.panel,.method-section,th,td,.product-list li,.related),
+body[data-member-site="tds"] header { border-color: var(--tds-line); }
+body[data-site="tds"] :is(main,footer),
+body[data-member-site="tds"] :is(header,main,footer) { max-width: var(--tds-width); }
+body[data-site="tds"] header { padding-inline: max(22px,calc((100vw - 1036px)/2)); }
+body[data-site="tds"] h1 { font-family: var(--tds-font); font-weight: 800; letter-spacing: -.02em; }
+body[data-site="tds"] :is(.scope,small,.method,footer,.breadcrumbs,.scroll-hint),
+body[data-member-site="tds"] footer { color: var(--tds-muted); }
+body[data-site="tds"] :is(th,.notice),
+body[data-member-site="tds"] :is(.plan,.editor,.site-context,.order) { background: var(--tds-surface); }
+body[data-site="tds"] :is(.panel,.method-section) { border-radius: var(--tds-radius); }
+body[data-site="tds"] .panel { border-top: 3px solid var(--tds-accent); }
+body[data-site="tds"] .eyebrow { color: var(--tds-muted); letter-spacing: 0; text-transform: none; }
+body[data-site="tds"] button,
+body[data-member-site="tds"] :is(button,.file-button) { border-radius: 999px; }
+body[data-site="tds"] button:hover { background: var(--tds-surface); border-color: var(--tds-accent); }
+body[data-site="tds"] .primary { background: var(--tds-accent); border-color: var(--tds-accent); }
+body[data-site="tds"] .primary:hover { background: var(--tds-accent-strong); color: white; }
+body[data-site="tds"] :focus-visible,
+body[data-member-site="tds"] :focus-visible { outline: 3px solid var(--tds-ink); outline-offset: 3px; }
+@media(max-width:660px) {
+  body[data-site="tds"] header { padding-inline: 18px; }
+}

@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url';
 import { copy, languages, toolSlugs } from './copy.mjs';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const args = process.argv.slice(2), live = args.includes('--live'), output = args.includes('--out') ? path.resolve(args[args.indexOf('--out') + 1]) : root;
-const origin = 'https://thedollscout.com', edition = '2026-09-25.3';
+const origin = 'https://thedollscout.com', edition = '2026-09-25.4';
 const localFile = route => path.join(output, route.replace(/^\//,'') + (route.endsWith('/') ? 'index.html' : path.extname(route) ? '' : '.html'));
 const headers = { 'user-agent':'tds-document-probe/1.0', 'x-probe':'1' };
 async function read(route, binary = false) {
@@ -64,7 +64,15 @@ for (const tool of capabilities.tools) {
   assert.ok(record,'Document capability URL exists');
   assert.equal(tool.output,copy[record.lang].outputs[toolSlugs.indexOf(record.slug)]);
 }
-assert.ok((await read('/img/document-scout-og.png',true)).length > 1000);
+assert.ok((await read('/img/document-scout-brand.png',true)).length > 1000);
+const brand = await read('/css/brand.css');
+assert.ok(brand.includes('--tds-accent: #e4002b') && brand.includes('Helvetica'), 'TDS brand foundation');
+for (const css of ['/document-assets/style.css','/document-assets/archive.css','/css/main.css']) {
+  const text = await read(css);
+  assert.ok(text.includes('/css/brand.css?v=' + edition), 'Shared TDS brand: ' + css);
+  assert.ok(!/#116a72|#173c50|#f3f8fa/.test(text), 'Retired document palette: ' + css);
+}
+assert.ok((await read('/document-assets/favicon.svg')).includes('#e4002b'), 'Brand-matched document icon');
 for (const file of ['/llms.txt','/llms-full.txt']) {
   const text = await read(file); assert.ok(text.startsWith('# TDS Document Scout')); assert.ok(text.includes('/pdf-batch-audit'));
 }
