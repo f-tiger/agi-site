@@ -144,6 +144,10 @@ export function buildAgentPages(ctx) {
     <h2 class="group-title">${T('By category', '按类目')}<span>${cats.length}</span></h2>
     <div class="aw-catlist">${cats.map((k) => { const xs = byCat.get(k); const cur = xs.filter(hasPage).length; return `<a class="aw-catrow" href="${url(`/agents/c/${k}.html`)}"><b>${esc(catLabel(k))}</b><i>${xs.length}</i><span>${esc(catLede(k))}</span><em>${cur === xs.length ? T(`${cur} curated`, `${cur} 条人工收录`) : T(`${cur} curated + ${xs.length - cur} from the registry`, `${cur} 条人工收录 + ${xs.length - cur} 条注册表`)}</em></a>`; }).join('')}</div>
   </section>
+  <section id="census">
+    <h2 class="group-title">${T('MCP census', 'MCP 普查')}</h2>
+    <p class="aw-lede">${T('The official MCP registry lists thousands of remote servers and grows every day. This site checks them read-only every day: which ones actually answer, how many tools they expose, and when a tool list changes.', '官方 MCP 注册表登记了成千上万个远程服务器，而且每天都在增加。本站每天只读抽查：哪些真的能连上、各自暴露多少工具、工具列表什么时候变了。')} <a href="${url('/agents/mcp-census.html')}">${T('Open the census →', '看普查 →')}</a></p>
+  </section>
   ${faqHtml()}
   ${machine()}
   ${subscribeOf ? subscribeOf(path) : ''}

@@ -1917,6 +1917,30 @@
    "lose": "① <3 → 四页只维护不扩建,不再加法规;不把首页入口当成失败原因去挪位置(先看 ②)。① ≥3 而 ② = 0 → 用的人都来自站内入口,问题在发现面(eco 在 B2B 合规词上零权威),不是工具本身",
    "source": "sites/getecoback/docs/eu-evidence-migration-2026-09-25.md(2026-09-25 检查一节)",
    "status": "open"
+  },
+  {
+   "id": "bpj-mcp-census-pipeline-1009",
+   "site": "baipiaoji",
+   "due": "2026-10-09",
+   "metric": "sites/baipiaoji/data/mcp-census-summary.json：history 中 2026-10-01→10-09 env='runner' 的行数；同文件 checked 当日 censusView 的 probed_recent / endpoints（近 14 天查过的可探测端点占比）；辅助读数：history 里 runner 行 states.dead 占 probed 的比例（与 09-25 沙箱种子对照）、10-09 前是否检出 ≥1 次工具列表变化",
+   "threshold": "runner 行 ≥7/9 天 且 probed_recent/endpoints ≥0.6",
+   "t0": "0 runner 行（09-25 只有一次沙箱种子运行）；coverage 取种子运行后的值，见 reading",
+   "win": "哈佛阶段的管线成立：普查每天在 runner 上推进并覆盖大多数端点 → 按 bpj-mcp-census-pull-1109 读需求，不在它结算前加 MCP 工具或 API",
+   "lose": "runner 行 <4/9 天（步骤反复失败或被跳过）→ 读 run 日志修管线，修好前页面不再宣传；runner 行够但 coverage <0.3 → 探测预算不够或 runner 出网被大面积拒（dead 比例显著高于沙箱种子）→ 范围收窄到 bpj 账本里的注册表记录，页面如实写范围；其余情况（runner 行 4–6 天，或 coverage 0.3–0.6）→ insufficient：保持现状，10-23 同口径再读一次",
+   "source": "sites/baipiaoji/CLAUDE.md 第 28 条 + docs/agents-venture-2026-09-25.md",
+   "status": "open"
+  },
+  {
+   "id": "bpj-mcp-census-pull-1109",
+   "site": "baipiaoji",
+   "due": "2026-11-09",
+   "metric": "D1 baipiaoji-hits，窗口 2026-09-26→11-09，剔 CI（COALESCE(lang,'')<>'ci' 且 NOT path LIKE '/\\_\\_%' ESCAPE '\\'）：① /agents/mcp-census 与 /en/agents/mcp-census 带来源真人 pv（ev='' AND ref<>''）；② 其中来源域既不是搜索引擎、AI 助手、舰队站也不是本站的不同域名数（外链/引用）；③ AI 助手引荐次数；④ submissions 表里提到 census / 普查 的运营者更正（只计数，不输出内容）；⑤ ev='bot' 或 api 行里非本仓 UA 对 /mcp-census.json 的抓取次数（辅助，区分「没被发现」与「发现了没人看」）",
+   "threshold": "任一：① ≥30；② ≥2 个域；③ ≥1；④ ≥1",
+   "t0": "全 0（页面 09-26 部署后才存在）",
+   "win": "有人来读或来更正 → 第二阶段（平台，F8 的对应物）：MCP 工具 check_mcp_server（按登记名查状态、工具数、最近变化日）+ 变化 RSS；仍不收费，收费等第三阶段自己的判定线",
+   "lose": "①–④ 全 0 且 ⑤ ≥20（被抓取但没人来）→ 普查保留为数据文件与一页，不建第二阶段，不为它写分发稿；①–④ 全 0 且 ⑤ <20 → insufficient：发现层问题，先交 owner 手发一次（HN/Reddit 稿按反 AI 味 8 条写在 docs/distribution-staging/），11-30 同口径再读，仍全 0 即按 lose 处理；其余情况（① 10–29 且 ②③④ 全 0）→ insufficient：只维护，11-30 再读一次",
+   "source": "sites/baipiaoji/CLAUDE.md 第 28 条 + docs/agents-venture-2026-09-25.md",
+   "status": "open"
   }
  ]
 }
