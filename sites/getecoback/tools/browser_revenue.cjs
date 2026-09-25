@@ -25,7 +25,13 @@ const path=require('node:path');
     return route.continue();
    });
    const page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));
+   const responseFor=name=>context.waitForEvent('response',{predicate:response=>{
+    const request=response.request();
+    if(new URL(request.url()).pathname!=='/api/ev'||request.method()!=='POST'||!request.postData())return false;
+    return JSON.parse(request.postData())?.n===name;
+   }});
    for(const [lang,t]of Object.entries(copy)){
+    console.log('Checking revenue next steps: '+name+' / '+lang);
     await page.goto(base+'/'+t.path);await page.waitForFunction(()=>document.querySelector('#reset').onclick);
     assert.equal(await page.locator('#next-steps').isVisible(),false);checks++;
     await page.locator('[name=confirm]').check();await page.locator('button[type=submit]').click();
@@ -35,7 +41,9 @@ const path=require('node:path');
     for(const item of t.nextLinks){assert.equal(await page.locator(`[data-next-step="${item.id}"]`).getAttribute('href'),item.path);checks++;}
     assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),true);checks++;
     const before=events.filter(e=>e.n==='outbound_choice').length;
+    const outbound=responseFor('outbound_choice');
     await page.locator('[data-next-step]').first().click();
+    await outbound;
     await page.waitForURL(base+t.nextLinks[0].path);
     assert.equal(events.filter(e=>e.n==='outbound_choice').length,before+1);checks++;
     assert.deepEqual(events.filter(e=>e.n==='outbound_choice').at(-1).m,{lang,market:lang==='en'?'de':lang,input:'own',source:'energy-next',choice:'consumption'});checks++;
@@ -59,8 +67,9 @@ const path=require('node:path');
    assert.equal(events.length,count);checks++;
    await page.goto(base+guide);await page.waitForFunction(()=>document.readyState==='complete');
    const before=events.filter(e=>e.n==='affiliate_click').length;
+   const affiliate=responseFor('affiliate_click');
    await page.locator('[data-revenue-link]').first().click();
-   await page.waitForTimeout(150);
+   await affiliate;
    const clicks=events.filter(e=>e.n==='affiliate_click');assert.equal(clicks.length,before+1);checks++;
    assert.equal(clicks.at(-1).m.source,'solarbank-diagnosis');assert.equal(new URL(clicks.at(-1).m.link_url).searchParams.get('tag'),'getecoback-21');checks+=2;
    assert.deepEqual(errors,[]);checks++;
