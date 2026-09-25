@@ -1,0 +1,67 @@
+# CBAM supplier data missing? Check the O3CI handoff
+
+https://getecoback.com/en/agents/cbam-supplier-data.html
+
+Official sources checked 25 September 2026
+
+Your supplier says the data was shared, but the importer cannot find it. Start by separating portal access, installation identity and data-sharing issues. This tool checks your answers, not the official registry.
+
+For teams already considering the O3CI sharing route. This is not an assessment of whether your goods fall within CBAM, whether an exemption applies, or whether O3CI registration is mandatory for your business.
+
+## Free handoff checker
+
+No login, uploads or personal information. Answers stay in this page; nothing is submitted to EcoBack or the EU.
+
+- Does the non-EU installation operator have working O3CI access?
+
+  Ask the operator to check EU Login, two-factor authentication and the access request status.
+
+- Have both parties agreed which installation record they mean?
+
+  Ask for the installation reference and a named data owner; avoid exchanging unrelated factory records.
+
+- Has the declarant shared the correct EORI with the operator?
+
+  Confirm the declarant identity and EORI directly through your trusted business contact.
+
+- Has the operator confirmed the relevant emissions data is shared?
+
+  Ask which record and reporting period were shared, with whom and when.
+
+- Can the declarant retrieve the record from the registry?
+
+  Ask the declarant to check the third-country installation search in the Emissions area.
+
+## A practical handoff
+
+- Choose one product family and one installation to troubleshoot first.
+
+- Record the problem, owner and next step for each unanswered item.
+
+- Keep sensitive supporting documents in an agreed secure channel, not a public group.
+
+## Common questions
+
+### Does this tool submit anything to the EU?
+
+No. It only prepares a local coordination checklist. Use the official registry for official actions.
+
+### Is shared data automatically verified?
+
+No. Data sharing and independent emissions verification are different steps. Consult the official verification guidance.
+
+### Can I buy the €299 evidence pack here?
+
+Not yet. €299 is an indicative pilot price, not an active checkout. The separate EcoBack storage membership is not this evidence pack.
+
+Use the free checklist first. A proposed evidence-pack pilot covers one product family, a bilingual document index and supplier-request templates. Scope, tax treatment and delivery terms must be agreed before any charge; checkout is not connected.
+
+The EcoBack storage membership is a separate product and does not buy this evidence service.
+
+## Official references
+
+- [Commission: CBAM Registry and O3CI](https://taxation-customs.ec.europa.eu/carbon-border-adjustment-mechanism/cbam-registry_en)
+
+- [Commission: legislation and verification guidance](https://taxation-customs.ec.europa.eu/carbon-border-adjustment-mechanism/cbam-legislation-and-guidance_en)
+
+Independent preparation aid. Not an EU service, legal advice, certification, verification or a compliance decision.

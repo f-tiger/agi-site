@@ -129,6 +129,12 @@ def main():
     fr = pages("fr")
     es = pages("es")
     kat = pages("kategorie")
+    lines += ["## EU product evidence checks / 欧盟产品证据检查", ""]
+    for subdir in ("en/agents", "zh/agents"):
+        for url, t, d in pages(subdir):
+            if "cbam-supplier-data" in url or "eudr-geolocation-evidence" in url:
+                lines.append(f"- [{t}]({url}): {d}")
+    lines += ["", "These checks prepare local supplier questions. They do not verify evidence or submit official declarations. Paid evidence-service checkout is not available.", ""]
     lines.append("## Ratgeber (Deutsch)")
     lines.append("")
     for url, t, d in de:
@@ -176,8 +182,10 @@ def main():
             "> zitierfähige URL steht über jedem Abschnitt. Stand: siehe sitemap.xml.",
             ""]
     n = 0
-    for subdir in ("guide", "en/guide", "fr", "es", "it/guide"):
+    for subdir in ("guide", "en/guide", "fr", "es", "it/guide", "en/agents", "zh/agents"):
         for url, t, d in pages(subdir):
+            if subdir.endswith("agents") and not any(slug in url for slug in ("cbam-supplier-data", "eudr-geolocation-evidence")):
+                continue
             fn = os.path.join(ROOT, subdir, url.rsplit("/", 1)[1])
             txt = body_text(fn)
             if not txt:

@@ -130,6 +130,10 @@ jobs:
 
       - name: Build country solution calculators and localized mirrors
         run: python3 tools/build_country_calculators.py
+      - name: Build native CBAM and EUDR evidence checks
+        run: |
+          python3 tools/build_eu_evidence.py
+          node tools/test_eu_evidence.cjs
       # 2026-09-22: the hub was hand-written and nine tool pages never reached it. It is
       # now filled from the filesystem; check_tools_hub asserts hub == filesystem.
       - name: Fill the tools hub from the pages that exist (idempotent)
@@ -195,6 +199,9 @@ jobs:
 
       - name: Rebuild site-search index (auto-sync new pages before deploy)
         run: python3 tools/build_search.py
+
+      - name: Verify evidence-check discovery after index generation
+        run: node tools/test_eu_evidence.cjs --discovery
 
       - name: Check every fired event is accepted by /api/ev
         run: python3 tools/check_events.py
@@ -581,6 +588,17 @@ jobs:
           esac
           check "https://getecoback.com/sizing-data.csv" "section,key,m2,value,unit,room,guide"
           check "https://getecoback.com/for-agents.html" "MCP"
+          # Evidence checks must ship on the ECO origin with their shared UI and script.
+          for lang in en zh; do
+            for tool in cbam-supplier-data eudr-geolocation-evidence; do
+              check "https://getecoback.com/$lang/agents/$tool.html" 'id="evidence-check"'
+              check "https://getecoback.com/$lang/agents/$tool.md" "getecoback.com/$lang/agents/$tool.html"
+            done
+          done
+          check "https://getecoback.com/js/eu-evidence.js" "deadlineAdded"
+          check "https://getecoback.com/css/eu-evidence.css" "evidence-grid"
+          check "https://getecoback.com/tools.html" "/zh/agents/eudr-geolocation-evidence.html"
+          check "https://getecoback.com/search-index.json" "/en/agents/cbam-supplier-data.html"
           # Crawler/agent entry points that are rebuilt every deploy.
           check "https://getecoback.com/robots.txt" "Sitemap:"
           check "https://getecoback.com/llms.txt" "getecoback.com"
@@ -1057,4 +1075,3 @@ jobs:
             -H "Content-Type: application/json; charset=utf-8" \
             -d "{\"host\":\"getecoback.com\",\"key\":\"dc2860e32f47689a11c7bc07a21f6ffb\",\"keyLocation\":\"https://getecoback.com/dc2860e32f47689a11c7bc07a21f6ffb.txt\",\"urlList\":${URLS}}" \
             -w "\nIndexNow HTTP status: %{http_code}\n" || true
-
