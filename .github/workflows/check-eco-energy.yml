@@ -36,6 +36,7 @@ jobs:
         run: |
           npm install --prefix "$RUNNER_TEMP/eco-playwright" --no-audit --no-fund playwright@1.58.2
           node "$RUNNER_TEMP/eco-playwright/node_modules/playwright/cli.js" install --with-deps --only-shell chromium
+          node "$RUNNER_TEMP/eco-playwright/node_modules/playwright/cli.js" install --with-deps webkit
       - name: Exercise five languages, mobile, files and privacy
         run: |
           python3 -m http.server 8765 --directory site > /tmp/eco-preview.log 2>&1 &
@@ -43,6 +44,7 @@ jobs:
           trap 'kill "$preview_pid"' EXIT
           for i in 1 2 3 4 5; do curl -sf http://127.0.0.1:8765/stromtarif-werkstatt.html > /dev/null && break; sleep 1; done
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_energy_workbench.cjs
+          NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_energy_upload_locale.cjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
