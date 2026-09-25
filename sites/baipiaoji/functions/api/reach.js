@@ -61,7 +61,7 @@ export async function onRequestGet({ request, env }) {
   const HUMAN = "ev = '' AND ref IS NOT NULL AND ref != '' AND ref NOT LIKE '%baipiaoji%' AND path NOT LIKE '/\\_\\_%' ESCAPE '\\'";
   try {
     const q = (sql, ...params) => env.HITS.prepare(sql).bind(...params).all().then((r) => (r && r.results) || []);
-    const [total, paths, referrers, aiRefs, events, subsNew, subsAll, adsRows, countryRows, subsByStatus, checkoutByState, web3Rows, watchRows, wbOrderRows] = await Promise.all([
+    const [total, paths, referrers, aiRefs, events, subsNew, subsAll, adsRows, countryRows, subsByStatus, checkoutByState, web3Rows, watchRows, wbOrderRows, videoOrders] = await Promise.all([
       q(`SELECT count(*) n FROM hits WHERE d >= ? AND ${HUMAN}`, since),
       q(`SELECT path, count(*) n FROM hits WHERE d >= ? AND ${HUMAN} GROUP BY path ORDER BY n DESC LIMIT 400`, since),
       q(`SELECT ref, count(*) n FROM hits WHERE d >= ? AND ${HUMAN} GROUP BY ref ORDER BY n DESC LIMIT 30`, since),
@@ -83,6 +83,7 @@ export async function onRequestGet({ request, env }) {
       q('SELECT count(*) n FROM bpj_ad_web3').catch(() => [{ n: null }]),
       q('SELECT count(*) n FROM watches').catch(() => [{ n: null }]),
       q('SELECT state, count(*) n FROM wb_orders GROUP BY state').catch(() => []),
+      q("SELECT o.state, count(*) n FROM wb_orders o JOIN wb_order_sources s ON s.order_id=o.id WHERE s.product='bpj-video-variants' AND o.created>=? GROUP BY o.state",Math.floor(Date.parse(since)/1000)).catch(() => null),
     ]);
     const ads = {};
     for (const r of adsRows) ads[String(r.status || '')] = r.n;
@@ -104,6 +105,8 @@ export async function onRequestGet({ request, env }) {
         ad_web3_orders: web3Rows[0] ? web3Rows[0].n : null,
         watches: watchRows[0] ? watchRows[0].n : null,
         member_orders_by_state: Object.fromEntries(wbOrderRows.map((r) => [String(r.state || ''), r.n])),
+        video_orders_by_state: videoOrders===null?null:Object.fromEntries(videoOrders.map(r=>[String(r.state||''),r.n])),
+        video_order_definition: 'Orders first created from the video membership entry within this window; paid means confirmed payment, not profit or causal attribution.',
         submissions_total: subsAll[0] ? subsAll[0].n : null,
         go_28d: (events.find((r) => r.ev === 'go') || {}).n || 0,
         biz_28d: (events.find((r) => r.ev === 'biz') || {}).n || 0,

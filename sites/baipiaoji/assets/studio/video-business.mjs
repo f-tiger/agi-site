@@ -1,0 +1,6 @@
+const zh=document.documentElement.lang.startsWith('zh'),qa=new URLSearchParams(location.search).has('__ci');
+function event(action){if(!qa&&window.bpjEv)window.bpjEv('calc','/video/'+action);}
+document.addEventListener('click',e=>{const a=e.target.closest('[data-video-action]');if(a)event(a.dataset.videoAction);});
+const availability=document.querySelectorAll('[data-video-availability]');
+if(availability.length)fetch('/api/member'+(qa?'?__probe=1':''),{cache:'no-store',signal:AbortSignal.timeout(15000)}).then(async r=>{const d=await r.json();if(!r.ok||!d.ok)throw Error();for(const el of availability)el.textContent=d.ready?(zh?'会员可购买；已是 BPJ 会员可直接保存项目。':'Membership is available. Existing BPJ members can save projects.'):(zh?'新会员购买暂未开放；已有会员可在入口管理现有项目。':'New membership purchases are currently unavailable. Existing members can manage their projects.');}).catch(()=>{for(const el of availability)el.textContent=zh?'暂时无法核对开售状态，请在会员页确认。':'Availability could not be checked. Confirm it in the member area.';});
+document.querySelector('[data-video-share]')?.addEventListener('click',async()=>{const el=document.querySelector('[data-video-share-status]'),url=location.origin+(zh?'':'/en')+'/video/';try{await navigator.clipboard.writeText(url);el.textContent=zh?'链接已复制。':'Link copied.';event('share-copy');}catch{el.textContent=url;}});

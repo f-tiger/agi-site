@@ -297,6 +297,7 @@ jobs:
           node tools/member-studio/build.mjs --out sites/baipiaoji/dist
           node tools/member-studio/verify.mjs --out sites/baipiaoji/dist
           node tools/member-studio/test-isolation.mjs
+          node sites/baipiaoji/scripts/test-video-business.mjs --dist
 
       - name: Deploy to Cloudflare Pages
         env:

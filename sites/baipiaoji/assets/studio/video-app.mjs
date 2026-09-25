@@ -1,8 +1,8 @@
-import {newProject,restore,duration,sceneAt,cost,srt,brief,csv,zip} from './video-core.mjs';
+import {newProject,restore,projectFromBackup,cloudBackup,PRODUCT,duration,sceneAt,cost,srt,brief,csv,zip} from './video-core.mjs';
 import {COPY} from './video-view.mjs';
 import {chooseMime,draw,seekAssets,record} from './video-render.mjs';
 const root=document.getElementById('video-workspace'),lang=root.dataset.locale,L=COPY[lang],$=id=>document.getElementById('vv-'+id),canvas=$('canvas');
-let p=newProject(lang),assets=[null,null,null],audioBuffer=null,audioContext,previewSource,variant=0,time=0,raf,playing=false,locked=false,controller,dirty=false,downloadUrl;
+let p=newProject(lang),assets=[null,null,null],audioBuffer=null,audioContext,previewSource,variant=0,time=0,raf,playing=false,locked=false,controller,dirty=false,downloadUrl,cloudContext=null;
 const mime=chooseMime(),supported=!!mime&&!!canvas.captureStream;
 const status=message=>{$('status').textContent=message;};
 function event(action){if(window.bpjEv&&!new URLSearchParams(location.search).has('__ci'))window.bpjEv('calc','/studio/video-variants/'+action+'/'+(p.demo?'demo':'own'));}
@@ -14,7 +14,7 @@ function fill(){for(const k of ['name','brand','ratio','accent'])$(k).value=p[k]
 function setBusy(on){locked=on;for(const el of root.querySelectorAll('button,input,textarea,select'))el.disabled=on;$('cancel').disabled=false;$('cancel').hidden=!on||!controller;if(!on){$('export').disabled=!supported;$('batch').disabled=!supported;}}
 function stop(){playing=false;cancelAnimationFrame(raf);assets.forEach(a=>{if(a?.kind==='video')a.el.pause();});try{previewSource?.stop();}catch{}previewSource=null;if(audioContext){void audioContext.close();audioContext=null;}$('play').textContent=L.play;}
 function release(){stop();for(const a of assets)if(a){a.el.src='';URL.revokeObjectURL(a.url);}assets=[null,null,null];audioBuffer=null;}
-function adopt(q){release();p=q;time=0;variant=0;root.querySelectorAll('[data-variant]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.variant==='0'));root.querySelectorAll('input[type=file]').forEach(f=>f.value='');fill();dirty=false;}
+function adopt(q,context=null){release();cloudContext=context;p=q;time=0;variant=0;root.querySelectorAll('[data-variant]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.variant==='0'));root.querySelectorAll('input[type=file]').forEach(f=>f.value='');fill();dirty=false;}
 const replace=()=>!dirty||confirm(L.replace);
 function download(name,blob){if(!(blob instanceof Blob))blob=new Blob([blob],{type:name.endsWith('.json')?'application/json':'text/plain;charset=utf-8'});if(downloadUrl)URL.revokeObjectURL(downloadUrl);downloadUrl=URL.createObjectURL(blob);const a=document.createElement('a');a.href=downloadUrl;a.download=name;a.textContent=name;status(L.done+' ');$('status').append(a);a.click();}
 const hash=async f=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',await f.arrayBuffer())),b=>b.toString(16).padStart(2,'0')).join('');
@@ -34,7 +34,7 @@ $('play').addEventListener('click',async()=>{if(locked)return;if(playing){stop()
 $('example').addEventListener('click',()=>{if(replace()){adopt(newProject(lang,true));status('');event('demo-start');}});
 $('new').addEventListener('click',()=>{if(replace()){adopt(newProject(lang));status('');}});
 $('import').addEventListener('click',()=>$('project-file').click());
-$('project-file').addEventListener('change',async e=>{const f=e.target.files[0];e.target.value='';if(!f||locked)return;try{if(f.size>64000)throw Error('PROJECT');const q=restore(JSON.parse(await f.text()));if(!replace())return;adopt(q);status(L.reattach);event('import-project');}catch{failure(Error('PROJECT'));}});
+$('project-file').addEventListener('change',async e=>{const f=e.target.files[0];e.target.value='';if(!f||locked)return;try{if(f.size>64000)throw Error('PROJECT');const q=projectFromBackup(JSON.parse(await f.text()));if(!replace())return;adopt(q);status(L.reattach);event('import-project');}catch{failure(Error('PROJECT'));}});
 $('backup').addEventListener('click',()=>{try{p=read();download('bpj-video-project.json',JSON.stringify(p,null,2));dirty=false;event('export-project');}catch(e){failure(e);}});
 $('brief').addEventListener('click',()=>{try{p=read();download('bpj-ai-shot-brief.md',brief(p));event('export-brief');}catch(e){failure(e);}});
 $('pack').addEventListener('click',async()=>{try{p=read();download('bpj-video-handoff.zip',await zip(handoff()));event('export-handoff');}catch(e){failure(e);}});
@@ -43,3 +43,7 @@ $('poster').addEventListener('click',()=>{stop();canvas.toBlob(b=>{if(b)download
 $('export').addEventListener('click',()=>exportVideo(false));$('batch').addEventListener('click',()=>exportVideo(true));$('cancel').addEventListener('click',()=>controller?.abort());
 window.addEventListener('beforeunload',e=>{if(dirty||locked){e.preventDefault();e.returnValue='';}});document.addEventListener('visibilitychange',()=>{if(document.hidden)stop();});
 $('format').textContent=supported?L.format+': '+(mime.startsWith('video/mp4')?'MP4':'WebM'):L.unsupported;setBusy(false);fill();
+
+// Same-origin handoff: the member portal uploads only after an explicit Save action.
+$('cloud-save')?.addEventListener('click',()=>{if(locked)return;try{p=read();const data=cloudBackup(p),context=cloudContext,u=new URL((lang==='en'?'/en':'')+'/members',location.origin);u.searchParams.set('tool',PRODUCT);u.searchParams.set('from',location.origin);if(new URLSearchParams(location.search).has('__ci'))u.searchParams.set('__ci','1');const win=window.open(u.href,'_blank');if(!win){status(lang==='zh'?'请允许打开会员标签页，或先下载项目 JSON。':'Allow the member tab to open, or download the project JSON first.');return;}const handler=e=>{if(e.source!==win||e.origin!==location.origin)return;if(e.data?.kind==='workbench-member-ready'){win.postMessage({kind:'workbench-save',data,context},location.origin);return;}const c=e.data?.context;if(e.data?.kind==='workbench-saved'&&e.data.product===PRODUCT&&c&&/^[a-f0-9]{32}$/.test(c.id||'')&&Number.isSafeInteger(c.revision)&&c.revision>0&&typeof c.name==='string'){cloudContext={id:c.id,revision:c.revision,name:c.name.slice(0,80)};status(lang==='zh'?'会员页项目已保存。后续修改请再次保存。':'The member-area project was saved. Save again after further edits.');event('cloud-saved');window.removeEventListener('message',handler);}};window.addEventListener('message',handler);setTimeout(()=>window.removeEventListener('message',handler),1800000);event('cloud-open');}catch(e){failure(e);}});
+if(window.opener&&new URLSearchParams(location.search).get('restore')==='1'){const handler=e=>{if(e.source!==window.opener||e.origin!==location.origin||e.data?.kind!=='workbench-restore')return;try{const q=projectFromBackup(e.data.data),c=e.data.context;const context=c&&/^[a-f0-9]{32}$/.test(c.id||'')&&Number.isSafeInteger(c.revision)&&c.revision>0&&typeof c.name==='string'?{id:c.id,revision:c.revision,name:c.name.slice(0,80)}:null;if(!replace())return;adopt(q,context);status(L.reattach);event('restore-cloud');window.removeEventListener('message',handler);}catch(e){failure(e);}};window.addEventListener('message',handler);window.opener.postMessage({kind:'workbench-ready'},location.origin);}

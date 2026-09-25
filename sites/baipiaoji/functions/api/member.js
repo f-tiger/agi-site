@@ -17,7 +17,7 @@ export async function onRequestPost({request,env}){
   if(b.action==='status')return json({ok:true,...memberStatus(m),plan:memberPlan(env),site:memberSite(env)});
   if(b.action==='checkout'){
    if(b.accept_terms!==true||b.key_saved!==true)return json({ok:false,code:'consent_required'},400);
-   return json({ok:true,order:await createOrder(env,token,b.nonce,request.headers.get('CF-Connecting-IP')||'unknown')});
+   return json({ok:true,order:await createOrder(env,token,b.nonce,request.headers.get('CF-Connecting-IP')||'unknown',b.source||'')});
   }
   if(!m)return json({ok:false,code:'unauthorized'},401);
   await rate(db,'api:'+m.id,120,60);
@@ -51,7 +51,7 @@ export async function onRequestPost({request,env}){
   if(b.action==='save'){if(!allowedProduct(memberSite(env),b.data?.product))return json({ok:false,code:'wrong_site'},400);return json(await saveSpace(db,m,b));}
   return json({ok:false,code:'bad_action'},400);
  }catch(e){
-  const known=['bad_nonce','bad_key','not_ready','suspended','rate_limited','quote_capacity','membership_required','bad_workspace','bad_backup','storage_quota','workspace_quota','revision_conflict','chain_unavailable','network_config_changed','wrong_chain','token_precision'];
+  const known=['bad_nonce','bad_key','bad_source','not_ready','suspended','rate_limited','quote_capacity','membership_required','bad_workspace','bad_backup','storage_quota','workspace_quota','revision_conflict','chain_unavailable','network_config_changed','wrong_chain','token_precision'];
   const code=known.includes(e.message)?e.message:/checkout_busy/.test(e.message)?'checkout_busy':'temporarily_unavailable';
   return json({ok:false,code},code==='rate_limited'?429:['membership_required','suspended'].includes(code)?403:['revision_conflict','quote_capacity','storage_quota','workspace_quota','checkout_busy'].includes(code)?409:code.startsWith('bad_')?400:503);
  }

@@ -1,4 +1,4 @@
-import {sites,products} from './catalog.mjs';
+import {sites,products,externalProducts} from './catalog.mjs';
 import {siteLanguages,hubURL,pageURL} from './i18n.mjs';
 export function memberURL(lang,site='bpj'){
  if(!sites[site])site='bpj';
@@ -7,8 +7,8 @@ export function memberURL(lang,site='bpj'){
  return sites[site].origin+(lang===(site==='eco'?'de':'en')?'':'/'+lang)+'/members'+(site==='eco'?'.html':'');
 }
 export function memberContext(search,lang,site='bpj'){
- if(!Object.hasOwn(sites,site))site='bpj';const q=new URLSearchParams(search),product=products.find(p=>p.id===q.get('tool')&&p.site===site),locale=siteLanguages[site].includes(lang)?lang:siteLanguages[site][0];
- return {site,brand:sites[site].name,origin:sites[site].origin,color:sites[site].color,product,returnURL:product?pageURL(product,locale):hubURL(site,locale),entry:memberURL(locale,site)};
+ if(!Object.hasOwn(sites,site))site='bpj';const q=new URLSearchParams(search),product=[...products,...externalProducts].find(p=>p.id===q.get('tool')&&p.site===site),locale=siteLanguages[site].includes(lang)?lang:siteLanguages[site][0];
+ return {site,brand:sites[site].name,origin:sites[site].origin,color:sites[site].color,product,returnURL:product?(product.urls?(product.urls[lang]||product.urls.en):pageURL(product,locale)):hubURL(site,locale),entry:memberURL(locale,site)};
 }
 export function portalURL(lang,site='bpj',tool='',transfer=false){const u=new URL(memberURL(lang,site)),c=memberContext(new URLSearchParams({tool}),lang,site);if(c.product)u.searchParams.set('tool',c.product.id);if(transfer)u.searchParams.set('from',c.origin);return u.href;}
 export const memberCopy={

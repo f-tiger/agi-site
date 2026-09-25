@@ -5,6 +5,7 @@ import {readFileSync} from 'node:fs';
 import {setTimeout as pause} from 'node:timers/promises';
 import {EDITION} from '../assets/studio/quote-core.mjs';
 import {EDITION as VIDEO_EDITION} from '../assets/studio/video-core.mjs';
+import {PLAN} from '../lib/membership.js';
 const origin='https://baipiaoji.com';
 const get=async path=>{
   const url=new URL(path,origin);url.searchParams.set('__probe','1');
@@ -26,9 +27,24 @@ for(const prefix of ['','/en']){
   assert.ok(video.includes('id="vv-export"')&&video.includes('id="vv-audio"'));
   assert.ok(hub.includes(`href="${origin}${prefix}/studio/video-variants"`));
   assert.ok(home.includes(`href="${origin}${prefix}/studio/video-variants"`));
+  const videoHub=await get(prefix+'/video/'),category=await get(prefix+'/c/video');
+  assert.ok(videoHub.includes(`rel="canonical" href="${origin}${prefix}/video/"`));
+  assert.ok(videoHub.includes('id="membership"')&&videoHub.includes('class="video-paths"'));
+  assert.ok(videoHub.includes(`${PLAN.price_units/1e6} USDT`)&&videoHub.includes('data-video-availability'));
+  for(const [label,page] of [['home',home],['directory',category],['studio',hub]]){
+    assert.ok(page.includes(`href="${origin}${prefix}/video/"`)&&page.includes('data-video-nav'),prefix+' '+label+' video discovery');
+  }
+  assert.ok(video.includes('id="vv-cloud-save"')&&video.includes('tool=bpj-video-variants'));
+  assert.ok((await get(prefix+'/workbench/creatorops')).includes('creatorops'),'video brief destination');
 }
+const products=JSON.parse(await get('/member-assets/products.json'));
+assert.ok(products.some(p=>p.id==='bpj-video-variants'&&new URL(p.urls.zh).origin===origin),'video member product registration');
+const member=JSON.parse(await get('/api/member'));
+assert.ok(member.ok&&member.ready&&member.site==='bpj','BPJ membership service readiness');
+assert.equal(member.plan.price_units,PLAN.price_units,'membership price');
+assert.equal(member.plan.versions,PLAN.versions,'membership version allowance');
 const digest=text=>createHash('sha256').update(text).digest('hex');
-for(const file of ['quote-core.mjs','quote-copy.mjs','quote-view.mjs','quote-app.mjs','studio.css','video-core.mjs','video-view.mjs','video-render.mjs','video-app.mjs','video.css']){
+for(const file of ['quote-core.mjs','quote-copy.mjs','quote-view.mjs','quote-app.mjs','studio.css','video-core.mjs','video-view.mjs','video-render.mjs','video-app.mjs','video-business.mjs','video.css']){
   const live=await get('/studio-assets/'+file+'?edition='+encodeURIComponent(EDITION));
   assert.equal(digest(live),digest(readFileSync(new URL('../assets/studio/'+file,import.meta.url),'utf8')),file+' differs from source');
 }
@@ -42,4 +58,4 @@ for(let attempt=0;attempt<5;attempt++){
     await pause(delay);
   }
 }
-console.log('BPJ first-party hub, homepage entries, bilingual quote/video tools and exact asset contents are live: '+EDITION+' / '+VIDEO_EDITION);
+console.log('BPJ video commerce hub, directory entries, paid cloud offer, member registration and exact tool assets are live: '+EDITION+' / '+VIDEO_EDITION);

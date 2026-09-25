@@ -4,10 +4,15 @@
 import { readFileSync, readdirSync, statSync, existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import {products} from '../../../tools/revenue-studio/catalog.mjs';
+import {pageURL} from '../../../tools/revenue-studio/i18n.mjs';
 
 const repoRoot = join(dirname(fileURLToPath(import.meta.url)), '..');
 
 const root = 'dist';
+// These exact catalog routes are built later by the workbench step and checked by
+// its verifier. The video-business gate also checks its linked file after that build.
+const deferredWorkbench = new Set(products.filter(p=>p.site==='bpj').flatMap(p=>['zh','en'].map(l=>new URL(pageURL(p,l)).pathname)));
 const pages = [];
 (function walk(d) {
   for (const f of readdirSync(d)) {
@@ -39,6 +44,7 @@ for (const p of pages) {
     const h = m[1].replace(/^https:\/\/baipiaoji\.com(?=\/|$)/, '') || '/';
     // 会员页由 tools/member-studio/build.mjs 在同一条部署流水线里、本门之后写进 dist（它自己的 verify.mjs 检查那些路由）。
     if (/^\/(?:en\/)?members(?:\?|$)/.test(h)) continue;
+    if (deferredWorkbench.has(h.split(/[?#]/)[0])) continue;
     if (h.startsWith('/') && !exists(h)) { console.log('BROKEN', p, m[1]); broken++; }
   }
   for (const m of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {

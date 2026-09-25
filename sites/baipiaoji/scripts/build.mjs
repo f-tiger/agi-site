@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import {videoEntry} from './video-business.mjs';
 import { canonicalUrls } from './canonical-urls.mjs';
 import { buildAgentPages } from './agent-pages.mjs';
 import { buildWorkPlan, workPlanLinks } from './work-plan.mjs';
@@ -601,6 +602,7 @@ const railOf = () => `<aside class="rail">
     <span class="brand-text"><b>${esc(NAME)}</b><i>${esc(TAGLINE)}</i></span>
   </a>
   <nav class="rail-jump">
+    <a data-video-nav href="${BASE}/video/"><b>${LOCALE.code === 'zh' ? '视频工作室' : 'Video studio'}</b><span>BPJ</span></a>
     <a data-studio-nav href="${BASE}/studio/"><b>${LOCALE.code === 'zh' ? '自研工具' : 'Built by BPJ'}</b><span>BPJ</span></a>
     <a href="${BASE}/#dirs"><b>${LOCALE.code === 'zh' ? '两个主攻方向' : 'Two directions'}</b><span>2</span></a>
     <a href="${BASE}/agents/"><b>${LOCALE.code === 'zh' ? 'Agent 与 MCP 目录' : 'Agents & MCP'}</b><span>${AGENT_N_FLOOR}</span></a>
@@ -1216,6 +1218,7 @@ const agentsHomeBlock = () => {
 
 const sectionsOf = () => catEntries.map(([k, v]) => `<section class="group" data-cat="${esc(k)}" id="${esc(k)}">
   <h2 class="group-title">${esc(v)}<span>${countOf(k)}</span></h2>
+  ${k==='video'?videoEntry(BASE,LOCALE.code==='zh','home-directory'):''}
   <div class="grid">
 ${tools.filter((t) => t.category === k).sort((a, b) => (b.hot ? 1 : 0) - (a.hot ? 1 : 0)).map((t, i) => toolCard(t, t.hot && i < 3 ? i + 1 : 0)).join('\n')}
   </div>
@@ -1429,6 +1432,7 @@ ${hustles.map(hustleCard).join('\n')}
     </div>
     <p class="money-more"><a href="${BASE}/money/">${UI('money_all', '看全部赚钱作业与我们的四条内容底线')} →</a></p>
   </section>
+  ${videoEntry(BASE,LOCALE.code === 'zh','home')}
   ${studioHome(BASE, LOCALE.code === 'zh')}
   <section class="plans" id="plans">
     <h2 class="group-title">${UI('plans_title', '免费方案')}<span>${solutions.length}</span></h2>
@@ -1700,6 +1704,7 @@ function toolPage(tool) {
     <p class="go-top"><a href="${esc(outLink(tool))}" target="_blank" rel="noopener nofollow"
        data-tool="${esc(tool.slug)}" data-cat="${esc(tool.category)}" data-aff="${tool.affiliate ? 1 : 0}" data-place="tool_top">${UI('go_top', '直达官网领取')} — ${esc(tool.name)} →</a>${watchBtnOf(tool.slug)}</p>
     <div class="tags">${(tool.tags || []).map((t) => `<span class="tag">${esc(t)}</span>`).join('')}</div>
+    ${tool.category==='video'?videoEntry(BASE,LOCALE.code==='zh','tool-'+tool.slug):''}
     <section class="panel benefit-panel">
       <h2>${UI('benefit', '福利内容')}</h2>
       <p>${esc(tool.free)}</p>
@@ -2793,6 +2798,7 @@ function categoryPage(key, label) {
   <nav class="crumb"><a href="${BASE}/">${esc(NAME)}</a><i>/</i><span>${esc(label)}</span></nav>
   ${gsOf()}
   ${adSlotOf(key)}
+  ${key==='video'?videoEntry(BASE,LOCALE.code==='zh','category'):''}
   <header class="hero">
     <div class="hero-inner">
       <h1>${(ce && ce.h1) || UI('cat_h1', '免费{label} AI 工具推荐').replace('{label}', esc(label))}</h1>
@@ -8249,6 +8255,7 @@ for (const { u } of allPages) {
       .replace(/<script>[\s\S]*?<\/script>/g, '')
       // Global discovery chrome does not make every existing article newly updated.
       .replace(/\n    <a data-studio-nav[^>]*>[\s\S]*?<\/a>/g, '')
+      .replace(/\n    <a data-video-nav[^>]*>[\s\S]*?<\/a>/g, '')
       .replace(/<a data-studio-footer[^>]*>[\s\S]*?<\/a> · /g, '')
       .replace(/\d{4}-\d{2}-\d{2}/g, 'D'))
     .digest('hex').slice(0, 16);
@@ -8537,6 +8544,7 @@ ${solutions.map((s) => `- [${s.pain}](${site.base_url}/plans/${s.slug}.html)：$
 
 - [自研工具板块 / Built by BPJ](${site.base_url}/studio/): BPJ 自主设计与开发，独立于第三方工具收录。EN: ${site.base_url}/en/studio/
 - [供应商报价比较台 / Supplier quote comparison](${site.base_url}/studio/quote-compare): 同一采购任务内核对箱规、起订量、税运费和来源；本地计算与导出，无 OCR 或自动下单。EN: ${site.base_url}/en/studio/quote-compare
+- [视频工作室 / Video studio](${site.base_url}/video/): BPJ 自研视频业务入口；免费制作与导出、可选会员云项目与版本历史、独立的厂商赞助位。EN: ${site.base_url}/en/video/; Markdown: ${site.base_url}/video/index.md
 - [商品视频变体 / Product video variants](${site.base_url}/studio/video-variants): BPJ 自研，本机素材编排、三个开场、三种画幅、真实视频与字幕导出，AI 分镜交接和独立预算。当前不提供模型代调用。EN: ${site.base_url}/en/studio/video-variants
 
 ## 基于已核实额度的自研工具 / Tools built on verified quota data
