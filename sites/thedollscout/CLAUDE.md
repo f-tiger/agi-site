@@ -1,4 +1,19 @@
-# CLAUDE.md — thedollscout.com(Labubu 导购站)
+# CLAUDE.md — thedollscout.com / TDS Document Scout
+
+## 当前方向：2026-09-25 文档工具转型（owner 明确授权）
+
+Owner：「为什么一定是收藏品，整个站点方向不对就该转型」→「按照调研优化后，落地到tds，整个站点可以起来流量」。本节替代下方历史收藏品定位、视觉和扩张限制；退役内容守卫、隐私、来源诚实、会员隔离与部署防回滚要求继续有效。
+
+- 品牌：TDS Document Scout；用户：发布或交付 PDF 的内容团队、制作人员、顾问。首个可验证任务是交付前批量预检和审查记录。
+- 当前可用：PDF 元数据/结构/文本预检、10 文件批量审查、分页文本提取、两个 PDF 文本比较。全部免费，文件仅在浏览器处理。不是 OCR、标签修复、视觉比较或 WCAG/PDF/UA 认证；不把趋势信号称为商业验证。
+- 首页和核心入口 EN/DE/ZH，`scripts/documents/copy.mjs` 为文案源，`build.mjs` 生成 33 页、示例、sitemap 和两个 llms 文件。页面与工具源需一起提交。PDF.js 6.3.289 锁在 package-lock，Node 24；vendor 不入 git。
+- 开发：`npm ci --prefix scripts/documents --ignore-scripts` → `npm test --prefix scripts/documents` → `node scripts/documents/build.mjs` → `node scripts/documents/verify.mjs`。沿用根仓部署 workflow；旧 workbench 后再运行文档生成器到 dist，防止旧收藏品推荐回到首页。
+- 收藏品 URL、数据、历史 MCP 和独立会员继续可用，由 `/collectors` 链接。勿把旧会员包装成 PDF 付费能力。`gen-collector-pages.mjs` 不得再改文档首页。不要在新首页运行旧 `build-llms-full.mjs`。
+- 新计量只看 `/api/document-stats`：动作数非人数。自带文件完整处理、部分处理、示例、CI 分开；原 PV 口径和 09-23 QA 不能并入新方向。新事件不给旧 `ev=''` 加行。部署以 `/__ci/documents` 写入并回读验证 D1；浏览器 QA 必须 `?ci=1`。
+- 每日既有 `tds-traffic.yml` 保存 `content/document-metrics.json`，不新增 cron。趋势种子换为 pdf accessibility / pdf remediation / compare pdf，仍共享原配额。不要用旧 Labubu 趋势扩张新站。
+- 增长与商业判定：见 `docs/document-scout-release-2026-09-25.md`、根仓 `data/fleet-bets.json` 的 `tds-documents-1023`。访问不足先解决分发；动作达标后仍须核实重复任务、独立买家和实付，才定义收费层。
+
+以下为历史定位记录，不构成禁止本次转型的新指令。
 
 ## 2026-08-30 重大转向(owner 原话:「下架掉这个站点,风险太大,更换为卖labubu的站点」)
 

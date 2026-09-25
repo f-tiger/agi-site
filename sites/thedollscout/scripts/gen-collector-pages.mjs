@@ -54,7 +54,7 @@ for(const [lang,c] of Object.entries(copy)) {
  page('collector-guide',c.guide,c.guideDesc,`${c.guideBody}${related}${affiliate}`);
  // Retain the existing rarity calculator, sourced references and language links.
  const file=path.join(root,pre.slice(1),'index.html');let home=fs.readFileSync(file,'utf8');
- if(!home.includes('data-collector-home')) {
+ if(!home.includes('data-collector-home') && !home.includes('data-document-edition')) {
   home=home.replace('</head>','<link rel="stylesheet" href="/css/collector.css">\n</head>');
   home=home.replace(/<title>[\s\S]*?<\/title>/,`<title>DollScout — ${c.tools}</title>`);
   home=home.replace(/<meta name="description" content="[^"]*">/,`<meta name="description" content="${esc(c.intro)}">`);

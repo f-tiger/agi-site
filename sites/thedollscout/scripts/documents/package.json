@@ -1,0 +1,8 @@
+{
+  "name": "tds-document-tools",
+  "private": true,
+  "type": "module",
+  "scripts": { "test": "node --test tests.mjs", "build": "node build.mjs" },
+  "dependencies": { "pdfjs-dist": "6.3.289" },
+  "devDependencies": { "pdf-lib": "1.17.1" }
+}

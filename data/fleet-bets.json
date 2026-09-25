@@ -1,6 +1,6 @@
 {
  "note": "舰队赌注台账:每条预登记判定线一行;status open→won/lost/insufficient/withdrawn 时必须写 settled(日期)与 reading(读数)。tools/fleet/check_bets.py 在 heartbeat 里断言:到期 3 天内提醒,过期 >7 天未结算即红。新增判定线不进这里 = heartbeat 看不见 = 等于没预登记。",
- "updated": "2026-09-24",
+ "updated": "2026-09-25",
  "bets": [
   {
    "id": "fleet-ai-access-0916",
@@ -479,7 +479,8 @@
    "lose": "按站内 CLAUDE.md 收缩",
    "source": "sites/thedollscout/CLAUDE.md:276",
    "status": "open",
-   "reading_2026-09-24": "口径提醒:tds 的 hits 表没有 UA 列,09-23 单日 304 次 pv 是一次 QA 突发(US/DE/LT 三国在 5 张页上循环,引荐是本站与预览主机 dollscout.pages.dev),不是读者;按天读数时该日须剔除,否则 28 天均值被抬高约 11/天。"
+   "reading_2026-09-24": "口径提醒:tds 的 hits 表没有 UA 列,09-23 单日 304 次 pv 是一次 QA 突发(US/DE/LT 三国在 5 张页上循环,引荐是本站与预览主机 dollscout.pages.dev),不是读者;按天读数时该日须剔除,否则 28 天均值被抬高约 11/天。",
+   "pivot_note_2026-09-25": "此条仅作收藏品方向历史复盘；09-25 新文档方向用 doc_* 独立事件，不能拿两套用户任务合并过线。新判定见 tds-documents-1023。"
   },
   {
    "id": "eco-schema-entity-1031",
@@ -1821,6 +1822,17 @@
    "win": "「被发现 → 有人试着装」这一步能被测到 → 才谈第二步(装完有没有带参数调用),并把同样的埋点补给 eco/bpj",
    "lose": "连复制安装指令的人都没有 → 机器面对人的入口不是页面;停止在页面上投入,机器面只维持注册表与 llms.txt 两条被动发现",
    "source": "docs/tool-direction-review-2026-09-24.md §四",
+   "status": "open"
+  },
+  {
+   "id": "tds-documents-1023",
+   "site": "thedollscout",
+   "due": "2026-10-23",
+   "metric": "/api/document-stats 与 content/document-metrics.json：28 天匿名动作数（非独立用户）；doc_view、doc_start、doc_complete、doc_partial、doc_review、doc_export，CI/示例剔除。用 GSC 新 PDF 路径点击与 crawler_fetches 核对分发。t0 在上线后的文档中保存，不能预填真实用户量。",
+   "threshold": "先有 ≥100 次工具页面 doc_view；然后自带文件完整处理 doc_complete ≥20、doc_export ≥5。属于人为设定的学习门槛，不是行业基准或收入承诺。",
+   "win": "核实重复交付任务、免费替代不足和支持成本，才试团队复核/报告历史；收费验证仍需 3 位无关联实际买家及正贡献，订阅扩张需真实续费。",
+   "lose": "访问 <100 → insufficient，先查抓取、索引、查询与落地匹配；访问够但完成少 → 查文件失败和入口承诺；完成够但导出少 → 查交付价值，不用更多页面掩盖问题。",
+   "source": "sites/thedollscout/docs/document-scout-release-2026-09-25.md；owner 2026-09-25 明确要求全站转型并落地。",
    "status": "open"
   }
  ]

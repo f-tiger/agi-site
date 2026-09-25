@@ -7,3 +7,6 @@ tools/metaculus-bot/.env
 tools/metaculus-bot/.venv/
 sites/gridlings/dist-store/
 node_modules/
+# TDS browser dependencies and assembled release are rebuilt from the lockfile.
+sites/thedollscout/document-assets/vendor/
+sites/thedollscout/dist/

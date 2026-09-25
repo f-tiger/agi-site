@@ -28,3 +28,7 @@
   Cache-Control: public, max-age=600, stale-while-revalidate=86400
 /img/*
   Cache-Control: public, max-age=604800
+
+/document-assets/*
+  Cache-Control: public, max-age=600
+  X-Content-Type-Options: nosniff
