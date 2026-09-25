@@ -118,7 +118,11 @@ export default {
     // Same host list as tools/fleet/ai_referrals.py; cached an hour at the edge.
     if (url.pathname === "/api/pulse" && request.method === "GET") {
       const headers = { "content-type": "application/json; charset=utf-8", "cache-control": "public, max-age=3600", "access-control-allow-origin": "*" };
-      if (!env.EV) return new Response(JSON.stringify({ ok: false, error: "no_db" }), { status: 503, headers });
+      // 2026-09-25: 失败绝不带 max-age。`public, max-age=3600` 原先同时贴在成功与失败上,
+      // 于是一次 D1 报错会被任何中间缓存冻住一小时,把瞬时故障放大成一小时的仪器停摆
+      // ——本站的 handleHeat/handleDew 早写过这条规则,这两个读端点漏了。
+      const eheaders = { ...headers, "cache-control": "no-store" };
+      if (!env.EV) return new Response(JSON.stringify({ ok: false, error: "no_db" }), { status: 503, headers: eheaders });
       try {
         const q = await env.EV.prepare(
           "SELECT '_total' AS host, COUNT(*) AS n FROM ev WHERE name='page_view' AND ua_class='human' AND day >= date('now','-28 days') UNION ALL SELECT ref AS host, COUNT(*) AS n FROM ev WHERE name='page_view' AND ua_class='human' AND day >= date('now','-28 days') AND (ref LIKE '%chatgpt%' OR ref LIKE '%chat.openai%' OR ref LIKE '%perplexity%' OR ref LIKE '%claude.ai%' OR ref LIKE '%copilot%' OR ref LIKE '%gemini.google%' OR ref LIKE '%you.com%' OR ref LIKE '%kagi%' OR ref LIKE '%poe.com%' OR ref LIKE '%mistral%' OR ref LIKE '%deepseek%' OR ref LIKE '%kimi%' OR ref LIKE '%doubao%' OR ref LIKE '%yiyan%' OR ref LIKE '%metaso%') GROUP BY ref ORDER BY n DESC"
@@ -148,7 +152,7 @@ export default {
         }
         return new Response(JSON.stringify({ ok: true, days: 28, human_pv, ai_ref, by_host, by_source, by_search, by_fleet, by_other, generated: new Date().toISOString() }), { headers });
       } catch (e) {
-        return new Response(JSON.stringify({ ok: false, error: "query_failed" }), { status: 500, headers });
+        return new Response(JSON.stringify({ ok: false, error: "query_failed" }), { status: 500, headers: eheaders });
       }
     }
 

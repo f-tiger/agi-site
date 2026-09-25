@@ -308,6 +308,16 @@ jobs:
       - name: Assert referrer-source classifier parity across workers
         run: python3 tools/fleet/check_ref_sources.py
 
+      # 同一个教训的第三次应用(2026-09-25):失败响应绝不许是 public 可缓存的。当天账号撞上
+      # D1 免费额度的日行读上限,14 个读端点里 13 个 500,而每一个 500 都带着
+      # `cache-control: public, max-age=3600` —— header 对象在 handler 顶上建一次,200/503/500
+      # 共用。于是一次瞬时报错被交给中间缓存重放一小时:本会话把 gridlings 读成 200 带真数字,
+      # 而那一刻 D1 正在拒绝每一条查询。eco 自己的 handleHeat/handleDew 早写过这条规则,
+      # 喂舰队仪器的这些读端点漏了。规则:响应体带失败标记(ok:false / live:false / degraded)
+      # 就不许带 public —— 非 2xx 与「200 但 body 说 live:false」两种形状都算。
+      - name: Assert no failure response is publicly cacheable
+        run: python3 tools/fleet/check_pulse_cache.py
+
       # sitemap 里的 URL 必须是终点。这类缺陷不跟随跳转就看不见:站是 200、sitemap 是 200,
       # 唯独每条 loc 都多一跳。实测 bpj 1558 条全中(canonical 也指向非 200),另外 13 站为 0。
       # 抽样 4 条/站,只打自家站,零外部副作用。3xx 才红;取不到只 warning。

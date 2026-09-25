@@ -507,6 +507,24 @@ owner 决策卡、事实表)。
   **任何喂判定线的聚合字段,读不全时必须写 null,不许写「读到的那部分的和」。** 一个旁边带警告的数字,
   在三周后只会剩下那个数字。**另一条**:说「不再需要 owner 动作」之前,先确认兜底路径与主路径**没有共用前提**;
   这次主备共用的是同一个缺失权限。
+- **⚠ 同日第二处,比第一处更隐蔽:那 13 个 500 每一个都带着 `cache-control: public, max-age=3600`。**
+  header 对象在 handler 顶上建一次,200 / 503 / 500 共用(12 个读端点无一例外,含 agi、eco、
+  gridlings、goldrush、SR、gamesledger、tds 与五个新站)。后果是**一次瞬时报错被交给任何中间缓存
+  重放一小时**:本会话先把 gridlings 读成 `200 {"human_pv":758,...}`、几分钟后同一个 URL 是 500,
+  于是**在报告里写下了「gridlings 已恢复」——那一刻 D1 正在拒绝每一条查询**。成功响应里的
+  `generated` 字段本可以揭穿它,但缓存给回的那份 body 里没有。eco 自己的 `handleHeat`/`handleDew`
+  早把规则写在注释里(「never freeze a failure into the cache for an hour」),**喂舰队仪器的读端点
+  全体漏了**。同类还有两处不是 5xx 的:goldrush `/fetchlog.json` 与 SR `/api/pop` 用「200 + body 里
+  `live:false` / `degraded:true`」报告查询失败,照样被缓存一小时。
+  **已修(同日,12 个文件)**:失败一律 `no-store`(tds 的 helper 改成按 status 三元);
+  新增 `tools/fleet/check_pulse_cache.py` 挂 heartbeat,规则一句话:**响应体带失败标记就不许带 public**。
+  **这个检查自己先红过三次才算写成**:①只认 `{ headers }` 漂亮写法,漏掉 `{ status: 500, headers }`
+  简写 —— 故意改坏一处仍然绿;②`headers` 每个 handler 重新定义,沿用上一块的值把无 cache-control 的
+  `/sub` 误报成 public;③正则要求 `json` 前面有前缀,于是漏掉 tds 那个**正是本次动机**的 helper;
+  顺带暴露第四个洞:glob 只看 `sites/*/worker.js`,**舰队最大的站 agi 的 worker 在三层深处,
+  同样有这个缺陷而检查看不见** —— 覆盖漏洞读起来与「全绿」一模一样。
+  **规矩(与 09-04「自检要能红」同级,是它的加强版)**:**新写的自检,必须逐个故意改坏它声称能抓的
+  每一种形状,看它真的红。** 一次「改坏一处仍然绿」就说明它抓的是想象里的代码,不是仓里的代码。
 
 ## 固定循环:持续优化 · 探索 · 扩张(2026-09-13,owner:「目标是持续优化,探索,扩张。成长为这类型」)
 

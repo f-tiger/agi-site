@@ -385,7 +385,10 @@ export default {
     // Same host list as tools/fleet/ai_referrals.py; cached an hour at the edge.
     if (url.pathname === '/api/pulse' && request.method === 'GET') {
       const headers = { 'content-type': 'application/json; charset=utf-8', 'cache-control': 'public, max-age=3600', 'access-control-allow-origin': '*' };
-      if (!env.EVENTS) return new Response(JSON.stringify({ ok: false, error: 'no_db' }), { status: 503, headers });
+      // 2026-09-25: 失败绝不带 max-age。这一个 header 对象原先同时贴在 200/503/500 上,
+      // 于是一次 D1 报错会被任何中间缓存冻住一小时,把瞬时故障放大成一小时的仪器停摆。
+      const eheaders = { ...headers, 'cache-control': 'no-store' };
+      if (!env.EVENTS) return new Response(JSON.stringify({ ok: false, error: 'no_db' }), { status: 503, headers: eheaders });
       try {
         const q = await env.EVENTS.prepare(
           `SELECT '_total' AS host, SUM(hits) AS n FROM pageviews WHERE ua_class='human' AND day >= date('now','-28 days') UNION ALL SELECT ref_host AS host, SUM(hits) AS n FROM pageviews WHERE ua_class='human' AND day >= date('now','-28 days') AND (ref_host LIKE '%chatgpt%' OR ref_host LIKE '%chat.openai%' OR ref_host LIKE '%perplexity%' OR ref_host LIKE '%claude.ai%' OR ref_host LIKE '%copilot%' OR ref_host LIKE '%gemini.google%' OR ref_host LIKE '%you.com%' OR ref_host LIKE '%kagi%' OR ref_host LIKE '%poe.com%' OR ref_host LIKE '%mistral%' OR ref_host LIKE '%deepseek%' OR ref_host LIKE '%kimi%' OR ref_host LIKE '%doubao%' OR ref_host LIKE '%yiyan%' OR ref_host LIKE '%metaso%') GROUP BY ref_host ORDER BY n DESC`
@@ -433,7 +436,7 @@ export default {
         } catch (e) { money = null; }
         return new Response(JSON.stringify({ ok: true, days: 28, human_pv, ai_ref, by_host, by_source, by_search, by_fleet, by_other, money, generated: new Date().toISOString() }), { headers });
       } catch (e) {
-        return new Response(JSON.stringify({ ok: false, error: 'query_failed' }), { status: 500, headers });
+        return new Response(JSON.stringify({ ok: false, error: 'query_failed' }), { status: 500, headers: eheaders });
       }
     }
 

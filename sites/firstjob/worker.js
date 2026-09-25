@@ -92,7 +92,10 @@ export default {
     }
     if (p === "/api/pulse" && request.method === "GET") {
       const headers = { ...JSONH, "cache-control": "public, max-age=3600" };
-      if (!env.EV) return new Response(JSON.stringify({ ok: false, error: "no_db" }), { status: 503, headers });
+      // 2026-09-25: 失败绝不带 max-age —— 一次 D1 报错被中间缓存冻住一小时,
+      // 会把瞬时故障放大成一小时的仪器停摆(舰队同日六个读端点同一处修)。
+      const eheaders = { ...headers, "cache-control": "no-store" };
+      if (!env.EV) return new Response(JSON.stringify({ ok: false, error: "no_db" }), { status: 503, headers: eheaders });
       try {
         await ensureSchema(env.EV);
         const q = await env.EV.prepare("SELECT '_total' AS host, COUNT(*) AS n FROM jev WHERE name='page_view' AND ua_class='human' AND day >= date('now','-28 days') UNION ALL SELECT ref AS host, COUNT(*) AS n FROM jev WHERE name='page_view' AND ua_class='human' AND day >= date('now','-28 days') AND (ref LIKE '%chatgpt%' OR ref LIKE '%chat.openai%' OR ref LIKE '%perplexity%' OR ref LIKE '%claude.ai%' OR ref LIKE '%copilot%' OR ref LIKE '%gemini.google%' OR ref LIKE '%you.com%' OR ref LIKE '%kagi%' OR ref LIKE '%poe.com%' OR ref LIKE '%mistral%' OR ref LIKE '%deepseek%' OR ref LIKE '%kimi%' OR ref LIKE '%doubao%' OR ref LIKE '%yiyan%' OR ref LIKE '%metaso%') GROUP BY ref ORDER BY n DESC").all();
@@ -118,7 +121,7 @@ export default {
           else if (b === "other") by_other[h] = (by_other[h] || 0) + n;
         }
         return new Response(JSON.stringify({ ok: true, days: 28, human_pv, ai_ref, by_host, by_source, by_search, by_fleet, by_other, generated: new Date().toISOString() }), { headers });
-      } catch (e) { return new Response(JSON.stringify({ ok: false, error: "query_failed" }), { status: 500, headers }); }
+      } catch (e) { return new Response(JSON.stringify({ ok: false, error: "query_failed" }), { status: 500, headers: eheaders }); }
     }
     const res = await env.ASSETS.fetch(request);
     if (request.method === "GET" && res.status === 200) {
