@@ -1,6 +1,6 @@
 {
- "generated": "2026-09-24",
- "radar_fetched": "2026-09-24",
+ "generated": "2026-09-25",
+ "radar_fetched": "2026-09-25",
  "reddit_sources_ok": {
   "reddit_requests": false,
   "reddit_wish": false,
@@ -13,28 +13,13 @@
  },
  "note": "Derived facts only: no Reddit post text, bodies or permalinks are stored here or published. Themes are normalised request titles used as matching keys; demand = Google Trends rising; supply = PH/HN public feeds.",
  "counts": {
-  "candidates": 9,
+  "candidates": 8,
   "demand_confirmed": 0,
   "recurring": 0,
-  "scout": 9,
+  "scout": 8,
   "supplied": 0
  },
  "opportunities": [
-  {
-   "theme": "how to recover google auth after phone stolen",
-   "site": "",
-   "kind": "request-board",
-   "subreddit": "ask_hn",
-   "days_seen": [
-    "2026-09-17"
-   ],
-   "state": "scout",
-   "supplied": false,
-   "score": 6.0,
-   "demand": [],
-   "supply": [],
-   "fleet_pages": []
-  },
   {
    "theme": "stripe withholding balance of 100000",
    "site": "",
@@ -60,7 +45,22 @@
    ],
    "state": "scout",
    "supplied": false,
-   "score": 2.76,
+   "score": 2.78,
+   "demand": [],
+   "supply": [],
+   "fleet_pages": []
+  },
+  {
+   "theme": "is there word or term for trillion valued companies not having perfect ui",
+   "site": "",
+   "kind": "request-board",
+   "subreddit": "ask_hn",
+   "days_seen": [
+    "2026-09-24"
+   ],
+   "state": "scout",
+   "supplied": false,
+   "score": 2.14,
    "demand": [],
    "supply": [],
    "fleet_pages": []
@@ -81,31 +81,16 @@
    "fleet_pages": []
   },
   {
-   "theme": "what exists if i want a premade soc mcu screen enclosure battery",
+   "theme": "ieee expulsion of fei yue wang",
    "site": "",
    "kind": "request-board",
    "subreddit": "ask_hn",
    "days_seen": [
-    "2026-09-17"
+    "2026-09-24"
    ],
    "state": "scout",
    "supplied": false,
    "score": 2.07,
-   "demand": [],
-   "supply": [],
-   "fleet_pages": []
-  },
-  {
-   "theme": "about map enshittification have you noticed the maps have gotten worse",
-   "site": "",
-   "kind": "request-board",
-   "subreddit": "ask_hn",
-   "days_seen": [
-    "2026-09-17"
-   ],
-   "state": "scout",
-   "supplied": false,
-   "score": 2.04,
    "demand": [],
    "supply": [],
    "fleet_pages": []
@@ -120,7 +105,7 @@
    ],
    "state": "scout",
    "supplied": false,
-   "score": 2.0,
+   "score": 2.03,
    "demand": [],
    "supply": [],
    "fleet_pages": []
