@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-12",
+  "generated": "2026-09-25",
   "note": "由 scripts/trend-radar.mjs 每日聚合五路站内信号生成。只排队不写事实；核实动作按硬规则执行。分数是领先指标的相对排序，不是预测。",
   "counts": {
-    "candidate": 30,
-    "category_hot": 0,
+    "candidate": 32,
+    "category_hot": 3,
     "stale": 5,
     "demand": 0
   },
@@ -26,22 +26,93 @@
   },
   "items": [
     {
+      "id": "drift:dify",
+      "type": "source_drift",
+      "title": "来源页变动：Dify（2026-09-25 确认）",
+      "why": "官方来源页的数字令牌变了——新增 157k；消失 156k。本站条目仍是 2026-08-04 的版本",
+      "action": "打开 https://dify.ai 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
+      "refs": [
+        "dify",
+        "https://dify.ai"
+      ],
+      "score": 75
+    },
+    {
+      "id": "drift:immersive-translate",
+      "type": "source_drift",
+      "title": "来源页变动：沉浸式翻译（2026-09-25 确认）",
+      "why": "官方来源页的数字令牌变了——新增 3000万；消失 2000万。本站条目仍是 2026-08-03 的版本",
+      "action": "打开 https://immersivetranslate.com 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
+      "refs": [
+        "immersive-translate",
+        "https://immersivetranslate.com"
+      ],
+      "score": 75
+    },
+    {
+      "id": "drift:cursor",
+      "type": "source_drift",
+      "title": "来源页变动：Cursor（2026-09-25 确认）",
+      "why": "官方来源页的数字令牌变了——新增 $3,000 / 0032b / 00810b / 00b；消失 $3。本站条目仍是 2026-08-03 的版本",
+      "action": "打开 https://cursor.com 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
+      "refs": [
+        "cursor",
+        "https://cursor.com"
+      ],
+      "score": 75
+    },
+    {
       "id": "aiflow:first",
       "type": "ai_referral",
-      "title": "AI 助手引流出现：chatgpt.com×12、www.perplexity.ai×20、kagi.com×1",
+      "title": "AI 助手引流出现：chatgpt.com×12、www.perplexity.ai×6、kagi.com×1",
       "why": "这是 AI 引用第一次转化为点击——哪些页面被引用、答的是什么问题，决定下一批内容怎么写",
       "action": "查快照中这些 ref 的落地页；把被引用页的模式（问题形、数据形、日期形）复制到同类页面",
       "refs": [
         "/c/api",
         "/en/c/image",
-        "/en/c/video",
-        "/en/vs/dify-vs-n8n",
-        "/",
-        "/en/tools/zhiying",
+        "/tools/qingying",
         "/en/tools/guojia-fanzha",
-        "/en/c/coding"
+        "/",
+        "/en/is-google-flow-still-free",
+        "/en/vs/google-ai-studio-vs-openrouter"
       ],
       "score": 70
+    },
+    {
+      "id": "drift:exa",
+      "type": "source_drift",
+      "title": "来源页变动：Exa（2026-09-25 确认）",
+      "why": "官方来源页的数字令牌变了——新增 无；消失 $20。本站条目仍是 2026-08-13 的版本",
+      "action": "打开 https://exa.ai/pricing 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
+      "refs": [
+        "exa",
+        "https://exa.ai/pricing"
+      ],
+      "score": 65
+    },
+    {
+      "id": "drift:zhipu-glm",
+      "type": "source_drift",
+      "title": "来源页变动：智谱开放平台（2026-09-25 确认）",
+      "why": "官方来源页的数字令牌变了——新增 无；消失 1,s。本站条目仍是 2026-08-01 的版本",
+      "action": "打开 https://docs.bigmodel.cn/cn/guide/models/free/glm-4.7-flash 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
+      "refs": [
+        "zhipu-glm",
+        "https://docs.bigmodel.cn/cn/guide/models/free/glm-4.7-flash"
+      ],
+      "score": 65
+    },
+    {
+      "id": "drift:anythingllm",
+      "type": "source_drift",
+      "title": "来源页变动：AnythingLLM（2026-09-24 确认）",
+      "why": "官方来源页的数字令牌变了——新增 28months / 37months；消失 27months / 36months。本站条目仍是 2026-08-04 的版本",
+      "action": "打开 https://anythingllm.com 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
+      "refs": [
+        "anythingllm",
+        "https://anythingllm.com"
+      ],
+      "score": 65
     },
     {
       "id": "candidate:simedw.com",
@@ -68,107 +139,45 @@
       "score": 60
     },
     {
-      "id": "candidate:cactuscompute.com",
+      "id": "candidate:mysetup.ai",
       "type": "verify_candidate",
-      "title": "核实候选：Needle2: 14MB agentic LLM for phones, wearables, smart home and robots",
-      "why": "HN 191 分 / 82 评论（2026-08-11 发现）——外部热度已验证，站内尚未收录",
-      "action": "按收录标准核实 https://cactuscompute.com/needle；合格则中英同步入库，limits 走 limits-edit.mjs",
+      "title": "核实候选：Share your AI Setup, Learn from others",
+      "why": "HN 204 分 / 114 评论（2026-09-18 发现）——外部热度已验证，站内尚未收录",
+      "action": "按收录标准核实 https://mysetup.ai/；合格则中英同步入库，limits 走 limits-edit.mjs",
       "refs": [
-        "https://cactuscompute.com/needle",
-        "https://news.ycombinator.com/item?id=49246804"
+        "https://mysetup.ai/",
+        "https://news.ycombinator.com/item?id=49740105"
       ],
       "score": 60
     },
     {
-      "id": "mcpsurface:bad",
-      "type": "mcp_surface",
-      "title": "MCP 发现面异常：官方 Registry 未收录/掉线",
-      "why": "体检于 2026-09-11——发现面断一天，agent 生态就少看见一天",
-      "action": "查 mcp-publish workflow 日志与最近改动；Registry 未收录则核对 server.json 校验错误并重新发布",
-      "refs": [
-        "server.json",
-        ".github/workflows/mcp-publish.yml"
-      ],
-      "score": 50
-    },
-    {
-      "id": "factory:study",
-      "type": "factory",
-      "title": "工厂推进：结构化 study 类 limits 数值（3 条）",
-      "why": "PRD-own-tools v2 G1 进度 109/129——每结构化一类，自动长出一族数据驱动工具",
-      "action": "产出 data/study-quotas.json（只从已核实散文提取官方数字，无官方折算明说不代算）→ 按 llm-api-calculator 模式复制该类工具页 → 真机验证上线",
-      "refs": [
-        "elicit",
-        "scispace",
-        "doubao-aixue"
-      ],
-      "score": 45
-    },
-    {
       "id": "paidgap:kimi",
       "type": "paid_gap",
-      "title": "补付费档：Kimi（月之暗面）（工具页 28 天带来源真人 11 次，无付费档）",
+      "title": "补付费档：Kimi（月之暗面）（工具页 28 天带来源真人 33 次，无付费档）",
       "why": "有需求、无判定页：is-kimi-still-free 因缺 limits.paid.tiers 未生成；grok 先例 09-11",
       "action": "核实官方定价页写入 limits.paid（形状照 claude/grok），两步写入后判定页自动生成并进 sitemap",
       "refs": [
         "kimi"
       ],
-      "score": 41
+      "score": 60
     },
     {
-      "id": "paidgap:haiper",
-      "type": "paid_gap",
-      "title": "补付费档：Haiper（工具页 28 天带来源真人 8 次，无付费档）",
-      "why": "有需求、无判定页：is-haiper-still-free 因缺 limits.paid.tiers 未生成；grok 先例 09-11",
-      "action": "核实官方定价页写入 limits.paid（形状照 claude/grok），两步写入后判定页自动生成并进 sitemap",
+      "id": "cathot:coding",
+      "type": "category_hot",
+      "title": "类目异动：coding（14 天内 2 个工具实质变更）",
+      "why": "Windsurf、Bolt.new接连变动——同类厂商通常跟进换档，等 30 天复核阈值会慢半拍",
+      "action": "提前复核 coding 类尚未跟进的 19 条已核实额度（上次核实落后异动 3 天以上（早于 2026-09-18）），重点看定价页与帮助中心",
       "refs": [
-        "haiper"
+        "github-copilot",
+        "tongyi-lingma",
+        "trae",
+        "cursor",
+        "comate",
+        "cline",
+        "qoder",
+        "github-models"
       ],
-      "score": 38
-    },
-    {
-      "id": "paidgap:feishu-miaoji",
-      "type": "paid_gap",
-      "title": "补付费档：飞书妙记（工具页 28 天带来源真人 7 次，无付费档）",
-      "why": "有需求、无判定页：is-feishu-miaoji-still-free 因缺 limits.paid.tiers 未生成；grok 先例 09-11",
-      "action": "核实官方定价页写入 limits.paid（形状照 claude/grok），两步写入后判定页自动生成并进 sitemap",
-      "refs": [
-        "feishu-miaoji"
-      ],
-      "score": 37
-    },
-    {
-      "id": "stale:zhipu-glm",
-      "type": "refresh",
-      "title": "复核过期：智谱开放平台（42 天未核实）",
-      "why": "核实日期是判定的保质期，本站卖的就是新鲜度",
-      "action": "复核官方页面，走 limits-edit.mjs 两步写入；数字未变也要刷新 checked",
-      "refs": [
-        "zhipu-glm"
-      ],
-      "score": 12
-    },
-    {
-      "id": "stale:cloudflare-workers-ai",
-      "type": "refresh",
-      "title": "复核过期：Cloudflare Workers AI（42 天未核实）",
-      "why": "核实日期是判定的保质期，本站卖的就是新鲜度",
-      "action": "复核官方页面，走 limits-edit.mjs 两步写入；数字未变也要刷新 checked",
-      "refs": [
-        "cloudflare-workers-ai"
-      ],
-      "score": 12
-    },
-    {
-      "id": "stale:nvidia-nim",
-      "type": "refresh",
-      "title": "复核过期：NVIDIA NIM（42 天未核实）",
-      "why": "核实日期是判定的保质期，本站卖的就是新鲜度",
-      "action": "复核官方页面，走 limits-edit.mjs 两步写入；数字未变也要刷新 checked",
-      "refs": [
-        "nvidia-nim"
-      ],
-      "score": 12
+      "score": 50
     }
   ]
 }
