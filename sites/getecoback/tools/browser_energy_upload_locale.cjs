@@ -44,6 +44,7 @@ const fs = require('node:fs/promises');
       };
 
       for (const [lang, slug, chooseLabel, emptyLabel, imported] of locales) {
+        console.log(`Checking ${engine}: ${lang} page with zh-CN browser language`);
         await page.goto(base + '/' + slug + '?__probe=1');
         await page.waitForFunction(() => typeof document.querySelector('#csv-file').onchange === 'function');
         equal(await page.evaluate(() => [navigator.language, document.documentElement.lang]), ['zh-CN', lang]);
@@ -51,7 +52,7 @@ const fs = require('node:fs/promises');
           equal(await page.locator('#' + id + '-choose').innerText(), chooseLabel);
           equal(await page.locator('#' + id + '-status').innerText(), emptyLabel);
           const label = await page.locator('#' + id + '-title').innerText();
-          equal(await page.getByLabel(label + ' ' + chooseLabel, {exact: true}).count(), 1);
+          equal(await page.getByLabel(label, {exact: true}).getAttribute('id'), id);
           equal(await page.locator('#' + id).evaluate(e => {
             const rect = e.getBoundingClientRect(), style = getComputedStyle(e);
             return style.opacity === '0' && style.display !== 'none' && style.visibility === 'visible' && rect.width >= 44 && rect.height >= 44;
