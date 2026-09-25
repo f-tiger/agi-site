@@ -265,6 +265,7 @@ jobs:
           node scripts/test-agent-watch.mjs --dist
           node scripts/test-work-plan.mjs --dist
           node scripts/test-studio.mjs --dist
+          node scripts/test-file-studio.mjs --dist
           node scripts/test-video-studio.mjs --dist
 
       # 2026-08-16 删除「Ensure Pages project exists」:项目早就存在,这一步每次都

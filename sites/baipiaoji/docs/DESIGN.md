@@ -144,3 +144,8 @@
 ## 自研工具板块（2026-09-25）
 
 `/studio/` 延续以上已确认视觉：纸色与墨色、系统中英文字体、规则线和无圆角按钮。蓝色标识工作流程，绿色只用于可比较状态，红色用于排除与冲突。首页入口与第三方目录分开；报价台按采购要求、来源核对、比较结果三步组织。小屏表单为一列，比较表在独立容器内横向滚动，页面本身不横向溢出。
+
+
+### File workbenches (2026-09-25)
+
+PDF and product-image workbenches reuse the paper/ink palette, squared controls, system fonts and line-separated layout. Source and output image previews are functional content for verifying a user's work, not decorative imagery. The workspace collapses to one column below 740 px; exports and status messages remain keyboard accessible. No third-party CDN scripts or new visual framework.

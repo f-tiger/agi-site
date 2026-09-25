@@ -1,3 +1,4 @@
+import {STUDIO_TOOLS} from './studio-pages.mjs';
 // Optional browser regression: use the same Playwright dev dependency as the existing workbench tests.
 import {createRequire} from 'node:module';
 import {fileURLToPath} from 'node:url';
@@ -25,9 +26,9 @@ try{
     const context=await browser.newContext({viewport:{width:1440,height:1050},acceptDownloads:true});
     await context.route('**/*',route=>route.request().url().startsWith(origin)?route.continue():route.abort());
     const page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));page.on('dialog',d=>d.accept());
-    await page.goto(origin+prefix+'/studio/');assert.equal(await page.locator('.studio-product').count(),3);
+    await page.goto(origin+prefix+'/studio/');assert.equal(await page.locator('.studio-product').count(),STUDIO_TOOLS.filter(t=>t.featured).length);
     await page.screenshot({path:path.join(artifacts,lang+'-hub.png'),fullPage:true});
-    await page.locator('.studio-product a.studio-button').nth(1).click();
+    await page.locator('.studio-product a.studio-button[href$="/studio/quote-compare"]').click();
     await page.locator('#qc-example').click();await page.waitForSelector('.quote-table');
     assert.equal(await page.locator('.quote-table tr[data-ready=true]').count(),1);
     assert.match(await page.locator('.quote-result-summary').textContent(),/1080.00/);
@@ -49,7 +50,7 @@ try{
     await page.screenshot({path:path.join(artifacts,lang+'-results.png'),fullPage:false});
     await page.setViewportSize({width:390,height:844});await page.goto(origin+prefix+'/studio/');
     assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'mobile hub overflows');
-    await page.locator('.studio-product a.studio-button').nth(1).click();await page.locator('#qc-example').click();await page.locator('#qc-calculate').click();
+    await page.locator('.studio-product a.studio-button[href$="/studio/quote-compare"]').click();await page.locator('#qc-example').click();await page.locator('#qc-calculate').click();
     assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'mobile quote tool overflows');
     await page.screenshot({path:path.join(artifacts,lang+'-mobile.png'),fullPage:false});
     await context.close();
