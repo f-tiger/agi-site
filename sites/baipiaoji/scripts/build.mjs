@@ -1703,8 +1703,7 @@ function toolPage(tool) {
     <p class="answer">${esc(answer)}</p>
     <p class="go-top"><a href="${esc(outLink(tool))}" target="_blank" rel="noopener nofollow"
        data-tool="${esc(tool.slug)}" data-cat="${esc(tool.category)}" data-aff="${tool.affiliate ? 1 : 0}" data-place="tool_top">${UI('go_top', '直达官网领取')} — ${esc(tool.name)} →</a>${watchBtnOf(tool.slug)}</p>
-    <div class="tags">${(tool.tags || []).map((t) => `<span class="tag">${esc(t)}</span>`).join('')}</div>
-    ${tool.category==='video'?videoEntry(BASE,LOCALE.code==='zh','tool-'+tool.slug):''}
+    <div class="tags">${(tool.tags || []).map((t) => `<span class="tag">${esc(t)}</span>`).join('')}</div>${tool.category==='video'?'\n    '+videoEntry(BASE,LOCALE.code==='zh','tool-'+tool.slug):''}
     <section class="panel benefit-panel">
       <h2>${UI('benefit', '福利内容')}</h2>
       <p>${esc(tool.free)}</p>
@@ -2797,8 +2796,7 @@ function categoryPage(key, label) {
   const body = `<main class="stage">
   <nav class="crumb"><a href="${BASE}/">${esc(NAME)}</a><i>/</i><span>${esc(label)}</span></nav>
   ${gsOf()}
-  ${adSlotOf(key)}
-  ${key==='video'?videoEntry(BASE,LOCALE.code==='zh','category'):''}
+  ${adSlotOf(key)}${key==='video'?'\n  '+videoEntry(BASE,LOCALE.code==='zh','category'):''}
   <header class="hero">
     <div class="hero-inner">
       <h1>${(ce && ce.h1) || UI('cat_h1', '免费{label} AI 工具推荐').replace('{label}', esc(label))}</h1>
@@ -8257,6 +8255,8 @@ for (const { u } of allPages) {
       .replace(/\n    <a data-studio-nav[^>]*>[\s\S]*?<\/a>/g, '')
       .replace(/\n    <a data-video-nav[^>]*>[\s\S]*?<\/a>/g, '')
       .replace(/<a data-studio-footer[^>]*>[\s\S]*?<\/a> · /g, '')
+      // Asset cache-busters (?v=EDITION) are not page content: a studio EDITION bump must not restamp ~50 pages (2026-09-25 audit V5).
+      .replace(/(\/studio-assets\/[^"?]+)\?v=[^"]*/g, '$1')
       .replace(/\d{4}-\d{2}-\d{2}/g, 'D'))
     .digest('hex').slice(0, 16);
   const before = lmPrev[u];

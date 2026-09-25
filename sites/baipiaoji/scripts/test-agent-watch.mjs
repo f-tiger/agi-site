@@ -271,8 +271,12 @@ ck(filterAgents(agents, { since: '2026-09-22' }).length >= 1 && filterAgents(age
 
 // ── 5. hit.js allowlist vs the event names build.mjs actually emits ─────
 {
-  const src = readFileSync(join(ROOT, 'scripts', 'build.mjs'), 'utf8');
+  // build.mjs plus every first-party studio script: those ship their own bpjEv calls (2026-09-25), and a name missing from the
+  // allowlist is dropped at the edge while the page looks fine.
+  const studioDir = join(ROOT, 'assets', 'studio');
+  const src = [readFileSync(join(ROOT, 'scripts', 'build.mjs'), 'utf8'), ...readdirSync(studioDir).filter((f) => f.endsWith('.mjs')).map((f) => readFileSync(join(studioDir, f), 'utf8'))].join('\n');
   const emitted = new Set([...src.matchAll(/\b(?:bpjEv|EV)\('([a-z_]+)'/g)].map((m) => m[1]));
+  ck(!/bpjEv\('calc'/.test(readFileSync(join(studioDir, 'video-business.mjs'), 'utf8')), 'video entry/navigation clicks must not be logged as calc (tool use)');
   for (const e of emitted) ck(EVENTS.has(e), `hit.js EVENTS lacks '${e}' which build.mjs emits — the event is dropped at the edge while the page looks fine`);
   ck(emitted.has('home') && emitted.has('go') && emitted.has('gs'), 'sanity: build.mjs still emits home/go/gs');
   ck(EVENTS.has('home') && EVENTS.has('go'), 'existing events still allowlisted');

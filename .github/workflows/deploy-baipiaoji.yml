@@ -299,6 +299,16 @@ jobs:
           node tools/member-studio/test-isolation.mjs
           node sites/baipiaoji/scripts/test-video-business.mjs --dist
 
+      # 2026-09-25: the paid save path (hand login, handoff nonce, revision follow-up, second account, new key, rotation) is only visible
+      # in a real browser. Before this step the fixes for V1/V2/MV-1..MV-4 were guarded by a test nobody ran (review L5).
+      # Push only: the member/video code changes only by push, so the daily schedule would pay ~1 min for nothing.
+      - name: Paid save path in a real browser
+        if: github.event_name == 'push'
+        working-directory: ${{ github.workspace }}
+        run: |
+          node tools/revenue-studio/node_modules/playwright/cli.js install --with-deps chromium --only-shell
+          node sites/baipiaoji/scripts/test-video-business-browser.mjs
+
       - name: Deploy to Cloudflare Pages
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}

@@ -166,7 +166,8 @@
    "lose": "注册 0 且 calc 跌 >80% → 报 owner 建议软门",
    "source": "sites/baipiaoji/CLAUDE.md:74",
    "status": "open",
-   "instrument_note_2026-09-22": "⚠ 2026-09-22 仪器修正：该事件名自 09-04「未知事件名改为丢弃」上线起从未进 hit.js 白名单，边缘静默丢弃，此前读到的 0 是丢包不是行为；本次部署起才有读数，窗口从部署日重新起算。"
+   "instrument_note_2026-09-22": "⚠ 2026-09-22 仪器修正：该事件名自 09-04「未知事件名改为丢弃」上线起从未进 hit.js 白名单，边缘静默丢弃，此前读到的 0 是丢包不是行为；本次部署起才有读数，窗口从部署日重新起算。",
+   "instrument_note_2026-09-25": "⚠ 2026-09-25 口径：09-25 上线的视频入口点击（/video/<位置>-<动作>）部署前记在 ev='calc' 名下，同日审计后改记 ev='video'。结算本线读 calc 时必须加 AND path NOT LIKE '/video/%' AND path NOT LIKE '%/demo'，否则导航会被读成工具使用。"
   },
   {
    "id": "bpj-site-search-0927",
@@ -810,7 +811,8 @@
    "lose": "<120 → 工具不是营收路径:新站三件套里「不上传的工具」从必做降为可选,现有工具只维护不扩建",
    "source": "docs/tool-monetization-2026-09-16.md §七",
    "status": "open",
-   "reading_20260924": "69/28d(t0 61):eco 38(btu 34 + standort 3 + panel 1)、agi 22、bpj 9、**SR 0(从 13 掉下来)**、tds 0、六个新站 0。六站的 0 现在是**测出来的**:信标真值测试每天绿(n=4),九天零客户端事件。同期舰队新增 4 站、13+ 个工具,总使用量只从 61 动到 69。"
+   "reading_20260924": "69/28d(t0 61):eco 38(btu 34 + standort 3 + panel 1)、agi 22、bpj 9、**SR 0(从 13 掉下来)**、tds 0、六个新站 0。六站的 0 现在是**测出来的**:信标真值测试每天绿(n=4),九天零客户端事件。同期舰队新增 4 站、13+ 个工具,总使用量只从 61 动到 69。",
+   "instrument_note_2026-09-25": "⚠ 2026-09-25 口径：09-25 上线的视频入口点击（/video/<位置>-<动作>）部署前记在 ev='calc' 名下，同日审计后改记 ev='video'。结算本线读 calc 时必须加 AND path NOT LIKE '/video/%' AND path NOT LIKE '%/demo'，否则导航会被读成工具使用。"
   },
   {
    "id": "fleet-machine-demand-1014",
@@ -1621,6 +1623,55 @@
    "win": "清单回写修通，sitemap lastmod 与 IndexNow 回到只报真变化；结论写回 bpj CLAUDE.md 第 26 条",
    "lose": "读那次 run 的「Commit page change manifest」日志：若仍是工作区不干净，查是哪个文件（--autostash 应已覆盖）；若是推送竞争，改为重试；在修通之前不把任何「今天变了多少页」的读数当事实引用",
    "source": "sites/baipiaoji/CLAUDE.md 第 26 条 + .github/workflows/deploy-baipiaoji.yml",
+   "status": "open",
+   "reading_2026-09-25": "中间读数（不结算）：① 已满足——09-25 定时 run 提交了 59e64217（清单首次由 CI 回写）；③ 已满足——汇总门「变更清单回写」success；② 当日 IndexNow 推了 1 670 条。原因已查实不是基线造假：本地与 CI 构建哈希逐页一致（1 620/1 672 相同；其余 52 页是清单 59e64217 之后的真改动，而该清单早于 d1a02d6f：d1a02d6f 视频上线 48 页（40 个视频工具页、首页与 /c/video 各 2、studio 枢纽 2、新增 /video/ 2），video-variants 2 页（上线 + 本轮 EDITION），本轮审计单独带来的只有 quote-compare 2 页），整站 1 662 页变更来自 5a24095d→e565fe0f 之间的真实全站改动（PR #2 的 canonical/跳板 URL 修复 + Studio 上线）。09-26 的 run 仍会推 ~1 672 条（indexnow-plan 选「今天或昨天」变更的页，而 1 662 页日期是 09-25），所以按原计划只看 09-27 的日志结算 ②。09-25 另一处 424 页空白行 churn（d1a02d6f 的空模板槽）已在 09-26 定时 run 之前修掉，本地构建由 474 降到 52 页。"
+  },
+  {
+   "id": "bpj-studio-video-own-1023",
+   "site": "baipiaoji",
+   "due": "2026-10-23",
+   "metric": "D1 baipiaoji-hits，窗口 2026-09-26→10-23：SELECT COUNT(DISTINCT d||'|'||country) dxc, COUNT(DISTINCT country) countries FROM hits WHERE ev='calc' AND path IN ('/studio/video-variants/export-video/own','/studio/video-variants/export-batch/own')，剔 CI：COALESCE(lang,'')<>'ci' AND NOT (path LIKE '/\\_\\_%' ESCAPE '\\')；页面上带 ?__ci 的 QA 访问不发事件。辅助读数：/studio/video-variants 与 /en/studio/video-variants 的带来源真人 pv（ev='' AND ref<>''）。'/demo' 后缀一律不计。",
+   "threshold": "dxc ≥5 且 countries ≥3",
+   "t0": "0（2026-09-25 D1 现查：/studio/% 与 /video/% 的 calc 行 0；上线当天 18 次无来源 pv 是 US QA 形状 + Yandex 渲染，不计）",
+   "win": "有人用自己的素材导出成片 → video-variants 保留；下一个扩张槽只做一条分发（栈组装器 writing-image-video 结果处加一行，带事件）；是否收费仍由 bpj-studio-video-paid-1124 决定，模型生成层照样不做",
+   "lose": "dxc=0 而 bpj-studio-entry-1023 入口点击 ≥5 → 人来了却不做：video-variants 只维护、不加功能，Studio 不加新工具；dxc=0 且入口点击 <5 → insufficient（分发问题），同样不加功能；dxc 1–4，或 dxc ≥5 但 countries <3 → insufficient：video-variants 只维护、不加功能，Studio 不加新工具",
+   "source": "sites/baipiaoji/CLAUDE.md 第 27 条 + docs/PRD-studio-2026-09-25.md（2026-09-25 审计后补登：上线时台账 0 行）",
+   "status": "open"
+  },
+  {
+   "id": "bpj-studio-entry-1023",
+   "site": "baipiaoji",
+   "due": "2026-10-23",
+   "metric": "D1 baipiaoji-hits，窗口 2026-09-26→10-23。分子：SELECT COUNT(DISTINCT d||'|'||country||'|'||path) clicks, COUNT(DISTINCT CASE WHEN path LIKE '/video/tool-%' THEN 'tool' WHEN path LIKE '/video/category-%' THEN 'category' WHEN path LIKE '/video/home%' THEN 'home' END) places FROM hits WHERE ev='video' AND (path LIKE '/video/tool-%' OR path LIKE '/video/category-%' OR path LIKE '/video/home%') AND (path LIKE '%-create' OR path LIKE '%-hub' OR path LIKE '%-membership')，剔 CI：COALESCE(lang,'')<>'ci' AND NOT (path LIKE '/\\_\\_%' ESCAPE '\\')；页面上带 ?__ci 的 QA 访问不发事件。分母：同窗 ev='' AND ref<>'' 的真人 pv，路径取 /、/en/、/c/video、/en/c/video 与 20 个视频工具页中英文。事件名是 'video'（09-25 审计后从 calc 改出来；此前入口点击记在 calc 名下，窗口从 09-26 起算）。",
+   "threshold": "clicks ≥7（约为 t0 分母 68 的 10%）且 places ≥2",
+   "t0": "clicks 0（事件 09-25 才上线）；分母 68（2026-08-29→09-25：视频工具页 39、/c/video 1、首页 28）",
+   "win": "已有流量页上的入口在导流 → 入口保留，Studio 有无价值交给 bpj-studio-video-own-1023；两条都赢才考虑把入口复制到栈组装器",
+   "lose": "clicks <3 且分母 ≥50 → 视频工具页读者（找免费生成额度的人）不是 Studio 受众：撤掉 20 个工具页上的 video-entry 块（保留 /c/video、首页、/video/），不再往任何页加 Studio 入口；分母 <50 → insufficient，只维护；其余情况（分母 ≥50 且 clicks 3–6，或 clicks ≥7 但 places <2）→ insufficient：入口保留、只维护，不往任何新页面加 Studio 入口",
+   "source": "sites/baipiaoji/CLAUDE.md 第 27 条",
+   "status": "open"
+  },
+  {
+   "id": "bpj-studio-quote-own-1106",
+   "site": "baipiaoji",
+   "due": "2026-11-06",
+   "metric": "D1 baipiaoji-hits，窗口 2026-09-26→11-06：SELECT COUNT(DISTINCT d||'|'||country) dxc, COUNT(DISTINCT country) countries FROM hits WHERE ev='calc' AND path IN ('/studio/quote-compare/export-csv/own','/studio/quote-compare/export-report/own','/studio/quote-compare/export-backup/own')，剔 CI：COALESCE(lang,'')<>'ci' AND NOT (path LIKE '/\\_\\_%' ESCAPE '\\')；页面上带 ?__ci 的 QA 访问不发事件。辅助：/studio/quote-compare 与 /en/studio/quote-compare 带来源真人 pv；对照 RFQ Desk /api/pulse（venture-rfqdesk-1016）。",
+   "threshold": "dxc ≥3 且 countries ≥2",
+   "t0": "0 次自有导出、0 次带来源 pv（2026-09-25）；bpj 上挂它的有流量页只有首页（28 次带来源 pv/28 天）；RFQ Desk 做同一件事 28 天 0 事件",
+   "win": "bpj 上有人用自己的报价导出结果 → 与 RFQ Desk 对照；bpj >0 而 RFQ 为 0 则这件事留在 bpj，多物料比较（不做 OCR、不接模型）可进下一个扩张槽，按薄 PRD 走",
+   "lose": "dxc=0 → 从 bpj 首页与 studio hero 撤下 quote-compare 卡片（URL、/studio/ 列表与 llms 那一行保留，维护成本为零）；bpj 上永不做 OCR、模型抽取或多物料；放在 bpj 还是 RFQ Desk 由 owner 决定；dxc 1–2，或 dxc ≥3 但 countries <2 → insufficient：卡片保留、只维护，不做多物料/OCR/模型，放在 bpj 还是 RFQ Desk 交 owner",
+   "source": "sites/baipiaoji/CLAUDE.md 第 27 条",
+   "status": "open"
+  },
+  {
+   "id": "bpj-studio-video-paid-1124",
+   "site": "baipiaoji",
+   "due": "2026-11-24",
+   "metric": "D1 baipiaoji-hits：SELECT (SELECT COUNT(*) FROM wb_order_sources WHERE product='bpj-video-variants') created, (SELECT COUNT(*) FROM wb_orders o JOIN wb_order_sources s ON s.order_id=o.id WHERE s.product='bpj-video-variants' AND o.state='paid') paid, (SELECT COUNT(*) FROM wb_spaces WHERE product='bpj-video-variants') spaces；另加 ev='calc' AND path='/studio/video-variants/cloud-open/own'（2026-09-26→11-24，剔 CI）。只报计数，不输出订单号或地址。与 bpj-work-plan-paid-1124 同日结算。",
+   "threshold": "paid ≥1 且 spaces ≥1",
+   "t0": "created 0、paid 0、spaces 0（有表以来；wb_members 0、wb_orders 0，2026-09-25 D1 现查）；cloud-open 0",
+   "win": "第一个独立买家 → 按 RESEARCH 文档自己的规则，扩大收费前还要 3 个独立付费买家且贡献毛利为正；那时模型生成层才有资格写付费试点 PRD（单任务报价、消费硬上限、服务端密钥）",
+   "lose": "created=0 → 不做模型层、不做媒体云存储，20 个工具页入口块里的会员链接撤掉（保留 /video/ 与工具内保存按钮）；cloud-open ≥5 而 created=0 → 卡点是只收 BSC 网络 USDT，交 owner 做 Stripe 决定（同 bpj-work-plan-paid-1124）；created ≥1 而 paid=0 → 卡点在付款（只收 BSC USDT），交 owner 做 Stripe 决定，不做模型层；paid ≥1 但 spaces=0 → 查交付链路（开通工作区），不算 won",
+   "source": "sites/baipiaoji/CLAUDE.md 第 27 条 + docs/VIDEO-commerce-2026-09-25.md",
    "status": "open"
   },
   {
