@@ -21,6 +21,7 @@ on:
       - "!sites/thedollscout/content/growth-log.md"
       - "!sites/thedollscout/content/trends-rising.json"
       - "!sites/thedollscout/content/trends-us.json"
+      - "!sites/thedollscout/content/document-metrics.json"
       # 簿记文件,不发布(assemble-dist 排除 *.md)——手册更新不该烧一次部署。
       - "!sites/thedollscout/CLAUDE.md"
       - ".github/workflows/deploy-thedollscout.yml"
@@ -58,6 +59,17 @@ jobs:
             echo "::warning::stale run — HEAD $(git rev-parse --short HEAD) is behind main tip $(git rev-parse --short "$TIP"); deploying the tip instead of rolling production back"
             git reset --hard "$TIP"
           fi
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Build and test Document Scout from pinned dependencies
+        run: |
+          npm ci --prefix scripts/documents --ignore-scripts
+          npm test --prefix scripts/documents
+          node scripts/documents/build.mjs
+          node scripts/documents/verify.mjs
 
       # 正确性闸门:站内不允许再出现旧站的任何痕迹——成人 meta、年龄门、
       # yourdoll 联盟。发现即失败,防止旧模板被无意识复制回来。
@@ -119,12 +131,8 @@ jobs:
           echo "odds cluster in sync with data/rarity-odds.json"
 
 
-      # llms-full.txt = 全站正文单文件渲染(GEO 面:AI 引擎一次抓取读全站)。
-      # 生成器铁律(本站 8 天冻结教训):脚本内部永远 exit 0,任何失败只降级
-      # 输出;这里再包一层 continue-on-error,双保险——生成器绝不阻断部署。
-      - name: Build llms-full.txt (degrades, never blocks)
-        continue-on-error: true
-        run: node scripts/build-llms-full.mjs
+      # 2026-09-25 owner-authorized pivot: document build owns both AI indexes.
+      # The historical collector generator must not restore the old positioning.
 
       - name: Assemble static site into dist/
         run: |
@@ -143,6 +151,11 @@ jobs:
           node tools/revenue-studio/verify.mjs --site tds --out sites/thedollscout/dist
           node tools/member-studio/test-isolation.mjs
           node tools/member-studio/verify.mjs --site tds --out sites/thedollscout/dist
+
+      - name: Finalize document homepage and AI indexes after legacy workbench
+        run: |
+          node scripts/documents/build.mjs --out dist
+          node scripts/documents/verify.mjs --out dist
 
       - name: Configure independent membership secrets
         working-directory: ${{ github.workspace }}
@@ -173,6 +186,9 @@ jobs:
       # 部署后自检(根仓 CLAUDE.md 2026-08-27 审计要求:断言事故的形状)。
       # 本站的事故形状:①新页 404(部署没生效)②旧成人页仍 200(下架没生效)
       # ③重定向环(gridlings 教训)。三样都测。
+      - name: Verify live document pages, assets and isolated measurement
+        run: node scripts/documents/verify.mjs --live
+
       - name: Verify independent membership after deployment
         working-directory: ${{ github.workspace }}
         env:

@@ -465,8 +465,8 @@ body.has-rail .site-footer { margin-left: var(--rail-w); }
 }
 @media (max-width: 860px) {
   .rail { position: static; width: auto; height: auto; border-right: 0; border-bottom: 2px solid var(--rule); padding: 12px 14px; gap: 10px; }
-  .rail-jump { flex-direction: row; gap: 8px; }
-  .rail-jump a { border: 1px solid var(--rule); padding: 5px 10px; }
+  .rail-jump { flex-direction: row; gap: 8px; overflow-x: auto; }
+  .rail-jump a { flex: none; white-space: nowrap; min-height: 44px; border: 1px solid var(--rule); padding: 5px 10px; }
   .rail-nav { flex-direction: row; overflow-x: auto; gap: 6px; scrollbar-width: none; }
   .rail-nav::-webkit-scrollbar { display: none; }
   .rail-item { flex: none; width: auto; border: 1px solid var(--line); padding: 5px 11px; font-size: 12.5px; }

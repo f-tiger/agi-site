@@ -1,5 +1,5 @@
-# thedollscout.com — Labubu buyer's guide (2026-08-30 pivot; the adult site
-# this domain previously served is retired and its pages return 404/410).
+# thedollscout.com — TDS Document Scout (2026-09-25 document pivot).
+# Historical collector content is linked from /collectors.
 # AI crawlers are welcome by name: being read and cited by assistants is a
 # distribution channel we court, not a cost.
 
@@ -43,8 +43,8 @@ Allow: /
 # (Comments are advisory; every path below is also Allow-ed by the rules above.)
 #   Site index for AI:      https://thedollscout.com/llms.txt
 #   Full site text:         https://thedollscout.com/llms-full.txt
-#   MCP endpoint (4 tools): https://thedollscout.com/mcp
-#   MCP discovery:          https://thedollscout.com/.well-known/mcp.json
-#   Open datasets (CC-BY):  https://thedollscout.com/data/
+#   PDF tool capabilities: https://thedollscout.com/document-assets/tool-capabilities.json
+#   Historical collector MCP only: https://thedollscout.com/mcp
+#   Historical collector data:     https://thedollscout.com/data/
 
 Sitemap: https://thedollscout.com/sitemap.xml

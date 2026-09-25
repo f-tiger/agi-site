@@ -1,24 +1,24 @@
 {
- "generated": "2026-09-24",
+ "generated": "2026-09-25",
  "env": "runner",
  "note": "付费档缺口的抓取探针。只做发现与取证，绝不写事实：任何数字仍须经 scripts/limits-edit.mjs 两步核实后才进 tools.json。state=ready 表示该 URL 当天 200 且页面上有像价目表的价格段，不表示数字已被核实。每行的 env 是抓取时的网络环境：sandbox 行的 blocked 很可能只是会话沙箱出网被拒，不能当作「这家没有定价页」，只有 runner 行的 blocked 才值得当结论。",
- "gap_total": 108,
+ "gap_total": 101,
  "batch": [
-  "elicit",
-  "exa",
-  "felo",
-  "figma",
-  "framer",
-  "gamma",
-  "gaoding",
-  "gemini"
+  "gemini-cli",
+  "gezhe",
+  "gptzero",
+  "grammarly",
+  "groq",
+  "heygen",
+  "huggingface",
+  "ideogram"
  ],
- "cursor": "gemini",
+ "cursor": "ideogram",
  "summary": {
-  "ready": 19,
+  "ready": 24,
   "empty": 20,
-  "blocked": 15,
-  "probed_total": 54
+  "blocked": 17,
+  "probed_total": 61
  },
  "tools": {
   "kimi": {
@@ -661,15 +661,15 @@
    "slug": "groq",
    "name": "Groq",
    "cat": "api",
-   "reach": 1,
-   "probed": "2026-09-20",
+   "reach": 0,
+   "probed": "2026-09-25",
    "env": "runner",
    "state": "empty",
    "tried": [
     {
      "url": "https://groq.com/pricing",
      "status": 200,
-     "bytes": 54738,
+     "bytes": 54261,
      "tokens": 1
     },
     {
@@ -1575,6 +1575,182 @@
     {
      "url": "https://gemini.google.com/plans",
      "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    }
+   ],
+   "best": null
+  },
+  "gemini-cli": {
+   "slug": "gemini-cli",
+   "name": "Gemini CLI",
+   "cat": "coding",
+   "reach": 0,
+   "probed": "2026-09-25",
+   "env": "runner",
+   "state": "ready",
+   "tried": [
+    {
+     "url": "https://github.com/google-gemini/gemini-cli/blob/main/docs/resources/quota-and-pricing.md",
+     "status": 200,
+     "bytes": 313461,
+     "tokens": 0
+    },
+    {
+     "url": "https://github.com/pricing",
+     "status": 200,
+     "bytes": 600000,
+     "tokens": 51
+    }
+   ],
+   "best": {
+    "url": "https://github.com/pricing",
+    "tokens": 51,
+    "excerpt": "es on team Switch plans Select a plan to review its features Free Team Enterprise Features Free Team Enterprise Pricing $ 0 USD per month $ 0 USD per month forever $ 4 USD per user/month $ 4 USD per user/month for the first 12 months * $ 21 USD per user/month $ 21 USD per user/month for the first 12 months * How to get started Join for free Continue with Team Start a free trial Contact Sales Code management Public repositories Unlimited Unlimited Unlimited Host open source projects in public GitHub repositories, accessible via web or command line. Public repositories are accessible to anyone at GitHub.com. Uh oh! There was an error while loading. Please reload this page . Unlimited Unlimited"
+   }
+  },
+  "gezhe": {
+   "slug": "gezhe",
+   "name": "歌者 PPT",
+   "cat": "office",
+   "reach": 0,
+   "probed": "2026-09-25",
+   "env": "runner",
+   "state": "blocked",
+   "tried": [
+    {
+     "url": "https://gezhe.com/pricing",
+     "status": 502,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://gezhe.com/price",
+     "status": 502,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://gezhe.com/plans",
+     "status": 502,
+     "bytes": 0,
+     "tokens": 0
+    }
+   ],
+   "best": null
+  },
+  "gptzero": {
+   "slug": "gptzero",
+   "name": "GPTZero",
+   "cat": "safety",
+   "reach": 0,
+   "probed": "2026-09-25",
+   "env": "runner",
+   "state": "ready",
+   "tried": [
+    {
+     "url": "https://gptzero.me/pricing",
+     "status": 200,
+     "bytes": 237272,
+     "tokens": 5
+    }
+   ],
+   "best": {
+    "url": "https://gptzero.me/pricing",
+    "tokens": 5,
+    "excerpt": "eam credits Unified billing Create a team Contact Sales Professional Plan Billing Cycle Monthly annual (Save 45%) Seats $0 /mo billed annually $0 /mo x 2 members Save $0 /year Purchase Seats API for developers A powerful API Integration seamlessly integrates our AI detector into any platform. Ready-to-use code available in 17 different languages, including Node.JS, Python, C#, Java, PHP, and more. View Pricing Contact Sales © 2023 - 2026 GPTZero 4.7 ★★★★★ ★★★★★ ( 707 reviews) Products AI Detector Hallucination Detector Plagiarism Check Authorship &amp; Writing Replay Expert Feedback Grammar Checker Chrome Extension AI Vision Resources Pricing Sales For Educators For Students How it Works Res"
+   }
+  },
+  "grammarly": {
+   "slug": "grammarly",
+   "name": "Grammarly",
+   "cat": "writing",
+   "reach": 0,
+   "probed": "2026-09-25",
+   "env": "runner",
+   "state": "ready",
+   "tried": [
+    {
+     "url": "https://www.grammarly.com/pricing",
+     "status": 200,
+     "bytes": 600000,
+     "tokens": 13
+    }
+   ],
+   "best": {
+    "url": "https://www.grammarly.com/pricing",
+    "tokens": 13,
+    "excerpt": "million people and 50,000 organizations Most popular For individuals Free Write without spelling and grammar mistakes. $0 USD / month Create account Write without mistakes See your writing tone Generate text with 100 AI prompts Most popular For eligible individuals and teams Pro Achieve your goals with clear and confident writing. $12 USD Try for free Email reminder 2 days before trial ends. $0 payment today Try for $0.00 Everything in Free, plus: Rewrite full sentences with a click Adjust your writing tone with ease Write fluently in English Unlimited personalized suggestions Detect plagiarism and AI generated text Generate text with 2,000 AI prompts Most popular For larger organizations En"
+   }
+  },
+  "heygen": {
+   "slug": "heygen",
+   "name": "HeyGen",
+   "cat": "video",
+   "reach": 0,
+   "probed": "2026-09-25",
+   "env": "runner",
+   "state": "ready",
+   "tried": [
+    {
+     "url": "https://heygen.com/pricing",
+     "status": 200,
+     "bytes": 600000,
+     "tokens": 36
+    }
+   ],
+   "best": {
+    "url": "https://heygen.com/pricing",
+    "tokens": 36,
+    "excerpt": "Paid plans include a monthly credit allocation you spend across all features. For solo creators, the Creator plan costs $29/month (or $24/month if you pay annually). For advanced individuals, Pro starts at $49/month and scales up to tiers with more credits per month. For teams looking to create and collaborate, the Business plan costs $149/month plus $20/seat/month. What are credits? Credits are HeyGen&#x27;s single currency for video and asset creation. Every paid plan includes a monthly credit allocation, which you can use across different HeyGen features. The number of credits a video or asset uses can vary based on which AI model is used, video duration, and the complexity of the generat"
+   }
+  },
+  "huggingface": {
+   "slug": "huggingface",
+   "name": "Hugging Face",
+   "cat": "api",
+   "reach": 0,
+   "probed": "2026-09-25",
+   "env": "runner",
+   "state": "ready",
+   "tried": [
+    {
+     "url": "https://huggingface.co/docs/inference-providers/pricing",
+     "status": 200,
+     "bytes": 134917,
+     "tokens": 5
+    }
+   ],
+   "best": {
+    "url": "https://huggingface.co/docs/inference-providers/pricing",
+    "tokens": 5,
+    "excerpt": "xperiment with Inference Providers: Account Type Monthly Credits Can be spent on Extra usage (pay-as-you-go) Free Users $0.10, subject to change Inference Providers yes (credits purchase required) PRO Users $2.00 All Hugging Face compute services yes Team or Enterprise Organizations $2.00 per seat All Hugging Face compute services yes Credits included with a PRO, Team, or Enterprise subscription are general-purpose compute credits : on top of Inference Providers, they can also be spent on Inference Endpoints , upgraded CPU &amp; GPU hardware for Spaces (including ZeroGPU usage beyond your quota), and Jobs . They are credited every month and applied automatically before any pay-as-you-go usag"
+   }
+  },
+  "ideogram": {
+   "slug": "ideogram",
+   "name": "Ideogram",
+   "cat": "image",
+   "reach": 0,
+   "probed": "2026-09-25",
+   "env": "runner",
+   "state": "blocked",
+   "tried": [
+    {
+     "url": "https://ideogram.ai/pricing",
+     "status": 403,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://ideogram.ai/price",
+     "status": 403,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://ideogram.ai/plans",
+     "status": 403,
      "bytes": 0,
      "tokens": 0
     }

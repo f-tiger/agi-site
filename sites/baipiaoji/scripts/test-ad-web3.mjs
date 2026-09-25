@@ -8,6 +8,9 @@ import {onRequestGet as ads} from '../functions/api/ads.js';
 function db(){const sql=new DatabaseSync(':memory:');return {sql,failAt:null,prepare(query){return {args:[],bind(...a){this.args=a;return this;},async first(){return sql.prepare(query).get(...this.args)||null;},async all(){return {results:sql.prepare(query).all(...this.args)};},async run(){return {meta:{changes:sql.prepare(query).run(...this.args).changes}};},query};},async batch(items){sql.exec('BEGIN');try{const out=[];for(const [i,s]of items.entries()){if(i===this.failAt)throw Error('db failure');out.push({meta:{changes:sql.prepare(s.query).run(...s.args).changes}});}sql.exec('COMMIT');return out;}catch(e){sql.exec('ROLLBACK');throw e;}}};}
 const addr='0x'+'1'.repeat(40),TX='0x'+'a'.repeat(64),BH='0x'+'b'.repeat(64),topic='0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef';
 const envFor=HITS=>({HITS,ADS_WEB3_ENABLED:'true',ADS_WALLET_CHAIN:'bsc',ADS_WALLET:addr,ADS_WEB3_PRICE_USD:'49.00',ADS_WEB3_RPC_URL:'https://rpc.example.org',ADS_WATCH_SECRET:'s'.repeat(64),ADS_DAYS:'30'});
+// Keep mocked block timestamps and order creation on one clock. Crossing a real
+// second between setup() and order() otherwise invents a pre-order payment.
+const realNow=Date.now,fixtureNow=realNow();Date.now=()=>fixtureNow;
 let finalHeight=1000,blockTime=seconds(),receipt=null,logs=[],rpcError=false,chainId='0x38',precision=18;
 const oldFetch=globalThis.fetch;
 globalThis.fetch=async(url,opt)=>{const b=JSON.parse(opt.body);if(rpcError)return Response.json({error:{code:-1}});let result;
@@ -45,4 +48,4 @@ await test('doctor and public ads do not reveal recipient, credentials or transa
 await test('test-network payments never appear in public inventory',async()=>{const{env}=await setup({ADS_WALLET_CHAIN:'base-sepolia'}),row=await order(env);await deliverWeb3(env,row,await verified(env,row));const r=await ads({env,request:new Request('https://baipiaoji.com/api/ads?cat=coding')});assert.equal((await r.json()).ads.length,0);});
 await test('Stripe and Web3 paid orders compete for the SAME live lanes',async()=>{const{d,env}=await setup();const row=await order(env);await deliverWeb3(env,row,await verified(env,row));d.sql.prepare("INSERT INTO bpj_ad_checkout(id,token_hash,name,url,pitch,cat,lang,price_cents,currency,days,livemode,state,session,created) VALUES('card','hash','Card','https://card.example.org','Tool','coding','en',4900,'eur',30,1,'pending','cs_card',?)").run(seconds());await fulfill(d,{metadata:{bpj_order:'card'},payment_status:'paid',mode:'payment',client_reference_id:'card',id:'cs_card',payment_intent:'pi_card',livemode:true,amount_subtotal:4900,amount_total:4900,currency:'eur'},'evt_card','paid');assert.equal(d.sql.prepare("SELECT slot FROM bpj_ad_checkout WHERE id='card'").get().slot,2);});
 console.log(`${passed} Web3 integration tests passed (real SQLite, mocked JSON-RPC).`);
-}finally{globalThis.fetch=oldFetch;}
+}finally{globalThis.fetch=oldFetch;Date.now=realNow;}

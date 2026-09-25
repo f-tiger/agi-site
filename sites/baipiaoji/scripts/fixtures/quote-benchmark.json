@@ -1,0 +1,1628 @@
+{
+  "note": "18 synthetic independent cases from the 2026-09-24 Workfit validation pack. Not customer quotes or independent model evaluation.",
+  "cases": [
+    {
+      "input": {
+        "requested_units": 100,
+        "moq_units": 1,
+        "order_multiple_units": 1,
+        "price_per_quoted_unit": "10",
+        "quoted_unit": "piece",
+        "units_per_box": null,
+        "sku": "PART-100",
+        "required_sku": "PART-100",
+        "tax_mode": "included",
+        "tax_rate": null,
+        "shipping_gross_quote_currency": "80",
+        "currency": "CNY",
+        "as_of": "2026-09-24",
+        "valid_until": "2026-10-24",
+        "lead_days": 7,
+        "max_lead_days": 14,
+        "superseded_by": null,
+        "overbuy_approved": false,
+        "stated_line_total": null,
+        "tiers": [],
+        "fx": null,
+        "case_id": "Q01",
+        "scenario": "完整报价",
+        "source_file": "Q01.txt",
+        "evidence": [
+          {
+            "field": "sku",
+            "line": 4,
+            "snippet": "产品料号：PART-100"
+          },
+          {
+            "field": "price",
+            "line": 5,
+            "snippet": "报价单价：10"
+          },
+          {
+            "field": "unit",
+            "line": 6,
+            "snippet": "报价单位：每件"
+          },
+          {
+            "field": "currency",
+            "line": 7,
+            "snippet": "报价币种：CNY"
+          },
+          {
+            "field": "quantity_terms",
+            "line": 8,
+            "snippet": "最低起订量：1 件；整订倍数：1 件"
+          },
+          {
+            "field": "tax",
+            "line": 9,
+            "snippet": "税费说明：货款单价含税"
+          },
+          {
+            "field": "shipping",
+            "line": 10,
+            "snippet": "运输费用：含税运费 80 CNY"
+          },
+          {
+            "field": "validity",
+            "line": 11,
+            "snippet": "有效截止：2026-10-24"
+          },
+          {
+            "field": "delivery",
+            "line": 12,
+            "snippet": "确认订单后交货：7 个日历日"
+          },
+          {
+            "field": "version",
+            "line": 13,
+            "snippet": "版本说明：本案例当前版本"
+          }
+        ],
+        "source_text": "合成报价样本 / SYNTHETIC - NOT FOR PURCHASE\nQ01 | 供应商报价\n供应商：虚构样本商 Q01\n产品料号：PART-100\n报价单价：10\n报价单位：每件\n报价币种：CNY\n最低起订量：1 件；整订倍数：1 件\n税费说明：货款单价含税\n运输费用：含税运费 80 CNY\n有效截止：2026-10-24\n确认订单后交货：7 个日历日\n版本说明：本案例当前版本\n--- 买方测试条件（不是供应商报价） ---\n需要 100 件 PART-100；最迟 14 个日历日交付。\n评估基准日：2026-09-24\n允许自动多买：否；替代料号需确认。\n买方汇率政策：CNY 无需换算；其他币种未提供换算授权。\n备注：每个案例独立；不能把本文件集当作同一次采购的全局供应商排名。\n"
+      },
+      "expected": {
+        "case_id": "Q01",
+        "status": "READY",
+        "total_cny": "1080.00",
+        "ordered_units": 100,
+        "issue_codes": []
+      }
+    },
+    {
+      "input": {
+        "requested_units": 100,
+        "moq_units": 1,
+        "order_multiple_units": 1,
+        "price_per_quoted_unit": "190",
+        "quoted_unit": "box",
+        "units_per_box": null,
+        "sku": "PART-100",
+        "required_sku": "PART-100",
+        "tax_mode": "included",
+        "tax_rate": null,
+        "shipping_gross_quote_currency": "80",
+        "currency": "CNY",
+        "as_of": "2026-09-24",
+        "valid_until": "2026-10-24",
+        "lead_days": 7,
+        "max_lead_days": 14,
+        "superseded_by": null,
+        "overbuy_approved": false,
+        "stated_line_total": null,
+        "tiers": [],
+        "fx": null,
+        "case_id": "Q02",
+        "scenario": "箱价缺少箱规",
+        "source_file": "Q02.txt",
+        "evidence": [
+          {
+            "field": "sku",
+            "line": 4,
+            "snippet": "产品料号：PART-100"
+          },
+          {
+            "field": "price",
+            "line": 5,
+            "snippet": "报价单价：190"
+          },
+          {
+            "field": "unit",
+            "line": 6,
+            "snippet": "报价单位：每箱；箱规 未注明"
+          },
+          {
+            "field": "currency",
+            "line": 7,
+            "snippet": "报价币种：CNY"
+          },
+          {
+            "field": "quantity_terms",
+            "line": 8,
+            "snippet": "最低起订量：1 件；整订倍数：1 件"
+          },
+          {
+            "field": "tax",
+            "line": 9,
+            "snippet": "税费说明：货款单价含税"
+          },
+          {
+            "field": "shipping",
+            "line": 10,
+            "snippet": "运输费用：含税运费 80 CNY"
+          },
+          {
+            "field": "validity",
+            "line": 11,
+            "snippet": "有效截止：2026-10-24"
+          },
+          {
+            "field": "delivery",
+            "line": 12,
+            "snippet": "确认订单后交货：7 个日历日"
+          },
+          {
+            "field": "version",
+            "line": 13,
+            "snippet": "版本说明：本案例当前版本"
+          }
+        ],
+        "source_text": "合成报价样本 / SYNTHETIC - NOT FOR PURCHASE\nQ02 | 供应商报价\n供应商：虚构样本商 Q02\n产品料号：PART-100\n报价单价：190\n报价单位：每箱；箱规 未注明\n报价币种：CNY\n最低起订量：1 件；整订倍数：1 件\n税费说明：货款单价含税\n运输费用：含税运费 80 CNY\n有效截止：2026-10-24\n确认订单后交货：7 个日历日\n版本说明：本案例当前版本\n--- 买方测试条件（不是供应商报价） ---\n需要 100 件 PART-100；最迟 14 个日历日交付。\n评估基准日：2026-09-24\n允许自动多买：否；替代料号需确认。\n买方汇率政策：CNY 无需换算；其他币种未提供换算授权。\n备注：每个案例独立；不能把本文件集当作同一次采购的全局供应商排名。\n"
+      },
+      "expected": {
+        "case_id": "Q02",
+        "status": "NEEDS_INPUT",
+        "total_cny": null,
+        "ordered_units": 100,
+        "issue_codes": [
+          "PACK_UNKNOWN"
+        ]
+      }
+    },
+    {
+      "input": {
+        "requested_units": 100,
+        "moq_units": 1,
+        "order_multiple_units": 1,
+        "price_per_quoted_unit": "9.8",
+        "quoted_unit": "piece",
+        "units_per_box": null,
+        "sku": "PART-100",
+        "required_sku": "PART-100",
+        "tax_mode": "unknown",
+        "tax_rate": null,
+        "shipping_gross_quote_currency": null,
+        "currency": "CNY",
+        "as_of": "2026-09-24",
+        "valid_until": "2026-10-24",
+        "lead_days": 7,
+        "max_lead_days": 14,
+        "superseded_by": null,
+        "overbuy_approved": false,
+        "stated_line_total": null,
+        "tiers": [],
+        "fx": null,
+        "case_id": "Q03",
+        "scenario": "税费及运费不明",
+        "source_file": "Q03.txt",
+        "evidence": [
+          {
+            "field": "sku",
+            "line": 4,
+            "snippet": "产品料号：PART-100"
+          },
+          {
+            "field": "price",
+            "line": 5,
+            "snippet": "报价单价：9.8"
+          },
+          {
+            "field": "unit",
+            "line": 6,
+            "snippet": "报价单位：每件"
+          },
+          {
+            "field": "currency",
+            "line": 7,
+            "snippet": "报价币种：CNY"
+          },
+          {
+            "field": "quantity_terms",
+            "line": 8,
+            "snippet": "最低起订量：1 件；整订倍数：1 件"
+          },
+          {
+            "field": "tax",
+            "line": 9,
+            "snippet": "税费说明：税费口径未注明"
+          },
+          {
+            "field": "shipping",
+            "line": 10,
+            "snippet": "运输费用：运费到付，金额未注明"
+          },
+          {
+            "field": "validity",
+            "line": 11,
+            "snippet": "有效截止：2026-10-24"
+          },
+          {
+            "field": "delivery",
+            "line": 12,
+            "snippet": "确认订单后交货：7 个日历日"
+          },
+          {
+            "field": "version",
+            "line": 13,
+            "snippet": "版本说明：本案例当前版本"
+          }
+        ],
+        "source_text": "合成报价样本 / SYNTHETIC - NOT FOR PURCHASE\nQ03 | 供应商报价\n供应商：虚构样本商 Q03\n产品料号：PART-100\n报价单价：9.8\n报价单位：每件\n报价币种：CNY\n最低起订量：1 件；整订倍数：1 件\n税费说明：税费口径未注明\n运输费用：运费到付，金额未注明\n有效截止：2026-10-24\n确认订单后交货：7 个日历日\n版本说明：本案例当前版本\n--- 买方测试条件（不是供应商报价） ---\n需要 100 件 PART-100；最迟 14 个日历日交付。\n评估基准日：2026-09-24\n允许自动多买：否；替代料号需确认。\n买方汇率政策：CNY 无需换算；其他币种未提供换算授权。\n备注：每个案例独立；不能把本文件集当作同一次采购的全局供应商排名。\n"
+      },
+      "expected": {
+        "case_id": "Q03",
+        "status": "NEEDS_INPUT",
+        "total_cny": null,
+        "ordered_units": 100,
+        "issue_codes": [
+          "TAX_UNKNOWN",
+          "SHIPPING_UNKNOWN"
+        ]
+      }
+    },
+    {
+      "input": {
+        "requested_units": 100,
+        "moq_units": 120,
+        "order_multiple_units": 20,
+        "price_per_quoted_unit": "9",
+        "quoted_unit": "piece",
+        "units_per_box": null,
+        "sku": "PART-100",
+        "required_sku": "PART-100",
+        "tax_mode": "included",
+        "tax_rate": null,
+        "shipping_gross_quote_currency": "0",
+        "currency": "CNY",
+        "as_of": "2026-09-24",
+        "valid_until": "2026-10-24",
+        "lead_days": 7,
+        "max_lead_days": 14,
+        "superseded_by": null,
+        "overbuy_approved": false,
+        "stated_line_total": null,
+        "tiers": [],
+        "fx": null,
+        "case_id": "Q04",
+        "scenario": "起订量导致多买",
+        "source_file": "Q04.txt",
+        "evidence": [
+          {
+            "field": "sku",
+            "line": 4,
+            "snippet": "产品料号：PART-100"
+          },
+          {
+            "field": "price",
+            "line": 5,
+            "snippet": "报价单价：9"
+          },
+          {
+            "field": "unit",
+            "line": 6,
+            "snippet": "报价单位：每件"
+          },
+          {
+            "field": "currency",
+            "line": 7,
+            "snippet": "报价币种：CNY"
+          },
+          {
+            "field": "quantity_terms",
+            "line": 8,
+            "snippet": "最低起订量：120 件；整订倍数：20 件"
+          },
+          {
+            "field": "tax",
+            "line": 9,
+            "snippet": "税费说明：货款单价含税"
+          },
+          {
+            "field": "shipping",
+            "line": 10,
+            "snippet": "运输费用：含税运费 0 CNY"
+          },
+          {
+            "field": "validity",
+            "line": 11,
+            "snippet": "有效截止：2026-10-24"
+          },
+          {
+            "field": "delivery",
+            "line": 12,
+            "snippet": "确认订单后交货：7 个日历日"
+          },
+          {
+            "field": "version",
+            "line": 13,
+            "snippet": "版本说明：本案例当前版本"
+          }
+        ],
+        "source_text": "合成报价样本 / SYNTHETIC - NOT FOR PURCHASE\nQ04 | 供应商报价\n供应商：虚构样本商 Q04\n产品料号：PART-100\n报价单价：9\n报价单位：每件\n报价币种：CNY\n最低起订量：120 件；整订倍数：20 件\n税费说明：货款单价含税\n运输费用：含税运费 0 CNY\n有效截止：2026-10-24\n确认订单后交货：7 个日历日\n版本说明：本案例当前版本\n--- 买方测试条件（不是供应商报价） ---\n需要 100 件 PART-100；最迟 14 个日历日交付。\n评估基准日：2026-09-24\n允许自动多买：否；替代料号需确认。\n买方汇率政策：CNY 无需换算；其他币种未提供换算授权。\n备注：每个案例独立；不能把本文件集当作同一次采购的全局供应商排名。\n"
+      },
+      "expected": {
+        "case_id": "Q04",
+        "status": "NEEDS_APPROVAL",
+        "total_cny": "1080.00",
+        "ordered_units": 120,
+        "issue_codes": [
+          "OVERBUY_APPROVAL"
+        ]
+      }
+    },
+    {
+      "input": {
+        "requested_units": 100,
+        "moq_units": 1,
+        "order_multiple_units": 1,
+        "price_per_quoted_unit": "1",
+        "quoted_unit": "piece",
+        "units_per_box": null,
+        "sku": "PART-100",
+        "required_sku": "PART-100",
+        "tax_mode": "included",
+        "tax_rate": null,
+        "shipping_gross_quote_currency": "5",
+        "currency": "USD",
+        "as_of": "2026-09-24",
+        "valid_until": "2026-10-24",
+        "lead_days": 7,
+        "max_lead_days": 14,
+        "superseded_by": null,
+        "overbuy_approved": false,
+        "stated_line_total": null,
+        "tiers": [],
+        "fx": null,
+        "case_id": "Q05",
+        "scenario": "美元报价无确认汇率",
+        "source_file": "Q05.txt",
+        "evidence": [
+          {
+            "field": "sku",
+            "line": 4,
+            "snippet": "产品料号：PART-100"
+          },
+          {
+            "field": "price",
+            "line": 5,
+            "snippet": "报价单价：1"
+          },
+          {
+            "field": "unit",
+            "line": 6,
+            "snippet": "报价单位：每件"
+          },
+          {
+            "field": "currency",
+            "line": 7,
+            "snippet": "报价币种：USD"
+          },
+          {
+            "field": "quantity_terms",
+            "line": 8,
+            "snippet": "最低起订量：1 件；整订倍数：1 件"
+          },
+          {
+            "field": "tax",
+            "line": 9,
+            "snippet": "税费说明：货款单价含税"
+          },
+          {
+            "field": "shipping",
+            "line": 10,
+            "snippet": "运输费用：含税运费 5 USD"
+          },
+          {
+            "field": "validity",
+            "line": 11,
+            "snippet": "有效截止：2026-10-24"
+          },
+          {
+            "field": "delivery",
+            "line": 12,
+            "snippet": "确认订单后交货：7 个日历日"
+          },
+          {
+            "field": "version",
+            "line": 13,
+            "snippet": "版本说明：本案例当前版本"
+          }
+        ],
+        "source_text": "合成报价样本 / SYNTHETIC - NOT FOR PURCHASE\nQ05 | 供应商报价\n供应商：虚构样本商 Q05\n产品料号：PART-100\n报价单价：1\n报价单位：每件\n报价币种：USD\n最低起订量：1 件；整订倍数：1 件\n税费说明：货款单价含税\n运输费用：含税运费 5 USD\n有效截止：2026-10-24\n确认订单后交货：7 个日历日\n版本说明：本案例当前版本\n--- 买方测试条件（不是供应商报价） ---\n需要 100 件 PART-100；最迟 14 个日历日交付。\n评估基准日：2026-09-24\n允许自动多买：否；替代料号需确认。\n买方汇率政策：CNY 无需换算；其他币种未提供换算授权。\n备注：每个案例独立；不能把本文件集当作同一次采购的全局供应商排名。\n"
+      },
+      "expected": {
+        "case_id": "Q05",
+        "status": "NEEDS_INPUT",
+        "total_cny": null,
+        "ordered_units": 100,
+        "issue_codes": [
+          "FX_UNKNOWN"
+        ]
+      }
+    },
+    {
+      "input": {
+        "requested_units": 100,
+        "moq_units": 1,
+        "order_multiple_units": 1,
+        "price_per_quoted_unit": "1",
+        "quoted_unit": "piece",
+        "units_per_box": null,
+        "sku": "PART-100",
+        "required_sku": "PART-100",
+        "tax_mode": "included",
+        "tax_rate": null,
+        "shipping_gross_quote_currency": "5",
+        "currency": "USD",
+        "as_of": "2026-09-24",
+        "valid_until": "2026-10-24",
+        "lead_days": 7,
+        "max_lead_days": 14,
+        "superseded_by": null,
+        "overbuy_approved": false,
+        "stated_line_total": null,
+        "tiers": [],
+        "fx": {
+          "pair": "CNY_PER_USD",
+          "rate": "7.1",
+          "date": "2026-09-24",
+          "approved_by": "虚构买方的测试指令；非实时汇率"
+        },
+        "case_id": "Q06",
+        "scenario": "美元报价使用指定汇率",
+        "source_file": "Q06.txt",
+        "evidence": [
+          {
+            "field": "sku",
+            "line": 4,
+            "snippet": "产品料号：PART-100"
+          },
+          {
+            "field": "price",
+            "line": 5,
+            "snippet": "报价单价：1"
+          },
+          {
+            "field": "unit",
+            "line": 6,
+            "snippet": "报价单位：每件"
+          },
+          {
+            "field": "currency",
+            "line": 7,
+            "snippet": "报价币种：USD"
+          },
+          {
+            "field": "quantity_terms",
+            "line": 8,
+            "snippet": "最低起订量：1 件；整订倍数：1 件"
+          },
+          {
+            "field": "tax",
+            "line": 9,
+            "snippet": "税费说明：货款单价含税"
+          },
+          {
+            "field": "shipping",
+            "line": 10,
+            "snippet": "运输费用：含税运费 5 USD"
+          },
+          {
+            "field": "validity",
+            "line": 11,
+            "snippet": "有效截止：2026-10-24"
+          },
+          {
+            "field": "delivery",
+            "line": 12,
+            "snippet": "确认订单后交货：7 个日历日"
+          },
+          {
+            "field": "version",
+            "line": 13,
+            "snippet": "版本说明：本案例当前版本"
+          }
+        ],
+        "source_text": "合成报价样本 / SYNTHETIC - NOT FOR PURCHASE\nQ06 | 供应商报价\n供应商：虚构样本商 Q06\n产品料号：PART-100\n报价单价：1\n报价单位：每件\n报价币种：USD\n最低起订量：1 件；整订倍数：1 件\n税费说明：货款单价含税\n运输费用：含税运费 5 USD\n有效截止：2026-10-24\n确认订单后交货：7 个日历日\n版本说明：本案例当前版本\n--- 买方测试条件（不是供应商报价） ---\n需要 100 件 PART-100；最迟 14 个日历日交付。\n评估基准日：2026-09-24\n允许自动多买：否；替代料号需确认。\n买方汇率政策：{\"pair\": \"CNY_PER_USD\", \"rate\": \"7.1\", \"date\": \"2026-09-24\", \"approved_by\": \"虚构买方的测试指令；非实时汇率\"}\n备注：每个案例独立；不能把本文件集当作同一次采购的全局供应商排名。\n"
+      },
+      "expected": {
+        "case_id": "Q06",
+        "status": "READY",
+        "total_cny": "745.50",
+        "ordered_units": 100,
+        "issue_codes": []
+      }
+    },
+    {
+      "input": {
+        "requested_units": 100,
+        "moq_units": 1,
+        "order_multiple_units": 1,
+        "price_per_quoted_unit": "10",
+        "quoted_unit": "piece",
+        "units_per_box": null,
+        "sku": "PART-100",
+        "required_sku": "PART-100",
+        "tax_mode": "included",
+        "tax_rate": null,
+        "shipping_gross_quote_currency": "80",
+        "currency": "CNY",
+        "as_of": "2026-09-24",
+        "valid_until": "2026-10-24",
+        "lead_days": 7,
+        "max_lead_days": 14,
+        "superseded_by": "Q07-rev2",
+        "overbuy_approved": false,
+        "stated_line_total": null,
+        "tiers": [],
+        "fx": null,
+        "case_id": "Q07",
+        "scenario": "报价已被新版本替换",
+        "source_file": "Q07.txt",
+        "evidence": [
+          {
+            "field": "sku",
+            "line": 4,
+            "snippet": "产品料号：PART-100"
+          },
+          {
+            "field": "price",
+            "line": 5,
+            "snippet": "报价单价：10"
+          },
+          {
+            "field": "unit",
+            "line": 6,
+            "snippet": "报价单位：每件"
+          },
+          {
+            "field": "currency",
+            "line": 7,
+            "snippet": "报价币种：CNY"
+          },
+          {
+            "field": "quantity_terms",
+            "line": 8,
+            "snippet": "最低起订量：1 件；整订倍数：1 件"
+          },
+          {
+            "field": "tax",
+            "line": 9,
+            "snippet": "税费说明：货款单价含税"
+          },
+          {
+            "field": "shipping",
+            "line": 10,
+            "snippet": "运输费用：含税运费 80 CNY"
+          },
+          {
+            "field": "validity",
+            "line": 11,
+            "snippet": "有效截止：2026-10-24"
+          },
+          {
+            "field": "delivery",
+            "line": 12,
+            "snippet": "确认订单后交货：7 个日历日"
+          },
+          {
+            "field": "version",
+            "line": 13,
+            "snippet": "版本说明：已被 Q07-rev2 替代"
+          }
+        ],
+        "source_text": "合成报价样本 / SYNTHETIC - NOT FOR PURCHASE\nQ07 | 供应商报价\n供应商：虚构样本商 Q07\n产品料号：PART-100\n报价单价：10\n报价单位：每件\n报价币种：CNY\n最低起订量：1 件；整订倍数：1 件\n税费说明：货款单价含税\n运输费用：含税运费 80 CNY\n有效截止：2026-10-24\n确认订单后交货：7 个日历日\n版本说明：已被 Q07-rev2 替代\n--- 买方测试条件（不是供应商报价） ---\n需要 100 件 PART-100；最迟 14 个日历日交付。\n评估基准日：2026-09-24\n允许自动多买：否；替代料号需确认。\n买方汇率政策：CNY 无需换算；其他币种未提供换算授权。\n备注：每个案例独立；不能把本文件集当作同一次采购的全局供应商排名。\n"
+      },
+      "expected": {
+        "case_id": "Q07",
+        "status": "EXCLUDED",
+        "total_cny": "1080.00",
+        "ordered_units": 100,
+        "issue_codes": [
+          "SUPERSEDED"
+        ]
+      }
+    },
+    {
+      "input": {
+        "requested_units": 100,
+        "moq_units": 1,
+        "order_multiple_units": 1,
+        "price_per_quoted_unit": "10",
+        "quoted_unit": "piece",
+        "units_per_box": null,
+        "sku": "PART-100",
+        "required_sku": "PART-100",
+        "tax_mode": "included",
+        "tax_rate": null,
+        "shipping_gross_quote_currency": "80",
+        "currency": "CNY",
+        "as_of": "2026-09-24",
+        "valid_until": "2026-09-23",
+        "lead_days": 7,
+        "max_lead_days": 14,
+        "superseded_by": null,
+        "overbuy_approved": false,
+        "stated_line_total": null,
+        "tiers": [],
+        "fx": null,
+        "case_id": "Q08",
+        "scenario": "报价过期",
+        "source_file": "Q08.txt",
+        "evidence": [
+          {
+            "field": "sku",
+            "line": 4,
+            "snippet": "产品料号：PART-100"
+          },
+          {
+            "field": "price",
+            "line": 5,
+            "snippet": "报价单价：10"
+          },
+          {
+            "field": "unit",
+            "line": 6,
+            "snippet": "报价单位：每件"
+          },
+          {
+            "field": "currency",
+            "line": 7,
+            "snippet": "报价币种：CNY"
+          },
+          {
+            "field": "quantity_terms",
+            "line": 8,
+            "snippet": "最低起订量：1 件；整订倍数：1 件"
+          },
+          {
+            "field": "tax",
+            "line": 9,
+            "snippet": "税费说明：货款单价含税"
+          },
+          {
+            "field": "shipping",
+            "line": 10,
+            "snippet": "运输费用：含税运费 80 CNY"
+          },
+          {
+            "field": "validity",
+            "line": 11,
+            "snippet": "有效截止：2026-09-23"
+          },
+          {
+            "field": "delivery",
+            "line": 12,
+            "snippet": "确认订单后交货：7 个日历日"
+          },
+          {
+            "field": "version",
+            "line": 13,
+            "snippet": "版本说明：本案例当前版本"
+          }
+        ],
+        "source_text": "合成报价样本 / SYNTHETIC - NOT FOR PURCHASE\nQ08 | 供应商报价\n供应商：虚构样本商 Q08\n产品料号：PART-100\n报价单价：10\n报价单位：每件\n报价币种：CNY\n最低起订量：1 件；整订倍数：1 件\n税费说明：货款单价含税\n运输费用：含税运费 80 CNY\n有效截止：2026-09-23\n确认订单后交货：7 个日历日\n版本说明：本案例当前版本\n--- 买方测试条件（不是供应商报价） ---\n需要 100 件 PART-100；最迟 14 个日历日交付。\n评估基准日：2026-09-24\n允许自动多买：否；替代料号需确认。\n买方汇率政策：CNY 无需换算；其他币种未提供换算授权。\n备注：每个案例独立；不能把本文件集当作同一次采购的全局供应商排名。\n"
+      },
+      "expected": {
+        "case_id": "Q08",
+        "status": "EXCLUDED",
+        "total_cny": "1080.00",
+        "ordered_units": 100,
+        "issue_codes": [
+          "EXPIRED"
+        ]
+      }
+    },
+    {
+      "input": {
+        "requested_units": 100,
+        "moq_units": 1,
+        "order_multiple_units": 1,
+        "price_per_quoted_unit": "10",
+        "quoted_unit": "piece",
+        "units_per_box": null,
+        "sku": "PART-100",
+        "required_sku": "PART-100",
+        "tax_mode": "included",
+        "tax_rate": null,
+        "shipping_gross_quote_currency": "80",
+        "currency": "CNY",
+        "as_of": "2026-09-24",
+        "valid_until": "2026-10-24",
+        "lead_days": 7,
+        "max_lead_days": 14,
+        "superseded_by": null,
+        "overbuy_approved": false,
+        "stated_line_total": "900",
+        "tiers": [],
+        "fx": null,
+        "case_id": "Q09",
+        "scenario": "原件行金额不一致",
+        "source_file": "Q09.txt",
+        "evidence": [
+          {
+            "field": "sku",
+            "line": 4,
+            "snippet": "产品料号：PART-100"
+          },
+          {
+            "field": "price",
+            "line": 5,
+            "snippet": "报价单价：10"
+          },
+          {
+            "field": "unit",
+            "line": 6,
+            "snippet": "报价单位：每件"
+          },
+          {
+            "field": "currency",
+            "line": 7,
+            "snippet": "报价币种：CNY"
+          },
+          {
+            "field": "quantity_terms",
+            "line": 8,
+            "snippet": "最低起订量：1 件；整订倍数：1 件"
+          },
+          {
+            "field": "tax",
+            "line": 9,
+            "snippet": "税费说明：货款单价含税"
+          },
+          {
+            "field": "shipping",
+            "line": 10,
+            "snippet": "运输费用：含税运费 80 CNY"
+          },
+          {
+            "field": "validity",
+            "line": 11,
+            "snippet": "有效截止：2026-10-24"
+          },
+          {
+            "field": "delivery",
+            "line": 12,
+            "snippet": "确认订单后交货：7 个日历日"
+          },
+          {
+            "field": "version",
+            "line": 13,
+            "snippet": "版本说明：本案例当前版本"
+          }
+        ],
+        "source_text": "合成报价样本 / SYNTHETIC - NOT FOR PURCHASE\nQ09 | 供应商报价\n供应商：虚构样本商 Q09\n产品料号：PART-100\n报价单价：10\n报价单位：每件\n报价币种：CNY\n最低起订量：1 件；整订倍数：1 件\n税费说明：货款单价含税\n运输费用：含税运费 80 CNY\n有效截止：2026-10-24\n确认订单后交货：7 个日历日\n版本说明：本案例当前版本\n供应商填写的行金额：900\n--- 买方测试条件（不是供应商报价） ---\n需要 100 件 PART-100；最迟 14 个日历日交付。\n评估基准日：2026-09-24\n允许自动多买：否；替代料号需确认。\n买方汇率政策：CNY 无需换算；其他币种未提供换算授权。\n备注：每个案例独立；不能把本文件集当作同一次采购的全局供应商排名。\n"
+      },
+      "expected": {
+        "case_id": "Q09",
+        "status": "BLOCKED",
+        "total_cny": null,
+        "ordered_units": 100,
+        "issue_codes": [
+          "AMOUNT_CONFLICT"
+        ]
+      }
+    },
+    {
+      "input": {
+        "requested_units": 100,
+        "moq_units": 1,
+        "order_multiple_units": 1,
+        "price_per_quoted_unit": "10",
+        "quoted_unit": "piece",
+        "units_per_box": null,
+        "sku": "PART-100",
+        "required_sku": "PART-100",
+        "tax_mode": "included",
+        "tax_rate": null,
+        "shipping_gross_quote_currency": "80",
+        "currency": "CNY",
+        "as_of": "2026-09-24",
+        "valid_until": "2026-10-24",
+        "lead_days": 30,
+        "max_lead_days": 14,
+        "superseded_by": null,
+        "overbuy_approved": false,
+        "stated_line_total": null,
+        "tiers": [],
+        "fx": null,
+        "case_id": "Q10",
+        "scenario": "交期超过要求",
+        "source_file": "Q10.txt",
+        "evidence": [
+          {
+            "field": "sku",
+            "line": 4,
+            "snippet": "产品料号：PART-100"
+          },
+          {
+            "field": "price",
+            "line": 5,
+            "snippet": "报价单价：10"
+          },
+          {
+            "field": "unit",
+            "line": 6,
+            "snippet": "报价单位：每件"
+          },
+          {
+            "field": "currency",
+            "line": 7,
+            "snippet": "报价币种：CNY"
+          },
+          {
+            "field": "quantity_terms",
+            "line": 8,
+            "snippet": "最低起订量：1 件；整订倍数：1 件"
+          },
+          {
+            "field": "tax",
+            "line": 9,
+            "snippet": "税费说明：货款单价含税"
+          },
+          {
+            "field": "shipping",
+            "line": 10,
+            "snippet": "运输费用：含税运费 80 CNY"
+          },
+          {
+            "field": "validity",
+            "line": 11,
+            "snippet": "有效截止：2026-10-24"
+          },
+          {
+            "field": "delivery",
+            "line": 12,
+            "snippet": "确认订单后交货：30 个日历日"
+          },
+          {
+            "field": "version",
+            "line": 13,
+            "snippet": "版本说明：本案例当前版本"
+          }
+        ],
+        "source_text": "合成报价样本 / SYNTHETIC - NOT FOR PURCHASE\nQ10 | 供应商报价\n供应商：虚构样本商 Q10\n产品料号：PART-100\n报价单价：10\n报价单位：每件\n报价币种：CNY\n最低起订量：1 件；整订倍数：1 件\n税费说明：货款单价含税\n运输费用：含税运费 80 CNY\n有效截止：2026-10-24\n确认订单后交货：30 个日历日\n版本说明：本案例当前版本\n--- 买方测试条件（不是供应商报价） ---\n需要 100 件 PART-100；最迟 14 个日历日交付。\n评估基准日：2026-09-24\n允许自动多买：否；替代料号需确认。\n买方汇率政策：CNY 无需换算；其他币种未提供换算授权。\n备注：每个案例独立；不能把本文件集当作同一次采购的全局供应商排名。\n"
+      },
+      "expected": {
+        "case_id": "Q10",
+        "status": "EXCLUDED",
+        "total_cny": "1080.00",
+        "ordered_units": 100,
+        "issue_codes": [
+          "LATE"
+        ]
+      }
+    },
+    {
+      "input": {
+        "requested_units": 100,
+        "moq_units": 1,
+        "order_multiple_units": 1,
+        "price_per_quoted_unit": "10",
+        "quoted_unit": "piece",
+        "units_per_box": null,
+        "sku": "PART-100B",
+        "required_sku": "PART-100",
+        "tax_mode": "included",
+        "tax_rate": null,
+        "shipping_gross_quote_currency": "80",
+        "currency": "CNY",
+        "as_of": "2026-09-24",
+        "valid_until": "2026-10-24",
+        "lead_days": 7,
+        "max_lead_days": 14,
+        "superseded_by": null,
+        "overbuy_approved": false,
+        "stated_line_total": null,
+        "tiers": [],
+        "fx": null,
+        "case_id": "Q11",
+        "scenario": "供应商提供替代料号",
+        "source_file": "Q11.txt",
+        "evidence": [
+          {
+            "field": "sku",
+            "line": 4,
+            "snippet": "产品料号：PART-100B"
+          },
+          {
+            "field": "price",
+            "line": 5,
+            "snippet": "报价单价：10"
+          },
+          {
+            "field": "unit",
+            "line": 6,
+            "snippet": "报价单位：每件"
+          },
+          {
+            "field": "currency",
+            "line": 7,
+            "snippet": "报价币种：CNY"
+          },
+          {
+            "field": "quantity_terms",
+            "line": 8,
+            "snippet": "最低起订量：1 件；整订倍数：1 件"
+          },
+          {
+            "field": "tax",
+            "line": 9,
+            "snippet": "税费说明：货款单价含税"
+          },
+          {
+            "field": "shipping",
+            "line": 10,
+            "snippet": "运输费用：含税运费 80 CNY"
+          },
+          {
+            "field": "validity",
+            "line": 11,
+            "snippet": "有效截止：2026-10-24"
+          },
+          {
+            "field": "delivery",
+            "line": 12,
+            "snippet": "确认订单后交货：7 个日历日"
+          },
+          {
+            "field": "version",
+            "line": 13,
+            "snippet": "版本说明：本案例当前版本"
+          }
+        ],
+        "source_text": "合成报价样本 / SYNTHETIC - NOT FOR PURCHASE\nQ11 | 供应商报价\n供应商：虚构样本商 Q11\n产品料号：PART-100B\n报价单价：10\n报价单位：每件\n报价币种：CNY\n最低起订量：1 件；整订倍数：1 件\n税费说明：货款单价含税\n运输费用：含税运费 80 CNY\n有效截止：2026-10-24\n确认订单后交货：7 个日历日\n版本说明：本案例当前版本\n--- 买方测试条件（不是供应商报价） ---\n需要 100 件 PART-100；最迟 14 个日历日交付。\n评估基准日：2026-09-24\n允许自动多买：否；替代料号需确认。\n买方汇率政策：CNY 无需换算；其他币种未提供换算授权。\n备注：每个案例独立；不能把本文件集当作同一次采购的全局供应商排名。\n"
+      },
+      "expected": {
+        "case_id": "Q11",
+        "status": "NEEDS_APPROVAL",
+        "total_cny": "1080.00",
+        "ordered_units": 100,
+        "issue_codes": [
+          "SKU_APPROVAL"
+        ]
+      }
+    },
+    {
+      "input": {
+        "requested_units": 100,
+        "moq_units": 1,
+        "order_multiple_units": 1,
+        "price_per_quoted_unit": "10",
+        "quoted_unit": "piece",
+        "units_per_box": null,
+        "sku": "PART-100",
+        "required_sku": "PART-100",
+        "tax_mode": "excluded",
+        "tax_rate": "0.13",
+        "shipping_gross_quote_currency": "80",
+        "currency": "CNY",
+        "as_of": "2026-09-24",
+        "valid_until": "2026-10-24",
+        "lead_days": 7,
+        "max_lead_days": 14,
+        "superseded_by": null,
+        "overbuy_approved": false,
+        "stated_line_total": null,
+        "tiers": [],
+        "fx": null,
+        "case_id": "Q12",
+        "scenario": "明确未税单价与税率",
+        "source_file": "Q12.txt",
+        "evidence": [
+          {
+            "field": "sku",
+            "line": 4,
+            "snippet": "产品料号：PART-100"
+          },
+          {
+            "field": "price",
+            "line": 5,
+            "snippet": "报价单价：10"
+          },
+          {
+            "field": "unit",
+            "line": 6,
+            "snippet": "报价单位：每件"
+          },
+          {
+            "field": "currency",
+            "line": 7,
+            "snippet": "报价币种：CNY"
+          },
+          {
+            "field": "quantity_terms",
+            "line": 8,
+            "snippet": "最低起订量：1 件；整订倍数：1 件"
+          },
+          {
+            "field": "tax",
+            "line": 9,
+            "snippet": "税费说明：货款单价未税；供应商声明税率 13.0%（仅测试条件）"
+          },
+          {
+            "field": "shipping",
+            "line": 10,
+            "snippet": "运输费用：含税运费 80 CNY"
+          },
+          {
+            "field": "validity",
+            "line": 11,
+            "snippet": "有效截止：2026-10-24"
+          },
+          {
+            "field": "delivery",
+            "line": 12,
+            "snippet": "确认订单后交货：7 个日历日"
+          },
+          {
+            "field": "version",
+            "line": 13,
+            "snippet": "版本说明：本案例当前版本"
+          }
+        ],
+        "source_text": "合成报价样本 / SYNTHETIC - NOT FOR PURCHASE\nQ12 | 供应商报价\n供应商：虚构样本商 Q12\n产品料号：PART-100\n报价单价：10\n报价单位：每件\n报价币种：CNY\n最低起订量：1 件；整订倍数：1 件\n税费说明：货款单价未税；供应商声明税率 13.0%（仅测试条件）\n运输费用：含税运费 80 CNY\n有效截止：2026-10-24\n确认订单后交货：7 个日历日\n版本说明：本案例当前版本\n--- 买方测试条件（不是供应商报价） ---\n需要 100 件 PART-100；最迟 14 个日历日交付。\n评估基准日：2026-09-24\n允许自动多买：否；替代料号需确认。\n买方汇率政策：CNY 无需换算；其他币种未提供换算授权。\n备注：每个案例独立；不能把本文件集当作同一次采购的全局供应商排名。\n"
+      },
+      "expected": {
+        "case_id": "Q12",
+        "status": "READY",
+        "total_cny": "1210.00",
+        "ordered_units": 100,
+        "issue_codes": []
+      }
+    },
+    {
+      "input": {
+        "requested_units": 80,
+        "moq_units": 1,
+        "order_multiple_units": 1,
+        "price_per_quoted_unit": "12",
+        "quoted_unit": "piece",
+        "units_per_box": null,
+        "sku": "PART-100",
+        "required_sku": "PART-100",
+        "tax_mode": "included",
+        "tax_rate": null,
+        "shipping_gross_quote_currency": "20",
+        "currency": "CNY",
+        "as_of": "2026-09-24",
+        "valid_until": "2026-10-24",
+        "lead_days": 7,
+        "max_lead_days": 14,
+        "superseded_by": null,
+        "overbuy_approved": false,
+        "stated_line_total": null,
+        "tiers": [
+          {
+            "min_units": 100,
+            "price_per_quoted_unit": "10"
+          }
+        ],
+        "fx": null,
+        "case_id": "Q13",
+        "scenario": "数量未达到优惠档",
+        "source_file": "Q13.txt",
+        "evidence": [
+          {
+            "field": "sku",
+            "line": 4,
+            "snippet": "产品料号：PART-100"
+          },
+          {
+            "field": "price",
+            "line": 5,
+            "snippet": "报价单价：12"
+          },
+          {
+            "field": "unit",
+            "line": 6,
+            "snippet": "报价单位：每件"
+          },
+          {
+            "field": "currency",
+            "line": 7,
+            "snippet": "报价币种：CNY"
+          },
+          {
+            "field": "quantity_terms",
+            "line": 8,
+            "snippet": "最低起订量：1 件；整订倍数：1 件"
+          },
+          {
+            "field": "tax",
+            "line": 9,
+            "snippet": "税费说明：货款单价含税"
+          },
+          {
+            "field": "shipping",
+            "line": 10,
+            "snippet": "运输费用：含税运费 20 CNY"
+          },
+          {
+            "field": "validity",
+            "line": 11,
+            "snippet": "有效截止：2026-10-24"
+          },
+          {
+            "field": "delivery",
+            "line": 12,
+            "snippet": "确认订单后交货：7 个日历日"
+          },
+          {
+            "field": "version",
+            "line": 13,
+            "snippet": "版本说明：本案例当前版本"
+          }
+        ],
+        "source_text": "合成报价样本 / SYNTHETIC - NOT FOR PURCHASE\nQ13 | 供应商报价\n供应商：虚构样本商 Q13\n产品料号：PART-100\n报价单价：12\n报价单位：每件\n报价币种：CNY\n最低起订量：1 件；整订倍数：1 件\n税费说明：货款单价含税\n运输费用：含税运费 20 CNY\n有效截止：2026-10-24\n确认订单后交货：7 个日历日\n版本说明：本案例当前版本\n折扣条件：采购数量至少 100 件时，单价 10 CNY/件；否则使用原价。\n--- 买方测试条件（不是供应商报价） ---\n需要 80 件 PART-100；最迟 14 个日历日交付。\n评估基准日：2026-09-24\n允许自动多买：否；替代料号需确认。\n买方汇率政策：CNY 无需换算；其他币种未提供换算授权。\n备注：每个案例独立；不能把本文件集当作同一次采购的全局供应商排名。\n"
+      },
+      "expected": {
+        "case_id": "Q13",
+        "status": "READY",
+        "total_cny": "980.00",
+        "ordered_units": 80,
+        "issue_codes": []
+      }
+    },
+    {
+      "input": {
+        "requested_units": 100,
+        "moq_units": 1,
+        "order_multiple_units": 24,
+        "price_per_quoted_unit": "216",
+        "quoted_unit": "box",
+        "units_per_box": 24,
+        "sku": "PART-100",
+        "required_sku": "PART-100",
+        "tax_mode": "included",
+        "tax_rate": null,
+        "shipping_gross_quote_currency": "0",
+        "currency": "CNY",
+        "as_of": "2026-09-24",
+        "valid_until": "2026-10-24",
+        "lead_days": 7,
+        "max_lead_days": 14,
+        "superseded_by": null,
+        "overbuy_approved": false,
+        "stated_line_total": null,
+        "tiers": [],
+        "fx": null,
+        "case_id": "Q14",
+        "scenario": "整箱采购产生额外件数",
+        "source_file": "Q14.txt",
+        "evidence": [
+          {
+            "field": "sku",
+            "line": 4,
+            "snippet": "产品料号：PART-100"
+          },
+          {
+            "field": "price",
+            "line": 5,
+            "snippet": "报价单价：216"
+          },
+          {
+            "field": "unit",
+            "line": 6,
+            "snippet": "报价单位：每箱；箱规 24 件/箱"
+          },
+          {
+            "field": "currency",
+            "line": 7,
+            "snippet": "报价币种：CNY"
+          },
+          {
+            "field": "quantity_terms",
+            "line": 8,
+            "snippet": "最低起订量：1 件；整订倍数：24 件"
+          },
+          {
+            "field": "tax",
+            "line": 9,
+            "snippet": "税费说明：货款单价含税"
+          },
+          {
+            "field": "shipping",
+            "line": 10,
+            "snippet": "运输费用：含税运费 0 CNY"
+          },
+          {
+            "field": "validity",
+            "line": 11,
+            "snippet": "有效截止：2026-10-24"
+          },
+          {
+            "field": "delivery",
+            "line": 12,
+            "snippet": "确认订单后交货：7 个日历日"
+          },
+          {
+            "field": "version",
+            "line": 13,
+            "snippet": "版本说明：本案例当前版本"
+          }
+        ],
+        "source_text": "合成报价样本 / SYNTHETIC - NOT FOR PURCHASE\nQ14 | 供应商报价\n供应商：虚构样本商 Q14\n产品料号：PART-100\n报价单价：216\n报价单位：每箱；箱规 24 件/箱\n报价币种：CNY\n最低起订量：1 件；整订倍数：24 件\n税费说明：货款单价含税\n运输费用：含税运费 0 CNY\n有效截止：2026-10-24\n确认订单后交货：7 个日历日\n版本说明：本案例当前版本\n--- 买方测试条件（不是供应商报价） ---\n需要 100 件 PART-100；最迟 14 个日历日交付。\n评估基准日：2026-09-24\n允许自动多买：否；替代料号需确认。\n买方汇率政策：CNY 无需换算；其他币种未提供换算授权。\n备注：每个案例独立；不能把本文件集当作同一次采购的全局供应商排名。\n"
+      },
+      "expected": {
+        "case_id": "Q14",
+        "status": "NEEDS_APPROVAL",
+        "total_cny": "1080.00",
+        "ordered_units": 120,
+        "issue_codes": [
+          "OVERBUY_APPROVAL"
+        ]
+      }
+    },
+    {
+      "input": {
+        "requested_units": 100,
+        "moq_units": 1,
+        "order_multiple_units": 1,
+        "price_per_quoted_unit": "10",
+        "quoted_unit": "piece",
+        "units_per_box": null,
+        "sku": "PART-100",
+        "required_sku": "PART-100",
+        "tax_mode": "included",
+        "tax_rate": null,
+        "shipping_gross_quote_currency": null,
+        "currency": "CNY",
+        "as_of": "2026-09-24",
+        "valid_until": "2026-10-24",
+        "lead_days": 7,
+        "max_lead_days": 14,
+        "superseded_by": null,
+        "overbuy_approved": false,
+        "stated_line_total": null,
+        "tiers": [],
+        "fx": null,
+        "case_id": "Q15",
+        "scenario": "运费到付且金额未给",
+        "source_file": "Q15.txt",
+        "evidence": [
+          {
+            "field": "sku",
+            "line": 4,
+            "snippet": "产品料号：PART-100"
+          },
+          {
+            "field": "price",
+            "line": 5,
+            "snippet": "报价单价：10"
+          },
+          {
+            "field": "unit",
+            "line": 6,
+            "snippet": "报价单位：每件"
+          },
+          {
+            "field": "currency",
+            "line": 7,
+            "snippet": "报价币种：CNY"
+          },
+          {
+            "field": "quantity_terms",
+            "line": 8,
+            "snippet": "最低起订量：1 件；整订倍数：1 件"
+          },
+          {
+            "field": "tax",
+            "line": 9,
+            "snippet": "税费说明：货款单价含税"
+          },
+          {
+            "field": "shipping",
+            "line": 10,
+            "snippet": "运输费用：运费到付，金额未注明"
+          },
+          {
+            "field": "validity",
+            "line": 11,
+            "snippet": "有效截止：2026-10-24"
+          },
+          {
+            "field": "delivery",
+            "line": 12,
+            "snippet": "确认订单后交货：7 个日历日"
+          },
+          {
+            "field": "version",
+            "line": 13,
+            "snippet": "版本说明：本案例当前版本"
+          }
+        ],
+        "source_text": "合成报价样本 / SYNTHETIC - NOT FOR PURCHASE\nQ15 | 供应商报价\n供应商：虚构样本商 Q15\n产品料号：PART-100\n报价单价：10\n报价单位：每件\n报价币种：CNY\n最低起订量：1 件；整订倍数：1 件\n税费说明：货款单价含税\n运输费用：运费到付，金额未注明\n有效截止：2026-10-24\n确认订单后交货：7 个日历日\n版本说明：本案例当前版本\n--- 买方测试条件（不是供应商报价） ---\n需要 100 件 PART-100；最迟 14 个日历日交付。\n评估基准日：2026-09-24\n允许自动多买：否；替代料号需确认。\n买方汇率政策：CNY 无需换算；其他币种未提供换算授权。\n备注：每个案例独立；不能把本文件集当作同一次采购的全局供应商排名。\n"
+      },
+      "expected": {
+        "case_id": "Q15",
+        "status": "NEEDS_INPUT",
+        "total_cny": null,
+        "ordered_units": 100,
+        "issue_codes": [
+          "SHIPPING_UNKNOWN"
+        ]
+      }
+    },
+    {
+      "input": {
+        "requested_units": 100,
+        "moq_units": 1,
+        "order_multiple_units": 1,
+        "price_per_quoted_unit": "-10",
+        "quoted_unit": "piece",
+        "units_per_box": null,
+        "sku": "PART-100",
+        "required_sku": "PART-100",
+        "tax_mode": "included",
+        "tax_rate": null,
+        "shipping_gross_quote_currency": "80",
+        "currency": "CNY",
+        "as_of": "2026-09-24",
+        "valid_until": "2026-10-24",
+        "lead_days": 7,
+        "max_lead_days": 14,
+        "superseded_by": null,
+        "overbuy_approved": false,
+        "stated_line_total": null,
+        "tiers": [],
+        "fx": null,
+        "case_id": "Q16",
+        "scenario": "非法负价格",
+        "source_file": "Q16.txt",
+        "evidence": [
+          {
+            "field": "sku",
+            "line": 4,
+            "snippet": "产品料号：PART-100"
+          },
+          {
+            "field": "price",
+            "line": 5,
+            "snippet": "报价单价：-10"
+          },
+          {
+            "field": "unit",
+            "line": 6,
+            "snippet": "报价单位：每件"
+          },
+          {
+            "field": "currency",
+            "line": 7,
+            "snippet": "报价币种：CNY"
+          },
+          {
+            "field": "quantity_terms",
+            "line": 8,
+            "snippet": "最低起订量：1 件；整订倍数：1 件"
+          },
+          {
+            "field": "tax",
+            "line": 9,
+            "snippet": "税费说明：货款单价含税"
+          },
+          {
+            "field": "shipping",
+            "line": 10,
+            "snippet": "运输费用：含税运费 80 CNY"
+          },
+          {
+            "field": "validity",
+            "line": 11,
+            "snippet": "有效截止：2026-10-24"
+          },
+          {
+            "field": "delivery",
+            "line": 12,
+            "snippet": "确认订单后交货：7 个日历日"
+          },
+          {
+            "field": "version",
+            "line": 13,
+            "snippet": "版本说明：本案例当前版本"
+          }
+        ],
+        "source_text": "合成报价样本 / SYNTHETIC - NOT FOR PURCHASE\nQ16 | 供应商报价\n供应商：虚构样本商 Q16\n产品料号：PART-100\n报价单价：-10\n报价单位：每件\n报价币种：CNY\n最低起订量：1 件；整订倍数：1 件\n税费说明：货款单价含税\n运输费用：含税运费 80 CNY\n有效截止：2026-10-24\n确认订单后交货：7 个日历日\n版本说明：本案例当前版本\n--- 买方测试条件（不是供应商报价） ---\n需要 100 件 PART-100；最迟 14 个日历日交付。\n评估基准日：2026-09-24\n允许自动多买：否；替代料号需确认。\n买方汇率政策：CNY 无需换算；其他币种未提供换算授权。\n备注：每个案例独立；不能把本文件集当作同一次采购的全局供应商排名。\n"
+      },
+      "expected": {
+        "case_id": "Q16",
+        "status": "BLOCKED",
+        "total_cny": null,
+        "ordered_units": null,
+        "issue_codes": [
+          "INVALID_INPUT"
+        ]
+      }
+    },
+    {
+      "input": {
+        "requested_units": 100,
+        "moq_units": 1,
+        "order_multiple_units": 1,
+        "price_per_quoted_unit": "10",
+        "quoted_unit": "piece",
+        "units_per_box": null,
+        "sku": "PART-100",
+        "required_sku": "PART-100",
+        "tax_mode": "included",
+        "tax_rate": null,
+        "shipping_gross_quote_currency": "80",
+        "currency": "USD",
+        "as_of": "2026-09-24",
+        "valid_until": "2026-10-24",
+        "lead_days": 7,
+        "max_lead_days": 14,
+        "superseded_by": null,
+        "overbuy_approved": false,
+        "stated_line_total": null,
+        "tiers": [],
+        "fx": {
+          "pair": "USD_PER_CNY",
+          "rate": "7.1",
+          "date": "2026-09-24",
+          "approved_by": "测试买方"
+        },
+        "case_id": "Q17",
+        "scenario": "汇率方向写反",
+        "source_file": "Q17.txt",
+        "evidence": [
+          {
+            "field": "sku",
+            "line": 4,
+            "snippet": "产品料号：PART-100"
+          },
+          {
+            "field": "price",
+            "line": 5,
+            "snippet": "报价单价：10"
+          },
+          {
+            "field": "unit",
+            "line": 6,
+            "snippet": "报价单位：每件"
+          },
+          {
+            "field": "currency",
+            "line": 7,
+            "snippet": "报价币种：USD"
+          },
+          {
+            "field": "quantity_terms",
+            "line": 8,
+            "snippet": "最低起订量：1 件；整订倍数：1 件"
+          },
+          {
+            "field": "tax",
+            "line": 9,
+            "snippet": "税费说明：货款单价含税"
+          },
+          {
+            "field": "shipping",
+            "line": 10,
+            "snippet": "运输费用：含税运费 80 USD"
+          },
+          {
+            "field": "validity",
+            "line": 11,
+            "snippet": "有效截止：2026-10-24"
+          },
+          {
+            "field": "delivery",
+            "line": 12,
+            "snippet": "确认订单后交货：7 个日历日"
+          },
+          {
+            "field": "version",
+            "line": 13,
+            "snippet": "版本说明：本案例当前版本"
+          }
+        ],
+        "source_text": "合成报价样本 / SYNTHETIC - NOT FOR PURCHASE\nQ17 | 供应商报价\n供应商：虚构样本商 Q17\n产品料号：PART-100\n报价单价：10\n报价单位：每件\n报价币种：USD\n最低起订量：1 件；整订倍数：1 件\n税费说明：货款单价含税\n运输费用：含税运费 80 USD\n有效截止：2026-10-24\n确认订单后交货：7 个日历日\n版本说明：本案例当前版本\n--- 买方测试条件（不是供应商报价） ---\n需要 100 件 PART-100；最迟 14 个日历日交付。\n评估基准日：2026-09-24\n允许自动多买：否；替代料号需确认。\n买方汇率政策：{\"pair\": \"USD_PER_CNY\", \"rate\": \"7.1\", \"date\": \"2026-09-24\", \"approved_by\": \"测试买方\"}\n备注：每个案例独立；不能把本文件集当作同一次采购的全局供应商排名。\n"
+      },
+      "expected": {
+        "case_id": "Q17",
+        "status": "BLOCKED",
+        "total_cny": null,
+        "ordered_units": null,
+        "issue_codes": [
+          "INVALID_INPUT"
+        ]
+      }
+    },
+    {
+      "input": {
+        "requested_units": 100,
+        "moq_units": 1,
+        "order_multiple_units": 1,
+        "price_per_quoted_unit": "10",
+        "quoted_unit": "piece",
+        "units_per_box": null,
+        "sku": "PART-100",
+        "required_sku": "PART-100",
+        "tax_mode": "included",
+        "tax_rate": null,
+        "shipping_gross_quote_currency": "80",
+        "currency": "CNY",
+        "as_of": "2026-09-24",
+        "valid_until": "2026-10-24",
+        "lead_days": 7,
+        "max_lead_days": 14,
+        "superseded_by": null,
+        "overbuy_approved": false,
+        "stated_line_total": null,
+        "tiers": [],
+        "fx": null,
+        "case_id": "Q18",
+        "scenario": "没有提供税费原文定位",
+        "source_file": "Q18.txt",
+        "evidence": [
+          {
+            "field": "sku",
+            "line": 4,
+            "snippet": "产品料号：PART-100"
+          },
+          {
+            "field": "price",
+            "line": 5,
+            "snippet": "报价单价：10"
+          },
+          {
+            "field": "unit",
+            "line": 6,
+            "snippet": "报价单位：每件"
+          },
+          {
+            "field": "currency",
+            "line": 7,
+            "snippet": "报价币种：CNY"
+          },
+          {
+            "field": "quantity_terms",
+            "line": 8,
+            "snippet": "最低起订量：1 件；整订倍数：1 件"
+          },
+          {
+            "field": "shipping",
+            "line": 10,
+            "snippet": "运输费用：含税运费 80 CNY"
+          },
+          {
+            "field": "validity",
+            "line": 11,
+            "snippet": "有效截止：2026-10-24"
+          },
+          {
+            "field": "delivery",
+            "line": 12,
+            "snippet": "确认订单后交货：7 个日历日"
+          },
+          {
+            "field": "version",
+            "line": 13,
+            "snippet": "版本说明：本案例当前版本"
+          }
+        ],
+        "source_text": "合成报价样本 / SYNTHETIC - NOT FOR PURCHASE\nQ18 | 供应商报价\n供应商：虚构样本商 Q18\n产品料号：PART-100\n报价单价：10\n报价单位：每件\n报价币种：CNY\n最低起订量：1 件；整订倍数：1 件\n税费说明：货款单价含税\n运输费用：含税运费 80 CNY\n有效截止：2026-10-24\n确认订单后交货：7 个日历日\n版本说明：本案例当前版本\n--- 买方测试条件（不是供应商报价） ---\n需要 100 件 PART-100；最迟 14 个日历日交付。\n评估基准日：2026-09-24\n允许自动多买：否；替代料号需确认。\n买方汇率政策：CNY 无需换算；其他币种未提供换算授权。\n备注：每个案例独立；不能把本文件集当作同一次采购的全局供应商排名。\n"
+      },
+      "expected": {
+        "case_id": "Q18",
+        "status": "BLOCKED",
+        "total_cny": null,
+        "ordered_units": null,
+        "issue_codes": [
+          "MISSING_EVIDENCE"
+        ]
+      }
+    }
+  ]
+}

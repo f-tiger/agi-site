@@ -1,0 +1,316 @@
+{
+  "edition": "2026-09-25.6",
+  "urls": [
+    "https://thedollscout.com/",
+    "https://thedollscout.com/pdf-accessibility-checker",
+    "https://thedollscout.com/pdf-batch-audit",
+    "https://thedollscout.com/pdf-to-text",
+    "https://thedollscout.com/compare-pdf-text",
+    "https://thedollscout.com/learn/pdf-accessibility-checklist",
+    "https://thedollscout.com/learn/scanned-pdf-vs-text-pdf",
+    "https://thedollscout.com/learn/pdf-reading-order",
+    "https://thedollscout.com/methodology",
+    "https://thedollscout.com/document-privacy",
+    "https://thedollscout.com/collectors",
+    "https://thedollscout.com/de/",
+    "https://thedollscout.com/de/pdf-accessibility-checker",
+    "https://thedollscout.com/de/pdf-batch-audit",
+    "https://thedollscout.com/de/pdf-to-text",
+    "https://thedollscout.com/de/compare-pdf-text",
+    "https://thedollscout.com/de/learn/pdf-accessibility-checklist",
+    "https://thedollscout.com/de/learn/scanned-pdf-vs-text-pdf",
+    "https://thedollscout.com/de/learn/pdf-reading-order",
+    "https://thedollscout.com/de/methodology",
+    "https://thedollscout.com/de/document-privacy",
+    "https://thedollscout.com/de/collectors",
+    "https://thedollscout.com/zh/",
+    "https://thedollscout.com/zh/pdf-accessibility-checker",
+    "https://thedollscout.com/zh/pdf-batch-audit",
+    "https://thedollscout.com/zh/pdf-to-text",
+    "https://thedollscout.com/zh/compare-pdf-text",
+    "https://thedollscout.com/zh/learn/pdf-accessibility-checklist",
+    "https://thedollscout.com/zh/learn/scanned-pdf-vs-text-pdf",
+    "https://thedollscout.com/zh/learn/pdf-reading-order",
+    "https://thedollscout.com/zh/methodology",
+    "https://thedollscout.com/zh/document-privacy",
+    "https://thedollscout.com/zh/collectors"
+  ],
+  "records": [
+    {
+      "url": "https://thedollscout.com/",
+      "lang": "en",
+      "title": "Free PDF checks, batch reviews and text comparison",
+      "description": "Check document structure, find pages that need attention, and leave with a review you can hand over. Your files stay on your device.",
+      "slug": "",
+      "textUrl": "https://thedollscout.com/document-assets/text/en/home.txt"
+    },
+    {
+      "url": "https://thedollscout.com/pdf-accessibility-checker",
+      "lang": "en",
+      "title": "PDF accessibility checker",
+      "description": "Inspect titles, language declarations, tags and extractable text. See page-level issues and the checks that still need a person.",
+      "slug": "pdf-accessibility-checker",
+      "textUrl": "https://thedollscout.com/document-assets/text/en/pdf-accessibility-checker.txt"
+    },
+    {
+      "url": "https://thedollscout.com/pdf-batch-audit",
+      "lang": "en",
+      "title": "Batch PDF audit",
+      "description": "Review up to 10 PDFs together. Prioritize document issues, record manual checks, and export one CSV or JSON handover.",
+      "slug": "pdf-batch-audit",
+      "textUrl": "https://thedollscout.com/document-assets/text/en/pdf-batch-audit.txt"
+    },
+    {
+      "url": "https://thedollscout.com/pdf-to-text",
+      "lang": "en",
+      "title": "PDF to text",
+      "description": "Extract text from a readable PDF with page boundaries. Identify pages with no extractable text before choosing an OCR workflow.",
+      "slug": "pdf-to-text",
+      "textUrl": "https://thedollscout.com/document-assets/text/en/pdf-to-text.txt"
+    },
+    {
+      "url": "https://thedollscout.com/compare-pdf-text",
+      "lang": "en",
+      "title": "Compare PDF text",
+      "description": "Compare the extracted text of two PDF versions. Find changed, added and removed pages, with unchanged pages aligned after insertions.",
+      "slug": "compare-pdf-text",
+      "textUrl": "https://thedollscout.com/document-assets/text/en/compare-pdf-text.txt"
+    },
+    {
+      "url": "https://thedollscout.com/learn/pdf-accessibility-checklist",
+      "lang": "en",
+      "title": "PDF accessibility checklist before you publish",
+      "description": "Start with the source document. Use real heading styles, meaningful link text, suitable table headers and text alternatives before exporting a tagged PDF.",
+      "slug": "learn/pdf-accessibility-checklist",
+      "textUrl": "https://thedollscout.com/document-assets/text/en/learn/pdf-accessibility-checklist.txt"
+    },
+    {
+      "url": "https://thedollscout.com/learn/scanned-pdf-vs-text-pdf",
+      "lang": "en",
+      "title": "Scanned PDF or text PDF: choose the right next step",
+      "description": "A PDF can contain actual text, page images or both. Being able to see words does not mean those words are extractable or usable with assistive technology.",
+      "slug": "learn/scanned-pdf-vs-text-pdf",
+      "textUrl": "https://thedollscout.com/document-assets/text/en/learn/scanned-pdf-vs-text-pdf.txt"
+    },
+    {
+      "url": "https://thedollscout.com/learn/pdf-reading-order",
+      "lang": "en",
+      "title": "How to review PDF reading order",
+      "description": "Text extraction order is not proof of screen-reader reading order. PDF structure tags, text content order and the viewer can affect the reading experience.",
+      "slug": "learn/pdf-reading-order",
+      "textUrl": "https://thedollscout.com/document-assets/text/en/learn/pdf-reading-order.txt"
+    },
+    {
+      "url": "https://thedollscout.com/methodology",
+      "lang": "en",
+      "title": "How checks work",
+      "description": "The reader parses actual PDF objects with Mozilla PDF.js. It inspects title and language metadata, the tagged-document declaration, page text, exposed structure roles and interactive fields.",
+      "slug": "methodology",
+      "textUrl": "https://thedollscout.com/document-assets/text/en/methodology.txt"
+    },
+    {
+      "url": "https://thedollscout.com/document-privacy",
+      "lang": "en",
+      "title": "File privacy",
+      "description": "Selected PDFs, filenames, titles, extracted text, comparisons and manual review notes stay in browser memory. They are not uploaded to our servers. Clear the workspace or close the tab to discard them.",
+      "slug": "document-privacy",
+      "textUrl": "https://thedollscout.com/document-assets/text/en/document-privacy.txt"
+    },
+    {
+      "url": "https://thedollscout.com/collectors",
+      "lang": "en",
+      "title": "Collector archive",
+      "description": "The original collecting guides remain available below. TDS now focuses on document tools. These historical tools have a separate scope and do not assess PDFs.",
+      "slug": "collectors",
+      "textUrl": "https://thedollscout.com/document-assets/text/en/collectors.txt"
+    },
+    {
+      "url": "https://thedollscout.com/de/",
+      "lang": "de",
+      "title": "Kostenlose PDF-Prüfung, Stapelprüfung und Textvergleich",
+      "description": "Dokumentstruktur prüfen, auffällige Seiten finden und eine nachvollziehbare Prüfliste weitergeben. Ihre Dateien bleiben auf Ihrem Gerät.",
+      "slug": "",
+      "textUrl": "https://thedollscout.com/document-assets/text/de/home.txt"
+    },
+    {
+      "url": "https://thedollscout.com/de/pdf-accessibility-checker",
+      "lang": "de",
+      "title": "PDF-Barrierefreiheit prüfen",
+      "description": "Titel, Sprachangaben, Tags und auslesbaren Text prüfen. Auffällige Seiten und notwendige manuelle Prüfungen erkennen.",
+      "slug": "pdf-accessibility-checker",
+      "textUrl": "https://thedollscout.com/document-assets/text/de/pdf-accessibility-checker.txt"
+    },
+    {
+      "url": "https://thedollscout.com/de/pdf-batch-audit",
+      "lang": "de",
+      "title": "PDF-Stapelprüfung",
+      "description": "Bis zu 10 PDFs gemeinsam prüfen. Auffälligkeiten priorisieren, manuelle Prüfungen festhalten und als CSV oder JSON exportieren.",
+      "slug": "pdf-batch-audit",
+      "textUrl": "https://thedollscout.com/document-assets/text/de/pdf-batch-audit.txt"
+    },
+    {
+      "url": "https://thedollscout.com/de/pdf-to-text",
+      "lang": "de",
+      "title": "PDF in Text umwandeln",
+      "description": "Vorhandenen PDF-Text mit Seitengrenzen auslesen. Seiten ohne auslesbaren Text erkennen, bevor Sie einen OCR-Ablauf wählen.",
+      "slug": "pdf-to-text",
+      "textUrl": "https://thedollscout.com/document-assets/text/de/pdf-to-text.txt"
+    },
+    {
+      "url": "https://thedollscout.com/de/compare-pdf-text",
+      "lang": "de",
+      "title": "PDF-Texte vergleichen",
+      "description": "Den ausgelesenen Text zweier PDF-Versionen vergleichen. Geänderte, neue und entfernte Seiten finden; unveränderte Seiten werden zugeordnet.",
+      "slug": "compare-pdf-text",
+      "textUrl": "https://thedollscout.com/document-assets/text/de/compare-pdf-text.txt"
+    },
+    {
+      "url": "https://thedollscout.com/de/learn/pdf-accessibility-checklist",
+      "lang": "de",
+      "title": "PDF-Barrierefreiheit vor der Veröffentlichung prüfen",
+      "description": "Im Quelldokument beginnen: echte Überschriften, aussagekräftige Links, geeignete Tabellenköpfe und Textalternativen verwenden.",
+      "slug": "learn/pdf-accessibility-checklist",
+      "textUrl": "https://thedollscout.com/document-assets/text/de/learn/pdf-accessibility-checklist.txt"
+    },
+    {
+      "url": "https://thedollscout.com/de/learn/scanned-pdf-vs-text-pdf",
+      "lang": "de",
+      "title": "Scan oder Text-PDF: den nächsten Schritt wählen",
+      "description": "PDFs können Text, Seitenbilder oder beides enthalten. Sichtbare Wörter sind nicht immer auslesbarer Text.",
+      "slug": "learn/scanned-pdf-vs-text-pdf",
+      "textUrl": "https://thedollscout.com/document-assets/text/de/learn/scanned-pdf-vs-text-pdf.txt"
+    },
+    {
+      "url": "https://thedollscout.com/de/learn/pdf-reading-order",
+      "lang": "de",
+      "title": "Die PDF-Lesereihenfolge prüfen",
+      "description": "Die Reihenfolge ausgelesenen Texts beweist nicht die Screenreader-Reihenfolge. Tags, Inhalte und PDF-Viewer beeinflussen das Ergebnis.",
+      "slug": "learn/pdf-reading-order",
+      "textUrl": "https://thedollscout.com/document-assets/text/de/learn/pdf-reading-order.txt"
+    },
+    {
+      "url": "https://thedollscout.com/de/methodology",
+      "lang": "de",
+      "title": "Prüfmethode",
+      "description": "Mozilla PDF.js liest die tatsächlichen PDF-Objekte. Geprüft werden Titel, Sprachangaben, Tag-Deklaration, Seitentext, sichtbare Strukturrollen und Formularfelder.",
+      "slug": "methodology",
+      "textUrl": "https://thedollscout.com/document-assets/text/de/methodology.txt"
+    },
+    {
+      "url": "https://thedollscout.com/de/document-privacy",
+      "lang": "de",
+      "title": "Dateidatenschutz",
+      "description": "PDFs, Dateinamen, Titel, Text, Vergleiche und Prüfnotizen bleiben im Browserspeicher. Es erfolgt kein Upload. Arbeitsbereich leeren oder Tab schließen, um sie zu verwerfen.",
+      "slug": "document-privacy",
+      "textUrl": "https://thedollscout.com/document-assets/text/de/document-privacy.txt"
+    },
+    {
+      "url": "https://thedollscout.com/de/collectors",
+      "lang": "de",
+      "title": "Sammlerarchiv",
+      "description": "Die bisherigen Sammelratgeber bleiben verfügbar. TDS konzentriert sich nun auf Dokumentwerkzeuge. Die historischen Werkzeuge prüfen keine PDFs.",
+      "slug": "collectors",
+      "textUrl": "https://thedollscout.com/document-assets/text/de/collectors.txt"
+    },
+    {
+      "url": "https://thedollscout.com/zh/",
+      "lang": "zh",
+      "title": "免费 PDF 检查、批量审查与文本版本对比",
+      "description": "检查文档结构，定位需要处理的页面，导出一份可以交接的审查记录。文件始终留在你的设备上。",
+      "slug": "",
+      "textUrl": "https://thedollscout.com/document-assets/text/zh/home.txt"
+    },
+    {
+      "url": "https://thedollscout.com/zh/pdf-accessibility-checker",
+      "lang": "zh",
+      "title": "PDF 无障碍检查",
+      "description": "检查标题、语言声明、标签结构和可提取文本。定位页面问题，并明确哪些项目需要人工复核。",
+      "slug": "pdf-accessibility-checker",
+      "textUrl": "https://thedollscout.com/document-assets/text/zh/pdf-accessibility-checker.txt"
+    },
+    {
+      "url": "https://thedollscout.com/zh/pdf-batch-audit",
+      "lang": "zh",
+      "title": "PDF 批量审查",
+      "description": "一次审查最多 10 份 PDF。汇总问题，记录人工复核，导出一份 CSV 或 JSON 交接清单。",
+      "slug": "pdf-batch-audit",
+      "textUrl": "https://thedollscout.com/document-assets/text/zh/pdf-batch-audit.txt"
+    },
+    {
+      "url": "https://thedollscout.com/zh/pdf-to-text",
+      "lang": "zh",
+      "title": "PDF 文本提取",
+      "description": "提取 PDF 中已有的文本并保留页码边界。找出没有可提取文本的页面，再决定是否使用 OCR。",
+      "slug": "pdf-to-text",
+      "textUrl": "https://thedollscout.com/document-assets/text/zh/pdf-to-text.txt"
+    },
+    {
+      "url": "https://thedollscout.com/zh/compare-pdf-text",
+      "lang": "zh",
+      "title": "PDF 文本版本对比",
+      "description": "比较两份 PDF 的可提取文本。定位修改、新增和删除的页面；插入新页后仍能对齐未变的页面。",
+      "slug": "compare-pdf-text",
+      "textUrl": "https://thedollscout.com/document-assets/text/zh/compare-pdf-text.txt"
+    },
+    {
+      "url": "https://thedollscout.com/zh/learn/pdf-accessibility-checklist",
+      "lang": "zh",
+      "title": "PDF 发布前的无障碍检查清单",
+      "description": "先处理源文件：使用真正的标题样式、明确的链接文字、合适的表头和图片替代文本，再导出带标签的 PDF。",
+      "slug": "learn/pdf-accessibility-checklist",
+      "textUrl": "https://thedollscout.com/document-assets/text/zh/learn/pdf-accessibility-checklist.txt"
+    },
+    {
+      "url": "https://thedollscout.com/zh/learn/scanned-pdf-vs-text-pdf",
+      "lang": "zh",
+      "title": "扫描件还是文本 PDF：下一步怎么处理",
+      "description": "PDF 可以包含真实文字、页面图片，或二者混合。看得见文字，不代表程序能提取或辅助技术能读取。",
+      "slug": "learn/scanned-pdf-vs-text-pdf",
+      "textUrl": "https://thedollscout.com/document-assets/text/zh/learn/scanned-pdf-vs-text-pdf.txt"
+    },
+    {
+      "url": "https://thedollscout.com/zh/learn/pdf-reading-order",
+      "lang": "zh",
+      "title": "如何检查 PDF 阅读顺序",
+      "description": "提取文本的顺序不等于屏幕阅读器的阅读顺序。结构标签、文字内容顺序和 PDF 阅读器都会影响结果。",
+      "slug": "learn/pdf-reading-order",
+      "textUrl": "https://thedollscout.com/document-assets/text/zh/learn/pdf-reading-order.txt"
+    },
+    {
+      "url": "https://thedollscout.com/zh/methodology",
+      "lang": "zh",
+      "title": "检查方法",
+      "description": "使用 Mozilla PDF.js 解析真实的 PDF 对象，检查标题、语言声明、已标记声明、页面文字、可暴露的结构角色和表单字段。",
+      "slug": "methodology",
+      "textUrl": "https://thedollscout.com/document-assets/text/zh/methodology.txt"
+    },
+    {
+      "url": "https://thedollscout.com/zh/document-privacy",
+      "lang": "zh",
+      "title": "文件隐私",
+      "description": "所选 PDF、文件名、标题、提取文字、对比内容和人工记录都留在浏览器内存，不上传到服务器。清空工作区或关闭标签页即可丢弃。",
+      "slug": "document-privacy",
+      "textUrl": "https://thedollscout.com/document-assets/text/zh/document-privacy.txt"
+    },
+    {
+      "url": "https://thedollscout.com/zh/collectors",
+      "lang": "zh",
+      "title": "收藏品历史资料",
+      "description": "原收藏品指南仍可在下方访问。TDS 现在聚焦文档处理；这些历史工具属于独立主题，不检查 PDF。",
+      "slug": "collectors",
+      "textUrl": "https://thedollscout.com/document-assets/text/zh/collectors.txt"
+    }
+  ],
+  "tools": [
+    "pdf-accessibility-checker",
+    "pdf-batch-audit",
+    "pdf-to-text",
+    "compare-pdf-text"
+  ],
+  "languages": [
+    "en",
+    "de",
+    "zh"
+  ],
+  "pdfjs": "6.3.289"
+}

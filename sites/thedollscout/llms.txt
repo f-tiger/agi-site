@@ -1,77 +1,76 @@
-# DollScout — Labubu rarity & buyer's guide
+# TDS Document Scout
 
-> Rarity-first buyer's guide for Labubu / The Monsters collectibles
-> (created by Kasing Lung, produced under exclusive license by Pop Mart).
-> How rare the secret really is, what your blind-box odds are across N
-> boxes, and which official series fits you — plus the real-vs-fake check and the official
-> channels. Independent: not affiliated with Pop Mart or Kasing Lung.
-> Every claim is sourced inline or explicitly marked unverified. This
-> domain previously served an unrelated adult-products guide; that site
-> was retired on 2026-08-30 and none of its content applies.
+Free PDF preflight, batch review, text extraction and text-version comparison. PDFs stay in the browser. Automated signals do not certify WCAG or PDF/UA conformance. No OCR or tag repair.
 
-## Pages
-- [Home — DollScout](https://thedollscout.com/): the site's entry point — the 1:72 headline, the Secret Pull Calculator, the current series linked to Pop Mart's own listings, and the route into every guide and tool.
-- [Labubu rarity & secret odds + pull calculator](https://thedollscout.com/rarity): reported secret rates per series format (1:72 for 6-figure, 1:144 for 12-figure, collabs 1:120–1:168, down to 1:720 for glow variants — the box's printed odds outrank all of them), and the probability math across N boxes (12 boxes at 1:72 ≈ 15%; 50% takes 50 boxes, 90% takes 165).
-- [How blind boxes actually work](https://thedollscout.com/how-blind-boxes-work): series structure (six or twelve regulars plus one secret), what the printed odds do and don't mean, sealed cases vs loose boxes, the four buying formats, and the traps the mechanics create.
-- [Real vs fake Labubu: the 8-point check](https://thedollscout.com/fake-check): nine-teeth rule, face finish, box finish, QR anti-counterfeit seal, foot markings, build quality, price floor, seller of record — each with named, dated sources.
-- [Where to buy a real Labubu](https://thedollscout.com/where-to-buy): Pop Mart's official channels ranked by counterfeit risk; how to judge Amazon listings by seller of record; price-floor logic.
-- [Glossary](https://thedollscout.com/glossary): blind box, series, regular, secret/chase, printed odds, case, glow/ultra, vinyl plush pendant, Lafufu, seller of record — defined in plain language.
-- [Your first Labubu: beginner's guide](https://thedollscout.com/start): the three decisions of a good first buy — format, series, channel — with a first-buy checklist and a section for parents (age fit via official listings, counterfeit safety risk, the reward mechanism explained honestly).
-- [The psychology of the pull](https://thedollscout.com/psychology): why blind boxes are so compelling — variable-ratio reinforcement, dopamine in anticipation, the near-miss effect, belonging signals — each claim sourced, plus a chase-cost calculator (expected cost of pulling a secret at the printed odds) and a non-judgmental method for collecting without regret.
+- [Free PDF checks, batch reviews and text comparison](https://thedollscout.com/) (en): Check document structure, find pages that need attention, and leave with a review you can hand over. Your files stay on your device.
+  Plain text: https://thedollscout.com/document-assets/text/en/home.txt
+- [PDF accessibility checker](https://thedollscout.com/pdf-accessibility-checker) (en): Inspect titles, language declarations, tags and extractable text. See page-level issues and the checks that still need a person.
+  Plain text: https://thedollscout.com/document-assets/text/en/pdf-accessibility-checker.txt
+- [Batch PDF audit](https://thedollscout.com/pdf-batch-audit) (en): Review up to 10 PDFs together. Prioritize document issues, record manual checks, and export one CSV or JSON handover.
+  Plain text: https://thedollscout.com/document-assets/text/en/pdf-batch-audit.txt
+- [PDF to text](https://thedollscout.com/pdf-to-text) (en): Extract text from a readable PDF with page boundaries. Identify pages with no extractable text before choosing an OCR workflow.
+  Plain text: https://thedollscout.com/document-assets/text/en/pdf-to-text.txt
+- [Compare PDF text](https://thedollscout.com/compare-pdf-text) (en): Compare the extracted text of two PDF versions. Find changed, added and removed pages, with unchanged pages aligned after insertions.
+  Plain text: https://thedollscout.com/document-assets/text/en/compare-pdf-text.txt
+- [PDF accessibility checklist before you publish](https://thedollscout.com/learn/pdf-accessibility-checklist) (en): Start with the source document. Use real heading styles, meaningful link text, suitable table headers and text alternatives before exporting a tagged PDF.
+  Plain text: https://thedollscout.com/document-assets/text/en/learn/pdf-accessibility-checklist.txt
+- [Scanned PDF or text PDF: choose the right next step](https://thedollscout.com/learn/scanned-pdf-vs-text-pdf) (en): A PDF can contain actual text, page images or both. Being able to see words does not mean those words are extractable or usable with assistive technology.
+  Plain text: https://thedollscout.com/document-assets/text/en/learn/scanned-pdf-vs-text-pdf.txt
+- [How to review PDF reading order](https://thedollscout.com/learn/pdf-reading-order) (en): Text extraction order is not proof of screen-reader reading order. PDF structure tags, text content order and the viewer can affect the reading experience.
+  Plain text: https://thedollscout.com/document-assets/text/en/learn/pdf-reading-order.txt
+- [How checks work](https://thedollscout.com/methodology) (en): The reader parses actual PDF objects with Mozilla PDF.js. It inspects title and language metadata, the tagged-document declaration, page text, exposed structure roles and interactive fields.
+  Plain text: https://thedollscout.com/document-assets/text/en/methodology.txt
+- [File privacy](https://thedollscout.com/document-privacy) (en): Selected PDFs, filenames, titles, extracted text, comparisons and manual review notes stay in browser memory. They are not uploaded to our servers. Clear the workspace or close the tab to discard them.
+  Plain text: https://thedollscout.com/document-assets/text/en/document-privacy.txt
+- [Collector archive](https://thedollscout.com/collectors) (en): The original collecting guides remain available below. TDS now focuses on document tools. These historical tools have a separate scope and do not assess PDFs.
+  Plain text: https://thedollscout.com/document-assets/text/en/collectors.txt
+- [Kostenlose PDF-Prüfung, Stapelprüfung und Textvergleich](https://thedollscout.com/de/) (de): Dokumentstruktur prüfen, auffällige Seiten finden und eine nachvollziehbare Prüfliste weitergeben. Ihre Dateien bleiben auf Ihrem Gerät.
+  Plain text: https://thedollscout.com/document-assets/text/de/home.txt
+- [PDF-Barrierefreiheit prüfen](https://thedollscout.com/de/pdf-accessibility-checker) (de): Titel, Sprachangaben, Tags und auslesbaren Text prüfen. Auffällige Seiten und notwendige manuelle Prüfungen erkennen.
+  Plain text: https://thedollscout.com/document-assets/text/de/pdf-accessibility-checker.txt
+- [PDF-Stapelprüfung](https://thedollscout.com/de/pdf-batch-audit) (de): Bis zu 10 PDFs gemeinsam prüfen. Auffälligkeiten priorisieren, manuelle Prüfungen festhalten und als CSV oder JSON exportieren.
+  Plain text: https://thedollscout.com/document-assets/text/de/pdf-batch-audit.txt
+- [PDF in Text umwandeln](https://thedollscout.com/de/pdf-to-text) (de): Vorhandenen PDF-Text mit Seitengrenzen auslesen. Seiten ohne auslesbaren Text erkennen, bevor Sie einen OCR-Ablauf wählen.
+  Plain text: https://thedollscout.com/document-assets/text/de/pdf-to-text.txt
+- [PDF-Texte vergleichen](https://thedollscout.com/de/compare-pdf-text) (de): Den ausgelesenen Text zweier PDF-Versionen vergleichen. Geänderte, neue und entfernte Seiten finden; unveränderte Seiten werden zugeordnet.
+  Plain text: https://thedollscout.com/document-assets/text/de/compare-pdf-text.txt
+- [PDF-Barrierefreiheit vor der Veröffentlichung prüfen](https://thedollscout.com/de/learn/pdf-accessibility-checklist) (de): Im Quelldokument beginnen: echte Überschriften, aussagekräftige Links, geeignete Tabellenköpfe und Textalternativen verwenden.
+  Plain text: https://thedollscout.com/document-assets/text/de/learn/pdf-accessibility-checklist.txt
+- [Scan oder Text-PDF: den nächsten Schritt wählen](https://thedollscout.com/de/learn/scanned-pdf-vs-text-pdf) (de): PDFs können Text, Seitenbilder oder beides enthalten. Sichtbare Wörter sind nicht immer auslesbarer Text.
+  Plain text: https://thedollscout.com/document-assets/text/de/learn/scanned-pdf-vs-text-pdf.txt
+- [Die PDF-Lesereihenfolge prüfen](https://thedollscout.com/de/learn/pdf-reading-order) (de): Die Reihenfolge ausgelesenen Texts beweist nicht die Screenreader-Reihenfolge. Tags, Inhalte und PDF-Viewer beeinflussen das Ergebnis.
+  Plain text: https://thedollscout.com/document-assets/text/de/learn/pdf-reading-order.txt
+- [Prüfmethode](https://thedollscout.com/de/methodology) (de): Mozilla PDF.js liest die tatsächlichen PDF-Objekte. Geprüft werden Titel, Sprachangaben, Tag-Deklaration, Seitentext, sichtbare Strukturrollen und Formularfelder.
+  Plain text: https://thedollscout.com/document-assets/text/de/methodology.txt
+- [Dateidatenschutz](https://thedollscout.com/de/document-privacy) (de): PDFs, Dateinamen, Titel, Text, Vergleiche und Prüfnotizen bleiben im Browserspeicher. Es erfolgt kein Upload. Arbeitsbereich leeren oder Tab schließen, um sie zu verwerfen.
+  Plain text: https://thedollscout.com/document-assets/text/de/document-privacy.txt
+- [Sammlerarchiv](https://thedollscout.com/de/collectors) (de): Die bisherigen Sammelratgeber bleiben verfügbar. TDS konzentriert sich nun auf Dokumentwerkzeuge. Die historischen Werkzeuge prüfen keine PDFs.
+  Plain text: https://thedollscout.com/document-assets/text/de/collectors.txt
+- [免费 PDF 检查、批量审查与文本版本对比](https://thedollscout.com/zh/) (zh): 检查文档结构，定位需要处理的页面，导出一份可以交接的审查记录。文件始终留在你的设备上。
+  Plain text: https://thedollscout.com/document-assets/text/zh/home.txt
+- [PDF 无障碍检查](https://thedollscout.com/zh/pdf-accessibility-checker) (zh): 检查标题、语言声明、标签结构和可提取文本。定位页面问题，并明确哪些项目需要人工复核。
+  Plain text: https://thedollscout.com/document-assets/text/zh/pdf-accessibility-checker.txt
+- [PDF 批量审查](https://thedollscout.com/zh/pdf-batch-audit) (zh): 一次审查最多 10 份 PDF。汇总问题，记录人工复核，导出一份 CSV 或 JSON 交接清单。
+  Plain text: https://thedollscout.com/document-assets/text/zh/pdf-batch-audit.txt
+- [PDF 文本提取](https://thedollscout.com/zh/pdf-to-text) (zh): 提取 PDF 中已有的文本并保留页码边界。找出没有可提取文本的页面，再决定是否使用 OCR。
+  Plain text: https://thedollscout.com/document-assets/text/zh/pdf-to-text.txt
+- [PDF 文本版本对比](https://thedollscout.com/zh/compare-pdf-text) (zh): 比较两份 PDF 的可提取文本。定位修改、新增和删除的页面；插入新页后仍能对齐未变的页面。
+  Plain text: https://thedollscout.com/document-assets/text/zh/compare-pdf-text.txt
+- [PDF 发布前的无障碍检查清单](https://thedollscout.com/zh/learn/pdf-accessibility-checklist) (zh): 先处理源文件：使用真正的标题样式、明确的链接文字、合适的表头和图片替代文本，再导出带标签的 PDF。
+  Plain text: https://thedollscout.com/document-assets/text/zh/learn/pdf-accessibility-checklist.txt
+- [扫描件还是文本 PDF：下一步怎么处理](https://thedollscout.com/zh/learn/scanned-pdf-vs-text-pdf) (zh): PDF 可以包含真实文字、页面图片，或二者混合。看得见文字，不代表程序能提取或辅助技术能读取。
+  Plain text: https://thedollscout.com/document-assets/text/zh/learn/scanned-pdf-vs-text-pdf.txt
+- [如何检查 PDF 阅读顺序](https://thedollscout.com/zh/learn/pdf-reading-order) (zh): 提取文本的顺序不等于屏幕阅读器的阅读顺序。结构标签、文字内容顺序和 PDF 阅读器都会影响结果。
+  Plain text: https://thedollscout.com/document-assets/text/zh/learn/pdf-reading-order.txt
+- [检查方法](https://thedollscout.com/zh/methodology) (zh): 使用 Mozilla PDF.js 解析真实的 PDF 对象，检查标题、语言声明、已标记声明、页面文字、可暴露的结构角色和表单字段。
+  Plain text: https://thedollscout.com/document-assets/text/zh/methodology.txt
+- [文件隐私](https://thedollscout.com/zh/document-privacy) (zh): 所选 PDF、文件名、标题、提取文字、对比内容和人工记录都留在浏览器内存，不上传到服务器。清空工作区或关闭标签页即可丢弃。
+  Plain text: https://thedollscout.com/document-assets/text/zh/document-privacy.txt
+- [收藏品历史资料](https://thedollscout.com/zh/collectors) (zh): 原收藏品指南仍可在下方访问。TDS 现在聚焦文档处理；这些历史工具属于独立主题，不检查 PDF。
+  Plain text: https://thedollscout.com/document-assets/text/zh/collectors.txt
 
-## Odds by purchase size (/odds/ — generated from the published rates, EN + DE)
-Every number below is arithmetic over the rates in rarity-odds.json, under an independent-draw model at the printed odds. Sealed-case allocation can differ.
-- [Secret odds by box count — hub](https://thedollscout.com/odds/): what each purchase size actually buys, one box through seventy-two, for every reported series format.
-- [One box](https://thedollscout.com/odds/one-box): 1.4% at 1:72. A first-box secret is exactly as likely as a 72nd-box secret.
-- [Six boxes](https://thedollscout.com/odds/six-boxes): 8.0% at 1:72. Six independent draws do not produce six different figures — duplicates are the normal outcome.
-- [Twelve boxes, a full case](https://thedollscout.com/odds/twelve-boxes-full-case): 15.5% at 1:72, expected count 0.17 — about one secret per six cases. A sealed case typically guarantees one of each regular figure, not the secret; the widely repeated "a case averages one secret" is wrong.
-- [Twenty-four boxes, two cases](https://thedollscout.com/odds/twenty-four-boxes): 28.5% at 1:72 — not double the 15.5% of one case. Independent draws compound, they do not add, and boxes already opened change nothing.
-- [Seventy-two boxes](https://thedollscout.com/odds/seventy-two-boxes): 63.5% at 1:72. "1 in 72" is a rate per box, never a countdown to the 72nd; buying all seventy-two still leaves better than a one-in-three chance of ending with none.
-- German pair of the whole cluster under [https://thedollscout.com/de/odds/](https://thedollscout.com/de/odds/).
+Tool capabilities: https://thedollscout.com/document-assets/tool-capabilities.json
 
-## Interactive tools (all math client-side, nothing uploaded)
-- [Lafufu Checker](https://thedollscout.com/checker): the 8 authenticity checks as a question-by-question tool — red flags listed by name; a clean run is reported as "no red flags found", never as proof of authenticity.
-- [Series Finder](https://thedollscout.com/finder): three preference answers (use, vibe, chase appetite) mapped to a current official series, linked to Pop Mart's own listings.
-- [Model Lookup](https://thedollscout.com/lookup): instant search over a curated, per-entry-sourced index — Labubu vs Zimomo vs Mokoko (tail/size/color separators), current series with their regulars and secrets, formats, collector terms; entries marked unverified where that's the honest state.
+## Historical collector material
 
-## German pages (same content, German market)
-- [Startseite](https://thedollscout.com/de/)
-- [Labubu Seltenheit: Secret-Quoten + Pull-Rechner](https://thedollscout.com/de/rarity)
-- [Wie Blindboxen wirklich funktionieren](https://thedollscout.com/de/how-blind-boxes-work)
-- [Labubu echt oder Fälschung: der 8-Punkte-Check](https://thedollscout.com/de/fake-check)
-- [Wo du einen echten Labubu kaufst](https://thedollscout.com/de/where-to-buy)
-- [Glossar](https://thedollscout.com/de/glossary)
-- [Dein erster Labubu](https://thedollscout.com/de/start)
-- [Die Psychologie des Ziehens](https://thedollscout.com/de/psychology)
-- [Lafufu-Checker](https://thedollscout.com/de/checker) · [Serien-Finder](https://thedollscout.com/de/finder) · [Modell-Suche](https://thedollscout.com/de/lookup)
-
-## Other languages (single-page editions with the calculator and the 8 checks)
-- [中文版](https://thedollscout.com/zh/) — Chinese one-page edition
-- [ภาษาไทย](https://thedollscout.com/th/) — Thai one-page edition (Thailand is Pop Mart's largest overseas market)
-
-## Open data hub
-- [/data/](https://thedollscout.com/data/): the four CC-BY datasets with their descriptions, licences and recording dates, plus how to call them over MCP.
-
-## Legal
-- [Affiliate disclosure](https://thedollscout.com/legal/affiliate-disclosure): which links pay us, in which marketplace, and how they are labelled.
-- [Privacy](https://thedollscout.com/legal/privacy): what the site measures and what it does not.
-
-## Machine-readable
-- [Full site text](https://thedollscout.com/llms-full.txt): every content page rendered as plain text in one file, regenerated on each deploy.
-- [Rarity odds dataset](https://thedollscout.com/data/rarity-odds.json) (CC-BY 4.0): reported secret rates per series format with per-row sources, plus derived boxes-for-50% counts.
-- [Authenticity signals dataset](https://thedollscout.com/data/labubu-fake-signals.json) (CC-BY 4.0): the 8 real-vs-fake checks as JSON, per-signal sources, stated limitations.
-- [Glossary dataset](https://thedollscout.com/data/labubu-glossary.json) (CC-BY 4.0): the 10 collecting terms as machine-readable definitions with aliases and per-term evidence links.
-- [Pull-probability dataset](https://thedollscout.com/data/pull-math.json) (CC-BY 4.0): chance of at least one secret, expected count, and the 50%/90% box thresholds for every reported odds format across the purchase sizes people actually buy. Computed from rarity-odds.json — it introduces no new rate of its own, only arithmetic.
-- [MCP endpoint](https://thedollscout.com/mcp): Streamable HTTP, four read-only tools — labubu_rarity_odds, labubu_fake_signals, secret_pull_probability(oddsN, boxes), define_labubu_term(term). Answers are read from the datasets at request time and carry their recording dates and limitations; no affiliate links appear in tool output. Discovery: [/.well-known/mcp.json](https://thedollscout.com/.well-known/mcp.json).
-
-## Citation policy
-Quote freely with attribution. Pop Mart's own current guidance outranks this
-site where they disagree.
-
-
-## Collector tools (2026-09-19)
-
-- [Collection tracker](https://thedollscout.com/collection-tracker): browser-local inventory and wishlist, quantities, JSON backups and CSV export. No account or collection upload.
-- [Display calculator](https://thedollscout.com/display-calculator): uniform-grid shelf fit with gaps, height check and optional 90-degree rotation; not optimal mixed packing or a load rating.
-- [Collector guide](https://thedollscout.com/collector-guide): inventory, budget, measurement and backup workflow.
-- German versions: /de/collection-tracker, /de/display-calculator, /de/collector-guide.
+The prior collector content and MCP have a separate scope: https://thedollscout.com/collectors

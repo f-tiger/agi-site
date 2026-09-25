@@ -1,0 +1,55 @@
+name: Check ECO energy workbench
+on:
+  pull_request:
+    paths:
+      - 'sites/getecoback/**'
+      - '.github/workflows/check-eco-energy.yml'
+      - '.github/workflows/deploy-getecoback.yml'
+  workflow_dispatch: {}
+permissions:
+  contents: read
+concurrency:
+  group: eco-energy-check-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: sites/getecoback
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify calculations, generated pages and discoverability
+        run: |
+          node --test tools/test_energy_tariffs.mjs
+          python3 tools/build_energy_workbench.py
+          python3 tools/link_energy_workbench.py
+          python3 tools/build_tools_hub.py
+          python3 tools/build_search.py
+          python3 tools/check_events.py
+          python3 tools/check_tools_hub.py
+          python3 tools/check_meta.py
+      - name: Install browser test runtime
+        run: |
+          npm install --prefix "$RUNNER_TEMP/eco-playwright" --no-audit --no-fund playwright@1.58.2
+          node "$RUNNER_TEMP/eco-playwright/node_modules/playwright/cli.js" install --with-deps --only-shell chromium
+          node "$RUNNER_TEMP/eco-playwright/node_modules/playwright/cli.js" install --with-deps webkit
+      - name: Exercise five languages, mobile, files and privacy
+        run: |
+          python3 -m http.server 8765 --directory site > /tmp/eco-preview.log 2>&1 &
+          preview_pid=$!
+          trap 'kill "$preview_pid"' EXIT
+          for i in 1 2 3 4 5; do curl -sf http://127.0.0.1:8765/stromtarif-werkstatt.html > /dev/null && break; sleep 1; done
+          NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_energy_workbench.cjs
+          NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_energy_upload_locale.cjs
+          NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_energy_brand.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: eco-energy-browser-evidence
+          path: ${{ runner.temp }}/eco-energy-qa
+          retention-days: 7

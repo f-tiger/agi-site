@@ -5,7 +5,7 @@ AI 搜索层：给 ChatGPT/Perplexity/Claude 等一个免渲染、可直接解�
 （llms.txt）与全文层（llms-full.txt — 每页正文纯文本，LLM 一次抓取可读全站，
 是被 AI 引擎引用的最大可提取面）。幂等，随构建同步。
 """
-import os, re, html, datetime, sys
+import os, re, html, datetime, sys, json
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from build_season import season_of
@@ -129,6 +129,12 @@ def main():
     fr = pages("fr")
     es = pages("es")
     kat = pages("kategorie")
+    lines += ["## EU product evidence checks / 欧盟产品证据检查", ""]
+    for subdir in ("en/agents", "zh/agents"):
+        for url, t, d in pages(subdir):
+            if "cbam-supplier-data" in url or "eudr-geolocation-evidence" in url:
+                lines.append(f"- [{t}]({url}): {d}")
+    lines += ["", "These checks prepare local supplier questions. They do not verify evidence or submit official declarations. Paid evidence-service checkout is not available.", ""]
     lines.append("## Ratgeber (Deutsch)")
     lines.append("")
     for url, t, d in de:
@@ -165,6 +171,11 @@ def main():
     for slug, (title, desc) in PAGES.items():
         lines.append(f"- [{title}]({BASE}/{slug}.html): {desc}")
     lines.append("")
+    energy = json.load(open(os.path.join(ROOT, "..", "data", "energy-workbench.json"), encoding="utf-8"))
+    lines += ["## European electricity tariff workbench", ""]
+    for t in energy.values():
+        lines.append(f"- [{t['title']}]({BASE}/{t['path']}): {t['meta']}")
+    lines.append("")
     out = os.path.join(ROOT, "llms.txt")
     open(out, "w", encoding="utf-8").write("\n".join(lines))
     print(f"llms.txt: {len(de)} DE + {len(en)} EN + {len(it)} IT guides, {len(kat)} categories")
@@ -176,14 +187,20 @@ def main():
             "> zitierfähige URL steht über jedem Abschnitt. Stand: siehe sitemap.xml.",
             ""]
     n = 0
-    for subdir in ("guide", "en/guide", "fr", "es", "it/guide"):
+    for subdir in ("guide", "en/guide", "fr", "es", "it/guide", "en/agents", "zh/agents"):
         for url, t, d in pages(subdir):
+            if subdir.endswith("agents") and not any(slug in url for slug in ("cbam-supplier-data", "eudr-geolocation-evidence")):
+                continue
             fn = os.path.join(ROOT, subdir, url.rsplit("/", 1)[1])
             txt = body_text(fn)
             if not txt:
                 continue
             full += [f"## {t}", f"URL: {url}", "", txt, "", "---", ""]
             n += 1
+    for lang in ("de", "en", "it"):
+        t = energy[lang]
+        full += [f"## {t['title']}", f"URL: {BASE}/{t['path']}", "", body_text(os.path.join(ROOT, t["path"])), "", "---", ""]
+        n += 1
     open(os.path.join(ROOT, "llms-full.txt"), "w", encoding="utf-8").write("\n".join(full))
     size = os.path.getsize(os.path.join(ROOT, "llms-full.txt"))
     print(f"llms-full.txt: {n} pages, {size//1024} KB")

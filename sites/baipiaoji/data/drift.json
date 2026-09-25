@@ -1,10 +1,82 @@
 {
-  "generated": "2026-09-24",
+  "generated": "2026-09-25",
   "note": "官方来源页令牌集合连续两日与基线不同 = 漂移确认。只是「该去核」的信号,不是事实;limits.checked 推进到确认日后自动撤下。",
-  "fetched_ok": 102,
+  "fetched_ok": 103,
   "fetched_fail": 22,
-  "pending": 14,
+  "pending": 12,
   "items": [
+    {
+      "slug": "exa",
+      "url": "https://exa.ai/pricing",
+      "confirmed": "2026-09-25",
+      "first_seen": "2026-09-24",
+      "added": [],
+      "removed": [
+        "$20"
+      ],
+      "checked_then": "2026-08-13"
+    },
+    {
+      "slug": "dify",
+      "url": "https://dify.ai",
+      "confirmed": "2026-09-25",
+      "first_seen": "2026-09-24",
+      "added": [
+        "157k"
+      ],
+      "removed": [
+        "156k"
+      ],
+      "checked_then": "2026-08-04"
+    },
+    {
+      "slug": "immersive-translate",
+      "url": "https://immersivetranslate.com",
+      "confirmed": "2026-09-25",
+      "first_seen": "2026-09-24",
+      "added": [
+        "3000万"
+      ],
+      "removed": [
+        "2000万"
+      ],
+      "checked_then": "2026-08-03"
+    },
+    {
+      "slug": "cursor",
+      "url": "https://cursor.com",
+      "confirmed": "2026-09-25",
+      "first_seen": "2026-09-24",
+      "added": [
+        "$3,000",
+        "0032b",
+        "00810b",
+        "00b",
+        "011b",
+        "01237b",
+        "01358061b",
+        "01b",
+        "03024b",
+        "031b",
+        "03b",
+        "04380b"
+      ],
+      "removed": [
+        "$3"
+      ],
+      "checked_then": "2026-08-03"
+    },
+    {
+      "slug": "zhipu-glm",
+      "url": "https://docs.bigmodel.cn/cn/guide/models/free/glm-4.7-flash",
+      "confirmed": "2026-09-25",
+      "first_seen": "2026-09-24",
+      "added": [],
+      "removed": [
+        "1,s"
+      ],
+      "checked_then": "2026-08-01"
+    },
     {
       "slug": "anythingllm",
       "url": "https://anythingllm.com",
@@ -107,19 +179,6 @@
       "checked_then": "2026-08-03"
     },
     {
-      "slug": "dify",
-      "url": "https://dify.ai",
-      "confirmed": "2026-09-19",
-      "first_seen": "2026-09-18",
-      "added": [
-        "156k"
-      ],
-      "removed": [
-        "155k"
-      ],
-      "checked_then": "2026-08-04"
-    },
-    {
       "slug": "pika",
       "url": "https://pika.art/terms-of-service",
       "confirmed": "2026-09-19",
@@ -134,17 +193,6 @@
       ],
       "removed": [],
       "checked_then": "2026-08-06"
-    },
-    {
-      "slug": "cursor",
-      "url": "https://cursor.com",
-      "confirmed": "2026-09-19",
-      "first_seen": "2026-09-18",
-      "added": [
-        "$3"
-      ],
-      "removed": [],
-      "checked_then": "2026-08-03"
     },
     {
       "slug": "siliconflow",
@@ -243,17 +291,6 @@
         "60seconds"
       ],
       "checked_then": "2026-08-06"
-    },
-    {
-      "slug": "zhipu-glm",
-      "url": "https://docs.bigmodel.cn/cn/guide/models/free/glm-4.7-flash",
-      "confirmed": "2026-09-16",
-      "first_seen": "2026-09-15",
-      "added": [],
-      "removed": [
-        "1,m"
-      ],
-      "checked_then": "2026-08-01"
     }
   ]
 }

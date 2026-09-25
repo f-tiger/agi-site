@@ -21,6 +21,7 @@ For every <url> whose lastmod is today, exactly one of these must hold:
 Anything else is red. --selftest exercises both directions with stubs.
 """
 import datetime, os, re, subprocess, sys
+from build_sitemap import git_commit_date
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = os.path.join(ROOT, "site")
@@ -44,10 +45,7 @@ def is_tracked(path):
 
 
 def commit_date(path):
-    r = subprocess.run(["git", "log", "-1", "--format=%cs", "--", path], cwd=ROOT,
-                       capture_output=True, text=True)
-    d = r.stdout.strip()
-    return d if r.returncode == 0 and re.fullmatch(r"\d{4}-\d{2}-\d{2}", d) else None
+    return git_commit_date(path)
 
 
 def page_modified(path):
@@ -77,7 +75,7 @@ def violations(entries, today, tracked, committed, modified):
 
 
 def main():
-    today = os.environ.get("SITEMAP_TODAY") or datetime.date.today().isoformat()
+    today = os.environ.get("SITEMAP_TODAY") or datetime.datetime.now(datetime.timezone.utc).date().isoformat()
     xml = open(os.path.join(SITE, "sitemap.xml"), encoding="utf-8").read()
     entries = ENTRY_RE.findall(xml)
     bad = violations(entries, today, is_tracked, commit_date, page_modified)

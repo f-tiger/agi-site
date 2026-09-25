@@ -1,0 +1,20 @@
+# File privacy
+
+https://thedollscout.com/document-privacy
+Published by TDS Document Scout
+Updated: 2026-09-25
+
+Selected PDFs, filenames, titles, extracted text, comparisons and manual review notes stay in browser memory. They are not uploaded to our servers. Clear the workspace or close the tab to discard them.
+
+When you download a report, your browser saves it to your device. JSON and CSV reports can contain filenames and document titles. JSON comparison reports and text downloads also contain extracted document text. No report is made public by this site.
+
+We collect limited first-party usage counts: the tool page, event type, day, coarse country and referring hostname. Events never include filenames, file content or review notes. Demonstration events are recorded separately. No analytics cookies or cross-session user identifier are used on these document pages.
+
+Legacy collector pages and the separate member area have their own behavior, described in the existing privacy notice. Document tools do not require membership, and membership does not add paid document features.
+
+Sharing a page sends only its public link. Sharing a summary sends the previewed counts and limitations to the destination you choose, or copies them to your clipboard. It does not include filenames, titles, document text or manual notes. Downloaded full reports have different contents, described above.
+
+Reference material
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/

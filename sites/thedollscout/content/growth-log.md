@@ -2442,3 +2442,45 @@ workflow 会产生它。**归因不明,不许当需求读。**
   `crumbl labubu ube dot cake` v=24,900。**本轮不出页**:前者是 Pop Mart 的另一 IP 联名,不在
   Labubu/The Monsters 稀有度定位内;后者是联名甜品热点,与 competitive-gaps 五个缺口都不对应。
 - 本轮零新页;llms-full.txt 随构建更新一并提交。
+
+### 2026-09-25：TDS Document Scout 转型上线
+
+- Owner 明确要求跨行业重新定位并落地，已把首页转为专业 PDF 预检与批量交付工具。第一版 `c98f744bfa5915aead3976fb160423de78c9b4b9`，线上修正版 `e54ba5a20f6df83137225fb1de0e469c97dc67f9`，方法版本 `2026-09-25.2`。
+- 两次部署均成功；最终 run：https://github.com/f-tiger/agi-site/actions/runs/36095700670 。33 个中英德页面、PDF 依赖资产、原会员与收藏品 URL、退役路径、IndexNow 提交和统计回读全部通过部署闸门。提交成功不等于搜索已收录。
+- 12 项文档测试 + 8 项收藏品测试 + 11 项共享工具测试 + 8 项会员隔离测试通过；137 条 FAQ/DefinedTerm 可见内容匹配通过。修正了 PDF.js 6 的 MarkInfo Map 返回值，以及「两页都修改并插入一页」的错误位置配对；实际示例现在为 changed 1→1、added →2、changed 2→3。
+- 真实浏览器：英文首页真实示例、自选三页文件的标题/语言/页数、中文分页提取、英文版本比较、德语手机批量审查均运行成功。390px 预览中中文页面 clientWidth=scrollWidth=375（预览滚动条占 15px），无横向溢出。未使用用户私人文件。
+- 导出：JSON/CSV 序列化与安全性由测试覆盖；线上生成 `blob:` 本地保存链接且无站点脚本错误。当前云浏览器没有返回 download 完成事件，因此本轮未核验最终下载文件的字节。保留原生可见「保存报告」链接；不把按钮出现或链接生成写成下载完成。后续在能返回本地下载的浏览器验收此一步，不重复添加付费或上传功能。
+- 新计量基线（`content/document-metrics.json`，2026-09-25T04:47:04Z）：tool_views=0，真实动作 events={}，doc_ci=2 单独排除。网页 QA 全用 ?ci=1；不把示例与发布检查算作用户增长。crawler_fetches 只是按日的机器人请求，首页可含当天转型前请求，也未核验每个调用来源，不能据此宣称已获取搜索流量。
+- 每日记录复用原 tds-traffic 工作流；趋势种子替换，配额和 cron 数不变。`tds-documents-1023` 已登记 10-23 的 100 工具页访问 / 20 完整处理 / 5 导出学习门槛。新任务与旧 Labubu 60 天线分开读取；当前没有买家或收入验证。
+- 基线补记：为核验交付链接，最后打开了一次无 `?ci=1` 的正式 `/zh/` 入口，产生 1 次 `doc_view`；这是已知发布验证访问，不是自然用户。已保留原始记录并更新快照，不删除数据。文档完成/导出动作仍为 0。09-25 仍在窗口内时，观察访问增量需扣除这 1 次基线；到 10-23 的 28 天窗口从 09-26 起，该访问会自然出窗。后续浏览器操作继续使用 CI 参数。
+- 浏览器原生 `downloadMedia` 对报告保存链接返回完成；没有暴露下载文件路径，故仍维持上面的「未核验最终字节」结论。
+
+## 2026-09-25 — unified document UI, discovery and safe sharing (edition 2026-09-25.3)
+
+Owner requested unified frontend styling, SEO/GEO improvements and sharing. Deployed code: `5bad31f16947fc19dad7e0223d76a4429790da08`. All deployment gates passed: https://github.com/f-tiger/agi-site/actions/runs/36097273753 (job 107952064870).
+
+- All 33 document pages share navigation, mobile tool tabs, balanced localized headings, page-sharing controls and publisher/citation treatment. Tool pages now show use case, output and limitations, with related guide links.
+- Added localized intent titles, social metadata, Article/breadcrumb data, 33 linked plain-text versions and a 12-entry localized capability index. These reuse the visible claims and do not advertise a hosted PDF API. Sitemap home dates now reflect the content update; daily builds do not manufacture new dates. Full scope and sources: `docs/document-experience-2026-09-25.md`.
+- User-triggered page sharing uses a fixed `via=share` source marker. Result sharing previews only aggregate counts, limitations and the public tool URL; file identifiers, titles, text, failure strings and notes are excluded. Native sharing is capability-gated; copy/selectable text remain available. Sample results are labelled and do not create real summary-share events.
+- Validation: 14 document tests; local and production checks on all 33 pages, text versions, capabilities and assets; 137 FAQ/DefinedTerm entries matched visible text. Browser QA used `?ci=1`: Chinese desktop/home/link-copy/sample/summary-copy; 390px Chinese home; German batch sample and summary-copy; English comparison sample and summary preview (2 changed pages plus 1 insertion). Chinese iframe measured 375/375 CSS pixels with no horizontal overflow. German and English mobile surfaces inspected visually/through DOM. Browser-copy success UI and the exact preview payload were checked; the cloud browser has no native share target, so external delivery was not exercised. Logged browser errors were extension-origin, not site-origin.
+- Measurement after release at 2026-09-25T05:10:33Z: `tool_views=2`, `events={doc_view:2}`, excluded `doc_ci=3`; no completion/export/share demand yet. The previous known launch QA view is still in that total. The second view has no proven acquisition attribution; do not call it organic growth. New events are `doc_share`, `doc_summary_share`, `doc_share_visit`; copies/native handoffs are not verified message delivery or unique people.
+
+## 2026-09-25 — restore the established TDS brand (edition 2026-09-25.4)
+
+Owner: 「前端样式和tds风格不同？」. The previous teal document theme was an implementation mistake: consistency within the new tools was not consistency with TDS. Production code `0b751a20fd905dff0ffee90ebb13059701eed771` restores the original white / black / #e4002b / Helvetica direction using a common `css/brand.css`. Document pages, legacy content, archive banners, generated TDS workbench and member surfaces consume the same foundation. Icon, browser theme color and the new versioned social-card URL were updated together; the editable SVG source is committed. No shared-site business logic changed.
+
+Local checks: 33 document pages, shared-style and icon gate, generated release directory, 137 visible FAQ/DefinedTerm entries. CI passed unit tests, all build gates and Cloudflare publication. Live browser confirmed edition .4, white background, black body text, #e4002b controls and Helvetica on the document homepage, workbench and member entry. Chinese 390px mobile harness measured 375/375 CSS pixels without horizontal overflow. The Chinese batch sample still produced its review. QA used `?ci=1`.
+
+Deployment run https://github.com/f-tiger/agi-site/actions/runs/36116650482 **did not fully pass**: document page/assets/style assertions passed, but the isolated analytics write returned HTTP 400 instead of 204. A single subsequent diagnostic write to `/__ci/documents` also returned `event_not_recorded`; the preceding statistics read showed 4 excluded CI events. The handler's catch covers storage failure and does not expose the underlying cause; no quota/schema cause has been established. This is an unresolved analytics verification issue, not proof of failed publication or actual demand. No gate was removed and no successful end-to-end measurement claim is made.
+
+## 2026-09-25 — Explicit English home navigation (2026-09-25.5)
+
+Owner: “优先默认是英语” and “没法返回tds首页？”. Added visible Home navigation and footer links; document logos and breadcrumb Home now return to the English root. Localized tool links and language selection remain available. TDS-only workbench/member headers also receive Home; mobile navigation wraps with 44px-high links. The mobile harness now opens English.
+
+Release `629ed63608b13a3796eabfc0b8effd24aaa15ab3` deployed. Local document, workbench and membership build checks passed; structured-data check found 137 entries, zero invisible. Production browser checks confirmed edition .5 and a Chinese tool Home click returned the English root. German mobile navigation measured 375px content/375px scroll, with Home visible. CI markers are preserved across document navigation, while canonical and shared URLs remain public.
+
+The first deployment verifier read stale unversioned main.css and stopped at the brand import assertion. Follow-up verification requests the same edition-qualified brand assets as the page. A subsequent full production verifier passed page/asset checks and reached the pre-existing isolated analytics failure: doc_ci POST returned 400 instead of 204. Its root cause is still unknown; this release does not count that measurement gate as passed. No analytics gate was disabled, and no D1 or payment configuration was changed.
+
+Edition .6 aligns the final mobile navigation item with the other 44px links; screenshot inspection of the German tool return confirmed that the mobile Home click displayed the English homepage. Asset verification now uses edition-qualified URLs to avoid stale CSS.
+
+Final release `0b4bc6fdf18e1d1ad0416cc02cacc0be203d87bb` deployed successfully (run 36122114129). Live edition .6 is English at `/`; browser screenshots confirm aligned mobile navigation, and live workbench/member headers each contain Home pointing to `/`. The versioned CSS gate passed. The remaining failure is the existing measurement service: `/api/document-stats` returned HTTP 500 during the final run, before the isolated write step. Thus page/navigation verification succeeded, while the overall measurement/deploy verification remains failed. No traffic or conversion improvement is claimed.

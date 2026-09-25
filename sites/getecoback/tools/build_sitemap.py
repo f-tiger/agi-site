@@ -42,7 +42,7 @@ DAILY = {f"{BASE}/", f"{BASE}/en/"}
 
 
 def git_commit_date(path):
-    """Date (YYYY-MM-DD) of the last commit touching *path*, or None.
+    """UTC date (YYYY-MM-DD) of the last commit touching *path*, or None.
 
     None for untracked files, for files outside a git checkout, and when git is
     missing. A shallow clone returns the boundary commit's date for older files;
@@ -52,13 +52,17 @@ def git_commit_date(path):
     """
     try:
         out = subprocess.run(
-            ["git", "log", "-1", "--format=%cs", "--", path],
+            ["git", "log", "-1", "--format=%ct", "--", path],
             cwd=os.path.dirname(path) or ".", capture_output=True, text=True, timeout=20,
         )
     except (OSError, subprocess.SubprocessError):
         return None
-    d = out.stdout.strip()
-    return d if out.returncode == 0 and re.fullmatch(r"\d{4}-\d{2}-\d{2}", d) else None
+    stamp = out.stdout.strip()
+    if out.returncode != 0 or not re.fullmatch(r"\d+", stamp):
+        return None
+    # %cs preserves the committer's offset. Near midnight it can disagree with
+    # the UTC build date even when the commit was made moments ago.
+    return datetime.datetime.fromtimestamp(int(stamp), datetime.timezone.utc).date().isoformat()
 
 
 def page_lastmod(html, path, fallback, url=None):
@@ -92,7 +96,7 @@ def priority_and_freq(url):
 
 def main():
     args = [a for a in sys.argv[1:] if a != "--selftest"]
-    lastmod = args[0] if args else datetime.date.today().isoformat()
+    lastmod = args[0] if args else datetime.datetime.now(datetime.timezone.utc).date().isoformat()
     urls = []
     sources = {}
     for dirpath, _, files in os.walk(SITE):
@@ -154,6 +158,24 @@ def selftest():
     if os.path.exists(tracked) and git_commit_date(tracked):
         mod, src = page_lastmod("<html></html>", tracked, today)
         assert src == "git" and mod != today, (mod, src)
+    # Exercise real git output at both sides of UTC midnight. The runner must
+    # compare UTC dates, regardless of the offset retained in the commit.
+    with tempfile.TemporaryDirectory() as td:
+        subprocess.run(["git", "init", "-q", td], check=True)
+        env = {**os.environ, "GIT_AUTHOR_NAME": "Sitemap test",
+               "GIT_AUTHOR_EMAIL": "sitemap@example.invalid",
+               "GIT_COMMITTER_NAME": "Sitemap test",
+               "GIT_COMMITTER_EMAIL": "sitemap@example.invalid"}
+        for i, (stamp, expected) in enumerate([
+            ("2026-09-24T21:45:43-04:00", "2026-09-25"),
+            ("2026-09-25T01:15:00+14:00", "2026-09-24"),
+        ]):
+            path = os.path.join(td, f"page-{i}.html")
+            open(path, "w").write("<html></html>")
+            subprocess.run(["git", "-C", td, "add", path], check=True)
+            subprocess.run(["git", "-C", td, "commit", "-qm", "date fixture"],
+                           env={**env, "GIT_AUTHOR_DATE": stamp, "GIT_COMMITTER_DATE": stamp}, check=True)
+            assert git_commit_date(path) == expected, (stamp, git_commit_date(path), expected)
     print("build_sitemap selftest OK")
 
 

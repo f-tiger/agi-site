@@ -1,0 +1,18 @@
+# Scan oder Text-PDF: den nächsten Schritt wählen
+
+https://thedollscout.com/de/learn/scanned-pdf-vs-text-pdf
+Veröffentlicht von TDS Document Scout
+Aktualisiert: 2026-09-25
+
+PDFs können Text, Seitenbilder oder beides enthalten. Sichtbare Wörter sind nicht immer auslesbarer Text.
+
+Eine Seite auslesen und bei leerem Ergebnis visuell prüfen. Es kann ein Scan, eine leere Seite oder nicht unterstützter Inhalt sein.
+
+Scans mit geeigneter OCR verarbeiten. Namen, Zahlen, Satzzeichen und Reihenfolge sorgfältig nachprüfen.
+
+Die Textebene ist nur der Anfang. Überschriften, Alternativen und Struktur separat prüfen. Dieses Werkzeug bietet keine OCR.
+
+Referenzen
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/

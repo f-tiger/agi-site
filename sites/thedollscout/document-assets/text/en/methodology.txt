@@ -1,0 +1,20 @@
+# How checks work
+
+https://thedollscout.com/methodology
+Published by TDS Document Scout
+Updated: 2026-09-25
+
+The reader parses actual PDF objects with Mozilla PDF.js. It inspects title and language metadata, the tagged-document declaration, page text, exposed structure roles and interactive fields.
+
+Missing declarations and text-bearing pages without a structure tree are triage signals. Heading jumps, tables, forms and long documents without bookmarks are review prompts. No percentage accessibility score is calculated.
+
+Files are limited to 20 MB each, 10 per batch and 100 MB total. Inspection covers up to 200 pages per PDF and 600 per batch. Very large text pages are capped at 100,000 characters and 2,000,000 per document. Partial results are labelled.
+
+Text comparison aligns pages using normalized extracted text. Equal text does not prove equal layout, tags, links or images. Pages without usable text remain unknown.
+
+Reports are generated locally. Review checkboxes record a user assertion; they are not an independent audit. Original files are never rewritten.
+
+Reference material
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/

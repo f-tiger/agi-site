@@ -68,7 +68,7 @@ export async function onRequest(ctx) {
     const path = new URL(ctx.request.url).pathname;
     for (const p of RETIRED_PREFIXES) {
       if (path === p || path.startsWith(p + '/') || path === p + '.html') {
-        return new Response('Gone. This site now hosts the Labubu buyer\'s guide: https://thedollscout.com/', {
+        return new Response('Gone. TDS now hosts Document Scout: https://thedollscout.com/', {
           status: 410,
           headers: { 'content-type': 'text/plain; charset=utf-8', 'cache-control': 'public, max-age=300' },
         });
