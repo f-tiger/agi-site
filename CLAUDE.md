@@ -819,6 +819,9 @@ Cloudflare Pages 把 `/x.html` 308 到 `/x`,而 bpj 的 sitemap / `canonical` / 
   搜 `getecoback` 只出那两条废弃的;搜 `agiscorecard` 命中是因为**名字里自带品牌**)。
   已把品牌写进两站 manifest 的 `description`(eco v1.2.0、bpj v1.11.0),内容属实、**不改名**
   ——再改一次名就是第四个名字。**新 MCP server 命名从此把品牌放进名字。**
+  **⚠ 2026-09-25 纠正**:eco 那条加品牌后是 199 字符,超过注册表 100 字符硬限制,**1.2.0 从未发布**
+  (注册表 latest 一直是 1.1.0,PR #2 合并后的 publish 当场 422)。已缩为 97 字符、品牌放在开头,
+  并在 `eco-publish-mcp.yml` 发布前加了长度断言 —— SR 早有这道闸,eco 没有,正是 09-17 那条规矩没抄过去。
 - **未处理的漂移**:`sites/baipiaoji/mirror/server.json` 停在 v1.9.0(主份 v1.11.0);mirror 属另一公开仓,
   不在本会话范围,留给 owner 或有该仓范围的会话。
 

@@ -43,9 +43,26 @@ jobs:
           resp=$(curl -s --max-time 20 -X POST "https://getecoback.com/mcp" \
             -H "Content-Type: application/json" \
             -d '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-03-26","capabilities":{},"clientInfo":{"name":"publish-check","version":"0"}}}')
-          # 过渡期两个名字都认:本次 push 同时触发 deploy 与 publish,publish 探活时线上可能还是旧 worker。
-          # 等确认线上自报 hvac-btu-heat-klimaanlage 之后,把这条收窄成只认 canonical 名。
-          echo "$resp" | grep -qE "hvac-btu-heat-klimaanlage|getecoback-raumklima" || { echo "::error::live MCP endpoint not healthy — refusing to publish"; exit 1; }
+          # 2026-09-25 线上已确认自报 canonical 名(hvac-btu-heat-klimaanlage 1.2.0),过渡期的旧名放行已收窄。
+          echo "$resp" | grep -q '"name":"hvac-btu-heat-klimaanlage"' || { echo "::error::live MCP endpoint not healthy — refusing to publish"; exit 1; }
+
+      - name: Registry limits (checked here, before the registry rejects them)
+        run: |
+          # 注册表对 description 有 100 字符硬限制,超了在 publish 那步 422(2026-09-25 实际发生:
+          # 09-16 把品牌写进描述后是 199 字符,1.2.0 因此一直没发出去)。外部硬限制在本地先断言一次。
+          python3 - <<'PY'
+          import glob, json, sys
+          bad = []
+          for f in ["mcp/server.json"] + sorted(glob.glob("mcp/superseded/*.json")):
+              d = json.load(open(f))
+              n = len(d.get("description", ""))
+              print(f"{f}: description {n} chars")
+              if n > 100:
+                  bad.append(f)
+          if bad:
+              print("::error::description over the registry's 100-char limit: " + ", ".join(bad))
+              sys.exit(1)
+          PY
 
       - name: Login (GitHub OIDC) and publish
         run: |

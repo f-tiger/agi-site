@@ -28,7 +28,7 @@ await Promise.all(hosts.map(async s=>{
   const r=await request(s.host,path);assert.equal(r.status,200,s.host+path);
   assert.equal(r.headers.get('x-content-type-options'),'nosniff');assert.match(r.headers.get('content-security-policy')||'',/frame-ancestors 'none'/);
   const bytes=Buffer.from(await r.arrayBuffer());const local=await readFile('dist/'+file);
-  const stable=b=>['/market.html','/briefs.html'].includes(path)?Buffer.from(b.toString().replace(/<!-- LIVE:(market|briefs):start -->[\s\S]*?<!-- LIVE:\1:end -->/g,'<!-- LIVE -->')):b;
+  const stable=b=>['/market.html','/briefs.html','/zh/market.html'].includes(path)?Buffer.from(b.toString().replace(/<!-- LIVE:(market|briefs):start -->[\s\S]*?<!-- LIVE:\1:end -->/g,'<!-- LIVE -->')):b;
   assert.equal(hash(stable(bytes)),hash(stable(local)),'Deployed content differs: '+s.host+path);
   if(file.endsWith('.mjs'))assert.match(r.headers.get('content-type')||'',/(?:java|ecma)script/i,'Module MIME: '+file);
  }
