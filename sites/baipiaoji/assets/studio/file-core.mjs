@@ -1,4 +1,4 @@
-export const FILE_EDITION='2026-09-25.1';
+export const FILE_EDITION='2026-09-25.2';
 export const LIMITS=Object.freeze({files:20,bytes:64*1024*1024,fileBytes:20*1024*1024,pages:200,pixels:16_000_000,outputBytes:100*1024*1024});
 export const DEFAULTS=Object.freeze({width:1200,height:1200,fit:'contain',format:'jpeg',quality:85,background:'#ffffff',remove:false,tolerance:30,paper:'a4'});
 export function settings(raw={}){

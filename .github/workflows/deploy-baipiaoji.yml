@@ -306,6 +306,9 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: npx wrangler@4 pages deploy dist --project-name=aiyangmao --branch=main --commit-dirty=true
 
+      - name: Verify published free PDF and image tools
+        run: node scripts/verify-file-studio-live.mjs
+
       # Refresh the existing watcher before readiness checks; stale heartbeats close sales.
       - name: Verify Web3 watcher and selling after deployment
         env:
@@ -917,6 +920,5 @@ jobs:
           check "变更清单回写" "${{ steps.manifest.outcome }}"
           [ "$fail" = "0" ] || exit 1
           echo "✅ 全部链路自测通过"
-
 
 
