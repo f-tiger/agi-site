@@ -1,5 +1,6 @@
 // Events are actions, not unique people or verified organic traffic. The open
 // endpoint can be spoofed; search acquisition must be corroborated with GSC.
+import { databaseFailure } from './doc-events.js';
 const START = '2026-09-25';
 const WINDOW = `d >= date('now','-27 days') AND d >= '${START}'`;
 const REAL = `${WINDOW} AND substr(ev,1,4) = 'doc_' AND ev NOT IN ('doc_ci','doc_sample','doc_delivery_sample') AND substr(path,1,5) != '/__ci'`;
@@ -22,5 +23,5 @@ export async function onRequestGet({ env }) {
       tool_views:rows[2].filter(r => /^\/(?:(de|zh)\/)?(?:delivery-evidence|pdf-accessibility-checker|pdf-batch-audit|pdf-to-text|compare-pdf-text)?$/.test(r.path)).reduce((n,r) => n + Number(r.n),0),
       excluded:Object.fromEntries(rows[4].map(r => [r.ev, Number(r.n)])), crawler_fetches:rows[5],
     });
-  } catch { return json({ ok:false, error:'query_failed' }, 500); }
+  } catch (error) { return json({ ok:false, error:'query_failed',reason:databaseFailure(error) }, 500); }
 }

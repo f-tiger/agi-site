@@ -5,7 +5,7 @@ import * as pdfjs from 'pdfjs-dist/legacy/build/pdf.mjs';
 import { fixture } from './fixtures.mjs';
 import { readPdf } from '../../document-assets/pdf-reader.mjs';
 import { auditDocument, compareDocuments, structureFacts, validateFiles, csvCell, auditExport, LIMITS } from '../../document-assets/core.mjs';
-import { onRequestPost, safeRef } from '../../functions/api/doc-events.js';
+import { onRequestPost, safeRef, databaseFailure } from '../../functions/api/doc-events.js';
 import { onRequestGet } from '../../functions/api/document-stats.js';
 import { copy } from './copy.mjs';
 import { shareUrl, summaryText } from '../../document-assets/sharing.mjs';
@@ -160,5 +160,8 @@ test('delivery demand stays categorical and samples stay separate; storage failu
   assert.equal((await event({p:'/delivery-evidence',e:'doc_delivery_interest_repeat_team',email:'private'})).bound.length,0);
   const request=new Request('https://thedollscout.com/api/doc-events',{method:'POST',headers:{origin:'https://thedollscout.com'},body:JSON.stringify({p:'/delivery-evidence',e:'doc_delivery_complete'})});
   const res=await onRequestPost({request,env:{HITS:{prepare:()=>({bind:()=>({run:async()=>{throw Error('Internal private error');}})})}}});
-  assert.equal(res.status,503); assert.deepEqual(await res.json(),{ok:false,error:'storage_unavailable'});
+  assert.equal(res.status,503); assert.deepEqual(await res.json(),{ok:false,error:'storage_unavailable',reason:'unknown'});
+  assert.equal(databaseFailure(Error('daily read quota exceeded')),'daily_limit');
+  assert.equal(databaseFailure(Error('internal error; reference=PRIVATE')),'internal');
+  assert.equal(databaseFailure(Error('no such column: PRIVATE')),'schema');
 });

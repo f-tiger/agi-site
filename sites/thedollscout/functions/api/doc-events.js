@@ -5,6 +5,18 @@ for (const event of ['doc_delivery_complete','doc_delivery_sample','doc_delivery
 for (const frequency of ['none','few','repeat']) for (const choice of ['team','project','none']) EVENTS.add(`doc_delivery_interest_${frequency}_${choice}`);
 const PAGE = /^\/(?:(de|zh)\/)?(?:delivery-evidence|pdf-accessibility-checker|pdf-batch-audit|pdf-to-text|compare-pdf-text|methodology|document-privacy|collectors|learn\/(?:pdf-accessibility-checklist|scanned-pdf-vs-text-pdf|pdf-reading-order))?$/;
 const json = (body, status) => new Response(JSON.stringify(body), { status, headers: { 'content-type': 'application/json; charset=utf-8', 'cache-control': 'no-store' } });
+// Return a bounded diagnostic class, never SQL, exception text, keys or identifiers.
+export function databaseFailure(error) {
+  const text = [error?.message,error?.cause?.message].filter(v=>typeof v==='string').join(' ').toLowerCase();
+  if (/daily.*(?:limit|quota)|(?:limit|quota).*daily/.test(text)) return 'daily_limit';
+  if (/storage.*(?:full|limit)|database.*full/.test(text)) return 'storage_limit';
+  if (/no such (?:table|column)|syntax error/.test(text)) return 'schema';
+  if (/overloaded|database is locked|sqlite_busy/.test(text)) return 'busy';
+  if (/rate limit|too many requests/.test(text)) return 'rate_limit';
+  if (/timed? ?out|timeout|maximum.*duration/.test(text)) return 'timeout';
+  if (/internal error|internal_error/.test(text)) return 'internal';
+  return 'unknown';
+}
 export function safeRef(value) {
   try { const url = new URL(value); return /^https?:$/.test(url.protocol) ? url.hostname.toLowerCase().slice(0, 120) : ''; } catch { return ''; }
 }
@@ -30,7 +42,7 @@ export async function onRequestPost({ request, env }) {
     await env.HITS.prepare('INSERT INTO hits (d, path, lang, country, ref, ev) VALUES (?,?,?,?,?,?)')
       .bind(day, body.p, lang, /^[A-Z]{2}$/.test(country) ? country : '', ci ? '' : safeRef(body.r), body.e).run();
     return new Response(null, { status:204 });
-  } catch {
-    return json({ ok:false, error:writing ? 'storage_unavailable' : 'invalid_event' }, writing ? 503 : 400);
+  } catch (error) {
+    return json({ ok:false, error:writing ? 'storage_unavailable' : 'invalid_event', ...(writing ? {reason:databaseFailure(error)} : {}) }, writing ? 503 : 400);
   }
 }
