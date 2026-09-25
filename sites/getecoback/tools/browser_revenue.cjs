@@ -2,34 +2,40 @@ const {chromium,webkit}=require('playwright');
 const assert=require('node:assert/strict');
 const fs=require('node:fs/promises');
 const path=require('node:path');
+const http=require('node:http');
 (async()=>{
- const base=process.env.TEST_BASE_URL||'http://127.0.0.1:8765',dir=process.env.QA_DIR||'/tmp/eco-revenue-qa';
+ const dir=process.env.QA_DIR||'/tmp/eco-revenue-qa',root=path.resolve(__dirname,'../site');
  const copy=JSON.parse(await fs.readFile(path.join(__dirname,'../data/energy-workbench.json'),'utf8'));
- await fs.mkdir(dir,{recursive:true});let checks=0;
+ await fs.mkdir(dir,{recursive:true});let checks=0,events=[],serverErrors=[];
+ // Let keepalive beacons reach a real receiver. Pausing them in a browser route
+ // can cancel the paused request when its originating document navigates away.
+ const server=http.createServer(async(request,response)=>{
+  try{
+   const u=new URL(request.url,'http://localhost');
+   if(u.pathname.startsWith('/api/')){
+    if(u.pathname==='/api/ev'&&request.method==='POST'){
+     const chunks=[];for await(const chunk of request)chunks.push(chunk);
+     const event=JSON.parse(Buffer.concat(chunks).toString());
+     assert.ok(event&&typeof event.n==='string','Event POST must contain a named event');events.push(event);
+    }
+    response.writeHead(204);response.end();return;
+   }
+   const file=path.resolve(root,'.'+decodeURIComponent(u.pathname));
+   if(!file.startsWith(root+path.sep)){response.writeHead(403);response.end();return;}
+   let body;try{body=await fs.readFile(file);}catch{response.writeHead(404);response.end();return;}
+   response.writeHead(200,{'Content-Type':{'.html':'text/html','.mjs':'text/javascript','.js':'text/javascript','.css':'text/css','.json':'application/json','.svg':'image/svg+xml'}[path.extname(file)]||'application/octet-stream'});response.end(body);
+  }catch(error){serverErrors.push(error.message);response.writeHead(500);response.end();}
+ });
+ await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
+ const base='http://127.0.0.1:'+server.address().port;
+ const received=async(name,count)=>{const end=Date.now()+5000;while(events.filter(e=>e.n===name).length<count&&Date.now()<end)await new Promise(resolve=>setTimeout(resolve,20));assert.equal(events.filter(e=>e.n===name).length,count,'Receiver count for '+name+'; observed '+JSON.stringify(events.map(e=>e.n)));};
+ try{
  for(const [name,type]of Object.entries({chromium,webkit})){
   const browser=await type.launch({headless:true});
   try{
-   const context=await browser.newContext({viewport:{width:390,height:844},locale:'zh-CN'}),events=[],errors=[];
-   await context.route('**/*',async route=>{
-    const u=new URL(route.request().url());
-    if(u.origin!==base)return route.abort();
-    if(u.pathname.startsWith('/api/')){
-     const request=route.request(),body=request.postData();
-     if(u.pathname==='/api/ev'&&request.method()==='POST'&&body){
-      const event=JSON.parse(body);
-      assert.ok(event&&typeof event.n==='string','Event POST must contain a named event');
-      events.push(event);
-     }
-     return route.fulfill({status:204,body:''});
-    }
-    return route.continue();
-   });
+   const context=await browser.newContext({viewport:{width:390,height:844},locale:'zh-CN'}),errors=[];events=[];
+   await context.route(url=>url.origin!==base,route=>route.abort());
    const page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));
-   const responseFor=name=>context.waitForEvent('response',{predicate:response=>{
-    const request=response.request();
-    if(new URL(request.url()).pathname!=='/api/ev'||request.method()!=='POST'||!request.postData())return false;
-    return JSON.parse(request.postData())?.n===name;
-   }});
    for(const [lang,t]of Object.entries(copy)){
     console.log('Checking revenue next steps: '+name+' / '+lang);
     await page.goto(base+'/'+t.path);await page.waitForFunction(()=>document.querySelector('#reset').onclick);
@@ -41,10 +47,9 @@ const path=require('node:path');
     for(const item of t.nextLinks){assert.equal(await page.locator(`[data-next-step="${item.id}"]`).getAttribute('href'),item.path);checks++;}
     assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),true);checks++;
     const before=events.filter(e=>e.n==='outbound_choice').length;
-    const outbound=responseFor('outbound_choice');
     await page.locator('[data-next-step]').first().click();
-    await outbound;
     await page.waitForURL(base+t.nextLinks[0].path);
+    await received('outbound_choice',before+1);
     assert.equal(events.filter(e=>e.n==='outbound_choice').length,before+1);checks++;
     assert.deepEqual(events.filter(e=>e.n==='outbound_choice').at(-1).m,{lang,market:lang==='en'?'de':lang,input:'own',source:'energy-next',choice:'consumption'});checks++;
    }
@@ -67,13 +72,14 @@ const path=require('node:path');
    assert.equal(events.length,count);checks++;
    await page.goto(base+guide);await page.waitForFunction(()=>document.readyState==='complete');
    const before=events.filter(e=>e.n==='affiliate_click').length;
-   const affiliate=responseFor('affiliate_click');
    await page.locator('[data-revenue-link]').first().click();
-   await affiliate;
+   await received('affiliate_click',before+1);
    const clicks=events.filter(e=>e.n==='affiliate_click');assert.equal(clicks.length,before+1);checks++;
    assert.equal(clicks.at(-1).m.source,'solarbank-diagnosis');assert.equal(new URL(clicks.at(-1).m.link_url).searchParams.get('tag'),'getecoback-21');checks+=2;
    assert.deepEqual(errors,[]);checks++;
+   assert.deepEqual(serverErrors,[]);checks++;
   } finally{await browser.close();}
  }
  console.log(checks+' revenue flow/browser assertions passed; third-party requests blocked');
+ }finally{await new Promise(resolve=>server.close(resolve));}
 })().catch(e=>{console.error(e);process.exit(1)});
