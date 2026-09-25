@@ -1,0 +1,32 @@
+/* Generated from ECO homepage tokens and build_structure.py navigation/footer. */
+:root{ --blue:#0f6ba8; --blue-dark:#0a4d7a; --green:#2ea86b; --amber:#f59e0b; --bg:#f7fafc; --text:#1a2733; --muted:#5b6b78; }
+.eb-nav{position:sticky;top:0;z-index:100;background:#0a4d7a}.eb-nav-in{max-width:1000px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px 16px}.eb-nav a{text-decoration:none}.eb-logo{color:#fff;font-weight:800;font-size:18px}.eb-links{display:flex;gap:14px;flex-wrap:wrap}.eb-links a{color:rgba(255,255,255,.9);font-size:14px}.eb-links a:hover{color:#fff;text-decoration:underline}.eb-links a.eb-nav-tools{background:#f59e0b;color:#1a2733;font-weight:800;padding:5px 12px;border-radius:8px}.eb-links a.eb-nav-tools:hover{background:#e08c05;color:#1a2733;text-decoration:none}.eb-footer{background:#0a2a40;color:#cdd9e3;padding:36px 20px 30px;margin-top:40px}.eb-footer-in{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:24px}.eb-footer-in strong{color:#fff;display:block;margin-bottom:8px;font-size:15px}.eb-footer-in a{color:#cdd9e3;text-decoration:none;display:block;margin:5px 0;font-size:14px}.eb-footer-in a:hover{color:#fff}.eb-footer-legal{max-width:1000px;margin:24px auto 0;border-top:1px solid #1c3d54;padding-top:16px;font-size:13px;color:#8ea6b6}
+/* Tool-specific accessibility and localized search; core chrome is inherited. */
+.eb-nav-in{align-items:center}
+.eb-logo{display:inline-flex;align-items:center;min-height:44px}
+.eb-links{align-items:center}
+.eb-links a{display:inline-flex;align-items:center;min-height:44px}
+.eb-search{position:relative}
+#eb-search-toggle{min-width:44px;min-height:44px;margin:0;padding:8px;background:transparent;border:1px solid rgba(255,255,255,.45);border-radius:8px;color:#fff}
+#eb-search-toggle:hover{background:rgba(255,255,255,.12)}
+.eb-search-panel{position:absolute;right:0;top:calc(100% + 8px);width:min(360px,calc(100vw - 40px));padding:16px;background:#fff;color:var(--text);border:1px solid #cfe0ea;border-radius:12px;box-shadow:0 10px 30px rgba(10,45,70,.25);z-index:300;text-align:left}
+.eb-search-panel label{margin:0 0 8px;font-size:14px}
+#eb-search-query{width:100%;min-height:44px;padding:10px 12px;border:1px solid #8298a8;border-radius:8px;font:inherit;font-size:16px;color:var(--text);background:#fff}
+#eb-search-status{font-size:13px;color:var(--muted);margin:10px 0 0;line-height:1.5}
+#eb-search-results{list-style:none;margin:8px 0 0;padding:0;max-height:min(340px,50vh);overflow:auto}
+#eb-search-results a{display:block;padding:10px 8px;border-radius:8px;color:var(--blue);font-size:14px;line-height:1.45;overflow-wrap:anywhere}
+#eb-search-results a:hover{background:var(--bg)}
+#eb-search-results span{display:block;margin-top:4px;font-size:13px;color:var(--muted)}
+.eb-footer{text-align:left;border:0;line-height:1.6}
+.eb-footer-in a{padding:3px 0}
+.eb-skip{position:fixed;top:8px;left:12px;z-index:500;transform:translateY(-150%);padding:10px 16px;background:#fff;color:var(--blue-dark);border-radius:8px;font-weight:700}
+.eb-skip:focus{transform:none}
+.eb-nav :focus-visible,.eb-footer :focus-visible{outline:3px solid var(--amber);outline-offset:3px}
+@media(max-width:760px){
+ .eb-nav-in{display:grid;grid-template-columns:1fr auto;padding:8px 20px;gap:2px 12px}
+ .eb-logo{grid-column:1;grid-row:1}
+ .eb-links{grid-column:1/-1;grid-row:2;gap:0 14px}
+ .eb-search{grid-column:2;grid-row:1}
+ .eb-footer-in{gap:20px}
+}
+@media print{.eb-nav,.eb-footer,.eb-skip{display:none!important}}
