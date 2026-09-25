@@ -13,7 +13,15 @@ const path=require('node:path');
    await context.route('**/*',async route=>{
     const u=new URL(route.request().url());
     if(u.origin!==base)return route.abort();
-    if(u.pathname.startsWith('/api/')){if(u.pathname==='/api/ev')events.push(JSON.parse(route.request().postData()));return route.fulfill({status:204,body:''});}
+    if(u.pathname.startsWith('/api/')){
+     const request=route.request(),body=request.postData();
+     if(u.pathname==='/api/ev'&&request.method()==='POST'&&body){
+      const event=JSON.parse(body);
+      assert.ok(event&&typeof event.n==='string','Event POST must contain a named event');
+      events.push(event);
+     }
+     return route.fulfill({status:204,body:''});
+    }
     return route.continue();
    });
    const page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));
