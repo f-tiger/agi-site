@@ -1624,7 +1624,8 @@
    "lose": "读那次 run 的「Commit page change manifest」日志：若仍是工作区不干净，查是哪个文件（--autostash 应已覆盖）；若是推送竞争，改为重试；在修通之前不把任何「今天变了多少页」的读数当事实引用",
    "source": "sites/baipiaoji/CLAUDE.md 第 26 条 + .github/workflows/deploy-baipiaoji.yml",
    "status": "open",
-   "reading_2026-09-25": "中间读数（不结算）：① 已满足——09-25 定时 run 提交了 59e64217（清单首次由 CI 回写）；③ 已满足——汇总门「变更清单回写」success；② 当日 IndexNow 推了 1 670 条。原因已查实不是基线造假：本地与 CI 构建哈希逐页一致（1 620/1 672 相同；其余 52 页是清单 59e64217 之后的真改动，而该清单早于 d1a02d6f：d1a02d6f 视频上线 48 页（40 个视频工具页、首页与 /c/video 各 2、studio 枢纽 2、新增 /video/ 2），video-variants 2 页（上线 + 本轮 EDITION），本轮审计单独带来的只有 quote-compare 2 页），整站 1 662 页变更来自 5a24095d→e565fe0f 之间的真实全站改动（PR #2 的 canonical/跳板 URL 修复 + Studio 上线）。09-26 的 run 仍会推 ~1 672 条（indexnow-plan 选「今天或昨天」变更的页，而 1 662 页日期是 09-25），所以按原计划只看 09-27 的日志结算 ②。09-25 另一处 424 页空白行 churn（d1a02d6f 的空模板槽）已在 09-26 定时 run 之前修掉，本地构建由 474 降到 52 页。"
+   "reading_2026-09-25": "中间读数（不结算）：① 已满足——09-25 定时 run 提交了 59e64217（清单首次由 CI 回写）；③ 已满足——汇总门「变更清单回写」success；② 当日 IndexNow 推了 1 670 条。原因已查实不是基线造假：本地与 CI 构建哈希逐页一致（1 620/1 672 相同；其余 52 页是清单 59e64217 之后的真改动，而该清单早于 d1a02d6f：d1a02d6f 视频上线 48 页（40 个视频工具页、首页与 /c/video 各 2、studio 枢纽 2、新增 /video/ 2），video-variants 2 页（上线 + 本轮 EDITION），本轮审计单独带来的只有 quote-compare 2 页），整站 1 662 页变更来自 5a24095d→e565fe0f 之间的真实全站改动（PR #2 的 canonical/跳板 URL 修复 + Studio 上线）。09-26 的 run 仍会推 ~1 672 条（indexnow-plan 选「今天或昨天」变更的页，而 1 662 页日期是 09-25），所以按原计划只看 09-27 的日志结算 ②。09-25 另一处 424 页空白行 churn（d1a02d6f 的空模板槽）已在 09-26 定时 run 之前修掉，本地构建由 474 降到 52 页。",
+   "reading_2026-09-25b": "同日第二次中间读数（不结算）：本轮新增 Kiro/Codex 并重核 Cursor 时发现，导航栏计数、页脚收录数、订阅框「最近一条」三处全站外壳会让加 2 个工具就把 1 700 页全判为变化（任何一次额度编辑都会，09-21 那批 7 家多半也触发过）。已改 lastmod 哈希忽略这三处（scripts/lastmod-hash.mjs + test-lastmod-hash.mjs，5 个变异全红），并把清单一次性迁移到新公式：1 454 页只动了外壳、保留原日期，166 页本轮真改动 + 30 个新 URL + 50 页清单之后的 Studio 改动，共 246 页记为 09-25。所以 09-26 的定时 run 会把这 246 页当「昨天」推一次；09-27 的读数不含它们，② 照原计划按 09-27 日志结算。"
   },
   {
    "id": "bpj-studio-video-own-1023",
@@ -1919,27 +1920,15 @@
    "status": "open"
   },
   {
-   "id": "bpj-mcp-census-pipeline-1009",
+   "id": "bpj-coding-harvard-1025",
    "site": "baipiaoji",
-   "due": "2026-10-09",
-   "metric": "sites/baipiaoji/data/mcp-census-summary.json：history 中 2026-10-01→10-09 env='runner' 的行数；同文件 checked 当日 censusView 的 probed_recent / endpoints（近 14 天查过的可探测端点占比）；辅助读数：history 里 runner 行 states.dead 占 probed 的比例（与 09-25 沙箱种子对照）、10-09 前是否检出 ≥1 次工具列表变化",
-   "threshold": "runner 行 ≥7/9 天 且 probed_recent/endpoints ≥0.6",
-   "t0": "0 runner 行（09-25 只有一次沙箱种子运行）；coverage 取种子运行后的值，见 reading",
-   "win": "哈佛阶段的管线成立：普查每天在 runner 上推进并覆盖大多数端点 → 按 bpj-mcp-census-pull-1109 读需求，不在它结算前加 MCP 工具或 API",
-   "lose": "runner 行 <4/9 天（步骤反复失败或被跳过）→ 读 run 日志修管线，修好前页面不再宣传；runner 行够但 coverage <0.3 → 探测预算不够或 runner 出网被大面积拒（dead 比例显著高于沙箱种子）→ 范围收窄到 bpj 账本里的注册表记录，页面如实写范围；其余情况（runner 行 4–6 天，或 coverage 0.3–0.6）→ insufficient：保持现状，10-23 同口径再读一次",
-   "source": "sites/baipiaoji/CLAUDE.md 第 28 条 + docs/agents-venture-2026-09-25.md",
-   "status": "open"
-  },
-  {
-   "id": "bpj-mcp-census-pull-1109",
-   "site": "baipiaoji",
-   "due": "2026-11-09",
-   "metric": "D1 baipiaoji-hits，窗口 2026-09-26→11-09，剔 CI（COALESCE(lang,'')<>'ci' 且 NOT path LIKE '/\\_\\_%' ESCAPE '\\'）：① /agents/mcp-census 与 /en/agents/mcp-census 带来源真人 pv（ev='' AND ref<>''）；② 其中来源域既不是搜索引擎、AI 助手、舰队站也不是本站的不同域名数（外链/引用）；③ AI 助手引荐次数；④ submissions 表里提到 census / 普查 的运营者更正（只计数，不输出内容）；⑤ ev='bot' 或 api 行里非本仓 UA 对 /mcp-census.json 的抓取次数（辅助，区分「没被发现」与「发现了没人看」）",
-   "threshold": "任一：① ≥30；② ≥2 个域；③ ≥1；④ ≥1",
-   "t0": "全 0（页面 09-26 部署后才存在）",
-   "win": "有人来读或来更正 → 第二阶段（平台，F8 的对应物）：MCP 工具 check_mcp_server（按登记名查状态、工具数、最近变化日）+ 变化 RSS；仍不收费，收费等第三阶段自己的判定线",
-   "lose": "①–④ 全 0 且 ⑤ ≥20（被抓取但没人来）→ 普查保留为数据文件与一页，不建第二阶段，不为它写分发稿；①–④ 全 0 且 ⑤ <20 → insufficient：发现层问题，先交 owner 手发一次（HN/Reddit 稿按反 AI 味 8 条写在 docs/distribution-staging/），11-30 同口径再读，仍全 0 即按 lose 处理；其余情况（① 10–29 且 ②③④ 全 0）→ insufficient：只维护，11-30 再读一次",
-   "source": "sites/baipiaoji/CLAUDE.md 第 28 条 + docs/agents-venture-2026-09-25.md",
+   "due": "2026-10-25",
+   "metric": "sites/baipiaoji/data/reach.json（/api/reach 的 28 天带来源真人口径，与 t0 同一定义）在 2026-10-25 的读数：categories 里 coding 的 n；tools 里 kiro、codex 的 n；辅助：D1 baipiaoji-hits 同窗 ev='' AND ref<>'' 对 /is-kiro-still-free、/is-codex-still-free、/upgrade/kiro、/upgrade/codex（含 /en/）的 pv；data/trends-rising.json 里 cursor 与 claude code 两个种子是否有 runner 读数（需求仪器是否活着）",
+   "threshold": "coding ≥92（t0 的 1.5 倍）且 kiro 或 codex 任一页面族带来源真人 ≥3",
+   "t0": "coding 61 / 395（2026-08-28→09-25，15%，第二大类目；agent 类目 5）；/c/coding 35、cline 14；kiro 与 codex 页 0（09-26 才上线）；rising 种子里 0 个编程智能体",
+   "win": "编程智能体开发者就是 bpj 在 agents 赛道的「哈佛」→ 第一阶段：30 天内把编程类 30 个条目全部重核一遍（当前多数 checked 停在 08-03/04）、补齐仍缺的主力编程智能体（官方页当日可抓且有免费档的才收）、把 /api/changes 的编程子集做成可订阅的变更流；不开新站、不收费",
+   "lose": "coding <70（没涨）且 kiro/codex 页族全 0 → 编程智能体不是在长的网络：本线只维护（额度每日核实照旧），不再为 agents 方向投新面，扎克伯格路径在 bpj 上的哈佛候选归零，交 owner 复盘；其余情况（coding 70–91，或 ≥92 但新页 <3）→ insufficient：维持第 0 阶段，11-22 同口径再读一次，不提前扩",
+   "source": "docs/agents-venture-2026-09-25.md + sites/baipiaoji/CLAUDE.md 第 28 条",
    "status": "open"
   }
  ]

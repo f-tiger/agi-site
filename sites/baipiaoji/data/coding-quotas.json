@@ -22,6 +22,11 @@
       "caveat_zh": "每月 25 个 prompt credits 只管 Cascade/Agent 类功能，Tab 补全不受影响；已并入 Cognition（Devin）体系，官方页面现以 Devin 品牌展示；可按 $10/250 credits 加购",
       "caveat_en": "The 25 monthly prompt credits gate Cascade/Agent features only — Tab completion is unaffected; now part of Cognition (Devin), so official pages carry Devin branding; top-ups run $10 per 250 credits" },
 
+    { "slug": "kiro", "kind": "monthly", "meter": "credits",
+      "credits_per_month": 50, "carryover": false,
+      "caveat_zh": "永久免费档每月 50 credits，可用 Claude Sonnet 4.5 与开放权重模型（受速率限制）；credit 按每次提示所做的工作扣，简单提示可能不到 1 个、执行 spec 任务通常超过 1 个，所以 50 credits 不等于 50 次提问；按账单月重置、不结转，加购只列在付费档下",
+      "caveat_en": "The perpetual free tier gives 50 credits a month with Claude Sonnet 4.5 and open-weight models (rate-limited); a credit is charged per unit of work in a prompt — a simple prompt can cost less than 1, a spec task usually more — so 50 credits is not 50 questions; resets each billing month with no rollover, and add-on credits are listed only under the paid plans" },
+
     { "slug": "gemini-cli", "kind": "daily", "meter": "requests",
       "requests_per_day": 1000, "requests_per_min": 60,
       "caveat_zh": "两个极易误读的官方口径：这 1,000 次是 Pro 与 Flash 混合计的，不等于 1,000 次 Pro 请求；且一次提问可能触发几十次模型请求——「1,000 次」不是 1,000 轮对话。改用 API Key 认证适用另一套额度，两者不能换算",
@@ -70,8 +75,12 @@
       "caveat_en": "The product line was folded in: the Doubao MarsCode assistant became the \"Trae plugin\" in 2025, its site now routes to Trae and accounts are shared (per ByteDance's official notice); it no longer evolves separately, so the Trae row governs the allowance" },
 
     { "slug": "cursor", "kind": "unstated", "meter": "mixed",
-      "caveat_zh": "Hobby 免费档存在且无需绑卡（Agent、Chat、Tab 补全均可用，Auto 模型），但官方口径只说「有限的 Agent 请求与补全」、现行页面不公布数字；流传的「2,000 补全 + 50 次请求」出自旧版定价结构，已过时不予采信。余量以账户设置页显示为准",
-      "caveat_en": "The Hobby free tier exists and needs no card (Agent, Chat and Tab completion on the Auto model), but the official wording is only \"limited agent requests and completions\" and current pages publish no figure; the circulating \"2,000 completions + 50 requests\" comes from an older pricing structure and is rejected as stale. Your account settings page is the live source of truth" },
+      "caveat_zh": "Hobby 免费档存在且无需绑卡；2026-09-25 官方定价页的免费档只列「有限的 Agent 请求」与「可用 Composer」，仍不公布数字（08-03 写到的 Chat 与 Tab 补全这次没出现在免费档清单里，页面也没说取消）；流传的「2,000 补全 + 50 次请求」出自旧版定价结构，已过时不予采信。余量以账户设置页显示为准",
+      "caveat_en": "The Hobby free tier exists and needs no card; on 2026-09-25 the official pricing page lists only \"Limited Agent requests\" and \"Access to Composer\" for it, still with no figures (Chat and Tab completion, recorded on 08-03, are absent from the free list this time; the page does not say they were removed); the circulating \"2,000 completions + 50 requests\" comes from an older pricing structure and is rejected as stale. Your account settings page is the live source of truth" },
+
+    { "slug": "codex", "kind": "unstated", "meter": "messages",
+      "caveat_zh": "ChatGPT Free 含 Codex（桌面端、GPT-6 Luna 标准速度、官方标注逐步开放），但官方用量表只列 Plus 及以上、没有 Free 这一列，免费档数额未公布、本站不估；各档用量按每 5 小时的本地消息估算区间给出，不是固定上限，另可能有每周上限",
+      "caveat_en": "ChatGPT Free includes Codex (desktop app, GPT-6 Luna at Standard speed, officially subject to rollout), but the official usage table lists Plus and above only with no Free column, so the free allowance is unpublished and we do not estimate it; every tier is described as an estimated range of local messages per five hours, not a fixed limit, and weekly limits may also apply" },
 
     { "slug": "comate", "kind": "unstated", "meter": "credits",
       "degrades_not_stops": true,

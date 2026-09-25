@@ -1023,6 +1023,16 @@ localebatch **不记任何访问**,所以「零」也读不出访客有没有来
 - **仍要每次带出的一条**:不靠流量的钱只有 Metaculus FutureEval 一条建好且关着,差 owner 的 key + `METACULUS_BOT_ENABLED=1`,
   Fall 主赛 09-28 开题。
 
+## AI agents 创业机会点:MCP 信任层撤回,哈佛 = bpj 的编程智能体读者(2026-09-25,owner:「你是一个创业者…找到创业的agents机会点,通过类似扎克伯格的成长路径…」;全文 `docs/agents-venture-2026-09-25.md`)
+
+- **MCP 服务器信任层(普查 + 工具列表变更流)不做**:官方注册表 ≥32 100 条、19 342 条带远程端点、约每月翻倍,抽样 55.5% 免凭据可连——问题是真的,但
+  **mcpcensus.com(09-04 起,同名同形,收费未开通)+ mcp-drift-registry + CSOAI + Apify 两个 actor(各 2 用户)**已在同月占满独立开发者那一格,付费证据为零;
+  本站 MCP 的第三方调用方正是这些普查者。管线先建后撤,一行未上线。**「免 key 可连的 MCP 服务器」清单同样不做**(推荐未审查服务器 = tool poisoning 渠道)。
+- **扎克伯格路径只抄机制(先在一个小网络做到饱和,每步有门槛,最后才变现)**。舰队唯一有密度的 agents 网络是 **bpj 的编程智能体读者**(coding 61/395,
+  agent 类目 5)。第 0 阶段已做:补 Kiro、OpenAI Codex,重核 Cursor,rising 种子换成 cursor / claude code;判定线 `bpj-coding-harvard-1025`。
+- **全舰队适用的教训**:每页都带的外壳里只要有一个精确数字(导航计数、页脚总数、"最近一条"),任何一次编辑都会把全站 lastmod 刷新、IndexNow 整站重推。
+  bpj 的修法是 `scripts/lastmod-hash.mjs` 忽略外壳 + 能红的测试;**其他带 sitemap lastmod 的站遇到同形状先查外壳里的数字**。
+
 ## 舰队数据检查:三条判定线差点被自检撑过线(2026-09-24,owner:「整个舰队数据检查下」;全文 `docs/fleet-data-check-2026-09-24.md`)
 
 - **引用任何「机器面调用」读数前,先按 UA 剔本仓自检**:SR 80 次 mcp_call 里 58 次是 deploy 自检(45 次 selfcheck UA + 13 次没带 `-A`

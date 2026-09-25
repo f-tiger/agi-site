@@ -33,8 +33,11 @@ SEEDS_PER_RUN = 2  # 配额纪律:每次运行全池只打 Google 2 次
 #        2027" —— 正是本站 33-37.5% 引用份额所在的判定题territory,喂 rung ⓪);
 #  tds = 文档预检 → PDF 可访问性、修复与版本比较需求(趋势并非付费证明)。
 FLEET = [
+    # 2026-09-25 bpj：suno / midjourney 换成 cursor / claude code。依据是 bpj 自己的读数（28 天带来源真人：coding 61、image 16、
+    # audio 8，/c/coding 是 Google 第二大页），而 suno 的 rising 一直是新闻/诉讼词、不是选型需求。编程智能体是本站在 agents 赛道唯一
+    # 有密度的读者面（docs/agents-venture-2026-09-25.md），此前这一面没有任何需求仪器。池子总数不变（仍 11 个），打 Google 的次数不变。
     {"site": "bpj", "geo": "US", "out": "sites/baipiaoji/data/trends-rising.json",
-     "seeds": ["deepseek", "midjourney", "suno", "sora", "gemini", "perplexity"]},
+     "seeds": ["deepseek", "cursor", "claude code", "sora", "gemini", "perplexity"]},
     {"site": "agi", "geo": "US", "out": "sites/agiscorecard/trends-rising.json",
      "seeds": ["artificial general intelligence", "agi timeline"]},
     # 2026-09-25 owner: reject a collector-only direction and implement the PDF pivot.

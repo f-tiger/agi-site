@@ -812,10 +812,10 @@
     "hot": true,
     "last_verified": "2026-09-25",
     "limits": {
-      "quota": "Hobby 免费档存在且无需绑卡：可用 Agent、Chat 与 Tab 补全（Auto 模型），官方口径为「有限的 Agent 请求与补全」——**现行官方页面不公布具体数字**。网上流传的「2,000 补全 + 50 次请求」出自旧版定价结构，现已过时，不予采信。",
-      "wall": "触及隐性限额后 Agent/补全受限，升级 Pro（$20/月）解锁；实际余量以账户设置页显示为准。",
-      "source": "Cursor 官方定价页与文档（cursor.com，经搜索索引引文核实；官方现行页面不公布免费档具体数额，旧数字已过时）",
-      "checked": "2026-08-03",
+      "quota": "Hobby 免费档存在且无需绑卡。官方定价页 2026-09-25 的 Hobby 栏只列三项：无需绑卡、有限的 Agent 请求（Limited Agent requests）、可用 Composer——**仍不公布具体数字**。08-03 核实时写到的 Chat 与 Tab 补全（Auto 模型）这次没有出现在免费档清单里，页面也没有说它们被取消，本站只照录当日原文。网上流传的「2,000 补全 + 50 次请求」出自旧版定价结构，现已过时，不予采信。",
+      "wall": "触及隐性限额后 Agent 受限，升级 Individual 档解锁（页面同一栏可切换 Pro、Pro+、Ultra，静态文本当日只显示 Pro 的 $20/月）；官方 FAQ：每档都含一份模型用量，用完后可开 on-demand 按量续用、事后结算；实际余量以账户设置页显示为准。",
+      "source": "Cursor 官方定价页 https://cursor.com/pricing（2026-09-25 直接抓取；免费档仍不公布具体数额，旧数字已过时）",
+      "checked": "2026-09-25",
       "paid": {
         "tiers": "Hobby 免费；Pro $20/月（含约$20按API价计的前沿模型用量池+Auto池）；Pro+ $60/月（含约$70池）；Ultra $200/月（含约$400池）；Teams $40/人/月",
         "unit_cost": "计费改制后按「API 价格」扣池：模型按各家 API 原价折算消耗池内美元额度。两种口径：Ultra=固定$400池（官方 docs，多家核实）／早期宣传口径「Pro 的20倍用量」（官方营销页）",
@@ -3742,6 +3742,71 @@
       "source": "Gemini CLI 官方仓库配额文档与 Gemini API 速率限制页（github.com/google-gemini/gemini-cli/blob/main/docs/resources/quota-and-pricing.md、ai.google.dev/gemini-api/docs/rate-limits，经搜索索引引文核实）",
       "checked": "2026-08-05",
       "cycle": "daily"
+    }
+  },
+  {
+    "slug": "kiro",
+    "name": "Kiro",
+    "category": "coding",
+    "tagline": "支持 vibe 与 spec 两种模式的 AI IDE 与编程智能体，永久免费档每月 50 credits",
+    "free": "永久免费档 Kiro Free：每月 50 credits，可用开放权重模型与 Claude Sonnet 4.5（受速率限制）。",
+    "how": "下载 Kiro IDE（也可用 Kiro CLI 或网页版），用社交账号或 AWS Builder ID 登录即是免费档。",
+    "tags": [
+      "免费额度",
+      "AI IDE",
+      "命令行"
+    ],
+    "url": "https://kiro.dev",
+    "affiliate": "",
+    "hot": false,
+    "last_verified": "2026-09-25",
+    "limits": {
+      "quota": "永久免费档 Kiro Free：每月 50 credits。用社交账号或 AWS Builder ID 注册的免费用户可用 Claude Sonnet 4.5 与开放权重模型（官方点名 Qwen3 Coder Next、DeepSeek 3.2、MiniMax M2.1），访问受速率限制。credit 是「一次提示所做的工作」的计量单位：官方说简单提示可能不到 1 个，执行 spec 任务这类复杂提示通常超过 1 个，不同模型的消耗也不同——所以 50 credits 不等于 50 次提问。",
+      "wall": "额度按账单月重置，未用完不结转。加购 credits（$0.04/个）官方只列在付费档下，要继续用就得升级；付费档可用 Auto、Claude Sonnet 5、Claude Opus 5 等高级模型（并非所有国家/地区都能用全部模型）。订阅只能在 Kiro IDE、Kiro CLI、网页版、Kiro Crew、ACP 兼容 IDE 与开发自动化（如 CI/CD 里的审查）中使用，经 OpenClaw 这类第三方自动化外壳转发请求官方明确不允许。",
+      "source": "Kiro 官方定价页 https://kiro.dev/pricing/（2026-09-25 直接抓取）",
+      "checked": "2026-09-25",
+      "cycle": "monthly",
+      "paid": {
+        "tiers": "官方定价页当日五档：Kiro Free $0（每月 50 credits）；Pro $20/人/月（1,000 credits）；Pro+ $40/人/月（2,000 credits）；Pro Max $100/人/月（5,000 credits）；Power $200/人/月（10,000 credits）；四个付费档都可加购 credits，团队最多 500 人。另有 Enterprise（集中计费、SSO、用量分析、企业安全控制，联系销售，经 AWS 计费）。首次用社交账号或 AWS Builder ID 升级任一付费档，订阅抵扣 $20（经 AWS Identity Center 登录不适用）。价格不含税",
+        "unit_cost": "加购 credits 每个 $0.04，买包即扣款；Enterprise 可开启超额，超出部分按 $0.04/credit 月底结算。各档内含 credits 的折算单价官方没有另写，本站不做除法",
+        "quota_included": "true——每档含固定月度 credits，付费档用尽后可按 $0.04/credit 加购",
+        "rollover": "按账单月重置，未用完的 credits 不结转（官方 FAQ 原话：Unused credits do not roll over to the next month）",
+        "effective": "2026-09-25（=核实日，官方定价页当日直接抓取）",
+        "source": "https://kiro.dev/pricing/（官方定价页，2026-09-25 直接抓取）",
+        "checked": "2026-09-25"
+      }
+    }
+  },
+  {
+    "slug": "codex",
+    "name": "OpenAI Codex",
+    "category": "coding",
+    "tagline": "OpenAI 的编程智能体，桌面端、CLI、IDE 插件与网页都有，含在 ChatGPT 各档里",
+    "free": "ChatGPT Free 也含 Codex：在桌面端做快速编程任务（官方标注逐步开放），免费档用量官方未公布具体数字。",
+    "how": "用 ChatGPT 账号登录 Codex 桌面端即可；CLI、IDE 插件、网页与 iOS 从 Plus 档起提供，也可改用 API Key 按 API 价计费。",
+    "tags": [
+      "免费额度",
+      "命令行"
+    ],
+    "url": "https://developers.openai.com/codex",
+    "affiliate": "",
+    "hot": false,
+    "last_verified": "2026-09-25",
+    "limits": {
+      "quota": "ChatGPT Free（$0）含 Codex，官方定位是「在快速编程任务上体验 Codex 的能力」：在桌面端以标准速度使用 GPT-6 Luna，并标注 subject to rollout（逐步开放，未必人人立刻可用）；免费档不能生成图片。**官方用量表只列 Plus 及以上各档，没有 Free 这一列**——免费档每 5 小时能发多少条消息，官方没有公布，本站不替它估。",
+      "wall": "官方说明用量取决于模型、任务的大小与复杂度、在本地还是云端运行，给出的只是「每 5 小时本地消息数」的估算区间而非固定上限，另外可能还有每周上限；实际余量看用量面板。触顶后 Plus 与 Pro 可购买 ChatGPT credits 续用，所有用户也可以改用 API Key、按 API 标准价跑本地对话。Codex 与 ChatGPT Work 共用同一份用量。GPT-5.5 将于 2026-10-14 在 ChatGPT、ChatGPT Work 与 Codex 的所有档位下线（API 不受影响）。",
+      "source": "OpenAI Codex 官方定价页 https://developers.openai.com/codex/pricing（2026-09-25 直接抓取）",
+      "checked": "2026-09-25",
+      "cycle": "unknown",
+      "paid": {
+        "tiers": "官方定价页当日个人四档与团队档：Free $0；Go $8/月（轻量编程任务，桌面端 GPT-6 Luna 标准速度，逐步开放）；Plus $20/月（网页、CLI、IDE 插件与 iOS，自动代码审查与 Slack 等云端集成，GPT-6 Sol 与 GPT-6 Luna，可用 ChatGPT credits 扩展用量）；Pro 起价 $100/月（用量为 Plus 的 5 倍或 20 倍两种）；Business $20/人/月（2 人起、按年付；按月付为 $25/人/月）；Enterprise 与 Edu 联系销售。另可直接用 API Key：CLI、SDK 与 IDE 插件可用，没有云端功能，按 API 价计费",
+        "unit_cost": "订阅档不公布单条消息价格，只给每 5 小时本地消息的估算区间，例如 Plus 用 GPT-6 Luna 约 350–3,000 条、用 GPT-6 Sol 约 15–150 条；Pro 5x 与 Pro 20x 另列更高区间。API Key 按 API 标准价计费",
+        "quota_included": "true——每档含一份按 5 小时周期计的用量（可能另有每周上限），Plus 与 Pro 触顶后可购 ChatGPT credits",
+        "rollover": "官方定价页没有说明未用完的用量是否结转；额度按每 5 小时的周期计，另可能有每周上限",
+        "effective": "2026-09-25（=核实日，官方定价页当日直接抓取）",
+        "source": "https://developers.openai.com/codex/pricing（官方定价页，2026-09-25 直接抓取）",
+        "checked": "2026-09-25"
+      }
     }
   },
   {

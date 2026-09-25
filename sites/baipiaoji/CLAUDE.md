@@ -834,6 +834,23 @@ Cloudflare Pages 把 `/x.html` **308** 跳到 `/x`。在此之前本站的 sitem
    本次推送带上当前清单作为新基线。判定线 `bpj-manifest-commit-0927`。**通用教训:`continue-on-error` 的步骤必须有别的东西看它的 outcome,否则它就是一个静默失败的开关。**
    **明确不做**:单位换算(字符 → 分钟、credits → 份数,官方没给口径)、给未确认的工具估一个「大概能用」、为分享做短链服务、为每个岗位建 SEO 页。
 
+
+28. **🧑‍💻 AI agents 创业机会点:哈佛 = 编程智能体开发者 2026-09-25**(owner:「你是一个创业者…找到创业的agents机会点,通过类似扎克伯格的成长路径…bpj 是你的武器」;
+   全文 `docs/agents-venture-2026-09-25.md`)。
+   **先建后撤的一个**:MCP 服务器信任层(每日只读普查注册表远程端点 + 工具列表哈希变更)管线与页面都写好了,外部扫描随后查到 **mcpcensus.com 自 09-04
+   起做同一件事、连名字都叫 MCP Census**,另有三家同月入场、付费证据为零,本站 MCP 的第三方调用方就是这些普查者 → 按三门撤回,一行没上线。
+   **别再提**:MCP 普查 / 变更流做成产品、"免 key 就能连的 MCP 服务器"清单(推荐未审查的第三方服务器 = tool poisoning 的投放渠道)。
+   **选中的楔子**:本站 28 天 395 个带来源真人里 agent 类目 5、**coding 61(第二大,/c/coding 是 Google 第二大页)**——编程智能体开发者是本站在 agents 赛道唯一有密度的网络,
+   他们问的正是本站资产能答的「还免费吗、免费多少、这周变了没有」。**第 0 阶段(已做)**:补 **Kiro**(永久免费 50 credits/月,付费四档与加购价全写、不结转)与
+   **OpenAI Codex**(Free 含 Codex 但官方用量表没有 Free 列 → 数字未公布、本站不估)两个编程智能体,官方页当日直抓、中英两份、带付费档 → 判定页与升级页自动生成;
+   Qwen Code 官方 README 当日找不到免费档文字 → 不收。按官方页当日原文重核漂移探针标红的 **Cursor**(免费档只列「有限 Agent 请求、可用 Composer」,
+   08-03 的 Chat/Tab 补全不在清单里——照录不推断)。舰队 rising 种子 suno/midjourney → cursor/claude code(池子仍 11、Google 次数不变)。
+   **顺手修的发现面缺陷(影响比补录大)**:导航栏计数、页脚收录数、订阅框「最近一条」三处全站外壳让**任何一次额度编辑**都把 1 700/1 700 页判为变化、IndexNow 整站重推。
+   `scripts/lastmod-hash.mjs` 现在忽略这三处(`test-lastmod-hash.mjs` 两个方向断言、5 个变异全红,已挂 push 与 --dist);清单一次性迁移:1 454 页保留原日期,真改动 246 页。
+   verify-dist 的写死计数门把「编程类 30 个工具」误判为过期全站数(类目第一次涨到 30)——类目计数现计入合法集合。
+   **判定线** `bpj-coding-harvard-1025`:coding 28 天 ≥92 且 Kiro/Codex 页族带来源真人 ≥3 → 第 1 阶段(30 天内重核编程类全部 30 条、补齐仍缺的主力、编程子集变更流);
+   coding <70 且新页 0 → 只维护、agents 方向不再投新面;其余 insufficient,11-22 再读。**第 2 阶段(MCP `coding_agent_quotas`)与第 3 阶段(定价变更告警、厂商赞助)都要等前一阶段的读数。**
+
 ## 机器面:三个缺口(2026-09-24 舰队复盘,全文 `docs/tool-direction-review-2026-09-24.md`)
 
 `tools/fleet/mcp_usage.py`(挂 heartbeat)现在把舰队三个 MCP 站读成一份 `data/fleet-mcp-usage.json`。

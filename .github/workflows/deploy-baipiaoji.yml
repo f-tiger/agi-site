@@ -152,15 +152,6 @@ jobs:
         if: github.event_name != 'push'
         run: node scripts/mcp-discovery-probe.mjs
 
-      # MCP 普查（2026-09-25，docs/agents-venture-2026-09-25.md）：拉官方注册表全表（~330 页 GET），再对可探测的远程端点只读抽查
-      # （initialize + tools/list，从不调用工具；每主机每次 ≤3 个、16 并发、8 秒超时、150 秒墙钟上限）。只存状态 / 工具数 / 工具列表哈希 / 日期，
-      # 永不存第三方工具描述。产出 data/mcp-census.jsonl + mcp-census-summary.json 随下一步提交。
-      # 分钟账：拉表 ~1.5 分 + 探测 ≤2.5 分 ≈ 4 分/日 ≈ 120 分/月（本仓公开，Actions 不计费；外部副作用只挂 schedule）。
-      - name: MCP census (scheduled runs only)
-        if: github.event_name != 'push'
-        run: node scripts/mcp-census.mjs --max 1500 --budget 150
-        continue-on-error: true
-
       - name: Commit refreshed data (scheduled runs only)
         if: github.event_name != 'push'
         run: |
@@ -226,7 +217,6 @@ jobs:
           node scripts/agent-watch-admit.mjs --selftest
           node scripts/agent-watch-registry-pull.mjs --selftest
           node scripts/mcp-discovery-probe.mjs --selftest
-          node scripts/mcp-census.mjs --selftest
           node scripts/test-agent-watch.mjs
           # 岗位方案规划器（2026-09-24）：容量规则能从配额文件读出数、work-roles.json 里没有手写额度、加总逻辑（页面嵌的就是这个函数）
           node scripts/test-work-plan.mjs
@@ -256,6 +246,11 @@ jobs:
       - name: Verify IndexNow selection and URL migration
         run: node scripts/test-indexnow-plan.mjs
 
+      # 2026-09-25：导航计数、页脚收录数、订阅框「最近一条」三处全站外壳随任一编辑而变，曾让加 2 个工具就把 1 700 页全标成「今天变了」。
+      # 哈希忽略它们，但正文数字必须仍然触发变化——两个方向都断言，5 个变异（删任一条规则 / 抹掉全部数字 / 抹掉正文）全红。
+      - name: Page-change hash ignores chrome, not content (zero network)
+        run: node scripts/test-lastmod-hash.mjs
+
       - name: Build site
         run: npm run build
 
@@ -276,7 +271,7 @@ jobs:
           node scripts/test-work-plan.mjs --dist
           node scripts/test-studio.mjs --dist
           node scripts/test-video-studio.mjs --dist
-          node scripts/mcp-census.mjs --dist
+          node scripts/test-lastmod-hash.mjs --dist
 
       # 2026-08-16 删除「Ensure Pages project exists」:项目早就存在,这一步每次都
       # 静默失败后 `|| true`——却要为此完整下载一次 wrangler。等于每次运行白花几十秒

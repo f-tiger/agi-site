@@ -4841,6 +4841,7 @@
         "evidence": "official-only"
       },
       "origin": "curated",
+      "tool_slug": "kiro",
       "official": {
         "title": "Kiro: Move beyond AI coding to agentic engineering",
         "description": "Kiro helps developers and teams do their best work: turn prompts into executable specs, validate code correctness to find bugs unit tests miss, and build across large codebases with parallel agents that learn from every session.",

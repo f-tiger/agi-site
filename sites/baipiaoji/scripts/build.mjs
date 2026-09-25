@@ -2,7 +2,7 @@
 import {videoEntry} from './video-business.mjs';
 import { canonicalUrls } from './canonical-urls.mjs';
 import { buildAgentPages } from './agent-pages.mjs';
-import { buildCensusPage } from './mcp-census-page.mjs';
+import { lmHashOf } from './lastmod-hash.mjs';
 import { buildWorkPlan, workPlanLinks } from './work-plan.mjs';
 import { buildStudio, studioHome, studioSearch } from './studio-pages.mjs';
 import { audiencesOf, AUDIENCES } from '../functions/api/_agents.js';
@@ -4491,10 +4491,6 @@ ${PERSONAS.map((p) => {
       pushPage: (u, pr) => allPages.push({ u, pr }),
     });
     console.log(`🤖 agents (${L.code}): ${r.total} records → hub + ${AUDIENCES.length} audience pages + ${r.categories.length} category tables + ${r.curated} record pages (noindex)`);
-    // MCP 普查页（2026-09-25，docs/agents-venture-2026-09-25.md）：读 data/mcp-census*.json（定时任务写），数字只来自 censusView()。
-    const cv = buildCensusPage({ layout, railOf, esc, crumbLd, faqLd, BASE, site, NAME, LOCALE,
-      write: (rel, s) => writeFileSync(join(outDir, rel), s), pushPage: (u, pr) => allPages.push({ u, pr }) });
-    if (cv) console.log(`🧮 mcp census (${L.code}): ${cv.endpoints} probe-able endpoints, ${cv.probed_recent} checked in ${cv.window_days} days, ${cv.changes_30d.length} tool-list changes in 30 days`);
   }
 
   // ---- 「能不能发」授权核查页 ----
@@ -8242,6 +8238,7 @@ const fileForUrl = (u) => {
   const path = u.slice(site.base_url.length) || '/';
   return join(dist, path.endsWith('/') ? `${path}index.html` : path);
 };
+// Page-change hash: normalisation rules live in scripts/lastmod-hash.mjs (tested by scripts/test-lastmod-hash.mjs).
 for (const { u } of allPages) {
   const f = fileForUrl(u);
   if (!existsSync(f)) continue;
@@ -8253,17 +8250,7 @@ for (const { u } of allPages) {
   // 改一行搜索逻辑就会让 1542 页哈希全变、lastmod 全站刷新+IndexNow 整站重推——
   // 正是本机制要避免的「声明全站都变了」(2026-08-30 实测踩中)。JSON-LD 带 type
   // 属性,不受此剔除影响——schema 变化是内容变化,照常触发 lastmod。
-  const h = createHash('sha1')
-    .update(readFileSync(f, 'utf8')
-      .replace(/<script>[\s\S]*?<\/script>/g, '')
-      // Global discovery chrome does not make every existing article newly updated.
-      .replace(/\n    <a data-studio-nav[^>]*>[\s\S]*?<\/a>/g, '')
-      .replace(/\n    <a data-video-nav[^>]*>[\s\S]*?<\/a>/g, '')
-      .replace(/<a data-studio-footer[^>]*>[\s\S]*?<\/a> · /g, '')
-      // Asset cache-busters (?v=EDITION) are not page content: a studio EDITION bump must not restamp ~50 pages (2026-09-25 audit V5).
-      .replace(/(\/studio-assets\/[^"?]+)\?v=[^"]*/g, '$1')
-      .replace(/\d{4}-\d{2}-\d{2}/g, 'D'))
-    .digest('hex').slice(0, 16);
+  const h = lmHashOf(readFileSync(f, 'utf8'));
   const before = lmPrev[u];
   const same = before && before.h === h;
   if (!same) changedNow++;
@@ -8665,7 +8652,6 @@ ${AGENT_CURATED_N} hand-curated AI agents, coding agents, MCP servers/clients, a
 Doors by reader type: ${AUDIENCES.map((k) => `${site.base_url}/agents/for/${k} (${AGENT_VOCAB.audiences[k].en})`).join(' · ')}
 Category tables (complete lists, citable): ${Object.keys(AGENT_VOCAB.categories).filter((k) => AGENT_WATCH.agents.some((a) => a.category === k)).map((k) => `${site.base_url}/agents/c/${k} (${AGENT_VOCAB.categories[k].en})`).join(' · ')}
 Hub: ${site.base_url}/agents/ (EN: ${site.base_url}/en/agents/) · JSON: ${site.base_url}/agents.json (EN: ${site.base_url}/en/agents.json) · RSS of newest records: ${site.base_url}/agents/feed.xml (EN: ${site.base_url}/en/agents/feed.xml) · MCP tools monitor_new_agents (filters: audience, category, status, transport, origin, since; offset/limit) and get_agent.
-MCP census (daily, read-only: initialize + tools/list against the remote endpoints of the official MCP registry; states, tool counts and tool-list change dates, never the tool descriptions): ${site.base_url}/agents/mcp-census (EN: ${site.base_url}/en/agents/mcp-census) · JSON: ${site.base_url}/mcp-census.json
 
 ## Query API (for agents)
 

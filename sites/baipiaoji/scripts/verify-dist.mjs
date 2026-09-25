@@ -118,6 +118,9 @@ let staleCount = 0;
   // 三个合法的规模数，全部派生自同一数据源：收录数、已核实数、及其差
   // （「其余 N 个工具追不到官方出处」——报告页在用，它和前两者一样每日重算）。
   const ok = new Set([all.length, nLim, all.length - nLim]);
+  // Category sizes are computed from the same data (e.g. /c/coding "30 个工具"). They stayed under the <30 floor until 2026-09-25,
+  // when coding reached 30 and a correct, data-driven number started failing this gate.
+  for (const c of new Set(all.map((t) => t.category))) { const xs = all.filter((t) => t.category === c); ok.add(xs.length); ok.add(xs.filter((t) => t.limits).length); }
   const RE = /(\d{2,5})\s*(?:个)?\s*(?:AI\s*)?(?:工具|-tool\b|tools\b|verified free tiers|条已核实)/g;
   const files = [...pages];
   for (const f of ['.well-known/mcp.json', 'openapi.json', 'llms.txt', 'llms-full.txt']) {
