@@ -20,6 +20,7 @@ def used_names():
     names = set()
     files = glob.glob(os.path.join(SITE, "**", "*.html"), recursive=True)
     files += glob.glob(os.path.join(SITE, "js", "*.js"))
+    files += glob.glob(os.path.join(SITE, "assets", "energy-workbench.mjs"))
     # Edge-injected snippets (SUB2_SNIPPET, popup_view) live in the Worker, not
     # in any page file, and must be counted as fired too.
     files.append(WORKER)
