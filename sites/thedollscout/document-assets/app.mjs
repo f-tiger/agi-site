@@ -1,5 +1,5 @@
-import { LIMITS, validateFiles, compareDocuments, csv, auditExport } from './core.mjs?v=2026-09-25.5';
-import { shareUrl, summaryText } from './sharing.mjs?v=2026-09-25.5';
+import { LIMITS, validateFiles, compareDocuments, csv, auditExport } from './core.mjs?v=2026-09-25.6';
+import { shareUrl, summaryText } from './sharing.mjs?v=2026-09-25.6';
 const c = JSON.parse(document.getElementById('document-copy').textContent);
 const mode = document.body.dataset.documentMode || 'audit';
 const $ = id => document.getElementById(id);
@@ -82,7 +82,7 @@ async function analyze() {
   resetResults(); setBusy(true); renderFiles(); status(c.working);
   track(sample ? 'doc_sample' : 'doc_start');
   let reader;
-  try { reader = await import('./pdf-reader.mjs?v=2026-09-25.5'); }
+  try { reader = await import('./pdf-reader.mjs?v=2026-09-25.6'); }
   catch { setBusy(false); status(c.errors.loadFailed, true); return; }
   if (current !== epoch) return;
   let remaining = LIMITS.batchPages;

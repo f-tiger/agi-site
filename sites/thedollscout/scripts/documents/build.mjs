@@ -5,7 +5,7 @@ import { copy, languages, toolSlugs, guideSlugs, references } from './copy.mjs';
 import { fixture } from './fixtures.mjs';
 const here = path.dirname(fileURLToPath(import.meta.url)), root = path.resolve(here, '../..');
 const args = process.argv.slice(2), output = args.includes('--out') ? path.resolve(args[args.indexOf('--out') + 1]) : root;
-const origin = 'https://thedollscout.com', edition = '2026-09-25.5', updated = '2026-09-25';
+const origin = 'https://thedollscout.com', edition = '2026-09-25.6', updated = '2026-09-25';
 const esc = value => String(value ?? '').replace(/[&<>"']/g, ch => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[ch]));
 const write = (name, data) => { const file = path.join(output, name); fs.mkdirSync(path.dirname(file), { recursive: true }); fs.writeFileSync(file, data); };
 const urls = [], records = [];
