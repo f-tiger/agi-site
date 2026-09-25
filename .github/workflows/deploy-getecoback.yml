@@ -134,6 +134,10 @@ jobs:
         run: |
           python3 tools/build_eu_evidence.py
           node tools/test_eu_evidence.cjs
+      - name: Build European electricity decision workbenches
+        run: |
+          node --test tools/test_energy_tariffs.mjs
+          python3 tools/build_energy_workbench.py
       # 2026-09-22: the hub was hand-written and nine tool pages never reached it. It is
       # now filled from the filesystem; check_tools_hub asserts hub == filesystem.
       - name: Fill the tools hub from the pages that exist (idempotent)
@@ -162,6 +166,8 @@ jobs:
 
       - name: Link household decision tools from relevant existing pages
         run: python3 tools/link_household.py
+      - name: Link electricity workbenches from existing content
+        run: python3 tools/link_energy_workbench.py
 
       - name: Verify household calculation examples and edge cases
         run: node tools/test_household.mjs
