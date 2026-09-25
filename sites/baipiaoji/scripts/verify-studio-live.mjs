@@ -40,6 +40,8 @@ for(const prefix of ['','/en']){
   assert.ok(videoHub.includes(`rel="canonical" href="${origin}${prefix}/video/"`));
   assert.ok(videoHub.includes('id="membership"')&&videoHub.includes('class="video-paths"'));
   assert.ok(videoHub.includes(`${PLAN.price_units/1e6} USDT`)&&videoHub.includes('data-video-availability'));
+  assert.ok(videoHub.includes('id="vc-canvas"')&&videoHub.includes('id="compare"')&&videoHub.includes('id="revision-choice"'),'case demonstrations and route comparison');
+  for(const id of ['launch','revision','repurpose'])assert.ok(videoHub.includes(`data-video-case="${id}"`)&&video.includes(`data-video-preset="${id}"`),'case handoff '+id);
   for(const [label,page] of [['home',home],['studio',hub]]){
     assert.ok(page.includes(`href="${origin}${prefix}/video/"`)&&page.includes('data-video-nav'),prefix+' '+label+' video discovery');
   }
@@ -55,7 +57,7 @@ assert.ok(member.ok&&member.ready&&member.site==='bpj','BPJ membership service r
 assert.equal(member.plan.price_units,PLAN.price_units,'membership price');
 assert.equal(member.plan.versions,PLAN.versions,'membership version allowance');
 const digest=text=>createHash('sha256').update(text).digest('hex');
-for(const file of ['quote-core.mjs','quote-copy.mjs','quote-view.mjs','quote-app.mjs','studio.css','video-core.mjs','video-view.mjs','video-render.mjs','video-app.mjs','video-business.mjs','video.css','file-app.mjs','file-core.mjs','file-copy.mjs','file-view.mjs','file-engine.mjs','file-tools.css','vendor/pdf-lib-1.17.1.mjs','vendor/fflate-0.8.2.mjs']){
+for(const file of ['quote-core.mjs','quote-copy.mjs','quote-view.mjs','quote-app.mjs','studio.css','video-core.mjs','video-view.mjs','video-render.mjs','video-app.mjs','video-business.mjs','video.css','video-cases.mjs','video-case-player.mjs','video-cases.css','file-app.mjs','file-core.mjs','file-copy.mjs','file-view.mjs','file-engine.mjs','file-tools.css','vendor/pdf-lib-1.17.1.mjs','vendor/fflate-0.8.2.mjs']){
   const live=await get('/studio-assets/'+file+'?edition='+encodeURIComponent(EDITION));
   assert.equal(digest(live),digest(readFileSync(new URL('../assets/studio/'+file,import.meta.url),'utf8')),file+' differs from source');
 }
