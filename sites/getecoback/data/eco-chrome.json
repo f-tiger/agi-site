@@ -11,7 +11,7 @@
     "searchHint": "Mindestens zwei Zeichen eingeben. Ergebnisse auf Deutsch.",
     "searchResults": "Suchergebnisse",
     "searchLoading": "Suche wird geladen …",
-    "searchFound": "{n} Ergebnisse auf Deutsch",
+    "searchFound": "Ergebnisse auf Deutsch: {n}",
     "searchEmpty": "Keine passenden Ergebnisse auf Deutsch. Versuche einen anderen Suchbegriff.",
     "searchError": "Suche momentan nicht verfügbar. Bitte erneut versuchen.",
     "nav": [],
@@ -30,7 +30,7 @@
     "searchHint": "Enter at least two characters. Results in English.",
     "searchResults": "Search results",
     "searchLoading": "Loading search …",
-    "searchFound": "{n} results in English",
+    "searchFound": "Results in English: {n}",
     "searchEmpty": "No matching results in English. Try another search term.",
     "searchError": "Search is currently unavailable. Please try again.",
     "nav": [
@@ -131,7 +131,7 @@
     "searchHint": "Saisissez au moins deux caractères. Résultats en français.",
     "searchResults": "Résultats de recherche",
     "searchLoading": "Chargement de la recherche …",
-    "searchFound": "{n} résultats en français",
+    "searchFound": "Résultats en français : {n}",
     "searchEmpty": "Aucun résultat en français. Essayez un autre terme.",
     "searchError": "La recherche est momentanément indisponible. Réessayez.",
     "nav": [
@@ -232,7 +232,7 @@
     "searchHint": "Escribe al menos dos caracteres. Resultados en español.",
     "searchResults": "Resultados de búsqueda",
     "searchLoading": "Cargando la búsqueda …",
-    "searchFound": "{n} resultados en español",
+    "searchFound": "Resultados en español: {n}",
     "searchEmpty": "No hay resultados en español. Prueba otro término.",
     "searchError": "La búsqueda no está disponible. Inténtalo de nuevo.",
     "nav": [
@@ -333,7 +333,7 @@
     "searchHint": "Inserisci almeno due caratteri. Risultati in italiano.",
     "searchResults": "Risultati di ricerca",
     "searchLoading": "Caricamento della ricerca …",
-    "searchFound": "{n} risultati in italiano",
+    "searchFound": "Risultati in italiano: {n}",
     "searchEmpty": "Nessun risultato in italiano. Prova un altro termine.",
     "searchError": "La ricerca non è disponibile. Riprova.",
     "nav": [

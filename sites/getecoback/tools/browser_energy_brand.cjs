@@ -30,7 +30,7 @@ const path = require('node:path');
       await page.goto(base + '/?__probe=1');
       const reference = await page.evaluate(() => {
         const css = selector => getComputedStyle(document.querySelector(selector));
-        return {font: css('body').fontFamily, background: css('body').backgroundColor,
+        return {font: css('body').fontFamily, background: css('body').backgroundColor, text: css('body').color,
           nav: css('.eb-nav').backgroundColor, footer: css('.eb-footer').backgroundColor,
           button: css('.btn-primary').backgroundColor, radius: css('.btn-primary').borderRadius};
       });
@@ -38,6 +38,8 @@ const path = require('node:path');
       await page.goto(base + '/tools.html?__probe=1');
       const referenceCard = await page.locator('.tcard').first().evaluate(e => getComputedStyle(e).borderRadius);
       const referenceHero = await page.locator('header.hero').evaluate(e => getComputedStyle(e).backgroundImage);
+      const entrance = page.locator('aside').filter({has: page.locator('a[href="/stromtarif-werkstatt.html"]')});
+      equal(await entrance.locator('p').evaluate(e => getComputedStyle(e).color), reference.text, 'Tool entrance text stays readable inside the dark directory section');
       if (engine === 'chromium') await page.screenshot({path: dir + '/brand-reference-tools-desktop.png'});
       for (const [lang, t] of Object.entries(copy)) {
         console.log(`Checking ECO brand and navigation: ${engine} / ${lang}`);
@@ -45,7 +47,7 @@ const path = require('node:path');
         await page.waitForFunction(() => typeof document.querySelector('#csv-file').onchange === 'function');
         const actual = await page.evaluate(() => {
           const css = selector => getComputedStyle(document.querySelector(selector));
-          return {font: css('body').fontFamily, background: css('body').backgroundColor,
+          return {font: css('body').fontFamily, background: css('body').backgroundColor, text: css('body').color,
             nav: css('.eb-nav').backgroundColor, footer: css('.eb-footer').backgroundColor,
             button: css('.primary').backgroundColor, radius: css('.primary').borderRadius};
         });
