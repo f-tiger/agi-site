@@ -1,0 +1,425 @@
+{
+  "de": {
+    "navigation": "Hauptnavigation",
+    "home": "EcoBack Startseite",
+    "homePath": "/",
+    "allTools": "Alle Rechner & Checks",
+    "skip": "Zum Inhalt",
+    "languages": "Sprache wählen",
+    "search": "EcoBack durchsuchen",
+    "searchPlaceholder": "Ratgeber und Rechner suchen …",
+    "searchHint": "Mindestens zwei Zeichen eingeben. Ergebnisse auf Deutsch.",
+    "searchResults": "Suchergebnisse",
+    "searchLoading": "Suche wird geladen …",
+    "searchFound": "{n} Ergebnisse auf Deutsch",
+    "searchEmpty": "Keine passenden Ergebnisse auf Deutsch. Versuche einen anderen Suchbegriff.",
+    "searchError": "Suche momentan nicht verfügbar. Bitte erneut versuchen.",
+    "nav": [],
+    "footer": [],
+    "disclosure": ""
+  },
+  "en": {
+    "navigation": "Main navigation",
+    "home": "EcoBack home",
+    "homePath": "/en/",
+    "allTools": "All tools (DE)",
+    "skip": "Skip to content",
+    "languages": "Choose language",
+    "search": "Search EcoBack",
+    "searchPlaceholder": "Search guides and calculators …",
+    "searchHint": "Enter at least two characters. Results in English.",
+    "searchResults": "Search results",
+    "searchLoading": "Loading search …",
+    "searchFound": "{n} results in English",
+    "searchEmpty": "No matching results in English. Try another search term.",
+    "searchError": "Search is currently unavailable. Please try again.",
+    "nav": [
+      [
+        "All guides",
+        "/en/",
+        "en"
+      ],
+      [
+        "Solution calculator",
+        "/en/solution-calculator.html",
+        "en"
+      ],
+      [
+        "🧮 All tools (DE)",
+        "/tools.html",
+        "de"
+      ]
+    ],
+    "footer": [
+      {
+        "title": "Tools",
+        "links": [
+          [
+            "Solution calculator",
+            "/en/solution-calculator.html",
+            "en"
+          ],
+          [
+            "Electricity tariff workbench",
+            "/en/energy-tariff-workbench.html",
+            "en"
+          ],
+          [
+            "Share and embed tools",
+            "/en/creator-kit.html",
+            "en"
+          ],
+          [
+            "All tools (DE)",
+            "/tools.html",
+            "de"
+          ]
+        ]
+      },
+      {
+        "title": "EcoBack",
+        "links": [
+          [
+            "All guides",
+            "/en/",
+            "en"
+          ],
+          [
+            "How we recommend",
+            "/en/how-we-recommend.html",
+            "en"
+          ],
+          [
+            "Heat Radar",
+            "/en/heat-radar.html",
+            "en"
+          ],
+          [
+            "German home (DE)",
+            "/",
+            "de"
+          ]
+        ]
+      },
+      {
+        "title": "Legal",
+        "links": [
+          [
+            "Legal notice (DE)",
+            "/impressum.html",
+            "de"
+          ],
+          [
+            "Privacy (DE)",
+            "/datenschutz.html",
+            "de"
+          ]
+        ]
+      }
+    ],
+    "disclosure": "As an Amazon Associate EcoBack earns from qualifying purchases. Product links are affiliate links — you pay the same price."
+  },
+  "fr": {
+    "navigation": "Navigation principale",
+    "home": "Accueil EcoBack (DE)",
+    "homePath": "/",
+    "allTools": "Tous les outils (DE)",
+    "skip": "Aller au contenu",
+    "languages": "Choisir la langue",
+    "search": "Rechercher sur EcoBack",
+    "searchPlaceholder": "Rechercher un outil …",
+    "searchHint": "Saisissez au moins deux caractères. Résultats en français.",
+    "searchResults": "Résultats de recherche",
+    "searchLoading": "Chargement de la recherche …",
+    "searchFound": "{n} résultats en français",
+    "searchEmpty": "Aucun résultat en français. Essayez un autre terme.",
+    "searchError": "La recherche est momentanément indisponible. Réessayez.",
+    "nav": [
+      [
+        "Calculateur",
+        "/fr/calculateur.html",
+        "fr"
+      ],
+      [
+        "Partager les outils",
+        "/fr/creator-kit.html",
+        "fr"
+      ],
+      [
+        "🧮 Tous les outils (DE)",
+        "/tools.html",
+        "de"
+      ]
+    ],
+    "footer": [
+      {
+        "title": "Outils",
+        "links": [
+          [
+            "Calculateur",
+            "/fr/calculateur.html",
+            "fr"
+          ],
+          [
+            "Comparer les offres d’électricité",
+            "/fr/comparateur-electricite.html",
+            "fr"
+          ],
+          [
+            "Partager et intégrer les outils",
+            "/fr/creator-kit.html",
+            "fr"
+          ],
+          [
+            "Tous les outils (DE)",
+            "/tools.html",
+            "de"
+          ]
+        ]
+      },
+      {
+        "title": "EcoBack",
+        "links": [
+          [
+            "Accueil (DE)",
+            "/",
+            "de"
+          ],
+          [
+            "À propos (DE)",
+            "/ueber-uns.html",
+            "de"
+          ],
+          [
+            "Notre méthode (DE)",
+            "/wie-wir-empfehlen.html",
+            "de"
+          ],
+          [
+            "Contact (DE)",
+            "/kontakt.html",
+            "de"
+          ]
+        ]
+      },
+      {
+        "title": "Informations légales",
+        "links": [
+          [
+            "Mentions légales (DE)",
+            "/impressum.html",
+            "de"
+          ],
+          [
+            "Confidentialité (DE)",
+            "/datenschutz.html",
+            "de"
+          ]
+        ]
+      }
+    ],
+    "disclosure": "En tant que partenaire Amazon, EcoBack perçoit une commission sur les achats éligibles. Les liens produits sont affiliés, sans surcoût pour vous."
+  },
+  "es": {
+    "navigation": "Navegación principal",
+    "home": "Inicio de EcoBack (DE)",
+    "homePath": "/",
+    "allTools": "Todas las herramientas (DE)",
+    "skip": "Ir al contenido",
+    "languages": "Elegir idioma",
+    "search": "Buscar en EcoBack",
+    "searchPlaceholder": "Buscar una herramienta …",
+    "searchHint": "Escribe al menos dos caracteres. Resultados en español.",
+    "searchResults": "Resultados de búsqueda",
+    "searchLoading": "Cargando la búsqueda …",
+    "searchFound": "{n} resultados en español",
+    "searchEmpty": "No hay resultados en español. Prueba otro término.",
+    "searchError": "La búsqueda no está disponible. Inténtalo de nuevo.",
+    "nav": [
+      [
+        "Calculadora",
+        "/es/calculadora.html",
+        "es"
+      ],
+      [
+        "Compartir herramientas",
+        "/es/creator-kit.html",
+        "es"
+      ],
+      [
+        "🧮 Todas las herramientas (DE)",
+        "/tools.html",
+        "de"
+      ]
+    ],
+    "footer": [
+      {
+        "title": "Herramientas",
+        "links": [
+          [
+            "Calculadora",
+            "/es/calculadora.html",
+            "es"
+          ],
+          [
+            "Comparar tarifas de luz",
+            "/es/comparar-tarifas-luz.html",
+            "es"
+          ],
+          [
+            "Compartir e insertar herramientas",
+            "/es/creator-kit.html",
+            "es"
+          ],
+          [
+            "Todas las herramientas (DE)",
+            "/tools.html",
+            "de"
+          ]
+        ]
+      },
+      {
+        "title": "EcoBack",
+        "links": [
+          [
+            "Inicio (DE)",
+            "/",
+            "de"
+          ],
+          [
+            "Sobre nosotros (DE)",
+            "/ueber-uns.html",
+            "de"
+          ],
+          [
+            "Cómo recomendamos (DE)",
+            "/wie-wir-empfehlen.html",
+            "de"
+          ],
+          [
+            "Contacto (DE)",
+            "/kontakt.html",
+            "de"
+          ]
+        ]
+      },
+      {
+        "title": "Información legal",
+        "links": [
+          [
+            "Aviso legal (DE)",
+            "/impressum.html",
+            "de"
+          ],
+          [
+            "Privacidad (DE)",
+            "/datenschutz.html",
+            "de"
+          ]
+        ]
+      }
+    ],
+    "disclosure": "Como afiliado de Amazon, EcoBack obtiene ingresos por las compras que cumplen los requisitos. Los enlaces de productos son de afiliación y no aumentan tu precio."
+  },
+  "it": {
+    "navigation": "Navigazione principale",
+    "home": "Pagina iniziale di EcoBack",
+    "homePath": "/it/",
+    "allTools": "Tutti gli strumenti (DE)",
+    "skip": "Vai al contenuto",
+    "languages": "Scegli la lingua",
+    "search": "Cerca su EcoBack",
+    "searchPlaceholder": "Cerca guide e calcolatori …",
+    "searchHint": "Inserisci almeno due caratteri. Risultati in italiano.",
+    "searchResults": "Risultati di ricerca",
+    "searchLoading": "Caricamento della ricerca …",
+    "searchFound": "{n} risultati in italiano",
+    "searchEmpty": "Nessun risultato in italiano. Prova un altro termine.",
+    "searchError": "La ricerca non è disponibile. Riprova.",
+    "nav": [
+      [
+        "Tutte le guide",
+        "/it/",
+        "it"
+      ],
+      [
+        "Calcolatore",
+        "/it/calcolatore.html",
+        "it"
+      ],
+      [
+        "🧮 Tutti gli strumenti (DE)",
+        "/tools.html",
+        "de"
+      ]
+    ],
+    "footer": [
+      {
+        "title": "Strumenti",
+        "links": [
+          [
+            "Calcolatore",
+            "/it/calcolatore.html",
+            "it"
+          ],
+          [
+            "Confronto tariffe elettriche",
+            "/it/confronto-tariffe-luce.html",
+            "it"
+          ],
+          [
+            "Condividi e incorpora gli strumenti",
+            "/it/creator-kit.html",
+            "it"
+          ],
+          [
+            "Tutti gli strumenti (DE)",
+            "/tools.html",
+            "de"
+          ]
+        ]
+      },
+      {
+        "title": "EcoBack",
+        "links": [
+          [
+            "Tutte le guide",
+            "/it/",
+            "it"
+          ],
+          [
+            "Pagina iniziale (DE)",
+            "/",
+            "de"
+          ],
+          [
+            "Il nostro metodo (DE)",
+            "/wie-wir-empfehlen.html",
+            "de"
+          ],
+          [
+            "Contatti (DE)",
+            "/kontakt.html",
+            "de"
+          ]
+        ]
+      },
+      {
+        "title": "Informazioni legali",
+        "links": [
+          [
+            "Note legali (DE)",
+            "/impressum.html",
+            "de"
+          ],
+          [
+            "Privacy (DE)",
+            "/datenschutz.html",
+            "de"
+          ]
+        ]
+      }
+    ],
+    "disclosure": "In qualità di affiliato Amazon, EcoBack riceve un guadagno dagli acquisti idonei. I link ai prodotti sono affiliati: il prezzo per te non cambia."
+  }
+}
