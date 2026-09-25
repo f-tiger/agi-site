@@ -26,3 +26,5 @@ Official Commission source pages were rechecked on 2026-09-25 (source links are 
 ## Validation
 
 `node tools/test_eu_evidence.cjs --discovery` covers four real checklist flows, answer-change invalidation, local export, clipboard success/failure, EUDR date branches, local links and discoverability. The deploy workflow builds the pages before its standard SEO gates and asserts the four live HTML and Markdown routes, assets, hub and search entries after deployment. Normal site checks also validate language groups and metadata.
+
+The first production build exposed a sitemap-gate timezone mismatch: GitHub's commit retained a -04:00 offset while CI used UTC. Sitemap commit dates and the gate now use the same UTC date from the commit timestamp, with real-git regression fixtures for negative and positive offsets across midnight. The freshness gate remains enabled.
