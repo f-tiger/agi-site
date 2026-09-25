@@ -4,6 +4,17 @@
   const t = JSON.parse($('checker-data').textContent);
   const form = $('evidence-check');
   let exportText = '';
+  // Usage counting (2026-09-25). Same cookieless first-party beacon as the rest
+  // of EcoBack (/api/ev). It carries the event name, the tool and the language
+  // and nothing else: no answers, no counts derived from answers, no text.
+  // Without it "nobody used the checker" and "the checker never reports" read
+  // the same, and nothing about this tool can be decided from data.
+  function ping(name) {
+    try {
+      const body = JSON.stringify({n: name, p: location.pathname, r: document.referrer, m: {tool: t.topic, lang: t.lang}});
+      if (navigator.sendBeacon) navigator.sendBeacon('/api/ev', new Blob([body], {type: 'text/plain'}));
+    } catch (e) { /* counting must never break the checker */ }
+  }
   function deadlineText() {
     if (t.topic !== 'eudr') return '';
     const scope = $('product-scope').value;
@@ -38,9 +49,11 @@
     const planning = t.topic === 'eudr' ? ['product-scope', 'size', 'commodity'].map(id => $(id).selectedOptions[0].text).concat(deadlineText()) : [];
     exportText = [t.title, t.checked, document.querySelector('link[rel="canonical"]').href, ...planning, ...entries.map(item => `${item.question}\n${item.value === 'yes' ? t.yes : item.value === 'no' ? t.no : t.unknown}${item.value !== 'yes' ? '\n' + item.next : ''}`), t.limit, t.disclaimer, ...t.sources.map(([url, label]) => label + '\n' + url)].join('\n\n');
     $('result').focus({preventScroll: true});
+    ping('evidence_check');
   });
   $('download').addEventListener('click', () => {
     if (!exportText) return;
+    ping('evidence_download');
     const url = URL.createObjectURL(new Blob([exportText], {type:'text/plain;charset=utf-8'}));
     const a = document.createElement('a');
     a.href = url;
@@ -59,4 +72,5 @@
     }
   });
   clearResult();
+  ping('page_view');
 })();

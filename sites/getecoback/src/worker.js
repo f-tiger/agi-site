@@ -415,6 +415,10 @@ const EV_NAMES = new Set([
   // bounty, not a product commission. The page trackers still log it as an
   // affiliate_click (any amazon.de link does); this event is the clean count.
   "bounty_click",
+  // CBAM / EUDR evidence checkers (2026-09-25). Name, tool and language only —
+  // the checkers promise that answers never leave the page, and
+  // tools/test_eu_evidence.cjs fails if a beacon carries anything else.
+  "evidence_check", "evidence_download",
   // Written server-side by serveMarkdown (crawlers run no JS), listed here so
   // the event vocabulary stays in one place.
   "md_serve",

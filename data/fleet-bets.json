@@ -95,8 +95,10 @@
    "win": "诊断优先模式可移植",
    "lose": "问题页一律不再投商品面",
    "source": "sites/getecoback/CLAUDE.md:539",
-   "status": "open",
-   "reading_2026-09-23": "08-28→09-23 该页真人 pv 0、affiliate_click 0。窗口内没有读者,09-25 应记 insufficient 而非 lose(0 点击是没人来,不是没人买);对照 growatt 同型页 31 pv / 3 点击。"
+   "status": "insufficient",
+   "reading_2026-09-23": "08-28→09-23 该页真人 pv 0、affiliate_click 0。窗口内没有读者,09-25 应记 insufficient 而非 lose(0 点击是没人来,不是没人买);对照 growatt 同型页 31 pv / 3 点击。",
+   "settled": "2026-09-25",
+   "reading": "D1 28d(至 09-25,真人剔 CI):mobile-klimaanlage-kuehlt-nicht 0 pv / 0 affiliate_click。没人来的页读不出「问题页卖不卖得动」;配对线 eco-growatt-diagnosis-0925 已 won(diagnosis-first 成立)。按 09-23 口径:pv=0 记 insufficient 不记 lose。"
   },
   {
    "id": "eco-named-model-cards-0925",
@@ -107,8 +109,10 @@
    "win": "具名>泛标签 推广到 purifier/fan",
    "lose": "是流量不是卡片,停止在型号上投入",
    "source": "sites/getecoback/CLAUDE.md:731",
-   "status": "open",
-   "reading_2026-09-23": "08-28→09-23 具名冬季卡点击 5:Schmidbauer ISP T 700 ×2、Hybrid Pro 600 ×2、Midea NTH20 ×1;MeacoDry 20L/25L 0。介于 4 与 8 之间,原文两个分支都不触发 → 09-25 记 insufficient,顺延 10-25(供暖季开场)。"
+   "status": "insufficient",
+   "reading_2026-09-23": "08-28→09-23 具名冬季卡点击 5:Schmidbauer ISP T 700 ×2、Hybrid Pro 600 ×2、Midea NTH20 ×1;MeacoDry 20L/25L 0。介于 4 与 8 之间,原文两个分支都不触发 → 09-25 记 insufficient,顺延 10-25(供暖季开场)。",
+   "settled": "2026-09-25",
+   "reading": "D1 28d:DE 秋冬具名型号(MeacoDry / Comfee MDDF-20DEN7 / Schmidbauer / Midea NTH20)affiliate_click = 7,介于判负线 4 与判胜线 8 之间;供暖季刚开始。顺延到 eco-named-model-cards-1025,阈值不变。"
   },
   {
    "id": "eco-rv-cluster-0925",
@@ -119,8 +123,10 @@
    "win": "补第二页",
    "lose": "停止扩房车簇,不试第三次",
    "source": "sites/getecoback/CLAUDE.md:686",
-   "status": "open",
-   "reading_2026-09-23": "08-28→09-23 该页 pv 1、点击 0、不在 TOP20 → 09-25 结算 lose(房车流量不迁移到潮湿意图)。"
+   "status": "lost",
+   "reading_2026-09-23": "08-28→09-23 该页 pv 1、点击 0、不在 TOP20 → 09-25 结算 lose(房车流量不迁移到潮湿意图)。",
+   "settled": "2026-09-25",
+   "reading": "D1 28d:wohnmobil-feuchtigkeit-winter 1 pv / 0 点击;TOP20 门槛 = 7 pv(第 20 名 klimaanlage-dachfenster)。本线测的是「房车页的流量会不会迁到潮湿意图」——没有迁过去。按预登记:停止扩房车簇,不因客单高再试第三次。"
   },
   {
    "id": "eco-tenant-winter-0925",
@@ -131,8 +137,10 @@
    "win": "补第二页",
    "lose": "租客流量不随季节迁移到取暖意图",
    "source": "sites/getecoback/CLAUDE.md:593",
-   "status": "open",
-   "reading_2026-09-23": "08-28→09-23 该页 pv 0、点击 0 → 09-25 结算 lose(与 09-04「快反 6 页全史 0」一致)。"
+   "status": "lost",
+   "reading_2026-09-23": "08-28→09-23 该页 pv 0、点击 0 → 09-25 结算 lose(与 09-04「快反 6 页全史 0」一致)。",
+   "settled": "2026-09-25",
+   "reading": "D1 28d:heizkosten-senken-als-mieter 1 pv / 0 点击,TOP20 门槛 7 pv。租客流量没有随季节迁到取暖意图;按预登记停止扩这条线(页面保留,不再补第二页)。"
   },
   {
    "id": "eco-us-market-0925",
@@ -143,8 +151,10 @@
    "win": "北美桥成立,配真实美国型号",
    "lose": "撤块;EN 区就是给 EU-English 读者的",
    "source": "sites/getecoback/CLAUDE.md:368",
-   "status": "open",
-   "reading_2026-09-23": "08-28→09-23 us-market / us-shelf / us-toppick 合计 1(09-07 france 页 → amazon.com Midea Duo)。阈值 ≥5 → 09-25 按原文撤块;货架整块换国籍另有 eco-us-shelf-1015,不连坐。"
+   "status": "lost",
+   "reading_2026-09-23": "08-28→09-23 us-market / us-shelf / us-toppick 合计 1(09-07 france 页 → amazon.com Midea Duo)。阈值 ≥5 → 09-25 按原文撤块;货架整块换国籍另有 eco-us-shelf-1015,不连坐。",
+   "settled": "2026-09-25",
+   "reading": "D1 28d:affiliate_click{source:us-market} = 1(其中 DE 页来源 0),阈值 5。按预登记:北美读者不接受品类桥;EN 区就是给 EU-English 读者的。撤块(EB_USMARKET)未在本次执行——会一次改动约 170 页并触发同量 IndexNow 提交,留给下一次本来就要改这些页的构建;美国货架线 eco-us-shelf-1015 另行结算。"
   },
   {
    "id": "bpj-tool-gate-0926",
@@ -1833,6 +1843,28 @@
    "win": "核实重复交付任务、免费替代不足和支持成本，才试团队复核/报告历史；收费验证仍需 3 位无关联实际买家及正贡献，订阅扩张需真实续费。",
    "lose": "访问 <100 → insufficient，先查抓取、索引、查询与落地匹配；访问够但完成少 → 查文件失败和入口承诺；完成够但导出少 → 查交付价值，不用更多页面掩盖问题。",
    "source": "sites/thedollscout/docs/document-scout-release-2026-09-25.md；owner 2026-09-25 明确要求全站转型并落地。",
+   "status": "open"
+  },
+  {
+   "id": "eco-named-model-cards-1025",
+   "site": "getecoback",
+   "due": "2026-10-25",
+   "metric": "DE 秋冬具名型号(MeacoDry 20L/25L、Comfee MDDF-20DEN7、Schmidbauer Hybrid Pro 600 / ISP T 700、Midea NTH20)28d affiliate_click,真人剔 CI,剔 link_url 含 primegratistesten。t0(09-25)= 7",
+   "threshold": "≥8 判胜;<4 判负",
+   "win": "「具名 > 泛标签」在秋冬族成立 → 把具名模式补到 purifier/fan 的泛标签位",
+   "lose": "是流量不是卡片 → 停止在型号上投入",
+   "source": "eco-named-model-cards-0925 的顺延(sites/getecoback/CLAUDE.md 2026-08-28 按趋势扩联盟商品节)",
+   "status": "open"
+  },
+  {
+   "id": "eco-eu-evidence-1023",
+   "site": "getecoback",
+   "due": "2026-10-23",
+   "metric": "CBAM / EUDR 证据检查四页(/en|/zh/agents/cbam-supplier-data、eudr-geolocation-evidence),D1 28 天窗 09-26→10-23,真人剔 CI:① evidence_check 次数与出现天数;② 四页 page_view 中外部来源(搜索 / AI 助手 / 外站,不含本站与空 referrer)的次数。t0:0 / 0——2026-09-25 前这四页没有任何计数(页面零网络请求),本次才加上只含工具与语言的信标;CI 与部署自检不跑页面 JS,不会自己满足这条线",
+   "threshold": "① ≥10 次且分布在 ≥5 个不同日期 且 ② ≥3",
+   "win": "有人在用且有人从外面找到它 → 可以扩:下一个法规检查按同一形态做(候选:与阳台储能出口相关的欧盟电池法规义务,事实须在建页当天按 EUR-Lex/Commission 原文核实);€299 试点仍须 owner 接通收款后才可开售",
+   "lose": "① <3 → 四页只维护不扩建,不再加法规;不把首页入口当成失败原因去挪位置(先看 ②)。① ≥3 而 ② = 0 → 用的人都来自站内入口,问题在发现面(eco 在 B2B 合规词上零权威),不是工具本身",
+   "source": "sites/getecoback/docs/eu-evidence-migration-2026-09-25.md(2026-09-25 检查一节)",
    "status": "open"
   }
  ]

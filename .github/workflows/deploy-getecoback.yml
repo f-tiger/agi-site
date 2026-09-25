@@ -596,6 +596,11 @@ jobs:
             done
           done
           check "https://getecoback.com/js/eu-evidence.js" "deadlineAdded"
+          # 2026-09-25: the four checkers were live for a day without counting a
+          # single use. The accident to catch is the script shipping without its
+          # beacon again, which would make eco-eu-evidence-1023 read 0 for the
+          # wrong reason.
+          check "https://getecoback.com/js/eu-evidence.js" "ping('evidence_check')"
           check "https://getecoback.com/css/eu-evidence.css" "evidence-grid"
           check "https://getecoback.com/tools.html" "/zh/agents/eudr-geolocation-evidence.html"
           check "https://getecoback.com/search-index.json" "/en/agents/cbam-supplier-data.html"

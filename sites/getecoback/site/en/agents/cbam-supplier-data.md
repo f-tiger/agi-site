@@ -10,7 +10,7 @@ For teams already considering the O3CI sharing route. This is not an assessment 
 
 ## Free handoff checker
 
-No login, uploads or personal information. Answers stay in this page; nothing is submitted to EcoBack or the EU.
+No login, uploads or personal information. Your answers stay in this page and are never sent. We only count page views, checklist runs and downloads, without cookies.
 
 - Does the non-EU installation operator have working O3CI access?
 

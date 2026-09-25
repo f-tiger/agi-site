@@ -33,8 +33,9 @@ for (const lang of ['en', 'zh']) for (const slug of slugs) {
     for(const id of ['checker-data','evidence-check','summary','gaps','result','limit','download','share','share-status','deadline','product-scope','size','commodity',...t.items.map(x=>x[0])])nodes[id]=element();
     nodes['checker-data'].textContent=JSON.stringify(t);
     let exported;
-    const document={getElementById:id=>nodes[id],createElement:element,body:element(),querySelector:()=>({href:canonical})};
-    const context={document,Blob,URL:{createObjectURL(blob){exported=blob;return 'blob:test';},revokeObjectURL(){}},navigator:{clipboard:{async writeText(v){assert.equal(v,canonical);}}},setTimeout:f=>f(),fetch:()=>{throw Error('Checklist must not submit answers');}};
+    const beacons=[];
+    const document={getElementById:id=>nodes[id],createElement:element,body:element(),querySelector:()=>({href:canonical}),referrer:''};
+    const context={document,Blob,location:{pathname:`/${lang}/agents/${slug}.html`},URL:{createObjectURL(blob){exported=blob;return 'blob:test';},revokeObjectURL(){}},navigator:{clipboard:{async writeText(v){assert.equal(v,canonical);}},sendBeacon(url,blob){assert.equal(url,'/api/ev');beacons.push(blob);return true;}},setTimeout:f=>f(),fetch:()=>{throw Error('Checklist must not submit answers');}};
     vm.runInNewContext(source,context);
     const submit=()=>nodes['evidence-check'].handlers.submit({preventDefault(){}});
     assert.equal(nodes.download.hidden,true);
@@ -61,6 +62,20 @@ for (const lang of ['en', 'zh']) for (const slug of slugs) {
     await nodes.share.handlers.click();assert.equal(nodes['share-status'].textContent,t.copyError);
     for(const [id] of t.items)nodes[id].value='unknown';
     nodes['evidence-check'].handlers.reset();assert.equal(nodes.summary.textContent,t.empty);assert.equal(nodes.download.hidden,true);
+    // Usage counting (2026-09-25): the page may report that it was viewed, run
+    // and downloaded, and nothing else. No answer, no count of open items, no
+    // question or advice text may ever leave the page.
+    const sent=await Promise.all(beacons.map(b=>b.text()));
+    const names=sent.map(x=>JSON.parse(x).n);
+    for(const need of ['page_view','evidence_check','evidence_download'])assert.ok(names.includes(need),`beacon ${need} never fired`);
+    for(const raw of sent){
+      const e=JSON.parse(raw);
+      assert.ok(['page_view','evidence_check','evidence_download'].includes(e.n),`unexpected event ${e.n}`);
+      assert.deepEqual(Object.keys(e).sort(),['m','n','p','r']);
+      assert.deepEqual(e.m,{tool:t.topic,lang:t.lang});
+      for(const [,question,next] of t.items){assert.ok(!raw.includes(question));assert.ok(!raw.includes(next));}
+      for(const v of [t.yes,t.no,t.unknown,t.done])assert.ok(!raw.includes(v),'an answer label left the page');
+    }
   });
 }
 if(process.argv.includes('--discovery'))test('Both languages are linked by hub, search, sitemap and AI index',()=>{

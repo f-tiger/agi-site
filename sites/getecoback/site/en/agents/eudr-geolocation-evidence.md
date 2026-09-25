@@ -10,7 +10,7 @@ This tool records your own readiness answers. It does not determine whether a pr
 
 ## Free supplier-evidence pre-check
 
-No login or upload. Answers stay in this browser page and can be downloaded as a local text checklist.
+No login or upload. Your answers stay in this browser page and can be downloaded as a local text checklist; they are never sent. We only count page views, checklist runs and downloads, without cookies.
 
 Confirm the product code, applicable amendment and organisation category before relying on a date.
 

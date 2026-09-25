@@ -3231,3 +3231,10 @@ IT → deumidificatore(注意它峰在 **7 月**,意大利除湿是夏题)。**�
 2. **`mcp_install_click` 只发给 GA4,D1 一行都没有**(`site/mcp.html` 里那行 `gtag(...)`)。
    所以「有人试着把服务器装进客户端」这件事在本站**从来没被测过**,不是测出来是 0。
    SR 09-24 已经把这一步补成可读的数(复制安装指令即落一行,只记客户端名),本站照抄即可。
+
+## CBAM / EUDR 证据检查:另一会话上线,本会话复核(2026-09-25,owner:「在其他会话上线了工具。检查。看是否扩展」;全文 `docs/eu-evidence-migration-2026-09-25.md` 末节)
+
+- **来历**:owner 要求把 Regula Brief 的双语 CBAM / EUDR 检查搬进 eco(`tools/build_eu_evidence.py`,四个路由 `/en|/zh/agents/…`,首页、工具总览、llms、sitemap 都有入口)。€299 试点**没有接收款**。
+- **复核结果**:Commission 原页逐条对过,日期与 O3CI/EORI 说法全部准确;浏览器 390 px 四页全通。**唯一缺陷:四页零网络请求 = 完全没有计数**,已补 `page_view / evidence_check / evidence_download`,只带 `{tool, lang}`,测试断言答案永不出页(两向变异验过),隐私文案同步改。
+- **扩不扩:现在不扩**。没有读数、收款未接、舰队只从 won 的线扩张。判定线 `eco-eu-evidence-1023`。
+- **读数纪律**:这四页的 `page_view` 来自它们自己的信标(没有 EB_TRACK,不会双计);读工具使用看 `evidence_check`,**不要拿 page_view 当使用量**。「o3ci」Trends 为 0,CBAM 页的流量只可能来自头部词或站内入口。
