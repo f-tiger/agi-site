@@ -2820,7 +2820,7 @@ function categoryPage(key, label) {
         return `<p class="coverage"><a href="#limits">${line}</a></p>${key === 'api' && APIQ ? `
     <p class="coverage"><a href="${BASE}/llm-api-calculator.html"><b>${LOCALE.code === 'zh' ? '新：输入你的用量，一算便知哪家免费档扛得住 →' : 'New: enter your usage and see which free tier holds →'}</b></a></p>` : ''}${key === 'video' && VIDQ ? `
     <p class="coverage"><a href="${BASE}/video-quota-planner.html"><b>${LOCALE.code === 'zh' ? '新：13 家给多少、换多少、能不能商用，一页对照 →' : 'New: what 13 vendors grant, what it buys, and whether you may publish — one board →'}</b></a></p>` : ''}${key === 'video' && PIPES ? `
-    <p class="coverage"><a href="${BASE}/pipeline/video.html"><b>${LOCALE.code === 'zh' ? '新：把这些串成一条流水线，一个月到底能出几条、卡在哪一环 →' : 'New: chain them into one pipeline — how many videos a month, and which link runs dry →'}</b></a></p>` : ''}${key === 'coding' && CODQ ? `
+    <p class="coverage"><a href="${BASE}/studio/video-variants"><b>${LOCALE.code === 'zh' ? '用你的素材制作商品视频：BPJ 自研变体工作台' : 'Create product videos from your assets: built by BPJ'}</b></a></p>\n    <p class="coverage"><a href="${BASE}/pipeline/video.html"><b>${LOCALE.code === 'zh' ? '新：把这些串成一条流水线，一个月到底能出几条、卡在哪一环 →' : 'New: chain them into one pipeline — how many videos a month, and which link runs dry →'}</b></a></p>` : ''}${key === 'coding' && CODQ ? `
     <p class="coverage"><a href="${BASE}/subscription-audit.html"><b>${LOCALE.code === 'zh' ? '新：你在付的这几个订阅，哪个可以先停？一页体检 →' : 'New: which of the AI subscriptions you pay for can go? One-page audit →'}</b></a></p>
     <p class="coverage"><a href="${BASE}/coding-quota-board.html"><b>${LOCALE.code === 'zh' ? '新：19 家扣的是补全、请求还是 Credits？一页对照 →' : 'New: do these 19 meter completions, requests or credits? One board →'}</b></a></p>` : ''}${key === 'chat' && CHATQ ? `
     <p class="coverage"><a href="${BASE}/chat-limits-board.html"><b>${LOCALE.code === 'zh' ? '新：「每天能聊几条」问错了——10 家里 8 家不公布条数，该问墙在哪 →' : 'New: "how many messages a day" is the wrong question — 8 of 10 publish no count →'}</b></a></p>` : ''}${key === 'image' && IMGQ ? `
@@ -3702,7 +3702,7 @@ function solutionDomainPage(dom, list) {
     <p class="money-lede">${zh
       ? '上面的方案回答「用什么」，但真正决定你能不能持续做下去的是另一个问题——把脚本、分镜图、生视频、配音、剪辑串成一条流水线，一个月免费能出几条，第一个卡住的是哪一环。这道题得按已核实额度逐环算，我们把它算了出来。'
       : 'The playbooks above answer what to use. What decides whether you can keep going is a different question: chain script, stills, generation, voiceover and editing into one pipeline, and how many videos a month does the free tier actually yield — and which link runs dry first? That has to be computed link by link from verified allowances, and it has been.'}</p>
-    <p class="coverage"><a href="${BASE}/pipeline/video.html"><b>${zh ? '零成本短视频流水线：算你自己的那条 →' : 'The zero-cost short-video pipeline: compute your own →'}</b></a></p>
+    <p class="coverage"><a href="${BASE}/studio/video-variants"><b>${LOCALE.code === 'zh' ? '用你的素材制作商品视频：BPJ 自研变体工作台' : 'Create product videos from your assets: built by BPJ'}</b></a></p>\n    <p class="coverage"><a href="${BASE}/pipeline/video.html"><b>${zh ? '零成本短视频流水线：算你自己的那条 →' : 'The zero-cost short-video pipeline: compute your own →'}</b></a></p>
   </section>` : ''}
   ${dom === 'coding' ? `<section class="limits-table">
     <h2 class="group-title">${zh ? '这一方向还缺什么（如实说）' : 'What is still missing here (stated plainly)'}<span>1</span></h2>
@@ -8537,6 +8537,7 @@ ${solutions.map((s) => `- [${s.pain}](${site.base_url}/plans/${s.slug}.html)：$
 
 - [自研工具板块 / Built by BPJ](${site.base_url}/studio/): BPJ 自主设计与开发，独立于第三方工具收录。EN: ${site.base_url}/en/studio/
 - [供应商报价比较台 / Supplier quote comparison](${site.base_url}/studio/quote-compare): 同一采购任务内核对箱规、起订量、税运费和来源；本地计算与导出，无 OCR 或自动下单。EN: ${site.base_url}/en/studio/quote-compare
+- [商品视频变体 / Product video variants](${site.base_url}/studio/video-variants): BPJ 自研，本机素材编排、三个开场、三种画幅、真实视频与字幕导出，AI 分镜交接和独立预算。当前不提供模型代调用。EN: ${site.base_url}/en/studio/video-variants
 
 ## 基于已核实额度的自研工具 / Tools built on verified quota data
 

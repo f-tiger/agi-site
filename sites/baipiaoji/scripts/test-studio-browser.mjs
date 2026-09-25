@@ -25,7 +25,7 @@ try{
     const context=await browser.newContext({viewport:{width:1440,height:1050},acceptDownloads:true});
     await context.route('**/*',route=>route.request().url().startsWith(origin)?route.continue():route.abort());
     const page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));page.on('dialog',d=>d.accept());
-    await page.goto(origin+prefix+'/studio/');assert.equal(await page.locator('.studio-product').count(),2);
+    await page.goto(origin+prefix+'/studio/');assert.equal(await page.locator('.studio-product').count(),3);
     await page.screenshot({path:path.join(artifacts,lang+'-hub.png'),fullPage:true});
     await page.locator('.studio-product a.studio-button').nth(1).click();
     await page.locator('#qc-example').click();await page.waitForSelector('.quote-table');

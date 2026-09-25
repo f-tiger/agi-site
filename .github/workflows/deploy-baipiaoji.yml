@@ -265,6 +265,7 @@ jobs:
           node scripts/test-agent-watch.mjs --dist
           node scripts/test-work-plan.mjs --dist
           node scripts/test-studio.mjs --dist
+          node scripts/test-video-studio.mjs --dist
 
       # 2026-08-16 删除「Ensure Pages project exists」:项目早就存在,这一步每次都
       # 静默失败后 `|| true`——却要为此完整下载一次 wrangler。等于每次运行白花几十秒

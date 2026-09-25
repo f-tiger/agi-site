@@ -4,6 +4,7 @@ import {createHash} from 'node:crypto';
 import {readFileSync} from 'node:fs';
 import {setTimeout as pause} from 'node:timers/promises';
 import {EDITION} from '../assets/studio/quote-core.mjs';
+import {EDITION as VIDEO_EDITION} from '../assets/studio/video-core.mjs';
 const origin='https://baipiaoji.com';
 const get=async path=>{
   const url=new URL(path,origin);url.searchParams.set('__probe','1');
@@ -19,9 +20,15 @@ for(const prefix of ['','/en']){
   assert.ok(tool.includes('id="qc-quote-source_text"')&&tool.includes('id="qc-calculate"'));
   assert.ok(tool.includes(`rel="canonical" href="${origin}${prefix}/studio/quote-compare"`));
   assert.ok(home.includes('id="studio"')&&home.includes('data-studio-nav'));
+  const video=await get(prefix+'/studio/video-variants');
+  assert.ok(video.includes(`data-edition="${VIDEO_EDITION}"`));
+  assert.ok(video.includes(`rel="canonical" href="${origin}${prefix}/studio/video-variants"`));
+  assert.ok(video.includes('id="vv-export"')&&video.includes('id="vv-audio"'));
+  assert.ok(hub.includes(`href="${origin}${prefix}/studio/video-variants"`));
+  assert.ok(home.includes(`href="${origin}${prefix}/studio/video-variants"`));
 }
 const digest=text=>createHash('sha256').update(text).digest('hex');
-for(const file of ['quote-core.mjs','quote-copy.mjs','quote-view.mjs','quote-app.mjs','studio.css']){
+for(const file of ['quote-core.mjs','quote-copy.mjs','quote-view.mjs','quote-app.mjs','studio.css','video-core.mjs','video-view.mjs','video-render.mjs','video-app.mjs','video.css']){
   const live=await get('/studio-assets/'+file+'?edition='+encodeURIComponent(EDITION));
   assert.equal(digest(live),digest(readFileSync(new URL('../assets/studio/'+file,import.meta.url),'utf8')),file+' differs from source');
 }
@@ -35,4 +42,4 @@ for(let attempt=0;attempt<5;attempt++){
     await pause(delay);
   }
 }
-console.log('BPJ first-party hub, homepage entries, bilingual quote tool and exact asset contents are live: '+EDITION);
+console.log('BPJ first-party hub, homepage entries, bilingual quote/video tools and exact asset contents are live: '+EDITION+' / '+VIDEO_EDITION);
