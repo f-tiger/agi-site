@@ -1,5 +1,5 @@
 {
- "fetched": "2026-09-24",
+ "fetched": "2026-09-25",
  "geo": "DE",
  "seeds": {
   "klimaanlage": {
@@ -62,93 +62,63 @@
     "schimmel entfernen mit alkohol",
     "schimmel entfernen spray"
    ],
+   "rising": [],
+   "source": "autocomplete-diff",
+   "fetched": "2026-09-25"
+  },
+  "infrarotheizung": {
+   "auto": [
+    "infrarotheizung",
+    "infrarotheizung wand",
+    "infrarotheizung decke",
+    "infrarotheizung badezimmer",
+    "infrarotheizung bild",
+    "infrarotheizung standgerät",
+    "infrarotheizung test",
+    "infrarotheizungen",
+    "infrarotheizung stromverbrauch",
+    "infrarotheizung decke mit licht"
+   ],
    "rising": [
     {
-     "q": "schimmel entfernen wand",
+     "q": "infrarotheizung wand",
      "v": "new"
     },
     {
-     "q": "schimmel entfernen hausmittel",
+     "q": "infrarotheizung decke",
      "v": "new"
     },
     {
-     "q": "schimmel entfernen dusche",
+     "q": "infrarotheizung badezimmer",
      "v": "new"
     },
     {
-     "q": "schimmel entfernen bad fugen",
+     "q": "infrarotheizung bild",
      "v": "new"
     },
     {
-     "q": "schimmel entfernen dm",
+     "q": "infrarotheizung standgerät",
      "v": "new"
     },
     {
-     "q": "schimmel entfernen wand innen",
+     "q": "infrarotheizung test",
      "v": "new"
     },
     {
-     "q": "schimmel entfernen tapete",
+     "q": "infrarotheizungen",
      "v": "new"
     },
     {
-     "q": "schimmel entfernen mit alkohol",
+     "q": "infrarotheizung stromverbrauch",
      "v": "new"
     },
     {
-     "q": "schimmel entfernen spray",
+     "q": "infrarotheizung decke mit licht",
      "v": "new"
     }
    ],
    "source": "autocomplete-diff",
-   "fetched": "2026-09-24"
-  },
-  "infrarotheizung": {
-   "rising": [
-    {
-     "q": "infrarotheizung gegen schimmel",
-     "v": 59250
-    },
-    {
-     "q": "knebel infrarotheizung",
-     "v": 36000
-    },
-    {
-     "q": "infrarotheizung werkstatt",
-     "v": 30750
-    },
-    {
-     "q": "infrarotheizung deckenmontage mit licht",
-     "v": 25750
-    },
-    {
-     "q": "infrarotheizung 200 watt",
-     "v": 24550
-    },
-    {
-     "q": "infrarotheizung auf rollen",
-     "v": 23300
-    },
-    {
-     "q": "elektrische heizung",
-     "v": 23250
-    },
-    {
-     "q": "infrarotheizung 600 watt mit thermostat",
-     "v": 19750
-    },
-    {
-     "q": "infrarotheizung als bild",
-     "v": 17650
-    },
-    {
-     "q": "könighaus infrarotheizung 600 watt",
-     "v": 16250
-    }
-   ],
-   "source": "related-queries",
-   "fetched": "2026-09-16",
-   "polluted": false
+   "fetched": "2026-09-25"
   },
   "luftentfeuchter": {
    "auto": [

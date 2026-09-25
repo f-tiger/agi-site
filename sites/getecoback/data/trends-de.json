@@ -1,60 +1,51 @@
 {
  "ok": true,
- "fetched": "2026-09-24",
+ "fetched": "2026-09-25",
  "source": "https://trends.google.com/trending/rss?geo=DE",
- "matched": [
-  {
-   "title": "wetterwarnung",
-   "traffic": "2000+"
-  }
- ],
+ "matched": [],
  "top": [
   {
-   "title": "michael olise",
-   "traffic": "2000+"
+   "title": "dr nice staffel 4",
+   "traffic": "20000+"
   },
   {
-   "title": "u bahnhof schönhauser allee",
+   "title": "australia vs brazil",
    "traffic": "1000+"
   },
   {
-   "title": "hessenschau",
+   "title": "türkei griechenland",
    "traffic": "1000+"
   },
   {
-   "title": "radio lippe",
+   "title": "grundsteuer",
    "traffic": "500+"
   },
   {
-   "title": "wetterwarnung",
+   "title": "a7",
    "traffic": "2000+"
   },
   {
-   "title": "sabrina wittmann",
-   "traffic": "500+"
+   "title": "vw-rückruf",
+   "traffic": "10000+"
   },
   {
-   "title": "u-bahn",
+   "title": "star wars",
+   "traffic": "1000+"
+  },
+  {
+   "title": "illner",
    "traffic": "5000+"
   },
   {
-   "title": "shelly group",
-   "traffic": "1000+"
+   "title": "2027",
+   "traffic": "5000+"
   },
   {
-   "title": "schwandorf",
-   "traffic": "1000+"
-  },
-  {
-   "title": "freizeitpark",
-   "traffic": "1000+"
+   "title": "krankenkasse",
+   "traffic": "10000+"
   }
  ],
  "history": [
-  {
-   "d": "2026-09-10",
-   "matched": []
-  },
   {
    "d": "2026-09-11",
    "matched": []
@@ -114,6 +105,10 @@
    "matched": [
     "wetterwarnung"
    ]
+  },
+  {
+   "d": "2026-09-25",
+   "matched": []
   }
  ]
 }
