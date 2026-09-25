@@ -1,10 +1,11 @@
-import { LIMITS, validateFiles, compareDocuments, csv, auditExport } from './core.mjs';
+import { LIMITS, validateFiles, compareDocuments, csv, auditExport } from './core.mjs?v=2026-09-25.2';
 const c = JSON.parse(document.getElementById('document-copy').textContent);
 const mode = document.body.dataset.documentMode || 'audit';
 const $ = id => document.getElementById(id);
 const esc = value => String(value ?? '').replace(/[&<>"']/g, ch => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[ch]));
 let files = [], reports = [], failures = [], reviews = {}, comparison = null, busy = false, controller, epoch = 0, sample = false;
 const sent = new Set();
+const downloadUrls = new Set();
 function track(event) {
   if (location.hostname !== 'thedollscout.com' || new URLSearchParams(location.search).has('ci') || navigator.webdriver || navigator.doNotTrack === '1' || sent.has(event)) return;
   sent.add(event);
@@ -23,6 +24,8 @@ function setBusy(value) {
   $('workspace')?.setAttribute('aria-busy', String(value));
 }
 function resetResults() {
+  for (const url of downloadUrls) URL.revokeObjectURL(url);
+  downloadUrls.clear();
   reports = []; failures = []; reviews = {}; comparison = null;
   if ($('results')) { $('results').hidden = true; $('results').replaceChildren(); }
 }
@@ -68,7 +71,7 @@ async function analyze() {
   resetResults(); setBusy(true); renderFiles(); status(c.working);
   track(sample ? 'doc_sample' : 'doc_start');
   let reader;
-  try { reader = await import('./pdf-reader.mjs'); }
+  try { reader = await import('./pdf-reader.mjs?v=2026-09-25.2'); }
   catch { setBusy(false); status(c.errors.loadFailed, true); return; }
   if (current !== epoch) return;
   let remaining = LIMITS.batchPages;
@@ -149,8 +152,14 @@ $('results')?.addEventListener('change', event => {
 });
 function download(name, data, type) {
   const blob = new Blob([data], { type }); const url = URL.createObjectURL(blob);
-  const a = document.createElement('a'); a.href = url; a.download = name; a.click();
-  setTimeout(() => URL.revokeObjectURL(url), 1000);
+  downloadUrls.add(url);
+  const a = document.createElement('a'); a.href = url; a.download = name;
+  a.textContent = c.saveReport + ' · ' + name;
+  let ready = $('download-ready');
+  if (!ready) { ready = document.createElement('p'); ready.id = 'download-ready'; ready.className = 'notice'; $('results').querySelector('.export-actions').after(ready); }
+  ready.replaceChildren(document.createTextNode(c.downloadReady + ' '), a);
+  // A persistent, native link also works when automatic downloads are disabled.
+  a.click();
 }
 $('results')?.addEventListener('click', event => {
   const button = event.target.closest('[data-export]'); if (!button) return;

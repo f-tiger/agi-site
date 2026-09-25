@@ -7,6 +7,6 @@ if (!response.ok) throw new Error('Document metrics HTTP ' + response.status);
 const data = await response.json();
 if (data.ok !== true || data.since !== '2026-09-25' || !data.events || !data.excluded) throw new Error('Document measurement contract missing');
 fs.writeFileSync(path.join(root, 'content/document-metrics.json'), JSON.stringify(data, null, 2) + '\n');
-const report = 'Document Scout / 28-day action counts (not unique users): ' + JSON.stringify(data.events) + '\nExcluded CI and sample actions: ' + JSON.stringify(data.excluded) + '\n';
+const report = 'Document Scout / 28-day tool-page views: ' + data.tool_views + '\nAction counts (not unique users): ' + JSON.stringify(data.events) + '\nExcluded CI and sample actions: ' + JSON.stringify(data.excluded) + '\n';
 console.log(report);
 if (process.env.GITHUB_STEP_SUMMARY) fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, report);

@@ -5,7 +5,7 @@ import { copy, languages, toolSlugs, guideSlugs, references } from './copy.mjs';
 import { fixture } from './fixtures.mjs';
 const here = path.dirname(fileURLToPath(import.meta.url)), root = path.resolve(here, '../..');
 const args = process.argv.slice(2), output = args.includes('--out') ? path.resolve(args[args.indexOf('--out') + 1]) : root;
-const origin = 'https://thedollscout.com', edition = '2026-09-25.1';
+const origin = 'https://thedollscout.com', edition = '2026-09-25.2';
 const esc = value => String(value ?? '').replace(/[&<>"']/g, ch => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[ch]));
 const write = (name, data) => { const file = path.join(output, name); fs.mkdirSync(path.dirname(file), { recursive: true }); fs.writeFileSync(file, data); };
 const urls = [], records = [];
@@ -68,7 +68,7 @@ if (output === root && fs.existsSync(urlList)) { const old = fs.readFileSync(url
 if (output !== root) {
   function annotate(dir) {
     for (const entry of fs.readdirSync(dir, { withFileTypes:true })) {
-      if (['document-assets','workbench-assets','member-assets','functions','scripts','legal'].includes(entry.name)) continue;
+      if (['document-assets','workbench-assets','member-assets','functions','scripts','legal','__ci'].includes(entry.name)) continue;
       const file = path.join(dir,entry.name);
       if (entry.isDirectory()) { annotate(file); continue; }
       if (!entry.name.endsWith('.html')) continue;

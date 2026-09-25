@@ -51,6 +51,11 @@ test('inserting a page preserves unchanged pages rather than shifting the diff',
   assert.deepEqual([result.changes[0].kind,result.changes[0].before,result.changes[0].after], ['added',null,1]);
   assert.equal(compareDocuments(document(['Same\ntext']), document(['Same  text'])).same, 1);
 });
+test('real sample: revisions on both pages plus an insertion keep the insertion in place', async () => {
+  const before = await parse('before'), after = await parse('after');
+  const result = compareDocuments(before,after);
+  assert.deepEqual(result.changes.map(c => [c.kind,c.before,c.after]), [['changed',1,1],['added',null,2],['changed',2,3]]);
+});
 test('tree reading preserves heading order, supports actualText, and treats tables as review', () => {
   const f = structureFacts({ role:'Document', children:[{ role:'H1' }, { role:'H3' }, { role:'Figure', actualText:'Text equivalent' }, { role:'Formula', alt:' ' }, { role:'Table' }] });
   assert.deepEqual(f.headings,[1,3]); assert.equal(f.missingAlt,1); assert.equal(f.tables,1);

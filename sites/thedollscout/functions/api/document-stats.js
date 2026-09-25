@@ -19,6 +19,7 @@ export async function onRequestGet({ env }) {
     return json({ ok:true, since:START, days:28, generated:new Date().toISOString(),
       unit:'Anonymous action counts, deduplicated per event per page load in the browser. Not unique users; not verified buyers. Bots, CI and samples are excluded from task completion. Open endpoint counts can be spoofed.',
       events:Object.fromEntries(rows[0].map(r => [r.ev, Number(r.n)])), daily:rows[1], pages:rows[2], referrers:rows[3],
+      tool_views:rows[2].filter(r => /^\/(?:(de|zh)\/)?(?:pdf-accessibility-checker|pdf-batch-audit|pdf-to-text|compare-pdf-text)?$/.test(r.path)).reduce((n,r) => n + Number(r.n),0),
       excluded:Object.fromEntries(rows[4].map(r => [r.ev, Number(r.n)])), crawler_fetches:rows[5],
     });
   } catch { return json({ ok:false, error:'query_failed' }, 500); }

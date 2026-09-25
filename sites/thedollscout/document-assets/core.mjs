@@ -1,5 +1,5 @@
 // Deterministic document triage. A detected signal is not a conformance verdict.
-export const VERSION = '2026-09-25.1';
+export const VERSION = '2026-09-25.2';
 export const LIMITS = Object.freeze({ files: 10, fileBytes: 20 * 1024 * 1024, batchBytes: 100 * 1024 * 1024, pages: 200, batchPages: 600, pageChars: 100000, totalChars: 2000000 });
 export const normalizeText = value => String(value || '').normalize('NFKC').replace(/\s+/gu, ' ').trim();
 
@@ -72,26 +72,41 @@ export function compareDocuments(before, after) {
   const a = before.pages, b = after.pages;
   const ta = a.map(p => normalizeText(p.text)), tb = b.map(p => normalizeText(p.text));
   const match = (i, j) => !!ta[i] && ta[i] === tb[j] && !a[i].error && !b[j].error && !a[i].textTruncated && !b[j].textTruncated;
-  const dp = Array.from({ length: a.length + 1 }, () => new Uint16Array(b.length + 1));
-  for (let i = a.length - 1; i >= 0; i--) for (let j = b.length - 1; j >= 0; j--) dp[i][j] = match(i, j) ? 1 + dp[i + 1][j + 1] : Math.max(dp[i + 1][j], dp[i][j + 1]);
+  // Bounded character shingles also pair small revisions around inserted pages.
+  // They propose a text pairing, not semantic or visual equivalence.
+  const signature = text => {
+    const chars = Array.from(text.toLowerCase()).slice(0, 1200), set = new Set();
+    for (let k = 0; k + 2 < chars.length; k++) set.add(chars.slice(k,k+3).join(''));
+    return set;
+  };
+  const sa = ta.map(signature), sb = tb.map(signature);
+  const score = (i,j) => {
+    if (match(i,j)) return 2;
+    if (ta[i].length < 20 || tb[j].length < 20 || a[i].error || b[j].error || a[i].textTruncated || b[j].textTruncated) return 0;
+    let common = 0; for (const part of sa[i]) if (sb[j].has(part)) common++;
+    const similarity = common / (sa[i].size + sb[j].size - common);
+    return similarity >= 0.55 ? similarity : 0;
+  };
+  const scores = a.map((_,i) => b.map((_,j) => score(i,j)));
+  const dp = Array.from({ length: a.length + 1 }, () => new Float64Array(b.length + 1));
+  for (let i = a.length - 1; i >= 0; i--) for (let j = b.length - 1; j >= 0; j--) dp[i][j] = Math.max(scores[i][j] + dp[i+1][j+1], dp[i+1][j], dp[i][j+1]);
   const anchors = [];
   let i = 0, j = 0;
   while (i < a.length && j < b.length) {
-    if (match(i, j)) { anchors.push([i++, j++]); }
+    if (scores[i][j] && dp[i][j] === scores[i][j] + dp[i+1][j+1]) { anchors.push([i++, j++]); }
     else if (dp[i + 1][j] >= dp[i][j + 1]) i++; else j++;
   }
   anchors.push([a.length, b.length]);
   const changes = [];
   let ai = 0, bi = 0, same = 0;
   for (const [an, bn] of anchors) {
-    const span = Math.max(an - ai, bn - bi);
-    for (let k = 0; k < span; k++) {
-      const left = ai + k < an ? a[ai + k] : null;
-      const right = bi + k < bn ? b[bi + k] : null;
+    const addChange = (left,right) => {
       const unknown = [left, right].filter(Boolean).some(p => p.error || !normalizeText(p.text) || p.textTruncated);
       changes.push({ kind: unknown ? 'unknown' : !left ? 'added' : !right ? 'removed' : 'changed', before: left?.number ?? null, after: right?.number ?? null, beforeText: left?.text || '', afterText: right?.text || '' });
-    }
-    if (an < a.length && bn < b.length) same++;
+    };
+    for (let k = ai; k < an; k++) addChange(a[k],null);
+    for (let k = bi; k < bn; k++) addChange(null,b[k]);
+    if (an < a.length && bn < b.length) { if (match(an,bn)) same++; else addChange(a[an],b[bn]); }
     ai = an + 1; bi = bn + 1;
   }
   return { same, changes, complete: before.complete && after.complete,

@@ -1,4 +1,4 @@
-import { LIMITS, auditDocument, structureFacts } from './core.mjs';
+import { LIMITS, auditDocument, structureFacts } from './core.mjs?v=2026-09-25.2';
 
 export async function readPdf(data, options = {}) {
   const { name = 'document.pdf', signal, onProgress = () => {}, pageLimit = LIMITS.pages, library } = options;
