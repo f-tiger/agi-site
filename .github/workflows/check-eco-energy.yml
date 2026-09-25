@@ -3,6 +3,10 @@ on:
   pull_request:
     paths:
       - 'sites/getecoback/**'
+      - 'tools/member-studio/**'
+      - 'tools/fleet/membership*.mjs'
+      - 'sites/baipiaoji/lib/membership.js'
+      - 'sites/baipiaoji/functions/api/member-watch.js'
       - '.github/workflows/check-eco-energy.yml'
       - '.github/workflows/deploy-getecoback.yml'
   workflow_dispatch: {}
@@ -25,10 +29,15 @@ jobs:
           node-version: '22'
       - name: Verify calculations, generated pages and discoverability
         run: |
+          node ../../tools/member-studio/test-isolation.mjs
+          node ../../tools/member-studio/test-failure.mjs
+          node ../../tools/fleet/test_membership_totals.mjs
           node --test tools/test_energy_tariffs.mjs
           python3 tools/build_energy_workbench.py
           python3 tools/link_energy_workbench.py
           python3 tools/build_tools_hub.py
+          python3 tools/build_revenue_guide.py
+          python3 tools/check_expansion_queue.py
           python3 tools/build_search.py
           python3 tools/check_events.py
           python3 tools/check_tools_hub.py
@@ -47,6 +56,7 @@ jobs:
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_energy_workbench.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_energy_upload_locale.cjs
           NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_energy_brand.cjs
+          NODE_PATH="$RUNNER_TEMP/eco-playwright/node_modules" QA_DIR="$RUNNER_TEMP/eco-energy-qa" node tools/browser_revenue.cjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
