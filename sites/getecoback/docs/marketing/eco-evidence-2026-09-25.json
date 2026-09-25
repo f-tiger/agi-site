@@ -14,14 +14,25 @@
   ],
   "owned_site": {
     "channel": "getecoback.com",
-    "state": "pending_deployment_verification",
-    "published": false,
+    "state": "published_static_operational_checks_blocked",
+    "published": true,
     "urls": [
       "https://getecoback.com/en/agents/cbam-supplier-data.html",
       "https://getecoback.com/zh/agents/cbam-supplier-data.html"
     ],
     "repository": "f-tiger/agi-site",
-    "receipt": null
+    "receipt": {
+      "commit": "4b1af4896ae586fb1ee503cde5646366c058d1c8",
+      "workflow": "https://github.com/f-tiger/agi-site/actions/runs/36192307097",
+      "cloudflare_version": "91195955-b21e-4ab5-87f0-2e900f6f3042",
+      "deployed_at_utc": "2026-09-25T21:35:40Z",
+      "deploy_step": "success",
+      "workflow_conclusion": "failure",
+      "live_content_checks": {"passed": 9, "failed": 0, "all_http_200": true},
+      "indexnow_submission": "HTTP 200; submission accepted, not proof of indexing",
+      "operational_blockers": ["membership orders_read/database_limit HTTP 503", "api/pulse query_failed HTTP 500", "event pipeline writes failing"],
+      "notes": "Static pages, both templates, script, search index, AI index, tools hub and contact page verified live. No gates disabled and no paid plan changes made."
+    }
   },
   "external_sends": 0,
   "channels": [
