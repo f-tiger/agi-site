@@ -1,12 +1,14 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import { DatabaseSync } from 'node:sqlite';
 import * as pdfjs from 'pdfjs-dist/legacy/build/pdf.mjs';
 import { fixture } from './fixtures.mjs';
 import { readPdf } from '../../document-assets/pdf-reader.mjs';
 import { auditDocument, compareDocuments, structureFacts, validateFiles, csvCell, auditExport, LIMITS } from '../../document-assets/core.mjs';
 import { onRequestPost, safeRef, databaseFailure } from '../../functions/api/doc-events.js';
-import { onRequestGet } from '../../functions/api/document-stats.js';
+import { onRequestGet, aggregateDocuments, DOCUMENT_QUERY } from '../../functions/api/document-stats.js';
+import { cachedAggregate } from '../../lib/aggregate-cache.js';
 import { copy } from './copy.mjs';
 import { shareUrl, summaryText } from '../../document-assets/sharing.mjs';
 import { fingerprint, deliveryRecord, parseDeliveryRecord, compareInventory, recordHTML, validateDeliveryFiles } from '../../document-assets/delivery-core.mjs';
@@ -125,8 +127,27 @@ test('CI, bots, cross-site posts, opt-outs and samples cannot inflate real compl
   const sql = [];
   const res = await onRequestGet({ env:{ HITS:{ prepare:s => { sql.push(s); return { all:async () => ({ results:[] }) }; } } } });
   assert.equal(res.status,200);
-  for (const s of sql.slice(0,4)) assert.match(s,/NOT IN \('doc_ci','doc_sample','doc_delivery_sample'\)/);
+  assert.equal(sql.length,1); assert.equal(sql[0],DOCUMENT_QUERY);
   assert.match((await res.json()).unit,/Not unique users/);
+});
+test('single-query statistics preserve totals while separating samples, CI and crawlers',()=>{
+ const rows=[['doc_view','/',2,'google.com'],['doc_view','/delivery-evidence',3,''],['doc_delivery_complete','/delivery-evidence',1,''],['doc_ci','/__ci/documents',7,''],['doc_delivery_sample','/delivery-evidence',9,''],['doc_complete','/__ci/other',11,''],['bot','/delivery-evidence',12,'Googlebot']].map(([ev,path,n,ref])=>({d:'2026-09-25',ev,path,n,ref}));
+ const d=aggregateDocuments(rows);assert.equal(d.events.doc_view,5);assert.equal(d.tool_views,5);assert.equal(d.events.doc_delivery_complete,1);assert.equal(d.events.doc_complete,undefined);assert.equal(d.excluded.doc_ci,7);assert.equal(d.excluded.doc_delivery_sample,9);assert.equal(d.crawler_fetches[0].n,12);assert.equal(d.daily.reduce((n,r)=>n+r.n,0),6);
+});
+test('aggregate cache avoids duplicate reads, bypasses probes and never caches failures',async()=>{
+ const saved=new Map();const cache={match:async r=>saved.get(r.url)?.clone(),put:async(r,s)=>{saved.set(r.url,s.clone());}};let calls=0;
+ const compute=async()=>{calls++;return new Response('{"ok":true}',{headers:{'content-type':'application/json'}});};
+ const ctx={request:new Request('https://thedollscout.com/api/document-stats?ignored=1')};
+ assert.equal((await cachedAggregate(ctx,compute,cache)).headers.get('x-tds-aggregate-cache'),'miss');
+ assert.equal((await cachedAggregate({...ctx,request:new Request('https://thedollscout.com/api/document-stats')},compute,cache)).headers.get('x-tds-aggregate-cache'),'hit');assert.equal(calls,1);
+ await cachedAggregate({request:new Request(ctx.request,{headers:{'x-probe':'1'}})},compute,cache);assert.equal(calls,2);
+ saved.clear();const failed=await cachedAggregate(ctx,async()=>new Response('{"ok":false}',{status:500}),cache);assert.equal(failed.status,500);assert.equal(saved.size,0);
+});
+test('actual SQLite query filters dates and unrelated legacy events without losing CI diagnostics',()=>{
+ const db=new DatabaseSync(':memory:');db.exec('CREATE TABLE hits(d TEXT, ev TEXT, path TEXT, ref TEXT)');
+ const insert=db.prepare('INSERT INTO hits VALUES(?,?,?,?)');const today=new Date().toISOString().slice(0,10);
+ for(const [d,ev,path] of [[today,'doc_view','/'],[today,'doc_view','/'],[today,'doc_ci','/__ci/documents'],[today,'bot','/delivery-evidence'],[today,'bot','/rarity'],[today,'','/'],['2026-01-01','doc_view','/']])insert.run(d,ev,path,'');
+ const rows=db.prepare(DOCUMENT_QUERY).all();assert.equal(rows.length,3);const result=aggregateDocuments(rows);assert.equal(result.events.doc_view,2);assert.equal(result.excluded.doc_ci,1);assert.equal(result.crawler_fetches[0].n,1);db.close();
 });
 test('delivery fingerprints use known SHA-256 and distinguish changed, missing and extra files', async () => {
   const file = new File(['abc'],'client.txt');
