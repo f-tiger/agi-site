@@ -22,9 +22,9 @@
   "fleet_ai_ref": 69,
   "note": "hand-measured; agi 20, bpj 33, eco 16, others 0"
  },
- "fleet_ai_ref": 19,
- "fleet_human_pv": 399,
- "fleet_human_pv_excl_flagged": 399,
+ "fleet_ai_ref": null,
+ "fleet_human_pv": null,
+ "fleet_human_pv_excl_flagged": null,
  "sites": [
   {
    "site": "baipiaoji",
@@ -37,5 +37,10 @@
    },
    "via": "endpoint"
   }
- ]
+ ],
+ "partial_ai_ref": 19,
+ "partial_human_pv": 399,
+ "sites_read": 1,
+ "sites_expected": 14,
+ "migrated_note": "2026-09-25 就地订正:本次读数 13/14 站失败(D1 免费额度日行读上限耗尽 → 所有 /api/pulse 500,且无 D1 read 权限的 token 可走兜底),原先写成 fleet_ai_ref=19 会被误当舰队合计结算(基线 78,fleet-ai-referrals-1024 的线是 ≥156)。"
 }

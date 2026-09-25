@@ -454,7 +454,8 @@
    "lose": "AI 读者面只维护不扩建",
    "source": "CLAUDE.md:437",
    "status": "open",
-   "baseline_instrument_2026_09_13": 78
+   "baseline_instrument_2026_09_13": 78,
+   "settle_guard": "2026-09-25 起:只在 fleet_ai_ref 不是 null(即 sites_read == sites_expected)的快照上结算。读数不全时记 insufficient 或等下一次完整读数,绝不拿 partial_ai_ref 当舰队合计——那天 13/14 站 500(D1 日行读配额),文件曾写着 19。"
   },
   {
    "id": "eco-it-pilot-1027",

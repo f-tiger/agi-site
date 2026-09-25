@@ -315,7 +315,14 @@ def main():
         aa = age_days(today, ar.get("generated", ""))
         stale = " **STALE**" if (aa is None or aa > 3) else ""
         base = (ar.get("baseline_2026_09_12") or {}).get("fleet_ai_ref")
-        out.append(f"- 舰队合计 **{ar.get('fleet_ai_ref')}** 次 / 真人 pv {ar.get('fleet_human_pv')},剔除已标记噪音站 {ar.get('fleet_human_pv_excl_flagged', '?')}(快照 {ar.get('generated','?')[:10]}{stale};09-12 手测基线 {base})")
+        # 读数不全时绝不印成「舰队合计」——那正是 2026-09-25 D1 日读配额耗尽那天的形状:
+        # 14 站里 13 站 500,文件写着 19,而基线是 78。
+        if ar.get("fleet_ai_ref") is None:
+            out.append(f"- ⚠️ **舰队 AI 引荐读数不全,不可用于结算**:仅读到 {ar.get('sites_read','?')}/{ar.get('sites_expected','?')} 站"
+                       f"(这几站合计 {ar.get('partial_ai_ref','?')} 次,**不是舰队合计**);"
+                       f"快照 {ar.get('generated','?')[:10]}{stale};09-12 手测基线 {base}。原因见同文件 errors 字段")
+        else:
+            out.append(f"- 舰队合计 **{ar.get('fleet_ai_ref')}** 次 / 真人 pv {ar.get('fleet_human_pv')},剔除已标记噪音站 {ar.get('fleet_human_pv_excl_flagged', '?')}(快照 {ar.get('generated','?')[:10]}{stale};09-12 手测基线 {base})")
         for s_ in sorted(ar.get("sites", []), key=lambda x: -x.get("ai_ref", 0)):
             hosts = ", ".join(f"{h} {n}" for h, n in sorted(s_.get("by_host", {}).items(), key=lambda kv: -kv[1])) or "—"
             out.append(f"- {s_['site']}: {s_.get('ai_ref', 0)} / {s_.get('human_pv', 0)} pv · {hosts}" + (f" · ⚠ pv 不是读者数:{s_['pv_caveat']}" if s_.get('pv_caveat') else ''))

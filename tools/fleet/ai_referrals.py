@@ -192,11 +192,28 @@ def selftest():
         ("sql: window is 28 days", f"'-{WINDOW} days'" in sql_for(SITES[4]) and WINDOW == 28),
         ("age: missing snapshot is ancient", snapshot_age_days(None, dt.date(2026, 9, 12)) > 1000),
         ("age: 2-day-old snapshot", snapshot_age_days({"generated": "2026-09-10T08:00:00Z"}, dt.date(2026, 9, 12)) == 2),
-        ("eight sites", len(SITES) == 8 and len({s[1] for s in SITES}) == 8),
+        # Was `len(SITES) == 8`. The fleet grew to 14 and nobody came back, so this
+        # assertion had been red for days — red because it was stale, not because
+        # anything broke, which is how people learn to ignore a red light
+        # (CLAUDE.md, 2026-09-17). Assert the property instead of the count: keys and
+        # domains unique, and nothing listed twice.
+        ("site keys unique", len({s[0] for s in SITES}) == len(SITES)),
+        # NOT "database ids unique": six of the new sites deliberately share one D1
+        # database because the account caps at ten, and they separate by table prefix
+        # instead. The first version of this assertion said unique and went red on
+        # correct data — the property that actually matters is that a site and its
+        # table are addressed exactly once.
+        ("site+table pairs unique", len({(s[1], s[2]) for s in SITES}) == len(SITES)),
         ("endpoint: pulse shape", parse_endpoint("gridlings", {"ok": True, "human_pv": 658, "ai_ref": 3, "by_host": {"chatgpt.com": 3}}) == (658, 3, {"chatgpt.com": 3})),
         ("endpoint: bpj reach shape sums per ref", parse_endpoint("baipiaoji", {"ok": True, "humans_referred": 900, "ai_referrals": [{"ref": "www.perplexity.ai", "path": "/a", "n": 12}, {"ref": "www.perplexity.ai", "path": "/b", "n": 8}, {"ref": "chatgpt.com", "path": "/", "n": 12}]}) == (900, 32, {"www.perplexity.ai": 20, "chatgpt.com": 12})),
         ("endpoint: not ok raises", (lambda: (_raises(lambda: parse_endpoint("goldrush", {"ok": False, "error": "no_db"}))))()),
-        ("endpoint map covers all eight sites", set(ENDPOINTS) == {s[0] for s in SITES}),
+        # A partial read must be unsettleable. Guards the 2026-09-25 shape: D1 daily
+        # row-read quota gone, 13 of 14 endpoints 500, file written with 19 against a
+        # baseline of 78 and a bet that settles on >=156.
+        ("partial read nulls the fleet totals", _snap_totals(errors=["x: 500"]) == (None, None, None)),
+        ("partial read keeps the sum under its own name", _snap_totals(errors=["x: 500"], want="partial") == 7),
+        ("clean read still totals", _snap_totals(errors=[]) == (7, 100, 100)),
+        ("endpoint map covers every site", set(ENDPOINTS) == {s[0] for s in SITES}),
     ]
     for n, ok in checks:
         print(("✅ " if ok else "❌ ") + n)
@@ -277,6 +294,23 @@ PV_CAVEAT = {
 }
 
 
+def _snap_totals(errors, want="fleet"):
+    """Build a snapshot from one fake site and read back what a settler would see."""
+    import json as _j, tempfile, os as _o
+    global OUT
+    keep, fd = OUT, tempfile.mkstemp(suffix=".json")[1]
+    OUT = fd
+    try:
+        write([{"site": "baipiaoji", "human_pv": 100, "ai_ref": 7, "by_host": {}}], list(errors), "test")
+        snap = _j.load(open(fd, encoding="utf-8"))
+    finally:
+        OUT = keep
+        _o.unlink(fd)
+    if want == "partial":
+        return snap["partial_ai_ref"]
+    return snap["fleet_ai_ref"], snap["fleet_human_pv"], snap["fleet_human_pv_excl_flagged"]
+
+
 def write(sites, errors, how):
     sites = sorted(sites, key=lambda x: [s[0] for s in SITES].index(x["site"]))
     for x in sites:
@@ -286,15 +320,29 @@ def write(sites, errors, how):
         "generated": dt.datetime.now(dt.timezone.utc).replace(microsecond=0, tzinfo=None).isoformat() + "Z",
         "window_days": WINDOW, "ok": not errors, "read_via": how, "errors": errors,
         "baseline_2026_09_12": {"fleet_ai_ref": 69, "note": "hand-measured; agi 20, bpj 33, eco 16, others 0"},
-        "fleet_ai_ref": sum(x["ai_ref"] for x in sites),
-        "fleet_human_pv": sum(x["human_pv"] for x in sites),
+        # A partial read must never present itself as a fleet total. 2026-09-25: the
+        # account hit D1's free-tier daily row-read limit, every /api/pulse endpoint
+        # 500'd because each one queries D1 per request, the D1-REST fallback could not
+        # run either (no token carries D1 read scope), and the file was written with
+        # 13 of 14 sites missing and "fleet_ai_ref": 19. The baseline is 78 and
+        # fleet-ai-referrals-1024 settles on this very field at >=156, so that 19 is a
+        # catastrophic-looking loss that never happened. ok/read_via/errors already told
+        # the truth; a bare number next to them was still the thing a reader would take.
+        # Now a partial read yields null, which cannot be settled on by accident.
+        "fleet_ai_ref": None if errors else sum(x["ai_ref"] for x in sites),
+        "fleet_human_pv": None if errors else sum(x["human_pv"] for x in sites),
+        "partial_ai_ref": sum(x["ai_ref"] for x in sites) if errors else None,
+        "partial_human_pv": sum(x["human_pv"] for x in sites) if errors else None,
+        "sites_read": len(sites),
+        "sites_expected": len(SITES),
         # sites not flagged as noise; flagged ≠ checked-clean for the rest
-        "fleet_human_pv_excl_flagged": sum(x["human_pv"] for x in sites if "pv_caveat" not in x),
+        "fleet_human_pv_excl_flagged": None if errors else sum(x["human_pv"] for x in sites if "pv_caveat" not in x),
         "sites": sites,
     }
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
     open(OUT, "w", encoding="utf-8").write(json.dumps(snap, ensure_ascii=False, indent=1) + "\n")
-    print(f"wrote {os.path.relpath(OUT, ROOT)}: fleet ai_ref={snap['fleet_ai_ref']}/{WINDOW}d"
+    shown = snap["fleet_ai_ref"] if not errors else f"PARTIAL {snap['partial_ai_ref']} from {len(sites)}/{len(SITES)} sites"
+    print(f"wrote {os.path.relpath(OUT, ROOT)}: fleet ai_ref={shown}/{WINDOW}d"
           + (f" ({len(errors)} site(s) failed)" if errors else ""))
     if errors:
         print("::warning::AI-referral read incomplete: " + " | ".join(errors))
