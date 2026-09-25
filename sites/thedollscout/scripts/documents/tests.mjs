@@ -8,6 +8,7 @@ import { auditDocument, compareDocuments, structureFacts, validateFiles, csvCell
 import { onRequestPost, safeRef } from '../../functions/api/doc-events.js';
 import { onRequestGet } from '../../functions/api/document-stats.js';
 import { copy } from './copy.mjs';
+import { shareUrl, summaryText } from '../../document-assets/sharing.mjs';
 const parse = async (kind, options = {}) => readPdf(await fixture(kind), { library:pdfjs, ...options });
 test('compressed real PDF: text, title and /Lang are actually parsed', async () => {
   const report = await parse('after');
@@ -77,6 +78,26 @@ test('all three locales have the same UI and finding keys', () => {
     assert.deepEqual(Object.keys(copy[lang].errors).sort(),Object.keys(copy.en.errors).sort());
   }
 });
+test('shared summaries never include file identifiers, contents, notes or comparison text', async () => {
+  const a = await parse('before');
+  a.name = 'PRIVATE-NAME.pdf'; a.title = 'PRIVATE-TITLE'; a.pages[0].text = 'PRIVATE-BODY';
+  a.manualReview = { notes:'PRIVATE-NOTE' };
+  const comparison = { same:1, changes:[{ kind:'changed', beforeText:'PRIVATE-BEFORE', afterText:'PRIVATE-AFTER' }] };
+  for (const c of Object.values(copy)) {
+    const text = summaryText({ reports:[a], failures:[{ name:'PRIVATE-FAILURE', message:'PRIVATE-ERROR' }], comparison, sample:true, canonical:'https://thedollscout.com/zh/compare-pdf-text?filename=PRIVATE-QUERY#PRIVATE-HASH' },c);
+    assert.ok(!text.includes('PRIVATE-'));
+    assert.ok(text.includes(c.summarySample));
+    assert.ok(text.includes(c.summaryPartial));
+    assert.ok(text.includes(c.resultScope));
+    assert.ok(text.includes(c.diffScope));
+    assert.ok(text.endsWith('https://thedollscout.com/zh/compare-pdf-text?via=share'));
+  }
+});
+test('share URLs accept only public document routes and remove arbitrary query data', () => {
+  assert.equal(shareUrl('https://thedollscout.com/de/?ci=1#secret'),'https://thedollscout.com/de/?via=share');
+  assert.equal(shareUrl('/learn/pdf-reading-order'), 'https://thedollscout.com/learn/pdf-reading-order?via=share');
+  for (const url of ['https://evil.example/zh/','/private.pdf','/api/doc-events','javascript:alert(1)']) assert.throws(() => shareUrl(url));
+});
 async function event(body, extra = {}) {
   const bound = [];
   const env = { HITS:{ prepare:() => ({ bind:(...args) => ({ run:async () => bound.push(args) }) }) } };
@@ -89,6 +110,10 @@ test('events store only bounded metadata and strip referrer paths', async () => 
   assert.equal(bound[0][2],'de'); assert.equal(bound[0][4],'www.google.com');
   assert.equal(safeRef('file:///private/document.pdf'),'');
   for (const body of [{ p:'/', e:'arbitrary' }, { p:'/private-filename.pdf', e:'doc_view' }, { p:'/', e:'doc_view', text:'private' }]) assert.equal((await event(body)).bound.length,0);
+  for (const e of ['doc_share','doc_summary_share','doc_share_visit']) {
+    assert.equal((await event({ p:'/zh/pdf-batch-audit', e })).bound.length,1);
+    assert.equal((await event({ p:'/zh/pdf-batch-audit', e, summary:'private' })).bound.length,0);
+  }
 });
 test('CI, bots, cross-site posts, opt-outs and samples cannot inflate real completion', async () => {
   const body = { p:'/', e:'doc_complete' };

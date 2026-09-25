@@ -1,4 +1,5 @@
-import { LIMITS, validateFiles, compareDocuments, csv, auditExport } from './core.mjs?v=2026-09-25.2';
+import { LIMITS, validateFiles, compareDocuments, csv, auditExport } from './core.mjs?v=2026-09-25.3';
+import { shareUrl, summaryText } from './sharing.mjs?v=2026-09-25.3';
 const c = JSON.parse(document.getElementById('document-copy').textContent);
 const mode = document.body.dataset.documentMode || 'audit';
 const $ = id => document.getElementById(id);
@@ -15,6 +16,7 @@ function track(event) {
   try { if (navigator.sendBeacon) navigator.sendBeacon('/api/doc-events', body); else fetch('/api/doc-events', { method: 'POST', body, keepalive: true }).catch(() => {}); } catch {}
 }
 track('doc_view');
+if (new URLSearchParams(location.search).get('via') === 'share') track('doc_share_visit');
 function status(message, error = false) { $('status').textContent = message; $('status').classList.toggle('error', error); }
 function setBusy(value) {
   busy = value;
@@ -71,7 +73,7 @@ async function analyze() {
   resetResults(); setBusy(true); renderFiles(); status(c.working);
   track(sample ? 'doc_sample' : 'doc_start');
   let reader;
-  try { reader = await import('./pdf-reader.mjs?v=2026-09-25.2'); }
+  try { reader = await import('./pdf-reader.mjs?v=2026-09-25.3'); }
   catch { setBusy(false); status(c.errors.loadFailed, true); return; }
   if (current !== epoch) return;
   let remaining = LIMITS.batchPages;
@@ -141,6 +143,14 @@ function renderResults() {
   const target = $('results'); target.hidden = false;
   const total = key => reports.reduce((sum, report) => sum + report.counts[key], 0);
   target.innerHTML = `<div class="result-heading"><div><h2>${esc(c.results)}</h2><p>${esc(c.resultScope)}</p></div>${sample ? `<span class="sample-label">${esc(c.sample)}</span>` : ''}</div>${failures.map(f => `<p class="notice error"><strong>${esc(f.name)}</strong>: ${esc(f.message)}</p>`).join('')}${reports.length ? `<div class="result-metrics"><div><strong>${reports.length}</strong>${esc(c.documents)}</div><div><strong>${reports.reduce((sum, r) => sum + r.pages.length, 0)}</strong>${esc(c.pages)}</div><div><strong>${total('attention')}</strong>${esc(c.issueCount)}</div><div><strong>${total('review')}</strong>${esc(c.reviewCount)}</div></div><div class="actions export-actions"><button data-export="csv">${esc(c.exportCsv)}</button><button data-export="json">${esc(c.exportJson)}</button><button data-export="text">${esc(c.exportText)}</button><button data-export="print">${esc(c.print)}</button></div>${comparisonHTML()}${reports.map(resultDocument).join('')}` : ''}`;
+  if (reports.length) {
+    const panel = document.createElement('details');
+    panel.className = 'summary-share';
+    panel.innerHTML = `<summary>${esc(c.shareSummary)}</summary><p>${esc(c.summaryIntro)}</p><label for="summary-preview">${esc(c.summaryLabel)}</label><textarea id="summary-preview" rows="11" readonly></textarea><div class="actions"><button data-copy-share="summary">${esc(c.copySummary)}</button><button data-native-share="summary" hidden>${esc(c.nativeSummary)}</button></div><p id="summary-share-status" role="status" class="small"></p>`;
+    target.querySelector('.export-actions').after(panel);
+    $('summary-preview').value = summaryText({ reports, failures, comparison, sample, canonical:canonicalUrl() },c);
+    enableNativeSharing(panel);
+  }
 }
 $('results')?.addEventListener('change', event => {
   const el = event.target;
@@ -172,7 +182,37 @@ $('results')?.addEventListener('click', event => {
   if (type === 'print') { for (const details of $('results').querySelectorAll('details')) details.open = true; window.print(); }
   if (!sample) track('doc_export');
 });
-for (const button of document.querySelectorAll('[data-copy-link]')) button.addEventListener('click', async () => {
-  try { await navigator.clipboard.writeText(document.querySelector('link[rel=canonical]').href); button.textContent = c.copied; track('doc_share'); }
-  catch { button.textContent = c.copyFailed; }
+function canonicalUrl() { return document.querySelector('link[rel=canonical]').href; }
+function shareData(kind) {
+  return kind === 'summary' ? { title:c.summaryTitle, text:$('summary-preview').value } : { title:document.title, url:shareUrl(canonicalUrl()) };
+}
+function enableNativeSharing(root = document) {
+  for (const button of root.querySelectorAll('[data-native-share]')) {
+    try { button.hidden = !navigator.share || (navigator.canShare && !navigator.canShare(shareData(button.dataset.nativeShare))); }
+    catch { button.hidden = true; }
+  }
+}
+enableNativeSharing();
+document.addEventListener('click', async event => {
+  const button = event.target.closest('[data-copy-share], [data-native-share]');
+  if (!button) return;
+  const kind = button.dataset.copyShare || button.dataset.nativeShare;
+  const output = $(kind === 'summary' ? 'summary-preview' : 'page-share-url');
+  const message = $(kind + '-share-status');
+  try {
+    if (button.hasAttribute('data-native-share')) {
+      // Keep this directly inside the user's click: native share requires activation.
+      await navigator.share(shareData(kind));
+      message.textContent = c.shareOpened;
+    } else {
+      await navigator.clipboard.writeText(output.value);
+      message.textContent = kind === 'summary' ? c.summaryCopied : c.shareCopied;
+    }
+    if (kind === 'page') track('doc_share');
+    else if (!sample) track('doc_summary_share');
+  } catch (error) {
+    if (error.name === 'AbortError') return;
+    message.textContent = c.shareUnavailable;
+    output.focus(); output.select();
+  }
 });

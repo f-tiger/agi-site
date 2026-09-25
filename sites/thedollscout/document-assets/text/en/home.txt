@@ -1,0 +1,44 @@
+# Free PDF checks, batch reviews and text comparison
+
+https://thedollscout.com/
+Published by TDS Document Scout
+Updated: 2026-09-25
+
+Check document structure, find pages that need attention, and leave with a review you can hand over. Your files stay on your device.
+
+Files are processed in this browser. No file upload or account required.
+
+This is a preflight review, not a WCAG or PDF/UA certification. A detected tag or title does not prove that it is correct.
+
+PDF accessibility checker
+
+Inspect titles, language declarations, tags and extractable text. See page-level issues and the checks that still need a person.
+
+Batch PDF audit
+
+Review up to 10 PDFs together. Prioritize document issues, record manual checks, and export one CSV or JSON handover.
+
+PDF to text
+
+Extract text from a readable PDF with page boundaries. Identify pages with no extractable text before choosing an OCR workflow.
+
+Compare PDF text
+
+Compare the extracted text of two PDF versions. Find changed, added and removed pages, with unchanged pages aligned after insertions.
+
+Do my PDFs leave my device?
+
+No. File parsing, extracted text and comparison run in your browser. Exported reports may contain filenames and document titles; choose carefully where you share them.
+
+Does a clean result prove accessibility?
+
+No. These checks help you triage work. Reading order, image meaning, tables, forms and assistive-technology behavior still need review.
+
+Can you repair scanned PDFs or missing tags?
+
+This release checks documents and extracts existing text. It does not perform OCR, add tags or repair the original PDF. Use a suitable authoring or remediation tool, then check the exported file again.
+
+Reference material
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/

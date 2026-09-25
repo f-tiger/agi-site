@@ -1,0 +1,42 @@
+# PDF-Barrierefreiheit prüfen
+
+https://thedollscout.com/de/pdf-accessibility-checker
+Veröffentlicht von TDS Document Scout
+Aktualisiert: 2026-09-25
+
+Wann es hilft: Vor der Veröffentlichung eines Berichts, Handouts oder Kundendokuments.
+
+Ihr Ergebnis: Seitenbezogene Hinweise, manuelle Prüfpunkte und CSV- oder JSON-Exporte.
+
+Was Sie selbst prüfen müssen: Lesereihenfolge, Bildbeschreibungen und die Richtigkeit der Tags brauchen eine manuelle Prüfung. Keine Konformitätszertifizierung.
+
+Verarbeitung in diesem Browser. Kein Datei-Upload und kein Konto erforderlich.
+
+Dies ist eine Vorprüfung, keine WCAG- oder PDF/UA-Zertifizierung. Vorhandene Tags oder Titel beweisen nicht ihre Richtigkeit.
+
+Mozilla PDF.js liest die tatsächlichen PDF-Objekte. Geprüft werden Titel, Sprachangaben, Tag-Deklaration, Seitentext, sichtbare Strukturrollen und Formularfelder.
+
+Fehlende Angaben und fehlende Struktur sind Hinweise. Überschriften, Tabellen, Formulare und Lesezeichen brauchen Beurteilung. Es gibt keinen prozentualen Barrierefreiheitswert.
+
+Grenzen: 20 MB je Datei, 10 Dateien und insgesamt 100 MB. Höchstens 200 Seiten je PDF und 600 je Stapel. Textgrenze: 100.000 Zeichen je Seite und 2.000.000 je Dokument. Teilergebnisse werden gekennzeichnet.
+
+Der Vergleich ordnet Seiten anhand normalisierten Texts zu. Gleicher Text beweist keine gleichen Bilder, Tags, Links oder Layouts. Seiten ohne Text bleiben unklar.
+
+Berichte entstehen lokal. Manuelle Häkchen sind Angaben des Nutzers, keine unabhängige Prüfung. Originaldateien werden nicht verändert.
+
+Verlassen meine PDFs mein Gerät?
+
+Nein. Dateiprüfung, Textauslesung und Vergleich laufen im Browser. Berichte können Dateinamen und Dokumenttitel enthalten. Wählen Sie bewusst, wo Sie sie teilen.
+
+Beweist ein unauffälliges Ergebnis Barrierefreiheit?
+
+Nein. Diese Vorprüfung hilft bei der Arbeitsplanung. Lesereihenfolge, Bildbedeutung, Tabellen, Formulare und assistive Technik müssen weiterhin geprüft werden.
+
+Werden Scans oder fehlende Tags repariert?
+
+Diese Version prüft Dokumente und liest vorhandenen Text aus. Sie führt keine OCR aus, ergänzt keine Tags und repariert keine PDF. Dafür einen geeigneten Editor verwenden und erneut prüfen.
+
+Referenzen
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/

@@ -3,45 +3,140 @@
 Free PDF preflight, batch review, text extraction and text-version comparison. PDFs stay in the browser. Automated signals do not certify WCAG or PDF/UA conformance. No OCR or tag repair.
 
 - [Free PDF checks, batch reviews and text comparison](https://thedollscout.com/) (en): Check document structure, find pages that need attention, and leave with a review you can hand over. Your files stay on your device.
+  Plain text: https://thedollscout.com/document-assets/text/en/home.txt
 - [PDF accessibility checker](https://thedollscout.com/pdf-accessibility-checker) (en): Inspect titles, language declarations, tags and extractable text. See page-level issues and the checks that still need a person.
+  Plain text: https://thedollscout.com/document-assets/text/en/pdf-accessibility-checker.txt
 - [Batch PDF audit](https://thedollscout.com/pdf-batch-audit) (en): Review up to 10 PDFs together. Prioritize document issues, record manual checks, and export one CSV or JSON handover.
+  Plain text: https://thedollscout.com/document-assets/text/en/pdf-batch-audit.txt
 - [PDF to text](https://thedollscout.com/pdf-to-text) (en): Extract text from a readable PDF with page boundaries. Identify pages with no extractable text before choosing an OCR workflow.
+  Plain text: https://thedollscout.com/document-assets/text/en/pdf-to-text.txt
 - [Compare PDF text](https://thedollscout.com/compare-pdf-text) (en): Compare the extracted text of two PDF versions. Find changed, added and removed pages, with unchanged pages aligned after insertions.
+  Plain text: https://thedollscout.com/document-assets/text/en/compare-pdf-text.txt
 - [PDF accessibility checklist before you publish](https://thedollscout.com/learn/pdf-accessibility-checklist) (en): Start with the source document. Use real heading styles, meaningful link text, suitable table headers and text alternatives before exporting a tagged PDF.
+  Plain text: https://thedollscout.com/document-assets/text/en/learn/pdf-accessibility-checklist.txt
 - [Scanned PDF or text PDF: choose the right next step](https://thedollscout.com/learn/scanned-pdf-vs-text-pdf) (en): A PDF can contain actual text, page images or both. Being able to see words does not mean those words are extractable or usable with assistive technology.
+  Plain text: https://thedollscout.com/document-assets/text/en/learn/scanned-pdf-vs-text-pdf.txt
 - [How to review PDF reading order](https://thedollscout.com/learn/pdf-reading-order) (en): Text extraction order is not proof of screen-reader reading order. PDF structure tags, text content order and the viewer can affect the reading experience.
+  Plain text: https://thedollscout.com/document-assets/text/en/learn/pdf-reading-order.txt
 - [How checks work](https://thedollscout.com/methodology) (en): The reader parses actual PDF objects with Mozilla PDF.js. It inspects title and language metadata, the tagged-document declaration, page text, exposed structure roles and interactive fields.
+  Plain text: https://thedollscout.com/document-assets/text/en/methodology.txt
 - [File privacy](https://thedollscout.com/document-privacy) (en): Selected PDFs, filenames, titles, extracted text, comparisons and manual review notes stay in browser memory. They are not uploaded to our servers. Clear the workspace or close the tab to discard them.
+  Plain text: https://thedollscout.com/document-assets/text/en/document-privacy.txt
 - [Collector archive](https://thedollscout.com/collectors) (en): The original collecting guides remain available below. TDS now focuses on document tools. These historical tools have a separate scope and do not assess PDFs.
+  Plain text: https://thedollscout.com/document-assets/text/en/collectors.txt
 - [Kostenlose PDF-Prüfung, Stapelprüfung und Textvergleich](https://thedollscout.com/de/) (de): Dokumentstruktur prüfen, auffällige Seiten finden und eine nachvollziehbare Prüfliste weitergeben. Ihre Dateien bleiben auf Ihrem Gerät.
+  Plain text: https://thedollscout.com/document-assets/text/de/home.txt
 - [PDF-Barrierefreiheit prüfen](https://thedollscout.com/de/pdf-accessibility-checker) (de): Titel, Sprachangaben, Tags und auslesbaren Text prüfen. Auffällige Seiten und notwendige manuelle Prüfungen erkennen.
+  Plain text: https://thedollscout.com/document-assets/text/de/pdf-accessibility-checker.txt
 - [PDF-Stapelprüfung](https://thedollscout.com/de/pdf-batch-audit) (de): Bis zu 10 PDFs gemeinsam prüfen. Auffälligkeiten priorisieren, manuelle Prüfungen festhalten und als CSV oder JSON exportieren.
+  Plain text: https://thedollscout.com/document-assets/text/de/pdf-batch-audit.txt
 - [PDF in Text umwandeln](https://thedollscout.com/de/pdf-to-text) (de): Vorhandenen PDF-Text mit Seitengrenzen auslesen. Seiten ohne auslesbaren Text erkennen, bevor Sie einen OCR-Ablauf wählen.
+  Plain text: https://thedollscout.com/document-assets/text/de/pdf-to-text.txt
 - [PDF-Texte vergleichen](https://thedollscout.com/de/compare-pdf-text) (de): Den ausgelesenen Text zweier PDF-Versionen vergleichen. Geänderte, neue und entfernte Seiten finden; unveränderte Seiten werden zugeordnet.
+  Plain text: https://thedollscout.com/document-assets/text/de/compare-pdf-text.txt
 - [PDF-Barrierefreiheit vor der Veröffentlichung prüfen](https://thedollscout.com/de/learn/pdf-accessibility-checklist) (de): Im Quelldokument beginnen: echte Überschriften, aussagekräftige Links, geeignete Tabellenköpfe und Textalternativen verwenden.
+  Plain text: https://thedollscout.com/document-assets/text/de/learn/pdf-accessibility-checklist.txt
 - [Scan oder Text-PDF: den nächsten Schritt wählen](https://thedollscout.com/de/learn/scanned-pdf-vs-text-pdf) (de): PDFs können Text, Seitenbilder oder beides enthalten. Sichtbare Wörter sind nicht immer auslesbarer Text.
+  Plain text: https://thedollscout.com/document-assets/text/de/learn/scanned-pdf-vs-text-pdf.txt
 - [Die PDF-Lesereihenfolge prüfen](https://thedollscout.com/de/learn/pdf-reading-order) (de): Die Reihenfolge ausgelesenen Texts beweist nicht die Screenreader-Reihenfolge. Tags, Inhalte und PDF-Viewer beeinflussen das Ergebnis.
+  Plain text: https://thedollscout.com/document-assets/text/de/learn/pdf-reading-order.txt
 - [Prüfmethode](https://thedollscout.com/de/methodology) (de): Mozilla PDF.js liest die tatsächlichen PDF-Objekte. Geprüft werden Titel, Sprachangaben, Tag-Deklaration, Seitentext, sichtbare Strukturrollen und Formularfelder.
+  Plain text: https://thedollscout.com/document-assets/text/de/methodology.txt
 - [Dateidatenschutz](https://thedollscout.com/de/document-privacy) (de): PDFs, Dateinamen, Titel, Text, Vergleiche und Prüfnotizen bleiben im Browserspeicher. Es erfolgt kein Upload. Arbeitsbereich leeren oder Tab schließen, um sie zu verwerfen.
+  Plain text: https://thedollscout.com/document-assets/text/de/document-privacy.txt
 - [Sammlerarchiv](https://thedollscout.com/de/collectors) (de): Die bisherigen Sammelratgeber bleiben verfügbar. TDS konzentriert sich nun auf Dokumentwerkzeuge. Die historischen Werkzeuge prüfen keine PDFs.
+  Plain text: https://thedollscout.com/document-assets/text/de/collectors.txt
 - [免费 PDF 检查、批量审查与文本版本对比](https://thedollscout.com/zh/) (zh): 检查文档结构，定位需要处理的页面，导出一份可以交接的审查记录。文件始终留在你的设备上。
+  Plain text: https://thedollscout.com/document-assets/text/zh/home.txt
 - [PDF 无障碍检查](https://thedollscout.com/zh/pdf-accessibility-checker) (zh): 检查标题、语言声明、标签结构和可提取文本。定位页面问题，并明确哪些项目需要人工复核。
+  Plain text: https://thedollscout.com/document-assets/text/zh/pdf-accessibility-checker.txt
 - [PDF 批量审查](https://thedollscout.com/zh/pdf-batch-audit) (zh): 一次审查最多 10 份 PDF。汇总问题，记录人工复核，导出一份 CSV 或 JSON 交接清单。
+  Plain text: https://thedollscout.com/document-assets/text/zh/pdf-batch-audit.txt
 - [PDF 文本提取](https://thedollscout.com/zh/pdf-to-text) (zh): 提取 PDF 中已有的文本并保留页码边界。找出没有可提取文本的页面，再决定是否使用 OCR。
+  Plain text: https://thedollscout.com/document-assets/text/zh/pdf-to-text.txt
 - [PDF 文本版本对比](https://thedollscout.com/zh/compare-pdf-text) (zh): 比较两份 PDF 的可提取文本。定位修改、新增和删除的页面；插入新页后仍能对齐未变的页面。
+  Plain text: https://thedollscout.com/document-assets/text/zh/compare-pdf-text.txt
 - [PDF 发布前的无障碍检查清单](https://thedollscout.com/zh/learn/pdf-accessibility-checklist) (zh): 先处理源文件：使用真正的标题样式、明确的链接文字、合适的表头和图片替代文本，再导出带标签的 PDF。
+  Plain text: https://thedollscout.com/document-assets/text/zh/learn/pdf-accessibility-checklist.txt
 - [扫描件还是文本 PDF：下一步怎么处理](https://thedollscout.com/zh/learn/scanned-pdf-vs-text-pdf) (zh): PDF 可以包含真实文字、页面图片，或二者混合。看得见文字，不代表程序能提取或辅助技术能读取。
+  Plain text: https://thedollscout.com/document-assets/text/zh/learn/scanned-pdf-vs-text-pdf.txt
 - [如何检查 PDF 阅读顺序](https://thedollscout.com/zh/learn/pdf-reading-order) (zh): 提取文本的顺序不等于屏幕阅读器的阅读顺序。结构标签、文字内容顺序和 PDF 阅读器都会影响结果。
+  Plain text: https://thedollscout.com/document-assets/text/zh/learn/pdf-reading-order.txt
 - [检查方法](https://thedollscout.com/zh/methodology) (zh): 使用 Mozilla PDF.js 解析真实的 PDF 对象，检查标题、语言声明、已标记声明、页面文字、可暴露的结构角色和表单字段。
+  Plain text: https://thedollscout.com/document-assets/text/zh/methodology.txt
 - [文件隐私](https://thedollscout.com/zh/document-privacy) (zh): 所选 PDF、文件名、标题、提取文字、对比内容和人工记录都留在浏览器内存，不上传到服务器。清空工作区或关闭标签页即可丢弃。
+  Plain text: https://thedollscout.com/document-assets/text/zh/document-privacy.txt
 - [收藏品历史资料](https://thedollscout.com/zh/collectors) (zh): 原收藏品指南仍可在下方访问。TDS 现在聚焦文档处理；这些历史工具属于独立主题，不检查 PDF。
+  Plain text: https://thedollscout.com/document-assets/text/zh/collectors.txt
+
+Tool capabilities: https://thedollscout.com/document-assets/tool-capabilities.json
 
 ## Historical collector material
 
-The prior collector content has a separate scope: https://thedollscout.com/collectors
+The prior collector content and MCP have a separate scope: https://thedollscout.com/collectors
 
 
-## en: How checks work
+# Free PDF checks, batch reviews and text comparison
+
+https://thedollscout.com/
+Published by TDS Document Scout
+Updated: 2026-09-25
+
+Check document structure, find pages that need attention, and leave with a review you can hand over. Your files stay on your device.
+
+Files are processed in this browser. No file upload or account required.
+
+This is a preflight review, not a WCAG or PDF/UA certification. A detected tag or title does not prove that it is correct.
+
+PDF accessibility checker
+
+Inspect titles, language declarations, tags and extractable text. See page-level issues and the checks that still need a person.
+
+Batch PDF audit
+
+Review up to 10 PDFs together. Prioritize document issues, record manual checks, and export one CSV or JSON handover.
+
+PDF to text
+
+Extract text from a readable PDF with page boundaries. Identify pages with no extractable text before choosing an OCR workflow.
+
+Compare PDF text
+
+Compare the extracted text of two PDF versions. Find changed, added and removed pages, with unchanged pages aligned after insertions.
+
+Do my PDFs leave my device?
+
+No. File parsing, extracted text and comparison run in your browser. Exported reports may contain filenames and document titles; choose carefully where you share them.
+
+Does a clean result prove accessibility?
+
+No. These checks help you triage work. Reading order, image meaning, tables, forms and assistive-technology behavior still need review.
+
+Can you repair scanned PDFs or missing tags?
+
+This release checks documents and extracts existing text. It does not perform OCR, add tags or repair the original PDF. Use a suitable authoring or remediation tool, then check the exported file again.
+
+Reference material
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# PDF accessibility checker
+
+https://thedollscout.com/pdf-accessibility-checker
+Published by TDS Document Scout
+Updated: 2026-09-25
+
+When to use it: Before publishing a report, handout or client deliverable.
+
+What you get: Page-level findings, manual review prompts, and CSV or JSON exports.
+
+What to check yourself: Reading order, image descriptions and the accuracy of tags require human review. This tool does not certify conformance.
+
+Files are processed in this browser. No file upload or account required.
+
+This is a preflight review, not a WCAG or PDF/UA certification. A detected tag or title does not prove that it is correct.
 
 The reader parses actual PDF objects with Mozilla PDF.js. It inspects title and language metadata, the tagged-document declaration, page text, exposed structure roles and interactive fields.
 
@@ -53,7 +148,161 @@ Text comparison aligns pages using normalized extracted text. Equal text does no
 
 Reports are generated locally. Review checkboxes record a user assertion; they are not an independent audit. Original files are never rewritten.
 
-### PDF accessibility checklist before you publish
+Do my PDFs leave my device?
+
+No. File parsing, extracted text and comparison run in your browser. Exported reports may contain filenames and document titles; choose carefully where you share them.
+
+Does a clean result prove accessibility?
+
+No. These checks help you triage work. Reading order, image meaning, tables, forms and assistive-technology behavior still need review.
+
+Can you repair scanned PDFs or missing tags?
+
+This release checks documents and extracts existing text. It does not perform OCR, add tags or repair the original PDF. Use a suitable authoring or remediation tool, then check the exported file again.
+
+Reference material
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# Batch PDF audit
+
+https://thedollscout.com/pdf-batch-audit
+Published by TDS Document Scout
+Updated: 2026-09-25
+
+When to use it: When a team needs one review list for several PDF deliverables.
+
+What you get: One combined findings list for up to 10 PDFs, with partial inspections labelled.
+
+What to check yourself: Each PDF is limited to 20 MB and 200 inspected pages; each batch to 100 MB and 600 inspected pages.
+
+Files are processed in this browser. No file upload or account required.
+
+This is a preflight review, not a WCAG or PDF/UA certification. A detected tag or title does not prove that it is correct.
+
+The reader parses actual PDF objects with Mozilla PDF.js. It inspects title and language metadata, the tagged-document declaration, page text, exposed structure roles and interactive fields.
+
+Missing declarations and text-bearing pages without a structure tree are triage signals. Heading jumps, tables, forms and long documents without bookmarks are review prompts. No percentage accessibility score is calculated.
+
+Files are limited to 20 MB each, 10 per batch and 100 MB total. Inspection covers up to 200 pages per PDF and 600 per batch. Very large text pages are capped at 100,000 characters and 2,000,000 per document. Partial results are labelled.
+
+Text comparison aligns pages using normalized extracted text. Equal text does not prove equal layout, tags, links or images. Pages without usable text remain unknown.
+
+Reports are generated locally. Review checkboxes record a user assertion; they are not an independent audit. Original files are never rewritten.
+
+Do my PDFs leave my device?
+
+No. File parsing, extracted text and comparison run in your browser. Exported reports may contain filenames and document titles; choose carefully where you share them.
+
+Does a clean result prove accessibility?
+
+No. These checks help you triage work. Reading order, image meaning, tables, forms and assistive-technology behavior still need review.
+
+Can you repair scanned PDFs or missing tags?
+
+This release checks documents and extracts existing text. It does not perform OCR, add tags or repair the original PDF. Use a suitable authoring or remediation tool, then check the exported file again.
+
+Reference material
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# PDF to text
+
+https://thedollscout.com/pdf-to-text
+Published by TDS Document Scout
+Updated: 2026-09-25
+
+When to use it: When you need to reuse existing PDF text or check whether text extraction works.
+
+What you get: Readable text grouped by page, with a local TXT download.
+
+What to check yourself: Image-only pages need a separate OCR workflow. Extracted text may have an incorrect reading order.
+
+Files are processed in this browser. No file upload or account required.
+
+This is a preflight review, not a WCAG or PDF/UA certification. A detected tag or title does not prove that it is correct.
+
+The reader parses actual PDF objects with Mozilla PDF.js. It inspects title and language metadata, the tagged-document declaration, page text, exposed structure roles and interactive fields.
+
+Missing declarations and text-bearing pages without a structure tree are triage signals. Heading jumps, tables, forms and long documents without bookmarks are review prompts. No percentage accessibility score is calculated.
+
+Files are limited to 20 MB each, 10 per batch and 100 MB total. Inspection covers up to 200 pages per PDF and 600 per batch. Very large text pages are capped at 100,000 characters and 2,000,000 per document. Partial results are labelled.
+
+Text comparison aligns pages using normalized extracted text. Equal text does not prove equal layout, tags, links or images. Pages without usable text remain unknown.
+
+Reports are generated locally. Review checkboxes record a user assertion; they are not an independent audit. Original files are never rewritten.
+
+Do my PDFs leave my device?
+
+No. File parsing, extracted text and comparison run in your browser. Exported reports may contain filenames and document titles; choose carefully where you share them.
+
+Does a clean result prove accessibility?
+
+No. These checks help you triage work. Reading order, image meaning, tables, forms and assistive-technology behavior still need review.
+
+Can you repair scanned PDFs or missing tags?
+
+This release checks documents and extracts existing text. It does not perform OCR, add tags or repair the original PDF. Use a suitable authoring or remediation tool, then check the exported file again.
+
+Reference material
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# Compare PDF text
+
+https://thedollscout.com/compare-pdf-text
+Published by TDS Document Scout
+Updated: 2026-09-25
+
+When to use it: When a revised PDF arrives and you need to find text changes.
+
+What you get: Aligned text pages and changed, added, removed or unknown pages.
+
+What to check yourself: Images, layout and annotations are not compared. Suggested page pairings need review.
+
+Files are processed in this browser. No file upload or account required.
+
+This is a preflight review, not a WCAG or PDF/UA certification. A detected tag or title does not prove that it is correct.
+
+The reader parses actual PDF objects with Mozilla PDF.js. It inspects title and language metadata, the tagged-document declaration, page text, exposed structure roles and interactive fields.
+
+Missing declarations and text-bearing pages without a structure tree are triage signals. Heading jumps, tables, forms and long documents without bookmarks are review prompts. No percentage accessibility score is calculated.
+
+Files are limited to 20 MB each, 10 per batch and 100 MB total. Inspection covers up to 200 pages per PDF and 600 per batch. Very large text pages are capped at 100,000 characters and 2,000,000 per document. Partial results are labelled.
+
+Text comparison aligns pages using normalized extracted text. Equal text does not prove equal layout, tags, links or images. Pages without usable text remain unknown.
+
+Reports are generated locally. Review checkboxes record a user assertion; they are not an independent audit. Original files are never rewritten.
+
+Do my PDFs leave my device?
+
+No. File parsing, extracted text and comparison run in your browser. Exported reports may contain filenames and document titles; choose carefully where you share them.
+
+Does a clean result prove accessibility?
+
+No. These checks help you triage work. Reading order, image meaning, tables, forms and assistive-technology behavior still need review.
+
+Can you repair scanned PDFs or missing tags?
+
+This release checks documents and extracts existing text. It does not perform OCR, add tags or repair the original PDF. Use a suitable authoring or remediation tool, then check the exported file again.
+
+Reference material
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# PDF accessibility checklist before you publish
+
+https://thedollscout.com/learn/pdf-accessibility-checklist
+Published by TDS Document Scout
+Updated: 2026-09-25
 
 Start with the source document. Use real heading styles, meaningful link text, suitable table headers and text alternatives before exporting a tagged PDF.
 
@@ -63,7 +312,17 @@ Complete the manual checks. Read representative pages with a screen reader. Chec
 
 Keep an explicit record. Export the automatic findings, record what you reviewed, and send both with the exact PDF version. Unchecked items remain unchecked.
 
-### Scanned PDF or text PDF: choose the right next step
+Reference material
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# Scanned PDF or text PDF: choose the right next step
+
+https://thedollscout.com/learn/scanned-pdf-vs-text-pdf
+Published by TDS Document Scout
+Updated: 2026-09-25
 
 A PDF can contain actual text, page images or both. Being able to see words does not mean those words are extractable or usable with assistive technology.
 
@@ -73,7 +332,17 @@ For a scan, run OCR in a suitable editor, then check names, numbers, punctuation
 
 A text layer is only the first step. Review headings, alternatives and structure separately. This tool does not perform OCR or certify the resulting PDF.
 
-### How to review PDF reading order
+Reference material
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# How to review PDF reading order
+
+https://thedollscout.com/learn/pdf-reading-order
+Published by TDS Document Scout
+Updated: 2026-09-25
 
 Text extraction order is not proof of screen-reader reading order. PDF structure tags, text content order and the viewer can affect the reading experience.
 
@@ -83,7 +352,131 @@ Compare what you hear with the intended meaning. Watch for footnotes inserted mi
 
 Fix the source or use a PDF remediation editor. Export a new version and repeat the checks. Use text comparison to find content changes, then do the visual and assistive-technology review again.
 
-## de: Prüfmethode
+Reference material
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# How checks work
+
+https://thedollscout.com/methodology
+Published by TDS Document Scout
+Updated: 2026-09-25
+
+The reader parses actual PDF objects with Mozilla PDF.js. It inspects title and language metadata, the tagged-document declaration, page text, exposed structure roles and interactive fields.
+
+Missing declarations and text-bearing pages without a structure tree are triage signals. Heading jumps, tables, forms and long documents without bookmarks are review prompts. No percentage accessibility score is calculated.
+
+Files are limited to 20 MB each, 10 per batch and 100 MB total. Inspection covers up to 200 pages per PDF and 600 per batch. Very large text pages are capped at 100,000 characters and 2,000,000 per document. Partial results are labelled.
+
+Text comparison aligns pages using normalized extracted text. Equal text does not prove equal layout, tags, links or images. Pages without usable text remain unknown.
+
+Reports are generated locally. Review checkboxes record a user assertion; they are not an independent audit. Original files are never rewritten.
+
+Reference material
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# File privacy
+
+https://thedollscout.com/document-privacy
+Published by TDS Document Scout
+Updated: 2026-09-25
+
+Selected PDFs, filenames, titles, extracted text, comparisons and manual review notes stay in browser memory. They are not uploaded to our servers. Clear the workspace or close the tab to discard them.
+
+When you download a report, your browser saves it to your device. JSON and CSV reports can contain filenames and document titles. JSON comparison reports and text downloads also contain extracted document text. No report is made public by this site.
+
+We collect limited first-party usage counts: the tool page, event type, day, coarse country and referring hostname. Events never include filenames, file content or review notes. Demonstration events are recorded separately. No analytics cookies or cross-session user identifier are used on these document pages.
+
+Legacy collector pages and the separate member area have their own behavior, described in the existing privacy notice. Document tools do not require membership, and membership does not add paid document features.
+
+Sharing a page sends only its public link. Sharing a summary sends the previewed counts and limitations to the destination you choose, or copies them to your clipboard. It does not include filenames, titles, document text or manual notes. Downloaded full reports have different contents, described above.
+
+Reference material
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# Collector archive
+
+https://thedollscout.com/collectors
+Published by TDS Document Scout
+Updated: 2026-09-25
+
+The original collecting guides remain available below. TDS now focuses on document tools. These historical tools have a separate scope and do not assess PDFs.
+
+Reference material
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# Kostenlose PDF-Prüfung, Stapelprüfung und Textvergleich
+
+https://thedollscout.com/de/
+Veröffentlicht von TDS Document Scout
+Aktualisiert: 2026-09-25
+
+Dokumentstruktur prüfen, auffällige Seiten finden und eine nachvollziehbare Prüfliste weitergeben. Ihre Dateien bleiben auf Ihrem Gerät.
+
+Verarbeitung in diesem Browser. Kein Datei-Upload und kein Konto erforderlich.
+
+Dies ist eine Vorprüfung, keine WCAG- oder PDF/UA-Zertifizierung. Vorhandene Tags oder Titel beweisen nicht ihre Richtigkeit.
+
+PDF-Barrierefreiheit prüfen
+
+Titel, Sprachangaben, Tags und auslesbaren Text prüfen. Auffällige Seiten und notwendige manuelle Prüfungen erkennen.
+
+PDF-Stapelprüfung
+
+Bis zu 10 PDFs gemeinsam prüfen. Auffälligkeiten priorisieren, manuelle Prüfungen festhalten und als CSV oder JSON exportieren.
+
+PDF in Text umwandeln
+
+Vorhandenen PDF-Text mit Seitengrenzen auslesen. Seiten ohne auslesbaren Text erkennen, bevor Sie einen OCR-Ablauf wählen.
+
+PDF-Texte vergleichen
+
+Den ausgelesenen Text zweier PDF-Versionen vergleichen. Geänderte, neue und entfernte Seiten finden; unveränderte Seiten werden zugeordnet.
+
+Verlassen meine PDFs mein Gerät?
+
+Nein. Dateiprüfung, Textauslesung und Vergleich laufen im Browser. Berichte können Dateinamen und Dokumenttitel enthalten. Wählen Sie bewusst, wo Sie sie teilen.
+
+Beweist ein unauffälliges Ergebnis Barrierefreiheit?
+
+Nein. Diese Vorprüfung hilft bei der Arbeitsplanung. Lesereihenfolge, Bildbedeutung, Tabellen, Formulare und assistive Technik müssen weiterhin geprüft werden.
+
+Werden Scans oder fehlende Tags repariert?
+
+Diese Version prüft Dokumente und liest vorhandenen Text aus. Sie führt keine OCR aus, ergänzt keine Tags und repariert keine PDF. Dafür einen geeigneten Editor verwenden und erneut prüfen.
+
+Referenzen
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# PDF-Barrierefreiheit prüfen
+
+https://thedollscout.com/de/pdf-accessibility-checker
+Veröffentlicht von TDS Document Scout
+Aktualisiert: 2026-09-25
+
+Wann es hilft: Vor der Veröffentlichung eines Berichts, Handouts oder Kundendokuments.
+
+Ihr Ergebnis: Seitenbezogene Hinweise, manuelle Prüfpunkte und CSV- oder JSON-Exporte.
+
+Was Sie selbst prüfen müssen: Lesereihenfolge, Bildbeschreibungen und die Richtigkeit der Tags brauchen eine manuelle Prüfung. Keine Konformitätszertifizierung.
+
+Verarbeitung in diesem Browser. Kein Datei-Upload und kein Konto erforderlich.
+
+Dies ist eine Vorprüfung, keine WCAG- oder PDF/UA-Zertifizierung. Vorhandene Tags oder Titel beweisen nicht ihre Richtigkeit.
 
 Mozilla PDF.js liest die tatsächlichen PDF-Objekte. Geprüft werden Titel, Sprachangaben, Tag-Deklaration, Seitentext, sichtbare Strukturrollen und Formularfelder.
 
@@ -95,7 +488,161 @@ Der Vergleich ordnet Seiten anhand normalisierten Texts zu. Gleicher Text beweis
 
 Berichte entstehen lokal. Manuelle Häkchen sind Angaben des Nutzers, keine unabhängige Prüfung. Originaldateien werden nicht verändert.
 
-### PDF-Barrierefreiheit vor der Veröffentlichung prüfen
+Verlassen meine PDFs mein Gerät?
+
+Nein. Dateiprüfung, Textauslesung und Vergleich laufen im Browser. Berichte können Dateinamen und Dokumenttitel enthalten. Wählen Sie bewusst, wo Sie sie teilen.
+
+Beweist ein unauffälliges Ergebnis Barrierefreiheit?
+
+Nein. Diese Vorprüfung hilft bei der Arbeitsplanung. Lesereihenfolge, Bildbedeutung, Tabellen, Formulare und assistive Technik müssen weiterhin geprüft werden.
+
+Werden Scans oder fehlende Tags repariert?
+
+Diese Version prüft Dokumente und liest vorhandenen Text aus. Sie führt keine OCR aus, ergänzt keine Tags und repariert keine PDF. Dafür einen geeigneten Editor verwenden und erneut prüfen.
+
+Referenzen
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# PDF-Stapelprüfung
+
+https://thedollscout.com/de/pdf-batch-audit
+Veröffentlicht von TDS Document Scout
+Aktualisiert: 2026-09-25
+
+Wann es hilft: Wenn ein Team eine gemeinsame Prüfliste für mehrere PDFs benötigt.
+
+Ihr Ergebnis: Eine gemeinsame Liste für bis zu 10 PDFs, mit gekennzeichneten Teilprüfungen.
+
+Was Sie selbst prüfen müssen: Je PDF höchstens 20 MB und 200 geprüfte Seiten; je Stapel 100 MB und 600 geprüfte Seiten.
+
+Verarbeitung in diesem Browser. Kein Datei-Upload und kein Konto erforderlich.
+
+Dies ist eine Vorprüfung, keine WCAG- oder PDF/UA-Zertifizierung. Vorhandene Tags oder Titel beweisen nicht ihre Richtigkeit.
+
+Mozilla PDF.js liest die tatsächlichen PDF-Objekte. Geprüft werden Titel, Sprachangaben, Tag-Deklaration, Seitentext, sichtbare Strukturrollen und Formularfelder.
+
+Fehlende Angaben und fehlende Struktur sind Hinweise. Überschriften, Tabellen, Formulare und Lesezeichen brauchen Beurteilung. Es gibt keinen prozentualen Barrierefreiheitswert.
+
+Grenzen: 20 MB je Datei, 10 Dateien und insgesamt 100 MB. Höchstens 200 Seiten je PDF und 600 je Stapel. Textgrenze: 100.000 Zeichen je Seite und 2.000.000 je Dokument. Teilergebnisse werden gekennzeichnet.
+
+Der Vergleich ordnet Seiten anhand normalisierten Texts zu. Gleicher Text beweist keine gleichen Bilder, Tags, Links oder Layouts. Seiten ohne Text bleiben unklar.
+
+Berichte entstehen lokal. Manuelle Häkchen sind Angaben des Nutzers, keine unabhängige Prüfung. Originaldateien werden nicht verändert.
+
+Verlassen meine PDFs mein Gerät?
+
+Nein. Dateiprüfung, Textauslesung und Vergleich laufen im Browser. Berichte können Dateinamen und Dokumenttitel enthalten. Wählen Sie bewusst, wo Sie sie teilen.
+
+Beweist ein unauffälliges Ergebnis Barrierefreiheit?
+
+Nein. Diese Vorprüfung hilft bei der Arbeitsplanung. Lesereihenfolge, Bildbedeutung, Tabellen, Formulare und assistive Technik müssen weiterhin geprüft werden.
+
+Werden Scans oder fehlende Tags repariert?
+
+Diese Version prüft Dokumente und liest vorhandenen Text aus. Sie führt keine OCR aus, ergänzt keine Tags und repariert keine PDF. Dafür einen geeigneten Editor verwenden und erneut prüfen.
+
+Referenzen
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# PDF in Text umwandeln
+
+https://thedollscout.com/de/pdf-to-text
+Veröffentlicht von TDS Document Scout
+Aktualisiert: 2026-09-25
+
+Wann es hilft: Wenn Sie vorhandenen PDF-Text weiterverwenden oder die Textextraktion prüfen möchten.
+
+Ihr Ergebnis: Text nach Seiten gegliedert, als lokale TXT-Datei speicherbar.
+
+Was Sie selbst prüfen müssen: Reine Bildseiten benötigen eine separate OCR-Lösung. Extrahierter Text kann eine falsche Lesereihenfolge haben.
+
+Verarbeitung in diesem Browser. Kein Datei-Upload und kein Konto erforderlich.
+
+Dies ist eine Vorprüfung, keine WCAG- oder PDF/UA-Zertifizierung. Vorhandene Tags oder Titel beweisen nicht ihre Richtigkeit.
+
+Mozilla PDF.js liest die tatsächlichen PDF-Objekte. Geprüft werden Titel, Sprachangaben, Tag-Deklaration, Seitentext, sichtbare Strukturrollen und Formularfelder.
+
+Fehlende Angaben und fehlende Struktur sind Hinweise. Überschriften, Tabellen, Formulare und Lesezeichen brauchen Beurteilung. Es gibt keinen prozentualen Barrierefreiheitswert.
+
+Grenzen: 20 MB je Datei, 10 Dateien und insgesamt 100 MB. Höchstens 200 Seiten je PDF und 600 je Stapel. Textgrenze: 100.000 Zeichen je Seite und 2.000.000 je Dokument. Teilergebnisse werden gekennzeichnet.
+
+Der Vergleich ordnet Seiten anhand normalisierten Texts zu. Gleicher Text beweist keine gleichen Bilder, Tags, Links oder Layouts. Seiten ohne Text bleiben unklar.
+
+Berichte entstehen lokal. Manuelle Häkchen sind Angaben des Nutzers, keine unabhängige Prüfung. Originaldateien werden nicht verändert.
+
+Verlassen meine PDFs mein Gerät?
+
+Nein. Dateiprüfung, Textauslesung und Vergleich laufen im Browser. Berichte können Dateinamen und Dokumenttitel enthalten. Wählen Sie bewusst, wo Sie sie teilen.
+
+Beweist ein unauffälliges Ergebnis Barrierefreiheit?
+
+Nein. Diese Vorprüfung hilft bei der Arbeitsplanung. Lesereihenfolge, Bildbedeutung, Tabellen, Formulare und assistive Technik müssen weiterhin geprüft werden.
+
+Werden Scans oder fehlende Tags repariert?
+
+Diese Version prüft Dokumente und liest vorhandenen Text aus. Sie führt keine OCR aus, ergänzt keine Tags und repariert keine PDF. Dafür einen geeigneten Editor verwenden und erneut prüfen.
+
+Referenzen
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# PDF-Texte vergleichen
+
+https://thedollscout.com/de/compare-pdf-text
+Veröffentlicht von TDS Document Scout
+Aktualisiert: 2026-09-25
+
+Wann es hilft: Wenn eine neue PDF-Version vorliegt und Sie Textänderungen finden müssen.
+
+Ihr Ergebnis: Zugeordnete Textseiten und geänderte, hinzugefügte, entfernte oder unklare Seiten.
+
+Was Sie selbst prüfen müssen: Bilder, Layout und Anmerkungen werden nicht verglichen. Vorgeschlagene Seitenzuordnungen müssen geprüft werden.
+
+Verarbeitung in diesem Browser. Kein Datei-Upload und kein Konto erforderlich.
+
+Dies ist eine Vorprüfung, keine WCAG- oder PDF/UA-Zertifizierung. Vorhandene Tags oder Titel beweisen nicht ihre Richtigkeit.
+
+Mozilla PDF.js liest die tatsächlichen PDF-Objekte. Geprüft werden Titel, Sprachangaben, Tag-Deklaration, Seitentext, sichtbare Strukturrollen und Formularfelder.
+
+Fehlende Angaben und fehlende Struktur sind Hinweise. Überschriften, Tabellen, Formulare und Lesezeichen brauchen Beurteilung. Es gibt keinen prozentualen Barrierefreiheitswert.
+
+Grenzen: 20 MB je Datei, 10 Dateien und insgesamt 100 MB. Höchstens 200 Seiten je PDF und 600 je Stapel. Textgrenze: 100.000 Zeichen je Seite und 2.000.000 je Dokument. Teilergebnisse werden gekennzeichnet.
+
+Der Vergleich ordnet Seiten anhand normalisierten Texts zu. Gleicher Text beweist keine gleichen Bilder, Tags, Links oder Layouts. Seiten ohne Text bleiben unklar.
+
+Berichte entstehen lokal. Manuelle Häkchen sind Angaben des Nutzers, keine unabhängige Prüfung. Originaldateien werden nicht verändert.
+
+Verlassen meine PDFs mein Gerät?
+
+Nein. Dateiprüfung, Textauslesung und Vergleich laufen im Browser. Berichte können Dateinamen und Dokumenttitel enthalten. Wählen Sie bewusst, wo Sie sie teilen.
+
+Beweist ein unauffälliges Ergebnis Barrierefreiheit?
+
+Nein. Diese Vorprüfung hilft bei der Arbeitsplanung. Lesereihenfolge, Bildbedeutung, Tabellen, Formulare und assistive Technik müssen weiterhin geprüft werden.
+
+Werden Scans oder fehlende Tags repariert?
+
+Diese Version prüft Dokumente und liest vorhandenen Text aus. Sie führt keine OCR aus, ergänzt keine Tags und repariert keine PDF. Dafür einen geeigneten Editor verwenden und erneut prüfen.
+
+Referenzen
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# PDF-Barrierefreiheit vor der Veröffentlichung prüfen
+
+https://thedollscout.com/de/learn/pdf-accessibility-checklist
+Veröffentlicht von TDS Document Scout
+Aktualisiert: 2026-09-25
 
 Im Quelldokument beginnen: echte Überschriften, aussagekräftige Links, geeignete Tabellenköpfe und Textalternativen verwenden.
 
@@ -105,7 +652,17 @@ Repräsentative Seiten mit einem Screenreader lesen. Spalten, Tabellen, Formular
 
 Befunde und manuelle Prüfung zusammen mit der genauen Dokumentversion festhalten. Nicht geprüfte Punkte offen lassen.
 
-### Scan oder Text-PDF: den nächsten Schritt wählen
+Referenzen
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# Scan oder Text-PDF: den nächsten Schritt wählen
+
+https://thedollscout.com/de/learn/scanned-pdf-vs-text-pdf
+Veröffentlicht von TDS Document Scout
+Aktualisiert: 2026-09-25
 
 PDFs können Text, Seitenbilder oder beides enthalten. Sichtbare Wörter sind nicht immer auslesbarer Text.
 
@@ -115,7 +672,17 @@ Scans mit geeigneter OCR verarbeiten. Namen, Zahlen, Satzzeichen und Reihenfolge
 
 Die Textebene ist nur der Anfang. Überschriften, Alternativen und Struktur separat prüfen. Dieses Werkzeug bietet keine OCR.
 
-### Die PDF-Lesereihenfolge prüfen
+Referenzen
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# Die PDF-Lesereihenfolge prüfen
+
+https://thedollscout.com/de/learn/pdf-reading-order
+Veröffentlicht von TDS Document Scout
+Aktualisiert: 2026-09-25
 
 Die Reihenfolge ausgelesenen Texts beweist nicht die Screenreader-Reihenfolge. Tags, Inhalte und PDF-Viewer beeinflussen das Ergebnis.
 
@@ -125,7 +692,131 @@ Auf eingeschobene Fußnoten, vermischte Spalten und vom Formularfeld getrennte B
 
 Quelle oder PDF-Tags korrigieren, erneut exportieren und die manuelle Prüfung wiederholen. Ein Textvergleich ersetzt sie nicht.
 
-## zh: 检查方法
+Referenzen
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# Prüfmethode
+
+https://thedollscout.com/de/methodology
+Veröffentlicht von TDS Document Scout
+Aktualisiert: 2026-09-25
+
+Mozilla PDF.js liest die tatsächlichen PDF-Objekte. Geprüft werden Titel, Sprachangaben, Tag-Deklaration, Seitentext, sichtbare Strukturrollen und Formularfelder.
+
+Fehlende Angaben und fehlende Struktur sind Hinweise. Überschriften, Tabellen, Formulare und Lesezeichen brauchen Beurteilung. Es gibt keinen prozentualen Barrierefreiheitswert.
+
+Grenzen: 20 MB je Datei, 10 Dateien und insgesamt 100 MB. Höchstens 200 Seiten je PDF und 600 je Stapel. Textgrenze: 100.000 Zeichen je Seite und 2.000.000 je Dokument. Teilergebnisse werden gekennzeichnet.
+
+Der Vergleich ordnet Seiten anhand normalisierten Texts zu. Gleicher Text beweist keine gleichen Bilder, Tags, Links oder Layouts. Seiten ohne Text bleiben unklar.
+
+Berichte entstehen lokal. Manuelle Häkchen sind Angaben des Nutzers, keine unabhängige Prüfung. Originaldateien werden nicht verändert.
+
+Referenzen
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# Dateidatenschutz
+
+https://thedollscout.com/de/document-privacy
+Veröffentlicht von TDS Document Scout
+Aktualisiert: 2026-09-25
+
+PDFs, Dateinamen, Titel, Text, Vergleiche und Prüfnotizen bleiben im Browserspeicher. Es erfolgt kein Upload. Arbeitsbereich leeren oder Tab schließen, um sie zu verwerfen.
+
+Heruntergeladene Berichte werden auf Ihrem Gerät gespeichert. CSV und JSON können Dateinamen und Titel enthalten. JSON-Vergleichsberichte und Textexporte enthalten auch Dokumenttext. Nichts wird öffentlich bereitgestellt.
+
+Wir erfassen begrenzte Nutzungszähler: Werkzeugseite, Ereignistyp, Tag, grobes Land und verweisenden Hostnamen. Keine Dateinamen, Inhalte oder Prüfnotizen. Beispiele werden getrennt gezählt. Diese Dokumentseiten verwenden keine Analyse-Cookies oder wiederkehrende Nutzerkennung.
+
+Für alte Sammlerseiten und den getrennten Mitgliederbereich gilt die bestehende Datenschutzerklärung. Dokumentwerkzeuge benötigen keine Mitgliedschaft. Diese schaltet keine bezahlten Dokumentfunktionen frei.
+
+Beim Teilen einer Seite wird nur ihr öffentlicher Link weitergegeben. Beim Teilen einer Zusammenfassung werden die angezeigten Zähler und Grenzen an Ihr gewähltes Ziel übergeben oder in die Zwischenablage kopiert. Dateinamen, Titel, Dokumenttexte und Prüfnotizen sind nicht enthalten. Vollständige Downloads enthalten die oben beschriebenen Daten.
+
+Referenzen
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# Sammlerarchiv
+
+https://thedollscout.com/de/collectors
+Veröffentlicht von TDS Document Scout
+Aktualisiert: 2026-09-25
+
+Die bisherigen Sammelratgeber bleiben verfügbar. TDS konzentriert sich nun auf Dokumentwerkzeuge. Die historischen Werkzeuge prüfen keine PDFs.
+
+Referenzen
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# 免费 PDF 检查、批量审查与文本版本对比
+
+https://thedollscout.com/zh/
+由 TDS 文档侦察站发布
+更新日期: 2026-09-25
+
+检查文档结构，定位需要处理的页面，导出一份可以交接的审查记录。文件始终留在你的设备上。
+
+在当前浏览器中处理，无需上传文件或注册。
+
+这是发布前的检查，不是 WCAG 或 PDF/UA 认证。检测到标签或标题，并不证明其内容正确。
+
+PDF 无障碍检查
+
+检查标题、语言声明、标签结构和可提取文本。定位页面问题，并明确哪些项目需要人工复核。
+
+PDF 批量审查
+
+一次审查最多 10 份 PDF。汇总问题，记录人工复核，导出一份 CSV 或 JSON 交接清单。
+
+PDF 文本提取
+
+提取 PDF 中已有的文本并保留页码边界。找出没有可提取文本的页面，再决定是否使用 OCR。
+
+PDF 文本版本对比
+
+比较两份 PDF 的可提取文本。定位修改、新增和删除的页面；插入新页后仍能对齐未变的页面。
+
+PDF 会离开我的设备吗？
+
+不会。文件解析、文本提取和版本比较都在浏览器中完成。导出的报告可能包含文件名和标题，请自行选择安全的分享方式。
+
+没有发现问题就代表无障碍合格吗？
+
+不代表。这里的检查用于安排处理工作。阅读顺序、图片含义、表格、表单及辅助技术中的表现仍需复核。
+
+能修复扫描件或补齐标签吗？
+
+当前版本检查文档并提取已有文本，不执行 OCR、不添加标签，也不修复原始 PDF。请使用合适的编辑或修复工具处理后，再检查导出的文件。
+
+参考资料
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# PDF 无障碍检查
+
+https://thedollscout.com/zh/pdf-accessibility-checker
+由 TDS 文档侦察站发布
+更新日期: 2026-09-25
+
+适用场景: 发布报告、讲义或向客户交付 PDF 之前。
+
+你会得到: 按页定位的检查线索、人工复核提示，以及 CSV 或 JSON 报告。
+
+仍需确认: 阅读顺序、图片描述和标签的正确性仍需人工判断；本工具不提供合规认证。
+
+在当前浏览器中处理，无需上传文件或注册。
+
+这是发布前的检查，不是 WCAG 或 PDF/UA 认证。检测到标签或标题，并不证明其内容正确。
 
 使用 Mozilla PDF.js 解析真实的 PDF 对象，检查标题、语言声明、已标记声明、页面文字、可暴露的结构角色和表单字段。
 
@@ -137,7 +828,161 @@ Quelle oder PDF-Tags korrigieren, erneut exportieren und die manuelle Prüfung w
 
 报告在本地生成。人工勾选仅记录使用者的判断，不是独立审计。原始文件不会被改写。
 
-### PDF 发布前的无障碍检查清单
+PDF 会离开我的设备吗？
+
+不会。文件解析、文本提取和版本比较都在浏览器中完成。导出的报告可能包含文件名和标题，请自行选择安全的分享方式。
+
+没有发现问题就代表无障碍合格吗？
+
+不代表。这里的检查用于安排处理工作。阅读顺序、图片含义、表格、表单及辅助技术中的表现仍需复核。
+
+能修复扫描件或补齐标签吗？
+
+当前版本检查文档并提取已有文本，不执行 OCR、不添加标签，也不修复原始 PDF。请使用合适的编辑或修复工具处理后，再检查导出的文件。
+
+参考资料
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# PDF 批量审查
+
+https://thedollscout.com/zh/pdf-batch-audit
+由 TDS 文档侦察站发布
+更新日期: 2026-09-25
+
+适用场景: 团队需要把多份待交付 PDF 汇总成一张处理清单时。
+
+你会得到: 最多 10 份 PDF 的合并问题清单，明确标记未完成的检查。
+
+仍需确认: 每份 PDF 最多 20 MB、检查 200 页；每批最多 100 MB、检查 600 页。
+
+在当前浏览器中处理，无需上传文件或注册。
+
+这是发布前的检查，不是 WCAG 或 PDF/UA 认证。检测到标签或标题，并不证明其内容正确。
+
+使用 Mozilla PDF.js 解析真实的 PDF 对象，检查标题、语言声明、已标记声明、页面文字、可暴露的结构角色和表单字段。
+
+缺失声明和结构属于处理线索。标题跳级、表格、表单和缺少书签的长文档需要人工判断，不计算百分比无障碍评分。
+
+每份文件最多 20 MB，每批最多 10 份且总计 100 MB。每份检查至多 200 页，每批至多 600 页。文本上限为每页 10 万字元、每份 200 万字元；部分结果会明确标记。
+
+版本对比用规范化文本对齐页面。文本相同不代表图片、标签、链接或版式相同。没有可用文本的页面保留为未知。
+
+报告在本地生成。人工勾选仅记录使用者的判断，不是独立审计。原始文件不会被改写。
+
+PDF 会离开我的设备吗？
+
+不会。文件解析、文本提取和版本比较都在浏览器中完成。导出的报告可能包含文件名和标题，请自行选择安全的分享方式。
+
+没有发现问题就代表无障碍合格吗？
+
+不代表。这里的检查用于安排处理工作。阅读顺序、图片含义、表格、表单及辅助技术中的表现仍需复核。
+
+能修复扫描件或补齐标签吗？
+
+当前版本检查文档并提取已有文本，不执行 OCR、不添加标签，也不修复原始 PDF。请使用合适的编辑或修复工具处理后，再检查导出的文件。
+
+参考资料
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# PDF 文本提取
+
+https://thedollscout.com/zh/pdf-to-text
+由 TDS 文档侦察站发布
+更新日期: 2026-09-25
+
+适用场景: 需要复用 PDF 已有文字，或先判断能否提取文本时。
+
+你会得到: 按页分组的可提取文字，以及保存在本地的 TXT 文件。
+
+仍需确认: 纯图片页面需要另外使用 OCR；提取的文字顺序也可能需要修正。
+
+在当前浏览器中处理，无需上传文件或注册。
+
+这是发布前的检查，不是 WCAG 或 PDF/UA 认证。检测到标签或标题，并不证明其内容正确。
+
+使用 Mozilla PDF.js 解析真实的 PDF 对象，检查标题、语言声明、已标记声明、页面文字、可暴露的结构角色和表单字段。
+
+缺失声明和结构属于处理线索。标题跳级、表格、表单和缺少书签的长文档需要人工判断，不计算百分比无障碍评分。
+
+每份文件最多 20 MB，每批最多 10 份且总计 100 MB。每份检查至多 200 页，每批至多 600 页。文本上限为每页 10 万字元、每份 200 万字元；部分结果会明确标记。
+
+版本对比用规范化文本对齐页面。文本相同不代表图片、标签、链接或版式相同。没有可用文本的页面保留为未知。
+
+报告在本地生成。人工勾选仅记录使用者的判断，不是独立审计。原始文件不会被改写。
+
+PDF 会离开我的设备吗？
+
+不会。文件解析、文本提取和版本比较都在浏览器中完成。导出的报告可能包含文件名和标题，请自行选择安全的分享方式。
+
+没有发现问题就代表无障碍合格吗？
+
+不代表。这里的检查用于安排处理工作。阅读顺序、图片含义、表格、表单及辅助技术中的表现仍需复核。
+
+能修复扫描件或补齐标签吗？
+
+当前版本检查文档并提取已有文本，不执行 OCR、不添加标签，也不修复原始 PDF。请使用合适的编辑或修复工具处理后，再检查导出的文件。
+
+参考资料
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# PDF 文本版本对比
+
+https://thedollscout.com/zh/compare-pdf-text
+由 TDS 文档侦察站发布
+更新日期: 2026-09-25
+
+适用场景: 收到修订版 PDF，需要找出文字变化时。
+
+你会得到: 对齐的文本页面，以及修改、新增、删除或无法比较的页面。
+
+仍需确认: 不比较图片、版式和批注；相似页面的配对结果需要复核。
+
+在当前浏览器中处理，无需上传文件或注册。
+
+这是发布前的检查，不是 WCAG 或 PDF/UA 认证。检测到标签或标题，并不证明其内容正确。
+
+使用 Mozilla PDF.js 解析真实的 PDF 对象，检查标题、语言声明、已标记声明、页面文字、可暴露的结构角色和表单字段。
+
+缺失声明和结构属于处理线索。标题跳级、表格、表单和缺少书签的长文档需要人工判断，不计算百分比无障碍评分。
+
+每份文件最多 20 MB，每批最多 10 份且总计 100 MB。每份检查至多 200 页，每批至多 600 页。文本上限为每页 10 万字元、每份 200 万字元；部分结果会明确标记。
+
+版本对比用规范化文本对齐页面。文本相同不代表图片、标签、链接或版式相同。没有可用文本的页面保留为未知。
+
+报告在本地生成。人工勾选仅记录使用者的判断，不是独立审计。原始文件不会被改写。
+
+PDF 会离开我的设备吗？
+
+不会。文件解析、文本提取和版本比较都在浏览器中完成。导出的报告可能包含文件名和标题，请自行选择安全的分享方式。
+
+没有发现问题就代表无障碍合格吗？
+
+不代表。这里的检查用于安排处理工作。阅读顺序、图片含义、表格、表单及辅助技术中的表现仍需复核。
+
+能修复扫描件或补齐标签吗？
+
+当前版本检查文档并提取已有文本，不执行 OCR、不添加标签，也不修复原始 PDF。请使用合适的编辑或修复工具处理后，再检查导出的文件。
+
+参考资料
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# PDF 发布前的无障碍检查清单
+
+https://thedollscout.com/zh/learn/pdf-accessibility-checklist
+由 TDS 文档侦察站发布
+更新日期: 2026-09-25
 
 先处理源文件：使用真正的标题样式、明确的链接文字、合适的表头和图片替代文本，再导出带标签的 PDF。
 
@@ -147,7 +992,17 @@ Quelle oder PDF-Tags korrigieren, erneut exportieren und die manuelle Prüfung w
 
 保留明确记录：导出自动检查结果，记录人工检查范围，并与对应 PDF 版本一起交接。未检查项继续标为未检查。
 
-### 扫描件还是文本 PDF：下一步怎么处理
+参考资料
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# 扫描件还是文本 PDF：下一步怎么处理
+
+https://thedollscout.com/zh/learn/scanned-pdf-vs-text-pdf
+由 TDS 文档侦察站发布
+更新日期: 2026-09-25
 
 PDF 可以包含真实文字、页面图片，或二者混合。看得见文字，不代表程序能提取或辅助技术能读取。
 
@@ -157,7 +1012,17 @@ PDF 可以包含真实文字、页面图片，或二者混合。看得见文字�
 
 文本层只是第一步，标题结构和替代文本仍需单独检查。本工具不执行 OCR，也不认证处理后的 PDF。
 
-### 如何检查 PDF 阅读顺序
+参考资料
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# 如何检查 PDF 阅读顺序
+
+https://thedollscout.com/zh/learn/pdf-reading-order
+由 TDS 文档侦察站发布
+更新日期: 2026-09-25
 
 提取文本的顺序不等于屏幕阅读器的阅读顺序。结构标签、文字内容顺序和 PDF 阅读器都会影响结果。
 
@@ -166,3 +1031,66 @@ PDF 可以包含真实文字、页面图片，或二者混合。看得见文字�
 把听到的内容与文档含义对照，注意脚注插入句中、不同栏交错，以及标签与表单控件分离等情况。
 
 在源文件或 PDF 修复编辑器中调整，重新导出后再测。版本比较帮助发现文本变化，不能替代视觉和辅助技术复核。
+
+参考资料
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# 检查方法
+
+https://thedollscout.com/zh/methodology
+由 TDS 文档侦察站发布
+更新日期: 2026-09-25
+
+使用 Mozilla PDF.js 解析真实的 PDF 对象，检查标题、语言声明、已标记声明、页面文字、可暴露的结构角色和表单字段。
+
+缺失声明和结构属于处理线索。标题跳级、表格、表单和缺少书签的长文档需要人工判断，不计算百分比无障碍评分。
+
+每份文件最多 20 MB，每批最多 10 份且总计 100 MB。每份检查至多 200 页，每批至多 600 页。文本上限为每页 10 万字元、每份 200 万字元；部分结果会明确标记。
+
+版本对比用规范化文本对齐页面。文本相同不代表图片、标签、链接或版式相同。没有可用文本的页面保留为未知。
+
+报告在本地生成。人工勾选仅记录使用者的判断，不是独立审计。原始文件不会被改写。
+
+参考资料
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# 文件隐私
+
+https://thedollscout.com/zh/document-privacy
+由 TDS 文档侦察站发布
+更新日期: 2026-09-25
+
+所选 PDF、文件名、标题、提取文字、对比内容和人工记录都留在浏览器内存，不上传到服务器。清空工作区或关闭标签页即可丢弃。
+
+下载报告时，浏览器把文件保存到你的设备。CSV 和 JSON 可能包含文件名、文档标题；JSON 比较报告和文本导出还包含提取的正文。本站不会公开你的报告。
+
+我们记录有限的第一方使用计数：工具页面、事件类型、日期、粗略国家和来源域名，不记录文件名、正文或复核内容。示例使用单独计数。文档工具页不使用分析 Cookie 或跨会话用户标识。
+
+历史收藏品页面和独立会员区另有行为，见既有隐私说明。文档工具不要求会员，会员也不包含额外付费文档功能。
+
+分享页面只发送公开链接。分享摘要会把预览中的数量和边界说明交给你选择的目标应用，或复制到剪贴板，不包含文件名、标题、正文和人工笔记。完整下载报告包含的数据与此不同，见上方说明。
+
+参考资料
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# 收藏品历史资料
+
+https://thedollscout.com/zh/collectors
+由 TDS 文档侦察站发布
+更新日期: 2026-09-25
+
+原收藏品指南仍可在下方访问。TDS 现在聚焦文档处理；这些历史工具属于独立主题，不检查 PDF。
+
+参考资料
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/

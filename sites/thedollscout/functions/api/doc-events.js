@@ -1,6 +1,6 @@
 // Deliberately bounded metadata only. PDF bytes, names, text, titles, review
 // answers, user/session IDs and full referrer URLs are never stored here.
-export const EVENTS = new Set(['doc_view', 'doc_start', 'doc_complete', 'doc_partial', 'doc_batch_complete', 'doc_compare_complete', 'doc_text_complete', 'doc_error', 'doc_sample', 'doc_review', 'doc_export', 'doc_share']);
+export const EVENTS = new Set(['doc_view', 'doc_start', 'doc_complete', 'doc_partial', 'doc_batch_complete', 'doc_compare_complete', 'doc_text_complete', 'doc_error', 'doc_sample', 'doc_review', 'doc_export', 'doc_share', 'doc_summary_share', 'doc_share_visit']);
 const PAGE = /^\/(?:(de|zh)\/)?(?:pdf-accessibility-checker|pdf-batch-audit|pdf-to-text|compare-pdf-text|methodology|document-privacy|collectors|learn\/(?:pdf-accessibility-checklist|scanned-pdf-vs-text-pdf|pdf-reading-order))?$/;
 const json = (body, status) => new Response(JSON.stringify(body), { status, headers: { 'content-type': 'application/json; charset=utf-8', 'cache-control': 'no-store' } });
 export function safeRef(value) {

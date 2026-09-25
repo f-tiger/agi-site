@@ -1,3 +1,4 @@
+import { experience } from './experience.mjs';
 export const languages = { en: { tag: 'en', label: 'English', prefix: '' }, de: { tag: 'de', label: 'Deutsch', prefix: '/de' }, zh: { tag: 'zh-CN', label: '中文', prefix: '/zh' } };
 export const toolSlugs = ['pdf-accessibility-checker', 'pdf-batch-audit', 'pdf-to-text', 'compare-pdf-text'];
 export const copy = {
@@ -88,3 +89,8 @@ export const references = [
   ['W3C: text alternatives in PDF', 'https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1'],
   ['Mozilla PDF.js', 'https://mozilla.github.io/pdf.js/'],
 ];
+
+for (const [lang, extras] of Object.entries(experience)) {
+  Object.assign(copy[lang], extras);
+  copy[lang].privacyBody.push(extras.sharePrivacy);
+}

@@ -3,39 +3,74 @@
 Free PDF preflight, batch review, text extraction and text-version comparison. PDFs stay in the browser. Automated signals do not certify WCAG or PDF/UA conformance. No OCR or tag repair.
 
 - [Free PDF checks, batch reviews and text comparison](https://thedollscout.com/) (en): Check document structure, find pages that need attention, and leave with a review you can hand over. Your files stay on your device.
+  Plain text: https://thedollscout.com/document-assets/text/en/home.txt
 - [PDF accessibility checker](https://thedollscout.com/pdf-accessibility-checker) (en): Inspect titles, language declarations, tags and extractable text. See page-level issues and the checks that still need a person.
+  Plain text: https://thedollscout.com/document-assets/text/en/pdf-accessibility-checker.txt
 - [Batch PDF audit](https://thedollscout.com/pdf-batch-audit) (en): Review up to 10 PDFs together. Prioritize document issues, record manual checks, and export one CSV or JSON handover.
+  Plain text: https://thedollscout.com/document-assets/text/en/pdf-batch-audit.txt
 - [PDF to text](https://thedollscout.com/pdf-to-text) (en): Extract text from a readable PDF with page boundaries. Identify pages with no extractable text before choosing an OCR workflow.
+  Plain text: https://thedollscout.com/document-assets/text/en/pdf-to-text.txt
 - [Compare PDF text](https://thedollscout.com/compare-pdf-text) (en): Compare the extracted text of two PDF versions. Find changed, added and removed pages, with unchanged pages aligned after insertions.
+  Plain text: https://thedollscout.com/document-assets/text/en/compare-pdf-text.txt
 - [PDF accessibility checklist before you publish](https://thedollscout.com/learn/pdf-accessibility-checklist) (en): Start with the source document. Use real heading styles, meaningful link text, suitable table headers and text alternatives before exporting a tagged PDF.
+  Plain text: https://thedollscout.com/document-assets/text/en/learn/pdf-accessibility-checklist.txt
 - [Scanned PDF or text PDF: choose the right next step](https://thedollscout.com/learn/scanned-pdf-vs-text-pdf) (en): A PDF can contain actual text, page images or both. Being able to see words does not mean those words are extractable or usable with assistive technology.
+  Plain text: https://thedollscout.com/document-assets/text/en/learn/scanned-pdf-vs-text-pdf.txt
 - [How to review PDF reading order](https://thedollscout.com/learn/pdf-reading-order) (en): Text extraction order is not proof of screen-reader reading order. PDF structure tags, text content order and the viewer can affect the reading experience.
+  Plain text: https://thedollscout.com/document-assets/text/en/learn/pdf-reading-order.txt
 - [How checks work](https://thedollscout.com/methodology) (en): The reader parses actual PDF objects with Mozilla PDF.js. It inspects title and language metadata, the tagged-document declaration, page text, exposed structure roles and interactive fields.
+  Plain text: https://thedollscout.com/document-assets/text/en/methodology.txt
 - [File privacy](https://thedollscout.com/document-privacy) (en): Selected PDFs, filenames, titles, extracted text, comparisons and manual review notes stay in browser memory. They are not uploaded to our servers. Clear the workspace or close the tab to discard them.
+  Plain text: https://thedollscout.com/document-assets/text/en/document-privacy.txt
 - [Collector archive](https://thedollscout.com/collectors) (en): The original collecting guides remain available below. TDS now focuses on document tools. These historical tools have a separate scope and do not assess PDFs.
+  Plain text: https://thedollscout.com/document-assets/text/en/collectors.txt
 - [Kostenlose PDF-Prüfung, Stapelprüfung und Textvergleich](https://thedollscout.com/de/) (de): Dokumentstruktur prüfen, auffällige Seiten finden und eine nachvollziehbare Prüfliste weitergeben. Ihre Dateien bleiben auf Ihrem Gerät.
+  Plain text: https://thedollscout.com/document-assets/text/de/home.txt
 - [PDF-Barrierefreiheit prüfen](https://thedollscout.com/de/pdf-accessibility-checker) (de): Titel, Sprachangaben, Tags und auslesbaren Text prüfen. Auffällige Seiten und notwendige manuelle Prüfungen erkennen.
+  Plain text: https://thedollscout.com/document-assets/text/de/pdf-accessibility-checker.txt
 - [PDF-Stapelprüfung](https://thedollscout.com/de/pdf-batch-audit) (de): Bis zu 10 PDFs gemeinsam prüfen. Auffälligkeiten priorisieren, manuelle Prüfungen festhalten und als CSV oder JSON exportieren.
+  Plain text: https://thedollscout.com/document-assets/text/de/pdf-batch-audit.txt
 - [PDF in Text umwandeln](https://thedollscout.com/de/pdf-to-text) (de): Vorhandenen PDF-Text mit Seitengrenzen auslesen. Seiten ohne auslesbaren Text erkennen, bevor Sie einen OCR-Ablauf wählen.
+  Plain text: https://thedollscout.com/document-assets/text/de/pdf-to-text.txt
 - [PDF-Texte vergleichen](https://thedollscout.com/de/compare-pdf-text) (de): Den ausgelesenen Text zweier PDF-Versionen vergleichen. Geänderte, neue und entfernte Seiten finden; unveränderte Seiten werden zugeordnet.
+  Plain text: https://thedollscout.com/document-assets/text/de/compare-pdf-text.txt
 - [PDF-Barrierefreiheit vor der Veröffentlichung prüfen](https://thedollscout.com/de/learn/pdf-accessibility-checklist) (de): Im Quelldokument beginnen: echte Überschriften, aussagekräftige Links, geeignete Tabellenköpfe und Textalternativen verwenden.
+  Plain text: https://thedollscout.com/document-assets/text/de/learn/pdf-accessibility-checklist.txt
 - [Scan oder Text-PDF: den nächsten Schritt wählen](https://thedollscout.com/de/learn/scanned-pdf-vs-text-pdf) (de): PDFs können Text, Seitenbilder oder beides enthalten. Sichtbare Wörter sind nicht immer auslesbarer Text.
+  Plain text: https://thedollscout.com/document-assets/text/de/learn/scanned-pdf-vs-text-pdf.txt
 - [Die PDF-Lesereihenfolge prüfen](https://thedollscout.com/de/learn/pdf-reading-order) (de): Die Reihenfolge ausgelesenen Texts beweist nicht die Screenreader-Reihenfolge. Tags, Inhalte und PDF-Viewer beeinflussen das Ergebnis.
+  Plain text: https://thedollscout.com/document-assets/text/de/learn/pdf-reading-order.txt
 - [Prüfmethode](https://thedollscout.com/de/methodology) (de): Mozilla PDF.js liest die tatsächlichen PDF-Objekte. Geprüft werden Titel, Sprachangaben, Tag-Deklaration, Seitentext, sichtbare Strukturrollen und Formularfelder.
+  Plain text: https://thedollscout.com/document-assets/text/de/methodology.txt
 - [Dateidatenschutz](https://thedollscout.com/de/document-privacy) (de): PDFs, Dateinamen, Titel, Text, Vergleiche und Prüfnotizen bleiben im Browserspeicher. Es erfolgt kein Upload. Arbeitsbereich leeren oder Tab schließen, um sie zu verwerfen.
+  Plain text: https://thedollscout.com/document-assets/text/de/document-privacy.txt
 - [Sammlerarchiv](https://thedollscout.com/de/collectors) (de): Die bisherigen Sammelratgeber bleiben verfügbar. TDS konzentriert sich nun auf Dokumentwerkzeuge. Die historischen Werkzeuge prüfen keine PDFs.
+  Plain text: https://thedollscout.com/document-assets/text/de/collectors.txt
 - [免费 PDF 检查、批量审查与文本版本对比](https://thedollscout.com/zh/) (zh): 检查文档结构，定位需要处理的页面，导出一份可以交接的审查记录。文件始终留在你的设备上。
+  Plain text: https://thedollscout.com/document-assets/text/zh/home.txt
 - [PDF 无障碍检查](https://thedollscout.com/zh/pdf-accessibility-checker) (zh): 检查标题、语言声明、标签结构和可提取文本。定位页面问题，并明确哪些项目需要人工复核。
+  Plain text: https://thedollscout.com/document-assets/text/zh/pdf-accessibility-checker.txt
 - [PDF 批量审查](https://thedollscout.com/zh/pdf-batch-audit) (zh): 一次审查最多 10 份 PDF。汇总问题，记录人工复核，导出一份 CSV 或 JSON 交接清单。
+  Plain text: https://thedollscout.com/document-assets/text/zh/pdf-batch-audit.txt
 - [PDF 文本提取](https://thedollscout.com/zh/pdf-to-text) (zh): 提取 PDF 中已有的文本并保留页码边界。找出没有可提取文本的页面，再决定是否使用 OCR。
+  Plain text: https://thedollscout.com/document-assets/text/zh/pdf-to-text.txt
 - [PDF 文本版本对比](https://thedollscout.com/zh/compare-pdf-text) (zh): 比较两份 PDF 的可提取文本。定位修改、新增和删除的页面；插入新页后仍能对齐未变的页面。
+  Plain text: https://thedollscout.com/document-assets/text/zh/compare-pdf-text.txt
 - [PDF 发布前的无障碍检查清单](https://thedollscout.com/zh/learn/pdf-accessibility-checklist) (zh): 先处理源文件：使用真正的标题样式、明确的链接文字、合适的表头和图片替代文本，再导出带标签的 PDF。
+  Plain text: https://thedollscout.com/document-assets/text/zh/learn/pdf-accessibility-checklist.txt
 - [扫描件还是文本 PDF：下一步怎么处理](https://thedollscout.com/zh/learn/scanned-pdf-vs-text-pdf) (zh): PDF 可以包含真实文字、页面图片，或二者混合。看得见文字，不代表程序能提取或辅助技术能读取。
+  Plain text: https://thedollscout.com/document-assets/text/zh/learn/scanned-pdf-vs-text-pdf.txt
 - [如何检查 PDF 阅读顺序](https://thedollscout.com/zh/learn/pdf-reading-order) (zh): 提取文本的顺序不等于屏幕阅读器的阅读顺序。结构标签、文字内容顺序和 PDF 阅读器都会影响结果。
+  Plain text: https://thedollscout.com/document-assets/text/zh/learn/pdf-reading-order.txt
 - [检查方法](https://thedollscout.com/zh/methodology) (zh): 使用 Mozilla PDF.js 解析真实的 PDF 对象，检查标题、语言声明、已标记声明、页面文字、可暴露的结构角色和表单字段。
+  Plain text: https://thedollscout.com/document-assets/text/zh/methodology.txt
 - [文件隐私](https://thedollscout.com/zh/document-privacy) (zh): 所选 PDF、文件名、标题、提取文字、对比内容和人工记录都留在浏览器内存，不上传到服务器。清空工作区或关闭标签页即可丢弃。
+  Plain text: https://thedollscout.com/document-assets/text/zh/document-privacy.txt
 - [收藏品历史资料](https://thedollscout.com/zh/collectors) (zh): 原收藏品指南仍可在下方访问。TDS 现在聚焦文档处理；这些历史工具属于独立主题，不检查 PDF。
+  Plain text: https://thedollscout.com/document-assets/text/zh/collectors.txt
+
+Tool capabilities: https://thedollscout.com/document-assets/tool-capabilities.json
 
 ## Historical collector material
 
-The prior collector content has a separate scope: https://thedollscout.com/collectors
+The prior collector content and MCP have a separate scope: https://thedollscout.com/collectors

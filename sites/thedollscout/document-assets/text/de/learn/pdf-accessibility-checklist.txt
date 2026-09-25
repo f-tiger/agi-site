@@ -1,0 +1,18 @@
+# PDF-Barrierefreiheit vor der Veröffentlichung prüfen
+
+https://thedollscout.com/de/learn/pdf-accessibility-checklist
+Veröffentlicht von TDS Document Scout
+Aktualisiert: 2026-09-25
+
+Im Quelldokument beginnen: echte Überschriften, aussagekräftige Links, geeignete Tabellenköpfe und Textalternativen verwenden.
+
+Exportierte PDF prüfen: Titel, Sprache und Strukturbaum kontrollieren. Das Kennzeichen für Tags reicht allein nicht aus.
+
+Repräsentative Seiten mit einem Screenreader lesen. Spalten, Tabellen, Formulare, Tastatur und Farbinformationen prüfen.
+
+Befunde und manuelle Prüfung zusammen mit der genauen Dokumentversion festhalten. Nicht geprüfte Punkte offen lassen.
+
+Referenzen
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/

@@ -1,0 +1,18 @@
+# 扫描件还是文本 PDF：下一步怎么处理
+
+https://thedollscout.com/zh/learn/scanned-pdf-vs-text-pdf
+由 TDS 文档侦察站发布
+更新日期: 2026-09-25
+
+PDF 可以包含真实文字、页面图片，或二者混合。看得见文字，不代表程序能提取或辅助技术能读取。
+
+先提取一页文字。结果为空时查看原页，判断它是扫描图、空白页还是不支持的内容。空结果本身不能证明是扫描件。
+
+扫描件可用合适的 OCR 工具处理，再逐项核对人名、数字、标点和阅读顺序。识别出的文字也可能出错。
+
+文本层只是第一步，标题结构和替代文本仍需单独检查。本工具不执行 OCR，也不认证处理后的 PDF。
+
+参考资料
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/

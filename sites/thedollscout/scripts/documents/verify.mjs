@@ -2,10 +2,10 @@ import fs from 'node:fs';
 import path from 'node:path';
 import assert from 'node:assert/strict';
 import { fileURLToPath } from 'node:url';
-import { copy, languages } from './copy.mjs';
+import { copy, languages, toolSlugs } from './copy.mjs';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const args = process.argv.slice(2), live = args.includes('--live'), output = args.includes('--out') ? path.resolve(args[args.indexOf('--out') + 1]) : root;
-const origin = 'https://thedollscout.com', edition = '2026-09-25.2';
+const origin = 'https://thedollscout.com', edition = '2026-09-25.3';
 const localFile = route => path.join(output, route.replace(/^\//,'') + (route.endsWith('/') ? 'index.html' : path.extname(route) ? '' : '.html'));
 const headers = { 'user-agent':'tds-document-probe/1.0', 'x-probe':'1' };
 async function read(route, binary = false) {
@@ -24,6 +24,7 @@ async function read(route, binary = false) {
 const manifest = JSON.parse(await read('/document-assets/manifest.json'));
 assert.equal(manifest.edition,edition); assert.equal(manifest.records.length,33);
 const sitemap = await read('/sitemap.xml');
+const titles = new Set();
 for (const record of manifest.records) {
   const route = new URL(record.url).pathname, html = await read(route);
   assert.ok(html.includes(`data-document-edition="${edition}"`),'Old edition ' + route);
@@ -34,8 +35,19 @@ for (const record of manifest.records) {
   for (const [lang, data] of Object.entries(languages)) assert.ok(html.includes(`hreflang="${data.tag}" href="${origin + data.prefix}/${record.slug}"`),'Hreflang ' + route + ' ' + lang);
   assert.ok(html.includes('hreflang="x-default"'));
   assert.ok(sitemap.includes('<loc>' + record.url + '</loc>'),'Sitemap ' + route);
+  assert.equal(sitemap.split('<loc>' + record.url + '</loc>').length - 1,1,'One sitemap entry: ' + route);
+  const title = /<title>(.*?)<\/title>/.exec(html)[1];
+  assert.ok(!titles.has(title),'Unique localized search title: ' + route); titles.add(title);
+  for (const marker of ['og:locale','og:site_name','og:image:alt','twitter:title','page-share-url','data-copy-share="page"']) assert.ok(html.includes(marker), marker + ': ' + route);
+  assert.ok(html.includes(record.url + '?via=share'),'Share only public page: ' + route);
+  const plain = await read(new URL(record.textUrl).pathname);
+  assert.ok(plain.includes(record.url) && plain.includes(copy[record.lang].maintained), 'Citable text: ' + route);
   const ld = [...html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/gs)].map(m => JSON.parse(m[1]));
   assert.ok(ld[0]['@graph'].some(s => s['@type'] === 'WebPage'));
+  if (record.slug) assert.ok(ld[0]['@graph'].some(s => s['@type'] === 'BreadcrumbList'));
+  if (record.slug.startsWith('learn/')) assert.ok(ld[0]['@graph'].some(s => s['@type'] === 'Article'));
+  const tool = toolSlugs.indexOf(record.slug);
+  if (tool >= 0) for (const text of [copy[record.lang].useCases[tool],copy[record.lang].outputs[tool],copy[record.lang].limitations[tool]]) assert.ok(plain.includes(text),'Visible capabilities in text: ' + route);
   assert.deepEqual(JSON.parse(/<script id="document-copy" type="application\/json">(.*?)<\/script>/s.exec(html)[1]),copy[record.lang]);
   // All new document links must resolve in the actual release directory.
   if (!live) for (const m of html.matchAll(/href="([^"#]+)"/g)) {
@@ -44,7 +56,14 @@ for (const record of manifest.records) {
     assert.ok(fs.existsSync(localFile(u.pathname)), 'Broken local link: ' + route + ' -> ' + u.pathname);
   }
 }
-for (const asset of ['app.mjs','core.mjs','pdf-reader.mjs','style.css','favicon.svg','vendor/pdf.mjs','vendor/pdf.worker.mjs','vendor/LICENSE.txt','samples/sample-before.pdf','samples/sample-after.pdf','samples/sample-image.pdf']) assert.ok((await read('/document-assets/' + asset,true)).length > 100,asset);
+for (const asset of ['app.mjs','core.mjs','sharing.mjs','pdf-reader.mjs','style.css','favicon.svg','vendor/pdf.mjs','vendor/pdf.worker.mjs','vendor/LICENSE.txt','samples/sample-before.pdf','samples/sample-after.pdf','samples/sample-image.pdf']) assert.ok((await read('/document-assets/' + asset,true)).length > 100,asset);
+const capabilities = JSON.parse(await read('/document-assets/tool-capabilities.json'));
+assert.equal(capabilities.edition,edition); assert.equal(capabilities.uploads,false); assert.equal(capabilities.tools.length,12);
+for (const tool of capabilities.tools) {
+  const record = manifest.records.find(r => r.url === tool.url);
+  assert.ok(record,'Document capability URL exists');
+  assert.equal(tool.output,copy[record.lang].outputs[toolSlugs.indexOf(record.slug)]);
+}
 assert.ok((await read('/img/document-scout-og.png',true)).length > 1000);
 for (const file of ['/llms.txt','/llms-full.txt']) {
   const text = await read(file); assert.ok(text.startsWith('# TDS Document Scout')); assert.ok(text.includes('/pdf-batch-audit'));

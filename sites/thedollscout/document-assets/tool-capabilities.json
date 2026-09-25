@@ -1,0 +1,125 @@
+{
+  "name": "TDS Document Scout",
+  "edition": "2026-09-25.3",
+  "updated": "2026-09-25",
+  "execution": "User-operated browser only. No hosted PDF processing API.",
+  "uploads": false,
+  "accountRequired": false,
+  "cost": "Free",
+  "notSupported": [
+    "OCR",
+    "Tag repair",
+    "Visual comparison",
+    "Conformance certification"
+  ],
+  "tools": [
+    {
+      "language": "en",
+      "name": "PDF accessibility checker",
+      "url": "https://thedollscout.com/pdf-accessibility-checker",
+      "useCase": "Before publishing a report, handout or client deliverable.",
+      "output": "Page-level findings, manual review prompts, and CSV or JSON exports.",
+      "limitations": "Reading order, image descriptions and the accuracy of tags require human review. This tool does not certify conformance.",
+      "method": "https://thedollscout.com/methodology"
+    },
+    {
+      "language": "en",
+      "name": "Batch PDF audit",
+      "url": "https://thedollscout.com/pdf-batch-audit",
+      "useCase": "When a team needs one review list for several PDF deliverables.",
+      "output": "One combined findings list for up to 10 PDFs, with partial inspections labelled.",
+      "limitations": "Each PDF is limited to 20 MB and 200 inspected pages; each batch to 100 MB and 600 inspected pages.",
+      "method": "https://thedollscout.com/methodology"
+    },
+    {
+      "language": "en",
+      "name": "PDF to text",
+      "url": "https://thedollscout.com/pdf-to-text",
+      "useCase": "When you need to reuse existing PDF text or check whether text extraction works.",
+      "output": "Readable text grouped by page, with a local TXT download.",
+      "limitations": "Image-only pages need a separate OCR workflow. Extracted text may have an incorrect reading order.",
+      "method": "https://thedollscout.com/methodology"
+    },
+    {
+      "language": "en",
+      "name": "Compare PDF text",
+      "url": "https://thedollscout.com/compare-pdf-text",
+      "useCase": "When a revised PDF arrives and you need to find text changes.",
+      "output": "Aligned text pages and changed, added, removed or unknown pages.",
+      "limitations": "Images, layout and annotations are not compared. Suggested page pairings need review.",
+      "method": "https://thedollscout.com/methodology"
+    },
+    {
+      "language": "de",
+      "name": "PDF-Barrierefreiheit prüfen",
+      "url": "https://thedollscout.com/de/pdf-accessibility-checker",
+      "useCase": "Vor der Veröffentlichung eines Berichts, Handouts oder Kundendokuments.",
+      "output": "Seitenbezogene Hinweise, manuelle Prüfpunkte und CSV- oder JSON-Exporte.",
+      "limitations": "Lesereihenfolge, Bildbeschreibungen und die Richtigkeit der Tags brauchen eine manuelle Prüfung. Keine Konformitätszertifizierung.",
+      "method": "https://thedollscout.com/de/methodology"
+    },
+    {
+      "language": "de",
+      "name": "PDF-Stapelprüfung",
+      "url": "https://thedollscout.com/de/pdf-batch-audit",
+      "useCase": "Wenn ein Team eine gemeinsame Prüfliste für mehrere PDFs benötigt.",
+      "output": "Eine gemeinsame Liste für bis zu 10 PDFs, mit gekennzeichneten Teilprüfungen.",
+      "limitations": "Je PDF höchstens 20 MB und 200 geprüfte Seiten; je Stapel 100 MB und 600 geprüfte Seiten.",
+      "method": "https://thedollscout.com/de/methodology"
+    },
+    {
+      "language": "de",
+      "name": "PDF in Text umwandeln",
+      "url": "https://thedollscout.com/de/pdf-to-text",
+      "useCase": "Wenn Sie vorhandenen PDF-Text weiterverwenden oder die Textextraktion prüfen möchten.",
+      "output": "Text nach Seiten gegliedert, als lokale TXT-Datei speicherbar.",
+      "limitations": "Reine Bildseiten benötigen eine separate OCR-Lösung. Extrahierter Text kann eine falsche Lesereihenfolge haben.",
+      "method": "https://thedollscout.com/de/methodology"
+    },
+    {
+      "language": "de",
+      "name": "PDF-Texte vergleichen",
+      "url": "https://thedollscout.com/de/compare-pdf-text",
+      "useCase": "Wenn eine neue PDF-Version vorliegt und Sie Textänderungen finden müssen.",
+      "output": "Zugeordnete Textseiten und geänderte, hinzugefügte, entfernte oder unklare Seiten.",
+      "limitations": "Bilder, Layout und Anmerkungen werden nicht verglichen. Vorgeschlagene Seitenzuordnungen müssen geprüft werden.",
+      "method": "https://thedollscout.com/de/methodology"
+    },
+    {
+      "language": "zh-CN",
+      "name": "PDF 无障碍检查",
+      "url": "https://thedollscout.com/zh/pdf-accessibility-checker",
+      "useCase": "发布报告、讲义或向客户交付 PDF 之前。",
+      "output": "按页定位的检查线索、人工复核提示，以及 CSV 或 JSON 报告。",
+      "limitations": "阅读顺序、图片描述和标签的正确性仍需人工判断；本工具不提供合规认证。",
+      "method": "https://thedollscout.com/zh/methodology"
+    },
+    {
+      "language": "zh-CN",
+      "name": "PDF 批量审查",
+      "url": "https://thedollscout.com/zh/pdf-batch-audit",
+      "useCase": "团队需要把多份待交付 PDF 汇总成一张处理清单时。",
+      "output": "最多 10 份 PDF 的合并问题清单，明确标记未完成的检查。",
+      "limitations": "每份 PDF 最多 20 MB、检查 200 页；每批最多 100 MB、检查 600 页。",
+      "method": "https://thedollscout.com/zh/methodology"
+    },
+    {
+      "language": "zh-CN",
+      "name": "PDF 文本提取",
+      "url": "https://thedollscout.com/zh/pdf-to-text",
+      "useCase": "需要复用 PDF 已有文字，或先判断能否提取文本时。",
+      "output": "按页分组的可提取文字，以及保存在本地的 TXT 文件。",
+      "limitations": "纯图片页面需要另外使用 OCR；提取的文字顺序也可能需要修正。",
+      "method": "https://thedollscout.com/zh/methodology"
+    },
+    {
+      "language": "zh-CN",
+      "name": "PDF 文本版本对比",
+      "url": "https://thedollscout.com/zh/compare-pdf-text",
+      "useCase": "收到修订版 PDF，需要找出文字变化时。",
+      "output": "对齐的文本页面，以及修改、新增、删除或无法比较的页面。",
+      "limitations": "不比较图片、版式和批注；相似页面的配对结果需要复核。",
+      "method": "https://thedollscout.com/zh/methodology"
+    }
+  ]
+}

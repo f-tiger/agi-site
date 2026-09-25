@@ -1,0 +1,18 @@
+# How to review PDF reading order
+
+https://thedollscout.com/learn/pdf-reading-order
+Published by TDS Document Scout
+Updated: 2026-09-25
+
+Text extraction order is not proof of screen-reader reading order. PDF structure tags, text content order and the viewer can affect the reading experience.
+
+Start with a simple page, then test a multi-column page, a table and any form. Listen to the full reading sequence and check keyboard focus separately.
+
+Compare what you hear with the intended meaning. Watch for footnotes inserted mid-sentence, unrelated columns interleaved and form labels separated from their controls.
+
+Fix the source or use a PDF remediation editor. Export a new version and repeat the checks. Use text comparison to find content changes, then do the visual and assistive-technology review again.
+
+Reference material
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/

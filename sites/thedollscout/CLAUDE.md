@@ -10,6 +10,7 @@ Owner：「为什么一定是收藏品，整个站点方向不对就该转型」
 - 开发：`npm ci --prefix scripts/documents --ignore-scripts` → `npm test --prefix scripts/documents` → `node scripts/documents/build.mjs` → `node scripts/documents/verify.mjs`。沿用根仓部署 workflow；旧 workbench 后再运行文档生成器到 dist，防止旧收藏品推荐回到首页。
 - 收藏品 URL、数据、历史 MCP 和独立会员继续可用，由 `/collectors` 链接。勿把旧会员包装成 PDF 付费能力。`gen-collector-pages.mjs` 不得再改文档首页。不要在新首页运行旧 `build-llms-full.mjs`。
 - 新计量只看 `/api/document-stats`：动作数非人数。自带文件完整处理、部分处理、示例、CI 分开；原 PV 口径和 09-23 QA 不能并入新方向。新事件不给旧 `ev=''` 加行。部署以 `/__ci/documents` 写入并回读验证 D1；浏览器 QA 必须 `?ci=1`。
+- 统一样式/SEO/分享：见 `docs/document-experience-2026-09-25.md`。新页使用文档生成器和 `experience.mjs` 共用文案；摘要分享严格白名单，不含文件标识或正文。`doc_share` / `doc_summary_share` 只表示复制或设备分享交接，`doc_share_visit` 是带固定来源标记的访问，不是独立用户或实际消息送达。
 - 每日既有 `tds-traffic.yml` 保存 `content/document-metrics.json`，不新增 cron。趋势种子换为 pdf accessibility / pdf remediation / compare pdf，仍共享原配额。不要用旧 Labubu 趋势扩张新站。
 - 增长与商业判定：见 `docs/document-scout-release-2026-09-25.md`、根仓 `data/fleet-bets.json` 的 `tds-documents-1023`。访问不足先解决分发；动作达标后仍须核实重复任务、独立买家和实付，才定义收费层。
 
