@@ -277,7 +277,7 @@ export function buildWorkPlan({ root, layout, railOf, esc, crumbLd, faqLd, BASE,
 
   const body = `${railOf()}
 <main class="stage">
-  <nav class="crumb"><a href="${BASE}/">${esc(NAME)}</a><i>/</i><span>${zh ? '按岗位算方案' : 'Plan by job'}</span></nav>
+  <nav class="crumb"><a href="${BASE}/">${esc(NAME)}</a><i>/</i><a href="${BASE}/studio/">${zh ? '自研工具' : 'Built by BPJ'}</a><i>/</i><span>${zh ? '按岗位算方案' : 'Plan by job'}</span></nav>
   <header class="hero"><div class="hero-inner">
     <h1>${esc(h1)}</h1>
     <p class="answer">${esc(answer)}</p>

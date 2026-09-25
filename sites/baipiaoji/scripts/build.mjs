@@ -2,6 +2,7 @@
 import { canonicalUrls } from './canonical-urls.mjs';
 import { buildAgentPages } from './agent-pages.mjs';
 import { buildWorkPlan, workPlanLinks } from './work-plan.mjs';
+import { buildStudio, studioHome, studioSearch } from './studio-pages.mjs';
 import { audiencesOf, AUDIENCES } from '../functions/api/_agents.js';
 // 零依赖静态站构建脚本：读取 data/*.json，输出完整站点到 dist/
 import { readFileSync, writeFileSync, mkdirSync, rmSync, cpSync, existsSync, readdirSync } from 'node:fs';
@@ -551,7 +552,7 @@ ${gateOf(path)}${subJs()}
   ${friendLinks.length ? `<nav class="friend-links"><span>${UI('friend_links', '友情链接')}</span>${friendLinks.map((l) => `<a href="${esc(l.url)}" target="_blank" rel="noopener nofollow" title="${esc(l.desc || '')}">${esc(l.name)}</a>`).join('')}</nav>` : ''}
   <p>${esc(NAME)} · ${esc(TAGLINE)} · ${UI('footer_count', '共收录')} ${tools.length} ${UI('footer_count_unit', '个真有免费额度的 AI 工具')}</p>
   <p class="disclosure">${UI('disclosure', '部分链接为合作推广链接，我们可能因此获得佣金；这不影响工具的收录标准与排序，也不会让你多花一分钱。福利以官方页面实时信息为准。')}${site.ga_id ? UI('privacy', '本站使用 Google Analytics 统计匿名访问数据，用于改进内容，不收集个人身份信息。') : ''}${UI('privacy_sub', ' 若你主动订阅额度变更提醒，我们会保存你填写的邮箱与你关注的工具列表，仅用于发送这些工具的额度变动通知；不转让、不用于广告投放，随时可退订。除此之外不收集任何个人信息。')}</p>
-  <p><a href="${BASE}/">${UI('home', '首页')}</a> · <a href="${BASE}/myths.html">${UI('myths_title', 'AI 免费额度流言核查')}</a> · <a href="${BASE}/free-for-you.html">${UI('ffy_nav', '你能白嫖什么')}</a> · <a href="${BASE}/publish-check.html">${UI('pc_nav', '能不能发')}</a> · <a href="${BASE}/no-official-source.html">${UI('ns_nav', '查无官方来源')}</a> · <a href="${BASE}/changes.html">${UI('ch_nav', '额度变更记录')}</a> · <a href="${BASE}/upgrade/">${UI('up_nav', '该买哪档')}</a> · <a href="${BASE}/solutions/coding.html">${LOCALE.code === 'zh' ? '解决方案' : 'Solutions'}</a> · <a href="${BASE}/earn/">${LOCALE.code === 'zh' ? 'AI 赚钱作业包' : 'AI earning packs'}</a> · <a href="${BASE}/why-did-my-ai-free-tier-stop-working.html">${LOCALE.code === 'zh' ? '额度突然不能用了' : 'Free tier stopped working'}</a> · <a href="${BASE}/report.html">${LOCALE.code === 'zh' ? '真相报告' : 'The report'}</a> · <a href="${BASE}/watch.html">${LOCALE.code === 'zh' ? '额度监控' : 'Watch'}</a> · <a href="${BASE}/agents/">${LOCALE.code === 'zh' ? 'Agent 与 MCP 目录' : 'Agents & MCP'}</a> · <a href="${BASE}/submit.html">${UI('submit_nav', '提交工具')}</a> · <a href="${BASE}/for-vendors.html">${UI('vendors_nav', '厂商自荐')}</a> · <a href="${BASE}/developers.html">${UI('dev_nav', '开发者 API')}</a> · <a href="${BASE}/travel/">${UI('travel_nav', '旅行白嫖')}</a> · <a href="${BASE}/feed.xml">${UI('rss', 'RSS 订阅')}</a> · <a href="${BASE}/unsubscribe.html">${UI('unsub_nav', '退订提醒')}</a>${site.contact_email ? ` · <a href="mailto:${esc(site.contact_email)}">${UI('contact', '商务合作')}</a>` : ''}</p>
+  <p><a href="${BASE}/">${UI('home', '首页')}</a> · <a data-studio-footer href="${BASE}/studio/">${LOCALE.code === 'zh' ? '自研工具' : 'Built by BPJ'}</a> · <a href="${BASE}/myths.html">${UI('myths_title', 'AI 免费额度流言核查')}</a> · <a href="${BASE}/free-for-you.html">${UI('ffy_nav', '你能白嫖什么')}</a> · <a href="${BASE}/publish-check.html">${UI('pc_nav', '能不能发')}</a> · <a href="${BASE}/no-official-source.html">${UI('ns_nav', '查无官方来源')}</a> · <a href="${BASE}/changes.html">${UI('ch_nav', '额度变更记录')}</a> · <a href="${BASE}/upgrade/">${UI('up_nav', '该买哪档')}</a> · <a href="${BASE}/solutions/coding.html">${LOCALE.code === 'zh' ? '解决方案' : 'Solutions'}</a> · <a href="${BASE}/earn/">${LOCALE.code === 'zh' ? 'AI 赚钱作业包' : 'AI earning packs'}</a> · <a href="${BASE}/why-did-my-ai-free-tier-stop-working.html">${LOCALE.code === 'zh' ? '额度突然不能用了' : 'Free tier stopped working'}</a> · <a href="${BASE}/report.html">${LOCALE.code === 'zh' ? '真相报告' : 'The report'}</a> · <a href="${BASE}/watch.html">${LOCALE.code === 'zh' ? '额度监控' : 'Watch'}</a> · <a href="${BASE}/agents/">${LOCALE.code === 'zh' ? 'Agent 与 MCP 目录' : 'Agents & MCP'}</a> · <a href="${BASE}/submit.html">${UI('submit_nav', '提交工具')}</a> · <a href="${BASE}/for-vendors.html">${UI('vendors_nav', '厂商自荐')}</a> · <a href="${BASE}/developers.html">${UI('dev_nav', '开发者 API')}</a> · <a href="${BASE}/travel/">${UI('travel_nav', '旅行白嫖')}</a> · <a href="${BASE}/feed.xml">${UI('rss', 'RSS 订阅')}</a> · <a href="${BASE}/unsubscribe.html">${UI('unsub_nav', '退订提醒')}</a>${site.contact_email ? ` · <a href="mailto:${esc(site.contact_email)}">${UI('contact', '商务合作')}</a>` : ''}</p>
 </footer>
 </body>
 </html>`;
@@ -600,6 +601,7 @@ const railOf = () => `<aside class="rail">
     <span class="brand-text"><b>${esc(NAME)}</b><i>${esc(TAGLINE)}</i></span>
   </a>
   <nav class="rail-jump">
+    <a data-studio-nav href="${BASE}/studio/"><b>${LOCALE.code === 'zh' ? '自研工具' : 'Built by BPJ'}</b><span>BPJ</span></a>
     <a href="${BASE}/#dirs"><b>${LOCALE.code === 'zh' ? '两个主攻方向' : 'Two directions'}</b><span>2</span></a>
     <a href="${BASE}/agents/"><b>${LOCALE.code === 'zh' ? 'Agent 与 MCP 目录' : 'Agents & MCP'}</b><span>${AGENT_N_FLOOR}</span></a>
     <a href="${BASE}/money/"><b>${UI('money_nav', '赚钱作业')}</b><span>${hustles.length}</span></a>
@@ -1427,6 +1429,7 @@ ${hustles.map(hustleCard).join('\n')}
     </div>
     <p class="money-more"><a href="${BASE}/money/">${UI('money_all', '看全部赚钱作业与我们的四条内容底线')} →</a></p>
   </section>
+  ${studioHome(BASE, LOCALE.code === 'zh')}
   <section class="plans" id="plans">
     <h2 class="group-title">${UI('plans_title', '免费方案')}<span>${solutions.length}</span></h2>
     <div class="plan-grid">
@@ -4249,6 +4252,7 @@ for (const L of LOCALES) {
   // 全局搜索索引：每语种一份，构建期产出。字段刻意压缩（u/n/k/q），
   // q 是预拼好的小写检索串——前端拿到就查，不做任何运行时加工。
   writeFileSync(join(outDir, 'search-index.json'), JSON.stringify([
+    ...studioSearch(BASE, LOCALE.code === 'zh'),
     // 工具段按站内编辑推荐规则预排序(2026-08-30,owner「搜索参照推荐逻辑优化」):
     // 完全免费 > 有已核实数字 > hot——与栈组装器/alternatives/分类页同一条规则
     // (build.mjs「排序是编辑规则不是机器判断」),全部来自已核实字段。排序在构建期
@@ -6548,6 +6552,16 @@ if (OFFQ) {
   console.log(`🧭 work-plan (${LOCALE.code}): ${r.roles} roles · ${r.tasks} tasks · ${r.tools} tools, ${r.withCap} with a same-unit official figure · data as of ${r.asOf}`);
 }
 
+// BPJ first-party tools are kept separate from the third-party directory.
+buildStudio({
+  layout, railOf, esc, crumbLd, faqLd, BASE, NAME, LOCALE, site,
+  write: (relative, html) => {
+    const target = join(dist, ...(L.dir ? [L.dir.slice(1)] : []), relative);
+    mkdirSync(dirname(target), { recursive: true }); writeFileSync(target, html);
+  },
+  pushPage: (u, pr) => allPages.push({ u, pr }),
+});
+
 // ---- 自建工具 3 号：视频免费额度对照板 ----
 // PRD-own-tools 路线图 #5（video 数值维度）。与 API 计算器的差别是诚实边界更紧：
 // 13 家里只有少数给了官方折算（几积分换几秒），多数「不知道具体数额」——
@@ -8146,7 +8160,8 @@ ${el.groups.map((g) => `  <section class="limits-table">
 
 // 站点级文件只出一份（用中文态的数据做统计）
 useLocale(LOCALES[0]);
-cpSync(join(root, 'assets/style.css'), join(dist, 'style.css'));
+writeFileSync(join(dist, 'style.css'), readFileSync(join(root, 'assets/style.css'), 'utf8') + '\n' + readFileSync(join(root, 'assets/studio/studio.css'), 'utf8'));
+cpSync(join(root, 'assets/studio'), join(dist, 'studio-assets'), { recursive: true });
 writeFileSync(join(dist, 'bpj.js'), SUB_JS_BODY + '\n');
 // CORS + 缓存策略：MCP/Agent 面早已 ACAO:*，它指向的静态数据文件此前没有——
 // 浏览器侧 agent 拿到链接却抓不动。thedollscout/_headers 的同一修法。
@@ -8232,6 +8247,9 @@ for (const { u } of allPages) {
   const h = createHash('sha1')
     .update(readFileSync(f, 'utf8')
       .replace(/<script>[\s\S]*?<\/script>/g, '')
+      // Global discovery chrome does not make every existing article newly updated.
+      .replace(/\n    <a data-studio-nav[^>]*>[\s\S]*?<\/a>/g, '')
+      .replace(/<a data-studio-footer[^>]*>[\s\S]*?<\/a> · /g, '')
       .replace(/\d{4}-\d{2}-\d{2}/g, 'D'))
     .digest('hex').slice(0, 16);
   const before = lmPrev[u];
@@ -8515,7 +8533,12 @@ ${hustles.map((h) => `- [${h.title}](${site.base_url}/money/${h.slug}.html)：${
 
 ${solutions.map((s) => `- [${s.pain}](${site.base_url}/plans/${s.slug}.html)：${s.steps.length} 步，等价付费方案约 ${s.saving || '需订阅费'}｜EN: ${site.base_url}/en/plans/${s.slug}.html`).join('\n')}
 
-## 自建工具 / Tools built on this data
+## BPJ 自研工具 / First-party BPJ tools
+
+- [自研工具板块 / Built by BPJ](${site.base_url}/studio/): BPJ 自主设计与开发，独立于第三方工具收录。EN: ${site.base_url}/en/studio/
+- [供应商报价比较台 / Supplier quote comparison](${site.base_url}/studio/quote-compare): 同一采购任务内核对箱规、起订量、税运费和来源；本地计算与导出，无 OCR 或自动下单。EN: ${site.base_url}/en/studio/quote-compare
+
+## 基于已核实额度的自研工具 / Tools built on verified quota data
 
 把已核实数据做成能直接回答问题的界面——不是又一个 AI 玩具，每个都指回一批带官方出处与核实日期的数字。
 Interfaces built on the verified dataset — each answers a decision directly and every figure traces back to an official source with its check date.
