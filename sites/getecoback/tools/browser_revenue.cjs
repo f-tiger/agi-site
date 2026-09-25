@@ -23,7 +23,7 @@ const http=require('node:http');
    const file=path.resolve(root,'.'+decodeURIComponent(u.pathname));
    if(!file.startsWith(root+path.sep)){response.writeHead(403);response.end();return;}
    let body;try{body=await fs.readFile(file);}catch{response.writeHead(404);response.end();return;}
-   response.writeHead(200,{'Content-Type':{'.html':'text/html','.mjs':'text/javascript','.js':'text/javascript','.css':'text/css','.json':'application/json','.svg':'image/svg+xml'}[path.extname(file)]||'application/octet-stream'});response.end(body);
+   response.writeHead(200,{'Content-Security-Policy':"default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; frame-src 'none'; object-src 'none'",'Content-Type':{'.html':'text/html','.mjs':'text/javascript','.js':'text/javascript','.css':'text/css','.json':'application/json','.svg':'image/svg+xml'}[path.extname(file)]||'application/octet-stream'});response.end(body);
   }catch(error){serverErrors.push(error.message);response.writeHead(500);response.end();}
  });
  await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
@@ -34,8 +34,8 @@ const http=require('node:http');
   const browser=await type.launch({headless:true});
   try{
    const context=await browser.newContext({viewport:{width:390,height:844},locale:'zh-CN'}),errors=[];events=[];
-   await context.route(url=>url.origin!==base,route=>route.abort());
    const page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));
+   const preventAffiliateNavigation=()=>page.locator('[data-revenue-link]').evaluateAll(links=>links.forEach(link=>link.addEventListener('click',event=>event.preventDefault())));
    for(const [lang,t]of Object.entries(copy)){
     console.log('Checking revenue next steps: '+name+' / '+lang);
     await page.goto(base+'/'+t.path);await page.waitForFunction(()=>document.querySelector('#reset').onclick);
@@ -68,10 +68,12 @@ const http=require('node:http');
     if(width!==320){await page.screenshot({path:`${dir}/solarbank-${name}-${width}.png`,fullPage:true});}
    }
    const count=events.length;
+   await preventAffiliateNavigation();
    await page.locator('[data-revenue-link]').first().click();
    assert.equal(events.length,count);checks++;
    await page.goto(base+guide);await page.waitForFunction(()=>document.readyState==='complete');
    const before=events.filter(e=>e.n==='affiliate_click').length;
+   await preventAffiliateNavigation();
    await page.locator('[data-revenue-link]').first().click();
    await received('affiliate_click',before+1);
    const clicks=events.filter(e=>e.n==='affiliate_click');assert.equal(clicks.length,before+1);checks++;
