@@ -60,6 +60,16 @@ def render(t):
     payload = json.dumps(data, ensure_ascii=False, separators=(",", ":")).replace("<", "\\u003c")
     ld = json.dumps(schema, ensure_ascii=False, separators=(",", ":")).replace("<", "\\u003c")
     related_title = ("EUDR plot evidence" if other_topic == "eudr" else "CBAM supplier handoff") if lang == "en" else ("EUDR 地块证据预检" if other_topic == "eudr" else "CBAM 供应商交接检查")
+    request = t.get('request')
+    request_entry = (f'<a class="btn btn-secondary" href="#supplier-request">{"Free supplier request template" if lang == "en" else "免费供应商补件模板"}</a>' if request else '')
+    request_path = f'/downloads/cbam-supplier-request-{lang}.txt'
+    request_section = ''
+    if request:
+        request_section = f'''<section class="panel" id="supplier-request"><h2>{esc(request['title'])}</h2><p>{esc(request['intro'])}</p><ol class="steps">{''.join('<li><strong>'+esc(title)+'</strong><p>'+esc(body)+'</p></li>' for title,body in request['steps'])}</ol><p><a href="{esc(t['sources'][-1][0])}">{esc(t['sources'][-1][1])}</a></p><a id="supplier-template" class="btn btn-primary" href="{request_path}" download>{esc(request['download'])}</a><p class="small muted">{esc(request['note'])}</p></section>'''
+    scope_contact = (f'<a class="btn btn-outline" href="/kontakt.html">{esc(t["scopeContact"])}</a><p class="small muted">{esc(t["scopeContactNote"])}</p>' if t.get('scopeContact') else '')
+    pricing_cta = f'<a class="btn btn-primary" href="#checker">{esc(t["checkTitle"])}</a>'
+    if scope_contact:
+        pricing_cta = f'<div class="actions">{pricing_cta}{scope_contact}</div>'
     body = f'''<!doctype html>
 <html lang="{TAGS[lang]}"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
@@ -77,7 +87,7 @@ def render(t):
 </head><body>
 <a class="skip-link" href="#checker">{c['skip']}</a>
 <nav class="eb-nav"><div class="eb-nav-in"><a class="eb-logo" href="{home}">❄️ EcoBack</a><div class="eb-links"><a href="/tools.html">{c['tools']}</a><a href="#sources">{esc(t['sourcesTitle'])}</a><a href="{route(topic, c['otherLang'])}" lang="{TAGS[c['otherLang']]}" hreflang="{TAGS[c['otherLang']]}">{c['other']}</a></div></div></nav>
-<header class="hero"><div class="wrap"><p class="evidence-label">{c['area']}</p><h1>{esc(t['title'])}</h1><p>{esc(t['intro'])}</p><div class="actions"><a class="btn btn-gold" href="#checker">{esc(t['checkTitle'])}</a><span class="hero-note">{c['local']}</span></div></div></header>
+<header class="hero"><div class="wrap"><p class="evidence-label">{c['area']}</p><h1>{esc(t['title'])}</h1><p>{esc(t['intro'])}</p><div class="actions"><a class="btn btn-gold" href="#checker">{esc(t['checkTitle'])}</a>{request_entry}<span class="hero-note">{c['local']}</span></div></div></header>
 <main class="wrap">
 <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="{home}">{c['home']}</a><span> / </span><a href="/tools.html">{c['tools']}</a><span> / {topic.upper()}</span></nav>
 <p class="small muted">{esc(t['checked'])}</p>
@@ -89,8 +99,8 @@ def render(t):
 <section id="result" class="result" aria-live="polite" tabindex="-1"><h3>{esc(t['resultTitle'])}</h3><p id="summary">{esc(t['empty'])}</p><ol id="gaps"></ol><p id="limit" class="small muted" hidden>{esc(t['limit'])}</p><button class="btn btn-secondary" type="button" id="download" hidden>{esc(t['download'])}</button></section></section>
 <aside class="evidence-aside"><section class="panel"><h2>{esc(t['explainTitle'])}</h2><p>{esc(t['explain'])}</p><a href="{t['sources'][0 if topic == 'cbam' else 1][0]}">{esc(t['sourcesTitle'])}</a><h3>{esc(t['nextTitle'])}</h3><ol class="steps">{''.join('<li>'+esc(x)+'</li>' for x in t['next'])}</ol><p class="notice">{esc(t['boundary'])}</p></section>
 <section class="panel related"><h2>{c['related']}</h2><a href="{route(other_topic,lang)}">{related_title}</a><a href="{overview}">{c['overview']}</a><button class="btn btn-outline" id="share" type="button">{c['share']}</button><p id="share-status" class="small" role="status"></p></section></aside></div>
-<section class="faq" id="faq"><h2>{esc(t['faqTitle'])}</h2>{faqs}</section>
-<section class="panel" id="pricing"><h2>{esc(t['offerTitle'])}</h2><p>{esc(t['offer'])}</p><p class="small muted">{c['paid']}</p><a class="btn btn-primary" href="#checker">{esc(t['checkTitle'])}</a></section>
+{request_section}<section class="faq" id="faq"><h2>{esc(t['faqTitle'])}</h2>{faqs}</section>
+<section class="panel" id="pricing"><h2>{esc(t['offerTitle'])}</h2><p>{esc(t['offer'])}</p><p class="small muted">{c['paid']}</p>{pricing_cta}</section>
 <section class="sources" id="sources"><h2>{esc(t['sourcesTitle'])}</h2><ul>{sources}</ul><p class="small muted">{esc(t['disclaimer'])}</p></section>
 </main><footer class="eb-footer"><div class="wrap"><strong>EcoBack</strong><p>{esc(t['disclaimer'])}</p><a href="/tools.html">{c['tools']}</a> · <a href="/datenschutz.html">{c['privacy']}</a> · <a href="/kontakt.html">{c['contact']}</a></div></footer>
 </body></html>
@@ -103,6 +113,8 @@ def render(t):
     md += ['## '+t['nextTitle'], *['- '+x for x in t['next']], '## '+t['faqTitle']]
     for q,a in t['faqs']:
         md += ['### '+q,a]
+    if request:
+        md += ['## '+request['title'],request['intro'],*['### '+title+'\n\n'+body for title,body in request['steps']], '['+request['download']+']('+BASE+request_path+')', request['note']]
     md += [t['offer'],c['paid'],'## '+t['sourcesTitle'],*['- ['+label+']('+u+')' for u,label in t['sources']],t['disclaimer']]
     return body, '\n\n'.join(md)+'\n'
 
@@ -113,7 +125,7 @@ def discovery(path, lang):
         return
     en = lang == 'en'
     title = 'Free CBAM & EUDR evidence checks' if en else 'CBAM & EUDR: kostenlose Nachweis-Checks'
-    desc = 'Troubleshoot supplier data handoffs or prepare plot evidence. No account or upload; English and Chinese versions.' if en else 'Lieferantendaten und Produktionsflächen strukturiert prüfen. Ohne Konto oder Upload, auf Englisch und Chinesisch.'
+    desc = 'Check CBAM supplier handoffs and download a free request template, or prepare EUDR plot evidence. English and Chinese; no account or upload.' if en else 'CBAM-Lieferantendaten prüfen und eine kostenlose Anfragevorlage herunterladen oder EUDR-Flächennachweise vorbereiten. Auf Englisch und Chinesisch, ohne Konto oder Upload.'
     links = ''.join(f'<a href="{route(topic,l)}" lang="{TAGS[l]}" style="color:#0f6ba8;font-weight:700;margin-right:18px;display:inline-block;padding:8px 0">{topic.upper()} · {"English" if l=="en" else "中文"}</a>' for topic in ('cbam','eudr') for l in ('en','zh'))
     block = f'<!--eco-evidence:start--><section id="eu-evidence-tools" style="max-width:1080px;margin:26px auto;padding:0 20px"><div style="background:#fff;border:1px solid #dce7ed;border-left:4px solid #2ea86b;border-radius:12px;padding:20px"><h2 style="font-size:22px;color:#0a4d7a;margin:0 0 8px">{title}</h2><p style="color:#5b6b78;margin:0 0 8px">{desc}</p><div>{links}</div></div></section><!--eco-evidence:end-->'
     h = path.read_text()
@@ -133,6 +145,9 @@ def main():
         target = SITE / route(t['topic'],t['lang']).lstrip('/')
         put(target,body)
         put(target.with_suffix('.md'),md)
+        if t.get('request'):
+            template = '\n\n'.join([t['title'],t['checked'],BASE+route(t['topic'],t['lang']),*t['request']['template'],t['sourcesTitle'],*['%s\n%s'%(label,url) for url,label in t['sources']]])+'\n'
+            put(SITE/'downloads'/f'cbam-supplier-request-{t["lang"]}.txt',template)
     for p, lang in [('index.html','de'),('en/index.html','en'),('pro-werkzeuge.html','de'),('agents/compliance.html','de'),('en/agents/compliance.html','en')]:
         discovery(SITE/p,lang)
     print('EU evidence: CBAM + EUDR, English + Chinese, native EcoBack pages and discovery links')

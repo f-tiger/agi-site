@@ -614,6 +614,10 @@ jobs:
           # wrong reason.
           check "https://getecoback.com/js/eu-evidence.js" "ping('evidence_check')"
           check "https://getecoback.com/css/eu-evidence.css" "evidence-grid"
+          for lang in en zh; do
+            check "https://getecoback.com/$lang/agents/cbam-supplier-data.html" 'id="supplier-request"'
+            check "https://getecoback.com/downloads/cbam-supplier-request-$lang.txt" "CBAM"
+          done
           check "https://getecoback.com/tools.html" "/zh/agents/eudr-geolocation-evidence.html"
           check "https://getecoback.com/search-index.json" "/en/agents/cbam-supplier-data.html"
           # Crawler/agent entry points that are rebuilt every deploy.
