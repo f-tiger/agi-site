@@ -1,5 +1,5 @@
 // Deterministic document triage. A detected signal is not a conformance verdict.
-export const VERSION = '2026-09-25.6';
+export const VERSION = '2026-09-25.7';
 export const LIMITS = Object.freeze({ files: 10, fileBytes: 20 * 1024 * 1024, batchBytes: 100 * 1024 * 1024, pages: 200, batchPages: 600, pageChars: 100000, totalChars: 2000000 });
 export const normalizeText = value => String(value || '').normalize('NFKC').replace(/\s+/gu, ' ').trim();
 

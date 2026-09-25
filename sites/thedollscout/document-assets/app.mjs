@@ -1,5 +1,5 @@
-import { LIMITS, validateFiles, compareDocuments, csv, auditExport } from './core.mjs?v=2026-09-25.6';
-import { shareUrl, summaryText } from './sharing.mjs?v=2026-09-25.6';
+import { LIMITS, validateFiles, compareDocuments, csv, auditExport } from './core.mjs?v=2026-09-25.7';
+import { shareUrl, summaryText } from './sharing.mjs?v=2026-09-25.7';
 const c = JSON.parse(document.getElementById('document-copy').textContent);
 const mode = document.body.dataset.documentMode || 'audit';
 const $ = id => document.getElementById(id);
@@ -16,7 +16,7 @@ if (isProbe) for (const link of document.querySelectorAll('a[href]')) {
   url.searchParams.set('ci', '1');
   link.href = url.pathname + url.search + url.hash;
 }
-function track(event) {
+export function track(event) {
   if (location.hostname !== 'thedollscout.com' || isProbe || navigator.webdriver || navigator.doNotTrack === '1' || sent.has(event)) return;
   sent.add(event);
   let ref = '';
@@ -82,7 +82,7 @@ async function analyze() {
   resetResults(); setBusy(true); renderFiles(); status(c.working);
   track(sample ? 'doc_sample' : 'doc_start');
   let reader;
-  try { reader = await import('./pdf-reader.mjs?v=2026-09-25.6'); }
+  try { reader = await import('./pdf-reader.mjs?v=2026-09-25.7'); }
   catch { setBusy(false); status(c.errors.loadFailed, true); return; }
   if (current !== epoch) return;
   let remaining = LIMITS.batchPages;

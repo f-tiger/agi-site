@@ -1,5 +1,15 @@
 # CLAUDE.md — thedollscout.com / TDS Document Scout
 
+## 2026-09-25 月收入目标与交付实验
+
+Owner 明确要求主动探索工具、共识和金融机制，目标月营收1万以上。未指定币种：当前模型按人民币，另列美元情景。见根目录 `docs/tds-consensus-revenue-2026-09-25.md`、站内 `.agents/product-marketing.md` 和 `docs/delivery-experiment-2026-09-25.md`。
+
+- 新增 `/delivery-evidence` 及 DE/ZH：本地文件指纹、来源备注、JSON/HTML导出与文件核对。开放记录格式不是收件、同意、作者身份或可信时间证明，没有Bitcoin锚定。保持现有首页与PDF工具；不再先推倒整站。
+- 79美元/月团队功能仅为明示调研概念，未建成、不能购买。匿名预算/频次答案不是订单。既有会员隔离不变。
+- `doc_delivery_sample` 排除于真实动作；`doc_delivery_interest_*` 仅固定类别。不要把动作当独立客户。
+- 版本2026-09-25.7，36个生成页面。静态页验证与D1计量验证拆开：`verify.mjs --live --skip-events`、`verify-events.mjs`。工作流仍保留失败，只允许已验证页面的IndexNow通知不受无关会员/计量故障阻断。
+- GSC Wizard已确认连接，但本会话未暴露查询方法；当天runner仍缺GSC/GA4凭据。未取得搜索数据前，不断言收录问题已解决。
+
 ## 当前方向：2026-09-25 文档工具转型（owner 明确授权）
 
 Owner：「为什么一定是收藏品，整个站点方向不对就该转型」→「按照调研优化后，落地到tds，整个站点可以起来流量」。本节替代下方历史收藏品定位和扩张限制；2026-09-25 owner 再次要求新工具沿用 TDS 风格，视觉继续采用原站 Swiss 电商白、黑字和红色强调；退役内容守卫、隐私、来源诚实、会员隔离与部署防回滚要求继续有效。

@@ -9,6 +9,8 @@ import { onRequestPost, safeRef } from '../../functions/api/doc-events.js';
 import { onRequestGet } from '../../functions/api/document-stats.js';
 import { copy } from './copy.mjs';
 import { shareUrl, summaryText } from '../../document-assets/sharing.mjs';
+import { fingerprint, deliveryRecord, parseDeliveryRecord, compareInventory, recordHTML, validateDeliveryFiles } from '../../document-assets/delivery-core.mjs';
+import { deliveryCopy } from './delivery-copy.mjs';
 const parse = async (kind, options = {}) => readPdf(await fixture(kind), { library:pdfjs, ...options });
 test('compressed real PDF: text, title and /Lang are actually parsed', async () => {
   const report = await parse('after');
@@ -123,6 +125,40 @@ test('CI, bots, cross-site posts, opt-outs and samples cannot inflate real compl
   const sql = [];
   const res = await onRequestGet({ env:{ HITS:{ prepare:s => { sql.push(s); return { all:async () => ({ results:[] }) }; } } } });
   assert.equal(res.status,200);
-  for (const s of sql.slice(0,4)) assert.match(s,/NOT IN \('doc_ci','doc_sample'\)/);
+  for (const s of sql.slice(0,4)) assert.match(s,/NOT IN \('doc_ci','doc_sample','doc_delivery_sample'\)/);
   assert.match((await res.json()).unit,/Not unique users/);
+});
+test('delivery fingerprints use known SHA-256 and distinguish changed, missing and extra files', async () => {
+  const file = new File(['abc'],'client.txt');
+  const f = await fingerprint(file);
+  assert.equal(f.sha256,'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad');
+  const r = deliveryRecord([f],{project:'Original',acceptance:''});
+  const parsed = parseDeliveryRecord(JSON.stringify({...r,attestation:{consentVerified:true}}));
+  assert.equal(parsed.attestation,undefined);
+  assert.equal(r.attestation.consentVerified,false); assert.equal(r.notes.acceptance,'');
+  assert.equal(compareInventory(parsed,[f])[0].status,'match');
+  const changed = await fingerprint(new File(['abd'],'client.txt'));
+  assert.equal(compareInventory(parsed,[changed])[0].status,'changed');
+  assert.deepEqual(compareInventory(parsed,[{...f,name:'renamed.txt'}]).map(x=>x.status),['missing','extra']);
+});
+test('delivery exports escape hostile notes; imports reject malformed hashes and duplicate names', async () => {
+  const f=await fingerprint(new File(['abc'],'<script>alert(1)</script>.txt'));
+  const r=deliveryRecord([f],{project:'<img src=x onerror=alert(1)>',delivery:'<script>sendSecrets()</script>'});
+  const html=recordHTML(r);
+  assert.ok(!html.includes('<script>')&&!html.includes('<img src=x'));
+  assert.ok(html.includes('default-src')&&html.includes('&lt;script&gt;'));
+  assert.throws(()=>parseDeliveryRecord(JSON.stringify({...r,files:[{...f,sha256:'x'}]})));
+  assert.throws(()=>parseDeliveryRecord(JSON.stringify({...r,version:2})));
+  assert.throws(()=>parseDeliveryRecord(JSON.stringify({...r,files:[f,f]})));
+  assert.throws(()=>validateDeliveryFiles([{name:'same',size:1},{name:'same',size:2}]),/names/);
+  assert.throws(()=>validateDeliveryFiles([{name:'large',size:21*1024*1024}]),/size/);
+  for(const lang of ['de','zh'])assert.deepEqual(Object.keys(deliveryCopy[lang]).sort(),Object.keys(deliveryCopy.en).sort());
+});
+test('delivery demand stays categorical and samples stay separate; storage failure is not a bad request', async () => {
+  assert.equal(shareUrl('/delivery-evidence?private=secret'),'https://thedollscout.com/delivery-evidence?via=share');
+  assert.equal((await event({p:'/delivery-evidence',e:'doc_delivery_interest_repeat_team'})).bound.length,1);
+  assert.equal((await event({p:'/delivery-evidence',e:'doc_delivery_interest_repeat_team',email:'private'})).bound.length,0);
+  const request=new Request('https://thedollscout.com/api/doc-events',{method:'POST',headers:{origin:'https://thedollscout.com'},body:JSON.stringify({p:'/delivery-evidence',e:'doc_delivery_complete'})});
+  const res=await onRequestPost({request,env:{HITS:{prepare:()=>({bind:()=>({run:async()=>{throw Error('Internal private error');}})})}}});
+  assert.equal(res.status,503); assert.deepEqual(await res.json(),{ok:false,error:'storage_unavailable'});
 });

@@ -1,0 +1,28 @@
+# 整理客户交付记录
+
+https://thedollscout.com/zh/delivery-evidence
+由 TDS 文档侦察站发布
+更新日期: 2026-09-25
+
+将实际文件、约定范围和客户回复放在一起，直接在浏览器生成可带走的交付记录。
+
+最多10个文件，每个20 MB，总计100 MB。文件与备注仅留在当前标签页，不上传、不自动保存。
+
+保存约定范围及对应的原始邮件或合同。
+
+保留实际交付文件和原始发送消息。
+
+记录客户实际回复，包括修改要求。
+
+明确标出缺失或争议事实，不用猜测补齐。
+
+SHA-256指纹用于识别文件字节。备注和生成时间来自你及你的设备。TDS不验证作者身份、收件人、送达、验收或支付授权，也不生成比特币时间戳或签名。
+
+支付争议需要的证据取决于争议原因。交付记录本身不能证明持卡人授权购买，请核对支付服务商的现行要求。
+
+我们正在调研79美元/月的团队方案，包括共享审查历史和品牌化交付。目前不能购买。以下匿名回答仅用于产品判断，不创建账户或预订。
+
+参考资料
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
