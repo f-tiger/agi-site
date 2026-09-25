@@ -993,3 +993,6 @@ DiscussionForumPosting。不要伪造活跃度、用户或回复，不自动在�
 
 修改讨论功能必须跑 SQLite 权限/隐私测试与中英浏览器流程；上线需跑只读 verify。
 保留 AGI 原有判断台账、分歧引擎和付费工作区，不把论坛加入自动生成工具页面的模板。
+
+## 钱线仪器(2026-09-21)
+`/api/pulse` 多返回 `money`(subscribers / ev_tool_click|invest_tool_click|subscribe_click|calc_use_28d / pv_advertise|audits|members|workbench_28d / member_orders_by_state / discuss_profiles),舰队 `money_line.py` 每日读;部署自检断言 `"money":{`。/advertise 09-21 读数:223 pv(服务端口径)、0 询单。

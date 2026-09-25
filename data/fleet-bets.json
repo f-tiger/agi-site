@@ -13,7 +13,7 @@
    "source": "CLAUDE.md:437",
    "status": "won",
    "settled": "2026-09-16",
-   "reading": "2026-09-16T08:23:25Z 本会话现跑探针(全权限网络已开):14 站 × 8 个 AI UA,blocked_sites=[]、invalid_sites=[],全部 control 200。Cloudflare Pay-Per-Crawl 2026-09-15 生效后次日无任何站被 403/429/503 拦截 → owner 无需动 Cloudflare 开关。"
+   "reading": "2026-09-16T08:23:25Z 本会话现跑探针(全权限网络已开):14 站 × 8 个 AI UA,blocked_sites=[]、invalid_sites=[],全部 control 200。Cloudflare Pay-Per-Crawl 2026-09-15 生效后次日无任何站被 403/429/503 拦截 → owner 无需动 Cloudflare 开关。 【09-17 补记,同一条线的复核】同日把 Googlebot 也加进探针(此前 AGENTS 里只有 Bingbot,舰队一直在探自己已有的搜索来源、从没探过想扩大的那个):14 站 × 9 个 UA × 2 条路径仍全部 200,Googlebot 零拦截。效力不对称须记住——Cloudflare 按反向 DNS 验真 Googlebot,伪造 UA 从 runner 发出只会被更严格对待,所以全 200 是强证据,反过来若被拦则不能下结论,要去 Cloudflare 复核。"
   },
   {
    "id": "bpj-crawler-observed-0918",
@@ -66,8 +66,9 @@
    "lose": "全簇 <10 pv → 停止扩张",
    "source": "sites/gridlings/CLAUDE.md:178",
    "status": "won",
-   "settled": "2026-09-22",
-   "reading": "2026-09-22 D1 现查(ev 表,ua_class='human',28 天 08-25→09-22):十张规则页真人 pv 合计 52(≥50,边际 4%):6x6 5 · binary 5 · futoshiki 6 · games-like-linkedin-queens 7 · kropki 3 · nonogram 4 · sandwich 6 · skyscraper 5 · star-battle 6 · thermometer 5。来源:10 行经 play.agiscorecard.com 站内导航,其余无 referrer 但分散在数小时内(SG 09-14 六页跨 4,4 小时、FR 09-02 七页跨 76 分钟),不是秒级扫描形状。搜索/AI 引荐 0。阈值另一半(Bing/GSC 前 20)只有 owner 能读。异常值:/star-battle-rules 28 天 bot 抓取 89 次(其余页 6–10)。win 分支「追加 zh 版与更多查询」记为下一个扩张槽候选,09-22 未铺:零搜索引荐的 won 不该直接长出第二批页,先等 owner 的 Bing/GSC 那一半。"
+   "settled": "2026-09-21",
+   "reading": "D1 gridlings-events 现查(2026-09-21,28d 窗,name='page_view' AND ua_class='human'):10 张规则页合计 52 pv(games-like-linkedin-queens 7、star-battle 6、sandwich-sudoku 6、futoshiki 6、thermometer 5、skyscraper 5、binary 5、6x6-sudoku 5、nonogram 4、kropki 3;各页 first_day 08-27,最新 09-19)。ua_audit 同窗查无 fleet/heartbeat/audit/python UA 的行,会话探针未计入。阈值 ≥50,读数 52 —— 赢得很薄(+2),且是服务端 human 口径(09-12 起收紧)。Bing/GSC 前 20 那半句本会话读不到。win 动作「追加 zh 版与更多查询」= 台账里第一条可长出扩张槽的 won 行;本轮未动 gridlings,留给下一次 gridlings 会话。",
+   "reading_2026-09-22": "2026-09-22 D1 现查(ev 表,ua_class='human',28 天 08-25→09-22):十张规则页真人 pv 合计 52(≥50,边际 4%):6x6 5 · binary 5 · futoshiki 6 · games-like-linkedin-queens 7 · kropki 3 · nonogram 4 · sandwich 6 · skyscraper 5 · star-battle 6 · thermometer 5。来源:10 行经 play.agiscorecard.com 站内导航,其余无 referrer 但分散在数小时内(SG 09-14 六页跨 4,4 小时、FR 09-02 七页跨 76 分钟),不是秒级扫描形状。搜索/AI 引荐 0。阈值另一半(Bing/GSC 前 20)只有 owner 能读。异常值:/star-battle-rules 28 天 bot 抓取 89 次(其余页 6–10)。win 分支「追加 zh 版与更多查询」记为下一个扩张槽候选,09-22 未铺:零搜索引荐的 won 不该直接长出第二批页,先等 owner 的 Bing/GSC 那一半。"
   },
   {
    "id": "gridlings-itch-0924",
@@ -81,7 +82,9 @@
    "status": "lost",
    "reading_2026-09-22": "D1:ref LIKE '%itch.zone%' 的 play_start 累计 58 / solve 13(阈值 150 / 25)。未到期,不结算。",
    "settled": "2026-09-24",
-   "reading": "D1 gridlings ev(无 ua 过滤,与 09-22 同口径):ref LIKE '%itch.zone%' 的 play_start 累计 52(08-24→09-23,09-22 后 +7)/ solve 13(最后一次 08-27)。阈值 150 / 25,两项都不到三分之一;solve 已 4 周为 0。09-22 记的 58 与今天 52 对不上,原因未查明,两者都远低于线,不影响结论。按原文:游戏降为只维护、不新增,人力回 eco/bpj 变现线。"
+   "reading": "D1 gridlings ev(无 ua 过滤,与 09-22 同口径):ref LIKE '%itch.zone%' 的 play_start 累计 52(08-24→09-23,09-22 后 +7)/ solve 13(最后一次 08-27)。阈值 150 / 25,两项都不到三分之一;solve 已 4 周为 0。09-22 记的 58 与今天 52 对不上,原因未查明,两者都远低于线,不影响结论。按原文:游戏降为只维护、不新增,人力回 eco/bpj 变现线。",
+   "reading_2026-09-22_pr2": "预读(到期前 2 天,不结算):D1 gridlings-events ref LIKE '%itch.zone%' 累计 play_start **45**(首日 08-24,最近 09-19,只有 6 个有事件日)、solve **13**(全部落在 08-24→08-27);28d 窗 33 / 12。阈值 ≥150 / ≥25,两项都差数倍,且 solve 自 08-27 起 0 —— 09-24 按规则结算,读数不会翻转。",
+   "reading_2026-09-24_pr2": "关于 09-22 的 58 与 09-24 的 52 对不上:D1 无行被删(最早行 08-22 仍在),itch.zone play_start 只增不减,本会话 09-22 04:30 读到 45、之后 +7 = 52,与主读数一致。58 是那一次查询的离群值,结算值 52 成立。"
   },
   {
    "id": "eco-kuehlt-nicht-0925",
@@ -475,7 +478,8 @@
    "win": "按站内 CLAUDE.md 加码",
    "lose": "按站内 CLAUDE.md 收缩",
    "source": "sites/thedollscout/CLAUDE.md:276",
-   "status": "open"
+   "status": "open",
+   "reading_2026-09-24": "口径提醒:tds 的 hits 表没有 UA 列,09-23 单日 304 次 pv 是一次 QA 突发(US/DE/LT 三国在 5 张页上循环,引荐是本站与预览主机 dollscout.pages.dev),不是读者;按天读数时该日须剔除,否则 28 天均值被抬高约 11/天。"
   },
   {
    "id": "eco-schema-entity-1031",
@@ -808,6 +812,8 @@
    "source": "docs/tool-monetization-2026-09-16.md §七",
    "status": "open",
    "reading_20260916": "t0 普查(bpj hits ev='api',28 天,剔本仓 CI curl/8.5.0 的 696 次):自报身份的 MCP 生态代理 **7 个** —— SaSame-MCP-Audit 23 次/22 天、rokmcp-collector 12/12、AIWebIndex 12/12、mcp-protections-research 9/1、maghs(MCP prove)3/1、mcp/1.0.0 2/2、agentdeals-internal-pm 2/1,另有一个普查型 UA 两个变体共 4 次(其中一个把联系邮箱写在 UA 里,按隐私红线不记入本仓)。另有 4 个**浏览器 UA 的定时调用方**:77 次/26 天、56/28、32/25、22/15 —— 真人浏览器不会每天打 /api/changes,这些是伪装 UA 的计划任务,**按旧口径会被算成「真实消费者」,这正是改判据的原因**。SR 侧 t0 = 0(端点当日才建)。",
+   "metric_clarified_2026-09-24": "澄清(本条不改阈值;同日 main 侧另把参数多样性写进了 threshold,两者并存):本仓自己的 deploy/CI 自检永远不算调用方。原因:SR deploy 自检每次部署带参数调用 6 个工具共 ~15 次,09-17 起 4 个部署日已 45 次,第 5 个部署日就会让「≥10 次带参数、跨 ≥5 天」被我们自己满足。识别方式:ref(UA)以 buysomething-deploy-selfcheck 开头,或 09-24 前与 deploy 同时刻的裸 curl/。",
+   "reading_2026-09-24": "SR 侧外部带参数调用 0(见 sr-mcp-calls-1014 同日读数);bpj /api/changes 侧未复查。",
    "reading_20260924": "三站现查。SR:8 天 80 次,45 次部署自检 + 13 次沙箱手测 curl,第三方 22 次**全部空参数**,带参数的第三方 = 0。eco:366 次/29 天(worker 已排除 CI),但 `node` 调用方 180 次/20 天**只用 9 种参数组合**、rokmcp 54 次**只有 1 种**、SaSame 32 次**1 种** —— 重放不是使用。bpj:588 次里 514 次是自检 curl,第三方 ~70 次全是自报家门的采集器/审计器。**关键**:按收紧前的口径,eco 的 `node` 今天就已满足 win(180 次带参数、20 天)—— 一条能被现状满足的线不是赌注,所以在任何人达标之前把参数多样性写进条件。按新口径全舰队需求调用方 = 0。"
   },
   {
@@ -820,6 +826,7 @@
    "lose": "<50 或全是采集器 → 机器面只作为引用与「被 vendored」的手段,不再往付费方向投入;不再新建机器面工具",
    "source": "docs/tool-monetization-2026-09-16.md §十五",
    "status": "open",
+   "reading_2026-09-24": "D1 现查(sourceradar-events,mcp_call,09-17→09-24,label 不含 __ci):合计 80 次。按 ref 列里存的 UA 拆:本仓 deploy 自检 UA 45 次 + 裸 curl/ 13 次(同一 deploy 步骤的 JSON-RPC 两发没带 -A,同 4 天、同 US)= **58 次是我们自己**;外部 22 次来自 8 个调用方,全部是索引器形状(rokmcp-collector 7、SaSame-MCP-Audit 7、MJ12bot、TrimtabVerifier 等),**带参数的外部调用 0**。剔自测后 t0 读数 = 22 次 / 0 个合格调用方(阈值 ≥50 且 ≥1 个)。deploy-buysomething.yml 09-24 起 JSON-RPC 也带 selfcheck UA;09-24 前的裸 curl/ 行照本读数一并剔除。09-21 手册里「24 次非 CI 调用、带参数 check_import_claim 7 次 = 首次真实使用」是误读,那 7 次就是 deploy 的 JSON-RPC。",
    "reading_20260924": "上线 8 天:80 次调用,其中我们自己 58 次(自检 45 + 沙箱 curl 13);第三方 22 次全部空参数,带参数第三方 0。已改:部署自检的调用不再落库;pulse 新增机器面块(ci/operator/indexer/other + 需求调用方),部署自检断言该块存在。10-14 按原文结算。"
   },
   {
@@ -845,6 +852,7 @@
    "lose": "两条都 0 → 机器面与引用面对这个垂直都没反应;停止扩工具,只维护现有八个,把力气还给 eco 联盟线",
    "source": "docs/tool-monetization-2026-09-16.md §十七",
    "status": "open",
+   "reading_2026-09-24": "①classification_rulings + import_rule_changes 带参数调用 09-17→09-24 共 20 次,**全部是本仓 deploy 自检**(selfcheck UA),外部 0;剔后 t0 仍为 0。②/import-rule-changes 页面的引荐未复查。",
    "reading_20260924": "带参数第三方调用 0;/import-rule-changes 真人 pv 2、/mcp 真人 pv 4,**引荐来源全为空**(无 AI、无搜索)。页面与工具都在线、闸门全绿,缺的是「被装进某个客户端」这一步。"
   },
   {
@@ -971,9 +979,10 @@
    "threshold_original": "≥150 / ≥15",
    "revised": "2026-09-15",
    "revised_reason": "原口径的「二次事件」测的是这些游戏不发的东西:D1 只记 solve/play_again/game_over 这类离散里程碑,而门户玩家在开局与跑完一局之间什么都不触发。owner 后台截图给了正确指标(停留时长):35 visits → 11 玩过 30s → 6 玩过 60s。阈值改为按他们的口径,原文保留在 *_original。",
-   "note": "版本冻结:读数属于 09-15 的旧包。09-16 上传了更快的新归档但 owner 决定「先不发」,结算前不得 publish_sandbox,否则样本前后不可比。",
+   "note": "版本冻结:读数属于 09-15 的旧包。09-16 上传了更快的新归档但 owner 决定「先不发」,结算前不得 publish_sandbox,否则样本前后不可比。 ‖ 2026-09-21 预读(到期前一天,不结算):① D1 play_start 非 US、ref LIKE '%games.playgama.net%'、ts≥09-15 14:53 = 155(4 个有事件日 09-15→09-19,09-20/21 无新增),已过 ≥150;② PLAYS 60S ÷ VISITS 仍需 owner 后台截图。 ‖ 2026-09-22:①已达标,等 owner ② 截图结算(见 reading_2026-09-22)。",
    "reading_2026-09-22": "① D1:ts>='2026-09-15 14:53' AND ref LIKE '%games.playgama.net%' AND country<>'US' 的 play_start = 155(≥150 达成),跨 4 天,全部落在 09-15 14:54 → 09-19 18:41,09-20 起为 0;Playgama get_sandbox_traffic:run 仍 RUNNING,spentRatio 0.148,endsAt 2026-09-22T14:53Z。② 需 owner 投放结束后的 VISITS / PLAYS 60S 截图(旧包那一版);上一张 owner 截图 09-16(投放 17 小时)是 13/49 = 26,5%。保持 open,09-29 前结算;若届时无新截图,按 ① + 09-16 截图结算并注明截图日期。",
    "reading_2026-09-23": "Playgama get_sandbox_traffic:run cmu2skueg… FINISHED(09-15 14:53 → 09-22 14:53,spentRatio 0,148)。① 终值 155(投放已结束,不再变;另有 game_over 61、calc_use 40、play_again 8)。② 仍缺 owner 投放后截图;按本线自己的规则 09-29 前结算,届时无新截图即按 ① + 09-16 截图(13/49 = 26,5 %)结算并注明截图日期。",
+   "reading_2026-09-22_pr2": "到期日现查。① D1 gridlings-events(name='play_start',ts≥'2026-09-15 14:53',ref LIKE '%games.playgama.net%',country<>'US')= **155**,阈值 ≥150 已过;全部 167(含 US 12),全 human,按日 09-15 76 / 09-16 87 / 09-17 2 / 09-19 2,09-20 起 0,最后一次 09-19 18:41 UTC。Playgama MCP get_sandbox_traffic(SINGULARITY):run RUNNING,FREE,budget $2,spentRatio 0.168,startsAt 09-15 14:53,endsAt **09-22 14:53 UTC**;即 163/167 开局落在前 48 小时,之后投放几乎停摆,与 7 款主目录申请 09-14/15 全部 REJECTED 同期。② PLAYS 60S ÷ VISITS 仍只有 owner 后台能读:**run 今日 14:53 UTC 结束后截一张 Overview(附日期)即可结算**;09-29 前没有截图则记 insufficient。win 动作里「回投主目录」已被 gridlings-playgama-five-0925(lost,7/7 同模板拒稿)作废 —— 主目录只按 sandbox 表现由平台挑,不接受再提交;剩下的 win 动作只有一条:$20 付费轮作为 owner 决策提出。",
    "settled": "2026-09-24",
    "reading": "① D1 现查(剔 US 与 label='__deploycheck'):投放起 2026-09-15 14:53 至今,非 US play_start 累计 **155**,**46 个国家** —— 阈值 150,以 3% 的边际达标。投放窗口名义到 09-22 14:53,但**最后一条事件是 09-19 18:41**,提前三天断流,三轮 spentRatio 当时只有 13–16%。② 只有 owner 能读的那一半,最后一次读数是 **2026-09-16 后台截图**:GHOSTLINE VISITS 49 / PLAYS 60S 13 = **27%**,阈值 15%,达标 1.8 倍。**但那是开跑 17 小时的读数,不是窗口结束时的读数**——没有 09-22 的截图,这一半按已有的唯一一次测量结算,结算时应向 owner 说明。分款(非 US play_start / 二次事件):PROMPT 17/80 · SINGULARITY 62/0 · GHOSTLINE 57/2 · MINIMA 2/11 · OVERFIT 6/4 · OVERSEER 3/0 · MIMIC 1/0。**PROMPT 那个 4.7 的比值是三个人不是一群人**:BR 一人 2 开局→23 次 game_over、ID 3→13、SO 1→4,其余九国 12 次开局→**0** 次二次事件。深度参与 ≈ 3/17。GHOSTLINE 只有 2 次二次事件,因为它那九个事件名 09-17 15:16 才随白名单修复上线,窗口只剩两天。"
   },
@@ -989,8 +998,9 @@
    "status": "lost",
    "reading_2026-09-22": "Playgama list_applications:PROMPT / OVERFIT / MIMIC / OVERSEER / MINIMA 五款状态全部 REJECTED(09-15),GHOSTLINE / SINGULARITY 亦 REJECTED(09-16),另有 TOWERS 处于 DRAFT;0/5 进主目录。未到期,不结算。",
    "reading_2026-09-23": "list_applications:五款仍全部 REJECTED(09-15),09-16 之后无状态变化;0/5。",
-   "settled": "2026-09-24",
-   "reading": "排队五款 PROMPT / OVERFIT / MIMIC / OVERSEER / MINIMA **全部 REJECTED**(2026-09-15 18:57–19:17 同一批),进主目录 **0** 款,阈值 ≥1。拒稿原文与 GHOSTLINE / SINGULARITY 09-14 那两条**逐字相同**,仍是那段 AI 游戏分流政策(先经 Playgama MCP 拿真实数据,再由他们挑进主目录),**不是质量评语**。至此七款 **7/7** 全部被主目录拒绝,同一条政策理由——这不再是偶然,是这条门对本舰队关着。提前一天结算:答案已定,再等一天不会改变。"
+   "settled": "2026-09-22",
+   "reading": "Playgama MCP list_applications 2026-09-22 04:30 UTC:PROMPT / OVERFIT / MIMIC / OVERSEER / MINIMA 全部 REJECTED(09-15 18:57–19:17 UTC);list_moderation_comments 五款同一条模板:「For games created with AI, we offer a dedicated way to test them on Playgama before they can be considered for our main catalog… Publishing through Playgama MCP … gives our team real performance data that we can use to identify the strongest games for potential placement in the main Playgama catalog」。GHOSTLINE(09-14 13:02)与 SINGULARITY(09-14 13:39)也是同一模板 —— **7/7 同文,主目录对本舰队的 AI 游戏关闭**。提前 3 天结算,因为读数已不可能改变。lose 动作生效:只经营 sandbox 面,不再空手重投;进主目录的唯一通道是 Playgama 自己按 sandbox 表现挑选,不是我们再提交。",
+   "reading_2026-09-24_main": "排队五款 PROMPT / OVERFIT / MIMIC / OVERSEER / MINIMA **全部 REJECTED**(2026-09-15 18:57–19:17 同一批),进主目录 **0** 款,阈值 ≥1。拒稿原文与 GHOSTLINE / SINGULARITY 09-14 那两条**逐字相同**,仍是那段 AI 游戏分流政策(先经 Playgama MCP 拿真实数据,再由他们挑进主目录),**不是质量评语**。至此七款 **7/7** 全部被主目录拒绝,同一条政策理由——这不再是偶然,是这条门对本舰队关着。提前一天结算:答案已定,再等一天不会改变。"
   },
   {
    "id": "gridlings-puzzle-portal-1013",
@@ -1058,7 +1068,8 @@
    "lose": "=0 且工具页触达仍 ≥150 → 不是分发问题是需求问题，撤回工具页库存只留板块页",
    "source": "sites/baipiaoji/docs/PRD-revenue-tools-2026-09-16.md",
    "status": "open",
-   "instrument_note_2026-09-22": "⚠ 2026-09-22 仪器修正：该事件名自 09-04「未知事件名改为丢弃」上线起从未进 hit.js 白名单，边缘静默丢弃，此前读到的 0 是丢包不是行为；本次部署起才有读数，窗口从部署日重新起算。"
+   "instrument_note_2026-09-22": "⚠ 2026-09-22 仪器修正：该事件名自 09-04「未知事件名改为丢弃」上线起从未进 hit.js 白名单，边缘静默丢弃，此前读到的 0 是丢包不是行为；本次部署起才有读数，窗口从部署日重新起算。",
+   "reading_2026-09-24": "/api/ads?doctor=1(09-22 部署日志)selling=true、mode=live、钱包轨(BSC USDT)已通电,卡轨缺 STRIPE_SECRET_KEY/STRIPE_WEBHOOK_SECRET;D1 现查 ads / ad_orders / bpj_ad_checkout / bpj_ad_web3 / chain_receipts 全部 0 行。即收银台已开,draft 与下单都是 0 —— 这条线测的是需求,不再被「收不了钱」干扰。"
   },
   {
    "id": "bpj-paid-tier-series-1014",
@@ -1632,6 +1643,162 @@
    "win": "单次 Prime 专属活动就能拿到不依赖商品成交的钱 → 保留横幅机制,把 2027 年 7 月 Prime Day 预登记进 deal-calendar(公告后再填),并评估 Prime Video Channels 等其它 3 EUR 试用是否有同样诚实的理由(没有就不做)",
    "lose": "① ≥5 而 ② = 0 → 读者点了但不开试用(多半已是 Prime 会员):以后的活动只保留日期/§ 11 PAngV 两行,撤掉试用链接;① <5 → insufficient:横幅窗里读者太少(9 天,约 150 次 DE 页浏览),不是链接的问题;没有 owner 截图 → insufficient,不得记成 lose",
    "source": "sites/getecoback/docs/revenue-q4-deal-calendar-2026-09-24.md",
+   "status": "open"
+  },
+  {
+   "id": "fleet-source-mix-1013",
+   "site": "fleet",
+   "due": "2026-10-13",
+   "metric": "data/fleet-traffic-sources.json:14 站里能读出 by_source 的站数 / 未归因占比",
+   "threshold": "≥13 站有读数 且 舰队 unattributed ≤ 真人 pv 的 5%",
+   "win": "渠道构成进常规台账,各站按自己那一行选渠道",
+   "lose": "记反面发现「渠道构成读不齐」,读侧退回只看 AI 引荐,不再维护该仪器",
+   "source": "docs/fleet-traffic-sources-2026-09-15.md",
+   "status": "open"
+  },
+  {
+   "id": "fleet-google-channel-1013",
+   "site": "fleet",
+   "due": "2026-10-13",
+   "metric": "除 bpj 外,by_search 里 google.* ≥10/28d 的站数(09-15 起点:bpj 157,eco 0,其余 12 站未知)",
+   "threshold": "≥2 个站",
+   "win": "Google 通道在舰队不是孤例,对这些站的标题/结构改写才有对象",
+   "lose": "Google = bpj 专属;其余站一律按 Bing 家族与 AI 引荐口径优化,永不再为 Google 改标题",
+   "source": "docs/fleet-traffic-sources-2026-09-15.md",
+   "status": "open"
+  },
+  {
+   "id": "bpj-canonical-fix-1013",
+   "site": "baipiaoji",
+   "due": "2026-10-13",
+   "metric": "data/fleet-traffic-sources.json 里 bpj 的 by_search google.* /28d(09-15 基线 157)",
+   "threshold": "≥180(+15%)",
+   "win": "sitemap/canonical 卫生对 Google 通道有效;sitemap_guard 留作常驻守卫",
+   "lose": "记反面发现「canonical 卫生不是 bpj 的瓶颈」,不再往这个方向投,守卫保留但不再据此改站",
+   "source": "docs/fleet-cross-learning-2026-09-15.md",
+   "status": "open"
+  },
+  {
+   "id": "fleet-xlearn-matrix-1013",
+   "site": "fleet",
+   "due": "2026-10-13",
+   "metric": "data/fleet-page-patterns.json:eco 的 dated_fresh 命中率(09-15 **修正后**基线 5/9;初版记的 agi 4/16 与 eco 2/9 是探测器词表缺陷,已作废)",
+   "threshold": "eco ≥8/9",
+   "win": "新鲜度标注移植到 eco 完成,矩阵能驱动移植,保留每周一取数",
+   "lose": "记反面发现「eco 的德语指南不需要可见日期」,该列对 eco 无效,矩阵降为季度一次",
+   "source": "docs/fleet-cross-learning-2026-09-15.md",
+   "status": "open",
+   "note": "基线于 2026-09-15 当天更正:探测器改为语言无关后 agi 实为 15/16(全舰队最好),原判定对象失效"
+  },
+  {
+   "id": "fleet-backlinks-1116",
+   "site": "fleet",
+   "due": "2026-11-16",
+   "metric": "data/fleet-backlinks.json:①targets 里 present=true 的个数 ②舰队 by_other 的来源域数/访问数(2026-09-16 基线:0/6 个目标,1 个域 1 次访问,且那 1 次是 com.twitter.android)",
+   "threshold": "≥2 个目标已收录,或舰队 by_other ≥5 个域且 ≥20 次访问",
+   "win": "外链路径对本舰队有效,按 linkbuilding 技能的 Foundation 阶段继续投(entity stacking + 目录)",
+   "lose": "记反面发现「awesome-list / 目录外链对本舰队量级无效」,停投外链,只保留 by_other 监测(它零成本)",
+   "source": "docs/fleet-backlinks-2026-09-16.md",
+   "status": "open",
+   "reading_2026-09-24": "仪器修正(PR #2,未上线):*.pages.dev / *.workers.dev 归 self。不修的话 tds 09-23 预览环境 QA 会在 by_other 记 71 次「挣到的外链」,单独就过 ≥20 次访问的阈值。"
+  },
+  {
+   "id": "agi-ai-music-1015",
+   "site": "agiscorecard",
+   "due": "2026-10-15",
+   "metric": "/is-ai-music-good-enough JS 真人 pv /28d,或任一 AI 引荐/引用",
+   "threshold": "pv ≥30 或 AI 引荐 ≥1",
+   "win": "判定题在本站量级成立;按「引用量大 × 缺多语言」补翻译,不新开子域",
+   "lose": "降级为 /can-ai-replace-knowledge-workers 的一个小节,不再单独维护;记反面发现「音乐方向在本舰队量级无读数」",
+   "source": "docs/ai-music-subdomain-2026-09-17.md",
+   "status": "open"
+  },
+  {
+   "id": "venture-rfqdesk-1016",
+   "site": "venture-lab",
+   "due": "2026-10-16",
+   "metric": "https://rfqdesk.agiscorecard.com/api/pulse(28d,mode!='qa' 的 opt-in visit events,按 event/source 分组)+ 仓库工作流「Commercial experiment funnel report」。计的是同意者的事件,不是访客、用户或购买。",
+   "threshold": "28d 相关落地访问 ≥100 才允许解读;在此之上:自带数据完成 ≥20 且价格兴趣 ≥5。",
+   "win": "人工核实是不是同一人群的重复任务与免费替代不足;再定付费试验。收费前须 3 位无关联真实买家(另有独立购买证据),订阅扩张前须 2 位次月实付续费。",
+   "lose": "落地访问 <100 → insufficient(只说明分发未验证,不得下「市场不需要」的结论);完成量达标而兴趣为 0 → 调整付费增量,不扩功能。",
+   "source": "docs/portfolio-experiments-2026-09-18.md:29-33(owner 2026-09-18「多商业模式并行授权」);2026-09-21 补登进台账,此前只写在文档里。",
+   "status": "open"
+  },
+  {
+   "id": "venture-modelmeter-1016",
+   "site": "venture-lab",
+   "due": "2026-10-16",
+   "metric": "https://modelmeter.agiscorecard.com/api/pulse(同上口径)。当前匿名计数测不出续访。",
+   "threshold": "同 rfqdesk:落地访问 ≥100 后,自带账单完成 ≥20 且价格兴趣 ≥5;另需核实真实的重复复盘需求。",
+   "win": "3 个实际团队购买、2 次真实续费,且与免费替代比较仍有价值 → 继续;否则保留免费工具。",
+   "lose": "落地访问 <100 → insufficient;达完成量而零兴趣 → 调整付费增量。",
+   "source": "docs/portfolio-experiments-2026-09-18.md:30,33;2026-09-21 补登。",
+   "status": "open"
+  },
+  {
+   "id": "venture-querysprint-1016",
+   "site": "venture-lab",
+   "due": "2026-10-16",
+   "metric": "https://querysprint.agiscorecard.com/api/pulse(同上口径)。辅助解题不能叫独立能力认证。",
+   "threshold": "落地访问 ≥100 后,完成项目的访问记录 ≥20 且价格兴趣 ≥5。",
+   "win": "3 位买家且至少 2 位买第二个项目,内容维护与获客后贡献为正 → 继续;否则保留免费三题。",
+   "lose": "落地访问 <100 → insufficient;达完成量而零兴趣 → 调整付费增量。",
+   "source": "docs/portfolio-experiments-2026-09-18.md:31,33;2026-09-21 补登。",
+   "status": "open"
+  },
+  {
+   "id": "venture-filinglens-1019",
+   "site": "venture-lab",
+   "due": "2026-10-19",
+   "metric": "https://filinglens.agiscorecard.com/api/pulse(28d,mode!='qa',按 event/source 分组)。opt-in 事件不等于独立的人。",
+   "threshold": "100 次相关落地访问 + 20 次自有任务完成 + 5 次带情境的价格兴趣,三者齐 → 才去调查真实的重复任务;或 30 天到期先复盘(以先满足者为准)。",
+   "win": "核实到可识别的重复任务且现有 ERP/Excel 不易替代 → 进入 3 位独立付费买家 + 支持后贡献为正 + 复购的收费门;否则不扩功能。",
+   "lose": "可触达用户一致偏好自己的表格或在位者、说不出未满足的重复任务 → 停止或重新定位;访问不足 → insufficient,先解决分发。",
+   "source": "docs/vertical-agent-expansion-2026-09-19.md:66 + docs/vertical-agent-commercial-review-2026-09-18.md:75-81;2026-09-21 补登。",
+   "status": "open"
+  },
+  {
+   "id": "localebatch-readout-1016",
+   "site": "localebatch",
+   "due": "2026-10-16",
+   "metric": "任一一手读数:① D1 jobs 表首行(只有付费处理打开后才可能有)② tools/discovery/audit.py 或 heartbeat 快照读到的搜索/AI 引荐 ③ owner 收到的询问。本站 worker 不记录任何访问事件(只记付费 job 与限流桶),这是 09-18 发布时的设计,不是漏埋点。",
+   "threshold": "10-16 前「真实模型与支付端验收」完成(SALES_ENABLED 打开)或 ≥1 条一手读数。",
+   "win": "进入 portfolio 的付费门:3 位付费者、2 位复购、正贡献。",
+   "lose": "既无验收也无读数 → 站上没有任何能判需求的读数,不得据此判「没人要」;并入 venture-lab 组合决策线,不再单独扩建,直到 owner 决定加 opt-in 计数(同 venture-lab 形态)或打开付费。",
+   "source": "docs/portfolio-experiments-2026-09-18.md:32 + docs/localebatch-release-2026-09-18.md;2026-09-21 补登。",
+   "status": "open"
+  },
+  {
+   "id": "web3-mcp-registry-1019",
+   "site": "web3-studio",
+   "due": "2026-10-19",
+   "metric": "官方 MCP 注册表搜索 `agiscorecard-web3-workbench`(https://registry.modelcontextprotocol.io/v0/servers?search=agiscorecard-web3-workbench)是否命中,以及 web3_studio_events / 服务器日志里是否出现非索引器的 /mcp 调用(带参数的 tools/call)。",
+   "threshold": "注册表命中(发布 workflow 只在 server.json 变更时跑一次,merge 后首跑即判);且 28d 内 ≥1 个非索引器调用方带参数调用 ≥5 次。t0(2026-09-21):注册表 0 命中,/mcp 只有部署冒烟与本会话的 initialize。",
+   "win": "按 SR 的做法给每个工具主机的 scoped /mcp 也登记(名字带品牌),并把 web3 hub 的 llms-full/tool.json 列进主域 for-agents 的机器面。",
+   "lose": "注册表命中但零真实调用 → 与 sr-mcp-calls-1014 同判:机器面只维护不扩;注册表未命中 → 查 publish run 日志(OIDC / 422),不重命名。",
+   "source": "CLAUDE.md 2026-09-16「注册表活、awesome-list 死,以后按这个优先级投」;本轮 docs 见 CLAUDE.md 2026-09-21 深度优化节。",
+   "status": "open"
+  },
+  {
+   "id": "fleet-money-line-1019",
+   "site": "fleet",
+   "due": "2026-10-19",
+   "metric": "data/fleet-money.json 里 via='endpoint' 的钱线站数(五站:getecoback / agiscorecard / baipiaoji / thedollscout / buysomething),以及 demand-digest 的「钱线仪表盘」节是否每日带读数。",
+   "threshold": "5/5 站经端点读到 money 对象且快照不 STALE;heartbeat 里 money 步 30 天内红 ≤2 次。",
+   "win": "钱线仪表盘从「会话手查 D1」变成第①层自动仪器;每次报告直接引用快照,不再重跑 D1。",
+   "lose": "哪站读不到就查该站 money 查询(部署自检会先红);两站以上长期读不到 → 回退为会话手查并把原因写进手册。",
+   "source": "CLAUDE.md 2026-09-21「营收目标增长」节;docs/revenue-growth-prompt-2026-09-21.md",
+   "status": "open"
+  },
+  {
+   "id": "gridlings-rules-zh-1022",
+   "site": "gridlings",
+   "due": "2026-10-22",
+   "metric": "D1 gridlings-events page_view(human)28d 窗:path LIKE '/zh/%-rules' OR path='/zh/games-like-linkedin-queens'(10 张 zh 规则页合计);窗口从 PR #2 合并上线日起算",
+   "threshold": "≥20(t0=0;对照:EN 簇首个 28 天 52,zh 页占全站真人 pv 27%,按比例只有 ~14,阈值故意高于比例)",
+   "win": "zh 面成立:把 /ai-games 与 /nonogram-no-guessing 也做 zh 版,并在 zh.html 加规则指南入口",
+   "lose": "<10 → 停止 zh 规则页扩张,保留已建页只维护;10–19 记 insufficient 再看 28 天",
+   "source": "sites/gridlings/CLAUDE.md「规则簇 zh 版」(2026-09-22)",
    "status": "open"
   },
   {

@@ -15,11 +15,18 @@ jobs:
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
-      - name: Guard against stale main events
-        if: github.ref == 'refs/heads/main'
+      - name: Guard — a replayed/stale push deploys main's tip, never rolls back
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
-          git fetch origin main --depth=1
-          git reset --hard origin/main
+          git fetch origin main -q || { echo "::warning::fetch failed — stale-run guard skipped"; exit 0; }
+          TIP=$(git rev-parse origin/main 2>/dev/null || true)
+          case "$TIP" in
+            "" | *[!0-9a-f]* ) echo "::warning::main tip unresolvable — stale-run guard skipped"; exit 0 ;;
+          esac
+          if [ "$(git rev-parse HEAD)" != "$TIP" ]; then
+            echo "::warning::stale run — deploying main tip instead of rolling back"
+            git reset --hard "$TIP"
+          fi
       - name: Pin actual source revision
         run: echo "WEB3_BUILD_REVISION=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
       - uses: actions/setup-node@v4

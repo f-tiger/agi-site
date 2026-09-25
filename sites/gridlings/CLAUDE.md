@@ -1182,6 +1182,40 @@ cg-package-smoke，别靠肉眼。
 - **通用教训**：游戏上第三方门户前，先问「我们的埋点在别人的域名下还发得出去吗」。
   itch 之所以有数据，只是因为 `itch.zone` 恰好没触发这个路径。
 
+## Playgama 主目录 7/7 同模板拒稿 + 流量线 ① 达标(2026-09-22,到期结算)
+
+- **`gridlings-playgama-five-0925` 提前 3 天判 lost**:MCP `list_applications` 显示 PROMPT / OVERFIT / MIMIC / OVERSEER /
+  MINIMA 全部 REJECTED(09-15 18:57–19:17 UTC),五款的 `list_moderation_comments` 是**同一条模板**:AI 生成的游戏
+  要先经 Playgama MCP 沙箱拿到真实表现数据,再由他们挑选进主目录。GHOSTLINE(09-14 13:02)与 SINGULARITY(09-14 13:39)
+  也是同一句 —— **7/7 同文,主目录对本舰队的 AI 游戏关闭**。lose 动作生效:只经营 sandbox 面,**不再空手重投**;
+  进主目录的唯一通道是平台按沙箱表现挑,不是我们再提交。09-08 那次「质量」拒稿的教训(第 1063 行)仍有效,但已不是主因。
+- **`gridlings-playgama-traffic-0922` ① 达标、② 等 owner**:D1 现查 play_start 非 US 且 ref 含 games.playgama.net、ts≥09-15 14:53
+  = **155**(阈值 150;全部 167,含 US 12)。**投放形状要记住**:09-15 76、09-16 87、09-17 2、09-19 2、之后 0 ——
+  163/167 落在前 48 小时,而 MCP `get_sandbox_traffic` 说 run 仍 RUNNING、budget $2 只花了 16.8%、**09-22 14:53 UTC 结束**。
+  所以「≥150」是免费 boost 头两天给的,不是持续流量;主目录 09-14/15 全拒与投放停摆同期。
+  **owner 一件事**:run 结束后截一张 Overview(VISITS / PLAYS 60S,附日期)—— 这是 ② 的唯一读数;09-29 前没截图记 insufficient。
+  win 动作里「回投主目录」已被上一条作废,剩下的只有「$20 付费轮」这个 owner 决策;lose 则游戏降为只维护。
+- **版本冻结仍有效**:结算前不 `publish_sandbox` 新包(09-16 那个更快的归档仍未发)。② 结算之后再一次性做:发新包到 sandbox;
+  「带数据重新提交主目录」这半句删掉,主目录不接受提交。
+
+## 规则簇 zh 版:从台账第一条 won 长出来的扩张槽(2026-09-22,owner:「继续」)
+
+- **依据**:`gridlings-rules-cluster-0921` 09-21 判 won(52 pv/28d ≥50),预登记的 win 动作就是「追加 zh 版与更多查询」;
+  同日 D1 现查 zh 页占全站真人 pv **27%**(229/850,11 个 `/zh/*` 路径),所以 zh 面不是猜出来的受众。
+  「更多查询」那半句**没做**:没有任何需求仪器给 gridlings 读数(站规「无需求触发器」),凭空造查询页正是防薄页门要拦的。
+- **做法(生成器驱动,不手写页)**:`tools/geo_pages_zh.py` 按 EN slug 存 10 张页的中文数据(标题/答案胶囊/规则表/技巧/
+  一手数据/FAQ),**数字与 EN 逐个相同**(450 每日题自 2026-08-24、320 畅玩、0.2% 星战接受率、43% 数织逐线可解),
+  游戏名沿用 zh.html 既有词表(不等号·点点·三明治·摩天楼·星战·温度计·数织·迷你数独·日月·一笔画),Zip 一词全站禁用照旧。
+  `gen_geo_pages.py` 改为 `build(p, lang)`:同一 slug 出 `<slug>.html` 与 `<slug>-zh.html`,两边互挂 hreflang(照游戏页的
+  en/zh 成对写法),Article `inLanguage` 与 `url`、面包屑 item 按语种。**EN 页重生成后只多了 hreflang 两行与 JSON-LD 的 url,
+  正文一字未动**(逐页 diff 过,连每日 #N 那句的「or browse the archive」都保持原样)。
+- **接线**:worker `GEO_ZH` 集合(`/zh/<slug>` → `<slug>-zh.html`,`/zh/ai-games` 无孪生故意不在集合里,本地 6 例路由模拟全过);
+  sitemap +10 条(45 → 55);9 张 zh 游戏页 modes 行补「规则与技巧」回链(与 EN 页同形);llms.txt 10 条规则页各加 Chinese 链接;
+  部署自检路径表加 `/zh/star-battle-rules`(200 + 零重定向)。
+- **判定线 `gridlings-rules-zh-1022`**(已进台账):上线后 28 天 10 张 zh 规则页 human pv ≥20 → 把 `/ai-games` 与
+  `/nonogram-no-guessing` 也做 zh 版并在 zh.html 加入口;<10 停止 zh 扩张;10–19 insufficient 再看 28 天。
+  阈值故意高于按比例的 ~14,免得 t0 附近就自我满足。**上线日 = PR #2 合并日,不是今天。**
+
 ## 判定线结算 2026-09-22(D1 现查;全文见根仓 `docs/fork-ledger-pricing-2026-09-22.md` §六)
 
 - **`gridlings-rules-cluster-0921` → won(52 ≥ 50,边际 4%)**:十张规则页 28 天真人 pv 52(6x6 5 · binary 5 · futoshiki 6 ·

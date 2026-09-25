@@ -194,7 +194,7 @@ jobs:
           check_json /trends.json 'True'
           check_json /api/pop '"picks" in j and "degraded" not in j'
           # /api/pulse (2026-09-13): token-free AI-referral aggregate read by the fleet heartbeat
-          check_json /api/pulse 'j.get("ok") is True and isinstance(j.get("ai_ref"), int) and j.get("days") == 28'
+          check_json /api/pulse 'j.get("ok") is True and isinstance(j.get("ai_ref"), int) and j.get("days") == 28 and isinstance(j.get("by_source"), dict) and sum(j["by_source"].values()) == j["human_pv"] and isinstance(j.get("money"), dict)'
           # 机器面块是 fleet-machine-demand-1014 / sr-mcp-calls-1014 的唯一读数源;缺了就等于没读数。
           check_json /api/pulse 'isinstance(j["mcp"]["calls"], int) and isinstance(j["mcp"]["demand_callers"], int) and j["mcp"]["variety"] == "shape_only"'
           rm -f body.json
@@ -224,11 +224,14 @@ jobs:
           # 零编造的线上证据:不给税率就必须拒算,而不是默认一个
           check_json '/api/mcp/landed_cost?goods_value_usd=1000' '"never guesses" in j.get("error","") and "hts.usitc.gov" in " ".join(j.get("how_to_get_it", []))'
           # JSON-RPC:initialize 与一次真实 tools/call(断言在 tools/assert_mcp_live.py,能单测)
+          # -A "$UA"(2026-09-24):不带时 curl 默认 UA 被 worker 记成外部调用方 —— 09-17→09-24 的 80 次 mcp_call
+          # 里 58 次是本步自己(45 带 selfcheck UA + 13 次裸 curl),它会把 sr-mcp-calls/sr-vertical/fleet-machine-demand 三条线
+          # 用自测撑过线。读数一律剔 ref LIKE 'buysomething-deploy-selfcheck%' 与 09-24 前的裸 curl/。
           ok=0
           for try in 1 2 3 4 5; do
-            curl -s -X POST "$BASE/api/mcp" -H 'content-type: application/json' \
+            curl -s -X POST -A "$UA" "$BASE/api/mcp" -H 'content-type: application/json' \
               --data '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-06-18"}}' -o mcp1.json || true
-            curl -s -X POST "$BASE/api/mcp" -H 'content-type: application/json' \
+            curl -s -X POST -A "$UA" "$BASE/api/mcp" -H 'content-type: application/json' \
               --data '{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"check_import_claim","arguments":{"claim":"under $800 is duty free"}}}' -o mcp2.json || true
             if python3 sites/buysomething/tools/assert_mcp_live.py mcp1.json mcp2.json; then ok=1; break; fi
             sleep 5

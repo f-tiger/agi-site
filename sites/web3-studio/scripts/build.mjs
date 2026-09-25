@@ -1,5 +1,6 @@
 import {mkdir,rm,cp,writeFile,readFile} from 'node:fs/promises';
 import {execFileSync} from 'node:child_process';
+import {fileURLToPath} from 'node:url';
 import {sites,hubHost,label} from '../public/catalog.mjs';
 import {run} from '../public/engine.mjs';
 import {VERSION} from '../public/core.mjs';
@@ -36,4 +37,7 @@ await enrich();
 await cp('dist/share.png','dist/zh/share.png');
 const zhMarket=await readFile('dist/zh/market.html','utf8');await writeFile('dist/zh/market.html',zhMarket.replace('<a href="/">English</a>','<a href="/market.html">English</a>'));
 await writeFile('dist/zh/robots.txt',`User-agent: *\nAllow: /zh/\nSitemap: https://${hubHost}/zh/sitemap.xml\n`);await writeFile('dist/zh/sitemap.xml',`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>https://${hubHost}/zh/</loc></url><url><loc>https://${hubHost}/zh/guide.html</loc></url><url><loc>https://${hubHost}/zh/market.html</loc></url><url><loc>https://${hubHost}/zh/privacy.html</loc></url></urlset>`);await writeFile('dist/zh/llms.txt',`# Web3 工作台（中文）\n\n- [首页](https://${hubHost}/zh/)\n- [研究台](https://${hubHost}/zh/market.html)\n- [指南](https://${hubHost}/zh/guide.html)\n`);
+// Honest <lastmod> + dateModified per page from a content-hash manifest (tools/fleet/lastmod.py); CI runs in
+// check mode, so content changed without `LASTMOD_MODE=update npm run build` fails the build on purpose.
+execFileSync('python3',[fileURLToPath(new URL('../../../tools/fleet/lastmod.py',import.meta.url)),'--root','dist','--manifest','lastmod.json','--sitemap','dist/sitemap.xml','--sitemap','dist/zh/sitemap.xml',...sites.flatMap(s=>['--sitemap','dist/'+s.id+'/sitemap.xml','--host-dir',s.host+'='+s.id])],{stdio:'inherit'});
 execFileSync('python3',['scripts/bundle.py']);await writeManifest();console.log(`Built ${sites.length} tools + hub; revision ${revision}.`);

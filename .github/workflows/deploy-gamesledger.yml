@@ -166,7 +166,7 @@ jobs:
           check_json /ai-disclosures.json 'True'
           check_json '/api/live?app=440' 'j.get("ok") is True'
           # /api/pulse (2026-09-13): token-free AI-referral aggregate read by the fleet heartbeat
-          check_json /api/pulse 'j.get("ok") is True and isinstance(j.get("ai_ref"), int) and j.get("days") == 28'
+          check_json /api/pulse 'j.get("ok") is True and isinstance(j.get("ai_ref"), int) and j.get("days") == 28 and isinstance(j.get("by_source"), dict) and sum(j["by_source"].values()) == j["human_pv"]'
           rm -f body.json
           code=$(curl -s -o /dev/null -w '%{http_code}' -A "$UA" "$BASE/api/live?app=abc" || echo 000)
           if [ "$code" = "400" ]; then echo "OK    /api/live?app=abc -> 400"

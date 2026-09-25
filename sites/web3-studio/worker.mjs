@@ -63,6 +63,7 @@ if(u.pathname==='/api/health')return request.method==='GET'||request.method==='H
  }
  if(!['GET','HEAD'].includes(request.method))return json({error:'Method not allowed'},405,{Allow:'GET, HEAD'});
  if(u.pathname==='/index.html')return new Response(null,{status:308,headers:{Location:u.origin+'/'+u.search}});
+ if(site==='hub'&&u.pathname==='/zh/index.html')return new Response(null,{status:308,headers:{Location:u.origin+'/zh/'+u.search}});
  const toolPages=site!=='hub'?new Set(['/examples.html','/tool.json','/input.schema.json','/guide.md',...scenarios(site).flatMap(c=>['/examples/'+c.key+'.json','/examples/'+c.key+'-report.json'])]):new Set(['/publish.html','/tools.json','/stablecoin-payment-check.html','/gas-budget-check.html','/protocol-change-check.html']);
  let path;if(shared.has(u.pathname.slice(1)))path=u.pathname;else if(pages.has(u.pathname)||toolPages.has(u.pathname)){if(site==='hub'&&u.pathname.startsWith('/examples/'))return json({error:'Not found'},404);path=site==='hub'?(u.pathname.startsWith('/zh/')?(u.pathname==='/zh/'?'/zh/index.html':u.pathname):(u.pathname==='/'?'/index.html':u.pathname)):(u.pathname==='/'?'/'+site+'/index.html':'/'+site+u.pathname);}else return json({error:'Not found'},404);
  const assetUrl=new URL(request.url);assetUrl.pathname=path;assetUrl.search='';const response=await env.ASSETS.fetch(new Request(assetUrl,{method:request.method}));const headers=new Headers(response.headers);

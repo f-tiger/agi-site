@@ -69,6 +69,40 @@ async function packTokenValid(env, token) {
 }
 const PACK_PUBLIC = new Set(["/packs/index.json", "/packs/sample.json"]);
 
+// 引荐来源分类(2026-09-15「舰队相互学习」):tools/fleet/ref_sources.txt 是唯一权威,
+// 每个 worker 里的字面量必须与它逐字相同——check_ref_sources.py 挂在 fleet-heartbeat 上断言,
+// 漂了就走 GitHub 失败邮件。教训与 bot_ua.txt 同源:各自演化的分类器 = 各站台账不可比。
+// 读的是已入库的来源域名,出的仍是聚合计数:无路径、无国家、无 UA、无行级数据。
+const REF_SRC = "self:pages.dev|workers.dev;;ai:chatgpt|chat.openai|perplexity|claude.ai|copilot.microsoft|copilot.cloud.microsoft|copilot|gemini.google|you.com|kagi|poe.com|mistral|deepseek|kimi|doubao|yiyan.baidu|yiyan|metaso|phind|felo.ai|genspark|monica.im|tiangong|chatglm|moonshot;;search:google.|bing.|duckduckgo|search.yahoo|yahoo.co|ecosia|yandex|baidu.|sogou|so.com|startpage|brave.com|qwant|naver|seznam|petalsearch|mojeek|lycos|ask.com;;fleet:agiscorecard.com|getecoback.com|baipiaoji.com|thedollscout.com;;social:t.co|twitter.com|x.com|reddit.com|facebook|instagram|linkedin|lnkd.in|news.ycombinator|producthunt|weibo|zhihu|douban|xiaohongshu|telegram|t.me|pinterest|youtube|tiktok|douyin|discord|substack|medium.com|tumblr|vk.com|line.me|whatsapp|quora|mastodon|bsky";
+const srcHost = (r) => {
+  let h = String(r == null ? "" : r).trim().toLowerCase();
+  if (!h) return "";
+  h = h.replace(/^[a-z][a-z0-9+.-]*:\/\//, "");
+  h = h.split("/")[0].split("?")[0].split("#")[0].split("@").pop().split(":")[0];
+  return h.replace(/^www\./, "");
+};
+// self 只认完全相同的主机名:play.agiscorecard.com 对主域是兄弟站(fleet),不是自己。
+const srcBucket = (host, self) => {
+  if (!host) return "direct";
+  if (self && host === self) return "self";
+  // 标签对齐 + 尾部只许 TLD 段。两个方向的错都真发生过:裸 includes 会把 netflix.com
+  // 判成 x.com(social);只做前缀对齐又会把 agiscorecard.com.spam.example 判成 fleet
+  // ——那正是引荐垃圾的常见形状。
+  const tld = (rest) => rest === "" || rest.split(".").every((l) => l.length > 0 && l.length <= 4 && /^[a-z]+$/.test(l));
+  const dotted = "." + host;
+  for (const grp of REF_SRC.split(";;")) {
+    const i = grp.indexOf(":");
+    for (const t of grp.slice(i + 1).split("|")) {
+      if (!t) continue;
+      const at = dotted.indexOf("." + t);
+      if (at < 0) continue;
+      let rest = dotted.slice(at + t.length + 1);
+      if (rest.startsWith(".")) rest = rest.slice(1);
+      if (tld(rest)) return grp.slice(0, i);
+    }
+  }
+  return "other";
+};
 // ── 机器面调用的分类(2026-09-24 复盘产物)──────────────────────────────────────
 // 09-17→09-24 的读数里 80 次 mcp_call 有 58 次是我们自己(部署自检 45 + 沙箱手测 curl 13),
 // 而 22 次第三方全部是空参数的采集器。把"我们自己"和"手动 curl"混进同一个数字里,
@@ -244,6 +278,33 @@ export default {
           if (r.host === "_total") human_pv = r.n | 0; else if (r.host) by_host[r.host] = r.n | 0;
         }
         const ai_ref = Object.values(by_host).reduce((a, b) => a + b, 0);
+        // 渠道构成(2026-09-15):同一个 human 谓词再 group 一次 ref,在 worker 里按
+        // tools/fleet/ref_sources.txt 分桶。sum(by_source) 应等于 human_pv —— 对不上就是
+        // 有站把 ref 存成了整条 URL 或分类器漂了,读侧 traffic_sources.py 会把差额打出来。
+        const q2 = await env.EV.prepare(
+          "SELECT ref AS host, COUNT(*) AS n FROM ev WHERE name='page_view' AND ua_class='human' AND day >= date('now','-28 days') GROUP BY ref ORDER BY n DESC LIMIT 1000"
+        ).all();
+        const self_host = srcHost(url.hostname);
+        const by_source = { search: 0, ai: 0, fleet: 0, social: 0, self: 0, direct: 0, other: 0 };
+        const by_search = {}; const by_fleet = {}; const by_other = {};
+        for (const r of (q2.results || [])) {
+          const h = srcHost(r.host); const n = r.n | 0; const b = srcBucket(h, self_host);
+          by_source[b] += n;
+          if (b === "search") by_search[h] = (by_search[h] || 0) + n;
+          else if (b === "fleet") by_fleet[h] = (by_fleet[h] || 0) + n;
+          // by_other = 既不是搜索/AI/社交/兄弟站/本站的来源域 —— 真的有人从别处链过来。
+          // 这是舰队第一方的外链监测:嵌入件、目录页、awesome-list 里的链接,送来过真人就出现在这里。
+          else if (b === "other") by_other[h] = (by_other[h] || 0) + n;
+        }
+        // 钱线(2026-09-21 舰队钱线仪表盘,读侧 tools/fleet/money_line.py):只出聚合计数,剔 CI 自测。
+        let money = null;
+        try {
+          const m = await env.EV.prepare(
+            "SELECT name||'_28d' AS k, COUNT(*) AS n FROM ev WHERE day >= date('now','-28 days') AND name IN ('mcp_call','pick_open','out_click','calc_use','pack_open','pack_order') AND (path IS NULL OR path NOT LIKE '/__ci%') AND (label IS NULL OR label NOT LIKE '__ci%') GROUP BY name"
+          ).all();
+          money = { days: 28 };
+          for (const r of (m.results || [])) money[String(r.k)] = r.n | 0;
+        } catch (e) { money = null; }
         // 机器面读数(同窗 28 天)。只回聚合计数,**永不回 UA 字符串** —— 采集器的 UA 里出现过
         // 联系邮箱,原样吐出来就是把别人的个人信息搬上公开端点。
         const m = await env.EV.prepare(
@@ -267,7 +328,7 @@ export default {
           if (args >= 10 && d >= 5 && shapes * 4 >= args) mcp.demand_callers += 1;
           if (n > mcp.best.calls) mcp.best = { calls: n, days: d, shapes };
         }
-        return new Response(JSON.stringify({ ok: true, days: 28, human_pv, ai_ref, by_host, mcp, generated: new Date().toISOString() }), { headers });
+        return new Response(JSON.stringify({ ok: true, days: 28, human_pv, ai_ref, by_host, by_source, by_search, by_fleet, by_other, money, mcp, generated: new Date().toISOString() }), { headers });
       } catch (e) {
         return new Response(JSON.stringify({ ok: false, error: "query_failed" }), { status: 500, headers });
       }

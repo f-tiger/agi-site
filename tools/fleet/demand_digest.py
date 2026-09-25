@@ -323,6 +323,62 @@ def main():
             out.append("- 未读到:" + " | ".join(ar["errors"]))
     out.append("")
 
+    # 渠道构成(2026-09-15):每个站的读者从哪来。在这之前只有 eco 被手查过,而同日手查 bpj
+    # 的答案与 eco 正相反(bpj 第一大来源是 Google,eco 的 Google 是 0)——所以"按 Google 优化"
+    # 这件事,每个站必须先看自己的这一行再决定。
+    ts = load(os.path.join(ROOT, "data/fleet-traffic-sources.json"))
+    out.append("## 渠道构成(28 天窗;`search` 指真正的搜索引擎引荐,不是排名)")
+    if "__error__" in ts or not ts.get("sites"):
+        out.append("- 快照不可用:" + str(ts.get("__error__") or "尚无数据")
+                   + "(worker 的 /api/pulse 要先部署 2026-09-15 的 by_source 才有读数)")
+    else:
+        ta = age_days(today, ts.get("generated", ""))
+        stale = " **STALE**" if (ta is None or ta > 3) else ""
+        f = ts.get("fleet") or {}
+        out.append(f"- 舰队合计(快照 {ts.get('generated','?')[:10]}{stale}):"
+                   + " · ".join(f"{k} {f.get(k, 0)}" for k in ["search", "ai", "fleet", "social", "self", "direct", "other"]))
+        for s_ in sorted(ts.get("sites", []), key=lambda x: -(x.get("by_source", {}).get("search", 0))):
+            b = s_.get("by_source", {})
+            eng = ", ".join(f"{h} {n}" for h, n in list(s_.get("by_search", {}).items())[:3]) or "—"
+            g = sum(n for h, n in s_.get("by_search", {}).items() if h.startswith("google.") or ".google." in h or h == "google.com")
+            out.append(f"- {s_['site']}: 搜索 {b.get('search', 0)} / AI {b.get('ai', 0)} / 舰队内 {b.get('fleet', 0)}"
+                       f" / 社交 {b.get('social', 0)} / 直接 {b.get('direct', 0)} · Google {g} · 前三 {eng}")
+        if ts.get("errors"):
+            out.append("- 未读到:" + " | ".join(ts["errors"]))
+        out.append("- **读法**:自己这一行 Google = 0,就不要做「给 Google 看」的优化(eco 09-15 的教训);"
+                   "`舰队内` 是兄弟站互链真的送来的人,不是链接数。")
+
+    # 钱线仪表盘(2026-09-21「营收目标增长」):手册 08-23 起要求每次报告带钱线,此前只能由有 Cloudflare MCP
+    # 的会话手查 D1。现在读 heartbeat 写的快照;各站钱线口径不同,不归一化成假的统一口径。
+    mo = load(os.path.join(ROOT, "data/fleet-money.json"))
+    out.append("## 钱线仪表盘(28 天窗,各站自己的口径;owner 亲报的 PartnerNet 数字带数据窗)")
+    if "__error__" in mo or not mo.get("sites"):
+        out.append("- 快照不可用:" + str(mo.get("__error__") or "尚无数据") + "(五站 pulse/reach 的 money 键要先部署)")
+    else:
+        ma = age_days(today, mo.get("generated", ""))
+        stale = " **STALE**" if (ma is None or ma > 3) else ""
+        out.append(f"- 快照 {mo.get('generated','?')[:10]}{stale}")
+        for s_ in mo.get("sites", []):
+            sm = s_.get("summary") or {}
+            f_ = lambda v: "—" if v is None else str(v)
+            extra = ""
+            m_ = s_.get("money") or {}
+            if s_["site"] == "getecoback":
+                extra = f" · us-market {m_.get('affiliate_click_us_market_28d','—')} · amazon.com {m_.get('affiliate_click_amazon_com_28d','—')}"
+            elif s_["site"] == "baipiaoji":
+                extra = f" · go {m_.get('go_28d','—')} · 厂商 biz {m_.get('biz_28d','—')} · 投稿累计 {m_.get('submissions_total','—')} · watches {m_.get('watches','—')}"
+            elif s_["site"] == "buysomething":
+                extra = f" · mcp_call {m_.get('mcp_call_28d','—')} · out_click {m_.get('out_click_28d','—')}"
+            elif s_["site"] == "agiscorecard":
+                extra = f" · invest_tool_click {m_.get('ev_invest_tool_click_28d','—')} · /advertise pv {m_.get('pv_advertise_28d','—')} · /audits pv {m_.get('pv_audits_28d','—')}"
+            out.append(f"- {s_['site']}: 联盟点击 {f_(sm.get('affiliate_click_28d'))} / 付费订单 {f_(sm.get('paid_orders'))} / 订阅 {f_(sm.get('subscribers'))}{extra} ({s_.get('via')})")
+        own = (mo.get("owner_reported") or {}).get("amazon_de_partnernet") or {}
+        if own:
+            out.append(f"- owner 亲报 PartnerNet DE(30 天窗至 {own.get('window_end')}):佣金 €{own.get('commission_eur')} · {own.get('clicks')} 点击 · 待办 {own.get('payout_blocked')}")
+        if mo.get("errors"):
+            out.append("- 未读到:" + " | ".join(mo["errors"]))
+    out.append("")
+
     out.append("---")
     out.append("读法:gaps>0 且对应 rising 不是 STALE,才值得进第②层选题;Reddit 命中要再查搜索需求;")
     out.append("PH/HN 命中里的产品名不是需求词。三门(数据/需求/变现)不变。")

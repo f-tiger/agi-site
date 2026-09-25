@@ -3130,6 +3130,9 @@ IT → deumidificatore(注意它峰在 **7 月**,意大利除湿是夏题)。**�
 **一句实话**:这一轮把德语区的三类缺口补上了——冬季故障页、湿度簇入口、奥地利法条——但它仍然是「新页」,
 而新页在本站的冷启动读数是 0。区别在于这次每一页都押在一个已经量过的形状上,输了能说清楚是哪个假设错了。
 
+## 钱线仪器(2026-09-21)
+`/api/pulse` 多返回 `money`(affiliate_click_28d human 口径 / us_market / amazon_com / subs_total / member_orders_by_state),舰队 `tools/fleet/money_line.py` 每日读;部署自检断言 `"money":{`。owner 亲报的 PartnerNet 数字在根仓 `data/fleet-money-owner.json`,给新截图时更新那里。
+
 ## 深度全站分析 + 同类站对比:新页根本没被 Bing 抓,根因在发现面噪音(2026-09-22,owner:「先完善prompt再执行:eco深度全站分析,再对比同类网站,学习增强流量策略,并执行应用」;全文 `docs/site-analysis-2026-09-22.md`)
 
 **212 页 × D1 56 天 × 12 天爬虫日志,一句话:最强的流量预测变量是页面年龄,而年龄起作用是因为 9-10 之后发布的 19 张页 bingbot 12 天只抓过 1 张 1 次**(同期 bingbot 每天抓 30–125 次**老**页)。本站 100 % 搜索流量来自 Bing 索引,所以这一条压倒所有页面属性。

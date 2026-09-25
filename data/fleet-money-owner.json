@@ -1,0 +1,25 @@
+{
+ "note": "owner 亲手报的钱线数字(后台截图),每条带数据窗;会话在 owner 给新截图时更新这里,tools/fleet/money_line.py 只并入快照,永不推算。",
+ "amazon_de_partnernet": {
+  "tag": "getecoback-21",
+  "window_end": "2026-09-14",
+  "window_days": 30,
+  "commission_eur": 11.20,
+  "clicks": 112,
+  "ordered_items_month_to_date": 2,
+  "conversion_pct": 3.57,
+  "payout_blocked": "Complete your onboarding checklist(付款/税务信息未填完)",
+  "source": "owner 截图,记录于 CLAUDE.md 台账口径节"
+ },
+ "amazon_com_associates": {
+  "tag": "ecoback0d-20",
+  "window_end": "2026-08-28",
+  "window_days": 30,
+  "commission_usd": 0.0,
+  "clicks": 0,
+  "payout_blocked": "Steuerdaten unvollständig(税务信息未填完)",
+  "source": "owner 截图 2026-08-28"
+ },
+ "fleet_verified_revenue_to_date_eur": 11.20,
+ "fleet_non_amazon_revenue_to_date": 0
+}

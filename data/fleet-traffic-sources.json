@@ -1,0 +1,62 @@
+{
+ "generated": "2026-09-15T15:25:02Z",
+ "window_days": 28,
+ "ok": false,
+ "read_via": "endpoints (partial)",
+ "errors": [
+  "agiscorecard: no by_source yet (worker 未部署 2026-09-15 的渠道构成)",
+  "getecoback: no by_source yet (worker 未部署 2026-09-15 的渠道构成)",
+  "thedollscout: no by_source yet (worker 未部署 2026-09-15 的渠道构成)",
+  "goldrush: no by_source yet (worker 未部署 2026-09-15 的渠道构成)",
+  "gridlings: no by_source yet (worker 未部署 2026-09-15 的渠道构成)",
+  "buysomething: no by_source yet (worker 未部署 2026-09-15 的渠道构成)",
+  "gamesledger: no by_source yet (worker 未部署 2026-09-15 的渠道构成)",
+  "after35: no by_source yet (worker 未部署 2026-09-15 的渠道构成)",
+  "learn: no by_source yet (worker 未部署 2026-09-15 的渠道构成)",
+  "fanzha: no by_source yet (worker 未部署 2026-09-15 的渠道构成)",
+  "firstjob: no by_source yet (worker 未部署 2026-09-15 的渠道构成)",
+  "codeword: no by_source yet (worker 未部署 2026-09-15 的渠道构成)",
+  "powerbill: no by_source yet (worker 未部署 2026-09-15 的渠道构成)"
+ ],
+ "fleet": {
+  "search": 254,
+  "ai": 34,
+  "fleet": 0,
+  "social": 16,
+  "self": 0,
+  "direct": 0,
+  "other": 1,
+  "unattributed": 0
+ },
+ "fleet_human_pv": 305,
+ "sites": [
+  {
+   "site": "baipiaoji",
+   "human_pv": 305,
+   "by_source": {
+    "search": 254,
+    "ai": 34,
+    "fleet": 0,
+    "social": 16,
+    "self": 0,
+    "direct": 0,
+    "other": 1
+   },
+   "by_search": {
+    "google.com": 155,
+    "cn.bing.com": 65,
+    "bing.com": 11,
+    "m.baidu.com": 6,
+    "baidu.com": 6,
+    "yandex.com": 5,
+    "duckduckgo.com": 3,
+    "google.com.hk": 2,
+    "yandex.com.tr": 1
+   },
+   "by_fleet": {},
+   "unattributed": 0,
+   "via": "endpoint",
+   "note": "分母是「有来源的真人」(该站真人线 A):无来源的直接访问不入库,本域 ref 入库时已清空,所以 direct/self 结构性为 0"
+  }
+ ]
+}

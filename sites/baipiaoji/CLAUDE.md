@@ -604,6 +604,59 @@ GEO / 设计类任务前，先查技能库是否覆盖，覆盖则按其框架�
 下一轮若再提新判定页,先给出**需求证据**(搜索/引用/站内信号),
 不能只凭「我们有一手数据」就建页 —— 一手数据是**必要不充分**条件。
 
+## 对外声明的 URL 不带 `.html`(2026-09-15,别改回去)
+
+Cloudflare Pages 把 `/x.html` **308** 跳到 `/x`。在此之前本站的 sitemap(1558 条)、每页的
+`canonical` / `og:url` / `hreflang`、以及 `llms.txt` 全部声明 `.html` 版本 —— **canonical 指向一个
+非 200 的地址**,爬虫抓每一条都多一跳,IndexNow 每次推的也是跳转地址。同日抽样实测:本站 6/6
+重定向,舰队另外 13 个站 0/6。
+
+- 实现:`scripts/build.mjs` 里的 `pub()`(去掉 `.html`,`/index.html`→`/`,`/404.html` 保留原样)与
+  `pubText()`(只剥 URL 里的 `.html`,所以「`.html` 换 `.md`」那句镜像说明不受影响)。
+- **只作用于对外声明的四处**:`canonical`/`og:url`、`hreflang`、sitemap 的 `<loc>`、`llms.txt` 与
+  `llms-full.txt`。**站内 `href` 与构建期路径一律不动** —— 它们是 `.md` 镜像与 dist 落盘的键,
+  动了收益小、面大;而且 `<loc>` 的变换只在输出处做,`lmNow[u]` 仍按原 URL 作键,lastmod 清单不失效。
+- 首次部署会判定 **1546/1558 页内容有变**(canonical 在每一页上),lastmod 全站刷新 + IndexNow 整站推
+  一次。**这是一次性的、且是诚实的**(抓取语义确实变了),不要据此以为「每天声明全站都变了」的老毛病
+  回来了;第二次构建起恢复正常。
+- 守卫:部署自检有一条硬断言(sitemap 零 `.html` + 抽样页直接 200 + canonical 自指),
+  舰队 heartbeat 另有 `tools/fleet/sitemap_guard.py`。判定线 `bpj-canonical-fix-1013`(10-13)。
+
+## 钱线仪器(2026-09-21)
+`/api/reach` 多返回 `money`(subs_by_status / ads_by_status / ad_checkout_by_state / ad_web3_orders / watches / member_orders_by_state / submissions_total / go_28d / biz_28d),舰队 `money_line.py` 每日读;部署自检断言 `"money":{`。09-21 读数:投稿 7(3 个提交者)、广告 0 行(密钥未设)、subs live 0。
+
+## 判定系列第三批:探针 ready 的 9 家逐一核对,补 7 家(2026-09-21,owner:「继续执行」)
+
+- **动作**:读 `data/pricing-probe.json`(第 16 条要求的那一步)——runner 行 `state=ready` 共 9 家。
+  每家把官方定价页在沙箱再直抓一次(runner 摘录只有 700 字节,不够写档位),两处一致才写;
+  全部经 `limits-edit.mjs` 两步写入,护栏零拒绝。**补齐 7 家**:fastgpt / bolt / deepl / replit /
+  runway / windsurf / anythingllm。判定页 **21 → 28 组**(`is-<slug>-still-free` 中英各 28 页),
+  `/upgrade/` 工具页现为 28 个。`guard-regression` 129 条无丢失、`quota-facts-check` 327 组 0 问题、
+  `verify-dist` 1639 页全零。
+- **ready 但不补的两家,理由各写死**:
+  ① **tongyi-lingma**:`lingma.aliyun.com/pricing` 当日仍标「个人专业版 限免(¥59/月)」、企业标准版
+     ¥79/人/月(10 人起)、企业专属版 ¥159/人/月(100 人起);而本站 08-03 按帮助中心记的是
+     「已更名 Qoder CN、个人专业版试用 2026-05 结束、2,000 Credits/月」。**两个官方源互相矛盾**,
+     宁缺毋编:不写付费档,等 Qoder CN 自己的定价页进探针再定(定价页 URL 要换,旧域名可能是陈页)。
+  ② **github-models**:探针命中的是 `github.com/pricing`(Free / Team $4 / Enterprise $21 的 GitHub
+     套餐价),页面上没有任何模型价——探针的「像价目表」判定在这里是假阳性,不写。
+- **顺手补的免费档事实(都来自同一张官方定价页,不是新页)**:fastgpt 免费版数字此前「官方未明示」,
+  现有 100 积分 / 600 索引 / 30 QPM 等 7 项;deepl 网页免费版 50,000 字符/用户/月;anythingllm
+  云端价格从「未明示」改为已抓到;bolt / runway 免费档复核一致。**windsurf 是反例**:09-20 定价页已不再
+  写 credits 数字(只剩 light / increased / significantly higher),25 credits 与 $10/250 credits 是
+  08-03 文档口径——两条都保留并标日期,不替读者选;`checked` 故意留 08-03,让它继续排在复核队列里。
+- **零推算纪律,本轮实际执行的形态**:年付折算价只写官方自己标的(runway $12/$28/$76、replit
+  $18/$90),官方只写「省 16%/20%/28%」的一律不算;单积分单价、超额费率、结转规则凡定价页 FAQ
+  只有标题没有答案的,写「未在抓取文本中展开」。fastgpt 那句「¥99 ÷ 4000 积分」在草稿里出现过,
+  删掉了——除法不是编造,但它不在官方页上。
+- **需求序那四家仍然抓不到,现在有 runner 证据**:kimi 三个候选 200 但零价格 token(SPA 壳)、
+  feishu 同、haiper 三路 404、quillbot 三路 403。**不是会话没去读队列,是队列里可读的已经读完。**
+- **变更日志的日期修正**:`limits-history.mjs` 自 09-13 起没再跑,cline 等 6 家 09-16/09-12 补的
+  付费档到今天才入账;本轮把这 6 条按各自 `paid.checked` 记日期,不记成 09-21。变更日志是
+  公开信任页,日期错 5 天会被看见。以后补付费档那次提交就顺手跑一次 `limits-history.mjs`。
+- **判定线不新增**:这 7 页不另开线;10-14 结算 `bpj-paid-tier-series-1014` 时把它们的读数一并列出
+  作参考,**阈值仍只按 cline + civitai 算**(预登记的线不改)。
+
 20. **✅ `bpj-crawl-visibility-0924` → won(2026-09-22 提前 2 天结算,读数单调只增)**:`ev='bot'` 28 天不同 path **1 635**
    (t0=23)、`/tools/%`|`/c/%` 行 **3 310**(t0=0)。逐日:09-16 7 个 path → 09-17(分类器上线)96 → 09-18 384 →
    **09-19 1 628 / 4 253 行** → 09-20 1 155 → 09-21 1 197。整站 1 542 页在分类器修好后两天内被抓遍——此前的「23 个 path」

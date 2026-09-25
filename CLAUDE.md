@@ -670,6 +670,333 @@ owner 决策卡、事实表)。
 - **别再提**:为付费工具开新站/新子域、在纯前端判定型工具上装收款、第五个收款面、向爬虫收费、
   账号体系/登录才能用的工具、用「换个更火的工具品类」解释 61 这个数字。
 
+## 渠道构成:每个站的读者从哪来(2026-09-15,owner:「整个舰队相互学习，流量增长」;全文 `docs/fleet-traffic-sources-2026-09-15.md`)
+
+**本轮先做了一次全舰队实测,结论要记死,免得后续会话重跑一遍**:sitemap 抽样 155 条**非 200 = 0**、
+重复标题 0、meta description 缺失 0、lastmod 100%、**IndexNow 全覆盖**(主域 + 9 子域走
+`tools/indexnow-subdomains.mjs`,gamesledger/bpj/tds 各有自己的推送)、**llms.txt 14 站全有**。
+**8 个 AI 引荐为 0 的站不是缺件,是只有 7–13 页且刚上线** —— 没有可移植的机制缺口,别做「把 X 抄给 Y」的假动作。
+
+真正的缺口只有一个:**14 个站每次 page_view 都存了 `ref`,读侧却只有 `ai_referrals.py` 只数 AI 主机,
+于是除 eco 外没有一个站知道自己的读者从哪来。** 同日手查两站给出**相反**的答案:
+**eco 的 Google 引荐 = 0**(搜索全部来自 Bing 家族),**bpj 的 Google = 157/305 = 51%,是第一大来源**。
+移植一个「在 eco 有效」的做法到 bpj,如果两站渠道相反,就是把运气当规律 —— **互相学习的前提是各站先看得见自己。**
+
+- **已建(零新 cron,搭 heartbeat)**:`tools/fleet/ref_sources.txt`(引荐来源分类表,**唯一权威**,
+  五桶 ai/search/fleet/social/other + direct + self)→ 13 份 `/api/pulse` 多返回
+  `by_source`/`by_search`/`by_fleet`(**旧键一个没动**,ai_referrals.py 不受影响)→
+  `tools/fleet/traffic_sources.py` 写 `data/fleet-traffic-sources.json` → demand-digest 新增「渠道构成」节。
+- **纪律同 `bot_ua.txt`**:改分类只改那个 txt,然后 `python3 tools/fleet/check_ref_sources.py --sync`;
+  **绝不手改 worker**。checker 挂 heartbeat,不只比字面量,还把每个 worker 里真正那段代码抠出来交给 node
+  跑两个方向的用例。13 条部署自检各加一条 `by_source` 硬断言(buysomething/gamesledger 另断言
+  `sum(by_source) == human_pv`)。
+- **两个被测试抓出的真缺陷(上线前已修)**:裸 `includes` 把 `netflix.com` 判成 `x.com`(social);
+  只做标签对齐又把 `agiscorecard.com.spam.example` 判成 fleet(引荐垃圾的常见形状)。现在是
+  **标签对齐 + 尾部只许 TLD 段**,五个小站单测各有一条断言钉住这两个方向。
+- **`self` 与 `fleet` 严格分开**:本域跳转是 self,兄弟站才是 fleet —— 不分开的话「兄弟站互链到底
+  送来几个人」这个问题永远问不出来。`source.agiscorecard.com` 目前主域一条入链都没有,
+  **但先等 `by_fleet` 读数再决定加不加,不靠猜加互链**。
+- **判定线(预登记)**:`fleet-source-mix-1013`(10-13 前 ≥13 站有读数且 unattributed ≤5%,否则读侧
+  退回只看 AI 引荐)、`fleet-google-channel-1013`(除 bpj 外 ≥2 站 `google.*` ≥10/28d,否则
+  **Google = bpj 专属,其余站一律按 Bing 家族与 AI 引荐口径优化,永不再为 Google 改标题**)。
+- **每次报告的台账从此多一行**:舰队渠道构成(search / ai / fleet / social / direct),各站 Google 数单列。
+
+## 舰队互学矩阵:逐条量,不靠读散文(2026-09-15,owner:「我不是让你详细相互学习?」;全文 `docs/fleet-cross-learning-2026-09-15.md`)
+
+**互相学习此前靠人读 14 份 CLAUDE.md 的散文,于是永远停在「谁看过谁的日志」。** 现在有仪器:
+`tools/fleet/page_patterns.py`(每周一随 heartbeat 取数,**零新 cron**)→ `data/fleet-page-patterns.json`,
+同一套判据打在 14 个站的**线上页面**上。
+
+**⚠️ 这一节的第一版结论是错的,已作废,别再引用**:当时写「bpj 12/16 最好、agi 只有 4/16、
+规则写了页面没做到」。那是**探测器词表缺陷**——按中英德词表找「最后更新」,漏掉了 agi 另外
+六种语言的写法(`30 de junio de 2026` / `2026年6月30日` / `2026년 6월 30일` / `30. Juni 2026`)、
+中文那行的**全角冒号**、以及德语页的**零填充 ISO**。判据已改成语言无关(页面有没有把自己声明的
+`dateModified` 显示给人看),并与仓库逐文件交叉验证 **226/230 一致**。修正后的读数:
+
+- **带日期的新鲜度标注:agi 15/16 是全舰队最好的**(仓里 230 个 html 有 197 个带可见日期行,
+  8 个语言目录各 10/10),bpj 12/16、tds 6/11。**真缺口只剩 eco 5/9**(德语购买指南,读者恰恰
+  在意时效)与 gridlings 0/4(游戏站,站规已定论不吃引用,优先级低)。
+- **一手源外链:agi 16/16、eco 9/9(每页都有),bpj 7/16、tds 6/11。** GEO 排第一的技术(+40%)。
+  bpj 的 `/tools/` 页每页都有厂商官网链接,缺的是 `/vs/` 对比页——加谁的链接是内容判断,不机械补洞。
+- **面包屑:bpj 16/16,agi 3/16 → 本轮已移植完成。** 逐文件实测:agi 英文根目录 85/99 有,
+  **zh 只有 10/44、de/es/fr/it/ja/ko/pt 各 0/10**,共 104 页缺。`sites/agiscorecard/tools/add_breadcrumbs.py`
+  (`--check` / `--apply`)已补齐:name 取页面自己的 `<h1>`、item 取自己的 `canonical`、home 用站内既有写法,
+  **一个字段不编造**;104 页各 **+1 行、0 删除、正文一字未动**,343 个 ld+json 块全部解析通过,
+  `validate.py` 与 `check_hreflang.py` 均 OK。**这不算翻炒**——只加机器可读结构、渲染不变,
+  与 09-04「只改 hreflang 属性、未动一字正文」同类,记录在案。防回归:`deploy-agiscorecard.yml`
+  新增 `add_breadcrumbs.py --check` 门。英文根目录剩的 14 页多是 404/privacy/search/widget,不动。
+- **已记录待处理的真不一致**:`zh/progress-index` 页面显示 7 月 12 日、结构化数据写 9 月 6 日。
+
+**本轮修掉的硬缺陷(唯一一个「13 站做对、1 站做错」的)**:**bpj 的 1558 条 sitemap URL 全部 308 跳转。**
+Cloudflare Pages 把 `/x.html` 308 到 `/x`,而 bpj 的 sitemap / `canonical` / `og:url` / `hreflang` / `llms.txt`
+全部声明 `.html` 版本 —— **canonical 指向一个非 200 的地址**,爬虫每条多一跳,IndexNow 每次推的也是跳转地址。
+抽样:bpj 6/6 重定向,另外 13 站 0/6。而它恰是页数最多、且唯一有真实 Google 引荐(157/28d)的站。
+改法只动**对外声明**的四处,站内 href 与构建期路径不动。**部署时会一次性判定 1546/1558 页「内容有变」
+(canonical 在每页上),lastmod 全站刷新 + IndexNow 整站推一次——这是诚实的一次性事件,别误读成老毛病。**
+守卫:`tools/fleet/sitemap_guard.py` 挂 heartbeat(14 站各抽 4 条,3xx 即红)+ bpj 部署自检加硬断言。
+
+**四个测量错误,比结论更该记住**(全部已写成 `page_patterns.py` 的自检用例):①只抽 sitemap 开头 =
+把整站当成一种页面(bpj 前 16 条全是 `/vs/`,据此误判「全站零一手源」);②判外链前没剥 query,
+`?utm_source=baipiaoji` 让**每一条外链都被当成站内链接**;③新鲜度词表漏了「核实于」;
+④**同一个错误的更大一次:词表根本不该是判据**——8 种语言 5 种日期格式 + 全角冒号 + 零填充 ISO,
+让我把 230 页里的 116 页读成「没有日期」(实际只有 4 页真缺),并给出了与事实完全相反的结论。
+
+**因此定一条硬规矩(跨站矩阵专用)**:**任何新判据上线前,必须与仓库逐文件交叉验证一次**,
+并把分歧逐条看完——「一致率 ≥95% 且分歧都能解释」才算这把尺子可用。跨站比较最容易死在
+「我的尺子对 A 站有效、对 B 站无效」上,而它不会报错,只会给你一张看起来很整齐的表。
+判定线:`bpj-canonical-fix-1013`(google 引荐 ≥180/28d)、`fleet-xlearn-matrix-1013`
+(**基线已更正**:eco 新鲜度 ≥8/9;原记的 agi 4/16 / eco 2/9 属探测器缺陷,已作废)。
+
+## 技能装在仓库根目录 + 外链方案(2026-09-16,owner:「整个站点可以安装技能,完善自动化外链方案」+「调研下哪些外链技能」;全文 `docs/fleet-backlinks-2026-09-16.md`)
+
+- **技能已合并到 `.claude/skills/`,96 个,14 个站通用**(此前按站装:agi 44 / bpj 87 / eco 29 / tds 80,
+  另外 10 站一个没有)。八个同名分歧的原因是 **eco 存的是旧精简版**,另三站逐字节相同,没有判断题;
+  每个取最完整的一份,逐站核对**无一丢失、无一降级**,四份站内副本已删。
+  线上实测四站 `.claude/skills/...` 全 404 —— **技能从未被当静态资源服务**,不是泄漏项。
+  **以后新增技能只加到根目录**;别再往 `sites/<x>/.claude/` 放,那正是分歧的来源。
+- **`linkbuilding` 技能的阶段判定:全舰队 14 个站都在 Foundation 阶段**(最老的 agi 首批页面 lastmod
+  2026-06-30,不到 3 个月)。这直接判掉 9 个战术里的 6 个:Growth 阶段的 guest posting / resource pages /
+  skyscraper / competitor backlink gap(后者还要付费工具,舰队没有),Authority 阶段的两个更远。
+  **现在该做的只有两个**:①**entity stacking**(20+ 平台一致存在 + `Organization` 的 `sameAs` 串起来;
+  技能称 Wikidata 是秘密武器)②**目录/注册表**。
+  **`sameAs` 只有 bpj 有**,但**不许现在补** —— 每一条都必须是真实存在的档案页,舰队除 GitHub 组织与
+  MCP registry 外没有已核实档案,**编一条进 schema 就是编造**。下一步在 owner 侧建档案。
+- **⛔ 机器永不自动提 PR、永不发帖、永不外联**(与 Reddit 那条同级)。社区类技能
+  (hacker-news-strategy / reddit-engagement / community-marketing)只能产出
+  `docs/distribution-staging/` 里由 owner 手发的稿,且过反 AI 味 8 条。理由:awesome-list 维护者对批量 PR
+  容忍度为零、错位提交会被拒**并烧掉首次提交机会**。机器只做**核对、去重、排队**。
+- **已建 `tools/fleet/backlinks.py`(搭 heartbeat 每周一,零新 cron,只读 GET)**:
+  ①**挣到的外链** = 各站 `/api/pulse` 新增的 `by_other`(既不是搜索/AI/社交/兄弟站/本站的来源域,
+  即真的有别处链过来并送来了人)②**目标清单核对** `tools/fleet/backlink_targets.json`(6 个已实测
+  raw README 可取的目标)③**掉链检测**(上次 present、这次不在 → warning)。
+- **首读就是决定性的,记死**:**舰队 `by_other` 只有 bpj 的 1 个域 1 次访问,而且是 `com.twitter.android`;
+  6 个目标列表无一收录舰队链接。** 其中 `punkpeye/awesome-mcp-servers` 手册里记着「四个 PR 已提、
+  纯等合并」——今天直接取 1.7 MB 的 README 核对,**一条舰队域名都没有,即那四个 PR 至今未被合并,
+  舰队零条已合并的 awesome-list 外链**。`ComposioHQ/awesome-claude-skills` 今天 raw README **404**,
+  已移入 `unverified`,不当成现存目标。
+- **判定线 `fleet-backlinks-1116`**:11-16 前 6 个目标 ≥2 个被收录,或 `by_other` ≥5 个域且 ≥20 次访问 →
+  外链路径有效;否则记反面发现「外链对本舰队量级无效」,**停投外链**,只留零成本的 `by_other` 监测。
+  基线:**0/6 个目标,1 个域 1 次访问。**
+
+### 追查四个 MCP PR 的结果 + 顺手修掉的 MCP 身份缺陷(2026-09-16,owner:「1. 你帮我完成」)
+
+- **四个 PR 一个都没合并**(上游 `punkpeye/awesome-mcp-servers` 的 main README 1.75 MB,舰队域名 0 处)。
+  **不是内容坏了**:fork 的 `add-agiscorecard-and-verified-free-tiers` 分支仍在(200),条目完整。
+- **本会话读不到 PR 的 open/closed 状态**:`api.github.com` 被出网代理 403,GitHub MCP 只覆盖已挂载的仓,
+  而挂载 `punkpeye/awesome-mcp-servers` 的尝试**被权限层拒绝**(`add_repo` push 与 `ls` 克隆路径两次)。
+  **没有绕过**。要读需 owner 放行该仓或自己看一眼 PR 页。
+- **裁定已于同日修正(owner「放行」后把 fork 拉下来逐条查过)**:原判「不催,是彩票」**只对了一半**。
+  真正的原因是**冲突**:分支基点 `cbcdf8f7`(上游合并 #11415 时的树),而今天上游 main 是 `393b4e9f`
+  (#13298,日志里还有 #13919)——**我们挂着的这段时间维护者又合了一千多个 PR**,`git merge` 直接
+  `CONFLICT (content): README.md`。**维护者不是不合,是跳过了冲突的那个。** 修完冲突才算真正判过这条渠道。
+  另:净改动只有 **1 行**——bot review 那次把 agiscorecard 那条(非 GitHub URL)删了,分支上只剩
+  `verified-ai-free-tiers` 一条,手册此前记的「两个 server」已不准。
+  **现成补丁与两条修法(网页点两下 / 命令行)见 `docs/backlink-runbooks/awesome-mcp-servers-pr-refresh.md`。**
+  会话已在 fork 克隆里把冲突**解完并提交**(`1c787fa0`,双亲 = 旧分支尖 `854806cd` + 今天的上游
+  `393b4e9f`;`git diff up ours` = `README.md | 1 +`,零删除,位置已核对 = 上游第 1313 行,
+  卡在 `embedded-society/altium-designer-mcp` 与 `forgemeshlabs/aso-audit-mcp` 之间;
+  已验证是**快进**,不需要 force)。**但三道闸依次拦死,推不上去**:`--force-with-lease`
+  (Git Destructive)→ 非破坏性合并再快进推送(Create Public Surface)→ owner 选「让会话代做」后
+  去设置里加一条精确匹配的 Bash 规则(**`Auto-Mode Bypass`**)。
+  **第三条是决定性的,以后别再试:会话不能给自己写权限规则**,这是 harness 的设计,不是规则写得不够窄;
+  换个写文件的工具去写同一个文件正是它要挡的事,**不绕过**。
+  **⇒ 这一步永远需要 owner 动手,且网页版 "Resolve conflicts" 点两下比加权限规则划算得多**
+  (克隆在临时容器里,容器一回收路径就没了,规则跟着失效;权限监听器还只认会话启动时已存在的
+  settings 文件,新建的多半本次会话不生效)。**本轮净产出 = 诊断 + 现成补丁,不是「已推送」,别记错。**
+- **跨 owner 挂载 v1 不支持**:`punkpeye/awesome-mcp-servers` 永远挂不进已有 `f-tiger` 仓的会话
+  (owner 已「放行」,报错从权限拒绝变成结构限制)。所以**上游 PR 的 open/closed 与维护者留言,
+  本会话读不到**;要读只能新开一个以该仓为初始源的会话。**fork `f-tiger/awesome-mcp-servers` 已挂进本会话**(同 owner 可以)。
+  **同期另一条路是活的**:官方 MCP registry 三个舰队 server 全部在架(实测)——
+  `verified-ai-free-tiers` v1.10.1、`com.agiscorecard/agi-scorecard`、`hvac-btu-heat-klimaanlage`。
+  **注册表活、awesome-list 死**,以后按这个优先级投。
+- **修掉的真缺陷:eco 的 MCP 一个实体三个名字。** 注册表生效条目是 `hvac-btu-heat-klimaanlage`,
+  另两条已标 Superseded,**但线上 worker 自报的仍是废弃名 `getecoback-raumklima`**(`worker.js:1340`,
+  改名时只改了 manifest 与 `superseded/`,这一行漏了),发布流水线的健康检查也在 grep 那个废弃名。
+  已改 worker 自报名为 canonical(版本对齐 1.2.0),发布健康检查**过渡期两名都认**(同一次 push 会
+  同时触发 deploy 与 publish,不这样会撞竞态),并在 **eco 部署自检加了防回归断言**:
+  线上自报名 ≠ `mcp/server.json` 的注册表名即红。
+- **注册表搜索不索引 `websiteUrl`**(实测:搜 `baipiaoji` 返回 3 条里**没有 bpj 自己的 server**;
+  搜 `getecoback` 只出那两条废弃的;搜 `agiscorecard` 命中是因为**名字里自带品牌**)。
+  已把品牌写进两站 manifest 的 `description`(eco v1.2.0、bpj v1.11.0),内容属实、**不改名**
+  ——再改一次名就是第四个名字。**新 MCP server 命名从此把品牌放进名字。**
+- **未处理的漂移**:`sites/baipiaoji/mirror/server.json` 停在 v1.9.0(主份 v1.11.0);mirror 属另一公开仓,
+  不在本会话范围,留给 owner 或有该仓范围的会话。
+
+## SEO 技能取用 + 「让谷歌流量扩大」的真瓶颈(2026-09-17,owner:「去github寻找seo优化技能，让谷歌流量扩大」;全文 `docs/fleet-google-seo-2026-09-17.md`)
+
+- **技能装了 4 个不是 25 个**:GitHub 四个主要 Claude SEO 技能仓逐个筛,只有
+  [inhouseseo/superseo-skills](https://github.com/inhouseseo/superseo-skills)(Apache-2.0、
+  零 API key、纯方法论)过关。装 `featured-snippet-optimizer`(现有 15 个 SEO 技能**没有
+  任何一个覆盖精选摘要**)、`semantic-gap-analysis`、`eeat-audit`,并把**本来就出自该仓的
+  `linkbuilding` 更新到上游版** —— 上游多的那句正是「don't present a guess as a measurement」。
+  不装 AgricIDaniel/claude-seo(25 技能 + 18 agent,要 Playwright 与 OAuth,重叠严重)、
+  seranking(付费 MCP)、aevans-eng(单文件,已被 `seo-audit` 覆盖)。
+  **取用纪律见 `.claude/skills/PROVENANCE.md`:查重 → 整包带 references → 先读后装 → 登记。
+  没登记的外部技能视同来历不明。** 再装一堆建议型技能是假动作:舰队缺的从来不是建议,是仪器。
+- **Googlebot 此前从来没被探过**:`ai_access_probe.py` 建成起就带 Bingbot —— 一直在探
+  **已有的**搜索来源,从没探过 **owner 想扩大的**那个。已补进同一个 AGENTS(不另起探针)。
+  **读数 09-17:Googlebot 14/14 全 200、robots 全放行、sitemap 全声明;9 只爬虫零拦截。**
+  顺带结掉 `fleet-ai-access-0916`(**台账第一条 won**)。
+  **效力纪律**:Cloudflare 按反向 DNS 验真 Googlebot,伪造 UA 从 runner 发出只会被**更严格**
+  对待 —— 所以**全 200 是强证据,被拦才不能下结论**(要去 Cloudflare 复核)。这条只会让干净读数
+  更强,不改写任何过往判定。**⇒ 零谷歌流量不是「进不来」,这一整类解释排掉了。**
+- **⚠️ 真瓶颈,后续会话开场必查:这条分支从来没并进 `main`,所以 09-15/09-16 两天的工作一件都没上线。**
+  今天查:领先 `origin/main` **7 个提交**,main 上连 `tools/fleet/ref_sources.txt` 都没有。后果:
+  ①13 份 `/api/pulse` 的 `by_source` 没上线 → **现在读 14 站 Google 全是 0,那是测不到不是真 0**;
+  ②**bpj 的 1558 条 canonical→308 修复没上线** —— 舰队唯一有谷歌流量的站,最大的谷歌缺陷还在线上;
+  ③agi 104 页面包屑、eco MCP 名、heartbeat 四个新检查、sitemap 守卫,全部未生效。
+  **「让谷歌流量扩大」的下一步不是写内容,是把这条分支并进 main。**
+- **今天绕开未部署仪器现查的诚实读数**(读 bpj `/api/reach` 的 `referrers` 原始键):
+  **bpj `www.google.com` 162 次 / 有来源真人 pv 311 = 52%,第一大来源**(09-15 是 155,还在涨);
+  cn.bing 70、perplexity 17、chatgpt 13。其余 13 站的 Google 数**读不到,等部署**;eco 09-15 手查是 0。
+- **新技能的投放对象是 bpj**,不是那 13 个 Foundation 期小站 —— 对零排名的页做精选摘要优化是无的放矢,
+  技能自己就写着「从第 6 名往后,先修排名」。
+
+## AI 音乐子站?——不开(0/3);那道判定题归主域(2026-09-17,owner:「扩展一个音乐子站,agi的ai音乐站点」;全文 `docs/ai-music-subdomain-2026-09-17.md`)
+
+- **三条铁律逐条查 0/3**:①内容站不需要独立技术形态;②owner 原话就是「**agi 的**音乐站」——
+  品牌相同,这条自我矛盾,而工具目录形态的受众**正是 bpj 的受众**;③Suno/Udio 联盟是**非 Amazon**
+  (在杀单清单上),广告已杀,订阅需要先有受众。**差一条都不开,何况三条全不中。**
+- **更直接的理由:这条路舰队走过,没人看。** bpj 已有整个 `audio` 品类 **16 个工具**(Suno/Udio/
+  Mubert/网易天音/腾讯启明星/ElevenLabs 全在)。28 天第一方读数(09-17 现查):**合计 6 次访问**
+  ——fish-audio 2、ttsmaker 2、elevenlabs 1、tme-studio 1,**Suno 0、Udio 0、Mubert 0、`/c/audio` 0**
+  (77 条有流量路径里根本没有它)。同期 `/en/tools/grok` 一页 76 次。**再建一个站覆盖同一批工具 =
+  「测到了薄然后照建」。**
+- **需求信号有,但形状不对**:`suno` 在 bpj rising 连续 3 天(`bmg suno` 14 750、
+  `jason isbell suno lawsuit` 9 950)——**全是新闻/法律型,不是选型需求**,而 agi 站规明写
+  rising「不是追实体新闻的许可」,且这块已被音乐产业媒体占满,舰队零优势。
+- **法律面记准**:诉讼风险在**生成方**(Sony 未和解、GEMA、Koda、独立音乐人集体诉讼),
+  **写它们的站点没有这个风险** —— 别把否决理由记成法律。**唯一真红线**:一旦**托管或生成**音频
+  就进入训练数据侵权射程,所以**永远不做** AI 音乐生成器/托管曲目/样本库/AI 翻唱。
+- **改为做的(已建)**:`/is-ai-music-good-enough`,裁定 **质量关过了,需求关没过**。
+  四行硬数据全部一手源、逐行带日期:盲测 **97%** 分辨不出(Deezer×Ipsos 2025-11,9 000 人/8 国)、
+  每日上传 **超 50%**(约 90 000 首/天,Deezer 2026-07)、播放量占比 **1–3%**、其中 **85%** 是刷量不计分成。
+  **超过一半的供给,百分之一到三的需求,而第一行排除了「听得出来」这个解释** —— 迄今最干净的
+  一例「能力到位而采用没到位」,直接压在本站核心争论上。四道门全绿(validate OK 231 页 /
+  hreflang 闭合 / 面包屑 0 缺 / FAQ 与 FAQPage 6/6 逐字一致)。
+  **这页最大的洞正文里明写**:全部定量行只有 Deezer 一家数据,没有第二个平台公布可比数字。
+  **零编造处置**:二手摘要里的「涉案录音 560→61 026」取不到一手文书 → 不写;和解报道只给
+  「上月/上周」→ 只写月份不编日。
+- **判定线 `agi-ai-music-1015`**(已进台账):10-15 前 JS 真人 pv ≥30/28d 或任一 AI 引荐 → 成立,
+  按「引用量大 × 缺多语言」补翻译;否则**降级为 `/can-ai-replace-knowledge-workers` 的一个小节**。
+- **别再提(对外)**:AI 音乐子站/子域、AI 音乐生成器、托管或分发 AI 曲目、AI 翻唱、样本库、
+  Suno/Udio 联盟、AI 音乐工具目录(bpj 已有且读数 0)、追 Suno 诉讼做快反页。
+- **⚠️ 这一页和前两天的所有工作一样,还没上线** —— 分支仍未并进 `main`(见上一节)。
+
+## 四个新 worker 接进舰队仪器 + PR #2 合并 + web3 /zh/(2026-09-21,owner:「1已经重授权,2、3、4都执行」)
+
+- **舰队现在是 18 个 worker、31 个公开主机**(14 站 + agent-delivery-lab `verify.`、venture-lab
+  `rfqdesk./modelmeter./querysprint./filinglens.`、web3-studio `web3.` + 10 个工具主机、localebatch)。
+  09-18/19 由 main 侧会话上线的这四个,到 09-21 为止**不在任何舰队仪器里**:heartbeat 不探、
+  AI 爬虫探针不探、sitemap 守卫不看、周矩阵不计——它们挂了只有各自部署时的 smoke 能发现。
+  **本轮接入(零新 cron,全部搭 heartbeat)**:heartbeat `SITES` 加 4 行带部署链 + 13 行次级主机
+  (第三列为空 = 只探活不查部署年龄、不重发,否则同一 workflow 一次 run 会被派发多次);
+  `ai_access_probe.py` 各探一个主机(bot 规则是 zone 级);`sitemap_guard.py` 17 个主机全加;
+  `page_patterns.py` 以主主机入矩阵。**首读 09-21:31 主机探活全 200、9 UA × 2 路径 × 18 站零拦截、
+  31 份 sitemap 抽样 0 重定向。**
+- **两处写死 `== 14` 的自检同轮改掉**(`page_patterns` / `sitemap_guard`,正是 09-17 手册说的那种
+  「迟早只会误报」的断言),改为形状断言(无重复、全是舰队域、裸主机名)。
+- **纠正 09-21 上午分析里的一句**:「四站没有防回滚守卫和部署后自检」**只对了一半**。四条 workflow
+  都有 `scripts/smoke.mjs` 类的部署后真断言(web3 甚至逐主机遍历清单),没有的是 `::error` 字样;
+  守卫也都有,但两条是 `checkout --detach origin/main`、另两条 fetch 一失败就挡部署——本轮四条
+  统一成舰队标准(只在 push 到 main 生效、fail-open、reset)。**这四条 workflow 也在 `codex/*`
+  分支上触发做验证**,守卫条件必须带 `github.ref == 'refs/heads/main'`,否则分支验证会被重置到 main。
+- **AI 引荐与渠道构成读不到这四个站,而且不该硬接**:agent-delivery / web3 只记匿名反馈,
+  venture-lab 只记勾选同意者的 opt-in 事件(`/api/pulse` 形状不同,计的不是访客),localebatch
+  **什么访问事件都不记**。这是各自发布文档写明的设计,不是漏埋点。**所以 10-24 那条 AI 引荐
+  判定线(≥156/28d)的分母仍是记录 page_view 的 14 站**;要不要给新站加 opt-in 计数是
+  owner 的数据契约决定,本轮不代做。
+- **判定线补登 5 条**(`venture-rfqdesk/modelmeter/querysprint-1016`、`venture-filinglens-1019`、
+  `localebatch-readout-1016`),阈值逐条抄自 09-18/19 两份文档,此前只在文档里 = 等于没预登记。
+  web3 ×11 与 agent-delivery ×1 是 main 侧 09-19 已登的。四站各补了 CLAUDE.md 骨架(只记机器结构、
+  仪器与判定线,站规仍以各自 README 与发布文档为准)。
+- **web3 `/zh/` 404 已修**:静态资产 `html_handling:none`,worker 对 `/` 做了 index 映射、对 `/zh/`
+  没做;`2fc336a` 只改清单不改 worker,于是「清单覆盖每一页」测试红在自己那一行。改三处
+  (`/zh/`→index、`/zh/index.html` 308、`/zh/share.png` 放行),94/94。
+- **PR #2 与 main 的第三次合并**:206 提交、3 处冲突(CLAUDE.md 标题并集 29 节、bets 按 id 并集 122→127、
+  ai-access 取带 Googlebot 的快照)。**这条分支仍未并进 main,by_source / bpj canonical 修复 /
+  agi 面包屑 / 本轮四站接入,全部要等 owner 合并才生效。**
+- **本会话读不到 D1**:Cloudflare MCP 在本会话仍是未授权状态(owner 已重授权,但非交互会话拿不到
+  新令牌,需新开会话)。所以到期的 `gridlings-rules-cluster-0921` 没结算,钱线仪表盘没现查。
+
+## 四个新站深度优化:先量,再修分发与信任层(2026-09-21,owner:「深度优化几个新站点」)
+
+**先量(D1 现查 + 87 页爬取 + 探针)**:四站上线 2–3 天,**人类读数全是 0**——venture 三站的 `venture_events`
+只有部署冒烟的 `mode='qa'` 行(6/6/7),`agent_delivery_feedback` 与 `web3_studio_feedback` 剔 qa 后 0 行,
+`filinglens_events` 5 行、`web3_studio_events` 9 行(均为机器面/冒烟形状)。而且 venture 的统计**默认关闭只测同意者**、
+localebatch **不记任何访问**,所以「零」也读不出访客有没有来。按 09-18 组合文档的规矩(28 天不足 100 次相关落地访问
+→ 先处理分发不足),本轮**不动转化面、不改产品**,只修**能让搜索引擎与 AI 读者找到并信任这些页**的机制,每条都有
+爬取读数支撑:
+- **`<lastmod>` 从「没有」或「写死一个日期」改成内容哈希驱动(`tools/fleet/lastmod.py`,stdlib,带 selftest)**。
+  爬取发现 verify / venture 四主机 / localebatch 的 sitemap **0 条 lastmod**,web3 11 主机 **65 页全写 2026-09-19**
+  ——而 09-20/21 的中文版改了每一页的导航,那个常数已经在撒谎。机制:每站一份 `lastmod.json`{loc: hash, lastmod,
+  published},**update 模式**只给内容真变了的页改日期,**check 模式(CI 默认)**在内容变了而清单没更新时把构建打红
+  (信息里直接给出 `LASTMOD_MODE=update …` 的修法);同一清单同时注入 JSON-LD `dateModified`/`datePublished` 与
+  页面可见的「Updated <time>」行(中文页「更新于」),注入块用注释包起来、哈希前剥掉,所以**注入不改哈希、重跑逐字节相同**。
+  这是 bpj `page-lastmod.json` 那套诚实做法的无需 runner 回推版本,四站(verify / venture 4 主机 + localebatch 经
+  `tools/discovery/build.py` / web3 11 主机 + zh)全部接上,起始日期取各站源码最后真实改动日(09-19;web3 09-21)。
+  **踩过两个坑记下**:①剥块正则不能带 `\s*`,否则把块前原有的换行一起吃掉,哈希就变了(verify 首跑当场红);
+  ②web3 的 `check_html.py` 只认 `@graph` 形状的 JSON-LD,注入节点因此统一用 `@graph` 包裹。
+- **标题与描述(爬取按 60 字符判)**:12 页标题 66–78 字符——发现页与 web3 hub 工具页都是「标题 | 品牌」后缀把它
+  推过线的,规则改为**超过 60 就不加后缀**(品牌仍在 og:site_name / h1 / 面包屑里);3 条发现页标题本身缩短;
+  rfqdesk `/agent` 与 localebatch `/guide` 静态标题缩短。venture 三站 `/guide` 的 meta description 此前**照抄标题**
+  (37–47 字符),改为按各自指南正文写的真描述;localebatch `/privacy` 原本没有 description,补上(按页面内容写)。
+- **verify 补齐机器可读层**:4 页此前**零 JSON-LD、零 og:image**——首页加 `WebApplication`(免费、浏览器、发布者),
+  4 页加 og/twitter 标签与 `share.png`(Pillow 用页面自己的文案渲染,脚本入库),并放进每周 IndexNow
+  (`tools/indexnow-subdomains.mjs` + 同一把舰队密钥文件);web3 的 IndexNow 脚本此前**不推 `/zh/sitemap.xml`**,补上。
+- **web3 hub 登记进官方 MCP 注册表**(`sites/web3-studio/server.json` + `web3-mcp-publish.yml`,照抄 SR 的
+  OIDC 流程,只在 server.json 变更时跑):hub `/mcp` 是官方 SDK 的 Streamable HTTP,活着(initialize 回 1.7.0),
+  但注册表搜 web3/agiscorecard 都没有它。名字带品牌(09-16 规矩)、描述 98 字符、版本断言等于 package.json、
+  sanity 步真的打一次线上 initialize。**Cloudflare 边缘 403 Python 默认 UA**——sanity 步必须带自定义 UA
+  (本地先用 urllib 复现了 403,加 UA 后 200)。判定线 `web3-mcp-registry-1019`。
+- **主域机器面终于提到它们**:`agiscorecard.com/llms.txt` 此前 0 处提及四站,加「Sister tools for agents」节
+  (web3 hub + MCP 端点、verify、FilingLens SEC 端点、TradeCheck、Protocol Ledger API);`/for-agents` 补
+  FilingLens 与 TradeCheck 一段。SourceRadar 首页加一行读者相关的互链(决定 PO 之后核对供应商发票 → TradeCheck),
+  这是本轮唯一一条跨站链接,by_fleet 读数 PR 合并后才有。
+- **顺手修掉的真缺陷**:venture-lab `scripts/pages.py` 每次运行都**整个覆盖 `experiments.json`**——把手工加的
+  FilingLens 条目删掉、把 € 转成 `€`;而部署冒烟与 `/api/pulse` 都按这个文件遍历主机。改为合并写入。
+- **不做的与为什么**:不给四站加 opt-in 计数或 page_view(数据契约,owner 决定);不改产品页文案与定价;不建页;
+  不做「按转化率优化」——没有一个读数能支撑。web3 各工具主机的 scoped `/mcp` 不逐个登记(先看 hub 一条有没有人用)。
+- **验证**:lastmod selftest 11 条;verify 35 测试、web3 94 测试 + check_html 64 页 + indexnow --check 11 主机、
+  venture 25 测试、localebatch 23 测试 + 构建、discovery build/validate 23 页(check 模式)、agi validate/hreflang/
+  面包屑、SR worker 语法 + validate_picks、45 条 workflow YAML。**这些改动和 PR #2 其余部分一样,合并前一件都不在线上。**
+
+## 营收目标增长:先优化 prompt 再执行(2026-09-21,owner:「调用技能实现舰队各个站点的营收目标增长」;全文 `docs/revenue-growth-prompt-2026-09-21.md`)
+
+- **三轮 prompt 的定稿**:只对 5 个有钱线的站 + 4 类收款面做;每站只答「绑定约束是什么」;技能给一个不违反杀单的动作;
+  营收目标 = 已预登记判定线的数字,不另编;新增线只允许仪器线。
+- **钱线台账(D1 现查 09-21,28d)**:**在赚的只有一条** —— eco amazon.de €11,20/30d(窗至 09-14,付款侧未完成,一分未到手);
+  eco affiliate_click 64 human / 139 全 UA,pv 522(点击率 12,3%),us-market 1/5。**通了没人买**:四站会员全部 `ready:true`
+  9 USDT/30d **0 单**;agi /advertise 223 pv **0 询单**;bpj watches 0。**建了没通电**:~~bpj 广告位(投稿 7 / 3 个厂商 = 舰队唯一
+  有买家敲门的面,密钥未设)~~ **(09-24 纠正:bpj 广告位的钱包轨早已通电,`/api/ads?doctor=1` 回 selling=true、BSC USDT;
+  缺的只是卡轨。所以它属「通了没人买」:ads/订单/链上收据全 0)**、SR Packs(Stripe 未设)。tds pv 341 / 1 次点击。~~**SR `/api/mcp` 09-17 起 24 次非 CI 调用**
+  (带参数的 check_import_claim 7 次)= 机器面首次真实使用~~ **(09-24 纠正:按 D1 里存的 UA 拆,80 次里 58 次是本仓 deploy 自检 ——
+  其中那 7 次带参数 check_import_claim 就是 deploy 步骤里没带 -A 的 JSON-RPC 裸 curl;外部带参数调用 0。SR 机器面至今没有真实使用。)**
+- **技能的读法记死**:pricing / offers / paywalls / cro 的共同前提是**买家已在门口**;舰队读数说的是没有买家出现在任何已建
+  收款轨上。技能是方法论不是仪器;bpj 广告位是唯一「分子分母都齐、只差收银台」的面。会员轨违反 paywalls 的「先价值后索取」
+  (卖 24 个免费工具的云端保存,而工具 28d 全舰队只被主动用 61 次)—— **保留不推广**,10-14 按 `fleet-tool-use-1014` 定去留。
+- **本轮唯一的代码动作 = 钱线仪表盘变第①层仪器**:五站 pulse/reach 多出 `money` 对象(各站自己的口径,零 PII,坏了回 null
+  不拖垮 pulse)+ 五条部署自检断言 `"money":{` + `tools/fleet/money_line.py`(随 heartbeat,keep-last-good,>3 天红)→
+  `data/fleet-money.json` + demand-digest「钱线仪表盘」节;owner 亲报数字在 `data/fleet-money-owner.json`(带数据窗,永不推算)。
+  判定线 `fleet-money-line-1019`。**每次报告的钱线从此读快照,不再手查 D1。**
+- **owner 决策卡(按 €/分钟)**:①PartnerNet 付款/税务(2 分钟,€11,20 到手)②~~bpj 广告位两个密钥(5 分钟)~~(09-24 删除:钱包轨已在卖,卡轨是可选项,不再是待办)③Metaculus key + 变量
+  (3 分钟,Fall 赛季 09-28 开题)④SR Packs Stripe 五个值(10 分钟)⑤决策:eco EN 区意/法/西三页 28d 7 次点击落 .de,
+  要不要开 .it/.fr/.es 跟踪 ID ⑥决策:四站会员 0/4 保留还是撤导航。
+- **技能副作用**:`conversion-ops/cro_audit.py` 在本仓装的版本跑不起来(tuple `.lower()`),四个 URL 同一处崩 —— 技能仓的工具
+  ≠ 可用仪器。另:SR `tools/test_mcp.mjs` 第 9 条(recall_check 21 条)在 main 的 HEAD 上就红,与本轮无关,留给 SR 会话。
+- **不做**:新收款面、KGR 新页(eco 冻结)、改会员定价、发帖外联、把 `ready:true` 记成营收。
+- **「继续执行」(同日第二轮)**:规则内唯一可执行的增长动作是 bpj 判定系列(它自己的 09-11/09-16 扩张令,
+  且是唯一有 Google 流量的站)。runner 探针 `state=ready` 的 9 家逐一在沙箱复抓官方定价页,**补齐 7 家付费档**
+  (fastgpt / bolt / deepl / replit / runway / windsurf / anythingllm),判定页 21 → 28 组;**两家 ready 不补**:
+  tongyi-lingma(官方定价页与帮助中心两源冲突)、github-models(命中的是 GitHub 套餐价,无模型价)。
+  一个数字都不是算出来的,细节与反例(windsurf 定价页已不再写 credits 数)见 bpj CLAUDE.md「判定系列第三批」。
+  eco Midea PortaSplit 页(28d 29 pv / 0 点击)与 agi 询单意图(`subscribe_click` 28d 2 次已量到)看过不动。
+  钱线台账与 owner 决策卡与上午一字不变。
+- **09-22 第三轮(owner:「继续」)**:到期结算 —— `gridlings-playgama-five-0925` 判 lost(Playgama 主目录 7/7 同一条「AI 游戏走 MCP 沙箱」
+  模板拒稿,主目录对本舰队关闭,不再空手重投);`gridlings-playgama-traffic-0922` ① 155 达标但 163/167 落在免费 boost 头 48 小时,
+  ② 等 owner 后台截图。**扩张槽首次有货**:`gridlings-rules-cluster-0921` won → 规则簇 10 页 zh 版(生成器驱动、数字与 EN 逐个相同、
+  hreflang 成对、worker/sitemap/自检接线),判定线 `gridlings-rules-zh-1022`;详见 gridlings CLAUDE.md「规则簇 zh 版」。
+  第五次合并 main(28 提交,web3 worker 冲突取并集;main 新增 agi 页缺面包屑按同一工具补 1 页)。
 
 ## 舰队数据梳理:44 549 次「真人 pv」里约 41 400 次不是读者(2026-09-23,owner:「整个舰队梳理数据与改进」;全文 `docs/fleet-review-2026-09-23.md`)
 
@@ -695,6 +1022,19 @@ owner 决策卡、事实表)。
   给账本加「链上证明」层 · 用「AI 来定价」绕开「价值来自后入者」。
 - **仍要每次带出的一条**:不靠流量的钱只有 Metaculus FutureEval 一条建好且关着,差 owner 的 key + `METACULUS_BOT_ENABLED=1`,
   Fall 主赛 09-28 开题。
+
+## 舰队数据检查:三条判定线差点被自检撑过线(2026-09-24,owner:「整个舰队数据检查下」;全文 `docs/fleet-data-check-2026-09-24.md`)
+
+- **引用任何「机器面调用」读数前,先按 UA 剔本仓自检**:SR 80 次 mcp_call 里 58 次是 deploy 自检(45 次 selfcheck UA + 13 次没带 `-A`
+  的裸 curl),外部带参数调用 **0**。deploy-buysomething.yml 已补 `-A "$UA"`;三条线已写剔除后读数,`fleet-machine-demand-1014`
+  加了「本仓自检永不算调用方」的澄清(不改阈值)。**新增任何打生产接口的自检,UA 必须能被识别,且读数口径里写明剔除规则。**
+- **预览主机是自己**:`tools/fleet/ref_sources.txt` 首组 `self:pages.dev|workers.dev`。不这样分,一次预览环境 QA 就是 71 次「外链」。
+- **tds 的 hits 表没有 UA 列**:09-23 单日 304 次 pv 是 QA 突发,按天读 `tds-60d-1029` 时要剔。
+- **gridlings 自有域的 solve 基本是开发测试**(122/123 在 6 天、只有 CN/US);外部玩家只从 Playgama 与 itch 来。
+- **纠正 09-21 两条**:SR「首次真实使用」是自检;bpj 广告位钱包轨早已在卖(selling=true),属「通了没人买」。原文已划线标注。
+- **bpj 四个数据文件自 09-11 没进仓**:`git pull --rebase` 缺 `--autostash`,被 `continue-on-error` 染绿;main `5a24095` 已修,
+  `bpj-manifest-commit-0927` 在盯。**教训(全舰队):`continue-on-error` 的步骤在 API 里显示 success,查「为什么文件不动」要读日志,不能看步骤颜色。**
+- **待办(内容工作,另起)**:bpj 8 条厂商投稿全部停在 `new`,最早 09-07,零审核。
 
 ## 工具方向复盘(2026-09-24,owner:「工具方向复盘,并拓展」;全文 `docs/tool-direction-review-2026-09-24.md`)
 

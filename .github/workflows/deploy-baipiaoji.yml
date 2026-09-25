@@ -663,6 +663,8 @@ jobs:
           r=$(curl -s -m 25 -A 'curl/8.0 bpj-ci-selftest' 'https://baipiaoji.com/api/reach?days=7')
           echo "$r" | head -c 300; echo
           echo "$r" | grep -q '"ok":true' || { echo "::error::/api/reach 未返回 ok:true"; exit 1; }
+          # 钱线(2026-09-21):money 必须是对象(舰队 money_line.py 读它)
+          echo "$r" | grep -q '"money":{' || { echo "::error::/api/reach 没有 money 对象"; exit 1; }
           echo "$r" | grep -q '"humans_referred":[0-9]' || { echo "::error::/api/reach 缺 humans_referred 计数"; exit 1; }
           echo "$r" | grep -q '"paths":\[' || { echo "::error::/api/reach 缺 paths 数组"; exit 1; }
           echo "$r" | grep -q '"window_days":7' || { echo "::error::/api/reach 未按 days 参数取窗"; exit 1; }
@@ -715,6 +717,24 @@ jobs:
             echo "::error::钱包轨半通电：ADS_WALLET 已设但 ADS_WATCH_SECRET 未设——链上轮询无法回写，付款后不会上架"; exit 1; fi
           echo "$doc" | grep -q '"selling":true' && echo "💰 收款已通电" || echo "ℹ️ 收款未开通（投放页显示未开售，属预期状态）"
           echo "✅ 广告库存面在位：工具页有位、触达数已接、rel 合规、投放页有库存表、/api/ads 可读、收款体检已跑"
+
+      # sitemap 的 URL 必须是终点(2026-09-15 修复):Cloudflare Pages 把 /x.html 308 到 /x,
+      # 此前 1558 条 loc 与每页 canonical 全部声明 .html —— canonical 指向非 200,
+      # IndexNow 每次推的也是跳转地址。舰队另外 13 个站抽样重定向为 0,只有本站全中。
+      - name: Sitemap URLs must be destinations, not redirects
+        run: |
+          set -u
+          sm=$(curl -s -m 30 -A 'curl/8.0 bpj-ci-selftest' 'https://baipiaoji.com/sitemap.xml')
+          n=$(echo "$sm" | grep -o '<loc>[^<]*</loc>' | wc -l)
+          h=$(echo "$sm" | grep -o '<loc>[^<]*</loc>' | grep -c '\.html' || true)
+          [ "$n" -ge 1000 ] || { echo "::error::sitemap 只有 $n 条 loc(预期 ≥1000)"; exit 1; }
+          [ "$h" = "0" ] || { echo "::error::sitemap 里仍有 $h 条 .html URL —— 它们会 308 跳走"; exit 1; }
+          u=$(echo "$sm" | grep -o '<loc>[^<]*</loc>' | sed 's/<[^>]*>//g' | sed -n '5p')
+          code=$(curl -s -o /dev/null -w '%{http_code}' -m 20 -A 'curl/8.0 bpj-ci-selftest' "$u")
+          [ "$code" = "200" ] || { echo "::error::$u 直接访问返回 $code(应为 200,不许是跳板)"; exit 1; }
+          can=$(curl -s -m 20 -A 'curl/8.0 bpj-ci-selftest' "$u" | grep -o 'rel="canonical" href="[^"]*"' | head -1 | sed 's/.*href="//;s/"//')
+          [ "$can" = "$u" ] || { echo "::error::canonical($can) 与 sitemap URL($u) 不一致"; exit 1; }
+          echo "✅ sitemap $n 条全是终点;抽样页 200 且 canonical 自指"
 
       - name: MCP discovery surface check
         run: |

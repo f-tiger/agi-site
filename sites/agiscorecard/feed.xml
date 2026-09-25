@@ -7,9 +7,30 @@
   <link rel="hub" href="https://pubsubhubbub.appspot.com/"/>
   <link rel="hub" href="https://pubsubhubbub.superfeedr.com/"/>
   <id>https://agiscorecard.com/</id>
-  <updated>2026-09-14T00:00:00Z</updated>
+  <updated>2026-09-17T00:00:00Z</updated>
   <author><name>The AGI Scorecard</name></author>
   <rights>CC BY 4.0 — reuse with attribution and a link to https://agiscorecard.com</rights>
+  <entry>
+    <title>Is AI music good enough yet?</title>
+    <link href="https://agiscorecard.com/is-ai-music-good-enough"/>
+    <id>https://agiscorecard.com/is-ai-music-good-enough</id>
+    <updated>2026-09-17T00:00:00Z</updated>
+    <summary>97% of 9,000 blind-test listeners could not tell AI music from human. It is over half of Deezer&#x27;s daily uploads and 1-3% of actual listening.</summary>
+  </entry>
+  <entry>
+    <title>预言 AGI 2027 的基金，7 月爆仓了 | AGI 记分牌</title>
+    <link href="https://agiscorecard.com/cn"/>
+    <id>https://agiscorecard.com/cn</id>
+    <updated>2026-09-15T00:00:00Z</updated>
+    <summary>他预言 AGI 2027、两年回报超1000%、做空英伟达85亿——2026年7月单月亏约67%，公开股票组合大部分转让给 Citadel。完整仓位收据与时间线，基于公开文件与多家媒体报道。</summary>
+  </entry>
+  <entry>
+    <title>AGI Timeline: Prediction Markets vs Evidence</title>
+    <link href="https://agiscorecard.com/agi-odds-vs-evidence"/>
+    <id>https://agiscorecard.com/agi-odds-vs-evidence</id>
+    <updated>2026-09-15T00:00:00Z</updated>
+    <summary>Polymarket&#x27;s AGI-by-2027 contract vs the evidence: the market prices an announcement, the scorecard grades capability (62.5/100). Issue #4 of a running comparison.</summary>
+  </entry>
   <entry>
     <title>AGI Questions, Answered — The Full Scorecard Index</title>
     <link href="https://agiscorecard.com/agi-questions"/>
@@ -30,13 +51,6 @@
     <id>https://agiscorecard.com/aschenbrenner-vs-metaculus</id>
     <updated>2026-09-13T00:00:00Z</updated>
     <summary>Aschenbrenner predicts AGI by 2027; the Metaculus community median is 50% by 2033. A side-by-side of how the two forecasts differ and why — updated mid-2026.</summary>
-  </entry>
-  <entry>
-    <title>AGI Timeline: Prediction Markets vs Evidence</title>
-    <link href="https://agiscorecard.com/agi-odds-vs-evidence"/>
-    <id>https://agiscorecard.com/agi-odds-vs-evidence</id>
-    <updated>2026-09-07T00:00:00Z</updated>
-    <summary>Polymarket&#x27;s AGI-by-2027 contract vs the evidence: the market prices an announcement, the scorecard grades capability (62.5/100). Issue #4 of a running comparison.</summary>
   </entry>
   <entry>
     <title>When Will AGI Arrive? Every Major Forecast Compared (2026)</title>
@@ -135,19 +149,5 @@
     <id>https://agiscorecard.com/ai-trading-ledger</id>
     <updated>2026-09-05T00:00:00Z</updated>
     <summary>A paper-trading ledger with rules fixed before the start: SPY/QQQ benchmarks, an AI basket, a Thesis-Tracker mix, Faber 200-day and GTAA-5, GEM dual momentum, vol targeting, 12-1 momentum and an LLM arm, recomputed daily in public. Not investment advice.</summary>
-  </entry>
-  <entry>
-    <title>The Paradigm Bet: A Public, Pre-Registered Experiment</title>
-    <link href="https://agiscorecard.com/paradigm-experiment"/>
-    <id>https://agiscorecard.com/paradigm-experiment</id>
-    <updated>2026-09-05T00:00:00Z</updated>
-    <summary>Can the &#x27;2013 Bitcoin&#x27; pattern be run honestly in 2026? A live experiment ledger: pre-registered candidates, kill conditions filed before entry, monthly audits. Not investment advice.</summary>
-  </entry>
-  <entry>
-    <title>AGI Scorecard Data for AI Agents: JSON, Feed, llms.txt</title>
-    <link href="https://agiscorecard.com/for-agents"/>
-    <id>https://agiscorecard.com/for-agents</id>
-    <updated>2026-09-04T00:00:00Z</updated>
-    <summary>Free, machine-readable AGI verdict data: /data.json (CC BY 4.0), an Atom feed, and llms.txt. Copy-paste prompt to add verdict-change alerts to any AI agent.</summary>
   </entry>
 </feed>

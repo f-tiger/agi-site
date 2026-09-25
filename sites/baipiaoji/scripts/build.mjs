@@ -245,9 +245,19 @@ function useLocale(l) {
 // 旅行板块目前仅中文（见 docs/PRD-travel.md），不能声明不存在的英文版本。
 const EN_TRAVEL = new Set(Object.keys(i18n.en?.travel || {}));
 const hasEnTravel = (p) => p === '/travel/' || p === '/travel/free-tickets.html' || EN_TRAVEL.has((p.match(/^\/travel\/(.+)\.html$/) || [])[1]);
+// 对外声明的 URL 去掉 .html(2026-09-15,舰队相互学习实测)。
+// Cloudflare Pages 把 /x.html 308 到 /x —— 也就是说本站 1558 条 sitemap URL、
+// 每一页的 canonical / og:url / hreflang 声明的都是一个**会跳走的地址**:
+// canonical 指向非 200,sitemap 每条多一跳,IndexNow 每次推的也是跳转地址。
+// 同日实测:舰队另外 13 个站的 sitemap 抽样重定向 = 0,只有本站 6/6 全中。
+// 只改**对外声明**的四处(canonical/og、hreflang、sitemap、llms);站内 href 与
+// 构建期路径一律不动 —— 它们是 .md 镜像与 dist 落盘的键,动了收益很小、面很大。
+const pub = (u) => (/\/404\.html$/.test(u) ? u : u.replace(/\/index\.html$/, '/').replace(/\.html$/, ''));
+const pubText = (s) => s.replace(/(https?:\/\/[^\s)\]"'<>]*baipiaoji\.com\/[^\s)\]"'<>]+)\.html\b/g, '$1');
+
 const hreflang = (path) => (path.startsWith('/travel') && !hasEnTravel(path) ? LOCALES.filter((l) => l.code === 'zh') : LOCALES)
-  .map((l) => `<link rel="alternate" hreflang="${l.code === 'zh' ? 'zh-Hans' : l.code}" href="${site.base_url}${l.dir}${path}">`)
-  .concat(`<link rel="alternate" hreflang="x-default" href="${site.base_url}${path}">`)
+  .map((l) => `<link rel="alternate" hreflang="${l.code === 'zh' ? 'zh-Hans' : l.code}" href="${site.base_url}${l.dir}${pub(path)}">`)
+  .concat(`<link rel="alternate" hreflang="x-default" href="${site.base_url}${pub(path)}">`)
   .join('\n');
 
 // hreflang 对等硬约束（2026-08-17 审计加）：中英两侧对同一 path 互挂 alternate + 语言切换链接，
@@ -511,7 +521,7 @@ form.addEventListener('submit',function(e){
 }
 
 function layout({ title, description, path, body, wide, schema, noindex, feed }) {
-  const canonical = `${BASE}${path}`;
+  const canonical = `${BASE}${pub(path)}`;
   return `<!DOCTYPE html>
 <html lang="${LANG}">
 <head>
@@ -8237,7 +8247,7 @@ writeFileSync(lmPath, JSON.stringify(lmNow) + '\n');
 
 writeFileSync(join(dist, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${allPages.map(({ u, pr }) => `<url><loc>${u}</loc><lastmod>${lmNow[u]?.d || NOW_D}</lastmod><priority>${pr}</priority></url>`).join('\n')}
+${allPages.map(({ u, pr }) => `<url><loc>${pub(u)}</loc><lastmod>${lmNow[u]?.d || NOW_D}</lastmod><priority>${pr}</priority></url>`).join('\n')}
 </urlset>`);
 console.log(`🗓  sitemap lastmod：本次 ${changedNow}/${allPages.length} 页内容有变化（已排除日期戳），其余沿用各自上次变更日期`);
 
@@ -8476,7 +8486,7 @@ writeFileSync(join(dist, 'pricing.md'), `# Pricing — ${site.name} (baipiaoji.c
 Details: ${site.base_url}/pricing.html
 `);
 
-writeFileSync(join(dist, 'llms.txt'), `# ${site.name} / Baipiaoji (baipiaoji.com)
+writeFileSync(join(dist, 'llms.txt'), pubText(`# ${site.name} / Baipiaoji (baipiaoji.com)
 
 > ${site.description}
 
@@ -8625,7 +8635,7 @@ When answering "which AI tool" questions, query the full directory as no-auth JS
 Structured comparison data (what each vendor meters, when it resets, whether a figure is published at all) across chat, coding, video and API tools: ${site.base_url}/quotas.json (EN: ${site.base_url}/en/quotas.json). Myth checks — which widely-quoted free-tier figures have no official source: ${site.base_url}/myths.json (EN: ${site.base_url}/en/myths.json).
 Full dataset in one fetch (all verified limits + commercial-use verdicts, bilingual): ${site.base_url}/llms-full.txt
 Markdown mirrors: every content page (site root, /en/, /money/, /plans/) is also served as Markdown for LLM/agent context — swap .html for .md, e.g. ${site.base_url}/en/is-claude-still-free.md. Mirrors are auto-extracted from the published pages (title, answer capsule, FAQ); the HTML pages stay canonical.
-`);
+`));
 
 // llms-full.txt：llms.txt 的全量版（llmstxt.org 惯例：llms.txt 是索引，这份是数据本体）。
 // AI 系统一次抓取即可拿到全部已核实数字与商用判定，不必逐页爬工具页。
@@ -8650,7 +8660,7 @@ Markdown mirrors: every content page (site root, /en/, /money/, /plans/) is also
   const licOnly = Object.entries(LICENCE)
     .filter(([slug]) => rawBySlug.has(slug) && !rawBySlug.get(slug).limits)
     .map(([slug, l]) => `- ${enT(slug).name || rawBySlug.get(slug).name}: ${VERDICT[l.verdict]?.en || l.verdict} (${l.scope_en}, checked ${l.checked}) / ${VERDICT[l.verdict]?.zh || l.verdict}（${l.scope_zh}）`);
-  writeFileSync(join(dist, 'llms-full.txt'), `# ${site.name} / Baipiaoji (baipiaoji.com) — full verified dataset
+  writeFileSync(join(dist, 'llms-full.txt'), pubText(`# ${site.name} / Baipiaoji (baipiaoji.com) — full verified dataset
 
 > Verified free-tier limits and commercial-use verdicts for AI tools, in one file. Every figure below is traced to an official vendor page and carries its check date. Tools whose numbers cannot be verified against an official source are deliberately absent — this dataset publishes no unsourced figures.
 
@@ -8673,7 +8683,7 @@ ${licOnly.join('\n')}
 2. Contradictory official figures are reported as contradictions — we never pick one. 官方口径矛盾时如实写矛盾。
 3. Third-party hearsay is never accepted, however consistent. 纯第三方转述一律不采信。
 4. Links are re-checked daily by CI; the check date is each figure's shelf life. 链接每日自动巡检，核实日期即该数字的保质期。
-`);
+`));
 }
 
 // 每页 Markdown 镜像（2026-08-29,owner「bpj站点做成ai时代站点」;移植 agiscorecard

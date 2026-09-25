@@ -61,7 +61,7 @@ export async function onRequestGet({ request, env }) {
   const HUMAN = "ev = '' AND ref IS NOT NULL AND ref != '' AND ref NOT LIKE '%baipiaoji%' AND path NOT LIKE '/\\_\\_%' ESCAPE '\\'";
   try {
     const q = (sql, ...params) => env.HITS.prepare(sql).bind(...params).all().then((r) => (r && r.results) || []);
-    const [total, paths, referrers, aiRefs, events, subsNew, subsAll, adsRows, countryRows] = await Promise.all([
+    const [total, paths, referrers, aiRefs, events, subsNew, subsAll, adsRows, countryRows, subsByStatus, checkoutByState, web3Rows, watchRows, wbOrderRows] = await Promise.all([
       q(`SELECT count(*) n FROM hits WHERE d >= ? AND ${HUMAN}`, since),
       q(`SELECT path, count(*) n FROM hits WHERE d >= ? AND ${HUMAN} GROUP BY path ORDER BY n DESC LIMIT 400`, since),
       q(`SELECT ref, count(*) n FROM hits WHERE d >= ? AND ${HUMAN} GROUP BY ref ORDER BY n DESC LIMIT 30`, since),
@@ -76,6 +76,13 @@ export async function onRequestGet({ request, env }) {
       // 市场面:只按国家计数,**不与 path / ref / 事件交叉**,并在下面过 k 匿名下限。
       // 有它之前,「中国流量是不是更大」这种问题只有手接 MCP 查 D1 才答得出来。
       q(`SELECT country, count(*) n FROM hits WHERE d >= ? AND ${HUMAN} GROUP BY country ORDER BY n DESC`, since),
+      // 钱线(2026-09-21 舰队钱线仪表盘,读侧 tools/fleet/money_line.py):订阅按状态、广告收银台按状态、
+      // 钱包轨订单数、免费额度告警订阅数、会员订单按状态。全部只出计数;表可能不存在,失败按 null。
+      q('SELECT status, count(*) n FROM subs GROUP BY status').catch(() => []),
+      q('SELECT state, count(*) n FROM bpj_ad_checkout GROUP BY state').catch(() => []),
+      q('SELECT count(*) n FROM bpj_ad_web3').catch(() => [{ n: null }]),
+      q('SELECT count(*) n FROM watches').catch(() => [{ n: null }]),
+      q('SELECT state, count(*) n FROM wb_orders GROUP BY state').catch(() => []),
     ]);
     const ads = {};
     for (const r of adsRows) ads[String(r.status || '')] = r.n;
@@ -89,6 +96,18 @@ export async function onRequestGet({ request, env }) {
       events: Object.fromEntries(events.map((r) => [r.ev, r.n])),
       submissions: { new: subsNew[0] ? subsNew[0].n : null, total: subsAll[0] ? subsAll[0].n : null },
       ads,
+      money: {
+        days,
+        subs_by_status: Object.fromEntries(subsByStatus.map((r) => [String(r.status || ''), r.n])),
+        ads_by_status: ads,
+        ad_checkout_by_state: Object.fromEntries(checkoutByState.map((r) => [String(r.state || ''), r.n])),
+        ad_web3_orders: web3Rows[0] ? web3Rows[0].n : null,
+        watches: watchRows[0] ? watchRows[0].n : null,
+        member_orders_by_state: Object.fromEntries(wbOrderRows.map((r) => [String(r.state || ''), r.n])),
+        submissions_total: subsAll[0] ? subsAll[0].n : null,
+        go_28d: (events.find((r) => r.ev === 'go') || {}).n || 0,
+        biz_28d: (events.find((r) => r.ev === 'biz') || {}).n || 0,
+      },
       countries: foldSmallCountries(countryRows),
       country_floor: K_COUNTRY,
     });

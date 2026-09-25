@@ -38,9 +38,17 @@ Full content in one fetch: https://agiscorecard.com/llms-full.txt — and every 
 - [AI Stock Exposure Check](https://agiscorecard.com/ai-stock-exposure): Free tool. Maps 17 AI tickers to the eight graded Situational Awareness predictions and scores a basket on the same 0-100 scale as the AGI-2027 Thesis Tracker (62.5 as of 2026-07-12). Key finding: a standard AI infrastructure basket scores ~99 while roughly 2% of its weight rides on whether AGI actually arrives — listed AI equities are overwhelmingly a bet on the buildout (capex, compute), not on the 2027 date. A basket is encoded in the URL (?b=NVDA-AMD-TSM), so results are permalinked and shareable with no account; the result is also named as an archetype (Capex Landlord / Tail Holder / Thesis Owner / Anti-Thesis). Ticker-to-prediction mapping is editorial; holdings are public Q1 2026 13F. Not investment advice. Chinese version: https://agiscorecard.com/zh/ai-stock-exposure
 - [AI Investing Hub](https://agiscorecard.com/invest): How capital is positioned on AI — the rise and July-2026 blow-up of Aschenbrenner's fund (439% YTD through June, then ~-67% in July; most public holdings transferred to Citadel per CNBC/Bloomberg; ~$10B remains incl. Anthropic) and 8 investing legends' Q1 2026 13F stances. Education only, public filings and reporting only.
 
+## Sister tools for agents (same publisher, free beta, no accounts)
+- [Web3 Workbench](https://web3.agiscorecard.com/): hub for ten deterministic review tools (stablecoin reconciliation, task evidence, bounded routing, protocol profiles, data permits, workload cost, incentive economics, zkML planning, token-call decoding, disclosure comparison). MCP endpoint: `https://web3.agiscorecard.com/mcp` (Streamable HTTP, no auth). Each tool host also serves /llms.txt, /guide.md and /tool.json.
+- [Agent Delivery Lab](https://verify.agiscorecard.com/): local checks for x402 v2 payment-requirement shapes, declared JSON response rules and batch cost per accepted output; downloadable runner. A rule match is not settlement or provider verification.
+- [FilingLens](https://filinglens.agiscorecard.com/): same-period SEC company-facts comparison with exact CIK/concept/unit/date matching; `GET /api/sec-concept?cik=&tag=` proxies the official SEC companyfacts data; local MCP download on the site.
+- [TradeCheck (RFQ Desk /agent)](https://rfqdesk.agiscorecard.com/agent): two-way purchase-order vs invoice checks in the browser or as a local MCP; fictional example and install guide at /agent-guide.
+- [Protocol Ledger API](https://protocol.agiscorecard.com/api/v1/profiles): five dated agent-payment protocol profiles as JSON with source URLs.
+
 ## Index
 
 - [AGI questions, answered (full index)](https://agiscorecard.com/agi-questions): One-page index of every question the scorecard answers.
+- [Is AI music good enough yet?](https://agiscorecard.com/is-ai-music-good-enough): Graded verdict — yes on quality, no on demand. 97% of 9,000 blind-test listeners (Deezer/Ipsos, Nov 2025) could not identify fully AI-generated music, AI is over 50% of Deezer's daily uploads (Jul 2026) yet only 1–3% of streams, up to 85% of those fraudulent. The cleanest measured case of capability arriving without adoption.
 - [Does Amodei's AI slowdown change the 2027 AGI odds?](https://agiscorecard.com/does-ai-slowdown-change-agi-2027): Rapid response to Dario Amodei's 2026-09-12 essay "We Must Pace the Frontier". Graded against the eight predictions: no verdict moved, with the pre-registered observables that would move one.
 
 ## Core pages

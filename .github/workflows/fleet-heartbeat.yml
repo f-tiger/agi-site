@@ -41,6 +41,9 @@ jobs:
         run: |
           set -uo pipefail
           # site|live URL|deploy workflow file
+          # 2026-09-21:四个新 worker(18 个)+ 它们的 13 个次级主机名(31 个公开主机)。
+          # 第三列为空 = 只探活不查部署年龄、不自动重发(同一 worker 的多主机共用一条部署链,
+          # 重发只挂在带 workflow 的那一行,否则一次 run 会把同一条 workflow 派发多次)。
           # The last four were deployed (push-only, no schedule) but in no fleet
           # instrument until 2026-09-23: a stall or an outage there alerted nobody.
           SITES='agiscorecard|https://agiscorecard.com/|deploy-agiscorecard.yml
@@ -60,7 +63,20 @@ jobs:
           localebatch|https://localebatch.agiscorecard.com/?ci=1|deploy-localebatch.yml
           agent-delivery-lab|https://verify.agiscorecard.com/?ci=1|deploy-agent-delivery-lab.yml
           venture-lab|https://rfqdesk.agiscorecard.com/?ci=1|deploy-venture-lab.yml
-          web3-studio|https://web3.agiscorecard.com/?ci=1|deploy-web3-studio.yml'
+          web3-studio|https://web3.agiscorecard.com/?ci=1|deploy-web3-studio.yml
+          venture-lab/modelmeter|https://modelmeter.agiscorecard.com/?ci=1|
+          venture-lab/querysprint|https://querysprint.agiscorecard.com/?ci=1|
+          venture-lab/filinglens|https://filinglens.agiscorecard.com/?ci=1|
+          web3-studio/reconcile|https://reconcile.agiscorecard.com/?ci=1|
+          web3-studio/evidence|https://evidence.agiscorecard.com/?ci=1|
+          web3-studio/route|https://route.agiscorecard.com/?ci=1|
+          web3-studio/protocol|https://protocol.agiscorecard.com/?ci=1|
+          web3-studio/permit|https://permit.agiscorecard.com/?ci=1|
+          web3-studio/compute|https://compute.agiscorecard.com/?ci=1|
+          web3-studio/incentives|https://incentives.agiscorecard.com/?ci=1|
+          web3-studio/proof|https://proof.agiscorecard.com/?ci=1|
+          web3-studio/calls|https://calls.agiscorecard.com/?ci=1|
+          web3-studio/disclosures|https://disclosures.agiscorecard.com/?ci=1|'
 
           NOW=$(date -u +%s)
           BAD=0
@@ -88,6 +104,19 @@ jobs:
             #   · 取最近 5 条成功 run 的 updated_at **最大值**,而不是盲信 [0];
             #   · 把拿到的原始值打进日志,下次再出就是可诊断的,而不是靠推。
             # (教训同源:此前 itch 那次也是靠"步骤耗时"去推断而不是读日志,推错了。)
+            if [ -z "$wf" ]; then
+              # 次级主机名:只探活。部署年龄与重发由同一 worker 带 workflow 的那一行负责。
+              echo "  probe $name: http=$code (secondary host, no deploy-age check)"
+              if [ "$code" != "200" ]; then
+                BAD=1
+                echo "::error::$name ($url) 返回 $code,不是 200"
+              fi
+              [ $FIRST -eq 0 ] && echo ',' >> /tmp/h.json
+              FIRST=0
+              printf '    {"site":"%s","url":"%s","http":"%s","days_since_deploy":null,"redeployed":false}' \
+                "$name" "$url" "$code" >> /tmp/h.json
+              continue
+            fi
             last=$(gh api "repos/$REPO/actions/workflows/$wf/runs?status=success&per_page=5" \
                      --jq '[.workflow_runs[].updated_at] | max // ""' 2>/dev/null || echo "")
             echo "  probe $name: http=$code last_success=${last:-<none>}"
@@ -169,6 +198,25 @@ jobs:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: python3 tools/fleet/ai_referrals.py
 
+      # ③ 每个站的读者从哪来(2026-09-15「舰队相互学习」)。此前读侧只数 AI 主机,于是
+      #    除 eco 外没有一个站知道自己的渠道构成——而同日手查发现 bpj 的第一大来源是
+      #    Google(157/305),eco 的 Google 却是 0。两个相反的答案,谁都看不见自己属于哪种。
+      #    端点优先(/api/pulse 自本日起多返回 by_source/by_search/by_fleet),分桶表是
+      #    tools/fleet/ref_sources.txt。读失败保留上一份,连续 >3 天读不到才红。
+      - name: Read where each site's readers come from (28d)
+        id: srcmix
+        continue-on-error: true
+        run: python3 tools/fleet/traffic_sources.py
+
+      # ④ 钱线仪表盘(2026-09-21「营收目标增长」):手册 08-23 起要求每次报告带钱线,而 runner 从来读不到
+      #    一条——D1 没有读 token。现在五个钱线站的 pulse/reach 多返回一个 money 对象(聚合计数),
+      #    这里每天读一次写 data/fleet-money.json,demand-digest 次日读它;owner 亲报的 PartnerNet 数字
+      #    在 data/fleet-money-owner.json,只并入,永不推算。读失败保留上一份,连续 >3 天读不到才红。
+      - name: Read the fleet money line (28d)
+        id: money
+        continue-on-error: true
+        run: python3 tools/fleet/money_line.py
+
       # 4b) 机器面读数(2026-09-24 复盘产物)。三个站各自服务 MCP,各自数过一遍,
       #     结论都是「大部分是我们自己」——但没人把三份读数放在一起过,每次都要重新手算。
       #     这一步用同一套词汇(ci / operator / indexer / other + 需求调用方规则)读各站的
@@ -188,7 +236,7 @@ jobs:
           git config user.email noreply@anthropic.com
           git config user.name Claude
           git add data/fleet-health.json
-          git add data/fleet-ai-access.json data/fleet-ai-referrals.json data/fleet-mcp-usage.json 2>/dev/null || true
+          git add data/fleet-ai-access.json data/fleet-ai-referrals.json data/fleet-traffic-sources.json data/fleet-money.json data/fleet-page-patterns.json data/fleet-backlinks.json data/fleet-mcp-usage.json 2>/dev/null || true
           git diff --cached --quiet && { echo "无变化"; exit 0; }
           git commit -m "chore(fleet): heartbeat 健康快照 $(date -u +%F)"
           for i in 1 2 3 4; do
@@ -254,6 +302,35 @@ jobs:
       - name: Assert bot-UA classifier parity across workers
         run: python3 tools/fleet/check_bot_ua.py
 
+      # 同一个教训的第二次应用:13 份引荐来源分类器必须与 tools/fleet/ref_sources.txt 逐字相同。
+      # 这里不只比字面量,还把每个 worker 里**真正那段代码**抠出来交给 node 跑一组用例
+      # (两个方向:该命中的必中,netflix.com / agiscorecard.com.spam.example 这类必不误判)。
+      - name: Assert referrer-source classifier parity across workers
+        run: python3 tools/fleet/check_ref_sources.py
+
+      # sitemap 里的 URL 必须是终点。这类缺陷不跟随跳转就看不见:站是 200、sitemap 是 200,
+      # 唯独每条 loc 都多一跳。实测 bpj 1558 条全中(canonical 也指向非 200),另外 13 站为 0。
+      # 抽样 4 条/站,只打自家站,零外部副作用。3xx 才红;取不到只 warning。
+      - name: Assert every sitemap URL is a destination, not a redirect
+        id: smguard
+        continue-on-error: true
+        run: python3 tools/fleet/sitemap_guard.py
+
+      # 舰队互学矩阵(每周一,脚本自己判星期,不新增 cron):同一套判据打在 14 个站上,
+      # 谁在哪条已验证做法上最好、谁缺它,一张表看完。第一次跑就推翻了直觉——
+      # 带日期的新鲜度标注 bpj 12/16 是全舰队最好,agi 只有 4/16(而它站规里写着这条)。
+      # 只读自家页面,零外部副作用;测不到只 warning,不红(它是选题输入,不是告警器)。
+      - name: Weekly cross-site pattern matrix
+        continue-on-error: true
+        run: python3 tools/fleet/page_patterns.py
+
+      # 外链监测(每周一,脚本自己判星期,不新增 cron)。两半:①各站 by_other = 真的把人
+      # 送过来的站外来源域(第一方,不花钱不靠第三方工具);②目标清单核对——只读 README,
+      # **机器永不自动提 PR、永不发帖**(同 Reddit 那条规矩)。掉链会 warning。
+      - name: Weekly backlink monitor (read-only)
+        continue-on-error: true
+        run: python3 tools/fleet/backlinks.py
+
       # 舰队的「赌注台账」(2026-09-13,owner:「持续优化,探索,扩张」):每条预登记判定线一行,
       # 到期 3 天内提醒,过期 >7 天仍未结算 → 红 → GitHub 邮件。判定线可以判负,不可以被遗忘;
       # 这是字节「应用工厂」里唯一能被 solo 舰队照抄的机制:按日期结算,按数字加码或杀掉。
@@ -264,8 +341,8 @@ jobs:
       - name: Assert the recall radar the shelves gate on is fresh
         run: python3 tools/fleet/recall_gate.py --check
 
-      - name: Fail the run if any site is down, blocks AI crawlers, or the referral read is stale
-        if: steps.probe.outputs.bad == '1' || steps.aiprobe.outcome == 'failure' || steps.airef.outcome == 'failure'
+      - name: Fail the run if any site is down, blocks AI crawlers, or a traffic read is stale
+        if: steps.probe.outputs.bad == '1' || steps.aiprobe.outcome == 'failure' || steps.airef.outcome == 'failure' || steps.srcmix.outcome == 'failure' || steps.money.outcome == 'failure' || steps.smguard.outcome == 'failure' || steps.mcpusage.outcome == 'failure'
         run: |
-          echo "site-down=${{ steps.probe.outputs.bad }} ai-crawler-blocked=${{ steps.aiprobe.outcome }} ai-referrals=${{ steps.airef.outcome }}"
+          echo "site-down=${{ steps.probe.outputs.bad }} ai-crawler-blocked=${{ steps.aiprobe.outcome }} ai-referrals=${{ steps.airef.outcome }} source-mix=${{ steps.srcmix.outcome }} money=${{ steps.money.outcome }} sitemap=${{ steps.smguard.outcome }} mcp-usage=${{ steps.mcpusage.outcome }}"
           exit 1

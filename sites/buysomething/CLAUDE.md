@@ -245,3 +245,6 @@ TikTok/1688 抓取、付费数据源。
 - **下一格的候选与门槛**:openFDA food/device enforcement(2026-09-16 实测 200)是首选,
   **但必须等 `sr-vertical-1014` 判 win 再接**;EU Safety Gate 当日未找到免密钥 alerts 接口,不写代码不承诺。
 - **永远不做**:担保金额、归类意见、反倾销个案跟踪、替用户决定税号。
+
+## 钱线仪器(2026-09-21)
+`/api/pulse` 多返回 `money`(mcp_call / pick_open / out_click / calc_use / pack_open / pack_order 的 28d 计数,剔 CI 路径与 `__ci` 标签),舰队 `money_line.py` 每日读;部署自检断言 `"money":{`。09-21 读数:`/api/mcp` 09-17 起 24 次非 CI 调用(check_import_claim 带参数 7 次)。另:`tools/test_mcp.mjs` 第 9 条(recall_check 21 条)在 main HEAD 上就红,与钱线改动无关。

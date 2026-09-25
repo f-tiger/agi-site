@@ -278,3 +278,6 @@ labubu is fake」的多源标准答案是**刮码 + fwsy.popmart.com 验证 + UV
   全部未达 → 把「域名历史包袱」假设升级为主因,报 owner 议新域名。
 - 旧站教训延续:任何漏斗事件读数前先剔 CI;insert-only injector 禁止;
   判定线一律带日期与查询口径。
+
+## 钱线仪器(2026-09-21)
+`/api/pulse` 多返回 `money`(affiliate_click_28d,08-30 起 / member_orders_by_state),舰队 `money_line.py` 每日读;部署自检断言 `"money":{`。09-21 读数:pv 341、affiliate_click 1(首页);货架所在的 picks 页 28d pv <6。
