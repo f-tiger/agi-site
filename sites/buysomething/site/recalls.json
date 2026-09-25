@@ -1,7 +1,7 @@
 {
- "generated": "2026-09-24",
+ "generated": "2026-09-25",
  "window_days": 365,
- "since": "2025-09-24",
+ "since": "2025-09-25",
  "sources": {
   "cpsc": "https://www.saferproducts.gov/RestWebServices/Recall (official CPSC API)",
   "eu_safety_gate": "not wired: probed URL serves HTML, JSON endpoint unconfirmed (2026-09-13)"
@@ -272,9 +272,16 @@
    "stale": false
   },
   "cable-powerbank": {
-   "n": 7,
-   "latest": "2026-09-03",
+   "n": 8,
+   "latest": "2026-09-24",
    "items": [
+    {
+     "id": 11000,
+     "date": "2026-09-24",
+     "title": "NEWDERY Power Banks Recalled Due to Fire and Burn Hazards; Risk of Serious Injury; Sold on Amazon",
+     "hazard": "The lithium-ion battery in the power banks can explode or ignite, posing fire and burn hazards to consumers.",
+     "url": "https://www.cpsc.gov/Recalls/2026/NEWDERY-Power-Banks-Recalled-Due-to-Fire-and-Burn-Hazards-Risk-of-Serious-Injury-Sold-on-Amazon"
+    },
     {
      "id": 10939,
      "date": "2026-09-03",
@@ -302,13 +309,6 @@
      "title": "INIU Recalls Power Banks Due to Fire and Burn Hazards; Sold on Amazon",
      "hazard": "The lithium-ion battery in the recalled power banks can overheat and ignite, posing fire and burn hazards to consumers.",
      "url": "https://www.cpsc.gov/Recalls/2026/INIU-Recalls-Power-Banks-Due-to-Fire-and-Burn-Hazards-Sold-on-Amazon"
-    },
-    {
-     "id": 10484,
-     "date": "2025-11-13",
-     "title": "Belkin Recalls Portable Power Banks and Wireless Charging Stands Due to Fire and Burn Hazards",
-     "hazard": "The lithium-ion battery in the power banks and charging stands can overheat, posing fire and burn hazards to consumers.",
-     "url": "https://www.cpsc.gov/Recalls/2026/Belkin-Recalls-Portable-Power-Banks-and-Wireless-Charging-Stands-Due-to-Fire-and-Burn-Hazards"
     }
    ],
    "keywords": [
