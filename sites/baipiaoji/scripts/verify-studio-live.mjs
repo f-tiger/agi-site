@@ -31,9 +31,11 @@ for(const prefix of ['','/en']){
   assert.ok(videoHub.includes(`rel="canonical" href="${origin}${prefix}/video/"`));
   assert.ok(videoHub.includes('id="membership"')&&videoHub.includes('class="video-paths"'));
   assert.ok(videoHub.includes(`${PLAN.price_units/1e6} USDT`)&&videoHub.includes('data-video-availability'));
-  for(const [label,page] of [['home',home],['directory',category],['studio',hub]]){
+  for(const [label,page] of [['home',home],['studio',hub]]){
     assert.ok(page.includes(`href="${origin}${prefix}/video/"`)&&page.includes('data-video-nav'),prefix+' '+label+' video discovery');
   }
+  // Category pages use their own main layout with an entry card, without a rail.
+  assert.ok(category.includes(`href="${origin}${prefix}/video/"`)&&category.includes('data-video-entry="category"'),prefix+' directory video discovery');
   assert.ok(video.includes('id="vv-cloud-save"')&&video.includes('tool=bpj-video-variants'));
   assert.ok((await get(prefix+'/workbench/creatorops')).includes('creatorops'),'video brief destination');
 }
