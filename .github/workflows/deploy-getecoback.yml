@@ -871,24 +871,25 @@ jobs:
             *) echo "::error::trend endpoint broken after 3 tries: '$trend'"; fail=1 ;;
           esac
           # MCP server: the agent-facing tool layer. initialize must round-trip.
+          # Read serverInfo from JSON and use the manifest name loaded above;
+          # the old literal drifted from the server's registered name.
+          mcp_init_ok() {
+            python3 -c 'import json,sys;d=json.load(sys.stdin);sys.exit(not (d.get("jsonrpc")=="2.0" and d.get("id")==1 and d.get("result",{}).get("serverInfo",{}).get("name")==sys.argv[1]))' "$want" <<< "$1"
+          }
           mcp=$(curl -s --max-time 20 -X POST "https://getecoback.com/mcp" \
                  -H "Content-Type: application/json" \
                  -d '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-03-26","capabilities":{},"clientInfo":{"name":"ci","version":"0"}}}' || echo "")
           echo "mcp said: ${mcp:0:150}"
-          case "$mcp" in
-            *'"getecoback-raumklima"'*) echo "OK mcp endpoint" ;;
-            *) echo "::error::mcp endpoint broken: '$mcp'"; fail=1 ;;
-          esac
+          if mcp_init_ok "$mcp"; then echo "OK mcp endpoint"
+          else echo "::error::mcp endpoint broken: '$mcp'"; fail=1; fi
           # The URL the official registry listing actually points at. A pointer
           # nobody checks is how you end up advertising a dead server.
           mcpv1=$(curl -s --max-time 20 -X POST "https://getecoback.com/mcp/v1" \
                  -H "Content-Type: application/json" \
                  -d '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-03-26","capabilities":{},"clientInfo":{"name":"ci","version":"0"}}}' || echo "")
           echo "mcp/v1 said: ${mcpv1:0:150}"
-          case "$mcpv1" in
-            *'"getecoback-raumklima"'*) echo "OK mcp/v1 (registry pointer)" ;;
-            *) echo "::error::registry remote URL /mcp/v1 broken: '$mcpv1'"; fail=1 ;;
-          esac
+          if mcp_init_ok "$mcpv1"; then echo "OK mcp/v1 (registry pointer)"
+          else echo "::error::registry remote URL /mcp/v1 broken: '$mcpv1'"; fail=1; fi
           # Live popular ranking: drives the homepage's self-refreshing block.
           top=""
           for attempt in 1 2 3; do
