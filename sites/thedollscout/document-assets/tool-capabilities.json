@@ -1,6 +1,6 @@
 {
   "name": "TDS Document Scout",
-  "edition": "2026-09-25.4",
+  "edition": "2026-09-25.7",
   "updated": "2026-09-25",
   "execution": "User-operated browser only. No hosted PDF processing API.",
   "uploads": false,
@@ -121,5 +121,16 @@
       "limitations": "不比较图片、版式和批注；相似页面的配对结果需要复核。",
       "method": "https://thedollscout.com/zh/methodology"
     }
-  ]
+  ],
+  "deliveryRecord": {
+    "urls": [
+      "https://thedollscout.com/delivery-evidence",
+      "https://thedollscout.com/de/delivery-evidence",
+      "https://thedollscout.com/zh/delivery-evidence"
+    ],
+    "format": "https://thedollscout.com/document-assets/delivery-format.txt",
+    "output": "Local JSON and HTML file inventory with SHA-256 fingerprints and user notes",
+    "verification": "File equality only; no identity, delivery, consent or trusted time attestation",
+    "teamPlan": "Research only; not available to purchase"
+  }
 }

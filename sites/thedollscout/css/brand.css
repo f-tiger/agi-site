@@ -33,6 +33,9 @@ body[data-member-site="tds"] header { border-color: var(--tds-line); }
 body[data-site="tds"] :is(main,footer),
 body[data-member-site="tds"] :is(header,main,footer) { max-width: var(--tds-width); }
 body[data-site="tds"] header { padding-inline: max(22px,calc((100vw - 1036px)/2)); }
+body[data-site="tds"] header,
+body[data-member-site="tds"] header { flex-wrap: wrap; gap: 12px 20px; }
+.tds-home-link { display: inline-flex; align-items: center; min-height: 44px; color: var(--tds-accent); white-space: nowrap; }
 body[data-site="tds"] h1 { font-family: var(--tds-font); font-weight: 800; letter-spacing: -.02em; }
 body[data-site="tds"] :is(.scope,small,.method,footer,.breadcrumbs,.scroll-hint),
 body[data-member-site="tds"] footer { color: var(--tds-muted); }

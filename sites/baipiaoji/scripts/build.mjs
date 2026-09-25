@@ -8535,6 +8535,8 @@ ${solutions.map((s) => `- [${s.pain}](${site.base_url}/plans/${s.slug}.html)：$
 ## BPJ 自研工具 / First-party BPJ tools
 
 - [自研工具板块 / Built by BPJ](${site.base_url}/studio/): BPJ 自主设计与开发，独立于第三方工具收录。EN: ${site.base_url}/en/studio/
+- [PDF 整理 / PDF workbench](${site.base_url}/studio/pdf-tools): 本地合并、选页重排、旋转和图片转 PDF，免费导出；无 OCR、Word 转换或 PDF 压缩。EN: ${site.base_url}/en/studio/pdf-tools
+- [商品图批处理 / Product image batch tools](${site.base_url}/studio/product-images): 本地批量改尺寸、裁切、格式转换、压缩和图片 / ZIP 导出；纯色背景处理不是 AI 抠图。EN: ${site.base_url}/en/studio/product-images
 - [供应商报价比较台 / Supplier quote comparison](${site.base_url}/studio/quote-compare): 同一采购任务内核对箱规、起订量、税运费和来源；本地计算与导出，无 OCR 或自动下单。EN: ${site.base_url}/en/studio/quote-compare
 - [视频工作室 / Video studio](${site.base_url}/video/): BPJ 自研视频业务入口；免费制作与导出、可选会员云项目与版本历史、独立的厂商赞助位。EN: ${site.base_url}/en/video/; Markdown: ${site.base_url}/video/index.md
 - [商品视频变体 / Product video variants](${site.base_url}/studio/video-variants): BPJ 自研，本机素材编排、三个开场、三种画幅、真实视频与字幕导出，AI 分镜交接和独立预算。当前不提供模型代调用。EN: ${site.base_url}/en/studio/video-variants

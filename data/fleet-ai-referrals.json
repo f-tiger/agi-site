@@ -1,137 +1,41 @@
 {
- "generated": "2026-09-24T13:03:38Z",
+ "generated": "2026-09-25T13:08:39Z",
  "window_days": 28,
- "ok": true,
- "read_via": "endpoints",
- "errors": [],
+ "ok": false,
+ "read_via": "endpoints (partial)",
+ "errors": [
+  "agiscorecard: endpoint HTTP Error 500: Internal Server Error; no token with D1 read scope for the fallback",
+  "getecoback: endpoint HTTP Error 500: Internal Server Error; no token with D1 read scope for the fallback",
+  "thedollscout: endpoint HTTP Error 500: Internal Server Error; no token with D1 read scope for the fallback",
+  "goldrush: endpoint HTTP Error 500: Internal Server Error; no token with D1 read scope for the fallback",
+  "gridlings: endpoint HTTP Error 500: Internal Server Error; no token with D1 read scope for the fallback",
+  "buysomething: endpoint HTTP Error 500: Internal Server Error; no token with D1 read scope for the fallback",
+  "gamesledger: endpoint HTTP Error 500: Internal Server Error; no token with D1 read scope for the fallback",
+  "after35: endpoint HTTP Error 500: Internal Server Error; no token with D1 read scope for the fallback",
+  "learn: endpoint HTTP Error 500: Internal Server Error; no token with D1 read scope for the fallback",
+  "fanzha: endpoint HTTP Error 500: Internal Server Error; no token with D1 read scope for the fallback",
+  "firstjob: endpoint HTTP Error 500: Internal Server Error; no token with D1 read scope for the fallback",
+  "codeword: endpoint HTTP Error 500: Internal Server Error; no token with D1 read scope for the fallback",
+  "powerbill: endpoint HTTP Error 500: Internal Server Error; no token with D1 read scope for the fallback"
+ ],
  "baseline_2026_09_12": {
   "fleet_ai_ref": 69,
   "note": "hand-measured; agi 20, bpj 33, eco 16, others 0"
  },
- "fleet_ai_ref": 58,
- "fleet_human_pv": 45243,
- "fleet_human_pv_excl_flagged": 3491,
+ "fleet_ai_ref": 19,
+ "fleet_human_pv": 399,
+ "fleet_human_pv_excl_flagged": 399,
  "sites": [
   {
-   "site": "agiscorecard",
-   "human_pv": 39742,
-   "ai_ref": 20,
-   "by_host": {
-    "claude.ai": 7,
-    "chatgpt.com": 6,
-    "www.perplexity.ai": 3,
-    "copilot.microsoft.com": 2,
-    "kagi.com": 2
-   },
-   "via": "endpoint",
-   "pv_caveat": "server-side pageviews; JS page_view beacon 1,641/28d on 2026-09-23"
-  },
-  {
    "site": "baipiaoji",
-   "human_pv": 397,
-   "ai_ref": 21,
-   "by_host": {
-    "chatgpt.com": 13,
-    "www.perplexity.ai": 7,
-    "kagi.com": 1
-   },
-   "via": "endpoint"
-  },
-  {
-   "site": "getecoback",
-   "human_pv": 602,
-   "ai_ref": 16,
+   "human_pv": 399,
+   "ai_ref": 19,
    "by_host": {
     "chatgpt.com": 12,
-    "www.perplexity.ai": 3,
+    "www.perplexity.ai": 6,
     "kagi.com": 1
    },
    "via": "endpoint"
-  },
-  {
-   "site": "thedollscout",
-   "human_pv": 624,
-   "ai_ref": 0,
-   "by_host": {},
-   "via": "endpoint"
-  },
-  {
-   "site": "goldrush",
-   "human_pv": 452,
-   "ai_ref": 0,
-   "by_host": {},
-   "via": "endpoint"
-  },
-  {
-   "site": "gridlings",
-   "human_pv": 797,
-   "ai_ref": 0,
-   "by_host": {},
-   "via": "endpoint"
-  },
-  {
-   "site": "buysomething",
-   "human_pv": 106,
-   "ai_ref": 0,
-   "by_host": {},
-   "via": "endpoint"
-  },
-  {
-   "site": "gamesledger",
-   "human_pv": 513,
-   "ai_ref": 1,
-   "by_host": {
-    "copilot.microsoft.com": 1
-   },
-   "via": "endpoint"
-  },
-  {
-   "site": "after35",
-   "human_pv": 456,
-   "ai_ref": 0,
-   "by_host": {},
-   "via": "endpoint",
-   "pv_caveat": "0 outside referrers and 0 events in 28d on 2026-09-23"
-  },
-  {
-   "site": "learn",
-   "human_pv": 281,
-   "ai_ref": 0,
-   "by_host": {},
-   "via": "endpoint",
-   "pv_caveat": "0 outside referrers and 0 events in 28d on 2026-09-23"
-  },
-  {
-   "site": "fanzha",
-   "human_pv": 275,
-   "ai_ref": 0,
-   "by_host": {},
-   "via": "endpoint",
-   "pv_caveat": "0 outside referrers and 0 events in 28d on 2026-09-23"
-  },
-  {
-   "site": "firstjob",
-   "human_pv": 246,
-   "ai_ref": 0,
-   "by_host": {},
-   "via": "endpoint",
-   "pv_caveat": "0 outside referrers and 0 events in 28d on 2026-09-23"
-  },
-  {
-   "site": "codeword",
-   "human_pv": 398,
-   "ai_ref": 0,
-   "by_host": {},
-   "via": "endpoint",
-   "pv_caveat": "0 outside referrers and 0 events in 28d on 2026-09-23"
-  },
-  {
-   "site": "powerbill",
-   "human_pv": 354,
-   "ai_ref": 0,
-   "by_host": {},
-   "via": "endpoint",
-   "pv_caveat": "0 outside referrers and 0 events in 28d on 2026-09-23"
   }
  ]
 }

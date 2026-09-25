@@ -41,3 +41,9 @@ Full downloaded reports still include the document fields described on the priva
 ## Brand correction — edition 2026-09-25.4
 
 The owner pointed out that the document tools did not match TDS. The previous teal/slate direction was an implementation mistake: internal component consistency did not establish consistency with the existing brand. The shared foundation now follows the original TDS theme. The document SVG icon, browser theme color, archive banner and social card were updated together. The new share card uses a new PNG URL to avoid stale social/image caches; its editable SVG source is committed alongside it. Functional behavior, locales and search content are unchanged.
+
+## Explicit return to TDS — edition 2026-09-25.5
+
+The owner requires English as the default and reported that returning to the TDS homepage was unclear. Document headers now have an explicit Home link, with equivalent labels in German and Chinese. The logo, Home navigation, footer Home and breadcrumb Home all lead to the English root `/`. Localized tools and language switching retain their existing routes and canonical URLs. The mobile navigation wraps instead of hiding Home. TDS-only workbench and member headers receive the same explicit return link during final assembly; historical pages retain their archive banner with a clearly named TDS home link.
+
+Browser navigation checks entered with `?ci=1` carry that marker across same-origin links. Canonical metadata and public sharing payloads remain unchanged, so a return-home check cannot create a document demand event. The mobile preview starts at the English homepage.

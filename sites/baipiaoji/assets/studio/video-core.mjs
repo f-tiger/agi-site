@@ -1,4 +1,4 @@
-export const EDITION='2026-09-25.3',PRODUCT='bpj-video-variants';
+export const EDITION='2026-09-25.4',PRODUCT='bpj-video-variants';
 export const SIZES={'9:16':[720,1280],'1:1':[960,960],'16:9':[1280,720]};
 export const RATE={usd:0.07,checked:'2026-09-25',model:'Kling 2.6 Pro · audio off',source:'https://fal.ai/models/fal-ai/kling-video/v2.6/pro/image-to-video'};
 export function newProject(lang='zh',demo=false){const zh=lang==='zh';return {version:1,product:PRODUCT,lang,demo,brand:demo?'FIELD / 01':'',name:demo?(zh?'通勤收纳包':'Everyday carry pouch'):'',ratio:'9:16',accent:'#1b4de4',hooks:demo?(zh?['把随身小物，放回一起','出门前，少找一遍','看看包里的收纳方式']:['Keep everyday essentials together','One less search before you leave','A closer look at everyday carry']):['','',''],scenes:[{seconds:5,text:'',asset:null},{seconds:5,text:demo?(zh?'拉链开合 · 分区收纳':'Zip closure · separate compartments'):'',asset:null},{seconds:5,text:demo?(zh?'查看颜色与尺寸':'Explore colours and dimensions'):'',asset:null}],audio:null,budget:{shots:0,seconds:5,attempts:2,rate:RATE.usd}};}

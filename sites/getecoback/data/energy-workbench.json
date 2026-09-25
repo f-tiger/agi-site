@@ -73,10 +73,20 @@
     "meta": "Compare electricity offers with your own figures: first-year bonuses, recurring costs, time-of-use rates and power fees. Save, export and share.",
     "methodText": "Annual recurring cost = Σ(consumption × all-inclusive rate) + fixed charges + contracted power charges. First-year cost subtracts the one-off bonus; B also adds switching costs. Two-year savings = first-year savings + recurring savings. France’s break-even uses recurring costs, excluding bonuses. The shifting scenario stays separate.",
     "limitsText": "A 365-day model with constant consumption and prices. It does not forecast index-linked prices, model real hourly schedules, solar export, social tariffs or contract eligibility. Verify bonus conditions, term and exit fees with the supplier. A negative bill can result from an unusually large entered bonus. This is arithmetic, not a switch recommendation.",
-    "privacyText": "Figures stay in your browser unless you export or deliberately share them. Saved comparisons use local storage; up to five entries. A share URL contains the numbers in its fragment. Anonymous interaction counts include only language, market and example/own-input choice, never bill values. No account is needed.",
+    "privacyText": "Figures stay in your browser unless you export or deliberately share them. Saved comparisons use local storage; up to five entries. A share URL contains the numbers in its fragment. Anonymous interaction counts include language, market and example/own-input choice, never bill values. No account is needed. Next-step counts include the selected category, never your inputs or calculated savings.",
     "chooseFile": "Choose file",
     "noFile": "No file selected",
-    "fileImported": "Imported: {name}"
+    "fileImported": "Imported: {name}",
+    "nextTitle": "What would you like to check next?",
+    "nextIntro": "After comparing tariffs, review the running costs of your household equipment.",
+    "nextLinks": [
+      {
+        "id": "consumption",
+        "label": "Estimate appliance running costs",
+        "hint": "Compare electricity use before choosing equipment.",
+        "path": "/en/solution-calculator.html"
+      }
+    ]
   },
   "de": {
     "title": "Stromtarif-Werkstatt",
@@ -152,10 +162,26 @@
     "meta": "Stromtarife mit eigenen Zahlen vergleichen: Erstjahr, Folgejahr, Bonus, Grundpreis und Zeitfenster prüfen. Lokal speichern, exportieren und teilen.",
     "methodText": "Laufende Jahreskosten = Σ(Verbrauch × Gesamtarbeitspreis) + feste Kosten + Leistungskosten. Im ersten Jahr wird der einmalige Bonus abgezogen; bei B kommen Wechselkosten hinzu. Zweijahresersparnis = Erstjahresersparnis + laufende Ersparnis. Die französische Schwelle nutzt laufende Kosten ohne Boni. Zeitverschiebung bleibt ein eigenes Szenario.",
     "limitsText": "365 Tage, unveränderter Verbrauch und konstante Preise. Keine Prognose für dynamische Tarife, Stundenpläne, Einspeisung, Sozialtarife oder Vertragsberechtigung. Bonusbedingungen, Laufzeit und Kündigungskosten beim Anbieter prüfen. Ein sehr hoher eingetragener Bonus kann negative Kosten ergeben. Eine Rechnung, keine Wechsel-Empfehlung.",
-    "privacyText": "Zahlen bleiben im Browser, bis du sie exportierst oder bewusst teilst. Bis zu fünf Vergleiche werden lokal gespeichert. Freigabelinks enthalten die Zahlen im URL-Fragment. Anonyme Ereignisse erfassen nur Sprache, Markt und Beispiel-/Eigeneingabe, niemals Rechnungswerte. Kein Konto erforderlich.",
+    "privacyText": "Zahlen bleiben im Browser, bis du sie exportierst oder bewusst teilst. Bis zu fünf Vergleiche werden lokal gespeichert. Freigabelinks enthalten die Zahlen im URL-Fragment. Anonyme Ereignisse erfassen nur Sprache, Markt und Beispiel-/Eigeneingabe, niemals Rechnungswerte. Kein Konto erforderlich. Für gewählte Folgeschritte wird zusätzlich nur die Kategorie gezählt, keine Eingabe oder berechnete Ersparnis.",
     "chooseFile": "Datei auswählen",
     "noFile": "Keine Datei ausgewählt",
-    "fileImported": "Importiert: {name}"
+    "fileImported": "Importiert: {name}",
+    "nextTitle": "Was möchtest du als Nächstes prüfen?",
+    "nextIntro": "Der Tarif ist ein Hebel. Prüfe auch, wo du weniger Strom verbrauchen kannst.",
+    "nextLinks": [
+      {
+        "id": "consumption",
+        "label": "Stromverbrauch im Haushalt senken",
+        "hint": "Kostenlose Maßnahmen zuerst, passende Messgeräte nur bei Bedarf.",
+        "path": "/guide/strom-sparen-haushalt.html"
+      },
+      {
+        "id": "replacement",
+        "label": "Gerät ersetzen oder behalten?",
+        "hint": "Kaufpreis und Stromersparnis mit deinen Zahlen vergleichen.",
+        "path": "/geraete-austausch-rechner.html"
+      }
+    ]
   },
   "fr": {
     "title": "Comparateur de tarifs d’électricité",
@@ -231,10 +257,20 @@
     "meta": "Comparez deux offres d’électricité avec vos chiffres : prime, abonnement, seuil heures creuses et coûts annuels. Enregistrez et partagez le calcul.",
     "methodText": "Coût annuel récurrent = Σ(consommation × prix tout compris) + frais fixes + puissance. La première année déduit la prime unique ; B ajoute les frais de changement. Économie sur deux ans = économie initiale + économie récurrente. Le seuil HP/HC utilise les coûts récurrents, sans primes. Le déplacement de consommation reste un scénario distinct.",
     "limitsText": "Modèle sur 365 jours, à consommation et prix constants. Aucune prévision des prix indexés, des horaires réels, de l’injection solaire, des tarifs sociaux ou de l’éligibilité. Vérifiez primes, durée et frais de résiliation auprès du fournisseur. Une prime très élevée peut donner un coût négatif. Calcul arithmétique, pas une recommandation de changement.",
-    "privacyText": "Les chiffres restent dans votre navigateur sauf export ou partage volontaire. Cinq comparaisons peuvent être conservées localement. Le fragment du lien contient les chiffres. Les compteurs anonymes transmettent uniquement langue, marché et choix exemple/données propres, jamais les montants. Aucun compte requis.",
+    "privacyText": "Les chiffres restent dans votre navigateur sauf export ou partage volontaire. Cinq comparaisons peuvent être conservées localement. Le fragment du lien contient les chiffres. Les compteurs anonymes transmettent uniquement langue, marché et choix exemple/données propres, jamais les montants. Aucun compte requis. Les actions suivantes ne transmettent que la catégorie choisie, jamais vos données ni les économies calculées.",
     "chooseFile": "Choisir un fichier",
     "noFile": "Aucun fichier sélectionné",
-    "fileImported": "Importé : {name}"
+    "fileImported": "Importé : {name}",
+    "nextTitle": "Que voulez-vous vérifier ensuite ?",
+    "nextIntro": "Après les tarifs, estimez le coût d’utilisation de vos équipements.",
+    "nextLinks": [
+      {
+        "id": "consumption",
+        "label": "Estimer les coûts de fonctionnement",
+        "hint": "Comparez la consommation avant de choisir un appareil.",
+        "path": "/fr/calculateur.html"
+      }
+    ]
   },
   "es": {
     "title": "Comparador de tarifas de luz",
@@ -310,10 +346,20 @@
     "meta": "Compara tarifas de luz con tus datos: consumo por periodos, potencia, costes fijos y bonificaciones. Guarda, exporta y comparte tus cálculos.",
     "methodText": "Coste anual recurrente = Σ(consumo × precio completo) + costes fijos + potencia. El primer año resta la bonificación; B añade los costes del cambio. Ahorro en dos años = ahorro inicial + ahorro recurrente. El umbral francés usa costes recurrentes sin bonos. El desplazamiento del consumo es un escenario separado.",
     "limitsText": "Modelo de 365 días con consumo y precios constantes. No predice tarifas indexadas, horarios reales, excedentes solares, tarifas sociales ni elegibilidad. Confirma bonificaciones, duración y penalizaciones con el proveedor. Una bonificación muy alta puede dar costes negativos. Es un cálculo, no una recomendación de cambio.",
-    "privacyText": "Las cifras se quedan en tu navegador salvo exportación o envío voluntario. Hasta cinco comparaciones guardadas localmente. El fragmento del enlace contiene las cifras. Los contadores anónimos solo envían idioma, mercado y elección de datos propios o de ejemplo, nunca los importes. Sin cuenta.",
+    "privacyText": "Las cifras se quedan en tu navegador salvo exportación o envío voluntario. Hasta cinco comparaciones guardadas localmente. El fragmento del enlace contiene las cifras. Los contadores anónimos solo envían idioma, mercado y elección de datos propios o de ejemplo, nunca los importes. Sin cuenta. Solo se cuenta la categoría del siguiente paso elegido, nunca tus datos ni el ahorro calculado.",
     "chooseFile": "Elegir archivo",
     "noFile": "Ningún archivo seleccionado",
-    "fileImported": "Importado: {name}"
+    "fileImported": "Importado: {name}",
+    "nextTitle": "¿Qué quieres comprobar ahora?",
+    "nextIntro": "Después de las tarifas, revisa el coste de uso de tus aparatos.",
+    "nextLinks": [
+      {
+        "id": "consumption",
+        "label": "Estimar los costes de funcionamiento",
+        "hint": "Compara el consumo antes de elegir un aparato.",
+        "path": "/es/calculadora.html"
+      }
+    ]
   },
   "it": {
     "title": "Confronto delle tariffe luce",
@@ -389,9 +435,19 @@
     "meta": "Confronta due tariffe luce con i tuoi consumi: fasce orarie, potenza, costi fissi e bonus iniziali. Salva, esporta e condividi il tuo calcolo.",
     "methodText": "Costo annuo ricorrente = Σ(consumo × prezzo tutto incluso) + costi fissi + potenza. Il primo anno sottrae il bonus; B aggiunge i costi di cambio. Risparmio in due anni = risparmio iniziale + risparmio ricorrente. La soglia francese usa i costi ricorrenti senza bonus. Lo spostamento dei consumi è uno scenario distinto.",
     "limitsText": "Modello di 365 giorni con consumi e prezzi costanti. Non prevede tariffe indicizzate, orari reali, immissione solare, tariffe sociali o requisiti di accesso. Verifica bonus, durata e costi di recesso con il fornitore. Un bonus molto alto può produrre un costo negativo. È un calcolo, non una raccomandazione di cambio.",
-    "privacyText": "I numeri restano nel browser salvo esportazione o condivisione volontaria. Fino a cinque confronti nella memoria locale. Il frammento del link contiene i numeri. I contatori anonimi inviano solo lingua, mercato e scelta esempio/dati propri, mai gli importi. Nessun account richiesto.",
+    "privacyText": "I numeri restano nel browser salvo esportazione o condivisione volontaria. Fino a cinque confronti nella memoria locale. Il frammento del link contiene i numeri. I contatori anonimi inviano lingua, mercato e scelta esempio/dati propri, mai gli importi. Nessun account richiesto. Per i passaggi successivi viene conteggiata solo la categoria scelta, mai i tuoi dati o il risparmio calcolato.",
     "chooseFile": "Scegli file",
     "noFile": "Nessun file selezionato",
-    "fileImported": "Importato: {name}"
+    "fileImported": "Importato: {name}",
+    "nextTitle": "Che cosa vuoi verificare adesso?",
+    "nextIntro": "Dopo le tariffe, valuta i costi di utilizzo dei tuoi apparecchi.",
+    "nextLinks": [
+      {
+        "id": "consumption",
+        "label": "Stimare i costi di utilizzo",
+        "hint": "Confronta i consumi prima di scegliere un apparecchio.",
+        "path": "/it/calcolatore.html"
+      }
+    ]
   }
 }

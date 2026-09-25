@@ -1,3 +1,4 @@
+import { cachedAggregate } from '../../lib/aggregate-cache.js';
 // /api/pulse (2026-09-13, fleet "AI 时代的站点" flywheel read-side): 28-day human page
 // views (JS beacon rows with ev='') and how many arrived from an AI assistant, by referrer
 // host. Aggregate counts only — no paths, no countries, no row-level data. The Pages
@@ -49,7 +50,7 @@ const srcBucket = (host, self) => {
   return 'other';
 };
 
-export async function onRequestGet({ request, env }) {
+async function readPulse({ request, env }) {
   if (!env.HITS) return json({ ok: false, error: 'no_db' }, 503);
   try {
     const q = await env.HITS.prepare(
@@ -93,3 +94,5 @@ export async function onRequestGet({ request, env }) {
     return json({ ok: false, error: 'query_failed' }, 500);
   }
 }
+
+export async function onRequestGet(ctx) { return cachedAggregate(ctx,()=>readPulse(ctx)); }

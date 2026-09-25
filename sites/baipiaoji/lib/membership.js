@@ -1,6 +1,7 @@
 import {products,externalProducts} from '../../../tools/revenue-studio/catalog.mjs';
 import {restore as restoreVideo,PRODUCT as VIDEO_PRODUCT} from '../assets/studio/video-core.mjs';
 import {digest,seconds} from './ad-commerce.js';
+import {failureReason} from '../../../tools/member-studio/failure.mjs';
 import {ensureWeb3,web3Health,web3Settings,probeChain,verifyTransfer,formatUnits,chainRpc,matchesTransfer} from './ad-web3.js';
 export const PLAN={id:'workbench-30',price_units:9000000,days:30,workspaces:50,versions:10,max_bytes:65536,total_bytes:5242880,grace_days:30};
 export const MEMBER_SITES={bpj:{offset:0},agi:{offset:10000},eco:{offset:20000},tds:{offset:30000}};
@@ -71,16 +72,21 @@ export async function checkOrder(env,row,tx){
  return orderStatus(row);
 }
 export async function watchMembers(env){
- await ensureMembers(env.HITS,memberSite(env));await probeChain(env);const db=env.HITS,now=seconds();
+ let stage='schema';
+ try {
+ await ensureMembers(env.HITS,memberSite(env));stage='chain_probe';await probeChain(env);const db=env.HITS,now=seconds();stage='orders_read';
  const rows=await db.prepare("SELECT * FROM wb_orders WHERE state='pending' AND scan_done=0 AND created>? AND checked_at<=? ORDER BY checked_at,created LIMIT 1").bind(now-7*86400,now-15).all();
- for(const row of rows.results||[])await checkOrder(env,row);
+ stage='orders_scan';for(const row of rows.results||[])await checkOrder(env,row);
+ stage='cleanup';
  await db.batch([
  db.prepare('DELETE FROM wb_versions WHERE member_id IN (SELECT id FROM wb_members WHERE ends_at>0 AND ends_at<?)').bind(now-PLAN.grace_days*86400),
  db.prepare('DELETE FROM wb_spaces WHERE member_id IN (SELECT id FROM wb_members WHERE ends_at>0 AND ends_at<?)').bind(now-PLAN.grace_days*86400),
  db.prepare('DELETE FROM wb_limits WHERE expires<?').bind(now-86400)
  ]);
- await db.prepare('INSERT INTO wb_health(id,checked_at) VALUES(1,?) ON CONFLICT(id) DO UPDATE SET checked_at=excluded.checked_at').bind(now).run();
+ stage='health_write';await db.prepare('INSERT INTO wb_health(id,checked_at) VALUES(1,?) ON CONFLICT(id) DO UPDATE SET checked_at=excluded.checked_at').bind(now).run();
+ stage='support_read';
  return {processed:(rows.results||[]).length,support_open:(await db.prepare('SELECT COUNT(*) n FROM wb_support WHERE resolved=0').first()).n};
+ } catch(cause) { const error=Error('membership_watch_unavailable');error.stage=stage;error.reason=failureReason(cause);throw error; }
 }
 export async function saveSpace(db,m,b){
  if(!memberStatus(m).active)throw Error('membership_required');

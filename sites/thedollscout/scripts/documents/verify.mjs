@@ -5,11 +5,11 @@ import { fileURLToPath } from 'node:url';
 import { copy, languages, toolSlugs } from './copy.mjs';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const args = process.argv.slice(2), live = args.includes('--live'), output = args.includes('--out') ? path.resolve(args[args.indexOf('--out') + 1]) : root;
-const origin = 'https://thedollscout.com', edition = '2026-09-25.4';
+const origin = 'https://thedollscout.com', edition = '2026-09-25.7';
 const localFile = route => path.join(output, route.replace(/^\//,'') + (route.endsWith('/') ? 'index.html' : path.extname(route) ? '' : '.html'));
 const headers = { 'user-agent':'tds-document-probe/1.0', 'x-probe':'1' };
 async function read(route, binary = false) {
-  if (!live) return fs.readFileSync(localFile(route), binary ? undefined : 'utf8');
+  if (!live) return fs.readFileSync(localFile(new URL(route,origin).pathname), binary ? undefined : 'utf8');
   let last;
   for (let i = 0; i < 4; i++) {
     try {
@@ -22,7 +22,7 @@ async function read(route, binary = false) {
   throw last;
 }
 const manifest = JSON.parse(await read('/document-assets/manifest.json'));
-assert.equal(manifest.edition,edition); assert.equal(manifest.records.length,33);
+assert.equal(manifest.edition,edition); assert.equal(manifest.records.length,36);
 const sitemap = await read('/sitemap.xml');
 const titles = new Set();
 for (const record of manifest.records) {
@@ -56,7 +56,7 @@ for (const record of manifest.records) {
     assert.ok(fs.existsSync(localFile(u.pathname)), 'Broken local link: ' + route + ' -> ' + u.pathname);
   }
 }
-for (const asset of ['app.mjs','core.mjs','sharing.mjs','pdf-reader.mjs','style.css','favicon.svg','vendor/pdf.mjs','vendor/pdf.worker.mjs','vendor/LICENSE.txt','samples/sample-before.pdf','samples/sample-after.pdf','samples/sample-image.pdf']) assert.ok((await read('/document-assets/' + asset,true)).length > 100,asset);
+for (const asset of ['app.mjs','core.mjs','sharing.mjs','delivery.mjs','delivery-core.mjs','delivery.css','delivery-format.txt','pdf-reader.mjs','style.css','favicon.svg','vendor/pdf.mjs','vendor/pdf.worker.mjs','vendor/LICENSE.txt','samples/sample-before.pdf','samples/sample-after.pdf','samples/sample-image.pdf']) assert.ok((await read('/document-assets/' + asset,true)).length > 100,asset);
 const capabilities = JSON.parse(await read('/document-assets/tool-capabilities.json'));
 assert.equal(capabilities.edition,edition); assert.equal(capabilities.uploads,false); assert.equal(capabilities.tools.length,12);
 for (const tool of capabilities.tools) {
@@ -65,10 +65,10 @@ for (const tool of capabilities.tools) {
   assert.equal(tool.output,copy[record.lang].outputs[toolSlugs.indexOf(record.slug)]);
 }
 assert.ok((await read('/img/document-scout-brand.png',true)).length > 1000);
-const brand = await read('/css/brand.css');
+const brand = await read('/css/brand.css?v=' + edition);
 assert.ok(brand.includes('--tds-accent: #e4002b') && brand.includes('Helvetica'), 'TDS brand foundation');
 for (const css of ['/document-assets/style.css','/document-assets/archive.css','/css/main.css']) {
-  const text = await read(css);
+  const text = await read(css + '?v=' + edition);
   assert.ok(text.includes('/css/brand.css?v=' + edition), 'Shared TDS brand: ' + css);
   assert.ok(!/#116a72|#173c50|#f3f8fa/.test(text), 'Retired document palette: ' + css);
 }
@@ -76,14 +76,6 @@ assert.ok((await read('/document-assets/favicon.svg')).includes('#e4002b'), 'Bra
 for (const file of ['/llms.txt','/llms-full.txt']) {
   const text = await read(file); assert.ok(text.startsWith('# TDS Document Scout')); assert.ok(text.includes('/pdf-batch-audit'));
 }
-if (live) {
-  const before = JSON.parse(await read('/api/document-stats'));
-  assert.equal(before.ok,true); assert.equal(before.since,'2026-09-25');
-  const response = await fetch(origin + '/api/doc-events', { method:'POST', headers:{ ...headers, origin, 'content-type':'application/json' }, body:JSON.stringify({ p:'/__ci/documents',e:'doc_ci' }), signal:AbortSignal.timeout(20000) });
-  assert.equal(response.status,204,'Isolated CI event write');
-  const after = JSON.parse(await read('/api/document-stats'));
-  assert.ok((after.excluded.doc_ci || 0) > (before.excluded.doc_ci || 0),'CI event must be read back from D1');
-  assert.ok(!('doc_ci' in after.events) && !('doc_sample' in after.events));
-  console.log('Isolated CI event written and read back; excluded from document demand.');
-}
+if (live && !args.includes('--skip-events')) await import('./verify-events.mjs');
+
 console.log(`Document Scout: ${manifest.records.length} localized pages, SEO, links, PDF runtime and brand assets verified (${live ? 'production' : 'build'}).`);

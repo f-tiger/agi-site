@@ -94,3 +94,8 @@ for (const [lang, extras] of Object.entries(experience)) {
   Object.assign(copy[lang], extras);
   copy[lang].privacyBody.push(extras.sharePrivacy);
 }
+
+// Delivery experiment uses only fixed, anonymous research categories.
+copy.en.privacyBody.push('Delivery records are processed locally. Downloads include file names and entered notes. Optional team-plan research records only a fixed handoff-frequency range and plan preference; it collects no email, account, file hash or source notes. An answer is not an order.');
+copy.de.privacyBody.push('Übergabenachweise werden lokal verarbeitet. Downloads enthalten Dateinamen und Notizen. Die freiwillige Tarifumfrage erfasst nur feste Häufigkeitsbereiche und Tarifpräferenzen, keine E-Mail, Konten, Datei-Hashes oder Quellenangaben. Eine Antwort ist keine Bestellung.');
+copy.zh.privacyBody.push('交付记录在本地处理，下载包含文件名和填写的备注。可选团队方案调研只记录固定的交付次数档位和方案偏好，不收集邮箱、账户、文件指纹或来源备注。回答不是订单。');
