@@ -1,5 +1,5 @@
-import { LIMITS, validateFiles, compareDocuments, csv, auditExport } from './core.mjs?v=2026-09-25.4';
-import { shareUrl, summaryText } from './sharing.mjs?v=2026-09-25.4';
+import { LIMITS, validateFiles, compareDocuments, csv, auditExport } from './core.mjs?v=2026-09-25.5';
+import { shareUrl, summaryText } from './sharing.mjs?v=2026-09-25.5';
 const c = JSON.parse(document.getElementById('document-copy').textContent);
 const mode = document.body.dataset.documentMode || 'audit';
 const $ = id => document.getElementById(id);
@@ -7,8 +7,17 @@ const esc = value => String(value ?? '').replace(/[&<>"']/g, ch => ({ '&':'&amp;
 let files = [], reports = [], failures = [], reviews = {}, comparison = null, busy = false, controller, epoch = 0, sample = false;
 const sent = new Set();
 const downloadUrls = new Set();
+const isProbe = new URLSearchParams(location.search).has('ci');
+// Keep a navigation check isolated when following links to another TDS page.
+// Canonical URLs and the public sharing payload are left untouched.
+if (isProbe) for (const link of document.querySelectorAll('a[href]')) {
+  const url = new URL(link.href, location.href);
+  if (url.origin !== location.origin || link.getAttribute('href').startsWith('#')) continue;
+  url.searchParams.set('ci', '1');
+  link.href = url.pathname + url.search + url.hash;
+}
 function track(event) {
-  if (location.hostname !== 'thedollscout.com' || new URLSearchParams(location.search).has('ci') || navigator.webdriver || navigator.doNotTrack === '1' || sent.has(event)) return;
+  if (location.hostname !== 'thedollscout.com' || isProbe || navigator.webdriver || navigator.doNotTrack === '1' || sent.has(event)) return;
   sent.add(event);
   let ref = '';
   try { ref = new URL(document.referrer).origin; } catch {}
@@ -73,7 +82,7 @@ async function analyze() {
   resetResults(); setBusy(true); renderFiles(); status(c.working);
   track(sample ? 'doc_sample' : 'doc_start');
   let reader;
-  try { reader = await import('./pdf-reader.mjs?v=2026-09-25.4'); }
+  try { reader = await import('./pdf-reader.mjs?v=2026-09-25.5'); }
   catch { setBusy(false); status(c.errors.loadFailed, true); return; }
   if (current !== epoch) return;
   let remaining = LIMITS.batchPages;

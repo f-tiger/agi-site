@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url';
 import { copy, languages, toolSlugs } from './copy.mjs';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const args = process.argv.slice(2), live = args.includes('--live'), output = args.includes('--out') ? path.resolve(args[args.indexOf('--out') + 1]) : root;
-const origin = 'https://thedollscout.com', edition = '2026-09-25.4';
+const origin = 'https://thedollscout.com', edition = '2026-09-25.5';
 const localFile = route => path.join(output, route.replace(/^\//,'') + (route.endsWith('/') ? 'index.html' : path.extname(route) ? '' : '.html'));
 const headers = { 'user-agent':'tds-document-probe/1.0', 'x-probe':'1' };
 async function read(route, binary = false) {

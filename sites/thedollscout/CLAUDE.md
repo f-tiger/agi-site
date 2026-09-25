@@ -6,6 +6,7 @@ Owner：「为什么一定是收藏品，整个站点方向不对就该转型」
 
 - 品牌：TDS Document Scout；用户：发布或交付 PDF 的内容团队、制作人员、顾问。首个可验证任务是交付前批量预检和审查记录。
 - 当前可用：PDF 元数据/结构/文本预检、10 文件批量审查、分页文本提取、两个 PDF 文本比较。全部免费，文件仅在浏览器处理。不是 OCR、标签修复、视觉比较或 WCAG/PDF/UA 认证；不把趋势信号称为商业验证。
+- 默认语言为英语（2026-09-25 owner 明确要求）。无语言前缀的 `/` 是 TDS 主首页；中文和德语只通过显式语言切换访问。站点标识、可见 Home 导航、页脚首页入口及面包屑 Home 均返回 `/`；手机端保留可见首页链接。不要再给 owner 默认发送 `/zh/` 预览链接。
 - 首页和核心入口 EN/DE/ZH，`scripts/documents/copy.mjs` 为文案源，`build.mjs` 生成 33 页、示例、sitemap 和两个 llms 文件。页面与工具源需一起提交。PDF.js 6.3.289 锁在 package-lock，Node 24；vendor 不入 git。
 - 开发：`npm ci --prefix scripts/documents --ignore-scripts` → `npm test --prefix scripts/documents` → `node scripts/documents/build.mjs` → `node scripts/documents/verify.mjs`。沿用根仓部署 workflow；旧 workbench 后再运行文档生成器到 dist，防止旧收藏品推荐回到首页。
 - 收藏品 URL、数据、历史 MCP 和独立会员继续可用，由 `/collectors` 链接。勿把旧会员包装成 PDF 付费能力。`gen-collector-pages.mjs` 不得再改文档首页。不要在新首页运行旧 `build-llms-full.mjs`。
