@@ -822,6 +822,8 @@ Cloudflare Pages 把 `/x.html` 308 到 `/x`,而 bpj 的 sitemap / `canonical` / 
   **⚠ 2026-09-25 纠正**:eco 那条加品牌后是 199 字符,超过注册表 100 字符硬限制,**1.2.0 从未发布**
   (注册表 latest 一直是 1.1.0,PR #2 合并后的 publish 当场 422)。已缩为 97 字符、品牌放在开头,
   并在 `eco-publish-mcp.yml` 发布前加了长度断言 —— SR 早有这道闸,eco 没有,正是 09-17 那条规矩没抄过去。
+  同一轮的另一处遗漏:`deploy-getecoback.yml` 的部署后自检仍按旧名 `getecoback-raumklima` 断言 `/mcp` 与 `/mcp/v1`,
+  且 09-16 加的名字一致性断言读的是仓库根路径(该步工作目录是 `sites/getecoback`),合并后当场红;已改为 canonical 名与相对路径。
 - **未处理的漂移**:`sites/baipiaoji/mirror/server.json` 停在 v1.9.0(主份 v1.11.0);mirror 属另一公开仓,
   不在本会话范围,留给 owner 或有该仓范围的会话。
 

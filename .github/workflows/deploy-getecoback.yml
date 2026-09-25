@@ -398,7 +398,7 @@ jobs:
           # 那次改名只改了 manifest 与 superseded/,worker 的 serverInfo.name 漏了三个多月:
           # 注册表说 hvac-btu-heat-klimaanlage,连上来的客户端却被告知是已废弃的 getecoback-raumklima。
           # 一个实体三个名字正是 entity stacking 最忌讳的事,所以这条要能红。
-          want=$(python3 -c "import json;print(json.load(open('sites/getecoback/mcp/server.json'))['name'].split('/')[-1])")
+          want=$(python3 -c "import json;print(json.load(open('mcp/server.json'))['name'].split('/')[-1])")
           got=$(curl -s -m 25 -X POST "https://getecoback.com/mcp/v1" \
                  -H 'content-type: application/json' -H 'accept: application/json, text/event-stream' \
                  -d '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-03-26","capabilities":{},"clientInfo":{"name":"deploy-check","version":"0"}}}' \
@@ -858,7 +858,7 @@ jobs:
                  -d '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-03-26","capabilities":{},"clientInfo":{"name":"ci","version":"0"}}}' || echo "")
           echo "mcp said: ${mcp:0:150}"
           case "$mcp" in
-            *'"getecoback-raumklima"'*) echo "OK mcp endpoint" ;;
+            *'"hvac-btu-heat-klimaanlage"'*) echo "OK mcp endpoint" ;;
             *) echo "::error::mcp endpoint broken: '$mcp'"; fail=1 ;;
           esac
           # The URL the official registry listing actually points at. A pointer
@@ -868,7 +868,7 @@ jobs:
                  -d '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-03-26","capabilities":{},"clientInfo":{"name":"ci","version":"0"}}}' || echo "")
           echo "mcp/v1 said: ${mcpv1:0:150}"
           case "$mcpv1" in
-            *'"getecoback-raumklima"'*) echo "OK mcp/v1 (registry pointer)" ;;
+            *'"hvac-btu-heat-klimaanlage"'*) echo "OK mcp/v1 (registry pointer)" ;;
             *) echo "::error::registry remote URL /mcp/v1 broken: '$mcpv1'"; fail=1 ;;
           esac
           # Live popular ranking: drives the homepage's self-refreshing block.
