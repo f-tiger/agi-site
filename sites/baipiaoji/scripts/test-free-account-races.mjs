@@ -54,7 +54,7 @@ async function harness(initialUser = null) {
     },
     querySelectorAll(selector) {
       if (selector === '.bpj-account-page input[type=password]') return passwordIds.map(node);
-      if (['[data-account-tab]', '.bpj-account,[data-free-account-nav]'].includes(selector)) return [];
+      if (['[data-account-tab]', '.bpj-account,[data-free-account-nav]', '.bpj-login'].includes(selector)) return [];
       throw Error('Unsupported selector: ' + selector);
     },
     getElementById: node,

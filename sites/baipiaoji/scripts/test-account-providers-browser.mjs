@@ -12,14 +12,14 @@ const accountScript=fs.readFileSync(new URL('../assets/account.js',import.meta.u
 function pageHTML(lang){
  let html;
  buildAccountPages({LOCALE:{code:lang},BASE:lang==='en'?'/en':'',esc:String,pushPage(){},write(_,value){html=value;},layout({body}){
-  return `<!doctype html><html lang="${lang}"><head><script>window.__headObservedHash=location.hash;window.__headObservedReceipt=window.__bpjMailReceipt||null;</script><script defer src="/assets/account.js"></script></head><body>${body}</body></html>`;
+  return `<!doctype html><html lang="${lang}"><head><meta charset="utf-8"><script>window.__headObservedHash=location.hash;window.__headObservedReceipt=window.__bpjMailReceipt||null;</script><script defer src="/assets/account.js"></script></head><body>${body}</body></html>`;
  }});
  assert(html.startsWith('<!doctype html>'));return html;
 }
 const deferred=()=>{let resolve;const promise=new Promise(r=>{resolve=r;});return {promise,resolve};};
 const gis=`window.__gisInitializations=[];window.google={accounts:{id:{initialize(options){window.__gisOptions=options;window.__gisInitializations.push(options.nonce);},renderButton(box){const button=document.createElement('button');button.type='button';button.textContent='Mock Google';box.append(button);}}}};`;
 let browser;const errors=[];
-async function fixture({lang='en',user=null,google=null,resetFailure=false,holdReset=false,holdCredential=false}={}){
+async function fixture({lang='en',user=null,loginUser=USER,google=null,resetFailure=false,holdReset=false,holdCredential=false,credentialResult=null}={}){
  const context=await browser.newContext({acceptDownloads:true}),calls=[],release=deferred(),entered=deferred();
  let serverUser=user,resetDone=false;
  context.on('page',p=>p.on('pageerror',e=>errors.push(e.message)));
@@ -32,12 +32,20 @@ async function fixture({lang='en',user=null,google=null,resetFailure=false,holdR
    const body=request.method()==='POST'?request.postDataJSON():null;calls.push({path:url.pathname,method:request.method(),body});
    if(url.pathname==='/api/account'){
     if(!body){if(resetDone&&resetFailure)return json({ok:false,error:'unavailable'},503);return json({ok:true,user:serverUser,favorites:[]});}
-    if(body.action==='login'){serverUser=USER;return json({ok:true,user:USER,favorites:[]});}
+    if(body.action==='login'){serverUser=loginUser;return json({ok:true,user:serverUser,favorites:[]});}
     if(body.action==='logout'){serverUser=null;return json({ok:true});}
     throw Error('Unexpected account action '+body.action);
    }
    if(url.pathname==='/api/account-email'){
     if(!body)return json({ok:true,available:true});
+    if(body.action==='request_verify'){
+     assert.equal(body.account_id,serverUser?.id);assert.equal(serverUser.email_verified,false);
+     return json({ok:true,accepted:true},202);
+    }
+    if(body.action==='verify'){
+     assert.equal(body.account_id,serverUser?.id);assert.equal(body.token,TOKEN);
+     serverUser={...serverUser,email_verified:true};return json({ok:true,user:serverUser,email_verified:true});
+    }
     if(body.action==='reset'){
      assert.equal(body.token,TOKEN);assert.equal(body.new_password,PASSWORD);serverUser=null;resetDone=true;entered.resolve();if(holdReset)await release.promise;
      return json({ok:true,sign_in_required:true,email:USER.email,recovery_code:RECOVERY});
@@ -46,10 +54,11 @@ async function fixture({lang='en',user=null,google=null,resetFailure=false,holdR
    }
    if(url.pathname==='/api/account-google'){
     if(!body)return json({ok:true,available:!!google,...(google?.onboarding?{onboarding:google.onboarding}:{})});
-    if(body.action==='start')return json({ok:true,client_id:'test-client.apps.googleusercontent.com',nonce:'N'.repeat(43)});
+    if(body.action==='start')return json({ok:true,client_id:'test-client.apps.googleusercontent.com',nonce:String(calls.filter(x=>x.body?.action==='start').length).padStart(43,'N')});
     if(body.action==='credential'){
-     serverUser=USER;entered.resolve();if(holdCredential)await release.promise;
-     return json({ok:true,state:'signed_in',user:USER,favorites:[]});
+     const result=credentialResult||{state:'signed_in',user:USER,favorites:[]};if(result.state==='signed_in')serverUser=USER;
+     entered.resolve();if(holdCredential)await release.promise;
+     return json({ok:true,...result});
     }
     if(body.action==='link'){
      assert.equal(body.account_id,USER.id);assert.equal(body.password,PASSWORD);assert.equal(body.confirmed,true);
@@ -59,10 +68,10 @@ async function fixture({lang='en',user=null,google=null,resetFailure=false,holdR
    }
    throw Error('Unexpected API '+url.pathname);
   }
-  if(url.pathname==='/assets/account.js')return route.fulfill({contentType:'text/javascript',body:accountScript});
+  if(url.pathname==='/assets/account.js')return route.fulfill({contentType:'text/javascript; charset=utf-8',body:accountScript});
   if(url.pathname.endsWith('/directory.json'))return json({tools:[]});
   if(url.pathname.endsWith('/changes.json'))return json({changes:[]});
-  if(url.pathname.endsWith('/account'))return route.fulfill({contentType:'text/html',body:pageHTML(lang)});
+  if(url.pathname.endsWith('/account'))return route.fulfill({contentType:'text/html; charset=utf-8',body:pageHTML(lang)});
   return route.fulfill({status:404,body:'Fixture route unavailable'});
  });
  const page=await context.newPage();
@@ -104,7 +113,7 @@ try{
   await f.page.waitForFunction(()=>document.getElementById('register-email').readOnly);
   assert.equal(await f.page.locator('#register-email').inputValue(),USER.email);assert.equal(f.posts('start').length,0,'Reload must not invalidate an onboarding proof');
   await f.page.evaluate(async()=>{window.dispatchEvent(new Event('focus'));await window.bpjAccount.refresh();});
-  assert.equal(f.posts('start').length,0);await f.context.close();groups++;
+ assert.equal(f.posts('start').length,0);await f.context.close();groups++;
  }
  for(const signedIn of [false,true]){
   const f=await fixture({user:signedIn?USER:null,google:{onboarding:{state:'needs_link',email:USER.email}}});await f.open();
@@ -113,11 +122,51 @@ try{
    await f.page.locator('#login-password').fill(PASSWORD);await f.page.locator('#account-login button').click();
    await f.page.waitForFunction(()=>window.bpjAccount.state.user?.id==='provider-fixture-user');
   }
-  await f.page.locator('details.account-panel summary').click();await f.page.locator('#account-confirm-google').waitFor({state:'visible'});
+  await f.page.locator('#account-confirm-google').waitFor({state:'visible'});
+  assert.equal(await f.page.locator('#account-confirm-google').evaluate(e=>e.closest('details').open),true,'Pending linking opens account security without an extra click');
   assert.equal(f.posts('start').length,0,'Password sign-in/reload must preserve the pending Google proof');
   await f.page.locator('#google-link-password').fill(PASSWORD);await f.page.locator('#account-confirm-google button').click();
   await f.page.waitForFunction(()=>document.getElementById('account-status').textContent.includes('Google linked'));
   assert.equal(f.posts('link').length,1);assert.equal(f.posts('start').length,0);await f.context.close();groups++;
+ }
+ {
+  const f=await fixture({google:{}});await f.open();await f.page.waitForFunction(()=>!!window.__gisOptions);
+  await f.page.evaluate(()=>{window.__oldGoogleCallback=window.__gisOptions.callback;window.__oldGoogleNonce=window.__gisOptions.nonce;});
+  assert.equal(f.posts('start').length,1);await f.page.locator('#account-google-retry').click();
+  await f.page.waitForFunction(()=>window.__gisOptions.nonce!==window.__oldGoogleNonce);
+  assert.equal(f.posts('start').length,2,'One explicit retry creates one fresh server challenge');
+  await f.page.evaluate(()=>window.__oldGoogleCallback({credential:'stale-mock-credential'}));
+  assert.equal(f.posts('credential').length,0,'A callback from before the explicit retry cannot submit against the new challenge');
+  await f.context.close();groups++;
+ }
+ for(const lang of ['zh','en']){
+  const f=await fixture({lang,loginUser:{...USER,email_verified:false}});await f.open('#email-action=verify&token='+TOKEN);
+  await f.page.locator('#account-login').waitFor({state:'visible'});
+  assert.equal(await f.page.locator('#account-register').isVisible(),false,'A verification link asks for sign-in, not a second signup');
+  await f.page.locator('#login-email').fill(USER.email);await f.page.locator('#login-password').fill(PASSWORD);await f.page.locator('#account-login button').click();
+  await f.page.locator('#account-confirm-email').waitFor({state:'visible'});await f.page.locator('#account-confirm-email').click();
+  await f.page.waitForFunction(()=>window.bpjAccount.state.user?.email_verified===true);
+  assert.equal(f.posts('verify').length,1);assert.equal(await f.page.locator('#account-mail-action').isVisible(),false);await f.context.close();groups++;
+ }
+ for(const lang of ['zh','en']){
+  const f=await fixture({lang,user:{...USER,email_verified:false}});await f.open();
+  const button=f.page.locator('#account-send-verification');await button.waitFor({state:'visible'});
+  assert.equal(await button.evaluate(e=>e.closest('details')),null,'Email verification is available without opening account security');
+  assert.equal(f.posts('request_verify').length,0,'Signup/session loading must not send unsolicited verification mail');
+  const sent=f.page.waitForResponse(r=>r.url().endsWith('/api/account-email')&&r.request().method()==='POST');
+  await button.click();await sent;await f.page.waitForFunction(()=>!document.getElementById('account-send-verification').disabled);
+  assert.match(await f.page.locator('#account-status').textContent(),/Verification requested|验证请求已接受/);
+  assert.equal(f.posts('request_verify').length,1);await f.context.close();groups++;
+ }
+ {
+  const f=await fixture({google:{},holdCredential:true,credentialResult:{state:'onboarding',email:USER.email}});await f.open();await f.page.waitForFunction(()=>!!window.__gisOptions);
+  await f.page.evaluate(()=>{window.__lateGoogleCallback=window.__gisOptions.callback({credential:'delayed-google-proof'});});await f.entered.promise;
+  await f.page.locator('#account-google-email').click();await f.page.locator('#register-email').fill('chosen-email@example.test');
+  f.release.resolve();await f.page.evaluate(()=>window.__lateGoogleCallback);
+  assert.equal(await f.page.locator('#register-email').inputValue(),'chosen-email@example.test','A delayed Google reply must not overwrite the explicit email fallback');
+  assert.equal(await f.page.locator('#register-email').evaluate(e=>e.readOnly),false);
+  assert.equal(f.posts('start').length,1);assert.equal(f.posts('credential').length,1);assert.equal(await f.page.locator('#account-confirm-google').isVisible(),false);
+  await f.context.close();groups++;
  }
  {
   const f=await fixture({google:{},holdCredential:true});await f.open();await f.page.waitForFunction(()=>!!window.__gisOptions);
@@ -127,5 +176,5 @@ try{
   await f.page.waitForFunction(()=>window.bpjAccount.state.user?.id==='provider-fixture-user');
   assert.equal(await f.page.locator('#account-status').textContent(),'Signed in with Google.');assert.equal(f.posts('credential').length,1);await f.context.close();groups++;
  }
- assert.deepEqual(errors,[]);console.log(`PASS ${groups} provider browser groups: EN/ZH early fragment removal, signed-in reset/focus, reset/read failure recovery backup, pending Google onboarding/link retention and Google sign-in/focus.`);
+ assert.deepEqual(errors,[]);console.log(`PASS ${groups} provider browser groups: EN/ZH early fragment removal, reset/focus and failed-read recovery backup, Google pending-proof retention/automatic reveal, explicit retry/stale callback rejection, verification-link sign-in/top-level send, and Google sign-in/focus.`);
 }finally{if(errors.length)console.error('Provider browser errors:',errors);await browser?.close();}
