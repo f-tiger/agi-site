@@ -1087,5 +1087,5 @@ localebatch **不记任何访问**,所以「零」也读不出访客有没有来
 - **09-26 读数**:bpj `/api/reach` 45–58%、agi `/api/trends` 2–29%、agi `/api/pulse` 15–17%。全是「公开统计接口每次请求现算 + 整表扫描」,
   **`Cache-Control` 头对 Worker/Pages Functions 的响应不起作用**,只有 Cache API 才挡得住重复计算(eco 09-26、tds 09-25 已加,bpj 09-26 已加)。
 - **规矩**:新增或修改任何会被反复调用的 D1 统计接口 → ①服务端缓存(Cache API)②查询要走索引(写个 EXPLAIN 断言)③别让一个共享路径
-  (`sites/baipiaoji/lib/**` 等)的提交同时触发四个站的部署自检去各跑一遍整表统计。**agi 两个接口待 owner 授权后照 bpj 的做法改**;
+  (`sites/baipiaoji/lib/**` 等)的提交同时触发四个站的部署自检去各跑一遍整表统计。**agi 两个接口 09-26 owner 授权后已照 bpj 的做法改**(服务端缓存 + `pageviews_human` 部分覆盖索引,`sites/agiscorecard/tools/test_analytics_d1.mjs`);
   Workers Paid(5 美元/月)是 owner 的支出决定,它能消除每日被拒,但不代替修查询。

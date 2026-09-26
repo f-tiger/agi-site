@@ -1944,6 +1944,17 @@
    "lose": "任一天 > 500 000 → 还有没找到的整表扫描或绕过缓存的调用方：按 d1_usage 的逐条查询表逐条查，不许用「升级付费档」代替找原因（付费档是 owner 的决定，也解决不了表随爬虫增长这件事）",
    "source": "sites/baipiaoji/CLAUDE.md 第 29 条（2026-09-26）",
    "status": "open"
+  },
+  {
+   "id": "agi-d1-reads-1004",
+   "site": "agiscorecard",
+   "due": "2026-10-04",
+   "metric": "Cloudflare D1 GraphQL（tools/fleet/d1_usage.mjs，workflow d1-usage.yml）里 agiscorecard-events 每个 UTC 日的 rowsRead，读 09-28→10-03 这 6 天；辅助：/api/trends 与 /api/pulse 的 pageviews 查询 rows/call，全账号是否再越过 5 000 000",
+   "threshold": "6 天里每天 ≤ 300 000（t0：09-25 1 363 916、09-26 1 810 689；/api/trends 09-26 一天 53 次调用、每次约 3.5 万行，/api/pulse 每次约 9 万行）",
+   "win": "agi 与 bpj 两处修法都成立 → 全账号读取回到免费额度的一小半，其余站的统计接口照同样做法改（eco/tds 已有缓存，缺的是索引）",
+   "lose": "任一天 > 300 000 → 还有没被缓存覆盖的调用路径（communityRoute / memberRoute / owner-alerts 每 30 分钟一次等）：按 d1_usage 的逐条查询表逐条查",
+   "source": "sites/agiscorecard/CLAUDE.md「D1 读取额度」节（2026-09-26）+ docs/d1-read-budget-2026-09-26.md",
+   "status": "open"
   }
  ]
 }

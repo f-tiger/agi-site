@@ -64,9 +64,19 @@ Cloudflare 的逐条数字显示 `ev=''` 的行现在有两万多条。所以改
 先数 `ev='bot'` 行数与分组数，两者之和超过 6 万就把删除分两天做（写入额度同样是全账号 10 万行/天）；先删爬虫行再建索引
 （反过来每删一行还要多写一次索引）；然后在线上 D1 上对 reach 的查询跑 EXPLAIN QUERY PLAN 确认走索引。
 
+## 三点五、agi（owner 09-26「agi的也改了」）
+
+- **服务端缓存** `sites/agiscorecard/tools/analytics-worker/aggregate-cache.js`：pulse 1 小时、trends 30 分钟，规矩同 bpj
+  （失败与 `partial:true` 不缓存，响应头 `x-agi-aggregate-cache`，部署自检断言）。计算本体抽成 `pulseResponse()` / `trendsResponse()`。
+- **部分覆盖索引** `pageviews_human ON pageviews(day, path, ref_host, hits) WHERE ua_class = 'human'`
+  （`tools/analytics-worker/migrations/0001_pageviews_human_index.sql`）：两个接口发出的 5 条 pageviews 查询全部变成
+  「SEARCH … USING COVERING INDEX pageviews_human (day>?)」，只读窗口内的 human 行、不回表。
+- 门禁 `sites/agiscorecard/tools/test_analytics_d1.mjs`（25 项，8 个变异全红），已接进 agi 部署流程。
+  索引与 bpj 迁移一起在零点额度恢复后执行，并在线上 D1 上核对执行计划。判定线 `agi-d1-reads-1004`。
+
 ## 四、没修的与需要决定的
 
-- **agi `/api/trends` 与 `/api/pulse`**（09-26 占 46%）：同样是每次请求现算、无服务端缓存。不在 bpj 的上线授权内，需 owner 点头。
+- ~~agi `/api/trends` 与 `/api/pulse`~~：见上节，09-26 已改。
 - **heartbeat 的五个脚本各自重复拉同一组端点**、eco 部署的 `household_live.mjs` 每次都读 bpj/agi/tds 的统计接口：
   缓存上线后这些重复调用基本命中缓存，暂不改。
 - **Workers Paid（每月 5 美元，新增支出，owner 决定）**：含每月 250 亿行读取，当前用量约每月 2 亿行。它能立刻消除每日被拒，
