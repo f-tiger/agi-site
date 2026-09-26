@@ -32,7 +32,9 @@ const differs = (label, next) => { assert.ok(next !== page, `test setup: ${label
 same('rail category count', page.replace(/(data-cat="all">[^<]*<span>)\d+/, (m, a) => a + '999'));
 same('rail section count', page.replace(/(<nav class="rail-jump">[\s\S]*?<span>)(\d+)(<\/span>)/, (m, a, d, c) => a + (Number(d) + 4) + c));
 same('footer directory size', page.replace(/(共收录|Listing) \d+ /, '$1 888 '));
-same('subscribe box latest-entry line', page.replace(/<p class="sub-proof">[\s\S]*?<\/p>/, '<p class="sub-proof">这不是空话——最近一条记录：<b>Cursor</b> 的免费额度条目于 2026-09-25 有变更。</p>'));
+// The account CTA replaced subscription proof. Keep the historical normalizer contract using its fixture.
+assert.equal(lmHashOf(fixture),lmHashOf(fixture.replace(/<p class="sub-proof">[\s\S]*?<\/p>/,'<p class="sub-proof">Changed legacy proof</p>')));n++;
+assert.equal(lmHashOf(page+'<script src="/account.js?v=old"></script>'),lmHashOf(page+'<script src="/account.js?v=new"></script>'));n++;
 same('a date anywhere', page.replace(/\d{4}-\d{2}-\d{2}/, '2031-01-01'));
 differs('a quota sentence in the answer', page.replace(/<p class="(answer|quota)">/, '<p class="$1">每天 7 次。'));
 differs('only a number in the body changes (not a date)', page.replace(/(<(?:p|td|li|b|strong)[^>]*>[^<]*?)(?<![\d.-])(\d+)(?![\d.:-])/, (m, a, d) => a + (Number(d) + 1)));

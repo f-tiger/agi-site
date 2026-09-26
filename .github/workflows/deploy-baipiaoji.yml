@@ -80,6 +80,11 @@ jobs:
         with:
           node-version: 22
 
+      - name: Verify free-account password hashing in actual Cloudflare runtime
+        run: |
+          npm install --prefix /tmp/bpj-account-runtime --no-save miniflare@5.20260925.0-alpha esbuild@0.28.2
+          FREE_ACCOUNT_RUNTIME_MODULES=/tmp/bpj-account-runtime/node_modules node scripts/test-free-account.mjs --workerd
+
       - name: Verify tool links & refresh dates (scheduled runs only)
         if: github.event_name != 'push'
         run: node scripts/verify.mjs
@@ -203,6 +208,9 @@ jobs:
           node scripts/test-ad-commerce.mjs
           node scripts/test-ad-web3.mjs
           node scripts/test-membership.mjs
+          node scripts/test-free-account.mjs
+          node scripts/test-free-account-races.mjs
+          node scripts/test-account-member.mjs
           node scripts/test-ad-watch-readiness.mjs
 
       - name: Pricing-probe selftest (zero network)
@@ -221,6 +229,7 @@ jobs:
           # 岗位方案规划器（2026-09-24）：容量规则能从配额文件读出数、work-roles.json 里没有手写额度、加总逻辑（页面嵌的就是这个函数）
           node scripts/test-work-plan.mjs
           node scripts/test-studio.mjs
+          node scripts/test-release-pilot.mjs
 
       # 边缘爬虫记账的路径分类（2026-09-17，零网络 ~0.1s）。_middleware.js 的
       # isContentPath() 此前是白名单（`/` 结尾或 .html/.txt/.json/.md/.xml），而本站内容页
@@ -236,7 +245,9 @@ jobs:
       # ②那条会被无声破坏（把 k 调成 1、或把 >= 写成 >），页面看着一模一样，
       # 而 28 天里只来过一次的国家就单独挂在公开端点上了。所以边界值逐个断言。
       - name: Reach country-histogram privacy shape (zero network)
-        run: node scripts/test-reach-shape.mjs
+        run: |
+          node scripts/test-reach-shape.mjs
+          node scripts/test-commercial-triggers.mjs
 
       # 自研分词器的回归检验：420 例金标准 × 两套词表 = 840 次逐例比对。
       # 写自己的实现就得自己证明它对，否则只是把「让用户猜」换成「让我们猜」。
@@ -260,8 +271,8 @@ jobs:
       - name: Verify canonical routes and sitemap targets
         run: node scripts/check-canonical-routes.mjs
 
-      - name: Verify dist (出厂门禁)
-        run: node scripts/verify-dist.mjs
+      # Full HTML gates run after the workbench/member builders below. The task
+      # map links to those real pages, so testing an incomplete dist here is invalid.
 
       # 首页 ↔ agents 联动必须真的在产物里（zh/en 两版）：联动条在 section#agent 内、区块级点击信标已注入、
       # 构建出的 /agents/ 与账本逐条对得上。不在这里断言，首页改版一次就能把联动条无声挤掉。
@@ -301,8 +312,11 @@ jobs:
           npm ci --prefix tools/revenue-studio --ignore-scripts
           node --test tools/revenue-studio/test.mjs
           node tools/revenue-studio/build.mjs --site bpj --out sites/baipiaoji/dist
-          node tools/revenue-studio/verify.mjs --site bpj --out sites/baipiaoji/dist
           node tools/member-studio/build.mjs --out sites/baipiaoji/dist
+          node sites/baipiaoji/scripts/finish-experience.mjs --out sites/baipiaoji/dist
+          node sites/baipiaoji/scripts/test-site-journeys.mjs --dist
+          (cd sites/baipiaoji && node scripts/verify-dist.mjs && node scripts/check-canonical-routes.mjs)
+          node tools/revenue-studio/verify.mjs --site bpj --out sites/baipiaoji/dist
           node tools/member-studio/verify.mjs --out sites/baipiaoji/dist
           node tools/member-studio/test-isolation.mjs
           node sites/baipiaoji/scripts/test-video-business.mjs --dist
@@ -316,11 +330,29 @@ jobs:
         run: |
           node tools/revenue-studio/node_modules/playwright/cli.js install --with-deps chromium --only-shell
           node sites/baipiaoji/scripts/test-video-business-browser.mjs
+          node sites/baipiaoji/scripts/test-release-pilot-browser.mjs
+          node sites/baipiaoji/scripts/test-commercial-browser.mjs
+          node sites/baipiaoji/scripts/test-site-experience-browser.mjs
+          node sites/baipiaoji/scripts/test-free-account-browser.mjs
+          node sites/baipiaoji/scripts/test-account-member.mjs --browser
 
       - name: Deploy to Cloudflare Pages
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: npx wrangler@4 pages deploy dist --project-name=aiyangmao --branch=main --commit-dirty=true
+
+      - name: Verify live free-account lifecycle and remove synthetic account
+        run: node scripts/verify-free-account-live.mjs
+
+      - name: Verify paid-app demand pilot without counting QA
+        run: node scripts/verify-release-pilot-live.mjs
+
+      - name: Read pilot evidence (aggregates only)
+        if: github.event_name != 'push'
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          ADS_WATCH_SECRET: ${{ secrets.ADS_WATCH_SECRET }}
+        run: node scripts/release-pilot-report.mjs
 
       - name: Verify published free PDF and image tools
         run: node scripts/verify-file-studio-live.mjs
@@ -674,11 +706,11 @@ jobs:
           hub=$(curl -s -o /dev/null -w '%{http_code}' -m 20 'https://baipiaoji.com/earn/')
           [ "$hub" = "200" ] || { echo "::error::/earn/ 枢纽页返回 $hub"; exit 1; }
           # 未注册地址必须拿不到正文
-          deny=$(curl -s -m 20 -X POST 'https://baipiaoji.com/api/earn' -H 'content-type: application/json' \
+          deny=$(curl -s -m 20 -X POST 'https://baipiaoji.com/api/earn' -H 'content-type: application/json' -H 'Origin: https://baipiaoji.com' \
             -d '{"email":"__selftest-not-registered@example.com","slug":"ai-design-service","lang":"zh"}')
           echo "$deny" | grep -q 'not_registered' || { echo "::error::未注册邮箱没有被拒：$deny"; exit 1; }
           # 未知 slug 必须 404，而不是回一个空壳成功
-          unk=$(curl -s -m 20 -X POST 'https://baipiaoji.com/api/earn' -H 'content-type: application/json' \
+          unk=$(curl -s -m 20 -X POST 'https://baipiaoji.com/api/earn' -H 'content-type: application/json' -H 'Origin: https://baipiaoji.com' \
             -d '{"email":"__selftest-not-registered@example.com","slug":"no-such-path-xyz","lang":"zh"}')
           echo "$unk" | grep -q 'unknown' || { echo "::error::未知作业包 slug 未被拒：$unk"; exit 1; }
           # 正文模块确实随 Function 打包了：模块缺失时 Pages 构建期就会把整个 Function 判死，
@@ -848,6 +880,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data/page-lastmod.json data/limits-history.json data/agenda.json data/mcp-status.json 2>/dev/null || true
+          if [ -f data/release-pilot-report.json ]; then git add data/release-pilot-report.json; fi
           git diff --cached --quiet || { git commit -m "chore: page change manifest $(date -u +%F)"; git pull --rebase --autostash -q; git push; }
         continue-on-error: true
 
@@ -936,5 +969,3 @@ jobs:
           check "变更清单回写" "${{ steps.manifest.outcome }}"
           [ "$fail" = "0" ] || exit 1
           echo "✅ 全部链路自测通过"
-
-

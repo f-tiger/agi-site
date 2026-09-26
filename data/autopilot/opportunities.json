@@ -1,6 +1,6 @@
 {
- "generated": "2026-09-25",
- "radar_fetched": "2026-09-25",
+ "generated": "2026-09-26",
+ "radar_fetched": "2026-09-26",
  "reddit_sources_ok": {
   "reddit_requests": false,
   "reddit_wish": false,
@@ -8,44 +8,29 @@
   "hn_ask": true,
   "softwarerecs": true,
   "bluesky_wish": false,
-  "lemmy_wish": true,
+  "lemmy_wish": false,
   "reddit_access": "public-json"
  },
  "note": "Derived facts only: no Reddit post text, bodies or permalinks are stored here or published. Themes are normalised request titles used as matching keys; demand = Google Trends rising; supply = PH/HN public feeds.",
  "counts": {
-  "candidates": 8,
+  "candidates": 7,
   "demand_confirmed": 0,
   "recurring": 0,
-  "scout": 8,
+  "scout": 7,
   "supplied": 0
  },
  "opportunities": [
   {
-   "theme": "stripe withholding balance of 100000",
+   "theme": "ieee expulsion of fei yue wang",
    "site": "",
    "kind": "request-board",
    "subreddit": "ask_hn",
    "days_seen": [
-    "2026-09-19"
+    "2026-09-24"
    ],
    "state": "scout",
    "supplied": false,
-   "score": 3.07,
-   "demand": [],
-   "supply": [],
-   "fleet_pages": []
-  },
-  {
-   "theme": "is there a hotkey tool that works with cachyos kde wayland lutris wine warcraft ",
-   "site": "",
-   "kind": "request-board",
-   "subreddit": "lemmy:linux_gaming",
-   "days_seen": [
-    "2026-09-23"
-   ],
-   "state": "scout",
-   "supplied": false,
-   "score": 2.78,
+   "score": 2.25,
    "demand": [],
    "supply": [],
    "fleet_pages": []
@@ -81,12 +66,12 @@
    "fleet_pages": []
   },
   {
-   "theme": "ieee expulsion of fei yue wang",
+   "theme": "anybody has experience with maintaining self hosted git",
    "site": "",
    "kind": "request-board",
    "subreddit": "ask_hn",
    "days_seen": [
-    "2026-09-24"
+    "2026-09-26"
    ],
    "state": "scout",
    "supplied": false,
