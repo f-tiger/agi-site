@@ -198,17 +198,32 @@ jobs:
           check "https://agiscorecard.com/for-agents" "for_agents_delivery_lab"
           check "https://agiscorecard.com/sitemap.xml" "<loc>"
           check "https://agiscorecard.com/cn" "预言 AGI 2027 的基金"
+          # D1 读预算(2026-09-26):这两个端点现在从 Cache API 出(键带部署版本,所以这里读到的一定是
+          # 新版算的数)。重试纪律:只在网络错误 / 非 2xx 时重试,最多 3 次;内容断言只做一次——
+          # 一个 200 断言失败了再抓一次拿到的是同一份缓存,只会多花一次 D1 扫描。
+          fetch200() {
+            url="$1"; body=""; code="000"
+            for i in 1 2 3; do
+              body=$(curl -s --max-time 20 -w "\n%{http_code}" "$url" || echo -e "\n000")
+              code=$(echo "$body" | tail -1); body=$(echo "$body" | sed '$d')
+              [ "$code" = "200" ] && return 0
+              sleep 5
+            done
+            return 1
+          }
           # D1 read path: /api/trends serves live rows; broken binding = broken JSON here.
-          t=$(curl -s --max-time 20 "https://agiscorecard.com/api/trends" || echo "")
+          fetch200 "https://agiscorecard.com/api/trends" || true
+          t="$body"
           case "$t" in
             *'"ok":true'*) echo "OK /api/trends" ;;
-            *) echo "::error::/api/trends broken: ${t:0:120}"; fail=1 ;;
+            *) echo "::error::/api/trends broken (HTTP $code): ${t:0:120}"; fail=1 ;;
           esac
           # /api/pulse (2026-09-13): the fleet heartbeat reads AI-assistant referrals here, token-free.
-          p=$(curl -s --max-time 20 "https://agiscorecard.com/api/pulse" || echo "")
+          fetch200 "https://agiscorecard.com/api/pulse" || true
+          p="$body"
           case "$p" in
             *'"ok":true'*'"ai_ref"'*'"by_source"'*'"money":{'*) echo "OK /api/pulse" ;;
-            *) echo "::error::/api/pulse broken: ${p:0:120}"; fail=1 ;;
+            *) echo "::error::/api/pulse broken (HTTP $code): ${p:0:120}"; fail=1 ;;
           esac
           exit $fail
 

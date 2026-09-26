@@ -24,6 +24,9 @@
     "run_worker_first": true,
     "not_found_handling": "404-page"
   },
+  // 2026-09-26 D1 读预算:/api/pulse、/api/trends 与 owner-alerts 聚合块经 Cache API 缓存,
+  // 缓存键带部署版本 id,新部署自动换键——部署后自检读到的一定是新版算出的数。
+  "version_metadata": { "binding": "CF_VERSION_METADATA" },
   "d1_databases": [
     {
       "binding": "EVENTS",
