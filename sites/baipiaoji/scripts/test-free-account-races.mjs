@@ -81,7 +81,7 @@ async function harness(initialUser = null) {
         assert(queue?.length, 'Unexpected POST action: ' + body.action);
         return queue.shift()(body);
       }
-      if (url === '/api/account') {
+      if (url === '/api/account' || url === '/api/account?readiness=1') {
         requests.push({method: 'GET'});
         return getHandlers.length ? getHandlers.shift()() : reply(view(serverUser));
       }
@@ -120,7 +120,7 @@ async function harness(initialUser = null) {
     const form = node(id);
     assert.equal(typeof form.onsubmit, 'function', 'Form handler exists: ' + id);
     form.onsubmit({preventDefault() {}, currentTarget: form});
-    return until(() => !node(id + '-submit').disabled, 'submit ' + id);
+    return until(() => node('account-status').textContent !== 'Working…', 'submit ' + id);
   }
   async function switchTo(user) {
     serverUser = user;
@@ -239,6 +239,15 @@ test('a stale GET neither overwrites the identity nor clears a newer pending GET
   newer.resolve(reply(view(BOB)));
   await Promise.all([newRead, coalesced]);
   assert.equal(h.account.state.user.id, BOB.id);
+});
+
+test('outage disables account forms and retry restores them without losing identity', async () => {
+ const h=await harness(ALICE);h.failNextGet();await assert.rejects(h.account.refresh());await tick();
+ assert.equal(h.node('account-retry').hidden,false);
+ for(const id of ['account-register','account-login','account-recover','account-rotate-recovery','account-change-password','account-delete'])assert.equal(h.node(id+'-submit').disabled,true);
+ assert.match(h.node('account-status').textContent,/temporarily unavailable/);
+ await h.node('account-retry').onclick();await tick();
+ assert.equal(h.node('account-retry').hidden,true);assert.equal(h.node('account-login-submit').disabled,false);assert.equal(h.account.state.user.id,ALICE.id);
 });
 
 let failed = 0;

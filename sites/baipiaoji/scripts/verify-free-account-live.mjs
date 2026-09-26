@@ -7,6 +7,7 @@ async function request(body,session=cookie){const r=await fetch(base+'/api/accou
 const takeCookie=r=>(r.headers.get('set-cookie')||'').split(';')[0];
 try{
  for(const route of ['/account','/en/account']){const r=await fetch(base+route+'?__ci=1',{headers:{'User-Agent':'bpj-ci-selftest'},signal:AbortSignal.timeout(25000)});assert.equal(r.status,200);const h=await r.text();assert(h.includes('account-register')&&h.includes('account-login')&&h.includes('account-recover'));}
+ const readiness=await fetch(base+'/api/account?readiness=1',{headers:{'User-Agent':'bpj-ci-selftest'},signal:AbortSignal.timeout(25000)});const ready=await readiness.json();assert.equal(readiness.status,200,'Account readiness: '+(['database_limit','unavailable'].includes(ready.error)?ready.error:'not_ready'));
  const anon=await request(null,'');assert.equal(anon.j.user,null);
  const signup=await request({action:'register',username,password,consent:true,qa:true},'');assert.equal(signup.r.status,200,'Live signup must succeed');assert(signup.j.user?.id&&signup.j.recovery_code?.length===43);created=true;owner=signup.j.user.id;cookie=takeCookie(signup.r);assert(/HttpOnly/i.test(signup.r.headers.get('set-cookie'))&&/Secure/i.test(signup.r.headers.get('set-cookie')));
  const saved=await request({action:'favorite_add',account_id:owner,slug:'claude'});assert.equal(saved.r.status,200);assert(saved.j.favorites.includes('claude'));
