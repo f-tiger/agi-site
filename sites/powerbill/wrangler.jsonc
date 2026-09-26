@@ -8,5 +8,7 @@
   "compatibility_date": "2026-08-01",
   "assets": { "directory": "site", "binding": "ASSETS", "run_worker_first": true },
   "routes": [{ "pattern": "powerbill.agiscorecard.com", "custom_domain": true }],
-  "d1_databases": [{ "binding": "EV", "database_name": "after35-events", "database_id": "6109b81e-c970-47d7-b7fc-3a2a15f68ed2" }]
+  "d1_databases": [{ "binding": "EV", "database_name": "after35-events", "database_id": "6109b81e-c970-47d7-b7fc-3a2a15f68ed2" }],
+  // 部署版本 id 做 Cache API 键的一部分(2026-09-26 D1 读预算):每次部署自然失效,不必手动清缓存。
+  "version_metadata": { "binding": "CF_VERSION_METADATA" }
 }

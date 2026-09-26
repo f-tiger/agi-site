@@ -14,11 +14,12 @@
   * `money` 尚未部署的站(端点存在但没有 money 键)记 `via:"no-money-key"`,不红——
     heartbeat 在分支合并前就会先跑到。
 """
-import datetime as dt, json, os, sys, urllib.request
+import datetime as dt, json, os, sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.insert(0, os.path.join(ROOT, "tools", "fleet"))
 from ai_referrals import ENDPOINTS  # noqa: E402  端点表只维护一份
+from endpoint_cache import fetch_url  # noqa: E402  2026-09-26:同一 run 内每个端点只出网一次(D1 读预算)
 
 OUT = os.path.join(ROOT, "data", "fleet-money.json")
 OWNER = os.path.join(ROOT, "data", "fleet-money-owner.json")
@@ -29,9 +30,8 @@ UA = "fleet-heartbeat/money_line (+https://github.com/f-tiger/agi-site)"
 
 
 def fetch(site):
-    req = urllib.request.Request(ENDPOINTS[site], headers={"User-Agent": UA, "Accept": "application/json"})
-    with urllib.request.urlopen(req, timeout=20) as r:
-        return json.load(r)
+    _, body = fetch_url(ENDPOINTS[site], timeout=20, ua=UA)
+    return json.loads(body)
 
 
 def summarise(site, money):

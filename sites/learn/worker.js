@@ -33,6 +33,30 @@ function logRow(env, ctx, row) {
   })());
 }
 const JSONH = { "content-type": "application/json; charset=utf-8", "access-control-allow-origin": "*" };
+// AI 助手引荐主机(与原 /api/pulse SQL 里的 15 个 LIKE 子串逐字相同,改在 JS 里匹配同一结果集)。
+const AI_REF = /chatgpt|chat\.openai|perplexity|claude\.ai|copilot|gemini\.google|you\.com|kagi|poe\.com|mistral|deepseek|kimi|doubao|yiyan|metaso/i;
+// D1 读预算(2026-09-25 事故:免费档每日 500 万行读取被打满,全舰队 D1 读失败到午夜)。
+// 聚合端点从 Cache API 出,按 URL + 部署版本做键,TTL 秒;错误响应永不入缓存。
+// 此前的 `cache-control: public, max-age=3600` 只对浏览器有效——Cloudflare 不会仅凭它缓存 Worker 响应,
+// 每次轮询都重跑全部扫描。本地单测没有 caches 全局,直接算。
+async function cachedJson(request, env, ctx, ttl, compute, params = []) {
+  const cache = typeof caches !== "undefined" ? caches.default : null;
+  if (!cache) return compute();
+  const u = new URL(request.url);
+  const version = (env.CF_VERSION_METADATA && env.CF_VERSION_METADATA.id) || env.CF_PAGES_COMMIT_SHA || "dev";
+  const qs = params.map((p) => p + "=" + encodeURIComponent(u.searchParams.get(p) || "")).join("&");
+  const key = new Request(u.origin + u.pathname + "?v=" + encodeURIComponent(version) + (qs ? "&" + qs : ""), { method: "GET" });
+  const hit = await cache.match(key);
+  if (hit) return hit;
+  const res = await compute();
+  if (res.ok && res.headers.get("cache-control") !== "no-store") {
+    const stored = new Response(res.clone().body, res);
+    stored.headers.set("cache-control", "public, max-age=" + ttl);
+    stored.headers.set("x-fleet-cache", "store");
+    if (ctx && ctx.waitUntil) ctx.waitUntil(cache.put(key, stored)); else await cache.put(key, stored);
+  }
+  return res;
+}
 // 引荐来源分类(2026-09-15「舰队相互学习」):tools/fleet/ref_sources.txt 是唯一权威,
 // 每个 worker 里的字面量必须与它逐字相同——check_ref_sources.py 挂在 fleet-heartbeat 上断言,
 // 漂了就走 GitHub 失败邮件。教训与 bot_ua.txt 同源:各自演化的分类器 = 各站台账不可比。
@@ -79,6 +103,7 @@ export default {
     // 信标真值测试(2026-09-16 补,SR 09-13 同款):CI 先 POST 一条 label=__ci 的事件,再从这里读回来。
     // 没有这条,「工具一次都没被用过」和「/e → D1 这根管子断了」在读数上一模一样——本站上线以来
     // 客户端事件恒为 0,必须能证明是前者。只回计数,不回任何行级数据。
+    // D1 读预算(2026-09-26):只扫最近 500 行(rowid 区间),CI 只需看见自己刚写的那一行;此前按 day 过滤但表无索引 = 全表扫。
     if (p === "/api/selftest" && request.method === "GET") {
       const headers = { ...JSONH, "cache-control": "no-store" };
       const label = (url.searchParams.get("label") || "").slice(0, 40);
@@ -86,39 +111,41 @@ export default {
       if (!label || !label.startsWith("__") || !env.EV) return new Response(JSON.stringify({ ok: false, error: "ci label required" }), { status: 400, headers });
       try {
         await ensureSchema(env.EV);
-        const r = await env.EV.prepare("SELECT COUNT(*) n FROM lev WHERE label = ? AND day >= date('now','-2 days')").bind(label).first();
+        const r = await env.EV.prepare("SELECT COUNT(*) n FROM lev WHERE label = ? AND rowid > (SELECT MAX(rowid) FROM lev) - 500 AND day >= date('now','-2 days')").bind(label).first();
         return new Response(JSON.stringify({ ok: true, label, n: (r && r.n) | 0 }), { headers });
       } catch (e) { return new Response(JSON.stringify({ ok: false, error: "query_failed" }), { status: 500, headers }); }
     }
+    // /api/pulse:28 天真人 pv + AI 助手引荐 + 渠道构成,只给聚合数(无路径、无国家、无 UA、无行级数据)。
+    // D1 读预算(2026-09-26):此前同一个 28 天窗口扫三遍(`_total` + AI 主机 UNION,再 GROUP BY ref 一遍),
+    // 现在只跑一次 GROUP BY ref,三组数从同一结果集派生:human_pv = 各组 n 之和,AI 主机按 AI_REF 匹配,
+    // 渠道构成按 tools/fleet/ref_sources.txt 分桶——每个数字与原来逐个相同。响应经 cachedJson 缓存 1 小时。
+    // sum(by_source) 应等于 human_pv —— 对不上就是有站把 ref 存成了整条 URL 或分类器漂了,读侧 traffic_sources.py 会把差额打出来。
     if (p === "/api/pulse" && request.method === "GET") {
-      const headers = { ...JSONH, "cache-control": "public, max-age=3600" };
-      if (!env.EV) return new Response(JSON.stringify({ ok: false, error: "no_db" }), { status: 503, headers });
-      try {
-        await ensureSchema(env.EV);
-        const q = await env.EV.prepare("SELECT '_total' AS host, COUNT(*) AS n FROM lev WHERE name='page_view' AND ua_class='human' AND day >= date('now','-28 days') UNION ALL SELECT ref AS host, COUNT(*) AS n FROM lev WHERE name='page_view' AND ua_class='human' AND day >= date('now','-28 days') AND (ref LIKE '%chatgpt%' OR ref LIKE '%chat.openai%' OR ref LIKE '%perplexity%' OR ref LIKE '%claude.ai%' OR ref LIKE '%copilot%' OR ref LIKE '%gemini.google%' OR ref LIKE '%you.com%' OR ref LIKE '%kagi%' OR ref LIKE '%poe.com%' OR ref LIKE '%mistral%' OR ref LIKE '%deepseek%' OR ref LIKE '%kimi%' OR ref LIKE '%doubao%' OR ref LIKE '%yiyan%' OR ref LIKE '%metaso%') GROUP BY ref ORDER BY n DESC").all();
-        let human_pv = 0; const by_host = {};
-        for (const r of (q.results || [])) { if (r.host === "_total") human_pv = r.n | 0; else if (r.host) by_host[r.host] = r.n | 0; }
-        const ai_ref = Object.values(by_host).reduce((a, b) => a + b, 0);
-        // 渠道构成(2026-09-15):同一个 human 谓词再 group 一次 ref,在 worker 里按
-        // tools/fleet/ref_sources.txt 分桶。sum(by_source) 应等于 human_pv —— 对不上就是
-        // 有站把 ref 存成了整条 URL 或分类器漂了,读侧 traffic_sources.py 会把差额打出来。
-        const q2 = await env.EV.prepare(
-          "SELECT ref AS host, COUNT(*) AS n FROM lev WHERE name='page_view' AND ua_class='human' AND day >= date('now','-28 days') GROUP BY ref ORDER BY n DESC LIMIT 1000"
-        ).all();
-        const self_host = srcHost(url.hostname);
-        const by_source = { search: 0, ai: 0, fleet: 0, social: 0, self: 0, direct: 0, other: 0 };
-        const by_search = {}; const by_fleet = {}; const by_other = {};
-        for (const r of (q2.results || [])) {
-          const h = srcHost(r.host); const n = r.n | 0; const b = srcBucket(h, self_host);
-          by_source[b] += n;
-          if (b === "search") by_search[h] = (by_search[h] || 0) + n;
-          else if (b === "fleet") by_fleet[h] = (by_fleet[h] || 0) + n;
-          // by_other = 既不是搜索/AI/社交/兄弟站/本站的来源域 —— 真的有人从别处链过来。
-          // 这是舰队第一方的外链监测:嵌入件、目录页、awesome-list 里的链接,送来过真人就出现在这里。
-          else if (b === "other") by_other[h] = (by_other[h] || 0) + n;
-        }
-        return new Response(JSON.stringify({ ok: true, days: 28, human_pv, ai_ref, by_host, by_source, by_search, by_fleet, by_other, generated: new Date().toISOString() }), { headers });
-      } catch (e) { return new Response(JSON.stringify({ ok: false, error: "query_failed" }), { status: 500, headers }); }
+      const errH = { ...JSONH, "cache-control": "no-store" };
+      if (!env.EV) return new Response(JSON.stringify({ ok: false, error: "no_db" }), { status: 503, headers: errH });
+      return cachedJson(request, env, ctx, 3600, async () => {
+        try {
+          await ensureSchema(env.EV);
+          const q = await env.EV.prepare("SELECT ref AS host, COUNT(*) AS n FROM lev WHERE name='page_view' AND ua_class='human' AND day >= date('now','-28 days') GROUP BY ref ORDER BY n DESC").all();
+          const self_host = srcHost(url.hostname);
+          let human_pv = 0; const by_host = {};
+          const by_source = { search: 0, ai: 0, fleet: 0, social: 0, self: 0, direct: 0, other: 0 };
+          const by_search = {}; const by_fleet = {}; const by_other = {};
+          for (const r of (q.results || [])) {
+            const n = r.n | 0; human_pv += n;
+            if (r.host && AI_REF.test(String(r.host))) by_host[r.host] = n;
+            const h = srcHost(r.host); const b = srcBucket(h, self_host);
+            by_source[b] += n;
+            if (b === "search") by_search[h] = (by_search[h] || 0) + n;
+            else if (b === "fleet") by_fleet[h] = (by_fleet[h] || 0) + n;
+            // by_other = 既不是搜索/AI/社交/兄弟站/本站的来源域 —— 真的有人从别处链过来。
+            // 这是舰队第一方的外链监测:嵌入件、目录页、awesome-list 里的链接,送来过真人就出现在这里。
+            else if (b === "other") by_other[h] = (by_other[h] || 0) + n;
+          }
+          const ai_ref = Object.values(by_host).reduce((a, b) => a + b, 0);
+          return new Response(JSON.stringify({ ok: true, days: 28, human_pv, ai_ref, by_host, by_source, by_search, by_fleet, by_other, generated: new Date().toISOString() }), { headers: { ...JSONH, "cache-control": "public, max-age=3600" } });
+        } catch (e) { return new Response(JSON.stringify({ ok: false, error: "query_failed" }), { status: 500, headers: errH }); }
+      });
     }
     const res = await env.ASSETS.fetch(request);
     if (request.method === "GET" && res.status === 200) {

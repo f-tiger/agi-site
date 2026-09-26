@@ -188,6 +188,22 @@ jobs:
       #    D1 REST 直连,三个 token secret 逐个试(承 tds-traffic.yml 纪律),只打印生效的 env 名;
       #    读失败保留上一份快照,连续 >3 天读不到才红(不做每天一封的噪音)。快照写回
       #    data/fleet-ai-referrals.json,autopilot 的 demand-digest 次日读它。
+      # ①b D1 读预算护栏(2026-09-25 事故:账号超出免费档 5,000,000 行读取/日,D1 读全部失败到午夜)。
+      #    一次 GraphQL POST 读账号昨日与今日的 rows_read(分库),写 data/fleet-d1-budget.json;
+      #    >40% 警告、>60% 红。token 缺 Account Analytics 读权限时写 status:unreadable 并警告,不假装绿。
+      #    零 cron、零 D1 行读取。判定线 fleet-d1-budget-1026。
+      - name: Read the account's D1 read budget (yesterday + today's pace)
+        id: d1budget
+        continue-on-error: true
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_API_TOKEN_ZONE: ${{ secrets.CLOUDFLARE_API_TOKEN_ZONE }}
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          python3 tools/fleet/d1_budget.py --selftest
+          python3 tools/fleet/d1_budget.py
+
       - name: Read AI-assistant referrals (28d) from every site's D1
         id: airef
         continue-on-error: true
@@ -236,7 +252,7 @@ jobs:
           git config user.email noreply@anthropic.com
           git config user.name Claude
           git add data/fleet-health.json
-          git add data/fleet-ai-access.json data/fleet-ai-referrals.json data/fleet-traffic-sources.json data/fleet-money.json data/fleet-page-patterns.json data/fleet-backlinks.json data/fleet-mcp-usage.json 2>/dev/null || true
+          git add data/fleet-ai-access.json data/fleet-ai-referrals.json data/fleet-traffic-sources.json data/fleet-money.json data/fleet-page-patterns.json data/fleet-backlinks.json data/fleet-mcp-usage.json data/fleet-d1-budget.json 2>/dev/null || true
           git diff --cached --quiet && { echo "无变化"; exit 0; }
           git commit -m "chore(fleet): heartbeat 健康快照 $(date -u +%F)"
           for i in 1 2 3 4; do
@@ -342,7 +358,7 @@ jobs:
         run: python3 tools/fleet/recall_gate.py --check
 
       - name: Fail the run if any site is down, blocks AI crawlers, or a traffic read is stale
-        if: steps.probe.outputs.bad == '1' || steps.aiprobe.outcome == 'failure' || steps.airef.outcome == 'failure' || steps.srcmix.outcome == 'failure' || steps.money.outcome == 'failure' || steps.smguard.outcome == 'failure' || steps.mcpusage.outcome == 'failure'
+        if: steps.probe.outputs.bad == '1' || steps.aiprobe.outcome == 'failure' || steps.airef.outcome == 'failure' || steps.srcmix.outcome == 'failure' || steps.money.outcome == 'failure' || steps.smguard.outcome == 'failure' || steps.mcpusage.outcome == 'failure' || steps.d1budget.outcome == 'failure'
         run: |
-          echo "site-down=${{ steps.probe.outputs.bad }} ai-crawler-blocked=${{ steps.aiprobe.outcome }} ai-referrals=${{ steps.airef.outcome }} source-mix=${{ steps.srcmix.outcome }} money=${{ steps.money.outcome }} sitemap=${{ steps.smguard.outcome }} mcp-usage=${{ steps.mcpusage.outcome }}"
+          echo "site-down=${{ steps.probe.outputs.bad }} ai-crawler-blocked=${{ steps.aiprobe.outcome }} ai-referrals=${{ steps.airef.outcome }} source-mix=${{ steps.srcmix.outcome }} money=${{ steps.money.outcome }} sitemap=${{ steps.smguard.outcome }} mcp-usage=${{ steps.mcpusage.outcome }} d1-budget=${{ steps.d1budget.outcome }}"
           exit 1

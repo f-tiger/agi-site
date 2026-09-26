@@ -1,62 +1,374 @@
 {
- "generated": "2026-09-15T15:25:02Z",
+ "generated": "2026-09-26T05:27:50Z",
  "window_days": 28,
- "ok": false,
- "read_via": "endpoints (partial)",
- "errors": [
-  "agiscorecard: no by_source yet (worker 未部署 2026-09-15 的渠道构成)",
-  "getecoback: no by_source yet (worker 未部署 2026-09-15 的渠道构成)",
-  "thedollscout: no by_source yet (worker 未部署 2026-09-15 的渠道构成)",
-  "goldrush: no by_source yet (worker 未部署 2026-09-15 的渠道构成)",
-  "gridlings: no by_source yet (worker 未部署 2026-09-15 的渠道构成)",
-  "buysomething: no by_source yet (worker 未部署 2026-09-15 的渠道构成)",
-  "gamesledger: no by_source yet (worker 未部署 2026-09-15 的渠道构成)",
-  "after35: no by_source yet (worker 未部署 2026-09-15 的渠道构成)",
-  "learn: no by_source yet (worker 未部署 2026-09-15 的渠道构成)",
-  "fanzha: no by_source yet (worker 未部署 2026-09-15 的渠道构成)",
-  "firstjob: no by_source yet (worker 未部署 2026-09-15 的渠道构成)",
-  "codeword: no by_source yet (worker 未部署 2026-09-15 的渠道构成)",
-  "powerbill: no by_source yet (worker 未部署 2026-09-15 的渠道构成)"
- ],
+ "ok": true,
+ "read_via": "endpoints",
+ "errors": [],
  "fleet": {
-  "search": 254,
-  "ai": 34,
-  "fleet": 0,
-  "social": 16,
-  "self": 0,
-  "direct": 0,
-  "other": 1,
+  "search": 1105,
+  "ai": 56,
+  "fleet": 45,
+  "social": 23,
+  "self": 4803,
+  "direct": 38060,
+  "other": 36,
   "unattributed": 0
  },
- "fleet_human_pv": 305,
+ "fleet_human_pv": 44128,
  "sites": [
   {
-   "site": "baipiaoji",
-   "human_pv": 305,
+   "site": "agiscorecard",
+   "human_pv": 38614,
    "by_source": {
-    "search": 254,
-    "ai": 34,
+    "search": 453,
+    "ai": 19,
+    "fleet": 19,
+    "social": 7,
+    "self": 4129,
+    "direct": 33962,
+    "other": 25
+   },
+   "by_search": {
+    "google.com": 314,
+    "duckduckgo.com": 72,
+    "bing.com": 45,
+    "cn.bing.com": 6,
+    "ecosia.org": 4,
+    "search.brave.com": 3,
+    "google.com.hk": 3,
+    "noai.duckduckgo.com": 2,
+    "html.duckduckgo.com": 1,
+    "id.search.yahoo.com": 1,
+    "sogou.com": 1,
+    "qwant.com": 1
+   },
+   "by_fleet": {
+    "baipiaoji.com": 8,
+    "compass.agiscorecard.com": 2,
+    "evidence.agiscorecard.com": 2,
+    "getecoback.com": 2,
+    "invest.agiscorecard.com": 2,
+    "mcppulse.agiscorecard.com": 1,
+    "selltoagents.agiscorecard.com": 1,
+    "thedollscout.com": 1
+   },
+   "by_other": {
+    "forum.effectivealtruism.org": 5,
+    "teams.public.onecdn.static.microsoft": 3,
+    "com.twitter.android": 2,
+    "127.0.0.1": 1,
+    "aga-dent.com.pl": 1,
+    "agendaoltului.ip2.ro": 1,
+    "agentunity.blog": 1,
+    "agentur-diana.de": 1,
+    "agilexperience.com": 1,
+    "aihot.news": 1,
+    "api.microsoft.ai": 1,
+    "betwinnermirror.com": 1
+   },
+   "unattributed": 0,
+   "via": "endpoint",
+   "note": "服务端口径,含不自报家门的爬虫;真人量级以 JS 口径为准(站规 2026-09-14)"
+  },
+  {
+   "site": "baipiaoji",
+   "human_pv": 392,
+   "by_source": {
+    "search": 352,
+    "ai": 20,
     "fleet": 0,
     "social": 16,
     "self": 0,
     "direct": 0,
-    "other": 1
+    "other": 4
    },
    "by_search": {
-    "google.com": 155,
-    "cn.bing.com": 65,
-    "bing.com": 11,
+    "google.com": 173,
+    "cn.bing.com": 128,
+    "bing.com": 21,
+    "baidu.com": 9,
     "m.baidu.com": 6,
-    "baidu.com": 6,
     "yandex.com": 5,
-    "duckduckgo.com": 3,
+    "duckduckgo.com": 5,
     "google.com.hk": 2,
-    "yandex.com.tr": 1
+    "yandex.kz": 1,
+    "yandex.com.tr": 1,
+    "search.brave.com": 1
    },
    "by_fleet": {},
+   "by_other": {
+    "com.twitter.android": 4
+   },
    "unattributed": 0,
    "via": "endpoint",
    "note": "分母是「有来源的真人」(该站真人线 A):无来源的直接访问不入库,本域 ref 入库时已清空,所以 direct/self 结构性为 0"
+  },
+  {
+   "site": "getecoback",
+   "human_pv": 581,
+   "by_source": {
+    "search": 212,
+    "ai": 16,
+    "fleet": 0,
+    "social": 0,
+    "self": 126,
+    "direct": 227,
+    "other": 0
+   },
+   "by_search": {
+    "duckduckgo.com": 93,
+    "bing.com": 69,
+    "ecosia.org": 21,
+    "de.search.yahoo.com": 10,
+    "qwant.com": 6,
+    "noai.duckduckgo.com": 4,
+    "search.yahoo.com": 2,
+    "at.search.yahoo.com": 2,
+    "startpage.com": 1,
+    "google.com": 1,
+    "search.brave.com": 1,
+    "r.search.yahoo.com": 1
+   },
+   "by_fleet": {},
+   "by_other": {},
+   "unattributed": 0,
+   "via": "endpoint"
+  },
+  {
+   "site": "thedollscout",
+   "human_pv": 656,
+   "by_source": {
+    "search": 12,
+    "ai": 0,
+    "fleet": 0,
+    "social": 0,
+    "self": 215,
+    "direct": 429,
+    "other": 0
+   },
+   "by_search": {
+    "bing.com": 6,
+    "google.com": 5,
+    "duckduckgo.com": 1
+   },
+   "by_fleet": {},
+   "by_other": {},
+   "unattributed": 0,
+   "via": "endpoint"
+  },
+  {
+   "site": "goldrush",
+   "human_pv": 458,
+   "by_source": {
+    "search": 14,
+    "ai": 0,
+    "fleet": 8,
+    "social": 0,
+    "self": 8,
+    "direct": 427,
+    "other": 1
+   },
+   "by_search": {
+    "google.com": 14
+   },
+   "by_fleet": {
+    "agiscorecard.com": 8
+   },
+   "by_other": {
+    "goldenempiretow.com": 1
+   },
+   "unattributed": 0,
+   "via": "endpoint"
+  },
+  {
+   "site": "gridlings",
+   "human_pv": 767,
+   "by_source": {
+    "search": 31,
+    "ai": 0,
+    "fleet": 8,
+    "social": 0,
+    "self": 215,
+    "direct": 509,
+    "other": 4
+   },
+   "by_search": {
+    "google.com": 17,
+    "cn.bing.com": 11,
+    "baidu.com": 2,
+    "duckduckgo.com": 1
+   },
+   "by_fleet": {
+    "agiscorecard.com": 8
+   },
+   "by_other": {
+    "html-classic.itch.zone": 3,
+    "play-riobet.today": 1
+   },
+   "unattributed": 0,
+   "via": "endpoint"
+  },
+  {
+   "site": "buysomething",
+   "human_pv": 114,
+   "by_source": {
+    "search": 6,
+    "ai": 0,
+    "fleet": 0,
+    "social": 0,
+    "self": 0,
+    "direct": 107,
+    "other": 1
+   },
+   "by_search": {
+    "google.com": 6
+   },
+   "by_fleet": {},
+   "by_other": {
+    "sounion.ancientathens3d.com": 1
+   },
+   "unattributed": 0,
+   "via": "endpoint"
+  },
+  {
+   "site": "gamesledger",
+   "human_pv": 493,
+   "by_source": {
+    "search": 25,
+    "ai": 1,
+    "fleet": 6,
+    "social": 0,
+    "self": 86,
+    "direct": 374,
+    "other": 1
+   },
+   "by_search": {
+    "google.com": 20,
+    "cn.bing.com": 2,
+    "bing.com": 1,
+    "baidu.com": 1,
+    "duckduckgo.com": 1
+   },
+   "by_fleet": {
+    "agiscorecard.com": 6
+   },
+   "by_other": {
+    "games-zunlongks.com": 1
+   },
+   "unattributed": 0,
+   "via": "endpoint"
+  },
+  {
+   "site": "after35",
+   "human_pv": 458,
+   "by_source": {
+    "search": 0,
+    "ai": 0,
+    "fleet": 0,
+    "social": 0,
+    "self": 2,
+    "direct": 456,
+    "other": 0
+   },
+   "by_search": {},
+   "by_fleet": {},
+   "by_other": {},
+   "unattributed": 0,
+   "via": "endpoint"
+  },
+  {
+   "site": "learn",
+   "human_pv": 288,
+   "by_source": {
+    "search": 0,
+    "ai": 0,
+    "fleet": 0,
+    "social": 0,
+    "self": 4,
+    "direct": 284,
+    "other": 0
+   },
+   "by_search": {},
+   "by_fleet": {},
+   "by_other": {},
+   "unattributed": 0,
+   "via": "endpoint"
+  },
+  {
+   "site": "fanzha",
+   "human_pv": 282,
+   "by_source": {
+    "search": 0,
+    "ai": 0,
+    "fleet": 0,
+    "social": 0,
+    "self": 2,
+    "direct": 280,
+    "other": 0
+   },
+   "by_search": {},
+   "by_fleet": {},
+   "by_other": {},
+   "unattributed": 0,
+   "via": "endpoint"
+  },
+  {
+   "site": "firstjob",
+   "human_pv": 254,
+   "by_source": {
+    "search": 0,
+    "ai": 0,
+    "fleet": 0,
+    "social": 0,
+    "self": 2,
+    "direct": 252,
+    "other": 0
+   },
+   "by_search": {},
+   "by_fleet": {},
+   "by_other": {},
+   "unattributed": 0,
+   "via": "endpoint"
+  },
+  {
+   "site": "codeword",
+   "human_pv": 410,
+   "by_source": {
+    "search": 0,
+    "ai": 0,
+    "fleet": 2,
+    "social": 0,
+    "self": 12,
+    "direct": 396,
+    "other": 0
+   },
+   "by_search": {},
+   "by_fleet": {
+    "agiscorecard.com": 2
+   },
+   "by_other": {},
+   "unattributed": 0,
+   "via": "endpoint"
+  },
+  {
+   "site": "powerbill",
+   "human_pv": 361,
+   "by_source": {
+    "search": 0,
+    "ai": 0,
+    "fleet": 2,
+    "social": 0,
+    "self": 2,
+    "direct": 357,
+    "other": 0
+   },
+   "by_search": {},
+   "by_fleet": {
+    "agiscorecard.com": 2
+   },
+   "by_other": {},
+   "unattributed": 0,
+   "via": "endpoint"
   }
  ]
 }

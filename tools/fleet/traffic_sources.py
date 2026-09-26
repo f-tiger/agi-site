@@ -29,10 +29,10 @@ import os
 import subprocess
 import sys
 import tempfile
-import urllib.request
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from ai_referrals import ENDPOINTS  # noqa: E402  单一来源:端点表只维护一份
+from endpoint_cache import fetch_url  # noqa: E402  2026-09-26:同一 run 内每个端点只出网一次(D1 读预算)
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 OUT = os.path.join(ROOT, "data", "fleet-traffic-sources.json")
@@ -148,11 +148,9 @@ def parse(site, body):
 
 
 def fetch(site):
-    req = urllib.request.Request(ENDPOINTS[site], headers={
-        "User-Agent": "fleet-heartbeat/traffic_sources (+https://github.com/f-tiger/agi-site)",
-        "Accept": "application/json"})
-    with urllib.request.urlopen(req, timeout=20) as r:
-        return parse(site, json.load(r))
+    _, body = fetch_url(ENDPOINTS[site], timeout=20,
+                        ua="fleet-heartbeat/traffic_sources (+https://github.com/f-tiger/agi-site)")
+    return parse(site, json.loads(body))
 
 
 def load_last():

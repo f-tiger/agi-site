@@ -296,13 +296,17 @@ jobs:
       # the shape this should catch — the beacon test above only warns.
       - name: Assert /api/pulse serves the aggregate
         run: |
-          ok=0
-          for try in 1 2 3 4 5; do
-            pulse=$(curl -s --max-time 20 "https://thedollscout.com/api/pulse" || echo "")
-            case "$pulse" in *'"ok":true'*'"ai_ref"'*'"by_source"'*'"money":{'*) ok=1; break;; esac
-            sleep 5
+          # 2026-09-26 D1 读预算:只对非 200 重试(最多 3 次),内容断言只做一次——
+          # 响应现在按部署版本缓存,对一个 200 反复重抓只会重复扫表,不会换来不同结果。
+          code=000; pulse=""
+          for try in 1 2 3; do
+            pulse=$(curl -s --max-time 20 -w "\n%{http_code}" "https://thedollscout.com/api/pulse" || echo -e "\n000")
+            code=$(tail -1 <<<"$pulse"); pulse=$(sed '$d' <<<"$pulse")
+            [ "$code" = "200" ] && break
+            [ "$try" -lt 3 ] && sleep 5
           done
-          [ "$ok" = "1" ] && echo "OK /api/pulse" || { echo "::error::/api/pulse broken: ${pulse:0:120}"; exit 1; }
+          [ "$code" = "200" ] || { echo "::error::/api/pulse returned HTTP $code"; exit 1; }
+          case "$pulse" in *'"ok":true'*'"ai_ref"'*'"by_source"'*'"money":{'*) echo "OK /api/pulse";; *) echo "::error::/api/pulse broken: ${pulse:0:120}"; exit 1;; esac
 
 concurrency:
   group: deploy-thedollscout

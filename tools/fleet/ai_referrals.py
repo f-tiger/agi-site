@@ -22,6 +22,10 @@ Mechanics:
     been failing for more than 3 days (no snapshot newer than that), so a token that lacks
     D1 read scope shows up as one red heartbeat, not twelve, and never silently.
   * Never prints a token, an account id, or any row-level data (public repo, public logs).
+  * 2026-09-26: endpoint GETs go through tools/fleet/endpoint_cache.py (on-disk memo, 6 h TTL,
+    2xx only). The five readers used to fetch the same pulse/reach URLs independently — about
+    36 requests per heartbeat, each one re-running the worker's full D1 scans — which was part
+    of the 2026-09-25 free-plan read-quota outage. Now each endpoint is fetched once per run.
 
 Usage: python3 tools/fleet/ai_referrals.py [--selftest]
 """
@@ -31,6 +35,9 @@ import os
 import sys
 import urllib.error
 import urllib.request
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from endpoint_cache import fetch_url  # noqa: E402  同一 run 内每个端点只出网一次
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 OUT = os.path.join(ROOT, "data", "fleet-ai-referrals.json")
@@ -106,9 +113,8 @@ def parse_endpoint(site, body):
 
 
 def fetch_endpoint(site):
-    req = urllib.request.Request(ENDPOINTS[site], headers={"User-Agent": "fleet-heartbeat/ai_referrals (+https://github.com/f-tiger/agi-site)", "Accept": "application/json"})
-    with urllib.request.urlopen(req, timeout=20) as r:
-        return parse_endpoint(site, json.load(r))
+    _, body = fetch_url(ENDPOINTS[site], timeout=20, ua="fleet-heartbeat/ai_referrals (+https://github.com/f-tiger/agi-site)")
+    return parse_endpoint(site, json.loads(body))
 
 
 def ai_pred(col):
@@ -192,11 +198,12 @@ def selftest():
         ("sql: window is 28 days", f"'-{WINDOW} days'" in sql_for(SITES[4]) and WINDOW == 28),
         ("age: missing snapshot is ancient", snapshot_age_days(None, dt.date(2026, 9, 12)) > 1000),
         ("age: 2-day-old snapshot", snapshot_age_days({"generated": "2026-09-10T08:00:00Z"}, dt.date(2026, 9, 12)) == 2),
-        ("eight sites", len(SITES) == 8 and len({s[1] for s in SITES}) == 8),
+        ("sites: names unique, every row has a db id and a table", len({s[0] for s in SITES}) == len(SITES) and all(s[1] and s[2] for s in SITES)),
         ("endpoint: pulse shape", parse_endpoint("gridlings", {"ok": True, "human_pv": 658, "ai_ref": 3, "by_host": {"chatgpt.com": 3}}) == (658, 3, {"chatgpt.com": 3})),
         ("endpoint: bpj reach shape sums per ref", parse_endpoint("baipiaoji", {"ok": True, "humans_referred": 900, "ai_referrals": [{"ref": "www.perplexity.ai", "path": "/a", "n": 12}, {"ref": "www.perplexity.ai", "path": "/b", "n": 8}, {"ref": "chatgpt.com", "path": "/", "n": 12}]}) == (900, 32, {"www.perplexity.ai": 20, "chatgpt.com": 12})),
         ("endpoint: not ok raises", (lambda: (_raises(lambda: parse_endpoint("goldrush", {"ok": False, "error": "no_db"}))))()),
-        ("endpoint map covers all eight sites", set(ENDPOINTS) == {s[0] for s in SITES}),
+        ("endpoint map covers every site in SITES", set(ENDPOINTS) == {s[0] for s in SITES}),
+        ("bpj reach URL is the fleet-wide canonical spelling (memo key)", ENDPOINTS["baipiaoji"] == "https://baipiaoji.com/api/reach?days=28"),
     ]
     for n, ok in checks:
         print(("✅ " if ok else "❌ ") + n)
