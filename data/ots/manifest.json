@@ -1,0 +1,14 @@
+{
+ "note": "OpenTimestamps proofs for dated records. Verify: ots verify <proof> -f <file> (proof commits the file's SHA-256 into a Bitcoin block via public calendars; 'pending' = calendar attestation only, upgraded to a Bitcoin attestation after confirmation).",
+ "files": {
+  "fleet-bets.json": [
+   {
+    "sha256": "8feadbcb11579e7dbb0cc88665309d21bcc51ecf878c89aab839ade5e8820428",
+    "proof": "fleet-bets.json.8feadbcb1157.ots",
+    "stamped": "2026-09-26",
+    "status": "pending"
+   }
+  ]
+ },
+ "updated": "2026-09-26"
+}

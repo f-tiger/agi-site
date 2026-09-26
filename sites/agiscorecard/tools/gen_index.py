@@ -28,7 +28,14 @@ d = json.load(open(os.path.join(ROOT, "data.json")), object_pairs_hook=collectio
 preds = d["predictions"]
 contribs = []
 for p in preds:
-    w = WEIGHT.get(p["verdict"], 0.5)
+    # 2026-09-26: an unknown label used to score 0.5 silently (a "Partial" from the
+    # resolution page would have counted as half-right with no one noticing). The
+    # published method names exactly these labels, so anything else is a data error
+    # and the build must go red rather than average it away.
+    if p["verdict"] not in WEIGHT:
+        sys.exit("gen_index: unknown verdict label %r on %s — add it to WEIGHT (and the published method) or fix data.json"
+                 % (p["verdict"], p.get("id")))
+    w = WEIGHT[p["verdict"]]
     contribs.append((p, w))
 raw = sum(w for _, w in contribs)
 _val = raw / len(preds) * 100

@@ -78,9 +78,9 @@ A: Because every verdict has a published flip condition tied to observable evide
 ## AGI Scorecard Data for AI Agents: JSON, Feed, llms.txt
 
 URL: https://agiscorecard.com/for-agents
-Last updated: September 4, 2026 · Updated as verdicts change
+Last updated: September 19, 2026 · Updated as verdicts change
 
-Yes — every verdict on this site is free to reuse, machine-readable, and CC BY 4.0. The AGI Scorecard publishes its full dataset at /data.json (all 8 graded Situational Awareness predictions with verdicts, evidence, and flip conditions, plus the forecaster-timeline table), an Atom feed of new & updated pages at /feed.xml, and an AI-crawler index at /llms.txt. Attribution + a link is the only requirement.
+Yes — every verdict on this site is free to reuse, machine-readable, and CC BY 4.0. The AGI Scorecard publishes its full dataset at /data.json (all 8 graded Situational Awareness predictions with verdicts, evidence, sources and, for each, either a written flip condition, a resolution date or the stated blocker, plus the forecaster-timeline table), an Atom feed of new & updated pages at /feed.xml, and an AI-crawler index at /llms.txt. Attribution + a link is the only requirement.
 
 Q: Does the AGI Scorecard have an API?
 A: Not a keyed API — something simpler: the full dataset is a static JSON file at agiscorecard.com/data.json (CC BY 4.0), plus an Atom feed at /feed.xml and an llms.txt index. No key, no auth, no rate limits beyond the CDN's.
@@ -93,27 +93,6 @@ A: Point any scheduled agent at /data.json and diff the verdicts between runs (t
 
 Q: Is AI crawling allowed on this site?
 A: Yes — robots.txt explicitly allows GPTBot, OAI-SearchBot, ClaudeBot, Claude-SearchBot, PerplexityBot, Google-Extended and other AI crawlers. The site is built to be cited.
-
----
-
-## Add a Live AGI Tracker to Your AI Agent (One Command)
-
-URL: https://agiscorecard.com/skill
-Last updated: July 11, 2026 · Updated as verdicts change
-
-Yes — one command adds a live AGI-progress checker to your agent. The agi-scorecard skill teaches Claude Code (or any SKILL.md-compatible agent) to fetch this site’s graded Situational Awareness verdicts from /data.json, answer AGI-timeline questions from live data, and alert you when a verdict flips. No API key — the dataset is a static CC BY 4.0 file on a CDN.
-
-Q: How do I add the AGI Scorecard to Claude Code?
-A: Run one command: mkdir -p ~/.claude/skills/agi-scorecard && curl -fsSL -o ~/.claude/skills/agi-scorecard/SKILL.md https://agiscorecard.com/skill.md — then ask your agent about AGI progress or type /agi.
-
-Q: Does the skill need an API key?
-A: No. It reads the site's static data.json file (CC BY 4.0) — no key, no auth, no rate-limit dance. Telegram/email delivery, if you want it, uses whatever your own agent platform provides.
-
-Q: How do verdict-change alerts work?
-A: The skill keeps the last copy of data.json locally and diffs the verdicts on each run. When a prediction flips (say Open → On track), it reports one line with the change; when nothing moved, it stays silent.
-
-Q: Which agents does it work with?
-A: Any agent that loads SKILL.md-style skills — Claude Code natively, and OpenClaw or similar via their skills folder. Any tool that can fetch a URL can use the underlying /data.json directly.
 
 ---
 
@@ -1466,6 +1445,30 @@ A: Prediction markets price announcement events (e.g. 'OpenAI announces AGI'). T
 
 ---
 
+## AGI Consensus Board: What Forecasters Put on AGI by 2027–2040
+
+URL: https://agiscorecard.com/agi-prediction-markets
+Last updated: September 26, 2026 · Updated as verdicts change
+
+A median across independent venues, not an opinion. Four forecasting venues asked the same question — AGI before this date? — with the spread between them shown, the formula published, and every price carrying the moment it was read.
+
+Q: Is this the AGI Scorecard's own forecast?
+A: No. It is a median over independent public forecasting venues, computed by a published formula that anyone can rerun on the same snapshot. The scorecard's own position is the Thesis Tracker, which grades evidence, not expectations.
+
+Q: Are these live odds?
+A: No. Each run records a snapshot with an exact UTC timestamp and links to the market so you can check the current price yourself. A quoted price that pretends to be live is the single most common way odds coverage misleads people.
+
+Q: Why are Manifold, Kalshi and Metaculus averaged but not the OpenAI contracts?
+A: Because a median only means something across series that answer the same question. 'Any company announces AGI', 'we get AGI' and 'strong AGI is publicly announced' all ask about AGI in general; 'OpenAI announces AGI' is one company's announcement and 'weak AGI' is a lower bar, so both are shown as reference columns instead.
+
+Q: Can I bet here?
+A: No. This site is not an operator, a broker, or an affiliate of one. There is no wager mechanism, no referral link, and no revenue from any venue listed.
+
+Q: How are the markets chosen?
+A: By a fixed keyword filter applied to whatever the venues' own search and series endpoints return that run, then a fixed regex per series. The board can look thin in a quiet week, and it will say so rather than pad itself.
+
+---
+
 ## AGI Timeline: Prediction Markets vs Evidence
 
 URL: https://agiscorecard.com/agi-odds-vs-evidence
@@ -1487,7 +1490,7 @@ A: Each issue quotes a dated snapshot with a link to the live market — never a
 ## Changelog — What Changed on the AGI Scorecard
 
 URL: https://agiscorecard.com/changelog
-Last updated: August 16, 2026 · Updated as verdicts change
+Last updated: September 26, 2026 · Updated as verdicts change
 
 Everything that changed on the evidence layer, dated and real. Every entry corresponds to a shipped change; score history is machine-readable. If you would rather not check back: subscribers get one email when something that matters actually changes — a verdict, the score, a new tool — and silence otherwise.
 
@@ -1519,18 +1522,21 @@ A: No. The tool shows where your view sits in the published distribution — it 
 ## Calibration: We Score Our Own Predictions in Public
 
 URL: https://agiscorecard.com/calibration
-Last updated: August 8, 2026 · Updated as verdicts change
+Last updated: September 26, 2026 · Updated as verdicts change
 
-We score our own predictions in public — and the sample is still small. This page inventories every probability-shaped claim the AGI Scorecard network makes (graded verdicts, an investing forecast ledger, red-team survival odds) and pre-commits to publishing a Brier score and calibration curve once scored calls reach n≥20. Until then we show the raw ledger and refuse to claim we are calibrated. We would rather show a small honest n than a big fake curve.
+We score our own predictions in public — and the sample is still small. This page inventories every probability-shaped claim the AGI Scorecard network makes, states how many of them can actually be Brier-scored today ( 0), and pre-commits to publishing a Brier score and calibration curve once scored probability calls reach n≥20. We would rather show a small honest n than a big fake curve.
 
 Q: What is a Brier score?
-A: A measure of probability-forecast accuracy: the mean squared difference between stated probabilities and outcomes (0 = perfect, 0.25 = coin-flip guessing on binary events). We pre-commit to publishing ours once scored probability calls reach n≥20.
+A: A measure of probability-forecast accuracy: the mean squared difference between stated probabilities and outcomes (0 = perfect, 0.25 = coin-flip guessing on binary events). We publish ours once scored probability calls reach n≥20.
 
 Q: Why not publish a calibration curve now?
-A: The scored sample is 8 market calls plus 6 open odds — too small for a meaningful curve. Publishing one now would be theater. The raw ledgers are public and timestamped, so nothing is hidden in the meantime.
+A: Because the Brier-eligible sample is 0: the 8 scored calls were graded hit/miss without a structured probability, and the 6 probability-bearing calls have not resolved. Publishing a curve from that would be theater. The raw ledger is public and timestamped, so nothing is hidden in the meantime.
 
 Q: Who grades the calls?
 A: Outcomes are graded against pre-registered falsification conditions written before the outcome, with dated multi-source verification, and misses stay published with their lesson. The grading rules are public in the eight-layer method, including the red-team layer.
+
+Q: How do I check that a record was not backdated?
+A: Each version of data.json, index-history.json, the consensus board and the odds history is timestamped through OpenTimestamps; the proofs are served under /ots/ and verify against the Bitcoin blockchain with the free client. That proves when a file existed, not that it is correct.
 
 ---
 

@@ -230,6 +230,16 @@ jobs:
 
       # 快照回仓:任何后续会话(哪怕没有 Cloudflare/GitHub MCP)都能 cat 一下就
       # 知道舰队是不是活着。data/ 不在任何站点的部署 path 过滤里,不会烧部署。
+      # 2026-09-26(owner「类似比特币的共识算法…AI 时代信仰」):比特币能被合法借用的只有
+      # 「公开时间戳、无人能回填」这一项。OpenTimestamps 把带日期记录(verdicts / 分数史 / 共识板 /
+      # 赌注台账)的 SHA-256 锚进比特币区块,免费公共日历、零密钥、不发币不持币。fail-open:
+      # 日历不通只 warning。账:~0.2 分钟/天。证明文件随本步一起提交(下一步 git add)。
+      - name: Anchor dated records in Bitcoin via OpenTimestamps (stamp new versions, upgrade pending proofs)
+        continue-on-error: true
+        run: |
+          pip install -q opentimestamps-client 2>/dev/null || { echo "::warning::ots client install failed; skipping anchoring"; exit 0; }
+          python3 tools/fleet/ots_anchor.py --selftest
+          python3 tools/fleet/ots_anchor.py
       - name: Commit health snapshot
         run: |
           cd "$GITHUB_WORKSPACE"
@@ -237,6 +247,7 @@ jobs:
           git config user.name Claude
           git add data/fleet-health.json
           git add data/fleet-ai-access.json data/fleet-ai-referrals.json data/fleet-traffic-sources.json data/fleet-money.json data/fleet-page-patterns.json data/fleet-backlinks.json data/fleet-mcp-usage.json 2>/dev/null || true
+          git add data/ots sites/agiscorecard/ots 2>/dev/null || true
           git diff --cached --quiet && { echo "无变化"; exit 0; }
           git commit -m "chore(fleet): heartbeat 健康快照 $(date -u +%F)"
           for i in 1 2 3 4; do

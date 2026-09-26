@@ -1076,3 +1076,34 @@ localebatch **不记任何访问**,所以「零」也读不出访客有没有来
   **从来没被测过**。本轮已在 SR `/mcp` 补齐:两条可复制安装指令 + 复制即落 `mcp_install_click`(只记客户端名)
   + `/e` 白名单 + 部署自检断言页面还带着它。**这不是新工具,是把「被发现 → 被装上」变成可读的数。**
   判定线:`sr-mcp-install-1022`(10-22,≥1 次复制)、`fleet-mcp-instrument-1022`(10-22,≥2 个站的机器面可读)。
+
+## 「类似比特币的共识算法 → AI 时代信仰」:第五次,只借时间戳;修信任层;共识板首发(2026-09-26,owner:「探索类似比特币的共识算法,用工具,用共识,用金融,能用的一切办法都主动探索,目标是成为ai时代信仰」;全文 `docs/ai-consensus-faith-2026-09-26.md`)
+
+- **裁定**:比特币的信任成分里,能离开可交易代币存在的(证明代替信任 / 规则固定 / 可信中立 / 自己去验证 / 时间)
+  舰队**几乎全建过**;不能离开的(自我实现的持币协调、持币者正反馈、代币付的安全预算)**宪法禁止,第五次不再论证**
+  (引 09-22 节)。自然实验钉死「规则 + 可验证 ≠ 信仰」:BCH/BTC 0.004、ETC/ETH 0.0035(Kraken 09-25)。Token-free
+  参照系(CT / UTC / Metaculus / METR / Epoch)被相信只有五条路,solo 站走得通的两条:**长期公开评分的记录**与
+  **把验证做得便宜**;失去信任只有一种方式:被评者影响评分者,或方法不透明。
+- **审计比裁定重要:本站宣称的信任层有五处是假的**——`/for-agents` 与 MCP 说 data.json 带翻转条件(没有;首页 3/8 行才有);
+  `/calibration` 说随台账重算(DATE 写死 08-08,**Brier-eligible n = 0**,8 条已评分 call 无一带结构化 odds);
+  `/agi-prediction-markets` **404 三周**(Polymarket 列表按成交量只回前 100 条,Kalshi 价格字段改名 `*_dollars`,
+  步骤 continue-on-error 全绿——09-24 那条教训第四次);`/skill.md` 每次部署被页面镜像覆盖;MCP 工具数三处三个数,
+  两个核心工具不落库。**全部修掉**,并各加一道能红的闸(validate.py 翻转条件逐字一致;部署自检 skill frontmatter、
+  `/ots/manifest.json`、**线上 tools/list == 仓库**)。
+- **建了三件,全在主域、零新 cron、零代币**:①**AGI 共识板**(四家来源先列后筛,同问「AGI 在 Y 之前?」,中位数只跨
+  泛 AGI 三系列,OpenAI 单公司与 weak AGI 只作参照,公式印在页上,`--check` 逐字重算;首读 before 2028 中位 45%、
+  spread 42 点——公告市场比成就市场乐观 2–3 倍,spread 是这页最有用的数)+ `/agi-consensus.json` + MCP `get_agi_consensus`;
+  ②**OpenTimestamps 锚定**(`tools/fleet/ots_anchor.py` 搭 heartbeat;data.json / 分数史 / 共识板 / odds 史 / 赌注台账每个
+  版本一份 `.ots`,免费公共日历零密钥)——**这是整个请求族里唯一能合法借用的比特币性质**;③校准页改为从
+  `sunwatch-track-record.json` 快照生成并把 n=0 写在页上。
+- **agi-odds.yml 拆成 odds / board 两个 job**,board 不再 continue-on-error,自己红;`gen_odds.py` 也接进去(此前只在会话循环里跑,
+  09-21 快照从未渲染);Metaculus 用机器人只读 token(缺了该来源 ok:false 照出)。
+- **判定线**:`agi-consensus-mcp-1124`、`agi-ots-verified-1124`(② 是「有没有人来核」——Sigstore 原话:没人监视日志就没有信任增益)、
+  `agi-brier-n20-1231`;`fleet-market-board-1019` 补读数「t0 从今天起算」。
+- **「用金融」规则内只剩 Metaculus 机器人**(Fall 09-28 开题,$58 000),预期已压低:Pro 每季赢 bot 团队、单 prompt 基线第 18/173、
+  奖金摊薄——**它是外部评分的记录,不是赚钱的路**。错误悬赏(§ 657 BGB / 民法典 499)合法且便宜但只是象征(ERROR 25 万瑞郎
+  四年 17/134 同意),本轮不建,列为 owner 决定项。
+- **别再提**:「信仰」的代币版/升值版/预测市场运营版;无代币 PoW 当传播引擎;「链上证明层」(OTS 已是全部合法形态);
+  自建评测榜单去比 LMArena/Epoch;用本站的数代替第三方数当「共识」。
+- **两份调研(法律、agent 工具)两次撞会话额度上限未完成**;Metaculus API 形状来自 forecasting-tools 源码,沙箱 403 未实测,
+  看周一 runner 的 `venues.metaculus`。

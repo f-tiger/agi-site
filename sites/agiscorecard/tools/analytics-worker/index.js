@@ -276,6 +276,9 @@ export default {
             { name: 'get_invest_positions',
               description: 'The Invest dataset: how the eight graded Situational Awareness predictions map onto 17 listed AI equities, how eight well-known investors are positioned per their public SEC 13F filings, and what copying them would have returned priced on the FILING DATE (not quarter end, which no real person could have traded). Educational only — never investment advice.',
               inputSchema: { type: 'object', properties: {} } },
+            { name: 'get_agi_consensus',
+              description: 'The AGI consensus board: what Polymarket, Kalshi, Manifold and Metaculus put on "AGI before 2027/2028/2030/2035/2040", the cross-venue median and spread, each venue\'s implied 50% year, and the published recompute formula. Third-party public quotes with as-of times; no bets, no affiliate links. Page: agiscorecard.com/agi-prediction-markets',
+              inputSchema: { type: 'object', properties: {} } },
             { name: 'search_site',
               description: 'Search every page and tool on agiscorecard.com and its invest/compass sub-sites (English and Chinese). Returns titles, descriptions and URLs.',
               inputSchema: { type: 'object', properties: { query: { type: 'string', description: 'Search query' } }, required: ['query'] } },
@@ -287,13 +290,32 @@ export default {
           const asset = function (path) {
             return env.ASSETS.fetch(new Request('https://agiscorecard.com' + path)).then(function (r) { return r.json(); });
           };
+          // Every tool call is logged the same way (label 'tool:<name>', never arguments' values),
+          // so the fleet machine-face read (tools/fleet/mcp_usage.py) can tell our own CI from
+          // outside callers. Until 2026-09-26 the two core trust tools were the only unlogged ones.
+          const logTool = function (name) {
+            ctx.waitUntil(env.EVENTS.prepare(
+              "INSERT INTO events (ts, day, name, location, label, path, ua_class) VALUES (?,?,?,?,?,?,?)"
+            ).bind(Date.now(), new Date().toISOString().slice(0, 10), 'site_search', 'mcp', ('tool:' + name).slice(0, 48), '/mcp', 'bot')
+              .run().catch(function () {}));
+          };
           if (tool === 'get_thesis_tracker') {
             const [d, h] = await Promise.all([asset('/data.json'), asset('/index-history.json')]);
+            logTool('thesis_tracker');
             return mcpText(id, { tracker: d.thesisTracker, history: h, license: 'CC BY 4.0 — cite agiscorecard.com/progress-index' });
           }
           if (tool === 'get_verdicts') {
             const d = await asset('/data.json');
+            logTool('verdicts');
             return mcpText(id, { asOf: d.dateModified, predictions: d.predictions, license: 'CC BY 4.0 — cite agiscorecard.com' });
+          }
+          if (tool === 'get_agi_consensus') {
+            // The cross-venue AGI consensus board: third-party public quotes only, each row with
+            // its as-of time; recomputable from market-board.json (gen_market_board.py --check).
+            const r = await env.ASSETS.fetch(new Request('https://agiscorecard.com/agi-consensus.json'));
+            if (!r.ok) return mcpText(id, { error: 'consensus board not published yet (fetch step has not succeeded)', status: r.status });
+            logTool('agi_consensus');
+            return mcpText(id, await r.json());
           }
           if (tool === 'get_sunwatch_track_record') {
             // Worker-to-worker over the public URL: the ledger lives in the sunPredition

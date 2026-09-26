@@ -53,5 +53,8 @@ html = g.build(
 )
 html = html.replace('"datePublished": "2026-06-30", "dateModified": "2026-06-30"',
                     f'"datePublished": "2026-08-08", "dateModified": "{DATE}"')
+import datetime as _dt
+# 可见「Last updated」必须与 dateModified 一致(validate.py 会拦);此前靠手改,09-26 起由生成器写。
+html = html.replace("Last updated: June 30, 2026", "Last updated: " + _dt.date.fromisoformat(DATE).strftime("%B %-d, %Y"))
 open(os.path.join(ROOT, "changelog.html"), "w").write(html)
 print(f"changelog.html written ({len(cl['entries'])} entries, latest {DATE})")

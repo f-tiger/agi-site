@@ -1,6 +1,6 @@
 # Changelog — What Changed on the AGI Scorecard
 
-_Last updated: August 16, 2026 · Updated as verdicts change_
+_Last updated: September 26, 2026 · Updated as verdicts change_
 
 **Answer:** Everything that changed on the evidence layer, dated and real. Every entry corresponds to a shipped change; score history is machine-readable. If you would rather not check back: subscribers get one email when something that matters actually changes — a verdict, the score, a new tool — and silence otherwise.
 

@@ -996,3 +996,18 @@ DiscussionForumPosting。不要伪造活跃度、用户或回复，不自动在�
 
 ## 钱线仪器(2026-09-21)
 `/api/pulse` 多返回 `money`(subscribers / ev_tool_click|invest_tool_click|subscribe_click|calc_use_28d / pv_advertise|audits|members|workbench_28d / member_orders_by_state / discuss_profiles),舰队 `money_line.py` 每日读;部署自检断言 `"money":{`。/advertise 09-21 读数:223 pv(服务端口径)、0 询单。
+
+## 信任层审计与共识板(2026-09-26;全文根仓 `docs/ai-consensus-faith-2026-09-26.md`)
+
+- **data.json 每条预测现在带 `flip` / `watch` / `resolves` / `pending_reason` 之一,逐字来自首页判定行**;`validate.py` 断言两处
+  永远一致——改首页的 Flips if 就必须同一次改 data.json,反之亦然。`/for-agents` 与 MCP 描述从 7 月起宣称的东西到今天才是真的。
+- **`/calibration` 由 `gen_calibration.py` 从 `sunwatch-track-record.json`(runner 周一快照,会话不手改)+ data.json + `ots/manifest.json`
+  生成**,一个数字都不写死;页面如实写 Brier-eligible n(今天 0)。承诺线 `agi-brier-n20-1231`。
+- **`/agi-prediction-markets` = AGI 共识板**(`fetch_market_board.mjs` 四家来源 → `market-board.json` → `gen_market_board.py` →
+  页 + `agi-consensus.json`;`--check` 逐字重算;`--selftest` 15 条)。锚点行永远保留不被成交量上限截掉;系列判据是对问题文本的
+  正则,不是编辑挑选;**中位数只跨泛 AGI 三系列**。红线同 `/ai-trading-ledger`。MCP `get_agi_consensus` 读 `/agi-consensus.json`。
+- **`/skill.md` 是手维护的 SKILL 文件(带 frontmatter),`gen_agent_surfaces.py` 跳过它**;部署自检断言首行 `---`。
+- **`/ots/` 是 OpenTimestamps 证明目录**(heartbeat 每日 stamp 新版本、upgrade pending;manifest 列状态)。会话不要手改;
+  证明只证明时间,页面文案永远不许写成「区块链验证的真相」。
+- **MCP 每个工具调用都落库 `tool:<name>`**(09-26 补齐 thesis_tracker / verdicts);部署自检断言线上 tools/list 与 worker 源码一致。
+- `gen_changelog.py` 已接进部署构建步;`gen_index.py` 遇到 WEIGHT 外的判定标签直接退出(不再静默按 0.5)。

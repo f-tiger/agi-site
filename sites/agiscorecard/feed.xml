@@ -7,9 +7,37 @@
   <link rel="hub" href="https://pubsubhubbub.appspot.com/"/>
   <link rel="hub" href="https://pubsubhubbub.superfeedr.com/"/>
   <id>https://agiscorecard.com/</id>
-  <updated>2026-09-17T00:00:00Z</updated>
+  <updated>2026-09-26T00:00:00Z</updated>
   <author><name>The AGI Scorecard</name></author>
   <rights>CC BY 4.0 — reuse with attribution and a link to https://agiscorecard.com</rights>
+  <entry>
+    <title>AGI Consensus Board: What Forecasters Put on AGI by 2027–2040</title>
+    <link href="https://agiscorecard.com/agi-prediction-markets"/>
+    <id>https://agiscorecard.com/agi-prediction-markets</id>
+    <updated>2026-09-26T00:00:00Z</updated>
+    <summary>Polymarket, Kalshi, Manifold and Metaculus on &#x27;AGI before 2027/2028/2030/2035/2040&#x27;: cross-venue median, spread and each series&#x27; implied 50% date, all with exact snapshot times and a published recompute formula. No bets, no affiliate links.</summary>
+  </entry>
+  <entry>
+    <title>AGI Scorecard Data for AI Agents: JSON, Feed, llms.txt</title>
+    <link href="https://agiscorecard.com/for-agents"/>
+    <id>https://agiscorecard.com/for-agents</id>
+    <updated>2026-09-20T00:00:00Z</updated>
+    <summary>Free, machine-readable AGI verdict data: /data.json (CC BY 4.0), an Atom feed, and llms.txt. Copy-paste prompt to add verdict-change alerts to any AI agent.</summary>
+  </entry>
+  <entry>
+    <title>预言 AGI 2027 的基金，7 月爆仓了 | AGI 记分牌</title>
+    <link href="https://agiscorecard.com/cn"/>
+    <id>https://agiscorecard.com/cn</id>
+    <updated>2026-09-20T00:00:00Z</updated>
+    <summary>他预言 AGI 2027、两年回报超1000%、做空英伟达85亿——2026年7月单月亏约67%，公开股票组合大部分转让给 Citadel。完整仓位收据与时间线，基于公开文件与多家媒体报道。</summary>
+  </entry>
+  <entry>
+    <title>How Are Top Investors Positioned on AI? (Q2 2026 13F)</title>
+    <link href="https://agiscorecard.com/invest"/>
+    <id>https://agiscorecard.com/invest</id>
+    <updated>2026-09-19T00:00:00Z</updated>
+    <summary>Eight investing legends, graded from line-by-line Q2 2026 13F filings: 3 bull, 4 cautious, 1 bear. Filed August 14. Plus Aschenbrenner&#x27;s own blown-up fund.</summary>
+  </entry>
   <entry>
     <title>Is AI music good enough yet?</title>
     <link href="https://agiscorecard.com/is-ai-music-good-enough"/>
@@ -18,11 +46,11 @@
     <summary>97% of 9,000 blind-test listeners could not tell AI music from human. It is over half of Deezer&#x27;s daily uploads and 1-3% of actual listening.</summary>
   </entry>
   <entry>
-    <title>预言 AGI 2027 的基金，7 月爆仓了 | AGI 记分牌</title>
-    <link href="https://agiscorecard.com/cn"/>
-    <id>https://agiscorecard.com/cn</id>
-    <updated>2026-09-15T00:00:00Z</updated>
-    <summary>他预言 AGI 2027、两年回报超1000%、做空英伟达85亿——2026年7月单月亏约67%，公开股票组合大部分转让给 Citadel。完整仓位收据与时间线，基于公开文件与多家媒体报道。</summary>
+    <title>EU AI Act: What Applies Now vs. What Got Deferred (2026)</title>
+    <link href="https://agiscorecard.com/eu-ai-act-what-applies-now"/>
+    <id>https://agiscorecard.com/eu-ai-act-what-applies-now</id>
+    <updated>2026-09-16T00:00:00Z</updated>
+    <summary>As of Aug 2026: chatbot disclosure applies (no grace period); the Digital Omnibus deferred high-risk duties to Dec 2027/Aug 2028. The dated ledger.</summary>
   </entry>
   <entry>
     <title>AGI Timeline: Prediction Markets vs Evidence</title>
@@ -58,13 +86,6 @@
     <id>https://agiscorecard.com/when-will-agi-arrive</id>
     <updated>2026-09-06T00:00:00Z</updated>
     <summary>Public AGI forecasts now cluster between 2026 and 2047: Musk 2026, Aschenbrenner 2027, Hassabis ~2030, Metaculus 2033, academic surveys 2047.</summary>
-  </entry>
-  <entry>
-    <title>How Are Top Investors Positioned on AI? (Q2 2026 13F)</title>
-    <link href="https://agiscorecard.com/invest"/>
-    <id>https://agiscorecard.com/invest</id>
-    <updated>2026-09-06T00:00:00Z</updated>
-    <summary>Eight investing legends, graded from line-by-line Q2 2026 13F filings: 3 bull, 4 cautious, 1 bear. Filed August 14. Plus Aschenbrenner&#x27;s own blown-up fund.</summary>
   </entry>
   <entry>
     <title>Can AI Replace Knowledge Workers? The 2025/26 Call, Graded</title>
@@ -128,26 +149,5 @@
     <id>https://agiscorecard.com/gdpval-explained</id>
     <updated>2026-09-05T00:00:00Z</updated>
     <summary>GDPval is a benchmark that scores AI on real, economically valuable knowledge-work tasks across many occupations. Top models now reach ~83% — the evidence behind the On-track &#x27;AI outpaces knowledge workers&#x27; verdict.</summary>
-  </entry>
-  <entry>
-    <title>Will AI Take My Job? A 60-Second Exposure Check (2026)</title>
-    <link href="https://agiscorecard.com/ai-job-risk-check"/>
-    <id>https://agiscorecard.com/ai-job-risk-check</id>
-    <updated>2026-09-05T00:00:00Z</updated>
-    <summary>Answer 6 questions about your job and get your AI exposure tier — grounded in real 2026 evidence (~83% GDPval, ~80% SWE-Bench) and the autonomy gap. No sign-up.</summary>
-  </entry>
-  <entry>
-    <title>Do AI Trading Agents Actually Make Money? The Evidence</title>
-    <link href="https://agiscorecard.com/do-ai-trading-agents-work"/>
-    <id>https://agiscorecard.com/do-ai-trading-agents-work</id>
-    <updated>2026-09-05T00:00:00Z</updated>
-    <summary>AI trading agents, audited: day-trading base rates, backtest overfitting, funding hype vs verifiable returns. Dated sources; not investment advice.</summary>
-  </entry>
-  <entry>
-    <title>AI Trading Ledger: Eleven Bots, One Pre-Registered Public Track Record</title>
-    <link href="https://agiscorecard.com/ai-trading-ledger"/>
-    <id>https://agiscorecard.com/ai-trading-ledger</id>
-    <updated>2026-09-05T00:00:00Z</updated>
-    <summary>A paper-trading ledger with rules fixed before the start: SPY/QQQ benchmarks, an AI basket, a Thesis-Tracker mix, Faber 200-day and GTAA-5, GEM dual momentum, vol targeting, 12-1 momentum and an LLM arm, recomputed daily in public. Not investment advice.</summary>
   </entry>
 </feed>

@@ -3,6 +3,14 @@ name: agiscorecard prediction-market odds (weekly)
 # 迁自私有仓 f-tiger/agiscorecard(2026-08-19)。「赔率 vs 证据」周更的取数端:
 # 沙箱够不到 gamma-api.polymarket.com,只有 runner 能取;取不到就红,绝不编数。
 # 快照落在 sites/agiscorecard/odds-snapshot.json,gen_odds.py 原路径消费。
+#
+# 2026-09-26 重构为两个 job(账:每周一 ~1.5 分钟 → ~6 分钟/月,无新 schedule):
+#   odds  —— 原有的赔率快照 + gen_odds.py(此前 gen_odds 只在会话循环里跑,09-21 的快照
+#            因此从未渲染进 /agi-odds-vs-evidence)。
+#   board —— AGI 共识板:四家来源取数 + SunWatch 台账快照 + gen_market_board + gen_calibration。
+#            **不再 continue-on-error**:09-07→09-26 这一步静默失败了三周,页面一直 404,而
+#            run 全绿(09-24 舰队数据检查点名的那种形状)。现在它自己红、自己发邮件,
+#            又不拖累 odds job——两条各管各的,commit 各自 rebase。
 on:
   schedule:
     - cron: '25 3 * * 1'   # 每周一 03:25 UTC,早于 04:00 的每日运行
@@ -16,7 +24,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  fetch:
+  odds:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -24,28 +32,64 @@ jobs:
         with: { node-version: 22 }
       - working-directory: sites/agiscorecard
         run: node tools/fetch_odds.mjs
-      # ── AGI 行情板(2026-09-07)────────────────────────────────────────────────
-      # owner 问「能不能做个类 Polymarket 的抽佣平台」;裁定见
-      # docs/prediction-market-platform-2026-09.md:不做市场,做市场旁边那层。
-      # 搭载这条已有的周任务,**不新增 schedule**;增量 ~0.5 分钟/月。
-      # 取不到就跳过(continue-on-error):行情板是增量,不能拖累已经在跑的赔率快照。
-      - name: Fetch AGI market board
-        id: board
-        continue-on-error: true
-        working-directory: sites/agiscorecard
-        run: node tools/fetch_market_board.mjs
-      - name: Build /agi-prediction-markets
-        if: steps.board.outcome == 'success'
+      - name: Render the odds-vs-evidence issue from the snapshot (ledger accumulates, never rebuilt from one point)
         working-directory: sites/agiscorecard
         run: |
-          python3 tools/gen_market_board.py
+          python3 tools/gen_odds.py
           python3 tools/validate.py
       - name: Commit snapshot if changed
         run: |
           git config user.name 'Claude'
           git config user.email 'noreply@anthropic.com'
-          # 行情板那一步可能整步跳过,所以只 add 真的存在的文件
-          for f in odds-snapshot.json market-board.json agi-prediction-markets.html sitemap.xml llms.txt; do
+          git add sites/agiscorecard/odds-snapshot.json sites/agiscorecard/odds-history.json sites/agiscorecard/agi-odds-vs-evidence.html sites/agiscorecard/sitemap.xml
+          git diff --cached --quiet || { git commit -m "chore(odds): 预测市场赔率快照(runner 取,带 fetched 时间戳)"; git pull --rebase --autostash origin main; git push; }
+
+  board:
+    needs: odds
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      # 四家来源:Polymarket public-search、Kalshi series→markets、Manifold search(免鉴权),
+      # Metaculus api/posts(未登录 403,用机器人的只读 token;缺了就该来源 ok:false,板照出)。
+      - name: Fetch the AGI consensus board (discover-then-filter, four venues)
+        working-directory: sites/agiscorecard
+        env:
+          METACULUS_TOKEN: ${{ secrets.METACULUS_TOKEN }}
+        run: node tools/fetch_market_board.mjs
+      - name: Snapshot the SunWatch track-record ledger for /calibration
+        working-directory: sites/agiscorecard
+        run: |
+          python3 - <<'EOF'
+          import json, urllib.request, datetime
+          req = urllib.request.Request('https://invest.agiscorecard.com/api/track-record',
+                                       headers={'User-Agent': 'agi-site-odds-workflow/1.0 (+https://github.com/f-tiger/agi-site)'})
+          j = json.load(urllib.request.urlopen(req, timeout=30))
+          snap = {'fetched': datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'),
+                  'source': 'https://invest.agiscorecard.com/api/track-record', 'asOf': j.get('asOf'),
+                  'scored': j.get('scored'), 'hits': j.get('hits'), 'hitRate': j.get('hitRate'),
+                  'entries': [{'date': e.get('date'), 'verdict': e.get('verdict'), 'odds': e.get('odds'),
+                               'call_en': (e.get('call_en') or '')[:200]} for e in j.get('entries', [])]}
+          assert snap['entries'], 'track-record returned no entries — refusing to overwrite the snapshot'
+          json.dump(snap, open('sunwatch-track-record.json', 'w'), ensure_ascii=False, indent=1)
+          open('sunwatch-track-record.json', 'a').write('\n')
+          print('sunwatch snapshot:', snap['scored'], 'scored', len(snap['entries']), 'entries')
+          EOF
+      - name: Build /agi-prediction-markets + agi-consensus.json + /calibration, then validate
+        working-directory: sites/agiscorecard
+        run: |
+          python3 tools/gen_market_board.py --selftest
+          python3 tools/gen_market_board.py
+          python3 tools/gen_market_board.py --check
+          python3 tools/gen_calibration.py
+          python3 tools/validate.py
+      - name: Commit board if changed
+        run: |
+          git config user.name 'Claude'
+          git config user.email 'noreply@anthropic.com'
+          for f in market-board.json agi-consensus.json agi-prediction-markets.html sunwatch-track-record.json calibration.html sitemap.xml llms.txt; do
             [ -f "sites/agiscorecard/$f" ] && git add "sites/agiscorecard/$f" || true
           done
-          git diff --cached --quiet || { git commit -m "chore(odds): 预测市场赔率快照 + AGI 行情板(runner 取,带 fetched 时间戳)"; git pull --rebase origin main; git push; }
+          git diff --cached --quiet || { git commit -m "chore(odds): AGI 共识板 + 校准页快照(runner 取,带 fetched 时间戳)"; git pull --rebase --autostash origin main; git push; }

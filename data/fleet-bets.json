@@ -1,6 +1,6 @@
 {
  "note": "舰队赌注台账:每条预登记判定线一行;status open→won/lost/insufficient/withdrawn 时必须写 settled(日期)与 reading(读数)。tools/fleet/check_bets.py 在 heartbeat 里断言:到期 3 天内提醒,过期 >7 天未结算即红。新增判定线不进这里 = heartbeat 看不见 = 等于没预登记。",
- "updated": "2026-09-25",
+ "updated": "2026-09-26",
  "bets": [
   {
    "id": "fleet-ai-access-0916",
@@ -410,7 +410,8 @@
    "win": "继续单独维护",
    "lose": "降级为 /agi-odds-vs-evidence 的一个小节",
    "source": "CLAUDE.md:360",
-   "status": "open"
+   "status": "open",
+   "reading_2026-09-26": "页面在 09-07→09-26 之间从未存在(线上 404):取数步 continue-on-error 静默失败三周——Polymarket 列表按成交量只回前 100 条、Kalshi 价格字段改名 *_dollars。09-26 重建为共识板并首次发布;pv 计数从今天起算,t0=0。搜索/AI 引荐同样从 0 起。"
   },
   {
    "id": "eco-stromheat-1020",
@@ -1930,6 +1931,42 @@
    "lose": "coding <70（没涨）且 kiro/codex 页族全 0 → 编程智能体不是在长的网络：本线只维护（额度每日核实照旧），不再为 agents 方向投新面，扎克伯格路径在 bpj 上的哈佛候选归零，交 owner 复盘；其余情况（coding 70–91，或 ≥92 但新页 <3）→ insufficient：维持第 0 阶段，11-22 同口径再读一次，不提前扩",
    "source": "docs/agents-venture-2026-09-25.md + sites/baipiaoji/CLAUDE.md 第 28 条",
    "status": "open"
+  },
+  {
+   "id": "agi-consensus-mcp-1124",
+   "site": "agiscorecard",
+   "due": "2026-11-24",
+   "metric": "D1 events location='mcp' label='tool:agi_consensus' 28d 次数(剔本仓 CI / 部署自检;UA 或 ci 标记可识别的一律不算)+ /agi-consensus.json 非 bot-UA 抓取(pageviews ua_class='human' 且 ref 非本站/非爬虫形状)",
+   "threshold": "MCP 调用 ≥5 且跨 ≥3 天,或 JSON 被非 bot 客户端抓取 ≥10 次且跨 ≥5 天",
+   "win": "共识板保留为独立页并加 zh 以外语言的引用位(仍不做 zh 镜像);把 median 作为活数字钩子加到 /when-will-agi-arrive 首屏",
+   "lose": "共识板降级为 /agi-odds-vs-evidence 的一节,MCP 工具保留但不再扩;记反面发现「机器面对共识数没有需求」",
+   "source": "docs/ai-consensus-faith-2026-09-26.md §五",
+   "status": "open",
+   "t0_2026-09-26": "工具今天才上线,调用 0;JSON 抓取 0。写线时试过:本仓 deploy 自检不打这个工具,heartbeat 不抓这个 JSON,所以 t0 满足不了。"
+  },
+  {
+   "id": "agi-ots-verified-1124",
+   "site": "agiscorecard",
+   "due": "2026-11-24",
+   "metric": "① sites/agiscorecard/ots/manifest.json 里 status='bitcoin' 的证明数(机制健康);② /ots/*.ots 或 /ots/manifest.json 的非 bot-UA 抓取次数 28d(有没有人来核)",
+   "threshold": "① ≥5(每个被锚定的记录至少一版已进比特币区块)且 ② ≥1",
+   "win": "锚定机制保留;把「verify」一段复制到 /prediction-receipts 与 /progress-index",
+   "lose": "① 未达 → 机制坏了,修或撤;① 达 ② 为 0 → 记反面发现「时间戳无人核验」(Sigstore 的原话:没人看日志就没有信任增益),机制保留但不再宣传",
+   "source": "docs/ai-consensus-faith-2026-09-26.md §五",
+   "status": "open",
+   "t0_2026-09-26": "① 0(6 个证明全 pending,日历确认需数小时到一天);② 0(文件今天才存在)。"
+  },
+  {
+   "id": "agi-brier-n20-1231",
+   "site": "agiscorecard",
+   "due": "2026-12-31",
+   "metric": "sunwatch-track-record.json 里 verdict∈{hit,miss} 且 odds 为数值的条目数(Brier-eligible n)",
+   "threshold": "≥20 → /calibration 发布 Brier 与校准曲线;<20 → 结算 insufficient 并把这个数字写在页面上",
+   "win": "gen_calibration.py 加 Brier 计算与曲线(仍从快照重算)",
+   "lose": "页面继续如实写 n;台账下一条线改为 2027-06-30",
+   "source": "sites/agiscorecard/calibration.html 的承诺(08-08 立,09-26 首次进台账);docs/ai-consensus-faith-2026-09-26.md §五",
+   "status": "open",
+   "t0_2026-09-26": "0(8 条已评分的 call 没有一条带结构化 odds;7 条 pending 里 6 条带 odds 52–65)。"
   }
  ]
 }

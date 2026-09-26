@@ -2,6 +2,11 @@
   "note": "Real, dated site changes only — the changelog generator refuses invented entries. Newest first. Maintained by the daily run; every entry must correspond to a shipped commit.",
   "entries": [
     {
+      "date": "2026-09-26",
+      "title": "AGI consensus board published; records anchored in Bitcoin; calibration page reads live data",
+      "note": "/agi-prediction-markets had been a 404 since 9 September: the weekly fetch could not find the small AGI contracts and Kalshi had renamed its price fields, and the step was set to pass anyway. Rebuilt as a consensus board — Polymarket, Kalshi, Manifold and Metaculus on 'AGI before 2027/2028/2030/2035/2040', cross-venue median and spread, recompute formula, machine-readable at /agi-consensus.json and MCP get_agi_consensus. data.json now carries each prediction's flip condition, resolution date or stated blocker (they were only on the homepage before). /calibration now regenerates from the ledger snapshot and states the Brier-eligible n (0). data.json, index-history.json, the board and the odds history are timestamped through OpenTimestamps (/ots/), so no record can be quietly backdated. The installable skill at /skill.md was being overwritten by the page mirror; fixed."
+    },
+    {
       "date": "2026-09-14",
       "title": "Graded Amodei's call to slow down",
       "note": "Dario Amodei published \"We Must Pace the Frontier\" on September 12 and Sam Altman endorsed it the same day. We checked it against all eight predictions: none moved. An announced intention is not a measured change in the rate of capability gain. The new page records what would have to show up in the data before a verdict does move."
