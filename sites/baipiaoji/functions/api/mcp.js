@@ -228,6 +228,7 @@ const TOOLS = [
 // resources：让 agent 一次性拉走整份数据集，而不是逐条问。
 // 只暴露构建期静态资产——与网页、REST、MCP 同一事实源，不存在第二份真相。
 const RESOURCES = [
+  { uri: 'baipiaoji://site-journeys', asset: { en: '/en/site-journeys.json', zh: '/site-journeys.json' }, name: 'site-journeys', title: 'BPJ feature and task map', mimeType: 'application/json', description: 'Static discovery map of BPJ tools, directories, developer and vendor pages with usage conditions and next steps. These are page links, not executable MCP tools or verified conversion outcomes.' },
   { uri: 'baipiaoji://limits', asset: { en: '/en/limits.json', zh: '/limits.json' }, name: 'verified-free-tier-limits',
     title: 'Verified free-tier limits', mimeType: 'application/json',
     description: 'Every free-tier ceiling we could trace to an official vendor page, with the quota, what happens at the wall, the official source and the date it was checked. Tools whose figures cannot be officially verified are deliberately absent.' },
