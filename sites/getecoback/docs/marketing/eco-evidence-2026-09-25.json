@@ -1,0 +1,250 @@
+{
+  "as_of": "2026-09-25",
+  "campaign": "eco-cbam-handoff-2026-09-25",
+  "content_subject": "CBAM supplier handoff: sharing is not verification",
+  "official_sources": [
+    {
+      "url": "https://taxation-customs.ec.europa.eu/carbon-border-adjustment-mechanism/cbam-registry_en",
+      "checked_on": "2026-09-25"
+    },
+    {
+      "url": "https://taxation-customs.ec.europa.eu/carbon-border-adjustment-mechanism/cbam-verification_en",
+      "checked_on": "2026-09-25"
+    }
+  ],
+  "owned_site": {
+    "channel": "getecoback.com",
+    "state": "published_static_operational_checks_blocked",
+    "published": true,
+    "urls": [
+      "https://getecoback.com/en/agents/cbam-supplier-data.html",
+      "https://getecoback.com/zh/agents/cbam-supplier-data.html"
+    ],
+    "repository": "f-tiger/agi-site",
+    "receipt": {
+      "commit": "4b1af4896ae586fb1ee503cde5646366c058d1c8",
+      "workflow": "https://github.com/f-tiger/agi-site/actions/runs/36192307097",
+      "cloudflare_version": "91195955-b21e-4ab5-87f0-2e900f6f3042",
+      "deployed_at_utc": "2026-09-25T21:35:40Z",
+      "deploy_step": "success",
+      "workflow_conclusion": "failure",
+      "live_content_checks": {"passed": 9, "failed": 0, "all_http_200": true},
+      "indexnow_submission": "HTTP 200; submission accepted, not proof of indexing",
+      "operational_blockers": ["membership orders_read/database_limit HTTP 503", "api/pulse query_failed HTTP 500", "event pipeline writes failing"],
+      "notes": "Static pages, both templates, script, search index, AI index, tools hub and contact page verified live. No gates disabled and no paid plan changes made."
+    }
+  },
+  "external_sends": 0,
+  "channels": [
+    {
+      "id": "eco-cbam-handoff-2026-09-25-reddit",
+      "channel": "reddit",
+      "state": "queued_not_connected",
+      "published": false,
+      "published_url": null,
+      "target": null,
+      "requires_checkout": false,
+      "requires_verified_account": true,
+      "requires_target_authorization": true,
+      "title": "CBAM supplier says the data is shared — what should the importer check next?",
+      "body": "Disclosure: this is an EcoBack tool we maintain. We added a free supplier-handoff checklist and an editable request template. It separates a record that is not visible from an unclear verification status; it does not verify emissions or submit a declaration. No login or file upload. If the community permits tool posts, feedback on the handoff questions would help.",
+      "url": "https://getecoback.com/en/agents/cbam-supplier-data.html",
+      "tracked_url": "https://getecoback.com/en/agents/cbam-supplier-data.html?utm_source=reddit&utm_medium=social&utm_campaign=eco-cbam-handoff-2026-09-25",
+      "blockers": [
+        "No connected publishing tool or authorised destination verified in this run",
+        "Check subreddit rules and disclosure requirements before sending"
+      ]
+    },
+    {
+      "id": "eco-cbam-handoff-2026-09-25-x",
+      "channel": "x",
+      "state": "queued_not_connected",
+      "published": false,
+      "published_url": null,
+      "target": null,
+      "requires_checkout": false,
+      "requires_verified_account": true,
+      "requires_target_authorization": true,
+      "body": "CBAM data shared ≠ independently verified. Our free EcoBack checklist + supplier-request template helps identify the next handoff question. No uploads; not a compliance decision.",
+      "url": "https://getecoback.com/en/agents/cbam-supplier-data.html",
+      "tracked_url": "https://getecoback.com/en/agents/cbam-supplier-data.html?utm_source=x&utm_medium=social&utm_campaign=eco-cbam-handoff-2026-09-25",
+      "blockers": [
+        "No connected publishing tool or authorised destination verified in this run"
+      ]
+    },
+    {
+      "id": "eco-cbam-handoff-2026-09-25-telegram",
+      "channel": "telegram",
+      "state": "queued_not_connected",
+      "published": false,
+      "published_url": null,
+      "target": null,
+      "requires_checkout": false,
+      "requires_verified_account": true,
+      "requires_target_authorization": true,
+      "body": "CBAM 数据已共享，不代表已完成独立核查。我们更新了 EcoBack 免费交接检查器，并提供可编辑的供应商补件模板；无需登录或上传，不代申报、不提供合规结论。",
+      "url": "https://getecoback.com/zh/agents/cbam-supplier-data.html",
+      "tracked_url": "https://getecoback.com/zh/agents/cbam-supplier-data.html?utm_source=telegram&utm_medium=social&utm_campaign=eco-cbam-handoff-2026-09-25",
+      "blockers": [
+        "No connected publishing tool or authorised destination verified in this run",
+        "Only an owner-controlled channel or an administrator-authorised group; no unsolicited bot or private messaging"
+      ]
+    },
+    {
+      "id": "eco-cbam-handoff-2026-09-25-linkedin",
+      "channel": "linkedin",
+      "state": "queued_not_connected",
+      "published": false,
+      "published_url": null,
+      "target": null,
+      "requires_checkout": false,
+      "requires_verified_account": true,
+      "requires_target_authorization": true,
+      "body": "For import teams coordinating CBAM supplier records: ask three different questions. Is the intended record visible? Who owns the verification step if actual emissions are planned? What is the report status or expected availability? EcoBack's free checklist and editable supplier request help organise that conversation. They do not verify emissions or submit declarations.",
+      "url": "https://getecoback.com/en/agents/cbam-supplier-data.html",
+      "tracked_url": "https://getecoback.com/en/agents/cbam-supplier-data.html?utm_source=linkedin&utm_medium=social&utm_campaign=eco-cbam-handoff-2026-09-25",
+      "blockers": [
+        "No connected publishing tool or authorised destination verified in this run"
+      ]
+    },
+    {
+      "id": "eco-cbam-handoff-2026-09-25-threads",
+      "channel": "threads",
+      "state": "queued_not_connected",
+      "published": false,
+      "published_url": null,
+      "target": null,
+      "requires_checkout": false,
+      "requires_verified_account": true,
+      "requires_target_authorization": true,
+      "body": "A CBAM handoff can stall even after a supplier says “shared”. EcoBack now has a free request template to clarify record visibility, verification ownership and next steps. No account or upload; not a compliance assessment.",
+      "url": "https://getecoback.com/en/agents/cbam-supplier-data.html",
+      "tracked_url": "https://getecoback.com/en/agents/cbam-supplier-data.html?utm_source=threads&utm_medium=social&utm_campaign=eco-cbam-handoff-2026-09-25",
+      "blockers": [
+        "No connected publishing tool or authorised destination verified in this run"
+      ]
+    },
+    {
+      "id": "eco-cbam-handoff-2026-09-25-meta",
+      "channel": "meta",
+      "state": "queued_not_connected",
+      "published": false,
+      "published_url": null,
+      "target": null,
+      "requires_checkout": false,
+      "requires_verified_account": true,
+      "requires_target_authorization": true,
+      "body": "Free CBAM supplier-handoff checklist and editable request template from EcoBack. Organise the next question without uploading files. Independent preparation aid, not an EU service or verification.",
+      "url": "https://getecoback.com/en/agents/cbam-supplier-data.html",
+      "tracked_url": "https://getecoback.com/en/agents/cbam-supplier-data.html?utm_source=meta&utm_medium=social&utm_campaign=eco-cbam-handoff-2026-09-25",
+      "blockers": [
+        "No connected publishing tool or authorised destination verified in this run"
+      ]
+    },
+    {
+      "id": "eco-cbam-handoff-2026-09-25-instagram",
+      "channel": "instagram",
+      "state": "queued_not_connected",
+      "published": false,
+      "published_url": null,
+      "target": null,
+      "requires_checkout": false,
+      "requires_verified_account": true,
+      "requires_target_authorization": true,
+      "body": "CBAM handoff, one step at a time: 1) Confirm the record. 2) Clarify verification ownership when using actual emissions. 3) Agree the next action. EcoBack's free checklist includes a supplier-request template. Not an official submission or compliance decision.",
+      "url": "https://getecoback.com/en/agents/cbam-supplier-data.html",
+      "creative_status": "text_ready_visual_not_created",
+      "tracked_url": "https://getecoback.com/en/agents/cbam-supplier-data.html?utm_source=instagram&utm_medium=social&utm_campaign=eco-cbam-handoff-2026-09-25",
+      "blockers": [
+        "No connected publishing tool or authorised destination verified in this run",
+        "Required media asset not created"
+      ]
+    },
+    {
+      "id": "eco-cbam-handoff-2026-09-25-tiktok",
+      "channel": "tiktok",
+      "state": "queued_not_connected",
+      "published": false,
+      "published_url": null,
+      "target": null,
+      "requires_checkout": false,
+      "requires_verified_account": true,
+      "requires_target_authorization": true,
+      "body": "Script: Your supplier says CBAM data is shared. Can the importer see the right record? If using actual emissions, who owns verification? Is a report available, or is there a planned date? Our free EcoBack checklist helps organise the handoff, not certify compliance.",
+      "url": "https://getecoback.com/en/agents/cbam-supplier-data.html",
+      "creative_status": "script_ready_video_not_created",
+      "tracked_url": "https://getecoback.com/en/agents/cbam-supplier-data.html?utm_source=tiktok&utm_medium=social&utm_campaign=eco-cbam-handoff-2026-09-25",
+      "blockers": [
+        "No connected publishing tool or authorised destination verified in this run",
+        "Required media asset not created"
+      ]
+    },
+    {
+      "id": "eco-cbam-handoff-2026-09-25-google_business_profile",
+      "channel": "google_business_profile",
+      "state": "queued_not_connected",
+      "published": false,
+      "published_url": null,
+      "target": null,
+      "requires_checkout": false,
+      "requires_verified_account": true,
+      "requires_target_authorization": true,
+      "body": "EcoBack has updated its free CBAM supplier-handoff checklist with an editable request template. No login or upload. Preparation support only; not verification or a declaration service.",
+      "url": "https://getecoback.com/en/agents/cbam-supplier-data.html",
+      "tracked_url": "https://getecoback.com/en/agents/cbam-supplier-data.html?utm_source=google_business_profile&utm_medium=social&utm_campaign=eco-cbam-handoff-2026-09-25",
+      "blockers": [
+        "No connected publishing tool or authorised destination verified in this run"
+      ]
+    },
+    {
+      "id": "eco-cbam-handoff-2026-09-25-wordpress",
+      "channel": "wordpress",
+      "state": "queued_not_connected",
+      "published": false,
+      "published_url": null,
+      "target": null,
+      "requires_checkout": false,
+      "requires_verified_account": true,
+      "requires_target_authorization": true,
+      "body": "Syndication draft: CBAM data shared but not verified — what to request. Use the English or Chinese page content and retain attribution to the canonical EcoBack URL. Do not describe the €299 pilot as purchasable.",
+      "url": "https://getecoback.com/en/agents/cbam-supplier-data.html",
+      "canonical": "https://getecoback.com/en/agents/cbam-supplier-data.html",
+      "tracked_url": "https://getecoback.com/en/agents/cbam-supplier-data.html?utm_source=wordpress&utm_medium=social&utm_campaign=eco-cbam-handoff-2026-09-25",
+      "blockers": [
+        "No connected publishing tool or authorised destination verified in this run"
+      ]
+    }
+  ],
+  "measurement": {
+    "evidence_diagnoses": null,
+    "evidence_quotes": null,
+    "evidence_payments": null,
+    "evidence_uploads": null,
+    "evidence_deliveries": null,
+    "reason": "Current aggregate endpoint returns query_failed; deployed membership read reports orders_read/database_limit. Neither proves zero sales. Evidence service has no active checkout or upload flow."
+  },
+  "follow_up": {
+    "qualified_leads": [],
+    "completeness": "incomplete_data_access",
+    "mail_search": {
+      "window": "2026-09-18 through 2026-09-26",
+      "matched_messages": 0,
+      "scope": "Regula Brief, getecoback, EcoBack, CBAM, EUDR; promotions excluded"
+    },
+    "priorities": [
+      {
+        "priority": "P0",
+        "issue": "Investigate D1 database_limit and recover order/usage observability",
+        "source": "https://github.com/f-tiger/agi-site/actions/runs/36150733683",
+        "status": "blocked_missing_database_diagnostics",
+        "note": "Do not upgrade paid plans or disable gates without separate authority."
+      },
+      {
+        "priority": "P1",
+        "issue": "Evidence pilot checkout is not connected",
+        "status": "not_ready_for_paid_promotion",
+        "note": "Keep free-tool CTA; any enquiry is not an order or payment."
+      }
+    ]
+  }
+}
