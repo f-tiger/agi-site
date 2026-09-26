@@ -3,7 +3,7 @@ import {DatabaseSync} from 'node:sqlite';
 import {onRequest} from '../functions/api/account.js';
 import {ensureAccounts,getAccount,consumeRate,hash,PASSWORD_COST,ACCOUNT_COOKIE,issueSession} from '../lib/free-account.js';
 import tools from '../data/tools.json' with {type:'json'};
-function setup(){const sql=new DatabaseSync(':memory:');sql.exec('PRAGMA foreign_keys=ON');const HITS={prepare(query){let values=[];const q={bind(...args){values=args;return q;},async run(){return sql.prepare(query).run(...values);},async first(){return sql.prepare(query).get(...values)||null;},async all(){return {results:sql.prepare(query).all(...values)};}};return q;},async batch(queries){sql.exec('BEGIN');try{const out=[];for(const q of queries)out.push(await q.run());sql.exec('COMMIT');return out;}catch(error){sql.exec('ROLLBACK');throw error;}}};return {sql,env:{HITS}};}
+function setup(){const sql=new DatabaseSync(':memory:');sql.exec("PRAGMA foreign_keys=ON; CREATE TABLE hits (id INTEGER PRIMARY KEY); INSERT INTO hits(id) VALUES(1)");const HITS={prepare(query){let values=[];const q={bind(...args){values=args;return q;},async run(){return sql.prepare(query).run(...values);},async first(){return sql.prepare(query).get(...values)||null;},async all(){return {results:sql.prepare(query).all(...values)};}};return q;},async batch(queries){sql.exec('BEGIN');try{const out=[];for(const q of queries)out.push(await q.run());sql.exec('COMMIT');return out;}catch(error){sql.exec('ROLLBACK');throw error;}}};return {sql,env:{HITS}};}
 const password='correct horse battery 47';const newPassword='new strong password 2026';
 function request(body,{cookie='',origin='https://baipiaoji.com',ip='192.0.2.10',headers={}}={}){return new Request('https://baipiaoji.com/api/account',{method:body?'POST':'GET',headers:{Origin:origin,'Content-Type':'application/json','CF-Connecting-IP':ip,...(cookie?{Cookie:cookie}:{}),...headers},...(body?{body:JSON.stringify(body)}:{})});}
 const call=async(env,body,options)=>{if(body&&options?.cookie&&!Object.hasOwn(body,'account_id')){const user=await getAccount(request(null,options),env);body={...body,account_id:user?.id};}return onRequest({env,request:request(body,options)});};
@@ -117,7 +117,7 @@ assert.deepEqual(PASSWORD_COST,{N:32768,r:8,p:3,maxmem:64*1024*1024});
  const probeRequest=()=>new Request('https://baipiaoji.com/api/account?readiness=1');
  const failureMessages=["Your account has exceeded D1's free tier daily row read limit.","Your account has exceeded D1's free tier daily row write limit.",'D1 quota exhausted','Too many requests for database secret-customer@example.test'];
  for(const message of failureMessages){
-  const env={HITS:{prepare(sql){operations++;assert.equal(sql,'SELECT 1 AS ready');return {async first(){throw new Error(message)}}},batch(){throw Error('Readiness must never initialize schema')}}};
+  const env={HITS:{prepare(sql){operations++;assert.equal(sql,'SELECT 1 AS ready FROM hits LIMIT 1');return {async first(){throw new Error(message)}}},batch(){throw Error('Readiness must never initialize schema')}}};
   const prior=operations;const anonymous=await call(env,null);assert.equal(anonymous.status,200);assert.equal(operations,prior,'Default anonymous request must perform zero DB operations');
   const response=await onRequest({request:probeRequest(),env});assert.equal(response.status,503);assert.deepEqual(await response.json(),{ok:false,error:'database_limit'});
  }
@@ -125,7 +125,9 @@ assert.deepEqual(PASSWORD_COST,{N:32768,r:8,p:3,maxmem:64*1024*1024});
   const response=await onRequest({request:probeRequest(),env:{HITS:{prepare(){return {async first(){throw Error(message)}}}}}});assert.equal(response.status,503);assert.deepEqual(await response.json(),{ok:false,error:'unavailable'});
  }
  const absent=await onRequest({request:probeRequest(),env:{}});assert.equal(absent.status,503);assert.deepEqual(await absent.json(),{ok:false,error:'unavailable'});
- const ready=await onRequest({request:probeRequest(),env:{HITS:{prepare(sql){assert.equal(sql,'SELECT 1 AS ready');return {async first(){return {ready:1}}}},batch(){throw Error('No schema work in readiness')}}}});assert.deepEqual(await ready.json(),{ok:true,ready:true,user:null,favorites:[]});
+ const available=setup();let readinessReads=0;const originalPrepare=available.env.HITS.prepare;available.env.HITS.prepare=query=>{assert.equal(query,'SELECT 1 AS ready FROM hits LIMIT 1');readinessReads++;return originalPrepare(query);};available.env.HITS.batch=()=>{throw Error('No schema work in readiness')};
+ const ready=await onRequest({request:probeRequest(),env:available.env});assert.deepEqual(await ready.json(),{ok:true,ready:true,user:null,favorites:[]});assert.equal(readinessReads,1);
+ available.sql.exec('DROP TABLE hits');const missingTable=await onRequest({request:probeRequest(),env:available.env});assert.equal(missingTable.status,503);assert.deepEqual(await missingTable.json(),{ok:false,error:'unavailable'});
  const live=setup();const registered=await register(live.env,'readiness_user');
  await call(live.env,{action:'favorite_add',slug:tools[0].slug},{cookie:registered.cookie});
  const signedIn=await onRequest({request:new Request('https://baipiaoji.com/api/account?readiness=1',{headers:{Cookie:registered.cookie}}),env:live.env});
@@ -133,7 +135,7 @@ assert.deepEqual(PASSWORD_COST,{N:32768,r:8,p:3,maxmem:64*1024*1024});
  live.sql.prepare('UPDATE free_account_sessions SET expires=0').run();
  const expired=await onRequest({request:new Request('https://baipiaoji.com/api/account?readiness=1',{headers:{Cookie:registered.cookie}}),env:live.env});assert.deepEqual(await expired.json(),{ok:true,ready:true,user:null,favorites:[]});
  const postFailure=await call({HITS:{prepare(){return {bind(){return this}}},async batch(){throw Error(failureMessages[0])}}},{action:'register',username:'quota_probe',password,consent:true});assert.equal(postFailure.status,503);assert.deepEqual(await postFailure.json(),{ok:false,error:'database_limit'});
- console.log('PASS: anonymous readiness uses one SELECT; default anonymous reads use no DB; signed-in readiness preserves profile/favorites; D1 quota errors use fixed codes without private details.');
+ console.log('PASS: anonymous readiness reads the existing hits table once; default anonymous reads use no DB; signed-in readiness preserves profile/favorites; D1 quota errors use fixed codes without private details.');
 }
 if(process.argv.includes('--workerd')){
  // Optional integration gate: use pinned CI dev dependencies, never the Node KDF as a runtime substitute.
