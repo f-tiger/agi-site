@@ -1,6 +1,7 @@
-import {ACCOUNT_COOKIE,ensureAccounts,getAccount,accountView,normalizeUsername,validUsername,validPassword,validFavorite,passwordRecord,verifyPassword,randomToken,hash,now,cookie,clearCookie,tokenFrom,consumeRate,issueSession} from '../../lib/free-account.js';
-const ACTIONS=new Set(['register','login','recover','logout','change_password','delete_account','favorite_add','favorite_remove','rotate_recovery']);
-const json=(body,status=200,sessionCookie)=>new Response(JSON.stringify(body),{status,headers:{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff',...(sessionCookie?{'Set-Cookie':sessionCookie}:{})}});
+import {getGoogleProof,googleRegistrationStatements,clearGoogleProofCookie} from '../../lib/google-account.js';
+import {ACCOUNT_COOKIE,ensureAccounts,getAccount,accountView,normalizeUsername,displayName,validUsername,normalizeEmail,validEmail,accountById,validPassword,validFavorite,passwordRecord,verifyPassword,randomToken,hash,now,cookie,clearCookie,tokenFrom,consumeRate,issueSession} from '../../lib/free-account.js';
+const ACTIONS=new Set(['register','login','recover','logout','change_password','delete_account','favorite_add','favorite_remove','rotate_recovery','link_email']);
+const json=(body,status=200,sessionCookie)=>{const headers=new Headers({'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'});for(const value of (Array.isArray(sessionCookie)?sessionCookie:[sessionCookie]).filter(Boolean))headers.append('Set-Cookie',value);return new Response(JSON.stringify(body),{status,headers});};
 const error=(code,status)=>json({ok:false,error:code},status);
 async function bodyOf(request){
  if(!/^application\/json(?:\s*;|$)/i.test(request.headers.get('Content-Type')||''))return null;
@@ -30,39 +31,63 @@ async function route(request,env){
  const body=await bodyOf(request);if(!body||!ACTIONS.has(body.action))return error('invalid_request',400);
  const ip=request.headers.get('CF-Connecting-IP');if(!ip||ip.length>64)return error('unavailable',503);
  await ensureAccounts(env);
- const action=body.action,username=normalizeUsername(body.username);
+ const action=body.action,username=normalizeUsername(body.username),shownName=displayName(body.username),email=normalizeEmail(body.email);
+ const hasEmail=Object.hasOwn(body,'email');
  // Shared IP ceiling protects the expensive KDF; account bucket prevents rotating-IP guesses.
- const auth=['register','login','recover','change_password','delete_account','rotate_recovery'].includes(action);
+ const auth=['register','login','recover','change_password','delete_account','rotate_recovery','link_email'].includes(action);
  // Signing out must remain available after writes exhaust their quota. Origin and
  // displayed-account checks still run before revoking the exact session below.
  if(action!=='logout'&&!await consumeRate(env,auth?'auth-ip':'write-ip',ip,auth?20:120,900))return error('rate_limited',429);
  if(['register','login','recover'].includes(action)){
-  if(!validUsername(username))return error('invalid_username',400);
-  if(!await consumeRate(env,action==='register'?'registration-name':'credentials-name',username,action==='register'?3:8,900))return error('rate_limited',429);
+  if(action==='register'){
+   if(!validEmail(email))return error('invalid_email',400);
+   if(!validUsername(shownName))return error('invalid_username',400);
+  }else if(hasEmail){if(!validEmail(email))return error('invalid_email',400);}
+  else if(!/^[a-z0-9_-]{3,32}$/.test(username))return error('invalid_credentials',401);
+  const identity=hasEmail?'email:'+email:'legacy:'+username;
+  if(!await consumeRate(env,action==='register'?'registration-email':'credentials-identity',identity,action==='register'?3:8,900))return error('rate_limited',429);
+  if(action==='register'&&!await consumeRate(env,'registration-name',username,3,900))return error('rate_limited',429);
  }
  if(action==='register'){
   if(!validPassword(body.password))return error('password_length',400);
   if(body.consent!==true)return error('consent_required',400);
-  // Don't replace an authenticated account accidentally during a repeated registration click.
   if(tokenFrom(request)&&await getAccount(request,env))return error('already_signed_in',409);
+  const googleProof=body.google===true?await getGoogleProof(request,env):null;
+  if(body.google===true&&(!googleProof||googleProof.intent!=='signin'||googleProof.account_id!==null))return error('google_proof_invalid',401);
+  if(googleProof&&googleProof.email!==email)return error('google_email_mismatch',400);
   if(await env.HITS.prepare('SELECT id FROM free_accounts WHERE username=?').bind(username).first())return error('username_unavailable',409);
+  if(await env.HITS.prepare('SELECT account_id FROM free_account_identities WHERE email=?').bind(email).first())return error('email_unavailable',409);
   const password=await passwordRecord(body.password),recovery=randomToken(),id=crypto.randomUUID(),t=now();
   const qa=body.qa===true||/bpj-ci-selftest|playwright/i.test(request.headers.get('User-Agent')||'')?1:0;
-  const row=await env.HITS.prepare(`INSERT INTO free_accounts(id,username,password_hash,recovery_hash,created,updated,qa) VALUES(?,?,?,?,?,?,?) ON CONFLICT(username) DO NOTHING RETURNING id,username,created,session_version`).bind(id,username,password,hash(recovery),t,t,qa).first();
-  if(!row)return error('username_unavailable',409);
-  const token=await issueSession(env,row);if(!token)return error('session_changed',409);
-  return json({...await accountView(env,row),recovery_code:recovery},200,cookie(token));
+  try{
+   // D1 batch is transactional: either both the account and its unique identity exist,
+   // or neither does. A concurrent duplicate cannot leave an orphan account.
+   await env.HITS.batch([
+    env.HITS.prepare('INSERT INTO free_accounts(id,username,password_hash,recovery_hash,created,updated,qa) VALUES(?,?,?,?,?,?,?)').bind(id,username,password,hash(recovery),t,t,qa),
+    env.HITS.prepare('INSERT INTO free_account_identities(account_id,email,display_name,display_key,email_verified,email_verified_at) VALUES(?,?,?,?,?,?)').bind(id,email,shownName,username,googleProof?.email_authoritative?1:0,googleProof?.email_authoritative?t:null),
+    ...(googleProof?googleRegistrationStatements(env,googleProof,id):[]),
+   ]);
+  }catch(cause){
+   if(googleProof&&/(NOT NULL|UNIQUE) constraint failed: free_google_identities/i.test(String(cause?.message||cause)))return error('google_proof_invalid',409);
+   if(!/UNIQUE constraint failed|SQLITE_CONSTRAINT_UNIQUE/i.test(String(cause?.message||cause)))throw cause;
+   if(await env.HITS.prepare('SELECT account_id FROM free_account_identities WHERE email=?').bind(email).first())return error('email_unavailable',409);
+   return error('username_unavailable',409);
+  }
+  const row=await accountById(env,id),token=await issueSession(env,row);if(!token)return error('session_changed',409);
+  return json({...await accountView(env,row),recovery_code:recovery},200,googleProof?[cookie(token),clearGoogleProofCookie()]:cookie(token));
  }
  if(action==='login'){
   if(!validPassword(body.password))return error('invalid_credentials',401);
-  const row=await env.HITS.prepare('SELECT id,username,created,password_hash,session_version FROM free_accounts WHERE username=?').bind(username).first();
+  const where=hasEmail?'i.email=?':'a.username=? AND i.account_id IS NULL';
+  const row=await env.HITS.prepare('SELECT a.id,COALESCE(i.display_name,a.username) AS username,i.email,i.email_verified,a.created,a.password_hash,a.session_version FROM free_accounts a LEFT JOIN free_account_identities i ON i.account_id=a.id WHERE '+where).bind(hasEmail?email:username).first();
   if(!await verifyPassword(body.password,row?.password_hash))return error('invalid_credentials',401);
   const token=await issueSession(env,row);if(!token)return error('invalid_credentials',401);
   return json(await accountView(env,row),200,cookie(token));
  }
  if(action==='recover'){
   if(typeof body.recovery_code!=='string'||!/^[A-Za-z0-9_-]{43}$/.test(body.recovery_code)||!validPassword(body.new_password))return error('invalid_recovery',400);
-  const row=await env.HITS.prepare('SELECT id,recovery_hash FROM free_accounts WHERE username=? AND recovery_hash=?').bind(username,hash(body.recovery_code)).first();
+  const where=hasEmail?'i.email=?':'a.username=? AND i.account_id IS NULL';
+  const row=await env.HITS.prepare('SELECT a.id,a.recovery_hash FROM free_accounts a LEFT JOIN free_account_identities i ON i.account_id=a.id WHERE ('+where+') AND a.recovery_hash=?').bind(hasEmail?email:username,hash(body.recovery_code)).first();
   if(!row)return error('invalid_recovery',401);
   const replacement=await passwordRecord(body.new_password),recovery=randomToken();
   const changed=await env.HITS.prepare(`UPDATE free_accounts SET password_hash=?,recovery_hash=?,session_version=session_version+1,updated=? WHERE id=? AND recovery_hash=? RETURNING id`).bind(replacement,hash(recovery),now(),row.id,row.recovery_hash).first();
@@ -94,6 +119,19 @@ async function route(request,env){
  if(!await consumeRate(env,'sensitive-account',user.id,5,900))return error('rate_limited',429);
  const record=await env.HITS.prepare('SELECT password_hash,recovery_hash FROM free_accounts WHERE id=? AND session_version=?').bind(user.id,user.session_version).first();
  if(!record||!await verifyPassword(sensitivePassword,record.password_hash))return error('invalid_credentials',401);
+ if(action==='link_email'){
+  if(!validEmail(email))return error('invalid_email',400);
+  if(user.email)return user.email===email?json(await accountView(env,user)):error('email_already_linked',409);
+  try{
+   const linked=await env.HITS.prepare('INSERT INTO free_account_identities(account_id,email,display_name,display_key) SELECT id,?,username,username FROM free_accounts WHERE id=? AND password_hash=? AND session_version=? RETURNING account_id').bind(email,user.id,record.password_hash,user.session_version).first();
+   if(!linked)return error('session_changed',409);
+  }catch(cause){
+   if(!/UNIQUE constraint failed|SQLITE_CONSTRAINT_UNIQUE/i.test(String(cause?.message||cause)))throw cause;
+   const current=await accountById(env,user.id);
+   return current?.email===email?json(await accountView(env,current)):error('email_unavailable',409);
+  }
+  return json(await accountView(env,await accountById(env,user.id)));
+ }
  if(action==='rotate_recovery'){
   const recovery=randomToken();
   const changed=await env.HITS.prepare('UPDATE free_accounts SET recovery_hash=?,updated=? WHERE id=? AND password_hash=? AND session_version=? AND recovery_hash=? RETURNING id').bind(hash(recovery),now(),user.id,record.password_hash,user.session_version,record.recovery_hash).first();

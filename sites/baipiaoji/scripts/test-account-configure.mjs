@@ -1,0 +1,11 @@
+import assert from 'node:assert/strict';
+import {configure} from './account-configure.mjs';
+let calls=0;
+assert.equal((await configure({},()=>{throw Error('unexpected request');})).updated,false);
+assert.equal((await configure({RESEND_API_KEY:'re_test'},()=>{throw Error('unexpected request');})).mail_incomplete,true);
+let config={deployment_configs:{production:{env_vars:{EXISTING:{type:'secret_text'}},d1_databases:{HITS:{id:'keep'}}}}};
+const request=async(url,opts)=>{calls++;if(opts.method==='PATCH'){const data=JSON.parse(opts.body);Object.assign(config.deployment_configs.production.env_vars,data.deployment_configs.production.env_vars);assert.equal(data.deployment_configs.production.d1_databases,undefined);}return {ok:true,json:async()=>structuredClone({success:true,result:config})};};
+const result=await configure({CLOUDFLARE_API_TOKEN:'test',CLOUDFLARE_ACCOUNT_ID:'account',GOOGLE_CLIENT_ID:'test.apps.googleusercontent.com',RESEND_API_KEY:'re_test',ACCOUNT_MAIL_FROM:'BPJ <accounts@example.invalid>'},request);
+assert.equal(result.updated,true);assert.equal(calls,3);assert.ok(config.deployment_configs.production.env_vars.EXISTING);assert.equal(config.deployment_configs.production.env_vars.RESEND_API_KEY.type,'secret_text');
+await assert.rejects(configure({GOOGLE_CLIENT_ID:'not-google'},request));
+console.log('Account configuration: missing inputs cause no calls; partial mail is skipped; existing settings and D1 preserved.');
