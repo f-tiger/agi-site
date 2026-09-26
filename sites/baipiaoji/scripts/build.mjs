@@ -105,6 +105,10 @@ const NOSRC = existsSync(join(root, 'data/no-source.json'))
 // （data/drift.json,scripts/source-drift.mjs 每日比对来源页）。两份都是「该看什么」的信号,
 // 不是事实;缺省时为空,构建绝不依赖它们存在。
 const REACH = existsSync(join(root, 'data/reach.json')) ? JSON.parse(readFileSync(join(root, 'data/reach.json'), 'utf8')) : null;
+// 厂商认领层(2026-09-26):data/claims.json 由 CI 每日从 /api/claim?export=1 落库(scripts/claims-export.mjs)。
+// 工具页据此标「厂商已认领 · 域名验证 <日期>」;更正排队在 attestations 里,只给 limits-edit 会话读,构建期一个字都不渲染。
+const CLAIMS = existsSync(join(root, 'data/claims.json')) ? JSON.parse(readFileSync(join(root, 'data/claims.json'), 'utf8')) : { claims: [], attestations: [] };
+const claimOf = (slug) => (CLAIMS.claims || []).find((c) => c.slug === slug && c.verified_at) || null;
 const DRIFT = existsSync(join(root, 'data/drift.json')) ? JSON.parse(readFileSync(join(root, 'data/drift.json'), 'utf8')) : { items: [] };
 const driftOf = (slug) => (DRIFT.items || []).find((d) => d.slug === slug) || null;
 const reachOfCat = (cat) => { const r = REACH && (REACH.categories || []).find((c) => c.cat === cat); return r ? r.n : null; };
@@ -376,6 +380,11 @@ document.addEventListener('click', function (e) {
     site_edition: window.SITE_EDITION
   });
   window.bpjEv('go', '/go/' + (a.dataset.tool || '?'));
+});
+// 厂商认领入口点击(2026-09-26):工具页 → /claim 的漏斗顶端;认领真值在 claims 表,这里只量从哪来。
+document.addEventListener('click', function (e) {
+  var a = e.target.closest ? e.target.closest('a[data-claim]') : null;
+  if (a) window.bpjEv('claim', ('/claim/from-tool/' + a.dataset.claim).slice(0, 200));
 });
 // 首页区块级点击（2026-09-22）。首页是全站第一页（243 pv/28d），此前没有一个区块知道自己被点过几次，
 // 「把某个区块换成 agents 面」这个问题在 D1 里根本答不了。只在 / 与 /en/ 上挂；
@@ -1669,6 +1678,19 @@ function toolFaq(tool) {
 }
 
 // ---- 详情页（长尾 SEO：「XX 免费额度领取指南」） ----
+// 认领入口(2026-09-26)。每个工具页都有,待核实的也有——待核实记录的厂商恰恰是最该来的人。
+// 已认领的页面把认领公开写在页上:这是唯一不靠机器发帖的曝光——厂商自己的读者看见「厂商已认领」,下一家厂商才知道有这回事。
+function claimLine(tool) {
+  const c = claimOf(tool.slug);
+  const zh = LOCALE.code === 'zh';
+  const href = `${BASE}/claim.html?slug=${esc(tool.slug)}`;
+  if (c) {
+    const d = esc(String(c.verified_at).slice(0, 10));
+    return `<p class="coverage claim-line"><b>${zh ? `厂商已认领 · 域名验证 ${d}` : `Claimed by the vendor · domain verified ${d}`}</b> · <a href="${href}" data-claim="${esc(tool.slug)}">${zh ? '提交更正（附官方出处）→' : 'Submit a correction (with the official source) →'}</a></p>`;
+  }
+  return `<p class="coverage claim-line"><a href="${href}" data-claim="${esc(tool.slug)}">${zh ? `是 ${esc(tool.name)} 的团队？认领这条记录（域名验证，免费，不改变页面上任何数字）→` : `Are you the ${esc(tool.name)} team? Claim this record (domain-verified, free, changes no figure on the page) →`}</a></p>`;
+}
+
 function toolPage(tool) {
   const catName = CATS[tool.category] || tool.category;
   const { char, hue } = markOf(tool);
@@ -1778,6 +1800,7 @@ function toolPage(tool) {
         <p>${UI('embed_data_note', '本站已核实的额度数据以 CC BY 4.0 开放转载（含商用），条件是注明「白嫖计 baipiaoji.com」并回链：')}<a href="${site.base_url}/limits.json">limits.json</a> · <a href="${site.base_url}/limits.md">limits.md</a></p>
       </div>
     </details>`}
+    ${claimLine(tool)}
   </article>
   ${wallScope(tool) && wallOk(tool) ? `
   <p class="coverage"><a href="${BASE}/wall/${esc(tool.slug)}.html"><b>${LOCALE.code === 'zh'
@@ -7557,6 +7580,188 @@ curl -s 'https://baipiaoji.com/api/limits?slug=kimi'              # ${zh ? '这�
     schema: [crumbLd([{ name: NAME, url: `${BASE}/` }, { name: h1, url: `${BASE}/submit.html` }])],
   }));
   allPages.push({ u: `${BASE}/submit.html`, pr: '0.5' });
+}
+
+// ---- 厂商认领页（2026-09-26，owner 当日「创业者…自主扩张」指令下的第一个楔子 v0；docs/ai-era-founder-2026-09-25.md §五）----
+// submissions 表里 8 条厂商投稿全部停在 new，而站上没有一条记录能证明「说话的是厂商本人」。
+// 这一页把「我是这个工具的团队」变成可机器核验的事：控制官方域名的人才能认领。
+// 三条与本站纪律逐字一致的规矩：认领不改任何数字；更正只进 limits-edit 队列、永不自动上站；不卖任何东西。
+{
+  const zh = LOCALE.code === 'zh';
+  const h1 = zh ? '认领你的工具记录' : 'Claim your tool’s record';
+  const desc = zh
+    ? '白嫖计上有你家工具的记录？控制官方域名的团队可以认领它：认领免费，不改变页面上任何数字；认领后可提交带官方出处的更正，进入核实队列。'
+    : 'Your tool is listed on Baipiaoji? The team that controls its official domain can claim the record: claiming is free and changes no figure on the page; a claimed vendor can file corrections with an official source into the review queue.';
+  const WHAT = zh ? [
+    ['是一条机器可核验的声明', '「这条记录的厂商本人在此」。验证的是域名控制权，与搜索引擎的站点验证同一原理；令牌是公开的，证明的是谁控制域名，不是谁知道令牌。'],
+    ['不是付费项目', '认领、更正队列、核实徽章全部免费。可付费的只有队列里的「加急核实」，而付费买不到结论：收录、排序与每一个数字都不受付费影响。'],
+    ['不是编辑权', '厂商更正只进核实队列。我们按官方页面核对后才改，页面上的每个数字仍过同一道门——厂商本人说的也是线索，官方页面才是出处。'],
+    ['不是账号', '我们不存邮箱、姓名或 IP。身份就是域名；更正备注里出现的邮箱会在入库前被抹掉。'],
+  ] : [
+    ['A machine-checkable statement', '“The vendor of this record is here.” What is verified is control of the official domain, the same principle as search-engine site verification; the token is public and proves who controls the domain, not who knows the token.'],
+    ['Not a paid product', 'Claiming, the correction queue and the verified badge are free. The only paid item is expedited verification in the queue, and payment never buys a verdict: inclusion, ranking and every figure stay unaffected.'],
+    ['Not editing rights', 'Vendor corrections only enter the review queue. We change a figure only after checking the official page; every number on the page still passes the same gate. What the vendor says is a lead; the official page is the source.'],
+    ['Not an account', 'We store no email, name or IP. Your identity is your domain; any email inside a correction note is redacted before storage.'],
+  ];
+  const STEPS = zh ? [
+    ['拿到令牌', '在下方输入工具的 slug（工具页网址的最后一段），页面会给出这条记录的令牌 baipiaoji-claim=&lt;slug&gt;。'],
+    ['放到你的域名上', '二选一：把令牌单独成一行写进官方域名的 /.well-known/baipiaoji-claim.txt（主域或工具所在主机都可）；或在主域加一条 DNS TXT 记录 _baipiaoji.&lt;主域&gt;，值就是令牌。一个域名可以放多条令牌（多个工具）。'],
+    ['点「验证」', '我们当场读取。同一记录十分钟内只核验一次。请保留文件或记录：证明撤掉，认领随之失效。'],
+  ] : [
+    ['Get the token', 'Enter the tool’s slug below (the last segment of its page URL); the page shows this record’s token, baipiaoji-claim=&lt;slug&gt;.'],
+    ['Place it on your domain', 'Either put the token on a line of its own in /.well-known/baipiaoji-claim.txt on the official domain (the apex or the tool’s host), or add a DNS TXT record _baipiaoji.&lt;apex&gt; whose value is the token. One domain may hold several tokens (several tools).'],
+    ['Click verify', 'We read it on the spot. One check per record per ten minutes. Keep the file or record in place: if the proof goes, the claim lapses with it.'],
+  ];
+  const AFTER = zh ? [
+    ['工具页会标注', '「厂商已认领 · 域名验证 <日期>」，随每日构建更新。'],
+    ['可以提交更正', '字段：免费额度 / 上限墙 / 付费档 / 免费说明 / 用法 / 出处 / 其他。每条必须附一个在你们域名上的官方页面网址——没有官方出处的更正不收，不是不信你，是站上每个数字都只认官方页面。'],
+    ['更正进 limits-edit 队列', '由我们逐条核对官方页面后决定是否上站，不会自动发布；每条记录最多排 20 条未处理的更正。'],
+  ] : [
+    ['The tool page gets a line', '“Claimed by the vendor · domain verified <date>”, refreshed with the daily build.'],
+    ['You can file corrections', 'Fields: quota / wall / paid tier / free description / how-to / source / other. Each must cite an official page on your own domain. Corrections without an official source are not accepted; that is not distrust of you, every figure on this site accepts official pages only.'],
+    ['Corrections enter the limits-edit queue', 'We check each against the official page before anything changes; nothing publishes automatically. At most 20 pending corrections per record.'],
+  ];
+  const FIELD_OPTS = zh
+    ? [['quota', '免费额度'], ['wall', '上限墙'], ['paid', '付费档'], ['free', '免费说明'], ['how', '用法'], ['source', '出处'], ['correction', '其他更正']]
+    : [['quota', 'Free quota'], ['wall', 'Limit wall'], ['paid', 'Paid tier'], ['free', 'Free description'], ['how', 'How-to'], ['source', 'Source'], ['correction', 'Other correction']];
+  const hasCjk = (s) => /[一-鿿]/.test(String(s || ''));
+  const body = `${railOf()}
+<main class="stage">
+  <nav class="crumb"><a href="${BASE}/">${esc(NAME)}</a><i>/</i><span>${esc(h1)}</span></nav>
+  <header class="hero"><div class="hero-inner">
+    <h1>${esc(h1)}</h1>
+    <p class="answer">${esc(desc)}</p>
+  </div></header>
+  <section class="limits-table">
+    <h2 class="group-title">${zh ? '认领是什么、不是什么' : 'What a claim is, and is not'}<span>${WHAT.length}</span></h2>
+    <ol class="pc-duties">${WHAT.map(([t, d]) => `<li><b>${esc(t)}</b>${esc(d)}</li>`).join('')}</ol>
+  </section>
+  <section class="limits-table">
+    <h2 class="group-title">${zh ? '三步验证' : 'Verify in three steps'}<span>${STEPS.length}</span></h2>
+    <ol class="pc-duties">${STEPS.map(([t, d]) => `<li><b>${esc(t)}</b>${d}</li>`).join('')}</ol>
+  </section>
+  <section class="limits-table">
+    <h2 class="group-title">${zh ? '认领之后' : 'After the claim'}<span>${AFTER.length}</span></h2>
+    <ol class="pc-duties">${AFTER.map(([t, d]) => `<li><b>${esc(t)}</b>${esc(d)}</li>`).join('')}</ol>
+    <p class="sub-note">${zh
+      ? `还没有收录你的工具？先去<a href="${BASE}/submit.html">提交</a>；收录后再来认领。机器读取：<code>GET /api/claim?slug=&lt;slug&gt;</code> 返回状态与放置说明，<code>POST /api/claim</code> 做核验与更正。`
+      : `Not listed yet? <a href="${BASE}/submit.html">Submit the tool</a> first, then claim it. For machines: <code>GET /api/claim?slug=&lt;slug&gt;</code> returns status and placement instructions, <code>POST /api/claim</code> verifies and files corrections.`}</p>
+  </section>
+  <section class="limits-table">
+    <h2 class="group-title">${zh ? '认领' : 'Claim'}<span>1</span></h2>
+    <form class="submit-form" id="claimForm">
+      <label><span>${zh ? '工具 slug（工具页网址最后一段）' : 'Tool slug (last segment of the tool page URL)'}</span>
+        <input type="text" name="slug" required maxlength="60" list="toolSlugs" autocomplete="off" placeholder="kimi" pattern="[a-z0-9-]+"></label>
+      <datalist id="toolSlugs">${tools.map((t) => `<option value="${esc(t.slug)}">${esc(zh || !hasCjk(t.name) ? t.name : t.slug)}</option>`).join('')}</datalist>
+      <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">
+      <p><button type="button" id="claimLookup">${zh ? '查看状态与令牌' : 'Show status & token'}</button> <button type="submit">${zh ? '验证' : 'Verify'}</button></p>
+      <div id="claimStatus" role="status" aria-live="polite"></div>
+      <div id="claimHow" class="sub-note" hidden></div>
+    </form>
+    <form class="submit-form" id="attestForm" hidden>
+      <h3>${zh ? '提交一条更正' : 'File a correction'}</h3>
+      <input type="hidden" name="slug" value="">
+      <label><span>${zh ? '字段' : 'Field'}</span>
+        <select name="field">${FIELD_OPTS.map(([v, l]) => `<option value="${v}">${esc(l)}</option>`).join('')}</select></label>
+      <label><span>${zh ? '正确的内容（官方页面怎么写就怎么写）' : 'The correct content (as the official page states it)'}</span>
+        <textarea name="value" required maxlength="800" rows="3"></textarea></label>
+      <label><span>${zh ? '官方出处网址（必须在你们的域名上，https）' : 'Official source URL (must be on your domain, https)'}</span>
+        <input type="url" name="official_url" required maxlength="300" placeholder="https://"></label>
+      <label><span>${zh ? '备注（可选；邮箱会被抹掉）' : 'Note (optional; emails are redacted)'}</span>
+        <textarea name="note" maxlength="500" rows="2"></textarea></label>
+      <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">
+      <button type="submit">${zh ? '进入核实队列' : 'Send to the review queue'}</button>
+      <p class="sub-msg" role="status" aria-live="polite"></p>
+    </form>
+  </section>
+</main>
+<script>
+(function(){
+  var ZH=${zh};
+  var f=document.getElementById('claimForm'), af=document.getElementById('attestForm'); if(!f||!af)return;
+  var st=document.getElementById('claimStatus'), how=document.getElementById('claimHow'), look=document.getElementById('claimLookup');
+  var slugIn=f.querySelector('input[name=slug]');
+  var q=new URLSearchParams(location.search).get('slug'); if(q) slugIn.value=q.toLowerCase().replace(/[^a-z0-9-]/g,'');
+  function esc(s){var d=document.createElement('div');d.textContent=s==null?'':String(s);return d.innerHTML;}
+  function busy(on){Array.prototype.forEach.call(f.querySelectorAll('button'),function(b){b.disabled=on;});}
+  function render(d){
+    if(!d||!d.ok&&d.code!=='cooldown'&&d.code!=='no_token'){
+      st.innerHTML='<p class="sub-msg is-err">'+(d&&d.code==='unknown_slug'
+        ? (ZH?'没有这条记录：slug 是工具页网址的最后一段，例如 kimi。':'No such record: the slug is the last segment of the tool page URL, e.g. kimi.')
+        : (ZH?'读取失败，稍后再试。':'Could not read the status, try again shortly.'))+'</p>';
+      how.hidden=true; af.hidden=true; return;
+    }
+    var c=d.claim||{}, v=c.status==='verified';
+    var head=(d.name?'<b>'+esc(d.name)+'</b> · ':'')+(v
+      ? (ZH?'已由厂商认领（'+esc(c.method)+'，'+esc(String(c.verified_at).slice(0,10))+'）':'claimed by the vendor ('+esc(c.method)+', '+esc(String(c.verified_at).slice(0,10))+')')
+      : (ZH?'尚未认领':'not claimed yet'));
+    var extra='';
+    if(d.code==='cooldown') extra=' — '+(ZH?'十分钟内已核验过，'+d.retry_after_s+' 秒后可再试。':'already checked within ten minutes, try again in '+d.retry_after_s+' s.');
+    if(d.code==='no_token') extra=' — '+(ZH?'三处都没读到令牌（主机 well-known / 主域 well-known / DNS TXT）。放好后再点验证。':'the token was not found at any of the three places (host well-known / apex well-known / DNS TXT). Place it, then verify again.');
+    if(d.code==='verified') extra=' — '+(ZH?'验证通过。':'verified.');
+    st.innerHTML='<p class="sub-msg '+(v?'is-ok':(d.code==='no_token'?'is-err':''))+'">'+head+esc(extra)+'</p>';
+    var h=d.how;
+    if(h){
+      how.innerHTML=(ZH?'令牌：':'Token: ')+'<code>'+esc(h.token)+'</code><br>'
+        +(ZH?'文件（任一）：':'File (either): ')+'<code>'+esc(h.well_known)+'</code>'+(h.well_known_apex!==h.well_known?' · <code>'+esc(h.well_known_apex)+'</code>':'')+'<br>'
+        +(ZH?'或 DNS TXT：':'or DNS TXT: ')+'<code>'+esc(h.dns_txt)+'</code> = <code>'+esc(h.token)+'</code>';
+      how.hidden=false;
+    }
+    af.hidden=!v; if(v) af.slug.value=d.slug||slugIn.value.trim();
+  }
+  function load(){
+    var s=slugIn.value.trim().toLowerCase(); if(!s)return; busy(true);
+    fetch('/api/claim?slug='+encodeURIComponent(s)).then(function(r){return r.json();}).catch(function(){return null;})
+      .then(function(d){busy(false);render(d);});
+  }
+  look.addEventListener('click',load);
+  if(slugIn.value) load();
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var s=slugIn.value.trim().toLowerCase(); if(!s)return; busy(true);
+    fetch('/api/claim',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({slug:s,action:'verify',website:(f.querySelector('input[name=website]')||{}).value||''})})
+    .then(function(r){return r.json().catch(function(){return{ok:false};});})
+    .then(function(d){busy(false);render(d);if(d&&d.code==='verified'&&window.bpjEv)bpjEv('claim','/claim/verified/'+s);})
+    .catch(function(){busy(false);render(null);});
+  });
+  af.addEventListener('submit',function(e){
+    e.preventDefault();
+    var msg=af.querySelector('.sub-msg'), btn=af.querySelector('button'); msg.className='sub-msg'; msg.textContent=''; btn.disabled=true;
+    var s=af.slug.value;
+    fetch('/api/claim',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({slug:s,action:'attest',field:af.field.value,value:af.value.value,official_url:af.official_url.value,note:af.note.value,
+        website:(af.querySelector('input[name=website]')||{}).value||''})})
+    .then(function(r){return r.json().catch(function(){return{ok:false};});})
+    .then(function(d){
+      btn.disabled=false;
+      if(!d.ok){
+        msg.className='sub-msg is-err';
+        msg.textContent = d.code==='bad_official_url' ? (ZH?'出处必须是你们域名上的 https 页面（'+(d.host||'')+'）。':'The source must be an https page on your own domain ('+(d.host||'')+').')
+          : d.code==='unclaimed' ? (ZH?'这条记录当前没有有效认领，先验证。':'This record has no valid claim right now; verify first.')
+          : d.code==='too_many' ? (ZH?'未处理的更正已达上限，等我们处理完再提交。':'The pending-correction limit is reached; wait until we have processed them.')
+          : d.code==='badfield' ? (ZH?'字段不在允许列表里。':'That field is not allowed.')
+          : (ZH?'没提交上，稍后再试。':'That did not go through, try again shortly.');
+        return;
+      }
+      msg.className='sub-msg is-ok';
+      msg.textContent = d.code==='already' ? (ZH?'同样的更正已经在队列里了。':'The same correction is already queued.')
+        : (ZH?'已进核实队列。我们逐条核对官方页面后才会改动页面。':'Queued for review. We change the page only after checking the official page.');
+      if(d.code==='queued'){ af.value.value=''; af.note.value=''; if(window.bpjEv)bpjEv('claim','/claim/attested/'+s); }
+    })
+    .catch(function(){btn.disabled=false;msg.className='sub-msg is-err';msg.textContent=ZH?'网络没通，稍后再试。':'Network error, please try again.';});
+  });
+})();
+</script>`;
+
+  writeFileSync(join(dist, ...(L.dir ? [L.dir.slice(1)] : []), 'claim.html'), layout({
+    title: `${h1} - ${NAME}`,
+    description: desc,
+    path: '/claim.html',
+    body,
+    schema: [crumbLd([{ name: NAME, url: `${BASE}/` }, { name: h1, url: `${BASE}/claim.html` }])],
+  }));
+  allPages.push({ u: `${BASE}/claim.html`, pr: '0.4' });
 }
 
 // ---- 厂商自荐页（付费 listing 需求探针，2026-08-17，owner 当日指令提前执行）----

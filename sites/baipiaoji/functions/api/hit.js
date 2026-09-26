@@ -39,6 +39,9 @@ export const EVENTS = new Set([
   'gs',          // 站内搜索 hit/miss（第 10 条）
   'gs_go',       // 站内搜索下拉点进（第 10 条）
   'ad',          // 广告位：/ad/house/<cat> 与 /ad/house/tool/<slug>（第 13、15 条）
+  'claim',       // 厂商认领层（2026-09-26）：/claim/from-tool/<slug>（工具页认领入口点击）、/claim/verified/<slug>
+                 // （页面上核验成功）、/claim/attested/<slug>（更正排队成功）。漏斗的分子分母都在这一个事件名下；
+                 // 认领本身的真值在 claims 表（/api/reach money.claims_verified），这里只量「从哪来、走到哪一步」。
 ]);
 
 export async function onRequestPost({ request, env }) {

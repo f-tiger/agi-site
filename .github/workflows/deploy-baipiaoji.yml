@@ -111,6 +111,14 @@ jobs:
         run: node scripts/reach-export.mjs
         continue-on-error: true
 
+      # 厂商认领层导出（2026-09-26）：/api/claim?export=1 → data/claims.json（已验证认领 + 排队中的厂商更正，零 PII，
+      # 字段白名单在 claims-export.mjs 里）。构建期据此在工具页标「厂商已认领 · 域名验证」；limits-edit 会话读排队更正。
+      # ~0.05 分/次，挂已有 schedule；产出随 `git add data/` 那步提交。
+      - name: Export vendor claims from /api/claim (scheduled runs only)
+        if: github.event_name != 'push'
+        run: node scripts/claims-export.mjs
+        continue-on-error: true
+
       # 付费档缺口探针（2026-09-16）：219 个工具里 109 个只差 limits.paid 一个字段，
       # 差这一个字段 `is-<tool>-still-free` 与 `/upgrade/<tool>` 两种页型就都不生成——
       # 而 D1 现查说读者 68% 落在工具页、问的正是这个问题。缺口填不动的原因不是没人想填，
@@ -194,6 +202,14 @@ jobs:
       # 换到真实曝光，判严了买家付了钱位子不上架。变异测试已验证它会红（去掉金额核对即失败）。
       - name: Ad-claim money-path test (zero network)
         run: node scripts/test-ad-claim.mjs
+
+      # 厂商认领层（2026-09-26，零网络 ~0.1s）：域名控制权核验决定谁能以厂商身份往 limits-edit 队列放更正。
+      # 判松了 = 任何人都能冒充厂商往复核输入里掺假；判严了 = 真厂商放了文件验不过、认领层等于没建。
+      # 令牌逐字比对、跳转跑出域名不算、出处必须在认领域名上、邮箱抹除、冷却、每 slug 上限、export 零个人字段——逐条断言。
+      - name: Vendor claim layer tests (zero network)
+        run: |
+          node scripts/test-claim.mjs
+          node scripts/claims-export.mjs --selftest
 
       # 付费档探针的零网络自检（2026-09-16）：这个探针决定「下一轮去读哪几家的定价页」，
       # 它判错的方向有两种，都必须能红——把无价页判成 ready 会把人骗去读一个没有价格的页面；
@@ -505,6 +521,28 @@ jobs:
           [ "$c1" = "200" ] && [ "$c2" = "400" ] || { echo "::error::提交链路自测未通过"; exit 1; }
           echo "$b1" | grep -Eq 'ok|already' || { echo "::error::提交返回码异常"; exit 1; }
           echo "✅ 提交链路自测通过"
+        continue-on-error: true
+
+      # 认领链路自测（2026-09-26）：GET 状态、未知 slug 404、未认领时更正 403——三条都不出网核验厂商域名
+      # （verify 动作会真的去读官方站点，自检不打它）。UA 带 bpj-ci-selfcheck；claims 表按 slug 一行，不碰读预算。
+      - name: Self-test claim endpoint
+        id: st_claim
+        run: |
+          UA='curl/8.0 bpj-ci-selfcheck'
+          c1=$(curl -s -o /tmp/r1.json -w "%{http_code}" -A "$UA" -m 20 'https://baipiaoji.com/api/claim?slug=kimi'); b1=$(cat /tmp/r1.json)
+          c2=$(curl -s -o /dev/null -w "%{http_code}" -A "$UA" -m 20 'https://baipiaoji.com/api/claim?slug=no-such-tool-xyz')
+          c3=$(curl -s -o /tmp/r3.json -w "%{http_code}" -A "$UA" -m 20 -X POST 'https://baipiaoji.com/api/claim' \
+            -H 'Content-Type: application/json' -d '{"slug":"kimi","action":"attest","field":"quota","value":"__ci","official_url":"https://kimi.moonshot.cn/"}'); b3=$(cat /tmp/r3.json)
+          echo "claim(status) HTTP $c1  $(echo "$b1" | head -c 240)"
+          echo "claim(404)    HTTP $c2"
+          echo "claim(attest) HTTP $c3  $b3"
+          [ "$c1" = "200" ] && [ "$c2" = "404" ] || { echo "::error::认领链路自测未通过（状态 200 / 未知 slug 404）"; exit 1; }
+          echo "$b1" | grep -q '"claim":{"status":"' || { echo "::error::/api/claim 缺 claim.status"; exit 1; }
+          echo "$b1" | grep -q '"token":"baipiaoji-claim=kimi"' || { echo "::error::/api/claim 令牌形状不对"; exit 1; }
+          if [ "$c3" = "403" ]; then :
+          elif [ "$c3" = "200" ]; then echo "::warning::kimi 已被厂商认领，自检的更正（value=__ci）进了队列——处理队列时剔除它，并把这一步换成一个未认领的 slug"
+          else echo "::error::未认领记录的更正应 403（实得 $c3）"; exit 1; fi
+          echo "✅ 认领链路自测通过（状态 / 404 / 未认领拒更正）"
         continue-on-error: true
 
       # Agent API 自测：slug 命中、404 语义、CORS 头——agent 依赖的契约每天验一遍

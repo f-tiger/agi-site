@@ -847,3 +847,22 @@ Cloudflare Pages 把 `/x.html` **308** 跳到 `/x`。在此之前本站的 sitem
   eco 的 `node` 调用方 180 次全带参数但只有 9 种组合,正是靠参数才认出来的。
 - 判定线 `fleet-mcp-instrument-1022`(10-22):三站里 ≥2 个能被舰队脚本读出 `demand_callers`,否则「机器面」
   以后只按 SR 一个站读,不再声称是舰队级读数。
+
+## 厂商认领层(2026-09-26,owner「你是一个创业者…自主扩张」;全文 `docs/ai-era-founder-2026-09-25.md` §五)
+
+- **这是保活模式的第二个例外**,依据 owner 09-25 的明确指令(白名单条款里的「owner 明确指令」)。形态:`functions/api/claim.js` +
+  `/claim`(zh/en)+ 每个工具页底部一行认领入口 + `scripts/claims-export.mjs` → `data/claims.json`(schedule 落库)+ `/api/reach`
+  money 多两个键 `claims_verified` / `attestations_queued`。
+- **为什么是它**:submissions 8 条(3 个提交者)全部停在 new,而站上 219 条记录**没有一条能证明说话的是厂商本人**——投稿框里谁都能填任何名字。
+  认领 = 域名控制权(官方主机或主域的 `/.well-known/baipiaoji-claim.txt` 任一行逐字等于 `baipiaoji-claim=<slug>`,或主域 DNS TXT
+  `_baipiaoji.<主域>`),令牌公开、绑记录不绑人,零账号零 PII。这是舰队第一个「用了它就把它带给没用过的人」的机制:已认领的记录把
+  「厂商已认领 · 域名验证 <日期>」写在页上,厂商自己的读者看见,下一家厂商才知道有这回事——机器一个帖都不发。
+- **三条不变的纪律**:①认领不改任何数字;②厂商更正只进 `attestations`(status=queued),**永不自动上站**,每条必须带一个在认领域名上的
+  https 官方页面——处理时仍走 limits-edit 两步,厂商 value 永远不直接进 tools.json;③不卖任何东西(徽章仍免费,付费只有老轨「加急核实」)。
+- **读数口径**:`claims_verified` 只数 `last_result='ok'`(证明撤掉、下次核验就回到未认领);部署自检只 GET 状态 / 404 / 未认领 403,
+  **不打 verify**(那会真的去读厂商站点),UA `bpj-ci-selfcheck`。事件名 `claim`(`/claim/from-tool/<slug>`、`/claim/verified/<slug>`、
+  `/claim/attested/<slug>`)已进 hit.js 白名单;认领真值在 claims 表,事件只量漏斗从哪来。
+- **一次性事件**:认领入口在每张工具页上,本次部署 438 张工具页 lastmod 刷新——与 09-15 canonical 修复同类,别误读成翻炒。
+- **判定线**:`bpj-claim-first-1026`(≥1 真实认领)、`bpj-claim-layer-1125`(≥5 host 且 ≥1 更正上站)。t0 全 0。
+- **处理排队更正的规矩**:读 `data/claims.json`(或 `/api/claim?export=1`)的 `attestations`,逐条打开 `official_url` 核对;对的走 limits-edit,
+  错的不理;处理完把 D1 里对应行 status 改成 `applied` / `rejected`(会话带 Cloudflare MCP 时做)。
