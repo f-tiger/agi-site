@@ -263,8 +263,8 @@ jobs:
       - name: Verify canonical routes and sitemap targets
         run: node scripts/check-canonical-routes.mjs
 
-      - name: Verify dist (出厂门禁)
-        run: node scripts/verify-dist.mjs
+      # Full HTML gates run after the workbench/member builders below. The task
+      # map links to those real pages, so testing an incomplete dist here is invalid.
 
       # 首页 ↔ agents 联动必须真的在产物里（zh/en 两版）：联动条在 section#agent 内、区块级点击信标已注入、
       # 构建出的 /agents/ 与账本逐条对得上。不在这里断言，首页改版一次就能把联动条无声挤掉。
