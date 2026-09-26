@@ -221,6 +221,7 @@ jobs:
           # 岗位方案规划器（2026-09-24）：容量规则能从配额文件读出数、work-roles.json 里没有手写额度、加总逻辑（页面嵌的就是这个函数）
           node scripts/test-work-plan.mjs
           node scripts/test-studio.mjs
+          node scripts/test-release-pilot.mjs
 
       # 边缘爬虫记账的路径分类（2026-09-17，零网络 ~0.1s）。_middleware.js 的
       # isContentPath() 此前是白名单（`/` 结尾或 .html/.txt/.json/.md/.xml），而本站内容页
@@ -316,11 +317,22 @@ jobs:
         run: |
           node tools/revenue-studio/node_modules/playwright/cli.js install --with-deps chromium --only-shell
           node sites/baipiaoji/scripts/test-video-business-browser.mjs
+          node sites/baipiaoji/scripts/test-release-pilot-browser.mjs
 
       - name: Deploy to Cloudflare Pages
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: npx wrangler@4 pages deploy dist --project-name=aiyangmao --branch=main --commit-dirty=true
+
+      - name: Verify paid-app demand pilot without counting QA
+        run: node scripts/verify-release-pilot-live.mjs
+
+      - name: Read pilot evidence (aggregates only)
+        if: github.event_name != 'push'
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          ADS_WATCH_SECRET: ${{ secrets.ADS_WATCH_SECRET }}
+        run: node scripts/release-pilot-report.mjs
 
       - name: Verify published free PDF and image tools
         run: node scripts/verify-file-studio-live.mjs
@@ -848,6 +860,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data/page-lastmod.json data/limits-history.json data/agenda.json data/mcp-status.json 2>/dev/null || true
+          if [ -f data/release-pilot-report.json ]; then git add data/release-pilot-report.json; fi
           git diff --cached --quiet || { git commit -m "chore: page change manifest $(date -u +%F)"; git pull --rebase --autostash -q; git push; }
         continue-on-error: true
 

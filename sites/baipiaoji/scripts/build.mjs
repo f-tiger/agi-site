@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import {pilotEntry} from './release-pilot-pages.mjs';
 import {videoEntry} from './video-business.mjs';
 import { canonicalUrls } from './canonical-urls.mjs';
 import { buildAgentPages } from './agent-pages.mjs';
@@ -523,7 +524,7 @@ form.addEventListener('submit',function(e){
 `;
 }
 
-function layout({ title, description, path, body, wide, schema, noindex, feed }) {
+function layout({ title, description, path, body, wide, schema, noindex, feed, privacyNotice }) {
   const canonical = `${BASE}${pub(path)}`;
   return `<!DOCTYPE html>
 <html lang="${LANG}">
@@ -553,7 +554,7 @@ ${gateOf(path)}${subJs()}
 <footer class="site-footer">
   ${friendLinks.length ? `<nav class="friend-links"><span>${UI('friend_links', '友情链接')}</span>${friendLinks.map((l) => `<a href="${esc(l.url)}" target="_blank" rel="noopener nofollow" title="${esc(l.desc || '')}">${esc(l.name)}</a>`).join('')}</nav>` : ''}
   <p>${esc(NAME)} · ${esc(TAGLINE)} · ${UI('footer_count', '共收录')} ${tools.length} ${UI('footer_count_unit', '个真有免费额度的 AI 工具')}</p>
-  <p class="disclosure">${UI('disclosure', '部分链接为合作推广链接，我们可能因此获得佣金；这不影响工具的收录标准与排序，也不会让你多花一分钱。福利以官方页面实时信息为准。')}${site.ga_id ? UI('privacy', '本站使用 Google Analytics 统计匿名访问数据，用于改进内容，不收集个人身份信息。') : ''}${UI('privacy_sub', ' 若你主动订阅额度变更提醒，我们会保存你填写的邮箱与你关注的工具列表，仅用于发送这些工具的额度变动通知；不转让、不用于广告投放，随时可退订。除此之外不收集任何个人信息。')}</p>
+  <p class="disclosure">${UI('disclosure', '部分链接为合作推广链接，我们可能因此获得佣金；这不影响工具的收录标准与排序，也不会让你多花一分钱。福利以官方页面实时信息为准。')}${site.ga_id ? UI('privacy', '本站使用 Google Analytics 统计匿名访问数据，用于改进内容，不收集个人身份信息。') : ''}${privacyNotice || UI('privacy_sub', ' 若你主动订阅额度变更提醒，我们会保存你填写的邮箱与你关注的工具列表，仅用于发送这些工具的额度变动通知；不转让、不用于广告投放，随时可退订。除此之外不收集任何个人信息。')}</p>
   <p><a href="${BASE}/">${UI('home', '首页')}</a> · <a data-studio-footer href="${BASE}/studio/">${LOCALE.code === 'zh' ? '自研工具' : 'Built by BPJ'}</a> · <a href="${BASE}/myths.html">${UI('myths_title', 'AI 免费额度流言核查')}</a> · <a href="${BASE}/free-for-you.html">${UI('ffy_nav', '你能白嫖什么')}</a> · <a href="${BASE}/publish-check.html">${UI('pc_nav', '能不能发')}</a> · <a href="${BASE}/no-official-source.html">${UI('ns_nav', '查无官方来源')}</a> · <a href="${BASE}/changes.html">${UI('ch_nav', '额度变更记录')}</a> · <a href="${BASE}/upgrade/">${UI('up_nav', '该买哪档')}</a> · <a href="${BASE}/solutions/coding.html">${LOCALE.code === 'zh' ? '解决方案' : 'Solutions'}</a> · <a href="${BASE}/earn/">${LOCALE.code === 'zh' ? 'AI 赚钱作业包' : 'AI earning packs'}</a> · <a href="${BASE}/why-did-my-ai-free-tier-stop-working.html">${LOCALE.code === 'zh' ? '额度突然不能用了' : 'Free tier stopped working'}</a> · <a href="${BASE}/report.html">${LOCALE.code === 'zh' ? '真相报告' : 'The report'}</a> · <a href="${BASE}/watch.html">${LOCALE.code === 'zh' ? '额度监控' : 'Watch'}</a> · <a href="${BASE}/agents/">${LOCALE.code === 'zh' ? 'Agent 与 MCP 目录' : 'Agents & MCP'}</a> · <a href="${BASE}/submit.html">${UI('submit_nav', '提交工具')}</a> · <a href="${BASE}/for-vendors.html">${UI('vendors_nav', '厂商自荐')}</a> · <a href="${BASE}/developers.html">${UI('dev_nav', '开发者 API')}</a> · <a href="${BASE}/travel/">${UI('travel_nav', '旅行白嫖')}</a> · <a href="${BASE}/feed.xml">${UI('rss', 'RSS 订阅')}</a> · <a href="${BASE}/unsubscribe.html">${UI('unsub_nav', '退订提醒')}</a>${site.contact_email ? ` · <a href="mailto:${esc(site.contact_email)}">${UI('contact', '商务合作')}</a>` : ''}</p>
 </footer>
 </body>
@@ -2825,7 +2826,7 @@ function categoryPage(key, label) {
         return `<p class="coverage"><a href="#limits">${line}</a></p>${key === 'api' && APIQ ? `
     <p class="coverage"><a href="${BASE}/llm-api-calculator.html"><b>${LOCALE.code === 'zh' ? '新：输入你的用量，一算便知哪家免费档扛得住 →' : 'New: enter your usage and see which free tier holds →'}</b></a></p>` : ''}${key === 'video' && VIDQ ? `
     <p class="coverage"><a href="${BASE}/video-quota-planner.html"><b>${LOCALE.code === 'zh' ? '新：13 家给多少、换多少、能不能商用，一页对照 →' : 'New: what 13 vendors grant, what it buys, and whether you may publish — one board →'}</b></a></p>` : ''}${key === 'video' && PIPES ? `
-    <p class="coverage"><a href="${BASE}/studio/video-variants"><b>${LOCALE.code === 'zh' ? '用你的素材制作商品视频：BPJ 自研变体工作台' : 'Create product videos from your assets: built by BPJ'}</b></a></p>\n    <p class="coverage"><a href="${BASE}/pipeline/video.html"><b>${LOCALE.code === 'zh' ? '新：把这些串成一条流水线，一个月到底能出几条、卡在哪一环 →' : 'New: chain them into one pipeline — how many videos a month, and which link runs dry →'}</b></a></p>` : ''}${key === 'coding' && CODQ ? `
+    <p class="coverage"><a href="${BASE}/studio/video-variants"><b>${LOCALE.code === 'zh' ? '用你的素材制作商品视频：BPJ 自研变体工作台' : 'Create product videos from your assets: built by BPJ'}</b></a></p>\n    <p class="coverage"><a href="${BASE}/pipeline/video.html"><b>${LOCALE.code === 'zh' ? '新：把这些串成一条流水线，一个月到底能出几条、卡在哪一环 →' : 'New: chain them into one pipeline — how many videos a month, and which link runs dry →'}</b></a></p>` : ''}${key === 'coding' ? pilotEntry(BASE,LOCALE.code === 'zh','coding') : ''}${key === 'coding' && CODQ ? `
     <p class="coverage"><a href="${BASE}/subscription-audit.html"><b>${LOCALE.code === 'zh' ? '新：你在付的这几个订阅，哪个可以先停？一页体检 →' : 'New: which of the AI subscriptions you pay for can go? One-page audit →'}</b></a></p>
     <p class="coverage"><a href="${BASE}/coding-quota-board.html"><b>${LOCALE.code === 'zh' ? '新：19 家扣的是补全、请求还是 Credits？一页对照 →' : 'New: do these 19 meter completions, requests or credits? One board →'}</b></a></p>` : ''}${key === 'chat' && CHATQ ? `
     <p class="coverage"><a href="${BASE}/chat-limits-board.html"><b>${LOCALE.code === 'zh' ? '新：「每天能聊几条」问错了——10 家里 8 家不公布条数，该问墙在哪 →' : 'New: "how many messages a day" is the wrong question — 8 of 10 publish no count →'}</b></a></p>` : ''}${key === 'image' && IMGQ ? `
@@ -8534,6 +8535,7 @@ ${solutions.map((s) => `- [${s.pain}](${site.base_url}/plans/${s.slug}.html)：$
 
 ## BPJ 自研工具 / First-party BPJ tools
 
+- [收费应用验收试点 / Paid app review pilot](${site.base_url}/studio/release-check): 准备清单、虚构报告示例、拟议 $299 单次范围。只收申请，不收款、不执行应用测试。EN: ${site.base_url}/en/studio/release-check
 - [自研工具板块 / Built by BPJ](${site.base_url}/studio/): BPJ 自主设计与开发，独立于第三方工具收录。EN: ${site.base_url}/en/studio/
 - [PDF 整理 / PDF workbench](${site.base_url}/studio/pdf-tools): 本地合并、选页重排、旋转和图片转 PDF，免费导出；无 OCR、Word 转换或 PDF 压缩。EN: ${site.base_url}/en/studio/pdf-tools
 - [商品图批处理 / Product image batch tools](${site.base_url}/studio/product-images): 本地批量改尺寸、裁切、格式转换、压缩和图片 / ZIP 导出；纯色背景处理不是 AI 抠图。EN: ${site.base_url}/en/studio/product-images

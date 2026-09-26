@@ -1,6 +1,6 @@
 # Product marketing context
 
-**Document version: v3** — **Last updated: 2026-09-20**. Draft from repository, owner statements and public sources; no invented customer interviews. Read `docs/commercial-skills-review-2026-09-18.md` before extending an experiment. Unknowns below are blockers to investment, not blanks to fill with assumptions.
+**Document version: v4** — **Last updated: 2026-09-26**. Draft from repository, owner statements and public sources; no invented customer interviews. Read `docs/commercial-skills-review-2026-09-18.md` before extending an experiment. Unknowns below are blockers to investment, not blanks to fill with assumptions.
 
 ## Business goal and proof
 
@@ -40,6 +40,8 @@ No new paid features for the three discovery probes until repeated task evidence
 
 ## Changelog
 
+- v4 (2026-09-26): Added the owner-requested BPJ paid-app review demand pilot, distinct from x402 verification and prior portfolio hypotheses. Structured task applications, proposed USD299 scope, no checkout; see docs/bpj-release-pilot-2026-09-26.md.
+
 - v3 (2026-09-20): Added the owner-requested AGI discussion experiment. Free community participation is distinct from paid workspaces; existing same-site AGI identity is preserved. Growth is unverified.
 
 - v2 (2026-09-19): Added eight-track/24-product portfolio, separated BPJ vendor placements from reader memberships, and gated automated marketing drafts on real checkout readiness. Owner requested implementation of BPJ checkout; historical general feature freezes do not block this scope.
@@ -76,3 +78,7 @@ Agent Delivery Lab (`verify.agiscorecard.com`) is a bounded free experiment for 
 Read `docs/agi-community-research-2026-09-20.md`. The owner requested deep research and an AGI homepage discussion area to grow registrations and traffic. Target hypothesis: readers who want first-hand AI tool evidence, testable AGI predictions and concrete work changes. The first release has three topics, editorial prompts, free same-site registration, moderated submissions, follows and shareable SSR pages. Existing AGI access keys work; free registration grants no paid workspace entitlement.
 
 Alternatives include staying on Reddit/Hugging Face, embedded GitHub comments, and external chat. We have not validated willingness to migrate or contribute. Login-key backup is a friction risk; no email recovery or off-site notifications are promised. All user submissions require review. Editorial prompts are explicitly labeled and excluded from forum-post schema. Shares, external referrals, registrations, approved contributions and return visits remain separate measures. Do not publish generated promotional text into communities that prohibit it, or equate a share button with acquired backlinks.
+
+## BPJ paid-app review pilot — 2026-09-26
+
+Hypothesis: studios maintaining at least two paid apps may pay to reduce payment/access acceptance labor before a release. User/payer authority, actual task, current alternative and buyer net value remain unverified. Existing coding-category visits provide a distribution entry, not proof of buyer fit. Proposed one-time $299 scope is public; no checkout or reserved delivery. Avoid claims of bug-free releases, security audit, saved hours or real customer findings. A sample report is fictional; checklist export prepares work and does not execute tests. Structured applications include a no-budget choice, private email consent and withdrawal. Full protocol and subsequent paid-delivery gates: docs/bpj-release-pilot-2026-09-26.md. This is a specific current-owner exception to historical expansion freezes, not a fleetwide repositioning.
