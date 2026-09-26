@@ -912,3 +912,7 @@ Cloudflare Pages 把 `/x.html` **308** 跳到 `/x`。在此之前本站的 sitem
 ## 2026-09-26 收费应用验收需求实验（Owner 当前指令）
 
 沿用现有 /studio 与 /c/coding，中英 `/studio/release-check` 提供准备清单、虚构报告和拟议$299范围，只收申请不收款。协议见根仓 `docs/bpj-release-pilot-2026-09-26.md`。`release_pilot_*` 表独立，QA剔除、邮箱/会话去重、回执撤回、暂停和到期关闭。新增页可索引，但不声称软件已经执行验收。每日既有部署任务仅保存汇总；客户邮箱、回执和原始申请绝不进入公开仓/日志。
+
+## 2026-09-26 商业触发优化
+
+Owner要求调用技能改善商业触发。协议见根仓 `docs/bpj-commercial-triggers-2026-09-26.md`。投稿成功后提供免费等候/独立赞助选择；广告页补买家适配、实时付款方式和可跳过拒绝原因。commercial-trigger.js仅记固定biz事件、QA跨页保留；/api/reach.commercial_triggers是事件计数不是客户漏斗。复用每日reach快照，无新增schedule，不外发营销、不改变价格/订单/收录规则。

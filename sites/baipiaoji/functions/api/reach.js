@@ -20,6 +20,7 @@
 //
 // 口径与 scripts/traffic-truth.mjs 的真人线 A 一致:ev='' 且来源域非空 = 可归因真人;
 // 无来源的直接访问不计（那是本站被扫描的主要形态）,/__ 开头的自测路径不计。
+import {readCommercialTriggers} from '../../lib/commercial-triggers.js';
 export const K_COUNTRY = 5;
 
 // 小于 K 的国家并进 other:一个只有 1 次访问的国家配上 28 天窗口,在公开端点上离
@@ -97,6 +98,7 @@ export async function onRequestGet({ request, env }) {
       events: Object.fromEntries(events.map((r) => [r.ev, r.n])),
       submissions: { new: subsNew[0] ? subsNew[0].n : null, total: subsAll[0] ? subsAll[0].n : null },
       ads,
+      commercial_triggers: await readCommercialTriggers(env.HITS,since),
       money: {
         days,
         subs_by_status: Object.fromEntries(subsByStatus.map((r) => [String(r.status || ''), r.n])),
