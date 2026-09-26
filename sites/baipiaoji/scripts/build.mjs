@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import {buildAccountPages} from './account-pages.mjs';
 import {shellHead,shellHeader,shellFooter,shellRelated,shellShare} from './site-shell.mjs';
 import {buildSiteJourneys} from './site-journeys-pages.mjs';
 import {localizedJourneys} from '../lib/site-journeys.mjs';
@@ -447,84 +448,14 @@ const GATED_TOOLS = new Set([
   '/video-quota-planner.html', '/subscription-audit.html', '/tokenizer.html',
   '/pipeline/video.html', '/free-for-you.html',
 ]);
+function accountEntry(path='/',seed=[]){
+ const zh=LOCALE.code==='zh';
+ return `<section class="sub bpj-account-cta" id="sub"><div class="sub-in"><h2>${zh?'把关注清单存进免费账户':'Keep your followed tools in a free account'}</h2><p>${zh?'注册后可跨设备同步关注工具，在个人中心查看已记录的额度变更，并下载带出处的清单。没有邮件通知或营销订阅。':'Sign up to sync followed tools across devices, review recorded allowance changes in your account and download a sourced sheet. No email alerts or marketing subscription.'}</p><a data-account-entry href="${BASE}/account?next=${encodeURIComponent(pub(path))}">${zh?'免费注册 / 登录':'Create free account / Sign in'} →</a><a href="${BASE}/changes">${zh?'先看公开变更记录':'Browse public changes'} →</a><p class="sub-count"></p></div></section>`;
+}
 function gateOf(path) {
-  if (!GATED_TOOLS.has(path)) return '';
-  const zh = LOCALE.code === 'zh';
-  const slug = path.replace(/^\//, '').replace(/\.html$/, '').replace(/\//g, '-');
-  const T = {
-    h2: zh ? '注册后免费使用：解锁本站全部工具' : 'Free with registration — unlocks every tool on this site',
-    p: zh
-      ? '留一个邮箱，本站全部自建工具（API 计算器、订阅体检、分词器、能不能发、流水线等）永久免费用，一次注册全站解锁。你关注的工具免费额度一变，我们也会告诉你。'
-      : 'Leave an email and every self-built tool on this site (API calculator, subscription audit, tokenizer, publish-check, pipelines and more) stays free to use — register once, unlocked everywhere. When a free tier you care about moves, you hear it too.',
-    ph: zh ? '你的邮箱' : 'your@email.com',
-    btn: zh ? '注册并解锁' : 'Register & unlock',
-    note: zh
-      ? '只用于解锁与额度变更提醒，不转让、不群发广告，随时可退订。邮箱之外我们不收集任何个人信息。已订阅过？填同一个邮箱即可解锁。'
-      : 'Used only to unlock the tools and for allowance-change alerts. Never sold, never blasted with ads, unsubscribe any time. Already subscribed? The same address unlocks.',
-    busy: zh ? '提交中…' : 'Submitting…',
-    done: zh ? '已解锁，本站全部工具可用。' : 'Unlocked — every tool on this site is now open.',
-    bad: zh ? '邮箱格式不对，再检查一下。' : 'That address does not look right — please check it.',
-    net: zh ? '网络出错，稍后再试。' : 'Network error — please retry.',
-  };
-  return `<script>(function(){
-var KEY='bpj_tool_reg',main=document.querySelector('main.stage');
-// bpjEv 自 2026-09-03 起随 /bpj.js 以 defer 加载（main 的整站字节优化），
-// 页面解析期尚未执行——门卡的曝光事件若直接调用会静默丢失，而判定线正是靠这个读数
-// 决定门的去留。defer 脚本保证在 DOMContentLoaded 之前跑完，所以事件挂在它上面发。
-function EV(n,p){
-  var f=function(){if(window.bpjEv)bpjEv(n,p)};
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',f);
-  else f();
-}
-
-if(!main)return;
-var ok=false;try{ok=!!localStorage.getItem(KEY)}catch(e){}
-if(ok)return;
-var sess=false;
-var card=document.createElement('section');
-card.id='bpjGate';card.className='reg-gate';
-card.innerHTML='<h2>${T.h2}</h2><p>${T.p}</p>'
-  +'<form class="sub-form"><input type="email" name="email" required autocomplete="email" placeholder="${T.ph}" aria-label="${T.ph}">'
-  +'<input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">'
-  +'<button type="submit">${T.btn}</button></form>'
-  +'<p class="sub-note">${T.note}</p><p class="sub-msg" role="status" aria-live="polite"></p>';
-var hero=main.querySelector('.hero');
-if(hero&&hero.parentNode===main)hero.insertAdjacentElement('afterend',card);
-else main.insertAdjacentElement('afterbegin',card);
-EV('gate','/gate/view/${slug}');
-function guard(e){
-  if(sess)return;
-  var t=e.target;
-  if(!t||!t.closest)return;
-  if(t.closest('#bpjGate,.sub,.gs,.slidein'))return;
-  var c=t.closest('input,select,textarea,button,[contenteditable]');
-  if(!c||!main.contains(c))return;
-  e.preventDefault();e.stopPropagation();
-  if(c.blur)c.blur();
-  card.classList.add('reg-gate-nudge');
-  setTimeout(function(){card.classList.remove('reg-gate-nudge')},700);
-  try{card.scrollIntoView({behavior:'smooth',block:'center'})}catch(x){card.scrollIntoView()}
-}
-['pointerdown','click','keydown','focusin'].forEach(function(n){document.addEventListener(n,guard,true)});
-var form=card.querySelector('form'),msg=card.querySelector('.sub-msg');
-form.addEventListener('submit',function(e){
-  e.preventDefault();
-  var email=(form.email.value||'').trim();
-  msg.textContent='${T.busy}';
-  fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({email:email,website:form.website.value||'',lang:'${LOCALE.code}',src:'tool-gate:${slug}'})})
-  .then(function(r){return r.json()}).then(function(d){
-    if(d&&d.ok){
-      sess=true;try{localStorage.setItem(KEY,'1')}catch(x){}
-      msg.textContent='${T.done}';
-      card.classList.add('reg-gate-done');
-      setTimeout(function(){if(card.parentNode)card.parentNode.removeChild(card)},1400);
-      if(window.bpjEv)bpjEv('gate','/gate/ok/${slug}');
-    }else{msg.textContent='${T.bad}';}
-  }).catch(function(){msg.textContent='${T.net}';});
-});
-})();</script>
-`;
+ if(!GATED_TOOLS.has(path))return '';
+ const zh=LOCALE.code==='zh';
+ return `<section class="reg-gate bpj-account-cta" data-account-gate><h2>${zh?'登录免费账户后使用':'Sign in to your free account to use this tool'}</h2><p>${zh?'创建用户名和密码，可重复登录，并同步你的关注清单。该工具不要求购买付费云会员。':'Create a username and password to sign in again and sync your followed tools. Paid cloud membership is not required for this tool.'}</p><a href="${BASE}/account?next=${encodeURIComponent(pub(path))}">${zh?'免费注册 / 登录':'Join free / Sign in'} →</a><p>${zh?'旧邮箱订阅和浏览器解锁标记不能用于登录。':'An old email subscription or browser unlock flag is not a login account.'}</p></section>`;
 }
 
 function layout({ title, description, path, body, wide, schema, noindex, feed, privacyNotice }) {
@@ -555,15 +486,15 @@ ${analyticsOf()}
 <body class="bpj-shell${(wide || body.includes('class="rail"')) ? ' has-rail' : ''}">
 ${shellHeader({lang:LOCALE.code,path:pub(path),alternates:(path.startsWith('/travel') && !hasEnTravel(path) ? LOCALES.filter(l=>l.code==='zh') : LOCALES).map(l=>({lang:l.code,href:site.base_url+l.dir+pub(path==='/404.html'?'/':path)}))})}
 <div id="bpj-main" tabindex="-1"></div>
-${body}
+${GATED_TOOLS.has(path)?body.replace(/(<main\b[^>]*>)/, '$1'+gateOf(path)):body}
 ${shellRelated(LOCALE.code,pub(path))}
 ${!noindex && !/unsubscribe|release-check|advertise|submit/.test(path) ? shellShare(LOCALE.code,canonical,title) : ''}
 ${shellFooter(LOCALE.code)}
-${gateOf(path)}${subJs()}
+${subJs()}
 <footer class="site-footer">
   ${friendLinks.length ? `<nav class="friend-links"><span>${UI('friend_links', '友情链接')}</span>${friendLinks.map((l) => `<a href="${esc(l.url)}" target="_blank" rel="noopener nofollow" title="${esc(l.desc || '')}">${esc(l.name)}</a>`).join('')}</nav>` : ''}
   <p>${esc(NAME)} · ${esc(TAGLINE)} · ${UI('footer_count', '共收录')} ${tools.length} ${UI('footer_count_unit', '个真有免费额度的 AI 工具')}</p>
-  <p class="disclosure">${UI('disclosure', '部分链接为合作推广链接，我们可能因此获得佣金；这不影响工具的收录标准与排序，也不会让你多花一分钱。福利以官方页面实时信息为准。')}${site.ga_id ? UI('privacy', '本站使用 Google Analytics 统计匿名访问数据，用于改进内容，不收集个人身份信息。') : ''}${privacyNotice || UI('privacy_sub', ' 若你主动订阅额度变更提醒，我们会保存你填写的邮箱与你关注的工具列表，仅用于发送这些工具的额度变动通知；不转让、不用于广告投放，随时可退订。除此之外不收集任何个人信息。')}</p>
+  <p class="disclosure">${UI('disclosure', '部分链接为合作推广链接，我们可能因此获得佣金；这不影响工具的收录标准与排序，也不会让你多花一分钱。福利以官方页面实时信息为准。')}${site.ga_id ? (LOCALE.code==='zh'?'本站使用 Google Analytics 统计访问数据，用于改进内容。':' This site uses Google Analytics to measure traffic and improve content.') : ''}${privacyNotice || (LOCALE.code==='zh'?' 免费账户保存用户名、密码校验数据、会话和关注清单，用于登录与跨设备同步；注册不会自动订阅邮件。旧订阅可在退订页管理。':' Free accounts store a username, password-verification data, sessions and followed tools for sign-in and syncing. Signup does not subscribe you to email. Legacy subscriptions can be managed on the unsubscribe page.')}</p>
   <p><a href="${BASE}/">${UI('home', '首页')}</a> · <a data-studio-footer href="${BASE}/studio/">${LOCALE.code === 'zh' ? '自研工具' : 'Built by BPJ'}</a> · <a href="${BASE}/myths.html">${UI('myths_title', 'AI 免费额度流言核查')}</a> · <a href="${BASE}/free-for-you.html">${UI('ffy_nav', '你能白嫖什么')}</a> · <a href="${BASE}/publish-check.html">${UI('pc_nav', '能不能发')}</a> · <a href="${BASE}/no-official-source.html">${UI('ns_nav', '查无官方来源')}</a> · <a href="${BASE}/changes.html">${UI('ch_nav', '额度变更记录')}</a> · <a href="${BASE}/upgrade/">${UI('up_nav', '该买哪档')}</a> · <a href="${BASE}/solutions/coding.html">${LOCALE.code === 'zh' ? '解决方案' : 'Solutions'}</a> · <a href="${BASE}/earn/">${LOCALE.code === 'zh' ? 'AI 赚钱作业包' : 'AI earning packs'}</a> · <a href="${BASE}/why-did-my-ai-free-tier-stop-working.html">${LOCALE.code === 'zh' ? '额度突然不能用了' : 'Free tier stopped working'}</a> · <a href="${BASE}/report.html">${LOCALE.code === 'zh' ? '真相报告' : 'The report'}</a> · <a href="${BASE}/watch.html">${LOCALE.code === 'zh' ? '额度监控' : 'Watch'}</a> · <a href="${BASE}/agents/">${LOCALE.code === 'zh' ? 'Agent 与 MCP 目录' : 'Agents & MCP'}</a> · <a href="${BASE}/submit.html">${UI('submit_nav', '提交工具')}</a> · <a href="${BASE}/for-vendors.html">${UI('vendors_nav', '厂商自荐')}</a> · <a href="${BASE}/developers.html">${UI('dev_nav', '开发者 API')}</a> · <a href="${BASE}/travel/">${UI('travel_nav', '旅行白嫖')}</a> · <a href="${BASE}/feed.xml">${UI('rss', 'RSS 订阅')}</a> · <a href="${BASE}/unsubscribe.html">${UI('unsub_nav', '退订提醒')}</a>${site.contact_email ? ` · <a href="mailto:${esc(site.contact_email)}">${UI('contact', '商务合作')}</a>` : ''}</p>
 </footer>
 </body>
@@ -643,33 +574,7 @@ const railOf = () => `<aside class="rail">
 // 这不锁任何公开数据：limits.json 照旧 CC BY 开放，我们交付的是「替你整理好」——
 // 手动拼这份表要翻 N 个页面，而这正是本站唯一有的东西。
 // 变更提醒是随后的第二层价值，不是入场券。
-const subscribeOf = (path) => {
-  const zh = LOCALE.code === 'zh';
-  return `<section class="sub" id="sub">
-    <div class="sub-in">
-      <h2>${zh ? '把你在看的工具，变成一份带出处的清单' : 'Turn the tools you are eyeing into one sourced sheet'}</h2>
-      <p>${zh
-        ? '标记你在用或想用的工具，留个邮箱，当场拿到一份只含它们的对照表：免费额度到哪为止、用完之后会怎样、官方出处、核实日期——一页纸，可直接贴进笔记。'
-        : 'Star the tools you use or plan to use, leave an email, and get a sheet covering just those: how far the free tier goes, what happens at the wall, the official source, and the date it was checked — one page, ready to paste into your notes.'}</p>
-      <ul class="sub-perks">
-        <li>${zh ? '<b>当场下载</b>：你关注的工具对照表（Markdown，可直接贴进笔记）' : '<b>Instant download</b>: a comparison sheet for the tools you follow (Markdown)'}</li>
-        <li>${zh ? '<b>只推你关注的</b>：不群发、不发周报、不发资讯' : '<b>Only what you follow</b>: no blasts, no newsletters, no digests'}</li>
-        <li>${zh ? '<b>额度变了就说</b>：免费档缩水或下架，第一时间告诉你' : '<b>Told when it changes</b>: if a free tier shrinks or disappears, you hear it first'}</li>
-      </ul>
-      <form class="sub-form" data-src="${esc(path)}">
-        <input type="email" name="email" required autocomplete="email"
-          placeholder="${zh ? '你的邮箱' : 'your@email.com'}" aria-label="${zh ? '邮箱地址' : 'Email address'}">
-        <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">
-        <button type="submit">${zh ? '当场下载清单' : 'Download my sheet'}</button>
-      </form>
-      <p class="sub-count"></p>
-      <p class="sub-note">${zh
-        ? '只用于发送额度变更提醒，不转让、不群发广告，随时可退订。邮箱之外我们不收集任何个人信息。'
-        : 'Used only for allowance-change alerts. Never sold, never blasted with ads, unsubscribe any time. We collect no personal data beyond the address itself.'}</p>
-      <p class="sub-msg" role="status" aria-live="polite"></p>
-    </div>
-  </section>`;
-};
+const subscribeOf = (path) => accountEntry(path);
 
 // 页内即时钩子。放在读者刚看完额度数字与出处的那一行下面，而不是页面最底部。
 //
@@ -720,27 +625,7 @@ const changeNoteOf = ({ title, line }) => {
   </section>`;
 };
 
-const subInlineOf = ({ seed, title, line }) => {
-  const zh = LOCALE.code === 'zh';
-  const c = latestCatch();
-  return `<section class="sub sub-inline">
-    <h2>${esc(title)}</h2>
-    <p>${esc(line)}</p>
-    ${c ? `<p class="sub-proof">${zh
-      ? `这不是空话——最近一条记录：<b>${esc(c.name)}</b> 的${esc(c.fs.join('与'))}条目于 ${esc(c.d)} 有变更，<a href="${BASE}/changes.html">逐条记在公开的变更日志里 →</a>`
-      : `Not an empty promise — latest entry: <b>${esc(c.name)}</b>'s ${esc(c.fs.join(' and '))} entry moved on ${esc(c.d)}, <a href="${BASE}/changes.html">logged line by line in the public change log →</a>`}</p>` : ''}
-    <form class="sub-form" data-src="${esc(LOCALE.dir || '')}/inline" data-seed="${esc(seed.join(','))}">
-      <input type="email" name="email" required autocomplete="email"
-        placeholder="${zh ? '你的邮箱' : 'your@email.com'}" aria-label="${zh ? '邮箱地址' : 'Email address'}">
-      <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">
-      <button type="submit">${zh ? '当场下载这份清单' : 'Download the sheet now'}</button>
-    </form>
-    <p class="sub-msg" role="status" aria-live="polite"></p>
-    <p class="sub-note">${zh
-      ? `Markdown 格式、一页纸，点了立刻下载——不用等确认邮件。不想留邮箱也行：<a href="${BASE}/changes.html">额度变更记录</a>是公开的，也可以订 <a href="${BASE}/feed.xml">RSS</a>。留邮箱只多一件事——变的是你关注的那几个时，我们直接告诉你。随时可退订。`
-      : `Markdown, one page, downloads the moment you click — no confirmation email to wait for. You don't have to leave one: the <a href="${BASE}/changes.html">change log</a> is public and there's an <a href="${BASE}/feed.xml">RSS feed</a>. An email only adds one thing — we tell you directly when the ones you follow move. Unsubscribe any time.`}</p>
-  </section>`;
-};
+const subInlineOf = ({seed=[]}) => accountEntry('/',seed);
 
 // 全局搜索。对标审计的结论：成熟目录站（Futurepedia / Toolify / TAAFT）
 // 全站任何页面都能搜，而本站 836 页里只有首页能搜、且只是过滤当前页 DOM——
@@ -767,7 +652,7 @@ const watchBtnOf = (slug) => {
 // 逐字重复在 1,545 页里（占整站 HTML 字节的 42%），改为一份可缓存的 /bpj.js。
 const SUB_JS_BODY = `(function(){
   var KEY='bpj_watch';
-  function read(){try{return JSON.parse(localStorage.getItem(KEY)||'[]')}catch(e){return []}}
+  function read(){if(window.bpjAccount&&window.bpjAccount.state.user)return window.bpjAccount.state.favorites;try{return JSON.parse(localStorage.getItem(KEY)||'[]')}catch(e){return []}}
   function write(a){try{localStorage.setItem(KEY,JSON.stringify(a.slice(0,40)))}catch(e){}}
   var ZH=document.documentElement.lang.indexOf('zh')===0;
   // 漏斗埋点。审计发现：注册数为 0，而我们说不出人是在哪一步走的——
@@ -779,6 +664,7 @@ const SUB_JS_BODY = `(function(){
     var b=e.target.closest?e.target.closest('.watch'):null; if(!b)return;
     e.preventDefault();
     var slug=b.dataset.slug; if(!slug)return;
+    if(window.bpjAccount){window.bpjAccount.toggle(slug,b);return;}
     var a=read(), i=a.indexOf(slug);
     if(i<0){a.push(slug)}else{a.splice(i,1)}
     write(a); paint();
@@ -823,6 +709,7 @@ const SUB_JS_BODY = `(function(){
     Array.prototype.forEach.call(document.querySelectorAll('.sub'),function(s){io.observe(s)});
   }
 
+  document.addEventListener('bpj-account-state',function(){paint()});
   function paint(){
     var a=read();
     Array.prototype.forEach.call(document.querySelectorAll('.watch'),function(b){
@@ -834,7 +721,7 @@ const SUB_JS_BODY = `(function(){
     Array.prototype.forEach.call(document.querySelectorAll('.sub-count'),function(p){
       p.innerHTML = a.length
         ? (ZH?('已关注 <b>'+a.length+'</b> 个工具，清单只含这些。'):('Following <b>'+a.length+'</b> tool'+(a.length>1?'s':'')+' — the sheet will cover just these.'))
-        : (ZH?'还没标记工具？直接留邮箱也行，会给你全部 <b>已核实</b> 的额度总表。':'No tools starred yet? Leave an email anyway and you will get the full <b>verified</b> table.');
+        : (ZH?'还没有关注工具？到目录选择工具，再登录免费账户同步清单。':'No followed tools yet? Choose tools in the directory and sign in to sync your list.');
     });
   }
   paint();
@@ -924,153 +811,6 @@ const SUB_JS_BODY = `(function(){
 
   // 抽成具名函数：滑入卡片是运行时注入的，querySelectorAll 那一趟扫不到它，
   // 不抽出来就得复制整段提交逻辑——两份代码只会在某次改动里悄悄分叉。
-  function bindSub(f){
-    // signup 框架里的「常见笔误纠正」：gmial.com 这类手滑占无效邮箱的很大一块，
-    // 报错「看起来不对」不如直接猜出他想输什么。只在编辑距离恰为 1 时开口，
-    // 距离 2 以上的猜测经常猜错，错误的纠正比不纠正更伤。
-    var DOMS=['gmail.com','outlook.com','hotmail.com','yahoo.com','icloud.com','qq.com','163.com','126.com','foxmail.com','proton.me','protonmail.com','live.com'];
-    // Damerau 变体：相邻换位计 1。gmial→gmail 这类换位是最典型的手滑，
-    // 普通 Levenshtein 把它算成 2 次替换，阈值 1 就永远抓不到——实测抓不到才发现的。
-    function lev(a,b){var m=[],i,j;for(i=0;i<=a.length;i++){m[i]=[i]}for(j=0;j<=b.length;j++){m[0][j]=j}for(i=1;i<=a.length;i++){for(j=1;j<=b.length;j++){m[i][j]=Math.min(m[i-1][j]+1,m[i][j-1]+1,m[i-1][j-1]+(a.charAt(i-1)===b.charAt(j-1)?0:1));if(i>1&&j>1&&a.charAt(i-1)===b.charAt(j-2)&&a.charAt(i-2)===b.charAt(j-1)){m[i][j]=Math.min(m[i][j],m[i-2][j-2]+1)}}}return m[a.length][b.length]}
-    var inp=f.querySelector('input[name=email]');
-    inp.addEventListener('blur',function(){
-      var box=f.parentNode, msg=box.querySelector('.sub-msg');
-      var v=(inp.value||'').trim(), at=v.lastIndexOf('@'); if(at<1)return;
-      var dom=v.slice(at+1).toLowerCase(); if(!dom||DOMS.indexOf(dom)>=0)return;
-      for(var i=0;i<DOMS.length;i++){
-        if(lev(dom,DOMS[i])===1){
-          var fixed=v.slice(0,at+1)+DOMS[i];
-          msg.className='sub-msg'; msg.textContent='';
-          // 全程 DOM 节点拼装，不走 innerHTML：邮箱本地部分是用户输入，拼字符串就是 XSS 口子
-          msg.appendChild(document.createTextNode(ZH?'你是想输入 ':'Did you mean '));
-          var b=document.createElement('button'); b.type='button'; b.className='sub-fix'; b.textContent=fixed;
-          b.addEventListener('click',function(){inp.value=fixed;msg.textContent='';inp.focus()});
-          msg.appendChild(b);
-          msg.appendChild(document.createTextNode(ZH?' 吗？':'?'));
-          return;
-        }
-      }
-    });
-    f.addEventListener('submit',function(e){
-      e.preventDefault();
-      var box=f.parentNode, msg=box.querySelector('.sub-msg'), btn=f.querySelector('button');
-      var email=(f.querySelector('input[name=email]').value||'').trim();
-      // 一个星标都没点的人（搜索落地页最常见的那种）不该拿到全站大表。
-      // 页内钩子在 data-seed 里带了本工具与同类已核实条目，此时用它当清单，
-      // 交付的东西才和他刚才在看的那一页有关。
-      var seed=(f.dataset.seed||'').split(',').filter(Boolean);
-      var want=read().length?read():seed;
-      msg.className='sub-msg'; msg.textContent=''; btn.disabled=true;
-      EV('sub_submit', f.dataset.seed ? '/sub_submit/inline' : '/sub_submit/foot');
-      fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({email:email,lang:document.documentElement.lang,src:f.dataset.src||location.pathname,tools:want.join(','),website:(f.querySelector('input[name=website]')||{}).value||''})})
-      .then(function(r){return r.json().catch(function(){return{ok:false,code:'error'}})})
-      .then(function(d){
-        btn.disabled=false;
-        if(!d.ok){
-          EV('sub_err','/sub_err/'+(d.code||'error'));
-          msg.className='sub-msg is-err';
-          msg.textContent = d.code==='invalid'
-            ? (ZH?'这个邮箱地址看起来不对，检查一下？':'That address does not look right — mind checking it?')
-            : (ZH?'没存上，稍后再试一次。':'That did not save — please try again in a moment.');
-          return;
-        }
-        EV(d.code==='ok'?'sub_ok':'sub_dup');
-        try{localStorage.setItem('bpj_subd','1')}catch(e){}
-        f.reset();
-        msg.className='sub-msg is-ok';
-        // resub 是值得告知的状态（这个人之前退订过），但它必须留在最终文案里——
-        // 实测：先写 resub 再被「清单已下载」覆盖，等于这句话一闪而过、用户看不见。
-        var pre = d.code==='resub'
-          ? (ZH?'已重新订阅（你之前退订过）。':'Re-subscribed (you had unsubscribed before). ')
-          : '';
-        msg.textContent = pre + (ZH?'正在生成你的清单…':'Building your sheet…');
-        // 交付先于承诺：先把文件给到手，再说后续会发信。
-        deliver(want).then(function(n){
-          // 钩子真正兑现的那一刻。sub_ok 与 sheet_dl 之间的差额就是「留了邮箱却没拿到东西」的人数，
-          // 这是本站最不能容忍的一种失败，必须单独可见。
-          EV('sheet_dl','/sheet/'+n);
-          // 2026-08-16 改：原文案是「一有变动我们就发信告诉你」——发信通道一天没接，
-          // 这句话就一天是空头。改成只说当下真兑现得了的两件事（变更记录页与 RSS 已经在跑），
-          // 邮箱那件如实说明状态。承诺与交付必须逐字对得上，这条规矩对成功页同样适用。
-          msg.textContent = pre + (ZH
-            ? ('清单已下载（'+n+' 个工具）。这几个工具此后的每次变动都会记进公开的变更记录（同时进 RSS），现在就能看；你的邮箱已在名单里，直接发信的通道接通后第一批通知你。')
-            : ('Sheet downloaded ('+n+' tools). Every later move on these lands in the public change log and the RSS feed, live right now; your address is on the list, and you will be in the first batch once direct notices go out.'));
-        }).catch(function(){
-          EV('sheet_err');
-          msg.textContent = pre + (ZH
-            ? '已记下你的邮箱；清单生成失败，稍后在本页重试即可。'
-            : 'Your email is saved; the sheet failed to build — retry on this page in a moment.');
-        });
-      })
-      .catch(function(){
-        btn.disabled=false;
-        msg.className='sub-msg is-err';
-        msg.textContent=ZH?'网络没通，稍后再试。':'Network error — please try again.';
-      });
-    });
-  }
-  Array.prototype.forEach.call(document.querySelectorAll('.sub-form'),bindSub);
-
-  // ---- 滑入卡片：只在两个「用户自己发起」的时刻出现 ----
-  // popups 框架的结论：click-triggered 转化最高且零打扰（用户刚表达了意图），
-  // exit-intent 是尾部兜底；毁信任的只是落地即糊脸的全屏 modal——那种仍然不做。
-  // 规矩全套照搬框架：每会话最多一次、关掉记 14 天、订过的人永不再见、Esc 可关、不挡内容。
-  var SLID=false;
-  function slideOK(){
-    if(SLID)return false;
-    try{
-      if(localStorage.getItem('bpj_subd'))return false;
-      var ts=+localStorage.getItem('bpj_slide_ts')||0;
-      if(ts && Date.now()-ts<1209600000)return false;   // 14 天冷却
-    }catch(e){}
-    return true;
-  }
-  function closeSlide(remember){
-    var el=document.querySelector('.slidein'); if(!el)return;
-    el.remove();
-    if(remember){try{localStorage.setItem('bpj_slide_ts',String(Date.now()))}catch(e){}}
-  }
-  function slideIn(reason){
-    if(!slideOK())return; SLID=true;
-    var seedSrc=document.querySelector('.sub-form[data-seed]');
-    var seed=read().length?read().join(','):(seedSrc?seedSrc.dataset.seed:'');
-    var el=document.createElement('aside');
-    el.className='slidein'; el.setAttribute('role','dialog');
-    el.setAttribute('aria-label',ZH?'额度变更提醒':'Allowance change alerts');
-    var x=document.createElement('button'); x.type='button'; x.className='slidein-x';
-    x.setAttribute('aria-label',ZH?'关闭':'Close'); x.textContent='\u00d7';
-    x.addEventListener('click',function(){closeSlide(true)});
-    var t=document.createElement('p'); t.className='slidein-t';
-    t.textContent = reason==='star'
-      ? (ZH?'已关注。变更提醒直接发到邮箱？现在还能当场拿到你关注工具的对照表。':'Following. Want changes emailed to you? You can also grab the sheet for what you follow right now.')
-      : (ZH?'走之前——这页的数字都会变。留个邮箱，变了直接告诉你；清单现在就能当场下载。':'Before you go — the numbers on this page will move. Leave an email and we will tell you when they do; the sheet downloads right now.');
-    var form=document.createElement('form'); form.className='sub-form';
-    form.setAttribute('data-src','/slide/'+reason);
-    if(seed)form.setAttribute('data-seed',seed);
-    var em=document.createElement('input'); em.type='email'; em.name='email'; em.required=true;
-    em.autocomplete='email'; em.placeholder=ZH?'你的邮箱':'your@email.com';
-    em.setAttribute('aria-label',ZH?'邮箱地址':'Email address');
-    var hp=document.createElement('input'); hp.type='text'; hp.name='website'; hp.tabIndex=-1;
-    hp.autocomplete='off'; hp.setAttribute('aria-hidden','true'); hp.className='hp';
-    var go=document.createElement('button'); go.type='submit';
-    go.textContent=ZH?'当场下载清单':'Download my sheet';
-    form.appendChild(em); form.appendChild(hp); form.appendChild(go);
-    var msg=document.createElement('p'); msg.className='sub-msg';
-    msg.setAttribute('role','status'); msg.setAttribute('aria-live','polite');
-    var n=document.createElement('p'); n.className='slidein-n';
-    n.textContent=ZH?'Markdown、一页纸、点了立刻下载。随时可退订。':'Markdown, one page, instant download. Unsubscribe any time.';
-    el.appendChild(x); el.appendChild(t); el.appendChild(form); el.appendChild(msg); el.appendChild(n);
-    document.body.appendChild(el);
-    bindSub(form);
-    EV('sub_view','/sub_view/slide-'+reason);
-  }
-  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeSlide(true)});
-  // 触发一：点星标（click-triggered——他刚说了「我想跟踪这个」，这是全站意图最高的一刻）
-  document.addEventListener('click',function(e){
-    var b=e.target.closest?e.target.closest('.watch'):null; if(!b)return;
-    if(b.classList.contains('is-on')) setTimeout(function(){slideIn('star')},150);
-  });
   // ---- 全局搜索 ----
   // 索引懒加载：聚焦才拉取，不聚焦的访客不花这份流量。
   // 索引按 URL 缓存（2026-09-22）：同一页现在可能有两个搜索框指向不同索引（全站 search-index.json 与
@@ -1135,33 +875,6 @@ const SUB_JS_BODY = `(function(){
     document.addEventListener('click',function(e){if(!g.contains(e.target))drop.hidden=true});
   });
 
-  // 触发二：桌面退出意图（鼠标冲出视口顶部）。移动端没有可靠信号，宁缺——
-  // popups 框架明说移动端的替代方案都嫌重，Google 对移动端插页也最敏感。
-  if(window.matchMedia&&matchMedia('(pointer:fine)').matches){
-    document.addEventListener('mouseout',function(e){
-      if(e.clientY>0||e.relatedTarget)return;
-      slideIn('exit');
-    });
-  }
-  // 触发三（2026-08-24，docs/PRD-mobile-slide.md）：移动端上滑离开意图。
-  // 「宁缺」的原始决策成立于滑入卡还没有任何转化证据的时候；08-23 全舰队第一个
-  // 真实订阅正来自 /slide/exit，而移动端读者此前永远没有触发资格。深读（滚动深度
-  // 曾达 60% 页高）之后 600ms 内累计上滑 ≥220px ≈ 移动端最接近「要走了」的信号。
-  // 仍然不做全屏 modal、不做定时弹出；同一张小卡，规矩全部经 slideOK 复用。
-  // 测量分流：sub_view 落 /sub_view/slide-up、订阅行 src=/slide/up，判定线 09-21。
-  if(window.matchMedia&&matchMedia('(pointer:coarse)').matches){
-    var deepRead=false,upAcc=0,lastY=0,lastT=0;
-    window.addEventListener('scroll',function(){
-      var y=window.scrollY||0,t=Date.now();
-      var h=document.documentElement.scrollHeight||1;
-      if((y+window.innerHeight)/h>=0.6)deepRead=true;
-      if(y<lastY){
-        upAcc=(t-lastT<600?upAcc:0)+(lastY-y);
-        if(deepRead&&upAcc>=220)slideIn('up');
-      }else{upAcc=0}
-      lastY=y;lastT=t;
-    },{passive:true});
-  }
 })();
 `;
 const bpjVersion=createHash('sha256').update(SUB_JS_BODY).digest('hex').slice(0,12);
@@ -2306,8 +2019,8 @@ function upgradePage(tool) {
   </section>` : ''}
   <p class="coverage"><a href="${BASE}/tools/${esc(tool.slug)}.html">${zh ? `← ${esc(tool.name)} 的免费额度详情` : `← ${esc(tool.name)} free-tier details`}</a></p>
   <p class="money-lede">${zh
-    ? '订阅提醒在这一页的含义：<b>你在用的这档涨价、积分缩水或规则变更时，直接告诉你</b>——不发周报，不发资讯。'
-    : 'Subscribing from this page means one thing: <b>you hear directly when the tier you pay for gets pricier, thinner or rewritten</b> — no newsletters, no digests.'}</p>
+    ? '免费账户可保存关注工具，并在个人中心查看公开日志里已记录的额度或规则变更。当前没有邮件提醒。'
+    : 'A free account saves followed tools and shows their recorded allowance or rule changes in your account. Email alerts are not available.'}</p>
   ${subscribeOf(`/upgrade/${tool.slug}.html`)}
 </main>`;
   return layout({
@@ -3176,7 +2889,7 @@ function earnGateJs(slug) {
   };
   return `<script>(function(){
 var slot=document.getElementById('earnSlot');if(!slot)return;
-var EKEY='bpj_reg_email',RKEY='bpj_tool_reg',SLUG=${JSON.stringify(slug)},LANG='${LOCALE.code}';
+var SLUG=${JSON.stringify(slug)},LANG='${LOCALE.code}';
 var BASEP=${JSON.stringify(BASE)};
 function esc(s){var d=document.createElement('div');d.textContent=s==null?'':String(s);return d.innerHTML}
 // bpjEv 自 2026-09-03 起随 /bpj.js 以 defer 加载（main 的整站字节优化），
@@ -3188,9 +2901,9 @@ function EV(n,p){
   else f();
 }
 
-function open(email){
+function open(){
   return fetch('/api/earn',{method:'POST',headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({email:email,slug:SLUG,lang:LANG})})
+    body:JSON.stringify({slug:SLUG,lang:LANG})})
     .then(function(r){return r.json()}).then(function(d){
       if(!d||!d.ok||!d.pack)return false;
       render(d.pack);return true;
@@ -3228,28 +2941,10 @@ function render(p){
   slot.innerHTML=H;
   EV('earn','/earn/read/'+SLUG);
 }
-var saved='';try{saved=localStorage.getItem(EKEY)||''}catch(e){}
-if(saved){open(saved).then(function(okd){if(!okd)form()});}else form();
+open().then(function(ok){if(!ok)form()}).catch(form);
 function form(){
-  slot.innerHTML='<section class="reg-gate" id="earnGate"><h2>${T.h2}</h2><p>${T.p}</p>'
-    +'<form class="sub-form"><input type="email" name="email" required autocomplete="email" placeholder="${T.ph}" aria-label="${T.ph}">'
-    +'<input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">'
-    +'<button type="submit">${T.btn}</button></form>'
-    +'<p class="sub-note">${T.note}</p><p class="sub-msg" role="status" aria-live="polite"></p></section>';
-  EV('earn','/earn/view/'+SLUG);
-  var f=slot.querySelector('form'),msg=slot.querySelector('.sub-msg');
-  f.addEventListener('submit',function(e){
-    e.preventDefault();
-    var email=(f.email.value||'').trim();msg.textContent='${T.busy}';
-    fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({email:email,website:f.website.value||'',lang:LANG,src:'earn-gate:'+SLUG})})
-      .then(function(r){return r.json()}).then(function(d){
-        if(!d||!d.ok){msg.textContent='${T.bad}';return}
-        try{localStorage.setItem(EKEY,email.toLowerCase());localStorage.setItem(RKEY,'1')}catch(x){}
-        if(window.bpjEv)bpjEv('earn','/earn/ok/'+SLUG);
-        return open(email.toLowerCase()).then(function(okd){if(!okd)msg.textContent='${T.net}'});
-      }).catch(function(){msg.textContent='${T.net}'});
-  });
+ slot.innerHTML='<section class="reg-gate" id="earnGate"><h2>${zh?'登录免费账户，打开资料包':'Sign in to your free account to open this pack'}</h2><p>${zh?'资料包属于免费会员权益；无需购买云会员。旧邮箱订阅不再作为登录凭证。':'Packs are included with free membership; paid cloud access is not required. An email subscription is not a login credential.'}</p><a href="'+BASEP+'/account?next='+encodeURIComponent(location.pathname)+'">${zh?'免费注册 / 登录':'Join free / Sign in'} →</a></section>';
+ EV('earn','/earn/view/'+SLUG);
 }
 })();</script>
 `;
@@ -3306,12 +3001,12 @@ function earnIndexPage() {
     ? `AI 赚钱作业包是 ${hustles.length} 条已调研路子的接单资料：每条给出要用的工具、每个工具的已核实免费额度与官方出处，以及最关键的一条——做出来的东西能不能拿去接单（本站逐条核实的商用授权判定，共 ${Object.keys(LICENCE).length} 条）。作业包注册后免费看；公开作业不用注册。别人卖你「月入过万」的课，我们免费给作业，并且明说多数人为什么失败、这条路上的骗局长什么样。本站不承诺任何收入数字。`
     : `The AI earning packs are client-work briefs for ${hustles.length} researched paths: the tools each one needs, every tool's verified free-tier limit with its official source, and the question that decides whether the work is sellable at all — whether the output may legally be used commercially (${Object.keys(LICENCE).length} verdicts, verified one by one). Packs are free after registration; the public playbooks need none. Others sell you a course promising a monthly income; we give the homework away, and state plainly why most people fail and what the scams look like. We promise no income figures.`;
   const faq = zh
-    ? [['为什么要注册才能看作业包？', '作业包是我们用已核实数据编译出来的接单资料，做它有持续成本（每天重新核实额度与授权条款）。注册免费、不收钱、不卖课；留邮箱的另一个作用是：你这条路上用的工具免费额度一变，我们能直接告诉你。'],
-       ['注册要花钱吗？会被推销吗？', '不花钱。邮箱只用于解锁与额度变更提醒，不转让、不群发广告，随时可退订。本站不卖课，也不接付费收录。'],
+    ? [['为什么要注册才能看作业包？', '作业包是我们用已核实数据编译出来的接单资料，做它有持续成本（每天重新核实额度与授权条款）。免费账户可重复登录、跨设备保存关注清单并查看已记录变更；资料包无需购买付费云会员。'],
+       ['注册要花钱吗？会被推销吗？', '免费注册使用用户名和密码，不收集邮箱或自动订阅营销。请保存恢复码。本站不卖课，也不接付费收录。'],
        ['作业包会承诺我能赚多少钱吗？', '不会。一个收入数字都不给——承诺收入是这个品类所有骗局的共同起手式。作业包只保证：里面的额度与商用判定都能追溯到官方页面并标注核实日期。'],
        ['不注册能看什么？', `${hustles.length} 条路的公开作业（/money/）全部开放，不用注册：适合谁、分几步、第一周做什么、为什么多数人没做成、骗局长什么样。作业包补的是工具额度与商用权这两层。`]]
-    : [['Why does a pack need registration?', 'A pack is client-work material compiled from data we re-verify daily — allowances and licence terms both. Registration is free and never charged; the address also lets us tell you when a free tier your path depends on moves.'],
-       ['Does registering cost anything? Will I be sold to?', 'No cost. The address is used only to unlock and to send allowance-change alerts — never sold, never blasted with ads, unsubscribe any time. We sell no courses and take no paid listings.'],
+    : [['Why does a pack need registration?', 'A pack is client-work material compiled from data we re-verify daily — allowances and licence terms both. Free accounts support repeat sign-in, synced tool lists and recorded changes. Packs do not require paid cloud membership.'],
+       ['Does registering cost anything? Will I be sold to?', 'Free signup uses a username and password, with no email collection or marketing subscription. Save your recovery code. We sell no courses and take no paid listings.'],
        ['Will a pack promise me an income?', 'No. Not a single income figure — promising income is how every scam in this category opens. A pack guarantees only this: every allowance and verdict traces to an official page with its check date.'],
        ['What can I read without registering?', `All ${hustles.length} public playbooks (/money/) are open: who each suits, the steps, week one, why most people fail, and what the scams look like. The packs add the tool allowances and the commercial-use layer.`]];
   const body = `${railOf()}
@@ -4430,8 +4125,8 @@ ${PERSONAS.map((p) => {
     <h1>${esc(h1)}</h1>
     <p class="answer">${esc(answer)}</p>
     <p class="coverage"><a href="${BASE}/feed.xml">${zh
-      ? '不想留邮箱？订 RSS 也能收到同一批变更 →'
-      : 'Rather not leave an email? The same changes go out over RSS →'}</a></p>
+      ? '无需注册，用 RSS 订阅公开变更 →'
+      : 'No signup needed: subscribe to public changes over RSS →'}</a></p>
   </div></header>
 
   <section class="limits-table">
@@ -4872,12 +4567,12 @@ if (CODQ && CHATQ) {
   const zh = LOCALE.code === 'zh';
   const h1 = zh ? '定价：数据永久免费，卖的是围绕数据的服务' : 'Pricing: the data stays free — what is sold is the service around it';
   const desc = zh
-    ? '已核实数字、JSON API 与 MCP 服务器永久免费，数据以 CC BY 4.0 开放；全部自建工具同样免费，使用前注册一个邮箱即可（一次注册全站解锁）。将来收费的只有持续监控、报告导出与高频配额这类围绕数据的服务。付费收录、付费排序、付费徽章一概不卖——排序能买，核实就一文不值。厂商能买的只有两样：队列位置（加急核实：结论来得更快，不是更好的结论），以及带明示「广告」标注、与目录物理分开的广告位（见<a href="' + BASE + '/advertise.html">投放</a>）。详见厂商自荐页的「付费买不到的东西」。'
-    : 'The verified figures, the JSON API and the MCP server are free for good, and the data is open under CC BY 4.0. Every self-built tool is free too — register an email once and everything unlocks. Only services around the data — continuous monitoring, report export, higher quotas — will ever be paid. Paid listing, paid ranking and paid badges are not for sale at any price: if ranking can be bought, verification is worthless. A vendor can buy exactly two things: queue position (expedited verification: a faster verdict, never a better one) and a labelled ad slot that sits apart from the directory (see <a href="' + BASE + '/advertise.html">advertise</a>). The vendor page lists what payment cannot buy.';
+    ? '已核实数字、JSON API 与 MCP 服务器永久免费，数据以 CC BY 4.0 开放；本地 PDF、图片工具免注册可用；免费账户可同步关注清单并使用免费会员工具与资料包。付费云项目另计 9 USDT / 30 天，不自动续费。持续监控扩展等服务以各自页面标明的可用状态为准。付费收录、付费排序、付费徽章一概不卖——排序能买，核实就一文不值。厂商能买的只有两样：队列位置（加急核实：结论来得更快，不是更好的结论），以及带明示「广告」标注、与目录物理分开的广告位（见<a href="' + BASE + '/advertise.html">投放</a>）。详见厂商自荐页的「付费买不到的东西」。'
+    : 'The verified figures, the JSON API and the MCP server are free for good, and the data is open under CC BY 4.0. Local PDF and image tools work without signup. Free accounts add synced lists, free member tools and packs. Paid cloud projects cost 9 USDT per 30 days without automatic renewal. Other services, such as expanded monitoring, follow the availability stated on their pages. Paid listing, paid ranking and paid badges are not for sale at any price: if ranking can be bought, verification is worthless. A vendor can buy exactly two things: queue position (expedited verification: a faster verdict, never a better one) and a labelled ad slot that sits apart from the directory (see <a href="' + BASE + '/advertise.html">advertise</a>). The vendor page lists what payment cannot buy.';
   const FREE = zh
-    ? [['全部已核实数字与出处', '这是全站存在的理由'], ['全部自建工具（注册邮箱后使用）', '订阅体检、API 计算器、能不能发、分词器等，一次注册全站解锁'],
+    ? [['全部已核实数字与出处', '这是全站存在的理由'], ['免费会员工具与资料包', '订阅体检、API 计算器、能不能发、分词器等，登录免费账户后使用；不含付费云项目'],
        ['JSON API 与 limits.json / llms-full.txt', 'CC BY 4.0，署名回链即可商用'], ['MCP 服务器（16 工具 / 11 资源 / 4 提示词）', '无鉴权，无需安装']]
-    : [['Every verified figure and its source', 'This is why the site exists'], ['Every self-built tool (free with email registration)', 'Audit, API calculator, publish-check, tokenizer and more — register once, unlocked everywhere'],
+    : [['Every verified figure and its source', 'This is why the site exists'], ['Free member tools and packs', 'Audit, API calculator, publish-check and tokenizer with a free account; paid cloud projects are separate'],
        ['JSON API and limits.json / llms-full.txt', 'CC BY 4.0 — attribute and link back, commercial use included'], ['MCP server (16 tools / 11 resources / 4 prompts)', 'No auth, nothing to install']];
   const PAID = zh
     ? [['持续监控·扩展档', '免费档已上线：/watch.html 可注册 webhook 监控 3 个工具。Pro 解锁全量监控与将来的历史时间序列导出——厂商不发公告，这来自每日重新核实'],
@@ -4901,10 +4596,10 @@ if (CODQ && CHATQ) {
   </div></header>
 
   <section class="limits-table">
-    <div class="calc-row calc-warn"><b>${zh ? '现状：付费尚未开放' : 'Today: nothing is on sale yet'}</b>
+    <div class="calc-row calc-warn"><b>${zh ? '免费账户与付费云项目' : 'Free accounts and paid cloud projects'}</b>
       <p>${zh
-        ? '我们给自己定过一条规矩——证据门槛没达标就不上收费。现在这个站每天的真人互动是个位数、邮件订阅为零，此时挂收银台，收到的会是零。所以机制先建好（边际成本为零、将来不返工），开关等达标了再开。这句话写在这里，是为了将来我们自己也不许绕过去。'
-        : 'We set ourselves a rule: no charging before the evidence bar is met. Human interactions here are still in the single digits per day and email subscriptions are at zero — a checkout page today would collect exactly nothing. So the mechanism is built and the switch stays off. This paragraph is here so that we cannot quietly walk around it later either.'}</p></div>
+        ? '免费注册、关注同步和资料包已开放。付费云项目为 9 USDT / 30 天，含 50 个工作区、每个项目最近 10 个版本，不自动续费；请在会员页查看可用支付入口。下面的 Pro 数据服务是单独的未来计划，不代表已交付。'
+        : 'Free signup, synced followed tools and packs are available. Paid cloud projects cost 9 USDT per 30 days, with 50 workspaces and the latest 10 versions per project, without automatic renewal; see the membership page for payment availability. The Pro data services below are separate future plans, not delivered features.'}</p></div>
   </section>
 
   <section class="limits-table">
@@ -6248,6 +5943,8 @@ buildStudio({
   },
   pushPage: (u, pr) => allPages.push({ u, pr }),
 });
+
+buildAccountPages({layout,esc,BASE,LOCALE,write:(relative,html)=>{const target=join(dist,...(L.dir?[L.dir.slice(1)]:[]),relative);mkdirSync(dirname(target),{recursive:true});writeFileSync(target,html);},pushPage:(u,pr)=>allPages.push({u,pr})});
 
 buildSiteJourneys({layout,railOf,esc,crumbLd,BASE,NAME,LOCALE,site,write:(relative,html)=>{const target=join(dist,...(L.dir?[L.dir.slice(1)]:[]),relative);mkdirSync(dirname(target),{recursive:true});writeFileSync(target,html);},pushPage:(u,pr)=>allPages.push({u,pr})});
 
@@ -7873,7 +7570,7 @@ ${el.groups.map((g) => `  <section class="limits-table">
 // 站点级文件只出一份（用中文态的数据做统计）
 useLocale(LOCALES[0]);
 writeFileSync(join(dist, 'style.css'), readFileSync(join(root, 'assets/style.css'), 'utf8') + '\n' + readFileSync(join(root, 'assets/studio/studio.css'), 'utf8'));
-for(const f of ['site-shell.css','site-shell.js']) cpSync(join(root,'assets',f),join(dist,f));
+for(const f of ['site-shell.css','site-shell.js','account.css','account.js']) cpSync(join(root,'assets',f),join(dist,f));
 cpSync(join(root, 'assets/studio'), join(dist, 'studio-assets'), { recursive: true });
 writeFileSync(join(dist, 'bpj.js'), SUB_JS_BODY + '\n');
 // CORS + 缓存策略：MCP/Agent 面早已 ACAO:*，它指向的静态数据文件此前没有——
@@ -8194,12 +7891,19 @@ writeFileSync(join(dist, 'pricing.md'), `# Pricing — ${site.name} (baipiaoji.c
 - Includes: every verified free-tier figure with its official source and check date;
   one-off calculation in every self-built tool; JSON API (/api/tools, /api/limits);
   limits.json / llms-full.txt; MCP server at /api/mcp (16 tools, 11 resources, 4 prompts)
-- Auth: none
+- Auth: none for public data, API, MCP and local file tools. Free member tools and packs require a username/password account at /account.
+- Free account: sync up to 40 followed tools, view recorded changes and export a sourced sheet. No email alerts.
 - Data licence: CC BY 4.0 — commercial use permitted with attribution to 白嫖计 baipiaoji.com and a link back
 
-## Pro
-- Price: not set — nothing is on sale yet
-- Status: the payment switch is deliberately off until the site's own evidence bar is met
+## Paid cloud projects
+- Price: 9 USDT / 30 days, no automatic renewal
+- Includes: 50 workspaces, latest 10 versions per project; 64 KiB per version and 5 MiB total
+- Auth: linked free account or paid access key; free signup alone does not grant paid access
+- Payment availability and terms: /members
+
+## Planned Pro data services
+- Price: not set
+- Status: not available for purchase
 - Already live for free: webhook monitoring of up to 3 tools (${site.base_url}/watch.html)
 - Planned paid scope: watching all verified tools, historical time-series export, report export,
   higher MCP quota

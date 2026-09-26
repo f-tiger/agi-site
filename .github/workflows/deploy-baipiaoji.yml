@@ -80,6 +80,11 @@ jobs:
         with:
           node-version: 22
 
+      - name: Verify free-account password hashing in actual Cloudflare runtime
+        run: |
+          npm install --prefix /tmp/bpj-account-runtime --no-save miniflare@5.20260925.0-alpha esbuild@0.28.2
+          FREE_ACCOUNT_RUNTIME_MODULES=/tmp/bpj-account-runtime/node_modules node scripts/test-free-account.mjs --workerd
+
       - name: Verify tool links & refresh dates (scheduled runs only)
         if: github.event_name != 'push'
         run: node scripts/verify.mjs
@@ -203,6 +208,9 @@ jobs:
           node scripts/test-ad-commerce.mjs
           node scripts/test-ad-web3.mjs
           node scripts/test-membership.mjs
+          node scripts/test-free-account.mjs
+          node scripts/test-free-account-races.mjs
+          node scripts/test-account-member.mjs
           node scripts/test-ad-watch-readiness.mjs
 
       - name: Pricing-probe selftest (zero network)
@@ -325,11 +333,16 @@ jobs:
           node sites/baipiaoji/scripts/test-release-pilot-browser.mjs
           node sites/baipiaoji/scripts/test-commercial-browser.mjs
           node sites/baipiaoji/scripts/test-site-experience-browser.mjs
+          node sites/baipiaoji/scripts/test-free-account-browser.mjs
+          node sites/baipiaoji/scripts/test-account-member.mjs --browser
 
       - name: Deploy to Cloudflare Pages
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: npx wrangler@4 pages deploy dist --project-name=aiyangmao --branch=main --commit-dirty=true
+
+      - name: Verify live free-account lifecycle and remove synthetic account
+        run: node scripts/verify-free-account-live.mjs
 
       - name: Verify paid-app demand pilot without counting QA
         run: node scripts/verify-release-pilot-live.mjs
@@ -693,11 +706,11 @@ jobs:
           hub=$(curl -s -o /dev/null -w '%{http_code}' -m 20 'https://baipiaoji.com/earn/')
           [ "$hub" = "200" ] || { echo "::error::/earn/ 枢纽页返回 $hub"; exit 1; }
           # 未注册地址必须拿不到正文
-          deny=$(curl -s -m 20 -X POST 'https://baipiaoji.com/api/earn' -H 'content-type: application/json' \
+          deny=$(curl -s -m 20 -X POST 'https://baipiaoji.com/api/earn' -H 'content-type: application/json' -H 'Origin: https://baipiaoji.com' \
             -d '{"email":"__selftest-not-registered@example.com","slug":"ai-design-service","lang":"zh"}')
           echo "$deny" | grep -q 'not_registered' || { echo "::error::未注册邮箱没有被拒：$deny"; exit 1; }
           # 未知 slug 必须 404，而不是回一个空壳成功
-          unk=$(curl -s -m 20 -X POST 'https://baipiaoji.com/api/earn' -H 'content-type: application/json' \
+          unk=$(curl -s -m 20 -X POST 'https://baipiaoji.com/api/earn' -H 'content-type: application/json' -H 'Origin: https://baipiaoji.com' \
             -d '{"email":"__selftest-not-registered@example.com","slug":"no-such-path-xyz","lang":"zh"}')
           echo "$unk" | grep -q 'unknown' || { echo "::error::未知作业包 slug 未被拒：$unk"; exit 1; }
           # 正文模块确实随 Function 打包了：模块缺失时 Pages 构建期就会把整个 Function 判死，

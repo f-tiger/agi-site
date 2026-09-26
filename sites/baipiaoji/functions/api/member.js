@@ -1,5 +1,5 @@
 import {json,digest,seconds} from '../../lib/ad-commerce.js';
-import {PLAN,memberSite,memberPlan,allowedProduct,ensureMembers,memberByToken,memberStatus,memberReady,createOrder,checkOrder,orderStatus,saveSpace,rate} from '../../lib/membership.js';
+import {PLAN,memberSite,memberPlan,allowedProduct,ensureMembers,memberByToken,memberStatus,memberReady,createOrder,createOrderForMember,checkOrder,orderStatus,saveSpace,rate} from '../../lib/membership.js';
 const tokenOf=r=>String(r.headers.get('Authorization')||'').replace(/^Bearer /,'');
 export async function onRequestGet({env}){
  try{if(!env.HITS)return json({ok:false,code:'not_ready'},503);await ensureMembers(env.HITS,memberSite(env));return json({ok:true,version:1,ready:await memberReady(env),plan:memberPlan(env),site:memberSite(env),chain:'bsc',token:'USDT',auto_renew:false});}catch{return json({ok:false,code:'temporarily_unavailable'},503);}
@@ -12,12 +12,18 @@ export async function onRequestPost({request,env}){
  if(Number(request.headers.get('Content-Length')||0)>100000)return json({ok:false,code:'too_large'},413);
  let b;try{const raw=await request.text();if(new TextEncoder().encode(raw).length>100000)return json({ok:false,code:'too_large'},413);b=JSON.parse(raw);}catch{return json({ok:false,code:'badjson'},400);}
  if(!b||typeof b!=='object'||Array.isArray(b))return json({ok:false,code:'badjson'},400);
+ try{await ensureMembers(env.HITS,memberSite(env));return await memberAction({request,env,b,token,m:await memberByToken(env.HITS,token)});}catch{return json({ok:false,code:'temporarily_unavailable'},503);}
+}
+// Shared operations after identity resolution; BPJ's cookie bridge supplies a server-resolved member.
+// Keep account/password dependencies out of the shared bearer route used by other sites.
+export async function memberAction({request,env,b,token=null,m=null}){
  try{
-  const db=env.HITS;await ensureMembers(db,memberSite(env));let m=await memberByToken(db,token);
+  const db=env.HITS;
   if(b.action==='status')return json({ok:true,...memberStatus(m),plan:memberPlan(env),site:memberSite(env)});
   if(b.action==='checkout'){
    if(b.accept_terms!==true||b.key_saved!==true)return json({ok:false,code:'consent_required'},400);
-   return json({ok:true,order:await createOrder(env,token,b.nonce,request.headers.get('CF-Connecting-IP')||'unknown',b.source||'')});
+   const ip=request.headers.get('CF-Connecting-IP')||'unknown';
+   return json({ok:true,order:token?await createOrder(env,token,b.nonce,ip,b.source||''):await createOrderForMember(env,m,b.nonce,ip,b.source||'')});
   }
   if(!m)return json({ok:false,code:'unauthorized'},401);
   await rate(db,'api:'+m.id,120,60);
@@ -32,7 +38,7 @@ export async function onRequestPost({request,env}){
    return json({ok:true,order:await checkOrder(env,row,b.tx?String(b.tx).trim().toLowerCase():null)});
   }
   if(b.action==='rotate'){
-   if(!/^[a-f0-9]{64}$/.test(b.new_key||'')||b.new_key===token)return json({ok:false,code:'bad_key'},400);
+   if(!token||!/^[a-f0-9]{64}$/.test(b.new_key||'')||b.new_key===token)return json({ok:false,code:'bad_key'},400);
    await db.prepare('UPDATE wb_members SET token_hash=? WHERE id=? AND token_hash=?').bind(await digest(b.new_key),m.id,await digest(token)).run();return json({ok:true});
   }
   // Export and deletion stay available in the grace period, including suspension.
