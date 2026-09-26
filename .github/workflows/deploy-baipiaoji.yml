@@ -304,8 +304,11 @@ jobs:
           npm ci --prefix tools/revenue-studio --ignore-scripts
           node --test tools/revenue-studio/test.mjs
           node tools/revenue-studio/build.mjs --site bpj --out sites/baipiaoji/dist
-          node tools/revenue-studio/verify.mjs --site bpj --out sites/baipiaoji/dist
           node tools/member-studio/build.mjs --out sites/baipiaoji/dist
+          node sites/baipiaoji/scripts/finish-experience.mjs --out sites/baipiaoji/dist
+          node sites/baipiaoji/scripts/test-site-journeys.mjs --dist
+          (cd sites/baipiaoji && node scripts/verify-dist.mjs && node scripts/check-canonical-routes.mjs)
+          node tools/revenue-studio/verify.mjs --site bpj --out sites/baipiaoji/dist
           node tools/member-studio/verify.mjs --out sites/baipiaoji/dist
           node tools/member-studio/test-isolation.mjs
           node sites/baipiaoji/scripts/test-video-business.mjs --dist
@@ -321,6 +324,7 @@ jobs:
           node sites/baipiaoji/scripts/test-video-business-browser.mjs
           node sites/baipiaoji/scripts/test-release-pilot-browser.mjs
           node sites/baipiaoji/scripts/test-commercial-browser.mjs
+          node sites/baipiaoji/scripts/test-site-experience-browser.mjs
 
       - name: Deploy to Cloudflare Pages
         env:
@@ -952,5 +956,3 @@ jobs:
           check "变更清单回写" "${{ steps.manifest.outcome }}"
           [ "$fail" = "0" ] || exit 1
           echo "✅ 全部链路自测通过"
-
-
