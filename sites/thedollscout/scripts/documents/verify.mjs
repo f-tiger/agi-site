@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url';
 import { copy, languages, toolSlugs } from './copy.mjs';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const args = process.argv.slice(2), live = args.includes('--live'), output = args.includes('--out') ? path.resolve(args[args.indexOf('--out') + 1]) : root;
-const origin = 'https://thedollscout.com', edition = '2026-09-25.7';
+const origin = 'https://thedollscout.com', edition = '2026-09-25.8';
 const localFile = route => path.join(output, route.replace(/^\//,'') + (route.endsWith('/') ? 'index.html' : path.extname(route) ? '' : '.html'));
 const headers = { 'user-agent':'tds-document-probe/1.0', 'x-probe':'1' };
 async function read(route, binary = false) {
@@ -22,7 +22,7 @@ async function read(route, binary = false) {
   throw last;
 }
 const manifest = JSON.parse(await read('/document-assets/manifest.json'));
-assert.equal(manifest.edition,edition); assert.equal(manifest.records.length,36);
+assert.equal(manifest.edition,edition); assert.equal(manifest.records.length,39);
 const sitemap = await read('/sitemap.xml');
 const titles = new Set();
 for (const record of manifest.records) {
@@ -56,7 +56,7 @@ for (const record of manifest.records) {
     assert.ok(fs.existsSync(localFile(u.pathname)), 'Broken local link: ' + route + ' -> ' + u.pathname);
   }
 }
-for (const asset of ['app.mjs','core.mjs','sharing.mjs','delivery.mjs','delivery-core.mjs','delivery.css','delivery-format.txt','pdf-reader.mjs','style.css','favicon.svg','vendor/pdf.mjs','vendor/pdf.worker.mjs','vendor/LICENSE.txt','samples/sample-before.pdf','samples/sample-after.pdf','samples/sample-image.pdf']) assert.ok((await read('/document-assets/' + asset,true)).length > 100,asset);
+for (const asset of ['app.mjs','core.mjs','sharing.mjs','delivery.mjs','delivery-core.mjs','delivery.css','delivery-format.txt','verify.mjs','verify-core.mjs','verify.css','verify-format.txt','verify-file-cli.mjs','pdf-reader.mjs','style.css','favicon.svg','vendor/pdf.mjs','vendor/pdf.worker.mjs','vendor/LICENSE.txt','samples/sample-before.pdf','samples/sample-after.pdf','samples/sample-image.pdf']) assert.ok((await read('/document-assets/' + asset,true)).length > 100,asset);
 const capabilities = JSON.parse(await read('/document-assets/tool-capabilities.json'));
 assert.equal(capabilities.edition,edition); assert.equal(capabilities.uploads,false); assert.equal(capabilities.tools.length,12);
 for (const tool of capabilities.tools) {

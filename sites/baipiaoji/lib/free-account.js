@@ -9,8 +9,17 @@ export const validFavorite=slug=>typeof slug==='string'&&VALID_TOOLS.has(slug);
 export const now=()=>Math.floor(Date.now()/1000);
 export const hash=value=>createHash('sha256').update(String(value)).digest('hex');
 export const randomToken=()=>randomBytes(32).toString('base64url');
-export const normalizeUsername=value=>typeof value==='string'?value.trim().toLowerCase():'';
-export const validUsername=value=>/^[a-z0-9_-]{3,32}$/.test(value);
+export const displayName=value=>typeof value==='string'?value.normalize('NFKC').trim():'';
+// Only Han, ASCII letters/digits, '_' and '-' survive validation; lowercase is
+// the complete case fold for this allowed alphabet after NFKC normalization.
+export const normalizeUsername=value=>displayName(value).toLowerCase();
+export const validUsername=value=>/^[A-Za-z0-9_\-\p{Script=Han}]{3,32}$/u.test(value);
+export const normalizeEmail=value=>typeof value==='string'?value.trim().toLowerCase():'';
+export function validEmail(value){
+ if(typeof value!=='string'||value.length>254)return false;
+ const parts=value.split('@');if(parts.length!==2||parts[0].length>64||!parts[0].length)return false;
+ return /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+$/.test(parts[0])&&!parts[0].startsWith('.')&&!parts[0].endsWith('.')&&!parts[0].includes('..')&&parts[1].includes('.')&&parts[1].split('.').every(x=>/^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$/.test(x));
+}
 export const validPassword=value=>typeof value==='string'&&value.length>=12&&value.length<=128;
 export async function derivePassword(password,salt){
  return new Promise((resolve,reject)=>scrypt(password,salt,32,PASSWORD_COST,(error,key)=>error?reject(error):resolve(key.toString('hex'))));
@@ -28,6 +37,7 @@ export async function ensureAccounts(env){
  if(!env.HITS)throw Error('database unavailable');
  await env.HITS.batch([
   env.HITS.prepare(`CREATE TABLE IF NOT EXISTS free_accounts (id TEXT PRIMARY KEY, username TEXT NOT NULL UNIQUE, password_hash TEXT NOT NULL, recovery_hash TEXT NOT NULL, session_version INTEGER NOT NULL DEFAULT 1, created INTEGER NOT NULL, updated INTEGER NOT NULL, qa INTEGER NOT NULL DEFAULT 0)`),
+  env.HITS.prepare(`CREATE TABLE IF NOT EXISTS free_account_identities (account_id TEXT PRIMARY KEY REFERENCES free_accounts(id) ON DELETE CASCADE, email TEXT NOT NULL UNIQUE, display_name TEXT NOT NULL, display_key TEXT NOT NULL UNIQUE, email_verified INTEGER NOT NULL DEFAULT 0 CHECK(email_verified IN (0,1)), email_verified_at INTEGER)`),
   env.HITS.prepare(`CREATE TABLE IF NOT EXISTS free_account_sessions (token_hash TEXT PRIMARY KEY, account_id TEXT NOT NULL REFERENCES free_accounts(id) ON DELETE CASCADE, version INTEGER NOT NULL, created INTEGER NOT NULL, expires INTEGER NOT NULL)`),
   env.HITS.prepare(`CREATE INDEX IF NOT EXISTS free_account_sessions_owner ON free_account_sessions(account_id)`),
   env.HITS.prepare(`CREATE TABLE IF NOT EXISTS free_account_favorites (account_id TEXT NOT NULL REFERENCES free_accounts(id) ON DELETE CASCADE, slug TEXT NOT NULL, created INTEGER NOT NULL, PRIMARY KEY(account_id,slug))`),
@@ -44,9 +54,10 @@ export function tokenFrom(request){
 export async function getAccount(request,env){
  const token=tokenFrom(request);if(!token||!env.HITS)return null;
  await ensureAccounts(env);
- return await env.HITS.prepare(`SELECT a.id,a.username,a.created,a.qa,a.session_version FROM free_accounts a JOIN free_account_sessions s ON s.account_id=a.id AND s.version=a.session_version WHERE s.token_hash=? AND s.expires>?`).bind(hash(token),now()).first()||null;
+ return await env.HITS.prepare(`SELECT a.id,COALESCE(i.display_name,a.username) AS username,i.email,COALESCE(i.email_verified,0) AS email_verified,a.created,a.qa,a.session_version FROM free_accounts a LEFT JOIN free_account_identities i ON i.account_id=a.id JOIN free_account_sessions s ON s.account_id=a.id AND s.version=a.session_version WHERE s.token_hash=? AND s.expires>?`).bind(hash(token),now()).first()||null;
 }
-export const publicUser=user=>user?{id:user.id,username:user.username,created:user.created}:null;
+export const publicUser=user=>user?{id:user.id,username:user.username,email:user.email||null,email_verified:!!user.email_verified,legacy:!user.email,created:user.created}:null;
+export async function accountById(env,id){return await env.HITS.prepare('SELECT a.id,COALESCE(i.display_name,a.username) AS username,i.email,COALESCE(i.email_verified,0) AS email_verified,a.created,a.qa,a.session_version FROM free_accounts a LEFT JOIN free_account_identities i ON i.account_id=a.id WHERE a.id=?').bind(id).first()||null;}
 export async function favoritesFor(env,id){return (await env.HITS.prepare('SELECT slug FROM free_account_favorites WHERE account_id=? ORDER BY created,slug').bind(id).all()).results.map(x=>x.slug);}
 export async function accountView(env,user){return {ok:true,user:publicUser(user),favorites:user?await favoritesFor(env,user.id):[]};}
 export function cookie(token){return `${ACCOUNT_COOKIE}=${token}; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=${SESSION_SECONDS}`;}

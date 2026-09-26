@@ -1,3 +1,4 @@
+import {buildAiTools} from './ai-tool-pages.mjs';
 import {buildReleasePilot,pilotEntry} from './release-pilot-pages.mjs';
 import {videoEntry} from './video-business.mjs';
 import {COPY} from '../assets/studio/quote-copy.mjs';
@@ -8,6 +9,8 @@ import {buildFileStudio} from './file-pages.mjs';
 
 // This registry is deliberately separate from data/tools.json (third-party listings).
 export const STUDIO_TOOLS=[
+  {featured:true,path:'/studio/ai/',zh:'AI 工作工具',en:'AI workflow tools',zhDesc:'任务回溯、预测记录与免费 MCP，自研 AI 工具的统一入口。',enDesc:'Task review, prediction records and free MCP in one first-party hub.',search:'ai agent mcp task loop forecast 任务 回溯 预测'},
+  {path:'/studio/task-loop',zh:'任务回溯与预测',en:'Task Loop',zhDesc:'记录事前预期与事后证据，发现阻塞并导出任务时间线。',enDesc:'Record expectations and evidence, surface blockers and export a task timeline.',search:'ai agent task loop forecast 任务 回溯 预测 纠偏'},
   {featured:true,path:'/work-plan',zh:'按岗位算 AI 方案',en:'AI work planner',zhDesc:'按工作量计算免费额度能否覆盖任务，输出可执行步骤与工具组合。',enDesc:'Check free-tier capacity against your workload, with tools and steps for each task.',zhOutput:'工具方案 · 容量核对 · 可恢复快照',enOutput:'Work plan · capacity check · restorable snapshot'},
   {featured:true,path:'/studio/quote-compare',zh:'供应商报价比较台',en:'Supplier quote comparison',zhDesc:'核对箱规、起订量、税运费和交期，得到一份带来源与问题清单的比较表。',enDesc:'Check pack sizes, minimum orders, tax, freight and lead times. Export a comparison with sources and open issues.',zhOutput:'到货成本 · 异常提示 · 比较表',enOutput:'Delivered cost · exception review · comparison sheet'},
   {featured:true,path:'/studio/video-variants',zh:'商品视频变体工作台',en:'Product video variants',zhDesc:'复用商品图和短视频，编辑三个开场、三种画幅，直接导出视频和字幕。',enDesc:'Reuse product images and clips across three openings and three frame sizes. Export videos and subtitles.',zhOutput:'真实成片 · 字幕 · AI 分镜交接包',enOutput:'Video files · subtitles · AI shot brief'},
@@ -40,6 +43,7 @@ export function buildStudio({layout,railOf,esc,crumbLd,faqLd,BASE,NAME,LOCALE,si
   const quoteBody=`${railOf()}<link rel="stylesheet" href="${asset}/studio.css?v=${EDITION}"><main class="stage studio-main" id="main-content"><nav class="crumb"><a href="${BASE}/">${esc(NAME)}</a><i>/</i><a href="${hub}">${L.back}</a><i>/</i><span>${L.title}</span></nav><header class="studio-hero"><span class="studio-sign">${ownership}</span><h1>${L.title}</h1><p>${L.intro}</p></header><noscript><p class="quote-notice">${zh?'请启用 JavaScript 进行本地计算。下方仍可阅读规则与适用范围。':'Enable JavaScript for local calculations. The rules and scope remain readable below.'}</p></noscript>${renderWorkspace(lang)}<section class="studio-info">${FAQ.map(f=>`<h2>${f.q}</h2><p>${f.a}</p>`).join('')}</section></main><script type="module" src="${asset}/quote-app.mjs?v=${EDITION}"></script>`;
   write('studio/quote-compare.html',layout({title:`${L.title} - BPJ ${zh?'自研工具':'original tools'}`,description:L.intro,path:qpath,body:quoteBody,wide:true,schema:[crumbLd([{name:NAME,url:BASE+'/'},{name:L.back,url:hub},{name:L.title,url}]),{'@context':'https://schema.org','@type':'WebApplication',name:L.title,url,description:L.intro,applicationCategory:'BusinessApplication',operatingSystem:'Web browser',inLanguage:lang,softwareVersion:EDITION,creator:{'@type':'Organization',name:'BPJ',url:site.base_url},isAccessibleForFree:true,offers:{'@type':'Offer',price:'0',priceCurrency:'USD'}},faqLd(FAQ)]}));
   pushPage(url+'.html','0.9');
+  buildAiTools({layout,esc,BASE,LOCALE,write,pushPage});
   buildReleasePilot({layout,railOf,esc,crumbLd,faqLd,BASE,NAME,LOCALE,site,write,pushPage});
   buildVideo({layout,railOf,esc,crumbLd,faqLd,BASE,NAME,LOCALE,site,write,pushPage});
   buildFileStudio({layout,railOf,esc,crumbLd,faqLd,BASE,NAME,LOCALE,site,write,pushPage});

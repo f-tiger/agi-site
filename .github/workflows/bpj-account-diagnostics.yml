@@ -1,0 +1,26 @@
+name: BPJ account live diagnostics
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/bpj-account-diagnostics.yml'
+permissions:
+  contents: read
+concurrency:
+  group: bpj-account-diagnostics
+  cancel-in-progress: true
+jobs:
+  diagnose:
+    if: github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[account-check]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      # Existing lifecycle creates only QA-marked synthetic data and deletes it.
+      # No real email, OAuth consent, payment or production credential is used.
+      - name: Check public provider configuration and account lifecycle
+        run: node sites/baipiaoji/scripts/verify-free-account-live.mjs

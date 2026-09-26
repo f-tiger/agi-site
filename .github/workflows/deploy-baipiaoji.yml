@@ -84,6 +84,7 @@ jobs:
         run: |
           npm install --prefix /tmp/bpj-account-runtime --no-save miniflare@5.20260925.0-alpha esbuild@0.28.2
           FREE_ACCOUNT_RUNTIME_MODULES=/tmp/bpj-account-runtime/node_modules node scripts/test-free-account.mjs --workerd
+          FREE_ACCOUNT_RUNTIME_MODULES=/tmp/bpj-account-runtime/node_modules node scripts/test-google-account.mjs --workerd
 
       - name: Verify tool links & refresh dates (scheduled runs only)
         if: github.event_name != 'push'
@@ -210,6 +211,9 @@ jobs:
           node scripts/test-membership.mjs
           node scripts/test-free-account.mjs
           node scripts/test-free-account-races.mjs
+          node scripts/test-google-account.mjs
+          node scripts/test-account-email.mjs
+          node scripts/test-account-configure.mjs
           node scripts/test-account-member.mjs
           node scripts/test-ad-watch-readiness.mjs
 
@@ -291,6 +295,7 @@ jobs:
           node scripts/test-agent-watch.mjs --dist
           node scripts/test-work-plan.mjs --dist
           node scripts/test-studio.mjs --dist
+          node scripts/test-ai-tools.mjs
           node scripts/test-file-studio.mjs --dist
           node scripts/test-video-studio.mjs --dist
           node scripts/test-video-cases.mjs --dist
@@ -315,6 +320,15 @@ jobs:
           ADS_WALLET: ${{ secrets.ADS_WALLET }}
           ADS_WATCH_SECRET: ${{ secrets.ADS_WATCH_SECRET }}
         run: node scripts/ad-configure.mjs --optional
+
+      - name: Sync optional account providers without replacing existing settings
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          GOOGLE_CLIENT_ID: ${{ vars.GOOGLE_CLIENT_ID || secrets.GOOGLE_CLIENT_ID }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          ACCOUNT_MAIL_FROM: ${{ vars.ACCOUNT_MAIL_FROM || secrets.ACCOUNT_MAIL_FROM }}
+        run: node scripts/account-configure.mjs
 
       - name: Build and validate practical tool workbench
         working-directory: ${{ github.workspace }}
@@ -343,13 +357,18 @@ jobs:
           node sites/baipiaoji/scripts/test-release-pilot-browser.mjs
           node sites/baipiaoji/scripts/test-commercial-browser.mjs
           node sites/baipiaoji/scripts/test-site-experience-browser.mjs
+          node sites/baipiaoji/scripts/test-ai-tools-browser.mjs
           node sites/baipiaoji/scripts/test-free-account-browser.mjs
+          node sites/baipiaoji/scripts/test-account-providers-browser.mjs
           node sites/baipiaoji/scripts/test-account-member.mjs --browser
 
       - name: Deploy to Cloudflare Pages
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: npx wrangler@4 pages deploy dist --project-name=aiyangmao --branch=main --commit-dirty=true
+
+      - name: Verify live AI tools and free MCP
+        run: node scripts/verify-ai-tools-live.mjs
 
       - name: Verify live free-account lifecycle and remove synthetic account
         run: node scripts/verify-free-account-live.mjs
