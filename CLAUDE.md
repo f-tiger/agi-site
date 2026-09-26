@@ -1076,3 +1076,16 @@ localebatch **不记任何访问**,所以「零」也读不出访客有没有来
   **从来没被测过**。本轮已在 SR `/mcp` 补齐:两条可复制安装指令 + 复制即落 `mcp_install_click`(只记客户端名)
   + `/e` 白名单 + 部署自检断言页面还带着它。**这不是新工具,是把「被发现 → 被装上」变成可读的数。**
   判定线:`sr-mcp-install-1022`(10-22,≥1 次复制)、`fleet-mcp-instrument-1022`(10-22,≥2 个站的机器面可读)。
+
+## D1 免费读取额度:全账号每天 500 万行,09-24 起连续三天白天用完(2026-09-26;全文 `docs/d1-read-budget-2026-09-26.md`)
+
+- **症状**:各站部署自检 `/api/pulse` 500、事件写入 `{"ok":false}`、bpj 账号自检失败——D1 返回 7500「exceeded D1's free tier daily row read limit」。
+  **Cloudflare 自 2026-09-01 起硬性执行**,超了读写都拒到 00:00 UTC(北京 08:00)。**额度用完后事件也写不进去,当天后半段的 D1 统计缺失**,
+  按 D1 结算判定线时要注明 09-24 13:00、09-25 08:00、09-26 10:00 之后的缺口。
+- **先看谁在用,别猜**:dispatch `.github/workflows/d1-usage.yml`(只读,<1 分钟;main 上可手动触发)→ 每库每日读取、每天越线的小时、
+  逐条查询的 rows/call 与调用次数。会话自己进不了 Cloudflare 分析面板,这是唯一的逐条读数来源。
+- **09-26 读数**:bpj `/api/reach` 45–58%、agi `/api/trends` 2–29%、agi `/api/pulse` 15–17%。全是「公开统计接口每次请求现算 + 整表扫描」,
+  **`Cache-Control` 头对 Worker/Pages Functions 的响应不起作用**,只有 Cache API 才挡得住重复计算(eco 09-26、tds 09-25 已加,bpj 09-26 已加)。
+- **规矩**:新增或修改任何会被反复调用的 D1 统计接口 → ①服务端缓存(Cache API)②查询要走索引(写个 EXPLAIN 断言)③别让一个共享路径
+  (`sites/baipiaoji/lib/**` 等)的提交同时触发四个站的部署自检去各跑一遍整表统计。**agi 两个接口待 owner 授权后照 bpj 的做法改**;
+  Workers Paid(5 美元/月)是 owner 的支出决定,它能消除每日被拒,但不代替修查询。

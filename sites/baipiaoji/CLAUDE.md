@@ -916,3 +916,18 @@ Cloudflare Pages 把 `/x.html` **308** 跳到 `/x`。在此之前本站的 sitem
 ## 2026-09-26 商业触发优化
 
 Owner要求调用技能改善商业触发。协议见根仓 `docs/bpj-commercial-triggers-2026-09-26.md`。投稿成功后提供免费等候/独立赞助选择；广告页补买家适配、实时付款方式和可跳过拒绝原因。commercial-trigger.js仅记固定biz事件、QA跨页保留；/api/reach.commercial_triggers是事件计数不是客户漏斗。复用每日reach快照，无新增schedule，不外发营销、不改变价格/订单/收录规则。
+
+29. **🗄️ hits 表的读法重做:D1 免费额度连续三天用完 2026-09-26**(owner:「为什么一直报错…哪些查询导致每天都消耗完了?」→「1-2-3 全部执行」;
+   全文 `docs/d1-read-budget-2026-09-26.md`)。**D1 免费额度是全账号每天读 500 万行,09-01 起超了即拒读写到 UTC 零点**;09-24/25/26 分别在
+   13/08/10 点用完。Cloudflare 逐条查询统计(`tools/fleet/d1_usage.mjs`,workflow `d1-usage.yml`,只读)显示 09-25 全账号读取的 **58% 是本站
+   `/api/reach`**(6 条查询各把 hits 整表读一遍、每次约 18 万行、一天被调三四十次)。**三处改动,后续会话照此读写 hits:**
+   ①**`/api/reach` 有服务端缓存**(`lib/reach-cache.js`,Cache API,键 = 版本号 + days,1 小时;响应形状一改就把 `REACH_CACHE_VERSION` 加一),
+   响应头 `x-bpj-reach-cache: miss|hit|bypass`,部署自检断言它在。**`Cache-Control` 头对 Pages Functions 不起作用**,别再写「缓存一小时挡住重复取数」。
+   ②**两个部分索引**:`hits_referred ON hits(d) WHERE ev='' AND ref IS NOT NULL AND ref != ''`、`hits_events ON hits(d, ev) WHERE ev != ''`。
+   SQLite 只在查询里**出现同样的条件**时才用部分索引——真人线谓词只从 `lib/hits-schema.js` 的 `HUMAN` 取,事件查询必须带 `EVENT_ROWS`
+   (`ev != ''`);`scripts/test-hits-schema.mjs` 对 reach 实际发出的每条 hits 查询跑 EXPLAIN,出现整表扫描即红。
+   ③**爬虫抓取记在 `bot_daily(d, bot, path, country, n)`,不再进 hits**。次数用 `SUM(n)`,`bot` 列即原 `hits.ref`;语言由路径判断(`/en/` 前缀)。
+   历史 `ev='bot'` 行由迁移汇总搬入(计数守恒)后从 hits 删除;`bot_spoofed` / `bot_maybe_probe` 是 8 月旧标签,仍在 hits。
+   `scripts/traffic-truth.mjs bot` 已改读 bot_daily;`bpj-md-mirror-1028`、`bpj-cn-crawlers-1015` 两条判定线加了口径注(阈值不变)。
+   **写新的 hits 查询前先想它走哪个索引**;要全表的一次性分析也行,但别放进会被反复调用的端点。判定线 `bpj-d1-reads-1004`
+   (09-28→10-03 每天 baipiaoji-hits 读取 ≤50 万行;t0 09-25 466 万)。

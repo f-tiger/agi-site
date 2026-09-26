@@ -7,6 +7,7 @@
 // 只记已知 AI 爬虫，不记普通浏览器——普通访问已由 beacon 覆盖，重复记会把漏斗算两遍；
 // 也不记 /api/*（那几个函数各自已经在记 ev='api'，UA 存在 ref 里）。
 // 写入走 waitUntil，失败静默：任何统计问题都不能影响页面本身。
+import { recordBot } from '../lib/hits-schema.js';
 const AI_BOTS = [
   // OpenAI：训练 / 搜索索引 / 用户点开链接时的实时抓取
   ['GPTBot', 'gptbot'], ['OAI-SearchBot', 'oai-searchbot'], ['ChatGPT-User', 'chatgpt-user'],
@@ -97,14 +98,14 @@ export async function onRequest(ctx) {
     if (!res.ok) return res;
     const bot = botOf(ctx.request.headers.get('user-agent'));
     if (!bot || !ctx.env.HITS) return res;
-    // lang 沿用站内约定：/en/ 前缀为英文版，根路径为中文版——
-    // 「AI 爬虫更爱抓哪一边」直接决定内容投入往哪倾斜，所以这一列必须分得开。
-    const lang = url.pathname.startsWith('/en/') ? 'en' : 'zh';
-    const p = ctx.env.HITS
-      .prepare('INSERT INTO hits (d, path, lang, country, ref, ev) VALUES (?,?,?,?,?,?)')
-      .bind(new Date().toISOString().slice(0, 10), url.pathname.slice(0, 200), lang,
-        (ctx.request.cf && ctx.request.cf.country) || '', bot, 'bot')
-      .run().catch(() => {});
+    // 2026-09-26 起爬虫抓取不再进 hits,改记 bot_daily(天 × 爬虫 × 路径 × 国家 → 次数)。
+    // hits 是真人与事件的表,真人统计每次都要扫它;09-17 起每天 4000 多行爬虫记录混在里面,
+    // 是 D1 免费额度被用完的原因之一(lib/hits-schema.js)。「AI 爬虫更爱抓哪一边」照样能答:
+    // 语言由路径决定(/en/ 前缀为英文版),不必单独存一列。
+    const p = recordBot(ctx.env.HITS, {
+      d: new Date().toISOString().slice(0, 10), bot, path: url.pathname,
+      country: (ctx.request.cf && ctx.request.cf.country) || '',
+    }).catch(() => {});
     if (ctx.waitUntil) ctx.waitUntil(p);
   } catch (e) { /* 统计永远不能影响页面 */ }
   return res;

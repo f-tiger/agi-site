@@ -21,6 +21,8 @@
 // 口径与 scripts/traffic-truth.mjs 的真人线 A 一致:ev='' 且来源域非空 = 可归因真人;
 // 无来源的直接访问不计（那是本站被扫描的主要形态）,/__ 开头的自测路径不计。
 import {readCommercialTriggers} from '../../lib/commercial-triggers.js';
+import {HUMAN, EVENT_ROWS} from '../../lib/hits-schema.js';
+import {createReachCache} from '../../lib/reach-cache.js';
 export const K_COUNTRY = 5;
 
 // 小于 K 的国家并进 other:一个只有 1 次访问的国家配上 28 天窗口,在公开端点上离
@@ -45,21 +47,33 @@ const json = (o, status = 200) => new Response(JSON.stringify(o), {
   headers: {
     'Content-Type': 'application/json; charset=utf-8',
     'Access-Control-Allow-Origin': '*',
-    // 聚合数据一天一变;缓存一小时挡住重复取数,CI 每日一次远在其外
+    // 浏览器侧缓存。服务端那一层在 lib/reach-cache.js——只靠这个头挡不住重复取数(2026-09-26 的 D1 额度事故),
+    // Cloudflare 不缓存 Pages Functions 的响应。
     'Cache-Control': 'public, max-age=3600',
   },
 });
 
-export async function onRequestGet({ request, env }) {
-  if (!env.HITS) return json({ ok: false, code: 'no_db' }, 503);
-  const u = new URL(request.url);
-  let days = parseInt(u.searchParams.get('days') || '28', 10);
+export function reachDays(url) {
+  let days = parseInt(new URL(url).searchParams.get('days') || '28', 10);
   if (!Number.isFinite(days) || days < 7) days = 7;
   if (days > 90) days = 90;
+  return days;
+}
+
+const reachCache = createReachCache();
+
+export async function onRequestGet(ctx) {
+  const { request, env } = ctx;
+  if (!env.HITS) return json({ ok: false, code: 'no_db' }, 503);
+  const days = reachDays(request.url);
+  return reachCache(ctx, days, () => computeReach(env, days));
+}
+
+// 真人线 A 的公共谓词 HUMAN 在 lib/hits-schema.js:它的前三项必须与 hits_referred 部分索引逐字相同,
+// 否则 SQLite 不用那个索引、退回整表扫描。ref 已是 hostname;自家域在 hit.js 入库时就清空了,谓词里再挡一次。
+export async function computeReach(env, days) {
   const since = new Date(Date.now() - days * 86400000).toISOString().slice(0, 10);
   const today = new Date().toISOString().slice(0, 10);
-  // 真人线 A 的公共谓词。ref 已是 hostname;自家域在 hit.js 入库时就清空了,这里再挡一次。
-  const HUMAN = "ev = '' AND ref IS NOT NULL AND ref != '' AND ref NOT LIKE '%baipiaoji%' AND path NOT LIKE '/\\_\\_%' ESCAPE '\\'";
   try {
     const q = (sql, ...params) => env.HITS.prepare(sql).bind(...params).all().then((r) => (r && r.results) || []);
     const [total, paths, referrers, aiRefs, events, subsNew, subsAll, adsRows, countryRows, subsByStatus, checkoutByState, web3Rows, watchRows, wbOrderRows, videoOrders] = await Promise.all([
@@ -69,7 +83,7 @@ export async function onRequestGet({ request, env }) {
       // AI 助手引流:雷达里「AI 引用第一次转化为点击」那条信号的数据源（原来指向一个从未存在的快照文件）
       q(`SELECT ref, path, count(*) n FROM hits WHERE d >= ? AND ${HUMAN} AND (ref LIKE '%chatgpt.com%' OR ref LIKE '%openai.com%' OR ref LIKE '%perplexity.ai%' OR ref LIKE '%claude.ai%' OR ref LIKE '%gemini.google%' OR ref LIKE '%copilot.microsoft%' OR ref LIKE '%you.com%' OR ref LIKE '%phind.com%' OR ref LIKE '%kagi.com%') GROUP BY ref, path ORDER BY n DESC LIMIT 40`, since),
       // 事件计数:手势/转化/广告/作业包全部按 ev 聚合。剔 CI 自测路径与 CI 语言标记。
-      q(`SELECT ev, count(*) n FROM hits WHERE d >= ? AND ev != '' AND ev NOT IN ('bot','bot_spoofed','bot_maybe_probe','api') AND path NOT LIKE '/\\_\\_%' ESCAPE '\\' AND lang != 'ci' GROUP BY ev ORDER BY n DESC`, since),
+      q(`SELECT ev, count(*) n FROM hits WHERE d >= ? AND ${EVENT_ROWS} AND ev NOT IN ('bot','bot_spoofed','bot_maybe_probe','api') AND path NOT LIKE '/\\_\\_%' ESCAPE '\\' AND lang != 'ci' GROUP BY ev ORDER BY n DESC`, since),
       // 厂商投稿:只出数量。表可能尚不存在（首次投稿时才建）——失败按 0 计,不让整个端点陪葬。
       q("SELECT count(*) n FROM submissions WHERE status = 'new' AND name NOT LIKE '\\_\\_ci%' ESCAPE '\\'").catch(() => [{ n: null }]),
       q("SELECT count(*) n FROM submissions WHERE name NOT LIKE '\\_\\_ci%' ESCAPE '\\'").catch(() => [{ n: null }]),

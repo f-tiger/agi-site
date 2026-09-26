@@ -478,7 +478,8 @@
    "win": "镜像面保留续投",
    "lose": "=0 → 该面退休",
    "source": "sites/baipiaoji/CLAUDE.md:61",
-   "status": "open"
+   "status": "open",
+   "instrument_note_2026-09-26": "2026-09-26 起中间件的爬虫抓取不再写 hits，改记 bot_daily(d, bot, path, country, n)；hits 里历史的 ev='bot' 行整体搬进 bot_daily（迁移按 天×爬虫×路径×国家 汇总，计数守恒，见 sites/baipiaoji/migrations/0002_hits_indexes_bot_daily.sql）。本线的读法从此是：bot_daily 里同一谓词，「行数/抓取次数」= SUM(n)，「不同 path」= COUNT(DISTINCT path)；bot 列即原 hits.ref。阈值与窗口不变。原因：D1 免费额度（全账号每天读 500 万行）09-24/25/26 连续用完，爬虫行占 hits 的大头而真人统计每次都要扫它。"
   },
   {
    "id": "tds-60d-1029",
@@ -1167,7 +1168,8 @@
    "lose": "=0 → 它们真的不来。那么中国流量的天花板就是 cn.bing 这一条，继续加中文内容对发现层没有增量；要开百度只能靠 owner 侧站长平台提交（百度不支持 IndexNow，脚本注释里早写着）",
    "source": "sites/baipiaoji/CLAUDE.md 第 19 条（2026-09-17）",
    "status": "open",
-   "t0_2026-09-17": "结构性 0。同窗已记到的爬虫里最接近中国的只有 Bytespider 7 次 / 3 个路径。"
+   "t0_2026-09-17": "结构性 0。同窗已记到的爬虫里最接近中国的只有 Bytespider 7 次 / 3 个路径。",
+   "instrument_note_2026-09-26": "2026-09-26 起中间件的爬虫抓取不再写 hits，改记 bot_daily(d, bot, path, country, n)；hits 里历史的 ev='bot' 行整体搬进 bot_daily（迁移按 天×爬虫×路径×国家 汇总，计数守恒，见 sites/baipiaoji/migrations/0002_hits_indexes_bot_daily.sql）。本线的读法从此是：bot_daily 里同一谓词，「行数/抓取次数」= SUM(n)，「不同 path」= COUNT(DISTINCT path)；bot 列即原 hits.ref。阈值与窗口不变。原因：D1 免费额度（全账号每天读 500 万行）09-24/25/26 连续用完，爬虫行占 hits 的大头而真人统计每次都要扫它。"
   },
   {
    "id": "bpj-cn-overtakes-us-1015",
@@ -1929,6 +1931,18 @@
    "win": "编程智能体开发者就是 bpj 在 agents 赛道的「哈佛」→ 第一阶段：30 天内把编程类 30 个条目全部重核一遍（当前多数 checked 停在 08-03/04）、补齐仍缺的主力编程智能体（官方页当日可抓且有免费档的才收）、把 /api/changes 的编程子集做成可订阅的变更流；不开新站、不收费",
    "lose": "coding <70（没涨）且 kiro/codex 页族全 0 → 编程智能体不是在长的网络：本线只维护（额度每日核实照旧），不再为 agents 方向投新面，扎克伯格路径在 bpj 上的哈佛候选归零，交 owner 复盘；其余情况（coding 70–91，或 ≥92 但新页 <3）→ insufficient：维持第 0 阶段，11-22 同口径再读一次，不提前扩",
    "source": "docs/agents-venture-2026-09-25.md + sites/baipiaoji/CLAUDE.md 第 28 条",
+   "status": "open"
+  },
+  {
+   "id": "bpj-d1-reads-1004",
+   "site": "baipiaoji",
+   "due": "2026-10-04",
+   "metric": "Cloudflare D1 GraphQL（tools/fleet/d1_usage.mjs，workflow d1-usage.yml）里 baipiaoji-hits 每个 UTC 日的 rowsRead，读 09-28→10-03 这 6 天；辅助：同窗 /api/reach 的 6 条 hits 查询的 rows/call，与账号总量是否再越过 5 000 000",
+   "threshold": "6 天里每天 ≤ 500 000（t0：09-24 2 630 890、09-25 4 657 591、09-26 3 160 129 且当天 10 点即用完全账号额度）",
+   "t0": "09-25 全账号 6 865 137 行，其中 /api/reach 6 条查询约 401 万（58%），每次调用约 18 万行；09-26 全账号 550 万（10 点用完），reach 约 305 万（45%）、agi /api/trends 约 196 万（29%）、agi /api/pulse 约 116 万（17%）",
+   "win": "bpj 的读取量降一个数量级以上成立：部分索引 + 服务端缓存 + 爬虫分表这套做法有效，可照抄到 agi（pulse/trends）、eco 与 tds 的统计接口——agi 那两个接口属 owner 授权范围，需先问",
+   "lose": "任一天 > 500 000 → 还有没找到的整表扫描或绕过缓存的调用方：按 d1_usage 的逐条查询表逐条查，不许用「升级付费档」代替找原因（付费档是 owner 的决定，也解决不了表随爬虫增长这件事）",
+   "source": "sites/baipiaoji/CLAUDE.md 第 29 条（2026-09-26）",
    "status": "open"
   }
  ]

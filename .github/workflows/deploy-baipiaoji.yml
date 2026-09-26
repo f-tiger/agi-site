@@ -249,6 +249,16 @@ jobs:
           node scripts/test-reach-shape.mjs
           node scripts/test-commercial-triggers.mjs
 
+      # D1 读取额度（2026-09-26）：全账号每天 500 万行，09-24/25/26 连续三天在白天用完，之后全舰队的
+      # 统计、事件写入、账号接口一律被拒到 UTC 零点。/api/reach 是最大的一项（每次把 hits 整表读 6 遍、
+      # 一天被调几十次）。这两个测试钉死三件事：reach 的每条 hits 查询都走部分索引（从 computeReach 实际
+      # 发出的 SQL 上跑 EXPLAIN）、迁移前后统计逐字相同、爬虫只写 bot_daily；服务端缓存一小时内同 days 只算一次、
+      # 失败不缓存。改谓词、改索引、拆缓存，这里会先红。
+      - name: D1 read budget — partial indexes, crawler table, reach cache (zero network)
+        run: |
+          node scripts/test-hits-schema.mjs
+          node scripts/test-reach-cache.mjs
+
       # 自研分词器的回归检验：420 例金标准 × 两套词表 = 840 次逐例比对。
       # 写自己的实现就得自己证明它对，否则只是把「让用户猜」换成「让我们猜」。
       - name: Tokenizer regression (840 golden cases)
@@ -721,9 +731,13 @@ jobs:
       - name: Self-test reach endpoint
         id: st_reach
         run: |
-          r=$(curl -s -m 25 -A 'curl/8.0 bpj-ci-selftest' 'https://baipiaoji.com/api/reach?days=7')
+          r=$(curl -s -m 25 -A 'curl/8.0 bpj-ci-selftest' -D reach-headers.txt 'https://baipiaoji.com/api/reach?days=7')
           echo "$r" | head -c 300; echo
           echo "$r" | grep -q '"ok":true' || { echo "::error::/api/reach 未返回 ok:true"; exit 1; }
+          # 服务端缓存层在位（2026-09-26）：没有它，每个调用方每次都把 hits 重读一遍，正是 D1 额度被用完的形状。
+          grep -qiE '^x-bpj-reach-cache: (hit|miss)' reach-headers.txt \
+            || { echo "::error::/api/reach 没有经过服务端缓存层（x-bpj-reach-cache 缺失）——每次请求都会重读 D1"; exit 1; }
+          grep -i '^x-bpj-reach-cache' reach-headers.txt
           # 钱线(2026-09-21):money 必须是对象(舰队 money_line.py 读它)
           echo "$r" | grep -q '"money":{' || { echo "::error::/api/reach 没有 money 对象"; exit 1; }
           echo "$r" | grep -q '"humans_referred":[0-9]' || { echo "::error::/api/reach 缺 humans_referred 计数"; exit 1; }

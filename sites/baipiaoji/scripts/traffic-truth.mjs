@@ -76,9 +76,16 @@ ORDER BY c DESC;`,
 
   bot: `-- AI 爬虫线：只认成功响应（中间件自 08-15 起不再记 404），
 -- 且必须把 bot_spoofed 单列出来看占比——那是冒用 AI 爬虫 UA 的漏洞扫描器。
+-- 2026-09-26 起中间件的爬虫抓取记在 bot_daily（天×爬虫×路径×国家 → n），hits 里的 ev='bot' 已整体搬过去；
+-- 次数用 SUM(n)，不是 count(*)。bot_spoofed / bot_maybe_probe 是 8 月的旧标签，仍留在 hits。
+SELECT d, 'bot' AS ev, bot AS ua, SUM(n) n
+FROM bot_daily
+WHERE d >= :since
+GROUP BY d, ua
+UNION ALL
 SELECT d, ev, ref AS ua, count(*) n
 FROM hits
-WHERE d >= :since AND ev IN ('bot', 'bot_spoofed', 'bot_maybe_probe')
+WHERE d >= :since AND ev IN ('bot_spoofed', 'bot_maybe_probe')
 GROUP BY d, ev, ua
 ORDER BY d DESC, n DESC;`,
 
