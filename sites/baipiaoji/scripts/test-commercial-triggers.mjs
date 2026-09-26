@@ -1,0 +1,10 @@
+import assert from 'node:assert/strict';
+import {DatabaseSync} from 'node:sqlite';
+import {readCommercialTriggers,COMMERCIAL_ACTIONS} from '../lib/commercial-triggers.js';
+const db=new DatabaseSync(':memory:');db.exec('CREATE TABLE hits(d TEXT,path TEXT,ev TEXT,lang TEXT)');
+const add=db.prepare('INSERT INTO hits VALUES (?,?,?,?)');
+for(const r of [['2026-09-26','/biz/trigger/vendor-view','biz','en'],['2026-09-26','/biz/trigger/vendor-view','biz','ci'],['2026-09-26','/biz/trigger/vendor-view','calc','en'],['2026-08-01','/biz/trigger/vendor-view','biz','en'],['2026-09-26','/biz/trigger/private@example.test','biz','en'],['2026-09-26','/biz/trigger/ad-wallet','biz','zh']])add.run(...r);
+const env={prepare(sql){let args=[];return{bind(...v){args=v;return this},async all(){return{results:db.prepare(sql).all(...args)}}}}};
+const r=await readCommercialTriggers(env,'2026-09-01');assert.equal(r.ok,true);assert.equal(r.counts['vendor-view'],1);assert.equal(r.counts['ad-wallet'],1);assert.equal(r.counts['ad-reach'],0);assert.equal(Object.keys(r.counts).length,COMMERCIAL_ACTIONS.length);assert.ok(!JSON.stringify(r).includes('example.test'));
+const unavailable=await readCommercialTriggers({prepare(){throw Error('secret text')}},'2026-09-01');assert.equal(unavailable.counts,null);assert.equal(unavailable.ok,false);assert.ok(!JSON.stringify(unavailable).includes('secret'));
+console.log('PASS commercial aggregates: bounded fields, QA/event/date filters, unavailable stays unknown.');

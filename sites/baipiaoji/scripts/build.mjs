@@ -7495,6 +7495,12 @@ curl -s 'https://baipiaoji.com/api/limits?slug=kimi'              # ${zh ? '这�
     <p class="sub-note" id="vendorPath" hidden>${zh
       ? `你是这个工具的厂商、希望更快拿到结论？<a href="${BASE}/for-vendors.html" data-biz="from-submit"><b>可以询价加急核实 →</b></a>　买到的只是队列位置：收录与否、站内排序、以及页面上的每一个数字，都不受付费影响。`
       : `Are you this tool's vendor and want the verdict sooner? <a href="${BASE}/for-vendors.html" data-biz="from-submit"><b>Expedited verification is available on inquiry →</b></a>　What that buys is queue position only: inclusion, ranking and every figure on the page stay unaffected by payment.`}</p>
+    <div class="sub-note" id="vendorSponsor" hidden>
+      <h3>${zh ? '投稿已进队列，接下来由你选择' : 'Your submission is queued. Choose what happens next.'}</h3>
+      <p>${zh ? '免费等候核实即可，不需要付款。若你负责这个工具的推广，也可以查看独立赞助位：买到的是标注为广告的展示，不是收录、排序或更快的审核；没有曝光、点击或销量保证。' : 'You can wait for verification for free. If you manage this tool’s promotion, you can also review a separate sponsored placement. It buys labeled ad space, not inclusion, ranking or faster review. Views, clicks and sales are not guaranteed.'}</p>
+      <p><a href="${BASE}/advertise.html?source=submit#adDecision" data-commercial-action="vendor-sponsor">${zh ? '先看实际触达、价格和付款方式 →' : 'Review actual reach, price and payment methods →'}</a></p>
+      <button type="button" data-commercial-action="vendor-wait">${zh ? '继续免费等候核实' : 'Continue with free verification'}</button>
+    </div>
   </section>
 </main>
 <script>
@@ -7525,6 +7531,7 @@ curl -s 'https://baipiaoji.com/api/limits?slug=kimi'              # ${zh ? '这�
         return;
       }
       f.reset();
+      document.dispatchEvent(new Event('bpj:submission-accepted'));
       msg.className='sub-msg is-ok';
       msg.textContent = d.code==='already'
         ? (ZH?'这个网址已经在队列里了——不用重复提交。':'That URL is already in the queue — no need to resubmit.')
@@ -7547,7 +7554,8 @@ curl -s 'https://baipiaoji.com/api/limits?slug=kimi'              # ${zh ? '这�
     });
   });
 })();
-</script>`;
+</script>
+<script src="/commercial-trigger.js?v=20260926-1" defer></script>`;
 
   writeFileSync(join(dist, ...(L.dir ? [L.dir.slice(1)] : []), 'submit.html'), layout({
     title: `${h1} - ${NAME}`,
@@ -7769,12 +7777,25 @@ curl -s 'https://baipiaoji.com/api/limits?slug=kimi'              # ${zh ? '这�
       ? '这一条是本站的生存方式：读者信这里的数字，是因为没有任何一个数字能被买走。广告位卖的是版面，不是判断。'
       : 'This is how the site survives: readers trust these figures because none of them can be bought. A slot sells space, never a verdict.'}</p>
   </section>
+  <section class="limits-table" id="adDecision">
+    <h2 class="group-title">${zh ? '这次投放适合你吗？' : 'Is this placement right for you?'}</h2>
+    <p>${zh ? '适合希望在相关工具类目中展示产品、并接受小规模试投的厂商。若你需要保证获客量、购买目录收录或完整的成效归因，本服务不适合。先看下面有日期的历史触达；浏览次数不等于独立用户，也不是未来广告曝光或点击承诺。' : 'For vendors who want a placement in a relevant tool category and can accept a small test. This is not a fit if you need guaranteed acquisition, paid directory inclusion or complete outcome attribution. Read the dated historical reach below: page views are not unique people or a promise of future ad impressions or clicks.'}</p>
+    <p data-commercial-availability role="status">${zh ? '正在核对付款方式…' : 'Checking payment methods…'}</p>
+    <details><summary>${zh ? '暂不投放？可选一个原因（可跳过）' : 'Not booking? Optionally select a reason'}</summary>
+      <p>${zh ? '仅记录所选类别，不要求联系方式。' : 'Only the selected category is recorded; no contact details are requested.'}</p>
+      <button type="button" data-commercial-action="ad-wallet">${zh ? '付款方式不适合' : 'Payment method does not suit me'}</button>
+      <button type="button" data-commercial-action="ad-reach">${zh ? '当前触达不够' : 'Current reach is too small'}</button>
+      <button type="button" data-commercial-action="ad-later">${zh ? '暂时没有投放任务' : 'No campaign planned yet'}</button>
+      <p id="adReasonStatus" role="status"></p>
+    </details>
+  </section>
+  <div id="reach"></div>
   ${REACH && (REACH.categories || []).length ? `<section class="limits-table">
-    <h2 class="group-title">${zh ? '各板块触达（真实数字，每日更新）' : 'Reach by section (real figures, updated daily)'}<span>${REACH.categories.length}</span></h2>
+    <h2 class="group-title">${zh ? '各板块历史页面浏览' : 'Historical page views by section'}<span>${REACH.categories.length}</span></h2>
     <p class="sub-note">${zh
-      ? `过去 ${REACH.window_days} 天（至 ${esc(REACH.until || REACH.generated)}）每个板块页面的带来源真人浏览次数：只算从搜索引擎、AI 助手或其他站点点进来的访问，不算直接访问、爬虫和本站自测。全站合计 ${REACH.humans_referred} 次，约 ${REACH.per_day}/日。数字小就是小，这里不放估算——投不投，你按这个数自己算。`
-      : `Referred human page views per section over the past ${REACH.window_days} days (to ${esc(REACH.until || REACH.generated)}): only visits arriving from a search engine, an AI assistant or another site count; direct hits, crawlers and our own self-tests do not. Site total ${REACH.humans_referred}, about ${REACH.per_day} a day. Small numbers are shown as small — no estimates here. Whether a slot is worth it is your arithmetic.`}</p>
-    <table><thead><tr><th>${zh ? '板块' : 'Section'}</th><th>${zh ? '带来源真人浏览' : 'Referred human views'}</th></tr></thead>
+      ? `过去 ${REACH.window_days} 天（至 ${esc(REACH.until || REACH.generated)}）每个板块页面带外部来源的浏览事件：不计直接访问和已标记的测试路径；来源字段不验证真人身份，可能包含机器人或未标记测试。全站合计 ${REACH.humans_referred} 次，约 ${REACH.per_day}/日。数字小就是小，这里不放估算——投不投，你按这个数自己算。`
+      : `Referred page-view events per section over the past ${REACH.window_days} days (to ${esc(REACH.until || REACH.generated)}): direct visits and marked test paths are excluded. A referrer does not verify a human visitor; bots or unmarked tests may be included. Site total ${REACH.humans_referred}, about ${REACH.per_day} a day. Small numbers are shown as small — no estimates here. Whether a slot is worth it is your arithmetic.`}</p>
+    <table><thead><tr><th>${zh ? '板块' : 'Section'}</th><th>${zh ? '带来源页面浏览' : 'Referred page views'}</th></tr></thead>
     <tbody>${CATS_UI.map(([k, v]) => `<tr><td>${esc(v)}</td><td>${reachOfCat(k) == null ? '0' : reachOfCat(k)}</td></tr>`).join('')}</tbody></table>
   </section>` : ''}
   ${(() => {
@@ -7787,9 +7808,9 @@ curl -s 'https://baipiaoji.com/api/limits?slug=kimi'              # ${zh ? '这�
     return `<section class="limits-table">
     <h2 class="group-title">${zh ? '触达最高的工具页（位子也出现在这些页上）' : 'Highest-reach tool pages (your slot runs here too)'}<span>${rows.length}</span></h2>
     <p class="sub-note">${zh
-      ? `买一个板块的位子，它会同时出现在该板块的板块页与其下每一个工具页。下面是过去 ${REACH.window_days} 天带来源真人浏览最高的工具页——口径与上表完全相同。全站 ${REACH.humans_referred} 次里有 ${((REACH.by_kind || {}).tool) || 0} 次落在工具页上，这就是位子搬到工具页的原因。`
-      : `A section slot runs on that section page and on every tool page inside it. These are the tool pages with the most referred human views over the past ${REACH.window_days} days, counted exactly as in the table above. Of the site's ${REACH.humans_referred} referred views, ${((REACH.by_kind || {}).tool) || 0} landed on a tool page — which is why the slot now runs there.`}</p>
-    <table><thead><tr><th>${zh ? '工具页' : 'Tool page'}</th><th>${zh ? '板块' : 'Section'}</th><th>${zh ? '带来源真人浏览' : 'Referred human views'}</th></tr></thead>
+      ? `买一个板块的位子，它会同时出现在该板块的板块页与其下每一个工具页。下面是过去 ${REACH.window_days} 天带来源页面浏览最高的工具页——口径与上表完全相同。全站 ${REACH.humans_referred} 次里有 ${((REACH.by_kind || {}).tool) || 0} 次落在工具页上，这就是位子搬到工具页的原因。`
+      : `A section slot runs on that section page and on every tool page inside it. These are the tool pages with the most referred page views over the past ${REACH.window_days} days, counted exactly as in the table above. Of the site's ${REACH.humans_referred} referred page views, ${((REACH.by_kind || {}).tool) || 0} landed on a tool page — which is why the slot now runs there.`}</p>
+    <table><thead><tr><th>${zh ? '工具页' : 'Tool page'}</th><th>${zh ? '板块' : 'Section'}</th><th>${zh ? '带来源页面浏览' : 'Referred page views'}</th></tr></thead>
     <tbody>${rows.map((r) => `<tr><td><a href="${BASE}/tools/${esc(r.slug)}.html">${esc(r.name)}</a></td><td>${esc((site.categories && site.categories[r.cat]) ? (LOCALE.code === 'zh' ? site.categories[r.cat] : ((i18n.en?.categories || {})[r.cat] || r.cat)) : r.cat)}</td><td>${r.n}</td></tr>`).join('')}</tbody></table>
   </section>`;
   })()}
@@ -7815,7 +7836,8 @@ curl -s 'https://baipiaoji.com/api/limits?slug=kimi'              # ${zh ? '这�
       : 'We store public ad details, order references and delivery state. Chain transactions are public. This browser saves your order access token. Keep your payment receipt. Chain refunds require contacting the site for review.'}</p>
   </section>
 </main>
-<script src="/ad-checkout.js" defer></script>`;
+<script src="/ad-checkout.js" defer></script>
+<script src="/commercial-trigger.js?v=20260926-1" defer></script>`;
 
   writeFileSync(join(dist, ...(L.dir ? [L.dir.slice(1)] : []), 'advertise.html'), layout({
     title: `${h1} - ${NAME}`, description: desc, path: '/advertise.html', body,
@@ -8176,6 +8198,7 @@ cpSync(join(root, 'assets/_headers'), join(dist, '_headers'));
 // 加工就意味着可能改坏，而它正确与否是 scripts/tokenizer-test.mjs 用金标准锁住的。
 cpSync(join(root, 'assets/tokenizer.js'), join(dist, 'tokenizer.js'));
 cpSync(join(root, 'assets/ad-checkout.js'), join(dist, 'ad-checkout.js'));
+cpSync(join(root, 'assets/commercial-trigger.js'), join(dist, 'commercial-trigger.js'));
 cpSync(join(root, 'assets/tok'), join(dist, 'assets/tok'), { recursive: true });
 writeFileSync(join(dist, '.nojekyll'), '');
 // IndexNow 密钥文件：放在域名下即完成所有权验证（见 scripts/indexnow.mjs）

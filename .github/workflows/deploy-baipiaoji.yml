@@ -237,7 +237,9 @@ jobs:
       # ②那条会被无声破坏（把 k 调成 1、或把 >= 写成 >），页面看着一模一样，
       # 而 28 天里只来过一次的国家就单独挂在公开端点上了。所以边界值逐个断言。
       - name: Reach country-histogram privacy shape (zero network)
-        run: node scripts/test-reach-shape.mjs
+        run: |
+          node scripts/test-reach-shape.mjs
+          node scripts/test-commercial-triggers.mjs
 
       # 自研分词器的回归检验：420 例金标准 × 两套词表 = 840 次逐例比对。
       # 写自己的实现就得自己证明它对，否则只是把「让用户猜」换成「让我们猜」。
@@ -318,6 +320,7 @@ jobs:
           node tools/revenue-studio/node_modules/playwright/cli.js install --with-deps chromium --only-shell
           node sites/baipiaoji/scripts/test-video-business-browser.mjs
           node sites/baipiaoji/scripts/test-release-pilot-browser.mjs
+          node sites/baipiaoji/scripts/test-commercial-browser.mjs
 
       - name: Deploy to Cloudflare Pages
         env:

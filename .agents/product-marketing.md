@@ -1,10 +1,10 @@
 # Product marketing context
 
-**Document version: v4** — **Last updated: 2026-09-26**. Draft from repository, owner statements and public sources; no invented customer interviews. Read `docs/commercial-skills-review-2026-09-18.md` before extending an experiment. Unknowns below are blockers to investment, not blanks to fill with assumptions.
+**Document version: v5** — **Last updated: 2026-09-26**. Draft from repository, owner statements and public sources; no invented customer interviews. Read `docs/commercial-skills-review-2026-09-18.md` before extending an experiment. Unknowns below are blockers to investment, not blanks to fill with assumptions.
 
 ## Business goal and proof
 
-Owner wants a portfolio that can scale from approximately €11 to €110 and €1,100 in trailing-30-day net revenue. Net revenue means receipts less refunds and tax; profit also deducts provider, payment, acquisition, maintenance and human delivery costs. Eco has the only owner-reported revenue. New experiments have no verified customers, paid retention, CAC or revenue. Prices displayed on experiments are hypotheses; all paid offers are closed.
+Owner wants a portfolio that can scale from approximately €11 to €110 and €1,100 in trailing-30-day net revenue. Net revenue means receipts less refunds and tax; profit also deducts provider, payment, acquisition, maintenance and human delivery costs. Eco has the only owner-reported revenue. New experiments have no verified customers, paid retention, CAC or revenue. Prices displayed on discovery experiments are hypotheses. The original four probes remain closed; BPJ has separate live wallet checkout for placements and membership, whose readiness and sales need independent checks.
 
 ## Products and provisional buyers
 
@@ -39,6 +39,8 @@ Separate sample use, own-data use, exercises and QA. Opt-in anonymous page-visit
 No new paid features for the three discovery probes until repeated task evidence and a reachable buyer segment are documented. After 100 relevant landing visits, 20 own-task completions and five contextual price-interest visits, investigate manually; this operating gate is not statistical proof or automatic permission to charge. Missing distribution is an inconclusive market result. Before scaling: three independent actual buyers, positive contribution after delivery/support and repeat buying evidence appropriate to the model. No advertising spend, purchased domains or new recurring provider expense in this release.
 
 ## Changelog
+
+- v5 (2026-09-26): Audited BPJ current reach and payment readiness; optional sponsorship decision support after free submission, explicit buyer fit and rejection reasons. Keep video expansion on hold and the $299 pilot independent. See docs/bpj-commercial-triggers-2026-09-26.md.
 
 - v4 (2026-09-26): Added the owner-requested BPJ paid-app review demand pilot, distinct from x402 verification and prior portfolio hypotheses. Structured task applications, proposed USD299 scope, no checkout; see docs/bpj-release-pilot-2026-09-26.md.
 
