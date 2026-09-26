@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-25T13:08:45Z",
+ "generated": "2026-09-26T12:35:41Z",
  "window_days": 28,
  "rule": "demand caller = >=10 argument-bearing calls, >=5 distinct days, argument variety >= 1/4 of those calls; ci/operator/indexer never count. Pre-registered 2026-09-24, before anything qualified.",
  "sites": [
@@ -25,7 +25,7 @@
     "days": 3,
     "shapes": 1
    },
-   "stale_days": 1
+   "stale_days": 2
   },
   {
    "site": "getecoback",
