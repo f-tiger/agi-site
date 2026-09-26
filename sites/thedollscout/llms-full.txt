@@ -2,6 +2,8 @@
 
 Free PDF preflight, batch review, text extraction and text-version comparison. PDFs stay in the browser. Automated signals do not certify WCAG or PDF/UA conformance. No OCR or tag repair.
 
+- [Check the file you received](https://thedollscout.com/verify-file) (en): Is this the same file your sender intended? Compare it with their verification link, locally in your browser.
+  Plain text: https://thedollscout.com/document-assets/text/en/verify-file.txt
 - [Build a client delivery record](https://thedollscout.com/delivery-evidence) (en): Keep the exact files, agreed scope and client response together. Create a portable handoff record in your browser.
   Plain text: https://thedollscout.com/document-assets/text/en/delivery-evidence.txt
 - [Free PDF checks, batch reviews and text comparison](https://thedollscout.com/) (en): Check document structure, find pages that need attention, and leave with a review you can hand over. Your files stay on your device.
@@ -26,6 +28,8 @@ Free PDF preflight, batch review, text extraction and text-version comparison. P
   Plain text: https://thedollscout.com/document-assets/text/en/document-privacy.txt
 - [Collector archive](https://thedollscout.com/collectors) (en): The original collecting guides remain available below. TDS now focuses on document tools. These historical tools have a separate scope and do not assess PDFs.
   Plain text: https://thedollscout.com/document-assets/text/en/collectors.txt
+- [Empfangene Datei prüfen](https://thedollscout.com/de/verify-file) (de): Ist dies die vom Absender vorgesehene Datei? Mit dem Prüf-Link vergleichen, direkt im Browser.
+  Plain text: https://thedollscout.com/document-assets/text/de/verify-file.txt
 - [Eine Übergabe dokumentieren](https://thedollscout.com/de/delivery-evidence) (de): Dateien, vereinbarten Umfang und Kundenantwort zusammenhalten. Einen portablen Übergabenachweis direkt im Browser erstellen.
   Plain text: https://thedollscout.com/document-assets/text/de/delivery-evidence.txt
 - [Kostenlose PDF-Prüfung, Stapelprüfung und Textvergleich](https://thedollscout.com/de/) (de): Dokumentstruktur prüfen, auffällige Seiten finden und eine nachvollziehbare Prüfliste weitergeben. Ihre Dateien bleiben auf Ihrem Gerät.
@@ -50,6 +54,8 @@ Free PDF preflight, batch review, text extraction and text-version comparison. P
   Plain text: https://thedollscout.com/document-assets/text/de/document-privacy.txt
 - [Sammlerarchiv](https://thedollscout.com/de/collectors) (de): Die bisherigen Sammelratgeber bleiben verfügbar. TDS konzentriert sich nun auf Dokumentwerkzeuge. Die historischen Werkzeuge prüfen keine PDFs.
   Plain text: https://thedollscout.com/document-assets/text/de/collectors.txt
+- [核对收到的文件](https://thedollscout.com/zh/verify-file) (zh): 这是不是发送者原本要交付的文件？使用对方提供的核验链接，直接在浏览器本地比较。
+  Plain text: https://thedollscout.com/document-assets/text/zh/verify-file.txt
 - [整理客户交付记录](https://thedollscout.com/zh/delivery-evidence) (zh): 将实际文件、约定范围和客户回复放在一起，直接在浏览器生成可带走的交付记录。
   Plain text: https://thedollscout.com/document-assets/text/zh/delivery-evidence.txt
 - [免费 PDF 检查、批量审查与文本版本对比](https://thedollscout.com/zh/) (zh): 检查文档结构，定位需要处理的页面，导出一份可以交接的审查记录。文件始终留在你的设备上。
@@ -80,6 +86,36 @@ Tool capabilities: https://thedollscout.com/document-assets/tool-capabilities.js
 ## Historical collector material
 
 The prior collector content and MCP have a separate scope: https://thedollscout.com/collectors
+
+
+# Check the file you received
+
+https://thedollscout.com/verify-file
+Published by TDS Document Scout
+Updated: 2026-09-25
+
+Is this the same file your sender intended? Compare it with their verification link, locally in your browser.
+
+One file, up to 20 MiB. File contents stay in this tab.
+
+Select the exact file you plan to send.
+
+Create a link and send it alongside the file through your usual channel.
+
+The recipient selects their copy and checks its fingerprint.
+
+A match means the SHA-256 fingerprint and byte length agree with the supplied reference. It does not establish sender identity, authorship, safe content, delivery, acceptance or a trusted time. Get the reference through a channel you trust.
+
+The link contains a fingerprint and file size, but no file name, notes or contents. Anyone with it can test a candidate file. The link may be retained by the app you share it through. TDS does not send its fingerprint to analytics.
+
+The format is public. Keep the link and verify the SHA-256 and byte count using your own software. Our small downloadable verifier runs offline with Node.js.
+
+OpenTimestamps is a separate service and protocol for time proofs. A TDS verification link does not create a Bitcoin timestamp.
+
+Reference material
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
 
 
 # Build a client delivery record
@@ -434,6 +470,8 @@ Sharing a page sends only its public link. Sharing a summary sends the previewed
 
 Delivery records are processed locally. Downloads include file names and entered notes. Optional team-plan research records only a fixed handoff-frequency range and plan preference; it collects no email, account, file hash or source notes. An answer is not an order.
 
+File verification links deliberately share only a SHA-256 fingerprint and byte length in the URL fragment. They do not include names, contents or notes. Anyone holding the link can compare a candidate file; sharing apps and browser history may keep the URL. TDS does not send the fingerprint to analytics. Recipient checks are local and do not notify the sender or prove receipt.
+
 Reference material
 - W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
 - W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
@@ -449,6 +487,36 @@ Updated: 2026-09-25
 The original collecting guides remain available below. TDS now focuses on document tools. These historical tools have a separate scope and do not assess PDFs.
 
 Reference material
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# Empfangene Datei prüfen
+
+https://thedollscout.com/de/verify-file
+Veröffentlicht von TDS Document Scout
+Aktualisiert: 2026-09-25
+
+Ist dies die vom Absender vorgesehene Datei? Mit dem Prüf-Link vergleichen, direkt im Browser.
+
+Eine Datei, bis zu 20 MiB. Der Inhalt bleibt in diesem Tab.
+
+Die exakt zu versendende Datei wählen.
+
+Link erstellen und zusammen mit der Datei über den üblichen Kanal senden.
+
+Der Empfänger wählt seine Kopie und prüft den Fingerabdruck.
+
+SHA-256-Fingerabdruck und Bytezahl stimmen mit der angegebenen Referenz überein. Das belegt weder Absender, Urheberschaft, sicheren Inhalt, Zustellung, Abnahme noch vertrauenswürdige Zeit. Die Referenz über einen vertrauenswürdigen Kanal beziehen.
+
+Der Link enthält Fingerabdruck und Dateigröße, aber keinen Dateinamen, Inhalt oder Notizen. Wer ihn besitzt, kann eine Datei damit abgleichen. Die zum Teilen verwendete App kann den Link speichern. TDS übermittelt den Fingerabdruck nicht an die Statistik.
+
+Das Format ist offen. Link aufbewahren und SHA-256 sowie Bytezahl mit eigener Software prüfen. Das herunterladbare Prüfprogramm läuft mit Node.js offline.
+
+OpenTimestamps ist ein separater Dienst und ein Protokoll für Zeitnachweise. Ein TDS-Prüf-Link erzeugt keinen Bitcoin-Zeitstempel.
+
+Referenzen
 - W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
 - W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
 - Mozilla PDF.js: https://mozilla.github.io/pdf.js/
@@ -806,6 +874,8 @@ Beim Teilen einer Seite wird nur ihr öffentlicher Link weitergegeben. Beim Teil
 
 Übergabenachweise werden lokal verarbeitet. Downloads enthalten Dateinamen und Notizen. Die freiwillige Tarifumfrage erfasst nur feste Häufigkeitsbereiche und Tarifpräferenzen, keine E-Mail, Konten, Datei-Hashes oder Quellenangaben. Eine Antwort ist keine Bestellung.
 
+Datei-Prüf-Links teilen bewusst nur SHA-256 und Bytezahl im URL-Fragment, keine Namen, Inhalte oder Notizen. Wer den Link besitzt, kann eine Datei abgleichen. Apps und Browserverlauf können die URL speichern. TDS sendet den Fingerabdruck nicht an die Statistik. Prüfungen bleiben lokal und benachrichtigen den Absender nicht; sie belegen keinen Empfang.
+
 Referenzen
 - W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
 - W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
@@ -821,6 +891,36 @@ Aktualisiert: 2026-09-25
 Die bisherigen Sammelratgeber bleiben verfügbar. TDS konzentriert sich nun auf Dokumentwerkzeuge. Die historischen Werkzeuge prüfen keine PDFs.
 
 Referenzen
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
+
+
+# 核对收到的文件
+
+https://thedollscout.com/zh/verify-file
+由 TDS 文档侦察站发布
+更新日期: 2026-09-25
+
+这是不是发送者原本要交付的文件？使用对方提供的核验链接，直接在浏览器本地比较。
+
+一次选择一个文件，最大20 MiB。文件内容仅留在当前标签页。
+
+选择实际准备发送的那份文件。
+
+生成链接，通过日常使用的渠道与文件一起发送。
+
+收件人选择自己的副本，核对指纹。
+
+匹配表示文件的SHA-256指纹和字节数与所提供的依据一致，不证明发送者身份、作者身份、内容安全、送达、验收或可信时间。请通过你信任的渠道取得核验依据。
+
+链接包含文件指纹和大小，不包含文件名、备注或内容。持有链接的人可以用候选文件进行比对；分享使用的应用可能保存链接。TDS不会将指纹发送到统计系统。
+
+格式公开。保留链接，使用自己的软件计算SHA-256和字节数即可比较。可下载的独立核验程序使用Node.js离线运行。
+
+OpenTimestamps是用于时间证明的独立服务和协议。TDS核验链接不会生成比特币时间戳。
+
+参考资料
 - W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
 - W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
 - Mozilla PDF.js: https://mozilla.github.io/pdf.js/
@@ -1177,6 +1277,8 @@ https://thedollscout.com/zh/document-privacy
 分享页面只发送公开链接。分享摘要会把预览中的数量和边界说明交给你选择的目标应用，或复制到剪贴板，不包含文件名、标题、正文和人工笔记。完整下载报告包含的数据与此不同，见上方说明。
 
 交付记录在本地处理，下载包含文件名和填写的备注。可选团队方案调研只记录固定的交付次数档位和方案偏好，不收集邮箱、账户、文件指纹或来源备注。回答不是订单。
+
+文件核验链接会主动在网址片段中分享SHA-256指纹和字节数，不包含文件名、内容或备注。持有链接的人可以比对候选文件；分享应用和浏览器历史可能保存链接。TDS不会将指纹发送到统计系统。收件人的核对仅在本地进行，不通知发送者，也不证明已收件。
 
 参考资料
 - W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3

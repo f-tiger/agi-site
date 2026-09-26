@@ -1,6 +1,7 @@
 {
-  "edition": "2026-09-25.7",
+  "edition": "2026-09-25.8",
   "urls": [
+    "https://thedollscout.com/verify-file",
     "https://thedollscout.com/delivery-evidence",
     "https://thedollscout.com/",
     "https://thedollscout.com/pdf-accessibility-checker",
@@ -13,6 +14,7 @@
     "https://thedollscout.com/methodology",
     "https://thedollscout.com/document-privacy",
     "https://thedollscout.com/collectors",
+    "https://thedollscout.com/de/verify-file",
     "https://thedollscout.com/de/delivery-evidence",
     "https://thedollscout.com/de/",
     "https://thedollscout.com/de/pdf-accessibility-checker",
@@ -25,6 +27,7 @@
     "https://thedollscout.com/de/methodology",
     "https://thedollscout.com/de/document-privacy",
     "https://thedollscout.com/de/collectors",
+    "https://thedollscout.com/zh/verify-file",
     "https://thedollscout.com/zh/delivery-evidence",
     "https://thedollscout.com/zh/",
     "https://thedollscout.com/zh/pdf-accessibility-checker",
@@ -39,6 +42,14 @@
     "https://thedollscout.com/zh/collectors"
   ],
   "records": [
+    {
+      "url": "https://thedollscout.com/verify-file",
+      "lang": "en",
+      "title": "Check the file you received",
+      "description": "Is this the same file your sender intended? Compare it with their verification link, locally in your browser.",
+      "slug": "verify-file",
+      "textUrl": "https://thedollscout.com/document-assets/text/en/verify-file.txt"
+    },
     {
       "url": "https://thedollscout.com/delivery-evidence",
       "lang": "en",
@@ -136,6 +147,14 @@
       "textUrl": "https://thedollscout.com/document-assets/text/en/collectors.txt"
     },
     {
+      "url": "https://thedollscout.com/de/verify-file",
+      "lang": "de",
+      "title": "Empfangene Datei prüfen",
+      "description": "Ist dies die vom Absender vorgesehene Datei? Mit dem Prüf-Link vergleichen, direkt im Browser.",
+      "slug": "verify-file",
+      "textUrl": "https://thedollscout.com/document-assets/text/de/verify-file.txt"
+    },
+    {
       "url": "https://thedollscout.com/de/delivery-evidence",
       "lang": "de",
       "title": "Eine Übergabe dokumentieren",
@@ -230,6 +249,14 @@
       "description": "Die bisherigen Sammelratgeber bleiben verfügbar. TDS konzentriert sich nun auf Dokumentwerkzeuge. Die historischen Werkzeuge prüfen keine PDFs.",
       "slug": "collectors",
       "textUrl": "https://thedollscout.com/document-assets/text/de/collectors.txt"
+    },
+    {
+      "url": "https://thedollscout.com/zh/verify-file",
+      "lang": "zh",
+      "title": "核对收到的文件",
+      "description": "这是不是发送者原本要交付的文件？使用对方提供的核验链接，直接在浏览器本地比较。",
+      "slug": "verify-file",
+      "textUrl": "https://thedollscout.com/document-assets/text/zh/verify-file.txt"
     },
     {
       "url": "https://thedollscout.com/zh/delivery-evidence",

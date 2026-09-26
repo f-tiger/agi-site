@@ -1,0 +1,28 @@
+# 核对收到的文件
+
+https://thedollscout.com/zh/verify-file
+由 TDS 文档侦察站发布
+更新日期: 2026-09-25
+
+这是不是发送者原本要交付的文件？使用对方提供的核验链接，直接在浏览器本地比较。
+
+一次选择一个文件，最大20 MiB。文件内容仅留在当前标签页。
+
+选择实际准备发送的那份文件。
+
+生成链接，通过日常使用的渠道与文件一起发送。
+
+收件人选择自己的副本，核对指纹。
+
+匹配表示文件的SHA-256指纹和字节数与所提供的依据一致，不证明发送者身份、作者身份、内容安全、送达、验收或可信时间。请通过你信任的渠道取得核验依据。
+
+链接包含文件指纹和大小，不包含文件名、备注或内容。持有链接的人可以用候选文件进行比对；分享使用的应用可能保存链接。TDS不会将指纹发送到统计系统。
+
+格式公开。保留链接，使用自己的软件计算SHA-256和字节数即可比较。可下载的独立核验程序使用Node.js离线运行。
+
+OpenTimestamps是用于时间证明的独立服务和协议。TDS核验链接不会生成比特币时间戳。
+
+参考资料
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/

@@ -16,6 +16,8 @@ Beim Teilen einer Seite wird nur ihr öffentlicher Link weitergegeben. Beim Teil
 
 Übergabenachweise werden lokal verarbeitet. Downloads enthalten Dateinamen und Notizen. Die freiwillige Tarifumfrage erfasst nur feste Häufigkeitsbereiche und Tarifpräferenzen, keine E-Mail, Konten, Datei-Hashes oder Quellenangaben. Eine Antwort ist keine Bestellung.
 
+Datei-Prüf-Links teilen bewusst nur SHA-256 und Bytezahl im URL-Fragment, keine Namen, Inhalte oder Notizen. Wer den Link besitzt, kann eine Datei abgleichen. Apps und Browserverlauf können die URL speichern. TDS sendet den Fingerabdruck nicht an die Statistik. Prüfungen bleiben lokal und benachrichtigen den Absender nicht; sie belegen keinen Empfang.
+
 Referenzen
 - W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
 - W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1

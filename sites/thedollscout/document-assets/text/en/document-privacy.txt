@@ -16,6 +16,8 @@ Sharing a page sends only its public link. Sharing a summary sends the previewed
 
 Delivery records are processed locally. Downloads include file names and entered notes. Optional team-plan research records only a fixed handoff-frequency range and plan preference; it collects no email, account, file hash or source notes. An answer is not an order.
 
+File verification links deliberately share only a SHA-256 fingerprint and byte length in the URL fragment. They do not include names, contents or notes. Anyone holding the link can compare a candidate file; sharing apps and browser history may keep the URL. TDS does not send the fingerprint to analytics. Recipient checks are local and do not notify the sender or prove receipt.
+
 Reference material
 - W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
 - W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1

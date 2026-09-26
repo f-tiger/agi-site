@@ -1,6 +1,6 @@
 // Explicit allowlist: document strings must never enter a public share payload.
 const ORIGIN = 'https://thedollscout.com';
-const PAGE = /^\/(?:(?:de|zh)\/)?(?:(?:delivery-evidence|pdf-accessibility-checker|pdf-batch-audit|pdf-to-text|compare-pdf-text|methodology|document-privacy|collectors)|learn\/(?:pdf-accessibility-checklist|scanned-pdf-vs-text-pdf|pdf-reading-order))?$/;
+const PAGE = /^\/(?:(?:de|zh)\/)?(?:(?:verify-file|delivery-evidence|pdf-accessibility-checker|pdf-batch-audit|pdf-to-text|compare-pdf-text|methodology|document-privacy|collectors)|learn\/(?:pdf-accessibility-checklist|scanned-pdf-vs-text-pdf|pdf-reading-order))?$/;
 export function shareUrl(canonical) {
   const url = new URL(canonical, ORIGIN);
   if (url.origin !== ORIGIN || !PAGE.test(url.pathname)) throw new Error('Unrecognized public page');

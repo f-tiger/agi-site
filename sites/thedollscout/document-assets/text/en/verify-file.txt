@@ -1,0 +1,28 @@
+# Check the file you received
+
+https://thedollscout.com/verify-file
+Published by TDS Document Scout
+Updated: 2026-09-25
+
+Is this the same file your sender intended? Compare it with their verification link, locally in your browser.
+
+One file, up to 20 MiB. File contents stay in this tab.
+
+Select the exact file you plan to send.
+
+Create a link and send it alongside the file through your usual channel.
+
+The recipient selects their copy and checks its fingerprint.
+
+A match means the SHA-256 fingerprint and byte length agree with the supplied reference. It does not establish sender identity, authorship, safe content, delivery, acceptance or a trusted time. Get the reference through a channel you trust.
+
+The link contains a fingerprint and file size, but no file name, notes or contents. Anyone with it can test a candidate file. The link may be retained by the app you share it through. TDS does not send its fingerprint to analytics.
+
+The format is public. Keep the link and verify the SHA-256 and byte count using your own software. Our small downloadable verifier runs offline with Node.js.
+
+OpenTimestamps is a separate service and protocol for time proofs. A TDS verification link does not create a Bitcoin timestamp.
+
+Reference material
+- W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3
+- W3C: text alternatives in PDF: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF1
+- Mozilla PDF.js: https://mozilla.github.io/pdf.js/
