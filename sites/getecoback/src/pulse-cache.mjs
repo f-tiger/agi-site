@@ -35,7 +35,11 @@ export function createPulseCache({getCache = () => globalThis.caches?.default, n
     if (pending.has(key.url)) return (await pending.get(key.url)).clone();
     const work = (async () => {
       const response = await compute(), left = await remaining(response);
-      if (!left) return response;
+      if (!left) {
+        const out = new Response(response.body, response);
+        out.headers.set('cache-control', 'no-store');
+        return out;
+      }
       const out = marked(response, 'miss', left);
       try { await cache.put(key, out.clone()); } catch {}
       return out;

@@ -34,7 +34,7 @@ test('private endpoints, writes, credentials and alternate hosts are never cache
 test('errors, incomplete aggregates, private responses and invalid JSON are not stored',async()=>{
   const f=fixture();
   const responses=[Response.json({ok:false},{status:500}),Response.json({ok:false}),Response.json({ok:true,generated:'2026-09-26T01:00:00Z',money:null}),new Response('not JSON'),Response.json({ok:true,generated:'2026-09-26T01:00:00Z',money:{}},{headers:{'set-cookie':'session=test'}}),Response.json({ok:true,generated:'2026-09-26T01:00:00Z',money:{}},{headers:{'cache-control':'private'}})];
-  for(const response of responses){const got=await f.handler(request(),()=>response.clone());assert.equal(got.status,response.status);}
+  for(const response of responses){const got=await f.handler(request(),()=>response.clone());assert.equal(got.status,response.status);assert.equal(got.headers.get('cache-control'),'no-store');}
   assert.equal(f.stored.size,0);
 });
 test('cache outages fall through and failed computation can recover',async()=>{
