@@ -7582,7 +7582,7 @@ curl -s 'https://baipiaoji.com/api/limits?slug=kimi'              # ${zh ? '这�
   allPages.push({ u: `${BASE}/submit.html`, pr: '0.5' });
 }
 
-// ---- 厂商认领页（2026-09-26，owner 当日「创业者…自主扩张」指令下的第一个楔子 v0；docs/ai-era-founder-2026-09-25.md §五）----
+// ---- 厂商认领页（2026-09-26，owner 当日「创业者…自主扩张」指令下的第一个楔子 v0；docs/ai-era-founder-2026-09-25.md §三）----
 // submissions 表里 8 条厂商投稿全部停在 new，而站上没有一条记录能证明「说话的是厂商本人」。
 // 这一页把「我是这个工具的团队」变成可机器核验的事：控制官方域名的人才能认领。
 // 三条与本站纪律逐字一致的规矩：认领不改任何数字；更正只进 limits-edit 队列、永不自动上站；不卖任何东西。

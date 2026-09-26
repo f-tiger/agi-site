@@ -1886,9 +1886,9 @@
    "due": "2026-10-26",
    "metric": "/api/reach money.claims_verified(已验证厂商认领数,域名控制权核验:官方主机或主域 /.well-known/baipiaoji-claim.txt 或主域 DNS TXT)+ data/claims.json 里 host 去重;读数源 data/fleet-money.json(bpj money)",
    "threshold": "≥1 条已验证认领(t0=0),且认领的 host 不是本仓自检或舰队域",
-   "win": "楔子有第一位真实成员 → 按 docs/ai-era-founder-2026-09-25.md §五 的第二阶段做:已认领记录的更正走 limits-edit 两步并在页面把出处标为厂商官方页;开始数「认领 → 更正 → 上站」的完整回路",
-   "lose": "认领页与工具页入口保留(维护成本零),不再为认领层加任何功能;楔子的下一步改看 agent-watch 的 MCP 发布者校园(§五候选 #2),结论写进 §六",
-   "source": "docs/ai-era-founder-2026-09-25.md §六",
+   "win": "楔子有第一位真实成员 → 按 docs/ai-era-founder-2026-09-25.md §三 的第二阶段做:已认领记录的更正走 limits-edit 两步并在页面把出处标为厂商官方页;开始数「认领 → 更正 → 上站」的完整回路",
+   "lose": "认领页与工具页入口保留(维护成本零),不再为认领层加任何功能;楔子的下一步改看 agent-watch 的 MCP 发布者校园(§三候选 #2),结论写进 §五",
+   "source": "docs/ai-era-founder-2026-09-25.md §五",
    "status": "open",
    "t0_2026-09-26": "claims 表尚不存在(首次认领时自举);submissions 8 条(3 个提交者)全部 new;工具页认领入口、/claim 页、/api/claim 本日提交,合并 main 前不在线上。"
   },
@@ -1899,8 +1899,8 @@
    "metric": "已验证认领数(去重 host)、排队更正数(money.attestations_queued)、经 limits-edit 核对后上站的更正数(limits-history 里由 attestation 触发、source 为厂商官方页的条目)",
    "threshold": "≥5 个不同 host 的已验证认领 且 ≥1 条厂商更正经核对上站(t0 = 0 / 0 / 0)",
    "win": "第一校园(219 条记录 / 212 个官方域名)有密度信号 → 开第二校园:agent-watch 1,092 条 MCP 发布者记录用同一套认领(well-known 或注册表 websiteUrl 域名),并把「厂商已认领」写进 /api/limits 与 MCP 输出",
-   "lose": "认领层记「供给侧不来」——与 09-16「厂商投稿 3 个提交者」同一读数;保留入口不扩,创业楔子转向 §六 列出的下一候选,不再在 bpj 上建任何厂商面",
-   "source": "docs/ai-era-founder-2026-09-25.md §六",
+   "lose": "认领层记「供给侧不来」——与 09-16「厂商投稿 3 个提交者」同一读数;保留入口不扩,创业楔子转向 §二 排名里的下一候选,不再在 bpj 上建任何厂商面",
+   "source": "docs/ai-era-founder-2026-09-25.md §五",
    "status": "open",
    "t0_2026-09-26": "0 认领 / 0 更正 / 0 上站;认领层代码本日提交(functions/api/claim.js、/claim 页 zh/en、219 张工具页入口、reach money 两个新键、每日 claims.json 导出、部署自检)。"
   }

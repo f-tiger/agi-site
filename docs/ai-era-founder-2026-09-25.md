@@ -89,15 +89,42 @@ agi 判定页被 AI 引用)或**借别人的流量**(Playgama boost)。而且这
 
 ## 四、今天建了什么
 
-(待填写)
+**厂商认领层 v0(bpj,2026-09-26 提交 `459c03e`,合并 main 前不在线上)。** 全部搭在已有武器上,零新 cron、零新收款面、零新站。
 
-## 五、判定线
+| 件 | 位置 | 它做什么 | 仪器 |
+|---|---|---|---|
+| `functions/api/claim.js` | bpj Pages Function | `GET ?slug=` 状态 + 放置说明;`POST verify` 现场读官方主机/主域 `/.well-known/baipiaoji-claim.txt` 或主域 DNS TXT `_baipiaoji.<主域>`(Cloudflare DoH);`POST attest` 只对当前有效认领开放,字段白名单、出处必须是认领域名上的 https 页、邮箱抹除、每 slug 排队上限 20;`GET ?export=1` 零 PII 导出 | `claims` / `attestations` 两张表(首次调用自举) |
+| `/claim`(zh/en) | 构建期页面 | 认领是什么/不是什么、三步验证、认领之后能做什么;表单先查状态再验证,验证通过才出现更正表单 | 事件 `claim`:`/claim/from-tool/<slug>`、`/claim/verified/<slug>`、`/claim/attested/<slug>` |
+| 工具页认领行 | 219 张工具页底部 | 未认领:「是 X 的团队?认领这条记录(域名验证,免费,不改变页面上任何数字)」;已认领:「厂商已认领 · 域名验证 <日期>」+ 提交更正 | `data/claims.json` 每日由 `scripts/claims-export.mjs` 落库,构建期读 |
+| `/api/reach` money | 已有钱线端点 | 多两个键 `claims_verified`(只数证明仍在的)、`attestations_queued` | heartbeat `money_line.py` → `data/fleet-money.json`,判定线的读数源 |
+| 部署 | `deploy-baipiaoji.yml` | 零网络测试 `test-claim.mjs`(15 条)+ 导出自检;线上自检只 GET 状态 / 404 / 未认领 403,**不打 verify**(那会真的去读厂商站点) | UA `bpj-ci-selfcheck`,读数剔除 |
 
-(待填写)
+**三条与本站纪律逐字一致的规矩**:①认领不改任何数字;②厂商更正只进队列、永不自动上站,处理仍走 limits-edit 两步;③不卖任何东西——
+徽章仍免费,付费只有老轨「加急核实」。**这是 bpj 保活模式的第二个例外**,依据 owner 09-25 的明确指令。
 
-## 六、owner 决策卡
+**诚实地记两件事。** ①这个 v0 是在对抗验证跑完之前建的(前一次工作流在 verify 阶段撞了会话限额,今天补跑;§二里三个反驳者对它的裁定都是 refuted,理由是**已经免费挂在 219 张页上 55 天的核实徽章零回链**——认领层放在它前面不会让它被采用)。所以它只能算**零成本的带仪器探针**,不是被证明的楔子;判定线的 lose 条款已写死(§五)。
+②一次性效应:认领行在每张工具页上,下次部署 438 张工具页 lastmod 刷新,别误读成翻炒。
 
-(待填写)
+## 五、判定线(已进 `data/fleet-bets.json`,t0 全为今日读数,都不被当下满足)
+
+| id | 到期 | 阈值 | t0 | 输了怎么办 |
+|---|---|---|---|---|
+| `bpj-claim-first-1026` | 10-26 | ≥1 条已验证认领,且 host 不是本仓自检或舰队域 | 0(claims 表尚不存在) | 认领页与入口保留(维护成本零),不再为它加功能;下一步看 §三候选 #2 |
+| `bpj-claim-layer-1125` | 11-25 | ≥5 个不同 host 的已验证认领 **且** ≥1 条厂商更正经核对上站 | 0 / 0 / 0 | 记「供给侧不来」(与 09-16 厂商投稿 3 个提交者同一读数),不再在 bpj 上建任何厂商面 |
+| `fleet-d1-budget-1026` | 10-26 | 连续 14 天 rows_read ≤ 2,000,000 且 0 天 7500 错误 | 09-25 超限 | 向 owner 提 Workers Paid 作默认建议 |
+
+**读法**:`claims_verified` 从 `data/fleet-money.json`(bpj money)读,不手查 D1;认领 host 从 `data/claims.json` 去重;
+「更正上站」= `limits-history` 里由 attestation 触发、source 为厂商官方页的条目。09-25 09:00–24:00 UTC 是全舰队 D1 读缺口,按天读时标注。
+
+## 六、owner 决策卡(按每分钟产出排序;都不是本会话能代做的)
+
+1. **PartnerNet 付款/税务信息(2 分钟)** —— 唯一已发生的营收 €11,20/30d 到手的全部距离。
+2. **Metaculus:自己的 API key + `METACULUS_BOT_ENABLED=1`(3 分钟)** —— Fall 主赛 09-28 开题,不靠流量的钱只有这一条建好且关着。
+3. **合并本分支(PR)** —— D1 读预算修复(缓存、单次扫描、护栏)与认领层都在这条分支上,不合并一件都不在线上;合并会触发约 14 条部署,
+   自检已改成只对非 2xx 重试,不会再复现 09-25 的读风暴。**要不要现在合并,请一句话答。**
+4. **Workers Paid($5/月)** —— 护栏 `d1_budget.py` 跑过一天之后再定;若日读数仍 >40% 上限就建议开。
+5. **bpj 8 条厂商投稿(3 个提交者)零审核** —— 内容工作,可另起会话;认领层上线后,对这 3 个提交者的回复里可以带一句「控制官方域名可直接认领记录」
+   (只在 owner 手发的回复里,机器不外联)。
 
 ## 七、同日事故:D1 免费档每日读取超限
 

@@ -848,7 +848,7 @@ Cloudflare Pages 把 `/x.html` **308** 跳到 `/x`。在此之前本站的 sitem
 - 判定线 `fleet-mcp-instrument-1022`(10-22):三站里 ≥2 个能被舰队脚本读出 `demand_callers`,否则「机器面」
   以后只按 SR 一个站读,不再声称是舰队级读数。
 
-## 厂商认领层(2026-09-26,owner「你是一个创业者…自主扩张」;全文 `docs/ai-era-founder-2026-09-25.md` §五)
+## 厂商认领层(2026-09-26,owner「你是一个创业者…自主扩张」;全文 `docs/ai-era-founder-2026-09-25.md` §三)
 
 - **这是保活模式的第二个例外**,依据 owner 09-25 的明确指令(白名单条款里的「owner 明确指令」)。形态:`functions/api/claim.js` +
   `/claim`(zh/en)+ 每个工具页底部一行认领入口 + `scripts/claims-export.mjs` → `data/claims.json`(schedule 落库)+ `/api/reach`
