@@ -295,6 +295,7 @@ jobs:
           node scripts/test-agent-watch.mjs --dist
           node scripts/test-work-plan.mjs --dist
           node scripts/test-studio.mjs --dist
+          node scripts/test-ai-tools.mjs
           node scripts/test-file-studio.mjs --dist
           node scripts/test-video-studio.mjs --dist
           node scripts/test-video-cases.mjs --dist
@@ -356,6 +357,7 @@ jobs:
           node sites/baipiaoji/scripts/test-release-pilot-browser.mjs
           node sites/baipiaoji/scripts/test-commercial-browser.mjs
           node sites/baipiaoji/scripts/test-site-experience-browser.mjs
+          node sites/baipiaoji/scripts/test-ai-tools-browser.mjs
           node sites/baipiaoji/scripts/test-free-account-browser.mjs
           node sites/baipiaoji/scripts/test-account-providers-browser.mjs
           node sites/baipiaoji/scripts/test-account-member.mjs --browser
@@ -364,6 +366,9 @@ jobs:
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: npx wrangler@4 pages deploy dist --project-name=aiyangmao --branch=main --commit-dirty=true
+
+      - name: Verify live AI tools and free MCP
+        run: node scripts/verify-ai-tools-live.mjs
 
       - name: Verify live free-account lifecycle and remove synthetic account
         run: node scripts/verify-free-account-live.mjs
