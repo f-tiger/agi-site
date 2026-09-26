@@ -1,24 +1,24 @@
 {
- "generated": "2026-09-25",
+ "generated": "2026-09-26",
  "env": "runner",
  "note": "付费档缺口的抓取探针。只做发现与取证，绝不写事实：任何数字仍须经 scripts/limits-edit.mjs 两步核实后才进 tools.json。state=ready 表示该 URL 当天 200 且页面上有像价目表的价格段，不表示数字已被核实。每行的 env 是抓取时的网络环境：sandbox 行的 blocked 很可能只是会话沙箱出网被拒，不能当作「这家没有定价页」，只有 runner 行的 blocked 才值得当结论。",
  "gap_total": 101,
  "batch": [
-  "gemini-cli",
-  "gezhe",
-  "gptzero",
-  "grammarly",
-  "groq",
-  "heygen",
-  "huggingface",
-  "ideogram"
+  "ima",
+  "jsdesign",
+  "krea",
+  "languagetool",
+  "leonardo",
+  "lovable",
+  "luma",
+  "marscode"
  ],
- "cursor": "ideogram",
+ "cursor": "marscode",
  "summary": {
-  "ready": 24,
-  "empty": 20,
-  "blocked": 17,
-  "probed_total": 61
+  "ready": 26,
+  "empty": 23,
+  "blocked": 20,
+  "probed_total": 69
  },
  "tools": {
   "kimi": {
@@ -1756,6 +1756,244 @@
     }
    ],
    "best": null
+  },
+  "ima": {
+   "slug": "ima",
+   "name": "腾讯 ima",
+   "cat": "office",
+   "reach": 0,
+   "probed": "2026-09-26",
+   "env": "runner",
+   "state": "blocked",
+   "tried": [
+    {
+     "url": "https://ima.qq.com/pricing",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://ima.qq.com/price",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://ima.qq.com/plans",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    }
+   ],
+   "best": null
+  },
+  "jsdesign": {
+   "slug": "jsdesign",
+   "name": "即时设计",
+   "cat": "design",
+   "reach": 0,
+   "probed": "2026-09-26",
+   "env": "runner",
+   "state": "empty",
+   "tried": [
+    {
+     "url": "https://js.design/pricing",
+     "status": 200,
+     "bytes": 7061,
+     "tokens": 0
+    },
+    {
+     "url": "https://js.design/price",
+     "status": 200,
+     "bytes": 7061,
+     "tokens": 0
+    },
+    {
+     "url": "https://js.design/plans",
+     "status": 200,
+     "bytes": 7061,
+     "tokens": 0
+    }
+   ],
+   "best": {
+    "url": "https://js.design/pricing",
+    "tokens": 0,
+    "excerpt": ""
+   }
+  },
+  "krea": {
+   "slug": "krea",
+   "name": "Krea AI",
+   "cat": "image",
+   "reach": 0,
+   "probed": "2026-09-26",
+   "env": "runner",
+   "state": "blocked",
+   "tried": [
+    {
+     "url": "https://krea.ai/pricing",
+     "status": 0,
+     "bytes": 0,
+     "tokens": 0,
+     "error": "UND_ERR_HEADERS_OVERFLOW"
+    },
+    {
+     "url": "https://krea.ai/open-source-pricing",
+     "status": 0,
+     "bytes": 0,
+     "tokens": 0,
+     "error": "UND_ERR_HEADERS_OVERFLOW"
+    },
+    {
+     "url": "https://krea.ai/price",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    }
+   ],
+   "best": null
+  },
+  "languagetool": {
+   "slug": "languagetool",
+   "name": "LanguageTool",
+   "cat": "writing",
+   "reach": 0,
+   "probed": "2026-09-26",
+   "env": "runner",
+   "state": "ready",
+   "tried": [
+    {
+     "url": "https://languagetool.org/pricing",
+     "status": 200,
+     "bytes": 514617,
+     "tokens": 6
+    }
+   ],
+   "best": {
+    "url": "https://languagetool.org/pricing",
+    "tokens": 6,
+    "excerpt": "write on the web. Works with all your favorite web services. Choose payment interval Your current plan 2 years /2 years per month Annual BESTSELLER /year per month Quarterly /quarter per month Monthly /month /year Scroll to read more about Premium Get started Current plan Limited-time offer For Teams - % discount Only for Teams All benefits for Premium Your team benefits from all the Premium features like advanced checking, a shared style guide and the ability to check texts up to 150,000 characters. User management Invite the users in your team by e-mail and manage them. Team Style Guide Create custom rules to enforce consistent wording and a common voice for all team members. Team Dictiona"
+   }
+  },
+  "leonardo": {
+   "slug": "leonardo",
+   "name": "Leonardo AI",
+   "cat": "image",
+   "reach": 0,
+   "probed": "2026-09-26",
+   "env": "runner",
+   "state": "blocked",
+   "tried": [
+    {
+     "url": "https://leonardo.ai/pricing",
+     "status": 403,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://leonardo.ai/price",
+     "status": 403,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://leonardo.ai/plans",
+     "status": 403,
+     "bytes": 0,
+     "tokens": 0
+    }
+   ],
+   "best": null
+  },
+  "lovable": {
+   "slug": "lovable",
+   "name": "Lovable",
+   "cat": "coding",
+   "reach": 0,
+   "probed": "2026-09-26",
+   "env": "runner",
+   "state": "empty",
+   "tried": [
+    {
+     "url": "https://lovable.dev/pricing",
+     "status": 200,
+     "bytes": 175838,
+     "tokens": 1
+    },
+    {
+     "url": "https://lovable.dev/price",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    },
+    {
+     "url": "https://lovable.dev/plans",
+     "status": 404,
+     "bytes": 0,
+     "tokens": 0
+    }
+   ],
+   "best": {
+    "url": "https://lovable.dev/pricing",
+    "tokens": 1,
+    "excerpt": "atures in user apps. On top, subscriptions include daily grants of 5 build credits (some regional plans cap these at 30 per month) and a monthly grant of 20 Cloud credits. How do I buy credits for a team, class, or community? Every Lovable plan belongs to a workspace, and everyone you invite into that workspace shares its credits. To fund a group of people, upgrade one workspace to a plan with enough monthly credits for everyone, then invite the whole group. Everyone builds from the shared credit pool on one subscription and one invoice, and each member can work on as many of their own projects as they want. To keep any one person from using up the shared credits, workspace owners and admins"
+   }
+  },
+  "luma": {
+   "slug": "luma",
+   "name": "Luma Dream Machine",
+   "cat": "video",
+   "reach": 0,
+   "probed": "2026-09-26",
+   "env": "runner",
+   "state": "ready",
+   "tried": [
+    {
+     "url": "https://lumalabs.ai/pricing",
+     "status": 200,
+     "bytes": 571579,
+     "tokens": 9
+    }
+   ],
+   "best": {
+    "url": "https://lumalabs.ai/pricing",
+    "tokens": 9,
+    "excerpt": "API Enterprise News Join us Sign In Plans &amp; Pricing Save up to 20% with yearly Monthly Yearly Individual plans Plus $30 /month $300 billed yearly Start Now 10,000 credits Luma and third-party image and video models Edit access for guest collaborators Commercial use Pro $90 /month $900 billed yearly Start Now Everything in Plus, with: 40,000 credits 4x usage with the Luma Agents Ultra $300 /month $3,000 billed yearly Start Now Everything in Pro, with: 150,000 credits 15x usage with the Luma Agents Business plans Team Contact us Get in touch Everything in our regular plans, plus: Manage and add team members Projects, team organization, and team-wide sharing Usage analytics Shared team cred"
+   }
+  },
+  "marscode": {
+   "slug": "marscode",
+   "name": "MarsCode（字节）",
+   "cat": "coding",
+   "reach": 0,
+   "probed": "2026-09-26",
+   "env": "runner",
+   "state": "empty",
+   "tried": [
+    {
+     "url": "https://www.marscode.cn/pricing",
+     "status": 200,
+     "bytes": 97944,
+     "tokens": 0
+    },
+    {
+     "url": "https://www.marscode.cn/price",
+     "status": 200,
+     "bytes": 97940,
+     "tokens": 0
+    },
+    {
+     "url": "https://www.marscode.cn/plans",
+     "status": 200,
+     "bytes": 97940,
+     "tokens": 0
+    }
+   ],
+   "best": {
+    "url": "https://www.marscode.cn/pricing",
+    "tokens": 0,
+    "excerpt": ""
+   }
   }
  }
 }
