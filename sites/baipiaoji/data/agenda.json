@@ -1,15 +1,15 @@
 {
-  "generated": "2026-09-25",
+  "generated": "2026-09-26",
   "note": "由 scripts/trend-radar.mjs 每日聚合五路站内信号生成。只排队不写事实；核实动作按硬规则执行。分数是领先指标的相对排序，不是预测。",
   "counts": {
-    "candidate": 32,
+    "candidate": 33,
     "category_hot": 3,
     "stale": 5,
     "demand": 0
   },
   "strategy": {
-    "g1_structured": 109,
-    "g1_total": 129,
+    "g1_structured": 111,
+    "g1_total": 131,
     "structured_cats": [
       "api",
       "video",
@@ -26,45 +26,21 @@
   },
   "items": [
     {
-      "id": "drift:dify",
+      "id": "drift:ollama",
       "type": "source_drift",
-      "title": "来源页变动：Dify（2026-09-25 确认）",
-      "why": "官方来源页的数字令牌变了——新增 157k；消失 156k。本站条目仍是 2026-08-04 的版本",
-      "action": "打开 https://dify.ai 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
+      "title": "来源页变动：Ollama（2026-09-26 确认）",
+      "why": "官方来源页的数字令牌变了——新增 1.6k / 18.0k / 181.7k / 182k；消失 1.5k / 17.9k / 181.3k / 181k。本站条目仍是 2026-08-04 的版本",
+      "action": "打开 https://github.com/ollama/ollama 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
       "refs": [
-        "dify",
-        "https://dify.ai"
-      ],
-      "score": 75
-    },
-    {
-      "id": "drift:immersive-translate",
-      "type": "source_drift",
-      "title": "来源页变动：沉浸式翻译（2026-09-25 确认）",
-      "why": "官方来源页的数字令牌变了——新增 3000万；消失 2000万。本站条目仍是 2026-08-03 的版本",
-      "action": "打开 https://immersivetranslate.com 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
-      "refs": [
-        "immersive-translate",
-        "https://immersivetranslate.com"
-      ],
-      "score": 75
-    },
-    {
-      "id": "drift:cursor",
-      "type": "source_drift",
-      "title": "来源页变动：Cursor（2026-09-25 确认）",
-      "why": "官方来源页的数字令牌变了——新增 $3,000 / 0032b / 00810b / 00b；消失 $3。本站条目仍是 2026-08-03 的版本",
-      "action": "打开 https://cursor.com 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
-      "refs": [
-        "cursor",
-        "https://cursor.com"
+        "ollama",
+        "https://github.com/ollama/ollama"
       ],
       "score": 75
     },
     {
       "id": "aiflow:first",
       "type": "ai_referral",
-      "title": "AI 助手引流出现：chatgpt.com×12、www.perplexity.ai×6、kagi.com×1",
+      "title": "AI 助手引流出现：chatgpt.com×12、www.perplexity.ai×5、kagi.com×1",
       "why": "这是 AI 引用第一次转化为点击——哪些页面被引用、答的是什么问题，决定下一批内容怎么写",
       "action": "查快照中这些 ref 的落地页；把被引用页的模式（问题形、数据形、日期形）复制到同类页面",
       "refs": [
@@ -79,38 +55,80 @@
       "score": 70
     },
     {
-      "id": "drift:exa",
-      "type": "source_drift",
-      "title": "来源页变动：Exa（2026-09-25 确认）",
-      "why": "官方来源页的数字令牌变了——新增 无；消失 $20。本站条目仍是 2026-08-13 的版本",
-      "action": "打开 https://exa.ai/pricing 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
+      "id": "cathot:coding",
+      "type": "category_hot",
+      "title": "类目异动：coding（14 天内 3 个工具实质变更）",
+      "why": "Cursor、Windsurf、Bolt.new接连变动——同类厂商通常跟进换档，等 30 天复核阈值会慢半拍",
+      "action": "提前复核 coding 类尚未跟进的 18 条已核实额度（上次核实落后异动 3 天以上（早于 2026-09-22）），重点看定价页与帮助中心",
       "refs": [
-        "exa",
-        "https://exa.ai/pricing"
+        "github-copilot",
+        "tongyi-lingma",
+        "trae",
+        "comate",
+        "cline",
+        "qoder",
+        "github-models",
+        "marscode"
       ],
       "score": 65
     },
     {
-      "id": "drift:zhipu-glm",
+      "id": "drift:gaoding",
       "type": "source_drift",
-      "title": "来源页变动：智谱开放平台（2026-09-25 确认）",
-      "why": "官方来源页的数字令牌变了——新增 无；消失 1,s。本站条目仍是 2026-08-01 的版本",
-      "action": "打开 https://docs.bigmodel.cn/cn/guide/models/free/glm-4.7-flash 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
+      "title": "来源页变动：稿定 AI（2026-09-26 确认）",
+      "why": "官方来源页的数字令牌变了——新增 15秒 / 16秒 / 1个 / 1秒；消失 无。本站条目仍是 2026-08-04 的版本",
+      "action": "打开 https://gaoding.com 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
       "refs": [
-        "zhipu-glm",
-        "https://docs.bigmodel.cn/cn/guide/models/free/glm-4.7-flash"
+        "gaoding",
+        "https://gaoding.com"
       ],
       "score": 65
     },
     {
-      "id": "drift:anythingllm",
+      "id": "drift:framer",
       "type": "source_drift",
-      "title": "来源页变动：AnythingLLM（2026-09-24 确认）",
-      "why": "官方来源页的数字令牌变了——新增 28months / 37months；消失 27months / 36months。本站条目仍是 2026-08-04 的版本",
-      "action": "打开 https://anythingllm.com 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
+      "title": "来源页变动：Framer（2026-09-26 确认）",
+      "why": "官方来源页的数字令牌变了——新增 无；消失 $30 / 10,000credits / 100,000credits / 100gb。本站条目仍是 2026-08-06 的版本",
+      "action": "打开 https://framer.com/pricing 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
       "refs": [
-        "anythingllm",
-        "https://anythingllm.com"
+        "framer",
+        "https://framer.com/pricing"
+      ],
+      "score": 65
+    },
+    {
+      "id": "drift:fastgpt",
+      "type": "source_drift",
+      "title": "来源页变动：FastGPT（2026-09-26 确认）",
+      "why": "官方来源页的数字令牌变了——新增 100个 / 10个 / 180天 / 1个；消失 0.00k / 1% / 10% / 1周。本站条目仍是 2026-09-21 的版本",
+      "action": "打开 https://fastgpt.cn/price 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
+      "refs": [
+        "fastgpt",
+        "https://fastgpt.cn/price"
+      ],
+      "score": 65
+    },
+    {
+      "id": "drift:elevenlabs",
+      "type": "source_drift",
+      "title": "来源页变动：ElevenLabs（2026-09-26 确认）",
+      "why": "官方来源页的数字令牌变了——新增 294b；消失 $15 / 0.5credit / 0.5credits / 0026video。本站条目仍是 2026-08-02 的版本",
+      "action": "打开 https://elevenlabs.io/pricing 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
+      "refs": [
+        "elevenlabs",
+        "https://elevenlabs.io/pricing"
+      ],
+      "score": 65
+    },
+    {
+      "id": "drift:cline",
+      "type": "source_drift",
+      "title": "来源页变动：Cline（2026-09-26 确认）",
+      "why": "官方来源页的数字令牌变了——新增 11m / 69.3k / 69k；消失 67.9k / 68k / 8.0m / 8m。本站条目仍是 2026-08-04 的版本",
+      "action": "打开 https://cline.bot 逐条核对，走 limits-edit.mjs 两步写入（数字没变也要刷新 checked，标记才会撤下）",
+      "refs": [
+        "cline",
+        "https://cline.bot"
       ],
       "score": 65
     },
@@ -153,31 +171,13 @@
     {
       "id": "paidgap:kimi",
       "type": "paid_gap",
-      "title": "补付费档：Kimi（月之暗面）（工具页 28 天带来源真人 33 次，无付费档）",
+      "title": "补付费档：Kimi（月之暗面）（工具页 28 天带来源真人 32 次，无付费档）",
       "why": "有需求、无判定页：is-kimi-still-free 因缺 limits.paid.tiers 未生成；grok 先例 09-11",
       "action": "核实官方定价页写入 limits.paid（形状照 claude/grok），两步写入后判定页自动生成并进 sitemap",
       "refs": [
         "kimi"
       ],
       "score": 60
-    },
-    {
-      "id": "cathot:coding",
-      "type": "category_hot",
-      "title": "类目异动：coding（14 天内 2 个工具实质变更）",
-      "why": "Windsurf、Bolt.new接连变动——同类厂商通常跟进换档，等 30 天复核阈值会慢半拍",
-      "action": "提前复核 coding 类尚未跟进的 19 条已核实额度（上次核实落后异动 3 天以上（早于 2026-09-18）），重点看定价页与帮助中心",
-      "refs": [
-        "github-copilot",
-        "tongyi-lingma",
-        "trae",
-        "cursor",
-        "comate",
-        "cline",
-        "qoder",
-        "github-models"
-      ],
-      "score": 50
     }
   ]
 }
