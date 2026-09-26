@@ -33,6 +33,7 @@ jobs:
           node ../../tools/member-studio/test-failure.mjs
           node ../../tools/fleet/test_membership_totals.mjs
           node --test tools/test_energy_tariffs.mjs
+          node --test tools/test_pulse_cache.mjs
           python3 tools/build_energy_workbench.py
           python3 tools/link_energy_workbench.py
           python3 tools/build_tools_hub.py
