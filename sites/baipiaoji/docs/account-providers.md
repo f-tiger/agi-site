@@ -32,3 +32,13 @@ Public capability endpoints `/api/account-google` and `/api/account-email` repor
 5. After configuring providers, separately complete a real Google consent/login and mailbox verification/reset with an owner-controlled test account. Do not describe either as live-tested based only on capability flags or mocked tests. Do not send unsolicited messages to test addresses.
 
 Official provider contracts: https://developers.google.com/identity/gsi/web/guides/verify-google-id-token ; https://developers.google.com/identity/gsi/web/reference/js-reference ; https://resend.com/docs/api-reference/emails/send-email .
+
+## Account activation improvements (2026-09-26)
+
+The signed-in account page now has direct toolbox/workflow-pack entry points, saved-tool counts, and a directory search with up to eight matches. Following from search uses the existing authenticated favorites API and its 40-tool limit. Browser import is explicit, deduplicated against the current account, limited to catalog entries and available capacity, and retains unfinished local items. It never automatically imports into a new account.
+
+Verification is visible beside the account onboarding panel. Email-verification links start at sign-in and guide the signed-in user to confirmation. Google linking expands account security only for the matching email; expired authorization has explicit retry and email alternatives. Changing the chosen method invalidates older browser callbacks. Merely loading a valid pending Google proof never restarts it.
+
+Account links on public content pages retain a same-origin path back to the tool. Saving the recovery code exposes a prominent return action without automatic navigation. Query strings and fragments are not copied from the source page.
+
+These features improve the implemented usage path. They do not establish conversion, revenue or paid-retention results, and do not remove the production provider or database requirements above.
