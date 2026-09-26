@@ -908,3 +908,7 @@ Cloudflare Pages 把 `/x.html` **308** 跳到 `/x`。在此之前本站的 sitem
    ③`verify-dist` 看不到 revenue-studio / member-studio 稍后写进 dist 的 workbench/members 页(那几页有 4 处 zh 泄漏、1 处空页、8 处 hreflang);
    ④`deploy-baipiaoji.yml` 的「Notify verified localized tool URLs to IndexNow」挂在 push 上且每次整推 8 个 URL(09-19 另一次上线引入),违反
    「外部副作用只挂 schedule」,改法要连「只推真变化」一起想,不在本轮扩大改动面。
+
+## 2026-09-26 收费应用验收需求实验（Owner 当前指令）
+
+沿用现有 /studio 与 /c/coding，中英 `/studio/release-check` 提供准备清单、虚构报告和拟议$299范围，只收申请不收款。协议见根仓 `docs/bpj-release-pilot-2026-09-26.md`。`release_pilot_*` 表独立，QA剔除、邮箱/会话去重、回执撤回、暂停和到期关闭。新增页可索引，但不声称软件已经执行验收。每日既有部署任务仅保存汇总；客户邮箱、回执和原始申请绝不进入公开仓/日志。
