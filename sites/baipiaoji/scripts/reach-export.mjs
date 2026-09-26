@@ -70,6 +70,7 @@ function summarise(api) {
     events: api.events || {},
     submissions: api.submissions || {},
     ads: api.ads || {},
+    commercial_triggers: api.commercial_triggers || {ok:false,counts:null,reason:"not_reported"},
   };
 }
 
@@ -80,6 +81,7 @@ if (SELFTEST) {
       { path: '/is-grok-still-free.html', n: 1 }, { path: '/en/vs/deepseek-vs-grok.html', n: 1 }],
     referrers: [{ ref: 'www.google.com', n: 8 }], ai_referrals: [], events: { go: 3 }, submissions: { new: 2, total: 7 }, ads: {},
   };
+  fixture.commercial_triggers={ok:true,counts:{'vendor-view':3,'ad-wallet':1}};
   const s = summarise(fixture);
   const grokCat = catOf.get('grok');
   const assert = (c, m) => { if (!c) { console.error('❌ selftest:', m); process.exit(1); } };
@@ -87,6 +89,8 @@ if (SELFTEST) {
   assert(s.categories.find((x) => x.cat === 'coding').n >= 2, 'category 页应计入类目');
   assert(s.categories.find((x) => x.cat === grokCat).n >= 7, 'grok 工具页+vs 页应计入其类目');
   assert(s.judgement[0].path === '/is-grok-still-free' && s.judgement[0].n === 1, '判定页应单列');
+  assert(s.commercial_triggers.counts['vendor-view']===3 && s.commercial_triggers.counts['ad-wallet']===1,'商业触发计数必须进入每日快照');
+  assert(summarise({...fixture,commercial_triggers:null}).commercial_triggers.counts===null,'缺失的新字段不能伪装成零');
   assert(s.per_day === 0.4, 'per_day 应四舍五入到一位小数');
   console.log('✅ reach-export selftest 通过（映射与合并计数正确）');
   process.exit(0);
