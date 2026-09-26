@@ -1866,6 +1866,19 @@
    "lose": "① <3 → 四页只维护不扩建,不再加法规;不把首页入口当成失败原因去挪位置(先看 ②)。① ≥3 而 ② = 0 → 用的人都来自站内入口,问题在发现面(eco 在 B2B 合规词上零权威),不是工具本身",
    "source": "sites/getecoback/docs/eu-evidence-migration-2026-09-25.md(2026-09-25 检查一节)",
    "status": "open"
+  },
+  {
+   "id": "fleet-d1-budget-1026",
+   "site": "fleet",
+   "due": "2026-10-26",
+   "metric": "Cloudflare 账号 D1 每日 rows_read(全部数据库之和,GraphQL d1AnalyticsAdaptiveGroups,由 tools/fleet/d1_budget.py 随 heartbeat 写 data/fleet-d1-budget.json)",
+   "threshold": "10-26 前连续 14 天每日 rows_read ≤ 2,000,000(免费档上限 5,000,000 的 40%),且 0 天出现 D1 7500 读超限错误",
+   "win": "代码侧修复(聚合端点 Cache API 缓存 + 单次扫描 + 读侧去重)足以让舰队留在免费档;Workers Paid 只作可选",
+   "lose": "仍靠近上限 → 向 owner 提 Workers Paid($5/月,含 250 亿行读/月)作为默认建议,并把 D1 读预算写进每站上线检查项",
+   "source": "docs/ai-era-founder-2026-09-25.md §七",
+   "status": "open",
+   "t0_2026-09-25": "事故日:约 09:00–10:30 UTC 起账号超出 5,000,000 行/日读上限(Cloudflare 2026-09-01 起强制),D1 读全部失败到 00:00 UTC。13 个 /api/pulse 500、bpj 广告位 selling:false、依赖先读后写的表单(bpj 投稿/订阅/watch、agi /api/sub、eco /api/sub2、after35、verify 反馈)在该窗口内丢失写入;page_view/affiliate_click 等分析写入是否被拒未从代码证实。**该窗口内所有站的 28 天读数存在缺口,10-13 至 10-24 到期的判定线结算时按天读要标注 09-25 缺口。** 直接原因:PR #2 合并让每个 pulse 多跑 1–2 次窗口扫描(by_source / money / mcp),合并触发 18 条部署自检 + 合并后 45 秒一轮的 13 端点验证轮询 + eco/bpj/tds 当日各 ~10 次 push 部署里的跨站读取(household_live / st_reach / audit.py);而所有聚合端点的 `public, max-age=3600` 只对浏览器有效,Cloudflare 不据此缓存 Worker 响应,每次轮询都是全量扫描。09-26 实测每次调用:bpj /api/reach ≈150k 行(6 次窗口扫描 × 25,439 行),agi /api/pulse ≈90k 行(4 次 × 22,832 行)。",
+   "reading_2026-09-26": "读取 00:00 UTC 恢复;修复(Cache API 按部署版本键缓存、错误永不入缓存、单次 GROUP BY 扫描、读侧 memo、部署自检不再跨站活读、重试纪律、d1_budget 护栏)当日提交,等合并 main 后生效;首个可信读数要等护栏跑过一天。"
   }
  ]
 }

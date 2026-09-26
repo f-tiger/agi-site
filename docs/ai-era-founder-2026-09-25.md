@@ -77,4 +77,42 @@ owner 决策卡。**数字全部带日期与口径;调研里的外部事实逐�
 
 ## 七、同日事故:D1 免费档每日读取超限
 
-(待填写)
+**什么坏了**:2026-09-25 约 09:00–10:30 UTC 起,Cloudflare 账号超出 Workers Free 档 D1 每日 **5,000,000 行读取**上限
+(全部数据库之和;Cloudflare 2026-09-01 起强制执行,00:00 UTC 重置)。此后所有 D1 读取返回 7500 错误到午夜:
+13 个 `/api/pulse` 500、bpj `/api/ads?doctor=1` 回 `selling:false`(广告位停售)、四站会员轨 `ready:false`、
+所有「先读后写」的表单在该窗口丢失写入(bpj 投稿/订阅/watch、agi `/api/sub`、eco `/api/sub2`、after35、verify 反馈)。
+网站本身全部 200;Amazon 联盟不受影响。首个确认失败是 10:33 的 SR 部署自检,13:08 全部 pulse 已 500。
+
+**为什么是今天**(读代码得出的估算,不是测量;09-26 起用护栏读真实数字):
+1. PR #2 让每个 pulse 多跑 1–2 次 28 天窗口扫描(`by_source` 的 GROUP BY ref、`money`、SR 的 `mcp`),agi 的 pulse 从 2 次扫描变 4 次。
+   稳态估算从约 3M/日升到约 4.6M/日,已经贴着上限。
+2. 合并本身触发 18 条部署,每条自检都打 pulse 并按内容断言重试 4 次;当日 eco/bpj/tds 各约 10 次 push 部署,
+   eco 的 `household_live.mjs` 每次活读 bpj `/api/reach`(**6 次窗口扫描 ≈150k 行**)与 agi `/api/pulse`(≈90k 行)。
+3. 合并后我用 45 秒一轮的监视器轮询 13 个 pulse 端点约 10 分钟 —— 每轮 95k–230k 行。
+4. **根因**:所有聚合端点只发 `cache-control: public, max-age=3600`,代码注释写着「edge 缓存一小时」,
+   但 Cloudflare **不会仅凭这个头缓存 Worker/Pages Function 响应**;没有任何代码用 Cache API。每次轮询都是全量扫描,
+   而且 500 也带着 max-age=3600。
+5. 没有任何仪器读账号的 rows_read;bpj `hits` 表自 09-17 起每日约 +690 行,预算在悄悄变窄。
+
+**09-26 实测(D1 `meta.rows_read`)**:bpj `hits` 33,672 行(28 天窗 25,439;已有 `idx_hits_d`/`idx_hits_path`);
+agi `pageviews` 34,293 行(28 天窗 22,832;PK 以 day 开头 + 三个索引),`events` 3,518;eco `ev` 10,780(窗 8,385);
+tds `hits` 3,632。agi 单次 `GROUP BY ref_host` 窗口查询 = 34,343 行读取。**两张三万行的表加无缓存的轮询就是全部预算。**
+
+**修法(本日提交,分支上,等合并生效)**:
+- 所有聚合端点(13 个 pulse、bpj reach、agi trends、eco trend、tds document-stats、SR pop、goldrush fetchlog、after35 stats/cards)
+  走 **Cache API**,键 = URL + 部署版本(`CF_VERSION_METADATA` / `CF_PAGES_COMMIT_SHA`),TTL 1 小时;**错误响应一律 `no-store`**。
+- bpj reach 6 次扫描并成 1 次 GROUP BY;agi pulse 4 次并成 1 次;各站 pulse 的 `_total` + AI 主机 + by_source 从同一个
+  GROUP BY ref 结果派生(3 次 → 1 次);selftest 只扫最近几百行。响应键与语义逐字不变(部署自检与五个读侧脚本在断言它们)。
+- 读侧五个脚本共用一次运行内的 GET memo(一次 heartbeat 约 36 次请求 → 约 15 次);eco 部署不再活读 bpj/agi,改读已提交快照;
+  部署自检重试只对非 2xx,最多 3 次,不再对内容断言失败重抓。
+- **护栏** `tools/fleet/d1_budget.py`(搭 heartbeat,零 cron,一次 GraphQL POST):账号每日 rows_read 分库写
+  `data/fleet-d1-budget.json`;>40% 警告、>60% 红。token 若缺 Account Analytics 读权限,写 `status:unreadable` 并警告,不假装绿。
+- 判定线 `fleet-d1-budget-1026`(台账已登):10-26 前 14 天每日 ≤2M 且零 7500 → 免费档够用;否则默认建议 Workers Paid。
+
+**对全舰队的规矩(写进手册)**:①Worker 里 `max-age` 不等于缓存,聚合端点必须显式用 Cache API 且错误永不入缓存;
+②任何打生产聚合端点的监视/轮询先看该端点每次调用读多少行;③新站上线检查项加一条「D1 读预算」;
+④09-25 09:00–24:00 UTC 是全舰队的**数据缺口**,10 月到期的判定线结算时按天读要标注。
+
+**owner 决策卡**:Workers Paid **$5/月**(含 250 亿行读/月 ≈ 8.3 亿/日,是估算用量的百倍以上;也解除免费档 5 个 cron 的上限)。
+代码修复后**大概率**能留在免费档(估算稳态降到 0.4–1.5M/日),但 SunWatch 私有仓对 agi `/api/owner-alerts` 的轮询频率
+本仓读不到(估 0–2.9M/日),这是最大的未知数 —— 护栏跑一天后再决定。
