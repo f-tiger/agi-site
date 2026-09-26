@@ -1,4 +1,4 @@
-# 舰队需求摘要 · 2026-09-25
+# 舰队需求摘要 · 2026-09-26
 
 零 AI 汇总;每条带日期;它是**选题输入不是选题依据**,任何由此引出的页面仍过三门(数据/需求/变现)。
 
@@ -13,7 +13,7 @@
 - hn_ask: ok, 3 条
 - hn_show: ok, 30 条
 - hn_top_ai: ok, 4 条
-- 雷达快照日期:2026-09-25(0 天前)
+- 雷达快照日期:2026-09-25(1 天前)
 
 ## 板块产出榜(14 天;名单 tools/fleet/reddit_watchlist.json,更新 2026-09-13)
 | 板块 | 名单 | 今日 | ok 天数 | 帖子 | 求做形 | 重现主题 | 标记 |
@@ -86,8 +86,8 @@
 
 ## agiscorecard
 **Trends rising(逐 seed 时效)**
-- [1d] **artificial general intelligence** → stock market today (37150), generative artificial intelligence (40)
-- [1d] **agi timeline** → (空)
+- [2d] **artificial general intelligence** → stock market today (37150), generative artificial intelligence (40)
+- [2d] **agi timeline** → (空)
 **创业雷达词表命中(PH/HN/Reddit)**
 - Kelam
 - Fit Receipt
@@ -102,30 +102,30 @@
 
 ## baipiaoji
 **Trends rising(逐 seed 时效)**
-- [4d] **deepseek** → deepseek v4 flash 0731 (91850), deepseek flash v4.1 (58900), dsh (41750), dsh deepseek (40600)
-- [4d] **midjourney** → midjourney v8.2 (30800), seedance 2.5 (4900), runway gen-2 (4750), software testing strategies (2150)
-- [3d] **suno** → bmg suno (15100), jason isbell suno lawsuit (14150), suno artist incubator program (8050), treblo (6800)
-- [3d] **sora** → when is sora coming to fortnite (23100), sora release date fortnite speculation (10150), when does sora come to fortnite (9550), when will sora be in fortnite (7050)
-- [2d] **gemini** → gemini 3.8 flash (5700), gemini 3.7 flash (3200), sergey brin google gemini ban (2850), gemini 3.6 (600)
-- [2d] **perplexity** → perplexity nvidia local ai agent (2850), chatgpt claude perplexity financial advice (1700), best time to visit maldives (1600), glm 5.2 (950)
+- [5d] **deepseek** → deepseek v4 flash 0731 (91850), deepseek flash v4.1 (58900), dsh (41750), dsh deepseek (40600)
+- [5d] **midjourney** → midjourney v8.2 (30800), seedance 2.5 (4900), runway gen-2 (4750), software testing strategies (2150)
+- [4d] **suno** → bmg suno (15100), jason isbell suno lawsuit (14150), suno artist incubator program (8050), treblo (6800)
+- [4d] **sora** → when is sora coming to fortnite (23100), sora release date fortnite speculation (10150), when does sora come to fortnite (9550), when will sora be in fortnite (7050)
+- [3d] **gemini** → gemini 3.8 flash (5700), gemini 3.7 flash (3200), sergey brin google gemini ban (2850), gemini 3.6 (600)
+- [3d] **perplexity** → perplexity nvidia local ai agent (2850), chatgpt claude perplexity financial advice (1700), best time to visit maldives (1600), glm 5.2 (950)
 **创业雷达词表命中(PH/HN/Reddit)**
 - (无)
 **autopilot 需求队列**:该站未纳入 autopilot
 
 ## getecoback
 **Trends rising(逐 seed 时效)**
-- [8d] **condizionatore portatile** → pinguino delonghi (40400), condizionatore portatile md (33300), condizionatore portatile eurospin (31900), condizionatore portatile comfee 9000 btu (23650)
-- [7d] **deumidificatore** → deumidificatore portatile (new), deumidificatore casa (new), deumidificatore dyson (new), deumidificatore in inglese (new)
-- [9d] **portable air conditioner** → walmart kissair portable air conditioner (450), portable air conditioner pick up today (400), shop deals on portable air conditioner for home (350), midea 12 000 btu duo smart inverter portable air conditioner (300)
-- [8d] **dehumidifier** → does a dehumidifier cool the air (300), pelonis dehumidifier reviews (170), will a dehumidifier cool a room (160), is dehumidifier water good for plants (140)
-- [1d] **klimaanlage** → coolizi erfahrungen (7700), midea portasplit mobile split klimaanlage inklusive (5300), coolizi (2500), coolizi coolzy (1850)
-- [0d] **schimmel entfernen** → (空)
-- [0d] **infrarotheizung** → infrarotheizung wand (new), infrarotheizung decke (new), infrarotheizung badezimmer (new), infrarotheizung bild (new)
-- [4d] **luftentfeuchter** → luftentfeuchter keller (new), luftentfeuchter elektrisch (new), luftentfeuchter test (new), luftentfeuchter granulat (new)
-- [3d] **heizlüfter** → sparsamer heizlüfter (54950), akku heizlüfter makita (38500), dyson ventilator und heizlüfter (34450), energiesparender heizlüfter (33050)
-- [2d] **balkonkraftwerk** → ecoflow stream 5000 (11300), anker solix solarbank 4 e5000 pro,meter gen 2 ,5xbp5000 balkonkraftwerk (7000), anker solix solarbank 4 e5000 pro (300), anker solarbank 4 pro (250)
-- [8d] **kaffeevollautomat** → krups kaffeevollautomat intensity milk (16500), siemens kaffeevollautomat eq.6 plus s400 te654509de (13950), siemens kaffeevollautomat eq.6 plus s300 te653501de (10550), siemens te651509de eq.6 plus s100 kaffeevollautomat (9600)
-- [7d] **akku staubsauger** → belstaff jacke herren (26850), sky scanner (14100), ford (550), lululemon shorts (350)
+- [9d] **condizionatore portatile** → pinguino delonghi (40400), condizionatore portatile md (33300), condizionatore portatile eurospin (31900), condizionatore portatile comfee 9000 btu (23650)
+- [8d] **deumidificatore** → deumidificatore portatile (new), deumidificatore casa (new), deumidificatore dyson (new), deumidificatore in inglese (new)
+- [10d] **portable air conditioner** → walmart kissair portable air conditioner (450), portable air conditioner pick up today (400), shop deals on portable air conditioner for home (350), midea 12 000 btu duo smart inverter portable air conditioner (300)
+- [9d] **dehumidifier** → does a dehumidifier cool the air (300), pelonis dehumidifier reviews (170), will a dehumidifier cool a room (160), is dehumidifier water good for plants (140)
+- [2d] **klimaanlage** → coolizi erfahrungen (7700), midea portasplit mobile split klimaanlage inklusive (5300), coolizi (2500), coolizi coolzy (1850)
+- [1d] **schimmel entfernen** → (空)
+- [1d] **infrarotheizung** → infrarotheizung wand (new), infrarotheizung decke (new), infrarotheizung badezimmer (new), infrarotheizung bild (new)
+- [5d] **luftentfeuchter** → luftentfeuchter keller (new), luftentfeuchter elektrisch (new), luftentfeuchter test (new), luftentfeuchter granulat (new)
+- [4d] **heizlüfter** → sparsamer heizlüfter (54950), akku heizlüfter makita (38500), dyson ventilator und heizlüfter (34450), energiesparender heizlüfter (33050)
+- [3d] **balkonkraftwerk** → ecoflow stream 5000 (11300), anker solix solarbank 4 e5000 pro,meter gen 2 ,5xbp5000 balkonkraftwerk (7000), anker solix solarbank 4 e5000 pro (300), anker solarbank 4 pro (250)
+- [9d] **kaffeevollautomat** → krups kaffeevollautomat intensity milk (16500), siemens kaffeevollautomat eq.6 plus s400 te654509de (13950), siemens kaffeevollautomat eq.6 plus s300 te653501de (10550), siemens te651509de eq.6 plus s100 kaffeevollautomat (9600)
+- [8d] **akku staubsauger** → belstaff jacke herren (26850), sky scanner (14100), ford (550), lululemon shorts (350)
 **创业雷达词表命中(PH/HN/Reddit)**
 - (无)
 **autopilot 需求队列**:gaps **21** / covered 31 · heat: measured 2026-09-24 (25 pages); no notes(gaps 量的是标题与开篇有没有接住,不是站内有没有这一页——建页前先 grep 正文)
@@ -133,42 +133,42 @@
 - kind=value · match=0.5 · page=guide/heizkosten-vergleich-rechner.html · q=knebel infrarotheizung
 - kind=value · match=0.5 · page=guide/heizkosten-vergleich-rechner.html · q=infrarotheizung werkstatt
 **第一方需求**:`{"zero_hits": []}`
-**季节日历**(5 年季节性 × 德语页标题覆盖;峰值月在 42 天内开始;数据 2026-09-15,10 天前,锚 heizlüfter)
+**季节日历**(5 年季节性 × 德语页标题覆盖;峰值月在 42 天内开始;数据 2026-09-15,11 天前,锚 heizlüfter)
 | 词 | 峰值 | 峰值月 | 距峰值月 | 冬÷九月 | 标题覆盖页 | 状态 |
 |---|---|---|---|---|---|---|
-| luftfeuchtigkeit senken | 2.6 | 10 月 | 6 天 | 0.95 | 1 | 已覆盖 1 页 |
-| heizkosten sparen | 0.5 | 10 月 | 6 天 | 0.34 | 0 | 量太小(峰值 <2.0) |
-| kaffeevollautomat | 59.5 | 11 月 | 37 天 | 1.36 | 0 | 已裁定:站外(礼品季大词)(2026-09-15) |
-| luftentfeuchter | 32.0 | 11 月 | 37 天 | 1.19 | 18 | 已覆盖 18 页 |
-| heizlüfter | 29.4 | 11 月 | 37 天 | 0.89 | 4 | 已覆盖 4 页 |
-| infrarotheizung | 29.2 | 11 月 | 37 天 | 0.71 | 9 | 已覆盖 9 页 |
-| akku staubsauger | 26.5 | 11 月 | 37 天 | 1.32 | 0 | 已裁定:Bodenpflege 判负,不试第二次(2026-09-15) |
-| saugroboter | 23.6 | 11 月 | 37 天 | 1.3 | 0 | 已裁定:Bodenpflege 判负,不试第二次(2026-09-15) |
-| heizstrahler | 19.9 | 11 月 | 37 天 | 0.8 | 0 | 已裁定:扩到已排名页 heizluefter-stromverbrauch;独立页可进扩展队列,须先过 SERP 门(无测评,不点名型号)(2026-09-24) |
-| fussbodenheizung | 16.1 | 11 月 | 37 天 | 1.24 | 0 | 已裁定:装修题,非联盟可买形态(2026-09-15) |
-| heizung einstellen | 8.5 | 11 月 | 37 天 | 1.03 | 0 | 已裁定:红海(Utopia/ÖKO-TEST/heizung.de/heizsparer/MVV)(2026-08-05) |
-| heizkörper thermostat | 6.0 | 11 月 | 37 天 | 1.09 | 0 | 已裁定:红海;租客角度已在 heizkosten-senken-als-mieter(2026-08-05) |
-| fenster beschlagen | 5.6 | 11 月 | 37 天 | 1.94 | 2 | 已覆盖 2 页 |
-| wandheizung | 4.5 | 11 月 | 37 天 | 1.04 | 0 | 已裁定:装修题(埋墙),非联盟可买形态(2026-09-24) |
-| zugluft | 3.5 | 11 月 | 37 天 | 1.11 | 1 | 已覆盖 1 页 |
-| fenster abdichten | 3.2 | 11 月 | 37 天 | 1.06 | 2 | 已覆盖 2 页 |
-| saugwischer | 3.2 | 11 月 | 37 天 | 1.16 | 0 | 已裁定:Bodenpflege 判负(峰值 3,2 / 56 天 1 pv)(2026-09-15) |
-| richtig heizen | 3.0 | 11 月 | 37 天 | 1.16 | 0 | **未覆盖 · 待过三门** |
-| schimmel schlafzimmer | 2.4 | 11 月 | 37 天 | 4.84 | 0 | 已裁定:预登记:eco-schimmel-fenster-1213 赢了才补(2026-09-15) |
-| wäsche trocknen wohnung | 1.0 | 11 月 | 37 天 | 2.12 | 1 | 量太小(峰值 <2.0) |
+| luftfeuchtigkeit senken | 2.6 | 10 月 | 5 天 | 0.95 | 1 | 已覆盖 1 页 |
+| heizkosten sparen | 0.5 | 10 月 | 5 天 | 0.34 | 0 | 量太小(峰值 <2.0) |
+| kaffeevollautomat | 59.5 | 11 月 | 36 天 | 1.36 | 0 | 已裁定:站外(礼品季大词)(2026-09-15) |
+| luftentfeuchter | 32.0 | 11 月 | 36 天 | 1.19 | 18 | 已覆盖 18 页 |
+| heizlüfter | 29.4 | 11 月 | 36 天 | 0.89 | 4 | 已覆盖 4 页 |
+| infrarotheizung | 29.2 | 11 月 | 36 天 | 0.71 | 9 | 已覆盖 9 页 |
+| akku staubsauger | 26.5 | 11 月 | 36 天 | 1.32 | 0 | 已裁定:Bodenpflege 判负,不试第二次(2026-09-15) |
+| saugroboter | 23.6 | 11 月 | 36 天 | 1.3 | 0 | 已裁定:Bodenpflege 判负,不试第二次(2026-09-15) |
+| heizstrahler | 19.9 | 11 月 | 36 天 | 0.8 | 0 | 已裁定:扩到已排名页 heizluefter-stromverbrauch;独立页可进扩展队列,须先过 SERP 门(无测评,不点名型号)(2026-09-24) |
+| fussbodenheizung | 16.1 | 11 月 | 36 天 | 1.24 | 0 | 已裁定:装修题,非联盟可买形态(2026-09-15) |
+| heizung einstellen | 8.5 | 11 月 | 36 天 | 1.03 | 0 | 已裁定:红海(Utopia/ÖKO-TEST/heizung.de/heizsparer/MVV)(2026-08-05) |
+| heizkörper thermostat | 6.0 | 11 月 | 36 天 | 1.09 | 0 | 已裁定:红海;租客角度已在 heizkosten-senken-als-mieter(2026-08-05) |
+| fenster beschlagen | 5.6 | 11 月 | 36 天 | 1.94 | 2 | 已覆盖 2 页 |
+| wandheizung | 4.5 | 11 月 | 36 天 | 1.04 | 0 | 已裁定:装修题(埋墙),非联盟可买形态(2026-09-24) |
+| zugluft | 3.5 | 11 月 | 36 天 | 1.11 | 1 | 已覆盖 1 页 |
+| fenster abdichten | 3.2 | 11 月 | 36 天 | 1.06 | 2 | 已覆盖 2 页 |
+| saugwischer | 3.2 | 11 月 | 36 天 | 1.16 | 0 | 已裁定:Bodenpflege 判负(峰值 3,2 / 56 天 1 pv)(2026-09-15) |
+| richtig heizen | 3.0 | 11 月 | 36 天 | 1.16 | 0 | **未覆盖 · 待过三门** |
+| schimmel schlafzimmer | 2.4 | 11 月 | 36 天 | 4.84 | 0 | 已裁定:预登记:eco-schimmel-fenster-1213 赢了才补(2026-09-15) |
+| wäsche trocknen wohnung | 1.0 | 11 月 | 36 天 | 2.12 | 1 | 量太小(峰值 <2.0) |
 读法:数值只在本文件内可比(与 rising 不可比);「未覆盖 · 待过三门」才是候选,仍要过需求/变现门;过了门的写进扩展队列,每天最多建一页(2026-09-24 起不再等 eco-new-page-discovery-1020,新页的发现面由首页「Neu im Ratgeber」块承担,是否奏效看 eco-newest-block-1008)。
 **扩展队列**(更新 2026-09-24;blocked 1 · built 3 · gated 1 · queued 4 · rejected 6 · seasonal-hold 1)
 - `anker-solarbank-probleme` — Anker Solarbank lädt nicht oder speist nicht ein: die Ursachen in der Reihenfolge · 待办:Jede gerätespezifische Aussage (Neustart per Tastenkombination, Winter-Kalibrierung, Einspeise-Stopp bei niedrigem Ladestand) nur aus Ankers eigenen Support-Sei
 - `marstek-venus-probleme` — Marstek Venus lädt oder entlädt nicht: Standby, App, Modus — was du prüfen kannst · 待办:Erst bauen, wenn anker-solarbank-probleme steht (gleiche Vorlage). Quellen: Marstek-Handbuch bzw. marstek.de-Support; was nur in Foren steht (z. B. Firmware-Ver
 - `heizluefter-riecht-verbrannt` — Heizlüfter riecht verbrannt: Staub, Erstbetrieb oder Defekt? · 待办:Find a manufacturer manual or safety source for the first-use smell before stating it; otherwise leave that paragraph out. Safety wording as schaltet-sich-aus: 
 **Deal-Kalender**(Amazon 活动;data/deal-calendar.json)
-- Prime Deal Days 2026-10-06(11 天后)· 已公告,横幅 2026-09-29→2026-10-07,带 Prime 试用链接
-- Black Friday 2026-11-27(63 天后)· **未公告:去 aboutamazon.de 查,填进 deal-calendar.json 才会出横幅**
+- Prime Deal Days 2026-10-06(10 天后)· 已公告,横幅 2026-09-29→2026-10-07,带 Prime 试用链接
+- Black Friday 2026-11-27(62 天后)· **未公告:去 aboutamazon.de 查,填进 deal-calendar.json 才会出横幅**
 
 ## buysomething
 **Trends rising(逐 seed 时效)**
-- [0d] **electric spin scrubber** → ykyi electric spin scrubber (250), voweek electric spin scrubber (200), homitt electric spin scrubber (90), best electric spin scrubber (50)
-- [0d] **portable carpet cleaner** → little green® hydrosteam® pet portable carpet cleaner (850), shark stain striker (600), bissel little green (500), bissell little green multiclean wet and dry portable carpet and upholstery clean (450)
+- [1d] **electric spin scrubber** → ykyi electric spin scrubber (250), voweek electric spin scrubber (200), homitt electric spin scrubber (90), best electric spin scrubber (50)
+- [1d] **portable carpet cleaner** → little green® hydrosteam® pet portable carpet cleaner (850), shark stain striker (600), bissel little green (500), bissell little green multiclean wet and dry portable carpet and upholstery clean (450)
 - [STALE] **flip straw water bottle** → hydroflask (350), brumate water bottle (120), target (110), yeti water bottle (80)
 - [STALE] **heatless curls** → heatless curls with robe belt (18000), heatless curls with tights (11150), heartless curls (2900)
 - [STALE] **high speed hair dryer** → xfinity high speed internet (250), laifen hair dryer (100), conair infiniti pro hair dryer (80), conair hair dryer (40)
@@ -189,11 +189,11 @@
 
 ## thedollscout
 **Trends rising(逐 seed 时效)**
-- [10d] **labubu** → crumbl labubu ube dot cake (30400), savannah guthrie (7050), fugler (6300), labubu salon (1300)
-- [10d] **fake labubu** → fake labubu dolls (new), fake labubu name (new), fake labubu amazon (new), fake labubu feet (new)
-- [9d] **pop mart** → hirono mist walker (9350), hirono after dark (7950), pop mart monster hunter (1200), nightmare before christmas pop mart (800)
-- [0d] **pdf accessibility** → how to split pdf files (1250), how to bake a cake (800), convert jpg to pdf free (130), how to edit pdf free (60)
-- [0d] **pdf remediation** → pdf remediation tools (new), pdf remediation services (new), pdf remediation jobs (new), pdf remediation software (new)
+- [STALE] **labubu** → crumbl labubu ube dot cake (30400), savannah guthrie (7050), fugler (6300), labubu salon (1300)
+- [STALE] **fake labubu** → fake labubu dolls (new), fake labubu name (new), fake labubu amazon (new), fake labubu feet (new)
+- [10d] **pop mart** → hirono mist walker (9350), hirono after dark (7950), pop mart monster hunter (1200), nightmare before christmas pop mart (800)
+- [1d] **pdf accessibility** → how to split pdf files (1250), how to bake a cake (800), convert jpg to pdf free (130), how to edit pdf free (60)
+- [1d] **pdf remediation** → pdf remediation tools (new), pdf remediation services (new), pdf remediation jobs (new), pdf remediation software (new)
 **创业雷达词表命中(PH/HN/Reddit)**
 - (无)
 **autopilot 需求队列**:gaps **11** / covered 12 · heat: no public aggregate endpoint on this site — heat needs eithe(gaps 量的是标题与开篇有没有接住,不是站内有没有这一页——建页前先 grep 正文)
@@ -227,9 +227,21 @@
 - [scout] editor with doxygen preview · 1 天 · 站 -
 
 ## AI 助手引荐(28 天窗,真人 pv 里 referrer 是 ChatGPT/Perplexity/Claude/Copilot 等)
-- ⚠️ **舰队 AI 引荐读数不全,不可用于结算**:仅读到 1/14 站(这几站合计 19 次,**不是舰队合计**);快照 2026-09-25;09-12 手测基线 69。原因见同文件 errors 字段
-- baipiaoji: 19 / 399 pv · chatgpt.com 12, www.perplexity.ai 6, kagi.com 1
-- 未读到:agiscorecard: endpoint HTTP Error 500: Internal Server Error; no token with D1 read scope for the fallback | getecoback: endpoint HTTP Error 500: Internal Server Error; no token with D1 read scope for the fallback | thedollscout: endpoint HTTP Error 500: Internal Server Error; no token with D1 read scope for the fallback | goldrush: endpoint HTTP Error 500: Internal Server Error; no token with D1 read scope for the fallback | gridlings: endpoint HTTP Error 500: Internal Server Error; no token with D1 read scope for the fallback | buysomething: endpoint HTTP Error 500: Internal Server Error; no token with D1 read scope for the fallback | gamesledger: endpoint HTTP Error 500: Internal Server Error; no token with D1 read scope for the fallback | after35: endpoint HTTP Error 500: Internal Server Error; no token with D1 read scope for the fallback | learn: endpoint HTTP Error 500: Internal Server Error; no token with D1 read scope for the fallback | fanzha: endpoint HTTP Error 500: Internal Server Error; no token with D1 read scope for the fallback | firstjob: endpoint HTTP Error 500: Internal Server Error; no token with D1 read scope for the fallback | codeword: endpoint HTTP Error 500: Internal Server Error; no token with D1 read scope for the fallback | powerbill: endpoint HTTP Error 500: Internal Server Error; no token with D1 read scope for the fallback
+- 舰队合计 **54** 次 / 真人 pv 44128,剔除已标记噪音站 3461(快照 2026-09-26;09-12 手测基线 69)
+- agiscorecard: 19 / 38614 pv · claude.ai 7, chatgpt.com 5, www.perplexity.ai 3, copilot.microsoft.com 2, kagi.com 2 · ⚠ pv 不是读者数:server-side pageviews; JS page_view beacon 1,641/28d on 2026-09-23
+- baipiaoji: 18 / 392 pv · chatgpt.com 12, www.perplexity.ai 5, kagi.com 1
+- getecoback: 16 / 581 pv · chatgpt.com 12, www.perplexity.ai 3, kagi.com 1
+- gamesledger: 1 / 493 pv · copilot.microsoft.com 1
+- thedollscout: 0 / 656 pv · —
+- goldrush: 0 / 458 pv · —
+- gridlings: 0 / 767 pv · —
+- buysomething: 0 / 114 pv · —
+- after35: 0 / 458 pv · — · ⚠ pv 不是读者数:0 outside referrers and 0 events in 28d on 2026-09-23
+- learn: 0 / 288 pv · — · ⚠ pv 不是读者数:0 outside referrers and 0 events in 28d on 2026-09-23
+- fanzha: 0 / 282 pv · — · ⚠ pv 不是读者数:0 outside referrers and 0 events in 28d on 2026-09-23
+- firstjob: 0 / 254 pv · — · ⚠ pv 不是读者数:0 outside referrers and 0 events in 28d on 2026-09-23
+- codeword: 0 / 410 pv · — · ⚠ pv 不是读者数:0 outside referrers and 0 events in 28d on 2026-09-23
+- powerbill: 0 / 361 pv · — · ⚠ pv 不是读者数:0 outside referrers and 0 events in 28d on 2026-09-23
 
 ## 渠道构成(28 天窗;`search` 指真正的搜索引擎引荐,不是排名)
 - 舰队合计(快照 2026-09-15 **STALE**):search 254 · ai 34 · fleet 0 · social 16 · self 0 · direct 0 · other 1

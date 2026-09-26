@@ -1867,6 +1867,25 @@
    "lose": "① <3 → 四页只维护不扩建,不再加法规;不把首页入口当成失败原因去挪位置(先看 ②)。① ≥3 而 ② = 0 → 用的人都来自站内入口,问题在发现面(eco 在 B2B 合规词上零权威),不是工具本身",
    "source": "sites/getecoback/docs/eu-evidence-migration-2026-09-25.md(2026-09-25 检查一节)",
    "status": "open"
+  },
+  {
+   "id": "gridlings-playgama-loadfix-1024",
+   "site": "gridlings",
+   "due": "2026-10-24",
+   "metric": "修复后一次免费投放的读数,与 09-15 同形投放对照:① play_start ÷ 实际花费美元;② 发出 engagement 事件(GHOSTLINE race_start/finish/medal,SINGULARITY first_click/milestone/ship)的 play_start 占比 —— 这两个事件族 09-16 才进 worker 白名单,09-15 那次测不到,所以②只看新读数不做对照",
+   "threshold": "① ≥522 次/美元(09-15:155 非 US 起玩 ÷ 花掉的 $0.297)且 ②≥10%",
+   "win": "加载时间确实是约束 → 把同一套 low-GPU 处理与新包发给五个 puzzle,并花掉它们的免费投放额度",
+   "lose": "加载时间不是约束 → 停止在 AI 游戏上花免费额度,游戏线维持冻结,结论写回 gridlings CLAUDE.md",
+   "source": "sites/gridlings/CLAUDE.md 「最后一轮探索 2026-09-25」+ 「2026-09-26 执行结果」",
+   "status": "open",
+   "gated_on": "owner 发一条帖子并把帖子链接贴回(start_sandbox_traffic 要求 ≥1 个 postUrls;09-26 只传 applicationId 实测 400)。投放未开跑就到期一律记 insufficient,不改判据,不顺延",
+   "baseline_2026_09_15": {
+    "non_us_play_start": 155,
+    "budget_usd": 1,
+    "spent_ratio": 0.29666,
+    "starts_per_usd": 522,
+    "engagement_events": "not instrumented then"
+   }
   }
  ]
 }

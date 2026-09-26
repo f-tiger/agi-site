@@ -1250,12 +1250,34 @@ Cabinet 自己就是证人,不是推测:
 `offer.kind FREE` · `available true` · `budgetUsd 2` · `durationDays 3` · `expectedGameplays 100` ·
 **`remainingFreeRuns 3`** · `verdict.allowed true`。七个已发 sandbox 的应用各 3 次 = **约 21 次 × 100 ≈ 2 100 次免费游戏**。
 已经用掉的只有 2 次(GHOSTLINE / SINGULARITY,09-15,各 $1/1 天),而且**两次都没花完**:
-`spentRatio` 0.297 与 0.336 —— 预算不是约束,素材的展示/点击才是。已完成那两次的 `postUrls` 是 `[]`,
-所以**FREE 档不需要社交帖**(09-16 那次 `postUrls required` 的报错属另一个档位,当时的结论记宽了)。
+`spentRatio` 0.297 与 0.336 —— 预算不是约束,素材的展示/点击才是。
+**❌ 上面这一段最初还写了一句「已完成那两次的 `postUrls` 是 `[]`,所以 FREE 档不需要社交帖」——错的,09-26 实测推翻。**
+只传 `applicationId` 调用 `start_sandbox_traffic`,返回 **HTTP 400 `postUrls must contain at least 1 elements`**。
+正确的读法:`offer.available: true` + `remainingFreeRuns: 3` 说的是**额度还在**,不是**现在就能开**;
+开跑的门是分享。09-15 那两次 `postUrls: []` 是**分享门之前的首轮免费 boost**,与现在这三次不是同一件东西
+——**用历史行里的空字段去推当前接口的前置条件,就是这个错的形状**。
 
 **推荐动作(两步都 `askDeveloper: true`,会话不抢跑)**:①`publish_sandbox` 把两个 AI 游戏指到 09-16 的包
 (同一个公开 URL,不新增曝光面,只是把发出去的构建换成快的那个);②各用掉 1 次免费投放($2/3 天/约 100 次),
 **先 GHOSTLINE 与 SINGULARITY,puzzle 那五个留着**——先让唯一一个有前后对照的变量单独跑。
+
+### 2026-09-26 执行结果(owner 答「重发 + 各投 1 次免费」)
+
+- **①已完成,两个游戏的玩家现在拿到的是快的那版。** 逐个核对**面向玩家的那个字段**(昨天写下的规矩,第一次用上):
+  GHOSTLINE 线上 revision `cmuhp1sov0ab5ma0hacqodkfq` → archive `cmu48i4f803apnr0hi6vekyqv`(2 655 ms);
+  SINGULARITY revision `cmuhy26290pvhlc0h54hsrm6s` → archive `cmu48i5cy03arnr0h6tqzz5zs`。
+  `get_launch_steps` 的 `sandbox` 从 `OUTDATED/CHANGED` 变 **DONE**;再查一次 `changeStatus` 已是 **UNCHANGED**
+  (= 重发会是空操作,说明真的落地了);两个公开 URL HTTP 200。**URL 一个字没变**,所以旧链接全部继续有效。
+- **②开不了,卡在分享门,不是卡在额度。** 见上面那条订正:接口 400 要求 ≥1 个已发布的帖子链接。
+  **会话不编帖子链接**(不可逆花钱 + 冒充 owner 发帖,两条都撞红线),所以这一步停在 owner 手上。
+- **owner 要做的一步(约 2 分钟,两个游戏各一次)**:用 Playgama 现成的分享链接发一条,然后把**帖子本身的链接**贴回来,
+  会话就用 `postUrls` 开跑($2 / 3 天 / 约 100 次;最多贴 3 条链接,每条 +1 个 boost 单位并把活动延到贴出后至少 3 天)。
+  X:`https://x.com/intent/post?...`(见 `get_sandbox_share`,**链接由接口给出,永不自己拼**);
+  文案 Playgama 已预填 `Made with AI. Brought to you by #PlaygamaMCP. Fine-tuned by me. <游戏> → <链接>`。
+  **若 owner 自己改写文案,适用根手册的反 AI 味 8 条**;Playgama 预填的那句属平台文案,不在此列。
+- **台账**:`gridlings-playgama-loadfix-1024` 已进 `data/fleet-bets.json`(投放开跑日 +28 天;
+  metric = 修复后一次免费投放的 `play_start` 与 30 秒留存,对照 09-15 那次同预算读数)。
+  **注意它只有在 owner 贴回帖子链接后才开始计时**,没开跑就到期一律记 `insufficient`,不改判据。
 **不推荐**的:七个应用一起投(把 6 次额度花在同一个未知上)、再改游戏代码(还没有任何一版被真实测过)、
 再上传新包(上传不是发布,这一轮的教训正是这两件被当成了一件)。
 
