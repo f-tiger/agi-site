@@ -6,8 +6,8 @@ import vm from 'node:vm';
 // responses. No production data, browser profile, network or file writes are used.
 // These checks exercise user-visible results under deliberately reordered replies.
 const source = fs.readFileSync(new URL('../assets/account.js', import.meta.url), 'utf8');
-const ALICE = {id: 'test-alice', username: 'alice', created: 1};
-const BOB = {id: 'test-bob', username: 'bob', created: 2};
+const ALICE = {id: 'test-alice', username: 'alice', email:'alice@example.test', created: 1};
+const BOB = {id: 'test-bob', username: 'bob', email:'bob@example.test', created: 2};
 const CODE = 'A'.repeat(43);
 const PASSWORD = 'test-only long password';
 const passwordIds = [
@@ -85,6 +85,7 @@ async function harness(initialUser = null) {
         requests.push({method: 'GET'});
         return getHandlers.length ? getHandlers.shift()() : reply(view(serverUser));
       }
+      if (url === '/api/account-email'||url === '/api/account-google') return reply({ok:true,available:false});
       if (url === '/en/directory.json') return reply({tools: []});
       if (url === '/en/changes.json') return reply({changes: []});
       throw Error('Unexpected fetch: ' + url);
@@ -128,13 +129,13 @@ async function harness(initialUser = null) {
     await tick();
   }
   function fillRegister() {
-    node('register-username').value = 'Alice';
+    node('register-username').value = 'Alice';node('register-email').value='alice@example.test';
     node('register-password').value = PASSWORD;
     node('register-confirm').value = PASSWORD;
     node('account-consent').checked = true;
   }
   function fillRecover() {
-    node('recover-username').value = 'alice';
+    node('recover-email').value = 'alice@example.test';
     node('recover-code').value = 'Z'.repeat(43);
     node('recover-password').value = PASSWORD;
   }

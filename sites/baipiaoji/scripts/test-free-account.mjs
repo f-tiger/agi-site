@@ -1,12 +1,13 @@
 import assert from 'node:assert/strict';
 import {DatabaseSync} from 'node:sqlite';
 import {onRequest} from '../functions/api/account.js';
-import {ensureAccounts,getAccount,consumeRate,hash,PASSWORD_COST,ACCOUNT_COOKIE,issueSession} from '../lib/free-account.js';
+import {ensureAccounts,getAccount,consumeRate,hash,PASSWORD_COST,ACCOUNT_COOKIE,issueSession,passwordRecord,randomToken,now} from '../lib/free-account.js';
+import {ensureGoogleAccounts,GOOGLE_PROOF_COOKIE} from '../lib/google-account.js';
 import tools from '../data/tools.json' with {type:'json'};
-function setup(){const sql=new DatabaseSync(':memory:');sql.exec("PRAGMA foreign_keys=ON; CREATE TABLE hits (id INTEGER PRIMARY KEY); INSERT INTO hits(id) VALUES(1)");const HITS={prepare(query){let values=[];const q={bind(...args){values=args;return q;},async run(){return sql.prepare(query).run(...values);},async first(){return sql.prepare(query).get(...values)||null;},async all(){return {results:sql.prepare(query).all(...values)};}};return q;},async batch(queries){sql.exec('BEGIN');try{const out=[];for(const q of queries)out.push(await q.run());sql.exec('COMMIT');return out;}catch(error){sql.exec('ROLLBACK');throw error;}}};return {sql,env:{HITS}};}
+function setup(){const sql=new DatabaseSync(':memory:');sql.exec("PRAGMA foreign_keys=ON; CREATE TABLE hits (id INTEGER PRIMARY KEY); INSERT INTO hits(id) VALUES(1)");let transactionQueue=Promise.resolve();const HITS={prepare(query){let values=[];const q={sql:query,bind(...args){values=args;return q;},run(){return sql.prepare(query).run(...values);},async first(){return sql.prepare(query).get(...values)||null;},async all(){return {results:sql.prepare(query).all(...values)};}};return q;},batch(queries){const task=transactionQueue.then(()=>{sql.exec('BEGIN');try{const out=[];for(const q of queries)out.push(q.run());sql.exec('COMMIT');return out;}catch(error){sql.exec('ROLLBACK');throw error;}});transactionQueue=task.catch(()=>{});return task;}};return {sql,env:{HITS}};}
 const password='correct horse battery 47';const newPassword='new strong password 2026';
 function request(body,{cookie='',origin='https://baipiaoji.com',ip='192.0.2.10',headers={}}={}){return new Request('https://baipiaoji.com/api/account',{method:body?'POST':'GET',headers:{Origin:origin,'Content-Type':'application/json','CF-Connecting-IP':ip,...(cookie?{Cookie:cookie}:{}),...headers},...(body?{body:JSON.stringify(body)}:{})});}
-const call=async(env,body,options)=>{if(body&&options?.cookie&&!Object.hasOwn(body,'account_id')){const user=await getAccount(request(null,options),env);body={...body,account_id:user?.id};}return onRequest({env,request:request(body,options)});};
+const call=async(env,body,options)=>{if(body&&['register','login','recover'].includes(body.action)&&body.username&&!Object.hasOwn(body,'email')&&!body.legacy_fixture){body={...body,email:body.username.trim().toLowerCase()+'@example.test'};}if(body&&options?.cookie&&!Object.hasOwn(body,'account_id')){const user=await getAccount(request(null,options),env);body={...body,account_id:user?.id};}return onRequest({env,request:request(body,options)});};
 const cookieOf=res=>res.headers.get('Set-Cookie')?.split(';')[0];
 async function register(env,username,options={}){const res=await call(env,{action:'register',username,password,consent:true,...options});assert.equal(res.status,200,await res.clone().text());return {cookie:cookieOf(res),body:await res.json(),res};}
 assert.equal((await call({},null)).status,200,'Anonymous requests need no database');
@@ -20,7 +21,7 @@ assert.deepEqual(PASSWORD_COST,{N:32768,r:8,p:3,maxmem:64*1024*1024});
  assert.equal((await call(env,{action:'register',username:'中文',password,consent:true})).status,400);
  assert.equal((await call(env,{action:'register',username:'alice',password:'short',consent:true})).status,400);
  assert.equal((await call(env,{action:'register',username:'alice',password})).status,400);
- const a=await register(env,'  Alice_One  ');assert.equal(a.body.user.username,'alice_one');assert.equal(a.body.recovery_code.length,43);
+ const a=await register(env,'  Alice_One  ');assert.equal(a.body.user.username,'Alice_One');assert.equal(a.body.user.email,'alice_one@example.test');assert.equal(a.body.user.email_verified,false);assert.equal(a.body.recovery_code.length,43);
  for(const property of ['HttpOnly','Secure','SameSite=Lax','Path=/'])assert(a.res.headers.get('Set-Cookie').includes(property));assert(a.cookie.startsWith(ACCOUNT_COOKIE+'='));assert(!a.res.headers.get('Set-Cookie').includes('Domain='));
  const stored=sql.prepare('SELECT * FROM free_accounts').get();assert.equal(stored.qa,0);assert(stored.password_hash.startsWith('scrypt-v1$'));assert(!stored.password_hash.includes(password));assert.equal(stored.recovery_hash,hash(a.body.recovery_code));
  const session=sql.prepare('SELECT * FROM free_account_sessions').get();assert.equal(session.token_hash,hash(a.cookie.split('=')[1]));
@@ -137,6 +138,66 @@ assert.deepEqual(PASSWORD_COST,{N:32768,r:8,p:3,maxmem:64*1024*1024});
  const postFailure=await call({HITS:{prepare(){return {bind(){return this}}},async batch(){throw Error(failureMessages[0])}}},{action:'register',username:'quota_probe',password,consent:true});assert.equal(postFailure.status,503);assert.deepEqual(await postFailure.json(),{ok:false,error:'database_limit'});
  console.log('PASS: anonymous readiness reads the existing hits table once; default anonymous reads use no DB; signed-in readiness preserves profile/favorites; D1 quota errors use fixed codes without private details.');
 }
+{
+ const {env,sql}=setup();
+ assert.equal((await call(env,{action:'register',username:'no_email',email:'',password,consent:true})).status,400,'New accounts require an email');
+ const registered=await register(env,'ＢＰＪ用户',{email:'  Edison.Test+BPJ@Example.TEST  ',email_verified:true,email_verified_at:123456789});
+ assert.equal(registered.body.user.username,'BPJ用户');assert.equal(registered.body.user.email,'edison.test+bpj@example.test');assert.equal(registered.body.user.email_verified,false);assert.equal(registered.body.user.legacy,false);
+ assert.equal((await call(env,{action:'register',username:'bpj用户',email:'other@example.test',password,consent:true})).status,409,'NFKC/case display-name equivalents must be reserved');
+ assert.equal((await call(env,{action:'register',username:'another_user',email:'EDISON.TEST+BPJ@EXAMPLE.TEST',password,consent:true})).status,409,'Email case variants must be unique');
+ assert.equal((await call(env,{action:'login',username:'ＢＰＪ用户',legacy_fixture:true,password})).status,401,'New display names are not login credentials');
+ assert.equal((await call(env,{action:'login',email:' EDISON.TEST+BPJ@EXAMPLE.TEST ',password})).status,200);
+ assert.equal((await call(env,{action:'recover',email:'edison.test+bpj@example.test',recovery_code:randomToken(),new_password:newPassword})).status,401,'Unverified email alone cannot reset a password');
+ assert.equal(sql.prepare('SELECT COUNT(*) n FROM free_accounts').get().n,1);assert.equal(sql.prepare('SELECT email_verified FROM free_account_identities').get().email_verified,0);
+ console.log('PASS: email required, normalized unique email, NFKC unique Chinese/English display names, email login, and no email-only account recovery.');
+}
+{
+ const {env,sql}=setup();await ensureAccounts(env);
+ const responses=await Promise.all(['race_one','race_two'].map(username=>call(env,{action:'register',username,email:'same_email@example.test',password,consent:true})));
+ assert.deepEqual(responses.map(r=>r.status).sort(),[200,409],'Concurrent duplicate email registration must have one winner');assert((await(await call(env,null,{cookie:cookieOf(responses.find(r=>r.status===200))})).json()).user,'Winning transaction must retain its valid session');
+ assert.equal(sql.prepare('SELECT COUNT(*) n FROM free_accounts').get().n,1,'Duplicate transaction must not leave an orphan account');assert.equal(sql.prepare('SELECT COUNT(*) n FROM free_account_identities').get().n,1);
+ const names=await Promise.all([['Ｆｏｏ名字','name1@example.test'],['foo名字','name2@example.test']].map(([username,email])=>call(env,{action:'register',username,email,password,consent:true})));
+ assert.deepEqual(names.map(r=>r.status).sort(),[200,409],'Concurrent equivalent display names must have one winner');assert.equal(sql.prepare('SELECT COUNT(*) n FROM free_accounts').get().n,2);assert.equal(sql.prepare('SELECT COUNT(*) n FROM free_account_identities').get().n,2);
+ console.log('PASS: concurrent email/display-name collisions roll back atomically without orphan accounts.');
+}
+{
+ const {env,sql}=setup();
+ // Populate the deployed pre-email schema, then let the additive schema initializer run.
+ sql.exec('CREATE TABLE free_accounts(id TEXT PRIMARY KEY,username TEXT NOT NULL UNIQUE,password_hash TEXT NOT NULL,recovery_hash TEXT NOT NULL,session_version INTEGER NOT NULL DEFAULT 1,created INTEGER NOT NULL,updated INTEGER NOT NULL,qa INTEGER NOT NULL DEFAULT 0)');
+ const recovery=randomToken(),legacyID=crypto.randomUUID();sql.prepare('INSERT INTO free_accounts(id,username,password_hash,recovery_hash,created,updated) VALUES(?,?,?,?,?,?)').run(legacyID,'legacy_owner',await passwordRecord(password),hash(recovery),now(),now());
+ await ensureAccounts(env);const session=await issueSession(env,{id:legacyID,session_version:1});const cookie=ACCOUNT_COOKIE+'='+session;
+ await call(env,{action:'favorite_add',slug:tools[0].slug},{cookie});
+ sql.exec('CREATE TABLE wb_members(id TEXT PRIMARY KEY,token_hash TEXT); CREATE TABLE bpj_account_members(account_id TEXT PRIMARY KEY REFERENCES free_accounts(id) ON DELETE CASCADE,member_id TEXT,backup_hash TEXT); CREATE TABLE subs(email TEXT)');
+ sql.prepare('INSERT INTO wb_members VALUES(?,?)').run('paid-legacy','legacy-key');sql.prepare('INSERT INTO bpj_account_members VALUES(?,?,?)').run(legacyID,'paid-legacy','legacy-key');sql.prepare('INSERT INTO subs VALUES(?)').run('legacy@example.test');
+ const legacyLogin=await call(env,{action:'login',username:'legacy_owner',legacy_fixture:true,password});assert.equal(legacyLogin.status,200);const before=await legacyLogin.json();assert.equal(before.user.id,legacyID);assert.equal(before.user.email,null);assert.equal(before.user.legacy,true);
+ assert.equal((await call(env,{action:'login',email:'legacy@example.test',password})).status,401,'Subscribers must not be treated as account owners');
+ assert.equal((await call(env,{action:'register',username:'ＬＥＧＡＣＹ_owner',email:'new@example.test',password,consent:true})).status,409,'Legacy display names stay reserved');
+ assert.equal((await call(env,{action:'link_email',email:'legacy@example.test',password:'incorrect password phrase'},{cookie})).status,401);
+ assert.equal((await call(env,{action:'link_email',email:'legacy@example.test',password,account_id:'different-id'},{cookie})).status,409);
+ const linked=await call(env,{action:'link_email',email:' LEGACY@EXAMPLE.TEST ',password},{cookie});assert.equal(linked.status,200);const after=await linked.json();assert.equal(after.user.id,legacyID);assert.equal(after.user.email,'legacy@example.test');assert.equal(after.user.email_verified,false);assert.deepEqual(after.favorites,[tools[0].slug]);
+ assert.equal((await getAccount(request(null,{cookie}),env)).id,legacyID,'Linking must preserve the current session');assert.equal(sql.prepare('SELECT member_id FROM bpj_account_members WHERE account_id=?').get(legacyID).member_id,'paid-legacy');
+ assert.equal((await call(env,{action:'login',username:'legacy_owner',legacy_fixture:true,password})).status,401,'After binding, login uses email');assert.equal((await call(env,{action:'login',email:'legacy@example.test',password})).status,200);
+ assert.equal((await call(env,{action:'recover',email:'legacy@example.test',recovery_code:recovery,new_password:newPassword})).status,200,'Original recovery code follows the existing account ID');
+ assert.equal(sql.prepare('SELECT COUNT(*) n FROM wb_members').get().n,1);assert.equal(sql.prepare('SELECT COUNT(*) n FROM subs').get().n,1);
+ console.log('PASS: additive legacy migration retains IDs/favorites/sessions/paid mappings; linking requires password and never claims subscriber data.');
+}
+{
+ const {env,sql}=setup();env.GOOGLE_CLIENT_ID='fixture-client.apps.googleusercontent.com';await ensureGoogleAccounts(env);
+ const proof=(sub,email,authoritative)=>{const token=randomToken();sql.prepare("INSERT INTO free_google_proofs(token_hash,sub,email,email_authoritative,created,expires,intent) VALUES(?,?,?,?,?,?,'signin')").run(hash(token),sub,email,authoritative,now(),now()+300);return GOOGLE_PROOF_COOKIE+'='+token;};
+ assert.equal((await call(env,{action:'register',username:'google_missing',email:'missing@gmail.com',password,consent:true,google:true})).status,401);
+ const cookie=proof('fixture-google-sub','owner@gmail.com',1);
+ assert.equal((await call(env,{action:'register',username:'google_wrong',email:'other@gmail.com',password,consent:true,google:true},{cookie})).status,400);
+ const response=await call(env,{action:'register',username:'Google用户',email:'OWNER@gmail.com',password,consent:true,google:true},{cookie});assert.equal(response.status,200,await response.clone().text());const created=await response.json();assert.equal(created.user.email_verified,true);assert.equal(created.user.email,'owner@gmail.com');
+ assert.equal(response.headers.getSetCookie().length,2);assert(response.headers.getSetCookie().some(x=>x.startsWith(GOOGLE_PROOF_COOKIE+'=;')&&x.includes('Max-Age=0')));
+ assert.equal(sql.prepare('SELECT account_id FROM free_google_identities WHERE sub=?').get('fixture-google-sub').account_id,created.user.id);assert.equal(sql.prepare('SELECT COUNT(*) n FROM free_google_proofs').get().n,0);
+ assert.equal((await call(env,{action:'register',username:'google_replay',email:'owner@gmail.com',password,consent:true,google:true},{cookie})).status,401);
+ const external=await call(env,{action:'register',username:'external_google',email:'external@example.test',password,consent:true,google:true},{cookie:proof('external-sub','external@example.test',0)});assert.equal(external.status,200);assert.equal((await external.json()).user.email_verified,false,'Google external-domain claims do not verify current mailbox ownership');
+ const racedCookie=proof('expired-before-commit','race@gmail.com',1);const batch=env.HITS.batch;
+ env.HITS.batch=queries=>{if(queries.some(q=>q.sql.startsWith('INSERT INTO free_accounts(')))sql.prepare('DELETE FROM free_google_proofs WHERE sub=?').run('expired-before-commit');return batch(queries);};
+ const raced=await call(env,{action:'register',username:'lost_google_proof',email:'race@gmail.com',password,consent:true,google:true},{cookie:racedCookie});assert.equal(raced.status,409,await raced.clone().text());assert.equal(sql.prepare('SELECT COUNT(*) n FROM free_accounts WHERE username=?').get('lost_google_proof').n,0,'Proof lost before commit must roll back local account and email identity');assert.equal(sql.prepare('SELECT COUNT(*) n FROM free_account_identities WHERE email=?').get('race@gmail.com').n,0);
+ const sharedProof=proof('same-proof-race','concurrent@gmail.com',1);const registrations=await Promise.all(['google_race_one','google_race_two'].map(username=>call(env,{action:'register',username,email:'concurrent@gmail.com',password,consent:true,google:true},{cookie:sharedProof})));assert.equal(registrations.filter(r=>r.status===200).length,1);assert(registrations.filter(r=>r.status!==200).every(r=>[401,409].includes(r.status)));assert.equal(sql.prepare('SELECT COUNT(*) n FROM free_google_identities WHERE sub=?').get('same-proof-race').n,1);assert.equal(sql.prepare('SELECT COUNT(*) n FROM free_accounts WHERE username LIKE ?').get('google_race_%').n,1);
+ console.log('PASS: Google onboarding proof is email-bound, single-use and consumed atomically; missing claim rolls back registration; external email claims stay unverified.');
+}
 if(process.argv.includes('--workerd')){
  // Optional integration gate: use pinned CI dev dependencies, never the Node KDF as a runtime substitute.
  // FREE_ACCOUNT_RUNTIME_MODULES points to a directory containing esbuild/ and miniflare/.
@@ -151,16 +212,16 @@ if(process.argv.includes('--workerd')){
  const mf=new simulator.Miniflare(simulator.convertV4MiniflareOptions?simulator.convertV4MiniflareOptions(options):options);
  try{
   const post=(body,cookie='')=>mf.dispatchFetch('https://baipiaoji.com/api/account',{method:'POST',headers:{Origin:'https://baipiaoji.com','Content-Type':'application/json','CF-Connecting-IP':'192.0.2.4',...(cookie?{Cookie:cookie}:{})},body:JSON.stringify(body)});
-  const response=await post({action:'register',username:'workerd_test',password,consent:true,qa:true});assert.equal(response.status,200,await response.clone().text());
+  const response=await post({action:'register',username:'workerd_test',email:'workerd@example.test',password,consent:true,qa:true});assert.equal(response.status,200,await response.clone().text());
   const registered=await response.json();assert.equal(registered.recovery_code.length,43);const firstCookie=cookieOf(response);
-  const login=await post({action:'login',username:'workerd_test',password});assert.equal(login.status,200,await login.clone().text());
+  const login=await post({action:'login',username:'workerd_test',email:'workerd@example.test',password});assert.equal(login.status,200,await login.clone().text());
   const favorite=await post({action:'favorite_add',slug:tools[0].slug,account_id:registered.user.id},firstCookie);assert.equal(favorite.status,200);assert.deepEqual((await favorite.json()).favorites,[tools[0].slug]);
   assert.equal((await post({action:'logout',account_id:'stale-displayed-user'},firstCookie)).status,409);
   const rotation=await post({action:'rotate_recovery',account_id:registered.user.id,password},firstCookie);assert.equal(rotation.status,200);const freshRecovery=(await rotation.json()).recovery_code;
-  assert.equal((await post({action:'recover',username:'workerd_test',recovery_code:registered.recovery_code,new_password:newPassword})).status,401);
-  const recovered=await post({action:'recover',username:'workerd_test',recovery_code:freshRecovery,new_password:newPassword});assert.equal(recovered.status,200);
+  assert.equal((await post({action:'recover',email:'workerd@example.test',recovery_code:registered.recovery_code,new_password:newPassword})).status,401);
+  const recovered=await post({action:'recover',email:'workerd@example.test',recovery_code:freshRecovery,new_password:newPassword});assert.equal(recovered.status,200);
   assert.equal((await post({action:'favorite_add',slug:tools[1].slug,account_id:registered.user.id},firstCookie)).status,401,'Recovery must invalidate old workerd sessions');
-  assert.equal((await post({action:'recover',username:'workerd_test',recovery_code:registered.recovery_code,new_password:password})).status,401);
+  assert.equal((await post({action:'recover',email:'workerd@example.test',recovery_code:registered.recovery_code,new_password:password})).status,401);
   console.log('PASS actual workerd + D1: scrypt N32768/r8/p3 register/login, favorites, identity checks, recovery-code replacement and session invalidation; no KDF strength fallback.');
  }finally{await mf.dispose();}
 }

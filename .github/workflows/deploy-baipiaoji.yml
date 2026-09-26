@@ -84,6 +84,7 @@ jobs:
         run: |
           npm install --prefix /tmp/bpj-account-runtime --no-save miniflare@5.20260925.0-alpha esbuild@0.28.2
           FREE_ACCOUNT_RUNTIME_MODULES=/tmp/bpj-account-runtime/node_modules node scripts/test-free-account.mjs --workerd
+          FREE_ACCOUNT_RUNTIME_MODULES=/tmp/bpj-account-runtime/node_modules node scripts/test-google-account.mjs --workerd
 
       - name: Verify tool links & refresh dates (scheduled runs only)
         if: github.event_name != 'push'
@@ -210,6 +211,9 @@ jobs:
           node scripts/test-membership.mjs
           node scripts/test-free-account.mjs
           node scripts/test-free-account-races.mjs
+          node scripts/test-google-account.mjs
+          node scripts/test-account-email.mjs
+          node scripts/test-account-configure.mjs
           node scripts/test-account-member.mjs
           node scripts/test-ad-watch-readiness.mjs
 
@@ -316,6 +320,15 @@ jobs:
           ADS_WATCH_SECRET: ${{ secrets.ADS_WATCH_SECRET }}
         run: node scripts/ad-configure.mjs --optional
 
+      - name: Sync optional account providers without replacing existing settings
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          GOOGLE_CLIENT_ID: ${{ vars.GOOGLE_CLIENT_ID || secrets.GOOGLE_CLIENT_ID }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          ACCOUNT_MAIL_FROM: ${{ vars.ACCOUNT_MAIL_FROM || secrets.ACCOUNT_MAIL_FROM }}
+        run: node scripts/account-configure.mjs
+
       - name: Build and validate practical tool workbench
         working-directory: ${{ github.workspace }}
         run: |
@@ -344,6 +357,7 @@ jobs:
           node sites/baipiaoji/scripts/test-commercial-browser.mjs
           node sites/baipiaoji/scripts/test-site-experience-browser.mjs
           node sites/baipiaoji/scripts/test-free-account-browser.mjs
+          node sites/baipiaoji/scripts/test-account-providers-browser.mjs
           node sites/baipiaoji/scripts/test-account-member.mjs --browser
 
       - name: Deploy to Cloudflare Pages

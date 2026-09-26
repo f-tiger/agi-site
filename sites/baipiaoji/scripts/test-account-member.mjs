@@ -12,7 +12,8 @@ async function result(handler,env,req){const response=await handler({request:req
 const free=(env,body,cookie)=>result(account,env,request('/api/account',body,cookie));
 const call=(env,user,action,extra={},headers={})=>result(bridge,env,request('/api/account-member',{action,account_id:user?.id,...extra},user?.cookie,headers));
 const old=(env,key,action,extra={})=>result(legacy,env,request('/api/member',{action,...extra},'',{Authorization:'Bearer '+key}));
-async function register(env,username){const j=await free(env,{action:'register',username,password,consent:true,qa:true});assert.equal(j.status,200);return {...j.body.user,cookie:j.cookie};}
+let registrationSerial=0;
+async function register(env,username){const email='bridge-account-'+(++registrationSerial)+'@example.invalid';const j=await free(env,{action:'register',email,username,password,consent:true,qa:true});assert.equal(j.status,200);assert.equal(j.body.user.email,email);assert.equal(j.body.user.email_verified,false);return {...j.body.user,cookie:j.cookie};}
 async function context(){const all=await setupSites();const {env,db}=all.bpj;const a=await register(env,'account_one'),b=await register(env,'account_two');return {env,db,a,b,close(){for(const s of Object.values(all))s.db.sql.close();}};}
 async function existing(db,key=KEY,id='paid-member'){await db.prepare('INSERT INTO wb_members(id,token_hash,created,ends_at) VALUES(?,?,?,?)').bind(id,await digest(key),seconds(),seconds()+86400).run();return id;}
 let count=0;async function test(name,fn){const c=await context();try{await fn(c);console.log('PASS '+name);count++;}finally{c.close();}}
@@ -90,7 +91,7 @@ try{
   await existing(db);await call(env,a,'link_key',{key:KEY,key_saved:true,password});
   const changed=await free(env,{action:'change_password',account_id:a.id,old_password:password,new_password:password+'2'},a.cookie);assert.equal(changed.status,200);
   assert.equal((await call(env,a,'status')).status,401);
-  const login=await free(env,{action:'login',username:a.username,password:password+'2'});assert.equal(login.status,200);
+  const login=await free(env,{action:'login',email:a.email,password:password+'2'});assert.equal(login.status,200);
   assert.equal((await call(env,{...a,cookie:login.cookie},'status')).body.active,true);
   assert.equal(db.sql.prepare('SELECT member_id FROM bpj_account_members WHERE account_id=?').get(a.id).member_id,'paid-member');
  });
@@ -105,6 +106,22 @@ try{
   assert.equal((await old(env,next,'status')).body.active,true);
   assert.equal(db.sql.prepare('SELECT COUNT(*) n FROM bpj_account_members').get().n,0);
   assert.equal((await call(env,b,'link_key',{key:next,key_saved:true,password})).status,200);
+ });
+ await test('pre-email schema migration preserves old login, session, paid link and project',async({env,db,a})=>{
+  await existing(db);await call(env,a,'link_key',{key:KEY,key_saved:true,password});
+  await call(env,a,'save',{id:space,revision:0,name:'Legacy paid project',data});
+  const paidBefore=db.sql.prepare('SELECT * FROM wb_members WHERE id=?').get('paid-member'),linkBefore=db.sql.prepare('SELECT * FROM bpj_account_members WHERE account_id=?').get(a.id);
+  // The old schema had all existing account/session/member tables but no identity table.
+  db.sql.exec('DROP TABLE free_account_identities');
+  const oldSession=await call(env,a,'status');assert.equal(oldSession.status,200);assert.equal(oldSession.body.user.id,a.id);assert.equal(oldSession.body.user.email,null);assert.equal(oldSession.body.active,true);
+  const oldLogin=await free(env,{action:'login',username:a.username,password});assert.equal(oldLogin.status,200);assert.equal(oldLogin.body.user.id,a.id);
+  const linked=await free(env,{action:'link_email',account_id:a.id,email:a.email,password},a.cookie);assert.equal(linked.status,200);assert.equal(linked.body.user.email_verified,false);assert.equal(linked.body.user.id,a.id);
+  const login=await free(env,{action:'login',email:a.email,password});assert.equal(login.status,200);assert.equal(login.body.user.id,a.id);
+  assert.equal((await free(env,{action:'recover',email:a.email,new_password:password+'2'})).status,400);
+  assert.equal((await call(env,{...a,cookie:login.cookie},'read',{id:space,revision:1})).status,200);
+  assert.deepEqual(db.sql.prepare('SELECT * FROM wb_members WHERE id=?').get('paid-member'),paidBefore);
+  assert.deepEqual(db.sql.prepare('SELECT * FROM bpj_account_members WHERE account_id=?').get(a.id),linkBefore);
+  assert.equal(db.sql.prepare('SELECT revision FROM wb_spaces WHERE id=?').get(space).revision,1);
  });
  await test('body cap and password rate gate fail without granting membership',async({env,a})=>{
   assert.equal((await call(env,a,'status',{padding:'x'.repeat(100001)})).status,400);
