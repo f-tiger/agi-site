@@ -370,28 +370,32 @@ jobs:
           # Content that is still missing after ~30 s is a real failure; a copy
           # that was stale and then turned fresh is printed as a notice, so the
           # race stays visible instead of silently absorbed.
+          # 2026-09-26(D1 读预算事故):只在网络错误/非 200 时重试,最多 3 次;200 而内容不符**不再重抓**——
+          # /api/pulse 等聚合端点现在从 Cache API 出,重抓拿到的是同一份缓存,每次重抓此前都是一次全窗 D1 扫描。
+          # 断言一条不放松:内容不符照样红。
           check() {
-            url="$1"; must_contain="$2"; stale=0
-            for attempt in 1 2 3 4; do
+            url="$1"; must_contain="$2"
+            for attempt in 1 2 3; do
               body=$(curl -sL --max-time 20 -w "\n%{http_code}" "$url" || echo -e "\n000")
               code=$(tail -1 <<<"$body")
-              if [ "$code" = "200" ]; then
-                if [ -z "$must_contain" ] || grep -q -- "$must_contain" <<<"$body"; then break; fi
-                stale=$((stale+1)); [ "$attempt" -lt 4 ] && sleep 10
-              else
-                sleep 3
-              fi
+              [ "$code" = "200" ] && break
+              [ "$attempt" -lt 3 ] && sleep 3
             done
             if [ "$code" != "200" ]; then
               echo "::error::$url returned HTTP $code"
               fail=1
             elif [ -n "$must_contain" ] && ! grep -q -- "$must_contain" <<<"$body"; then
-              echo "::error::$url is 200 but missing expected content after $stale tries: $must_contain"
-              fail=1
+              # 静态文件(非 /api/)可能还是边缘上一版:只再抓一次,且绕过缓存键。/api/ 聚合端点
+              # 的缓存键含部署版本,重抓没有意义(2026-09-26,D1 读预算)。
+              case "$url" in
+                */api/*) ;;
+                *) sleep 5; body=$(curl -sL --max-time 20 -H 'Cache-Control: no-cache' "${url}?__nocache=$(date +%s)" || echo "") ;;
+              esac
+              if grep -q -- "$must_contain" <<<"$body"; then echo "OK $url ($code, after one cache-busting re-fetch)"; else
+              echo "::error::$url is 200 but missing expected content: $must_contain"
+              fail=1; fi
             else
               echo "OK $url ($code)"
-              [ "$stale" -gt 0 ] && echo "::notice::$url served the previous build $stale time(s) before the new content (edge cache after deploy)"
-              true
             fi
           }
           check "https://getecoback.com/" "tag=getecoback-21"
@@ -870,16 +874,18 @@ jobs:
             *) echo "::error::browsers no longer get HTML: '${plain:0:120}'"; fail=1 ;;
           esac
           # Trend condensation feed: the daily radar reads this.
-          trend=""
+          # 2026-09-26:只在非 2xx/网络错误时重试(最多 3 次);D1 坏了 worker 现在回 503 {ok:false},不再是空数组 200。
+          trend=""; tcode=000
           for attempt in 1 2 3; do
-            trend=$(curl -s --max-time 20 "https://getecoback.com/api/trend" || echo "")
-            case "$trend" in *'"events"'*) break ;; esac
-            sleep 5
+            out=$(curl -s --max-time 20 -w "\n%{http_code}" "https://getecoback.com/api/trend" || echo -e "\n000")
+            tcode=$(tail -1 <<<"$out"); trend=$(sed '$d' <<<"$out")
+            case "$tcode" in 2*) break ;; esac
+            [ "$attempt" -lt 3 ] && sleep 5
           done
-          echo "trend endpoint said: ${trend:0:150}"
+          echo "trend endpoint said: HTTP $tcode ${trend:0:150}"
           case "$trend" in
             *'"events"'*) echo "OK trend endpoint" ;;
-            *) echo "::error::trend endpoint broken after 3 tries: '$trend'"; fail=1 ;;
+            *) echo "::error::trend endpoint broken (HTTP $tcode): '$trend'"; fail=1 ;;
           esac
           # MCP server: the agent-facing tool layer. initialize must round-trip.
           # Read serverInfo from JSON and use the manifest name loaded above;
@@ -902,16 +908,18 @@ jobs:
           if mcp_init_ok "$mcpv1"; then echo "OK mcp/v1 (registry pointer)"
           else echo "::error::registry remote URL /mcp/v1 broken: '$mcpv1'"; fail=1; fi
           # Live popular ranking: drives the homepage's self-refreshing block.
-          top=""
+          # 2026-09-26:同上,只在非 2xx/网络错误时重试(最多 3 次)。
+          top=""; pcode=000
           for attempt in 1 2 3; do
-            top=$(curl -s --max-time 20 "https://getecoback.com/api/top" || echo "")
-            case "$top" in *'"pages"'*) break ;; esac
-            sleep 5
+            out=$(curl -s --max-time 20 -w "\n%{http_code}" "https://getecoback.com/api/top" || echo -e "\n000")
+            pcode=$(tail -1 <<<"$out"); top=$(sed '$d' <<<"$out")
+            case "$pcode" in 2*) break ;; esac
+            [ "$attempt" -lt 3 ] && sleep 5
           done
-          echo "top endpoint said: ${top:0:200}"
+          echo "top endpoint said: HTTP $pcode ${top:0:200}"
           case "$top" in
             *'"pages"'*) echo "OK top endpoint" ;;
-            *) echo "::error::top endpoint broken after 3 tries: '$top'"; fail=1 ;;
+            *) echo "::error::top endpoint broken (HTTP $pcode): '$top'"; fail=1 ;;
           esac
           exit $fail
 
