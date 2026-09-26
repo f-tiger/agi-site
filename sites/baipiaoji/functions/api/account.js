@@ -15,8 +15,10 @@ async function route(request,env){
  if(request.method==='GET'&&new URL(request.url).searchParams.get('readiness')==='1'){
   if(!env.HITS)return error('unavailable',503);
   if(tokenFrom(request)){const user=await getAccount(request,env);return json({...await accountView(env,user),ready:true});}
-  // Explicit account-page readiness probe: one read, no schema creation or cleanup.
-  await env.HITS.prepare('SELECT 1 AS ready').first();
+  // Read one row from the existing analytics table: constant SELECT 1 bypasses
+  // D1 row-read accounting and can falsely report ready during a daily quota outage.
+  // No row contents are exposed; no schema creation or cleanup occurs here.
+  await env.HITS.prepare('SELECT 1 AS ready FROM hits LIMIT 1').first();
   return json({ok:true,ready:true,user:null,favorites:[]});
  }
  if(request.method==='GET'&&!tokenFrom(request))return json({ok:true,user:null,favorites:[]});
