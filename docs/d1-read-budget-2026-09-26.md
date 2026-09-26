@@ -47,6 +47,9 @@ Cloudflare 的逐条数字显示 `ev=''` 的行现在有两万多条。所以改
 
 1. **服务端缓存** `lib/reach-cache.js`：Cache API，键只含版本号与 `days`，一小时内同 `days` 只算一次，并发未命中合并，
    失败不缓存，缓存出错照常现算。部署自检断言响应头 `x-bpj-reach-cache` 在。
+   **部分失败也不缓存**（10d97e66）：上线后第一次线上计算（12:25 UTC，账号仍在额度边缘）主查询成功、商业触发那条被拒，
+   缺一块的结果被缓存了一小时；现在这种响应带 `partial:true`，缓存拒收，缓存版本 v2→v3。
+   同一时刻会话经 D1 查询接口仍收到 7500，而站点的 D1 绑定已能部分读写——额度用完后的拒绝并非对每条查询同时生效。
 2. **两个部分索引**（`migrations/0002_hits_indexes_bot_daily.sql`，`lib/hits-schema.js`）：
    `hits_referred ON hits(d) WHERE ev='' AND ref IS NOT NULL AND ref != ''`（真人统计只读带来源的几百行）、
    `hits_events ON hits(d, ev) WHERE ev != ''`（事件查询只读窗口内的事件与 API 行）。查询文字与改动前逐字相同或只多一个被蕴含的条件。
