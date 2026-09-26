@@ -112,6 +112,29 @@ assert.deepEqual(PASSWORD_COST,{N:32768,r:8,p:3,maxmem:64*1024*1024});
  const logout=await call(env,{action:'logout',account_id:a.body.user.id},{cookie:a.cookie});assert.equal(logout.status,200);assert(logout.headers.get('Set-Cookie').includes('Max-Age=0'));assert.equal(await getAccount(request(null,{cookie:a.cookie}),env),null);
  console.log('PASS: exhausted write quota cannot block valid logout; origin and displayed-account checks still protect the session.');
 }
+{
+ let operations=0;
+ const probeRequest=()=>new Request('https://baipiaoji.com/api/account?readiness=1');
+ const failureMessages=["Your account has exceeded D1's free tier daily row read limit.","Your account has exceeded D1's free tier daily row write limit.",'D1 quota exhausted','Too many requests for database secret-customer@example.test'];
+ for(const message of failureMessages){
+  const env={HITS:{prepare(sql){operations++;assert.equal(sql,'SELECT 1 AS ready');return {async first(){throw new Error(message)}}},batch(){throw Error('Readiness must never initialize schema')}}};
+  const prior=operations;const anonymous=await call(env,null);assert.equal(anonymous.status,200);assert.equal(operations,prior,'Default anonymous request must perform zero DB operations');
+  const response=await onRequest({request:probeRequest(),env});assert.equal(response.status,503);assert.deepEqual(await response.json(),{ok:false,error:'database_limit'});
+ }
+ for(const message of ['D1 unavailable; database-id=private-value','Some other error with customer@example.test']){
+  const response=await onRequest({request:probeRequest(),env:{HITS:{prepare(){return {async first(){throw Error(message)}}}}}});assert.equal(response.status,503);assert.deepEqual(await response.json(),{ok:false,error:'unavailable'});
+ }
+ const absent=await onRequest({request:probeRequest(),env:{}});assert.equal(absent.status,503);assert.deepEqual(await absent.json(),{ok:false,error:'unavailable'});
+ const ready=await onRequest({request:probeRequest(),env:{HITS:{prepare(sql){assert.equal(sql,'SELECT 1 AS ready');return {async first(){return {ready:1}}}},batch(){throw Error('No schema work in readiness')}}}});assert.deepEqual(await ready.json(),{ok:true,ready:true,user:null,favorites:[]});
+ const live=setup();const registered=await register(live.env,'readiness_user');
+ await call(live.env,{action:'favorite_add',slug:tools[0].slug},{cookie:registered.cookie});
+ const signedIn=await onRequest({request:new Request('https://baipiaoji.com/api/account?readiness=1',{headers:{Cookie:registered.cookie}}),env:live.env});
+ assert.equal(signedIn.status,200);assert.deepEqual(await signedIn.json(),{ok:true,ready:true,user:registered.body.user,favorites:[tools[0].slug]},'Readiness refresh must preserve the signed-in profile and favorites');
+ live.sql.prepare('UPDATE free_account_sessions SET expires=0').run();
+ const expired=await onRequest({request:new Request('https://baipiaoji.com/api/account?readiness=1',{headers:{Cookie:registered.cookie}}),env:live.env});assert.deepEqual(await expired.json(),{ok:true,ready:true,user:null,favorites:[]});
+ const postFailure=await call({HITS:{prepare(){return {bind(){return this}}},async batch(){throw Error(failureMessages[0])}}},{action:'register',username:'quota_probe',password,consent:true});assert.equal(postFailure.status,503);assert.deepEqual(await postFailure.json(),{ok:false,error:'database_limit'});
+ console.log('PASS: anonymous readiness uses one SELECT; default anonymous reads use no DB; signed-in readiness preserves profile/favorites; D1 quota errors use fixed codes without private details.');
+}
 if(process.argv.includes('--workerd')){
  // Optional integration gate: use pinned CI dev dependencies, never the Node KDF as a runtime substitute.
  // FREE_ACCOUNT_RUNTIME_MODULES points to a directory containing esbuild/ and miniflare/.

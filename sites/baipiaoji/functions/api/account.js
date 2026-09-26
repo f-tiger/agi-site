@@ -12,6 +12,13 @@ async function bodyOf(request){
  try{const result=JSON.parse(new TextDecoder('utf-8',{fatal:true}).decode(bytes));return result&&typeof result==='object'&&!Array.isArray(result)?result:null;}catch{return null;}
 }
 async function route(request,env){
+ if(request.method==='GET'&&new URL(request.url).searchParams.get('readiness')==='1'){
+  if(!env.HITS)return error('unavailable',503);
+  if(tokenFrom(request)){const user=await getAccount(request,env);return json({...await accountView(env,user),ready:true});}
+  // Explicit account-page readiness probe: one read, no schema creation or cleanup.
+  await env.HITS.prepare('SELECT 1 AS ready').first();
+  return json({ok:true,ready:true,user:null,favorites:[]});
+ }
  if(request.method==='GET'&&!tokenFrom(request))return json({ok:true,user:null,favorites:[]});
  if(!env.HITS)return error('unavailable',503);
  if(request.method==='GET'){const user=await getAccount(request,env);return json(await accountView(env,user));}
@@ -111,4 +118,8 @@ async function route(request,env){
  }
  return error('invalid_request',400);
 }
-export async function onRequest({request,env}){try{return await route(request,env);}catch{return error('unavailable',503);}}
+function unavailableCode(cause){
+ const message=typeof cause?.message==='string'?cause.message:typeof cause==='string'?cause:'';
+ return /quota|limit exceeded|exceeded.*limit|too many.*(requests|rows)|daily(?:[^\n]{0,120})row(?:[^\n]{0,120})(read|write)(?:[^\n]{0,40})limit/i.test(message)?'database_limit':'unavailable';
+}
+export async function onRequest({request,env}){try{return await route(request,env);}catch(cause){return error(unavailableCode(cause),503);}}
