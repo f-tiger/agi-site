@@ -59,6 +59,10 @@ const settle = () => Promise.all(pendingWrites.splice(0));
   await cached(ctxOf('https://baipiaoji.com/api/reach'), 7, okFalse);
   await settle();
   ok(cache.store.size === 0, 'ok:false 即使是 200 也不缓存');
+  const partial = async () => new Response(JSON.stringify({ ok: true, partial: true, generated: new Date(clock).toISOString() }), { status: 200 });
+  const pr = await cached(ctxOf('https://baipiaoji.com/api/reach'), 14, partial);
+  await settle();
+  ok(cache.store.size === 0 && pr.headers.get('x-bpj-reach-cache') === 'bypass', '缺一块的结果（partial:true）不缓存');
 }
 {
   const cache = memCache(), cached = createReachCache({ getCache: () => cache, now });
@@ -109,6 +113,15 @@ const settle = () => Promise.all(pendingWrites.splice(0));
   ok(second.headers.get('x-bpj-reach-cache') === 'hit' && reads === afterFirst, '第二次请求一条 hits 查询都不发');
   const j = await second.json();
   ok(j.ok === true && j.window_days === 7 && j.humans_referred === 1 && Array.isArray(j.paths), '缓存里的是完整的 reach 响应');
+  // 商业触发那条查询失败（额度边缘时实见）→ 响应标 partial，不进缓存，下一次重算。
+  cache.store.clear();
+  const failing = { prepare(q) { const st = HITS.prepare(q); if (/ev='biz'/.test(q)) { const b = st.bind; st.bind = (...v) => { b(...v); return { all: async () => { throw new Error('D1_ERROR: daily row read limit'); } }; }; } return st; } };
+  const w2 = [];
+  const p1 = await onRequestGet({ request: new Request('https://baipiaoji.com/api/reach?days=14'), env: { HITS: failing }, waitUntil: (p) => w2.push(p) });
+  await Promise.all(w2);
+  const pj = await p1.json();
+  ok(pj.ok === true && pj.partial === true && pj.commercial_triggers.ok === false, '商业触发读不出来时响应标 partial');
+  ok(cache.store.size === 0 && p1.headers.get('x-bpj-reach-cache') === 'bypass', 'partial 响应不进缓存');
   delete globalThis.caches;
 }
 

@@ -9,9 +9,9 @@
 //   · 键只含版本号与 days，别的查询参数一律不进键——随手加个参数不能把缓存打穿；
 //   · 响应形状一改就把 VERSION 加一，否则部署后一小时内还会返回旧形状；
 //   · 同一 isolate 里同时到的未命中只算一次；
-//   · 只缓存 ok:true 的 200；失败、超时、缓存本身出错都照原样现算或返回，不缓存错误；
+//   · 只缓存 ok:true 且不带 partial:true 的 200；失败、部分失败、缓存本身出错都照原样现算或返回，不缓存错误；
 //   · 命中时返回剩余的新鲜时间，不把一小时重新算起。
-export const REACH_CACHE_VERSION = 'v2';
+export const REACH_CACHE_VERSION = 'v3';   // v3: 响应多了 partial 标记(2026-09-26)
 export const REACH_TTL = 3600;
 
 export function createReachCache({ getCache = () => globalThis.caches?.default, now = Date.now } = {}) {
@@ -29,7 +29,7 @@ export function createReachCache({ getCache = () => globalThis.caches?.default, 
     try {
       const body = await res.clone().json();
       const age = (now() - Date.parse(body.generated)) / 1000;
-      return body.ok === true && Number.isFinite(age) && age >= 0 && age < REACH_TTL
+      return body.ok === true && body.partial !== true && Number.isFinite(age) && age >= 0 && age < REACH_TTL
         ? Math.max(1, Math.floor(REACH_TTL - age)) : 0;
     } catch { return 0; }
   }

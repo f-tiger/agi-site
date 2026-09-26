@@ -102,6 +102,7 @@ export async function computeReach(env, days) {
     ]);
     const ads = {};
     for (const r of adsRows) ads[String(r.status || '')] = r.n;
+    const commercial = await readCommercialTriggers(env.HITS, since);
     return json({
       ok: true,
       generated: new Date().toISOString(),
@@ -112,7 +113,10 @@ export async function computeReach(env, days) {
       events: Object.fromEntries(events.map((r) => [r.ev, r.n])),
       submissions: { new: subsNew[0] ? subsNew[0].n : null, total: subsAll[0] ? subsAll[0].n : null },
       ads,
-      commercial_triggers: await readCommercialTriggers(env.HITS,since),
+      commercial_triggers: commercial,
+      // 有一块没读出来(09-26 额度边缘时实见:主查询成功、商业触发那条被拒)就标 partial,
+      // lib/reach-cache.js 不缓存它——否则缺一块的结果会被原样挂一小时。
+      ...(commercial.ok === false ? { partial: true } : {}),
       money: {
         days,
         subs_by_status: Object.fromEntries(subsByStatus.map((r) => [String(r.status || ''), r.n])),
