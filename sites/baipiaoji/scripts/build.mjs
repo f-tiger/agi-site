@@ -7918,6 +7918,13 @@ Details: ${site.base_url}/pricing.html
 
 writeFileSync(join(dist, 'llms.txt'), pubText(`# ${site.name} / Baipiaoji (baipiaoji.com)
 
+## BPJ first-party AI workflow tools
+- Hub: https://baipiaoji.com/en/studio/ai/
+- Task Loop: https://baipiaoji.com/en/studio/task-loop
+- Catalog: https://baipiaoji.com/en/ai-tools.json
+- Free MCP: https://baipiaoji.com/api/ai-mcp
+- Paid MCP: not launched. Explicit-state rules, not calibrated success predictions.
+
 > ${site.description}
 
 本站是中文互联网上专门收录「AI 工具真实免费额度」的导航站，同时提供英文版（/en/）。与通用 AI 工具目录不同，只收录确有免费额度的工具，且每条福利都标注核实日期、链接每日自动巡检。
@@ -8100,7 +8107,14 @@ Markdown mirrors: every content page (site root, /en/, /money/, /plans/) is also
   const licOnly = Object.entries(LICENCE)
     .filter(([slug]) => rawBySlug.has(slug) && !rawBySlug.get(slug).limits)
     .map(([slug, l]) => `- ${enT(slug).name || rawBySlug.get(slug).name}: ${VERDICT[l.verdict]?.en || l.verdict} (${l.scope_en}, checked ${l.checked}) / ${VERDICT[l.verdict]?.zh || l.verdict}（${l.scope_zh}）`);
-  writeFileSync(join(dist, 'llms-full.txt'), pubText(`# ${site.name} / Baipiaoji (baipiaoji.com) — full verified dataset
+  writeFileSync(join(dist, 'llms-full.txt'), pubText(`# ${site.name} / Baipiaoji (baipiaoji.com)
+
+## BPJ first-party AI workflow tools
+- Hub: https://baipiaoji.com/en/studio/ai/
+- Task Loop: https://baipiaoji.com/en/studio/task-loop
+- Catalog: https://baipiaoji.com/en/ai-tools.json
+- Free MCP: https://baipiaoji.com/api/ai-mcp
+- Paid MCP: not launched. Explicit-state rules, not calibrated success predictions. — full verified dataset
 
 > Verified free-tier limits and commercial-use verdicts for AI tools, in one file. Every figure below is traced to an official vendor page and carries its check date. Tools whose numbers cannot be verified against an official source are deliberately absent — this dataset publishes no unsourced figures.
 

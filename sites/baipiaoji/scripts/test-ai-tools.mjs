@@ -1,0 +1,38 @@
+import assert from 'node:assert/strict';
+import {appendEvent,restoreLedger,reviewTask,summarize,compareRuns} from '../assets/studio/task-loop-core.mjs';
+import {aiMcp} from '../lib/ai-mcp.mjs';
+let n=0;const test=(name,fn)=>{fn();n++;console.log('PASS '+name);};
+let e=appendEvent([],'state',{goal:'Ship signup',acceptance:'Live signup passes',blockers:['Service unavailable']});
+test('blocker before artifact',()=>assert.equal(reviewTask({...e[0].data,artifactCreated:true}).action,'resolve_blocker'));
+test('artifact is not acceptance',()=>assert.equal(reviewTask({goal:'x',acceptance:'y',artifactCreated:true}).action,'verify_acceptance'));
+test('typed inputs',()=>assert.throws(()=>reviewTask({goal:'x',acceptance:'y',cancelled:'false'})));
+test('goal change needs reason',()=>assert.throws(()=>appendEvent(e,'state',{goal:'Another task',acceptance:'Test'})));
+e=appendEvent(e,'prediction',{action:'Inspect service',expected:'Reproduce error',checkWhen:'After inspection',ifWrong:'Gather logs'});
+test('unknown forecast',()=>assert.throws(()=>appendEvent(e,'outcome',{predictionId:90,status:'pass',evidence:'x'})));
+const s=appendEvent(e,'state',{goal:'Ship signup',acceptance:'Live signup passes',blockers:[]});
+test('snapshot stays historical',()=>assert.deepEqual(s[1].data.snapshot.blockers,['Service unavailable']));
+e=appendEvent(s,'outcome',{predictionId:2,status:'inconclusive',evidence:'Environment changed'});
+test('state change marked',()=>assert.equal(e.at(-1).data.stateChanged,true));
+test('duplicate result rejected',()=>assert.throws(()=>appendEvent(e,'outcome',{predictionId:2,status:'pass',evidence:'rewrite'})));
+test('import reconstructs snapshots',()=>{const copy=structuredClone(e);copy[1].data.snapshot={goal:'injected'};assert.deepEqual(restoreLedger({version:1,events:copy})[1].data.snapshot,e[0].data);});
+test('no probability hallucination',()=>assert.equal(summarize(e).brierMean,null));
+test('batch comparison uses failures in denominator',()=>assert.deepEqual(compareRuns([{taskId:'a',group:'B',passed:false,cost:2,interventions:1}]).groups.B,{runs:1,passed:0,cost:2,interventions:1}));
+test('invalid run rejected',()=>assert.throws(()=>compareRuns([{taskId:'a',group:'B',passed:true,cost:-1,interventions:0}])));
+const req=(body,headers={},paid=false,env={})=>aiMcp({request:new Request('https://baipiaoji.com/api/ai-mcp'+(paid?'-pro':''),{method:'POST',headers:{'Content-Type':'application/json',...headers},body:JSON.stringify(body)}),env},paid);
+const msg={jsonrpc:'2.0',id:1,method:'tools/call',params:{name:'review_task_state',arguments:{goal:'Ship',acceptance:'Tests pass',blockers:['Missing config']}}};
+assert.equal(JSON.parse((await (await req(msg)).json()).result.content[0].text).action,'resolve_blocker');n++;
+assert.equal((await req(msg,{Origin:'https://evil.example'})).status,403);n++;
+assert.equal((await req(msg,{},true)).status,503);n++;
+assert.equal((await req(msg,{},true,{AI_MCP_PAID_ENABLED:'true'})).status,401);n++;
+assert.equal((await req(msg,{'Authorization':'Bearer '+'a'.repeat(64)},true,{AI_MCP_PAID_ENABLED:'true'})).status,503);n++;
+assert.equal((await req({jsonrpc:'2.0',method:'notifications/initialized'})).status,202);n++;
+assert.equal((await req({...msg,params:{name:'compare_task_runs',arguments:{runs:[]}}})).status,200);
+assert.equal((await (await req({...msg,params:{name:'compare_task_runs'}})).json()).error.code,-32602);n++;
+assert.equal((await req({...msg,params:{name:'review_task_state',arguments:{goal:'a'.repeat(70000)}}})).status,413);n++;
+console.log(`PASS ${n} AI tools checks; no paid service activated.`);
+const fakeDb=member=>({prepare:sql=>({bind(){return this;},async first(){return sql.includes('wb_members')?member:{n:1};},async run(){return {success:true};}})});
+for(const [member,status] of [[null,401],[{id:'expired',ends_at:1,suspended:0},403],[{id:'suspended',ends_at:Math.floor(Date.now()/1000)+1000,suspended:1},403],[{id:'active',ends_at:Math.floor(Date.now()/1000)+1000,suspended:0},200]]){
+ const r=await req({jsonrpc:'2.0',id:1,method:'tools/list'},{Authorization:'Bearer '+'a'.repeat(64)},true,{AI_MCP_PAID_ENABLED:'true',HITS:fakeDb(member)});assert.equal(r.status,status);
+}
+assert.equal(compareRuns([{taskId:'x',group:'__proto__',passed:false,cost:0,interventions:0}]).groups.__proto__.runs,1);
+console.log('PASS 5 additional checks: absent, expired, suspended, active paid membership (mock DB), hostile group key.');
