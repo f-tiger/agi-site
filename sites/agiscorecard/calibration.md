@@ -20,7 +20,7 @@ Outcomes are graded against pre-registered falsification conditions written befo
 
 **How do I check that a record was not backdated?**
 
-Each version of data.json, index-history.json, the consensus board and the odds history is timestamped through OpenTimestamps; the proofs are served under /ots/ and verify against the Bitcoin blockchain with the free client. That proves when a file existed, not that it is correct.
+Versions of data.json, index-history.json, the consensus board and the odds history stamped since 2026-09-26 carry an OpenTimestamps proof under /ots/ (the manifest lists each proof's status: pending until the calendar's transaction is in a Bitcoin block). Verify with the free client against the entry whose sha256 matches your download. That proves when those bytes existed, not that they are correct; earlier history rests on the public git log.
 
 ---
 Canonical page: https://agiscorecard.com/calibration

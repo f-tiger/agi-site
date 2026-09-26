@@ -277,7 +277,7 @@ export default {
               description: 'The Invest dataset: how the eight graded Situational Awareness predictions map onto 17 listed AI equities, how eight well-known investors are positioned per their public SEC 13F filings, and what copying them would have returned priced on the FILING DATE (not quarter end, which no real person could have traded). Educational only — never investment advice.',
               inputSchema: { type: 'object', properties: {} } },
             { name: 'get_agi_consensus',
-              description: 'The AGI consensus board: what Polymarket, Kalshi, Manifold and Metaculus put on "AGI before 2027/2028/2030/2035/2040", the cross-venue median and spread, each venue\'s implied 50% year, and the published recompute formula. Third-party public quotes with as-of times; no bets, no affiliate links. Page: agiscorecard.com/agi-prediction-markets',
+              description: 'The AGI consensus board: what Polymarket, Kalshi, Manifold and Metaculus put on "AGI before 2027/2028/2030/2035/2040", the cross-venue median and spread, each series\' implied 50% date (implied_50pct_date) and resolution basis, and the published recompute formula. Third-party public quotes with as-of times; no bets, no affiliate links. Page: agiscorecard.com/agi-prediction-markets',
               inputSchema: { type: 'object', properties: {} } },
             { name: 'search_site',
               description: 'Search every page and tool on agiscorecard.com and its invest/compass sub-sites (English and Chinese). Returns titles, descriptions and URLs.',
@@ -314,7 +314,8 @@ export default {
             // its as-of time; recomputable from market-board.json (gen_market_board.py --check).
             const r = await env.ASSETS.fetch(new Request('https://agiscorecard.com/agi-consensus.json'));
             if (!r.ok) return mcpText(id, { error: 'consensus board not published yet (fetch step has not succeeded)', status: r.status });
-            logTool('agi_consensus');
+            // label carries a short UA prefix (never the full string) so the 11-24 line can exclude indexer shapes.
+            logTool('agi_consensus ' + String(request.headers.get('user-agent') || '-').slice(0, 24));
             return mcpText(id, await r.json());
           }
           if (tool === 'get_sunwatch_track_record') {
@@ -834,6 +835,14 @@ export default {
       // them server-side so the 60-day adoption line has real numbers, and mark them
       // noindex — the HTML page stays the canonical and the citation surface. Both
       // steps are wrapped so they can never break serving.
+      // 2026-09-26: the consensus JSON, the board snapshot and the OpenTimestamps proofs are the surfaces two
+      // judgment lines read (agi-consensus-mcp-1124 / agi-ots-verified-1124); without a row here their readings
+      // would be 0 by construction. Same aggregate pageviews table, UA-classified; CI requests carry ?ci=1.
+      if (request.method === 'GET' && (res.status === 200 || res.status === 304) &&
+          (url.pathname === '/agi-consensus.json' || url.pathname === '/market-board.json' || url.pathname.startsWith('/ots/')) &&
+          url.searchParams.get('ci') !== '1') {
+        try { recordView(env, ctx, request, url); } catch (e) {}
+      }
       if (request.method === 'GET' && (res.status === 200 || res.status === 304) && url.pathname.endsWith('.md')) {
         try { recordView(env, ctx, request, url); } catch (e) {}
         try {

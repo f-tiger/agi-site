@@ -3125,7 +3125,7 @@ Owner explicitly asked to continue expanding the newly launched Web3 × AI tool.
 ## 2026-09-26 — 信任层审计 + 共识板首发 + OTS 锚定(owner:「类似比特币的共识算法…AI 时代信仰」)
 
 改动页:/agi-prediction-markets(首发,此前 404 三周)、/calibration(改为生成)、/changelog(接进部署,补 2 条)、/for-agents(工具数 5→7、翻转条件描述改为如实)、/skill.md(重写为真 SKILL)。
-未动:/when-will-agi-arrive(防翻炒窗内;判 `agi-consensus-mcp-1124` win 后再加 median 活数字钩子)。
+未动:/when-will-agi-arrive(`deep_when_mid` 位置实验 10-07 结算,判定期内不改被测对象;判 `agi-consensus-mcp-1124` win 后再加 median 活数字钩子)。
 读数(D1 09-26,28d,pageviews human 口径):when-will-agi-arrive 2 168 · how-close-is-agi 525 · progress-index 359 · forecaster-leaderboard 266 · calibration 227 · prediction-receipts 227 · for-agents 220;MCP 28d:sunwatch 7 · invest 7 · claim_ledger 5(thesis_tracker/verdicts 此前不落库)。
 共识板首读(沙箱,无 Metaculus token):before 2027 中位 7.6%、2028 45%(spread 42 点)、2030 64.5%。
 详见根仓 docs/ai-consensus-faith-2026-09-26.md。

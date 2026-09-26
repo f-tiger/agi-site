@@ -50,7 +50,10 @@ export function parseBefore(q) {
   if (m && MONTHS[m[1].slice(0, 3).toLowerCase()]) return iso(+m[2], MONTHS[m[1].slice(0, 3).toLowerCase()], 1);
   m = s.match(/\bbefore\s+(\d{4})\b/i);
   if (m) return iso(+m[1]);
-  m = s.match(/\b(?:by(?: the end of)?|in)\s+(\d{4})\b/i);
+  // 「by …」是截止,优先于顺带出现的「in YYYY」;「by end of 2027」与「by the end of 2027」同义
+  m = s.match(/\bby(?: the)?(?: end of)?\s+(\d{4})\b/i);
+  if (m) return iso(+m[1] + 1);
+  m = s.match(/\bin\s+(\d{4})\b/i);
   if (m) return iso(+m[1] + 1);
   return null;
 }
@@ -212,8 +215,10 @@ async function main() {
     .sort((a, b) => (b.volume ?? b.bettors ?? 0) - (a.volume ?? a.bettors ?? 0));
   // 锚点行(before 正好是某个锚点日期)永远保留——它们是共识表的输入,不能被成交量截掉
   // (Kalshi 2030/2031 合约成交量小,首跑就被 40 行上限挤掉了);其余按成交量补到上限。
-  const anchored = all.filter((r) => r.before && ANCHORS.includes(r.before));
-  const rest = all.filter((r) => !(r.before && ANCHORS.includes(r.before)));
+  // 评审 09-26:只留锚点行会把系列的非锚点点位(Kalshi 2028-04/07/10、2029、2031)截掉,而 50% 交点
+  // 的插值正需要它们——所以凡是解析出「before 日期」的时间线行一律保留,上限只对其余行生效。
+  const anchored = all.filter((r) => r.before);
+  const rest = all.filter((r) => !r.before);
   const rows = [...anchored, ...rest.slice(0, Math.max(0, MAX_ROWS - anchored.length))];
   const venue = (v) => ({ ok: v.ok, via: v.via ?? null, reason: v.reason ?? null, found: v.rows.length });
   const board = {
@@ -233,4 +238,16 @@ async function main() {
   console.log(`\n已写 market-board.json:${rows.length} 条 · 场所 ok:${okv.join(',') || '无'}`);
 }
 
+if (process.argv.includes('--selftest')) {
+  const cases = [['Will we get AGI before 2028?', '2028-01-01'], ['Will we get AGI before July 1st 2029?', '2029-07-01'],
+    ['… before Jan 1, 2031? — Before Jan 1, 2031', '2031-01-01'], ['OpenAI announces it has achieved AGI in 2026?', '2027-01-01'],
+    ['Model released in 2024 achieves AGI by 2027?', '2028-01-01'], ['Will X happen by end of 2027?', '2028-01-01'],
+    ['Will X happen by the end of 2027?', '2028-01-01'], ['Are LLMs capable of reaching AGI?', null]];
+  let bad = 0;
+  for (const [q, want] of cases) { const got = parseBefore(q); if (got !== want) { bad++; console.log(`FAIL parseBefore(${q}) = ${got}, want ${want}`); } }
+  const cdf = [0, 0.25, 0.5, 0.75, 1];
+  if (Math.abs(cdfAt(cdf, 0.5) - 0.5) > 1e-9 || Math.abs(locationOf(15, 10, 20, null) - 0.5) > 1e-9) { bad++; console.log('FAIL cdf/location'); }
+  const x = locationOf(nominalOf(0.3, 10, 1000, 1), 10, 1000, 1); if (Math.abs(x - 0.3) > 1e-9) { bad++; console.log('FAIL log-scale round trip ' + x); }
+  console.log(bad ? `selftest: ${bad} failure(s)` : 'selftest: ok'); process.exit(bad ? 1 : 0);
+}
 if (process.argv[1] && import.meta.url.endsWith(process.argv[1].split('/').pop())) await main();

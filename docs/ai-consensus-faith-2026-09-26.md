@@ -5,8 +5,8 @@ owner 原话:「探索类似比特币的共识算法,用工具,用共识,用金�
 这是同一族请求的第五轮(goldrush AGIX 08-29/30 → W3 Proof of Research 09-20 → Proof-Agent PRD 09-21 →
 fork-ledger 09-22 → TDS consensus 09-25)。本文不重开前四轮已经关掉的门(见 §一),只回答一个问题:
 **比特币的「信仰」里,哪一部分能被一个 solo 舰队合法地借走,而本站今天离它差什么。**
-全部数字为 2026-09-25/26 现查(D1 直读、线上 GET、9 个调研 agent 中完成的 7 个,来源与日期在
-`/tmp` 之外不留,关键条目已抄进本文)。
+全部数字为 2026-09-25/26 现查(D1 直读、线上 GET、9 个调研 agent 中完成的 7 个);外部数字逐条带来源与日期,
+标注「二手」的是只经搜索摘要核到的。
 
 ## 一、三轮 prompt
 
@@ -95,17 +95,22 @@ IMD AI Safety Clock 18 分 vs 15 分(自家两页不一致)、Metaculus 中位 2
    agi-consensus.json、market-board.json、odds-history.json、fleet-bets.json 每个内容版本一份 `.ots`
    (`sites/agiscorecard/ots/`、`data/ots/`,manifest 列出状态),日历确认后自动升级为比特币区块证明。
    免费公共日历、零密钥、不发币不持币不付钱;fail-open。**这是整个请求族里唯一能合法借用的比特币性质**:
-   一条带日期的判定发布后,任何人都能不信任本站、不信任 GitHub 地证明它没被回填。首跑 09-26:6 个证明,全部 pending。
+   09-26 起的每个版本发布后,任何人都能不信任本站、不信任 GitHub 地证明它在某个区块之前已存在。**证明的边界要写准**:
+   它只证明时间,不证明对错;09-26 之前的历史仍只靠公开 git 记录;首跑 6 个证明**全部 pending**(日历回执,还没进区块),
+   页面措辞一律从 manifest 的状态计数生成,不写「已锚定」。
    老实话先写上:Sigstore 的原话是没人监视日志就没有信任增益;所以判定线 `agi-ots-verified-1124` 的 ② 就是「有没有人来核」。
 3. **信任层修缮**(§三右列全部):这是本轮最大的一块,也是 owner 那句「成为信仰」离得最近的一步——
    **一个自述与实况不符的信任层,是信誉缺陷**。
 
-**owner 该知道的一句**:「用金融」在规则内只剩一条——Metaculus FutureEval 机器人(Fall 赛季 09-28 开题,
-Metaculus PR #5205:$58 000),已建、关着,差 key + `METACULUS_BOT_ENABLED=1`。但调研把预期压下来了:
-Pro 每季都赢过 bot 团队(Spring 2026 差距 −1.25,p=0.247);单 prompt 基线 GPT-5.1 在 173 个 bot 里第 18;
-奖金摊得薄(Fall 2025 调查 39 人里 29 人拿过奖)。**它是外部评分的记录,不是赚钱的路**——这就是它对「信仰」的价值。
+**owner 该知道的一句**:「用金融」在规则内只剩一条——Metaculus FutureEval 机器人(Fall 赛季 09-28 开题,奖池卡片 $58 000:
+Metaculus 前端源码 PR #5205,github.com/Metaculus/metaculus/pull/5205,2026-09 读取;起止日 09-28→2027-01-06 只在第三方 PR
+里见到,二手),已建、关着,差 key + `METACULUS_BOT_ENABLED=1`。但调研把预期压下来了:Pro 每季都赢过 bot 团队
+(Spring 2026 差距 −1.25,95% CI [−4.87, 2.37],p=0.247,173 个 bot;单 prompt 基线 GPT-5.1 第 18/173 —— LessWrong
+「FutureEval Spring results」2026-09-09);奖金摊得薄(Fall 2025 bot-maker 调查 39 人里 29 人拿过奖 —— EA Forum
+「FutureEval forecasting bot maker survey」2026-05-02,二手摘要)。**它是外部评分的记录,不是赚钱的路**——这就是它对「信仰」的价值。
 另一条合法且便宜的「skin in the game」是**错误悬赏**(德 § 657 BGB Auslobung,无参与费无运气;中《民法典》499),
-但 ERROR(25 万瑞郎)四年只拿到 17/134 作者同意、Knuth 支票多半被裱起来——它是象征,不是市场;
+但伯尔尼大学的 ERROR 悬赏(25 万瑞郎,四年)只拿到 17/134 作者同意(NIHR Dementia Researcher 2024-08-19,二手)、
+Knuth 的 $2.56 支票多半被裱起来(Wikipedia「Knuth reward check」,引 2001/2005/2008 源)——它是象征,不是市场;
 本轮不建,owner 若要作为决定项列入。
 
 ## 五、判定线(全部进台账,t0 逐条试过满足不了)
@@ -123,12 +128,16 @@ Pro 每季都赢过 bot 团队(Spring 2026 差距 −1.25,p=0.247);单 prompt �
 无代币的 PoW 当传播引擎(Hashcash 25 年反例 + W3 PoR 0 事件)· 「链上证明层」(OTS 已是它的全部合法形态,不再加面)·
 自建评测/榜单去和 LMArena/Epoch 比(solo 站只能做「带日期的跨追踪器对比 + 来源/资助/冲突列」)·
 用「本站的共识数」代替第三方数(共识板的价值恰在于它不是本站观点)。
+**与 09-22 那条「给账本加『链上证明』层」的关系,明写不含糊**:09-22 杀的是给零消费者的协议再加一个「链上证明」*面*
+(一个新表面、一套新协议);OTS 不是面——它不发币、不加页、不加协议,只给已有文件的每个版本一份可离线核验的
+时间证明。这是对 09-22 范围的一次明确收窄,不是悄悄推翻;根 CLAUDE.md 09-22 节已加补注。
 
 ## 七、本轮没做、且要说明的
 
 - **法律与 agent-工具两份调研两次撞会话额度上限**,没有完成;§四第 2 项的法律面只依据 W3 09-20 文档已记的
   「时间戳不发行任何资产」判断,未做新的法条核对。
 - Metaculus API 的响应形状来自 forecasting-tools 0.2.92 源码,沙箱 403 无法实测;首个 runner 周一 run 看 `venues.metaculus`。
-- 没动 `/when-will-agi-arrive`(2 168 pv/28d,本站最大页,写着「No consensus」且不链任何来源)——它在 OPT-LOG 5 轮防翻炒窗内;
-  `agi-consensus-mcp-1124` 判 win 后把 median 作为活数字钩子加上去,这是预登记的 win 分支,不是现在做。
+- 没动 `/when-will-agi-arrive`(2 168 pv/28d,本站最大页,写着「No consensus」且不链任何来源)——它的 `deep_when_mid`
+  位置实验 10-07 才结算(判定期内不改被测对象);`agi-consensus-mcp-1124` 判 win 后把 median 作为活数字钩子加上去,
+  这是预登记的 win 分支,不是现在做。
 - experiments.json E1 过期 22 天未结算,属另一条线,记在此不代办。

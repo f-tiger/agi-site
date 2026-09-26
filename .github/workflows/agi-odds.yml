@@ -10,7 +10,7 @@ name: agiscorecard prediction-market odds (weekly)
 #   board —— AGI 共识板:四家来源取数 + SunWatch 台账快照 + gen_market_board + gen_calibration。
 #            **不再 continue-on-error**:09-07→09-26 这一步静默失败了三周,页面一直 404,而
 #            run 全绿(09-24 舰队数据检查点名的那种形状)。现在它自己红、自己发邮件,
-#            又不拖累 odds job——两条各管各的,commit 各自 rebase。
+#            又不拖累 odds job——两条各管各的(无 needs),commit 各自 rebase。
 on:
   schedule:
     - cron: '25 3 * * 1'   # 每周一 03:25 UTC,早于 04:00 的每日运行
@@ -45,7 +45,7 @@ jobs:
           git diff --cached --quiet || { git commit -m "chore(odds): 预测市场赔率快照(runner 取,带 fetched 时间戳)"; git pull --rebase --autostash origin main; git push; }
 
   board:
-    needs: odds
+    # 与 odds 无依赖:两个 job 写不同的文件,各自 rebase 后推送;odds 红了不该拖掉共识板。
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -59,22 +59,32 @@ jobs:
         env:
           METACULUS_TOKEN: ${{ secrets.METACULUS_TOKEN }}
         run: node tools/fetch_market_board.mjs
-      - name: Snapshot the SunWatch track-record ledger for /calibration
+      - name: Snapshot the SunWatch track-record ledger for /calibration (keep last good on failure; rewrite only on change)
         working-directory: sites/agiscorecard
         run: |
           python3 - <<'EOF'
-          import json, urllib.request, datetime
-          req = urllib.request.Request('https://invest.agiscorecard.com/api/track-record',
-                                       headers={'User-Agent': 'agi-site-odds-workflow/1.0 (+https://github.com/f-tiger/agi-site)'})
-          j = json.load(urllib.request.urlopen(req, timeout=30))
+          import json, os, urllib.request, datetime
+          P = 'sunwatch-track-record.json'
+          try:
+              req = urllib.request.Request('https://invest.agiscorecard.com/api/track-record',
+                                           headers={'User-Agent': 'agi-site-odds-workflow/1.0 (+https://github.com/f-tiger/agi-site)'})
+              j = json.load(urllib.request.urlopen(req, timeout=30))
+              assert j.get('entries'), 'no entries'
+          except Exception as e:
+              print('::warning::SunWatch track-record unreadable (%r); /calibration keeps the last committed snapshot' % (e,))
+              raise SystemExit(0)
           snap = {'fetched': datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'),
                   'source': 'https://invest.agiscorecard.com/api/track-record', 'asOf': j.get('asOf'),
                   'scored': j.get('scored'), 'hits': j.get('hits'), 'hitRate': j.get('hitRate'),
                   'entries': [{'date': e.get('date'), 'verdict': e.get('verdict'), 'odds': e.get('odds'),
                                'call_en': (e.get('call_en') or '')[:200]} for e in j.get('entries', [])]}
-          assert snap['entries'], 'track-record returned no entries — refusing to overwrite the snapshot'
-          json.dump(snap, open('sunwatch-track-record.json', 'w'), ensure_ascii=False, indent=1)
-          open('sunwatch-track-record.json', 'a').write('\n')
+          old = json.load(open(P)) if os.path.exists(P) else {}
+          same = all(old.get(k) == snap.get(k) for k in ('asOf', 'scored', 'hits', 'hitRate', 'entries'))
+          if same:
+              print('sunwatch snapshot unchanged (as of %s); not rewriting' % old.get('asOf'))
+              raise SystemExit(0)
+          json.dump(snap, open(P, 'w'), ensure_ascii=False, indent=1)
+          open(P, 'a').write('\n')
           print('sunwatch snapshot:', snap['scored'], 'scored', len(snap['entries']), 'entries')
           EOF
       - name: Build /agi-prediction-markets + agi-consensus.json + /calibration, then validate

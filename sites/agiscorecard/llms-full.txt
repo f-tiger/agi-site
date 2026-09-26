@@ -80,7 +80,7 @@ A: Because every verdict has a published flip condition tied to observable evide
 URL: https://agiscorecard.com/for-agents
 Last updated: September 19, 2026 · Updated as verdicts change
 
-Yes — every verdict on this site is free to reuse, machine-readable, and CC BY 4.0. The AGI Scorecard publishes its full dataset at /data.json (all 8 graded Situational Awareness predictions with verdicts, evidence, sources and, for each, either a written flip condition, a resolution date or the stated blocker, plus the forecaster-timeline table), an Atom feed of new & updated pages at /feed.xml, and an AI-crawler index at /llms.txt. Attribution + a link is the only requirement.
+Yes — every verdict on this site is free to reuse, machine-readable, and CC BY 4.0. The AGI Scorecard publishes its full dataset at /data.json (all 8 graded Situational Awareness predictions with verdicts, evidence, sources and, for each, a written flip condition, a resolution date, a watch item or the stated blocker, plus the forecaster-timeline table), an Atom feed of new & updated pages at /feed.xml, and an AI-crawler index at /llms.txt. Attribution + a link is the only requirement.
 
 Q: Does the AGI Scorecard have an API?
 A: Not a keyed API — something simpler: the full dataset is a static JSON file at agiscorecard.com/data.json (CC BY 4.0), plus an Atom feed at /feed.xml and an llms.txt index. No key, no auth, no rate limits beyond the CDN's.
@@ -1450,22 +1450,25 @@ A: Prediction markets price announcement events (e.g. 'OpenAI announces AGI'). T
 URL: https://agiscorecard.com/agi-prediction-markets
 Last updated: September 26, 2026 · Updated as verdicts change
 
-A median across independent venues, not an opinion. Four forecasting venues asked the same question — AGI before this date? — with the spread between them shown, the formula published, and every price carrying the moment it was read.
+Snapshot 2026-09-26 11:40 UTC — median across 2 series: before 2027: 8% (spread 11%); before 2028: 45% (spread 42%); before 2030: 64% (spread 29%). A median over independent venues, not an opinion: venues read polymarket, kalshi, manifold; each series resolves on its own rules, the spread is shown, and the formula is published.
 
 Q: Is this the AGI Scorecard's own forecast?
 A: No. It is a median over independent public forecasting venues, computed by a published formula that anyone can rerun on the same snapshot. The scorecard's own position is the Thesis Tracker, which grades evidence, not expectations.
 
+Q: What do forecasters put on AGI right now?
+A: Snapshot 2026-09-26 11:40 UTC, median across kalshi-any-company-announce, manifold-we-get-agi series: before 2027: 8% (spread 11%); before 2028: 45% (spread 42%); before 2030: 64% (spread 29%). Each series resolves on its own rules, so treat the spread as part of the answer.
+
 Q: Are these live odds?
 A: No. Each run records a snapshot with an exact UTC timestamp and links to the market so you can check the current price yourself. A quoted price that pretends to be live is the single most common way odds coverage misleads people.
 
-Q: Why are Manifold, Kalshi and Metaculus averaged but not the OpenAI contracts?
-A: Because a median only means something across series that answer the same question. 'Any company announces AGI', 'we get AGI' and 'strong AGI is publicly announced' all ask about AGI in general; 'OpenAI announces AGI' is one company's announcement and 'weak AGI' is a lower bar, so both are shown as reference columns instead.
+Q: Which series are averaged, and why not the others?
+A: Only series that ask about AGI in general enter the median: Manifold's 'Will we get AGI before D?', Kalshi's 'any company announces AGI before D' and Metaculus's strong-AGI question when it was read. 'OpenAI announces AGI' is one company's announcement and 'weak AGI' is a lower bar, so both are shown as reference columns instead. The series in the median still differ in what resolves them; the page lists each one's basis.
 
 Q: Can I bet here?
 A: No. This site is not an operator, a broker, or an affiliate of one. There is no wager mechanism, no referral link, and no revenue from any venue listed.
 
 Q: How are the markets chosen?
-A: By a fixed keyword filter applied to whatever the venues' own search and series endpoints return that run, then a fixed regex per series. The board can look thin in a quiet week, and it will say so rather than pad itself.
+A: By a fixed keyword filter applied to whatever the venues' own search and series endpoints return that run, then a fixed venue whitelist and regular expression per series. The board can look thin in a quiet week, and it will say so rather than pad itself.
 
 ---
 
@@ -1536,7 +1539,7 @@ Q: Who grades the calls?
 A: Outcomes are graded against pre-registered falsification conditions written before the outcome, with dated multi-source verification, and misses stay published with their lesson. The grading rules are public in the eight-layer method, including the red-team layer.
 
 Q: How do I check that a record was not backdated?
-A: Each version of data.json, index-history.json, the consensus board and the odds history is timestamped through OpenTimestamps; the proofs are served under /ots/ and verify against the Bitcoin blockchain with the free client. That proves when a file existed, not that it is correct.
+A: Versions of data.json, index-history.json, the consensus board and the odds history stamped since 2026-09-26 carry an OpenTimestamps proof under /ots/ (the manifest lists each proof's status: pending until the calendar's transaction is in a Bitcoin block). Verify with the free client against the entry whose sha256 matches your download. That proves when those bytes existed, not that they are correct; earlier history rests on the public git log.
 
 ---
 

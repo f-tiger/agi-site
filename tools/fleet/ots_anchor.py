@@ -98,28 +98,41 @@ def stamp(file_path, proof_path, dry_run):
 def upgrade(proof_path, dry_run):
     if dry_run:
         return "pending"
-    rc, out = run(["ots", "-q", "upgrade", proof_path], timeout=120)
-    # `ots upgrade` leaves a .bak next to the proof; we keep only the proof itself.
+    run(["ots", "-q", "upgrade", proof_path], timeout=120)
+    # `ots upgrade` writes a .bak next to the proof. If the upgraded proof is missing or unreadable,
+    # restore the .bak (never lose a proof); otherwise drop the .bak.
     bak = proof_path + ".bak"
-    if os.path.exists(bak):
+    st = proof_status(proof_path) if os.path.exists(proof_path) else None
+    if st is None and os.path.exists(bak):
+        shutil.move(bak, proof_path)
+        st = proof_status(proof_path)
+    elif os.path.exists(bak):
         os.remove(bak)
-    return proof_status(proof_path) or "pending"
+    return st or "pending"
 
 
 def anchor(targets, today, dry_run=False):
-    """Returns (summary dict, warnings list). Pure apart from the filesystem and `ots`."""
-    warnings, summary = [], {"stamped": 0, "upgraded": 0, "pending": 0, "bitcoin": 0, "skipped": 0}
-    manifests = {}
+    """Returns (summary dict, warnings list). Pure apart from the filesystem and `ots`.
+    Manifests are rewritten only when an entry changed, so a quiet day commits nothing."""
+    warnings, summary = [], {"stamped": 0, "upgraded": 0, "pending": 0, "bitcoin": 0, "missing": 0, "skipped": 0}
+    manifests, before = {}, {}
     for rel, ots_dir in targets:
         fp = os.path.join(ROOT, rel)
         mpath = os.path.join(ROOT, ots_dir, "manifest.json")
-        man = manifests.setdefault(mpath, load_manifest(mpath))
+        if mpath not in manifests:
+            manifests[mpath] = load_manifest(mpath)
+            before[mpath] = json.dumps(manifests[mpath].get("files", {}), sort_keys=True)
+        man = manifests[mpath]
         if not os.path.exists(fp):
             summary["skipped"] += 1
             continue
         digest = sha256(fp)
         entries = man["files"].setdefault(os.path.basename(rel), [])
         have = next((e for e in entries if e.get("sha256") == digest), None)
+        # a version whose proof file went missing is re-stamped (the old entry is dropped, never left as a dead pointer)
+        if have is not None and not os.path.exists(os.path.join(ROOT, ots_dir, have.get("proof", ""))):
+            entries.remove(have)
+            have = None
         if have is None:
             proof_rel = "%s.%s.ots" % (os.path.basename(rel), digest[:12])
             proof_path = os.path.join(ROOT, ots_dir, proof_rel)
@@ -128,22 +141,22 @@ def anchor(targets, today, dry_run=False):
                 summary["stamped"] += 1
             else:
                 warnings.append("could not stamp %s (calendars unreachable?)" % rel)
-        # upgrade every pending proof of this file (old versions included)
         for e in entries:
-            if e.get("status") == "pending":
-                pp = os.path.join(ROOT, ots_dir, e["proof"])
-                if not os.path.exists(pp):
-                    e["status"] = "missing"
-                    warnings.append("proof file missing: %s" % pp)
-                    continue
+            pp = os.path.join(ROOT, ots_dir, e.get("proof", ""))
+            if not os.path.exists(pp):
+                e["status"] = "missing"
+                warnings.append("proof file missing: %s" % pp)
+            elif e.get("status") == "pending":
                 st = upgrade(pp, dry_run)
                 if st == "bitcoin":
                     e["status"] = "bitcoin"
                     e["confirmed"] = today
                     summary["upgraded"] += 1
-            summary[e.get("status", "pending")] = summary.get(e.get("status", "pending"), 0) + (1 if e.get("status") in ("pending", "bitcoin") else 0)
+            summary[e.get("status", "pending")] = summary.get(e.get("status", "pending"), 0) + 1
     if not dry_run:
         for mpath, man in manifests.items():
+            if json.dumps(man.get("files", {}), sort_keys=True) == before[mpath] and os.path.exists(mpath):
+                continue
             man["updated"] = today
             os.makedirs(os.path.dirname(mpath), exist_ok=True)
             with open(mpath, "w", encoding="utf-8") as f:

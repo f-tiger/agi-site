@@ -6,7 +6,8 @@
     "sha256": "12d283936aaf2980f825a6f7b78533e87909eec759ece39761e295858b90cf4e",
     "proof": "data.json.12d283936aaf.ots",
     "stamped": "2026-09-26",
-    "status": "pending"
+    "status": "bitcoin",
+    "confirmed": "2026-09-26"
    }
   ],
   "index-history.json": [
@@ -14,13 +15,21 @@
     "sha256": "89363c1abcda5c60fff763b8d2c13f7a71581ea785ee6a4650eca10441f9ba9b",
     "proof": "index-history.json.89363c1abcda.ots",
     "stamped": "2026-09-26",
-    "status": "pending"
+    "status": "bitcoin",
+    "confirmed": "2026-09-26"
    }
   ],
   "agi-consensus.json": [
    {
     "sha256": "01d7af61e15054f6bfabf26425e8bfc25dcc05699bb70d15b39d4adccde058cb",
     "proof": "agi-consensus.json.01d7af61e150.ots",
+    "stamped": "2026-09-26",
+    "status": "bitcoin",
+    "confirmed": "2026-09-26"
+   },
+   {
+    "sha256": "c327ae396014e4500fe122bc31dac0fae7465b29b9b03496992d21114c65cbb3",
+    "proof": "agi-consensus.json.c327ae396014.ots",
     "stamped": "2026-09-26",
     "status": "pending"
    }
@@ -30,6 +39,13 @@
     "sha256": "f69b082ff500f182288f46c54dd5d90fdfe9f0f3ff6130bd96ceb4078f3be2b6",
     "proof": "market-board.json.f69b082ff500.ots",
     "stamped": "2026-09-26",
+    "status": "bitcoin",
+    "confirmed": "2026-09-26"
+   },
+   {
+    "sha256": "aec19e4fc7dedbffd134f4f0a38c59f9ed2abf7afbe32302cf2a6b375fa372e7",
+    "proof": "market-board.json.aec19e4fc7de.ots",
+    "stamped": "2026-09-26",
     "status": "pending"
    }
   ],
@@ -38,7 +54,8 @@
     "sha256": "a5903c50e0c54acb96a685e6fb9a49db29f5061f6719145cc78c7b4701da994f",
     "proof": "odds-history.json.a5903c50e0c5.ots",
     "stamped": "2026-09-26",
-    "status": "pending"
+    "status": "bitcoin",
+    "confirmed": "2026-09-26"
    }
   ]
  },

@@ -1936,19 +1936,19 @@
    "id": "agi-consensus-mcp-1124",
    "site": "agiscorecard",
    "due": "2026-11-24",
-   "metric": "D1 events location='mcp' label='tool:agi_consensus' 28d 次数(剔本仓 CI / 部署自检;UA 或 ci 标记可识别的一律不算)+ /agi-consensus.json 非 bot-UA 抓取(pageviews ua_class='human' 且 ref 非本站/非爬虫形状)",
-   "threshold": "MCP 调用 ≥5 且跨 ≥3 天,或 JSON 被非 bot 客户端抓取 ≥10 次且跨 ≥5 天",
+   "metric": "① D1 events location='mcp' AND label LIKE 'tool:agi_consensus %' 28d:label 里带 UA 前缀(24 字符);剔本仓 CI(deploy 自检 UA)与索引器形状(自报采集器 UA:SaSame / rokmcp / AIWebIndex / mcp-protections 等,以及「每个工具各调一次」的枚举形)。② pageviews 表 path='/agi-consensus.json' AND ua_class='human' 28d(worker 09-26 起对该路径记 server-side 视图;?ci=1 不记)",
+   "threshold": "① ≥5 次、跨 ≥3 天、且来自 ≥2 个不同非索引器 UA 前缀;或 ② ≥10 次且跨 ≥5 天",
    "win": "共识板保留为独立页并加 zh 以外语言的引用位(仍不做 zh 镜像);把 median 作为活数字钩子加到 /when-will-agi-arrive 首屏",
    "lose": "共识板降级为 /agi-odds-vs-evidence 的一节,MCP 工具保留但不再扩;记反面发现「机器面对共识数没有需求」",
    "source": "docs/ai-consensus-faith-2026-09-26.md §五",
    "status": "open",
-   "t0_2026-09-26": "工具今天才上线,调用 0;JSON 抓取 0。写线时试过:本仓 deploy 自检不打这个工具,heartbeat 不抓这个 JSON,所以 t0 满足不了。"
+   "t0_2026-09-26": "工具与两条读数今天才上线,全部 0。评审指出原口径「≥5 次跨 3 天」会被一个每周枚举所有工具的索引器满足,所以加了「≥2 个不同非索引器 UA 前缀」;worker 现在把 UA 前 24 字符写进 label,结算时能剔。"
   },
   {
    "id": "agi-ots-verified-1124",
    "site": "agiscorecard",
    "due": "2026-11-24",
-   "metric": "① sites/agiscorecard/ots/manifest.json 里 status='bitcoin' 的证明数(机制健康);② /ots/*.ots 或 /ots/manifest.json 的非 bot-UA 抓取次数 28d(有没有人来核)",
+   "metric": "① sites/agiscorecard/ots/manifest.json 里 status='bitcoin' 的证明数(机制健康);② pageviews 表 path LIKE '/ots/%' AND ua_class='human' 28d(worker 09-26 起对 /ots/ 记 server-side 视图;?ci=1 不记;heartbeat 与部署自检都带 ci=1 或识别 UA)",
    "threshold": "① ≥5(每个被锚定的记录至少一版已进比特币区块)且 ② ≥1",
    "win": "锚定机制保留;把「verify」一段复制到 /prediction-receipts 与 /progress-index",
    "lose": "① 未达 → 机制坏了,修或撤;① 达 ② 为 0 → 记反面发现「时间戳无人核验」(Sigstore 的原话:没人看日志就没有信任增益),机制保留但不再宣传",

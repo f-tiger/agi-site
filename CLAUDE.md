@@ -1019,7 +1019,8 @@ localebatch **不记任何访问**,所以「零」也读不出访客有没有来
   10-28 / 11-30 两条早于到期改判据并保留原文:**品牌导航不算发现,爬虫抓取不算消费**。`fetchlog.json` 同步从 0 刷新到 31 并分栏。
 - **通用规矩(09-16 教训的第二次应用)**:写完判定线,先拿爬虫与品牌导航能不能直接满足它试一遍;能的话它不是赌注。
 - **别再提**:分享即分裂子站 · 带编号/NFT 式站点资产 · 按分裂数或链上位置加权的任何定价 · 每个子站自动生成 MCP ·
-  给账本加「链上证明」层 · 用「AI 来定价」绕开「价值来自后入者」。
+  给账本加「链上证明」层(**09-26 补注**:这里杀的是给零消费者的协议再加一个「链上证明」*面*;纯时间戳锚定——OpenTimestamps,
+  不发币、不加页、不加协议——09-26 作为明确收窄的例外建成,见该节)· 用「AI 来定价」绕开「价值来自后入者」。
 - **仍要每次带出的一条**:不靠流量的钱只有 Metaculus FutureEval 一条建好且关着,差 owner 的 key + `METACULUS_BOT_ENABLED=1`,
   Fall 主赛 09-28 开题。
 
@@ -1094,7 +1095,8 @@ localebatch **不记任何访问**,所以「零」也读不出访客有没有来
   泛 AGI 三系列,OpenAI 单公司与 weak AGI 只作参照,公式印在页上,`--check` 逐字重算;首读 before 2028 中位 45%、
   spread 42 点——公告市场比成就市场乐观 2–3 倍,spread 是这页最有用的数)+ `/agi-consensus.json` + MCP `get_agi_consensus`;
   ②**OpenTimestamps 锚定**(`tools/fleet/ots_anchor.py` 搭 heartbeat;data.json / 分数史 / 共识板 / odds 史 / 赌注台账每个
-  版本一份 `.ots`,免费公共日历零密钥)——**这是整个请求族里唯一能合法借用的比特币性质**;③校准页改为从
+  版本一份 `.ots`,免费公共日历零密钥;首跑 6 个证明全 pending,页面措辞从 manifest 状态计数生成,只证明时间不证明对错,
+  09-26 前的历史仍只靠 git)——**这是整个请求族里唯一能合法借用的比特币性质**;③校准页改为从
   `sunwatch-track-record.json` 快照生成并把 n=0 写在页上。
 - **agi-odds.yml 拆成 odds / board 两个 job**,board 不再 continue-on-error,自己红;`gen_odds.py` 也接进去(此前只在会话循环里跑,
   09-21 快照从未渲染);Metaculus 用机器人只读 token(缺了该来源 ok:false 照出)。
