@@ -1,5 +1,6 @@
+import {mkdtemp,readFile,writeFile,rm} from 'node:fs/promises';import {tmpdir} from 'node:os';import path from 'node:path';
 import {assets} from '../public/research-core.mjs';
-import test from 'node:test';import assert from 'node:assert/strict';import {audit,markdown} from '../scripts/growth-audit.mjs';import {newPaths} from '../scripts/market-pages.mjs';
+import test from 'node:test';import assert from 'node:assert/strict';import {audit,markdown,persistReport} from '../scripts/growth-audit.mjs';import {newPaths} from '../scripts/market-pages.mjs';
 function good(url){const u=new URL(url),now=new Date().toISOString();let text='';
  if(u.pathname==='/api/market')text=JSON.stringify({status:'fresh',retrievedAt:now,quotes:[{},{},{},{}]});
  else if(u.pathname==='/api/research')text=JSON.stringify({status:'fresh',historyStatus:'fresh',retrievedAt:now,quotes:assets.map(a=>({symbol:a.symbol,status:'fresh',day:{percent:1},week:{percent:1}}))});
@@ -21,4 +22,21 @@ test('source or measurement failure still produces diagnostics with unknown usag
  assert.equal(r.ok,false);assert.equal(r.summary.ownTaskEvents,null);
  assert.ok(r.sources.research);assert.match(markdown(r),/行情状态：未知/);
  assert.match(markdown(r),/unavailable/);
+});
+
+test('partial source failure persists latest, Markdown and history without erasing previous evidence',async()=>{
+ const out=await mkdtemp(path.join(tmpdir(),'web3-audit-'));
+ try {
+  const prior={asOf:'2026-09-19T00:00:00.000Z',ok:true,marketStatus:'fresh'};
+  await writeFile(path.join(out,'history.json'),JSON.stringify([prior]));
+  const r=await audit(async url=>url.endsWith('/api/market')?{status:503,text:'unavailable'}:good(url));
+  r.asOf='2026-09-27T00:00:00.000Z';
+  await persistReport(r,out);
+  const latest=JSON.parse(await readFile(path.join(out,'latest.json'),'utf8'));
+  const history=JSON.parse(await readFile(path.join(out,'history.json'),'utf8'));
+  assert.equal(latest.ok,false);assert.ok(latest.sources.research);
+  assert.match(await readFile(path.join(out,'latest.md'),'utf8'),/Source endpoint unavailable/);
+  assert.deepEqual(history[0],prior);assert.equal(history.length,2);
+  assert.equal(history[1].marketStatus,'unknown');assert.equal(history[1].ok,false);
+ } finally {await rm(out,{recursive:true,force:true});}
 });
