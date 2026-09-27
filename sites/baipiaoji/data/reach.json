@@ -1,36 +1,36 @@
 {
-  "generated": "2026-09-26",
+  "generated": "2026-09-27",
   "source": "/api/reach",
   "window_days": 28,
-  "since": "2026-08-29",
-  "until": "2026-09-26",
+  "since": "2026-08-30",
+  "until": "2026-09-27",
   "definition": "ev='' AND ref != '' — referred human page views (traffic-truth.mjs human line A); direct/no-referrer visits and /__ self-test paths excluded; counts only, no row-level data",
-  "humans_referred": 392,
-  "per_day": 14,
+  "humans_referred": 396,
+  "per_day": 14.1,
   "by_kind": {
-    "tool": 301,
-    "category": 48,
-    "page": 37,
+    "tool": 307,
+    "category": 47,
+    "page": 35,
     "alternatives": 2,
     "judgement": 1,
     "plans": 1,
-    "vs": 2
+    "vs": 3
   },
   "categories": [
     {
       "cat": "chat",
-      "n": 133
+      "n": 136
     },
     {
       "cat": "coding",
-      "n": 62
-    },
-    {
-      "cat": "api",
-      "n": 42
+      "n": 63
     },
     {
       "cat": "video",
+      "n": 43
+    },
+    {
+      "cat": "api",
       "n": 41
     },
     {
@@ -38,12 +38,12 @@
       "n": 18
     },
     {
-      "cat": "image",
+      "cat": "writing",
       "n": 15
     },
     {
-      "cat": "writing",
-      "n": 14
+      "cat": "image",
+      "n": 15
     },
     {
       "cat": "local",
@@ -51,7 +51,7 @@
     },
     {
       "cat": "audio",
-      "n": 8
+      "n": 9
     },
     {
       "cat": "agent",
@@ -68,10 +68,6 @@
     {
       "cat": "study",
       "n": 1
-    },
-    {
-      "cat": "design",
-      "n": 1
     }
   ],
   "tools": [
@@ -83,7 +79,7 @@
     {
       "slug": "kimi",
       "cat": "chat",
-      "n": 32
+      "n": 34
     },
     {
       "slug": "feishu-miaoji",
@@ -103,7 +99,7 @@
     {
       "slug": "haiper",
       "cat": "video",
-      "n": 14
+      "n": 15
     },
     {
       "slug": "google-flow",
@@ -151,6 +147,11 @@
       "n": 3
     },
     {
+      "slug": "qingying",
+      "cat": "video",
+      "n": 3
+    },
+    {
       "slug": "replit",
       "cat": "coding",
       "n": 3
@@ -184,6 +185,11 @@
       "slug": "jianying",
       "cat": "video",
       "n": 3
+    },
+    {
+      "slug": "ms-copilot",
+      "cat": "chat",
+      "n": 2
     },
     {
       "slug": "anythingllm",
@@ -221,11 +227,6 @@
       "n": 2
     },
     {
-      "slug": "qingying",
-      "cat": "video",
-      "n": 2
-    },
-    {
       "slug": "quillbot",
       "cat": "writing",
       "n": 2
@@ -236,6 +237,11 @@
       "n": 2
     },
     {
+      "slug": "wordvice",
+      "cat": "writing",
+      "n": 2
+    },
+    {
       "slug": "zhipu-glm",
       "cat": "api",
       "n": 2
@@ -243,6 +249,11 @@
     {
       "slug": "canva",
       "cat": "image",
+      "n": 2
+    },
+    {
+      "slug": "elevenlabs",
+      "cat": "audio",
       "n": 2
     },
     {
@@ -259,21 +270,6 @@
       "slug": "goose",
       "cat": "coding",
       "n": 1
-    },
-    {
-      "slug": "guojia-fanzha",
-      "cat": "safety",
-      "n": 1
-    },
-    {
-      "slug": "ms-copilot",
-      "cat": "chat",
-      "n": 1
-    },
-    {
-      "slug": "qwen-chat",
-      "cat": "chat",
-      "n": 1
     }
   ],
   "judgement": [
@@ -289,15 +285,15 @@
     },
     {
       "path": "coding",
-      "n": 34
+      "n": 35
     },
     {
       "path": "kimi",
-      "n": 32
+      "n": 34
     },
     {
       "path": "/",
-      "n": 28
+      "n": 26
     },
     {
       "path": "feishu-miaoji",
@@ -313,11 +309,11 @@
     },
     {
       "path": "haiper",
-      "n": 14
+      "n": 15
     },
     {
       "path": "api",
-      "n": 11
+      "n": 9
     },
     {
       "path": "/report",
@@ -360,6 +356,10 @@
       "n": 3
     },
     {
+      "path": "qingying",
+      "n": 3
+    },
+    {
       "path": "replit",
       "n": 3
     },
@@ -392,6 +392,10 @@
       "n": 2
     },
     {
+      "path": "ms-copilot",
+      "n": 2
+    },
+    {
       "path": "anythingllm",
       "n": 2
     },
@@ -420,10 +424,6 @@
       "n": 2
     },
     {
-      "path": "qingying",
-      "n": 2
-    },
-    {
       "path": "quillbot",
       "n": 2
     },
@@ -432,11 +432,19 @@
       "n": 2
     },
     {
+      "path": "wordvice",
+      "n": 2
+    },
+    {
       "path": "zhipu-glm",
       "n": 2
     },
     {
       "path": "canva",
+      "n": 2
+    },
+    {
+      "path": "elevenlabs",
       "n": 2
     },
     {
@@ -476,10 +484,6 @@
       "n": 1
     },
     {
-      "path": "ms-copilot",
-      "n": 1
-    },
-    {
       "path": "qwen-chat",
       "n": 1
     },
@@ -514,47 +518,39 @@
     {
       "path": "cohere",
       "n": 1
-    },
-    {
-      "path": "connectedpapers",
-      "n": 1
-    },
-    {
-      "path": "dujia",
-      "n": 1
     }
   ],
   "referrers": [
     {
       "ref": "www.google.com",
-      "n": 173
+      "n": 176
     },
     {
       "ref": "cn.bing.com",
-      "n": 128
+      "n": 133
     },
     {
       "ref": "www.bing.com",
-      "n": 21
+      "n": 22
     },
     {
       "ref": "chatgpt.com",
-      "n": 12
-    },
-    {
-      "ref": "www.facebook.com",
-      "n": 8
+      "n": 10
     },
     {
       "ref": "m.facebook.com",
       "n": 8
     },
     {
-      "ref": "m.baidu.com",
-      "n": 6
+      "ref": "www.facebook.com",
+      "n": 8
     },
     {
-      "ref": "yandex.com",
+      "ref": "duckduckgo.com",
+      "n": 5
+    },
+    {
+      "ref": "m.baidu.com",
       "n": 5
     },
     {
@@ -562,35 +558,31 @@
       "n": 5
     },
     {
-      "ref": "www.baidu.com",
-      "n": 5
-    },
-    {
-      "ref": "duckduckgo.com",
-      "n": 5
+      "ref": "baidu.com",
+      "n": 4
     },
     {
       "ref": "com.twitter.android",
       "n": 4
     },
     {
-      "ref": "baidu.com",
+      "ref": "www.baidu.com",
       "n": 4
     },
     {
-      "ref": "www.google.com.hk",
-      "n": 2
+      "ref": "yandex.com",
+      "n": 4
     },
     {
       "ref": "www.doubao.com",
       "n": 2
     },
     {
-      "ref": "yandex.kz",
+      "ref": "copilot.microsoft.com",
       "n": 1
     },
     {
-      "ref": "yandex.com.tr",
+      "ref": "kagi.com",
       "n": 1
     },
     {
@@ -598,7 +590,15 @@
       "n": 1
     },
     {
-      "ref": "kagi.com",
+      "ref": "www.google.com.hk",
+      "n": 1
+    },
+    {
+      "ref": "yandex.com.tr",
+      "n": 1
+    },
+    {
+      "ref": "yandex.kz",
       "n": 1
     }
   ],
@@ -606,7 +606,7 @@
     {
       "ref": "chatgpt.com",
       "path": "/c/api",
-      "n": 11
+      "n": 9
     },
     {
       "ref": "www.perplexity.ai",
@@ -616,6 +616,11 @@
     {
       "ref": "chatgpt.com",
       "path": "/tools/qingying",
+      "n": 1
+    },
+    {
+      "ref": "copilot.microsoft.com",
+      "path": "/en/tools/ms-copilot",
       "n": 1
     },
     {
@@ -640,14 +645,14 @@
     }
   ],
   "events": {
-    "sub_view": 430,
+    "sub_view": 427,
     "go": 117,
-    "home": 12,
+    "home": 15,
+    "biz": 12,
     "star": 10,
     "calc": 9,
-    "biz": 9,
-    "sub_submit": 5,
     "sheet_dl": 5,
+    "sub_submit": 5,
     "sub_ok": 4,
     "gate": 3,
     "sub_dup": 1
@@ -656,5 +661,19 @@
     "new": 9,
     "total": 9
   },
-  "ads": {}
+  "ads": {},
+  "commercial_triggers": {
+    "ok": true,
+    "started": "2026-09-26",
+    "counts": {
+      "vendor-view": 0,
+      "vendor-sponsor": 0,
+      "vendor-wait": 0,
+      "ad-view": 0,
+      "ad-wallet": 0,
+      "ad-reach": 0,
+      "ad-later": 0
+    },
+    "definition": "First event per action per page load, QA excluded at emitter. Not unique people, a linked funnel, verified vendors or paid conversions. Client events can be blocked or spoofed."
+  }
 }
