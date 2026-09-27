@@ -1,15 +1,15 @@
 {
- "checked": "2026-09-25",
- "pages": 209,
+ "checked": "2026-09-27",
+ "pages": 210,
  "control_by_lang": {
-  "de": 0.0076,
+  "de": 0.0022,
   "en": 0.0023,
   "it": 0.0
  },
  "note": "剔除全站样板后的兄弟页 8-gram Jaccard 相似度。对照组是随机的不同主题两页；兄弟页远高于对照组 = Google 眼中的门页形态。本文件只报数，不改内容。",
  "shingle_n": 8,
  "boilerplate_shingles": 2269,
- "control_similarity": 0.0076,
+ "control_similarity": 0.0022,
  "threshold_pct": 40.0,
  "families": {
   "heizung-N-qm": {
@@ -22,7 +22,7 @@
    ],
    "median_unique_shingles": 1376,
    "lang": "de",
-   "pages_in_corpus": 153
+   "pages_in_corpus": 154
   },
   "klimaanlage-N-qm": {
    "pages": 7,
@@ -34,7 +34,7 @@
    ],
    "median_unique_shingles": 914,
    "lang": "de",
-   "pages_in_corpus": 153
+   "pages_in_corpus": 154
   },
   "luftentfeuchter-N-qm": {
    "pages": 6,
@@ -46,7 +46,7 @@
    ],
    "median_unique_shingles": 706,
    "lang": "de",
-   "pages_in_corpus": 153
+   "pages_in_corpus": 154
   },
   "en:dehumidifier-N-sqm": {
    "pages": 6,

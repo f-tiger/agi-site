@@ -1021,6 +1021,8 @@ Passt dazu
 - Balkonkraftwerk in Österreich: 0,8 kW, Zählpunkt, Netzbetreiber
 - Balkonkraftwerk als Mieter: Was der Vermieter noch verbieten darf
 
+Anker Solarbank lädt nicht? Modell, Modus und Update prüfenMit Protokoll für den Support und Kaufoptionen erst nach der Diagnose.
+
 ---
 
 ## Balkon-Check: Lohnt sich Solar an deinem Balkon?
@@ -1235,6 +1237,81 @@ Passt dazu
 
 ---
 
+## Anker Solarbank lädt nicht? Probleme gezielt eingrenzen
+URL: https://getecoback.com/guide/balkonspeicher-anker-solarbank-probleme.html
+
+Die App zeigt 0 W, der Akku lädt nicht oder ein Update bleibt stehen? Notiere zuerst Modell, Betriebsmodus und Messzeit. Eine einzelne Leistungsanzeige reicht nicht, um einen Speicherdefekt festzustellen.
+
+Vor dem Neukauf: Prüfe Einstellungen und Herstellersupport. Dieser Leitfaden ordnet Symptome ein; EcoBack hat die Geräte nicht selbst getestet. Eingriffe in Akku, Verkabelung oder Stromverteilung gehören nicht zu diesem Check.
+
+Symptom einordnenUpdate & KälteSupport vorbereitenWann Zubehör hilft
+
+## Zuerst vier unterschiedliche Probleme auseinanderhalten
+
+Was du ohne Umbau prüfen kannstBeobachtung | Als Nächstes prüfen | Noch keine Schlussfolgerung |
+
+Die App ist offline | Ist der angezeigte Zeitstempel aktuell? Funktioniert das Heimnetz? Sind auch andere Geräte offline? | Eine fehlende Datenverbindung beweist keinen Ausfall der Stromversorgung. |
+
+PV-Eingang zeigt 0 W | Tageszeit, Verschattung, Wetter und Gerätestatus notieren. Bei vergleichbaren Lichtverhältnissen erneut ablesen. | Ein einzelner Wert beweist weder einen defekten Akku noch einen defekten Wechselrichter. |
+
+PV-Leistung ist vorhanden, Akku lädt nicht | Ladestand, Ladegrenze, Temperaturhinweis und aktiven Modus in der App prüfen. | Die gewünschte Betriebsart muss zu deiner Erwartung passen. |
+
+Akku ist geladen, Haus erhält 0 W | Aktiven Zeitplan, Entladegrenze, Hausbedarf und Status eines eingebundenen Zählers vergleichen. | Eine Leistungsbegrenzung ist nicht automatisch ein Hardwarefehler. |
+
+Fotografiere das Typenschild für deine eigenen Unterlagen. „Solarbank“ ist eine Produktfamilie: E1600, Solarbank 2 Pro/Plus/AC und spätere Generationen unterscheiden sich. Übernimm keine Tastenkombination, Anschlusszeichnung oder Temperaturgrenze aus einer Anleitung für ein anderes Modell.
+
+Die offizielle Produktseite der Solarbank 3 E2700 Pro beschreibt eigene Betriebsarten und unterstützte Komponenten. Daraus folgt keine Kompatibilitätszusage für deine ältere Anlage. Prüfe das exakte Modell auf beiden Seiten, bevor du Zubehör bestellst.
+
+## Solarbank 2 Pro/Plus: Updatefehler und Kälte unterscheiden
+
+Ankers Anleitung zu fehlgeschlagenen Updates der Solarbank 2 E1600 Pro/Plus nennt unter anderem niedrigen Akkustand und Netzwerkprobleme. Bleibt das Update sehr früh stehen, empfiehlt der Hersteller zuerst eine stabile Verbindung; bei bestimmten Fehlerbildern sind weitere Schritte vorgesehen.
+
+Für dieses Modell beschreibt Anker außerdem, dass bei niedriger Temperatur und vorhandenem PV-Eingang zunächst die interne Heizung arbeiten kann, bevor der Akku lädt. Warte deshalb nicht auf Grundlage einer fremden Modellanleitung auf ein vermeintlich identisches Verhalten.
+
+Folge für Neustart oder Erweiterungsakku ausschließlich der verlinkten Anleitung für dein Modell. Anker verlangt vor dem Entfernen oder Einsetzen eines Erweiterungsakkus ein ausgeschaltetes Gerät mit erloschenen Kontrollleuchten. Ein Akkuwechsel im laufenden Betrieb ist kein Diagnoseschritt.
+
+Bleibt der Fehler bestehen, sieht Anker die Übermittlung von App- und Geräteprotokoll sowie Seriennummer an den eigenen Support vor. Diese Angaben gehören direkt dorthin, nicht in öffentliche Kommentare.
+
+## Mit einem kurzen Protokoll wird die Supportanfrage konkreter
+
+Fülle diese Liste für zwei Beobachtungszeitpunkte aus. Es geht um einen nachvollziehbaren Unterschied, nicht um eine möglichst lange Fehlerbeschreibung.
+
+- Exakte Modellbezeichnung und vorhandene Erweiterungsakkus.
+- Datum, Uhrzeit, Wetter und erkennbare Verschattung.
+- PV-Eingang, Akkustand und Ausgangsleistung aus derselben Ansicht.
+- Aktiver Betriebsmodus, Zeitplan und eingestellte Lade- oder Entladegrenzen.
+- Wortlaut eines Fehlercodes sowie App- und Firmwareversion.
+- Was seit dem letzten funktionierenden Betrieb geändert wurde.
+
+Ein Screenshot ohne Zeitpunkt ist schwer zu vergleichen. Ändere möglichst nur eine Einstellung und notiere das Ergebnis, bevor du die nächste prüfst. Bei beschädigten Kabeln, ungewöhnlicher Erwärmung, Rauch oder wiederholt auslösenden Schutzschaltern: keine weiteren Versuche; sichere Abschaltung nach Herstelleranleitung und fachliche Hilfe.
+
+## Wann ein Kauf bei der Fehlersuche hilft
+
+Für die Prüfungen oben brauchst du zunächst kein neues Gerät. Ein gewöhnlicher Verbrauchsmesser ist nicht automatisch für eine einspeisende Solaranlage geeignet. Setze zwischen Speicher und Netz nur Komponenten ein, die für diese Verwendung ausdrücklich freigegeben sind.
+
+### Du willst den Bedarf deiner Haushaltsgeräte kennen
+Ein Steckdosenmessgerät misst den Verbrauch eines geeigneten Haushaltsgeräts. Das hilft bei der Planung des Eigenverbrauchs, diagnostiziert aber nicht die PV-Eingänge der Solarbank. Prüfe die zulässige Last im Handbuch. Einmalige Messung? Die Verbraucherzentrale NRW bietet einen kostenlosen Verleih an.
+Anzeige · Amazon-Partnerlink
+Verbrauchsmessgeräte auf Amazon.de vergleichen
+
+### Du brauchst nach bestätigtem Defekt einen Ersatz
+Prüfe zuerst Support, Gewährleistung und Reparatur. Vergleiche erst danach Ersatzmodelle anhand von Wechselrichter, Modulen, Messsystem und Aufstellort. Eine ähnliche Produktbezeichnung reicht für die Kompatibilität nicht aus.
+Anzeige · Amazon-Partnerlink
+Solarbank-Modelle auf Amazon.de vergleichen
+
+Keine Live-Preise, Verfügbarkeits- oder Kompatibilitätszusage. Als Amazon-Partner verdient EcoBack an qualifizierten Käufen.
+
+## Vor einem größeren Ersatzkauf rechnen
+
+Mit dem Balkonspeicher-Rechner prüfst du die wirtschaftlichen Annahmen. Der Stromtarif-Vergleich hilft, deinen eigenen Strompreis und mögliche Tarifersparnis einzuordnen. Ein günstigerer Tarif repariert den Speicher nicht; er verändert aber den Wert jeder eingesparten Kilowattstunde.
+
+Speicher im Winter und bei FrostFehlersuche beim Growatt NOAH 2000Speicher nachrüsten: vorher prüfen
+
+## Quellen und Grenzen
+Herstellerangaben oben am jeweiligen Abschnitt verlinkt; zuletzt geprüft am 25.09.2026. Die Einordnung und das Protokoll sind von EcoBack, kein Herstellerservice. Keine nachgebauten Fehlercodes, erfundenen Tests oder pauschalen Reset-Anleitungen.
+
+---
+
 ## Balkonkraftwerk-Speicher: Förderung 2026 im Überblick
 URL: https://getecoback.com/guide/balkonspeicher-foerderung.html
 
@@ -1330,6 +1407,9 @@ Balkonspeicher-Rechner: Welche Größe lohnt? →
 Befestigen ohne Bohren: alle Halterungen →
 Speicher nachrüsten: geht das? →
 Balkonspeicher im Winter: Frost & Leistung →
+
+Passt dazu
+- Anker Solarbank lädt nicht? Probleme gezielt eingrenzen
 
 ---
 
@@ -1453,6 +1533,7 @@ Passt dazu
 - Infrarotheizung-Rechner: Wie viel Watt brauchst du?
 - Heizkosten-Vergleich: Heizlüfter, Infrarot oder Klima?
 - BTU-Rechner für Klimaanlagen
+- Anker Solarbank lädt nicht? Probleme gezielt eingrenzen
 
 ---
 
@@ -1552,6 +1633,8 @@ Stromkosten-Rechner: Was kostet dein Gerät im Betrieb? →
 Passt dazu
 - Richtig lüften im Winter: gekippt oder kurz weit auf?
 - Feuchtigkeit im Wohnmobil im Winter: was wirklich hilft
+
+Anker Solarbank lädt nicht? Modell, Modus und Update prüfenMit Protokoll für den Support und Kaufoptionen erst nach der Diagnose.
 
 ---
 
@@ -3514,6 +3597,8 @@ Growatt NOAH 2000 auf Amazon →
 Weitere Ratgeber
 Balkonkraftwerk-Speicher nachrüsten — lohnt sich das? →
 Balkonspeicher im Winter: Frost, Ladestopp & richtiger Umgang →
+
+Anker Solarbank lädt nicht? Modell, Modus und Update prüfenMit Protokoll für den Support und Kaufoptionen erst nach der Diagnose.
 
 ---
 
@@ -13519,6 +13604,8 @@ Speicher-Rechner →Nachrüsten-Guide →
 
 Stromfresser mit einem Messprotokoll prüfenAus gemessenen kWh und deiner Nutzung nachvollziehbare Kosten machen.
 
+Stromtarif-WerkstattVergleiche zwei Stromangebote mit deinem Jahresverbrauch. Sieh die Kosten nach dem Neukundenbonus und speichere oder teile deine Rechnung.
+
 ## 1. Standby killen — schaltbare Steckdosenleiste
 
 Fernseher, Konsole, Router, Ladegeräte, Kaffeemaschine: Geräte im Standby ziehen rund um die Uhr Strom, oft 5 bis 15 Watt pro Gerät. Über den ganzen Haushalt summiert sich das laut Verbraucherzentrale auf 50 bis 100 € im Jahr — für Leistung, die du nie nutzt. Die einfachste Lösung ist eine schaltbare Steckdosenleiste: Ein Kippschalter trennt Fernseher samt Peripherie mit einem Griff komplett vom Netz.
@@ -13780,6 +13867,8 @@ Nach SituationSchlafzimmerDachgeschossOhne Abluftschlauch
 
 Ist ein neues Gerät wirklich günstiger?Auch den Kaufpreis einrechnen: Stromersparnis ist noch keine Gesamtersparnis.
 
+Stromtarif-WerkstattVergleiche zwei Stromangebote mit deinem Jahresverbrauch. Sieh die Kosten nach dem Neukundenbonus und speichere oder teile deine Rechnung.
+
 ## Was kostet welches Gerät pro Stunde und pro Monat?
 
 Alle Werte gerechnet mit 0,30 €/kWh und der Formel unten. Die Auslastung ist der Anteil der Zeit, in dem das Gerät tatsächlich Strom zieht: Ventilator und Luftkühler laufen durch, Klimaanlage und Infrarotheizung takten.
@@ -13977,6 +14066,8 @@ Schnell zum passenden GerätNach Raumgröße10 m²15 m²20 m²25 m²30 m²40 m²
 Nach FenstertypKippfensterDachfensterKein FensterSchlauch zu kurz
 
 Nach SituationSchlafzimmerDachgeschossOhne Abluftschlauch
+
+Stromtarif-WerkstattVergleiche zwei Stromangebote mit deinem Jahresverbrauch. Sieh die Kosten nach dem Neukundenbonus und speichere oder teile deine Rechnung.
 
 ## Einordnung nach Haushaltsgröße
 
@@ -20327,6 +20418,72 @@ Markdown
 
 ---
 
+## Comparateur de tarifs d’électricité | EcoBack
+URL: https://getecoback.com/fr/comparateur-electricite.html
+
+Aller au contenu❄️ EcoBackCalculateurPartager les outils🧮 Tous les outils (DE)
+
+🔍
+Saisissez au moins deux caractères. Résultats en français.
+
+Accueil EcoBack (DE) / Tous les outils (DE)
+ENDEFRESIT
+Comparateur de tarifs d’électricitéComparez deux offres avec votre consommation annuelle. Vérifiez les coûts après la prime de bienvenue, puis enregistrez ou partagez votre calcul.
+Exemple illustratif — remplacez-le par vos chiffres.
+
+Activez JavaScript pour calculer. La méthode et les sources restent disponibles ci-dessous.
+
+## 03 · Votre comparaison
+
+Économie avec B · Première année
+Économie avec B · Année suivante
+Économie sur deux ans
+
+Une économie positive signifie que B coûte moins que A ; une valeur négative, que B coûte plus.
+B est moins chère uniquement la première année. Son coût annuel récurrent est supérieur.
+Détail du coût annuel€ / par an | A | B |
+
+Enregistrer sur cet appareilExporter JSONCréer un lien de partageImprimer la comparaison
+Copier ce lien
+
+## Que voulez-vous vérifier ensuite ?
+Après les tarifs, estimez le coût d’utilisation de vos équipements.
+
+- Estimer les coûts de fonctionnementComparez la consommation avant de choisir un appareil.
+
+## Comparaisons enregistrées
+
+Importer JSONChoisir un fichierAucun fichier sélectionné
+Importer un CSV de consommationChoisir un fichierAucun fichier sélectionné
+Télécharger le modèle CSV
+Utilisez les en-têtes du modèle. Une ligne par période mesurée ; les kWh sont additionnés, jamais extrapolés à un an. Fournissez une année entière. Virgules décimales acceptées avec le séparateur point-virgule.
+
+## Méthode de calcul
+Coût annuel récurrent = Σ(consommation × prix tout compris) + frais fixes + puissance. La première année déduit la prime unique ; B ajoute les frais de changement. Économie sur deux ans = économie initiale + économie récurrente. Le seuil HP/HC utilise les coûts récurrents, sans primes. Le déplacement de consommation reste un scénario distinct.
+
+## Limites de la comparaison
+Modèle sur 365 jours, à consommation et prix constants. Aucune prévision des prix indexés, des horaires réels, de l’injection solaire, des tarifs sociaux ou de l’éligibilité. Vérifiez primes, durée et frais de résiliation auprès du fournisseur. Une prime très élevée peut donner un coût négatif. Calcul arithmétique, pas une recommandation de changement.
+
+## Confidentialité
+Les chiffres restent dans votre navigateur sauf export ou partage volontaire. Cinq comparaisons peuvent être conservées localement. Le fragment du lien contient les chiffres. Les compteurs anonymes transmettent uniquement langue, marché et choix exemple/données propres, jamais les montants. Aucun compte requis. Les actions suivantes ne transmettent que la catégorie choisie, jamais vos données ni les économies calculées.
+
+## Sources et comparateurs officiels
+
+- DE · Verbraucherzentrale
+- FR · Médiateur national de l’énergie
+- FR · Heures creuses
+- ES · CNMC
+- IT · ARERA / Portale Offerte
+2026-09-25 · EcoBack
+
+OutilsCalculateurComparer les offres d’électricitéPartager et intégrer les outilsTous les outils (DE)
+EcoBackAccueil (DE)À propos (DE)Notre méthode (DE)Contact (DE)
+Informations légalesMentions légales (DE)Confidentialité (DE)
+
+En tant que partenaire Amazon, EcoBack perçoit une commission sur les achats éligibles. Les liens produits sont affiliés, sans surcoût pour vous. © 2026 EcoBack
+
+---
+
 ## EcoBack Creator Kit : partager et intégrer les calculateurs
 URL: https://getecoback.com/fr/creator-kit.html
 
@@ -20397,6 +20554,72 @@ Hipótesis ilustrativas; no es un presupuesto
 Reutiliza el método citando la fuente:
 EcoBack · Calculadora de climatización y ahorro en España | EcoBack · https://getecoback.com/es/calculadora.html · 2026-09-20
 Markdown
+
+---
+
+## Comparador de tarifas de luz | EcoBack
+URL: https://getecoback.com/es/comparar-tarifas-luz.html
+
+Ir al contenido❄️ EcoBackCalculadoraCompartir herramientas🧮 Todas las herramientas (DE)
+
+🔍
+Escribe al menos dos caracteres. Resultados en español.
+
+Inicio de EcoBack (DE) / Todas las herramientas (DE)
+ENDEFRESIT
+Comparador de tarifas de luzCompara dos ofertas con tu consumo anual. Revisa el coste después de la bonificación inicial y guarda o comparte tus cálculos.
+Ejemplo ilustrativo: sustitúyelo por tus cifras.
+
+Activa JavaScript para calcular. El método y las fuentes están disponibles debajo.
+
+## 03 · Tu comparación
+
+Ahorro con B · Primer año
+Ahorro con B · Año siguiente
+Ahorro en dos años
+
+Un ahorro positivo indica que B cuesta menos que A; uno negativo, que B cuesta más.
+B solo es más barata el primer año. Su coste anual recurrente es mayor.
+Desglose del coste anual€ / por año | A | B |
+
+Guardar en este dispositivoExportar JSONCrear enlace para compartirImprimir comparación
+Copiar este enlace
+
+## ¿Qué quieres comprobar ahora?
+Después de las tarifas, revisa el coste de uso de tus aparatos.
+
+- Estimar los costes de funcionamientoCompara el consumo antes de elegir un aparato.
+
+## Comparaciones guardadas
+
+Importar JSONElegir archivoNingún archivo seleccionado
+Importar consumo CSVElegir archivoNingún archivo seleccionado
+Descargar plantilla CSV
+Usa las cabeceras de la plantilla. Una fila por periodo medido; se suman los kWh, sin extrapolar al año. Introduce un año completo. Se acepta coma decimal con separador punto y coma.
+
+## Cómo se calcula
+Coste anual recurrente = Σ(consumo × precio completo) + costes fijos + potencia. El primer año resta la bonificación; B añade los costes del cambio. Ahorro en dos años = ahorro inicial + ahorro recurrente. El umbral francés usa costes recurrentes sin bonos. El desplazamiento del consumo es un escenario separado.
+
+## Límites de la comparación
+Modelo de 365 días con consumo y precios constantes. No predice tarifas indexadas, horarios reales, excedentes solares, tarifas sociales ni elegibilidad. Confirma bonificaciones, duración y penalizaciones con el proveedor. Una bonificación muy alta puede dar costes negativos. Es un cálculo, no una recomendación de cambio.
+
+## Privacidad
+Las cifras se quedan en tu navegador salvo exportación o envío voluntario. Hasta cinco comparaciones guardadas localmente. El fragmento del enlace contiene las cifras. Los contadores anónimos solo envían idioma, mercado y elección de datos propios o de ejemplo, nunca los importes. Sin cuenta. Solo se cuenta la categoría del siguiente paso elegido, nunca tus datos ni el ahorro calculado.
+
+## Fuentes y comparadores oficiales
+
+- DE · Verbraucherzentrale
+- FR · Médiateur national de l’énergie
+- FR · Heures creuses
+- ES · CNMC
+- IT · ARERA / Portale Offerte
+2026-09-25 · EcoBack
+
+HerramientasCalculadoraComparar tarifas de luzCompartir e insertar herramientasTodas las herramientas (DE)
+EcoBackInicio (DE)Sobre nosotros (DE)Cómo recomendamos (DE)Contacto (DE)
+Información legalAviso legal (DE)Privacidad (DE)
+
+Como afiliado de Amazon, EcoBack obtiene ingresos por las compras que cumplen los requisitos. Los enlaces de productos son de afiliación y no aumentan tu precio. © 2026 EcoBack
 
 ---
 
@@ -21696,7 +21919,7 @@ Skip to checker
 
 EU product evidence
 CBAM supplier data missing? Check the O3CI handoffYour supplier says the data was shared, but the importer cannot find it. Start by separating portal access, installation identity and data-sharing issues. This tool checks your answers, not the official registry.
-Free handoff checkerFree · no uploads · local export
+Free handoff checkerFree supplier request templateFree · no uploads · local export
 
 Home / All tools / CBAM
 Official sources checked 25 September 2026
@@ -21726,22 +21949,39 @@ For teams already considering the O3CI sharing route. This is not an assessment 
 ## Related evidence check
 EUDR plot evidenceGeneral product evidence checkCopy page link
 
+## CBAM data shared but not verified: what to request
+Treat this as a coordination question, not a failed-compliance verdict. The next step depends on where the handoff stopped.
+
+- Record not visibleConfirm the installation, reporting period and intended recipient together. A resent spreadsheet does not show that the right registry record is visible.
+
+- Record visible, verification unclearIf actual emissions are planned, identify the verification owner and report status. Sharing a record does not replace an accredited independent verifier.
+
+- Report not yet availableRecord the planned next step and expected availability. The Commission's timeline puts first reports in January 2027; do not mark an absent report in September 2026 as an automatic failure.
+
+Commission: verification roles and timeline
+Download the free supplier request (.txt)Editable text with blank placeholders. Complete it locally and review it before sending. EcoBack does not send messages or upload your files.
+
 ## Common questions
 Does this tool submit anything to the EU?No. It only prepares a local coordination checklist. Use the official registry for official actions.
 
-Is shared data automatically verified?No. Data sharing and independent emissions verification are different steps. Consult the official verification guidance.
+Is shared data automatically verified?No. Registry sharing is not independent verification. If using actual emissions, consult the Commission's rules for accredited independent verifiers; this checker cannot verify emissions.
+
+Does a missing verification report in September 2026 prove a failure?No. The Commission's published timeline places the first verification reports in January 2027. Ask for the status and expected availability, rather than assuming a report must already exist.
+
+What should I ask my supplier to send next?Start with one installation and reporting period. Ask for the sharing recipient, retrieval status and, where actual emissions are planned, the verification owner and report status. Use the free request template and an agreed secure channel.
 
 Can I buy the €299 evidence pack here?Not yet. €299 is an indicative pilot price, not an active checkout. The separate EcoBack storage membership is not this evidence pack.
 
 ## Before paying for help
-Use the free checklist first. A proposed evidence-pack pilot covers one product family, a bilingual document index and supplier-request templates. Scope, tax treatment and delivery terms must be agreed before any charge; checkout is not connected.
+The checklist and supplier request template are free. A proposed €299 evidence-pack pilot would organise one product family's bilingual document index and tailored follow-up list. It is not verification or a declaration service. Scope, tax treatment and delivery terms must be agreed before any charge; checkout is not connected.
 The EcoBack storage membership is a separate product and does not buy this evidence service.
-Free handoff checker
+Free handoff checkerAsk about the scope — not an orderThe contact page is in German. Do not send sensitive files in an initial enquiry. No payment is collected here.
 
 ## Official references
 
 - Commission: CBAM Registry and O3CI
 - Commission: legislation and verification guidance
+- Commission: verification roles and timeline
 Independent preparation aid. Not an EU service, legal advice, certification, verification or a compliance decision.
 
 EcoBackIndependent preparation aid. Not an EU service, legal advice, certification, verification or a compliance decision.
@@ -21820,7 +22060,7 @@ URL: https://getecoback.com/zh/agents/cbam-supplier-data.html
 
 欧盟产品证据
 进口商看不到供应商的 CBAM 数据？先排查 O3CI 交接供应商说已经共享数据，进口商却查不到？先分清账号访问、生产设施和数据共享的问题。检查器只整理你的回答，不连接或核验欧盟注册系统。
-免费交接检查器免费使用 · 无需上传 · 本地导出
+免费交接检查器免费供应商补件模板免费使用 · 无需上传 · 本地导出
 
 首页 / 工具总览 / CBAM
 官方来源核查日期：2026 年 9 月 25 日
@@ -21850,22 +22090,39 @@ URL: https://getecoback.com/zh/agents/cbam-supplier-data.html
 ## 相关证据检查
 EUDR 地块证据预检通用产品证据检查（英文）复制页面链接
 
+## CBAM 数据已共享但未核查：接下来索取什么？
+先把它当作资料交接问题，而不是直接判定不合规。下一步取决于交接停在哪个环节。
+
+- 看不到记录双方一起核对设施、报告期和共享对象。再次发送电子表格，并不能证明注册系统中的正确记录已经可见。
+
+- 能看到记录，但核查状态不清楚如拟使用实际排放数据，确认核查负责人及报告状态。记录共享不能代替获认可的独立核查机构。
+
+- 报告暂时未出具记录下一步和预计可提供时间。欧盟委员会时间线将首批报告放在 2027 年 1 月；不能仅因 2026 年 9 月还没有报告就判定失败。
+
+欧盟委员会：核查参与方与时间线
+免费下载供应商补件模板（.txt）模板含待填写占位符，可在本地编辑，发送前请自行核对。EcoBack 不会代发消息，也不会上传你的文件。
+
 ## 常见问题
 这个工具会向欧盟提交资料吗？不会。它只在本地整理交接清单，正式操作应在官方注册系统完成。
 
-共享了数据，就等于排放已经核查吗？不是。数据共享和独立的排放核查是不同环节，请查阅官方核查指引。
+共享了数据，就等于排放已经核查吗？不是。注册系统中的共享不等于独立核查。采用实际排放数据时，应查阅欧盟委员会关于获认可的独立核查机构的规则；本检查器不能核验排放。
+
+2026 年 9 月还没有核查报告，就代表不合规吗？不能这样判断。欧盟委员会公布的时间线将首批核查报告安排在 2027 年 1 月。应询问当前状态和预计可提供时间，而不是假定报告现在就必须存在。
+
+下一步应向供应商索取什么？先限定一处设施和一个报告期，确认共享对象及检索状态；如拟采用实际排放数据，再确认核查负责人和报告状态。可用本页免费补件模板，通过双方约定的安全渠道沟通。
 
 现在可以购买 €299 证据包吗？暂不可以。€299 是试点参考价，尚未接通收款；另一个 EcoBack 云存储会员并不是此证据包。
 
 ## 付费前，先确认问题范围
-可以先免费使用检查清单。拟议的证据包试点针对一个产品族，提供双语资料目录和供应商补件模板。收费前需确认服务范围、税费与交付条款，目前未开放结账。
+检查清单和供应商补件模板均可免费使用。拟议的 €299 证据包试点针对一个产品族，整理双语资料目录和定制的跟进事项，不提供核查或代申报。收费前需确认服务范围、税费与交付条款，目前未开放结账。
 EcoBack 云存储会员是独立产品，不包含此证据服务。
-免费交接检查器
+免费交接检查器咨询服务范围（不是下单）联系页面为德语。首次咨询请勿发送敏感文件；这里不会收取款项。
 
 ## 官方参考来源
 
 - 欧盟委员会：CBAM 注册系统及 O3CI
 - 欧盟委员会：法规与核查指引
+- 欧盟委员会：核查参与方与时间线
 独立的资料准备辅助工具。不是欧盟官方服务，不提供法律意见、认证、核查或合规结论。
 
 EcoBack独立的资料准备辅助工具。不是欧盟官方服务，不提供法律意见、认证、核查或合规结论。
@@ -21933,5 +22190,205 @@ EcoBack 云存储会员是独立产品，不包含此证据服务。
 
 EcoBack独立的资料准备辅助工具。不是欧盟官方服务，不提供法律意见、产品范围判断、认证、核查或尽调声明。
 工具总览 · 隐私政策 · 联系
+
+---
+
+## Stromtarif-Werkstatt
+URL: https://getecoback.com/stromtarif-werkstatt.html
+
+Zum Inhalt❄️ EcoBackHeizenLuftqualitätKlimaanlagenEnergie sparen🧮 Tools
+
+🔍
+Mindestens zwei Zeichen eingeben. Ergebnisse auf Deutsch.
+
+EcoBack Startseite / Alle Rechner & Checks
+ENDEFRESIT
+Stromtarif-WerkstattVergleiche zwei Stromangebote mit deinem Jahresverbrauch. Sieh die Kosten nach dem Neukundenbonus und speichere oder teile deine Rechnung.
+Rechenbeispiel — bitte durch eigene Werte ersetzen.
+
+JavaScript zum Rechnen aktivieren. Methode und Quellen stehen unten.
+
+## 03 · Dein Vergleich
+
+Ersparnis mit B · Erstes Jahr
+Ersparnis mit B · Folgejahr
+Ersparnis über zwei Jahre
+
+Positive Ersparnis: B kostet weniger als A. Negative Ersparnis: B kostet mehr.
+B ist nur im ersten Jahr günstiger. Die laufenden Jahreskosten sind höher.
+Jährliche Kosten im Detail€ / pro Jahr | A | B |
+
+Auf diesem Gerät speichernJSON exportierenFreigabelink erstellenVergleich drucken
+Diesen Link kopieren
+
+## Was möchtest du als Nächstes prüfen?
+Der Tarif ist ein Hebel. Prüfe auch, wo du weniger Strom verbrauchen kannst.
+
+- Stromverbrauch im Haushalt senkenKostenlose Maßnahmen zuerst, passende Messgeräte nur bei Bedarf.
+
+- Gerät ersetzen oder behalten?Kaufpreis und Stromersparnis mit deinen Zahlen vergleichen.
+
+## Gespeicherte Vergleiche
+
+JSON importierenDatei auswählenKeine Datei ausgewählt
+Verbrauchs-CSV importierenDatei auswählenKeine Datei ausgewählt
+CSV-Vorlage herunterladen
+Vorlagen-Spalten verwenden. Eine Zeile je Messzeitraum; kWh werden addiert, niemals aufs Jahr hochgerechnet. Ein ganzes Jahr erfassen. Semikolon-Dateien erlauben Dezimalkommas.
+
+## So wird gerechnet
+Laufende Jahreskosten = Σ(Verbrauch × Gesamtarbeitspreis) + feste Kosten + Leistungskosten. Im ersten Jahr wird der einmalige Bonus abgezogen; bei B kommen Wechselkosten hinzu. Zweijahresersparnis = Erstjahresersparnis + laufende Ersparnis. Die französische Schwelle nutzt laufende Kosten ohne Boni. Zeitverschiebung bleibt ein eigenes Szenario.
+
+## Grenzen des Vergleichs
+365 Tage, unveränderter Verbrauch und konstante Preise. Keine Prognose für dynamische Tarife, Stundenpläne, Einspeisung, Sozialtarife oder Vertragsberechtigung. Bonusbedingungen, Laufzeit und Kündigungskosten beim Anbieter prüfen. Ein sehr hoher eingetragener Bonus kann negative Kosten ergeben. Eine Rechnung, keine Wechsel-Empfehlung.
+
+## Datenschutz
+Zahlen bleiben im Browser, bis du sie exportierst oder bewusst teilst. Bis zu fünf Vergleiche werden lokal gespeichert. Freigabelinks enthalten die Zahlen im URL-Fragment. Anonyme Ereignisse erfassen nur Sprache, Markt und Beispiel-/Eigeneingabe, niemals Rechnungswerte. Kein Konto erforderlich. Für gewählte Folgeschritte wird zusätzlich nur die Kategorie gezählt, keine Eingabe oder berechnete Ersparnis.
+
+## Quellen und offizielle Vergleichsportale
+
+- DE · Verbraucherzentrale
+- FR · Médiateur national de l’énergie
+- FR · Heures creuses
+- ES · CNMC
+- IT · ARERA / Portale Offerte
+2026-09-25 · EcoBack
+
+KategorienHeizenLuftqualitätKlimaanlagen & KühlenEnergie sparen
+EcoBack🧮 Alle Rechner & Checks🧩 Widgets für deine Website📊 Offene Daten (CC BY 4.0)🌡️ Hitze-RadarÜber unsWie wir empfehlenKontakt
+RechtlichesImpressumDatenschutz
+
+Als Amazon-Partner verdient EcoBack an qualifizierten Käufen. Produktlinks sind Affiliate-Links — du zahlst denselben Preis. © 2026 EcoBack
+
+---
+
+## Electricity tariff workbench
+URL: https://getecoback.com/en/energy-tariff-workbench.html
+
+Skip to content❄️ EcoBackAll guidesSolution calculator🧮 All tools (DE)
+
+🔍
+Enter at least two characters. Results in English.
+
+EcoBack home / All tools (DE)
+ENDEFRESIT
+Electricity tariff workbenchCompare two electricity offers using your annual consumption. See what changes after the welcome bonus ends, then save or share your calculation.
+Illustrative example — replace with your own figures.
+
+Enable JavaScript to calculate. The method and sources remain available below.
+
+## 03 · Your comparison
+
+Saving with B · First year
+Saving with B · Following year
+Saving over two years
+
+Positive savings mean B costs less than A. A negative value means B costs more.
+B is cheaper only in the first year. Its recurring annual cost is higher.
+Annual cost breakdown€ / per year | A | B |
+
+Save on this deviceExport JSONCreate share linkPrint comparison
+Copy this link
+
+## What would you like to check next?
+After comparing tariffs, review the running costs of your household equipment.
+
+- Estimate appliance running costsCompare electricity use before choosing equipment.
+
+## Saved comparisons
+
+Import JSONChoose fileNo file selected
+Import consumption CSVChoose fileNo file selected
+Download CSV template
+Use the template headers. One row per measured period; the tool sums kWh and never extrapolates to a year. Enter or import a full year. Semicolon files accept decimal commas.
+
+## How the calculation works
+Annual recurring cost = Σ(consumption × all-inclusive rate) + fixed charges + contracted power charges. First-year cost subtracts the one-off bonus; B also adds switching costs. Two-year savings = first-year savings + recurring savings. France’s break-even uses recurring costs, excluding bonuses. The shifting scenario stays separate.
+
+## Limits of this comparison
+A 365-day model with constant consumption and prices. It does not forecast index-linked prices, model real hourly schedules, solar export, social tariffs or contract eligibility. Verify bonus conditions, term and exit fees with the supplier. A negative bill can result from an unusually large entered bonus. This is arithmetic, not a switch recommendation.
+
+## Privacy
+Figures stay in your browser unless you export or deliberately share them. Saved comparisons use local storage; up to five entries. A share URL contains the numbers in its fragment. Anonymous interaction counts include language, market and example/own-input choice, never bill values. No account is needed. Next-step counts include the selected category, never your inputs or calculated savings.
+
+## Sources and official comparison services
+
+- DE · Verbraucherzentrale
+- FR · Médiateur national de l’énergie
+- FR · Heures creuses
+- ES · CNMC
+- IT · ARERA / Portale Offerte
+2026-09-25 · EcoBack
+
+ToolsSolution calculatorElectricity tariff workbenchShare and embed toolsAll tools (DE)
+EcoBackAll guidesHow we recommendHeat RadarGerman home (DE)
+LegalLegal notice (DE)Privacy (DE)
+
+As an Amazon Associate EcoBack earns from qualifying purchases. Product links are affiliate links — you pay the same price. © 2026 EcoBack
+
+---
+
+## Confronto delle tariffe luce
+URL: https://getecoback.com/it/confronto-tariffe-luce.html
+
+Vai al contenuto❄️ EcoBackTutte le guideCalcolatore🧮 Tutti gli strumenti (DE)
+
+🔍
+Inserisci almeno due caratteri. Risultati in italiano.
+
+Pagina iniziale di EcoBack / Tutti gli strumenti (DE)
+ENDEFRESIT
+Confronto delle tariffe luceConfronta due offerte con i tuoi consumi annuali. Verifica i costi dopo il bonus iniziale, poi salva o condividi il calcolo.
+Esempio illustrativo: sostituisci con i tuoi valori.
+
+Attiva JavaScript per calcolare. Metodo e fonti rimangono disponibili qui sotto.
+
+## 03 · Il tuo confronto
+
+Risparmio con B · Primo anno
+Risparmio con B · Anno successivo
+Risparmio su due anni
+
+Un risparmio positivo indica che B costa meno di A; un valore negativo, che costa di più.
+B costa meno solo il primo anno. Il suo costo annuale ricorrente è maggiore.
+Dettaglio del costo annuale€ / all’anno | A | B |
+
+Salva su questo dispositivoEsporta JSONCrea link di condivisioneStampa confronto
+Copia questo link
+
+## Che cosa vuoi verificare adesso?
+Dopo le tariffe, valuta i costi di utilizzo dei tuoi apparecchi.
+
+- Stimare i costi di utilizzoConfronta i consumi prima di scegliere un apparecchio.
+
+## Confronti salvati
+
+Importa JSONScegli fileNessun file selezionato
+Importa consumi CSVScegli fileNessun file selezionato
+Scarica modello CSV
+Usa le intestazioni del modello. Una riga per periodo misurato; i kWh vengono sommati, mai proiettati su un anno. Inserisci un anno completo. Virgola decimale ammessa con separatore punto e virgola.
+
+## Metodo di calcolo
+Costo annuo ricorrente = Σ(consumo × prezzo tutto incluso) + costi fissi + potenza. Il primo anno sottrae il bonus; B aggiunge i costi di cambio. Risparmio in due anni = risparmio iniziale + risparmio ricorrente. La soglia francese usa i costi ricorrenti senza bonus. Lo spostamento dei consumi è uno scenario distinto.
+
+## Limiti del confronto
+Modello di 365 giorni con consumi e prezzi costanti. Non prevede tariffe indicizzate, orari reali, immissione solare, tariffe sociali o requisiti di accesso. Verifica bonus, durata e costi di recesso con il fornitore. Un bonus molto alto può produrre un costo negativo. È un calcolo, non una raccomandazione di cambio.
+
+## Privacy
+I numeri restano nel browser salvo esportazione o condivisione volontaria. Fino a cinque confronti nella memoria locale. Il frammento del link contiene i numeri. I contatori anonimi inviano lingua, mercato e scelta esempio/dati propri, mai gli importi. Nessun account richiesto. Per i passaggi successivi viene conteggiata solo la categoria scelta, mai i tuoi dati o il risparmio calcolato.
+
+## Fonti e comparatori ufficiali
+
+- DE · Verbraucherzentrale
+- FR · Médiateur national de l’énergie
+- FR · Heures creuses
+- ES · CNMC
+- IT · ARERA / Portale Offerte
+2026-09-25 · EcoBack
+
+StrumentiCalcolatoreConfronto tariffe elettricheCondividi e incorpora gli strumentiTutti gli strumenti (DE)
+EcoBackTutte le guidePagina iniziale (DE)Il nostro metodo (DE)Contatti (DE)
+Informazioni legaliNote legali (DE)Privacy (DE)
+
+In qualità di affiliato Amazon, EcoBack riceve un guadagno dagli acquisti idonei. I link ai prodotti sono affiliati: il prezzo per te non cambia. © 2026 EcoBack
 
 ---
