@@ -78,7 +78,7 @@ A: Because every verdict has a published flip condition tied to observable evide
 ## AGI Scorecard Data for AI Agents: JSON, Feed, llms.txt
 
 URL: https://agiscorecard.com/for-agents
-Last updated: September 19, 2026 · Updated as verdicts change
+Last updated: September 27, 2026 · Updated as verdicts change
 
 Yes — every verdict on this site is free to reuse, machine-readable, and CC BY 4.0. The AGI Scorecard publishes its full dataset at /data.json (all 8 graded Situational Awareness predictions with verdicts, evidence, sources and, for each, a written flip condition, a resolution date, a watch item or the stated blocker, plus the forecaster-timeline table), an Atom feed of new & updated pages at /feed.xml, and an AI-crawler index at /llms.txt. Attribution + a link is the only requirement.
 
@@ -218,7 +218,7 @@ A: As of early 2026, the Metaculus community gives roughly 25% by 2029 and 50% b
 ## Situational Awareness Predictions: Full Tracker
 
 URL: https://agiscorecard.com/situational-awareness-predictions
-Last updated: August 29, 2026 · Updated as verdicts change
+Last updated: September 27, 2026 · Updated as verdicts change
 
 8 predictions, graded live. Aschenbrenner's Situational Awareness (June 2024) made a set of specific, falsifiable predictions. As of mid-2026: 3 on track, 1 wrong, 2 open, 2 too early. Each is graded with evidence and a pre-registered condition to flip.
 
@@ -1493,7 +1493,7 @@ A: Each issue quotes a dated snapshot with a link to the live market — never a
 ## Changelog — What Changed on the AGI Scorecard
 
 URL: https://agiscorecard.com/changelog
-Last updated: September 26, 2026 · Updated as verdicts change
+Last updated: September 27, 2026 · Updated as verdicts change
 
 Everything that changed on the evidence layer, dated and real. Every entry corresponds to a shipped change; score history is machine-readable. If you would rather not check back: subscribers get one email when something that matters actually changes — a verdict, the score, a new tool — and silence otherwise.
 
@@ -1527,16 +1527,16 @@ A: No. The tool shows where your view sits in the published distribution — it 
 URL: https://agiscorecard.com/grader-consensus
 Last updated: September 27, 2026 · Updated as verdicts change
 
-No outright disagreement across 9 comparisons — but 5 of our 8 predictions have at most one independent grader, so the panel is thin. 6 exact agreements and 3 same-direction (ahead vs on track, behind vs unresolved) against two independent, dated gradings, every one quoted verbatim.
+1 outright disagreement across 16 comparisons — but 2 of our 8 predictions have no independent grade, so the panel is thin. 9 exact agreements and 6 same-direction (ahead vs on track, behind vs unresolved) against four independent, dated gradings, every one quoted verbatim.
 
 Q: Does anyone else grade Situational Awareness the same way as the AGI Scorecard?
-A: Across 9 comparisons with two independent, dated public gradings, 6 agree exactly, 3 agree in direction and 0 disagree. 2 of our 8 predictions have no independent grade yet.
+A: Across 16 comparisons with four independent, dated public gradings, 9 agree exactly, 6 agree in direction and 1 disagrees. 2 of our 8 predictions have no independent grade yet.
 
 Q: Who are the independent graders?
-A: Nathan Delisle (LessWrong, 2025-06-23); Jamie Harris (EA Forum, 2026-03-29). Each grade on this page is a verbatim sentence from their own post, linked.
+A: Nathan Delisle (LessWrong, 2025-06-23); Jamie Harris (EA Forum, 2026-03-29); Daniel Reeves (AGI Friday (Substack), 2025-10-04); Philipp D. Dubach (philippdubach.com, 2026-05-21). Each grade on this page is a verbatim sentence from their own post, linked.
 
 Q: Where do the graders disagree with this site?
-A: Under the counting rule, nowhere outright today. The clearest difference is the government AGI project: one grader calls it behind what Aschenbrenner predicted, this site still grades it Open; both note that its 2027/28 window has not closed. Differences between ahead and on track (for example on capex) are counted as same-direction, not as disagreements.
+A: Under the counting rule there is one outright disagreement: on Models outpace college graduates across knowledge work, Daniel Reeves reads the evidence as unresolved where this site says On track. Differences between ahead and on track (for example on capex), or between behind and unresolved, are counted as same-direction, not as disagreements.
 
 Q: Why publish disagreement with your own verdicts?
 A: Because a scorecard graded by one editor is only as trustworthy as that editor. Putting every independent grading next to ours, with the quotes, is the cheapest way for a reader to check whether our verdicts are idiosyncratic.
@@ -1546,7 +1546,7 @@ A: Because a scorecard graded by one editor is only as trustworthy as that edito
 ## Calibration: We Score Our Own Predictions in Public
 
 URL: https://agiscorecard.com/calibration
-Last updated: September 26, 2026 · Updated as verdicts change
+Last updated: September 27, 2026 · Updated as verdicts change
 
 We score our own predictions in public — and the sample is still small. This page inventories every probability-shaped claim the AGI Scorecard network makes, states how many of them can actually be Brier-scored today ( 0), and pre-commits to publishing a Brier score and calibration curve once scored probability calls reach n≥20. We would rather show a small honest n than a big fake curve.
 
@@ -1560,7 +1560,7 @@ Q: Who grades the calls?
 A: Outcomes are graded against pre-registered falsification conditions written before the outcome, with dated multi-source verification, and misses stay published with their lesson. The grading rules are public in the eight-layer method, including the red-team layer.
 
 Q: How do I check that a record was not backdated?
-A: Versions of data.json, index-history.json, the consensus board and the odds history stamped since 2026-09-26 carry an OpenTimestamps proof under /ots/ (the manifest lists each proof's status: pending until the calendar's transaction is in a Bitcoin block). Verify with the free client against the entry whose sha256 matches your download. That proves when those bytes existed, not that they are correct; earlier history rests on the public git log.
+A: Versions of agi-consensus.json, data.json, independent-grades.json, index-history.json, market-board.json, odds-history.json stamped since 2026-09-26 carry an OpenTimestamps proof under /ots/ (the manifest lists each proof's status: pending until the calendar's transaction is in a Bitcoin block). The “Verify these records in your browser” button on this page downloads each listed file, hashes it locally and checks the hash against the manifest and the proof file; to follow a proof to its Bitcoin block, run the free client against the entry whose sha256 matches your download. That proves when those bytes existed, not that they are correct; earlier history rests on the public git log.
 
 ---
 

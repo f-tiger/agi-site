@@ -2327,6 +2327,18 @@
    "source": "docs/agi-invest-marketing-2026-09-27.md",
    "status": "open",
    "t0": "2026-09-27:两个种子刚加入,0 次抓取;agi 历史 rising 里与投资相关的只有 'stock market today'(v 37 150,泛市场词,不指向本站任何页)。前提不成立 → insufficient"
+  },
+  {
+   "id": "agi-invest-share-1127",
+   "site": "agiscorecard",
+   "due": "2026-11-27",
+   "metric": "/does-copying-13f-work 与 /zh/does-copying-13f-work,09-28→11-26 浏览器端真人:① 外部来源到达(ref_host 非本站,含搜索/AI/社交/兄弟站)② 其中来自 compass./invest./gushen-4g2 的到达",
+   "threshold": "① ≥5 或 ② ≥1",
+   "win": "专属分享卡 + 兄弟站互链这套做法成立 → 同法补 /is-nvidia-overvalued 与 capex 两页的专属卡(数字从数据文件生成)",
+   "lose": "① 与 ② 都是 0 → 投资页的分享/互链投入在本站量级无效,只保维护,不再扩",
+   "source": "docs/agi-invest-share-2026-09-27.md",
+   "status": "open",
+   "t0": "2026-09-27(28d):两页外部来源 0;站内链接 4 → 8;兄弟站 → 这两页的链接 0 → 3(Compass 战绩页 en/zh、Gushen 页脚)"
   }
  ]
 }

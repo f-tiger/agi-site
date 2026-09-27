@@ -2,21 +2,21 @@
 
 _Last updated: September 27, 2026 · Updated as verdicts change_
 
-**Answer:** No outright disagreement across 9 comparisons — but 5 of our 8 predictions have at most one independent grader, so the panel is thin. 6 exact agreements and 3 same-direction (ahead vs on track, behind vs unresolved) against two independent, dated gradings, every one quoted verbatim.
+**Answer:** 1 outright disagreement across 16 comparisons — but 2 of our 8 predictions have no independent grade, so the panel is thin. 9 exact agreements and 6 same-direction (ahead vs on track, behind vs unresolved) against four independent, dated gradings, every one quoted verbatim.
 
 ## FAQ
 
 **Does anyone else grade Situational Awareness the same way as the AGI Scorecard?**
 
-Across 9 comparisons with two independent, dated public gradings, 6 agree exactly, 3 agree in direction and 0 disagree. 2 of our 8 predictions have no independent grade yet.
+Across 16 comparisons with four independent, dated public gradings, 9 agree exactly, 6 agree in direction and 1 disagrees. 2 of our 8 predictions have no independent grade yet.
 
 **Who are the independent graders?**
 
-Nathan Delisle (LessWrong, 2025-06-23); Jamie Harris (EA Forum, 2026-03-29). Each grade on this page is a verbatim sentence from their own post, linked.
+Nathan Delisle (LessWrong, 2025-06-23); Jamie Harris (EA Forum, 2026-03-29); Daniel Reeves (AGI Friday (Substack), 2025-10-04); Philipp D. Dubach (philippdubach.com, 2026-05-21). Each grade on this page is a verbatim sentence from their own post, linked.
 
 **Where do the graders disagree with this site?**
 
-Under the counting rule, nowhere outright today. The clearest difference is the government AGI project: one grader calls it behind what Aschenbrenner predicted, this site still grades it Open; both note that its 2027/28 window has not closed. Differences between ahead and on track (for example on capex) are counted as same-direction, not as disagreements.
+Under the counting rule there is one outright disagreement: on Models outpace college graduates across knowledge work, Daniel Reeves reads the evidence as unresolved where this site says On track. Differences between ahead and on track (for example on capex), or between behind and unresolved, are counted as same-direction, not as disagreements.
 
 **Why publish disagreement with your own verdicts?**
 

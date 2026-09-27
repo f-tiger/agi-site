@@ -153,6 +153,8 @@ Positioning umbrella: **"The evidence layer for the AI era — track the predict
   在 #directory 之前各有一块独立的引流区,写死了德鲁肯米勒 +187.2% / QQQ +59.6% / 巴菲特
   +37.3%(跑输)。**它们受上面那条硬同步义务约束**——每季重算时,这两块和 invest 两页
   一起改,再加 `/does-copying-13f-work` + `/zh/does-copying-13f-work`(2026-08-29/30 上线,活数字+表格整页引用成绩单),**共六处**。
+  **第七处(2026-09-27)**:13F 专属分享卡 `share/copy-13f-{en,zh}.png` —— 不手改,重算后先 `python3 tools/gen_invest_data.py`
+  再 `NODE_PATH=/opt/node22/lib/node_modules node tools/gen_invest_cards.cjs`(卡片数字只读 invest-data.json)。
   **它是工具,不是榜单(2026-08-16 补齐)**:计算器「如果当时我抄了,今天多少钱」选投资人
   (可多选)+ 起始申报日 + 本金,全部在浏览器里算;深链 `?who=a-_-b&from=YYYY-MM-DD&amt=N`
   双向绑定,`?embed=1` 出无壳嵌入版 + 带 `utm_source=widget` 的品牌回链。基准必须用
@@ -922,6 +924,12 @@ verified-ai-free-tiers、agiscorecard-mcp 公开 → 免费）。
 - **同日第三轮(四个投资仓接入会话后)**:整条投资线合计付费 0、**真实询价 0**(唯一那 1 次是 owner 自测,owner 同日确认)、订阅 2(SunWatch 1、Compass 1)。SunWatch 的 pv/点击计数
   含爬虫与部署自检,已在 sunPredition 改为另记真人口径(`/api/growth` 的 `human` 块);Compass 弹窗 459 次里 423 次是爬虫;
   **Gushen 后端从未部署、线上功能不可用,/invest 中英两页已拿掉它的卡片**(终身 0 点击)。**同日更正**:gushen 已重构为纯前端服务(浏览器内计算 + 部署时抓行情),线上可用,卡片已按现状恢复。详见 `docs/agi-invest-usage-2026-09-27.md` §六。
+
+## 2026-09-27 投资板块的 SEO/GEO/外链/分享(owner 原话同标题;全文 `docs/agi-invest-share-2026-09-27.md`)
+
+- 补 5 页分享预览(13F 两页用数据生成的专属卡,其余用 scorecard-summary);13F 判定页站内内链 4 → 8(锚文本不放数字);
+  兄弟站:gushen 补 meta/OG/JSON-LD/真 robots·sitemap·llms、SunWatch 出口统一补 og:image、Compass 战绩页链到判定页。
+- 分享按钮仍是杀单,机器仍不外联。判定线 `agi-invest-share-1127`。
 
 ## 2026-09-04 舰队技术优化（机制层；详见根仓 docs/fleet-optimization-2026-09-04.md）
 

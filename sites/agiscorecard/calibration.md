@@ -1,6 +1,6 @@
 # Calibration: We Score Our Own Predictions in Public
 
-_Last updated: September 26, 2026 · Updated as verdicts change_
+_Last updated: September 27, 2026 · Updated as verdicts change_
 
 **Answer:** We score our own predictions in public — and the sample is still small. This page inventories every probability-shaped claim the AGI Scorecard network makes, states how many of them can actually be Brier-scored today ( 0), and pre-commits to publishing a Brier score and calibration curve once scored probability calls reach n≥20. We would rather show a small honest n than a big fake curve.
 
@@ -20,7 +20,7 @@ Outcomes are graded against pre-registered falsification conditions written befo
 
 **How do I check that a record was not backdated?**
 
-Versions of data.json, index-history.json, the consensus board and the odds history stamped since 2026-09-26 carry an OpenTimestamps proof under /ots/ (the manifest lists each proof's status: pending until the calendar's transaction is in a Bitcoin block). Verify with the free client against the entry whose sha256 matches your download. That proves when those bytes existed, not that they are correct; earlier history rests on the public git log.
+Versions of agi-consensus.json, data.json, independent-grades.json, index-history.json, market-board.json, odds-history.json stamped since 2026-09-26 carry an OpenTimestamps proof under /ots/ (the manifest lists each proof's status: pending until the calendar's transaction is in a Bitcoin block). The “Verify these records in your browser” button on this page downloads each listed file, hashes it locally and checks the hash against the manifest and the proof file; to follow a proof to its Bitcoin block, run the free client against the entry whose sha256 matches your download. That proves when those bytes existed, not that they are correct; earlier history rests on the public git log.
 
 ---
 Canonical page: https://agiscorecard.com/calibration
