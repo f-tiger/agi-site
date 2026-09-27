@@ -1,6 +1,7 @@
 // Actions are not unique people or verified organic traffic. The open event endpoint can be spoofed.
 import { databaseFailure } from './doc-events.js';
 import { cachedAggregate } from '../../lib/aggregate-cache.js';
+import { HUB_TASKS, isHubPath, hubEvent } from '../../document-assets/hub-core.mjs';
 const START='2026-09-25';
 export const DOCUMENT_QUERY=`SELECT d,ev,path,ref,COUNT(*) AS n FROM hits
  WHERE d >= date('now','-27 days') AND d >= '${START}'
@@ -35,6 +36,10 @@ export function aggregateDocuments(rows) {
  return {events,excluded,daily:Array.from(days,([k,n])=>{const[d,ev]=JSON.parse(k);return {d,ev,n};}).sort((a,b)=>b.d.localeCompare(a.d)||a.ev.localeCompare(b.ev)),pages:pageRows,referrers:ranked(refs,'ref').slice(0,100),crawler_fetches:ranked(bots,'path'),
   crawler_agents:ranked(botAgents,'claimed_agent'),
   source_events:Array.from(sources,([source,events])=>({source,events})).sort((a,b)=>a.source.localeCompare(b.source)),
+  homepage_views:pageRows.filter(r=>isHubPath(r.path)).reduce((n,r)=>n+r.n,0),
+  dedicated_tool_views:pageRows.filter(r=>/^\/(?:(de|zh)\/)?(?:verify-file|delivery-evidence|pdf-accessibility-checker|pdf-batch-audit|pdf-to-text|compare-pdf-text)$/.test(r.path)).reduce((n,r)=>n+r.n,0),
+  homepage_selections:Object.fromEntries(Object.keys(HUB_TASKS).map(task=>[task,events[hubEvent(task)]||0])),
+  homepage_scope:'Homepage selections are fixed tool-link actions introduced on 2026-09-27, not completed tasks or unique visitors. Homepage views include the earlier inline-tool homepage within this reporting window. Legacy tool_views includes homepage views; dedicated_tool_views does not.',
   attribution_scope:'Per-action observed referrer, not session attribution or a conversion rate. Missing referrers are unknown; Google AI search is not distinguishable from ordinary Google referrals. Crawler identities are user-agent claims, not verified IPs or citations.',
   tool_views:pageRows.filter(r=>/^\/(?:(de|zh)\/)?(?:verify-file|delivery-evidence|pdf-accessibility-checker|pdf-batch-audit|pdf-to-text|compare-pdf-text)?$/.test(r.path)).reduce((n,r)=>n+r.n,0)};
 }

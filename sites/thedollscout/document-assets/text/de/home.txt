@@ -1,42 +1,86 @@
-# Kostenlose PDF-Prüfung, Stapelprüfung und Textvergleich
+# Kostenlose Dokument-Tools: PDF, Dateiprüfung & Übergabe
 
 https://thedollscout.com/de/
 Veröffentlicht von TDS Document Scout
 Aktualisiert: 2026-09-27
 
-Dokumentstruktur prüfen, auffällige Seiten finden und eine nachvollziehbare Prüfliste weitergeben. Ihre Dateien bleiben auf Ihrem Gerät.
-
-Verarbeitung in diesem Browser. Kein Datei-Upload und kein Konto erforderlich.
-
-Dies ist eine Vorprüfung, keine WCAG- oder PDF/UA-Zertifizierung. Vorhandene Tags oder Titel beweisen nicht ihre Richtigkeit.
+Wählen Sie das passende Werkzeug: PDFs prüfen, Text extrahieren oder vergleichen, Dateien abgleichen und eine Kundenübergabe dokumentieren. Alles läuft auf Ihrem Gerät.
 
 PDF-Barrierefreiheit prüfen
 
-Titel, Sprachangaben, Tags und auslesbaren Text prüfen. Auffällige Seiten und notwendige manuelle Prüfungen erkennen.
+Fehlende Titel, Sprachangaben, Tags und seitenbezogene Hinweise finden.
+
+PDF-Vorprüfung
+
+https://thedollscout.com/de/pdf-accessibility-checker
 
 PDF-Stapelprüfung
 
-Bis zu 10 PDFs gemeinsam prüfen. Auffälligkeiten priorisieren, manuelle Prüfungen festhalten und als CSV oder JSON exportieren.
+Bis zu 10 PDFs prüfen und eine gemeinsame Befundliste exportieren.
+
+Bis zu 10 PDFs
+
+https://thedollscout.com/de/pdf-batch-audit
 
 PDF in Text umwandeln
 
-Vorhandenen PDF-Text mit Seitengrenzen auslesen. Seiten ohne auslesbaren Text erkennen, bevor Sie einen OCR-Ablauf wählen.
+Vorhandenen Text nach Seiten extrahieren und als TXT speichern.
 
-PDF-Texte vergleichen
+Textextraktion
 
-Den ausgelesenen Text zweier PDF-Versionen vergleichen. Geänderte, neue und entfernte Seiten finden; unveränderte Seiten werden zugeordnet.
+https://thedollscout.com/de/pdf-to-text
 
-Verlassen meine PDFs mein Gerät?
+PDF-Text vergleichen
 
-Nein. Dateiprüfung, Textauslesung und Vergleich laufen im Browser. Berichte können Dateinamen und Dokumenttitel enthalten. Wählen Sie bewusst, wo Sie sie teilen.
+Geänderte, ergänzte und entfernte Textseiten zweier Fassungen erkennen.
 
-Beweist ein unauffälliges Ergebnis Barrierefreiheit?
+Zwei PDF-Fassungen
 
-Nein. Diese Vorprüfung hilft bei der Arbeitsplanung. Lesereihenfolge, Bildbedeutung, Tabellen, Formulare und assistive Technik müssen weiterhin geprüft werden.
+https://thedollscout.com/de/compare-pdf-text
 
-Werden Scans oder fehlende Tags repariert?
+Datei verifizieren
 
-Diese Version prüft Dokumente und liest vorhandenen Text aus. Sie führt keine OCR aus, ergänzt keine Tags und repariert keine PDF. Dafür einen geeigneten Editor verwenden und erneut prüfen.
+Einen Prüfsummen-Link erstellen oder eine empfangene Datei abgleichen.
+
+SHA-256 + Dateigröße
+
+https://thedollscout.com/de/verify-file
+
+Dateiübergabe dokumentieren
+
+Dateien auflisten, Notizen ergänzen und eine portable Aufzeichnung exportieren.
+
+Dateiliste
+
+https://thedollscout.com/de/delivery-evidence
+
+Ich möchte mehrere Dokumente versenden.
+
+Stapel prüfen, versendete Dateien dokumentieren und Empfängern den Abgleich ihrer Kopien ermöglichen.
+
+Ich habe eine neue PDF-Fassung erhalten.
+
+Zuerst Textänderungen vergleichen. Für die exakten Dateibytes anschließend eine Prüfsumme nutzen.
+
+Ich brauche den Text aus einem PDF.
+
+Textextraktion versuchen. Fehlt die Textebene, hilft die Anleitung bei der Entscheidung für eine separate OCR-Lösung.
+
+Kostenlose Werkzeuge. Dateien bleiben auf Ihrem Gerät.
+
+Kein Konto und kein Datei-Upload nötig. Originaldateien bleiben unverändert; Ergebnisse können Sie herunterladen. Jedes Werkzeug erklärt vorab seine Grenzen.
+
+Sind alle sechs Werkzeuge kostenlos?
+
+Ja. PDF-Prüfung, Stapelprüfung, Textextraktion, Vergleich, Dateiverifizierung und Übergabedokumentation sind kostenlos. Ein Konto ist nicht erforderlich.
+
+Werden meine Dateien hochgeladen oder gespeichert?
+
+Die Verarbeitung läuft im Browser. Dateien und Dokumenttext werden nicht hochgeladen. Ein freiwillig geteilter Prüflink enthält SHA-256 und Bytezahl; vollständige Exporte können Dateinamen und Ihre Notizen enthalten.
+
+Welches Werkzeug prüft eine unveränderte Datei?
+
+Die Dateiverifizierung vergleicht SHA-256 und Bytezahl mit einer Referenz des Absenders. Der Textvergleich prüft extrahierten Wortlaut. Beide belegen weder Identität noch Zustellung, Abnahme oder Freiheit von Schadsoftware.
 
 Referenzen
 - W3C: PDF reading order: https://www.w3.org/WAI/WCAG22/Techniques/pdf/PDF3

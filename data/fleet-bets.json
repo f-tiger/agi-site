@@ -165,9 +165,11 @@
    "win": "门保留",
    "lose": "注册 0 且 calc 跌 >80% → 报 owner 建议软门",
    "source": "sites/baipiaoji/CLAUDE.md:74",
-   "status": "open",
+   "status": "insufficient",
    "instrument_note_2026-09-22": "⚠ 2026-09-22 仪器修正：该事件名自 09-04「未知事件名改为丢弃」上线起从未进 hit.js 白名单，边缘静默丢弃，此前读到的 0 是丢包不是行为；本次部署起才有读数，窗口从部署日重新起算。",
-   "instrument_note_2026-09-25": "⚠ 2026-09-25 口径：09-25 上线的视频入口点击（/video/<位置>-<动作>）部署前记在 ev='calc' 名下，同日审计后改记 ev='video'。结算本线读 calc 时必须加 AND path NOT LIKE '/video/%' AND path NOT LIKE '%/demo'，否则导航会被读成工具使用。"
+   "instrument_note_2026-09-25": "⚠ 2026-09-25 口径：09-25 上线的视频入口点击（/video/<位置>-<动作>）部署前记在 ev='calc' 名下，同日审计后改记 ev='video'。结算本线读 calc 时必须加 AND path NOT LIKE '/video/%' AND path NOT LIKE '%/demo'，否则导航会被读成工具使用。",
+   "settled": "2026-09-27",
+   "reading": "D1 现查 2026-09-27(28d 窗 08-30→09-27,剔 /video/ 与 %/demo):gate view 3(09-23 ×2、09-24 ×1),subs 表 src=tool-gate:* 注册 0,calc 10(前 28d 1,没有下跌)。view 3 <30,胜负两个分支都没触发。仪器只在 09-22(白名单补登)→09-26 有效:09-26 #24/#27 把工具门换成免费账户登录(gateOf() 现在是账户卡,不再发 gate 事件、不再以 src=tool-gate 订阅),且 09-24/25/26 白天 D1 读额度用完,事件写入丢失。本线测的机制已不存在,不续线;账户门的去留按 bpj 自己的账户判定线读。"
   },
   {
    "id": "bpj-site-search-0927",
@@ -178,7 +180,9 @@
    "win": "按 hit/miss 与 gs_go 定下一步",
    "lose": "搜索线停止投入优化",
    "source": "sites/baipiaoji/CLAUDE.md:87",
-   "status": "open"
+   "status": "insufficient",
+   "settled": "2026-09-27",
+   "reading": "D1 现查 2026-09-27:gs 0、gs_go 0(28d)。有效窗只有 09-22(白名单补登,此前在边缘被丢弃)起 5 天,且 09-24/25/26 白天 D1 读额度用完丢写入;发送端仍在 dist(本地构建 1 个文件含 bpjEv('gs'))。5 天 0 次不够判「没人搜」,也谈不上 ≥10。按 lose 分支的精神处理:搜索线不追加投入;若要重判,另立一条从 09-22 起算 28 天的线,本轮不代立。"
   },
   {
    "id": "bpj-earn-gate-0928",
@@ -457,7 +461,24 @@
    "lose": "AI 读者面只维护不扩建",
    "source": "CLAUDE.md:437",
    "status": "open",
-   "baseline_instrument_2026_09_13": 78
+   "baseline_instrument_2026_09_13": 78,
+   "reading_2026-09-27": "预读(不结算,阈值与原文都不动)。最近的完整读数:59(09-23T16:04Z,agi 21 / bpj 22 / eco 15 / gamesledger 1)、58(09-24T13:03Z)、56(09-26T05:27Z 渠道构成快照 by_source.ai,同一批 /api/pulse)、53(09-27T13:26Z,agi 19 / bpj 17 / eco 16 / gamesledger 1);09-25、09-26 两份 fleet-ai-referrals 快照 ok:false(D1 读额度用完后 13 个 /api/pulse 500),不能当舰队合计读。下降是真的:三站 D1 JS 口径两段不重叠的 10 天,08-16..08-25 共 35 次(30 个访问日)对 09-13..09-22 共 17 次(16 个访问日),z≈2.5(按访问日 ≈2.1);下降全在 bpj(13→5 个访问日)与 eco(12→4),agi 持平(5→7);eco 仪器读数 09-13 为 25、09-23 为 15。原因(季节、老化、D1 写入缺口)都未检验。≥156 需要现水平的约 2.6–2.9 倍,照现速几乎必输。其中 claude.ai:agi 21 次里 7 次,可能含舰队自己在 claude.ai/code 的点击,判定照读合计(快照另列 fleet_ai_ref_claude_ai)。",
+   "reading_rule_2026-09-27": "结算照原文字面(不收紧,参照 goldrush-tripwire-0930 的 reading_rule 写法):「五个 0 站」= 09-12 基线里的 thedollscout / goldrush / gridlings / buysomething / gamesledger;「转正」按原文 = 28 天快照 ai_ref ≥1。reading 必须逐站写出每个转正站的访问日数(去重 path×day×country)、不同日期数与来源 host;若判 win 只因 ≥2 站转正而其中有站只有 1 个访问日,reading 写明「字面赢、实质单次点击」,win 分支(补 llms-full 与 JSON-LD 到只有 llms.txt 的站)照做,但不得据此做超出 win 分支的扩建。t0:gamesledger 1 次(copilot.microsoft.com),其余四站 0。读数路径:heartbeat 快照 ok:true 优先;快照残缺时会话在 00:05–06:00 UTC 用 ai_referrals.py 的 sql_for() 直查 D1,访问日另按 path/day/country 分组查,并标注窗口内 09-24/25/26 的 D1 写入缺口。"
+  },
+  {
+   "id": "fleet-ai-landing-shape-1026",
+   "site": "fleet",
+   "due": "2026-10-26",
+   "metric": "AI 访问日按页面形状计分(tools/fleet/ai_landing_shape.py,固定窗 2026-09-28..2026-10-25,agi+bpj+eco):单位 = 去重的 (site, path, day, country),referrer 为 AI 助手,kagi.com 不计;claude.ai 单列不计分;H = list_or_comparison + practical_fix,J = definition_or_judgement,标签取 data/ai-landing-labels-2026-09-27.json(窗口开始前写定,结算时不改标);首页、bpj 工具卡、三个样本内驱动页(bpj /c/api、eco 翻窗页 EN+DE)、未标注页只报告不计分",
+   "threshold": "赢:H ≥ 10 且 H ≥ 2·J;输:H ≤ J 且 H+J ≥ 12;其余(含 H+J < 12、未标注 ≥ 25%、D1 读不到)为 insufficient",
+   "win": "「交接型页面」规则成立(读者下一步必须在站外完成的页面拿 AI 点击,判定页拿引用):写进 citation-growth 技能与 agi rung ⓪;任何在 fleet-ai-referrals-1024 之后存活的 AI 读者面工作优先交接型页面",
+   "lose": "撤回页面形状结论:AI 点击按引用量 × 行业约 0.3% 看待,任何 CLAUDE.md 与技能不得再写「某种页型是 AI 点击面」(bpj 第 18 条 ② 一并撤回);两个驱动页当作单页资产维护",
+   "source": "docs/ai-era-site-2026-09-27.md",
+   "status": "withdrawn",
+   "t0": "2026-08-31..09-27 同口径(D1 2026-09-27 读,评分工具现算):H 7 · J 7 · claude.ai 5 · 驱动页 15 · 首页 3 · 工具卡 4 · 未标注 0 → t0 落在输区(H ≤ J 且 H+J = 14)。维持现状判负,只有样本外出现交接型效应才判赢",
+   "reading_source": "结算日 2026-10-26 00:05–06:00 UTC,会话用 Cloudflare D1 查询工具跑 `python3 tools/fleet/ai_landing_shape.py --sql` 打印的三条 SQL(今天实测 22.9k + 0.4k + 1.8k rows_read),存成 {site: rows} 喂给评分工具;不新增仪表、不加 cron",
+   "settled": "2026-09-27",
+   "reading": "窗口开始前撤回,不是赌注(合并前三位审查员一致):①标签只贴了「已有过 AI 点击」的页(按因变量选样),t0 的「未标注 0」与「落在输区」都是样本内构造;用前半窗贴标签去算后半窗,一半访问日落在未标注页 → 结算只会是 insufficient;②bpj 模板规则自动把几百页计入,agi/eco 只有列出的路径能计分,计分偏向 H;③输分支(撤回页型结论)当天已经在手册里执行,只剩赢分支有后果;④标签文件没有哈希与锚定,改几个标签就能把输翻成赢。评分工具与标签文件曾在提交 a804c82a,本次删除。要重新检验页型,须先按源码给 agi/eco 全部内容页贴标签、按页数归一,并用前半窗定标、后半窗计分回测 t0,再登记。"
   },
   {
    "id": "eco-it-pilot-1027",
@@ -1647,7 +1668,8 @@
    "source": "sites/baipiaoji/CLAUDE.md 第 26 条 + .github/workflows/deploy-baipiaoji.yml",
    "status": "open",
    "reading_2026-09-25": "中间读数（不结算）：① 已满足——09-25 定时 run 提交了 59e64217（清单首次由 CI 回写）；③ 已满足——汇总门「变更清单回写」success；② 当日 IndexNow 推了 1 670 条。原因已查实不是基线造假：本地与 CI 构建哈希逐页一致（1 620/1 672 相同；其余 52 页是清单 59e64217 之后的真改动，而该清单早于 d1a02d6f：d1a02d6f 视频上线 48 页（40 个视频工具页、首页与 /c/video 各 2、studio 枢纽 2、新增 /video/ 2），video-variants 2 页（上线 + 本轮 EDITION），本轮审计单独带来的只有 quote-compare 2 页），整站 1 662 页变更来自 5a24095d→e565fe0f 之间的真实全站改动（PR #2 的 canonical/跳板 URL 修复 + Studio 上线）。09-26 的 run 仍会推 ~1 672 条（indexnow-plan 选「今天或昨天」变更的页，而 1 662 页日期是 09-25），所以按原计划只看 09-27 的日志结算 ②。09-25 另一处 424 页空白行 churn（d1a02d6f 的空模板槽）已在 09-26 定时 run 之前修掉，本地构建由 474 降到 52 页。",
-   "reading_2026-09-25b": "同日第二次中间读数（不结算）：本轮新增 Kiro/Codex 并重核 Cursor 时发现，导航栏计数、页脚收录数、订阅框「最近一条」三处全站外壳会让加 2 个工具就把 1 700 页全判为变化（任何一次额度编辑都会，09-21 那批 7 家多半也触发过）。已改 lastmod 哈希忽略这三处（scripts/lastmod-hash.mjs + test-lastmod-hash.mjs，5 个变异全红），并把清单一次性迁移到新公式：1 454 页只动了外壳、保留原日期，166 页本轮真改动 + 30 个新 URL + 50 页清单之后的 Studio 改动，共 246 页记为 09-25；与 main 合并后另一会话同日的 Studio 文件工具 / 视频案例再加 54 页（含 4 个新 URL），合计 300 页记为 09-25。所以 09-26 的定时 run 会把这 300 页当「昨天」推一次；09-27 的读数不含它们，② 照原计划按 09-27 日志结算。"
+   "reading_2026-09-25b": "同日第二次中间读数（不结算）：本轮新增 Kiro/Codex 并重核 Cursor 时发现，导航栏计数、页脚收录数、订阅框「最近一条」三处全站外壳会让加 2 个工具就把 1 700 页全判为变化（任何一次额度编辑都会，09-21 那批 7 家多半也触发过）。已改 lastmod 哈希忽略这三处（scripts/lastmod-hash.mjs + test-lastmod-hash.mjs，5 个变异全红），并把清单一次性迁移到新公式：1 454 页只动了外壳、保留原日期，166 页本轮真改动 + 30 个新 URL + 50 页清单之后的 Studio 改动，共 246 页记为 09-25；与 main 合并后另一会话同日的 Studio 文件工具 / 视频案例再加 54 页（含 4 个新 URL），合计 300 页记为 09-25。所以 09-26 的定时 run 会把这 300 页当「昨天」推一次；09-27 的读数不含它们，② 照原计划按 09-27 日志结算。",
+   "reading_2026-09-27": "到期读数(不结算,顺延读 09-28 定时 run):① 已满足(59e64217 09-25、b4f06a08 09-26 两次 CI 回写);③ 09-27 05:37 定时 run 36297733713 在「Sync payment secrets」一步失败(ad-configure.mjs 抛错,错误被吞只打印通用提示),汇总门里「变更清单回写」为 skipped,IndexNow 步未运行,② 无读数。同一次构建日志与本地重建一致:1712/1714 页判为变化——原因是 09-26 的全站改版(#22 统一体验、#24/#27 账户、#30 AI 工具枢纽)确实改了每页,不是哈希 churn;所以 09-28 的 ② 预计仍 >300,读那一次时要把这一次性整站改版单列,不当成回写失效。"
   },
   {
    "id": "bpj-studio-video-own-1023",

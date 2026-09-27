@@ -55,6 +55,14 @@ job is to keep the machine sharp and let the daily cadence compound.
    可逐条审计的活数字（62.5/100 + 八条翻转条件）。已在 `/situational-awareness-summary`、
    `/what-is-agi`、`/ai-orders-of-magnitude-explained` 落地，埋点 `index_click{*_live}`。
    **新发布的判定型页面一律照此办理。**
+   > **2026-09-27 对齐(不是新规则)**:「收点击」这层理由从未被证实——08-30 `index_click{*_live}`
+   > 按 0 结算(OPT-LOG 08-30:停加钩子,活数字保留为引用差异化);09-27 复读 08-01→09-27
+   > `*_live_link` 共 3 次站内点击、0 次来自 AI 引荐(这测的是站内点击,不是 AI→站点点击率)。
+   > 活数字照做,理由是**可审计、带日期 = 信任与引用元素**,不再写成点击手段。舰队侧的读数:
+   > 564 次引用(30 天至 08-16,Microsoft Copilots & Partners,Bing 抽样)窗口里有 D1 数据的 08-05→08-16,Copilot 送来 0 人;
+   > Copilot 引荐全部在 08-18 之后:3 个访问日(JS 5 次 / 服务端 4 次)。两个窗口不重叠,只能说
+   > 「引用 → 点击」在 <1% 量级,和行业公开的 AI 应用点击率(TollBit 2025Q4 0.27%,分母未公开)同一量级,
+   > **不是同一个比率**。agi 站内判定页的 AI 到达并不比清单页少。详见 `docs/ai-era-site-2026-09-27.md`。
 
 **已知风险**：可见查询引用的 73% 挂在 Aschenbrenner 这一个实体上，属人物依赖型资产；
 对冲方向见 `content-backlog.md` 的 CITATION AMPLIFICATION 队列。
@@ -316,7 +324,8 @@ strategy doc the same run. New strategy-relevant milestones to watch in D1:
       具备：① 标题即那个问题本身（定义 / 现状 / 对比三选一）② 首屏答案胶囊先给结论
       ③ 表格 ④ 可见 FAQ 与 FAQPage JSON-LD 逐条一致 ⑤ 带日期的一手判定 + 一手源外链
       ⑥ **首屏一个聊天答案装不下的活数字**（62.5/100 + 八条翻转条件，埋点
-      `index_click{<page>_live}`）。缺第 ⑥ 条 = 白送引用不收点击，这条不能省。
+      `index_click{<page>_live}`）。这条不能省——理由是可审计的活数字让引用可核(信任元素);
+      「缺了就白送引用不收点击」的旧说法 08-30 已按 0 结算,2026-09-27 起不再这样写。
    d. **不要拿引用数去考核工具页与游戏化页**：它们在前十引用页里一个都没有，本来就不吃
       引用。它们的 KPI 是 `tool_click` / `embed_copy` / 绑定数。
 3. **Optimize — ONE change per run** (owner-authorized exception 2026-07-11:

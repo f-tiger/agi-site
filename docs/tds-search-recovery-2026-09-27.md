@@ -42,3 +42,14 @@ No outreach messages, forum posts, bought links or new scheduled jobs were sent 
 Published commit: `d0dcf4a48f6ccbd40e13c930bdcf075130cd8e44`. GitHub Actions run https://github.com/f-tiger/agi-site/actions/runs/36322800047 completed successfully. Production build stamp matched this commit. All 39 localized pages and generated sample checksums passed the live verifier.
 
 September 27 at 13:34 UTC: live document sitemap contained 36 URLs and no collector archive URLs. Google Search Console accepted both document-sitemap.xml and sitemap.xml; downloads were pending at submission. Changed-content IndexNow notification accepted 42 URLs with HTTP 200. Neither acceptance establishes indexing, ranking or citation.
+
+
+## Homepage task directory follow-up
+
+Owner asked to follow BPJ/ECO's multi-entry structure instead of putting one PDF workspace at the front of TDS. Replaced all three localized homepages with a six-tool directory grouped by checking documents, extracting/comparing text, and verifying/preparing delivery. Added three concrete task journeys. Existing tool URLs, parser behavior and examples stay in place; the default home remains English `/`.
+
+The homepage now uses CollectionPage plus a visible six-item ItemList, localized metadata/FAQ and matching text mirrors. Navigation says all tools, and sharing describes the directory accurately. No login, upload, search query or new tool is introduced. Added six fixed anonymous tool-link actions, restricted to home routes, plus distinct homepage-view, dedicated-tool-view and selection totals in the existing single-query aggregate. Older home views remain in the reporting window; link clicks are not completions or unique visitors.
+
+Validation: 27 Node tests; 39 localized pages; 134 visible structured-data entries without mismatches; 18 localized directory-to-tool navigations; EN/DE/ZH desktop and 360–390px mobile without horizontal overflow; six tool links available with JavaScript disabled; real comparison sample completes without browser errors. The change improves tool discovery but does not establish that the old homepage caused low search traffic, or that the new one will receive rankings or AI citations.
+
+Production release: `7ce1bfe1233e9dd7685227679c49447d5a3c3b1c`. [Deployment run 36324727000](https://github.com/f-tiger/agi-site/actions/runs/36324727000) succeeded. The live build stamp matches this commit. All 39 localized pages passed the production verifier; all three homepages have six tool links, CollectionPage/ItemList schema and no inline file input. The stats endpoint returns the new separate homepage and tool totals. At 14:08 UTC, changed-content IndexNow accepted 41 URLs with HTTP 200; indexing remains unverified. No new sitemap resubmission was needed after the earlier same-day accepted submissions.
