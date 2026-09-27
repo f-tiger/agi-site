@@ -180,6 +180,15 @@ AIGC 检测读数账本(学生校园零读数、伦理线)、创作者分成规�
 
 ## 七、同日事故:D1 免费档每日读取超限
 
+> **2026-09-27 对账(与 main 上并行的修复合并后)**:另一会话在 main 上独立查实并修了同一事故,全文 `docs/d1-read-budget-2026-09-26.md`,
+> 以那份为准。三处更正:①额度不是只在 09-25 用完,**09-24 13 点、09-25 08 点、09-26 10 点**三天都用完了(GraphQL 实测
+> 542 万 / 687 万 / 550 万行);②bpj `/api/reach` 每次约 **18 万行**,是最大消耗(09-25 占 58%),其次 agi `/api/trends`
+> (09-26 占 29%)与 `/api/pulse`;③bpj 的根因是 `hits` 表把爬虫行与真人行混在一起、真人条件没有索引,main 用两个部分索引 +
+> 爬虫分表 `bot_daily` 修了,比本分支的单次 GROUP BY 更彻底。**合并时 bpj reach、agi analytics worker、tds pulse / document-stats
+> 四个文件取 main 的版本**(它们的服务端缓存已上线且被部署自检断言);本分支对 eco、SR、goldrush、gridlings、gamesledger 与
+> 六个小站的缓存、读侧 memo、`d1_budget.py` 护栏仍然有效。09-24 起三天的 D1 读数缺口在按天结算判定线时都要标注。
+
+
 **什么坏了**:2026-09-25 约 09:00–10:30 UTC 起,Cloudflare 账号超出 Workers Free 档 D1 每日 **5,000,000 行读取**上限
 (全部数据库之和;Cloudflare 2026-09-01 起强制执行,00:00 UTC 重置)。此后所有 D1 读取返回 7500 错误到午夜:
 13 个 `/api/pulse` 500、bpj `/api/ads?doctor=1` 回 `selling:false`(广告位停售)、四站会员轨 `ready:false`、

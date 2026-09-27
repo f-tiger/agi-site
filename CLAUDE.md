@@ -1102,6 +1102,8 @@ localebatch **不记任何访问**,所以「零」也读不出访客有没有来
 
 ## D1 免费档读预算事故 + AI 时代创业楔子(2026-09-25/26;全文 `docs/ai-era-founder-2026-09-25.md`)
 
+> **2026-09-27 对账**:事故以上一节(main 侧 `docs/d1-read-budget-2026-09-26.md`)为准——09-24、09-25、09-26 三天都用完,bpj `/api/reach` 每次约 18 万行是主因。下面的「规矩①–⑥」仍适用;bpj / agi / tds 的缓存实现以 main 的 `reach-cache.js` / `aggregate-cache.js` 为准。
+
 - **事故**:09-25 约 09:00–10:30 UTC 起账号超出 Workers Free 档 D1 **5,000,000 行读取/日**(全库之和,Cloudflare 2026-09-01 起强制,
   00:00 UTC 重置),读全部失败到午夜:13 个 `/api/pulse` 500、bpj 广告位 `selling:false`、四站会员轨 `ready:false`、
   先读后写的表单(bpj 投稿/订阅/watch、agi `/api/sub`、eco `/api/sub2`、after35、verify 反馈)丢失写入。**09-25 09:00–24:00 UTC
