@@ -1,29 +1,42 @@
-# 舰队总任务 · Routine prompt 原文(v2,trig_01PXhZ3uG6CcJqiCviAVXAGF)
+# 舰队总任务 · Routine prompt 原文(v2,trig_011SpfuZB2Lc2aDYp1F9qSLz)
 
 - 重建:2026-09-27,owner 原话「重建每天的定时任务」,随后补充「你要避免每天任务无法读取agi-site仓库，从而执行发布」。
-- cron:`51 3 * * *`(UTC,北京 11:51;整点前 9 分钟错峰);模式:**每次触发开新会话**(`create_new_session_on_fire`),环境 `env_01JrsBKe3iuN8rnj1vjSWeZe`。
-- **为什么不再自绑定**:v1(`trig_012kK8KVg4WYD4g6Y6wEiXet`,2026-09-14)自绑定在常驻会话 `session_016njKJ81yVv2QdrpLYCX1Vc`,该会话 2026-09-15 被归档,
-  总任务随之失效;09-27 查时 v1 与 09-14 存档的 10 条旧 Routine 在账号里都已不存在(`get_trigger` 返回 not found),
-  即 **09-15 → 09-27 没有任何每日循环在跑,也没有任何东西发现**。新会话模式在 09-13 之前的五条日/周 Routine 上验证过能克隆、能推 main。
-- **仓库访问的三道保险**:①prompt 第 0 节的获取顺序(现有克隆 → add_repo HTTPS → 推送前置检查 → 代理诊断 → GitHub MCP 兜底写 main → 分支 + PR 合入);
-  ②每轮在同一次 push 里给 `data/fleet-master-run.json` 追加运行记录;③heartbeat 的 `tools/fleet/check_master_run.py`:
-  50 小时无新记录或连续两轮 `repo_ok=false` → heartbeat 红 → GitHub 失败邮件(唯一不依赖 AI 会话的告警)。
-- **已知限制**:平台提示本 Routine 不带任何 connector(创建它的会话没有可传递的 connector 授权),所以触发出的会话**没有 Cloudflare MCP**:
-  G 块(after35 待审卡片)与每月 10 万实验复核读不到 D1,prompt 要求如实写「未做」。要补,owner 在 claude.ai 的 Routines 界面给这条 Routine
-  加上 Cloudflare connector(或从一个带该 connector 的会话重建)。**站点发布本身不依赖本任务**:各站定时部署与 heartbeat 7 天重发都在第①层。
-- 模型:新会话用环境默认模型;会话侧不改 Routine 的 model 字段。
+- cron:`51 3 * * *`(UTC,北京 11:51;整点前 9 分钟错峰);首次计划运行 2026-09-28 03:51 UTC;环境 `env_01JrsBKe3iuN8rnj1vjSWeZe`。
+- **模式:每天唤醒一个专用常驻会话** `session_013QnV88GEwyxxdXDZCZKsUr`,标题「舰队总任务 · 每日常驻会话(勿归档)」。
+  这个会话是用 `create_session(source_url=https://github.com/f-tiger/agi-site)` 建的,仓库是会话本身的 source:
+  每次容器被回收后重新启动,都会先按 `main` 重新克隆 agi-site,不依赖 add_repo、不依赖会话里的旧工作区。
+  **请勿归档这个会话**——归档后 Routine 会失效(v1 就是这样死的),但 heartbeat 会在 50 小时内打红(见下)。
+- **为什么是这个设计(09-27 当天三次实测,别再重试前两种)**:
+  1. v1(`trig_012kK8KVg4WYD4g6Y6wEiXet`,2026-09-14)自绑定在对话会话 `session_016njKJ81yVv2QdrpLYCX1Vc`,该会话 09-15 被归档,总任务随之失效;
+     09-27 查时 v1 与 09-14 存档的 10 条旧 Routine `get_trigger` 均 not found。**09-15 → 09-27 没有任何每日循环在跑,也没有任何东西发现。**
+  2. 09-24 另有一个会话建过新会话版 `trig_01EqzKvfWsoUJzNwYeD9m8XL`,它的记录只在未合并的分支 `claude/fleet-scheduled-task-rebuild-4c0law` 上,
+     main 上没有它推过的任何提交;09-27 查时这条 Routine 也已不存在。
+  3. 09-27 先建的新会话版 `trig_01PXhZ3uG6CcJqiCviAVXAGF`(`create_new_session_on_fire`)手动触发实测:平台存储的配置是 `sources: []`、无 connector,
+     触发出的会话**不带 agi-site**,一个提交都没推出来。**从会话里建的「每次开新会话」Routine 拿不到仓库**。已 `enabled=false` 并改名留痕(未删除)。
+  4. 同日用 source_url 建的专用会话实测:**30 秒内读到仓库、`push --dry-run` 通过、把 `data/fleet-master-run.json` 推上 main(commit `3c64ef50`)**。
+     v2 的 Routine 就绑在这个会话上。
+- **仓库访问的三道保险**:①会话自带 agi-site 克隆;prompt 第 0 节再给出获取顺序(现有克隆 → add_repo HTTPS → 推送前置检查 → 代理诊断 → GitHub MCP 兜底写 main
+  → 分支 + PR 合入);②每轮在同一次 push 里给 `data/fleet-master-run.json` 追加运行记录;③heartbeat 的 `tools/fleet/check_master_run.py`:
+  50 小时无新记录或连续两轮 `repo_ok=false` → heartbeat 红 → GitHub 失败邮件(唯一不依赖 AI 会话的告警)。会话被归档、Routine 消失、
+  平台挂起(`suspension_reason`)都表现为「没有新记录」,同一道闸都能抓到。
+- **已知限制**:Routine 与会话都不带 connector(平台返回 `mcp_connections: []`),所以每日会话**没有 Cloudflare MCP**:
+  G 块(after35 待审卡片)与每月 10 万实验复核读不到 D1,prompt 要求如实写「未做」。要补,owner 在 claude.ai 的 Routines 界面
+  给这条 Routine 加上 Cloudflare connector,或在那里新建一条选好仓库与 connector 的 Routine 并把本 prompt 贴进去(然后把本条停用)。
+  **站点发布本身不依赖本任务**:各站定时部署与 heartbeat 7 天重发都在第①层。
+- 模型:用会话的模型;会话侧不改 Routine 的 model 字段。
 - **本文件与线上 prompt 必须逐字一致**:用 `update_trigger` 改 prompt 时,同一次提交改这里。
 
 ---
 
 【舰队总任务 v2 · 每日 · 2026-09-27 由 owner 指令「重建每天的定时任务」重建】
-v1(2026-09-14,trig_012kK8KVg4WYD4g6Y6wEiXet)自绑定在常驻会话上,该会话 09-15 被归档,总任务随之失效,此后没有任何每日循环在跑。v2 改为**每次触发开一个全新会话**:不依赖任何会话存活。本 prompt 只做路由,各站细则以各自 CLAUDE.md 为准,冲突时以 CLAUDE.md 为准。存档与设计理由:agi-site 仓 docs/fleet-master-routine.md、docs/fleet-automation-map.md 第十一节。
+v1(2026-09-14)自绑定的常驻会话 09-15 被归档后失效;09-24 另建的新会话版 Routine 从未推出过一个提交,也已不存在;09-27 实测:从会话里建的「每次开新会话」Routine 不带仓库、不带连接器,触发出的会话拿不到 agi-site。
+所以 v2 每天唤醒**本会话**——它启动时就带着 f-tiger/agi-site(09-27 14:09 实测:30 秒内读到仓库并推上 main,commit 3c64ef50)。本 prompt 只做路由,各站细则以各自 CLAUDE.md 为准,冲突时以 CLAUDE.md 为准。存档与设计理由:agi-site 仓 docs/fleet-master-routine.md、docs/fleet-automation-map.md 第十一节。
 
-你运行在全新会话中,没有任何历史记忆,也可能没有 Cloudflare MCP。
+每天被唤醒时,把本条当作全新的一轮:不依赖昨天的记忆(上下文会被自动摘要),一切以本 prompt、仓库文件与当天的一手数据为准。你可能没有 Cloudflare MCP。
 
 ## 0. 拿到仓库并确认能发布(最先做,做完才进下一步)
 owner 2026-09-27 原话:「你要避免每天任务无法读取agi-site仓库，从而执行发布」。按下面顺序,前一步成功就停:
-1. 工作目录里已有 agi-site 克隆(`git remote -v` 指向 f-tiger/agi-site)→ 直接用。
+1. 本会话启动时已带 agi-site 克隆(`git remote -v` 指向 f-tiger/agi-site)→ 直接用;先 `git status`,有上一轮遗留的未提交改动就先看清楚再处理,绝不 reset 掉工作。
 2. add_repo(owner=f-tiger, repo=agi-site, access=push),**只用它返回的 HTTPS 克隆命令**;失败按 2/4/8/16 秒退避重试 4 次。**绝对禁止 `git clone git@github.com:…`(SSH)**——无人值守会话会因权限提示永远挂起(09-04 实测卡死 6 小时)。
 3. 克隆成功后**立刻**做推送前置检查:`git fetch origin main && git checkout -B main origin/main && git push --dry-run origin HEAD:main`。
 4. 第 2 或第 3 步失败:跑 `curl -sS "$HTTPS_PROXY/__agentproxy/status"`,并用 read_documentation(topic=github.access, situation=blocked) 读原因,把两者原文写进日报头条。
@@ -77,4 +90,4 @@ H. **新站群与四个新 worker(只报数不动)**:learn / fanzha / firstjob /
 按 A→H 每块 2–6 行:一手数字(带日期与口径)、本轮 ship、deploy 是否绿、机制体检(哪些验了、哪些「本轮未验证」)、owner 待办(同一条不催第二遍以上)。台账栏一行:开放 / 已结 / 本期 won-lost 计数。无实质变化就短。任何一块出错不影响其它块,错误原文写进对应站的日志与总日报。
 
 ## 8. 运行记录(每轮必做,哪怕别的都没做)
-在本轮那一次 push 里,给 data/fleet-master-run.json 的 `runs` 数组追加一行 `{"at": "<UTC ISO 时间>", "repo_ok": true/false, "pushed": true/false, "via": "git" 或 "mcp", "blocks": "做完的块,如 A,B,C,D,G", "note": "一句话,出错时写原因"}`,只保留最近 30 行,文件用 `json.dumps(ensure_ascii=False, indent=1)` + 结尾换行。git 推不上去就用第 0 节第 5 步的 GitHub MCP 兜底写这一行。heartbeat(tools/fleet/check_master_run.py)每天读它:50 小时没有新记录,或连续两轮 repo_ok=false,就把 heartbeat 打红并发 GitHub 失败邮件给 owner——这是本任务出问题时唯一不依赖任何 AI 会话的告警。
+在本轮那一次 push 里,给 data/fleet-master-run.json 的 `runs` 数组追加一行 `{"at": "<UTC ISO 时间>", "repo_ok": true/false, "pushed": true/false, "via": "git" 或 "mcp", "blocks": "做完的块,如 A,B,C,D,G", "note": "一句话,出错时写原因"}`,只保留最近 30 行,文件用 `json.dumps(ensure_ascii=False, indent=1)` + 结尾换行。git 推不上去就用第 0 节第 5 步的 GitHub MCP 兜底写这一行。heartbeat(tools/fleet/check_master_run.py)每天读它:50 小时没有新记录,或连续两轮 repo_ok=false,就把 heartbeat 打红并发 GitHub 失败邮件给 owner——这是本任务出问题时(包括本会话被归档、Routine 消失)唯一不依赖任何 AI 会话的告警。
