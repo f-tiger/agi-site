@@ -42,4 +42,6 @@ Use settled search impressions/clicks for these new paths, own-input completion/
 
 ## Production
 
-Awaiting release verification.
+Published commit: `524b07238a8bb2c51c8c67a60cf3b76e532fe26a`. [Deployment run 36326929243](https://github.com/f-tiger/agi-site/actions/runs/36326929243) completed successfully. The public build stamp matches. All 48 generated pages passed the production verifier; direct checks confirmed all nine new localized tool pages, the nine-tool/five-category homepage and the updated stats endpoint. The live document sitemap has 45 URLs; the assembled full sitemap has 100.
+
+At 14:44 UTC (22:44 Shanghai), changed-content IndexNow accepted 51 URLs with HTTP 200. At 14:45 UTC (22:45 Shanghai), Google Search Console accepted both updated sitemaps and queued their download. Acceptance does not establish indexing, ranking or AI citation. The isolated D1 CI event was written, read back and excluded from demand counts.
